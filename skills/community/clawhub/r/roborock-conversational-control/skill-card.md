@@ -1,45 +1,60 @@
-## Description: <br>
-Turns a Roborock vacuum into a conversational OpenClaw companion for natural-language status, docking, pause, whole-home cleaning, and room-specific cleaning commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides conversational Roborock vacuum control for OpenClaw or Telegram, including status, start, pause, stop, dock, room-specific cleaning, and room alias bootstrapping.
 
-## Publisher: <br>
-[serdarsalim](https://clawhub.ai/user/serdarsalim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serdarsalim](https://clawhub.ai/user/serdarsalim)
 
-## Use Case: <br>
-OpenClaw and Telegram users use this skill to operate a Roborock vacuum through short conversational commands while keeping control scoped to Jojo-related vacuum tasks. It is intended for users who want room-aware vacuum control through an agent interface rather than raw CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad chat phrases can control a real Roborock vacuum. <br>
-Mitigation: Use a dedicated Jojo or Telegram agent, or require explicit trigger phrases such as "Jojo, pause cleaning" before executing vacuum commands. <br>
-Risk: The shell configuration path can execute local code if pointed at an untrusted file. <br>
-Mitigation: Keep jojo.env private, restrict file permissions, and do not set JOJO_CONFIG_FILE to untrusted paths. <br>
-Risk: Local configuration may expose device IDs or unrelated tokens if mishandled. <br>
-Mitigation: Do not publish jojo.env, Telegram tokens, or device identifiers, and avoid storing unrelated secrets in the skill configuration. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw or Telegram agent control a Roborock vacuum with short natural-language commands, room aliases, and status queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/serdarsalim/roborock-conversational-control) <br>
-- [README](README.md) <br>
-- [Setup guide](SETUP.md) <br>
-- [Agent notes](AGENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and short device-focused responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Roborock CLI authentication and a private jojo.env configuration file with a device ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Chat commands can move a physical vacuum without clear confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before Telegram or shared-chat users can start, dock, stop, pause, or room-clean the vacuum.
+
+Risk: The scripts source local shell configuration that may contain device IDs, Roborock credentials, or Telegram tokens.
+
+Mitigation: Install only on a trusted machine, keep jojo.env private, and avoid publishing local config or tokens.
+
+Risk: Broad exec allowlisting can expose more command surface than the skill needs.
+
+Mitigation: Allowlist only the specific Jojo wrapper path and review the scripts before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/serdarsalim/skills/roborock-conversational-control)
+- [README](artifact/README.md)
+- [Setup guide](artifact/SETUP.md)
+- [Agent operating notes](artifact/AGENTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and local configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Roborock CLI authentication, JOJO_DEVICE_ID configuration, and optional ROOM_* aliases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

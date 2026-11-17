@@ -216,7 +216,7 @@ export GCP_SERVICE_ACCOUNT_JSON="/path/to/service-account.json"
 
 # CloudMigrate Specific
 export CLOUDMIGRATE_STATE_BUCKET="your-terraform-state-bucket"
-export CLOUDMIGRATE_SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/WEBHOOK"
+export CLOUDMIGRATE_SLACK_WEBHOOK="REDACTED-SECRET"
 export CLOUDMIGRATE_GITHUB_TOKEN="your-github-pat-token"
 export CLOUDMIGRATE_VAULT_ADDR="https://vault.example.com"
 ```
@@ -258,7 +258,7 @@ export CLOUDMIGRATE_VAULT_ADDR="https://vault.example.com"
 4. **Configure Slack Integration (Optional):**
    ```bash
    cloudmigrate config slack \
-     --webhook-url "https://hooks.slack.com/services/YOUR/WEBHOOK" \
+     --webhook-url "REDACTED-SECRET" \
      --channel "#infrastructure"
    ```
 

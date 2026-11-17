@@ -77,7 +77,7 @@ Create a JSON file following this schema:
 - `title` — opening slide with `# heading`
 - `content` — standard slide with `## heading` + body
 - `code` — slide with syntax-highlighted code block
-- `diagram` — slide with Mermaid diagram
+- `diagram` — slide with Mermaid diagram (stays a Mermaid fence for Marp; do NOT replace with a `diagram`-generated HTML here)
 - `image` — slide with image reference in body
 - `quote` — slide with blockquote formatting
 - `section` — section divider with `# heading`
@@ -137,6 +137,7 @@ Slide body content
 | Invalid JSON input | MEDIUM | Script exits 1 with parse error — agent fixes JSON and retries |
 | Marp not installed | LOW | Script outputs plain .md — user installs Marp CLI separately |
 | Too many slides (>30) | MEDIUM | Agent should split into multiple decks or summarize |
+| System/architecture/flow/sequence/state/ER/swimlane diagrams | MEDIUM | Editorial HTML/SVG diagrams → `diagram`. For an editorial slide graphic: `diagram` with `size=slide-16x9`, then embed the HTML or a screenshot — do NOT replace the Marp `type: diagram` fence (that stays Mermaid for `build-deck.js`) |
 
 ## Constraints
 
@@ -166,7 +167,7 @@ Slide body content
 ~500-1500 tokens input, ~300-800 tokens output. Sonnet for quality copy and structure.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,46 +1,55 @@
-## Description: <br>
-Drafts, reviews, de-risks, and can publish Wikipedia or Wikidata content with a conservative, policy-safe workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft, review, de-risk, and publish Wikipedia or Wikidata content with a policy-safe workflow for encyclopedia articles, sandbox drafts, citations, notability/source assessments, conflict-of-interest reviews, and MediaWiki wikitext.
 
-## Publisher: <br>
-[colto111](https://clawhub.ai/user/colto111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colto111](https://clawhub.ai/user/colto111)
 
-## Use Case: <br>
-Editors, developers, and content teams use this skill to prepare Wikipedia articles, sandbox drafts, Wikidata starter statements, citation cleanup, source-quality reviews, notability checks, and COI-sensitive rewrites before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live publishing can modify wiki pages when MediaWiki credentials are supplied. <br>
-Mitigation: Use dry-run mode first, prefer sandbox or Draft pages, verify the API endpoint and page title, and use dedicated wiki or bot credentials rather than a primary account. <br>
-Risk: Citation enrichment contacts source URLs from the user's environment. <br>
-Mitigation: Run citation fetching only on public URLs you are comfortable contacting and review fetched metadata before using it in a draft. <br>
-Risk: Weak sourcing, promotional tone, or conflict-of-interest content can lead to rejected or misleading wiki pages. <br>
-Mitigation: Run source hygiene, notability, tone, and deletion-risk checks, then remove unsupported or promotional claims before publishing. <br>
+## Use Case:
 
+Developers, editors, and agents use this skill to prepare Wikipedia and Wikidata drafts, assess source quality and notability, reduce promotional or conflict-of-interest risk, and choose sandbox or draft publishing paths before live edits.
 
-## Reference(s): <br>
-- [Wikipedia Publisher README](README.md) <br>
-- [Citation Guidelines](references/citation-guidelines.md) <br>
-- [Publishing Workflow](references/workflow.md) <br>
-- [Wikipedia Publishing Red Flags](references/red-flags.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/colto111/wikipedia-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with proposed wiki text, citation templates, command examples, and optional text or JSON-style review reports from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run publishing steps and review notes; live publishing requires user-provided MediaWiki credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The sandbox publishing helper can send wiki credentials to a user-supplied MediaWiki API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, avoid command-line passwords, and do not set WIKI_USERNAME or WIKI_PASSWORD when using a custom --api endpoint.
+
+Risk: The citation URL enricher fetches arbitrary URLs without network safety bounds.
+
+Mitigation: Run URL enrichment only on trusted public URLs or inside a network-restricted environment.
+
+## Reference(s):
+
+- [Citation Guidelines](references/citation-guidelines.md)
+- [Wikipedia Publishing Red Flags](references/red-flags.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MediaWiki wikitext, citation templates, JSON helper output, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sandbox or draft recommendations, source-quality scores, notability signals, risk flags, and dry-run publishing instructions.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

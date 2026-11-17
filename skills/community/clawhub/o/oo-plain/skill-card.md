@@ -1,46 +1,55 @@
-## Description: <br>
-Plain helps an agent read, create, and update Plain customer data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plain (plain.com). Use this skill for ANY Plain request — reading, creating, and updating data. Whenever a task involves Plain, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, support operators, and other authorized users use this skill to look up Plain customers and create or update customer records after confirming write payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through the OOMOL-connected Plain account. <br>
-Mitigation: Install only when the user intends to operate Plain through OOMOL, keep credentials in the OOMOL connection flow, and do not expose raw tokens to the agent. <br>
-Risk: First-time setup may involve pipe-to-shell or PowerShell installer commands for the oo CLI. <br>
-Mitigation: Use verified OOMOL CLI documentation, review installer contents before execution, and require explicit user approval before running installer commands. <br>
-Risk: The upsert customer action can create or update Plain customer records. <br>
-Mitigation: Inspect the live action schema before constructing payloads and confirm the exact write payload and expected effect with the user before execution. <br>
+## Use Case:
 
+People managing Plain customer records can search for and retrieve customers, or create and update a customer through their connected Plain account.
 
-## Reference(s): <br>
-- [Plain homepage](https://www.plain.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-plain) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read actions can be run directly; write actions require user confirmation of the exact payload and effect.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Setup instructs users to run a remote CLI installer, and the installer and remote connector were not audited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI separately from a verified, pinned release before allowing the skill to run.
+
+Risk: Actions use the connected Plain account and can change customer records.
+
+Mitigation: Connect only the intended Plain account and review each customer change; decide whether to allow automatic synchronization of agent skills.
+
+## Reference(s):
+
+- [Plain](https://www.plain.com)
+- [Plain API documentation](https://www.plain.com/docs/graphql/introduction)
+- [oo CLI repository (referenced by the skill)](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands and JSON request/response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain customer records and action results; customer updates require confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

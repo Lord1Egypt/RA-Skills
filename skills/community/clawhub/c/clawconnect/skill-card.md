@@ -1,40 +1,53 @@
-## Description: <br>
-ClawConnect is a universal account connector for AI agents that can send tweets, read and send Gmail, manage calendar data, and send Slack messages through one API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawConnect lets agents use one API to access Gmail, Calendar, Twitter, Slack, and Discord.
 
-## Publisher: <br>
-[yiweil](https://clawhub.ai/user/yiweil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yiweil](https://clawhub.ai/user/yiweil)
 
-## Use Case: <br>
-Developers and agent operators use ClawConnect to connect AI agents to Gmail, Calendar, Twitter, Slack, and Discord account data and actions through a single API. It is intended for workflows where the operator has connected the relevant accounts and wants the agent to read account information or prepare account actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A single API key can provide broad read and send access across connected email, social, calendar, and workspace accounts. <br>
-Mitigation: Connect only the minimum accounts needed, keep the API key secret, and verify OAuth scopes and revocation options in the ClawConnect dashboard. <br>
-Risk: Agent-driven account actions could send tweets, emails, Slack messages, or other communications unintentionally. <br>
-Mitigation: Require explicit user confirmation before any tweet, email, Slack message, or other account action is sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiweil/clawconnect) <br>
-- [ClawConnect service](https://clawconnect.dev) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect authorized personal or workspace accounts, inspect account data, and request actions such as sending Gmail, Twitter, and Slack messages through ClawConnect.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a bearer API key for connected account API requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Connected-account actions can send tweets, emails, or Slack messages from authorized accounts.
+
+Mitigation: Require explicit confirmation before sending messages, emails, or public posts.
+
+Risk: The skill relies on a bearer API key with access to connected third-party accounts.
+
+Mitigation: Keep the ClawConnect API key private and review the scopes granted on ClawConnect.
+
+## Reference(s):
+
+- [ClawConnect service](https://clawconnect.dev)
+- [ClawHub skill page](https://clawhub.ai/yiweil/skills/clawconnect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes HTTP API examples that require a ClawConnect bearer API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

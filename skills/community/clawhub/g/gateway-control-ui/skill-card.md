@@ -1,40 +1,54 @@
-## Description: <br>
-Step-by-step guide to log into the OpenClaw Control UI, enter gateway token, approve device pairing, and verify connection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step guide to log into the OpenClaw Control UI, enter gateway token, approve device pairing, and verify connection.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and operators use this skill to access an OpenClaw Gateway Control UI, authenticate with service credentials, enter the gateway token, approve a device pairing request, and verify connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway token and service password handling can expose credentials if copied into URLs, logs, screenshots, or shared command output. <br>
-Mitigation: Treat the gateway token and service password as secrets, avoid embedding credentials in URLs when possible, and redact logs or screenshots before sharing. <br>
-Risk: Approving the wrong device pairing request can authorize an unintended device. <br>
-Mitigation: Approve only pairing request IDs that the operator recognizes and expects. <br>
+## Use Case:
 
+Developers and operators use this skill to access the OpenClaw Gateway Control UI, authenticate, pair a device, and verify gateway connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lotfinity/gateway-control-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for OpenClaw gateway login, token entry, device pairing, troubleshooting, and verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Credentials or gateway tokens could be exposed through URLs, logs, screenshots, transcripts, or shared terminals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a controlled OpenClaw environment, avoid putting passwords in URLs, avoid printing or sharing gateway tokens, and rotate any exposed credentials or tokens.
+
+Risk: A pairing request could approve the wrong device.
+
+Mitigation: Verify device identity before approving any pairing request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/gateway-control-ui)
+- [Publisher profile](https://clawhub.ai/user/lotfinity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step operational guidance; does not generate files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

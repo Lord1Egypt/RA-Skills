@@ -1,43 +1,61 @@
-## Description: <br>
-物业纠纷全流程维权 helps property owners turn disputes about repairs, fees, transparency, shared revenue, service quality, and related issues into a structured rights assessment, legal-reference lookup, escalation plan, complaint drafts, negotiation scripts, audit checklist, and interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides China property owners through a six-stage property-management dispute workflow covering rights assessment, legal-reference lookup, escalation planning, complaint drafting, negotiation scripts, financial-audit checks, and an interactive HTML report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users, especially property owners in China, use this skill to organize property-management disputes into a practical rights-preservation workflow with evidence collection, escalation options, complaint language, and legal-information references. It supports legal-information preparation and should not be treated as formal legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create a local HTML report containing property-dispute details and draft complaint language. <br>
-Mitigation: Confirm before generating files, avoid unnecessary personal identifiers, and handle the report as sensitive local legal-information material. <br>
-Risk: Generated legal-information guidance could be mistaken for formal legal advice. <br>
-Mitigation: Review outputs carefully and consult a qualified lawyer before major legal action. <br>
+## Use Case:
 
+External users in China use this skill to organize property-management disputes into rights analysis, evidence collection, escalation options, complaint materials, negotiation language, and financial-audit prompts. It provides legal information and document drafts, not formal legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/property-dispute) <br>
-- [物业管理法律法规速查数据库](references/laws.md) <br>
-- [物业纠纷投诉升级流程](references/complaint_flow.md) <br>
-- [物业纠纷谈判话术库](references/negotiation_scripts.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Interactive HTML report with generated complaint text, negotiation scripts, checklists, and legal-information summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local HTML report containing property-dispute details and draft complaint language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can generate legally sensitive complaint text and public-exposure guidance that may be inaccurate, escalatory, or harmful if facts are not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated allegations, evidence summaries, and escalation steps before use, and seek qualified legal advice before major legal action or public disclosure.
+
+Risk: Generated HTML reports may include sensitive personal, property, financial, or dispute information.
+
+Mitigation: Avoid entering unnecessary personal details, store generated reports as sensitive local files, and do not share reports without removing identifying information.
+
+Risk: HTML reports built from untrusted input may expose users to unsafe content if the template is not hardened.
+
+Mitigation: Inspect generated reports before opening or distributing them, and harden the report template before processing untrusted input.
+
+## Reference(s):
+
+- [物业管理法律法规速查数据库](references/laws.md)
+- [物业纠纷投诉升级流程](references/complaint_flow.md)
+- [物业纠纷谈判话术库](references/negotiation_scripts.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/property-dispute)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance and generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may contain sensitive dispute facts and should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

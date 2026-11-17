@@ -1,45 +1,58 @@
-## Description: <br>
-Health Guardian provides proactive health monitoring for AI agents through Apple Health export ingestion, pattern detection, and anomaly alerts for humans with chronic conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Guardian helps agents import Apple Health data, analyze health patterns, and surface anomaly alerts for humans with chronic conditions.
 
-## Publisher: <br>
-[cgtreadw](https://clawhub.ai/user/cgtreadw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cgtreadw](https://clawhub.ai/user/cgtreadw)
 
-## Use Case: <br>
-Agents and caregivers use this skill to import Apple Health export data, maintain local health baselines, and surface anomaly alerts or summaries for people with chronic conditions or disabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health telemetry and stores raw health data locally. <br>
-Mitigation: Protect or encrypt the data directory and limit filesystem access before using the skill with real health exports. <br>
-Risk: The configured source path may read synced Apple Health export data from iCloud-backed folders. <br>
-Mitigation: Verify the exact Health Auto Export or iCloud source path and confirm which devices and accounts can access those files. <br>
-Risk: Scheduled imports or caregiver alerts can continue processing and disclosing health information after setup. <br>
-Mitigation: Enable cron jobs and Telegram or caregiver notifications only after confirming recipients, visibility, and a clear stop procedure. <br>
-Risk: Health anomaly output may be incomplete or misleading if thresholds, baselines, or source data are wrong. <br>
-Mitigation: Review configuration thresholds and treat generated alerts as decision support rather than medical advice. <br>
+## Use Case:
 
+External users and agent operators use this skill to configure Apple Health import, run local health analysis, and review generated alerts or summaries for caregiving workflows.
 
-## Reference(s): <br>
-- [Health Guardian ClawHub Release](https://clawhub.ai/cgtreadw/health-guardian) <br>
-- [Health Auto Export App Store Listing](https://apps.apple.com/app/health-auto-export/id1115567069) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files, Guidance] <br>
-**Output Format:** [Markdown and plain text guidance with JSON configuration examples and shell command snippets; runtime scripts output text or Markdown alerts and summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local health data files and alert summaries based on configured thresholds and imported Apple Health export data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill processes highly sensitive health records and the security evidence flags misleading privacy and automation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit consent from the person whose data is monitored, restrict access to the intended export and data directories, and review alert delivery before installing or scheduling it.
+
+Risk: Health anomaly alerts and summaries can be incomplete or incorrect and may influence care decisions.
+
+Mitigation: Treat outputs as monitoring aids rather than medical advice, and require human review for concerning patterns.
+
+Risk: The setup depends on Health Auto Export and iCloud-synced data while the artifact claims that no data leaves the machine.
+
+Mitigation: Confirm Apple Health export and iCloud sync settings, and document whether any data or alerts leave the device.
+
+## Reference(s):
+
+- [Health Guardian ClawHub Listing](https://clawhub.ai/cgtreadw/skills/health-guardian)
+- [Health Auto Export App Store Listing](https://apps.apple.com/app/health-auto-export/id1115567069)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON health data, summaries, and alert records when the included scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

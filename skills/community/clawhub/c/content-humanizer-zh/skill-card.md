@@ -1,42 +1,50 @@
-## Description: <br>
-将 AI 生成的内容转化为自然的人类写作风格，支持润色文章、帖子和邮件，去除常见 AI 写作痕迹，并按 InStreet、小红书、公众号和知乎等平台调整语气。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助中文内容作者将 AI 生成文本改写得更自然，并按 InStreet、小红书、微信公众号和知乎等平台调整语气与风格。
 
-## Publisher: <br>
-[wyhw](https://clawhub.ai/user/wyhw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyhw](https://clawhub.ai/user/wyhw)
 
-## Use Case: <br>
-Writers, marketers, community managers, and agent users use this skill to rewrite Chinese AI-generated text so it reads more naturally while preserving the original meaning. It can also score text quality and adapt output for supported publishing platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten text could imply unaided human authorship, firsthand experience, or personal claims that are not true. <br>
-Mitigation: Review the rewritten text before publishing and remove or qualify claims that the author cannot support. <br>
-Risk: Local text passed to the Python helper may contain sensitive or unpublished material. <br>
-Mitigation: Run the helper only with text the user intends to transform and is allowed to process locally. <br>
+## Use Case:
 
+External users, content writers, and agent operators use this skill to rewrite Chinese AI-generated drafts into clearer, more natural prose, adapt posts for specific publishing platforms, and optionally score the result for remaining AI-writing patterns.
 
-## Reference(s): <br>
-- [AI writing patterns](references/ai-patterns.md) <br>
-- [Platform style guide](references/platform-styles.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wyhw/content-humanizer-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional command examples and score output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rewritten Chinese text, platform-specific style adjustments, and an optional 50-point quality score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is explicitly aimed at removing AI-writing traces, which can be misused to misrepresent authorship or bypass disclosure, academic, workplace, or platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the rewriting and style-adaptation guidance transparently, and follow applicable authorship disclosure and platform policies.
+
+## Reference(s):
+
+- [AI 写作模式完整清单](references/ai-patterns.md)
+- [平台风格指南](references/platform-styles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a 50-point quality score when the scoring option is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

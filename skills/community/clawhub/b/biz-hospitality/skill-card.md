@@ -1,40 +1,50 @@
-## Description: <br>
-Professional business hospitality including reception plans, seating arrangements, dining coordination, and etiquette guidance for VIP visits, business dinners, corporate events, and relationship-building occasions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional business hospitality including reception plans, seating arrangements, dining coordination, and etiquette guidance.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-Business hosts, executive assistants, sales teams, and event coordinators use this skill to plan professional hospitality for VIP visits, business meals, corporate events, and relationship-building meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hospitality plans may include unnecessary confidential business or personal details. <br>
-Mitigation: Collect only the details needed for planning and avoid entering sensitive information that is not required. <br>
-Risk: Etiquette, gifting, dining, and budget recommendations may conflict with company policy, local compliance rules, or guest preferences. <br>
-Mitigation: Review recommendations against company policy, applicable compliance requirements, and the guest's confirmed preferences before use. <br>
+## Use Case:
 
+Employees and business teams use this skill to plan VIP visits, business dinners, corporate events, and relationship-building hospitality with attention to etiquette, seating, dining, budget, and follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/biz-hospitality) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured text or JSON-like planning fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reception plans, seating arrangements, dining coordination, etiquette reminders, gift suggestions, talking points, and follow-up plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Hospitality plans may include business guest details, budgets, dietary needs, cultural considerations, or relationship context entered by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential relationship details unless appropriate for the workspace, and review generated plans before sharing or acting on them.
+
+## Reference(s):
+
+- [Biz Hospitality Skill Page](https://clawhub.ai/1970168137/skills/biz-hospitality)
+- [Publisher Profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Structured text or JSON-style planning output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reception plans, seating arrangements, dining coordination, etiquette guidance, gift suggestions, talking points, and follow-up plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

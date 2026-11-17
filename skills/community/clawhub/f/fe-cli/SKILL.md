@@ -1,15 +1,17 @@
 ---
 name: fe-cli
-version: "3.1.1"
+version: "3.2.1"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   前端项目脚手架 CLI。支持 React/Vue/Next.js/Nuxt.js/Astro/React Native + shadcn/Ant Design/MUI/Tailwind
   + Zustand/Redux + i18n，初始化标准化前端项目。支持 9 种项目类型：Web SPA、后台管理、移动 H5、
   Electron 桌面端、Tauri 桌面端、SSR (Next.js/Nuxt)、小程序 (微信/Taro)、React Native 移动端、
   静态建站 (Astro/Gatsby/VitePress)。
+  包含各框架（Vercel/Netlify/Cloudflare Pages 等）的部署指导命令，仅在用户主动要求部署时提供。
   触发：用户要求创建新前端项目、初始化项目、搭建脚手架，
   或提到"新建前端项目"、"初始化项目"、"脚手架"、"创建 React/Vue 项目"。
   也可用于检查/审查已有前端项目的规范性。
+  激活条件：仅在用户明确要求创建/初始化项目或按本规范审查项目时激活；单纯的前端问题咨询不触发。默认生成中文界面模板（面向中文项目），需要其他语言界面时告知 AI 即可。
 ---
 
 # fe-cli — 前端项目脚手架
@@ -138,7 +140,7 @@ project-name/
 │   ├── services/
 │   │   ├── request.ts           # fetch 请求封装（含拦截器）
 │   │   ├── logger.ts            # 结构化日志（分级、轮转、持久化）
-│   │   ├── log-export.ts        # 日志导出（下载 .log/.json）+ 上报（待定）
+│   │   ├── log-export.ts        # 日志导出（本地下载 .log/.json）
 │   │   └── api/
 │   │       └── index.ts         # API 接口定义
 │   ├── styles/
@@ -219,9 +221,11 @@ This file is for AI agents to quickly understand the project.
 - **CSS 预处理器**：默认 Sass（SCSS 语法）
 - **路径别名**：在 tsconfig 和 vite config 中配置 `@/` → `src/`
 - **响应式断点**：Mobile < 768px < Tablet < 1024px < Desktop
+- **路由（React）**：使用 `react-router` 单包（v8+）；`react-router-dom` 已被 v8 移除，DOM 专用 API（如 `RouterProvider`）从 `react-router/dom` 导入
 - **网络库**：原生 fetch 封装（不用 axios），见 references/shared-base.md
 - **环境文件**：始终生成 `.env`、`.env.development`、`.env.test`、`.env.production`
-- **日志**：始终生成 `services/logger.ts` + `services/log-export.ts`。使用 `Logger.child("Module")` 模式。最大存储 5MB 自动清理。仅开发模式控制台输出。上报端点为占位符（待定）。
+- **日志**：始终生成 `services/logger.ts` + `services/log-export.ts`。使用 `Logger.child("Module")` 模式。最大存储 5MB 自动清理。仅开发模式控制台输出。日志仅本地导出（下载文件）；模板不包含远程日志上报能力。
+- **生成器版本固定**：shadcn / shadcn-vue 等脚手架 CLI 先安装为项目依赖（`bun add -d shadcn`）再用 `bunx shadcn init` 调用；禁止执行不带版本号或 `@latest` 的远程包命令（依赖版本以 lockfile 为准）
 - **Node 版本**：目标 Node 18+
 - **部署**：默认推荐 Vercel 部署（零配置），在项目生成后提供 `vercel` 初始化命令
 - **图表库**：轻量场景推荐 Recharts，重场景用 ECharts
@@ -295,7 +299,7 @@ This file is for AI agents to quickly understand the project.
 
 **fe-cli** is a unified entry point for scaffolding frontend projects. It detects the project type from user input and routes to one of 9 sub-skills: **web** (SPA), **admin** (dashboard/CRUD), **h5** (mobile), **electron** (desktop), **tauri** (lightweight desktop), **ssr** (Next.js/Nuxt), **miniapp** (WeChat Mini Program), **rn** (React Native), or **astro** (Astro/Gatsby/VitePress static site). Each sub-skill handles type-specific questions, file generation, and setup.
 
-**Key rules:** Default package manager is **bun** (fallback: pnpm); default CSS preprocessor is **Sass (SCSS)**; path alias `@/` → `src/`; native **fetch** wrapper (no axios); always generate `.env` / `.env.development` / `.env.test` / `.env.production`; always generate `services/logger.ts` + `services/log-export.ts`; target Node 18+; Vite handles TS transpilation (separate `typecheck` script), except Electron/Tauri main process needs `tsc -p tsconfig.electron.json`; default deployment: **Vercel**; chart libs: **Recharts** (lightweight) / **ECharts** (heavy); new UI libs: **shadcn/ui + Lucide** (React), **shadcn-vue + Vue Bits** (Vue), **Chakra UI**, **React Bits**.
+**Key rules:** Default package manager is **bun** (fallback: pnpm); default CSS preprocessor is **Sass (SCSS)**; path alias `@/` → `src/`; router: single **`react-router`** package (v8+; `react-router-dom` was removed in v8, DOM-specific APIs like `RouterProvider` come from `react-router/dom`); native **fetch** wrapper (no axios); always generate `.env` / `.env.development` / `.env.test` / `.env.production`; always generate `services/logger.ts` + `services/log-export.ts`; target Node 18+; Vite handles TS transpilation (separate `typecheck` script), except Electron/Tauri main process needs `tsc -p tsconfig.electron.json`; default deployment: **Vercel**; chart libs: **Recharts** (lightweight) / **ECharts** (heavy); new UI libs: **shadcn/ui + Lucide** (React), **shadcn-vue + Vue Bits** (Vue), **Chakra UI**, **React Bits**; scaffold generators (shadcn/shadcn-vue) must be installed as pinned devDependencies (e.g. `bun add -d shadcn`) and run via `bunx`, never unpinned `npx @latest`; log export is local-only (no remote log submission capability).
 
 After type-specific files, generate the **shared common layer** (request utils, global styles, multi-env config, utilities, type declarations). Finally, generate `.ai/PROJECT.md` for AI-readability. Supports **existing project audit** against the same standards.
 

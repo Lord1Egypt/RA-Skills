@@ -29,6 +29,7 @@ Run slop-detector and categorize findings:
 
 ### Medium Priority (fix if time)
 - [ ] Bullet ratio 55%
+- [ ] ", so" density 6/1000
 - [ ] Sentence uniformity
 
 ### Low Priority (defer)

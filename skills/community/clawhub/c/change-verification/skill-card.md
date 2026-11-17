@@ -1,44 +1,55 @@
-## Description: <br>
-Pre/post change verification with baseline capture, diff analysis, and rollback decision guidance across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS, structured around a single change event lifecycle with impact classification and rollback criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre/post change verification with baseline capture, diff analysis, and rollback decision guidance across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill during planned or emergency network changes to capture baselines, compare post-change state, classify deviations, and decide whether to accept or roll back the change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and rollback guidance can modify production network device state. <br>
-Mitigation: Require change-ticket authorization and human approval before any write or rollback command, and restrict SSH or MCP access to devices in the approved change scope. <br>
-Risk: Saved configuration baselines can contain sensitive topology, configuration, and access details. <br>
-Mitigation: Store baselines only in approved protected locations with access controls appropriate for network configuration data. <br>
-Risk: Incorrect post-change interpretation could lead to accepting a harmful change or rolling back unnecessarily. <br>
-Mitigation: Use the documented success and rollback criteria, compare against the approved change plan, and escalate unexpected critical deviations before continuing. <br>
+## Use Case:
 
+Network engineers and operations teams use this skill to plan and verify a single network change window, compare pre- and post-change state, classify deviations, and decide whether to accept or roll back the change.
 
-## Reference(s): <br>
-- [Change Verification Checklist Templates](references/checklist-templates.md) <br>
-- [Change Verification CLI Reference](references/cli-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/change-verification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with vendor-labeled CLI command blocks, checklists, threshold tables, decision trees, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed operational guidance for a single network change event; write and rollback commands require explicit authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill includes commands that can change or roll back production network device configurations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized network operations with approved change tickets, scoped device lists, maintenance windows, and validated rollback plans.
+
+Risk: Incorrect rollback or change-execution guidance could disrupt network services.
+
+Mitigation: Review the proposed commands against the target vendor platform and confirm baseline captures, success criteria, escalation contacts, and rollback triggers before execution.
+
+## Reference(s):
+
+- [Change Verification skill page](https://clawhub.ai/vahagn-madatyan/skills/change-verification)
+- [Change Verification Checklist Templates](references/checklist-templates.md)
+- [Change Verification CLI Reference](references/cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with vendor-specific CLI command blocks, checklist tables, and rollback decision criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read/write safety labels for commands that archive, apply, or roll back device configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

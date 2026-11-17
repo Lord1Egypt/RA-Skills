@@ -1,43 +1,63 @@
-## Description: <br>
-This skill turns a user's Google Finance request for stocks, indices, funds, currencies, or futures into a confirmed Dataify Scraper API form POST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Google Finance for stocks, indices, funds, currencies, or futures through the Dataify Scraper API.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and run Google Finance searches through Dataify after reviewing the resolved request parameters and confirming the API call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Dataify API token can be exposed if pasted into chat or reused in visible commands. <br>
-Mitigation: Prefer DATAIFY_API_TOKEN in the environment, avoid echoing tokens in responses, and use --token only when the user explicitly supplies a token for the call. <br>
-Risk: An unintended paid or uncached API request could be made if parameters are inferred incorrectly. <br>
-Mitigation: Show the complete pre-call Markdown parameter table, ask the user to confirm or modify it, and only execute the API call after explicit confirmation. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to translate finance lookup requests into Dataify Google Finance searches and return stock, index, fund, currency, or futures data. It is not intended for general web search or personalized financial advice.
 
-## Reference(s): <br>
-- [Dataify Google Finance API](references/google_finance_api.md) <br>
-- [Dataify Google Finance on ClawHub](https://clawhub.ai/dataify-server/dataify-google-finance) <br>
-- [dataify-server publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown confirmation tables, shell commands, and raw API response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the Dataify API response body directly after user confirmation; token handling depends on DATAIFY_API_TOKEN or a supplied token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence) <br>
+Risk: Finance search parameters are sent to Dataify's scraper API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review request parameters before execution when they contain sensitive or ambiguous information, and use the skill only for finance lookups.
+
+Risk: Passing a Dataify token on the command line can expose it through shell history or process inspection.
+
+Mitigation: Set DATAIFY_API_TOKEN through the shell environment or a secret manager, and never paste the token into chat.
+
+Risk: Successful uncached calls may consume Dataify account credits.
+
+Mitigation: Use documented defaults unless the user requests cache bypass, and monitor Dataify credit usage.
+
+Risk: Returned finance data may be incomplete, delayed, or unsuitable for personalized financial advice.
+
+Mitigation: Preserve source links, distinguish missing fields from empty values, and avoid presenting results as personalized investment guidance.
+
+## Reference(s):
+
+- [Dataify Google Finance API](references/google_finance_api.md)
+- [Dataify Google Finance release page](https://clawhub.ai/dataify-server/skills/dataify-google-finance)
+- [Dataify publisher profile](https://clawhub.ai/user/dataify-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries by default, with raw JSON or HTML when explicitly requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Dataify API token. The finance query q is required; documented defaults include json=1, window=1D, and no_cache=false.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

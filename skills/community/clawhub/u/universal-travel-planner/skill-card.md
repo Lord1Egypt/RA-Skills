@@ -1,44 +1,57 @@
-## Description: <br>
-通用商旅出行规划助手 helps plan business trips with transport comparisons, hotel price checks, budget estimates, destination details, and generated HTML itinerary reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通用商旅出行规划助手 helps business travelers plan transportation, hotels, budgets, destination details, and HTML travel reports using travel, map, and web-search services.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Business travelers and assistants use this skill to compare rail, flight, route, hotel, weather, and budget options before a trip. It can produce a structured itinerary and an HTML report with booking and navigation links for user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use third-party travel, map, search, and booking services, so trip details may be sent to external providers during planning. <br>
-Mitigation: Avoid entering confidential meeting details or sensitive travel plans unless sharing them with those services is acceptable. <br>
-Risk: Generated booking and navigation links may be incomplete, stale, or not the best available option. <br>
-Mitigation: Review all prices, routes, times, terms, and destination details on the provider site before booking or traveling. <br>
-Risk: Generated HTML reports can save or share itinerary details. <br>
-Mitigation: Store and share reports only in locations appropriate for the sensitivity of the trip information. <br>
+## Use Case:
 
+Business travelers and assistants use this skill to compare transport and lodging options, estimate trip budgets, assemble destination context, and produce a shareable HTML itinerary report. It is intended for normal trip-planning workflows that may call external travel, map, and search services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/universal-travel-planner) <br>
-- [12306 rail ticket service](https://www.12306.cn/) <br>
-- [Amap REST API](https://restapi.amap.com/v3/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or HTML report content with itinerary tables, budget breakdowns, booking links, and optional MCP/API configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated HTML files and external travel, map, search, or booking links for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill asks agents to run external MCP packages without pinned package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a sandboxed agent environment, pin and verify MCP package versions before enabling them, and review package behavior before use.
+
+Risk: Trip details may include confidential meetings, business locations, traveler identity, and schedule information sent to third-party travel, map, and search services.
+
+Mitigation: Provide only the trip details needed for planning and avoid entering confidential business information unless sharing it with those external services is acceptable.
+
+Risk: Generated reports can embed booking links, prices, availability, and itinerary recommendations that may become stale or inaccurate.
+
+Mitigation: Review the generated report before sharing or booking, and confirm prices, availability, and travel constraints directly with the relevant provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/universal-travel-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with optional HTML report output and JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require AMAP_WEB_KEY, AMAP_JSAPI_KEY, and AMAP_SECURITY_CODE for map-related functionality.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Monitors social conversations and sentiment around brands, topics, or industries by searching tweets and broader discussions to surface themes, key voices, and actionable opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors social conversations and sentiment around brands, topics, or industries by searching tweets and discussions to surface insights.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, product, and customer-facing teams use this skill to monitor brand, topic, industry, or competitor conversations and turn sampled social search results into a sentiment report with themes, key voices, and opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local product marketing context may contain private strategy, customer details, or unreleased launch information. <br>
-Mitigation: Review local context before use and avoid including sensitive details in searches or public-facing reports. <br>
-Risk: The workflow depends on Exa search commands for social and discussion results. <br>
-Mitigation: Confirm the Exa search tool in the agent environment is trusted before running the skill. <br>
-Risk: Search results are sampled and may not represent total mention volume or full market sentiment. <br>
-Mitigation: Treat volume and sentiment figures as directional and verify important conclusions before business decisions. <br>
+## Use Case:
 
+Marketing, communications, and growth teams use this skill to monitor brand, topic, industry, or competitor conversations and synthesize directional sentiment, key voices, themes, and opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-social-listening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with search commands, tables, representative quotes, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Volume and sentiment findings are directional because they are based on sampled search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Shell-style search examples can mishandle untrusted brand or topic text if an agent interpolates user input into commands naively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass search terms as inert arguments in a runtime or tool wrapper instead of constructing shell commands from raw user text.
+
+Risk: Product marketing context files may contain sensitive internal plans that could be used during social-search work.
+
+Mitigation: Review `.agents/product-marketing-context.md` or `.claude/product-marketing-context.md` for sensitive content before allowing the skill to use that context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-social-listening)
+- [Publisher profile](https://clawhub.ai/user/mariokarras)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, quotes, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sentiment volumes are approximate and based on sampled search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

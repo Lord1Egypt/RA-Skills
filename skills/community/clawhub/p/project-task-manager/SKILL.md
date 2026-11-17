@@ -1,7 +1,7 @@
 ---
 name: project-task-manager
 description: "Project Task Manager: AI-powered task planning: generate hierarchical task trees from objectives, decompose tasks, track progress, visualize status. Persistent across sessions. Use when an agent needs project task manager, ai task generation, automatic task breakdown, project decomposition, objective to tasks, decompose, task, level of detail through AgentPMT-hosted remote tool calls. Discovery terms: project task manager, ai task generation, automatic task breakdown, project decomposition."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/project-task-manager
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/project-task-manager"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Project Task Manager
 
 ## Freshness
-Last updated: `2026-06-10`.
+Last updated: `2026-10-09`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -199,8 +199,8 @@ x402 availability: not enabled for this product.
 
 - `decompose` (action slug: `decompose`): Break a single task description into smaller, actionable subtasks. Standalone operation that does not require an existing task tree. Price: `20` credits. Parameters: `level_of_detail`, `task`.
 - `generate` (action slug: `generate`): Create a hierarchical task breakdown from a high-level objective. An AI model analyzes the objective and produces a structured tree of tasks with dependencies, time estimates, and priorities. Price: `20` credits. Parameters: `context`, `max_depth`, `objective`.
-- `list` (action slug: `list`): Show all your task trees sorted by most recently updated. Returns up to 50 trees with their IDs, objectives, task counts, and progress. Price: `20` credits. Parameters: none.
-- `status` (action slug: `status`): Check the current progress and status of a task tree. Returns overall progress, completed/remaining tasks, blocked items, and estimated completion time. Price: `20` credits. Parameters: `tree_id`.
+- `list` (action slug: `list`): Show all your task trees sorted by most recently updated. Returns up to 50 trees with their IDs, objectives, task counts, and progress. Price: `3` credits. Parameters: none.
+- `status` (action slug: `status`): Check the current progress and status of a task tree. Returns overall progress, completed/remaining tasks, blocked items, and estimated completion time. Price: `3` credits. Parameters: `tree_id`.
 - `update` (action slug: `update`): Mark progress on a specific task within a task tree. Update status, completion percentage, and add notes about what happened. Price: `20` credits. Parameters: `notes`, `progress`, `task_id`, `task_status`, `tree_id`.
 
 ## Live Schema And Examples

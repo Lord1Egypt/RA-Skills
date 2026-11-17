@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — get_voucher (v2.voucher.get_voucher)
+Shopee Store — get_voucher
+
 官方: https://open.shopee.com/documents/v2/v2.voucher.get_voucher?module=112&type=1
+
+入参说明见 references/apis/get-voucher.md。
 """
 
 from __future__ import annotations

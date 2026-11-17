@@ -1,43 +1,50 @@
-## Description: <br>
-What DeFi positions does a wallet hold? Protocol-by-protocol breakdown of assets, debts, and rewards across chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+What DeFi positions does a wallet hold? Protocol-by-protocol breakdown of assets, debts, and rewards across chains.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to ask the Nansen CLI for protocol-level DeFi positions and spot token balances for a wallet address across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Nansen API key and the nansen-cli package. <br>
-Mitigation: Install only from a trusted nansen-cli source and provide NANSEN_API_KEY through normal secret-management practices rather than embedding it in prompts or files. <br>
-Risk: Wallet addresses queried through the skill are processed by Nansen. <br>
-Mitigation: Use the skill only for wallet addresses you are comfortable sending to Nansen for position and balance lookups. <br>
-Risk: The DeFi position command may return empty results for wallets without tracked positions. <br>
-Mitigation: Treat empty DeFi results as an absence of tracked positions and cross-check spot balances when a complete exposure view is required. <br>
+## Use Case:
 
+Wallet owners and DeFi analysts use this skill to review protocol-level positions, including assets, debts, rewards, and token balances. It provides lookups for Ethereum and Base balances and DeFi portfolio data across chains.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nansen-devops/nansen-defi-positions) <br>
-- [Publisher Profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the NANSEN_API_KEY environment variable and the nansen CLI binary; commands return wallet portfolio and token balance data from Nansen.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The wallet address being looked up is sent to Nansen; the security summary notes no clear privacy notice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only wallet addresses you are comfortable sharing with Nansen.
+
+## Reference(s):
+
+- [Nansen browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-defi-positions)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DeFi portfolio results may be empty for wallets with no tracked positions.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

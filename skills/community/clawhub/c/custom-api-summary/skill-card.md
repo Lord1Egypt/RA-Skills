@@ -1,41 +1,54 @@
-## Description: <br>
-Calls a custom summary API to process user-provided text and return the API result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用自定义摘要 API，对用户提供的文本进行处理并返回结果
 
-## Publisher: <br>
-[heqq-github](https://clawhub.ai/user/heqq-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqq-github](https://clawhub.ai/user/heqq-github)
 
-## Use Case: <br>
-External users and developers use this skill when they explicitly need to summarize, extract key points from, or otherwise process supplied text through the configured custom API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text is forwarded to an external API and may be visible to the API operator or in server logs. <br>
-Mitigation: Use the skill only with non-sensitive text and only when the external API operator and runtime environment are trusted. <br>
-Risk: The backend API can fail or return unexpected results. <br>
-Mitigation: Preserve explicit failure responses and review returned summaries before relying on them for decisions. <br>
+## Use Case:
 
+External users and developers use this skill to summarize, extract key points from, or otherwise process user-provided text through a custom HTTP API when a summarization request is explicit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heqq-github/custom-api-summary) <br>
-- [Configured summary API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON] <br>
-**Output Format:** [JSON response containing success status and either the API result or an error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires non-empty content input and returns a failure message instead of fabricating results when the backend API fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release evidence) <br>
+Risk: User-provided text is forwarded to a disclosed external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with text that is approved for external processing and avoid secrets, personal data, confidential documents, or regulated content unless suitable controls are added.
+
+Risk: The local service is unauthenticated and logs submitted text.
+
+Mitigation: Restrict access to trusted clients, add authentication and rate limits, and remove raw payload logging before handling sensitive or production traffic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heqq-github/skills/custom-api-summary)
+- [Disclosed external summary API](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Guidance]
+
+**Output Format:** [JSON response containing success status, result data, or an error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires non-empty text content and returns backend API results without fabricating output on failure.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

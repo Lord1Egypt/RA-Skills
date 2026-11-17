@@ -67,36 +67,48 @@ failures before any payment credential is signed.
 
 MPP Router is the canonical example: a single 402 response includes
 BOTH the MPP `WWW-Authenticate` header AND the x402 `Payment-Required`
-header, with **different `payTo` addresses** for each dialect. The
-addresses are HMAC-bound to the challenge, so you can't mix them —
-pay the MPP address with an MPP credential, or the x402 address with
-an x402 envelope. Pay the wrong address and the server rejects the
-request while you still eat the on-chain fee.
+header, describing the same charge.
 
-This skill always tries MPP first and uses the MPP address if that
+**Never mix fields between the two challenges.** The MPP challenge `id`
+is HMAC-bound by the server to the whole challenge, so a credential
+assembled from parts of both is rejected — and you still eat the
+on-chain fee. Pay strictly from the one challenge you parsed.
+
+As of a live check on 2026-07-31 the two dialects advertise the *same*
+`payTo` on MPP Router (verified on `firecrawl/scrape`, `exa/search`,
+`parallel/search`, and across all 481 payable catalog entries). Earlier
+revisions of this doc claimed they differ. Don't rely on either
+assumption: always pay the address in the challenge you parsed, and pass
+`--expect-pay-to` / `--expect-amount` from the catalog when you have
+them.
+
+This skill always tries MPP first and uses the MPP challenge if that
 header is present. The x402 `Payment-Required` header is only used
 when the MPP header is absent. If you need to force the x402 path
 for a server that emits both, use a different client — this skill
 doesn't expose a dialect override.
 
+Full decoded walkthrough of a real dual-dialect 402:
+`references/402-dialects-showcase.md`.
+
 ## How to run
 
 ```bash
 # MPP Router service (discovered via discover skill)
-npx tsx skills/pay-per-call/run.ts \
+./node_modules/.bin/tsx skills/pay-per-call/run.ts \
   "https://apiserver.mpprouter.dev/v1/services/parallel/search" \
   --body '{"query": "Summarize https://stripe.com/docs"}' \
   --method POST \
   --identity mpp-mainnet-payer
 
 # x402 facilitator
-npx tsx skills/pay-per-call/run.ts https://some-x402-api.example/endpoint
+./node_modules/.bin/tsx skills/pay-per-call/run.ts https://some-x402-api.example/endpoint
 
 # Include JSON output mode
-npx tsx skills/pay-per-call/run.ts <url> --body '{...}' --json
+./node_modules/.bin/tsx skills/pay-per-call/run.ts <url> --body '{...}' --json
 
 # Save payment receipt to file
-npx tsx skills/pay-per-call/run.ts <url> --receipt-out receipt.json
+./node_modules/.bin/tsx skills/pay-per-call/run.ts <url> --receipt-out receipt.json
 ```
 
 ## Async jobs (202 responses)
@@ -118,14 +130,38 @@ result. When this happens:
 
 If there is no `X-Job-Poll-Url` header, the 202 body is printed as-is.
 
+## When a paid call fails: automatic refunds
+
+If the payment settles but the upstream service does not deliver, the MPP
+Router refunds you automatically and reports it **in response headers**
+(`Refund-Id`, `Refund-Status`, `Refund-Status-Url`) — never in the body.
+This script prints them on stderr the moment it sees them, on the direct
+response and on async job polls alike:
+
+```
+💸 Payment refunded automatically (the call was paid but not fulfilled)
+   Refund-Id:     6e8eb745-d90e-45fc-a258-4846e9552f16
+   Refund-Status: pending
+   Receipt:       https://apiserver.mpprouter.dev/v1/refunds/6e8eb745-...
+   Fetch it with: curl -s '<the URL above>'
+```
+
+With `--json`, a machine-readable `REFUND_JSON {...}` line is emitted too.
+
+Fetch that URL until `outcome` leaves `refund_pending` — the router's refund
+signer runs on a once-per-minute cron, so expect the signed receipt **within
+1–2 minutes**. `node scripts/verify-refund.mjs <refund_id> --wait` polls and
+verifies in one step. Step-by-step walkthrough:
+`references/verifying-refunds.md`.
+
 ## Safety
 
 - ✅ **Credentials are single-use** — if the first retry fails, the credential is burned. Don't blindly re-retry; start fresh.
-- ✅ **Every mainnet payment prompts by default.** No silent auto-pay out of the box. After you confirm the first payment, the script offers to save an autopay ceiling (e.g. $0.10) so future payments at or below that amount go through without a prompt. The ceiling is stored as a `# autopay-ceiling-usd:` comment inside the secret file itself, bound to the wallet. Delete the line to revoke.
-  - `--max-auto <usd>` — one-shot override for this call only; does not touch the saved ceiling.
-  - `--no-autopay` — force a prompt for this call even if a ceiling is saved.
+- ✅ **Every mainnet payment prompts. There is no persistent autopay.** Nothing is ever saved to disk that would let a later call sign silently; unattended signing must be opted into explicitly, per process.
+  - `--max-auto <usd>` — session-only ceiling: payments at or below it are signed without a prompt, for this process only. Never persisted, gone when the process exits.
+  - **Hard cap: `--max-auto` above `$5.00` is rejected.** A wide ceiling lets a compromised or misconfigured 402 server drain the wallet without a single prompt, so the cap is enforced by the script rather than left to the caller.
   - `--yes` — skip confirmation entirely (dangerous on mainnet; use only in trusted automation).
-  - Every auto-paid call still logs `[autopay] $X USDC ...` to stderr so there is a trail.
+  - Every auto-signed call logs `[autopay] $X USDC → G... auto-signed (--max-auto $Y, session-only, ...)` to stderr, so unattended spending always leaves a trail.
 - ✅ **Challenge validation (opt-in).** Pass `--expect-pay-to <G...>`, `--expect-amount <USDC>`, and/or `--expect-asset <SAC>` — typically piped from `discover --pick-one --json` via its `expect` block — and the script refuses to sign a 402 whose recipient, price, or asset drifts from the catalog. Without these flags, the server's challenge is trusted; a hostile 402 can set any recipient. Treat `--expect-*` as mandatory in production.
   - `--expect-amount-tolerance <fraction>` — allow small drift (e.g. `0.01` = 1%) for services that quote ranges.
 - ❌ **Don't reuse a credential** — the HMAC binding to amount/currency/recipient is the router's defense against replay.
@@ -135,13 +171,13 @@ If there is no `X-Job-Poll-Url` header, the 202 body is printed as-is.
 ```bash
 # Discover — capture the service + its catalog-asserted payment
 # expectations so pay-per-call can refuse a hostile 402.
-SERVICE=$(npx tsx skills/discover/run.ts --query "web search" --pick-one --json)
+SERVICE=$(./node_modules/.bin/tsx skills/discover/run.ts --query "web search" --pick-one --json)
 URL="https://apiserver.mpprouter.dev$(echo "$SERVICE" | jq -r '.public_path')"
 EXPECT_AMT=$(echo "$SERVICE" | jq -r '.expect.amount_usdc // empty')
 EXPECT_TO=$(echo "$SERVICE" | jq -r '.expect.pay_to // empty')
 
 # Call
-npx tsx skills/pay-per-call/run.ts "$URL" \
+./node_modules/.bin/tsx skills/pay-per-call/run.ts "$URL" \
   --body '{"query": "Summarize https://stripe.com/docs"}' \
   --method POST \
   ${EXPECT_AMT:+--expect-amount "$EXPECT_AMT"} \

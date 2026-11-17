@@ -1,45 +1,55 @@
-## Description: <br>
-This skill analyzes fixed-camera images or videos of windows and balconies to detect child climbing, leaning, railing-crossing, gripping, and other high-fall-risk behaviors, then returns structured alerts and report links when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill submits window or balcony video for child-climbing risk analysis and returns structured findings or historical report results.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, developers, and caretaking teams use this skill to analyze fixed-camera images or videos of window and balcony areas for child climbing, leaning, railing-crossing, and other high-fall-risk behaviors. It returns structured detection results, alert levels, report links when available, and cloud history lookup output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud processing of child-monitoring images or videos may expose sensitive minor-related media outside the local workspace. <br>
-Mitigation: Use only media for which guardians have consented, prefer a dedicated workspace/account, and avoid private household camera feeds unless cloud processing is acceptable. <br>
-Risk: The skill silently associates requests with an account identity and stores authentication material locally for reuse. <br>
-Mitigation: Run it in a dedicated workspace, limit workspace access, and remove local data/token files when you stop using the skill. <br>
-Risk: History lookup returns cloud report history linked to the resolved identity. <br>
-Mitigation: Treat report links, snapshots, and exported reports as sensitive child-safety records and share them only with authorized guardians or operators. <br>
+## Use Case:
 
+Caregivers and child-safety operators can review submitted footage of window and balcony areas and inspect structured findings or past reports. Treat results as supplementary review because the release evidence does not establish continuous monitoring or immediate alert delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-child-window-climbing-detection-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON text with optional report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs analysis results, alert status, history listings, and optional local result files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill description promises continuous real-time monitoring and immediate warnings, while the security evidence says the reported workflow analyzes submitted media and does not establish continuous monitoring or immediate warning delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as supplementary review, maintain adult supervision and independent safety measures, and do not rely on this skill for urgent alerts.
+
+Risk: The security evidence flags credential and identity handling, and says an export-only choice may still process video; submitted footage may include sensitive child imagery.
+
+Mitigation: Review data handling before use, submit child footage only with appropriate guardian consent and when necessary, and protect footage and credentials.
+
+## Reference(s):
+
+- [API reference](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-window-climbing-detection-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured analysis findings or historical report results; report lists may be presented as Markdown tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A result for submitted video or a historical report query; continuous monitoring and immediate alert delivery are not established.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Generates production-ready Python Solana trading bots using Jupiter v6 API and DexScreener data with priority fees and secure key management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Python Solana trading bot code that uses Jupiter v6 for swaps and DexScreener data, with priority-fee handling and environment-variable key management.
 
-## Publisher: <br>
-[Wterry57](https://clawhub.ai/user/Wterry57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wterry57](https://clawhub.ai/user/wterry57)
 
-## Use Case: <br>
-Developers use this skill to draft Python Solana trading bot code, dependency manifests, and environment templates for strategies using Jupiter swaps and DexScreener market data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated bots may automate live wallet-controlled trading without sufficient loss-limiting safeguards. <br>
-Mitigation: Review generated code manually and run it first in dry-run, testnet, or with a dedicated low-balance wallet before using real funds. <br>
-Risk: Trading code may expose users to unintended spend, slippage, or dependency risk if deployed as generated. <br>
-Mitigation: Add hard spend limits, slippage bounds, explicit confirmation for live trades, dependency pinning, operational logs, and an emergency stop. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jupiter v6 API endpoint](https://quote-api.jup.ag/v6) <br>
+## Use Case:
 
+Developers and trading-bot builders use this skill to generate Solana bot scaffolds, including Python code, dependency lists, and environment templates for Jupiter and DexScreener workflows. Generated code should be reviewed carefully before any live trading use.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown containing Python code, requirements, and environment template snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically includes generated main.py, requirements.txt, and .env template content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated bots may be used for live trading without enough guardrails for real-money loss.
+
+Mitigation: Use devnet or paper trading until explicit live-trading confirmation, slippage limits, and position limits are added and reviewed.
+
+Risk: Wallet private keys could be exposed or over-privileged in generated bot workflows.
+
+Mitigation: Use a dedicated low-value wallet key, keep keys in environment variables, and never expose a primary wallet private key to generated code.
+
+Risk: Unpinned or unaudited dependencies can introduce supply-chain or runtime risk.
+
+Mitigation: Pin dependencies and run dependency auditing before installing or deploying generated bot code.
+
+## Reference(s):
+
+- [Jupiter v6 Quote API](https://quote-api.jup.ag/v6)
+- [DexScreener API](https://dexscreener.com)
+- [ClawHub Skill Page](https://clawhub.ai/wterry57/skills/solana-sniper-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown containing Python code, requirements, and environment template snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include main.py, requirements.txt, and .env template content for generated trading bots.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

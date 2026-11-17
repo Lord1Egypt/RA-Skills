@@ -1,41 +1,50 @@
-## Description: <br>
-Yu Copywriter Pro provides reusable copywriting templates for headlines, body copy, AIDA campaigns, pain-point analysis, testimonials, and landing pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yu Copywriter Pro helps agents generate marketing copy assets including headline variants, body copy, AIDA structures, pain point analysis, testimonials, and landing page copy.
 
-## Publisher: <br>
-[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidunderwood7970](https://clawhub.ai/user/davidunderwood7970)
 
-## Use Case: <br>
-Marketing writers, founders, and agents use this skill to generate structured copywriting prompts and terminal output for campaign assets such as headlines, body copy, testimonials, and landing pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A secondary script can save command inputs to a local history file. <br>
-Mitigation: Use the documented scripts/copy.sh workflow for no-history usage, and avoid passing confidential customer data, campaign plans, or secrets to scripts/script.sh. <br>
-Risk: Generated marketing copy may include claims, testimonials, urgency, pricing, or social-proof placeholders that are not yet substantiated. <br>
-Mitigation: Review copy for accuracy, approvals, and legal or brand compliance before publishing. <br>
+## Use Case:
 
+External users, marketers, and developers use this skill for terminal-driven copywriting workflows, including headlines, body copy, AIDA copy, pain point analysis, testimonials, and landing page structures.
 
-## Reference(s): <br>
-- [Yu Copywriter Pro on ClawHub](https://clawhub.ai/davidunderwood7970/yu-copywriter-pro) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style copywriting templates and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary workflow uses scripts/copy.sh; a secondary script can write local command history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill ships an under-disclosed script that stores user-supplied copywriting inputs in a persistent plaintext local history file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing if confidential marketing plans, customer details, unreleased product information, or proprietary copy may be used; disable, disclose, permission-harden, or remove local history logging before sensitive use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidunderwood7970/skills/yu-copywriter-pro)
+- [Publisher profile](https://clawhub.ai/user/davidunderwood7970)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some CLI paths may persist user-supplied inputs to a plaintext local history file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and _meta.json report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

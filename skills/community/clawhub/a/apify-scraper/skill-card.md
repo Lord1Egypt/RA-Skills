@@ -1,47 +1,60 @@
-## Description: <br>
-Apify Scraper helps agents scrape content from bot-resistant sites such as Twitter/X threads, Reddit, LinkedIn, YouTube comments, Google search results, Amazon, and Product Hunt when standard fetching is blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape content from sites that block bots, including Twitter/X threads, Reddit, LinkedIn, YouTube comments, Google search results, and other sources, when standard web fetch is blocked and full thread or comment data is needed.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and research agents use this skill to run Apify actors for structured scraping tasks when normal web fetch or search tools cannot retrieve full threads, comments, profiles, or search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Apify API key and sends scraping jobs to Apify infrastructure. <br>
-Mitigation: Use an Apify key approved for agent use, avoid sharing unnecessary secrets, and confirm the account is acceptable for the data being scraped. <br>
-Risk: Apify actor runs can consume paid credits and create datasets. <br>
-Mitigation: Monitor Apify billing and datasets, set conservative item limits, and use the skill only when standard fetch or search tools are blocked. <br>
-Risk: Some scraping targets, including LinkedIn, may have terms-of-service constraints. <br>
-Mitigation: Scrape only sites where the intended use is authorized and apply extra review before using ToS-sensitive actors. <br>
-Risk: The release depends on a referenced Apify helper script. <br>
-Mitigation: Confirm the helper script is trusted or replace it with a reviewed local equivalent before installation. <br>
+## Use Case:
 
+Developers and research agents use this skill to run Apify actors for web scraping tasks when standard web fetch or search cannot retrieve complete content, such as full threads, comments, video metadata, and search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/apify-scraper) <br>
-- [Apify Console](https://console.apify.com) <br>
-- [Apify Billing](https://console.apify.com/billing) <br>
-- [Apify API endpoint](https://api.apify.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with shell commands and JSON actor input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and APIFY_API_KEY; Apify actors return results as datasets after polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security scan marks the release suspicious because the skill tells agents to run an unaudited local Apify runner script outside the package while using an Apify API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local runner path is trusted or replace it with a bundled relative runner; use a limited Apify key with spending controls.
+
+Risk: The skill sends scraping jobs and inputs to Apify infrastructure through the user's Apify account.
+
+Mitigation: Avoid sending sensitive inputs unless the Apify account and actor configuration are approved for that data.
+
+Risk: LinkedIn scraping is identified as terms-of-service sensitive in the artifact metadata.
+
+Mitigation: Use LinkedIn scraping only for approved research workflows and confirm policy compliance before running the actor.
+
+## Reference(s):
+
+- [Apify Console](https://console.apify.com)
+- [Apify Billing](https://console.apify.com/billing)
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/apify-scraper)
+- [Publisher Profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_API_KEY and python3; scraping runs through the user's Apify account and selected Apify actors.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

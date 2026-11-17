@@ -1,38 +1,52 @@
-## Description: <br>
-Chinese-language lifestyle guidance for selecting everyday objects, teaware, incense, storage, and folk craft items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Chuang You Objects helps answer Chinese-language questions about household objects, object selection, folk craft, storage, incense, aromatherapy, and daily-use recommendations.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zcr3344](https://clawhub.ai/user/zcr3344)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to receive concise Chinese-language guidance on selecting, using, and arranging household objects, teaware, incense tools, and New Chinese-style daily goods.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger words can activate the skill for unrelated purchase, fragrance, or object-selection conversations.
+
+Mitigation: Narrow the trigger set during deployment and confirm the assistant should answer in this lifestyle-selection domain before applying the skill.
+
+Risk: The skill is written for Chinese-language interactions and may be less useful when the user expects another language.
+
+Mitigation: Add a user-language fallback or route non-Chinese requests to a more appropriate skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to get Chinese-language recommendations for teaware, incense equipment, storage, display, and everyday objects, including material comparisons and purchasing considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may cause the skill to activate outside its intended object, incense, teaware, or storage context. <br>
-Mitigation: Confirm the user is asking about relevant lifestyle objects before applying this skill, or narrow trigger terms in a future release. <br>
+**Output Format:** [Markdown text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-objects) <br>
+**Other Properties Related to Output:** [Chinese-language lifestyle recommendations with item name, characteristics, use scenario, and purchasing cautions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance with lists and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language lifestyle advice; no code execution or sensitive access reported by security evidence.] <br>
+2.2.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence, changelog dated 2026-05-26) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

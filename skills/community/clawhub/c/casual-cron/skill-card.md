@@ -1,39 +1,57 @@
-## Description: <br>
-Create Clawdbot cron jobs from natural language with strict run-guard rules for one-shot and recurring reminders or messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Casual Cron helps agents turn natural-language reminder requests into OpenClaw cron commands for one-shot or recurring delivered messages.
 
-## Publisher: <br>
-[gostlightai](https://clawhub.ai/user/gostlightai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gostlightai](https://clawhub.ai/user/gostlightai)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent convert natural language reminder requests into OpenClaw cron jobs for delivery through configured channels such as Telegram, Slack, Discord, WhatsApp, or Signal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled messages are delivered through external channels and may contain incorrect recipients, message text, recurrence, or one-shot cleanup settings. <br>
-Mitigation: Confirm the timezone, recipient, message text, recurrence, and delete-after-run behavior before finalizing a job. <br>
-Risk: Clock-time schedules default to America/New_York, which may not match the user's intended timezone. <br>
-Mitigation: Ask users outside America/New_York to confirm the intended timezone or convert the schedule before creating the cron job. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gostlightai/casual-cron) <br>
+## Use Case:
 
+External users and developers use Casual Cron to schedule reminders or messages through OpenClaw-supported delivery channels such as Telegram, WhatsApp, Slack, Discord, and Signal.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with OpenClaw cron command examples and confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and openclaw; CRON_DEFAULT_CHANNEL can override the default delivery channel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create scheduled messages that continue running until removed.
+
+Mitigation: Review each parsed schedule, recurrence, destination, and delivery channel before approving execution; use one-shot jobs with delete-after-run when the reminder should not recur.
+
+Risk: A parsed time, channel, or destination may not match the user's intent.
+
+Mitigation: Confirm the parsed time, job name, job id, channel, and destination before finalizing the cron job.
+
+Risk: Default channel configuration can route a reminder to an unintended delivery channel.
+
+Mitigation: Verify CRON_DEFAULT_CHANNEL and explicit channel mentions before creating the OpenClaw cron command.
+
+## Reference(s):
+
+- [Casual Cron on ClawHub](https://clawhub.ai/gostlightai/skills/casual-cron)
+- [Publisher profile: gostlightai](https://clawhub.ai/user/gostlightai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper script output is JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and openclaw; CRON_DEFAULT_CHANNEL can set the default delivery channel.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

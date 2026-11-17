@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Security"
+  short_description: "Review transactions and continuing wallet authority"
+  default_prompt: "Use $galleon-defi-security to review this transaction and explain its asset changes, authority changes, and unresolved risks."

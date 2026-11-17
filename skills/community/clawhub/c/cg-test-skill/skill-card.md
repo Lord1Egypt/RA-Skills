@@ -1,38 +1,49 @@
-## Description: <br>
-cg write Node.js package manager with strict dependency resolution. Use when running pnpm specific commands, configuring workspaces, or managing dependencies with catalogs, patches, or overrides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides pnpm guidance for Node.js dependency management, workspace configuration, CLI usage, and dependency controls such as catalogs, patches, and overrides.
 
-## Publisher: <br>
-[MoonBall](https://clawhub.ai/user/MoonBall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moonball](https://clawhub.ai/user/moonball)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide pnpm 10.x package-management work, including dependency installation, workspace configuration, CI usage, migration, and performance practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-proposed dependency installs, updates, patches, or lockfile changes can alter a project unexpectedly. <br>
-Mitigation: Review proposed pnpm commands and dependency or lockfile changes before allowing execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask agents for pnpm-specific commands, workspace configuration, CI install practices, and dependency-management guidance for Node.js projects.
 
-## Reference(s): <br>
-- [cg-test-skill on ClawHub](https://clawhub.ai/MoonBall/cg-test-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable install behavior was found in the submitted markdown-only skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: pnpm configuration files such as .npmrc may contain registry tokens or other sensitive values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid printing, copying, or sharing sensitive configuration values when following or adapting the skill's guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moonball/skills/cg-test-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is packaged; guidance may reference pnpm project files such as pnpm-workspace.yaml and .npmrc.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

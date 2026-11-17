@@ -1,37 +1,56 @@
-## Description: <br>
-Builds and operates an inquiry transcript generator for generating inquiry outlines, extracting involved personnel, producing fact-anchored Q&A transcripts, and creating related document or web-tool outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and operates an inquiry transcript generator for outlines, transcript analysis, personnel extraction, templated transcript generation, and web-tool replication.
 
-## Publisher: <br>
-[ldh119](https://clawhub.ai/user/ldh119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ldh119](https://clawhub.ai/user/ldh119)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to generate Chinese inquiry or interview transcript outlines, identify relevant people from source records, draft fact-anchored Q&A transcripts, and optionally produce editable documents or simple web tooling.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may process sensitive case, inquiry, or interview materials.
+
+Mitigation: Keep source documents in trusted workspaces and avoid sending sensitive records to unrelated services.
+
+Risk: Generated transcripts may contain factual, procedural, or legal errors if source materials are incomplete or conflicting.
+
+Mitigation: Review every generated transcript against the original materials before use.
+
+Risk: The workflow could be misused to fabricate statements, facts, or evidence.
+
+Mitigation: Use only facts present in user-provided materials, mark missing information as unavailable, and reject requests to invent facts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and authorized document reviewers use this skill to turn case materials, transcript templates, and original records into inquiry outlines, personnel lists, and draft inquiry transcripts. It is intended for fact-anchored drafting with mandatory human review, especially because the source materials may contain sensitive inquiry records. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown, plain text, HTML, Word documents, or code depending on the user request]
 
-## Reference(s): <br>
-- [ClawHub skill page: 询问笔录](https://clawhub.ai/ldh119/xwbl) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Outputs should remain anchored to user-provided materials and include human review reminders where appropriate.]
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text instructions, with optional code or shell commands when building document exports or web tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include inquiry outlines, structured Q&A transcript drafts, personnel extraction results, HTML pages, Word document generation guidance, and human-review reminders.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version) <br>
+1.0.0 (source: release metadata)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

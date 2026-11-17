@@ -1,44 +1,58 @@
-## Description: <br>
-抖音无水印视频下载和文案提取工具，可从抖音分享链接获取无水印视频下载链接、下载视频、提取视频语音文案并保存到文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音分享链接解析无水印视频下载地址，下载视频，并可使用硅基流动语音识别提取视频文案保存为 Markdown 文件。
 
-## Publisher: <br>
-[shuaixiaohao](https://clawhub.ai/user/shuaixiaohao) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuaixiaohao](https://clawhub.ai/user/shuaixiaohao)
 
-## Use Case: <br>
-Developers and content-processing agents use this skill to inspect Douyin share links, download no-watermark video files, and generate transcript Markdown from video audio. It is intended for workflows where the user has rights to process the referenced content and can provide a SiliconFlow API key for transcription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video audio is sent to SiliconFlow for transcription. <br>
-Mitigation: Process only content the user has rights to handle, avoid sensitive media unless approved, and review SiliconFlow data-handling requirements before use. <br>
-Risk: Downloaded videos and generated transcripts are saved locally. <br>
-Mitigation: Use a controlled output directory, restrict file access as needed, and delete generated media or transcripts when they are no longer required. <br>
-Risk: URL validation and download size limits are not enforced by the skill. <br>
-Mitigation: Use trusted Douyin links and run the downloader in a restricted environment when processing untrusted input. <br>
+## Use Case:
 
+Developers and external users can use this skill to inspect Douyin share links, download watermark-free videos, and extract spoken video copy into saved transcript files. The artifact states it is intended for learning and research use and should not be used for copyright infringement or unlawful activity.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuaixiaohao/douyin-video-transcript) <br>
-- [SiliconFlow Console](https://cloud.siliconflow.cn/) <br>
-- [SiliconFlow Audio Transcriptions API](https://api.siliconflow.cn/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python snippets; runtime outputs include video files and transcript Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FFmpeg, Python dependencies, and a SiliconFlow API key for transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make unvalidated outbound requests from user-provided Douyin links and retrieved video URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment, use only trusted Douyin links, and add domain allowlists, request timeouts, and size limits before regular use.
+
+Risk: Audio extracted from videos is uploaded to a remote transcription service.
+
+Mitigation: Do not transcribe sensitive, private, copyrighted, or otherwise restricted audio unless the user has the necessary rights and is comfortable sending it to SiliconFlow.
+
+Risk: The release depends on runtime packages and FFmpeg behavior that are not pinned by the artifact documentation.
+
+Mitigation: Pin and scan dependencies, verify FFmpeg installation from trusted sources, and review the script before installing or executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuaixiaohao/skills/douyin-video-transcript)
+- [SiliconFlow Cloud](https://cloud.siliconflow.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Console text, Python return dictionaries, shell command examples, optional MP4 files, and Markdown transcript files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcript output is organized by video ID; extraction requires an API key and FFmpeg.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-Control local Chrome browser via Chrome DevTools Protocol (CDP) using Puppeteer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a local Chrome browser with Chrome DevTools Protocol (CDP) through Puppeteer for navigation, form interaction, screenshots, JavaScript evaluation, and network response interception.
 
-## Publisher: <br>
-[hanxiaolin](https://clawhub.ai/user/hanxiaolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiaolin](https://clawhub.ai/user/hanxiaolin)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to drive a local Chrome session for browser navigation, form interaction, screenshots, JavaScript evaluation, web scraping, testing, and network-response inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a live Chrome session, including authenticated pages in the connected browser. <br>
-Mitigation: Use a dedicated temporary Chrome profile with no important logins, and keep the remote debugging endpoint local and short-lived. <br>
-Risk: Network interception and JavaScript evaluation can expose sensitive page data or produce misleading automation results. <br>
-Mitigation: Limit interception to intended sites and patterns, review captured output before use, and avoid running untrusted scripts against sensitive pages. <br>
-Risk: File upload support can pass local files into web pages when command JSON includes file paths. <br>
-Mitigation: Provide only paths that are intentionally meant for upload, and review command files before execution. <br>
+## Use Case:
 
+Developers and automation-focused agents use this skill to operate a user-started local Chrome instance through CDP for web navigation, UI interaction, scraping, testing workflows, screenshots, JavaScript evaluation, and network-response inspection.
 
-## Reference(s): <br>
-- [Chrome remote debugging setup](references/chrome-setup.md) <br>
-- [CDP controller usage examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON command sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute browser actions through Puppeteer and return structured JSON results from command runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The skill gives an agent broad control over a live Chrome browser session, which can expose logged-in accounts or sensitive pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome profile with no sensitive logins and close the DevTools-enabled browser when the task is finished.
+
+Risk: A remote debugging port can expose browser control if it is reachable beyond the local machine.
+
+Mitigation: Keep the DevTools port bound to localhost and do not expose it on a network interface.
+
+Risk: Network interception can capture private or sensitive site traffic.
+
+Mitigation: Avoid interception on private sites and review captured responses before storing or sharing them.
+
+Risk: Browser automation dependencies may become outdated after release.
+
+Mitigation: Update dependencies before use and review dependency changes before running the controller.
+
+## Reference(s):
+
+- [Chrome Remote Debugging Setup](references/chrome-setup.md)
+- [CDP Controller Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/hanxiaolin/skills/chrome-cdp-controller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON command sequences, JavaScript snippets, shell commands, and optional generated screenshot files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command execution can return structured JSON results from browser actions and captured network responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

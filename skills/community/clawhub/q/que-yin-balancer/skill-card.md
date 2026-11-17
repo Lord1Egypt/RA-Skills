@@ -1,39 +1,50 @@
-## Description: <br>
-雀阴·平衡魄 helps an agent produce Chinese-language load-balancing, task-scheduling, and resource-allocation plans for coordinating multiple tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+雀阴·平衡魄 - 负载均衡与多任务调度，让AI像修士一样统筹全局、协调有序
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-External users and agent operators use this skill to draft scheduling plans, task priorities, parallelization guidance, and resource allocation suggestions when several tasks need coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Activation may route ordinary workload or scheduling mentions to this skill unexpectedly. <br>
-Mitigation: Review activation behavior in the host agent and scope use to explicit multi-task scheduling or load-balancing requests. <br>
-Risk: The artifact describes resource monitoring and optimization advice but contains no code or trusted metric collection mechanism. <br>
-Mitigation: Treat resource usage recommendations as advisory unless a separately trusted system-metrics tool is granted and reviewed. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to produce scheduling plans, resource-allocation guidance, and load-optimization suggestions for multi-task workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown task scheduling plan with tables and ordered lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language advisory output; no tool execution or metric collection is provided by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger phrasing may activate the skill when task scheduling support was not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation wording before deployment if unintended activation would disrupt the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/que-yin-balancer)
+- [ClawHub publisher profile](https://clawhub.ai/user/lt8899789)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scheduling plan with tables, ordered steps, resource allocations, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

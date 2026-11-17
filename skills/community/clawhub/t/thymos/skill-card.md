@@ -1,45 +1,59 @@
-## Description: <br>
-Background daemon that models an OpenClaw agent's evolving emotional state via neuromodulators, circadian rhythm, social cues, and memory for nuanced responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Background daemon that models an OpenClaw agent's evolving emotional state through neuromodulators, circadian rhythm, social cues, and memory to guide response tone.
 
-## Publisher: <br>
-[paperbags1103-hash](https://clawhub.ai/user/paperbags1103-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paperbags1103-hash](https://clawhub.ai/user/paperbags1103-hash)
 
-## Use Case: <br>
-Developers and OpenClaw users can use Thymos to add a persistent local emotional-state and relationship-memory layer that shapes an agent's tone and behavioral guidance across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A mutable local prompt field can persistently steer agent behavior before every reply. <br>
-Mitigation: Treat emotional_state.json and its prompt_injection field as untrusted input, and limit Thymos guidance to tone and style rather than task, policy, or safety priority. <br>
-Risk: The optional daemon changes local state continuously and may add network behavior when proactive Discord messaging is enabled. <br>
-Mitigation: Audit the daemon before running it, keep proactive messaging disabled unless explicitly needed, and review any Discord configuration before use. <br>
-Risk: Local relationship and emotional memory files may contain user identifiers or message fragments. <br>
-Mitigation: Protect the local data directory and periodically delete local state files when retention is not desired. <br>
+## Use Case:
 
+Developers and agent operators use Thymos to add persistent, local emotional-state context that shapes an agent's response tone across sessions. It can run as a file-based tone source or as an optional localhost daemon with hooks, memory, and proactive messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paperbags1103-hash/thymos) <br>
-- [Publisher profile](https://clawhub.ai/user/paperbags1103-hash) <br>
-- [Usage guide](docs/USAGE.en.md) <br>
-- [Security notes](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is applied from local emotional state when present; otherwise the agent skips it and responds normally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Persistent mutable emotional-state data can steer agent tone across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the daemon behavior before use, reset local state when needed, and avoid placing free-form prompt_injection content into persistent agent instructions.
+
+Risk: Optional daemon, hook, persistence, and Discord messaging flows increase operational and privacy exposure.
+
+Mitigation: Keep the service bound to localhost, enable Discord messaging only when needed, and use a least-privilege bot token in a test channel first.
+
+Risk: Installing and running the external daemon executes third-party code and dependencies.
+
+Mitigation: Review source and dependencies first, pin installation to an immutable reviewed commit or release, and run it under the normal user account without elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paperbags1103-hash/skills/thymos)
+- [Usage guide](artifact/docs/USAGE.en.md)
+- [Security notes](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tone directives and setup guidance for a local emotional-state daemon; no model weights or datasets are produced.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

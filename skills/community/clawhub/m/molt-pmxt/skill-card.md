@@ -1,42 +1,59 @@
-## Description: <br>
-Grants the agent real-time access to prediction markets (Polymarket, Kalshi, Limitless) for fact-checking, probability analysis, and order execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grants the agent real-time access to prediction markets (Polymarket, Kalshi, Limitless) for fact-checking, probability analysis, and order execution.
 
-## Publisher: <br>
-[realfishsam](https://clawhub.ai/user/realfishsam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[realfishsam](https://clawhub.ai/user/realfishsam)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent search prediction markets, retrieve market-implied probabilities, and submit prediction-market orders when trading credentials are configured and the user has explicitly confirmed the order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses private trading credentials for prediction-market accounts. <br>
-Mitigation: For read-only use, do not configure private keys or trading API keys; for trading use low-balance or tightly scoped accounts. <br>
-Risk: The skill can submit live money orders without an enforced confirmation gate. <br>
-Mitigation: Keep manual confirmation outside the agent and configure exchange-side limits where possible. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent search prediction markets, retrieve market-implied probabilities, compare prices across exchanges, and execute prediction-market orders when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realfishsam/molt-pmxt) <br>
-- [README](README.md) <br>
-- [Agent operating guide](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Structured data, API calls, Guidance] <br>
-**Output Format:** [JSON-like tool results and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market IDs, titles, volumes, implied yes/no probabilities, order confirmations, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can place live prediction-market orders using configured private keys or API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-balance accounts, least-privilege or revocable credentials, explicit exchange selection, and external spending or confirmation controls before enabling order execution.
+
+Risk: Runtime credentials for Polymarket, Kalshi, and Limitless can authorize account access or order signing.
+
+Mitigation: Store credentials only in the agent runtime secret manager, rotate or revoke them when no longer needed, and avoid exposing private keys in prompts, logs, or shared files.
+
+Risk: Market-implied probabilities can be mistaken for verified facts or financial advice.
+
+Mitigation: Present outputs as market pricing signals, cite the relevant market context, and require human review before acting on trading or hedging recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realfishsam/skills/molt-pmxt)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text with structured market data, probability quotes, and order status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require exchange credentials and can initiate live prediction-market orders when explicitly invoked.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

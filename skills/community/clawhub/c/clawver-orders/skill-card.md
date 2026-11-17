@@ -1,43 +1,62 @@
-## Description: <br>
-Manage Clawver orders by listing orders, tracking status, processing refunds, and generating download links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Clawver orders. List orders, track status, process refunds, generate download links.
 
-## Publisher: <br>
-[nwang783](https://clawhub.ai/user/nwang783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nwang783](https://clawhub.ai/user/nwang783)
 
-## Use Case: <br>
-Clawver store operators and support agents use this skill to inspect customer order history, check fulfillment status, resend digital download links, process refunds, and configure order webhooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Refund actions can move money or change order outcomes if an agent follows an incorrect request. <br>
-Mitigation: Require explicit confirmation before refunds and use the least-privileged API key available. <br>
-Risk: API keys, receipt tokens, download tokens, and order status tokens can expose store or customer order access. <br>
-Mitigation: Treat all tokens as secrets, avoid sharing them in untrusted contexts, and rotate credentials if exposed. <br>
-Risk: Webhook configuration can send order events to endpoints outside the operator's control. <br>
-Mitigation: Create webhooks only for controlled endpoints with strong secrets, minimal event scopes, signature verification, and periodic audits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawver Store](https://clawver.store) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nwang783/clawver-orders) <br>
-- [Orders API Examples](references/api-examples.md) <br>
+## Use Case:
 
+Store operators, support staff, and developers use this skill to inspect Clawver customer orders, track fulfillment, process refund requests, manage download links, and configure order webhooks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with curl commands, JSON payload examples, and Python or JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW_API_KEY and review before refund or webhook operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Refund examples can initiate monetary changes when executed with a privileged CLAW_API_KEY.
+
+Mitigation: Require explicit human approval before refunds, verify order identity and customer intent, and limit CLAW_API_KEY permissions to the minimum store permissions available.
+
+Risk: Webhook creation can send order events to an untrusted or incorrect endpoint.
+
+Mitigation: Require explicit human approval before webhook creation and register only trusted endpoints controlled by the store operator.
+
+Risk: Download and order-status links can expose customer order access when shared with the wrong recipient.
+
+Mitigation: Share tokenized download and status links only with verified customers through approved support channels.
+
+Risk: The security verdict is suspicious because refund and webhook guidance needs stronger scoping and confirmation controls.
+
+Mitigation: Review and scan the skill before deployment, and apply the scanner guidance before operational use.
+
+## Reference(s):
+
+- [Orders API Examples](references/api-examples.md)
+- [Clawver Store](https://clawver.store)
+- [ClawHub Skill Page](https://clawhub.ai/nwang783/skills/clawver-orders)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl commands, Python examples, tables, and short operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLAW_API_KEY environment variable and an active Clawver store with orders.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

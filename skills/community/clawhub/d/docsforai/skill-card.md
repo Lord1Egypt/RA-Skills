@@ -1,42 +1,58 @@
-## Description: <br>
-Crawl and read documentation websites using DocsForAI for library, framework, SDK, API, and tool documentation lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DocsForAI crawls documentation websites into structured, persistent Markdown and helps agents read targeted official docs for libraries, frameworks, SDKs, APIs, and tools.
 
-## Publisher: <br>
-[dx2331lxz](https://clawhub.ai/user/dx2331lxz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dx2331lxz](https://clawhub.ai/user/dx2331lxz)
 
-## Use Case: <br>
-Developers and agents use this skill to crawl requested documentation sites into local Markdown and read only the relevant sections before writing, debugging, configuring, or upgrading code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches documentation websites requested by the user and stores downloaded content locally. <br>
-Mitigation: Use it only for documentation sites you intend the agent to access, and review the persistent docs directory when local retention matters. <br>
-Risk: The fallback pip install command can modify the system Python environment. <br>
-Mitigation: Prefer the uv install path and use the pip fallback only when system Python impact is understood. <br>
+## Use Case:
 
+Developers and coding agents use this skill to crawl and cache official documentation websites, then read targeted docs while implementing, configuring, debugging, or upgrading software.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dx2331lxz/docsforai) <br>
-- [DocsForAI PyPI Package](https://pypi.org/project/docsforai/) <br>
-- [DocsForAI GitHub Project](https://github.com/dx2331lxz/DocsForAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local Markdown documentation folders and MEMORY.md entries for crawled sites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Risk: Third-party documentation URLs may be crawled and saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted documentation URLs, run crawls in an isolated workspace when appropriate, and review or remove cached docs that should not persist.
+
+Risk: Crawl history can persist through MEMORY.md entries across sessions.
+
+Mitigation: Review MEMORY.md after use and remove entries when crawl history should not be retained.
+
+Risk: The fallback install command uses an unsafe system Python path and the package install is not pinned.
+
+Mitigation: Prefer an isolated, pinned uv tool install and avoid the pip --break-system-packages fallback unless the environment owner approves it.
+
+## Reference(s):
+
+- [DocsForAI PyPI Package](https://pypi.org/project/docsforai/)
+- [DocsForAI ClawHub Skill](https://clawhub.ai/dx2331lxz/skills/docsforai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local documentation files and optional persistent memory entries when the agent follows the workflow.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

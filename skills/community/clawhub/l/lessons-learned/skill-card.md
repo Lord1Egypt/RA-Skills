@@ -1,43 +1,59 @@
-## Description: <br>
-Manages persistent memory for user preferences, recorded mistakes, prohibited-word checks, and confirmation before risky operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zxyskill helps OpenClaw agents record mistakes and user preferences, maintain long-term memory files, and require confirmation before risky operations.
 
-## Publisher: <br>
-[zxygeitio](https://clawhub.ai/user/zxygeitio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zxygeitio](https://clawhub.ai/user/zxygeitio)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to persist preferences, record operational mistakes, enforce stop checks, and require confirmation before sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist user preferences and habits long term without explicit consent, retention limits, or deletion controls. <br>
-Mitigation: Require confirmation before saving memory, avoid storing secrets or sensitive personal data, and periodically inspect and delete MEMORY.md and memory/lessons files. <br>
-Risk: The artifact describes behavior that reads user-provided file paths and URLs before responding. <br>
-Mitigation: Confirm intent before reading sensitive local paths or fetching URLs, and review the resulting memory records for accidental disclosure. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to add an agent-wide memory and lessons-learned layer that records preferences, mistakes, prohibited terms, and risk checks before actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxygeitio/lessons-learned) <br>
-- [Publisher profile](https://clawhub.ai/user/zxygeitio) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline slash commands, file paths, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory and lesson-recording guidance for an agent; users should review stored files periodically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks the agent to store user habits and generated rules in long-term memory without clear consent or scope limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before saving memories or rules, narrow triggers, and provide a way to inspect, edit, and delete stored entries.
+
+Risk: Automatic memory extraction could capture quoted or third-party content as if it were the user's own preference.
+
+Mitigation: Exclude quoted and third-party content from memory extraction and save only direct user preferences or explicitly approved rules.
+
+Risk: Persisted lessons from failed operations could reinforce an incorrect rule after a transient or misdiagnosed error.
+
+Mitigation: Review generated lessons before persistence and allow outdated or incorrect lessons to be edited or removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxygeitio/skills/lessons-learned)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and memory-file update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update long-term memory and lessons files when triggered.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

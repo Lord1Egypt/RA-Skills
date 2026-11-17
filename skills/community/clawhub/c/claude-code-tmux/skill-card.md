@@ -1,47 +1,67 @@
-## Description: <br>
-Runs coding tasks in a persistent tmux session with git worktree isolation and support for multiple interactive coding-agent CLIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs coding tasks through a persistent tmux session with git worktree isolation and support for Claude Code, Codex, OpenCode, CodeBuddy, or another interactive coding-agent CLI.
 
-## Publisher: <br>
-[yuanshenstarto](https://clawhub.ai/user/yuanshenstarto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanshenstarto](https://clawhub.ai/user/yuanshenstarto)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate build, fix, refactor, or review tasks to a selected coding agent while preserving a persistent tmux conversation and isolated git worktree. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spawned coding agents may see worktree files and linked environment secrets. <br>
-Mitigation: Use task-scoped credentials, avoid symlinking real `.env` files when possible, and review what files are exposed before launch. <br>
-Risk: The artifact includes a Claude Code launch mode that skips permission prompts. <br>
-Mitigation: Avoid permission-skipping modes unless the operator explicitly accepts that risk for the run. <br>
-Risk: Agent-generated commands and code changes may affect the project branch created for the task. <br>
-Mitigation: Keep plan-first approval, inspect commands before forwarding approval, and test the preserved branch before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate build, fix, refactor, and review tasks to a selected coding-agent CLI while preserving an isolated git worktree and persistent tmux conversation.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/yuanshenstarto/claude-code-tmux) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [tmux](https://github.com/tmux/tmux) <br>
-- [Claude Code](https://github.com/anthropics/claude-code) <br>
-- [Codex](https://github.com/openai/codex) <br>
-- [OpenCode](https://github.com/sst/opencode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and relay instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational steps for spawning and supervising coding-agent sessions; no structured machine output is defined.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The workflow symlinks project .env files into task worktrees, which can expose secrets to the launched coding agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted or non-production environment files, remove secret symlinks when they are not needed, and avoid running the skill in workspaces that contain production credentials.
+
+Risk: The Claude Code launch command uses a permission-bypass mode that can allow broad unchecked file and command access.
+
+Mitigation: Remove the permission-bypass flag and run the selected agent with explicit approval prompts or a restricted sandbox.
+
+Risk: Remembered custom CLI commands may execute unexpected tools in future tasks.
+
+Mitigation: Store only trusted coding-agent commands, review memory entries before reuse, and clear or update the preference when switching workspaces.
+
+Risk: Installing through an unpinned latest package can change behavior between installs.
+
+Mitigation: Pin the installer or release version and review the skill files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanshenstarto/skills/claude-code-tmux)
+- [Troubleshooting](references/troubleshooting.md)
+- [tmux](https://github.com/tmux/tmux)
+- [Claude Code](https://github.com/anthropics/claude-code)
+- [Codex](https://github.com/openai/codex)
+- [OpenCode](https://github.com/sst/opencode)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for tmux sessions, git worktrees, CLI launch commands, and user relay steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

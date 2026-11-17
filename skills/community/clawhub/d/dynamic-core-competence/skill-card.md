@@ -1,45 +1,54 @@
-## Description: <br>
-Dynamic Core Competence guides users through testing whether competitive advantages will survive market or technology shifts and sequencing capability-building investments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides teams in identifying, testing, and sequencing core competencies as markets and competitive positions change.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external business leaders, strategy teams, and founders use this skill to identify specific competence mechanisms, assess decay and future market importance, and produce a sequenced Dynamic Competence Portfolio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business strategy outputs may be misleading if treated as definitive investment or competitive-position advice. <br>
-Mitigation: Treat outputs as advisory, verify cited business claims independently, and review conclusions before major investment or competitive-position decisions. <br>
-Risk: Generic advantage claims can produce weak or non-actionable competence maps. <br>
-Mitigation: Require mechanism-level evidence, apply the 18-month new-entrant test, and reject unsupported Strong ratings. <br>
+## Use Case:
 
+Leaders and strategy teams use this skill to assess whether their competitive position will hold through market or technology shifts, identify durable and at-risk capabilities, and prioritize capability investments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/deciqai/skills/dynamic-core-competence) <br>
-- [Sources - dynamic-core-competence](references/sources.md) <br>
-- [Method in Action: Corning Incorporated's Competence Evolution, 1851-2007](examples/corning-incorporated-1851-2007.md) <br>
-- [The Core Competence of the Corporation](https://hbr.org/1990/05/the-core-competence-of-the-corporation) <br>
-- [Dynamic Capabilities and Strategic Management](https://doi.org/10.1002/(SICI)1097-0266(199708)18:7%3C509::AID-SMJ882%3E3.0.CO;2-Z) <br>
-- [Corning Annual Reports](https://www.corning.com/worldwide/en/about-us/investor-relations/annual-reports.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured tables and step-by-step coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Dynamic Competence Portfolio with inventory, at-risk competences, sequenced build priorities, unlock map, and opportunity cost statement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Incomplete or confidential business information can lead to misleading analysis or expose sensitive details in reusable notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only business information appropriate for the agent, check claims and market assumptions, and omit confidential details from reusable failure-pattern notes.
+
+## Reference(s):
+
+- [Prahalad and Hamel, The Core Competence of the Corporation](https://hbr.org/1990/05/the-core-competence-of-the-corporation)
+- [Teece, Pisano, and Shuen, Dynamic Capabilities and Strategic Management](https://doi.org/10.1002/(SICI)1097-0266(199708)18:7%3C509::AID-SMJ882%3E3.0.CO;2-Z)
+- [Corning annual reports](https://www.corning.com/worldwide/en/about-us/investor-relations/annual-reports.html)
+- [Dynamic Core Competence on ClawHub](https://clawhub.ai/deciqai/skills/dynamic-core-competence)
+- [Dynamic Core Competence skill page](https://www.deciqai.com/c/dynamic-core-competence)
+- [deciqAI Knowledge Skills repository](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown Dynamic Competence Portfolio]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a competence inventory, at-risk capabilities, sequenced build priorities, an unlock map, and opportunity costs.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

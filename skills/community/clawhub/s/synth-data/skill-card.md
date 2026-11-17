@@ -1,44 +1,60 @@
-## Description: <br>
-Query volatility forecasts from Synthdata.co for crypto, commodities, and stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query volatility forecasts from Synthdata.co for crypto, commodities, and stocks, compare assets, and run Monte Carlo simulations.
 
-## Publisher: <br>
-[emsin44](https://clawhub.ai/user/emsin44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emsin44](https://clawhub.ai/user/emsin44)
 
-## Use Case: <br>
-External developers, traders, and market analysts use this skill to query Synthdata volatility forecasts, compare supported assets, and generate short-horizon Monte Carlo price ranges for market monitoring and research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected asset tickers to the Synthdata API using a SYNTHDATA_API_KEY. <br>
-Mitigation: Use a revocable Synthdata API key and avoid exposing the key in shared terminals, logs, or generated reports. <br>
-Risk: Scheduled cron, Slack, Telegram, or alert integrations can continue sending market reports after initial setup. <br>
-Mitigation: Create integrations deliberately, document where they run, and disable schedules or webhooks when reporting is no longer needed. <br>
-Risk: Volatility forecasts and Monte Carlo ranges may be misread as financial advice or guaranteed outcomes. <br>
-Mitigation: Treat outputs as market-data analysis inputs and review any trading, options, or portfolio decisions separately before acting. <br>
+## Use Case:
 
+Developers, traders, and market analysts use this skill to query Synthdata volatility forecasts, compare supported assets, and generate market-risk summaries or simulations for analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/emsin44/synth-data) <br>
-- [Synthdata](https://synthdata.co) <br>
-- [Synthdata API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Terminal text tables, JSON API responses, and Markdown instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+ and SYNTHDATA_API_KEY; simulations are capped to the Synthdata 24-hour forecast window.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata and clawhub.json) <br>
+Risk: The Synthdata API key and requested asset tickers are shared with a third-party volatility API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust Synthdata.co with those values, keep SYNTHDATA_API_KEY in a secret environment variable, and avoid sending sensitive ticker-watch lists.
+
+Risk: Trading, options, Polymarket, alerting, and simulation examples could be mistaken for financial advice or wired into real transactions.
+
+Mitigation: Treat outputs as informational market analysis, review workflows separately, and avoid connecting the examples to live trades or public alerts without clear financial-risk disclaimers.
+
+Risk: Scheduled reports and notification examples can publish market signals to Slack, Telegram, or similar channels.
+
+Mitigation: Review channels, recipients, thresholds, and message text before enabling cron jobs or webhook-based alerts.
+
+## Reference(s):
+
+- [Synthdata API Reference](references/api.md)
+- [Synthdata Use Cases](examples/use-cases.md)
+- [Synthdata](https://synthdata.co)
+- [ClawHub Skill Page](https://clawhub.ai/emsin44/skills/synth-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, JSON, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and SYNTHDATA_API_KEY for live Synthdata API queries.]
+
+## Skill Version(s):
+
+1.1.5 (source: ClawHub release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

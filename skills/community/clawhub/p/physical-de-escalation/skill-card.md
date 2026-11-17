@@ -1,44 +1,59 @@
-## Description: <br>
-De-escalation techniques for in-person confrontations and tense physical situations. Use when someone faces angry customers, aggressive strangers, workplace confrontations, or needs to calm a heated situation in a physical space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+De-escalation techniques for in-person confrontations and tense physical situations, including angry customers, aggressive strangers, workplace confrontations, and other heated situations in physical spaces.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees, service workers, caregivers, educators, security staff, and other external users use this skill for general coaching on calming tense in-person confrontations, assessing immediate safety, and deciding when to disengage or call for help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on general de-escalation guidance during an unsafe active confrontation. <br>
-Mitigation: Prioritize leaving, creating distance, calling emergency services or trained responders, and following workplace safety policy. <br>
-Risk: Advice about body language, personal space, gestures, or self-defense can vary by culture and jurisdiction. <br>
-Mitigation: Adapt the guidance to local norms, applicable law, and organization-specific procedures. <br>
-Risk: The skill could be mistaken for professional safety, legal, workplace, or crisis-response training. <br>
-Mitigation: Treat it as general coaching only and seek professional training or qualified advice for recurring, high-risk, legal, medical, or mental-health situations. <br>
+## Use Case:
 
+External users and employees use this skill to get practical, safety-first guidance for calming tense in-person confrontations through body positioning, distance, voice, and scenario-specific response protocols.
 
-## Reference(s): <br>
-- [Crisis Prevention Institute](https://www.crisisprevention.com/) <br>
-- [OSHA Workplace Violence](https://www.osha.gov/workplace-violence) <br>
-- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists and scenario-specific protocols] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides general safety guidance and decision support; does not produce executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests filesystem access even though the de-escalation guidance does not appear to require it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a tightly sandboxed environment and review the requested access before deployment.
+
+Risk: The skill tracks sensitive incident-related state without clear privacy controls.
+
+Mitigation: Avoid entering names, identifying incident details, or sensitive workplace information unless necessary.
+
+Risk: The release was flagged suspicious by the server security scan.
+
+Mitigation: Review the skill before installing and use a pinned or otherwise trusted installation path.
+
+## Reference(s):
+
+- [Crisis Prevention Institute](https://www.crisisprevention.com/)
+- [OSHA Workplace Violence](https://www.osha.gov/workplace-violence)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance with checklists, scenario protocols, and short action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

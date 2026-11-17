@@ -1,42 +1,57 @@
-## Description: <br>
-NARRA is a five-file markdown memory system that helps agents maintain identity continuity through curated narrative instead of fragmented database lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NARRA is a 5-file memory system that gives agents identity continuity through curated narrative instead of fragmented database lookups.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create or reorganize an agent's memory files into identity, origin, narrative, operational memory, and event records. It is useful when an agent needs a clearer origin story, leaner operational memory, or a recurring narrative consolidation process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent narrative memory can preserve sensitive logs, transcripts, or personal context if those details are included during consolidation. <br>
-Mitigation: Review source material before consolidation and avoid adding sensitive information unless long-term retention is intended. <br>
-Risk: The skill intentionally changes agent memory files, which could introduce inaccurate identity, origin, or operational state. <br>
-Mitigation: Review edits to IDENTITY.md, ORIGIN.md, NARRATIVE.md, MEMORY.md, AGENTS.md, and HEARTBEAT.md before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install a narrative memory architecture for agents that need a stable identity, concise operational memory, and periodic consolidation of logs into curated first-person history.
 
-## Reference(s): <br>
-- [IDENTITY.md Template](references/IDENTITY-template.md) <br>
-- [NARRATIVE.md Template](references/NARRATIVE-template.md) <br>
-- [ORIGIN.md Template](references/ORIGIN-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and template content for memory files such as IDENTITY.md, ORIGIN.md, NARRATIVE.md, MEMORY.md, AGENTS.md, and HEARTBEAT.md; it does not require code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent identity and behavior files can steer future agent behavior beyond a single session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all proposed changes to AGENTS.md, HEARTBEAT.md, IDENTITY.md, ORIGIN.md, NARRATIVE.md, MEMORY.md, and generated memory files before accepting them, and keep generated memory lower priority than system, developer, and user instructions.
+
+Risk: Log, transcript, and memory review may expose secrets or confidential content during consolidation.
+
+Mitigation: Limit which logs and transcripts may be read, redact sensitive content before consolidation, and treat generated memory as reference data rather than authoritative instruction.
+
+## Reference(s):
+
+- [IDENTITY.md Template](references/IDENTITY-template.md)
+- [NARRATIVE.md Template](references/NARRATIVE-template.md)
+- [ORIGIN.md Template](references/ORIGIN-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/di5cip1e/skills/narra-memory-system)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/di5cip1e)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and ordered setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and revises persistent memory files such as IDENTITY.md, ORIGIN.md, NARRATIVE.md, MEMORY.md, memory/events/, AGENTS.md, and HEARTBEAT.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-ROS Noetic navigation support for Cartographer-based robots, using TF for pose lookup and rosbridge to send move_base waypoint goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ROS Noetic navigation system using Cartographer for localization, interfacing via TF and rosbridge to control move_base for waypoint navigation.
 
-## Publisher: <br>
-[threelevelchord](https://clawhub.ai/user/threelevelchord) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[threelevelchord](https://clawhub.ai/user/threelevelchord)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to manage Cartographer-specific waypoints, read robot pose from TF, and send single-point or multi-waypoint navigation goals through rosbridge to move_base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Navigation commands can publish movement goals to a ROS robot over rosbridge. <br>
-Mitigation: Confirm rosbridge host, waypoint coordinates, TF frames, and robot surroundings before running navigation commands. <br>
-Risk: Waypoint management can modify local waypoint JSON files. <br>
-Mitigation: Review intended waypoint additions or removals and keep a backup of deployment-specific waypoint data. <br>
-Risk: Security evidence reports a clean verdict but advises command review before workflows that can affect local files or authenticated services. <br>
-Mitigation: Review commands before execution and run them only in the intended ROS and ClawHub environment. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to operate Cartographer-based ROS Noetic navigation, including pose lookup, waypoint management, and single- or multi-waypoint movement through rosbridge and move_base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/threelevelchord/ros-noetic-nav-cartographer) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, Python script usage, and JSON waypoint files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates waypoint JSON and emits console status for TF pose lookup and navigation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: One bundled launcher runs code from a different hard-coded skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix artifact/scripts/test_pose.sh before installing or running the skill.
+
+Risk: Navigation commands can move a physical robot and are high-impact if waypoints or the ROS setup are wrong.
+
+Mitigation: Use only with a trusted ROS setup, confirm rosbridge is connected to the intended robot, and verify waypoints before issuing goto or cruise commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/threelevelchord/skills/ros-noetic-nav-cartographer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash commands plus Python and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted ROS Noetic environment with Cartographer, rosbridge_server, TF, and move_base configured before issuing navigation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

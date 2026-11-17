@@ -1,42 +1,50 @@
-## Description: <br>
-AI 3D model generation skill for text-to-3D and image-to-3D workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users work with AI 3D model generation workflows, including text-to-3D, image-to-3D, optimization, material generation, and batch processing.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and creative teams can use this skill to set up an AI 3D model generation workflow for games, VR/AR, architecture, and product design. The artifact describes text-to-3D, image-to-3D, model optimization, material generation, and batch processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install steps download and run external Python code that was not included in the reviewed package. <br>
-Mitigation: Review the referenced repository, requirements.txt, and app.py before execution, and run it in a virtual environment or container. <br>
-Risk: The external app may be granted access to sensitive local files, credentials, or private project assets. <br>
-Mitigation: Run with least privilege and avoid granting access to sensitive paths or credentials unless the external code has been verified. <br>
+## Use Case:
 
+Developers and creative technical users use this skill to set up AI 3D generation workflows for game development, VR/AR, architecture, and product design. It covers text-to-3D, image-to-3D, model optimization, material generation, and batch processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-3d-model-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
-- [External install repository named in artifact](https://github.com/openclaw-skills/ai-intelligent-3d-model-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill points agents to external Python and FastAPI code for AI 3D generation; generated 3D assets are produced by that external application, not by the reviewed skill package itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and target metadata; artifact SKILL.md frontmatter lists 1.0.3) <br>
+Risk: The skill directs users to download and run unaudited remote Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository and dependencies, pin a known commit, and run the code in an isolated environment without sensitive files or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-3d-model-gen)
+- [Referenced install repository](https://github.com/openclaw-skills/ai-intelligent-3d-model-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No declared binary prerequisites in the artifact metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md declares 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

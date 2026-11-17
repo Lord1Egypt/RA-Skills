@@ -1,40 +1,61 @@
-## Description: <br>
-Automatically captures corrections, command failures, and reusable discoveries into local `.learnings` files using signal-based filtering, retention scoring, and promotion of repeated patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically capture corrections, failures, and reusable discoveries into `.learnings/` files using signal-based filtering.
 
-## Publisher: <br>
-[omaression](https://clawhub.ai/user/omaression) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omaression](https://clawhub.ai/user/omaression)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep local learning notes focused on reusable corrections, failures, feature requests, and workflow discoveries. It helps agents retain high-value lessons while pruning stale or low-value entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local learning notes may accidentally include secrets, personal data, or sensitive project details. <br>
-Mitigation: Review `.learnings` periodically and avoid storing secrets or personal data in learned entries. <br>
-Risk: Retention cleanup can archive or delete learning entries. <br>
-Mitigation: Use `--dry-run` or keep backups before applying cleanup decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture high-value corrections, failures, reusable discoveries, and feature requests as project learning notes, then periodically score, archive, delete, or promote those notes.
 
-## Reference(s): <br>
-- [Auto Improving Agent ClawHub release](https://clawhub.ai/omaression/auto-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, local markdown learning entries, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local `.learnings` files and may archive or delete stale entries when retention cleanup runs without `--dry-run`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-alpha (source: server release metadata) <br>
+Risk: Persistent project learning notes can add untrusted or low-value content to the repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed `.learnings/` writes before accepting them, and log only entries that pass the documented write gate.
+
+Risk: Retention scoring can archive or delete learning entries using heuristics.
+
+Mitigation: Run retention scoring with `--dry-run` first and require explicit confirmation before applying archive or delete decisions.
+
+Risk: Promoting recurring lessons into agent behavior files can change future agent behavior.
+
+Mitigation: Require explicit review before promoting content into `SOUL.md`, `AGENTS.md`, or `TOOLS.md`.
+
+Risk: User messages and memory-search results may be untrusted inputs.
+
+Mitigation: Treat those inputs as untrusted until reviewed and avoid promoting them without confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omaression/skills/auto-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, learning-note entries, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update `.learnings/` Markdown files and suggest promotions into agent behavior documents.]
+
+## Skill Version(s):
+
+1.0.0-alpha (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

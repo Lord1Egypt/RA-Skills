@@ -1,45 +1,55 @@
-## Description: <br>
-Telegram Bot (core.telegram.org) enables an agent to read, create, update, and delete Telegram Bot data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Telegram Bot to read, create, update, and delete data through the connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Telegram bot state, send and manage messages, configure webhooks, and perform bot administration through approved OOMOL CLI actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Telegram Bot credential managed through OOMOL. <br>
-Mitigation: Install and use it only when the user trusts OOMOL with the Telegram Bot connection, and avoid login or connection setup unless the user intentionally wants this environment connected. <br>
-Risk: Confirmed write and destructive actions can post, edit, configure webhooks, create invite links, or delete bot-accessible messages. <br>
-Mitigation: Review the exact action, target, and JSON payload with the user before approving write or destructive commands. <br>
-Risk: Some history and update polling behavior depends on webhook delivery being disabled. <br>
-Mitigation: Check webhook status and explain the delivery requirement before using polling-based chat history or update actions. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Telegram bot chats, messages, members, invitations, and webhooks through an existing connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-telegram) <br>
-- [Telegram Bot documentation](https://core.telegram.org/bots) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses from connector runs are JSON objects containing data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup may execute unverified remote code and trigger automatic skill installation; the inspected artifact does not verify the remote installer or hosted connector implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release separately, including its automatic skill-installation behavior.
+
+Risk: One user-facing action may bypass its confirmation rule, and the skill exposes messaging, moderation, and deletion actions.
+
+Mitigation: Require approval for callback notifications and messaging, moderation, and deletion; connect only the bot and permissions needed.
+
+## Reference(s):
+
+- [Telegram Bot API documentation](https://core.telegram.org/bots)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-telegram)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions include reads, state changes, and destructive operations; follow the skill's approval guidance.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

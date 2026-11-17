@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "memory-auto-update",
+  "name": "memory-auto-update",
   "version": "1.0.0",
-  "publishedAt": 1775133591462
+  "description": "记忆自动更新 - 智能识别重要内容，自动更新记忆，再也不用担心忘记了。支持吐槽触发（你忘了吗）、3种模式、5种频率。",
+  "author": "zhuqingsonga",
+  "homepage": "https://github.com/zhuqingsonga/memory-auto-update",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhuqingsonga/memory-auto-update.git"
+  },
+  "keywords": [
+    "记忆",
+    "更新记忆",
+    "自动记忆",
+    "记下来",
+    "别忘了",
+    "你忘了吗",
+    "记忆管理",
+    "memory",
+    "auto update",
+    "remember",
+    "don't forget",
+    "did you forget",
+    "productivity"
+  ],
+  "categories": [
+    "效率",
+    "工具",
+    "记忆"
+  ],
+  "languages": ["zh-CN", "en"],
+  "min_openclaw_version": "2026.1.0"
 }

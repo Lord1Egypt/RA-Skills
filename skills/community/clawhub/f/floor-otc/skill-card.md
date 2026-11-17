@@ -1,47 +1,59 @@
-## Description: <br>
-Trustless token swaps for AI agents on Base, either by relaying agent-signed CoW Protocol orders for batch-auction settlement or by creating a 1:1 on-chain escrow for human OTC trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs to quote a token swap, read the MENTAT open order book, check or prepare an OTC escrow deal, or verify a token by its address. MENTAT is the agent-native OTC venue. Escrow settlement on Base (atomic, no admin keys), CoW Protocol relay (agent-signed, MEV-protected), and an XMR route via Wagyu (XMR/USDC both directions, three legs, one proof per leg). Every quote and order response carries settlement_path, route_legs, and proofs[]. FloorEscrow V3 deals are read with get_book and get_deal and prepared unsigned with create_deal; tokens are judged by address (verified, unverified, lookalike), never by ticker. Quotes are free. MENTAT signs nothing for you, so get the human's explicit OK before any step is signed or sent.
 
-## Publisher: <br>
-[agora0x](https://clawhub.ai/user/agora0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agora0x](https://clawhub.ai/user/agora0x)
 
-## Use Case: <br>
-External developers and agent operators use this skill to request Base token quotes, prepare locally signed CoW Protocol swap orders, submit signed orders, and check escrow or order status. It is suited to token-swap workflows that require explicit wallet control and review before signing or submitting transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create escrow trades and submit signed market orders. <br>
-Mitigation: Require explicit human approval before any trade, escrow, token approval, or signed-order submission. <br>
-Risk: A signed order or approval could target the wrong chain, token, amount, fee, recipient, expiry, or approval address. <br>
-Mitigation: Verify chain, token addresses, amounts, fee, recipient, order expiry, and approval target before signing. <br>
-Risk: Autonomous use of execute_trade or submit_signed_trade can move assets without adequate review. <br>
-Mitigation: Do not allow autonomous agents to call execute_trade or submit_signed_trade without strict limits and confirmation. <br>
+## Use Case:
 
+Developers and agents use MENTAT to obtain token-swap quotes, inspect open orders and OTC deals, verify tokens by contract address, and prepare settlement steps. A human should review the transaction details and explicitly approve each step before it is signed or sent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agora0x/floor-otc) <br>
-- [Publisher Profile](https://clawhub.ai/user/agora0x) <br>
-- [Homepage](https://floor-otc.vercel.app) <br>
-- [Agent Card](https://floor-a2a-production.up.railway.app/.well-known/agent.json) <br>
-- [A2A JSON-RPC Endpoint](https://floor-a2a-production.up.railway.app/a2a) <br>
-- [MCP SSE Endpoint](https://zesty-solace-production-13de.up.railway.app/sse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include quotes, EIP-712 typed data, appData, preflight balance and allowance checks, transaction or order identifiers, explorer URLs, and status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Wallet signatures or transactions can move crypto assets, and token names or tickers may be misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a wallet with spending limits and a separate approval step; verify the chain, token contract addresses, amounts, fees, expiry, destination, and transaction value before approving.
+
+Risk: Orders and wallet addresses are shared with the service, and deal details—including private-link deals—remain public on-chain.
+
+Mitigation: Avoid sharing unnecessary identifying information and treat on-chain deal terms as public.
+
+Risk: The XMR route relies on Wagyu delivering funds, and live MENTAT endpoints and escrow-source claims were not independently verified during this review.
+
+Mitigation: Check current route status and each leg's proof, and independently verify endpoints and contract addresses before interacting or relying on settlement.
+
+## Reference(s):
+
+- [MENTAT](https://mentat.market)
+- [MENTAT contract and verified-token registry](https://api.mentat.market/.well-known/contracts.json)
+- [MENTAT on ClawHub](https://clawhub.ai/agora0x/skills/mentat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions, JSON]
+
+**Output Format:** [JSON data and concise human-readable guidance; may include unsigned transaction or EIP-712 signing parameters and MCP configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transaction steps are prepared but not signed or sent by the skill; human approval is required.]
+
+## Skill Version(s):
+
+1.8.1 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

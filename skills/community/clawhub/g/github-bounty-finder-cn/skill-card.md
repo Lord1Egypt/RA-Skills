@@ -1,45 +1,63 @@
-## Description: <br>
-Github Bounty Finder scans GitHub Issues and Algora bounties to surface high-value, low-competition opportunities with automated scoring and actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan GitHub and Algora bounties to find high-value, low-competition opportunities with automated scoring and actionable recommendations.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Developers, open source contributors, freelance developers, and bounty hunters use this skill to discover GitHub and Algora bounty opportunities and prioritize which issues to pursue. It supports CLI scanning, API-style Node.js integration, filtering, scoring, and JSON export for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub and Algora credentials are stored locally and used by the scanner. <br>
-Mitigation: Use least-privilege credentials, keep .env out of version control, and rotate any token that may have been exposed. <br>
-Risk: Logs or exported result files may reveal private issue data when privileged credentials are used. <br>
-Mitigation: Review scan output before sharing it and avoid publishing result files that include sensitive repository or issue details. <br>
-Risk: The package depends on the npm dependency chain and external GitHub and Algora APIs. <br>
-Mitigation: Install only from a trusted package source, review dependencies during deployment, and account for API rate limits or service changes. <br>
+## Use Case:
 
+Developers, OSS contributors, bounty hunters, and agencies use this skill to scan GitHub Issues and Algora bounties, rank opportunities by value, competition, and freshness, and export results for review or automation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lvjunjie-byte/github-bounty-finder-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte) <br>
-- [GitHub token settings](https://github.com/settings/tokens) <br>
-- [Algora API settings](https://algora.io/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript examples, and JSON result structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can write scan results to a JSON file when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, clawhub.json) <br>
+Risk: GitHub token permissions may exceed the read-only search behavior the skill needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use unauthenticated public search when acceptable, or use a least-privileged, short-lived token without write, admin, workflow, or private-repository access.
+
+Risk: Secrets are configured through environment variables and .env files, with weak secret-handling guidance in the artifact.
+
+Mitigation: Keep .env files out of source control, restrict local file access, and rotate GitHub or Algora keys if exposure is suspected.
+
+Risk: JSON export can overwrite the user-provided output path.
+
+Mitigation: Write exports to a dedicated path and review the destination before running automated scans.
+
+Risk: Dependencies are not pinned in the artifact.
+
+Mitigation: Install in an isolated environment and review or lock dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lvjunjie-byte/skills/github-bounty-finder-cn)
+- [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+- [Algora API Settings](https://algora.io/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style agent guidance with CLI commands and optional JSON result exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or higher and may call GitHub and Algora APIs when configured with credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, target metadata, package.json, and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

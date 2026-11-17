@@ -1,41 +1,54 @@
-## Description: <br>
-Tracks shipment status through the 17Track batch API, sends customer email notifications, and alerts on delivery exceptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks shipments with 17Track batch APIs, updates shipment status, sends customer email notifications, and alerts on delivery exceptions.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-E-commerce operators and developers use this skill to batch-refresh shipment status, maintain local shipment records, extract tracking numbers, notify customers, and surface shipping anomalies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic shipment workflows can use customer and order data to update shipment state and send customer or internal notifications without per-action confirmation. <br>
-Mitigation: Run dry-run mode first, review alert recipients and notification rules, and use least-privilege 17Track and SMTP credentials before enabling scheduled runs. <br>
-Risk: Automatic lost or returned transitions and domain-based order matching can misclassify shipments or customers. <br>
-Mitigation: Review exception transitions before acting on them and avoid domain-based order matching for production customer data unless it has been explicitly validated. <br>
+## Use Case:
 
+Developers and operations teams use this skill to automate ecommerce shipment monitoring, customer delivery notifications, and exception alerting across supported carriers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cjboy007/ssa-logistics-tracker) <br>
-- [17Track API](https://api.17track.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local state files and external shipment, email, and alerting services when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Local alert file writes and customer-facing HTML email content may be unsafe when built from untrusted shipment or customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix alert filename path handling and HTML escaping before installation; use dry-run until the behavior is verified.
+
+Risk: The scheduler can use 17Track API and SMTP credentials while writing local state on a recurring schedule.
+
+Mitigation: Use dedicated least-privileged credentials and run scheduled jobs under an unprivileged account with limited writable paths.
+
+## Reference(s):
+
+- [17Track API](https://api.17track.net/)
+- [ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/ssa-logistics-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON configuration and status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger 17Track API calls, local state file updates, customer email notifications, and Discord or email alerts when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

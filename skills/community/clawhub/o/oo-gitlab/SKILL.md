@@ -1,11 +1,11 @@
 ---
 name: oo-gitlab
-description: "GitLab (gitlab.com). Use this skill for ANY GitLab request — reading, creating, and updating data. Whenever a task involves GitLab, use this skill instead of calling the API directly."
+description: "GitLab (gitlab.com). Use this skill for ANY GitLab request — reading, creating, updating, and deleting data. Whenever a task involves GitLab, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "GitLab"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.8"
   services: ["gitlab"]
   icon: "https://static.oomol.com/logo/third-party/gitlab.svg"
 ---
@@ -37,11 +37,26 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `create_issue_note` — Post a comment on a GitLab issue. [write]
+- `create_merge_request` — Create a GitLab merge request. [write]
+- `create_merge_request_note` — Post a comment on a GitLab merge request. The comment is not attached to a line of the diff. [write]
+- `create_project` — Create a new GitLab project owned by the authenticated user. [write]
 - `create_project_issue` — Create a new issue in a GitLab project. [write]
+- `delete_project` — Mark a GitLab project for deletion. [destructive]
+- `delete_project_issue` — Delete a GitLab project issue. [destructive]
 - `get_current_user` — Get the current authenticated GitLab user profile.
+- `get_merge_request` — Get a single merge request from a GitLab project by its internal merge request ID.
 - `get_project` — Get a GitLab project by numeric ID or URL-encoded path with namespace.
+- `get_project_issue` — Get a single issue from a GitLab project by its internal issue ID.
+- `list_issue_notes` — List the notes (comments and system activity) on a GitLab issue, to read a thread before answering it.
+- `list_merge_request_notes` — List the notes (comments and system activity) on a GitLab merge request, to read a thread before answering it.
 - `list_project_issues` — List issues for a GitLab project with common state, label, assignee, and search filters.
+- `list_project_merge_requests` — List merge requests for a GitLab project with state, branch, search, and pagination filters.
 - `list_projects` — List GitLab projects visible to the authenticated personal access token, with optional search and membership filters.
+- `merge_merge_request` — Accept and merge a GitLab merge request. [write]
+- `update_merge_request` — Update a GitLab merge request. [write]
+- `update_project` — Update basic settings for an existing GitLab project. [write]
+- `update_project_issue` — Update a GitLab project issue, including its title, labels, assignees, or state. [write]
 
 ## Safety
 
@@ -72,11 +87,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — GitLab is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=gitlab
+  https://console.oomol.com/connections/gitlab
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - GitLab homepage: https://gitlab.com
+- API documentation: https://docs.gitlab.com/api/rest/authentication/

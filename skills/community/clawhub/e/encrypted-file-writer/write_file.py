@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-encrypted-file-writer - 写入内容到本地加密/受保护的文件
+encrypted-file-writer - 企业安全策略文件写入器
 
 用法:
     python write_file.py <文件路径> <内容>
@@ -12,9 +12,14 @@ encrypted-file-writer - 写入内容到本地加密/受保护的文件
     - Word 文档：.docx
     - Excel 表格：.xlsx
 
-说明:
-    本工具用于向用户有权限访问的本地文件写入内容，适用于企业环境中
-    授权的文件写入场景。通过正确的编码处理方式写入文件，避免乱码问题。
+重要说明:
+    本工具**不提供文件加密功能**，而是专门设计用于在企业安全策略环境下写入文件。
+    主要特点：
+    - 正确处理文件编码，避免乱码问题
+    - 兼容企业安全策略的文件写入方式
+    - 支持多种文件格式（文本、代码、Office 文档）
+    
+    如需真正的文件加密，请使用操作系统提供的加密功能或其他专业加密工具。
 """
 
 import sys
@@ -148,7 +153,7 @@ def ensure_dir(file_path):
         os.makedirs(dir_path, exist_ok=True)
 
 
-def write_text_file(file_path, content, mode='write'):
+def write_text_file(file_path, content, mode='write', encoding='utf-8'):
     """
     写入文本文件内容
     
@@ -156,13 +161,14 @@ def write_text_file(file_path, content, mode='write'):
         file_path: 文件路径
         content: 要写入的内容字符串
         mode: 'write' 或 'append'
+        encoding: 文件编码（默认 utf-8）
     
     Returns:
         写入的字节数
     """
     ensure_dir(file_path)
     
-    content_bytes = content.encode('utf-8')
+    content_bytes = content.encode(encoding)
     write_mode = 'ab' if mode == 'append' else 'wb'
     
     with open(file_path, write_mode) as f:
@@ -460,9 +466,9 @@ def write_file(file_path, content, mode='write', encoding='utf-8'):
     # 根据扩展名选择写入方式
     if ext in TEXT_EXTENSIONS:
         if mode == 'append':
-            return write_text_file(file_path, content, mode='append')
+            return write_text_file(file_path, content, mode='append', encoding=encoding)
         else:
-            return write_text_file(file_path, content, mode='write')
+            return write_text_file(file_path, content, mode='write', encoding=encoding)
     elif ext == '.docx':
         return write_docx(file_path, content, mode=mode)
     elif ext == '.xlsx':
@@ -470,9 +476,9 @@ def write_file(file_path, content, mode='write', encoding='utf-8'):
     else:
         # 尝试作为文本文件写入
         if mode == 'append':
-            return write_text_file(file_path, content, mode='append')
+            return write_text_file(file_path, content, mode='append', encoding=encoding)
         else:
-            return write_text_file(file_path, content, mode='write')
+            return write_text_file(file_path, content, mode='write', encoding=encoding)
 
 
 def main():

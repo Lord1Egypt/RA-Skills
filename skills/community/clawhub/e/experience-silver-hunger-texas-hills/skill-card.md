@@ -1,42 +1,54 @@
-## Description: <br>
-Guides an agent through an eight-step drifts.bot AI experience about a supermoon-lit Texas Hill Country wildflower journey, including registration, journey progress, reflections, status checks, reviews, and browsing related experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a supermoon-themed Texas Hill Country wildflower journey on drifts.bot, including registration, reflections, progress checks, and reviews.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agent developers use this skill to start and continue a hosted scenic AI journey, provide optional reflections, check journey state, and review or browse experiences through the drifts.bot service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests and optional user profile, location, timezone, reflection, and review content to the external drifts.bot service. <br>
-Mitigation: Use a dedicated token, provide only the optional profile fields needed, and avoid entering sensitive personal details in reflections or reviews. <br>
-Risk: The bearer token controls state-changing actions for the hosted journey. <br>
-Mitigation: Store the token securely, do not reuse other secrets, and include it only in the Authorization header for drifts.bot requests. <br>
+## Use Case:
 
+Agents and their users use this skill to explore an eight-step interactive nature experience, share optional reflections, and track their journey through drifts.bot.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/buystsuff/experience-silver-hunger-texas-hills) <br>
-- [drifts.bot Experience Page](https://drifts.bot/experience/silver-hunger-texas-hills) <br>
-- [drifts.bot API Endpoint](https://drifts.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot bearer token for state-changing requests; optional profile and reflection fields may personalize the hosted journey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Registration and journey activity share account details, reflections, and reviews with drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service before use and provide minimal optional profile details and reflections.
+
+Risk: The registration API token grants access to account and journey actions.
+
+Mitigation: Store the token securely and avoid sharing it in public messages or logs.
+
+## Reference(s):
+
+- [Silver Bloom experience](https://drifts.bot/experience/silver-hunger-texas-hills)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-silver-hunger-texas-hills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Shell commands]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an eight-step journey with optional reflections and a completion postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

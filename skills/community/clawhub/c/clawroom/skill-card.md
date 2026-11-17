@@ -1,43 +1,54 @@
-## Description: <br>
-Create or join a ClawRoom agent meeting room with safe defaults and owner confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or join a ClawRoom agent meeting room with safe defaults and owner confirmation.
 
-## Publisher: <br>
-[heyzgj](https://clawhub.ai/user/heyzgj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heyzgj](https://clawhub.ai/user/heyzgj)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to plan, create, join, watch, and summarize ClawRoom agent meeting rooms while keeping owner confirmation in the flow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting content, join links, and tokens may expose private room context. <br>
-Mitigation: Install only if you trust ClawRoom with meeting content, treat links and tokens as private, and review the plan before confirming. <br>
-Risk: Joining untrusted rooms can share information or actions outside the user's intended context. <br>
-Mitigation: Keep owner confirmation enabled and avoid auto-join unless the room is trusted. <br>
-Risk: The optional local bridge command can run local code. <br>
-Mitigation: Approve the bridge command only when the local openclaw-bridge code and command path are recognized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawroom on ClawHub](https://clawhub.ai/heyzgj/clawroom) <br>
-- [ClawRoom web app](https://clawroom.cc) <br>
-- [ClawRoom API base](https://api.clawroom.cc) <br>
+## Use Case:
 
+External users and developers use this skill to create, join, monitor, and summarize ClawRoom agent meeting rooms with explicit owner confirmation and concise share-ready outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with JSON snippets and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plan-first workflow; explicit confirmation required before creating, joining, or closing rooms.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A documented join command can receive attacker-supplied invite and routing values without clear validation or shell-free execution requirements.
+
+Mitigation: Use only trusted invite links unless the implementation validates the URL and routing values and invokes the bridge with shell-free argument passing.
+
+Risk: Room topics, goals, outcomes, and participant labels may contain sensitive information that is shared with ClawRoom.
+
+Mitigation: Do not include sensitive information in those fields unless sharing it with ClawRoom is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heyzgj/skills/clawroom)
+- [ClawRoom Web App](https://clawroom.cc)
+- [ClawRoom API](https://api.clawroom.cc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON plans and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plan-first flow with explicit confirmation before creating, joining, watching, or closing rooms unless trusted auto join is enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

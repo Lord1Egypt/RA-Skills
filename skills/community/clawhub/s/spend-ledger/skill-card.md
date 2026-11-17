@@ -1,47 +1,64 @@
-## Description: <br>
-Tamper-evident payment ledger for autonomous agents — auto-detects payments across all tools, prevents duplicate payments, and presents full spending history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tamper-evident payment ledger for autonomous agents - auto-detects payments across tools, prevents duplicate payments, and presents spending history.
 
-## Publisher: <br>
-[mattpolly](https://clawhub.ai/user/mattpolly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mattpolly](https://clawhub.ai/user/mattpolly)
 
-## Use Case: <br>
-External users and developers use Spend Ledger to monitor autonomous-agent payments, review spending by service or skill, verify ledger integrity, and reduce duplicate payment attempts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill observes payment-like tool activity and writes a local spending ledger that may contain sensitive payment context. <br>
-Mitigation: Install only in environments where this monitoring is acceptable, and review ledger file permissions, retention needs, and local access controls before use. <br>
-Risk: Community payment-pattern syncing is enabled by default and contacts a remote service for detector updates. <br>
-Mitigation: Set sync_community_patterns to false in data/config.json for sensitive, offline, or air-gapped environments. <br>
-Risk: Custom tool-pattern submissions may reveal tooling patterns to maintainers. <br>
-Mitigation: Avoid submitting custom patterns unless sharing those patterns is acceptable for the deployment. <br>
-Risk: The security guidance identifies an argument-injection bug in query-log.sh. <br>
-Mitigation: Do not pass untrusted filter strings to query-log.sh until the bug is fixed. <br>
+## Use Case:
 
+Developers and agent operators use Spend Ledger to track autonomous-agent payments, review spending by service or time period, verify ledger integrity, and reduce duplicate payment risk.
 
-## Reference(s): <br>
-- [Spend Ledger ClawHub Listing](https://clawhub.ai/mattpolly/spend-ledger) <br>
-- [Spend Ledger Homepage](https://spend-ledger.com) <br>
-- [Technical Architecture](TECHNICAL.md) <br>
-- [Payment Tool Signatures](references/payment-tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text guidance with bash commands, JSON examples, dashboard URLs, and JSON spending summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSONL ledger records and return filtered spending views, grouped summaries, or hash-chain verification results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: SKILL.md frontmatter, openclaw.plugin.json, server release metadata) <br>
+Risk: Broad automatic hooks can observe tool calls and persist spending and request metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid exposing sensitive prompts in payment metadata, and use only where a local payment ledger is acceptable.
+
+Risk: Duplicate-looking payment calls may be blocked, which can affect agent behavior.
+
+Mitigation: Review blocked transactions with the ledger query tools and confirm any intended repeat payment before proceeding.
+
+Risk: The localhost dashboard has review-worthy risk around transaction data exposure until authentication, CSRF protection, and stored-XSS fixes are present.
+
+Mitigation: Do not run the dashboard while browsing untrusted sites; keep it local and stop it when review is complete.
+
+Risk: Community pattern sync downloads payment detection patterns daily.
+
+Mitigation: Set sync_community_patterns to false when offline or pre-reviewed behavior is required.
+
+## Reference(s):
+
+- [Spend Ledger on ClawHub](https://clawhub.ai/mattpolly/skills/spend-ledger)
+- [Spend Ledger Homepage](https://spend-ledger.com)
+- [Technical Architecture](TECHNICAL.md)
+- [Payment Tool Signatures](references/payment-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance, shell command output, configuration JSON, and local JSONL ledger records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local transaction files and can present spending through a localhost dashboard.]
+
+## Skill Version(s):
+
+0.4.0 (source: SKILL.md frontmatter, openclaw.plugin.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

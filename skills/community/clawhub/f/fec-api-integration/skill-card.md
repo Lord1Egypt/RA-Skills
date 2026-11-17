@@ -1,39 +1,54 @@
-## Description: <br>
-Helps agents design, implement, and review frontend-to-backend API integrations with typed clients, auth refresh, error mapping, uploads, realtime choices, CORS behavior, and cross-boundary states. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through frontend-to-backend API integration, including typed clients, authentication refresh, error handling, uploads, and real-time updates.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to define maintainable API client boundaries between browser applications and backend services. It supports implementation and review of request typing, error handling, auth refresh, upload paths, realtime transport choices, and integration validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API integration guidance can lead to accidental exposure of private tokens, backend secrets, internal errors, or sensitive implementation details if copied without review. <br>
-Mitigation: Review and adapt the auth, error handling, and bundle-composition guidance for the target application; keep private tokens and backend secrets out of client-side code and logs. <br>
+## Use Case:
 
+Frontend developers use this skill to design and review typed API clients, user-facing errors, authentication refresh, upload flows, and real-time communication across the frontend/backend boundary.
 
-## Reference(s): <br>
-- [Integration Patterns](references/integration-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-api-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or data collection was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata and package metadata) <br>
+Risk: Broad triggers may select this skill for tasks outside frontend API integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review automatic skill selection and apply it only to relevant frontend/backend boundary work.
+
+Risk: Generated client integration can expose private tokens or sensitive backend errors.
+
+Mitigation: Keep secrets out of client bundles, URLs, and logs; review error messages and authentication handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-api-integration)
+- [API integration patterns](references/integration-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript examples and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers API client boundaries, type sources, error mapping, authentication, uploads, real-time updates, and validation.]
+
+## Skill Version(s):
+
+2.9.0 (source: server-resolved release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,50 @@
+{
+  "requirements": {
+    "min_fingering_pieces": 3,
+    "min_fingering_anchors": 100,
+    "min_visual_pieces": 3,
+    "min_visual_labels": 100,
+    "min_holdout_fingering_pieces": 1,
+    "min_holdout_fingering_anchors": 30,
+    "min_holdout_visual_pieces": 1,
+    "min_holdout_visual_labels": 30
+  },
+  "pieces": [
+    {
+      "id": "example-editorially-fingered-piece",
+      "benchmark_role": "development",
+      "grade_band": "estimated<=5",
+      "fingering_status": "eligible",
+      "fingering_comparisons": [
+        "../temporary/example-compare-measures-1-8.json",
+        "../temporary/example-compare-measures-9-16.json"
+      ],
+      "visual_status": "diagnostic"
+    },
+    {
+      "id": "example-visually-verified-piece",
+      "benchmark_role": "holdout",
+      "grade_band": "estimated<=5",
+      "fingering_status": "diagnostic",
+      "visual_status": "eligible",
+      "source": {
+        "type": "pdf",
+        "path": "../temporary/source.pdf",
+        "sha256": "<sha256-of-the-current-source-pdf>",
+        "bytes": 123456,
+        "page_count": 1
+      },
+      "whole_piece_pages": [1],
+      "whole_piece_measure_scope": [
+        {"page": 1, "measure_start": 1, "measure_end": 16, "hands": ["RH", "LH"]}
+      ],
+      "visual_plan": "../temporary/visual-plan.json",
+      "visual_audits": {
+        "placement": "../temporary/placement-audit.json",
+        "source_anchor": "../temporary/source-anchor-audit.json",
+        "source_clearance": "../temporary/source-clearance-audit.json",
+        "rendered": "../temporary/rendered-audit.json"
+      }
+    }
+  ]
+}

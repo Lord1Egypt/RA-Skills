@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "listing-health",
+  "workflow": "audit",
+  "focus": "listing",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

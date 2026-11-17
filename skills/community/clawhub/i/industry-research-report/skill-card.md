@@ -1,41 +1,61 @@
-## Description: <br>
-Generates industry research reports for a requested industry using the Eastmoney data service and saves report files locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates industry research reports for recognizable industries or market sectors using the Eastmoney data service.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-Business analysts and external users use this skill to turn a natural-language industry topic into a structured research report with a preview, PDF/DOCX attachments, and a share link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the requested industry topic to the Eastmoney API under the configured EM_API_KEY. <br>
-Mitigation: Use a dedicated API key, keep it in environment variables, and avoid including confidential business details in prompts. <br>
-Risk: The skill writes generated PDF and DOCX report files locally. <br>
-Mitigation: Set an appropriate output directory and confirm it is writable and suitable for the report contents. <br>
-Risk: The service may return an external share link for the generated report. <br>
-Mitigation: Open returned links only in trusted network environments and check the destination before sharing. <br>
+## Use Case:
 
+External users and analysts use this skill to turn an industry-focused request into a structured research report with a title, summary text, PDF and DOCX attachments, and a share link.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown response with report preview text, local PDF/DOCX file paths, and a share URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY and may write generated report files to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill installs an unpinned Python dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment and pin dependency versions before production use.
+
+Risk: The skill downloads and stores remote PDF and DOCX report files.
+
+Mitigation: Set INDUSTRY_RESEARCH_REPORT_OUTPUT_DIR to a controlled writable directory and treat generated attachments as untrusted until reviewed.
+
+Risk: The skill uses an EM_API_KEY for a remote service call.
+
+Mitigation: Use a scoped key, keep it in a trusted environment, and avoid logging or sharing the key.
+
+Risk: The service may return a share link to remote content.
+
+Mitigation: Open share links only in trusted network environments and verify the destination before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/industry-research-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown response with generated report excerpt, local PDF and DOCX file paths, and a share URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and may write report files to INDUSTRY_RESEARCH_REPORT_OUTPUT_DIR or a default local output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

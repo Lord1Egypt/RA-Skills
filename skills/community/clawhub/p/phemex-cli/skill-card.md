@@ -1,43 +1,60 @@
-## Description: <br>
-Trade on Phemex (USDT-M futures, Coin-M futures, Spot) - place orders, manage positions, check balances, stream real-time market data, and query historical data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Phemex spot, USDT-M futures, and Coin-M futures by checking market data, managing account state, placing or cancelling orders, moving funds, and streaming real-time updates.
 
-## Publisher: <br>
-[phemex](https://clawhub.ai/user/phemex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phemex](https://clawhub.ai/user/phemex)
 
-## Use Case: <br>
-External users and agents use this skill to operate the Phemex CLI for exchange market data, account review, order management, position settings, fund transfers, and real-time market streams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real financial account changes, including orders, cancellations, leverage changes, position-mode changes, and fund transfers. <br>
-Mitigation: Use testnet until verified, require explicit confirmation before every financial action, and review account balance, open orders, and positions before acting. <br>
-Risk: Phemex API credentials may be persisted locally or exposed through agent-assisted workflows. <br>
-Mitigation: Use a dedicated least-privilege API key, disable withdrawals, restrict by IP when available, and avoid persistent credential files on shared machines. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Phemex market data, account and position checks, order management, leverage changes, transfers, and streaming crypto market updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phemex/phemex-cli) <br>
-- [Phemex website](https://phemex.com) <br>
-- [Phemex production API endpoint](https://api.phemex.com) <br>
-- [Phemex testnet API endpoint](https://testnet-api.phemex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses phemex-cli and requires PHEMEX_API_KEY and PHEMEX_API_SECRET for authenticated account, trading, and transfer commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release asks users to install a mutable global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified phemex-cli version when available and avoid global installs where possible.
+
+Risk: The skill uses financial API credentials and may store them persistently in plaintext configuration.
+
+Mitigation: Prefer environment variables or an OS secret store over ~/.phemexrc, restrict API keys to the minimum permissions needed, disable withdrawals, and consider IP allowlisting.
+
+Risk: Trading commands can place orders, change leverage, transfer funds, or cancel orders.
+
+Mitigation: Require explicit user confirmation for trading actions, explain leverage risk, show current balances or positions before trade suggestions, and use testnet or small limits until the setup is trusted.
+
+## Reference(s):
+
+- [Phemex Cli on ClawHub](https://clawhub.ai/phemex/skills/phemex-cli)
+- [Phemex](https://phemex.com)
+- [Phemex production API endpoint](https://api.phemex.com)
+- [Phemex testnet API endpoint](https://testnet-api.phemex.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI returns JSON for tool calls and may stream JSON events to stdout for WebSocket subscriptions.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Walletconnect Agent lets an AI agent connect to Web3 dApps through WalletConnect v2 and sign messages or blockchain transactions from a configured wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Walletconnect Agent helps agents connect to Web3 dApps through WalletConnect v2 and sign wallet requests such as transactions, messages, typed data, NFT mints, DAO votes, and Basename registration.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-Developers and Web3 operators use this skill to let an agent connect to WalletConnect-compatible dApps, submit actions such as swaps, mints, votes, or Base name registration, and optionally prompt before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent sign real blockchain messages and transactions with broad wallet authority. <br>
-Mitigation: Use only a dedicated low-value wallet, keep balances small, and add external safeguards such as contract allowlists, spend limits, and transaction simulation. <br>
-Risk: Auto-approval can sign requests from malicious or unexpected dApps. <br>
-Mitigation: Use interactive mode for new dApps, connect only to trusted dApps, and review audit logs after use. <br>
-Risk: The workflow requires a private key and can expose funds if the key is reused or mishandled. <br>
-Mitigation: Do not use a main wallet or reusable private key; provide keys only through environment variables and rotate or discard wallets after high-risk use. <br>
-Risk: Raw eth_sign support can enable arbitrary-data signing if explicitly enabled. <br>
-Mitigation: Keep eth_sign blocked unless a specific trusted workflow requires it. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to give an agent WalletConnect access to Web3 dApps and automate wallet actions on supported EVM chains. It is intended for dedicated, low-value wallets where the operator accepts the risk of automated signing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daaab/walletconnect-agent) <br>
-- [Base Names](https://www.base.org/names) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce command lines that use wallet private keys through environment variables and may trigger real blockchain signing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release evidence; artifact package.json and _meta.json report 1.6.0) <br>
+Risk: Automated WalletConnect signing can approve transactions, token approvals, typed-data signatures, and other wallet actions with irreversible financial impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated, low-value wallet, keep primary or funded wallets out of scope, and treat every signature or transaction as irreversible.
+
+Risk: Default auto-approve mode gives connected dApps broad transaction authority without strong user confirmation or transaction validation.
+
+Mitigation: Use --interactive for any new or untrusted dApp, review displayed transaction details, and verify the dApp origin and WalletConnect URI before pairing.
+
+Risk: Private keys can be exposed through shell history, process listings, logs, or accidental repository commits.
+
+Mitigation: Provide PRIVATE_KEY only through environment variables, do not pass private keys as command arguments, and keep audit logs and environment handling restricted.
+
+Risk: Raw eth_sign can sign arbitrary data and is commonly abused in phishing flows.
+
+Mitigation: Keep eth_sign blocked by default and enable --allow-eth-sign only for a clearly understood, necessary use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daaab/skills/walletconnect-agent)
+- [Publisher profile](https://clawhub.ai/user/daaab)
+- [Base Names](https://www.base.org/names)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript command examples and runtime console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local audit log files under the user's home directory during execution.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

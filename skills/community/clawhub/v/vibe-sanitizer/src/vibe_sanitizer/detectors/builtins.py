@@ -25,7 +25,7 @@ def build_builtin_detectors(context: DetectorContext) -> list[RegexDetector]:
                 r"-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----.*?-----END [A-Z0-9 ]*PRIVATE KEY-----",
                 re.DOTALL,
             ),
-            preview_builder=lambda match: "-----BEGIN PRIVATE KEY-----\n***\n-----END PRIVATE KEY-----",
+            preview_builder=lambda match: "REDACTED-SECRET",
             replacement_builder=lambda _match, placeholders: placeholders["private_key_block"],
             priority=100,
             editable_in_place=True,

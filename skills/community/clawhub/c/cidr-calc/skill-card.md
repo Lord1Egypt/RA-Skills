@@ -1,38 +1,49 @@
-## Description: <br>
-Calculate subnet information from CIDR notation. Use when the user asks to calculate a subnet, find the network address, broadcast address, host range, subnet mask, or number of hosts for an IP in CIDR notation like 192.168.1.0/24. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate subnet information from CIDR notation. Use when the user asks to calculate a subnet, find the network address, broadcast address, host range, subnet mask, or number of hosts for an IP in CIDR notation like 192.168.1.0/24.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers, network engineers, and operators use this skill to calculate subnet properties from a single IPv4 CIDR string, including network and broadcast addresses, host ranges, masks, host counts, IP class, network type, and binary representation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant-generated subnet arithmetic may be incorrect for production-sensitive edge cases such as /31 and /32. <br>
-Mitigation: Double-check production network planning results with authoritative network tooling or peer review before applying changes. <br>
+## Use Case:
 
+Developers, network engineers, and operators use this skill to calculate and present subnet details for a single IPv4 CIDR input, including network address, broadcast address, host range, subnet mask, host counts, IP class, network type, and binary representation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/cidr-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown or labeled text with computed CIDR fields and validation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts one IPv4 CIDR string and returns normalized subnet information; no files, network calls, credentials, persistence, or system changes are involved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Subnet results may be incorrect if the agent misapplies CIDR math or accepts invalid input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate CIDR notation, octet ranges, and prefix length before use, and review key network, broadcast, mask, and host-range results before applying them to operational network changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/skills/cidr-calc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with labeled subnet fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one IPv4 CIDR notation string at a time.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

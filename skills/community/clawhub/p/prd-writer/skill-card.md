@@ -1,41 +1,54 @@
-## Description: <br>
-PRD Writer helps AI product managers draft structured, strategy-oriented Product Requirements Documents that connect feature proposals to business goals and user outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write strategy-oriented Product Requirements Documents (PRDs) for AI product managers that connect feature proposals to business goals, user outcomes, and AI product strategy.
 
-## Publisher: <br>
-[pupujanet-eng](https://clawhub.ai/user/pupujanet-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pupujanet-eng](https://clawhub.ai/user/pupujanet-eng)
 
-## Use Case: <br>
-Product managers and product teams use this skill to draft new PRDs, structure feature proposals, and turn raw AI product ideas into requirement documents with explicit strategy rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs may include incorrect business assumptions or strategy recommendations. <br>
-Mitigation: Review the PRD for business accuracy, product fit, and stakeholder alignment before sharing or acting on it. <br>
-Risk: The skill writes in Chinese by default, which may be unsuitable for some audiences. <br>
-Mitigation: Ask for English or another required language when the PRD needs to be shared with a different audience. <br>
+## Use Case:
 
+External product managers and product teams use this skill to draft structured, strategy-first PRDs for AI product features, turning raw ideas into requirement documents with rationale, success metrics, strategy design, risks, and milestones.
 
-## Reference(s): <br>
-- [PRD template](references/prd-template.md) <br>
-- [AI product strategy patterns](references/strategy-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese by default unless the user asks for English.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated PRDs may contain incomplete or unvalidated product assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PRDs with product, engineering, data, and compliance stakeholders before treating them as requirements.
+
+Risk: The skill is Chinese-oriented by default, which may be unsuitable for teams expecting another language.
+
+Mitigation: Ask for the desired language explicitly when invoking the skill.
+
+## Reference(s):
+
+- [PRD Template](references/prd-template.md)
+- [AI Product Strategy Patterns](references/strategy-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown PRD drafts, outlines, templates, and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless the user asks for another language.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

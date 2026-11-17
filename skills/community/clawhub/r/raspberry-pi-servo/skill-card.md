@@ -1,43 +1,57 @@
-## Description: <br>
-Guides an agent through enabling Raspberry Pi hardware PWM and controlling servos with the rpi-hardware-pwm Python library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Raspberry Pi servos with hardware PWM when precise servo control is needed.
 
-## Publisher: <br>
-[CLD1994](https://clawhub.ai/user/CLD1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cld1994](https://clawhub.ai/user/cld1994)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill when configuring Raspberry Pi hardware PWM for precise servo control. It helps agents propose setup checks, boot configuration changes, Python environment setup, example PWM code, and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Boot configuration edits and reboot steps can disrupt a Raspberry Pi if applied incorrectly. <br>
-Mitigation: Back up the boot configuration, review exact file paths for the installed Raspberry Pi OS version, and require explicit user approval before sudo commands or reboot. <br>
-Risk: Servo tests can move hardware unexpectedly or draw insufficient power. <br>
-Mitigation: Secure the servo before testing, verify wiring and external 5V power, and stop or disable PWM when finished. <br>
-Risk: Installing or using the Python PWM package from an unverified source can introduce dependency risk. <br>
-Mitigation: Verify the rpi-hardware-pwm package source and version before installation, preferably inside a Python virtual environment. <br>
+## Use Case:
 
+Developers and hardware makers use this skill to configure Raspberry Pi hardware PWM, install the rpi-hardware-pwm Python library, and troubleshoot servo control on GPIO/PWM channels.
 
-## Reference(s): <br>
-- [Servo Control Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CLD1994/raspberry-pi-servo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent guidance may include sudo commands, boot configuration edits, and servo troubleshooting steps that require user approval and hardware verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Privileged hardware and boot-configuration changes can alter PWM, audio, or startup behavior on the Raspberry Pi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, back up boot configuration, and obtain user approval before changing configuration or rebooting.
+
+Risk: Servo pulse-width settings and the sample infinite loop can move hardware unexpectedly or beyond safe mechanical limits.
+
+Mitigation: Confirm safe pulse-width ranges for the connected servo, avoid running the infinite loop as written, and keep hands and mechanisms clear during tests.
+
+Risk: PWM chip, channel, and GPIO mappings vary across Raspberry Pi models.
+
+Mitigation: Verify the target model, GPIO mode, pwmchip index, channel mapping, wiring, and power supply before applying commands.
+
+## Reference(s):
+
+- [Servo control troubleshooting guide](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hardware PWM setup steps, virtual environment installation guidance, servo control examples, and troubleshooting checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

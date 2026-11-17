@@ -1,40 +1,59 @@
-## Description: <br>
-Repo Explainer turns a public GitHub repository or local code directory into source-grounded HTML and Markdown reports that explain purpose, architecture, modules, flows, dependencies, and limitations for non-developers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repo Explainer analyzes a public GitHub repository or local code directory and produces source-grounded HTML and Markdown reports for non-developer readers.
 
-## Publisher: <br>
-[yoloyyh](https://clawhub.ai/user/yoloyyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoloyyh](https://clawhub.ai/user/yoloyyh)
 
-## Use Case: <br>
-Developers, PMs, designers, and managers use this skill to understand what a repository or local codebase does, how it is built, and where key evidence appears in source files. It is useful for onboarding, technical discovery, and creating shareable codebase summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent reads the repository or local folder supplied for analysis, which may expose sensitive private code to the active agent and LLM environment. <br>
-Mitigation: Use it only on repositories or folders approved for that environment, and avoid sensitive private code unless internal data-handling requirements are met. <br>
-Risk: Reruns may replace the generated workspace clone folder used for analysis. <br>
-Mitigation: Do not store important manual work inside the generated workspace clone path; keep source work in its original repository or another durable location. <br>
+## Use Case:
 
+Developers and engineering-adjacent stakeholders use this skill to turn public GitHub repositories or local code directories into source-grounded explanatory reports. The reports help PMs, designers, managers, and engineers understand purpose, architecture, key modules, data flow, dependencies, and limitations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoloyyh/repo-explainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [HTML and Markdown reports with source citations and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces synchronized report files for public GitHub repositories or local code directories; evidence links are commit-pinned when GitHub coordinates are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports can expose private source details when run on local workspaces or overly broad directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on intended repositories or focused subpaths, and review generated HTML and Markdown before sharing.
+
+Risk: Security evidence flags unsafe script-rendering behavior in the HTML report around Mermaid rendering.
+
+Mitigation: Treat generated HTML as untrusted, prefer Markdown for broad sharing, and open HTML reports only from trusted runs until Mermaid escaping or bundling is fixed.
+
+Risk: Broad home or sensitive monorepo scans may include more source data than intended because subpath enforcement and symlink handling need review.
+
+Mitigation: Use explicit subpaths for monorepos and avoid pointing the skill at broad personal or work directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoloyyh/skills/repo-explainer)
+- [Mermaid.js](https://mermaid.js.org/)
+- [GitHub REST API v3](https://docs.github.com/en/rest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [HTML and Markdown report files with Mermaid diagrams and path:line references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The HTML report is themed and single-file; the Markdown report uses native Mermaid code blocks for sharing in documentation and collaboration tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

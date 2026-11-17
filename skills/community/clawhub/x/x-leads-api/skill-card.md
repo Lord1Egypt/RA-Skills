@@ -1,40 +1,57 @@
-## Description: <br>
-Post tweets, threads, replies, and quote-tweets to X (Twitter) via API v2 with OAuth 1.0a. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post tweets, threads, replies, and quote-tweets to X (Twitter) via API v2 with OAuth 1.0a.
 
-## Publisher: <br>
-[3rdbrain](https://clawhub.ai/user/3rdbrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3rdbrain](https://clawhub.ai/user/3rdbrain)
 
-## Use Case: <br>
-Agents use this skill to operate a connected X account from a Node.js CLI, including posting tweets and threads, replying, quote-tweeting, liking, deleting tweets, and reading a recent timeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify public content on the connected X account, including posting, liking, and deleting tweets. <br>
-Mitigation: Use the least-privileged X app or token available and require human approval for posts, likes, and deletions. <br>
-Risk: Scheduling instructions may be unreliable without a separately reviewed scheduler. <br>
-Mitigation: Treat scheduled-post behavior as unavailable unless the scheduler is reviewed and tested in the deployment environment. <br>
+## Use Case:
 
+Agents use this skill to publish and manage X (Twitter) content for an authenticated account, including tweets, threads, replies, quote-tweets, likes, deletions, and recent timeline checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/3rdbrain/x-leads-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown instructions with inline shell commands; executed CLI commands return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X OAuth environment variables for the connected account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: OAuth credentials allow actions on a live X account, including posting, replying, quote-tweeting, liking, deleting tweets, and reading recent account tweets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those account permissions are acceptable, and require explicit user approval before public engagement or deletion actions.
+
+Risk: The delete action can remove live account content without a documented confirmation guard.
+
+Mitigation: Use an external confirmation workflow before running delete commands.
+
+Risk: Documented scheduling commands are not supported by the implementation evidence.
+
+Mitigation: Do not rely on scheduling commands unless the implementation is updated and revalidated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3rdbrain/skills/x-leads-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with bash command examples; runtime command output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, and X_ACCESS_SECRET environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

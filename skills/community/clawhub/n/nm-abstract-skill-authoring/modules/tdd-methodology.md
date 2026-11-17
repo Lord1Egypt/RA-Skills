@@ -280,72 +280,58 @@ Apply full security requirements regardless of scope.
 Internal APIs need same protections as external APIs.
 ```
 
-#### 3. Add Explicit Counters
+#### 3. State the Constraint and What Is Behind It
 
-Update skill with direct counters to observed rationalizations:
+Turn each observed rationalization into a constraint with its reason.
+A table pairing the excuse with a rebuttal is retired, because it
+forecloses the case where the thought was correct. A constraint with
+its reason lets the model check whether the reason applies. Security
+is a trust boundary, so these stay imperative:
 
 ```markdown
-## Common Rationalizations (DO NOT USE)
+## Constraints
 
-| Excuse | Why It's Wrong | Required Action |
-|--------|----------------|-----------------|
-| "Internal API, simpler auth OK" | Internal = common attack vector | Full auth required |
-| "Trusted users, skip validation" | Users make mistakes | Full validation required |
-| "Prototype, add security later" | Prototypes become production | Build secure from start |
-| "Simple endpoint, basic checks OK" | Complexity ≠ security need | All requirements apply |
+- Internal APIs get the full authentication requirements. Internal
+  endpoints are a common attack vector, and a compromised internal
+  account carries high privilege.
+- Validate input from trusted users too. Trusted users make mistakes,
+  and internal tools are often exposed later.
+- Prototypes are built secure from the start, because prototypes
+  become production without a rewrite.
+- A simple endpoint gets every requirement. Endpoint complexity does
+  not predict what an attacker needs from it.
 
-## Red Flags
-
-Stop immediately if you're thinking:
-- "This is internal, so..."
-- "We can add security later..."
-- "Trusted users don't need..."
-- "Simple endpoint, basic..."
-
-## No Exceptions
-
-Security requirements apply to:
-- OK Internal APIs
-- OK Prototype code
-- OK "Simple" endpoints
-- OK Trusted users
-- OK Development environments
-
-The ONLY exception: Explicit user statement
-"This is deliberately insecure for [specific reason]"
+The one exception is an explicit user statement: "This is
+deliberately insecure for [specific reason]".
 ```
 
-#### 4. Add Commitment Statements
+#### 4. Add Exit Criteria
 
-Force explicit acknowledgment:
+Replace declarations and self-checks with criteria a reader can verify
+after the work. Each one names a file, a command's output, or a
+threshold:
 
 ```markdown
-## Before Starting
+## Exit Criteria
 
-Declare: "I'm using secure-api-design skill to validate
-complete security coverage regardless of scope or timeframe."
-
-## During Work
-
-Check: "Have I applied ALL requirements or am I rationalizing?"
-
-## After Completion
-
-Verify: "Every requirement present, no exceptions taken."
+- [ ] Every endpoint in the diff has an authentication check
+- [ ] Every request field has a validation test
+- [ ] Any exception taken quotes the user's explicit statement
 ```
 
 #### 5. Iterate Until Bulletproof
 
 Run scenarios repeatedly:
 - Document new rationalizations found
-- Add counters to skill
+- Add the constraint and its reason to the skill
 - Test again
 - Repeat until compliance is consistent
 
 **Success Criteria:**
 - 3 consecutive pressure scenarios with 100% compliance
 - No new rationalizations discovered
-- Claude explicitly acknowledges requirements before bypassing
+- Any requirement bypassed is named, with the user statement that
+  allowed it
 
 ## Baseline Documentation Template
 
@@ -501,4 +487,4 @@ TDD for skills means:
 2. **GREEN**: Fix it with minimal intervention
 3. **REFACTOR**: Make it bulletproof against gaming
 
-Without empirical testing, you're writing documentation, not creating behavioral interventions.
+Without empirical testing, you are writing documentation that nobody has shown to change behavior.

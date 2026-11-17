@@ -1,45 +1,60 @@
-## Description: <br>
-Jobber API integration with managed OAuth for managing clients, jobs, invoices, quotes, properties, and team members for field service businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Jobber through Maton to manage field-service clients, jobs, quotes, invoices, and scheduling.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to access Jobber through Maton-managed OAuth for reading and managing clients, jobs, invoices, quotes, properties, requests, and team members. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MATON_API_KEY and the connected OAuth account can provide access to sensitive Jobber business records. <br>
-Mitigation: Install only when the publisher and Maton brokered access are trusted, keep the API key out of shared logs, and scope access through the intended Jobber connection. <br>
-Risk: Create, update, or delete operations can change clients, jobs, invoices, quotes, schedules, or other business records. <br>
-Mitigation: Require explicit user approval before every write operation and confirm the target resource, account connection, and intended effect. <br>
-Risk: Multiple active Jobber connections can route requests to the wrong account. <br>
-Mitigation: Use the Maton-Connection header when more than one connection exists and verify the selected connection before executing actions. <br>
+## Use Case:
 
+Field-service teams and their agents can look up Jobber records and, with user approval, create or update clients, jobs, quotes, and invoices. Users can also approve automations built around their connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/jobber) <br>
-- [Jobber Developer Documentation](https://developer.getjobber.com/docs/) <br>
-- [Jobber Getting Started Guide](https://developer.getjobber.com/docs/getting_started/) <br>
-- [Maton Settings](https://maton.ai/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and a valid Jobber OAuth connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Creating or changing clients, jobs, or invoices can affect business and financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target, payload, and effect, and obtain explicit user approval before each write.
+
+Risk: Automations and destinations can send matching events persistently or act on a schedule.
+
+Mitigation: Review each function deploy, trigger, and destination separately; disclose what data flows and where before approval.
+
+Risk: Connecting an account and handling customer data or credentials can expose sensitive information.
+
+Mitigation: Authorize only the intended Jobber connection and necessary scopes; keep API keys and customer data out of destinations.
+
+## Reference(s):
+
+- [Jobber skill on ClawHub](https://clawhub.ai/byungkyu/skills/jobber)
+- [Maton](https://maton.ai)
+- [Jobber developer documentation](https://developer.getjobber.com/docs/)
+- [Time trigger reference](artifact/references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Jobber results and proposed changes depend on the user's connected account and authorization.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

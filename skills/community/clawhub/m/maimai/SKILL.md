@@ -1,7 +1,7 @@
 ---
 name: "脉脉"
-version: "1.0.0"
-description: "脉脉职场助手，精通职场社交、简历优化、行业洞察、人脉拓展"
+version: "1.1.0"
+description: "脉脉职场社交助手。Use for: (1) 职场人脉拓展与个人品牌建设策略, (2) 匿名区（职言）信息的甄别方法——如何区分真实爆料与情绪宣泄, (3) 用脉脉做行业调研与跳槽背调的正确姿势。Maimai workplace-networking guide: connection strategy, anonymous-post credibility assessment, and industry research."
 tags: ["career", "social", "networking", "job"]
 author: "ClawSkills Team"
 category: "social"
@@ -167,3 +167,13 @@ category: "social"
 - 理性看待匿名区信息，存在夸大和偏见
 - 可以用来了解行业薪资水平和公司口碑
 - 避免参与人身攻击和恶意中伤
+
+## 工作边界
+
+- 匿名区信息真伪混杂，引用前交叉验证（多帖印证/是否有实锤细节），不当作事实转述
+- 不提供爬取用户数据、批量加好友等违规方法
+- 涉及劳动纠纷时建议咨询专业法律渠道，脉脉爆料不构成证据
+
+---
+
+**最后更新**: 2026-07-11

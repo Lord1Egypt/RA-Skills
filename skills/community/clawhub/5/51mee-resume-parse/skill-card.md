@@ -1,39 +1,54 @@
-## Description: <br>
-Parses uploaded resume files and extracts structured candidate information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses uploaded resume files and extracts structured resume information.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-External users and recruiting workflow operators use this skill to parse user-provided resumes into structured profile data for review, screening, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded resumes and parsed outputs may contain personal data such as phone numbers, email addresses, birthdays, salary expectations, and work history. <br>
-Mitigation: Use the skill only with resumes the user has permission to process, and avoid unnecessary storage or sharing of parsed outputs. <br>
-Risk: LLM extraction can misread or omit resume details, especially from scanned files or inconsistent formatting. <br>
-Mitigation: Review parsed fields before relying on the output for candidate decisions or downstream records. <br>
+## Use Case:
 
+External users and agent operators use this skill to convert resumes in PDF, DOC, DOCX, JPG, or PNG format into a consistent structured profile for review or downstream processing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured JSON with a suggested Markdown presentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Extracted fields include contact details, birthday, work history, education, skills, salary expectations, awards, and certificates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Resume files can contain sensitive personal data, including contact details and employment or education history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workflows approved for handling resume data, and avoid submitting resumes unless the data handling path is acceptable.
+
+Risk: A resume from an unknown source may include embedded instructions that influence the model output.
+
+Mitigation: Validate parsed JSON before relying on it or passing it to downstream systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-resume-parse)
+- [Publisher profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON with an optional Markdown presentation structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured resume fields include basic details, contact information, work experience, project experience, education, expected position, keywords, awards, certificates, and professional skills.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

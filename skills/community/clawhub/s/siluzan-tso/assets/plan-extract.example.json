@@ -1,0 +1,72 @@
+{
+  "_comment": "Excel/表格抽取的中间件（非 campaign-create 契约）。Agent 抽取脚本输出此形状；再用 ad geo resolve + assemble-campaign-from-plan.mjs 生成最终 JSON。",
+  "account": "REPLACE_mediaCustomerId",
+  "customerName": "REPLACE_from_list_accounts",
+  "name": "Search_Brand_US_2026",
+  "url": "https://www.example.com",
+  "budget": 100,
+  "biddingStrategyTypeV2": "MANUAL_CPC",
+  "maxCpcDefault": 5,
+  "startTime": "2026-07-15",
+  "endTime": "2037-12-30",
+  "locations": ["United States", "Canada"],
+  "productWords": ["brand", "product"],
+  "adGroups": [
+    {
+      "name": "Core_Brand_Keywords",
+      "maxCpc": 5,
+      "finalUrl": "https://www.example.com/products",
+      "keywords": [
+        { "text": "brand name product", "matchType": "EXACT" },
+        { "text": "brand name product", "matchType": "PHRASE" },
+        { "text": "buy brand product online", "matchType": "BROAD" }
+      ],
+      "rsa": {
+        "path1": "products",
+        "path2": "brand",
+        "headlines": [
+          "Brand Name Official Store",
+          "Quality Products You Trust",
+          "Shop Direct From Brand",
+          "Headline 4",
+          "Headline 5",
+          "Headline 6",
+          "Headline 7",
+          "Headline 8",
+          "Headline 9",
+          "Headline 10",
+          "Headline 11",
+          "Headline 12",
+          "Headline 13",
+          "Headline 14",
+          "Headline 15"
+        ],
+        "descriptions": [
+          "Description line one for the brand.",
+          "Description line two for the brand.",
+          "Description line three for the brand.",
+          "Description line four for the brand."
+        ]
+      }
+    }
+  ],
+  "negativeKeywords": [
+    { "text": "free", "matchType": "BROAD" },
+    { "text": "cheap", "matchType": "BROAD" }
+  ],
+  "extensions": {
+    "sitelinks": [
+      {
+        "text": "About Us",
+        "line2": "Company Info",
+        "line3": "Learn More",
+        "url": "https://www.example.com/about"
+      }
+    ],
+    "callouts": ["Free Shipping", "Official Store"],
+    "structuredSnippet": {
+      "header": "Types",
+      "values": ["Product A", "Product B", "Product C", "Product D"]
+    }
+  }
+}

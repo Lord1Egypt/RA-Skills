@@ -1,44 +1,64 @@
-## Description: <br>
-DataLoader pattern for batch processing to solve N+1 query problems. Reduces database/API calls from N+1 to 2 by batching and caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataLoader pattern for batch processing that reduces N+1 database or API calls by batching and caching requests.
 
-## Publisher: <br>
-[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs)
 
-## Use Case: <br>
-Developers and engineers use this skill to add a JavaScript DataLoader utility that batches and caches database queries, API calls, GraphQL resolver work, or other expensive N+1 access patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Caching loader results across users or requests can expose private data or reuse authorization-sensitive results in the wrong context. <br>
-Mitigation: Create loader instances per request or user context, and clear caches after mutations that change cached records. <br>
-Risk: A batchLoadFn that bypasses the original per-item checks can return data the caller should not access. <br>
-Mitigation: Enforce the same authorization and filtering rules inside the batchLoadFn that the original individual queries or API calls used. <br>
-Risk: Large batches can exceed database or API limits or increase latency. <br>
-Mitigation: Tune maxBatchSize and batchScheduleMs for the target data source and operational limits. <br>
+## Use Case:
 
+Developers use this skill to add and explain a JavaScript DataLoader pattern for batching database, API, GraphQL, or file operations and reducing N+1 query behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qwe123sddfsdfs/batch-processing) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with JavaScript code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a zero-dependency JavaScript DataLoader implementation, usage examples, and benchmark commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Large or poorly tuned batches can overload a database or API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate maxBatchSize against the target system's limits before production use.
+
+Risk: Benchmark output can overstate real-world performance if treated as authoritative.
+
+Mitigation: Use the bundled benchmarks as illustrative examples and measure performance against the actual application workload.
+
+Risk: Shared loader instances can leak or reuse cached data across unrelated requests.
+
+Mitigation: Create loaders per request and clear caches after mutations or when handling sensitive data.
+
+Risk: A batchLoadFn can call unintended data sources if wired incorrectly.
+
+Mitigation: Only connect loaders to APIs or databases intentionally provided by the host application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qwe123sddfsdfs/skills/batch-processing)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [package.json](package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a self-contained JavaScript DataLoader utility, examples, benchmarks, and integration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

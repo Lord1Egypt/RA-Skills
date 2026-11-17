@@ -1,40 +1,53 @@
-## Description: <br>
-Turn client briefs, emails, or chat notes into motion design/VFX production plans, estimates, invoice drafts, and optional project folder scaffolds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn messy client briefs into a production-ready plan for motion design/VFX projects: scope, assumptions/exclusions, deliverables matrix, schedule/milestones, review rounds, and estimate/quote.
 
-## Publisher: <br>
-[Wiseape11](https://clawhub.ai/user/Wiseape11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wiseape11](https://clawhub.ai/user/wiseape11)
 
-## Use Case: <br>
-Creative operations professionals, producers, and motion/VFX freelancers use this skill to convert unstructured client briefs into client-ready production plans, scoped estimates, invoice draft data, and repeatable project documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Invoice draft pushes can send client and project billing data to a configured invoicing API. <br>
-Mitigation: Use --push-invoice only intentionally, keep the API URL local or otherwise trusted, and configure a narrowly scoped API key when authentication is used. <br>
-Risk: Generated estimates and production plans may contain incorrect assumptions when a brief is incomplete. <br>
-Mitigation: Review the generated plan, estimate, and open questions before sharing them with a client or using them for billing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Creative Ops Copilot on ClawHub](https://clawhub.ai/Wiseape11/creative-ops-copilot) <br>
-- [Configuration example](references/config.example.json) <br>
+## Use Case:
 
+Creative operations users and motion design or VFX producers use this skill to convert client briefs, emails, or chat notes into client-ready production plans, estimates, invoice drafts, and optional project folder skeletons.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown planning documents, JSON estimate and invoice draft files, optional folder structure, and optional invoice API request result text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes docs/creative-ops/plan.md, estimate.json, and invoice-draft.json; can optionally create a project skeleton and push invoice data when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional invoice push can send client and project invoice data to the configured invoicing endpoint.
+
+Mitigation: Use --push-invoice only after reviewing references/config.json, especially invoicingApi.baseUrl and apiKey.
+
+Risk: The skill writes production planning files and invoice drafts into the selected output directory.
+
+Mitigation: Run it in the intended project workspace and review generated plan, estimate, and invoice files before sharing or importing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wiseape11/skills/creative-ops-copilot)
+- [config.example.json](references/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, JSON, CSV-compatible structured data, shell commands, and project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always produces docs/creative-ops/plan.md, docs/creative-ops/estimate.json, and docs/creative-ops/invoice-draft.json; can optionally create a project folder skeleton and push an invoice draft to a configured invoicing API.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

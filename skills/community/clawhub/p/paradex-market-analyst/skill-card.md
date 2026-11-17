@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes Paradex perpetual futures markets with technical indicators, funding-rate scans, orderbook depth, regime classification, and cross-market screening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market Analyst provides technical analysis, market screening, and regime classification for Paradex perpetual futures markets using indicators, funding rates, orderbook depth, and cross-market summaries.
 
-## Publisher: <br>
-[sv](https://clawhub.ai/user/sv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sv](https://clawhub.ai/user/sv)
 
-## Use Case: <br>
-External users and developers use this skill to turn Paradex market data into technical-analysis summaries, market screening tables, funding-rate scans, and regime context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad market questions and produce analysis outside the user's intended Paradex scope. <br>
-Mitigation: Confirm the requested market and scope before relying on conclusions. <br>
-Risk: Investment conclusions may be incorrect, stale, or mistaken for financial advice. <br>
-Mitigation: Review outputs independently, refresh live market data before acting, and do not treat responses as financial advice. <br>
-Risk: Funding rates, orderbook depth, and market regimes can change quickly. <br>
-Mitigation: Re-check current data before using an analysis for trading or risk decisions. <br>
+## Use Case:
 
+External traders, analysts, and developers use this skill to turn Paradex market data into concise technical analysis, screening tables, funding-rate scans, and regime summaries. It supports market assessment and opportunity discovery, not automated trade execution or financial advice.
 
-## Reference(s): <br>
-- [Technical Indicator Reference](references/indicators.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, concise text summaries, and markdown tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market snapshots, technical-analysis reports, screening tables, funding scans, and regime summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market analysis can become stale or misleading as Paradex market conditions change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Paradex data before relying on any analysis or screening result.
+
+Risk: Technical indicators and funding-rate screens may be mistaken for trading advice or automated trade signals.
+
+Mitigation: Use outputs as informational analysis only and apply independent risk controls before making financial decisions.
+
+Risk: Orderbook depth and funding-rate observations are point-in-time signals that can change quickly.
+
+Mitigation: Re-check orderbook, funding, and market summary data before acting on a reported opportunity.
+
+## Reference(s):
+
+- [Technical Indicator Reference](references/indicators.md)
+- [ClawHub Skill Page](https://clawhub.ai/sv/skills/paradex-market-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, concise text summaries, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational market analysis only; outputs should be checked against current data before financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

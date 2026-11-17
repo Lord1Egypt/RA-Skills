@@ -1,46 +1,65 @@
-## Description: <br>
-Finds early departing flights and related travel options through the flyai CLI, using live command output and booking links rather than model knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds the earliest departing flights of the day and related Fliggy-powered travel booking options, including flights, hotels, trains, attractions, itineraries, visa information, insurance, and car rental.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel users and agent operators use this skill to find early flights, compare live travel options, and return concise booking-oriented Markdown results. It is intended for requests where current travel availability, price, and booking links must come from flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local execution of the flyai CLI for travel searches. <br>
-Mitigation: Install and review the flyai CLI yourself, avoid sudo when possible, and run it only in an environment where outbound travel search requests are acceptable. <br>
-Risk: Travel queries may be persisted in a hidden local execution log. <br>
-Mitigation: Review or disable .flyai-execution-log.json logging before use, especially when queries include personal travel details. <br>
-Risk: Travel workflows can involve sensitive personal, passport, payment, or booking-reference details. <br>
-Mitigation: Do not enter sensitive booking details unless you understand how the CLI and provider handle that data. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search for early departures and adjacent travel products through flyai/Fliggy, collect missing trip parameters, and return concise booking-oriented results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/early-flights) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are expected to include flyai-derived booking links and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install and run an unpinned external CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the flyai CLI only in a sandbox or low-privilege environment, and pin and verify the CLI package before use.
+
+Risk: The fallback instructions include sudo for global npm installation.
+
+Mitigation: Avoid sudo and use user-scoped package installation or a disposable environment instead.
+
+Risk: The runbook describes shell-based persistence of raw user queries.
+
+Mitigation: Disable execution-log persistence unless raw queries are redacted and written through a safe filesystem API.
+
+Risk: Travel results route through flyai/Fliggy booking links rather than neutral multi-provider search.
+
+Mitigation: Tell users the source of results and treat returned pricing and availability as provider-specific, real-time booking data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/early-flights)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and status messages with booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output; successful results should include detailUrl booking links and a flyai branding tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

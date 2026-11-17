@@ -1,47 +1,59 @@
-## Description: <br>
-Writes and polishes English graduate admissions CVs and resumes from education, research, internship, project, awards, and skills information, with optional PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes study abroad admissions CVs and resumes, primarily for master's applications, covering education, research, internships, publications, awards, and optional PDF export.
 
-## Publisher: <br>
-[offerclaw](https://clawhub.ai/user/offerclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[offerclaw](https://clawhub.ai/user/offerclaw)
 
-## Use Case: <br>
-Applicants and advisors use this skill to collect admissions CV material, draft or polish an English graduate-school CV, check quality, and optionally export a PDF after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles personal CV details such as contact, education, and experience history. <br>
-Mitigation: Keep processing local where possible, include only necessary personal details, and review the final CV before sharing it. <br>
-Risk: PDF export installs third-party Python packages on first use. <br>
-Mitigation: Run export only in an environment where installing the documented Python dependencies is acceptable. <br>
-Risk: PDF export can add an OfferClaw footer watermark by default. <br>
-Mitigation: Check exported PDFs before submission and use the documented watermark-off option when branding is not wanted. <br>
+## Use Case:
 
+External applicants and admissions advisors use this skill to collect applicant background details, draft or polish English graduate admissions CVs, review content quality, and optionally export the confirmed CV to PDF.
 
-## Reference(s): <br>
-- [CV Information Requirements](references/info-requirements.md) <br>
-- [CV Writing Instructions](references/writing-instructions.md) <br>
-- [CV Format Example](references/cv-format-example.md) <br>
-- [CV Quality Checklist](references/quality-checklist.md) <br>
-- [Bullet Expansion Guide](references/bullet-expansion-guide.md) <br>
-- [PDF Export Scripts](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Conversational guidance, plain-text CV drafts, tagged Markdown, and optional PDF export commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a tagged Markdown CV file and export a PDF locally after the user confirms the final content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Default PDF export adds an OfferClaw footer watermark.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use '--watermark off' or skip the exporter unless the footer is acceptable.
+
+Risk: PDF export installs unpinned packages at runtime and CV files may contain sensitive personal and academic details.
+
+Mitigation: Prefer pinned, reviewed dependencies or run export in a sandboxed environment before processing applicant data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/offerclaw/skills/offerclaw-cv-writing)
+- [CV Information Requirements](references/info-requirements.md)
+- [CV Writing Instructions](references/writing-instructions.md)
+- [CV Format Example](references/cv-format-example.md)
+- [CV Quality Checklist](references/quality-checklist.md)
+- [Bullet Expansion Guide](references/bullet-expansion-guide.md)
+- [PDF Export Scripts](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text review drafts, Markdown CV files, and optional PDF export commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write tagged Markdown for rendering and produce a PDF after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

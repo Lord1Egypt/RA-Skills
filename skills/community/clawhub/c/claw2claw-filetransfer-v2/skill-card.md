@@ -1,43 +1,54 @@
-## Description: <br>
-Claw2claw Filetransfer helps agents transfer, sync, and back up files across machines using rsync over SSH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform file transfer between OpenClaw agents via rsync over SSH for syncing, backup, and transfer tasks between agents on different machines.
 
-## Publisher: <br>
-[Christopher-Schulze](https://clawhub.ai/user/Christopher-Schulze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[christopher-schulze](https://clawhub.ai/user/christopher-schulze)
 
-## Use Case: <br>
-Developers and operators use this skill to move files, collect logs, back up data, and synchronize project directories between OpenClaw agents on different machines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy, overwrite, or delete files across machines during transfer and mirror-sync workflows. <br>
-Mitigation: Review source and destination paths before execution, use dry-run mode before mirror syncs, and keep backups for important data. <br>
-Risk: The skill sets up persistent SSH access and examples normalize direct root SSH use. <br>
-Mitigation: Use a dedicated limited account, avoid direct root SSH, restrict key permissions, and verify where the claw2claw command comes from before use. <br>
-Risk: Transfers may include sensitive logs, database dumps, backups, or home-directory data. <br>
-Mitigation: Treat transferred data as sensitive, limit access to destinations, and avoid moving secrets or private data unless the target environment is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Christopher-Schulze/claw2claw-filetransfer-v2) <br>
-- [Command Reference](references/commands.md) <br>
-- [Real-World Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to produce shell commands and configuration guidance for transferring, backing up, listing, and synchronizing files between OpenClaw agents over SSH with rsync.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rsync and SSH; includes setup, transfer, sync, status, and troubleshooting workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can normalize persistent SSH access, including root access, between machines.
+
+Mitigation: Use a dedicated unprivileged transfer account, verify exactly which SSH key is installed, and keep a clear revocation path.
+
+Risk: Sync commands can delete files on the destination or copy broad sensitive paths to another machine.
+
+Mitigation: Prefer dry-run before sync, scope transfer paths narrowly, and avoid broad paths such as /home, /etc, logs, or database dumps unless the destination is trusted and protected.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/christopher-schulze/skills/claw2claw-filetransfer-v2)
+- [Command Reference](references/commands.md)
+- [Real-World Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include rsync and SSH commands that transfer, mirror, or list local and remote files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

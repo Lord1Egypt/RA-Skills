@@ -1,44 +1,59 @@
-## Description: <br>
-Handles Alipay payment service flows by parsing cashier links, submitting payment requests, and querying payment results when a user intends to pay with Alipay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles Alipay payment-service flows by identifying cashier links, submitting payment requests through the Alipay CLI, and checking payment status.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-External users and agents use this skill to process Alipay cashier links, guide wallet authorization when needed, submit payment, and check payment status after the user indicates completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that broad payment language can start live Alipay payment and wallet workflows without a clear hard confirmation gate. <br>
-Mitigation: Require explicit user confirmation that the merchant, amount, payment method, and Alipay cashier link are visible and correct before wallet authorization or payment submission. <br>
-Risk: The skill installs and executes a payment CLI package. <br>
-Mitigation: Verify the fixed npm package integrity for @alipay/agent-payment@1.0.0 and obtain user consent before installation or execution. <br>
-Risk: Payment links, authorization links, and short URLs can expose live payment flow state if mishandled. <br>
-Mitigation: Do not log, persist, truncate, rewrite, or send payment URLs outside the user-selected channel. <br>
+## Use Case:
 
+External users and agent operators use this skill when a conversation includes an Alipay cashier link or a clear payment intent, so the agent can guide wallet authorization, submit payment, present the payment output, and later check payment status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yun520-1/alipay-pay-for-service) <br>
-- [Payment skills GitHub repository](https://github.com/alipay/payment-skills) <br>
-- [Alipay agent-payment npm package](https://www.npmjs.com/package/@alipay/agent-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text, shell commands, and structured JSON handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include complete Alipay cashier URLs, short payment-status URLs, and MEDIA image paths from CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9-beta1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill installs and runs external package code for payment handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a sandboxed environment, and approve installation only when the pinned Alipay package is trusted.
+
+Risk: Payment links passed through shell-interpolated command strings can create command-injection exposure.
+
+Mitigation: Use structured command arguments or robust escaping, and pass only validated Alipay cashier URLs from the current context.
+
+Risk: Payment URLs and QR outputs can be sensitive even when time-limited.
+
+Mitigation: Do not persist them in logs or caches, and show them only through the user-selected channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/alipay-pay-for-service)
+- [Alipay payment-skills homepage](https://github.com/alipay/payment-skills)
+- [Alipay agent-payment npm package](https://www.npmjs.com/package/@alipay/agent-payment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and CLI-derived text with payment links or QR media handling when returned by the payment tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit time-limited payment URLs or QR media paths that should be preserved exactly and not logged or redistributed.]
+
+## Skill Version(s):
+
+1.0.9-beta1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

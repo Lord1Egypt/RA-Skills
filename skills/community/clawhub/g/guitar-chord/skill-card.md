@@ -1,38 +1,53 @@
-## Description: <br>
-Guitar Chord is a guitar chord toolkit for chord identification, chord diagrams, inversions, drop2 voicings, scale lookup, and capo transposition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guitar Chord helps agents look up guitar chord notes, identify chords from notes, show inversions and drop2 voicings, and return scale information.
 
-## Publisher: <br>
-[DeAntiWang](https://clawhub.ai/user/DeAntiWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deantiwang](https://clawhub.ai/user/deantiwang)
 
-## Use Case: <br>
-Musicians, guitar students, and developers can use this skill to answer practical guitar theory questions, including chord note lookup, reverse chord identification, voicing exploration, scale lookup, and capo transposition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The diagram feature can run an undeclared Cargo project from ~/workspace/ascii_chord. <br>
-Mitigation: Use ordinary chord, scale, inversion, and drop2 features without diagram mode unless the Cargo dependency is documented, pinned, bundled, or replaced. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent for guitar chord, scale, inversion, and drop2 voicing guidance. It is useful for lightweight music-theory lookup and command-oriented chord analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeAntiWang/guitar-chord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text with command examples and optional ASCII chord or scale diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Diagram mode may depend on a local Cargo project at ~/workspace/ascii_chord; ordinary chord, scale, inversion, and drop2 results are local text outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter says 1.1.0) <br>
+Risk: The optional diagram feature may build and run a local Cargo project from ~/workspace/ascii_chord.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-diagram chord and scale features by default, and enable --diagram only after reviewing and trusting the local ascii_chord project.
+
+Risk: Some advertised behavior may be incomplete or unreliable, including capo calculation and reverse lookup.
+
+Mitigation: Validate important chord, scale, and capo outputs against a trusted music-theory source before using them in lessons, publications, or performance material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deantiwang/skills/guitar-chord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include chord note lists, ASCII diagrams, scale diagrams, inversion lists, and drop2 voicing tables.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

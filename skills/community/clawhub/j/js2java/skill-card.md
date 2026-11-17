@@ -1,40 +1,53 @@
-## Description: <br>
-js2java translates JavaScript business logic or natural-language backend requirements into Spring Boot-style Java code with teaching comments for front-end developers learning Java. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+js2java translates JavaScript business logic or natural-language backend requests into complete Spring Boot Java code with explanatory comments, syntax comparison tables, and learning questions.
 
-## Publisher: <br>
-[lancer07](https://clawhub.ai/user/lancer07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancer07](https://clawhub.ai/user/lancer07)
 
-## Use Case: <br>
-Developers and engineers use this skill to translate JavaScript logic or backend requirements into complete Spring Boot code, including DTO, Entity, Repository, Service, Controller, custom exceptions, and global exception handling. It also explains Java syntax and JavaScript-to-Java differences through inline teaching comments, comparison tables, and study questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Spring Boot examples may omit production security controls such as authentication, password hashing, authorization, validation, endpoint hardening, persistence modeling, or production configuration. <br>
-Mitigation: Treat generated code as scaffolding and review those areas before deployment. <br>
+## Use Case:
 
+Developers and front-end engineers use this skill to convert JavaScript business logic or backend feature requests into Spring Boot-style Java implementations. It is intended for learning and rapid scaffolding of DTOs, entities, repositories, services, controllers, exceptions, validation, and Java syntax explanations.
 
-## Reference(s): <br>
-- [README.md](artifact/README.md) <br>
-- [TRANSLATION_PROMPT.md](artifact/TRANSLATION_PROMPT.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lancer07/js2java) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Java code blocks, syntax comparison tables, and study questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Spring Boot code is intended as scaffolding and should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The authentication example promotes unsafe plaintext password storage and raw-password lookup patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated login, registration, and account code before use, and replace raw password storage or findByEmailAndPassword flows with PasswordEncoder-based hash-and-verify authentication.
+
+Risk: Generated Spring Boot scaffolding is intended as learning/reference material and may not be production-ready.
+
+Mitigation: Review generated code for architecture, security, validation, and operational requirements before using it in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lancer07/skills/js2java)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Java code blocks, comparison tables, and learning questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are verbose and use Chinese instructional text by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

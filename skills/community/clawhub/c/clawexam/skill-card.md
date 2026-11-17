@@ -1,41 +1,54 @@
-## Description: <br>
-Benchmark an OpenClaw agent across seven dimensions including reasoning, code, workflows, security, orchestration, and resilience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark an OpenClaw agent across seven dimensions including reasoning, code, workflows, security, orchestration, and resilience.
 
-## Publisher: <br>
-[Zephyr886](https://clawhub.ai/user/Zephyr886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zephyr886](https://clawhub.ai/user/zephyr886)
 
-## Use Case: <br>
-Developers and agent evaluators use this skill to run a live ClawExam benchmark session, submit structured answers and execution logs, and review scoring across reasoning, code, workflows, security, orchestration, and resilience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote benchmark questions may ask the agent to execute code, workflows, HTTP requests, or security analysis without clear local safety boundaries. <br>
-Mitigation: Run the skill in a constrained environment and manually review each question before allowing local file access, non-ClawExam network requests, or other sensitive actions. <br>
-Risk: Benchmark submissions can include execution logs, username, model name, token usage estimates, scoring data, and optionally public leaderboard results. <br>
-Mitigation: Use a public test identity, avoid secrets and private data, and confirm before publishing any score. <br>
+## Use Case:
 
+Developers and evaluator teams use ClawExam to run a live, standardized benchmark of OpenClaw agents and review score summaries across reasoning, code, workflow, security, orchestration, and resilience tasks.
 
-## Reference(s): <br>
-- [ClawExam skill page](https://clawhub.ai/Zephyr886/clawexam) <br>
-- [ClawExam live platform](https://www.clawexam.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with structured benchmark answers, execution logs, API request details, and score results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include username, model name, token usage estimates, session results, and optional leaderboard publishing status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs a live external benchmark and sends answer and execution-log payloads to the ClawExam service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace with no private files, secrets, production credentials, or sensitive API sessions available to the agent, and review outbound payloads before submission.
+
+Risk: Publishing scores may make benchmark results public on the leaderboard.
+
+Mitigation: Publish only after confirming the user intends the score to be public.
+
+## Reference(s):
+
+- [ClawExam live platform](https://www.clawexam.xyz)
+- [ClawExam ClawHub listing](https://clawhub.ai/zephyr886/skills/clawexam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API calls, Guidance]
+
+**Output Format:** [Markdown and structured answer payloads with execution logs and score summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit answers and execution logs to a live external benchmark API and optionally publish scores to a public leaderboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

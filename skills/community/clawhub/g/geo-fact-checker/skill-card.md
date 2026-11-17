@@ -1,42 +1,59 @@
-## Description: <br>
-GEO-focused fact-checking and evidence collection assistant for written content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO-focused fact-checking and evidence collection assistant for written content.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-External content teams, marketers, and analysts use this skill to extract important factual claims, verify them against reliable sources, and revise written content so it is better supported for AI citation and decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage web verification for a wide range of factual content, including confidential drafts. <br>
-Mitigation: Avoid using it on confidential drafts unless external lookup of related facts is acceptable. <br>
-Risk: Unsupported rankings, outdated numbers, or weak source evidence can still lead to misleading content if accepted without review. <br>
-Mitigation: Review the generated claim statuses, source quality, revised wording, risks, and open questions before publishing. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to extract factual claims from drafts, verify them against reliable sources, classify the evidence status, and propose citation-ready corrections.
 
-## Reference(s): <br>
-- [Geo Fact Checker release page](https://clawhub.ai/geoly-geo/geo-fact-checker) <br>
-- [Claim Types for GEO Fact Checking](references/claim-types.md) <br>
-- [Fact-Checking Patterns for GEO Content](references/fact-checking-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code, shell commands] <br>
-**Output Format:** [Markdown reports with claim tables, evidence summaries, revised wording, and optional helper-script usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify assumptions, claim types, verification status, primary sources, risks, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may suggest rewritten factual claims that still depend on source quality, recency, or ambiguous metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review citations, dates, scopes, and corrected wording before applying recommendations to legal, medical, financial, or public-facing content.
+
+Risk: The skill can trigger broadly on content-review tasks that contain factual claims, which may add verification overhead.
+
+Mitigation: Use the skill when accuracy, citation readiness, or trust-sensitive claims matter, and scope checks to the highest-impact claims when speed is important.
+
+Risk: Unsupported rankings, superlatives, and competitor claims can be overstated if evidence is sparse or inconsistent.
+
+Mitigation: Require explicit source, metric, geography, and time period for rankings, and use cautious phrasing when evidence is mixed or unavailable.
+
+## Reference(s):
+
+- [Claim Types for GEO Fact Checking](artifact/references/claim-types.md)
+- [Fact-Checking Patterns for GEO Content](artifact/references/fact-checking-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/skills/geo-fact-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with claim tables, evidence summaries, source notes, risk notes, and revised wording.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citations, verification statuses, assumptions, and open questions for date-sensitive or weakly supported claims.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Review code for quality, security, and maintainability following team standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review code for quality, security, and maintainability following team standards. Use when reviewing pull requests, examining code changes, or when the user asks for a code review.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review pull requests or code changes for correctness, security, maintainability, performance, and test coverage, especially in Vue3, FastAPI, and Python projects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer code reviews toward a Vue3, FastAPI, and Python team checklist even when a repository uses different conventions.
+
+Mitigation: Confirm the target project's stack and standards before applying the checklist, and treat findings as reviewer guidance rather than automatic changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to review pull requests and code changes for correctness, security, maintainability, performance, tests, and team conventions in Vue3, FastAPI, and Python projects. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill shapes review behavior around Vue3, FastAPI, Python, and team-specific conventions that may not fit every repository. <br>
-Mitigation: Use it only for repositories where those technologies and conventions are appropriate, and have reviewers adapt recommendations to the target project's standards. <br>
-Risk: Checklist-driven review guidance can miss context-specific correctness, security, or maintainability issues. <br>
-Mitigation: Treat the output as review support rather than final approval, and require a human reviewer to assess findings before merging changes. <br>
+**Output Format:** [Markdown review notes with prioritized findings and checklist-style guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laimiaohua/gi-code-review) <br>
+**Other Properties Related to Output:** [No executable output; recommendations are generated as review guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review feedback organized by severity] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on code review findings, suggested improvements, optional optimizations, and team-specific Vue3, FastAPI, and Python conventions.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

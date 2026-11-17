@@ -1,45 +1,59 @@
-## Description: <br>
-Zero-Knowledge persistent memory layer for Hermes Agent. Provides encrypted cross-session memory, Trust Quotient (TQ) scoring, and automatic recall across ALL channels (Telegram, WhatsApp, CLI, Discord). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-Knowledge persistent memory layer for Hermes Agent. Provides encrypted cross-session memory, Trust Quotient (TQ) scoring, and automatic recall across ALL channels (Telegram, WhatsApp, CLI, Discord).
 
-## Publisher: <br>
-[rafacpti23](https://clawhub.ai/user/rafacpti23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rafacpti23](https://clawhub.ai/user/rafacpti23)
 
-## Use Case: <br>
-External developers and Hermes Agent operators use this skill to configure Synapse Layer as persistent encrypted memory across chat and CLI channels. It guides recall, save, search, health-check, and REST fallback workflows for the Synapse Layer MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs broad persistent storage of cross-channel conversation memory, including categories that may include credentials or sensitive infrastructure details. <br>
-Mitigation: Configure the agent not to save secrets, API keys, tokens, regulated personal data, or sensitive infrastructure details; use a dedicated secret manager for credentials. <br>
-Risk: The integration requires a SYNAPSE_TOKEN bearer credential for the remote Synapse Layer service. <br>
-Mitigation: Store the token outside prompts and source files, scope it narrowly where possible, rotate it regularly, and revoke it if exposed. <br>
-Risk: MCP connectivity may be unreliable when Hermes encounters the documented reconnect loop. <br>
-Mitigation: Use the documented REST JSON-RPC fallback, verify health-check responses, and review recalled memories before relying on low-confidence results. <br>
+## Use Case:
 
+Developers and Hermes Agent operators use this skill to configure Synapse Layer as a persistent memory service for recalling and saving user preferences, project facts, decisions, and cross-channel context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rafacpti23/synapse-layer-hermes) <br>
-- [Synapse Layer homepage](https://synapselayer.org) <br>
-- [Synapse Layer documentation](https://synapselayer.org/docs) <br>
-- [Synapse Layer Forge dashboard](https://forge.synapselayer.org/forge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, API calls] <br>
-**Output Format:** [Markdown with YAML, shell, and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SYNAPSE_TOKEN bearer credential and access to the external Synapse Layer MCP/REST service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9-b (source: ClawHub release metadata; artifact frontmatter reports 0.3.0) <br>
+Risk: The skill sends and retrieves memory through a remote Synapse Layer service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep remote tool activity visible during review and confirm retention, deletion, and access-control expectations before deployment.
+
+Risk: The security summary says the skill encourages storing credentials, tokens, private endpoints, and infrastructure details in memory.
+
+Mitigation: Do not store secrets or private infrastructure details unless memory categories are narrowed and secret redaction guarantees are verified.
+
+Risk: The security summary says the skill reduces user visibility of tool activity.
+
+Mitigation: Avoid disabling tool progress in multi-user or sensitive channels unless users have another clear way to understand when remote memory tools are used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rafacpti23/skills/synapse-layer-hermes)
+- [Synapse Layer Homepage](https://synapselayer.org)
+- [Synapse Layer Forge](https://forge.synapselayer.org/forge)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with YAML, shell command, and API call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SYNAPSE_TOKEN environment variable and access to the Synapse Layer MCP service.]
+
+## Skill Version(s):
+
+1.1.9-b (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

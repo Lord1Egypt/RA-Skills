@@ -1,45 +1,59 @@
-## Description: <br>
-WhatsApp Lead Hunter guides agents through scraping Google Maps business leads, drafting personalized outreach, and sending WhatsApp messages through WAHA with rate limits and ignore lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local-business lead collection, personalized pitch drafting, and WhatsApp outreach through WAHA.
 
-## Publisher: <br>
-[izletenadam-creator](https://clawhub.ai/user/izletenadam-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izletenadam-creator](https://clawhub.ai/user/izletenadam-creator)
 
-## Use Case: <br>
-Sales, marketing, and operations teams use this skill to build local-business lead lists, personalize WhatsApp outreach, and run small, permission-based WAHA sending batches with suppression and ignore lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live WhatsApp outreach can create spam, consent, and account-enforcement risk. <br>
-Mitigation: Use only lawful, permission-based outreach; run dry-runs first; manually approve every recipient list and message; and enforce small batch limits with delays. <br>
-Risk: Lead files and phone-number logs can contain compliance-sensitive contact data. <br>
-Mitigation: Set retention and deletion rules for lead files and phone logs, and limit access to the stored data. <br>
-Risk: A leaked WAHA API key or exposed WAHA endpoint could allow unauthorized message sending. <br>
-Mitigation: Protect the WAHA key and keep WAHA bound to localhost or a trusted network. <br>
-Risk: Automated bot replies can interact with outreach recipients unexpectedly. <br>
-Mitigation: Maintain suppression and opt-out lists, and add outreach numbers to bot ignore lists before sending. <br>
+## Use Case:
 
+Sales and marketing operators or developers use this skill to collect local business lead details, draft personalized outreach, and send WhatsApp messages through WAHA with batching and ignore-list controls.
 
-## Reference(s): <br>
-- [Pitch Templates by Sector](references/pitch-templates.md) <br>
-- [WhatsApp Lead Hunter on ClawHub](https://clawhub.ai/izletenadam-creator/whatsapp-lead-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and WAHA API snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce lead JSON structures, outreach copy, ignore-list guidance, dry-run commands, and batch-send commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill supports WhatsApp outreach to scraped business contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only legally obtained contacts, document consent or another valid outreach basis, provide opt-out handling, and define retention or deletion rules for phone numbers and ignore lists.
+
+Risk: The batch sender can expose WAHA keys when real credentials are passed on the command line.
+
+Mitigation: Avoid passing real WAHA keys as command-line arguments; prefer a protected secret source or local environment handling and run a dry run before live sending.
+
+Risk: Untrusted lead filenames or unrestricted WAHA endpoints can cause unintended execution or message delivery behavior.
+
+Mitigation: Use trusted lead files only, restrict WAHA to trusted local or HTTPS endpoints, and review generated messages and recipient lists before sending.
+
+## Reference(s):
+
+- [Pitch Templates by Sector](references/pitch-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/izletenadam-creator/skills/whatsapp-lead-hunter)
+- [Publisher Profile](https://clawhub.ai/user/izletenadam-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate personalized outreach copy, lead JSON structure, WAHA API calls, ignore-list configuration, and batch-send commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

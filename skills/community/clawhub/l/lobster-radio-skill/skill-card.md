@@ -1,47 +1,67 @@
-## Description: <br>
-Personalized news-radio generation service for creating topic-based audio briefings, scheduled pushes, TTS voice configuration, and playback of generated radio history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized news radio generation skill for creating topic-based audio briefings, configuring TTS voices, scheduling daily delivery, and reviewing generated radio history.
 
-## Publisher: <br>
-[Jayden-X-L](https://clawhub.ai/user/Jayden-X-L) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayden-x-l](https://clawhub.ai/user/jayden-x-l)
 
-## Use Case: <br>
-External users and developers use this skill to turn user-selected topics or tags into local TTS news-radio audio, configure voice settings, schedule recurring briefings, and retrieve prior generated radio items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local/offline privacy claims conflict with model downloads, platform LLM or web-search use, and scheduled automation. <br>
-Mitigation: Review network behavior before use, avoid sensitive radio topics, and run the skill in an isolated environment until privacy claims are reconciled. <br>
-Risk: The skill can create persistent scheduled tasks and write generated audio or configuration files locally. <br>
-Mitigation: Inspect scheduled tasks after creation and restrict output locations to expected OpenClaw or user-selected folders. <br>
-Risk: Model and dependency downloads may use unpinned or externally hosted artifacts. <br>
-Mitigation: Prefer pinned, verified model and dependency versions and review downloaded artifacts before deployment. <br>
+## Use Case:
 
+External users and developers use this skill in OpenClaw or LobsterAI cowork mode to turn platform-LLM-generated news or topic text into local Qwen3-TTS audio briefings. It also supports voice configuration, scheduled delivery setup, and access to generated radio history.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Jayden-X-L/lobster-radio-skill) <br>
-- [Qwen3-TTS model on Hugging Face](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice) <br>
-- [Qwen3-TTS model on ModelScope](https://modelscope.cn/models/qwen/Qwen3-TTS-12Hz-0.6B-Base) <br>
-- [Qwen3-TTS blog](https://qwen.ai/blog?id=qwen3tts-0115) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [LobsterAI project](https://github.com/netease-youdao/LobsterAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown responses with audio file links, text summaries, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local audio files and configuration state, and may use scheduled tasks for recurring generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can use network access and download large ML models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and review model sources before enabling trust_remote_code examples or automatic downloads.
+
+Risk: The skill saves generated audio files locally and writes TTS or user configuration into OpenClaw memory.
+
+Mitigation: Back up ~/.openclaw/MEMORY.md and generated radio data, and review storage locations and file permissions before deployment.
+
+Risk: Scheduled task setup can repeatedly generate or push audio content.
+
+Mitigation: Review schedule frequency, delivery channel, and recipient configuration before enabling automated delivery.
+
+Risk: Filename and TTS configuration fields may receive untrusted input before validation is added.
+
+Mitigation: Avoid passing untrusted values for filenames, paths, voice IDs, and TTS settings until input validation is confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jayden-x-l/skills/lobster-radio-skill)
+- [Qwen3-TTS Hugging Face Model](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice)
+- [Qwen3-TTS ModelScope Model](https://modelscope.cn/models/qwen/Qwen3-TTS-12Hz-0.6B-Base)
+- [Qwen3-TTS Repository](https://github.com/QwenLM/Qwen3-TTS)
+- [Qwen3-TTS Blog](https://qwen.ai/blog?id=qwen3tts-0115)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [LobsterAI Repository](https://github.com/netease-youdao/LobsterAI)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown or text responses with audio file links, configuration guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated audio files locally and return relative or absolute file paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

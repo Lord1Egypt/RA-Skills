@@ -1,42 +1,54 @@
-## Description: <br>
-Estimate property values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate property values.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and real estate operators use this skill to estimate property values and automate property valuation tasks from input and output files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced scripts/property_value.py file was not included in the reviewed artifact. <br>
-Mitigation: Confirm where the script comes from and review that code separately before running the documented command. <br>
-Risk: The skill requires PROPERTY_API_KEY and may process property inputs through an external service. <br>
-Mitigation: Use a restricted API key and avoid sensitive input unless the external service is approved. <br>
-Risk: The documented command writes to a caller-supplied output path. <br>
-Mitigation: Choose output paths carefully to avoid overwriting important files. <br>
+## Use Case:
 
+Developers and real estate workflow operators use this skill to run property valuation tasks from command-line inputs and receive structured results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-property-value) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output description] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PROPERTY_API_KEY and writes results to the configured output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The referenced property_value.py implementation is not included in the inspected artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the implementation source before use and review how it handles PROPERTY_API_KEY and property data.
+
+Risk: Property valuation output may be unsuitable as the sole basis for legal, lending, tax, or transaction decisions.
+
+Mitigation: Require qualified review before using valuation results in consequential real estate decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-property-value)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PROPERTY_API_KEY configuration; valuation results should be independently reviewed for legal, lending, tax, or transaction decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

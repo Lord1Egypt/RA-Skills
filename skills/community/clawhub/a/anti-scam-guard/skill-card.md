@@ -1,43 +1,65 @@
-## Description: <br>
-Checks URLs from chat, SMS, or email for known scam domains, phishing indicators, and suspicious domain patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks URLs shared from LINE, SMS, email, or chat for known scam, phishing, and suspicious-domain signals before a user clicks.
 
-## Publisher: <br>
-[phishguard-niki](https://clawhub.ai/user/phishguard-niki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phishguard-niki](https://clawhub.ai/user/phishguard-niki)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to check suspicious links before opening them, especially links received through LINE, SMS, or email. It returns risk guidance based on known scam-domain data and domain-pattern checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-trust a low-risk result because it means no known match was found, not that the link is guaranteed safe. <br>
-Mitigation: Describe low-risk results as no known risk found and advise users to avoid entering sensitive information when the message context still seems suspicious. <br>
-Risk: The skill contacts GitHub to fetch threat-data shard files and caches those files locally. <br>
-Mitigation: Use the skill only where GitHub access and local caching are acceptable, or pre-download shard data for offline operation when network contact is not desired. <br>
-Risk: Broad whitelist behavior can bypass additional checks for some domains and create false confidence. <br>
-Mitigation: Treat whitelist-based safe responses as a convenience signal and keep manual review or escalation for unexpected login, payment, wallet, or credential requests. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate suspicious links and receive advisory scam or phishing risk guidance before visiting a site or entering sensitive information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phishguard-niki/anti-scam-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/phishguard-niki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response based on JSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include per-URL risk levels, matched sources, reasons, and safety guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.9 (source: server release evidence) <br>
+Risk: Risky links may be reported as safe because the security review found flaws in trust logic and setup flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all results as advisory, verify suspicious links through additional sources, and avoid entering personal or payment information based only on a low-risk result.
+
+Risk: Scans may be less reliable when GitHub-hosted blocklist data is unavailable.
+
+Mitigation: Use the skill only where network and cache behavior are acceptable, and review uncertain results manually when blocklist data cannot be fetched.
+
+Risk: The optional bulk download fetches remote shard data and can increase supply-chain exposure if downloaded data is not validated.
+
+Mitigation: Avoid the optional bulk download unless the publisher validates shard filenames or pins and verifies the downloaded data.
+
+Risk: Taiwan public-suffix domain handling requires extra caution according to the security guidance.
+
+Mitigation: Apply manual review and independent checks before trusting results for Taiwan public-suffix domains.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phishguard-niki/skills/anti-scam-guard)
+- [Source code](https://github.com/phishguard-niki/Phishguard)
+- [Issue tracker](https://github.com/phishguard-niki/Phishguard/issues)
+- [Chrome Web Store extension](https://chromewebstore.google.com/detail/phishguard-scam-phishing-checker/odbipahjojmphhmjgicnafkhiikjandb)
+- [LINE Bot](https://line.me/R/ti/p/@163hfjhz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with URL risk results derived from checker JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are advisory and should not be treated as proof that a link is safe.]
+
+## Skill Version(s):
+
+0.4.10 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

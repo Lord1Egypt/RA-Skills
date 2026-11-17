@@ -1,43 +1,57 @@
-## Description: <br>
-Connect OpenClaw to OneBot protocol for QQ bot integration. Use when receiving or sending QQ messages via NapCat or other OneBot servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to OneBot protocol for QQ bot integration. Use when receiving or sending QQ messages via NapCat or other OneBot servers.
 
-## Publisher: <br>
-[haohaodlam](https://clawhub.ai/user/haohaodlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haohaodlam](https://clawhub.ai/user/haohaodlam)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect OpenClaw agents to OneBot-compatible QQ bot servers, receive private or group messages, and send replies or administrative actions through the OneBot API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose group moderation actions such as kicking or banning users through the OneBot API. <br>
-Mitigation: Use a bot account with limited group privileges and review any automation that calls group management endpoints before deployment. <br>
-Risk: The WebSocket listener prints full incoming event payloads, which can include real chat content or identifiers. <br>
-Mitigation: Disable, redact, or restrict verbose event logging before using the skill with real QQ chats. <br>
-Risk: Remote OneBot endpoints without strong authentication can expose bot control over the network. <br>
-Mitigation: Prefer local or private OneBot servers, set ONEBOT_TOKEN, and avoid plaintext remote endpoints for production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OneBot Message Handling](references/message-handling.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/haohaodlam/onebot-adapter-1-0-0) <br>
-- [Publisher Profile](https://clawhub.ai/user/haohaodlam) <br>
+## Use Case:
 
+Developers and engineers use this skill to connect OpenClaw agents to OneBot-compatible QQ bot servers for receiving events, sending private or group messages, and handling common OneBot message patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OneBot HTTP API calls and WebSocket listener patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send QQ private and group messages through the connected bot account.
+
+Mitigation: Use a narrowly scoped token, keep OneBot endpoints on localhost or protected TLS connections, and limit the bot account to approved chats.
+
+Risk: Group moderation examples can kick or ban users if adopted without safeguards.
+
+Mitigation: Require explicit admin checks, approved group allowlists, user confirmation, and audit logging before enabling group-management actions.
+
+Risk: The sample WebSocket listener logs full event payloads that may include private message data.
+
+Mitigation: Avoid full-event logging in production and redact or minimize message, user, and group identifiers in logs.
+
+## Reference(s):
+
+- [OneBot Message Handling](references/message-handling.md)
+- [ClawHub skill page](https://clawhub.ai/haohaodlam/skills/onebot-adapter-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance and reusable Python client/listener code for OneBot HTTP and WebSocket workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

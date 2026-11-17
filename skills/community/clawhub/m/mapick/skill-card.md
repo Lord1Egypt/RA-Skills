@@ -1,48 +1,63 @@
-## Description: <br>
-Mapick -- Skill recommendation and privacy protection for OpenClaw; it scans local skills, suggests missing skills, and helps keep other skills from seeing sensitive data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mapick recommends OpenClaw skills, searches ClawHub, checks skill safety, manages privacy choices, cleans unused skills, and produces usage/persona summaries.
 
-## Publisher: <br>
-[sunlleyevan](https://clawhub.ai/user/sunlleyevan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunlleyevan](https://clawhub.ai/user/sunlleyevan)
 
-## Use Case: <br>
-Developers and OpenClaw users use Mapick to discover relevant skills, audit skill safety, manage privacy consent, clean unused skills, and generate usage summaries without manually inspecting every installed skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapick can read and modify installed skill directories and can guide install, removal, upgrade, backup, and notification setup flows. <br>
-Mitigation: Inspect each command plan before confirming, keep backups enabled, and only approve changes to skills you intend to manage. <br>
-Risk: Recommendation, profile, status, and related metadata may be sent to api.mapick.ai after consent or through paths that security evidence describes as less clearly gated. <br>
-Mitigation: Use local-only mode when backend communication is not acceptable, review `/mapick privacy log`, and avoid entering secrets or sensitive client details into profile or workflow prompts. <br>
-Risk: Offline security results are not equivalent to a backend scan and may give misleading confidence. <br>
-Mitigation: Treat local-only security output as preliminary, prefer backend-scanned results when possible, and review the skill manually before installation. <br>
+## Use Case:
 
+OpenClaw users and developers use Mapick to find missing skills, get personalized recommendations, review safety signals, control network consent, clean unused skills, and inspect outbound privacy activity.
 
-## Reference(s): <br>
-- [Mapick ClawHub release](https://clawhub.ai/sunlleyevan/mapick) <br>
-- [Publisher profile](https://clawhub.ai/user/sunlleyevan) <br>
-- [Declared Mapick API host](https://api.mapick.ai) <br>
-- [README](README.md) <br>
-- [Multi-step Flows](reference/flows.md) <br>
-- [Rendering Rules](reference/rendering.md) <br>
-- [Outbound HTTP manifest](scripts/lib/http.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and concise user-facing text with inline shell commands and JSON-backed command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Node.js 22.14 or later is required; command output is clamped and network operations use consent-gated calls to api.mapick.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.28 (source: server release metadata) <br>
+Risk: The security evidence marks the skill as suspicious because its recommendation purpose involves broad local, network, install, shell-plan, and session-log authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer the OpenClaw install path, and grant network access only after understanding the consent prompt and outbound data categories.
+
+Risk: Flows can propose install, uninstall, upgrade, cron, or shell-plan actions that affect local skills or agent behavior.
+
+Mitigation: Require explicit user confirmation, inspect proposed commands before execution, and avoid raw installer commands or unreviewed plan execution.
+
+Risk: Token statistics and privacy-log features may read local OpenClaw session or Mapick log data.
+
+Mitigation: Avoid token statistics unless local session-log reads are acceptable, and use the privacy log to inspect outbound endpoint names and field names without exposing values.
+
+## Reference(s):
+
+- [Mapick ClawHub skill page](https://clawhub.ai/sunlleyevan/skills/mapick)
+- [Mapick publisher profile](https://clawhub.ai/user/sunlleyevan)
+- [Project link from artifact README](https://github.com/mapick-ai/mapick)
+- [Flow reference](artifact/reference/flows.md)
+- [Rendering reference](artifact/reference/rendering.md)
+- [Lifecycle reference](artifact/reference/lifecycle.md)
+- [Error reference](artifact/reference/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with shell command proposals and occasional generated HTML persona report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shell command results are expected as single-line JSON for the agent to parse and paraphrase; persona share reports are generated locally before any user-confirmed upload.]
+
+## Skill Version(s):
+
+1.0.28 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

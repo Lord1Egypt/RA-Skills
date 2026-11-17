@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stock-realtime-brief"
-version = "5.0.0"
+version = "5.5.0"
 description = "A股投研体系 v5.0 - 选股模型 + DCF 估值 + 北极星跟踪 + 实时警报 + 财报解析 + 历史回测 + 7 铁律 + 蓝军对垒"
 readme = "README.md"
 license = { file = "LICENSE" }

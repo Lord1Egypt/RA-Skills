@@ -1,39 +1,53 @@
-## Description: <br>
-Design autoscaling policies based on traffic patterns, cost constraints, and performance SLOs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design autoscaling policies based on traffic patterns, cost constraints, and performance SLOs.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to analyze workload traffic, design Kubernetes HPA/KEDA or cloud autoscaling policies, simulate scaling behavior, and estimate cost impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AWS autoscaling commands can change live cloud scaling behavior and affect service availability or cost. <br>
-Mitigation: Confirm the account, region, Auto Scaling Group name, environment, expected cost impact, and rollback plan before running any command. <br>
-Risk: Autoscaling recommendations based on incomplete or unrepresentative metrics can under-provision services or cause excessive scale-out. <br>
-Mitigation: Review the traffic analysis, SLO assumptions, min/max capacity, cooldowns, and cost model with the service owner before applying generated policies. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to analyze workload traffic, design Kubernetes HPA/KEDA or cloud autoscaling policies, simulate behavior under load, and estimate scaling costs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include autoscaler configuration examples, traffic analysis reports, simulation snippets, and cost projection tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: Cloud and Kubernetes mutation commands can change live autoscaling behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before running cloud autoscaling mutation commands or applying cluster changes, and confirm the target account, cluster, namespace, and rollback plan first.
+
+Risk: Example broker credentials can be copied into configuration without appropriate secret handling.
+
+Mitigation: Replace plaintext broker credentials with Kubernetes Secrets or KEDA TriggerAuthentication before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/autoscaling-policy-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis templates, autoscaler policy examples, simulation snippets, and cost-modeling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

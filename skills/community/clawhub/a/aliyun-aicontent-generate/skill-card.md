@@ -1,44 +1,61 @@
-## Description: <br>
-Use when managing Alibaba Cloud AIContent (AiContent) via OpenAPI/SDK, including listing assets, creating or updating generation configurations, checking task status, and troubleshooting failed content jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud AIContent through OpenAPI or SDK workflows, including asset listing, content generation configuration, task status checks, and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Alibaba Cloud AIContent resources through OpenAPI or SDK workflows, including API discovery, generation configuration changes, task status checks, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials and can guide create, update, modify, or set operations on AIContent resources. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials, confirm region and resource identifiers, and review each mutating action before execution. <br>
-Risk: Saved outputs may contain operational metadata or API response details. <br>
-Mitigation: Treat files under output/aliyun-aicontent-generate/ as sensitive, limit sharing, and remove retained responses when they are no longer needed. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to guide Alibaba Cloud AIContent OpenAPI or SDK tasks, including discovery, configuration changes, generation workflow operations, status checks, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/aliyun-aicontent-generate) <br>
-- [OpenAPI Product Page: AiContent](https://api.aliyun.com/product/AiContent) <br>
-- [AiContent API List Metadata](https://api.aliyun.com/meta/v1/products/AiContent/versions/20240611/api-docs.json) <br>
-- [AiContent Single API Metadata Template](https://api.aliyun.com/meta/v1/products/AiContent/versions/20240611/apis/{ApiName}/api.json) <br>
-- [sources.md](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON or Markdown API inventory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves command outputs and API response summaries under output/aliyun-aicontent-generate/ when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can guide create, update, modify, or set operations against Alibaba Cloud AIContent resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review every proposed mutating operation before execution.
+
+Risk: Generated output files or saved API responses could include sensitive cloud data if the user asks to persist raw results.
+
+Mitigation: Store outputs only in the dedicated output directory and avoid saving secrets or sensitive response bodies.
+
+Risk: Using an incorrect or assumed region can target the wrong Alibaba Cloud environment.
+
+Mitigation: Confirm the region and resource identifiers before API calls, and ask the user when the region is unclear.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/cinience/skills/aliyun-aicontent-generate)
+- [Sources](references/sources.md)
+- [Alibaba Cloud OpenAPI product page for AiContent](https://api.aliyun.com/product/AiContent)
+- [AiContent 20240611 API list metadata](https://api.aliyun.com/meta/v1/products/AiContent/versions/20240611/api-docs.json)
+- [AiContent 20240611 single API metadata pattern](https://api.aliyun.com/meta/v1/products/AiContent/versions/20240611/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and generated output files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save API inventories, response summaries, and task evidence under output/aliyun-aicontent-generate/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

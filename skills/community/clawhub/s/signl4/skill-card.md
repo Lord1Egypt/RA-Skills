@@ -1,41 +1,58 @@
-## Description: <br>
-Send and close SIGNL4 alerts using the SIGNL4 inbound webhook with the team secret in the URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and close SIGNL4 alerts using the SIGNL4 inbound webhook with a SIGNL4 team secret.
 
-## Publisher: <br>
-[rons4](https://clawhub.ai/user/rons4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rons4](https://clawhub.ai/user/rons4)
 
-## Use Case: <br>
-Developers, operators, and incident-response teams use this skill to send SIGNL4 alerts and resolve existing alerts by external correlation ID from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The SIGNL4 team secret is embedded in the webhook URL and could authorize alert operations if exposed. <br>
-Mitigation: Store SIGNL4_TEAM_SECRET in a protected environment or secrets manager, avoid printing it in responses or logs, and rotate it if exposure is suspected. <br>
-Risk: Alert titles, messages, external IDs, service names, scenario values, and location data are sent to SIGNL4. <br>
-Mitigation: Confirm this data sharing is acceptable for the deployment environment and avoid placing regulated or unnecessary sensitive data in alert bodies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SIGNL4 Webhook Documentation](https://docs.signl4.com/integrations/webhook/webhook.html) <br>
-- [SIGNL4 Product Information](https://www.signl4.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rons4/signl4) <br>
+## Use Case:
 
+Developers and operations teams use this skill to generate curl-based SIGNL4 webhook requests that create alerts and resolve existing alerts by external correlation ID.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API calls] <br>
-**Output Format:** [Markdown with inline shell command examples and status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and SIGNL4_TEAM_SECRET; SIGNL4_WEBHOOK_BASE is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The SIGNL4 team secret is embedded in the webhook URL and could be exposed if printed, logged, or sent to an untrusted endpoint.
+
+Mitigation: Treat SIGNL4_TEAM_SECRET as confidential and keep SIGNL4_WEBHOOK_BASE fixed to the official SIGNL4 endpoint unless a trusted proxy is deliberately used.
+
+Risk: Alert titles, messages, and optional fields are inserted into curl JSON templates and may break JSON or change the request if unsanitized text is used.
+
+Mitigation: Build payloads with a JSON serializer such as jq and validate user-provided alert fields before execution.
+
+Risk: Resolving an alert depends on reusing the same external correlation ID that created the alert.
+
+Mitigation: Record and confirm X-S4-ExternalID values before sending close requests.
+
+## Reference(s):
+
+- [SIGNL4 webhook documentation](https://docs.signl4.com/integrations/webhook/webhook.html)
+- [SIGNL4 product information](https://www.signl4.com/)
+- [ClawHub skill page](https://clawhub.ai/rons4/skills/signl4)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and webhook field guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl templates and requires SIGNL4_TEAM_SECRET; SIGNL4_WEBHOOK_BASE is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

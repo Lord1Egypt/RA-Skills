@@ -1,41 +1,55 @@
-## Description: <br>
-Convert text to speech with the MiniMax TTS API and prepare Feishu-compatible voice bubble replies when a user requests a voice response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text to speech using the MiniMax API and prepare Feishu voice-bubble replies when a user asks for a voice response.
 
-## Publisher: <br>
-[aaronjager92](https://clawhub.ai/user/aaronjager92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronjager92](https://clawhub.ai/user/aaronjager92)
 
-## Use Case: <br>
-Developers and Feishu bot operators use this skill to turn requested text replies into OGG/Opus voice messages generated through MiniMax TTS. It is intended for explicit voice-reply triggers such as /voice or Chinese voice reply commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-reply text is sent to MiniMax and the generated audio is shared through Feishu, which can expose sensitive content. <br>
-Mitigation: Use explicit triggers, avoid sensitive or regulated content, and confirm users are comfortable with MiniMax and Feishu processing the content. <br>
-Risk: A local config.txt file can expose the MiniMax API key if it is mishandled. <br>
-Mitigation: Prefer the MINIMAX_VOICE_API_KEY environment variable and protect any local config.txt file. <br>
+## Use Case:
 
+Developers and Feishu automation maintainers use this skill to convert triggered text replies into MiniMax-generated OGG/Opus audio that can be sent as Feishu voice bubbles.
 
-## Reference(s): <br>
-- [Skill README](artifact/references/README.md) <br>
-- [MiniMax Open Platform](https://www.minimaxi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated OGG audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key, network access to MiniMax, the Python requests package, and ffmpeg for MP3 to OGG/Opus conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice-reply text is sent to the MiniMax TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or confidential content and use explicit trigger phrases or confirmation before sending text for speech generation.
+
+Risk: An unsafe output path can overwrite or delete writable files during audio conversion and cleanup.
+
+Mitigation: Restrict generated audio paths to the OpenClaw workspace and validate or sanitize output paths before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronjager92/skills/minimax-voicereponse-feishu)
+- [MiniMax Platform](https://www.minimaxi.com/)
+- [Artifact README](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python script execution output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script prints the generated OGG audio file path after converting MiniMax TTS output for Feishu compatibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

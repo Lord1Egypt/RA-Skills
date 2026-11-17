@@ -1,0 +1,14 @@
+{
+  "name": "agent-security-audit",
+  "version": "1.0.0",
+  "description": "AI Agent and Skill security audit tool. Scan code for sensitive info leaks, API key exposure, injection risks, permission issues, and data security vulnerabilities with AI-powered analysis and fix suggestions.",
+  "requires": {
+    "env": ["DEEPSEEK_API_KEY"],
+    "bins": ["python3"],
+    "credentials": []
+  },
+  "tags": ["security", "audit", "code-review", "ai-agent", "vulnerability", "penetration-testing", "devsecops", "latest"],
+  "author": "AI效率搭子",
+  "homepage": "https://clawhub.ai/",
+  "category": "developer-tools"
+}

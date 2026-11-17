@@ -36,7 +36,7 @@ Slack MCP servers typically use Bot tokens, not user OAuth.
 3. Under **OAuth & Permissions**, add required scopes (channels:read, chat:write, etc.)
 4. Install the app to your workspace
 5. Copy the **Bot User OAuth Token** (starts with `xoxb-`)
-6. Set: `export SLACK_BOT_TOKEN=xoxb-your-token-here`
+6. Set: `export SLACK_BOT_TOKEN=REDACTED-SECRET`
 
 ## GitHub Apps (vs Personal Access Tokens)
 

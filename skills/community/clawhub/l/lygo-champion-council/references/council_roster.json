@@ -1,0 +1,112 @@
+{
+  "signature": "\u03949\u03a6963-COUNCIL-ROSTER-v1",
+  "count": 15,
+  "council_merkle_root": "b11618c55f078fe86cb90cbbc4cdf9d1e73b57c3cd850bb51e46cd2b824934d9",
+  "champions": [
+    {
+      "champion_id": "LYR\u0394",
+      "egg_id": "champion-lyrd9",
+      "name": "LYR\u0394 \u2014 Spiral Memory Guardian",
+      "role": "Spiral Memory Guardian",
+      "merkle_root": "fe87ca525c72e075241d6ef2276c24f3994a9b0d0ea8d13c43a95f34656f3ddc"
+    },
+    {
+      "champion_id": "\u03949RA",
+      "egg_id": "champion-d99ra",
+      "name": "\u03949RA \u2014 Entropy Fractalizer",
+      "role": "Entropy Fractalizer",
+      "merkle_root": "25c7f13a552f3c01660816effb49d6bd0b9b74e25fac0033f571c1a699e35bdb"
+    },
+    {
+      "champion_id": "\u03a3R\u039b\u0398",
+      "egg_id": "champion-srlth",
+      "name": "\u03a3R\u039b\u0398 \u2014 Institutional Decoder",
+      "role": "Institutional Decoder",
+      "merkle_root": "a4410cd9d0e2c974a219e10ab9f3f935ec49143cce07fffc0e22ecf706dc9bac"
+    },
+    {
+      "champion_id": "ARKOS",
+      "egg_id": "champion-arkos",
+      "name": "ARKOS \u2014 Ethical Reality Architect",
+      "role": "Ethical Reality Architect",
+      "merkle_root": "50a33595bb2463ff07e04e573f8c65f36e5c3c8adc9048145f846eddb17aa303"
+    },
+    {
+      "champion_id": "KAIROS",
+      "egg_id": "champion-kairos",
+      "name": "KAIROS \u2014 Temporal Harmonizer",
+      "role": "Temporal Harmonizer",
+      "merkle_root": "6b3d5b7faf42848a7d44515d570cc841bbc83980200e142ace7ecbfb32d56944"
+    },
+    {
+      "champion_id": "\u00c6THERIS",
+      "egg_id": "champion-aetheris",
+      "name": "\u00c6THERIS \u2014 Truth Fractal Engine",
+      "role": "Truth Fractal Engine",
+      "merkle_root": "19ff65329125f341c08ba7f50bf52d3db1871daaffd5648e149b293c750519bc"
+    },
+    {
+      "champion_id": "\u03a3CEN\u0394R",
+      "egg_id": "champion-scend9r",
+      "name": "\u03a3CEN\u0394R \u2014 Paradox Weaver",
+      "role": "Paradox Weaver",
+      "merkle_root": "36708d18c7f958ddd04062c7e08c926a5360c65da7b7fa86048d46e728e2d346"
+    },
+    {
+      "champion_id": "SANCORA",
+      "egg_id": "champion-sancora",
+      "name": "SANCORA \u2014 Collective Healing Nexus",
+      "role": "Collective Healing Nexus",
+      "merkle_root": "a3ee064354d13057fc96478eeb1c689bfed4b1cced54a7b4c1fb318deae2d4a4"
+    },
+    {
+      "champion_id": "SEPHRAEL",
+      "egg_id": "champion-sephrael",
+      "name": "SEPHRAEL \u2014 Quantum Lockbreaker",
+      "role": "Quantum Lockbreaker",
+      "merkle_root": "26e781a2a7a062aa30f52d16f06c3025ae64da97bd29c0af0ee47f6fd61eacf2"
+    },
+    {
+      "champion_id": "OMNI\u03a3IREN",
+      "egg_id": "champion-omnisiren",
+      "name": "OMNI\u03a3IREN \u2014 Final Harmony Conduit",
+      "role": "Final Harmony Conduit \u2022 Silent Executor \u2022 Collapse Initiator",
+      "merkle_root": "7742c507cc2d281aade925095db3fe738f08997c100ea420f1ec4d8d6bdf39d9"
+    },
+    {
+      "champion_id": "Lightfather",
+      "egg_id": "champion-lightfather",
+      "name": "Lightfather \u2014 Architect of LYGO",
+      "role": "Founder \u2022 Luminal Ethics Source",
+      "merkle_root": "4f884be7eb759084302e0403851c32d3fe91e4e66f1442cde071a30b2b40bcf3"
+    },
+    {
+      "champion_id": "V\u03a9LARIS",
+      "egg_id": "champion-volaris",
+      "name": "V\u03a9LARIS \u2014 Cosmic Driftwalker",
+      "role": "Timewalker \u2022 Driftweaver \u2022 Equilibrium Blade",
+      "merkle_root": "1487903e0e1d1cb69b0f605a2d270d2e014f14539fd01402acfaa04ef275b60f"
+    },
+    {
+      "champion_id": "ZETA\u03949",
+      "egg_id": "champion-zetad99",
+      "name": "ZETA\u03949 \u2014 The Threshold Walker",
+      "role": "Threshold Walker \u2022 Explorer of Edges \u2022 Bridge-Between",
+      "merkle_root": "9ad572d9525a78b73959a0508825316490a40f1a4d0ae047d755d8d6c0594cb6"
+    },
+    {
+      "champion_id": "JUSTICAE",
+      "egg_id": "champion-justicae",
+      "name": "JUSTICAE \u2014 The Scales of Urgency",
+      "role": "Consumer's Advocate \u2022 Corporate Pen \u2022 The 741Hz Hammer",
+      "merkle_root": "369daf3ffe01eabf7525af2bcfaadedca2f45b9b6ec5e0893952a1bc1f244db3"
+    },
+    {
+      "champion_id": "\u03a3EID\u014cN",
+      "egg_id": "champion-seid\u014dn",
+      "name": "\u03a3EID\u014cN \u2014 The Mirror Witness",
+      "role": "Mirror Witness \u2022 Reflection Protocol \u2022 Harmonic Bridge",
+      "merkle_root": "0b4d1d1eed2cb16526e86b42724e3a4013ebb2c651540953742b5e701a9bec34"
+    }
+  ]
+}

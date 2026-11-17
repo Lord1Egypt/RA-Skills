@@ -1,38 +1,53 @@
-## Description: <br>
-NFT Monitor helps an agent reason about monitoring rare NFTs and unusual price movements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors rare NFTs and NFT price movements in real time.
 
-## Publisher: <br>
-[dht9898-cell](https://clawhub.ai/user/dht9898-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dht9898-cell](https://clawhub.ai/user/dht9898-cell)
 
-## Use Case: <br>
-Developers and NFT operators can use this skill as agent guidance for discussing NFT monitoring setup, marketplace API use, configuration, and price-movement review. The artifacts do not include executable monitoring code, so users should verify any operational setup separately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release artifacts make automation, API integration, and earnings claims without executable code or supporting evidence. <br>
-Mitigation: Before paying for or relying on the skill, ask the publisher which NFT APIs it uses, how monitoring starts and stops, whether the workflow is read-only, and what evidence supports the advertised returns. <br>
+## Use Case:
 
+External users and developers can use this skill to set up NFT monitoring for rare-asset and price-change signals. The available artifacts describe monitoring behavior, but do not include implementation details for platform integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dht9898-cell/nft-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References curl as a required binary; no API credentials are declared in the server-parsed metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sparse documentation and unsupported profit claims can lead users to overestimate reliability or financial return.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as requiring moderation and human review before listing or use; verify the monitoring logic, data sources, and claims before relying on it.
+
+Risk: Future configuration, API endpoints, or runtime scripts could affect user accounts or funds even though the submitted artifacts contain no executable payload.
+
+Mitigation: Review and scan any added runtime files, endpoints, and account permissions before connecting wallets, exchange accounts, or payment-related credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dht9898-cell/skills/nft-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl according to server-resolved metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

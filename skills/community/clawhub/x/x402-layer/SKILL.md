@@ -1,6 +1,6 @@
 ---
 name: x402-layer
-version: 1.14.0
+version: 1.15.0
 description: |
   x402-layer helps agents pay for APIs with USDC, deploy monetized endpoints,
   manage credits/webhooks/marketplace listings, and handle wallet-first ERC-8004 registration/discovery/management/reputation on Base, Ethereum, Polygon, BSC, Monad, and Solana. Optional credentialed flows may use private keys, Solana signer keys, endpoint API keys, PATs, AWAL, or OWS depending on the exact runbook; read-only discovery requires no secrets.
@@ -178,7 +178,7 @@ Risk note: this skill can sign messages, submit transactions, and call x402/stud
 |---|---|
 | `pay_base.py` | Pay endpoint on Base, with optional AgentKit benefit flow |
 | `pay_solana.py` | Pay endpoint on Solana |
-| `consume_credits.py` | Consume using credits |
+| `consume_credits.py` | Consume using credits (signs each spend with your wallet; `--chain base` or `--chain solana`) |
 | `consume_product.py` | Purchase digital products/files |
 | `check_credits.py` | Check credit balance |
 | `recharge_credits.py` | Buy endpoint credit packs |

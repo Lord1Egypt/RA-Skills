@@ -1,41 +1,59 @@
-## Description: <br>
-Guides agents through running the RDK X5 /app preinstalled examples, including Python AI demos, 40-pin GPIO samples, C++ multimedia demos, and the bundled BPU model library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through running preinstalled RDK X5 /app demos, including Python AI inference samples, 40-pin GPIO examples, C++ multimedia demos, and the bundled BPU model library.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers and engineers use this skill when working on an RDK X5 board to run preinstalled /app demos, test Python AI samples, compile C++ multimedia examples, exercise GPIO interfaces, or inspect bundled BPU models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera, web display, and RTSP examples can expose sensitive video streams or credentials if used on an untrusted network. <br>
-Mitigation: Use the web and RTSP demos only on trusted networks, treat stream URLs and camera output as sensitive, and stop services when finished. <br>
-Risk: GPIO and hardware examples include sudo commands that can affect connected peripherals. <br>
-Mitigation: Run sudo hardware examples only on the intended RDK X5 board after confirming wiring and peripheral behavior. <br>
-Risk: Using a conda or virtualenv Python can fail because RDK X5 hardware libraries are installed in the system Python. <br>
-Mitigation: Use the system Python path documented by the skill, such as /usr/bin/python3.10, for hardware-dependent demos. <br>
+## Use Case:
 
+Developers and engineers use this skill when working on RDK X5 hardware to run installed sample applications, inspect available BPU models, compile multimedia demos, and troubleshoot common Python or demo-runtime issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume an RDK X5 environment with python3 and board-specific preinstalled /app assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Some examples run local hardware, camera, RTSP, GPIO, or multimedia commands that may affect connected devices or require elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before running it, use sudo only for trusted local sample scripts, and run the skill on the intended RDK X5 device.
+
+Risk: RTSP examples can expose credentials when usernames and passwords are typed directly into command lines.
+
+Mitigation: Use test credentials, avoid pasting real secrets into shell history, and prefer safer credential handling where the local workflow supports it.
+
+Risk: Using a conda or virtualenv Python can cause RDK X5 hardware libraries such as hobot_dnn to be unavailable.
+
+Mitigation: Use the system Python path documented by the skill when running hardware demos.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-app)
+- [ClawHub publisher profile](https://clawhub.ai/user/katherineedwards2475)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-oriented hardware demo guidance for RDK X5 /app samples]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

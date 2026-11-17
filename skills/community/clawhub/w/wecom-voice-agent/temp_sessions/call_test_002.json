@@ -1,0 +1,25 @@
+{
+  "call_id": "test_002",
+  "userid": "lisi",
+  "direction": "inbound",
+  "state": "speaking",
+  "confidence": 0.6,
+  "asr_text": "我要退订",
+  "pending_confirmation": "我要退订",
+  "history": [
+    {
+      "role": "agent",
+      "content": "您好，请说",
+      "time": "2026-07-15T16:14:20.415723"
+    },
+    {
+      "role": "user",
+      "content": "我要退订",
+      "confidence": 0.6,
+      "time": "2026-07-15T16:14:20.417296"
+    }
+  ],
+  "start_time": 1784103260.4140396,
+  "last_activity": 1784103260.4184215,
+  "turn_count": 1
+}

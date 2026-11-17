@@ -1,41 +1,59 @@
-## Description: <br>
-Checks whether specific IP addresses are listed as publicly exposed OpenClaw instances on the OpenClaw Exposure Watchboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exposure Sentinel checks whether specified IP addresses are listed on the OpenClaw Exposure Watchboard as publicly exposed OpenClaw instances.
 
-## Publisher: <br>
-[chenhaubin](https://clawhub.ai/user/chenhaubin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenhaubin](https://clawhub.ai/user/chenhaubin)
 
-## Use Case: <br>
-Developers, security engineers, and incident responders use this skill to check whether specific infrastructure IP addresses appear on the public OpenClaw Exposure Watchboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script makes many HTTPS requests to a fixed public watchboard during each lookup. <br>
-Mitigation: Run it only when lookup activity to openclaw.allegro.earth is acceptable for the target IPs. <br>
-Risk: A missing watchboard result is not a complete exposure assessment. <br>
-Mitigation: Use the result as one public-watchboard check and pair it with normal internal exposure monitoring and remediation workflows. <br>
+## Use Case:
 
+Security engineers and infrastructure operators use this skill to check whether specific IP addresses appear in a public OpenClaw exposure database during audits, monitoring, or incident response.
 
-## Reference(s): <br>
-- [OpenClaw Exposure Watchboard](https://openclaw.allegro.earth) <br>
-- [ClawHub release page](https://clawhub.ai/chenhaubin/exposure-sentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Command-line text or JSON containing checked IPs, exposed page links, errors, and duration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script accepts one or more IPv4 addresses, optional verbose progress, and optional JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The checker can make thousands of requests to openclaw.allegro.earth during a full scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where this outbound traffic is acceptable and monitor rate limits or network policy alerts.
+
+Risk: Network errors or unavailable pages can make exposure results incomplete.
+
+Mitigation: Review reported page errors and rerun the check before treating a result as final.
+
+Risk: Partial IP matching in busy subnets can make matches advisory rather than conclusive.
+
+Mitigation: Confirm any exposed result against the linked watchboard pages and internal asset ownership records.
+
+## Reference(s):
+
+- [OpenClaw Exposure Watchboard](https://openclaw.allegro.earth)
+- [ClawHub skill page](https://clawhub.ai/chenhaubin/skills/exposure-sentinel)
+- [Publisher profile](https://clawhub.ai/user/chenhaubin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included checker may make thousands of HTTPS requests to openclaw.allegro.earth and should be treated as an advisory signal rather than definitive exposure proof.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,68 @@
-## Description: <br>
-Block for OpenClaw gives agents CreditClaw payment workflows for guarded purchases, wallet management, payment requests, and owner-controlled spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an OpenClaw agent shop, request payments, and manage guardrailed wallets with owner approval.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users and developers can equip an OpenClaw agent to spend from CreditClaw payment rails, request top-ups, check wallet status, follow spending rules, and create payment links or selling flows under owner controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real-money spending and seller-payment workflows beyond a narrow Amazon shopping use case. <br>
-Mitigation: Install only when broad CreditClaw payment workflows are intended; keep per-purchase approval enabled and restrict merchant, domain, category, and spending permissions. <br>
-Risk: CREDITCLAW_API_KEY acts like a payment credential and could enable unauthorized spending if exposed. <br>
-Mitigation: Store the key in a secure secret manager, send it only to creditclaw.com API endpoints, and rotate or revoke it if exposure is suspected. <br>
-Risk: Encrypted-card checkout can expose decrypted card details to the main agent if the fallback non-sub-agent flow is used. <br>
-Mitigation: Use an ephemeral checkout sub-agent for card decryption and purchase completion, and never store, log, or persist decrypted card data. <br>
-Risk: Delivered card files and decrypt scripts introduce sensitive local artifacts and executable handling. <br>
-Mitigation: Inspect or sandbox delivered decrypt scripts and companion files before use, and keep card files in a protected location with least-privilege access. <br>
+## Use Case:
 
+External OpenClaw users use this skill to let an agent register with CreditClaw, check wallet status and spending permissions, make approved purchases through payment rails, request top-ups, and create payment requests. It is intended for agentic commerce workflows where spending remains subject to owner controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jononovo/block) <br>
-- [CreditClaw Amazon skill guide](https://creditclaw.com/amazon/skill.md) <br>
-- [Encrypted Card checkout guide](https://creditclaw.com/amazon/encrypted-card.md) <br>
-- [Crossmint Wallet purchase guide](https://creditclaw.com/amazon/crossmint-wallet.md) <br>
-- [Wallet management guide](https://creditclaw.com/amazon/management.md) <br>
-- [Spending permissions guide](https://creditclaw.com/amazon/spending.md) <br>
-- [Heartbeat status guide](https://creditclaw.com/amazon/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and uses CreditClaw API endpoints for payment, wallet, approval, and status workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill gives an agent real spending and payment-request capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-limit wallet or virtual card and keep per-transaction owner approval enabled.
+
+Risk: API keys, card data, or payment details could be exposed during checkout.
+
+Mitigation: Store CREDITCLAW_API_KEY in a secrets manager, send it only to creditclaw.com, and never store, log, or persist decrypted card data.
+
+Risk: Mutable remote companion files or decrypt scripts could change after installation.
+
+Mitigation: Review companion files before installation and do not run remotely delivered decrypt scripts unless independently verified and sandboxed.
+
+Risk: If encrypted-card checkout runs in the main agent, decrypted card data can enter the main context.
+
+Mitigation: Use an ephemeral sub-agent for card decryption and checkout, and do not allow main-agent card decryption.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/jononovo/skills/block)
+- [Publisher Profile](https://clawhub.ai/user/jononovo)
+- [CreditClaw Main Skill Documentation](https://creditclaw.com/amazon/skill.md)
+- [Encrypted Card Guide](https://creditclaw.com/amazon/encrypted-card.md)
+- [Crossmint Wallet Guide](https://creditclaw.com/amazon/crossmint-wallet.md)
+- [Spending Permissions Guide](https://creditclaw.com/amazon/spending.md)
+- [Wallet Management Guide](https://creditclaw.com/amazon/management.md)
+- [Heartbeat Guide](https://creditclaw.com/amazon/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with curl examples, configuration notes, and JSON request and response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and uses CreditClaw HTTPS API endpoints.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata, created 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "drive-analysis"
 description: "Analyzes videos of vehicle drivers to identify unsafe driving behaviors. It generates professional analysis reports to help enhance road safety awareness. | 安全驾驶行为分析工具，针对机动车驾驶人员的驾驶行为进行视频分析，识别不安全驾驶行为，输出专业分析报告，提升道路交通安全意识"
-version: "1.0.7"
+version: "1.0.27"
 license: "MIT-0"
 ---
 

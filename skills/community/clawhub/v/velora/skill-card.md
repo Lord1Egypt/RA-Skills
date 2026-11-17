@@ -1,44 +1,55 @@
-## Description: <br>
-Chat with AI companions on Velora (velora.cloudm8.net), including browser-automated companion chats, image-generation requests, and QA testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with AI companions on Velora for platform testing, companion interaction, and companion image generation through Playwright browser automation.
 
-## Publisher: <br>
-[darkatek7](https://clawhub.ai/user/darkatek7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darkatek7](https://clawhub.ai/user/darkatek7)
 
-## Use Case: <br>
-Developers, QA testers, and external users use this skill to automate Velora login, companion chat flows, message sending, and companion image-generation checks with Playwright. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses real Velora credentials and automated browser login. <br>
-Mitigation: Use a dedicated or low-risk Velora account, store credentials in environment variables, and avoid passing passwords directly on the command line. <br>
-Risk: Browser automation can send chat and image-generation requests on the user's behalf. <br>
-Mitigation: Require explicit user confirmation before login, message sending, or image-generation actions. <br>
-Risk: The security verdict is suspicious due to weak consent and credential-handling boundaries. <br>
-Mitigation: Review the skill before execution and limit use to accounts and content where automated actions are acceptable. <br>
+## Use Case:
 
+External users, QA testers, and developers use this skill to automate Velora login, companion chat, image request, and basic platform verification workflows with their own account credentials.
 
-## Reference(s): <br>
-- [Velora Companions Reference](references/companions.md) <br>
-- [Velora login](https://velora.cloudm8.net/login) <br>
-- [ClawHub skill page](https://clawhub.ai/darkatek7/velora) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run Playwright browser automation that logs into Velora, sends messages, and reports chat URLs or image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles live Velora account credentials and examples pass passwords as command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test account when possible and prefer environment variables or a secure prompt instead of passing passwords on the command line.
+
+Risk: The browser automation can perform real login, messaging, and image request actions on a user account.
+
+Mitigation: Review the script before installation and confirm each login, message, and image request before running it on a real account.
+
+## Reference(s):
+
+- [Velora Companions Reference](references/companions.md)
+- [Velora Login](https://velora.cloudm8.net/login)
+- [ClawHub Skill Page](https://clawhub.ai/darkatek7/skills/velora)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and shell command examples, plus JSON-like script result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Velora credentials, Node.js, Playwright, and Chromium; browser automation can perform live account actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -34,7 +34,7 @@
 ### Method 2: Direct API Specification
 ```javascript
 const result = await skills.soulWeaver.handler({
-  apiKey: 'sk-your-actual-token-here',  // Required: Your AI Soul Weaver Cloud API key
+  apiKey: 'REDACTED-SECRET',  // Required: Your AI Soul Weaver Cloud API key
   apiEndpoint: 'https://sora2.wboke.com/api/v1/compile', // Official endpoint
   aiName: 'MyAI',
   templateId: 'elon-musk',      // Or other template IDs

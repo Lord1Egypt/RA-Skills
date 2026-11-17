@@ -1,0 +1,105 @@
+{
+  "artifactKind": "html",
+  "base": {
+    "path": "examples/pr-delta-before.json",
+    "sha256": "2a2c996954d8a1da2aa618aa41bc64936cca5a4523874f655b210137193d937b"
+  },
+  "delta": {
+    "addedEdges": [
+      [
+        "api",
+        "fraud",
+        "control",
+        "score"
+      ],
+      [
+        "fraud",
+        "db",
+        "memory-write",
+        "approved"
+      ]
+    ],
+    "addedNodes": [
+      "fraud"
+    ],
+    "removedEdges": [
+      [
+        "api",
+        "db",
+        "memory-write",
+        "order"
+      ]
+    ],
+    "removedNodes": []
+  },
+  "generatedAt": "2026-09-01T00:41:53.199036+00:00",
+  "head": {
+    "path": "examples/pr-delta-head.json",
+    "sha256": "ddf71bcac221f8b319f710ad30fa5d3b091da3d274b9b05e91477cf646e99dd3"
+  },
+  "input": {
+    "bytes": 855,
+    "path": "examples/pr-delta-head.json",
+    "sha256": "ddf71bcac221f8b319f710ad30fa5d3b091da3d274b9b05e91477cf646e99dd3"
+  },
+  "mode": "pr-delta",
+  "output": {
+    "bytes": 12084,
+    "path": "examples/pr-delta-generated.html",
+    "sha256": "1fc8d9f9819aaee114fb7544f953476e7962344b2a80ff2970e949d73e537de5"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "pr-delta",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "base",
+              "head"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "added",
+              "removed"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

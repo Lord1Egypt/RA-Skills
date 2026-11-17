@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "The 8 Moon phases in order: new Moon, waxing crescent, first quarter, waxing gibbous, full Moon, waning gibbous, third quarter and waning crescent, as seen from the Northern Hemisphere. The cycle repeats every 29.5 days. Illustrations based on NASA's Lunar Reconnaissance Orbiter view of the Moon.",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for phases-grid.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "PINTEREST",
+   "socialAccountId": "<socialAccountId for main>",
+   "pinterestBoardId": "<board id for 'Moon and night sky'>",
+   "title": "Moon phases in order: all 8, from new Moon to waning crescent",
+   "link": "https://science.nasa.gov/moon/moon-phases/"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-17T01:30:00Z"
+ }
+}

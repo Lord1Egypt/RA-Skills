@@ -1,46 +1,61 @@
-## Description: <br>
-Deterministic long-term memory routing for OpenClaw that routes, writes, reflects on, and refreshes reusable memory for multi-step agent work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic long-term memory routing for OpenClaw that routes, writes, reflects on, and refreshes reusable memory for multi-step agent work.
 
-## Publisher: <br>
-[kaiqiangh](https://clawhub.ai/user/kaiqiangh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiqiangh](https://clawhub.ai/user/kaiqiangh)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn long-term local memory into compact, role-aware working-memory packets and to store, replace, or retire reusable memories after important outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist durable local memories that may later be surfaced in agent context. <br>
-Mitigation: Do not store secrets, credentials, private customer data, or sensitive personal details; inspect saved memories periodically. <br>
-Risk: Memory writes, replacements, or deletions can change future agent behavior. <br>
-Mitigation: Require explicit approval for write, replacement, refresh, and deletion operations. <br>
-Risk: A database path may place long-lived memory in an unexpected location. <br>
-Mitigation: Check where MAR_DB_PATH points before use and keep the memory database in an appropriate local workspace. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give OpenClaw agents compact, role-aware working-memory packets from durable preferences, procedures, summaries, reflections, and prior task evidence. It also supports adding, reflecting on, and refreshing stored memories when new outcomes or user preferences should affect future sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaiqiangh/memory-attention-router) <br>
-- [Reference guide](references/REFERENCE.md) <br>
-- [Memory schema](references/MEMORY_SCHEMA.md) <br>
-- [Prompt templates](references/PROMPTS.md) <br>
-- [Testing guide](references/TESTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell commands; router script commands emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compact working-memory packets with capped lists for selected memories, hard constraints, relevant facts, procedures, pitfalls, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can store and reuse long-term agent memory across future sessions without strong confirmation, isolation, or trust boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated database per user or project, avoid global memories by default, and require explicit user approval before saving or replacing durable preferences.
+
+Risk: Shell invocation that interpolates JSON input can expose command-injection risk when caller-controlled content is used.
+
+Mitigation: Invoke the Python script with argument arrays or stdin-style input handling instead of constructing shell strings.
+
+Risk: Stale or conflicting memories can affect future routing decisions if replacement behavior is not used.
+
+Mitigation: Use the refresh and replacement flows to deactivate stale memories, link replacements, and record retirement reasons when newer evidence supersedes old guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiqiangh/skills/memory-attention-router)
+- [Reference Guide](references/REFERENCE.md)
+- [Memory Schema](references/MEMORY_SCHEMA.md)
+- [Prompt Templates](references/PROMPTS.md)
+- [Testing Guide](references/TESTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and compact memory packet structures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The routed packet is designed to cap selected memory IDs, hard constraints, relevant facts, procedures, pitfalls, and open questions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

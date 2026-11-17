@@ -1,37 +1,48 @@
-## Description: <br>
-Build and operate Volcengine Function Compute workloads for function deployment, event triggers, runtime configuration, and serverless troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate Volcengine Function Compute workloads for function deployment, event triggers, runtime configuration, and serverless troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to package, deploy, validate, and troubleshoot Volcengine Function Compute serverless workloads, including trigger setup, runtime checks, and rollback planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real deployments can affect Volcengine account resources if account, region, function name, trigger type, package contents, environment variables, or rollback plan are incomplete. <br>
-Mitigation: Specify those deployment details before execution and use least-privilege cloud credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy, validate, and troubleshoot Volcengine Function Compute workflows, including packaging, trigger setup, runtime configuration, revision checks, test invocation, and rollback planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment steps, validation checks, test invocation results, logs, latency summaries, and rollback targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deployment guidance may require Volcengine credentials and may create or update cloud functions, triggers, and revisions.
+
+Mitigation: Review the target region, function, environment variables, and rollback target before allowing deployment actions.
+
+## Reference(s):
+
+- [Volcengine Function Compute source references](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with operational checklists, commands, configuration guidance, and validation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include target region, function, environment variables, latest revision, logs or latency summary, and rollback target when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

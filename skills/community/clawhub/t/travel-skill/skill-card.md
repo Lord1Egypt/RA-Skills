@@ -1,41 +1,57 @@
-## Description: <br>
-Travel.Skills is an AI-powered family travel planner for crowd avoidance, senior-friendly and kid-friendly routes, booking-channel guidance, and itinerary generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel.Skills is an AI-powered family travel planner that recommends crowd-aware, senior-friendly, and kid-friendly itineraries with booking-channel guidance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to plan family trips that account for seniors, children, crowds, traffic, booking channels, budgets, and practical itineraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, crowd, traffic, price, discount, and booking information can be stale or estimated. <br>
-Mitigation: Use current search or map tools when planning and confirm prices, discounts, crowd levels, and schedules with the provider before acting. <br>
-Risk: Booking links or channels may expose users to incorrect or unofficial payment flows. <br>
-Mitigation: Verify official booking links before entering personal or payment details; the skill should provide booking guidance rather than directly completing purchases. <br>
+## Use Case:
 
+External users use this skill to plan family trips that account for crowd avoidance, senior mobility, child age ranges, schedules, transportation, packing, and budget. It provides informational recommendations and official booking-channel links without completing bookings or payments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/travel-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel plans with timelines, recommendations, booking-channel links, checklists, and budget estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on search or map tools for current travel, crowd, traffic, price, and booking information; prices and crowd predictions should be verified with providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live travel, map, price, accessibility, and ticket information can be outdated or unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, accessibility, traffic, crowd levels, and ticket rules with official providers before acting on the itinerary.
+
+Risk: Users may ask the agent to complete bookings or payments.
+
+Mitigation: Keep the skill informational: provide official channels and booking checklists, but do not make bookings, payments, or final commitments for the user.
+
+Risk: Family travel recommendations may be unsafe for seniors, children, or travelers with mobility needs if constraints are missed.
+
+Mitigation: Confirm ages, mobility needs, dates, destination, and budget before recommending activities, and filter out high-risk or inaccessible options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/travel-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown itinerary tables, checklists, budget estimates, and booking-channel guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination recommendations, timing, transportation details, packing checklists, budget estimates, and official booking-channel links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

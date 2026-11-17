@@ -1,43 +1,57 @@
-## Description: <br>
-Fathom API integration with managed OAuth for accessing meeting recordings, transcripts, summaries, action items, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to Fathom to retrieve meeting recordings, transcripts, summaries, and action items, and to manage webhooks with user approval.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Fathom meeting content, search recordings, and manage webhook notifications through Maton-managed OAuth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Fathom meeting recordings, transcripts, summaries, and related account data through Maton-managed OAuth. <br>
-Mitigation: Install only for intended Fathom accounts, keep MATON_API_KEY private, and review retrieved meeting content before sharing or storing it. <br>
-Risk: Webhook creation or destination_url callbacks can send meeting fields to an external URL. <br>
-Mitigation: Before approving webhook or callback operations, confirm the exact URL, the included meeting fields, and how the webhook can be deleted. <br>
+## Use Case:
 
+Users and developers can retrieve and search Fathom meeting content and, with approval, configure webhooks or automations for meeting notifications.
 
-## Reference(s): <br>
-- [Maton](https://maton.ai) <br>
-- [Fathom API Documentation](https://developers.fathom.ai) <br>
-- [Fathom LLM Reference](https://developers.fathom.ai/llms.txt) <br>
-- [ClawHub Fathom Skill](https://clawhub.ai/byungkyu/fathom-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, API calls, configuration] <br>
-**Output Format:** [Markdown with inline Python, JavaScript, HTTP, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and network access; API responses are JSON from Maton and Fathom.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Meeting recordings, transcripts, and summaries can contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only actions, authorize only necessary access, and confirm recipients before sharing meeting content.
+
+Risk: Webhooks and hosted automations may persist and forward meeting data to unintended destinations.
+
+Mitigation: Require approval for creation or changes, verify every destination URL and scope, and delete unused webhooks, triggers, functions, and connections.
+
+## Reference(s):
+
+- [ClawHub Fathom skill](https://clawhub.ai/byungkyu/skills/fathom-api)
+- [Maton](https://maton.ai)
+- [Fathom API documentation](https://developers.fathom.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive meeting content or user-approved webhook settings.]
+
+## Skill Version(s):
+
+1.2.8 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

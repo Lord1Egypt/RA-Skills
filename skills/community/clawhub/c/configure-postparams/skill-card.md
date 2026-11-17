@@ -1,43 +1,49 @@
-## Description: <br>
-Configure PostParam (Post-Mint Parameter / PMP) values on Art Blocks tokens using artblocks-mcp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure PostParam (Post-Mint Parameter / PMP) values on Art Blocks tokens using artblocks-mcp.
 
-## Publisher: <br>
-[ryley-o](https://clawhub.ai/user/ryley-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryley-o](https://clawhub.ai/user/ryley-o)
 
-## Use Case: <br>
-Developers and Art Blocks users use this skill to discover available PostParams for a token, validate allowed values and authorization, and prepare an unsigned transaction for post-mint configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a configured artblocks-mcp service for token and transaction data. <br>
-Mitigation: Install and use it only when the configured artblocks-mcp service is trusted. <br>
-Risk: Wallet addresses or token identifiers may reveal activity or ownership patterns. <br>
-Mitigation: Avoid submitting wallet addresses or identifiers considered private unless the lookup is acceptable to the user. <br>
-Risk: A transaction can revert if the signer is not authorized for a parameter's authOption. <br>
-Mitigation: Call discover_postparams first, show authOption and constraints to the user, and compare them with the signer's role before building the transaction. <br>
+## Use Case:
 
+Developers and token operators use this skill to discover Art Blocks post-mint parameters, choose valid values, and prepare unsigned configuration transactions for minted tokens.
 
-## Reference(s): <br>
-- [Configure Postparams on ClawHub](https://clawhub.ai/ryley-o/configure-postparams) <br>
-- [Publisher profile: ryley-o](https://clawhub.ai/user/ryley-o) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for discovering PostParams and building unsigned configuration transactions; it does not execute or submit transactions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prepared transactions may change the visual output of an Art Blocks token after signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review discovered parameters, selected values, wallet address, chain, and the unsigned transaction carefully before signing in a wallet.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryley-o/skills/configure-postparams)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline command and transaction examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for preparing unsigned blockchain transactions; users must review transaction details before signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

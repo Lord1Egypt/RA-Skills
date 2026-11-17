@@ -1,40 +1,53 @@
-## Description: <br>
-Find package deals combining hotel and flights, with support for flight booking, hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel services powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find package deals combining hotel and flights, compare bundled and separate travel options, and return CLI-sourced booking results powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search bundled hotel-and-flight offers and compare them with separately sourced flights and hotels. The skill guides the agent to collect trip parameters, execute the flyai CLI, and format real-time travel results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to install and run an unpinned global npm package before answering ordinary travel queries. <br>
-Mitigation: Review and trust @fly-ai/flyai-cli before installing; prefer installing a known version explicitly and approve CLI execution only in an appropriate environment. <br>
-Risk: Travel searches may involve sensitive personal, itinerary, or payment-adjacent details handled by external travel providers. <br>
-Mitigation: Avoid entering sensitive personal or payment details until the provider's booking and privacy terms have been reviewed. <br>
+## Use Case:
 
+External travel users and travel-planning agents use this skill to search for hotel-plus-flight bundles and related travel services through flyai CLI results. It is intended to produce comparison-oriented booking guidance with real-time result links rather than travel answers from model memory.
 
-## Reference(s): <br>
-- [Travel Bundle on ClawHub](https://clawhub.ai/dingtom336-gif/travel-bundle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the source for travel results; raw JSON should be transformed into user-readable Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill instructs the agent to install and run an unpinned global third-party flyai CLI, which may change behavior across installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI manually in an isolated environment, pin an approved version, and require approval before agent-driven installation or execution.
+
+Risk: Travel searches and booking actions depend on flyai/Fliggy and vendor booking links.
+
+Mitigation: Use the skill only when users accept sending travel queries to that provider, and verify prices, terms, and destination URLs before booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/travel-bundle)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to come from flyai CLI output and include booking links when available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-MCP server for Clude's 4-tier cognitive memory system to store, recall, search, and dream using Supabase, pgvector, type-specific decay, Hebbian association graphs, and Solana commitments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server for Clude's 4-tier cognitive memory system: store, recall, search, and dream with Supabase, pgvector, type-specific decay, association graphs, and Solana commitments.
 
-## Publisher: <br>
-[sebbsssss](https://clawhub.ai/user/sebbsssss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sebbsssss](https://clawhub.ai/user/sebbsssss)
 
-## Use Case: <br>
-Developers and agent operators use this MCP server to give an agent persistent memory recall, memory storage, memory statistics, market mood lookup, and an in-character Clude response tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-lived memory data in an external Supabase project. <br>
-Mitigation: Use a dedicated Supabase project and avoid storing secrets or sensitive personal data. <br>
-Risk: The skill uses a powerful Supabase service key and depends on runtime package code. <br>
-Mitigation: Use a rotateable secret and inspect and pin the clude-bot package before granting credentials. <br>
-Risk: Claude calls with private context and Solana commitment behavior can expose data or create irreversible records. <br>
-Mitigation: Require explicit user approval before memory writes, Claude calls with private context, or Solana commitment behavior. <br>
+## Use Case:
 
+Developers and agent operators use this MCP server to add persistent memory, memory search, memory statistics, market mood lookup, and short in-character responses to Clude-backed agents.
 
-## Reference(s): <br>
-- [Clude Memory MCP on ClawHub](https://clawhub.ai/sebbsssss/clude-memory-mcp) <br>
-- [Supabase schema](artifact/supabase-schema.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [MCP tool responses with JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, SUPABASE_URL, and SUPABASE_SERVICE_KEY; some tools read or write Supabase memory state, commit hashes to Solana, or call Claude with provided context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Supabase service key, which can be highly privileged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Supabase credentials and keep deployments limited to tightly scoped personal or test environments until credential scope is reduced.
+
+Risk: Persistent full-memory storage and retrieval can expose secrets, regulated personal data, or cross-user memories without clear tenant and retention controls.
+
+Mitigation: Do not store secrets or regulated personal data, and add authentication, tenant isolation, retention, and deletion controls before broader deployment.
+
+Risk: Unbounded or insufficiently controlled memory inputs can increase privacy and reliability risk.
+
+Mitigation: Enforce input limits and review stored-memory behavior before using the skill with real users or shared datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sebbsssss/skills/clude-memory-mcp)
+- [Skill definition](artifact/SKILL.md)
+- [Supabase schema](artifact/supabase-schema.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON-formatted MCP text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns memory records, storage status, memory statistics, market mood data, and in-character answers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and server.ts)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Write reliable Ruby avoiding mutable string traps, block pitfalls, and metaprogramming bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write reliable Ruby avoiding mutable string traps, block pitfalls, and metaprogramming bugs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Ruby and Rails reference for avoiding common language, collection, block, method visibility, metaprogramming, and ActiveRecord pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ruby and Rails reference guidance can become inaccurate across language or framework versions. <br>
-Mitigation: Verify recommendations against the Ruby and Rails versions used in the target project before applying them. <br>
-Risk: Metaprogramming patterns such as eval, const_get, send, and method_missing can introduce security or maintainability issues when used without care. <br>
-Mitigation: Prefer safer alternatives such as public_send, avoid evaluating user input, and pair method_missing with respond_to_missing?. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ruby skill page](https://clawhub.ai/ivangdavila/ruby) <br>
-- [Publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Object Traps](artifact/objects.md) <br>
-- [Block/Proc/Lambda Traps](artifact/blocks.md) <br>
-- [Collection Traps](artifact/collections.md) <br>
-- [Method Traps](artifact/methods.md) <br>
-- [Metaprogramming Traps](artifact/metaprogramming.md) <br>
-- [Rails/ActiveRecord Traps](artifact/rails.md) <br>
+## Use Case:
 
+Developers use this skill for concise Ruby and Rails guidance on common language, collection, block, metaprogramming, and ActiveRecord pitfalls.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with inline Ruby and Rails code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires users to verify Ruby and Rails guidance against the versions used in their project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect Ruby or Rails guidance could introduce application bugs or misleading fixes.
+
+Mitigation: Review generated guidance and test resulting code before applying it to production systems.
+
+Risk: Metaprogramming topics such as eval, const_get, and send can create security issues when used with untrusted input.
+
+Mitigation: Prefer safer Ruby APIs such as public_send, avoid eval with user input, and validate constants or method names before use.
+
+## Reference(s):
+
+- [Ruby skill on ClawHub](https://clawhub.ai/ivangdavila/skills/ruby)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [objects.md](artifact/objects.md)
+- [blocks.md](artifact/blocks.md)
+- [methods.md](artifact/methods.md)
+- [collections.md](artifact/collections.md)
+- [metaprogramming.md](artifact/metaprogramming.md)
+- [rails.md](artifact/rails.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline Ruby, Rails, shell, and configuration examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Ruby executable when the agent needs to run or verify Ruby examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

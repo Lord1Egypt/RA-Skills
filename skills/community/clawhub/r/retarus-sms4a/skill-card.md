@@ -1,43 +1,57 @@
-## Description: <br>
-Send SMS jobs and check per-recipient delivery status through the Retarus SMS for Applications REST API across the eu, de1, and de2 datacenters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send SMS jobs and check SMS delivery status through the Retarus SMS for Applications REST API.
 
-## Publisher: <br>
-[aeggerd](https://clawhub.ai/user/aeggerd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aeggerd](https://clawhub.ai/user/aeggerd)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare or validate Retarus SMS4A payloads, send SMS jobs, and retrieve per-recipient delivery status for a job ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real SMS messages through a Retarus account. <br>
-Mitigation: Install it only on agents authorized to operate that account and require a dry run or human approval showing recipients, message text, datacenter, and payload before sending. <br>
-Risk: Retarus credentials could be exposed if passed or stored carelessly. <br>
-Mitigation: Prefer managed secrets, environment variables, or access-controlled secret files, and avoid command-line passwords except for local testing. <br>
-Risk: Unrestricted network access could allow unintended SMS4A traffic. <br>
-Mitigation: Restrict egress to the documented Retarus SMS4A hosts where possible. <br>
+## Use Case:
 
+Developers and operators use this skill to create or validate Retarus SMS4A job payloads, send SMS messages, and retrieve per-recipient delivery status for Retarus job IDs.
 
-## Reference(s): <br>
-- [Retarus SMS4A Reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aeggerd/retarus-sms4a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text with bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Retarus datacenter selection, dry-run output, created job IDs, and per-recipient delivery status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Retarus account credentials may be exposed if operators pass passwords directly on the command line or store secret files without protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer secret-store backed environment injection or a protected secret file, and avoid command-line passwords except for local testing.
+
+Risk: Agents with this skill can send SMS messages and read delivery reports through the configured Retarus account, which may create billing or permissions exposure.
+
+Mitigation: Install only for agents that need SMS access, use account permissions aligned with authorized users, apply billing limits, and run dry-run checks before sending.
+
+Risk: Status lookups can miss delivery reports if they rely only on the DNS-balanced eu endpoint.
+
+Mitigation: Use the documented status workflow that queries both de2 and de1, with the preferred datacenter only controlling the first lookup target.
+
+## Reference(s):
+
+- [Retarus SMS4A Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit dry-run request plans, job IDs, datacenter attempts, recipient reports, API responses, and structured error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

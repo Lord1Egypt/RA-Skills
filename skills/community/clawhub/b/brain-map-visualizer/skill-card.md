@@ -1,44 +1,61 @@
-## Description: <br>
-Brain Map Visualizer helps OpenClaw users turn local markdown vault and session journal history into an interactive D3 and React attention graph showing project clusters, co-access relationships, and emerging projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualizes an agent's markdown vault and session journals as an interactive project-centric attention graph with categorized nodes, co-access edges, momentum fields, and directional flow.
 
-## Publisher: <br>
-[highnoonoffice](https://clawhub.ai/user/highnoonoffice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[highnoonoffice](https://clawhub.ai/user/highnoonoffice)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add a local dashboard view that visualizes how markdown files and session journals cluster by project attention, co-access frequency, and recent momentum. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated graph can expose sensitive work history, private session details, or file relationships from local journals. <br>
-Mitigation: Redact secrets and private chat or session details before bootstrapping journals, and keep the generated graph JSON private. <br>
-Risk: Dashboard and rebuild endpoints can reveal or refresh local attention data if exposed without access control. <br>
-Mitigation: Configure real access control before exposing the dashboard or rebuild API beyond localhost. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local Brain Map view that turns markdown vault activity and session journals into a React/D3 project graph. It helps inspect attention patterns, co-access relationships, emerging projects, and graph data freshness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/highnoonoffice/brain-map-visualizer) <br>
-- [Project homepage](https://github.com/highnoonoffice/hno-skills) <br>
-- [BrainMapProjects component](references/component.md) <br>
-- [Graph schema and API routes](references/graph-schema.md) <br>
-- [Journal parser script](references/journal-parser.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and JavaScript code, JSON schema examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation instructions and local configuration for a React component, Next.js API routes, a journal parser, and the generated graph JSON schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.5 (source: server release evidence) <br>
+Risk: Networked API routes can expose journal-derived private data and rebuild actions if deployed without hardened access control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep development localhost-only unless access control is added; for networked use, require a server-only secret, fail closed when auth is missing, and restrict rebuilds to trusted users.
+
+Risk: Generated graph JSON can contain sensitive journal summaries and file-path metadata.
+
+Mitigation: Review the generated JSON before sharing or publishing it, and scope WORKSPACE_DIR to the intended agent vault.
+
+Risk: Putting access keys in client-exposed environment variables can leak the credential.
+
+Mitigation: Use one server-only secret name consistently and avoid NEXT_PUBLIC variables for API access keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highnoonoffice/skills/brain-map-visualizer)
+- [Project homepage](https://github.com/highnoonoffice/hno-skills)
+- [BrainMapProjects component](references/component.md)
+- [Graph schema and API route](references/graph-schema.md)
+- [Journal parser script](references/journal-parser.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with TypeScript, JavaScript, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local parser, Next.js API route, React/D3 component, and graph JSON guidance.]
+
+## Skill Version(s):
+
+3.3.6 (source: server release metadata; artifact frontmatter says 3.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/render-report.schema.json",
+  "title": "Article HTML to PPT Render Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pptx",
+    "engine",
+    "engine_version",
+    "started_at",
+    "finished_at",
+    "duration_seconds",
+    "status",
+    "slide_count_expected",
+    "slide_count_rendered",
+    "pdf",
+    "slides",
+    "warnings",
+    "errors"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "pptx": {"type": "string"},
+    "engine": {"type": ["string", "null"]},
+    "engine_version": {"type": ["string", "null"]},
+    "started_at": {"type": "string"},
+    "finished_at": {"type": "string"},
+    "duration_seconds": {"type": "number", "minimum": 0},
+    "status": {"enum": ["passed", "failed", "unavailable", "partial"]},
+    "slide_count_expected": {"type": ["integer", "null"], "minimum": 0},
+    "slide_count_rendered": {"type": "integer", "minimum": 0},
+    "pdf": {"type": ["string", "null"]},
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slide_index", "image", "width_px", "height_px", "blank_score", "status"],
+        "properties": {
+          "slide_index": {"type": "integer", "minimum": 1},
+          "image": {"type": "string"},
+          "width_px": {"type": ["integer", "null"], "minimum": 0},
+          "height_px": {"type": ["integer", "null"], "minimum": 0},
+          "blank_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "status": {"enum": ["passed", "warning", "failed"]}
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/renderIssue"}
+    },
+    "errors": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/renderIssue"}
+    }
+  },
+  "$defs": {
+    "renderIssue": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code", "message"],
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"},
+        "slide_index": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

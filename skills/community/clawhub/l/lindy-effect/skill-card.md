@@ -1,39 +1,59 @@
-## Description: <br>
-Lindy Effect helps agents evaluate old-versus-new decisions for non-perishable ideas, technologies, institutions, practices, or books by weighing survival evidence, changed conditions, switching costs, and reversibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies the Lindy effect to decisions about the durability of non-perishable ideas, technologies, institutions, and practices.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Developers, operators, readers, and decision-makers use this skill to decide when older, long-surviving non-perishable options deserve extra weight over newer alternatives. It is most useful for high-switching-cost foundations, institutional choices, reading priorities, and claims that conditions have changed enough to override historical survival evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may bias an agent toward older options when changed conditions make survival evidence less relevant. <br>
-Mitigation: Use it as one decision lens, check whether the item is non-perishable and exposed to real elimination forces, and require explicit evidence before accepting or rejecting a this-time-is-different claim. <br>
+## Use Case:
 
+Decision makers, researchers, and developers use this skill to compare established and newer options, assess whether longevity is meaningful evidence, and record a Lindy-informed decision with conditions that could override the prior.
 
-## Reference(s): <br>
-- [Primary sources](references/sources.md) <br>
-- [Method in Action: Goldman 1964, Mandelbrot 1982, Taleb 2012](examples/goldman-1964-mandelbrot-1982-taleb-2012.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision guidance with structured checks and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory text only; no system access, tool invocation, or local machine actions are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Lindy estimate could be treated as a forecast or as a standalone verdict despite limited or changing conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the framework as a prior, check whether the item is non-perishable and faces ongoing elimination pressure, assess changed conditions, and verify important claims independently.
+
+Risk: Saved usage examples could contain confidential details.
+
+Mitigation: Keep confidential details out of saved usage examples.
+
+## Reference(s):
+
+- [Sources](artifact/references/sources.md)
+- [Example: Goldman, Mandelbrot, and Taleb](artifact/examples/goldman-1964-mandelbrot-1982-taleb-2012.md)
+- [Example: Lindy and AI framework churn](artifact/examples/lindy-vs-ai-framework-churn-2024-2026.md)
+- [ClawHub release](https://clawhub.ai/deciqai/skills/lindy-effect)
+- [Publisher profile](https://clawhub.ai/user/deciqai)
+- [Lindy Effect skill page](https://www.deciqai.com/c/lindy-effect)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/lindy-effect.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown decision analysis, structured decision records, and step-by-step coaching]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes qualitative or approximate Lindy priors, applicability checks, override reasoning, and reversibility considerations.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

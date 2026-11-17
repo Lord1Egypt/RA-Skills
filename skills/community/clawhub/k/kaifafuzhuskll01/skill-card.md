@@ -1,47 +1,62 @@
-## Description: <br>
-Generates self-contained HTML presentation decks and can optionally export editable PPTX files using preset deck modes, fixed 1280x720 slides, keyboard navigation, and reusable layout templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates self-contained, keyboard-navigable HTML presentation decks with fixed 1280x720 slides, structured planning, reusable layout templates, and optional PPTX export.
 
-## Publisher: <br>
-[tomm1399](https://clawhub.ai/user/tomm1399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomm1399](https://clawhub.ai/user/tomm1399)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to plan, draft, review, and generate structured presentation decks from a topic, mode, and chapter count. It is suited to Chinese-first business or technical presentations that need HTML preview output and optional PPTX handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates presentation files in the workspace and can run a local PPTX export script when requested. <br>
-Mitigation: Review the planned outline and output paths before approving implementation or export. <br>
-Risk: Rendered HTML loads Google Fonts, which may disclose network access patterns when opened. <br>
-Mitigation: Avoid confidential decks unless the font dependency is removed, blocked, or replaced with local fonts. <br>
-Risk: Presentation content may be inaccurate, incomplete, or unsuitable for the intended audience. <br>
-Mitigation: Review generated slide data and final rendered output before sharing or presenting. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to turn a requested topic, mode, and section count into a planned slide outline, finalized slide content, HTML presentation files, and optional editable PPTX output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomm1399/kaifafuzhuskll01) <br>
-- [Publisher profile](https://clawhub.ai/user/tomm1399) <br>
-- [Content rules](references/content-rules.md) <br>
-- [Design system](references/design-system.md) <br>
-- [Base HTML template](assets/base-template.html) <br>
-- [PPTX export script](scripts/export_pptx.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated HTML files, JSON slide data, and optional PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace files such as master_config.json, slides_data.json, output/<slug>-presentation.html, and optional output/<slug>-presentation.pptx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may embed untrusted slide text as active HTML or JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before sharing, escape or sanitize slide text, and allowlist layout and icon identifiers before rendering.
+
+Risk: Optional PPTX export depends on an unpinned python-pptx requirement.
+
+Mitigation: Pin python-pptx to an approved version before using the exporter in controlled environments.
+
+Risk: Generated HTML loads Google Fonts from an external service.
+
+Mitigation: Use a local font bundle or modify the template when external network requests are not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomm1399/skills/kaifafuzhuskll01)
+- [Skill definition](artifact/SKILL.md)
+- [Design system](artifact/references/design-system.md)
+- [Content rules](artifact/references/content-rules.md)
+- [Base HTML template](artifact/assets/base-template.html)
+- [PPTX export script](artifact/scripts/export_pptx.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown planning guidance with JSON slide data, generated HTML, and optional PPTX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained HTML presentations with fixed-size slides and keyboard navigation; optional PPTX export depends on python-pptx.]
+
+## Skill Version(s):
+
+3.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

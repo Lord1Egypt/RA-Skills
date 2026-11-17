@@ -48,50 +48,53 @@ Do not imply that all dropdown words are free.
 
 ## First Response
 
-If the user gives only one keyword and says they want insights, do not start
-searching immediately. First explain the scope choices and credit logic.
+If the user gives only one keyword and says they want insights, ask only for a
+platform that cannot be inferred. Missing filters use `general`, `不限`, and
+`不限` and are stated; ask about report scope only before a multi-keyword
+search.
 
 Use this user-facing wording:
 
 可以做。关键词洞察报告不是只搜一次关键词，而是看“主关键词 + 相关词/下拉词 + 代表性高互动内容”，再总结内容类型、用户需求和选题机会。
 
-先提醒一下积分：普通关键词搜索是按实际搜索的关键词次数算，不是按你发一条指令算。比如只搜“云南旅游”一次，通常是 20 credits；如果再搜 5 个相关词，就是 6 次搜索，约 120 credits。搜索结果一次可以返回多条笔记，不是按返回的每条都扣。只有继续打开单篇详情、评论区、逐字稿或更深内容结构时，才会继续增加。
-
 先选平台、范围和搜索过滤项：
 
 - 平台：小红书 / 抖音。搜索关键词不能从词本身推断平台，所以开始前必须确认平台。
-- 搜索过滤项：开始前也要确认排序、内容类型和时间范围；如果用户想省事，可以明确接受默认值 `sort=general`、`note_type=不限`、`time_filter=不限`。不要在用户未确认过滤项或默认值前开始批量搜索。
+- 搜索过滤项：用户没指定排序、内容类型或时间范围时，不先追问，直接按默认值 `sort=general`、`note_type=不限`、`time_filter=不限` 搜索，并在回复开头用一句话说明所用默认值。
 
-A. 快速洞察：主关键词 + 3 个相关词，先看内容类型和机会方向，预计约 80 credits。
-B. 标准报告：主关键词 + 8-10 个相关词，再挑代表样本做分类，预计约 180-220 credits；如果继续打开 5-10 条单篇详情，会再增加约 100-200 credits。
-C. 深度报告：15-30 个相关词 + 代表笔记详情 + 评论区需求，适合企业/品牌/机构做策略，通常会到 800 credits 以上，开始前我会先列搜索范围让你确认。
+A. 快速洞察：主关键词 + 3 个相关词，先看内容类型和机会方向。
+B. 标准报告：主关键词 + 8-10 个相关词，再挑代表样本做分类；只在基础结果不足时打开 5-10 条单篇详情。
+C. 深度报告：15-30 个相关词 + 代表笔记详情 + 评论区需求，适合企业/品牌/机构做策略。
 
-你回复“平台 + A/B/C + 过滤项”，比如“小红书 A，排序按点赞，视频笔记，一周内”，或“抖音 B，接受默认过滤项”，我再开始；如果你只回复 A/B/C，我会先追问平台和过滤项，不会默认把所有下拉词都搜完，也不会默认替你选平台、排序、内容类型或时间范围。
+A 是默认首轮；B 或 C 需要你明确选择后我才开始。执行过程中如果要继续打开单篇详情、评论区或扩大关键词，超过已确认范围前我会先停下来确认。
+
+你回复“平台 + A/B/C”，比如“小红书 A”；想指定过滤项可以一起写，比如“小红书 A，排序按点赞，视频笔记，一周内”。没写过滤项时我按综合排序、全部类型、全部时间处理并在开头说明；如果你只回复 A/B/C，我只追问平台，不会默认把所有下拉词都搜完。
 
 ## Scope Tiers
 
 ### A. Quick Insight
 
-Use when the user wants a first look or is sensitive to credits.
+Use when the user wants a first look or a deliberately small sample.
 
 Search scope:
 
 - main keyword
 - 3 related keywords
-- for Xiaohongshu, usually `sort=most_liked`; use `collect_descending` only
+- filters the user did not specify: use `sort=general`, `note_type=不限`, and
+  `time_filter=不限`, and state them in the reply's first sentence; do not ask
+  first
+- use `most_liked` (or `popularity_descending` on Douyin) only when the user
+  asks for liked/hot ranking; use `collect_descending` (Xiaohongshu only) only
   when the user cares most about saved/collected content
-- for Douyin, use `sort=most_liked` or `popularity_descending`; do not use
-  `collect_descending` or `comment_descending`
-- for Douyin, note type must be `不限`, `视频笔记`, or `图文笔记`; do not pass
-  `直播笔记`
-- for Xiaohongshu, choose note type and time range based on user goal; for
-  Douyin, choose only the supported note types above and choose time range based
-  on user goal; if unclear, ask before calling
+- for Douyin, do not use `collect_descending` or `comment_descending`; note type
+  must be `不限`, `视频笔记`, or `图文笔记`; do not pass `直播笔记`
 
-Estimated credits:
+Planned external actions:
 
-- 4 `search-notes` lookups x 20 credits = about 80 credits
+- 4 `search-notes` lookups
 - no note detail by default
+- if note detail, comments, transcript, or more related keywords become
+  necessary, stop and ask before exceeding the quick-insight scope
 
 Output:
 
@@ -114,11 +117,10 @@ Search scope:
 - representative results from each keyword
 - optional 5-10 note details if titles/cover/basic metrics are not enough
 
-Estimated credits:
+Planned external actions:
 
-- 9-11 `search-notes` lookups = about 180-220 credits
-- optional 5-10 `get-note-detail` lookups = about 100-200 extra credits
-- typical range: about 180-420 credits, depending on whether details are opened
+- 9-11 `search-notes` lookups
+- optional 5-10 `get-note-detail` lookups only when list evidence is insufficient
 
 Output:
 
@@ -144,12 +146,12 @@ Search scope:
 - selected comments pages when comment demand matters
 - optional creator/account checks when the keyword is account-led
 
-Estimated credits:
+Planned external actions:
 
-- 16-31 `search-notes` lookups = about 320-620 credits
-- 10-30 note details = about 200-600 extra credits
-- 5-10 comment pages = about 100-200 extra credits
-- typical range: about 800-1400 credits when it includes details and comments
+- 16-31 `search-notes` lookups
+- 10-30 note details
+- 5-10 comment pages
+- confirm the exact keyword, detail, and comment sample before starting
 
 Output:
 

@@ -1,46 +1,62 @@
-## Description: <br>
-快手全场景数据查询助手。支持App和Web双端API，覆盖视频详情、用户数据、搜索、热榜、直播、评论等全功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快手全场景数据查询助手，支持 App 和 Web 双端 API，覆盖视频详情、用户数据、搜索、热榜、直播、评论等功能。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users, content operators, product teams, and developers use this skill to query Kuaishou video, user, search, trending, live, and comment data through MaxHub APIs and turn the results into concise analysis or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Kuaishou identifiers, links, search terms, and related profile or video data to MaxHub at aconfig.cn. <br>
-Mitigation: Use the skill only when that data sharing is intended, and avoid submitting sensitive or unnecessary personal data. <br>
-Risk: The skill requires MAXHUB_API_KEY, a sensitive credential. <br>
-Mitigation: Store the key in a secret manager or local environment, keep it out of shared repositories and logs, and rotate it if exposure is suspected. <br>
-Risk: Security evidence reports unexpected cross-platform fallback routes that do not match the Kuaishou-only description. <br>
-Mitigation: Review endpoint paths before use and prefer the documented Kuaishou API references when running or modifying the skill. <br>
+## Use Case:
 
+External users, operators, and analysts use this skill to query Kuaishou video, user, search, trend, live, and comment data through MaxHub APIs and produce concise browse, analysis, or comparison reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/new-ironman/kuaishou-aggregate-scraper) <br>
-- [MaxHub API Website](https://www.aconfig.cn) <br>
-- [Video & Content API](references/api-video.md) <br>
-- [User Data API](references/api-user.md) <br>
-- [Parameter Mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance, Analysis] <br>
-**Output Format:** [Markdown with tables, bullet points, links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language follows the user's language; API key values must not be exposed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata, skill metadata, and artifact metadata) <br>
+Risk: Kuaishou links, IDs, search terms, and account-linked API activity are sent to MaxHub at www.aconfig.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when this data sharing is acceptable, and avoid sending unrelated secrets or sensitive private identifiers.
+
+Risk: The artifact includes cross-platform fallback paths that may route some fallback behavior through Douyin endpoints.
+
+Mitigation: Review or remove the Douyin fallback mappings before authorizing Kuaishou-only use.
+
+Risk: Broad activation behavior could lead the agent to call APIs for loosely matched video or social-data requests.
+
+Mitigation: Confirm the request is a Kuaishou or MaxHub data task and review planned API calls before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/kuaishou-aggregate-scraper)
+- [Publisher profile](https://clawhub.ai/user/new-ironman)
+- [MaxHub API website](https://www.aconfig.cn)
+- [User Data API](references/api-user.md)
+- [Video & Content API](references/api-video.md)
+- [Parameter Mappings](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown responses with tables, summaries, and optional curl commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MAXHUB_API_KEY for authenticated read-only MaxHub API requests and returns data-driven summaries in Chinese or English to match the user.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

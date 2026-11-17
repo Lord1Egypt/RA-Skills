@@ -1,44 +1,57 @@
-## Description: <br>
-物理错误的持续分析与根因档案系统，用于五类错误分类、顽固弱项识别、错误类型图谱和物理弱项报告，并与通用错题本协作以避免重复记录和触发冲突。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向初高中物理错题，按图景、概念、公式、过程和数学工具五个维度定位根因并生成弱项分析。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, families, and learning-support agents use this skill to turn physics mistakes into structured root-cause records, weak-point tracking, targeted remediation plans, and monthly physics progress summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Physics error records and monthly reports can include learner-specific study history and weak-point patterns. <br>
-Mitigation: Create long-term records, reminder requests, and writebacks only after user consent, and keep shared summaries limited to the intended notebook, family, or learning-support context. <br>
-Risk: Generated root-cause labels or weak-point conclusions may be inaccurate if the source mistake data is incomplete. <br>
-Mitigation: Use the skill's own verification steps, such as simplified physics-picture checks and repeated follow-up problems, before treating a weakness as persistent or resolved. <br>
+## Use Case:
 
+初中和高中学生可用它复盘已收录的物理错题，识别重复出现的概念、图景或计算弱项，并查看经授权的阶段性分析。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-physics-error-dna) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/qizhitang) <br>
-- [物理错因维度表](references/physics-error-dimension-table.md) <br>
-- [物理高频概念混淆对照表](references/physics-concept-confusion-map.md) <br>
-- [物理数学工具自检清单](references/physics-math-tools-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global; designed for Chinese-language middle and high school physics curricula.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and structured text templates for diagnostic records, weak-point tracking, reports, and remediation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include learner-specific physics error categories, root-cause summaries, follow-up reminder requests, and monthly report sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The security review is incomplete and flags possible excessive agency and writebacks outside the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill's handover scope before enabling it, and allow profile reads or writes only with the relevant user consent.
+
+Risk: Long-term learning records and summaries may include sensitive student information.
+
+Mitigation: Keep profile storage, cross-skill sharing, reminders, and parent-facing summaries behind their separate consent settings; honor requests to pause or delete records.
+
+## Reference(s):
+
+- [物理错因维度表](artifact/references/physics-error-dimension-table.md)
+- [物理高频概念混淆对照表](artifact/references/physics-concept-confusion-map.md)
+- [物理数学工具自检清单](artifact/references/physics-math-tools-checklist.md)
+- [四类物理图景绘制追问手册](artifact/shared/physics-diagram-guide.md)
+- [交接协议 schema](artifact/shared/handover-protocol.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Physics error analyses, weakness summaries, and structured handover data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Longitudinal summaries depend on platform capability and consent; initial error capture and recurrence counting belong to the general error notebook.]
+
+## Skill Version(s):
+
+2.12.7 (source: ClawHub release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,44 @@
+{
+  "story_id": "ai_meeting_assistant_infographic_demo",
+  "visual_form": "infographic",
+  "format": "single",
+  "genre": "educational",
+  "language": "zh-CN",
+  "style_id": "sci-fi-future",
+  "aspect_ratio": "4:5",
+  "source_summary": "解释一个 AI 会议助手如何从会议前、会议中、会议后提升协作效率。",
+  "target_audience": "knowledge workers",
+  "panels": [
+    {
+      "panel_id": 1,
+      "narrative_role": "explain",
+      "shot": "custom",
+      "scene": "single-page infographic organized into three sections: before meeting, during meeting, after meeting",
+      "scene_tag": "INFOGRAPHIC_SINGLE_PAGE",
+      "action": "展示 AI 会议助手在三个阶段的核心能力、输入输出和收益点。",
+      "emotion": "clear and confident",
+      "dialogue": [],
+      "caption": "AI 会议助手让会前准备、会中记录、会后跟进形成闭环。",
+      "must_include": [
+        "three-stage structure",
+        "clear arrows or flow",
+        "icons for scheduling, transcription, summary, and tasks",
+        "top-level title area",
+        "concise benefits"
+      ],
+      "avoid": [
+        "dense unreadable paragraphs",
+        "too many tiny icons",
+        "excess decorative clutter"
+      ],
+      "visual_priority": "information hierarchy",
+      "text_budget": 80
+    }
+  ],
+  "assembly": {
+    "layout": "single",
+    "gutter_px": 0,
+    "caption_mode": "overlay",
+    "background": "#F6F8FC"
+  }
+}

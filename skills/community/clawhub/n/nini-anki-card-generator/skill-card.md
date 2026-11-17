@@ -1,41 +1,54 @@
-## Description: <br>
-Generates Anki flashcards in simple-anki-sync markdown format for active memorization, using atomic questions, concise answers, and spaced-repetition card design practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to generate Anki flashcards in simple-anki-sync format for active memorization, with atomic questions, standardized templates, and appropriate detail levels.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Learners, educators, and knowledge workers use this skill to turn study material or knowledge points into import-ready Anki flashcards. It is intended for flashcard generation only, not for general explanations, summaries, or learning plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad study-related wording and convert private or sensitive material into flashcards. <br>
-Mitigation: Phrase requests clearly when Anki-formatted cards are or are not desired, and avoid submitting private material unless it should become study content. <br>
-Risk: Generated cards can be incorrect, misleading, or too broad if the source material is ambiguous. <br>
-Mitigation: Review generated cards for factual accuracy, atomization, and recall quality before importing them into Anki. <br>
+## Use Case:
 
+External users, students, and knowledge workers use this skill to turn study material or knowledge points into import-ready Anki flashcards. It is suited to memorization tasks, not broad learning plans, summaries, or explanations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/niracler/nini-anki-card-generator) <br>
-- [Anki Card Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [simple-anki-sync markdown tables with Anki tags and optional HTML detail annotations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask clarifying questions about scope, depth, quantity, or context before producing cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad flashcard or memorization requests before scope, depth, quantity, or context are clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the intended focus, detail level, card count, and study context before generating cards.
+
+Risk: The skill prefers English-style Anki tag names even when the card content is multilingual.
+
+Mitigation: Review and adjust #anki/[domain]/[topic] tags before importing the generated cards.
+
+## Reference(s):
+
+- [Anki Card Domain Examples](artifact/references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/niracler/skills/nini-anki-card-generator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown in simple-anki-sync table format with Anki tag paths and optional inline HTML for supplementary notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cards are organized with #anki/[domain]/[topic] tags, concise question-and-answer tables, and optional cross-card handles.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

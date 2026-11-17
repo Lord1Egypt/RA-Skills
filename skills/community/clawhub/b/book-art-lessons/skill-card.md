@@ -1,40 +1,53 @@
-## Description: <br>
-Book art-lessons services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book art-lessons services through Lokuli MCP for users who need to find providers, check availability, and create bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for art-lesson providers, check appointment availability, and request a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may send customer contact details to Lokuli. <br>
-Mitigation: Confirm the provider, time slot, customer name, email, and phone number with the user before creating a booking. <br>
-Risk: A create_booking call may submit a real booking request. <br>
-Mitigation: Ask for explicit user confirmation before sending the booking request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-art-lessons) <br>
+## Use Case:
 
+External users and agents use this skill to search for art-lesson services through Lokuli, inspect availability, and create a booking after confirming provider, service, time slot, and customer contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Text] <br>
-**Output Format:** [Markdown guidance with JSON-RPC MCP call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, availability, time slot, and customer contact fields needed for a booking request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searches and bookings are handled by Lokuli's external MCP service.
+
+Mitigation: Tell users that the external service is used before booking-related actions and avoid sending contact details unless the user intends to create a booking.
+
+Risk: A booking could be created with the wrong provider, service, time slot, or contact details.
+
+Mitigation: Confirm the provider, service, time slot, name, email, and phone number with the user before submitting a booking request.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-art-lessons)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Configuration]
+
+**Output Format:** [Markdown with JSON-RPC request examples and concise booking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an external Lokuli MCP service for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

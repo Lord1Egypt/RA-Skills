@@ -1,43 +1,61 @@
-## Description: <br>
-Football player DNA similarity search — find style-matched alternatives at lower market values using AI vector search across 56,000+ players. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Football player DNA similarity search that finds style-matched alternatives at lower market values using AI vector search across 56,000+ players.
 
-## Publisher: <br>
-[leeleon](https://clawhub.ai/user/leeleon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeleon](https://clawhub.ai/user/leeleon)
 
-## Use Case: <br>
-External users and football scouting workflows use this skill to ask an agent for players similar to a named footballer, including lower-value alternatives and ranked style matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Player name queries are sent to Rising Transfers using the user's API key. <br>
-Mitigation: Install only if the user is comfortable sharing those football queries with Rising Transfers, and avoid sending unrelated sensitive information. <br>
-Risk: API calls consume quota or paid credits, and the artifact gives inconsistent free-tier limits. <br>
-Mitigation: Review the provider's current pricing and credit limits before use and monitor RT_API_KEY usage. <br>
-Risk: Autonomous invocation may trigger API calls when the user asks for similar, cheaper, or DNA-matched footballers. <br>
-Mitigation: Use the skill only in contexts where those calls are expected, or disable autonomous discovery in the agent configuration. <br>
+## Use Case:
 
+External users, scouts, analysts, and developers use this skill to ask an agent for football players who are statistically similar to a named player, including cheaper or style-matched alternatives. The skill returns ranked similarity results with club, position, market value, savings, and playing-style details when available from the Rising Transfers API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeleon/football-player-dna) <br>
-- [Rising Transfers API](https://api.risingtransfers.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown ranked table with concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RT_API_KEY and network access; API results should not be embellished beyond returned data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Player names entered in searches are sent to the Rising Transfers API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only if you trust Rising Transfers with those football player queries.
+
+Risk: API calls use RT_API_KEY and may consume billed or credit-limited Rising Transfers usage.
+
+Mitigation: Monitor account credits and keep RT_API_KEY scoped and stored in the agent environment rather than in prompts or files.
+
+Risk: Autonomous invocation for football similarity requests may trigger API calls without an explicit manual step.
+
+Mitigation: Disable auto-discovery when manual approval is required before credit-consuming searches.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leeleon/skills/football-player-dna)
+- [Rising Transfers API](https://api.risingtransfers.com)
+- [DNA Search Endpoint](https://api.risingtransfers.com/api/v1/intelligence/dna-search)
+- [Player Lookup Endpoint](https://api.risingtransfers.com/api/v1/intelligence/player)
+- [Rising Transfers Privacy Policy](https://risingtransfers.com/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown response with a ranked table and concise follow-up guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RT_API_KEY and network access to api.risingtransfers.com; API calls may consume Rising Transfers credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

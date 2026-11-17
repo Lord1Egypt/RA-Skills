@@ -1,42 +1,61 @@
-## Description: <br>
-Cross-post content to Twitter/X, Reddit, and LinkedIn from one prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-post content to Twitter/X, Reddit, and LinkedIn from one prompt.
 
-## Publisher: <br>
-[drspx](https://clawhub.ai/user/drspx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drspx](https://clawhub.ai/user/drspx)
 
-## Use Case: <br>
-Social media managers, creators, and developers use this skill to draft, preview, and publish the same post across Twitter/X, Reddit, and LinkedIn through the platforms' APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish externally to social-media accounts using stored credentials and broad posting triggers. <br>
-Mitigation: Use preview first, confirm platform destinations before posting, and avoid confidential or unapproved drafts. <br>
-Risk: The skill stores social-media API credentials locally. <br>
-Mitigation: Keep the config file private, use least-privilege credentials, and rotate tokens if the machine or file is exposed. <br>
-Risk: The documented default all-platform command may not publish anywhere until the dispatch issue is fixed. <br>
-Mitigation: Specify platforms explicitly or verify script behavior in a controlled account before relying on broad posting. <br>
+## Use Case:
 
+External users and developers use this skill to prepare, preview, and publish similar content across Twitter/X, Reddit, and LinkedIn from a single command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drspx/cross-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can trigger external social-media posts when posting commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish content to public social accounts when valid credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended immediate public posting, run the preview command first, and review the exact content and target platform before posting.
+
+Risk: The skill requires social API credentials and stores configuration locally.
+
+Mitigation: Provide narrowly scoped credentials, keep secrets out of recorded or shared terminals, and verify the local config file remains protected.
+
+Risk: All-platform posting and scheduling claims are unreliable in this version.
+
+Mitigation: Post to specific platforms explicitly and do not rely on this release for scheduled publishing.
+
+## Reference(s):
+
+- [Cross-Post on ClawHub](https://clawhub.ai/drspx/skills/cross-post)
+- [Publisher profile: drspx](https://clawhub.ai/user/drspx)
+- [Twitter/X developer setup](https://developer.twitter.com)
+- [Reddit app preferences](https://www.reddit.com/prefs/apps)
+- [LinkedIn developers](https://developers.linkedin.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger API calls that publish public social posts when the user runs the posting command with valid credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

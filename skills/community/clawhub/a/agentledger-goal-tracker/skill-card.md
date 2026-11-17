@@ -1,42 +1,55 @@
-## Description: <br>
-OKR-style goal tracking for solopreneurs with quarterly goals, weekly check-ins, progress scoring, and accountability prompts that flag drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKR-style goal tracking for solopreneurs with quarterly goals, weekly check-ins, progress scoring, and drift detection.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-Solopreneurs and individual operators use this skill to structure quarterly goals, update weekly progress, score key results, and receive direct prompts when goals drift or become unrealistic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Goal files can contain sensitive personal, financial, or business details that an agent may reread during later check-ins. <br>
-Mitigation: Keep highly sensitive details out of goals/GOALS.md unless the user is comfortable with the agent retaining and rereading that context. <br>
-Risk: Optional heartbeat or cron examples can create scheduled reminders or reviews the user may not expect. <br>
-Mitigation: Enable scheduled check-ins only when the user explicitly wants recurring goal reviews and has reviewed the schedule. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent create and maintain local goal-tracking files, run weekly check-ins, score progress against key results, and prepare quarter-end retrospectives.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Clawdssen/agentledger-goal-tracker) <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
-- [The Agent Ledger](https://theagentledger.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local goal-tracking Markdown files and can provide optional heartbeat or cron reminder configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can cause an agent to update local goal, retrospective, archive, and post-mortem files during check-ins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit check-in prompts and review changes to goals/GOALS.md, retrospectives, and archives before relying on them.
+
+Risk: Optional heartbeat or cron examples can create scheduled reminders in a configured chat.
+
+Mitigation: Add the heartbeat or cron examples only when scheduled reminders are desired and the target chat is configured correctly.
+
+## Reference(s):
+
+- [Advanced Patterns](references/advanced-patterns.md)
+- [Goal Tracker on ClawHub](https://clawhub.ai/clawdssen/skills/agentledger-goal-tracker)
+- [Publisher Profile](https://clawhub.ai/user/clawdssen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and goal-tracking templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates local goal, retrospective, archive, and post-mortem files when used by an agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

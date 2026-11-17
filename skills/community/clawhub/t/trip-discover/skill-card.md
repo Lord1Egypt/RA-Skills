@@ -1,41 +1,52 @@
-## Description: <br>
-Recommend travel destinations based on vibe, budget, duration, and group size. Handles "suggest a trip", "where should I go", "weekend getaway", "compare X vs Y", and "plan from my saved places". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend travel destinations based on vibe, budget, duration, and group size. Handles "suggest a trip", "where should I go", "weekend getaway", "compare X vs Y", and "plan from my saved places".
 
-## Publisher: <br>
-[swayamg20](https://clawhub.ai/user/swayamg20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swayamg20](https://clawhub.ai/user/swayamg20)
 
-## Use Case: <br>
-Travelers and trip-planning agents use this skill to suggest or compare up to three destinations based on vibe, budget, duration, group size, saved places, and departure city. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel preferences, saved destinations, and departure details may be used in memory checks or web searches. <br>
-Mitigation: Share only necessary trip details and confirm before using saved places or sensitive preferences. <br>
-Risk: If the departure city is not specified, the skill defaults to Delhi, which can make travel time and cost estimates inaccurate. <br>
-Mitigation: Ask for or confirm the departure city before relying on recommendations. <br>
-Risk: Weather, route, and cost details are time-sensitive and may change before travel. <br>
-Mitigation: Verify current weather, transit options, and prices before booking or departure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trip Discover on ClawHub](https://clawhub.ai/swayamg20/trip-discover) <br>
+## Use Case:
 
+External users use this skill to get concise destination recommendations, trip comparisons, and saved-place travel ideas tailored to vibe, budget, duration, group size, and origin city.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel recommendations, destination comparisons, and concise trip-planning guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits recommendations to at most three destinations and includes travel time, rough per-person cost, current weather, and a tailored rationale.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved destinations, known origin city, and travel preferences may reveal personal travel interests if memory is used unexpectedly.
+
+Mitigation: Use saved-place memory only when the user asks for it or has clearly made those preferences available for recommendations.
+
+Risk: Destination availability, weather, seasonal fit, and costs can change and may make a recommendation inaccurate.
+
+Mitigation: Check current web and weather sources before presenting recommendations, and treat estimates as planning guidance rather than booking guarantees.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swayamg20/skills/trip-discover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise recommendation output with a maximum of three destinations, travel details, rough per-person costs, weather, and an opinionated pick.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

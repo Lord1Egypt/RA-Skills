@@ -1,40 +1,51 @@
-## Description: <br>
-Runs a cost-benefit audit workflow that collects full-scope costs, estimates benefits, compares inputs and outputs, simulates sensitivity, and prepares an audit report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a five-step cost-benefit audit workflow covering cost collection, benefit measurement, comparative analysis, sensitivity simulation, and report generation.
 
-## Publisher: <br>
-[rc17777](https://clawhub.ai/user/rc17777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rc17777](https://clawhub.ai/user/rc17777)
 
-## Use Case: <br>
-Developers and audit practitioners use this skill to run a structured cost-benefit audit workflow for a named project, including cost collection, benefit measurement, comparative analysis, sensitivity analysis, and final report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project-local operator and development workflows can affect real users or production data when run with authenticated admin credentials. <br>
-Mitigation: Install only for intended ClawHub operator or development workflows, and review affected maintenance, moderation, content-rights, and migration actions before use. <br>
-Risk: High-impact actions are available in the skill bundle but are gated by explicit user control. <br>
-Mitigation: Require explicit operator approval before executing workflow steps that send email, change production data, or affect user-facing records. <br>
+## Use Case:
 
+Audit teams and workflow operators use this skill to evaluate project or activity costs and benefits, compare results, simulate sensitivity scenarios, and produce a cost-benefit analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rc17777/audit-cost-benefit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and workflow configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a staged audit workflow and final cost-benefit analysis report; requires project context such as project name, implementing unit, and evaluation period.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The workflow declares external engine and helper skill dependencies that are not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review pipeline_engine.py v3.0, audit_workflow.py, audit_router.py, and referenced helper skills before using the workflow with sensitive audit data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rc17777/skills/audit-cost-benefit)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/workflow.yaml](artifact/workflow.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and workflow-generated audit report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on pipeline_engine.py v3.0, audit_workflow.py, audit_router.py, and referenced helper skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-A prompt-based educational skill that answers questions about the number 2, including mathematics, binary systems, science, culture, philosophy, symbolism, and trivia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A prompt-based educational skill that provides structured natural-language answers about the number 2, including its mathematical properties, history, science, computing, culture, symbolism, and trivia.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and developers use this skill to get structured explanations, examples, and reference-style guidance about the number 2 across math, computing, science, language, culture, and symbolism. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route general questions about duality, pairs, binary, or balance to this skill unexpectedly. <br>
-Mitigation: Use narrower activation wording or review routing behavior before deploying it in environments that require precise skill selection. <br>
-Risk: The skill provides broad educational content and may include factual claims that need review for high-stakes or specialized use. <br>
-Mitigation: Treat responses as general informational guidance and verify important facts against authoritative references before relying on them. <br>
+## Use Case:
 
+External users and developers can ask natural-language questions about the number 2 and receive concise educational explanations, examples, tables, and trivia across math, science, computing, language, culture, and symbolism.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wscats/2) <br>
-- [Publisher profile](https://clawhub.ai/user/Wscats) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses to natural-language prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only informational output; no files, commands, credentials, system access, or persistence are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Broad activation on two-related topics may make the skill intrusive in unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation rules when installing or adapting the skill so it triggers only for explicit number-2, duality, binary, or pair-related requests.
+
+Risk: Educational answers may be verbose and may require review for factual precision in high-impact settings.
+
+Mitigation: Review generated explanations against trusted references before using them in formal instruction, publication, or decision support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/2)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only educational output; no code execution, credentials, persistence, or hidden data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

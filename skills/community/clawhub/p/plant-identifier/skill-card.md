@@ -1,45 +1,61 @@
-## Description: <br>
-Identify plants from photos using trait-based analysis, ranked species candidates, follow-up capture guidance, and a reusable local log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify plants from photos using trait-based analysis, ranked species candidates, follow-up capture guidance, and a reusable local log.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to identify plants from user-supplied photos, compare ranked candidate species, and decide which plant part to photograph next when evidence is incomplete. Users may also save approved local observation notes for recurring plants or wild observations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant photos alone may not establish species-level certainty, edibility, toxicity thresholds, or medicinal safety. <br>
-Mitigation: Return ranked candidates with explicit uncertainty, avoid safety-critical clearance, and ask for the next best missing plant view when evidence is incomplete. <br>
-Risk: Optional observation memory could store sensitive location context if users include precise addresses or private details. <br>
-Mitigation: Ask before writing local files, keep notes under ~/plant-identifier/, and avoid saving precise home addresses or unrelated personal information. <br>
+## Use Case:
 
+External users use this skill to identify plants from one or more photos, compare ranked candidates, decide what plant part to photograph next, and optionally save approved local observation notes.
 
-## Reference(s): <br>
-- [Plant Identifier on ClawHub](https://clawhub.ai/ivangdavila/plant-identifier) <br>
-- [Plant Identifier homepage](https://clawic.com/skills/plant-identifier) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [evidence-guide.md](artifact/evidence-guide.md) <br>
-- [memory-template.md](artifact/memory-template.md) <br>
-- [setup.md](artifact/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with ranked candidates, confidence bands, evidence notes, follow-up photo requests, and optional local observation note templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files under ~/plant-identifier/ only after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Local observation notes may include sensitive location or personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Save notes only with user approval and avoid storing precise home addresses or unrelated personal information.
+
+Risk: Photo-based identification could be mistaken for edible, toxic, or medicinal clearance.
+
+Mitigation: Keep safety decisions separate from identification and answer safety-sensitive requests conservatively.
+
+Risk: Incomplete photos can lead to uncertain species-level identification.
+
+Mitigation: Use ranked candidates with explicit confidence bands and request the single most useful missing plant view.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/plant-identifier)
+- [Skill homepage](https://clawic.com/skills/plant-identifier)
+- [Plant evidence guide](artifact/evidence-guide.md)
+- [Memory template](artifact/memory-template.md)
+- [Setup guide](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown with ranked candidates, confidence bands, follow-up photo guidance, and optional local observation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local observation files are written only when the user approves]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

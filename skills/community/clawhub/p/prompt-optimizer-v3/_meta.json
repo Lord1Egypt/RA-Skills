@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7363qe1yte6tvz0gh235edyx843pwe",
-  "slug": "prompt-optimizer-v3",
+  "slug": "prompt-optimizer-dxx",
+  "name": "Prompt Optimizer",
   "version": "3.2.0",
-  "publishedAt": 1776143072745
+  "description": "AI 任务处理器 - 将模糊需求自动翻译成 AI 能精准执行的指令",
+  "author": "dxx",
+  "tags": ["prompt", "optimizer", "ai", "task-processor"],
+  "homepage": "https://github.com/ntaffffff/openclaw-skills/tree/master/skills/prompt-optimizer"
 }

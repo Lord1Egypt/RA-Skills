@@ -1,46 +1,58 @@
-## Description: <br>
-Manage YouTube channel sections by helping agents list or delete channel sections with the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube channel sections by guiding an agent to list or delete sections with the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-External users and developers use this skill to manage YouTube channel sections from an agent workflow, including listing sections for inspection and deleting selected sections by ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth client secrets and cached tokens can expose YouTube account access if shared or committed. <br>
-Mitigation: Keep client_secret.json and youtube.token.json private, store them outside source control, and restrict access to environments that need the skill. <br>
-Risk: Deleting channel sections by the wrong ID can remove unintended YouTube channel organization. <br>
-Mitigation: List channel sections first and confirm the exact IDs before running delete commands. <br>
-Risk: The skill depends on the third-party yutu CLI for YouTube operations. <br>
-Mitigation: Install it only from trusted sources and use it only when you intend to manage YouTube channel sections. <br>
+## Use Case:
 
+External creators, developers, and channel operators use this skill to have an agent list YouTube channel sections or prepare yutu CLI commands to delete selected channel section IDs.
 
-## Reference(s): <br>
-- [Channel Section Delete](references/channelSection-delete.md) <br>
-- [Channel Section List](references/channelSection-list.md) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [yutu project homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [ClawHub skill page](https://clawhub.ai/OpenWaygate/youtube-channel-section) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require the yutu CLI plus OAuth credential and token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release metadata) <br>
+Risk: The skill requires YouTube OAuth client credentials and a cached token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep client_secret.json and youtube.token.json out of shared folders and source control, and prefer protected secret storage over raw JSON environment variables.
+
+Risk: The delete operation can remove YouTube channel sections.
+
+Mitigation: Require explicit confirmation before running yutu channelSection delete and use pinned, verified yutu versions where possible.
+
+## Reference(s):
+
+- [Channel Section Delete](references/channelSection-delete.md)
+- [Channel Section List](references/channelSection-list.md)
+- [Yutu Setup Guide](references/setup.md)
+- [yutu GitHub Homepage](https://github.com/eat-pray-ai/yutu)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+- [ClawHub Skill Page](https://clawhub.ai/openwaygate/skills/youtube-channel-section)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and option tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yutu, YouTube OAuth credentials, and a cached token; destructive delete commands should be confirmed before execution.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

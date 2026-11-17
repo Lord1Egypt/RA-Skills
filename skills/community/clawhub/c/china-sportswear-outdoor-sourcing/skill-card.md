@@ -1,39 +1,50 @@
-## Description: <br>
-Guides international buyers through China sportswear and outdoor apparel sourcing by summarizing manufacturing clusters, supply-chain structure, subsector details, and supplier-evaluation considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive sportswear and outdoor equipment sourcing guide for international buyers, covering China's athletic apparel, footwear, outdoor gear, accessories manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-International buyers, sourcing teams, and procurement researchers use this skill to obtain cluster-level guidance on China's sportswear, athletic apparel, footwear, outdoor gear, and accessories supply base. It supports early sourcing research, supplier-evaluation planning, and product-category orientation rather than verified supplier selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sourcing, supplier, policy, certification, or market claims may be outdated or unverified. <br>
-Mitigation: Independently verify claims against current supplier records, official policy sources, certification bodies, and market data before making purchasing decisions. <br>
+## Use Case:
 
+External buyers, sourcing teams, and procurement analysts use this skill to research China sportswear and outdoor product clusters, supply-chain structure, supplier evaluation criteria, lead times, payment terms, and certification considerations before engaging suppliers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-sportswear-outdoor-sourcing) <br>
-- [Publisher profile](https://clawhub.ai/user/1970168137) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with JSON-like structured excerpts derived from bundled reference data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cluster-level business-reference material; no individual factory contacts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Commercial figures, supplier examples, and sourcing recommendations may be incomplete, outdated, or unsuitable for a specific transaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify figures, suppliers, certifications, audit reports, samples, legal requirements, and payment terms independently before making business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-sportswear-outdoor-sourcing)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Natural-language answers and structured Python return values from packaged JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained reference data; no network access or sensitive local access observed in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Structured interview assistant that generates STAR interview questions from a job description and optional resume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured interview assistant that generates STAR interview question sets from job descriptions and optional resume text.
 
-## Publisher: <br>
-[wanwan2qq](https://clawhub.ai/user/wanwan2qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanwan2qq](https://clawhub.ai/user/wanwan2qq)
 
-## Use Case: <br>
-HR teams, recruiters, and hiring managers use this skill to turn job descriptions and optional resumes into structured STAR interview questions, scoring rubrics, and candidate-role matching summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates execution to an unpinned global `interview-assistant` executable that is not included in the artifact. <br>
-Mitigation: Verify the executable source, version, and behavior before use, or require a pinned package or source release for review. <br>
-Risk: Job descriptions and resumes may contain sensitive hiring or candidate information. <br>
-Mitigation: Use only in an approved environment and avoid submitting real candidate materials until the executable and data handling behavior have been reviewed. <br>
+## Use Case:
 
+HR staff, recruiters, hiring managers, and interview preparation agents use this skill to turn a job description and optional candidate resume into structured STAR behavioral interview questions, matching analysis, and scoring guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wanwan2qq/interview-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/wanwan2qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, or text from a CLI command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces interview questions, matching analysis, STAR scoring guidance, and summaries based on user-provided job descriptions and optional resumes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The wrapper delegates execution to the first interview-assistant command found on PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or link the interview-assistant binary from a trusted source and verify PATH resolution before use.
+
+Risk: Resume inputs may contain unnecessary personal data or identifiers.
+
+Mitigation: Redact contact details and other identifiers unless they are required for interview-question generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanwan2qq/skills/interview-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown, JSON, or plain text containing job and candidate analysis, STAR interview questions, scoring criteria, and summary guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an interview-assistant binary on PATH; accepts job-description text, optional resume text, question count, and output-format options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

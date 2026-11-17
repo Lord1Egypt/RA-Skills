@@ -1,41 +1,50 @@
-## Description: <br>
-Design and plan iOS animations with structured specs for transitions, micro-interactions, gesture-driven motion, loading states, and implementation-ready motion recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and plan iOS animations with structured specs covering transitions, micro-interactions, gesture-driven motion, and loading states.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and designers use this skill to plan iOS animation approaches, decide between system-provided and custom motion, and produce implementation-ready animation specs covering triggers, timing, accessibility, haptics, interruption behavior, and recommended Apple APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary notes that skill workflows can run powerful local or authenticated commands when invoked. <br>
-Mitigation: Review proposed actions before execution and avoid granting local credentials or authenticated CLI access unless those actions are explicitly intended. <br>
-Risk: Animation guidance can create accessibility or usability issues if motion is excessive, non-interruptible, or used as the only signal. <br>
-Mitigation: Require every animation spec to include Reduce Motion fallback, interruption behavior, and multimodal feedback such as haptics or announcements when needed. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to plan iOS motion behavior before implementation, compare animation approaches, and produce implementation-ready animation specifications with accessibility, interruption, haptics, and API guidance.
 
-## Reference(s): <br>
-- [Animation Pattern Library](references/animation-patterns.md) <br>
-- [Timing & Easing Guidelines](references/timing-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with structured animation specs, option comparisons, tables, and Apple API references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SwiftUI or UIKit API names and concise implementation notes; no external tool execution is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill may activate for broad animation-planning requests beyond a specific iOS implementation task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is about iOS animation design before relying on the structured guidance, and review the resulting animation spec before implementation.
+
+## Reference(s):
+
+- [Animation Pattern Library](references/animation-patterns.md)
+- [Timing & Easing Guidelines](references/timing-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with structured animation specs, comparison options, API recommendations, and optional code-oriented implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No file, account, network, persistence, or system access is requested by the reviewed artifact.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

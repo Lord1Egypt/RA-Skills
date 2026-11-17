@@ -1,43 +1,59 @@
-## Description: <br>
-Detects the largest vehicle in a local image with TrafficEye car-box detection, runs make and model recognition for that vehicle, and returns license plates attached to the same road-user payload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect the largest vehicle from an image using TrafficEye car-box detection, run make and model recognition for that vehicle, and return all license plates attached to the same road-user payload.
 
-## Publisher: <br>
-[eyedea-ai](https://clawhub.ai/user/eyedea-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eyedea-ai](https://clawhub.ai/user/eyedea-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect a user-provided vehicle image, select the largest detected road user, and return its box, make and model data, and associated license plate records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle images and detected license plate data are sent to TrafficEye during live recognition. <br>
-Mitigation: Use the skill only when this data sharing is acceptable for the image and deployment context. <br>
-Risk: TrafficEye API credentials are required for live requests. <br>
-Mitigation: Use an environment-scoped API key, prefer header or bearer authentication, and avoid query-string credentials unless the deployment specifically requires them. <br>
+## Use Case:
 
+Developers and agents use this skill to submit a local vehicle image to TrafficEye, select the largest detected road user, and present its make, model, box, and associated license plates.
 
-## Reference(s): <br>
-- [TrafficEye Homepage](https://trafficeye.ai) <br>
-- [TrafficEye API Documentation](https://www.trafficeye.ai/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/eyedea-ai/make-and-model-recognition) <br>
-- [eyedea-ai Publisher Profile](https://clawhub.ai/user/eyedea-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the helper script, with agent-facing guidance for setup and interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path and a TrafficEye API key for live recognition; offline validation can use the bundled sample response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send sensitive vehicle images to an external TrafficEye endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images that are appropriate to send to TrafficEye or another trusted deployment.
+
+Risk: The API endpoint is configurable and the security evidence notes no host or HTTPS safeguards.
+
+Mitigation: Keep TRAFFICEYE_API_URL set to the documented HTTPS TrafficEye endpoint unless the alternate endpoint is trusted.
+
+Risk: API keys can be sent in query-string mode, where URLs are commonly logged.
+
+Mitigation: Prefer the default header authentication mode and avoid TRAFFICEYE_API_KEY_MODE=query.
+
+## Reference(s):
+
+- [TrafficEye homepage](https://trafficeye.ai)
+- [TrafficEye API reference](https://www.trafficeye.ai/api)
+- [ClawHub skill page](https://clawhub.ai/eyedea-ai/skills/make-and-model-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON recognition output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the selected road-user payload with repeated box, plates, area, and source fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

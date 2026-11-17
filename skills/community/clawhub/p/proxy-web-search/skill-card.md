@@ -1,41 +1,54 @@
-## Description: <br>
-Proxy Web Search lets an agent perform web searches through a user-configured OpenClaw Manager Web Search Proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proxy Web Search performs web searches through an OpenClaw Manager Web Search Proxy configured with the WEB_SEARCH_PROXY_URL environment variable.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web information, choose supported search engines, and apply result count, recency, or domain filters through an OpenClaw Manager proxy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the configured OpenClaw Manager proxy and may be forwarded to search providers. <br>
-Mitigation: Use only a trusted WEB_SEARCH_PROXY_URL and avoid submitting secrets, private personal data, or sensitive internal prompts as search queries. <br>
-Risk: The skill depends on an external proxy and curl being available at runtime. <br>
-Mitigation: Confirm curl is installed and WEB_SEARCH_PROXY_URL points to a reachable, intended OpenClaw Manager Web Search Proxy before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve current web search results through an approved OpenClaw Manager proxy, including optional engine selection, recency filtering, and result count control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whyhit2005/proxy-web-search) <br>
-- [Publisher profile](https://clawhub.ai/user/whyhit2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search responses and Markdown usage guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, WEB_SEARCH_PROXY_URL, and a reachable OpenClaw Manager Web Search Proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Search queries are sent to the configured OpenClaw Manager Web Search Proxy, which may expose sensitive prompts or proprietary terms to that proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted and approved proxy, prefer a trusted HTTPS WEB_SEARCH_PROXY_URL, and avoid sending secrets, credentials, private incident details, or proprietary terms unless the proxy is approved for that data.
+
+Risk: The skill is unavailable when WEB_SEARCH_PROXY_URL is unset or points to an unavailable proxy.
+
+Mitigation: Configure WEB_SEARCH_PROXY_URL before use and verify that the OpenClaw Manager Web Search Proxy is running and reachable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/whyhit2005/skills/proxy-web-search)
+- [Publisher Profile](https://clawhub.ai/user/whyhit2005)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [JSON search responses and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and WEB_SEARCH_PROXY_URL; default engine is search_pro_quark with 25 results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

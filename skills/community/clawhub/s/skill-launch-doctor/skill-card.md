@@ -1,41 +1,54 @@
-## Description: <br>
-Audit, score, and improve AgentSkills-style skill folders for trigger quality, progressive disclosure, resource references, cross-agent compatibility, safety risks, install friction, marketplace positioning, and launch readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit, score, and improve agent skills before publishing, sharing, or installing them.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and teams use this skill to audit AgentSkill-style skill folders before publishing, sharing, installing, or rolling them out. It helps agents produce launch readiness reports with scores, prioritized findings, description rewrites, compatibility notes, remaining risks, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence notes powerful maintainer workflows that can affect live services or public content when run with authenticated credentials. <br>
-Mitigation: Use authenticated moderation, email, PR-commenting, proof publishing, production migration, or similar workflows only when the user explicitly requests them and the workflow provides confirmation, dry-run, or signoff gates. <br>
-Risk: Launch-readiness guidance and proposed rewrites may introduce inaccurate or misleading skill behavior claims if applied without review. <br>
-Mitigation: Review generated findings and rewrites against the source skill before publishing, and keep capability, compatibility, safety, pricing, license, and owner claims grounded in the artifact evidence. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review AgentSkills-style skill folders for trigger quality, compatibility, safety, install friction, marketplace positioning, and launch readiness before publishing, sharing, or installing them.
 
-## Reference(s): <br>
-- [Description Patterns](references/description-patterns.md) <br>
-- [Skill Launch Rubric](references/launch-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report, with optional JSON output from the bundled audit script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include an overall score and verdict, P0/P1 findings with concrete fixes, optional description rewrite, compatibility notes, remaining launch risks, and the smallest next action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill's safety score is a launch-readiness aid, not a full security review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use findings as review guidance, then run an independent security review before relying on a skill in sensitive or production workflows.
+
+Risk: The auditor evaluates the skill directory it is pointed at, so reviewing the wrong path can produce misleading readiness results.
+
+Mitigation: Run it only on the specific SKILL.md file or skill directory intended for release and confirm the target path in the report.
+
+## Reference(s):
+
+- [Skill Launch Rubric](references/launch-rubric.md)
+- [Description Patterns](references/description-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown audit report with optional JSON output and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include score, verdict, P0/P1 findings, concrete fixes, suggested description rewrites, compatibility notes, remaining launch risks, and a smallest next action.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

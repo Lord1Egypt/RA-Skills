@@ -1,43 +1,67 @@
-## Description: <br>
-Helps agents use the Notion API to create, update, and query pages, with workflows for saving ideas and tracking related milestones in configured Notion databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages Notion pages, databases, idea records, planning conversions, and milestone entries through Notion API guidance and confirmation-based write scripts.
 
-## Publisher: <br>
-[xuyangmiemie-beep](https://clawhub.ai/user/xuyangmiemie-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyangmiemie-beep](https://clawhub.ai/user/xuyangmiemie-beep)
 
-## Use Case: <br>
-Developers and agent users can use this skill to connect an agent to Notion, persist idea records, convert ideas into planned work, and create or update milestone entries after reviewing confirmation prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write records to Notion databases after user approval. <br>
-Mitigation: Read each confirmation prompt carefully and approve only intended idea or milestone writes. <br>
-Risk: A Notion integration token is required for API access. <br>
-Mitigation: Use a dedicated least-privilege token and protect the local ~/.config/notion/api_key file. <br>
-Risk: The bundled workflows target configured database IDs. <br>
-Mitigation: Confirm the database IDs match the intended Notion workspace before using write workflows. <br>
+## Use Case:
 
+Developers and Notion users use this skill to persist ideas into a Notion ideas database, convert ideas into plans, create linked milestones, and run common Notion API operations with the appropriate API version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyangmiemie-beep/notion-ideas-tracker) <br>
-- [Notion API documentation](https://developers.notion.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples, bash commands, and Python helper script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled write scripts read JSON from stdin, show a confirmation prompt, and return Notion page links after successful writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.release.version) <br>
+Risk: The skill can give an agent Notion integration access for read and write operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Notion integration and share only the intended pages or databases with it.
+
+Risk: The skill stores and reads the Notion token from a plaintext local file.
+
+Mitigation: Protect the token file, restrict local access to it, or use a safer secret-management approach.
+
+Risk: Broad conversational triggers can initiate write workflows.
+
+Mitigation: Keep confirmation prompts enabled and avoid broad triggers for Notion write actions.
+
+Risk: The artifact contains hardcoded Notion database IDs.
+
+Mitigation: Replace the hardcoded database IDs with databases owned and reviewed by the deploying user.
+
+Risk: Bearer-token requests are built through curl command arguments.
+
+Mitigation: Prefer a safer HTTP client for authenticated Notion requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyangmiemie-beep/skills/notion-ideas-tracker)
+- [Publisher profile](https://clawhub.ai/user/xuyangmiemie-beep)
+- [Notion Developers](https://developers.notion.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, bash commands, and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Notion API request guidance and confirmation-gated write actions for ideas and milestones.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

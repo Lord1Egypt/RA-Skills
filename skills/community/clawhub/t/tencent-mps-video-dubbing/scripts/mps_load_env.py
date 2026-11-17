@@ -18,6 +18,10 @@ mps_load_env.py — 腾讯云 MPS 视频译制 Skill 环境变量自动加载工
     TENCENTCLOUD_COS_REGION      （必需，COS 桶所在地域）
     TENCENTCLOUD_API_REGION      （必需，MPS API 调用地域）
 
+  可选变量：
+    TENCENTCLOUD_MPS_ENDPOINT    （可选，MPS API 接入点；默认 mps.tencentcloudapi.com，
+                                  国际站设为 mps.intl.tencentcloudapi.com）
+
 用法（在其他脚本中调用）：
     from mps_load_env import ensure_env_loaded
     ensure_env_loaded()
@@ -55,6 +59,11 @@ _REQUIRED_VARS = [
     "TENCENTCLOUD_COS_BUCKET",
     "TENCENTCLOUD_COS_REGION",
     "TENCENTCLOUD_API_REGION",
+]
+
+# 可选变量（未设置时使用默认值，不报错）
+_OPTIONAL_VARS = [
+    "TENCENTCLOUD_MPS_ENDPOINT",
 ]
 
 # 候选 dotenv 文件列表（按加载顺序，先加载者优先；load_dotenv 默认 override=False）
@@ -236,6 +245,15 @@ def _format_var_status(var: str, val: str) -> str:
     return "❌ 未设置"
 
 
+def _format_optional_var_status(var: str, val: str) -> str:
+    """格式化可选变量的展示状态（非敏感，明文展示，未设置时提示默认行为）。"""
+    if val:
+        return f"✅ 已设置 ({val})"
+    if var == "TENCENTCLOUD_MPS_ENDPOINT":
+        return "⚪ 未设置（默认国内站 mps.tencentcloudapi.com）"
+    return "⚪ 未设置（使用默认值）"
+
+
 # ─── 独立运行时：诊断模式 ───────────────────────────────────────────────────
 if __name__ == "__main__":
     import argparse
@@ -267,6 +285,12 @@ if __name__ == "__main__":
             print(f"  {var}: {status}")
 
         print()
+        print("【可选变量】")
+        for var in _OPTIONAL_VARS:
+            val = os.environ.get(var, "")
+            print(f"  {var}: {_format_optional_var_status(var, val)}")
+
+        print()
         if all_ok:
             print("✅ 必需变量全部已配置，可以正常使用视频译制 Skill。")
             sys.exit(0)
@@ -288,6 +312,10 @@ if __name__ == "__main__":
         for var in _REQUIRED_VARS:
             val = os.environ.get(var, "")
             print(f"  - {var}: {_format_var_status(var, val)}  [必需]")
+
+        for var in _OPTIONAL_VARS:
+            val = os.environ.get(var, "")
+            print(f"  - {var}: {_format_optional_var_status(var, val)}  [可选]")
 
         print("\n不会实际加载环境变量。移除 --dry-run 参数后执行实际操作。")
         sys.exit(0)
@@ -312,6 +340,12 @@ if __name__ == "__main__":
         if not val:
             all_ok = False
         print(f"  {var}: {status}")
+
+    print()
+    print("【可选变量】")
+    for var in _OPTIONAL_VARS:
+        val = os.environ.get(var, "")
+        print(f"  {var}: {_format_optional_var_status(var, val)}")
 
     if newly:
         target_hits = [k for k in newly if k in set(_REQUIRED_VARS)]

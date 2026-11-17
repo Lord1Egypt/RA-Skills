@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>封面卡</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --bg: #FFFFFF;
+    --text-main: #1A1A1A;
+    --text-sub: #555555;
+    --text-muted: #999999;
+    --accent: #FF2442;
+    --accent-light: rgba(255, 36, 66, 0.08);
+    --accent-border: rgba(255, 36, 66, 0.28);
+    --border: rgba(0, 0, 0, 0.06);
+}
+body {
+    background: var(--bg);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    /* 圆点纹背景 */
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,36,66,0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(255,36,66,0.06) 0%, transparent 42%),
+        repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(255,36,66,0.02) 13px, rgba(255,36,66,0.02) 14px);
+}
+/* 封面卡：固定 600×800，居中偏上排版 */
+.container {
+    width: 600px;
+    height: 800px;
+    padding: 68px 52px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+/* 右上 / 右下 装饰色块，平衡左对齐留白 */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,36,66,0.12) 0%, transparent 70%);
+}
+.container::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,36,66,0.08) 0%, transparent 70%);
+}
+/* 顶部标记 */
+.cover-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: 700;
+    padding: 7px 18px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    margin-bottom: 36px;
+    box-shadow: 0 6px 18px rgba(255,36,66,0.28);
+}
+/* 大标题 */
+.cover-title {
+    font-size: 3.8em;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+    margin-bottom: 22px;
+    position: relative;
+}
+.cover-title .hl {
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+}
+.cover-title .hl::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 6px;
+    height: 14px;
+    background: var(--accent-light);
+    z-index: -1;
+}
+/* 副题 */
+.cover-subtitle {
+    font-size: 1.25em;
+    color: var(--text-sub);
+    line-height: 1.7;
+    margin-bottom: 44px;
+    word-break: keep-all;
+    position: relative;
+}
+/* 卖点短句 — 卡片式，填充下方空间 */
+.cover-points { display: flex; flex-direction: column; gap: 14px; position: relative; }
+.cover-point {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-main);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+}
+.cover-point .num {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent-border);
+    color: var(--accent);
+    font-size: 0.9em;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cover-footer {
+    position: absolute;
+    bottom: 40px;
+    left: 56px;
+    font-size: 0.8em;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover-badge">干货收藏</div>
+        <div class="cover-title">3 步做出<br><span class="hl">高颜值</span>长图</div>
+        <div class="cover-subtitle">从纯文字到分享级排版，一次讲透 18 种风格的选择逻辑</div>
+        <div class="cover-points">
+            <div class="cover-point"><span class="num">1</span>按内容气质选风格</div>
+            <div class="cover-point"><span class="num">2</span>套骨架，填内容</div>
+            <div class="cover-point"><span class="num">3</span>一键截图导出</div>
+        </div>
+        <div class="cover-footer">封面卡 · 3:4 固定版式 · 小红书风</div>
+    </div>
+</body>
+</html>

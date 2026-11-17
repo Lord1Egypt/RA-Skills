@@ -100,7 +100,7 @@ Content-Type: application/x-www-form-urlencoded
   "error_msg": "",
   "log_id": "10138598131137362685273585665433",
   "result": {
-    "task_id": "task-3zy9Bg8CHt1M4pP0cX2q5bg28j268015"
+    "task_id": "taREDACTED-SECRET"
   }
 }
 ```
@@ -126,7 +126,7 @@ Content-Type: application/x-www-form-urlencoded
   "error_code": 0,
   "error_msg": "",
   "result": {
-    "task_id": "task-UnvGsgbYZp9pS3BZRHn11ifzjNvKzTgf",
+    "task_id": "taREDACTED-SECRET",
     "status": "success",
     "task_error": null,
     "duration": 902.0,
@@ -153,7 +153,7 @@ Content-Type: application/x-www-form-urlencoded
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | page_id | string | 页码 ID |
-| page_num | int | 页码数 |
+| page_num | int | 页码数，从 0 开始 |
 | text | string | 当前页的所有纯文字内容 |
 | layouts | list | 页面内容版式分析的结果 |
 | tables | list | 页面表格解析结果 |
@@ -187,7 +187,7 @@ Content-Type: application/x-www-form-urlencoded
 
 | 类型 | 说明 |
 |------|------|
-| para | 段落 |
+| text | 段落 |
 | table | 表格 |
 | image | 文档中的插图 |
 | head_tail | 页面顶部 |
@@ -195,6 +195,7 @@ Content-Type: application/x-www-form-urlencoded
 | seal | 印章 |
 | title | 标题 |
 | formula | 公式 |
+| hand_sign | 手写签名 |
 
 **子类型（sub_type）取值**：
 

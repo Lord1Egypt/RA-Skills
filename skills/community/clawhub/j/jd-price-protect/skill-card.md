@@ -1,40 +1,53 @@
-## Description: <br>
-Auto-apply JD.com (京东) price protection on all eligible orders by connecting to Chrome via OpenClaw Browser Relay CDP, navigating to the JD price protection page, clicking all "申请价保" buttons, and reporting refund results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-apply JD.com (京东) price protection on all eligible orders by connecting to Chrome through OpenClaw Browser Relay CDP, opening the JD price protection page, clicking visible "申请价保" buttons, and reporting refund results.
 
-## Publisher: <br>
-[Danielwangyy](https://clawhub.ai/user/Danielwangyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielwangyy](https://clawhub.ai/user/danielwangyy)
 
-## Use Case: <br>
-External users and automation agents use this skill to check JD.com orders for eligible price-protection refunds, submit applications through a logged-in Chrome session, and receive JSON results for successful and failed claims. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a Chrome session logged into JD.com and submits price-protection applications for every eligible order it sees. <br>
-Mitigation: Run it only when the user intentionally wants those JD.com account actions, and review the JSON result output after execution. <br>
-Risk: Cron scheduling can repeat account actions without prompting. <br>
-Mitigation: Keep a clear way to disable the scheduled job and review results periodically, especially when running every few hours. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [JD Price Protection portal](https://pcsitepp-fm.jd.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/Danielwangyy/jd-price-protect) <br>
+## Use Case:
 
+External users and shopping automation agents use this skill to check logged-in JD.com orders for eligible price-protection refunds and submit matching price-protection requests. It is intended for agents that can run the included Node.js script against a user's connected Chrome session.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime script outputs JSON containing totals, clicked count, page count, successful refunds, and failed claims.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill controls a logged-in JD.com browser session and submits all visible price-protection requests automatically.
+
+Mitigation: Run it manually first and review the JSON output before enabling scheduled or silent operation.
+
+Risk: Scheduled use can perform unattended account actions through the local browser relay.
+
+Mitigation: Use scheduled mode only when the user is comfortable with unattended JD.com account actions and local relay-token access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielwangyy/skills/jd-price-protect)
+- [JD.com price protection portal](https://pcsitepp-fm.jd.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON results from the Node.js automation script, with optional agent-facing notification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports totals, clicked request count, pages checked, successful refunds with amounts, and failed requests with reasons.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

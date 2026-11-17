@@ -1,0 +1,8 @@
+# open-stackoverflow configuration
+browser: brave
+homepage_url: https://stackoverflow.com/
+reuse_existing_session: true
+reuse_existing_tab: true
+avoid_duplicate_tabs: true
+verify_destination: true
+stop_at_login: true

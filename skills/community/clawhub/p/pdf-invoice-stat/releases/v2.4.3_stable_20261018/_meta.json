@@ -1,0 +1,45 @@
+{
+  "name": "pdf-invoice-stat",
+  "version": "2.4.3",
+  "patch_history": [
+    {
+      "version": "2.4.3",
+      "date": "2026-10-18",
+      "changes": [
+        "修复: 项目名杂质清理（去'规格型号'等列名）",
+        "修复: 多项目分行（按 * 标志）",
+        "新增: 单元测试 tests/test_extract_v243.py"
+      ]
+    },
+    {
+      "version": "2.4.2",
+      "date": "2026-10-16",
+      "changes": [
+        "修复: 跨行发票号识别（维达商贸漏识别）",
+        "修复: 跨行日期识别"
+      ]
+    },
+    {
+      "version": "2.4.1",
+      "date": "2026-10-16",
+      "changes": [
+        "兼容版: 增强 find_invoice_number 跨行兜底"
+      ]
+    },
+    {
+      "version": "2.4.0",
+      "date": "2025-08-13",
+      "changes": [
+        "原始 v2.4.0 发行版"
+      ]
+    }
+  ],
+  "format_support": [
+    "PDF",
+    "XML",
+    "OFD",
+    "ZIP"
+  ],
+  "output_format": "xlsx (15 列 v2.4.0 / 16 列 v3.0.0)",
+  "language": "python>=3.7"
+}

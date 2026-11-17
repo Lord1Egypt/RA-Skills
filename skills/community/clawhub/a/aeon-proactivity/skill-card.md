@@ -1,40 +1,57 @@
-## Description: <br>
-Aeon Proactivity helps an agent learn from user feedback, keep local notes, remember preferences and reminders, and suggest safer or more efficient next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aeon Proactivity helps AEON agents learn from user feedback, record lessons, remember preferences and reminders, and improve future interactions.
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent a local proactivity framework for remembering corrections, preferences, time-bound reminders, successful approaches, and configuration changes. It is intended for agents that should adapt across sessions while keeping notes in the user's local workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores corrections, preferences, reminders, and session notes locally, which could capture sensitive details if users provide them. <br>
-Mitigation: Avoid giving the agent secrets or sensitive personal details, and periodically inspect or delete the files under ~/.openaeon/workspace/. <br>
-Risk: Stored preferences, reminders, or prior-session summaries can become stale or misleading over time. <br>
-Mitigation: Review local memory files periodically and remove outdated, conflicting, or unwanted entries. <br>
+## Use Case:
 
+External users and developers use this skill to make an AEON agent adapt from corrections, retain local cross-session notes, remember preferences and reminders, suggest useful skills or automations, and ask for clarification before risky actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gu2003li/aeon-proactivity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, text guidance, and suggested shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local memory files under ~/.openaeon/workspace/ when local storage permissions are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server evidence and _meta.json) <br>
+Risk: The skill can persist broad conversation history, work habits, preferences, reminders, and configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local cross-session memory is desired, require confirmation before storing long-term learnings, and review or delete memory files regularly.
+
+Risk: Persistent memory may capture secrets or personal data if used in sensitive conversations.
+
+Mitigation: Avoid using the skill around secrets or personal data and do not store passwords, keys, full command outputs, or other sensitive details.
+
+Risk: The security review notes unclear opt-in, retention, and redaction controls.
+
+Mitigation: Use explicit user consent for memory behavior, keep retention limited, and periodically remove outdated or conflicting entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gu2003li/skills/aeon-proactivity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with plain-language responses and suggested shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local markdown memory files for lessons, reminders, preferences, success patterns, and configuration history.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

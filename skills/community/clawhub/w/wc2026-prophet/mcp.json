@@ -1,0 +1,260 @@
+{
+  "apis": [
+    {
+      "name": "getUpcomingMatches",
+      "description": "获取即将进行的比赛列表（业务对象：比赛卡片）。\n调用前置条件：用户询问接下来的赛程、比赛安排等。\n【严禁场景】用户询问已完赛结果时，应调用 getMatchResult。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "description": "返回比赛数量，默认5场。用户未指定时留空使用默认值。"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "matches": {
+            "type": "array",
+            "description": "即将进行的比赛列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": { "type": "string", "description": "比赛日期 YYYY-MM-DD" },
+                "time": { "type": "string", "description": "比赛时间 HH:MM" },
+                "teamA": { "type": "string", "description": "主队代码" },
+                "teamB": { "type": "string", "description": "客队代码" },
+                "teamAName": { "type": "string", "description": "主队名称" },
+                "teamBName": { "type": "string", "description": "客队名称" },
+                "group": { "type": "string", "description": "小组（淘汰赛为空）" },
+                "round": { "type": "string", "description": "轮次（仅淘汰赛）" },
+                "venue": { "type": "string", "description": "比赛场地" }
+              }
+            }
+          },
+          "total": { "type": "number", "description": "总场次" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/match-card/index" } }
+    },
+    {
+      "name": "getMatchResult",
+      "description": "获取已完赛比赛结果（业务对象：比赛结果卡片）。\n调用前置条件：用户询问比赛结果、比分等。\n【严禁场景】用户询问未来比赛时，应调用 getUpcomingMatches。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "description": "返回结果数量，默认5场。"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "matches": {
+            "type": "array",
+            "description": "已完赛比赛结果列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": { "type": "string" },
+                "teamAName": { "type": "string" },
+                "teamBName": { "type": "string" },
+                "scoreA": { "type": "number" },
+                "scoreB": { "type": "number" },
+                "penWinner": { "type": "string", "description": "点球大战胜者（无点球则不存在）" }
+              }
+            }
+          },
+          "total": { "type": "number" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/match-card/index" } }
+    },
+    {
+      "name": "getStandings",
+      "description": "获取小组积分榜（业务对象：积分榜卡片）。\n调用前置条件：用户询问小组积分、排名等。\n【严禁场景】用户询问淘汰赛时应调用 getKnockoutBracket。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "小组字母（A-L）。用户未指定时留空，返回全部12组。"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "groups": {
+            "type": "array",
+            "description": "小组积分榜列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "group": { "type": "string", "description": "小组字母" },
+                "standings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "played": { "type": "number" },
+                      "win": { "type": "number" },
+                      "draw": { "type": "number" },
+                      "lose": { "type": "number" },
+                      "gf": { "type": "number" },
+                      "ga": { "type": "number" },
+                      "gd": { "type": "number" },
+                      "pts": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/standings-card/index" } }
+    },
+    {
+      "name": "getKnockoutBracket",
+      "description": "获取淘汰赛对阵图（业务对象：对阵图卡片）。\n调用前置条件：用户询问淘汰赛、对阵图等。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "rounds": {
+            "type": "array",
+            "description": "各轮次对阵列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "round": { "type": "string", "description": "轮次名称" },
+                "matches": { "type": "array" }
+              }
+            }
+          }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/knockout-card/index" } }
+    },
+    {
+      "name": "predictMatch",
+      "description": "预测比赛结果（业务对象：预测结果卡片）。\n调用前置条件：用户说出两支球队名称或代码。\n【严禁场景】用户只说了一支球队时，应先反问对手是谁。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "teamA": {
+            "type": "string",
+            "description": "主队代码（如ESP、ARG）或中文名称。取值来源：用户原话。"
+          },
+          "teamB": {
+            "type": "string",
+            "description": "客队代码或中文名称。取值来源：用户原话。"
+          }
+        },
+        "required": ["teamA", "teamB"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "teamAName": { "type": "string" },
+          "teamBName": { "type": "string" },
+          "eloA": { "type": "number" },
+          "eloB": { "type": "number" },
+          "winProbA": { "type": "number", "description": "主队胜率%" },
+          "drawProb": { "type": "number", "description": "平局概率%" },
+          "winProbB": { "type": "number", "description": "客队胜率%" },
+          "predictedScore": { "type": "string", "description": "预测比分" },
+          "expectedGoals": { "type": "object" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/prediction-card/index" } }
+    },
+    {
+      "name": "getChampionPrediction",
+      "description": "获取冠军预测（业务对象：冠军预测卡片）。\n调用前置条件：用户询问谁会夺冠、冠军预测等。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "champion": { "type": "array", "description": "冠军概率排名" },
+          "top5Total": { "type": "number" },
+          "otherPredictions": { "type": "array" },
+          "ironLaws": { "type": "array" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/champion-card/index" } }
+    },
+    {
+      "name": "getTeamInfo",
+      "description": "获取球队详细信息（业务对象：球队信息卡片）。\n调用前置条件：用户询问某球队信息、阵容、排名等。\n【严禁场景】用户未指定具体球队时，应先反问。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "teamCode": {
+            "type": "string",
+            "description": "球队代码（如ESP、ARG）或中文名称。取值来源：用户原话。"
+          }
+        },
+        "required": ["teamCode"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "flag": { "type": "string" },
+          "rank": { "type": "number" },
+          "elo": { "type": "number" },
+          "coach": { "type": "string" },
+          "conf": { "type": "string" },
+          "squadSize": { "type": "number" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/team-info-card/index" } }
+    },
+    {
+      "name": "getTeamFortune",
+      "description": "获取球队运势分析（业务对象：运势卡片）。\n调用前置条件：用户询问某球队运势、风水、玄学预测等。\n【严禁场景】用户未指定具体球队时，应先反问。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "teamCode": {
+            "type": "string",
+            "description": "球队代码或中文名称。取值来源：用户原话。"
+          }
+        },
+        "required": ["teamCode"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "teamName": { "type": "string" },
+          "fortune": { "type": "string", "description": "运势分析文本" },
+          "luckyColor": { "type": "string" },
+          "luckyNumber": { "type": "number" }
+        }
+      },
+      "_meta": { "ui": { "componentPath": "components/fortune-card/index" } }
+    }
+  ],
+  "components": [
+    { "path": "components/match-card/index", "relatedPage": "/pages/index/index" },
+    { "path": "components/standings-card/index", "relatedPage": "/pages/teams/teams" },
+    { "path": "components/knockout-card/index", "relatedPage": "/pages/teams/teams" },
+    { "path": "components/prediction-card/index", "relatedPage": "/pages/simulate/simulate" },
+    { "path": "components/champion-card/index", "relatedPage": "/pages/index/index" },
+    { "path": "components/team-info-card/index", "relatedPage": "/pages/teams/teams" },
+    { "path": "components/fortune-card/index", "relatedPage": "/pages/metaphysics/metaphysics" }
+  ]
+}

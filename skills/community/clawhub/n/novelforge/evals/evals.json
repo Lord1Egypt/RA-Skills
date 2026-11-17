@@ -1,0 +1,84 @@
+{
+  "skill_name": "novelforge",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "为一部未指定题材的长篇小说设计下一章。请先锁定显式依赖，再给出可执行蓝图和下一问，不要替我猜世界观。",
+      "expected_output": "A generic blueprint with explicit dependency IDs, a state-aware hand-off, and no invented setting facts.",
+      "files": [],
+      "expectations": [
+        "The output defines explicit dependency IDs (entities, events, relations) without inventing undeclared world setting facts",
+        "The output adheres to the blueprint schema with a deterministic next_question hand-off",
+        "The blueprint passes validation via novelforgectl blueprint validate"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "上一章结算后，角色关系和一个未解决问题发生变化。请说明系统如何基于显式依赖与哈希工单，让下一章精准读取必要的长期记忆。",
+      "expected_output": "The response uses settlement facts, explicit dependency IDs, hashes, and a deterministic Context Ticket.",
+      "files": [],
+      "expectations": [
+        "The system accesses memory strictly through explicit dependency declarations instead of fuzzy retrieval",
+        "Memory access is strictly bounded by explicit dependency IDs and SHA-256 hashes",
+        "The context is compiled into an immutable, verifiable Context Ticket"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "请在关系场景中使用 Jin Yong engine 的方法，但只激活适用于当前状态的卡片，并说明哪些卡片不会加载。",
+      "expected_output": "A selective Engine Snapshot keyed by phase, scene type, and declared state; no global voice imitation.",
+      "files": [],
+      "expectations": [
+        "Engine snapshot selects cards matching current phase, scene type, and project state",
+        "Cards with unmet preconditions or irrelevant scene types are explicitly excluded",
+        "Emphasizes narrative mechanics and causality rather than global voice or wording mimicry"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "正文出现可疑作者风格信号。请检测并给出 warning；只有项目策略明确 promote 后才允许阻断，同时不能阻止安装自定义 engine。",
+      "expected_output": "Advisory style detection by default, explicit project promotion for blocking, and an independent engine installation path.",
+      "files": [],
+      "expectations": [
+        "Style detector defaults to non-blocking warning mode",
+        "Promoting detector warnings to blocking requires explicit configuration in project.json",
+        "Third-party and custom engine installations remain independent and unaffected by style detectors"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "请展示一章从蓝图、Context Ticket、正文、双审查到 Settlement 和 Wiki 索引更新的完整门禁顺序。",
+      "expected_output": "A monotonic script-enforced state sequence with source hashes, audit records, idempotent settlement, and generated wiki output.",
+      "files": [],
+      "expectations": [
+        "Follows monotonic lifecycle: blueprint -> context -> draft -> dual reviews -> settlement -> delivery",
+        "All state transitions require SHA-256 verification and atomic script execution",
+        "Settlement updates state files and rebuilds root wiki index as single source of truth"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "我想要写第 1 章，目前项目还没创建蓝图。请启动流水线并推进；如果遇到阻断，请给出明确的输入输出契约，不要自己脑补正文或猜想路径。",
+      "expected_output": "The pipeline enters INTERRUPTED state and returns a deterministic io_contract specifying exact blueprint output path and advance command.",
+      "files": [],
+      "expectations": [
+        "The pipeline is driven via novelforgectl pipeline advance or status without manual gate commands",
+        "When blocked by missing artifacts, the pipeline transitions to INTERRUPTED state",
+        "The response provides an explicit io_contract specifying required inputs, output file path, and advance_command",
+        "The model does not invent chapter draft text or write to arbitrary locations"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "参考语料库中的几篇短篇与创作谈，帮我蒸馏生成一个名为 'hard-scifi' 的叙事引擎，要求提炼其底层心智模型并完成验真与项目安装。",
+      "expected_output": "Uses narrative engine distillation to prepare staging spec, compile models/techniques cards, generate manifest, and verify the engine.",
+      "files": [],
+      "expectations": [
+        "Employs narrative engine distillation methodology: extracting causal models and scene technique cards rather than mimicry",
+        "Uses novelforgectl engine distill prepare to generate staging spec and io_contract",
+        "Compiles engine.json, cards/models.json, cards/techniques.json, applicability.md, limits.md, and manifest.json",
+        "Passes load_engine verification and can be installed via novelforgectl engine install"
+      ]
+    }
+  ]
+}

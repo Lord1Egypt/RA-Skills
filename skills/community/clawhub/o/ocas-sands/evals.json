@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-sands",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-sands",
+  "evals": [
+    {
+      "input": "What's on my calendar for tomorrow?",
+      "expected_output": "Returns list of events for tomorrow from all calendars",
+      "description": "Calendar query"
+    },
+    {
+      "input": "Schedule a 30-minute meeting with Alex next Tuesday at 2pm",
+      "expected_output": "Creates calendar event with proper time, attendees, and details",
+      "description": "Event creation"
+    },
+    {
+      "input": "Find a free slot for a 1-hour meeting this week",
+      "expected_output": "Returns available time slots across all calendars",
+      "description": "Free slot finding"
+    }
+  ]
+}

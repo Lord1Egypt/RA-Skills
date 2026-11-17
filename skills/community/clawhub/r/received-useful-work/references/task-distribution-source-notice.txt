@@ -1,0 +1,15 @@
+task-distribution 0.1.0; MIT; Copyright (c) 2026 Neomorphic LLC.
+New source in experiments/task-distribution-100341/consumer/scripts.
+MIT Neomorphic delivery-contracts modules and LICENSE are vendored under
+scripts/delivery-contracts; no seller runtime, credentials or task result is vendored.
+The owning seller-repair-external-consumer is separately acquired and verified:
+0.4.1, sha256 64dbe1ee7f69dd40ebf71741eed92f1f3f893c44af8eadf18b71c0fac82227b8,
+40891 bytes; Copyright (c) 2026 SameDayDesk, MIT.
+Source descriptor names merchant 1c2dfa964c3bc37a23e2487ef39dc0b404f825b6.
+That is the historical received snapshot, not the current owning source.
+Root336 owns publication from merchant5008b5e7213511e26eb3d369fcc0056e48b4ef20.
+Its source acceptance and live publication are different observations.
+Historical issue examples are paraphrased QA inputs, not current provider facts.
+Integration100344 starts one allowance before caller/packet intake, bounds owned
+children and final output together, and persists a referral exclusively with
+file/directory sync. Persistent commit failure is refused without replay.

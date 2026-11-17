@@ -1,44 +1,58 @@
-## Description: <br>
-Standard workflow for ACMG/AMP germline small-variant classification: collect evidence, assign criteria, detect conflicts, and produce a review-ready classification summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through ACMG/AMP germline small-variant review by collecting evidence, assigning criteria, checking conflicts, and producing a provisional classification summary.
 
-## Publisher: <br>
-[alex4xu](https://clawhub.ai/user/alex4xu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex4xu](https://clawhub.ai/user/alex4xu)
 
-## Use Case: <br>
-Clinical genetics reviewers, laboratory staff, and developers use this skill to guide ACMG/AMP-style interpretation of germline SNVs and indels. It collects variant, phenotype, inheritance, population, functional, database, and literature evidence, then helps produce a provisional review-ready classification summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles sensitive clinical and genetic information. <br>
-Mitigation: Avoid unnecessary patient identifiers and keep any generated records in approved clinical storage. <br>
-Risk: ACMG criteria or gene-specific guidance may be misapplied, producing misleading decision support. <br>
-Mitigation: Validate criteria against current ACMG/AMP and ClinGen guidance and require expert manual review before relying on outputs. <br>
+## Use Case:
 
+External users and clinical genomics reviewers use this skill to run a structured, review-oriented ACMG/AMP workflow for germline SNVs and indels. It helps normalize variant intake, track criteria evidence, identify unresolved conflicts, and draft a review-ready provisional classification.
 
-## Reference(s): <br>
-- [ACMG Variant Classification SOP](references/sop.md) <br>
-- [Bundled classifier test cases](references/test_cases.json) <br>
-- [Variant intake template](templates/intake.md) <br>
-- [Evidence table template](templates/evidence-table.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alex4xu/acmg-variant-classification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Guided prose and markdown tables, with optional shell commands for the bundled classifier script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-support output only; final classification requires expert manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A provisional ACMG/AMP result could be mistaken for a final clinical diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as decision support only and require expert manual review before clinical use.
+
+Risk: Identifiable patient data could be entered into an environment that is not approved for clinical or privacy-sensitive information.
+
+Mitigation: Avoid identifiable patient data unless the deployment environment is approved for that data.
+
+Risk: Pathogenic and benign evidence conflicts may lead to overconfident classification if not reviewed.
+
+Mitigation: Manually review conflicting evidence and prefer VUS when conflicts remain unresolved.
+
+## Reference(s):
+
+- [ACMG Variant Classification SOP](references/sop.md)
+- [Classifier Test Cases](references/test_cases.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and tables, with optional JSON results from the classifier helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review-only decision support; final classification requires expert manual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Launches and operates the Playwright MCP server so agents can browse live websites through structured browser automation tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch and operate the Playwright MCP server to let agents browse real websites through structured tools for tasks such as login, search, checkout, dashboards, authenticated downloads, screenshots, and UI flow testing.
 
-## Publisher: <br>
-[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Playwright MCP, automate authenticated browser workflows, collect screenshots or PDFs, and verify live web UI flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can control real browser sessions, including logged-in accounts and account-changing workflows. <br>
-Mitigation: Require explicit confirmation before purchases, payments, posts, deletions, or other account-changing actions. <br>
-Risk: Exposing the MCP server broadly can give unintended clients browser-control authority. <br>
-Mitigation: Keep the server bound to localhost by default and avoid --allowed-hosts=* or 0.0.0.0 unless the service is isolated behind strong access controls. <br>
-Risk: Persistent browser profiles and session artifacts can retain sensitive cookies, local storage, screenshots, PDFs, or logs. <br>
-Mitigation: Use fresh per-task profiles, protect session artifacts, and delete sensitive browser state after the task is complete. <br>
-Risk: Using the latest Playwright MCP package can change behavior across runs. <br>
-Mitigation: Pin the Playwright MCP package version for repeatable automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhanglinghao01-rakuten/playwright-mcp-automation) <br>
-- [Playwright MCP upstream repository](https://github.com/microsoft/playwright-mcp) <br>
-- [Playwright MCP Setup & Configuration](references/setup.md) <br>
-- [Playwright MCP Tool Reference](references/tools.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure Playwright MCP and run browser automation loops for live websites, including authenticated workflows, form interaction, evidence capture, and UI testing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser snapshots, screenshots, PDFs, console logs, and network request evidence when the Playwright MCP server is enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables powerful browser control over sessions that may contain active logins, private data, MFA flows, downloads, or payment actions.
+
+Mitigation: Use task-specific isolated browser profiles where possible, require explicit user confirmation before purchases or account changes, and avoid storing secrets in skill files.
+
+Risk: Remote MCP exposure or permissive host settings can broaden access to browser automation capabilities.
+
+Mitigation: Keep the server bound to localhost unless protected by strong network controls, restrict allowed hosts before non-local use, and secure any exposed port with a firewall or tunnel.
+
+Risk: Mutable package execution through latest-version npx commands can change runtime behavior over time.
+
+Mitigation: Pin package versions for controlled deployments and avoid running npx with elevated privileges.
+
+## Reference(s):
+
+- [Playwright MCP Setup & Configuration](references/setup.md)
+- [Playwright MCP Tool Reference](references/tools.md)
+- [Playwright MCP upstream repository](https://github.com/microsoft/playwright-mcp)
+- [ClawHub skill page](https://clawhub.ai/zhanglinghao01-rakuten/skills/playwright-mcp-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation plans, MCP launch commands, MCP client configuration, Playwright code snippets, troubleshooting guidance, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

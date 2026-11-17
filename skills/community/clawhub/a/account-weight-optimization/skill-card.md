@@ -1,39 +1,53 @@
-## Description: <br>
-Optimizes platform account weight and authority by assessing account health, analyzing weight factors, and producing compliant growth and recovery recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize platform account weight and authority by assessing account health, analyzing weight factors, and producing compliance-aware growth and recovery guidance.
 
-## Publisher: <br>
-[eric060](https://clawhub.ai/user/eric060) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric060](https://clawhub.ai/user/eric060)
 
-## Use Case: <br>
-Operators and growth teams use this skill to review account health, understand factors affecting platform authority, and create a practical optimization or recovery plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account optimization guidance can be misused for fake engagement, platform-rule circumvention, ban evasion, or reputation manipulation. <br>
-Mitigation: Use the skill only for legitimate account health, content quality, documented recovery, and platform-compliant authority-building work. <br>
-Risk: The artifact text references an optimize.py command, but the released artifact contains no such executable script. <br>
-Mitigation: Do not download or run any referenced script unless it is separately obtained from a trusted source and reviewed before use. <br>
+## Use Case:
 
+Social platform operators, creators, and growth teams use this skill to review account health, understand account weight factors, and plan recovery or optimization steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with health score, factor analysis, optimization plan, and recovery steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code is included in the released artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Account optimization advice may implicate social platform rules or terms of service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that recommendations comply with the target platform's current rules before applying them.
+
+Risk: The reviewed release contains only Markdown instructions, while the usage example refers to an optimize.py script.
+
+Mitigation: Review and scan any executable code separately before running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric060/skills/account-weight-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with an example shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes health score, weight factors, optimization plan, and recovery steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

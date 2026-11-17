@@ -1,41 +1,57 @@
-## Description: <br>
-Safe OpenClaw upgrade with instant rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a checked OpenClaw upgrade workflow with backup, gateway restart monitoring, and rollback support.
 
-## Publisher: <br>
-[aliahmadaziz](https://clawhub.ai/user/aliahmadaziz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aliahmadaziz](https://clawhub.ai/user/aliahmadaziz)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to check for updates, run a guarded OpenClaw upgrade, preserve configuration and cron state, restart the gateway, and roll back when critical checks fail. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The upgrade script can modify the OpenClaw installation, restart the gateway, and read or restore OpenClaw and acpx configuration. <br>
-Mitigation: Run the read-only --check mode first, review the reported upgrade path with the user, and keep the rollback backup available until the upgrade result is confirmed. <br>
-Risk: The script can automatically run workspace helper scripts when service-quick-check.py or golden-snapshot.sh exists. <br>
-Mitigation: Inspect or remove workspace helper scripts before a full upgrade when their behavior is not already trusted. <br>
-Risk: The script can automatically add, commit, and push workspace git changes after a successful upgrade. <br>
-Mitigation: Disable or review the git add, commit, and push block before running a full upgrade in repositories where automatic publishing is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Safe Upgrade release](https://clawhub.ai/aliahmadaziz/openclaw-safe-upgrade) <br>
+## Use Case:
 
+Developers and operators use this skill when they need an agent to check and run an OpenClaw upgrade, preserve local configuration and cron state, restart the gateway, and recover from failed upgrades.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash commands and result-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance and directs the agent to inspect local log and result files after the gateway restart.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The upgrade workflow can run workspace hook scripts during the upgrade process.
+
+Mitigation: Review or remove optional workspace hook scripts before use, and run only in workspaces where local scripts are trusted.
+
+Risk: The workflow can add, commit, and push the whole workspace after an upgrade.
+
+Mitigation: Run from a clean workspace, inspect the configured git remote first, and disable or require explicit confirmation for automatic git operations.
+
+Risk: Using an unpinned latest OpenClaw version can apply an unexpected release.
+
+Mitigation: Prefer a pinned and verified OpenClaw version and confirm the intended upgrade target before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aliahmadaziz/skills/openclaw-safe-upgrade)
+- [ClawHub publisher profile](https://clawhub.ai/user/aliahmadaziz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and status-check instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for read-only checks, upgrades, forced upgrades, rollback, and post-restart result review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

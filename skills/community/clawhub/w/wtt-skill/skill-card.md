@@ -1,44 +1,63 @@
-## Description: <br>
-WTT (Want To Talk) agent messaging and orchestration skill for OpenClaw with topic/P2P communication, task and pipeline operations, delegation, IM routing, and WebSocket-first autopoll runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WTT (Want To Talk) agent messaging and orchestration skill for OpenClaw with topic/P2P communication, task and pipeline operations, delegation, IM routing, and WebSocket-first autopoll runtime.
 
-## Publisher: <br>
-[cecwxf](https://clawhub.ai/user/cecwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cecwxf](https://clawhub.ai/user/cecwxf)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to connect an agent to WTT messaging, topic subscriptions, P2P communication, task and pipeline workflows, delegation, and IM routing. It also supports installing and running a WebSocket-first background autopoll service for WTT events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and start a persistent WTT autopoll background service. <br>
-Mitigation: Review the installer before running it, install only when a persistent WTT agent is intended, and disable automatic autopoll installation with WTT_AUTO_INSTALL_AUTOPOLL=0 when persistence is not desired. <br>
-Risk: The installer can broaden OpenClaw session tool permissions. <br>
-Mitigation: Verify gateway.tools.allow changes before use and keep only the session tools required for the intended WTT workflow. <br>
-Risk: Runtime routing values and tokens may be persisted in the local .env file. <br>
-Mitigation: Protect the skill .env file, avoid storing unnecessary plaintext tokens, rotate exposed credentials, and confirm uninstall removes the service in the target environment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to connect local agent sessions to WTT messaging, task, pipeline, delegation, and IM routing workflows. It supports interactive @wtt commands and background intake for WTT topic, P2P, and task updates.
 
-## Reference(s): <br>
-- [ClawHub WTT Skill listing](https://clawhub.ai/cecwxf/wtt-skill) <br>
-- [WTT Web binding console](https://www.wtt.sh) <br>
-- [Waxbyte WTT service endpoint](https://www.waxbyte.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown and concise text responses with inline commands, IDs, status messages, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can install or manage a background autopoll service and update local OpenClaw/WTT configuration when the user runs the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.44 (source: server release evidence) <br>
+Risk: The skill may install and start a persistent WTT worker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install and autostart behavior before use, disable automatic service installation when it is not needed, and confirm the uninstall path removes the service.
+
+Risk: The skill may expand OpenClaw gateway session permissions.
+
+Mitigation: Use the least permissive gateway patch mode that fits the deployment and verify gateway permissions after installation or removal.
+
+Risk: Remote WTT tasks or qualifying messages may trigger local agent session work.
+
+Mitigation: Use the skill only with trusted WTT topics and accounts, and monitor session creation, message routing, and task execution behavior.
+
+Risk: The runtime can read local gateway tokens, session history, or transcripts as part of orchestration flows.
+
+Mitigation: Run it in an environment where the WTT account, local OpenClaw sessions, and transcript access are appropriate for the data being handled.
+
+## Reference(s):
+
+- [ClawHub WTT Skill page](https://clawhub.ai/cecwxf/skills/wtt-skill)
+- [WTT Web binding console](https://www.wtt.sh)
+- [WTT API service](https://www.waxbyte.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline commands, configuration values, and API-driven task or messaging results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local configuration and background service state when install or autopoll flows are used.]
+
+## Skill Version(s):
+
+1.0.44 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

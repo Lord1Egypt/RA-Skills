@@ -1,44 +1,58 @@
-## Description: <br>
-Diagnoses Chinese short-form video titles, covers, opening hooks, and payoff structure to identify click-through and retention bottlenecks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video packaging diagnosis for Chinese short-form creators that helps diagnose weak titles, covers, opening hooks, and payoff structure while comparing alternative title and cover strategies.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External creators and content strategists use this skill to diagnose weak Chinese short-form video packaging and receive targeted fixes for titles, covers, opening hooks, and payoff structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated packaging advice can be misleading when the supplied title, cover description, opening, or outline is incomplete. <br>
-Mitigation: Provide the actual video packaging materials and review recommendations against the target platform context before publishing changes. <br>
-Risk: This is a third-party release, so users need to trust the publisher before installation. <br>
-Mitigation: Verify the publisher profile and install the skill only when its video packaging diagnosis workflow is needed. <br>
+## Use Case:
 
+External creators and content teams use this skill to diagnose Chinese short-form video packaging problems across title, cover, opening hook, and promise fulfillment. It returns a concise diagnosis, the biggest bottlenecks, alternative title directions, cover strategy guidance, and opening-hook fixes.
 
-## Reference(s): <br>
-- [Contrast Headlines](references/contrast-headlines.md) <br>
-- [Cover Strategies](references/cover-strategies.md) <br>
-- [Payoff Structure](references/payoff-structure.md) <br>
-- [Diagnosis Template](assets/diagnosis-template.md) <br>
-- [Project homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/video-packaging-diagnosis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnostic report with recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; diagnoses the bottleneck before proposing alternative directions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill defaults to Chinese short-form video context, so guidance may be less useful for other languages or platform norms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target language, platform, audience, and constraints when asking for diagnosis.
+
+Risk: Packaging recommendations can be subjective and may overfit a single title, cover, or opening sample.
+
+Mitigation: Review the diagnosis against actual audience data and compare at least two alternative directions before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cellinlab/skills/cell-video-packaging-diagnosis)
+- [OpenClaw Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/video-packaging-diagnosis)
+- [Contrast Headlines](references/contrast-headlines.md)
+- [Cover Strategies](references/cover-strategies.md)
+- [Payoff Structure](references/payoff-structure.md)
+- [Diagnosis Template](assets/diagnosis-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language diagnostic structure by default unless the user requests another language.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

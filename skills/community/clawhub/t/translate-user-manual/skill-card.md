@@ -1,41 +1,52 @@
-## Description: <br>
-ManualExpert translates hardware and technical manuals into complete page-by-page bilingual Markdown tables and exports them to Word for DTP preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ManualExpert translates hardware and technical manuals into complete page-by-page bilingual Markdown tables and can export them to Word for DTP preparation.
 
-## Publisher: <br>
-[Mugeng-su](https://clawhub.ai/user/Mugeng-su) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mugeng-su](https://clawhub.ai/user/mugeng-su)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External translators, localization teams, and technical documentation teams use this skill to translate hardware and technical manuals while preserving page breaks, source text, terminology consistency, and bilingual review structure.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Source manuals may contain confidential or restricted technical content that would be exposed to the agent during extraction and translation.
+
+Mitigation: Confirm the manuals can be shared with the agent before use and avoid submitting content outside the intended translation workflow.
+
+Risk: The included DOCX export script reads a Markdown input path and writes to a user-specified output path.
+
+Mitigation: Run the export script only on Markdown files and output paths selected by the user.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and documentation teams use this skill to translate Chinese hardware or technical manuals into English while preserving page boundaries, source text, and translated text in bilingual tables. DTP teams use the included exporter to convert the generated Markdown into a structured Word document. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Manuals may contain confidential or sensitive product information. <br>
-Mitigation: Use the skill only with manuals that are appropriate to process in the agent environment. <br>
-Risk: Word export depends on python-docx being available locally. <br>
-Mitigation: Install python-docx from a trusted package source before running the export script. <br>
-Risk: Exporting a Word document to the wrong path can replace or misplace generated files. <br>
-Mitigation: Choose output paths deliberately and review them before running the export command. <br>
+**Output Format:** [Markdown bilingual tables with optional Word .docx export]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Preserves page-by-page structure and source/target text pairs; Word export depends on the included Python script and python-docx.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands] <br>
-**Output Format:** [Markdown bilingual tables with optional Word (.docx) export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains page-by-page pagination and uses a local python-docx export script when requested.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

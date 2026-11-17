@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn78pc4xyg4q8sv0bkmpznzhv582mjn5",
-  "slug": "crypto-kline-bn",
+  "id": "crypto-kline-bn",
+  "name": "Crypto K线采集器",
+  "description": "通过Binance API采集加密货币K线数据，支持BTC、ETH等主流币种和时间周期",
   "version": "1.0.0",
-  "publishedAt": 1773418516846
+  "requires": {
+    "bins": ["node", "python3"]
+  },
+  "author": "ClawBTC",
+  "tags": ["crypto", "kline", "binance", "bitcoin", "trading"]
 }

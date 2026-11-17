@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Edit both absolute paths. Run as a user LaunchAgent. See references/deploy.md.
+     LAN opt-in: change MAGBOX_BIND to a specific private interface address.
+     Optional MAGBOX_HOSTS lists client-facing DNS names, separated by commas.
+     0.0.0.0 listens on all IPv4 interfaces and also needs explicit MAGBOX_HOSTS. -->
+<plist version="1.0"><dict>
+  <key>Label</key><string>ai.magbox</string>
+  <key>ProgramArguments</key><array>
+    <string>/opt/homebrew/bin/node</string>
+    <string>/ABSOLUTE/PATH/TO/magbox-server.mjs</string>
+  </array>
+  <key>EnvironmentVariables</key><dict>
+    <key>MAGBOX_BIND</key><string>127.0.0.1</string>
+    <key>MAGBOX_PORT</key><string>9900</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>5</integer>
+  <key>StandardOutPath</key><string>/ABSOLUTE/PATH/TO/magbox.log</string>
+  <key>StandardErrorPath</key><string>/ABSOLUTE/PATH/TO/magbox.log</string>
+</dict></plist>

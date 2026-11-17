@@ -1,0 +1,23 @@
+{
+  "_comment": "邮箱账户配置文件。username 或 password 为空时该账户会被自动跳过。",
+  "accounts": [
+    {
+      "_comment": "阿里企业邮箱（mxhichina）：password 填写客户端专用授权码，非登录密码",
+      "label":    "阿里企业邮箱",
+      "host":     "imap.mxhichina.com",
+      "port":     993,
+      "username": "",
+      "password": "",
+      "folders":  ["INBOX", "Sent Messages", "已发送"]
+    },
+    {
+      "_comment": "QQ邮箱：password 填写授权码（QQ邮箱设置 -> 账户 -> 生成授权码），非QQ登录密码",
+      "label":    "QQ邮箱",
+      "host":     "imap.qq.com",
+      "port":     993,
+      "username": "",
+      "password": "",
+      "folders":  ["INBOX", "Sent Messages", "已发送"]
+    }
+  ]
+}

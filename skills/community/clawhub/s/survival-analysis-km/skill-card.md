@@ -1,45 +1,61 @@
-## Description: <br>
-Generates Kaplan-Meier survival curves, survival statistics, and hazard ratio estimates for clinical and biological time-to-event data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Kaplan-Meier survival curves, calculates survival statistics, and estimates hazard ratios for clinical and biological survival data analysis.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Biomedical researchers, clinicians, and data analysts use this skill to run local Kaplan-Meier survival analysis on CSV time-to-event datasets and produce curves, statistical summaries, hazard ratios, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical datasets and generated plots, CSV summaries, or reports may expose sensitive clinical information or derived statistics. <br>
-Mitigation: Use de-identified or authorized datasets only, and review all generated outputs before sharing. <br>
-Risk: The script reads local input paths and writes analysis files to a user-selected output directory. <br>
-Mitigation: Install and run the skill in an isolated Python environment, and direct outputs to a dedicated workspace folder. <br>
+## Use Case:
 
+Developers, clinical researchers, and biomedical analysts use this skill to run Kaplan-Meier survival analysis on time-to-event CSV data, generate survival plots, compare groups, and summarize hazard-ratio and log-rank results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/survival-analysis-km) <br>
-- [Publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
-- [References and Resources for Survival Analysis](references/README.md) <br>
-- [Sample survival dataset](references/sample_data.csv) <br>
-- [lifelines documentation](https://lifelines.readthedocs.io/) <br>
-- [scikit-survival documentation](https://scikit-survival.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Markdown guidance with bash command examples; generated artifacts include PNG, PDF, CSV, and TXT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided CSV and writes results to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Dependencies are declared without pinned versions, which can change behavior across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin or lock dependencies before use.
+
+Risk: The script writes fixed output filenames into the caller-supplied output directory and may overwrite existing files with those names.
+
+Mitigation: Direct output to a fresh project-local directory and check for existing files before running.
+
+Risk: Clinical or biomedical input data may be sensitive and statistical conclusions may affect downstream decisions.
+
+Mitigation: Use least-privileged local execution, handle input data as sensitive, and have results reviewed by appropriate domain or biostatistical expertise.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/survival-analysis-km)
+- [References and Resources for Survival Analysis](references/README.md)
+- [Sample Survival Dataset](references/sample_data.csv)
+- [lifelines Documentation](https://lifelines.readthedocs.io/)
+- [scikit-survival Documentation](https://scikit-survival.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with command examples; generated analysis artifacts include PNG, PDF, CSV, and TXT files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads caller-provided CSV survival data and writes Kaplan-Meier plots, survival statistics, log-rank results, hazard-ratio results, and a human-readable report.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

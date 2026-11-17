@@ -1,44 +1,53 @@
-## Description: <br>
-Install, start, stop, and health-check Yuzhua (gesture + voice + OpenClaw gateway) with minimal manual setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, start, stop, and health-check Yuzhua (gesture + voice + OpenClaw gateway) with minimal manual setup.
 
-## Publisher: <br>
-[juguangyuan520-dotcom](https://clawhub.ai/user/juguangyuan520-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juguangyuan520-dotcom](https://clawhub.ai/user/juguangyuan520-dotcom)
 
-## Use Case: <br>
-Developers and local OpenClaw users use this skill to install and manage Yuzhua for gesture-triggered, local voice AI conversations through an OpenClaw gateway. It supports setup, startup, health checks, and stopping the local Yuzhua process. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install script clones or updates the configured Yuzhua repository. <br>
-Mitigation: Install only when the configured repository is trusted and review local changes before running the downloaded project. <br>
-Risk: The skill may create or use a local .env file that can contain tokens. <br>
-Mitigation: Review the generated .env, keep real tokens out of commits, and restrict access to the local project directory. <br>
-Risk: Conversation routing goes through the local OpenClaw gateway. <br>
-Mitigation: Confirm what the gateway sends to configured providers before using the skill with sensitive prompts or audio. <br>
-Risk: The stop script terminates processes on the configured port and may affect an unrelated local process. <br>
-Mitigation: Check the configured port before running stop.sh and change YUZHUA_PORT when another service uses the default port. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/juguangyuan520-dotcom/yuzhua) <br>
-- [Yuzhua GitHub Repository](https://github.com/juguangyuan520-dotcom/Yuzhua) <br>
+## Use Case:
 
+Developers and local OpenClaw users use this skill to install, run, stop, and health-check Yuzhua, a local gesture and voice chat app connected through the OpenClaw gateway.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and operations guidance for cloning or updating Yuzhua, preparing .env, starting the app, checking the local status endpoint, and stopping the configured port.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install and start flow can download and run mutable external code from the configured Yuzhua repository.
+
+Mitigation: Install only trusted upstream code; review YUZHUA_REPO_URL and YUZHUA_HOME before use, and pin or audit the checkout for sensitive deployments.
+
+Risk: The stop command can terminate any process listening on the configured port, including unrelated services on the default port 8080.
+
+Mitigation: Verify YUZHUA_PORT and active listeners before running stop.sh, especially on machines running other local services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/juguangyuan520-dotcom/skills/yuzhua)
+- [Yuzhua Project Repository](https://github.com/juguangyuan520-dotcom/Yuzhua)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local Yuzhua checkout and .env file; health checks can print JSON from the local status endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-查询城市限行规则与尾号，可查支持城市列表。当用户说：北京明天限行尾号是几？成都限行区域怎么算？或类似限行问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries supported-city vehicle license plate restriction rules and restricted plate-ending numbers for a requested city and date.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agent developers use this skill to check supported Chinese cities and retrieve vehicle license plate restriction times, areas, summaries, and restricted plate numbers for a specified city and date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the configured JisuAPI key and queried city/date to JisuAPI. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, prefer a dedicated or limited API key when available, and rotate or revoke the key if exposure is suspected. <br>
-Risk: API quota usage or access restrictions may affect availability. <br>
-Mitigation: Monitor JisuAPI quota and error responses, and present returned API errors clearly to the user. <br>
-Risk: The skill depends on the Python requests package. <br>
-Mitigation: Install requests from a trusted package source and keep the runtime environment controlled. <br>
+## Use Case:
 
+External users and agents use this skill to look up traffic restriction details for supported Chinese cities. It can list supported cities and query date-specific restriction times, areas, summaries, number rules, and restricted plate-ending numbers through JisuAPI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/vehiclelimit) <br>
-- [JisuAPI Vehicle License Plate Restriction API](https://www.jisuapi.com/api/vehiclelimit/) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests Python package, and JISU_API_KEY; command output is JSON returned from JisuAPI or structured error JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Queries send the requested city and date plus JISU_API_KEY to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable sharing those query details with JisuAPI, and avoid adding unrelated personal information.
+
+Risk: Use depends on JisuAPI account terms, quota, privacy expectations, and API availability.
+
+Mitigation: Review JisuAPI terms, quota, and privacy expectations before deployment or recurring use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/vehiclelimit)
+- [JisuAPI vehicle limit documentation](https://www.jisuapi.com/api/vehiclelimit/)
+- [JisuAPI provider site](https://www.jisuapi.com/)
+- [JisuAPI vehicle city endpoint](https://api.jisuapi.com/vehiclelimit/city)
+- [JisuAPI vehicle limit query endpoint](https://api.jisuapi.com/vehiclelimit/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable; sends the requested city, date, and API key to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

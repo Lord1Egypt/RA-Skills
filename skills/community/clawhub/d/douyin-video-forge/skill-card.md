@@ -1,52 +1,64 @@
-## Description: <br>
-Douyin Video Forge helps short-video operators collect Douyin trend signals, plan content, generate scripts, optionally call Kling for AI video generation, and assemble vertical video outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin short-video planning and production by collecting trend data, generating scripts and AI-video prompts, optionally calling the Kling API, and stitching vertical video segments.
 
-## Publisher: <br>
-[Bruce-Agnet](https://clawhub.ai/user/Bruce-Agnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bruce-agnet](https://clawhub.ai/user/bruce-agnet)
 
-## Use Case: <br>
-External operators, MCN teams, and brand marketers use this skill to turn campaign briefs and current Douyin trend data into video directions, scripts, and optional AI-generated short-video assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create ongoing scheduled jobs for multi-day publishing workflows. <br>
-Mitigation: Review the exact scheduled job before enabling it, confirm how to disable it, and avoid enabling automation for campaigns that require manual approval each day. <br>
-Risk: The skill automates Douyin browsing, scraping, and local video downloads. <br>
-Mitigation: Use only when the operator is comfortable with platform access, rights, and local storage implications, and review downloaded media before reuse. <br>
-Risk: Optional Kling API video generation may upload prompts or assets and spend API credits. <br>
-Mitigation: Configure Kling credentials only when needed, keep keys in environment variables, and verify generated tasks and expected costs before multi-segment or scheduled generation. <br>
-Risk: The install flow can overwrite the existing skill install directory. <br>
-Mitigation: Back up local edits before reinstalling or upgrading the skill. <br>
+## Use Case:
 
+Short-video operators, MCN teams, and brand marketers use this skill to gather Douyin trend and competitor signals, turn them into content strategy, generate scripts and prompts, and optionally produce stitched 9:16 videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Bruce-Agnet/douyin-video-forge) <br>
-- [Publisher Profile](https://clawhub.ai/user/Bruce-Agnet) <br>
-- [Browser Navigation Reference](artifact/references/browser-navigation.md) <br>
-- [Douyin Algorithm Reference](artifact/references/douyin-algorithm.md) <br>
-- [Trend Analysis Reference](artifact/references/trend-analysis.md) <br>
-- [Script Templates](artifact/references/script-templates.md) <br>
-- [Kling Prompt Guide](artifact/references/kling-prompt-guide.md) <br>
-- [Seedance Prompt Guide](artifact/references/seedance-prompt-guide.md) <br>
-- [Kling AI](https://klingai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with scripts, command blocks, JSON API responses, and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output campaign plans, analysis reports, segmented video scripts, Kling or Seedance prompts, shell commands, and local MP4 paths when video generation is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can browse Douyin, download public videos, run local media tools, call the Kling API, and create recurring jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before downloads, API calls, and scheduling; review or disable recurring jobs unless unattended generation is intended.
+
+Risk: Untrusted text or arbitrary URLs may be used in download, shell, or API workflows.
+
+Mitigation: Prefer trusted local files and known Douyin URLs, quote shell arguments, and review generated commands before execution.
+
+Risk: Kling API credentials are used from the environment for optional video generation.
+
+Mitigation: Keep credentials in environment variables, avoid pasting secrets into chat, and confirm the intended prompt and spend before each generation batch.
+
+## Reference(s):
+
+- [Douyin Video Forge Skill Page](https://clawhub.ai/bruce-agnet/skills/douyin-video-forge)
+- [Douyin Page Navigation Reference](artifact/references/browser-navigation.md)
+- [Douyin Trend Analysis Knowledge Base](artifact/references/trend-analysis.md)
+- [Douyin Recommendation and Viral-Content Methodology](artifact/references/douyin-algorithm.md)
+- [Script Template Knowledge Base](artifact/references/script-templates.md)
+- [Kling 3.0 Prompt Guide](artifact/references/kling-prompt-guide.md)
+- [Seedance 2.0 Prompt Guide](artifact/references/seedance-prompt-guide.md)
+- [Kling API Portal](https://klingai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown reports, content strategy, scripts, AI-video prompts, inline shell commands, and JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local audio/video file paths and Kling video URLs when optional video generation is enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

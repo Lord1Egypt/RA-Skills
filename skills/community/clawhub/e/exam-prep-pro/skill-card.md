@@ -1,54 +1,72 @@
-## Description: <br>
-Exam Prep Pro helps users prepare for professional exams by producing study plans, high-frequency concept cards, practice questions, mistake reviews, and final sprint guidance from bundled exam reference materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exam Prep Pro helps agents create structured study plans, high-frequency topic review cards, practice questions, mistake remediation, and final sprint guidance for supported Chinese professional exams.
 
-## Publisher: <br>
-[mcheisenberg](https://clawhub.ai/user/mcheisenberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcheisenberg](https://clawhub.ai/user/mcheisenberg)
 
-## Use Case: <br>
-External learners use this skill to build exam-specific study schedules, review high-yield topics, generate practice questions, analyze missed questions, and prepare for final review across supported professional exams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to complete payment through an external QR-code flow for Pro activation. <br>
-Mitigation: Install or use Pro features only if the publisher is trusted and the external payment flow is acceptable for the user's organization or environment. <br>
-Risk: Activation may require running a bundled Python verifier. <br>
-Mitigation: Review the verifier before execution and run it in an environment where local file writes to the user's home directory are acceptable. <br>
-Risk: Successful activation stores the activation code in a hidden file in the user's home directory. <br>
-Mitigation: Treat the stored activation marker as sensitive local data and remove it when the skill should no longer remain activated on that machine. <br>
+## Use Case:
 
+External learners and exam-prep agents use this skill to plan study schedules, review high-frequency topics, generate practice questions with explanations, and remediate mistakes for supported Chinese professional exams.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcheisenberg/skills/exam-prep-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/mcheisenberg) <br>
-- [Exam Registry](artifact/references/exam_registry.md) <br>
-- [CPA Syllabus and Weights](artifact/references/cpa_syllabus.md) <br>
-- [CPA High-Frequency Topics](artifact/references/cpa_highfreq.md) <br>
-- [Legal Exam Syllabus and Weights](artifact/references/fk_syllabus.md) <br>
-- [Legal Exam High-Frequency Topics](artifact/references/fk_highfreq.md) <br>
-- [Civil Service Exam Syllabus and Weights](artifact/references/gwy_syllabus.md) <br>
-- [Civil Service Exam High-Frequency Topics](artifact/references/gwy_highfreq.md) <br>
-- [Teacher Qualification Syllabus and Weights](artifact/references/jszg_syllabus.md) <br>
-- [Teacher Qualification High-Frequency Topics](artifact/references/jszg_highfreq.md) <br>
-- [Construction Engineer Syllabus and Weights](artifact/references/jzs_syllabus.md) <br>
-- [Construction Engineer High-Frequency Topics](artifact/references/jzs_highfreq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown study guidance with occasional inline shell commands for activation verification] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate daily plans, topic cards, practice questions, answer explanations, mistake-remediation prompts, and exam sprint checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server evidence release.version) <br>
+Risk: The skill uses an off-platform paid activation flow that directs users to an external payment link and asks for a payment receipt screenshot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment and activation flow before installation, and prefer platform billing or another clearly governed purchase path.
+
+Risk: The Pro unlock path requires local script execution and stores activation state in a home-directory marker file.
+
+Mitigation: Inspect the verifier before running it, execute it only in an appropriate local environment, and avoid sharing activation codes or local marker contents.
+
+Risk: The bundled activation materials include plaintext activation data and local activation state handling.
+
+Mitigation: Limit access to activation files, rotate or replace bundled codes when publishing, and use scoped secure storage for activation state.
+
+Risk: Exam plans and practice content can be incomplete or outdated if exam rules, syllabi, or weightings change.
+
+Mitigation: Check important study plans and exam facts against official exam sources before relying on them for paid or high-stakes preparation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcheisenberg/skills/exam-prep-pro)
+- [考试注册表](references/exam_registry.md)
+- [公务员考试考纲与权重](references/gwy_syllabus.md)
+- [公务员考试高频考点详解](references/gwy_highfreq.md)
+- [法考考纲与权重](references/fk_syllabus.md)
+- [法考高频考点详解](references/fk_highfreq.md)
+- [注册会计师（CPA）考纲与权重](references/cpa_syllabus.md)
+- [CPA高频考点详解](references/cpa_highfreq.md)
+- [教师资格证考纲与权重](references/jszg_syllabus.md)
+- [教师资格证高频考点详解](references/jszg_highfreq.md)
+- [建造师考试考纲与权重](references/jzs_syllabus.md)
+- [建造师高频考点详解](references/jzs_highfreq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured study plans, review cards, practice questions, answer explanations, and occasional inline shell commands for activation checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for exam type, exam date, daily study time, current level, and weak areas before producing personalized prep guidance.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

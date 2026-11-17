@@ -30,12 +30,22 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
-DEFAULT_REGION = "ap-guangzhou"
+FALLBACK_REGION = "ap-guangzhou"
 MAX_LIMIT = 200
+
+
+def default_region() -> str:
+    """获取默认地域。
+
+    必须在调用时（而非 import 时）读取环境变量：.env 的加载发生在
+    get_credential() 内，若在模块级求值会早于 .env 加载，导致用户
+    在 .env 中配置的 TENCENTCLOUD_REGION 被忽略。
+    """
+    return os.getenv("TENCENTCLOUD_REGION", FALLBACK_REGION)
 
 
 def get_credential():
@@ -50,20 +60,27 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
 
-def get_client(region=DEFAULT_REGION):
+def get_client(region=None):
     """获取 VOD 客户端"""
     cred = get_credential()
+    # region 兜底必须放在 get_credential() 之后：此时 .env 中的
+    # TENCENTCLOUD_REGION 才已进入 os.environ
+    if region is None:
+        region = default_region()
     http_profile = HttpProfile()
     http_profile.endpoint = "vod.tencentcloudapi.com"
     client_profile = ClientProfile()
@@ -217,16 +234,16 @@ def create_parser():
         epilog="""
 示例:
   # 查询所有子应用
-  python vod_describe_sub_app_ids.py
+  python3 vod_describe_sub_app_ids.py
 
   # 按应用名称查询
-  python vod_describe_sub_app_ids.py --name MyAppName
+  python3 vod_describe_sub_app_ids.py --name MyAppName
 
   # 按标签查询
-  python vod_describe_sub_app_ids.py --tag env=prod --tag team=media
+  python3 vod_describe_sub_app_ids.py --tag env=prod --tag team=media
 
   # 分页查询并输出 JSON
-  python vod_describe_sub_app_ids.py --offset 0 --limit 20 --json
+  python3 vod_describe_sub_app_ids.py --offset 0 --limit 20 --json
         """,
     )
 
@@ -238,7 +255,8 @@ def create_parser():
     )
     parser.add_argument("--offset", type=int, help="分页起始偏移量，默认 0")
     parser.add_argument("--limit", type=int, help="分页返回数量，范围 1-200")
-    parser.add_argument("--region", default=DEFAULT_REGION, help="地域")
+    parser.add_argument("--region", default=None,
+                        help=f"地域（不指定时读取 TENCENTCLOUD_REGION，缺省 {FALLBACK_REGION}）")
     parser.add_argument("--json", action="store_true", help="JSON 格式输出")
     parser.add_argument("--dry-run", action="store_true", help="预览请求参数")
 

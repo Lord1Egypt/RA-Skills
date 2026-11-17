@@ -1,43 +1,55 @@
-## Description: <br>
-Rail CLI helps agents query UK National Rail departures, arrivals, station search, destination filtering, batch station lookup, and lightweight field selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rail CLI helps agents use UK National Rail data for live departures, arrivals, station search, destination filtering, batch station search, and field-selected outputs.
 
-## Publisher: <br>
-[shan8851](https://clawhub.ai/user/shan8851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan8851](https://clawhub.ai/user/shan8851)
 
-## Use Case: <br>
-Developers, maintainers, and agents use this skill to install and operate the rail CLI for UK rail board checks, station resolution, destination filtering, and batch station search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the rail data coverage described by the skill is National Rail stations in Great Britain. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Departures and arrivals require DARWIN_ACCESS_TOKEN, which is a sensitive credential. <br>
-Mitigation: Store the token in environment configuration, avoid exposing it in prompts or logs, and only run the CLI in contexts where that credential access is intended. <br>
-Risk: Live rail results depend on National Rail Darwin or the configured Huxley2 upstream and may return ambiguity or upstream errors. <br>
-Mitigation: Use the CLI's structured error envelopes, retry only when appropriate, and prefer CRS codes when station names are ambiguous. <br>
+## Use Case:
 
+Developers and agents use Rail CLI to query UK National Rail boards, resolve station names and CRS codes, filter departures or arrivals, and produce text or JSON results for automation.
 
-## Reference(s): <br>
-- [Rail CLI on ClawHub](https://clawhub.ai/shan8851/rail-cli) <br>
-- [Rail CLI homepage](https://rail-cli.xyz) <br>
-- [Install rail-cli (npm)](https://www.npmjs.com/package/@shan8851/rail-cli) <br>
-- [National Rail Darwin OpenLDBWS registration](https://realtime.nationalrail.co.uk/OpenLDBWSRegistration/Registration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI results are text or JSON envelopes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the rail binary; departures and arrivals require DARWIN_ACCESS_TOKEN; station search works without a token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: The global npm install is unpinned and could introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or review the @shan8851/rail-cli package version before installation.
+
+Risk: Departures and arrivals require DARWIN_ACCESS_TOKEN.
+
+Mitigation: Keep DARWIN_ACCESS_TOKEN scoped to rail data use and avoid placing broader secrets in the same environment.
+
+## Reference(s):
+
+- [Rail CLI homepage](https://rail-cli.xyz)
+- [National Rail Darwin OpenLDBWS registration](https://realtime.nationalrail.co.uk/OpenLDBWSRegistration/Registration)
+- [@shan8851/rail-cli npm package](https://www.npmjs.com/package/@shan8851/rail-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may be text or JSON envelopes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Departures and arrivals require DARWIN_ACCESS_TOKEN; station search can run without the token.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

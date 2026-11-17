@@ -1,44 +1,58 @@
-## Description: <br>
-Task Dispatcher coordinates multi-step user, scheduled, or heartbeat-triggered work by analyzing requirements, breaking tasks into subagent assignments, monitoring progress, reporting status, and handling fallback when work fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Dispatcher analyzes user, cron, or heartbeat-triggered work, breaks it into steps, routes subtasks to appropriate subagents, monitors progress, reports status, and falls back when delegated work fails.
 
-## Publisher: <br>
-[ThomasChangX](https://clawhub.ai/user/ThomasChangX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thomaschangx](https://clawhub.ai/user/thomaschangx)
 
-## Use Case: <br>
-Developers and agent users use this skill to plan, delegate, monitor, review, and close out multi-step work across specialized subagents. It is suited to direct user tasks, scheduled or heartbeat-triggered work, and workflows that need structured task breakdown, confirmation, progress reporting, and fallback handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The dispatcher can share task context with subagents during orchestration. <br>
-Mitigation: Review task context before dispatch and avoid sending secrets or unnecessary sensitive data to subagents. <br>
-Risk: Bundled cleanup rules can automatically delete broad local file patterns without sufficient user control. <br>
-Mitigation: Disable automatic cleanup, enable dry-run, require confirmation, remove .env and media patterns, and restrict deletion to explicitly approved task-created temporary paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Supplementary Design](references/SUPPLEMENTARY_DESIGN.md) <br>
-- [Agent Configuration](references/config/agents.yaml) <br>
-- [Budget Configuration](references/config/budget.yaml) <br>
-- [Cleanup Configuration](references/config/cleanup.yaml) <br>
-- [Pipeline Configuration](references/config/pipelines.yaml) <br>
-- [Review Configuration](references/config/review.yaml) <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-step work across specialized subagents, including planning, code work, review, testing, documentation, scheduling, and cleanup.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown task plans, progress updates, completion summaries, subagent dispatch command examples, and configuration-oriented guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May share task context with subagents and may produce cleanup or orchestration guidance that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic cleanup rules can move broad classes of project or user files to trash without confirmation.
+
+Mitigation: Disable cleanup by default or restrict it to explicit task-owned directories; require dry-run and user confirmation before moving files to trash.
+
+Risk: Broad task routing and cron-style behavior can delegate or schedule work beyond the user's immediate intent.
+
+Mitigation: Require confirmation of task plans, scope, agent assignments, risk level, and scheduled actions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomaschangx/skills/task-dispatcher)
+- [Supplementary Design](references/SUPPLEMENTARY_DESIGN.md)
+- [Agent Mapping Configuration](references/config/agents.yaml)
+- [Budget Configuration](references/config/budget.yaml)
+- [Cleanup Configuration](references/config/cleanup.yaml)
+- [Pipeline Configuration](references/config/pipelines.yaml)
+- [Review Configuration](references/config/review.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown task plans, progress reports, review summaries, and inline command or configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task routing tables, risk levels, retry decisions, status checklists, YAML-style configuration, and cleanup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

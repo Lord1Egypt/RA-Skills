@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Sendbird"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["sendbird"]
   icon: "https://static.oomol.com/logo/third-party/Sendbird.svg"
 ---
@@ -44,10 +44,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_channel` — Delete a Sendbird group channel. [destructive]
 - `delete_message` — Delete a Sendbird group channel message. [destructive]
 - `delete_user` — Delete a Sendbird user. [destructive]
-- `get_number_of_channels_by_join_status` — Get Sendbird group channel counts grouped by join status. [write]
+- `get_number_of_channels_by_join_status` — Get Sendbird group channel counts grouped by join status.
 - `get_number_of_unread_items` — Get unread message, mention, and invitation counts for a Sendbird user.
-- `issue_session_token` — Issue a Sendbird session token for a user.
-- `leave_group_channels` — Make a Sendbird user leave one or more joined group channels. [write]
+- `issue_session_token` — Issue a Sendbird session token for a user. [write]
+- `leave_group_channels` — Make a Sendbird user leave one or more joined group channels. [destructive]
 - `list_banned_members` — List banned users from a Sendbird group channel.
 - `list_group_channel_messages` — List messages from a Sendbird group channel around a timestamp or message anchor.
 - `list_group_channels` — List Sendbird group channels in the application with common filtering controls.
@@ -57,7 +57,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `mute_user` — Mute a user in a Sendbird group channel. [write]
 - `revoke_all_session_tokens` — Revoke all Sendbird session tokens for a user. [destructive]
 - `send_message` — Send a message into a Sendbird group channel. [write]
-- `unban_user` — Unban a user from a Sendbird group channel.
+- `unban_user` — Unban a user from a Sendbird group channel. [write]
 - `unmute_user` — Unmute a user in a Sendbird group channel. [write]
 - `update_group_channel` — Update a Sendbird group channel with common JSON body fields. [write]
 - `update_message` — Update an existing Sendbird group channel message. [write]
@@ -95,11 +95,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Sendbird is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=sendbird
+  https://console.oomol.com/connections/sendbird
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Sendbird homepage: https://sendbird.com
+- API documentation: https://sendbird.com/docs/chat/platform-api/v3/prepare-to-use-api

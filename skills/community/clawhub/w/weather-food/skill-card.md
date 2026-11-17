@@ -1,37 +1,52 @@
-## Description: <br>
-Provides dietary recommendations based on current weather conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides food recommendations based on weather conditions.
 
-## Publisher: <br>
-[itcastWsy](https://clawhub.ai/user/itcastWsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[itcastwsy](https://clawhub.ai/user/itcastwsy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to receive general food suggestions tailored to sunny, cloudy, rainy, hot, or cold weather.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for or infer weather context to tailor recommendations.
+
+Mitigation: Use coarse weather or location context when possible and avoid sharing sensitive location details.
+
+Risk: Weather-based food suggestions may not account for allergies, medical needs, or dietary restrictions.
+
+Mitigation: Treat recommendations as general suggestions and have users apply personal dietary requirements before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users ask an agent for food suggestions matched to current weather, such as sunny, cloudy, rainy, hot, or cold conditions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Weather-based food suggestions may require location context. <br>
-Mitigation: Provide only the city or general area needed for the recommendation, not precise personal location. <br>
+**Output Format:** [Markdown or plain text recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Recommendations depend on the weather context supplied or inferred during the conversation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or plain text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses weather context supplied to the agent; no executable code is included in the skill artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

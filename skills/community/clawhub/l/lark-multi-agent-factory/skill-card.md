@@ -1,40 +1,57 @@
-## Description: <br>
-Configures multiple OpenClaw Lark agents for the official @larksuite/openclaw-lark plugin, including thread sessions, reply modes, block streaming, and per-agent Feishu credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lark Multi Agent Factory helps configure multiple OpenClaw agents for the official @larksuite/openclaw-lark plugin, including Lark-specific threadSession, replyMode, and blockStreaming settings.
 
-## Publisher: <br>
-[cchenwei](https://clawhub.ai/user/cchenwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cchenwei](https://clawhub.ai/user/cchenwei)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to collect Lark agent details, preview configuration with dry runs, and run setup commands that create or update local multi-agent configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can modify local OpenClaw configuration, create agent directories, and adjust session or inter-agent settings. <br>
-Mitigation: Run with --dry-run first, review the proposed configuration changes, and restart the gateway only after approval. <br>
-Risk: Feishu/Lark app secrets are stored in the local ~/.openclaw/openclaw.json configuration file. <br>
-Mitigation: Use appropriate local file permissions, provide only required credentials, and rotate secrets if the local configuration is exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to preview, create, list, remove, and adjust multiple OpenClaw agents backed by the official Lark plugin. It is intended for batch setup of Lark app credentials, channel settings, bindings, and local agent workspace files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cchenwei/lark-multi-agent-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local OpenClaw configuration changes and Feishu/Lark credential storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles Lark app secrets and writes persistent agent configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected config file instead of inline --config for real secrets, check permissions on ~/.openclaw/openclaw.json, and review saved configuration before use.
+
+Risk: The skill can expand inter-agent communication by updating agentToAgent.allow.
+
+Mitigation: Confirm automatic allow-list changes match the intended trust boundary before enabling the new agents.
+
+Risk: Generated IDENTITY.md and SOUL.md files influence the behavior of newly created agents.
+
+Mitigation: Inspect generated IDENTITY.md and SOUL.md files before using the new agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cchenwei/skills/lark-multi-agent-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local OpenClaw configuration and agent workspace files when the bundled setup script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

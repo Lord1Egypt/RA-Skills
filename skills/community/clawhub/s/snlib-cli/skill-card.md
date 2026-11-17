@@ -1,45 +1,60 @@
-## Description: <br>
-Run Seongnam Library tasks from the command line, including login, book search, account status checks, interlibrary loan requests, hope-book requests, and basket queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use the Seongnam Library CLI to search books, check account and loan details, and prepare interlibrary loan or book requests for submission after user confirmation.
 
-## Publisher: <br>
-[ruseel](https://clawhub.ai/user/ruseel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruseel](https://clawhub.ai/user/ruseel)
 
-## Use Case: <br>
-Library users and agents use this skill to run Seongnam Library CLI workflows for discovery, account/session checks, loan status, interlibrary loan requests, hope-book requests, and basket queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated commands use a Seongnam Library account and may expose credentials if pasted into shared terminals, logs, or chat transcripts. <br>
-Mitigation: Pass credentials through SNLIB_USER and SNLIB_PASSWORD only in trusted environments, and avoid sharing real passwords or personal details in logs or transcripts. <br>
-Risk: Interlibrary loan and hope-book request commands can submit real requests on the user's account. <br>
-Mitigation: Start with read-only commands and manually review any interloan-request or hope-book-request command before execution. <br>
-Risk: The wrapper downloads and runs the upstream snlib-cli Clojure dependency on first execution. <br>
-Mitigation: Install only when you trust the upstream snlib-cli package and are comfortable using your Seongnam Library account with it. <br>
+## Use Case:
 
+Library patrons and their agents can search Seongnam Library holdings, check loans and reservations, and prepare interlibrary loan or book purchase requests for explicit approval before submission.
 
-## Reference(s): <br>
-- [Command patterns](references/commands.md) <br>
-- [Library code reference](references/lib-code.md) <br>
-- [Manage code reference](references/manage-code.md) <br>
-- [Skill page](https://clawhub.ai/ruseel/snlib-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require bash, Java, Clojure, and SNLIB_USER/SNLIB_PASSWORD for authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.7 (source: server release evidence) <br>
+Risk: The skill downloads and executes a native binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the pinned release and verify its SHA-256 checksum before execution.
+
+Risk: Login and account information can be exposed through files or logs.
+
+Mitigation: Keep login JSON in a private file, protect locally stored sessions, and avoid shared logs for account output.
+
+Risk: Submitting a library request may have unintended or duplicate effects.
+
+Mitigation: Review the prepared payload and obtain explicit user confirmation before submitting; check request status before retrying after an error.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ruseel/skills/snlib-cli)
+- [Command patterns](references/commands.md)
+- [Library codes](references/lib-code.md)
+- [Management codes](references/manage-code.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell examples and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command results include an outcome and code; request submissions require user confirmation.]
+
+## Skill Version(s):
+
+2026.9.30-rc3 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

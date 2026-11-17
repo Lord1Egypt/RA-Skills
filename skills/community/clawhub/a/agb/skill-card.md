@@ -1,47 +1,60 @@
-## Description: <br>
-Automates browser interactions for web testing, form filling, screenshots, and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser interactions for web testing, form filling, screenshots, and data extraction.
 
-## Publisher: <br>
-[cecwap](https://clawhub.ai/user/cecwap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cecwap](https://clawhub.ai/user/cecwap)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive browser sessions for web testing, form automation, authenticated workflows, screenshots, video capture, and web data extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad control over live browser sessions. <br>
-Mitigation: Install it only for trusted agents and workflows, and review proposed browser actions before using sensitive accounts or sites. <br>
-Risk: Saved state files, screenshots, videos, PDFs, traces, cookies, and storage dumps can contain sensitive data. <br>
-Mitigation: Treat generated artifacts as sensitive, keep authentication state out of shared folders and version control, and delete captures that are no longer needed. <br>
-Risk: Page JavaScript execution can expose or alter sensitive site state. <br>
-Mitigation: Avoid arbitrary JavaScript evaluation on sensitive sites and scope evaluation to reviewed, task-specific snippets. <br>
-Risk: Proxy configuration can be misused to bypass site rules or rate limits. <br>
-Mitigation: Use proxies only for legitimate testing or approved network access, and do not use proxy examples to evade site policies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+## Use Case:
 
+Developers, QA engineers, and automation agents use this skill to navigate websites, interact with page elements, fill forms, capture screenshots or PDFs, record browser sessions, and extract page information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser commands may create screenshots, PDFs, video recordings, traces, cookies, storage dumps, and saved authentication state files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control a live browser and interact with authenticated websites.
+
+Mitigation: Use it only for sites and accounts where browser automation is intended, and explicitly review actions before using sensitive accounts, production admin consoles, or internal applications.
+
+Risk: Saved browser state, screenshots, PDFs, traces, recordings, and extracted page text can contain secrets or personal data.
+
+Mitigation: Treat generated artifacts and state files as secrets: keep them out of repositories, restrict file permissions, and delete them when no longer needed.
+
+Risk: Untrusted proxies, extensions, CDP attachment, or JavaScript evaluation can expose browser data or change page behavior.
+
+Mitigation: Use trusted network paths and browser extensions only, avoid eval on sensitive pages, and close named sessions after use.
+
+## Reference(s):
+
+- [Authentication Patterns](references/authentication.md)
+- [Proxy Support](references/proxy-support.md)
+- [Session Management](references/session-management.md)
+- [Snapshot + Refs Workflow](references/snapshot-refs.md)
+- [Video Recording](references/video-recording.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and references to generated browser artifacts such as screenshots, PDFs, videos, and extracted text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use named browser sessions, saved state files, proxy settings, device emulation, and JSON command output when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

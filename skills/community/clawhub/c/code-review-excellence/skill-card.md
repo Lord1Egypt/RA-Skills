@@ -1,39 +1,54 @@
-## Description: <br>
-Master effective code review practices to provide constructive feedback, catch bugs early, and foster knowledge sharing while maintaining team morale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master effective code review practices to provide constructive feedback, catch bugs early, and foster knowledge sharing while maintaining team morale.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure pull request reviews, establish review standards, mentor developers, and improve code quality through constructive feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's recommendations may be incomplete for security-sensitive or high-impact pull requests. <br>
-Mitigation: Use the skill as structured review guidance and require human judgment, project context, and security owner review before acting on its suggestions. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests, establish review standards, mentor developers, and produce constructive review feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/code-review-excellence) <br>
-- [Source homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/code-review-excellence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with review checklists, examples, and comment templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces non-executable review guidance and templates for human reviewers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Some companion resources referenced by the skill are not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the bundled SKILL.md as the authoritative installed content and confirm external or missing companion resources before relying on them.
+
+Risk: Code review guidance may be incomplete or not fully applicable to a specific repository, language, or risk profile.
+
+Mitigation: Have a qualified reviewer validate suggestions against project standards, tests, and security requirements before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/code-review-excellence)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/code-review-excellence)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown prose, checklists, examples, and review comment templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No autonomous tool execution; outputs are advisory review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

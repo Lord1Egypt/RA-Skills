@@ -16,13 +16,20 @@ import logging
 import os
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
+from xml.sax.saxutils import escape as _xml_escape
 
 import requests
 
 from schemas import (  # noqa: E402  (sibling module, scripts dir on sys.path)
     CartValidationLineError,
     CartValidationResult,
+    InventoryLevelPart,
+    InventoryLevelsResult,
     InventoryResult,
+    Invoice,
+    InvoiceAddress,
+    InvoiceLine,
+    InvoiceResult,
     OrderStatusResult,
     PricingItem,
     PricingLine,
@@ -32,8 +39,10 @@ from schemas import (  # noqa: E402  (sibling module, scripts dir on sys.path)
     PurchaseOrderDraft,
     PurchaseOrderResult,
     SanMarCredentials,
+    TrackingItem,
     TrackingResult,
     TrackingShipment,
+    WarehouseQuantity,
 )
 
 logger = logging.getLogger(__name__)
@@ -100,9 +109,21 @@ class SanMarEndpoints:
     order_status: str = (
         "https://ws.sanmar.com:8080/promostandards/OrderShipmentNotificationServiceBinding"
     )
+    inventory_promo: str = (
+        "https://ws.sanmar.com:8080/promostandards/InventoryServiceBinding"
+    )
+    invoice_prod: str = (
+        "https://ws.sanmar.com:8080/SanMarWebService/InvoicePort"
+    )
+    invoice_dev: str = (
+        "https://test-ws.sanmar.com:8080/SanMarWebService/InvoicePort"
+    )
 
     def po_url(self, environment: str) -> str:
         return self.po_submit_dev if environment == "development" else self.po_submit_prod
+
+    def invoice_url(self, environment: str) -> str:
+        return self.invoice_dev if environment == "development" else self.invoice_prod
 
 
 # Namespace constants used by SanMar's WSDLs.
@@ -115,6 +136,8 @@ _NS_PROMO = (
 _NS_PROMO_SHARED = (
     "http://www.promostandards.org/WSDL/OrderShipmentNotificationService/1.0.0/SharedObjects/"
 )
+_NS_INV = "http://www.promostandards.org/WSDL/Inventory/2.0.0/"  # PromoStandards inventory v2
+_NS_INV_SHARED = "http://www.promostandards.org/WSDL/Inventory/2.0.0/SharedObjects/"
 
 
 def credentials_from_env() -> SanMarCredentials:
@@ -607,8 +630,24 @@ class SanMarClient:
     # PromoStandards order shipment notification
     # ------------------------------------------------------------------
 
-    def _shipment_notification_payload(self, po_number: str) -> str:
+    def _shipment_notification_payload(
+        self,
+        *,
+        query_type: str,
+        reference_number: str | None = None,
+        shipment_date: str | None = None,
+    ) -> str:
         creds = self.credentials
+        if query_type == "3":
+            selector = (
+                f"<ns:shipmentDateTimeStamp>{_xml_escape(shipment_date or '')}"
+                "</ns:shipmentDateTimeStamp>"
+            )
+        else:
+            selector = (
+                f"<ns:referenceNumber>{_xml_escape(reference_number or '')}"
+                "</ns:referenceNumber>"
+            )
         return (
             f'<soapenv:Envelope xmlns:soapenv="{_NS_SOAPENV}" '
             f'xmlns:ns="{_NS_PROMO}" '
@@ -617,22 +656,37 @@ class SanMarClient:
             "<soapenv:Body>"
             "<ns:GetOrderShipmentNotificationRequest>"
             "<shar:wsVersion>1.0.0</shar:wsVersion>"
-            f"<shar:id>{creds.username}</shar:id>"
-            f"<shar:password>{creds.password}</shar:password>"
-            "<ns:queryType>1</ns:queryType>"
-            f"<ns:referenceNumber>{po_number}</ns:referenceNumber>"
+            f"<shar:id>{_xml_escape(creds.username)}</shar:id>"
+            f"<shar:password>{_xml_escape(creds.password)}</shar:password>"
+            f"<ns:queryType>{query_type}</ns:queryType>"
+            f"{selector}"
             "</ns:GetOrderShipmentNotificationRequest>"
             "</soapenv:Body>"
             "</soapenv:Envelope>"
         )
 
-    def get_shipment_notification(self, po_number: str) -> ET.Element | None:
-        """Raw SOAP call. Returns the parsed XML root or ``None`` if SanMar
-        responded with a service-level error message."""
+    def get_shipment_notification(
+        self,
+        *,
+        query_type: str = "1",
+        reference_number: str | None = None,
+        shipment_date: str | None = None,
+    ) -> ET.Element | None:
+        """Raw OSN SOAP call. Returns the parsed XML root or ``None`` if
+        SanMar responded with a service-level error message.
+
+        ``query_type`` — ``"1"`` = customer purchase-order number,
+        ``"2"`` = SanMar sales-order number, ``"3"`` =
+        ``shipmentDateTimeStamp`` (UTC, 7-day max window).
+        """
 
         text = self._post_soap(
             self.endpoints.order_status,
-            self._shipment_notification_payload(po_number),
+            self._shipment_notification_payload(
+                query_type=query_type,
+                reference_number=reference_number,
+                shipment_date=shipment_date,
+            ),
             soap_action="getOrderShipmentNotification",
             operation="GetOrderShipmentNotificationRequest",
         )
@@ -641,36 +695,93 @@ class SanMarClient:
         err_el = root.find(".//ns2:errorMessage", namespaces=ns)
         if err_el is not None and err_el.text:
             logger.warning(
-                "SanMar shipment notification error for PO %s: %s",
-                po_number,
+                "SanMar OSN error for %s: %s",
+                reference_number or shipment_date,
                 err_el.text,
             )
             return None
         return root
 
-    def get_tracking(self, po_number: str) -> TrackingResult:
-        root = self.get_shipment_notification(po_number)
-        if root is None:
-            return TrackingResult(po_number=po_number, shipments=[])
+    def get_tracking(
+        self,
+        po_number: str | None = None,
+        *,
+        sales_order_number: str | None = None,
+        shipment_date: str | None = None,
+    ) -> TrackingResult:
+        """Tracking detail for a PO (default), a SanMar sales-order number,
+        or a shipment date/time.
 
-        ns = {"ns2": _NS_PROMO}
+        Returns one :class:`TrackingShipment` per shipped package, each
+        carrying the tracking number, normalized carrier, ship method,
+        ship date, the SanMar sales order it belongs to, ship-from/to
+        city+state, and the items in the box.
+        """
+
+        if sales_order_number:
+            query_type, reference = "2", sales_order_number
+        elif shipment_date:
+            query_type, reference = "3", None
+        else:
+            query_type, reference = "1", po_number
+        label = po_number or sales_order_number or shipment_date or ""
+
+        root = self.get_shipment_notification(
+            query_type=query_type,
+            reference_number=reference,
+            shipment_date=shipment_date,
+        )
+        if root is None:
+            return TrackingResult(po_number=label, shipments=[])
+
+        ns = {"ns2": _NS_PROMO, "shar": _NS_PROMO_SHARED}
+        osn = root.find(".//ns2:OrderShipmentNotification", namespaces=ns)
+        complete: bool | None = None
+        if osn is not None:
+            c = osn.find("ns2:complete", namespaces=ns)
+            complete = (
+                c.text.strip().lower() == "true" if c is not None and c.text else None
+            )
+
         shipments: list[TrackingShipment] = []
-        for pkg in root.findall(".//ns2:Package", namespaces=ns):
-            tn_el = pkg.find("ns2:trackingNumber", namespaces=ns)
-            cr_el = pkg.find("ns2:carrier", namespaces=ns)
-            if tn_el is not None and tn_el.text:
-                shipments.append(
-                    TrackingShipment(
-                        tracking_number=tn_el.text.strip(),
-                        carrier=normalize_carrier(
-                            cr_el.text if cr_el is not None else None
-                        ),
+        for so in root.findall(".//ns2:SalesOrder", namespaces=ns):
+            son = _child_text(so, "ns2:salesOrderNumber", ns) or None
+            for loc in so.findall(".//ns2:ShipmentLocation", namespaces=ns):
+                ship_from = loc.find("ns2:ShipFromAddress", namespaces=ns)
+                ship_to = loc.find("ns2:ShipToAddress", namespaces=ns)
+                for pkg in loc.findall("ns2:PackageArray/ns2:Package", namespaces=ns):
+                    tracking = _child_text(pkg, "ns2:trackingNumber", ns)
+                    if not tracking:
+                        continue
+                    items = [
+                        TrackingItem(
+                            style=_child_text(it, "ns2:supplierProductId", ns),
+                            part_id=_child_text(it, "ns2:supplierPartId", ns),
+                            quantity=_child_int(it, "ns2:quantity", ns),
+                        )
+                        for it in pkg.findall("ns2:ItemArray/ns2:Item", namespaces=ns)
+                    ]
+                    shipments.append(
+                        TrackingShipment(
+                            tracking_number=tracking,
+                            carrier=normalize_carrier(
+                                _child_text(pkg, "ns2:carrier", ns) or None
+                            ),
+                            shipment_method=_child_text(pkg, "ns2:shipmentMethod", ns)
+                            or None,
+                            ship_date=_child_text(pkg, "ns2:shipmentDate", ns) or None,
+                            sales_order_number=son,
+                            ship_from_city=_addr_part(ship_from, "city", ns),
+                            ship_from_state=_addr_part(ship_from, "region", ns),
+                            ship_to_city=_addr_part(ship_to, "city", ns),
+                            ship_to_state=_addr_part(ship_to, "region", ns),
+                            items=items,
+                        )
                     )
-                )
-        return TrackingResult(po_number=po_number, shipments=shipments)
+        return TrackingResult(po_number=label, complete=complete, shipments=shipments)
 
     def get_order_status(self, po_number: str) -> OrderStatusResult:
-        root = self.get_shipment_notification(po_number)
+        root = self.get_shipment_notification(query_type="1", reference_number=po_number)
         if root is None:
             return OrderStatusResult(po_number=po_number, status="unknown")
 
@@ -686,6 +797,216 @@ class SanMarClient:
             sanmar_order_number=sanmar_order_number,
             shipment_count=package_count,
             status=status,
+        )
+
+    # ------------------------------------------------------------------
+    # PromoStandards inventory levels (v2.0.0 — per-warehouse breakdown)
+    # ------------------------------------------------------------------
+
+    def _inventory_levels_payload(
+        self, style: str, part_ids: list[str] | None
+    ) -> str:
+        creds = self.credentials
+        filt = ""
+        if part_ids:
+            parts = "".join(
+                f"<shar:partId>{_xml_escape(str(p))}</shar:partId>" for p in part_ids
+            )
+            filt = f"<shar:Filter><shar:partIdArray>{parts}</shar:partIdArray></shar:Filter>"
+        return (
+            f'<soapenv:Envelope xmlns:soapenv="{_NS_SOAPENV}" '
+            f'xmlns:ns="{_NS_INV}" xmlns:shar="{_NS_INV_SHARED}">'
+            "<soapenv:Header/><soapenv:Body>"
+            "<ns:GetInventoryLevelsRequest>"
+            "<shar:wsVersion>2.0.0</shar:wsVersion>"
+            f"<shar:id>{_xml_escape(creds.username)}</shar:id>"
+            f"<shar:password>{_xml_escape(creds.password)}</shar:password>"
+            f"<shar:productId>{_xml_escape(style)}</shar:productId>"
+            f"{filt}"
+            "</ns:GetInventoryLevelsRequest>"
+            "</soapenv:Body></soapenv:Envelope>"
+        )
+
+    def get_inventory_levels(
+        self, style: str, part_ids: list[str] | None = None
+    ) -> InventoryLevelsResult:
+        """PromoStandards getInventoryLevels v2.0.0 — named per-warehouse
+        availability for a style (optionally filtered to specific partIds).
+        """
+
+        if not style:
+            raise SanMarConfigError("style is required")
+        text = self._post_soap(
+            self.endpoints.inventory_promo,
+            self._inventory_levels_payload(style, part_ids),
+            soap_action="getInventoryLevels",
+            operation="getInventoryLevels",
+        )
+        root = ET.fromstring(text)
+        err = _promo_service_error(root)
+        if err:
+            e = SanMarAPIError(err)
+            e.operation = "getInventoryLevels"
+            raise e
+
+        ns = {"shar": _NS_INV_SHARED}
+        parts: list[InventoryLevelPart] = []
+        for pi in root.findall(".//shar:PartInventory", namespaces=ns):
+            warehouses = [
+                WarehouseQuantity(
+                    warehouse_id=_child_text(loc, "shar:inventoryLocationId", ns),
+                    warehouse_name=_child_text(loc, "shar:inventoryLocationName", ns),
+                    postal_code=_child_text(loc, "shar:postalCode", ns),
+                    quantity=_child_int(
+                        loc,
+                        "shar:inventoryLocationQuantity/shar:Quantity/shar:value",
+                        ns,
+                    ),
+                )
+                for loc in pi.findall(
+                    "shar:InventoryLocationArray/shar:InventoryLocation", namespaces=ns
+                )
+            ]
+            parts.append(
+                InventoryLevelPart(
+                    part_id=_child_text(pi, "shar:partId", ns),
+                    color=_child_text(pi, "shar:partColor", ns),
+                    size=_child_text(pi, "shar:labelSize", ns),
+                    description=_child_text(pi, "shar:partDescription", ns),
+                    total_available=_child_int(
+                        pi, "shar:quantityAvailable/shar:Quantity/shar:value", ns
+                    ),
+                    warehouses=warehouses,
+                )
+            )
+        return InventoryLevelsResult(style=style, parts=parts)
+
+    # ------------------------------------------------------------------
+    # Invoicing (SanMar Standard InvoicePort)
+    # ------------------------------------------------------------------
+
+    _INVOICE_OPS = {
+        "purchase_order": "GetInvoicesByPurchaseOrderNo",
+        "invoice_number": "GetInvoiceByInvoiceNo",
+        "invoice_date_range": "GetInvoicesByInvoiceDateRange",
+        "order_date": "GetInvoicesByOrderDate",
+        "unpaid": "GetUnpaidInvoices",
+    }
+    _INVOICE_HEADER_OPS = {
+        "purchase_order": "GetInvoicesHeaderByPurchaseOrderNo",
+        "invoice_date_range": "GetInvoicesHeaderByInvoiceDateRange",
+        "order_date": "GetInvoicesHeaderByOrderDate",
+        "unpaid": "GetUnpaidInvoicesHeader",
+    }
+
+    def _invoice_payload(
+        self,
+        operation: str,
+        *,
+        value: str | None,
+        start_date: str | None,
+        end_date: str | None,
+    ) -> str:
+        creds = self.credentials
+        if operation in (
+            "GetInvoicesByPurchaseOrderNo",
+            "GetInvoicesHeaderByPurchaseOrderNo",
+        ):
+            selector = f"<web:PurchaseOrderNo>{_xml_escape(str(value))}</web:PurchaseOrderNo>"
+        elif operation == "GetInvoiceByInvoiceNo":
+            selector = f"<web:InvoiceNo>{_xml_escape(str(value))}</web:InvoiceNo>"
+        elif operation in (
+            "GetInvoicesByInvoiceDateRange",
+            "GetInvoicesHeaderByInvoiceDateRange",
+        ):
+            selector = (
+                f"<web:StartDate>{_xml_escape(str(start_date))}</web:StartDate>"
+                f"<web:EndDate>{_xml_escape(str(end_date))}</web:EndDate>"
+            )
+        elif operation in ("GetInvoicesByOrderDate", "GetInvoicesHeaderByOrderDate"):
+            selector = f"<web:Date>{_xml_escape(str(value))}</web:Date>"
+        else:  # GetUnpaidInvoices / GetUnpaidInvoicesHeader
+            selector = ""
+        return (
+            f'<soapenv:Envelope xmlns:soapenv="{_NS_SOAPENV}" xmlns:web="{_NS_WEB}">'
+            "<soapenv:Header/><soapenv:Body>"
+            f"<web:{operation}>"
+            # NOTE: InvoicePort uses CustomerNo / UserName / Password — distinct
+            # from the sanMar* auth field names on the other standard ports.
+            f"<web:CustomerNo>{_xml_escape(creds.customer_number)}</web:CustomerNo>"
+            f"<web:UserName>{_xml_escape(creds.username)}</web:UserName>"
+            f"<web:Password>{_xml_escape(creds.password)}</web:Password>"
+            f"{selector}"
+            f"</web:{operation}>"
+            "</soapenv:Body></soapenv:Envelope>"
+        )
+
+    def get_invoices(
+        self,
+        *,
+        query_type: str,
+        value: str | None = None,
+        start_date: str | None = None,
+        end_date: str | None = None,
+        headers_only: bool = False,
+    ) -> InvoiceResult:
+        """SanMar Standard Invoicing (``InvoicePort``).
+
+        ``query_type`` ∈ ``purchase_order`` | ``invoice_number`` |
+        ``invoice_date_range`` | ``order_date`` | ``unpaid``. Returns
+        header + line items (or header-only when ``headers_only`` and the
+        query type supports it). A "not found" upstream response yields an
+        empty result rather than an error.
+        """
+
+        if headers_only and query_type in self._INVOICE_HEADER_OPS:
+            operation = self._INVOICE_HEADER_OPS[query_type]
+        else:
+            operation = self._INVOICE_OPS.get(query_type)
+            headers_only = False
+        if operation is None:
+            raise SanMarConfigError(
+                f"Unknown invoice query_type {query_type!r}. Use one of: "
+                + ", ".join(self._INVOICE_OPS)
+            )
+        if query_type in ("purchase_order", "invoice_number", "order_date") and not value:
+            raise SanMarConfigError(f"query_type {query_type!r} requires a value")
+        if query_type == "invoice_date_range" and not (start_date and end_date):
+            raise SanMarConfigError(
+                "query_type 'invoice_date_range' requires start_date and end_date "
+                "(yyyy-mm-dd, max 3 months apart)"
+            )
+
+        text = self._post_soap(
+            self.endpoints.invoice_url(self.credentials.environment),
+            self._invoice_payload(
+                operation, value=value, start_date=start_date, end_date=end_date
+            ),
+            soap_action=operation,
+            operation=operation,
+        )
+        root = ET.fromstring(text)
+        invoices = _parse_invoices(root)
+        if not invoices:
+            fault = _first_fault_text(root)
+            if fault and not any(
+                token in fault.lower()
+                for token in ("not found", "no data", "no invoice")
+            ):
+                e = SanMarAPIError(fault)
+                e.operation = operation
+                raise e
+
+        query_value = value
+        if query_value is None and start_date:
+            query_value = f"{start_date}..{end_date}"
+        return InvoiceResult(
+            query_type=query_type,
+            query_value=str(query_value) if query_value is not None else None,
+            count=len(invoices),
+            invoices=invoices,
+            headers_only=headers_only,
+            operation=operation,
         )
 
 
@@ -717,3 +1038,176 @@ def _float_or_none(node: ET.Element, tag: str) -> float | None:
         return float(raw)
     except ValueError:
         return None
+
+
+def _to_float(raw: str | None) -> float | None:
+    if not raw:
+        return None
+    try:
+        return float(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def _to_int(raw: str | None) -> int:
+    if not raw:
+        return 0
+    try:
+        return int(float(raw))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _child_text(node: ET.Element, path: str, ns: dict[str, str]) -> str:
+    """Namespaced ``find`` returning stripped text (``""`` if absent)."""
+
+    el = node.find(path, namespaces=ns)
+    return el.text.strip() if el is not None and el.text else ""
+
+
+def _child_int(node: ET.Element, path: str, ns: dict[str, str]) -> int:
+    return _to_int(_child_text(node, path, ns))
+
+
+def _addr_part(addr_el: ET.Element | None, tag: str, ns: dict[str, str]) -> str | None:
+    """Read a PromoStandards address sub-field (SharedObjects namespace)."""
+
+    if addr_el is None:
+        return None
+    el = addr_el.find(f"shar:{tag}", namespaces=ns)
+    if el is None:  # fall back to an unqualified element
+        el = addr_el.find(tag)
+    return el.text.strip() if el is not None and el.text else None
+
+
+def _localname(tag: str) -> str:
+    """Strip any ``{namespace}`` prefix from an ElementTree tag."""
+
+    return tag.rsplit("}", 1)[-1]
+
+
+def _promo_service_error(root: ET.Element) -> str | None:
+    """Return the description of a PromoStandards ``ServiceMessage`` whose
+    severity is ``Error`` (namespace-agnostic), else ``None``."""
+
+    for msg in root.iter():
+        if _localname(msg.tag) != "ServiceMessage":
+            continue
+        severity = description = ""
+        for child in msg:
+            local = _localname(child.tag)
+            if local == "severity":
+                severity = (child.text or "").strip()
+            elif local == "description":
+                description = (child.text or "").strip()
+        if severity.lower() == "error":
+            return description or "Service error"
+    return None
+
+
+def _first_fault_text(root: ET.Element) -> str | None:
+    """Return the first SOAP fault / error message text (namespace-agnostic)."""
+
+    for el in root.iter():
+        if _localname(el.tag) in ("faultstring", "faultString", "errorMessage"):
+            if el.text and el.text.strip():
+                return el.text.strip()
+    return None
+
+
+# --- Invoice response parsing (SanMar Standard InvoicePort; namespace-agnostic) ---
+
+
+def _find_local(node: ET.Element | None, name: str) -> ET.Element | None:
+    if node is None:
+        return None
+    for child in node:
+        if _localname(child.tag) == name:
+            return child
+    return None
+
+
+def _find_all_local(node: ET.Element, name: str) -> list[ET.Element]:
+    return [child for child in node if _localname(child.tag) == name]
+
+
+def _text_local(node: ET.Element | None, name: str) -> str:
+    child = _find_local(node, name)
+    return child.text.strip() if child is not None and child.text else ""
+
+
+def _parse_invoice_address(block: ET.Element | None) -> InvoiceAddress:
+    if block is None:
+        return InvoiceAddress()
+    addr = _find_local(block, "Address")
+    return InvoiceAddress(
+        name=_text_local(block, "Name"),
+        address1=_text_local(addr, "Address1"),
+        address2=_text_local(addr, "Address2"),
+        city=_text_local(addr, "City"),
+        state=_text_local(addr, "State"),
+        postal_code=_text_local(addr, "PostalCode"),
+        country=_text_local(addr, "Country"),
+    )
+
+
+def _parse_invoice_line(li: ET.Element) -> InvoiceLine:
+    return InvoiceLine(
+        style=_text_local(li, "StyleNo"),
+        color=_text_local(li, "StyleColor"),
+        size=_text_local(li, "StyleSize"),
+        description=_text_local(li, "StyleDescription"),
+        quantity=_to_int(_text_local(li, "Quantity")),
+        unit_price=_to_float(_text_local(li, "UnitPrice")),
+        amount=_to_float(_text_local(li, "Amount")),
+        unique_key=_text_local(li, "UniqueKey") or None,
+    )
+
+
+def _parse_invoices(root: ET.Element) -> list[Invoice]:
+    """Parse ``<Invoice>`` elements from an InvoicePort response.
+
+    Handles both the single ``<Invoice>`` root (GetInvoiceByInvoiceNo) and
+    the ``<Invoices><Invoice>…`` wrapper (all other methods).
+    """
+
+    invoices: list[Invoice] = []
+    for inv_el in [el for el in root.iter() if _localname(el.tag) == "Invoice"]:
+        header = _find_local(inv_el, "Header")
+        if header is None:
+            continue
+        misc = _find_local(header, "Miscellaneous")
+        invoices.append(
+            Invoice(
+                invoice_number=_text_local(header, "InvoiceNo") or None,
+                sales_order_number=_text_local(header, "SalesOrderNumber") or None,
+                po_number=_text_local(header, "PurchaseOrderNo") or None,
+                invoice_date=_text_local(header, "InvoiceDate") or None,
+                order_date=_text_local(header, "OrderDate") or None,
+                due_date=_text_local(header, "DueDate") or None,
+                invoice_status=_text_local(header, "InvoiceStatus") or None,
+                terms=_text_local(header, "Terms") or None,
+                ship_via=_text_local(header, "ShipVia") or None,
+                fob=_text_local(header, "FOB") or None,
+                customer_number=_text_local(header, "CustomerNo") or None,
+                total_cases=_to_int(_text_local(header, "TotalCases")) or None,
+                total_weight=_to_float(_text_local(header, "TotalWeight")),
+                sub_total=_to_float(_text_local(header, "SubTotal")),
+                sales_tax=_to_float(_text_local(header, "SalesTax")),
+                shipping_handling=_to_float(
+                    _text_local(header, "ShippingHandlingCharges")
+                ),
+                total_amount=_to_float(_text_local(header, "TotalAmount")),
+                freight_savings=_to_float(_text_local(misc, "FreightSavings"))
+                if misc is not None
+                else None,
+                tracking_ids=(_text_local(misc, "TrackingIDs") or None)
+                if misc is not None
+                else None,
+                sold_to=_parse_invoice_address(_find_local(header, "SoldTo")),
+                ship_to=_parse_invoice_address(_find_local(header, "ShipTo")),
+                remit_to=_parse_invoice_address(_find_local(header, "RemitTo")),
+                lines=[_parse_invoice_line(li) for li in _find_all_local(inv_el, "LineItem")],
+            )
+        )
+    return invoices

@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Craft documents through the craft CLI, including listing, searching, creating, updating, deleting, and exporting documents in JSON, table, or Markdown formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Craft documents through the craft CLI, including listing, searching, creating, updating, deleting, and exporting documents in JSON, table, or markdown formats.
 
-## Publisher: <br>
-[nerveband](https://clawhub.ai/user/nerveband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nerveband](https://clawhub.ai/user/nerveband)
 
-## Use Case: <br>
-Agents and developers use this skill to inspect, search, create, update, delete, and export Craft documents through CLI commands and helper shortcuts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes hardcoded personal and business Craft API URLs. <br>
-Mitigation: Replace the API URLs with an intended scoped Craft endpoint and check the active Craft space before running commands. <br>
-Risk: The documented CLI can update or delete Craft documents. <br>
-Mitigation: Require explicit approval before update or delete operations and verify target document IDs before execution. <br>
-Risk: Installation documentation downloads a binary and moves it with sudo. <br>
-Mitigation: Verify the binary source and integrity before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerveband/craft-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/nerveband) <br>
+## Use Case:
 
+Developers and agents use this skill to operate on Craft documents from a command line workflow, including retrieval, search, document creation, updates, deletion, and export. It is suited to LLM-assisted document workflows where machine-readable JSON or markdown output is useful.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI responses may be JSON, table, or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the configured Craft API URL and can produce document content or status output from CLI operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release exposes real-looking Craft access URLs.
+
+Mitigation: Do not use the embedded Craft URLs; replace them with protected user-owned configuration before installing or running the skill.
+
+Risk: The skill documents powerful document mutation commands, including create, update, and delete operations.
+
+Mitigation: Confirm the active Craft space and target document ID before any create, update, or delete action.
+
+Risk: A local CLI binary is expected before use.
+
+Mitigation: Prefer a user-local, verified CLI install and review the release carefully before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerveband/skills/craft-cli)
+- [Publisher profile](https://clawhub.ai/user/nerveband)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown, Code]
+
+**Output Format:** [Markdown with inline shell commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The craft CLI can emit JSON, table, or markdown output depending on command flags.]
+
+## Skill Version(s):
+
+1.6.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

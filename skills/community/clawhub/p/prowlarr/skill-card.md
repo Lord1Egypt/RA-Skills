@@ -1,41 +1,53 @@
-## Description: <br>
-Search indexers and manage Prowlarr through API-backed commands for release search, indexer health, indexer management, app sync, and system checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search indexers and manage Prowlarr. Use when the user asks to "search for a torrent", "search indexers", "find a release", "check indexer status", "list indexers", "prowlarr search", "sync indexers", or mentions Prowlarr/indexer management.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jmagar](https://clawhub.ai/user/jmagar)
 
-## Use Case: <br>
-Developers and operators use this skill to search Prowlarr indexers, inspect indexer status and statistics, manage enabled indexers, and sync indexer changes to connected apps such as Sonarr or Radarr. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Prowlarr API key for the configured instance. <br>
-Mitigation: Store the key in the documented local config file or environment variable, restrict file access, and rotate the key if it is exposed. <br>
-Risk: Indexer management commands can enable, disable, delete, or sync indexer changes to connected applications. <br>
-Mitigation: Confirm indexer IDs and require explicit approval before running delete, enable, disable, or sync commands. <br>
+## Use Case:
 
+Developers and external users use this skill to search Prowlarr indexers, inspect indexer health, manage indexer state, and sync configured indexers to connected media applications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jmagar/prowlarr) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Prowlarr URL and API key from a config file or environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill gives an agent API access that can change or delete Prowlarr indexer configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually confirm destructive operations such as delete and sync before execution, and restrict use to agents and users trusted to manage Prowlarr.
+
+Risk: The skill requires a Prowlarr API key and may read it from a config file or environment variable.
+
+Mitigation: Store the config file with owner-only permissions, avoid putting the key in shell history or shared environment files, and prefer HTTPS for the Prowlarr URL.
+
+## Reference(s):
+
+- [ClawHub Prowlarr Skill](https://clawhub.ai/jmagar/skills/prowlarr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Prowlarr URL and API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

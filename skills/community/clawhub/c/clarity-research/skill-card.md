@@ -1,41 +1,55 @@
-## Description: <br>
-Search protein folding research data from Clarity Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search protein folding research data from Clarity Protocol by disease or protein name, list variants, and get API information.
 
-## Publisher: <br>
-[clarityprotocol](https://clawhub.ai/user/clarityprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarityprotocol](https://clawhub.ai/user/clarityprotocol)
 
-## Use Case: <br>
-External researchers, developers, and agents use this skill to query Clarity Protocol protein variant records by disease or protein name and inspect mutation, disease, UniProt, confidence, and creation metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent to clarityprotocol.io, and using higher rate limits requires an API key. <br>
-Mitigation: Only submit queries you are comfortable sharing with Clarity Protocol, use a dedicated CLARITY_API_KEY, and avoid storing unrelated secrets in that environment variable. <br>
-Risk: Remote API rate limits, timeouts, or service errors can interrupt variant queries. <br>
-Mitigation: Handle 429, timeout, and server errors in agent workflows, and use the optional API key when higher request limits are appropriate. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to query Clarity Protocol protein mutation and fold-result data, including disease-specific variants, protein-specific variants, UniProt IDs, and AlphaFold confidence scores.
 
-## Reference(s): <br>
-- [Clarity Protocol](https://clarityprotocol.io) <br>
-- [ClawHub release page](https://clawhub.ai/clarityprotocol/clarity-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results or summary text, with Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are fetched from clarityprotocol.io and may be rate limited; CLARITY_API_KEY is optional for higher request limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends requests to clarityprotocol.io and may include CLARITY_API_KEY in an X-API-Key header when configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when outbound HTTPS requests to Clarity Protocol are acceptable, and provide CLARITY_API_KEY only when higher rate limits are needed.
+
+Risk: Anonymous use is rate limited and API responses may fail, time out, or return paginated results.
+
+Mitigation: Use the documented API key option for higher limits, review command output for error messages, and account for pagination when using returned data.
+
+## Reference(s):
+
+- [Clarity Protocol](https://clarityprotocol.io)
+- [Clarity Protocol API](https://clarityprotocol.io/api/v1)
+- [Clarity Research on ClawHub](https://clawhub.ai/clarityprotocol/skills/clarity-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or summary command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make HTTPS GET requests to clarityprotocol.io and may send CLARITY_API_KEY as an X-API-Key header when the environment variable is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

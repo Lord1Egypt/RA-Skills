@@ -1,48 +1,64 @@
-## Description: <br>
-LinkedIn 职场数据查询助手，覆盖用户资料、公司信息、职位搜索、帖子、评论、广告等数据查询，并支持 V1/V2 API 路由。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn 职场数据查询助手，覆盖用户资料、公司信息、职位搜索、帖子、评论和广告查询，并支持 V1/V2 API。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-Sales, recruiting, strategy, and business-analysis users can query LinkedIn-derived company, profile, hiring, post, comment, and ad data through MaxHub APIs. The skill supports browse, analysis, comparison, and multi-endpoint reporting workflows for commercial intelligence and talent-market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive MaxHub API credentials. <br>
-Mitigation: Store MAXHUB_API_KEY as a secret, do not print or paste token values into responses, and install only when the MaxHub API provider is trusted. <br>
-Risk: The skill can query LinkedIn-derived personal-profile and business data, which may support bulk profiling or unsolicited contact collection. <br>
-Mitigation: Limit use to appropriate business-intelligence, recruiting, and analysis workflows, and avoid bulk profiling or unsolicited contact collection. <br>
-Risk: The security summary flags unrelated fallback routes that users should review before enabling the skill. <br>
-Mitigation: Review fallback and downgrade instructions before deployment and disable or constrain any non-LinkedIn behavior that is not needed for the intended use case. <br>
+## Use Case:
 
+Sales, recruiting, HR, and strategy teams use this skill to gather LinkedIn business intelligence about people, companies, jobs, posts, comments, and ads through MaxHub APIs. It supports browse, analysis, and comparison workflows for company research, talent market analysis, and competitor monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/linkedin-aggregate-scraper) <br>
-- [MaxHub API provider](https://www.aconfig.cn) <br>
-- [Company Data API](references/api-company.md) <br>
-- [User Data API](references/api-user.md) <br>
-- [Search and Jobs API](references/api-search-jobs.md) <br>
-- [Content and Ads API](references/api-content.md) <br>
-- [Parameter Mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, summaries, links, and inline curl command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include LinkedIn-derived profile, company, job, post, comment, ad, comparison, and analysis summaries; API access requires MAXHUB_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: skill metadata and release evidence) <br>
+Risk: Automatic fallback instructions include unrelated Douyin endpoint paths that could send authenticated requests outside the expected LinkedIn scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain requests to documented /api/v1/linkedin/ paths and audit or disable non-LinkedIn fallback mappings before deployment.
+
+Risk: The skill requires a MaxHub API key and sends LinkedIn search or profile queries to www.aconfig.cn.
+
+Mitigation: Use a dedicated API key, avoid submitting unnecessary sensitive data, and review third-party service terms before use.
+
+Risk: Returned third-party data may be incomplete, restricted, stale, or inaccurate.
+
+Mitigation: Treat results as reference data and verify important business, recruiting, or compliance decisions against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/new-ironman/skills/linkedin-aggregate-scraper)
+- [Publisher Profile](https://clawhub.ai/user/new-ironman)
+- [MaxHub API Website](https://www.aconfig.cn)
+- [User Data API](references/api-user.md)
+- [Company Data API](references/api-company.md)
+- [Search & Jobs API](references/api-search-jobs.md)
+- [Content & Ads API](references/api-content.md)
+- [Parameter Mappings](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, tables, and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese responses; API key values are not included in output.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

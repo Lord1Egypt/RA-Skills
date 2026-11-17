@@ -1,39 +1,51 @@
-## Description: <br>
-Apply AI-assisted coding best practices when helping with programming tasks, including prompt shaping, context management, planning, code review, architecture discussion, and AI coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply AI-assisted coding best practices when helping with programming tasks, including prompt shaping, planning, context management, code review, and AI coding workflow guidance.
 
-## Publisher: <br>
-[benzooku](https://clawhub.ai/user/benzooku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benzooku](https://clawhub.ai/user/benzooku)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide AI-assisted coding sessions, especially when shaping vague or overly detailed requests, planning multi-file work, managing context, and reviewing generated code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages agents to read relevant files, write planning notes, and delegate larger work to subagents, which can expose sensitive or unrelated project context if the workspace is not scoped carefully. <br>
-Mitigation: Use the skill in a clean, task-scoped workspace and keep secrets or unrelated private files outside the active context. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide AI-assisted coding interactions, shape vague or overly detailed requests into effective tasks, plan multi-file work, and review generated code with appropriate skepticism.
 
-## Reference(s): <br>
-- [Context Engineering for Coding](references/context-engineering.md) <br>
-- [Prompt Patterns for Coding](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prose, checklists, code-oriented examples, and command suggestions when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance skill; no hidden execution behavior reported by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause an agent to consult persistent personal preferences or cross-session memory during routine coding tasks without clear consent or scope limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing with persistent memory enabled, and edit it to require explicit consent and task relevance before reading memory if that behavior is not acceptable.
+
+## Reference(s):
+
+- [Context Engineering for Coding](references/context-engineering.md)
+- [Prompt Patterns for Coding](references/prompt-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/benzooku/skills/coding-guidelines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces guidance for agent behavior during coding workflows rather than a standalone executable artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

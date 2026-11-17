@@ -1,41 +1,58 @@
-## Description: <br>
-Daily automated health check + mood tracking + proactive alerts for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily automated health check + mood tracking + proactive alerts for OpenClaw agents.
 
-## Publisher: <br>
-[lalawgwg99](https://clawhub.ai/user/lalawgwg99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lalawgwg99](https://clawhub.ai/user/lalawgwg99)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate daily status, mood, and task reports for an OpenClaw workspace, with optional scheduled delivery to Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save OpenClaw workspace status, task summaries, and mood-derived report data locally. <br>
-Mitigation: Install only if local report storage is acceptable for the workspace, and review generated report files before sharing them. <br>
-Risk: After Telegram is configured and cron entries are added, reports may be sent on an unattended recurring schedule. <br>
-Mitigation: Keep the placeholder chat ID or disable Telegram for local-only use, and add cron entries only when recurring delivery is intended. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to generate scheduled daily status reports covering gateway health, memory structure, mood trends, stalled P0/P1 tasks, and recommended follow-up actions.
 
-## Reference(s): <br>
-- [Daily-Observatory Lite on ClawHub](https://clawhub.ai/lalawgwg99/daily-observatory-lite) <br>
-- [Project homepage from skill metadata](https://github.com/lalawgwg99/daily-observatory-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style daily reports, terminal text, configuration guidance, and optional Telegram messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved locally under the skill memory directory and delivered through Telegram only after the user configures a real chat ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Scheduled reports may include mood, task status, and operational health information that can be delivered through Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured Telegram chat ID and disable Telegram delivery unless automatic sharing of these summaries is intended.
+
+Risk: The skill reads OpenClaw workspace files such as memory, emoji journal, heartbeat, and agent notes to build its reports.
+
+Mitigation: Review the files under ~/.openclaw/workspace-frontdesk before installation and confirm they are appropriate inputs for daily summaries.
+
+Risk: The README includes an unpinned dependency installation command for python-telegram-bot.
+
+Mitigation: Pin dependencies or remove the unused install instruction when maintaining or deploying the skill in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lalawgwg99/skills/daily-observatory-lite)
+- [Project Homepage](https://github.com/lalawgwg99/daily-observatory-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style daily report and Telegram-ready text, with optional shell commands for scheduled execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write dated daily report files under the skill memory folder and optionally send summaries through Telegram when configured]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mu-q12-survey — 盖洛普Q12敬业度调研AI助手</title>
+  <meta name="description" content="从问卷设计到90天改进计划，盖洛普Q12敬业度调研全链路AI助手。12道原题 · 4层登山模型 · 3种问卷版本 · 4组高危预警 · 90天改进计划。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+      --border:#e8e2db;--border-light:#f0ebe5;
+      --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+      --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+      --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+      --radius:12px;--radius-sm:8px;
+      --transition:0.25s ease;
+      --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+      --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+      --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+    }
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none;transition:color var(--transition)}
+    a:hover{color:#a04e30}
+    .container{max-width:960px;margin:0 auto;padding:0 28px}
+
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+    .nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px}
+    .nav-logo{font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:color var(--transition)}
+    .nav-links a:hover{color:var(--text)}
+    .nav-right{display:flex;align-items:center;gap:10px}
+    .lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:0.78rem;cursor:pointer;user-select:none}
+    .lang-switch span{padding:5px 11px;transition:all var(--transition);color:var(--text-muted)}
+    .lang-switch span.active{background:var(--accent);color:#fff}
+    .lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+    .nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);transition:all var(--transition)}
+    .nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+    /* Hero */
+    .hero{padding:140px 0 100px;text-align:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:var(--accent-bg);border:1px solid rgba(201,100,66,0.15);font-size:0.78rem;color:var(--accent);font-weight:500;margin-bottom:28px}
+    .hero-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    .hero h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.25;letter-spacing:-0.02em;margin-bottom:20px;color:var(--text)}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero-sub{font-size:1.05rem;color:var(--text-secondary);max-width:560px;margin:0 auto 40px;line-height:1.8}
+    .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-sm);font-size:0.92rem;font-weight:600;transition:all var(--transition);cursor:pointer;border:none;text-decoration:none}
+    .btn-primary{background:var(--text);color:var(--bg)}
+    .btn-primary:hover{background:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(201,100,66,0.2)}
+    .btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+    .btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);color:var(--accent)}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin:72px auto 0;max-width:800px}
+    .stat{background:var(--bg-card);padding:28px 12px;text-align:center;transition:background var(--transition)}
+    .stat:hover{background:var(--bg-warm)}
+    .stat-num{font-family:var(--font-serif);font-size:1.6rem;font-weight:700;color:var(--accent);line-height:1.2}
+    .stat-label{font-size:0.7rem;color:var(--text-muted);margin-top:4px;letter-spacing:0.06em}
+
+    /* Sections */
+    section{padding:88px 0}
+    .section-label{display:inline-block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:12px}
+    .section-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;line-height:1.3;letter-spacing:-0.01em;margin-bottom:12px}
+    .section-desc{font-size:0.95rem;color:var(--text-secondary);max-width:520px;line-height:1.8}
+    .section-header{margin-bottom:52px}
+    .section-header.center{text-align:center}
+    .section-header.center .section-desc{margin:0 auto}
+
+    /* Mountain Model */
+    .mountain-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    .mountain-card{padding:28px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+    .mountain-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+    .mountain-card .level-header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+    .mountain-card .level-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--bg-warm)}
+    .mountain-card .level-title{font-size:1rem;font-weight:700;color:var(--text)}
+    .mountain-card .level-subtitle{font-size:0.82rem;color:var(--text-secondary);margin-top:2px}
+    .mountain-card .questions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .q-tag{background:var(--bg-warm);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:5px 12px;font-size:0.78rem;color:var(--text);font-weight:500;transition:all var(--transition)}
+    .q-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* Workflows */
+    .workflow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .workflow-card{padding:28px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition);text-align:center}
+    .workflow-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+    .wf-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px;background:var(--bg-warm)}
+    .workflow-card h3{font-size:0.95rem;font-weight:700;margin-bottom:6px}
+    .workflow-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
+    .wf-trigger{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--accent-bg);color:var(--accent)}
+
+    /* Risk Grid */
+    .risk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .risk-card{padding:24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);border-left:4px solid var(--red);transition:all var(--transition)}
+    .risk-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+    .risk-combo{font-family:var(--font-mono);font-size:0.88rem;color:var(--red);font-weight:700;margin-bottom:8px}
+    .risk-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.7}
+
+    /* Comparison */
+    .comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+    .comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.85rem;border-bottom:1px solid var(--border-light)}
+    .comparison-table thead th{background:var(--bg-warm);font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+    .comparison-table thead th:nth-child(2){color:var(--accent)}
+    .comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+    .comparison-table tbody tr:hover{background:var(--bg-warm)}
+    .comparison-table tbody tr:last-child td{border-bottom:none}
+    .comparison-table td:first-child{font-weight:600}
+    .check{color:var(--green);font-weight:700}
+    .cross{color:var(--red)}
+    .partial{color:#c9a44e}
+
+    /* Quick Start */
+    .quickstart{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:32px}
+    .qs-step{display:flex;gap:16px;margin-bottom:24px}
+    .qs-step:last-child{margin-bottom:0}
+    .qs-marker{flex-shrink:0;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:700;background:var(--bg-warm);color:var(--text-secondary);border:1px solid var(--border-light);transition:all var(--transition)}
+    .qs-step:hover .qs-marker{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .qs-body h4{font-size:0.9rem;font-weight:700;margin-bottom:6px}
+    .qs-body p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
+    .qs-body code{background:var(--bg-code);border:1px solid var(--border-light);border-radius:6px;padding:2px 8px;font-family:var(--font-mono);font-size:0.78rem;color:var(--accent)}
+    .qs-body .code-block{display:block;background:var(--bg-code);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:12px 16px;margin-top:8px;font-family:var(--font-mono);font-size:0.78rem;color:var(--text-secondary);white-space:pre-wrap}
+
+    /* Privacy */
+    .privacy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .privacy-item{padding:24px 16px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);text-align:center;transition:all var(--transition)}
+    .privacy-item:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .pi-icon{font-size:1.6rem;margin-bottom:10px}
+    .pi-text{font-size:0.82rem;color:var(--text-secondary);font-weight:500}
+
+    /* CTA */
+    .cta-section{text-align:center;padding:100px 0}
+    .cta-section h2{font-family:var(--font-serif);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;margin-bottom:14px}
+    .cta-section h2 em{font-style:normal;color:var(--accent)}
+    .cta-section p{color:var(--text-secondary);font-size:1rem;margin-bottom:36px;line-height:1.8}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border-light);padding:40px 0;text-align:center}
+
+    /* Divider */
+    .divider{width:48px;height:2px;background:var(--border);margin:0 auto;border-radius:1px}
+    section .divider{margin:0;margin-bottom:52px}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .workflow-grid{grid-template-columns:1fr}
+      .risk-grid{grid-template-columns:1fr}
+      .privacy-grid{grid-template-columns:repeat(2,1fr)}
+      .nav-links{display:none}
+      .hero{padding:120px 0 80px}
+    }
+  </style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<div class="nav-logo">mu-q12-survey</div>
+<ul class="nav-links">
+<li><a href="#framework"><span data-en="Framework" data-zh="Q12框架">Q12框架</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+<li><a href="#risk"><span data-en="Risk Detection" data-zh="高危预警">高危预警</span></a></li>
+<li><a href="#comparison"><span data-en="Comparison" data-zh="对比">对比</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch" id="langSwitch"><span data-lang="zh" class="active">中文</span><span data-lang="en">EN</span></div>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank"><span data-en="Skill Hub" data-zh="Skill合集">Skill合集</span></a>
+</div></div></nav>
+
+<section class="hero"><div class="container">
+<div class="hero-badge"><span class="dot"></span><span data-en="v1.0.0 · Open Source" data-zh="v1.0.0 · 开源发布">v1.0.0 · 开源发布</span></div>
+<h1><span data-en="Don't just <em>guess</em> team morale.<br><em>Measure</em> it with Gallup Q12." data-zh="别再<em>靠感觉猜</em>团队状态，<br>用<em>盖洛普Q12</em>量出来。">别再<em>靠感觉猜</em>团队状态，<br>用<em>盖洛普Q12</em>量出来。</span></h1>
+<p class="hero-sub"><span data-en="📊 AI-powered engagement survey assistant — from questionnaire design to result interpretation to 90-day improvement plans. All in one skill." data-zh="📊 从问卷设计到结果解读到90天改进计划，盖洛普Q12敬业度调研全链路AI助手，一个Skill全搞定。">📊 从问卷设计到结果解读到90天改进计划，盖洛普Q12敬业度调研全链路AI助手，一个Skill全搞定。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-q12-survey" class="btn btn-primary" target="_blank"><span data-en="⭐ View on GitHub" data-zh="⭐ 在 GitHub 上查看">⭐ 在 GitHub 上查看</span></a>
+<a href="https://github.com/muippt/mu-q12-survey/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="📦 Download ZIP" data-zh="📦 下载 ZIP">📦 下载 ZIP</span></a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num">📋 12</div><div class="stat-label"><span data-en="Q12 Questions" data-zh="Q12原题">Q12原题</span></div></div>
+<div class="stat"><div class="stat-num">🏔️ 4</div><div class="stat-label"><span data-en="Mountain Levels" data-zh="登山层级">登山层级</span></div></div>
+<div class="stat"><div class="stat-num">🔀 3</div><div class="stat-label"><span data-en="Survey Versions" data-zh="问卷版本">问卷版本</span></div></div>
+<div class="stat"><div class="stat-num">🚨 4</div><div class="stat-label"><span data-en="Risk Patterns" data-zh="高危组合">高危组合</span></div></div>
+<div class="stat"><div class="stat-num">📅 90</div><div class="stat-label"><span data-en="Day Plan" data-zh="天改进计划">天改进计划</span></div></div>
+</div>
+</div></section>
+
+<section id="framework"><div class="container">
+<div class="section-header center"><div class="section-label"><span data-en="🏔️ Core Framework" data-zh="🏔️ 核心框架">🏔️ 核心框架</span></div>
+<h2 class="section-title"><span data-en="Gallup Q12 Mountain Model" data-zh="盖洛普Q12登山模型">盖洛普Q12登山模型</span></h2>
+<p class="section-desc"><span data-en="12 questions across 4 climbing levels — from basic needs to mutual growth. Each question comes with management implications and root-cause analysis." data-zh="12道题分布在4个登山层级——从基本需求到共同成长。每道题都附带管理含义和根因分析。">12道题分布在4个登山层级——从基本需求到共同成长。每道题都附带管理含义和根因分析。</span></p>
+</div>
+<div class="mountain-grid">
+<div class="mountain-card"><div class="level-header">
+<span class="level-icon">⛺</span>
+<div><div class="level-title"><span data-en="Base Camp · Basic Needs" data-zh="大本营 · 基本需求">大本营 · 基本需求</span></div>
+<div class="level-subtitle"><span data-en="&quot;What do I get?&quot; — Direction & resources" data-zh="&quot;我能获取什么&quot; — 方向感与资源保障">&quot;我能获取什么&quot; — 方向感与资源保障</span></div></div>
+</div><div class="questions">
+<span class="q-tag">Q1 <span data-en="Expectations" data-zh="工作要求">工作要求</span></span>
+<span class="q-tag">Q2 <span data-en="Materials" data-zh="材料设备">材料设备</span></span>
+</div></div>
+
+<div class="mountain-card"><div class="level-header">
+<span class="level-icon">🚩</span>
+<div><div class="level-title"><span data-en="Camp 1 · Individual Contribution" data-zh="一号营地 · 个人贡献">一号营地 · 个人贡献</span></div>
+<div class="level-subtitle"><span data-en="&quot;What do I give?&quot; — Seen, recognized, supported" data-zh="&quot;我能给予什么&quot; — 被看见、被认可、被支持">&quot;我能给予什么&quot; — 被看见、被认可、被支持</span></div></div>
+</div><div class="questions">
+<span class="q-tag">Q3 <span data-en="Strengths" data-zh="优势发挥">优势发挥</span></span>
+<span class="q-tag">Q4 <span data-en="Recognition" data-zh="即时表扬">即时表扬</span></span>
+<span class="q-tag">Q5 <span data-en="Care" data-zh="主管关怀">主管关怀</span></span>
+<span class="q-tag">Q6 <span data-en="Development" data-zh="发展鼓励">发展鼓励</span></span>
+</div></div>
+
+<div class="mountain-card"><div class="level-header">
+<span class="level-icon">🏰</span>
+<div><div class="level-title"><span data-en="Camp 2 · Team Belonging" data-zh="二号营地 · 团队归属">二号营地 · 团队归属</span></div>
+<div class="level-subtitle"><span data-en="&quot;Do I belong?&quot; — Values alignment" data-zh="&quot;我属于这里吗&quot; — 价值观与团队一致">&quot;我属于这里吗&quot; — 价值观与团队一致</span></div></div>
+</div><div class="questions">
+<span class="q-tag">Q7 <span data-en="Opinions" data-zh="意见重视">意见重视</span></span>
+<span class="q-tag">Q8 <span data-en="Mission" data-zh="使命意义">使命意义</span></span>
+<span class="q-tag">Q9 <span data-en="Quality" data-zh="同事质量">同事质量</span></span>
+<span class="q-tag">Q10 <span data-en="Best Friend" data-zh="最好朋友">最好朋友</span></span>
+</div></div>
+
+<div class="mountain-card"><div class="level-header">
+<span class="level-icon">🏔️</span>
+<div><div class="level-title"><span data-en="Camp 3 · Mutual Growth" data-zh="三号营地 · 共同成长">三号营地 · 共同成长</span></div>
+<div class="level-subtitle"><span data-en="&quot;How do we grow together?&quot; — Continuous evolution" data-zh="&quot;我们如何一起进步&quot; — 持续进化">&quot;我们如何一起进步&quot; — 持续进化</span></div></div>
+</div><div class="questions">
+<span class="q-tag">Q11 <span data-en="Progress" data-zh="进步反馈">进步反馈</span></span>
+<span class="q-tag">Q12 <span data-en="Learning" data-zh="学习成长">学习成长</span></span>
+</div></div>
+</div>
+</div></section>
+
+<section id="workflows" style="background:var(--bg-warm)"><div class="container">
+<div class="section-header center"><div class="section-label"><span data-en="🔀 Three Workflows" data-zh="🔀 三大工作流">🔀 三大工作流</span></div>
+<h2 class="section-title"><span data-en="End-to-end engagement management" data-zh="全链路敬业度管理">全链路敬业度管理</span></h2>
+<p class="section-desc"><span data-en="From designing the survey to interpreting results to taking action — one skill covers the full journey." data-zh="从设计问卷到解读结果到采取行动——一个Skill覆盖全旅程。">从设计问卷到解读结果到采取行动——一个Skill覆盖全旅程。</span></p>
+</div>
+<div class="workflow-grid">
+<div class="workflow-card"><div class="wf-icon">📋</div>
+<h3><span data-en="Survey Design" data-zh="问卷定制">问卷定制</span></h3>
+<p><span data-en="Standard (12Q) / Lite (8Q) / Focused (variable) + team-specific add-on questions. 5-point Likert scale recommended." data-zh="标准版（12题）/ 精简版（8题）/ 聚焦版（按需）+ 团队定制补充题。推荐5分制量表。">标准版（12题）/ 精简版（8题）/ 聚焦版（按需）+ 团队定制补充题。推荐5分制量表。</span></p>
+<div class="wf-trigger"><span data-en="Trigger: &quot;Help me design a Q12 survey&quot;" data-zh="触发：&quot;帮我设计Q12问卷&quot;">触发：&quot;帮我设计Q12问卷&quot;</span></div>
+</div>
+<div class="workflow-card"><div class="wf-icon">📈</div>
+<h3><span data-en="Result Interpretation" data-zh="结果解读">结果解读</span></h3>
+<p><span data-en="Three-tier engagement classification + weak area identification + high-risk combination detection + global benchmark comparison." data-zh="三档敬业度分类 + 关键弱项识别 + 高危组合检测 + 全球基准对比。">三档敬业度分类 + 关键弱项识别 + 高危组合检测 + 全球基准对比。</span></p>
+<div class="wf-trigger"><span data-en="Trigger: &quot;Interpret my survey results&quot;" data-zh="触发：&quot;解读调研结果&quot;">触发：&quot;解读调研结果&quot;</span></div>
+</div>
+<div class="workflow-card"><div class="wf-icon">💡</div>
+<h3><span data-en="Improvement Actions" data-zh="改进建议">改进建议</span></h3>
+<p><span data-en="Per-item quick-win (1 week) + mid-term (1-3 months) actions + structured 90-day improvement plan with milestones." data-zh="按题快赢行动（1周内）+ 中期行动（1-3月）+ 结构化90天改进计划含里程碑。">按题快赢行动（1周内）+ 中期行动（1-3月）+ 结构化90天改进计划含里程碑。</span></p>
+<div class="wf-trigger"><span data-en="Trigger: &quot;How to improve engagement&quot;" data-zh="触发：&quot;怎么提升敬业度&quot;">触发：&quot;怎么提升敬业度&quot;</span></div>
+</div>
+</div>
+</div></section>
+
+<section id="risk"><div class="container">
+<div class="section-header center"><div class="section-label"><span data-en="🚨 Risk Detection" data-zh="🚨 高危预警">🚨 高危预警</span></div>
+<h2 class="section-title"><span data-en="Automatic high-risk pattern detection" data-zh="高危组合自动识别">高危组合自动识别</span></h2>
+<p class="section-desc"><span data-en="When specific Q12 combinations score low simultaneously, they signal systemic failure. The skill detects 4 dangerous patterns automatically." data-zh="当特定Q12组合同时低分时，意味着系统性失效。Skill自动识别4种危险组合。">当特定Q12组合同时低分时，意味着系统性失效。Skill自动识别4种危险组合。</span></p>
+</div>
+<div class="risk-grid">
+<div class="risk-card">
+<div class="risk-combo">Q1 + Q4 + Q5 ↓</div>
+<div class="risk-desc"><span data-en="Severe manager capability gap — employees don't know expectations, get no recognition, feel no care. High attrition risk." data-zh="经理管理能力严重不足——员工不清楚要求、得不到表扬、感受不到关怀。离职风险极高。">经理管理能力严重不足——员工不清楚要求、得不到表扬、感受不到关怀。离职风险极高。</span></div>
+</div>
+<div class="risk-card">
+<div class="risk-combo">Q3 + Q6 + Q12 ↓</div>
+<div class="risk-desc"><span data-en="Career path blocked — wrong-person-wrong-seat, no development support, no growth opportunities. High-potential talent at risk." data-zh="发展通道堵死——人岗不匹配、无发展支持、无成长机会。高潜人才流失风险极高。">发展通道堵死——人岗不匹配、无发展支持、无成长机会。高潜人才流失风险极高。</span></div>
+</div>
+<div class="risk-card">
+<div class="risk-combo">Q7 + Q8 ↓</div>
+<div class="risk-desc"><span data-en="Quiet quitting — opinions ignored, work feels meaningless. Employees have mentally checked out." data-zh="员工躺平——意见被忽视、工作看不到意义。员工心态已撤退。">员工躺平——意见被忽视、工作看不到意义。员工心态已撤退。</span></div>
+</div>
+<div class="risk-card">
+<div class="risk-combo">Q9 + Q10 ↓</div>
+<div class="risk-desc"><span data-en="Team cohesion collapse — low quality standards, no deep interpersonal bonds. Culture and collaboration breaking down." data-zh="团队凝聚力瓦解——质量标准参差、人际关系疏离。协作和文化双双崩塌。">团队凝聚力瓦解——质量标准参差、人际关系疏离。协作和文化双双崩塌。</span></div>
+</div>
+</div>
+</div></section>
+
+<section id="comparison" style="background:var(--bg-warm)"><div class="container">
+<div class="section-header center"><div class="section-label"><span data-en="📊 Comparison" data-zh="📊 对比">📊 对比</span></div>
+<h2 class="section-title"><span data-en="vs. Gallup official tools & generic survey platforms" data-zh="对比盖洛普官方工具与通用问卷平台">对比盖洛普官方工具与通用问卷平台</span></h2>
+</div>
+<div style="overflow-x:auto"><table class="comparison-table"><thead><tr>
+<th><span data-en="Dimension" data-zh="维度">维度</span></th><th>mu-q12-survey</th><th><span data-en="Gallup Official" data-zh="盖洛普官方">盖洛普官方</span></th><th><span data-en="Generic Survey" data-zh="通用问卷平台">通用问卷平台</span></th>
+</tr></thead><tbody>
+<tr><td><span data-en="Q12 Framework" data-zh="Q12完整框架">Q12完整框架</span></td><td><span class="check" data-en="✅ All 12 + implications" data-zh="✅ 12题+管理含义">✅ 12题+管理含义</span></td><td><span class="check">✅</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="AI-Powered" data-zh="AI对话式">AI对话式</span></td><td><span class="check">✅</span></td><td><span class="cross">❌</span></td><td><span class="partial">⚠️</span></td></tr>
+<tr><td><span data-en="Improvement Actions" data-zh="改进建议库">改进建议库</span></td><td><span class="check" data-en="✅ Per-item + 90-day plan" data-zh="✅ 按题+90天计划">✅ 按题+90天计划</span></td><td><span class="partial" data-en="⚠️ Paid" data-zh="⚠️ 付费">⚠️ 付费</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Risk Detection" data-zh="高危组合识别">高危组合识别</span></td><td><span class="check">✅</span></td><td><span class="partial">⚠️</span></td><td><span class="cross">❌</span></td></tr>
+<tr><td><span data-en="Cost" data-zh="成本">成本</span></td><td><span class="check" data-en="✅ Free / OSS" data-zh="✅ 免费开源">✅ 免费开源</span></td><td><span class="cross">💰💰💰</span></td><td><span class="partial">Freemium</span></td></tr>
+<tr><td><span data-en="Privacy" data-zh="隐私">隐私</span></td><td><span class="check" data-en="✅ 100% local" data-zh="✅ 完全本地">✅ 完全本地</span></td><td><span class="partial" data-en="Cloud" data-zh="云端">云端</span></td><td><span class="partial" data-en="Cloud" data-zh="云端">云端</span></td></tr>
+</tbody></table></div>
+</div></section>
+
+<section class="cta-section"><div class="container">
+<h2><span data-en="📊 Stop guessing.<br><em>Start measuring.</em>" data-zh="📊 别再靠感觉了。<br><em>用数据说话。</em>">📊 别再靠感觉了。<br><em>用数据说话。</em></span></h2>
+<p><span data-en="Open-source Gallup Q12 engagement survey assistant — from questionnaire to 90-day plan, all in one skill." data-zh="开源盖洛普Q12敬业度调研助手——从问卷设计到90天改进计划，一个Skill全搞定。">开源盖洛普Q12敬业度调研助手——从问卷设计到90天改进计划，一个Skill全搞定。</span></p>
+<div class="hero-actions">
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-primary"><span data-en="mu-skillhub" data-zh="mu-skill集合">mu-skill集合</span></a>
+<a href="https://github.com/muippt/mu-q12-survey/archive/refs/heads/main.zip" class="btn btn-secondary"><span data-en="Download ZIP" data-zh="下载 ZIP">下载 ZIP</span></a>
+</div></div></section>
+
+<footer><div class="container">
+<div class="footer-badges" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div></footer>
+
+<script>
+(function(){
+  var sw=document.getElementById('langSwitch');
+  var spans=sw.querySelectorAll('span');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+lang);
+    });
+    document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+    });
+    spans.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-lang')===lang)});
+    localStorage.setItem('q12-lang',lang);
+    document.documentElement.lang=lang==='zh'?'zh':'en';
+  }
+  spans.forEach(function(s){s.addEventListener('click',function(){applyLang(s.getAttribute('data-lang'))})});
+  // Always default to Chinese on fresh page load; no restore from localStorage/browser language.
+  applyLang('zh');
+})();
+</script>
+</body>
+</html>

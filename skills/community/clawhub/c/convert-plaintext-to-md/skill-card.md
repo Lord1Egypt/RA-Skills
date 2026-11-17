@@ -1,44 +1,56 @@
-## Description: <br>
-Convert a text-based document to markdown following instructions from prompt, or if a documented option is passed, follow the instructions for that option. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a text-based document to markdown following instructions from prompt, or if a documented option is passed, follow the instructions for that option.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers, engineers, and documentation maintainers use this skill to convert plain text or generic documentation into Markdown, optionally following explicit instructions, documented options, or a reference Markdown file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may edit or create Markdown files from source documentation. <br>
-Mitigation: Use it only on files intended for conversion and review diffs before accepting changes. <br>
-Risk: Pattern-based conversion can continue farther through a document than intended if the stopping point is unclear. <br>
-Mitigation: Specify a clear stop point for pattern-based conversions when only part of a file should be changed. <br>
-Risk: Reference URL fetching can bring untrusted formatting guidance into the conversion process. <br>
-Mitigation: Allow reference URL fetching only for documentation sites the user trusts. <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to convert plain text or generic text documentation into structured Markdown, with optional guidance from explicit instructions, predefined formatting options, or a reference Markdown file.
 
-## Reference(s): <br>
-- [GitHub Basic Writing and Formatting Syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) <br>
-- [Markdown Guide Extended Syntax](https://www.markdownguide.org/extended-syntax/) <br>
-- [Azure DevOps Markdown Guidance](https://learn.microsoft.com/en-us/azure/devops/project/wiki/markdown-guidance?view=azure-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit Markdown files from supplied source files and may use a trusted reference document or trusted documentation URL when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create or modify a Markdown file next to the source document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target paths before conversion and use version control or backups for important source documents.
+
+Risk: Finalizing or polishing can apply whole-document whitespace and formatting cleanup.
+
+Mitigation: Review converted documents afterward when exact whitespace, indentation, or literal formatting matters.
+
+## Reference(s):
+
+- [GitHub basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [Markdown Guide extended syntax](https://www.markdownguide.org/extended-syntax/)
+- [Azure DevOps Markdown guidance](https://learn.microsoft.com/en-us/azure/devops/project/wiki/markdown-guidance?view=azure-devops)
+- [ClawHub skill page](https://clawhub.ai/jhauga/skills/convert-plaintext-to-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and edited Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a .md copy next to the source document or modify an existing .md file when converting or finalizing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

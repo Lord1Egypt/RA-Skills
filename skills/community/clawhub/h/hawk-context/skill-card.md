@@ -1,45 +1,62 @@
-## Description: <br>
-Context Compressor compresses the current conversation history into a shorter continuation prompt while preserving system instructions and recent messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Compressor compresses the current conversation history into a shorter prompt while preserving system instructions, recent messages, and key task context.
 
-## Publisher: <br>
-[relunctance](https://clawhub.ai/user/relunctance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relunctance](https://clawhub.ai/user/relunctance)
 
-## Use Case: <br>
-Developers and agent users use this skill to reduce long active conversations into compact continuation prompts when context approaches capacity. It is intended for current-session compression rather than cross-session memory management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived content may be retained locally in memory/today.md. <br>
-Mitigation: Use dry-run first, avoid sensitive conversations unless local retention is acceptable, and remove retained history when it is no longer needed. <br>
-Risk: The installer changes ~/.bashrc and creates a ~/bin symlink to a command target that is not present in the reviewed package. <br>
-Mitigation: Inspect or skip the installer, and create any command link manually only after verifying the target script exists. <br>
-Risk: Aggressive compression can drop or summarize older details that may still matter. <br>
-Mitigation: Review the compressed output before replacing the working context, and use lighter compression or a larger keep-recent setting for high-stakes work. <br>
+## Use Case:
 
+Developers and agent users use this skill to reduce long conversation context into a compact continuation prompt with preserved instructions, recent turns, and compression metrics.
 
-## Reference(s): <br>
-- [Compression Logic](references/compression-logic.md) <br>
-- [Auto-Trigger](references/auto-trigger.md) <br>
-- [Structured Output](references/structured-output.md) <br>
-- [CLI Reference](references/cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and structured JSON examples; compressed conversations are represented as text prompts or JSON objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports light, normal, heavy, and emergency compression levels, dry-run preview, recent-message retention settings, token estimates, and optional compression history written to memory/today.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can change agent behavior automatically through context-threshold triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep compression explicit and opt-in unless the user has reviewed and accepted the auto-trigger behavior.
+
+Risk: Compression history can persist conversation-derived records that may contain secrets or sensitive data.
+
+Mitigation: Avoid enabling memory logging for sensitive chats and review generated records before retaining or sharing them.
+
+Risk: The installer can alter the user's shell environment by adding ~/bin to PATH and creating command symlinks.
+
+Mitigation: Run the installer only after reviewing the shell changes, or invoke the script directly without modifying shell startup files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/relunctance/skills/hawk-context)
+- [Compression Logic](references/compression-logic.md)
+- [Auto-Trigger](references/auto-trigger.md)
+- [Structured Output](references/structured-output.md)
+- [CLI Reference](references/cli.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compression statistics, retained-message counts, summarized-message counts, and suggested compression levels.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

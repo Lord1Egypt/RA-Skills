@@ -1,0 +1,18 @@
+# ASR-Service 默认配置
+
+# ASR 服务连接
+service:
+  name: sensevoice-small
+  base_url: http://localhost:8881
+  health_timeout: 120
+  switch_timeout: 120
+
+# 重试
+retry:
+  max_attempts: 3
+
+# 默认参数
+defaults:
+  model: sensevoice
+  language: null  # null = auto-detect
+  response_format: json

@@ -1,0 +1,4 @@
+interface:
+  display_name: "拾光报：整期报纸制作"
+  short_description: "把故事与照片制作成丰富的多版主题报纸，交付图片、打印 PDF 和完整制作工程"
+  default_prompt: "使用 $shiguang-newspaper，把我的主题与素材编成一期有丰富视觉和栏目分工的报纸，先展示整期策划与图片处理方案。"

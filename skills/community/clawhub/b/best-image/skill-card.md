@@ -1,44 +1,59 @@
-## Description: <br>
-Best quality AI image generation (~$0.12-0.20/image), including text-to-image, image-to-image, and image editing via the EvoLink API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best quality AI image generation (~$0.12-0.20/image). Text-to-image, image-to-image, and image editing via the EvoLink API.
 
-## Publisher: <br>
-[Pharmacist9527](https://clawhub.ai/user/Pharmacist9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pharmacist9527](https://clawhub.ai/user/pharmacist9527)
 
-## Use Case: <br>
-Developers and creators use this skill to generate, transform, or edit images through EvoLink from prompts and optional reference image URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and the EvoLink API key are sent to EvoLink. <br>
-Mitigation: Keep the key in EVOLINK_API_KEY, avoid sensitive prompts or private image URLs, and install only if EvoLink data handling is acceptable. <br>
-Risk: Image generation can spend EvoLink API credits, and 4K quality may cost more. <br>
-Mitigation: Confirm the requested quality and expected cost before running high-volume or 4K generations. <br>
-Risk: A user-selected output path could overwrite an important local file. <br>
-Mitigation: Write generated images to a noncritical path and avoid using existing important filenames. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Best Image on ClawHub](https://clawhub.ai/Pharmacist9527/best-image) <br>
-- [EvoLink](https://evolink.ai) <br>
-- [curl heredoc fallback](references/curl_heredoc.md) <br>
-- [PowerShell fallback](references/powershell.md) <br>
+## Use Case:
 
+External users and developers use this skill to generate new images, transform image references, and edit images through EvoLink from natural-language prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Local image file path emitted as MEDIA:<path>, with Markdown and shell guidance for fallback workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVOLINK_API_KEY; supports size, quality, and up to 10 reference image URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, generation settings, and reference image URLs are sent to EvoLink using the user's API key.
+
+Mitigation: Use this skill only with prompts and reference image URLs that are appropriate to share with EvoLink.
+
+Risk: Image generation may create API charges, especially at higher quality settings.
+
+Mitigation: Confirm the intended quality setting and API budget before running generation, and reserve 4K output for cases where the added cost is acceptable.
+
+Risk: Generated image URLs expire after about 24 hours.
+
+Mitigation: Download generated results promptly and rely on the locally saved image file for persistence.
+
+## Reference(s):
+
+- [Best Image on ClawHub](https://clawhub.ai/pharmacist9527/skills/best-image)
+- [EvoLink](https://evolink.ai)
+- [curl heredoc fallback](references/curl_heredoc.md)
+- [PowerShell fallback](references/powershell.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Local image file with MEDIA path output, plus command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved locally; result URLs expire after about 24 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

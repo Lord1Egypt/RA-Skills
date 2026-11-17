@@ -1,42 +1,57 @@
-## Description: <br>
-Exports WeChat public-account articles from mp.weixin.qq.com URLs as long screenshots while preserving the article layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports WeChat public-account articles from mp.weixin.qq.com URLs as long screenshots while handling lazy-loaded images, video placeholders, and bottom toolbar obstruction.
 
-## Publisher: <br>
-[benzking](https://clawhub.ai/user/benzking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benzking](https://clawhub.ai/user/benzking)
 
-## Use Case: <br>
-Developers and content archivists use this skill to capture permitted WeChat public-account articles as PNG screenshots and PDF exports from mp.weixin.qq.com URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Playwright browser automation that disguises automation and disables some browser protections. <br>
-Mitigation: Run it in an isolated workspace with a fresh browser profile and review the browser behavior before use. <br>
-Risk: Automated capture of WeChat articles may conflict with site, account, or content-owner rules if used without authorization. <br>
-Mitigation: Use it only for articles you are allowed to archive and confirm compliance with applicable site, account, and content rules. <br>
-Risk: Generated screenshots and PDFs can contain sensitive article content. <br>
-Mitigation: Store outputs in approved locations and review files before sharing them. <br>
+## Use Case:
 
+Developers, content operators, and external users can use this skill to preserve WeChat public-account articles as image/PDF exports from mp.weixin.qq.com links.
 
-## Reference(s): <br>
-- [WeChat Article Exporter on ClawHub](https://clawhub.ai/benzking/wechat-article-exporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown instructions with shell command execution and generated PNG/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid https://mp.weixin.qq.com/s/ article URL and an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release evidence) <br>
+Risk: The skill weakens browser protections and uses automation-evasion settings while loading remote WeChat pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in a low-privilege, disposable environment with restricted network access.
+
+Risk: Browser automation against remote article pages can increase host exposure if secrets or existing browser profiles are mounted.
+
+Mitigation: Run without mounted secrets or browser profiles and use only WeChat article URLs the operator intends to export.
+
+Risk: Long-page screenshot stitching and PDF conversion can consume memory, disk, and runtime.
+
+Mitigation: Apply memory, disk, and runtime limits to the execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benzking/skills/wechat-article-exporter)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with a bash command; generated PNG/PDF files and console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates per-article output directories using the detected article title.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

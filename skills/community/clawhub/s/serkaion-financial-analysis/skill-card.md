@@ -1,41 +1,52 @@
-## Description: <br>
-Investment-grade financial modeling for DCF valuation, comparable-company analysis, 3-statement models, returns analysis, and investor data-room materials using provided, public, or project-level figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment-grade financial modeling for DCF valuation, comparable-company analysis, 3-statement models, returns analysis, and investor data-room packs using provided, public, or project-level figures.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[serkaion](https://clawhub.ai/user/serkaion)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and finance teams use this skill to prepare valuation ranges, financial models, returns analysis, and investor data-room materials from supplied, public, or project-level figures.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Financial models can be misleading when assumptions, comparables, or input figures are incomplete or incorrect.
+
+Mitigation: Verify assumptions, comparables, and calculations, and treat outputs as analysis support rather than legal, tax, or regulated investment advice.
+
+Risk: Sensitive deal or financial data may be exposed if it is pasted into the agent context.
+
+Mitigation: Avoid sharing confidential deal data unless it is intended for agent use and permitted by the user's data-handling process.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Analysts, founders, and investor-facing teams use this skill to prepare valuation work, comparable-company analysis, returns modeling, and investor materials from public, provided, or project-level inputs. It is intended for modeling support and investor-material preparation, not as personal financial, legal, tax, fiduciary, or trading advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-modeling output may be mistaken for personal financial, legal, tax, fiduciary, or trading advice. <br>
-Mitigation: Use the skill for modeling and investor-material preparation from public or user-supplied inputs, and require qualified review before relying on outputs for advice or transactions. <br>
-Risk: The skill may activate on a broad range of valuation or returns questions. <br>
-Mitigation: Apply it only when the user is seeking financial modeling or investor-material support, and state assumptions and input sources explicitly. <br>
+**Output Format:** [Markdown with financial tables and scenario summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/serkaion/serkaion-financial-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/serkaion) <br>
+**Other Properties Related to Output:** [Includes stated assumptions, valuation ranges, sensitivity tables, comparables, and audit-ready working notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with assumptions, ranges, sensitivity tables, and auditable calculations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include valuation ranges, comparable-company tables, returns metrics, risk registers, and investor-pack summaries.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

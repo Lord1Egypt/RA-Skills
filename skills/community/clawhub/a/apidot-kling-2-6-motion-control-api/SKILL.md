@@ -20,6 +20,15 @@ This skill is for routing Kling 2.6 Motion Control questions to the right APIDot
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Kling 2.6 Motion Control model page: https://apidot.ai/models/kling-2-6-motion-control
+- Read Kling 2.6 Motion Control API docs: https://apidot.ai/docs/kling-2-6-motion-control
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

@@ -1,41 +1,63 @@
-## Description: <br>
-Schedule and manage social media posts across multiple social platforms, query analytics, manage the queue, and publish immediately through natural language using the PostThatLater API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and manage social media posts across multiple social platforms, query analytics, manage the queue, and publish immediately via natural language.
 
-## Publisher: <br>
-[col000r](https://clawhub.ai/user/col000r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[col000r](https://clawhub.ai/user/col000r)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent schedule, update, delete, immediately publish, and analyze social media posts through PostThatLater. It is intended for connected social accounts authorized by the user's PostThatLater API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates on connected social media accounts using a PostThatLater API key. <br>
-Mitigation: Install only when the publisher and service are trusted, treat PTL_API_KEY like a password, and avoid exposing it in logs or shared shell profiles. <br>
-Risk: Scheduling, deleting, updating, or immediately publishing posts can change public social media content, and immediate publishing is irreversible. <br>
-Mitigation: Have the agent ask for explicit user confirmation before scheduling, deleting, updating, or publishing posts, and verify account IDs, platform limits, and timezone conversions first. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a PostThatLater account for scheduling, editing, deleting, publishing, and reviewing social media posts and analytics.
 
-## Reference(s): <br>
-- [PostThatLater homepage](https://postthatlater.com) <br>
-- [ClawHub PostThatLater listing](https://clawhub.ai/col000r/postthatlater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PTL_API_KEY and user confirmation before scheduling, deleting, updating, or immediately publishing posts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill gives an agent authority to schedule, edit, delete, and publish posts through a PostThatLater account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended account management use, keep PTL_API_KEY scoped to the intended account, and review actions before scheduling, editing, deleting, or publishing.
+
+Risk: Immediate publishing is irreversible once the publish-now endpoint is used.
+
+Mitigation: Require explicit user confirmation before publishing immediately.
+
+Risk: Image URLs supplied to the API are sent to PostThatLater for storage and processing.
+
+Mitigation: Provide only image URLs that the user is comfortable sending to PostThatLater.
+
+Risk: Incorrect account IDs, platform limits, or timezone conversion can send the wrong content or schedule it at the wrong time.
+
+Mitigation: Fetch accounts and live platform capabilities before posting, ask for timezone once per session, and convert scheduled times to UTC.
+
+## Reference(s):
+
+- [PostThatLater homepage](https://postthatlater.com)
+- [PostThatLater ClawHub skill listing](https://clawhub.ai/col000r/skills/postthatlater)
+- [Publisher profile](https://clawhub.ai/user/col000r)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Text]
+
+**Output Format:** [Markdown guidance with curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PTL_API_KEY and a PostThatLater subscription; agents should fetch account IDs and platform limits before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

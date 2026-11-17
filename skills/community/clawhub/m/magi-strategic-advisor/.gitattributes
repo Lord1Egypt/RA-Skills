@@ -1,0 +1,28 @@
+# magi-advisor .gitattributes
+# Repository-level Git attributes for the MAGI Strategic Advisor project
+
+# Auto-detect text files and normalize them to LF in the repository
+* text=auto eol=lf
+
+# Explicitly declared text files
+*.py text
+*.md text
+*.yml text
+*.yaml text
+*.toml text
+*.cff text
+*.cfg text
+*.ini text
+Makefile text
+LICENSE text
+.gitignore text
+.gitattributes text
+.editorconfig text
+
+# Binary files (never diffed or converted)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

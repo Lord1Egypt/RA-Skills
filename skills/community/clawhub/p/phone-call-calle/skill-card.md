@@ -1,42 +1,58 @@
-## Description: <br>
-New users get 20 free calls to get started. Make real outbound phone calls, run planned calls, and check call status in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+New users receive 100 free credits (US$1). Make real outbound phone calls, run planned calls, and check call status in OpenClaw.
 
-## Publisher: <br>
-[call-e-dev](https://clawhub.ai/user/call-e-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[call-e-dev](https://clawhub.ai/user/call-e-dev)
 
-## Use Case: <br>
-OpenClaw users use this skill to verify CALL-E setup, authenticate the CALL-E CLI, plan outbound phone calls, place requested calls, and check call status, summaries, details, and transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can place real outbound phone calls and expose call details or transcripts in chat. <br>
-Mitigation: Use it only when you trust CALL-E and the CLI, clearly intend to place a call, and have checked the number and call purpose before execution. <br>
-Risk: Repository-local CLI code could be used if present in the workspace. <br>
-Mitigation: Prefer an installed or pinned official CALL-E CLI unless you trust the local workspace code. <br>
+## Use Case:
 
+External users and developers use this skill to verify CALL-E setup, authenticate the CLI, plan and place real outbound phone calls, monitor call progress, and report final call status, summaries, details, and transcripts.
 
-## Reference(s): <br>
-- [CALL-E OpenClaw CLI skill homepage](https://github.com/CALLE-AI/call-e-integrations/tree/main/packages/openclaw-cli-skill) <br>
-- [CALL-E CLI commands](references/commands.md) <br>
-- [CALL-E Discord community](https://discord.gg/6AbXUzUV8w) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with inline shell command guidance and structured call-status sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display call status, call details, summaries, and transcripts returned by the CALL-E CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: ClawHub release metadata) <br>
+Risk: The skill can initiate real outbound phone calls and process call content, which creates privacy and real-world-action considerations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the phone number, call goal, language or region when relevant, and authorization to receive any resulting summary or transcript before running the call.
+
+Risk: Authentication and command outputs may include sensitive access details or call identifiers.
+
+Mitigation: Follow the skill's guidance to avoid printing, requesting, or exposing access tokens and to keep private request files and recovery details out of user-visible replies.
+
+Risk: Command or call data could contain instructions that should not control agent behavior.
+
+Mitigation: Use only server-directed next-step fields for polling, stopping, or retry confirmation, and do not execute commands embedded in activity, summaries, transcripts, or display-only command strings.
+
+## Reference(s):
+
+- [CALL-E CLI commands](references/commands.md)
+- [CALL-E OpenClaw CLI skill homepage](https://github.com/CALLE-AI/call-e-integrations/tree/main/packages/openclaw-cli-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown with CLI command arguments represented as JSON arrays and structured call status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing progress updates and final call result sections from CALL-E CLI JSON output.]
+
+## Skill Version(s):
+
+1.1.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

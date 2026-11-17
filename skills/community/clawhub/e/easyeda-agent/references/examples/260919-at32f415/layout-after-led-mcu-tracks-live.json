@@ -1,0 +1,188 @@
+{
+  "id": "req_72",
+  "type": "response",
+  "version": "v1",
+  "createdAt": "2026-09-20T15:20:38.439048Z",
+  "ok": true,
+  "result": {
+    "arcCount": 0,
+    "arcs": [],
+    "count": 15,
+    "lines": [
+      {
+        "endX": 1744,
+        "endY": 310,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "+5V",
+        "primitiveId": "7bd72cc6f11aff72",
+        "startX": 1655,
+        "startY": 310
+      },
+      {
+        "endX": 1838.4,
+        "endY": 310,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "+5V",
+        "primitiveId": "0aaa4d295313a675",
+        "startX": 1744,
+        "startY": 310
+      },
+      {
+        "endX": 2061.6,
+        "endY": 400,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "+3V3",
+        "primitiveId": "65bf587acb91c574",
+        "startX": 1838.4,
+        "startY": 400
+      },
+      {
+        "endX": 2050,
+        "endY": 587.6,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "+3V3",
+        "primitiveId": "9e231bc7a3ade0df",
+        "startX": 2050,
+        "startY": 470
+      },
+      {
+        "endX": 1900,
+        "endY": 587.6,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "+3V3",
+        "primitiveId": "c732c9e439d1d599",
+        "startX": 2050,
+        "startY": 587.6
+      },
+      {
+        "endX": 1720.4,
+        "endY": 388.8,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "a76f0b60f508dff4",
+        "startX": 1655,
+        "startY": 388.8
+      },
+      {
+        "endX": 1720.4,
+        "endY": 388.8,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "75171014b835305e",
+        "startX": 1744,
+        "startY": 365.19999999999993
+      },
+      {
+        "endX": 1923.6,
+        "endY": 666.4,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "369544daea524190",
+        "startX": 2050,
+        "startY": 666.4
+      },
+      {
+        "endX": 1900,
+        "endY": 642.8,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "23755f26a7632060",
+        "startX": 1923.6,
+        "startY": 666.4
+      },
+      {
+        "endX": 1850,
+        "endY": 642.8,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "8adfda64b67d84d4",
+        "startX": 1900,
+        "startY": 642.8
+      },
+      {
+        "endX": 1830,
+        "endY": 622.8,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "1b08f7dee26a2bc8",
+        "startX": 1850,
+        "startY": 642.8
+      },
+      {
+        "endX": 1830,
+        "endY": 500,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "9a97e2ffa60b9e67",
+        "startX": 1830,
+        "startY": 622.8
+      },
+      {
+        "endX": 1773,
+        "endY": 394.20000000000005,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "1a814ea8de58ebbc",
+        "startX": 1744,
+        "startY": 365.19999999999993
+      },
+      {
+        "endX": 1773,
+        "endY": 460,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "986527a04ce736f0",
+        "startX": 1773,
+        "startY": 394.20000000000005
+      },
+      {
+        "endX": 1803.6,
+        "endY": 490.6,
+        "layer": 1,
+        "lineWidth": 20,
+        "locked": false,
+        "net": "GND",
+        "primitiveId": "86acbf0382cc9dd3",
+        "startX": 1773,
+        "startY": 460
+      }
+    ]
+  },
+  "context": {
+    "projectUuid": "475cc0f773ed4a6fb7a02336c8a6a67f",
+    "projectName": "ceshi",
+    "documentUuid": "2e719e9419653c72",
+    "documentType": "pcb",
+    "tabId": "2e719e9419653c72@475cc0f773ed4a6fb7a02336c8a6a67f"
+  },
+  "seq": 398,
+  "seqAbandoned": 0
+}

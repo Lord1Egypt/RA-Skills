@@ -1,42 +1,53 @@
-## Description: <br>
-Executes shell commands inside a dedicated tmux session named claw and returns captured pane output to the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes shell commands inside a dedicated tmux session named claw and returns captured command output to the agent.
 
-## Publisher: <br>
-[Gexsta](https://clawhub.ai/user/Gexsta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gexsta](https://clawhub.ai/user/gexsta)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to run shell commands in a persistent tmux session and inspect the resulting terminal output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad terminal access through tmux. <br>
-Mitigation: Install only when terminal-like access is intended, review commands carefully before execution, and avoid using it in environments with sensitive data. <br>
-Risk: Weak safety checks may miss harmful commands or command variants. <br>
-Mitigation: Require explicit human approval for destructive, privileged, or system-level commands and prefer argument-safe execution controls. <br>
-Risk: Persistent tmux sessions may retain sensitive terminal output. <br>
-Mitigation: Avoid leaving secrets in the tmux session and clear or isolate session output when sensitive commands are involved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gexsta/skills-backup-claw-shell) <br>
-- [Publisher profile](https://clawhub.ai/user/Gexsta) <br>
+## Use Case:
 
+Developers and agent operators use this skill when they intentionally want an agent to run shell commands in a persistent tmux session and inspect the resulting terminal output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON object containing the submitted command and captured terminal output, or an error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs commands in a tmux session named claw and captures recent pane output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides broad shell access through tmux on the host.
+
+Mitigation: Install only when this capability is intentional, and run it in a tightly sandboxed environment.
+
+Risk: The built-in dangerous-command check is weak control for command approval or containment.
+
+Mitigation: Avoid secrets in the environment and require independent user review before running sensitive or destructive commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gexsta/skills/skills-backup-claw-shell)
+- [ClawHub publisher profile](https://clawhub.ai/user/gexsta)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text]
+
+**Output Format:** [JSON object containing the submitted command and captured terminal output, or an error object for rejected commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands run inside the tmux session named claw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Merge multiple lines of text into a single line with a customizable separator using a Python command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merge multiple lines of text into a single line with a customizable separator using a Python command-line tool.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and other agent users can use this skill to convert newline-delimited text into a single line with a chosen separator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command-line text processing can produce unexpected output if the input text or separator is not what the user intended. <br>
-Mitigation: Review the provided text and separator before running the command, and inspect the resulting single-line output before using it downstream. <br>
-Risk: The release evidence security guidance is generic and references broader maintenance workflows rather than this small line-joining artifact. <br>
-Mitigation: Treat evidence.security as authoritative for the release verdict, and review the artifact files directly before installing or reusing the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to normalize user-provided multiline text into a single line before pasting, scripting, or preparing compact prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-join-lines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code] <br>
-**Output Format:** [Plain text or Markdown with Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard library only; the separator defaults to a space.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill documentation is written in Chinese, which may be unsuitable for teams that require English-language operating instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Chinese-language documentation is acceptable for the intended workflow.
+
+Risk: The skill documentation includes promotional links that may not be relevant to every deployment context.
+
+Mitigation: Review visible links before redistribution or use in a controlled environment.
+
+Risk: Joining lines can remove meaningful line breaks from user-provided text.
+
+Mitigation: Check the joined output before using it in prompts, configuration, or scripts where whitespace affects meaning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-join-lines)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-specified separator; defaults to a single space.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

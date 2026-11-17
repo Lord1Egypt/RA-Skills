@@ -1,37 +1,54 @@
-## Description: <br>
-A concise content-review skill that checks draft quality, typos, fluency, logic, completeness, and fit to the request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese-language draft content for typos, fluency, logic, completeness, and fit to requirements, then returns a concise pass or fail result with issues when needed.
 
-## Publisher: <br>
-[xiaozha87](https://clawhub.ai/user/xiaozha87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaozha87](https://clawhub.ai/user/xiaozha87)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to perform a strict final quality check on generated Chinese-language drafts and return a concise pass/fail review with specific issues when the draft fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaozha87/content-checker) <br>
+Developers and content teams can use this agent skill as a concise Chinese-language editorial reviewer for generated drafts. It checks spelling, readability, logical consistency, completeness, and requirement alignment before returning a clear audit conclusion.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Concise text review with a pass/fail conclusion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the review result and specific issues when the content does not pass.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill is written for concise Chinese-language content review and may not satisfy workflows that require multilingual output or detailed audit traces.
+
+Mitigation: Use it where concise Chinese output is acceptable, or update the skill instructions to require the target language and level of detail before deployment.
+
+Risk: Broad editorial checks can miss context-specific requirements when used as the only reviewer.
+
+Mitigation: Use human review for high-impact, regulated, or externally published content decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaozha87/skills/content-checker)
+- [Publisher profile](https://clawhub.ai/user/xiaozha87)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Concise Chinese-language review result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns only the audit conclusion and specific issues when the content does not pass.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

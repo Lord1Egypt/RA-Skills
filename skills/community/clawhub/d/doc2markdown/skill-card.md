@@ -1,42 +1,55 @@
-## Description: <br>
-Lightweight document utility designed to convert files to Markdown (MD), built specifically for intelligent agents to read and process content across common document, spreadsheet, presentation, image, ebook, and office formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc2Markdown converts common document, image, and ebook formats to Markdown so agents can read, summarize, or analyze the contents.
 
-## Publisher: <br>
-[haoyt27](https://clawhub.ai/user/haoyt27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoyt27](https://clawhub.ai/user/haoyt27)
 
-## Use Case: <br>
-Developers and agents use this skill to convert user-provided documents into Markdown so the document content can be read, summarized, extracted, or analyzed. It supports single Markdown output and a full Markdown package with images and tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are sent to the third-party lab.hjcloud.com conversion service. <br>
-Mitigation: Require explicit user confirmation before upload and avoid confidential, regulated, credential-bearing, or customer documents unless the service's privacy and retention practices have been independently reviewed. <br>
-Risk: The skill may be invoked for broad read, summarize, or analyze requests without a separate consent step. <br>
-Mitigation: Ask the user to confirm the specific file and conversion mode before each upload, especially for sensitive or ambiguous document requests. <br>
+## Use Case:
 
+Developers and agent operators use this skill to convert local documents into Markdown for reading, extraction, summarization, and analysis.
 
-## Reference(s): <br>
-- [Doc2Markdown ClawHub listing](https://clawhub.ai/haoyt27/doc2markdown) <br>
-- [Docchain document conversion service](https://lab.hjcloud.com/llmdoc) <br>
-- [Docchain Skills support repository](https://github.com/wct-lab/docchain-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files, extracted ZIP packages, and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Conversion uploads the source document to lab.hjcloud.com, polls for completion, and may return a document ID for later checking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: Selected local documents are uploaded to lab.hjcloud.com for conversion during ordinary read, summarize, or conversion workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or proprietary documents unless the service handling terms have been verified; prefer explicit conversion requests.
+
+Risk: Configuring DOCCHAIN_SKILLS_API_KEY enables authenticated requests to the third-party conversion service.
+
+Mitigation: Only configure DOCCHAIN_SKILLS_API_KEY when authenticated priority conversion is intended, and handle the key as a secret.
+
+## Reference(s):
+
+- [Doc2Markdown ClawHub release page](https://clawhub.ai/haoyt27/skills/doc2markdown)
+- [Doc2Markdown service endpoint](https://lab.hjcloud.com/llmdoc)
+- [Docchain Skills GitHub support](https://github.com/wct-lab/docchain-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown files or ZIP packages with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads selected documents to lab.hjcloud.com, polls conversion status for up to 60 seconds, and can use DOCCHAIN_SKILLS_API_KEY for authenticated priority requests.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

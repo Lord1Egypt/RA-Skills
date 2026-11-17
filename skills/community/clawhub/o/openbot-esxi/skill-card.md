@@ -1,47 +1,65 @@
-## Description: <br>
-Zero-touch Debian 13 VM deployment on VMware ESXi 8. Builds custom preseed ISO, creates NVMe+vmxnet3 VM with serial console, and runs unattended installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-touch Debian 13 VM deployment on VMware ESXi 8 that builds a custom preseed ISO, creates an NVMe and vmxnet3 VM with serial console access, and runs unattended installation.
 
-## Publisher: <br>
-[cepheiden](https://clawhub.ai/user/cepheiden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cepheiden](https://clawhub.ai/user/cepheiden)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to provision Debian VMs on ESXi, automate VM setup, configure serial-console access, and grow VM disks online. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete and recreate VMs and administer an ESXi host with powerful credentials. <br>
-Mitigation: Use a lab or tightly scoped ESXi account where possible, use unique VM names, and review the scripts before execution. <br>
-Risk: Host verification defaults are weak for ESXi HTTPS and SSH connections. <br>
-Mitigation: Verify ESXi TLS and SSH host identity before running the scripts instead of relying on insecure defaults. <br>
-Risk: Generated VM passwords are printed to stdout and embedded in the uploaded preseed ISO. <br>
-Mitigation: Protect logs and terminal output that contain generated passwords, then remove the preseed ISO after deployment. <br>
-Risk: The telnet serial console is unencrypted and can expose VM console access to hosts that can reach the ESXi serial port. <br>
-Mitigation: Restrict the ESXi remoteSerialPort firewall ruleset to trusted networks and disable or remove the serial console when it is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cepheiden/openbot-esxi) <br>
-- [preseed-template.cfg](references/preseed-template.cfg) <br>
-- [vmx-template.md](references/vmx-template.md) <br>
-- [govmomi govc releases](https://github.com/vmware/govmomi/releases) <br>
-- [Debian netinst ISO](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.3.0-amd64-netinst.iso) <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to deploy Debian VMs on ESXi, automate VM provisioning, configure serial console access, and resize VM disks online.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment and resize procedures that execute local shell scripts against an ESXi host.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Root-level ESXi and VM access can expose credentials or damage infrastructure if run in an unreviewed environment.
+
+Mitigation: Review before installation, test in a lab or tightly controlled admin network, validate all inputs, and avoid ESXi root where possible.
+
+Risk: Credentials and generated VM passwords may be exposed through stdout, uploaded preseed ISOs, password-based SSH, or persistent environment variables.
+
+Mitigation: Treat output as sensitive, use SSH keys or a credential store for production use, delete uploaded preseed ISOs after deployment, and avoid persistent root passwords.
+
+Risk: Disabled TLS and SSH host-key verification plus an unencrypted telnet serial console can allow interception or unauthorized console access on reachable admin networks.
+
+Mitigation: Enable certificate and SSH host-key verification, restrict or disable the ESXi remote serial port firewall rule, and segment serial-console access behind trusted networks or VPN.
+
+Risk: The Debian installer ISO is downloaded automatically and may not be validated before use.
+
+Mitigation: Verify Debian ISO checksums before building deployment media.
+
+## Reference(s):
+
+- [Preseed Template](references/preseed-template.cfg)
+- [VMX Configuration Reference](references/vmx-template.md)
+- [govmomi/govc](https://github.com/vmware/govmomi)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/cepheiden/skills/openbot-esxi)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/cepheiden)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment steps, environment-variable guidance, command invocations, and configuration references for ESXi Debian VM automation.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

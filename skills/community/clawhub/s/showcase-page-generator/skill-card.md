@@ -1,39 +1,57 @@
-## Description: <br>
-Helps create, optimize, or audit showcase and gallery pages for user-generated content, creator examples, and made-with-product collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, or auditing showcase and gallery pages for user-generated content.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to plan or review showcase pages that present user-generated work with clear structure, attribution, submission paths, and SEO metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms such as examples or gallery may cause the skill to be used for a task that only loosely matches showcase-page planning. <br>
-Mitigation: Confirm the requested output is for a showcase or gallery page before applying the guidance. <br>
-Risk: Local project-context files may influence recommendations if they exist. <br>
-Mitigation: Review generated page guidance against the intended product, audience, permissions, and attribution requirements before use. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to plan or assess showcase pages that present user-generated work, creator examples, and social proof. It helps structure galleries, submission calls to action, attribution, permissions, and SEO metadata.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with page structure, content recommendations, and metadata suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project-context files when available; no code execution, credentials, network access, or persistence is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill may activate on broad terms such as gallery or examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for a showcase or gallery page before applying its recommendations.
+
+Risk: The skill may read project context files to tailor recommendations.
+
+Mitigation: Keep secrets and non-shareable customer data out of project context files, and review generated public copy before publication.
+
+Risk: Showcase pages can expose creator work without adequate consent, attribution, or rights review.
+
+Mitigation: Verify creator permission, attribution, and copyright status before publishing showcased content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/showcase-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured page sections and SEO metadata recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version and SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

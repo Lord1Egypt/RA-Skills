@@ -1,42 +1,59 @@
-## Description: <br>
-Manage Feishu group records, track bot join and leave status, and help agents send messages to confirmed Feishu groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Feishu group information, record join and leave events, look up active groups by name, and send messages to selected groups.
 
-## Publisher: <br>
-[panmenglin](https://clawhub.ai/user/panmenglin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panmenglin](https://clawhub.ai/user/panmenglin)
 
-## Use Case: <br>
-Developers and Feishu bot operators use this skill to maintain per-agent Feishu group records, confirm active groups, and send group messages through a Feishu bot when a user requests it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A fuzzy group-name match could select an unintended Feishu group. <br>
-Mitigation: Confirm the exact target group and chat ID before sending messages or updating records. <br>
-Risk: The skill can update stored Feishu group records and mark groups active or removed. <br>
-Mitigation: Review requested add, remove, or sync operations before allowing the agent to persist changes. <br>
-Risk: A drafted group message could be sent to a live Feishu chat. <br>
-Mitigation: Confirm the message text and destination immediately before using Feishu bot send permissions. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a local registry of Feishu groups for an agent, confirm active group membership, and prepare or send messages to the correct group.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/panmenglin/feishu-group-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript snippets and operational steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update feishu-groups.json in the agent workspace and may send Feishu bot messages when directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The helper can be configured to read or overwrite arbitrary local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain the group registry path to the agent workspace before broader use.
+
+Risk: The skill can send messages to Feishu groups using bot permissions.
+
+Mitigation: Require user confirmation before sending messages to groups.
+
+Risk: The skill stores group metadata locally.
+
+Mitigation: Provide a way to review and delete stored group records.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [ClawHub skill page](https://clawhub.ai/panmenglin/skills/feishu-group-helper)
+- [Publisher profile](https://clawhub.ai/user/panmenglin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and Feishu permission references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference or update a workspace-local JSON group registry and may require Feishu message-sending permissions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.dev/schemas/v4/template-evidence.schema.json",
+  "title": "PPT Smith v4 Template Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "source", "tokens", "slides", "rhythm",
+    "review", "limitations"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"const": "unreviewed"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filename", "sha256", "slide_count", "slide_size_in"],
+      "properties": {
+        "filename": {"type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "slide_count": {"type": "integer", "minimum": 1},
+        "slide_size_in": {
+          "type": "object", "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": {"type": "number", "exclusiveMinimum": 0},
+            "height": {"type": "number", "exclusiveMinimum": 0}
+          }
+        }
+      }
+    },
+    "tokens": {
+      "type": "object", "additionalProperties": false,
+      "required": ["colors", "fonts", "font_sizes_pt"],
+      "properties": {
+        "colors": {"type": "array", "items": {"$ref": "#/$defs/frequency"}},
+        "theme_colors": {"type": "array", "items": {"$ref": "#/$defs/themeColor"}},
+        "fonts": {"type": "array", "items": {"$ref": "#/$defs/frequency"}},
+        "font_sizes_pt": {"type": "array", "items": {"$ref": "#/$defs/numberFrequency"}}
+      }
+    },
+    "slides": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": [
+          "slide_index", "object_count", "density", "occupied_area_sum",
+          "geometry", "title_candidates", "elements"
+        ],
+        "properties": {
+          "slide_index": {"type": "integer", "minimum": 1},
+          "object_count": {"type": "integer", "minimum": 0},
+          "density": {"enum": ["low", "medium", "high"]},
+          "occupied_area_sum": {"type": "number", "minimum": 0},
+          "geometry": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+          "title_candidates": {"type": "array", "items": {"$ref": "#/$defs/titleCandidate"}},
+          "elements": {"type": "array", "items": {"$ref": "#/$defs/element"}}
+        }
+      }
+    },
+    "rhythm": {
+      "type": "object", "additionalProperties": false,
+      "required": ["density_sequence", "object_count_sequence"],
+      "properties": {
+        "density_sequence": {"type": "array", "items": {"enum": ["low", "medium", "high"]}},
+        "object_count_sequence": {"type": "array", "items": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required", "state"],
+      "properties": {"required": {"const": true}, "state": {"const": "unreviewed"}}
+    },
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "frequency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "count"],
+      "properties": {"value": {"type": "string", "minLength": 1}, "count": {"type": "integer", "minimum": 1}}
+    },
+    "numberFrequency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "count"],
+      "properties": {"value": {"type": "number", "minimum": 0}, "count": {"type": "integer", "minimum": 1}}
+    },
+    "themeColor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["role", "value"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "pattern": "^#[0-9A-F]{6}$"}
+      }
+    },
+    "frame": {
+      "type": "object", "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": {"type": "number"}, "y": {"type": "number"},
+        "w": {"type": "number", "minimum": 0}, "h": {"type": "number", "minimum": 0}
+      }
+    },
+    "titleCandidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text", "max_font_pt", "frame"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "max_font_pt": {"type": "number", "minimum": 0},
+        "frame": {"$ref": "#/$defs/frame"}
+      }
+    },
+    "element": {
+      "type": "object", "additionalProperties": false,
+      "required": ["element_id", "kind", "frame", "text_length", "max_font_pt", "fill"],
+      "properties": {
+        "element_id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "frame": {"$ref": "#/$defs/frame"},
+        "text_length": {"type": "integer", "minimum": 0},
+        "max_font_pt": {"type": "number", "minimum": 0},
+        "fill": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

@@ -21,7 +21,7 @@ Cold files:
 - `logs/weight/YYYY-MM.json`
 - `logs/watch/YYYY-MM.json`
 - `logs/adjustments/YYYY-MM.json`
-- `weekly_reports/week_YYYY-MM-DD.pdf`
+- `weekly_reports/week_YYYY-MM-DD.md`
 
 General rules:
 
@@ -498,17 +498,12 @@ Required fields:
 
 ## weekly_reports/
 
-Directory of PDF archive files.
+Directory of Markdown files.
 
-- filename format: `week_YYYY-MM-DD.pdf`
+- filename format: `week_YYYY-MM-DD.md`
 - date should represent the Monday of that training week
 - content should follow [report-template.md](report-template.md)
 - keep the saved report compact and summary-only; do not dump raw daily logs, full watch exports, or set-by-set workout transcripts into this archive
-- prefer a professional one-page or two-page PDF layout with section cards, clean icons, and compact charts
-- include only visuals supported by the requested week's data and hot files; omit visual blocks instead of inventing data
-- allow card height or page height to expand when Chinese summary text or the coach verdict needs more room; do not clip or artificially compress those sections
-- if a temporary source file is needed during PDF generation, treat it as transient and do not store it as the canonical report archive
-- if the runtime does not have native PDF export, prefer a bundled script-based generator over external desktop PDF tools; a local Python runtime cache such as `.pdfgen-venv` is acceptable
 
 ---
 

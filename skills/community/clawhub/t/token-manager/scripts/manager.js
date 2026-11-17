@@ -4,10 +4,10 @@
  * 支持多模型：Kimi/Moonshot, OpenAI, Anthropic, Google, 本地模型等
  * 
  * 🔒 安全说明 / Security Notice:
- * - API Keys 只从环境变量读取，从不硬编码
+ * - API Key 优先从环境变量读取（MOONSHOT_API_KEY / DEEPSEEK_API_KEY / OPENAI_API_KEY / ANTHROPIC_API_KEY / GEMINI_API_KEY）
+ * - CLI --api-key / 位置参数仅供临时调试，注意 shell 历史 与进程列表可见性
  * - 所有数据存储在本地 .data/ 目录，不上传到第三方
  * - 网络请求仅访问官方 LLM API，无其他外联
- * - 不包含任何恶意代码或数据收集
  */
 
 const https = require('https');
@@ -15,7 +15,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(__dirname, '..', '.data');
+const DATA_DIR = process.env.TOKEN_MANAGER_DATA_DIR || path.join(__dirname, '..', '.data');
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
 const LOG_FILE = path.join(DATA_DIR, 'token-usage.json');
 
@@ -31,7 +31,33 @@ const DEFAULT_CONFIG = {
       modelsEndpoint: '/v1/models',
       supportsBalance: true,
       supportsTokenEstimate: true,
-      pricing: { input: 12, output: 12, unit: 'CNY', per: 1000000 } // ¥12/百万
+      contextWindow: 1048576,
+      defaultModel: 'kimi-k3.1-pro',
+      // 价格 as-of 2026-11-09，来源 https://platform.kimi.com/docs/pricing/chat（每百万 tokens，CNY）
+      pricing: {
+        'kimi-k3.1-pro': { input: 13, output: 26, unit: 'CNY', per: 1000000 },
+        'kimi-k3.1-pro-highspeed': { input: 26, output: 52, unit: 'CNY', per: 1000000 },
+        'kimi-k3': { input: 20, output: 40, unit: 'CNY', per: 1000000 },
+        'kimi-k2.7-code': { input: 6.5, output: 27, unit: 'CNY', per: 1000000 },           // K2 系 2026-12 月底下线
+        'kimi-k2.7-code-highspeed': { input: 13, output: 54, unit: 'CNY', per: 1000000 },  // 同上
+        'kimi-k2.6': { input: 6.5, output: 27, unit: 'CNY', per: 1000000 }                 // 同上
+      }
+    },
+    deepseek: {
+      name: 'DeepSeek',
+      baseUrl: 'api.deepseek.com',
+      protocol: 'https',
+      balanceEndpoint: '/user/balance',
+      modelsEndpoint: '/models',
+      supportsBalance: true,
+      supportsTokenEstimate: false,
+      contextWindow: 1048576,
+      defaultModel: 'deepseek-flash',
+      // 价格 as-of 2026-11-09，来源 https://api-docs.deepseek.com/zh-cn/quick_start/pricing（峰值时段价，空闲时段为半价）
+      pricing: {
+        'deepseek-flash': { input: 2, output: 8, unit: 'CNY', per: 1000000 },
+        'deepseek-v4-pro': { input: 9, output: 27, unit: 'CNY', per: 1000000 }
+      }
     },
     openai: {
       name: 'OpenAI',
@@ -40,11 +66,13 @@ const DEFAULT_CONFIG = {
       usageEndpoint: '/v1/usage',
       modelsEndpoint: '/v1/models',
       supportsBalance: false, // 需要登录控制台查看
-      supportsTokenEstimate: false, // 用 tiktoken 本地估算
-      pricing: { 
-        'gpt-4o': { input: 2.5, output: 10, unit: 'USD', per: 1000000 },
-        'gpt-4o-mini': { input: 0.15, output: 0.6, unit: 'USD', per: 1000000 },
-        'gpt-3.5-turbo': { input: 0.5, output: 1.5, unit: 'USD', per: 1000000 }
+      supportsTokenEstimate: false, // 本地近似估算
+      defaultModel: 'gpt-6.1-terra',
+      // 价格 as-of 2026-11-09，来源 openrouter.ai/openai（第一方牌价）
+      pricing: {
+        'gpt-6.1-terra': { input: 1, output: 5, unit: 'USD', per: 1000000 },
+        'gpt-6.1-sol': { input: 2, output: 10, unit: 'USD', per: 1000000 },
+        'gpt-6-luna-pro': { input: 0.1, output: 0.5, unit: 'USD', per: 1000000 }
       }
     },
     anthropic: {
@@ -53,10 +81,12 @@ const DEFAULT_CONFIG = {
       protocol: 'https',
       supportsBalance: false,
       supportsTokenEstimate: false,
+      defaultModel: 'claude-sonnet-5.5',
+      // 价格 as-of 2026-11-09，来源 openrouter.ai/anthropic
       pricing: {
-        'claude-3-5-sonnet': { input: 3, output: 15, unit: 'USD', per: 1000000 },
-        'claude-3-opus': { input: 15, output: 75, unit: 'USD', per: 1000000 },
-        'claude-3-haiku': { input: 0.25, output: 1.25, unit: 'USD', per: 1000000 }
+        'claude-sonnet-5.5': { input: 2, output: 10, unit: 'USD', per: 1000000 },
+        'claude-haiku-5.5': { input: 0.1, output: 0.5, unit: 'USD', per: 1000000 },
+        'claude-opus-5.5': { input: 4, output: 20, unit: 'USD', per: 1000000 }
       }
     },
     gemini: {
@@ -65,9 +95,11 @@ const DEFAULT_CONFIG = {
       protocol: 'https',
       supportsBalance: false,
       supportsTokenEstimate: false,
+      defaultModel: 'gemini-4-argon',
+      // 价格 as-of 2026-11-09，来源 openrouter.ai/google
       pricing: {
-        'gemini-1.5-pro': { input: 3.5, output: 10.5, unit: 'USD', per: 1000000 },
-        'gemini-1.5-flash': { input: 0.35, output: 1.05, unit: 'USD', per: 1000000 }
+        'gemini-4-argon': { input: 2, output: 10, unit: 'USD', per: 1000000 },
+        'gemini-3.8-flash': { input: 0.75, output: 3.75, unit: 'USD', per: 1000000 }
       }
     },
     ollama: {
@@ -157,6 +189,21 @@ function makeRequest(config, path, method = 'GET', postData = null, headers = {}
   });
 }
 
+// 各提供商余额响应解析（结构来自官方文档：platform.kimi.com/docs/api/balance、api-docs.deepseek.com api/get-user-balance）
+const BALANCE_PARSERS = {
+  moonshot: (data) => data && data.data && {
+    balance: data.data.available_balance || 0,
+    cash: data.data.cash_balance || 0,
+    voucher: data.data.voucher_balance || 0,
+    currency: 'CNY'
+  },
+  deepseek: (data) => data && Array.isArray(data.balance_infos) && data.balance_infos[0] && {
+    balance: parseFloat(data.balance_infos[0].total_balance) || 0,
+    currency: data.balance_infos[0].currency || 'CNY',
+    isAvailable: data.is_available !== false
+  }
+};
+
 // 查询余额（支持多提供商）
 async function queryBalance(providerName, apiKey) {
   const config = loadConfig().providers[providerName];
@@ -171,34 +218,45 @@ async function queryBalance(providerName, apiKey) {
     };
   }
 
+  const parse = BALANCE_PARSERS[providerName];
+  if (!parse) {
+    return { success: false, error: `No balance parser for provider: ${providerName}` };
+  }
+
   try {
-    switch (providerName) {
-      case 'moonshot':
-        const result = await makeRequest(
-          config, 
-          config.balanceEndpoint, 
-          'GET', 
-          null, 
-          { 'Authorization': `Bearer ${apiKey}` }
-        );
-        if (result.success && result.data.data) {
-          return {
-            success: true,
-            provider: config.name,
-            balance: result.data.data.available_balance || 0,
-            cash: result.data.data.cash_balance || 0,
-            voucher: result.data.data.voucher_balance || 0,
-            currency: 'CNY'
-          };
-        }
-        return { success: false, error: 'Invalid response' };
-      
-      default:
-        return { success: false, error: 'Not implemented' };
+    const result = await makeRequest(
+      config,
+      config.balanceEndpoint,
+      'GET',
+      null,
+      { 'Authorization': `Bearer ${apiKey}` }
+    );
+    const parsed = result.success ? parse(result.data) : null;
+    if (parsed) {
+      return { success: true, provider: config.name, ...parsed };
     }
+    return { success: false, error: 'Invalid response', status: result.status };
   } catch (error) {
     return { success: false, error: error.message };
   }
+}
+
+// 本地近似估算：中日韩文字 ≈ 0.6 token/字（官方口径 1 token ≈ 1.5-2 汉字），拉丁文 ≈ 1 token/4 字符
+function approxTokens(text) {
+  const s = typeof text === 'string' ? text : JSON.stringify(text);
+  const cjk = (s.match(/[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/g) || []).length;
+  return Math.ceil(cjk * 0.6 + (s.length - cjk) / 4);
+}
+
+function fallbackEstimate(config, model, text, reason) {
+  return {
+    success: true,
+    provider: config.name,
+    total_tokens: approxTokens(text),
+    model: model || 'unknown',
+    note: `Approximate (${reason})`,
+    method: 'approximation'
+  };
 }
 
 // 估算 Token（支持多提供商）
@@ -206,19 +264,14 @@ async function estimateTokens(providerName, text, model, apiKey) {
   const config = loadConfig().providers[providerName];
   if (!config) return { success: false, error: 'Unknown provider' };
   
-  // 如果没有 API 支持，使用简单的字符估算（粗略）
+  // 无 key 时直接本地估算（有官方 API 也调不了）
+  if (!apiKey && config.supportsTokenEstimate) {
+    return fallbackEstimate(config, model, text, 'no API key provided');
+  }
+
+  // 如果没有 API 支持，使用本地近似估算
   if (!config.supportsTokenEstimate) {
-    // 粗略估算：1 token ≈ 4 字符（中文约 1.5 token/字）
-    const charCount = typeof text === 'string' ? text.length : JSON.stringify(text).length;
-    const estimated = Math.ceil(charCount / 4 * 1.5);
-    return {
-      success: true,
-      provider: config.name,
-      total_tokens: estimated,
-      model: model || 'unknown',
-      note: 'Estimated (provider does not support token counting API)',
-      method: 'approximation'
-    };
+    return fallbackEstimate(config, model, text, 'provider does not support token counting API');
   }
 
   try {
@@ -228,24 +281,26 @@ async function estimateTokens(providerName, text, model, apiKey) {
           ? text 
           : [{ role: 'user', content: text }];
         
+        model = model || getDefaultModel(providerName);
         const result = await makeRequest(
           config,
           config.tokenEstimateEndpoint,
           'POST',
-          { model: model || 'kimi-k2.5', messages },
+          { model, messages },
           { 'Authorization': `Bearer ${apiKey}` }
         );
-        
+
         if (result.success && result.data.data) {
           return {
             success: true,
             provider: config.name,
             total_tokens: result.data.data.total_tokens || 0,
-            model: model || 'kimi-k2.5',
+            model,
             method: 'api'
           };
         }
-        return { success: false, error: 'Invalid response' };
+        // API 不可用（无 key / 网络不通）→ 本地近似兜底
+        return fallbackEstimate(config, model, text, `API unavailable: ${result.error || 'invalid response'}`);
       
       default:
         return { success: false, error: 'Not implemented' };
@@ -258,12 +313,47 @@ async function estimateTokens(providerName, text, model, apiKey) {
 // 获取控制台链接
 function getConsoleUrl(provider) {
   const urls = {
-    moonshot: 'https://platform.moonshot.cn/console',
+    moonshot: 'https://platform.kimi.com/console/account',
+    deepseek: 'https://platform.deepseek.com/',
     openai: 'https://platform.openai.com/usage',
     anthropic: 'https://console.anthropic.com/',
     gemini: 'https://ai.google.dev/'
   };
   return urls[provider] || 'N/A';
+}
+
+// 各 provider 对应的 API Key 环境变量
+const ENV_KEYS = {
+  moonshot: 'MOONSHOT_API_KEY',
+  deepseek: 'DEEPSEEK_API_KEY',
+  openai: 'OPENAI_API_KEY',
+  anthropic: 'ANTHROPIC_API_KEY',
+  gemini: 'GEMINI_API_KEY'
+};
+
+function getEnvKey(provider) {
+  const k = ENV_KEYS[provider];
+  if (!k) return undefined;
+  return process.env[k] || (provider === 'gemini' ? process.env.GOOGLE_API_KEY : undefined);
+}
+
+function getDefaultModel(provider) {
+  const p = loadConfig().providers[provider];
+  return (p && p.defaultModel) || 'unknown';
+}
+
+function formatMoney(value, currency) {
+  if (currency === 'FREE') return 'FREE';
+  const symbol = currency === 'CNY' ? '¥' : currency === 'USD' ? '$' : `${currency} `;
+  return `${symbol}${value.toFixed(4)}`;
+}
+
+function parseFlags(args) {
+  const flags = {};
+  for (let i = 0; i < args.length - 1; i++) {
+    if (args[i] && args[i].startsWith('--')) flags[args[i].slice(2)] = args[i + 1];
+  }
+  return flags;
 }
 
 // 获取模型价格
@@ -279,21 +369,19 @@ function getPricing(provider, model) {
     return { ...pricing, model: 'all' };
   }
   
-  // 如果是按模型定价
+  // 按模型定价：只接受精确匹配，未知模型返回 null（宁可报警不可猜价）
   if (model && pricing[model]) {
     return { ...pricing[model], model };
   }
-  
-  // 返回第一个可用价格
-  const firstModel = Object.keys(pricing)[0];
-  return firstModel ? { ...pricing[firstModel], model: firstModel } : null;
+  return null;
 }
 
 // 估算费用
 function estimateCost(tokensIn, tokensOut, provider, model) {
   const pricing = getPricing(provider, model);
-  if (!pricing || pricing.unit === 'FREE') {
-    return { input: 0, output: 0, total: 0, currency: 'FREE' };
+  if (!pricing) return null;
+  if (pricing.unit === 'FREE') {
+    return { input: 0, output: 0, total: 0, currency: 'FREE', model: pricing.model };
   }
   
   const costIn = (tokensIn / pricing.per) * pricing.input;
@@ -308,7 +396,7 @@ function estimateCost(tokensIn, tokensOut, provider, model) {
 }
 
 // 智能分析建议
-function analyzeUsage(sessionData, history, provider) {
+function analyzeUsage(sessionData, provider) {
   const suggestions = [];
   const warnings = [];
   const providerConfig = loadConfig().providers[provider];
@@ -393,7 +481,6 @@ function analyzeUsage(sessionData, history, provider) {
 
 // 生成完整报告
 async function generateReport(sessionData, provider = 'moonshot', apiKey) {
-  const history = loadHistory();
   const providerConfig = loadConfig().providers[provider];
   
   // 查询余额（如果支持）
@@ -418,12 +505,14 @@ async function generateReport(sessionData, provider = 'moonshot', apiKey) {
     },
     session: {
       ...sessionData,
-      cost: {
+      cost: cost ? {
         ...cost,
-        inputFormatted: cost.currency === 'FREE' ? 'FREE' : `${cost.currency === 'CNY' ? '¥' : '$'}${cost.input.toFixed(4)}`,
-        outputFormatted: cost.currency === 'FREE' ? 'FREE' : `${cost.currency === 'CNY' ? '¥' : '$'}${cost.output.toFixed(4)}`,
-        totalFormatted: cost.currency === 'FREE' ? 'FREE' : `${cost.currency === 'CNY' ? '¥' : '$'}${cost.total.toFixed(4)}`
-      }
+        inputFormatted: formatMoney(cost.input, cost.currency),
+        outputFormatted: formatMoney(cost.output, cost.currency),
+        totalFormatted: formatMoney(cost.total, cost.currency)
+      } : null,
+      costWarning: cost ? undefined :
+        `Unknown pricing for ${provider}/${sessionData.model || '(no model)'}; known models: ${Object.keys((providerConfig || {}).pricing || {}).join(', ')}`
     },
     balance: balanceInfo?.success ? {
       available: balanceInfo.balance,
@@ -433,20 +522,11 @@ async function generateReport(sessionData, provider = 'moonshot', apiKey) {
       note: balanceInfo?.error || 'API key not provided',
       consoleUrl: getConsoleUrl(provider)
     },
-    analysis: analyzeUsage(sessionData, history, provider),
+    analysis: analyzeUsage(sessionData, provider),
     quickActions: generateQuickActions(sessionData, provider)
   };
   
-  // 保存历史
-  history.sessions.push({
-    time: report.timestamp,
-    provider,
-    tokens: sessionData.tokensIn + sessionData.tokensOut,
-    cost: cost.total,
-    currency: cost.currency
-  });
-  saveHistory(history);
-  
+  // 历史记录由 session-tracker.js（record 命令）负责，report 保持只读、无副作用
   return report;
 }
 
@@ -492,30 +572,45 @@ async function main() {
   const config = loadConfig();
   
   switch (command) {
-    case 'report':
-      // report <tokensIn> <tokensOut> <contextUsed> <contextMax> <thinking> [balance] [provider] [model] [apiKey]
+    case 'report': {
+      // 命名参数: --tokens-in --tokens-out --context-used --context-max --thinking --balance --provider --model --api-key
+      const flags = parseFlags(args.slice(1));
+      const provider = flags.provider || config.activeProvider || 'moonshot';
       const sessionData = {
-        tokensIn: parseInt(args[1]) || 0,
-        tokensOut: parseInt(args[2]) || 0,
-        contextUsed: parseInt(args[3]) || 0,
-        contextMax: parseInt(args[4]) || 200000,
-        thinking: args[5] || 'off',
-        balance: parseFloat(args[6]) || 0,
-        model: args[8] || 'kimi-k2.5'
+        tokensIn: parseInt(flags['tokens-in']) || 0,
+        tokensOut: parseInt(flags['tokens-out']) || 0,
+        contextUsed: parseInt(flags['context-used']) || 0,
+        contextMax: parseInt(flags['context-max']) || (config.providers[provider] || {}).contextWindow || 200000,
+        thinking: flags.thinking || 'off',
+        balance: flags.balance !== undefined ? parseFloat(flags.balance) || 0 : undefined,
+        model: flags.model || getDefaultModel(provider)
       };
-      const provider = args[7] || config.activeProvider || 'moonshot';
-      const apiKey = args[9] || process.env.MOONSHOT_API_KEY || process.env.OPENAI_API_KEY;
-      
-      const report = await generateReport(sessionData, provider, apiKey);
+      const report = await generateReport(sessionData, provider, flags['api-key'] || getEnvKey(provider));
       console.log(JSON.stringify(report, null, 2));
       break;
+    }
     
-    case 'balance':
+    case 'balance': {
       const p = args[1] || config.activeProvider;
-      const key = args[2] || process.env.MOONSHOT_API_KEY;
+      const key = args[2] || getEnvKey(p);
       const bal = await queryBalance(p, key);
       console.log(JSON.stringify(bal, null, 2));
       break;
+    }
+    
+    case 'tokens': {
+      // tokens <provider> <text|JSON messages数组> [--model m] [--api-key k]：官方 API 优先，失败回落本地近似
+      const prov = args[1] || config.activeProvider || 'moonshot';
+      const text = args[2] || '';
+      const flags = parseFlags(args.slice(3));
+      let parsed = text;
+      if (text.trim().startsWith('[')) {
+        try { parsed = JSON.parse(text); } catch (e) { /* 非法 JSON 按纯文本处理 */ }
+      }
+      const est = await estimateTokens(prov, parsed, flags.model, flags['api-key'] || getEnvKey(prov));
+      console.log(JSON.stringify(est, null, 2));
+      break;
+    }
     
     case 'estimate':
       // estimate <provider> <tokensIn> <tokensOut> [model]
@@ -524,10 +619,14 @@ async function main() {
       const tOut = parseInt(args[3]) || 0;
       const mdl = args[4];
       const est = estimateCost(tIn, tOut, prov, mdl);
-      console.log(JSON.stringify({
+      console.log(JSON.stringify(est ? {
         provider: prov,
         tokens: { in: tIn, out: tOut },
         cost: est
+      } : {
+        provider: prov,
+        error: `Unknown pricing for ${prov}/${mdl || '(default)'}`,
+        knownModels: Object.keys((config.providers[prov] || {}).pricing || {})
       }, null, 2));
       break;
     
@@ -558,7 +657,8 @@ async function main() {
       console.log(JSON.stringify({
         usage: 'node manager.js <command> [args]',
         commands: {
-          report: '生成完整报告 (tokensIn tokensOut contextUsed contextMax thinking balance provider model apiKey)',
+          report: '生成完整报告 --tokens-in N --tokens-out N --context-used N --context-max N --thinking on|off [--balance N] [--provider p] [--model m] [--api-key k]',
+          tokens: '估算 token 数（官方 API 优先，失败回落本地近似）: tokens <provider> <text|JSON> [--model m]',
           balance: '查询余额 (provider apiKey)',
           estimate: '估算费用 (provider tokensIn tokensOut model)',
           providers: '列出支持的提供商',
@@ -577,7 +677,11 @@ module.exports = {
   analyzeUsage,
   getPricing,
   loadConfig,
-  saveConfig
+  saveConfig,
+  approxTokens,
+  getDefaultModel,
+  getEnvKey,
+  BALANCE_PARSERS
 };
 
 if (require.main === module) {

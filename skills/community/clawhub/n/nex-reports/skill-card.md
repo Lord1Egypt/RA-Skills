@@ -1,44 +1,55 @@
-## Description: <br>
-Nex Reports creates, schedules, and delivers automated business reports by combining data from Nex tools, IMAP email, calendar files, taskboards, and custom commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Reports creates, schedules, and delivers automated business reports by combining data from Nex tools and configured local sources into markdown, HTML, Telegram, or JSON briefings.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-External users, business operators, and teams use Nex Reports to build recurring business briefings, stakeholder summaries, and operational snapshots from multiple local and service-backed data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CUSTOM module can run user-configured shell commands. <br>
-Mitigation: Use CUSTOM only with reviewed commands from trusted report configurations. <br>
-Risk: Reports may include sensitive business data and can be delivered through Telegram. <br>
-Mitigation: Prefer local file output for sensitive reports and treat Telegram delivery as sharing contents with a third-party service. <br>
-Risk: IMAP access requires email account credentials. <br>
-Mitigation: Use app-specific IMAP credentials and limit credential exposure to the environment where reports run. <br>
+## Use Case:
 
+Business operators, managers, and teams use this skill to create recurring operational briefings that combine health checks, CRM pipeline status, expenses, deliverables, domain alerts, vault alerts, email, calendar, task, and custom command results.
 
-## Reference(s): <br>
-- [Nex Reports ClawHub page](https://clawhub.ai/nexaiguy/nex-reports) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown, HTML, Telegram text, JSON, and saved report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save reports locally or send report contents to Telegram when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Stored report configurations can invoke high-impact arbitrary shell commands through the CUSTOM module.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the CUSTOM module only for fully trusted commands, restrict who can edit ~/.nex-reports/reports.db, and run scheduled reports with minimal privileges.
+
+Risk: Telegram deliveries and saved report files may contain sensitive business data.
+
+Mitigation: Limit recipients and file access, and review generated report content before broad distribution.
+
+## Reference(s):
+
+- [Nex AI homepage](https://nex-ai.be)
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-reports)
+- [ClawHub publisher profile](https://clawhub.ai/user/nexaiguy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide creation of scheduled reports and delivery to files or Telegram; generated reports may be markdown, HTML, Telegram text, or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Automated client communication management for triaging requests by urgency, drafting responses, scheduling follow-ups, and tracking client interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated client communication management: auto-triage requests by urgency, draft responses, schedule follow-ups, and track client interactions for freelancers and agencies.
 
-## Publisher: <br>
-[nogravedev](https://clawhub.ai/user/nogravedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nogravedev](https://clawhub.ai/user/nogravedev)
 
-## Use Case: <br>
-Freelancers and agencies use this skill to manage client communication across channels, prioritize incoming requests, draft replies from context, schedule follow-ups, and summarize interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises broad automation over private client communications and contract or payment context without clear access or data-handling limits. <br>
-Mitigation: Review before installation or purchase, limit connected clients, channels, credentials, stored data, and permitted actions, and require explicit approval before sending messages, scheduling follow-ups, or using contract or payment details. <br>
+## Use Case:
 
+Freelancers, agencies, and business operators use this skill to triage client messages, draft context-aware responses, schedule follow-ups, and maintain concise client interaction records across communication channels.
 
-## Reference(s): <br>
-- [Client Manager on ClawHub](https://clawhub.ai/nogravedev/clawkits-client-manager) <br>
-- [nogravedev publisher profile](https://clawhub.ai/user/nogravedev) <br>
-- [ClawKits website](https://clawkits.xyz) <br>
-- [ClawKits Gumroad](https://clawkits.gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured text for client triage, response drafts, follow-up plans, and interaction summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference private client communication, project status, contract details, payment status, and channel-specific context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: A fuller version may request access to email, Slack, Discord, WhatsApp, client histories, contracts, or payment status data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan any fuller version separately before granting channel access or exposing client, contract, or payment information.
+
+Risk: Automated triage or drafted responses could misclassify client urgency or produce inaccurate client-facing communication.
+
+Mitigation: Require human review before sending responses or acting on escalations in client-facing workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nogravedev/skills/clawkits-client-manager)
+- [ClawKits Website](https://clawkits.xyz)
+- [ClawKits Gumroad](https://clawkits.gumroad.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with triage labels, drafted responses, follow-up reminders, and interaction summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviewed artifact is a non-executable Markdown description; any fuller kit should be reviewed separately before use with client systems or records.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and SKILL.md metadata.openclaw.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

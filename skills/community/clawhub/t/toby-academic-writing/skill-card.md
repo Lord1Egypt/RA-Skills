@@ -1,41 +1,54 @@
-## Description: <br>
-Provides academic writing assistance for scholarly papers, literature reviews, research methodology, and thesis writing with strict academic standards and citation protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Writing helps agents draft scholarly papers, literature reviews, research methodology content, theses, and publication-oriented writing with academic citation discipline.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users, students, researchers, and writers use this skill to draft, structure, and revise academic content while following formal citation, reference-list, language, and quality-assurance rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic claims or citations may be inaccurate or unverifiable if the agent cannot access or check academic sources. <br>
-Mitigation: Verify every cited source against legitimate academic repositories, keep citation numbering sequential, and avoid fabricating evidence or references. <br>
-Risk: The external setup link and optional manual GitHub clone may introduce unreviewed external content. <br>
-Mitigation: Treat those links as informational and independently review any external repository or setup material before use. <br>
+## Use Case:
 
+External users, students, researchers, and writing-focused agents use this skill to structure academic prose, enforce citation discipline, and prepare papers, theses, literature reviews, and methodology sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-academic-writing) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown, with main writing outputs wrapped in <ama-doc> tags and citations formatted as numbered reference links when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Markdown tables, Mermaid diagrams, and reference lists when useful for academic writing tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill strongly prefers Markdown and academic-only sources, which may not fit tasks that require another output format or non-academic source types.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for the required format or acceptable source categories, and review the output against the intended publication or assignment requirements.
+
+Risk: Academic-writing outputs can create citation or evidence-quality risk if references are not checked.
+
+Mitigation: Verify cited sources, citation numbering, and reference-list entries before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-academic-writing)
+- [Skill setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown wrapped in <ama-doc> tags with numbered citations and a references section when citations are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers academic sources and formal academic structure; no executable output is produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

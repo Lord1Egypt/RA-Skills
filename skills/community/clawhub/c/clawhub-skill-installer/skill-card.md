@@ -1,47 +1,59 @@
-## Description: <br>
-A comprehensive ClawHub skill installer that bypasses API rate limits. Search, install single skills, or batch install multiple skills with automatic retry logic and version management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub Skill Installer helps agents search ClawHub and install one or more skills from downloadable packages with retry behavior.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search ClawHub and install one or more skills into an OpenClaw skills directory. It is intended for command-line skill discovery, download, extraction, and batch installation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports unsafe command-execution paths. <br>
-Mitigation: Run only in an isolated or disposable OpenClaw profile until shell-string execution is replaced with argument-array process execution and skill names are validated. <br>
-Risk: The installer can overwrite local skills in the configured skills directory. <br>
-Mitigation: Back up existing skills and require confirmation before overwriting or deleting installed skill folders. <br>
-Risk: The installer downloads and extracts skill ZIP archives. <br>
-Mitigation: Verify the source of each skill ZIP before installation and review downloaded skill contents before enabling them. <br>
-Risk: The artifact contains a hardcoded skills path. <br>
-Mitigation: Change the configured skills directory to the intended isolated OpenClaw profile before running installation commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search ClawHub and install single or multiple skills into an OpenClaw skills directory while managing retries and batch delays.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunnyhot/clawhub-skill-installer) <br>
-- [Publisher Profile](https://clawhub.ai/user/sunnyhot) <br>
-- [ClawHub Marketplace](https://clawhub.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-line guidance for search, single-install, and batch-install workflows; installation commands can modify local skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The installer can change the active OpenClaw skills directory and overwrite existing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target skills directory before use, keep backups of important skills, and avoid elevated privileges.
+
+Risk: The installer can download and install code from remote archives that are not cryptographically verified.
+
+Mitigation: Prefer pinned sources with verified package identity and hashes, and install only trusted skills.
+
+Risk: Fallback paths may run unpinned external commands or install unverified GitHub search results.
+
+Mitigation: Inspect proposed commands before execution and avoid relying on fallback installation for sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunnyhot/skills/clawhub-skill-installer)
+- [OpenClaw](https://openclaw.ai)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented instructions with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install, remove, or overwrite local skill files when its commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

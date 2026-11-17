@@ -1,44 +1,58 @@
-## Description: <br>
-Parse .ics / iCalendar files or URLs, expand recurring events (RRULE), filter by date range / keywords, and return clean list of events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses .ics / iCalendar files or URLs, expands recurring events (RRULE), filters by date range or keywords, and returns a clean JSON list of events.
 
-## Publisher: <br>
-[baptiste00001](https://clawhub.ai/user/baptiste00001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baptiste00001](https://clawhub.ai/user/baptiste00001)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to parse local or remote iCalendar feeds, expand recurring events, filter them by date range or text fields, and return structured event data for scheduling or calendar analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided calendar URLs may expose private, internal, or tokenized calendar data to the agent environment. <br>
-Mitigation: Use trusted calendar sources and avoid internal, private, or tokenized URLs unless the agent environment is intended to request them. <br>
-Risk: Calendar titles, descriptions, and locations are untrusted data returned to the agent. <br>
-Mitigation: Review event text before using it for downstream actions, publication, or automated scheduling decisions. <br>
-Risk: Broad date ranges or recurring event feeds can produce large result sets. <br>
-Mitigation: Provide bounded date ranges and check the returned count before passing results into later workflows. <br>
+## Use Case:
 
+Developers and external users use this skill when an agent needs to parse local or remote iCalendar feeds, expand recurring events, and filter results by date range or keywords for scheduling workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/baptiste00001/icalendar-events-parser) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/baptiste00001) <br>
-- [Project Homepage](https://github.com/baptiste00001/icalendar-events-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with parsed calendar event objects and error objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, installs npm dependencies, accepts JSON input on stdin, can fetch user-provided calendar URLs, and can read .ics files from the OpenClaw workspace or the skill folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can make outbound requests to arbitrary calendar URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when trusted calendar sources are expected; prefer local .ics files or known public calendar providers and avoid private or internal URLs.
+
+Risk: The local-file boundary may be weak when workspace symlinks point outside allowed paths.
+
+Mitigation: Review workspace symlinks and avoid placing sensitive files under allowed paths until the file-boundary behavior is tightened.
+
+Risk: Large calendars or broad recurrence expansion can create resource pressure.
+
+Mitigation: Use bounded date ranges and conservative recurrence limits when asking the agent to process calendar feeds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baptiste00001/skills/icalendar-events-parser)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON]
+
+**Output Format:** [JSON object with success status, event count, event records, and error details when parsing fails]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Events include UID, title, start, end, all-day flag, description, location, recurrence ID, and original RRULE fields when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

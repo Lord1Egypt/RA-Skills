@@ -1,0 +1,7 @@
+{
+  "events": [
+    {"id": "C1", "chapter": "第一章", "title": "雨夜"},
+    {"id": "C2", "chapter": "第二章", "title": "重逢"},
+    {"id": "C3", "chapter": "第三章", "title": "告别"}
+  ]
+}

@@ -1,44 +1,60 @@
-## Description: <br>
-Semantic code search and AI-powered codebase Q&A across indexed repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeAlive Context Engine provides semantic code search and AI-powered codebase Q&A across indexed repositories for code understanding, dependency exploration, pattern discovery, feature planning, debugging, and onboarding.
 
-## Publisher: <br>
-[rodion-m](https://clawhub.ai/user/rodion-m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rodion-m](https://clawhub.ai/user/rodion-m)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover indexed repositories, run semantic code searches, fetch referenced artifacts, and ask codebase questions for onboarding, debugging, dependency exploration, and feature planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote code search and Q&A can expose repository content, prompts, or fetched artifacts to the CodeAlive service. <br>
-Mitigation: Install only if you trust CodeAlive and the publisher with repositories available to the configured API key; avoid sending secrets, regulated data, or proprietary code that should not leave the environment. <br>
-Risk: API keys may be exposed if pasted into chat or command-line history. <br>
-Mitigation: Prefer the interactive setup and OS credential store, and use a scoped key where possible. <br>
-Risk: A misconfigured CODEALIVE_BASE_URL could send requests to an unintended service. <br>
-Mitigation: Verify CODEALIVE_BASE_URL before use and keep the default service unless a trusted private CodeAlive instance is required. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover indexed repositories, run semantic searches, fetch search result content, and ask CodeAlive's codebase consultant for architectural explanations or implementation guidance.
 
-## Reference(s): <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [CodeAlive Workflows](references/workflows.md) <br>
-- [CodeAlive MCP Server](https://github.com/CodeAlive-AI/codealive-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text, with optional JSON output from CLI scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote API calls require a CodeAlive API key and access to the selected indexed data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: API keys may be exposed if pasted into chat, command lines, shell history, transcripts, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the hidden interactive setup or an OS credential store where possible, avoid passing keys directly in chat or command arguments, and rotate any key that may already have been exposed.
+
+Risk: A custom CODEALIVE_BASE_URL can send credentials and codebase queries to an untrusted endpoint.
+
+Mitigation: Use the default CodeAlive endpoint or set CODEALIVE_BASE_URL only to a trusted HTTPS CodeAlive endpoint.
+
+Risk: Repository names, queries, search results, and fetched artifact content may be sent to CodeAlive during normal use.
+
+Mitigation: Install and use the skill only for repositories and questions that are appropriate to share with CodeAlive.
+
+## Reference(s):
+
+- [Query Patterns](references/query-patterns.md)
+- [Workflows](references/workflows.md)
+- [CodeAlive MCP Server](https://github.com/CodeAlive-AI/codealive-mcp)
+- [CodeAlive App](https://app.codealive.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CodeAlive API key; search, fetch, data source, chat, and exploration operations call the configured CodeAlive API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

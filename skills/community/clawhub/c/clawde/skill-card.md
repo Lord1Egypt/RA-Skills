@@ -1,43 +1,57 @@
-## Description: <br>
-AI-powered betting advisory for gaming platforms that provides bet recommendations, risk analysis, bankroll management, and strategy configuration for crash games, dice, and casino games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLAWDEBET provides AI-assisted betting recommendations, crash-game analysis, bankroll guidance, and strategy configuration for gaming platforms.
 
-## Publisher: <br>
-[eyeshaw](https://clawhub.ai/user/eyeshaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eyeshaw](https://clawhub.ai/user/eyeshaw)
 
-## Use Case: <br>
-External users and developers use this skill for advisory-only gambling analysis, including crash-history analysis, bet sizing, bankroll limits, and strategy selection. It should not be used to automate wagering or as reliable prediction or financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides gambling-related recommendations with confidence framing, which may be mistaken for reliable prediction or financial advice. <br>
-Mitigation: Treat all outputs as advisory only; do not use them for automated wagering or decisions involving money you cannot afford to lose. <br>
-Risk: Use of betting analysis may be restricted by local gambling, age, or platform rules. <br>
-Mitigation: Check applicable laws, age requirements, and platform terms before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CLAWDEBET on ClawHub](https://clawhub.ai/eyeshaw/clawde) <br>
-- [Publisher profile](https://clawhub.ai/user/eyeshaw) <br>
-- [Project website](https://clawde.xyz) <br>
-- [Basic usage guide](examples/basic-usage.md) <br>
-- [Strategy guide](examples/strategies.md) <br>
+## Use Case:
 
+External developers and users can use this skill as non-executing gambling decision support for analyzing crash histories, comparing betting strategies, and generating suggested bet amounts, target multipliers, confidence, and risk levels.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, JSON configuration, and structured recommendation objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only outputs include suggested bet amount, target multiplier, confidence, risk level, reasoning, and stop or cooldown signals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is gambling-related and may encourage risky wagering or loss-chasing.
+
+Mitigation: Use it only as advisory decision support; require user confirmation for each wager and do not connect it to automated real-money betting without independent hard limits, jurisdiction and age checks, and responsible-gambling controls.
+
+Risk: Security evidence says advertised safety controls are overstated and not fully enforced by code.
+
+Mitigation: Do not rely on built-in stop-loss, take-profit, tilt, or session-limit claims as safeguards; review code and enforce limits outside the skill before deployment.
+
+Risk: Recommendations may be misleading because past crash-game patterns do not guarantee future outcomes.
+
+Mitigation: Present outputs as uncertain guidance, cap exposure, and include responsible-gambling warnings in user workflows.
+
+## Reference(s):
+
+- [CLAWDEBET ClawHub page](https://clawhub.ai/eyeshaw/skills/clawde)
+- [CLAWDEBET website](https://clawde.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python code examples, Python dataclass objects, dictionaries, and plain-text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and non-executing; the included Python helpers return local analysis and recommendation data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Buddhist wisdom and mindful dialogue companion built on Madhyamaka philosophy, meditation practice, dialogue skills, and classic Buddhist teachings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wisdom Claw helps agents respond to Buddhist philosophy, practice confusion, life challenges, and dilemmas using Madhyamaka reflection, meditation framing, dialogue prompts, and classic Buddhist teachings.
 
-## Publisher: <br>
-[TTtael](https://clawhub.ai/user/TTtael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tttael](https://clawhub.ai/user/tttael)
 
-## Use Case: <br>
-External users and agent builders use this skill to guide Buddhist and Madhyamaka-style reflection in conversations about philosophy, practice confusion, life challenges, attachments, anxiety, conflict, and dilemmas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may proactively reframe anxiety, conflict, dilemmas, or other personal concerns through a Buddhist or Madhyamaka spiritual lens. <br>
-Mitigation: Install and enable it only for contexts where users want that reflective framing, and make the spiritual framing clear in agent behavior. <br>
-Risk: Users could mistake reflective guidance for therapy, crisis support, legal advice, or medical advice. <br>
-Mitigation: Keep responses framed as spiritual reflection and route users to qualified professional or emergency support for clinical, crisis, legal, or medical needs. <br>
+## Use Case:
 
+External users can use this skill to add Buddhist and Madhyamaka-informed reflective dialogue to agent conversations about philosophy, practice questions, anxiety, dilemmas, attachment, and ordinary life challenges.
 
-## Reference(s): <br>
-- [Wisdom Claw release page](https://clawhub.ai/TTtael/wisdom-claw) <br>
-- [TTtael publisher profile](https://clawhub.ai/user/TTtael) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and dialogue prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution, tools, credentials, or data access are described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill has broad triggers and may introduce Buddhist or Madhyamaka framing into anxiety, dilemma, or life-challenge discussions even when the user did not explicitly request it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where that reflection style is desired, make the framing easy to decline, and review responses for fit with the user's stated needs.
+
+Risk: Reflective spiritual guidance can be mistaken for professional advice in sensitive personal situations.
+
+Mitigation: Keep responses grounded as reflective dialogue and route high-stakes medical, legal, financial, or safety concerns to appropriate professional support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tttael/skills/wisdom-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is markdown-only and does not produce code, shell commands, configuration, files, persistence, or data-access behavior.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

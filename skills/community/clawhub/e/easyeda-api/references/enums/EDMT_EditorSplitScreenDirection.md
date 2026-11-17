@@ -1,11 +1,11 @@
 # EDMT\_EditorSplitScreenDirection enum
 
-编辑器分屏方向
+Editor split screen direction
 
 ## Signature
 
 ```typescript
-declare enum EDMT_EditorSplitScreenDirection 
+enum EDMT_EditorSplitScreenDirection
 ```
 
 ## Enumeration Members
@@ -14,48 +14,35 @@ declare enum EDMT_EditorSplitScreenDirection
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 HORIZONTAL
 
-
 </td><td>
 
-`"horizontal"`
-
+`'horizontal'`
 
 </td><td>
-
-水平
-
 
 </td></tr>
 <tr><td>
 
 VERTICAL
 
-
 </td><td>
 
-`"vertical"`
-
+`'vertical'`
 
 </td><td>
-
-垂直
-
 
 </td></tr>
 </tbody></table>

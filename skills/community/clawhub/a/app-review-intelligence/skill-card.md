@@ -1,41 +1,54 @@
-## Description: <br>
-Analyze app store reviews, cluster pain points, detect trend shifts, and map feedback to prioritized product backlog actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze app store reviews, cluster pain points, detect trend shifts, and map feedback to prioritized product backlog actions.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Product managers, app teams, and developers use this skill to turn app store reviews into prioritized pain-point clusters, regression signals, and backlog recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review exports may contain private user information. <br>
-Mitigation: Process only review data the user is allowed to share and minimize or remove private information before analysis. <br>
-Risk: Generated backlog recommendations may be incomplete or misleading. <br>
-Mitigation: Review recommendations against product context and release evidence before adding them to a roadmap or sprint plan. <br>
+## Use Case:
 
+Product managers, growth teams, and developers use this skill to turn app store reviews into sentiment clusters, pain-point trends, release-quality signals, and prioritized backlog recommendations.
 
-## Reference(s): <br>
-- [Setup](artifact/setup.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with prioritized lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pain-point clusters, sentiment themes, trend shifts, backlog recommendations, and release-quality risk signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: App reviews and product context may contain sensitive customer feedback or internal release details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the review data, release context, and product taxonomy intended for analysis.
+
+Risk: Cluster labels, severity scores, or backlog recommendations may be incomplete or misleading if the input sample is narrow.
+
+Mitigation: Review outputs against the selected date range, app platform, languages, release versions, and product taxonomy before using them for roadmap decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anugotta/skills/app-review-intelligence)
+- [ClawHub publisher profile](https://clawhub.ai/user/anugotta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are organized around review clusters, sentiment, severity, recency, trend movement, and backlog priority.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

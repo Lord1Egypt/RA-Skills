@@ -1,47 +1,64 @@
-## Description: <br>
-面向法律/财务/采购场景的合规审计引擎，自动提取风险条款、映射法规基线、生成审计底稿与澄清模板 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向法律/财务/采购场景的合规审计引擎，自动提取风险条款、映射法规基线、生成审计底稿与澄清模板
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Legal, finance, procurement, and internal-control teams use this skill to review contracts, tender documents, and internal policies against selected compliance scopes. It produces traceable risk mapping, audit workpaper drafts, clarification language, and remediation responsibility guidance for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The input materials may contain personal data, customer names, sensitive pricing, trade secrets, or regulated information. <br>
-Mitigation: Redact sensitive business and personal information before use where possible. <br>
-Risk: Generated compliance mappings, citations, and recommendations may be incomplete, outdated, or unsuitable for final decisions. <br>
-Mitigation: Have qualified legal or compliance staff verify important citations, current-law status, and final decisions. <br>
-Risk: The built-in knowledge base covers selected high-frequency regulations and may not cover every industry, local, or newly amended rule in the requested scope. <br>
-Mitigation: Flag uncovered regulations for manual review and verify the current effective version of cited rules. <br>
+## Use Case:
 
+Legal, compliance, finance, procurement, and internal-control reviewers use this Chinese-language skill to turn contracts, tender documents, policies, and other business text into compliance risk matrices, audit workpapers, clarification language, and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/boboy-j/compliance-audit-pro) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/boboy-j) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Definition and Knowledge Index](artifact/SKILL.md) <br>
-- [Input Schema](artifact/schema.json) <br>
-- [Usage Examples](artifact/examples.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown compliance audit report with risk tables, workpaper draft, clarification language, and remediation matrix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires document_content and compliance_scope inputs; supports an optional risk_threshold of low, medium, high, or strict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Users may paste confidential contract, procurement, or financial details into the agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact confidential contract details, sensitive amounts, customer names, and other protected information before use.
+
+Risk: Generated legal citations, compliance findings, or law-version assumptions may be incomplete, inaccurate, or outdated.
+
+Mitigation: Have qualified legal, compliance, or internal-control staff verify citations, current law, and material decisions before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/compliance-audit-pro)
+- [Skill definition and legal knowledge index](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Input schema](artifact/schema.json)
+- [Examples](artifact/examples.json)
+- [Data Security Law knowledge base](artifact/knowledge/01-data-security-law.md)
+- [Cybersecurity Law knowledge base](artifact/knowledge/02-cybersecurity-law.md)
+- [Personal Information Protection Law knowledge base](artifact/knowledge/03-personal-info-protection.md)
+- [Government Procurement Law knowledge base](artifact/knowledge/04-government-procurement.md)
+- [Civil Code Contracts knowledge base](artifact/knowledge/05-civil-code-contracts.md)
+- [GDPR knowledge base](artifact/knowledge/09-gdpr.md)
+- [Financial compliance knowledge base](artifact/knowledge/16-financial-compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown compliance audit report with tables, workpaper drafts, clarification language, and remediation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static workflow; no code execution, persistence, credential use, or hidden data movement reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata; skill frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

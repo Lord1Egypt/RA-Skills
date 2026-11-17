@@ -1,47 +1,61 @@
-## Description: <br>
-Monitor live cryptocurrency prices, technical indicators, support and resistance levels, and configurable price alerts using public CoinGecko market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors live cryptocurrency prices, technical indicators, support and resistance levels, and customizable price alerts for portfolio summaries.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to fetch current cryptocurrency market data, compute simple technical indicators, and generate informational price alerts or portfolio summaries. It is intended for market monitoring, not financial advice or automated trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data and simple technical indicators may be mistaken for financial advice or trading instructions. <br>
-Mitigation: Use the skill only as an informational market-data helper and require human review before any portfolio or trading decision. <br>
-Risk: Generic trigger terms or common crypto symbols may activate the skill more broadly than intended. <br>
-Mitigation: Confirm the user is asking for cryptocurrency price, alert, or analysis help before running the price-check workflow. <br>
-Risk: Future changes that add wallet keys, exchange credentials, or trading permissions would materially change the security profile. <br>
-Mitigation: Do not add credentials or trading capabilities without a separate security review. <br>
-Risk: Live results depend on public CoinGecko API availability, freshness, and rate limits. <br>
-Mitigation: Surface API errors clearly, preserve timestamps in results, and avoid treating stale or failed fetches as authoritative. <br>
+## Use Case:
 
+External users and developers use this skill to fetch CoinGecko cryptocurrency market data, calculate simple technical indicators, and generate threshold-based price alerts in text or JSON form.
 
-## Reference(s): <br>
-- [Technical Signals Reference](references/signals.md) <br>
-- [CoinGecko Search API endpoint](https://api.coingecko.com/api/v3/search) <br>
-- [CoinGecko Simple Price API endpoint](https://api.coingecko.com/api/v3/simple/price) <br>
-- [CoinGecko Coins API endpoint](https://api.coingecko.com/api/v3/coins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text report or JSON object, with optional shell command examples for running the price checker.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public CoinGecko API data, requires no credentials, and includes timestamps on fetched market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crypto symbols and selected fiat currencies are sent to CoinGecko for market-data lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with symbols and currencies that are acceptable to disclose to the external market-data provider.
+
+Risk: Technical signals and price alerts may be mistaken for investment advice.
+
+Mitigation: Treat generated indicators, alerts, and summaries as informational only and review them before making financial decisions.
+
+Risk: Broad crypto and trading triggers may activate the skill in generic market discussions.
+
+Mitigation: Confirm the requested symbol, currency, thresholds, and output format before running the price-check command.
+
+## Reference(s):
+
+- [Technical Signals Reference](references/signals.md)
+- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/crypto-price-alerter)
+- [CoinGecko Search API Endpoint](https://api.coingecko.com/api/v3/search)
+- [CoinGecko Simple Price API Endpoint](https://api.coingecko.com/api/v3/simple/price)
+- [CoinGecko Coins API Base](https://api.coingecko.com/api/v3/coins)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text report or JSON object from a command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live price, 24h change, volume, market cap, SMA, RSI, support/resistance, timestamp, and alert messages when thresholds are crossed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Extracts product code, name, batch, and quantity data from text-based PDF label files and prepares structured Excel output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts product label data from text-based PDF files, including product codes, names, batches, and quantities, and exports the structured result to Excel.
 
-## Publisher: <br>
-[zhangshouxin](https://clawhub.ai/user/zhangshouxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangshouxin](https://clawhub.ai/user/zhangshouxin)
 
-## Use Case: <br>
-Developers and operations users can use this skill to extract structured product label records from text-searchable PDFs, handle multi-line product names, validate extracted rows, and export the result to Excel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extraction workflow expects text-searchable PDFs and may miss or misread data in scanned files or unfamiliar layouts. <br>
-Mitigation: Test on representative PDFs first and review the generated Excel rows before relying on the output. <br>
-Risk: The workflow reads a configured local PDF path and writes a configured Excel output file. <br>
-Mitigation: Use an appropriate working directory and confirm file paths before granting local file access or write permissions. <br>
+## Use Case:
 
+Developers and operations users use this skill to extract structured product label information from text PDFs and save it as an Excel spreadsheet for review, validation, or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangshouxin/my-pdf-extract-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangshouxin) <br>
-- [pdfplumber documentation](https://github.com/jsvine/pdfplumber) <br>
-- [pandas documentation](https://pandas.pydata.org/) <br>
-- [OpenClaw skill development guide](https://docs.openclaw.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown with inline shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce an Excel workbook when the described extraction script is run against a configured PDF input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing dependencies directly into a system Python environment can affect other projects or require elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a dedicated virtual environment, and avoid running pip as an administrator.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin dependency versions before repeatable or production use.
+
+Risk: The configured Excel output path could overwrite an important spreadsheet.
+
+Mitigation: Choose and review the output filename before execution.
+
+Risk: The package references script and reference-image files that are not included in the artifact evidence.
+
+Mitigation: Confirm required files are present before relying on the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangshouxin/skills/my-pdf-extract-skill)
+- [pdfplumber documentation](https://github.com/jsvine/pdfplumber)
+- [pandas documentation](https://pandas.pydata.org/)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides creation of an Excel output file from a configured text PDF input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

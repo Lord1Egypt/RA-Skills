@@ -1,46 +1,57 @@
-## Description: <br>
-Java Design Patterns helps agents answer software design, architecture, design-principle, and Java implementation questions using a broad reference set of design patterns and programming principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Java design-patterns and software design principles reference covering GoF, architectural, concurrency, enterprise, and microservice patterns.
 
-## Publisher: <br>
-[wufengsheng](https://clawhub.ai/user/wufengsheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufengsheng](https://clawhub.ai/user/wufengsheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and explain design patterns, apply design principles, and draft Java-oriented examples during architecture, implementation, refactoring, or code-review work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pattern recommendations or copied examples may be incorrect, misleading, or unsuitable for a specific production system. <br>
-Mitigation: Review recommendations against the system requirements and test any code before use. <br>
-Risk: Some example code may be weak or unsafe around money, logging, credentials, request bodies, JSP rendering, concurrency, or external API calls. <br>
-Mitigation: Apply secure coding review before copying examples into real systems. <br>
-Risk: Included maintenance scripts contain hardcoded local paths. <br>
-Mitigation: Inspect and adjust scripts before running them; install the skill primarily as a reference aid. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer questions about Java design patterns, architecture patterns, design principles, and pattern selection during implementation, review, or refactoring.
 
-## Reference(s): <br>
-- [ClawHub Java Design Patterns Skill](https://clawhub.ai/wufengsheng/skills/java-design-patterns) <br>
-- [Java Design Patterns Documentation](https://java-design-patterns.com/) <br>
-- [Java Design Patterns Principles](https://java-design-patterns.com/principles/) <br>
-- [Skill Reference Index](SKILL.md) <br>
-- [Complete Local Reference Corpus](llms-full.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with Java code examples and links to reference files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference aid; review recommendations before adopting examples in real systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sample Java snippets may be copied into production without hardening, especially credential, session, database, or logging examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat snippets as educational examples and review, test, and harden them before production use.
+
+Risk: Bundled generation scripts can read a referenced local crawl export and write generated files into a local Claude skills directory.
+
+Mitigation: Do not run the generation scripts unless that local file access and write behavior is intended and has been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wufengsheng/skills/java-design-patterns)
+- [Java Design Patterns Documentation](https://java-design-patterns.com/)
+- [Java Design Principles](https://java-design-patterns.com/principles/)
+- [Skill Definition](artifact/SKILL.md)
+- [Design Pattern References](artifact/references/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown answers with Java code examples and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include educational Java snippets that require review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

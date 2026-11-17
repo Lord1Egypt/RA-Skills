@@ -1,46 +1,60 @@
-## Description: <br>
-PIV - Plan Implement Validate orchestrates multi-phase software development by creating PRDs and PRPs, coordinating implementation sub-agents, and validating changes through iterative Plan, Implement, Validate loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PIV workflow orchestrator - Plan, Implement, Validate loop for systematic multi-phase software development. Use when building features phase-by-phase with PRPs, automated validation loops, or multi-agent orchestration. Supports PRD creation, PRP generation, codebase analysis, and iterative execution with validation.
 
-## Publisher: <br>
-[SmokeAlot420](https://clawhub.ai/user/SmokeAlot420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smokealot420](https://clawhub.ai/user/smokealot420)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and deliver multi-phase software changes with PRDs, PRPs, codebase analysis, sub-agent execution, validation reports, debugging retries, workflow tracking, and commits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify repositories, run project-defined commands, spawn sub-agents, and create git commits. <br>
-Mitigation: Use it in a version-controlled or disposable project, inspect generated plans and diffs, and require explicit approval before file overwrites, arbitrary validation commands, or commits. <br>
-Risk: Generated PRPs, implementation summaries, and validation reports can be incomplete or misleading. <br>
-Mitigation: Review generated PRPs before execution and rely on independent validation reports before accepting or committing changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Codebase Analysis for Feature Planning](artifact/references/codebase-analysis.md) <br>
-- [Create PRD](artifact/references/create-prd.md) <br>
-- [Create BASE PRP](artifact/references/generate-prp.md) <br>
-- [Execute BASE PRP](artifact/references/execute-prp.md) <br>
-- [PIV Executor Agent](artifact/references/piv-executor.md) <br>
-- [PIV Validator Agent](artifact/references/piv-validator.md) <br>
-- [PIV Debugger Agent](artifact/references/piv-debugger.md) <br>
-- [Project homepage](https://github.com/SmokeAlot420/ftw) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan and execute multi-phase software work through PRD creation, PRP generation, codebase analysis, implementation, validation, debugging, and workflow tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update PRD, PRP, workflow, source, test, and commit artifacts during the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can edit projects, run commands, spawn sub-agents, and create commits without clear approval safeguards.
+
+Mitigation: Use it only on trusted repositories and require manual review of generated PRPs, planned file changes, validation commands, and commit messages before allowing execution or commits.
+
+Risk: Generated PRPs or validation plans may introduce incorrect guidance or unsafe changes into a target project.
+
+Mitigation: Review generated planning artifacts and validation commands before execution, and scan the skill before deployment.
+
+## Reference(s):
+
+- [FTW repository](https://github.com/SmokeAlot420/ftw)
+- [ClawHub skill page](https://clawhub.ai/smokealot420/skills/piv)
+- [Codebase analysis reference](references/codebase-analysis.md)
+- [PRD creation reference](references/create-prd.md)
+- [PRP generation reference](references/generate-prp.md)
+- [PRP execution reference](references/execute-prp.md)
+- [PIV executor reference](references/piv-executor.md)
+- [PIV validator reference](references/piv-validator.md)
+- [PIV debugger reference](references/piv-debugger.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PRDs, PRPs, workflow tracker entries, implementation changes, validation reports, and commits in the target repository.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-General guide for creating definition documents. Use when you need to define WHAT something IS - concepts, entities, systems, or domains. Routes to specialized sub-skills for specific definition types (business, features, code, marketing, branding, tools). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General guide for creating definition documents. Use when you need to define WHAT something IS - concepts, entities, systems, or domains. Routes to specialized sub-skills for specific definition types (business, features, code, marketing, branding, tools).
 
-## Publisher: <br>
-[EduardoU24](https://clawhub.ai/user/EduardoU24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eduardou24](https://clawhub.ai/user/eduardou24)
 
-## Use Case: <br>
-Developers, product teams, and documentation maintainers use this skill to define concepts, entities, systems, and domains before implementation or communication work begins. It helps choose the right definition sub-skill, structure docs/definitions content, and maintain review-status signal files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to create or remove local status files such as .draft, .ready_for_review, and .approved during documentation review. <br>
-Mitigation: Review the marker-file workflow and proposed file changes before applying them to a workspace. <br>
-Risk: Definition guidance can shape shared project understanding; incorrect or premature definitions may mislead later implementation or communication work. <br>
-Mitigation: Use the skill's review lifecycle and require stakeholder approval before treating definition documents as authoritative. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EduardoU24/ogt-docs-define) <br>
+## Use Case:
 
+Developers, documentation authors, and product teams use this skill to create definition documents that clarify what concepts, entities, systems, or domains are, why they exist, and how they are bounded. It helps route definition work to specialized sub-skills and provides lifecycle, folder-structure, and quality-check guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with templates, tables, diagrams, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose documentation files and local status signal files for a docs/definitions workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes shell snippets that create, remove, or update local workflow status files.
+
+Mitigation: Run snippets only from the intended definition directory and review the target files before changing status markers.
+
+Risk: Following the documentation lifecycle convention without local agreement could misstate whether a definition is draft, approved, rejected, or deprecated.
+
+Mitigation: Confirm the repository's documentation workflow and reviewer expectations before relying on generated status signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eduardou24/skills/ogt-docs-define)
+- [Publisher profile](https://clawhub.ai/user/eduardou24)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with templates, tables, diagrams, and local shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces documentation workflow guidance; shell snippets are examples for local definition status files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

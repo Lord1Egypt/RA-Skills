@@ -1,39 +1,57 @@
-## Description: <br>
-Trend-following stock analysis using price and volume to generate buy/sell signals, support and resistance levels, entry and exit targets, and risk/reward information for Yahoo Finance tickers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trend-following stock analysis using price and volume to produce buy/sell signals, support/resistance levels, and entry/exit targets for Yahoo Finance tickers.
 
-## Publisher: <br>
-[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to run command-line trend analysis for a stock ticker and summarize current trend status, key levels, trading signals, and targets. It is intended as informational analysis that should be validated with current market data before trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buy/sell signals, targets, and stop-loss output could be mistaken for financial advice. <br>
-Mitigation: Treat results as informational analysis only and validate with current market data and appropriate financial review before trading. <br>
-Risk: The skill fetches public market data over the network and depends on the third-party yfinance package. <br>
-Mitigation: Install only where network market-data access is acceptable and review the yfinance dependency before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to run command-line technical analysis for a stock ticker, inspect trend status and key levels, and generate entry, target, and stop-loss context.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with indicator values, signal lists, support and resistance levels, and target prices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ticker symbol and optionally accepts a Yahoo Finance period such as 3mo, 6mo, 1y, 2y, or 5y.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat generated buy/sell signals, targets, and stop-loss values as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as technical-analysis assistance only and require users to validate against current market data before trading.
+
+Risk: The broad trigger may activate on bare ticker-like symbols when the user did not intend to run stock analysis.
+
+Mitigation: Confirm user intent before running the script or narrow the trigger terms before deployment.
+
+Risk: Runtime behavior depends on the external yfinance package and live Yahoo Finance data availability.
+
+Mitigation: Install in a virtual environment, pin yfinance when deploying, and handle missing or insufficient market data gracefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eddieguan801-oss/skills/trend-following)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console report with trend status, key levels, signals, and entry/target sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ticker and optional period; fetches public Yahoo Finance market data through yfinance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

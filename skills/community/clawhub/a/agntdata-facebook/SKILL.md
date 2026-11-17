@@ -1,80 +1,77 @@
 ---
-name: agntdata-facebook
-description: "Use one API key to pull Facebook data (pages, groups, marketplace, and ads) for agents, automations, and analytics. Structured JSON, credit-based pricing, no se"
-version: 1.0.15
+name: facebook-data
+description: "Facebook pages, posts, groups, Marketplace listings, and the Ad Library for agents — no Facebook app, review, or login of yours."
+version: 2.0.14
+author: superagnt
+license: MIT-0
+platforms: [macos, linux, windows]
+required_environment_variables:
+  - SUPERAGNT_API_KEY
 metadata:
+  hermes:
+    tags: [facebook-data, market-research, social-media]
   openclaw:
     requires:
       env:
-        - AGNTDATA_API_KEY
+        - SUPERAGNT_API_KEY
       bins:
         - curl
-    primaryEnv: AGNTDATA_API_KEY
+    primaryEnv: SUPERAGNT_API_KEY
     emoji: "⚡"
-    homepage: https://agnt.mintlify.app/apis/social/facebook
+    homepage: https://superagnt.com/r/ch-facebook-data-docs
 ---
 
-# Facebook API
+# Facebook Data
 
-The agntdata Facebook API wraps Facebook surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call agntdata with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to page and group posts, marketplace listings, video content, and ad discovery with predictable billing and operational simplicity.
+The superagnt Facebook API wraps Facebook surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to page and group posts, marketplace listings, video content, and ad discovery with predictable billing and operational simplicity.
 
-## Recommended: Install the Plugin
+## Alternative install: the scoped MCP server
 
-**For the best experience, install the OpenClaw plugin for Facebook API instead of this skill.** The plugin provides native MCP tools, automatic authentication, and structured parameter validation.
+If this client speaks MCP, you can connect the Facebook Data facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
-Skill (this document):
-
-```bash
-clawhub install agntdata-facebook
+```
+https://mcp.superagnt.com/mcp/facebook
 ```
 
-Plugin (native tools; npm package matches `package.json`):
+That URL publishes full OAuth discovery: an MCP-capable client needs the URL
+and nothing else (approve once in the browser). On clients that hold a bearer
+instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
+https://www.superagnt.com/install?facet=facebook
 
-```bash
-openclaw plugins install @agntdata/openclaw-facebook
-```
-
-This skill is useful for environments where plugins are not supported.
+This skill document stays fully usable on curl-only environments — everything
+below works with just the API key.
 
 ## Authentication
 
-Before making API calls, you need an API key. Get one from the [agntdata dashboard](https://app.agntdata.dev/dashboard).
-
-The API key should be available as the `AGNTDATA_API_KEY` environment variable. Every request must include it as a Bearer token:
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-facebook-data-key) and export it as
+`SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
-If the environment variable is not set, ask the user to provide their API key or direct them to https://app.agntdata.dev/dashboard to create one.
+If the variable is not set, ask the user for their key or point them at
+https://superagnt.com/r/ch-facebook-data-key.
 
-## API Key Activation
+## Verify the install (do this first)
 
-After setting your API key, activate it by calling the registration endpoint. This only needs to be done once per key:
+One call proves the key, the credit balance, and this source end to end:
 
 ```bash
-curl -X POST https://api.agntdata.dev/v1/register \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"intendedApis": ["facebook"], "useCase": "Brief description of your use case"}'
+curl -s https://api.superagnt.com/v1/credits \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27;
 ```
 
-Replace the `useCase` value with a short description of how you plan to use this API.
-
-## Discovery Endpoints
-
-These public endpoints (no API key required) let you explore this platform's capabilities:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms/facebook
-```
-
-Returns: full endpoint list, OpenAPI spec, features, and use cases.
+A JSON result means you are live. A 401 means the key is wrong or missing; a
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
 ```
-https://api.agntdata.dev/v1/data/facebook
+https://api.superagnt.com/v1/data/facebook
 ```
 
 ## Available Endpoints
@@ -119,12 +116,13 @@ https://api.agntdata.dev/v1/data/facebook
 
 ## Tool Schemas
 
-The following JSON defines all available tools with their parameters. Each tool maps to an API endpoint.
+The following JSON defines every operation with its parameters. Each tool maps
+to an API endpoint under the base URL.
 
 ```json
 [
   {
-    "name": "agntdata_facebook_Get_Facebook_Video_Post_Details",
+    "name": "superagnt_facebook_Get_Facebook_Video_Post_Details",
     "description": "Get Facebook Video Post Details",
     "method": "GET",
     "path": "/get_facebook_video_post_details",
@@ -139,7 +137,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Posts_Comments",
+    "name": "superagnt_facebook_Get_Facebook_Posts_Comments",
     "description": "Get Facebook Posts Comments",
     "method": "GET",
     "path": "/get_facebook_post_comments_details",
@@ -166,7 +164,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Post_Details",
+    "name": "superagnt_facebook_Get_Facebook_Post_Details",
     "description": "Get Facebook Post Details",
     "method": "GET",
     "path": "/get_facebook_post_details",
@@ -181,7 +179,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Post_Attachement_Details",
+    "name": "superagnt_facebook_Get_Facebook_Post_Attachement_Details",
     "description": "Get Facebook Post Attachement Details",
     "method": "GET",
     "path": "/get_facebook_post_attachement_details",
@@ -196,7 +194,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Posts_Comment_Replies",
+    "name": "superagnt_facebook_Get_Facebook_Posts_Comment_Replies",
     "description": "Get Facebook Posts Comment Replies",
     "method": "GET",
     "path": "/get_facebook_post_comment_replies",
@@ -219,7 +217,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Archive_Ad_Details",
+    "name": "superagnt_facebook_Fetch_Archive_Ad_Details",
     "description": "Fetch Archive Ad Details",
     "method": "GET",
     "path": "/fetch_archive_ad_details",
@@ -253,7 +251,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Page_Ad_Details",
+    "name": "superagnt_facebook_Fetch_Page_Ad_Details",
     "description": "Fetch Page Ad Details",
     "method": "GET",
     "path": "/fetch_page_ad_details",
@@ -271,7 +269,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Ads_Pages__GET",
+    "name": "superagnt_facebook_Fetch_Search_Ads_Pages__GET",
     "description": "Fetch Search Ads Pages (GET)",
     "method": "GET",
     "path": "/fetch_search_ads_pages",
@@ -310,7 +308,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Ads_Pages__POST",
+    "name": "superagnt_facebook_Fetch_Search_Ads_Pages__POST",
     "description": "Fetch Search Ads Pages (POST)",
     "method": "POST",
     "path": "/fetch_search_ads_pages",
@@ -353,7 +351,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Download_Media",
+    "name": "superagnt_facebook_Download_Media",
     "description": "Download Media",
     "method": "GET",
     "path": "/download_media",
@@ -371,7 +369,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Videos",
+    "name": "superagnt_facebook_Fetch_Search_Videos",
     "description": "Fetch Search Videos",
     "method": "GET",
     "path": "/search_facebook_watch_videos",
@@ -405,7 +403,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Group_Videos",
+    "name": "superagnt_facebook_Get_Group_Videos",
     "description": "Get Group Videos",
     "method": "GET",
     "path": "/get_facebook_group_videos_details_from_id",
@@ -424,7 +422,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Marketplace_Listing_Item_Details",
+    "name": "superagnt_facebook_Get_Marketplace_Listing_Item_Details",
     "description": "Get Marketplace Listing Item Details",
     "method": "GET",
     "path": "/get_listing_item_details",
@@ -442,7 +440,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Groups_Posts",
+    "name": "superagnt_facebook_Get_Facebook_Groups_Posts",
     "description": "Get Facebook Groups Posts",
     "method": "GET",
     "path": "/get_facebook_group_posts_details_from_id",
@@ -464,7 +462,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Group_Details",
+    "name": "superagnt_facebook_Get_Facebook_Group_Details",
     "description": "Get Facebook Group Details",
     "method": "GET",
     "path": "/get_facebook_group_details_from_id",
@@ -482,7 +480,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Page_Reels",
+    "name": "superagnt_facebook_Get_Page_Reels",
     "description": "Get Page Reels",
     "method": "GET",
     "path": "/get_facebook_reels_details",
@@ -505,7 +503,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Page_Videos",
+    "name": "superagnt_facebook_Get_Page_Videos",
     "description": "Get Page Videos",
     "method": "GET",
     "path": "/get_facebook_page_videos_details",
@@ -528,7 +526,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Pages_Posts",
+    "name": "superagnt_facebook_Get_Facebook_Pages_Posts",
     "description": "Get Facebook Pages Posts",
     "method": "GET",
     "path": "/get_facebook_page_posts_details_from_id",
@@ -566,7 +564,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Page_Details",
+    "name": "superagnt_facebook_Get_Facebook_Page_Details",
     "description": "Get Facebook Page Details",
     "method": "GET",
     "path": "/get_facebook_pages_details_from_link",
@@ -601,7 +599,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_marketplace_rentals_listings",
+    "name": "superagnt_facebook_marketplace_rentals_listings",
     "description": "Get Marketplace Rental Property Search Results",
     "method": "GET",
     "path": "/facebook_marketplace_rentals_listings",
@@ -660,7 +658,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Marketplace_City_Coordinates",
+    "name": "superagnt_facebook_Get_Marketplace_City_Coordinates",
     "description": "Get Marketplace City Coordinates",
     "method": "GET",
     "path": "/find_city_coordinates",
@@ -686,7 +684,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Marketplace_Vehicles_Search_Results",
+    "name": "superagnt_facebook_Get_Marketplace_Vehicles_Search_Results",
     "description": "Get Marketplace Vehicles Search Results",
     "method": "GET",
     "path": "/facebook_marketplace_vehicles_listings",
@@ -745,7 +743,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Marketplace_Categories",
+    "name": "superagnt_facebook_Get_Marketplace_Categories",
     "description": "Get Marketplace Categories",
     "method": "GET",
     "path": "/get_marketplace_categories",
@@ -755,7 +753,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Posts",
+    "name": "superagnt_facebook_Fetch_Search_Posts",
     "description": "Fetch Search Posts",
     "method": "GET",
     "path": "/fetch_search_posts",
@@ -793,7 +791,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Marketplace_Search_Results",
+    "name": "superagnt_facebook_Get_Marketplace_Search_Results",
     "description": "Get Marketplace Search Results",
     "method": "GET",
     "path": "/get_facebook_marketplace_items_listing",
@@ -876,7 +874,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Group_ID",
+    "name": "superagnt_facebook_Get_Facebook_Group_ID",
     "description": "Get Facebook Group ID",
     "method": "GET",
     "path": "/get_facebook_group_id",
@@ -894,7 +892,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Group_Metadata_Details",
+    "name": "superagnt_facebook_Get_Facebook_Group_Metadata_Details",
     "description": "Get Facebook Group Metadata Details",
     "method": "GET",
     "path": "/get_facebook_group_metadata_details",
@@ -913,7 +911,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Seller_Details",
+    "name": "superagnt_facebook_Get_Seller_Details",
     "description": "Get Seller Details",
     "method": "GET",
     "path": "/get_seller_details",
@@ -931,7 +929,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Supported_Countries",
+    "name": "superagnt_facebook_Get_Supported_Countries",
     "description": "Get Supported Countries",
     "method": "GET",
     "path": "/get_supported_countries",
@@ -941,7 +939,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fech_Search_Ads_Keywords",
+    "name": "superagnt_facebook_Fech_Search_Ads_Keywords",
     "description": "Fech Search Ads Keywords",
     "method": "GET",
     "path": "/fetch_search_ads_keywords",
@@ -963,7 +961,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Locations",
+    "name": "superagnt_facebook_Fetch_Search_Locations",
     "description": "Fetch Search Locations",
     "method": "GET",
     "path": "/fetch_search_locations",
@@ -981,7 +979,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_People",
+    "name": "superagnt_facebook_Fetch_Search_People",
     "description": "Fetch Search People",
     "method": "GET",
     "path": "/fetch_search_people",
@@ -1007,7 +1005,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Fetch_Search_Pages",
+    "name": "superagnt_facebook_Fetch_Search_Pages",
     "description": "Fetch Search Pages",
     "method": "GET",
     "path": "/fetch_search_pages",
@@ -1033,7 +1031,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Post_ID",
+    "name": "superagnt_facebook_Get_Facebook_Post_ID",
     "description": "Get Facebook Post ID",
     "method": "GET",
     "path": "/get_facebook_post_id",
@@ -1051,7 +1049,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_facebook_Get_Facebook_Page_ID",
+    "name": "superagnt_facebook_Get_Facebook_Page_ID",
     "description": "Get Facebook Page ID",
     "method": "GET",
     "path": "/get_facebook_page_id",
@@ -1074,8 +1072,8 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET &#x27;https://api.agntdata.dev/v1/data/facebook&#x27; \
-  -H &#x27;X-API-Key: your_api_key_here&#x27; \
+curl -X GET &#x27;https://api.superagnt.com/v1/data/facebook&#x27; \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27;
 ```
 
@@ -1087,18 +1085,16 @@ curl -X GET &#x27;https://api.agntdata.dev/v1/data/facebook&#x27; \
 - Developers prototyping LLM tools that need live network data
 - Data teams joining Facebook signals with CRM or warehouse data
 
-## Other Platforms
+## Scope
 
-agntdata provides unified access to social data across multiple platforms. Explore other available APIs:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms
-```
-
-Available platforms: LinkedIn, YouTube, TikTok, X, Instagram, Reddit, Facebook. Each uses the same API key and follows the same patterns.
+This skill covers Facebook Data only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/facebook)
-- [ClawHub skill](https://clawhub.ai/agntdata/agntdata-facebook)
+- [Documentation](https://superagnt.com/r/ch-facebook-data-docs)
+- [superagnt app / API keys](https://superagnt.com/r/ch-facebook-data-key)
+- [This listing](https://clawhub.ai/superagnt/skills/facebook-data)

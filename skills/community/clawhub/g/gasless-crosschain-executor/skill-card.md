@@ -1,50 +1,66 @@
-## Description: <br>
-A local-key swap planning and execution skill for quoting, validating, signing locally, broadcasting, monitoring, and recovering EVM swaps across cross-chain 1inch Fusion+, same-chain 1inch Fusion, and same-chain 1inch Aggregation Router v6 paths while keeping private keys on the user's machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-key swap planning and execution skill. Cross-chain (1inch Fusion+, gasless), same-chain gasless (1inch Fusion), and same-chain paid (1inch Aggregation Router v6) paths are bundled.
 
-## Publisher: <br>
-[galphaai](https://clawhub.ai/user/galphaai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galphaai](https://clawhub.ai/user/galphaai)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to plan, validate, locally sign, submit, monitor, and recover EVM swap workflows while keeping wallet secrets out of chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides irreversible crypto wallet signing and swap execution. <br>
-Mitigation: Use small amounts first, require exact plan review and explicit authorization, and keep all private keys, mnemonics, passwords, API keys, and hash-lock secrets out of chat and persisted artifacts. <br>
-Risk: The reviewed package is missing helper scripts that its safety workflow references. <br>
-Mitigation: Do not run referenced scripts, generate wallets, approve allowances, sign payloads, or broadcast transactions until the actual helper code is obtained from a verified source, reviewed, dependency-pinned, and tested. <br>
-Risk: Routes may be incorrectly presented as gasless when approvals, native fees, or insufficient allowances still require a source-chain transaction. <br>
-Mitigation: Confirm balances, allowances, permit support, spender addresses, fees, and the gasless verdict for each route before requesting user approval. <br>
+## Use Case:
 
+Developers and agents use this skill to quote, validate, locally sign, broadcast, monitor, or recover EVM swap workflows while keeping private keys on the user's machine. It is intended for cross-chain 1inch Fusion+, same-chain 1inch Fusion, and same-chain Aggregation Router execution paths.
 
-## Reference(s): <br>
-- [Execution Plan Schema](references/execution-plan-schema.md) <br>
-- [Provider Adapter Notes](references/provider-adapters.md) <br>
-- [Security Policy](references/security-policy.md) <br>
-- [Sample Execution Plan](references/sample-plan.json) <br>
-- [1inch Fusion Overview](https://help.1inch.com/en/articles/9842591-what-is-1inch-fusion-and-how-does-it-work) <br>
-- [1inch Cross-Chain SDK](https://github.com/1inch/cross-chain-sdk) <br>
-- [1inch Fusion Documentation](https://portal.1inch.dev/documentation/fusion/introduction) <br>
-- [1inch Swap Quick Start](https://portal.1inch.dev/documentation/swap/quick-start) <br>
-- [1inch Aggregation Protocol](https://docs.1inch.io/docs/aggregation-protocol/introduction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON execution-plan summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans, commands, status summaries, and risk notes; real execution requires local signing and explicit user authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The install path depends on unreviewed external helper code for wallet and trading operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a pinned, reviewed release or commit that includes the actual scripts, dependency manifests, lockfiles, and tests.
+
+Risk: Real swap execution can expose funds to irreversible blockchain, signing, allowance, or route-selection errors.
+
+Mitigation: Before using real funds, verify the helper code locally, use a low-balance wallet or hardware-backed signer, and require exact plan-hash approval before any signature or broadcast.
+
+Risk: Private keys, mnemonics, hash-lock secrets, bearer tokens, or provider responses could leak if handled through chat or saved artifacts.
+
+Mitigation: Never paste secrets into chat, use local-only signing or keystore workflows, and persist only redacted non-secret audit artifacts.
+
+## Reference(s):
+
+- [Gasless Crosschain Executor on ClawHub](https://clawhub.ai/galphaai/skills/gasless-crosschain-executor)
+- [Execution plan schema](references/execution-plan-schema.md)
+- [Provider adapter notes](references/provider-adapters.md)
+- [Security policy](references/security-policy.md)
+- [Sample execution plan](references/sample-plan.json)
+- [1inch Fusion documentation](https://help.1inch.com/en/articles/9842591-what-is-1inch-fusion-and-how-does-it-work)
+- [1inch Cross-Chain SDK](https://github.com/1inch/cross-chain-sdk)
+- [1inch Fusion SDK](https://github.com/1inch/fusion-sdk)
+- [1inch Swap API quick start](https://portal.1inch.dev/documentation/swap/quick-start)
+- [1inch Aggregation Protocol documentation](https://docs.1inch.io/docs/aggregation-protocol/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON execution-plan snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should present normalized execution plans, plan hashes, route risks, user-approval requirements, and non-secret audit details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Uploads and sends Markdown files from an OpenClaw workspace to a specific Telegram chat using the Telegram Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads and sends .md files from your OpenClaw workspace to a specific Telegram chat using the Telegram Bot API.
 
-## Publisher: <br>
-[courtneejay](https://clawhub.ai/user/courtneejay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[courtneejay](https://clawhub.ai/user/courtneejay)
 
-## Use Case: <br>
-Developers and content authors use this skill to send selected Markdown workspace files to a Telegram recipient or group. It is suited to intentional file sharing after the user has configured a Telegram bot token and chat ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected Markdown files may contain secrets, private drafts, or other sensitive workspace content that will be shared externally through Telegram. <br>
-Mitigation: Review each file before upload, confirm the intended chat ID, and send only content meant for the recipient. <br>
-Risk: Telegram bot tokens and chat IDs are sensitive configuration values. <br>
-Mitigation: Use a dedicated bot token, keep credentials in private environment variables, and avoid committing or sharing them. <br>
+## Use Case:
 
+Developers and workspace users use this skill to send selected Markdown files from an OpenClaw workspace to an intended Telegram recipient or chat.
 
-## Reference(s): <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill sends user-selected .md files to Telegram when the uploader script is run with the required environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A selected Markdown file may contain secrets, private business data, or other content not intended for the configured Telegram chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the file before upload and confirm TELEGRAM_CHAT_ID points to the intended recipient.
+
+Risk: The included uploader script appears malformed until its indentation and documented path are fixed.
+
+Mitigation: Fix and test the script path and Python indentation before relying on the upload workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/courtneejay/skills/telegram-md-uploader)
+- [BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a Python uploader script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads only user-selected .md files when TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

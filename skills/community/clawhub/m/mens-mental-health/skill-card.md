@@ -1,38 +1,53 @@
-## Description: <br>
-Mental health support for men with emotion check-ins, stress tools, and no-judgment space <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mental health support for men with emotion check-ins, stress tools, and no-judgment space.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill as a self-reflection aid for men's mental health, including emotion check-ins, stress-management exercises, venting, pattern tracking, and perspective prompts. It is intended to support, not replace, professional medical or crisis care. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may record sensitive mental-health details or long-term personal patterns in the host environment. <br>
-Mitigation: Check the OpenClaw host's chat history, memory, sync, and deletion settings before sharing sensitive details. <br>
-Risk: Users may treat the skill as medical care or crisis support. <br>
-Mitigation: Use it as a self-reflection aid only; seek professional help, call 988 or emergency services, or go to an emergency room when in crisis or immediate danger. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill for men's mental-health check-ins, stress coping exercises, venting, perspective-taking, and pattern tracking. It is intended as a reflective support aid used alongside, not instead of, professional care or crisis help.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential use, network behavior, or hidden actions were identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The broad trigger phrase "need to talk" may activate the skill outside clear men's mental-health requests.
+
+Mitigation: Narrow or remove the broad trigger before installation so the skill activates only when the user clearly requests this support.
+
+Risk: Users may treat reflective mental-health support as a replacement for professional care or crisis help.
+
+Mitigation: Present the skill as a reflective support aid and preserve crisis guidance directing users to 988, Crisis Text Line, 911, or emergency care when urgent help is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhillin8/skills/mens-mental-health)
+- [Publisher profile](https://clawhub.ai/user/jhillin8)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include check-in prompts, coping exercises, reflective summaries, pattern-tracking suggestions, and crisis-resource reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

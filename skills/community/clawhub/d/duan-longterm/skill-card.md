@@ -1,41 +1,56 @@
-## Description: <br>
-Checks whether a company appears suitable for 10-year-plus holding using a Duan Yongping-inspired long-term investing checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates whether a company may be suitable for 10-year holding using a Duan Yongping-inspired long-term investment checklist.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and investment-focused agents use this skill to structure long-term company analysis, including a 10-year holding checklist, business durability questions, and reminders to revisit uncertain assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment conclusions may be incomplete or misleading if the user supplies weak assumptions or treats the checklist as a substitute for research. <br>
-Mitigation: Use the output as a structured screening aid, then verify company facts, valuation, and risks through independent due diligence before making investment decisions. <br>
-Risk: Long-term forecasts can become stale as technology, policy, competition, or management quality changes. <br>
-Mitigation: Revisit the checklist periodically, compare multiple scenarios, and update the analysis when material business conditions change. <br>
+## Use Case:
 
+External users and investment researchers use this skill to structure a long-term company holding review across industry durability, moat, management, financial health, valuation, and shareholder returns. Outputs should be treated as an analysis checklist rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/duan-longterm) <br>
-- [Long-term test template](templates/longterm-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The checklist output is advisory and depends on user-supplied company assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can produce directive buy, hold, reduce, sell, or avoid recommendations from simplified scoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research prompts and checklist results, not as instructions to buy, hold, or sell; verify conclusions with independent research or professional advice.
+
+Risk: Long-horizon investment forecasts can be overconfident or miss disruption, policy, market, or black-swan risks.
+
+Mitigation: Use conservative assumptions, scenario analysis, and periodic review before relying on any long-term holding conclusion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/duan-longterm)
+- [Publisher profile](https://clawhub.ai/user/lj22503)
+- [Long-term test template](artifact/templates/longterm-template.md)
+- [Local checklist script](artifact/scripts/check-longterm.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown checklist and optional terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external data access; the local helper script can print a scored checklist for a company name.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

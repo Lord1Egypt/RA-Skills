@@ -1,53 +1,66 @@
-## Description: <br>
-Configure and operate oh-my-openagent (OmO), an OpenCode plugin that adds multi-agent orchestration, skills, hooks, MCPs, and multi-provider model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and operate oh-my-openagent (OmO), the OpenCode plugin that adds multi-agent orchestration, skills, hooks, MCPs, and multi-provider model routing.
 
-## Publisher: <br>
-[kolyanberoks-23loud](https://clawhub.ai/user/kolyanberoks-23loud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kolyanberoks-23loud](https://clawhub.ai/user/kolyanberoks-23loud)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to configure OmO agents, model routing, task categories, hooks, slash commands, provider authentication, and MCP integrations for OpenCode workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures a powerful local OpenCode orchestration plugin with broad coding-agent authority. <br>
-Mitigation: Install only from a reviewed version, use a clean branch or disposable workspace, and supervise autonomous loops. <br>
-Risk: Hooks, background tasks, MCPs, and mutating tools can change local workflow behavior or execute actions the user did not expect. <br>
-Mitigation: Disable or restrict hooks, background tasks, MCPs, and mutating tools that are not needed for the current workflow. <br>
-Risk: Provider authentication tokens are stored locally and could be exposed if printed, committed, or shared. <br>
-Mitigation: Do not print or share auth.json, and review configuration files before committing or transmitting workspace contents. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate the oh-my-openagent OpenCode plugin, including agent setup, task categories, model routing, hooks, slash commands, MCPs, and provider authentication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kolyanberoks-23loud/oh-my-openagent) <br>
-- [oh-my-openagent Repository](https://github.com/code-yeongyu/oh-my-openagent) <br>
-- [Configuration Schema](https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json) <br>
-- [Agents Reference](references/agents.md) <br>
-- [Categories Reference](references/categories.md) <br>
-- [Configuration Reference](references/configuration.md) <br>
-- [Providers Reference](references/providers.md) <br>
-- [Tools Reference](references/tools.md) <br>
-- [Hooks Reference](references/hooks.md) <br>
-- [MCPs Reference](references/mcps.md) <br>
-- [Skills Reference](references/skills.md) <br>
-- [Commands Reference](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local configuration changes, agent settings, hook settings, MCP configuration, and provider authentication guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Installing a mutable third-party plugin package can change the code an agent runs locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source and pin a reviewed version instead of using `latest`.
+
+Risk: Broad local agent authority, background agents, autonomous loops, hooks, and MCPs may perform actions beyond the user's immediate prompt.
+
+Mitigation: Disable unnecessary background agents, hooks, loops, and MCPs; run the plugin in a sandboxed or least-privilege environment.
+
+Risk: Provider authentication uses local credential files, including `auth.json`.
+
+Mitigation: Avoid opening, sharing, or pasting credential files and review provider access before enabling model routing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kolyanberoks-23loud/skills/oh-my-openagent)
+- [oh-my-openagent repository](https://github.com/code-yeongyu/oh-my-openagent)
+- [Configuration schema](https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json)
+- [Agents reference](references/agents.md)
+- [Categories reference](references/categories.md)
+- [Configuration reference](references/configuration.md)
+- [Hooks reference](references/hooks.md)
+- [MCPs reference](references/mcps.md)
+- [Providers reference](references/providers.md)
+- [Tools reference](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include configuration snippets, command examples, and operational recommendations for local OpenCode setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

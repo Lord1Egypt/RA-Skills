@@ -1,51 +1,63 @@
-## Description: <br>
-Geo Skill helps agents prepare generative engine optimization materials for industrial parks, including llms.txt content, JSON-LD schema templates, AI-friendly content plans, and monitoring report drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geo Skill helps industrial park operators prepare AI-readable marketing assets, including llms.txt content, schema templates, question maps, content drafts, diagnostics, and monitoring reports.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Marketing, operations, and developer teams use this skill to structure industrial park information so AI systems can parse official details, generate optimization assets, and draft monitoring or diagnostic reports. It is most useful as a template and content-production aid rather than as a validated live monitoring system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic and monitoring scripts can produce misleading reports because the security evidence says they are not a trustworthy live diagnostic or monitoring system unless completed and validated. <br>
-Mitigation: Use the scripts as template aids only until their checks, data sources, and scoring logic are reviewed and validated against real park websites and AI search workflows. <br>
-Risk: Data-handling guidance is under-scoped for consultation records, phone logs, forms, or user feedback. <br>
-Mitigation: Publish only official business contact information, avoid personal employee details, and define privacy controls for any collected records or feedback before using the templates. <br>
-Risk: Generated marketing and GEO materials may overstate park availability, rankings, or AI visibility if placeholders or simulated monitoring output are treated as facts. <br>
-Mitigation: Require human review against official park sources, dated evidence, and current operational data before distributing generated content or reports. <br>
+## Use Case:
 
+Developers, marketing teams, and industrial park operators use this skill to structure park information for generative engine discovery, produce AI-friendly content, and draft operational checks for GEO programs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangm-a3/geo-skill) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [clawhub.yaml](artifact/clawhub.yaml) <br>
-- [llms.txt template](artifact/templates/llms.txt) <br>
-- [Organization schema template](artifact/templates/schema/organization.json) <br>
-- [Product schema template](artifact/templates/schema/product.json) <br>
-- [Event schema template](artifact/templates/schema/event.json) <br>
-- [Question graph template](artifact/templates/content/question_graph.md) <br>
-- [Monitoring report template](artifact/templates/monitoring/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, plain-text llms.txt content, JSON-LD schema snippets, Python command examples, and generated report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-supplied park details and should be reviewed for factual accuracy, current contact information, and privacy controls before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub server release metadata, released 2026-05-03) <br>
+Risk: Diagnostic and monitoring outputs may be mistaken for real measurements even when checks are simulated or unperformed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as drafts until the scripts perform real checks and clearly label any simulated data.
+
+Risk: Configuration files and output paths can affect generated files and reports.
+
+Mitigation: Review configuration inputs before use and run scripts with explicit output paths in a controlled workspace.
+
+Risk: Templates may expose park contact or business information in generated public content.
+
+Mitigation: Publish only approved public contact details and review generated content before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/geo-skill)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+- [clawhub.yaml](artifact/clawhub.yaml)
+- [llms.txt Template](artifact/templates/llms.txt)
+- [Schema Templates](artifact/templates/schema/)
+- [Monitoring Report Template](artifact/templates/monitoring/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JSON-LD, llms.txt, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated llms.txt and report files when the included helper scripts are run with explicit output paths.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact documentation lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

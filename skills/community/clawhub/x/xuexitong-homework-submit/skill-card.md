@@ -1,43 +1,59 @@
-## Description: <br>
-Automates Chaoxing Xuexitong homework workflows, including assignment discovery, question fetching, answer template generation, draft saving, final submission, and a handwritten-image answer pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Chaoxing Xuexitong homework workflows, including scanning assignments, resolving homework URLs, fetching question templates, saving or submitting answers, and preparing handwritten-image answer uploads.
 
-## Publisher: <br>
-[smallwhiteman](https://clawhub.ai/user/smallwhiteman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smallwhiteman](https://clawhub.ai/user/smallwhiteman)
 
-## Use Case: <br>
-External users and agents use this skill to operate Chaoxing Xuexitong homework flows through repeatable commands, including listing assignments, preparing answer files, saving drafts, and submitting only after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a live Chaoxing session cookie. <br>
-Mitigation: Install and run it only when that account access is intended, keep the cookie file private with restrictive permissions, and rotate the cookie if exposure is suspected. <br>
-Risk: The skill can save drafts or submit homework to a live Chaoxing account. <br>
-Mitigation: Use draft-save first, review the result in Chaoxing, and use final submission only after explicit confirmation. <br>
-Risk: The handwritten upload pipeline may expose cookies and answer images over plaintext HTTP. <br>
-Mitigation: Avoid that pipeline on untrusted networks unless the user accepts the exposure risk. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallwhiteman/xuexitong-homework-submit) <br>
-- [Chaoxing Xuexitong homework API endpoint](https://mooc1-api.chaoxing.com/work/stu-work) <br>
-- [Chaoxing upload endpoint used by handwritten pipeline](http://notice.chaoxing.com/pc/files/uploadNoticeFile) <br>
+## Use Case:
 
+External users operating their own Chaoxing Xuexitong accounts can use this skill to find pending homework, generate editable answer files, temporarily save responses, and explicitly submit completed homework. The handwritten-image pipeline supports rendering text answers into PNGs, uploading them to Chaoxing, and saving HTML image answers.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON or image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create homework work files, answer templates, rendered PNG images, upload records, and save or submit result JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill performs real actions on a Chaoxing homework account, including final submission.
+
+Mitigation: Use only with an account you control, review generated answer files before saving, and require the documented explicit confirmation step before final submission.
+
+Risk: Chaoxing session cookies may be exposed through unvalidated URLs, raw Cookie headers, or plaintext uploads.
+
+Mitigation: Avoid untrusted homework URLs, protect and rotate the cookie after using the handwritten upload path, and prefer a fixed version that validates Chaoxing HTTPS hosts and removes the global raw Cookie header.
+
+Risk: Dependency and update behavior can change runtime behavior if dependencies or remote version checks are not controlled.
+
+Mitigation: Pin dependencies, review the installed version before use, and disable update checks when deterministic execution is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallwhiteman/skills/xuexitong-homework-submit)
+- [Publisher profile](https://clawhub.ai/user/smallwhiteman)
+- [Chaoxing Xuexitong homework API](https://mooc1-api.chaoxing.com/work/stu-work)
+- [Chaoxing notice file upload endpoint](http://notice.chaoxing.com/pc/files/uploadNoticeFile)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files, Markdown, Code]
+
+**Output Format:** [Markdown guidance with shell commands, JSON templates/results, PNG files, uploaded image URLs, and HTML answer snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Chaoxing session cookie and writes local run artifacts such as work.json, answers_text.json, uploads.json, answers_html.json, save_result.json, and pending_scan.json.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

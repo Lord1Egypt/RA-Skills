@@ -1,41 +1,50 @@
-## Description: <br>
-大学智慧 - 儒家修身治国总纲，三纲领八条目的实践体系。The Great Learning wisdom - Confucian framework for self-cultivation and governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+大学智慧 - 儒家修身治国总纲，三纲领八条目的实践体系。The Great Learning wisdom - Confucian framework for self-cultivation and governance.
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and developers can use this skill for Confucian philosophical framing in personal growth, leadership development, organizational management, goal setting, moral cultivation, and decision-making prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad planning or management prompts and frame responses through Confucian philosophy even when a professional or domain-specific answer is needed. <br>
-Mitigation: Treat outputs as educational and interpretive; confirm that this framing is appropriate before applying it to decisions. <br>
-Risk: Leadership, governance, finance, legal, or medical prompts could be answered as philosophical guidance rather than professional advice. <br>
-Mitigation: Use qualified professionals and authoritative sources for regulated or high-stakes decisions. <br>
+## Use Case:
 
+External users and developers can use this skill for Confucian self-cultivation, leadership reflection, goal setting, decision-making, and organizational management guidance based on The Great Learning.
 
-## Reference(s): <br>
-- [The Great Learning Original Text](references/original-text.md) <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/daxue-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational and interpretive guidance; no code execution, data access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter says 3.0) <br>
+Risk: Broad coaching and management triggers may introduce Confucian framing into ordinary planning or leadership conversations when the user did not explicitly request it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants The Great Learning or Confucian framing before applying the skill to general coaching, management, or planning requests.
+
+## Reference(s):
+
+- [《大学》原文参考 / The Great Learning Original Text](references/original-text.md)
+- [ClawHub skill page](https://clawhub.ai/taro291/skills/daxue-wisdom)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance with bilingual Chinese and English framing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, or persistence behavior is identified in the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter lists 3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

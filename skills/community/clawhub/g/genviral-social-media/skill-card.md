@@ -1,40 +1,49 @@
-## Description: <br>
-Generate viral social media posts using AI with trend analysis and hashtag optimization for X, Instagram, and Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate viral social media posts using AI with trend analysis and hashtag optimization for X, Instagram, and Telegram.
 
-## Publisher: <br>
-[bonbon0033](https://clawhub.ai/user/bonbon0033) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bonbon0033](https://clawhub.ai/user/bonbon0033)
 
-## Use Case: <br>
-External developers and OpenClaw agent users use this skill to generate short social media post text from a topic for X, Instagram, and Telegram workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package declares external posting and self-improvement dependencies that are not clearly needed by the visible post-generation code. <br>
-Mitigation: Review and pin dependencies before installation, and allow posting or learning behavior only after explicit user approval. <br>
-Risk: Generated social posts may be inaccurate, misleading, or unsuitable for a brand or regulated context. <br>
-Mitigation: Require human review before publication and apply platform, brand, and compliance checks to generated content. <br>
+## Use Case:
 
+External developers and OpenClaw agent builders use this skill to generate topic-driven social media post text with hashtag-style optimization for X, Instagram, and Telegram.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bonbon0033/genviral-social-media) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [String returned by a JavaScript function, with usage examples in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Takes a topic string and returns a short social post string with hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill installs broad dependencies for X posting and self-improving behavior even though the current code only returns generated text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency set before installation, remove unused packages where possible, pin reviewed versions, and require any future posting behavior to be explicit user-directed action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bonbon0033/skills/genviral-social-media)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [String]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one generated social media post string for a supplied topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

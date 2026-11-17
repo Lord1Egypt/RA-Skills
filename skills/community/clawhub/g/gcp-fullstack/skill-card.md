@@ -1,50 +1,69 @@
-## Description: <br>
-Complete development lifecycle super agent for GCP: scaffolding, compute, database, auth, feature generation, testing, pre-production QA gate with go/no-go reports, deploy, Cloudflare CDN/security, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete development lifecycle super agent for GCP \u2014 scaffolding, compute, database, auth, feature generation, testing, pre-production QA gate with go/no-go reports, deploy, Cloudflare CDN/security, and monitoring.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guifav](https://clawhub.ai/user/guifav)
 
-## Use Case: <br>
-Developers and engineers use this skill to build and operate full-stack web applications on Google Cloud Platform, including scaffolding, service selection, feature implementation, testing, deployment, Cloudflare configuration, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags broad GCP, Cloudflare, repository, filesystem, network, and credential authority with incomplete scoping and warnings. <br>
-Mitigation: Use a staging project first, issue least-privilege GCP/Firebase/Cloudflare credentials, and require explicit human approval before deploys, DNS or security changes, IAM changes, public exposure, database changes, and CI/CD triggers. <br>
-Risk: The skill can generate QA flows that send prompts or outputs to OpenRouter for LLM-as-judge evaluation. <br>
-Mitigation: Avoid production data and secrets in QA prompts, keep OPENROUTER_API_KEY optional, and review generated validation scripts before running them. <br>
-Risk: Generated deployment and infrastructure commands can alter live cloud services, DNS records, databases, or source control state. <br>
-Mitigation: Run read-only checks and dry runs where possible, verify the active GCP project and Cloudflare zone, back up data before database changes, and review all generated commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, build, test, validate, deploy, and monitor full-stack web applications on Google Cloud Platform with optional Firebase, Cloud SQL, Cloudflare, GitHub, and OpenRouter-assisted QA workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guifav/gcp-fullstack) <br>
-- [Project scaffolding module](artifact/docs/01-scaffolding.md) <br>
-- [Compute service selection module](artifact/docs/02-compute.md) <br>
-- [Database setup module](artifact/docs/03-database.md) <br>
-- [Authentication module](artifact/docs/04-auth.md) <br>
-- [Feature generation module](artifact/docs/05-features.md) <br>
-- [Testing and quality module](artifact/docs/06-testing.md) <br>
-- [Deployment and monitoring module](artifact/docs/07-deploy.md) <br>
-- [Cloudflare DNS, CDN, and security module](artifact/docs/08-cloudflare.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, configuration snippets, generated project files, tests, and go/no-go reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute cloud, repository, filesystem, DNS, deployment, and QA workflows depending on user approval and available credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The skill can guide broad live GCP and Cloudflare changes, including deployments, database changes, public endpoints, IAM-related setup, and DNS/security configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before production deploys, database changes, public endpoint exposure, IAM changes, Cloudflare/DNS changes, or destructive tests.
+
+Risk: OpenRouter-based QA may send prompts or application output to an external LLM service.
+
+Mitigation: Review or disable LLM-as-judge QA for sensitive projects, and treat any OpenRouter use as external data sharing.
+
+Risk: Scaffolding and deployment workflows can install packages and execute generated shell commands.
+
+Mitigation: Review generated commands before execution and pin package versions before running scaffold or dependency installation commands.
+
+Risk: Credential-bearing cloud and CDN workflows rely on environment variables and service account material.
+
+Mitigation: Keep credential files out of source control, avoid direct inspection of secret files, and prefer Secret Manager for sensitive deployment values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guifav/skills/gcp-fullstack)
+- [Project Scaffolding](artifact/docs/01-scaffolding.md)
+- [Compute Service Selection](artifact/docs/02-compute.md)
+- [Database Setup](artifact/docs/03-database.md)
+- [Authentication](artifact/docs/04-auth.md)
+- [Feature Generation](artifact/docs/05-features.md)
+- [Testing and Quality](artifact/docs/06-testing.md)
+- [Deployment and Monitoring](artifact/docs/07-deploy.md)
+- [Cloudflare DNS, CDN, and Security](artifact/docs/08-cloudflare.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown responses with code blocks, generated project files, shell commands, JSON QA reports, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or modify application files, test suites, deployment configuration, QA reports, and cloud/CDN setup commands.]
+
+## Skill Version(s):
+
+0.1.4 (source: ClawHub release metadata; artifact manifest and changelog identify upstream skill package version 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

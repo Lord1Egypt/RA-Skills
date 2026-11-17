@@ -1,45 +1,58 @@
-## Description: <br>
-Compresses PNG, JPEG, and WebP images with TinyPNG/Tinify web endpoints, supporting single files, batches, and directories with retry and rate-limit handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress PNG, JPEG, WebP images using TinyPNG/Tinify free web API. No API key required, no login needed. Supports single/batch/directory compression with automatic retry and rate-limit handling.
 
-## Publisher: <br>
-[aga-j](https://clawhub.ai/user/aga-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aga-j](https://clawhub.ai/user/aga-j)
 
-## Use Case: <br>
-Developers and agents use this skill to reduce image file sizes for PNG, JPEG, and WebP assets while preserving near-original visual quality. It is suited to one-off compression, batch jobs, and directory-based optimization when the images are acceptable to upload to TinyPNG/Tinify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images are uploaded to TinyPNG/Tinify for processing. <br>
-Mitigation: Do not use the skill with sensitive, personal, confidential, or proprietary images unless that upload is explicitly approved. <br>
-Risk: The skill uses unofficial web endpoints with spoofed browser and IP headers, which may break or violate service expectations for high-volume use. <br>
-Mitigation: For production or high-volume workflows, use the provider's official API and terms instead of the web endpoint. <br>
-Risk: Overwrite mode can replace original files irreversibly. <br>
-Mitigation: Keep backups and use explicit output directories unless overwrite behavior has been reviewed and requested. <br>
-Risk: Recursive directory compression can upload more files than intended. <br>
-Mitigation: Review the directory scope before using recursive mode and prefer narrow input paths. <br>
+## Use Case:
 
+Developers and agents use this skill to compress PNG, JPEG, and WebP image files through TinyPNG/Tinify for smaller image assets, batch outputs, or directory-level optimization.
 
-## Reference(s): <br>
-- [ImageCompress ClawHub release](https://clawhub.ai/aga-j/imgae-compress) <br>
-- [TinyPNG](https://tinypng.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Text, JSON] <br>
-**Output Format:** [Compressed image files with terminal status output and optional JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes PNG, JPEG, and WebP files up to 5 MB each, with up to 20 files per batch and optional recursive directory traversal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Selected images are uploaded to third-party TinyPNG/Tinify servers for compression.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, personal, or regulated images unless the user has approved third-party processing.
+
+Risk: Overwrite mode can replace original image files irreversibly.
+
+Mitigation: Prefer suffix or output-directory mode, and use overwrite only after confirming backups or user intent.
+
+Risk: Security evidence flags file and network safety gaps, including download URL validation and dependency pinning.
+
+Mitigation: Run with limited filesystem and network access until URL validation, overwrite confirmation, and pinned dependencies are added.
+
+## Reference(s):
+
+- [TinyPNG](https://tinypng.com)
+- [ClawHub skill page](https://clawhub.ai/aga-j/skills/imgae-compress)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Compressed image files with console status and optional JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file, batch, and directory compression; default output uses a _compressed filename suffix unless overwrite mode is selected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

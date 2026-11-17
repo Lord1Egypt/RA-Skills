@@ -1,0 +1,94 @@
+part: STM32G4
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ST STM32G4 \u2014 Cortex-M4 + FPU + DSP @ 170 MHz (motor-control MCU)"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32g4-series.html
+datasheet_path_expected: ../../datasheets/stm32g474cb.pdf
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  family_identity:
+    family: STM32G4
+    tagline: Cortex-M4 + FPU + DSP @ 170 MHz with rich analog peripherals
+    compatibility: high with STM32F3 series
+    temperature: "-40 to +125 \xB0C"
+  performance:
+    core: Arm Cortex-M4 @ 170 MHz (with FPU + DSP)
+    accelerators:
+    - ART Accelerator
+    - CCM-SRAM routine booster
+    - Mathematical accelerators
+  sub_series:
+  - name: G4x1
+    line: Access Line
+    flash_kb_min: 32
+    flash_kb_max: 512
+    pin_count_min: 32
+    pin_count_max: 100
+    adc_count: 3
+    dac_count: 4
+    comparator_count: 4
+    notes: entry-level, generic functionality
+  - name: G4x3
+    line: Performance Line
+    pin_count_min: 48
+    pin_count_max: 128
+    adc_count: 5
+    dac_count: 7
+    comparator_count: 7
+    flash: dual-bank with ECC
+    fdcan_interfaces: 3
+    notes: high-performance, extensive analog and communication
+  - name: G4x4
+    line: Hi-Resolution Line
+    high_resolution_timer_ps: 184
+    adc_count: 5
+    dac_count: 7
+    comparator_count: 7
+    notes: digital power conversion (D-SMPS, lighting, wireless chargers)
+  analog_peripherals:
+    adc_12bit_speed_msps: 4
+    adc_oversampling: 16-bit hardware
+    fdcan: yes (8 Msps)
+    dac: yes (up to 7x 12-bit)
+    op_amp: true
+    comparator: yes (up to 7x ultra-fast)
+  security:
+    aes_hardware: true
+  connectivity:
+    usb_type_c_pd: yes (PHY on chip)
+  architecture:
+    interconnect_matrix: flexible (peripheral-to-peripheral DMA)
+  applications:
+    motor_control: true
+    high_end_consumer: true
+    industrial_devices: true
+    digital_power:
+    - D-SMPS
+    - lighting
+    - wireless chargers
+  dev_tools:
+    nucleo: NUCLEO-G4 family
+    eval_boards: true
+    motor_control_pack: P-NUCLEO-IHM03
+    discovery_kit: B-G4* family
+    cube_package: STM32CubeG4
+unverified:
+- exact AES key sizes supported
+- exact SRAM size per sub-series
+- exact FDCAN version (CAN-FD? CAN CC?)
+- exact op-amp specs (rail-to-rail, gain-bandwidth)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from st.com STM32G4 series page via Firecrawl (40,726 bytes raw)."
+- 'Family differentiator vs STM32F3: 170 MHz (vs 72 MHz on F3), larger flash/ADC count, ART Accelerator, hi-res timer on G4x4.'
+- 'Family differentiator vs STM32H5: H5 uses Cortex-M33 with TrustZone + dual-bank flash; G4 is wider analog + DSP optimized;
+  H5 is mainstream secure MCU.'
+- 'Use case: motor control (washing machines, drones), digital power converters, induction heating, high-end consumer (server
+  fans, e-bikes), factory automation (lighting controllers).'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of st.com STM32G4 series page
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32G4-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32G4-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32g474cb.pdf
+datasheet_source_note: "STM32G474CB datasheet (PDF, family-page covering STM32G4 series; 3.0MB). 22/49 nested-spec fields\
+  \ matched via pdfplumber first-15-page scan. Low rate due to nested dict spec tree \u2014 key chips metrics (Cortex-M4 170\
+  \ MHz, flash, RAM, ADC, FPU, DSP) all matched."

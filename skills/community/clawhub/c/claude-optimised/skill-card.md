@@ -1,37 +1,51 @@
-## Description: <br>
-Guides agents in writing and optimizing CLAUDE.md files with concise structure, pruning advice, and common anti-patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for writing and optimizing CLAUDE.md files for maximum Claude Code performance.
 
-## Publisher: <br>
-[hexnickk](https://clawhub.ai/user/hexnickk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexnickk](https://clawhub.ai/user/hexnickk)
 
-## Use Case: <br>
-Developers and agent users use this skill when creating or reviewing CLAUDE.md project memory files to keep persistent guidance concise, specific, and maintainable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CLAUDE.md and .claude/rules content can influence future agent behavior if it includes secrets, broad standing instructions, or inappropriate persistent rules. <br>
-Mitigation: Review any CLAUDE.md or .claude/rules content this skill helps create before relying on it, and keep persistent instructions specific, necessary, and free of secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexnickk/claude-optimised) <br>
+## Use Case:
+
+Developers and Claude Code users use this skill to create or review CLAUDE.md project memory files, keeping only project commands, conventions, terminology, and critical constraints that improve agent behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Following the guidance may lead to edits in persistent CLAUDE.md instruction files.
+
+Mitigation: Review any generated or edited CLAUDE.md content before saving it, committing it, or sharing it with a project.
+
+Risk: Over-pruning project memory can remove commands, conventions, or warnings that the agent genuinely needs.
+
+Mitigation: Keep concise entries for build and test commands, non-obvious conventions, domain terminology, and critical project-specific constraints.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and short examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces no files or commands by itself.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline examples and optional CLAUDE.md snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, network behavior, or hidden persistence is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

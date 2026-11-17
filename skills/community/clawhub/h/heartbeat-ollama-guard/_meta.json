@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7061qb57has37skkf6anv53d81pf49",
-  "slug": "heartbeat-ollama-guard",
+  "name": "heartbeat-ollama-guard",
   "version": "1.0.0",
-  "publishedAt": 1773906639380
+  "created_at": "2026-03-19T00:00:00Z",
+  "updated_at": "2026-03-19T00:00:00Z",
+  "guard_version": "1.0.0",
+  "default_model": "qwen3.5:4b-q4_K_M",
+  "min_openclaw_version": "2026.1.0"
 }

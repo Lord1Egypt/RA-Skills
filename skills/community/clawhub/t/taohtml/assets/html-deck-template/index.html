@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Deck Template</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/runtime/taohtml-editor.css" data-taohtml-editor-bundle="style">
+  <style>
+    :root {
+      --bg: #f5f5ee;
+      --ink: #050505;
+      --muted: #656a6d;
+      --line: rgba(0, 0, 0, .13);
+      --dark: #050505;
+      --dark-2: #151719;
+      --signal: #d8ff19;
+      --signal-2: #c7e136;
+      --risk: #ff6500;
+      --white: #fffdf5;
+      --shadow: 8px 10px 0 rgba(0, 0, 0, .18);
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      font-family: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #12161a;
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .deck {
+      position: relative;
+      width: min(100vw, calc(100vh * 16 / 9));
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .42);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 58px 68px;
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: 40px 40px;
+      overflow: hidden;
+    }
+
+    .slide.active { display: block; }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 44px;
+      bottom: 44px;
+      border-left: 1px dashed rgba(0, 0, 0, .24);
+    }
+
+    .slide.dark {
+      background:
+        radial-gradient(circle at 75% 20%, rgba(216, 255, 25, .18), transparent 36%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--dark);
+      background-size: auto, 40px 40px, 40px 40px, auto;
+      color: var(--white);
+    }
+
+    .kicker {
+      position: relative;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0;
+      z-index: 2;
+    }
+
+    .dark .kicker { color: rgba(255, 255, 255, .72); }
+
+    .kicker::before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      background: var(--signal);
+    }
+
+    h1 {
+      position: relative;
+      margin: 84px 0 0;
+      font-size: 72px;
+      line-height: .94;
+      font-weight: 950;
+      letter-spacing: 0;
+      z-index: 2;
+    }
+
+    .lede {
+      position: relative;
+      max-width: 660px;
+      margin-top: 28px;
+      font-size: 26px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: #303437;
+      z-index: 2;
+    }
+
+    .dark .lede { color: rgba(255, 255, 255, .78); }
+
+    .signal-disc {
+      position: absolute;
+      width: 470px;
+      height: 470px;
+      border-radius: 50%;
+      right: -130px;
+      top: -150px;
+      background: var(--signal-2);
+      z-index: 0;
+    }
+
+    .black-slab {
+      position: absolute;
+      left: 68px;
+      right: 68px;
+      bottom: 84px;
+      min-height: 150px;
+      padding: 28px 34px;
+      background: var(--dark);
+      color: var(--white);
+      border-left: 12px solid var(--signal);
+      box-shadow: var(--shadow);
+      z-index: 2;
+    }
+
+    .black-slab b { color: var(--signal); }
+
+    .grid-2 {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 46px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(0, 0, 0, .28);
+      padding: 28px;
+      min-height: 260px;
+      box-shadow: 7px 8px 0 rgba(0, 0, 0, .14);
+    }
+
+    .dark .panel {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 255, 255, .22);
+      box-shadow: 7px 8px 0 rgba(216, 255, 25, .22);
+    }
+
+    .panel h2 {
+      margin: 0 0 18px;
+      font-size: 34px;
+      line-height: 1.05;
+      font-weight: 950;
+    }
+
+    .panel p, .panel li {
+      font-size: 19px;
+      line-height: 1.43;
+      font-weight: 650;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      margin-bottom: 8px;
+      padding: 0 10px;
+      background: var(--signal);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .risk { background: var(--risk); color: #fff; }
+
+    .footer {
+      position: absolute;
+      left: 68px;
+      right: 68px;
+      bottom: 34px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      z-index: 5;
+    }
+
+    .dark .footer { color: rgba(255, 255, 255, .58); }
+
+    .nav {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .controls {
+      transition: opacity .22s var(--ease);
+    }
+
+    .deck.controls-hidden .controls {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav button,
+    .source-btn,
+    .modal button {
+      border: 0;
+      background: rgba(0, 0, 0, .62);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .nav button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .more {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 40;
+    }
+
+    .more > button,
+    .more-menu button {
+      min-height: 36px;
+      border: 0;
+      background: rgba(0, 0, 0, .72);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .more > button {
+      width: 40px;
+      height: 40px;
+      min-height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .runtime-icon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    .runtime-icon path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .runtime-icon circle {
+      fill: currentColor;
+    }
+
+    .more-menu {
+      position: absolute;
+      top: 46px;
+      right: 0;
+      display: grid;
+      gap: 8px;
+      width: 190px;
+      padding: 10px;
+      background: rgba(18, 22, 26, .94);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, .34);
+    }
+
+    .more-menu[hidden] { display: none; }
+
+    .more-menu button {
+      width: 100%;
+      padding: 9px 12px;
+      text-align: left;
+    }
+
+    .page-indicator {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      z-index: 30;
+      min-width: 72px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .deck[data-mode="reading"] .fragment {
+      opacity: 1;
+      transform: none;
+    }
+
+    .source-btn {
+      position: absolute;
+      top: 54px;
+      right: 68px;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 0;
+      z-index: 12;
+    }
+
+    .fragment {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .48s var(--ease), transform .48s var(--ease);
+    }
+
+    .fragment.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      background: rgba(0, 0, 0, .78);
+      padding: 48px;
+    }
+
+    .modal.open { display: grid; }
+
+    .modal-card {
+      position: relative;
+      width: min(1280px, 92%);
+      max-height: 86%;
+      background: var(--white);
+      border: 4px solid var(--dark);
+      box-shadow: 14px 16px 0 rgba(216, 255, 25, .55);
+      overflow: auto;
+    }
+
+    .modal-card img,
+    .modal-card video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .source-error {
+      margin: 0;
+      padding: 36px;
+      border: 1px solid var(--risk);
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    .modal button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      min-height: 34px;
+      padding: 0 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck" data-taohtml-step-contract="fragment-v1">
+    <!-- TAOHTML_SLIDES_START -->
+    <section class="slide active" data-title="Cover">
+      <div class="signal-disc"></div>
+      <div class="kicker">SECTION LABEL</div>
+      <h1 data-qa-ignore-text-collision="Intentional compact display leading; viewport screenshots confirm visible glyph separation.">Replace With<br>Strong Thesis</h1>
+      <p class="lede" data-qa-ignore-text-collision="Intentional compact display leading; viewport screenshots confirm visible glyph separation.">Use this slide as a poster-like opener. One sentence should name the shift, tension, or offer.</p>
+      <div class="black-slab fragment" data-step="1">
+        <span class="tag">POINT</span>
+        <p><b>Replace this slab with the first decisive proof or promise.</b> Keep it short enough to read from the back of the room.</p>
+      </div>
+      <div class="footer"><span>Deck footer</span></div>
+    </section>
+
+    <section class="slide dark" data-title="Evidence">
+      <button class="source-btn" data-taohtml-edit-lock data-source="assets/source-pages/page-01.svg" data-source-label="Example source page">Source</button>
+      <div class="kicker">EVIDENCE</div>
+      <h1 data-qa-ignore-text-collision="Intentional compact display leading; viewport screenshots confirm visible glyph separation.">Evidence Should<br>Carry The Page</h1>
+      <div class="grid-2">
+        <article class="panel fragment" data-step="1">
+          <span class="tag">SOURCE</span>
+          <h2>Artifact</h2>
+          <p>Place a screenshot, report slice, customer message, chart, or recording here. Do not make source material decorative.</p>
+        </article>
+        <article class="panel fragment" data-step="2">
+          <span class="tag risk">IMPLICATION</span>
+          <h2>Meaning</h2>
+          <p>Use short interpretation and exact callouts. Keep dense explanation in speaker notes.</p>
+        </article>
+      </div>
+      <div class="footer"><span>Evidence page</span></div>
+    </section>
+    <!-- TAOHTML_SLIDES_END -->
+
+    <div class="nav controls" data-taohtml-edit-lock>
+      <button id="prev" aria-label="上一页"><svg class="runtime-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 5.5 8.5 12l7 6.5"/></svg></button>
+      <button id="next" aria-label="下一页"><svg class="runtime-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.5 5.5 15.5 12l-7 6.5"/></svg></button>
+    </div>
+
+    <div class="more controls" data-taohtml-edit-lock>
+      <button id="moreToggle" aria-label="更多操作" aria-expanded="false"><svg class="runtime-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
+      <div class="more-menu" id="moreMenu" hidden>
+        <button id="editToggle">编辑模式</button>
+        <button id="modeToggle">切换到阅读模式</button>
+        <button id="fullscreenToggle">打开全屏</button>
+      </div>
+    </div>
+
+    <div class="page-indicator" id="pageIndicator" data-taohtml-edit-lock aria-live="polite"></div>
+
+    <div class="modal" id="modal" data-taohtml-edit-lock role="dialog" aria-modal="true" aria-label="Source evidence" aria-hidden="true">
+      <div class="modal-card">
+        <button id="modalClose">Close</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const deck = document.getElementById('deck');
+    const pageIndicator = document.getElementById('pageIndicator');
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modalBody');
+    const moreToggle = document.getElementById('moreToggle');
+    const moreMenu = document.getElementById('moreMenu');
+    const modeToggle = document.getElementById('modeToggle');
+    const fullscreenToggle = document.getElementById('fullscreenToggle');
+    const CONTROLLED_STEP_SELECTOR = '.fragment';
+    const CONTROL_HIDE_DELAY_MS = 2000;
+    const FULLSCREEN_POINTER_SETTLE_MS = 500;
+    const INTERACTIVE_CLICK_SELECTOR = [
+      'a',
+      'button',
+      'form',
+      'input',
+      'textarea',
+      'select',
+      'option',
+      'label',
+      'details',
+      'summary',
+      'audio',
+      'video',
+      'iframe',
+      'object',
+      'embed',
+      'canvas',
+      'svg',
+      'table',
+      '[class*="chart"]',
+      '[data-chart]',
+      '[contenteditable]:not([contenteditable="false"])',
+      '[role="application"]',
+      '[role="button"]',
+      '[role="checkbox"]',
+      '[role="combobox"]',
+      '[role="grid"]',
+      '[role="link"]',
+      '[role="listbox"]',
+      '[role="dialog"]',
+      '[role="menu"]',
+      '[role="menuitem"]',
+      '[role="radio"]',
+      '[role="searchbox"]',
+      '[role="slider"]',
+      '[role="spinbutton"]',
+      '[role="switch"]',
+      '[role="tab"]',
+      '[role="textbox"]',
+      '[role="tree"]',
+      '[role="treeitem"]',
+      '[data-taohtml-attachment]',
+      '[data-taohtml-interactive]',
+      '.controls',
+      '.modal',
+    ].join(', ');
+
+    function fragments(slide) {
+      return [...slide.querySelectorAll(CONTROLLED_STEP_SELECTOR)];
+    }
+
+    function normalizeSteps(slide) {
+      let nextImplicitStep = 0;
+      fragments(slide).forEach(el => {
+        const explicitStep = Number.parseInt(el.dataset.step || '', 10);
+        if (Number.isInteger(explicitStep) && explicitStep > 0) {
+          el.dataset.taohtmlStep = String(explicitStep);
+          nextImplicitStep = Math.max(nextImplicitStep, explicitStep);
+        } else {
+          nextImplicitStep += 1;
+          el.dataset.taohtmlStep = String(nextImplicitStep);
+        }
+      });
+    }
+
+    slides.forEach(normalizeSteps);
+
+    const state = {
+      mode: deck.dataset.mode === 'reading' ? 'reading' : 'presentation',
+      index: 0,
+      stages: slides.map(() => 0),
+      editing: false,
+    };
+    let controlsTimer;
+    let fullscreenPointerSettlingUntil = 0;
+
+    function stepCount(slide) {
+      return fragments(slide).reduce(
+        (maximum, el) => Math.max(maximum, Number.parseInt(el.dataset.taohtmlStep || '0', 10)),
+        0,
+      );
+    }
+
+    function snapshot() {
+      return {
+        mode: state.mode,
+        index: state.index,
+        stages: [...state.stages],
+        editing: state.editing,
+      };
+    }
+
+    function emitState() {
+      window.dispatchEvent(new CustomEvent('taohtml:statechange', { detail: snapshot() }));
+    }
+
+    function setStage(slideIndex, nextStage) {
+      const count = stepCount(slides[slideIndex]);
+      state.stages[slideIndex] = Math.max(0, Math.min(count, nextStage));
+      slides[slideIndex].dataset.stepIndex = String(state.stages[slideIndex]);
+      fragments(slides[slideIndex]).forEach(el => {
+        const elementStep = Number.parseInt(el.dataset.taohtmlStep || '0', 10);
+        el.classList.toggle('visible', elementStep <= state.stages[slideIndex]);
+      });
+    }
+
+    function render() {
+      deck.dataset.mode = state.mode;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === state.index);
+        setStage(i, state.stages[i]);
+      });
+      pageIndicator.textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+      modeToggle.textContent = state.mode === 'reading'
+        ? '切换到演示模式'
+        : '切换到阅读模式';
+      history.replaceState(null, '', `#${state.index + 1}`);
+      emitState();
+    }
+
+    function showPage(nextIndex) {
+      state.index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      closeModal();
+      render();
+    }
+
+    function nextPage() {
+      showPage(state.index + 1);
+    }
+
+    function previousPage() {
+      showPage(state.index - 1);
+    }
+
+    function nextStep() {
+      if (state.editing) return;
+      if (state.mode === 'reading') return nextPage();
+      const count = stepCount(slides[state.index]);
+      if (state.stages[state.index] < count) {
+        setStage(state.index, state.stages[state.index] + 1);
+        emitState();
+        return;
+      }
+      nextPage();
+    }
+
+    function previousStep() {
+      if (state.editing) return;
+      if (state.mode === 'reading') return previousPage();
+      if (state.stages[state.index] > 0) {
+        setStage(state.index, state.stages[state.index] - 1);
+        emitState();
+      }
+    }
+
+    function shouldAutoHideControls() {
+      return state.mode === 'presentation' && Boolean(document.fullscreenElement) && !state.editing;
+    }
+
+    function controlsAreActive() {
+      return [...document.querySelectorAll('.controls')].some(control => (
+        control.matches(':hover')
+      ));
+    }
+
+    function isInteractiveTarget(target) {
+      return target instanceof Element && Boolean(target.closest(INTERACTIVE_CLICK_SELECTOR));
+    }
+
+    function clearControlsTimer() {
+      clearTimeout(controlsTimer);
+      controlsTimer = undefined;
+    }
+
+    function hideControlsAfterIdle() {
+      clearControlsTimer();
+      if (!shouldAutoHideControls()) {
+        deck.classList.remove('controls-hidden');
+        return;
+      }
+      if (!moreMenu.hidden || controlsAreActive()) return;
+      deck.classList.add('controls-hidden');
+    }
+
+    function armControlsHide() {
+      clearControlsTimer();
+      if (!shouldAutoHideControls()) {
+        deck.classList.remove('controls-hidden');
+        return;
+      }
+      if (!moreMenu.hidden || controlsAreActive()) return;
+      controlsTimer = setTimeout(hideControlsAfterIdle, CONTROL_HIDE_DELAY_MS);
+    }
+
+    function revealControlsFromMouse() {
+      if (!shouldAutoHideControls()) return;
+      deck.classList.remove('controls-hidden');
+      armControlsHide();
+    }
+
+    function syncControlsForContext({ fullscreenChanged = false } = {}) {
+      clearControlsTimer();
+      if (!shouldAutoHideControls()) {
+        fullscreenPointerSettlingUntil = 0;
+        deck.classList.remove('controls-hidden');
+        return;
+      }
+      if (fullscreenChanged) {
+        fullscreenPointerSettlingUntil = performance.now() + FULLSCREEN_POINTER_SETTLE_MS;
+        deck.classList.add('controls-hidden');
+        return;
+      }
+      armControlsHide();
+    }
+
+    function closeMoreMenu({ rearm = true } = {}) {
+      moreMenu.hidden = true;
+      moreToggle.setAttribute('aria-expanded', 'false');
+      if (moreMenu.contains(document.activeElement)) document.activeElement.blur();
+      if (rearm) armControlsHide();
+    }
+
+    function setMode(mode) {
+      if (state.editing || !['reading', 'presentation'].includes(mode) || mode === state.mode) return;
+      state.mode = mode;
+      if (mode === 'presentation') state.stages[state.index] = 0;
+      closeMoreMenu({ rearm: false });
+      render();
+      syncControlsForContext({ fullscreenChanged: mode === 'presentation' && Boolean(document.fullscreenElement) });
+    }
+
+    function setEditing(editing) {
+      const nextEditing = Boolean(editing);
+      if (nextEditing === state.editing) return;
+      state.editing = nextEditing;
+      deck.dataset.taohtmlEditing = String(nextEditing);
+      closeModal();
+      closeMoreMenu({ rearm: false });
+      render();
+      deck.classList.remove('controls-hidden');
+      if (nextEditing) {
+        clearControlsTimer();
+      } else {
+        armControlsHide();
+      }
+    }
+
+    async function toggleFullscreen() {
+      closeMoreMenu({ rearm: false });
+      clearControlsTimer();
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen?.();
+      } else {
+        await document.exitFullscreen?.();
+      }
+    }
+
+    function openSource(src, label = 'Source evidence') {
+      modalBody.innerHTML = '';
+      delete modalBody.dataset.mediaError;
+      const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+      const el = document.createElement(isVideo ? 'video' : 'img');
+      el.src = src;
+      if (isVideo) {
+        el.controls = true;
+        el.autoplay = true;
+      } else {
+        el.alt = label;
+      }
+      el.addEventListener('error', () => {
+        modalBody.dataset.mediaError = src;
+        const notice = document.createElement('p');
+        notice.className = 'source-error';
+        notice.textContent = `Source asset failed to load: ${src}`;
+        modalBody.replaceChildren(notice);
+      });
+      modalBody.appendChild(el);
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalBody.querySelectorAll('video').forEach(video => video.pause());
+      modalBody.innerHTML = '';
+      delete modalBody.dataset.mediaError;
+    }
+
+    document.getElementById('next').addEventListener('click', nextPage);
+    document.getElementById('prev').addEventListener('click', previousPage);
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    moreToggle.addEventListener('click', () => {
+      if (shouldAutoHideControls() && deck.classList.contains('controls-hidden')) return;
+      moreMenu.hidden = !moreMenu.hidden;
+      moreToggle.setAttribute('aria-expanded', String(!moreMenu.hidden));
+      deck.classList.remove('controls-hidden');
+      if (moreMenu.hidden) {
+        armControlsHide();
+      } else {
+        clearControlsTimer();
+      }
+    });
+    modeToggle.addEventListener('click', () => {
+      setMode(state.mode === 'reading' ? 'presentation' : 'reading');
+    });
+    fullscreenToggle.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', () => {
+      closeMoreMenu({ rearm: false });
+      if (document.activeElement?.closest?.('.controls')) document.activeElement.blur();
+      fullscreenToggle.textContent = document.fullscreenElement ? '退出全屏' : '打开全屏';
+      syncControlsForContext({ fullscreenChanged: true });
+    });
+    document.querySelectorAll('.source-btn').forEach(button => {
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        openSource(button.dataset.source, button.dataset.sourceLabel);
+      });
+    });
+    document.addEventListener('click', event => {
+      if (state.editing || event.defaultPrevented || event.button !== 0) return;
+      if (
+        isInteractiveTarget(event.target) ||
+        modal.classList.contains('open')
+      ) return;
+      nextStep();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) return closeModal();
+      if (modal.classList.contains('open')) return;
+      if (state.editing) return;
+      if (isInteractiveTarget(event.target)) return;
+      const handledKeys = ['ArrowRight', 'ArrowLeft', 'PageDown', 'PageUp', ' ', 'Home', 'End'];
+      if (handledKeys.includes(event.key)) event.preventDefault();
+      if (['ArrowRight', ' '].includes(event.key)) nextStep();
+      if (event.key === 'ArrowLeft') previousStep();
+      if (event.key === 'PageDown') nextPage();
+      if (event.key === 'PageUp') previousPage();
+      if (event.key === 'Home') showPage(0);
+      if (event.key === 'End') showPage(slides.length - 1);
+    });
+
+    function indexFromHash() {
+      const parsed = Number.parseInt(location.hash.replace('#', ''), 10);
+      return Number.isInteger(parsed) ? parsed - 1 : 0;
+    }
+
+    window.TaoHtmlRuntime = Object.freeze({
+      getState: snapshot,
+      setMode,
+      showPage,
+      nextStep,
+      previousStep,
+      nextPage,
+      previousPage,
+      toggleFullscreen,
+      setEditing,
+    });
+
+    document.addEventListener('mousemove', event => {
+      if (!event.isTrusted || (event.movementX === 0 && event.movementY === 0)) return;
+      if (performance.now() < fullscreenPointerSettlingUntil) {
+        deck.classList.add('controls-hidden');
+        return;
+      }
+      fullscreenPointerSettlingUntil = 0;
+      revealControlsFromMouse();
+    }, { passive: true });
+    document.querySelectorAll('.controls').forEach(control => {
+      control.addEventListener('pointerenter', clearControlsTimer, { passive: true });
+      control.addEventListener('pointerleave', armControlsHide, { passive: true });
+      control.addEventListener('pointerdown', clearControlsTimer, { passive: true });
+      control.addEventListener('pointerup', armControlsHide, { passive: true });
+      control.addEventListener('keydown', clearControlsTimer);
+      control.addEventListener('keyup', armControlsHide);
+      control.addEventListener('focusout', () => setTimeout(armControlsHide, 0));
+    });
+    window.addEventListener('hashchange', () => showPage(indexFromHash()));
+    state.index = Math.max(0, Math.min(slides.length - 1, indexFromHash()));
+    render();
+    syncControlsForContext();
+  </script>
+  <script src="assets/runtime/taohtml-editor.js" data-taohtml-editor-bundle="script"></script>
+</body>
+</html>

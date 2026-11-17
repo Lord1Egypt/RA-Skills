@@ -1,42 +1,58 @@
-## Description: <br>
-Produces a draft Class D construction cost estimate report with an elemental cost breakdown, location and market adjustments, contingency loading, assumptions and exclusions, and a cost manager review block. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a quantity surveyor, cost manager, owner's representative, or project estimator needs to produce a preliminary Class D construction cost estimate for a new building, renovation, or civil works project.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Quantity surveyors, cost managers, owner's representatives, and project estimators use this skill to turn limited early-stage project information into a draft preliminary construction cost estimate for professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Preliminary cost estimates can affect real project budgets and decisions if assumptions, unit rates, location indices, escalation, or totals are wrong. <br>
-Mitigation: Treat the output as a drafting aid and verify rates, indices, escalation assumptions, and final totals with a qualified cost manager or quantity surveyor before sharing or relying on the report. <br>
-Risk: A draft Class D estimate could be mistaken for a final tender price, guaranteed maximum price, or construction contract sum. <br>
-Mitigation: Keep the draft status, Class D estimate label, assumptions, exclusions, open items, and unsigned cost manager review block visible until professional review is complete. <br>
+## Use Case:
 
+Quantity surveyors, cost managers, owner's representatives, and project estimators use this skill to turn limited project information into a draft Class D preliminary construction cost estimate. It supports early budgeting by assembling elemental costs, location and market adjustments, contingency loading, assumptions, exclusions, open items, and a cost manager review block.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/preliminary-cost-estimate-report) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Single markdown document with tables, cost summaries, assumptions, open items, and a review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft Class D estimate report; rates, escalation assumptions, and totals require qualified cost manager or quantity surveyor review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-05-29) <br>
+Risk: Draft preliminary cost estimates may be mistaken for final tender prices, guaranteed maximum prices, or construction contract sums.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the Class D and draft status prominent and require qualified QS or cost manager review before owner presentation or budget setting.
+
+Risk: Outdated rates, regional indices, escalation assumptions, or market factors can make planning totals misleading.
+
+Mitigation: Verify rates, indices, escalation, and assumptions against current market data, and reapply escalation when estimates are used more than six months after the estimate date.
+
+Risk: Incomplete scope definition can hide material cost drivers or unresolved information gaps.
+
+Mitigation: Record assumptions and exclusions, flag unresolved items before upgrading to Class C, and avoid using contingency as a substitute for scope definition.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/preliminary-cost-estimate-report)
+- [Open-Skill-Hub issues](https://github.com/archlab-space/Open-Skill-Hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Single markdown document with tables, numbered lists, and a review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft planning estimates only; rates, indices, escalation, assumptions, and totals require qualified QS or cost manager review.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and changelog, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Turn articles, web pages, PDFs, and excerpts into structured notes, key insights, practical actions, and reusable takeaways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn articles, web pages, PDFs, and excerpts into structured notes, key insights, practical actions, and reusable takeaways.
 
-## Publisher: <br>
-[inf-lucas](https://clawhub.ai/user/inf-lucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inf-lucas](https://clawhub.ai/user/inf-lucas)
 
-## Use Case: <br>
-External users and developers use Content Alchemy to convert text, web pages, and PDFs into saved reading outcomes, including structured notes, insights, actions, and reusable takeaways. For long PDFs, it supports segmented reading, checkpoints, and resuming progress across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching user-provided URLs can expose requested URLs to remote sites and may fail on dynamic or low-quality pages. <br>
-Mitigation: Fetch only URLs the user provides, avoid --insecure except for deliberate TLS troubleshooting, and ask for source text when extraction is weak. <br>
-Risk: Long-PDF progress, notes, and checkpoints are saved locally in plaintext under ~/.content-alchemy/sessions. <br>
-Mitigation: Process sensitive documents only when local plaintext storage is acceptable, and delete saved session files when they are no longer needed. <br>
-Risk: PDF processing depends on local pdftotext/pdfinfo tools and does not include OCR for scanned PDFs. <br>
-Mitigation: Verify extracted text quality and recommend OCR or source text when the PDF appears scanned or text extraction is sparse. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to turn plain text, web pages, and PDFs into saved notes, insights, action items, and reusable takeaways. It is especially useful for long-document reading workflows that need segmentation, checkpoints, and resumable progress.
 
-## Reference(s): <br>
-- [Content Alchemy ClawHub Page](https://clawhub.ai/inf-lucas/content-alchemy) <br>
-- [README](README.md) <br>
-- [Content Alchemy Feature Guide](docs/FEATURE_GUIDE.md) <br>
-- [ClawHub Release Notes](docs/CLAWHUB_RELEASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown notes and checkpoint summaries, with shell commands for web/PDF extraction and session management] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long-PDF reading plans, state files, segment results, and checkpoint summaries may be saved locally under ~/.content-alchemy/sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The web extraction workflow can fetch URLs from the agent environment, including local or internal resources if the user provides them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid file://, localhost, private-network, cloud-metadata, and other sensitive internal URLs; review requested URLs before running extraction.
+
+Risk: The --insecure option disables normal TLS verification for web extraction troubleshooting.
+
+Mitigation: Use --insecure only with an explicitly trusted source and prefer normal HTTPS extraction otherwise.
+
+Risk: Long-PDF reading workflows save progress and derived notes locally under ~/.content-alchemy/sessions.
+
+Mitigation: Clear ~/.content-alchemy/sessions after working with confidential documents or avoid persistent long-PDF workflows for sensitive material.
+
+## Reference(s):
+
+- [Content Alchemy ClawHub Skill Page](https://clawhub.ai/inf-lucas/skills/content-alchemy)
+- [Content Alchemy Feature Guide](docs/FEATURE_GUIDE.md)
+- [Content Alchemy README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown notes and command guidance; helper scripts may emit JSON plans, extracted text, and saved Markdown segment or checkpoint files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Long-PDF workflows may persist reading plans, state files, segment results, and checkpoint summaries under ~/.content-alchemy/sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

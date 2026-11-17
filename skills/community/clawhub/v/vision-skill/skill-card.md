@@ -1,43 +1,59 @@
-## Description: <br>
-Use this skill for computer vision tasks including image recognition (OCR, object detection) and image generation (text-to-image, image-to-image). Supports asynchronous task execution with Tencent COS storage and Doubao AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for computer vision tasks including image recognition (OCR, object detection) and image generation (text-to-image, image-to-image). Supports asynchronous task execution with Tencent COS storage and Doubao AI models.
 
-## Publisher: <br>
-[lgwanai](https://clawhub.ai/user/lgwanai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgwanai](https://clawhub.ai/user/lgwanai)
 
-## Use Case: <br>
-Developers and agent users use this skill to add visual recognition, OCR-style extraction, visual question answering, and image generation workflows to text-first agents. It is suited for document digitization, UI or content creation, image analysis, and batch visual processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chosen images, reference images, prompts, and generated outputs are sent through Tencent COS and Doubao/Volcengine services. <br>
-Mitigation: Use the skill only for content your policies allow to be processed by those services, and avoid regulated or confidential documents unless approved. <br>
-Risk: Cloud credentials are required for Tencent COS and Doubao access. <br>
-Mitigation: Use least-privilege credentials, keep the COS bucket private or tightly scoped, and rotate credentials according to organizational policy. <br>
-Risk: Local task history under .tasks/ may contain prompts, image URLs, outputs, or error details. <br>
-Mitigation: Periodically clear .tasks/ or disable retention where task history may expose sensitive content. <br>
+## Use Case:
 
+Developers and agents use this skill to analyze local or remote images, extract text, answer image questions, and generate images from text or reference images. It is suited for document digitization, UI and content workflows, chart or table extraction, and accessibility descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgwanai/vision-skill) <br>
-- [Volcengine Ark API endpoint used by the skill](https://ark.cn-beijing.volces.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [JSON task status, text or Markdown recognition results, code blocks for code OCR, and downloaded image files when an output path is provided] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tasks run asynchronously by default and can be polled by task ID; local task metadata is stored under .tasks/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Selected local images, prompts, and results may be sent to Tencent COS and Doubao/Volcengine services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that cloud processing and retention posture is acceptable, and avoid sensitive documents unless retention and provider handling are approved.
+
+Risk: Uploaded images may remain in the configured COS bucket after task completion.
+
+Mitigation: Use a private COS bucket, restrict bucket access, and configure lifecycle deletion for uploaded task artifacts.
+
+Risk: Local task file access and status lookups can create safety concerns if exposed to untrusted input.
+
+Mitigation: Run the skill in a restricted environment and do not expose status commands to untrusted callers until task IDs are validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgwanai/skills/vision-skill)
+- [Volcengine console](https://console.volcengine.com/)
+- [Doubao Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI task JSON, text answers, Markdown or structured recognition output, and generated image URLs or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asynchronous tasks can be polled by task ID and may save text or image results to local output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

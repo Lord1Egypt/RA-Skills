@@ -1,43 +1,58 @@
-## Description: <br>
-Interact with the Strata Cloud Manager API to manage Prisma Access configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Strata Cloud Manager (SCM) API to authenticate, query, create, update, delete, and push Prisma Access configuration objects.
 
-## Publisher: <br>
-[leesandao](https://clawhub.ai/user/leesandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leesandao](https://clawhub.ai/user/leesandao)
 
-## Use Case: <br>
-Developers and network engineers use this skill to authenticate to Strata Cloud Manager and query, create, update, delete, or push Prisma Access configuration objects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Prisma Access tenant configuration when SCM credentials are provided. <br>
-Mitigation: Use least-privilege SCM credentials, start with test or non-production tenants, and review planned create, update, delete, and push actions before execution. <br>
-Risk: OAuth client secrets, bearer tokens, or Authorization headers could be exposed in logs or transcripts. <br>
-Mitigation: Avoid logging secrets or bearer tokens, keep credentials in environment variables, and redact Authorization headers from shared output. <br>
-Risk: Bulk API operations may hit rate limits or apply unintended changes across many resources. <br>
-Mitigation: Use dry-run planning where possible, paginate deliberately, add delays for bulk operations, and keep an audit log of API calls. <br>
+## Use Case:
 
+Developers and security administrators use this skill to automate Prisma Access configuration operations and inspect live tenant state through Strata Cloud Manager APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leesandao/prisma-api) <br>
-- [Project homepage](https://github.com/leesandao/prismaaccess-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCM_CLIENT_ID, SCM_CLIENT_SECRET, SCM_TSG_ID, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create, update, delete, and push Prisma Access security configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human review, backup or rollback planning, and confirmation before mutating operations or candidate pushes.
+
+Risk: SCM client secrets or bearer tokens could be exposed through logs or command output.
+
+Mitigation: Use least-privileged or test credentials and avoid printing secrets or bearer tokens.
+
+Risk: Live tenant API calls may affect production configuration.
+
+Mitigation: Prefer test tenants when validating changes and confirm the target folder, resource, and object ID before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leesandao/skills/prisma-api)
+- [Declared project homepage](https://github.com/leesandao/prismaaccess-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl commands, JSON snippets, and API-response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCM credentials in environment variables; output may include proposed configuration changes and live API responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

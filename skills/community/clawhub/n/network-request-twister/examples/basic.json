@@ -1,0 +1,39 @@
+{
+  "id": "twist-demo-001",
+  "name": "Demo: block analytics + mock API",
+  "version": "1.0",
+  "description": "Blocks analytics requests and mocks an API endpoint",
+  "rules": [
+    {
+      "id": "block-analytics",
+      "name": "Block analytics",
+      "enabled": true,
+      "priority": 10,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "analytics"}
+        ]
+      },
+      "actions": [
+        {"type": "block", "statusCode": 204}
+      ]
+    },
+    {
+      "id": "mock-api",
+      "name": "Mock API response",
+      "enabled": true,
+      "priority": 5,
+      "stage": "response",
+      "match": {
+        "allOf": [
+          {"type": "urlPrefix", "value": "https://api.example.com/"}
+        ]
+      },
+      "actions": [
+        {"type": "setHeader", "name": "Access-Control-Allow-Origin", "value": "*"},
+        {"type": "setBody", "value": "{\"status\": \"ok\", \"data\": []}"}
+      ]
+    }
+  ]
+}

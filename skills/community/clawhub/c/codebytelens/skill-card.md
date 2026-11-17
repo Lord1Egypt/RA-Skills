@@ -1,40 +1,57 @@
-## Description: <br>
-CodeByteLens is a Python code intelligence toolbox that uses open-source search, AST analysis, and optional type-checking tools to inspect definitions, references, symbols, call structure, and complexity without an LSP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeByteLens helps agents inspect Python code by listing symbols, searching definitions, and producing simple complexity and call-analysis output from local files.
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers and code-review agents use this skill to inspect Python projects, find definitions and references, list symbols, summarize call structure, and produce lightweight complexity reports from local source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Directory searches may scan more local files than intended when the user supplies a broad target path. <br>
-Mitigation: Review the target path before running analysis and use the narrowest project or file path that covers the task. <br>
-Risk: Optional local tooling and analyzer commands may be unavailable or fail in some environments. <br>
-Mitigation: Install only the tools needed for the workflow and verify analyzer output on non-sensitive code before relying on it. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to inspect local Python projects, find symbols or definitions, and generate lightweight code-structure and complexity reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxr-666/codebytelens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and terminal text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected local Python files or directories; optional type-checking workflows may require installing pyright.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documentation overstates pyright and tree-sitter integration compared with the bundled local AST and ripgrep helper behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as lightweight local code-inspection guidance and verify findings with project tests, type checkers, or code review before acting.
+
+Risk: The setup guidance uses an unpinned dependency install for pyright.
+
+Mitigation: Install dependencies in a virtual environment and pin versions before using the skill in repeatable or commercial workflows.
+
+Risk: Definition search and call-analysis behavior may be incomplete or broken.
+
+Mitigation: Use the output as a starting point for investigation and confirm symbol locations or call relationships with source inspection.
+
+## Reference(s):
+
+- [CodeByteLens ClawHub release](https://clawhub.ai/lxr-666/skills/codebytelens)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language command output; analyzes local Python files only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

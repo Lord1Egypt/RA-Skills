@@ -1,42 +1,60 @@
-## Description: <br>
-Install an OpenClaw plugin that adds SearXNG-powered web search without paid search APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install an OpenClaw plugin that adds SearXNG-powered web search without paid search APIs.
 
-## Publisher: <br>
-[barrontang](https://clawhub.ai/user/barrontang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barrontang](https://clawhub.ai/user/barrontang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure a SearXNG-backed search tool for agent workflows without paid search APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and returned result text pass through the configured SearXNG instance. <br>
-Mitigation: Use a SearXNG instance you control or trust, and avoid submitting secrets or sensitive data in search queries. <br>
-Risk: Web results returned by SearXNG can contain untrusted or misleading content. <br>
-Mitigation: Treat returned pages and snippets as untrusted input and verify important information before acting on it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure a SearXNG-backed search tool so agents can retrieve web search results from a trusted local or remote SearXNG instance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/barrontang/searxng-tool-for-openclaw) <br>
-- [Repository](https://github.com/barrontang/searxng-tool-for-openclaw) <br>
-- [Documentation](https://github.com/barrontang/searxng-tool-for-openclaw#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Structured JSON search results with setup guidance in Markdown and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result count is configurable; default maximum is 8 results and supported range is 1 to 50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Installing the plugin depends on npm package trust and package provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, prefer pinning an exact version, and verify package provenance before deployment.
+
+Risk: Search queries are sent to the configured SearXNG instance and may contain sensitive information.
+
+Mitigation: Use a SearXNG instance you control or trust, and avoid sending sensitive or regulated queries to untrusted servers.
+
+Risk: Returned web results may be incomplete, stale, or misleading.
+
+Mitigation: Have agents cite and cross-check important results before using them for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barrontang/skills/searxng-tool-for-openclaw)
+- [Homepage](https://github.com/barrontang/searxng-tool-for-openclaw)
+- [Repository](https://github.com/barrontang/searxng-tool-for-openclaw)
+- [Documentation](https://github.com/barrontang/searxng-tool-for-openclaw#readme)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration; tool responses are structured JSON search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw and a reachable SearXNG instance with JSON output enabled; result limits and timeout are configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

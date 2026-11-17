@@ -1,41 +1,57 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection
 
-## Publisher: <br>
-[MaTriXy](https://clawhub.ai/user/MaTriXy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matrixy](https://clawhub.ai/user/matrixy)
 
-## Use Case: <br>
-Developers and AI agents use this skill to automate browser workflows, inspect accessibility snapshots, select elements deterministically by reference, and extract page data through the agent-browser CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved browser state and cookies can represent sensitive account access. <br>
-Mitigation: Keep saved authentication files out of source control and logs, and use isolated sessions or test accounts for automation. <br>
-Risk: The skill depends on the external agent-browser package source. <br>
-Mitigation: Install only when the package source is trusted and review commands before running them on logged-in websites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Browser upstream repository](https://github.com/vercel-labs/agent-browser) <br>
-- [ClawHub skill page](https://clawhub.ai/MaTriXy/agent-browser-clawdbot) <br>
-- [Publisher profile](https://clawhub.ai/user/MaTriXy) <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser workflows through the agent-browser CLI, including navigation, accessibility snapshots, ref-based interactions, extraction, sessions, state persistence, screenshots, PDFs, and network controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser state persistence, session isolation, navigation, interaction, data extraction, screenshots, PDFs, network control, cookies, and storage workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved browser state, cookies, and localStorage can expose authenticated sessions or sensitive data.
+
+Mitigation: Treat state files and storage output like credentials: do not commit, share, or log them, and prefer low-privilege test accounts for automation.
+
+Risk: Global CLI installation can expand local execution and supply-chain exposure.
+
+Mitigation: Install the CLI in an isolated environment and pin or verify the package version where possible.
+
+Risk: Browser automation on logged-in sites can perform unintended actions if commands target the wrong page or session.
+
+Mitigation: Use isolated sessions, re-snapshot after page changes, and review targets before executing actions against authenticated sites.
+
+## Reference(s):
+
+- [Agent Browser CLI homepage](https://github.com/vercel-labs/agent-browser)
+- [ClawHub skill page](https://clawhub.ai/matrixy/skills/agent-browser-clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser state files, screenshots, PDFs, cookies, storage values, and extracted page data when the documented CLI commands are used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

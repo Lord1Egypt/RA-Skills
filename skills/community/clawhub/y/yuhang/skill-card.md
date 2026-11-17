@@ -1,41 +1,58 @@
-## Description: <br>
-A meta-skill that helps an agent turn GitHub repositories into standardized Trae skills by cloning or scanning repositories, generating scaffold files, and assembling a context bundle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yuhang helps agents turn GitHub repositories into standardized Trae skill folders by scanning or cloning repositories, generating context bundles, and drafting skill files.
 
-## Publisher: <br>
-[guangliang2233](https://clawhub.ai/user/guangliang2233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guangliang2233](https://clawhub.ai/user/guangliang2233)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they want to package a GitHub repository as a reusable Trae skill, including generated scaffolding, a context bundle, and usage guidance. It is intended for repository-to-skill conversion workflows, especially when a user provides a GitHub URL and asks the agent to install or integrate the tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or overwrite persistent agent skill files from GitHub repository content. <br>
-Mitigation: Use trusted public repositories, review generated SKILL.md and context files before use, and run generated or cloned code in a sandbox. <br>
-Risk: The skill uses local execution and secret-handling patterns, including loading environment variables and optionally using GitHub tokens. <br>
-Mitigation: Avoid running it from directories containing sensitive .env files and do not use it with private or internal repositories unless mirrors are disabled and verified. <br>
+## Use Case:
 
+Developers and agent builders use this skill to evaluate GitHub repositories and scaffold them into Trae-compatible skills with context bundles, generated SKILL.md files, and optional wrapper scripts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guangliang2233/yuhang) <br>
-- [GitHub CLI documentation](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, generated skill scaffolding, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent skill directories and context_bundle.md files; may clone or scan GitHub repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Repository cloning and generated scripts may introduce unreviewed third-party code into an agent skill workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated workspace, prefer official GitHub sources, and manually review generated context and SKILL.md before installing dependencies or running cloned code.
+
+Risk: The force mode can overwrite an existing skill directory.
+
+Mitigation: Avoid force mode unless the target directory is disposable; use unique skill names or backups before overwriting.
+
+Risk: Local .env loading and mirrored network endpoints can expose local configuration or shift trust to mirror services.
+
+Mitigation: Run from a directory without secrets in .env, constrain network access, and avoid proxy or mirror settings unless they are explicitly trusted.
+
+## Reference(s):
+
+- [ClawHub yuhang skill page](https://clawhub.ai/guangliang2233/skills/yuhang)
+- [GitHub CLI official documentation](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, generated code templates, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates skill directory structures and context_bundle.md; may run Git and write files in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

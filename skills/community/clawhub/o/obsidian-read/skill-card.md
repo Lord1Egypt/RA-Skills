@@ -1,37 +1,53 @@
-## Description: <br>
-Reads user-provided Obsidian Publish pages, preferring web_fetch and falling back to browser snapshots when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads Obsidian Publish document links and helps an agent retrieve complete article or note content, preferring direct fetches and falling back to browser snapshots when needed.
 
-## Publisher: <br>
-[theopenbase](https://clawhub.ai/user/theopenbase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theopenbase](https://clawhub.ai/user/theopenbase)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve text from Obsidian Publish notes, essays, or articles when a publish.obsidian.md link is provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided Obsidian Publish links may expose private or access-controlled content to the agent. <br>
-Mitigation: Only provide links that the agent is authorized to fetch and summarize; avoid private links unless this disclosure is intended. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to read user-provided Obsidian Publish articles, notes, and essays and return the extracted text or a summary.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text response with extracted page content or a summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May try web_fetch with a 15000 character limit before using a browser snapshot fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill retrieves text from user-provided Obsidian Publish links, so the returned content may reflect incomplete fetches or untrusted external content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it with intended Obsidian Publish URLs and review retrieved text before relying on summaries or downstream actions.
+
+Risk: The skill instructions are written in Chinese, which may make review harder for non-Chinese-speaking users.
+
+Mitigation: Have a Chinese-speaking reviewer or a trusted translation confirm the workflow before deployment.
+
+## Reference(s):
+
+- [Obsidian Read ClawHub release](https://clawhub.ai/theopenbase/skills/obsidian-read)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text containing retrieved Obsidian Publish content, extracted text, summaries, or tool-use guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to try direct fetches first and browser snapshots when direct fetching is incomplete or fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

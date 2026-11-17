@@ -1,43 +1,56 @@
-## Description: <br>
-Provides spell-corrected query suggestions for pre-search cleanup or a "Did you mean?" UI when a standalone spellcheck step is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corrects misspelled search queries for pre-search cleanup or "Did you mean?" interfaces.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and agents use this skill to check a user query for spelling corrections before search, or to present a corrected suggestion in a user-facing workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted spellcheck endpoint uses an automatic pay-per-use payment flow without clear cost limits or per-call approval controls. <br>
-Mitigation: Use the skill only with x402 spending controls, reviewed payment setup, and operational monitoring appropriate for the environment. <br>
-Risk: Queries sent to the hosted spellcheck service may contain sensitive text. <br>
-Mitigation: Avoid sending confidential or regulated text unless the provider and data handling are approved for the use case. <br>
+## Use Case:
 
+Developers and agents use this skill to check short user search queries before search execution or to present corrected suggestions in a user interface.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sprintmint/cpbox-spellcheck) <br>
-- [CPBox API Provider](https://www.cpbox.io) <br>
-- [CPPay Facilitator](https://www.cppay.finance) <br>
-- [x402 Payment Setup](https://github.com/springmint/cpbox-skills#prerequisites) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with HTTP and shell examples; the spellcheck endpoint returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a paid x402 flow; accepts a required query string plus optional language and country parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill directs users to run an unpinned payment package through npx in a wallet-backed flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify and pin the @springmint/x402-payment package version before use.
+
+Risk: Payment is automatic after the x402 flow is configured, which can obscure destination and amount.
+
+Mitigation: Use a wallet with strict spending limits and require clear confirmation of payment destination and amount for each request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprintmint/skills/cpbox-spellcheck)
+- [x402 payment setup prerequisites](https://github.com/springmint/cpbox-skills#prerequisites)
+- [CPBox spellcheck endpoint](https://www.cpbox.io/api/x402/spellcheck)
+- [CPPay facilitator](https://www.cppay.finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with HTTP, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns corrected query suggestions when available; payment may be required through an x402 flow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

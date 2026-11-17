@@ -1,0 +1,2222 @@
+collection: GBA
+sort-by: 10
+shortname: gba
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mgba_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: F-Zero 巅峰之战
+file: F-Zero 巅峰之战.zip
+assets.box_front: Imgs/F-Zero 巅峰之战.png
+description: 《F-Zero 巅峰之战》，由 Nintendo 出品，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Nintendo
+genre: Racing
+players: 4
+game: F1 2002
+file: F1 2002.zip
+assets.box_front: Imgs/F1 2002.png
+description: 《F1 2002》，由 EA Sports 出品，竞速类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: EA Sports
+genre: Racing
+players: 2
+game: GT3锦标赛
+file: GT3锦标赛.zip
+assets.box_front: Imgs/GT3锦标赛.png
+description: 《GT3锦标赛》，GBA 平台。
+game: RPG制造
+file: RPG制造.zip
+assets.box_front: Imgs/RPG制造.png
+description: 《RPG制造》，GBA 平台。
+game: SD高达 力量
+file: SD高达 力量.zip
+assets.box_front: Imgs/SD高达 力量.png
+description: 《SD高达 力量》，由 Bandai 出品，2004 年发行，清版动作类游戏，GBA 平台，单人游玩。
+publisher: Bandai
+release: 2004
+genre: Beat'em Up
+players: 1
+game: V拉力赛车3
+file: V拉力赛车3.zip
+assets.box_front: Imgs/V拉力赛车3.png
+description: 《V拉力赛车3》，GBA 平台。
+game: Z.O.E.星域毁灭者 2173
+file: Z.O.E.星域毁灭者 2173.zip
+assets.box_front: Imgs/Z.O.E.星域毁灭者 2173.png
+description: 《Z.O.E.星域毁灭者 2173》，2001 年发行，GBA 平台。
+release: 2001
+game: 三国志 孔明传
+file: 三国志 孔明传.zip
+assets.box_front: Imgs/三国志 孔明传.png
+description: 《三国志 孔明传》，GBA 平台。
+game: 三国志 英杰传
+file: 三国志 英杰传.zip
+assets.box_front: Imgs/三国志 英杰传.png
+description: 《三国志 英杰传》，GBA 平台。
+game: 三国志
+file: 三国志.zip
+assets.box_front: Imgs/三国志.png
+description: 《三国志》，GBA 平台。
+game: 上海
+file: 上海.zip
+assets.box_front: Imgs/上海.png
+description: 《上海》，GBA 平台。
+game: 世嘉街机游戏集锦
+file: 世嘉街机游戏集锦.zip
+assets.box_front: Imgs/世嘉街机游戏集锦.png
+description: 《世嘉街机游戏集锦》，由 SEGA 出品，2003 年发行，合集类游戏，GBA 平台，单人游玩。
+publisher: SEGA
+release: 2003
+genre: Compilation
+players: 1
+game: 世界传说 召唤者的血统
+file: 世界传说 召唤者的血统.zip
+assets.box_front: Imgs/世界传说 召唤者的血统.png
+description: 《世界传说 召唤者的血统》，GBA 平台。
+game: 世界传说 换装迷宫2
+file: 世界传说 换装迷宫2.zip
+assets.box_front: Imgs/世界传说 换装迷宫2.png
+description: 《世界传说 换装迷宫2》，GBA 平台。
+game: 乐高星球大战1
+file: 乐高星球大战1.zip
+assets.box_front: Imgs/乐高星球大战1.png
+description: 《乐高星球大战1》，GBA 平台。
+game: 乐高星球大战2
+file: 乐高星球大战2.zip
+assets.box_front: Imgs/乐高星球大战2.png
+description: 《乐高星球大战2》，由 LucasArts 出品，2006 年发行，动作类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: LucasArts
+release: 2006
+genre: Action
+players: 2
+game: 乐高生化战士 英雄
+file: 乐高生化战士 英雄.zip
+assets.box_front: Imgs/乐高生化战士 英雄.png
+description: 《乐高生化战士 英雄》，由 Eidos Interactive 出品，2006 年发行，射击类游戏，GBA 平台，单人游玩。
+publisher: Eidos Interactive
+release: 2006
+genre: Shooter
+players: 1
+game: 人型电脑天使心
+file: 人型电脑天使心.zip
+assets.box_front: Imgs/人型电脑天使心.png
+description: 《人型电脑天使心》，GBA 平台。
+game: 人猿泰山之重返丛林
+file: 人猿泰山之重返丛林.zip
+assets.box_front: Imgs/人猿泰山之重返丛林.png
+description: 《人猿泰山之重返丛林》，由 Activision 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 人鱼恋曲
+file: 人鱼恋曲.zip
+assets.box_front: Imgs/人鱼恋曲.png
+description: 《人鱼恋曲》，GBA 平台。
+game: 仓鼠天堂
+file: 仓鼠天堂.zip
+assets.box_front: Imgs/仓鼠天堂.png
+description: 《仓鼠天堂》，GBA 平台。
+game: 伊登战机1
+file: 伊登战机1.zip
+assets.box_front: Imgs/伊登战机1.png
+description: 《伊登战机1》，GBA 平台。
+game: 伊登战机2
+file: 伊登战机2.zip
+assets.box_front: Imgs/伊登战机2.png
+description: 《伊登战机2》，由 Vivendi Universal Games 出品，2003 年发行，射击类游戏，GBA 平台，单人游玩。
+publisher: Vivendi Universal Games
+release: 2003
+genre: Shooter
+players: 1
+game: 侏罗纪公园3
+file: 侏罗纪公园3.zip
+assets.box_front: Imgs/侏罗纪公园3.png
+description: 《侏罗纪公园3》，GBA 平台。
+game: 侠盗猎车手A
+file: 侠盗猎车手A.zip
+assets.box_front: Imgs/侠盗猎车手A.png
+description: 《侠盗猎车手A》，GBA 平台。
+game: 侦探学园Q 挑战究极诡计
+file: 侦探学园Q 挑战究极诡计.zip
+assets.box_front: Imgs/侦探学园Q 挑战究极诡计.png
+description: 《侦探学园Q 挑战究极诡计》，GBA 平台。
+game: 侦探神宫寺三郎 白影少女
+file: 侦探神宫寺三郎 白影少女.zip
+assets.box_front: Imgs/侦探神宫寺三郎 白影少女.png
+description: 《侦探神宫寺三郎 白影少女》，GBA 平台。
+game: 侵略者
+file: 侵略者.zip
+assets.box_front: Imgs/侵略者.png
+description: 《侵略者》，GBA 平台。
+game: 俄罗斯方块
+file: 俄罗斯方块.gba
+assets.box_front: Imgs/俄罗斯方块.png
+description: 《俄罗斯方块》，GBA 平台。
+game: 信长异闻录
+file: 信长异闻录.zip
+assets.box_front: Imgs/信长异闻录.png
+description: 《信长异闻录》，GBA 平台。
+game: 充填方块
+file: 充填方块.zip
+assets.box_front: Imgs/充填方块.png
+description: 《充填方块》，由 Compile 出品，2001 年发行，益智类游戏，GBA 平台，单人游玩。
+publisher: Compile
+release: 2001
+genre: Puzzle
+players: 1
+game: 光明与黑暗(光明力量)
+file: 光明与黑暗(光明力量).zip
+assets.box_front: Imgs/光明与黑暗(光明力量).png
+description: 《光明与黑暗(光明力量)》，GBA 平台。
+game: 光明之魂1
+file: 光明之魂1.zip
+assets.box_front: Imgs/光明之魂1.png
+description: 《光明之魂1》，GBA 平台。
+game: 光明之魂2
+file: 光明之魂2.zip
+assets.box_front: Imgs/光明之魂2.png
+description: 《光明之魂2》，GBA 平台。
+game: 兔宝宝大冒险 糟糕的梦
+file: 兔宝宝大冒险 糟糕的梦.zip
+assets.box_front: Imgs/兔宝宝大冒险 糟糕的梦.png
+description: 《兔宝宝大冒险 糟糕的梦》，GBA 平台。
+game: 公主同盟
+file: 公主同盟.zip
+assets.box_front: Imgs/公主同盟.png
+description: 《公主同盟》，GBA 平台。
+game: 公路之旅 变速齿轮
+file: 公路之旅 变速齿轮.zip
+assets.box_front: Imgs/公路之旅 变速齿轮.png
+description: 《公路之旅 变速齿轮》，由 Zoo Digital Publishing 出品，2004 年发行，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Zoo Digital Publishing
+release: 2004
+genre: Racing
+players: 4
+game: 兽王记 王国的守护者
+file: 兽王记 王国的守护者.zip
+assets.box_front: Imgs/兽王记 王国的守护者.png
+description: 《兽王记 王国的守护者》，由 SEGA 出品，2002 年发行，清版动作类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 2002
+genre: Beat'em Up
+players: 2
+game: 冰河世纪
+file: 冰河世纪.zip
+assets.box_front: Imgs/冰河世纪.png
+description: 《冰河世纪》，GBA 平台。
+game: 决斗！奥特曼英雄
+file: 决斗！奥特曼英雄.zip
+assets.box_front: Imgs/决斗！奥特曼英雄.png
+description: 《决斗！奥特曼英雄》，GBA 平台。
+game: 几何世代 六角形针盘
+file: 几何世代 六角形针盘.zip
+assets.box_front: Imgs/几何世代 六角形针盘.png
+description: 《几何世代 六角形针盘》，由 Nintendo 出品，2006 年发行，益智类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+release: 2006
+genre: Puzzle
+players: 1
+game: 几何世代 点点潮流
+file: 几何世代 点点潮流.zip
+assets.box_front: Imgs/几何世代 点点潮流.png
+description: 《几何世代 点点潮流》，GBA 平台。
+game: 几何世代 颜色方块
+file: 几何世代 颜色方块.zip
+assets.box_front: Imgs/几何世代 颜色方块.png
+description: 《几何世代 颜色方块》，由 Nintendo 出品，2006 年发行，益智类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+release: 2006
+genre: Puzzle
+players: 1
+game: 击倒王
+file: 击倒王.zip
+assets.box_front: Imgs/击倒王.png
+description: 《击倒王》，由 Acclaim 出品，2002 年发行，体育类游戏，GBA 平台，单人游玩。
+publisher: Acclaim
+release: 2002
+genre: Sports
+players: 1
+game: 剑齿虎
+file: 剑齿虎.zip
+assets.box_front: Imgs/剑齿虎.png
+description: 《剑齿虎》，由 THQ 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2004
+genre: Platform
+players: 1
+game: 加勒比海盗2 亡者财宝
+file: 加勒比海盗2 亡者财宝.zip
+assets.box_front: Imgs/加勒比海盗2 亡者财宝.png
+description: 《加勒比海盗2 亡者财宝》，由 Buena Vista Interactive 出品，冒险类游戏，GBA 平台，单人游玩。
+publisher: Buena Vista Interactive
+genre: Adventure
+players: 1
+game: 动物横町 心跳心跳救出大作战
+file: 动物横町 心跳心跳救出大作战.zip
+assets.box_front: Imgs/动物横町 心跳心跳救出大作战.png
+description: 《动物横町 心跳心跳救出大作战》，由 Konami 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Konami
+release: 2005
+genre: Platform
+players: 1
+game: 动物管理员
+file: 动物管理员.zip
+assets.box_front: Imgs/动物管理员.png
+description: 《动物管理员》，GBA 平台。
+game: 勇者斗恶龙 旅团之心
+file: 勇者斗恶龙 旅团之心.zip
+assets.box_front: Imgs/勇者斗恶龙 旅团之心.png
+description: 《勇者斗恶龙 旅团之心》，GBA 平台。
+game: 勇者斗恶龙之元气史莱姆 冲击的尾巴团
+file: 勇者斗恶龙之元气史莱姆 冲击的尾巴团.zip
+assets.box_front: Imgs/勇者斗恶龙之元气史莱姆 冲击的尾巴团.png
+description: 《勇者斗恶龙之元气史莱姆 冲击的尾巴团》，由 Square Enix 出品，2003 年发行，GBA 平台，支持 4-4 人游玩。
+publisher: Square Enix
+release: 2003
+players: 4
+game: 勇者斗恶龙外传 特鲁内克大冒险2
+file: 勇者斗恶龙外传 特鲁内克大冒险2.zip
+assets.box_front: Imgs/勇者斗恶龙外传 特鲁内克大冒险2.png
+description: 《勇者斗恶龙外传 特鲁内克大冒险2》，GBA 平台。
+game: 勇者斗恶龙外传 特鲁内克大冒险3
+file: 勇者斗恶龙外传 特鲁内克大冒险3.zip
+assets.box_front: Imgs/勇者斗恶龙外传 特鲁内克大冒险3.png
+description: 《勇者斗恶龙外传 特鲁内克大冒险3》，GBA 平台。
+game: 千年家族
+file: 千年家族.zip
+assets.box_front: Imgs/千年家族.png
+description: 《千年家族》，GBA 平台。
+game: 博德之门 黑暗联盟
+file: 博德之门 黑暗联盟.zip
+assets.box_front: Imgs/博德之门 黑暗联盟.png
+description: 《博德之门 黑暗联盟》，由 Ubisoft 出品，2003 年发行，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+release: 2003
+genre: Role-playing (RPG)
+players: 1
+game: 卧虎藏龙
+file: 卧虎藏龙.zip
+assets.box_front: Imgs/卧虎藏龙.png
+description: 《卧虎藏龙》，GBA 平台。
+game: 原始人大进击
+file: 原始人大进击.zip
+assets.box_front: Imgs/原始人大进击.png
+description: 《原始人大进击》，由 Titus 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Titus
+genre: Platform
+players: 1
+game: 友情足球4v4
+file: 友情足球4v4.zip
+assets.box_front: Imgs/友情足球4v4.png
+description: 《友情足球4v4》，GBA 平台。
+game: 双刃
+file: 双刃.zip
+assets.box_front: Imgs/双刃.png
+description: 《双刃》，由 Metro3D 出品，2002 年发行，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Metro3D
+release: 2002
+genre: Fighting
+players: 2
+game: 双截龙
+file: 双截龙.zip
+assets.box_front: Imgs/双截龙.png
+description: 《双截龙》，GBA 平台。
+game: 叛星 战略指令
+file: 叛星 战略指令.zip
+assets.box_front: Imgs/叛星 战略指令.png
+description: 《叛星 战略指令》，由 Atari SA 出品，2005 年发行，策略类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Atari SA
+release: 2005
+genre: Strategy
+players: 2
+game: 口袋妖怪 不可思议的迷宫
+file: 口袋妖怪 不可思议的迷宫.zip
+assets.box_front: Imgs/口袋妖怪 不可思议的迷宫.png
+description: 《口袋妖怪 不可思议的迷宫》，GBA 平台。
+game: 口袋妖怪 东方人形剧
+file: 口袋妖怪 东方人形剧.zip
+assets.box_front: Imgs/口袋妖怪 东方人形剧.png
+description: 《口袋妖怪 东方人形剧》，GBA 平台。
+game: 口袋妖怪 剑盾v10.2 铠之孤岛&冠之雪原
+file: 口袋妖怪 剑盾v10.2 铠之孤岛&冠之雪原.zip
+assets.box_front: Imgs/口袋妖怪 剑盾v10.2 铠之孤岛&冠之雪原.png
+description: 《口袋妖怪 剑盾v10.2 铠之孤岛&冠之雪原》，GBA 平台。
+game: 口袋妖怪 去吧！伊布
+file: 口袋妖怪 去吧！伊布.zip
+assets.box_front: Imgs/口袋妖怪 去吧！伊布.png
+description: 《口袋妖怪 去吧！伊布》，GBA 平台。
+game: 口袋妖怪 去吧！皮卡丘
+file: 口袋妖怪 去吧！皮卡丘.zip
+assets.box_front: Imgs/口袋妖怪 去吧！皮卡丘.png
+description: 《口袋妖怪 去吧！皮卡丘》，GBA 平台。
+game: 口袋妖怪 叶绿
+file: 口袋妖怪 叶绿.zip
+assets.box_front: Imgs/口袋妖怪 叶绿.png
+description: 《口袋妖怪 叶绿》，GBA 平台。
+game: 口袋妖怪 梦想
+file: 口袋妖怪 梦想.zip
+assets.box_front: Imgs/口袋妖怪 梦想.png
+description: 《口袋妖怪 梦想》，GBA 平台。
+game: 口袋妖怪 漆黑的魅影 5.0EX+ DP
+file: 口袋妖怪 漆黑的魅影 5.0EX+ DP.zip
+assets.box_front: Imgs/口袋妖怪 漆黑的魅影 5.0EX+ DP.png
+description: 《口袋妖怪 漆黑的魅影 5.0EX+ DP》，GBA 平台。
+game: 口袋妖怪 火红
+file: 口袋妖怪 火红.zip
+assets.box_front: Imgs/口袋妖怪 火红.png
+description: 《口袋妖怪 火红》，GBA 平台。
+game: 口袋妖怪 究极绿宝石v5.4 虹之抹灭者
+file: 口袋妖怪 究极绿宝石v5.4 虹之抹灭者.zip
+assets.box_front: Imgs/口袋妖怪 究极绿宝石v5.4 虹之抹灭者.png
+description: 《口袋妖怪 究极绿宝石v5.4 虹之抹灭者》，GBA 平台。
+game: 口袋妖怪 红宝石
+file: 口袋妖怪 红宝石.zip
+assets.box_front: Imgs/口袋妖怪 红宝石.png
+description: 《口袋妖怪 红宝石》，GBA 平台。
+game: 口袋妖怪 绿宝石
+file: 口袋妖怪 绿宝石.zip
+assets.box_front: Imgs/口袋妖怪 绿宝石.png
+description: 《口袋妖怪 绿宝石》，GBA 平台。
+game: 口袋妖怪 蓝宝石
+file: 口袋妖怪 蓝宝石.zip
+assets.box_front: Imgs/口袋妖怪 蓝宝石.png
+description: 《口袋妖怪 蓝宝石》，GBA 平台。
+game: 口袋妖怪弹珠台 红宝石蓝宝石
+file: 口袋妖怪弹珠台 红宝石蓝宝石.zip
+assets.box_front: Imgs/口袋妖怪弹珠台 红宝石蓝宝石.png
+description: 《口袋妖怪弹珠台 红宝石蓝宝石》，GBA 平台。
+game: 口袋实况棒球5
+file: 口袋实况棒球5.zip
+assets.box_front: Imgs/口袋实况棒球5.png
+description: 《口袋实况棒球5》，GBA 平台。
+game: 口袋梦幻! 梦幻寻宝幸存挑战!
+file: 口袋梦幻! 梦幻寻宝幸存挑战!.zip
+assets.box_front: Imgs/口袋梦幻! 梦幻寻宝幸存挑战!.png
+description: 《口袋梦幻! 梦幻寻宝幸存挑战!》，GBA 平台。
+game: 古墓丽影 传奇
+file: 古墓丽影 传奇.zip
+assets.box_front: Imgs/古墓丽影 传奇.png
+description: 《古墓丽影 传奇》，由 Eidos Interactive 出品，动作类游戏，GBA 平台，单人游玩。
+publisher: Eidos Interactive
+genre: Action
+players: 1
+game: 古墓丽影 预言
+file: 古墓丽影 预言.zip
+assets.box_front: Imgs/古墓丽影 预言.png
+description: 《古墓丽影 预言》，GBA 平台。
+game: 古惑狼 暴跳的罗彼德与紫色宝贝龙
+file: 古惑狼 暴跳的罗彼德与紫色宝贝龙.zip
+assets.box_front: Imgs/古惑狼 暴跳的罗彼德与紫色宝贝龙.png
+description: 《古惑狼 暴跳的罗彼德与紫色宝贝龙》，由 Vivendi Universal Games 出品，平台跳跃类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Vivendi Universal Games
+genre: Platform
+players: 4
+game: 古惑狼 泰坦
+file: 古惑狼 泰坦.zip
+assets.box_front: Imgs/古惑狼 泰坦.png
+description: 《古惑狼 泰坦》，由 Sierra 出品，2007 年发行，平台跳跃类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Sierra
+release: 2007
+genre: Platform
+players: 4
+game: 古惑狼1
+file: 古惑狼1.zip
+assets.box_front: Imgs/古惑狼1.png
+description: 《古惑狼1》，由 Universal Interactive 出品，2002 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Universal Interactive
+release: 2002
+genre: Platform
+players: 1
+game: 古惑狼2
+file: 古惑狼2.zip
+assets.box_front: Imgs/古惑狼2.png
+description: 《古惑狼2》，由 Universal Interactive 出品，2003 年发行，平台跳跃类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Universal Interactive
+release: 2003
+genre: Platform
+players: 2
+game: 古惑狼赛车
+file: 古惑狼赛车.zip
+assets.box_front: Imgs/古惑狼赛车.png
+description: 《古惑狼赛车》，由 Universal Interactive 出品，2003 年发行，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Universal Interactive
+release: 2003
+genre: Racing
+players: 4
+game: 召唤之夜 铸剑物语1
+file: 召唤之夜 铸剑物语1.zip
+assets.box_front: Imgs/召唤之夜 铸剑物语1.png
+description: 《召唤之夜 铸剑物语1》，GBA 平台。
+game: 召唤之夜 铸剑物语2
+file: 召唤之夜 铸剑物语2.zip
+assets.box_front: Imgs/召唤之夜 铸剑物语2.png
+description: 《召唤之夜 铸剑物语2》，GBA 平台。
+game: 召唤之夜 铸剑物语3
+file: 召唤之夜 铸剑物语3.zip
+assets.box_front: Imgs/召唤之夜 铸剑物语3.png
+description: 《召唤之夜 铸剑物语3》，GBA 平台。
+game: 史酷比 原形毕露
+file: 史酷比 原形毕露.zip
+assets.box_front: Imgs/史酷比 原形毕露.png
+description: 《史酷比 原形毕露》，由 THQ 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2005
+genre: Platform
+players: 1
+game: 吃豆人精选集
+file: 吃豆人精选集.zip
+assets.box_front: Imgs/吃豆人精选集.png
+description: 《吃豆人精选集》，由 Infogrames 出品，2001 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Infogrames
+release: 2001
+genre: Action
+players: 1
+game: 吃豆小精灵世界
+file: 吃豆小精灵世界.zip
+assets.box_front: Imgs/吃豆小精灵世界.png
+description: 《吃豆小精灵世界》，由 Zoo Digital Publishing 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Zoo Digital Publishing
+release: 2004
+genre: Platform
+players: 1
+game: 合金之枪
+file: 合金之枪.zip
+assets.box_front: Imgs/合金之枪.png
+description: 《合金之枪》，GBA 平台。
+game: 合金弹头
+file: 合金弹头.zip
+assets.box_front: Imgs/合金弹头.png
+description: 《合金弹头》，GBA 平台。
+game: 名侦探柯南 被狙击的侦探
+file: 名侦探柯南 被狙击的侦探.zip
+assets.box_front: Imgs/名侦探柯南 被狙击的侦探.png
+description: 《名侦探柯南 被狙击的侦探》，GBA 平台。
+game: 名侦探柯南 黎明之碑
+file: 名侦探柯南 黎明之碑.zip
+assets.box_front: Imgs/名侦探柯南 黎明之碑.png
+description: 《名侦探柯南 黎明之碑》，GBA 平台。
+game: 后院运动 篮球
+file: 后院运动 篮球.zip
+assets.box_front: Imgs/后院运动 篮球.png
+description: 《后院运动 篮球》，由 Atari SA 出品，2006 年发行，体育类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Atari SA
+release: 2006
+genre: Sports
+players: 2
+game: 咕噜咕噜火箭
+file: 咕噜咕噜火箭.zip
+assets.box_front: Imgs/咕噜咕噜火箭.png
+description: 《咕噜咕噜火箭》，由 SEGA 出品，2001 年发行，策略类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: SEGA
+release: 2001
+genre: Strategy
+players: 4
+game: 咕噜咕噜转转棒
+file: 咕噜咕噜转转棒.zip
+assets.box_front: Imgs/咕噜咕噜转转棒.png
+description: 《咕噜咕噜转转棒》，GBA 平台。
+game: 哈利波特 消失的密室
+file: 哈利波特 消失的密室.zip
+assets.box_front: Imgs/哈利波特 消失的密室.png
+description: 《哈利波特 消失的密室》，GBA 平台。
+game: 哈利波特 阿兹卡班的囚徒
+file: 哈利波特 阿兹卡班的囚徒.zip
+assets.box_front: Imgs/哈利波特 阿兹卡班的囚徒.png
+description: 《哈利波特 阿兹卡班的囚徒》，GBA 平台。
+game: 哈姆太郎4
+file: 哈姆太郎4.zip
+assets.box_front: Imgs/哈姆太郎4.png
+description: 《哈姆太郎4》，GBA 平台。
+game: 圣石小子 光与暗的大决战
+file: 圣石小子 光与暗的大决战.zip
+assets.box_front: Imgs/圣石小子 光与暗的大决战.png
+description: 《圣石小子 光与暗的大决战》，GBA 平台。
+game: 圣诞夜惊魂
+file: 圣诞夜惊魂.zip
+assets.box_front: Imgs/圣诞夜惊魂.png
+description: 《圣诞夜惊魂》，GBA 平台。
+game: 圣铠传说
+file: 圣铠传说.zip
+assets.box_front: Imgs/圣铠传说.png
+description: 《圣铠传说》，由 Midway 出品，2002 年发行，GBA 平台，支持 4-4 人游玩。
+publisher: Midway
+release: 2002
+players: 4
+game: 地球冒险1+2
+file: 地球冒险1+2.zip
+assets.box_front: Imgs/地球冒险1+2.png
+description: 《地球冒险1+2》，GBA 平台。
+game: 地球冒险3
+file: 地球冒险3.zip
+assets.box_front: Imgs/地球冒险3.png
+description: 《地球冒险3》，GBA 平台。
+game: 塔克和符咒的神力
+file: 塔克和符咒的神力.zip
+assets.box_front: Imgs/塔克和符咒的神力.png
+description: 《塔克和符咒的神力》，由 THQ 出品，2003 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2003
+genre: Platform
+players: 1
+game: 塞尔达传说 四支剑
+file: 塞尔达传说 四支剑.zip
+assets.box_front: Imgs/塞尔达传说 四支剑.png
+description: 《塞尔达传说 四支剑》，GBA 平台。
+game: 塞尔达传说 缩小帽
+file: 塞尔达传说 缩小帽.zip
+assets.box_front: Imgs/塞尔达传说 缩小帽.png
+description: 《塞尔达传说 缩小帽》，2004 年发行，GBA 平台。
+release: 2004
+game: 壮志凌云 烈火风暴A
+file: 壮志凌云 烈火风暴A.zip
+assets.box_front: Imgs/壮志凌云 烈火风暴A.png
+description: 《壮志凌云 烈火风暴A》，由 Titus 出品，射击类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Titus
+genre: Shooter
+players: 2
+game: 外星原始人
+file: 外星原始人.zip
+assets.box_front: Imgs/外星原始人.png
+description: 《外星原始人》，GBA 平台。
+game: 多卡波王国Q
+file: 多卡波王国Q.zip
+assets.box_front: Imgs/多卡波王国Q.png
+description: 《多卡波王国Q》，GBA 平台。
+game: 大战略GBA
+file: 大战略GBA.zip
+assets.box_front: Imgs/大战略GBA.png
+description: 《大战略GBA》，GBA 平台。
+game: 大盗伍佑卫门 新世代出动
+file: 大盗伍佑卫门 新世代出动.zip
+assets.box_front: Imgs/大盗伍佑卫门 新世代出动.png
+description: 《大盗伍佑卫门 新世代出动》，GBA 平台。
+game: 大金刚 摇摆之王
+file: 大金刚 摇摆之王.zip
+assets.box_front: Imgs/大金刚 摇摆之王.png
+description: 《大金刚 摇摆之王》，GBA 平台。
+game: 大金刚国度
+file: 大金刚国度.gba
+assets.box_front: Imgs/大金刚国度.png
+description: 《大金刚国度》，GBA 平台。
+game: 天外魔境 青天之外
+file: 天外魔境 青天之外.zip
+assets.box_front: Imgs/天外魔境 青天之外.png
+description: 《天外魔境 青天之外》，GBA 平台。
+game: 太空堡垒
+file: 太空堡垒.zip
+assets.box_front: Imgs/太空堡垒.png
+description: 《太空堡垒》，由 TDK 出品，Shoot'em Up类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: TDK
+genre: Shoot'em Up
+players: 4
+game: 太空战斗机R
+file: 太空战斗机R.zip
+assets.box_front: Imgs/太空战斗机R.png
+description: 《太空战斗机R》，GBA 平台。
+game: 太空频道5
+file: 太空频道5.zip
+assets.box_front: Imgs/太空频道5.png
+description: 《太空频道5》，GBA 平台。
+game: 奇奇怪界
+file: 奇奇怪界.zip
+assets.box_front: Imgs/奇奇怪界.png
+description: 《奇奇怪界》，GBA 平台。
+game: 奥特曼警备队
+file: 奥特曼警备队.zip
+assets.box_front: Imgs/奥特曼警备队.png
+description: 《奥特曼警备队》，GBA 平台。
+game: 女神战士西雅
+file: 女神战士西雅.zip
+assets.box_front: Imgs/女神战士西雅.png
+description: 《女神战士西雅》，由 TDK 出品，2001 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: TDK
+release: 2001
+genre: Platform
+players: 1
+game: 妹妹公主
+file: 妹妹公主.zip
+assets.box_front: Imgs/妹妹公主.png
+description: 《妹妹公主》，GBA 平台。
+game: 宇宙大作战
+file: 宇宙大作战.zip
+assets.box_front: Imgs/宇宙大作战.png
+description: 《宇宙大作战》，由 Namco 出品，2002 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Namco
+release: 2002
+genre: Role-playing (RPG)
+players: 2
+game: 宇宙巡航机
+file: 宇宙巡航机.zip
+assets.box_front: Imgs/宇宙巡航机.png
+description: 《宇宙巡航机》，GBA 平台。
+game: 守护英雄
+file: 守护英雄.zip
+assets.box_front: Imgs/守护英雄.png
+description: 《守护英雄》，GBA 平台。
+game: 宝可梦剑盾
+file: 宝可梦剑盾.gba
+assets.box_front: Imgs/宝可梦剑盾.png
+description: 《宝可梦剑盾》，GBA 平台。
+game: 宝贝龙 阴谋的本质与橙色古惑狼
+file: 宝贝龙 阴谋的本质与橙色古惑狼.zip
+assets.box_front: Imgs/宝贝龙 阴谋的本质与橙色古惑狼.png
+description: 《宝贝龙 阴谋的本质与橙色古惑狼》，由 Coktel Vision 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Coktel Vision
+release: 2004
+genre: Platform
+players: 1
+game: 寂静岭
+file: 寂静岭.zip
+assets.box_front: Imgs/寂静岭.png
+description: 《寂静岭》，GBA 平台。
+game: 小龙斯派罗1 冰冻的季节
+file: 小龙斯派罗1 冰冻的季节.zip
+assets.box_front: Imgs/小龙斯派罗1 冰冻的季节.png
+description: 《小龙斯派罗1 冰冻的季节》，由 Universal Interactive 出品，2001 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Universal Interactive
+release: 2001
+genre: Platform
+players: 1
+game: 小龙斯派罗2 火焰的季节
+file: 小龙斯派罗2 火焰的季节.zip
+assets.box_front: Imgs/小龙斯派罗2 火焰的季节.png
+description: 《小龙斯派罗2 火焰的季节》，由 Universal Interactive 出品，2002 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Universal Interactive
+release: 2002
+genre: Platform
+players: 1
+game: 小龙斯派罗传说 新的开始
+file: 小龙斯派罗传说 新的开始.zip
+assets.box_front: Imgs/小龙斯派罗传说 新的开始.png
+description: 《小龙斯派罗传说 新的开始》，由 Sierra 出品，2006 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Sierra
+release: 2006
+genre: Platform
+players: 1
+game: 幸运的卢克 通缉犯
+file: 幸运的卢克 通缉犯.zip
+assets.box_front: Imgs/幸运的卢克 通缉犯.png
+description: 《幸运的卢克 通缉犯》，GBA 平台。
+game: 幻想传说
+file: 幻想传说.zip
+assets.box_front: Imgs/幻想传说.png
+description: 《幻想传说》，GBA 平台。
+game: 幻星神正义战士 地球的战士们
+file: 幻星神正义战士 地球的战士们.zip
+assets.box_front: Imgs/幻星神正义战士 地球的战士们.png
+description: 《幻星神正义战士 地球的战士们》，由 Konami 出品，2004 年发行，GBA 平台，单人游玩。
+publisher: Konami
+release: 2004
+players: 1
+game: 幽灵陷阱
+file: 幽灵陷阱.zip
+assets.box_front: Imgs/幽灵陷阱.png
+description: 《幽灵陷阱》，由 Eidos Interactive 出品，2002 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Eidos Interactive
+release: 2002
+genre: Action
+players: 1
+game: 异形战机3
+file: 异形战机3.zip
+assets.box_front: Imgs/异形战机3.png
+description: 《异形战机3》，GBA 平台。
+game: 异次元敌人
+file: 异次元敌人.zip
+assets.box_front: Imgs/异次元敌人.png
+description: 《异次元敌人》，GBA 平台。
+game: 彩虹六号
+file: 彩虹六号.zip
+assets.box_front: Imgs/彩虹六号.png
+description: 《彩虹六号》，由 Ubisoft 出品，2002 年发行，射击类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Ubisoft
+release: 2002
+genre: Shooter
+players: 4
+game: 徽章战士 甲胄版
+file: 徽章战士 甲胄版.zip
+assets.box_front: Imgs/徽章战士 甲胄版.png
+description: 《徽章战士 甲胄版》，由 Natsume 出品，2003 年发行，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Natsume
+release: 2003
+genre: Role-playing (RPG)
+players: 1
+game: 徽章战士 锹型虫版
+file: 徽章战士 锹型虫版.zip
+assets.box_front: Imgs/徽章战士 锹型虫版.png
+description: 《徽章战士 锹型虫版》，由 Natsume 出品，2003 年发行，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Natsume
+release: 2003
+genre: Role-playing (RPG)
+players: 1
+game: 心跳烹饪系列2
+file: 心跳烹饪系列2.zip
+assets.box_front: Imgs/心跳烹饪系列2.png
+description: 《心跳烹饪系列2》，GBA 平台。
+game: 忍者刑警
+file: 忍者刑警.zip
+assets.box_front: Imgs/忍者刑警.png
+description: 《忍者刑警》，GBA 平台。
+game: 忍者神龟1
+file: 忍者神龟1.zip
+assets.box_front: Imgs/忍者神龟1.png
+description: 《忍者神龟1》，GBA 平台。
+game: 快乐小赛车
+file: 快乐小赛车.zip
+assets.box_front: Imgs/快乐小赛车.png
+description: 《快乐小赛车》，GBA 平台。
+game: 快打旋风One
+file: 快打旋风One.zip
+assets.box_front: Imgs/快打旋风One.png
+description: 《快打旋风One》，GBA 平台。
+game: 怪兽小屋
+file: 怪兽小屋.zip
+assets.box_front: Imgs/怪兽小屋.png
+description: 《怪兽小屋》，GBA 平台。
+game: 怪物召唤士
+file: 怪物召唤士.zip
+assets.box_front: Imgs/怪物召唤士.png
+description: 《怪物召唤士》，GBA 平台。
+game: 怪物史莱克2
+file: 怪物史莱克2.zip
+assets.box_front: Imgs/怪物史莱克2.png
+description: 《怪物史莱克2》，由 Activision 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+release: 2004
+genre: Platform
+players: 1
+game: 怪物守护者
+file: 怪物守护者.zip
+assets.box_front: Imgs/怪物守护者.png
+description: 《怪物守护者》，GBA 平台。
+game: 怪物牧场A
+file: 怪物牧场A.zip
+assets.box_front: Imgs/怪物牧场A.png
+description: 《怪物牧场A》，由 Tecmo 出品，2001 年发行，模拟类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Tecmo
+release: 2001
+genre: Simulation
+players: 4
+game: 怪物牧场A2
+file: 怪物牧场A2.zip
+assets.box_front: Imgs/怪物牧场A2.png
+description: 《怪物牧场A2》，由 Tecmo 出品，2002 年发行，模拟类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Tecmo
+release: 2002
+genre: Simulation
+players: 4
+game: 恐龙猎人进化
+file: 恐龙猎人进化.zip
+assets.box_front: Imgs/恐龙猎人进化.png
+description: 《恐龙猎人进化》，由 Acclaim 出品，2002 年发行，射击类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Acclaim
+release: 2002
+genre: Shooter
+players: 2
+game: 恶灵骑士
+file: 恶灵骑士.zip
+assets.box_front: Imgs/恶灵骑士.png
+description: 《恶灵骑士》，GBA 平台。
+game: 恶魔城1 三饶传奇
+file: 恶魔城1 三饶传奇.zip
+assets.box_front: Imgs/恶魔城1 三饶传奇.png
+description: 《恶魔城1 三饶传奇》，GBA 平台。
+game: 恶魔城2 白夜协奏曲
+file: 恶魔城2 白夜协奏曲.zip
+assets.box_front: Imgs/恶魔城2 白夜协奏曲.png
+description: 《恶魔城2 白夜协奏曲》，GBA 平台。
+game: 恶魔城3 晓月圆舞曲
+file: 恶魔城3 晓月圆舞曲.zip
+assets.box_front: Imgs/恶魔城3 晓月圆舞曲.png
+description: 《恶魔城3 晓月圆舞曲》，GBA 平台。
+game: 恶魔城3 玛利亚之章
+file: 恶魔城3 玛利亚之章.zip
+assets.box_front: Imgs/恶魔城3 玛利亚之章.png
+description: 《恶魔城3 玛利亚之章》，GBA 平台。
+game: 我们的太阳1
+file: 我们的太阳1.zip
+assets.box_front: Imgs/我们的太阳1.png
+description: 《我们的太阳1》，GBA 平台。
+game: 我们的太阳2 太阳少年加戈
+file: 我们的太阳2 太阳少年加戈.zip
+assets.box_front: Imgs/我们的太阳2 太阳少年加戈.png
+description: 《我们的太阳2 太阳少年加戈》，GBA 平台。
+game: 我们的太阳3 逆袭的萨巴塔
+file: 我们的太阳3 逆袭的萨巴塔.zip
+assets.box_front: Imgs/我们的太阳3 逆袭的萨巴塔.png
+description: 《我们的太阳3 逆袭的萨巴塔》，GBA 平台。
+game: 我是航空管制员
+file: 我是航空管制员.zip
+assets.box_front: Imgs/我是航空管制员.png
+description: 《我是航空管制员》，GBA 平台。
+game: 战国革命外传
+file: 战国革命外传.zip
+assets.box_front: Imgs/战国革命外传.png
+description: 《战国革命外传》，GBA 平台。
+game: 战斗赛车
+file: 战斗赛车.zip
+assets.box_front: Imgs/战斗赛车.png
+description: 《战斗赛车》，由 Jaleco 出品，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Jaleco
+genre: Racing
+players: 4
+game: 打开天堂大门
+file: 打开天堂大门.zip
+assets.box_front: Imgs/打开天堂大门.png
+description: 《打开天堂大门》，GBA 平台。
+game: 打野鸡
+file: 打野鸡.zip
+assets.box_front: Imgs/打野鸡.png
+description: 《打野鸡》，GBA 平台。
+game: 托尼霍克的职业滑板2
+file: 托尼霍克的职业滑板2.zip
+assets.box_front: Imgs/托尼霍克的职业滑板2.png
+description: 《托尼霍克的职业滑板2》，由 Activision 出品，2001 年发行，体育类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 2001
+genre: Sports
+players: 2
+game: 托尼霍克的职业滑板3
+file: 托尼霍克的职业滑板3.zip
+assets.box_front: Imgs/托尼霍克的职业滑板3.png
+description: 《托尼霍克的职业滑板3》，由 Activision 出品，2002 年发行，体育类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Activision
+release: 2002
+genre: Sports
+players: 4
+game: 拳皇EX1
+file: 拳皇EX1.zip
+assets.box_front: Imgs/拳皇EX1.png
+description: 《拳皇EX1》，GBA 平台。
+game: 拳皇EX2
+file: 拳皇EX2.zip
+assets.box_front: Imgs/拳皇EX2.png
+description: 《拳皇EX2》，GBA 平台。
+game: 拿破仑
+file: 拿破仑.zip
+assets.box_front: Imgs/拿破仑.png
+description: 《拿破仑》，GBA 平台。
+game: 指环王 双塔奇兵
+file: 指环王 双塔奇兵.zip
+assets.box_front: Imgs/指环王 双塔奇兵.png
+description: 《指环王 双塔奇兵》，由 EA Games 出品，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: EA Games
+genre: Role-playing (RPG)
+players: 2
+game: 指环王 王者归来
+file: 指环王 王者归来.zip
+assets.box_front: Imgs/指环王 王者归来.png
+description: 《指环王 王者归来》，GBA 平台。
+game: 携带电兽2 力量版
+file: 携带电兽2 力量版.zip
+assets.box_front: Imgs/携带电兽2 力量版.png
+description: 《携带电兽2 力量版》，GBA 平台。
+game: 携带电兽2 速度版
+file: 携带电兽2 速度版.zip
+assets.box_front: Imgs/携带电兽2 速度版.png
+description: 《携带电兽2 速度版》，GBA 平台。
+game: 摇滚小姐妹
+file: 摇滚小姐妹.zip
+assets.box_front: Imgs/摇滚小姐妹.png
+description: 《摇滚小姐妹》，由 D3 Publisher 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: D3 Publisher
+release: 2005
+genre: Platform
+players: 1
+game: 数独
+file: 数独.zip
+assets.box_front: Imgs/数独.png
+description: 《数独》，GBA 平台。
+game: 数码宝贝 战魂1
+file: 数码宝贝 战魂1.zip
+assets.box_front: Imgs/数码宝贝 战魂1.png
+description: 《数码宝贝 战魂1》，GBA 平台。
+game: 数码宝贝 战魂2
+file: 数码宝贝 战魂2.zip
+assets.box_front: Imgs/数码宝贝 战魂2.png
+description: 《数码宝贝 战魂2》，GBA 平台。
+game: 断剑 圣堂武士之迷
+file: 断剑 圣堂武士之迷.zip
+assets.box_front: Imgs/断剑 圣堂武士之迷.png
+description: 《断剑 圣堂武士之迷》，由 Bam Entertainment 出品，冒险类游戏，GBA 平台，单人游玩。
+publisher: Bam Entertainment
+genre: Adventure
+players: 1
+game: 斯塔非的传说2
+file: 斯塔非的传说2.zip
+assets.box_front: Imgs/斯塔非的传说2.png
+description: 《斯塔非的传说2》，由 Nintendo 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+genre: Platform
+players: 1
+game: 新约圣剑传说
+file: 新约圣剑传说.zip
+assets.box_front: Imgs/新约圣剑传说.png
+description: 《新约圣剑传说》，GBA 平台。
+game: 旋转瓦里奥
+file: 旋转瓦里奥.zip
+assets.box_front: Imgs/旋转瓦里奥.png
+description: 《旋转瓦里奥》，由 Nintendo 出品，2005 年发行，Casual Game类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+release: 2005
+genre: Casual Game
+players: 1
+game: 旋风特务 风暴突击者
+file: 旋风特务 风暴突击者.zip
+assets.box_front: Imgs/旋风特务 风暴突击者.png
+description: 《旋风特务 风暴突击者》，由 THQ 出品，2006 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2006
+genre: Action
+players: 1
+game: 星之卡比1 梦之泉
+file: 星之卡比1 梦之泉.zip
+assets.box_front: Imgs/星之卡比1 梦之泉.png
+description: 《星之卡比1 梦之泉》，GBA 平台。
+game: 星之卡比2 镜之大迷宫
+file: 星之卡比2 镜之大迷宫.zip
+assets.box_front: Imgs/星之卡比2 镜之大迷宫.png
+description: 《星之卡比2 镜之大迷宫》，GBA 平台。
+game: 星光魔法使
+file: 星光魔法使.zip
+assets.box_front: Imgs/星光魔法使.png
+description: 《星光魔法使》，GBA 平台。
+game: 星战前传 新帝国军队
+file: 星战前传 新帝国军队.zip
+assets.box_front: Imgs/星战前传 新帝国军队.png
+description: 《星战前传 新帝国军队》，由 THQ 出品，2002 年发行，冒险类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2002
+genre: Adventure
+players: 1
+game: 星战前传III 西斯的复仇
+file: 星战前传III 西斯的复仇.zip
+assets.box_front: Imgs/星战前传III 西斯的复仇.png
+description: 《星战前传III 西斯的复仇》，由 Ubisoft 出品，2005 年发行，清版动作类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Ubisoft
+release: 2005
+genre: Beat'em Up
+players: 2
+game: 星际传送者
+file: 星际传送者.zip
+assets.box_front: Imgs/星际传送者.png
+description: 《星际传送者》，GBA 平台。
+game: 星际好狗
+file: 星际好狗.gba
+assets.box_front: Imgs/星际好狗.png
+description: 《星际好狗》，GBA 平台。
+game: 暴力摩托
+file: 暴力摩托.zip
+assets.box_front: Imgs/暴力摩托.png
+description: 《暴力摩托》，由 Electronic Arts 出品，2003 年发行，竞速类游戏，GBA 平台，单人游玩。
+publisher: Electronic Arts
+release: 2003
+genre: Racing
+players: 1
+game: 最终幻想4
+file: 最终幻想4.zip
+assets.box_front: Imgs/最终幻想4.png
+description: 《最终幻想4》，GBA 平台。
+game: 最终幻想5
+file: 最终幻想5.zip
+assets.box_front: Imgs/最终幻想5.png
+description: 《最终幻想5》，GBA 平台。
+game: 最终幻想6
+file: 最终幻想6.zip
+assets.box_front: Imgs/最终幻想6.png
+description: 《最终幻想6》，GBA 平台。
+game: 最终幻想战略版A
+file: 最终幻想战略版A.zip
+assets.box_front: Imgs/最终幻想战略版A.png
+description: 《最终幻想战略版A》，GBA 平台。
+game: 机动人
+file: 机动人.zip
+assets.box_front: Imgs/机动人.png
+description: 《机动人》，由 Atari SA 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Atari SA
+release: 2004
+genre: Platform
+players: 1
+game: 机械兽新世纪
+file: 机械兽新世纪.zip
+assets.box_front: Imgs/机械兽新世纪.png
+description: 《机械兽新世纪》，由 Atari SA 出品，2004 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Atari SA
+release: 2004
+genre: Role-playing (RPG)
+players: 2
+game: 机械化军队
+file: 机械化军队.zip
+assets.box_front: Imgs/机械化军队.png
+description: 《机械化军队》，GBA 平台。
+game: 机甲宝贝2 十字版
+file: 机甲宝贝2 十字版.zip
+assets.box_front: Imgs/机甲宝贝2 十字版.png
+description: 《机甲宝贝2 十字版》，由 Atlus 出品，2002 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Atlus
+release: 2002
+genre: Role-playing (RPG)
+players: 4
+game: 李小龙 英雄再现
+file: 李小龙 英雄再现.zip
+assets.box_front: Imgs/李小龙 英雄再现.png
+description: 《李小龙 英雄再现》，由 Universal Interactive 出品，2003 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Universal Interactive
+release: 2003
+genre: Platform
+players: 1
+game: 极品飞车10卡本峡谷
+file: 极品飞车10卡本峡谷.zip
+assets.box_front: Imgs/极品飞车10卡本峡谷.png
+description: 《极品飞车10卡本峡谷》，由 EA Games 出品，竞速类游戏，GBA 平台，单人游玩。
+publisher: EA Games
+genre: Racing
+players: 1
+game: 桃太郎电铁G
+file: 桃太郎电铁G.zip
+assets.box_front: Imgs/桃太郎电铁G.png
+description: 《桃太郎电铁G》，GBA 平台。
+game: 棋魂
+file: 棋魂.zip
+assets.box_front: Imgs/棋魂.png
+description: 《棋魂》，GBA 平台。
+game: 森喜刚：摇摆之王
+file: 森喜刚：摇摆之王.gba
+assets.box_front: Imgs/森喜刚：摇摆之王.png
+description: 《森喜刚：摇摆之王》，GBA 平台。
+game: 森林寻宝历险记
+file: 森林寻宝历险记.zip
+assets.box_front: Imgs/森林寻宝历险记.png
+description: 《森林寻宝历险记》，由 Activision 出品，2004 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+release: 2004
+genre: Platform
+players: 1
+game: 植木的法则
+file: 植木的法则.zip
+assets.box_front: Imgs/植木的法则.png
+description: 《植木的法则》，GBA 平台。
+game: 模拟人生 纯属意外
+file: 模拟人生 纯属意外.zip
+assets.box_front: Imgs/模拟人生 纯属意外.png
+description: 《模拟人生 纯属意外》，GBA 平台。
+game: 模拟城市2000
+file: 模拟城市2000.zip
+assets.box_front: Imgs/模拟城市2000.png
+description: 《模拟城市2000》，由 Zoo Digital Publishing 出品，2003 年发行，策略类游戏，GBA 平台，单人游玩。
+publisher: Zoo Digital Publishing
+release: 2003
+genre: Strategy
+players: 1
+game: 模拟大楼
+file: 模拟大楼.zip
+assets.box_front: Imgs/模拟大楼.png
+description: 《模拟大楼》，GBA 平台。
+game: 模拟市民 上流社会
+file: 模拟市民 上流社会.zip
+assets.box_front: Imgs/模拟市民 上流社会.png
+description: 《模拟市民 上流社会》，GBA 平台。
+game: 正义联盟 闪电侠
+file: 正义联盟 闪电侠.zip
+assets.box_front: Imgs/正义联盟 闪电侠.png
+description: 《正义联盟 闪电侠》，由 Warner Bros. Interactive 出品，2006 年发行，清版动作类游戏，GBA 平台，单人游玩。
+publisher: Warner Bros. Interactive
+release: 2006
+genre: Beat'em Up
+players: 1
+game: 正邪幻想史Zero
+file: 正邪幻想史Zero.zip
+assets.box_front: Imgs/正邪幻想史Zero.png
+description: 《正邪幻想史Zero》，GBA 平台。
+game: 武器种族传说 被封印的诗歌
+file: 武器种族传说 被封印的诗歌.zip
+assets.box_front: Imgs/武器种族传说 被封印的诗歌.png
+description: 《武器种族传说 被封印的诗歌》，GBA 平台。
+game: 死亡弹珠台
+file: 死亡弹珠台.zip
+assets.box_front: Imgs/死亡弹珠台.png
+description: 《死亡弹珠台》，由 SEGA 出品，2002 年发行，弹珠台类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: SEGA
+release: 2002
+genre: Pinball
+players: 4
+game: 死神 血染尸魂界
+file: 死神 血染尸魂界.zip
+assets.box_front: Imgs/死神 血染尸魂界.png
+description: 《死神 血染尸魂界》，GBA 平台。
+game: 毁灭战士
+file: 毁灭战士.zip
+assets.box_front: Imgs/毁灭战士.png
+description: 《毁灭战士》，GBA 平台。
+game: 毁灭战士2
+file: 毁灭战士2.zip
+assets.box_front: Imgs/毁灭战士2.png
+description: 《毁灭战士2》，由 Activision 出品，动作类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Activision
+genre: Action
+players: 4
+game: 沉默的狙击手
+file: 沉默的狙击手.zip
+assets.box_front: Imgs/沉默的狙击手.png
+description: 《沉默的狙击手》，GBA 平台。
+game: 沉默的遗迹 四狂神战记
+file: 沉默的遗迹 四狂神战记.zip
+assets.box_front: Imgs/沉默的遗迹 四狂神战记.png
+description: 《沉默的遗迹 四狂神战记》，GBA 平台。
+game: 波斯王子 时之沙
+file: 波斯王子 时之沙.zip
+assets.box_front: Imgs/波斯王子 时之沙.png
+description: 《波斯王子 时之沙》，GBA 平台。
+game: 泰思虎奇幻冒险2 丛林营救
+file: 泰思虎奇幻冒险2 丛林营救.zip
+assets.box_front: Imgs/泰思虎奇幻冒险2 丛林营救.png
+description: 《泰思虎奇幻冒险2 丛林营救》，由 EA Games 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: EA Games
+genre: Platform
+players: 1
+game: 洛克人 EXE1
+file: 洛克人 EXE1.zip
+assets.box_front: Imgs/洛克人 EXE1.png
+description: 《洛克人 EXE1》，由 Ubisoft 出品，2001 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+release: 2001
+genre: Action
+players: 1
+game: 洛克人 EXE2
+file: 洛克人 EXE2.zip
+assets.box_front: Imgs/洛克人 EXE2.png
+description: 《洛克人 EXE2》，GBA 平台。
+game: 洛克人 EXE3 白
+file: 洛克人 EXE3 白.zip
+assets.box_front: Imgs/洛克人 EXE3 白.png
+description: 《洛克人 EXE3 白》，由 Capcom 出品，2003 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2003
+genre: Role-playing (RPG)
+players: 2
+game: 洛克人 EXE3 蓝
+file: 洛克人 EXE3 蓝.zip
+assets.box_front: Imgs/洛克人 EXE3 蓝.png
+description: 《洛克人 EXE3 蓝》，GBA 平台。
+game: 洛克人 EXE4 红日
+file: 洛克人 EXE4 红日.zip
+assets.box_front: Imgs/洛克人 EXE4 红日.png
+description: 《洛克人 EXE4 红日》，由 Capcom 出品，2004 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2004
+genre: Role-playing (RPG)
+players: 2
+game: 洛克人 EXE4 蓝月
+file: 洛克人 EXE4 蓝月.zip
+assets.box_front: Imgs/洛克人 EXE4 蓝月.png
+description: 《洛克人 EXE4 蓝月》，由 Capcom 出品，2004 年发行，策略类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2004
+genre: Strategy
+players: 2
+game: 洛克人 EXE4.5 真实演习
+file: 洛克人 EXE4.5 真实演习.zip
+assets.box_front: Imgs/洛克人 EXE4.5 真实演习.png
+description: 《洛克人 EXE4.5 真实演习》，由 Capcom 出品，2004 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2004
+genre: Role-playing (RPG)
+players: 2
+game: 洛克人 EXE5 卡奈尔之队
+file: 洛克人 EXE5 卡奈尔之队.zip
+assets.box_front: Imgs/洛克人 EXE5 卡奈尔之队.png
+description: 《洛克人 EXE5 卡奈尔之队》，由 Capcom 出品，2005 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2005
+genre: Role-playing (RPG)
+players: 2
+game: 洛克人 EXE5 布鲁斯之队
+file: 洛克人 EXE5 布鲁斯之队.zip
+assets.box_front: Imgs/洛克人 EXE5 布鲁斯之队.png
+description: 《洛克人 EXE5 布鲁斯之队》，由 Capcom 出品，2005 年发行，策略类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 2005
+genre: Strategy
+players: 2
+game: 洛克人 EXE6 凤凰对战
+file: 洛克人 EXE6 凤凰对战.zip
+assets.box_front: Imgs/洛克人 EXE6 凤凰对战.png
+description: 《洛克人 EXE6 凤凰对战》，GBA 平台。
+game: 洛克人 EXE6 麒麟对战
+file: 洛克人 EXE6 麒麟对战.zip
+assets.box_front: Imgs/洛克人 EXE6 麒麟对战.png
+description: 《洛克人 EXE6 麒麟对战》，GBA 平台。
+game: 洛克人 ZERO1
+file: 洛克人 ZERO1.zip
+assets.box_front: Imgs/洛克人 ZERO1.png
+description: 《洛克人 ZERO1》，GBA 平台。
+game: 洛克人 ZERO2
+file: 洛克人 ZERO2.zip
+assets.box_front: Imgs/洛克人 ZERO2.png
+description: 《洛克人 ZERO2》，GBA 平台。
+game: 洛克人 ZERO3
+file: 洛克人 ZERO3.zip
+assets.box_front: Imgs/洛克人 ZERO3.png
+description: 《洛克人 ZERO3》，GBA 平台。
+game: 洛克人 ZERO4
+file: 洛克人 ZERO4.zip
+assets.box_front: Imgs/洛克人 ZERO4.png
+description: 《洛克人 ZERO4》，GBA 平台。
+game: 洛克人与佛鲁迪
+file: 洛克人与佛鲁迪.zip
+assets.box_front: Imgs/洛克人与佛鲁迪.png
+description: 《洛克人与佛鲁迪》，GBA 平台。
+game: 海底总动员
+file: 海底总动员.zip
+assets.box_front: Imgs/海底总动员.png
+description: 《海底总动员》，由 THQ 出品，冒险类游戏，GBA 平台，单人游玩。
+publisher: THQ
+genre: Adventure
+players: 1
+game: 海贼王 少年jump
+file: 海贼王 少年jump.zip
+assets.box_front: Imgs/海贼王 少年jump.png
+description: 《海贼王 少年jump》，由 Bandai 出品，2005 年发行，平台跳跃类游戏，GBA 平台。
+publisher: Bandai
+release: 2005
+genre: Platform
+game: 海贼王 棒球进行曲
+file: 海贼王 棒球进行曲.zip
+assets.box_front: Imgs/海贼王 棒球进行曲.png
+description: 《海贼王 棒球进行曲》，GBA 平台。
+game: 海贼王 目标!赏金之王
+file: 海贼王 目标!赏金之王.zip
+assets.box_front: Imgs/海贼王 目标!赏金之王.png
+description: 《海贼王 目标!赏金之王》，GBA 平台。
+game: 淘金者
+file: 淘金者.zip
+assets.box_front: Imgs/淘金者.png
+description: 《淘金者》，GBA 平台。
+game: 游戏王! 怪兽决斗8
+file: 游戏王! 怪兽决斗8.zip
+assets.box_front: Imgs/游戏王! 怪兽决斗8.png
+description: 《游戏王! 怪兽决斗8》，GBA 平台。
+game: 游戏王! 怪兽决斗EX2006
+file: 游戏王! 怪兽决斗EX2006.zip
+assets.box_front: Imgs/游戏王! 怪兽决斗EX2006.png
+description: 《游戏王! 怪兽决斗EX2006》，GBA 平台。
+game: 游戏王! 怪兽决斗GX
+file: 游戏王! 怪兽决斗GX.zip
+assets.box_front: Imgs/游戏王! 怪兽决斗GX.png
+description: 《游戏王! 怪兽决斗GX》，GBA 平台。
+game: 火影忍者 最强忍者大集合1
+file: 火影忍者 最强忍者大集合1.zip
+assets.box_front: Imgs/火影忍者 最强忍者大集合1.png
+description: 《火影忍者 最强忍者大集合1》，GBA 平台。
+game: 火影忍者 最强忍者大集合2
+file: 火影忍者 最强忍者大集合2.zip
+assets.box_front: Imgs/火影忍者 最强忍者大集合2.png
+description: 《火影忍者 最强忍者大集合2》，GBA 平台。
+game: 火影忍者 木叶战记
+file: 火影忍者 木叶战记.zip
+assets.box_front: Imgs/火影忍者 木叶战记.png
+description: 《火影忍者 木叶战记》，GBA 平台。
+game: 火炎职业摔跤
+file: 火炎职业摔跤.zip
+assets.box_front: Imgs/火炎职业摔跤.png
+description: 《火炎职业摔跤》，由 Bam Entertainment 出品，Various类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Bam Entertainment
+genre: Various
+players: 4
+game: 火焰纹章 双面战争
+file: 火焰纹章 双面战争.zip
+assets.box_front: Imgs/火焰纹章 双面战争.png
+description: 《火焰纹章 双面战争》，GBA 平台。
+game: 火焰纹章 四国之王
+file: 火焰纹章 四国之王.zip
+assets.box_front: Imgs/火焰纹章 四国之王.png
+description: 《火焰纹章 四国之王》，GBA 平台。
+game: 火焰纹章 回声 另一个英雄王
+file: 火焰纹章 回声 另一个英雄王.zip
+assets.box_front: Imgs/火焰纹章 回声 另一个英雄王.png
+description: 《火焰纹章 回声 另一个英雄王》，GBA 平台。
+game: 火焰纹章 圣邪之意志 完善版
+file: 火焰纹章 圣邪之意志 完善版.zip
+assets.box_front: Imgs/火焰纹章 圣邪之意志 完善版.png
+description: 《火焰纹章 圣邪之意志 完善版》，GBA 平台。
+game: 火焰纹章 圣魔之光石
+file: 火焰纹章 圣魔之光石.zip
+assets.box_front: Imgs/火焰纹章 圣魔之光石.png
+description: 《火焰纹章 圣魔之光石》，GBA 平台。
+game: 火焰纹章 埃力格之枪
+file: 火焰纹章 埃力格之枪.zip
+assets.box_front: Imgs/火焰纹章 埃力格之枪.png
+description: 《火焰纹章 埃力格之枪》，GBA 平台。
+game: 火焰纹章 暗黑龙重生
+file: 火焰纹章 暗黑龙重生.zip
+assets.box_front: Imgs/火焰纹章 暗黑龙重生.png
+description: 《火焰纹章 暗黑龙重生》，GBA 平台。
+game: 火焰纹章 正义与荣耀
+file: 火焰纹章 正义与荣耀.zip
+assets.box_front: Imgs/火焰纹章 正义与荣耀.png
+description: 《火焰纹章 正义与荣耀》，GBA 平台。
+game: 火焰纹章 神圣三重奏 最终之战
+file: 火焰纹章 神圣三重奏 最终之战.zip
+assets.box_front: Imgs/火焰纹章 神圣三重奏 最终之战.png
+description: 《火焰纹章 神圣三重奏 最终之战》，GBA 平台。
+game: 火焰纹章 神机军师
+file: 火焰纹章 神机军师.zip
+assets.box_front: Imgs/火焰纹章 神机军师.png
+description: 《火焰纹章 神机军师》，GBA 平台。
+game: 火焰纹章 英雄之路 正篇
+file: 火焰纹章 英雄之路 正篇.zip
+assets.box_front: Imgs/火焰纹章 英雄之路 正篇.png
+description: 《火焰纹章 英雄之路 正篇》，GBA 平台。
+game: 火焰纹章 英雄之路 特别篇
+file: 火焰纹章 英雄之路 特别篇.zip
+assets.box_front: Imgs/火焰纹章 英雄之路 特别篇.png
+description: 《火焰纹章 英雄之路 特别篇》，GBA 平台。
+game: 火焰纹章：圣魔之光石
+file: 火焰纹章：圣魔之光石.gba
+assets.box_front: Imgs/火焰纹章：圣魔之光石.png
+description: 《火焰纹章：圣魔之光石》，GBA 平台。
+game: 炸弹人 Max2
+file: 炸弹人 Max2.zip
+assets.box_front: Imgs/炸弹人 Max2.png
+description: 《炸弹人 Max2》，由 Vivendi Universal Games 出品，2002 年发行，动作类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Vivendi Universal Games
+release: 2002
+genre: Action
+players: 4
+game: 炸弹人传说
+file: 炸弹人传说.zip
+assets.box_front: Imgs/炸弹人传说.png
+description: 《炸弹人传说》，GBA 平台。
+game: 炸弹人杰特斯
+file: 炸弹人杰特斯.zip
+assets.box_front: Imgs/炸弹人杰特斯.png
+description: 《炸弹人杰特斯》，由 Hudson 出品，2002 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Hudson
+release: 2002
+genre: Role-playing (RPG)
+players: 4
+game: 烈火之炎
+file: 烈火之炎.zip
+assets.box_front: Imgs/烈火之炎.png
+description: 《烈火之炎》，GBA 平台。
+game: 热血物语EX
+file: 热血物语EX.zip
+assets.box_front: Imgs/热血物语EX.png
+description: 《热血物语EX》，GBA 平台。
+game: 热血物语EX加强版
+file: 热血物语EX加强版.zip
+assets.box_front: Imgs/热血物语EX加强版.png
+description: 《热血物语EX加强版》，GBA 平台。
+    本作为《热血物语EX》的加强版版本。
+game: 爆转陀螺
+file: 爆转陀螺.zip
+assets.box_front: Imgs/爆转陀螺.png
+description: 《爆转陀螺》，GBA 平台。
+game: 牧场物语：矿石镇的伙伴们
+file: 牧场物语：矿石镇的伙伴们.gba
+assets.box_front: Imgs/牧场物语：矿石镇的伙伴们.png
+description: 《牧场物语：矿石镇的伙伴们》，GBA 平台。
+game: 王国之心 记忆之链
+file: 王国之心 记忆之链.zip
+assets.box_front: Imgs/王国之心 记忆之链.png
+description: 《王国之心 记忆之链》，GBA 平台。
+game: 班卓卡祖伊格兰蒂的复仇
+file: 班卓卡祖伊格兰蒂的复仇.zip
+assets.box_front: Imgs/班卓卡祖伊格兰蒂的复仇.png
+description: 《班卓卡祖伊格兰蒂的复仇》，GBA 平台。
+game: 瓦里奥世界
+file: 瓦里奥世界.zip
+assets.box_front: Imgs/瓦里奥世界.png
+description: 《瓦里奥世界》，GBA 平台。
+game: 瓦里奥制造
+file: 瓦里奥制造.zip
+assets.box_front: Imgs/瓦里奥制造.png
+description: 《瓦里奥制造》，GBA 平台。
+game: 甲虫王者 迈上冠军之路
+file: 甲虫王者 迈上冠军之路.zip
+assets.box_front: Imgs/甲虫王者 迈上冠军之路.png
+description: 《甲虫王者 迈上冠军之路》，GBA 平台。
+game: 电梯大战
+file: 电梯大战.zip
+assets.box_front: Imgs/电梯大战.png
+description: 《电梯大战》，GBA 平台。
+game: 番茄酱王国大冒险
+file: 番茄酱王国大冒险.zip
+assets.box_front: Imgs/番茄酱王国大冒险.png
+description: 《番茄酱王国大冒险》，由 Nintendo 出品，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+genre: Role-playing (RPG)
+players: 1
+game: 疯狂大脚车
+file: 疯狂大脚车.zip
+assets.box_front: Imgs/疯狂大脚车.png
+description: 《疯狂大脚车》，由 THQ 出品，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: THQ
+genre: Racing
+players: 4
+game: 疯狂驾驶员
+file: 疯狂驾驶员.zip
+assets.box_front: Imgs/疯狂驾驶员.png
+description: 《疯狂驾驶员》，由 Zoo Digital Publishing 出品，2004 年发行，竞速类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Zoo Digital Publishing
+release: 2004
+genre: Racing
+players: 2
+game: 白夜BGM重置版1（纯享版）
+file: 白夜BGM重置版1（纯享版）.zip
+assets.box_front: Imgs/白夜BGM重置版1（纯享版）.png
+description: 《白夜BGM重置版1（纯享版）》，GBA 平台。
+game: 白夜BGM重置版2（原描边+原披风残影）
+file: 白夜BGM重置版2（原描边+原披风残影）.zip
+assets.box_front: Imgs/白夜BGM重置版2（原描边+原披风残影）.png
+description: 《白夜BGM重置版2（原描边+原披风残影）》，GBA 平台。
+game: 白夜BGM重置版3（披风残影+彩色鞭-有描边+原手感）
+file: 白夜BGM重置版3（披风残影+彩色鞭-有描边+原手感）.zip
+assets.box_front: Imgs/白夜BGM重置版3（披风残影+彩色鞭-有描边+原手感）.png
+description: 《白夜BGM重置版3（披风残影+彩色鞭-有描边+原手感）》，GBA 平台。
+game: 白夜终极版1
+file: 白夜终极版1.zip
+assets.box_front: Imgs/白夜终极版1.png
+description: 《白夜终极版1》，GBA 平台。
+game: 白夜终极版2+彩色鞭+重力改（铁链）
+file: 白夜终极版2+彩色鞭+重力改（铁链）.zip
+assets.box_front: Imgs/白夜终极版2+彩色鞭+重力改（铁链）.png
+description: 《白夜终极版2+彩色鞭+重力改（铁链）》，GBA 平台。
+game: 皇家骑士团外传
+file: 皇家骑士团外传.zip
+assets.box_front: Imgs/皇家骑士团外传.png
+description: 《皇家骑士团外传》，GBA 平台。
+game: 真三国无双A
+file: 真三国无双A.zip
+assets.box_front: Imgs/真三国无双A.png
+description: 《真三国无双A》，GBA 平台。
+game: 真人快打 致命联盟
+file: 真人快打 致命联盟.zip
+assets.box_front: Imgs/真人快打 致命联盟.png
+description: 《真人快打 致命联盟》，由 Midway 出品，2003 年发行，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Midway
+release: 2003
+genre: Fighting
+players: 2
+game: 真女神转生
+file: 真女神转生.zip
+assets.box_front: Imgs/真女神转生.png
+description: 《真女神转生》，GBA 平台。
+game: 眼镜君 让你喷饭
+file: 眼镜君 让你喷饭.zip
+assets.box_front: Imgs/眼镜君 让你喷饭.png
+description: 《眼镜君 让你喷饭》，由 Konami 出品，2004 年发行，GBA 平台，单人游玩。
+publisher: Konami
+release: 2004
+players: 1
+game: 神勇火星人 反冲大作战
+file: 神勇火星人 反冲大作战.zip
+assets.box_front: Imgs/神勇火星人 反冲大作战.png
+description: 《神勇火星人 反冲大作战》，由 Vivendi Universal Games 出品，2002 年发行，射击类游戏，GBA 平台。
+publisher: Vivendi Universal Games
+release: 2002
+genre: Shooter
+game: 神奇四侠 霹雳火
+file: 神奇四侠 霹雳火.zip
+assets.box_front: Imgs/神奇四侠 霹雳火.png
+description: 《神奇四侠 霹雳火》，由 Activision 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+release: 2005
+genre: Platform
+players: 1
+game: 禁货猎人 时空的冒险者
+file: 禁货猎人 时空的冒险者.zip
+assets.box_front: Imgs/禁货猎人 时空的冒险者.png
+description: 《禁货猎人 时空的冒险者》，GBA 平台。
+game: 究极截拳道 金太郎的复仇
+file: 究极截拳道 金太郎的复仇.zip
+assets.box_front: Imgs/究极截拳道 金太郎的复仇.png
+description: 《究极截拳道 金太郎的复仇》，GBA 平台。
+game: 空战神鹰2
+file: 空战神鹰2.zip
+assets.box_front: Imgs/空战神鹰2.png
+description: 《空战神鹰2》，GBA 平台。
+game: 第一神拳 格斗赛
+file: 第一神拳 格斗赛.zip
+assets.box_front: Imgs/第一神拳 格斗赛.png
+description: 《第一神拳 格斗赛》，由 ESP Software 出品，2002 年发行，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: ESP Software
+release: 2002
+genre: Fighting
+players: 2
+game: 索尼克 A1
+file: 索尼克 A1.zip
+assets.box_front: Imgs/索尼克 A1.png
+description: 《索尼克 A1》，GBA 平台。
+game: 索尼克 A2
+file: 索尼克 A2.zip
+assets.box_front: Imgs/索尼克 A2.png
+description: 《索尼克 A2》，GBA 平台。
+game: 索尼克 A3
+file: 索尼克 A3.zip
+assets.box_front: Imgs/索尼克 A3.png
+description: 《索尼克 A3》，GBA 平台。
+game: 索尼克 战斗
+file: 索尼克 战斗.zip
+assets.box_front: Imgs/索尼克 战斗.png
+description: 《索尼克 战斗》，GBA 平台。
+game: 索尼克进化
+file: 索尼克进化.gba
+assets.box_front: Imgs/索尼克进化.png
+description: 《索尼克进化》，GBA 平台。
+game: 索尼克进化2
+file: 索尼克进化2.gba
+assets.box_front: Imgs/索尼克进化2.png
+description: 《索尼克进化2》，GBA 平台。
+game: 索尼克进化3
+file: 索尼克进化3.gba
+assets.box_front: Imgs/索尼克进化3.png
+description: 《索尼克进化3》，GBA 平台。
+game: 约束之地 利维艾拉
+file: 约束之地 利维艾拉.zip
+assets.box_front: Imgs/约束之地 利维艾拉.png
+description: 《约束之地 利维艾拉》，GBA 平台。
+game: 纯情房东俏房客
+file: 纯情房东俏房客.zip
+assets.box_front: Imgs/纯情房东俏房客.png
+description: 《纯情房东俏房客》，GBA 平台。
+game: 细胞分裂
+file: 细胞分裂.zip
+assets.box_front: Imgs/细胞分裂.png
+description: 《细胞分裂》，由 Ubisoft 出品，2003 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+release: 2003
+genre: Action
+players: 1
+game: 终极沙滩足球
+file: 终极沙滩足球.zip
+assets.box_front: Imgs/终极沙滩足球.png
+description: 《终极沙滩足球》，由 Wanadoo Edition 出品，2003 年发行，体育类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Wanadoo Edition
+release: 2003
+genre: Sports
+players: 2
+game: 终极蜘蛛侠
+file: 终极蜘蛛侠.zip
+assets.box_front: Imgs/终极蜘蛛侠.png
+description: 《终极蜘蛛侠》，由 Activision 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+release: 2005
+genre: Platform
+players: 1
+game: 绵羊之心
+file: 绵羊之心.zip
+assets.box_front: Imgs/绵羊之心.png
+description: 《绵羊之心》，由 Empire Interactive 出品，益智类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Empire Interactive
+genre: Puzzle
+players: 4
+game: 网球王子 天才少年学院
+file: 网球王子 天才少年学院.zip
+assets.box_front: Imgs/网球王子 天才少年学院.png
+description: 《网球王子 天才少年学院》，GBA 平台。
+game: 网球王子2004 光荣之金
+file: 网球王子2004 光荣之金.zip
+assets.box_front: Imgs/网球王子2004 光荣之金.png
+description: 《网球王子2004 光荣之金》，GBA 平台。
+game: 网球王子2004 时尚之银
+file: 网球王子2004 时尚之银.zip
+assets.box_front: Imgs/网球王子2004 时尚之银.png
+description: 《网球王子2004 时尚之银》，GBA 平台。
+game: 美丽新世界
+file: 美丽新世界.zip
+assets.box_front: Imgs/美丽新世界.png
+description: 《美丽新世界》，由 Atari SA 出品，2004 年发行，清版动作类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Atari SA
+release: 2004
+genre: Beat'em Up
+players: 2
+game: 美国龙 杰克龙
+file: 美国龙 杰克龙.zip
+assets.box_front: Imgs/美国龙 杰克龙.png
+description: 《美国龙 杰克龙》，由 Buena Vista Games 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Buena Vista Games
+genre: Platform
+players: 1
+game: 耀西的万有引力
+file: 耀西的万有引力.zip
+assets.box_front: Imgs/耀西的万有引力.png
+description: 《耀西的万有引力》，由 Nintendo 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+release: 2005
+genre: Platform
+players: 1
+game: 舞之刃 闪光
+file: 舞之刃 闪光.zip
+assets.box_front: Imgs/舞之刃 闪光.png
+description: 《舞之刃 闪光》，GBA 平台。
+game: 艾莉与安丝的炼金工房
+file: 艾莉与安丝的炼金工房.zip
+assets.box_front: Imgs/艾莉与安丝的炼金工房.png
+description: 《艾莉与安丝的炼金工房》，GBA 平台。
+game: 节奏天国
+file: 节奏天国.zip
+assets.box_front: Imgs/节奏天国.png
+description: 《节奏天国》，GBA 平台。
+game: 花火大会
+file: 花火大会.zip
+assets.box_front: Imgs/花火大会.png
+description: 《花火大会》，GBA 平台。
+game: 范海辛
+file: 范海辛.zip
+assets.box_front: Imgs/范海辛.png
+description: 《范海辛》，由 Sierra 出品，2004 年发行，冒险类游戏，GBA 平台，单人游玩。
+publisher: Sierra
+release: 2004
+genre: Adventure
+players: 1
+game: 荣誉勋章 地下抵抗
+file: 荣誉勋章 地下抵抗.zip
+assets.box_front: Imgs/荣誉勋章 地下抵抗.png
+description: 《荣誉勋章 地下抵抗》，GBA 平台。
+game: 荣誉勋章 渗透者
+file: 荣誉勋章 渗透者.zip
+assets.box_front: Imgs/荣誉勋章 渗透者.png
+description: 《荣誉勋章 渗透者》，GBA 平台。
+game: 蔬菜总动员 拉里男孩和坏苹果
+file: 蔬菜总动员 拉里男孩和坏苹果.zip
+assets.box_front: Imgs/蔬菜总动员 拉里男孩和坏苹果.png
+description: 《蔬菜总动员 拉里男孩和坏苹果》，由 Crave Entertainment 出品，2006 年发行，冒险类游戏，GBA 平台，单人游玩。
+publisher: Crave Entertainment
+release: 2006
+genre: Adventure
+players: 1
+game: 虚拟网球
+file: 虚拟网球.zip
+assets.box_front: Imgs/虚拟网球.png
+description: 《虚拟网球》，GBA 平台。
+game: 蜂巢
+file: 蜂巢.zip
+assets.box_front: Imgs/蜂巢.png
+description: 《蜂巢》，由 Southpeak Interactive 出品，2006 年发行，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Southpeak Interactive
+release: 2006
+genre: Role-playing (RPG)
+players: 1
+game: 蜘蛛侠1 密斯特里奥的威胁
+file: 蜘蛛侠1 密斯特里奥的威胁.zip
+assets.box_front: Imgs/蜘蛛侠1 密斯特里奥的威胁.png
+description: 《蜘蛛侠1 密斯特里奥的威胁》，GBA 平台。
+game: 蜘蛛侠2 纽约之战
+file: 蜘蛛侠2 纽约之战.zip
+assets.box_front: Imgs/蜘蛛侠2 纽约之战.png
+description: 《蜘蛛侠2 纽约之战》，GBA 平台。
+game: 蜡笔小新1 电影王国大冒险
+file: 蜡笔小新1 电影王国大冒险.zip
+assets.box_front: Imgs/蜡笔小新1 电影王国大冒险.png
+description: 《蜡笔小新1 电影王国大冒险》，由 Atari SA 出品，2004 年发行，GBA 平台，单人游玩。
+publisher: Atari SA
+release: 2004
+players: 1
+game: 蜡笔小新2 食玩都大冒险
+file: 蜡笔小新2 食玩都大冒险.zip
+assets.box_front: Imgs/蜡笔小新2 食玩都大冒险.png
+description: 《蜡笔小新2 食玩都大冒险》，由 Atari SA 出品，2006 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Atari SA
+release: 2006
+genre: Action
+players: 1
+game: 融合方块
+file: 融合方块.zip
+assets.box_front: Imgs/融合方块.png
+description: 《融合方块》，由 Rage Software 出品，策略类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Rage Software
+genre: Strategy
+players: 4
+game: 螺旋破坏者
+file: 螺旋破坏者.zip
+assets.box_front: Imgs/螺旋破坏者.png
+description: 《螺旋破坏者》，GBA 平台。
+game: 街头涂鸦
+file: 街头涂鸦.zip
+assets.box_front: Imgs/街头涂鸦.png
+description: 《街头涂鸦》，由 SEGA 出品，2003 年发行，体育类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: SEGA
+release: 2003
+genre: Sports
+players: 4
+game: 街头霸王 ZERO3
+file: 街头霸王 ZERO3.zip
+assets.box_front: Imgs/街头霸王 ZERO3.png
+description: 《街头霸王 ZERO3》，由 Capcom 出品，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Capcom
+genre: Fighting
+players: 2
+game: 西格马星际传奇
+file: 西格马星际传奇.zip
+assets.box_front: Imgs/西格马星际传奇.png
+description: 《西格马星际传奇》，由 Atari SA 出品，Role-playing (RPG)类游戏，GBA 平台，单人游玩。
+publisher: Atari SA
+genre: Role-playing (RPG)
+players: 1
+game: 超人特攻队
+file: 超人特攻队.zip
+assets.box_front: Imgs/超人特攻队.png
+description: 《超人特攻队》，GBA 平台。
+game: 超写真麻雀同窗会
+file: 超写真麻雀同窗会.zip
+assets.box_front: Imgs/超写真麻雀同窗会.png
+description: 《超写真麻雀同窗会》，GBA 平台。
+game: 超级忍 复仇
+file: 超级忍 复仇.zip
+assets.box_front: Imgs/超级忍 复仇.png
+description: 《超级忍 复仇》，由 SEGA 出品，2002 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: SEGA
+release: 2002
+genre: Platform
+players: 1
+game: 超级方块战士2
+file: 超级方块战士2.zip
+assets.box_front: Imgs/超级方块战士2.png
+description: 《超级方块战士2》，GBA 平台。
+game: 超级机器人大战A
+file: 超级机器人大战A.zip
+assets.box_front: Imgs/超级机器人大战A.png
+description: 《超级机器人大战A》，GBA 平台。
+game: 超级机器人大战D
+file: 超级机器人大战D.zip
+assets.box_front: Imgs/超级机器人大战D.png
+description: 《超级机器人大战D》，GBA 平台。
+game: 超级机器人大战J
+file: 超级机器人大战J.zip
+assets.box_front: Imgs/超级机器人大战J.png
+description: 《超级机器人大战J》，GBA 平台。
+game: 超级机器人大战R
+file: 超级机器人大战R.zip
+assets.box_front: Imgs/超级机器人大战R.png
+description: 《超级机器人大战R》，GBA 平台。
+game: 超级火枪英雄
+file: 超级火枪英雄.zip
+assets.box_front: Imgs/超级火枪英雄.png
+description: 《超级火枪英雄》，GBA 平台。
+game: 超级猴子球
+file: 超级猴子球.zip
+assets.box_front: Imgs/超级猴子球.png
+description: 《超级猴子球》，由 SEGA 出品，2002 年发行，动作类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: SEGA
+release: 2002
+genre: Action
+players: 4
+game: 超级街头霸王2X
+file: 超级街头霸王2X.zip
+assets.box_front: Imgs/超级街头霸王2X.png
+description: 《超级街头霸王2X》，GBA 平台。
+game: 超级躲避球
+file: 超级躲避球.zip
+assets.box_front: Imgs/超级躲避球.png
+description: 《超级躲避球》，GBA 平台。
+game: 超级马里奥A
+file: 超级马里奥A.gba
+assets.box_front: Imgs/超级马里奥A.png
+description: 《超级马里奥A》，GBA 平台。
+game: 超级马里奥对大金刚
+file: 超级马里奥对大金刚.zip
+assets.box_front: Imgs/超级马里奥对大金刚.png
+description: 《超级马里奥对大金刚》，GBA 平台。
+game: 超级马里奥弹珠台
+file: 超级马里奥弹珠台.zip
+assets.box_front: Imgs/超级马里奥弹珠台.png
+description: 《超级马里奥弹珠台》，GBA 平台。
+game: 超魔界村R
+file: 超魔界村R.zip
+assets.box_front: Imgs/超魔界村R.png
+description: 《超魔界村R》，GBA 平台。
+game: 越野摩托车A
+file: 越野摩托车A.zip
+assets.box_front: Imgs/越野摩托车A.png
+description: 《越野摩托车A》，由 Ubisoft 出品，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Ubisoft
+genre: Racing
+players: 4
+game: 车神3
+file: 车神3.zip
+assets.box_front: Imgs/车神3.png
+description: 《车神3》，GBA 平台。
+game: 轻松玩欢乐足球
+file: 轻松玩欢乐足球.zip
+assets.box_front: Imgs/轻松玩欢乐足球.png
+description: 《轻松玩欢乐足球》，GBA 平台。
+game: 辛普森之愤怒大道
+file: 辛普森之愤怒大道.zip
+assets.box_front: Imgs/辛普森之愤怒大道.png
+description: 《辛普森之愤怒大道》，由 THQ 出品，竞速类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: THQ
+genre: Racing
+players: 2
+game: 进化特区
+file: 进化特区.zip
+assets.box_front: Imgs/进化特区.png
+description: 《进化特区》，由 Activision 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 迪士尼 全明星体育系列之摩托车
+file: 迪士尼 全明星体育系列之摩托车.zip
+assets.box_front: Imgs/迪士尼 全明星体育系列之摩托车.png
+description: 《迪士尼 全明星体育系列之摩托车》，由 Konami 出品，2003 年发行，竞速类游戏，GBA 平台，单人游玩。
+publisher: Konami
+release: 2003
+genre: Racing
+players: 1
+game: 迪士尼 星际宝贝
+file: 迪士尼 星际宝贝.zip
+assets.box_front: Imgs/迪士尼 星际宝贝.png
+description: 《迪士尼 星际宝贝》，由 Ubisoft 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+genre: Platform
+players: 1
+game: 逆转裁判1
+file: 逆转裁判1.zip
+assets.box_front: Imgs/逆转裁判1.png
+description: 《逆转裁判1》，GBA 平台。
+game: 逆转裁判2
+file: 逆转裁判2.zip
+assets.box_front: Imgs/逆转裁判2.png
+description: 《逆转裁判2》，GBA 平台。
+game: 逆转裁判3
+file: 逆转裁判3.zip
+assets.box_front: Imgs/逆转裁判3.png
+description: 《逆转裁判3》，GBA 平台。
+game: 通勤一笔
+file: 通勤一笔.zip
+assets.box_front: Imgs/通勤一笔.png
+description: 《通勤一笔》，GBA 平台。
+game: 通灵王 精神大师
+file: 通灵王 精神大师.zip
+assets.box_front: Imgs/通灵王 精神大师.png
+description: 《通灵王 精神大师》，GBA 平台。
+game: 通灵王 精神大师2
+file: 通灵王 精神大师2.zip
+assets.box_front: Imgs/通灵王 精神大师2.png
+description: 《通灵王 精神大师2》，由 Konami 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Konami
+release: 2005
+genre: Platform
+players: 1
+game: 都市的雪人
+file: 都市的雪人.zip
+assets.box_front: Imgs/都市的雪人.png
+description: 《都市的雪人》，由 Telegames 出品，冒险类游戏，GBA 平台，单人游玩。
+publisher: Telegames
+genre: Adventure
+players: 1
+game: 重装机兵2 改
+file: 重装机兵2 改.zip
+assets.box_front: Imgs/重装机兵2 改.png
+description: 《重装机兵2 改》，GBA 平台。
+game: 重装骑士
+file: 重装骑士.zip
+assets.box_front: Imgs/重装骑士.png
+description: 《重装骑士》，GBA 平台。
+game: 金童卡修
+file: 金童卡修.zip
+assets.box_front: Imgs/金童卡修.png
+description: 《金童卡修》，GBA 平台。
+game: 钢之炼金术师 回忆之奏鸣曲
+file: 钢之炼金术师 回忆之奏鸣曲.zip
+assets.box_front: Imgs/钢之炼金术师 回忆之奏鸣曲.png
+description: 《钢之炼金术师 回忆之奏鸣曲》，GBA 平台。
+game: 钢之炼金术师 迷走的轮舞曲
+file: 钢之炼金术师 迷走的轮舞曲.zip
+assets.box_front: Imgs/钢之炼金术师 迷走的轮舞曲.png
+description: 《钢之炼金术师 迷走的轮舞曲》，GBA 平台。
+game: 钢铁帝国
+file: 钢铁帝国.zip
+assets.box_front: Imgs/钢铁帝国.png
+description: 《钢铁帝国》，GBA 平台。
+game: 钻地小子2
+file: 钻地小子2.zip
+assets.box_front: Imgs/钻地小子2.png
+description: 《钻地小子2》，由 Infogrames 出品，2005 年发行，策略类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Infogrames
+release: 2005
+genre: Strategy
+players: 2
+game: 钻地小子A
+file: 钻地小子A.zip
+assets.box_front: Imgs/钻地小子A.png
+description: 《钻地小子A》，GBA 平台。
+game: 铁拳
+file: 铁拳.zip
+assets.box_front: Imgs/铁拳.png
+description: 《铁拳》，GBA 平台。
+game: 铁臂阿童木
+file: 铁臂阿童木.zip
+assets.box_front: Imgs/铁臂阿童木.png
+description: 《铁臂阿童木》，GBA 平台。
+game: 银河战士 幽灵任务2 圣诞夜惊魂
+file: 银河战士 幽灵任务2 圣诞夜惊魂.zip
+assets.box_front: Imgs/银河战士 幽灵任务2 圣诞夜惊魂.png
+description: 《银河战士 幽灵任务2 圣诞夜惊魂》，GBA 平台。
+game: 银河战士1 融合
+file: 银河战士1 融合.zip
+assets.box_front: Imgs/银河战士1 融合.png
+description: 《银河战士1 融合》，由 Nintendo 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Nintendo
+genre: Platform
+players: 1
+game: 银河战士2 零点任务
+file: 银河战士2 零点任务.zip
+assets.box_front: Imgs/银河战士2 零点任务.png
+description: 《银河战士2 零点任务》，GBA 平台。
+game: 银河战士：融合
+file: 银河战士：融合.gba
+assets.box_front: Imgs/银河战士：融合.png
+description: 《银河战士：融合》，GBA 平台。
+game: 银河战士：零点任务
+file: 银河战士：零点任务.gba
+assets.box_front: Imgs/银河战士：零点任务.png
+description: 《银河战士：零点任务》，GBA 平台。
+game: 银河战机
+file: 银河战机.zip
+assets.box_front: Imgs/银河战机.png
+description: 《银河战机》，由 Kemco 出品，2001 年发行，Shoot'em Up类游戏，GBA 平台，单人游玩。
+publisher: Kemco
+release: 2001
+genre: Shoot'em Up
+players: 1
+game: 闪灵二人组
+file: 闪灵二人组.zip
+assets.box_front: Imgs/闪灵二人组.png
+description: 《闪灵二人组》，GBA 平台。
+game: 阿滋漫画大王
+file: 阿滋漫画大王.zip
+assets.box_front: Imgs/阿滋漫画大王.png
+description: 《阿滋漫画大王》，GBA 平台。
+game: 陆行鸟大陆
+file: 陆行鸟大陆.zip
+assets.box_front: Imgs/陆行鸟大陆.png
+description: 《陆行鸟大陆》，GBA 平台。
+game: 降世神通 燃烧的大地
+file: 降世神通 燃烧的大地.zip
+assets.box_front: Imgs/降世神通 燃烧的大地.png
+description: 《降世神通 燃烧的大地》，由 THQ 出品，2007 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: THQ
+release: 2007
+genre: Action
+players: 1
+game: 限制级特工
+file: 限制级特工.zip
+assets.box_front: Imgs/限制级特工.png
+description: 《限制级特工》，由 Activision 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 雷曼 疯兔
+file: 雷曼 疯兔.zip
+assets.box_front: Imgs/雷曼 疯兔.png
+description: 《雷曼 疯兔》，由 Ubisoft 出品，2006 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+release: 2006
+genre: Platform
+players: 1
+game: 雷曼3
+file: 雷曼3.zip
+assets.box_front: Imgs/雷曼3.png
+description: 《雷曼3》，由 Ubisoft 出品，平台跳跃类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Ubisoft
+genre: Platform
+players: 4
+game: 雷曼A
+file: 雷曼A.zip
+assets.box_front: Imgs/雷曼A.png
+description: 《雷曼A》，由 Ubisoft 出品，2001 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Ubisoft
+release: 2001
+genre: Platform
+players: 1
+game: 雷蒙斯尼奇的不幸历险
+file: 雷蒙斯尼奇的不幸历险.zip
+assets.box_front: Imgs/雷蒙斯尼奇的不幸历险.png
+description: 《雷蒙斯尼奇的不幸历险》，由 Activision 出品，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 雷霆万钧
+file: 雷霆万钧.zip
+assets.box_front: Imgs/雷霆万钧.png
+description: 《雷霆万钧》，由 Bam Entertainment 出品，2005 年发行，动作类游戏，GBA 平台，单人游玩。
+publisher: Bam Entertainment
+release: 2005
+genre: Action
+players: 1
+game: 露娜传说
+file: 露娜传说.zip
+assets.box_front: Imgs/露娜传说.png
+description: 《露娜传说》，GBA 平台。
+game: 风之克罗诺亚1 梦之帝国
+file: 风之克罗诺亚1 梦之帝国.zip
+assets.box_front: Imgs/风之克罗诺亚1 梦之帝国.png
+description: 《风之克罗诺亚1 梦之帝国》，GBA 平台。
+game: 风之克罗诺亚2 梦之锦标赛
+file: 风之克罗诺亚2 梦之锦标赛.zip
+assets.box_front: Imgs/风之克罗诺亚2 梦之锦标赛.png
+description: 《风之克罗诺亚2 梦之锦标赛》，GBA 平台。
+game: 马达加斯加
+file: 马达加斯加.zip
+assets.box_front: Imgs/马达加斯加.png
+description: 《马达加斯加》，由 Activision 出品，2005 年发行，平台跳跃类游戏，GBA 平台，单人游玩。
+publisher: Activision
+release: 2005
+genre: Platform
+players: 1
+game: 马里奥与路易基RPG
+file: 马里奥与路易基RPG.zip
+assets.box_front: Imgs/马里奥与路易基RPG.png
+description: 《马里奥与路易基RPG》，由 Nintendo 出品，Role-playing (RPG)类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Nintendo
+genre: Role-playing (RPG)
+players: 4
+game: 马里奥网球 力量之旅
+file: 马里奥网球 力量之旅.zip
+assets.box_front: Imgs/马里奥网球 力量之旅.png
+description: 《马里奥网球 力量之旅》，由 Nintendo 出品，2005 年发行，体育类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 2005
+genre: Sports
+players: 4
+game: 马里奥赛车
+file: 马里奥赛车.zip
+assets.box_front: Imgs/马里奥赛车.png
+description: 《马里奥赛车》，GBA 平台。
+game: 马里奥赛车：超级巡回赛
+file: 马里奥赛车：超级巡回赛.gba
+assets.box_front: Imgs/马里奥赛车：超级巡回赛.png
+description: 《马里奥赛车：超级巡回赛》，GBA 平台。
+game: 马里奥高尔夫A
+file: 马里奥高尔夫A.zip
+assets.box_front: Imgs/马里奥高尔夫A.png
+description: 《马里奥高尔夫A》，由 Nintendo 出品，2004 年发行，体育类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 2004
+genre: Sports
+players: 4
+game: 高级战争1
+file: 高级战争1.zip
+assets.box_front: Imgs/高级战争1.png
+description: 《高级战争1》，GBA 平台。
+game: 高级战争2
+file: 高级战争2.zip
+assets.box_front: Imgs/高级战争2.png
+description: 《高级战争2》，GBA 平台。
+game: 高达Seed Destiny
+file: 高达Seed Destiny.zip
+assets.box_front: Imgs/高达Seed Destiny.png
+description: 《高达Seed Destiny》，由 Bandai 出品，2004 年发行，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2004
+genre: Fighting
+players: 2
+game: 高达Seed 战场上的朋友与你
+file: 高达Seed 战场上的朋友与你.zip
+assets.box_front: Imgs/高达Seed 战场上的朋友与你.png
+description: 《高达Seed 战场上的朋友与你》，GBA 平台。
+game: 高达Seed 战斗突击
+file: 高达Seed 战斗突击.zip
+assets.box_front: Imgs/高达Seed 战斗突击.png
+description: 《高达Seed 战斗突击》，由 Bandai 出品，2004 年发行，格斗类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Bandai
+release: 2004
+genre: Fighting
+players: 2
+game: 高速改装赛车
+file: 高速改装赛车.zip
+assets.box_front: Imgs/高速改装赛车.png
+description: 《高速改装赛车》，由 Zoo Digital Publishing 出品，2005 年发行，竞速类游戏，GBA 平台，支持 4-4 人游玩。
+publisher: Zoo Digital Publishing
+release: 2005
+genre: Racing
+players: 4
+game: 鬼太郎 危机一发!
+file: 鬼太郎 危机一发!.zip
+assets.box_front: Imgs/鬼太郎 危机一发!.png
+description: 《鬼太郎 危机一发!》，GBA 平台。
+game: 鬼武者战略版
+file: 鬼武者战略版.zip
+assets.box_front: Imgs/鬼武者战略版.png
+description: 《鬼武者战略版》，GBA 平台。
+game: 鬼眼狂刀
+file: 鬼眼狂刀.zip
+assets.box_front: Imgs/鬼眼狂刀.png
+description: 《鬼眼狂刀》，GBA 平台。
+game: 魂斗罗A
+file: 魂斗罗A.zip
+assets.box_front: Imgs/魂斗罗A.png
+description: 《魂斗罗A》，GBA 平台。
+game: 魔法假期
+file: 魔法假期.zip
+assets.box_front: Imgs/魔法假期.png
+description: 《魔法假期》，由 Nintendo 出品，2001 年发行，Role-playing (RPG)类游戏，GBA 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 魔法元素
+file: 魔法元素.zip
+assets.box_front: Imgs/魔法元素.png
+description: 《魔法元素》，GBA 平台。
+game: 魔法封神
+file: 魔法封神.zip
+assets.box_front: Imgs/魔法封神.png
+description: 《魔法封神》，GBA 平台。
+game: 魔法气泡
+file: 魔法气泡.zip
+assets.box_front: Imgs/魔法气泡.png
+description: 《魔法气泡》，GBA 平台。
+game: 魔法老师涅吉 课外授业2
+file: 魔法老师涅吉 课外授业2.zip
+assets.box_front: Imgs/魔法老师涅吉 课外授业2.png
+description: 《魔法老师涅吉 课外授业2》，GBA 平台。
+game: 鸟人战队1 时空大作战
+file: 鸟人战队1 时空大作战.zip
+assets.box_front: Imgs/鸟人战队1 时空大作战.png
+description: 《鸟人战队1 时空大作战》，GBA 平台。
+game: 鸟人战队2 荒野力量
+file: 鸟人战队2 荒野力量.zip
+assets.box_front: Imgs/鸟人战队2 荒野力量.png
+description: 《鸟人战队2 荒野力量》，GBA 平台。
+game: 鸟人战队3 忍者风暴
+file: 鸟人战队3 忍者风暴.zip
+assets.box_front: Imgs/鸟人战队3 忍者风暴.png
+description: 《鸟人战队3 忍者风暴》，GBA 平台。
+game: 鸟人战队4 巨龙雷鸣
+file: 鸟人战队4 巨龙雷鸣.zip
+assets.box_front: Imgs/鸟人战队4 巨龙雷鸣.png
+description: 《鸟人战队4 巨龙雷鸣》，GBA 平台。
+game: 鸟人战队5 金刚战士S.P.D
+file: 鸟人战队5 金刚战士S.P.D.zip
+assets.box_front: Imgs/鸟人战队5 金刚战士S.P.D.png
+description: 《鸟人战队5 金刚战士S.P.D》，GBA 平台。
+game: 黄金太阳1 开启的封印
+file: 黄金太阳1 开启的封印.zip
+assets.box_front: Imgs/黄金太阳1 开启的封印.png
+description: 《黄金太阳1 开启的封印》，GBA 平台。
+game: 黄金太阳2 失落的时代
+file: 黄金太阳2 失落的时代.zip
+assets.box_front: Imgs/黄金太阳2 失落的时代.png
+description: 《黄金太阳2 失落的时代》，GBA 平台。
+game: 龙战士1
+file: 龙战士1.zip
+assets.box_front: Imgs/龙战士1.png
+description: 《龙战士1》，GBA 平台。
+game: 龙战士2
+file: 龙战士2.zip
+assets.box_front: Imgs/龙战士2.png
+description: 《龙战士2》，GBA 平台。
+game: 龙珠Z 布欧的愤怒
+file: 龙珠Z 布欧的愤怒.zip
+assets.box_front: Imgs/龙珠Z 布欧的愤怒.png
+description: 《龙珠Z 布欧的愤怒》，GBA 平台。
+game: 龙珠Z 悟空的遗产2
+file: 龙珠Z 悟空的遗产2.zip
+assets.box_front: Imgs/龙珠Z 悟空的遗产2.png
+description: 《龙珠Z 悟空的遗产2》，GBA 平台。
+game: 龙珠Z 舞空斗剧
+file: 龙珠Z 舞空斗剧.zip
+assets.box_front: Imgs/龙珠Z 舞空斗剧.png
+description: 《龙珠Z 舞空斗剧》，GBA 平台。
+game: 龙珠大冒险
+file: 龙珠大冒险.zip
+assets.box_front: Imgs/龙珠大冒险.png
+description: 《龙珠大冒险》，GBA 平台。

@@ -1,0 +1,14 @@
+{
+  "name": "pdfparse",
+  "displayName": "pdfparse",
+  "version": "2.0.0",
+  "description": "Fast, deterministic academic PDF to clean Markdown. No LLMs.",
+  "author": {
+    "name": "pdfparse contributors"
+  },
+  "homepage": "https://github.com/ogzhnbygl/pdfparse",
+  "repository": "https://github.com/ogzhnbygl/pdfparse",
+  "license": "MIT",
+  "keywords": ["pdf", "markdown", "academic", "pymupdf", "agent-skill"],
+  "skills": ["./"]
+}

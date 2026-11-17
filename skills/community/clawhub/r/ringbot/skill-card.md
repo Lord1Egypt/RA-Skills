@@ -1,46 +1,57 @@
-## Description: <br>
-RingBot helps agents make outbound AI phone calls for businesses, food orders, reservations, appointments, and similar voice-call tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RingBot helps an agent prepare and initiate outbound AI phone calls for tasks such as ordering by phone, making reservations, scheduling appointments, and customer service calls.
 
-## Publisher: <br>
-[gbessoni](https://clawhub.ai/user/gbessoni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gbessoni](https://clawhub.ai/user/gbessoni)
 
-## Use Case: <br>
-External users, developers, and operators use RingBot to ask an agent to place real outbound calls for food orders, reservations, appointments, customer service, reminders, personal messages, and lead qualification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound phone calls that may affect third parties or create unwanted contact. <br>
-Mitigation: Require explicit user approval for each call or schedule, confirm the destination and purpose before dialing, and provide a clear way to stop future calls. <br>
-Risk: Provider credentials and Twilio spending can be exposed or abused if the backend is not reviewed and constrained. <br>
-Mitigation: Review the RingBot backend before installation, scope provider keys narrowly, monitor usage, and set spending or rate limits for Twilio and related services. <br>
-Risk: Sensitive medical, personal, marketing, or recurring calls may require consent, legal authority, and minimal data handling. <br>
-Mitigation: Avoid these use cases unless consent and legal authority are documented, collected data is minimized, and retention and cancellation expectations are clear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [RingBot ClawHub page](https://clawhub.ai/gbessoni/ringbot) <br>
-- [Twilio](https://twilio.com) <br>
-- [LiveKit Cloud](https://cloud.livekit.io) <br>
-- [Groq Console](https://console.groq.com) <br>
-- [Groq Orpheus TTS terms](https://console.groq.com/playground?model=canopylabs%2Forpheus-v1-english) <br>
-- [TalkForce AI](https://talkforceai.com) <br>
+## Use Case:
 
+External users and developers use RingBot to configure outbound AI voice calling and provide the destination phone number, call purpose, and context needed for a call.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides call setup instructions, environment variable guidance, and local API request examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad real-world outbound calling capability without enough consent, privacy, or confirmation boundaries.
+
+Mitigation: Require explicit confirmation of the phone number, call purpose, caller identity, and any sensitive context before a call is placed.
+
+Risk: Outbound calls can create legal, privacy, or abuse risk in bulk lead, patient, reminder, or recurring-call workflows.
+
+Mitigation: Use those workflows only with clear authorization and appropriate legal, privacy, and consent controls.
+
+## Reference(s):
+
+- [RingBot ClawHub Skill Page](https://clawhub.ai/gbessoni/skills/ringbot)
+- [Twilio](https://twilio.com)
+- [LiveKit Cloud](https://cloud.livekit.io)
+- [Groq Console](https://console.groq.com)
+- [Groq Orpheus TTS Terms](https://console.groq.com/playground?model=canopylabs%2Forpheus-v1-english)
+- [Talkforce AI](https://talkforceai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include setup guidance, environment variable names, service commands, and outbound call API requests using a destination phone number, purpose, and context.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Agent开发 09770e provides video-derived study guidance for Agent development topics, including LangChain/LangGraph, Agentic RL, workflow examples, and related AI agent notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language agent development learning guidance based on collected video tutorial notes covering Agent concepts, LangChain and LangGraph practice, Agentic RL, and related examples.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill to request study guidance, examples, and practice steps for Agent development based on collected Chinese video-learning notes. It should be treated as learning support rather than authoritative implementation documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video-derived notes may be rough, duplicated, or off-topic for Agent development. <br>
-Mitigation: Review generated guidance against the listed source links and clean the notes before relying on them for implementation decisions. <br>
-Risk: Broad triggers may activate the skill for unrelated Agent or PS Portal requests. <br>
-Mitigation: Narrow the trigger phrases and ask users to confirm the intended Agent development topic when the request is ambiguous. <br>
+## Use Case:
 
+Developers and learners use this skill to get Chinese-language guidance, practice steps, and references for agent development topics drawn from curated tutorial notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/agent-09770e) <br>
-- [Bilibili: LangChain and LangGraph Agent development course](https://www.bilibili.com/video/BV178w1z7EHQ) <br>
-- [Bilibili: Agent17 gameplay note](https://www.bilibili.com/video/BV17TfABHEzf) <br>
-- [Bilibili: PS Portal and SonyAgent review note](https://www.bilibili.com/video/BV1K8D7BWEUM) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include video-derived examples, learning steps, and source references; does not execute code or modify resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation and unrelated merged content may cause the skill to trigger in the wrong context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow triggers to specific Agent-development tutorial requests and separate unrelated PS Portal or game-review notes before normal use.
+
+Risk: The release is a low-capability learning note and may provide incomplete or misleading guidance.
+
+Mitigation: Review referenced tutorials and test any generated code, shell commands, or configuration before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/agent-09770e)
+- [Bilibili: LangChain and LangGraph agent development course](https://www.bilibili.com/video/BV178w1z7EHQ)
+- [Bilibili: Agent17 gameplay video](https://www.bilibili.com/video/BV17TfABHEzf)
+- [Bilibili: PS Portal 7.0.2 and SonyAgent review](https://www.bilibili.com/video/BV1K8D7BWEUM)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown text with optional code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Broad Agent-related triggers may produce guidance from mixed tutorial notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

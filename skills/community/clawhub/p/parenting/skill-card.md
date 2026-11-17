@@ -1,40 +1,53 @@
-## Description: <br>
-Help parents with age-appropriate guidance, behavior challenges, and avoiding common parenting advice pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help parents with age-appropriate guidance, behavior challenges, and avoiding common parenting advice pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Parents and caregivers use this skill to get practical, age-aware guidance on behavior, sleep, screen time, school, difficult conversations, and parental self-care. It helps agents ask for context, avoid one-size-fits-all advice, and refer medical, mental-health, developmental, or safety concerns to qualified professionals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Parenting conversations can include sensitive details about children or family circumstances. <br>
-Mitigation: Avoid sharing unnecessary identifying or sensitive details about children. <br>
-Risk: Medical, mental-health, developmental, or safety concerns may exceed general parenting guidance. <br>
-Mitigation: Use qualified professionals or appropriate authorities for medical, mental-health, developmental, or safety concerns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Parenting skill page](https://clawhub.ai/ivangdavila/parenting) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and employees can use this skill to shape parenting conversations around child age, family context, behavior challenges, sleep, screen time, school, difficult topics, and parent self-care. It is intended for general guidance and should refer health, safety, developmental, or mental-health concerns to qualified professionals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text parenting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden agent behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Parenting guidance could be mistaken for professional medical, developmental, psychological, or emergency advice.
+
+Mitigation: Use the skill for general parenting support only and refer health, safety, developmental, or mental-health concerns to a pediatrician, therapist, child psychologist, emergency services, or other appropriate professionals.
+
+Risk: Generic advice may miss key family context such as the child's age, previous attempts, single-parent dynamics, multiple children, or special needs.
+
+Mitigation: Ask for the child's age, what the caregiver has already tried, and relevant family context before offering a concise actionable suggestion.
+
+## Reference(s):
+
+- [Parenting skill page](https://clawhub.ai/ivangdavila/skills/parenting)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text parenting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance only; no tool use, API calls, or file generation are described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

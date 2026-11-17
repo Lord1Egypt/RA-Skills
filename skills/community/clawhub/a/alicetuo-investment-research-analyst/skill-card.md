@@ -1,41 +1,52 @@
-## Description: <br>
-Multi-agent investment research framework simulating a professional trading firm. Performs comprehensive stock analysis including fundamentals, news, sentiment, technicals, bull/bear debate, risk assessment, and fact-checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent investment research framework for comprehensive stock analysis across fundamentals, news, sentiment, technicals, bull and bear theses, risk assessment, and fact-checking.
 
-## Publisher: <br>
-[alicetuo](https://clawhub.ai/user/alicetuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alicetuo](https://clawhub.ai/user/alicetuo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and analysts use this skill to structure equity research workflows, compare bull and bear cases, assess investment risks, and produce a sourced research report or dashboard. Outputs should be reviewed before use in financial decision-making.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs the agent to publish the finished dashboard externally, which could expose confidential holdings, internal research, or personal strategy details.
+
+Mitigation: Require explicit user approval for the exact dashboard content and publication destination before deployment or sharing.
+
+Risk: Investment research outputs may contain incorrect, stale, or misleading financial analysis.
+
+Mitigation: Cross-check material claims against current market data and treat the report as research support, not investment advice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and analysts use this skill to generate structured equity research reports across fundamentals, news, sentiment, technical indicators, bull and bear cases, risk assessment, and fact-checking. It can also prepare an interactive dashboard from the completed report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to publishing and sharing an investment dashboard without clear approval or privacy controls. <br>
-Mitigation: Create a local draft first, require explicit user approval before deployment or link sharing, and avoid including private portfolio details or proprietary research unless the user controls the publication target. <br>
-Risk: Financial analysis outputs may be incorrect, stale, or misleading if source data is incomplete or not verified. <br>
-Mitigation: Cross-check material claims and market data against authoritative sources before relying on the report, and keep the output framed as research support rather than investment advice. <br>
+**Output Format:** [Markdown research report, with optional HTML/CSS/JS dashboard instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alicetuo/alicetuo-investment-research-analyst) <br>
-- [Publisher profile](https://clawhub.ai/user/alicetuo) <br>
+**Other Properties Related to Output:** [May include financial analysis tables, valuation summaries, risk assessments, and dashboard deployment steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown research report with optional HTML/CSS/JavaScript dashboard code and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes finance-analysis content and an AI-generated investment-advice disclaimer when following the bundled report template.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

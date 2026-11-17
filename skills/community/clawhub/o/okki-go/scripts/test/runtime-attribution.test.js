@@ -165,7 +165,7 @@ test('runtime attribution fails open when attribution JSON is damaged', (t) => {
   fs.writeFileSync(path.join(configHome, 'okki-go', 'install-attribution.json'), '{bad json');
 
   const headers = runtimeAttributionHeaders({ env: {}, configHome, skillRoot });
-  assert.equal(headers['X-Okki-Skill-Version'], '1.3.3');
+  assert.equal(headers['X-Okki-Skill-Version'], '1.3.4');
   assert.equal(headers['X-Okki-Skill-Runtime'], 'unknown');
   assert.equal(Object.hasOwn(headers, 'X-Okki-Source-Type'), false);
 });
@@ -215,7 +215,7 @@ test('runtime attribution exposes curl argument output for authentication exampl
 });
 
 test('shared API helper sends wrapper attribution headers', async (t) => {
-  const { baseUrl, requests } = await createServer(t, '/api/v1/contacts/search', { total: 0, list: [] });
+  const { baseUrl, requests } = await createServer(t, '/api/v1/emails/send/batch', { task_id: 1, total: 1, status: 'pending' });
   const configHome = makeTempDir(t);
   writeJson(path.join(configHome, 'okki-go', 'install-attribution.json'), {
     installId: 'install-shared',
@@ -225,8 +225,13 @@ test('shared API helper sends wrapper attribution headers', async (t) => {
     skillVersion: '1.3.3'
   });
 
-  const result = await runScript('search-contacts.js', [
-    '--json', JSON.stringify({ title: 'Procurement Manager', size: 1 }),
+  const result = await runScript('send-email.js', [
+    'batch',
+    '--json', JSON.stringify({
+      content: 'Hello',
+      body_format: 'text',
+      recipients: [{ email: 'buyer@example.com', subject: 'Hello' }]
+    }),
     '--compact'
   ], {
     OKKIGO_BASE_URL: baseUrl,

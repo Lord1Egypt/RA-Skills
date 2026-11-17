@@ -1,46 +1,63 @@
-## Description: <br>
-HealthClaw streams Apple Health data from iPhone and Apple Watch through a self-hosted webhook so an OpenClaw agent can analyze trends, calculate recovery scores, and detect anomalies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Streams Apple Health data through a self-hosted webhook so OpenClaw agents can analyze health trends, calculate recovery scores, detect anomalies, and send alerts.
 
-## Publisher: <br>
-[crxiaobailiu-gif](https://clawhub.ai/user/crxiaobailiu-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crxiaobailiu-gif](https://clawhub.ai/user/crxiaobailiu-gif)
 
-## Use Case: <br>
-Individuals and developers use this skill to connect Apple Health data to an OpenClaw agent for recovery scoring, health trend questions, scheduled anomaly checks, and proactive alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Apple Health data may be exposed through a public webhook, tunnel, local data directory, or notification channel. <br>
-Mitigation: Use a strong ADMIN_TOKEN, prefer VPN or private access where possible, protect or encrypt the health-data directory, and keep alert messages minimal and private. <br>
-Risk: Health alerts and recovery scores can be misleading if baseline data is sparse, thresholds are poorly tuned, or agent analysis is treated as medical advice. <br>
-Mitigation: Review outputs before acting on them, tune thresholds against personal baselines, and use the results as wellness signals rather than diagnosis. <br>
-Risk: Background sync, tunnels, servers, and cron jobs can keep moving health data after the user no longer expects it. <br>
-Mitigation: Know how to stop the tunnel, webhook server, iOS background sync, and OpenClaw cron jobs before enabling continuous syncing. <br>
+## Use Case:
 
+Developers and OpenClaw users use HealthClaw to connect iPhone and Apple Watch health metrics to a local webhook, then configure agents to query health logs, compute daily recovery scores, and send anomaly alerts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/crxiaobailiu-gif/healthclaw-webhook) <br>
-- [HealthClaw source](https://github.com/sprausliu/healthclaw) <br>
-- [HealthClaw TestFlight beta](https://testflight.apple.com/join/SXDjT6vC) <br>
-- [Recovery score example](examples/recovery-score.md) <br>
-- [Health alerts example](examples/health-alerts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw cron and task configuration, curl commands, and health analysis guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill.json) <br>
+Risk: Sensitive health data may be exposed if the webhook service, admin routes, or remote tunnel are made publicly reachable without strong safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified server release, require a strong ADMIN_TOKEN, restrict public tunnels, and avoid exposing admin routes.
+
+Risk: Local health records can be sensitive if the data directory is readable by unintended users or processes.
+
+Mitigation: Protect the local health-data directory and use isolated per-user data directories when configuring multiple users or devices.
+
+Risk: Discord alerts or recurring jobs may disclose health-derived details outside the local environment.
+
+Mitigation: Enable Discord alerts and recurring jobs only after reviewing what details will be shared and who can access the notification channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crxiaobailiu-gif/skills/healthclaw-webhook)
+- [Artifact metadata homepage](https://github.com/sprausliu/healthclaw)
+- [Recovery score example](artifact/examples/recovery-score.md)
+- [Health alerts example](artifact/examples/health-alerts.md)
+- [Tailscale Funnel documentation](https://tailscale.com/download)
+- [Cloudflare Tunnel documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+- [HealthClaw TestFlight beta](https://testflight.apple.com/join/SXDjT6vC)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce recovery-score summaries, alert messages, OpenClaw cron configuration, and setup commands based on local health data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,112 @@
+{
+  "tool": "memory_bench.py",
+  "scheme": "EM/F1 确定性评测 + 可插拔真模型接口",
+  "dimensions": [
+    {
+      "name": "评测可复现性",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "runs": 2,
+        "identical": true,
+        "questions": 12
+      }
+    },
+    {
+      "name": "密钥零落盘",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "no_print_in_llm_body": true,
+        "key_from_env_only": true
+      }
+    },
+    {
+      "name": "评分标准性",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "normalize_exact_match": true,
+        "f1_range": [
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "题型覆盖完整性",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "question_count": 12,
+        "types": [
+          "事件",
+          "反事实",
+          "否定",
+          "实体",
+          "实体更新",
+          "指代",
+          "数值",
+          "数值推理",
+          "时序",
+          "时序推理",
+          "跨会话整合"
+        ]
+      }
+    },
+    {
+      "name": "边界容错",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "no_key_graceful": true,
+        "unknown_question_fallback": "未答出"
+      }
+    },
+    {
+      "name": "数值推理",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "Q8": "70 万",
+        "Q12": "50 万"
+      }
+    },
+    {
+      "name": "时序推理",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "Q9": "能"
+      }
+    },
+    {
+      "name": "否定与指代理解",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "Q4": "不做线下粉丝见面会",
+        "Q11": "林涛"
+      }
+    },
+    {
+      "name": "跨会话整合",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "Q6": "深空灰提亮，冰蓝保留",
+        "Q7": "老赵；御用润色+会话3改交"
+      }
+    },
+    {
+      "name": "长上下文稳定性",
+      "score": 5.0,
+      "max": 5.0,
+      "detail": {
+        "history_impact_unchanged": true
+      }
+    }
+  ],
+  "overall": 5.0,
+  "generated_at": "2026-08-26T09:55:54.935552+08:00"
+}

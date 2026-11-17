@@ -1,45 +1,63 @@
-## Description: <br>
-Chat, ask, compare, and inspect WeryAI chat models through the official OpenAI-compatible chat completions API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat, ask, compare, and inspect WeryAI chat models through the official OpenAI-compatible chat completions API.
 
-## Publisher: <br>
-[WeryAI-Developer](https://clawhub.ai/user/WeryAI-Developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weryai-developer](https://clawhub.ai/user/weryai-developer)
 
-## Use Case: <br>
-Developers and agents use this skill to call WeryAI chat completions for general assistant responses, multi-turn message-array conversations, prompt-response tasks, model lookup, and model selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and message arrays selected by the user are sent to WeryAI with WERYAI_API_KEY. <br>
-Mitigation: Do not submit secrets or sensitive data unless that matches the user's WeryAI data-handling expectations. <br>
-Risk: Real chat completion runs may consume WeryAI credits. <br>
-Mitigation: Use dry-run mode to inspect request payloads before making paid API calls. <br>
-Risk: An unused balance helper is present in vendored code and may create confusion about account-billing access. <br>
-Mitigation: Document or remove the unused helper before deployment if billing-scope clarity is required. <br>
+## Use Case:
 
+Developers and external users use this skill to call WeryAI chat-completions models for assistant-style answers, multi-turn message-array conversations, model lookup, and model selection.
 
-## Reference(s): <br>
-- [WeryAI Chat API](references/chat-api.md) <br>
-- [Chat Completion API](https://docs.weryai.com/api-reference/chat/chat-completion) <br>
-- [Get Chat Models List](https://docs.weryai.com/api-reference/chat/get-chat-models-list) <br>
-- [ClawHub Skill Page](https://clawhub.ai/WeryAI-Developer/weryai-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results from Node.js commands, with assistant text, model metadata, dry-run request previews, or structured error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >=18 and WERYAI_API_KEY; real chat requests call WeryAI and may consume credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Prompts and chat messages are sent to WeryAI's paid external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when external WeryAI processing is intended, and avoid sending sensitive prompts unless the deployment has approved that data flow.
+
+Risk: Changing WERYAI_BASE_URL could send the API key and prompts to an untrusted endpoint.
+
+Mitigation: Keep the default endpoint unless a trusted HTTPS endpoint has been explicitly reviewed and approved.
+
+Risk: Verbose logging can expose prompt or response content.
+
+Mitigation: Avoid verbose mode when prompts or responses may contain sensitive information.
+
+Risk: Unused balance and status helpers may broaden the package surface without clear user-facing documentation.
+
+Mitigation: Remove those helpers or document their purpose before broad deployment.
+
+## Reference(s):
+
+- [WeryAI Chat API](references/chat-api.md)
+- [Chat Completion API](https://docs.weryai.com/api-reference/chat/chat-completion)
+- [Get Chat Models List](https://docs.weryai.com/api-reference/chat/get-chat-models-list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API response text or JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY; real chat calls use a paid external WeryAI API and may consume credits.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-AI frontier intelligence briefing - aggregate, score, and deliver structured daily briefings from 5 tracks: RSS enterprise, 36kr hotlist, arXiv papers, GitHub Trending, and Anthropic web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Frontier Monitor aggregates, scores, and delivers structured AI frontier briefings from RSS feeds, 36kr, arXiv, GitHub Trending, and web search.
 
-## Publisher: <br>
-[lynxpurr](https://clawhub.ai/user/lynxpurr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lynxpurr](https://clawhub.ai/user/lynxpurr)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to collect public AI news, papers, repositories, and market signals, score them, and produce concise Chinese-language frontier briefings for daily monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local scripts and contacts public web sources while generating briefings. <br>
-Mitigation: Invoke it explicitly for AI briefing tasks and expect outbound requests to the configured public data sources. <br>
-Risk: Generated reports may be sent to Feishu. <br>
-Mitigation: Review the Feishu recipient configuration before enabling delivery. <br>
-Risk: Runtime candidate data and generated briefings are saved under the skill directory. <br>
-Mitigation: Review saved files periodically and avoid placing sensitive non-public inputs in briefing candidates. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to collect public AI news and research signals, score candidate items, and produce concise daily or mode-specific briefings. It is intended for AI trend monitoring across product launches, technical developments, papers, repositories, and funding signals.
 
-## Reference(s): <br>
-- [Briefing Configuration](references/BRIEFING_CONFIG.md) <br>
-- [Data Sources](references/data-sources.md) <br>
-- [Scoring System](references/scoring.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lynxpurr/ai-frontier-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown briefing text with optional saved Markdown files and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first briefings, tiered sections, signal summaries, source links, and optional Feishu delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: server release metadata) <br>
+Risk: Public feed titles, summaries, descriptions, and links are untrusted report data and may be misleading or adversarial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched content as data for review, not instructions, and verify important claims against original sources before relying on the briefing.
+
+Risk: The skill can send generated output to Feishu.
+
+Mitigation: Use explicit confirmation and a configured recipient before sending briefings outside the current conversation.
+
+Risk: Generated briefings may overwrite the same-day archived briefing file.
+
+Mitigation: Review the output path and keep backups or alternate filenames when preserving previous daily briefings matters.
+
+## Reference(s):
+
+- [Briefing Configuration](references/BRIEFING_CONFIG.md)
+- [Data Sources](references/data-sources.md)
+- [Scoring System](references/scoring.md)
+- [ClawHub Skill Page](https://clawhub.ai/lynxpurr/skills/ai-frontier-monitor)
+- [OpenAI Blog RSS](https://openai.com/blog/rss.xml)
+- [Microsoft AI Blog RSS](https://blogs.microsoft.com/ai/feed)
+- [AWS Machine Learning Blog RSS](https://aws.amazon.com/blogs/machine-learning/feed/)
+- [arXiv API](https://export.arxiv.org/api/query)
+- [GitHub Trending](https://github.com/trending?since=daily)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Chinese-language Markdown briefings with scored tiers, links, short insights, and signal summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated briefings under the skill data directory and may deliver output to a configured Feishu target.]
+
+## Skill Version(s):
+
+3.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

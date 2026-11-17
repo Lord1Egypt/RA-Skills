@@ -1,0 +1,51 @@
+{
+  "action": "plan",
+  "requestId": "sample-meal-plan",
+  "exclude": [
+    "花生"
+  ],
+  "meals": [
+    {
+      "date": "2026-10-24",
+      "slot": "dinner",
+      "dish": "番茄炒蛋与米饭",
+      "servings": 2,
+      "ingredients": [
+        {
+          "name": "番茄",
+          "quantity": 0.6,
+          "unit": "kg"
+        },
+        {
+          "name": "鸡蛋",
+          "quantity": 3,
+          "unit": "个"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "slot": "dinner",
+      "dish": "番茄汤",
+      "servings": 2,
+      "ingredients": [
+        {
+          "name": "番茄",
+          "quantity": 300,
+          "unit": "g"
+        }
+      ]
+    }
+  ],
+  "pantry": [
+    {
+      "name": "番茄",
+      "quantity": 500,
+      "unit": "g"
+    }
+  ],
+  "budget": {
+    "amount": "300",
+    "currency": "CNY"
+  }
+}

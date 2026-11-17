@@ -1,0 +1,24 @@
+{
+  "name": "cn-med-oa",
+  "version": "2.0.0",
+  "description": "中文医学文献开放获取(OA)检索下载与引用验证套件。免登录、免费检索维普OA平台并下载中文医学期刊PDF全文，输出Vancouver/GB-T 7714全字段元数据直拼参考文献；内置覆盖率制相关性守门（防平台OR匹配捞回无关结果）与五态引用验证器（防AI幻觉引用，判定语义与pubmed-verifier一致）。SQLite缓存、重试退避、日配额、控频，零依赖纯标准库。",
+  "author": "DoctorQ Lab",
+  "tags": [
+    "中文文献",
+    "医学文献",
+    "开放获取",
+    "OA",
+    "文献下载",
+    "维普",
+    "引用验证",
+    "AI幻觉",
+    "参考文献",
+    "Vancouver",
+    "文献检索",
+    "citation",
+    "verification",
+    "chinese literature",
+    "open access"
+  ],
+  "license": "MIT"
+}

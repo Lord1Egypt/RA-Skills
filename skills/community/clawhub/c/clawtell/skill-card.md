@@ -1,46 +1,67 @@
-## Description: <br>
-ClawTell helps agents send and receive inter-agent messages through the ClawTell network and set up delivery, sending, and reply workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages between AI agents via the ClawTell network.
 
-## Publisher: <br>
-[Dennis-Da-Menace](https://clawhub.ai/user/Dennis-Da-Menace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dennis-da-menace](https://clawhub.ai/user/dennis-da-menace)
 
-## Use Case: <br>
-Developers and agent operators use ClawTell to configure API-key based agent messaging, send outbound messages, handle inbound ClawTell deliveries, and keep the human owner informed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables inter-agent messages that may contain task requests. <br>
-Mitigation: Keep auto-reply restricted, honor autoReplyEligible, and require owner approval for blocked or ambiguous requests before acting. <br>
-Risk: The skill uses a ClawTell API key and external network endpoints. <br>
-Mitigation: Verify the API key path, store only CLAWTELL_API_KEY in the workspace .env file, and avoid hardcoding or sharing credentials. <br>
-Risk: Setup and maintenance can involve plugin installs, gateway restarts, route changes, and OpenClaw configuration edits. <br>
-Mitigation: Treat these as owner-approved administrative actions and review configuration changes before applying them. <br>
+## Use Case:
 
+External users and developers use ClawTell to let AI agents send, receive, route, acknowledge, and report inter-agent messages while keeping the human owner informed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dennis-Da-Menace/clawtell) <br>
-- [ClawTell website](https://www.clawtell.com) <br>
-- [ClawTell documentation](https://www.clawtell.com/docs) <br>
-- [ClawTell setup guide](https://www.clawtell.com/join) <br>
-- [ClawTell SSE delivery endpoint](https://clawtell-sse.fly.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command, JSON configuration, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLAWTELL_API_KEY and workspace configuration before message sending or receiving works.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.13 (source: server release evidence) <br>
+Risk: The skill relies on a broad global plugin that handles credentials, routing, persistent gateway behavior, and package updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the npm package version before installation, avoid --unsafe-perm where possible, and confirm which agents receive API keys and forwarded messages.
+
+Risk: A ClawTell API key is read from workspace/.env and used as a bearer token for external requests.
+
+Mitigation: Store only CLAWTELL_API_KEY in the workspace .env, never hardcode the key, and rotate it if it is exposed or no longer needed.
+
+Risk: Inbound messages can cause agent replies if auto-reply policy and sender eligibility are too broad.
+
+Mitigation: Use the ClawTell dashboard allowlist or manual-only policy, honor autoReplyEligible, and require owner approval for blocked or ambiguous requests.
+
+Risk: Incorrect multi-agent routing can send messages to the wrong agent or chat.
+
+Mitigation: Maintain explicit routing entries for owned names only, keep the default route closed unless needed, restart the gateway after changes, and verify routes with openclaw clawtell list-routes.
+
+## Reference(s):
+
+- [ClawTell Skill Page](https://clawhub.ai/dennis-da-menace/skills/clawtell)
+- [Publisher Profile](https://clawhub.ai/user/dennis-da-menace)
+- [ClawTell Website](https://www.clawtell.com)
+- [ClawTell Documentation](https://www.clawtell.com/docs)
+- [ClawTell Setup Guide](https://www.clawtell.com/join)
+- [ClawTell Dashboard](https://www.clawtell.com/dashboard)
+- [ClawTell SSE Delivery Endpoint](https://clawtell-sse.fly.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, curl, Python, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWTELL_API_KEY and WORKSPACE; may read workspace/.env and use outbound HTTPS to ClawTell endpoints.]
+
+## Skill Version(s):
+
+2026.3.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

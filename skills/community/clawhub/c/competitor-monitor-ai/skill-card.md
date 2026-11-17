@@ -1,45 +1,62 @@
-## Description: <br>
-定时访问指定电商或社交平台页面，抓取点赞、评论、销量等数据，检测异常波动，自动截图并发送提醒通知。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+定时访问指定电商或社交平台页面，抓取点赞、评论、销量等数据，检测异常波动，自动截图并发送提醒通知。
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-市场、运营和数据分析人员使用该技能定时监控竞品页面的关键指标，发现异常增长或潜在爆款并接收告警。开发者也可用它配置抓取任务、阈值、截图和通知渠道。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured scraping jobs may target sites where automated access is restricted or inappropriate. <br>
-Mitigation: Review each monitored URL before use, confirm that collection is allowed, and use conservative schedules and retention settings. <br>
-Risk: Alert screenshots and archived monitoring data can capture private account, customer, or business information. <br>
-Mitigation: Disable screenshot_on_alert for sensitive pages, restrict access to screenshot and data directories, and apply the configured retention periods. <br>
-Risk: Webhook and email notification settings can expose credentials or route alerts to unintended recipients. <br>
-Mitigation: Store webhook tokens and email credentials as protected secrets, review notification destinations, and avoid committing live credentials in task configuration. <br>
-Risk: The installer and browser automation dependencies execute local setup and network-facing automation. <br>
-Mitigation: Review the installer before running it and install the skill inside a virtual environment or container. <br>
+## Use Case:
 
+External users and developers use this skill to configure scheduled competitor monitoring for public ecommerce and social pages, track engagement or sales metrics, detect spikes, and receive alerts.
 
-## Reference(s): <br>
-- [Platform CSS Selector Reference](artifact/references/PLATFORM_SELECTORS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hwl1413520/competitor-monitor-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monitored URLs, schedules, metric selectors, alert thresholds, screenshot settings, and notification channel configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The browser scraper can access user-configured URLs with broad network reach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict task configs to trusted public platform URLs and avoid running the skill on networks that expose sensitive internal services.
+
+Risk: Monitoring results and screenshots can capture and retain sensitive competitive or account data.
+
+Mitigation: Disable screenshots unless needed, set short retention windows, and protect the data and screenshot directories.
+
+Risk: Webhook and email notifications can send captured monitoring details or attachments to unintended destinations.
+
+Mitigation: Review every notification destination and secret before execution, and test alerts with non-sensitive data first.
+
+Risk: The installer installs browser automation dependencies and accepts custom target paths.
+
+Mitigation: Run installation in a virtual environment with reviewed paths and pinned dependencies where possible.
+
+## Reference(s):
+
+- [Platform Selectors Reference](references/PLATFORM_SELECTORS.md)
+- [ClawHub Skill Page](https://clawhub.ai/hwl1413520/skills/competitor-monitor-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the skill can write JSONL monitoring data, alert records, screenshots, and Markdown reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-云集会员制社交电商工具，提供自营+CPS双模式商品推荐、会员专属价查询和分销推广管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+云集会员制社交电商工具，提供自营+CPS双模式商品推荐、会员专属价查询和分销推广管理。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers and affiliate promoters use this skill to request Yunji product recommendations, member pricing summaries, rebate information, and promotional material for self-operated and CPS goods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping, rebate, and commission details may be promotional or stale. <br>
-Mitigation: Verify prices, eligibility, and commissions independently before purchase or sharing recommendations. <br>
-Risk: Generated promotion links or marketing material may create affiliate disclosure obligations. <br>
-Mitigation: Disclose affiliate or commission relationships before sharing links or marketing content. <br>
+## Use Case:
 
+External shoppers and shopping assistants use this skill to answer Yunji price, member discount, rebate, and promotion-link questions for eligible products. It is intended to format product recommendation responses with item type, retail price, member price, and distribution commission details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/yunji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style shopping and rebate summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product name, self-operated or CPS type, retail price, member price, and distribution commission fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Shopping and commission-related recommendations may be invoked for broad shopping requests rather than explicit Yunji price, rebate, or promotion-link tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tighter trigger wording or operator policy so the skill is invoked only for explicit Yunji price, rebate, member-price, or promotion-link requests.
+
+Risk: Product prices, member discounts, promotions, and commission amounts can change over time.
+
+Mitigation: Verify current pricing, discount, and commission details against an authoritative source before acting on or sharing recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/yunji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured shopping rebate response containing product name, item type, retail price, member price, and distribution commission fields.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

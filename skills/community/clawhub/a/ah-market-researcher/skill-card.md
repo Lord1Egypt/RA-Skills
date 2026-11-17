@@ -1,40 +1,50 @@
-## Description: <br>
-Provides market research and analysis support for business strategy and product decisions, including market sizing, customer research, trend analysis, and strategic frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a market research and analysis specialist providing data-driven insights for business strategy and product decisions. Use when: market analysis, customer research, strategic insights, tam/sam/som framework, trend analysis framework.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Business, product, and strategy teams use this skill to structure market research, estimate TAM/SAM/SOM, analyze customers and competitors, and turn findings into actionable recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market figures, trends, and competitive conclusions may be outdated, unsupported, or misleading if the agent relies on weak or stale inputs. <br>
-Mitigation: Require credible and recent sources, corroborate important claims across multiple sources, state assumptions and limitations, and review conclusions before using them for business decisions. <br>
-Risk: Market research prompts may include confidential business plans, customer information, or strategy details. <br>
-Mitigation: Avoid sharing confidential business or customer data unless it is approved for use in the analysis, and redact sensitive details when they are not required. <br>
+## Use Case:
 
+Business, product, and strategy teams use this skill to structure market research, estimate TAM/SAM/SOM, analyze customers and competitors, and turn findings into recommendations.
 
-## Reference(s): <br>
-- [Market Researcher Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, and optional structured JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market sizing assumptions, research briefs, strategic frameworks, recommendations, and source-quality checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market research outputs can influence business decisions and may be inaccurate, outdated, or weakly sourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check findings against current, credible sources, corroborate important claims, and review assumptions before acting on recommendations.
+
+## Reference(s):
+
+- [Market Researcher Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-market-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown reports, framework tables, recommendations, and optional structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, install scripts, credential handling, persistence, or hidden high-impact behavior were identified by the server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

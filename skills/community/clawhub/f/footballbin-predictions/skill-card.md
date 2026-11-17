@@ -1,42 +1,59 @@
-## Description: <br>
-Get AI-powered match predictions for Premier League and Champions League including scores, next goal, and corners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get AI-powered match predictions for Premier League and Champions League including scores, next goal, and corners.
 
-## Publisher: <br>
-[billychl1](https://clawhub.ai/user/billychl1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[billychl1](https://clawhub.ai/user/billychl1)
 
-## Use Case: <br>
-External users and agents use this skill to fetch FootballBin match predictions for Premier League and Champions League matches, with optional matchweek and team filters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Football query choices are sent to the FootballBin API. <br>
-Mitigation: Use the skill only when sharing league, matchweek, and team filter choices with that API is acceptable. <br>
-Risk: Prediction data can be incorrect or incomplete. <br>
-Mitigation: Treat returned predictions as informational output and verify important decisions against authoritative football data sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/billychl1/footballbin-predictions) <br>
-- [FootballBin iOS App](https://apps.apple.com/app/footballbin/id6757111871) <br>
-- [FootballBin Android App](https://play.google.com/store/apps/details?id=com.achan.footballbinandroid) <br>
-- [FootballBin MCP API Endpoint](https://api.footballbin.achaninc.net/mcp) <br>
+## Use Case:
 
+External users and agents use this skill to fetch FootballBin soccer predictions for Premier League and Champions League matches, including current or selected matchweeks and optional home or away team filters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output, or raw JSON when jq is unavailable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; sends league, optional matchweek, and optional team filters to the FootballBin API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts a third-party FootballBin service and sends requested league, matchweek, and team filters.
+
+Mitigation: Use the skill only when sharing those soccer query parameters with the FootballBin endpoint is acceptable.
+
+Risk: Sports prediction output can be incomplete, stale, or incorrect for real-world decisions.
+
+Mitigation: Treat predictions as informational and verify important match details against current sources before acting on them.
+
+Risk: Formatted output depends on local curl and jq availability and network access to the FootballBin endpoint.
+
+Mitigation: Confirm required binaries and outbound access are available before relying on the skill in an agent workflow.
+
+## Reference(s):
+
+- [FootballBin ClawHub Skill](https://clawhub.ai/billychl1/skills/footballbin-predictions)
+- [FootballBin iOS App](https://apps.apple.com/app/footballbin/id6757111871)
+- [FootballBin Android App](https://play.google.com/store/apps/details?id=com.achan.footballbinandroid)
+- [FootballBin API Endpoint](https://api.footballbin.achaninc.net/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls]
+
+**Output Format:** [Plain text or JSON from a JSON-RPC API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for formatted output; sends league, matchweek, and optional team filters to FootballBin.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

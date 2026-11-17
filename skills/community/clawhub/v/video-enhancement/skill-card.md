@@ -1,44 +1,63 @@
-## Description: <br>
-AI Video Enhancement - Upscale video resolution, denoise, sharpen. Supports local files and YouTube/Bilibili URLs. HD/4K upscaling with real-time progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Video Enhancement - Upscale video resolution, denoise, sharpen. Supports local files and YouTube/Bilibili URLs. HD/4K upscaling with real-time progress.
 
-## Publisher: <br>
-[alouhaou](https://clawhub.ai/user/alouhaou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alouhaou](https://clawhub.ai/user/alouhaou)
 
-## Use Case: <br>
-Developers and content creators use this skill to route local video files or supported video URLs through verging.ai for denoising, sharpening, HD/4K upscaling, progress polling, and optional result download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos, including private local clips or downloaded URL media, are sent to verging.ai for processing. <br>
-Mitigation: Use the skill only for media you are authorized to process, and confirm that the provider's retention and sharing terms are acceptable before sending sensitive content. <br>
-Risk: The skill requires a VERGING_API_KEY credential. <br>
-Mitigation: Set the key through the environment, avoid placing it in prompts or public files, and use a scoped or revocable key where available. <br>
-Risk: Temporary media files may remain under /tmp/verging-video-enhancement/ if cleanup is not completed. <br>
-Mitigation: Inspect and remove temporary files after processing, especially when handling private or regulated media. <br>
+## Use Case:
 
+Developers and external users use this skill to enhance short videos from local files or supported video URLs through the Verging video enhancement service. It helps prepare API calls, local trimming commands, upload steps, job polling, and optional result download.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alouhaou/video-enhancement) <br>
-- [verging.ai](https://verging.ai) <br>
-- [Verging API Docs](https://verging.ai/docs/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include result URLs and optional downloaded video files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Local command execution and installation steps may run external tools or downloaded code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid elevated privileges, and prefer a pinned or verified install source.
+
+Risk: Videos are uploaded to Verging and external storage for processing.
+
+Mitigation: Process only media you have rights to share and avoid sensitive local media.
+
+Risk: Untrusted URLs or trim values can influence local downloader and ffmpeg command behavior.
+
+Mitigation: Use trusted video URLs and validate start and end values before running commands.
+
+Risk: API keys may be exposed through command history, logs, or shared output.
+
+Mitigation: Use VERGING_API_KEY from the environment and do not publish or paste credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alouhaou/skills/video-enhancement)
+- [Verging Website](https://verging.ai)
+- [Verging API Docs](https://verging.ai/docs/api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, API request examples, status summaries, and optional downloaded video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use yt-dlp, ffmpeg, ffprobe, curl, VERGING_API_KEY, and external upload, storage, and processing services.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

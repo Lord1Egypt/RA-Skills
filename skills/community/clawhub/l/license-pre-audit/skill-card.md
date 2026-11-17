@@ -1,47 +1,61 @@
-## Description: <br>
-进出口许可文档智能预审系统，可处理 PDF 和图片，自动提取合同号、出口国、进口商、总金额、数量、重量、合格证编号、生产商、报关口岸等字段，检测公章，按审核规则生成 MD 和 JSON 审核报告，并支持 CLI 和对话交互触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+进出口许可文档智能预审系统。支持 PDF 和图片处理：自动提取合同号、出口国、进口商、总金额、数量、重量、合格证编号、生产商、报关口岸等字段，检测公章，按审核规则执行审核，生成 MD 和 JSON 审核报告。支持 CLI 和对话交互两种方式触发。
 
-## Publisher: <br>
-[njkahn](https://clawhub.ai/user/njkahn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[njkahn](https://clawhub.ai/user/njkahn)
 
-## Use Case: <br>
-Trade operations teams, compliance reviewers, and developers use this skill to pre-audit import/export license document packages by extracting fields from PDFs or images, checking stamps, comparing documents against configured rules, and producing structured review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic dependency installation can modify the host system. <br>
-Mitigation: Install and run only in a controlled or disposable environment, and review installer commands before first execution. <br>
-Risk: Sensitive trade or license document contents may be sent to an external LLM endpoint. <br>
-Mitigation: Use only approved model endpoints and credentials, avoid highly sensitive documents unless approved, and clean generated reports, extracted files, temporary OCR data, and cached model configuration after use. <br>
-Risk: Audit results can be incomplete or incorrect and may require business or compliance judgment. <br>
-Mitigation: Treat generated pre-audit findings as review support and require human review before relying on pass, fail, or manual-review recommendations. <br>
+## Use Case:
 
+Trade compliance and operations users can use this skill to pre-audit import and export license document packages. It extracts key fields from PDFs and images, checks configured rules, detects stamps, and returns audit findings for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/njkahn/license-pre-audit) <br>
-- [audit-rules.json](references/audit-rules.json) <br>
-- [doc-types.json](references/doc-types.json) <br>
-- [settings.json](references/settings.json) <br>
-- [audit-rules.md](src/prompts/audit-rules.md) <br>
-- [extract-fields.md](src/prompts/extract-fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands] <br>
-**Output Format:** [Markdown table and JSON audit report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped audit-result JSON and Markdown files under the configured reports directory and can print the Markdown table to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may automatically install or modify runtime dependencies on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a controlled environment and review dependency installation behavior before use on a primary machine.
+
+Risk: Document text may be sent to an external LLM during field extraction.
+
+Mitigation: Avoid confidential documents unless the configured LLM provider and data handling are acceptable for the document class.
+
+Risk: LLM API credentials may be cached with weak protection.
+
+Mitigation: Rotate any API key that may have been cached by this release and prefer short-lived or environment-provided credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/njkahn/skills/license-pre-audit)
+- [Publisher Profile](https://clawhub.ai/user/njkahn)
+- [Audit Rules Configuration](artifact/references/audit-rules.json)
+- [Document Types Configuration](artifact/references/doc-types.json)
+- [Runtime Settings](artifact/references/settings.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text]
+
+**Output Format:** [Markdown table and structured JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved as timestamped audit-result Markdown and JSON files.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

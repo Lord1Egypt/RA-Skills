@@ -27,9 +27,7 @@ uv run acestep-api --port 8001   # or: ./start_api_server_macos.sh
 
 ```bash
 # 1. Submit task
-TASK_ID=$(curl -s -X POST http://127.0.0.1:8001/release_task \
-  -H "Content-Type: application/json" \
-  -d '{
+TASK_ID=$(python3 scripts/acestep_request.py release_task --print-task-id --json '{
     "prompt": "<detailed caption, e.g.: dreamy 80s synthwave, warm analog synths, gated-reverb drums, arpeggiated bass, neon night-drive mood>",
     "lyrics": "[Verse]\n<lyrics here>\n\n[Chorus]\n<lyrics here>",
     "audio_duration": 210,
@@ -40,13 +38,11 @@ TASK_ID=$(curl -s -X POST http://127.0.0.1:8001/release_task \
     "thinking": true,
     "inference_steps": 8,
     "guidance_scale": 7.0
-  }' | python3 -c "import json,sys; print(json.load(sys.stdin).get('data',{}).get('task_id',''))")
+  }')
 
 # 2. Poll for completion. Treat empty `data` as pending, not failed.
 # Wait, then check:
-curl -s -X POST http://127.0.0.1:8001/query_result \
-  -H "Content-Type: application/json" \
-  -d "{\"task_ids\": [\"$TASK_ID\"]}"
+python3 scripts/wait_for_acestep.py "$TASK_ID" --expected-seconds <audio_duration>
 
 # 3. Copy audio from cache dir when done
 # Files saved to: ${ACE_STEP_PATH}/.cache/acestep/tmp/api_audio/
@@ -97,9 +93,7 @@ The default `audio_duration` is **210s (3:30)** — the typical user expectation
 **Request body template for a full song (copy/paste and fill in):**
 
 ```bash
-TASK_ID=$(curl -s -X POST http://127.0.0.1:8001/release_task \
-  -H "Content-Type: application/json" \
-  -d '{
+TASK_ID=$(python3 scripts/acestep_request.py release_task --print-task-id --json '{
     "prompt": "<your detailed multi-dimensional caption here>",
     "lyrics": "[Verse 1]\n<line>\n<line>\n\n[Pre-Chorus]\n<line>\n<line>\n\n[Chorus]\n<line>\n<line>\n\n[Verse 2]\n<line>\n<line>\n\n[Bridge]\n<line>\n<line>\n\n[Outro]\n<line>\n<line>\n",
     "audio_duration": 210,
@@ -110,7 +104,7 @@ TASK_ID=$(curl -s -X POST http://127.0.0.1:8001/release_task \
     "thinking": true,
     "inference_steps": 8,
     "guidance_scale": 7.0
-  }' | python3 -c "import json,sys; print(json.load(sys.stdin).get('data',{}).get('task_id',''))")
+  }')
 ```
 
 **Expected wall-clock on M3 24GB (standard tier, 2B turbo, 8 steps):**
@@ -335,7 +329,7 @@ You: "ACE-Step is ready but needs audio models before generating. This will
        ③ Skip local → use a cloud backend instead
           - MiniMax (if API key set) — fast, paid
           - Stable Audio (if STABILITY_API_KEY set) — paid
-          - MusicGen (local fallback) — free, instrumental only
+          - MusicGen (local fallback) — non-commercial weights, instrumental only
        
        You currently have {X} GB free disk space.
        
@@ -355,14 +349,10 @@ Rules:
 
 ```bash
 # Switch to xl-mixed (requires XL model already downloaded)
-curl -s -X POST http://127.0.0.1:8001/v1/init \
-  -H "Content-Type: application/json" \
-  -d '{"dit_model": "acestep-v15-xl-sft", "lm_model": "acestep-5Hz-lm-1.7B"}'
+python3 scripts/acestep_request.py v1/init --json '{"dit_model": "acestep-v15-xl-sft", "lm_model": "acestep-5Hz-lm-1.7B"}'
 
 # Switch back to standard
-curl -s -X POST http://127.0.0.1:8001/v1/init \
-  -H "Content-Type: application/json" \
-  -d '{"dit_model": "acestep-v15-turbo", "lm_model": "acestep-5Hz-lm-1.7B"}'
+python3 scripts/acestep_request.py v1/init --json '{"dit_model": "acestep-v15-turbo", "lm_model": "acestep-5Hz-lm-1.7B"}'
 ```
 
 **M3 performance by tier (real-world verified, June 2026):**
@@ -435,12 +425,14 @@ form-data, not JSON. Fields: `src_audio` (source for cover/repaint) or
 `reference_audio`/`ref_audio` (style-transfer reference). Send other params as form fields:
 
 ```bash
-curl -s -X POST http://127.0.0.1:8001/release_task \
-  -F "task_type=cover" \
-  -F "src_audio=@/path/to/song.wav" \
-  -F "audio_cover_strength=0.35" \
-  -F "prompt=dreamy 80s synthwave, warm analog synths, gated-reverb drums, arpeggiated bass, neon night-drive mood" \
-  -F "bpm=129" -F "key_scale=D major" -F "audio_format=wav"
+python3 scripts/acestep_request.py release_task \
+  --form task_type=cover \
+  --form-file src_audio=/path/to/song.wav \
+  --form audio_cover_strength=0.35 \
+  --form 'prompt=dreamy 80s synthwave, warm analog synths, gated-reverb drums, arpeggiated bass, neon night-drive mood' \
+  --form bpm=129 \
+  --form 'key_scale=D major' \
+  --form audio_format=wav
 ```
 
 **Cover behavior (verified):**
@@ -462,8 +454,8 @@ server's **default 600 s generation timeout** and failed. Mitigations:
 
 **Routing gate:** use ACE-Step cover only when the user explicitly accepts a local,
 slower, experimental workflow and the source length/hardware budget make sense.
-Use `music-craft-minimax` for fast cloud cover, long-source turnaround, mashups,
-or when the user needs MiniMax-native controls and analysis scripts.
+There is no fast cloud cover alternative any more; MiniMax music generation was
+discontinued.
 
 **Repaint** (fix one bad section instead of regenerating the whole track): `task_type=repaint`,
 upload `src_audio`, set `repainting_start`/`repainting_end` (seconds) and `repaint_mode`
@@ -472,7 +464,9 @@ analysis to choose the window.
 
 **Stem/remix helper path:** ACE-Step `extract` is experimental. For local arranger
 experiments, prefer `scripts/extract_stems.py` when Demucs is installed; it writes
-`stems.json` with normalized `vocals`, `drums`, `bass`, and `other` paths. Then
+`stems.json` with normalized `vocals`, `drums`, `bass`, and `other` paths. On
+the first run Demucs needs its model weights: ask the user, then add
+`--allow-model-download`. Then
 use `scripts/remix_stems.py --stems-json <stems.json> --output <mix.mp3> --dry-run`
 to inspect the preview-quality `ffmpeg amix` command before rendering. This is
 not DAW-quality mixing.

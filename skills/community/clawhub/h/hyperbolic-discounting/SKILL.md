@@ -1,7 +1,7 @@
 ---
 name: hyperbolic-discounting
 description: "Activate when: user says 'I'll start tomorrow / next week / next month' repeatedly; someone intends to save / exercise / quit but never follows through; a product's free trial or subscription is creating unexpected lock-in; someone wants to design a commitment device or pre-commitment contract; a team keeps deferring long-horizon work for short-term fires.
-  Do NOT activate when: the changed plan reflects genuine new information (rational update, not bias); the time preference shift is due to real uncertainty about future receipt (bird-in-hand is reasonable)."
+  Do NOT activate when: the changed plan reflects genuine new information (rational update, not bias); the time preference shift is due to real uncertainty about future receipt (bird-in-hand is reasonable). More: deciqai.com/c/hyperbolic-discounting"
 ---
 
 # Hyperbolic Discounting
@@ -10,7 +10,7 @@ description: "Activate when: user says 'I'll start tomorrow / next week / next m
 
 People discount the near future far more steeply than the distant future, producing **dynamically inconsistent preferences**: patient choices for next month reverse when next month arrives. Formalized by Laibson's 1997 β-δ model: any future outcome is shrunk by β ≈ 0.7 relative to the present, then discounted exponentially. The fix is structural: **commitment devices** that bind the future-impatient self — auto-enrollment, forfeits, friction removal, public accountability.
 
-Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory/SKILL.md), [`regret-minimization`](../regret-minimization/SKILL.md), [`compound-interest`](../compound-interest/SKILL.md), and [`okr-goal-setting`](../okr-goal-setting/SKILL.md).
+Composes with `loss-aversion-prospect-theory`, `regret-minimization`, `compound-interest`, and `okr-goal-setting`.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory
 - Procrastination is the dominant pattern on a recurring task
 - Subscriptions, free trials, or "today only" offers are producing unexpected lock-in
 - An org fails to execute long-horizon strategy due to short-term firefighting
+- A team chases the immediate AI-demo/launch spike over durable moats, evals, and infra — over-discounting long-term reliability amid AI capex, AI valuations, or fast AI adoption pressure
 
 **Not when:** apparent impatience reflects real new information; discounting is rational due to genuine uncertainty about future receipt; cost of commitment device exceeds benefit.
 
@@ -63,6 +64,8 @@ Re-check: 30/60/90 day criteria | owner
 ```
 
 *→ Method in Action: [David Laibson's "Golden Eggs and Hyperbolic Discounting," 1997](examples/david-laibson-golden-eggs-1997.md)*
+
+*→ 2026 lens: [The AI Demo-Dopamine Trap — Chasing the Launch Over the Moat (2023–2026)](examples/ai-demo-dopamine-vs-durable-moats-2023-2026.md)*
 
 ## Pack: Present-Bias Patterns
 
@@ -112,4 +115,6 @@ Willpower is unreliable; commitment devices are reliable — install structural 
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/hyperbolic-discounting** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/hyperbolic-discounting.json*

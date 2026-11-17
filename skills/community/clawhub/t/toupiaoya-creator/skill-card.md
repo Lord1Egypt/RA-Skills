@@ -1,43 +1,59 @@
-## Description: <br>
-投票鸭制作助手 helps agents search Toupiaoya voting templates, create voting projects, upload materials, and manage project data through the bundled CLI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Toupiaoya voting templates, create and manage online voting projects, upload materials, and query voting or traffic data.
 
-## Publisher: <br>
-[jijun](https://clawhub.ai/user/jijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijun](https://clawhub.ai/user/jijun)
 
-## Use Case: <br>
-External users and developers use this skill to build and manage online voting activities with Toupiaoya, including template search, project creation, material upload, vote data retrieval, trend reporting, and option or group management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses X-Openclaw-Token as a local credential. <br>
-Mitigation: Treat the token as a secret, avoid sharing ~/.toupiaoya/config.json, and remove that file when persistent login is no longer wanted. <br>
-Risk: Project titles, descriptions, options, and uploaded files may be sent to Toupiaoya or Tencent Cloud COS services. <br>
-Mitigation: Do not enter secrets, regulated data, or sensitive personal information unless the user is comfortable sending that data to those services. <br>
+## Use Case:
 
+External users and agents use this skill to find voting templates, create text, image, or video voting activities, upload materials, and inspect voting or visit data in Toupiaoya.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jijun/toupiaoya-creator) <br>
-- [Toupiaoya token access](https://www.toupiaoya.com/skillAccess/token) <br>
-- [Toupiaoya template search API](https://msearch-api.toupiaoya.com/m/search/searchProducts) <br>
-- [Toupiaoya project creation API](https://ai-api.toupiaoya.com/iaigc-toupiaoya/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with CLI command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local token configuration and may call Toupiaoya and Tencent Cloud COS services when the user runs the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Saved authentication tokens may be sent to caller-controlled API endpoints if custom base URL or related environment overrides are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Toupiaoya endpoints and avoid custom --base-url or TOUPIAOYA_* API base overrides.
+
+Risk: Authenticated commands can create or modify remote voting projects and upload local files.
+
+Mitigation: Review project, option, group, and file inputs before execution, and do not upload sensitive local files.
+
+Risk: The saved X-Openclaw-Token functions as account authority for Toupiaoya actions.
+
+Mitigation: Protect ~/.toupiaoya/config.json, rotate the token if exposed, and remove it when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jijun/skills/toupiaoya-creator)
+- [Toupiaoya token access page](https://www.toupiaoya.com/skillAccess/token)
+- [Toupiaoya create API endpoint](https://ai-api.toupiaoya.com/iaigc-toupiaoya/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save an X-Openclaw-Token locally, call Toupiaoya HTTP APIs, create or modify remote voting projects, and upload local files when invoked.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Analyze repository changes from the last release to the current revision and recommend the correct semantic version bump. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze repository changes from the last release to the current revision and recommend the correct semantic version bump.
 
-## Publisher: <br>
-[nick2bad4u](https://clawhub.ai/user/nick2bad4u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nick2bad4u](https://clawhub.ai/user/nick2bad4u)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to inspect repository changes, package metadata, and public contract evidence before deciding whether the next release should be patch, minor, or major. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release recommendations can be wrong when tags, generated API documentation, package metadata, or public contract evidence are incomplete. <br>
-Mitigation: Review the stated confidence and residual risk, collect missing evidence, and verify the recommendation against actual diffs before tagging or publishing. <br>
-Risk: The skill may suggest shell commands to collect release evidence. <br>
-Mitigation: Review commands before running them and keep execution scoped to the repository being analyzed. <br>
+## Use Case:
 
+Developers and release engineers use this skill to inspect repository changes since the last release and produce an evidence-based patch, minor, or major version recommendation before tagging or publishing.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/Nick2bad4u/semver-release-recommender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendation with evidence summary, rationale, checks, and residual risk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a semver bump recommendation, confidence level, release range, current and next versions, and commands used to collect evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The default workflow can run an untrusted repository-controlled Python helper when the helper path is resolved from the project being analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the manual Git inspection workflow or verify that any helper script resolves from a trusted installed skill directory before execution.
+
+## Reference(s):
+
+- [Source repository](https://github.com/Nick2bad4u/semver-release-recommender)
+- [ClawHub skill listing](https://clawhub.ai/nick2bad4u/skills/semver-release-recommender)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown recommendation with concise rationale, checks, and residual risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a recommended semantic version bump, confidence level, release range, next version, reviewed evidence, and residual risk.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

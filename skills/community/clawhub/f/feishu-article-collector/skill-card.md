@@ -1,43 +1,53 @@
-## Description: <br>
-Collects Toutiao and WeChat public account articles, extracts article text, uses AI to summarize and categorize them, and stores deduplicated records in Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Toutiao and WeChat article links, extracts article text, uses AI to summarize and classify the content, and stores the result in Feishu Bitable with duplicate detection.
 
-## Publisher: <br>
-[budingsoft](https://clawhub.ai/user/budingsoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[budingsoft](https://clawhub.ai/user/budingsoft)
 
-## Use Case: <br>
-External users and workspace operators use this skill to save shared Toutiao or WeChat article links into a Feishu Bitable with an AI-generated summary, category, source label, and duplicate check. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automates article retrieval, AI analysis, and writes to a Feishu workspace, which can expose article content and derived metadata to Feishu and DeepSeek. <br>
-Mitigation: Use a controlled Feishu workspace, a dedicated low-privilege app, and avoid confidential, internal, subscription-only, or personal links unless this data flow is acceptable. <br>
-Risk: Weak scoping around link handling and redirects can increase the impact of high-automation behavior. <br>
-Mitigation: Tighten hostname validation, re-check or disable redirects, and add an explicit command or authorization gate before production use. <br>
-Risk: The setup helper includes full-access permission behavior. <br>
-Mitigation: Remove or gate the full-access helper and document the intended data handling and permission model before deploying broadly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/budingsoft/feishu-article-collector) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/budingsoft) <br>
-- [Feishu Open APIs](https://open.feishu.cn/open-apis) <br>
+## Use Case:
 
+External users and teams using OpenClaw can collect shared Toutiao or WeChat article links into a Feishu Bitable, with AI-generated summaries, categories, source labels, and duplicate checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Text replies based on JSON script results, with shell command invocation and environment-variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, requests, FEISHU_APP_ID, FEISHU_APP_SECRET, and DEEPSEEK_API_KEY; writes article records to Feishu Bitable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weak URL validation can allow unintended sites to be fetched and processed.
+
+Mitigation: Use the skill only in trusted chat contexts until strict hostname allowlisting and redirect checks are added.
+
+Risk: Article content is sent to DeepSeek and stored in Feishu Bitable.
+
+Mitigation: Deploy only where that third-party processing and storage of article content is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/budingsoft/skills/feishu-article-collector)
+- [Feishu Open API Endpoint](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON from the collection script and concise user-facing text replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, requests, Feishu app credentials, and a DeepSeek API key.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

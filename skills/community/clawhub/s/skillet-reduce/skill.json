@@ -1,0 +1,8 @@
+{
+  "id": "reduce",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh reduce"
+  ],
+  "trust_level": "workspace"
+}

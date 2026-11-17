@@ -1,39 +1,53 @@
-## Description: <br>
-Polish and refine novel text by improving language fluency, emotional expression, and vividness; strengthen story details and imagery; enhance dialogue authenticity; optimize narrative pacing; remove repetition and redundancy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish and refine novel text by improving language fluency, emotional expression, and vividness; strengthen story details and imagery; enhance dialogue authenticity; optimize narrative pacing; remove repetition and redundancy.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Writers and editors use this skill to polish novel passages while preserving the core plot, character names, setting, tone, and narrative perspective. It is intended for fiction prose refinement, including paragraph-level revisions, dialogue improvements, pacing adjustments, and change notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad writing-improvement requests outside fiction, where genre-specific polishing could be inappropriate. <br>
-Mitigation: Use it for novel and fiction prose; choose a more specific editing skill for academic, factual, legal, or non-fiction work when precision matters. <br>
-Risk: Polishing may shift authorial voice or add descriptive emphasis beyond the user's intent. <br>
-Mitigation: Review the paragraph-level polished text and change notes, and keep only revisions that preserve the original meaning, tone, characters, places, and core plot. <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to polish novel passages while preserving the original plot, character names, setting, emotional tone, and narrative perspective. It supports paragraph-by-paragraph refinement with original text, polished text, and change notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with quoted original text, polished text, and change notes for each paragraph] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a complete polished version when the user requests full-text output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger wording may cause the skill to be invoked for general prose-editing requests where a more specific writing or editing skill is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for novel or fiction polishing before applying the paragraph-by-paragraph workflow.
+
+Risk: Polishing sensitive fictional content could unintentionally alter the nature of the content or the author's intended tone.
+
+Mitigation: Limit changes to language quality and preserve the original emotional tone, narrative perspective, plot, characters, and settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/novel-polish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with original text, polished text, and change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a complete polished version when the user requests full-text output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

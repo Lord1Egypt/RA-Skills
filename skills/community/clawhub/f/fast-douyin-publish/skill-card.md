@@ -1,43 +1,62 @@
-## Description: <br>
-Fast Douyin Publish helps an agent upload videos to Douyin with QR-code login, title and tag handling, and local publishing logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast Douyin Publish helps agents upload videos to Douyin with QR-code login, title and tag entry, and local publishing history.
 
-## Publisher: <br>
-[DeadLining](https://clawhub.ai/user/DeadLining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlining](https://clawhub.ai/user/deadlining)
 
-## Use Case: <br>
-Creators, operators, and automation developers use this skill to publish prepared video files to a live Douyin account from an agent workflow, including titles, tags, and optional descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable login sessions locally and can post publicly to a live Douyin account. <br>
-Mitigation: Install only from a trusted publisher, protect or delete saved cookies after use, avoid committing the config directory, and review the target account, video, title, tags, and description before running. <br>
-Risk: Headless operation can publish content without an obvious final visual check. <br>
-Mitigation: Run with a visible browser for first use or sensitive posts, and reserve headless mode for reviewed, repeatable workflows. <br>
-Risk: The bundled account configuration includes unexplained credential fields for platforms outside the Douyin workflow. <br>
-Mitigation: Remove unrelated platform entries from config/accounts.json before use and keep only the Douyin configuration required for the intended workflow. <br>
+## Use Case:
 
+External creators, developers, and automation operators use this skill to publish local video files to Douyin with supplied titles, tags, and optional descriptions. The skill is intended for workflows where the operator can review the video and metadata before posting.
 
-## Reference(s): <br>
-- [Fast Douyin Publish on ClawHub](https://clawhub.ai/DeadLining/fast-douyin-publish) <br>
-- [DeadLining publisher profile](https://clawhub.ai/user/DeadLining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser automation instructions and publishing status; the publishing script may create local cookies, account configuration, debug screenshots, and publish logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Reusable Douyin login sessions are stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill from a private, isolated workspace; protect or delete config/cookies/douyin.json after use; and do not commit cookie files.
+
+Risk: Publishing in headless mode can post video content and metadata without visual confirmation.
+
+Mitigation: Use visible browser mode until the exact video, title, tags, and description have been reviewed.
+
+Risk: The bundled account configuration includes enabled non-Douyin platform entries despite the skill being scoped to Douyin.
+
+Mitigation: Remove unused account entries from config/accounts.json unless they are intentionally needed.
+
+Risk: Publish logs and error screenshots can expose account, content, or operational details.
+
+Mitigation: Keep config/publish_log.json and error_debug.png out of source control and delete them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deadlining/skills/fast-douyin-publish)
+- [ClawHub publisher profile](https://clawhub.ai/user/deadlining)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON publish logs and Playwright browser session state during use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

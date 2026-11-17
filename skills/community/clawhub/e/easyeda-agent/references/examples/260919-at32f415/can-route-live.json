@@ -1,0 +1,128 @@
+{
+  "schema": "easyeda-agent/260919-can-route-live/v1",
+  "status": "live-verified",
+  "capturedAtLocal": "2026-09-22T00:26:00+08:00",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "host": {
+    "easyedaVersion": "4.1.60",
+    "connectorVersion": "1.5.3-dev.3"
+  },
+  "sourceSnapshot": {
+    "boardSha256": "29ae31589b7778de46c21254a918420787132886dab1c0c20c28e0b487be411e",
+    "componentsSha256": "f3f9c7dfd4506db137e31bb731dced9d75b6b0d448303a13b4aeb6b320ab9cdb",
+    "tracksSha256": "c8c218c51758562a0167fb26dd2878639cc9b8b999c9e71e6833395af0390527",
+    "viasSha256": "3ebdd5ba8869fde231f904ec153c60513572e2fa13fe0b2f9349ca0b8ae8aece",
+    "poursSha256": "450c1cb71382370ba8aaffcab65e3f244b157175ee7fdae5ee286b048694be4d",
+    "fillsSha256": "2fbf6c65415cb62d6fd0f7b3f47d7edabf4f43a15a4f949407803c82b831a8bd",
+    "regionsSha256": "f858a9032a00adb1e2dfffb8d72dc83cfa3c090279c9dbf7324ce67aa2452a78"
+  },
+  "contract": {
+    "layer": 1,
+    "widthMil": 8,
+    "clearanceMil": 6,
+    "maxVias": 0,
+    "orderedMainPaths": {
+      "CANH": ["U5.7", "R12.1", "CN1.2"],
+      "CANL": ["U5.6", "R12.2", "CN1.1"]
+    },
+    "protectionBranches": {
+      "CANH": "D1.1",
+      "CANL": "D1.2"
+    },
+    "termination": "R12 remains a 120Ω cross-net termination; its two pads are ordered waypoints, not a series resistor in one net",
+    "lengthPolicy": "pair direction only; no serpentine or added equal-length requirement"
+  },
+  "planning": {
+    "candidateActions": 33,
+    "verdict": "accepted",
+    "padGeometrySource": "exact pcb list --include-bbox --include-pads response, separately content-hashed from pcb dump",
+    "forbiddenBodyGap": "D1/CN1 rendered-body gap is 10.056mil and is not used by 8mil copper",
+    "topology": {
+      "CANH": {
+        "mainSegments": 11,
+        "mainLengthMil": 583.7503,
+        "branchSegments": 5,
+        "branchLengthMil": 120.7744,
+        "branchTee": [2706.5, 1560.0]
+      },
+      "CANL": {
+        "mainSegments": 12,
+        "mainLengthMil": 813.4559,
+        "branchSegments": 5,
+        "branchLengthMil": 52.2274,
+        "branchTee": [2866.5, 1480.8]
+      }
+    },
+    "rejectedIntermediate": {
+      "symptom": "R12.2 后只有 2mil 的焊盘内过渡段，两条非相邻 8mil 斜线的物理铜面积重叠；官方 DRC 与 pcb check 未报错，但 pcb net-path 返回 ordered topology unknown",
+      "recovery": "只 rip-up CANH/CANL；把过渡拉长至 20.3mil，并上移 CANH 保护支路拐点后重新联合校验和写入",
+      "validatorUpdate": "validate_260919_can_plan.py 新增 same_net_copper_overlap；非相邻同网图元的铜面积重叠不再被中心线模型接受"
+    }
+  },
+  "freshReadbackAfterSaveReload": {
+    "boardTrackCount": 63,
+    "viaCount": 0,
+    "actualTracks": {
+      "CANH": 16,
+      "CANL": 17
+    },
+    "paths": [
+      {
+        "waypointOrder": ["U5.7", "R12.1", "CN1.2"],
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "waypointOrder": ["U5.6", "R12.2", "CN1.1"],
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "from": "D1.1",
+        "to": "CN1.2",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "from": "D1.2",
+        "to": "CN1.1",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      }
+    ],
+    "pcbCheck": {
+      "danglingEnds": 0,
+      "acuteAngles": 0,
+      "nonOrthogonal": 0,
+      "trackOverPad": 0,
+      "clearance": 0,
+      "duplicateSegments": 0,
+      "canParallelCouplingWarnings": 2,
+      "parallelCouplingDisposition": "CANH/CANL 是成对同向布线；两条 generic 3W WARN 分别为 20mil/55mil 和 14.8mil/39mil 的短并行段。live 6mil DRC 满足，且原题不要求拉开为 3W。"
+    },
+    "officialDrc": {
+      "connectionErrors": 202,
+      "otherViolationTypes": 0,
+      "deltaFromCrystalMilestone": -8
+    }
+  },
+  "persistence": {
+    "sequence": ["pcb save", "doc reload", "fresh track readback", "four fresh pcb net-path proofs", "fresh pcb check", "fresh pcb drc", "pcb track-lock", "pcb save", "doc reload", "fresh lock readback"],
+    "lockedTracks": 33,
+    "lockPersisted": true
+  },
+  "limitations": [
+    "D1.3 的最终 GND 短回路随局部 GND/双面铺铜阶段完成",
+    "当前整板仍有 202 个 Connection Error",
+    "绝对坐标只属于本次现场，迁移时须重新读取焊盘、既有铜和 D1/CN1 体间隙"
+  ]
+}

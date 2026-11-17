@@ -1,42 +1,61 @@
-## Description: <br>
-Enables an agent to retrieve, create, and analyze Guandata BI datasets, pages, cards, and chart data through a local Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用观远BI来进行数据获取与数据分析，帮助代理查询数据、创建图表、查看报表并分析营业额、门店、会员和订单等业务指标。
 
-## Publisher: <br>
-[zhengyuhe123](https://clawhub.ai/user/zhengyuhe123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengyuhe123](https://clawhub.ai/user/zhengyuhe123)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Guandata BI, inspect datasets and fields, create report cards, retrieve card data, and analyze BI results from an authorized BI account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Guandata BI credentials stored in local configuration. <br>
-Mitigation: Use a least-privilege BI account, keep config.json out of source control, and restrict permissions on the skill directory. <br>
-Risk: Returned BI data can be persisted on local disk in cache files. <br>
-Mitigation: Avoid highly sensitive datasets unless local caching is acceptable, use task-specific cache separation where appropriate, and clear .cache regularly. <br>
-Risk: The skill can create, retrieve, and delete BI pages or cards using the configured account permissions. <br>
-Mitigation: Confirm target page and card identifiers before running modifying commands and prefer accounts limited to the intended BI workspace. <br>
+## Use Case:
 
+Developers and business analysts use this skill to let an agent operate Guandata BI through a local CLI: list datasets and fields, create BI cards and pages, fetch card data, search filter values, and generate chart-backed analysis. It is intended for environments where the agent can be trusted with BI credentials and access to business data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhengyuhe123/guandata-bi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, Python code snippets, and CLI text or CSV outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow can use config.json for BI connection settings and can persist queried BI data in local CSV or JSON cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill requires Guandata BI credentials and the artifact stores them in config.json as plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged dedicated BI account and protect, avoid, or rotate any local plaintext credential file.
+
+Risk: The skill can read business data and automatically cache query results locally.
+
+Mitigation: Review local cache retention, restrict filesystem access, and clean cached CSV/JSON files according to data-handling policy.
+
+Risk: Untrusted task names or dataset identifiers can affect cache paths or BI operations.
+
+Mitigation: Use trusted task and dataset values only, and review agent-generated command arguments before execution.
+
+Risk: The security evidence flags an unsafe repeated publish bug in version 7 page publishing.
+
+Mitigation: Fix or disable version 7 release_page publishing before using page publishing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengyuhe123/skills/guandata-bi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON parameters, configuration examples, and CSV cache file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands may create or modify Guandata BI pages/cards and may write local CSV or JSON cache files.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

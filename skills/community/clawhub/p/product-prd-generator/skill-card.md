@@ -1,39 +1,51 @@
-## Description: <br>
-Generates AI-coding-oriented PRD, BRD, and product specification documents with self-contained feature modules, entity fields, state machines, permissions, Mermaid flows, and business rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-coding-oriented PRD, BRD, and product specification documents with self-contained feature modules, entity fields, state machines, permissions, Mermaid flowcharts, and business rules.
 
-## Publisher: <br>
-[dantes0310](https://clawhub.ai/user/dantes0310) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dantes0310](https://clawhub.ai/user/dantes0310)
 
-## Use Case: <br>
-Product managers, founders, and development teams use this skill to turn product ideas or requirement notes into structured PRD-style Markdown that can guide AI-assisted implementation. It is especially suited for feature specifications that need embedded data models, state transitions, permissions, acceptance criteria, Mermaid diagrams, and business rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad PRD or requirements-document requests where a user intended a narrower writing or planning workflow. <br>
-Mitigation: Invoke it explicitly for PRD, product requirements, or product specification generation, and review the generated document for scope, assumptions, and routing fit before using it for implementation. <br>
+## Use Case:
 
+Product managers, founders, and developers use this skill to turn product ideas or requirement notes into structured PRD-style Markdown that can guide AI-assisted software development. It is especially suited to Chinese-oriented PRD workflows that need explicit feature modules, state machines, permission matrices, Mermaid diagrams, and acceptance criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dantes0310/product-prd-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/dantes0310) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with embedded Mermaid diagrams, ASCII wireframes, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation-oriented PRD content; no executable code, network calls, persistence, or hidden privilege requests are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can activate on broad PRD or requirements-document requests and may generate a document whose scope, assumptions, or language do not match the user's project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PRDs for scope, assumptions, and language fit before using them as implementation guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dantes0310/skills/product-prd-generator)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with Mermaid diagrams, tables, checklists, and ASCII wireframes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured PRD content and may ask clarifying questions when the user's product description is too vague.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

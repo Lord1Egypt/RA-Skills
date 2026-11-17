@@ -1,39 +1,48 @@
-## Description: <br>
-This skill provides guidance and enforcement rules for implementing secure two-factor authentication (2FA) using Better Auth's twoFactor plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides guidance and enforcement rules for implementing secure two-factor authentication (2FA) using Better Auth's twoFactor plugin.
 
-## Publisher: <br>
-[StevenFengLi](https://clawhub.ai/user/StevenFengLi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stevenfengli](https://clawhub.ai/user/stevenfengli)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Better Auth two-factor authentication flows for web applications, including TOTP, OTP delivery, backup codes, trusted devices, session handling, and recovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Migration or configuration changes for two-factor authentication can affect account access and authentication behavior. <br>
-Mitigation: Review Better Auth migration output in development or staging before applying the examples to production. <br>
-Risk: Passwords, OTPs, TOTP setup URIs, backup codes, and trusted-device settings are sensitive account-security material. <br>
-Mitigation: Handle these values as secrets, avoid exposing them in logs or long-lived client state, and review recovery flows before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/StevenFengLi/twofactor) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Better Auth two-factor authentication flows, including TOTP, OTP delivery, backup codes, trusted devices, and 2FA session handling.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers sensitive account-security material such as passwords, OTPs, TOTP setup URIs, backup codes, and trusted-device settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill tells users to run an unpinned third-party migration CLI that can execute changing external code and alter the auth database.
+
+Mitigation: Review and pin the Better Auth CLI version before migration, add the reviewed version as a dev dependency, use the project lockfile, run migrations in staging first, and back up the database before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevenfengli/skills/twofactor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript and TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for server and client configuration, migration commands, verification flows, and security settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

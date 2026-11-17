@@ -1,40 +1,57 @@
-## Description: <br>
-B2B SaaS marketing metrics report builder and analyst for building, analyzing, or presenting marketing performance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS marketing metrics report builder and analyst that helps structure, analyze, and present marketing performance reports.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Marketing teams, founders, and revenue operators use this skill to turn B2B SaaS marketing metrics into decision-ready performance reports with funnel, channel, CAC, pipeline, and recommendation sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide customer PII, credentials, contract terms, confidential identifiers, or other sensitive business details while supplying marketing data. <br>
-Mitigation: Use aggregated or anonymized marketing, pipeline, and revenue metrics unless specific sensitive details are truly needed. <br>
-Risk: Reports and recommendations can be misleading when source metrics are incomplete, stale, or inconsistent. <br>
-Mitigation: Check that each claim is supported by a number and trend, and explicitly flag data gaps before using the recommendations for planning. <br>
+## Use Case:
 
+Marketing teams, executives, and analysts use this skill to turn B2B SaaS marketing metrics into decision-ready reports covering funnel performance, channel scorecards, CAC and payback, pipeline influence, content and email performance, and prioritized recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/b2b-saas-marketing-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown marketing report with tables, metric summaries, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-provided marketing metrics should be aggregated or anonymized when possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation wording may cause the skill to apply to a wide range of marketing analytics or reporting prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for B2B SaaS marketing report analysis before applying the report structure.
+
+Risk: Reports may contain sensitive business metrics or performance conclusions.
+
+Mitigation: Review generated reports before sharing externally and remove confidential metrics when needed.
+
+Risk: Recommendations depend on the completeness and accuracy of user-provided marketing data.
+
+Mitigation: Flag data gaps explicitly and verify numbers, trends, and source data before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-marketing-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report outline with tables, metric summaries, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided marketing data; outputs should flag data gaps and support claims with numbers and trends.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

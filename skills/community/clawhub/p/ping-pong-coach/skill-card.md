@@ -1,40 +1,53 @@
-## Description: <br>
-Generates a staged table tennis coaching plan from a learner's age, gender, and years of training, including stage duration, technical focus, current-stage analysis, and estimated time to progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language table-tennis training plans that use a learner's age, optional gender, and years of practice to identify the current stage, estimate remaining learning time, and outline staged technical priorities.
 
-## Publisher: <br>
-[taradl7347c](https://clawhub.ai/user/taradl7347c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taradl7347c](https://clawhub.ai/user/taradl7347c)
 
-## Use Case: <br>
-External learners, coaches, and agent users use this skill to generate practical table tennis training plans tailored to a learner's age and training history. It combines a local stage calculator with a seven-stage curriculum reference to produce an actionable plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run a local Python helper with learner-provided numeric inputs. <br>
-Mitigation: Review the command before running it and pass only intended learning-year and age values. <br>
-Risk: Generated coaching plans can be incomplete when learner details are missing. <br>
-Mitigation: Confirm age, training history, and any missing learner information before using the plan for training decisions. <br>
+## Use Case:
 
+External users and coaching assistants use this skill to create Chinese-language table-tennis lesson plans for learners aged 5-60 based on age, optional gender, and training history.
 
-## Reference(s): <br>
-- [Table Tennis Curriculum](references/curriculum.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown coaching plan with a stage-analysis section generated from a local Python helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses learner age and years of training when provided; marks missing learner information when inputs are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may trigger broadly on table-tennis lesson-plan requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants a table-tennis training plan and collect age, training years, and optional gender before generating the plan.
+
+Risk: The local script only computes stage and progress, so script output alone is not a complete training plan.
+
+Mitigation: Use the bundled curriculum reference for stage details and present the script output as stage analysis within the broader plan.
+
+## Reference(s):
+
+- [Table-Tennis Curriculum Reference](references/curriculum.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown training plan with stage analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include missing-information notes and next-step coaching recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

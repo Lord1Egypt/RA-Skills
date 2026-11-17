@@ -1,41 +1,52 @@
-## Description: <br>
-Files messages from Telegram into the user's Notion second brain, including books, fleeting notes, tasks, resources, and references, consistently and with minimal back-and-forth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Files messages from Telegram into the user's Notion second brain — books, fleeting notes, tasks — consistently and without clarifying questions.
 
-## Publisher: <br>
-[prakhar728](https://clawhub.ai/user/prakhar728) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[prakhar728](https://clawhub.ai/user/prakhar728)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to capture short Telegram-style messages into a Notion Second Brain workspace, routing books, tasks, resources, references, and thoughts into the appropriate Notion database.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation words can cause unrelated Telegram messages to be captured into Notion.
+
+Mitigation: Review activation words before installation and narrow them if accidental captures would be costly.
+
+Risk: Low-confidence captures may be written without a clarification step.
+
+Mitigation: Review the Notion Inbox and Reading List after capture, and share the Notion integration only with the intended Second Brain page.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users use this skill to route short Telegram messages into an existing Notion Second Brain workspace. It classifies captures as books, tasks, resources, references, or thoughts and writes them to the expected Notion database structure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, API calls, configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may cause accidental or misfiled Notion captures. <br>
-Mitigation: Review each confirmation message and correct misplaced entries in Notion; keep activation wording specific when using the skill. <br>
-Risk: The Notion integration may have wider workspace access than the skill needs. <br>
-Mitigation: Limit the integration's access to the Second Brain page and its databases where Notion permissions allow it. <br>
+**Output Format:** [Short text confirmations, markdown field content, and structured Notion page payloads]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/prakhar728/notion-second-brain) <br>
-- [Publisher Profile](https://clawhub.ai/user/prakhar728) <br>
+**Other Properties Related to Output:** [Writes to existing Notion Reading List and Inbox databases after locating the user's Second Brain workspace; does not create missing workspace structure.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Short confirmation text, Markdown field content, and structured Notion page payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing Notion Second Brain parent page and child databases; writes only after confirming the expected workspace structure.] <br>
+0.4.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

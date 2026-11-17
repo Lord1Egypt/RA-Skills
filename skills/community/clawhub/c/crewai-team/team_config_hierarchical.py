@@ -14,7 +14,7 @@ import os
 
 # ==================== API 配置 ====================
 
-DASHSCOPE_API_KEY = "sk-sp-e0fb4e4a6dba43fb9bd707b8ef48bd6b"
+DASHSCOPE_API_KEY = "REDACTED-SECRET"
 DASHSCOPE_BASE_URL = "https://coding.dashscope.aliyuncs.com/v1"
 
 os.environ["OPENAI_API_KEY"] = DASHSCOPE_API_KEY

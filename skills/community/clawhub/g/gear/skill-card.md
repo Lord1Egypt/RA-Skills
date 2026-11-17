@@ -1,41 +1,54 @@
-## Description: <br>
-Use when calculating gear ratios, converting RPM between shafts, computing torque output, analyzing drivetrain configurations, or selecting motors for mechanical systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when calculating gear ratios, converting RPM between shafts, computing torque output, analyzing drivetrain configurations, or selecting motors for mechanical systems.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, engineers, and technical users use this skill to calculate gear ratios, convert shaft speeds, estimate torque output, analyze multi-stage drivetrains, and get motor selection guidance for mechanical systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering calculations or motor guidance could be applied as final design decisions without validation. <br>
-Mitigation: Treat outputs as calculation aids and review them against project requirements, safety factors, and applicable engineering standards before use. <br>
-Risk: The skill executes a local Bash script with embedded Python calculations. <br>
-Mitigation: Review the script before running it and execute it only in an environment where local shell execution is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to calculate gear ratios, shaft speed changes, output torque, multi-stage drivetrain behavior, and motor sizing guidance for mechanical systems.
 
-## Reference(s): <br>
-- [Gear on ClawHub](https://clawhub.ai/bytesagain3/gear) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal calculation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Bash commands call Python 3 to produce calculation summaries and engineering guidance; outputs are calculation aids, not certified design decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill runs a local shell script with Python for calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan the artifact before deployment, and require explicit allowed-tools metadata in environments with strict tool declarations.
+
+Risk: Motor-selection and drivetrain outputs are calculation guidance and may not cover all engineering constraints for a physical system.
+
+Mitigation: Validate outputs against project requirements, safety factors, manufacturer data, and qualified engineering review before implementation.
+
+## Reference(s):
+
+- [Gear Skill on ClawHub](https://clawhub.ai/bytesagain3/skills/gear)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown-friendly text and shell command examples with calculation tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local calculator output for gear, speed, torque, drivetrain, and motor-selection workflows.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

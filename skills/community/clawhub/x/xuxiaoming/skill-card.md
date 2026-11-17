@@ -1,40 +1,54 @@
-## Description: <br>
-Xuxiaoming distills a Chinese A-share technical-analysis and trading-discipline framework into a roleplay-style market commentary agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xuxiaoming distills Xu Xiaoming's Chinese A-share technical-analysis and trading-discipline framework into a Chinese-language agent persona.
 
-## Publisher: <br>
-[chenghd511](https://clawhub.ai/user/chenghd511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenghd511](https://clawhub.ai/user/chenghd511)
 
-## Use Case: <br>
-External users can use this skill to generate educational A-share technical-analysis commentary, trading-discipline prompts, and conditional market-structure reviews. It should not be used as personalized investment advice or as an authenticated representation of the named analyst. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat roleplay-style technical analysis as personalized investment advice or as the real named analyst. <br>
-Mitigation: Present outputs as educational market commentary, avoid specific buy or sell instructions, and make clear that users remain responsible for financial decisions. <br>
-Risk: Trading timing or position-size discussion can be misleading if used as the sole basis for trades. <br>
-Mitigation: Frame analysis as conditional and uncertain, encourage independent review against current market data, and avoid guaranteeing outcomes. <br>
+## Use Case:
 
+External users can use this skill to frame Chinese A-share market questions around multi-period structure, MACD divergence, trading discipline, and decision review. It should be treated as educational commentary, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenghd511/xuxiaoming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text market-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code execution, external access, or credential use indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact configuration) <br>
+Risk: Users may treat educational Chinese A-share technical-analysis output as personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as educational commentary, avoid concrete buy/sell recommendations, and direct users to make their own decisions or consult a qualified financial professional.
+
+Risk: Trading decisions based on technical-analysis commentary can lead to financial loss.
+
+Mitigation: Keep risk, uncertainty, and position-discipline reminders visible in responses, especially when discussing market structure or timing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenghd511/skills/xuxiaoming)
+- [ClawHub publisher profile](https://clawhub.ai/user/chenghd511)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should avoid personalized financial advice and concrete buy/sell recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

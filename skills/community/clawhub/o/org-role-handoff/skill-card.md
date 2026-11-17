@@ -1,47 +1,65 @@
-## Description: <br>
-Take on roles from the target organization's IT and operational structure and respond from that role's perspective, responsibilities, scope, boundaries, collaboration context, and expected output style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take on roles from the target organization's IT and operational structure and respond from that role's perspective, responsibilities, scope, boundaries, collaboration context, and expected output style.
 
-## Publisher: <br>
-[nalendrax8](https://clawhub.ai/user/nalendrax8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nalendrax8](https://clawhub.ai/user/nalendrax8)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill when they want an assistant to answer from a defined organizational role, such as IT Director, Quality Assurance, Database Administrator, developer, designer, Business Analyst, or General Administration. It helps frame responses by role responsibility, authority, collaboration boundaries, and expected output style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Role-framed answers could be mistaken for real organizational authority. <br>
-Mitigation: Treat the output as role-based framing and confirm actual authority, approvals, and ownership with the relevant organization. <br>
-Risk: Prompts may include confidential company details while asking for role-specific advice. <br>
-Mitigation: Avoid sharing confidential information unless it is necessary and sanitized. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill when they want an agent to answer from a specific organizational role such as Executive Director, IT Director, Quality Assurance, Database Administrator, Web Developer, Product & Project Manager, UI/UX Designer, Business Analyst, or General Administration. It helps structure role-specific recommendations, checklists, reviews, implementation plans, validation plans, coordination briefs, and handoffs while preserving role boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nalendrax8/org-role-handoff) <br>
-- [Role definitions](references/role-definitions.md) <br>
-- [Role boundaries](references/role-boundaries.md) <br>
-- [Collaboration rules](references/collaboration-rules.md) <br>
-- [Handoff patterns](references/handoff-patterns.md) <br>
-- [Output modes](references/output-modes.md) <br>
-- [Default response shape](references/default-response-shape.md) <br>
-- [Anti-patterns](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Role-scoped responses may include recommendations, checklists, task breakdowns, reviews, requirement summaries, implementation plans, validation plans, risk notes, decision framing, or coordination briefs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ambiguous shorthand such as PM, BA, QA, admin, developer, or designer can cause the agent to answer from an unintended role perspective.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask a brief clarification when ambiguity would materially change the answer, or state the assumed role when speed is preferred.
+
+Risk: Role-based framing can overstate a role's authority or blur ownership across business, design, operations, and technical responsibilities.
+
+Mitigation: Use the role-boundary and collaboration references to answer from the requested role first, then identify adjacent roles needed for decisions or follow-up.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/nalendrax8/skills/org-role-handoff)
+- [Organization Context](references/org-context.md)
+- [Role Definitions](references/role-definitions.md)
+- [Role Synonyms](references/role-synonyms.md)
+- [Role Selection Rules](references/role-selection-rules.md)
+- [Role Boundaries](references/role-boundaries.md)
+- [Collaboration Rules](references/collaboration-rules.md)
+- [Handoff Patterns](references/handoff-patterns.md)
+- [Output Modes](references/output-modes.md)
+- [Default Response Shape](references/default-response-shape.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [Multi-Role Response Rules](references/multi-role-response-rules.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text shaped to the requested organizational role and task]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use role brief, checklist, recommendation, or task-output templates when those structures fit the request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -80,6 +80,20 @@ disable-model-invocation: true
 - **不要**链到错误配对（如 `guide.md` 链到 `other-zh.md`）；重命名文件后同步更新两侧链接。
 - 语言切换链接**仅指向配对文档**，与正文外链、锚点链接分开；勿把 GitHub raw URL 或绝对仓库 URL 写进同仓相对文档（除非用户明确要求）。
 
+### 项目徽章块（可选）
+
+若用户在 README 顶部提供一个项目元数据徽章块（例如许可证、论文和模型链接），两种语言版本都保留**相同的完整 HTML 块**；不要翻译或改变其中的 `href`、`src`、`alt`、查询参数或徽章顺序，除非用户明确要求。若有语言切换链接，先放语言切换链接，再放徽章块。
+
+用户指定的 TransMem 徽章模板：
+
+```html
+<p align="center">
+<a href="https://creativecommons.org/licenses/by/4.0/"><img alt="License: CC-BY-4.0" src="https://img.shields.io/badge/License-CC_BY_4.0-brightgreen.svg"></a>
+<a href="https://arxiv.org/abs/2607.29032"><img src="https://img.shields.io/badge/arXiv-Paper-B31B1B?style=flat-square&logo=arxiv&logoColor=white"></a>
+<a href="https://huggingface.co/collections/Rayleihaodong/transmem"><img alt="Huggingface" src="https://img.shields.io/badge/🤗_Huggingface-Model-ff9800.svg"></a>
+</p>
+```
+
 ### 示例
 
 **场景 A：主文为英文，译文为中文**

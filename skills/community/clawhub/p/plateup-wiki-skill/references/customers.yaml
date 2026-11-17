@@ -1,0 +1,72 @@
+meta:
+  source: https://wiki.plateupgame.com/gameplay/Customers
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  durations: "base seconds; table lists single-player baseline where available"
+
+phases:
+  - {id: queuing, zh: 排队, base_seconds_day: 90, night_seconds: 45, exits_when: "suitable dining or coffee table becomes available", shared_bar: true}
+  - {id: waiting_for_table, zh: 等待桌位, base_seconds: 150, exits_when: "suitable dining table becomes available", requires: [Hosting Stand, Coffee Table]}
+  - {id: thinking, zh: 思考点单, base_seconds: 2.5, exits_when: "timer elapsed", patience_modifier_applies: false}
+  - {id: service, zh: 服务/点单, base_seconds: 150, exits_when: "player or Ordering Terminal takes order"}
+  - {id: waiting_for_food, zh: 等待上菜, base_seconds: 90, exits_when: "first food delivered"}
+  - {id: delivery, zh: 配送, base_seconds: 15, increment_per_delivery: 2, exits_when: "all remaining food delivered"}
+  - {id: eating, zh: 用餐, base_seconds: 3, exits_when: "timer elapsed", patience_modifier_applies: false}
+
+duration_multipliers_as_listed_by_wiki:
+  multiplier_order: [0.75x, 1.0x, 1.1x, 1.15x]
+  waiting_for_table_seconds: [200, 150, 136, 130]
+  service_seconds: [200, 150, 136, 130]
+  waiting_for_food_seconds: [120, 90, 82, 78]
+  delivery_base_seconds: [20, 15, 13.6, 13]
+  delivery_increment_seconds: [2.7, 2, 1.8, 1.7]
+  queuing_seconds_day: [120, 90, 82, 78]
+  queuing_seconds_night: [60, 45, 41, 39]
+
+queue_rules:
+  group_patience_shared: true
+  each_additional_queue_group_speed_multiplier: 1.1
+  rain_depletion_speed: 1.5x
+  snow_depletion_speed: 2x
+  night_depletion_speed: 2x
+  stacking: multiplicative
+  combined_snow_night_speed: 4x
+  clear_entire_queue_restores_patience: true
+
+path_priority: [suitable_dining_table, hosting_stand, coffee_table, external_queue]
+pathing:
+  route: "most direct route; can retarget if a suitable destination opens"
+  chair_access: "each active chair needs at least one open path from the front door"
+  customers_phase_through_customers: true
+  customers_collide_with_players_and_doors: true
+  blocked_by: [walls, solid_items, chairs]
+
+group_forecast:
+  expected_groups: "groups expected that day; increases over a run and is affected by cards"
+  default_group_size: [1, 2]
+  preparation_requirement: "at least one dining table must seat the current maximum group size"
+
+extra_item_delivery:
+  applies_to_examples: [Hot Dogs, Stir Fry, Coffee]
+  chance_per_customer_per_eating_second: "roughly 10%-20%, depends on unlocked extras"
+  max_per_customer_per_meal: 1
+  effect: "starts a Delivery phase; after serving, Eating restarts at full duration"
+
+known_patience_modifiers:
+  - {source: Exclusive Level 1, phase: queuing, effect: +33% duration}
+  - {source: Ordering Terminal, phase: service, effect: -30% duration}
+  - {source: Charming Level 1, phase: service, effect: +50% duration}
+  - {source: Instant Service, phase: service, effect: removed}
+  - {source: Affordable Level 1, phase: [thinking, eating], effect: -50% duration}
+  - {source: Bar Table, phase: thinking, effect: removed}
+  - {source: Breadsticks, phase: thinking, effect: +100% duration when placed on table}
+  - {source: Table - Simple Cloth, phase: thinking, effect: +200% duration}
+  - {source: Calm Painting, phase: [thinking, delivery], effect: +100% duration for tables in same room}
+  - {source: Exclusive Level 3, phase: table_patience, effect: does_not_decrease_while_queue_exists}
+  - {source: Charming Level 3, phase: seating, effect: customers_sit_before_table_is_cleared}
+  - {source: Formal Level 2, phase: delivery, effect: +500% patience_per_delivery_increment}
+
+source_notes:
+  - "Thinking and Eating durations are not patience bars and cannot directly end a run."
+  - "Multiple courses repeat dining phases."
+  - "Night, rain, snow and queue-group effects combine multiplicatively."

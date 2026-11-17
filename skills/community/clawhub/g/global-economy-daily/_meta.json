@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn73v8vvj69c7ndv70hdf9jdj984t3wq",
-  "slug": "global-economy-daily",
-  "version": "1.0.0",
-  "publishedAt": 1776136935958
+    "name": "global-economy-daily",
+    "description": "每日生成并推送全球经济每日洞察日报，包含全球股指、大宗商品、外汇、加密货币和时政要闻板块，每个板块配有独立归因分析。",
+    "version": "1.0.0",
+    "created": "2026-04-14",
+    "author": "William",
+    "tags": ["经济", "日报", "全球市场", "地缘政治", "时政", "QQ推送", "飞书推送"]
 }

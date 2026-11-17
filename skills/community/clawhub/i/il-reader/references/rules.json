@@ -1,0 +1,206 @@
+{
+  "version": "1.1.0",
+  "rules": [
+    {
+      "id": "retrieval-metrics",
+      "name": "信息检索教材：查全率与查准率",
+      "status": "verified",
+      "freshness": "stable",
+      "url": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-unranked-retrieval-sets-1.html",
+      "verified_at": "2026-10-09T12:10:40.059Z",
+      "scope": "已给定相关总量、检出量及相关检出量时的指标与比例公式；不证明实际数据库数量",
+      "claims": {
+        "recall": "查全率（召回率）= 相关检出量 / 全部相关量",
+        "precision": "查准率（精确率）= 相关检出量 / 全部检出量",
+        "ratio": "部分占总体的比例 = 部分 / 总体；百分数 = 比例 × 100%"
+      },
+      "exclusions": [
+        "数据库实时数量或排名",
+        "题干未给定的数据",
+        "无法明确对应的分子分母"
+      ],
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/retrieval-metrics.json",
+          "sha256": "29780293a81122f7624349c35d5c8121723cc8019b425c03fec525980bfe0ca2"
+        },
+        {
+          "path": "references/rule-evidence/retrieval-metrics.png",
+          "sha256": "dab6e49fd1563416dab9ebe15f34fdb8ce582a6e541761f3c423b70cfba8c394"
+        }
+      ]
+    },
+    {
+      "id": "boolean-operators",
+      "name": "信息检索教材：通用布尔语义",
+      "status": "verified",
+      "freshness": "stable",
+      "url": "https://nlp.stanford.edu/IR-book/html/htmledition/an-example-information-retrieval-problem-1.html",
+      "verified_at": "2026-10-09T12:12:17.809Z",
+      "scope": "通用布尔检索模型的集合与逻辑语义；不包含某数据库的实际语法、优先级和默认匹配方式",
+      "claims": {
+        "and": "AND 表示同时满足两条件，集合取交集；在相同总体与匹配口径下不能扩大结果集合",
+        "or": "OR 表示至少满足一个条件，集合取并集（包括同时满足）；在相同总体与匹配口径下不能缩小结果集合",
+        "not": "NOT 表示否定或排除条件；A AND NOT B 为属于 A 且不属于 B 的集合"
+      },
+      "exclusions": [
+        "厂商特定字段、引号、运算符优先级与匹配规则",
+        "动态数量、排名和版本功能",
+        "新增术语后相关性与查准率必然变化的断言"
+      ],
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/boolean-operators.json",
+          "sha256": "6a81f041c27550f51e50c01df5e6796326c2a09f995c79d85c43d4c6ecfa4809"
+        },
+        {
+          "path": "references/rule-evidence/boolean-operators.png",
+          "sha256": "cbe626463616a7aa5625ad3b3755370e3b77f495472e4193bdddc5e33ab1bf62"
+        }
+      ]
+    },
+    {
+      "id": "doi-basics",
+      "name": "DOI Foundation：DOI 标识与解析",
+      "url": "https://www.doi.org/doi-handbook/html/",
+      "scope": "DOI 系统的通用标识、持久性与解析定义；不据 DOI 字符串猜测具体文献事实",
+      "claims": {
+        "identity": "DOI 是实体的全球唯一标识符，可标识数字、物理或抽象实体，不只用于期刊论文。",
+        "persistence": "DOI 标识与其解析到的信息分开维护；目标 URL 等信息可以更新，而 DOI 与被标识实体的对应关系保持。",
+        "resolution": "DOI 可以解析到资源、描述实体的元数据或提供进一步访问入口的落地页；仅有 DOI 不能证明全文可免费获得。"
+      },
+      "exclusions": [
+        "任何具体 DOI 的题名、作者、机构、期刊、年份和全文内容",
+        "某篇文献能否访问、是否开放获取及当前权限",
+        "仅按 DOI 后缀猜出版日期、期刊或文献类型",
+        "承诺任何 DOI 永远成功解析或资源永远存在"
+      ],
+      "status": "verified",
+      "freshness": "stable",
+      "verified_at": "2026-10-09T13:06:11.948Z",
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/doi-basics.json",
+          "sha256": "2ddde563ab53ad86b63085d0e852b2c8f6883cda92102c3a870c4115d774c829"
+        },
+        {
+          "path": "references/rule-evidence/doi-basics-identity.png",
+          "sha256": "d49dbd9a5b318136815f68da444cde6acac6229e426375f198eafdc8a0e28b27"
+        },
+        {
+          "path": "references/rule-evidence/doi-basics-persistence.png",
+          "sha256": "7071a736e7b4590ab71ef38339008c2c1e1c321f30155d4ee637720eb5a62a10"
+        },
+        {
+          "path": "references/rule-evidence/doi-basics-resolution.png",
+          "sha256": "f425301c244c3f64896e7600ac13a1c2d01175ef594a1707da459a2f7f065e8e"
+        }
+      ]
+    },
+    {
+      "id": "inverted-index",
+      "name": "信息检索教材：倒排索引",
+      "url": "https://nlp.stanford.edu/IR-book/html/htmledition/an-example-information-retrieval-problem-1.html",
+      "scope": "通用文本检索中倒排索引、词典与倒排列表的基本定义；不证明具体引擎的实现与性能",
+      "claims": {
+        "mapping": "倒排索引从词项关联到出现该词项的文档或出现位置。",
+        "components": "基本结构包含词项词典，以及记录每个词项出现在哪些文档中的倒排列表；列表中的一项称为 posting。"
+      },
+      "exclusions": [
+        "特定搜索引擎、数据库的实际算法、字段索引或排序方式",
+        "每个系统都保存词项位置的断言",
+        "索引实时更新频率、覆盖率、搜索耗时或绝对性能保证",
+        "厂商特定语法或数据库实际检索结果"
+      ],
+      "status": "verified",
+      "freshness": "stable",
+      "verified_at": "2026-10-09T13:08:51.308Z",
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/inverted-index.json",
+          "sha256": "1520ff5963ccf1e0c48cbf094db777d4e50a328678eaa72839e8a692a78965b1"
+        },
+        {
+          "path": "references/rule-evidence/inverted-index.png",
+          "sha256": "8426ab8ce73d68595c20c318b2cecaaf39ce016fe392228815298a39e0ac455a"
+        }
+      ]
+    },
+    {
+      "id": "isbn-basics",
+      "name": "国际 ISBN 机构：图书产品标识",
+      "url": "https://www.isbn-international.org/content/what-isbn/10",
+      "scope": "ISBN 的名称、产品识别粒度及版本和格式区别；不确认具体图书的编目记录",
+      "claims": {
+        "meaning": "ISBN 是 International Standard Book Number，即国际标准书号。",
+        "product": "ISBN 标识注册者以及具体题名、版本和产品格式；它的识别粒度不是图书馆内某一个实体复本。",
+        "formats": "同一内容的不同产品形式（例如平装、EPUB、PDF）应分别标识，不能因为题名相同就视为同一 ISBN。"
+      },
+      "exclusions": [
+        "某一本书的实际 ISBN、分类号、馆藏地点、索书号或可借数量",
+        "单凭 ISBN 判断内容质量、版权许可或完整书目信息",
+        "把所有再版、重印和封面变化一律当作必须换号；这些须核验具体分配规则",
+        "把 ISBN 与馆内用于区分实体复本的条码混同"
+      ],
+      "status": "verified",
+      "freshness": "stable",
+      "verified_at": "2026-10-09T13:10:35.903Z",
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/isbn-basics.json",
+          "sha256": "cca018ae7a290f1fc25f49df7d218d53822bbc6038bbdf1f473c2fa6c14f23a8"
+        },
+        {
+          "path": "references/rule-evidence/isbn-basics-identity.png",
+          "sha256": "d59a2604483f6cec54fb420a95d82d6d867b9d0c06698b7303de9abcfb6ca5cc"
+        },
+        {
+          "path": "references/rule-evidence/isbn-basics-product.png",
+          "sha256": "fdede545faa7ac59cb93be05772fc13d274f6dd54f09b8bf37a07a4a5f03e9b5"
+        },
+        {
+          "path": "references/rule-evidence/isbn-basics-formats.png",
+          "sha256": "da1c2099bf564cbf83fa9379d33d2a2784006124016fa8229cfd698992f55ca0"
+        }
+      ]
+    },
+    {
+      "id": "issn-basics",
+      "name": "ISSN 国际中心：连续出版物标识",
+      "url": "https://www.issn.org/understanding-the-issn/what-is-an-issn/",
+      "scope": "ISSN 的通用识别对象、编码形式及不保证内容质量的边界；不判断具体刊物或文章",
+      "claims": {
+        "identity": "ISSN 是 International Standard Serial Number，即国际标准连续出版物号，用于识别连续出版资源，不限纸质媒介。",
+        "format": "ISSN 由八位组成，通常写为两组四位并以连字符分开；最后一位是校验位，可以为 X。",
+        "quality": "ISSN 本身不编码出版物来源或内容信息，也不保证内容质量或有效性。"
+      },
+      "exclusions": [
+        "具体期刊 ISSN、刊期、收录情况、核心期刊资格与排名",
+        "单凭 ISSN 判断某篇文章的作者、质量或是否经过同行评议",
+        "不同媒介是否共享同一个 ISSN 或 ISSN-L 的细则",
+        "某数据库的 ISSN 检索语法或匹配方式"
+      ],
+      "status": "verified",
+      "freshness": "stable",
+      "verified_at": "2026-10-09T13:10:59.081Z",
+      "artifacts": [
+        {
+          "path": "references/rule-evidence/issn-basics.json",
+          "sha256": "affb45cc92e965ecf29207fc4ab717fa482a2e2a200ebed8773549739009e3bd"
+        },
+        {
+          "path": "references/rule-evidence/issn-basics-identity.png",
+          "sha256": "a266ca88b65b1f44a514bf9bd5563feb22fe7eb1a55ae3a6939a375abd39dfde"
+        },
+        {
+          "path": "references/rule-evidence/issn-basics-format.png",
+          "sha256": "fdfea21c61dadf7ecd2a2a12af3d79d5d9a972e3d01e6a54f93a213fb4c682a9"
+        },
+        {
+          "path": "references/rule-evidence/issn-basics-quality.png",
+          "sha256": "fc01e9075093528750528cd82c5a0dbf11996639ce45df54ffa27185fc509fb7"
+        }
+      ]
+    }
+  ]
+}

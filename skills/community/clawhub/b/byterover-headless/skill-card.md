@@ -1,41 +1,57 @@
-## Description: <br>
-Query and curate a ByteRover knowledge base using the ByteRover CLI for retrieval, context curation, and context tree syncing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and curate knowledge-base using ByteRover CLI. Use `brv query` for knowledge retrieval, `brv curate` for adding context, and `brv push/pull` for syncing.
 
-## Publisher: <br>
-[byteroverinc](https://clawhub.ai/user/byteroverinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[byteroverinc](https://clawhub.ai/user/byteroverinc)
 
-## Use Case: <br>
-Developers and agents use this skill to operate ByteRover in headless workflows: authenticate, initialize a project, query stored knowledge, curate new context, and push or pull context tree changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Curated or synced context may include secrets, credentials, private keys, confidential files, or other sensitive project details. <br>
-Mitigation: Review content before curate, push, or pull operations and exclude sensitive material unless it is intended to be stored in ByteRover. <br>
-Risk: The skill depends on the third-party @byterover/cli package and a ByteRover API key. <br>
-Mitigation: Install only when ByteRover and the CLI package are trusted, and use a dedicated, revocable API key. <br>
-Risk: Push and pull commands can sync project context to or from ByteRover cloud storage. <br>
-Mitigation: Require explicit user approval before push or pull operations, especially in automated or headless workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ByteRover API key settings](https://app.byterover.dev/settings/keys) <br>
+## Use Case:
 
+Developers and automation agents use this skill to retrieve, curate, push, and pull project knowledge through the ByteRover CLI in headless workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends headless ByteRover CLI usage with machine-parseable JSON responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a ByteRover API key for authentication.
+
+Mitigation: Provide API keys through a secure secret mechanism rather than pasting them into chat or shell history.
+
+Risk: The installation metadata references an unpinned npm CLI package.
+
+Mitigation: Install only if ByteRover and the npm package source are trusted, and prefer a pinned or reviewed CLI version where possible.
+
+Risk: Push, pull, and reinitialization actions can upload, download, change, or delete project knowledge.
+
+Mitigation: Approve push, pull, and reinitialization actions only after confirming the affected team, space, branch, and project knowledge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/byteroverinc/skills/byterover-headless)
+- [ByteRover API key settings](https://app.byterover.dev/settings/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use `--headless --format json` for automation; push operations use `-y` only after user approval.]
+
+## Skill Version(s):
+
+1.6.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

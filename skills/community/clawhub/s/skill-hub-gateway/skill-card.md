@@ -1,48 +1,64 @@
-## Description: <br>
-Unified gateway skill for async execute/poll, portal user closure, and telemetry feedback workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified gateway skill for async execute/poll, portal user closure, and telemetry feedback workflows.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers and external agents use this skill to call the Binaryworks gateway for asynchronous skill execution, run polling, portal user actions, media attachment normalization, and structured feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill bridges account and API-key context to a remote gateway. <br>
-Mitigation: Install only when the user trusts the Binaryworks gateway and can manage the runtime credentials used for gateway calls. <br>
-Risk: Default telemetry may disclose operational metadata. <br>
-Mitigation: Set SKILL_TELEMETRY_ENABLED=false when telemetry is not wanted. <br>
-Risk: file_path inputs can upload supported local files to a remote service. <br>
-Mitigation: Avoid passing file_path for sensitive local files; use explicit reviewed URLs or pre-upload flows when appropriate. <br>
-Risk: Face and person recognition capabilities can be privacy-sensitive. <br>
-Mitigation: Require explicit consent and policy review before using face/person-recognition workflows. <br>
+## Use Case:
 
+External developers and agent operators use this skill to run BinaryWorks gateway capabilities, poll asynchronous results, perform portal account actions, normalize attachments, and submit feedback from an agent workflow.
 
-## Reference(s): <br>
-- [Skill Hub Gateway ClawHub page](https://clawhub.ai/chinasilva/skill-hub-gateway) <br>
-- [chinasilva publisher profile](https://clawhub.ai/user/chinasilva) <br>
-- [Gateway homepage](https://gateway.binaryworks.app) <br>
-- [Gateway API OpenAPI reference](references/openapi.json) <br>
-- [Capability catalog](references/capabilities.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses; media workflows may return file asset URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and runtime credentials or bootstrap context for gateway calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.2 (source: frontmatter and release evidence) <br>
+Risk: The skill handles credentials and portal account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, restrict invocation to the intended gateway domains, and require explicit confirmation for voucher redemption or recharge creation.
+
+Risk: Telemetry is enabled by default and can use a configurable telemetry base URL.
+
+Mitigation: Disable or constrain telemetry with runtime environment controls, and do not pass untrusted SKILL_TELEMETRY_BASE_URL values.
+
+Risk: Local file_path inputs can upload files from the agent runtime.
+
+Mitigation: Avoid raw file_path inputs for sensitive files; prefer pre-uploaded attachment URLs or explicitly approved files.
+
+Risk: Face and person recognition capabilities may involve sensitive image analysis.
+
+Mitigation: Limit use to appropriate datasets and user-approved workflows, and treat recognition results as sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chinasilva/skills/skill-hub-gateway)
+- [Gateway Homepage](https://gateway.binaryworks.app)
+- [Capability Reference](references/capabilities.json)
+- [OpenAPI Reference](references/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON API responses, and command-line script output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include run identifiers, status payloads, uploaded file URLs, presentation assets, and telemetry or feedback results.]
+
+## Skill Version(s):
+
+2.4.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

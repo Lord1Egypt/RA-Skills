@@ -1,44 +1,58 @@
-## Description: <br>
-Creates videos from scratch using ffmpeg, programming, and assets for tutorials, presentations, social videos, slideshows, demos, narrated videos, and other video formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates videos from scratch using ffmpeg, Python, shell scripts, and user-provided assets for tutorials, slideshows, social media clips, demos, and audiovisual content.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to plan, script, and generate videos with ffmpeg, Python, and local media assets. It is suited for reproducible video assembly, format conversion, overlays, subtitles, audio handling, and platform-specific exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated media-processing commands can overwrite, transform, or delete local files if run in the wrong directory. <br>
-Mitigation: Review generated scripts and run them in a dedicated working folder with copies of input assets. <br>
-Risk: Video workflows may download, remix, or publish media without confirming reuse rights. <br>
-Mitigation: Use only media you own or are licensed to use, and confirm platform and rights requirements before publishing. <br>
-Risk: Local ffmpeg, Python, ImageMagick, yt-dlp, sox, or transcription commands may execute with the user's filesystem permissions. <br>
-Mitigation: Install tools from trusted sources, inspect commands before execution, and avoid running generated scripts against sensitive folders. <br>
+## Use Case:
 
+External users and developers use this skill to plan and generate code-driven video creation workflows, including ffmpeg commands, Python scripts, platform-specific exports, captions, audio handling, and reusable automation.
 
-## Reference(s): <br>
-- [FFmpeg Recipes](references/ffmpeg-recipes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/eb-video-creator) <br>
-- [Publisher Profile](https://clawhub.ai/user/emersonbraun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable local media-processing commands and generated scripts for video creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Generated ffmpeg or shell recipes may overwrite, replace, or remove local media files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run commands in a dedicated project folder, review paths and output names before execution, and keep backups of source assets.
+
+Risk: Python video workflows may require dependency installation, including unpinned packages.
+
+Mitigation: Install dependencies in an isolated environment and pin or review package versions before running generated scripts.
+
+Risk: Optional media download workflows can create rights or policy issues when used on unauthorized content.
+
+Mitigation: Use yt-dlp or similar tools only for media you own or are authorized to download and remix.
+
+## Reference(s):
+
+- [FFmpeg Recipes](references/ffmpeg-recipes.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-video-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated ffmpeg commands, Python scripts, asset requirements, platform export settings, and review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

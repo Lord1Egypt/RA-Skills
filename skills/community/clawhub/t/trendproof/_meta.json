@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn72xz0y4k0s61k29bp8xn7fex82x3wa",
+  "owner": "akvise",
   "slug": "trendproof",
-  "version": "1.2.2",
-  "publishedAt": 1773763694368
+  "displayName": "TrendProof",
+  "latest": {
+    "version": "1.2.0",
+    "publishedAt": 1742211300000,
+    "commit": ""
+  },
+  "history": [
+    { "version": "1.1.1", "publishedAt": 1742105400000 },
+    { "version": "1.2.0", "publishedAt": 1742211300000 }
+  ]
 }

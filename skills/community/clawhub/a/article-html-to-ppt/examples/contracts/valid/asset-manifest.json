@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0",
+  "assets": [
+    {
+      "asset_id": "hero-1",
+      "type": "image",
+      "path": "assets/hero.png",
+      "usage": "supporting",
+      "raster_declared": true,
+      "editable_alternative": "native title and labels",
+      "license": "owned",
+      "origin": "local_asset",
+      "reproducibility": {"prompt": null, "seed": null},
+      "source_refs": ["src-001"]
+    }
+  ]
+}

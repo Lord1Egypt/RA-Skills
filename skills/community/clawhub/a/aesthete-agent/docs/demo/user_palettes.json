@@ -1,0 +1,380 @@
+[
+ {
+  "file": "palette (013).scss",
+  "url_id": "0b3954-087e8b-bfd7ea-ff5a5f-c81d25",
+  "hexes": [
+   "0B3954",
+   "087E8B",
+   "BFD7EA",
+   "FF5A5F",
+   "C81D25"
+  ],
+  "names": [
+   "deep-space-blue",
+   "teal",
+   "pale-sky",
+   "vibrant-coral",
+   "flag-red"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (014).scss",
+  "url_id": "e3143e-e83f61-43debf-e3143e-065242",
+  "hexes": [
+   "E3143E",
+   "E83F61",
+   "43DEBF",
+   "E3143E",
+   "065242"
+  ],
+  "names": [
+   "classic-crimson",
+   "amaranth",
+   "turquoise",
+   "classic-crimson-2",
+   "pine-teal"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (018).scss",
+  "url_id": "fab6c6-b407e8-03a37e-f00a3f-3a054a",
+  "hexes": [
+   "FAB6C6",
+   "B407E8",
+   "03A37E",
+   "F00A3F",
+   "3A054A"
+  ],
+  "names": [
+   "cherry-blossom",
+   "purple-x11",
+   "seaweed",
+   "lipstick-red",
+   "dark-amethyst"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (1).scss",
+  "url_id": "e5dff2-664147-7e5ebf-638a83-f5bac4",
+  "hexes": [
+   "E5DFF2",
+   "664147",
+   "7E5EBF",
+   "638A83",
+   "F5BAC4"
+  ],
+  "names": [
+   "lavender",
+   "chocolate-plum",
+   "slate-blue",
+   "deep-teal",
+   "pastel-pink"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (10).scss",
+  "url_id": "c7eae4-a7e8bd-fcbcb8-efa7a7-ffd972",
+  "hexes": [
+   "C7EAE4",
+   "A7E8BD",
+   "FCBCB8",
+   "EFA7A7",
+   "FFD972"
+  ],
+  "names": [
+   "frozen-water",
+   "celadon",
+   "powder-blush",
+   "powder-blush-2",
+   "jasmine"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (1017).scss",
+  "url_id": "f7d09c-c179f7-dbb076-795396-69dbaa",
+  "hexes": [
+   "F7D09C",
+   "C179F7",
+   "DBB076",
+   "795396",
+   "69DBAA"
+  ],
+  "names": [
+   "apricot-cream",
+   "bright-lavender",
+   "sandy-clay",
+   "deep-lilac",
+   "aquamarine"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (11).scss",
+  "url_id": "af4d98-d66ba0-e5a9a9-f4e4ba-9df7e5",
+  "hexes": [
+   "AF4D98",
+   "D66BA0",
+   "E5A9A9",
+   "F4E4BA",
+   "9DF7E5"
+  ],
+  "names": [
+   "raspberry-plum",
+   "sweet-peony",
+   "powder-blush",
+   "pearl-beige",
+   "soft-cyan"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (12).scss",
+  "url_id": "b09e99-fee9e1-fad4c0-64b6ac-c0fdfb",
+  "hexes": [
+   "B09E99",
+   "FEE9E1",
+   "FAD4C0",
+   "64B6AC",
+   "C0FDFB"
+  ],
+  "names": [
+   "taupe",
+   "soft-blush",
+   "peach-fuzz",
+   "tropical-teal",
+   "icy-aqua"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (13).scss",
+  "url_id": "222e50-007991-439a86-bcd8c1-e9d985",
+  "hexes": [
+   "222E50",
+   "007991",
+   "439A86",
+   "BCD8C1",
+   "E9D985"
+  ],
+  "names": [
+   "space-indigo",
+   "cerulean",
+   "seagrass",
+   "celadon",
+   "light-gold"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (14).scss",
+  "url_id": "32373b-4a5859-f4d6cc-f4b860-c83e4d",
+  "hexes": [
+   "32373B",
+   "4A5859",
+   "F4D6CC",
+   "F4B860",
+   "C83E4D"
+  ],
+  "names": [
+   "gunmetal",
+   "iron-grey",
+   "almond-silk",
+   "honey-bronze",
+   "blushed-brick"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (15).scss",
+  "url_id": "b47eb3-fdf5bf-ffd5ff-92d1c3-8bb8a8",
+  "hexes": [
+   "B47EB3",
+   "FDF5BF",
+   "FFD5FF",
+   "92D1C3",
+   "8BB8A8"
+  ],
+  "names": [
+   "amethyst-smoke",
+   "lemon-chiffon",
+   "petal-frost",
+   "pearl-aqua",
+   "muted-teal"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (2).scss",
+  "url_id": "584b53-9d5c63-d6e3f8-fef5ef-e4bb97",
+  "hexes": [
+   "584B53",
+   "9D5C63",
+   "D6E3F8",
+   "FEF5EF",
+   "E4BB97"
+  ],
+  "names": [
+   "taupe-grey",
+   "smoky-rose",
+   "lavender",
+   "seashell",
+   "desert-sand"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (3).scss",
+  "url_id": "dd614a-f48668-f4a698-c5c392-73a580",
+  "hexes": [
+   "DD614A",
+   "F48668",
+   "F4A698",
+   "C5C392",
+   "73A580"
+  ],
+  "names": [
+   "rosy-copper",
+   "coral-glow",
+   "powder-blush",
+   "dry-sage",
+   "muted-teal"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (4).scss",
+  "url_id": "fbc2b5-ffa8a9-f786aa-a14a76-cdb2ab",
+  "hexes": [
+   "FBC2B5",
+   "FFA8A9",
+   "F786AA",
+   "A14A76",
+   "CDB2AB"
+  ],
+  "names": [
+   "powder-blush",
+   "powder-blush-2",
+   "bubblegum-tint",
+   "berry-blush",
+   "almond-silk"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (5).scss",
+  "url_id": "757780-d2cca1-387780-dbd4d3-e83151",
+  "hexes": [
+   "757780",
+   "D2CCA1",
+   "387780",
+   "DBD4D3",
+   "E83151"
+  ],
+  "names": [
+   "grey",
+   "dry-sage",
+   "pine-blue",
+   "dust-grey",
+   "watermelon"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (6).scss",
+  "url_id": "e0f2e9-ceb5a7-a17c6b-5b7b7a-3c887e",
+  "hexes": [
+   "E0F2E9",
+   "CEB5A7",
+   "A17C6B",
+   "5B7B7A",
+   "3C887E"
+  ],
+  "names": [
+   "honeydew",
+   "almond-silk",
+   "dusty-taupe",
+   "deep-teal",
+   "dark-cyan"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (7).scss",
+  "url_id": "a63a50-f0e7d8-ab9b96-a1674a-ba6e6e",
+  "hexes": [
+   "A63A50",
+   "F0E7D8",
+   "AB9B96",
+   "A1674A",
+   "BA6E6E"
+  ],
+  "names": [
+   "cherry-rose",
+   "antique-white",
+   "taupe",
+   "cinnamon-wood",
+   "dusty-rose"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (8).scss",
+  "url_id": "000000-ffffff-494949-7c7a7a-ff5d73",
+  "hexes": [
+   "000000",
+   "FFFFFF",
+   "494949",
+   "7C7A7A",
+   "FF5D73"
+  ],
+  "names": [
+   "black",
+   "white",
+   "charcoal",
+   "grey",
+   "bubblegum-pink"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette (9).scss",
+  "url_id": "8d6b94-b185a7-c3a29e-e8dbc5-fff4e9",
+  "hexes": [
+   "8D6B94",
+   "B185A7",
+   "C3A29E",
+   "E8DBC5",
+   "FFF4E9"
+  ],
+  "names": [
+   "vintage-lavender",
+   "amethyst-smoke",
+   "rosy-taupe",
+   "sand-dune",
+   "linen"
+  ],
+  "starred_as": ""
+ },
+ {
+  "file": "palette.scss",
+  "url_id": "246a73-368f8b-f3dfc1-ddbea8",
+  "hexes": [
+   "246A73",
+   "368F8B",
+   "F3DFC1",
+   "DDBEA8"
+  ],
+  "names": [
+   "stormy-teal",
+   "dark-cyan",
+   "champagne-mist",
+   "desert-sand"
+  ],
+  "starred_as": ""
+ }
+]

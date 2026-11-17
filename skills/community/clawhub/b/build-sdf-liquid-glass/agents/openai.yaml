@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDF Liquid Glass"
+  short_description: "Build lightweight SDF liquid glass surfaces"
+  default_prompt: "Use $build-sdf-liquid-glass to add a polished SDF glass surface to this interface."

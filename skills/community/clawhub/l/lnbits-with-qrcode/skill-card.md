@@ -1,40 +1,58 @@
-## Description: <br>
-Manage an LNbits Lightning wallet for balance checks, invoice creation with QR codes, invoice decoding, and confirmed payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage LNbits Lightning Wallet (Balance, Pay, Invoice).
 
-## Publisher: <br>
-[JamesTsetsekas](https://clawhub.ai/user/JamesTsetsekas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamestsetsekas](https://clawhub.ai/user/jamestsetsekas)
 
-## Use Case: <br>
-External users and developers use this skill to let an assistant interact with an LNbits Lightning wallet, including receiving payments through Bolt11 invoices and QR codes and sending payments only after balance checks and explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The assistant receives access to an LNbits admin key and can initiate Lightning payments. <br>
-Mitigation: Use a dedicated low-balance wallet, keep the admin key out of chat and shared terminals, and require decoded invoice review plus explicit user confirmation before payment. <br>
-Risk: The skill sends requests to the LNbits server configured by LNBITS_BASE_URL. <br>
-Mitigation: Set LNBITS_BASE_URL only to the intended LNbits instance and verify the configured server before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JamesTsetsekas/lnbits-with-qrcode) <br>
-- [LNbits](https://lnbits.com) <br>
+## Use Case:
 
+External users and developers use this skill to manage an LNbits Lightning wallet through an assistant, including checking balances, creating invoices with QR codes, decoding invoices, creating wallets, and sending payments after confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, JSON CLI results, and MEDIA file paths for generated QR images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, qrcode[pil], LNBITS_API_KEY, and LNBITS_BASE_URL; QR PNG files are written under ./.lnbits_qr and old files are cleaned up after about five minutes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send real Lightning payments using an LNbits admin key.
+
+Mitigation: Use a dedicated wallet with limited funds and supervise every payment request.
+
+Risk: Payment confirmation is enforced by the assistant protocol rather than by the CLI command itself.
+
+Mitigation: Treat the explicit yes/no payment approval prompt as mandatory, decode invoices first, and check balance before payment.
+
+Risk: A broad admin key and weak endpoint scoping can expose funds if configured against an untrusted LNbits URL.
+
+Mitigation: Configure only a trusted HTTPS LNbits base URL and avoid pasting admin keys or wallet identifiers into chat.
+
+## Reference(s):
+
+- [LNbits](https://lnbits.com)
+- [LNbits demo server](https://legend.lnbits.com)
+- [ClawHub skill page](https://clawhub.ai/jamestsetsekas/skills/lnbits-with-qrcode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown responses with inline shell commands, JSON CLI output, Bolt11 invoice text, and MEDIA file paths for QR PNGs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces QR code PNG files under ./.lnbits_qr and expects LNBITS_API_KEY and LNBITS_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

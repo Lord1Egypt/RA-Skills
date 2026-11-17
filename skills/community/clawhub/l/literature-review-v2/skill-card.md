@@ -1,54 +1,76 @@
-## Description: <br>
-Conducts comprehensive, systematic literature reviews across biomedical, scientific, and technical domains using multiple academic databases, citation verification, and markdown or PDF document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts comprehensive, systematic literature reviews using multiple academic databases, citation verification, structured synthesis, and professional markdown or PDF output.
 
-## Publisher: <br>
-[diekunstderfug](https://clawhub.ai/user/diekunstderfug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diekunstderfug](https://clawhub.ai/user/diekunstderfug)
 
-## Use Case: <br>
-Researchers, analysts, students, and technical writers use this skill to plan, search, screen, synthesize, and format literature reviews, systematic reviews, scoping reviews, and meta-analyses. It helps document search strategies, deduplicate results, verify citations, and produce structured markdown or PDF review outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries external academic databases and citation services, which may expose confidential research plans, unpublished references, or sensitive search terms. <br>
-Mitigation: Use non-sensitive queries when possible, avoid unpublished confidential materials, and confirm that third-party database and API exposure is acceptable before running searches. <br>
-Risk: The scanner reported that the skill mandates an external AI schematic workflow that is under-scoped and references a missing helper script. <br>
-Mitigation: Review the schematic requirement before use, confirm the expected scientific-schematics workflow is available, and do not rely on the missing helper command without separately validating it. <br>
-Risk: PDF generation runs local pandoc and xelatex processing, which may fail or behave unexpectedly if dependencies or input markdown are not reviewed. <br>
-Mitigation: Check dependencies with the provided script option, review generated commands and input markdown, and inspect PDF output before distribution. <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to plan, search, screen, synthesize, verify, and format literature reviews, systematic reviews, scoping reviews, and meta-analyses across scientific and technical domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diekunstderfug/literature-review-v2) <br>
-- [Database search strategies](references/database_strategies.md) <br>
-- [Citation styles reference](references/citation_styles.md) <br>
-- [Review template](assets/review_template.md) <br>
-- [PRISMA statement](http://www.prisma-statement.org/) <br>
-- [Cochrane Handbook](https://training.cochrane.org/handbook) <br>
-- [AMSTAR](https://amstar.ca/) <br>
-- [PubMed Advanced Search Builder](https://pubmed.ncbi.nlm.nih.gov/advanced/) <br>
-- [MeSH Browser](https://meshb.nlm.nih.gov/search) <br>
-- [NLM Citing Medicine](https://www.ncbi.nlm.nih.gov/books/NBK3827/) <br>
-- [APA Style](https://apastyle.apa.org/) <br>
-- [Nature Portfolio reporting standards](https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards) <br>
-- [NLM uniform requirements](https://www.nlm.nih.gov/bsd/uniform_requirements.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents, citation reports, JSON search result files, BibTeX-style entries, shell commands, and PDFs generated from markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query external academic databases and APIs; PDF generation depends on local pandoc and xelatex availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and release evidence) <br>
+Risk: Literature search queries and citation identifiers may be sent to public academic metadata services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or sensitive queries unless disclosure is acceptable, and review service terms before use.
+
+Risk: Dependency and document-generation behavior may vary across local environments.
+
+Mitigation: Run the skill in a virtual environment, pin dependencies where possible, and confirm required tools such as pandoc and xelatex before producing PDFs.
+
+Risk: PDF generation on untrusted markdown or bibliography files can expose users to unsafe document-processing inputs.
+
+Mitigation: Generate PDFs only from trusted review sources and inspect markdown, bibliography, and template inputs before running local document-generation tools.
+
+Risk: The AI-schematic requirement depends on a separate skill or provider that may not be installed or trusted.
+
+Mitigation: Treat schematic generation as optional unless that separate skill and provider have been installed, reviewed, and approved.
+
+Risk: Literature synthesis can become misleading if searches are narrow, citations are stale, or study quality is not assessed.
+
+Mitigation: Use multiple databases, document search dates and criteria, verify citations, and apply appropriate quality-assessment methods before relying on conclusions.
+
+## Reference(s):
+
+- [Citation Styles Reference](references/citation_styles.md)
+- [Literature Database Search Strategies](references/database_strategies.md)
+- [Literature Review Template](assets/review_template.md)
+- [PRISMA Statement](http://www.prisma-statement.org/)
+- [Cochrane Handbook](https://training.cochrane.org/handbook)
+- [AMSTAR 2](https://amstar.ca/)
+- [MeSH Browser](https://meshb.nlm.nih.gov/search)
+- [PubMed Advanced Search](https://pubmed.ncbi.nlm.nih.gov/advanced/)
+- [Boolean Search Guide](https://www.ncbi.nlm.nih.gov/books/NBK3827/)
+- [APA Style](https://apastyle.apa.org/)
+- [Nature Portfolio Reporting Standards](https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards)
+- [NLM/Vancouver Style](https://www.nlm.nih.gov/bsd/uniform_requirements.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON search and citation reports, BibTeX entries, and generated markdown or PDF review files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Citation verification and PDF generation can depend on public academic metadata services and local document-generation tools.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

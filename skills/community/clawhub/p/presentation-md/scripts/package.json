@@ -1,0 +1,8 @@
+{
+  "name": "presentation-generator-scripts",
+  "private": true,
+  "description": "Runtime-only deps for export-pdf.sh — installed on first run, not part of the published skill package.",
+  "dependencies": {
+    "playwright": "^1.46.0"
+  }
+}

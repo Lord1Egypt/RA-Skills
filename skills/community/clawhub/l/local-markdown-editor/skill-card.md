@@ -1,46 +1,61 @@
-## Description: <br>
-A local web-based Markdown editor that starts a Flask server for live preview, synchronized scrolling, toolbar-assisted editing, and saving Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Markdown Editor with Live Preview is a web-based Markdown editor that opens a local Flask server and provides real-time editing with live preview, synchronized scrolling, and toolbar controls for Markdown tags.
 
-## Publisher: <br>
-[xiyunnet](https://clawhub.ai/user/xiyunnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyunnet](https://clawhub.ai/user/xiyunnet)
 
-## Use Case: <br>
-Developers, technical writers, and documentation maintainers use this skill to open a local Markdown editing interface, preview formatted output, and save changes to selected Markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: While running, the local browser-accessible server can read and write local files with limited protection. <br>
-Mitigation: Run it only on trusted files, keep it bound to localhost, and restrict use to an approved workspace or explicit file selections. <br>
-Risk: Broad browser access controls can expose file operations to unwanted local web requests. <br>
-Mitigation: Disable broad CORS and add a per-session token or CSRF protection before using it with sensitive content. <br>
-Risk: Automatic shutdown from page hide or unload events can stop the editor unexpectedly. <br>
-Mitigation: Save work before closing the browser tab and consider removing automatic shutdown behavior in managed environments. <br>
+## Use Case:
 
+Developers, technical writers, and local users use this skill to launch a localhost Markdown editor for editing Markdown files with a live preview and direct save workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiyunnet/local-markdown-editor) <br>
-- [Markdown Guide](https://www.markdownguide.org/) <br>
-- [Flask Documentation](https://flask.palletsprojects.com/) <br>
-- [Showdown.js](https://github.com/showdownjs/showdown) <br>
-- [CodeMirror](https://codemirror.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files edited through a local web interface with setup and usage commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Flask server and writes changes back to selected Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The local web server exposes broad file access and save behavior with weak boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on trusted local files in a private environment, and constrain reads and writes to an approved workspace and Markdown-like extensions before broader use.
+
+Risk: Global CORS and unauthenticated local routes may allow unintended local interactions if exposed beyond localhost or triggered by crafted URLs.
+
+Mitigation: Keep the server bound to localhost, avoid opening untrusted editor URLs, and add a startup token or comparable local authentication before deployment.
+
+Risk: Automatic shutdown on page hide or unload can interrupt editing sessions or be triggered unexpectedly.
+
+Mitigation: Prefer explicit shutdown controls or confirm shutdown behavior in the target environment before relying on the editor for important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiyunnet/skills/local-markdown-editor)
+- [Markdown Guide](https://www.markdownguide.org/)
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [Showdown.js](https://github.com/showdownjs/showdown)
+- [CodeMirror](https://codemirror.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local web editor output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file edits through a browser-based Markdown editor backed by a localhost Flask server.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

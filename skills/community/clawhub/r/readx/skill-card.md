@@ -1,42 +1,56 @@
-## Description: <br>
-Twitter/X intelligence toolkit: analyze users, tweets, trends, communities, and networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X intelligence toolkit: analyze users, tweets, trends, communities, and networks.
 
-## Publisher: <br>
-[wxtsky](https://clawhub.ai/user/wxtsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wxtsky](https://clawhub.ai/user/wxtsky)
 
-## Use Case: <br>
-External users and developers use readx to analyze Twitter/X users, tweets, trends, communities, and networks, then turn retrieved data into ranked comparisons, derived metrics, and actionable takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a readx API key, and setup can expose or store that credential. <br>
-Mitigation: Use an environment variable or secure config, avoid sharing MCP config files or screenshots containing the key, and rotate the key if it is exposed. <br>
-Risk: Broad or parallel Twitter/X analyses may consume readx API credits and send queries to readx.cc. <br>
-Mitigation: Install only if you trust readx.cc with the intended Twitter/X data queries, check credit balance before large analyses, and scope requests to the user's actual need. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to analyze public Twitter/X users, tweets, trends, communities, and networks through readx MCP tools or direct readx API calls.
 
-## Reference(s): <br>
-- [readx ClawHub page](https://clawhub.ai/wxtsky/readx) <br>
-- [readx service](https://readx.cc) <br>
-- [readx API documentation](https://readx.cc/api-docs.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with tables, bullet lists, and inline shell or JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include derived metrics, ranked comparisons, and key takeaways based on available Twitter/X data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The skill requires a readx API key and may ask agents to store it in local or editor configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a platform secret store or environment variable where possible, avoid placing long-lived keys in URLs or shared configuration, and rotate keys that may have been exposed in shell history or shared files.
+
+Risk: The security evidence marks the release as suspicious because credential handling and persistence require user review before installation.
+
+Mitigation: Install only after reviewing the credential flow, confirm the key is sent only to readx.cc, and keep user consent explicit before persisting credentials.
+
+## Reference(s):
+
+- [readx ClawHub Skill Page](https://clawhub.ai/wxtsky/skills/readx)
+- [wxtsky ClawHub Publisher Profile](https://clawhub.ai/user/wxtsky)
+- [readx Service](https://readx.cc)
+- [readx API Documentation](https://readx.cc/api-docs.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, bullet lists, inline metrics, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include derived engagement metrics, ranked comparisons, key takeaways, and setup guidance for readx MCP or API access.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

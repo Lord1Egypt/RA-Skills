@@ -1,0 +1,53 @@
+{
+  "_comment": "openclaw-health-audit config template. Copy to config.json and adjust, or run: python3 scripts/audit_wizard.py",
+  "version": "1.0",
+
+  "prompt_files": {
+    "_comment": "Workspace prompt files to monitor for size drift. Paths relative to ~/.openclaw/workspace/",
+    "SOUL.md":   {"warn": 6144,  "alert": 8192},
+    "TOOLS.md":  {"warn": 6144,  "alert": 7500},
+    "AGENTS.md": {"warn": 12288, "alert": 14336}
+  },
+
+  "subagent_soul": {
+    "_comment": "Threshold for each subagent SOUL.md under ~/.openclaw/agents/*/workspace/SOUL.md",
+    "warn": 3072,
+    "alert": 4096
+  },
+
+  "subagents": {
+    "_comment": "List of subagent IDs to scan. Adjust to match your installed agents.",
+    "list": ["pm", "architect", "backend", "frontend", "qa", "devops", "code-artisan"]
+  },
+
+  "token_thresholds": {
+    "_comment": "Daily token consumption thresholds (requires openclaw gateway usage-cost --json)",
+    "warn": 30000000,
+    "alert": 60000000
+  },
+
+  "session_stale_days": 7,
+
+  "expensive_models": {
+    "_comment": "Substrings to match model names considered expensive in cron jobs",
+    "list": ["claude-opus", "claude-opus-4", "opus-4.6", "opus-4-5"]
+  },
+
+  "checks": {
+    "_comment": "Enable or disable each check category",
+    "prompt_drift": true,
+    "cron_jobs": true,
+    "orphan_sessions": true,
+    "token_trend": true,
+    "cache_config": false
+  },
+
+  "cache_config": {
+    "_comment": "Category E: Only relevant if you use semantic-router v7.x with M1/M3 patches",
+    "message_injector_path": "~/.openclaw/workspace/.openclaw/extensions/message-injector/index.ts",
+    "expected_ttl_ms": 1800000,
+    "expected_ttl_label": "30 minutes",
+    "bad_ttl_ms": 300000,
+    "check_extract_decl_key": true
+  }
+}

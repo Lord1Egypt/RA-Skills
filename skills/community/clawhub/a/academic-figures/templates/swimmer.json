@@ -1,0 +1,12 @@
+{
+  "_chart_type": "swimmer",
+  "_command": "python3 scripts/gen_figure.py -t swimmer -d templates/swimmer.json -o swimmer.png --cjk",
+  "_note": "场景：实体瘤 II 期试验（n=12），每例患者治疗持续时间（周）与缓解动态（模拟数据）。经典游泳形态=按持续时长降序；CR/PR/SD/PD 着色（与瀑布图同族语义色），端部箭头=数据截止仍在治疗/缓解，圆点=首次应答里程碑，26/52 周地标虚线。--alt 可生成无障碍摘要文本。",
+  "end": [54.2, 49.8, 45.3, 41.0, 36.7, 32.4, 28.9, 24.6, 19.8, 15.2, 10.7, 6.3],
+  "names": ["P001", "P002", "P003", "P004", "P005", "P006", "P007", "P008",
+            "P009", "P010", "P011", "P012"],
+  "group": ["CR", "CR", "PR", "PR", "PR", "PR", "SD", "SD", "SD", "PD", "PD", "PD"],
+  "milestones": [[10.5], [14.2], [8.1], [12.6], [9.4], [16.8], [], [], [], [], [], []],
+  "ongoing": [true, true, false, true, true, false, false, false, false, false, false, false],
+  "ref_lines": [26, 52]
+}

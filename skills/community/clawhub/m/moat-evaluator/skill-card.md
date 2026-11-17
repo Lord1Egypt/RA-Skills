@@ -1,41 +1,56 @@
-## Description: <br>
-评估企业护城河类型和强度，帮助价值投资者判断企业是否具备持续竞争优势。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates a company's competitive moat type, strength, durability, and investment implications for value-investing analysis.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users, investors, and analysts use this skill to evaluate a company's brand, network effects, switching costs, scale advantages, and franchise rights for long-term value-investing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto market queries, wallet addresses, or portfolio lookup inputs may be sent to Hive's remote MCP service if those connector behaviors are used. <br>
-Mitigation: Inspect endpoint schemas before invocation, avoid sensitive wallet or portfolio data unless approved, and require explicit review before any endpoint that could write to an account or change data. <br>
+## Use Case:
 
+External users and analysts use this Chinese-language skill to evaluate whether a company has a durable competitive moat, classify moat types, score moat strength, assess trends, and frame investment research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/moat-evaluator) <br>
-- [护城河理论参考](references/moat-theory.md) <br>
-- [护城河分析模板](templates/moat-analysis-template.md) <br>
-- [腾讯控股护城河分析示例](examples/tencent-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with tables; the skill also defines a JSON result shape.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include moat type evidence, strength scores, total score, trend, investment advice, risks, and key metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can produce investment recommendations that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as research support only, and validate conclusions with financial analysis and qualified human review before making investment decisions.
+
+Risk: Moat scoring can overstate durable advantages when short-term advantages, industry differences, or incomplete historical data are treated as conclusive.
+
+Mitigation: Review the supporting evidence, industry context, moat trend, and financial metrics before relying on the score or recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/moat-evaluator)
+- [Moat theory reference](references/moat-theory.md)
+- [Moat analysis template](templates/moat-analysis-template.md)
+- [Tencent moat analysis example](examples/tencent-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tabular scoring and JSON-like summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language moat assessment including moat type evidence, strength score, trend, investment advice, risks, and key metrics.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

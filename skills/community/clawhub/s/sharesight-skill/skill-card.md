@@ -1,42 +1,59 @@
-## Description: <br>
-Manage Sharesight portfolios, holdings, and custom investments via the API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Sharesight portfolios, holdings, and custom investments via the API.
 
-## Publisher: <br>
-[lextoumbourou](https://clawhub.ai/user/lextoumbourou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lextoumbourou](https://clawhub.ai/user/lextoumbourou)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Sharesight portfolio data, run performance and holdings queries, and manage custom investments through authenticated CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Sharesight account data and cache an access token after authentication. <br>
-Mitigation: Install it only when Sharesight account access is intended, protect the required credentials, and clear the cached token when the integration is no longer needed. <br>
-Risk: Create, update, and delete commands can change Sharesight records when write access is enabled. <br>
-Mitigation: Keep SHARESIGHT_ALLOW_WRITES unset for read-only use, enable it only for sessions that need changes, and review each write action carefully. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Sharesight portfolios, holdings, performance data, trades, custom investments, prices, coupon rates, and reference data. It can also create, update, and delete financial records when write access is explicitly enabled.
 
-## Reference(s): <br>
-- [Sharesight API Getting Started](https://portfolio.sharesight.com/api/) <br>
-- [OpenClaw Environment Configuration](https://docs.openclaw.ai/environment) <br>
-- [Sharesight Skill on ClawHub](https://clawhub.ai/lextoumbourou/sharesight-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, shell commands, configuration, JSON data, guidance] <br>
-**Output Format:** [JSON responses from CLI commands, with setup guidance and command examples in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations are disabled unless SHARESIGHT_ALLOW_WRITES is set to true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, pyproject.toml, release metadata) <br>
+Risk: The skill can create, update, or delete financial records when write mode is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep SHARESIGHT_ALLOW_WRITES unset unless write actions are intentional, and review delete or trade-changing commands before execution.
+
+Risk: The skill uses Sharesight API credentials and caches access tokens locally.
+
+Mitigation: Protect SHARESIGHT_CLIENT_ID, SHARESIGHT_CLIENT_SECRET, and the local token cache; install only in trusted environments.
+
+Risk: The security verdict places this release in Review rather than automatic approval.
+
+Mitigation: Use a locked or reviewed dependency installation and review the package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lextoumbourou/skills/sharesight-skill)
+- [Sharesight API getting started](https://portfolio.sharesight.com/api/)
+- [OpenClaw environment configuration](https://docs.openclaw.ai/environment)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Sharesight API credentials; write operations require SHARESIGHT_ALLOW_WRITES=true.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, pyproject.toml, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

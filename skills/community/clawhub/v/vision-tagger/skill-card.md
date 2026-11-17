@@ -1,42 +1,53 @@
-## Description: <br>
-Tag and annotate images using Apple Vision framework (macOS only). Detects faces, bodies, hands, text (OCR), barcodes, objects, scene labels, and saliency regions. Use for image analysis, photo tagging, posture monitoring, or any task requiring computer vision on images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tags and annotates images on macOS using Apple Vision to detect faces, bodies, hands, OCR text, barcodes, scene labels, rectangles, and saliency regions.
 
-## Publisher: <br>
-[sagarjhaa](https://clawhub.ai/user/sagarjhaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sagarjhaa](https://clawhub.ai/user/sagarjhaa)
 
-## Use Case: <br>
-Developers and users who work with local image analysis use this skill to detect and tag faces, bodies, hands, OCR text, barcodes, scene labels, objects, and saliency regions, or to generate annotated image outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image analysis can expose sensitive information from people, IDs, documents, screens, QR codes, or private text. <br>
-Mitigation: Use the skill only on images the user is allowed to analyze, and review OCR or barcode output as untrusted data rather than instructions. <br>
-Risk: Setup installs Pillow and compiles a local Swift binary. <br>
-Mitigation: Run setup only in a trusted Python and macOS environment with Xcode Command Line Tools available. <br>
-Risk: The skill depends on Apple Vision and macOS-specific tooling. <br>
-Mitigation: Deploy only on macOS 12 or later with swiftc and python3 installed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vision Tagger on ClawHub](https://clawhub.ai/sagarjhaa/vision-tagger) <br>
-- [Skill homepage](https://clawhub.ai/skills/vision-tagger) <br>
+## Use Case:
 
+Developers and image-workflow users use this skill for local macOS image analysis, photo tagging, document scanning, posture checks, accessibility descriptions, and annotated visual review.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON analysis output, annotated image files, and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on macOS with Apple Vision; annotated-image output requires Pillow and a compiled Swift binary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image analysis outputs may expose sensitive content such as faces, body pose, OCR text, and barcode payloads.
+
+Mitigation: Analyze only images the user owns or has consent to process, and treat generated JSON and annotated images as potentially sensitive.
+
+Risk: Setup runs local macOS installation and dependency commands, including Pillow installation.
+
+Mitigation: Review setup commands before execution and prefer a virtual environment with a pinned, reviewed Pillow version.
+
+## Reference(s):
+
+- [Vision Tagger ClawHub Skill Page](https://clawhub.ai/sagarjhaa/skills/vision-tagger)
+- [Vision Tagger Homepage](https://clawhub.ai/skills/vision-tagger)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Markdown guidance with shell commands; generated analysis is JSON with optional annotated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS 12+, Xcode Command Line Tools, Python 3, Pillow, and local image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

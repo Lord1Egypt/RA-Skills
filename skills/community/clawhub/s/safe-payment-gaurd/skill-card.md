@@ -1,40 +1,54 @@
-## Description: <br>
-Ensures payment safety by verifying beneficiary, amount, currency, purpose, authorization, and payment details before approval or execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies a conservative payment safety guardrail for requests involving payments, wires, remittances, invoices, balance top-ups, or other movement of money or stored value.
 
-## Publisher: <br>
-[jhandsomeboy12138](https://clawhub.ai/user/jhandsomeboy12138) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhandsomeboy12138](https://clawhub.ai/user/jhandsomeboy12138)
 
-## Use Case: <br>
-Users and agents use this skill to review payment, invoice, wire, reimbursement, remittance, and stored-value workflows before money is moved. It helps decide whether to proceed, hold for verification, or block when critical payment details or risk signals are unresolved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment workflows can cause irreversible financial loss if beneficiary, amount, currency, purpose, or authorization is wrong. <br>
-Mitigation: Keep final human control over real transfers and independently verify beneficiary, amount, currency, purpose, and authorization before sending money. <br>
-Risk: High-risk signals such as changed payment instructions, urgency, secretive requests, OTP requests, or sanctions concerns can indicate fraud or control failure. <br>
-Mitigation: Use official payment surfaces, require independent out-of-band verification, and hold or block the payment when essential information remains ambiguous. <br>
+## Use Case:
 
+Agents and operators use this skill to review payment-related tasks before approval or execution. It helps verify beneficiary, amount, currency, purpose, authorization, payment rail, and risk signals before deciding to proceed, hold, or block.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhandsomeboy12138/safe-payment-gaurd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured payment safety summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision outcome is proceed, hold for verification, or block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Payment actions can cause irreversible financial loss when beneficiary, amount, currency, rail, or authorization is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require verified beneficiary, amount, currency, purpose, and authorization before any proceed decision; otherwise hold or block.
+
+Risk: Users may expose OTPs, passwords, CVVs, full account numbers, or other secrets in chat while attempting payment workflows.
+
+Mitigation: Keep secrets out of chat and execute payments only through trusted official payment surfaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhandsomeboy12138/skills/safe-payment-gaurd)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured safety summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a proceed, hold for verification, or block decision with the next safe action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

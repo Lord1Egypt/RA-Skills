@@ -1,45 +1,61 @@
-## Description: <br>
-Routes AI tasks to suitable models by balancing task complexity, cost, latency, quality, reliability, and feedback learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes AI tasks to a suitable model by weighing task complexity, cost, latency, quality, reliability, and historical feedback.
 
-## Publisher: <br>
-[skynet-jawol](https://clawhub.ai/user/skynet-jawol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skynet-jawol](https://clawhub.ai/user/skynet-jawol)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to select an AI model and provider for a task, inspect decision confidence and estimated cost, latency, and quality, and record feedback to improve future routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or proprietary task content may appear in local logs or temporary request files when OpenClaw invocation is used. <br>
-Mitigation: Install only in environments where local logging and temporary-file permissions are controlled, and avoid sending secrets unless logging and cleanup behavior has been reviewed. <br>
-Risk: The skill reads and writes local configuration and routing history, including broad admin and configuration controls. <br>
-Mitigation: Review configuration paths, file permissions, retention settings, and backup behavior before enabling learning or persistent storage. <br>
-Risk: Network health checks and provider integration behavior may not fit restricted environments. <br>
-Mitigation: Confirm provider, network, and OpenClaw integration settings before deployment, and disable integrations that are not required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to select an AI model and provider for a task and receive a confidence-scored routing decision with estimated cost, latency, and quality. It can be integrated with OpenClaw skill or plugin flows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/skynet-jawol/dynamic-model-router) <br>
-- [Artifact README](artifact/README.md) <br>
-- [ClawHub skill manifest](artifact/skill.json) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON-compatible routing decisions with selected model/provider, confidence, reasoning, estimated metrics, status, and configuration data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist routing history, performance metrics, feedback, configuration, logs, and prompt-bearing temporary request files when OpenClaw invocation is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, skill manifest, package.json, and changelog released 2026-03-14) <br>
+Risk: The security review reports shell command execution paths and prompt data written to shared temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted publishers and avoid sensitive prompts or API keys until execution uses argument-based spawning and prompt temporary files are protected or removed.
+
+Risk: The security review reports OpenClaw provider integration code that can probe arbitrary provider URLs.
+
+Mitigation: Use strict provider URL allowlists and review provider configuration before enabling OpenClaw integration.
+
+Risk: The security review reports local configuration and log persistence.
+
+Mitigation: Review storage locations, log contents, retention, and privacy documentation before using the skill with confidential workloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skynet-jawol/skills/dynamic-model-router)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON routing decision with model, provider, confidence, reasoning, and performance metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local configuration, logs, temporary request files, and decision history depending on runtime settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, skill.json, CHANGELOG released 2026-03-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

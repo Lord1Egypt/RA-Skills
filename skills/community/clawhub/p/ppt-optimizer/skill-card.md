@@ -1,44 +1,59 @@
-## Description: <br>
-PPT智能优化助手帮助用户优化演示文稿的文案、排版、配色和整体风格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language PPT optimization assistant that helps refine slide copy, layout, color schemes, emphasis, and overall presentation style.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Employees and external users who prepare presentations use this skill to refine PPT slide copy, layout, color palettes, emphasis, and visual consistency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A third-party skill could be installed under an unexpected publisher or purpose. <br>
-Mitigation: Verify the publisher handle smallkeyboy and the PPT optimization purpose before installation. <br>
-Risk: Generated presentation recommendations could be inaccurate, unsuitable for the audience, or visually ineffective. <br>
-Mitigation: Review proposed copy, color, layout, and emphasis changes against the presentation goal before applying them. <br>
+## Use Case:
 
+Employees, external users, and presentation creators use this skill to diagnose and improve PPT content, including text trimming, layout cleanup, color recommendations, emphasis design, and style consistency.
 
-## Reference(s): <br>
-- [PPT 配色方案参考](references/color-schemes.md) <br>
-- [PPT 排版原则](references/layout-principles.md) <br>
-- [Coolors](https://coolors.co/) <br>
-- [Adobe Color](https://color.adobe.com/) <br>
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with rewritten slide copy, layout recommendations, color palettes, and emphasis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hex color values, layout proportions, simple ASCII layout sketches, and iterative revision prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-supplied presentation content may include confidential business material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review slide content before sharing it with an agent and avoid providing confidential material unless the deployment environment is approved for that data.
+
+Risk: Presentation recommendations may be unsuitable for a specific brand, audience, or accessibility requirement.
+
+Mitigation: Review generated copy, color choices, contrast, and layout guidance before applying them to final slides.
+
+## Reference(s):
+
+- [PPT 配色方案参考](artifact/references/color-schemes.md)
+- [PPT 排版原则](artifact/references/layout-principles.md)
+- [Coolors](https://coolors.co/)
+- [Adobe Color](https://color.adobe.com/)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/ppt-optimizer)
+- [Publisher profile](https://clawhub.ai/user/smallkeyboy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown text with concise recommendations, bullet lists, and optional layout sketches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces presentation optimization guidance; it does not execute code, persist data, or access credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Read, search, and manage Zoho Mail via the Zoho Mail REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, and manage Zoho Mail via the Zoho Mail REST API.
 
-## Publisher: <br>
-[ragsagar](https://clawhub.ai/user/ragsagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ragsagar](https://clawhub.ai/user/ragsagar)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through authenticated Zoho Mail REST API workflows, including account discovery, folder listing, message reading, search, threads, labels, attachments, and regional endpoint selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized mailbox access through OAuth credentials. <br>
-Mitigation: Install only for Zoho accounts the operator is authorized to access and use the narrow read-only scopes shown in the skill. <br>
-Risk: Exposure of sensitive email content while reading or searching messages. <br>
-Mitigation: Avoid printing full message bodies unless needed and review command output before sharing logs or transcripts. <br>
-Risk: Client secrets or refresh tokens could be leaked through shell history, logs, or shared chats. <br>
-Mitigation: Keep Zoho OAuth secrets in environment variables, avoid pasting them into shared contexts, and revoke or rotate refresh tokens when access is no longer needed. <br>
+## Use Case:
 
+Developers and external users use this skill to configure Zoho OAuth credentials and have an agent read, search, inspect, and summarize Zoho Mail data through documented REST API calls.
 
-## Reference(s): <br>
-- [Zoho Mail API documentation](https://www.zoho.com/mail/help/api/) <br>
-- [Zoho API Console](https://api-console.zoho.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/ragsagar/zoho-mail-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and jq JSON projections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and Zoho OAuth environment variables before API calls can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can read and search mail for the configured Zoho account when OAuth credentials are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended accounts and use the listed read-only OAuth scopes.
+
+Risk: Zoho client secrets and refresh tokens can expose mailbox access if shared through shells, logs, tickets, or chat.
+
+Mitigation: Keep credentials out of shared contexts and revoke the refresh token in Zoho if it is exposed or no longer needed.
+
+Risk: Using the wrong regional Zoho endpoint can cause authentication or mail API calls to fail.
+
+Mitigation: Use the mail and auth endpoints that match the Zoho account region.
+
+## Reference(s):
+
+- [Zoho Mail API Documentation](https://www.zoho.com/mail/help/api/)
+- [Zoho API Console](https://api-console.zoho.com/)
+- [ClawHub Skill Page](https://clawhub.ai/ragsagar/skills/zoho-mail-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and Zoho OAuth environment variables for the configured account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-Feishu Skills is a Feishu and Lark integration skill pack for OpenClaw and EnClaws that lets agents set up a Feishu bot and manage documents, chats, calendars, tasks, bitables, drive files, OCR, sheets, wiki content, and user lookup through per-user OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu (Lark) skill pack installer that installs integration skills for OpenClaw and EnClaws, including bot setup, documents, calendar, tasks, bitable, chat, and related workflows.
 
-## Publisher: <br>
-[hashstacs-hk](https://clawhub.ai/user/hashstacs-hk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hashstacs-hk](https://clawhub.ai/user/hashstacs-hk)
 
-## Use Case: <br>
-Developers and agent users use this skill pack to connect an agent to Feishu or Lark workspaces, then read, create, update, search, export, and manage workspace content and collaboration objects through authenticated user-scoped actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill pack can grant broad Feishu workspace access through OAuth scopes. <br>
-Mitigation: Review requested Feishu scopes before approval and grant only the permissions needed for the intended workflow. <br>
-Risk: The skills rely on local command execution to run Node.js scripts. <br>
-Mitigation: Install only from a trusted publisher and avoid disabling execution confirmations globally outside the intended agent environment. <br>
-Risk: Some operations can modify or remove Feishu documents, sheets, bitables, drive files, tasks, calendars, or chat-related data. <br>
-Mitigation: Require user confirmation for destructive or broad write operations and verify target document, table, folder, calendar, or record identifiers before execution. <br>
-Risk: Document extraction behavior may install npm packages at runtime. <br>
-Mitigation: Review runtime package installation behavior and run the skill in an environment where dependency installation is expected and monitored. <br>
+## Use Case:
 
+Developers and agent operators use this skill pack to install Feishu integrations that let agents authenticate with per-user OAuth and work with Feishu documents, wiki pages, chat, calendars, tasks, bitable apps, drive files, OCR, users, and spreadsheets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hashstacs-hk/feishu-skills) <br>
-- [README](README.md) <br>
-- [Feishu permissions guide](feishu-quick-setup/references/feishu-permissions.md) <br>
-- [Feishu troubleshooting guide](feishu-quick-setup/references/troubleshooting.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [EnClaws](https://github.com/hashSTACS-Global/EnClaws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and single-line JSON command results from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, create, update, download, upload, or delete Feishu resources according to granted OAuth scopes and local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill pack can access and mutate broad Feishu resources through local Node command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Feishu app scopes before deployment and grant only the permissions needed for the intended workflows.
+
+Risk: Persistent app secrets and OAuth tokens may expose Feishu data if local configuration or token files are mishandled.
+
+Mitigation: Protect local credential files, delete stale config backups, and rotate app secrets or tokens when access is no longer needed.
+
+Risk: Document extraction may rely on parser dependencies that affect file handling behavior.
+
+Mitigation: Preinstall or pin document parser dependencies before enabling file extraction workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hashstacs-hk/skills/feishu-skills)
+- [Feishu permissions guide](artifact/feishu-quick-setup/references/feishu-permissions.md)
+- [Feishu troubleshooting guide](artifact/feishu-quick-setup/references/troubleshooting.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [EnClaws](https://github.com/hashSTACS-Global/EnClaws)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs local Node.js-based Feishu skill directories and relies on Feishu OAuth credentials and permissions for runtime operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

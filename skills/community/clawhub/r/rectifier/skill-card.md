@@ -1,41 +1,62 @@
-## Description: <br>
-Rectifier is advertised for rectifier circuit tasks, but server security evidence notes that its artifact behaves as a local persistent entry manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rectifier presents as a rectifier circuit design calculator and provides commands for local record status, add, list, search, remove, export, statistics, and configuration workflows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and agents can use this skill to run the bundled shell commands for status, entry logging, search, export, statistics, and configuration. Do not rely on it as an electrical calculator without independent verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a rectifier circuit design calculator, but security evidence says the artifacts behave as a local persistent entry manager. <br>
-Mitigation: Review the shell script before use, treat it as entry-log tooling unless corrected, and verify electrical calculations with another trusted tool. <br>
-Risk: Entries can persist under ~/.rectifier and be exported later. <br>
-Mitigation: Avoid entering secrets or sensitive data, set RECTIFIER_DIR to a controlled location when needed, and remove stored files according to local data handling requirements. <br>
+## Use Case:
 
+Developers and engineers can use this skill to run the bundled CLI for simple local record management tasks described by the artifact, including status checks, adding entries, listing, searching, removal, export, statistics, and configuration. Because the security evidence reports a mismatch with the advertised calculator purpose, users should not rely on it for rectifier circuit design calculations without independent validation.
 
-## Reference(s): <br>
-- [Rectifier on ClawHub](https://clawhub.ai/bytesagain3/rectifier) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line text with optional JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists entries under RECTIFIER_DIR, defaulting to ~/.rectifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The release is described as a rectifier circuit design calculator, while authoritative security evidence says it stores, deletes, searches, configures, and exports local records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a local record manager unless its calculator behavior is separately verified; do not rely on it for electrical design decisions.
+
+Risk: The remove, config, and export commands can change local records, preferences, or generated files.
+
+Mitigation: Review proposed commands before execution, run in a controlled workspace, and back up any records before removal or configuration changes.
+
+Risk: Entries may be exported to CSV, which can be unsafe to open in spreadsheet software when values come from untrusted input.
+
+Mitigation: Sanitize exported values or inspect CSV output in a viewer that does not evaluate formulas.
+
+Risk: Local records may contain sensitive information if users add secrets or private data.
+
+Mitigation: Do not store secrets in entries, and set RECTIFIER_DIR to a scoped non-sensitive directory for testing or review.
+
+## Reference(s):
+
+- [ClawHub Rectifier skill page](https://clawhub.ai/bytesagain3/skills/rectifier)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; command output is plain text, with JSONL or CSV files when export is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RECTIFIER_DIR when set, otherwise writes local records under ~/.rectifier; export writes rectifier-export.json or rectifier-export.csv in the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

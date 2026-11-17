@@ -1,39 +1,61 @@
-## Description: <br>
-Query real-time and historical financial data across equities and crypto--prices, market moves, metrics, and trends for analysis, alerts, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data across equities and crypto prices, market moves, metrics, and trends for analysis, alerts, and reporting.
 
-## Publisher: <br>
-[AIsaDocs](https://clawhub.ai/user/AIsaDocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External developers and analysts use this skill to retrieve stock and cryptocurrency prices, market news, financial statements, filings, metrics, and screening results through AIsa API calls or the bundled Python client. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends API keys and market-data queries to AIsa, which may expose proprietary portfolio, strategy, or regulated trading information. <br>
-Mitigation: Use a dedicated AIsa API key where possible, monitor credit or billing usage, and avoid submitting sensitive trading or portfolio information unless sharing is approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/AIsaDocs/openclaw-aisa-finance-equity-crypto-price-market-data-news) <br>
-- [OpenClaw Homepage](https://openclaw.ai) <br>
-- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve equity and cryptocurrency prices, market news, financial statements, analyst estimates, filings, ownership data, screening results, and related market metrics for analysis, alerts, and reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, Python commands, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to the AIsa API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market research requests, ticker lists, dates, screening filters, and the AISA bearer token are sent to the third-party AISA API.
+
+Mitigation: Install only where api.aisa.one is approved, and avoid sending confidential trading strategies or sensitive internal watchlists unless that service is approved for the environment.
+
+Risk: The skill is designed for financial-data lookup and may return market data that users could over-rely on for investment decisions.
+
+Mitigation: Use the returned data as an input to analysis and reporting workflows, with independent review before trading, portfolio, or compliance decisions.
+
+Risk: Command outputs and logs may contain ticker lists, dates, filters, account usage data, or other market research context.
+
+Mitigation: Treat generated commands, API responses, and captured logs as potentially sensitive and apply normal token and data-handling controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aisadocs/skills/openclaw-aisa-finance-equity-crypto-price-market-data-news)
+- [OpenClaw](https://openclaw.ai)
+- [AISA API Reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AISA](https://aisa.one)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python command examples; API and client calls return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to api.aisa.one.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

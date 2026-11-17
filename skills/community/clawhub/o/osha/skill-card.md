@@ -1,38 +1,54 @@
-## Description: <br>
-OSHA compliance reference for workplace safety standards, hazard categories, inspection preparation, and recordkeeping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OSHA compliance reference for workplace safety standards, hazard categories, inspection preparation, recordkeeping, audits, and safety programs.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Safety, compliance, and operations teams use this skill as a quick-reference helper for OSHA standards, hazard controls, inspection preparation, recordkeeping, training topics, and workplace safety checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OSHA penalties, citation rankings, deadlines, and compliance requirements can change over time. <br>
-Mitigation: Verify important safety or legal decisions against current official OSHA sources before relying on the guidance. <br>
+## Use Case:
 
+Safety, compliance, operations, and developer teams use this skill to retrieve concise OSHA reference guidance for standards lookup, hazard review, inspection preparation, recordkeeping, training planning, and workplace safety checklists.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local quick-reference content; no network activity, credential use, or system changes identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Dated OSHA penalty figures or regulatory requirements could be used as current compliance guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify penalty amounts and regulatory requirements against official OSHA sources before relying on them for compliance decisions.
+
+Risk: Static workplace safety guidance could be mistaken for authoritative legal advice.
+
+Mitigation: Treat the skill as reference material and confirm compliance decisions with current official sources or qualified safety and legal professionals.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub Osha skill page](https://clawhub.ai/xueyetianya/skills/osha)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference sections with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static OSHA reference material; some cited penalty amounts and requirements may require current official verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

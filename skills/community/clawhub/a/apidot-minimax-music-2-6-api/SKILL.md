@@ -20,6 +20,15 @@ This skill is for routing MiniMax Music 2.6 questions to the right APIDot docs, 
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the MiniMax Music 2.6 model page: https://apidot.ai/models/minimax-music-2-6
+- Read MiniMax Music 2.6 API docs: https://apidot.ai/docs/minimax-music-2-6
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

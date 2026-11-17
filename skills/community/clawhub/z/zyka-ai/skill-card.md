@@ -1,43 +1,60 @@
-## Description: <br>
-Generate AI videos, images, voice, and AI app outputs from the terminal using the Zyka CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos, images, voice, and AI app outputs using the Zyka CLI.
 
-## Publisher: <br>
-[varshneyhars](https://clawhub.ai/user/varshneyhars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[varshneyhars](https://clawhub.ai/user/varshneyhars)
 
-## Use Case: <br>
-External users and developers use this skill to invoke Zyka CLI commands for media generation, editing, text-to-speech, talking-head video, and related AI media apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected media may be sent to Zyka and downstream model providers. <br>
-Mitigation: Avoid confidential, regulated, proprietary, or third-party identity media unless rights and consent are clear. <br>
-Risk: The skill requires a Zyka API key and may spend paid credits when commands are executed. <br>
-Mitigation: Protect and rotate ZYKA_API_KEY, use least-privilege access where available, and monitor Zyka dashboard usage. <br>
+## Use Case:
 
+Developers and content creators use this skill to have an agent prepare and run Zyka CLI commands for generating or editing video, image, speech, captions, dubbing, and related media outputs.
 
-## Reference(s): <br>
-- [Zyka AI skill page](https://clawhub.ai/varshneyhars/zyka-ai) <br>
-- [Zyka homepage](https://zyka.ai) <br>
-- [Zyka CLI package](https://www.npmjs.com/package/zyka) <br>
-- [Zyka API keys](https://zyka.ai/settings/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded media files when the generated Zyka CLI commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.12 (source: server release evidence) <br>
+Risk: The skill depends on a mutable globally installed npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the current `zyka` package and use a trusted, controlled environment for execution.
+
+Risk: Commands can upload local image, audio, and video files to Zyka and downstream providers.
+
+Mitigation: Review exact file paths before execution and avoid private, proprietary, face, or voice media unless rights and consent are clear.
+
+Risk: Agent-driven commands can spend Zyka credits without an additional prompt.
+
+Mitigation: Use restricted API keys with spending limits and review the selected model, estimated cost, and output path before running commands.
+
+## Reference(s):
+
+- [Zyka AI skill page](https://clawhub.ai/varshneyhars/skills/zyka-ai)
+- [Zyka website](https://zyka.ai)
+- [Zyka CLI npm package](https://www.npmjs.com/package/zyka)
+- [Zyka API keys](https://zyka.ai/settings/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text, files]
+
+**Output Format:** [Markdown guidance with inline bash command blocks and CLI output file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the zyka binary and ZYKA_API_KEY; commands may upload referenced local media and save generated outputs to disk.]
+
+## Skill Version(s):
+
+0.4.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

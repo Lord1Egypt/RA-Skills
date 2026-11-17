@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MBTI 职业性格测评 / MBTI Personality Quiz</title>
+<style>
+:root { --navy:#1d3557; --blue:#457b9d; --light:#f1f7fb; --line:#d8e2ec;
+        --muted:#6b7280; --ok:#2a9d8f; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0; padding:0; height:100%; }
+body { font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',
+       'Hiragino Sans GB','Heiti SC',-apple-system,'Segoe UI',Roboto,sans-serif;
+       background:#eef3f8; color:#22262e; }
+#app { max-width:640px; margin:0 auto; min-height:100%;
+       display:flex; flex-direction:column; background:#fff; }
+header { padding:14px 18px 10px; border-bottom:1px solid var(--line);
+         background:var(--light); }
+.head-row { display:flex; justify-content:space-between; align-items:center; }
+.brand { font-weight:700; color:var(--navy); font-size:15px; }
+.brand .sub { font-weight:400; color:var(--muted); font-size:11px; margin-left:6px; }
+#langBtn { border:1px solid var(--blue); background:#fff; color:var(--blue);
+           border-radius:14px; padding:4px 12px; font-size:12px; cursor:pointer; }
+#langBtn:active { background:var(--blue); color:#fff; }
+.progress-wrap { margin-top:10px; }
+.progress-meta { display:flex; justify-content:space-between; font-size:12px;
+                 color:var(--muted); margin-bottom:4px; }
+.progress-track { height:8px; background:#e2e8f0; border-radius:4px; overflow:hidden; }
+.progress-fill { height:100%; width:0%; background:linear-gradient(90deg,
+                 var(--blue), var(--navy)); border-radius:4px;
+                 transition:width .25s ease; }
+main { flex:1; padding:26px 20px 30px; display:flex; flex-direction:column; }
+.q-dim { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.q-text { font-size:19px; font-weight:600; line-height:1.5; margin-bottom:26px;
+          min-height:64px; }
+.choices { display:flex; flex-direction:column; gap:14px; }
+.choice { display:block; width:100%; text-align:left; border:2px solid var(--line);
+          background:#fff; border-radius:12px; padding:16px 18px; font-size:16px;
+          line-height:1.45; cursor:pointer; transition:border-color .15s,
+          background .15s; font-family:inherit; }
+.choice .tag { display:inline-block; font-size:11px; font-weight:700; color:#fff;
+               background:var(--blue); border-radius:4px; padding:1px 7px;
+               margin-right:8px; vertical-align:2px; }
+.choice:active, .choice:hover { border-color:var(--blue); background:var(--light); }
+.choice.selected { border-color:var(--navy); background:var(--light); }
+.nav-row { display:flex; justify-content:space-between; margin-top:22px; }
+.btn { border:none; border-radius:10px; padding:10px 20px; font-size:14px;
+       cursor:pointer; font-family:inherit; }
+.btn-secondary { background:#e2e8f0; color:#374151; }
+.btn-secondary:disabled { opacity:.4; cursor:default; }
+.btn-primary { background:var(--navy); color:#fff; }
+#resultView, #summaryView { display:none; }
+.summary-card { background:var(--light); border:1px solid var(--line);
+                border-radius:12px; padding:16px; margin-bottom:16px; }
+.summary-card h3 { margin:0 0 10px; font-size:15px; color:var(--navy); }
+.dim-row { margin-bottom:12px; }
+.dim-label { display:flex; justify-content:space-between; font-size:13px;
+             margin-bottom:4px; }
+.bar { display:flex; height:10px; border-radius:5px; overflow:hidden;
+       background:#e2e8f0; }
+.bar .seg { height:100%; }
+.seg.a { background:#a8cadc; } .seg.b { background:var(--blue); }
+.nickname-row { margin:14px 0; }
+.nickname-row label { font-size:13px; color:var(--muted); display:block;
+                      margin-bottom:6px; }
+.nickname-row input { width:100%; border:1px solid var(--line); border-radius:8px;
+                      padding:10px 12px; font-size:14px; font-family:inherit; }
+.hint { font-size:12px; color:var(--muted); line-height:1.6; margin-top:12px; }
+.done-title { text-align:center; font-size:22px; font-weight:700;
+              color:var(--navy); margin:10px 0 18px; }
+footer { padding:10px 18px 16px; font-size:11px; color:var(--muted);
+         text-align:center; border-top:1px solid var(--line); }
+@media (max-width:480px) { .q-text { font-size:17px; } main { padding:20px 16px 24px; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="head-row">
+      <div class="brand">MBTI · 快速版 Quick</div>
+      <button id="langBtn" type="button">EN</button>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-meta"><span id="counter"></span><span id="versionLabel">快速版 Quick · 70题 / 70 items</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </header>
+  <main id="quizView" style="display:flex;flex-direction:column;">
+    <div class="q-dim" id="qDim"></div>
+    <div class="q-text" id="qText"></div>
+    <div class="choices">
+      <button class="choice" id="choiceA" type="button"><span class="tag">A</span><span class="choice-text"></span></button>
+      <button class="choice" id="choiceB" type="button"><span class="tag">B</span><span class="choice-text"></span></button>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-secondary" id="prevBtn" type="button">← 上一题 / Prev</button>
+      <button class="btn btn-primary" id="nextBtn" type="button" style="visibility:hidden"></button>
+    </div>
+  </main>
+  <main id="resultView">
+    <div class="done-title" id="doneTitle"></div>
+    <div class="summary-card">
+      <h3>各维度选项计数 / Choice Counts per Dimension</h3>
+      <div id="summaryDims"></div>
+    </div>
+    <div class="nickname-row">
+      <label for="nicknameInput">昵称（可选，会写入答案文件）/ Nickname (optional)</label>
+      <input id="nicknameInput" type="text" maxlength="40" placeholder="你的昵称 / Your nickname">
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-secondary" id="restartBtn" type="button">重新开始 / Restart</button>
+      <button class="btn btn-primary" id="downloadBtn" type="button">下载答案 JSON / Download answers</button>
+    </div>
+    <div class="hint" id="downloadHint" style="display:none;">答案文件已下载（mbti_answers_quick_<时间戳>.json）。把此文件交给 AI 助手生成 PDF 报告。</div>
+  </main>
+  <footer>MBTI Personality &amp; Career Quiz · 快速版 Quick · 70题 / 70 items · 此页面为离线单文件版，进度自动保存在本浏览器。</footer>
+</div>
+<script>window.__MBTI_QUIZ__ = {"version":"quick","lang":"zh","versionZh":"快速版","versionEn":"Quick","total":70,"dimensions":[{"dim":"E/I","titleZh":"能量方向","titleEn":"Energy Orientation","poles":[{"code":"E","zh":"外向","en":"Extraversion"},{"code":"I","zh":"内向","en":"Introversion"}]},{"dim":"S/N","titleZh":"信息获取","titleEn":"Information Gathering","poles":[{"code":"S","zh":"实感","en":"Sensing"},{"code":"N","zh":"直觉","en":"Intuition"}]},{"dim":"T/F","titleZh":"决策方式","titleEn":"Decision Making","poles":[{"code":"T","zh":"思考","en":"Thinking"},{"code":"F","zh":"情感","en":"Feeling"}]},{"dim":"J/P","titleZh":"生活方式","titleEn":"Lifestyle Orientation","poles":[{"code":"J","zh":"判断","en":"Judging"},{"code":"P","zh":"知觉","en":"Perceiving"}]}],"questions":[{"id":1,"dimension":"J/P","zh":"当你要外出一整天，你会","en":"When you are going out for the whole day, do you","a":{"zh":"计划你要做什么和在什么时候做","en":"plan what you will do and when"},"b":{"zh":"说去就去","en":"just go"}},{"id":2,"dimension":"J/P","zh":"你认为自己是一个","en":"Would you call yourself","a":{"zh":"较为随兴所至的人","en":"a rather spontaneous person"},"b":{"zh":"较为有条理的人","en":"a rather organized person"}},{"id":3,"dimension":"S/N","zh":"假如你是一名老师，你会选教","en":"If you were a teacher, would you rather teach","a":{"zh":"以事实为主的课程","en":"courses that deal with facts and real-life situations"},"b":{"zh":"涉及理论的课程","en":"courses that involve theories"}},{"id":4,"dimension":"E/I","zh":"你通常","en":"Do you usually","a":{"zh":"与人容易混熟","en":"mix with people easily"},"b":{"zh":"比较沉静或矜持","en":"stay quiet and reserved"}},{"id":5,"dimension":"S/N","zh":"一般来说，你和哪些人比较合得来？","en":"In general, do you get along better with","a":{"zh":"富于想象力的人","en":"imaginative people"},"b":{"zh":"现实的人","en":"realistic people"}},{"id":6,"dimension":"T/F","zh":"你是否经常让","en":"Do you more often let","a":{"zh":"你的情感支配你的理智","en":"your heart rule your head"},"b":{"zh":"你的理智主宰你的情感","en":"your head rule your heart"}},{"id":7,"dimension":"J/P","zh":"处理许多事情上，你会喜欢","en":"When handling many things, do you like to","a":{"zh":"凭兴所至行事","en":"do things as the mood strikes"},"b":{"zh":"按照计划行事","en":"work to a plan"}},{"id":8,"dimension":"E/I","zh":"你是否","en":"Is it","a":{"zh":"容易让人了解","en":"easy for people to get to know you"},"b":{"zh":"难于让人了解","en":"hard for people to get to know you"}},{"id":9,"dimension":"J/P","zh":"按照程序表做事","en":"Following a schedule","a":{"zh":"合你心意","en":"suits you fine"},"b":{"zh":"令你感到束缚","en":"feels restrictive to you"}},{"id":10,"dimension":"J/P","zh":"当你有一项特别的任务，你会喜欢","en":"When you take on a special task, do you prefer to","a":{"zh":"开始前小心组织计划","en":"map it out carefully before you start"},"b":{"zh":"边做边找要做什么","en":"figure out what to do as you go along"}},{"id":11,"dimension":"J/P","zh":"在大多数情况下，你会选择","en":"In most situations, do you tend to","a":{"zh":"顺其自然","en":"take things as they come"},"b":{"zh":"按程序表做事","en":"go by the schedule"}},{"id":12,"dimension":"E/I","zh":"大多数人会说你是一个","en":"Most people would say you are","a":{"zh":"重视自我隐私的人","en":"a private person"},"b":{"zh":"非常坦率开放的人","en":"a very open person"}},{"id":13,"dimension":"S/N","zh":"你宁愿被人认为是一个","en":"Would you rather be described as","a":{"zh":"实事求是的人","en":"a practical person"},"b":{"zh":"机灵的人","en":"an ingenious person"}},{"id":14,"dimension":"E/I","zh":"在一大群人当中，通常是","en":"In a large group, is it usually","a":{"zh":"你介绍大家认识","en":"you who introduces people to one another"},"b":{"zh":"别人介绍你","en":"others who introduce you"}},{"id":15,"dimension":"S/N","zh":"你会跟哪些人做朋友？","en":"Which kind of people would you choose as friends?","a":{"zh":"常提出新主意的","en":"those who often come up with new ideas"},"b":{"zh":"脚踏实地的","en":"those who are down-to-earth"}},{"id":16,"dimension":"T/F","zh":"你倾向","en":"Do you tend to","a":{"zh":"重视感情多于逻辑","en":"value feelings more than logic"},"b":{"zh":"重视逻辑多于感情","en":"value logic more than feelings"}},{"id":17,"dimension":"J/P","zh":"你比较喜欢","en":"Do you prefer to","a":{"zh":"坐观事情发展才作计划","en":"wait and see how things develop before making plans"},"b":{"zh":"很早就作计划","en":"make plans well in advance"}},{"id":18,"dimension":"E/I","zh":"你喜欢花很多的时间","en":"Do you like spending much of your time","a":{"zh":"一个人独处","en":"alone"},"b":{"zh":"和别人在一起","en":"with others"}},{"id":19,"dimension":"E/I","zh":"与很多人一起会","en":"Being with lots of people","a":{"zh":"令你活力倍增","en":"energizes you"},"b":{"zh":"常常令你心力交瘁","en":"often leaves you drained"}},{"id":20,"dimension":"J/P","zh":"你比较喜欢","en":"Do you prefer to","a":{"zh":"很早便把约会、社交聚集等事情安排妥当","en":"have your dates and social gatherings arranged well ahead"},"b":{"zh":"无拘无束，看当时有什么好玩就做什么","en":"be free to do whatever seems fun at the time"}},{"id":21,"dimension":"J/P","zh":"计划一个旅程时，你较喜欢","en":"When planning a trip, do you prefer to","a":{"zh":"大部分的时间都是跟当天的感觉行事","en":"mostly go by how you feel each day"},"b":{"zh":"事先知道大部分的日子会做什么","en":"know in advance what you will be doing most days"}},{"id":22,"dimension":"E/I","zh":"在社交聚会中，你","en":"At social gatherings, do you","a":{"zh":"有时感到郁闷","en":"sometimes feel bored"},"b":{"zh":"常常乐在其中","en":"often have a great time"}},{"id":23,"dimension":"E/I","zh":"你通常","en":"Do you usually","a":{"zh":"和别人容易混熟","en":"strike up conversations with people easily"},"b":{"zh":"趋向自处一隅","en":"tend to keep to the sidelines"}},{"id":24,"dimension":"S/N","zh":"哪些人会更吸引你？","en":"Who attracts you more?","a":{"zh":"一个思维敏捷及非常聪颖的人","en":"someone quick-witted and very clever"},"b":{"zh":"实事求是，具丰富常识的人","en":"someone practical with plenty of common sense"}},{"id":25,"dimension":"J/P","zh":"在日常工作中，你会","en":"In your everyday work, do you","a":{"zh":"颇为喜欢处理迫使你分秒必争的突发","en":"rather enjoy sudden urgencies that force you to race the clock"},"b":{"zh":"通常预先计划，以免要在压力下工作","en":"usually plan ahead so you don't have to work under pressure"}},{"id":26,"dimension":"E/I","zh":"你认为别人一般","en":"Do you think other people usually","a":{"zh":"要花很长时间才认识你","en":"take a long time to get to know you"},"b":{"zh":"用很短的时间便认识你","en":"get to know you quite quickly"}},{"id":29,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"抽象","en":"abstract"},"b":{"zh":"具体","en":"concrete"}},{"id":30,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"温柔","en":"gentle"},"b":{"zh":"坚定","en":"firm"}},{"id":31,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"思考","en":"thinking"},"b":{"zh":"感受","en":"feeling"}},{"id":32,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"事实","en":"facts"},"b":{"zh":"意念","en":"ideas"}},{"id":36,"dimension":"J/P","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"有系统","en":"systematic"},"b":{"zh":"随意","en":"casual"}},{"id":38,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"敏感","en":"sensitive"},"b":{"zh":"公正","en":"fair"}},{"id":42,"dimension":"E/I","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"矜持","en":"reserved"},"b":{"zh":"健谈","en":"talkative"}},{"id":46,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"利益","en":"benefits"},"b":{"zh":"祝福","en":"blessings"}},{"id":47,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"务实的","en":"practical"},"b":{"zh":"理论的","en":"theoretical"}},{"id":50,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"富想象的","en":"imaginative"},"b":{"zh":"以事论事","en":"matter-of-fact"}},{"id":51,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"亲切地","en":"kindly"},"b":{"zh":"客观地","en":"objectively"}},{"id":52,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"客观地","en":"objectively"},"b":{"zh":"热情地","en":"warmly"}},{"id":55,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"理论","en":"theory"},"b":{"zh":"事实","en":"fact"}},{"id":56,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"富同情","en":"sympathetic"},"b":{"zh":"合逻辑","en":"logical"}},{"id":57,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"具分析力","en":"analytical"},"b":{"zh":"多愁善感","en":"sentimental"}},{"id":59,"dimension":"J/P","zh":"当你要在一个星期内完成一个大项目，你在开始的时候会","en":"When you have a big project to finish within a week, do you start by","a":{"zh":"把要做的不同工作依次列出","en":"listing the different tasks in order"},"b":{"zh":"马上动工","en":"diving straight into the work"}},{"id":60,"dimension":"E/I","zh":"在社交场合中，你经常会感到","en":"At social events, do you often find it","a":{"zh":"与某些人很难打开话匣儿和保持对话","en":"hard to strike up and keep a conversation going with some people"},"b":{"zh":"与多数人都能从容地长谈","en":"easy to talk at length with almost anyone"}},{"id":61,"dimension":"S/N","zh":"要做许多人也做的事，你比较喜欢","en":"When doing something many people do, do you prefer to","a":{"zh":"按照一般认可的方法去做","en":"follow the accepted way of doing it"},"b":{"zh":"构想一个自己的想法","en":"come up with a way of your own"}},{"id":62,"dimension":"E/I","zh":"你刚认识的朋友能否说出你的兴趣？","en":"Can new acquaintances tell what your interests are?","a":{"zh":"马上可以","en":"right away"},"b":{"zh":"要待他们真正了解你之后才可以","en":"only after they really get to know you"}},{"id":63,"dimension":"S/N","zh":"你通常较喜欢的科目是","en":"Which kind of classes do you tend to prefer?","a":{"zh":"讲授概念和原则的","en":"those dealing with concepts and principles"},"b":{"zh":"讲授事实和数据的","en":"those dealing with facts and figures"}},{"id":64,"dimension":"T/F","zh":"哪个是较高的赞誉，或称许为？","en":"Which is the greater compliment?","a":{"zh":"一贯感性的人","en":"always sensitive"},"b":{"zh":"一贯理性的人","en":"always logical"}},{"id":65,"dimension":"J/P","zh":"你认为按照程序表做事","en":"Do you think following a schedule is","a":{"zh":"有时是需要的，但一般来说你不大喜欢这样做","en":"sometimes necessary but generally not your thing"},"b":{"zh":"大多数情况下是有帮助而且是你喜欢做的","en":"helpful most of the time, and something you like doing"}},{"id":66,"dimension":"E/I","zh":"和一群人在一起，你通常会选","en":"In a group of people, do you usually","a":{"zh":"跟你很熟悉的个别人谈话","en":"talk with one or two people you know well"},"b":{"zh":"参与大伙的谈话","en":"join in the conversation of the whole group"}},{"id":67,"dimension":"E/I","zh":"在社交聚会上，你会","en":"At a party, do you","a":{"zh":"是说话很多的一个","en":"talk a lot"},"b":{"zh":"让别人多说话","en":"let others do more of the talking"}},{"id":68,"dimension":"J/P","zh":"把周末期间要完成的事列成清单，这个主意会","en":"Does the idea of making a list of things to do over the weekend","a":{"zh":"合你意","en":"appeal to you"},"b":{"zh":"使你提不起劲","en":"leave you cold"}},{"id":69,"dimension":"T/F","zh":"哪个是较高的赞誉，或称许为","en":"Which is the greater compliment?","a":{"zh":"能干的","en":"competent"},"b":{"zh":"富有同情心","en":"compassionate"}},{"id":70,"dimension":"J/P","zh":"你通常喜欢","en":"Do you usually prefer to","a":{"zh":"事先安排你的社交约会","en":"arrange your social dates in advance"},"b":{"zh":"随兴之所至做事","en":"do things on the spur of the moment"}},{"id":71,"dimension":"J/P","zh":"总的说来，要做一个大型作业时，你会选","en":"All in all, when tackling a big assignment, do you","a":{"zh":"边做边想该做什么","en":"figure out what to do as you go"},"b":{"zh":"首先把工作按步细分","en":"start by breaking the work into steps"}},{"id":72,"dimension":"E/I","zh":"你能否滔滔不绝地与人聊天","en":"Can you chat freely at length","a":{"zh":"只限于跟你有共同兴趣的人","en":"only with people who share your interests"},"b":{"zh":"几乎跟任何人都可以","en":"with almost anyone"}},{"id":73,"dimension":"S/N","zh":"你会","en":"Do you","a":{"zh":"跟随一些证明有效的方法","en":"follow methods that have proven to work"},"b":{"zh":"分析还有什么尚待改善","en":"look for what could still be improved"}},{"id":74,"dimension":"S/N","zh":"为乐趣而阅读时，你会","en":"When reading for pleasure, do you","a":{"zh":"喜欢奇特或创新的表达方式","en":"enjoy unusual or original ways of saying things"},"b":{"zh":"喜欢作者直话直说","en":"prefer writers who say exactly what they mean"}},{"id":75,"dimension":"T/F","zh":"你宁愿替哪一类上司工作？","en":"Which kind of boss would you rather work for?","a":{"zh":"天性淳良，但常常前后不一的","en":"one who is kind-hearted but often inconsistent"},"b":{"zh":"言辞尖锐但永远合乎逻辑的","en":"one who is sharp-tongued but always logical"}},{"id":76,"dimension":"J/P","zh":"你做事多数是","en":"Do you mostly do things","a":{"zh":"按当天心情去做","en":"according to how you feel that day"},"b":{"zh":"照拟好的程序表去做","en":"according to a plan you have drawn up"}},{"id":77,"dimension":"E/I","zh":"你是否","en":"Can you","a":{"zh":"可以和任何人按需求从容地交谈","en":"chat comfortably with anyone as the situation requires"},"b":{"zh":"只是对某些人或在某种情况下才可以畅所欲言","en":"speak freely only with certain people or in certain situations"}},{"id":78,"dimension":"T/F","zh":"要做决定时，你认为比较重要的是","en":"When making a decision, do you think it matters more to","a":{"zh":"据事实衡量","en":"weigh the facts"},"b":{"zh":"考虑他人的感受和意见","en":"consider people's feelings and opinions"}},{"id":79,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"想象的","en":"imaginative"},"b":{"zh":"真实的","en":"realistic"}},{"id":83,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"可能性","en":"possibilities"},"b":{"zh":"必然性","en":"certainties"}},{"id":84,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"温柔","en":"gentle"},"b":{"zh":"力量","en":"strong"}},{"id":86,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"制造","en":"produce"},"b":{"zh":"创造","en":"create"}},{"id":87,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"新颖的","en":"novel"},"b":{"zh":"已知的","en":"known"}},{"id":88,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"同情","en":"sympathy"},"b":{"zh":"分析","en":"analysis"}},{"id":89,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"坚持己见","en":"assertive"},"b":{"zh":"温柔有爱心","en":"tender-hearted"}},{"id":92,"dimension":"T/F","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"能干","en":"capable"},"b":{"zh":"仁慈","en":"kind"}},{"id":93,"dimension":"S/N","zh":"在以下每对词语中选择更合心意的","en":"Of each pair of words, pick the one that appeals to you more","a":{"zh":"实际","en":"practical"},"b":{"zh":"创新","en":"innovative"}}]};</script>
+<script>
+(function () {
+  'use strict';
+  var QUIZ = window.__MBTI_QUIZ__;
+  var STORE_KEY = 'mbti_quiz_progress_' + QUIZ.version;
+  var state = {
+    lang: QUIZ.lang,
+    index: 0,
+    answers: {},        // question id -> 'A' | 'B'
+    submitted: false
+  };
+  var els = {};
+
+  function $(id) { return document.getElementById(id); }
+
+  function dimTitle(d) {
+    var zh = state.lang === 'zh';
+    return (zh ? d.titleZh : d.titleEn) + ' / ' + (zh ? d.titleEn : d.titleZh);
+  }
+
+  function t(obj) { return obj[state.lang === 'zh' ? 'zh' : 'en']; }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        index: state.index, answers: state.answers, submitted: state.submitted
+      }));
+    } catch (e) { /* storage unavailable: proceed without resume */ }
+  }
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (!raw) { return null; }
+      var data = JSON.parse(raw);
+      if (data && typeof data === 'object' && data.answers) { return data; }
+    } catch (e) { /* ignore corrupted state */ }
+    return null;
+  }
+
+  function clearProgress() {
+    try { localStorage.removeItem(STORE_KEY); } catch (e) { /* noop */ }
+  }
+
+  function render() {
+    if (state.submitted) { renderSummary(); return; }
+    els.quizView.style.display = 'flex';
+    els.resultView.style.display = 'none';
+    var q = QUIZ.questions[state.index];
+    var answered = Object.keys(state.answers).length;
+    els.progressFill.style.width =
+      (answered / QUIZ.total * 100).toFixed(1) + '%';
+    els.counter.textContent =
+      (state.lang === 'zh' ? '第 ' + (state.index + 1) + ' / ' + QUIZ.total + ' 题'
+                           : 'Question ' + (state.index + 1) + ' / ' + QUIZ.total);
+    var dim = QUIZ.dimensions.filter(function (d) { return d.dim === q.dimension; })[0];
+    els.qDim.textContent = '◈ ' + dimTitle(dim);
+    els.qText.textContent = t(q);
+    ['a', 'b'].forEach(function (key) {
+      var btn = key === 'a' ? els.choiceA : els.choiceB;
+      btn.querySelector('.choice-text').textContent = t(q[key]);
+      var picked = state.answers[q.id] === key.toUpperCase();
+      btn.classList.toggle('selected', picked);
+    });
+    els.prevBtn.disabled = state.index === 0;
+    var isLast = state.index === QUIZ.questions.length - 1;
+    els.nextBtn.textContent = isLast
+      ? (state.lang === 'zh' ? '提交 / Submit' : 'Submit / 提交') : '→';
+    els.nextBtn.disabled = false;
+    els.nextBtn.style.visibility = isLast ? 'visible' : 'hidden';
+  }
+
+  function pick(choice) {
+    var q = QUIZ.questions[state.index];
+    state.answers[q.id] = choice;
+    saveProgress();
+    if (state.index < QUIZ.questions.length - 1) {
+      state.index += 1;
+      render();
+    } else {
+      render(); // last question: let user press Submit (or re-pick)
+    }
+  }
+
+  function prev() {
+    if (state.index > 0) { state.index -= 1; render(); }
+  }
+
+  function next() {
+    var unanswered = QUIZ.questions.length - Object.keys(state.answers).length;
+    if (unanswered > 0) {
+      alert(state.lang === 'zh'
+        ? '还有 ' + unanswered + ' 题未作答，请回退补答后再提交。'
+        : unanswered + ' question(s) unanswered. Go back and complete them first.');
+      return;
+    }
+    state.submitted = true;
+    saveProgress();
+    renderSummary();
+  }
+
+  function dimCounts() {
+    var counts = {};
+    QUIZ.questions.forEach(function (q) {
+      counts[q.dimension] = counts[q.dimension] || { A: 0, B: 0 };
+      counts[q.dimension][state.answers[q.id]] += 1;
+    });
+    return counts;
+  }
+
+  function renderSummary() {
+    els.quizView.style.display = 'none';
+    els.resultView.style.display = 'block';
+    var zh = state.lang === 'zh';
+    els.doneTitle.textContent = zh ? '答题完成！' : 'Quiz completed!';
+    var html = '';
+    var counts = dimCounts();
+    QUIZ.dimensions.forEach(function (d) {
+      var c = counts[d.dim];
+      var total = c.A + c.B;
+      var pctA = total ? Math.round(c.A / total * 100) : 50;
+      html += '<div class="dim-row"><div class="dim-label">' +
+        '<span>◈ ' + dimTitle(d) + '</span>' +
+        '<span>A: ' + c.A + ' &nbsp; B: ' + c.B + '</span></div>' +
+        '<div class="bar"><div class="seg a" style="width:' + pctA + '%">' +
+        '</div><div class="seg b" style="width:' + (100 - pctA) + '%"></div></div></div>';
+    });
+    els.summaryDims.innerHTML = html;
+  }
+
+  function download() {
+    var answers = QUIZ.questions.map(function (q) {
+      return { id: q.id, choice: state.answers[q.id] };
+    });
+    var doc = {
+      version: QUIZ.version,
+      nickname: (els.nicknameInput.value || '').trim(),
+      answers: answers
+    };
+    var ts = new Date();
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var stamp = ts.getFullYear() + pad(ts.getMonth() + 1) + pad(ts.getDate()) +
+      '_' + pad(ts.getHours()) + pad(ts.getMinutes()) + pad(ts.getSeconds());
+    var blob = new Blob([JSON.stringify(doc, null, 2)],
+                        { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mbti_answers_' + QUIZ.version + '_' + stamp + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    els.downloadHint.style.display = 'block';
+  }
+
+  function restart() {
+    if (!confirm(state.lang === 'zh' ? '重新开始将清除当前进度，确定？'
+                                     : 'Restart will clear current progress. OK?')) {
+      return;
+    }
+    clearProgress();
+    state.index = 0; state.answers = {}; state.submitted = false;
+    render();
+  }
+
+  function toggleLang() {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    els.langBtn.textContent = state.lang === 'zh' ? 'EN' : '中文';
+    render();
+  }
+
+  function init() {
+    els = {
+      quizView: $('quizView'), resultView: $('resultView'),
+      progressFill: $('progressFill'), counter: $('counter'),
+      qDim: $('qDim'), qText: $('qText'),
+      choiceA: $('choiceA'), choiceB: $('choiceB'),
+      prevBtn: $('prevBtn'), nextBtn: $('nextBtn'),
+      langBtn: $('langBtn'), doneTitle: $('doneTitle'),
+      summaryDims: $('summaryDims'), nicknameInput: $('nicknameInput'),
+      downloadBtn: $('downloadBtn'), restartBtn: $('restartBtn'),
+      downloadHint: $('downloadHint')
+    };
+    els.langBtn.addEventListener('click', toggleLang);
+    els.langBtn.textContent = state.lang === 'zh' ? 'EN' : '中文';
+    els.choiceA.addEventListener('click', function () { pick('A'); });
+    els.choiceB.addEventListener('click', function () { pick('B'); });
+    els.prevBtn.addEventListener('click', prev);
+    els.nextBtn.addEventListener('click', next);
+    els.downloadBtn.addEventListener('click', download);
+    els.restartBtn.addEventListener('click', restart);
+
+    var saved = loadProgress();
+    if (saved && !saved.submitted &&
+        Object.keys(saved.answers || {}).length > 0 &&
+        Object.keys(saved.answers || {}).length < QUIZ.total) {
+      var msg = state.lang === 'zh'
+        ? '检测到未完成的答题进度（已答 ' + Object.keys(saved.answers).length +
+          '/' + QUIZ.total + ' 题），是否继续？'
+        : 'Unfinished progress detected (' +
+          Object.keys(saved.answers).length + '/' + QUIZ.total +
+          ' answered). Resume?';
+      if (confirm(msg)) {
+        state.answers = saved.answers;
+        state.index = Math.min(saved.index || 0, QUIZ.total - 1);
+      } else {
+        clearProgress();
+      }
+    }
+    render();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>

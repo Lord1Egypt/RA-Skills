@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a public-source China A-share sector strategy snapshot based on Eastmoney industry and concept-sector data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public Eastmoney industry and concept sector snapshots for China A-share market context.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch a JSON snapshot of China stock industry and concept-sector activity for market context. The output is informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Eastmoney and may use web search or fetch for context. <br>
-Mitigation: Run it only in environments where public market-data network access is acceptable and review fetched context before relying on it. <br>
-Risk: The output contains informational market data and could be mistaken for investment advice. <br>
-Mitigation: Treat the JSON snapshot as reference material only and require human review before making trading or portfolio decisions. <br>
+## Use Case:
 
+External users and agents use this skill to gather a current, public-source sector snapshot for China A-share market analysis. The output is informational market context only and is not investment advice.
 
-## Reference(s): <br>
-- [China Stock Sector Strategy on ClawHub](https://clawhub.ai/luyao-inc/china-stock-sector-strategy) <br>
-- [luyao-inc Publisher Profile](https://clawhub.ai/user/luyao-inc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON printed by a Python command, with optional markdown guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ok, payload, sectors_count, concepts_count, market overview, and a northbound-funds limitation note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill returns market information that could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational context only and require independent review before any trading or allocation decision.
+
+Risk: Public market-data endpoints can be unavailable, incomplete, delayed, or restricted.
+
+Mitigation: Check the returned ok/detail fields and verify important values against authoritative market-data sources before relying on them.
+
+Risk: The skill runs a local Python script that makes outbound requests to public Eastmoney endpoints.
+
+Mitigation: Review the script before installation and run it only in environments where outbound public market-data requests are permitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luyao-inc/skills/china-stock-sector-strategy)
+- [Eastmoney Public Market Data Endpoint](https://push2.eastmoney.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON returned by a local Python command, with agent-facing guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ok, payload, sectors_count, concepts_count, operation, period_type, and source fields; uses public data endpoints without cookies or trading-account access.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

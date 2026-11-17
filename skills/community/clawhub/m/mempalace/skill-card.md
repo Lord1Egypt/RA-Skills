@@ -1,42 +1,58 @@
-## Description: <br>
-MemPalace provides local AI memory with semantic search over past conversations, a temporal knowledge graph, and palace-style organization for stored memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemPalace provides local AI memory with semantic search over past conversations, a temporal knowledge graph, and a palace-style organization model for stored memories.
 
-## Publisher: <br>
-[wanikua](https://clawhub.ai/user/wanikua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanikua](https://clawhub.ai/user/wanikua)
 
-## Use Case: <br>
-Developers and agent users use MemPalace to connect an assistant to a local memory store, search prior conversations, manage temporal facts, and write session diary entries for continuity across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically persists and reuses conversation history, which can capture sensitive or unwanted personal context. <br>
-Mitigation: Use it only when local long-term memory is intended; verify where data is stored, how diary writes can be disabled, and how saved memories can be reviewed or deleted. <br>
-Risk: Stored memories may include credentials, regulated personal data, or confidential business content if users provide that content during conversations. <br>
-Mitigation: Avoid using the skill with secrets, regulated personal data, or confidential business content unless appropriate controls, retention limits, and deletion workflows are confirmed. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a local MemPalace memory store, search prior conversation archives, query temporal facts, and write updated memories across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanikua/mempalace) <br>
-- [Publisher profile](https://clawhub.ai/user/wanikua) <br>
-- [MemPalace homepage](https://github.com/milla-jovovich/mempalace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include MCP tool usage instructions, memory search/write recommendations, and local setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Conversation archives may contain secrets, regulated data, or sensitive personal information that the skill can store and search locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mine only approved folders, exclude sensitive archives, and avoid using the skill with data the user is not comfortable storing and searching locally.
+
+Risk: The local MemPalace package receives access to private conversation history during initialization, mining, and MCP operation.
+
+Mitigation: Pin and separately review the mempalace package before installation or deployment, especially in managed or commercial environments.
+
+Risk: Stored memories and temporal facts can be reused in later sessions and may influence responses if stale or incorrect.
+
+Mitigation: Use the documented delete and knowledge-graph invalidation workflows to remove outdated entries and replace changed facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanikua/skills/mempalace)
+- [MemPalace project homepage](https://github.com/milla-jovovich/mempalace)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool usage guidance and local installation/setup steps.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

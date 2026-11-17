@@ -1,50 +1,69 @@
-## Description: <br>
-Helps developers integrate WeChat Pay V3 flows with product selection guidance, Python and Node.js examples, signing and callback handling notes, quality checks, and troubleshooting references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers integrate WeChat Pay with product selection guidance, Python and Node.js examples, business reference material, quality checks, and troubleshooting for common V3 API payment flows.
 
-## Publisher: <br>
-[jie868](https://clawhub.ai/user/jie868) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jie868](https://clawhub.ai/user/jie868)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose appropriate WeChat Pay products, retrieve payment and refund code examples, understand signing and callback requirements, assess integration readiness, and troubleshoot common payment issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment callback and refund examples may be copied into production before they are made safe for real credentials and money movement. <br>
-Mitigation: Treat examples as reference material, replace placeholder or stub verification with official WeChat Pay signature verification, and reject invalid callbacks before business processing. <br>
-Risk: Improper retry handling can duplicate payment fulfillment or refund actions. <br>
-Mitigation: Handle callbacks and refund retries idempotently, reuse stable merchant order and refund identifiers, and test duplicate notifications in a non-production environment. <br>
-Risk: Merchant private keys, APIv3 keys, or payment data can be exposed through code or logs. <br>
-Mitigation: Load secrets from environment variables or a key management service, avoid committing credentials, and redact sensitive values from logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose WeChat Pay payment products, retrieve Python or Node.js integration examples, check callback and signature handling, and troubleshoot payment or refund flows before launch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jie868/wechatpay-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jie868) <br>
-- [Metadata homepage: wechatpay-skills](https://github.com/wechatpay-apiv3/wechatpay-skills) <br>
-- [Python API index](references/代码示例/接口索引/Python接口索引.md) <br>
-- [Node.js API index](references/代码示例/接口索引/Node.js接口索引.md) <br>
-- [Merchant signing and verification rules](references/商户模式/签名与验签/签名与验签规则.md) <br>
-- [Merchant callback handling](references/商户模式/回调处理/回调处理.md) <br>
-- [Merchant integration quality checklist](references/商户模式/接入检查/接入质量检查清单.md) <br>
-- [Merchant troubleshooting guide](references/商户模式/排障手册/排障手册.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with code blocks, checklists, tables, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended as reference material and should be reviewed before use with real merchant credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Payment callback and refund examples can encourage unsafe financial-handling patterns if copied directly into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as reference material, review them line by line, and validate all payment and refund flows with controlled credentials before deployment.
+
+Risk: Callback handling may be unsafe if verification is incomplete or performed over the wrong request body.
+
+Mitigation: Replace callback verification with real WeChat Pay platform certificate or public-key verification over the raw request body and fail closed on verification or processing errors.
+
+Risk: Duplicate callbacks or mismatched order data can cause incorrect fulfillment or refund behavior.
+
+Mitigation: Use durable database-backed idempotency and validate order, amount, and currency before changing business state.
+
+Risk: Merchant private keys and APIv3 secrets can be exposed if handled like sample credentials.
+
+Mitigation: Protect merchant keys and APIv3 secrets with production secret-management controls and remove unsafe dependency or setup commands before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jie868/skills/wechatpay-skill)
+- [Metadata Homepage](https://github.com/wechatpay-apiv3/wechatpay-skills)
+- [Python Interface Index](artifact/references/代码示例/接口索引/Python接口索引.md)
+- [Node.js Interface Index](artifact/references/代码示例/接口索引/Node.js接口索引.md)
+- [Merchant Signature and Verification Rules](artifact/references/商户模式/签名与验签/签名与验签规则.md)
+- [Merchant Callback Handling](artifact/references/商户模式/回调处理/回调处理.md)
+- [Merchant Integration Quality Checklist](artifact/references/商户模式/接入检查/接入质量检查清单.md)
+- [Merchant Troubleshooting Guide](artifact/references/商户模式/排障手册/排障手册.md)
+- [Payment Product Comparison](artifact/references/商户模式/支付产品对比/支付产品对比.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with referenced code examples and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require curl and user-provided WeChat Pay merchant context before producing specific integration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

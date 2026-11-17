@@ -1,56 +1,70 @@
-## Description: <br>
-25 AI-powered tools for video generation, talking avatars, image editing, voice cloning, and more - powered by DreamAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+25 AI-powered tools for video generation, talking avatars, image editing, voice cloning, and more powered by DreamAPI.
 
-## Publisher: <br>
-[dream-api](https://clawhub.ai/user/dream-api) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[dream-api](https://clawhub.ai/user/dream-api)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for DreamAPI media workflows, including image generation and editing, video generation and editing, avatar creation, video translation, text-to-speech, voice cloning, and account credit checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads prompts and user-provided image, audio, or video files to a third-party DreamAPI/Newport AI service. <br>
-Mitigation: Use it only with content the user has rights and consent to process, and avoid private, confidential, third-party, biometric face, voice, or video content unless approval is explicit. <br>
-Risk: The skill requires a DreamAPI API key and can consume account credits while running multi-step media jobs. <br>
-Mitigation: Use a revocable key, review account credit use, and ask the agent to confirm before uploads, purchases, or multi-step generation workflows. <br>
-Risk: The skill includes face, voice, watermark, and media manipulation capabilities that can be misused or produce content requiring rights review. <br>
-Mitigation: Confirm authorization for likeness, voice, watermark, and source media before generation, editing, or publication. <br>
+## Use Case:
 
+External users and developers use this skill to have an AI agent generate or edit images, video, avatars, translated video, and voice outputs through DreamAPI from natural-language requests and media inputs.
 
-## Reference(s): <br>
-- [DreamAPI API Docs](https://api.newportai.com/api-docs) <br>
-- [DreamAPI Dashboard](https://api.newportai.com/) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Authentication](references/auth.md) <br>
-- [Avatar](references/avatar.md) <br>
-- [Image Generation](references/image_gen.md) <br>
-- [Image Editing](references/image_edit.md) <br>
-- [Video Generation](references/video_gen.md) <br>
-- [Video Editing](references/video_edit.md) <br>
-- [Video Translate](references/video_translate.md) <br>
-- [Voice](references/voice.md) <br>
-- [Polling](references/polling.md) <br>
-- [Storage](references/storage.md) <br>
-- [User](references/user.md) <br>
-- [Error Handling](references/error_handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, media URLs] <br>
-**Output Format:** [Markdown and concise text responses with command guidance, configuration steps, and generated media links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a DreamAPI API key, paid credits, local media uploads, asynchronous polling, and returned image, audio, or video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and uploaded media may be sent to DreamAPI for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with media and prompts that are appropriate to share with DreamAPI.
+
+Risk: Face swap, voice clone, lip-sync translation, and watermark removal can involve sensitive identity or rights issues.
+
+Mitigation: Use only media you have rights and consent to process, and review these requests before execution.
+
+Risk: API keys may be exposed if pasted into chat, command lines, or plaintext credential files.
+
+Mitigation: Prefer a protected environment secret and avoid sharing API keys in chat or shell history.
+
+## Reference(s):
+
+- [DreamAPI Skill README](README.md)
+- [DreamAPI API Docs](https://api.newportai.com/api-docs)
+- [DreamAPI Dashboard](https://api.newportai.com/)
+- [Authentication](references/auth.md)
+- [Avatar](references/avatar.md)
+- [Image Generation](references/image_gen.md)
+- [Image Editing](references/image_edit.md)
+- [Video Generation](references/video_gen.md)
+- [Video Editing](references/video_edit.md)
+- [Video Translate](references/video_translate.md)
+- [Voice](references/voice.md)
+- [Polling](references/polling.md)
+- [Storage](references/storage.md)
+- [Error Handling](references/error_handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return image, video, and audio URLs, clone IDs, task metadata, or account credit information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

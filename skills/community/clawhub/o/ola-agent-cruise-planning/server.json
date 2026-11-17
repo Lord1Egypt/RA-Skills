@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-agent-cruise-planning",
+  "description": "An intelligent assistant designed to help you plan your cruise vacations seamlessly. Get insights, recommendations, and booking assistance.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/77170655-bd30-4c9d-9d54-0edb3501eb4a"
+    }
+  ]
+}

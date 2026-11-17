@@ -1,0 +1,15 @@
+name: 招采文件萝卜坑识别专家（招标人版）· 招标文件合规体检与整改
+slug: bid-carrot-pit-tenderer
+emoji: "🩺"
+version: 1.3.0
+author: 一线评标专家
+license: MIT-0
+agent_created: true
+description: 招标人/采购代理机构侧「招标文件合规自检（发标前体检）」独立技能：扫描整份招标文件全文，预判易被质疑/异议/投诉的条款，输出风险等级+法条方向+可落地整改（改写）建议+异议抗辩预案+合理性论证备查。与投标人版「招采萝卜坑识别专家」立场相反、共享9类信号标尺、解耦可单独触发；含合理性评估(真违规/表述不当/合理门槛三分类)、法条核验、两法硬隔离、不教唆设坑护栏。
+changelog:
+  - version: 1.3.0
+    date: 2026-07-18
+    change: 招标人版定稿（同 _meta.json v1.3.0 条目，吸收投标人版 v1.3.0 全部标尺强化 + 批量预筛 + 真实标书测试数据）。
+  - version: 1.0.0
+    date: 2026-07-17
+    change: 首版：独立技能「招采发标合规自检专家」，招标人侧镜像「招采萝卜坑识别专家」。SKILL.md（角色+边界+七步工作流+独有§2.6合理性评估三分类+内联输出骨架(整改原句→建议句+抗辩预案+论证备查)+护栏含不教唆设坑最高红线+部署与触发词+疑难Few-Shot）；references/compliance-signals.md（9类信号标尺招标人自检框架：会被质疑理由+整改方向）；references/legal-anchors.md（同源对称法条方向表）；templates/compliance-selfcheck-report.md（报告骨架+>15项折叠）；scripts/split_sections.py（分章节可选加速器，通用）；demo+test_cases(6用例)+README。关联6个招采类IMA知识库（双层架构）。

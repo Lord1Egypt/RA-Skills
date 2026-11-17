@@ -1,42 +1,58 @@
-## Description: <br>
-A management skill for solo Traditional Chinese Medicine practitioners that manages patient records, medical charts, herbal inventory, appointments, billing, financial reports, and local Excel data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A management assistant for solo Traditional Chinese Medicine practitioners that helps maintain Excel-based patient records, medical charts, herbal inventory, appointments, and billing reports.
 
-## Publisher: <br>
-[slamw](https://clawhub.ai/user/slamw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slamw](https://clawhub.ai/user/slamw)
 
-## Use Case: <br>
-External solo TCM practitioners use this skill for day-to-day clinic operations, including registering patients, recording visit notes and prescriptions, managing herbal stock, scheduling appointments, and summarizing billing or income. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive patient, medical, appointment, and payment records in local Excel files without built-in privacy controls. <br>
-Mitigation: Use only in a controlled local directory with appropriate consent, access controls, encryption, protected backups, retention and deletion procedures, and applicable healthcare privacy compliance. <br>
-Risk: Record, billing, appointment, and inventory actions can write or modify operational clinic data. <br>
-Mitigation: Require explicit user confirmation before executing any command that creates or changes records, charges, appointments, or inventory quantities. <br>
-Risk: Medical-chart and prescription workflows can capture clinical content that may be mistaken for independent medical advice. <br>
-Mitigation: Use the skill as a recordkeeping and workflow aid for qualified practitioners, and keep clinical responsibility with the practitioner. <br>
+## Use Case:
 
+External practitioners and clinic operators use this skill for day-to-day solo TCM clinic administration, including patient intake, charting, prescription support records, herbal stock tracking, appointment scheduling, and billing summaries. It is not positioned for academic TCM theory, formula research, or herb pharmacology analysis.
 
-## Reference(s): <br>
-- [TCM Clinic Data Table Schema Reference](references/data-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown summaries and tables, shell command invocations, and local Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 and openpyxl; writes clinic data to local .xlsx files under clinic_data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill handles patient health and billing records with weak built-in privacy safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a secured single-user machine or protected clinic environment, and add privacy, access-control, encryption, retention, and backup safeguards before using it for regulated clinical records.
+
+Risk: Excel files and command output may contain sensitive patient health and billing information.
+
+Mitigation: Keep the data directory out of shared, synced, public, or source-controlled folders, and treat generated files and agent-visible command output as sensitive.
+
+Risk: Spreadsheet-based workflows may need formula-sanitization safeguards when handling untrusted input.
+
+Mitigation: Add spreadsheet-formula sanitization before importing, sharing, or processing untrusted patient, inventory, appointment, or billing values.
+
+## Reference(s):
+
+- [TCM Clinic Data Table Schema Reference](references/data-schema.md)
+- [TCM Clinic - English Edition on ClawHub](https://clawhub.ai/slamw/skills/tcm-clinic-en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown tables and summaries with CLI commands and local Excel workbook updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local .xlsx files under clinic_data; dates use YYYY-MM-DD and amounts use two decimal places.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

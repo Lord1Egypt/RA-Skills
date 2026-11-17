@@ -1,37 +1,49 @@
-## Description: <br>
-基于迪士尼/皮克斯风格的动画视频脚本创作技能，严格融入十二动画法则（Disney's 12 Principles of Animation），输出专业分镜脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent create Disney/Pixar-style animation video scripts with shot-by-shot structure, duration planning, 2D or 3D style choices, and annotations for the twelve principles of animation.
 
-## Publisher: <br>
-[liderongyao-crypto](https://clawhub.ai/user/liderongyao-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liderongyao-crypto](https://clawhub.ai/user/liderongyao-crypto)
 
-## Use Case: <br>
-Creators, writers, and video-production teams use this skill to draft Disney/Pixar-style animation storyboard scripts with planned duration, shot breakdowns, motion notes, and embedded references to the twelve animation principles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create a local Markdown file for the finished animation script. <br>
-Mitigation: Confirm the project name and destination before using the save step, and review the generated file before relying on it. <br>
+## Use Case:
 
+External users and creators use this skill to plan and write animation video scripts, including required story inputs, timing, shot breakdowns, camera movement, rhythm notes, and Markdown deliverables.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown storyboard script with shot-by-shot prose and inline animation-principle labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save the finished script as a local Markdown file under an animation-script folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may create a Markdown file in the workspace without the user first confirming the desired language or save path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the preferred language and confirm the save path before allowing any file write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liderongyao-crypto/skills/disney-animation-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown document with paragraph-style shot descriptions and optional workspace file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks for story, duration, animation style, and target platform before drafting; it avoids table output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

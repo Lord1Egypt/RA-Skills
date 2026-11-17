@@ -1,37 +1,53 @@
-## Description: <br>
-提供空调加氟、清洗保养、故障排查及上门维修预约指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for AC refrigerant service, cleaning and maintenance, troubleshooting, and in-home repair appointment preparation.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users use this skill to get concise guidance for AC refrigerant service, cleaning and maintenance, fault triage, and scheduling an on-site repair appointment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary personal or payment information, accept unclear pricing, or rely on an unverified in-person repair provider. <br>
-Mitigation: Verify provider identity, pricing, insurance or guarantees before service, and avoid sharing unnecessary personal or payment information in chat. <br>
+## Use Case:
 
+External users can use this skill to structure AC repair requests, compare service options, and prepare for provider conversations about time estimates, qualifications, insurance, supplies, and follow-up coverage.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may treat provider pricing, credentials, insurance, or appointment details as verified facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify provider identity, qualifications, insurance coverage, pricing, and appointment terms independently before booking or repair work.
+
+Risk: Broad AC repair requests may trigger general Chinese-language guidance that does not account for local codes, building rules, or current service availability.
+
+Mitigation: Use the output as preliminary guidance and confirm local requirements and availability with a qualified repair provider.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/ac-repair)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable code or privileged actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

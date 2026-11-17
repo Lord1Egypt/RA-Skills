@@ -1,46 +1,61 @@
-## Description: <br>
-Automates Douyin content operations across Windows, macOS, and Linux, including setup, AI rewriting, long-form image/text publishing, comment replies, and optional cron scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a Douyin content operations pipeline that bootstraps supporting services, rewrites AI and quant finance content, publishes long image-text posts, and replies to comments.
 
-## Publisher: <br>
-[hnc87](https://clawhub.ai/user/hnc87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hnc87](https://clawhub.ai/user/hnc87)
 
-## Use Case: <br>
-Developers and creators use this skill to configure and run a local Douyin publishing pipeline for AI and quantitative-finance content, including dry runs, scheduled publishing, and comment reply workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Douyin browser session and perform public publishing or comment replies. <br>
-Mitigation: Use a separate Douyin account and isolated Chrome profile, run dry-run mode first, and manually review generated posts and reply behavior before enabling live runs. <br>
-Risk: Setup and runtime workflows require broad local authority, including package installation, repository cloning, browser automation, credentials, and local services. <br>
-Mitigation: Review the scripts and cloned repositories before execution, run in an isolated environment, avoid exposing GitHub tokens, and stop local services when automation is complete. <br>
-Risk: Cron scheduling can repeatedly publish or reply without fresh human approval. <br>
-Mitigation: Keep cron disabled until dry-run and live single-run behavior are verified, then schedule conservative intervals and monitor early executions. <br>
+## Use Case:
 
+Developers and social media operators use this skill to set up and run a Douyin workflow for finding candidate AI and quant finance content, preparing copy, publishing posts, and managing comment replies.
 
-## Reference(s): <br>
-- [Douyin Automation on ClawHub](https://clawhub.ai/hnc87/douyin-auto-hnc) <br>
-- [Publishing Rules and Safety Filters](references/publishing.md) <br>
-- [Comment Export and Auto Reply](references/comment-reply.md) <br>
-- [Cover AI Generation](references/cover-ai.md) <br>
-- [Configuration Reference](references/config-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands, JSON configuration blocks, and command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run local scripts, start browser automation and local services, schedule cron jobs, publish content, reply to comments, and emit status or result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can publish posts and send replies from a logged-in Douyin account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account and browser profile, review generated content before live runs, and start with dry-run mode until the posting behavior is understood.
+
+Risk: Setup can clone unpinned GitHub code, install downloaded dependencies, and automatically use available GitHub credentials.
+
+Mitigation: Run in an isolated environment, inspect cloned repositories and dependency files before execution, pin trusted revisions where possible, and avoid exposing GitHub tokens.
+
+Risk: The workflow starts local services, uses a persistent Chrome profile, and sends cover-generation prompts to an external API.
+
+Mitigation: Restrict local service exposure to trusted localhost use, keep the browser profile separate from personal browsing, and review prompts or data before using the external cover-generation API.
+
+## Reference(s):
+
+- [Douyin Automation Skill Page](https://clawhub.ai/hnc87/skills/douyin-auto-hnc)
+- [Publishing Rules and Safety Filters](references/publishing.md)
+- [Comment Export and Auto Reply](references/comment-reply.md)
+- [Qenda AI Cover Generation](references/cover-ai.md)
+- [Orchestrator Configuration Reference](references/config-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, service start, pipeline execution, status checks, dry-run mode, AI-disable mode, and optional cron scheduling guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

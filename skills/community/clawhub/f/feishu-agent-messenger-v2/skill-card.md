@@ -1,42 +1,54 @@
-## Description: <br>
-Sends private or group Feishu messages through the current agent's configured Feishu app, showing the configured bot name and handling app-isolated open_id values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send private or group Feishu messages through the current agent's Feishu app credentials while handling app-isolated open_id values.
 
-## Publisher: <br>
-[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya)
 
-## Use Case: <br>
-Developers and operators use this skill in multi-agent Feishu workflows to send status updates, task results, or operational messages to authorized users or group chats from the executing agent's own bot identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can send Feishu private or group messages using local bot credentials, which could reach unintended recipients or disclose sensitive content. <br>
-Mitigation: Install only where operators are authorized to use the Feishu bot credentials, verify recipients before sending, and avoid sending secrets or sensitive incident details unless explicitly permitted. <br>
-Risk: Recipient IDs may be taken from gateway logs, increasing the chance of stale, mismatched, or overexposed contact identifiers. <br>
-Mitigation: Prefer verified recipient sources where possible, restrict access to OpenClaw config files and gateway logs, and avoid unnecessary use of log-derived IDs. <br>
+## Use Case:
 
+Developers and operators use this skill to let agents report task status or results to Feishu users or chats without routing messages through another coordinating agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pikaqiuyaya/feishu-agent-messenger-v2) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Feishu text message results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, curl, local Feishu app credentials, and a verified open_id or chat_id target.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: The skill can send Feishu messages using local app credentials with weak scoping and validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted publishers and intended agent identities, restrict access to ~/.openclaw credential files, and use recipient allowlists or confirmation before routine sends.
+
+Risk: Agents may send sensitive or unintended message content to Feishu recipients.
+
+Mitigation: Avoid sensitive content unless explicitly approved, constrain allowed recipient types, and prefer safe JSON construction for message bodies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pikaqiuyaya/skills/feishu-agent-messenger-v2)
+- [Publisher profile](https://clawhub.ai/user/pikaqiuyaya)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local OpenClaw Feishu app credentials and returns Feishu message status or message IDs from the send script.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

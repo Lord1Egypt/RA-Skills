@@ -1,45 +1,61 @@
-## Description: <br>
-Gate unified account operations skill for account equity, margin borrowing, repayment, leverage modes, collateral settings, and related unified-account checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Gate unified-account assistance for equity and mode checks, borrowable and transferable limits, borrowing and repayment, loan and interest history, leverage settings, and collateral management.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Gate unified-account status, limits, loan records, borrow rates, and to prepare confirmed borrow, repay, mode, leverage, or collateral actions through a configured Gate MCP session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with borrow, repay, leverage, mode, and collateral changes that may affect margin exposure or liquidation risk. <br>
-Mitigation: Use a dedicated, tightly scoped Gate API key and review each Action Draft before giving explicit confirmation. <br>
-Risk: A misconfigured or untrusted Gate MCP server could expose account credentials or route account actions incorrectly. <br>
-Mitigation: Verify the Gate MCP server source and keep the skill in read-only guidance mode until the MCP session and permissions are confirmed. <br>
+## Use Case:
 
+External Gate users and operators use this skill to inspect unified-account status and prepare or execute confirmed borrowing, repayment, mode, leverage, and collateral actions through a configured Gate MCP session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/gate-exchange-unified) <br>
-- [Gate Skills Repository](https://github.com/gate/gate-skills) <br>
-- [Gate Unified MCP Specification](references/mcp.md) <br>
-- [Gate Unified Account Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Unified Account Scenarios](references/scenarios.md) <br>
-- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API Calls, configuration] <br>
-**Output Format:** [Markdown reports, action drafts, and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves API numeric strings exactly and requires explicit confirmation before write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata; artifact frontmatter and changelog report 2026.4.3-1) <br>
+Risk: The skill can guide sensitive financial write actions, including borrowing, repayment, mode changes, leverage settings, and collateral changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the assistant should access a Gate unified account, and require explicit confirmation after reviewing the draft amount, currency, target mode or setting, and risk note.
+
+Risk: The configured Gate session requires Unified:Read and Unified:Write permissions.
+
+Mitigation: Use only the local MCP session with configured credentials, never paste API secrets into chat, and stop write actions on authentication or permission errors.
+
+Risk: Leverage, collateral, and account-mode changes can affect borrow power and liquidation risk.
+
+Mitigation: Validate account mode, limits, and platform constraints before mutation, then verify post-state through a read endpoint.
+
+## Reference(s):
+
+- [Gate Unified MCP Specification](artifact/references/mcp.md)
+- [Gate Unified Account Runtime Rules](artifact/references/gate-runtime-rules.md)
+- [Gate Unified Account Scenarios](artifact/references/scenarios.md)
+- [Gate Skills Repository](https://github.com/gate/gate-skills)
+- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, action drafts, and execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves API numeric strings exactly when available; write actions require explicit single-use confirmation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

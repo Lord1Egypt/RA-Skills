@@ -1,42 +1,58 @@
-## Description: <br>
-Agent skill to search for the Hong Kong Coin Cart (收銀車) locations and schedules when a user asks about coin collection truck location, schedule, or availability by date or district. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill to search for the Hong Kong Coin Cart (收銀車) locations and schedules.
 
-## Publisher: <br>
-[sodiasm](https://clawhub.ai/user/sodiasm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sodiasm](https://clawhub.ai/user/sodiasm)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer natural language questions about Hong Kong coin collection truck locations, schedules, service suspensions, and district availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the schedule content is specific to Hong Kong. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script to query bundled schedule data. <br>
-Mitigation: Review the script before installation and run it only in an agent environment where local tool execution is expected. <br>
-Risk: Answers may become outdated if the bundled Hong Kong coin collection truck schedule data is not refreshed. <br>
-Mitigation: Check the data version or refresh the schedule data before relying on answers for current truck availability. <br>
+## Use Case:
 
+External users and agents use this skill to answer Hong Kong coin collection truck location, schedule, district, and suspension questions from bundled 2026 schedule data.
 
-## Reference(s): <br>
-- [Coin collection truck schedule data](references/coin_collection_truck_hk.json) <br>
-- [Query script](scripts/query_coin_truck.py) <br>
-- [ClawHub skill page](https://clawhub.ai/sodiasm/coin-collection-truck) <br>
+### Deployment Geography for Use:
 
+Global; outputs are specific to Hong Kong coin collection truck locations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with schedule details, suspension notes, and Google Maps links; supporting local lookup output is plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled schedule data and a local Python lookup script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill relies on bundled 2026 schedule data, which can become stale or incomplete for route decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the schedule data is bundled for 2026 and advise verification against an official source for important visits.
+
+Risk: Evidence guidance notes that one inspected record appears to have mismatched address and coordinate data.
+
+Mitigation: Present both address and map details when available, and advise users to confirm locations before travel.
+
+Risk: The skill runs a local Python script to query its bundled data.
+
+Mitigation: Review and scan the script before deployment and run it only in the normal controlled agent environment.
+
+## Reference(s):
+
+- [Bundled coin collection truck schedule data](references/coin_collection_truck_hk.json)
+- [ClawHub skill page](https://clawhub.ai/sodiasm/skills/coin-collection-truck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text schedule answers with optional map links; the local query script can also emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual addresses, service suspension notes, coordinates, and Google Maps links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

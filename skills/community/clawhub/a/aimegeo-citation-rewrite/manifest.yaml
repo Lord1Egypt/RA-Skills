@@ -1,0 +1,16 @@
+name: aimegeo-citation-rewrite
+slug: aimegeo-citation-rewrite
+display_name: "文章 AI 引用增强与范围检查"
+description: "Improve citation-ready answers in authorized article sections using supplied sources, and check preserved scope and evidence references."
+version: "1.0.2"
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-citation-rewrite"
+tags:
+  - AI引用
+trigger_words:
+  - "修订授权章节并检查结构与证据引用"
+self_test: "python3 scripts/self_test.py"
+interface:
+  display_name: "修订授权章节并检查结构与证据引用"
+  short_description: "修订授权章节并检查结构与证据引用"
+  default_prompt: "使用技能 aimegeo-citation-rewrite 按我指定范围修订文章，保留未授权部分，并列出改动和待核实事实。"

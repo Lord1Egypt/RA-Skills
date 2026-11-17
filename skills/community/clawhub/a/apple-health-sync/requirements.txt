@@ -1,0 +1,2 @@
+# 50.0.0 is the first release that fixes all CVE-2026-69247/-69248/-69249 findings.
+cryptography>=50.0.0,<51

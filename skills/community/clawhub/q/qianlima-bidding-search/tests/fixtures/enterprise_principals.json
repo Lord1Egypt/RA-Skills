@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "companyName": "深圳市某区机关事务管理局",
+        "cooperationCount": 5,
+        "cooperationAmount": 8200000
+      },
+      {
+        "companyName": "深圳市某区教育局",
+        "cooperationCount": 3,
+        "cooperationAmount": 2450000
+      }
+    ]
+  },
+  "success": true
+}

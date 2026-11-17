@@ -1,43 +1,58 @@
-## Description: <br>
-基于 liepin-v4.mjs 的猎聘岗位检索与抓取技能，支持关键词搜索、结构化结果输出与调试截图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Liepin candidate search and resume capture from Excel-based hiring criteria, producing structured candidate records, resume text, screenshots, and progress files.
 
-## Publisher: <br>
-[qiaoxinxin](https://clawhub.ai/user/qiaoxinxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiaoxinxin](https://clawhub.ai/user/qiaoxinxin)
 
-## Use Case: <br>
-Recruiting and HR users use this skill to search Liepin for candidates, score matches against an Excel profile, capture resume evidence, and prepare structured candidate data for follow-up. It is intended only for lawful, authorized recruiting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate candidate contact and process candidate resume or contact data. <br>
-Mitigation: Use only with an authorized Liepin recruiting account and a lawful basis for candidate processing; confirm outreach, retention, deletion, and data-protection rules before running. <br>
-Risk: Resume text, screenshots, phone numbers, and progress data may be stored locally in plaintext. <br>
-Mitigation: Run on a managed device or test account, restrict access to the output directory, and encrypt, archive, or delete outputs according to organizational policy. <br>
-Risk: Authenticated site automation may trigger platform controls or produce incomplete results when pages, selectors, login state, or network conditions change. <br>
-Mitigation: Start with small test runs, control request frequency, monitor CAPTCHA and failure states, and review generated records before using them in recruiting decisions. <br>
+## Use Case:
 
+Recruiters and HR operators use this skill with an authorized Liepin account to search for candidates, score matches against hiring criteria, preserve resume evidence, and prepare candidate records for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiaoxinxin/liepin-v4-skill) <br>
-- [Project homepage](https://github.com/qiaoxinxin/liepin-v4-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, text, configuration] <br>
-**Output Format:** [Local CSV, PNG screenshots, TXT resume extracts, JSON progress data, and console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written locally under a Desktop candidates directory and may include candidate contact details and resume content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Unauthorized account automation or candidate outreach could violate account, site, or recruiting policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an authorized Liepin account and require human approval before enabling automated communication.
+
+Risk: Candidate personal data, phone numbers, message previews, resume text, and screenshots may be stored locally.
+
+Mitigation: Collect only necessary fields, restrict access to output folders, define short retention, and remove sensitive records when no longer needed.
+
+Risk: Cookie handling and output-path assumptions may be unsuitable for production environments.
+
+Mitigation: Review cookie storage and sanitize or configure output paths before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaoxinxin/skills/liepin-v4-skill)
+- [Project homepage](https://github.com/qiaoxinxin/liepin-v4-skill)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, configuration]
+
+**Output Format:** [CSV candidate records, PNG resume screenshots, UTF-8 resume text, and JSON progress files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes outputs under a desktop candidates directory and records resumable progress.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

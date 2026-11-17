@@ -1,42 +1,59 @@
-## Description: <br>
-Oktk filters and compresses CLI output from tools such as git, Docker, kubectl, test runners, file listings, network calls, and search commands before an AI assistant consumes it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oktk compresses CLI outputs for git, Docker, Kubernetes, tests, file listings, network calls, and searches before they are sent to an LLM to reduce token usage and API cost.
 
-## Publisher: <br>
-[satnamra](https://clawhub.ai/user/satnamra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[satnamra](https://clawhub.ai/user/satnamra)
 
-## Use Case: <br>
-Developers and engineers use Oktk to reduce the amount of terminal output sent into an AI assistant while preserving compact summaries of common CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper can run or re-run arbitrary shell commands. <br>
-Mitigation: Avoid persistent aliases and the universal ok wrapper for mutating or sensitive commands until the command re-execution behavior is reviewed. <br>
-Risk: Local cache and analytics can store command names, paths, URLs, logs, or filtered outputs. <br>
-Mitigation: Disable or clear the ~/.oktk cache and analytics data when command-derived data may be sensitive. <br>
-Risk: Filtered summaries may omit details needed for debugging, security review, or incident response. <br>
-Mitigation: Use raw output or bypass filtering when complete command output is required. <br>
+## Use Case:
 
+Developers and agent operators use Oktk to summarize verbose terminal output before passing it to an LLM, preserving command status and key details while reducing context and cost.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satnamra/oktk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compressed command-output summaries, optional raw output, cache/statistics reports, and shell alias guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and package.json) <br>
+Risk: The wrapper can execute or re-run shell commands, including commands that modify files, install packages, deploy services, or touch Docker and Kubernetes state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before using Oktk, and avoid sourcing aliases or using the universal wrapper for state-changing commands.
+
+Risk: Filtered output can still contain sensitive information or omit details needed for exact diagnosis.
+
+Mitigation: Treat filtered summaries as potentially sensitive, review them before sharing with an LLM, and use raw output when full fidelity is required.
+
+Risk: Cache and analytics can retain command metadata or output locally under the user's Oktk directory.
+
+Mitigation: Disable local retention when it is not acceptable, and clear the cache and analytics files when command history or output should not persist.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/satnamra/skills/oktk)
+- [Project Homepage](https://github.com/satnamra/openclaw-workspace/tree/main/skills/oktk)
+- [Node.js Runtime](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text command-output summaries with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filtered summaries, cache/statistics reports, and raw output when bypassed.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata, skill frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

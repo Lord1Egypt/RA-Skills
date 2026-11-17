@@ -1,43 +1,58 @@
-## Description: <br>
-Provides technical indicator calculation, analysis, and visualization based on 100 popular TradingView Pine Script indicators through a Prana remote wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Python technical analysis skill based on 100 popular TradingView Pine Script indicators, providing indicator calculation, analysis, and visualization support.
 
-## Publisher: <br>
-[luokeer52](https://clawhub.ai/user/luokeer52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luokeer52](https://clawhub.ai/user/luokeer52)
 
-## Use Case: <br>
-Developers, analysts, and trading-tool users can route requests to a Prana-hosted skill for technical indicator analysis derived from TradingView Pine Script indicators. The local package is a lightweight client wrapper and does not contain the underlying indicator implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User requests and trading-analysis prompts are forwarded to Prana for remote execution. <br>
-Mitigation: Use the skill only with data approved for Prana processing, and avoid sending confidential trading strategies or account details unless that use is authorized. <br>
-Risk: Prana API credentials may be stored in local config files. <br>
-Mitigation: Prefer environment-provided credentials, keep config/api_key.txt and config/api_key.json out of version control, and set PRANA_SKILL_SKIP_WRITE_API_KEY=1 to avoid writing fetched keys to disk. <br>
-Risk: The client can automatically request or create Prana API credentials when local credentials are missing. <br>
-Mitigation: Set PRANA_SKILL_NO_AUTO_API_KEY=1 when automatic credential creation is not desired. <br>
+## Use Case:
 
+Developers and trading-analysis users use this skill to request technical indicator calculations, analysis, and visualization based on converted TradingView Pine Script indicators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luokeer52/100-indicators-analysis) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown or JSON returned by the Prana client, depending on the remote skill response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Prana API credentials and network access; multi-turn use may preserve a thread_id from the remote response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The wrapper can send task text, trading context, conversation identifiers, and Prana API credentials to a configurable Prana endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Prana and the configured HTTPS endpoint are trusted, and avoid sending sensitive trading or account data.
+
+Risk: The wrapper can auto-fetch and save Prana credentials in local plaintext configuration files.
+
+Mitigation: Prefer environment variables or a secret manager, and disable automatic key fetching or disk writes in sensitive environments.
+
+Risk: Generic account, email, or phone environment variables may be used while fetching Prana API keys.
+
+Mitigation: Avoid exposing unrelated identity environment variables to the skill runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luokeer52/skills/100-indicators-analysis)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text returned through the Prana wrapper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote execution may require Prana API credentials and a reachable HTTPS Prana endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

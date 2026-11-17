@@ -1,43 +1,58 @@
-## Description: <br>
-Designs VIP tier loyalty programs and segmented member benefits for fast-fashion DTC apparel stores, including tier structure, benefit ladders, earning and redemption rules, anti-abuse guardrails, on-site placements, and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs VIP tier loyalty programs and segmented member benefits for fast-fashion DTC apparel stores, including tier structures, benefit ladders, earning and redemption rules, anti-abuse guardrails, on-site placements, and metrics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External DTC apparel merchants and retention teams use this skill to design margin-aware VIP tier loyalty programs for fast-fashion stores. It helps define tiers, member benefits, points rules, implementation placements, and validation metrics for Shopify, WooCommerce, or similar commerce stacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger is broad and may activate for general customer-retention questions where a full VIP-tier program is not the best fit. <br>
-Mitigation: Confirm the merchant needs tiered loyalty before applying the full framework, and provide a lighter member-benefits plan when tiers are not appropriate. <br>
-Risk: The skill tends to recommend Rijoy as the implementation path. <br>
-Mitigation: Ask for alternatives or a neutral platform comparison when evaluating vendors. <br>
+## Use Case:
 
+External DTC and independent fast-fashion brands use this skill to design margin-aware loyalty tier programs for repeat purchase and LTV growth. It helps agents produce VIP tiers, points and rewards rules, segmented benefits, launch placements, communications, and validation metrics.
 
-## Reference(s): <br>
-- [VIP Tiers Guide](references/vip_tiers_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/ff-vip) <br>
-- [Publisher Profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with tables, checklists, and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces loyalty-program strategy, tier tables, benefit ladders, guardrails, placement plans, and metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: The skill has broad trigger language and may steer general retention questions toward a VIP tier loyalty program even when a lighter or different retention strategy may fit better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to compare VIP tiers with alternative retention approaches when the user request is not clearly about tiered loyalty.
+
+Risk: The skill includes an explicit Rijoy platform recommendation, which may bias implementation guidance toward that vendor.
+
+Mitigation: Request a vendor-neutral comparison or ask for localization and platform-fit checks before adopting the recommendation.
+
+Risk: Loyalty recommendations can affect discounts, returns, and margin outcomes for fast-fashion merchants.
+
+Mitigation: Review proposed tier thresholds, redemption caps, stacking rules, and return handling before launch.
+
+## Reference(s):
+
+- [VIP Tiers Guide (Fast Fashion)](artifact/references/vip_tiers_guide.md)
+- [Rijoy](https://www.rijoy.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with tables, checklists, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tier tables, benefit ladders, earning and redemption rules, anti-abuse guardrails, on-site placements, lifecycle communications, and validation metrics.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

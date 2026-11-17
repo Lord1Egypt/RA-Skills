@@ -1,41 +1,58 @@
-## Description: <br>
-Interact with the PrivyPad.com API to read, create, update, delete, and organize encrypted notes and groups on behalf of a user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the PrivyPad.com API to read, create, update, delete, and organize encrypted notes and groups on behalf of a user.
 
-## Publisher: <br>
-[AIDidMyHomework](https://clawhub.ai/user/AIDidMyHomework) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aididmyhomework](https://clawhub.ai/user/aididmyhomework)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent work with PrivyPad notes and groups through the PrivyPad API when the user supplies an API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can access private PrivyPad notes when the user provides a pp_ token. <br>
-Mitigation: Treat the token like a password, provide it only for intended tasks, and ask the agent to fetch the minimum notes needed. <br>
-Risk: An agent can update, delete, or permanently delete notes through the API. <br>
-Mitigation: Require clear user confirmation before updates or deletes, especially permanent deletion. <br>
+## Use Case:
 
+External users and developers use this skill to manage their PrivyPad notes and groups through the PrivyPad API, including search, filtering, tagging, pinning, updates, and deletion workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIDidMyHomework/privypad) <br>
-- [PrivyPad API base URL](https://www.privypad.com/api/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JavaScript fetch or Python httpx examples for PrivyPad API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive PrivyPad notes and bearer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only tokens the user is comfortable providing to an agent, and do not place real pp_ tokens in source files or logs.
+
+Risk: The skill can delete notes, including permanent deletion when requested.
+
+Mitigation: Require explicit user confirmation before deletion, especially before using permanent deletion.
+
+Risk: The evidence notes conflicting guidance about the encryption/API model and plaintext examples.
+
+Mitigation: Clarify PrivyPad's encryption and API behavior before sending confidential note content through examples or generated requests.
+
+## Reference(s):
+
+- [PrivyPad API base URL](https://www.privypad.com/api/v1/)
+- [ClawHub skill page](https://clawhub.ai/aididmyhomework/skills/privypad)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with REST endpoint examples and JavaScript/Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP request patterns that use a user-supplied PrivyPad bearer token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

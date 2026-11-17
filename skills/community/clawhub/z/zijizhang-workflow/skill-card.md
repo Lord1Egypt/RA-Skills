@@ -1,53 +1,66 @@
-## Description: <br>
-Helps an agent operate the ZJZ bookkeeping app for account binding, employee management, payroll, invoices, bank receipts and statements, tax and social security filing, audit tasks, and financial report lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZJZ Workflow helps agents guide users of the 自记账 app through accounting, payroll, tax, invoice, banking, social security, audit-task, and report-query workflows.
 
-## Publisher: <br>
-[shootofficial](https://clawhub.ai/user/shootofficial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shootofficial](https://clawhub.ai/user/shootofficial)
 
-## Use Case: <br>
-External users and accounting operators use this skill to guide an agent through ZJZ bookkeeping, payroll, invoice, bank, tax, social security, audit, and report workflows. It is intended for account-specific operational tasks where the user reviews sensitive financial actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive payroll, tax, invoice, bank, and financial report data. <br>
-Mitigation: Use it only in trusted agent sessions, minimize shared chat or log exposure, and redact full ID numbers, bank account numbers, payroll tables, and financial documents where possible. <br>
-Risk: The skill can initiate changes to bookkeeping, payroll, invoice, bank, tax, social security, and audit state. <br>
-Mitigation: Require explicit user confirmation before every write action, echo the company uid, target object, submitted fields, and field sources, and stop on non-200 CLI responses. <br>
-Risk: Broad activation rules may cause the agent to enter the workflow for general bookkeeping, tax, report, or task-handling requests. <br>
-Mitigation: Confirm the user intends to operate the ZJZ account and verify the active company context before running account-specific commands. <br>
-Risk: Incorrect or invented values could lead to inaccurate filings, payroll, invoice handling, or bank reconciliation. <br>
-Mitigation: Use only user-provided values, CLI-returned values, or values explicitly allowed by the workflow, and ask for missing data instead of filling gaps. <br>
+## Use Case:
 
+External users and their agents use this skill to operate 自记账 accounting workflows, including company context selection, payroll, employee records, bank receipts, invoices, taxes, social security filings, audit todos, and financial reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shootofficial/zijizhang-workflow) <br>
-- [Workflow and CLI Reference Index](references/README.md) <br>
-- [Payroll Workflow](workflow/payroll.md) <br>
-- [Bank Receipt and Statement Workflow](workflow/bank.md) <br>
-- [Invoice Upload Workflow](workflow/invoice_upload.md) <br>
-- [Sales Invoice Workflow](workflow/invoice_sales.md) <br>
-- [Income Invoice Workflow](workflow/invoice_income.md) <br>
-- [Social Security Workflow](workflow/social_security.md) <br>
-- [Individual Tax Workflow](workflow/individual_tax.md) <br>
-- [Audit Workflow](workflow/audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command sequences, confirmation prompts, and summaries of returned payroll, tax, invoice, bank, audit, and report data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can handle payroll, tax, invoice, banking, and account authorization data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with the intended 自记账 account and avoid exposing full ID numbers, bank numbers, auth links, payroll data, or invoice data in shell history, logs, screenshots, or chat unless necessary.
+
+Risk: The security evidence flags broad activation and sensitive write-capable workflows.
+
+Mitigation: Confirm every write action with the user, echo the target company, operation object, submitted fields, and field sources, then check command results before continuing.
+
+Risk: The security evidence flags unsafe shell-style command templates and unverified install/update guidance.
+
+Mitigation: Review the publisher and CLI package before installation, pin and verify the zijizhang-cli version, and avoid server-provided skill ZIP updates unless independently verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shootofficial/skills/zijizhang-workflow)
+- [CLI Reference Index](references/README.md)
+- [Payroll Workflow](workflow/payroll.md)
+- [Bank Workflow](workflow/bank.md)
+- [Income Invoice Workflow](workflow/invoice_income.md)
+- [Sales Invoice Workflow](workflow/invoice_sales.md)
+- [Invoice Upload Workflow](workflow/invoice_upload.md)
+- [Social Security Workflow](workflow/social_security.md)
+- [Individual Tax Workflow](workflow/individual_tax.md)
+- [Audit Workflow](workflow/audit.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve user confirmation gates for write actions and avoid exposing sensitive accounting, payroll, tax, invoice, bank, authorization, or identity data unless necessary.]
+
+## Skill Version(s):
+
+0.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

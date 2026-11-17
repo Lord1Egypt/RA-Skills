@@ -1,41 +1,53 @@
-## Description: <br>
-Plans content marketing across channels, including content types, formats, repurposing, funnel mapping, and content calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides content marketing strategy across channels, including content types, formats, distribution, repurposing, funnel mapping, and content calendars.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams, founders, and content strategists use this skill to plan content programs across blog, email, social, video, and website channels. It helps define content types, formats, repurposing plans, funnel coverage, and calendar priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain confidential positioning, audience, or strategy details that could be reflected in generated plans. <br>
-Mitigation: Review and redact sensitive project context before using the skill on confidential work. <br>
-Risk: Generated marketing plans may be incomplete or misaligned with brand, legal, or compliance requirements. <br>
-Mitigation: Have a qualified reviewer approve recommendations before publishing or operationalizing them. <br>
+## Use Case:
 
+External marketing teams, founders, and content strategists use this skill to plan content mixes, channel formats, repurposing, funnel coverage, and content calendars across blog, email, social, video, and site pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/content-marketing-strategies) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plans, matrices, mappings, and content calendar guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project context files when present to tailor recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release evidence) <br>
+Risk: Project context files may contain sensitive business, audience, or positioning details that influence generated marketing plans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` before invoking the skill, and remove information that should not be used in content-planning outputs.
+
+Risk: Content strategy recommendations may be incomplete, generic, or misaligned with brand, legal, or market requirements.
+
+Mitigation: Have a qualified reviewer check proposed topics, claims, channel plans, and calendars before publishing or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/content-marketing-strategies)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with planning tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations from project context files when present.]
+
+## Skill Version(s):
+
+1.2.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

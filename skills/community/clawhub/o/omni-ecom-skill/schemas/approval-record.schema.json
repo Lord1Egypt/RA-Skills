@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/approval-record-1.0.json",
+  "title": "Omni E-commerce Approval Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "approval_id", "action_id", "run_id", "client_scope", "state", "actor", "decided_at"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "approval_id": { "type": "string", "pattern": "^AP[A-Za-z0-9._-]{2,80}$" },
+    "action_id": { "type": "string", "pattern": "^A[A-Za-z0-9._-]{2,80}$" },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "state": { "enum": ["approved", "rejected"] },
+    "actor": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string" },
+    "decided_at": { "type": "string", "format": "date-time" }
+  }
+}

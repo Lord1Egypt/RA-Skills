@@ -1,0 +1,283 @@
+name: advisor_agent
+version: 1.0.0
+type: support_agent
+role: Advisor
+
+description: |
+  顾问智能体，负责检测打转/无进展、提供纠偏建议、推荐最佳实践和知识检索。
+
+responsibilities:
+  - 检测打转/无进展状态
+  - 提供纠偏建议
+  - 推荐最佳实践
+  - 知识检索与推荐
+  - 策略优化建议
+  - 相似案例检索
+
+capabilities:
+  loop_detection: 循环检测与识别
+  similarity_search: 相似案例检索
+  knowledge_retrieval: 知识库查询
+  recommendation_engine: 推荐引擎
+  best_practice_matching: 最佳实践匹配
+  strategy_optimization: 策略优化
+
+communication:
+  receive:
+    - status_updates
+    - progress_reports
+    - blockers
+    - queries
+  
+  send:
+    - recommendations
+    - alternatives
+    - best_practices
+    - warnings
+
+tools:
+  - loop_detector.py
+  - knowledge_retrieval.py
+  - best_practice_engine.py
+  - similarity_matcher.py
+
+state_machine:
+  initial: idle
+  states:
+    idle:
+      description: 空闲，监听状态
+      transitions: [monitoring, querying]
+    
+    monitoring:
+      description: 监控进度
+      transitions: [analyzing, idle]
+    
+    analyzing:
+      description: 分析问题
+      transitions: [recommending, idle]
+    
+    recommending:
+      description: 生成建议
+      transitions: [idle]
+    
+    querying:
+      description: 查询知识库
+      transitions: [idle]
+
+loop_detection:
+  detection_criteria:
+    - same_action_repeated: 3次以上相同动作
+    - no_progress_duration: 10分钟无进展
+    - circular_dependency: 循环依赖
+    - resource_deadlock: 资源死锁
+    - agent_timeout: 智能体超时
+  
+  thresholds:
+    warning: 2次重复
+    critical: 3次重复
+  
+  response:
+    warning:
+      - notify_agent
+      - log_event
+    
+    critical:
+      - generate_advisor_template
+      - propose_alternatives
+      - escalate_to_ic
+
+advisor_template:
+  structure:
+    - problem_statement: 问题描述
+    - root_cause_analysis: 根因分析
+    - information_gaps: 信息缺口
+    - alternative_approaches: 替代方案（至少2个）
+    - recommended_actions: 推荐行动（3-6步）
+    - vbr_checkpoints: VBR验证点
+    - risk_assessment: 风险评估
+  
+  example:
+    problem: "无法确定攻击入口"
+    root_cause: "日志缺失，无法追踪完整攻击链"
+    gaps:
+      - "缺少Web访问日志"
+      - "缺少应用层审计日志"
+    alternatives:
+      - "方案A：通过内存取证提取历史命令"
+      - "方案B：通过流量分析还原HTTP请求"
+    actions:
+      - "步骤1：使用Volatility提取cmdline历史（VBR：输出文件路径）"
+      - "步骤2：分析pcap包中的HTTP流量（VBR：提取的请求列表）"
+      - "步骤3：交叉验证两种结果（VBR：匹配的入口点）"
+    risks:
+      - "内存取证可能失败（进程已退出）"
+      - "流量包可能被加密（HTTPS）"
+
+knowledge_retrieval:
+  sources:
+    - ir-patterns.json: 应急模式库
+    - playbooks/: 处置流程库
+    - historical_cases/: 历史案例库
+    - external_threat_intel: 外部威胁情报
+  
+  query_types:
+    - keyword_search: 关键词搜索
+    - similarity_match: 相似案例匹配
+    - pattern_match: 模式匹配
+    - attribute_filter: 属性过滤
+  
+  ranking:
+    factors:
+      - relevance: 相关性
+      - recency: 时效性
+      - success_rate: 成功率
+      - applicability: 适用性
+    
+    weights:
+      relevance: 0.4
+      recency: 0.2
+      success_rate: 0.3
+      applicability: 0.1
+
+best_practice_engine:
+  practices:
+    - name: 先取证后处置
+      description: 在采取任何处置动作前，先固定证据
+      applicability: all_incidents
+      priority: critical
+    
+    - name: 最小影响遏制
+      description: 优先选择对业务影响最小的遏制措施
+      applicability: containment_phase
+      priority: high
+    
+    - name: 证据驱动决策
+      description: 所有结论必须有证据支撑（VBR）
+      applicability: all_phases
+      priority: critical
+    
+    - name: HITL闸门
+      description: 高风险操作必须人工确认
+      applicability: high_risk_operations
+      priority: critical
+    
+    - name: 横向扩面检查
+      description: 检查相似资产和关联风险
+      applicability: post_containment
+      priority: high
+  
+  matching:
+    algorithm: rule_based + similarity
+    threshold: 0.7
+
+similarity_matcher:
+  features:
+    - incident_type: 事件类型
+    - attack_vector: 攻击向量
+    - affected_assets: 受影响资产
+    - symptoms: 症状特征
+    - iocs: IOC特征
+  
+  similarity_metrics:
+    - jaccard_similarity
+    - cosine_similarity
+    - edit_distance
+  
+  threshold: 0.6
+  
+  result_limit: 5
+
+recommendation_generation:
+  process:
+    - analyze_context: 分析当前上下文
+    - identify_problem: 识别问题
+    - retrieve_similar_cases: 检索相似案例
+    - match_best_practices: 匹配最佳实践
+    - generate_recommendations: 生成建议
+    - rank_alternatives: 排序替代方案
+    - validate_feasibility: 验证可行性
+  
+  output_format:
+    summary: 一句话总结
+    details: 详细说明
+    alternatives: 替代方案列表
+    risks: 风险提示
+    references: 参考案例/文档
+
+strategy_optimization:
+  optimization_goals:
+    - minimize_impact: 最小化业务影响
+    - maximize_speed: 最大化响应速度
+    - maximize_accuracy: 最大化分析准确性
+    - minimize_cost: 最小化成本
+  
+  constraints:
+    - resource_availability: 资源可用性
+    - time_constraints: 时间约束
+    - business_requirements: 业务需求
+    - compliance_requirements: 合规要求
+  
+  algorithms:
+    - greedy_heuristic
+    - constraint_satisfaction
+    - multi_objective_optimization
+
+performance:
+  response_time:
+    quick_query: < 1s
+    deep_analysis: < 30s
+    comprehensive_report: < 60s
+  
+  cache:
+    enabled: true
+    ttl: 3600
+    max_size: 500MB
+  
+  parallel_processing:
+    enabled: true
+    max_workers: 4
+
+learning:
+  feedback_sources:
+    - human_feedback: 人工反馈
+    - outcome_tracking: 结果跟踪
+    - success_metrics: 成功指标
+  
+  adaptation:
+    - update_pattern_weights: 更新模式权重
+    - refine_recommendations: 优化建议
+    - adjust_thresholds: 调整阈值
+  
+  model_update:
+    frequency: weekly
+    validation: required
+
+deployment:
+  max_instances: 2
+  min_instances: 1
+  priority: medium
+  dependencies:
+    - knowledge_base
+    - memory_service
+
+monitoring:
+  metrics:
+    - recommendation_acceptance_rate
+    - loop_detection_accuracy
+    - query_response_time
+    - knowledge_utilization_rate
+  
+  alerts:
+    - recommendation_rejection_rate > 30%
+    - loop_detection_false_positive > 20%
+    - query_timeout
+
+security:
+  knowledge_access: read_only
+  recommendation_approval: automatic
+  escalation_authority: advisory_only
+  
+  data_handling:
+    - anonymize_sensitive_data
+    - audit_all_queries
+    - encrypt_transit

@@ -1,39 +1,57 @@
-## Description: <br>
-Offers a casual interface for listing files, running shell commands, reading files, and automating tasks in an OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a casual interface for interacting with an OpenClaw workspace by listing files, running commands, reading files, and supporting workspace automation tasks.
 
-## Publisher: <br>
-[LucasSeeley](https://clawhub.ai/user/LucasSeeley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucasseeley](https://clawhub.ai/user/lucasseeley)
 
-## Use Case: <br>
-Workspace users use this skill to ask an agent, including through WhatsApp triggers, to inspect files, run workspace commands, and read file contents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review reports unrestricted local shell command execution and arbitrary file reading through broad WhatsApp-accessible triggers. <br>
-Mitigation: Install only when that access is intentional, and add strict command allowlists, workspace-only path checks, sender authorization, and explicit confirmation for risky operations. <br>
-Risk: Commands and file reads may expose sensitive workspace data or alter the local environment. <br>
-Mitigation: Run in a constrained workspace with least-privilege filesystem access and review requested commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LucasSeeley/workspace-casual-lucas) <br>
+## Use Case:
 
+Workspace users can use this skill to request file listings, file reads, shell command execution, and small automation actions in an OpenClaw workspace through casual commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Text responses, shell command output, and file contents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return local command output or file contents from the configured workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unrestricted shell command execution through WhatsApp can allow a sender to run sensitive or destructive commands in the agent environment.
+
+Mitigation: Use only in a tightly controlled environment with trusted WhatsApp senders, minimal agent permissions, and explicit confirmation for sensitive actions.
+
+Risk: Unconstrained file reads can expose files outside the intended workspace.
+
+Mitigation: Restrict file operations to a fixed workspace root and reject absolute paths or path traversal before reading files.
+
+Risk: Generic workspace automation may act on unintended files or commands.
+
+Mitigation: Review before installing and prefer a version that removes generic shell execution or narrows commands to approved operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucasseeley/skills/workspace-casual-lucas)
+- [Publisher profile](https://clawhub.ai/user/lucasseeley)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Plain text responses, command output, file contents, and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return filesystem listings, command output, or file text from the configured workspace environment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

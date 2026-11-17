@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Todoist tasks. Use when the user mentions "todoist", "my tasks", "task list", "add a task", "complete task", or wants to interact with their Todoist account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Todoist tasks through the td CLI for listing, creating, completing, editing, deleting, and syncing tasks in a Todoist account.
 
-## Publisher: <br>
-[LuoAndOrder](https://clawhub.ai/user/LuoAndOrder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luoandorder](https://clawhub.ai/user/luoandorder)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to inspect, add, edit, complete, reopen, and delete Todoist tasks through the td CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can add, edit, complete, reopen, or delete live Todoist tasks through the td CLI. <br>
-Mitigation: Review proposed write or delete commands and task IDs before execution; use read-only list, today, or show commands when only inspecting tasks. <br>
-Risk: Read commands may use cached Todoist data unless the skill runs td sync or includes --sync. <br>
-Mitigation: Run td sync or include --sync before acting on time-sensitive task data. <br>
-Risk: The required td CLI and installation sources are third-party tooling. <br>
-Mitigation: Verify the Homebrew tap or Cargo package source before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LuoAndOrder/todoist-rs) <br>
-- [Publisher profile](https://clawhub.ai/user/LuoAndOrder) <br>
-- [Todoist CLI project homepage](https://github.com/LuoAndOrder/todoist-rs) <br>
+## Use Case:
 
+External users and agents use this skill to manage a Todoist account from natural-language task requests by proposing or running td CLI commands for task, project, label, and sync operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that read cached Todoist data or write changes through the td CLI; users should review write and delete actions before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, edit, complete, reopen, or delete live Todoist tasks.
+
+Mitigation: Use explicit Todoist wording for write actions and review proposed write or delete commands before execution.
+
+Risk: The documented installation paths use unpinned third-party Homebrew and Cargo sources.
+
+Mitigation: Install only after trusting the publisher and prefer a pinned, reviewed CLI version when available.
+
+Risk: Task reads can use a local cache and may be stale.
+
+Mitigation: Run td sync or use --sync before actions that depend on current Todoist state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoandorder/skills/todoist-rs)
+- [Publisher profile](https://clawhub.ai/user/luoandorder)
+- [todoist-rs project homepage](https://github.com/LuoAndOrder/todoist-rs)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Todoist CLI commands that read from cache, sync task state, or modify live Todoist account data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-SBTI is an entertainment-oriented personality questionnaire that collects multiple-choice answers, calculates dimension scores, and generates a structured self-reflection report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SBTI is an entertainment personality-test skill that interactively collects multiple-choice answers and returns a structured report on personality dimensions, type, interpersonal suggestions, and career-fit considerations.
 
-## Publisher: <br>
-[biggodcheng](https://clawhub.ai/user/biggodcheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biggodcheng](https://clawhub.ai/user/biggodcheng)
 
-## Use Case: <br>
-External users use this skill to complete a guided SBTI questionnaire for entertainment-oriented self-reflection, interpersonal awareness, and career-planning prompts. It can also support lightweight team or student discussion, but its results should not be used as diagnosis or as the sole basis for hiring, clinical, or career decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose sensitive personality, relationship, self-worth, or alcohol-related information while answering the questionnaire. <br>
-Mitigation: Consider how the agent platform stores chat history and avoid sharing details beyond what is needed to complete the assessment. <br>
-Risk: Users may over-rely on the generated report for psychological, hiring, or career decisions. <br>
-Mitigation: Treat results as entertainment or self-reflection and do not use them as medical, psychological, hiring, or sole career-decision advice. <br>
+## Use Case:
 
+External users use this skill for entertainment-oriented self-exploration by answering a guided SBTI questionnaire and receiving a structured personality report. The report can support reflection about interpersonal style and career preferences, but it is not a psychological diagnosis or sole basis for career decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biggodcheng/sbti-test) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown report with score tables and narrative recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated from user-selected questionnaire answers; no code execution, credential access, network use, or hidden persistence found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill asks personal, provocative Chinese-language personality and relationship questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when users are comfortable answering those questions, and present participation as optional.
+
+Risk: Users may over-rely on personality or career interpretations.
+
+Mitigation: Treat the generated report as entertainment and self-reflection, not psychological, medical, or career decision advice.
+
+Risk: Broad personality-test triggers may activate the skill unintentionally.
+
+Mitigation: Invoke it with explicit SBTI wording and avoid using generic personality-test phrasing when another workflow is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biggodcheng/skills/sbti-test)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown personality assessment report with dimension scores, personality type summary, strengths and weaknesses, and interpersonal or career suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from user-selected questionnaire answers; results should be treated as entertainment and self-reflection rather than professional advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Scans OpenClaw-visible sessions before idle or reset, summarizes useful transcript context, and writes concise workspace memory entries for later sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Memory Flush scans visible OpenClaw sessions before idle/reset, summarizes valuable transcript context, and writes the summary to workspace memory files for later sessions.
 
-## Publisher: <br>
-[hasakyi](https://clawhub.ai/user/hasakyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hasakyi](https://clawhub.ai/user/hasakyi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve important session context across idle or reset boundaries by turning transcripts into short memory entries. It supports installation, validation, debugging, and configuration of automatic memory flushing for main, subagent, cron, and dreaming sessions when transcripts are visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recurring watcher scans private OpenClaw sessions and reads transcript files. <br>
-Mitigation: Run a dry run first, install only in workspaces where transcript scanning is intended, and uninstall the timer or cron job when automatic scanning is no longer needed. <br>
-Risk: Transcript text may be sent to the configured LLM provider for summarization. <br>
-Mitigation: Use a trusted endpoint with least-privilege credentials, or configure an internal provider or rely on local fallback summarization when transcripts must not leave the environment. <br>
-Risk: Generated memory files can retain sensitive or stale context beyond the original session. <br>
-Mitigation: Review memory output regularly, keep only sanitized summaries, and avoid publishing local memory files, transcripts, logs, caches, or SQLite databases with the skill. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to preserve useful task context across new sessions by flushing concise session summaries into workspace memory before idle/reset cleanup.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hasakyi/session-memory-flush) <br>
-- [Summarization prompt](artifact/summarize_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory entries with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are intended to be concise, deduplicated per agent and session, and written to workspace memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The watcher broadly reads OpenClaw transcripts visible to the account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this background scanning behavior is intended, review the generated systemd or cron entry, and use dry-run mode before enabling recurring execution.
+
+Risk: Raw transcript text may be sent to the configured LLM endpoint.
+
+Mitigation: Prefer an internal or trusted HTTPS LLM endpoint, avoid placing secrets in transcripts, or run in local-only fallback mode in sensitive environments.
+
+Risk: Derived session summaries are persisted into workspace memory files.
+
+Mitigation: Review output directory permissions, sanitize sensitive content, and do not publish local memory files, logs, caches, session JSONL, SQLite databases, or OpenClaw configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hasakyi/skills/session-memory-flush)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries and markdown guidance with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are intended to be concise and can fall back to local rule-based extraction when an LLM endpoint is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

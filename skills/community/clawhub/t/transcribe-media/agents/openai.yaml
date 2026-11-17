@@ -1,0 +1,4 @@
+interface:
+  display_name: "Transcribe Media"
+  short_description: "Fetch and use transcripts from public and local media"
+  default_prompt: "Use $transcribe-media to fetch this media transcript, then summarize it or answer my questions using the source content."

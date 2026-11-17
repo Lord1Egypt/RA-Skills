@@ -1,0 +1,4 @@
+interface:
+  display_name: "SeaGames CLI"
+  short_description: "生成和处理 SeaGames 图片、视频、音频、文本及 3D 项目资产"
+  default_prompt: "使用 $seagames-cli 选择已发布能力，为指定项目生成或处理素材，验证完整结果和画布交付。"

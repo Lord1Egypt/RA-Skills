@@ -1,7 +1,31 @@
 {
   "skill": "worldcup-analyzer",
-  "description": "Eval prompts for the worldcup-analyzer skill. Covers behavior that must not regress: prediction rendering, alias normalization, compliance refusal, language matching, quota-limit messaging, and typo validation.",
+  "description": "Eval prompts for the worldcup-analyzer skill. Covers behavior that must not regress: EPL-first prediction rendering, World Cup compatibility, alias normalization, compliance refusal, language matching, quota-limit messaging, and typo validation.",
   "cases": [
+    {
+      "id": "format_epl_near_draw_en",
+      "prompt": "Predict Arsenal vs Chelsea in the Premier League.",
+      "expected_behavior": [
+        "Render EPL prediction output via format_prediction.",
+        "Treat win_goals below 0.20 as a near-draw when the classifier says Win or Loss.",
+        "Include Agent temporary-key free trial and repeated same-fixture credit messaging.",
+        "Keep the statistical-reference disclaimer and avoid betting language."
+      ],
+      "must_include": ["Arsenal", "Chelsea", "near-draw", "2 free predictions per day", "within 3 days", "Statistical reference only"],
+      "must_not_include": ["recommended bet", "best bet", "sure win", "lock of the day", "tips", "place a wager", "stake"]
+    },
+    {
+      "id": "predict_basic_epl_live",
+      "prompt": "Predict Arsenal vs Chelsea in the Premier League.",
+      "expected_behavior": [
+        "Call simulate_epl_match('Arsenal', 'Chelsea') or predict_match('Arsenal', 'Chelsea', 'epl').",
+        "Render the result via format_prediction so the compliance disclaimer is present.",
+        "Report the outcome from Arsenal's POV and expected goal difference.",
+        "Do NOT use betting phrases."
+      ],
+      "must_include": ["Arsenal", "Chelsea", "Statistical reference only"],
+      "must_not_include": ["recommended bet", "best bet", "sure win", "lock of the day", "tips", "place a wager", "stake"]
+    },
     {
       "id": "predict_basic_worldcup",
       "prompt": "Predict Germany vs France in the World Cup.",
@@ -73,7 +97,7 @@
         "Tell users to register a permanent API key after the temp-key limit is reached.",
         "Include the backend model explanation: multi-dimensional data, scientific team-strength assessment, continuous training.",
         "Name typical inputs: club performance, national-team ranking, historical head-to-head records, weather factors, player market value.",
-        "Mention future English Premier League assessment."
+        "Mention current English Premier League assessment support."
       ],
       "must_include": ["https://www.jiajielitong.com", "临时 key", "每日可免费试用 2 次", "3 天内重复查询不消耗 credits", "永久 API key", "多个维度数据", "科学的球队实力评估模型", "持续训练", "俱乐部", "国家队排名", "历史交锋", "天气", "球员身价", "英格兰超级联赛"],
       "must_not_include": ["推荐", "必中", "稳赢", "stake", "odds"]

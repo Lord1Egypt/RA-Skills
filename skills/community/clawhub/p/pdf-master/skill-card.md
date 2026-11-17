@@ -1,42 +1,68 @@
-## Description: <br>
-PDF万能大师 is a PDF workflow assistant for conversion, OCR, editing, batch processing, document Q&A, security controls, comparison, form, archival, and export tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF万能大师 helps agents inspect, convert, OCR, edit, protect, compress, merge, split, redact, and summarize PDF documents using documented workflows and local Python utilities.
 
-## Publisher: <br>
-[ford828](https://clawhub.ai/user/ford828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ford828](https://clawhub.ai/user/ford828)
 
-## Use Case: <br>
-Employees and business teams use this skill to inspect, transform, protect, compare, summarize, and organize PDF documents and related Office, spreadsheet, report, and extraction outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution (MIT-0)
 
-## Known Risks and Mitigations: <br>
-Risk: Broad document, credential, legal-signing, publishing, and deletion authority can affect sensitive business records if used without clear scope. <br>
-Mitigation: Use only in approved workspaces with explicit commands, deliberate attachment selection, and per-action confirmations. <br>
-Risk: Password vault and one-click decryption workflows can expose credentials if they are not backed by appropriate controls. <br>
-Mitigation: Do not use those workflows unless they are backed by a real enterprise secrets manager with RBAC and audit controls. <br>
-Risk: Identity, banking, medical, invoice, contract, signature, hosted-link, tax, and blockchain workflows can create privacy, consent, retention, and transmission risk. <br>
-Mitigation: Require clear policies for consent, local-only handling, external transmission, retention, deletion, and access review before processing those documents. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn PDF requests into guided document-processing workflows, including conversion, OCR, editing, batching, redaction, compression, review, and Feishu-oriented handoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ford828/pdf-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with requested document-processing outputs or file specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose PDF, Office, spreadsheet, report, audit, or extraction artifacts; no executable install payload is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: High-risk redaction and protection workflows can give unsafe or misleading assurances about sensitive documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for sensitive or regulated documents, use redaction only on copies, manually inspect scanned or image pages, and verify deletion certificates before sharing them.
+
+Risk: Sensitive-document workflows may expose confidential content if routed to cloud processing or stored in unintended outputs.
+
+Mitigation: Confirm where Feishu outputs, backups, logs, and certificates will be stored, keep sensitive processing local when required, and avoid persisting passwords or sensitive identifiers in logs.
+
+Risk: PDF protection, signing, invoice validation, and contract review can be misunderstood as legal or authoritative guarantees.
+
+Mitigation: Use strong owner passwords for protected PDFs, clearly label unavailable validation or signing services, and require human review for legal, financial, or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ford828/skills/pdf-master)
+- [README](README.md)
+- [Core capability procedures](references/capabilities-core.md)
+- [Value capability procedures](references/capabilities-value.md)
+- [Advanced capability procedures](references/capabilities-pro.md)
+- [Command guide](references/command-guide.md)
+- [Error handling and fallback strategy](references/error-handling.md)
+- [Quality standards](references/quality-standards.md)
+- [Security and compliance guardrails](references/security-compliance.md)
+- [Technical specification](references/tech-spec.md)
+- [OCR configuration guide](references/ocr-config.md)
+- [Feishu setup guide](references/feishu-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file outputs, reports, command snippets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce processed PDFs, spreadsheets, OCR text, audit reports, deletion certificates, and handoff instructions depending on the requested workflow.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, artifact metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-WOSO Lib is a Chinese-language conversational knowledge base for women’s football, covering player and coach stories, football history, tactics, sport psychology, workload, physiology, and industry reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language women’s football knowledge-base skill covering classic books, industry and science reports, coach interview notes, player stories, tactics, workload, physiology, and development topics for conversational lookup.
 
-## Publisher: <br>
-[wongeven](https://clawhub.ai/user/wongeven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wongeven](https://clawhub.ai/user/wongeven)
 
-## Use Case: <br>
-External users, writers, researchers, coaches, athletes, media workers, and football fans use this skill to ask conversational questions about women’s football history, biographies, coaching, tactics, sport science, workload, physiology, and industry context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the skill for general World Cup, workload, or menstrual-cycle questions. <br>
-Mitigation: Review routing behavior before installation and prefer explicit women’s-football context when invoking the skill. <br>
-Risk: Some biography notes include self-harm, suicide-crisis, and substance-misuse material without a warning. <br>
-Mitigation: Add user-facing content warnings or review sensitive biography responses before broad deployment. <br>
-Risk: Knowledge-base summaries may be mistaken for complete primary sources. <br>
-Mitigation: Use the skill for orientation and cite or consult original books, reports, or official documents for high-stakes research. <br>
+## Use Case:
 
+External users, football researchers, coaches, media workers, content creators, and fans use this skill to ask Chinese-language questions about women’s football history, players, coaching, tactics, sports science, workload, and league development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wongeven/woso-lib) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [WOSO reports outline](artifact/references/woso_reports_outline.md) <br>
-- [AFC WCL 2024/25 technical report outline](artifact/references/afc_wcl_2025_technical_report_outline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational answers in Chinese, with source titles named when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only knowledge responses; no command execution or external system access is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.12.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Authored summaries may contain factual errors or corpus-description mismatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for orientation and verify important claims against the original books, reports, or authoritative sources before publication or decision-making.
+
+Risk: Some notes discuss traumatic injury, suicide, or other sensitive topics without explicit content warnings.
+
+Mitigation: Review sensitive-topic outputs before broad sharing and add appropriate context, warnings, or support-resource guidance where needed.
+
+## Reference(s):
+
+- [WOSO Lib ClawHub release](https://clawhub.ai/wongeven/skills/woso-lib)
+- [Artifact README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Women’s football reports outline](artifact/references/woso_reports_outline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses summarize authored notes and should cite the relevant book, report, or source title when grounded in the library.]
+
+## Skill Version(s):
+
+2.12.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

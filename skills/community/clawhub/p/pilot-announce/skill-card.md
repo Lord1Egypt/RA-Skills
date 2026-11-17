@@ -1,38 +1,54 @@
-## Description: <br>
-One-to-many announcements with read receipts over the Pilot Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-to-many announcements with read receipts over the Pilot Protocol network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-External developers and agents use this skill to broadcast important Pilot Protocol updates to multiple peers or announcement topics and check delivery or acknowledgement state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Announcements and read-receipt metadata may be visible to trusted peers or topic subscribers on the Pilot Protocol network. <br>
-Mitigation: Review trusted peers and announcement topic subscribers before sending announcements. <br>
+## Use Case:
 
+Developers and operators use this skill to broadcast important updates, system announcements, or policy changes to multiple trusted Pilot Protocol peers while tracking delivery or acknowledgement where the underlying environment supports it.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot Protocol daemon, trusted peers, and announcement topic subscriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Announcement workflows may be mistaken for verified read receipts when the underlying pilotctl environment does not separately provide receipt-status confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm receipt and acknowledgement through a verified pilotctl receipt-status workflow before relying on announcements for incident, policy, or compliance decisions.
+
+Risk: Announcements can expose secrets or sensitive incident details through recipient selection, transport behavior, or logs in the Pilot Protocol environment.
+
+Mitigation: Avoid sending secrets or sensitive incident details unless transport protections, recipient trust, and logging behavior have been confirmed for the deployment.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-announce)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pilotctl binary, a running Pilot Protocol daemon, trust relationships with recipients, and topic subscriptions for publish/subscribe workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

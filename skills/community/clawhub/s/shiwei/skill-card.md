@@ -1,43 +1,54 @@
-## Description: <br>
-十维 is a Chinese-language stock value analysis skill that guides agents through a ten-module fundamental review covering financial statements, shareholder returns, industry context, peer comparison, ownership changes, shareholding concentration, valuation, conclusions, and risk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+十维 is a Chinese-language stock value analysis workflow that guides an agent through ten fundamental analysis modules and produces a scored investment-quality report with risk reminders.
 
-## Publisher: <br>
-[lsh9630](https://clawhub.ai/user/lsh9630) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lsh9630](https://clawhub.ai/user/lsh9630)
 
-## Use Case: <br>
-Analysts and agents use this skill to create structured fundamental-analysis reports for A-share, Hong Kong, and US stocks, especially when evaluating whether long-term price declines reflect risk or possible value. The skill is a checklist and reporting framework, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce investment-style conclusions that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as an analysis checklist and require independent review before making investment decisions. <br>
-Risk: Financial filings, prices, valuation metrics, and industry conditions can become stale quickly. <br>
-Mitigation: Verify current market data, filings, and industry evidence before relying on any generated conclusion. <br>
-Risk: The skill may activate on broad Chinese financial-analysis phrases. <br>
-Mitigation: Confirm that the requested task is stock fundamental analysis before applying the framework. <br>
+## Use Case:
 
+Investors, analysts, and agents use this skill to structure stock fundamental analysis across revenue, profit, ROE, balance sheet, cash flow, shareholder returns, industry context, peer benchmarking, ownership changes, shareholding concentration, and valuation. It is intended to produce an informational value-analysis report, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lsh9630/shiwei) <br>
-- [Scoring template](references/scoring_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with scoring tables, investment posture, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current financial, market, and filing data from external sources; missing data should be marked rather than fabricated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can produce investment-facing conclusions such as configuration, observation, or exclusion recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as informational analysis only and do not use it as personalized investment advice.
+
+Risk: Outdated or incorrect financial, market, industry, or ownership data can make the scoring misleading.
+
+Mitigation: Verify all financial data independently and refresh the analysis with current filings and market information before relying on conclusions.
+
+## Reference(s):
+
+- [十维 ClawHub skill page](https://clawhub.ai/lsh9630/skills/shiwei)
+- [Scoring template](artifact/references/scoring_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with a stock profile, ten-module scoring table, core conclusion, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current, independently verified financial, market, industry, and ownership data supplied by the user or other tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

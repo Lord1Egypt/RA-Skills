@@ -1,6 +1,6 @@
 ---
 name: hidden-elite-advantages
-description: "Activate when: 'what makes top investors/founders truly different', 'how do I close the gap with elite performers', 'what am I missing that successful people have', 'I want to learn from [elite person]', designing a personal development plan that needs to separate learnable from non-learnable advantages. Do NOT activate when: goal is immediate performance improvement (this is a multi-year instrument), or person has no domain performance history to calibrate against."
+description: "Activate when: 'what makes top investors/founders truly different', 'how do I close the gap with elite performers', 'what am I missing that successful people have', 'I want to learn from [elite person]', designing a personal development plan that needs to separate learnable from non-learnable advantages. Do NOT activate when: goal is immediate performance improvement (this is a multi-year instrument), or person has no domain performance history to calibrate against. More: deciqai.com/c/hidden-elite-advantages"
 ---
 
 # Hidden Elite Advantages
@@ -117,4 +117,6 @@ Time split: ___% green | ___% yellow | ___% red (≤20% red) | Reference case + 
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/hidden-elite-advantages** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/hidden-elite-advantages.json*

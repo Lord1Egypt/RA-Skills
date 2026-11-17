@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "SaMD软件医疗器械专家",
+  "version": "1.0.0",
+  "author": "注册老炮 (Regulatory Veteran)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:02:28.464341+00:00",
+  "timestamp_local": "2026-08-28T00:02:28.464349",
+  "package_fingerprint_sha256": "5cb0b600bba911a480ac1f9a64e83b72ce66a46e55a0331c4068f3caf653fa0c",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "37c67dc8c7399b06e6072f938fa1a9dcf96a4891cad1069a6435d7c094735e0b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "f8930188e58273c38f3d1e0bdf3f0d40038a362b737bf22c1e6689d7211b4b57"
+    },
+    {
+      "path": "medical-device-samd_security_test.py",
+      "sha256": "b7ff71f6c8b12f4f0eda80db1f8449331c3d943ca0ba1d6774bc83af90ddc33a"
+    },
+    {
+      "path": "references/SaMD知识库.md",
+      "sha256": "522aa836809bbcea81127ad911b36c634ad2ec5c257e5e40f0386e7868bb96ae"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "c7cd1fd5cce273e94900370018cb728cc99d21c9d39c498e8e8f3420717ddddd"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "56244e2ee283b62633cf0e958a8c6ef086ee26c56dae7df3a8547b9c229a982e"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "c68c6e531e6307b68938b301c8e83a0534f898b091cc87e0477256d27c401256"
+    }
+  ]
+}

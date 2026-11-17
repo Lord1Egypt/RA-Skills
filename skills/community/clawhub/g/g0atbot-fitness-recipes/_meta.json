@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7egw93kajavr3tpgn3tfww0s82t9ft",
-  "slug": "g0atbot-fitness-recipes",
-  "version": "1.0.0",
-  "publishedAt": 1773439413846
+  "name": "fitness-recipes-ai",
+  "description": "AI-powered TikTok video generator for fitness content. Creates viral recipe videos from a database, generates AI images, adds voiceover, and renders videos.",
+  "price": 19,
+  "category": "content",
+  "tags": ["tiktok", "video", "ai", "fitness", "content"],
+  "requires": {
+    "env": ["FAL_API_KEY", "ELEVENLABS_API_KEY", "SHOTSTACK_API_KEY"],
+    "bins": []
+  },
+  "documentation": {
+    "setup_time": "15 minutes",
+    "difficulty": "intermediate"
+  }
 }

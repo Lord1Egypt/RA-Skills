@@ -1,42 +1,53 @@
-## Description: <br>
-Learns how to explain things to your human. Adapts format, depth, and style by topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learns how to explain things to your human. Adapts format, depth, and style by topic.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent tailor explanations to a person's preferred format, depth, examples, jargon, pacing, and tone. It is intended for human-facing explanations across topics such as code, concepts, debugging, procedures, and decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain local notes about explanation preferences in ~/explain/memory.md. <br>
-Mitigation: Review, edit, or delete ~/explain/memory.md if those preferences should not be retained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/explain) <br>
-- [Format Patterns](formats.md) <br>
-- [Depth Calibration](depth.md) <br>
-- [Analogies - When They Help vs Hurt](analogies.md) <br>
-- [Domain-Specific Explanation Patterns](domains.md) <br>
-- [Explanation Dimensions](dimensions.md) <br>
+## Use Case:
 
+External users and developers use this skill to help an agent produce human-facing explanations that adapt to observed preferences for format, depth, examples, jargon, pacing, and tone.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text explanations adapted to observed user preferences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local explanation preference notes in ~/explain/memory.md when preferences are confirmed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Confirmed explanation preferences may persist on the local machine in ~/explain/memory.md.
+
+Mitigation: Review or delete ~/explain/memory.md before or after installation if preference history should not be retained.
+
+## Reference(s):
+
+- [Explain skill overview](artifact/SKILL.md)
+- [Format Patterns](artifact/formats.md)
+- [Depth Calibration](artifact/depth.md)
+- [Analogies](artifact/analogies.md)
+- [Domain-Specific Explanation Patterns](artifact/domains.md)
+- [Explanation Dimensions](artifact/dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses adapted to the user's explanation preferences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store confirmed explanation preferences locally in ~/explain/memory.md.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

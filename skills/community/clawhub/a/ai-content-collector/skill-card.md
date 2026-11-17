@@ -1,42 +1,58 @@
-## Description: <br>
-Collects AI and automotive industry news from specified sources and organizes findings into structured Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects AI and automotive industry news from specified sources and organizes the results into a structured spreadsheet report.
 
-## Publisher: <br>
-[rouclaw](https://clawhub.ai/user/rouclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rouclaw](https://clawhub.ai/user/rouclaw)
 
-## Use Case: <br>
-External users and analysts use this skill to gather recent AI and automotive industry developments, verify dates and sources, and produce structured spreadsheet reports for daily or weekly briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs fresh web searches and writes spreadsheet report files. <br>
-Mitigation: Review Bash, Read, and Write permissions and confirm output paths before execution. <br>
-Risk: Optional helper-skill installation commands or related API keys can expand the agent's access. <br>
-Mitigation: Install helper skills and configure credentials only when they are needed and trusted. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to gather current AI and automotive industry updates from vetted sources and produce structured Excel or CSV news reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rouclaw/ai-content-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/rouclaw) <br>
-- [Channel reference](artifact/references/channels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Excel or CSV report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report rows include category, source, title, publication date, summary, primary link, and corroborating sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.1 (source: server release evidence) <br>
+Risk: Optional enhancement commands use unpinned `npx clawhub@latest` installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced packages and pin trusted versions before running optional enhancement installs.
+
+Risk: The workflow creates a local spreadsheet or CSV report in the working directory.
+
+Mitigation: Run it in an appropriate workspace and review generated report files before sharing or committing them.
+
+Risk: Collected news summaries may affect reporting or business decisions if sources, dates, or cross-checks are wrong.
+
+Mitigation: Review the generated table against the skill's source-quality, date, and cross-verification checklist before relying on the report.
+
+## Reference(s):
+
+- [AI Content Collection Channels Reference](artifact/references/channels.md)
+- [ClawHub Skill Page](https://clawhub.ai/rouclaw/skills/ai-content-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown text table plus Excel (.xlsx) or CSV report file; may include Python and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local dated report file in the working directory when executed.]
+
+## Skill Version(s):
+
+1.10.1 (source: release.version; changelog: v1.10.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

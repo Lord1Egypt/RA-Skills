@@ -1,41 +1,62 @@
-## Description: <br>
-Upload Video Converter helps creators, ecommerce teams, and operators structure video conversion decisions for compatibility and uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert videos for compatibility and uploads -- pick the right container, codec, and bitrate for each destination, fix rejected uploads, and shrink files without visible quality loss.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce operators, analysts, and growth teams use this skill to frame upload compatibility problems, choose a practical video conversion path, and prepare a handoff-ready checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill name may lead users to expect actual media conversion, transcoding, validation, or upload handling. <br>
-Mitigation: Use it only for decision support and checklists; rely on a separate trusted media tool for file processing. <br>
-Risk: Advisory output can be too generic or miss operational constraints when input context is thin. <br>
-Mitigation: Provide business goals, upload requirements, platform constraints, and available evidence before using the recommendations. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to prepare video files for marketplace, social, ad manager, CMS, email, and course-platform upload requirements. It helps select conversion settings, generate reproducible ffmpeg commands, verify outputs, and document quality tradeoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/upload-video-converter) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with diagnosis, recommendation, rationale, risks, and next-step checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; it does not convert, transcode, validate, or upload video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated ffmpeg commands may overwrite existing files when output paths or overwrite flags are used carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution, especially output paths and any -y flags.
+
+Risk: The workflow depends on running ffmpeg or ffprobe against local video files.
+
+Mitigation: Install only if comfortable using local media-processing tools and inspect generated commands before running them.
+
+Risk: Upload platform limits and codec requirements can change after the bundled reference tables were written.
+
+Mitigation: Confirm destination requirements against current platform documentation before large batches or high-value delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/upload-video-converter)
+- [Conversion Delivery Template](references/output-template.md)
+- [Baseline Upload Requirements by Destination Type](references/platform-upload-specs.md)
+- [ffmpeg Recipes: Probe, Encode Ladders, Size Math](references/ffmpeg-recipes.md)
+- [Troubleshooting Rejected or Broken Uploads](references/troubleshooting-guide.md)
+- [Conversion -- Pre-Delivery Checklist](assets/conversion-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with ffmpeg and ffprobe command blocks, per-destination spec tables, verification notes, and handoff text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations and commands for the agent user to review and run; it does not process video directly.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

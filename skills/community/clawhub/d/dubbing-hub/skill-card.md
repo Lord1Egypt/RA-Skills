@@ -1,43 +1,60 @@
-## Description: <br>
-DubbingHub translates user-provided videos or video URLs through an external video translation service and returns a preview URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real time video translation and dubbing skill that translates a user-provided video file or URL and returns a preview URL.
 
-## Publisher: <br>
-[papawaigo](https://clawhub.ai/user/papawaigo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[papawaigo](https://clawhub.ai/user/papawaigo)
 
-## Use Case: <br>
-External users and developers use this skill to submit a video file or URL, choose a supported target language, and retrieve the translated video's preview URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Videos or video URLs may be sent to a third-party processing service without clear disclosure or confirmation. <br>
-Mitigation: Before submitting a job, explicitly confirm the video source, target language, and external upload, and use only videos suitable for third-party processing. <br>
-Risk: The skill requires a service credential for VIDEO_TRANSLATE_SERVICE_API_KEY. <br>
-Mitigation: Provide the credential through the configured environment variable and avoid exposing it in prompts, logs, command history, or shared outputs. <br>
+## Use Case:
 
+External users and developers use this skill to submit a video file or accessible video URL for translation and dubbing, then receive the translated video's preview URL. It supports Chinese, English, French, and Japanese target languages.
 
-## Reference(s): <br>
-- [API Contract](references/api-contract.md) <br>
-- [DubbingHub ClawHub listing](https://clawhub.ai/papawaigo/dubbing-hub) <br>
-- [Luoji video translation service](https://audiox-api-global.luoji.cn) <br>
-- [Luoji support and privacy site](https://luoji.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text or Markdown guidance with optional shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns job status, preview_url on success, or API error text on failure; requires VIDEO_TRANSLATE_SERVICE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected video files or video URLs are sent to the external service audiox-api-global.luoji.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for media appropriate for that service's privacy and retention practices.
+
+Risk: The bundled curl helper is example-grade and accepts user-supplied video URLs.
+
+Mitigation: Harden URL validation and request handling before using the helper with untrusted inputs.
+
+Risk: The skill requires a bearer credential through VIDEO_TRANSLATE_SERVICE_API_KEY.
+
+Mitigation: Store the credential in the environment, avoid logging it, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [API Contract](references/api-contract.md)
+- [DubbingHub ClawHub Page](https://clawhub.ai/papawaigo/skills/dubbing-hub)
+- [External Video Translation Service](https://audiox-api-global.luoji.cn)
+- [LuoJi Support and Privacy](https://luoji.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text containing API status, errors, and the final preview URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIDEO_TRANSLATE_SERVICE_API_KEY; returns preview_url on success or service error text on failure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

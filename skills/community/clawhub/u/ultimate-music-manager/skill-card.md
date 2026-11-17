@@ -1,46 +1,64 @@
-## Description: <br>
-Organizes a messy local music library into a clean language, artist, and album hierarchy using acoustic fingerprinting, deduplication, metadata enrichment, and optional Spotify sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organises a messy local music library into a clean Language/Artist/Album hierarchy using acoustic fingerprinting, deduplication, metadata enrichment, and optional Spotify sync.
 
-## Publisher: <br>
-[drajb](https://clawhub.ai/user/drajb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drajb](https://clawhub.ai/user/drajb)
 
-## Use Case: <br>
-Developers and music-library maintainers use this skill to set up, run, and monitor a local Sonic Phoenix pipeline that fingerprints tracks, detects duplicates, enriches tags, organizes files, and optionally syncs Spotify playlists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly reorganize local music files. <br>
-Mitigation: Back up the target music folder, set MUSIC_ROOT to the narrowest intended directory, and run dry-run or status checks before running the full pipeline. <br>
-Risk: Optional Spotify sync uses account access and a locally cached token. <br>
-Mitigation: Enable Spotify sync only when needed, keep credentials and token cache private, and review playlist backups before syncing. <br>
-Risk: The security guidance flags eval-based path handling in status.sh. <br>
-Mitigation: Treat status.sh cautiously until the path handling is fixed, and avoid untrusted configuration values or paths when running it. <br>
+## Use Case:
 
+Developers and agents helping users clean local music collections use this skill to prepare environment settings, run the Sonic Phoenix pipeline, review generated catalogs, stage duplicates for manual review, and optionally sync playlists to Spotify.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drajb/ultimate-music-manager) <br>
-- [Project source declared in skill metadata](https://github.com/drajb/sonic-phoenix) <br>
-- [Data Files Reference](artifact/references/data-files.md) <br>
-- [Language Hints Guide](artifact/references/language-hints-guide.md) <br>
-- [Safety Guard Hook](artifact/hooks/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local environment variables, local filesystem paths, and optional OAuth setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow asks the user to clone and run upstream code that is not pinned to a reviewed commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the upstream repository to a specific reviewed commit and inspect dependencies before installing or running the pipeline.
+
+Risk: Pipeline actions can make broad changes to a local music library.
+
+Mitigation: Run against a backup or copy of the library first, keep MUSIC_ROOT scoped to the intended collection, and use dry-run or preflight checks before full execution.
+
+Risk: The security review identifies an unsafe helper-script pattern involving status.sh.
+
+Mitigation: Avoid running status.sh until the eval issue is fixed and reviewed.
+
+Risk: Optional Spotify sync can change playlists and uses local library metadata during synchronization.
+
+Mitigation: Enable Spotify only after reviewing the OAuth setup, playlist backup step, and expected playlist changes.
+
+## Reference(s):
+
+- [Data files reference](references/data-files.md)
+- [Language hints guide](references/language-hints-guide.md)
+- [Declared upstream source](https://github.com/drajb/sonic-phoenix)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file operations, pipeline execution steps, environment variables, and optional Spotify setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

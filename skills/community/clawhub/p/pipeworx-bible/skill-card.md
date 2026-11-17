@@ -1,41 +1,55 @@
-## Description: <br>
-Fetch Bible verses, passages, and random scripture from bible-api.com — multiple translations supported. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Bible verses, passages, and random scripture from bible-api.com with multiple translations supported.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to look up Bible verses, passages, or random scripture for devotional, study, conversational, newsletter, or social content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bible lookup requests are routed through Pipeworx's remote MCP gateway. <br>
-Mitigation: Use the skill only when that remote service is acceptable, and avoid sending private notes or sensitive context in lookup prompts. <br>
-Risk: The connection example installs mcp-remote with @latest, which can reduce reproducibility. <br>
-Mitigation: Pin mcp-remote to a reviewed version when reproducible installs are required. <br>
+## Use Case:
 
+External users and developers use this skill to look up Bible verses, retrieve passages, or request random scripture for devotional apps, Bible study tools, newsletters, social posts, and conversational reference checks.
 
-## Reference(s): <br>
-- [Pipeworx Bible pack](https://pipeworx.io/packs/bible) <br>
-- [Pipeworx Bible MCP gateway](https://gateway.pipeworx.io/bible/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands] <br>
-**Output Format:** [Structured text with JSON MCP configuration and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented example and uses the Pipeworx remote MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The setup runs an unpinned npm package at startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version or run the skill through a controlled install process.
+
+Risk: The remote MCP setup has more local execution authority than the simple API lookup task requires.
+
+Mitigation: Use least-privilege sandboxing and limit environment access before installation or deployment.
+
+## Reference(s):
+
+- [Pipeworx Bible pack](https://pipeworx.io/packs/bible)
+- [Pipeworx Bible MCP endpoint](https://gateway.pipeworx.io/bible/mcp)
+- [ClawHub skill listing](https://clawhub.ai/brucegutman/skills/pipeworx-bible)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns verse text with translation, book, chapter, and verse metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

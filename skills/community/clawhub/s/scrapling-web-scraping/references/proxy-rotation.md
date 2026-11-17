@@ -1,91 +1,85 @@
-# Proxy Rotation
+# Proxy rotation (Scrapling 0.5)
 
-## When to Use
+Use authorized proxy infrastructure when the task requires it. Reduce request
+rate and honor server retry signals before escalating. A proxy is not permission
+to access restricted content. Use current provider documentation instead of a
+hard-coded sponsor/provider list.
 
-- Rate limiting on target sites
-- Geographic restrictions
-- Large-scale crawls (100+ pages)
-- Anti-bot evasion (with permission)
+## Rotator and sessions
 
-## ProxyRotator Setup
+`ProxyRotator` is exported from `scrapling.fetchers`. Default rotation is cyclic
+round-robin. `get_proxy()` manually selects the next proxy; use a session's
+`proxy_rotator` argument for automatic per-request selection.
 
 ```python
-from scrapling.spiders import ProxyRotator
+from scrapling.fetchers import FetcherSession, ProxyRotator
 
-# Cyclic rotation (round-robin)
 rotator = ProxyRotator([
     "http://proxy1.example.com:8080",
     "http://proxy2.example.com:8080",
-    "http://user:pass@proxy3.example.com:8080",
-], strategy="cyclic")
+])
+print(rotator.get_proxy())  # Manual selection; no network request.
 
-# Get next proxy
-proxy = rotator.next()
+if __name__ == "__main__":
+    with FetcherSession(proxy_rotator=rotator) as session:
+        page = session.get("https://example.com")
+        print(page.status)
 ```
 
-## With Sessions
+Do not combine `proxy_rotator` with session-level `proxy` or `proxies`.
+Credentials belong in the existing secret mechanism, not committed code or logs.
+Browser rotation uses a separate context per proxy; do not assume login state
+is shared across rotating contexts. Use an authorized fixed proxy when session
+affinity is required.
+
+## Spider integration
+
+Configure the rotator through the supplied session manager, rather than
+mutating a nonexistent `self.sessions` dictionary between responses.
 
 ```python
-from scrapling.fetchers import FetcherSession
+from scrapling.fetchers import FetcherSession, ProxyRotator
+from scrapling.spiders import Spider, Response
 
-with FetcherSession(proxy=rotator.next()) as session:
-    page = session.get('https://example.com')
-```
-
-## With Spiders
-
-```python
-from scrapling.spiders import Spider
-from scrapling.fetchers import FetcherSession
 
 class RotatingSpider(Spider):
     name = "rotating"
-    
-    def __init__(self):
-        self.rotator = ProxyRotator([
-            "http://proxy1:8080",
-            "http://proxy2:8080",
-        ])
-    
+    start_urls = ["https://example.com/"]
+    download_delay = 2.0
+    robots_txt_obey = True
+    max_blocked_retries = 3
+
     def configure_sessions(self, manager):
-        manager.add("rotating", FetcherSession())
-    
-    async def parse(self, response):
-        # Access current session and rotate proxy
-        self.sessions["rotating"].proxy = self.rotator.next()
-        # ... continue parsing
+        rotator = ProxyRotator([
+            "http://proxy1.example.com:8080",
+            "http://proxy2.example.com:8080",
+        ])
+        manager.add("default", FetcherSession(proxy_rotator=rotator))
+
+    async def parse(self, response: Response):
+        yield {"url": response.url, "title": response.css("title::text").get()}
 ```
 
-## Custom Rotation Strategy
+## Custom strategy
+
+The `strategy` argument is a callable, not a string such as `"cyclic"`. Its
+signature is `(proxies, current_index) -> (selected_proxy, next_index)`.
 
 ```python
 import random
+from scrapling.fetchers import ProxyRotator
 
-class RandomRotator:
-    def __init__(self, proxies):
-        self.proxies = proxies
-    
-    def next(self):
-        return random.choice(self.proxies)
 
-rotator = RandomRotator(["http://p1:8080", "http://p2:8080"])
+def random_strategy(proxies, current_index):
+    index = random.randrange(len(proxies))
+    return proxies[index], index
+
+
+rotator = ProxyRotator(
+    ["http://proxy1.example.com:8080", "http://proxy2.example.com:8080"],
+    strategy=random_strategy,
+)
 ```
 
-## Provider Recommendations
-
-See Sponsors in Scrapling README for proxy providers:
-- Scrapeless
-- ThorData
-- Evomi
-- Decodo
-- ProxyEmpire
-- SwiftProxy
-- RapidProxy
-
-## Best Practices
-
-1. **Test proxies first** — Check latency and success rate
-2. **Rotate on failure** — Switch proxy after 3 consecutive failures
-3. **Respect rate limits** — Don't use proxies to bypass reasonable limits
-4. **Session affinity** — Keep same proxy for session duration when possible
-5. **Monitor usage** — Track success rates per proxy
+Test proxies with a small authorized request before a full crawl. Track response
+status and failures without exposing credential-bearing URLs.

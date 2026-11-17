@@ -1,14 +1,17 @@
 {
   "name": "xiaohongshu-radar",
-  "version": "1.0.1",
-  "description": "小红书搜索雷达｜无需登录小红书账号，支持关键词搜索/爆款笔记挖掘/竞品分析/KOL筛选/趋势洞察，适配营销报告/内容策划场景",
+  "version": "1.2.2",
+  "description": "小红书公开数据只读技能。关键词搜笔记、笔记详情、评论舆情、博主作品与粉丝数据，输出 JSON。用于选题、竞品、KOL 筛选。",
   "keywords": [
+    "小红书",
+    "xhs",
+    "rednote",
     "小红书搜索",
-    "小红书运营",
-    "小红书竞品分析",
-    "内容营销",
-    "数据挖掘",
-    "小红书数据采集"
+    "小红书评论",
+    "爆款笔记",
+    "竞品分析",
+    "KOL",
+    "舆情分析"
   ],
   "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
   "bugs": {
@@ -20,9 +23,22 @@
   },
   "license": "MIT",
   "author": "um-why",
+  "engines": {
+    "node": ">=16.14.0"
+  },
   "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
   "scripts": {
     "search": "node src/xiaohongshu/search-cli.js",
-    "detail": "node src/xiaohongshu/detail-cli.js"
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
   }
 }

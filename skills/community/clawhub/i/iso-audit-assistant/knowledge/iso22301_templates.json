@@ -1,0 +1,32 @@
+{
+  "standard": "ISO 22301:2019 业务连续性管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-BC-001", "name": "业务影响分析(BIA)程序", "name_en": "BIA Procedure", "clause": "8.2.3",
+     "meta": {"owner": "业务连续性主管", "frequency": "年度/变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "识别关键业务活动及中断影响，确定恢复优先级与目标。"},
+       {"title": "2 适用范围", "content": "适用于{org}全部业务功能的连续性分析。"},
+       {"title": "3 职责", "content": "3.1 业务连续性主管组织BIA；3.2 各部门提供活动信息；3.3 管理层审批。"},
+       {"title": "4 工作程序", "content": "4.1 识别业务活动与依赖；4.2 评估中断影响（财务/声誉/法规）；4.3 确定RTO/RPO与最小资源；4.4 形成BIA报告并维护。"}
+     ],
+     "high_voltage_check": ["hv-bc-bia"]},
+    {"id": "SP-BC-002", "name": "业务连续性策略与计划(BCP)程序", "name_en": "BCP Procedure", "clause": "8.3/8.5",
+     "meta": {"owner": "业务连续性主管", "frequency": "年度"},
+     "sections": [
+       {"title": "1 目的", "content": "基于BIA制定连续性策略与业务连续性计划，保障关键活动恢复。"},
+       {"title": "2 适用范围", "content": "适用于{org}关键业务活动的中断应对。"},
+       {"title": "3 职责", "content": "3.1 管理层批准策略；3.2 业务连续性主管编制BCP；3.3 各部门执行。"},
+       {"title": "4 工作程序", "content": "4.1 选择连续性策略（备用场地/远程/冗余）；4.2 编制BCP（角色/步骤/资源）；4.3 危机沟通与利益相关方联络；4.4 启动与恢复流程；4.5 维护与分发。"}
+     ],
+     "high_voltage_check": ["hv-bc-strategy"]},
+    {"id": "SP-BC-003", "name": "演练与测试程序", "name_en": "Exercise & Test Procedure", "clause": "8.4",
+     "meta": {"owner": "业务连续性主管", "frequency": "至少每年一次"},
+     "sections": [
+       {"title": "1 目的", "content": "通过演练验证BCP有效性并持续改进。"},
+       {"title": "2 适用范围", "content": "适用于{org}业务连续性计划的演练。"},
+       {"title": "3 职责", "content": "3.1 业务连续性主管组织演练；3.2 参与部门配合；3.3 评审组评估。"},
+       {"title": "4 工作程序", "content": "4.1 制定年度演练计划（桌面/实战）；4.2 实施并记录；4.3 评估有效性与差距；4.4 改进BCP并再演练。"}
+     ],
+     "high_voltage_check": ["hv-bc-exercise"]}
+  ]
+}

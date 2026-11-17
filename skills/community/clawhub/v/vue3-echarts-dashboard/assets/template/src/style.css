@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  color: #cfe9ff;
+  background: #02060f;
+  overflow: hidden;
+}
+
+/* 覆盖 naive-ui 暗色主题兜底 */
+.n-config-provider {
+  width: 100%;
+  height: 100%;
+}
+
+::selection {
+  background: rgba(0, 234, 255, 0.3);
+}

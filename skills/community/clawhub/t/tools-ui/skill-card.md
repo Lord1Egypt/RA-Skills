@@ -1,44 +1,53 @@
-## Description: <br>
-Tool lifecycle UI components for React/Next.js from ui.inference.sh that help display tool calls, status, approvals, results, and errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tool lifecycle UI components for React/Next.js from ui.inference.sh that display tool calls, status, approval flows, and results.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers building React/Next.js agent interfaces use this skill to add UI components for tool-call status, progress, human approval, successful results, and error states. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote install commands can change project files or pull newer component code than expected. <br>
-Mitigation: Review the referenced registry source before execution, pin versions where practical, and run setup only in projects intended for modification. <br>
-Risk: Tool approval UI can be miswired so sensitive actions execute without the intended human confirmation. <br>
-Mitigation: Verify approval and denial callbacks during integration tests before using the components in agent workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/okaris/tools-ui) <br>
-- [ui.inference.sh tool components](https://ui.inference.sh/blocks/tools) <br>
-- [Tool component registry JSON](https://ui.inference.sh/r/tools.json) <br>
-- [Adding Tools to Agents](https://inference.sh/docs/agents/adding-tools) <br>
-- [Human-in-the-Loop](https://inference.sh/docs/runtime/human-in-the-loop) <br>
-- [Tool Approval Gates](https://inference.sh/blog/tools/approval-gates) <br>
+## Use Case:
 
+Developers use this skill to add React/Next.js UI components for displaying agent tool calls, tool results, progress states, and human approval flows.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference remote shadcn and npx commands that modify a React/Next.js project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick-start command uses npx to add UI files to a project, which can modify the local codebase and may be less reproducible when versions are unpinned.
+
+Mitigation: Run the command only in an appropriate project, review generated changes before committing, and prefer pinned package or registry versions when reproducibility matters.
+
+## Reference(s):
+
+- [Tools UI components](https://ui.inference.sh/blocks/tools)
+- [ui.inference.sh](https://ui.inference.sh)
+- [Tools registry JSON](https://ui.inference.sh/r/tools.json)
+- [Adding Tools to Agents](https://inference.sh/docs/agents/adding-tools)
+- [Human-in-the-Loop](https://inference.sh/docs/runtime/human-in-the-loop)
+- [Tool Approval Gates](https://inference.sh/blog/tools/approval-gates)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with bash and TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides component usage examples for tool calls, results, approvals, styling, icon selection, and Agent integration.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-"""Coding 开放平台 Open API — 迭代相关接口。"""
+"""Coding Open API — iteration-related endpoints."""
 
 from __future__ import annotations
 
@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 
 def _resolve_iteration_code(iteration: int | None) -> int:
     """
-    解析 ITERATION 条件用的迭代 Code。
-    优先级：显式参数 > 环境变量 CODING_DEFAULT_ITERATION_CODE > 模块常量。
+    Resolve the iteration Code used for the ITERATION condition.
+    Priority: explicit argument > CODING_DEFAULT_ITERATION_CODE env var > module constant.
     """
     if iteration is not None:
         return int(iteration)
@@ -35,8 +35,8 @@ def _resolve_iteration_code(iteration: int | None) -> int:
     if DEFAULT_ITERATION_CODE is not None:
         return int(DEFAULT_ITERATION_CODE)
     raise ValueError(
-        f"未指定迭代 Code：请传 iteration=（取值见 get_iteration_list_code_and_name），"
-        f"或设置环境变量 {DEFAULT_ITERATION_ENV}",
+        f"No iteration Code specified: pass iteration=... (see get_iteration_list_code_and_name for valid values), "
+        f"or set the environment variable {DEFAULT_ITERATION_ENV}",
     )
 
 
@@ -46,7 +46,7 @@ def describe_iteration_list(
     token: str | None = None,
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict[str, Any]:
-    """DescribeIterationList：返回项目下的原始迭代列表响应。"""
+    """DescribeIterationList: return the raw iteration list response for a project."""
     t = _resolve_token(token)
     pn = _resolve_project_name(project_name)
     return _request("DescribeIterationList", {"ProjectName": pn}, t, timeout=timeout)
@@ -59,8 +59,8 @@ def get_iteration_list_code_and_name(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> list[dict[str, Any]]:
     """
-    获取项目下全量迭代，返回 [{'code': int, 'name': str}, ...]。
-    返回项中的 code 即 describe_issue_list(iteration=...) 所需的迭代 Code。
+    Fetch all iterations for a project, returning [{'code': int, 'name': str}, ...].
+    The `code` in each returned item is the iteration Code required by describe_issue_list(iteration=...).
     """
     t = _resolve_token(token)
     pn = _resolve_project_name(project_name)
@@ -80,5 +80,5 @@ def get_iteration_list_code_and_name(
             page += 1
         return merged
     except (KeyError, TypeError) as e:
-        logger.error("解析迭代列表 Code/Name 失败\n%s", traceback.format_exc())
-        raise CodingAPIError("响应中缺少 Data/List 或 Code/Name 字段") from e
+        logger.error("Failed to parse Code/Name from the iteration list\n%s", traceback.format_exc())
+        raise CodingAPIError("Response is missing Data/List or Code/Name fields") from e

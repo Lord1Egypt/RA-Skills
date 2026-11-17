@@ -8,7 +8,7 @@ set -e
 SKILL_NAME="feishu-ai-coding-assistant"
 SKILL_DIR="/home/node/openclaw-skills/$SKILL_NAME"
 CLAW_TOKEN="clh_wfoNYpWcWq0gNC7X0DfsbL2cW3Ayba7jxmGaNf_3IU0"
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="REDACTED-SECRET"
 
 echo "🚀 开始发布 Skill: $SKILL_NAME"
 echo ""

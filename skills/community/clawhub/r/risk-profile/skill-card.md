@@ -1,40 +1,52 @@
-## Description: <br>
-Assess a user's personal risk profile to identify their biggest financial, health, and lifestyle risks and recommend appropriate insurance and protection strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess a user's personal risk profile to identify their biggest financial, health, and lifestyle risks and recommend appropriate insurance and protection strategies.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to assess personal risk exposure across health, financial, and lifestyle dimensions and to prioritize insurance or protection planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for sensitive health and financial details during risk assessment.
+
+Mitigation: Share only information needed for the assessment and avoid unnecessary personal, medical, financial, or account-identifying details.
+
+Risk: Insurance or protection recommendations could be mistaken for licensed financial, insurance, medical, or legal advice.
+
+Mitigation: Use the output as planning support and review decisions with appropriately licensed professionals before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals use this skill to assess personal exposure across health, financial, and lifestyle risks and to prioritize insurance or protection planning after life changes or when starting coverage decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive health, financial, and lifestyle context. <br>
-Mitigation: Share only the detail needed for planning, use ranges where possible, and avoid identifiers or exact balances. <br>
-Risk: Generated risk and insurance recommendations may be incomplete or unsuitable for a user's circumstances. <br>
-Mitigation: Treat the result as general planning support and verify insurance, financial, or health decisions with a qualified professional. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/risk-profile) <br>
+**Other Properties Related to Output:** [Questionnaire-style risk profile with high, medium, and low ratings plus prioritized protection recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk profile report with prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk ratings, insurance mappings, and a phased protection plan.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

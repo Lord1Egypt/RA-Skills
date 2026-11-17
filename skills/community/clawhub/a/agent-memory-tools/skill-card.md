@@ -1,45 +1,63 @@
-## Description: <br>
-Searches, stores, and manages agent memory across four sources: fact store, vector embeddings, BM25 full-text search, and a knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, stores, and manages agent memory across a local fact store, vector search, BM25 full-text search, and a knowledge graph for workspace knowledge recall and ingestion.
 
-## Publisher: <br>
-[primo-studio](https://clawhub.ai/user/primo-studio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[primo-studio](https://clawhub.ai/user/primo-studio)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to recall workspace knowledge, extract durable facts, detect contradictions, and maintain searchable local memory across fact, embedding, BM25, and graph stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can index and retain workspace knowledge, including sensitive project notes, in local memory files. <br>
-Mitigation: Set MEMORY_WORKSPACE narrowly, review or delete .cache memory files as needed, and only ingest directories intended for agent memory. <br>
-Risk: Optional OpenAI, OpenRouter, or Convex configuration can send memory content to remote services despite the default local-first posture. <br>
-Mitigation: For local-only use, leave convexUrl unset and avoid the openai and openrouter presets. <br>
-Risk: Watch and platform auto-trigger modes can continuously ingest file changes without repeated confirmation. <br>
-Mitigation: Use --scan for one-time ingestion and avoid --watch, LaunchAgent, systemd, cron, or Task Scheduler setup unless continuous ingestion is intentional. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to recall workspace knowledge, extract facts from documents or conversations, detect contradictions, auto-ingest Markdown changes, and build entity graphs for local memory workflows.
 
-## Reference(s): <br>
-- [Configuration Guide](references/configuration.md) <br>
-- [Benchmark Results](references/benchmark-results.json) <br>
-- [Ollama](https://ollama.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/primo-studio/agent-memory-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, terminal output, JSON configuration, and local cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist recalled and extracted workspace knowledge locally, with optional remote providers when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic workspace indexing can capture sensitive Markdown content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit watch and scan paths to intended directories, review MEMORY_WORKSPACE and configured watch paths, and avoid enabling background ingestion until paths are reviewed.
+
+Risk: Persisted memory and raw chunks may store sensitive information in plaintext local files or configured backends.
+
+Mitigation: Review local cache storage, apply filesystem access controls, and avoid storing secrets or regulated data unless the storage location is approved.
+
+Risk: Optional Convex, OpenAI, or OpenRouter settings can send content to remote services despite the local-first workflow.
+
+Mitigation: Keep cloud provider presets and API keys disabled unless remote processing is intended and approved.
+
+Risk: The installer may fetch or configure dependencies from unpinned channels.
+
+Mitigation: Review setup.sh before execution, avoid running it as root, and install Ollama and QMD through trusted pinned channels where possible.
+
+## Reference(s):
+
+- [Configuration Guide](references/configuration.md)
+- [Benchmark Results](references/benchmark-results.json)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON/cache memory artifacts when its commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

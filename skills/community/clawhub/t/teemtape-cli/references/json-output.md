@@ -66,14 +66,29 @@ Empty watchlist:
 {
   "symbols": [
     {
-      "ticker": "NVDA",
-      "cikStr": 1045810,
-      "title": "NVIDIA CORP"
+      "ticker": "AMP",
+      "exchange": "NYSE",
+      "mic": "XNYS",
+      "currency": "USD",
+      "country": "US",
+      "title": "AMERIPRISE FINANCIAL INC",
+      "isin": null,
+      "cikStr": 820027
+    },
+    {
+      "ticker": "AMP.AX",
+      "exchange": "ASX",
+      "mic": "XASX",
+      "currency": "AUD",
+      "country": "AU",
+      "title": "AMP LIMITED",
+      "isin": null,
+      "cikStr": null
     }
   ],
   "offset": 0,
   "limit": 20,
-  "total": 3,
+  "total": 2,
   "sort": "ticker"
 }
 ```

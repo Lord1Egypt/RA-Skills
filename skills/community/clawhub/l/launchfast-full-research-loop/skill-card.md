@@ -1,41 +1,55 @@
-## Description: <br>
-Complete Amazon FBA product research pipeline using the LaunchFast MCP, running product research, IP checks, supplier sourcing, PPC keyword research, and HTML report generation in sequence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Amazon FBA product research pipeline using the LaunchFast MCP that runs product research, IP checks, supplier sourcing, and PPC keyword research, then compiles the findings into a downloadable HTML report.
 
-## Publisher: <br>
-[BlockchainHB](https://clawhub.ai/user/BlockchainHB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockchainhb](https://clawhub.ai/user/blockchainhb)
 
-## Use Case: <br>
-External Amazon FBA sellers and operators use this skill to run a complete product opportunity research loop for a keyword, including market research, IP screening, supplier sourcing, PPC keyword research, and a shareable HTML report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product ideas, ASINs, supplier details, and sourcing strategy may be sent to external research services. <br>
-Mitigation: Use only inputs that are acceptable to share with those services, and avoid entering confidential sourcing strategy unless the data handling terms are acceptable. <br>
-Risk: The generated HTML report is saved locally and may contain third-party or business-sensitive data. <br>
-Mitigation: Choose a specific non-sensitive output path, avoid overwriting existing files, and review the report before sharing or opening it in broader workflows. <br>
-Risk: IP and marketplace research output may be incomplete or unsuitable as final legal or launch advice. <br>
-Mitigation: Treat the report as screening and decision support; obtain professional IP or compliance review before committing to sourcing, branding, or launch decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BlockchainHB/launchfast-full-research-loop) <br>
+## Use Case:
+
+External Amazon FBA sellers and marketplace analysts use this skill to run a full product opportunity workflow from a product keyword, including market research, IP risk checks, supplier sourcing, PPC keyword research, and a shareable HTML report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated HTML reports may include product titles, supplier names, keywords, or other returned text from external research results.
+
+Mitigation: Escape returned research text as plain text before writing the standalone HTML report.
+
+Risk: The report is saved to a user-selected local path and could overwrite or expose sensitive files if the path is chosen carelessly.
+
+Mitigation: Use a non-sensitive output path and confirm the destination before saving or sharing the report.
+
+Risk: The workflow depends on LaunchFast MCP tools for market, IP, supplier, and keyword data.
+
+Mitigation: Install only when those tools are trusted and available, and review generated findings before making business or legal decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Standalone HTML report plus concise progress and summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves the report to a user-specified local path and requires the LaunchFast MCP product research, IP check, supplier research, and Amazon keyword research tools.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown progress updates and summary plus a standalone HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the LaunchFast MCP tools for product research, IP checks, supplier sourcing, and Amazon keyword research.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Professional emotional wellness AI assistant providing emotional analysis, mood recognition, and psychological advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional emotional wellness AI assistant providing emotional analysis, mood recognition, and psychological advice.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users can use this skill for supportive emotional reflection, mood recognition, relationship confusion, emotional distress, and actionable self-care guidance. It is framed as wellness support and not as clinical diagnosis, medication advice, therapy, or crisis intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat emotional wellness guidance as clinical diagnosis, therapy, medication advice, or crisis support. <br>
-Mitigation: Keep responses framed as supportive coaching, avoid clinical diagnoses and medication guidance, and encourage professional or crisis support when user safety concerns appear. <br>
-Risk: Personalized emotional advice could be incorrect, overly directive, or unsuitable for the user's situation. <br>
-Mitigation: Use cautious, uncertainty-aware language, provide practical low-risk steps, and encourage healthy social support and professional help for persistent or severe concerns. <br>
+## Use Case:
 
+External users can use this skill for empathetic emotional support, mood reflection, relationship or distress exploration, and actionable self-care guidance within non-clinical boundaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/emotional-advisor) <br>
-- [Publisher Profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown prose with empathetic analysis, recommendations, and limited follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden code, data access, persistence, or external actions were identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat mental-health-adjacent support as therapy, diagnosis, medication advice, or crisis intervention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as non-clinical support, avoid diagnoses and medication guidance, and direct crisis or severe symptoms to professional or emergency support.
+
+Risk: Emotion analysis may appear more certain than the user's description supports.
+
+Mitigation: Acknowledge uncertainty, use everyday language, and present interpretations as possibilities rather than conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/emotional-advisor)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only emotional support; no code execution, credentials, persistence, or hidden system access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

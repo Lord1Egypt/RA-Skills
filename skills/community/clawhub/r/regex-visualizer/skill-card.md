@@ -1,44 +1,55 @@
-## Description: <br>
-RegexVisualizer renders Regulex-style railroad diagrams for JavaScript regular expressions and exports SVG or PNG output matching the Regulex-Plus web UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Regulex-style railroad diagrams for a JavaScript regular expression and export the exact same SVG/PNG as the Regulex-Plus web UI Export Image feature.
 
-## Publisher: <br>
-[PipeDream941](https://clawhub.ai/user/PipeDream941) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pipedream941](https://clawhub.ai/user/pipedream941)
 
-## Use Case: <br>
-Developers, engineers, and documentation authors use this skill to turn JavaScript regular expressions into railroad diagrams for debugging, documentation, sharing, or embedding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs npm dependencies in the skill directory. <br>
-Mitigation: Install dependencies only when comfortable running npm install for this skill. <br>
-Risk: The skill launches a local Chrome or Edge browser through Puppeteer. <br>
-Mitigation: Use only trusted browser paths, including any value passed through --chrome or browser-related environment variables. <br>
-Risk: The --out path writes SVG and PNG files and may affect existing filenames. <br>
-Mitigation: Write output to a project or temporary directory and avoid important existing basenames. <br>
+## Use Case:
 
+Developers and technical writers use this skill to turn JavaScript regular expressions into Regulex-style railroad diagrams for documentation, sharing, debugging, or embedding.
 
-## Reference(s): <br>
-- [RegexVisualizer on ClawHub](https://clawhub.ai/PipeDream941/regex-visualizer) <br>
-- [README.md](artifact/README.md) <br>
-- [Regulex-Plus web UI copy](artifact/assets/regulex.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [SVG and PNG files with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs .svg and/or .png files from a JavaScript regular expression; supported flags are limited to i, m, and g.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: manifest.yaml, package.json, release metadata) <br>
+Risk: The skill runs a headless local browser with sandboxing disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer trusted regex inputs, and run in a locked-down container or low-privilege account when possible.
+
+Risk: The skill depends on browser automation tooling and a local Chrome or Edge installation.
+
+Mitigation: Keep Chrome or Edge and npm dependencies updated before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pipedream941/skills/regex-visualizer)
+- [README](README.md)
+- [Renderer script](scripts/render.mjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; the renderer writes SVG and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports JavaScript regex input and i/m/g flags; requires Node.js, puppeteer-core, and a local Chrome or Edge browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, manifest.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

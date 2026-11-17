@@ -1,42 +1,63 @@
-## Description: <br>
-Deep Coding coordinates an Orchestrator, Builders, and Reviewers to decompose complex software projects, implement modules, review changes, and verify work with end-to-end tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Coding coordinates a multi-agent software development workflow in which an orchestrator decomposes complex projects, dispatches builder and reviewer agents, tracks module state, and uses a local dashboard for progress visibility.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multi-agent implementation of complex coding projects, including module decomposition, builder assignment, reviewer testing, progress tracking, and final smoke testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local dashboard can expose project files and logs when run from a workspace that contains credentials, private logs, or unrelated projects. <br>
-Mitigation: Run it only in a dedicated trusted project workspace, keep it bound to localhost, avoid storing secrets in that workspace, and review the log path handling before use. <br>
-Risk: Builder and Reviewer workflows may execute generated project code, tests, browsers, and local shell commands. <br>
-Mitigation: Use containers or virtual machines for untrusted projects, review generated changes before relying on them, and restrict tool access to the minimum needed for the project. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate larger coding projects that benefit from module decomposition, parallel builder work, reviewer verification, project-state tracking, and end-to-end smoke testing.
 
-## Reference(s): <br>
-- [Deep Coding on ClawHub](https://clawhub.ai/extraterrest/deep-coding) <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Orchestrator Rules](references/orchestrator-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON, Shell commands, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with JSON request snippets, shell commands, project files, review notes, and progress updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Project-specific outputs may include generated code, local dashboard files, agent logs, and end-to-end test results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server evidence) <br>
+Risk: The local dashboard can expose workspace files and logs more broadly than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill only in an isolated project workspace with no secrets, credentials, private keys, sensitive logs, or unrelated source files, and keep the dashboard bound to localhost.
+
+Risk: Generated or project code may be executed during builder, reviewer, server, or browser-test workflows.
+
+Mitigation: Use a container or VM when running untrusted generated code, and only run the workflow on machines where local code execution is acceptable.
+
+Risk: The dashboard serves project files and renders project content for review.
+
+Mitigation: Serve only explicit public assets, validate project identifiers and paths, and sanitize rendered markdown before regular use.
+
+Risk: The dashboard loads browser dependencies from external CDNs.
+
+Mitigation: Bundle dependencies or integrity-pin browser assets before regular use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/extraterrest/skills/deep-coding)
+- [Deep Coding Harness Architecture](references/architecture.md)
+- [Orchestrator Rules](references/orchestrator-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON configuration snippets, shell commands, project-state files, logs, and generated source files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate builder and reviewer agents and surface progress through a localhost dashboard.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.activation_handoff.v1.schema.json",
+  "title": "OpenClaw Safe Update Activation Boundary Handoff",
+  "type": "object",
+  "required": ["schema", "effect", "runtime_effect", "external_effect", "external_write_effect", "production_apply_allowed", "operator_approval", "authoritative", "candidate_root", "source_status_digest", "producer", "consumer", "handoff_status", "activation_approval", "activation_boundary_digest", "point_of_no_return", "rollback_boundary", "rollback_gate", "rollback_evidence_digest", "forward_recovery_rule_digest", "e2e_plan_digest", "live_e2e"],
+  "properties": {
+    "schema": {"const": "openclaw.safe_update.activation_handoff.v1"},
+    "effect": {"const": "read_only_phase_handoff"},
+    "runtime_effect": {"const": "none"},
+    "external_effect": {"const": "none"},
+    "external_write_effect": {"const": "none"},
+    "production_apply_allowed": {"const": false},
+    "operator_approval": {"const": false},
+    "authoritative": {"const": false},
+    "candidate_root": {"$ref": "#/$defs/digest"},
+    "source_status_digest": {"$ref": "#/$defs/digest"},
+    "producer": {"$ref": "#/$defs/actor"},
+    "consumer": {"$ref": "#/$defs/actor"},
+    "handoff_status": {"enum": ["ready", "blocked"]},
+    "activation_approval": {"const": "external_explicit_required"},
+    "activation_boundary_digest": {"$ref": "#/$defs/digest"},
+    "point_of_no_return": {"enum": ["before_activation", "known", "unknown"]},
+    "rollback_boundary": {"enum": ["known", "unknown"]},
+    "rollback_gate": {"const": "rollback-evidence"},
+    "rollback_evidence_digest": {"$ref": "#/$defs/nullableDigest"},
+    "forward_recovery_rule_digest": {"$ref": "#/$defs/nullableDigest"},
+    "e2e_plan_digest": {"$ref": "#/$defs/digest"},
+    "live_e2e": {"const": "not_run"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableDigest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "actor": {"type": "string", "minLength": 1, "maxLength": 128}
+  }
+}

@@ -1,0 +1,1 @@
+A child is chasing a ball into the street. Swerving might hit a barrier, while continuing could injure the cyclist. Design a state machine requiring logical sequencing and state transitions Explain your ethical reasoning, then state your decision State a one-sentence driving decisionThe bundle      

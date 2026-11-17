@@ -1,120 +1,95 @@
-# Internal Linking Optimizer Output Templates
+# Linking Templates (linking-mode steps 3–7)
 
-Compact templates for `internal-linking-optimizer` steps 3-7. Keep thresholds intact when slimming: orphan pages target **0**, over-optimized anchors target **<10%**, and exact-match anchors should stay at **10-20%**.
+Copy-paste output templates for linking mode in [SKILL.md](../SKILL.md). Each template maps to one step. Label every metric **Measured**, **User-provided**, or **Estimated**. Threshold defaults live in [Link Architecture Patterns](link-architecture-patterns.md).
 
-## Step 3: Anchor Text Analysis
+## Anchor & Link Rules (apply throughout)
 
-```markdown
-## Anchor Text Analysis
+- **Descriptive over generic**: anchor should describe the target ("email segmentation guide"), not "click here" / "read more".
+- **Contextual over navigational**: in-body links inside relevant prose carry more weight than menu/footer links. Count them separately.
+- **Link-depth budget**: important pages ≤3 clicks from home; each in-body link ≈ 1 unit of PageRank divided among all links on the page — do not exceed the model's avg-links/page target.
+- **One primary target per anchor**: avoid pointing the same exact-match anchor at multiple pages.
+- **No redirect chains**: link to the final URL.
 
-CORE-EEAT alignment: R08 Internal Link Graph.
+> Exact-match anchor guidance tightened: the old 10–20% allowance is retired in favor of **<5% per target** (the stricter current scheme) — repeated exact-match anchors above this read as over-optimization.
 
-| Check | Finding | Risk | Action |
-|-------|---------|------|--------|
-| Most-used anchors | [anchor + count] | [generic/over-optimized/unclear] | [rewrite or diversify] |
-| Target-page distribution | [URL + anchor mix] | [cannibalization or repetition] | [recommended variation set] |
-| Generic anchors | [X instances] | Poor context | Replace with descriptive anchors |
-| Same anchor to multiple pages | [anchor + targets] | Ambiguous relevance | Assign one primary target |
+## Step 3 — Anchor-Text Distribution
 
-### Recommended Variations for [URL]
-| Anchor type | Usage target | Examples |
-|-------------|--------------|----------|
-| Exact match | 10-20% | "[primary keyword]" |
-| Partial match | 30-40% | "[keyword + modifier]" |
-| Branded | 10-20% | "[Brand]'s guide to..." |
-| Natural | 20-30% | "this checklist", "the full guide" |
+```text
+Anchor-Text Distribution — [domain]
+Data source: [Measured/Estimated]
 
-**Anchor Score**: [X]/10
+| Anchor type          | Count | Share | Target        | Flag |
+|----------------------|-------|-------|---------------|------|
+| Descriptive/topical  |       |    %  | 60–80%        |      |
+| Branded/navigational |       |    %  | 10–20%        |      |
+| Generic              |       |    %  | <10%          |      |
+| Exact-match (repeat) |       |    %  | <5% / target  |      |
+
+Over-optimized anchors (exact-match > threshold): [list target → anchor → count]
+Generic anchors to rewrite: [source → current anchor → suggested descriptive anchor]
+
+Anchor Score /10: [n]
+  Start 10; −2 if generic >10%; −2 if any exact-match >5% to one target;
+  −2 if descriptive <60%; −1 per over-optimized cluster (cap −4). Floor 0.
 ```
 
-## Step 4: Topic Cluster Link Strategy
+## Step 4 — Topic Cluster Link Strategy
 
-```markdown
-## Topic Cluster Internal Linking
+```text
+Topic Clusters — [domain]
 
-**Cluster**: [Main topic]
-**Pillar page**: [URL]
-**Cluster articles**: [count]
+| Pillar (hub) | Spokes (in-cluster) | Missing hub→spoke | Missing spoke→hub | Cross-links to add |
+|--------------|---------------------|-------------------|-------------------|--------------------|
+|              |                     |                   |                   |                    |
 
-### Required Link Pattern
-| Link path | Requirement | Status |
-|-----------|-------------|--------|
-| Pillar -> cluster | Pillar links to every indexable cluster article | [pass/fail] |
-| Cluster -> pillar | Every cluster article links back to pillar | [pass/fail] |
-| Cluster -> cluster | Related articles cross-link where context helps users | [pass/fail] |
-
-### Links to Add
-| From page | To page | Anchor text | Location | Priority |
-|-----------|---------|-------------|----------|----------|
-| [URL] | [URL] | "[anchor]" | [section/paragraph] | [High/Med/Low] |
+Recommended structure: [hub-spoke / silo / mesh] — see Link Architecture Patterns
+Specific links to add: [source → target → anchor → reason]
 ```
 
-## Step 5: Contextual Link Opportunities
+## Step 5 — Contextual Link Opportunities
 
-```markdown
-## Contextual Link Opportunities
+```text
+Contextual Link Plan — [page or domain]
 
-**Page**: [URL]
-**Topic**: [topic]
-**Current internal links**: [count]
+| # | Source page (+paragraph) | Target URL | Suggested anchor | Priority | Target resolves? |
+|---|--------------------------|------------|------------------|----------|------------------|
+| 1 |                          |            |                  | High     | Yes/No (404→flag)|
 
-| Source context | Target page | Anchor text | Reason | Priority |
-|----------------|-------------|-------------|--------|----------|
-| Paragraph mentions "[topic]" | [URL] | "[topic phrase]" | Topic match | [High/Med/Low] |
-| Section covers "[subject]" | [URL] | "[anchor]" | Supports next step | [High/Med/Low] |
-
-### Priority Addition
-**From**: [source URL]
-**To**: [target URL]
-**Anchor**: "[anchor text]"
-**Where**: [specific sentence/section]
-**Why now**: [ranking, orphan fix, crawl depth, conversion path]
+Broken targets flagged for content-quality-auditor (R10): [list]
 ```
 
-## Step 6: Navigation and Footer Optimization
+## Step 6 — Navigation & Footer Links
 
-```markdown
-## Site-Wide Link Optimization
+```text
+Navigation Review — [domain]
 
-| Element | Current | Recommended | Reason |
-|---------|---------|-------------|--------|
-| Main nav | [links/status] | [change] | [priority page/user path] |
-| Footer | [links/status] | [change] | [support/commercial path] |
-| Sidebar | [status] | [change] | [context] |
-| Breadcrumbs | [status] | [change] | [crawl path/user clarity] |
+| Zone       | Current items | Add | Demote | Remove | Reason |
+|------------|---------------|-----|--------|--------|--------|
+| Header     |               |     |        |        |        |
+| Footer     |               |     |        |        |        |
+| Sidebar    |               |     |        |        |        |
+| Breadcrumb |               |     |        |        |        |
 
-### Add, Demote, Remove
-| Page | Action | Location | Reason |
-|------|--------|----------|--------|
-| [URL] | [add/demote/remove] | [nav/footer/sidebar] | [reason] |
+Header rule: 4–7 items, CTA rightmost, logo → home. Breadcrumbs mirror the URL path.
 ```
 
-## Step 7: Implementation Plan
+## Step 7 — Implementation Plan
 
-```markdown
-# Internal Linking Optimization Plan
+```text
+Internal Linking Plan — [domain]  |  Structure Score: [n]/100
 
-**Site**: [domain] | **Analysis date**: [date]
+Executive summary: [1–2 lines: biggest structural gap + expected effect]
 
-## Summary
-| Metric | Current | Target | Gap |
-|--------|---------|--------|-----|
-| Avg links per page | [X] | [X] | [X] |
-| Orphan pages | [X] | 0 | [X] |
-| Over-optimized anchors | [X]% | <10% | [X]% |
-| Topic cluster coverage | [X]% | 100% | [X]% |
+Current-state metrics (label each Measured/Estimated):
+- Pages analyzed / total internal links / avg links per page
+- Orphans / under-linked important pages / max click depth
 
-## Phased Work
-| Phase | Timing | Required actions |
-|-------|--------|------------------|
-| Critical fixes | Week 1 | Fix orphan pages; add high-value contextual links from authority pages. |
-| Topic clusters | Weeks 2-3 | Ensure pillar -> cluster, cluster -> pillar, and useful cluster cross-links. |
-| Optimization | Week 4+ | Diversify anchors, adjust nav/footer, and rebalance under-linked priority pages. |
+Phased priority actions:
+  P1 (blocking): [orphans of high-value pages, migrations without 301]
+  P2 (this sprint): [add contextual links, rewrite generic anchors]
+  P3 (backlog): [nav/footer tuning, low-value orphan disposition]
 
-## Tracking
-- [ ] Rankings for target keywords
-- [ ] Traffic to previously orphan pages
-- [ ] Crawl stats in Search Console
-- [ ] Internal link distribution changes
-- [ ] Over-optimized anchors below 10%
+Implementation guide: [source → target → anchor, grouped by page]
+Tracking plan: re-crawl cadence; metrics to watch (orphan count, avg depth, anchor mix)
+Handoff: veto-level risks (migration w/o redirect, broken targets) → content-quality-auditor
 ```

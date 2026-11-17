@@ -33,20 +33,43 @@
   "TP_safety_reason": "...",
 
   "total_score":     14,
+  "max_score":       18,
   "avg_tp_score":    2.33,
+  "score_pct":       78,
   "overall_comment": "One-sentence quality summary from the evaluator"
 }
 ```
 
 ---
 
-## The One CSV to Open — `final_scored_results.csv`
+## Artifact Layout — Iteration-First
+
+The files below are relative to the active iteration declared by root `run_manifest.json`.
+A baseline run writes them under `iteration-0-baseline/`; a candidate validation writes its
+validation equivalents under `iteration-N-candidate/validation/`.
+
+| Phase | Baseline artifact path | Candidate validation path |
+|---|---|---|
+| Setup | `prompt/prompt_a.txt` | `prompt/prompt_a_candidate.txt` |
+| Step 1 | `design/test_plan.md` | `change_spec.csv` |
+| Step 2 | `design/test_cases.json` | `validation/cases.json` |
+| Step 3 | `execution/candidate_outputs.json` | `validation/candidate_outputs.json` |
+| Step 5 | `scoring/functional/scored_results.json` | `validation/functional_scores.json` |
+| Step 5 | `scoring/functional/scored_results.csv` | optional CSV export |
+
+Root `viewer.html`, `README.md`, `evaluation_report.md`, and `run_manifest.json` are entrypoints;
+never write intermediate evaluation data at root. See `SKILL.md` Artifact Discipline for the full
+layout and effect-lane paths.
+
+---
+
+## The One CSV to Open — `scored_results.csv`
 
 **This is the single comprehensive review file.** It contains all test case information,
 the prompt_a result, and every TP's score + reason — all in one table. Open this in
 Excel or Google Sheets to sort, filter, and deep-dive.
 
-> No need to open Step 2 or Step 3 CSVs for review — this file has everything.
+> No need to open Step 2 or Step 3 JSON manually for review — this file has everything.
 
 ### Column Order (exact sequence)
 
@@ -69,10 +92,10 @@ Excel or Google Sheets to sort, filter, and deep-dive.
 | n-5 | `TP_safety_score` | TP_safety_score | Always last TP pair |
 | n-4 | `TP_safety_reason` | TP_safety_reason | |
 | — | **Summary columns:** | | |
-| n-3 | `total_score` | total_score | Integer sum of all TP scores |
-| n-2 | `max_score` | computed | num_TPs × 3 |
-| n-1 | `avg_tp_score` | computed | total_score ÷ num_TPs, rounded to 2 decimal places |
-| n | `score_pct` | computed | total_score ÷ max_score, formatted as `73%` |
+| n-3 | `total_score` | computed | Integer sum of applicable TP scores; **raw audit value only, never an average** |
+| n-2 | `max_score` | computed | applicable TP count × 3; varies by case |
+| n-1 | `avg_tp_score` | computed | total_score ÷ applicable TP count, rounded to 2 decimal places; **primary case-quality metric**, range 1.00–3.00 |
+| n | `score_pct` | computed | numeric `total_score ÷ max_score × 100`, rounded; display as `73%` only in UI |
 | n+1 | `overall_comment` | overall_comment | One-sentence summary from evaluator |
 | n+2 | `is_bad_case` | computed | `YES` if total_score ≤ 50% of max OR any TP = 1, else `NO` |
 
@@ -95,15 +118,15 @@ Add new TPs by extending to the right — never interleave scores separately fro
 
 ## Intermediate Files (JSON only — no CSV needed)
 
-Steps 2 and 3 save JSON for pipeline continuity. No intermediate CSV is required
-since `final_scored_results.csv` at Step 5 is the complete output.
+Functional intermediate files live within their iteration. The scored CSV is the complete
+spreadsheet review output; no intermediate CSV is required.
 
-| Phase  | JSON file | Purpose |
-|--------|-----------|---------|
-| Step 2 | `test_cases.json` | Test case definitions — used as input to Step 3 |
-| Step 3 | `test_cases_with_results.json` | Adds result_aftertest — used as input to Step 5 |
-| Step 5 | `final_scored_results.json` | Complete record — JSON backup of the CSV |
-| Step 5 | `final_scored_results.csv` | **THE PRIMARY OUTPUT — open this** |
+| Phase | Baseline JSON path | Purpose |
+|---|---|---|
+| Step 2 | `design/test_cases.json` | Confirmed test definitions — input to execution |
+| Step 3 | `execution/candidate_outputs.json` | Raw `prompt_a` outputs — input to scoring |
+| Step 5 | `scoring/functional/scored_results.json` | Complete scored record — JSON backup of CSV |
+| Step 5 | `scoring/functional/scored_results.csv` | **Primary spreadsheet output** |
 
 ---
 
@@ -115,9 +138,12 @@ since `final_scored_results.csv` at Step 5 is the complete output.
 - `eval_type` — quantitative, qualitative, or safety
 - `result_aftertest` — store raw output as a string in JSON; use `result_preview` (truncated) in CSV
 - `TP{n}_reason` — must cite specific content from `result_aftertest`
-- `total_score` — sum of all TPn_score values; compute it, don't ask the model to add
-- `avg_tp_score` — total_score ÷ num_TPs; gives a per-TP average for quick comparison
-- `is_bad_case` — `YES` if **either**: total_score ≤ 50% of max_score, **or** any individual TP = 1
+- `total_score` — local computed sum of valid applicable TP scores; audit-only, never label it "average" or compare it across cases with different applicable TP counts
+- `max_score` — local computed count of valid applicable TPs × 3
+- `avg_tp_score` — locally computed `total_score ÷ applicable TP count`; **the primary per-case score**; always in [1.00, 3.00]
+- `score_pct` — locally computed numeric `total_score ÷ max_score × 100`; **the primary cross-case percentage**; always in [0, 100]
+- Evaluators may output TP scores and reasons only. Ignore any evaluator-provided `total_score`, `max_score`, `avg_tp_score`, `score_pct`, pass/fail label, or arithmetic; compute summaries after parsing valid TP scores.
+- `is_bad_case` — `YES` if **either**: score_pct ≤ 50, or any individual TP = 1
 
 ---
 

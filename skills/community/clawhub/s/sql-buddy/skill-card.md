@@ -1,47 +1,60 @@
-## Description: <br>
-Convert natural language to SQL, explore database schemas, execute queries safely, and get optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert natural language to SQL, explore database schemas, execute queries safely, and get optimization suggestions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to translate Chinese or English natural-language questions into SQL, inspect database schemas, execute or analyze queries, and receive optimization guidance across SQLite, PostgreSQL, MySQL, and SQL Server workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to user-supplied databases and may access sensitive schemas or result samples. <br>
-Mitigation: Use least-privilege read-only database accounts, point the skill only at approved datasets, and limit result previews to the minimum needed for the task. <br>
-Risk: Database credentials may be supplied or saved for convenience. <br>
-Mitigation: Prefer environment variables or an external secret manager, avoid saving passwords through the skill, and rotate credentials used during testing. <br>
-Risk: Write execution can modify production data when allow_write is enabled. <br>
-Mitigation: Keep write execution disabled by default, review generated SQL before execution, and reserve allow_write for controlled environments or explicitly approved operations. <br>
-Risk: Schema details and small row samples may be included in model prompts for SQL generation or insight generation. <br>
-Mitigation: Review prompt exposure for sensitive environments, mask sensitive columns, and avoid running the skill against regulated or confidential data without an approved data-handling plan. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to turn Chinese or English natural-language questions into SQL, inspect database schemas, run or review queries, and receive optimization guidance across SQLite, PostgreSQL, MySQL, and SQL Server workflows.
 
-## Reference(s): <br>
-- [SQL Buddy references](artifact/references/README.md) <br>
-- [Example queries](artifact/references/example-queries.json) <br>
-- [Sample schema](artifact/references/sample-schema.sql) <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sql-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON fields with optional table, JSON, CSV, or Markdown result formatting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated SQL, dialect, execution status, returned rows, columns, explain plans, suggested indexes, optimized SQL, schema information, insights, timing, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Database credentials, schema details, query text, and some result values may be exposed during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or database-side read-only accounts, avoid production credentials, avoid saving passwords through the skill, and limit use to data that can be shared with the configured model provider.
+
+Risk: Advertised read-only and parameterized-query protections should not be treated as sufficient controls.
+
+Mitigation: Review and fix the protections before relying on them, and enforce least-privilege read-only permissions at the database account level.
+
+Risk: Generated SQL, EXPLAIN analysis, index suggestions, and result insights may be incorrect or incomplete.
+
+Mitigation: Review generated SQL and recommendations before execution, test against non-production data first, and require explicit approval for write-capable use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/sql-buddy)
+- [sql-buddy References](references/README.md)
+- [Example Queries](references/example-queries.json)
+- [Sample Schema](references/sample-schema.sql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured JSON with generated SQL, dialect, execution status, result rows, schema details, EXPLAIN summaries, index suggestions, optimized SQL, insight text, and errors; result displays may also be table, JSON, CSV, or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input query length is 2-2000 characters; result previews default to 20 rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, skill manifest, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

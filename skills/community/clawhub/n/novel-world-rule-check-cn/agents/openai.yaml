@@ -1,0 +1,8 @@
+interface:
+  display_name: "世界规则冲突表"
+  short_description: "核对作者批准的世界规则与章节文本，整理证据和待批修订选项"
+  default_prompt: "$novel-world-rule-check-cn 请提供正式规则清单（编号、触发条件、代价、例外）和待审片段；我会逐条输出成立、冲突或无法判定及待批准修订项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

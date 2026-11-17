@@ -1,0 +1,56 @@
+{
+  "_comment": "The Discovery deliverable: one comparison basis, the candidates compared against it, the exclusion log, and the outcome. Save it as JSON and run scripts/check_shortlist_consistency.py before presenting anything. Until this template existed there was no container contract at all -- candidates[] was a shape the checks assumed and nothing asked the author to produce, which makes a gate opt-in on the very declaration a defect hides behind.",
+
+  "_enums": {
+    "_comment": "The checker reads its vocabularies from here, so adding a state is a contract edit rather than a code edit, and the checker cannot drift from the document that describes it.",
+    "outcome_state": ["shortlist", "constraint_conflict", "blocked"]
+  },
+
+  "mode": "discovery",
+  "generated_at": null,
+
+  "trip_context": {
+    "_comment": "The single comparison basis. Every candidate's figure is measured against this, which is what makes two numbers rankable at all.",
+    "origin": null,
+    "date_range": null,
+    "nights": null,
+    "party_size": null,
+    "currency": null,
+    "budget_scope": [],
+    "budget_cap_per_person": null,
+    "calculation_basis": "per_person"
+  },
+
+  "outcome": {
+    "_comment": "Required on every Discovery artifact. Omitting it used to be the escape from every rule keyed on it. 'shortlist' means candidates survived and are ranked; 'constraint_conflict' means nothing survived and the traveller must relax something; 'blocked' means the question could not be answered and blocking_fact says what went unverified -- an unfinished filter and a real conflict produce the same empty pass set, and the traveller should not be asked to give up a real requirement to escape the difference.",
+    "state": null,
+    "blocking_constraints": [],
+    "minimum_relaxation": null,
+    "blocking_fact": null
+  },
+
+  "candidates": [],
+
+  "excluded": [
+    {
+      "_comment": "The one-line exclusion log. Deliberately thinner than a candidate record: a rejected destination was never researched to candidate depth, and demanding that it were would buy research the budget forbids.",
+      "destination": null,
+      "reason": null,
+      "failed_constraint": null
+    }
+  ],
+
+  "conditional_options": [
+    {
+      "_comment": "SKILL.md's 'possible if X changes'. A conditional is an offer, never a recommendation, so these stay out of recommendation.winner regardless of how well they score.",
+      "destination": null,
+      "conditional_on_relaxation": null
+    }
+  ],
+
+  "recommendation": {
+    "winner": null,
+    "runner_up": null,
+    "why_not_runner_up": null
+  }
+}

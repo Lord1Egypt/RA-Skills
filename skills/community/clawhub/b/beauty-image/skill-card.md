@@ -1,44 +1,58 @@
-## Description: <br>
-商业化AI图片生成助手。40+场景模板, 30+风格词典, 智能意图识别, 结构化Prompt, 三引擎智能路由 (Wanx/Seedream4/Seedream5)。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beauty Image is a commercial AI image-generation assistant with scene templates, style dictionaries, intent recognition, structured prompts, and routing across Wanx, Seedream 4, and Seedream 5 engines.
 
-## Publisher: <br>
-[yh22e](https://clawhub.ai/user/yh22e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yh22e](https://clawhub.ai/user/yh22e)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language image requests into structured prompts, route them to configured Wanx or Seedream image providers, and return generated image links for business, social, product, and creative assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and any business, branding, or personal design details may be sent to configured external image providers, and to DeepSeek when LLM intent parsing is enabled. <br>
-Mitigation: Configure only the provider keys intended for use and avoid placing secrets or sensitive details in prompts. <br>
-Risk: Generated image links are returned by provider services and may point to provider-hosted output URLs. <br>
-Mitigation: Open or save returned image URLs only when the provider output is trusted. <br>
+## Use Case:
 
+External users and creators use this skill in OpenClaw to generate business cards, posters, avatars, product images, 3D-style objects, and other visual assets from natural-language prompts. The skill can apply templates, style dictionaries, size presets, optional structured fields, and engine routing before returning generated image URLs or saved image files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yh22e/beauty-image) <br>
-- [Project homepage](https://github.com/xyva-yuangui/beauty-image) <br>
-- [DashScope API keys](https://dashscope.console.aliyun.com/apiKey) <br>
-- [Volcengine Ark API keys](https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey) <br>
-- [DeepSeek API keys](https://platform.deepseek.com/api_keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and MEDIA_URL image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured provider API keys; generated image URLs may be time-limited according to artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts and any included personal or business text are sent to third-party image-generation services and optionally to DeepSeek for intent parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or regulated data in prompts, and use dedicated API keys for DashScope, Volcengine Ark, and DeepSeek.
+
+Risk: Using the legacy SSL verification bypass can weaken transport security.
+
+Mitigation: Keep certificate verification enabled and avoid the legacy --no-verify-ssl option.
+
+Risk: Runtime dependency changes may affect sensitive deployments.
+
+Mitigation: Pin dependencies and review the skill before deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yh22e/skills/beauty-image)
+- [Project Homepage](https://github.com/xyva-yuangui/beauty-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Console text with MEDIA_URL lines, RESULT_JSON, optional local image files, and Markdown image-display guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs are described by the artifact as temporary; filename output saves the image locally when requested.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

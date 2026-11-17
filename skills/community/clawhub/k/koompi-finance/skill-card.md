@@ -1,40 +1,50 @@
-## Description: <br>
-Use for finance and accounting operations - AP/AR tracking, invoicing, bank reconciliation, budgeting, financial reporting, expense management, tax prep, payroll coordination, audit readiness, and cash flow forecasting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for finance and accounting operations, including AP/AR tracking, invoicing, bank reconciliation, budgeting, financial reporting, expense management, tax prep, payroll coordination, audit readiness, and cash flow forecasting.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Finance and operations teams use this skill to structure routine accounting workflows, including receivables, payables, reconciliation, budgeting, reporting, tax preparation, payroll coordination, audit readiness, and cash forecasting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers high-impact finance workflows including payments, payroll, tax filing, accounting entries, reimbursements, and vendor or customer follow-up. <br>
-Mitigation: Keep outputs advisory or draft-only unless each high-impact action has explicit human approval, dollar limits, audit logs, and a reversal or correction path. <br>
-Risk: Incorrect or incomplete finance guidance could affect reporting, cash management, tax compliance, or payment decisions. <br>
-Mitigation: Require review by an authorized finance, accounting, payroll, or tax owner before filing, paying, booking entries, or sending external communications. <br>
+## Use Case:
 
+Finance and accounting staff use this skill to draft and check operational finance workflows, including receivables, payables, reconciliation, reporting, expense review, tax preparation, payroll coordination, audit readiness, and cash-flow forecasting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/koompi-finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, report templates, drafted messages, and structured finance operations guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; use as advisory or draft-only unless high-impact financial actions have explicit human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill can steer an agent toward sensitive accounting actions such as expense approval, payroll, payment, tax, ledger, and period-close operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to drafting, validation, reconciliation support, reporting, and recommendations unless the environment enforces separate human approval for payments, reimbursements, payroll submission, tax filing, ledger changes, and period locks.
+
+## Reference(s):
+
+- [ClawHub Finance skill page](https://clawhub.ai/rithythul/skills/koompi-finance)
+- [Publisher profile](https://clawhub.ai/user/rithythul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, report templates, and short operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include finance reports, follow-up drafts, reconciliation summaries, approval checklists, and alerts for human review.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

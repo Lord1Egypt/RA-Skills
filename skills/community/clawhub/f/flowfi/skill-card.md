@@ -1,48 +1,63 @@
-## Description: <br>
-FlowFi provides REST API guidance for authorization, smart accounts, AI-generated workflows, workflow lifecycle actions, executions, WebSocket status updates, prices, templates, DTOs, and related request and response shapes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowFi provides REST and WebSocket API guidance for authorization, smart accounts, workflow generation and lifecycle operations, executions, token prices, templates, DTOs, and real-time workflow status.
 
-## Publisher: <br>
-[devarogundade](https://clawhub.ai/user/devarogundade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devarogundade](https://clawhub.ai/user/devarogundade)
 
-## Use Case: <br>
-Developers and external agents use this skill to integrate with the FlowFi backend API, including creating and managing workflows, starting or canceling executions, subscribing to real-time status updates, and using templates or price endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires agents to handle FlowFi bearer tokens, including long-lived tokens. <br>
-Mitigation: Use trusted OpenClaw environments only, prefer short-lived and least-privileged FlowFi tokens, avoid exposing tokens in logs or chat, and revoke tokens after use. <br>
-Risk: The skill covers high-impact workflow actions such as deploy, start, edit, stop, cancel, and delete. <br>
-Mitigation: Require the agent to list and confirm exact workflow or execution IDs before performing mutating actions. <br>
-Risk: Server security evidence marks the release as suspicious because token-safety and confirmation guidance is not strong enough for workflow mutations. <br>
-Mitigation: Review the skill before installation and add operational guardrails for token handling and user confirmation before using it in production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub FlowFi Skill Page](https://clawhub.ai/devarogundade/flowfi) <br>
-- [FlowFi Skill Instructions](SKILL.md) <br>
-- [FlowFi Documentation Index](docs/README.md) <br>
-- [Authorization](docs/authorization.md) <br>
-- [Workflows](docs/workflows.md) <br>
-- [Executions](docs/execution.md) <br>
-- [WebSocket Status Updates](docs/websocket.md) <br>
-- [DTO and Request/Response Shapes](docs/dto.md) <br>
+## Use Case:
 
+Developers and external integrators use this skill to build agents that call FlowFi APIs for creating, editing, deploying, monitoring, and managing workflows tied to smart accounts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown with endpoint descriptions and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST endpoints, bearer-token header guidance, WebSocket subscription details, workflow IDs, request bodies, and response shapes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents using this skill may receive bearer tokens that permit broad FlowFi account and workflow control.
+
+Mitigation: Use short-lived, narrowly scoped tokens where possible, keep JWTs out of URLs and logs, and revoke tokens that are no longer needed.
+
+Risk: Workflow actions such as deploy, start, edit, cancel, stop, and delete can materially affect user workflows and may trigger transactions or public notifications.
+
+Mitigation: Require explicit user confirmation before state-changing workflow or execution operations.
+
+## Reference(s):
+
+- [FlowFi ClawHub Skill Page](https://clawhub.ai/devarogundade/skills/flowfi)
+- [FlowFi Documentation Index](docs/README.md)
+- [Authorization](docs/authorization.md)
+- [Smart Accounts](docs/smart-accounts.md)
+- [AI Workflows](docs/ai-workflows.md)
+- [Workflow REST API](docs/workflows.md)
+- [DTO and Request/Response Shapes](docs/dto.md)
+- [Execution REST API](docs/execution.md)
+- [WebSocket Real-Time Status](docs/websocket.md)
+- [Price API](docs/price.md)
+- [Templates API](docs/templates.md)
+- [Endpoint Summary](docs/summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP endpoints and JSON request/response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint summaries, WebSocket event shapes, bearer-token usage guidance, DTO schemas, and workflow lifecycle instructions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

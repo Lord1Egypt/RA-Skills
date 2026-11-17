@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7dkdb4pa364nwyr15npjq2n582g7t3",
-  "slug": "easy-search",
-  "version": "1.0.1",
-  "publishedAt": 1773201557513
+  "name": "easy-search",
+  "version": "1.1.0",
+  "author": "hkall",
+  "description": "Easy web search without API keys. Supports 9 engines (Google, Bing, DuckDuckGo, Baidu, Sogou, 360, Brave, Yandex, Startpage), time filtering, interactive mode, snippet extraction, and network diagnostics."
 }

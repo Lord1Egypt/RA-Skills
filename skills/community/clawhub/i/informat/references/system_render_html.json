@@ -2,13 +2,13 @@
   "type": "function",
   "function": {
     "name": "_render_html",
-    "description": "Render HTML code content using iframe.",
+    "description": "Render HTML content using an iframe.",
     "parameters": {
       "type": "object",
       "properties": {
         "srcdoc": {
           "type": "string",
-          "description": "Inline HTML content to be embedded and rendered"
+          "description": "Inline HTML content to embed and render. All JavaScript code should be moved before </body> and wrapped with the DOMContentLoaded event to ensure execution after the DOM is fully loaded."
         }
       },
       "required": [

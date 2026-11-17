@@ -1,47 +1,61 @@
-## Description: <br>
-XO Protocol gives agents and applications user-authorized access to dating trust signals, including identity verification, compatibility scoring, reputation, profile context, and social signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dating intelligence API for identity verification, compatibility scoring, reputation, and social signals via XO Protocol.
 
-## Publisher: <br>
-[pbjhsu](https://clawhub.ai/user/pbjhsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pbjhsu](https://clawhub.ai/user/pbjhsu)
 
-## Use Case: <br>
-Developers and AI-agent builders use this skill to integrate XO Protocol's dating intelligence API, OAuth flow, SDK, and MCP tools into dating, trust-badge, compatibility, reputation, and scam-review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive dating-related trust, profile, and newsfeed data through user-authorized scopes. <br>
-Mitigation: Request only the minimum OAuth scopes needed, avoid storing or logging raw profile and newsfeed data, and require user review before using the data for consequential decisions. <br>
-Risk: API keys and OAuth access tokens are required for runtime use and could expose authorized data if mishandled. <br>
-Mitigation: Store credentials in protected environment variables or a secret manager, rotate them when exposed, and do not embed real credentials in shared examples or agent prompts. <br>
-Risk: Agents may overstate compatibility, reputation, or social-signal scores when summarizing dating trust information. <br>
-Mitigation: Present scores as advisory signals, include confidence where available, and avoid automated blocking, ranking, or outreach decisions without human oversight. <br>
+## Use Case:
 
+Developers and AI-agent builders use this skill to connect agents or dating applications to XO Protocol for user-authorized identity, compatibility, reputation, profile, and public-post signals. It supports trust badges, social-context workflows, ranking, and scam-review assistance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pbjhsu/xo-protocol) <br>
-- [XO Protocol landing page](https://xoxo.space/en/protocol) <br>
-- [XO Protocol API docs](https://protocol.xoxo.space/protocol/docs) <br>
-- [OpenAPI specification](openapi.yaml) <br>
-- [SDK package metadata](sdk/package.json) <br>
-- [MCP server example](examples/mcp-server.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, shell, JSON configuration examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XO Protocol API key and user-authorized OAuth access token; access should be limited to approved scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata and skill frontmatter) <br>
+Risk: An AI client can access XO account-linked trust, reputation, profile, and public-post data through a user's XO token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for clients that should receive this data, disclose the data access to end users, and request only the OAuth scopes needed for the task.
+
+Risk: XO_API_KEY and XO_ACCESS_TOKEN can expose authorized API access if copied into shared configuration or logs.
+
+Mitigation: Keep credentials out of shared config, source control, and transcripts; rotate tokens if they are exposed.
+
+Risk: OAuth example code may be incomplete for production token handling and state validation.
+
+Mitigation: Harden production integrations with token isolation, state validation, PKCE where appropriate, and normal application security review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pbjhsu/skills/xo-protocol)
+- [XO Protocol landing page](https://xoxo.space/en/protocol)
+- [XO Protocol API docs](https://protocol.xoxo.space/protocol/docs)
+- [OpenAPI specification](https://github.com/xo-protocol/xo-protocol/blob/main/openapi.yaml)
+- [XO Protocol SDK](https://github.com/xo-protocol/xo-protocol/tree/main/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, configuration snippets, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP/API results require XO_API_KEY and XO_ACCESS_TOKEN and depend on the user's approved OAuth scopes.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata and SKILL.md frontmatter; SDK package and OpenAPI list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

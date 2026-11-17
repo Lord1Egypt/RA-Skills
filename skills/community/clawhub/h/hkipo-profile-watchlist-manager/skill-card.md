@@ -1,48 +1,64 @@
-## Description: <br>
-Manage Hong Kong IPO user preferences and watchlists, including risk profile, default output, budget, financing preference, and tracked symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Hong Kong IPO user preferences and watchlists, including risk profile, default output, budget, financing preference, and tracked symbols.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-External users and agents use this skill to maintain personalized Hong Kong IPO profile settings and watchlists for later batch decisions. It is most useful when a workflow needs persistent risk preferences, budget settings, output preferences, financing preferences, or tracked IPO symbols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle includes broader HK IPO research, scoring, review, import/export, and persistence features beyond profile and watchlist management. <br>
-Mitigation: Review the packaged CLI before installation and invoke only the commands needed for the intended workflow. <br>
-Risk: Some packaged features can fetch third-party market data and store profile, watchlist, review, or scoring history under ~/.hkipo-next. <br>
-Mitigation: Confirm data-source expectations before networked use and inspect or clear local state when handling sensitive preferences. <br>
+## Use Case:
 
+External users and agents use this skill to maintain personalized Hong Kong IPO risk preferences, output defaults, budget, financing preference, and tracked symbols for later IPO decision workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackstoic/hkipo-profile-watchlist-manager) <br>
-- [hkipo-next README](runtime/hkipo-next/README.md) <br>
-- [AiPO API reference](runtime/hkipo-next/references/aipo-api.md) <br>
-- [HK IPO analysis guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [HK IPO API guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [HK IPO mechanism reference](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [Risk preferences reference](runtime/hkipo-next/references/risk-preferences.md) <br>
-- [AiPO data source](https://aipo.myiqdii.com) <br>
-- [AASTOCKS IPO market page](https://www.aastocks.com/tc/stocks/market/ipo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell commands; CLI results may be JSON, text, or markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profile and watchlist commands store local state under ~/.hkipo-next.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, release metadata, pyproject.toml) <br>
+Risk: The bundled runtime exposes broader IPO decision-support, network, scoring, review-history, suggestion-application, and persistence capabilities beyond profile and watchlist management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled commands before use, run the skill in a minimally privileged environment, and install only when the broader CLI behavior is acceptable.
+
+Risk: The runtime stores profile and watchlist configuration under ~/.hkipo-next.
+
+Mitigation: Avoid placing unrelated secrets in that directory and review generated profile or watchlist files before sharing logs or artifacts.
+
+Risk: Dependency resolution may change without a reviewed lockfile.
+
+Mitigation: Prefer a reviewed lockfile or pinned environment before using the bundled runtime in a sensitive workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hackstoic/skills/hkipo-profile-watchlist-manager)
+- [AiPO data source](https://aipo.myiqdii.com)
+- [AAStocks IPO market data](https://www.aastocks.com/tc/stocks/market/ipo/)
+- [API guide](runtime/hkipo-next/references/api-guide.md)
+- [Risk preferences](runtime/hkipo-next/references/risk-preferences.md)
+- [Analysis guide](runtime/hkipo-next/references/analysis-guide.md)
+- [IPO mechanism](runtime/hkipo-next/references/ipo-mechanism.md)
+- [AiPO API documentation](runtime/hkipo-next/references/aipo-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON, text, or markdown command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile and watchlist state is stored under ~/.hkipo-next when commands are executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

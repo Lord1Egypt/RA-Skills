@@ -1,45 +1,58 @@
-## Description: <br>
-Generates AI music, background music, and songs from text prompts using IMA Studio models including Suno and DouBao. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI music, background tracks, and songs from text prompts using IMA Studio models including Suno and DouBao.
 
-## Publisher: <br>
-[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan)
 
-## Use Case: <br>
-Developers and agents use this skill to create generated music, background tracks, jingles, soundtrack drafts, and song prototypes from text prompts. It is best understood as a text-to-music integration rather than a voiceover or narration tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published voiceover and narration description conflicts with the actual music-generation workflow. <br>
-Mitigation: Present and review the skill as an AI music, song, and BGM generator before installation or use. <br>
-Risk: Prompts and IMA_API_KEY are sent to IMA's API and generation may spend IMA credits. <br>
-Mitigation: Use only prompts and credentials appropriate for IMA Studio, monitor credit usage, and confirm users understand the external API dependency. <br>
-Risk: The script exposes a --base-url option that can redirect requests away from the default endpoint. <br>
-Mitigation: Use the default api.imastudio.com endpoint unless the replacement endpoint is fully trusted. <br>
+## Use Case:
 
+External users and content creators use this skill to generate songs, background music, jingles, and soundtrack-style audio from text prompts for media, marketing, social, and prototype workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/ima-voice-ai) <br>
-- [IMA homepage](https://www.imaclaw.ai) <br>
-- [SKILL-DETAIL.md](artifact/SKILL-DETAIL.md) <br>
-- [SECURITY.md](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON result objects containing generated audio URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY and may consume IMA credits; results are remote audio URLs rather than local downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server-resolved release metadata; artifact files report internal version 1.2.2) <br>
+Risk: The security evidence reports that the API base URL can be changed even though credential notes say the IMA_API_KEY is sent only to api.imastudio.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed or allowlisted api.imastudio.com endpoint before providing IMA_API_KEY, and do not let untrusted instructions set --base-url.
+
+Risk: The security evidence reports inconsistent voice-versus-music descriptions.
+
+Mitigation: Present this release as a music generation skill and confirm user expectations before using it for voiceover or TTS tasks.
+
+Risk: The security guidance recommends dependency pinning before production use.
+
+Mitigation: Pin and review Python dependencies before deploying the skill in production environments.
+
+## Reference(s):
+
+- [IMA homepage](https://www.imaclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/skills/ima-voice-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status messages and optional JSON containing the task ID, audio URL, model, and credit information.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated audio is returned as a remote media URL; the skill does not require local downloads for normal use.]
+
+## Skill Version(s):
+
+1.0.14 (source: ClawHub release metadata; artifact frontmatter reports 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

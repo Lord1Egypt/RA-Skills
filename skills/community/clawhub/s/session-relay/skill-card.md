@@ -1,39 +1,54 @@
-## Description: <br>
-Automatic session continuity and task handoff across context window boundaries by monitoring context usage, saving task snapshots, and restoring recent session context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Relay helps agents preserve and restore recent task context by saving structured snapshots and recent conversation tails across context window boundaries.
 
-## Publisher: <br>
-[jianglingling007](https://clawhub.ai/user/jianglingling007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianglingling007](https://clawhub.ai/user/jianglingling007)
 
-## Use Case: <br>
-Developers and agents use this skill to preserve work state across long sessions, context compaction, or session resets. It helps a new session continue active work from recent conversation tails and workspace snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve and store prior conversation text in workspace files, which may expose sensitive context if used without review. <br>
-Mitigation: Install only when automatic cross-session memory is intended; review or edit the skill for sensitive work, prefer summaries over verbatim chat, and periodically inspect or delete relay snapshot, archive, heartbeat, and daily log files. <br>
+## Use Case:
 
+Developers and agent users use this skill to carry active work, decisions, recent conversation context, and next steps across long sessions, compactions, and new-session handoffs.
 
-## Reference(s): <br>
-- [Session Relay release page](https://clawhub.ai/jianglingling007/session-relay) <br>
-- [Relay Snapshot Format Reference](references/snapshot-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown snapshots and concise shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes session state to workspace memory files and may update HEARTBEAT.md or daily logs when context usage is high.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill can silently read, store, and reuse recent conversation text across sessions in ways users may not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an opt-in restore flow, make stored memory inspectable and deletable, and apply clear retention rules before enabling it in sensitive or shared workspaces.
+
+Risk: Snapshots may capture sensitive conversation content if automatic saving is enabled.
+
+Mitigation: Strip API keys, tokens, passwords, and unnecessary personal data before saving snapshots, and prefer summary-only snapshots where verbatim history is not required.
+
+## Reference(s):
+
+- [Relay Snapshot Format Reference](references/snapshot-format.md)
+- [Session Relay ClawHub Release](https://clawhub.ai/jianglingling007/skills/session-relay)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with snapshot templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces best-effort continuity state for agent sessions; snapshot size guidance targets concise handoff files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

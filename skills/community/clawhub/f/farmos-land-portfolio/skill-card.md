@@ -1,43 +1,56 @@
-## Description: <br>
-Query land ownership, leases, landlord info, and land payments. Write operations for payment management and lease renewals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries land ownership, leases, landlord information, and land payments, and supports authenticated payment-management and lease-renewal operations.
 
-## Publisher: <br>
-[brianppetty](https://clawhub.ai/user/brianppetty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianppetty](https://clawhub.ai/user/brianppetty)
 
-## Use Case: <br>
-Farm operations managers and authorized staff use this skill to inspect owned and leased land, lease terms, landlord contacts, payment status, annual land costs, and cash requirements. It also supports authenticated payment updates and lease renewal workflows with preview and confirmation steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive lease terms, rent amounts, landlord contact details, and payment records. <br>
-Mitigation: Install only in a trusted private FarmOS environment and enforce admin or manager authorization on all read and write endpoints. <br>
-Risk: Bulk payment marking, lease renewal, and year-end rollover actions can change financial records at scale. <br>
-Mitigation: Require the agent to show affected records and obtain explicit human confirmation before any bulk payment, lease renewal, or rollover execution. <br>
-Risk: Using truncated dashboard data could create incomplete or misleading financial summaries. <br>
-Mitigation: Use the complete `/all` endpoints for portfolio queries, report returned record counts, and tell the user when complete data cannot be retrieved. <br>
-Risk: Authenticated write operations depend on a local helper and short-lived JWTs. <br>
-Mitigation: Verify the local auth helper before use and ensure the FarmOS server enforces authorization on both read and write endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianppetty/farmos-land-portfolio) <br>
+## Use Case:
 
+Authorized farm operations employees and managers use this skill to review land portfolios, lease status, landlord details, annual land costs, and payment obligations, and to carry out controlled payment and lease-renewal workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, API paths, and structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should report record counts, avoid truncated data, and require explicit confirmation before bulk write operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive landlord, lease, and payment data in a business system.
+
+Mitigation: Use it only with protected FarmOS API deployments that enforce server-side authentication, TLS, and least-privilege tokens.
+
+Risk: A local role file is not sufficient as the only access boundary for sensitive portfolio data.
+
+Mitigation: Enforce admin or manager authorization on the server before returning land, landlord, lease, or payment data.
+
+Risk: Bulk payment marking, lease renewals, and year-end rollover actions can change business records at scale.
+
+Mitigation: Require preview, explicit user confirmation, and authenticated requests before executing bulk or year-end changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianppetty/skills/farmos-land-portfolio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should state record counts for complete data retrieval and require preview and confirmation before bulk write operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

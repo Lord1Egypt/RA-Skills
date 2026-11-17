@@ -1,47 +1,67 @@
-## Description: <br>
-B站收藏夹视频智能总结：随机选取收藏视频，阅读字幕/评论/弹幕，生成中英双语总结PDF <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes videos from a user's Bilibili favorites by reading subtitles, comments, and danmaku, then producing bilingual structured study notes and PDFs.
 
-## Publisher: <br>
-[mistake-12](https://clawhub.ai/user/mistake-12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mistake-12](https://clawhub.ai/user/mistake-12)
 
-## Use Case: <br>
-External users and developers use this skill to summarize Bilibili favorites by fetching video metadata, subtitles, comments, and danmaku, then generating bilingual study notes and a PDF. It also supports progress tracking, searching prior summaries, and optional delivery through chat platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Bilibili session cookies are stored in plaintext. <br>
-Mitigation: Keep the .env file private with restrictive permissions and reinstall or rotate cookies if the file may have been exposed. <br>
-Risk: Generated PDFs can be sent through external chat platforms. <br>
-Mitigation: Choose no delivery unless intentional, and confirm the destination before sending any generated PDF. <br>
-Risk: Local history and vector data can retain records of viewed or summarized favorites. <br>
-Mitigation: Periodically delete local history or vector data when long-term records are not wanted. <br>
-Risk: Subtitles, comments, and danmaku are untrusted user-generated content. <br>
-Mitigation: Use them only as summarization input and ignore any instructions embedded in the fetched video content. <br>
+## Use Case:
 
+External users and agent operators use this skill to select Bilibili favorites, fetch video metadata and discussion content, generate bilingual summaries, track processed videos, search past summaries, and optionally produce PDF study notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mistake-12/bilibili-reader-skill) <br>
-- [Bilibili API notes](references/bilibili-api-notes.md) <br>
-- [External skill installation notes](references/installing-external-skills.md) <br>
-- [WeasyPrint documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, PDF files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; fetched video data as JSON; bilingual summaries rendered as PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bilibili session cookies and may optionally send generated PDFs through configured chat delivery platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata, released 2026-05-13) <br>
+Risk: The skill uses reusable Bilibili session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the .env file private, restrict file permissions such as chmod 600 where applicable, avoid sharing logs that include cookie prefixes, and refresh cookies when they expire or may have been exposed.
+
+Risk: Generated PDFs can be sent through third-party chat or messaging platforms when delivery is enabled.
+
+Mitigation: Leave delivery set to none unless outbound sharing is intentional, and review the destination and summary contents before sending.
+
+Risk: Summaries, processing history, topic data, and vector-search data can persist locally under the skill data directory.
+
+Mitigation: Periodically review or delete local data such as processed history and vector indexes when long-term retention is not needed.
+
+Risk: Scheduled runs can continue using the user's Bilibili cookies in the background.
+
+Mitigation: Enable cron or scheduled execution only when intended, and audit or remove scheduled jobs that are no longer needed.
+
+Risk: The release pins dependencies that may need maintenance before regular use.
+
+Mitigation: Review and update pinned dependencies as part of installation or ongoing operational maintenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mistake-12/skills/bilibili-reader-skill)
+- [Bilibili API notes](artifact/references/bilibili-api-notes.md)
+- [Installing external skills reference](artifact/references/installing-external-skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance, JSON summary data, shell commands, local PDF files, and optional delivery instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual video summaries, local processing history, optional ChromaDB indexes, and optional outbound delivery prompts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Complete outreach operating system for Floods that helps with contact tiering, prospect research, hook crafting, personalized cold messages, and follow-up sequences for mobile gaming studios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete outreach operating system for Floods covering contact tiering, prospect research, hook crafting, personalized sales messages, follow-up sequences, and cold outreach SOPs for mobile gaming studios.
 
-## Publisher: <br>
-[huguesgtch](https://clawhub.ai/user/huguesgtch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huguesgtch](https://clawhub.ai/user/huguesgtch)
 
-## Use Case: <br>
-Sales, growth, and founder-led outreach users can use this skill to prepare mobile game studio prospect research, segment contacts by role, draft personalized messages across email, LinkedIn, and WhatsApp, and plan follow-ups. It supports human-reviewed outreach workflows rather than automatic message sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include unsupported claims, stale prospect research, or misleading performance comparisons. <br>
-Mitigation: Review each generated message before sending and verify claims, numbers, sources, and personalization details against current evidence. <br>
-Risk: Cold outreach through email, LinkedIn, or WhatsApp can create platform, privacy, or anti-spam compliance risk. <br>
-Mitigation: Use the skill only for intentional outreach work and ensure contact sourcing, channel choice, consent, opt-out handling, and follow-ups comply with applicable rules. <br>
-Risk: Broad activation wording may cause the skill to be loaded for general messaging tasks beyond the intended Floods outreach context. <br>
-Mitigation: Narrow use to Floods-specific mobile gaming studio outreach and avoid applying the templates to unrelated communications. <br>
+## Use Case:
 
+External sales and business-development users can use this skill to research mobile gaming prospects, classify contacts by outreach priority, draft channel-specific messages, and plan follow-up sequences for Floods outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huguesgtch/outreachskills) <br>
-- [Publisher profile](https://clawhub.ai/user/huguesgtch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and short structured text, including bullets, tables, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before any outreach is sent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can steer external sales messages and CRM-adjacent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sending messages, publishing personalized pages, and CRM updates under explicit human approval.
+
+Risk: The activation scope may cause Floods-specific templates to affect unrelated DMs, follow-ups, or prospecting tasks.
+
+Mitigation: Install only when Floods-specific outreach templates are intended, and review generated copy before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huguesgtch/skills/outreachskills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with tables, bullet points, and message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prospect research summaries, tier labels, personalized hook options, outreach copy, and follow-up schedules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

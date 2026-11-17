@@ -1,44 +1,58 @@
-## Description: <br>
-帮助用户追踪小红书账号日榜、周榜和月榜涨粉数据，支持查询、榜单图片生成、Excel 导出和订阅推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users track daily, weekly, and monthly follower-growth rankings for RedNote accounts across fixed categories, generate ranking images, export Excel files, and manage report subscriptions.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users, marketers, MCN operators, creators, and content operations teams use this skill to inspect Xiaohongshu follower-growth rankings across fixed categories, export data, generate shareable ranking images, and configure recurring ranking notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ranking data may be fetched without normal HTTPS identity verification. <br>
-Mitigation: Install only when this network behavior is acceptable, and avoid using the skill for sensitive or high-assurance data workflows. <br>
-Risk: Notification and subscription features may store contact details or delivery configuration locally. <br>
-Mitigation: Review local subscription and delivery configuration storage before entering sensitive contact details or production messaging credentials. <br>
-Risk: Generated Excel and image files may be copied to the Desktop. <br>
-Mitigation: Run exports in an environment where Desktop file placement is acceptable, and review generated files before sharing them externally. <br>
+## Use Case:
 
+External marketers, MCN operators, brand teams, and content creators use this skill to monitor RedNote account growth trends, create shareable ranking visuals, export data for analysis, and receive scheduled ranking reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/rednote-ranking-data) <br>
-- [Publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [Subscription tiers reference](references/subscription_tiers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON ranking data, Excel exports, and PNG ranking images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports category, ranking period, date, limit, output path, and subscription delivery settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Subscription delivery handles email addresses, WeChat identifiers, and delivery configuration with weak safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect subscription and configuration files, avoid real contact identifiers until storage is reviewed, and restrict access to generated delivery artifacts.
+
+Risk: Ranking data is fetched over unauthenticated TLS, which can reduce confidence in the transport path.
+
+Mitigation: Review and fix TLS certificate and hostname verification before relying on production data or running the skill on untrusted networks.
+
+Risk: Generated Excel and email reports may include untrusted ranking content.
+
+Mitigation: Treat exported spreadsheets and HTML reports as untrusted until spreadsheet escaping and HTML escaping are reviewed and fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/rednote-ranking-data)
+- [Paid subscription tier design](artifact/references/subscription_tiers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with command examples; JSON ranking data, PNG ranking images, Excel spreadsheets, HTML email content, and WeChat template payloads when scripts are run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected category, ranking period, date, row limit, subscription settings, and delivery channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

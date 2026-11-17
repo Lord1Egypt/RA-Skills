@@ -1,43 +1,64 @@
-## Description: <br>
-Provides offline access to a bundled Priority Pass lounge catalog for local lounge lookup, facility filtering, airport briefs, and lounge comparisons when network access is unavailable or disallowed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides offline or air-gapped access to a bundled Priority Pass airport experience catalog for local lounge lookup, facility filtering, airport briefs, and lounge comparisons.
 
-## Publisher: <br>
-[skylinehk](https://clawhub.ai/user/skylinehk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skylinehk](https://clawhub.ai/user/skylinehk)
 
-## Use Case: <br>
-External users and developers use this skill to query and compare airport lounge records from a local, offline snapshot. It is intended for air-gapped or network-restricted environments where answers must stay grounded in bundled data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Offline lounge results may be stale because the bundled catalog snapshot was generated on 2026-03-11. <br>
-Mitigation: Verify current lounge availability through another source when travel accuracy matters, and state when an answer is limited by the bundled snapshot. <br>
-Risk: Users may expect the offline bundle to fetch live updates or use remote MCP endpoints. <br>
-Mitigation: Keep runtime use local and read-only, avoid remote endpoints and secrets, and report missing or outdated data instead of guessing. <br>
+## Use Case:
 
+External users and developers use this skill to query and compare bundled Priority Pass airport records in offline or air-gapped environments when live internet access is unavailable or disallowed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skylinehk/pp-lounge-map-offline) <br>
-- [Offline MCP Setup](references/mcp.md) <br>
-- [Offline Safety](references/safety.md) <br>
-- [Offline Publishing Notes](references/publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with optional JSON MCP configuration and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in the bundled offline catalog snapshot generated on 2026-03-11; no live availability lookup is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.26 (source: server release evidence) <br>
+Risk: The npm dependency setup is incomplete and unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a restricted environment until the publisher adds a minimal package.json, pins @modelcontextprotocol/sdk and zod, and includes a lockfile.
+
+Risk: The bundled catalog is an offline snapshot and may be stale.
+
+Mitigation: State when fresher data is required and keep answers grounded in the bundled snapshot instead of guessing.
+
+Risk: The catalog covers broader Priority Pass airport experiences, not only lounges.
+
+Mitigation: Clarify the returned experience type and use available type filters before describing records as lounges.
+
+Risk: Using network, deploy, or data rebuild workflows would exceed the skill's offline boundary.
+
+Mitigation: Keep runtime behavior local and read-only; do not call remote MCP endpoints, fetch network resources, request secrets, deploy, or rebuild data.
+
+## Reference(s):
+
+- [Offline MCP Setup](artifact/references/mcp.md)
+- [Offline Safety](artifact/references/safety.md)
+- [Offline Publishing Notes](artifact/references/publishing.md)
+- [ClawHub Skill Page](https://clawhub.ai/skylinehk/skills/pp-lounge-map-offline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and structured JSON returned by local MCP tools and resources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a bundled offline snapshot; search results are paginated and limited to at most 25 records per request.]
+
+## Skill Version(s):
+
+1.3.26 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

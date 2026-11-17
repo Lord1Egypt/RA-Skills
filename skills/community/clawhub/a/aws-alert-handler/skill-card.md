@@ -1,41 +1,69 @@
-## Description: <br>
-Normalize Security Hub ASFF, Inspector v2, and CloudWatch alarm JSON into a consistent shape, auto-unwrapping SNS and EventBridge envelopes when an AWS alert from any delivery path needs structured fields or before handoff to incident-triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalize Security Hub ASFF, Inspector v2, and CloudWatch alarm JSON into a consistent shape, including SNS and EventBridge envelope handling.
 
-## Publisher: <br>
-[ggettert](https://clawhub.ai/user/ggettert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggettert](https://clawhub.ai/user/ggettert)
 
-## Use Case: <br>
-Developers, security engineers, and operations teams use this skill to normalize AWS Security Hub, Inspector v2, and CloudWatch alarm payloads before triage, routing, or webhook-driven incident workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [AWS Alert Formats](references/alert-formats.md) <br>
-- [Severity Mapping](references/severity-mapping.md) <br>
-- [Webhook setup](references/webhook-setup.md) <br>
-- [incident-triage Skill](https://clawhub.ai/ggettert/incident-triage) <br>
-- [OpenClaw Gateway Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference) <br>
+Developers and security engineers use this skill to normalize AWS Security Hub, Inspector v2, and CloudWatch alert payloads before incident triage, webhook routing, or downstream automation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [Normalized JSON emitted by shell parser scripts, with Markdown guidance and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq; preserves the original alert payload in raw unless callers strip it before sharing.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Webhook-delivered alerts can be spoofed if SNS signatures and expected topic, account, or region are not verified before agent invocation.
+
+Mitigation: Use a Lambda, EventBridge connection, or trusted proxy that verifies SNS signatures and expected source metadata before forwarding alerts.
+
+Risk: Raw alert payloads may contain sensitive data and are preserved in parser output.
+
+Mitigation: Strip the raw field before posting normalized alerts to visible channels or external systems.
+
+Risk: Multi-finding Security Hub or Inspector batches may result in only the first finding being emitted.
+
+Mitigation: Split or reject multi-finding batches upstream before invoking the parser.
+
+Risk: CloudWatch skip patterns can silently drop alerts that match routine-alarm filters.
+
+Mitigation: Review and tighten or disable skip patterns for production accounts where matching alarms may represent incidents.
+
+Risk: Passing raw alert text directly into an agent can introduce prompt-injection content from alert fields.
+
+Mitigation: Treat alert payloads as data, avoid using raw fields as instructions, and pass structured normalized fields to downstream workflows.
+
+## Reference(s):
+
+- [AWS Alert Formats](references/alert-formats.md)
+- [Severity Mapping](references/severity-mapping.md)
+- [Webhook Setup](references/webhook-setup.md)
+- [incident-triage Skill](https://clawhub.ai/ggettert/incident-triage)
+- [OpenClaw Gateway Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from parser scripts, with Markdown guidance and shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parser output preserves the original alert payload in raw unless callers strip it before sharing.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

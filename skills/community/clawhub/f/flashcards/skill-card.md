@@ -1,39 +1,47 @@
-## Description: <br>
-Create effective flashcards with optimal formatting, spaced repetition integration, and memory science principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create effective flashcards with optimal formatting, spaced repetition integration, and memory science principles.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Learners, educators, and knowledge workers use this skill to turn study material into atomic, review-ready flashcards for spaced repetition tools such as Anki or Quizlet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Flashcards can contain sensitive personal, medical, financial, or account information if users include that material in prompts or cards. <br>
-Mitigation: Avoid placing sensitive information in generated cards unless the storage and sharing behavior of the chosen flashcard app is acceptable. <br>
-Risk: Incorrect, overly broad, or poorly phrased cards can reinforce bad recall patterns or misleading study material. <br>
-Mitigation: Review cards before import and keep them atomic, contextual, and aligned with trusted source material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Flashcards on ClawHub](https://clawhub.ai/ivangdavila/flashcards) <br>
+## Use Case:
+
+Students, educators, and other learners use this skill to turn study material into concise flashcards formatted for spaced repetition tools such as Anki or Quizlet.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated flashcards may contain inaccurate, misleading, or poorly scoped study prompts.
+
+Mitigation: Review generated cards for factual accuracy and clarity before importing them into Anki, Quizlet, or another study system.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown, TSV-style flashcard rows, or concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Anki TSV, Quizlet tab-separated import text, or Markdown tables for review before import.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown, TSV-style flashcard content, or structured review tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated cards should be reviewed for accuracy before importing into Anki or Quizlet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

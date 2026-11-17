@@ -1,42 +1,50 @@
-## Description: <br>
-Complete SEO content creation system for AI agents that researches keywords, analyzes competitors, writes optimized articles, and tracks rankings through natural conversation without APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete SEO content creation system for AI agents that researches keywords, analyzes competitors, writes optimized articles, and tracks rankings through natural conversation without APIs.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Marketing teams, content strategists, and agents use this skill to research keyword opportunities, plan content clusters, draft SEO articles, generate schema markup, and audit or score content before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: In agents that auto-route skills from casual phrasing, multi-step web research or content generation may run when the user did not intend it. <br>
-Mitigation: Use explicit invocation or confirmation before research and generation workflows. <br>
-Risk: SEO drafts, competitor analysis, ranking guidance, and schema snippets may be inaccurate if accepted without review. <br>
-Mitigation: Review generated briefs, articles, checklists, and JSON-LD before publication, and verify claims against current search results and authoritative sources. <br>
+## Use Case:
 
+Marketing teams, content operators, and SEO-focused agent users use this skill to research keywords, plan content clusters, draft optimized articles, generate schema markup, and score content before publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-seo-content-engine) <br>
-- [Schema.org](https://schema.org) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose, tables, checklists, and JSON-LD snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys or external service credentials required; web research depends on the host agent's search capability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: Broad natural-language triggers could cause an agent to start SEO writing or scoring workflows when auto-selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before using broad commands such as "write an article" or "score this article" in environments that auto-select skills.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org)
+- [SEO Content Engine on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-seo-content-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, structured content briefs, article templates, SEO checklists, scoring rubrics, and JSON-LD snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only workflow guidance with no API keys, credential use, hidden execution, persistence, or destructive behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and metadata.openclaw.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

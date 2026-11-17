@@ -1,40 +1,53 @@
-## Description: <br>
-Deep distributed tracing workflow guidance for instrumentation boundaries, context propagation, sampling, tail-based analysis, service maps, and latency debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep distributed tracing workflow for instrumentation boundaries, context propagation, sampling, tail-based analysis, service maps, and latency debugging when adopting OpenTelemetry, debugging microservices, or tuning P99 latency.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to plan and operate distributed tracing for microservices, OpenTelemetry adoption, service maps, latency debugging, and trace cost governance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying tracing guidance in production can expose PII or secrets in span attributes. <br>
-Mitigation: Review and enforce PII redaction, secret exclusion, and attribute limits before rollout. <br>
-Risk: Unbounded tracing volume, retention, or sampling changes can increase storage cost or hide important error traces. <br>
-Mitigation: Set sampling, retention, and budget policies that preserve errors and latency outliers while controlling trace volume. <br>
+## Use Case:
 
+Developers, platform engineers, and site reliability engineers use this skill to plan or improve distributed tracing for microservices, service maps, context propagation, sampling, and latency investigations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/tracing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown workflow guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance with no code execution, credential use, or persistence indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tracing plans can expose sensitive span attributes or route telemetry to inappropriate exporter destinations if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review span attributes, retention, and exporter destinations for privacy and cost controls before applying tracing guidance in production.
+
+Risk: High-cardinality attributes or overly broad sampling can increase telemetry storage cost.
+
+Mitigation: Set attribute and span limits, define sampling policy up front, and preserve error visibility while reducing noisy labels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/tracing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with staged checklists and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

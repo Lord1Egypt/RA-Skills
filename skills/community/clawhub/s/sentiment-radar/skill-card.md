@@ -1,43 +1,58 @@
-## Description: <br>
-Multi-platform sentiment monitoring and analysis for products, brands, and topics across Chinese and English social platforms, producing structured reports with product mentions, pricing complaints, comparison analysis, and actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sentiment Radar helps agents collect and analyze public social-media opinions about products, brands, and topics across XHS, Twitter, Reddit, and Douyin, then produce structured sentiment reports with product mentions, pricing complaints, comparisons, and actionable insights.
 
-## Publisher: <br>
-[Danielwangyy](https://clawhub.ai/user/Danielwangyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielwangyy](https://clawhub.ai/user/danielwangyy)
 
-## Use Case: <br>
-Developers, analysts, and market intelligence teams use this skill to collect social-media discussion for products, brands, or competitors and turn it into sentiment, pain-point, pricing, and comparison reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses authenticated social sessions and live browser automation for social-media collection. <br>
-Mitigation: Review before installing, use a dedicated social account and isolated browser profile, and run collection only for platforms you explicitly intend to monitor. <br>
-Risk: The workflow depends on MediaCrawler and can make persistent changes to that crawler's configuration. <br>
-Mitigation: Inspect or pin the MediaCrawler dependency and review configuration changes before running collection. <br>
-Risk: Generated reports and stdout may retain scraped comments and location metadata from social platforms. <br>
-Mitigation: Sanitize keywords and review, redact, and handle generated outputs as retained social-media content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sentiment Report Template](references/report-template.md) <br>
-- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Danielwangyy/sentiment-radar) <br>
+## Use Case:
 
+Developers, analysts, and market-intelligence teams use this skill to monitor launch reception, competitor sentiment, product pain points, pricing complaints, and comparison signals from public social-media data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis output, and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include retained social-media content, engagement metrics, product mentions, pricing complaints, comparison excerpts, and location metadata when present in collected comments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser scraping and MCP collection can use authenticated sessions or OAuth tokens for social-media access.
+
+Mitigation: Run only in a sandboxed environment with an ephemeral browser profile, and avoid exposing personal browser sessions or OAuth tokens unnecessarily.
+
+Risk: Security evidence flags under-scoped browser scraping and an unsafe external config rewrite that could run injected code.
+
+Mitigation: Pin and inspect MediaCrawler before running it, avoid untrusted keyword input, and review generated crawler configuration before execution.
+
+Risk: Collected social-media content may contain sensitive or personal data.
+
+Mitigation: Define retention and redaction rules for collected social-media data before storing, analyzing, or sharing results.
+
+## Reference(s):
+
+- [Sentiment Radar ClawHub Release](https://clawhub.ai/danielwangyy/skills/sentiment-radar)
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [Sentiment Report Template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON analysis output, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis covers sentiment split, product mentions, pricing complaints, comparison comments, user pain points, and engagement metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -38,6 +38,24 @@ This skill is built on top of multiple predecessors and contributions from the G
 
 ---
 
+## Dashboard evidence reference / 看板口径验收参考
+
+感谢 Jeremy 开源 [JeremyWXL/guanbi-agent-builder](https://github.com/JeremyWXL/guanbi-agent-builder)，提供从看板学习指标/维度定义、沉淀口径档案、采样并建立回归问题库的思路。
+
+参考固定版本：v4.8.1，[Git commit 7008a42](https://github.com/JeremyWXL/guanbi-agent-builder/tree/7008a42d903558cb4522dbfc9fbfd8df9523fd0c)。上游 MIT 版权及许可原文保留于 [references/third-party/guanbi-agent-builder-LICENSE.txt](references/third-party/guanbi-agent-builder-LICENSE.txt)，包括 `Copyright (c) 2026 Jeremy` 与作者的非官方声明。
+
+V3.3.0 的借鉴范围是看板定义档案、卡片采样、结构化问答验收与变化提示的方法。`scripts/dashboard_evidence.py` 为本项目重新实现：使用官方 guancli，保留隐藏时间宏与别名、继承实际页面默认筛选、显式文件与原始值取数、按具体数据行和字段验收，并用完整定义变化指纹要求复查。没有整套移植向导、工作台、记忆系统或 SQL/指标调用封装；不宣称继承上游测试结果。
+
+2026-10-12 追加审阅 v4.8.2，[完整提交 9c0f089](https://github.com/JeremyWXL/guanbi-agent-builder/commit/9c0f0895ed70220af38d24caeca82e59eeafe4a7)。只补入大数据量提醒、聚合优先和分批成本说明；不把上游“达到上限”表述当作截断的充分证明，本项目仍保守标记 possibly-truncated。已审阅提交见 [跟进基线](references/guanbi-agent-builder-baseline.json)。保留 v4.8.1 的实现来源与 MIT 原文，不宣称新版原样通过真实 BI 验收。
+
+2026-10-13 追加审阅 v4.8.3—v4.8.5，[完整提交 e57c55b](https://github.com/JeremyWXL/guanbi-agent-builder/commit/e57c55b7a092f31d0c49bd1ade6deac22bdbeec1)。吸收 v4.8.4 的出处须附数据期间、筛选与首次指标口径纪律，落实到本地验收报告与引用边界；未移植工作台数组渲染与首次开场白。原 v4.8.1 实现参考和 MIT 原文保留，独立验收脚本为本项目原创，不宣称继承上游测试。
+
+2026-11-02 追加审阅4.9.0—4.12.1，[固定提交 de79210](https://github.com/JeremyWXL/guanbi-agent-builder/commit/de79210e841931d5efd14854183f75a0c5b9b4ae)。吸收动态参数上下文、未知公式不猜可加和产物实际校验纪律；以本项目独立合成例复现数据集参数快照遗漏并修正。诊断/向导/重建器未移植，不继承上游测试。原实现参考和MIT原文保留。
+
+These local evidence tools were independently reimplemented after read-only production comparison. Credit goes to Jeremy for the dashboard-learning and regression-evidence workflow. Our test and deployment claims apply only to the cases documented in [the verification record](docs/dashboard-evidence-validation.md).
+
+---
+
 ## 🎓 Experience Contributors / 经验贡献者
 
 ### CTO Zhang Jin (张进) — Guandata BI

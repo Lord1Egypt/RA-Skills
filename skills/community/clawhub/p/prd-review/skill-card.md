@@ -1,41 +1,49 @@
-## Description: <br>
-Reviews commercial product requirements documents for logic accuracy and completeness, extracts interface, interaction, visual, state, and commercialization design points, assigns high, medium, and low priorities, and produces a designer-friendly structured summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化审查商业化产品需求文档的逻辑准确性与闭环性，提取界面/功能/商业化设计要点并划分高-中-低优先级，输出设计师友好的标准化梳理文档；当用户需要审查PRD、梳理设计要点、划分设计优先级或快速对接开发时使用
 
-## Publisher: <br>
-[Hollis0220](https://clawhub.ai/user/Hollis0220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis0220](https://clawhub.ai/user/hollis0220)
 
-## Use Case: <br>
-Product managers, designers, and development teams use this skill to review PRDs, identify logical gaps, extract design work items, and prioritize design execution for commercialization-focused product changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRD files can contain sensitive business plans, product strategy, commercial data, or user research. <br>
-Mitigation: Provide only the PRD files or pasted excerpts needed for the review and avoid pointing the agent at unrelated local files. <br>
-Risk: Automated logic reviews can miss business context or produce prioritization advice that does not match team constraints. <br>
-Mitigation: Have the product, design, or compliance owner review the generated issue list, design priorities, and recommendations before acting on them. <br>
+## Use Case:
 
+Product managers, designers, and product teams use this skill to review commercial PRDs, identify logic gaps, extract design work items, and prioritize UI, interaction, visual, and state design tasks.
 
-## Reference(s): <br>
-- [Review checklist](references/review_checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Hollis0220/prd-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or structured text with optional shell commands for local document parsing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include logic issue lists, design point lists, priority schedules, recommendations, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: User-provided PRD files may contain confidential product, business, or customer information, and the parser prints extracted document text into the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only PRD content intended for agent review, remove secrets or unnecessary sensitive details before parsing, and prefer pasted excerpts for highly sensitive sections.
+
+## Reference(s):
+
+- [Commercial PRD review checklist and output template](artifact/references/review_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with structured tables and optional local parser command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print extracted PRD document text into the agent session before analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

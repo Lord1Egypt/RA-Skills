@@ -1,40 +1,56 @@
-## Description: <br>
-Inject secrets into subprocesses via environment variables. You never see secret values - authy run injects them directly. Use for any command that needs API keys, credentials, or tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inject secrets into subprocesses via environment variables without exposing secret values to the agent.
 
-## Publisher: <br>
-[eric8810](https://clawhub.ai/user/eric8810) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eric8810](https://clawhub.ai/user/eric8810)
 
-## Use Case: <br>
-Developers and agents use Authy to run selected commands that need API keys, credentials, or tokens without directly viewing secret values. The skill focuses on listing secret names and injecting scoped secrets into subprocess environment variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run user-selected subprocesses with scoped secrets injected into environment variables. <br>
-Mitigation: Install only when the authy binary is trusted, use narrow policies, review wrapped commands before execution, and prevent subprocesses from printing, logging, or writing secret environment variables. <br>
+## Use Case:
 
+Developers and agents use this skill to run trusted local commands, tests, deployment scripts, and services with scoped secrets injected as environment variables.
 
-## Reference(s): <br>
-- [Authy Command Reference](references/commands.md) <br>
-- [Authy project homepage](https://github.com/eric8810/authy) <br>
-- [Authy on ClawHub](https://clawhub.ai/eric8810/authy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require the authy binary on PATH plus AUTHY_TOKEN and AUTHY_KEYFILE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release and skill frontmatter) <br>
+Risk: Secrets are injected into subprocess environments, so an untrusted command or destination could expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each authy run command before execution, run only trusted scripts or clients, and use the narrowest available scope.
+
+Risk: Printed, logged, redirected, or persisted environment variables could leak sensitive values.
+
+Mitigation: Do not echo, print, log, redirect, or write secret-bearing environment variables to disk.
+
+## Reference(s):
+
+- [Authy Command Reference](artifact/references/commands.md)
+- [Authy Homepage](https://github.com/eric8810/authy)
+- [ClawHub Authy Skill Page](https://clawhub.ai/eric8810/skills/authy)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/eric8810)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require authy on PATH, AUTHY_TOKEN, and AUTHY_KEYFILE.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

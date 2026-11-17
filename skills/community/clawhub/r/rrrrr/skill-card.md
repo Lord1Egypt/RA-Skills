@@ -1,39 +1,52 @@
-## Description: <br>
-把srt字幕文件转换成markdown笔记333 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把srt字幕文件转换成markdown笔记333
 
-## Publisher: <br>
-[fafeidou](https://clawhub.ai/user/fafeidou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fafeidou](https://clawhub.ai/user/fafeidou)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content creators use this skill to convert SRT subtitles into concise Chinese Markdown notes while preserving subtitle text and adding useful screenshot placeholders.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The screenshot post-processing step may operate on the first Markdown or MP4 file found in the current directory.
+
+Mitigation: Run the skill in a clean folder containing only the intended generated Markdown file and video file.
+
+Risk: The skill can create Markdown/output files and may invoke ffmpeg on a local video.
+
+Mitigation: Review the files in the working directory before running the bundled screenshot script and confirm ffmpeg execution is acceptable for the local media.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to convert SRT subtitles into Chinese Markdown notes while preserving the transcript text, adding punctuation, structuring short sections, and inserting screenshot markers when visual context helps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Local screenshot post-processing may operate on unintended Markdown or MP4 files in the current directory. <br>
-Mitigation: Run the skill in a dedicated folder containing only the intended Markdown and video files. <br>
-Risk: The screenshot script invokes ffmpeg to process local video files. <br>
-Mitigation: Review the script before running it and use ffmpeg from a trusted source. <br>
+**Output Format:** [Markdown file with optional screenshot image links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create output files and process local Markdown and MP4 files in the current directory when the bundled screenshot script is run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown notes with optional screenshot placeholders and generated local screenshot links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script can read local Markdown and MP4 files, invoke ffmpeg for screenshots, and write processed Markdown and image files under output/.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

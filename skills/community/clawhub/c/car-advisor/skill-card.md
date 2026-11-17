@@ -1,53 +1,61 @@
-## Description: <br>
-Provides real-time car research, comparison, pricing, configuration, owner-review, and buying-advice workflows using current public sources instead of stale model knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Car Advisor is a real-time vehicle research and comparison skill for questions about car buying, model specifications, pricing, owner feedback, and market data.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-External users and agents use this skill to answer car-buying, model-comparison, configuration, pricing, review, and market-data questions with current public web sources. It is most useful when vehicle details, prices, or buyer recommendations may be time-sensitive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle prices, trims, specifications, availability, incentives, and sales rankings change frequently. <br>
-Mitigation: Use live public sources for time-sensitive claims and tell users to verify purchase decisions against official manufacturer or dealer sources. <br>
-Risk: Owner reviews and media evaluations can be subjective or incomplete. <br>
-Mitigation: Separate objective specifications from subjective feedback, summarize review patterns, and cite the source and collection time. <br>
-Risk: Automotive research can invite users to share unnecessary personal or financial details. <br>
-Mitigation: Avoid requesting personal details unless needed for the comparison and keep recommendations framed around user-stated preferences. <br>
+## Use Case:
 
+External users and agents use this skill to research China-market vehicles, compare models, check configurations and prices, summarize owner feedback, and produce buying guidance grounded in current web sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deusyu/car-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/deusyu) <br>
-- [Data sources reference](references/data-sources.md) <br>
-- [Comparison dimensions reference](references/compare-dimensions.md) <br>
-- [Tesla Model Y](https://www.tesla.cn/modely) <br>
-- [Tesla Model 3](https://www.tesla.cn/model3) <br>
-- [Xiaomi EV](https://www.xiaomiev.com) <br>
-- [AITO](https://www.aito.com) <br>
-- [Li Auto](https://www.lixiang.com) <br>
-- [Dongchedi parameter pages](https://www.dongchedi.com/auto/params-carIds-x-{series_id}) <br>
-- [Dongchedi sales ranking](https://www.dongchedi.com/auto/market/car/rank) <br>
-- [Autohome configuration comparison](https://www.autohome.com.cn/config/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured comparison tables, summaries, source notes, and buying recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include data sources and collection time when current vehicle facts, prices, reviews, or market data are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Vehicle prices, configurations, sales rankings, and owner feedback can change quickly or differ across sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use live sources for dynamic facts, prefer official pages for pricing, cross-check important claims, and include collection timestamps in answers.
+
+Risk: The skill focuses on Chinese sources and China-market vehicle models, which may bias coverage for users asking about other markets.
+
+Mitigation: State market scope when relevant and verify local-market availability, pricing, and specifications before giving buying guidance.
+
+Risk: The artifact references a plain HTTP APPKEY API example for a paid car data provider.
+
+Mitigation: Use HTTPS where available and avoid exposing API keys or secrets in prompts, logs, URLs, or shared outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deusyu/skills/car-advisor)
+- [Data Sources Reference](references/data-sources.md)
+- [Comparison Dimensions Matrix](references/compare-dimensions.md)
+- [Dongchedi Parameters](https://www.dongchedi.com/auto/params-carIds-x-{series_id})
+- [Autohome Configuration](https://www.autohome.com.cn/config/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, source notes, timestamps, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should separate objective vehicle data from subjective owner feedback and cite collection time for dynamic prices or market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Swcr Register helps generate Chinese software copyright registration materials, including source-code evidence documents, operating manuals, form-filling information, and optional guided online filing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swcr Register helps prepare Chinese software copyright registration materials by generating source-code identification documents, operation manuals, filing information, and optional guided form-filling support.
 
-## Publisher: <br>
-[daxiongdi666](https://clawhub.ai/user/daxiongdi666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiongdi666](https://clawhub.ai/user/daxiongdi666)
 
-## Use Case: <br>
-Developers and software owners use this skill to prepare Chinese software copyright registration materials from a project repository or local source directory. It can generate DOCX source-code and operating-manual documents, produce Markdown form-filling information, and optionally guide a user through online filing after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated registration text may contain generic assumptions or inaccurate source, ownership, function, feature, date, or rights-holder details. <br>
-Mitigation: Manually verify all generated source excerpts and registration fields before uploading, submitting, or relying on the materials. <br>
-Risk: The skill reads a selected project source directory to create registration documents. <br>
-Mitigation: Use it only on source trees the user is comfortable exposing to the agent, and review generated files before sharing them externally. <br>
-Risk: Optional browser-assisted filing interacts with an official registration workflow. <br>
-Mitigation: Proceed only after explicit user confirmation, require user review of the filled information, and do not automatically submit the application. <br>
+## Use Case:
 
+Developers and software publishers use this skill to prepare materials for Chinese computer software copyright registration, including source-code documentation, a software operation manual, and filing-information notes. It can also guide online form filling when the user explicitly confirms each step.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daxiongdi666/swcr-register) <br>
-- [WiseFlow Project Homepage](https://github.com/TeamWiseFlow/wiseflow) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts include DOCX and Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read the selected project source and create registration documents; optional browser-assisted filing requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can read broad project contents while preparing source-code documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted repositories and choose an output folder that does not expose unrelated private files.
+
+Risk: Symlinks or unexpected paths in the target repository could expose private locations.
+
+Mitigation: Avoid running it on directories that contain symlinks to sensitive locations, and review the selected source directory before generation.
+
+Risk: Generated registration text may be inaccurate or incomplete for a filing.
+
+Mitigation: Manually review generated function descriptions, technical descriptions, identity materials, addresses, uploads, and every browser step before any submission.
+
+## Reference(s):
+
+- [WiseFlow repository](https://github.com/TeamWiseFlow/wiseflow)
+- [Swcr Register on ClawHub](https://clawhub.ai/daxiongdi666/skills/swcr-register)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [DOCX files, Markdown filing notes, and concise instructions with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates source-code document, operation manual, and filing-information files; optional browser-assisted filing requires explicit user confirmation and manual review before submission.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

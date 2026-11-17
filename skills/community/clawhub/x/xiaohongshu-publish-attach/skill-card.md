@@ -1,46 +1,65 @@
-## Description: <br>
-Auto-publishes Xiaohongshu long-form notes on Linux by attaching to a Chrome/VNC session and running the bundled publish script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Xiaohongshu long-form publishing on Linux by attaching to a logged-in Chrome/VNC session and running the provided publish script with title, body, tags, and optional submit behavior.
 
-## Publisher: <br>
-[m-lemon](https://clawhub.ai/user/m-lemon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m-lemon](https://clawhub.ai/user/m-lemon)
 
-## Use Case: <br>
-External users and agents use this skill to prepare and publish Xiaohongshu long-form posts from a Linux/VNC environment with an authenticated Chrome creator session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live Xiaohongshu content through a logged-in account. <br>
-Mitigation: Run without --submit for review or dry-run first, then use --submit only when the post is intended for publication. <br>
-Risk: The skill uses a shared logged-in Chrome profile, which can expose account context across automations. <br>
-Mitigation: Use a dedicated Chrome profile or account instead of the shared Zhihu profile when isolating publication workflows matters. <br>
-Risk: The fallback path can perform desktop-level clicks in a VNC session. <br>
-Mitigation: Set XHS_DISABLE_SCREEN_CLICK=1 unless screen clicking is needed, and verify browser permissions and screenshots after use. <br>
+## Use Case:
 
+External users and agents use this skill to publish long-form Xiaohongshu creator-center posts from a Linux/VNC environment through an existing Chrome session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m-lemon/xiaohongshu-publish-attach) <br>
-- [Linux + VNC setup](references/linux-vnc-setup.md) <br>
-- [Shared Chrome with zhihu-publish-attach](references/shared-chrome-with-zhihu.md) <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com) <br>
-- [Google Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with bash commands; runtime can return JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux, Python, Chrome remote debugging/VNC, Selenium, chromedriver, and a logged-in Xiaohongshu Creator Center session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: The skill controls a persistent logged-in Chrome profile that may contain Xiaohongshu and Zhihu sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile for automation and close the debug Chrome session when publishing is complete.
+
+Risk: Using --submit performs a real Xiaohongshu post.
+
+Mitigation: Review generated content first and run without --submit when a dry run is needed.
+
+Risk: The optional pyautogui fallback can perform screen-level clicks in the VNC session.
+
+Mitigation: Disable the fallback with XHS_DISABLE_SCREEN_CLICK=1 unless screen-click recovery is explicitly needed.
+
+Risk: Running browser automation with elevated privileges increases the impact of mistakes or compromise.
+
+Mitigation: Run the skill as a normal user and avoid sudo or root execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m-lemon/skills/xiaohongshu-publish-attach)
+- [Linux + VNC setup](references/linux-vnc-setup.md)
+- [Shared Chrome with zhihu-publish-attach](references/shared-chrome-with-zhihu.md)
+- [Xiaohongshu creator center](https://creator.xiaohongshu.com)
+- [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux, Chrome remote debugging, Selenium, chromedriver, and a logged-in Chrome profile.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

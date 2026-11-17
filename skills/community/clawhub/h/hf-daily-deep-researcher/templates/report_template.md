@@ -146,5 +146,5 @@
 ---
 
 > **报告结束**
-> 追踪技能：hf-daily-deep-researcher v4.1.2
+> 追踪技能：hf-daily-deep-researcher v5.2.8
 > 下次扫描：{预计日期}

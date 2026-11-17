@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Task Result"
+  short_description: "Download a completed Dataify task result"
+  default_prompt: "Use $dataify-task-result to download the JSON result for this completed Dataify task."

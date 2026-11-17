@@ -1,42 +1,59 @@
-## Description: <br>
-A Chinese writing-style skill that helps agents turn explanations of complex topics into smooth long-form articles using a hidden seven-step framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents to write smooth Chinese explanatory articles using a seven-step internal framework for explaining complex concepts in philosophy, business, AI, linguistics, and sociology.
 
-## Publisher: <br>
-[whyischen](https://clawhub.ai/user/whyischen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyischen](https://clawhub.ai/user/whyischen)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to write approachable Chinese explanatory articles about complex topics in areas such as philosophy, business, AI, linguistics, and sociology. It is best suited for long-form explanation and teaching rather than short news, notices, or pure technical documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad writing or explanation requests and steer outputs into this specific long-form style. <br>
-Mitigation: Use it only when the requested output benefits from the hidden seven-step explanatory article structure. <br>
-Risk: The local quality-check script reads article files supplied to it. <br>
-Mitigation: Run the checker only on article files intended for review. <br>
+## Use Case:
 
+External users and content creators use this skill to draft Chinese long-form explanatory articles that make complex concepts easier to understand and retell. It is best suited for conceptual education, essays, and deep explanations rather than short notices, news updates, or technical documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/whyischen/lidan-writing-method) <br>
-- [Publisher Profile](https://clawhub.ai/user/whyischen) <br>
-- [Quality Check Guide](artifact/scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text article prose, with optional terminal quality-check output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated article should hide framework section titles; the bundled checker reads a user-supplied article file and reports whether it matches the style checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can impose a specific Chinese long-form style on tasks where the user asked for a different language, tone, or short answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for matching Chinese long-form explanatory writing, and let explicit user requirements for tone, language, and brevity take priority.
+
+Risk: The framework asks for data comparisons and reading recommendations, which may introduce unsupported facts if drafted without source checks.
+
+Mitigation: Review factual claims, data comparisons, and book recommendations before publication.
+
+Risk: The optional article checker is heuristic and does not establish factual accuracy or overall suitability.
+
+Mitigation: Use the checker as a drafting aid, then manually review the article for correctness, audience fit, and quality.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyischen/skills/lidan-writing-method)
+- [Publisher profile](https://clawhub.ai/user/whyischen)
+- [Quality checker guide](artifact/scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Chinese prose in Markdown, with optional quality-check report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework titles should be hidden in final articles; the optional checker reads a local article file and prints pass/fail suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

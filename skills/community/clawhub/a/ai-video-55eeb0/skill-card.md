@@ -1,43 +1,56 @@
-## Description: <br>
-从抖音视频学习: ai-video — 【高清MV】洋澜一 - 菩萨菩萨你睁睁眼【Pinyin Eng Sub AI音乐视频 繁体拼音英文动态字幕 】 Yang <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A learning-note skill that guides agents toward AI video creation and enhancement resources, including AI Video Maker, Topaz Video AI, and pinyin or English subtitle music-video workflows.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users can use this skill to guide AI video learning requests, especially around high-definition music video examples, AI Video Maker setup topics, Topaz Video AI enhancement references, and related Chinese-language tutorial prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad AI video requests. <br>
-Mitigation: Confirm the user's requested video task before applying the tutorial guidance. <br>
-Risk: The skill points users toward external video links and third-party software-install advice. <br>
-Mitigation: Verify external links and download sources independently before installing or recommending tools. <br>
+## Use Case:
 
+External users and agent builders can use this skill to surface concise guidance and tutorial references for AI video creation, video enhancement, and subtitle-focused music-video workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/ai-video-55eeb0) <br>
-- [Bilibili: Topaz Video AI v5.5.0 tutorial](https://www.bilibili.com/video/BV1zkzGYgEFp) <br>
-- [Bilibili: Topaz Video AI 7.1.0 enhancement tutorial](https://www.bilibili.com/video/BV1TL8ozeECJ) <br>
-- [Bilibili: AI Video Maker setup tutorial](https://www.bilibili.com/video/BV1vCF5zJEL9) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown text with tutorial steps and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No privileged access, code execution, credentials, or persistence identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can activate on broad AI-video or resource-related phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation triggers during installation and narrow them if they create unwanted matches in the target agent.
+
+Risk: The skill points users to third-party tutorial and download-related content.
+
+Mitigation: Use official or independently trusted software sources before installing AI video tools referenced by external tutorials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/ai-video-55eeb0)
+- [Bilibili tutorial: Topaz Video AI v5.5.0 video repair and frame interpolation](https://www.bilibili.com/video/BV1zkzGYgEFp)
+- [Bilibili tutorial: Topaz Video AI 7.1.0 video upscaling](https://www.bilibili.com/video/BV1TL8ozeECJ)
+- [Bilibili tutorial: AI Video Maker installation and setup](https://www.bilibili.com/video/BV1vCF5zJEL9)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown text with tutorial references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Activates on broad AI-video and resource-related phrases; no autonomous actions are performed by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

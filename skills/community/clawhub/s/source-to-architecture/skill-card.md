@@ -1,42 +1,53 @@
-## Description: <br>
-Generates five-layer architecture analysis and DrawIO-based architecture diagrams from source code structure and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates five-layer architecture visualizations and analysis artifacts from source code structure, dependencies, and module mappings.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a repository, map source files and dependencies into a standardized five-layer architecture, and generate diagrams and supporting analysis for review or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can modify system or global tools and overwrite a Dockerfile in the current directory. <br>
-Mitigation: Run installation from a controlled working directory or isolated environment, and review expected file changes before use. <br>
-Risk: Git hooks, weekly sync, or commit-triggered automation may operate on under-specified repositories or schedules. <br>
-Mitigation: Enable automation only after defining the exact repository, files, schedule, trigger conditions, and removal process. <br>
-Risk: Source analysis reads repository contents and dependency structure. <br>
-Mitigation: Use the skill only on repositories the user intends to inspect and avoid running it on unrelated or sensitive workspaces. <br>
+## Use Case:
 
+Developers and software architects use this skill to scan a project, map modules into access, routing/control, logic, data access, and storage/external layers, and generate architecture diagrams for review or documentation.
 
-## Reference(s): <br>
-- [Source To Architecture on ClawHub](https://clawhub.ai/vincentlau2046-sudo/source-to-architecture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, DrawIO, PNG, SVG, or PDF artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local repository scanning and optional diagram export tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Installer and workflow steps can make broad local changes, including global tool installation, sudo-based package installation, and Dockerfile creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer commands first, run in a disposable or containerized environment where possible, avoid sudo or global installs, and back up any existing Dockerfile.
+
+Risk: Project scanning and synchronization workflows may inspect or modify more of the local workspace than intended.
+
+Mitigation: Explicitly limit scanned project directories and review any Git hooks, scheduled synchronization, or generated change reports before enabling them.
+
+## Reference(s):
+
+- [Source To Architecture ClawHub page](https://clawhub.ai/vincentlau2046-sudo/skills/source-to-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON analysis files, and DrawIO architecture files with optional PNG, SVG, or PDF exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces source analysis, dependency and mapping summaries, and five-layer architecture diagrams for agent-assisted documentation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Pushes text messages, images, audio, or TTS playback to Huawei Smart Screen and other DLNA-compatible TVs via DLNA/UPnP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send2tv helps agents push text messages, images, audio, or TTS playback to Huawei Smart Screen and other DLNA-compatible TVs over DLNA/UPnP.
 
-## Publisher: <br>
-[seanshen-lec](https://clawhub.ai/user/seanshen-lec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanshen-lec](https://clawhub.ai/user/seanshen-lec)
 
-## Use Case: <br>
-Developers and end users use this skill to send text, photos, audio files, or generated speech from an agent environment to a DLNA-compatible television on a trusted local network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill briefly exposes selected media through a local HTTP server on the LAN. <br>
-Mitigation: Use only on trusted LANs and avoid sending sensitive text, images, or audio. <br>
-Risk: The skill can stop another local service that is using TCP port 8082. <br>
-Mitigation: Check for services using port 8082 before running and change the port or stop conflicting services intentionally. <br>
-Risk: TTS mode depends on a separate edge-tts skill. <br>
-Mitigation: Review the edge-tts skill before use and avoid sending sensitive text to TTS mode. <br>
+## Use Case:
 
+Developers and end users use this skill to have an agent cast text, images, audio, or TTS messages from a local machine to a configured DLNA-compatible TV on the same network.
 
-## Reference(s): <br>
-- [Send2tv ClawHub page](https://clawhub.ai/seanshen-lec/send2tv) <br>
-- [Microsoft Speech voice gallery](https://speech.microsoft.com/portal/voicegallery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Audio, Guidance] <br>
-**Output Format:** [Command-line execution that creates temporary JPEG or MP3 files, serves them over local HTTP, and sends DLNA/UPnP playback commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted LAN, configured TV and local IP addresses, Pillow, optional ffmpeg for audio conversion, and the separate edge-tts skill for TTS mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill serves pushed media over the local network while casting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted networks and avoid sending sensitive text, images, or audio.
+
+Risk: The skill can terminate whatever process is already using port 8082.
+
+Mitigation: Review active services before running it, especially on shared machines or systems with critical local services.
+
+Risk: TTS mode depends on a separately installed edge-tts converter.
+
+Mitigation: Use TTS mode only after reviewing and trusting the separately installed converter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanshen-lec/skills/send2tv)
+- [Microsoft Speech Voice Gallery](https://speech.microsoft.com/portal/voicegallery)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare temporary image or audio files and keep a local HTTP server running briefly while casting media.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

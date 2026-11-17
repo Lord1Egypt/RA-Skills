@@ -1,47 +1,56 @@
-## Description: <br>
-Book flights with airport hotel recommendations for layovers and early departures, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and related travel searches powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search flights for layovers and early departures, present airport-hotel travel guidance, and format real-time flyai results with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to collect route details, run live FlyAI travel searches, and present bookable flight or airport-hotel options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and execute an unpinned third-party CLI. <br>
-Mitigation: Require user approval before installation, prefer a pinned or sandboxed install, and verify the package source before running commands. <br>
-Risk: Travel search details may be sent to the FlyAI provider. <br>
-Mitigation: Confirm user intent and avoid submitting sensitive or unnecessary personal details in CLI queries. <br>
-Risk: Ambiguous travel requests can produce incorrect routes, dates, or booking options. <br>
-Mitigation: Ask clarifying questions for missing origin, destination, or date before running searches. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to collect route details, run flyai flight searches, compare results, and return booking-ready Markdown for airport-hotel and related travel requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/airport-hotel) <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output and booking detailUrl links; raw JSON should not be returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run a global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the flyai package source, pin the package version, and approve installation before running global npm commands.
+
+Risk: The skill builds shell commands from user-supplied route and date inputs.
+
+Mitigation: Validate route, date, and option values before execution, and review generated commands before they run.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires real-time flyai CLI output; booking results must include detailUrl links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

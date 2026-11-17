@@ -1,51 +1,64 @@
-## Description: <br>
-A certificate lifecycle harness that guides humans through X.509/TLS renewal, replacement, migration, inventory, review, dry-run, rollback, and verification workflows for complex infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through human-controlled X.509/TLS certificate renewal, replacement, migration, auditing, and hardening workflows for complex infrastructure.
 
-## Publisher: <br>
-[dimayip](https://clawhub.ai/user/dimayip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dimayip](https://clawhub.ai/user/dimayip)
 
-## Use Case: <br>
-Developers, SREs, platform engineers, and security reviewers use this skill to plan and review certificate renewals, CA migrations, and TLS hardening work without handing final approval to the agent. It helps produce auditable runbooks, layered review artifacts, rollback plans, verification steps, and gated operational commands for certificate changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Templates may alter live certificate assets or production bindings. <br>
-Mitigation: Require backups, dry-runs, explicit human approvals, rollback validation, and a reviewed maintenance window before any sudo, kubectl, service reload, or cloud write action. <br>
-Risk: Delete or cleanup steps can be difficult to recover from, especially in certificate stores. <br>
-Mitigation: Do not delegate Delete actions to the agent; remove or separately gate cleanup steps and keep destructive execution human-run. <br>
-Risk: Certificate workflows often require sensitive cloud credentials, private keys, keystore passwords, or kubeconfig access. <br>
-Mitigation: Do not paste long-lived credentials into chat; use user-run exports or short-lived least-privilege tokens scoped to the reviewed operation. <br>
-Risk: The JKS rollover template deletes an alias before importing the replacement, which can leave the keystore empty if import fails. <br>
-Mitigation: Validate the sequence in dry-run, confirm backups and restore commands, and require L1 review before using the template against production. <br>
+## Use Case:
 
+Developers, platform engineers, security reviewers, and operations teams use this skill to plan, review, and execute certificate lifecycle changes with bounded human approvals, layered review artifacts, rollback planning, and strict controls around production writes.
 
-## Reference(s): <br>
-- [Skill specification](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Reference index](artifact/references/README.md) <br>
-- [Cloud API naming guidance](artifact/references/cloud-api-naming.md) <br>
-- [Certificate chain verification](artifact/references/cert-chain-verification.md) <br>
-- [SAN closure discovery](artifact/references/san-closure-discovery.md) <br>
-- [Dry-run matrix](artifact/phases/05-dry-run-matrix.md) <br>
-- [Verify and rollback playbook](artifact/phases/06-verify-rollback-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, runbooks, review artifacts, and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to be reviewed by humans before production use; generated scripts and write actions require explicit approvals and dry-runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter 1.0) <br>
+Risk: Mutable install or update paths can pull unreviewed code into an agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a pinned, reviewed release or commit and verify the release before use.
+
+Risk: Production certificate runbook templates may affect live TLS traffic, secrets, Kubernetes resources, JKS stores, or sudo-managed files.
+
+Mitigation: Require human security review of generated production scripts, secret handling, rollback behavior, deletion steps, sudo commands, and Kubernetes/JKS templates before execution.
+
+Risk: Agent-assisted write operations can modify certificate bindings or infrastructure if gates are skipped.
+
+Mitigation: Enforce the skill's six-gate process, use dry-run or canary execution for Import/Modify actions, and never delegate Delete operations to the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dimayip/skills/cert-lifecycle-harness)
+- [Agent Skills Specification](https://agentskills.io)
+- [Certificate chain verification](artifact/references/cert-chain-verification.md)
+- [Cloud API naming differences](artifact/references/cloud-api-naming.md)
+- [SAN closure discovery](artifact/references/san-closure-discovery.md)
+- [Topology detection](artifact/references/topology-detection.md)
+- [Wildcard inventory](artifact/references/wildcard-inventory.md)
+- [Phase 0 intake checklist](artifact/phases/00-intake-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents with shell scripts, command blocks, checklists, runbooks, and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces standalone review documents, scripts, runbooks, ADRs, inventories, and rollback materials for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

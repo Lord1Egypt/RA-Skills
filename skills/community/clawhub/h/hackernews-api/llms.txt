@@ -1,0 +1,11 @@
+Hacker News Public Reads (hackernews-api)
+
+Read-only Hacker News API for monitoring stories, searching discussions, and looking up public items and users through ReplyNodes prepaid credits with one long-lived Bearer fetcher key.
+
+Access: the current live HN routes require a preconfigured ReplyNodes Bearer API key. Do not create an account, provision a key, or ask for credentials inside the skill. Store the existing secret as REPLYNODES_API_KEY and send it only to https://api.replynodes.com..
+
+Auth: Authorization: Bearer YOUR_FETCHER_KEY
+Gateway: https://api.replynodes.com
+Payment mode: prepaid_credit only. Free: 500 one-time credits; Developer: 10,000 credits/month at $19/month; Pro: 100,000 credits/month at $99/month.
+Standard operation cost: 2 credits.
+All operations are public, read-only HTTP GET requests.

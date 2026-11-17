@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Personaje cuadrito</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const CARTEL = '¡ya tengo mi oferta!';   // lo que dice el cartel que levanta (máx. ~28 letras)
+const COLORES = {
+  fondo: '#efeae0',    // papel del fondo
+  cuerpo: '#e0875a',   // el personaje
+  cartel: '#fffaf0',   // la hoja del cartel
+  letra: '#2a2622',    // texto del cartel
+  acento: '#e2b33c',   // antena y chispas del salto
+};
+const DUR = 6;          // segundos (4 a 8)
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const PAPEL = hacerPapel(COLORES.fondo, { fibras: true, viñeta: .08 });
+const SUELO = 1330;                        // línea del piso (dentro de la zona segura)
+const CW = 220, CH = 230;                  // cuerpo: bloque un poco más alto que ancho
+const ESCALA = 1.3;                        // tamaño del personaje en el cuadro 9:16
+const OSCURO = (() => { const c = COLORES.cuerpo; const n = [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16) * .55 | 0); return `rgb(${n})`; })();
+
+// Guion de la escena (segundos): una acción por tramo
+const T = { llega: 1.5, mira: 1.9, sube: 2.4, arriba: 2.9, salta: DUR - 2.2, fin: DUR - 1.3 };
+
+// ANATOMIA: estilizada — cuerpo de cuadrito con brazos de palito redondeado; no pretende ser una mano real
+function personaje(t) {
+  // 1) camina desde la izquierda hasta el centro
+  const pc = easeOut(prog(t, 0, T.llega));
+  const x = lerp(-120, W / 2, pc);
+  const caminando = t < T.llega;
+  const paso = caminando ? t * 9 : 0;
+  // 2) salto feliz con aplaste y estiramiento
+  const ps = prog(t, T.salta, T.salta + .7);
+  const alto = ps > 0 && ps < 1 ? Math.sin(ps * Math.PI) * 140 : 0;
+  const aplaste = t > T.salta - .12 && t < T.salta ? 1 - prog(t, T.salta - .12, T.salta) * .0 : 0;
+  let sx = 1, sy = 1;
+  if (t > T.salta - .15 && t < T.salta) { const k = prog(t, T.salta - .15, T.salta); sx = 1 + .14 * k; sy = 1 - .14 * k; }     // se agacha
+  else if (ps > 0 && ps < .35) { sx = .9; sy = 1.12; }                                                                           // se estira al subir
+  else if (ps >= .95 && t < T.salta + .85) { const k = 1 - prog(t, T.salta + .7, T.salta + .85); sx = 1 + .12 * k; sy = 1 - .12 * k; } // cae y aplasta
+  const rebote = caminando ? Math.abs(Math.sin(paso)) * 14 : 0;
+  const y = SUELO - 70 - alto - rebote;     // base del cuerpo (arriba de las patas)
+  // sombra
+  const sombra = 1 - alto / 400;
+  fill(circle(x, SUELO + 6, 150 * sombra, 16 * sombra), 'rgba(60,40,30,.16)', { amp: .6 });
+
+  ctx.save(); ctx.translate(x, y + 70); ctx.scale(sx, sy); ctx.translate(-x, -(y + 70));
+  // patas (2, cortitas); al caminar se alternan
+  for (let i = 0; i < 2; i++) {
+    const px = x - 50 + i * 100;
+    const lev = caminando ? Math.max(0, Math.sin(paso + (i % 2) * Math.PI)) * 26 : 0;
+    const pata = roundRect(px - 17, y - 8 - lev * .3, 34, 78 - lev, 10);
+    fill(pata, COLORES.cuerpo, { amp: 1, seed: 30 + i });
+    ink(pata, { closed: true, w: 5, col: OSCURO, passes: 1, amp: 1.1, seed: 30 + i });
+  }
+  // brazos: se levantan para sostener el cartel
+  const brazo = ease(prog(t, T.sube, T.arriba));
+  for (const lado of [-1, 1]) {
+    const bx = x + lado * (CW / 2 + 22), by = y - CH / 2 - brazo * 150;
+    const b = roundRect(bx - 26, by - 26 + brazo * 40, 52, 52 + brazo * 110, 22);
+    fill(b, COLORES.cuerpo, { amp: 1, seed: 40 + lado });
+    ink(b, { closed: true, w: 5, col: OSCURO, passes: 1, amp: 1.1, seed: 40 + lado });
+  }
+  // cuerpo
+  const cuerpo = roundRect(x - CW / 2, y - CH, CW, CH, 26);
+  fill(cuerpo, COLORES.cuerpo, { amp: 1.2, seed: 1 });
+  ctx.save(); tracePath(J(cuerpo, 1.2, 1), true); ctx.clip();
+  ctx.fillStyle = 'rgba(0,0,0,.08)'; ctx.fillRect(x - CW / 2, y - CH * .32, CW, CH);           // sombra en la parte baja
+  ctx.fillStyle = 'rgba(255,255,255,.14)'; ctx.fillRect(x - CW / 2 + 20, y - CH + 16, CW * .35, 14);  // brillo
+  ctx.restore();
+  ink(cuerpo, { closed: true, w: 6, col: OSCURO, passes: 2, amp: 1.3, seed: 1 });
+  // antena: se bambolea con el movimiento
+  const vaiven = Math.sin(t * 7) * (caminando || ps > 0 && ps < 1 ? 16 : 5);
+  const antena = resample([[x + 20, y - CH + 4], [x + 28 + vaiven * .4, y - CH - 45], [x + 34 + vaiven, y - CH - 80]], 6);
+  ink(antena, { w: 6, col: OSCURO, passes: 1, amp: .8, seed: 90 });
+  fill(circle(x + 34 + vaiven, y - CH - 92, 17), COLORES.acento, { amp: .6, seed: 91 });
+  ink(circle(x + 34 + vaiven, y - CH - 92, 17), { closed: true, w: 5, col: OSCURO, passes: 1, amp: .6, seed: 91 });
+  // cara: mira hacia donde camina, luego a cámara
+  const mira = caminando ? 16 : lerp(16, 0, prog(t, T.llega, T.mira));
+  const parpadeo = [1.1, 3.4, 4.9].some(b => t > b && t < b + .12) ? .15 : 1;
+  for (const lado of [-1, 1]) {
+    const ex = x + lado * 50 + mira, ey = y - CH * .6;
+    fill(circle(ex, ey, 24, 24 * parpadeo), '#1d1a18', { amp: .4, seed: 50 + lado });
+    if (parpadeo > .5) fill(circle(ex + 7, ey - 8, 8), '#ffffff', { amp: .2 });
+  }
+  // cachetes y boca (sonríe más al final)
+  glow(x - 88 + mira, y - CH * .36, 30, '235,110,95', .35); glow(x + 88 + mira, y - CH * .36, 30, '235,110,95', .35);
+  const sonrisa = t > T.salta - .2 ? 1 : .55;
+  ink(arc(x + mira, y - CH * .42, 22, .15 * Math.PI, .85 * Math.PI, 14 * sonrisa + 4), { w: 5, col: '#1d1a18', passes: 1, amp: .6, seed: 60 });
+  ctx.restore();
+
+  // el cartel (sube con los brazos)
+  if (brazo > 0) cartel(x, y - CH - 45 + (1 - back(brazo)) * 140, brazo);
+}
+
+function cartel(cx, base, p) {
+  const aj = autoajuste(CARTEL, LETRA_MANO, 700, 520, 2, 80, 44);
+  const alto = aj.rs.length * aj.size * 1.2 + 90, ancho = Math.max(...aj.rs.map(r => medir(r, aj.font))) + 110;
+  const ancho2 = Math.max(ancho, CW + 150), x = cx - ancho2 / 2, y = base - alto - 90;
+  ctx.save(); ctx.globalAlpha = clamp(p * 2);
+  ctx.translate(cx, base); ctx.rotate(Math.sin(BOIL * .9) * .012 - .02); ctx.translate(-cx, -base);
+  // dos palitos, uno por mano
+  for (const lado of [-1, 1]) fill(roundRect(cx + lado * (CW / 2 + 22) - 8, y + alto - 10, 16, 150, 6), '#9a6b43', { amp: .8, seed: 70 + lado });
+  // hoja
+  fill(rect(x + 12, y + 14, ancho2, alto), 'rgba(60,40,30,.18)', { amp: 1.5 });
+  fill(rect(x, y, ancho2, alto), COLORES.cartel, { amp: 1.6, seed: 71 });
+  ink(rect(x, y, ancho2, alto), { closed: true, w: 5, col: '#2a2622', passes: 2, amp: 1.6, seed: 71 });
+  ctx.font = aj.font; ctx.fillStyle = COLORES.letra; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  aj.rs.forEach((r, i) => ctx.fillText(r, cx + (vnoise(BOIL, i) - .5) * 3, y + 45 + aj.size * .6 + i * aj.size * 1.2));
+  ctx.restore();
+}
+
+function chispas(t) {
+  const p = prog(t, T.salta + .15, T.salta + .9); if (p <= 0 || p >= 1) return;
+  for (let i = 0; i < 8; i++) {
+    const a = -Math.PI / 2 + (i - 3.5) * .32, r0 = 170 + p * 150, r1 = r0 + 50 * (1 - p);
+    const cx = W / 2, cy = SUELO - 260;
+    ink(line(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0, cx + Math.cos(a) * r1, cy + Math.sin(a) * r1), { w: 8, col: COLORES.acento, passes: 1, amp: 1.2, seed: 80 + i, alpha: 1 - p });
+  }
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(PAPEL, 0, 0);
+  ink(line(140, SUELO, W - 140, SUELO), { w: 3, col: 'rgba(60,50,40,.35)', passes: 1, amp: 1 });
+  ctx.save(); ctx.translate(W / 2, SUELO); ctx.scale(ESCALA, ESCALA); ctx.translate(-W / 2, -SUELO);
+  chispas(t);
+  personaje(t);
+  ctx.restore();
+});
+</script>
+</body>
+</html>

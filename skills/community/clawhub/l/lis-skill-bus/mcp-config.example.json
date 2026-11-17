@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "lis-skill-bus": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "$HOME/.codex/mcp_servers/lis-skill-bus/skillbus.py",
+        "serve"
+      ]
+    }
+  },
+  "_说明": {
+    "Claude Desktop": "把整个 mcpServers 段粘贴到 claude_desktop_config.json 的 mcpServers 字段。",
+    "Cursor": "Settings > MCP 中 Add MCP Server，command 填上面的 command 与 args 内容。",
+    "其他客户端": "支持 stdio 的 MCP 客户端均可按此段注册；未注册 MCP 时可直接使用同一 bus 包的 CLI。",
+    "Windows": "command 换成 python（或 py），args 里的路径换成 %USERPROFILE%\\.codex\\mcp_servers\\lis-skill-bus\\skillbus.py。",
+    "环境变量": "可选 SKILLBUS_STATE_DIR 自定义状态目录；默认 $HOME/.codex/skills/.skillbus/state.json。"
+  }
+}

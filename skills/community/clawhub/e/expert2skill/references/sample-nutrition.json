@@ -1,0 +1,243 @@
+{
+  "rule_library": {
+    "id": "nutrition-assessment",
+    "version": "0.2.0",
+    "library_type": "expert",
+    "jurisdiction": "通用",
+    "title": "营养状况评估",
+    "author": "nutrition-expert",
+    "authority": "注册营养师个体化营养评估方法（专家个人方法论）",
+    "scoring": {
+      "weights": { "pass": 1.0, "partial": 0.5, "fail": 0.0 },
+      "na_excluded": true,
+      "formula": "score = round((passed + partial*0.5) / applicable * 100)",
+      "note": "na (not applicable) items are excluded from the applicable denominator"
+    },
+    "question_types_supported": ["binary", "scale", "numeric", "text", "conditional", "self_check", "multi_select"],
+    "subject_profile": {
+      "description": "评估前需采集的对象属性，作为判定基准（本身不参与评分）",
+      "fields": [
+        { "key": "体重", "type": "numeric", "unit": "kg", "required": true, "question": "评估对象当前体重？（kg）" },
+        { "key": "身高", "type": "numeric", "unit": "cm", "required": true, "question": "评估对象身高？（cm）" },
+        { "key": "年龄", "type": "numeric", "unit": "岁", "required": true, "question": "评估对象年龄？" },
+        { "key": "性别", "type": "binary", "options": { "0": "女", "1": "男" }, "required": true, "question": "性别？" },
+        { "key": "活动量", "type": "scale", "options": { "1": "久坐", "2": "轻度活动", "3": "中度活动", "4": "高强度活动" }, "required": false, "question": "日常活动量水平？" },
+        { "key": "疾病史", "type": "multi_select", "options": ["无", "肾病", "糖尿病", "高血压", "痛风", "其他慢性病"], "required": false, "question": "是否有以下疾病史？（可多选）" }
+      ]
+    }
+  },
+  "categories": [
+    {
+      "id": "A",
+      "name": "A. 身体状态",
+      "weight": 1.0,
+      "description": "客观身体指标。",
+      "items": [
+        {
+          "id": "a1",
+          "name": "BMI",
+          "question": "根据身高体重计算 BMI = 体重(kg) / 身高(m)²，当前值是多少？",
+          "type": "numeric",
+          "pass_condition": "18.5 <= BMI <= 24",
+          "partial_condition": "24 < BMI <= 28 或 17 <= BMI < 18.5",
+          "fail_condition": "BMI < 17 或 BMI > 28",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "severity": "high",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": {
+            "mode": "threshold",
+            "field": "BMI",
+            "computation": "actual = profile.体重 / (profile.身高/100)^2",
+            "pass": { "between": [18.5, 24] },
+            "partial": { "note": "24-28 或 17-18.5 两段", "ranges": [ { "gte": 24, "lt": 28 }, { "gte": 17, "lt": 18.5 } ] },
+            "fail": { "note": "BMI<17 或 BMI>28", "ranges": [ { "lt": 17 }, { "gt": 28 } ] }
+          }
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "B. 能量与宏量营养素",
+      "weight": 1.5,
+      "description": "摄入的核心营养维度，判定基准依赖对象画像。",
+      "items": [
+        {
+          "id": "b1",
+          "name": "蛋白质摄入量",
+          "question": "每日蛋白质摄入总量约多少克？",
+          "type": "numeric",
+          "pass_condition": "摄入 >= 1.2 g/kg体重",
+          "partial_condition": "1.0 <= 摄入 < 1.2 g/kg体重",
+          "fail_condition": "摄入 < 1.0 g/kg体重",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "weight_conditions": [
+            { "when": "profile.疾病史 contains '肾病'", "weight": 2.5, "note": "肾病患者蛋白质管理是关键（注意需个体化下调而非上调）" },
+            { "when": "profile.活动量 in ['3','4']", "weight": 2.0, "note": "高活动量者蛋白质需求高" }
+          ],
+          "severity": "high",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": {
+            "mode": "threshold",
+            "field": "蛋白质摄入",
+            "unit": "g/kg体重",
+            "reference": "subject_profile.体重",
+            "computation": "actual = 蛋白质摄入(g) / profile.体重(kg)",
+            "pass": { "gte": 1.2 },
+            "partial": { "gte": 1.0 },
+            "fail": { "lt": 1.0 }
+          }
+        },
+        {
+          "id": "b2",
+          "name": "脂肪供能比",
+          "question": "脂肪供能占总热量的比例约多少？",
+          "type": "numeric",
+          "pass_condition": "20% <= 供能比 <= 30%",
+          "partial_condition": "15% <= 供能比 < 20% 或 30% < 供能比 <= 40%",
+          "fail_condition": "供能比 < 15% 或 > 40%",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": {
+            "mode": "threshold",
+            "field": "脂肪供能比",
+            "unit": "%",
+            "pass": { "between": [20, 30] },
+            "partial": { "note": "15-20 或 30-40", "ranges": [ { "gte": 15, "lt": 20 }, { "gt": 30, "lte": 40 } ] },
+            "fail": { "note": "<15 或 >40", "ranges": [ { "lt": 15 }, { "gt": 40 } ] }
+          }
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "C. 微量营养素",
+      "weight": 1.0,
+      "description": "常见缺乏项评估。",
+      "items": [
+        {
+          "id": "c1",
+          "name": "膳食多样性",
+          "question": "每周是否摄入 ≥ 12 种食物？涵盖谷薯/蔬果/肉蛋奶/豆类四类？",
+          "type": "multi_select",
+          "options": ["谷薯类", "蔬菜水果", "肉蛋奶", "豆类坚果"],
+          "pass_condition": "覆盖全部 4 类",
+          "partial_condition": "覆盖 2-3 类",
+          "fail_condition": "覆盖 0-1 类",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "option_map", "pass": { "count": 4 }, "partial": { "count_between": [2, 3] }, "fail": { "count_lte": 1 } }
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "D. 进餐模式",
+      "weight": 1.0,
+      "description": "三餐与进食习惯。",
+      "items": [
+        {
+          "id": "d1",
+          "name": "三餐规律性",
+          "question": "是否基本规律三餐，无长期不吃早餐/夜宵习惯？",
+          "type": "binary",
+          "pass_condition": "是",
+          "partial_condition": "偶有（每周 ≤2 次）不规律",
+          "fail_condition": "长期不规律（每周 ≥3 次）",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "direct" }
+        },
+        {
+          "id": "d2",
+          "name": "情绪性进食",
+          "question": "是否存在压力/情绪低落时暴食或厌食的倾向？请描述具体情境。",
+          "type": "text",
+          "pass_condition": "无此类倾向",
+          "partial_condition": "偶有（每月 ≤2 次）",
+          "fail_condition": "频繁（每周 ≥1 次）",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "medium",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "expert_review", "note": "开放描述由营养师判断，AI 不自动判分" }
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "E. 个体适配与自检",
+      "weight": 2.0,
+      "description": "营养师区别于通用建议的核心：因人而异。",
+      "items": [
+        {
+          "id": "e1",
+          "name": "疾病史适配",
+          "question": "（若疾病史含肾病/糖尿病/高血压/痛风）是否针对该疾病调整了营养方案？",
+          "type": "conditional",
+          "pass_condition": "已针对性调整",
+          "partial_condition": "部分调整",
+          "fail_condition": "未调整",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 2.0,
+          "severity": "critical",
+          "applies_when": "profile.疾病史 != '无'",
+          "evidence_required": true,
+          "judge": { "mode": "expert_review" }
+        },
+        {
+          "id": "e2",
+          "name": "自问：是否在套模板？",
+          "question": "自检：我给出的营养建议，是针对这个人的（年龄/性别/体重/活动量/疾病），还是套用了通用模板？",
+          "type": "self_check",
+          "pass_condition": "明确针对个体定制",
+          "partial_condition": "大部分定制",
+          "fail_condition": "承认是通用模板",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.5,
+          "severity": "high",
+          "applies_when": null,
+          "evidence_required": false,
+          "judge": { "mode": "direct", "note": "自我报告的诚实性由营养师自握" }
+        },
+        {
+          "id": "e3",
+          "name": "反方证伪：方案风险",
+          "question": "写出三条：这个营养方案可能不适合该对象的原因（药物相互作用、食物过敏、经济可行性等）。",
+          "type": "text",
+          "pass_condition": "能列出 3 条具体风险",
+          "partial_condition": "1-2 条",
+          "fail_condition": "一条都列不出",
+          "score_if_pass": 1.0,
+          "score_if_fail": 0.0,
+          "weight": 1.0,
+          "severity": "low",
+          "applies_when": null,
+          "evidence_required": true,
+          "judge": { "mode": "expert_review" }
+        }
+      ]
+    }
+  ]
+}

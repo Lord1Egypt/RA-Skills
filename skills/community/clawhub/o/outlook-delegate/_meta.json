@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn799r4ccfw7609ya0pf487nmx80tzw6",
-  "slug": "outlook-delegate",
-  "version": "1.1.1",
-  "publishedAt": 1770952576638
+  "name": "outlook-delegate",
+  "version": "1.1.0",
+  "description": "Outlook mail and calendar access via delegate permissions. Supports three sending modes: as self, as owner (Send As), and on behalf of owner. Modified for delegate access from https://clawhub.ai/jotamed/outlook",
+  "author": "87marc",
+  "license": "MIT",
+  "keywords": ["outlook", "email", "calendar", "delegate", "microsoft365", "graph-api", "send-as", "send-on-behalf"]
 }

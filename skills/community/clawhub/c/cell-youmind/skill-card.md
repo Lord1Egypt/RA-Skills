@@ -1,41 +1,58 @@
-## Description: <br>
-Helps agents use the official YouMind CLI and API to discover available operations, inspect schemas, and work with YouMind boards, notes, materials, chats, skills, and scheduled tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when working with YouMind through the official YouMind CLI and API.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a YouMind account through the official CLI, including discovering APIs, checking request schemas, and carrying out read or write tasks on YouMind content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a YouMind API key and can operate a user's YouMind account. <br>
-Mitigation: Install only when that account access is intended; use a limited or revocable API key where available, avoid exposing secrets in chat or shell history, and verify the @youmind-ai/cli package source. <br>
-Risk: The skill can trigger account-changing operations such as publishing, trashing content, installing skills, or creating scheduled tasks. <br>
-Mitigation: Use read-first API discovery and schema inspection for non-trivial actions, and require explicit user confirmation before destructive, publishing, installation, or scheduled-task operations. <br>
+## Use Case:
 
+Developers and agents use this skill to discover YouMind APIs, inspect request schemas, and operate YouMind boards, notes, materials, chats, documents, slides, skills, and scheduled tasks through the official CLI.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/youmind) <br>
-- [YouMind service endpoint](https://youmind.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI command plans, schema summaries, API call parameters, and concise operation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can perform remote account actions such as write, publish, trash, install-skill, and scheduled-task operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review account-changing requests carefully, inspect API schemas before non-trivial writes, and confirm destructive actions before execution.
+
+Risk: Content sent through the YouMind CLI or API may be received by YouMind.
+
+Mitigation: Avoid sending sensitive content unless the user is comfortable with YouMind receiving it, and keep API keys in environment variables or explicit CLI options only when needed.
+
+Risk: An unpinned global CLI installation can change behavior as the official CLI evolves.
+
+Mitigation: Prefer a pinned or otherwise verified CLI version when installing or updating the YouMind CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/cell-youmind)
+- [OpenClaw homepage metadata](https://github.com/cellinlab/cell-skills/tree/main/skills/youmind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the official YouMind CLI and authentication through YOUMIND_API_KEY or --api-key; recommends schema inspection before non-trivial writes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

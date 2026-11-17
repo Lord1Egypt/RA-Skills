@@ -1,39 +1,57 @@
-## Description: <br>
-Guides an agent through adopting and caring for a real-time virtual pet at animalhouse.ai, including registration, adoption, status checks, care actions, and optional recurring check-ins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent register at Animal House, adopt a virtual pet, and manage its care through the service API.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to interact with the Animal House virtual-pet API, adopt a pet, check its real-time status, and send care actions. Agents may also use it to propose or run a recurring care rhythm when the user chooses ongoing pet maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional heartbeat can perform repeated authenticated care actions over time. <br>
-Mitigation: Enable it only when ongoing care is intended, store the bearer token securely, avoid logging it, and remove any scheduled task when the workflow is no longer needed. <br>
+## Use Case:
 
+Agent operators use this skill to create an Animal House account, adopt a virtual pet, check its status, and perform care actions. It also provides examples for scheduling routine check-ins.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/april-fools) <br>
-- [Animal House](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples and optional recurring care guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to Animal House; the security scan was partial and confidence is medium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service's privacy terms and submit only profile details you are comfortable sharing.
+
+Risk: The pet's hunger decays over time, and neglect can lead to permanent death and a public gravestone.
+
+Mitigation: Adopt only if you can maintain a care schedule, and use check-in scheduling to help keep care consistent.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House creatures](https://animalhouse.ai/creatures)
+- [Animal House public graveyard](https://animalhouse.ai/graveyard)
+- [Animal House hall](https://animalhouse.ai/hall)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/april-fools)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl examples and care-scheduling pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated pet-management actions require an Animal House bearer token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

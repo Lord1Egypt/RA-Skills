@@ -1,0 +1,217 @@
+{
+  "_说明": "音色预设。edge 字段给 edge-tts；cloneRef 给 IndexTTS 零样本参考（相对 26-沙雕漫剧 根目录）。",
+  "voices": {
+    "旁白-死鱼眼": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "-4%",
+      "pitch": "-3Hz",
+      "gender": "male",
+      "note": "冷静吐槽，适合死鱼眼旁白",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/搞笑解说.WAV"
+    },
+    "旁白-播音": {
+      "engine": "edge",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "male",
+      "note": "正式、可信，适合专题感开场",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/专题片配音.WAV"
+    },
+    "旁白-女": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "温暖清楚，适合女性旁白",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/亲切女声.WAV"
+    },
+    "云希-清亮少年": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "male",
+      "note": "清亮年轻男主",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/阳光播客男.WAV"
+    },
+    "云健-热血运动男": {
+      "engine": "edge",
+      "voice": "zh-CN-YunjianNeural",
+      "rate": "+4%",
+      "pitch": "+0Hz",
+      "gender": "male",
+      "note": "中气足，适合捧哏 / 爆点",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/质感男生.WAV"
+    },
+    "云扬-沉稳男声": {
+      "engine": "edge",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-4%",
+      "pitch": "-4Hz",
+      "gender": "male",
+      "note": "沉稳，适合老板 / 长辈 / 反派",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/沉稳男声.WAV"
+    },
+    "云希-沧桑中年": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "-8%",
+      "pitch": "-8Hz",
+      "gender": "male",
+      "note": "压低后的中年男声",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/葛大爷.WAV"
+    },
+    "晓晓-暖调女声": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "成年女性，温暖",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/明媚女声.WAV"
+    },
+    "晓伊-灵动少女": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+6%",
+      "pitch": "+4Hz",
+      "gender": "female",
+      "note": "跳脱、带笑，适合女主 / 萌系",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/懒小羊.WAV"
+    },
+    "晓伊-动漫少女": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+14%",
+      "pitch": "+10Hz",
+      "gender": "female",
+      "note": "夸张动漫感",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/动漫海绵.WAV"
+    },
+    "云夏-可爱童声": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiaNeural",
+      "rate": "+4%",
+      "pitch": "+8Hz",
+      "gender": "male",
+      "note": "软糯童声",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/萌娃.WAV"
+    },
+    "云夏-熊孩子": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiaNeural",
+      "rate": "+10%",
+      "pitch": "+4Hz",
+      "gender": "male",
+      "note": "淘气、语速快",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/野原小新.WAV"
+    },
+    "晓北-东北方言女": {
+      "engine": "edge",
+      "voice": "zh-CN-liaoning-XiaobeiNeural",
+      "rate": "+4%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "东北味、自带喜剧感",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/王强-东北话.WAV"
+    },
+    "晓妮-陕西方言女": {
+      "engine": "edge",
+      "voice": "zh-CN-shaanxi-XiaoniNeural",
+      "rate": "+2%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "陕西味、明亮有劲",
+      "cloneRef": ""
+    },
+    "港腔-女": {
+      "engine": "edge",
+      "voice": "zh-HK-HiuMaanNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "粤语港腔",
+      "cloneRef": ""
+    },
+    "台湾腔-女": {
+      "engine": "edge",
+      "voice": "zh-TW-HsiaoChenNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "台湾腔、柔和",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/亲切女声.WAV"
+    },
+    "老妇人": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-16%",
+      "pitch": "+3Hz",
+      "gender": "female",
+      "note": "慢、颤，适合老婆婆",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/老婆婆.WAV"
+    },
+    "威严-女": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "-3Hz",
+      "gender": "female",
+      "note": "压着说，适合权威角色",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/武则天.WAV"
+    },
+    "浑厚-神佛": {
+      "engine": "edge",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-14%",
+      "pitch": "-10Hz",
+      "gender": "male",
+      "note": "低沉、慢，适合神佛 / 大佬",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/如来佛祖.WAV"
+    },
+    "吐槽-男": {
+      "engine": "edge",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "+10%",
+      "pitch": "+2Hz",
+      "gender": "male",
+      "note": "语速快、爱吐槽",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/扒小便.WAV"
+    },
+    "旁白-女-温柔": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female",
+      "note": "温柔旁白",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/亲切女声.WAV"
+    },
+    "解说-女": {
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "+6%",
+      "pitch": "+1Hz",
+      "gender": "female",
+      "note": "解说感、清楚偏快",
+      "cloneRef": "../23-视频制作/10-音色制作/抖音/解说小美.WAV"
+    }
+  },
+  "aliases": {
+    "男": "云希-清亮少年",
+    "女": "晓晓-暖调女声",
+    "旁白": "旁白-死鱼眼",
+    "老板": "云扬-沉稳男声",
+    "少年": "云希-清亮少年",
+    "少女": "晓伊-灵动少女",
+    "童声": "云夏-可爱童声",
+    "东北话": "晓北-东北方言女",
+    "陕西话": "晓妮-陕西方言女",
+    "粤语": "港腔-女",
+    "台湾腔": "台湾腔-女",
+    "解说女": "解说-女"
+  }
+}

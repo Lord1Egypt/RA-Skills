@@ -1,43 +1,52 @@
-## Description: <br>
-Automated client qualification and intake system. Captures leads through conversational forms, scores them based on fit criteria, sends personalized auto-responses, and routes hot leads to your attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated client qualification and intake system that captures leads through conversational forms, scores fit criteria, sends personalized responses, and routes high-fit prospects for follow-up.
 
-## Publisher: <br>
-[kambrosgroup](https://clawhub.ai/user/kambrosgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kambrosgroup](https://clawhub.ai/user/kambrosgroup)
 
-## Use Case: <br>
-Freelancers, consultants, agencies, and service businesses use this skill to design conversational lead intake workflows, score prospects by fit criteria, and draft routing, response, and nurture logic before sales follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Client intake workflows can collect personal lead data or project files that are unnecessary for qualification. <br>
-Mitigation: Collect only the fields needed to qualify the lead, disclose storage and sharing practices, and avoid sensitive file uploads unless required. <br>
-Risk: Automated email, SMS, or newsletter follow-up can contact prospects without valid consent. <br>
-Mitigation: Require explicit opt-in before nurture sequences or SMS/email follow-up and keep unsubscribe or preference-management paths available. <br>
-Risk: CRM, calendar, and email integrations can expose more customer data or account privileges than the workflow needs. <br>
-Mitigation: Use limited-permission integration accounts and review integration scopes before connecting production systems. <br>
-Risk: Personalized auto-responses may send incorrect, misleading, or inappropriate business guidance. <br>
-Mitigation: Keep human review for important outbound messages, especially hot-lead scheduling, pricing, declines, and referrals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kambrosgroup/client-intake-bot-pro) <br>
+## Use Case:
 
+External freelancers, consultants, and service businesses use this skill to design conversational intake flows that qualify leads, score fit, and generate response and routing plans before sales calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with intake questions, scoring rules, response templates, workflow configuration, and integration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include example YAML-style notification rules and template copy for outbound lead responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lead intake workflows may collect prospect personal data or connect to CRM, email, SMS, newsletter, and calendar systems without appropriate consent or data minimization.
+
+Mitigation: Configure consent and opt-in language, limit collected fields to what is needed, and verify connected systems follow applicable privacy and marketing rules before use.
+
+Risk: Automated qualification and response flows may send inaccurate, overly broad, or inappropriate messages to prospects if enabled without review.
+
+Mitigation: Review scoring criteria, routing thresholds, and automated messages before enabling the workflow with real prospects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kambrosgroup/skills/client-intake-bot-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with intake questions, scoring rules, response templates, routing rules, and nurture sequence outlines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no tool calls, credential variables, or MCP references were detected in the supplied evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

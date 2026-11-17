@@ -1,41 +1,63 @@
-## Description: <br>
-优甲乐智能服药提醒系统 - 每日6:30提醒，智能统计，数据导出。适合甲状腺疾病患者建立规律服药习惯。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medication Clock helps users create Euthyrox medication reminders, record doses, review adherence, and export local medication records.
 
-## Publisher: <br>
-[robbingithub](https://clawhub.ai/user/robbingithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robbingithub](https://clawhub.ai/user/robbingithub)
 
-## Use Case: <br>
-External users who take levothyroxine use this skill to receive medication reminders, record doses, review adherence statistics, and export local medication history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medication history is sensitive and is stored locally under ~/.openclaw/medication_data. <br>
-Mitigation: Review local file permissions and keep exported CSV files out of shared or synced folders unless that sharing is intended. <br>
-Risk: Included scripts can modify medication records, and test_system.py includes cleanup behavior that can reset records. <br>
-Mitigation: Avoid running test_system.py with --cleanup against real records unless a backup has been verified and record reset is acceptable. <br>
+## Use Case:
 
+External users who need medication adherence support can use this skill to receive reminders, confirm Euthyrox doses, review status and history, generate adherence reports, and export records for personal review or sharing with a clinician.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robbingithub/medication-clock) <br>
-- [Publisher profile](https://clawhub.ai/user/robbingithub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown-style text responses, local JSON records, and CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores medication records locally under ~/.openclaw/medication_data and can export CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The release metadata grants broad command execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove execute_command permission before installation unless command execution is required and appropriately scoped.
+
+Risk: The test script and cleanup mode can change real medication records in the user's OpenClaw data directory.
+
+Mitigation: Avoid running test_system.py or test_system.py --cleanup against a real profile; use disposable data or back up ~/.openclaw/medication_data first.
+
+Risk: Medication records and CSV exports contain sensitive health-related data stored locally.
+
+Mitigation: Restrict filesystem access to ~/.openclaw/medication_data and treat exported CSV files as sensitive personal data.
+
+Risk: Automated reminders depend on manual OpenClaw cron and channel configuration.
+
+Mitigation: Confirm the reminder channel and cron configuration before relying on the skill for medication reminders.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/robbingithub/skills/medication-clock)
+- [README](artifact/README.md)
+- [User Guide](artifact/USER_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, CSV files]
+
+**Output Format:** [Markdown-style text responses, shell command examples, JSON-backed local records, and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores medication records, settings, statistics, and CSV exports locally under ~/.openclaw/medication_data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

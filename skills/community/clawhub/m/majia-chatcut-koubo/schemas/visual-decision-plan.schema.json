@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/visual-decision-plan.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "planId",
+    "projectId",
+    "timelineId",
+    "timelineRevision",
+    "policy",
+    "segments"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/visual-decision-plan.schema.json"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "planId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "automaticSelectionMinimum",
+        "generatedEvidenceSubstitutionAllowed",
+        "fixedIntervalSwitchingAllowed",
+        "onePrimaryTaskPerSegment"
+      ],
+      "properties": {
+        "automaticSelectionMinimum": {
+          "const": 7
+        },
+        "generatedEvidenceSubstitutionAllowed": {
+          "const": false
+        },
+        "fixedIntervalSwitchingAllowed": {
+          "const": false
+        },
+        "onePrimaryTaskPerSegment": {
+          "const": true
+        }
+      }
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/segment"
+      }
+    }
+  },
+  "$defs": {
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semanticMatch",
+        "authenticity",
+        "timingMatch",
+        "visualClarity",
+        "rightsConfidence",
+        "notRecentlyRepeated"
+      ],
+      "properties": {
+        "semanticMatch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "authenticity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "timingMatch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "visualClarity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rightsConfidence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "notRecentlyRepeated": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "assetId",
+        "assetKind",
+        "semanticRefs",
+        "sourceEvidenceRefs",
+        "rightsEvidenceRefs",
+        "sourceVerified",
+        "scores",
+        "total",
+        "decision"
+      ],
+      "properties": {
+        "candidateId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "assetId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "assetKind": {
+          "enum": [
+            "original-video",
+            "original-image",
+            "original-screen-recording",
+            "original-chart",
+            "original-document",
+            "licensed-stock",
+            "generated-illustration",
+            "motion-graphic",
+            "speaker"
+          ]
+        },
+        "semanticRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          }
+        },
+        "sourceEvidenceRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          }
+        },
+        "rightsEvidenceRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          }
+        },
+        "sourceVerified": {
+          "type": "boolean"
+        },
+        "scores": {
+          "$ref": "#/$defs/score"
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "decision": {
+          "enum": [
+            "eligible",
+            "rejected",
+            "manual-review"
+          ]
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "selectedCandidateId",
+        "reasonCodes",
+        "approval"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "automatic",
+            "manual-review",
+            "no-selection"
+          ]
+        },
+        "selectedCandidateId": {
+          "oneOf": [
+            {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reasonCodes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+$"
+          }
+        },
+        "approval": {
+          "$ref": "creator-os-common.schema.json#/$defs/approval"
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "segmentId",
+        "range",
+        "primaryTask",
+        "semanticReason",
+        "evidenceRefs",
+        "candidates",
+        "selection",
+        "detectedAntiPatterns",
+        "fallback"
+      ],
+      "properties": {
+        "segmentId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "range": {
+          "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+        },
+        "primaryTask": {
+          "enum": [
+            "evidence",
+            "speaker",
+            "list",
+            "data",
+            "scene",
+            "concept",
+            "none"
+          ]
+        },
+        "semanticReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/candidate"
+          }
+        },
+        "selection": {
+          "$ref": "#/$defs/selection"
+        },
+        "detectedAntiPatterns": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "fixed-interval-switching",
+              "unrelated-broll",
+              "generated-evidence-substitution",
+              "one-effect-per-sentence",
+              "duplicate-caption-overlay",
+              "all-list-items-simultaneous",
+              "unverified-rights",
+              "primary-task-conflict"
+            ]
+          }
+        },
+        "fallback": {
+          "enum": [
+            "speaker-stable",
+            "direct-cut",
+            "static-card",
+            "manual-review",
+            "block"
+          ]
+        }
+      }
+    }
+  }
+}

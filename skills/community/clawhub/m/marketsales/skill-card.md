@@ -1,39 +1,53 @@
-## Description: <br>
-Market context, strategic thesis, case studies, proof points, sales pipeline, and B2B communication guidelines for Floods sales materials targeting mobile gaming studios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market Sales Skills provides market context, strategic thesis, case studies, proof points, sales pipeline guidance, and B2B communication support for Floods sales materials targeting mobile gaming studios.
 
-## Publisher: <br>
-[huguesgtch](https://clawhub.ai/user/huguesgtch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huguesgtch](https://clawhub.ai/user/huguesgtch)
 
-## Use Case: <br>
-External sales and growth teams use this skill to draft or refine Floods pitch decks, proposals, sales emails, VSL scripts, pilot frameworks, competitive analysis, and other outbound collateral for mobile gaming UA buyers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer generated sales material toward Floods marketing claims or overconfident use of included performance metrics. <br>
-Mitigation: Review outputs for neutral wording, source verification, and appropriate caveats before using them in real customer-facing collateral. <br>
+## Use Case:
 
+External sales, growth, and UA teams use this skill to draft or refine Floods pitch decks, proposals, sales emails, pilot frameworks, competitive analysis, and outbound materials for mobile gaming studios. It helps agents keep generated sales content aligned to the stated Floods market thesis, proof points, and communication framing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huguesgtch/marketsales) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huguesgtch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text sales collateral and strategic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketing claims and campaign metrics that should be checked before use in external collateral.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad activation could apply Floods sales framing outside the intended mobile-gaming UA context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to explicit Floods sales, mobile gaming UA, pitch, proposal, or outbound communication tasks.
+
+Risk: Commercial claims, performance metrics, platform partner statements, and advertising-compliance assertions may be material in external communications.
+
+Mitigation: Verify those claims with current business, legal, and campaign evidence before using generated content externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huguesgtch/skills/marketsales)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text sales and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or external tool calls are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

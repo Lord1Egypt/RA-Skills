@@ -1,44 +1,59 @@
-## Description: <br>
-Neural Memory CN provides a neural-network-inspired memory system with activation spreading, associative retrieval, local operation by default, and optional LLM-based intent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neural Memory CN provides a neural network-inspired memory system with activation spreading and associative retrieval that works locally by default and can use a configured LLM for intent analysis.
 
-## Publisher: <br>
-[Sunlight-Bulling](https://clawhub.ai/user/Sunlight-Bulling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunlight-bulling](https://clawhub.ai/user/sunlight-bulling)
 
-## Use Case: <br>
-Developers and agent users use this skill to add persistent local knowledge memory, associative retrieval, and optional intent analysis to OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist personal profile, preference, or proprietary memory content in local plaintext files. <br>
-Mitigation: Store only information appropriate for local plaintext persistence and periodically review or delete the generated memory directory. <br>
-Risk: When LLM integration is enabled or provider API keys are present, queries or memory-derived text may be sent to an external AI provider. <br>
-Mitigation: Use local-only mode by default and enable LLM settings only in environments where provider data handling is acceptable. <br>
-Risk: The server security review marked the release suspicious because it needs review before installation. <br>
-Mitigation: Review the skill source, configuration, and local storage behavior before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to add a local neural-memory module for learning, associative retrieval, activation-spreading queries, and optional LLM-assisted intent analysis.
 
-## Reference(s): <br>
-- [Neural Memory API Reference](references/api.md) <br>
-- [Neural Memory Architecture](references/architecture.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sunlight-Bulling/neural-memory-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with Python examples, shell commands, YAML configuration, and JSON-like API result structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory files and retrieval results; optional LLM configuration can affect whether query or memory-derived text is sent to an external provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can persist sensitive memory, profile, or query-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated storage path with restrictive file permissions and avoid storing private or business-sensitive content unless that use is intended.
+
+Risk: Optional LLM or embedding features may send memory or query text to the configured provider.
+
+Mitigation: Keep LLM and embedding features disabled unless the provider and data flow are approved for the intended data.
+
+Risk: API keys may be exposed if passed through command-line arguments or stored carelessly.
+
+Mitigation: Prefer environment variables or a secret manager for credentials and avoid putting API keys in shell history or shared configuration files.
+
+## Reference(s):
+
+- [Neural Memory CN ClawHub Skill Page](https://clawhub.ai/sunlight-bulling/skills/neural-memory-cn)
+- [API Reference](references/api.md)
+- [Architecture](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, YAML, and JSON snippets; Python APIs return dictionaries and lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create and update local JSON memory, synapse, embedding, and activation-log files; optional LLM and embedding features may use configured external providers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

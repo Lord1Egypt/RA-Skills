@@ -1,14 +1,46 @@
-# SEOwlsClaw — SEO Checks Reference (v0.5+)
+# SEOwlsClaw — SEO Checks Reference (v0.9.2)
 
 ## Purpose
-This document maps out the complete SEO validation workflow for SEOwlsClaw v0.5+, including Search Intent detection + expanded checks for E-E-A-T, On-Page SEO, and common pitfalls.
+This file (`SEO_CHECKS/seo-checks-reference.md`) covers the **universal audit workflow** that
+applies to all page types — Search Intent confirmation, structured-data validation, and the
+scoring pipeline. The rule *values* it checks against (E-E-A-T signals, on-page SEO thresholds,
+common traps, FAQ requirements, quality principles, natural language rules) live in
+`SEO_RULES/universal.md`.
+For page-type-specific thresholds, required elements, and audit scoring, load the companion file:
+> `SEO_CHECKS/page-type-specific-checks.md` — Detailed checks per page type (Productnew, Productused, Blogpost, Landingpage, FAQ, Socialphoto, Socialvideo), rule values in `SEO_RULES/<type>.md`
+
+| File | Scope | When to Load |
+|------|-------|--------------|
+| `SEO_CHECKS/seo-checks-reference.md` | Universal audit workflow — all page types | Step 6, always |
+| `SEO_CHECKS/page-type-specific-checks.md` | Per-type thresholds, hard fails, schema rules | Step 6, after universal checks |
+| `SEO_CHECKS/seo-output-quality-checklist.md` | Pre-output quality gate | Step 6.5, before final output |
+| `SEO_CHECKS/search_intent.md` | SERP lookup + intent scoring | Step 0, before everything |
+| `SEO_CHECKS/schema-markup.md` | Schema.org rules + variable definitions | Step 5–6 for /writehtml |
+
+**Load order in Step 6 from BRAIN_ARCHITECTURE.md file:**
+> First run `seo-checks-reference.md` (universal audit mechanics, checked against `SEO_RULES/universal.md`)
+> After universal checks pass, load `page-type-specific-checks.md` and run
+> the checks for the active page type against `SEO_RULES/<type>.md`. Hard fails in that file
+> block output the same way as universal hard fails. (type-specific hard fails + warnings)
+> Finally walk through `seo-output-quality-checklist.md` → and only after ALL the quality checks have passed proceed to Step 6.5 from BRAIN_ARCHITECTURE.md file
 
 ---
 
-## Step 1: Search Intent Detection (NEW Function!) 🔍
+## Related Files in SEO_CHECKS/
+
+| File | What It Adds |
+|------|-------------|
+| `page-type-specific-checks.md` | Audit scoring (HARD FAIL/WARNING) per page type — rule values in SEO_RULES/<type>.md — runs after this file in Step 6 from BRAIN_ARCHITECTURE.md file |
+| `seo-output-quality-checklist.md` | Final quality gate before output is delivered — Step 6.5 from BRAIN_ARCHITECTURE.md file |
+| `search_intent.md` | SERP lookup and intent detection — Step 0, before any checks run |
+| `schema-markup.md` | Full schema variable definitions and stacking rules — referenced during Step 5 of Variable Substitution from BRAIN_ARCHITECTURE.md file |
+
+---
+
+## Step 1: Search Intent Detection 🔍
 
 ### Query Intent Analysis
-Before generating content, the brain analyzes your prompt to determine search intent type:
+Before generating content, the SEOwlsClaw brain analyzes your prompt to determine search intent type:
 
 ```python
 # Intent Detection Logic
@@ -46,71 +78,28 @@ def detect_search_intent(user_prompt):
 ### Intent Mapping → Content Format
 | Intent Type | Recommended Format | Hierarchy Pattern | Template Used |
 |----------|-----|---|---|
-| **Informational** | Blog Post + Guide | H1: Question, H2: Main sections, H3: Examples | `templates/blog_post_template.md` |
-| **Transactional** | Product Page | H1: Product name, H2: Features, H3: Specs | `templates/product_new_template.md` or `product_used_template.md` |
+| **Informational** | Blog Post + Guide | H1: Question, H2: Main sections, H3: Examples | `TEMPLATES/blog_post_template.md` |
+| **Transactional** | Product Page | H1: Product name, H2: Features, H3: Specs | `TEMPLATES/product_new_template.md` or `product_used_template.md` |
 | **Commercial** | Comparison Guide | H1: "Best X for Y", H2: Option A vs B, H3: Pros/Cons | Custom comparison template |
 
-### Example: Your Leica M6 Prompt
+### Example: Leica M6 Prompt
 ```python
 user_prompt = "I tried the Leica M6 in Fürth and Nürnberg... Summilux 50mm f1.4"
 
 # Detection Result:
 intent = "Informational" (personal experience + educational value)
 recommended_format = Blog Post
-template_used = templates/blog_post_template.md
+template_used = TEMPLATES/blog_post_template.md
 ```
 
 ---
 
 ## Step 2: Expanded SEO Checks by Category 🧩
 
-### E-E-A-T Signals (Covers Critical SEO Factor!) ✅ High Priority
-| Check | What to Verify | Why It Matters | Pass/Fail Criteria |
-|-------|----|----|----|
-| **Expertise** | Author credentials + domain authority in niche | Google ranks expert content higher | Author bio present + relevant experience mentioned |
-| **Experience** | Personal stories, real examples, hands-on testing | Builds trust with readers | Includes personal anecdotes (your Leica M6 story!) |
-| **Authoritativeness** | Domain reputation, citations, backlinks from reputable sites | Establishes industry leadership | 2+ authoritative domain references in content |
-| **Trustworthiness** | Accurate facts, no misleading claims, transparent sourcing | Ensures content reliability | Cite sources + avoid speculation without evidence |
-
-### On-Page SEO Requirements ✅ High Priority
-| Check | Standard Rule | Page Type Specifics | Pass/Fail Criteria |
-|-------|----|----|----|
-| **Title Tag Length** | 50-60 characters max | Blog: Include keyword early, Products: Brand first | Title < 60 chars + primary keyword present |
-| **Meta Description** | 150-160 characters max | All types: Compelling CTA phrase | Meta desc < 160 chars + includes keyword |
-| **H1 Tag (Only One)** | Single descriptive H1 per page | Products: "{Brand} + Product + Keyword", Blogs: "How to.../Why..." | Exactly 1 H1 element present |
-| **Heading Structure** | H2 for main sections, H3/H4 for subsections | Informational: More depth, Transactional: Less clutter | Max 6-8 H2 tags, proper nesting (no skipping from H2→H4) |
-| **Internal Linking** | 2-3 relevant internal links per page | Products: FAQ/related pages, Blogs: Related articles | Footer H6 links present + anchor text descriptive |
-
-### Common SEO Traps to Avoid ⚠️ High Priority
-| Trap | What It Is | How to Avoid | Consequence if Missed |
-|-------|----|----|----|
-| **Keyword Stuffing** | Repeating keywords unnaturally (>2% density) | Natural language flow, vary wording | Google penalizes low-quality content |
-| **Thin Content** | <300 words for informational queries (underserved filter) | Provide comprehensive answers with depth | Pages deprioritized in SERPs |
-| **Duplicate Content** | Same content appearing on multiple URLs | Use canonical tags + unique meta data | Search engines may merge/reject duplicate pages |
-| **Broken Links** | Internal/external links returning 404 errors | Test all H6 link URLs before deployment | Poor user experience + crawlability issues |
-| **Missing Schema** | No JSON-LD markup for page type | Always inject correct schema in head section | Missed rich snippets in SERPs |
-
-### FAQ Section Requirements ✅ Medium Priority
-| Check | When to Include | Format Required | Best Practice |
-|-------|----|----|----|
-| **FAQ Block Present** | All informational/commercial pages | H2: "Frequently Asked Questions", Q&A format with `<ul><li>Questions</li></ul>` tags | Answer each question in 2-3 sentences + link to main content |
-| **People Also Ask Optimization** | Blog posts, guides | Include related questions at end of article | Anticipate user follow-up queries |
-| **Schema FAQ Markup** | All pages with FAQ section | `<FAQPage>` JSON-LD schema in head | Enables star rating + question previews |
-
-### Quality Over Quantity Principles ✅ Medium Priority
-| Principle | What It Means | How SEOwlsClaw Enforces It |
-|-------|----|----|
-| **Depth > Breadth** | One comprehensive article > 10 shallow ones | Enforce minimum word count (Blog: 1500+ words) |
-| **Value-First Content** | Answer user's actual question + add extra value | Include comparison tables, examples, actionable tips |
-| **No Fluff Sections** | Every section must serve purpose or contain keywords | Validate every H2/H3 has relevant content (not just headers) |
-| **User Intent Match** | Content structure matches SERP features | Analyze SERP first → mimic format that ranks well |
-
-### Natural Language Integration ✅ Medium Priority
-| Check | Standard Rule | Implementation | Pass/Fail Criteria |
-|-------|----|----|----|
-| **Conversational Tone** | Second-person ("you"), simple sentences, avoid jargon | Persona guidelines control vocabulary choice | No overly technical/complex phrasing without explanation |
-| **Active Voice** | "The camera captures light" vs "Light is captured by the camera" | Convert to active voice for readability | >80% active voice in content body |
-| **Sentence Variety** | Mix short + long sentences for flow | Avoid repetitive sentence structures | Vary sentence length (not all same word count) |
+All rule values for this step — E-E-A-T Signals, On-Page SEO Requirements, Common SEO Traps,
+FAQ Section Requirements, Quality Over Quantity Principles, and Natural Language Integration —
+are defined in `SEO_RULES/universal.md`. Load it and check the generated content against every
+table in it before proceeding to Step 3.
 
 ---
 
@@ -146,47 +135,15 @@ def validate_jsonld(schema_string):
 
 ---
 
-## Step 4: Long-Term Project Tracking (Integration Idea) 🚀
+## Step 4: SEOwlsClaw Workflow with New Checks 🔄
 
-### Google Search Console Integration (Complex Tool Integration!)
-**Status**: Requires API access + authentication  
-**Implementation Complexity**: High ⭐⭐⭐⭐⭐  
-**Priority**: Long-term project tracking  
-
-| Component | What It Does | Implementation Steps |
-|----------|--|-------|
-| **Fetch Performance Data** | Get page load time, Core Web Vitals from GSC | Requires Search Console API + OAuth token |
-| **Index Coverage Reports** | Track which pages are indexed, errors | Submit sitemap → fetch status every 24h |
-| **Query Analysis** | See what keywords bring traffic to your site | Parse queries via API → match against generated content |
-
-### Google Analytics Integration (Complex Tool Integration!)
-**Status**: Requires GA4 API + authentication  
-**Implementation Complexity**: High ⭐⭐⭐⭐⭐  
-**Priority**: Long-term analytics  
-
-| Component | What It Does | Implementation Steps |
-|----------|--|-------|
-| **Traffic Metrics** | Page views, bounce rate, engagement time | Fetch via GA4 API (requires admin access) |
-| **Conversion Tracking** | Monitor button clicks, form submissions | Link to Google Tag Manager + event tracking |
-| **SEO Impact Analysis** | Track how generated content affects rankings | Compare before/after traffic metrics per page type |
-
-### Long-Term Project Benefits (Once Implemented!)
-- ✅ Track which page types rank best over months
-- ✅ Measure ROI of SEOwlsClaw-generated content
-- ✅ Identify trending keywords organically
-- ✅ Compare performance across seasons/topics
-
----
-
-## Step 5: SEOwlsClaw Workflow with New Checks 🔄
-
-### Complete Validation Pipeline (v0.5+)
+### Complete Validation Pipeline
 ```python
 def complete_seo_workflow(user_prompt):
     """Full pipeline from intent detection to validation"""
     
     # 1. Detect Search Intent
-    intent = detect_search_intent(user_prompt)  # ← NEW FUNCTION
+    intent = detect_search_intent(user_prompt)  # ← NEW FUNCTION in v0.8
     
     # 2. Select Template & Generate Content
     template = get_template_by_intent(intent)
@@ -236,5 +193,7 @@ def complete_seo_workflow(user_prompt):
 
 ---
 
-*Last updated: 2026-03-21 (v0.5+ planning complete)*  
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: trimmed Step 2 to audit-workflow mechanics only — E-E-A-T, on-page SEO, traps, FAQ, quality,
+and natural-language rule values now live in SEO_RULES/universal.md*
 *Maintainer: Chris — implementing search intent detection + expanded SEO checks!*

@@ -1,0 +1,4 @@
+interface:
+  display_name: "中国企业报税员"
+  short_description: "核验中国税收政策，计算常见税费，整理申报底稿与复核清单"
+  default_prompt: "使用 $china-tax-clerk 为我的中国大陆企业核对本期税费，生成计税底稿和申报准备材料。"

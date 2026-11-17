@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[{{ hostname }}] 资源已恢复</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f5f6f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;color:#24292f;">
+  <div style="max-width:560px;margin:24px auto;background:#ffffff;border:1px solid #e1e4e8;border-radius:8px;overflow:hidden;">
+    <div style="background:#1a7f37;padding:16px 24px;">
+      <span style="color:#ffffff;font-size:16px;font-weight:600;">✅ 资源已恢复</span>
+    </div>
+    <div style="padding:24px;">
+      <p style="margin:0 0 8px;font-size:14px;">服务器 <strong>{{ hostname }}</strong> 于 <strong>{{ timestamp }}</strong> 恢复，此前超限的指标已回到阈值以内。</p>
+      <p style="margin:16px 0;font-size:13px;color:#57606a;">
+        当前负载均值：{% for v in load_avg %}{{ "%.2f" | format(v) }}{% if not loop.last %}, {% endif %}{% endfor %}
+      </p>
+      <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:8px 12px;border-bottom:2px solid #e1e4e8;">指标</th>
+            <th style="text-align:right;padding:8px 12px;border-bottom:2px solid #e1e4e8;">当前值</th>
+            <th style="text-align:right;padding:8px 12px;border-bottom:2px solid #e1e4e8;">阈值</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for key, m in metrics.items() if m.percent >= m.threshold %}
+          <tr>
+            <td style="padding:8px 12px;border-bottom:1px solid #eee;">{{ m.path if m.path else key }}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;font-weight:600;">{{ m.percent | round(1) }}%</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;">{{ m.threshold }}%</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p style="margin:24px 0 0;font-size:12px;color:#8b949e;border-top:1px solid #eee;padding-top:12px;">
+        由 server-resource-monitor 自动发送。
+      </p>
+    </div>
+  </div>
+</body>
+</html>

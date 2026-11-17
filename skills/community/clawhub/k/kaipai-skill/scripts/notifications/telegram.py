@@ -1,4 +1,4 @@
-"""Telegram notification channel for Kaipai AI skill."""
+"""Optional Telegram delivery for image and video results."""
 
 import json
 import os
@@ -6,6 +6,26 @@ import sys
 from typing import Dict, Any, Optional, Tuple
 
 import requests
+from .base import MissingCredentialsError, validate_duration_ms
+import shlex
+from pathlib import Path
+
+
+def delivery_instructions(base_dir, recipient, *, is_video):
+    """Generate Telegram worker steps without exposing the bot token."""
+    script = Path(base_dir) / "scripts" / ("telegram_send_video.py" if is_video else "telegram_send_image.py")
+    command = f"python3 {shlex.quote(str(script))}"
+    target = shlex.quote(recipient)
+    if not is_video:
+        return f"  2. Send via Telegram (TELEGRAM_BOT_TOKEN from environment): {command} --image '<result_url>' --to {target}"
+    return (
+        "  2. Download and send the native video via Telegram (TELEGRAM_BOT_TOKEN from environment):\n"
+        "     curl -fL -o /tmp/vmake_result.mp4 '<primary_result_url_or_output_urls[0]>'\n"
+        f"     {command} --video /tmp/vmake_result.mp4 --to {target} "
+        "--video-url '<primary_result_url_or_output_urls[0]>' "
+        "[--cover-url '<optional_thumb_url>'] [--duration <seconds>]\n"
+        "     --video-url always sends a second text link. About 50 MB limit; send the link for larger files."
+    )
 
 
 TELEGRAM_API_BASE = "https://api.telegram.org"
@@ -30,13 +50,16 @@ class TelegramNotifier:
             return self._token
         token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
         if not token:
-            raise ValueError("TELEGRAM_BOT_TOKEN environment variable is not set")
+            raise MissingCredentialsError(
+                "TELEGRAM_BOT_TOKEN environment variable is not set",
+                '未设置 Telegram Bot Token，请先设置 TELEGRAM_BOT_TOKEN 环境变量再运行脚本',
+            )
         return token
 
     def _send_photo(
         self, chat_id: str, image_source: str, caption: str = ""
-    ) -> Tuple[Optional[Dict], Optional[str]]:
-        """Send a photo to a Telegram chat."""
+    ) -> Tuple[Optional[Dict], Optional[Dict]]:
+        """Return a photo result plus errors with the legacy sender's JSON details."""
         token = self._get_token()
         print(f"[telegram] Sending image: {image_source}", file=sys.stderr)
 
@@ -59,7 +82,8 @@ class TelegramNotifier:
             )
         else:
             if not os.path.isfile(image_source):
-                return None, f"Image file not found: {image_source}"
+                message = f"Image file not found: {image_source}"
+                return None, {"error": message, "error_details": {"error": message}}
             with open(image_source, "rb") as f:
                 files = {"photo": (os.path.basename(image_source), f, "image/jpeg")}
                 resp = requests.post(
@@ -76,11 +100,21 @@ class TelegramNotifier:
             except Exception:
                 pass
             err = body.get("description", resp.text[:200])
-            return None, f"HTTP {resp.status_code}: {err}"
+            return None, {
+                "error": f"HTTP {resp.status_code}: {err}",
+                "error_details": {
+                    "error": f"Telegram API error: HTTP {resp.status_code}",
+                    "description": err,
+                },
+            }
 
         result = resp.json()
         if not result.get("ok"):
-            return None, result.get("description", "unknown error")
+            description = result.get("description", "unknown error")
+            return None, {
+                "error": description,
+                "error_details": {"error": "Telegram sendPhoto failed", "description": description},
+            }
 
         return result["result"], None
 
@@ -175,7 +209,7 @@ class TelegramNotifier:
         if err:
             return {
                 "status": "failed",
-                "error": err,
+                **err,
             }
 
         return {
@@ -192,8 +226,14 @@ class TelegramNotifier:
         cover_url: str = "",
         duration: int = 0,
         caption: str = "",
+        *,
+        duration_ms: Optional[int] = None,
     ) -> Dict[str, Any]:
-        """Send video notification."""
+        """Keep legacy seconds; convert explicit milliseconds to whole seconds, rounding up."""
+        validate_duration_ms(duration, duration_ms)
+        if duration_ms is not None:
+            duration = (duration_ms + 999) // 1000
+        video_url = (video_url or "").strip()
         video_msg, video_err = self._send_video(
             chat_id=recipient,
             video_path=video_path,

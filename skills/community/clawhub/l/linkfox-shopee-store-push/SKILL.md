@@ -21,6 +21,14 @@ Shopee Open Platform **Push 模块**（4 个 API）。**依赖 `linkfox-shopee-s
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
 ## 官方参考
 
 Push 模块索引：[v2.push.set_app_push_config](https://open.shopee.com/documents/v2/v2.push.set_app_push_config?module=105&type=1)
@@ -42,6 +50,19 @@ Push 模块索引：[v2.push.set_app_push_config](https://open.shopee.com/docume
 | `confirm_consumed_lost_push_message.py` | confirm_consumed_lost_push_message | POST |
 | `push_api.py` | 通用入口 | — |
 
+## 接口说明（按 API）
+
+入参与响应细节放在 `references/apis/`，SKILL 只保留索引。
+
+| API | 说明文档 |
+|-----|----------|
+| `confirm_consumed_lost_push_message` | [references/apis/confirm-consumed-lost-push-message.md](./references/apis/confirm-consumed-lost-push-message.md) |
+| `get_app_push_config` | [references/apis/get-app-push-config.md](./references/apis/get-app-push-config.md) |
+| `get_lost_push_message` | [references/apis/get-lost-push-message.md](./references/apis/get-lost-push-message.md) |
+| `set_app_push_config` | [references/apis/set-app-push-config.md](./references/apis/set-app-push-config.md) |
+
+模块总览 / Feedback 见 [references/api.md](./references/api.md)。
+
 ## Usage Scenarios
 
 ### 1. 配置 Push 回调
@@ -57,6 +78,10 @@ Push 模块索引：[v2.push.set_app_push_config](https://open.shopee.com/docume
 - 用户侧授权流程 → `linkfox-shopee-store-auth`
 - Public OAuth / Partner 查询 → `linkfox-shopee-store-public`
 - 订单/商品等业务 API → 对应业务 skill
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback:** 见 `references/api.md`。
 

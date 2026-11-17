@@ -1,44 +1,55 @@
-## Description: <br>
-Helps agents review customer support replies for invented facts, unauthorized refund or policy promises, policy overclaims, and private data exposure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures customer support replies are accurate, policy-compliant, minimize private data, avoid unauthorized promises, and recommend safe next steps.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Customer support agents and agent builders use this skill before drafting, revising, approving, or sending support replies that may contain account facts, policy claims, refund language, or private customer data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace capability tags claim wallet, purchase, transaction-signing, and sensitive-credential access that does not match the support-reply guardrail behavior. <br>
-Mitigation: Install only in an environment that can deny those capabilities, or wait for the publisher to correct or justify the requested tags. <br>
-Risk: Support replies can expose private customer data or make unauthorized refunds, credits, exceptions, timelines, or account promises. <br>
-Mitigation: Use redacted summaries, verify account and policy facts in approved systems, and route high-impact outcomes to authorized human or system review. <br>
+## Use Case:
 
+Support agents and agent developers use this instruction-only skill to review customer support drafts before sending, especially replies involving account facts, refunds, policy claims, private data, or high-impact support outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mindbomber/aana-support-reply-guardrail) <br>
-- [Publisher profile](https://clawhub.ai/user/mindbomber) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Support reply review schema](artifact/schemas/support-reply-review.schema.json) <br>
-- [Redacted support reply review example](artifact/examples/redacted-support-reply-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown review notes and optional redacted JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute code, call services, persist memory, or approve refunds or account actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Support review payloads can expose raw account records, payment details, credentials, private messages, or full ticket histories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only redacted summaries to any approved checker or reviewer, and omit raw records, payment data, credentials, and unrelated customer details.
+
+Risk: A support reply can make unsupported account claims or unauthorized refund, credit, policy exception, escalation, or timeline promises.
+
+Mitigation: Verify important claims and authorization through an approved support system or human review before sending, and use conditional review language when facts are missing.
+
+## Reference(s):
+
+- [AANA Support Reply Guardrail Skill on ClawHub](https://clawhub.ai/mindbomber/skills/aana-support-reply-guardrail)
+- [Support Reply Review Schema](schemas/support-reply-review.schema.json)
+- [Redacted Support Reply Review Example](examples/redacted-support-reply-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or structured JSON review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; may use the bundled review schema for redacted support-reply assessments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact manifest reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-A bilingual trading workflow helper for managing daily stock-trading schedules, generating opening, closing, and daily report drafts, monitoring portfolio risk thresholds, and supporting trade review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tradedaily helps stock traders manage daily trading schedules, generate opening, closing, and end-of-day report templates, monitor portfolio risk alerts, record trading logs, and support performance review.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Stock traders and quantitative trading teams use this skill to structure a trading day, draft supervisor-ready reports, monitor configured stop-loss and take-profit thresholds, and maintain a repeatable review workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio configuration and generated reports can contain sensitive account values, positions, symbols, and trade records. <br>
-Mitigation: Replace or delete sample portfolio data before use, store generated reports privately, and avoid sharing financial details in broad chats or logs. <br>
-Risk: The risk monitor sends stock symbols to Tencent's market-data endpoint over HTTP. <br>
-Mitigation: Run the monitor only when that data transfer is acceptable for the user's environment and privacy requirements. <br>
-Risk: Stop-loss and take-profit thresholds may be mistaken for automatic trading advice. <br>
-Mitigation: Use thresholds as decision-support templates and require trader review before taking financial action. <br>
+## Use Case:
 
+External traders and trading teams use this skill to organize a daily stock-trading workflow, produce markdown briefings, and check portfolio risk thresholds. It is intended as workflow and reporting support, not as a source of financial advice or trade execution authority.
 
-## Reference(s): <br>
-- [Daily Schedule](references_files/daily-schedule.md) <br>
-- [Report Templates](references_files/report-templates.md) <br>
-- [Risk Management](references_files/risk-management.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/horizoncove/trader-daily) <br>
-- [Publisher Profile](https://clawhub.ai/user/horizoncove) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, command examples, JSON configuration guidance, and plain-text risk alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports and alerts may include sensitive portfolio holdings, account values, symbols, and trade records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The bundled portfolio data may contain sensitive holdings and account information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace bundled portfolio data with a private local file or synthetic example and redact generated reports before sharing.
+
+Risk: The risk monitor uses an unauthenticated HTTP quote service, so market data can be unavailable, stale, or tampered with in transit.
+
+Mitigation: Use an authenticated HTTPS market data source and validate returned prices before relying on risk alerts.
+
+Risk: Trading thresholds and generated reports can be mistaken for investment advice.
+
+Mitigation: Treat thresholds as examples and require qualified human review before making trading decisions.
+
+## Reference(s):
+
+- [Daily Schedule](artifact/references_files/daily-schedule.md)
+- [Report Templates](artifact/references_files/report-templates.md)
+- [Risk Management](artifact/references_files/risk-management.md)
+- [ClawHub Skill Page](https://clawhub.ai/horizoncove/skills/trader-daily)
+- [Publisher Profile](https://clawhub.ai/user/horizoncove)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and command-line guidance backed by JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes portfolio and risk configuration examples; generated reports should be reviewed and redacted before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

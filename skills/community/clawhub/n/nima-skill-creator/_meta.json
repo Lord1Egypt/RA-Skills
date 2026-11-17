@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7bn4yrcnvd7vp07r9hq28mpd82f7zz",
-  "slug": "nima-skill-creator",
-  "version": "0.1.1",
-  "publishedAt": 1774233165134
+  "name": "nima-skill-creator",
+  "version": "1.0.0",
+  "author": "Nima AI",
+  "license": "MIT",
+  "description": "Hybrid skill creation framework with interactive Chinese-guided workflows and English technical documentation",
+  "requires": [],
+  "keywords": ["skill", "creator", "documentation", "workflow", "boilerplate"]
 }

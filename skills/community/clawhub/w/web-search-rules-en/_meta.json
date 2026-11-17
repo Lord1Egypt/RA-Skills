@@ -1,6 +1,8 @@
-{
+﻿{
   "ownerId": "kn7bjt2sd8f7cq83y0nf33xt19855gv6",
   "slug": "web-search-rules-en",
   "version": "3.0.0",
-  "publishedAt": 1778338374955
+  "riskLevel": "high",
+  "publishedAt": 1778256000000,
+  "securityNotice": "This skill may read/write local knowledge-base files, automate browsers, upload selected content to cloud platforms, and perform delete/migration operations after confirmation. Review SECURITY.md and enable only the platform permissions you need."
 }

@@ -1,0 +1,127 @@
+name: multi-agent
+description: Multi-agent systems authoritative sources
+
+categories:
+  official_docs:
+    - name: AutoGen Docs
+      url: https://microsoft.github.io/autogen/
+      type: official-docs
+      description: Microsoft multi-agent framework
+
+    - name: LangGraph Docs
+      url: https://langchain-ai.github.io/langgraph/
+      type: official-docs
+      description: Stateful agent workflows
+
+    - name: CrewAI Docs
+      url: https://docs.crewai.com/
+      type: official-docs
+      description: Multi-agent AI framework
+
+    - name: Agentscope Docs
+      url: https://agentscope.readthedocs.io/
+      type: official-docs
+      description: Distributed agent framework
+
+    - name: MetaGPT Docs
+      url: https://docs.deepwisdom.ai/MetaGPT/
+      type: official-docs
+      description: Multi-agent collaborative framework
+
+    - name: ChatDev Docs
+      url: https://github.com/OpenBMB/ChatDev
+      type: official-docs
+      description: Multi-agent software development
+
+    - name: CAMEL Docs
+      url: https://github.com/camel-ai/camel
+      type: official-docs
+      description: Communicative Agents for "Mind" Exploration
+
+    - name: Multi-Agent Collaboration
+      url: https://github.com/eosphoros-ai/DB-GPT
+      type: official-docs
+      description: Multi-agent RAG framework
+
+  official_blogs:
+    - name: OpenAI Blog
+      url: https://openai.com/research
+      type: official-blog
+      description: OpenAI multi-agent research
+
+    - name: Anthropic Blog
+      url: https://www.anthropic.com/research
+      type: official-blog
+      description: Anthropic AI research
+
+    - name: DeepMind Blog
+      url: https://deepmind.google/discover/blog/
+      type: official-blog
+      description: DeepMind multi-agent research
+
+    - name: Meta AI Research
+      url: https://ai.meta.com/blog/
+      type: official-blog
+      description: Meta multi-agent research
+
+    - name: LangChain Blog
+      url: https://blog.langchain.com/
+      type: official-blog
+      description: LangChain multi-agent tutorials
+
+    - name: Microsoft Research
+      url: https://www.microsoft.com/en-us/research/blog/
+      type: official-blog
+      description: Microsoft multi-agent research
+
+  conferences:
+    - name: NeurIPS
+      url: https://neurips.cc/
+      type: top-conference
+      description: Neural Information Processing Systems
+
+    - name: ICML
+      url: https://icml.cc/
+      type: top-conference
+      description: International Conference on Machine Learning
+
+    - name: ICLR
+      url: https://iclr.cc/
+      type: top-conference
+      description: International Conference on Learning Representations
+
+    - name: AAMAS
+      url: https://www.aamas2024-conference.auckland.ac.nz/
+      type: top-conference
+      description: International Conference on Autonomous Agents
+
+    - name: AAAI
+      url: https://aaai.org/
+      type: top-conference
+      description: AAAI Conference on AI
+
+    - name: ACL
+      url: https://www.aclweb.org/portal/
+      type: top-conference
+      description: Association for Computational Linguistics
+
+  papers:
+    - name: arXiv cs.MA
+      url: https://arxiv.org/list/cs.MA/recent
+      type: preprint
+      description: Multiagent Systems papers
+
+    - name: arXiv cs.AI
+      url: https://arxiv.org/list/cs.AI/recent
+      type: preprint
+      description: AI general papers
+
+    - name: arXiv cs.CL
+      url: https://arxiv.org/list/cs.CL/recent
+      type: preprint
+      description: Computation and Language papers
+
+    - name: Multi-Agent Papers
+      url: https://github.com/LizzieDai/awesome-multi-agent
+      type: aggregator
+      description: Curated multi-agent papers list

@@ -1,0 +1,43 @@
+# Project metadata and tool configuration.
+#
+# This repository is not a distributable Python package: `scripts/` holds
+# standalone CLI tools that subprojects invoke by path. The [project] table
+# exists so tooling (pip, pytest, ruff, IDEs) has one place to read the name,
+# the version and the supported interpreter range.
+
+[project]
+name = "github-novel-serialization-skill"
+version = "1.4.0"
+description = "Harness-engineered Skill for AI-assisted novel writing and GitHub-based serialization"
+requires-python = ">=3.9"
+dependencies = []
+license = { file = "LICENSE" }
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "PyYAML>=6.0",
+    "pre-commit>=3.5",
+    "ruff>=0.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts"]
+addopts = "-q --strict-markers"
+# The scripts are imported by path, so a stale .pyc next to a renamed module
+# would otherwise shadow the real file.
+cache_dir = ".workbuddy/.pytest_cache"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = [".workbuddy", "LICENSES"]
+
+[tool.ruff.lint]
+# E/F/W only: this codebase is reviewed by humans for style, by machines for
+# real defects (undefined names, unused imports, bad indentation).
+select = ["E4", "E7", "E9", "F", "W"]
+
+[tool.ruff.format]
+quote-style = "double"

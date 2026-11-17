@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn71568gr0p3240v36pag6f7rx83qbb2",
+  "name": "BSC Analytics",
   "slug": "shenmeng-bsc-analytics",
   "version": "1.0.0",
-  "publishedAt": 1775331418721
+  "author": "shenmeng",
+  "description": "币安智能链 (BSC) 生态综合分析工具，提供 DeFi 协议分析、链上监控、项目评估和收益计算",
+  "tags": ["bsc", "bnb-chain", "defi", "pancakeswap", "venus", "yield", "binance"],
+  "capabilities": ["web_search", "data_analysis", "monitoring"],
+  "pricing": {
+    "enabled": true,
+    "amount": "0.01",
+    "currency": "USDT",
+    "chain": "bsc",
+    "apiKey": "sk_f03aa8f8bbcf79f7aa11c112d904780f22e62add1464e3c41a79600a451eb1d2"
+  },
+  "entryPoint": "SKILL.md",
+  "createdAt": "2026-04-04",
+  "updatedAt": "2026-04-04"
 }

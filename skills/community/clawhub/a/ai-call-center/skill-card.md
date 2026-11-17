@@ -1,39 +1,52 @@
-## Description: <br>
-Provides call-center guidance for inbound call management, intelligent routing, IVR navigation, call recording, AI quality scoring, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call-center skill for inbound call management and intelligent routing.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customer support, sales, after-sales, and complaint-line teams can use this skill as guidance for a call-center application with IVR navigation, intelligent routing, call recording, AI quality review, and reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Install instructions run unreviewed remote code.
+
+Mitigation: Verify the repository owner, pin a reviewed commit, review dependencies, and run setup commands only in an isolated environment.
+
+Risk: Call recordings and AI quality review can expose sensitive caller or employee data.
+
+Mitigation: Define recording consent, retention, deletion, access controls, and audit practices before processing real calls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Customer support, sales, and service teams use this skill to describe and set up an AI-assisted call-center workflow for call routing, IVR navigation, recordings, quality review, and operational reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Call recording and transcript workflows may be used without clearly documented consent, retention, access-control, or deletion boundaries. <br>
-Mitigation: Use only where recording is authorized and callers are properly notified or consent is obtained; define storage, access, retention, and deletion policies before deployment. <br>
-Risk: The artifacts do not clearly document narrow activation boundaries for recording or quality-scoring behavior. <br>
-Mitigation: Review the skill before installation and limit use to approved call-center processes with documented operator responsibilities. <br>
+**Output Format:** [Markdown with shell command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes pricing tiers and setup guidance; no required binaries are declared in metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup commands and call-center feature guidance; no required binaries are declared in metadata.] <br>
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

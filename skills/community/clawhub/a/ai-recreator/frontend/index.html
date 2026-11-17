@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Video Repurpose × Digital Human Dubbing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface-hover: #242836;
+  --border: #2d3245;
+  --text: #e4e6f0;
+  --text-secondary: #888ca6;
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; min-height: 100vh; line-height: 1.6; }
+.container { max-width: 780px; margin: 0 auto; padding: 40px 20px; }
+
+.header { text-align: center; margin-bottom: 48px; }
+.header .logo { font-size: 48px; margin-bottom: 8px; }
+.header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header p { color: var(--text-secondary); font-size: 15px; margin-top: 8px; }
+.header .badge { display: inline-block; margin-top: 12px; padding: 4px 14px; background: rgba(99,102,241,0.15); color: var(--primary-hover); border-radius: 20px; font-size: 12px; font-weight: 500; }
+
+/* input */
+.input-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
+.input-card label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 8px; }
+.input-card .input-row { display: flex; gap: 8px; }
+.input-card input[type="url"] { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; color: var(--text); font-size: 15px; outline: none; transition: border-color .2s; }
+.input-card input[type="url"]:focus { border-color: var(--primary); }
+.input-card input[type="url"]::placeholder { color: var(--text-secondary); }
+.btn-primary { background: var(--primary); color: white; border: none; border-radius: var(--radius-sm); padding: 12px 28px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .2s, transform .1s; white-space: nowrap; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary:active { transform: scale(.97); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+
+/* progress */
+.progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; display: none; }
+.progress-card.active { display: block; }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.progress-title { font-size: 14px; font-weight: 600; }
+.progress-status { font-size: 12px; padding: 2px 10px; border-radius: 12px; background: rgba(99,102,241,0.15); color: var(--primary-hover); }
+.progress-status.completed { background: rgba(34,197,94,0.15); color: var(--success); }
+.progress-status.failed { background: rgba(239,68,68,0.15); color: var(--error); }
+.progress-status.review { background: rgba(245,158,11,0.15); color: var(--warning); }
+.progress-bar { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #a855f7); border-radius: 3px; transition: width .5s ease; width: 0%; }
+.progress-bar-fill.failed { background: var(--error); }
+.progress-steps { display: flex; gap: 4px; margin-bottom: 8px; }
+.step { flex: 1; padding: 6px 8px; text-align: center; font-size: 11px; border-radius: var(--radius-sm); background: var(--bg); color: var(--text-secondary); transition: all .3s; }
+.step.active { background: rgba(99,102,241,0.2); color: var(--primary-hover); }
+.step.done { background: rgba(34,197,94,0.15); color: var(--success); }
+.step.failed { background: rgba(239,68,68,0.15); color: var(--error); }
+.progress-message { font-size: 13px; color: var(--text-secondary); text-align: center; }
+
+/* --- Card share --- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: none; margin-bottom: 16px; }
+.card.active { display: block; }
+.card h3 { font-size: 16px; margin-bottom: 12px; }
+
+/* review */
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.review-header h3 { color: var(--warning); }
+
+/* text tabs */
+.review-tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+.review-tab { padding: 8px 16px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; font-size: 13px; cursor: pointer; background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border); border-bottom: none; transition: all .2s; }
+.review-tab.active { background: var(--surface-hover); color: var(--text); border-color: var(--border); }
+
+.review-textbox, .review-textarea { width: 100%; min-height: 180px; max-height: 350px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; color: var(--text); font-size: 14px; font-family: inherit; line-height: 1.7; outline: none; overflow-y: auto; }
+.review-textarea { resize: vertical; }
+.review-textbox:focus, .review-textarea:focus { border-color: var(--primary); }
+.review-textbox[readonly] { cursor: default; }
+
+.review-actions { display: flex; gap: 8px; margin-top: 16px; }
+.review-actions .btn { flex: 1; padding: 12px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-align: center; transition: all .2s; }
+.btn-primary-bg { background: var(--primary); color: white; }
+.btn-primary-bg:hover { background: var(--primary-hover); }
+.btn-secondary { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--border); }
+.review-actions .btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* TTS panel */
+.tts-player { margin: 12px 0; }
+.tts-player audio { width: 100%; }
+
+/* upload */
+.upload-zone { border: 2px dashed var(--border); border-radius: var(--radius-sm); padding: 32px; text-align: center; cursor: pointer; transition: all .2s; margin: 12px 0; }
+.upload-zone:hover { border-color: var(--primary); background: rgba(99,102,241,0.05); }
+.upload-zone.dragover { border-color: var(--primary); background: rgba(99,102,241,0.1); }
+.upload-zone-icon { font-size: 36px; margin-bottom: 8px; }
+.upload-zone-text { font-size: 14px; color: var(--text-secondary); }
+.upload-zone-hint { font-size: 12px; color: var(--text-secondary); margin-top: 8px; }
+
+/* result */
+.result-video { width: 100%; border-radius: var(--radius-sm); max-height: 480px; background: #000; }
+.result-actions { display: flex; gap: 8px; margin-top: 12px; }
+.result-actions .btn { flex: 1; padding: 10px; text-align: center; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all .2s; display: inline-block; }
+.btn-download { background: var(--success); color: white; border: none; }
+.btn-download:hover { opacity: .85; }
+.btn-copy { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
+.btn-copy:hover { background: var(--border); }
+
+.result-text { margin-top: 16px; background: var(--bg); border-radius: var(--radius-sm); padding: 16px; font-size: 13px; color: var(--text-secondary); max-height: 200px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; }
+
+/* phase indicators */
+.phase-bar { display: flex; gap: 8px; margin-bottom: 16px; }
+.phase-dot { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); }
+.phase-dot.active { color: var(--primary); font-weight: 600; }
+.phase-dot.done { color: var(--success); }
+.phase-line { flex: 1; height: 2px; background: var(--border); align-self: center; margin: 0 4px; }
+.phase-line.done { background: var(--success); }
+.phase-line.active { background: var(--primary); }
+
+.tips { margin-top: 32px; }
+.tips h3 { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+.tip-item { display: flex; gap: 12px; padding: 12px 16px; background: var(--surface); border-radius: var(--radius-sm); margin-bottom: 8px; }
+.tip-icon { font-size: 18px; flex-shrink: 0; }
+.tip-text { font-size: 13px; color: var(--text-secondary); }
+
+.footer { text-align: center; margin-top: 48px; padding: 20px; font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border); }
+
+@media (max-width: 480px) {
+  .container { padding: 20px 12px; }
+  .input-card .input-row { flex-direction: column; }
+  .header h1 { font-size: 22px; }
+  .phase-bar { font-size: 12px; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">🎬</div>
+    <h1>AI Video Repurpose × Digital Human Dubbing</h1>
+    <p>3-Phase Workflow: Extract Script → Edit & Confirm → Upload Video → Lip-Sync Digital Human</p>
+    <div class="badge">⚡ AI Transcribe · Editable · Upload Reference Video</div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-card">
+    <label for="videoUrl">🔗 Short Video URL</label>
+    <div class="input-row">
+      <input type="text" id="videoUrl" placeholder="Paste a Douyin/TikTok link, auto-detect..." autofocus>
+      <button class="btn-primary" id="submitBtn" onclick="submitTask()">Start Transcribing</button>
+    </div>
+    <div class="extracted-url" id="extractedUrl" style="display:none;margin-top:8px;padding:6px 12px;background:rgba(99,102,241,0.1);border-radius:var(--radius-sm);font-size:12px;color:var(--primary-hover);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+    <details class="options" style="margin-top:12px;">
+      <summary>⚙️ Rewrite Style Preset</summary>
+      <div class="options-content" style="margin-top:8px;">
+        <textarea id="customPrompt" placeholder="e.g. Make it more casual / like a product manager / add my personal experience..." style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-size:14px;outline:none;resize:vertical;min-height:50px;font-family:inherit;"></textarea>
+      </div>
+    </details>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-card" id="progressCard">
+    <div class="progress-header">
+      <span class="progress-title" id="taskId">Processing</span>
+      <span class="progress-status" id="statusBadge">Initializing</span>
+    </div>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-steps" id="steps">
+      <div class="step active" data-step="1">📥 Download</div>
+      <div class="step" data-step="2">📝 Transcribe</div>
+      <div class="step" data-step="3">✏️ Rewrite</div>
+      <div class="step" data-step="4">🎙️ TTS</div>
+      <div class="step" data-step="5">🎬 Digital Human</div>
+    </div>
+    <div class="progress-message" id="progressMessage">Preparing...</div>
+  </div>
+
+  <!-- ════ Phase 1: Review Script ════ -->
+  <div class="card" id="reviewCard">
+    <div class="phase-bar">
+      <span class="phase-dot done">✅ Phase 1</span><span class="phase-line done"></span>
+      <span class="phase-dot" id="phase2dot">⏳ Phase 2</span><span class="phase-line" id="phase2line"></span>
+      <span class="phase-dot" id="phase3dot">⬜ Phase 3</span>
+    </div>
+    <div class="review-header">
+      <h3>✏️ Script Ready</h3>
+      <span class="review-hint" style="font-size:12px;color:var(--text-secondary);">Edit the rewritten script, then pick a voice</span>
+    </div>0
+
+    <div class="review-tabs">
+      <div class="review-tab active" onclick="switchTab('original')">📄 Original</div>
+      <div class="review-tab" onclick="switchTab('rewritten')">✨ Rewritten <small style="color:var(--primary)">(Editable)</small></div>
+      <div class="review-tab" onclick="switchTab('voice')">🎙️ Voice</div>
+    </div>
+
+    <div class="review-textbox" id="reviewOriginal" readonly style="display:block;"></div>
+    <textarea class="review-textarea" id="rewrittenEditor" style="display:none;"></textarea>
+
+    <div id="voicePanel" style="display:none;">
+      <select id="voiceSelect" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-size:14px;outline:none;">
+        <optgroup label="🇨🇳 Chinese (Female)">
+          <option value="zh-CN-XiaoxiaoNeural" selected>Xiaoxiao · Natural</option>
+          <option value="zh-CN-XiaoyiNeural">Xiaoyi · Lively</option>
+          <option value="zh-CN-liaoning-XiaobeiNeural">Xiaobei · Dongbei Accent</option>
+        </optgroup>
+        <optgroup label="🇨🇳 Chinese (Male)">
+          <option value="zh-CN-YunxiNeural">Yunxi · Calm Male</option>
+          <option value="zh-CN-YunyangNeural">Yunyang · News Anchor</option>
+        </optgroup>
+        <optgroup label="🇭🇰 Cantonese">
+          <option value="zh-HK-HiuGaaiNeural">HiuGaai · Cantonese Female</option>
+          <option value="zh-HK-HiuMaanNeural">HiuMaan · Cantonese Female</option>
+        </optgroup>
+      </select>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-secondary);">💡 Switch voice then click "Synthesize" to apply</div>
+    </div>
+
+    <div class="review-actions">
+      <button class="btn btn-secondary" onclick="retryRewrite()">🔄 Re-rewrite</button>
+      <button class="btn btn-primary-bg" id="confirmBtn" onclick="confirmRewrite()">🔊 Synthesize</button>
+    </div>
+  </div>
+
+  <!-- ════ Phase 2: TTS Preview + Upload Video ════ -->
+  <div class="card" id="ttsCard">
+    <div class="phase-bar">
+      <span class="phase-dot done">✅ Phase 1</span><span class="phase-line done"></span>
+      <span class="phase-dot done">✅ Phase 2</span><span class="phase-line" id="phase2line2"></span>
+      <span class="phase-dot" id="phase3dot2">⏳ Phase 3</span>
+    </div>
+    <h3>🎙️ Voice Synthesized</h3>
+    <div class="tts-player">
+      <audio id="ttsAudio" controls></audio>
+    </div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">After previewing, upload a reference video of yourself (natural speaking). AI will lip-sync the video to match the synthesized voice.</p>
+
+    <!-- Upload Area -->
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
+         ondragover="this.classList.add('dragover');event.preventDefault()"
+         ondragleave="this.classList.remove('dragover')"
+         ondrop="handleDrop(event)">
+      <div class="upload-zone-icon">📹</div>
+      <div class="upload-zone-text" id="uploadText">Click or drag to upload reference video</div>
+      <div class="upload-zone-hint">MP4 / MOV / AVI / WebM · 30s+ recommended, face visible</div>
+      <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/x-msvideo,video/webm" style="display:none" onchange="handleUpload(this.files[0])">
+    </div>
+
+    <div class="review-actions" style="margin-top:12px;">
+      <button class="btn btn-secondary" id="skipUploadBtn" onclick="skipUpload()">⏭️ Skip (use default avatar)</button>
+      <button class="btn btn-primary-bg" id="uploadBtn" onclick="document.getElementById('fileInput').click()" disabled>📤 Upload Video</button>
+    </div>
+  </div>
+
+  <!-- ════ Phase 3: Result ════ -->
+  <div class="card" id="resultCard">
+    <div class="phase-bar">
+      <span class="phase-dot done">✅ Phase 1</span><span class="phase-line done"></span>
+      <span class="phase-dot done">✅ Phase 2</span><span class="phase-line done"></span>
+      <span class="phase-dot done">🎉 Done!</span>
+    </div>
+    <h3>🎬 Digital Human Video Ready</h3>
+    <video class="result-video" id="resultVideo" controls></video>
+    <div class="result-actions">
+      <a class="btn btn-download" id="downloadBtn" download>⬇️ Download Video</a>
+      <button class="btn btn-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+    <div class="result-text" id="resultText">(Script Preview)</div>
+  </div>
+
+  <div class="tips">
+    <h3>💡 Workflow</h3>
+    <div class="tip-item">
+      <div class="tip-icon">1️⃣</div>
+      <div class="tip-text"><strong>Paste Link</strong> — AI auto-extracts AI auto-extracts & rewrites the script</div> rewrites the script</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">2️⃣</div>
+      <div class="tip-text"><strong>Edit & Confirm</strong> — Edit the rewritten script, pick a voice, click "Synthesize"</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">3️⃣</div>
+      <div class="tip-text"><strong>Upload Reference Video</strong> — Upload a clip of yourself (or skip to use default), AI lip-syncs to generate a new video</div>
+    </div>
+  </div>
+
+  <div class="footer">AI Video Repurpose × Digital Human Dubbing · 3-Phase Workflow · Open Source Web Tool</div>
+</div>
+
+<script>
+const API_BASE = '';
+let pollTimer = null;
+let currentTaskId = null;
+
+async function submitTask() {
+  const raw = document.getElementById('videoUrl').value.trim();
+  if (!raw) { errorShake('videoUrl'); return; }
+  const url = extractUrl(raw);
+  if (!url) {
+    alert('No URL found. Please paste a link with http:// or https://'); return;
+  }
+
+  const prompt = document.getElementById('customPrompt').value.trim();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = '⏳ Processing...';
+
+  // Reset all panels
+  showOnlyPanel('progressCard');
+  resetSteps();
+  document.getElementById('progressFill').style.background = 'linear-gradient(90deg, var(--primary), #a855f7)';
+  document.getElementById('progressFill').style.width = '0%';
+
+  try {
+    const resp = await fetch(API_BASE + '/api/tasks', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({video_url: url, custom_prompt: prompt}),
+    });
+    if (!resp.ok) throw new Error((await resp.json()).detail || 'Submission failed');
+    const data = await resp.json();
+    currentTaskId = data.task_id;
+    document.getElementById('taskId').textContent = 'Task ' + data.task_id;
+    pollTimer = setInterval(() => pollTask(data.task_id), 1000);
+  } catch (e) { showError(e.message); btn.disabled = false; btn.textContent = 'Start Transcribing'; }
+}
+
+/* ─── Polling ─── */
+
+function getStatusLabel(s) {
+  const m = {
+    pending:'Pending',downloading:'Downloading',transcribing:'Transcribing',rewriting:'Rewriting',
+    awaiting_review:'Awaiting Review',
+    generating_speech:'Synthesizing',tts_complete:'Voice Ready',awaiting_video:'Awaiting Video',
+    generating_video:'Generating Video',completed:'Completed',failed:'Failed'
+  };
+  return m[s]||s;
+}
+
+async function pollTask(id) {
+  try {
+    const resp = await fetch(API_BASE + '/api/tasks/' + id);
+    if (!resp.ok) return;
+    const d = await resp.json();
+
+    document.getElementById('progressFill').style.width = d.progress + '%';
+    updateSteps(d.current_step, d.status);
+    const badge = document.getElementById('statusBadge');
+    badge.textContent = getStatusLabel(d.status);
+    badge.className = 'progress-status';
+    if (d.status==='completed') badge.classList.add('completed');
+    else if (d.status==='failed') badge.classList.add('failed');
+    else if (d.status==='awaiting_review'||d.status==='tts_complete'||d.status==='awaiting_video') badge.classList.add('review');
+    document.getElementById('progressMessage').textContent = d.message;
+
+    // ── Phase 1 Done ──
+    if (d.status === 'awaiting_review') {
+      clearInterval(pollTimer);
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Transcribe New Video';
+      loadReview(d);
+    }
+
+    // ── Phase 2 Done ──
+    if (d.status === 'tts_complete') {
+      clearInterval(pollTimer);
+      loadTtsPanel(d);
+    }
+
+    // ── Phase 3 Done ──
+    if (d.status === 'completed') {
+      clearInterval(pollTimer);
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = '🎉 Do Another';
+      showResult(d);
+    }
+
+    if (d.status === 'failed') {
+      clearInterval(pollTimer);
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Start Transcribing';
+      showError(d.message);
+    }
+  } catch(e) {}
+}
+
+/* ─── Phase 1: Review Script ─── */
+
+function loadReview(d) {
+  showOnlyPanel('reviewCard');
+  document.getElementById('reviewOriginal').textContent = d.original_text || '(No original)';
+  document.getElementById('rewrittenEditor').value = d.rewritten_text || d.original_text || '';
+  switchTab('original');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.review-tab').forEach(e=>e.classList.remove('active'));
+  ['reviewOriginal','rewrittenEditor','voicePanel'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  if (tab==='original') {
+    document.querySelectorAll('.review-tab')[0].classList.add('active');
+    document.getElementById('reviewOriginal').style.display='block';
+  } else if (tab==='rewritten') {
+    document.querySelectorAll('.review-tab')[1].classList.add('active');
+    document.getElementById('rewrittenEditor').style.display='block';
+  } else {
+    document.querySelectorAll('.review-tab')[2].classList.add('active');
+    document.getElementById('voicePanel').style.display='block';
+  }
+}
+
+function retryRewrite() {
+  const p = prompt('Enter a new rewrite style prompt (leave empty for default):');
+  if (p===null) return;
+  document.getElementById('customPrompt').value = p||document.getElementById('customPrompt').value;
+}
+
+async function confirmRewrite() {
+  document.getElementById('confirmBtn').disabled = true;
+  document.getElementById('confirmBtn').textContent = '⏳ Synthesizing...';
+
+  const text = document.getElementById('rewrittenEditor').value.trim();
+  const voice = document.getElementById('voiceSelect').value;
+  const prompt = document.getElementById('customPrompt').value.trim();
+
+  try {
+    const resp = await fetch(API_BASE + '/api/tasks/' + currentTaskId + '/confirm', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({rewritten_text: text, custom_prompt: prompt, tts_voice: voice}),
+    });
+    if (!resp.ok) throw new Error((await resp.json()).detail||'Failed');
+
+    showOnlyPanel('progressCard');
+    document.getElementById('progressFill').style.background = 'linear-gradient(90deg, var(--primary), #a855f7)';
+    document.getElementById('progressFill').style.width = '60%';
+    updateSteps(4, 'generating_speech');
+    document.getElementById('statusBadge').className='progress-status';
+    document.getElementById('statusBadge').textContent='Synthesizing';
+    document.getElementById('progressMessage').textContent='Synthesizing...';
+
+    pollTimer = setInterval(() => pollTask(currentTaskId), 1000);
+  } catch(e) {
+    alert('Failed: '+e.message);
+    document.getElementById('confirmBtn').disabled = false;
+    document.getElementById('confirmBtn').textContent = '🔊 Synthesize';
+  }
+}
+
+/* ─── Phase 2: TTS + Upload Video ─── */
+
+function loadTtsPanel(d) {
+  showOnlyPanel('ttsCard');
+
+  // Update phase indicators
+  document.getElementById('phase2line2').classList.add('done');
+  document.getElementById('phase3dot2').classList.add('active');
+  document.getElementById('phase3dot2').classList.remove('active');
+  document.getElementById('phase3dot2').innerHTML = '⏳ Phase 3';
+
+  // TTS playback
+  if (d.audio_url) {
+    document.getElementById('ttsAudio').src = d.audio_url;
+    document.getElementById('ttsAudio').load();
+    document.getElementById('ttsAudio').play().catch(()=>{});
+  }
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('uploadZone').classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file) handleUpload(file);
+}
+
+function handleUpload(file) {
+  if (!file) return;
+  if (!file.name.toLowerCase().match(/\.(mp4|mov|avi|webm)$/)) {
+    alert('Please upload MP4 / MOV / AVI / WebM format video');
+    return;
+  }
+  document.getElementById('uploadText').textContent = `📤 Uploading ${file.name}...`;
+  document.getElementById('uploadBtn').disabled = true;
+  document.getElementById('skipUploadBtn').disabled = true;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  fetch(API_BASE + '/api/tasks/' + currentTaskId + '/upload-video', {
+    method: 'POST',
+    body: formData,
+  }).then(resp => {
+    if (!resp.ok) throw new Error('Upload failed');
+    document.getElementById('uploadText').textContent = '✅ Uploaded! Generating digital human video...';
+    showOnlyPanel('progressCard');
+    document.getElementById('progressFill').style.width = '80%';
+    updateSteps(5, 'generating_video');
+    document.getElementById('statusBadge').textContent = 'Generating Video';
+    document.getElementById('progressMessage').textContent = 'Generating lip-sync digital human from reference video...';
+    pollTimer = setInterval(() => pollTask(currentTaskId), 1000);
+  }).catch(e => {
+    document.getElementById('uploadText').textContent = `❌ Upload failed: ${e.message}`;
+    document.getElementById('uploadBtn').disabled = false;
+    document.getElementById('skipUploadBtn').disabled = false;
+  });
+}
+
+function skipUpload() {
+  document.getElementById('skipUploadBtn').disabled = true;
+  document.getElementById('skipUploadBtn').textContent = '⏳ Generating...';
+
+  showOnlyPanel('progressCard');
+  document.getElementById('progressFill').style.width = '80%';
+  updateSteps(5, 'generating_video');
+  document.getElementById('statusBadge').textContent = 'Generating Video';
+  document.getElementById('progressMessage').textContent = 'Generating default digital human video...';
+
+  fetch(API_BASE + '/api/tasks/' + currentTaskId + '/start-video', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: '{}',
+  }).catch(()=>{});
+
+  pollTimer = setInterval(() => pollTask(currentTaskId), 1000);
+}
+
+/* ─── Phase 3: Result ─── */
+
+function showResult(d) {
+  showOnlyPanel('resultCard');
+  const v = document.getElementById('resultVideo');
+  if (d.video_url) {
+    v.src = d.video_url;
+    v.load();
+    v.play().catch(()=>{});
+    document.getElementById('downloadBtn').href = d.video_url;
+  }
+  const txt = d.rewritten_text||d.original_text||'';
+  if (txt) document.getElementById('resultText').textContent = '📝 Final Script ('+txt.length+' chars)：\n'+txt.slice(0,500)+(txt.length>500?'...':'');
+}
+
+function copyLink() {
+  const s = document.getElementById('resultVideo').src;
+  if (!s) return;
+  navigator.clipboard.writeText(s).then(()=>{
+    document.querySelector('.btn-copy').textContent='✅ Copied!';
+    setTimeout(()=>document.querySelector('.btn-copy').textContent='🔗 Copy Link',2000);
+  }).catch(()=>prompt('Copy this link:',s));
+}
+
+/* ─── UI Utilities ─── */
+
+function showOnlyPanel(showId) {
+  ['progressCard','reviewCard','ttsCard','resultCard'].forEach(id=>{
+    document.getElementById(id).classList.toggle('active', id===showId);
+  });
+}
+
+function updateSteps(currentStep, status) {
+  document.querySelectorAll('.step').forEach((el,i)=>{
+    el.classList.remove('active','done','failed');
+    const n = i+1;
+    if (n<currentStep||(n===5&&status==='completed')) el.classList.add('done');
+    else if (n===currentStep) el.classList.add('active');
+    if (status==='failed'&&n===currentStep) el.classList.add('failed');
+  });
+}
+
+function resetSteps() {
+  document.querySelectorAll('.step').forEach(e=>e.classList.remove('active','done','failed'));
+  document.querySelector('.step').classList.add('active');
+}
+
+function showError(msg) {
+  document.getElementById('statusBadge').textContent='Failed';
+  document.getElementById('statusBadge').className='progress-status failed';
+  document.getElementById('progressMessage').textContent='❌ '+msg;
+  document.getElementById('progressFill').style.width='100%';
+  document.getElementById('progressFill').style.background='var(--error)';
+  showOnlyPanel('progressCard');
+}
+
+function errorShake(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor='var(--error)';
+  setTimeout(()=>el.style.borderColor='',2000);
+  el.focus();
+}
+
+function extractUrl(text) {
+  const match = text.match(/https?:\/\/[^\s"'<>，,。、]+/);
+  return match ? match[0].replace(/[.,;:!?，。；：！？]+$/, '') : '';
+}
+
+function onUrlInput() {
+  const raw = document.getElementById('videoUrl').value.trim();
+  const el = document.getElementById('extractedUrl');
+  if (!raw) { el.style.display = 'none'; return; }
+  const url = extractUrl(raw);
+  if (url && url !== raw) {
+    el.textContent = '🔗 Detected: ' + url;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+document.getElementById('videoUrl').addEventListener('input', onUrlInput);
+document.getElementById('videoUrl').addEventListener('keydown', e=>{
+  if (e.key==='Enter'&&!document.getElementById('submitBtn').disabled) submitTask();
+});
+</script>
+
+</body>
+</html>

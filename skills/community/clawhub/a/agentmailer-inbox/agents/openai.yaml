@@ -1,0 +1,13 @@
+interface:
+  display_name: "AgentMailer Inbox"
+  short_description: "Create a human-approved AI agent identity"
+  default_prompt: "Use $agentmailer-inbox to create or manage a human-approved AgentMailer identity and inbox safely."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentmailer"
+      description: "Create and manage AgentMailer identities and inboxes"
+      transport: "streamable_http"
+      url: "https://api.agentmailer.ai/mcp"
+policy:
+  allow_implicit_invocation: true

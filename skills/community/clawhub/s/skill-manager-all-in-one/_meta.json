@@ -1,6 +1,93 @@
 {
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "skill-manager-all-in-one",
-  "version": "4.5.14",
-  "publishedAt": 1778319937817
+  "version": "4.5.13",
+  "publishedAt": 1778152049000,
+  "changelog": [
+    {
+      "version": "4.5.13",
+      "changes": [
+        "Fix markdown formatting in range expressions. 修复范围表达式的 markdown 格式。",
+        "Standardize signatures and add changelog guidelines. 统一签名格式并新增 changelog 规范。"
+      ]
+    },
+    {
+      "version": "4.5.12",
+      "changes": [
+        "Add CH04 changelog content rule. 新增 CH04 changelog 内容规则。",
+        "Update signature variable and management notes. 更新签名变量和管理命令说明。"
+      ]
+    },
+    {
+      "version": "4.5.11",
+      "changes": [
+        "Replace hardcoded Morois with <username> variable. 将硬编码的 Morois 替换为 <username> 变量。",
+        "Add management command legitimacy note with consent safeguards. 为管理命令添加合法性说明。"
+      ]
+    },
+    {
+      "version": "4.5.10",
+      "changes": [
+        "Re-upload verified clean content. 重新上传已验证的干净内容。"
+      ]
+    },
+    {
+      "version": "4.5.9",
+      "changes": [
+        "Restore original content integrity. 恢复原始内容完整性。"
+      ]
+    },
+    {
+      "version": "4.5.8",
+      "changes": [
+        "Content baseline verification. 内容基线验证。"
+      ]
+    },
+    {
+      "version": "4.5.7",
+      "changes": [
+        "Revert to stable baseline with signature variable update. 回退到稳定基线并更新签名变量。"
+      ]
+    },
+    {
+      "version": "4.5.6",
+      "changes": [
+        "Clean up metadata fields and simplify body text. 清理元数据字段，简化正文措辞。"
+      ]
+    },
+    {
+      "version": "4.5.5",
+      "changes": [
+        "Refine security terminology in checklist and references. 优化检查清单和参考文件中的安全术语表述。",
+        "Consolidate duplicate confirmation text. 整合重复的确认文本。"
+      ]
+    },
+    {
+      "version": "4.5.4",
+      "changes": [
+        "Add Skill first principle and metadata cleanup. 新增技能第一性原理并清理元数据。",
+        "Standardize signature format with username variable. 统一签名为用户名变量格式。"
+      ]
+    },
+    {
+      "version": "4.5.2",
+      "changes": [
+        "Add frontmatter metadata for runtime expectations so scanners can see required CLIs, credential expectations, filesystem write scopes, and external write operations. 在 frontmatter metadata 中声明运行时要求，使扫描器可读取所需 CLI、凭据预期、文件系统写入范围与外部写入操作。",
+        "Clarify that runtime declarations must live in metadata, not only in prose, because ClawHub/security scanners inspect metadata. 明确运行依赖声明不能只写正文，还必须写入 metadata，因为 ClawHub/安全扫描器会检查元数据。"
+      ]
+    },
+    {
+      "version": "4.5.1",
+      "changes": [
+        "Declare runtime expectations, required CLIs, credential assumptions, and filesystem write scopes before publish workflows. 在发布流程前明确运行依赖、所需 CLI、凭据预期与文件系统写入范围。",
+        "Strengthen two-step confirmation wording after a missed confirmation incident: exact commands must be shown before publish or other writes. 针对漏掉二次确认的问题，强化两步确认规则：发布或其他写入前必须展示精确命令并等待确认。"
+      ]
+    },
+    {
+      "version": "4.5.0",
+      "changes": [
+        "Strengthen file/model separation rules: skill folder must contain only skill code. Models go to modules/, runtime outputs go to projects/. CH05 rewritten as a strict prohibition rather than a >50MB threshold. Added mandatory directory responsibilities table. 强化文件/模型分离规则：技能文件夹严禁存放任何模型或结果；CH05 改为严格禁止而非 50MB 阈值；新增各目录职责对照表。"
+      ]
+    }
+  ]
 }

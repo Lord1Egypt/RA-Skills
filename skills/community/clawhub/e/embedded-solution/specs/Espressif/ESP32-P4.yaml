@@ -1,0 +1,93 @@
+part: ESP32-P4
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ESP32-P4 \u2014 High-Performance RISC-V SoC (no wireless, MPU tier)"
+main_page: https://www.espressif.com/en/products/socs/esp32-p4
+datasheet_path_expected: ../../datasheets/esp32-p4.pdf
+created_at: '2026-06-30T10:24:00+08:00'
+specs:
+  family: ESP32-P (application processor tier)
+  wireless: none_in_soc
+  cores:
+    hp_core:
+    - Dual-core 32-bit RISC-V @ up to 400 MHz (single-precision FPU + AI extensions)
+    lp_core:
+    - 1x 32-bit RISC-V LP-Core @ up to 40 MHz (low-power always-on)
+  memory:
+    sram: 768 KB (cache-able when external PSRAM present)
+    tcm: 8 KB zero-wait
+    external_psram: true
+  hmi:
+    camera:
+    - MIPI-CSI with integrated ISP
+    - Parallel camera interface
+    - Up to 1080p resolution
+    display:
+    - MIPI-DSI
+    - Parallel display interface
+    - Up to 1080p resolution
+    capacitive_touch: true
+    speech_recognition: yes (hardware-accelerated)
+    h264_encoding:
+      max_performance: 1080p @ 30 fps
+    hardware_accelerators:
+    - Pixel Processing Accelerator (PPA)
+    - 2D-DMA
+  peripherals:
+    gpio_count: 55
+    spi: true
+    i2s: true
+    i2c: true
+    led_pwm: true
+    mcpwm: true
+    rmt: true
+    adc: true
+    uart: true
+    twai: true
+    usb_otg_2_0_hs: true
+    ethernet: true
+    sdio_host_3_0: true
+  security:
+  - Secure Boot
+  - Flash Encryption
+  - Cryptographic accelerators
+  - TRNG
+  - Digital Signature Peripheral
+  - Dedicated Key Management Unit (private keys generated within SoC)
+  - Access Permission Management (hardware)
+  - Privilege Separation
+  os_support:
+    esp_idf: yes (open-source Espressif SDK)
+    freertos: true
+    zephyr: true
+    linux_via_companion: possible (ESP-HOSTED)
+  use_cases:
+  - Smart home hubs / control panels
+  - Smart doorbell + facial recognition (edge AI camera)
+  - Industrial 1080p HMI
+  - POS terminals
+  - Voice assistant with local wake-word
+  - Edge AI gateway (paired with companion wireless)
+unverified:
+- exact external PSRAM max size
+- exact operating voltage range
+- exact operating temperature range
+- exact package options / pinout
+- exact PPA compute throughput
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com product page via Firecrawl (15,259 bytes raw)."
+- 'Family differentiator vs ESP32-S3 (existing yaml): S3 has Cortex/Xtensa + Wi-Fi + BLE; P4 is pure application processor
+  (no wireless).'
+- 'Family differentiator vs ESP32-C5/C6/H4 (existing yaml): all those are wireless with RISC-V @ up to 96 MHz; P4 is MPU-grade
+  RISC-V @ 400 MHz with no wireless.'
+- 'Cross-reference: comparable to NXP i.MX 8ULP (Cortex-A35 + Cortex-M33 in MPU tier), but Espressif typically cheaper.'
+- 'Use case: edge AI camera gateway, smart home HMI control panel with 1080p display.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-p4.html: 16/33 spec fields matched (48%). Source: https://www.espressif.com/en/products/socs/esp32-p4
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/esp32-p4.pdf): 29/33 spec fields matched (88%). Source:
+  https://documentation.espressif.com/esp32-p4_datasheet_en.pdf.'
+extracted_at: '2026-06-30T10:24:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-P4-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-P4-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://documentation.espressif.com/esp32-p4_datasheet_en.pdf

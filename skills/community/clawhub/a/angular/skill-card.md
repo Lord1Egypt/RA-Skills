@@ -1,39 +1,55 @@
-## Description: <br>
-Build reliable Angular apps avoiding RxJS leaks, change detection traps, and DI pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reliable Angular apps avoiding RxJS leaks, change detection traps, and DI pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as an Angular reference for component architecture, RxJS subscription management, change detection, dependency injection, routing, forms, and HTTP patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Future updates could add scripts, commands, credential use, broad project scanning, or automatic code modification behavior. <br>
-Mitigation: Review future release evidence and security findings before upgrading or installing a changed version. <br>
-Risk: Angular guidance may need project-specific review before it is applied to production code. <br>
-Mitigation: Have developers validate generated recommendations against the app's Angular version, tests, and architecture. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Angular skill page](https://clawhub.ai/ivangdavila/angular) <br>
+## Use Case:
 
+Developers and engineers use this skill for Angular implementation guidance across component architecture, RxJS subscriptions, change detection, dependency injection, routing, forms, HTTP, and interceptors.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only Angular reference guidance; no commands, tools, credentials, or automatic code modification are described by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Version-sensitive Angular behavior may differ from the guidance in this skill.
+
+Mitigation: Confirm version-specific behavior against the project's Angular version and official Angular documentation before applying recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/angular)
+- [Angular Skill Definition](artifact/SKILL.md)
+- [Components Traps](artifact/components.md)
+- [RxJS Traps](artifact/rxjs.md)
+- [Forms Traps](artifact/forms.md)
+- [Dependency Injection Traps](artifact/di.md)
+- [Routing Traps](artifact/routing.md)
+- [HTTP Traps](artifact/http.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise Angular recommendations and code-oriented examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

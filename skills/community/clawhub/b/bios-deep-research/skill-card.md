@@ -1,45 +1,61 @@
-## Description: <br>
-Run deep biological research using the BIOS API with API-key authentication or x402 crypto payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run deep biological research using the BIOS API with API key authentication or optional x402 USDC payments on Base.
 
-## Publisher: <br>
-[jmartink](https://clawhub.ai/user/jmartink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmartink](https://clawhub.ai/user/jmartink)
 
-## Use Case: <br>
-Developers and researchers use this skill to start, monitor, and summarize BIOS deep-research sessions for biological and biomedical questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts may be sent to a paid external biomedical API. <br>
-Mitigation: Use a limited BIOS API key or limited funded wallet, avoid sharing secrets or unrelated personal data, and confirm expected costs before starting a request. <br>
-Risk: BIOS outputs are AI-generated biomedical research summaries and may be incomplete or incorrect. <br>
-Mitigation: Verify findings against primary sources before relying on them for scientific, medical, or operational decisions. <br>
-Risk: x402 payment signing can expose funds if handled with an inappropriate wallet setup. <br>
-Mitigation: Use a dedicated low-balance wallet or managed signer and keep private keys outside the agent workflow. <br>
+## Use Case:
 
+Developers and research users use this skill to start, track, and summarize BIOS deep research sessions for biological and biomedical questions. It supports API-key use and operator-managed x402 payments while preserving long-running session state across agent turns.
 
-## Reference(s): <br>
-- [BIOS API documentation](https://ai.bio.xyz/docs/api/overview) <br>
-- [x402 signer setup](references/x402-setup.md) <br>
-- [x402 documentation](https://github.com/coinbase/x402) <br>
-- [ClawHub skill page](https://clawhub.ai/jmartink/bios-deep-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with curl command examples and state-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include BIOS conversation IDs, research status, discoveries, supporting evidence, confidence levels, and related hypotheses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Research questions are sent to the BIOS API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for questions appropriate to share with BIOS, and avoid sending secrets or unrelated personal data.
+
+Risk: x402 use requires external wallet signing and USDC funds.
+
+Mitigation: Use a dedicated low-balance wallet or managed/hardware signer outside the agent, and do not paste wallet private keys into source code or chat.
+
+Risk: Generated biomedical research summaries may be incomplete or incorrect.
+
+Mitigation: Treat outputs as research assistance and verify findings against primary sources before relying on them.
+
+## Reference(s):
+
+- [BIOS API Overview](https://ai.bio.xyz/docs/api/overview)
+- [x402 Signer Setup](references/x402-setup.md)
+- [x402 Documentation](https://github.com/coinbase/x402)
+- [ClawHub Skill Page](https://clawhub.ai/jmartink/skills/bios-deep-research)
+- [Publisher Profile](https://clawhub.ai/user/jmartink)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline bash commands and structured research summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce BIOS research summaries containing discoveries, supporting evidence, confidence levels, and related hypotheses.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

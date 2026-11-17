@@ -1,41 +1,58 @@
-## Description: <br>
-Generates a standardized API design document from requirements or database DDL, including endpoint definitions, request and response examples, error codes, naming guidance, and RESTful design conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Design Doc helps developers generate standardized API design documentation from requirements or database DDL, including endpoint definitions, request and response examples, error codes, naming conventions, and page-to-API mappings.
 
-## Publisher: <br>
-[cnsunxuefeng](https://clawhub.ai/user/cnsunxuefeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnsunxuefeng](https://clawhub.ai/user/cnsunxuefeng)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn product requirements or database DDL into a REST-style API design document for implementation and frontend-backend coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes to a fixed project path, doc/API接口设计文档.md, which may replace an existing API design document if the agent proceeds without checking. <br>
-Mitigation: Check whether the file already exists, confirm that writing to the fixed path is acceptable, and review the generated Markdown before relying on it. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn product requirements, business scenarios, or database DDL into a standardized API design document for implementation and front-end/back-end integration.
 
-## Reference(s): <br>
-- [API specification template](references/api-spec-template.md) <br>
-- [API design best practices](references/best-practices.md) <br>
-- [Error code specification](references/error-codes.md) <br>
-- [Naming conventions](references/naming-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown document written to doc/API接口设计文档.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates doc/ if needed and writes one API design document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill writes to a fixed Markdown path, which may overwrite an existing API design document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target path and review any existing doc/API接口设计文档.md before allowing the agent to write the file.
+
+Risk: Generated API specifications may be incomplete or inconsistent with the actual requirements, database schema, or service behavior.
+
+Mitigation: Review generated endpoints, parameters, response examples, and error codes against the source requirements and DDL before implementation.
+
+## Reference(s):
+
+- [Error Codes Reference](references/error-codes.md)
+- [API Specification Template](references/api-spec-template.md)
+- [Naming Conventions](references/naming-conventions.md)
+- [API Design Best Practices](references/best-practices.md)
+- [API Response Template](assets/templates/api-response-template.json)
+- [ClawHub Skill Page](https://clawhub.ai/cnsunxuefeng/skills/api-design-doc)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance, Configuration]
+
+**Output Format:** [Markdown document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates doc/ if needed and uses the fixed output filename doc/API接口设计文档.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Find Hong Kong roadside parking meter locations and live vacancy using official Transport Department and DATA.GOV.HK datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Hong Kong roadside parking meter locations and live vacancy using official Transport Department / DATA.GOV.HK datasets.
 
-## Publisher: <br>
-[jimpang8](https://clawhub.ai/user/jimpang8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimpang8](https://clawhub.ai/user/jimpang8)
 
-## Use Case: <br>
-Drivers and agents use this skill to search official Hong Kong roadside metered parking inventory and live vacancy by street, district, station, landmark, or area phrase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python script contacts official Hong Kong public-data endpoints during use. <br>
-Mitigation: Install and run the skill only when outbound requests to those public DATA.GOV.HK endpoints are acceptable. <br>
-Risk: Live parking availability depends on the completeness and freshness of official occupancy data. <br>
-Mitigation: Present results as official feed status at query time and avoid treating unknown or missing occupancy values as confirmed availability. <br>
+## Use Case:
 
+External users and agents use this skill to find nearby Hong Kong roadside metered parking by street, district, landmark, or station, then summarize current vacant, occupied, and unknown counts from official datasets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jimpang8/hk-parking-meter-finder) <br>
-- [DATA.GOV.HK](https://data.gov.hk/) <br>
-- [Parking space inventory CSV](https://resource.data.one.gov.hk/td/psiparkingspaces/spaceinfo/parkingspaces.csv) <br>
-- [Parking occupancy status CSV](https://resource.data.one.gov.hk/td/psiparkingspaces/occupancystatus/occupancystatus.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary or JSON results from the bundled Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes vacant, occupied, and unknown counts, approximate cluster centers, Google Maps links, and per-space status details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill runs a Python script that makes outbound network requests to retrieve current parking-meter information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow network access only to the documented DATA.GOV.HK resource endpoints when operating in restricted environments.
+
+Risk: Live occupancy may be incomplete where the official feed lacks sensor records for some metered spaces.
+
+Mitigation: Present unknown counts separately and avoid claiming availability for spaces without live occupancy records.
+
+Risk: Keyword and fuzzy matching can return nearby or likely street clusters rather than an exact address match.
+
+Mitigation: Tell users when exact streets are absent and ask for a more specific street, district, station, or landmark when needed.
+
+## Reference(s):
+
+- [Transport Department metered parking space inventory](https://resource.data.one.gov.hk/td/psiparkingspaces/spaceinfo/parkingspaces.csv)
+- [Transport Department live parking occupancy status](https://resource.data.one.gov.hk/td/psiparkingspaces/occupancystatus/occupancystatus.csv)
+- [DATA.GOV.HK](https://data.gov.hk/)
+- [ClawHub skill page](https://clawhub.ai/jimpang8/skills/hk-parking-meter-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes parking cluster labels, vacancy counts, approximate coordinates, Google Maps links, and occupancy timestamps when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

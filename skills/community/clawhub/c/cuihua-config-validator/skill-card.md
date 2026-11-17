@@ -1,40 +1,54 @@
-## Description: <br>
-AI-powered configuration validator. Automatically validate JSON/YAML configs, detect conflicts, and suggest best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a configuration validation skill advertised for JSON/YAML/.env checks; the bundled code performs local JSON syntax validation.
 
-## Publisher: <br>
-[supermario11](https://clawhub.ai/user/supermario11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supermario11](https://clawhub.ai/user/supermario11)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate application configuration files, catch common JSON, YAML, and environment-variable mistakes, and receive best-practice guidance before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration files can contain production secrets, passwords, API keys, or account details. <br>
-Mitigation: Redact sensitive values before sharing files with the agent unless the user intentionally wants those values reviewed. <br>
-Risk: Local validation reads the file path provided by the user and may inspect private configuration content. <br>
-Mitigation: Run the validator only on intended configuration files and review the selected path before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect configuration files, catch JSON syntax errors, and request guidance about configuration quality and security before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supermario11/cuihua-config-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text diagnostics with optional configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for the bundled local validator; no environment variables are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: Sensitive configuration files, especially .env files, may contain secrets or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted samples for troubleshooting and avoid directing the skill at unredacted credential-bearing files unless local disclosure to the agent is acceptable.
+
+Risk: The advertised YAML, .env, conflict-detection, and best-practice capabilities exceed the bundled validator, which only parses JSON files.
+
+Mitigation: Confirm actual behavior on target file formats and use a separate review or validator for unsupported checks.
+
+## Reference(s):
+
+- [Cuihua Config Validator Skill Page](https://clawhub.ai/supermario11/skills/cuihua-config-validator)
+- [Cuihua Config Validator Documentation](https://clawhub.ai/skills/cuihua-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local configuration file contents, including .env files, when the agent or bundled validator is directed at them.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

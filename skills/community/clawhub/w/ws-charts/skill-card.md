@@ -1,40 +1,54 @@
-## Description: <br>
-Generates professional charts automatically from user-provided data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+图表生成。根据数据自动生成专业图表。
 
-## Publisher: <br>
-[fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fhbillwer](https://clawhub.ai/user/fhbillwer)
 
-## Use Case: <br>
-Data analysts, developers, and other users can use this skill to turn data, chart type preferences, and style requirements into chart outputs for reporting or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad chart-related triggers may activate the skill during general chart discussions. <br>
-Mitigation: Confirm that chart generation is intended before relying on the skill's output. <br>
-Risk: Generated charts may include sensitive user-provided data and are described as being saved under /workspace/reports/charts/. <br>
-Mitigation: Avoid providing sensitive data unless saving generated chart artifacts in that location is acceptable. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to generate professional charts from supplied data, with optional chart type and style requirements. It can produce image or HTML chart outputs for data analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fhbillwer/ws-charts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance that may produce image or HTML chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chart artifacts are described as being saved under /workspace/reports/charts/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad chart-related triggers may activate the skill when the user only mentions charts casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended chart type, data, and output format before generating files.
+
+Risk: Generated charts may be incorrect or misleading if the supplied data or style requirements are ambiguous.
+
+Mitigation: Review generated chart files and labels before sharing them externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fhbillwer/skills/ws-charts)
+- [Publisher profile](https://clawhub.ai/user/fhbillwer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance describing chart requirements and generated chart file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct generated image or HTML chart files to /workspace/reports/charts/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

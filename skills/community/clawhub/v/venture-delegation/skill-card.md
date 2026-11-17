@@ -1,39 +1,52 @@
-## Description: <br>
-Venture Delegation helps an agent decompose opportunities, projects, and broad tasks into atomic work items with evals, dependency ordering, and model assignments for delegated execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through venture evaluation, atomic task decomposition, model assignment, execution planning, automated evaluation, and learning capture for new opportunities, projects, or oversized tasks.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dodge1218](https://clawhub.ai/user/dodge1218)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, founders, and agent operators use this skill to evaluate raw ideas, break larger goals into independently testable work atoms, assign each atom to an appropriate model, and produce a delegation plan for execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated delegation plans may contain incorrect sequencing, model assignments, or evaluation checks.
+
+Mitigation: Review DELEGATION_PLAN.md before execution and adjust tasks, dependencies, models, and eval commands as needed.
+
+Risk: Local planning and learning files may retain sensitive project history if task descriptions include confidential context.
+
+Mitigation: Avoid including secrets in task descriptions and periodically delete or audit .learnings/LEARNINGS.md in sensitive workspaces.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, founders, and project leads use this skill to turn new ideas, vague requests, or oversized tasks into a structured delegation plan with atomic outputs, machine-verifiable checks, model choices, and execution waves. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated eval commands or delegated work plans may be unsafe, incorrect, or unsuitable for the current workspace if executed without review. <br>
-Mitigation: Review the delegation plan and each generated command before execution, and run commands only in an appropriate workspace. <br>
-Risk: Task context may be routed through sub-agents or model providers and written into local plan or learning files. <br>
-Mitigation: Avoid confidential tasks unless that routing and local recordkeeping are acceptable; redact sensitive details before delegation. <br>
+**Output Format:** [Markdown plans, structured tables, prompts, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create local planning and learning files such as DELEGATION_PLAN.md and .learnings/LEARNINGS.md.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown plans, tables, prompts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a delegation plan and append timing or pass-fail notes when the workflow is followed.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

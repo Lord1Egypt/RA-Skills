@@ -1,42 +1,55 @@
-## Description: <br>
-Control Adobe desktop apps - Photoshop, Illustrator, Premiere, After Effects, InDesign, Audition - from the shell via Flue, without an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Adobe desktop apps - Photoshop, Illustrator, Premiere, After Effects, InDesign, Audition - from the shell via Flue, without an MCP server.
 
-## Publisher: <br>
-[sfkislev](https://clawhub.ai/user/sfkislev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfkislev](https://clawhub.ai/user/sfkislev)
 
-## Use Case: <br>
-Developers and creative operators use this skill to let an agent inspect and make bounded, user-directed edits inside supported Adobe desktop applications through Flue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables desktop automation through an external Flue bridge that can change files open in supported Adobe applications. <br>
-Mitigation: Install and use it only for requested Adobe-app tasks, review the Flue package before setup, and keep actions bounded and inspectable. <br>
-Risk: Setup requires installing an external package. <br>
-Mitigation: Do not install or configure Flue unless the user explicitly approves setup in the current session. <br>
+## Use Case:
 
+Developers and creative operators use this skill to let an agent inspect live Adobe documents or projects and make bounded edits through Flue bridge commands under human direction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sfkislev/adobe-flue) <br>
-- [Flue project](https://github.com/SFKislev/flue) <br>
-- [Flue package on PyPI](https://pypi.org/project/flue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and app scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bridge commands can return structured JSON when Flue is installed and used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional Flue install command uses an unpinned third-party package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Flue project first, prefer a pinned and verified version, and install in an isolated environment when possible.
+
+Risk: The skill can control professional desktop applications and modify user documents or projects.
+
+Mitigation: Approve only specific, reversible actions, prefer small inspectable steps, and avoid destructive changes unless explicitly requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sfkislev/skills/adobe-flue)
+- [Flue project](https://github.com/SFKislev/flue)
+- [Flue on PyPI](https://pypi.org/project/flue)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and app-specific scripts that return JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent actions depend on local Flue installation, supported desktop application state, and explicit user approval for setup or destructive changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

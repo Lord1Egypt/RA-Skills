@@ -1,42 +1,52 @@
-## Description: <br>
-YingDao-GuoKe helps users bind a Yingdao RPA community profile and retrieve profile, achievement, balance, and development activity statistics. <br>
+## Description:
 
-This skill is for research and development only. <br>
+YingDao-GuoKe helps an agent bind a Yingdao community profile link, store the profile UUID, and return community account, achievement, and developer activity statistics.
 
-## Publisher: <br>
-[guoke416](https://clawhub.ai/user/guoke416) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoke416](https://clawhub.ai/user/guoke416)
 
-## Use Case: <br>
-Yingdao RPA community users use this skill to bind their community profile URL and ask an agent to return account details, achievement status, balances, and development statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Yingdao UUID and personalId locally. <br>
-Mitigation: Install only if local storage of these identifiers is acceptable; remove the binding by deleting data/user.json. <br>
-Risk: The skill sends the stored Yingdao identifiers to Yingdao APIs to retrieve profile and development statistics. <br>
-Mitigation: Provide only the Yingdao community profile link or identifier; do not provide passwords, API keys, or other secrets. <br>
+## Use Case:
 
+External Yingdao community users can use this skill to connect their profile UUID and ask an agent to summarize their Yingdao account, achievement, and development statistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guoke416/yingdao-guoke) <br>
-- [Yingdao community home page](https://www.yingdao.com/community/homePage) <br>
-- [Yingdao community profile example](https://www.yingdao.com/community/userCenter?userUuid=687223449269694466) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style Chinese text responses with account statistics and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores the user's Yingdao UUID and derived personalId in local data/user.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a Yingdao community profile UUID and derived personalId locally and uses them with Yingdao API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable sharing those identifiers with Yingdao APIs, and clear artifact/data/user.json to remove the binding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoke416/skills/yingdao-guoke)
+- [ClawHub publisher profile](https://clawhub.ai/user/guoke416)
+- [Yingdao community home page](https://www.yingdao.com/community/homePage)
+- [Yingdao community profile example](https://www.yingdao.com/community/userCenter?userUuid=687223449269694466)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown-style text responses with account statistics and binding guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Yingdao profile UUID for repeated queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

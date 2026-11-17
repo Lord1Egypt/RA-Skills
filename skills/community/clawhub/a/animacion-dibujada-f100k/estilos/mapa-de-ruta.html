@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mapa de ruta</title>
+<style>
+  html,body{margin:0;background:#1a120c;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const DESDE = 'publicar sin rumbo';                   // de dónde sale (máx. ~28 letras)
+const PARADAS = [                                      // 2 o 3 paradas del camino (máx. ~26 letras c/u)
+  'elegir tus tres pilares',
+  'formatos que ya funcionan',
+  'una serie que te reconozcan',
+];
+const HASTA = 'vender por DM';                         // a dónde llega: va junto a la X (máx. ~24 letras)
+const COLORES = {
+  papel: '#ecd6a8',    // el mapa
+  tinta: '#4a2e1a',    // dibujos y letras
+  camino: '#b8322a',   // la línea punteada y la X
+  pin: '#d8412f',      // el que recorre el camino
+  mesa: '#2b1c12',     // lo que se ve detrás cuando el mapa se abre
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const T_ABRE = .8, T_CAMINO = 1, SEG = .85;          // el mapa se abre; arranca el camino; segundos por tramo
+const N_TRAMOS = PARADAS.length + 1;
+const T_LLEGA = T_CAMINO + N_TRAMOS * SEG;
+const T_X = T_LLEGA + .1, T_ALEJA = T_LLEGA + .55;
+const DUR = +(T_ALEJA + .8 + 1.3).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+WOBBLE = 1.1;
+
+// ---------- los puntos: zigzag de abajo (DESDE) hacia arriba (HASTA), todo dentro de la zona segura ----------
+const NP = PARADAS.length + 2;
+const PUNTOS = [];
+for (let i = 0; i < NP; i++) {
+  const y = i === NP - 1 ? 450 : lerp(1340, 700, i / (NP - 2));   // el destino, con más aire arriba
+  const x = i % 2 === 0 ? 205 : 285;                   // el camino baja por la izquierda; las etiquetas van a la derecha
+  PUNTOS.push([x, y]);
+}
+// el camino: curva suave que pasa por cada punto, con una curva de más en cada tramo
+function catmull(p0, p1, p2, p3, t) {
+  const t2 = t * t, t3 = t2 * t;
+  return [0, 1].map(k => .5 * (2 * p1[k] + (-p0[k] + p2[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t2 + (-p0[k] + 3 * p1[k] - 3 * p2[k] + p3[k]) * t3));
+}
+const TRAMOS = [];                                     // cada tramo: lista de puntos + largo
+for (let i = 0; i < NP - 1; i++) {
+  const p0 = PUNTOS[Math.max(0, i - 1)], p1 = PUNTOS[i], p2 = PUNTOS[i + 1], p3 = PUNTOS[Math.min(NP - 1, i + 2)];
+  const pts = [];
+  for (let k = 0; k <= 60; k++) {
+    const t = k / 60; let [x, y] = catmull(p0, p1, p2, p3, t);
+    x += Math.sin(t * Math.PI * 2) * (i % 2 ? -70 : 70);   // un rodeo en S, como en los mapas
+    pts.push([x, y]);
+  }
+  let largo = 0; const acc = [0];
+  for (let k = 1; k < pts.length; k++) { largo += Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]); acc.push(largo); }
+  TRAMOS.push({ pts, acc, largo });
+}
+function puntoEn(tramo, f) {                           // punto a la fracción f del largo del tramo
+  const d = f * tramo.largo; let k = 1;
+  while (k < tramo.acc.length - 1 && tramo.acc[k] < d) k++;
+  const a = tramo.acc[k - 1], b = tramo.acc[k], u = b > a ? (d - a) / (b - a) : 0;
+  return [lerp(tramo.pts[k - 1][0], tramo.pts[k][0], u), lerp(tramo.pts[k - 1][1], tramo.pts[k][1], u)];
+}
+function tramoDe(t) {                                  // en qué tramo va el pin y cuánto lleva (con frenada en cada parada)
+  const x = (t - T_CAMINO) / SEG;
+  if (x <= 0) return { i: 0, f: 0 };
+  if (x >= N_TRAMOS) return { i: N_TRAMOS - 1, f: 1 };
+  const i = Math.floor(x); return { i, f: ease(x - i) };
+}
+function posPin(t) { const { i, f } = tramoDe(t); return puntoEn(TRAMOS[i], f); }
+
+// ---------- etiquetas (medidas una vez) ----------
+const LETRA_ETQ = LETRA_MANO;
+const ETQ = PUNTOS.map((p, i) => {
+  const txt = i === 0 ? DESDE : i === NP - 1 ? HASTA : PARADAS[i - 1];
+  const final = i === NP - 1;
+  let aj = autoajuste(txt, LETRA_ETQ, 700, final ? 610 : 580, final ? 1 : 2, final ? 108 : 74, final ? 70 : 44);
+  if (final && aj.rs.length > 1) aj = autoajuste(txt, LETRA_ETQ, 700, 610, 2, 96, 50);
+  return { txt, aj, izq: true, x: 400, y: p[1], final };
+});
+
+// ---------- el papel del mapa (se pinta una vez) ----------
+const MAPA = (() => {
+  const c = hacerPapel(COLORES.papel, { viñeta: 0, semilla: 21 });
+  const p = c.getContext('2d'), r = rng(33);
+  for (let i = 0; i < 9; i++) {                        // manchas de café y de tiempo
+    const x = r() * W, y = r() * H, rad = 80 + r() * 220;
+    const g = p.createRadialGradient(x, y, rad * .2, x, y, rad);
+    g.addColorStop(0, 'rgba(120,70,20,0)'); g.addColorStop(.8, `rgba(120,70,20,${.05 + r() * .06})`); g.addColorStop(1, 'rgba(120,70,20,0)');
+    p.fillStyle = g; p.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+  }
+  // pliegues: 2 verticales y 3 horizontales (sombra de un lado, luz del otro)
+  const pliegue = (x0, y0, x1, y1, horizontal) => {
+    const g = horizontal ? p.createLinearGradient(0, y0 - 26, 0, y0 + 26) : p.createLinearGradient(x0 - 26, 0, x0 + 26, 0);
+    g.addColorStop(0, 'rgba(90,50,20,0)'); g.addColorStop(.48, 'rgba(90,50,20,.16)'); g.addColorStop(.5, 'rgba(255,245,220,.35)'); g.addColorStop(1, 'rgba(255,245,220,0)');
+    p.fillStyle = g; horizontal ? p.fillRect(0, y0 - 26, W, 52) : p.fillRect(x0 - 26, 0, 52, H);
+  };
+  pliegue(W / 3, 0, W / 3, H, false); pliegue(2 * W / 3, 0, 2 * W / 3, H, false);
+  for (const y of [H / 4, H / 2, 3 * H / 4]) pliegue(0, y, W, y, true);
+  // bordes quemados
+  const g = p.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .42, W / 2, H / 2, Math.max(W, H) * .62);
+  g.addColorStop(0, 'rgba(70,35,10,0)'); g.addColorStop(1, 'rgba(70,35,10,.55)');
+  p.fillStyle = g; p.fillRect(0, 0, W, H);
+  return c;
+})();
+
+// ---------- dibujitos del mapa (fijos, hervidos) ----------
+function montaña(x, y, s, seed) {
+  const pts = resample([[x - 60 * s, y], [x - 8 * s, y - 80 * s], [x + 6 * s, y - 70 * s], [x + 60 * s, y]], 8);
+  fill([...pts, [x + 60 * s, y + 2]], 'rgba(160,110,60,.25)', { seed });
+  ink(pts, { w: 4, col: COLORES.tinta, passes: 1, amp: 1.5, seed });
+  ink(line(x - 8 * s, y - 80 * s, x - 22 * s, y - 20 * s), { w: 2.5, col: COLORES.tinta, passes: 1, amp: 1, seed: seed + 1, alpha: .6 });
+  for (let k = 0; k < 4; k++) ink(line(x + 4 * s + k * 10 * s, y - 60 * s + k * 14 * s, x + 12 * s + k * 10 * s, y - 8 * s), { w: 2, col: COLORES.tinta, passes: 1, amp: .8, seed: seed + 3 + k, alpha: .45 });
+}
+function arbol(x, y, s, seed) {
+  fill(circle(x, y - 34 * s, 26 * s, 30 * s), 'rgba(90,120,60,.35)', { seed });
+  ink(circle(x, y - 34 * s, 26 * s, 30 * s), { closed: true, w: 3.5, col: COLORES.tinta, passes: 1, amp: 1.4, seed });
+  ink(line(x, y - 6 * s, x, y + 14 * s), { w: 4, col: COLORES.tinta, passes: 1, amp: 1, seed: seed + 2 });
+}
+function olas(x, y, n, seed) {
+  for (let k = 0; k < n; k++) {
+    const ox = x + (k % 2) * 40, oy = y + k * 34;
+    ink(arc(ox, oy, 18, Math.PI, Math.PI * 2), { w: 3, col: COLORES.tinta, passes: 1, amp: 1, seed: seed + k, alpha: .6 });
+    ink(arc(ox + 36, oy, 18, Math.PI, Math.PI * 2), { w: 3, col: COLORES.tinta, passes: 1, amp: 1, seed: seed + k + 9, alpha: .6 });
+  }
+}
+function rosa(cx, cy, r, t) {                          // la rosa de los vientos gira un poquito
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(Math.sin(t * 1.3) * .08);
+  ink(circle(0, 0, r), { closed: true, w: 3, col: COLORES.tinta, passes: 1, amp: 1, seed: 70 });
+  ink(circle(0, 0, r * .72), { closed: true, w: 2, col: COLORES.tinta, passes: 1, amp: 1, seed: 71, alpha: .6 });
+  for (let k = 0; k < 4; k++) {
+    const a = k * Math.PI / 2 - Math.PI / 2, b = a + Math.PI / 4;
+    const punta = [Math.cos(a) * r * 1.15, Math.sin(a) * r * 1.15];
+    const l1 = [Math.cos(a - .35) * r * .3, Math.sin(a - .35) * r * .3], l2 = [Math.cos(a + .35) * r * .3, Math.sin(a + .35) * r * .3];
+    fill(resample([l1, punta, l2, [0, 0]], 8, true), k === 0 ? COLORES.camino : COLORES.tinta, { amp: .8, seed: 72 + k });
+    ink(line(0, 0, Math.cos(b) * r * .8, Math.sin(b) * r * .8), { w: 2, col: COLORES.tinta, passes: 1, amp: .6, seed: 80 + k, alpha: .6 });
+  }
+  ctx.font = `700 34px ${LETRA_MANO}`; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('N', 0, -r * 1.4);
+  ctx.restore();
+}
+function adornos(t) {
+  // arriba y abajo: fuera de la zona segura, solo dibujo (nada que haya que leer)
+  montaña(160, 230, 1.1, 1); montaña(270, 245, .8, 5); montaña(930, 220, .9, 9);
+  olas(560, 120, 3, 20);
+  arbol(70, 780, .9, 30); arbol(1010, 1000, .9, 33); arbol(60, 1240, .8, 36); arbol(1015, 560, .8, 39);
+  rosa(870, 1650, 95, t);
+  olas(120, 1560, 4, 50); montaña(420, 1720, 1, 60); arbol(560, 1800, 1, 63);
+  // marco doble
+  ink(rect(34, 34, W - 68, H - 68), { closed: true, w: 3, col: COLORES.tinta, passes: 1, amp: 1.5, seed: 90, alpha: .7 });
+  ink(rect(50, 50, W - 100, H - 100), { closed: true, w: 1.5, col: COLORES.tinta, passes: 1, amp: 1.5, seed: 91, alpha: .5 });
+}
+
+// ---------- el camino punteado, hasta donde va el pin ----------
+function camino(t) {
+  const { i: iAct, f: fAct } = tramoDe(t);
+  if (t < T_CAMINO) return;
+  ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = COLORES.camino; ctx.lineWidth = 11; ctx.setLineDash([24, 22]);
+  for (let i = 0; i <= iAct; i++) {
+    const tr = TRAMOS[i], fin = i < iAct ? 1 : fAct;
+    const n = Math.max(2, Math.round(tr.pts.length * fin));
+    const pts = tr.pts.slice(0, n); pts.push(puntoEn(tr, fin));
+    tracePath(J(pts, 5 + i, 1.6), false); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ---------- paradas: círculo que se sella y su etiqueta ----------
+function llegada(i) { return i === 0 ? T_CAMINO - .25 : T_CAMINO + i * SEG - .08; }   // cuándo el pin toca el punto i
+function paradas(t) {
+  for (let i = 0; i < NP; i++) {
+    const [x, y] = PUNTOS[i], t0 = llegada(i);
+    if (t < t0) continue;
+    const e = ETQ[i];
+    if (i < NP - 1) {                                  // sello de parada
+      const s = back(prog(t, t0, t0 + .3));
+      ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(-x, -y);
+      fill(circle(x, y, 30), COLORES.papel, { seed: 100 + i });
+      ink(circle(x, y, 30), { closed: true, w: 6, col: COLORES.tinta, passes: 2, amp: 1.4, seed: 100 + i });
+      fill(circle(x, y, 12), i === 0 ? COLORES.tinta : COLORES.camino, { amp: .6, seed: 110 + i });
+      ctx.restore();
+    }
+    // etiqueta: aparece letra por letra, a mano
+    const tEt = i === NP - 1 ? T_X + .35 : t0 + .1;
+    const k = prog(t, tEt, tEt + (i === NP - 1 ? .5 : .4));
+    if (k <= 0) continue;
+    ctx.save(); ctx.font = e.aj.font; ctx.fillStyle = i === NP - 1 ? COLORES.camino : COLORES.tinta;
+    ctx.textAlign = e.izq ? 'left' : 'right'; ctx.textBaseline = 'middle';
+    const inter = e.aj.size * 1.1, arriba = y - (e.aj.rs.length - 1) * inter / 2;
+    const anchoMax = Math.max(...e.aj.rs.map(r => medir(r, e.aj.font)));
+    ctx.beginPath();                                    // revelado de izquierda a derecha
+    const x0 = e.izq ? e.x : e.x - anchoMax;
+    ctx.rect(x0 - 20, arriba - e.aj.size, (anchoMax + 40) * k, e.aj.rs.length * inter + e.aj.size); ctx.clip();
+    const dx = (vnoise(BOIL * .7, i) - .5) * 2, dy = (vnoise(i, BOIL * .7) - .5) * 2;
+    e.aj.rs.forEach((r, j) => ctx.fillText(r, e.x + dx, arriba + j * inter + dy));
+    ctx.restore();
+    if (i === NP - 1) {                                // subrayado doble del destino
+      const yb = arriba + (e.aj.rs.length - 1) * inter + e.aj.size * .62;
+      const xa = e.izq ? e.x : e.x - anchoMax, xb = xa + anchoMax;
+      drawOn(resample([[xa - 6, yb], [lerp(xa, xb, .5), yb + 8], [xb + 10, yb - 4]], 8), easeOut(prog(t, T_X + .9, T_X + 1.25)), { w: 8, col: COLORES.camino, amp: 2, seed: 120 });
+      drawOn(resample([[xa + 20, yb + 22], [lerp(xa, xb, .5), yb + 28], [xb - 10, yb + 18]], 8), easeOut(prog(t, T_X + 1.1, T_X + 1.45)), { w: 5, col: COLORES.camino, amp: 2, seed: 121 });
+    }
+  }
+}
+
+// ---------- la X del tesoro ----------
+function equis(t) {
+  const [x, y] = PUNTOS[NP - 1], r = 56;
+  const a = easeOut(prog(t, T_X, T_X + .2)), b = easeOut(prog(t, T_X + .18, T_X + .38));
+  drawOn(line(x - r, y - r, x + r, y + r), a, { w: 18, col: COLORES.camino, amp: 2.5, seed: 130 });
+  drawOn(line(x + r, y - r, x - r, y + r), b, { w: 18, col: COLORES.camino, amp: 2.5, seed: 131 });
+  // destellos cuando queda marcada
+  const d = prog(t, T_X + .38, T_X + .9);
+  if (d > 0 && d < 1) for (let k = 0; k < 8; k++) {
+    const ang = k * Math.PI / 4, r0 = 80 + d * 40, r1 = r0 + 40 * (1 - d);
+    ink(line(x + Math.cos(ang) * r0, y + Math.sin(ang) * r0, x + Math.cos(ang) * r1, y + Math.sin(ang) * r1), { w: 6, col: COLORES.tinta, passes: 1, amp: 1, seed: 140 + k, alpha: 1 - d });
+  }
+}
+
+// ---------- el pin que recorre el camino ----------
+function pin(t) {
+  if (t < T_CAMINO - .3) return;
+  const entra = back(prog(t, T_CAMINO - .3, T_CAMINO));
+  let [x, y] = posPin(t);
+  const moviendo = t > T_CAMINO && t < T_LLEGA;
+  const { f } = tramoDe(t);
+  const salto = moviendo ? Math.abs(Math.sin(f * Math.PI * 4)) * 34 * Math.sin(f * Math.PI) : 0;
+  const [xa] = posPin(t - .05), incl = moviendo ? clamp((x - xa) * .02, -.3, .3) : 0;
+  // al final el pin se clava a un costado de la X
+  const clava = easeOut(prog(t, T_X, T_X + .3));
+  x += clava * 30; y += clava * -70;
+  fill(circle(x, y + 6, 34 - salto * .3, 11), 'rgba(40,20,5,.3)', { amp: .6 });
+  ctx.save(); ctx.translate(x, y - salto); ctx.rotate(incl); ctx.scale(entra, entra);
+  const gota = resample([...arc(0, -92, 42, Math.PI * .8, Math.PI * 2.2), [0, 0]], 7, true);
+  fill(gota.map(([a, b]) => [a + 6, b + 4]), 'rgba(40,10,5,.25)', { amp: .8 });
+  fill(gota, COLORES.pin, { amp: 1, seed: 150 });
+  ink(gota, { closed: true, w: 5, col: COLORES.tinta, passes: 1, amp: 1.2, seed: 150 });
+  fill(circle(0, -92, 17), COLORES.papel, { amp: .6, seed: 151 });
+  ink(arc(-14, -104, 22, Math.PI * 1.1, Math.PI * 1.45), { w: 5, col: 'rgba(255,255,255,.7)', passes: 1, amp: .6, seed: 152 });
+  ctx.restore();
+}
+
+// ---------- cámara: acercada siguiendo al pin; al llegar se aleja para ver el mapa entero ----------
+function camara(t) {
+  const acerca = ease(prog(t, T_ABRE - .1, T_CAMINO + .2)), aleja = ease(prog(t, T_ALEJA, T_ALEJA + .8));
+  const Z = 1 + .2 * acerca * (1 - aleja);
+  const [px, py] = posPin(t);
+  const sigue = acerca * (1 - aleja);
+  let cx = lerp(W / 2, 575, sigue), cy = lerp(H / 2, py + 120, sigue);   // de lado no se mueve: las etiquetas siempre caben
+  cx = clamp(cx, W / (2 * Z), W - W / (2 * Z)); cy = clamp(cy, H / (2 * Z), H - H / (2 * Z));
+  return { Z, cx, cy };
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.fillStyle = COLORES.mesa; ctx.fillRect(0, 0, W, H);
+  // el mapa se despliega: primero doblado en tres, se abre a lo ancho
+  const abre = back(prog(t, 0, T_ABRE));
+  const { Z, cx, cy } = camara(t);
+  ctx.save();
+  ctx.translate(W / 2, H / 2); ctx.scale(Z * lerp(.34, 1, abre), Z * lerp(.9, 1, abre)); ctx.translate(-cx, -cy);
+  ctx.drawImage(MAPA, 0, 0);
+  adornos(t); camino(t); paradas(t); equis(t); pin(t);
+  ctx.restore();
+});
+</script>
+</body>
+</html>

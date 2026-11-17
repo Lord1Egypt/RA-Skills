@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "enterprise-wechat-bot",
-  "version": "0.3.0",
-  "publishedAt": 1776399555048
+  "name": "wechat-automation",
+  "version": "0.1.0-dev",
+  "author": "小鸣 🦞",
+  "created": "2026-03-29",
+  "description": "企业微信自动化 - 消息发送、接收、自动回复",
+  "tags": ["wechat", "enterprise", "automation", "message", "企业微信"],
+  "requires": {
+    "bins": ["curl"]
+  },
+  "status": "development"
 }

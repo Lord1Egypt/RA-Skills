@@ -1,48 +1,61 @@
-## Description: <br>
-Find hotels with free cancellation policy - book with confidence, change plans without penalty; supports hotel, flight, train, attraction, itinerary, visa, insurance, and car rental workflows powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hotels with free cancellation policy, using the flyai CLI to return real-time booking results with links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search for refundable or free-cancellation hotel options and format real-time booking results from the flyai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run a global third-party npm CLI. <br>
-Mitigation: Review the CLI package before installation and install it only in environments approved for third-party command-line tools. <br>
-Risk: Travel-search details may be sent to flyai or Fliggy when the CLI is used. <br>
-Mitigation: Avoid entering sensitive personal or business travel details unless that data sharing is acceptable. <br>
-Risk: Local execution logs may store raw travel queries. <br>
-Mitigation: Treat logs as potentially sensitive and clear or protect them according to local data-handling policy. <br>
-Risk: Refundability and cancellation terms may change or differ from summarized results. <br>
-Mitigation: Verify cancellation terms on the booking page before relying on a hotel result as refundable. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search for refundable hotel options and compare real-time booking results from the flyai CLI. It is intended for uncertain travel dates where free cancellation policy and booking links are important.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejinsong/refundable-hotel) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hotel results should be based on flyai CLI output and include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill asks agents to install an unpinned global flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI publisher and package before installation, prefer manual reviewed installation, and run it in an isolated environment.
+
+Risk: The skill can persist raw travel queries in an execution log.
+
+Mitigation: Disable or avoid the execution log unless query retention is disclosed, controlled, and acceptable for the deployment.
+
+Risk: Hotel availability, prices, and cancellation policies depend on real-time third-party booking data.
+
+Mitigation: Require results to come from flyai CLI output and have users verify booking terms on the linked booking page before purchase.
+
+## Reference(s):
+
+- [Refundable Hotel skill page](https://clawhub.ai/xiejinsong/skills/refundable-hotel)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking-link tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel results must come from flyai CLI output and include Book links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Extract quantities from BIM/CAD data for cost estimation. Group by type, level, zone. Generate QTO reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract quantities from BIM/CAD data for cost estimation. Group by type, level, zone. Generate QTO reports.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction estimators, BIM specialists, and developers use this skill to process user-provided BIM/CAD exports, group quantities by type, category, and level, and prepare quantity takeoff reports for cost estimation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Quantity reports may contain sensitive project information or may be inaccurate if the input BIM/CAD export is incomplete or mapped incorrectly. <br>
-Mitigation: Use specific project files, validate inputs, and review generated reports before sharing or using them for cost decisions. <br>
-Risk: The skill may read local project files and export reports through a Python data-processing environment. <br>
-Mitigation: Run it in a trusted Python environment with reviewed dependencies and write exports only to intended paths. <br>
+## Use Case:
 
+Construction estimators, BIM coordinators, and project engineers use this skill to process BIM/CAD exports, group quantities by type, category, and level, and prepare quantity takeoff summaries for cost estimation.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/bim-qto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown tables and summaries, with optional Python code snippets and Excel, CSV, or JSON export guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided BIM/CAD data and should report validation errors clearly before producing reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata; artifact/claw.json lists 2.0.0) <br>
+Risk: The skill has filesystem access for BIM input files and generated report outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use intended project paths only, review output locations before export, and avoid overwriting important files.
+
+Risk: Spreadsheet reports generated from untrusted BIM/CAD exports may include links, formulas, or external content that spreadsheet applications warn about.
+
+Mitigation: Treat generated spreadsheets from untrusted inputs cautiously and do not enable links, formulas, or external content unless the source is trusted.
+
+## Reference(s):
+
+- [Data Driven Construction homepage](https://datadrivenconstruction.io)
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/bim-qto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Structured Markdown tables, Python snippets, and optional Excel, CSV, or JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write report exports when the user provides an intended output path.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

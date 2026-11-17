@@ -1,40 +1,53 @@
-## Description: <br>
-全球海岛选岛助手通过分步询问人数、预算、出发地、飞行时长和偏好，为中文用户推荐合适海岛，并可在流程完成后使用可选 FlyAI/飞猪查询商品链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language island travel assistant that recommends beach destinations from step-by-step traveler preferences and can retrieve Fliggy product links after the selection flow is complete.
 
-## Publisher: <br>
-[amokay](https://clawhub.ai/user/amokay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amokay](https://clawhub.ai/user/amokay)
 
-## Use Case: <br>
-External Chinese-speaking travelers and travel planners use this skill to narrow island destinations by group size, budget, departure city, acceptable flight time, travel dates, trip length, and activity preferences. It supports itinerary-oriented recommendations and can optionally add real travel product links after the recommendation flow is complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad beach-vacation wording may activate the skill when the user only wants general travel conversation. <br>
-Mitigation: Confirm the user wants island selection and continue with one question at a time before collecting detailed preferences. <br>
-Risk: The optional FlyAI/Fliggy lookup sends destination, trip length, and activity search terms to an external travel service. <br>
-Mitigation: Use the lookup only after the five-step flow when product links are needed, and proceed with recommendations only if the component is unavailable or untrusted. <br>
+## Use Case:
 
+External travelers and travel advisors use this skill to collect trip preferences one step at a time, compare island destinations by budget, travel time, season, and activities, and receive two to four matched recommendations.
 
-## Reference(s): <br>
-- [全球海岛数据库](references/island-database.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown travel recommendations with optional inline command-backed product lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are produced after a five-step question flow; optional product links require a trusted local flyai-cli installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release evidence) <br>
+Risk: The skill may invoke a locally configured Fliggy CLI using trip text supplied during the conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned CLI version when possible, avoid global installation where practical, and invoke the CLI with structured arguments or validated inputs instead of shell-interpolated strings.
+
+Risk: Product-link lookup may depend on local credentials and external Fliggy responses.
+
+Mitigation: Review local credential configuration before enabling product lookup and allow the skill to fall back to destination recommendations when lookup is unavailable or fails.
+
+## Reference(s):
+
+- [全球海岛数据库](references/island-database.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with optional product links and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an optional locally configured flyai-cli after the five-step preference collection flow; falls back to recommendations when the CLI is unavailable or a product lookup fails.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

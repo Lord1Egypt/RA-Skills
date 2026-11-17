@@ -1,0 +1,7 @@
+# Public method sources
+
+- [Microsoft Cloud Adoption Framework: Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/): Connect technology adoption to business goals, measurable results, cross-functional accountability, and continuous iteration.
+- [AWS: Designing Generative AI for Success POC](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-architecting.html): Connecting business goals, user adoption, technical quality, latency, cost, and exit conditions.
+- [AWS: Continuous delivery of generative AI value](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/prod-value.html): Producing value requires joint verification by business, technology, security, compliance and continuous monitoring, and attention to user behavior and performance drift.
+- [OpenAI: A Guide to Enterprise and Agent Collaboration](https://cdn.openai.com/business-guides-and-resources/a-business-leaders-guide-to-working-with-agents.pdf): Start by recording a baseline of time, cost, and accuracy for your current work, and observe speed, quality, and reliability across multiple cycles.
+- [Atlassian Goals, Signals, Measures](https://www.atlassian.com/team-playbook/plays/goals-signals-measures): Convert goals into observable signals and measurements to prevent delivering products as ultimate success.

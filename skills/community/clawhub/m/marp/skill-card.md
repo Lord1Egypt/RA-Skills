@@ -1,42 +1,55 @@
-## Description: <br>
-Use when creating slide decks, presentations, product requirement docs with diagrams, or converting markdown to PDF/PPTX/HTML slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating slide decks, presentations, product requirement docs with diagrams, or converting markdown to PDF/PPTX/HTML slides.
 
-## Publisher: <br>
-[patoo0x](https://clawhub.ai/user/patoo0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patoo0x](https://clawhub.ai/user/patoo0x)
 
-## Use Case: <br>
-Developers, technical writers, and product teams use this skill to create Marp slide decks, convert Markdown presentations to PDF/PPTX/HTML/images, and structure presentation-ready product documentation with diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local file access, HTML rendering, CDN scripts, and globally installed diagram tools can expose or execute content outside the slide source when used with untrusted decks. <br>
-Mitigation: Enable those options only for trusted decks and trusted assets, and review generated commands before running them. <br>
-Risk: Serving a slide directory locally can expose files from directories the user did not intend to share. <br>
-Mitigation: Serve only the specific directory needed for preview and keep unrelated files outside that directory. <br>
+## Use Case:
 
+Developers, technical writers, product teams, and other external users use this skill to create Marp slide decks and presentation-style product documents from Markdown, including diagrams, themes, exports, and common troubleshooting patterns.
 
-## Reference(s): <br>
-- [Marp Documentation](https://marp.app) <br>
-- [Marpit Framework](https://marpit.marp.app) <br>
-- [Marp CLI](https://github.com/marp-team/marp-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, configuration examples, and slide templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local files, optional HTML rendering, CDN scripts, or external diagram tools when the user chooses those Marp workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Marp workflows may depend on third-party packages or remote scripts for diagram rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned local dependencies and pre-render diagrams before sharing or exporting decks.
+
+Risk: HTML rendering and local-file access can expose trusted environments to unsafe Markdown or asset paths.
+
+Mitigation: Use --html and --allow-local-files only with trusted Markdown and trusted local assets.
+
+## Reference(s):
+
+- [Marp documentation](https://marp.app)
+- [Marpit framework documentation](https://marpit.marp.app)
+- [Marp CLI](https://github.com/marp-team/marp-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, CLI commands, configuration examples, and slide templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for authoring and exporting Marp decks; it does not execute Marp by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

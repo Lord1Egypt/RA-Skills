@@ -1,46 +1,60 @@
-## Description: <br>
-Analyzes Garmin Ultimate Frisbee activity and health data so an agent can help review sprints, fatigue, heart-rate zones, recovery, tournament load, and season trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Garmin Ultimate Frisbee activity, health, and recovery data to generate performance summaries, interactive HTML dashboards, and season or tournament comparisons.
 
-## Publisher: <br>
-[EvelynDevelops](https://clawhub.ai/user/EvelynDevelops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evelyndevelops](https://clawhub.ai/user/evelyndevelops)
 
-## Use Case: <br>
-External Garmin users, Ultimate Frisbee players, coaches, and their agents use this skill to fetch activity and health metrics, run analysis scripts, and generate post-game, tournament, training, and season review outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Garmin account credentials and can access sensitive health metrics and activity location history. <br>
-Mitigation: Use a short-lived environment value for login, avoid passing or storing GARMIN_PASSWORD in shell profiles or command history, and install only when the publisher is trusted with this account data. <br>
-Risk: Session tokens and generated activity files or dashboards may expose private health, route, and performance details if shared or stored insecurely. <br>
-Mitigation: Protect ~/.clawdbot/garmin and generated HTML, FIT, GPX, or TCX files with local file permissions, remove stale tokens when access is no longer needed, and avoid uploading dashboards to public locations. <br>
-Risk: Generated dashboards load Chart.js assets from cdn.jsdelivr.net when viewed. <br>
-Mitigation: Review the generated HTML before opening in sensitive environments, use network controls where required, or adapt the dashboard to use locally hosted chart assets. <br>
+## Use Case:
 
+External agents and users use this skill to analyze Garmin Connect data for Ultimate Frisbee performance, recovery, tournament fatigue, and training trends. It helps produce post-game reports, health summaries, and dashboard-generation commands from Garmin activity and wellness data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EvelynDevelops/garmin-ultimate-frisbee-analysis) <br>
-- [Garmin Connect API Reference](references/api.md) <br>
-- [Health Analysis Reference](references/health_analysis.md) <br>
-- [Extended Capabilities](references/extended_capabilities.md) <br>
-- [MCP Setup Guide](references/mcp_setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, HTML files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON command output, and generated HTML dashboards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Garmin health metrics, activity summaries, FIT/GPX/TCX-derived analysis, and local dashboard files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Garmin credentials and session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid storing Garmin passwords in shell profiles or command-line history, and remove local session tokens when access should be revoked.
+
+Risk: Generated dashboards and exported activity files can contain sensitive health and location data.
+
+Mitigation: Store generated HTML, JSON, FIT, and GPX files privately, avoid sharing them publicly, and delete reports that are no longer needed.
+
+Risk: Generated HTML dashboards may load chart assets from an external CDN.
+
+Mitigation: Prefer offline or bundled chart assets, or verify script integrity before viewing private reports.
+
+## Reference(s):
+
+- [Garmin Connect API Reference](references/api.md)
+- [Extended Capabilities](references/extended_capabilities.md)
+- [Health Analysis Reference](references/health_analysis.md)
+- [MCP Setup Guide](references/mcp_setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON summaries, and generated HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local HTML, JSON, FIT, or GPX files containing sensitive health and location data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

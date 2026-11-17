@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from typing import Any
@@ -91,9 +93,59 @@ def normalize_item(item: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+# ---------------------------------------------------------------------------
+# Outbound fetch guard
+#
+# SKILL.md declares exactly two data hosts. A declaration that nothing enforces
+# is just prose, so it is enforced here: a fetch to anything else is refused
+# before the socket opens. This also closes the shape the audit named —
+# "unrestricted URL fetching permits requests to internal services and cloud
+# metadata endpoints" — because an internal address is by definition not one of
+# the two allowed hosts.
+# ---------------------------------------------------------------------------
+
+ALLOWED_FETCH_HOSTS = frozenset({"gamma-api.polymarket.com", "clob.polymarket.com"})
+
+
+def assert_allowed_fetch_url(url: str) -> None:
+    """Raise ValueError unless the URL targets a declared Polymarket host."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https":
+        raise ValueError(f"refusing non-HTTPS data fetch: {parts.scheme or '(none)'}://…")
+    host = (parts.hostname or "").lower()
+    if host not in ALLOWED_FETCH_HOSTS:
+        raise ValueError(
+            f"refusing fetch to {host or '(no host)'}: this skill only reads from "
+            + ", ".join(sorted(ALLOWED_FETCH_HOSTS))
+        )
+
+class _AllowlistRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Re-check every redirect hop against the allowlist.
+
+    Validating only the first URL leaves the guard trivially bypassable: the
+    API could answer 302 and urllib would follow it anywhere. The webhook path
+    learned this earlier; the fetch guard was written without it, and the audit
+    caught the gap ("Polymarket fetch code can follow redirects outside the
+    stated network"). One invariant, every place that implements it.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        try:
+            assert_allowed_fetch_url(newurl)
+        except ValueError as exc:
+            raise urllib.error.HTTPError(newurl, code, f"redirect refused: {exc}", headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _allowlisted_opener() -> urllib.request.OpenerDirector:
+    return urllib.request.build_opener(_AllowlistRedirectHandler())
+
+
+
 def fetch_json(url: str, timeout: int) -> Any:
+    assert_allowed_fetch_url(url)
     req = urllib.request.Request(url, headers={"User-Agent": "signalradar-skill/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
+    with _allowlisted_opener().open(req, timeout=timeout) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
 

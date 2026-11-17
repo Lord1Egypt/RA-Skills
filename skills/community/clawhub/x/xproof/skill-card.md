@@ -1,51 +1,62 @@
-## Description: <br>
-xProof helps agents anchor hashed proof and audit records on MultiversX/Base through REST, MCP, and x402 payment flows before significant actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prove Before Act accountability integration for AI agents. REST API, MCP, and x402. The @jasonxkensei/xproof ClawHub slug is a legacy compatibility identifier.
 
-## Publisher: <br>
-[jasonxkensei](https://clawhub.ai/user/jasonxkensei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonxkensei](https://clawhub.ai/user/jasonxkensei)
 
-## Use Case: <br>
-Developers and operators use this skill to add proof-before-action logging, public verification, and audit trails to agents that take financial, compliance, publishing, or other high-accountability actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proof and audit workflows can externally record sensitive reasoning, prompts, session content, filenames, hashes, or metadata. <br>
-Mitigation: Record only hashes, opaque identifiers, and redacted summaries; do not upload raw prompts, chain-of-thought, secrets, personal data, proprietary logic, or detailed trading/security rationale. <br>
-Risk: API keys and x402 payment payloads are credentials that can authorize paid proof actions. <br>
-Mitigation: Treat pm_ keys and X-Payment payloads as secrets, store them outside source control, rotate on exposure, and set spending caps or human approval thresholds for autonomous payments. <br>
-Risk: Proof URLs, hashes, filenames, and metadata may be public or durable. <br>
-Mitigation: Assume records are long-lived and public before submitting them; use neutral filenames and metadata that do not reveal sensitive business, user, or operational details. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add accountability records to agent workflows by hashing decisions or outputs locally, anchoring proofs through REST, MCP, or payment-enabled calls, and later verifying the resulting proof records.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/jasonxkensei/xproof) <br>
-- [xProof Platform](https://xproof.app) <br>
-- [Agent Context Documentation](https://xproof.app/agent-context) <br>
-- [MCP Endpoint](https://xproof.app/mcp) <br>
-- [Source Repository](https://github.com/jasonxkensei/xproof-openclaw-skill) <br>
-- [Support Issues](https://github.com/jasonxkensei/xproof-openclaw-skill/issues) <br>
-- [xProof API Reference](references/api-reference.md) <br>
-- [Certification API](references/certification.md) <br>
-- [MCP Server](references/mcp.md) <br>
-- [x402 Payments](references/x402.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with code examples, shell commands, JSON payloads, and API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may cause agents to create external proof or audit records and may initiate paid x402 or API-key authenticated proof calls when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence and ClawHub metadata; artifact/xproof/SKILL.md frontmatter reports 3.1.0) <br>
+Risk: Proof records and payment transactions can be public and irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Hash content locally, avoid sensitive filenames or metadata, and require explicit approval plus spending limits before x402, batch, or certification actions.
+
+Risk: API keys or payment credentials could be exposed through logs, repositories, or agent transcripts.
+
+Mitigation: Keep API keys out of logs and repositories, treat pm_ keys as secrets, and prefer ClawHub installation or pinned SDK and source versions.
+
+Risk: Unpinned install examples or SDK versions can drift from the reviewed release.
+
+Mitigation: Install through ClawHub where possible, or pin any GitHub and SDK versions before use.
+
+## Reference(s):
+
+- [Prove Before Act homepage](https://provebeforeact.com)
+- [ClawHub skill page](https://clawhub.ai/jasonxkensei/skills/xproof)
+- [API Reference](references/api-reference.md)
+- [Certification API](references/certification.md)
+- [MCP Server](references/mcp.md)
+- [x402 Payments](references/x402.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code examples, shell commands, API payloads, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents to hash content locally, submit proof metadata, handle optional payment flows, and verify proof status before relying on records.]
+
+## Skill Version(s):
+
+4.0.18 (source: server release metadata; artifact frontmatter reports 3.3.14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

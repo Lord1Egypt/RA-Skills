@@ -1,42 +1,57 @@
-## Description: <br>
-Monitor WeChat MP articles and send notifications for public account updates, article summaries, and new-content alerts through optional Feishu/Lark delivery and scheduled checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize supplied WeChat MP article URLs, maintain a local watchlist, and send Feishu/Lark notifications while account monitoring remains demo-level.
 
-## Publisher: <br>
-[lwd815813](https://clawhub.ai/user/lwd815813) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lwd815813](https://clawhub.ai/user/lwd815813)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to track WeChat public account updates, summarize individual article URLs, maintain a watchlist, and configure Feishu/Lark notifications for monitored content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches article URLs provided by the user and stores watchlist and article history data under ~/.wechat_mp_monitor. <br>
-Mitigation: Review the accounts and URLs being monitored, and remove the local data directory when monitoring is no longer needed. <br>
-Risk: Feishu/Lark webhook URLs and notification content may be exposed if webhook URLs are saved in the watchlist or shared with an unintended endpoint. <br>
-Mitigation: Prefer the FEISHU_WEBHOOK environment variable, treat webhook URLs as secrets, and review notification content before enabling delivery. <br>
-Risk: Scheduled monitoring can continue running after setup through cron or OpenClaw cron. <br>
-Mitigation: Remove the cron entry when monitoring should stop. <br>
+## Use Case:
 
+Developers and operators use this skill to fetch summaries for WeChat MP articles, maintain a watchlist, and configure Feishu/Lark alerts while evaluating whether the demo account-checking behavior fits their workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lwd815813/wechat-mp-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print article summaries, watchlist status, history entries, and notification status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill fetches user-supplied article URLs and the security review flags unrestricted URL fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and provide only trusted WeChat article URLs.
+
+Risk: Webhook values and article history may be stored in local plaintext files.
+
+Mitigation: Prefer the FEISHU_WEBHOOK environment variable, avoid the command-line webhook option, and review or delete ~/.wechat_mp_monitor when it may contain sensitive data.
+
+Risk: The release overstates account monitoring because check-all is demo-level and requires an RSS or search API source.
+
+Mitigation: Treat account monitoring as demonstration functionality and verify behavior manually before relying on scheduled checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lwd815813/skills/wechat-mp-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local watchlist and history files under ~/.wechat_mp_monitor and can send Feishu/Lark webhook notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

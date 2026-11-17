@@ -1,46 +1,60 @@
-## Description: <br>
-Creates video ads with Pexo from a product brief, brand details, or uploaded media, then returns project updates and final asset links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create video ads with Pexo from a product, brand brief, or photo; Pexo writes hooks, sequences shots, selects models, and delivers a finished ad with music for platforms such as Meta, TikTok, or YouTube.
 
-## Publisher: <br>
-[pexo](https://clawhub.ai/user/pexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pexo](https://clawhub.ai/user/pexo)
 
-## Use Case: <br>
-Marketing teams, founders, and agents supporting commercial promotion use this skill to create Pexo video-ad projects from briefs or uploaded assets, manage revisions, and deliver the completed video link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, ad briefs, product details, and uploaded media are sent to Pexo's hosted service. <br>
-Mitigation: Avoid sending secrets or regulated data, and confirm uploaded assets are appropriate to share with Pexo. <br>
-Risk: The skill requires a Pexo API key stored in configuration. <br>
-Mitigation: Keep ~/.pexo/config private, restrict file permissions, and rotate the API key if it may have been exposed. <br>
-Risk: Running video generation can consume Pexo credits. <br>
-Mitigation: Check account credits before starting work and confirm that the user wants to proceed when credit or purchase prompts appear. <br>
+## Use Case:
 
+External users and marketing teams use this skill to turn product briefs or uploaded media into ready-to-run video ads through Pexo's hosted video agent.
 
-## Reference(s): <br>
-- [Video Ad on ClawHub](https://clawhub.ai/pexo/video-ad) <br>
-- [Pexo](https://pexo.ai) <br>
-- [Pexo Publisher Profile](https://clawhub.ai/user/pexo) <br>
-- [Setup Checklist](artifact/references/SETUP-CHECKLIST.md) <br>
-- [Troubleshooting](artifact/references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text status messages with shell command usage and final asset URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL; video generation runs through Pexo's hosted service and may consume account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Ad briefs and selected media are sent to Pexo's hosted service for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for briefs and media that are appropriate to share with Pexo, and avoid sensitive or unlicensed material.
+
+Risk: The Pexo API key can be exposed if ~/.pexo/config, PEXO_CONFIG, or the environment is readable or modified by untrusted parties.
+
+Mitigation: Keep the config private with restrictive permissions, use trusted environment settings, and rotate the API key if exposure is suspected.
+
+Risk: A tampered PEXO_BASE_URL or PEXO_CONFIG value could redirect script traffic or load unexpected local configuration.
+
+Mitigation: Use the expected Pexo base URL, keep configuration paths under user control, and run pexo-doctor.sh when setup or behavior looks unusual.
+
+## Reference(s):
+
+- [Pexo](https://pexo.ai)
+- [Setup Checklist](references/SETUP-CHECKLIST.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [ClawHub Skill Page](https://clawhub.ai/pexo/skills/video-ad)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with shell commands and JSON returned by helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can return project links, signed asset URLs, local asset cache paths, setup diagnostics, and polling guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter declares 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

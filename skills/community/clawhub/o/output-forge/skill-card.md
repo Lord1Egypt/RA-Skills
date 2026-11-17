@@ -1,44 +1,60 @@
-## Description: <br>
-Transform raw AI output into platform-ready content with proper formatting, metadata, and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform raw AI output into platform-ready content with formatting, metadata, and cleanup for Markdown, HTML, plain text, and structured outputs.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Content creators, writers, marketers, developers, and teams use Output Forge to convert existing AI-generated or plain-text drafts into platform-ready blog posts, newsletters, social posts, Markdown, LaTeX, HTML, and plain-text files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Default cleanup can remove AI-origin statements, uncertainty caveats, browsing limits, training cutoff notes, or other disclosures that may be required by policy, academic rules, workplace rules, or law. <br>
-Mitigation: Review output before publishing and disable cleanup with --no-clean when those caveats are relevant or required. <br>
-Risk: Generated HTML or LaTeX from untrusted input may include unsafe or unsuitable content for sensitive systems. <br>
-Mitigation: Inspect and sanitize generated HTML or LaTeX before pasting it into publishing tools, admin panels, or production workflows. <br>
+## Use Case:
 
+Content creators, writers, marketers, developers, and teams use this skill to convert existing AI-generated text into platform-ready posts, newsletters, documents, and social threads. It helps standardize formatting, add metadata, batch-process plain-text files, and optionally remove common AI-disclosure or hedging patterns before publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/output-forge) <br>
-- [Publisher Profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [Limitations](artifact/LIMITATIONS.md) <br>
-- [License](artifact/LICENSE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML, LaTeX, plain text, social-thread text, configuration JSON, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local file, stdin, stdout, and batch-directory workflows; default cleanup can be disabled with --no-clean.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Default cleanup can remove AI provenance, capability limits, or uncertainty statements from text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output before publishing and use --no-clean when those statements must remain.
+
+Risk: HTML-oriented outputs are not sanitized and may carry unsafe content when the input is untrusted.
+
+Mitigation: Use the skill only on text you control or sanitize HTML output separately before publishing or pasting into admin surfaces.
+
+Risk: Formatting does not verify facts, grammar, plagiarism, or platform-specific publishing requirements.
+
+Mitigation: Treat the generated files as drafts and perform human review before external publication.
+
+## Reference(s):
+
+- [Output Forge on ClawHub](https://clawhub.ai/theshadowrose/skills/output-forge)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with examples of generated HTML, Markdown, LaTeX, social-thread text, configuration JSON, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local files or stdout; supported formats include WordPress HTML, Medium Markdown, email HTML, Twitter/X threads, LinkedIn posts, Markdown, LaTeX, and plain text.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

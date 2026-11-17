@@ -1,46 +1,60 @@
-## Description: <br>
-Mintsoft warehouse-management API wrapper - query warehouses, orders, products, stock levels, ASNs, and the Product Usage stock-flow report from a single ms-apikey credential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mintsoft warehouse-management API wrapper - query warehouses, orders, products, stock levels, ASNs, and the Product Usage stock-flow report from a single ms-apikey credential.
 
-## Publisher: <br>
-[berkgungor](https://clawhub.ai/user/berkgungor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[berkgungor](https://clawhub.ai/user/berkgungor)
 
-## Use Case: <br>
-Developers, operations teams, and warehouse-support agents use this skill to inspect Mintsoft warehouse, order, product, stock, ASN, and stock-flow data through a JSON-emitting command-line wrapper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read tenant-scoped Mintsoft warehouse, order, product, ASN, inventory, and stock-flow data through the configured API credential. <br>
-Mitigation: Install and run it only for users or agents that are authorized to access that Mintsoft tenant data. <br>
-Risk: The optional auth flow caches a Mintsoft API key locally for up to 24 hours. <br>
-Mitigation: Prefer a pre-issued MINTSOFT_API_KEY in the environment; if the cache is used, treat ~/.config/mintsoft-skill/token.json as a secret and rely on its restrictive file permissions. <br>
-Risk: Passing Mintsoft passwords as command-line arguments can expose credentials through shell history or process listings. <br>
-Mitigation: Use environment variables for credentials and avoid command-line password flags where possible. <br>
+## Use Case:
 
+Developers and operations teams use this skill to let an agent query Mintsoft warehouse, order, product, inventory, ASN, and product-usage data through the bundled CLI.
 
-## Reference(s): <br>
-- [Mintsoft API endpoint reference](https://api.mintsoft.co.uk/swagger/index.html) <br>
-- [Mintsoft API base URL](https://api.mintsoft.co.uk/api) <br>
-- [httpx documentation](https://www.python-httpx.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/berkgungor/mintsoft) <br>
-- [Publisher profile](https://clawhub.ai/user/berkgungor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [List commands return JSON objects with a count and resource array; single-record commands return one JSON resource; errors return JSON and a non-zero exit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Mintsoft credentials and cached API keys are sensitive business secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MINTSOFT_API_KEY, keep token caches in private user directories, restrict file permissions, and rotate keys when access is no longer needed.
+
+Risk: The skill can expose warehouse, order, product, stock, ASN, and product-usage data to an agent.
+
+Mitigation: Install it only for agents and users authorized to access the connected Mintsoft tenant and operational data.
+
+Risk: The runtime depends on httpx for outbound API calls.
+
+Mitigation: Install httpx in a pinned or isolated Python environment when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/berkgungor/skills/mintsoft)
+- [Mintsoft API Swagger](https://api.mintsoft.co.uk/swagger/index.html)
+- [Mintsoft API Base Endpoint](https://api.mintsoft.co.uk/api)
+- [httpx Documentation](https://www.python-httpx.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [List commands support summary output; long pagination has a default 90-second deadline.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

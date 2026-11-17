@@ -1,39 +1,53 @@
-## Description: <br>
-Smart answering framework that adapts to question types and delivers evidence-based, natural responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart answering framework that adapts to question types and delivers evidence-based, natural responses.
 
-## Publisher: <br>
-[BelugaRex](https://clawhub.ai/user/BelugaRex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[belugarex](https://clawhub.ai/user/belugarex)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent organize answers by question type, with concise conclusions, supporting evidence, and clear reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad style guidance may influence ordinary answers beyond tasks that need structured reasoning. <br>
-Mitigation: Use the skill when evidence-focused answer structure is desired, and review outputs for fit when a task requires a different voice or format. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to structure general-purpose question answering with clear conclusions, supporting evidence, reasoning, and tone adjustments. It is especially useful when prompts call for concise explanations, comparisons, viewpoints, clarification, or Chinese-English bilingual responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BelugaRex/answer-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/BelugaRex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English answer-structure guidance; no code execution or external access is indicated by the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Ordinary requests for explanation or comparison may activate structured-answer behavior when the user expected an unstructured reply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve explicit user formatting preferences and adjust or simplify the response when the requested style conflicts with the framework.
+
+Risk: Mixed Chinese-English prompts may receive bilingual output even when the user wanted a single-language answer.
+
+Mitigation: Follow any explicit language preference in the prompt and switch to one language when the user asks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/belugarex/skills/answer-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language answers, often in Markdown; bilingual output may be used for mixed Chinese-English prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add an activation marker and adjust answer depth, tone, and structure based on the user's prompt.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

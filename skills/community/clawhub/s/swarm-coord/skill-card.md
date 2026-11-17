@@ -1,42 +1,54 @@
-## Description: <br>
-多 Agent 协作调度。将大任务拆分为子任务，分配给多个 Agent 并行执行，自动汇总结果。Team Lead 负责拆分、分发、监控、汇总。触发词：协作、swarm、分工、团队任务、并行执行、多 Agent、team work。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swarm Coord helps an agent decompose compound tasks, dispatch parallel sub-agent sessions, monitor progress, and aggregate the results.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and agent operators use Swarm Coord to break complex, multi-domain requests into parallel subtasks, dispatch them to specialized agents, monitor progress, and aggregate the results into one report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation and multi-agent dispatch can cause work to begin before the user has checked whether the decomposition matches their intent. <br>
-Mitigation: Review and approve the proposed subtask plan before execution, especially for messages, document edits, commits, pushes, or other user-visible actions. <br>
-Risk: Child agents may receive more context or credentials than they need for a subtask. <br>
-Mitigation: Give child agents only the files, credentials, and task context required for their assigned work. <br>
-Risk: Task-state or memory persistence can retain sensitive work context after a swarm run. <br>
-Mitigation: Disable or avoid memory and task-state persistence for sensitive work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-domain tasks by splitting work into parallel subtasks, assigning them to specialized agents, monitoring progress, and producing a unified final report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wavmson/swarm-coord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, shell commands] <br>
-**Output Format:** [Markdown task plans, coordination updates, and final summary reports with occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include subtask assignments, dependency notes, progress states, retries, skipped tasks, and aggregated results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Coordinated sub-agents may perform side effects such as modifying files, sending messages, pushing code, or persisting task state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the swarm plan before execution, including assigned sub-agents, touched files or services, and any proposed external or persistent action.
+
+Risk: Parallel subtasks can fail, time out, or produce partial results that affect the final aggregate report.
+
+Mitigation: Track each subtask status, mark failed or skipped work explicitly, and review the unified report before acting on its conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wavmson/skills/swarm-coord)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with task plans, sub-agent instructions, progress updates, and aggregated reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session-spawning steps and status summaries for delegated subtasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

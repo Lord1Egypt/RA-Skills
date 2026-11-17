@@ -19,6 +19,7 @@ create-pdf-doc.py — 火一五企业级原生 PDF 生成器 v7.0
 
 import os
 import sys
+import re
 import html
 import argparse
 import datetime
@@ -228,6 +229,7 @@ def make_styles(preset, fonts: FontRegistry):
             fontSize=preset.size_section,
             leading=preset.size_section * leading_factor,
             alignment=TA_LEFT, spaceBefore=14, spaceAfter=6,
+            wordWrap='CJK',
             textColor=colors.HexColor('#1a1a1a'),
         ),
         'h3': ParagraphStyle(
@@ -241,6 +243,8 @@ def make_styles(preset, fonts: FontRegistry):
             fontSize=preset.size_body,
             leading=preset.size_body * leading_factor,
             alignment=TA_JUSTIFY,
+            wordWrap='CJK',  # v7.9.2: 中文避头尾，行首不出现标点
+            rightIndent=8,  # v7.9.2: reportlab CJK 行宽贴边时会把闭标点甩到行首，留缓冲
             # v7.7 fix: Word 用 firstLineChars=200 (2 中文字符宽，自适应字号)，
             # PDF 之前用固定 0.74cm (≈21pt) 在 12pt 下偏小、在大字号下严重失真。
             # 改为 size × 2 (= 2 中文字符宽 pt 单位)，跨字号视觉与 Word 一致。
@@ -252,6 +256,8 @@ def make_styles(preset, fonts: FontRegistry):
             fontSize=preset.size_body,
             leading=preset.size_body * leading_factor,
             alignment=TA_JUSTIFY, firstLineIndent=0,
+            wordWrap='CJK',
+            # 注意：不加 rightIndent——表格单元格继承本样式，加宽会挤压列宽
             spaceBefore=0, spaceAfter=preset.paragraph_spacing_pt,
         ),
         'list_item': ParagraphStyle(
@@ -260,6 +266,8 @@ def make_styles(preset, fonts: FontRegistry):
             leading=preset.size_body * leading_factor,
             leftIndent=14, bulletIndent=0,
             alignment=TA_JUSTIFY, spaceBefore=0, spaceAfter=3,
+            wordWrap='CJK',
+            rightIndent=40,  # v7.9.2: 防闭标点落行首（粗体列表项需更大缓冲）
         ),
         'code': ParagraphStyle(
             'HuoCode', fontName=code_font,
@@ -276,6 +284,7 @@ def make_styles(preset, fonts: FontRegistry):
             fontSize=preset.size_body,
             leading=preset.size_body * leading_factor,
             leftIndent=18, spaceBefore=4, spaceAfter=4,
+            wordWrap='CJK',
             textColor=colors.HexColor('#555555'),
         ),
         'classification': ParagraphStyle(
@@ -287,14 +296,15 @@ def make_styles(preset, fonts: FontRegistry):
         'meta_key': ParagraphStyle(
             'HuoMetaKey', fontName=heading_font,
             fontSize=preset.size_body - 1, alignment=TA_LEFT,
-            leading=(preset.size_body - 1) * 1.4,
+            leading=(preset.size_body - 1) * 1.4, wordWrap='CJK',
         ),
         'meta_val': ParagraphStyle(
             'HuoMetaVal', fontName=body_font,
             fontSize=preset.size_body - 1, alignment=TA_LEFT,
-            leading=(preset.size_body - 1) * 1.4,
+            leading=(preset.size_body - 1) * 1.4, wordWrap='CJK',
         ),
         '_body_font': body_font,
+        '_body_font_bold': fonts.songti_bold or body_font,
         '_heading_font': heading_font,
         '_title_font': title_font,
         '_code_font': code_font,
@@ -304,6 +314,154 @@ def make_styles(preset, fonts: FontRegistry):
 # ============================================================
 # 三、内联 → reportlab HTML
 # ============================================================
+
+# 中文避头尾（kinsoku）保护字符集合
+#   行首禁：闭标点 + 破折号 + 省略号 → 前插零宽不换行符（与前字绑定，不落行首）
+#   行尾禁：前括号/前引号 → 后插零宽不换行符（与后字绑定，不落行尾）
+# reportlab wordWrap=CJK 对纯中文段落已处理禁则，但中英混排段落（含 ASCII
+# 字符 / 空格）会退化：闭标点落行首、破折号被拆开。
+# 修复用 HTML 实体 &#65279;（ZERO WIDTH NO-BREAK SPACE）：
+#   - 直接插入 U+FEFF 字符会被 reportlab HTML 解析器当空白 → 渲染成空格（✗）
+#   - 插入 &#65279; 实体 → reportlab 解析为真正零宽不换行符（✓ 已用 pdfplumber 验证）
+_KINSOKU_HEAD = '，。、；：？！）》】』」…—'
+_KINSOKU_TAIL = '（［【｛「『《'
+
+
+def _kinsoku_protect_html(escaped_text):
+    """在已 HTML 转义的文本上，于禁则标点两侧插入 &#65279; 零宽不换行实体。"""
+    if not escaped_text or not any(
+            c in escaped_text for c in (_KINSOKU_HEAD + _KINSOKU_TAIL)):
+        return escaped_text
+    out = []
+    for ch in escaped_text:
+        if ch in _KINSOKU_HEAD:
+            out.append('&#65279;')
+        out.append(ch)
+        if ch in _KINSOKU_TAIL:
+            out.append('&#65279;')
+    return ''.join(out)
+
+
+def _safe_wrap_html(html_text, font_name, bold_font_name, size, avail_pt,
+                    first_indent_pt=0):
+    """中文安全断行：按可用宽度逐字符测量，在安全断点插入 <br/>。
+
+    规则：
+      - 闭标点（，。、；：？！）》】』」…—）允许留在行尾，绝不落到行首
+      - 开标点（（［【｛「『《）不能留行尾，回退时推到下一行行首（行首允许）
+      - 行内普通空格 → &nbsp;，防止 reportlab CJK 模式在空格处二次断行
+      - 粗体段用粗体字体测宽（粗体比常规宽 ~5%）
+      - 断行不切断 <b>/<i>/<font> 等内联标签
+    """
+    if not html_text or avail_pt <= 0:
+        return html_text
+    CLOSE = '，。、；：？！）》】』」…—'
+    OPEN = '（［【｛「『《'
+    SAFE_MARGIN = 1.5
+    tags = re.findall(r'<[^>]+>', html_text)
+    if not tags:
+        return _safe_wrap_plain(html_text, font_name, size, avail_pt,
+                                first_indent_pt, SAFE_MARGIN, CLOSE, OPEN)
+    parts = re.split(r'<[^>]+>', html_text)
+    seq = []
+    for i, p in enumerate(parts):
+        if p:
+            seq.append(('t', p))
+        if i < len(tags):
+            seq.append(('g', tags[i]))
+
+    def _is_bold_on(tag):
+        t = tag.lower()
+        return t == '<b>' or t.startswith('<b ') or t == '<strong>'
+
+    def _is_bold_off(tag):
+        t = tag.lower()
+        return t in ('</b>', '</strong>')
+
+    def _ch_width(ch, bold):
+        return stringWidth(ch, bold_font_name if bold else font_name, size)
+
+    def _text_width(s):
+        w = 0.0
+        bold = False
+        for part in re.split(r'(<[^>]+>)', s):
+            if not part:
+                continue
+            if part.startswith('<'):
+                if _is_bold_on(part):
+                    bold = True
+                elif _is_bold_off(part):
+                    bold = False
+                continue
+            for ch in part:
+                w += _ch_width(ch, bold)
+        return w
+
+    lines = []
+    cur = ''
+    cur_bold = False
+    cur_w = 0.0
+    limit = avail_pt - first_indent_pt - SAFE_MARGIN
+    for kind, tok in seq:
+        if kind == 'g':
+            cur += tok
+            if _is_bold_on(tok):
+                cur_bold = True
+            elif _is_bold_off(tok):
+                cur_bold = False
+            continue
+        for ch in tok:
+            w = _ch_width(ch, cur_bold)
+            if cur_w + w > limit and cur:
+                cand = cur.rstrip(' ')
+                while cand and cand[-1] in OPEN:
+                    cand = cand[:-1].rstrip(' ')
+                if cand:
+                    lines.append(cand)
+                    cur = cur[len(cand):].lstrip(' ')
+                    cur_w = _text_width(cur)
+                else:
+                    lines.append(cur)
+                    cur, cur_w = '', 0.0
+                limit = avail_pt - SAFE_MARGIN
+            cur += ch
+            cur_w += w
+    if cur:
+        lines.append(cur)
+    # 行内普通空格 → &nbsp;，防止 reportlab 在空格处二次断行
+    return '<br/>'.join(l.replace(' ', '&nbsp;') for l in lines)
+
+
+def _safe_wrap_plain(html_text, font_name, size, avail_pt, first_indent_pt=0,
+                     safe_margin=1.5, CLOSE=None, OPEN=None):
+    """纯文本（无标签）安全断行。闭标点可留行尾，行首不落闭标点。"""
+    CLOSE = CLOSE or '，。、；：？！）》】』」…—'
+    OPEN = OPEN or '（［【｛「『《'
+    lines = []
+    cur = ''
+    cur_w = 0.0
+    limit = avail_pt - first_indent_pt - safe_margin
+    for ch in html_text:
+        w = stringWidth(ch, font_name, size)
+        if cur_w + w > limit and cur:
+            cand = cur.rstrip(' ')
+            while cand and cand[-1] in OPEN:
+                cand = cand[:-1].rstrip(' ')
+            if cand:
+                lines.append(cand)
+                cur = cur[len(cand):].lstrip(' ')
+                cur_w = stringWidth(cur, font_name, size)
+            else:
+                lines.append(cur)
+                cur, cur_w = '', 0.0
+            limit = avail_pt - safe_margin
+        cur += ch
+        cur_w += w
+    if cur:
+        lines.append(cur)
+    # 行内普通空格 → &nbsp;，防止 reportlab 在空格处二次断行
+    return '<br/>'.join(l.replace(' ', '&nbsp;') for l in lines)
+
 
 def inline_to_html(text, code_font_name):
     """tokenize → escape → reportlab 受限 HTML。
@@ -318,6 +476,10 @@ def inline_to_html(text, code_font_name):
             out_parts.append('<br/>')
         for kind, payload in doc_core.tokenize_inline(line):
             esc = html.escape(payload)
+            # v7.9.2: 半角空格 → &nbsp;，防止 CJK 模式在 ASCII 序列后的空格处
+            # 断行（把“FDE 驻场”拆开）；CJK 断行规则本身不受 &nbsp; 影响。
+            if kind != 'code':
+                esc = esc.replace(' ', '&nbsp;')
             if kind == 'bold':
                 out_parts.append(f'<b>{esc}</b>')
             elif kind == 'italic':
@@ -393,18 +555,54 @@ def render_heading(block, styles):
 
 def render_paragraph(text, styles):
     body = inline_to_html(text, styles['_code_font'])
-    return Paragraph(body, styles['body'])
+    st = styles['body']
+    return Paragraph(body, st)
 
 
 def render_list(block, styles):
     items = block.get('items', [])
     ordered = block.get('ordered', False)
     flow = []
+    st = styles['list_item']
     for idx, item in enumerate(items, start=1):
         bullet = f'{idx}. ' if ordered else '• '
         html_text = bullet + inline_to_html(item, styles['_code_font'])
-        flow.append(Paragraph(html_text, styles['list_item']))
+        flow.append(Paragraph(html_text, st))
     return flow
+
+
+def _cell_text_width(s):
+    """估算单元格文本渲染宽度：中文/全角≈2 单位，ASCII/半角≈1 单位。"""
+    w = 0
+    for ch in s:
+        w += 2 if ord(ch) > 0x2E7F else 1
+    return w
+
+
+def _table_col_widths(rows, max_cols, avail_width_cm):
+    """按列内容宽度比例分配表格列宽（reportlab Table colWidths）。
+
+    修复：旧版不传 colWidths → reportlab 均分列宽，窄列（如“面积”）被拆成
+    “约 2 / 000 / ㎡”。这里按每列最大内容宽度加权分配，并保证最小列宽。
+    权重用 sqrt 压缩长文本，避免“定位”这类超长列吃掉全部宽度。
+    """
+    col_weights = []
+    for c in range(max_cols):
+        m = 1.0
+        for r in rows:
+            if c < len(r):
+                m = max(m, _cell_text_width(r[c]))
+        # sqrt 压缩：长文本列不至于独占宽度
+        col_weights.append(m ** 0.5)
+    total = sum(col_weights)
+    # 可用宽度扣除左右 padding（各 4pt≈0.14cm）与边框
+    usable = max(avail_width_cm - 0.35, 1.0)
+    # 最小列宽 2.0cm，保证“约 2000㎡”这类短内容不跨行
+    raw = [max(usable * (w / total), 2.0) for w in col_weights]
+    raw_sum = sum(raw)
+    if raw_sum > usable:
+        raw = [max(usable * (w / raw_sum), 1.4) for w in raw]
+    return [round(x, 2) for x in raw]
 
 
 def render_table(block, styles):
@@ -427,16 +625,20 @@ def render_table(block, styles):
     )
 
     data = []
+    avail = styles.get('_content_width_cm', 15.5)
+    col_widths_cm = _table_col_widths(rows, max_cols, avail)
+    col_widths = [w * cm for w in col_widths_cm]
     for r_idx, row in enumerate(norm):
         is_head = has_header and r_idx == 0
         rendered = []
-        for cell_text in row:
+        for c_idx, cell_text in enumerate(row):
+            st = head_style if is_head else cell_style
             html_text = inline_to_html(cell_text, styles['_code_font'])
-            rendered.append(Paragraph(html_text,
-                                       head_style if is_head else cell_style))
+            rendered.append(Paragraph(html_text, st))
         data.append(rendered)
 
-    tbl = Table(data, repeatRows=1 if has_header else 0)
+    tbl = Table(data, repeatRows=1 if has_header else 0,
+                colWidths=col_widths)
     cmds = [
         ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#888888')),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -872,6 +1074,11 @@ def create_pdf_doc(output_path, title='', content='', doc_number=None,
 
     fonts = FontRegistry().register_all()
     styles = make_styles(preset, fonts)
+
+    # v7.9.2: 注入版心可用宽度（cm），供表格智能列宽分配使用
+    _page_w, _page_h = A4
+    styles['_content_width_cm'] = (
+        _page_w - (preset.margin_left + preset.margin_right) * cm) / cm
 
     want_banner = (force_classification_banner
                    if force_classification_banner is not None

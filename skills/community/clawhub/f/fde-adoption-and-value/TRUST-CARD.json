@@ -1,0 +1,22 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-adoption-and-value",
+  "stage": 7,
+  "purpose": "Translate technology results into adoption plans, complete costs and verifiable business value.",
+  "risk_level": "medium",
+  "scripts": [],
+  "writes": [
+    "Only output adoption and value analysis documents"
+  ],
+  "human_confirmation": [
+    "investment decision",
+    "scale promotion",
+    "Personnel performance purposes"
+  ],
+  "high_risk_boundaries": [
+    "Correlation does not equal causation",
+    "Go live, adoption and value must be measured separately"
+  ]
+}

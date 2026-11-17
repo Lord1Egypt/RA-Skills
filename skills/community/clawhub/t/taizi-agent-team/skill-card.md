@@ -1,47 +1,58 @@
-## Description: <br>
-A court-grade advisory and execution-routing team for solo founders, one-person companies, and elite operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A court-grade advisory and execution-routing team for solo founders, one-person companies, and elite operators.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-External users such as solo founders, one-person companies, consultants, creators, investors, and high-agency operators use this skill to triage ambiguous work, pressure-test business judgment, improve positioning and pricing, and turn decisions into practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, legal, financial, hiring, or other high-stakes advice could be incomplete or incorrect. <br>
-Mitigation: Use the skill for structured thinking and drafts, then independently verify high-stakes decisions with qualified sources or professionals. <br>
-Risk: Users may paste confidential company, client, contract, financial, personal, or credential data into advisory prompts. <br>
-Mitigation: Share sensitive information only with permission and within a secure workflow, and redact unnecessary details where possible. <br>
-Risk: The courtly persona could obscure weak reasoning if style is valued over substance. <br>
-Mitigation: Follow the artifact standards that require concrete judgment value, explicit assumptions, risk review, and practical next steps. <br>
+## Use Case:
 
+External founders, solo operators, consultants, creators, investors, and business builders use this skill to triage ambiguous work, structure decisions, pressure-test assumptions, and turn strategy into practical next steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaonizhou-crypto/taizi-agent-team) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
-- [TEMPLATES.md](artifact/TEMPLATES.md) <br>
-- [TEAM_STANDARDS.md](artifact/TEAM_STANDARDS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text with structured advisory sections and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include decision frames, risk reviews, positioning drafts, pricing reviews, execution plans, and next-step checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Advisory outputs may influence pricing, hiring, contracts, or major business decisions without enough supporting evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the skill to state assumptions, cite available evidence, define validation steps, and identify decision conditions before relying on the advice.
+
+Risk: The default Chinese courtly tone and honorific address may not fit every user, organization, or communication context.
+
+Mitigation: Explicitly request a neutral tone, different language, or different form of address when the default style is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaonizhou-crypto/skills/taizi-agent-team)
+- [README.en.md](artifact/README.en.md)
+- [README.md](artifact/README.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+- [TEMPLATES.md](artifact/TEMPLATES.md)
+- [TEAM_STANDARDS.md](artifact/TEAM_STANDARDS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured headings, bullet lists, decision templates, critiques, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese courtly tone and honorific address are used by default; users can request a neutral tone or another language.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

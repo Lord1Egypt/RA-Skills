@@ -1,42 +1,58 @@
-## Description: <br>
-Launches a Selenium-controlled Chrome or Chromium browser for a supplied URL, with optional headless and proxy settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start a Selenium-controlled Chrome browser, open a URL, take a screenshot, and report progress; supports headless mode and optional proxy.
 
-## Publisher: <br>
-[andreybespalov89](https://clawhub.ai/user/andreybespalov89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andreybespalov89](https://clawhub.ai/user/andreybespalov89)
 
-## Use Case: <br>
-Developers and operators use this skill to launch a Selenium-controlled browser session for browser automation, page inspection, or screenshot-oriented workflows from an agent environment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The advertised screenshot-and-finish workflow may not match the reviewed script behavior. <br>
-Mitigation: Before use, confirm whether the release should produce a screenshot and JSON result or behave as an interactive browser launcher; add a timeout and explicit result handling if screenshot capture is expected. <br>
-Risk: The skill opens a supplied URL in a live Selenium-controlled browser session. <br>
-Mitigation: Run it only in an isolated browser environment, confirm target URLs before launch, and restrict proxy or network settings to trusted use cases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Selenium + Chrome Setup Guide](artifact/references/setup.md) <br>
-- [Selenium documentation](https://www.selenium.dev/documentation/) <br>
-- [ChromeDriver download page](https://chromedriver.chromium.org/downloads) <br>
-- [ClawHub release page](https://clawhub.ai/andreybespalov89/selenium-browser) <br>
+## Use Case:
 
+Developers and agent operators use this skill to launch a Selenium-controlled Chrome or Chromium browser, navigate to a supplied URL, and capture browser output such as screenshots or progress messages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and launcher process output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reviewed security evidence says the artifact advertises screenshot output, but the checked script keeps the browser running without producing the promised screenshot result.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review says the skill can expose users to arbitrary web content with weakened browser isolation.
+
+Mitigation: Restrict or confirm target URLs, remove --no-sandbox unless equivalent container isolation is present, and review the browser launch configuration before deployment.
+
+Risk: The security review says the packaged script and documentation disagree in ways that could leave browsers running.
+
+Mitigation: Make the shipped script match the documented screenshot-and-exit workflow and enforce explicit termination or timeout behavior.
+
+Risk: The security guidance calls out dependency and invocation hardening needs.
+
+Mitigation: Use explicit invocation, pin and verify Selenium and browser-driver dependencies, and review the skill before installation.
+
+## Reference(s):
+
+- [Selenium + Chrome Setup Guide](references/setup.md)
+- [Selenium Documentation](https://www.selenium.dev/documentation/)
+- [ChromeDriver Downloads](https://chromedriver.chromium.org/downloads)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Text status or error messages with setup guidance and a screenshot file path when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on local Chrome, ChromeDriver, Selenium, URL access, and optional proxy configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

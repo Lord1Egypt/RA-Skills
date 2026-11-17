@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents troubleshoot gateway configuration files that revert after restart and produce recovery guidance for durable configuration writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users troubleshoot gateway configuration changes that are lost after restart, including safer file-writing checks and validation of model IDs before persisting multi-model configuration.
 
-## Publisher: <br>
-[2070super](https://clawhub.ai/user/2070super) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2070super](https://clawhub.ai/user/2070super)
 
-## Use Case: <br>
-Developers and operators use this skill when gateway configuration changes are lost after restart, especially when adding model IDs or recovering from automatic configuration restore behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage persistent gateway configuration overwrites without enough safeguards. <br>
-Mitigation: Use it only in a controlled gateway environment after confirming the exact config path and desired model IDs, backing up the existing file, validating the resulting config, and requiring explicit approval for any write or restart action. <br>
+## Use Case:
 
+Developers and operators use this skill when gateway configuration files revert after restart or when multi-model configuration needs to be written and validated against API model IDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2070super/configure-file-write-and-recovery) <br>
-- [SKILL.md](SKILL.md) <br>
-- [write_config.py](scripts/write_config.py) <br>
-- [evals.json](evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose writing gateway configuration files and checking persistence after restart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can guide an agent to overwrite gateway configuration files without enough safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation, back up the existing configuration, use a scoped real path, and keep a rollback plan before restart.
+
+Risk: Invalid model IDs or configuration syntax can cause the gateway to reject changes and restore previous configuration.
+
+Mitigation: Validate model IDs against the API and check configuration syntax before writing or restarting the gateway.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2070super/skills/configure-file-write-and-recovery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language troubleshooting guidance for persistent gateway configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

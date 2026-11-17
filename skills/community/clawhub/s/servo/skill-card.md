@@ -1,41 +1,50 @@
-## Description: <br>
-Servo provides static devtools reference documentation for Servo commands, practices, troubleshooting, performance, security, migration, and quick-reference workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Servo provides static plain-text reference documentation for Servo-related devtools workflows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Servo as a local reference helper for Servo-related devtools concepts, command usage, troubleshooting, performance, security, migration, and quick-reference documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a shell script, so users should review the local script before installation. <br>
-Mitigation: Review the script before deployment and keep execution limited to the documented reference commands. <br>
-Risk: The skill prints generic operational guidance that may not match a user's environment. <br>
-Mitigation: Treat the output as reference documentation and require human review before applying system, network, credential, migration, or security changes. <br>
+## Use Case:
 
+Developers and engineers use Servo as a lightweight reference helper for Servo-related devtools concepts, commands, troubleshooting, performance, security, migration, and quick-reference guidance.
 
-## Reference(s): <br>
-- [Servo on ClawHub](https://clawhub.ai/bytesagain3/servo) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local heredoc output; no network access, credentials, or external API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The static guidance is generic and may be mistaken for authoritative Servo product documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a lightweight reference and verify important implementation, security, or operational decisions against authoritative Servo documentation.
+
+## Reference(s):
+
+- [Servo ClawHub listing](https://clawhub.ai/bytesagain3/skills/servo)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, network access, or persistent system state required.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

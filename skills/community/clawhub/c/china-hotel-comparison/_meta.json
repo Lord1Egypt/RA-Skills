@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn74f4taw352nb2vzcfjr3c0ps81vr5v",
-  "slug": "china-hotel-comparison",
+  "name": "china-hotel-comparison",
   "version": "1.4.0",
-  "publishedAt": 1772003087465
+  "description": "中国酒店比价 - 专门针对美团、去哪儿、携程、飞猪、途牛等中国本土平台的酒店搜索、价格比较、套餐分析和个性化推荐。支持多用户管理、套餐价值拆解、用户历史学习、多维度画像识别和智能匹配，强制要求每次筛选结果不少于5个选项。",
+  "author": "OpenClaw Assistant",
+  "created": "2026-02-25",
+  "updated": "2026-02-25",
+  "changelog": "v1.4.0: 新增多用户管理系统，支持用户识别、家庭共享和数据隔离\nv1.3.0: 新增套餐价值分析系统，支持服务拆解和真实优惠力度计算\nv1.2.0: 新增用户历史学习系统，支持基于历史需求和筛选习惯的智能优化\nv1.1.0: 新增多维度个性化推荐功能，支持用户画像识别和智能匹配\nv1.0.1: 强制要求每次筛选结果不少于5个选项，更新搜索策略和推荐格式",
+  "tags": ["hotel", "comparison", "china", "travel", "booking", "multi-user", "family-sharing", "package-analysis", "value-calculation", "personalization", "recommendation", "user-profiles", "history-learning", "behavior-analysis", "meituan", "qunar", "ctrip", "fliggy", "tuniu", "minimum-5-options"],
+  "files": [
+    "SKILL.md",
+    "search-strategy.md",
+    "price-calculation.md",
+    "package-value-analysis.md",
+    "multi-user-management.md",
+    "user-profiles.md",
+    "user-history-learning.md",
+    "personalized-recommendation.md",
+    "user-preferences.md",
+    "scripts/hotel-search-example.sh",
+    "README.md"
+  ]
 }

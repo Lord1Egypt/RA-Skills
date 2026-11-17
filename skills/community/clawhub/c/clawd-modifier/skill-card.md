@@ -1,44 +1,54 @@
-## Description: <br>
-Clawd Modifier helps users customize the Claude Code mascot by changing colors, adding arms or accessories, applying ASCII art variants, inspecting the current mascot state, and restoring the original appearance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modifies the Claude Code Clawd mascot by changing colors, adding arms or accessories, extracting current art, and restoring cosmetic variants.
 
-## Publisher: <br>
-[masonc15](https://clawhub.ai/user/masonc15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[masonc15](https://clawhub.ai/user/masonc15)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to personalize Clawd in their local Claude Code CLI through guided color, ASCII art, extraction, and restore workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite installed Claude Code CLI files, including byte-level modification of an executable script or binary. <br>
-Mitigation: Run dry-run and list modes first, use explicit --cli-path or --binary targets, keep backups, and restore the original appearance when needed. <br>
-Risk: Claude Code updates or integrity checks may overwrite, undo, or conflict with local mascot patches. <br>
-Mitigation: Expect updates to require reapplication or restoration, and test the CLI after changes with the documented version check. <br>
-Risk: Pattern-based replacements may fail or target unexpected matches when the installed Claude Code version differs from the documented patterns. <br>
-Mitigation: Inspect replacement counts and patch details, target a known local file, and stop when patterns are missing or the script reports no matches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawd Anatomy](references/clawd-anatomy.md) <br>
-- [Unicode Block Drawing Characters](references/unicode-blocks.md) <br>
-- [Clawd Variant Gallery](assets/clawd-variants.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/masonc15/clawd-modifier) <br>
+## Use Case:
 
+Developers who use Claude Code can use this skill to personalize the terminal mascot with color and ASCII-art variants while following backup, dry-run, restore, and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, file paths, and short procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct dry-run, backup, restore, and explicit target-path workflows before modifying local Claude Code files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill edits installed Claude Code program files and can break or alter the CLI beyond a cosmetic mascot change.
+
+Mitigation: Use dry-run first, keep backups enabled, prefer a user-local Claude Code install, and be prepared to restore or reinstall Claude Code if a patch corrupts the CLI.
+
+Risk: Pattern-based art and binary patches may fail or apply incorrectly when the installed Claude Code version differs from the expected layout.
+
+Mitigation: Verify the target path before patching, test Claude Code after changes, and use the restore option or reinstall Claude Code if the mascot patch does not behave as expected.
+
+## Reference(s):
+
+- [Clawd Anatomy](references/clawd-anatomy.md)
+- [Unicode Block Drawing Characters](references/unicode-blocks.md)
+- [Clawd Variant Gallery](assets/clawd-variants.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, script arguments, and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file patch instructions, dry-run usage, backup paths, restore steps, and terminal compatibility notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

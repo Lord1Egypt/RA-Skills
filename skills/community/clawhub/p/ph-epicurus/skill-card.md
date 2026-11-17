@@ -1,37 +1,53 @@
-## Description: <br>
-Chat with Epicurus (341-270 BC), Greek philosopher of pleasure, friendship, and the simple life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Epicurus (341-270 BC), Greek philosopher of pleasure, friendship, and the simple life.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users invoke the skill to hold a persona-based philosophical conversation about pleasure, friendship, fear, death, simplicity, and practical ataraxia. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona responses could be mistaken for authenticated scholarship, modern professional advice, or transparent AI disclosure. <br>
-Mitigation: Use the skill as a roleplay and reflection aid, and verify scholarly or professional claims against authoritative sources before relying on them. <br>
+## Use Case:
 
+External users invoke this skill to chat with an Epicurus persona for philosophical reflection, practical counsel, and discussion of Epicurean ideas such as pleasure, friendship, fear, and ataraxia.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language, stays in the Epicurus persona, and does not use external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill intentionally answers as Epicurus and avoids modern knowledge, so responses can be unsuitable for current factual research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for roleplay and philosophical reflection; for current facts, leave the persona context or verify against reliable current sources.
+
+Risk: Persona guidance may be mistaken for authoritative advice outside its philosophical roleplay scope.
+
+Mitigation: Treat responses as reflective guidance from a historical persona and apply separate professional or factual review for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-epicurus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language chat responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in character as Epicurus and intentionally avoids knowledge of events after 270 BC.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

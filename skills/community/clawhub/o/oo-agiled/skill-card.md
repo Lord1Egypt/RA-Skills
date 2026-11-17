@@ -1,43 +1,60 @@
-## Description: <br>
-Agiled (agiled.app) lets an agent read, create, update, and delete Agiled CRM contacts, projects, and tasks through an OOMOL-connected `oo` CLI account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agiled (agiled.app). Use this skill for ANY Agiled request — reading, creating, updating, and deleting data. Whenever a task involves Agiled, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Agiled CRM, project, and task data from an agent session after their OOMOL account is signed in and connected to Agiled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete Agiled contacts, projects, and tasks. <br>
-Mitigation: Review the exact target and JSON payload with the user before approving write or destructive actions. <br>
-Risk: The skill depends on a third-party OOMOL CLI connection to the user's Agiled account. <br>
-Mitigation: Install and run it only when the user trusts OOMOL and is comfortable connecting Agiled through the `oo` CLI. <br>
+## Use Case:
 
+External users and teams can use the skill to read and manage Agiled contacts, projects, and tasks through their connected account. It guides agents to check each action's schema and obtain confirmation before writes or deletions.
 
-## Reference(s): <br>
-- [Agiled homepage](https://agiled.app) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-agiled) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses from connector runs include a data object and meta.executionId when commands succeed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter metadata) <br>
+Risk: Setup may execute downloaded installer code that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a reviewed oo CLI release and require approval before local installation.
+
+Risk: CLI startup synchronization may change other installed agent skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invoking the CLI if you want to disable startup skill synchronization.
+
+Risk: Write and delete actions change Agiled records.
+
+Mitigation: Confirm the exact payload and effect before writes, and explicitly approve the target before deletions.
+
+## Reference(s):
+
+- [Agiled skill release](https://clawhub.ai/oomol/skills/oo-agiled)
+- [Agiled homepage](https://agiled.app)
+- [Agiled API documentation](https://my.agiled.app/developers)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Schema-guided connector requests and structured JSON responses, with concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports read, create, update, and delete actions; confirm writes and explicitly approve deletions.]
+
+## Skill Version(s):
+
+1.0.4 (source: release metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

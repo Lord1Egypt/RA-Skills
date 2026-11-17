@@ -1,48 +1,58 @@
-## Description: <br>
-Prompt-ZS is a Chinese-oriented assistant for generating structured AI image, video, and prompt-optimization outputs for tools such as Midjourney, Stable Diffusion, Runway, and Pika. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt-ZS helps agents generate Chinese-first prompts for AI image and video creation, including bilingual JSON prompt objects, tagged image prompts, concise video prompts, and direct translations.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-External users and developers use this skill to turn Chinese or bilingual creative requests into image-generation prompts, video-generation prompts, concise translations, or structured JSON prompt fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as prompt optimization, image generation, or video generation may route requests into this skill even when the user only meant to discuss those topics. <br>
-Mitigation: Confirm that the user wants a generated or optimized creative prompt before applying the skill's structured output rules. <br>
-Risk: Generated creative prompts or translations may be inaccurate, culturally inappropriate, or unsuitable for a target model or production workflow. <br>
-Mitigation: Review generated prompts before use, especially for brand, safety, localization, or commercial deliverables. <br>
+## Use Case:
 
+External users and creators use this skill to turn image, video, and translation requests into structured prompts for tools such as Midjourney, Stable Diffusion, Runway, and Pika. It is especially suited to Chinese-first workflows that may also need English prompt fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/prompt-zs) <br>
-- [Publisher profile](https://clawhub.ai/user/bozoyan) <br>
-- [README](README.md) <br>
-- [CHANGELOG](CHANGELOG.md) <br>
-- [Evaluation cases](evals/evals.json) <br>
-- [Basic prompt example](examples/basic-example.json) <br>
-- [Expert prompt example](examples/expert2-example.json) <br>
-- [Text-to-video example](examples/video-text-example.md) <br>
-- [Image-to-video example](examples/video-image-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown examples, or JSON arrays with Chinese and English prompt fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Video prompt outputs are described as a single concise paragraph under 500 Chinese characters; JSON modes use cn, en, cn-tag, and en-tag fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter, README, CHANGELOG released 2025-03-17) <br>
+Risk: Broad activation wording may cause the skill to trigger for general image or video generation requests where users expect a different workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the request is for prompt generation, prompt optimization, image prompt writing, video prompt writing, or direct translation before applying the skill.
+
+Risk: The skill commonly emits Chinese-first output with English fields, which may not match users who require strict single-language output.
+
+Mitigation: Ask for or honor explicit language requirements when a user needs only Chinese, only English, or another locale-specific format.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/prompt-zs)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Text-to-video example](artifact/examples/video-text-example.md)
+- [Image-to-video example](artifact/examples/video-image-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Chinese-first plain text, Markdown examples, and JSON prompt objects with cn, en, cn-tag, and en-tag fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video prompts are intended to be concise single paragraphs under 500 Chinese characters; JSON outputs should omit surrounding Markdown code fences.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Provides static security scanning for installed and candidate OpenClaw skills, checking permission risk, suspicious code patterns, dependency signals, and producing a Chinese risk assessment report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides static security scanning for OpenClaw skills, checking permission risks, suspicious code patterns, dependency risks, and producing Chinese-language risk assessment reports.
 
-## Publisher: <br>
-[ansengu11](https://clawhub.ai/user/ansengu11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ansengu11](https://clawhub.ai/user/ansengu11)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect installed skills or public skill repositories before installation or deployment. It helps surface permission, file-access, network-access, and dependency risks for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw skill directories, which may contain sensitive information from other skills. <br>
-Mitigation: Run it deliberately in an isolated environment, avoid running as root, and inspect the target skills directory before scanning. <br>
-Risk: The skill can access GitHub and clone public repositories into temporary storage during online scans. <br>
-Mitigation: Use it only when GitHub access and temporary cloning are expected, and review results before relying on them. <br>
-Risk: Setting OPENCLAW_NONINTERACTIVE=true skips confirmation prompts. <br>
-Mitigation: Leave OPENCLAW_NONINTERACTIVE unset unless automated scanning is intentional and the environment is prepared for the disclosed reads and network access. <br>
+## Use Case:
 
+Developers and operators use this skill to audit installed or candidate OpenClaw skills before use, with emphasis on permissions, network access, shell behavior, dependencies, and review recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ansengu11/openclaw-safe-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown security assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a risk score, permission checks, code and dependency findings, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can read installed OpenClaw skill directories, which may expose sensitive data embedded in other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it as a non-root user in an isolated environment and review which skill directories are available before scanning.
+
+Risk: The skill contacts GitHub and may clone public repositories into temporary local storage.
+
+Mitigation: Use network access only where GitHub lookups are expected, and inspect or clean temporary workspace data after use.
+
+Risk: Server security evidence flags a comparison command that can be steered outside declared skill directories and copy readable files into predictable /tmp locations.
+
+Mitigation: Avoid the compare command with untrusted skill names until path validation and mktemp-based temporary directories are fixed.
+
+Risk: Non-interactive mode can skip confirmation prompts before scanning.
+
+Mitigation: Avoid OPENCLAW_NONINTERACTIVE=true unless the execution environment and target inputs have already been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ansengu11/skills/openclaw-safe-guard)
+- [Publisher profile](https://clawhub.ai/user/ansengu11)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown security assessment report with tables, risk scoring, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English interface text; scans are static and depend on installed command-line tools.]
+
+## Skill Version(s):
+
+1.2.3 (source: server-resolved release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

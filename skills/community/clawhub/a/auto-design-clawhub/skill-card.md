@@ -1,41 +1,60 @@
-## Description: <br>
-Auto-selects and applies design systems from awesome-design-md based on project type and task context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-selects and applies design systems from awesome-design-md based on project type and task context.
 
-## Publisher: <br>
-[html1602](https://clawhub.ai/user/html1602) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[html1602](https://clawhub.ai/user/html1602)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to select an appropriate design system for UI work, generate local DESIGN.md guidance, and adapt choices for project types such as dashboards, documentation, marketing sites, developer tools, and AI/ML products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is always active and broadly triggered, so it may influence UI work when design guidance was not intended. <br>
-Mitigation: Install it only when an always-on design assistant is desired, and review its recommendations before applying them. <br>
-Risk: The skill can fetch remote design files and write project guidance without a clear confirmation gate. <br>
-Mitigation: Use it in a branch or disposable workspace, and require explicit approval before any network download or file creation. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose UI design systems, generate local design references, and guide implementation choices for pages, components, dashboards, documentation, marketing sites, and related frontend work.
 
-## Reference(s): <br>
-- [Auto Design homepage](https://github.com/moyubox/auto-design) <br>
-- [ClawHub skill page](https://clawhub.ai/html1602/auto-design-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with inline commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require node and curl; can generate local DESIGN.md references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can auto-activate broadly for design, styling, UI, UX, layout, and component work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where broad design assistance is intended, or invoke it explicitly when an agent platform supports scoped activation.
+
+Risk: The skill may fetch mutable remote Markdown design references.
+
+Mitigation: Prefer pinned or reviewed design sources before applying downloaded guidance to production work.
+
+Risk: The skill can lead an agent to write local design reference files or run optional conversion commands that create agent skill files.
+
+Mitigation: Review generated file changes before keeping them, and run conversion commands only when intentionally installing the skill into another agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/html1602/skills/auto-design-clawhub)
+- [Skill homepage](https://github.com/moyubox/auto-design)
+- [awesome-design-md design system collection](https://github.com/VoltAgent/awesome-design-md)
+- [awesome-design-md raw design reference template](https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/design-md/{brand}/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local design reference files such as DESIGN.md, Docs/Design/{brand}-DESIGN.md, and Docs/DevLog/YYYY-MM-DD_design.md when followed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

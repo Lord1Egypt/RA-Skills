@@ -1,44 +1,57 @@
-## Description: <br>
-Performs advanced Google searches with Playwright for OpenClaw technical resources and summarizes results for Telegram channel delivery in Markdown format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs advanced Google searches with Playwright for OpenClaw technical resources, summarizes the top results, and prepares the summary for Telegram delivery.
 
-## Publisher: <br>
-[sonpham1909](https://clawhub.ai/user/sonpham1909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sonpham1909](https://clawhub.ai/user/sonpham1909)
 
-## Use Case: <br>
-Developers and technical users can use this skill to search for OpenClaw documentation, repositories, and usage guides, then receive a concise Markdown summary through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs an unreviewed local Python script for web automation. <br>
-Mitigation: Inspect or replace the referenced bot.py before installing or executing the skill. <br>
-Risk: Search results are forwarded to Telegram, which may expose sensitive query content or summaries. <br>
-Mitigation: Confirm the Telegram destination before each send and avoid sensitive queries or account credentials. <br>
-Risk: Telegram automation requires credentials that could be misused if overprivileged or exposed. <br>
-Mitigation: Use a dedicated low-privilege bot token stored outside the skill artifact. <br>
+## Use Case:
 
+Developers and technical users can use this skill to search for OpenClaw-related documentation, repositories, and usage guides, then receive concise Markdown summaries through a Telegram workflow.
 
-## Reference(s): <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sonpham1909/google-research-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/sonpham1909) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summary with structured search-result details and optional execution or delivery status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are intended for Telegram delivery and are based on the top 3-5 search results returned by the referenced local Python workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow executes a local Python script with user-provided search keywords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit and control the referenced bot.py file, restrict who can modify it, and pass arguments without shell interpretation.
+
+Risk: The workflow depends on browser automation, dependency installation, and Telegram credentials.
+
+Mitigation: Pin and install dependencies safely, run Playwright setup intentionally, and configure Telegram destinations and credentials through a secure mechanism.
+
+Risk: Automated Google searching and Telegram delivery can violate service rules or expose unintended recipients if configured incorrectly.
+
+Mitigation: Confirm compliance with applicable terms and local requirements, and explicitly verify the Telegram channel or user ID before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sonpham1909/skills/google-research-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with structured search-result content and Telegram delivery status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Python search script, Playwright browser setup, and Telegram destination and credential configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

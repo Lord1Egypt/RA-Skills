@@ -1,42 +1,59 @@
-## Description: <br>
-Use when a user provides a SQL query or result set and asks to generate a chart, dashboard, or data visualization from the results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts supplied SQL queries or query results into chart recommendations and dashboard specifications.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers, data analysts, and agent users use this skill to turn SQL queries or tabular query results into chart specifications and multi-panel dashboard drafts. It helps choose an appropriate visualization type, map columns to axes, and avoid misleading charts for empty or oversized result sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated charts or dashboards may be misleading if the SQL result shape is inferred incorrectly, the result set is empty, or large datasets are sampled or aggregated. <br>
-Mitigation: Treat generated dashboards as drafts, verify column mappings and chart type against the actual query result, and disclose any sampling or aggregation applied to large datasets. <br>
-Risk: SQL query results may contain sensitive data shared with the agent environment. <br>
-Mitigation: Avoid pasting sensitive query results unless sharing them with the agent environment is acceptable. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to turn supplied SQL queries or result sets into chart recommendations and renderable specs for Plotly, Grafana, or Mermaid.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangjipeng977/sql-to-dashboard) <br>
-- [Skill metadata source](https://github.com/MiniMax-AI/skills) <br>
-- [Reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, configuration] <br>
-**Output Format:** [Markdown with JSON or Mermaid chart specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Plotly JSON, Grafana panel JSON, Mermaid charts, or dashboard panel guidance depending on the user's requested target.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; changelog released 2026-05-18) <br>
+Risk: Very large result sets may be summarized through aggregation or sampling, which can hide outliers or change the apparent distribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any stated aggregation or sampling choice and confirm it matches the analysis goal before using the chart.
+
+Risk: Chart recommendations can be misleading when based only on an inferred query shape rather than actual result values.
+
+Mitigation: Provide representative result rows when possible and review the selected chart type plus column-to-axis mappings.
+
+Risk: Some support files reference an older skill name, which can confuse installation or maintenance workflows.
+
+Mitigation: Verify release, install, and test references use the current sql-to-dashboard slug before publishing or operational use.
+
+## Reference(s):
+
+- [Skill reference index](references/index.md)
+- [Metadata source link](https://github.com/MiniMax-AI/skills)
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/sql-to-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON or Mermaid code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Plotly JSON, Grafana panel JSON, Mermaid chart blocks, and column-to-axis mappings; should not invent data points.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and CHANGELOG, released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

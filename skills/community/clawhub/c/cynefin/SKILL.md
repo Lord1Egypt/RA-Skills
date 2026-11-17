@@ -1,6 +1,6 @@
 ---
 name: cynefin
-description: "Activate when: 'our best practices keep failing', 'experts disagree on the right answer', 'the old playbook isn't working', 'we're in crisis and don't know what to do first', 'best practice doesn't apply here', 'we need a different approach'. Do NOT activate when: situation is unambiguously routine (execution only); a specialized tool (OODA, expected value) already fits."
+description: "Activate when: 'our best practices keep failing', 'experts disagree on the right answer', 'the old playbook isn't working', 'we're in crisis and don't know what to do first', 'best practice doesn't apply here', 'we need a different approach'. Do NOT activate when: situation is unambiguously routine (execution only); a specialized tool (OODA, expected value) already fits. More: deciqai.com/c/cynefin"
 ---
 
 # Cynefin
@@ -9,7 +9,7 @@ description: "Activate when: 'our best practices keep failing', 'experts disagre
 
 **Cynefin** (pronounced "kuh-NEV-in"; Welsh for "habitat") is a sense-making framework by Dave Snowden (IBM, 1999). Its claim: the right decision approach depends on which of five domains the situation falls into — **Clear** (obvious cause-effect, use SOP), **Complicated** (knowable with expertise, use analysis), **Complex** (emergent, probe first), **Chaotic** (absent cause-effect, act first), **Confused** (unknown domain, decompose first). The most common and costly error: treating Complex problems as Complicated.
 
-Composes with [`ooda-loop`](../ooda-loop/SKILL.md), [`feedback-loops`](../feedback-loops/SKILL.md), [`antifragile`](../antifragile/SKILL.md), [`first-principles`](../first-principles/SKILL.md).
+Composes with `ooda-loop`, `feedback-loops`, `antifragile`, `first-principles`.
 
 ## When to Use
 
@@ -17,6 +17,7 @@ Composes with [`ooda-loop`](../ooda-loop/SKILL.md), [`feedback-loops`](../feedba
 - Experts disagree on the right answer — a crisis unfolding where the previous playbook doesn't apply
 - "Best practices from X" imported without checking if the domain matches
 - A team is over-planning something emergent, or "let's get more data" when data won't come without action
+- Allocating AI capex or racing AI-native competition: deciding which AI bets are engineering (Complicated), emergent agent/adoption experiments (Complex), or live incidents (Chaotic)
 
 **Not when:** domain is unambiguously Clear (execution only); small-stakes one-shot; specialized framework already fits.
 
@@ -68,7 +69,8 @@ Method: [S-C-R / S-A-R / P-S-R / A-S-R] | Actions: | Mismatch cost (if any):
 Boundary watch: [shift signals | monitoring owner | re-diagnosis schedule]
 ```
 
-*→ Method in Action: [Snowden at IBM (1999) and the HBR Synthesis (2007)](examples/snowden-at-ibm-1999-and-the-hbr-synthesis-2007.md)*
+*→ Method in Action: [Snowden at IBM (1999) and the HBR Synthesis (2007)](examples/snowden-at-ibm-1999-and-the-hbr-synthesis-2007.md) · [Apollo 13 Mission Response (1970)](examples/apollo-13-1970-mission-response.md)*
+*→ 2026 lens: [Sorting AI Decisions by Domain (2024–2026)](examples/sorting-ai-decisions-by-domain-2024-2026.md)*
 
 ## Pack: Cynefin Domain Patterns
 
@@ -115,4 +117,6 @@ Boundary watch: [shift signals | monitoring owner | re-diagnosis schedule]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/cynefin** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/cynefin.json*

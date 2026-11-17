@@ -1,0 +1,13 @@
+{
+  "name": "carrusel-noticiero",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render news-carousel HTML to PNG slides + transparent title overlays (FORMULA 100K)",
+  "main": "export.js",
+  "scripts": {
+    "export": "node export.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.42.0"
+  }
+}

@@ -1,39 +1,50 @@
-## Description: <br>
-Upload files to Giggle asset service and get public/download URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to Giggle asset service and get public/download URLs.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-Developers and agents use this skill to upload local files to the Giggle asset service and return public or download URLs when a user asks to host, view, or share a file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files uploaded through this skill are publicly hosted, and broad upload instructions could expose private or sensitive content. <br>
-Mitigation: Upload only files explicitly intended for public hosting, avoid secrets or confidential documents, and confirm the target file and API key before running the upload. <br>
+## Use Case:
 
+Developers and agents use this skill to upload local generated or selected files to the Giggle asset service and return public preview and download URLs to users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patches429/giggle-files-management) <br>
-- [Giggle API](https://api.giggle.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSON from the upload script with Markdown links for user-facing previews or downloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a Giggle asset service API key; uploaded files are intended to be publicly accessible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can cause agents to upload local files to externally hosted public links too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for files intentionally selected for external hosting, and avoid private documents, source code, credentials, logs, or business data unless the file and sharing scope are confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/patches429/skills/giggle-files-management)
+- [Giggle API](https://api.giggle.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON upload results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq, plus a Giggle asset service API key.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -797,7 +797,7 @@ Jeff 确认选题后，**必须**按以下步骤执行：
   - 加粗强调：`<span style="color:#556b2f;font-weight:bold;">`
   - 重点字词：`<span style="background:#fff8e7;padding:2px 6px;border-radius:3px;color:#b74134;font-weight:600;text-decoration:underline dotted #b74134;">`
   - 重点句下划线：`<span style="border-bottom:2px dotted #556b2f;padding-bottom:2px;color:#556b2f;">`
-  - CTA结尾：`<p style="margin:0;padding:20px 15px;text-align:center;color:#333;line-height:1.8;font-size:15px;"><strong>如果你觉得文章对你有所帮助，请关注公众号。</strong></p>`
+  - CTA结尾：`<p style="margin:0;padding:20px 15px;text-align:center;color:#333;line-height:1.8;font-size:15px;"><strong>如果你觉得文章对你有所帮助，请关注就行</strong></p>`
 - Include complete HTML structure (DOCTYPE, head, body)
 - **IMPORTANT: Do NOT use `<hr/>` tags between paragraphs** - Use spacing and headings for visual separation instead
 - **DO NOT include metadata** - No date, version info, or author metadata in HTML output
@@ -866,7 +866,7 @@ Jeff 确认选题后，**必须**按以下步骤执行：
 #### CTA结尾（必须添加）
 ```html
 <p style="margin:0;padding:20px 15px;text-align:center;color:#333;line-height:1.8;font-size:15px;">
-    <strong>如果你觉得文章对你有所帮助，请关注公众号。</strong>
+    <strong>如果你觉得文章对你有所帮助，请关注就行</strong>
 </p>
 ```
 

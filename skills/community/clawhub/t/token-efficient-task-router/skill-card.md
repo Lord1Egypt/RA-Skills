@@ -1,48 +1,64 @@
-## Description: <br>
-A token-efficient task routing and execution control skill for WorkBuddy, iMA Copilot, OpenClaw, QClaw, and other agent systems that classifies requests, chooses Ask, Plan, Craft, or Expert mode, and uses staged execution and confirmation gates to reduce unnecessary token use and large unconfirmed file edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A token-efficient task routing and execution control skill for WorkBuddy, iMA Copilot, OpenClaw, QClaw, and other agent systems that classifies requests, selects Ask, Plan, Craft, or Expert mode, reduces unnecessary token usage, avoids large unconfirmed file edits, and improves task ROI through staged execution and confirmation gates.
 
-## Publisher: <br>
-[afanmusic](https://clawhub.ai/user/afanmusic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afanmusic](https://clawhub.ai/user/afanmusic)
 
-## Use Case: <br>
-Developers, agent builders, and workflow owners use this skill to make an agent classify ambiguous, file-sensitive, high-cost, or multi-step requests before acting. It helps select Ask, Plan, Craft, or Expert mode and apply confirmation gates, progressive delivery, and token-budget controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide credentials or secret material unnecessarily. <br>
-Mitigation: Do not provide credentials or secrets to this skill; the security evidence says its instructions do not require them. <br>
-Risk: Non-Chinese users may receive Chinese-first templates or prompts. <br>
-Mitigation: Set the preferred response language explicitly when enabling or invoking the skill. <br>
-Risk: A behavior-control skill can add unnecessary confirmation or planning to simple, low-risk tasks. <br>
-Mitigation: Enable it when scope, risk, file changes, or token cost need control, and skip it for clear one-pass tasks. <br>
+## Use Case:
 
+Developers and agent operators use this control-layer skill to classify ambiguous, file-sensitive, batch, or high-token requests before execution. It helps choose Ask, Plan, Craft, or Expert mode, set output depth, and require confirmation before broad or risky changes.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/afanmusic/token-efficient-task-router) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [GUIDE.en.md](artifact/GUIDE.en.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [Mode Router](artifact/references/mode_router.md) <br>
-- [Risk Levels](artifact/references/risk_levels.md) <br>
-- [Token Budget Modes](artifact/references/token_budget_modes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown or concise text with optional code and shell blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mode, depth, risk, and confirmation gates to control scope and token budget.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.8 (source: server release metadata and artifact/CHANGELOG.md, released 2026-05-02) <br>
+Risk: The control layer can add unnecessary routing or confirmation to simple, low-risk requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it for ambiguous, file-touching, batch, high-token, or risky tasks; allow clear small tasks to proceed in Craft Mode.
+
+Risk: Chinese-centric defaults and bilingual templates may not match every deployment language or channel.
+
+Mitigation: Review and adapt prompts, confirmation choices, and default output lengths for the target agent environment before rollout.
+
+Risk: Packaging metadata is inconsistent because server metadata reports MIT-0, README.en.md says MIT, and no LICENSE file is present in the artifact.
+
+Mitigation: Confirm the intended license and add authoritative LICENSE and version metadata before redistribution.
+
+## Reference(s):
+
+- [README.en.md](README.en.md)
+- [GUIDE.en.md](GUIDE.en.md)
+- [CHANGELOG.md](CHANGELOG.md)
+- [focus_activation_rules.md](references/focus_activation_rules.md)
+- [mode_router.md](references/mode_router.md)
+- [interactive_routing.md](references/interactive_routing.md)
+- [file_safety_rules.md](references/file_safety_rules.md)
+- [chat_confirmation_affordances.md](references/chat_confirmation_affordances.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with mode recommendations, confirmation prompts, and concise next-step instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Micro, Standard, Deep, and Artifact token budget modes; favors progressive delivery and confirmation gates for risky work.]
+
+## Skill Version(s):
+
+0.6.8 (source: server release metadata and CHANGELOG.md, released 2026-05-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

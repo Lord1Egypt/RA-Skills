@@ -1,40 +1,58 @@
-## Description: <br>
-Helps developers build AI-powered features with Claude API and Anthropic SDK patterns for structured outputs, tool calling, streaming, multi-provider routing, agent orchestration, evaluation, memory, RAG, and production deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers building Claude API or Anthropic SDK features, including structured outputs, tool calling, streaming, multi-provider routing, multi-agent orchestration, evaluation, memory, RAG pipelines, and production deployment.
 
-## Publisher: <br>
-[jimmy974](https://clawhub.ai/user/jimmy974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy974](https://clawhub.ai/user/jimmy974)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and implement Claude API integrations, structured outputs, tool calling, streaming, RAG, memory, multi-provider routing, and agent orchestration in Next.js, Python, and TypeScript systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example AI integrations may expose files, tools, secrets, or sensitive user data if copied into production without additional controls. <br>
-Mitigation: Restrict file and tool access, require approval for sensitive actions, avoid sending secrets or sensitive data to model providers, and review provider retention terms. <br>
-Risk: Agent loops, memory, and RAG patterns can create excessive execution or retain data longer than intended. <br>
-Mitigation: Add loop limits, monitoring, and explicit memory storage and deletion rules before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and implement AI-powered application features with Claude and Anthropic SDK patterns across Python, TypeScript, and Next.js systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimmy974/ai-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Python and TypeScript examples for API calls, tool use, streaming, memory, RAG, evaluation, and deployment patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter lists 2.0.0) <br>
+Risk: Example agent patterns can access local files or sensitive user context without sufficient boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add workspace-bound file access, explicit user approval for sensitive reads, and redaction before external model calls.
+
+Risk: Conversation history and stored memory can leak across users or persist longer than intended.
+
+Mitigation: Use per-user or per-tenant memory isolation with explicit retention and deletion controls.
+
+Risk: RAG content can carry prompt-injection instructions into agent workflows.
+
+Mitigation: Apply prompt-injection defenses around retrieved content and review generated actions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmy974/skills/ai-integration)
+- [Publisher profile](https://clawhub.ai/user/jimmy974)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation patterns and example snippets; examples require review and hardening before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

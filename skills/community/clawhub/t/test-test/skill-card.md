@@ -1,38 +1,49 @@
-## Description: <br>
-just for test <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+just for test
 
-## Publisher: <br>
-[tangyang](https://clawhub.ai/user/tangyang) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangyang](https://clawhub.ai/user/tangyang)
 
-## Use Case: <br>
-Developers and reviewers can use this placeholder skill as a minimal test release to verify ClawHub skill packaging and card generation behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a placeholder and may not add useful production functionality. <br>
-Mitigation: Confirm the intended use is testing or packaging validation before installing or publishing it as a production skill. <br>
+## Use Case:
 
+External users and developers can inspect this as a test stub release. The artifact does not provide a practical workflow beyond placeholder content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangyang/test-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Minimal placeholder output; no code, commands, permissions, or data access behavior are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release metadata) <br>
+Risk: Users may mistake the placeholder release for a useful operational skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a test package unless it is rewritten with a clear purpose, valid metadata, and useful artifact content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangyang/skills/test-test)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or brief Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No operational files, commands, or configuration are present in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.16 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

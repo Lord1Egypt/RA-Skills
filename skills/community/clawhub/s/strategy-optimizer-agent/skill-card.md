@@ -1,40 +1,53 @@
-## Description: <br>
-Strategy Optimizer Agent evaluates creative and publishing strategies, recommends topic, cadence, writing-style, and ROI improvements, captures reusable methodology, and forecasts market trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategy Optimizer Agent helps evaluate creative strategy effectiveness, optimize topic selection, publishing cadence, writing style, ROI, methodology capture, and short-term market planning.
 
-## Publisher: <br>
-[ouyang198000](https://clawhub.ai/user/ouyang198000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ouyang198000](https://clawhub.ai/user/ouyang198000)
 
-## Use Case: <br>
-External users and creators use this skill to evaluate publishing strategy performance, choose topics, adjust release cadence and style, calculate ROI, and maintain a practical strategy knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive raw business, platform, or revenue data while evaluating strategy performance. <br>
-Mitigation: Provide only the data needed for the analysis, remove unnecessary sensitive details, and follow the security guidance to avoid sharing confidential inputs unless required. <br>
-Risk: Strategy recommendations or forecasts may be incomplete, incorrect, or unsuitable for the user's publishing context. <br>
-Mitigation: Review recommendations before acting, validate changes with data over the documented one-to-two-week evaluation periods, and avoid changing more than one or two variables at a time. <br>
+## Use Case:
 
+Content strategists and creators use this skill to assess strategy performance, compare ROI, refine topic, publishing, platform, and style decisions, and capture reusable methodology for future planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouyang198000/strategy-optimizer-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown prose with structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations should be based on supplied performance data and reviewed before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Strategy or ROI recommendations may be misleading if the source data, scope, or assumptions are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the data source, analysis scope, and approval step before adopting recommendations.
+
+Risk: Methodology updates may preserve unreviewed assumptions in a knowledge base or strategy workflow.
+
+Mitigation: Review proposed methodology changes before allowing them to update persistent knowledge or operating workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ouyang198000/skills/strategy-optimizer-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown and structured JSON-style strategy reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ROI calculations, strategy comparisons, planning forecasts, and methodology notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

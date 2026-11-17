@@ -35,7 +35,8 @@ Use the `redbook` CLI to search notes, read content, analyze creators, automate 
 ```
 /redbook search "AI编程"              # Search notes
 /redbook read <url>                   # Read a note
-/redbook user <userId>                # Creator profile
+/redbook user <profileUrl>            # Creator profile
+/redbook account-report --file ids.txt --json  # Batch account metrics
 /redbook analyze <userId>             # Full creator analysis (profile + posts)
 ```
 
@@ -46,8 +47,9 @@ Use the `redbook` CLI to search notes, read content, analyze creators, automate 
 | Search notes | `redbook search "keyword" --json` |
 | Read a note | `redbook read <url> --json` |
 | Get comments | `redbook comments <url> --json --all` |
-| Creator profile | `redbook user <userId> --json` |
-| Creator's posts | `redbook user-posts <userId> --json` |
+| Creator profile | `redbook user <userId-or-profileUrl> --json` |
+| Creator's posts | `redbook user-posts <userId-or-profileUrl> --json` |
+| Batch account report | `redbook account-report --file accounts.txt --month YYYY-MM --json` |
 | Browse feed | `redbook feed --json` |
 | Search hashtags | `redbook topics "keyword" --json` |
 | Analyze viral note | `redbook analyze-viral <url> --json` |
@@ -69,6 +71,7 @@ Use the `redbook` CLI to search notes, read content, analyze creators, automate 
 | Render markdown to cards | `redbook render content.md --style xiaohongshu` |
 | Publish image note | `redbook post --title "..." --body "..." --images img.jpg` |
 | Check connection | `redbook whoami` |
+| Save cookies for cloud/OpenClaw | `redbook auth export` or `redbook auth save --cookie-string "a1=...; web_session=..."` |
 
 **Always add `--json`** when parsing output programmatically. Without it, output is human-formatted text.
 
@@ -242,6 +245,23 @@ redbook user-posts "<userId>" --json
 |---------|----------|-----------|--------|-----|-------|-------|
 | @creator1 | 12万 | 3,200 | 1,800 | 45,000 | 89 | Tutorial |
 | @creator2 | 5.4万 | 8,100 | 6,500 | 22,000 | 34 | Story |
+
+---
+
+### Module D2: Known Account Reporting
+
+**Answers:** Given a known list of account IDs/profile URLs, how often did each account post and how did each post perform?
+
+Use this when the user already has KOS/KOC account IDs and wants clean account-scoped metrics. Do **not** approximate this with keyword search; keyword search introduces unrelated posts and noisy attribution.
+
+```bash
+redbook account-report --file accounts.txt --month 2026-07 --json
+redbook account-report "<profileUrl1>" "<profileUrl2>" --max-pages 2 --json
+```
+
+Input files are newline-separated user IDs or profile URLs; blank lines and `#` comments are ignored. Prefer profile URLs containing `xsec_token` when available. JSON output includes account summary fields (`fetchedPosts`, `postsInMonth`, `complete`, `pagesFetched`), engagement totals and averages, top posts, and per-note rows with title, type, publish time, metrics, and `webUrl`.
+
+Default mode fetches only the first page per account. `complete: false` means more pages exist. Use `--all` only when the user explicitly wants full history and the account list is small enough to pace safely; otherwise prefer `--max-pages <n>`.
 
 ---
 
@@ -716,7 +736,7 @@ All state lives under one job directory — default `research/xhs/<job-slug>/` i
 | `manifest.md` | Human-readable plan + progress (checkmark per done item) — the recovery checkpoint, updated every tick |
 | `SUMMARY.md` | Final synthesis, written once the queue drains |
 
-**Seeding the queue:** the cheap list endpoints (`search`, `feed`, `user-posts` — no `xsec_token` cost) are how you *build* the queue, not part of the paced loop. Run a `search`/`feed` up front, extract each `webUrl`, and write one `read`/`analyze-viral` item per note into `queue.jsonl`. Then the loop drains the expensive detail-reads at the Steady pace. Always carry the fresh `webUrl` (with token) as the item `arg` — tokens expire, so don't queue bare noteIds (see [xsec_token](#xsec_token--required-for-reading--sharing-notes)).
+**Seeding the queue:** the cheap list endpoints (`search`, `feed`, and `user-posts` with a fresh profile URL/token) are how you *build* the queue, not part of the paced loop. Run a `search`/`feed` up front, extract each note `webUrl`, and write one `read`/`analyze-viral` item per note into `queue.jsonl`. Then the loop drains the expensive detail-reads at the Steady pace. Always carry the fresh `webUrl` (with token) as the item `arg` — tokens expire, so don't queue bare noteIds (see [xsec_token](#xsec_token--required-for-reading--sharing-notes)). For creator queues, prefer a profile URL containing `xsec_token`; bare userIds may return `code=-1`.
 
 ### One tick = one note
 
@@ -831,23 +851,41 @@ redbook comments "https://www.xiaohongshu.com/explore/abc123" --json
 redbook comments "https://www.xiaohongshu.com/explore/abc123" --all --json
 ```
 
-### `redbook user <userId>`
+### `redbook user <userId|profileUrl>`
 
 Get a creator's profile — nickname, bio, follower count, note count, likes received.
 
 ```bash
-redbook user "5a1234567890abcdef012345" --json
+redbook user "https://www.xiaohongshu.com/user/profile/5a1234567890abcdef012345?xsec_token=...&xsec_source=pc_search" --json
 ```
 
-The userId is the hex string from the creator's profile URL.
+Accepts a bare userId or a full profile URL. If a bare userId returns `code=-1`, use a fresh profile URL containing `xsec_token`, or pass `--xsec-token <token> --xsec-source pc_search`.
 
-### `redbook user-posts <userId>`
+### `redbook user-posts <userId|profileUrl>`
 
 List all notes posted by a creator. Returns titles, URLs, likes, timestamps.
 
 ```bash
-redbook user-posts "5a1234567890abcdef012345" --json
+redbook user-posts "https://www.xiaohongshu.com/user/profile/5a1234567890abcdef012345?xsec_token=...&xsec_source=pc_search" --json
 ```
+
+### `redbook account-report <userId|profileUrl...>`
+
+Batch summarize account posting and engagement metrics.
+
+```bash
+redbook account-report --file accounts.txt --month 2026-07 --json
+redbook account-report "<profileUrl1>" "<profileUrl2>" --max-pages 2 --json
+```
+
+Options:
+- `--file <path>`: newline-separated account IDs/profile URLs
+- `--month <YYYY-MM>`: month used for `postsInMonth` (default: current month)
+- `--max-pages <n>`: page cap per account when not using `--all` (default: 1)
+- `--all`: fetch every page for each account
+- `--delay <ms>`: delay between page/account requests (default: 3000)
+
+For KOS/KOC reporting, feed it known account IDs or profile URLs instead of using keyword search. If a bare userId returns `code=-1`, use a fresh profile URL containing `xsec_token`.
 
 ### `redbook feed`
 
@@ -1014,6 +1052,27 @@ Check connection status. Verifies cookies are valid and shows the logged-in user
 redbook whoami
 ```
 
+### `redbook auth`
+
+Manage saved cookies for OpenClaw, cloud, or CI runs where browser cookie extraction is unavailable or `--cookie-string` would be repeated on every command.
+
+```bash
+# Export from the logged-in local browser to ~/.redbook/cookies.json
+redbook auth export
+
+# Or save a cookie string copied from Chrome DevTools
+redbook auth save --cookie-string "a1=VALUE; web_session=VALUE"
+
+# Inspect without printing secret cookie values
+redbook auth path
+redbook auth inspect --json
+
+# Remove saved local reuse
+redbook auth clear
+```
+
+Normal commands resolve cookies in this order: `--cookie-string`, `REDBOOK_COOKIE_STRING`, `REDBOOK_COOKIE_FILE`, `~/.redbook/cookies.json`, then browser extraction. Saved cookie files are plaintext login credentials written with `0600` permissions; never commit them or include them in logs.
+
 ### `redbook post` (Limited)
 
 Publish an image note. **Frequently triggers captcha (type=124) on the creator API.** Image upload works, but the publish step is unreliable. For posting, consider using browser automation instead.
@@ -1035,7 +1094,45 @@ redbook post --title "测试" --body "..." --images img.png --private --json
 All commands accept:
 - `--cookie-source <browser>`: `chrome` (default), `safari`, `firefox`
 - `--chrome-profile <name>`: Chrome profile directory name (e.g., "Profile 1"). Auto-discovered if omitted.
+- `--cookie-string <cookies>`: manual cookie string, e.g. `"a1=VALUE; web_session=VALUE"`
+- `--platform <name>`: force `xhs` (mainland) or `rednote` (global). **Default: auto-detect** which one you're logged into — see [Mainland vs Global](#mainland-xiaohongshu-vs-global-rednote).
+- `--global`: force the global RedNote backend (= `--platform rednote`)
 - `--json`: Output as JSON
+
+---
+
+## Mainland Xiaohongshu vs Global RedNote
+
+XHS runs **two separate backends that do NOT share sessions or cookies**:
+
+| | Mainland | Global |
+|---|---|---|
+| App / site | 小红书 / `xiaohongshu.com` | RedNote / `rednote.com` |
+| API host | `edith.xiaohongshu.com` | `webapi.rednote.com` |
+| Cookie domain | `.xiaohongshu.com` | `.rednote.com` |
+
+RedNote routes you to mainland vs global **by IP/region**, and you can only be signed into one at a time on a machine — so **the CLI auto-detects which one you're logged into**. You normally pass **no flag at all**:
+
+```bash
+redbook whoami            # auto-detects mainland vs global, then shows your account
+redbook search "AI"       # runs against whichever backend you're logged into
+```
+
+**How detection works:** it probes both cookie domains; if only one has a session it uses that, and if both have cookies (the unused domain often keeps a stale guest cookie) it verifies which is actually logged in via one lightweight `/user/me` call. The result is cached in `~/.redbook/platform-cache.json` (keyed by a cookie fingerprint), so it doesn't re-hit the API every command and self-invalidates when you log in/out. You'll see a dim `Platform: … [auto-detected|cached]` line on stderr.
+
+**Override** only if you need to force one (rare):
+
+```bash
+redbook whoami --global            # force global RedNote (= --platform rednote)
+redbook whoami --platform xhs      # force mainland
+# or: export REDBOOK_PLATFORM=rednote
+```
+
+The web signing (x-s/x-t) algorithm is **identical** across both — only the host + cookie domain differ.
+
+**Known gaps on the global backend:**
+- `user-posts` / `user` may need a fresh profile `xsec_token`; pass a full profile URL or `--xsec-token` if a bare userId returns `code -1`.
+- `health` (note throttle levels) needs creator-dashboard cookies; log into the RedNote creator dashboard first.
 
 ---
 
@@ -1079,8 +1176,9 @@ redbook read "<webUrl from search result>" --json
 
 **For agents:** Prefer `webUrl` from the response. When only a bare noteId is available, search first to obtain a fresh token, then use the returned `webUrl`.
 
-**Commands that need xsec_token:** `read`, `comments`, `analyze-viral`
-**Commands that do NOT need xsec_token:** `search`, `user`, `user-posts`, `feed`, `whoami`, `topics`
+**Commands that need note xsec_token:** `read`, `comments`, `analyze-viral`
+**Commands that may need profile xsec_token:** `user`, `user-posts`
+**Commands that do NOT need xsec_token:** `search`, `feed`, `whoami`, `topics`
 
 ### Chinese Number Formats in API Responses
 
@@ -1106,6 +1204,9 @@ The `analyze-viral` command handles this automatically. When parsing `--json` ou
 | "Session expired" | Cookie too old | Re-login in Chrome |
 | "NeedVerify" / captcha | Anti-bot triggered | Wait and retry, or reduce request frequency |
 | "IP blocked" (300012) | Rate limited | Wait or switch network |
+| "Request signature rejected (HTTP 406)" | XHS changed its web signing | Update redbook (`npm i -g @lucasygu/redbook@latest`); don't retry in a loop |
+| "No API permission for this account" (-104) | Account-level restriction by XHS (often on `search`), not a cookie/signing bug | Confirm `whoami` works, then use another account or the browser. Don't keep retrying |
+| "looks like a 小红书号 (Red ID)" | Passed the numeric Red ID instead of the user ID | Use the 24-char ID from `/user/profile/<id>`, or the full profile URL |
 
 ---
 

@@ -1,43 +1,52 @@
-## Description: <br>
-Optimize prompts for clarity and effectiveness, with optional routing to clarification, codebase research, or web research when the prompt needs more context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize prompts for clarity and effectiveness. Use when user says "improve this prompt", "optimize my prompt", "make this clearer", or provides vague/unstructured prompts.
 
-## Publisher: <br>
-[tolibear](https://clawhub.ai/user/tolibear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[tolibear](https://clawhub.ai/user/tolibear)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and other agent users use Promptify Skill to turn vague or unstructured requests into optimized prompts. The skill can ask clarifying questions, gather codebase context, or use web research when the prompt calls for it.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated clipboard commands can be unsafe when prompts contain quotes or shell-like text.
+
+Mitigation: Review the generated command before running it, or copy the optimized prompt manually.
+
+Risk: Codebase and web modifiers can expose local project context or prompt details during research.
+
+Mitigation: Use those modifiers only when local context review or web research is intended and acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, writers, analysts, and agent users use this skill to turn vague or underspecified requests into structured prompts with a clear role, task, constraints, and output format. It can ask clarifying questions, inspect relevant project context, or search current guidance when those paths are selected or auto-detected. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Optional codebase research can inspect relevant local project files when +deep is used or auto-detected. <br>
-Mitigation: Use codebase research only when the prompt benefits from local context, and review the optimized prompt before sharing it outside the project. <br>
-Risk: Optional web research can bring external guidance into the generated prompt. <br>
-Mitigation: Review web-informed prompt content for accuracy and fit before using it for implementation decisions. <br>
-Risk: The clipboard helper command can overwrite clipboard contents or contain badly quoted shell text. <br>
-Mitigation: Inspect the generated pbcopy command before running it. <br>
+**Output Format:** [Markdown with a prompt code block, a clipboard shell command, and a short explanation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tolibear/promptify-skill) <br>
-- [README](README.md) <br>
+**Other Properties Related to Output:** [May incorporate image context, conversation context, codebase research, or web research depending on prompt content and modifiers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with an optimized prompt code block, a clipboard shell command, and a brief explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include context gathered from clarifying questions, local project files, or web research when selected or auto-detected] <br>
+3.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

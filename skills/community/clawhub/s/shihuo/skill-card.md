@@ -1,38 +1,58 @@
-## Description: <br>
-识货潮流商品鉴别与购买工具，专注运动鞋服、潮牌等品类，提供正品鉴别、比价、优惠券和返利服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+识货潮流商品鉴别与购买工具，专注运动鞋服、潮牌等品类，提供正品鉴别、比价、优惠券和返利服务。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers use this skill to compare prices, coupons, rebates, and authenticity guidance for sneakers, sportswear, streetwear, and related consumer goods before purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping prices, coupon availability, rebate terms, or authenticity guidance may be stale, incomplete, or platform-specific. <br>
-Mitigation: Verify the final price, seller terms, coupon eligibility, rebate rules, and authenticity details directly on the shopping platform before buying. <br>
+## Use Case:
 
+External shoppers use this skill to compare prices, coupons, cashback, and authenticity-check guidance for sneakers, fashion brands, sports apparel, and digital accessories before buying.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/shihuo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shopping comparison report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product name, item number, platform prices, coupon or rebate notes, lowest estimated final price, and authenticity guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Price, coupon, and cashback information may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify final price, discounts, shipping, taxes, and cashback eligibility directly on the merchant platform before purchase.
+
+Risk: Authenticity guidance may not conclusively identify counterfeit goods.
+
+Mitigation: Use the skill's advice as a checklist and confirm high-value purchases through trusted seller policies, platform authentication, or professional inspection.
+
+Risk: Broad shopping trigger terms may activate the skill in ordinary shopping discussions.
+
+Mitigation: Confirm that shopping-comparison or authenticity-check assistance is desired before relying on the skill's output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/shihuo)
+- [Publisher profile](https://clawhub.ai/user/fangshan101-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shopping comparison and authenticity-guidance report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prices, coupons, cashback, and authenticity advice should be independently verified before purchase.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

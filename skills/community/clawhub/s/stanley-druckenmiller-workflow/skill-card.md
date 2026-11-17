@@ -1,44 +1,68 @@
-## Description: <br>
-Thesis-driven macro-to-execution market workflow in natural Chinese or English. Generate A-share and U.S. equity Morning Briefs, Intraday Alerts, Close Reviews, Weekly Regime Resets, and pre-trade sanity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thesis-driven macro-to-execution market workflow in natural Chinese or English for A-share and U.S. equity morning briefs, intraday alerts, close reviews, weekly regime resets, and pre-trade sanity checks.
 
-## Publisher: <br>
-[luckycatl](https://clawhub.ai/user/luckycatl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckycatl](https://clawhub.ai/user/luckycatl)
 
-## Use Case: <br>
-External users and market analysts use this skill to produce public-data macro and equity-market research memos for A-share and U.S. equity workflows. It helps translate liquidity, rates, credit, FX, internal structure, sector expression, and fundamentals into regime, best-expression, position-bias, kill-switch, and watchlist language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public market data from third-party sources may be stale, unavailable, incomplete, or cached. <br>
-Mitigation: Review data timestamps, evidence anchors, missing-evidence labels, and DATA LIMITED downgrades before relying on the analysis. <br>
-Risk: Market research output may be mistaken for investment advice or automated trading instructions. <br>
-Mitigation: Treat outputs as research context only; keep exact asset choice, entry, stop, target, size, and risk budget under human control. <br>
-Risk: The helper can fetch public financial data, optionally read a FRED-specific API key, and store local market-data cache files. <br>
-Mitigation: Install only if those behaviors are acceptable, use a purpose-specific FRED API key when needed, and set an explicit runtime/cache directory if the default skill-local cache is not appropriate. <br>
+## Use Case:
 
+External users and market-focused agents use this skill to turn public macro, liquidity, rates, credit, FX, sector, and breadth evidence into concise market research memos with regimes, best expressions, position bias, kill-switches, and watchlists. It is intended for research framing and workflow standardization, not investment advice or trade execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luckycatl/stanley-druckenmiller-workflow) <br>
-- [Core Panels and Sources](references/core-panels-and-sources.md) <br>
-- [A-share Tape V1.1](references/a-share-tape-v1_1.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown narrative memos, alerts, reviews, and sanity checks with occasional shell commands for optional data-panel setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are decision-oriented research context with evidence anchors, timestamps, falsification conditions, and explicit data-limited downgrades when evidence is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.11 (source: server release evidence and artifact metadata) <br>
+Risk: Outputs may be mistaken for investment advice or trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research framing only; the skill requires no explicit trade orders, human-owned execution decisions, and an investment-advice disclaimer.
+
+Risk: Optional financial-data dependencies can introduce dependency-supply-chain or compatibility risk.
+
+Mitigation: Use a virtual environment, pin finshare and akshare versions, and disable finshare with FINSHARE_MODE=off when it is not needed.
+
+Risk: Public market data can be incomplete, stale, unavailable, or served through fallbacks and proxies.
+
+Mitigation: Review evidence anchors, timestamps, field status labels, and DATA LIMITED downgrades before relying on the memo.
+
+Risk: Setting FRED_API_KEY sends the configured API key to FRED's API.
+
+Mitigation: Set FRED_API_KEY only when the user is comfortable using FRED's service, and omit it when public CSV fallback is sufficient.
+
+Risk: Runtime snapshots are written to local storage.
+
+Mitigation: Keep the default skill-local runtime directory or set STANLEY_RUNTIME_DIR to an explicit approved cache location.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luckycatl/skills/stanley-druckenmiller-workflow)
+- [README](README.md)
+- [Core Panels and Sources](references/core-panels-and-sources.md)
+- [A-share Tape V1.1](references/a-share-tape-v1_1.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown narrative memos with optional shell commands, configuration snippets, and JSON data-panel files when explicitly requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include evidence anchors, ISO8601 data timestamps, data-limited downgrades when coverage is incomplete, and a disclaimer that the content is research framework information rather than investment advice or trading instructions.]
+
+## Skill Version(s):
+
+1.1.11 (source: server release evidence and artifact published version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

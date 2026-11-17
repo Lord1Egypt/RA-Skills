@@ -1,42 +1,61 @@
-## Description: <br>
-Ziwei Verify calibrates birth time from verification points by searching nearby Chinese time-period offsets to improve confidence in Ziwei Doushu chart validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ziwei Verify calibrates Ziwei Doushu birth times from verification points by evaluating nearby Chinese-hour offsets and returning calibrated packets or review candidates.
 
-## Publisher: <br>
-[caojyb](https://clawhub.ai/user/caojyb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caojyb](https://clawhub.ai/user/caojyb)
 
-## Use Case: <br>
-External users and agent developers use this skill to validate Ziwei chart packets, suggest candidate birth-time corrections, and return calibrated results that can be reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes birth time, location, and astrological chart details that may be sensitive. <br>
-Mitigation: Use it only when that data is appropriate to process, minimize sensitive details, and obtain user consent before sending generated prompts to external LLMs. <br>
-Risk: Corrected birth times and calibration candidates can be treated as more certain than the evidence supports. <br>
-Mitigation: Prefer interactive review before saving corrected birth times and expose confidence, status, warnings, and candidate details to the user. <br>
-Risk: Long-running deployments may retain dialogue-session context longer than intended. <br>
-Mitigation: Clear dialogue sessions after review and avoid retaining unnecessary birth-time or chart context. <br>
+## Use Case:
 
+Developers and agents use this skill after a Ziwei chart calculation to test whether nearby birth-time offsets improve chart confidence. It can automatically return a calibrated StandardDataPacket or provide candidates for human verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caojyb/ziwei-verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, structured data] <br>
-**Output Format:** [JSON-style StandardDataPacket responses with optional Markdown comparison tables and verification prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return calibration status, confidence, corrected birth time, candidate lists, warnings, errors, and metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Simulated calibration can be treated as a successful result before the Ziwei dependency path is implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and review the Ziwei invocation path, require real chart output, and block production reliance on CALIBRATION_DONE until that path is verified.
+
+Risk: Birth time, gender, location, and chart outputs are sensitive personal data.
+
+Mitigation: Collect the minimum needed data, avoid logging sensitive fields, and get explicit consent before sending generated prompts or packets to external LLMs.
+
+Risk: Interactive session state lacks clear ownership checks, expiration, and deletion behavior.
+
+Mitigation: Do not deploy the interactive handler in a shared service until per-user ownership, session expiry, and deletion controls are implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caojyb/skills/ziwei-verify)
+- [Artifact README](artifact/README.md)
+- [Skill definition evidence](artifact/SKILL.md)
+- [Delivery report](artifact/DELIVERY.md)
+- [API documentation](artifact/API文档.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, markdown, text, guidance]
+
+**Output Format:** [JSON-compatible StandardDataPacket objects with optional Markdown tables and human-facing prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may use CALIBRATION_DONE, LOW_CONFIDENCE, NEED_VERIFICATION, INVALID_INPUT, or CALIBRATION_FAILED status values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

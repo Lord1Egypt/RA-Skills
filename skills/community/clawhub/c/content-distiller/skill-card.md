@@ -1,44 +1,55 @@
-## Description: <br>
-内容蒸馏器 helps agents distill reusable methodologies from ebooks, links, videos, articles, and pasted text, then package them as structured WorkBuddy skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将书籍、课程、文章、视频或文案中的可复用方法提炼为结构化的 agent 技能包。
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-External users and developers use this skill to turn long-form content, media, links, or pasted text into reusable methodology skills. It supports knowledge-base and action-guide skill packages with references, examples, boundaries, and limitation analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent skill files in the user's WorkBuddy skills directory. <br>
-Mitigation: Review generated skill directories before allowing them to persist or before invoking them. <br>
-Risk: PDF and EPUB helper scripts may silently install Python packages. <br>
-Mitigation: Preinstall required dependencies in a controlled environment or remove the automatic pip installation behavior before processing ebooks. <br>
-Risk: The workflow may fetch or use external discussion content while collecting objections and limitations. <br>
-Mitigation: Use trusted sources, avoid sensitive private content, and review fetched material before incorporating it into generated skills. <br>
+## Use Case:
 
+内容创作者、学习者和技能作者可用它分析书籍、课程、文章、视频或文案，并将提炼出的可复用方法整理成带有参考资料与示例的技能包。
 
-## Reference(s): <br>
-- [蒸馏框架](references/蒸馏框架.md) <br>
-- [方法论索引](references/方法论索引.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/guipi888/content-distiller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, generated skill files, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate persistent WorkBuddy skill directories and optional helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Generated skills can carry incorrect or unsafe guidance from source content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan each generated skill before installation, and treat source content as untrusted; keep source materials local when appropriate.
+
+Risk: This release includes unrelated promotional output, and document extraction may install software automatically.
+
+Mitigation: Prefer a version without mandatory advertising, make dependency installation explicit in a dedicated environment, and inspect setup steps before running them.
+
+## Reference(s):
+
+- [蒸馏框架参考](artifact/references/蒸馏框架.md)
+- [方法论索引](artifact/references/方法论索引.md)
+- [ClawHub skill page](https://clawhub.ai/guipi888/skills/content-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown skill package containing SKILL.md and supporting scripts, references, examples, and templates; may also include an index or ZIP archive.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content is based on the supplied source material and may be installed as a local skill package.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter; server release 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

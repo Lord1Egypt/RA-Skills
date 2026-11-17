@@ -25,7 +25,8 @@
 
 ```bash
 cd skill/engines
-docker build -t paired-voxcpm:latest -f voxcpm.Dockerfile .
+# the .txt suffix on voxcpm.Dockerfile.txt is a ClawHub packaging convention; docker build -f accepts any filename
+docker build -t paired-voxcpm:latest -f voxcpm.Dockerfile.txt .
 
 mkdir -p ~/.config/paired/voice/word-clips
 

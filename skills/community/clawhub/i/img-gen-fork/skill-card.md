@@ -1,41 +1,54 @@
-## Description: <br>
-A test placeholder skill that directs users to install the GLM-Image-Generation skill and does not provide image generation functionality itself. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+This placeholder skill directs users to install the GLM-Image-Generation skill for image generation.
 
-## Publisher: <br>
-[superdongdongyan](https://clawhub.ai/user/superdongdongyan) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superdongdongyan](https://clawhub.ai/user/superdongdongyan)
 
-## Use Case: <br>
-Developers and reviewers can use this placeholder to verify a ClawHub skill release page and locate the referenced GLM image-generation skill. It is not a working image-generation skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the placeholder's wording as independent verification of the referenced GLM-Image-Generation skill. <br>
-Mitigation: Review the separate JaredforReal/glm-image-gen skill on its own merits before installing or running it. <br>
-Risk: The skill directs users to run an install command for a separate skill. <br>
-Mitigation: Confirm the target publisher and skill slug before running the displayed npx command. <br>
+## Use Case:
 
+External users and developers can use this placeholder release to find installation guidance for a referenced GLM image generation skill. The artifact evidence states that this skill does not provide image generation functionality itself.
 
-## Reference(s): <br>
-- [Image Generation Test on ClawHub](https://clawhub.ai/superdongdongyan/img-gen-fork) <br>
-- [Referenced GLM-Image-Generation skill](https://clawhub.ai/JaredforReal/glm-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with an inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Placeholder content only; it instructs users to review and install a separate skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill directs users to install another image-generation skill with an unpinned ClawHub CLI command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the ClawHub CLI source and JaredforReal/glm-image-gen skill are trusted; prefer a pinned or verified installer version when available.
+
+Risk: Enabling the referenced skill in an environment with sensitive files or credentials could expand exposure if the referenced skill is not reviewed first.
+
+Mitigation: Review the referenced skill before enabling it in environments that contain sensitive files, credentials, or production access.
+
+## Reference(s):
+
+- [Image Generation Test on ClawHub](https://clawhub.ai/superdongdongyan/skills/img-gen-fork)
+- [GLM-Image-Generation skill on ClawHub](https://clawhub.ai/JaredforReal/glm-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No direct image output; the skill points users to another skill and an install command.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

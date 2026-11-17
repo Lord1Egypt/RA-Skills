@@ -1,42 +1,54 @@
-## Description: <br>
-Shield CN provides localized security checks for Chinese-language AI agent workflows, including prompt-injection, data-leak, credential-leak, and DingTalk, Feishu, and WeChat-related detections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shield CN provides a Chinese-localized security guard and audit workflow for detecting prompt-injection patterns, credential exposure, data-leak risks, and platform-specific phishing indicators.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and agent operators use Shield CN to scan selected workspaces, check Chinese-language inputs for suspicious prompt-injection or phishing patterns, and generate local security audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local audit script scans the workspace selected by the user and can save reports or logs under ~/.openclaw. <br>
-Mitigation: Scan only intended project directories, avoid scanning an entire home directory unless deliberate, and review or delete local reports and logs when finished. <br>
-Risk: Block mode is a helper control and may not stop every unsafe action or false positive. <br>
-Mitigation: Treat block mode as advisory, keep human review in the workflow, and do not rely on it as the only enforcement control. <br>
+## Use Case:
 
+Developers and Chinese-language OpenClaw users use this skill to screen prompts, credential access patterns, and workspace files for security issues and to generate Chinese security reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/shield-cn) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, console text, JSON-like check results, Python code examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security audit reports and guard logs are written locally for the workspace selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2284.0.0 (source: server release metadata; artifact metadata reports 1.0.0) <br>
+Risk: Protection claims may exceed the reliability of the local scanner and classifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as advisory support and keep human review, platform controls, and established security tooling in place for credential access, uploads, links, QR codes, and sharing.
+
+Risk: The scripts scan local workspace content and may store sensitive findings in logs or reports under ~/.openclaw.
+
+Mitigation: Run the skill only in trusted workspaces, review generated ~/.openclaw logs and reports, and remove sensitive stored findings when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/shield-cn)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, console text, JSON-like check results, Python code examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write threat logs and audit reports under ~/.openclaw when scripts are run.]
+
+## Skill Version(s):
+
+2284.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

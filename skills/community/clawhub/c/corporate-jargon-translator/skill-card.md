@@ -1,42 +1,55 @@
-## Description: <br>
-Translates corporate buzzwords, management jargon, and office euphemisms into plain English for employees, job seekers, and anyone decoding business communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate corporate buzzwords, management jargon, and office euphemisms into plain English.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Employees, job seekers, and workplace communicators use this skill to translate business jargon, management feedback, job postings, and company announcements into plain English or convert plain wording into corporate-style phrasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translations can be opinionated, humorous, or overly blunt when applied to real workplace communication. <br>
-Mitigation: Review generated wording before relying on it for employment, management, or HR decisions. <br>
-Risk: Marketplace metadata includes crypto and purchase capability tags that are not implemented by the artifact content. <br>
-Mitigation: Treat those tags as metadata noise for this release and verify capability claims against the artifact before deployment. <br>
+## Use Case:
 
+Employees, job seekers, and workplace communicators use this skill to decode business jargon in emails, feedback, job postings, and company announcements, or to rewrite plain statements in corporate style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/corporate-jargon-translator) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
-- [Homepage](https://xiaping.coze.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain-language translations and short explanatory Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workplace communication guidance; no tools, scripts, or required binaries are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Blunt workplace translations may be mistaken for reliable HR, legal, or career advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a writing aid and review sensitive employment decisions with appropriate human expertise.
+
+Risk: Translations may be overly broad or misleading for a specific workplace context.
+
+Mitigation: Compare outputs against the original message context before acting on them or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/corporate-jargon-translator)
+- [Publisher profile](https://clawhub.ai/user/huajianjiu000)
+- [Homepage](https://xiaping.coze.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-language translations and short Markdown explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only; no tool, credential, command, or data access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

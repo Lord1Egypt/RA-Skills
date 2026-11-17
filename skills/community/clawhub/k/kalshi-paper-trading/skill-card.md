@@ -1,42 +1,55 @@
-## Description: <br>
-Kalshi-native paper trading ledger and CLI for binary prediction contracts. Use for paper opens, marks, reconciliation, valuation, and review without relying on the generic spot-style paper trader. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kalshi-native paper trading ledger and CLI for binary prediction contracts. Use for paper opens, marks, reconciliation, valuation, and review without relying on the generic spot-style paper trader.
 
-## Publisher: <br>
-[BRS999](https://clawhub.ai/user/BRS999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brs999](https://clawhub.ai/user/brs999)
 
-## Use Case: <br>
-Developers and trading-system builders use this skill to manage Kalshi-specific paper execution, account state, marks, reconciliation, valuation, and performance review for binary prediction contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paper-trading outputs may be mistaken for real trading instructions or financial advice. <br>
-Mitigation: Keep the workflow limited to paper execution and ledger review, verify market tickers and quotes before acting on any analysis, and use separate controls for real trading. <br>
-Risk: The local SQLite ledger may contain sensitive strategy, account, or market-research data. <br>
-Mitigation: Use an explicit database path when needed, restrict file access, and remove test or temporary ledgers after review. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Kalshi-specific paper trading workflows, including account setup, paper opens and closes, quote marks, settlement reconciliation, valuation, and performance review. It is designed for binary prediction contracts that need cent-denominated accounting and Kalshi-native exposure rules.
 
-## Reference(s): <br>
-- [Kalshi Paper Ledger Proposal](references/kalshi-paper-ledger.md) <br>
-- [Kalshi Documentation](https://docs.kalshi.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BRS999/kalshi-paper-trading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and stores paper-trading state in a local SQLite ledger.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live market lookup commands can be configured to request arbitrary base URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep KALSHI_BASE_URL and --kalshi-base-url pointed at the official Kalshi API unless intentionally testing, and do not let untrusted prompts choose that URL.
+
+Risk: The skill maintains a persistent local paper-trading database.
+
+Mitigation: Install and run it only where local paper-trading records are acceptable, and review the configured database path before use.
+
+## Reference(s):
+
+- [Kalshi Documentation](https://docs.kalshi.com)
+- [Kalshi Paper Ledger Proposal](references/kalshi-paper-ledger.md)
+- [ClawHub Skill Page](https://clawhub.ai/brs999/skills/kalshi-paper-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and JSON-capable CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and writes paper-trading state to a local SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

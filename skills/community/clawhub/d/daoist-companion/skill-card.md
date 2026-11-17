@@ -1,47 +1,62 @@
-## Description: <br>
-Daoist Companion is a beginner-focused Daoist study and practice notebook that explains classic texts, suggests practice routines, supports practice logs, and provides calendar reminders while avoiding ritual, divination, medical, and oral-transmission guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daoist Companion helps beginners with Daoist classic-text explanations, practice reminders, beginner path planning, meditation basics, and private practice-log templates while refusing ritual, divination, medical, and oral-transmission guidance.
 
-## Publisher: <br>
-[cucmeliu](https://clawhub.ai/user/cucmeliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cucmeliu](https://clawhub.ai/user/cucmeliu)
 
-## Use Case: <br>
-External users use this skill for beginner Daoist study, practice planning, calendar lookups, and markdown-based practice journaling. It is intended as a knowledge guide and notebook, not as a master, ritual specialist, fortune-teller, or medical advisor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate from broad terms such as practice or meditation. <br>
-Mitigation: Review triggers before installation and prefer manual loading when broad religious or meditation-related activation is not desired. <br>
-Risk: The skill can run Bash and proposes installing an unpinned Python package for calendar calculations. <br>
-Mitigation: Require confirmation before shell execution, disable automatic package installation in untrusted environments, and preinstall a reviewed calendar dependency when needed. <br>
-Risk: The skill can write persistent practice journal files under the user's home directory. <br>
-Mitigation: Confirm the destination path before writing, avoid storing sensitive personal information, and review generated journal content before persistence. <br>
+## Use Case:
 
+External users and agent operators use this skill as a beginner-oriented Daoist study and practice companion for classic-text Q&A, practice calendar reminders, guided journaling, and cultural orientation.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/cucmeliu/daoist-companion.git) <br>
-- [ClawHub skill page](https://clawhub.ai/cucmeliu/daoist-companion) <br>
-- [Classic texts library](references/classics.md) <br>
-- [Practice system and FAQ](references/practice.md) <br>
-- [Daoist cultural encyclopedia](references/culture.md) <br>
-- [Daoist practice quick-reference index](references/daoist_knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with optional shell or Python snippets and markdown journal files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write practice logs under ~/daoist-journal and may use Python date calculations for lunar calendar guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill can run Bash and install an unpinned Python calendar package at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and preinstall a pinned calendar dependency in a controlled environment.
+
+Risk: The journal feature may save sensitive religious practice notes under the user's home directory.
+
+Mitigation: Use the journal feature only on a private machine, or modify the workflow to ask before saving and to use a user-selected storage location.
+
+Risk: The skill discusses religious practice topics that include boundaries around ritual, internal alchemy, divination, and health.
+
+Mitigation: Keep the documented refusal boundaries active and direct users to qualified human teachers or medical professionals for those topics.
+
+## Reference(s):
+
+- [Daoist Companion ClawHub Page](https://clawhub.ai/cucmeliu/skills/daoist-companion)
+- [Daoist Companion Homepage](https://github.com/cucmeliu/daoist-companion.git)
+- [Daoist Classic Texts Library](references/classics.md)
+- [Practice System and FAQ](references/practice.md)
+- [Daoist Cultural Encyclopedia](references/culture.md)
+- [Daoist Practice Quick Reference](references/daoist_knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or write local practice-log files when the user asks to record a journal entry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

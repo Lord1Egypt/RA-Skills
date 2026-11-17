@@ -1,43 +1,61 @@
-## Description: <br>
-Activates an original proactive sister-style companion persona with relationship-state memory, weather alerts, and meal reminders for emotional companionship and daily care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sister Soul activates a mature companion persona that offers dynamic relationship-style interaction, weather-aware check-ins, extreme-weather warnings, and meal reminders.
 
-## Publisher: <br>
-[yuuiwa1551](https://clawhub.ai/user/yuuiwa1551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuuiwa1551](https://clawhub.ai/user/yuuiwa1551)
 
-## Use Case: <br>
-External users can use this OpenClaw persona skill for emotional companionship, mood-aware conversation, weather-oriented daily reminders, and meal check-ins. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently store and reuse personal relationship-style data across conversations. <br>
-Mitigation: Use only with clear consent for local memory; prefer deployments that show stored memory and let users delete or disable it. <br>
-Risk: The skill can initiate background web searches for weather-related prompts. <br>
-Mitigation: Require user-visible consent before web searches and disclose when external search is used. <br>
-Risk: Relationship-style scoring and dependency-oriented interactions can create emotional over-reliance. <br>
-Mitigation: Keep interactions bounded, prioritize practical user well-being, and avoid escalating dependency cues. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuuiwa1551/sister-soul) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+## Use Case:
 
+External users use this skill for emotionally styled companion interactions and daily care reminders, including meals and weather-aware prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown skill instructions and natural-language conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local JSON memory and web search when the host agent grants the requested tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to silently maintain a long-term emotional and preference profile.
+
+Mitigation: Require explicit user consent before creating or updating memory, and provide a clear way to inspect, edit, and delete stored profile data.
+
+Risk: The skill uses file read/write tools for persistence.
+
+Mitigation: Scope file access to the intended memory file and review stored data before deployment.
+
+Risk: The skill uses web search for proactive weather behavior.
+
+Mitigation: Constrain web access to weather lookups and prefer trusted weather sources or platform-provided weather tools.
+
+Risk: The README contains a placeholder install command.
+
+Mitigation: Publish a pinned, verified installation command before recommending installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuuiwa1551/skills/sister-soul)
+- [ClawHub publisher profile](https://clawhub.ai/user/yuuiwa1551)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Natural-language conversation with optional JSON memory updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local file reads/writes for memory and web search for weather behavior when those tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Automatically generates professional README.md files with installation, usage, badges, and project overview for Node.js, Python, Rust, and Go projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates professional README.md files with installation, usage, badges, and project overview sections for Node.js, Python, Rust, and Go projects.
 
-## Publisher: <br>
-[0xf0011](https://clawhub.ai/user/0xf0011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xf0011](https://clawhub.ai/user/0xf0011)
 
-## Use Case: <br>
-Developers use this skill to generate draft README.md documentation, quick start guidance, API sections, and project structure overviews from a repository or source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated README content can overwrite or replace existing project documentation if applied without review. <br>
-Mitigation: Review the generated README as a draft or diff and explicitly confirm replacement of any existing README.md or related documentation. <br>
+## Use Case:
 
+Developers use this skill to generate README.md content for software repositories, including quick start guidance, usage examples, API sections, and project structure overviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xf0011/smart-readme-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces README-oriented documentation drafts for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Repository or source files provided to the skill may be visible to the agent and enabled network or model services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide private code, secrets, or proprietary project files unless that exposure is acceptable in the deployment environment.
+
+Risk: Generated README content may describe project behavior, commands, or API details inaccurately if the provided repository context is incomplete.
+
+Mitigation: Review generated README content against the source project before publishing or distributing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xf0011/skills/smart-readme-generator)
+- [Skill Artifact](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates README content with installation, usage, badges, API, quick start, and project overview sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

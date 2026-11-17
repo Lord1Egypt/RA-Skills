@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when a medical-device regulatory-affairs specialist or RA manager needs to draft the Section 10 Substantial Equivalence Comparison for an FDA 510(k) under 21 CFR Part 807. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps medical-device regulatory-affairs specialists draft Section 10 Substantial Equivalence comparisons for FDA 510(k) submissions, including intended-use comparisons, technological-characteristics tables, DQSE analysis, and predicate-eligibility audits for RA/QA review before FDA submission.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Regulatory-affairs specialists, RA managers, QA reviewers, and submission writers use this skill to draft and review FDA 510(k) Section 10 substantial-equivalence comparison material before expert RA / QA review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft regulatory content may be incomplete, outdated, or inconsistent with current FDA expectations. <br>
-Mitigation: Have qualified RA / QA reviewers independently verify current FDA guidance, predicate facts, standards, and test data before using any output in a submission. <br>
-Risk: Subject-device design details, performance data, or clinical information may be confidential. <br>
-Mitigation: Share only the minimum information needed for drafting and handle device and clinical details under the manufacturer's quality-system confidentiality controls. <br>
-Risk: The skill may help prepare a submission section but cannot determine final regulatory strategy or submit to FDA. <br>
-Mitigation: Treat outputs as draft work product and route pathway decisions, final conclusions, and submission actions to responsible RA leadership. <br>
+## Use Case:
 
+Regulatory-affairs, quality, clinical, and engineering reviewers use this skill to draft and review a Section 10 substantial-equivalence memo for U.S. FDA 510(k) submissions. It structures predicate eligibility, verbatim IFU comparison, technological-characteristics analysis, DQSE reasoning, performance-data mapping, and unresolved-item review before submission decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/fda-510k-substantial-equivalence-memo) <br>
+### Deployment Geography for Use:
 
+Global for teams preparing U.S. FDA 510(k) submissions
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft memo packet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft regulatory work intended for RA / QA review before any FDA submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: changelog, released 2026-05-28; release evidence) <br>
+Risk: Draft output could be mistaken for submission-ready regulatory advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this only as a drafting aid for trained regulatory and quality teams, with final submission decisions retained by RA/QA leadership.
+
+Risk: Missing predicate, IFU, standards, or performance facts could lead to incorrect substantial-equivalence reasoning.
+
+Mitigation: Keep unknown facts marked as required for Section 10, require verbatim IFU text, and require current FDA-recognized standard recognition numbers and editions before relying on the memo.
+
+Risk: Subject-device design and performance information may be sensitive.
+
+Mitigation: Provide only appropriate working excerpts and keep confidential device information within the manufacturer's quality-system controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/fda-510k-substantial-equivalence-memo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Draft regulatory memo packet in Markdown with tables, checklists, and review blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output labeled for RA/QA review; unresolved facts are surfaced instead of invented.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

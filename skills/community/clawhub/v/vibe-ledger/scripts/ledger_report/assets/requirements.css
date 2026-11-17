@@ -1,0 +1,20 @@
+/* 需求对照 / Your asks tab */
+.s-done{--c:var(--ok)}.s-missing{--c:var(--bad)}.s-changed{--c:var(--pend)}.s-superseded{--c:var(--unk)}
+#tab-requirements h2{margin-top:0}
+.req-area{margin-top:32px}
+.req-area h3{font-size:19px;margin:0 0 4px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.req-tally{font-size:14px;font-weight:500;color:var(--muted)}
+.req-card.s-superseded{opacity:.72}
+.req-quote{margin:6px 0;padding:2px 0 2px 10px;border-left:3px solid var(--line);color:var(--muted);font-size:14px;
+  overflow-wrap:anywhere}
+.req-line{margin:4px 0;font-size:14.5px}.req-line.ok{color:var(--ok)}.req-line.warn{color:var(--warn)}
+.req-files{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:13px;color:var(--muted)}
+.req-file{font:12.5px ui-monospace,Menlo,monospace;padding:3px 9px;border-radius:7px;border:1px solid var(--line);
+  background:var(--soft);color:var(--accent);cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.req-file:hover{border-color:var(--accent)}
+.card[hidden],.req-area[hidden]{display:none}
+#tab-requirements .card,#tab-requirements .verdict,#tab-requirements .promise{overflow-wrap:anywhere}
+.req-filters .count{cursor:pointer;font:inherit;font-weight:600;font-size:15px}
+.req-filters .count.on{box-shadow:0 0 0 2px var(--accent)}
+.req-filters .count:not([class*=s-]){color:var(--fg)}
+@media (max-width:600px){.req-filters .count{font-size:13px;padding:5px 10px}}

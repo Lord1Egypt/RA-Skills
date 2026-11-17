@@ -1,0 +1,16 @@
+# Plumbing Estimate Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+business_name: ""
+license_number: ""
+customer_name: ""
+job_address: ""
+estimate_date: ""
+valid_until: ""
+line_items:
+  - category: "labor|parts|permits|fees"
+    description: ""
+    quantity: 1
+    unit_price: 0.00
+exclusions:
+  - ""
+terms: ""

@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Comfortable Roadtrip Planner Trip Data",
+  "type": "object",
+  "required": ["tripMeta", "tripDays"],
+  "additionalProperties": false,
+  "properties": {
+    "tripMeta": {
+      "type": "object",
+      "required": ["title", "intro", "timezone"],
+      "additionalProperties": true,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "intro": { "type": "string", "minLength": 1 },
+        "timezone": { "type": "string", "minLength": 1 },
+        "audience": { "type": "string" },
+        "comfortProfile": { "type": "string" }
+      }
+    },
+    "tripDays": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/day" }
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "required": ["type", "label", "url", "checkedAt"],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["weather", "road", "ticket", "restaurant", "image", "venue", "parking", "medical", "map", "other"]
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 },
+        "checkedAt": { "type": "string", "minLength": 1 },
+        "appliesToDate": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "weather": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        {
+          "type": "object",
+          "required": ["summary", "checkedAt", "source", "appliesToDate"],
+          "additionalProperties": true,
+          "properties": {
+            "summary": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "array", "items": { "type": "string" } }
+              ]
+            },
+            "checkedAt": { "type": "string", "minLength": 1 },
+            "source": { "type": "string", "minLength": 1 },
+            "appliesToDate": { "type": "string", "minLength": 1 },
+            "note": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "day": {
+      "type": "object",
+      "required": ["id", "title", "date", "strategy", "weather", "drive", "stops"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "color": { "type": "string" },
+        "strategy": { "type": "string", "minLength": 1 },
+        "mainObjective": { "type": "string" },
+        "weather": { "$ref": "#/definitions/weather" },
+        "drive": {
+          "type": "object",
+          "required": ["summary", "difficulty", "note"],
+          "additionalProperties": true,
+          "properties": {
+            "summary": { "type": "string", "minLength": 1 },
+            "difficulty": { "type": "string", "minLength": 1 },
+            "note": { "type": "string", "minLength": 1 },
+            "fatigueSources": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "stops": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/definitions/stop" }
+        },
+        "meals": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/noteLinkBlock" }
+        },
+        "tickets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/noteLinkBlock" }
+        },
+        "cutRules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "parking": {
+          "oneOf": [
+            { "type": "string" },
+            { "$ref": "#/definitions/noteLinkBlock" }
+          ]
+        },
+        "medicalBackup": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/noteLinkBlock" }
+        },
+        "sourceProvenance": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/source" }
+        }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "required": ["name", "lat", "lng", "address", "priority", "why", "tip"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "address": { "type": "string", "minLength": 1 },
+        "priority": { "type": "string", "pattern": "^[ABC]\\b" },
+        "tag": { "type": "string" },
+        "why": { "type": "string", "minLength": 1 },
+        "history": { "type": "string" },
+        "tip": { "type": "string", "minLength": 1 },
+        "image": { "type": "string" },
+        "imageAlt": { "type": "string" },
+        "imageQuery": { "type": "string" },
+        "imageNote": { "type": "string" },
+        "images": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/image" }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "required": ["src", "alt", "title", "caption", "credit", "link"],
+      "additionalProperties": true,
+      "properties": {
+        "src": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "caption": { "type": "string", "minLength": 1 },
+        "credit": { "type": "string", "minLength": 1 },
+        "link": { "type": "string", "minLength": 1 }
+      }
+    },
+    "noteLinkBlock": {
+      "type": "object",
+      "required": ["label", "text"],
+      "additionalProperties": true,
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

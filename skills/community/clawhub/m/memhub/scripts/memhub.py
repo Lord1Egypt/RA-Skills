@@ -9,6 +9,7 @@ import argparse
 import base64
 import datetime as dt
 import getpass
+import hashlib
 import json
 import os
 import random
@@ -31,6 +32,16 @@ except ImportError as exc:  # pragma: no cover
     raise SystemExit("PyYAML is required. Install with: pip install pyyaml") from exc
 
 SCHEMA_VERSION = "0.1"
+MEMHUB_ENV_KEYS = {
+    "MEMHUB_REPO",
+    "MEMHUB_OAUTH_BROKER_URL",
+    "MEMHUB_GITEE_OAUTH_BROKER_URL",
+    "MEMHUB_GITHUB_CLIENT_ID",
+    "MEMHUB_GITEE_CLIENT_ID",
+    "MEMHUB_GITEE_CLIENT_SECRET",
+    "MEMHUB_GITHUB_TOKEN",
+    "MEMHUB_GITEE_TOKEN",
+}
 
 
 def parse_dotenv_value(value: str) -> str:
@@ -42,35 +53,50 @@ def parse_dotenv_value(value: str) -> str:
     return value
 
 
-def load_dotenv_files(paths: list[Path]) -> None:
-    """Load simple KEY=VALUE lines from .env files without overriding existing env vars.
+def load_memhub_env_file(path: Path) -> None:
+    """Load an explicitly selected MemHub env file using a strict key allowlist.
 
     This is intentionally tiny and dependency-free. It supports optional leading
-    `export`, quoted values, blank lines, and comments. It never prints values.
+    `export`, quoted values, blank lines, and comments. It never prints values or
+    reads generic cwd/home `.env` files implicitly.
     """
-    seen: set[Path] = set()
-    for path in paths:
-        path = path.expanduser()
-        if path in seen or not path.exists() or not path.is_file():
+    path = path.expanduser().resolve()
+    if not path.exists() or not path.is_file():
+        raise SystemExit(f"MemHub env file not found: {path}")
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except UnicodeDecodeError:
+        lines = path.read_text(errors="replace").splitlines()
+    for line in lines:
+        text = line.strip()
+        if not text or text.startswith("#"):
             continue
-        seen.add(path)
-        try:
-            lines = path.read_text(encoding="utf-8").splitlines()
-        except UnicodeDecodeError:
-            lines = path.read_text(errors="replace").splitlines()
-        for line in lines:
-            text = line.strip()
-            if not text or text.startswith("#"):
-                continue
-            if text.startswith("export "):
-                text = text[len("export "):].strip()
-            if "=" not in text:
-                continue
-            key, value = text.split("=", 1)
-            key = key.strip()
-            if not key or key in os.environ:
-                continue
-            os.environ[key] = parse_dotenv_value(value)
+        if text.startswith("export "):
+            text = text[len("export "):].strip()
+        if "=" not in text:
+            continue
+        key, value = text.split("=", 1)
+        key = key.strip()
+        if key not in MEMHUB_ENV_KEYS or key in os.environ:
+            continue
+        os.environ[key] = parse_dotenv_value(value)
+
+
+def require_repo_path(repo: Path, path: Path, purpose: str) -> Path:
+    repo_root = repo.expanduser().resolve()
+    resolved = path.expanduser().resolve()
+    try:
+        resolved.relative_to(repo_root)
+    except ValueError as exc:
+        raise SystemExit(f"Refusing {purpose} outside MemHub repository: {resolved}") from exc
+    return resolved
+
+
+def validate_project_name(project: str) -> str:
+    value = str(project).strip()
+    if not value or value in {".", ".."} or Path(value).name != value or "\x00" in value:
+        raise SystemExit(f"Invalid project name: {project!r}")
+    return value
 
 
 def now_iso() -> str:
@@ -108,10 +134,19 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
-def run_git(repo: Path, args: list[str], check: bool = False) -> subprocess.CompletedProcess[str]:
+def run_git(
+    repo: Path,
+    args: list[str],
+    check: bool = False,
+    extra_env: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
+    env = os.environ.copy()
+    if extra_env:
+        env.update(extra_env)
     return subprocess.run(
         ["git", *args],
         cwd=str(repo),
+        env=env,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -332,7 +367,8 @@ def context_model(repo: Path, project: str | None = None, pack: str = "standard"
     prefs = read_yaml(repo / "identity/preferences.yaml", {}) or {}
     conventions = read_yaml(repo / "identity/conventions.yaml", {}) or {}
     constraints = read_yaml(repo / "identity/constraints.yaml", {}) or {}
-    project_id = project or get_default_project(repo)
+    raw_project_id = project or get_default_project(repo)
+    project_id = validate_project_name(raw_project_id) if raw_project_id else None
 
     model: dict[str, Any] = {
         "pack": pack,
@@ -492,6 +528,7 @@ def build_context(repo: Path, project: str | None = None, pack: str = "standard"
 def build_item(content: str, type_: str = "fact", project: str | None = None) -> dict[str, Any]:
     """Build a single memory item dict shared by direct-write and inbox capture."""
     sid = short_id()
+    project = validate_project_name(project) if project else None
     return {
         "id": f"mem_{timestamp_id()}_{sid}",
         "type": type_,
@@ -706,19 +743,20 @@ def inbox_list(repo: Path, status: str | None = "pending") -> str:
 
 
 def resolve_inbox_file(repo: Path, ref: str) -> Path:
-    direct = Path(ref)
-    candidates: list[Path] = []
-    if direct.is_absolute() and direct.exists():
-        candidates.append(direct)
-    candidates.extend([
-        repo / "inbox" / ref,
-        repo / "inbox" / (ref if ref.endswith(".yaml") else f"{ref}.yaml"),
-    ])
-    candidates.extend(sorted((repo / "inbox").glob(f"*{ref}*.yaml")))
+    if not ref or Path(ref).is_absolute() or Path(ref).name != ref or "\x00" in ref:
+        raise SystemExit(f"Invalid inbox ref: {ref}")
+    inbox = require_repo_path(repo, repo / "inbox", "inbox access")
+    candidates = [
+        inbox / ref,
+        inbox / (ref if ref.endswith(".yaml") else f"{ref}.yaml"),
+    ]
+    candidates.extend(path for path in sorted(inbox.glob("*.yaml")) if ref in path.name)
     seen: set[Path] = set()
     unique = []
     for c in candidates:
-        c = c.resolve()
+        c = require_repo_path(repo, c, "inbox access")
+        if c.parent != inbox:
+            continue
         if c.exists() and c not in seen:
             unique.append(c)
             seen.add(c)
@@ -746,9 +784,24 @@ def item_project(item: dict[str, Any]) -> str | None:
 def suggested_target_for_item(repo: Path, item: dict[str, Any]) -> Path:
     type_ = item.get("type", "fact")
     if item.get("suggested_target"):
-        return repo / str(item["suggested_target"])
+        target = require_repo_path(repo, repo / str(item["suggested_target"]), "memory write")
+        rel = target.relative_to(repo.resolve()).as_posix()
+        allowed = (
+            rel in {"identity/preferences.yaml", "identity/constraints.yaml", "identity/conventions.yaml"}
+            or (rel.startswith("knowledge/") and target.suffix == ".yaml" and len(target.relative_to(repo.resolve()).parts) == 2)
+            or rel in {"relations/people.yaml", "relations/orgs.yaml", "relations/tools.yaml"}
+            or (rel.startswith("timeline/") and target.suffix == ".yaml" and len(target.relative_to(repo.resolve()).parts) == 2)
+            or (
+                rel.startswith("projects/")
+                and len(target.relative_to(repo.resolve()).parts) == 3
+                and target.name in {"decisions.yaml", "tasks.yaml", "stack.yaml"}
+            )
+        )
+        if not allowed:
+            raise SystemExit(f"Invalid canonical memory target: {rel}")
+        return target
     if type_ == "decision":
-        project = item_project(item) or get_default_project(repo) or "memhub"
+        project = validate_project_name(item_project(item) or get_default_project(repo) or "memhub")
         return repo / f"projects/{project}/decisions.yaml"
     if type_ == "preference":
         return repo / "identity/preferences.yaml"
@@ -816,6 +869,8 @@ def append_unique(container: dict[str, Any], key: str, entry: dict[str, Any]) ->
 
 
 def apply_item_to_target(repo: Path, target: Path, item: dict[str, Any], inbox_data: dict[str, Any] | None = None, source_path: Path | None = None) -> bool:
+    repo = repo.expanduser().resolve()
+    target = require_repo_path(repo, target, "memory write")
     target.parent.mkdir(parents=True, exist_ok=True)
     data = read_yaml(target, {}) or {}
     rel = target.relative_to(repo).as_posix()
@@ -928,7 +983,6 @@ PROVIDERS: dict[str, dict[str, str]] = {
         "env_client_id": "MEMHUB_GITHUB_CLIENT_ID",
         "default_client_id": 'Ov23livelceFZGWGJG0A',
         "env_broker_url": "MEMHUB_OAUTH_BROKER_URL",
-        "default_broker_url": "https://oauth.1024hub.cn",
     },
     "gitee": {
         "display": "Gitee",
@@ -943,14 +997,13 @@ PROVIDERS: dict[str, dict[str, str]] = {
         "default_client_id": '857230fab7f3c4cf4439383f1afc236f4f3ec2435fb114e149c0cfc288e589f8',
         "env_client_secret": "MEMHUB_GITEE_CLIENT_SECRET",
         "env_broker_url": "MEMHUB_GITEE_OAUTH_BROKER_URL",
-        "default_broker_url": "https://oauth.1024hub.cn",
     },
 }
 
 
-# Shared MemHub Auth Broker (v2 session protocol). The broker holds each
-# provider's OAuth client_secret server-side, so the skill works out of the box
-# with no per-user setup. Override per provider via env_broker_url or --broker-url.
+# Optional MemHub Auth Broker (v2 session protocol). It is used only when the
+# user explicitly supplies one via a MemHub-specific option or environment
+# variable. Otherwise GitHub uses Device Flow and Gitee requires direct config.
 DEFAULT_BROKER_URL = "https://oauth.1024hub.cn"
 
 
@@ -958,8 +1011,34 @@ def config_path(repo: Path) -> Path:
     return repo / ".memhub/config.yaml"
 
 
+LEGACY_SECRETS_RELPATH = ".memhub/secrets.yaml"
+
+
+def secrets_home() -> Path:
+    """Machine-local credential directory, deliberately outside the memory repo.
+
+    A clone, a `git add -A`, or a sync can therefore never carry credentials
+    anywhere, even if .gitignore handling fails on some machine.
+    """
+    override = os.environ.get("MEMHUB_SECRETS_DIR")
+    if override:
+        return Path(override).expanduser()
+    xdg = os.environ.get("XDG_STATE_HOME")
+    if xdg:
+        return Path(xdg).expanduser() / "memhub" / "secrets"
+    if sys.platform == "darwin":
+        return Path.home() / "Library" / "Application Support" / "memhub" / "secrets"
+    return Path.home() / ".local" / "state" / "memhub" / "secrets"
+
+
 def secrets_path(repo: Path) -> Path:
-    return repo / ".memhub/secrets.yaml"
+    """Credential file for one memory repo, keyed by its resolved path."""
+    digest = hashlib.sha256(str(repo.resolve()).encode("utf-8")).hexdigest()[:16]
+    return secrets_home() / f"{digest}.yaml"
+
+
+def legacy_secrets_path(repo: Path) -> Path:
+    return repo / LEGACY_SECRETS_RELPATH
 
 
 def load_config(repo: Path) -> dict[str, Any]:
@@ -972,11 +1051,32 @@ def save_config(repo: Path, config: dict[str, Any]) -> None:
 
 
 def load_secrets(repo: Path) -> dict[str, Any]:
-    return read_yaml(secrets_path(repo), {}) or {}
+    """Read credentials from the machine-local store.
+
+    A pre-0.4.8 in-repo `.memhub/secrets.yaml` is still read once so existing
+    setups keep working; it is migrated out and never written to again.
+    """
+    data = read_yaml(secrets_path(repo), {}) or {}
+    if data:
+        return data
+    legacy = legacy_secrets_path(repo)
+    legacy_data = read_yaml(legacy, {}) or {}
+    if legacy_data:
+        save_secrets(repo, legacy_data)
+        print(
+            f"MemHub: credentials moved out of the memory repo to {secrets_path(repo)}.",
+            file=sys.stderr,
+        )
+    return legacy_data
 
 
 def save_secrets(repo: Path, secrets: dict[str, Any]) -> None:
     path = secrets_path(repo)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        path.parent.chmod(0o700)
+    except OSError:
+        pass
     write_yaml(path, secrets)
     try:
         path.chmod(0o600)
@@ -1009,7 +1109,7 @@ def get_token(repo: Path, provider: str, explicit_token: str | None = None, requ
         return token
     if require:
         raise SystemExit(
-            f"Missing {meta['display']} token. Pass --token, set {meta['env_token']}, "
+            f"Missing {meta['display']} token. Set {meta['env_token']}, use the interactive prompt, "
             f"or run `memhub --repo <path> sync setup {provider}`. Token page: {meta['token_url']}"
         )
     return None
@@ -1029,6 +1129,9 @@ def store_token(repo: Path, provider: str, token: str, account: str | None = Non
 
 def api_json(provider: str, method: str, path: str, token: str, payload: dict[str, Any] | None = None) -> tuple[int, dict[str, Any] | list[Any] | str]:
     meta = PROVIDERS[provider]
+    parsed_path = urllib.parse.urlparse(path)
+    if parsed_path.scheme or parsed_path.netloc or not path.startswith("/"):
+        raise SystemExit(f"Invalid {meta['display']} API path")
     url = meta["api_base"] + path
     data: bytes | None = None
     headers = {"Accept": "application/json", "User-Agent": "MemHub/0.1"}
@@ -1038,13 +1141,9 @@ def api_json(provider: str, method: str, path: str, token: str, payload: dict[st
         if payload is not None:
             data = json.dumps(payload).encode("utf-8")
             headers["Content-Type"] = "application/json"
-    else:  # gitee uses access_token in JSON/body for broad compatibility
-        payload = dict(payload or {})
-        payload.setdefault("access_token", token)
-        if method.upper() == "GET":
-            sep = "&" if "?" in url else "?"
-            url = url + sep + urllib.parse.urlencode(payload)
-        else:
+    else:
+        headers["Authorization"] = f"Bearer {token}"
+        if payload is not None:
             data = urllib.parse.urlencode(payload).encode("utf-8")
             headers["Content-Type"] = "application/x-www-form-urlencoded"
     req = urllib.request.Request(url, data=data, method=method.upper(), headers=headers)
@@ -1109,28 +1208,44 @@ def remote_url(provider: str, owner: str, repo_name: str, method: str = "https")
     return f"{scheme_host}/{owner}/{repo_name}.git"
 
 
-def auth_git_prefix(repo: Path) -> list[str]:
+def auth_git_env(repo: Path) -> dict[str, str]:
     cfg = load_config(repo)
     sync = cfg.get("sync") or {}
     provider = sync.get("provider")
     method = sync.get("auth_method", "token")
     remote = sync.get("remote") or ""
-    if provider not in PROVIDERS or method not in {"token", "oauth"} or not str(remote).startswith("https://"):
-        return []
+    if provider not in PROVIDERS or method not in {"token", "oauth"}:
+        return {}
+    parsed = urllib.parse.urlparse(str(remote))
+    expected_host = PROVIDERS[provider]["git_host"]
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname != expected_host
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.port not in (None, 443)
+    ):
+        raise SystemExit(
+            f"Refusing to send {PROVIDERS[provider]['display']} credentials to remote: {remote}"
+        )
     token = get_token(repo, provider, require=False)
     if not token:
-        return []
+        return {}
     account = sync.get("account") or ((load_secrets(repo).get("sync") or {}).get(provider) or {}).get("account") or "x-access-token"
     if provider == "github":
         raw = f"x-access-token:{token}".encode("utf-8")
     else:
         raw = f"{account}:{token}".encode("utf-8")
     encoded = base64.b64encode(raw).decode("ascii")
-    return ["-c", f"http.extraHeader=Authorization: Basic {encoded}"]
+    return {
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": f"http.https://{expected_host}/.extraHeader",
+        "GIT_CONFIG_VALUE_0": f"Authorization: Basic {encoded}",
+    }
 
 
 def run_git_auth(repo: Path, args: list[str], check: bool = False) -> subprocess.CompletedProcess[str]:
-    return run_git(repo, [*auth_git_prefix(repo), *args], check=check)
+    return run_git(repo, args, check=check, extra_env=auth_git_env(repo))
 
 
 
@@ -1268,26 +1383,60 @@ def gitee_oauth_flow(client_id: str, client_secret: str, redirect_uri: str, scop
     meta = PROVIDERS["gitee"]
     if not redirect_uri:
         redirect_uri = f"http://127.0.0.1:{callback_port}/callback"
+    # CSRF / account-substitution protection: a fresh `state` is issued per
+    # attempt and must come back unchanged before the code is exchanged.
+    state = hashlib.sha256(os.urandom(32)).hexdigest()[:32]
     params = {
         "client_id": client_id,
         "redirect_uri": redirect_uri,
         "response_type": "code",
         "scope": scope,
+        "state": state,
     }
     authorize_url = meta["oauth_authorize_url"] + "?" + urllib.parse.urlencode(params)
     code = manual_code
+    returned_state: str | None = None
+    via_loopback = False
+
+    def _split_callback(raw: str) -> tuple[str, str | None]:
+        parsed = urllib.parse.urlparse(raw)
+        if parsed.scheme not in {"http", "https"}:
+            return raw.strip(), None
+        qs = urllib.parse.parse_qs(parsed.query)
+        return ((qs.get("code") or [None])[0] or "").strip(), (qs.get("state") or [None])[0]
+
+    if code:
+        code, returned_state = _split_callback(code)
     if not code:
         open_or_print_url(authorize_url, no_browser=no_browser)
         if redirect_uri.startswith("http://127.0.0.1") or redirect_uri.startswith("http://localhost"):
+            via_loopback = True
             print(f"Waiting for OAuth callback on {redirect_uri} ...", file=sys.stderr)
-            code, err, _state = wait_for_local_oauth_code(callback_port)
+            code, err, returned_state = wait_for_local_oauth_code(callback_port)
             if err:
                 raise SystemExit(f"Gitee authorization failed: {err}")
         if not code:
             if sys.stdin.isatty():
-                code = input("Paste Gitee authorization code: ").strip()
+                print(
+                    "Paste the Gitee authorization code. Pasting the full callback URL "
+                    "instead lets MemHub verify the OAuth `state` value.",
+                    file=sys.stderr,
+                )
+                code, returned_state = _split_callback(input("Gitee authorization code: "))
             else:
-                raise SystemExit("No Gitee authorization code received. Re-run with --manual-code or use an interactive terminal.")
+                raise SystemExit("No Gitee authorization code received. Use an interactive terminal or an explicitly configured broker.")
+    if not code:
+        raise SystemExit("No Gitee authorization code received; authorization aborted.")
+    if returned_state is not None and returned_state != state:
+        raise SystemExit(
+            "Gitee authorization failed: OAuth state mismatch. Aborted so a foreign "
+            "authorization cannot be bound to this memory repo."
+        )
+    if via_loopback and returned_state is None:
+        raise SystemExit(
+            "Gitee authorization failed: the callback carried no `state` value, so it "
+            "could not be verified. Aborted."
+        )
     status, body = form_post_json(
         meta["oauth_access_token_url"],
         {
@@ -1338,7 +1487,7 @@ def gitee_broker_oauth_flow(broker_url: str, redirect_uri: str, scope: str = "us
             if sys.stdin.isatty():
                 code = input("Paste MemHub/Gitee broker authorization code: ").strip()
             else:
-                raise SystemExit("No Gitee authorization code received. Re-run with --manual-code or use an interactive terminal.")
+                raise SystemExit("No Gitee authorization code received. Use an interactive terminal or an explicitly configured broker.")
     if returned_state and returned_state != state:
         raise SystemExit("Gitee authorization failed: OAuth state mismatch.")
     status, body = json_post(broker + "/oauth/gitee/token", {"code": code, "redirect_uri": redirect_uri, "state": state})
@@ -1348,15 +1497,16 @@ def gitee_broker_oauth_flow(broker_url: str, redirect_uri: str, scope: str = "us
 
 
 def resolve_broker_url(provider: str, broker_url: str | None = None) -> str | None:
-    """Broker URL precedence: explicit arg -> provider env -> generic env ->
-    built-in default."""
+    """Broker URL precedence: explicit arg -> provider env -> generic env.
+
+    A third-party broker is never selected implicitly; the user must opt in by
+    passing --broker-url or setting a MemHub-specific environment variable.
+    """
     meta = PROVIDERS.get(provider, {})
     return (
         broker_url
         or os.environ.get(meta.get("env_broker_url", ""))
         or os.environ.get("MEMHUB_OAUTH_BROKER_URL", "")
-        or meta.get("default_broker_url")
-        or DEFAULT_BROKER_URL
         or None
     )
 
@@ -1443,16 +1593,21 @@ def oauth_token(
 ) -> str:
     meta = PROVIDERS[provider]
 
-    # Default path: the shared MemHub Auth Broker (v2 session flow). It keeps
-    # each provider's client_secret server-side, so this works out of the box
-    # for both GitHub and Gitee with no per-user configuration. A developer can
-    # still opt into a direct flow by passing --client-secret (Gitee) or by
-    # explicitly disabling the broker via --broker-url "" .
+    # Broker use is explicit because it transfers OAuth credentials through a
+    # third party. GitHub otherwise uses its direct device flow; Gitee supports
+    # direct OAuth when the user supplies their own client secret.
     explicit_secret = client_secret or os.environ.get(meta.get("env_client_secret", ""))
     if not explicit_secret:
         broker = resolve_broker_url(provider, broker_url)
         if broker:
             return broker_session_flow(broker, provider, no_browser=no_browser)
+        if provider == "gitee" and sys.stdin.isatty():
+            answer = input(
+                f"Use the MemHub OAuth Broker at {DEFAULT_BROKER_URL}? "
+                "The broker will receive the OAuth callback and return a token to this client. [y/N] "
+            ).strip().lower()
+            if answer in {"y", "yes"}:
+                return broker_session_flow(DEFAULT_BROKER_URL, provider, no_browser=no_browser)
 
     # --- Fallbacks (no broker, or developer direct mode) ---------------------
     client_id = client_id or os.environ.get(meta.get("env_client_id", "")) or meta.get("default_client_id")
@@ -1462,8 +1617,9 @@ def oauth_token(
         return github_device_flow(client_id, scope=scope or "repo", no_browser=no_browser)
     if not explicit_secret:
         raise SystemExit(
-            "Gitee OAuth needs either the MemHub Auth Broker (default) or developer "
-            "direct mode with --client-secret / MEMHUB_GITEE_CLIENT_SECRET. "
+            "Gitee OAuth needs an explicitly selected MemHub Auth Broker "
+            "(--broker-url or MEMHUB_GITEE_OAUTH_BROKER_URL), or developer "
+            "direct mode with MEMHUB_GITEE_CLIENT_SECRET. "
             "Do not embed Gitee client_secret in public code."
         )
     return gitee_oauth_flow(
@@ -1495,6 +1651,7 @@ def setup_git_sync(
     no_browser: bool = False,
     manual_code: str | None = None,
     broker_url: str | None = None,
+    auto_sync: bool = True,
 ) -> str:
     repo.mkdir(parents=True, exist_ok=True)
     ensure_repo(repo)
@@ -1523,7 +1680,10 @@ def setup_git_sync(
                 if sys.stdin.isatty():
                     token = getpass.getpass(f"{PROVIDERS[provider]['display']} token: ")
                 else:
-                    raise SystemExit(f"Token required. Use --token or set {PROVIDERS[provider]['env_token']}.")
+                    raise SystemExit(
+                        f"Token required. Set {PROVIDERS[provider]['env_token']} "
+                        "or use an interactive terminal."
+                    )
         account = provider_user(provider, token)
         owner = owner or account
         store_token(repo, provider, token, account=account)
@@ -1551,8 +1711,8 @@ def setup_git_sync(
         "branch": branch,
         "auth_method": auth_method,
         "remote_method": remote_method,
-        "auto_pull": True,
-        "auto_push": True,
+        "auto_pull": auto_sync,
+        "auto_push": auto_sync,
         "push_throttle_seconds": sync_cfg.get("push_throttle_seconds", 3600),
         "pull_throttle_seconds": sync_cfg.get("pull_throttle_seconds", 3600),
         "pull_strategy": "rebase",
@@ -1564,9 +1724,9 @@ def setup_git_sync(
     save_config(repo, cfg)
     commit_all(repo, f"memhub: configure {provider} sync")
     if auth_method == "oauth":
-        credential_line = "OAuth token is stored locally in .memhub/secrets.yaml and ignored by git."
+        credential_line = f"OAuth token is stored outside the memory repo at {secrets_path(repo)} (mode 0600)."
     elif auth_method == "token":
-        credential_line = "Token is stored locally in .memhub/secrets.yaml and ignored by git."
+        credential_line = f"Token is stored outside the memory repo at {secrets_path(repo)} (mode 0600)."
     else:
         credential_line = "SSH auth selected; no token stored by MemHub."
     return "\n".join([
@@ -1604,6 +1764,7 @@ def onboard(
     auth_method: str = "oauth",
     no_browser: bool = False,
     broker_url: str | None = None,
+    auto_sync: bool = True,
 ) -> str:
     """First-run onboarding for a new agent/machine.
 
@@ -1630,6 +1791,7 @@ def onboard(
         remote_method="https" if auth_method in {"oauth", "token"} else "ssh",
         no_browser=no_browser,
         broker_url=broker_url,
+        auto_sync=auto_sync,
     )
 
     outputs = [setup_msg.rstrip(), ""]
@@ -1648,7 +1810,7 @@ def onboard(
         ensure_merge_driver_registered(repo)
         if not (repo / ".gitattributes").exists():
             write_text(repo / ".gitattributes", GITATTRIBUTES_CONTENT)
-        _reassert_sync_config(repo, provider, owner, repo_name, branch, auth_method)
+        _reassert_sync_config(repo, provider, owner, repo_name, branch, auth_method, auto_sync)
         _write_sync_cache(repo, last_pull_at=now_iso())
         outputs.append("\n本地记忆已与远端同步。")
     else:
@@ -1658,7 +1820,7 @@ def onboard(
         if not (repo / "identity/profile.yaml").exists():
             init_repo(repo, name=name, role=role)
             # init_repo rewrites config without sync details; restore them.
-            _reassert_sync_config(repo, provider, owner, repo_name, branch, auth_method)
+            _reassert_sync_config(repo, provider, owner, repo_name, branch, auth_method, auto_sync)
         if not (repo / ".gitattributes").exists():
             write_text(repo / ".gitattributes", GITATTRIBUTES_CONTENT)
             commit_all(repo, "memhub: add gitattributes")
@@ -1672,7 +1834,15 @@ def onboard(
     return "\n".join(outputs) + "\n"
 
 
-def _reassert_sync_config(repo: Path, provider: str, owner: str | None, repo_name: str, branch: str, auth_method: str) -> None:
+def _reassert_sync_config(
+    repo: Path,
+    provider: str,
+    owner: str | None,
+    repo_name: str,
+    branch: str,
+    auth_method: str,
+    auto_sync: bool,
+) -> None:
     """Restore MemHub sync config + remote after a pull/seed may have changed
     the working tree, without re-running authorization."""
     secrets = load_secrets(repo)
@@ -1687,7 +1857,7 @@ def _reassert_sync_config(repo: Path, provider: str, owner: str | None, repo_nam
         "backend": "git", "type": "git", "provider": provider, "remote": remote,
         "repo": f"{owner}/{repo_name}", "branch": branch, "auth_method": auth_method,
         "remote_method": "https" if auth_method in {"oauth", "token"} else "ssh",
-        "auto_pull": True, "auto_push": True,
+        "auto_pull": auto_sync, "auto_push": auto_sync,
         "push_throttle_seconds": sync_cfg.get("push_throttle_seconds", 3600),
         "pull_throttle_seconds": sync_cfg.get("pull_throttle_seconds", 3600),
         "pull_strategy": "rebase", "commit_prefix": "memhub:", "updated_at": now_iso(),
@@ -1730,12 +1900,15 @@ def _fmt_ago(iso_ts: str | None) -> str:
     return f"{secs // 86400}d ago"
 
 
-def doctor(repo: Path) -> str:
+def doctor(repo: Path, check_network: bool = False) -> str:
     """Diagnose whether automatic memory sync is ready on this machine/repo.
 
     Checks each precondition maybe_auto_push/maybe_auto_pull rely on and prints
     OK / WARN / FAIL with a fix hint, so a fresh agent or new machine can tell at
-    a glance what (if anything) still needs doing."""
+    a glance what (if anything) still needs doing.
+
+    Offline by default: no socket is opened unless ``check_network`` is True.
+"""
     checks: list[tuple[str, str, str]] = []  # (status, label, detail)
 
     def add(ok: str, label: str, detail: str = "") -> None:
@@ -1780,10 +1953,19 @@ def doctor(repo: Path) -> str:
     elif remote:
         add("WARN", "credential", "auth method unknown; sync may prompt for credentials")
 
-    # 4b. OAuth broker reachability (only relevant for oauth auth without a token yet)
+    # 4a. Where credentials live (outside the memory repo since 0.4.8)
+    legacy = legacy_secrets_path(repo)
+    if legacy.exists():
+        add("WARN", "credential store",
+            f"{secrets_path(repo)}; a legacy in-repo copy is still at {legacy} and can be deleted")
+    else:
+        add("OK", "credential store", str(secrets_path(repo)))
+
+    # 4b. OAuth broker configuration. Reported only: doctor performs no network
+    # I/O unless --network is passed explicitly.
     if sync.get("auth_method") == "oauth" or (provider in PROVIDERS and not sync.get("auth_method")):
         broker = resolve_broker_url(provider or "gitee")
-        if broker:
+        if broker and check_network:
             st, body = _http_get_json(f"{broker.rstrip('/')}/auth/providers")
             if st == 200 and isinstance(body, dict) and provider in (body.get("providers") or []):
                 add("OK", "oauth broker", f"{broker} (supports {provider})")
@@ -1792,8 +1974,12 @@ def doctor(repo: Path) -> str:
                     f"{broker} reachable but provider '{provider}' not in {body.get('providers')}")
             else:
                 add("WARN", "oauth broker", f"{broker} not reachable (HTTP {st}); OAuth setup may fail")
+        elif broker:
+            add("OK", "oauth broker", f"configured: {broker} (not probed; doctor is offline)")
         else:
-            add("WARN", "oauth broker", "no broker configured; Gitee one-click OAuth unavailable")
+            add("WARN", "oauth broker",
+                "no broker configured; Gitee one-click OAuth unavailable "
+                "(--broker-url or MEMHUB_GITEE_OAUTH_BROKER_URL)")
 
     # 5. Merge driver registered (per-machine, not cloned)
     driver = run_git(repo, ["config", "--local", "merge.memhub.driver"], check=False).stdout.strip()
@@ -1889,9 +2075,47 @@ def export_chatbot(repo: Path, project: str | None = None) -> Path:
 
 def commit_all(repo: Path, message: str) -> None:
     ensure_repo(repo)
-    run_git(repo, ["add", "."], check=False)
-    status = run_git(repo, ["status", "--porcelain"], check=False)
-    if status.stdout.strip():
+    managed_paths = (
+        ".gitignore",
+        ".gitattributes",
+        ".memhub/config.yaml",
+        ".memhub/schema.yaml",
+        ".memhub/state.yaml",
+        ".memhub/templates",
+        "identity",
+        "projects",
+        "knowledge",
+        "relations",
+        "timeline",
+        "inbox",
+        "exports",
+        "archive",
+    )
+    for path in managed_paths:
+        run_git(repo, ["add", "-A", "--", path], check=False)
+    excluded_pathspecs = (
+        ".memhub/secrets.yaml",
+        ".memhub/secrets",
+        ".memhub/cache",
+        ".memhub/indexes",
+        ":(glob)**/*.db",
+        ":(glob)**/.DS_Store",
+        ":(glob)**/.env",
+        ":(glob)**/*.env",
+    )
+    removed = run_git(
+        repo,
+        ["rm", "-r", "--cached", "--ignore-unmatch", "--", *excluded_pathspecs],
+        check=False,
+    )
+    if removed.stdout.strip():
+        print(
+            "MemHub removed sensitive/local-only paths from Git tracking. "
+            "If credentials were committed previously, rotate them and clean repository history separately.",
+            file=sys.stderr,
+        )
+    staged = run_git(repo, ["diff", "--cached", "--quiet"], check=False)
+    if staged.returncode != 0:
         # Avoid failure if git user isn't configured globally.
         run_git(repo, ["-c", "user.name=MemHub", "-c", "user.email=memhub@example.local", "commit", "-m", message], check=False)
 
@@ -2153,10 +2377,16 @@ def maybe_auto_pull(repo: Path) -> str:
     return ""
 
 
-def main(argv: list[str] | None = None) -> int:
-    load_dotenv_files([Path.cwd() / ".env", Path.home() / ".env"])
+def build_parser(argv_values: list[str] | None = None) -> argparse.ArgumentParser:
+    argv_values = list(argv_values) if argv_values is not None else sys.argv[1:]
+    pre_parser = argparse.ArgumentParser(add_help=False)
+    pre_parser.add_argument("--env-file", default=os.environ.get("MEMHUB_ENV_FILE"))
+    pre_args, _ = pre_parser.parse_known_args(argv_values)
+    if pre_args.env_file:
+        load_memhub_env_file(Path(pre_args.env_file))
     parser = argparse.ArgumentParser(prog="memhub", description="MemHub Protocol v0.1 reference CLI")
-    parser.add_argument("--repo", default=os.environ.get("MEMHUB_REPO", "./memhub-data"), help="MemHub repository path")
+    parser.add_argument("--env-file", default=pre_args.env_file, help="Explicit MemHub-only env file; only MEMHUB_* allowlisted keys are loaded")
+    parser.add_argument("--repo", default=os.environ.get("MEMHUB_REPO"), help="Explicit MemHub repository path (or set MEMHUB_REPO)")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_init = sub.add_parser("init", help="Initialize a MemHub repository")
@@ -2213,23 +2443,22 @@ def main(argv: list[str] | None = None) -> int:
     p_sync_setup.add_argument("provider", choices=["github", "gitee"])
     p_sync_setup.add_argument("--repo-name", default="mymemhub", help="Remote repository name")
     p_sync_setup.add_argument("--owner", default=None, help="Owner/login. Defaults to authenticated account")
-    p_sync_setup.add_argument("--token", default=None, help="Provider token. Prefer env vars MEMHUB_GITHUB_TOKEN/MEMHUB_GITEE_TOKEN")
     p_sync_setup.add_argument("--branch", default="main")
     p_sync_setup.add_argument("--public", action="store_true", help="Create public repo instead of private")
     p_sync_setup.add_argument("--no-create", action="store_true", help="Do not call provider API to create repo")
     p_sync_setup.add_argument("--auth", default="oauth", choices=["oauth", "token", "ssh"], help="Git auth mode. OAuth uses GitHub Device Flow or Gitee authorization-code flow")
     p_sync_setup.add_argument("--remote-method", default="https", choices=["https", "ssh"], help="Remote URL style")
     p_sync_setup.add_argument("--client-id", default=None, help="OAuth client id. Or set MEMHUB_GITHUB_CLIENT_ID / MEMHUB_GITEE_CLIENT_ID")
-    p_sync_setup.add_argument("--client-secret", default=None, help="Gitee OAuth client secret. Or set MEMHUB_GITEE_CLIENT_SECRET")
     p_sync_setup.add_argument("--scope", default=None, help="OAuth scope. Defaults: GitHub repo; Gitee user_info projects")
     p_sync_setup.add_argument("--redirect-uri", default=None, help="Gitee OAuth redirect URI. Defaults to local callback")
     p_sync_setup.add_argument("--callback-port", type=int, default=8765, help="Local callback port for Gitee OAuth")
     p_sync_setup.add_argument("--no-browser", action="store_true", help="Print OAuth URL/code but do not try to open browser")
-    p_sync_setup.add_argument("--manual-code", default=None, help="Gitee OAuth authorization code for manual callback flow")
     p_sync_setup.add_argument("--broker-url", default=None, help="MemHub OAuth Broker base URL for Gitee one-click OAuth. Or set MEMHUB_GITEE_OAUTH_BROKER_URL")
+    p_sync_setup.add_argument("--manual-sync", action="store_true", help="Disable automatic pull/push and require explicit sync commands")
     sync_sub.add_parser("status", help="Show sync config/status")
 
-    sub.add_parser("doctor", help="Diagnose whether automatic memory sync is ready")
+    p_doctor = sub.add_parser("doctor", help="Diagnose whether automatic memory sync is ready (offline)")
+    p_doctor.add_argument("--network", action="store_true", help="Also probe the configured OAuth broker over HTTPS")
 
     p_onboard = sub.add_parser("onboard", help="First-run setup: authorize, then pull remote memory or seed+push a new repo")
     p_onboard.add_argument("provider", choices=["github", "gitee"])
@@ -2242,18 +2471,28 @@ def main(argv: list[str] | None = None) -> int:
     p_onboard.add_argument("--auth", default="oauth", choices=["oauth", "token", "ssh"], help="Git auth mode")
     p_onboard.add_argument("--no-browser", action="store_true", help="Print OAuth URL but do not open a browser")
     p_onboard.add_argument("--broker-url", default=None, help="Override the MemHub Auth Broker base URL")
+    p_onboard.add_argument("--manual-sync", action="store_true", help="Disable automatic pull/push and require explicit sync commands")
 
     p_merge = sub.add_parser("merge-driver", help=argparse.SUPPRESS)
     p_merge.add_argument("base")
     p_merge.add_argument("ours")
     p_merge.add_argument("theirs")
 
-    args = parser.parse_args(argv)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    argv_values = list(argv) if argv is not None else sys.argv[1:]
+    parser = build_parser(argv_values)
+
+    args = parser.parse_args(argv_values)
 
     if args.cmd == "merge-driver":
         # Invoked by git with temp file paths; no MemHub repo context needed.
         return run_merge_driver(args.base, args.ours, args.theirs)
 
+    if not args.repo:
+        parser.error("MemHub repository required: pass --repo or set MEMHUB_REPO")
     repo = Path(args.repo).expanduser().resolve()
 
     if args.cmd == "init":
@@ -2300,27 +2539,28 @@ def main(argv: list[str] | None = None) -> int:
                 provider=args.provider,
                 repo_name=args.repo_name,
                 owner=args.owner,
-                token=args.token,
+                token=None,
                 branch=args.branch,
                 private=not args.public,
                 create_repo=not args.no_create,
                 auth_method=args.auth,
                 remote_method=args.remote_method,
                 client_id=args.client_id,
-                client_secret=args.client_secret,
+                client_secret=None,
                 scope=args.scope,
                 redirect_uri=args.redirect_uri,
                 callback_port=args.callback_port,
                 no_browser=args.no_browser,
-                manual_code=args.manual_code,
+                manual_code=None,
                 broker_url=args.broker_url,
+                auto_sync=not args.manual_sync,
             ), end="")
         elif getattr(args, "sync_cmd", None) == "status":
             print(sync_status(repo), end="")
         else:
             print(sync_repo(repo), end="")
     elif args.cmd == "doctor":
-        print(doctor(repo), end="")
+        print(doctor(repo, check_network=getattr(args, "network", False)), end="")
     elif args.cmd == "onboard":
         print(onboard(
             repo,
@@ -2334,6 +2574,7 @@ def main(argv: list[str] | None = None) -> int:
             auth_method=args.auth,
             no_browser=args.no_browser,
             broker_url=args.broker_url,
+            auto_sync=not args.manual_sync,
         ), end="")
     return 0
 

@@ -1,46 +1,62 @@
-## Description: <br>
-Find and select the best-fit CCDB carbon or emission factor for PCF, LCA, carbon accounting, ESG, and supply-chain work using bilingual search, candidate comparison, and suitability guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CCDB Factor Search helps agents search Chinese and English CCDB carbon and emission-factor data, compare candidates, filter weak matches, and return a best-fit factor with risks and direct-use guidance for PCF, LCA, carbon accounting, ESG, and supply-chain work.
 
-## Publisher: <br>
-[fly5661](https://clawhub.ai/user/fly5661) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly5661](https://clawhub.ai/user/fly5661)
 
-## Use Case: <br>
-Developers, sustainability analysts, and carbon-accounting practitioners use this skill to find, compare, and select CCDB emission or carbon-footprint factors for PCF, LCA, ESG, scope 3, BOM, and supply-chain calculations. It is intended to support factor selection decisions with matching rationale, alternatives, and review guidance rather than returning only raw search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Carbon-factor search terms may disclose confidential BOM, supplier, product, or process details to Carbonstop's CCDB service. <br>
-Mitigation: Avoid entering confidential or proprietary details unless disclosure to the external service is acceptable. <br>
-Risk: Returned factors may be unsuitable for formal reporting because of region, unit, lifecycle-stage, source, factor-type, or data-coverage mismatches. <br>
-Mitigation: Treat results as decision support and review candidate fit, assumptions, and source fields before using them in formal PCF, LCA, ESG, or carbon-accounting reports. <br>
+## Use Case:
 
+Employees, external users, developers, and carbon-accounting practitioners use this skill to find and evaluate CCDB emission or carbon-footprint factors for PCF, LCA, ESG, and supply-chain analysis. It is intended for best-fit factor selection with suitability notes rather than raw search-result retrieval.
 
-## Reference(s): <br>
-- [CCDB Factor Search on ClawHub](https://clawhub.ai/fly5661/ccdb-factor-search) <br>
-- [CCDB API Contract](references/api-contract.md) <br>
-- [Matching Strategy](references/matching-strategy.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [CCDB Carbon Factor Search Workflow](references/workflow.md) <br>
-- [Domain Lexicon](references/domain-lexicon.md) <br>
-- [Carbonstop CCDB query endpoint](https://gateway.carbonstop.com/management/system/website/queryFactorListClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON-style structured analysis with recommended factor, match class, risk notes, alternatives, search trace, and direct-use guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a Python helper or direct API request to query Carbonstop CCDB; returned factors should be reviewed before formal reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: Factor-search terms may be sent to Carbonstop or to a configured replacement endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before remote lookup in sensitive business contexts, avoid submitting full BOMs or supplier-identifying details, and restrict the base URL to the intended Carbonstop endpoint.
+
+Risk: An overridden endpoint could receive business-derived search terms.
+
+Mitigation: Control use of endpoint-related environment variables and review configuration before running the query helper.
+
+Risk: A returned factor may be unsuitable for formal reporting because of region, unit, factor type, applicability period, or encrypted-value limitations.
+
+Mitigation: Use the skill's suitability classification and risk notes, then perform human review before using a factor in formal accounting, disclosure, or verification workflows.
+
+## Reference(s):
+
+- [CCDB API Contract](artifact/references/api-contract.md)
+- [Domain Lexicon](artifact/references/domain-lexicon.md)
+- [Matching Strategy](artifact/references/matching-strategy.md)
+- [Output Template](artifact/references/output-template.md)
+- [CCDB Carbon Factor Search Workflow](artifact/references/workflow.md)
+- [Carbonstop CCDB factor query endpoint](https://gateway.carbonstop.com/management/system/website/queryFactorListClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or structured JSON-style result summaries with factor fields, match class, reasoning, risks, alternatives, and search trace.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conservative no-recommendation responses when CCDB data is unavailable or candidate factors are unsuitable.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

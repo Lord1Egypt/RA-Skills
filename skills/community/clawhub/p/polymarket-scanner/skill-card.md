@@ -1,40 +1,54 @@
-## Description: <br>
-Automated prediction market scanner that finds mispriced Polymarket markets and can execute trades through the Simmer Markets API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated Polymarket prediction market scanner and trader via the Simmer API.
 
-## Publisher: <br>
-[wyzmf](https://clawhub.ai/user/wyzmf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wyzmf](https://clawhub.ai/user/wyzmf)
 
-## Use Case: <br>
-Developers and external users can use this skill to scan Polymarket prediction markets, check Simmer account status and positions, and identify or execute trading opportunities through the Simmer API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default scan mode can submit trades through the Simmer API. <br>
-Mitigation: Review before installing or running; use only a virtual or tightly capped Simmer account unless real-money safeguards are independently verified. <br>
-Risk: The security review states that promised real-money confirmation and several risk controls are not implemented. <br>
-Mitigation: Do not provide a live trading key or schedule unattended runs until explicit opt-in, per-trade confirmation, daily limits, and stop-loss behavior are implemented and tested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyzmf/polymarket-scanner) <br>
-- [Simmer Markets](https://simmer.markets) <br>
+## Use Case:
 
+External developers and operators use this skill to scan Polymarket opportunities, check balances and positions, and run configurable virtual or real-money trades through a Simmer account.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands, command-line text output, and JSONL trade logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY. The default scan mode can submit trades through the Simmer API and writes trading_log.jsonl.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically place prediction-market trades, and evidence.security says some documented safety controls are not enforced in code.
+
+Mitigation: Review before installing, use only an account and API key acceptable for trading, start with dry-run or read-only evaluation, and avoid scheduling until execution limits and confirmation behavior are clear.
+
+Risk: The scanner requires SIMMER_API_KEY credentials to access a Simmer account.
+
+Mitigation: Use the least-privileged or lowest-risk account available, avoid sharing the key, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/wyzmf/skills/polymarket-scanner)
+- [Simmer Markets](https://simmer.markets)
+- [Simmer API endpoint](https://api.simmer.markets/api/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output with optional JSONL trade log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and may call the Simmer API when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

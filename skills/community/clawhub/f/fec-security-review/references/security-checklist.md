@@ -1,12 +1,12 @@
-# 前端安全审查清单
+# Front-end security review checklist
 
 ## XSS
 
-- `dangerouslySetInnerHTML` 和 `v-html` 必须有明确理由和输入净化。
-- 用户输入不得直接插入 DOM、`innerHTML`、`document.write`。
-- URL 参数不得直接用于页面渲染。
-- 动态生成的 `<script>` 标签必须审查来源。
-- 富文本使用 DOMPurify 等库，并配置标签、属性、协议白名单。
+- `dangerouslySetInnerHTML` and `v-html` must have explicit reason and input sanitization.
+- User input must not be inserted directly into the DOM, `innerHTML`, `document.write`.
+- URL parameters must not be used directly in page rendering.
+- Dynamically generated `<script>` tags must be sourced.
+- Rich text uses libraries such as DOMPurify and configures tags, attributes, and protocol whitelists.
 
 ```ts
 import DOMPurify from "dompurify";
@@ -18,7 +18,7 @@ const clean = DOMPurify.sanitize(dirtyHtml, {
 });
 ```
 
-## 安全重定向
+## Safe redirection
 
 ```ts
 function safeRedirect(url: string): string {
@@ -29,36 +29,36 @@ function safeRedirect(url: string): string {
 
 ## CSP
 
-- 推荐先用 `Content-Security-Policy-Report-Only` 验证。
-- `default-src 'self'`、`object-src 'none'`、`frame-ancestors 'none'`、`base-uri 'self'` 是常见底线。
-- 避免 `'unsafe-eval'`；内联脚本优先 nonce。
+- It is recommended to verify with `Content-Security-Policy-Report-Only` first.
+- `default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `base-uri 'self'` are common bottom lines.
+- Avoid `'unsafe-eval''; inline scripts take precedence over nonce.
 
 ```http
 Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
 ```
 
-## 敏感数据
+## Sensitive data
 
-- 禁止前端硬编码 API Key、Secret、密码。
-- 禁止 localStorage/sessionStorage/IndexedDB 存明文 token、密码、信用卡信息。
-- 禁止 URL query 参数传 token 或密码。
-- 禁止 console.log 或错误上报携带隐私数据。
-- Token 优先 httpOnly + Secure + SameSite cookie。
+- It is prohibited to hard-code API Key, Secret, and password on the front end.
+- LocalStorage/sessionStorage/IndexedDB is prohibited from storing plain text tokens, passwords, and credit card information.
+- Prohibit URL query parameters from passing token or password.
+- Console.log or error reports are prohibited from carrying private data.
+- Token priority httpOnly + Secure + SameSite cookie.
 
 ## CSRF
 
-- 变更操作必须携带 CSRF token 或使用同等后端防护。
-- 关键操作不要使用 GET。
-- 检查后端是否校验 `Origin` / `Referer`。
+- Change operations must carry CSRF tokens or use equivalent backend protection.
+- Do not use GET for critical operations.
+- Check whether the backend verifies `Origin` / `Referer`.
 
-## 依赖与第三方脚本
+## Dependencies and third-party scripts
 
-- 定期审查依赖安全公告。
-- 禁止从非官方 CDN 加载脚本，除非有 SRI 和来源审查。
-- 动态加载第三方脚本必须有业务必要性和降级策略。
+- Regularly review dependency security bulletins.
+- Disallow script loading from unofficial CDNs unless SRI and source vetted.
+- Dynamically loading third-party scripts must have business necessity and a downgrade strategy.
 
-## 输入校验与文件上传
+## Input verification and file upload
 
-- 前端校验不是安全边界，后端必须二次校验。
-- 文件上传校验 MIME、大小、扩展名和内容；不能只看扩展名。
-- 正则校验注意 ReDoS 风险。
+- Front-end verification is not a security boundary, and the back-end must be verified twice.
+- File uploads verify MIME, size, extension and content; don't just look at the extension.
+- Pay attention to ReDoS risks in regular verification.

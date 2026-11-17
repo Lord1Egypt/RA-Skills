@@ -1,44 +1,54 @@
-## Description: <br>
-Entry-level quantum technology career guidance platform that generates personalized learning roadmaps based on user skills, experience, and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entry-level quantum technology career guidance platform that generates personalized learning roadmaps based on user skills, experience, and goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, students, career changers, professionals, and hiring managers use this skill to generate personalized entry-level quantum technology career roadmaps from skills, experience, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends career background, skills, goals, timestamps, session identifiers, and optional user ID to an external roadmap API. <br>
-Mitigation: Avoid including sensitive personal details that are not needed for career guidance. <br>
-Risk: Generated career roadmaps may be incomplete or unsuitable for a user's specific educational, employment, or regional context. <br>
-Mitigation: Review the roadmap before acting on it and validate recommended resources, timelines, and milestones against current career requirements. <br>
+## Use Case:
 
+External users, students, career changers, and professionals use this hosted API skill to generate personalized quantum technology career roadmaps, learning phases, milestones, skill gaps, and next steps from assessment data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/quantum-tech) <br>
-- [Quantum Tech API Docs](https://api.mkkpro.com:8070/docs) <br>
-- [Quantum Tech API Route](https://api.mkkpro.com/career/quantum-tech) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON] <br>
-**Output Format:** [JSON career roadmap content with structured learning phases, milestones, skill gaps, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap generation uses user-provided career background, skills, goals, session identifiers, timestamps, and optional user ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Roadmap requests may send career goals, skills, experience, session identifiers, timestamps, and an optional user identifier to the provider's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including unnecessary personal or sensitive information in assessment data unless the user is comfortable with the provider handling it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/quantum-tech)
+- [API Docs](https://api.mkkpro.com:8070/docs)
+- [Kong Route](https://api.mkkpro.com/career/quantum-tech)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API Calls]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces career roadmap content including phases, milestones, skill gaps, learning resources, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

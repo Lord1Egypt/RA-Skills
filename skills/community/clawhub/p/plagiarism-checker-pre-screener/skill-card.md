@@ -1,44 +1,59 @@
-## Description: <br>
-Pre-screens supplied text for local similarity patterns, originality scoring, flagged segments, and paraphrasing suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-screens submitted text or local documents for repeated or highly similar passages, originality score, flagged segments, and optional paraphrasing suggestions.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Writers, reviewers, and developers use this skill to run a local pre-screen for repeated or highly similar passages in supplied text before manual review and revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a local similarity pre-screener and does not check external plagiarism databases or internet sources. <br>
-Mitigation: Use it as a triage aid and require manual review or external plagiarism checks before making publication, academic, or compliance decisions. <br>
-Risk: An existing report file may be overwritten when an output path is supplied. <br>
-Mitigation: Choose a deliberate output filename and review the destination before running with an output path. <br>
-Risk: Document support is limited to text-readable files; docx support is not proven by the release security evidence. <br>
-Mitigation: Convert documents to supported text or Markdown before analysis and verify that input extraction succeeded. <br>
+## Use Case:
 
+External users and developers use this skill to run a local originality pre-check on text or document content before review, submission, or revision. It helps identify duplicate-pattern segments and generate rewrite suggestions, but it is not a comprehensive plagiarism search.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/plagiarism-checker-pre-screener) <br>
-- [Algorithm Technical Documentation](references/algorithm.md) <br>
-- [Paraphrasing Guide](references/paraphrasing_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON or plain-text report with originality score, flagged segments, and optional paraphrasing suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a report file when an output path is provided; otherwise prints to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The report can include excerpts from the analyzed document and may expose sensitive text if written to a shared location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated workspace and choose output paths deliberately for each analysis.
+
+Risk: The checker performs local duplicate-pattern analysis and cannot confirm plagiarism against external databases or internet sources.
+
+Mitigation: Use results as a pre-screen only and send important cases to manual review or a comprehensive plagiarism service.
+
+Risk: A provided output path can overwrite an existing writable file.
+
+Mitigation: Write reports to a new or disposable path and inspect existing files before using --output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/plagiarism-checker-pre-screener)
+- [Algorithm Technical Documentation](references/algorithm.md)
+- [Paraphrasing Guide](references/paraphrasing_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, guidance]
+
+**Output Format:** [JSON report or plain-text report with originality score, flagged segments, similarity scores, matching segment indexes, summary, and optional paraphrasing suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a report file when an output path is provided; local analysis only and no external source corpus lookup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Simple currency exchange rates - all rates for a base currency or a direct pair lookup via open.er-api.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple currency exchange rates for retrieving all rates for a base currency or a direct pair lookup via open.er-api.com.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch current currency exchange rates, either as a full table for one base currency or as a direct pair rate lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns current exchange-rate data from an external service, which may be delayed, unavailable, or unsuitable as the sole source for financial decisions. <br>
-Mitigation: Confirm rates against an authoritative financial source before using them for transactions, accounting, compliance, or other high-impact decisions. <br>
-Risk: The provided examples and MCP configuration invoke external Pipeworx endpoints. <br>
-Mitigation: Review the endpoint and command configuration before installation, and run it only in environments where outbound access to that service is approved. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to check current exchange rates for a base currency or retrieve a direct currency pair rate.
 
-## Reference(s): <br>
-- [Pipeworx ExchangeRate Pack](https://pipeworx.io/packs/exchangerate) <br>
-- [ClawHub Skill Page](https://clawhub.ai/b-gutman/pipeworx-exchangerate) <br>
-- [Pipeworx ExchangeRate MCP Endpoint](https://gateway.pipeworx.io/exchangerate/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct examples and can be configured through an MCP server entry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup command automatically downloads and runs an unpinned npm package on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, avoid automatic -y installation when possible, and run the MCP process with minimal filesystem and credential access.
+
+Risk: Exchange-rate results may be unsuitable for decisions that require guaranteed real-time or audited market data.
+
+Mitigation: Confirm rates against an authoritative financial data source before using them for regulated, contractual, or high-value financial decisions.
+
+## Reference(s):
+
+- [Pipeworx ExchangeRate pack](https://pipeworx.io/packs/exchangerate)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-exchangerate)
+- [MCP endpoint](https://gateway.pipeworx.io/exchangerate/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns current exchange-rate data from open.er-api.com through the Pipeworx exchangerate MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

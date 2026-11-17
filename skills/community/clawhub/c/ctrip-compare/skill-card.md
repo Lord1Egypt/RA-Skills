@@ -1,40 +1,62 @@
-## Description: <br>
-Ctrip Compare helps an agent extract and compare Ctrip group-tour products from detail or search-list URLs, then produce a concise Markdown comparison for the user's travel choice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ctrip Compare helps agents collect, summarize, and compare Ctrip package tour products from Ctrip search or detail URLs and produce a Markdown recommendation report.
 
-## Publisher: <br>
-[zhangxiaoshuai98](https://clawhub.ai/user/zhangxiaoshuai98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxiaoshuai98](https://clawhub.ai/user/zhangxiaoshuai98)
 
-## Use Case: <br>
-Travel shoppers and agents use this skill to compare multiple Ctrip group-tour products by date-sensitive price, itinerary, supplier, hotel, meal, transport, and activity details. It supports both selected product-detail URLs and Ctrip search-list URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a local Chromium browser through remote debugging port 9222, which can expose broad control over the active browser session. <br>
-Mitigation: Run it only against a separate temporary Chromium profile for Ctrip, not an everyday logged-in browser profile, and close the debug browser when finished. <br>
-Risk: The documented restart flow may terminate browser processes before reopening the browser in debug mode. <br>
-Mitigation: Save browser work first, avoid automatic process kills unless necessary, and approve any restart action explicitly. <br>
+## Use Case:
 
+External travelers and travel planners use this skill to compare Ctrip group tour products by price, itinerary, attractions, photo services, lodging, meals, and reviews before choosing a package.
 
-## Reference(s): <br>
-- [Ctrip Compare on ClawHub](https://clawhub.ai/zhangxiaoshuai98/ctrip-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated comparison files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces raw extracted text files and summarized text files before the final Markdown comparison.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can control an existing Chromium browser session over CDP, which may expose logged-in pages or account context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated temporary browser profile or isolated browser instance instead of an everyday logged-in browser.
+
+Risk: The workflow may terminate and restart local browser processes when CDP is unavailable, which can interrupt unsaved browser work.
+
+Mitigation: Save or close browser work before any restart or process-kill step and confirm the selected browser before proceeding.
+
+Risk: Unvalidated URLs could direct browser automation away from expected Ctrip vacation pages.
+
+Mitigation: Verify every URL is a real vacations.ctrip.com page before extraction.
+
+Risk: The skill writes raw and summarized travel data to a local output folder.
+
+Mitigation: Choose a limited output folder and review generated files before sharing them.
+
+## Reference(s):
+
+- [Ctrip Compare ClawHub skill page](https://clawhub.ai/zhangxiaoshuai98/skills/ctrip-compare)
+- [Ctrip group travel](https://vacations.ctrip.com/grouptravel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, plain-text extracted data and summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes project folders containing raw extraction files, compressed summaries, and a final comparison report.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

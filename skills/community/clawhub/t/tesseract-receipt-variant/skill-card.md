@@ -1,41 +1,53 @@
-## Description: <br>
-Tesseract Receipt Tracker helps agents OCR receipts, invoices, and receipt images, extract common expense fields, and prepare structured JSON or CSV logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tesseract Receipt Tracker uses Tesseract OCR and receipt parsing to extract expense fields such as date, vendor, total, tax, mileage, and items from receipt, invoice, and image inputs.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-People who track expenses, travel, tax records, or freelance receipts can use this skill to OCR receipts or invoices and extract fields such as date, vendor, total, tax, mileage, items, category, and notes for structured logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill setup asks the agent to install Tesseract with privileged system package commands. <br>
-Mitigation: Review setup before use; install Tesseract manually when possible, or approve package installation only in a controlled environment. <br>
-Risk: OCR and regex parsing can misread or miss receipt fields such as totals, taxes, mileage, dates, vendors, or items. <br>
-Mitigation: Review extracted JSON or CSV records against the source receipt before relying on them for expense, tax, reimbursement, or travel records. <br>
+## Use Case:
 
+Developers and agents use this skill to OCR receipt or invoice images and produce structured expense records for travel, freelance, tax, and mileage logging workflows.
 
-## Reference(s): <br>
-- [Receipt Extraction Fields](references/receipt_fields.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/skunnyo/tesseract-receipt-variant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, CSV, Shell commands, Files] <br>
-**Output Format:** [OCR text plus structured JSON or CSV expense records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or append local receipt logs such as expense_log.csv or JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to run unpinned package installs and a privileged system package install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, install Tesseract through the normal administrator-approved process, and avoid allowing an agent to run sudo apt or unpinned pip installs automatically.
+
+Risk: The included parser may produce limited JSON rather than full receipt or invoice tracking output.
+
+Mitigation: Validate extracted fields against the source receipt and treat generated JSON or CSV as a draft record before using it for expense, tax, or mileage records.
+
+## Reference(s):
+
+- [Receipt Extraction Fields](references/receipt_fields.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON or CSV output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured expense records depend on OCR quality and parser field coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

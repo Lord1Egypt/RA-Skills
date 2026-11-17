@@ -101,7 +101,7 @@ When HR learnings prove broadly applicable, promote them:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders:
 
 ```bash
 cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-hr
@@ -477,6 +477,8 @@ Targets: policy documents, onboarding checklists, compliance calendars, `AGENTS.
 
 Enable automatic reminders through agent hooks. This is **opt-in**.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -485,7 +487,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "compliance|policy|onboarding|hire|termination|benefits|payroll",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-hr/scripts/activator.sh"
@@ -495,7 +497,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects an HR-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects an HR-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -503,7 +505,7 @@ This injects an HR-focused learning evaluation reminder after each prompt (~50-1
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "compliance|policy|onboarding|hire|termination|benefits|payroll",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-hr/scripts/activator.sh"
@@ -532,6 +534,8 @@ Enable `PostToolUse` only if you want the hook to inspect command output for com
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When an HR learning is valuable enough to become a reusable skill, extract it.
 
@@ -588,7 +592,7 @@ Use conversation signals ("This compliance issue keeps coming up", "Save this on
 ```
 
 **Track learnings in repo** (team-wide, only for anonymized operational patterns):
-Don't add to .gitignore — learnings become shared knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -637,3 +641,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/hr/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

@@ -1,45 +1,60 @@
-## Description: <br>
-Yunshi helps agents provide Chinese astrology and divination readings across BaZi, ZiWei DouShu, QiMen DunJia, I Ching, feng shui, marriage compatibility, and daily fortune push workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one Chinese fortune-telling covering BaZi, ZiWei DouShu, QiMen DunJia, I Ching, feng shui, marriage compatibility, and daily horoscope push, built on local Node.js tooling without an external API.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and agents use Yunshi to generate Chinese fortune-telling guidance, manage local birth-profile data, and prepare daily horoscope push content. It supports birth-chart analysis, divination, feng shui recommendations, relationship compatibility, and recurring daily fortune summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive birth time, birthplace, family, preference, and push-log data locally, and command output may reveal that data. <br>
-Mitigation: Use it only with explicit consent, restrict profile file permissions, avoid sharing dry-run/list/status output, and delete local profiles when they are no longer needed. <br>
-Risk: Scheduled daily push messages could send fortune content without clear opt-in or to an unintended channel. <br>
-Mitigation: Enable push delivery only after explicit opt-in and review the target user, channel, and schedule before activating recurring delivery. <br>
-Risk: The optional knowledge-directory setting could point the skill at unintended sensitive files. <br>
-Mitigation: Set OPENCLAW_KNOWLEDGE_DIR only to an intended directory of non-sensitive Markdown knowledge files. <br>
+## Use Case:
 
+External users and agents use Yunshi to produce Chinese astrology and divination readings, register local birth-profile context, compare relationship compatibility, assess feng shui questions, and configure daily fortune pushes.
 
-## Reference(s): <br>
-- [ClawHub Yunshi skill page](https://clawhub.ai/jiajiaoy/yunshi) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Related ClawHub skill: lucky-today](https://clawhub.ai/skills/lucky-today) <br>
-- [User registration flow](docs/注册流程.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell command and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local JSON profile data and generate scheduled push-message content when those workflows are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata and artifact/package.json) <br>
+Risk: Sensitive birth details and preferences may persist in OpenClaw memory and, when push is enabled, scheduled runtime jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only necessary profile details, avoid family or children's exact birth details without permission, and delete profile memory after disabling push jobs.
+
+Risk: Daily fortune push scheduling has weak cleanup and scheduling safeguards.
+
+Mitigation: Use only normal HH:MM push times, review enabled push channels, and turn off scheduled pushes before removing profile records.
+
+Risk: Fortune-telling output may be mistaken for reliable health, financial, legal, or relationship advice.
+
+Mitigation: Present readings as interpretive guidance only and require professional advice for high-impact decisions.
+
+## Reference(s):
+
+- [Yunshi ClawHub listing](https://clawhub.ai/jiajiaoy/skills/yunshi)
+- [Publisher profile](https://clawhub.ai/user/jiajiaoy)
+- [OpenClaw](https://openclaw.ai)
+- [Registration workflow](docs/注册流程.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js >=18, the iztro package, optional OPENCLAW_KNOWLEDGE_DIR reference material, and OpenClaw-managed memory or scheduled push state.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata, package.json, _meta.json, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

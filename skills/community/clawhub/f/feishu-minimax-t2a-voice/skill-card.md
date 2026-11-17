@@ -1,40 +1,57 @@
-## Description: <br>
-Generates Feishu voice replies from text using MiniMax T2A with Edge TTS fallback, then returns an audio file path for sending as audio/opus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent reply to Feishu voice messages by using Feishu transcripts and generating audio replies through MiniMax T2A with Edge TTS fallback.
 
-## Publisher: <br>
-[michelangelo-in-sistine](https://clawhub.ai/user/michelangelo-in-sistine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michelangelo-in-sistine](https://clawhub.ai/user/michelangelo-in-sistine)
 
-## Use Case: <br>
-Developers and agents use this skill to turn Feishu reply text into a voice message workflow, generating an audio file through MiniMax T2A when configured or Edge TTS as a fallback. It is useful when a Feishu conversation should be answered with synthesized voice instead of plain text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-reply text may be sent to MiniMax or Edge TTS services. <br>
-Mitigation: Avoid secrets or highly sensitive content, and use a dedicated MiniMax API key when MiniMax is configured. <br>
-Risk: Generated audio can remain in the configured media output directory until overwritten or cleaned up. <br>
-Mitigation: Restrict access to the media output directory and clean generated audio files according to local retention needs. <br>
+## Use Case:
 
+Developers and Feishu automation users can use this skill to turn incoming Feishu voice content into transcript-driven voice replies. It is intended for workflows that need a generated audio response file and a Feishu message command using audio/opus content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michelangelo-in-sistine/feishu-minimax-t2a-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Text with inline shell commands, file paths, and Feishu message parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces .opus or .ogg audio files when synthesis succeeds and falls back to text when audio generation fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Reply text may be sent to MiniMax or Edge TTS providers for speech synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or sensitive conversation content unless the selected provider and account terms meet the deployment's privacy requirements.
+
+Risk: Generated audio is written to local media and temporary paths that may retain message content.
+
+Mitigation: Restrict access to generated media paths and clear retained audio files according to local data-retention requirements.
+
+Risk: The MiniMax path depends on provider credentials, network access, and ffmpeg for opus conversion.
+
+Mitigation: Verify MINIMAX_API_KEY, ffmpeg availability, and Edge TTS fallback behavior before using the skill in a live Feishu workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michelangelo-in-sistine/skills/feishu-minimax-t2a-voice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell-command examples and generated audio file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .opus or .ogg audio files and falls back to text when speech synthesis fails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

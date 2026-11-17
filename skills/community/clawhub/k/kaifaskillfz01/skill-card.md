@@ -1,44 +1,53 @@
-## Description: <br>
-Guides development requests through a structured Plan, approval, Implement, Review, and Report workflow with role-based agent handoffs and archived plan and review files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KAIFASKILLFZ01 provides a structured development workflow that routes agent coding work through assessment, planning, user approval, implementation, review, and reporting.
 
-## Publisher: <br>
-[tomm1399](https://clawhub.ai/user/tomm1399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomm1399](https://clawhub.ai/user/tomm1399)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to manage larger development work with an explicit plan, approval gate, implementation phase, review phase, and final report. It is intended for tasks that benefit from structured planning and review rather than small edits or simple configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create plan and review files and use subagents for development work. <br>
-Mitigation: For advice-only requests, explicitly tell the agent not to save plan or review files or start implementation. <br>
-Risk: Security-sensitive, payment, authentication, production, or large changes need deeper review than the default workflow may provide. <br>
-Mitigation: Request strict mode so planning and review use the skill's more rigorous path before implementation is accepted. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to manage agent-assisted software development with explicit plans, approval gates, specialized implementation and review roles, and archived plan and review records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomm1399/kaifaskillfz01) <br>
-- [Plan template](references/plan-template.md) <br>
-- [Review checklist](references/review-checklist.md) <br>
-- [Role prompt templates](references/roles.md) <br>
-- [Workflow variants](references/workflow-variants.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance and archived plan/review files, with code or shell commands when implementation tasks require them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create plan and review files under plans/ and may delegate implementation or review work to role-specific subagents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Quick mode can skip security review while still guiding code changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use standard or strict mode for sensitive work, including authentication, payment, production code, filesystem handling, command execution, or network services, and require security review even for small changes.
+
+## Reference(s):
+
+- [KAIFASKILLFZ01 ClawHub listing](https://clawhub.ai/tomm1399/skills/kaifaskillfz01)
+- [Plan output template](references/plan-template.md)
+- [Review checklist](references/review-checklist.md)
+- [Role prompt templates](references/roles.md)
+- [Workflow variants](references/workflow-variants.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown plans and review reports, conversational summaries, code changes, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates plan and review files under a plans directory when the workflow is followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

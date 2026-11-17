@@ -1,47 +1,55 @@
-## Description: <br>
-Generates FridayParts Facebook posts across educational, customer review, KOL promotion, and timely marketing formats, with body copy, hashtags, and image suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成 FridayParts Facebook 帖子，支持行业知识科普、客户好评反馈、KOL合作推广和热点借势营销，并输出正文、hashtag 与配图建议。
 
-## Publisher: <br>
-[zhuxirui677](https://clawhub.ai/user/zhuxirui677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxirui677](https://clawhub.ai/user/zhuxirui677)
 
-## Use Case: <br>
-Marketing operators use this skill to draft English Facebook content for FridayParts' North American heavy-equipment parts audience. It supports recurring posts, customer-review reposts, KOL campaign copy, and seasonal or topical marketing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy could include inaccurate technical maintenance claims. <br>
-Mitigation: Review technical statements before publishing and keep non-absolute language such as can, may, often, or usually when discussing faults or repairs. <br>
-Risk: Customer-review posts could overquote source reviews or misrepresent customer feedback. <br>
-Mitigation: Keep review quotes to 15 words or fewer, quote only once per post, and use human review before publication. <br>
-Risk: Broad trigger terms could activate the skill during unrelated Facebook or marketing requests. <br>
-Mitigation: Narrow triggers if accidental activation would disrupt the workspace. <br>
+## Use Case:
 
+External marketing and social media operators use this skill to draft English Facebook posts for FridayParts from a selected content type and supplied source material. It is intended for recurring Facebook publishing, customer review reposts, KOL collaboration copy, and seasonal or topical marketing posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-facebook-pro-post) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuxirui677) <br>
-- [README](README.md) <br>
-- [GetClawHub import guide](docs/如何导入GetClawHub.md) <br>
-- [Example Facebook posts](examples/example_facebook_posts.md) <br>
-- [Output quality checklist](reference/输出质量checklist.md) <br>
+### Deployment Geography for Use:
 
+North America
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured body copy, hashtags, and image direction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before publishing; the skill is prompt-only and does not post content autonomously.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated Facebook posts may contain inaccurate or overconfident repair or fault guidance when source material is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review posts before publication and preserve the skill's may, often, and usually language for technical repair content.
+
+Risk: Customer review or KOL-based marketing copy may misquote source material or reuse too much text.
+
+Mitigation: Use real source material, confirm attribution before posting, and enforce the skill's limit of no more than 15 English words for a quoted review excerpt.
+
+## Reference(s):
+
+- [GetClawHub import guide](docs/如何导入GetClawHub.md)
+- [Example Facebook posts](examples/example_facebook_posts.md)
+- [Output quality checklist](reference/输出质量checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections for post copy, hashtags, and image direction.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configured for English Facebook post copy with model claude-sonnet-4-6, temperature 0.7, and max_tokens 800.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; skill frontmatter: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

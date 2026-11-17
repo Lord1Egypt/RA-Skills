@@ -1,39 +1,56 @@
-## Description: <br>
-Generates polite, context-aware reply suggestions for WeChat messages to assist in personal chats, customer support, and AI response planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates polite, context-aware reply suggestions for WeChat messages to assist in personal chats, customer support, and AI response planning.
 
-## Publisher: <br>
-[zionfusu](https://clawhub.ai/user/zionfusu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zionfusu](https://clawhub.ai/user/zionfusu)
 
-## Use Case: <br>
-People and teams use this skill to draft natural Chinese WeChat replies from a provided message or short conversation context. It supports personal chat assistance, customer support drafting, community operations, and AI agent response planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reply suggestions may be unsuitable for the conversation or tone. <br>
-Mitigation: Review and edit generated replies before sending them. <br>
-Risk: Messages may contain private, financial, or sensitive personal information. <br>
-Mitigation: Avoid sharing sensitive conversation content with untrusted environments and review outputs carefully before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zionfusu/wechat-auto-reply-assistant) <br>
+## Use Case:
 
+External users, customer support teams, community operators, and personal AI-agent builders use this skill to draft natural reply suggestions from a WeChat message or short conversation context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language reply suggestion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated reply should be reviewed before sending, especially for private, financial, or sensitive conversations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated replies can be unsuitable for sensitive personal conversations or customer support contexts if sent without review.
+
+Mitigation: Review and edit suggested messages before sending.
+
+Risk: Users may mistake the skill for a WeChat automation or integration tool.
+
+Mitigation: Use it only to draft replies from text provided to the agent; it does not read from or send messages through WeChat.
+
+Risk: The prompt favors natural spoken Chinese replies, which may not fit conversations requiring another language.
+
+Mitigation: Adjust the language requirement when non-Chinese replies are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zionfusu/skills/wechat-auto-reply-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language reply suggestion, typically in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided message text or short conversation context; does not access WeChat directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

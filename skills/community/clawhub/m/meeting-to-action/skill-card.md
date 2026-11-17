@@ -1,48 +1,62 @@
-## Description: <br>
-Convert meeting notes or transcripts into clear summaries, decisions, and action items with owners and due dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert meeting notes or transcripts into clear summaries, decisions, and action items with owners and due dates. Use when a user asks to turn a meeting recording, transcript, or notes into a follow-up plan.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Employees, external collaborators, and operators use this skill to turn meeting transcripts or detailed notes into summaries, decisions, action items, open questions, and draft recap messages for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts and participant lists may contain confidential information. <br>
-Mitigation: Treat meeting content as confidential and avoid sharing outputs outside the user's context. <br>
-Risk: Generated owners, due dates, or commitments may be inferred from incomplete notes. <br>
-Mitigation: Mark inferred owners or due dates as tentative and require user review before using the follow-up package. <br>
-Risk: Calendar, task, or messaging integrations could change external systems if used without review. <br>
-Mitigation: Use draft modes only and require explicit user confirmation before any task, calendar, or message action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codedao12/meeting-to-action) <br>
-- [Overview](references/overview.md) <br>
-- [UX](references/ux.md) <br>
-- [Safety](references/safety.md) <br>
-- [Auth](references/auth.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+Employees and teams use this skill to turn meeting transcripts or notes into summaries, decisions, action items with owners and due dates, and draft follow-up messages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts only; does not create tasks, calendar invites, or send messages automatically.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Meeting content may contain confidential or sensitive information.
+
+Mitigation: Review sensitivity before use and keep outputs within the user context unless explicit sharing approval is given.
+
+Risk: Action items, owners, or due dates may be inferred incorrectly from incomplete transcripts.
+
+Mitigation: Mark uncertain owners or due dates as tentative and review drafts before acting on them.
+
+Risk: Optional calendar, task, transcription, or meeting-platform integrations could cause unintended sharing or system changes.
+
+Mitigation: Use read-only or draft modes unless the user explicitly approves an action, and do not send or publish changes automatically.
+
+## Reference(s):
+
+- [Overview](references/overview.md)
+- [Auth](references/auth.md)
+- [Endpoints](references/endpoints.md)
+- [Webhooks](references/webhooks.md)
+- [UX](references/ux.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Safety](references/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summary, decision list, action-item table, open questions, and draft follow-up message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft outputs only; inferred owners or due dates should be marked tentative.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

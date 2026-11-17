@@ -1,0 +1,9 @@
+interface:
+  display_name: "Ziztu Viral Reels"
+  short_description: "Write faceless reel scripts, hooks and shot lists, then make them"
+  icon_small: "./assets/ziztu-mark.svg"
+  icon_large: "./assets/ziztu-icon.png"
+  brand_color: "#F4552B"
+  default_prompt: "Use $ziztu-viral-reels to pick a format for my topic, write a 1-second hook and a Paradox, Escalation, Pivot, Payoff reel script, and give me the shot list."
+policy:
+  allow_implicit_invocation: true

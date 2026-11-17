@@ -1,0 +1,230 @@
+{
+ "owner": "you@example.com",
+ "protect": {
+  "subjects": [
+   "\"verification code\"",
+   "\"security code\"",
+   "\"one-time\"",
+   "\"security alert\"",
+   "\"new sign-in\"",
+   "\"new device\"",
+   "\"new login\"",
+   "\"password\"",
+   "invoice",
+   "receipt",
+   "statement",
+   "overdue",
+   "\"past due\"",
+   "unsuccessful",
+   "declined",
+   "suspended",
+   "renew",
+   "renewal",
+   "refund",
+   "\"action needed\"",
+   "\"action required\"",
+   "\"immediate action\"",
+   "abuse",
+   "ticket",
+   "\"login code\""
+  ],
+  "senders": [
+   "email.apple.com",
+   "accounts.google.com",
+   "no-reply-aws@amazon.com"
+  ]
+ },
+ "urgent": {
+  "security_subjects": [
+   "\"security alert\"",
+   "\"new sign-in\"",
+   "\"new device\"",
+   "\"new login\"",
+   "\"unusual activity\"",
+   "\"password changed\"",
+   "\"password reset\"",
+   "\"password recovery\"",
+   "\"security update\""
+  ],
+  "risk_subjects": [
+   "overdue",
+   "\"past due\"",
+   "\"payment failed\"",
+   "unsuccessful",
+   "declined",
+   "suspended",
+   "suspension",
+   "terminated",
+   "\"Immediate action\"",
+   "\"Action needed\"",
+   "\"action required\"",
+   "abuse",
+   "phishing",
+   "rejected",
+   "denied",
+   "\"shut down\"",
+   "deletion",
+   "cancelled"
+  ],
+  "exclude_senders": [
+   "notifications@github.com",
+   "googleads-noreply@google.com"
+  ]
+ },
+ "bill": {
+  "senders": [
+   "receipts@stripe.com",
+   "invoice+statements@stripe.com"
+  ],
+  "subjects": [
+   "receipt",
+   "invoice",
+   "\"payment confirmation\"",
+   "\"Order Confirmation\"",
+   "\"Order Summary\"",
+   "\"statement is ready\"",
+   "\"received your payment\"",
+   "\"Renewal complete\"",
+   "\"will renew\"",
+   "payout",
+   "refund",
+   "\"payment reminder\""
+  ],
+  "exclude_senders": []
+ },
+ "infra": {
+  "senders": [
+   "notify.cloudflare.com",
+   "noreply@github.com",
+   "notifications@github.com",
+   "sc-noreply@google.com",
+   "no-reply-aws@amazon.com",
+   "CloudPlatform-noreply@google.com",
+   "digitalocean.com",
+   "hetzner.com",
+   "namecheap.com"
+  ],
+  "archive_rules": [
+   {
+    "desc": "Search Console routine reports",
+    "query": "from:sc-noreply@google.com subject:(performance OR \"coverage\" OR congratulations)"
+   }
+  ],
+  "github_noise": true
+ },
+ "apple": {
+  "senders": [
+   "email.apple.com",
+   "noreply@apple.com"
+  ]
+ },
+ "fin": {
+  "txn_senders": [
+   "info.coinbase.com",
+   "notification.examplebank.com",
+   "alerts.examplecard.com",
+   "wise.com",
+   "revolut.com"
+  ],
+  "exclude_compact": [
+   "coinbase.com",
+   "examplebank.com",
+   "examplecard.com",
+   "wise.com",
+   "revolut.com"
+  ],
+  "mkt_senders": [
+   "mail.coinbase.com",
+   "offers.examplebank.com",
+   "marketing.examplecard.com"
+  ],
+  "archive_rules": [
+   {
+    "desc": "broker daily statements",
+    "query": "from:statements.examplebroker.com subject:(\"Daily Statement\")"
+   }
+  ]
+ },
+ "otp": {
+  "subjects": [
+   "\"verification code\"",
+   "\"security code\"",
+   "\"one-time\"",
+   "\"sign-in code\"",
+   "\"login code\"",
+   "OTP",
+   "\"verify your email\""
+  ]
+ },
+ "biz": {
+  "query": "from:{alerts@yourcompany.com} OR subject:(YourCompany)",
+  "exclude_senders": [
+   "github.com"
+  ],
+  "archive_query": "from:{test@yourcompany.com} subject:(test)"
+ },
+ "mkt": {
+  "brand_sender_groups": [
+   [
+    "medium.com",
+    "producthunt.com",
+    "substack.com",
+    "dev.to",
+    "skool.com"
+   ],
+   [
+    "email.canva.com",
+    "updates.notion.so",
+    "email.expedia.com",
+    "newsletter.trip.com"
+   ]
+  ],
+  "social_senders": [
+   "redditmail.com",
+   "mail.instagram.com",
+   "facebookmail.com",
+   "ideas.pinterest.com",
+   "linkedin.com"
+  ],
+  "social_exclude_subjects": [
+   "\"replied to\"",
+   "mentioned",
+   "\"new message\""
+  ],
+  "cold_senders": [
+   "cold-outreach-tool.example"
+  ],
+  "kw_subjects": [
+   "coupon",
+   "discount",
+   "\"% off\"",
+   "sale",
+   "deal",
+   "\"limited time\""
+  ],
+  "use_category_promotions": true,
+  "promo_exclude_fin_txn": true,
+  "promo_exclude_senders": [],
+  "use_category_social": true
+ },
+ "extra_rules": [
+  {
+   "desc": "mail forwarded from a second account",
+   "label": "From/work",
+   "query": "deliveredto:you.work@gmail.com"
+  }
+ ],
+ "_readme": "Fictional example. Copy to profiles/<you>.json and fill it from your own 90-day sender census (SKILL.md step 1). Senders can be full addresses or domains (a domain also matches its subdomains).",
+ "labels": {
+  "urgent": "⚠️ Action",
+  "bill": "💳 Bills",
+  "infra": "🛠 Infra",
+  "apple": "🍎 Apple",
+  "fin": "📈 Finance",
+  "otp": "🔐 Codes",
+  "biz": "🏢 Business",
+  "mkt": "Marketing",
+  "social": "Marketing/Social",
+  "cold": "Marketing/Cold"
+ }
+}

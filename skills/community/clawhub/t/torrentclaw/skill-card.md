@@ -1,47 +1,62 @@
-## Description: <br>
-TorrentClaw helps agents search movie and TV torrents, present metadata-rich results, and add selected magnets to Transmission or aria2 or provide magnet and .torrent alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TorrentClaw helps agents search movies and TV shows across torrent sources, present metadata-enriched torrent results, and add selected magnet links to local torrent clients or provide magnet and .torrent download options.
 
-## Publisher: <br>
-[buryni](https://clawhub.ai/user/buryni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[buryni](https://clawhub.ai/user/buryni)
 
-## Use Case: <br>
-External users and developers use this skill to find media torrents, compare quality and seed information, and hand a selected magnet or torrent file to a local torrent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Torrent search and download workflows can expose privacy, legal, and system-impact risks. <br>
-Mitigation: Confirm the exact torrent, file size, legality, and download location before allowing add or download actions. <br>
-Risk: The skill can add a selected magnet to local torrent software. <br>
-Mitigation: Require user confirmation before running add-torrent actions and prefer explicit download directories. <br>
-Risk: API keys may increase rate limits and should not be exposed in logs or URLs. <br>
-Mitigation: Use the TORRENTCLAW_API_KEY environment variable only when needed and pass it through an Authorization header. <br>
+## Use Case:
 
+External users and developers use TorrentClaw to search for media torrents, compare quality and seeder metadata, and route a chosen torrent to Transmission, aria2, a magnet link, or a .torrent file workflow.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/buryni/torrentclaw) <br>
-- [TorrentClaw Homepage](https://torrentclaw.com) <br>
-- [Repository](https://github.com/torrentclaw/torrentclaw-skill) <br>
-- [API Reference](references/api-reference.md) <br>
-- [OpenAPI Spec](https://torrentclaw.com/api/openapi.json) <br>
-- [API Docs](https://torrentclaw.com/api/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, JSON snippets, and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include magnet links, torrent-file URLs, torrent-client detection JSON, and installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.17 (source: frontmatter and server release metadata) <br>
+Risk: The skill can initiate local torrent downloads through Transmission or aria2.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before adding any magnet link, downloading any .torrent file, or starting a torrent client.
+
+Risk: Torrent searches and selected torrent actions may be sent to TorrentClaw.
+
+Mitigation: Tell users what activity will be sent to TorrentClaw and avoid using the skill for sensitive torrent activity unless the user accepts that disclosure.
+
+Risk: The documented MCP path uses an unpinned npx package command.
+
+Mitigation: Pin and review the MCP package version before running it.
+
+## Reference(s):
+
+- [TorrentClaw website](https://torrentclaw.com)
+- [TorrentClaw repository](https://github.com/torrentclaw/torrentclaw-skill)
+- [TorrentClaw API Reference](references/api-reference.md)
+- [OpenAPI specification](https://torrentclaw.com/api/openapi.json)
+- [API documentation](https://torrentclaw.com/api/docs)
+- [MCP server documentation](https://torrentclaw.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON API responses and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include magnet links, .torrent download commands, torrent-client installation guidance, and local client-detection JSON.]
+
+## Skill Version(s):
+
+0.1.17 (source: skill metadata, CHANGELOG, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

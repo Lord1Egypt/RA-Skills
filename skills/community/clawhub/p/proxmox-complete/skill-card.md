@@ -1,40 +1,60 @@
-## Description: <br>
-Manage Proxmox VE clusters via REST API, including nodes, VMs, containers, power states, snapshots, backups, storage, and tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Proxmox VE clusters via REST API, including nodes, VMs, containers, power states, snapshots, backups, storage, tasks, and health status.
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and infrastructure operators use this skill to inspect and administer Proxmox VE clusters through generated shell commands, Python API calls, and configuration guidance. It supports VM and container status checks, power operations, snapshots, backups, storage inspection, task logs, and node health workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can run power, snapshot, rollback, deletion, and backup actions that change Proxmox infrastructure.
+
+Mitigation: Require explicit confirmation for each mutating action and use a least-privilege Proxmox API token.
+
+Risk: TLS verification can be disabled in the documented configuration and Bash helper.
+
+Mitigation: Enable TLS verification with a trusted certificate before production use.
+
+Risk: Credentials may be stored in local files or environment variables, including a Bash-sourced fallback file.
+
+Mitigation: Prefer protected secret storage, restrict credential file permissions, and avoid the Bash fallback credential file.
+
+Risk: The skill depends on external command-line tools and the proxmoxer Python package.
+
+Mitigation: Install only reviewed, pinned dependency versions in the agent runtime.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, infrastructure operators, and administrators use this skill to inspect and manage Proxmox VE clusters from an agent workflow. It supports read-only cluster status checks and high-impact administrative operations such as VM power changes, snapshots, backups, and rollback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Proxmox infrastructure, including start, stop, shutdown, reboot, snapshot, backup, deletion, and rollback operations. <br>
-Mitigation: Require explicit user confirmation before high-impact operations, especially on production clusters. <br>
-Risk: Proxmox API credentials can grant broad infrastructure access if overprivileged or exposed. <br>
-Mitigation: Use a least-privilege Proxmox API token and protect credential files with restrictive permissions. <br>
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ricanwarfare/proxmox-complete) <br>
+**Other Properties Related to Output:** [Commands operate against a configured Proxmox VE API and may return JSON from the Python helper or formatted shell output from the Bash helper.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may return JSON status or error objects; some bash helper commands emit tabular text.] <br>
+1.1.0 (source: server release metadata; artifact frontmatter and _meta.json state 1.0.0)
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

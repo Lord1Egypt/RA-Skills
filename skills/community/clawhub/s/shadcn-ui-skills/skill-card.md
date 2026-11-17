@@ -1,48 +1,67 @@
-## Description: <br>
-Manages shadcn/ui components and projects, including adding, searching, fixing, debugging, styling, and composing UI with project context, component docs, and usage examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages shadcn components and projects, including adding, searching, fixing, debugging, styling, and composing UI with project context, component documentation, and usage examples.
 
-## Publisher: <br>
-[lumacoder](https://clawhub.ai/user/lumacoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumacoder](https://clawhub.ai/user/lumacoder)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, update, debug, and review shadcn/ui interfaces while following documented component, styling, form, icon, registry, and CLI practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adding or updating shadcn/ui components can overwrite or unintentionally change project files. <br>
-Mitigation: Review dry-run and diff output before applying component changes, and require explicit approval before overwrite or force operations. <br>
-Risk: Community or custom registries can supply untrusted component code or configuration. <br>
-Mitigation: Use trusted registries, inspect added files after installation, and validate imports, dependencies, and component composition before keeping the changes. <br>
-Risk: Registry authentication tokens can be exposed if configured for untrusted or non-HTTPS endpoints. <br>
-Mitigation: Configure registry tokens only for trusted HTTPS endpoints and keep credentials in environment variables or approved secret stores. <br>
+## Use Case:
 
+Developers and AI assistants use this skill to build and maintain shadcn/ui interfaces in React, Next.js, Vite, and related projects while following component, styling, form, icon, CLI, and registry workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumacoder/shadcn-ui-skills) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [shadcn CLI reference](artifact/cli.md) <br>
-- [shadcn MCP server reference](artifact/mcp.md) <br>
-- [Customization and theming reference](artifact/customization.md) <br>
-- [shadcn/ui documentation](https://ui.shadcn.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, CSS, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run shadcn CLI commands and may modify project component, theme, and configuration files when the hosting agent has file-system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can direct agents to use unpinned shadcn CLI commands such as npx shadcn@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin shadcn to a reviewed version and require explicit approval before running CLI commands that change a project.
+
+Risk: Adding community, URL, or private registry items can install remote code into a project.
+
+Mitigation: Use dry-run, view, or diff before installation, inspect generated files, and approve only trusted registries.
+
+Risk: Private registry tokens could be exposed to endpoints that are not fully trusted.
+
+Mitigation: Configure private registry credentials only for trusted endpoints and avoid sharing tokens with unverified registries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lumacoder/skills/shadcn-ui-skills)
+- [shadcn/ui documentation](https://ui.shadcn.com)
+- [Skill definition](artifact/SKILL.md)
+- [CLI reference](artifact/cli.md)
+- [MCP server reference](artifact/mcp.md)
+- [Customization and theming](artifact/customization.md)
+- [Composition rules](artifact/rules/composition.md)
+- [Forms and inputs rules](artifact/rules/forms.md)
+- [Icons rules](artifact/rules/icons.md)
+- [Styling rules](artifact/rules/styling.md)
+- [Base vs Radix rules](artifact/rules/base-vs-radix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline TypeScript, CSS, JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run shadcn CLI commands; component installs should be previewed with dry-run, diff, or view before applying changes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Contentstack Content Delivery lets agents search and read published Contentstack content through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and reads data through Contentstack Content Delivery.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and content operators use this skill to let an agent inspect Contentstack content types, entries, and assets from an already connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may read more published Contentstack content than intended when a user request is broad or ambiguous. <br>
-Mitigation: Confirm ambiguous requests before running connector actions and keep the OOMOL Contentstack connection limited to the intended account scope. <br>
-Risk: Use depends on installing the oo CLI and connecting an OOMOL account before content can be accessed. <br>
-Mitigation: Review the oo CLI installer and account connection flow before first use, then run setup only when an auth or connection command fails. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve published Contentstack entries, assets, and content type schemas. It supports read-oriented Contentstack Content Delivery tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-contentstack-content-delivery) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Contentstack Content Delivery homepage](https://www.contentstack.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash snippets and JSON connector responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI and an OOMOL account connection for Contentstack Content Delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup instructions use remote installer scripts that were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a reviewed, version-pinned CLI and require approval before installation or changes to other agent skills.
+
+Risk: Connecting the wrong Contentstack account could expose unintended content.
+
+Mitigation: Connect only the intended Contentstack account through OOMOL.
+
+## Reference(s):
+
+- [Contentstack Content Delivery API documentation](https://www.contentstack.com/docs/developers/apis/content-delivery-api)
+- [Contentstack](https://www.contentstack.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Natural-language responses and structured JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content varies with the requested published entries, assets, or content type.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

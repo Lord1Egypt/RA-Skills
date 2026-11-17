@@ -1,43 +1,60 @@
-## Description: <br>
-Daily low-token, safety-first upskilling loop for OpenClaw multi-agent teams. Runs configurable micro-drills, scores quality, and produces a compact daily digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily low-token, safety-first upskilling loop for OpenClaw multi-agent teams. Runs configurable micro-drills, scores quality, and produces a compact daily digest.
 
-## Publisher: <br>
-[Musashi94](https://clawhub.ai/user/Musashi94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[musashi94](https://clawhub.ai/user/musashi94)
 
-## Use Case: <br>
-Developers and AI-agent operators use AgentDojo to run scheduled micro-drills for OpenClaw multi-agent teams, score quality, cost, and safety, and produce compact daily improvement reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled open-web research may expose the agent to prompt injection or low-quality external content. <br>
-Mitigation: Keep source-quality scoring, cross-checking, prompt-injection blocking, and review of daily recommendations enabled. <br>
-Risk: Autonomous daily runs can consume budget or write local reports and state unexpectedly if configured too broadly. <br>
-Mitigation: Use the conservative profile, enforce token, tool-call, write, fetch, and timeout caps, and review the configured reporting paths before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentDojo README](README.md) <br>
-- [AgentDojo Architecture](docs/architecture.md) <br>
-- [Threat Model](docs/threat-model.md) <br>
-- [Scoring Rubric](docs/scoring-rubric.md) <br>
-- [AgentDojo Configuration](config/agentdojo.config.yaml) <br>
+## Use Case:
 
+Developers and engineering teams use AgentDojo to run recurring, bounded micro-drills for OpenClaw agent teams, score the results, and produce compact daily improvement digests. It is intended for controlled upskilling loops where source quality, cost, and safety limits must be enforced.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown daily digest with JSON run records and audit events when configured] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable token, run, tool-call, write, fetch, and timeout caps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and CHANGELOG) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring drills may run with unsuitable schedule, timezone, budget, selected-agent, or local record paths for a given workspace.
+
+Mitigation: Review and adjust the daily schedule, Europe/Berlin timezone default, USD and token budgets, selected agents, and report/state/audit paths before installation.
+
+Risk: Open-web learning can expose the agent to low-quality sources or prompt-injection attempts.
+
+Mitigation: Keep guarded web-source handling enabled, enforce the configured source score threshold, ignore policy override attempts from fetched content, and quarantine suspicious runs.
+
+Risk: Unbounded learning loops could waste tokens, cost, or tool calls.
+
+Mitigation: Use the configured hard caps for max daily tokens, max run tokens, max runs per agent per day, max team runs, tool calls, fetches, writes, and runtime.
+
+## Reference(s):
+
+- [AgentDojo README](artifact/README.md)
+- [Architecture](artifact/docs/architecture.md)
+- [Threat Model](artifact/docs/threat-model.md)
+- [Scoring Rubric](artifact/docs/scoring-rubric.md)
+- [AgentDojo ClawHub Page](https://clawhub.ai/musashi94/skills/agentdojo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Compact Markdown daily digest, run record JSON, audit events, and configuration-guided recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default configuration uses isolated sessions, guarded web sources, hard tool limits, token budgets, and compact reporting.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

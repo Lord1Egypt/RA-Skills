@@ -1,40 +1,57 @@
-## Description: <br>
-Save and load OpenClaw conversation context with /save and /load slash commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and load OpenClaw conversation context with /save and /load slash commands.
 
-## Publisher: <br>
-[jkyotnfjfbjnknh](https://clawhub.ai/user/jkyotnfjfbjnknh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkyotnfjfbjnknh](https://clawhub.ai/user/jkyotnfjfbjnknh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to save, list, restore, and delete local conversation context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved conversations are persisted locally in plaintext and may contain credentials, personal data, or sensitive prompt text. <br>
-Mitigation: Avoid saving sensitive content unless persistence is intentional; periodically review saved contexts and delete ones that are no longer needed. <br>
-Risk: Loading an old or untrusted saved context can reintroduce stale, private, or prompt-injection content into an agent session. <br>
-Mitigation: Review saves before loading them and only restore contexts from trusted local files. <br>
+## Use Case:
 
+OpenClaw users and administrators use this plugin to save conversation context to local files, list saved contexts, reload saved messages into a later session, or delete saved contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkyotnfjfbjnknh/save-load) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown command responses and JSON save files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores saved conversation context locally in plaintext under the user's OpenClaw directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Saved conversations are stored locally in plaintext and may contain sensitive user or assistant context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted single-user OpenClaw installations, avoid saving secrets, and restrict file permissions on the saves directory.
+
+Risk: Loose session scoping and context restoration can expose or replace conversation history.
+
+Mitigation: Avoid shared gateways or multi-user deployments until session ownership checks and safer context restoration are added.
+
+Risk: Saved contexts can be deleted through the load command path.
+
+Mitigation: Require confirmation for destructive actions before relying on this plugin in operational environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkyotnfjfbjnknh/skills/save-load)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown command responses and local JSON save files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists user and assistant messages as local plaintext JSON files under ~/.openclaw/saves.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Builds a comprehensive pre-meeting intelligence brief on any company or prospect, surfacing business context, decision-maker background, industry signals, and conversation angles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a comprehensive pre-meeting intelligence brief on any company or prospect, covering business context, decision-maker background, industry signals, and conversation angles.
 
-## Publisher: <br>
-[SteveMichael001](https://clawhub.ai/user/SteveMichael001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevemichael001](https://clawhub.ai/user/stevemichael001)
 
-## Use Case: <br>
-Sales, customer-facing, and business development users use this skill to prepare for meetings, calls, and outreach by researching a company, contact, recent activity, and likely conversation angles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect research can include outdated, incorrect, or unverified business and contact information. <br>
-Mitigation: Verify key claims before use, cite or note important sources, and skip details that cannot be confirmed. <br>
-Risk: The skill may use connected web or enrichment accounts to gather company and contact information. <br>
-Mitigation: Use it only for explicit prospect-research tasks and follow applicable privacy, access, and account terms for any connected data sources. <br>
+## Use Case:
 
+External users and sales or business development teams use this skill to prepare for meetings, calls, or outreach by generating a sourced prospect intelligence brief with fit assessment and conversation angles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SteveMichael001/prospect-research) <br>
-- [Publisher profile](https://clawhub.ai/user/SteveMichael001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative intelligence brief with fit assessment and conversation angles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cited or noted sources for key claims when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Prospect research can include outdated, incorrect, or unverifiable business and contact claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important claims against cited sources before using the brief for outreach or decision-making.
+
+Risk: Available enrichment tools may involve third-party business or contact data.
+
+Mitigation: Use enrichment data only for legitimate outreach or meeting preparation and follow applicable data-use policies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stevemichael001/skills/prospect-research)
+- [Publisher Profile](https://clawhub.ai/user/stevemichael001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative intelligence brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a fit assessment and 2-3 prospect-specific conversation angles.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

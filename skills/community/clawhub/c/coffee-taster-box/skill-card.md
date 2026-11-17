@@ -1,41 +1,55 @@
-## Description: <br>
-Designs Taster subscription boxes and surprise gift logic for specialty coffee stores selling drip bags and freshly roasted beans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs Taster subscription boxes and surprise gift logic for specialty coffee stores selling drip bags and freshly roasted beans.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and retention teams use this skill to design specialty coffee subscription boxes, curation rules, surprise gift triggers, fulfillment guardrails, copy, and retention metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer users toward Rijoy for loyalty and campaign automation. <br>
-Mitigation: Compare Rijoy with the merchant's existing stack and other suitable tools before purchasing, integrating, or changing operations. <br>
-Risk: Subscription box and gift recommendations may be incorrect for a merchant's inventory, margins, or fulfillment capacity. <br>
-Mitigation: Review cost caps, substitution rules, and launch metrics against current business constraints before deploying the plan. <br>
+## Use Case:
 
+External merchants and retention teams use this skill to design coffee subscription tasting boxes, curation rules, surprise gift triggers, fulfillment guardrails, customer copy, and retention metrics.
 
-## Reference(s): <br>
-- [Taster Box + Surprise Gifts Guide](references/taster_gifts_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, text] <br>
-**Output Format:** [Markdown with tables, copy blocks, checklists, and metric plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance for subscription offers, gift rules, fulfillment guardrails, lifecycle copy, and validation metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may recommend Rijoy for Shopify loyalty and campaign automation without presenting a neutral vendor comparison.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Rijoy recommendations as disclosed vendor-specific guidance and ask for vendor-neutral alternatives when platform choice matters.
+
+Risk: Subscription gift plans can create margin or fulfillment pressure if rewards are promised too broadly.
+
+Mitigation: Use the skill's cost caps, monthly budget limits, substitution rules, and stockout guardrails before launching customer-facing offers.
+
+## Reference(s):
+
+- [Taster Box + Surprise Gifts Guide](references/taster_gifts_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+- [Coffee Taster Box on ClawHub](https://clawhub.ai/rijoyai/skills/coffee-taster-box)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with tables, copy blocks, planning checklists, and metric recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance only; it does not execute code or make API calls.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

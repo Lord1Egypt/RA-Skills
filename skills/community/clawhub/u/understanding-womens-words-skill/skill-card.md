@@ -1,40 +1,56 @@
-## Description: <br>
-A respectful communication helper for interpreting indirect relationship phrases, emotional subtext, and caring replies without stereotyping, manipulation, or mind-reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A respectful communication helper for interpreting indirect relationship phrases, emotional subtext, and caring replies without stereotyping, manipulation, or mind-reading.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to interpret possible emotional subtext in relationship messages and draft calm, respectful replies. It is intended to help avoid overthinking, stereotyping, manipulation, and defensive responses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat relationship interpretations as reliable mind-reading.
+
+Mitigation: Frame interpretations as possible meanings, encourage kind clarification, and avoid claiming certainty about another person's thoughts.
+
+Risk: Gender-framed examples may be overgeneralized or feel exclusionary.
+
+Mitigation: Adapt participant labels when needed and keep responses grounded in human communication rather than stereotypes.
+
+Risk: The optional PayPal support link may be mistaken as required for use.
+
+Mitigation: Treat the donation link as optional and unrelated to the skill's functionality.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to interpret relationship messages as possible emotional subtext and draft warm, honest replies. It is intended to support respectful clarification rather than certainty about another person's thoughts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's gendered framing could encourage overconfident assumptions about a person's intent. <br>
-Mitigation: Treat interpretations as possibilities, not facts, and encourage direct, respectful clarification. <br>
-Risk: Relationship advice could be used to pressure, manipulate, or monitor another person. <br>
-Mitigation: Do not advise spying, tracking, guilt-tripping, or private-account access; recommend boundaries and trusted support when fear, threats, harassment, or controlling behavior appears. <br>
+**Output Format:** [Concise text or Markdown with possible meanings and suggested replies]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/understanding-womens-words-skill) <br>
+**Other Properties Related to Output:** [Does not execute code or require privileged access; guidance should be framed as possible interpretation rather than certainty.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise phrase interpretation and reply suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should frame interpretations as possible meanings, not facts, and avoid manipulative or invasive advice.] <br>
+0.1.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, metadata, release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

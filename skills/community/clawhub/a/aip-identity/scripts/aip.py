@@ -80,7 +80,7 @@ def sign_message(message: bytes, private_key_b64: str) -> str:
     der_prefix = bytes.fromhex("302e020100300506032b657004220420")
     der = der_prefix + seed
     b64 = base64.b64encode(der).decode()
-    pem = "-----BEGIN PRIVATE KEY-----\n" + "\n".join(textwrap.wrap(b64, 64)) + "\n-----END PRIVATE KEY-----\n"
+    pem = "REDACTED-SECRET\n"
     kf = df = None
     try:
         with tempfile.NamedTemporaryFile(suffix=".pem", delete=False, mode="w") as f:

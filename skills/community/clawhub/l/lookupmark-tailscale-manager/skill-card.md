@@ -1,44 +1,58 @@
-## Description: <br>
-Manage a Tailscale tailnet from chat by checking status, listing devices, pinging hosts, running diagnostics, and checking serve/funnel configuration with public IP masking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Tailscale tailnet from chat by checking status, listing devices, pinging hosts, running network diagnostics, and checking serve/funnel configuration with best-effort public IP masking.
 
-## Publisher: <br>
-[lookupmark](https://clawhub.ai/user/lookupmark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lookupmark](https://clawhub.ai/user/lookupmark)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Tailscale tailnet state, devices, connectivity, diagnostics, serve status, and whois results from an agent chat session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal tailnet device, identity, and network diagnostic details to the agent session. <br>
-Mitigation: Use it only in trusted sessions where showing tailnet status, devices, diagnostics, serve status, and whois results is acceptable. <br>
-Risk: Public IP masking is a display safeguard, not a hard privacy boundary. <br>
-Mitigation: Review output before sharing it and avoid relying on masking as the only control for sensitive network details. <br>
-Risk: The skill runs the local tailscale CLI. <br>
-Mitigation: Install it only on systems where the agent is allowed to execute read-only Tailscale status and diagnostic commands. <br>
+## Use Case:
 
+Developers, operators, and tailnet administrators use this skill to inspect Tailscale device status and connectivity from an agent chat while avoiding write operations.
 
-## Reference(s): <br>
-- [Tailscale CLI documentation](https://tailscale.com/kb/1080/cli) <br>
-- [ClawHub skill page](https://clawhub.ai/lookupmark/lookupmark-tailscale-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lookupmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public IPs are masked in displayed output; Tailscale private IPs, DNS names, and online status may be shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill can reveal Tailscale device, hostname, owner/whois, status, and diagnostic information from the current tailnet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where agent access to tailnet inventory and diagnostics is acceptable.
+
+Risk: Public IP masking is best-effort and the security evidence notes incomplete redaction paths.
+
+Mitigation: Review output before sharing it externally and avoid relying on masking as a privacy boundary.
+
+Risk: Broad conversational triggers may activate the skill when a user intended only a general network discussion.
+
+Mitigation: Prefer explicit Tailscale command requests and review trigger behavior before deployment.
+
+## Reference(s):
+
+- [Tailscale CLI documentation](https://tailscale.com/kb/1080/cli)
+- [ClawHub skill page](https://clawhub.ai/lookupmark/skills/lookupmark-tailscale-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured JSON with shell command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Tailscale device, hostname, owner/whois, status, and diagnostic information; public IP masking is best-effort.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

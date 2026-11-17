@@ -1,5 +1,7 @@
 # 洞察具体度标准
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：防止人生岔路报告变成通用提示词输出。
 
 ## 1. 每个判断必须有机制链

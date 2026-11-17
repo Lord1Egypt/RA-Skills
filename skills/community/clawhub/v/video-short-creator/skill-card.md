@@ -1,47 +1,61 @@
-## Description: <br>
-Creates AI-narrated short videos from existing clips and a script through a two-phase workflow that generates review materials before assembling the final FFmpeg-rendered video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates AI-narrated short videos from existing clips and scripts through a two-phase workflow that generates narration and subtitle review materials before assembling the final FFmpeg-rendered video.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Developers, creators, and agent users can use this skill to turn source video clips and narration text into social-media-ready explainer videos with AI voiceover, subtitles, transitions, and a required human review checkpoint before final rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local scripts can run broader code and shell commands than the video-creation task strictly requires. <br>
-Mitigation: Run the skill only in a dedicated project folder after reviewing the scripts and generated commands. <br>
-Risk: A config.py file and media paths from an untrusted source could affect what local files or commands the workflow touches. <br>
-Mitigation: Use only trusted configuration files and verify all source media paths before running either phase. <br>
-Risk: Narration text is sent to edge-tts for voice generation. <br>
-Mitigation: Avoid sensitive narration content unless sending it to edge-tts is acceptable for the project. <br>
-Risk: The xfade path uses a shell-command execution pattern that deserves review before processing third-party files. <br>
-Mitigation: Patch that path to subprocess-style argument execution or review the generated inputs before use. <br>
+## Use Case:
 
+Developers, creators, and content teams use this skill to turn existing video clips and narration scripts into social-media-ready short videos with AI voiceover, burned subtitles, transitions, and human review checkpoints.
 
-## Reference(s): <br>
-- [FFmpeg on Windows: Pitfalls & Solutions](references/ffmpeg-pitfalls.md) <br>
-- [Configuration example](references/config-example.py) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [ClawHub skill page](https://clawhub.ai/jessy-huang/video-short-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python configuration and shell commands; generated artifacts include subtitle review Markdown, narration audio, SRT subtitles, intermediate media files, and a final MP4 video.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FFmpeg/ffprobe for local media processing and edge-tts for narration; the workflow requires user approval before final video assembly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary states that unsafe config and FFmpeg handling can run unintended local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config.py before execution, allow only trusted paths and segment names, and run the scripts in an isolated project environment.
+
+Risk: Narration text is sent through edge-tts for speech generation.
+
+Mitigation: Avoid sending sensitive or unpublished narration text unless the user accepts that external TTS data flow.
+
+Risk: Unpinned Python and media-processing dependencies can change behavior over time.
+
+Mitigation: Pin dependencies where possible and verify FFmpeg and edge-tts versions before production use.
+
+## Reference(s):
+
+- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+- [Configuration Example](references/config-example.py)
+- [FFmpeg on Windows: Pitfalls & Solutions](references/ffmpeg-pitfalls.md)
+- [ClawHub Skill Page](https://clawhub.ai/jessy-huang/skills/video-short-creator)
+- [Publisher Profile](https://clawhub.ai/user/jessy-huang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python configuration, shell commands, review files, subtitle files, audio files, and rendered video outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a subtitle review sheet before final assembly and final MP4 output after explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-image-clarity-enhance helps an agent call Flyelep's image clarity enhancement API for one or more public image URLs and return the enhanced image URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 Flyelep AI 工具接口增强单张或批量图片的清晰度。
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to enhance the clarity of single or batch image URLs through Flyelep's HTTP API, choosing light, standard, or strong enhancement strength. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided image URLs to Flyelep's image enhancement API. <br>
-Mitigation: Submit only image URLs that users are comfortable sharing with Flyelep, and avoid private or sensitive images unless Flyelep's privacy and retention practices are acceptable. <br>
-Risk: The API requires a secretKey for requests. <br>
-Mitigation: Provide the secretKey at runtime, keep it out of skill files and persistent configuration, and rotate it if it is exposed. <br>
-Risk: The API expects public direct image links and specific image constraints. <br>
-Mitigation: Confirm that submitted URLs are direct public JPG, PNG, or BMP links within the documented size, dimension, and aspect-ratio limits before calling the API. <br>
+## Use Case:
 
+面向需要提升单张或批量图片清晰度的用户；技能通过 Flyelep AI 服务处理图片并返回结果链接。
 
-## Reference(s): <br>
-- [image-clarity-enhance on ClawHub](https://clawhub.ai/flyelepai/flyelep-image-clarity-enhance) <br>
-- [Flyelep Open Platform](https://www.flyelep.cn/controlboard) <br>
-- [Flyelep Image Clarity Enhance API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/imageClarityEnhance) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional HTTP request examples and enhanced image URLs returned by the API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include selected enhancement strength, API response status, error guidance, and comma-split enhanced image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Images are sent to Flyelep for processing; the security assessment was partial and noted that the cleanup command's relationship to the main function was unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images you are comfortable sending to Flyelep, provide the API key at runtime, and review cleanup behavior before execution.
+
+## Reference(s):
+
+- [Flyelep image clarity enhancement API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/imageClarityEnhance)
+- [Flyelep file upload API](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+- [Flyelep Open Platform (API key access)](https://www.flyelep.cn/controlboard)
+- [ClawHub skill release](https://clawhub.ai/flyelepai/skills/flyelep-image-clarity-enhance)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, URLs]
+
+**Output Format:** [JSON API result summarized as image URLs and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch results may contain fewer image URLs than inputs when individual images fail.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

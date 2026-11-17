@@ -1,40 +1,54 @@
-## Description: <br>
-Miki Sleep Cry analyzes an infant's routine and caregiver-described crying patterns to identify common sleep issues and suggest staged improvement steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miki Sleep Cry helps an agent analyze caregiver-provided infant sleep routines and crying descriptions, identify common 0-18 month sleep issue patterns, and draft step-by-step improvement guidance.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Caregivers and parenting-support agents use this skill to turn an infant's age, feeding method, sleep schedule, and cry description into a structured sleep analysis and improvement plan. It is supportive guidance only and not a substitute for medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat sleep and cry guidance as a medical diagnosis. <br>
-Mitigation: Use the generated plan as supportive guidance and seek medical care for pain, illness, feeding concerns, acute symptoms, or any situation the skill flags for escalation. <br>
-Risk: The skill asks for infant routine, feeding, and sleep details that may be sensitive. <br>
-Mitigation: Share only the details needed for the sleep analysis and avoid adding unnecessary identifying information. <br>
+## Use Case:
 
+External caregivers and parenting-support agents use this skill to turn an infant's age, feeding mode, sleep schedule, night waking, and crying description into a structured sleep assessment, likely issue category, suggested routine, and staged improvement plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/02-sleep-cry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sleep analysis report with schedule, diagnosis, recommended routine, staged improvement plan, and escalation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the caregiver-provided infant age, feeding method, current sleep schedule, night waking details, primary sleep concern, and crying description.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Caregivers may over-rely on sleep or crying guidance for symptoms that need clinical attention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general parenting guidance, not a medical diagnosis; consult a pediatric clinician for severe, unusual, or persistent crying, feeding problems, breathing issues, fever, or other concerning symptoms.
+
+Risk: Age-based sleep norms and caregiver-described crying patterns may not reflect an individual infant's full health context.
+
+Mitigation: Ask for the infant's age, feeding mode, routine, night waking, and crying description, and present recommendations as non-diagnostic guidance that caregivers should adapt or review with a clinician when concerns persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/02-sleep-cry)
+- [Publisher profile: nic-yuan](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes age-specific sleep comparison, problem classification, suggested daily schedule, staged improvement plan, and medical escalation reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

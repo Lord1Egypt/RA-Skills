@@ -1,42 +1,64 @@
-## Description: <br>
-Weather Plus helps agents answer weather questions with current conditions, seven-day forecasts, air quality, clothing advice, and multi-city comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取全球城市天气信息和预报。使用场景包括查询当前天气、未来7天预报、空气质量、穿衣建议等。适用于用户问天气、温度、预报等。
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather, temperature, forecast, air quality, clothing, travel, and multi-city comparison questions. It is intended for concise Chinese weather reports backed by wttr.in or Open-Meteo data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries may send city, travel, or location intent to third-party weather services. <br>
-Mitigation: Avoid entering sensitive private travel plans or precise locations unless sharing that information with wttr.in or Open-Meteo is acceptable. <br>
-Risk: Forecast accuracy decreases over longer time horizons and extreme weather may require authoritative alerts. <br>
-Mitigation: Use official meteorological warnings for safety-critical or extreme-weather decisions. <br>
-Risk: Some locations may be unavailable or unreliable through wttr.in. <br>
-Mitigation: Use Open-Meteo as a fallback where possible and treat missing small-city results as a data-source limitation. <br>
+## Use Case:
 
+External users use this Chinese-language weather assistant to get current weather, seven-day forecasts, air quality details, clothing suggestions, travel reminders, and multi-city weather comparisons.
 
-## Reference(s): <br>
-- [Weather Plus on ClawHub](https://clawhub.ai/anmu14641/anmu-weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Chinese Markdown weather reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact wttr.in or Open-Meteo for weather data; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Location queries may be sent to public weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive or unnecessarily precise locations when approximate city-level weather is sufficient.
+
+Risk: Weather API availability and small-city coverage may be inconsistent.
+
+Mitigation: Use the alternate data source when one provider fails and verify important forecasts with an official meteorological source.
+
+Risk: Forecast accuracy decreases over longer time horizons and extreme weather may require authoritative alerts.
+
+Mitigation: Treat longer-range forecasts and safety-critical weather decisions as advisory and confirm severe-weather conditions through official warnings.
+
+Risk: The skill does not clearly define non-weather activation boundaries or multilingual behavior.
+
+Mitigation: Limit use to weather-related requests and review outputs when prompts ask for unrelated tasks or languages outside the skill's stated Chinese-language use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmu14641/skills/anmu-weather)
+- [Publisher profile](https://clawhub.ai/user/anmu14641)
+- [wttr.in weather data source](https://wttr.in)
+- [Open-Meteo weather data source](https://open-meteo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Chinese-language weather reports and recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current conditions, forecast lists, air quality, wind, humidity, sunrise and sunset details, clothing advice, travel reminders, and multi-city comparisons.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

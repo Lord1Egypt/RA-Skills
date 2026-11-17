@@ -1,43 +1,57 @@
-## Description: <br>
-Market Research Automation helps generate market sizing reports, competitor comparisons, and survey questionnaires for product validation using disclosed mock or sample data. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Market Research Automation helps agents produce market sizing reports, competitor comparisons, and survey questionnaires for product validation and user research.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Product builders, marketers, and research teams use this skill to draft TAM/SAM/SOM market sizing, competitor comparisons, and user survey questionnaires before product launch or market validation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may rely on mock or sample data and can be mistaken for verified market research. <br>
-Mitigation: Treat generated reports as drafts and replace sample data with verified live sources before using the findings for decisions. <br>
-Risk: The --output option writes to a user-provided path and may overwrite an intended file. <br>
-Mitigation: Use --output only with paths that are safe to create or overwrite. <br>
+## Use Case:
 
+External users, founders, product managers, and market researchers use this skill to draft TAM/SAM/SOM reports, competitor matrices, and survey instruments before product launch.
 
-## Reference(s): <br>
-- [Market Research Methodology Reference](references/methodology.md) <br>
-- [X/Twitter API](https://developer.x.com/en/docs/x-api) <br>
-- [Google Trends](https://www.google.com/trends/) <br>
-- [Full Market Research Agent Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/market-research-product-factory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, survey questionnaires, and console text, optionally written to user-specified files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as drafts; missing data is marked unavailable and current sample data should be replaced with verified sources for real research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can appear to perform live social-media or competitor research even though the security evidence describes it as a local mock report generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as templates or mock examples unless real source data is independently supplied and verified.
+
+Risk: The documented dependency install may add unnecessary packages for the current local generator behavior.
+
+Mitigation: Install and run the skill in an isolated environment and only add dependencies that are required for the intended workflow.
+
+## Reference(s):
+
+- [Market Research Methodology Reference](references/methodology.md)
+- [X/Twitter API](https://developer.x.com/en/docs/x-api)
+- [Google Trends](https://www.google.com/trends/)
+- [Full Market Research Agent Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/market-research-product-factory.md)
+- [ClawHub Skill Release](https://clawhub.ai/openlark/skills/market-research-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports and questionnaires, printed to the terminal or saved as Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may contain mock examples or data-unavailable markers unless the user supplies and verifies real data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

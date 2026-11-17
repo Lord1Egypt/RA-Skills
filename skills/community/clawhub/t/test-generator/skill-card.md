@@ -1,42 +1,58 @@
-## Description: <br>
-Generates starter test scaffolds and examples for unit, integration, end-to-end, mock, fixture, coverage, edge-case, and benchmark workflows, and also includes a local command-line logging utility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated test case generator for unit tests, integration tests, end-to-end tests, mock objects, fixtures, coverage guidance, edge cases, and benchmark templates.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate initial test code, fixtures, mocks, coverage setup, edge-case ideas, and benchmark snippets. It can also store and search local command-line notes or test results when its logging utility is used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a test generator but includes a persistent local logging and data-management utility. <br>
-Mitigation: Review the commands before use, set TEST_GENERATOR_DIR to a controlled location, avoid entering secrets or proprietary test output, and delete the data directory when retained logs are no longer needed. <br>
-Risk: Generated test code is template-style starter output and may contain placeholders or assumptions that do not match the target project. <br>
-Mitigation: Review and adapt generated tests before committing them, then run the project's normal test suite and coverage checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate starter test scaffolds, fixtures, mock objects, coverage configuration guidance, edge case lists, and benchmark templates. The artifact also includes a local command-line logging utility for recording, searching, and exporting test notes or observations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/test-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style code snippets emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network calls or API keys are required by the artifact; local logs may be written under TEST_GENERATOR_DIR or the default user data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence; artifact files declare 2.0.0) <br>
+Risk: The skill includes local logging and export behavior in addition to test-template generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed scripts before use, set TEST_GENERATOR_DIR to a non-sensitive workspace, and avoid entering secrets or sensitive repository details.
+
+Risk: The documented remove command may not reliably delete stored log data.
+
+Mitigation: Do not rely on the remove command for deletion until the implementation is fixed; manually inspect and delete the data files when removal is required.
+
+Risk: Generated test scaffolds may include placeholders, assumptions, or example assertions that do not match the target codebase.
+
+Mitigation: Treat generated output as a starting point and require developer review before committing or running it in CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/test-generator)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with generated test code snippets and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated templates require developer review before use; the local utility can write command history and data logs under TEST_GENERATOR_DIR or the user's local data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

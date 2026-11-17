@@ -1,39 +1,49 @@
-## Description: <br>
-Guides agents to route Claude tasks across Haiku, Sonnet, and Opus based on task complexity to reduce cost while preserving capability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Claude tasks across Haiku, Sonnet, and Opus tiers based on task complexity to reduce API cost while preserving quality.
 
-## Publisher: <br>
-[millibus](https://clawhub.ai/user/millibus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[millibus](https://clawhub.ai/user/millibus)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose an economical Claude model tier for each task and escalate when complexity requires stronger reasoning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The routing heuristics could under-select model capability for high-stakes security, production, legal, medical, or financial tasks. <br>
-Mitigation: Review and adjust the escalation rules for high-stakes workflows, including rules that require a higher-capability model when conservative routing is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/millibus/smart-model-switching) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/millibus) <br>
-- [Skill homepage](https://clawhub.com) <br>
+## Use Case:
 
+Developers and agent operators use this skill to choose the lowest-cost Claude model tier that is appropriate for the current task, escalating from Haiku to Sonnet or Opus when complexity warrants it.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with routing rules, decision trees, and inline code/configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides heuristic model-selection guidance; no tool calls, credentials, persistence, or data collection are indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Claude-specific routing guidance may bias agents toward cheaper models for simple tasks where model quality still matters.
+
+Mitigation: Review important, high-stakes, or quality-sensitive tasks and escalate to a stronger model when the task requires deeper reasoning or nuanced judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/millibus/skills/smart-model-switching)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with model-routing examples and decision rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Claude-specific guidance for Haiku, Sonnet, and Opus tier selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

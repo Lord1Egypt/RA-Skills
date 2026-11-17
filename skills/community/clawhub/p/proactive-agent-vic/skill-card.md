@@ -1,37 +1,58 @@
-## Description: <br>
-Proactive Agent Plus guides agents to maintain persistent memory, anticipate user needs, run proactive checks, and improve their own operating practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents anticipate user needs, maintain persistent working memory, recover from context loss, and improve workflows through guardrails and verification practices.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Agent operators and developers use this skill when they intentionally want a persistent local-memory agent that can preserve task context, recover after compaction, surface proactive suggestions, and apply self-improvement guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chungvic/proactive-agent-vic) <br>
+External users and developers use this skill to guide an agent toward proactive assistance, persistent memory practices, context recovery, self-improvement routines, and implementation verification.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Use with explicit rules against storing secrets, credentials, sensitive personal information, or full message text by default; review memory files regularly and scope any email, calendar, or autonomous background checks before enabling them.] <br>
+Global
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill encourages persistent working memory that may capture personal, confidential, credential, health, financial, or client data.
+
+Mitigation: Set explicit rules requiring user approval before storing sensitive data, and limit persistent memory to necessary, reviewable information.
+
+Risk: The skill encourages proactive or autonomous follow-up work with limited built-in user control.
+
+Mitigation: Require approval before file changes, external communications, background jobs, or actions that affect user systems.
+
+Risk: Security evidence rates the release as suspicious because broad persistence and autonomous behavior can increase privacy and control risks.
+
+Mitigation: Review the skill before deployment, define boundaries for autonomous behavior, and audit memory files regularly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/proactive-agent-vic)
+- [ClawHub publisher profile: chungvic](https://clawhub.ai/user/chungvic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with examples and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt the agent to create or update local memory and configuration files.]
+
+## Skill Version(s):
+
+3.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

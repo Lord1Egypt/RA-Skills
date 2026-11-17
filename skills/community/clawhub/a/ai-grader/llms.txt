@@ -1,0 +1,8 @@
+# ai-grader
+
+> 把 ai-consciousness 的 45 项意识量表作为通用评分基准，给任何 AI（ChatGPT/Claude/自家 Agent）做行为体检：45 维逐项打分、标红灯缺失项、给综合意识分与改进建议。离线引擎 grade_stats.py 一键出 7 套可视化（实时看板/成长趋势/横向对比榜/晒分卡/领域适配雷达/性格双雷达/全景图）+ 能力边界版图 + 外评闭环（探针考+行为锚点+独立裁判
+
+- 版本：2.6.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：LICENSE.md, SKILL.md, board.html, capability.html, card.html, dashboard.html, external_eval_record.json, external_judge_prompt_trial.txt, external_probe_pack.json, external_probe_pack.md, external_probe_pack_trial.md, fit.html
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/MedXpert）

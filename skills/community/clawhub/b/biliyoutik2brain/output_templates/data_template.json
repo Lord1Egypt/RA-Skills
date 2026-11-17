@@ -1,0 +1,40 @@
+{
+  "version": "4.0",
+  "processed_at": "{{ processed_at }}",
+  "video": {
+    "title": "{{ title }}",
+    "uploader": "{{ uploader }}",
+    "platform": "{{ platform }}",
+    "video_id": "{{ video_id }}",
+    "duration_min": {{ duration_min }},
+    "domain": "{{ domain }}",
+    "url": "{{ url }}"
+  },
+  "transcript": {
+    "full_text": "{{ transcript | escape }}",
+    "segments": {{ segments_json }},
+    "overall_confidence": {{ overall_confidence }}
+  },
+  "analysis": {
+    "summary": "{{ summary }}",
+    "keywords": {{ keywords_json }},
+    "chapters": {{ chapters_json }},
+    "knowledge_items": {{ knowledge_json }}
+  },
+  "keyframes": {
+    "decisions": {{ keyframe_decisions_json }},
+    "ocr_results": {{ ocr_results_json }},
+    "screenshots": {{ screenshots_json }}
+  },
+  "comments": {
+    "analysis": {{ comments_analysis_json }},
+    "valuable_comments": {{ valuable_comments_json }}
+  },
+  "metadata": {
+    "processing_time_ms": {{ processing_time_ms }},
+    "asr_engine": "{{ asr_engine }}",
+    "llm_backend": "{{ llm_backend }}",
+    "estimated_cost_cny": {{ estimated_cost_cny }},
+    "output_format": "{{ output_format }}"
+  }
+}

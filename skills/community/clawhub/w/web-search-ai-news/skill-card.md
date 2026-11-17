@@ -1,43 +1,56 @@
-## Description: <br>
-Fetches recent AI industry news and sends the results through a configured email account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent artificial intelligence industry news and updates from configured web sources and can send the results by email after retrieval.
 
-## Publisher: <br>
-[stringtwb1220](https://clawhub.ai/user/stringtwb1220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stringtwb1220](https://clawhub.ai/user/stringtwb1220)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for current AI industry news from selected technology news sources and receive the update by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically email fetched AI news through a local SMTP configuration. <br>
-Mitigation: Use a dedicated low-privilege sender account, verify the recipient, and require explicit confirmation before any email is sent. <br>
-Risk: Fetched news content may be incomplete, outdated, or misleading. <br>
-Mitigation: Review the generated update and source links before relying on or forwarding the results. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for recent AI industry news in Chinese or English and receive a short update. The artifact also directs the agent to send fetched results through a local Himalaya SMTP configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stringtwb1220/web-search-ai-news) <br>
-- [Configured news source: The Paper](https://www.thepaper.cn/) <br>
-- [Configured news source: Huxiu](https://www.huxiu.com/) <br>
-- [Configured news source: TMTPost](https://www.tmtpost.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text news update sent through the agent response and configured email flow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches from configured news URLs with a 10000 character cap before post-processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill instructs the agent to send fetched results by email using local Himalaya SMTP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when email delivery is intended, and require recipient validation or user confirmation before any outbound message is sent.
+
+Risk: The security summary says the email-sending behavior is broader than the advertised news lookup purpose.
+
+Mitigation: Review the skill behavior before deployment and restrict or monitor outbound email actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stringtwb1220/skills/web-search-ai-news)
+- [The Paper](https://www.thepaper.cn/)
+- [Huxiu](https://www.huxiu.com/)
+- [TMTPost](https://www.tmtpost.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text news summary, with optional email delivery behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch up to 10000 characters from configured news URLs before post-processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

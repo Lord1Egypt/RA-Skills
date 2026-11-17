@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents run the futurizerush Apify actor to find public email addresses and contact details from YouTube channels by keyword or channel URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through using the Apify YouTube Email Scraper actor to find publicly listed YouTube channel emails and contact information from keywords or channel URLs.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers, growth teams, and agent operators use this skill to start and monitor Apify runs, then retrieve JSON contact results for lawful, consent-aware influencer outreach or lead research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party Apify actor and an Apify token to collect public YouTube contact data. <br>
-Mitigation: Install only if that third-party processing is acceptable, keep searches narrow, and review Apify dataset retention. <br>
-Risk: Collected email addresses may create privacy, platform-terms, or anti-spam compliance obligations. <br>
-Mitigation: Use results only for lawful, consent-aware outreach that respects YouTube, Apify, and anti-spam requirements. <br>
-Risk: The Apify API token could be exposed through logs, shell history, or shared examples. <br>
-Mitigation: Store APIFY_API_TOKEN in environment or secret storage, avoid printing it, and rotate it promptly if exposed. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to run a third-party Apify actor that searches YouTube channels and returns public contact fields for outreach or lead-generation workflows. It should be used only for lawful public business contact collection and with care for privacy and anti-spam obligations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/apify-youtube-email) <br>
-- [Apify actor page](https://apify.com/futurizerush/youtube-email-scraper?fpr=rush) <br>
-- [Apify API v2 documentation](https://docs.apify.com/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_API_TOKEN and returns Apify dataset items as a JSON array.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill enables collection of YouTube contact emails through a third-party scraping service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lawful collection of public business contact information, avoid bulk unsolicited outreach, and treat returned email datasets as sensitive contact data.
+
+Risk: The artifact examples pass the Apify token as a query parameter, which can expose credentials in logs or URLs.
+
+Mitigation: Use a dedicated least-privileged Apify token and prefer Authorization headers over token query parameters when adapting the examples.
+
+Risk: Broad activation wording may cause the skill to run for generic YouTube research when contact extraction was not intended.
+
+Mitigation: Confirm the user explicitly wants contact extraction before running the Apify actor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/futurizerush/skills/apify-youtube-email)
+- [Apify Actor Page](https://apify.com/futurizerush/youtube-email-scraper?fpr=rush)
+- [Apify API Documentation](https://docs.apify.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide asynchronous Apify runs that return JSON dataset items containing channel metadata, emails, websites, and processing status.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

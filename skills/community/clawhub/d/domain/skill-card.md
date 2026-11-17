@@ -1,42 +1,55 @@
-## Description: <br>
-Check domain availability, search domains across registration lifecycle stages, analyze domain registrations and keyword trends, and help agents act as domain research assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents check domain availability, explore domain lifecycle data, and assess domain keywords and trends through DomainKits.
 
-## Publisher: <br>
-[abtdomain](https://clawhub.ai/user/abtdomain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abtdomain](https://clawhub.ai/user/abtdomain)
 
-## Use Case: <br>
-Developers, domain researchers, marketers, and business users use this skill to check domain availability, compare TLD pricing, inspect WHOIS/DNS/safety signals, monitor domain changes, and generate or evaluate domain ideas through the DomainKits MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain names, keywords, business ideas, and analysis targets may be sent to the external DomainKits MCP service. <br>
-Mitigation: Install only if that data sharing is acceptable, use secure secret handling for DOMAINKITS_API_KEY, and enable memory-backed preferences, monitors, or strategies only for information suitable for storage with the service. <br>
+## Use Case:
 
+Developers, domain buyers, and brand teams use this skill to research domain availability, registration activity, pricing, and keyword trends before making domain decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abtdomain/skills/domain) <br>
-- [DomainKits MCP](https://domainkits.com/mcp) <br>
-- [DomainKits API endpoint](https://api.domainkits.com/v1/mcp) <br>
-- [DomainKits website](https://domainkits.com) <br>
-- [ABTdomain](https://abtdomain.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command and JSON configuration examples plus domain analysis results from MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DOMAINKITS_API_KEY for higher limits; account or memory features are required for some analysis, preferences, monitoring, and strategy tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release metadata) <br>
+Risk: Domain searches and lookup targets are sent to DomainKits, along with an API key if one is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only when comfortable sharing those inputs; omit the optional API key when guest access suffices.
+
+Risk: Account preferences, monitors, or strategies may store user data with DomainKits.
+
+Mitigation: Use account storage features only with the user's explicit consent.
+
+## Reference(s):
+
+- [DomainKits MCP setup](https://domainkits.com/mcp)
+- [DomainKits workflow skills](https://github.com/ABTdomain/domainkits-skills)
+- [DomainKits MCP repository (linked in skill)](https://github.com/ABTdomain/domainkits-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may report domains, availability, prices, and trends; distinguish reviewed results from total matches.]
+
+## Skill Version(s):
+
+3.1.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

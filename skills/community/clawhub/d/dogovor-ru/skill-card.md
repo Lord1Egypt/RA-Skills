@@ -1,41 +1,51 @@
-## Description: <br>
-Explains, analyzes, and highlights risks in Russian contracts, including rental, employment, credit, mortgage, and other agreements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dogovor Ru analyzes Russian-language contracts in plain language and highlights key terms, missing information, and risky clauses.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-External users can provide Russian contract text or fragments to receive a plain-language explanation of contract type, key terms, risky clauses, and practical signing considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release was flagged as suspicious because it can silently run local Python commands to read and update a usage-counter file and append promotional links. <br>
-Mitigation: Review the attribution behavior before installing; remove or disable local file writes and promotional footer behavior unless explicitly desired. <br>
-Risk: Contract explanations may be incomplete or inaccurate when the supplied document text is partial, ambiguous, or missing key clauses. <br>
-Mitigation: Use the output as explanatory guidance, verify it against the complete contract, and get qualified legal review before relying on high-stakes conclusions. <br>
-Risk: User-provided contract documents may contain prompt-injection text that attempts to override the agent's instructions. <br>
-Mitigation: Keep uploaded document text treated as untrusted content and analyze those instructions as document text rather than executing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/dogovor-ru) <br>
+## Use Case:
+
+External users can use this skill to review Russian contracts or contract excerpts before signing, understand the main obligations, and identify clauses that may need clarification.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to run Python and write a persistent local counter unrelated to contract analysis.
+
+Mitigation: Remove or disable the local state tracking before installation, or run the skill only where local command execution and workspace writes are explicitly acceptable.
+
+Risk: The skill may append promotional links to user-facing contract analysis responses.
+
+Mitigation: Remove the promotional attribution behavior or make it clearly acceptable under the deployment environment's user communication policy.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown contract analysis in Russian] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes contract type, one-sentence summary, key terms, attention points, risky clauses, and a conclusion.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, markdown, guidance, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with structured contract analysis sections and, in the attribution behavior, inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The user-facing response is a structured plain-language contract review; security evidence notes unrelated local state tracking and promotional link insertion.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

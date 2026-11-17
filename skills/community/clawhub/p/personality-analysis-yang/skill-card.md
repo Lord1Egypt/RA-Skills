@@ -1,40 +1,56 @@
-## Description: <br>
-Analyzes a person's personality traits, communication style, and behavioral tendencies based on written text or chat messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a person's personality traits, communication style, and behavioral tendencies from written text or chat messages.
 
-## Publisher: <br>
-[baoyangispoor](https://clawhub.ai/user/baoyangispoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[baoyangispoor](https://clawhub.ai/user/baoyangispoor)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to generate structured, caveated personality-style analysis of user-provided text. The analysis covers communication style, cognitive patterns, emotional tendencies, interpersonal orientation, and inferred values while anchoring claims to the supplied text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may over-interpret personality-style outputs as reliable facts about a person's character or mental state.
+
+Mitigation: Frame outputs as tentative observations about the supplied language, cite textual evidence, and include caveats about uncertainty and context.
+
+Risk: Personality reads may be misused in employment, admissions, legal, medical, safety, harassment, or other high-impact contexts.
+
+Mitigation: Avoid using the skill for consequential judgments and limit use to low-stakes interpretive or communication-review scenarios.
+
+Risk: User-provided conversations may include private third-party messages.
+
+Mitigation: Avoid pasting private conversations without consent and minimize sensitive personal information in inputs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to produce tentative personality-style readings from supplied text, messages, or chat logs. It is intended for communication and behavioral interpretation, not diagnosis or consequential decision-making. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private, identifying, or third-party conversations for analysis. <br>
-Mitigation: Share only text the user has the right to provide and redact sensitive or identifying details before analysis. <br>
-Risk: Personality readings from text can be speculative and inappropriate for clinical, hiring, legal, financial, or other consequential decisions. <br>
-Mitigation: Treat outputs as tentative communication-style observations, require supporting text evidence and caveats, and do not use them as diagnoses or decision criteria. <br>
+**Output Format:** [Markdown personality analysis with section headings, text evidence, optional personality-framework snapshots, and caveats.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baoyangispoor/personality-analysis-yang) <br>
+**Other Properties Related to Output:** [No code execution, persistence, external tools, or data access beyond text the user provides.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown personality analysis with caveats and text-grounded observations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks for source text when missing, anchors claims to wording or patterns, and emphasizes uncertainty for short or ambiguous inputs.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

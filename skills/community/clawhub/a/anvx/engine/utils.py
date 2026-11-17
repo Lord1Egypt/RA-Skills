@@ -23,7 +23,7 @@ def is_onboarding_test_mode() -> bool:
 # These never touch real APIs — they exist solely for end-to-end UX testing.
 TEST_CREDENTIALS: dict[str, Any] = {
 	"openai": ["sk-test-openai-12345", "sk-test-openai-demo"],
-	"anthropic": ["sk-ant-test-anthropic-12345", "sk-ant-test-demo"],
+	"anthropic": ["REDACTED-SECRET", "sk-ant-test-demo"],
 	"aws": {
 		"access_key_id": "AKIATEST12345",
 		"secret_access_key": "test-secret-12345",

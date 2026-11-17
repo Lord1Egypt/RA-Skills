@@ -1,42 +1,58 @@
-## Description: <br>
-Prevent 429s with automatic tier-based throttling and exponential backoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Rate Limiter helps agents avoid 429 errors by checking local usage estimates, applying tier-based throttling, and using exponential backoff after rate-limit events.
 
-## Publisher: <br>
-[TheAgentWire](https://clawhub.ai/user/TheAgentWire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theagentwire](https://clawhub.ai/user/theagentwire)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local rate-limit awareness to agent workflows, including gate checks before expensive work, usage recording after work, and pause or resume behavior after 429 errors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local rate-limit estimates can be inaccurate, which may throttle the agent too early or fail to prevent every 429. <br>
-Mitigation: Start with conservative limits, review status output, tune RATE_LIMIT_ESTIMATE from real usage, and use pause behavior when a 429 occurs. <br>
-Risk: The local state file records request history and can be overwritten or exposed if shared across agents or stored in a sensitive path. <br>
-Mitigation: Point RATE_LIMIT_STATE to a non-sensitive JSON path, use a separate state file per agent instance, and avoid storing secrets in the state file. <br>
-Risk: Prompt, heartbeat, or cron integrations can suppress useful work if exit-code handling is applied too broadly. <br>
-Mitigation: Review each integration before enabling it and map gate exit codes only to the intended workflow reductions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheAgentWire/agent-rate-limiter) <br>
-- [The Agent Wire](https://theagentwire.ai) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local rate-limit gate before expensive agent work, record estimated usage afterward, and pause or reduce activity when usage approaches a configured limit.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON state and exit codes to guide throttling behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses heuristic local tracking rather than provider-side usage data, so estimates can be too high or too conservative.
+
+Mitigation: Start with conservative limits, review status output, tune RATE_LIMIT_ESTIMATE for the account, and use the pause command after real 429 events.
+
+Risk: Shared writable state files can cause multiple agent instances to overwrite or blend rate-limit history.
+
+Mitigation: Set RATE_LIMIT_STATE to a private, per-instance JSON path and avoid shared writable directories.
+
+Risk: Resetting or replacing the state file removes the skill's recorded usage history.
+
+Mitigation: Use reset only when intentionally clearing history, and recheck status before resuming expensive agent work.
+
+## Reference(s):
+
+- [Agent Rate Limiter on ClawHub](https://clawhub.ai/theagentwire/skills/agent-rate-limiter)
+- [theagentwire publisher profile](https://clawhub.ai/user/theagentwire)
+- [The Agent Wire](https://theagentwire.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local JSON state file and Python standard library commands; no API keys or external services are required.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

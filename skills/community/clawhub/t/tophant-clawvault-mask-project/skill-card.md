@@ -1,41 +1,58 @@
-## Description: <br>
-Mask sensitive company-project document content before analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mask sensitive company-project document content before analysis.
 
-## Publisher: <br>
-[martin2877](https://clawhub.ai/user/martin2877) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martin2877](https://clawhub.ai/user/martin2877)
 
-## Use Case: <br>
-Developers, employees, and other users preparing company or project documents use this skill to mask company names, project amounts, and contextual person names before AI analysis. It is intended for user-approved local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Regex masking can miss sensitive details, and a no-match result may return the original document text as sanitized content. <br>
-Mitigation: Review sanitized output before sharing it with an AI model or another recipient. <br>
-Risk: The skill reads the local document path supplied by the user and can write sanitized output or policy files. <br>
-Mitigation: Run it only on user-approved paths and choose output locations that do not overwrite or expose sensitive files. <br>
+## Use Case:
 
+Developers and analysts use this skill to mask company names, project amounts, and contextual person names in local project documents before sending sanitized content to an AI model for analysis.
 
-## Reference(s): <br>
-- [ClawVault homepage](https://github.com/tophant-ai/ClawVault) <br>
-- [ClawHub skill page](https://clawhub.ai/martin2877/tophant-clawvault-mask-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON responses with sanitized content, plus optional sanitized text files or policy JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses non-reversible numbered placeholders and caps local input files at 5 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Custom policy files may alter masking behavior and miss sensitive document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted policies and review sanitized output before sharing it with an AI model.
+
+Risk: The skill reads the local document path provided by the user and may write to paths the user provides.
+
+Mitigation: Run it only on user-approved files and choose output paths carefully because existing writable files may be replaced.
+
+Risk: A no-match result does not prove the source document is safe.
+
+Mitigation: Treat no-match warnings as a prompt for manual review or stronger masking rules.
+
+## Reference(s):
+
+- [ClawVault homepage](https://github.com/tophant-ai/ClawVault)
+- [ClawHub skill page](https://clawhub.ai/martin2877/skills/tophant-clawvault-mask-project)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Configuration]
+
+**Output Format:** [JSON response with optional sanitized text or saved policy files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns numbered non-reversible placeholders, detection counts, warnings, and optional output file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

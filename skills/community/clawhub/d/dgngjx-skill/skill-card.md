@@ -1,47 +1,60 @@
-## Description: <br>
-Dgngjx Skill is a Chinese-language multipurpose toolbox for calculators, text utilities, developer helpers, knowledge lookup, image processing, PDF operations, video conversion, and related daily tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language toolbox that helps agents with calculations, text and file processing, media, system utilities, and meeting notes.
 
-## Publisher: <br>
-[fyniujin](https://clawhub.ai/user/fyniujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fyniujin](https://clawhub.ai/user/fyniujin)
 
-## Use Case: <br>
-Developers and general users can use this skill as a local toolbox for common calculations, text transforms, HTTP testing, JSON formatting, file conversion, image/PDF/video actions, and guided dependency setup. It is most useful when a user wants concise Chinese-language commands, error explanations, and online alternatives for common utility tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes broad local file operations for image, PDF, and video workflows. <br>
-Mitigation: Use explicit file paths, review generated files before relying on them, and avoid running conversions on sensitive or irreplaceable files without backups. <br>
-Risk: Some workflows make HTTP requests or fetch online resources. <br>
-Mitigation: Only test or fetch public URLs that the user intends to access, and avoid internal, private, or sensitive endpoints unless explicitly authorized. <br>
-Risk: Optional features may ask to install Python packages or FFmpeg. <br>
-Mitigation: Confirm dependency installation first, review the command before execution, and prefer minimal per-feature installs when possible. <br>
+## Use Case:
 
+Users and developers can ask an agent to calculate values, transform text or media, inspect system health, and work with local files through a modular utility toolbox.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fyniujin/skills/dgngjx-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/fyniujin) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Photopea](https://www.photopea.com/) <br>
-- [iLovePDF merge tool](https://www.ilovepdf.com/merge-pdf) <br>
-- [JSON Formatter](https://jsonformatter.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with command snippets, Python code blocks, tables, and concise Chinese-language explanations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local file creation or conversion outputs; optional dependency installs and network actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata and artifact heading) <br>
+Risk: File and system operations may read, alter, or overwrite user-selected data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested operations and file paths before execution; back up important files before bulk changes.
+
+Risk: Online or API features may send sensitive content to third-party services.
+
+Mitigation: Avoid online or API modes for confidential audio, internal URLs, secrets, and sensitive documents.
+
+Risk: Automatic local history can retain summaries of user inputs and outputs.
+
+Mitigation: Disable or regularly clear history stored under ~/.workbuddy/dgngjx_history.json.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/fyniujin/skills/dgngjx-skill)
+- [Data calculation module](references/modules/calc.md)
+- [System tools and local history module](references/modules/sys.md)
+- [AI meeting notes module](references/modules/ai.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Task-dependent text, Markdown, CLI output or JSON, and processed files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some features use optional packages or online services; local history may retain input and output summaries.]
+
+## Skill Version(s):
+
+4.1.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

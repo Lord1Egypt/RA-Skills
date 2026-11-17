@@ -1,42 +1,54 @@
-## Description: <br>
-Reviews ecommerce ad copy for risky claims and provides risk ratings, explanations, and safer rewrite alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes ad copy to identify and reduce risky claims by flagging unsupported, absolute, or sensitive wording and providing safer rewrite alternatives.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Growth teams, marketers, and ecommerce operators use this skill to review paid ads, creator briefs, product detail page copy, landing page copy, and live selling scripts for risky claims before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce marketing and platform-risk guidance that may be mistaken for formal legal advice. <br>
-Mitigation: Treat outputs as drafting support and route regulated, health, financial, or legally sensitive claims to qualified review. <br>
-Risk: Risk ratings depend on the copy, channel, geography, product category, and evidence supplied by the user. <br>
-Mitigation: Provide exact claim language, intended channel, product category, evidence level, and market before relying on the rewrite guidance. <br>
+## Use Case:
 
+Growth teams, ecommerce operators, marketers, and developers use this skill to review ad copy, creator briefs, PDP language, and live selling scripts for claim risk before publication. It highlights risky wording, explains why the risk exists, and proposes safer alternatives.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/ad-claim-risk-checker) <br>
-- [Publisher Profile](https://clawhub.ai/user/Leooooooow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown claim breakdown with risk ratings, explanations, safer rewrites, and optional stronger-but-safer variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured around original claim breakdown, risk ratings, risk rationale, safer rewrites, and optional stronger-but-safer variations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat marketing-risk guidance as formal legal or regulatory advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for practical pre-review triage and route regulated, health, finance, or quantified performance claims to qualified legal or compliance review.
+
+Risk: Unsupported or incomplete evidence can lead to overconfident claim rewrites.
+
+Mitigation: Provide the evidence level, channel, product category, and market when available; qualify or remove claims when support is absent.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/leooooooow/skills/ad-claim-risk-checker)
+- [Output Template](artifact/references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown claim-risk review with claim breakdowns, risk ratings, explanations, and safer rewrite options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, or data-access behavior found; output should be treated as practical marketing-risk guidance rather than legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

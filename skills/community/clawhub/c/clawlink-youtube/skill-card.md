@@ -1,47 +1,62 @@
-## Description: <br>
-Manage YouTube channels, videos, comments, playlists, and creator workflows via the YouTube Data API v3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube channels, videos, comments, playlists, and creator workflows via the YouTube Data API v3.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to inspect YouTube channel data, manage video metadata, moderate comments, work with playlists and subscriptions, and retrieve creator insights through a connected ClawLink YouTube account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting a YouTube/Google account through ClawLink OAuth. <br>
-Mitigation: Install only when that account connection is intended, and review the OAuth permissions shown during the connection flow. <br>
-Risk: Write operations can change or delete YouTube videos, playlists, subscriptions, or comments. <br>
-Mitigation: Require a clear preview and explicit user confirmation before any create, update, or delete action. <br>
-Risk: The available YouTube tools are dynamic and may differ from examples in the skill text. <br>
-Mitigation: List or search the live ClawLink YouTube tool catalog before selecting a tool, and describe unfamiliar tools before calling them. <br>
+## Use Case:
 
+External creators, channel operators, and agents assisting them use this skill to inspect YouTube channel and video data, manage metadata, playlists, comments, subscriptions, and analytics, and follow OAuth-backed ClawLink workflows for YouTube operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/clawlink-youtube) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=clawlink-youtube) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [YouTube Data API v3](https://developers.google.com/youtube/v3) <br>
-- [YouTube API Reference](https://developers.google.com/youtube/v3/docs) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON parameter snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live ClawLink YouTube tool catalog as the source of truth for available actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: OAuth access uses the connected Google or YouTube account and may expose channel data or enable account-scoped actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested Google/YouTube OAuth permissions before connecting and revoke the YouTube connection or remove the plugin when it is no longer needed.
+
+Risk: Write operations can create, update, moderate, or delete YouTube resources if approved by the user.
+
+Mitigation: Preview write actions, confirm the target resource and intended effect, and reserve destructive actions for explicit user approval.
+
+Risk: The skill depends on the external ClawLink plugin and hosted connection service for authentication and tool access.
+
+Mitigation: Verify that clawhub:clawlink-plugin is the intended plugin and use ClawLink connection-management tools to confirm YouTube is connected before taking action.
+
+## Reference(s):
+
+- [YouTube Data API v3](https://developers.google.com/youtube/v3)
+- [YouTube API Reference](https://developers.google.com/youtube/v3/docs)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/clawlink-youtube)
+- [Publisher Profile](https://clawhub.ai/user/hith3sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live ClawLink YouTube tool catalog as the source of truth for available operations.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

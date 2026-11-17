@@ -1,48 +1,58 @@
-## Description: <br>
-End-to-end launch and monetization skill for API products on RapidAPI and Clawhub. Use when a user wants to publish APIs, fix gateway/auth/test failures, configure plans, optimize listing conversion, run outreach, or package and sell an API-launch workflow skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end launch and monetization skill for API products on RapidAPI and Clawhub. Use when a user wants to publish APIs, fix gateway/auth/test failures, configure plans, optimize listing conversion, run outreach, or package and sell an API-launch workflow skill.
 
-## Publisher: <br>
-[leduc121](https://clawhub.ai/user/leduc121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leduc121](https://clawhub.ai/user/leduc121)
 
-## Use Case: <br>
-Developers, indie builders, and API founders use this skill to move an API from production-readiness checks through marketplace setup, pricing, listing copy, troubleshooting, and first-customer launch activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide publishing marketplace listings, pricing changes, and outbound customer outreach. <br>
-Mitigation: Treat generated launch actions as drafts and require explicit approval before publishing, changing prices, or sending messages. <br>
-Risk: Generated listing copy, outreach, or pricing recommendations may be inaccurate for the specific API or market. <br>
-Mitigation: Review all generated copy, plans, tiers, quotas, and customer claims before execution. <br>
-Risk: Gateway, authentication, and API-key setup steps may involve sensitive credentials. <br>
-Mitigation: Review any use of API keys or secret headers before execution and avoid exposing credentials in generated plans or examples. <br>
+## Use Case:
 
+Developers, solo builders, indie hackers, and API founders use this skill to validate API readiness, configure marketplace auth and pricing, write conversion-focused listing copy, troubleshoot launch issues, and plan first-customer outreach.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leduc121/rapidapi-launch-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/leduc121) <br>
-- [Clawhub Packaging and Sales](references/clawhub-packaging.md) <br>
-- [Launch Channels and First-Customer Motion](references/launch-channels.md) <br>
-- [RapidAPI Listing Copy Template](references/listing-copy-template.md) <br>
-- [Pricing Playbooks by API Niche](references/pricing-playbooks.md) <br>
-- [Troubleshooting Matrix](references/troubleshooting-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated markdown launch-plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a 30-day launch plan from JSON inputs containing product name, channel, pricing tiers, target segment, and 30-day goal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated launch plans or marketplace guidance could lead to unintended pricing, auth, listing, or outreach changes if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review launch plans and explicitly approve pricing, auth, listing, and outreach actions before publishing or contacting users.
+
+Risk: The helper script reads an input JSON path and writes markdown to the requested output path.
+
+Mitigation: Run the script only with intended local input and output paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leduc121/skills/rapidapi-launch-assistant)
+- [ClawHub Packaging and Sales](references/clawhub-packaging.md)
+- [Launch Channels and First-Customer Motion](references/launch-channels.md)
+- [RapidAPI Listing Copy Template](references/listing-copy-template.md)
+- [Pricing Playbooks by API Niche](references/pricing-playbooks.md)
+- [Troubleshooting Matrix](references/troubleshooting-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional launch-plan markdown files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a launch-plan markdown file from JSON input when the helper script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

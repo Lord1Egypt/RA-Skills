@@ -1,41 +1,62 @@
-## Description: <br>
-List, inspect, and watch local OpenAI Codex sessions from the CLI or VS Code using the CodexMonitor Homebrew formula. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List, inspect, and watch local OpenAI Codex sessions from the CLI and VS Code using the CodexMonitor Homebrew formula.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate CodexMonitor for browsing, inspecting, watching, and resuming local Codex session logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local Codex session logs may contain sensitive prompts, outputs, paths, or other private session content. <br>
-Mitigation: Install only from a trusted Homebrew source, prefer specific session IDs or scoped CODEX_SESSIONS_DIR values, and avoid exposing displayed session content unnecessarily. <br>
-Risk: The resume command can append new content to an existing Codex session. <br>
-Mitigation: Use resume only when intentionally continuing that session and confirm the target session ID before running the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odrobnik/codexmonitor) <br>
-- [CodexMonitor homepage](https://github.com/Cocoanetics/CodexMonitor) <br>
-- [Setup instructions](artifact/SETUP.md) <br>
+## Use Case:
 
+Developers and engineers on macOS use this skill to install and run CodexMonitor for listing, inspecting, and watching local OpenAI Codex CLI or VS Code session logs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; codexmonitor output can be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Homebrew, the codexmonitor binary, and readable local Codex session logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned third-party binary.
+
+Mitigation: Review the CodexMonitor source and Homebrew formula before installing.
+
+Risk: CodexMonitor reads sensitive local Codex session history.
+
+Mitigation: Treat Codex session logs as confidential and use the narrowest practical session directory.
+
+Risk: Session paths may be redirected through CODEX_SESSIONS_DIR or CODEX_HOME.
+
+Mitigation: Avoid pointing those variables at shared or synced locations.
+
+Risk: Long-running watch mode can continue observing new session content.
+
+Mitigation: Do not leave watch running longer than needed.
+
+## Reference(s):
+
+- [Codexmonitor ClawHub listing](https://clawhub.ai/odrobnik/skills/codexmonitor)
+- [CodexMonitor project homepage](https://github.com/Cocoanetics/CodexMonitor)
+- [SETUP.md](artifact/SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports list, show, and watch workflows for local Codex session files.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

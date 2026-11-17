@@ -12,6 +12,7 @@ These commands return the standard API envelope:
 - `message ...`
 - `crm ...`
 - `brand-monitor ...`
+- `dispute ...`
 - `export ...`
 - `quota`
 - `pricing`
@@ -21,7 +22,8 @@ Successful responses include `success`, `data`, `summary`, and `meta`. Some curr
 Notes:
 
 - Treat `quota` response data as the canonical Skill quota snapshot
-- `pricing` returns membership plans, not per-action cost
+- `pricing` returns membership plans; `pricing tools` returns current server-side per-action Skill Credit prices
+- `quota usage` returns historical calls, credits, trend, and recent activity for cost analysis
 - Some current API envelopes may still include a legacy `credits` field for compatibility; do not treat it as the primary quota model
 - Mutation commands default to dry-run; `--force` executes the write after user approval
 - Non-GET writes automatically use `Idempotency-Key`; `--idempotency-key` can override it for automation
@@ -60,6 +62,6 @@ These commands have their own response structures — do not assume the API enve
 ## Agent Diagnostics
 
 - Use `--trace-json` when a harness or eval needs structured request traces on stderr.
-- Use `schema --all` to verify the installed CLI exposes the expected modern command tree, including `campaign`, `collection`, `email`, `message`, `crm`, `product`, `brand-monitor`, `export`, and `agent`. Version output alone is not sufficient when a local/global install has stale compiled files. If reinstalling `@noxinfluencer/cli@latest` still lacks the expected command groups, stop the affected workflow and report a CLI package / command-tree mismatch.
+- Use `schema --all` to verify the installed CLI exposes the expected modern command tree, including `campaign`, `collection`, `email`, `message`, `crm`, `product`, `short-link`, `affiliation`, `brand-monitor`, `dispute`, `export`, `feedback`, `quota`, `pricing`, and `agent`. Version output alone is not sufficient when a local/global install has stale compiled files. If reinstalling `@noxinfluencer/cli@latest` still lacks the expected command groups, stop the affected workflow and report a CLI package / command-tree mismatch.
 - Use `noxinfluencer agent exit-codes` to distinguish retryable failures such as rate limits or temporary upstream failures from invalid requests and auth problems.
 - Use `doctor` as the first diagnostic step when the failure cause is unclear.

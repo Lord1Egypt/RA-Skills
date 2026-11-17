@@ -1,46 +1,61 @@
-## Description: <br>
-Mini-HIDS monitors Linux auth and web logs, scans web roots for suspicious webshell patterns, tracks local blacklist state, and exposes MCP tools for agent-assisted host intrusion response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time Linux log monitoring and AI-assisted detection of brute force attacks, web attacks, and webshells with automated IP blocking and whitelist support.
 
-## Publisher: <br>
-[netkr](https://clawhub.ai/user/netkr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netkr](https://clawhub.ai/user/netkr)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to inspect and operate a lightweight Linux host intrusion detection workflow on a small server, including status checks, recent alerts, blacklist review, manual ban/unban actions, and webshell scans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall ban and unban actions can accidentally block legitimate users or the operator. <br>
-Mitigation: Review TRUSTED_IPS, BAN_TIME, log paths, web roots, and FIREWALL_BACKEND before use, and restrict MCP access to trusted local agents or operators. <br>
-Risk: The daemon and MCP workflow require privileged local access to logs and firewall controls on the target Linux host. <br>
-Mitigation: Install only on hosts where this level of local security control is intended, and avoid exposing the MCP server beyond the local trusted integration. <br>
-Risk: Regex-based detection and webshell scanning can produce false positives or miss attacks. <br>
-Mitigation: Treat alerts as signals for review, tune thresholds and trusted IPs for the host, and confirm findings before broad operational action. <br>
+## Use Case:
 
+Developers and operators use Mini-HIDS to give an agent local visibility into SSH and web attack signals on small Linux servers, inspect alerts and blacklist state, and trigger explicit ban or unban actions through MCP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netkr/skills/mini-hids) <br>
-- [Mini-HIDS documentation](artifact/SKILL.md) <br>
-- [LLM project map](artifact/llms.txt) <br>
-- [Runtime configuration](artifact/config.json) <br>
-- [MCP client configuration example](artifact/examples/claude_desktop_mcp.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or concise natural-language guidance with shell commands and structured JSON MCP tool results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MCP tool results include structuredContent for status, alerts, blacklist entries, ban/unban outcomes, and webshell scan summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+Risk: Automatic bans can change firewall state based on log data that may be ambiguous or spoofable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the server configuration before installation, pin trusted IPs and monitored paths narrowly, and avoid automatic web-log bans behind proxies unless client identity is trustworthy.
+
+Risk: The MCP server can trigger ban and unban operations and acts as a privileged local control plane.
+
+Mitigation: Expose MCP only to trusted local clients and run it with the least privileges compatible with the selected firewall backend.
+
+Risk: Regex-based detections can produce false positives or miss higher-fidelity attack patterns.
+
+Mitigation: Treat alerts and webshell matches as triage signals and review the relevant logs or files before relying on them for irreversible response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netkr/skills/mini-hids)
+- [Publisher profile](https://clawhub.ai/user/netkr)
+- [Mini-HIDS documentation](artifact/SKILL.md)
+- [LLM project map](artifact/llms.txt)
+- [MCP client configuration example](artifact/examples/claude_desktop_mcp.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, configuration, guidance]
+
+**Output Format:** [Structured JSON tool responses with concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tool calls can inspect status, alerts, and blacklist state, scan web roots, and request firewall ban or unban actions.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

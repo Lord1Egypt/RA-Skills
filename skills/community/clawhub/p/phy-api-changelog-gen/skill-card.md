@@ -1,42 +1,54 @@
-## Description: <br>
-Generates consumer-facing OpenAPI/Swagger changelogs by semantically diffing local YAML or JSON specs, classifying breaking and non-breaking changes, and optionally producing migration guidance or JSON for CI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates human-readable changelogs, CI-oriented JSON, and migration guidance by semantically comparing OpenAPI 3.x or Swagger 2.0 API specifications.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and API maintainers use this skill to compare OpenAPI 3.x or Swagger 2.0 specifications, summarize breaking and non-breaking API changes, and prepare migration notes for consumers or CI review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could cause the skill to run during general API design conversations. <br>
-Mitigation: Invoke it with explicit spec paths or the /api-changelog command when a changelog is intended. <br>
-Risk: Generated changelogs or migration guidance may misstate API compatibility impact. <br>
-Mitigation: Review generated changelogs against the source specs before publishing or using them to gate releases. <br>
+## Use Case:
 
+Developers and API maintainers use this skill to compare API specs before releases, identify breaking changes, and produce changelog or migration-guide text for docs, pull requests, and CI review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-api-changelog-gen) <br>
-- [Publisher homepage](https://canlah.ai) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance, Shell commands] <br>
-**Output Format:** [Markdown changelog, JSON report, and migration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can focus on breaking changes, migration guidance, or CI failure behavior when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill reads specified local OpenAPI or Swagger files and may compare versions from git history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts and pass only the intended spec paths or git revisions.
+
+Risk: Generated changelogs, JSON output, git comparison behavior, and deprecation handling may be incomplete or incorrect for a given API release.
+
+Mitigation: Review outputs against representative specs before using the results in documentation or CI enforcement.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-api-changelog-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown changelog, JSON for CI pipelines, and migration-guide prose with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Works from local YAML or JSON OpenAPI and Swagger specs, with optional git comparisons; no external API use is evidenced.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

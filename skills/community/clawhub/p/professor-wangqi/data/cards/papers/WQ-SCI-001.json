@@ -1,0 +1,148 @@
+{
+  "card_id": "WQ-SCI-001",
+  "source_type": "paper",
+  "source_file": "1 Pathogenesis of allergic diseases and implications for therapeutic interventions.pdf",
+  "title": "Pathogenesis of allergic diseases and implications for therapeutic interventions",
+  "authors": [
+    "Ji Wang"
+  ],
+  "year": 2023,
+  "journal": "Signal Transduction and Targeted Therapy",
+  "language": "en",
+  "abstract": "Allergic diseases such as allergic rhinitis (AR), allergic asthma (AAS), atopic dermatitis (AD), food allergy (FA), and eczema are systemic diseases caused by an impaired immune system. Accompanied by high recurrence rates, the steadily rising incidence rates of these diseases are attracting increasing attention. The pathogenesis of allergic diseases is complex and involves many factors, including maternal-fetal environment, living environment, genetics, epigenetics, and the body’s immune status. The pathogenesis of allergic diseases exhibits a marked heterogeneity, with phenotype and endotype deﬁning visible features and associated molecular mechanisms, respectively. With the rapid development of immunology, molecular biology, and biotechnology, many new biological drugs have been designed for the treatment of allergic diseases, including anti-immunoglobulin E (IgE), anti- interleukin (IL)-5, and anti-thymic stromal lymphopoietin (TSLP)/IL-4, to control symptoms. For doctors and scientists, it is becoming more and more important to understand the inﬂuencing factors, pathogenesis, and treatment progress of allergic diseases. This",
+  "keywords": [],
+  "doi": "10.1038/s41392-023-01344-4",
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "过敏性鼻炎",
+      "哮喘"
+    ],
+    "topic": []
+  },
+  "methods": {
+    "study_design": "RCT"
+  },
+  "results": {},
+  "conclusions": "",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "Allergic diseases such as allergic rhinitis (AR), allergic asthma (AAS), atopic dermatitis (AD), food allergy (FA), and eczema are systemic diseases caused by an impaired immune system",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Accompanied by high recurrence rates, the steadily rising incidence rates of these diseases are attracting increasing attention",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The pathogenesis of allergic diseases is complex and involves many factors, including maternal-fetal environment, living environment, genetics, epigenetics, and the body’s immune status",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The pathogenesis of allergic diseases exhibits a marked heterogeneity, with phenotype and endotype deﬁning visible features and associated molecular mechanisms, respectively",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "For doctors and scientists, it is becoming more and more important to understand the inﬂuencing factors, pathogenesis, and treatment progress of allergic diseases",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "过敏性鼻炎",
+    "哮喘"
+  ],
+  "evidence_sentences": [],
+  "page_info": {
+    "total_pages": 30,
+    "sections": {
+      "introduction": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:10.067757",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.402537",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.402561"
+  }
+}

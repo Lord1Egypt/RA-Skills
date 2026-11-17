@@ -1,43 +1,55 @@
-## Description: <br>
-Generates runnable machine learning and deep learning experiment pipelines from an uploaded experiment plan, including data preprocessing, model code, training, evaluation, and visualization components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete Python machine learning experiment pipelines from experiment plan documents, including data preprocessing, model construction, training, evaluation, and result visualization.
 
-## Publisher: <br>
-[lhbzx1984](https://clawhub.ai/user/lhbzx1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhbzx1984](https://clawhub.ai/user/lhbzx1984)
 
-## Use Case: <br>
-Developers and machine learning engineers use this skill to turn experiment planning documents into structured Python project files for PyTorch, TensorFlow, or scikit-learn workflows. It is intended for local code generation that users review before running. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated experiment code may contain incorrect assumptions or unsafe defaults for the user's dataset, model, or environment. <br>
-Mitigation: Review the generated Python, configuration, and dependency files before running them. <br>
-Risk: Running a generated project may install packages or download pretrained models. <br>
-Mitigation: Use a new empty output directory and an isolated environment before executing generated commands or code. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to turn a machine learning paper or experiment plan into a runnable Python training pipeline for PyTorch, TensorFlow, or scikit-learn workflows. It is most appropriate for trusted plans whose generated code will be reviewed before execution.
 
-## Reference(s): <br>
-- [Data Format Specification](references/data-format.md) <br>
-- [Model Template Reference](references/model-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/lhbzx1984/paper-to-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/lhbzx1984) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, configuration, guidance] <br>
-**Output Format:** [Generated Python project files with Markdown documentation and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local experiment project structure; generated code should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Untrusted experiment-plan text can become generated executable Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted plans, inspect generated files, and avoid running generated main.py until plan-derived values are escaped or validated.
+
+Risk: Generated dependencies or pretrained-model calls may install packages or download remote model assets.
+
+Mitigation: Install dependencies in a fresh virtual environment and review requirements and model downloads before execution.
+
+## Reference(s):
+
+- [Data Format Specification](artifact/references/data-format.md)
+- [Model Template Reference](artifact/references/model-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/lhbzx1984/skills/paper-to-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated experiment files, including Python modules, requirements.txt, README.md, and configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Python is intended to be inspected before installation or execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

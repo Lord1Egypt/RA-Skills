@@ -1,41 +1,53 @@
-## Description: <br>
-Create Hummingbot-branded PDF slides from markdown with Mermaid diagram support for presentations, decks, and technical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Hummingbot-branded PDF slides from markdown with Mermaid diagram support. Use for presentations, decks, and technical documentation with professional diagrams.
 
-## Publisher: <br>
-[fengtality](https://clawhub.ai/user/fengtality) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengtality](https://clawhub.ai/user/fengtality)
 
-## Use Case: <br>
-Developers, technical writers, and presentation authors use this skill to turn structured markdown into Hummingbot-branded PDF slide decks with optional Mermaid diagrams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented workflow runs mutable remote shell code. <br>
-Mitigation: Run the bundled local script or a pinned, checksummed copy instead of using the curl-to-bash command. <br>
-Risk: The script may install unpinned Python or npm packages on the user's machine. <br>
-Mitigation: Use a project directory, virtual environment, or container before running package-manager installs. <br>
-Risk: The workflow writes generated PDF files to user-selected paths. <br>
-Mitigation: Choose a non-sensitive output directory and review write permissions before generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengtality/slides-generator) <br>
+## Use Case:
 
+Developers, technical writers, and external users can use this skill to turn markdown presentation content into Hummingbot-branded PDF slide decks, including Mermaid diagrams and two-column slide layouts.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires markdown input and an output PDF path; Mermaid diagrams require Mermaid CLI or npx availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Normal use can run a remote script that may change outside this release artifact.
+
+Mitigation: Use a reviewed local copy or fixed version of the generation script instead of fetching and executing the remote script at runtime.
+
+Risk: The script can download and install Python or Node packages during execution.
+
+Mitigation: Run it in an isolated environment with pinned dependencies, and require separate user confirmation before any setup changes the Python or Node environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengtality/skills/slides-generator)
+- [Remote generation script referenced by the skill](https://raw.githubusercontent.com/hummingbot/skills/main/skills/slides-generator/scripts/generate_slides.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, Mermaid code, slide outline text, and generated PDF file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate PDF slides from local markdown input; Mermaid diagrams require Mermaid CLI or fall back to code block rendering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

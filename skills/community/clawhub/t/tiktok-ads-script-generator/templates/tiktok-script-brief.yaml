@@ -1,0 +1,34 @@
+# TikTok Ads Script Generator - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+brand: ""
+product: ""
+offer: ""
+audience: ""
+platform: "TikTok"
+ad_type: "non-Spark in-feed"
+objective: ""
+caption: ""
+hook_overlay_text: ""
+script:
+  shot_1:
+    seconds: "0-2"
+    visual: ""
+    spoken: ""
+    on_screen_text: ""
+  shot_2:
+    seconds: "3-6"
+    visual: ""
+    spoken: ""
+    on_screen_text: ""
+  shot_3:
+    seconds: "7-12"
+    visual: ""
+    spoken: ""
+    on_screen_text: ""
+cta_button: ""
+landing_page_url: ""
+disclosures:
+  branded_content: ""
+  offer_terms: ""
+claims_to_verify:
+  - ""

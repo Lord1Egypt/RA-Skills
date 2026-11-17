@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../schemas/owner-ledger.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "owners": [
+    {
+      "ownerId": "owner_visual_001",
+      "domain": "visual-composition",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 90
+      },
+      "subjectRef": "state_001"
+    },
+    {
+      "ownerId": "owner_visual_002",
+      "domain": "visual-composition",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 180
+      },
+      "subjectRef": "state_002"
+    },
+    {
+      "ownerId": "owner_privacy_001",
+      "domain": "privacy",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 120
+      },
+      "subjectRef": "privacy_001"
+    }
+  ]
+}

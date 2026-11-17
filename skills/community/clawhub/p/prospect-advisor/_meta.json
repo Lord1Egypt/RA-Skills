@@ -1,6 +1,54 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "name": "前程似锦-高考升学规划Pro",
   "slug": "prospect-advisor",
+  "description": "基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式",
   "version": "1.1.0",
-  "publishedAt": 1777617322356
+  "author": "Huimai AI",
+  "email": "yezhaowang888@icloud.com",
+  "license": "MIT",
+  "tags": [
+    "education",
+    "gaokao",
+    "career-planning",
+    "calibration",
+    "huimai"
+  ],
+  "lastUpdated": "2026-05-01",
+  "pricing": {
+    "free": {
+      "limit": 3,
+      "description": "免费查询3所学校"
+    },
+    "paid": [
+      {
+        "count": 1,
+        "price": 1999
+      },
+      {
+        "count": 20,
+        "price": 30000,
+        "unitPrice": 1500
+      },
+      {
+        "count": 50,
+        "price": 50000,
+        "unitPrice": 1000
+      },
+      {
+        "count": 100,
+        "price": 88880,
+        "unitPrice": 888
+      }
+    ]
+  },
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard",
+      "deep"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

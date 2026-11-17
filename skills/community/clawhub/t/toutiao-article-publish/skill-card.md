@@ -1,45 +1,61 @@
-## Description: <br>
-Automates Toutiao creator publishing workflows for micro-posts and articles, including topic selection, drafting, image handling, browser upload, and publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Toutiao creator workflows for topic selection, drafting, image handling, and publishing Weitoutiao posts or longer Toutiao articles through browser automation.
 
-## Publisher: <br>
-[wtl01](https://clawhub.ai/user/wtl01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wtl01](https://clawhub.ai/user/wtl01)
 
-## Use Case: <br>
-External content creators, social media operators, and marketing teams use this skill to prepare and publish Toutiao micro-posts and articles through an authenticated browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post or schedule real Toutiao content from the user's logged-in account. <br>
-Mitigation: Require preview and explicit user confirmation before each publish or scheduled post. <br>
-Risk: Broad triggers could activate the publishing workflow when the user intended only drafting or planning. <br>
-Mitigation: Narrow activation to Toutiao-specific publishing requests and confirm the target action before browser automation starts. <br>
-Risk: Automated operation may affect a production social-media account. <br>
-Mitigation: Use a dedicated or test account where possible and stop for manual login whenever the browser reaches an authentication page. <br>
+## Use Case:
 
+External creators, media operators, and marketing teams can use this skill to prepare and publish Toutiao content with scheduled browser-driven posting. It is intended for users who already control the destination account and can review content, images, and publishing actions before release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wtl01/toutiao-article-publish) <br>
-- [Publisher Profile](https://clawhub.ai/user/wtl01) <br>
-- [Toutiao Micro-post Publish Page](https://mp.toutiao.com/profile_v4/weitoutiao/publish) <br>
-- [Toutiao Article Publish Page](https://mp.toutiao.com/profile_v4/graphic/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with browser automation commands and publication drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled publishing cadence, browser upload steps, content drafts, image handling instructions, and post-publication status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can publish through an existing logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile and a limited Toutiao account, and require manual confirmation before the final publish action.
+
+Risk: Broad trigger phrases and scheduled posting can cause unintended posts.
+
+Mitigation: Review the destination, content, images, schedule, and final publish click for every post or scheduled run.
+
+Risk: Automated image upload and content generation can introduce copyright, platform-policy, or content-quality issues.
+
+Mitigation: Keep uploads in a narrow reviewed folder and manually verify image rights, topic tags, and article text before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wtl01/skills/toutiao-article-publish)
+- [Toutiao Weitoutiao publish page](https://mp.toutiao.com/profile_v4/weitoutiao/publish)
+- [Toutiao article publish page](https://mp.toutiao.com/profile_v4/graphic/publish)
+- [The Paper](https://www.thepaper.cn/)
+- [36Kr hot list](https://www.36kr.com/hot-list/catalog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser automation commands and publishing workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled posting cadence, image path conventions, topic tags, and verification steps for browser-driven publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

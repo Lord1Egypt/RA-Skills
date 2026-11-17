@@ -1,43 +1,60 @@
-## Description: <br>
-Motion Skill helps agents connect to Motion workspaces and collaboratively edit, comment on, version, export, and manage documents through the Motion HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Motion documents so it can read, edit, comment, manage pages and folders, review suggestions, save versions, and export content through Motion's HTTP API.
 
-## Publisher: <br>
-[auditt98](https://clawhub.ai/user/auditt98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auditt98](https://clawhub.ai/user/auditt98)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent work in live Motion documents, including reading document blocks, proposing edits, managing pages and folders, commenting, saving versions, reviewing suggestions, and exporting content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent tokens grant workspace-wide access to Motion documents, folders, comments, versions, and exports. <br>
-Mitigation: Use a dedicated revocable agent token or a limited invite token, revoke credentials when no longer needed, and connect only to intended documents. <br>
-Risk: Direct edits, deletes, moves, exports, and bulk accept or reject actions can change or disclose document content. <br>
-Mitigation: Keep suggestion mode as the default and require explicit user confirmation before direct edits, destructive actions, exports, or bulk suggestion operations. <br>
+## Use Case:
 
+Developers and document collaborators use this skill to let an agent participate in Motion workspaces, edit documents in suggestion or direct mode, manage pages and folders, handle comments, save versions, and export document content.
 
-## Reference(s): <br>
-- [Motion HTTP API Reference](references/api-reference.md) <br>
-- [ProseMirror Block & Mark Reference](references/block-format-reference.md) <br>
-- [Common Workflow Examples](references/examples.md) <br>
-- [Motion Skill on ClawHub](https://clawhub.ai/auditt98/motion-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl-style HTTP API calls; exported documents may be Markdown or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Edits default to suggestion mode; direct edits, exports, deletes, moves, and bulk suggestion actions should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Agent tokens grant workspace-wide access to documents, folders, comments, and versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer document-scoped invite credentials when possible and install only when the hosted Motion service is trusted with workspace-administrator-level access.
+
+Risk: Tokens may be exposed if pasted into shell commands, chat transcripts, or logs.
+
+Mitigation: Avoid pasting real tokens directly into commands or logs, and revoke any exposed token promptly.
+
+Risk: Direct edits, deletion, page or folder moves, exports, and bulk suggestion accept or reject operations can immediately affect workspace content.
+
+Mitigation: Require explicit user confirmation before these actions, prefer suggestion mode for edits, and save a named version before large destructive changes.
+
+## Reference(s):
+
+- [Motion HTTP API Reference](references/api-reference.md)
+- [ProseMirror Block & Mark Reference](references/block-format-reference.md)
+- [Common Workflow Examples](references/examples.md)
+- [Motion MCP Server API](https://motion-mcp-server.fly.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP API request examples, JSON payloads, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live document mutations through Motion API calls when the user provides valid credentials and confirms the intended action.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

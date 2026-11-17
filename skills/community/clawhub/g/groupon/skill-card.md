@@ -1,47 +1,63 @@
-## Description: <br>
-Find, compare, and vet Groupon vouchers with fine-print checks, refund rules, and redemption planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, compare, and vet Groupon vouchers with fine-print checks, refund rules, and redemption planning.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to evaluate Groupon deals, shortlist vouchers, check merchant and fine-print risk, plan redemption, and prepare support or refund recovery steps before taking money-impacting action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deal-search context, location details, deal URLs, and optional support context may be sent to Groupon or a selected merchant during discovery, verification, booking, or support workflows. <br>
-Mitigation: Keep stored notes minimal, share only the context needed for the task, and review any support or booking submission before approving it. <br>
-Risk: Money-impacting actions such as buying, gifting, booking, marking redeemed, or submitting refund requests can affect the user's funds or voucher status. <br>
-Mitigation: Require explicit user confirmation before any checkout, booking, redeemed-status change, or refund submission. <br>
-Risk: Fine print, availability, merchant quality, and refund policies can change or be incomplete. <br>
-Mitigation: Verify live deal terms, voucher status, merchant signals, and current Groupon policy before giving final purchase or recovery guidance. <br>
-Risk: Local deal notes could expose sensitive voucher or account information if over-collected. <br>
-Mitigation: Do not store payment details, login secrets, full voucher barcodes, or claim codes; store only reusable preferences, shortlist notes, and follow-up status. <br>
+## Use Case:
 
+External users use this skill to find, shortlist, and vet Groupon offers before purchase or redemption. It helps compare true cost, merchant quality, fine print, booking friction, and support or refund paths while keeping money-impacting actions user-approved.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/groupon) <br>
-- [Groupon Skill Homepage](https://clawic.com/skills/groupon) <br>
-- [Groupon](https://www.groupon.com/) <br>
-- [Groupon Help](https://help.groupon.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown recommendations, scorecards, checklists, local memory templates, and support packet drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before checkout, booking, redemption, refund submission, or local memory writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Deal searches, location context, deal URLs, and ordinary browsing context may be sent to Groupon, merchants, review sites, booking sites, or marketplace pages during evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with explicit browsing boundaries for sensitive locations, travel, booking, merchant disputes, or private purchase contexts.
+
+Risk: Local notes under ~/groupon/ can expose preferences, purchase follow-up history, or incident details if written too broadly.
+
+Mitigation: Keep local notes minimal and avoid storing payment methods, login secrets, full voucher barcodes, claim codes, or other sensitive voucher details.
+
+Risk: Merchant availability, deal terms, refund rules, and support policies can change and may be incomplete or ambiguous.
+
+Mitigation: Verify live deal terms, booking paths, voucher status, and current Groupon help-page wording before buying, booking, redeeming, or requesting support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/groupon)
+- [Skill Homepage](https://clawic.com/skills/groupon)
+- [Groupon](https://www.groupon.com/)
+- [Groupon Help](https://help.groupon.com/)
+- [Groupon Deal Qualification](deal-qualification.md)
+- [Merchant Checks](merchant-checks.md)
+- [Recovery](recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with structured verdicts, checklists, support packet drafts, and occasional shell commands for local setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local notes under ~/groupon/ after user confirmation; does not store payment details, login secrets, full voucher barcodes, or claim codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

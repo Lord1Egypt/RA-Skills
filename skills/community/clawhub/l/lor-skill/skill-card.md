@@ -1,41 +1,55 @@
-## Description: <br>
-A modular five-step engineering verification loop that helps agents plan, execute, check, and summarize work for complex coding and planning tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A modular 5-step engineering verification loop that helps agents plan, execute, check, and summarize complex coding or planning tasks.
 
-## Publisher: <br>
-[uwe77](https://clawhub.ai/user/uwe77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uwe77](https://clawhub.ai/user/uwe77)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a structured verification loop to complex coding, architecture, and planning tasks. It is intended to reduce unsupported final answers by requiring planning, execution, result checking, and concise reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist in agent memory and auto-activate on broad complex-task categories. <br>
-Mitigation: Prefer explicit /lor invocation when tighter control is needed, and confirm whether persistent memory registration is desired before installation. <br>
-Risk: Verification workflows may involve exec, write, or edit operations. <br>
-Mitigation: Keep destructive-operation confirmation enabled and allow read-only operations to run automatically only when that matches the workspace policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to apply a structured verification loop to complex engineering, architecture, coding, and planning tasks before producing final output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/uwe77/lor-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/uwe77) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and console-oriented text with verification steps and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger local setup commands and agent-memory registration during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: The setup flow asks agents to persistently register the skill in memory and auto-activate on broad future tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with explicit user approval, and prefer removing the registration hook or requiring explicit /lor invocation for each use.
+
+Risk: Broad automatic activation can cause this verification loop to influence unrelated future complex tasks.
+
+Mitigation: Keep activation manual or project-scoped, and review generated verification plans before executing proposed actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uwe77/skills/lor-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and console-style verification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a five-step verification flow with up to three retries; setup emits a registration hook.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version, package.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

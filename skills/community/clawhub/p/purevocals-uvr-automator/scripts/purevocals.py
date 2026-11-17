@@ -187,8 +187,12 @@ def extract_pure_vocals(input_path: str, output_dir: str, model: str, window_siz
                 if generated_files:
                     # 获取当前时间戳（格式：20260226_143055）
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    # 加上时间戳的文件名
-                    final_file = out_subdir / f"{audio_file.stem}_{timestamp}.wav"
+                    # 如果传入的是目录，则不改变文件名
+                    if src_path.is_file():
+                        # 加上时间戳的文件名
+                        final_file = out_subdir / f"{audio_file.stem}_{timestamp}.wav"
+                    else:
+                        final_file = out_subdir / f"{audio_file.stem}.wav"
                     generated_files[0].rename(final_file)
                     logger.info(f"✅ 提取成功: {final_file.name}")
                     success += 1

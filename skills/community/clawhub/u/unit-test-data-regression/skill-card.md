@@ -1,37 +1,49 @@
-## Description: <br>
-Unit test engineer skill for stable fixtures, edge-case data design, and regression-oriented test inputs in WelineFramework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unit test engineer skill for stable fixtures, edge-case data design, and regression-oriented test inputs in WelineFramework.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to design stable unit-test fixtures, edge-case input matrices, and regression data for WelineFramework changes. It helps make logic regressions reproducible while keeping test data readable and scoped to the behavior under test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect project files and run focused tests in a target repository. <br>
-Mitigation: Use it only in repositories where that code access and test execution are authorized, and review proposed fixtures or regression data before applying them. <br>
+## Use Case:
 
+Developers and test engineers use this skill to design stable fixtures, edge-case datasets, and deterministic regression inputs for WelineFramework unit tests.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with proposed test data, fixtures, regression cases, and focused test commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is specific to WelineFramework conventions and may point an agent toward project documents that only exist in that context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in the intended WelineFramework context, and review referenced project guidance before relying on the generated test data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/unit-test-data-regression)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on deterministic regression data, fixtures, and unit-test evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,60 @@
-## Description: <br>
-Designs market and user research plans focused on method selection and research materials such as screeners, surveys, interview guides, and usability task scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs market and user research plans and drafts study materials such as screeners, surveys, interview guides, and usability task scripts.
 
-## Publisher: <br>
-[NKZ55](https://clawhub.ai/user/NKZ55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nkz55](https://clawhub.ai/user/nkz55)
 
-## Use Case: <br>
-Product teams, researchers, designers, and agents planning UX or market research use this skill to clarify objectives, select qualitative or quantitative methods, create study plans, and draft participant-facing research materials before fieldwork. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated research materials may be used with real participants without adequate consent, privacy, recording, retention, or sensitive-data review. <br>
-Mitigation: Review materials with legal/compliance or research-ethics reviewers before fieldwork; tailor consent, data handling, recording, opt-out, and retention language to the study and jurisdiction. <br>
-Risk: Research involving regulated topics, minors, employees, workplace observation, or media capture can require additional safeguards. <br>
-Mitigation: Confirm study-specific ethics, privacy, and compliance requirements before recruiting or collecting data, and add safeguards for sensitive populations or contexts. <br>
-Risk: Manual installation from an external GitHub or npx source can differ from the server-reviewed ClawHub release. <br>
-Mitigation: Prefer the Clawdhub install command unless the external source has been independently verified. <br>
+## Use Case:
 
+Researchers, product teams, and agents use this skill to frame research needs, select qualitative or quantitative methods, and draft execution-ready research plans and materials before fieldwork. It is for research design and documentation, not collected-data analysis or final reporting.
 
-## Reference(s): <br>
-- [ClawHub Research Planner release](https://clawhub.ai/NKZ55/research-planner) <br>
-- [Phase 1: Clarify Need](phases/01-clarify-need.md) <br>
-- [Phase 2: Method Selection and Plan](phases/02-method-selection-and-plan.md) <br>
-- [Phase 3: Research Materials and Logistics](phases/03-materials-and-logistics.md) <br>
-- [Research Plan Template](templates/research-plan-template.md) <br>
-- [UXR Consent Form Template](templates/uxr-consent-form-template.md) <br>
-- [NN/g Research Plans](https://www.nngroup.com/articles/pm-research-plan/) <br>
-- [NN/g Guide to UX Research Methods](https://www.nngroup.com/articles/guide-ux-research-methods/) <br>
-- [User Interviews: Ultimate Guide to UX Research Strategy](https://www.userinterviews.com/blog/the-ultimate-guide-to-ux-research-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans, templates, checklists, and participant-facing draft materials] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning and documentation only; data collection, analysis, final reporting, and recommendations are out of scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing from an unpinned mutable branch can expose users to changed skill contents after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from ClawHub or from a pinned, reviewed commit.
+
+Risk: Generated consent and privacy language may not satisfy local law, organizational policy, or study-specific handling requirements.
+
+Mitigation: Review and finalize consent, recording, data type, storage, access, retention, deletion, third-party tooling, and compliance details before contacting participants.
+
+Risk: Research or product-review activities can expose real credentials, customer data, screenshots, or recordings.
+
+Mitigation: Use dedicated test accounts and avoid collecting or sharing real credentials or unnecessary personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nkz55/skills/research-planner)
+- [Nielsen Norman Group Research Plan Guidance](https://www.nngroup.com/articles/pm-research-plan/)
+- [Nielsen Norman Group UX Research Methods Overview](https://www.nngroup.com/articles/guide-ux-research-methods/)
+- [User Interviews Research Strategy Guide](https://www.userinterviews.com/blog/the-ultimate-guide-to-ux-research-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans, method recommendations, screeners, surveys, consent drafts, interview guides, usability scripts, checklists, and related research templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft planning materials that should be reviewed before participant contact, fieldwork, or analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

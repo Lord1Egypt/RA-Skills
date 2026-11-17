@@ -1,42 +1,51 @@
-## Description: <br>
-Helps users plan practical responses, checklists, and decision-support artifacts for a Hello Landing furnished-apartment dispute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan practical responses for a housing dispute involving Hello Landing and furnished apartments.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External users seeking help with a Hello Landing furnished-apartment dispute use this skill to turn their situation into a practical plan, checklist, or decision-support artifact with visible assumptions and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to trigger on generic terms such as ask, hello, or landing. <br>
-Mitigation: Invoke the skill explicitly for this housing-dispute topic or narrow trigger terms before deployment. <br>
-Risk: Housing-dispute planning can be mistaken for case-specific legal advice. <br>
-Mitigation: Use outputs as planning and checklist support, and verify legal decisions with qualified local resources. <br>
+## Use Case:
 
+External users invoke this skill to turn a housing-dispute help request into an actionable plan, checklist, analysis, or decision-support artifact. It helps clarify the user's goal, constraints, missing facts, assumptions, validation criteria, and follow-up risks.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Ask HN: Hello Landing Dispute - Furnished Apartments](https://news.ycombinator.com/item?id=48508590) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/housing-dispute-help-planner-122817) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Checklists] <br>
-**Output Format:** [Markdown or plain text with concise plans, assumptions, checklists, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, credentials, persistence, or data-access behavior identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Broad implicit activation terms such as "ask" and "hello" may cause the skill to appear in unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation or narrow the activation terms before deployment so the skill is used only for the intended housing-dispute topic.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Ask HN: Hello Landing Dispute - Furnished Apartments](https://news.ycombinator.com/item?id=48508590)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/housing-dispute-help-planner-122817)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tailored plans, reusable checklists, assumptions, validation notes, risks, and next steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

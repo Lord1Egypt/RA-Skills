@@ -1,44 +1,52 @@
-## Description: <br>
-Hamibot helps agents work with the Hamibot CLI, an open-source Node.js command-line tool for authorized remote Android automation on paired user devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hamibot guides agents working with the Hamibot CLI, an open-source Node.js command-line tool for authorized remote Android automation on a user's authenticated and paired devices.
 
-## Publisher: <br>
-[hamibot](https://clawhub.ai/user/hamibot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hamibot](https://clawhub.ai/user/hamibot)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, authenticate, and operate the Hamibot CLI for authorized automation of their own paired Android devices. Typical tasks include code execution, file management, input simulation, screenshots, app launch, and device queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can run code, simulate input, manage files, capture screenshots, and launch apps on paired Android devices. <br>
-Mitigation: Use it only with devices the user owns or is explicitly authorized to administer, and review commands and scripts before execution. <br>
-Risk: Authentication through interactive login or a Personal Access Token can grant access to the user's paired devices. <br>
-Mitigation: Protect tokens and credentials, avoid sharing them in prompts or logs, and revoke or rotate tokens when no longer needed. <br>
-Risk: The bundled security evidence was clean but noted that full artifact coherence review was limited. <br>
-Mitigation: Inspect the visible skill instructions and install steps before use, especially before global npm installation or persistent automation workflows. <br>
+## Use Case:
 
+Developers and automation users use this skill to install, authenticate, and operate the Hamibot CLI for authorized Android device automation. It supports tasks such as executing scripts, managing files, simulating touch input, capturing screenshots, launching apps, and querying paired device information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hamibot/hamibot) <br>
-- [Hamibot Official Site](https://hamibot.com) <br>
-- [Hamibot CLI Repository](https://github.com/hamibot/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and command reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that install the CLI, authenticate, select devices, execute code, manage files, simulate input, capture screenshots, launch apps, and query device information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill asks users to install mutable remote code for a CLI that can control paired Android devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream Hamibot CLI before installing, prefer a pinned trusted release or commit, avoid elevated privileges, and use tokens or device-control commands only for devices the user owns or is explicitly authorized to manage.
+
+## Reference(s):
+
+- [Hamibot official site](https://hamibot.com)
+- [Hamibot CLI repository](https://github.com/hamibot/cli)
+- [Hamibot account tokens](https://hamibot.com/account/tokens)
+- [ClawHub skill page](https://clawhub.ai/hamibot/skills/hamibot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI command examples, authentication steps, device-selection guidance, and JSON-output usage notes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

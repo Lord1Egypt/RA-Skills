@@ -1,41 +1,65 @@
-## Description: <br>
-Scans OpenClaw skill folders for sensitive operations, backdoor patterns, prompt poisoning, hallucination, and misinformation risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenClaw skill directories and supplied text for sensitive operations, trojan or backdoor patterns, prompt poisoning, and hallucination or scam indicators.
 
-## Publisher: <br>
-[jasonshieh](https://clawhub.ai/user/jasonshieh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonshieh](https://clawhub.ai/user/jasonshieh)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit OpenClaw skills and generate text, Markdown, or JSON reports before installation, release, or CI use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads the selected skills folder and may surface sensitive local skill content in reports. <br>
-Mitigation: Limit the scan path to the intended skills directory and review reports before sharing them. <br>
-Risk: The scanner is heuristic and may miss risks or reduce risk scores based on weak name or path trust checks. <br>
-Mitigation: Treat clean results and trust labels as advisory only, and pair them with manual review or an independent security scan before deployment. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to inspect OpenClaw skill directories, review risk reports, and screen text for prompt-poisoning or hallucination-style risk indicators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jasonshieh/jax-skill-security-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/jasonshieh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, Markdown, JSON, and enhanced report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include risk levels, sensitive-operation findings, trojan-pattern summaries, and remediation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Users may treat heuristic scan results as a final security decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the reports as triage input and require manual review before trusting or deploying scanned skills.
+
+Risk: Installing an unverified npm package can introduce supply-chain risk.
+
+Mitigation: Pin the package version and verify the package identity and hashes before installation.
+
+Risk: Scanning overly broad paths can expose unrelated local skill files or produce noisy results.
+
+Mitigation: Choose a narrow scan path that contains only the skills intended for review.
+
+Risk: Runtime JavaScript entry points may behave differently than the documentation suggests.
+
+Mitigation: Review package entry points and runtime files such as bin/ and dist/ before relying on scan output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonshieh/skills/jax-skill-security-scanner)
+- [npm package](https://www.npmjs.com/package/@jax-npm/skill-security-scanner)
+- [Project documentation](https://docs.jax-npm.com/skill-security-scanner)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown, JSON, enhanced text, or enhanced Markdown security reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include risk counts, detected issue lists, trojan-pattern summaries, high- and medium-risk summaries, and suggested next steps.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

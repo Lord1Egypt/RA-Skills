@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "axelhu",
   "slug": "feishu-fetch",
   "version": "1.2.0",
-  "publishedAt": 1780907243580
+  "publishedAt": "2026-06-08T16:28:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [
+    "$HOME/.openclaw/openclaw.json"
+  ],
+  "primaryCredential": {
+    "name": "feishu-app-credentials",
+    "fields": {
+      "required": ["appId", "appSecret"],
+      "optional": []
+    },
+    "source": "$HOME/.openclaw/openclaw.json:channels.feishu.accounts.{AGENT_NAME:-$AGENT_NAME_DEFAULT:-$AGENT_NAME_DEFAULT-main}.{appId,appSecret}"
+  },
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "Credentials are read at runtime from existing openclaw.json — no separate setup needed."
+  },
+  "requires": {
+    "anyBinaries": ["curl", "python3", "bash"],
+    "os": ["linux", "macos", "windows"]
+  },
+  "resources": {
+    "scripts": [
+      {
+        "path": "scripts/feishu-fetch.sh",
+        "purpose": "Main entrypoint. Downloads file/image/audio attachment given a message_id. Handles credentials, token, file_key extraction, and download internally — caller only passes message_id."
+      }
+    ]
+  }
 }

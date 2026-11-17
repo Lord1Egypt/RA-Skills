@@ -1,0 +1,271 @@
+#!/usr/bin/env python3
+"""Inspect a delimited table (CSV/TSV) without loading it all into memory.
+
+Usage:
+  csv-inspect FILE [--head N] [--tail N] [--scan N] [--json]
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import re
+import sys
+import traceback
+from collections import Counter, deque
+from pathlib import Path
+
+ENCODINGS = ("utf-8", "utf-16", "cp1252", "latin-1")
+DELIMS = ",\t;|"
+DATE_RE = re.compile(
+    r"^\d{4}([-/.])\d{1,2}(?:\1\d{1,2}(?:[ T]\d{1,2}:\d{2}(?::\d{2})?)?)?$"
+)
+BOOL_VALUES = {"true", "false", "yes", "no", "y", "n", "0", "1"}
+
+
+def detect_encoding(path: Path, nbytes: int = 65536) -> str:
+    raw = path.read_bytes()[:nbytes]
+    if raw.startswith(b"\xff\xfe") or raw.startswith(b"\xfe\xff"):
+        return "utf-16"
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return "utf-8-sig"
+    for enc in ENCODINGS:
+        try:
+            raw.decode(enc)
+            return enc
+        except UnicodeDecodeError:
+            continue
+    return "latin-1"
+
+
+def sniff_dialect(sample: str) -> csv.Dialect:
+    try:
+        return csv.Sniffer().sniff(sample, delimiters=DELIMS)
+    except csv.Error:
+        dialect = csv.excel()
+        dialect.delimiter = "\t" if sample.count("\t") > sample.count(",") else ","
+        return dialect
+
+
+def classify_value(value: str) -> str:
+    text = value.strip()
+    if text == "":
+        return "empty"
+    lower = text.lower()
+    if lower in BOOL_VALUES and text not in {"0", "1"}:
+        return "bool"
+    if re.fullmatch(r"[+-]?\d+", text):
+        return "int"
+    if re.fullmatch(r"[+-]?(?:\d+\.\d*|\.\d+)(?:[eE][+-]?\d+)?", text):
+        return "float"
+    if DATE_RE.match(text):
+        return "date"
+    return "str"
+
+
+def majority_type(counter: Counter[str]) -> str:
+    useful = {k: v for k, v in counter.items() if k != "empty"}
+    if not useful:
+        return "empty"
+    if "int" in useful and "float" in useful:
+        useful["float"] += useful.pop("int")
+    return max(useful, key=useful.get)
+
+
+def delim_label(delim: str) -> str:
+    return {"\t": "\\t", ",": ",", ";": ";", "|": "|"}.get(delim, repr(delim))
+
+
+def inspect(
+    path: Path,
+    head_n: int,
+    tail_n: int,
+    scan_n: int,
+    no_header: bool,
+) -> dict:
+    if not path.is_file():
+        raise FileNotFoundError(f"Not found: {path}")
+
+    encoding = detect_encoding(path)
+    size_bytes = path.stat().st_size
+    with path.open("r", encoding=encoding, newline="") as fh:
+        sample = fh.read(65536)
+        fh.seek(0)
+        dialect = sniff_dialect(sample)
+        reader = csv.reader(fh, dialect)
+        try:
+            first = next(reader)
+        except StopIteration:
+            return {
+                "file": str(path),
+                "size_bytes": size_bytes,
+                "encoding": encoding,
+                "delimiter": delim_label(dialect.delimiter),
+                "header": not no_header,
+                "rows": 0,
+                "columns": 0,
+                "names": [],
+                "types": [],
+                "head": [],
+                "tail": [],
+            }
+
+        if no_header:
+            names = [f"col_{i + 1}" for i in range(len(first))]
+            first_data: list[list[str]] | None = first
+        else:
+            names = [cell.strip() or f"col_{i + 1}" for i, cell in enumerate(first)]
+            first_data = None
+
+        n_cols = len(names)
+        type_counts = [Counter() for _ in range(n_cols)]
+        samples = [[] for _ in range(n_cols)]
+        nulls = [0] * n_cols
+        scanned = 0
+        head_rows: list[list[str]] = []
+        tail_rows: deque[list[str]] = deque(maxlen=max(tail_n, 0))
+        rows = 0
+
+        def consume(row: list[str]) -> None:
+            nonlocal scanned, rows
+            if len(row) < n_cols:
+                row = row + [""] * (n_cols - len(row))
+            elif len(row) > n_cols:
+                row = row[:n_cols]
+            rows += 1
+            if len(head_rows) < head_n:
+                head_rows.append(row)
+            if tail_n:
+                tail_rows.append(row)
+            for i, cell in enumerate(row):
+                if cell.strip() and len(samples[i]) < 5 and cell not in samples[i]:
+                    samples[i].append(cell)
+            if scanned < scan_n:
+                for i, cell in enumerate(row):
+                    kind = classify_value(cell)
+                    type_counts[i][kind] += 1
+                    if kind == "empty":
+                        nulls[i] += 1
+                scanned += 1
+
+        if first_data is not None:
+            consume(first_data)
+        for row in reader:
+            consume(row)
+
+    types = []
+    for i, name in enumerate(names):
+        types.append(
+            {
+                "name": name,
+                "type": majority_type(type_counts[i]) if scanned else "unknown",
+                "empty_in_scan": nulls[i],
+                "sample": samples[i],
+            }
+        )
+
+    return {
+        "file": str(path),
+        "size_bytes": size_bytes,
+        "encoding": encoding,
+        "delimiter": delim_label(dialect.delimiter),
+        "header": not no_header,
+        "rows": rows,
+        "columns": n_cols,
+        "names": names,
+        "scan_rows": scanned,
+        "types": types,
+        "head": head_rows,
+        "tail": list(tail_rows) if tail_n else [],
+    }
+
+
+def render_text(info: dict) -> str:
+    lines = [
+        f"file: {info['file']}",
+        f"size_bytes: {info['size_bytes']}",
+        f"encoding: {info['encoding']}",
+        f"delimiter: {info['delimiter']}",
+        f"header: {str(info['header']).lower()}",
+        f"rows: {info['rows']}",
+        f"columns: {info['columns']}",
+        "names:",
+    ]
+    if not info["names"]:
+        lines.append("  (none)")
+    else:
+        for name in info["names"]:
+            lines.append(f"  {name}")
+    lines.append(f"types (from first {info.get('scan_rows', 0)} data rows):")
+    for col in info["types"]:
+        sample = ", ".join(col["sample"]) if col["sample"] else ""
+        extra = f"  sample=[{sample}]" if sample else ""
+        lines.append(
+            f"  {col['name']}: {col['type']}  empty={col['empty_in_scan']}{extra}"
+        )
+    lines.append(f"head({len(info['head'])}):")
+    lines.extend(_table(info["names"], info["head"]))
+    if info["tail"]:
+        lines.append(f"tail({len(info['tail'])}):")
+        lines.extend(_table(info["names"], info["tail"]))
+    return "\n".join(lines) + "\n"
+
+
+def _table(names: list[str], rows: list[list[str]]) -> list[str]:
+    if not names:
+        return ["  (empty)"]
+    widths = [len(n) for n in names]
+    for row in rows:
+        for i, cell in enumerate(row):
+            widths[i] = min(max(widths[i], len(cell)), 40)
+    header = "  " + " | ".join(n[: widths[i]].ljust(widths[i]) for i, n in enumerate(names))
+    rule = "  " + "-+-".join("-" * w for w in widths)
+    out = [header, rule]
+    for row in rows:
+        out.append(
+            "  "
+            + " | ".join(
+                (row[i] if i < len(row) else "")[: widths[i]].ljust(widths[i])
+                for i in range(len(names))
+            )
+        )
+    return out
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Inspect CSV/TSV schema and sample rows")
+    parser.add_argument("file", help="Path to a delimited text file")
+    parser.add_argument("--head", type=int, default=5, help="First N data rows (default 5)")
+    parser.add_argument("--tail", type=int, default=0, help="Last N data rows (default 0)")
+    parser.add_argument(
+        "--scan",
+        type=int,
+        default=200,
+        help="Rows used for type/sample inference (default 200)",
+    )
+    parser.add_argument("--no-header", action="store_true", help="Treat first row as data")
+    parser.add_argument("--json", action="store_true", help="Machine-readable output")
+    args = parser.parse_args(argv)
+
+    try:
+        info = inspect(
+            Path(args.file),
+            head_n=max(args.head, 0),
+            tail_n=max(args.tail, 0),
+            scan_n=max(args.scan, 0),
+            no_header=args.no_header,
+        )
+    except Exception:
+        traceback.print_exc()
+        return 1
+
+    if args.json:
+        json.dump(info, sys.stdout, ensure_ascii=False, indent=2)
+        sys.stdout.write("\n")
+    else:
+        sys.stdout.write(render_text(info))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

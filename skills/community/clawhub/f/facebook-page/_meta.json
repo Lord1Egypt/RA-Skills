@@ -1,6 +1,47 @@
 {
-  "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
-  "slug": "facebook-page",
-  "version": "1.0.16",
-  "publishedAt": 1772355096449
+    "ownerId":  "kn7824yf4srh3akes6axhmqf5n81q7dh",
+    "slug":  "facebook-page",
+    "version":  "1.0.16",
+    "publishedAt":  "2026-03-01T08:51:20Z",
+    "requiredEnvVars":  [
+
+                        ],
+    "requiredConfigPaths":  [
+                                "~/.config/fb-page/credentials.json"
+                            ],
+    "primaryCredential":  {
+                              "type":  "file",
+                              "path":  "~/.config/fb-page/credentials.json",
+                              "fields":  [
+                                             "FB_PAGE_TOKEN",
+                                             "FB_PAGE_ID",
+                                             "FB_APP_ID",
+                                             "FB_APP_SECRET"
+                                         ],
+                              "sensitive":  true,
+                              "required":  [
+                                               "FB_PAGE_TOKEN",
+                                               "FB_PAGE_ID"
+                                           ],
+                              "optional":  [
+                                               "FB_APP_ID",
+                                               "FB_APP_SECRET"
+                                           ],
+                              "notes":  "FB_PAGE_TOKEN and FB_PAGE_ID are required for all API calls. FB_APP_ID and FB_APP_SECRET are used only during one-time token exchange — delete them from credentials.json afterwards if not needed for re-auth. FB_PAGE_TOKEN is long-lived by design (Meta Page tokens do not expire); rotate it periodically via Graph API Explorer and if the host is compromised. Request only the permissions your use case needs (see Permissions Reference in SKILL.md). All API calls go to graph.facebook.com only — no data forwarded to third parties."
+                          },
+    "credentialSetup":  {
+                            "type":  "manual",
+                            "docsUrl":  "https://developers.facebook.com/tools/explorer/",
+                            "description":  "One-time OAuth2 token exchange via Meta Graph API Explorer. After exchange, FB_APP_SECRET may be removed from credentials.json. Restrict file permissions with icacls (Windows) or chmod 600 (macOS/Linux) immediately after saving."
+                        },
+    "requires":  {
+                     "binaries":  [
+                                      "powershell"
+                                  ],
+                     "os":  [
+                                "windows",
+                                "macos",
+                                "linux"
+                            ]
+                 }
 }

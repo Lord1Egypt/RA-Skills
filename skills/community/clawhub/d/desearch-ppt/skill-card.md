@@ -1,44 +1,60 @@
-## Description: <br>
-Deep Research to PPT Pro guides an agent through generating a sourced research report, converting it into a slide outline, producing slide images with Gemini, checking slide text with OCR, and assembling PPTX/PDF outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+v2.0 Pro版：端到端自动化研究报告与PPT生成器。结合ZeeLin深度研究、.gov域名数据验证、原创概念生成、Gemini 3.1图像生成与OCR错别字核验。输入任意主题，即可自动生成一份包含原创思想、数据来源可追溯的深度研究报告，并将其转化为一份视觉惊艳、内容严谨、无错别字的专业级PPT/PDF。
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Developers and agents use this skill to turn a user-supplied research topic into a structured research report, slide outline, image prompts, generated slide images, and assembled presentation files. It is intended for workflows that can provide the required research and image-generation credentials and review generated content before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may attempt privileged system package installation for OCR dependencies. <br>
-Mitigation: Review scripts before installation, run in a container or disposable environment, and install OCR dependencies manually on sensitive machines. <br>
-Risk: The full workflow requires ZeeLin and Gemini API credentials and may send research topics or content to those providers. <br>
-Mitigation: Use scoped, revocable keys, keep credential files out of version control, and avoid confidential topics unless provider sharing is acceptable. <br>
+## Use Case:
 
+Developers and content teams use this skill to turn a user-supplied research topic into a sourced research report, structured slide outline, image-generation prompts, and assembled presentation outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kelcey2023/desearch-ppt) <br>
-- [Publisher profile](https://clawhub.ai/user/kelcey2023) <br>
-- [PPT structure and outline guide](references/slide_structure.md) <br>
-- [ZeeLin API key registration](https://desearch.zeelin.cn/skill-activity) <br>
-- [Tesseract OCR Windows installer reference](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSON outlines/prompts, generated images, PPTX/PDF files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DESEARCH_API_KEY and GEMINI_API_KEY for the full workflow; OCR and presentation assembly depend on Python packages and Tesseract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The workflow can invoke privileged package installation paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated environment, and do not run the sudo pip or runtime sudo apt-get paths from the skill unless they have been approved.
+
+Risk: The workflow requires research and image-generation API keys.
+
+Mitigation: Provide DESEARCH_API_KEY and GEMINI_API_KEY only in trusted environments and limit the credentials to the intended workflow.
+
+Risk: Generated decks may include fixed team branding or contact text.
+
+Mitigation: Remove or configure the fixed team branding/contact text when faithful report-derived output is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/desearch-ppt)
+- [PPT structure and outline guide](references/slide_structure.md)
+- [ZeeLin DeSearch API activity page](https://desearch.zeelin.cn/skill-activity)
+- [Tesseract OCR Windows installer wiki](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown research reports, JSON slide outlines and prompts, and generated PPTX/PDF presentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DESEARCH_API_KEY and GEMINI_API_KEY for the documented research and image-generation workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

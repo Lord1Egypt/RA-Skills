@@ -1,0 +1,23 @@
+{
+  "action": "plan",
+  "requestId": "sample-day",
+  "date": "2026-10-24",
+  "availableMinutes": 180,
+  "tasks": [
+    {
+      "title": "完成报告",
+      "minutes": 100,
+      "priority": 1
+    },
+    {
+      "title": "回复邮件",
+      "minutes": 40,
+      "priority": 2
+    },
+    {
+      "title": "整理资料",
+      "minutes": 70,
+      "priority": 3
+    }
+  ]
+}

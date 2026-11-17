@@ -1,47 +1,63 @@
-## Description: <br>
-AI Agent 自进化记忆系统。核心功能 100% 本地运行 (纯 Markdown+JSON)。网络备份/节点通信为可选 opt-in，需手动配置凭证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent 自进化记忆系统。核心功能 100% 本地运行 (纯 Markdown+JSON)。网络备份/节点通信为可选 opt-in，需手动配置凭证。
 
-## Publisher: <br>
-[king6381](https://clawhub.ai/user/king6381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[king6381](https://clawhub.ai/user/king6381)
 
-## Use Case: <br>
-Developers and agent users use this skill to add persistent local memory, session recovery, strategy lookup, and self-learning workflows to an OpenClaw-style agent workspace. It is intended for local Markdown/JSON memory management, with backup, cron, and node-communication workflows treated as optional features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional automation can commit, delete, archive, or back up workspace data. <br>
-Mitigation: Keep cron, auto-commit, remote backup, and node-communication features disabled until the scripts are audited and scoped to the intended memory directory. <br>
-Risk: Local memory files and daily logs may contain sensitive information that could later be committed or backed up. <br>
-Mitigation: Avoid storing secrets in MEMORY.md, USER.md, daily logs, or any file included in commit or backup workflows. <br>
-Risk: Remote backup features require WebDAV or SSH credentials and can send workspace data to external storage. <br>
-Mitigation: Enable backup only with trusted storage targets, secure credentials, and a dry-run review of the backup behavior. <br>
+## Use Case:
 
+External developers and agent users use this skill to give an OpenClaw agent local persistent memory, write-through session logging, strategy lookup, and optional maintenance workflows for personal or workspace-level agent continuity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/king6381/mjolnir-brain) <br>
-- [Security notes](docs/security.md) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Self-learning mechanism](docs/self-learning.md) <br>
-- [Multi-user architecture](docs/multi-user.md) <br>
-- [Node protocol specification](docs/node-protocol-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory templates, strategy registry entries, setup guidance, and optional automation commands for an agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: evidence.json release.version and package.json) <br>
+Risk: The skill can persistently alter workspace memory and behavior files such as AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, and strategy registries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated workspace first and manually review proposed changes to behavior and memory files before relying on them.
+
+Risk: Optional automation can affect git history, cron entries, backups, and workspace files.
+
+Mitigation: Review scripts before enabling them, keep cron jobs opt-in, and replace whole-workspace auto commits with a narrow allowlist where possible.
+
+Risk: Optional remote backup workflows may expose sensitive local memory content or credentials if configured carelessly.
+
+Mitigation: Avoid storing secrets in the workspace, use HTTPS or encrypted backups only, validate SSH backup paths, and back up only to trusted targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/king6381/skills/mjolnir-brain)
+- [README](README.md)
+- [Installation Guide](INSTALL.md)
+- [Architecture](docs/architecture.md)
+- [Security Notes](docs/security.md)
+- [Self-Learning Mechanism](docs/self-learning.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workspace memory files and optional script-driven maintenance instructions; optional backup and cron workflows require manual opt-in.]
+
+## Skill Version(s):
+
+3.0.2 (source: evidence.release.version, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

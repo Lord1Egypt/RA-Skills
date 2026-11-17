@@ -1,50 +1,70 @@
-## Description: <br>
-Amazon OpenSearch vector search knowledge base for k-NN configuration, cluster tuning, quantization, cost optimization, instance sizing, pricing estimation, and read-only cluster analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon OpenSearch vector search expert knowledge base for vector search configuration, cluster tuning, quantization, cost optimization, instance sizing, pricing estimation, live cluster analysis, and benchmark planning.
 
-## Publisher: <br>
-[norrishuang](https://clawhub.ai/user/norrishuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[norrishuang](https://clawhub.ai/user/norrishuang)
 
-## Use Case: <br>
-Developers, search engineers, and platform teams use this skill to plan and tune Amazon OpenSearch vector search deployments, estimate capacity and cost, compare quantization options, and review existing k-NN cluster configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle live OpenSearch cluster URLs and credentials, and its examples show command-line password usage with SSL verification disabled by default. <br>
-Mitigation: Review helper scripts before use, use least-privilege read-only accounts, avoid placing production passwords directly on command lines, and enable SSL verification or provide a trusted CA path. <br>
-Risk: Reference material includes configuration examples that may use state-changing OpenSearch API methods if copied and executed. <br>
-Mitigation: Treat PUT, POST, and DELETE snippets as reviewable examples only, and apply any cluster changes manually through an approved change process. <br>
-Risk: The pricing workflow depends on AWS credentials and makes outbound requests to the AWS Pricing API. <br>
-Mitigation: Run pricing lookups only when cost estimation is needed, use least-privilege AWS credentials or an appropriate IAM role, and do not share credential values in prompts or logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, tune, size, benchmark, and cost Amazon OpenSearch vector search deployments. It can also guide read-only cluster analysis when users explicitly provide OpenSearch connection details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/norrishuang/opensearch-vector-search) <br>
-- [Vector search guide](references/vector-search.md) <br>
-- [Quantization techniques](references/quantization-techniques.md) <br>
-- [Cost optimization](references/cost-optimization.md) <br>
-- [Cluster tuning](references/cluster-tuning.md) <br>
-- [Performance benchmarks](references/performance-benchmarks.md) <br>
-- [Indexing strategies](references/indexing-strategies.md) <br>
-- [Query optimization](references/query-optimization.md) <br>
-- [Optimized instances](references/optimized-instances.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON snippets, formulas, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only JSON cluster analysis when the helper script is run with user-supplied connection details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: Live cluster analysis may expose real OpenSearch credentials and the security evidence reports unsafe password handling plus TLS certificate verification disabled by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege read-only OpenSearch account, avoid putting passwords in chat or shell history, require HTTPS with certificate verification, and run analysis only after explicit user approval.
+
+Risk: Benchmark workflows can create, load, force-merge, or delete benchmark indices and may incur cloud, storage, network, or dataset costs.
+
+Mitigation: Run benchmarks only on dedicated non-production targets after explicit confirmation, estimate costs first, and keep backups for any environment that contains important data.
+
+Risk: Generated pricing or benchmark commands can depend on current AWS pricing, installed package versions, and OpenSearch deployment semantics.
+
+Mitigation: Refresh pricing before quoting current totals, pin installer and benchmark dependency versions, inspect dry-run commands, and verify CLI flags against the installed tool version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/norrishuang/skills/opensearch-vector-search)
+- [README](README.md)
+- [Vector search guide](references/vector-search.md)
+- [Cost optimization guide](references/cost-optimization.md)
+- [Cluster tuning guide](references/cluster-tuning.md)
+- [Quantization techniques guide](references/quantization-techniques.md)
+- [1-bit scalar quantization guide](references/quantization-1bit-32x.md)
+- [Indexing strategies guide](references/indexing-strategies.md)
+- [Query optimization guide](references/query-optimization.md)
+- [Performance benchmarks guide](references/performance-benchmarks.md)
+- [Optimized instances guide](references/optimized-instances.md)
+- [Benchmark scenario matrix](opensearch-vector-benchmark/references/scenario-matrix.md)
+- [Benchmark runbook](opensearch-vector-benchmark/references/runbook.md)
+- [Benchmark result analysis](opensearch-vector-benchmark/references/result-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce read-only analysis recommendations, cost calculations, benchmark plans, and example commands for user review.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

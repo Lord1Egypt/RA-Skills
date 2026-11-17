@@ -1,38 +1,54 @@
-## Description: <br>
-Find Gmail messages with a specific label and forward them to another address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Gmail messages with a specific label and forward them to another address.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Productivity users and workspace operators use this recipe to find Gmail messages with a chosen label and forward relevant message content to a recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can forward private Gmail message contents to a prefilled recipient without built-in review or confirmation. <br>
-Mitigation: Replace the recipient address, use a narrowly scoped label, inspect the message list and contents first, and require explicit confirmation before sending email. <br>
+## Use Case:
 
+Employees or workspace operators use this recipe to locate Gmail messages under a chosen label and forward their full contents to a destination address for review or follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/recipe-forward-labeled-emails) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command and the gws-gmail skill; commands query Gmail labels, retrieve messages, and send email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release evidence) <br>
+Risk: The recipe forwards full Gmail message bodies to another address, which can expose sensitive personal, legal, financial, customer, or internal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the label query, destination address, matched message count, and exact message content before forwarding; use narrow labels and only forward where policy permits it.
+
+Risk: The documented flow does not include a built-in preview or confirmation step before sending forwarded content.
+
+Mitigation: Add a manual review checkpoint after retrieving each message and before running the send command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-forward-labeled-emails)
+- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-gmail skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

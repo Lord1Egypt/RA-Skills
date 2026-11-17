@@ -1,39 +1,58 @@
-## Description: <br>
-Solve complex problems by interleaving reasoning with actions, observing results, and using those observations to guide the next step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solve complex problems by interleaving reasoning with actions.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to structure multi-step research, debugging, data analysis, and tool-heavy workflows as repeated thought, action, and observation cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can guide agents toward broad tool use, including irreversible actions such as database writes, migrations, deployments, external messages, or issue creation. <br>
-Mitigation: Install only with appropriately scoped tools and require explicit confirmation before irreversible or production-impacting actions. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to structure exploratory, tool-heavy work as repeated reasoning, action, and observation cycles. It is intended for research, debugging, data analysis, API work, and other multi-step tasks where the next step depends on observed results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/simoncatbot/react-loop) <br>
-- [Detailed Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured thought, action, observation, and final answer sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; does not install code, request secrets, or add persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An agent could treat illustrative examples as permission to run migrations, deployments, sensitive queries, or external communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval, environment scoping, and change review before executing high-impact actions proposed during a ReAct session.
+
+Risk: Example payment code could be copied into production with incomplete server-side amount validation and error handling.
+
+Mitigation: Treat payment examples as instructional only and redesign production payment flows with server-side validation, idempotency, webhook verification, and security review.
+
+Risk: Iterative tool use can drift beyond the original task or expose sensitive operational data.
+
+Mitigation: Define allowed tools, data scopes, stop criteria, and observation-recording rules before applying the loop to sensitive systems.
+
+## Reference(s):
+
+- [ReAct Loop skill page](https://clawhub.ai/simoncatbot/skills/react-loop)
+- [Detailed examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with structured thought, action, observation, and final-answer sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed tool calls, commands, code snippets, investigation notes, and recommendations for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

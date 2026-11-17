@@ -1,43 +1,58 @@
-## Description: <br>
-Connects an OpenClaw agent to a user's Android phone through the VAGUS MCP server so it can read permitted sensor and device context and perform enabled phone actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw agent to an Android phone through the VAGUS MCP server for sensor readings, inferred device context, and governed phone actions such as haptics, notifications, text-to-speech, clipboard writes, SMS, URL opening, and calendar events.
 
-## Publisher: <br>
-[embodiedsystems-org](https://clawhub.ai/user/embodiedsystems-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[embodiedsystems-org](https://clawhub.ai/user/embodiedsystems-org)
 
-## Use Case: <br>
-External users and developers use this skill to pair an agent with an Android phone for physical-world context, user communication, and governed device actions such as haptics, notifications, text-to-speech, clipboard updates, SMS, URL opening, and calendar event creation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive phone context and perform phone actions when permissions are enabled. <br>
-Mitigation: Install only if you trust VAGUS, keep sensitive app permissions disabled unless needed, and require explicit approval before SMS, clipboard writes, URL opening, calendar changes, text-to-speech, or notifications. <br>
-Risk: Continuous subscriptions or daemon workflows can create ongoing monitoring and retained sensor logs. <br>
-Mitigation: Use always-on monitoring only when intentional, prefer short subscription windows for focused tasks, and delete or rotate sensor logs when they are no longer needed. <br>
-Risk: Stored session tokens and relay connectivity can keep the phone connection available beyond the immediate task. <br>
-Mitigation: Protect the stored VAGUS session file, remove it when access is no longer needed, and re-pair only with a fresh user-provided code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VAGUS Homepage](https://withvagus.com) <br>
-- [VAGUS Android App](https://play.google.com/store/apps/details?id=com.vagus.app) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/embodiedsystems-org/vagus-mcp) <br>
+## Use Case:
 
+External users and developers use VAGUS MCP to give OpenClaw agents phone-based physical-world awareness and user-contact actions after pairing with an Android device. The skill is useful when an agent needs context such as motion, location, attention state, battery, connectivity, screen state, notifications, or clipboard state.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands stream JSONL responses from the VAGUS connection script when reading resources, subscribing to updates, or calling phone tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Continuous phone telemetry can expose sensitive motion, location, attention, notification, and clipboard context.
+
+Mitigation: Use the skill only with a phone you control, enable only the minimum VAGUS app permissions needed, and avoid the always-running daemon pattern unless continuous monitoring is deliberate.
+
+Risk: Phone action tools can send SMS messages, write clipboard content, open URLs, or create calendar events.
+
+Mitigation: Require direct user intent before allowing SMS, clipboard writes, URL opening, or calendar creation.
+
+Risk: Installing mutable remote code can introduce unaudited dependency or source changes.
+
+Mitigation: Install from a pinned, reviewed release or commit with audited dependencies instead of cloning the latest repository state.
+
+## Reference(s):
+
+- [VAGUS Homepage](https://withvagus.com)
+- [VAGUS Android App](https://play.google.com/store/apps/details?id=com.vagus.app)
+- [ClawHub Skill Listing](https://clawhub.ai/embodiedsystems-org/skills/vagus-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown instructions with bash commands and JSONL command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands exchange JSONL with the VAGUS MCP server; phone permissions determine available resources and tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

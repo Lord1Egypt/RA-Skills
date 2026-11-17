@@ -1,43 +1,54 @@
-## Description: <br>
-建筑学长AI工作流 helps interior-design teams coordinate an AI-assisted workflow for collecting references, generating design outputs, preparing PPT proposals, estimating budgets, and packaging deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through an interior design proposal workflow using Jianzhuxuezhang AI tools, including requirements briefing, inspiration collection, AI render download and organization, presentation generation, budget estimation, and delivery packaging.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Interior designers and design studio operators use this skill to coordinate early-stage residential, villa, small commercial, and concept proposal workflows. It helps an agent organize project briefs, reference collection, AI image outputs, budget estimates, proposal decks, and final delivery packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad browser, download, and file automation could write to the wrong location or collect unintended files. <br>
-Mitigation: Require confirmation of the project folder, download sources, desktop writes, browser automation, file renaming, and packaging before execution. <br>
-Risk: A daily scheduled downloader could continue running unexpectedly. <br>
-Mitigation: Do not enable scheduled downloading unless the user explicitly requests it and knows how to stop and remove the schedule. <br>
-Risk: Generated design proposals, images, and budget estimates may be inaccurate for a real client project. <br>
-Mitigation: Review generated images, PPT content, and budget CSV files before using them for client delivery or commercial decisions. <br>
+## Use Case:
 
+Interior designers and studio operators use this skill to coordinate concept proposal work for residential, villa, small commercial, and early-stage design projects. It helps structure project briefs, collect references, prepare prompts, organize AI-generated images, produce presentation materials, estimate budgets, and package deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/137984917-cyber/architect-ai-workflow) <br>
-- [建筑学长 AI绘图创作](https://www.jianzhuxuezhang.com/ai/draw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with workflow steps, automation instructions, and generated project artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the workflow may create folders, download and rename images, generate PPT and CSV files, and package deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill asks an agent to manage project folders, downloads, generated images, budgets, presentation files, browser use, and file packaging with broad automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, explicitly restrict where files may be saved, whether browser session use is allowed, and which downloads or packaging actions require confirmation.
+
+Risk: The security summary flags a daily scheduled download task without enough user control details.
+
+Mitigation: Disable scheduled downloads by default and require explicit user approval for any recurring task, source selection, and destination folder.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/137984917-cyber/skills/architect-ai-workflow)
+- [Jianzhuxuezhang AI Drawing Tool](https://www.jianzhuxuezhang.com/ai/draw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with workflow steps, prompts, file organization instructions, and deliverable descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in project folders, downloaded images, presentation files, budget CSVs, and packaged delivery files when the user authorizes those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

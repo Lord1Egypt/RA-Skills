@@ -1,46 +1,56 @@
-## Description: <br>
-Clean company financials from SEC EDGAR via Edgrapi.com, including normalized fundamentals, computed ratios, company profiles, and recent SEC filings for US-listed tickers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides sourced U.S. federal contract, award, grant, House trading, and SEC company data through Edgrapi.
 
-## Publisher: <br>
-[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to retrieve SEC EDGAR-derived fundamentals, ratios, company profile data, or recent filing metadata for a specific US-listed company through Edgrapi. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Edgrapi API key and sends requests to a third-party service. <br>
-Mitigation: Configure EDGRAPI_KEY only in environments where the Edgrapi provider is trusted and the key can be protected. <br>
-Risk: Each tool call may spend Edgrapi credits. <br>
-Mitigation: Use the skill only for explicit company financial-data requests and confirm the ticker when intent is ambiguous. <br>
-Risk: The skill provides SEC-derived fundamentals and filings, not live market prices or investment advice. <br>
-Mitigation: Use another trusted source for live market data and review outputs before relying on them for financial decisions. <br>
+## Use Case:
 
+Researchers, procurement teams, and developers use this skill to find U.S. federal opportunities, awards, grants, House trades, and SEC company financials in sourced records.
 
-## Reference(s): <br>
-- [Server-resolved source import](https://github.com/paperandbeyond23-gif/edgrapi-skills/tree/main/skills/edgrapi-full) <br>
-- [Edgrapi homepage](https://edgrapi.com) <br>
-- [Edgrapi docs](https://edgrapi.com/docs) <br>
-- [Edgrapi OpenAPI spec](https://edgrapi.com/openapi.json) <br>
-- [Edgrapi pricing](https://edgrapi.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global; data coverage focuses on U.S. federal sources and SEC filings.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with text guidance for when to call each tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EDGRAPI_KEY; each Edgrapi request may consume credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The API key and lookup terms are sent to Edgrapi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key only when comfortable using Edgrapi and avoid sensitive lookup terms.
+
+Risk: Requests consume credits at rates that vary by endpoint.
+
+Mitigation: Check pricing and credit balance, and limit queries to needed records.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/paperandbeyond23-gif/skills/edgrapi-full)
+- [Edgrapi homepage](https://edgrapi.com)
+- [Edgrapi API documentation](https://edgrapi.com/docs)
+- [Edgrapi pricing](https://edgrapi.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON records and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries require an Edgrapi API key; results may include source document links.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

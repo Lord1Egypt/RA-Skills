@@ -1,43 +1,59 @@
-## Description: <br>
-Amazon Fba Finder helps agents analyze Amazon FBA product opportunities, market competition, supplier options, and FBA profit estimates for seller product research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon FBA Finder helps Amazon sellers evaluate product opportunities with product discovery, competition analysis, supplier recommendations, and FBA profit calculations.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-External Amazon sellers and ecommerce operators use this skill to evaluate candidate FBA products, compare competition, estimate costs and margins, and receive supplier-related guidance. The artifact shows a prototype-style implementation, so outputs should support due diligence rather than replace independent business validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises live Amazon product discovery and supplier recommendations, but evidence.security says the provided code appears prototype-like and the live data integrations are mostly unfinished. <br>
-Mitigation: Treat results as exploratory analysis only until the publisher provides working, verifiable data integrations and pinned dependencies. <br>
-Risk: The skill asks users to configure Amazon and Alibaba API keys, and evidence.security warns against placing API keys in prompt-visible files. <br>
-Mitigation: Store API keys in environment variables or a secrets manager and avoid putting credentials in prompt-visible project files. <br>
-Risk: The skill may influence paid product sourcing and inventory decisions. <br>
-Mitigation: Validate all product, supplier, fee, and sales estimates against authoritative marketplace and supplier data before making business commitments. <br>
+## Use Case:
 
+Amazon marketplace sellers and ecommerce operators use this skill to screen product ideas, estimate competition and profitability, and prepare supplier due-diligence questions before committing inventory spend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/amazon-fba-finder-lvjunjie) <br>
-- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte) <br>
+### Deployment Geography for Use:
 
+Global, with artifact-declared marketplace support for US, UK, DE, JP, CA, and AU.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python dictionaries and human-readable analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include product opportunity scores, competition summaries, supplier recommendations, FBA profit calculations, and overall recommendation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Marketplace API keys and product research queries may be shared with configured services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those disclosures are acceptable, scope credentials to the minimum needed access, and rotate keys if exposure is suspected.
+
+Risk: Profit, sales, supplier, and market outputs are estimates that can mislead inventory or purchasing decisions if treated as guarantees.
+
+Mitigation: Validate inputs and outputs manually against current marketplace, supplier, fee, and policy data before spending or launching products.
+
+Risk: Dependencies are specified as minimum versions rather than a reviewed lockfile.
+
+Mitigation: Use pinned dependency versions or a reviewed lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/amazon-fba-finder-lvjunjie)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python-oriented analysis objects or reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include estimated sales, supplier, fee, margin, ROI, and recommendation fields; financial results should be manually validated.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-A comprehensive skill about Hong Kong - covering culture, cuisine, landmarks, transportation, and travel tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill about Hong Kong — covering culture, cuisine, landmarks, transportation, and travel tips.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Travelers and general users use this skill to get a concise introduction to Hong Kong's culture, landmarks, food, public transportation, and practical travel tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details such as fares, opening hours, visa rules, and current conditions may become outdated. <br>
-Mitigation: Verify time-sensitive travel information with official sources before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to provide concise Hong Kong travel guidance, including cultural context, landmark suggestions, cuisine highlights, transportation notes, travel tips, and basic Cantonese phrases.
 
-## Reference(s): <br>
-- [ClawHub hk skill page](https://clawhub.ai/wscats/hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel guide content and concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational guide; no code execution, credential access, or local data access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Destination facts such as prices, transit details, population, and opening schedules may become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive travel details against current official or local sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/hk)
+- [Publisher profile](https://clawhub.ai/user/wscats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text travel guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational content only; time-sensitive travel details should be verified separately.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

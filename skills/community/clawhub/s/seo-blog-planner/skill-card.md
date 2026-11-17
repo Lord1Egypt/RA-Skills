@@ -1,46 +1,57 @@
-## Description: <br>
-Plan ecommerce blog content strategy with keyword-targeted article outlines that drive organic traffic to product pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan ecommerce blog content strategy with keyword-targeted article outlines that drive organic traffic to product pages.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce marketers, content strategists, and store operators use this skill to plan keyword-driven blog programs, article briefs, topic clusters, editorial calendars, and on-page SEO checks that connect organic content to product pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO plans may use business, analytics, or product data that is not necessary for the task. <br>
-Mitigation: Share only the business and analytics data needed for SEO planning. <br>
-Risk: Suggested publishing or marketing actions may be inaccurate, outdated, or unsuitable for a specific store. <br>
-Mitigation: Review proposed content, SEO recommendations, and marketing actions before carrying them out. <br>
-Risk: The release metadata includes unrelated crypto and purchase capability tags. <br>
-Mitigation: Do not grant purchase, wallet, or account-control permissions because the skill does not need them. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and content strategists use this skill to plan keyword-driven blog programs that connect informational content to product and category pages. It helps produce content audits, keyword clusters, article briefs, editorial calendars, on-page SEO standards, and performance tracking plans.
 
-## Reference(s): <br>
-- [SEO Blog Planner on ClawHub](https://clawhub.ai/leooooooow/seo-blog-planner) <br>
-- [Content Brief Template](content-brief-template.md) <br>
-- [Keyword Research Framework](keyword-research-framework.md) <br>
-- [SEO Blog Planner Output Template](output-template.md) <br>
-- [SEO Blog Planner Quality Checklist](seo-blog-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plans, briefs, checklists, tables, and editorial calendar guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; no executable code or tool calls are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: Generated SEO recommendations may be incorrect or unsuitable for a live ecommerce site, especially when they propose updating, consolidating, removing, or redirecting existing posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current analytics, search results, business priorities, and site operations before publishing content or changing live URLs.
+
+Risk: Keyword volume and difficulty estimates may be directional because the artifact describes heuristic research guidance rather than live search API verification.
+
+Mitigation: Validate priority keywords with current SEO tools or search-console data before committing editorial resources.
+
+## Reference(s):
+
+- [SEO Blog Planner skill page](https://clawhub.ai/leooooooow/skills/seo-blog-planner)
+- [Output Template](artifact/output-template.md)
+- [Content Brief Template](artifact/content-brief-template.md)
+- [Keyword Research Framework](artifact/keyword-research-framework.md)
+- [SEO Blog Planner Quality Checklist](artifact/seo-blog-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown plans with tables, outlines, briefs, calendars, checklists, and SEO recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should be reviewed before publishing content or changing live site structure.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

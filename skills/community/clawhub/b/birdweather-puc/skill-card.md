@@ -1,43 +1,55 @@
-## Description: <br>
-Access BirdWeather PUC station data for species detections, sensor readings, historical trends, and new-species alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access BirdWeather PUC station data for species detections, sensor readings, and historical trends using a BirdWeather station token.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query a BirdWeather PUC station for recent detections, species summaries, environmental sensor readings, new-species alerts, and optional local trend logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad bird-related prompts may activate the skill when the user did not intend to query BirdWeather station data. <br>
-Mitigation: Prefer explicit prompts that mention BirdWeather, the station token, or the specific station action. <br>
-Risk: Station tokens are public read-only identifiers but can still expose station observations if shared unintentionally. <br>
-Mitigation: Pass tokens per invocation or through the environment and avoid including them in shared summaries or logs. <br>
-Risk: Optional trend logging writes BirdWeather sensor and species records to a local SQLite database path. <br>
-Mitigation: Use an intended local database path and review stored records before sharing the database. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve BirdWeather station detections, summarize recent backyard bird activity, inspect PUC environmental sensor readings, and maintain optional local trend history.
 
-## Reference(s): <br>
-- [BirdWeather API Reference](references/api.md) <br>
-- [BirdWeather station API](https://app.birdweather.com/api/v1/stations/{token}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make read-only BirdWeather API calls and optionally write SQLite history to a user-specified database path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A BirdWeather station token identifies a public read-only station and allows station detections and sensor readings to be queried.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the intended station token, avoid sharing command transcripts that include the token, and rotate or replace the station token if it is exposed beyond the intended audience.
+
+Risk: Optional SQLite logging can retain local sensor and species history over time.
+
+Mitigation: Write the database only to a user-chosen path, enable recurring logging only when local history retention is desired, and delete or protect the database according to local retention needs.
+
+## Reference(s):
+
+- [BirdWeather API Reference](references/api.md)
+- [BirdWeather station API](https://app.birdweather.com/api/v1/stations/{token})
+- [ClawHub release page](https://clawhub.ai/pfrederiksen/skills/birdweather-puc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-provided BirdWeather station token and can optionally write local SQLite history to a user-specified database path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

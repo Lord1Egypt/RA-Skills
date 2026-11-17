@@ -1,48 +1,64 @@
-## Description: <br>
-Use when bulk-managing Terraform modules at scale: upgrading providers across AWS, GCP, Azure, or DigitalOcean repositories, standardizing GitHub Actions workflows, automating semantic releases, running security scans, or performing end-to-end maintenance cycles across 10-200+ module repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when bulk-managing Terraform modules at scale across AWS, GCP, Azure, and DigitalOcean repositories, including provider upgrades, GitHub Actions standardization, semantic releases, security scans, and end-to-end maintenance cycles.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, DevOps engineers, and platform teams use this skill to coordinate Terraform module maintenance across many repositories, including provider upgrades, workflow standardization, validation, changelog generation, and release creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change many repositories and publish GitHub releases. <br>
-Mitigation: Run it first against a small test repository, require explicit repository lists, inspect diffs before committing, and avoid direct pushes or release creation until reviewed. <br>
-Risk: Automation may use GitHub credentials with write permissions. <br>
-Mitigation: Use narrowly scoped GitHub tokens, prefer repository-specific access, and enable review gates such as pull requests before merging. <br>
-Risk: Configuration files are loaded by shell scripts and can affect executed commands. <br>
-Mitigation: Treat configuration files as executable shell code, review them before use, and keep secrets out of configuration files. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to coordinate bulk Terraform module maintenance across cloud-provider repositories, including version updates, validation, workflow changes, and release preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/terraform-ai-skills) <br>
-- [Project homepage](https://github.com/anmolnagpal/terraform-ai-skills) <br>
-- [Provider Configs](references/provider-configs.md) <br>
-- [Safety & Rollback](references/safety.md) <br>
-- [Real-World Examples](references/examples.md) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Security Policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, configuration references, and generated repository maintenance steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run Terraform, Git, GitHub CLI, and validation tools against selected repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Bulk repository automation can modify Terraform files, create commits, push tags, and publish GitHub releases across matching repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run first in a disposable checkout or sandbox, verify the exact repository list, and manually review diffs, branches, tags, releases, and workflow changes before organization-wide execution.
+
+Risk: Documented safety controls such as DRY_RUN and CREATE_PR may be missing or unenforced by the shipped scripts.
+
+Mitigation: Do not rely on those controls until reviewed and fixed; use passive, reviewed configuration files and external review gates.
+
+Risk: GitHub tokens with broad repository or workflow permissions increase the impact of mistakes during release or workflow automation.
+
+Mitigation: Use fine-grained, repository-scoped tokens with the minimum required permissions and keep audit logging enabled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/skills/terraform-ai-skills)
+- [Project Homepage](https://github.com/anmolnagpal/terraform-ai-skills)
+- [Safety and Rollback Reference](references/safety.md)
+- [Provider Configs Reference](references/provider-configs.md)
+- [Real-World Examples](references/examples.md)
+- [Quick Reference](references/quick-reference.md)
+- [Usage Guide](docs/USAGE.md)
+- [Environment Variables Reference](docs/ENV-VARS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce repository maintenance plans, validation steps, changelog text, commit guidance, and commands for Terraform and GitHub workflows.]
+
+## Skill Version(s):
+
+0.0.2 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

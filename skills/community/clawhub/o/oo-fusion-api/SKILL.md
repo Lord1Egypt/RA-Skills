@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "OOMOL Fusion API"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.10"
   services: ["fusion-api"]
   icon: "https://static.oomol.com/logo/logo.png"
 ---
@@ -61,24 +61,25 @@ Each action is listed below with a one-line description; actions that change sta
 - `fal_nano_banana_result` — Get fal-nano-banana task result
 - `fal_nano_banana_state` — Get fal-nano-banana task state
 - `fal_nano_banana_submit` — Edit images with Nano Banana [write]
-- `fal_remove_background_result` — Image with background removed [destructive]
-- `fal_remove_background_state` — Get fal-remove-background task state [destructive]
-- `fal_remove_background_submit` — Remove image backgrounds with the Fal.ai BRIA model [destructive]
-- `file_upload_abort_multipart_upload` — Abort multipart upload [write]
+- `fal_qwen_image_layered_result` — Get the Qwen Image Layered task result
+- `fal_qwen_image_layered_state` — Get the Qwen Image Layered task state
+- `fal_qwen_image_layered_submit` — Split an image into multiple layers with Qwen Image Layered [write]
+- `fal_remove_background_result` — Image with background removed
+- `fal_remove_background_state` — Get fal-remove-background task state
+- `fal_remove_background_submit` — Remove image backgrounds with the Fal.ai BRIA model [write]
+- `file_upload_abort_multipart_upload` — Abort multipart upload [destructive]
 - `file_upload_complete_multipart_upload` — Complete multipart upload [write]
 - `file_upload_create_multipart_upload` — Initialize multipart upload [write]
-- `file_upload_generate_presigned_url` — Generate a presigned URL for file upload [write]
-- `file_upload_generate_presigned_urls` — Generate a presigned URL for multipart upload parts [write]
+- `file_upload_generate_presigned_url` — Generate a presigned URL for file upload
+- `file_upload_generate_presigned_urls` — Generate a presigned URL for multipart upload parts
 - `jina_reader_read` — Read and extract URL content
 - `jina_reader_search` — Search web content
-- `oomol_tts_ng_generate` — Generate speech audio
-- `oomol_tts_result` — Get oomol-tts task result
-- `oomol_tts_state` — Get oomol-tts task state
-- `oomol_tts_submit` — Convert text to audio [write]
+- `oomol_ocr_result` — Get image text recognition and Chinese typo correction results
+- `oomol_ocr_submit` — Recognize image text and suggest corrections for Chinese typos [write]
 - `openai_image_async_result` — Get asynchronous OpenAI image generation result
-- `openai_image_async_submit` — Submit asynchronous OpenAI image generation requests, including gpt-image-2 image creation. [write]
-- `openai_image_edit_async_result` — Get asynchronous OpenAI image edit result [write]
-- `openai_image_edit_async_submit` — Submit asynchronous OpenAI image edit requests, including gpt-image-2 image editing. [write]
+- `openai_image_async_submit` — Submit asynchronous OpenAI image generation requests, including gpt-image-2 and gpt-image-2.5 image creation. [write]
+- `openai_image_edit_async_result` — Get asynchronous OpenAI image edit result
+- `openai_image_edit_async_submit` — Submit asynchronous OpenAI image edit requests, including gpt-image-2 and gpt-image-2.5 image editing. [write]
 - `pdf_transform_epub_result` — Get pdf-transform-epub task result
 - `pdf_transform_epub_state` — Get pdf-transform-epub task state
 - `pdf_transform_epub_submit` — Convert a PDF to EPUB format [write]
@@ -89,7 +90,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `qwen_asr_filetrans_state` — Get Qwen ASR file transcription task state
 - `qwen_asr_filetrans_submit` — Submit a long-audio speech recognition task with Qwen ASR file transcription [write]
 - `qwen_doc_turbo_analyze` — Analyze documents with Tongyi Qianwen
-- `qwen_image_edit_plus_edit` — Edit images with Tongyi Wanxiang [write]
+- `qwen_image_edit_plus_edit` — Edit images with Tongyi Wanxiang
 - `qwen_image_generate` — Generate images with Tongyi Qianwen
 - `qwen_mt_image_result` — Get qwen-mt-image task result
 - `qwen_mt_image_state` — Get qwen-mt-image task state
@@ -104,7 +105,6 @@ Each action is listed below with a one-line description; actions that change sta
 - `seedance_video_result` — Query a Seedance video generation task result
 - `seedance_video_state` — Get a Seedance video generation task state
 - `seedance_video_submit` — Generate videos with Doubao Seedance [write]
-- `text_to_epub_illustrate_generate` — Generate illustrations for EPUB content
 - `tinify_png_shrink_compress` — Compress PNG images with the Tinify API
 - `wanx_i2v_video_result` — Query first-frame-to-video task result
 - `wanx_i2v_video_state` — Get wanx-i2v-video task state
@@ -148,7 +148,9 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 

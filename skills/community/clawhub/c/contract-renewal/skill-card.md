@@ -1,43 +1,57 @@
-## Description: <br>
-合同续租预警与方案生成技能，基于真实Excel台账（美兰中心C+服务.xlsx）提前识别到期合同、分析企业画像并生成续租方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contract Renewal helps property operations teams identify upcoming tenant contract expirations from an Excel workbook, analyze customer profiles, generate renewal plans, and send WeCom renewal reminders.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Operations and leasing teams use this skill to identify contracts nearing expiration, analyze tenant profile signals, generate renewal plans, and send renewal reminders through WeCom. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a named tenant workbook that may contain business or customer information. <br>
-Mitigation: Install and run it only in an environment authorized to process that workbook. <br>
-Risk: WeCom webhook notifications may disclose renewal details to an unintended group if configured incorrectly. <br>
-Mitigation: Configure the webhook for the intended internal group only and test notifications before enabling routine use. <br>
-Risk: Scheduled checks and workbook writes can affect operational renewal workflows. <br>
-Mitigation: Confirm the schedule, approval process, and workbook-write behavior before enabling daily automation. <br>
+## Use Case:
 
+Property operations and leasing teams use this skill to monitor expiring tenant contracts, classify renewal urgency, create renewal plans, and prepare renewal follow-up messages. It is intended for workflows that rely on an approved contract workbook and reviewed notification recipients.
 
-## Reference(s): <br>
-- [Contract Renewal on ClawHub](https://clawhub.ai/perrykono-debug/contract-renewal) <br>
-- [Publisher profile: perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text renewal alerts, JSON-like renewal data, and Python automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update the configured tenant workbook and may send WeCom webhook notifications when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Tenant and business records may be included in renewal messages sent through an externally configurable WeCom webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved production workbook, restrict the webhook to the intended corporate endpoint, and gate outbound notifications until recipients and message fields are approved.
+
+Risk: Workbook writes can mutate business records such as renewal plans and status updates.
+
+Mitigation: Back up the workbook, keep an audit trail for changes, and validate inputs before allowing write operations.
+
+Risk: Renewal plans and urgency classifications may be based on incomplete or incorrect workbook data.
+
+Mitigation: Require human review of generated plans, warnings, and success-rate estimates before they drive tenant outreach or commercial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/perrykono-debug/skills/contract-renewal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Text summaries, Markdown reminders, JSON reports, and workbook updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write renewal plans to the configured Excel workbook and produce JSON renewal reports.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-MantisBT Manager helps agents manage Mantis Bug Tracker issues, projects, users, filters, configuration, and related resources through the official Mantis REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MantisBT Manager helps agents manage Mantis Bug Tracker issues, projects, users, filters, configurations, and related resources through the official REST API with context-aware instance and token selection.
 
-## Publisher: <br>
-[willykinfoussia](https://clawhub.ai/user/willykinfoussia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[willykinfoussia](https://clawhub.ai/user/willykinfoussia)
 
-## Use Case: <br>
-Developers, maintainers, and operations teams use this skill to administer MantisBT instances, manage tickets and projects, and switch between client, staging, and production instances through configured API credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact MantisBT administration actions such as deleting resources, resetting passwords, creating tokens, impersonating users, changing configuration, and operating across instances. <br>
-Mitigation: Use a least-privilege API token and require explicit human confirmation before deletes, password resets, token creation, impersonation, configuration changes, or cross-instance actions. <br>
-Risk: The skill handles MantisBT API tokens and supports temporary or session-scoped token overrides. <br>
-Mitigation: Keep tokens in environment or runtime context, avoid broad administrator tokens where possible, and do not ask the agent to reveal token values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/willykinfoussia/mantis-manager) <br>
-- [MantisBT Homepage](https://www.mantisbt.org/) <br>
-- [MantisBT Documentation](https://mantisbt.org/documentation.php) <br>
-- [MantisBT GitHub Repository](https://github.com/mantisbt/mantisbt) <br>
+## Use Case:
 
+Developers, administrators, and support teams use this skill to inspect and change MantisBT issues, projects, users, tokens, filters, configuration, and related records across one or more Mantis instances.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with REST API request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MANTIS_BASE_URL and MANTIS_API_TOKEN; may use temporary or session-scoped base URL and token context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API tokens can be sent to user-selected Mantis base URLs when temporary or session overrides are used.
+
+Mitigation: Install only for trusted Mantis endpoints, keep tokens instance-specific, and require the matching token whenever changing the base URL.
+
+Risk: The skill documents powerful data-changing and administrative actions, including deletes, password resets, token management, configuration changes, and impersonation.
+
+Mitigation: Use least-privilege tokens and require explicit confirmation before destructive, privileged, or admin-level actions.
+
+Risk: Token-derived values or connection context could be exposed while showing current configuration.
+
+Mitigation: Mask tokens in user-facing output and avoid logging or displaying full token values.
+
+## Reference(s):
+
+- [MantisBT Homepage](https://www.mantisbt.org/)
+- [MantisBT Documentation](https://mantisbt.org/documentation.php)
+- [MantisBT GitHub Repository](https://github.com/mantisbt/mantisbt)
+- [ClawHub Skill Page](https://clawhub.ai/willykinfoussia/skills/mantis-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST endpoint examples, JSON request bodies, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MANTIS_BASE_URL and MANTIS_API_TOKEN, with documented temporary and session-level overrides for multi-instance use.]
+
+## Skill Version(s):
+
+0.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

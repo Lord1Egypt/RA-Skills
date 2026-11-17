@@ -1,48 +1,64 @@
-## Description: <br>
-Generates media and entertainment industry news digests from RSS feeds, Twitter/X accounts, Reddit, and web search, with deduplication, quality scoring, Discord delivery, email output, and optional PDF attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates media and entertainment industry news digests from RSS, Twitter/X, Reddit, and web search, then formats results for Discord or email with optional PDF attachments.
 
-## Publisher: <br>
-[dinstein](https://clawhub.ai/user/dinstein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dinstein](https://clawhub.ai/user/dinstein)
 
-## Use Case: <br>
-External users and teams use this skill to generate daily or weekly media and entertainment news digests from configured public sources and deliver them to Discord or email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send generated digests to configured Discord channels or email recipients. <br>
-Mitigation: Verify the destination channel or email address before scheduling recurring delivery. <br>
-Risk: The skill may use optional API keys for Twitter/X and web search backends. <br>
-Mitigation: Provide only the API keys needed for the selected sources and keep them in environment variables or local configuration. <br>
-Risk: The skill writes and cleans archive files for previous reports. <br>
-Mitigation: Use a dedicated archive directory so retention and cleanup do not affect unrelated files. <br>
-Risk: Some configured Twitter/X sources may be unverified or need correction. <br>
-Mitigation: Review, disable, or correct those sources before relying on scheduled digests. <br>
+## Use Case:
 
+External users and developers use this skill to collect, deduplicate, score, summarize, archive, and deliver scheduled media and entertainment news digests.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/dinstein/media-news-digest) <br>
-- [Digest prompt template](references/digest-prompt.md) <br>
-- [Discord output template](references/templates/discord.md) <br>
-- [Email output template](references/templates/email.md) <br>
-- [Configuration schema](config/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest content, JSON pipeline artifacts, and shell commands for collection, summarization, PDF generation, and delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce Discord-ready or email-ready digest text, optional HTML/PDF email artifacts, and archive files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Network fetching and email delivery are under-scoped enough to expose users to unsafe URL and recipient handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix default sources and delivery settings before installation; use trusted workspace configs and validate email recipients before enabling scheduled delivery.
+
+Risk: Full-text enrichment performs additional outbound network access.
+
+Mitigation: Avoid --enrich unless outbound network access is sandboxed from private or internal addresses.
+
+Risk: Configured Discord or email delivery can externally share generated content.
+
+Mitigation: Treat Discord and email outputs as external sharing and configure only intended channels or recipients.
+
+Risk: Default Twitter handles may need correction according to the security guidance.
+
+Mitigation: Correct or disable bad Twitter handles before enabling Twitter collection.
+
+## Reference(s):
+
+- [Digest Prompt Template](references/digest-prompt.md)
+- [Discord Output Template](references/templates/discord.md)
+- [Email Output Template](references/templates/email.md)
+- [ClawHub Skill Page](https://clawhub.ai/dinstein/skills/media-news-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files]
+
+**Output Format:** [Markdown digest with JSON pipeline artifacts and optional HTML, PDF, Discord, or email delivery artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include archived digest files and external Discord or email delivery when configured.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

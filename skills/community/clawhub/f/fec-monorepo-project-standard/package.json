@@ -1,7 +1,7 @@
 {
-  "name": "@frontend-craft/fec-monorepo-project-standard",
-  "version": "2.4.0",
-  "description": "Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, 多包.",
+  "name": "@bovinphang/fec-monorepo-project-standard",
+  "version": "2.9.0",
+  "description": "Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, multi-package.",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -29,6 +29,7 @@
     "references",
     "scripts",
     "data",
+    "assets",
     "metadata.json",
     "README.md",
     "LICENSE"

@@ -6,6 +6,12 @@
 
 也就是说，Hui-Yi 是一个把**冷记忆归档、历史唤回、重复强化**合在一起的系统，而不是普通的定时复习器。
 
+当前源码版本为 **1.2.13**，包含文件安全、OpenClaw 兼容性与自动召回改进，详见 [发行说明](references/release-1.2.13.md)。发布版本可在 [ClawHub](https://clawhub.ai/fuetsui/skills/hui-yi) 与 [GitHub Releases](https://github.com/FueTsui/hui-yi/releases) 核验；发布成功不等于外部安全审计通过。
+
+本次升级接通原生自动记忆与回答前召回，用户不必提供主题列表或手动触发命令。高频个人信息由主记忆承接；Hui-Yi 仍作为最后的低频归档层。中文匹配、相关度优先、真实计数、失效记录过滤及重建去重证据同步修复。
+
+自动接入的范围、后台运行时间、模型调用、运行时守卫和升级步骤见 [自动识别与召回](references/native-memory.md)。旧 signal hook 保留给自定义宿主，当前原生接入会停用它；不能以旧 hook 已启用来证明普通聊天已经自动检测。
+
 ---
 
 ## 第一层：定位与边界
@@ -14,7 +20,7 @@
 
 适合 Hui-Yi 的内容：
 - 30 天后仍然有价值的经验、决策、背景知识、排障结果
-- “我们以前怎么做过这件事” 这类需要历史连续性的内容
+- 当前对话和主记忆仍不能满足、明确需要低频归档知识的历史连续性请求
 - 在会话里反复出现、值得强化的低频知识
 
 不适合 Hui-Yi 的内容：
@@ -41,6 +47,10 @@
 - 对冷记忆进行 repetition-first 的强化、唤回、轻维护和归档质量控制
 
 #### 选择规则
+- 回忆顺序：当前对话 → 近期 daily notes / 系统主记忆 → 相关工具记录 / learnings → 仍需低频历史资料时才查 cold memory
+- “之前 / 以前 / 回忆一下 / 你记得吗”只是历史上下文线索，不能单凭措辞启用 skill、写回信号或归档
+- 加载 skill 不代表授权安装 hook、启用后台采集、注册定时任务或执行 cooling；这些动作需要当前请求或已有明确维护授权
+- 回复语言跟随用户；本文中文例子和 schedule 提示词仅为示例，可按使用者语言配置
 - **高频且稳定** → 进 OpenClaw 主记忆层，不进 Hui-Yi
 - **低频但高价值** → 优先考虑 Hui-Yi
 - **当天新鲜上下文** → 留在 daily memory，不急着冷却
@@ -111,7 +121,6 @@ hui-yi/
 ├── scripts/
 ├── core/
 ├── templates/
-├── templates/
 ├── references/
 ├── SKILL.md
 └── manifest.yaml
@@ -130,7 +139,9 @@ hui-yi/
 
 从 `<workspace>` 根目录运行时，把：
 - `scripts/...` 替换为 `skills/hui-yi/scripts/...`
-- `hook-template/...` 视为 skill 内模板目录，安装目标仍为 `workspace/hooks/hui-yi-signal-hook/...`
+- hook 模板在 `skills/hui-yi/templates/hook/`，安装目标为 `workspace/hooks/hui-yi-signal-hook/`
+
+上述默认目录由 skill 的安装位置推导。显式 `--memory-root` 等路径参数由本地调用者选择；相对路径按运行时工作目录解析。自动写入受信任工作区前，应检查选中的 archive、heartbeat、schedule、hook 与 config 路径。
 
 ---
 
@@ -231,11 +242,16 @@ python scripts/review.py resurface --query "当前话题" --session-key "feishu:
 | `python scripts/cool.py done <reviewed> <archived> <merged>` | 记录一次 cooling 完成情况 |
 | `python scripts/scheduler.py --schedule-id <id>` | 运行指定 schedule 的筛选逻辑 |
 | `python scripts/install_hook.py --dry-run` | 预览 Hui-Yi hook 模板安装结果 |
+| `python scripts/scrub_metadata.py --dry-run` | 预览 legacy session 标识清洗；省略 dry-run 后应用 |
+| `python core/openclaw_runtime_probe.py --stdin --channel local --scope-type user --scope-id demo --dry-run` | 从 stdin 读取模拟输入，在进程内预览 adapter |
 
 说明：
 - `review.py` 现在会同时考虑 **重复出现** 和 **时间压力**
 - `scheduler.py --preview` 适合调试 repetition / relevance / due_pressure 的排序结果
 - `search.py` 支持把 `memory_root` 作为第二个位置参数传入
+- `cool.py scan` 会更新 heartbeat 扫描状态；`cool.py status` 才是只读状态查询
+- `feedback` 会在本地 retrieval log 中保存所提供的 query/action；不要传入密钥、口令或不应持久化的敏感内容
+- Python detector/pipeline 默认省略原始 query/session 和 overlap terms，但检索结果可含 note 标题、路径；只有显式 `--include-sensitive` 才包含原始 query/context 与匹配词。adapter/probe 不支持该敏感诊断开关
 
 ---
 
@@ -294,9 +310,11 @@ python scripts/cool.py status
 - 哪些 recall 经常有用，哪些经常无用
 - 高价值 note 的 `Importance`、`Session signals`、`Next review` 是否合理
 
+`decay.py` 的日期维护不自动降低 `Memory state`。它会依据 `Last verified` 的陈旧程度调整事实可靠度：超过 120 天的 `high` 可变为 `medium`，超过 180 天的 `medium` 可变为 `low`；这和记忆温度、实际复习失败是不同概念。先用 `--dry-run` 查看变化，再在已授权维护范围内应用。`--dry-run --rebuild` 仍不会重建索引；应用后用 `--rebuild` 或单独运行 `rebuild.py`。
+
 ### 4. 做定时轻提醒
 
-先准备 `memory/cold/schedule.json`，再运行：
+只有在用户已授权定时复习时才配置外部调度。可复制 `templates/schedule.example.json` 为 `memory/cold/schedule.json`，审阅语言、时间和筛选条件后显式将顶层 `enabled` 设为 `true`，再手动检查：
 
 ```bash
 python scripts/scheduler.py --schedule-id daily-evening-review
@@ -306,10 +324,12 @@ python scripts/scheduler.py --schedule-id daily-evening-review --preview --query
 边界要明确：
 - `scheduler.py` 负责选候选，不负责真正发消息
 - 是否投递、何时投递、通过什么消息链路投递，应由外部 scheduler / runtime / agent 层决定
+- 示例配置默认关闭；skill 不注册 cron。selector 使用进程本地时区，并只识别 cron 字段中的固定小时/分钟，不实现完整 cron 语义；准确调度和时区转换由外部系统负责
+- `--preview` 会绕过部分筛选门槛，仅用于检查排序，不是允许投递的结果
 
-### 5. 安装并启用 Hui-Yi hook
+### 5. 可选旧版 Hui-Yi hook（自定义宿主）
 
-如果你希望在初始化 skill 时把 Hui-Yi 的 signal hook 一起装上并启用，可直接运行：
+原生自动检测应优先按 [自动识别与召回](references/native-memory.md) 接入。只有自定义宿主需要旧协议时，才显式安装启用此 hook：
 
 ```bash
 python scripts/install_hook.py --enable
@@ -331,14 +351,19 @@ python scripts/install_hook.py --enable --config-path C:\path\to\openclaw.json
   - `hooks.internal.entries.hui-yi-signal-hook.enabled = true`
 - 如果文件已存在、配置已启用，安装器会直接报告状态，不会无意义重写；如需覆盖旧占位文件，请使用 `--force --enable`
 
+启用后的显式文本入口示例：`/hui-yi 数据库迁移复盘`，也接受 `/hui_yi 数据库迁移复盘`。必须位于宿主映射的`context.body` 开头；命令不区分大小写，用 ASCII 空格或 tab 分隔非空查询。前导空白、引用/嵌入文字、带其他前缀的命令、空查询以及仅出现在 `bodyForAgent` 的命令均不触发。命令前缀会先去除再检索。
+
+OpenClaw 2026.9.5 的原生 `message:preprocessed` mapper 不提供 skill-selection metadata；因此不要期待普通聊天被自动选中。普通文本命令需要未经包装地出现在映射正文开头；部分渠道会包装正文，原生 slash-command 快速路径也可能先消费命令。遇到这些情况使用显式 CLI/adapter。当前验证包含隔离的 mapper 形状事件，不代表已通过各真实渠道端到端测试；自定义可信宿主的 selection 集成仍受支持。
+
 安全边界：
-- hook 是显式 opt-in；建议先运行 `--dry-run` 并审阅 `templates/hook/` 后再启用
-- hook 不访问网络，不读取凭据目录，只在本地 `memory/cold/` 内读取 note 并写回 `tags.json` / note 的 `Session signals`
-- note path 会被解析并强制限制在 `memory/cold/` 内；绝对路径和 `..` 父级跳转会被拒绝
-- 为避免持久化原始聊天标识，session key 仅以短 `sha256:` fingerprint 形式写入 metadata，用于去重和重复激活判断
-- v1.2.9 起，signal 写回会顺手清洗旧版 `signal_history` 中的 raw session key；老用户也可以运行 `python scripts/scrub_metadata.py` 一次性清洗 legacy metadata
-- v1.2.10 起，OpenClaw signal hook 不再通过全局 `sys.argv` 串接 Python pipeline；TS hook 的 `signal_history` 迁移即使命中去重也会落盘，并收紧 heuristic fallback、日志截断和 session 连续计数语义；`scripts/cool.py --memory-root` 同时兼容 `memory/` 与 `memory/cold/` 两种路径。
-- v1.2.11 起，hook 默认日志做了隐私最小化：不再记录任何消息正文预览和原始 user/chat 标识，`triggered`/`completed` 日志里 scope 身份只以 `sessionHash` 哈希出现，`alive`/`skipped` 调试日志默认关闭（需 `HUI_YI_HOOK_DEBUG=1` 显式开启）；heuristic fallback 里过宽的 `remember` 触发收紧为回忆性短语；`install_hook.py --enable` 会先打印将修改的配置项披露，且在 `openclaw.json` 不存在时拒绝凭空新建；`manifest.yaml` 补全了 hooks 目录与 `openclaw.json` 的可选路径声明和用户警告。本版本无功能变更。
+- hook 是显式 opt-in；先用 `--dry-run` 审阅安装目标与 `templates/hook/`。启用后处理可信宿主的 Hui-Yi selection 或上述严格显式文本命令；没有依据普通消息措辞的 heuristic fallback。宿主不能把用户提供的字段直接映射成可信 skill-selection 或 workspace 元数据
+- hook 不访问网络、不提取凭据。`install_hook.py --enable` 会读取并重写整个已有 `openclaw.json`，其中可能包含其他插件的敏感配置；不能把这一操作描述为“完全不接触凭据”。它只主动修改披露的两个 hook-enable 键，保留其他值，并拒绝新建缺失 config
+- 文件访问拒绝符号链接、Windows junction/reparse point、硬链接和特殊文件，并复查目标身份。Python 在 Windows 上先把现有文件的 DACL 复制到空暂存文件，再写数据并原子替换；TS 对 POSIX 文件及 Windows 新文件使用暂存原子替换，对 Windows 已有文件则通过核验后的文件描述符原位更新以保留 DACL，失败时尽力回滚。后一分支不具备崩溃原子性。上述检查不是抵御同账户恶意进程并发替换目录的内核沙箱，工作区及父目录必须由可信 OS 用户控制
+- session key 仅以截断 `sha256:` 指纹写入 metadata，用于去重。它不是加密或用户授权：同一 workspace 共用 archive，不提供多租户隔离；不同信任域应由宿主路由到独立工作区
+- 普通日志与 `HUI_YI_HOOK_DEBUG=1` 均不保存消息正文、原始身份/事件 metadata、note 标题/路径或 overlap terms。debug 只增加生命周期和计数；日志仍保留 session hash 并在 256 KB 附近轮转
+- Python detector/pipeline 的显式 `--include-sensitive` 可输出原始上下文和匹配词，但不会输出 raw session key。adapter/probe 始终只输出计数、状态、安全错误和 session hash。使用 `--stdin` 传入消息可避免消息正文出现在命令行参数中；scope 参数仍应使用适当的本地身份引用
+- signal 写回会清洗旧版 history 中的 raw session key；也可先运行 `python scripts/scrub_metadata.py --dry-run`，再在授权范围内应用清洗
+- `allowed-tools` 和 manifest 的权限/路径声明是操作披露，不是运行时 ACL。CLI 的显式路径覆盖属于调用者权限
 
 ---
 
@@ -398,18 +423,12 @@ python scripts/scheduler.py --schedule-id <id> --preview --query "当前话题"
 运行：
 
 ```bash
-python scripts/smoke_test.py
+python -X utf8 -B -m unittest discover -s tests
+node --experimental-strip-types --test tests/hook_security.test.mjs
+python scripts/smoke_test.py --memory-root <已准备的测试归档>
 ```
 
-它会在 skill 目录下创建隔离的临时工作区，串行验证：
-- create
-- validate
-- search
-- review/resurface
-- feedback
-- decay
-- cool
-- scheduler
+Python/Node 回归测试使用测试夹具检查文件边界、触发条件、隐私及相关主流程。`smoke_test.py` 是对指定归档的只读 strict validate、search、scheduler preview 检查，并不创建隔离归档或覆盖所有写入流程；它只启动固定 Python 子命令并使用环境变量白名单。测试通过不等同于已验证真实 OpenClaw 事件链路。
 
 ---
 
@@ -427,16 +446,17 @@ python scripts/smoke_test.py
 ### 补充脚本与模块
 - `python scripts/install_hook.py --dry-run`：预览 Hui-Yi hook 文件安装
 - `python scripts/install_hook.py`：将 Hui-Yi hook 模板显式安装到 `hooks/hui-yi-signal-hook/`
-- `python scripts/scrub_metadata.py --dry-run`：预览并清洗旧版 `tags.json` 中 raw session key metadata
+- `python scripts/scrub_metadata.py --dry-run`：仅预览旧版 `tags.json` 中 raw session key metadata 清洗；去掉 `--dry-run` 才写入
 - `python core/signal_detect.py --query "..." --json`：把当前 query / 上下文转成高置信 activation candidates
 - `python core/signal_pipeline.py --query "..." --session-key "..." --apply --json`：统一执行 detect + threshold + weak activation writeback
-- `python core/openclaw_signal_hook.py --query "..." --channel feishu --scope-type user --scope-id "..." --dry-run`：模拟 OpenClaw 上层在 skill-hit 场景中的最小 hook 调用
-- `python core/openclaw_runtime_probe.py --query "..." --channel feishu --scope-type user --scope-id "..." --dry-run`：workspace 侧上层接入原型 runner，不直接修改 OpenClaw runtime
+- `python core/openclaw_signal_hook.py --stdin --channel local --scope-type user --scope-id demo --dry-run`：从 stdin 读取模拟消息，预览 Python adapter；也可显式使用 `--query`
+- `python core/openclaw_runtime_probe.py --stdin --channel local --scope-type user --scope-id demo --dry-run`：在进程内调用 adapter；不启动命令行子进程、不返回原始命令/输出，不证明真实 host hook 已启用
 
 ### Signal / Hook contract
 
 当前建议的理解方式：
-- hook 只负责监听事件和调用 adapter
+- `templates/hook/handler.ts` 是独立的 TypeScript inline 实现，不调用 Python adapter；两套文件边界和输出合约分别测试
+- Python 脚本通过 `core/safe_fs.py` 共用文件边界；TS hook 使用 `templates/hook/safe-fs.ts`。发布/安装 hook 时必须与 `handler.ts` 一起包含 `safe-fs.ts`，不能只复制 handler
 - `core/openclaw_signal_hook.py` 只负责 OpenClaw-facing 参数归一化
 - `core/signal_*` 模块负责 detection / apply / pipeline
-- session key 形状和 trigger-source 默认值由 `core/signal_contract.py` 统一维护
+- Python session-key 形状和调用阈值由 `core/signal_contract.py` 维护；兼容 CLI 的 trigger-source 参数不是依据正文自动触发的授权。TS hook 支持可信 host 的 Hui-Yi selection 和映射正文开头的严格 `/hui-yi` / `/hui_yi` 文本命令；原生宿主兼容范围见上文

@@ -1,42 +1,57 @@
-## Description: <br>
-Helps agents analyze academic papers into structured, objective literature review material with methods, findings, limitations, comparisons, and APA-style references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes academic papers into structured literature review materials by extracting findings, methods, limitations, comparisons, research gaps, and APA-style citation details.
 
-## Publisher: <br>
-[yeon-dyjs](https://clawhub.ai/user/yeon-dyjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeon-dyjs](https://clawhub.ai/user/yeon-dyjs)
 
-## Use Case: <br>
-Students, researchers, and professionals use this skill to turn one or more academic papers into literature review-ready summaries, comparative analysis, gap notes, and citation-ready references. It is suited for research proposals, theses, review articles, and focused literature review sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic summaries can become misleading if the provided papers are incomplete or the model fills gaps from assumption. <br>
-Mitigation: Require complete paper text or PDFs, keep claims tied to the supplied source material, and ask for missing citation, method, or result details instead of guessing. <br>
-Risk: Generated literature review notes may contain citation or APA formatting errors. <br>
-Mitigation: Have the user verify authors, years, journal details, DOI or URL fields, and citation style before submitting academic work. <br>
-Risk: Direct reuse of source wording can create plagiarism risk. <br>
-Mitigation: Paraphrase summaries, avoid copying full sentences from papers, and retain clear reference attribution for each study. <br>
+## Use Case:
 
+Students, researchers, and professionals use this skill to synthesize one or more academic papers into literature review-ready summaries, comparative analysis, gap notes, and APA-style references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yeon-dyjs/academic-literature-review-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured paper summaries, comparative analysis, literature review notes, and references based on user-provided academic sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated summaries or APA references may contain citation errors or unsupported interpretations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify citation details, methods, findings, and limitations against the source papers before using the output in academic writing.
+
+Risk: Confidential, unpublished, or sensitive papers could be exposed to the agent environment.
+
+Mitigation: Use only documents the user is permitted to share in the active environment, or redact sensitive content before analysis.
+
+Risk: Literature review notes could inadvertently copy source wording too closely.
+
+Mitigation: Paraphrase source material, keep direct quotations limited and attributed, and review final text for plagiarism risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yeon-dyjs/skills/academic-literature-review-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown summaries, comparative analysis, literature review notes, and APA-style references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided paper content, literature review scope, comparison criteria, and citation style.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

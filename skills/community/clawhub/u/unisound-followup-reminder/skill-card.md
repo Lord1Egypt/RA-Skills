@@ -1,42 +1,62 @@
-## Description: <br>
-Provides patient-side chronic disease follow-up and appointment reminders from last-visit dates, follow-up intervals, or specific follow-up dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates chronic disease follow-up visit reminders, including follow-up date calculation, overdue status, reminder state, and suggested next actions.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Care teams or patient-management agents use this skill to calculate follow-up dates, detect overdue chronic-disease appointments, and generate patient-friendly reminder text. It is limited to reminders and does not replace clinician scheduling or medical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient follow-up details and notes may be sent to a remote medical-model API. <br>
-Mitigation: Use only after confirming the provider's privacy, retention, logging, and healthcare compliance terms; prefer minimal structured input for real patient data. <br>
-Risk: The app key is a sensitive credential required for model access. <br>
-Mitigation: Protect the app key, pass it only through approved secret-handling paths, and avoid storing it in command history, files, or logs. <br>
-Risk: Office, PDF, and image inputs can contain excess or incorrectly extracted patient information. <br>
-Mitigation: Prefer JSON input when possible and review prepared extracted data before sending it to the remote API. <br>
+## Use Case:
 
+External healthcare application developers and care teams can use this skill to turn visit dates, follow-up intervals, and disease context into patient-facing follow-up reminders. It supports chronic disease management workflows that need overdue detection, reminder status, and preparation guidance without replacing clinician scheduling or medical judgment.
 
-## Reference(s): <br>
-- [Simple app features: appointments and overdue patients](https://docs.simple.org/readme/simple-app-features) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [UTF-8 JSON with structured follow-up data and Markdown reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided app key for the remote medical-model API; optional document and image parsing may require local dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process sensitive patient or medical data and send patient context to a remote medical model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before use in real patient or regulated healthcare settings; use only non-sensitive test data unless provider terms, retention, consent, and data-minimization controls are approved.
+
+Risk: Free-form notes or extracted document text can contain patient identifiers.
+
+Mitigation: Prefer JSON-only inputs with minimized fields, avoid identifiers in notes, and redact unnecessary personal or clinical details before execution.
+
+Risk: Saved prepared inputs can persist sensitive normalized patient data.
+
+Mitigation: Avoid --save-prepared for real records and remove any generated prepared files when testing is complete.
+
+Risk: The skill can fall back to external shared preprocessing code outside the bundled skill.
+
+Mitigation: Remove or verify the external _shared preprocessing fallback before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-followup-reminder)
+- [Simple app features](https://docs.simple.org/readme/simple-app-features)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [UTF-8 JSON containing structured reminder data and Markdown reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes calculated follow-up date, overdue status, days overdue, reminder status, and generated follow-up preparation guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

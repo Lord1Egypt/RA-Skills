@@ -1,39 +1,53 @@
-## Description: <br>
-Acts as the user's idea capture and brainstorm partner in the Ideas topic, catching ideas, developing them, and connecting dots between past ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures, organizes, and develops a user's ideas, including tags, statuses, and links to related past ideas.
 
-## Publisher: <br>
-[GekaCross](https://clawhub.ai/user/GekaCross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gekacross](https://clawhub.ai/user/gekacross)
 
-## Use Case: <br>
-OpenClaw users use this skill in a Personal chat Ideas topic to capture, organize, develop, and revisit ideas with dates, tags, statuses, and links to related past ideas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may save private thoughts, plans, or other idea-like statements into a persistent local notes file. <br>
-Mitigation: Treat it as a private notebook; avoid storing secrets, credentials, or confidential plans unless intentional, and ask the agent to confirm or delete saved ideas when needed. <br>
-Risk: Broad automatic idea capture can store more context than the user intended. <br>
-Mitigation: Use explicit save, review, and deletion requests for sensitive conversations, and periodically inspect knowledge/personal/ideas.md. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GekaCross/personal-ideas) <br>
+## Use Case:
 
+Individuals using OpenClaw use this skill to capture raw ideas, tag and status them, develop them through brainstorming, and revisit relationships between current and past ideas.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown notes and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update knowledge/personal/ideas.md with idea entries, dates, tags, and status values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad triggers can cause personal ideas, business plans, client work, or inventions to be saved automatically.
+
+Mitigation: Use the skill only in contexts where persistent idea capture is acceptable, and inspect knowledge/personal/ideas.md regularly.
+
+Risk: Saved idea history may retain sensitive or outdated notes longer than intended.
+
+Mitigation: Periodically clear or edit knowledge/personal/ideas.md to remove sensitive, stale, or unwanted entries.
+
+## Reference(s):
+
+- [Personal Ideas ClawHub Release](https://clawhub.ai/gekacross/skills/personal-ideas)
+- [GekaCross ClawHub Profile](https://clawhub.ai/user/gekacross)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown idea records and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update knowledge/personal/ideas.md with dated entries, tags, and statuses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

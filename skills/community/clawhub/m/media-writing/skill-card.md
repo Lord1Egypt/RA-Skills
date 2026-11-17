@@ -1,37 +1,53 @@
-## Description: <br>
-Media Writing helps an agent draft engaging, purpose-driven media content across formats, including titles, trending-topic pieces, emotional storytelling, practical value-driven articles, and cited markdown responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media Writing helps agents draft engaging, platform-aware media content, including attention-grabbing titles, emotional storytelling, value-driven copy, markdown tables, Mermaid graphs, and source-cited writing in the user's language.
 
-## Publisher: <br>
-[alvinecarn](https://clawhub.ai/user/alvinecarn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvinecarn](https://clawhub.ai/user/alvinecarn)
 
-## Use Case: <br>
-Content creators, marketers, communications teams, and other writers use this skill to draft and adapt media writing for a specified context or platform. It is intended for markdown-formatted content that may include tables, Mermaid graphs, and clickable citations when source-specific information is used. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated citations or clickable source links may be inaccurate, unsupported, or point to untrustworthy destinations. <br>
-Mitigation: Verify that references are real, accurate, and trustworthy before publishing or clicking generated links. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Media Writing on ClawHub](https://clawhub.ai/alvinecarn/media-writing) <br>
+## Use Case:
 
+External users and content teams use this skill to generate media writing tailored to a requested context, platform, audience, and language. It is suited for copywriting, titles, storytelling, practical content, structured markdown tables, Mermaid diagrams, and citation-aware responses when sources are provided or verified.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown, optionally including tables, Mermaid graphs, and clickable numbered footnote citations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's language by default unless another language is specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be selected for high-stakes legal, medical, financial, or current-events writing where unsupported claims could mislead users.
+
+Mitigation: Require normal verification and source checking for high-stakes or factual current-events content before use or publication.
+
+Risk: Broad copywriting guidance can produce persuasive or platform-optimized content that may overstate facts if inputs are weak.
+
+Mitigation: Review generated media copy for factual support, audience appropriateness, and citation quality before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvinecarn/skills/media-writing)
+- [Publisher profile](https://clawhub.ai/user/alvinecarn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown, optionally including tables, Mermaid code blocks, and numbered clickable source references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's language by default when not otherwise specified.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

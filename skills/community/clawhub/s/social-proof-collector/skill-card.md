@@ -1,45 +1,53 @@
-## Description: <br>
-Automatically gather, filter, and format customer reviews from multiple platforms with alerts and response drafts for new feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically gathers, filters, formats, monitors, and drafts responses for customer reviews and testimonials across review platforms.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-Marketing, reputation, and customer success teams use this skill to collect public reviews for a business they are authorized to represent, select useful testimonials, prepare display snippets, monitor new feedback, and draft review responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may collect or republish reviews for a business the user is not authorized to represent. <br>
-Mitigation: Use it only for businesses where the operator has authority to collect, monitor, and reuse review content. <br>
-Risk: Republished reviews, widgets, social posts, or email snippets may conflict with platform terms, quoting rights, attribution expectations, or privacy obligations. <br>
-Mitigation: Confirm each platform's terms and attribution requirements before publishing generated review content. <br>
-Risk: Generated HTML widgets can introduce unsafe or untrusted markup if review text is embedded directly. <br>
-Mitigation: Sanitize generated HTML and review text before embedding it in public pages or email templates. <br>
-Risk: Recurring monitoring and alerts can create noisy or overbroad collection behavior. <br>
-Mitigation: Set explicit platform scope, alert thresholds, and check frequency before enabling recurring alerts. <br>
+## Use Case:
 
+Marketing, reputation, and operations teams use this skill to collect public customer reviews, surface strong testimonials, generate reusable promotional snippets or widgets, monitor new feedback, and draft concise review responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/merjua14/social-proof-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/merjua14) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with optional HTML snippets, JSON configuration, social post copy, email snippets, and response drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include review metadata, ranking criteria, platform attribution, alert thresholds, and draft response text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and config.json) <br>
+Risk: Collected review text, reviewer names, or ratings may be subject to platform terms, attribution requirements, or republication limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only review sources the user is authorized to access and republish, prefer official APIs or user-owned exports, keep attribution intact, and review each platform's terms before publishing widgets, email snippets, or social posts.
+
+Risk: Review collection and alerting can expose unnecessary personal data from reviewers.
+
+Mitigation: Avoid storing unnecessary reviewer personal data and limit generated outputs to the minimum reviewer details needed for the intended business workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/merjua14/skills/social-proof-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTML snippets, social post copy, email snippets, JSON configuration examples, alert guidance, and review response drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content may include reviewer names, ratings, review text, platform attribution, dates, sentiment or scoring notes, and concise response drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: config.json and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

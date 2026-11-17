@@ -1,43 +1,58 @@
-## Description: <br>
-Install, run, and manage the SOS emergency recovery tool for OpenClaw instances when a bot needs diagnosis, recovery, installation, autofix, rollback, network checks, or Telegram testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, run, and manage SOS emergency recovery tooling for diagnosing and repairing unresponsive OpenClaw instances.
 
-## Publisher: <br>
-[robertfarkash29-source](https://clawhub.ai/user/robertfarkash29-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robertfarkash29-source](https://clawhub.ai/user/robertfarkash29-source)
 
-## Use Case: <br>
-Developers and operators use this skill to install or run SOS recovery commands for OpenClaw hosts when bot gateway health, network connectivity, rollback, or Telegram delivery needs diagnosis or repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic recovery can restart services, kill OpenClaw processes, change DNS resolver settings, roll back versions, or reinstall gateway components. <br>
-Mitigation: Run it only on OpenClaw hosts you administer, prefer interactive review for risky actions, and keep a current backup before using autofix or nuclear recovery. <br>
-Risk: Telegram testing uses the configured bot token to make real Telegram API calls. <br>
-Mitigation: Use Telegram testing only when sending a real test message through the configured bot is acceptable. <br>
-Risk: Installer flows can write to system paths and remote install examples may encourage fetching scripts over the network. <br>
-Mitigation: Prefer the bundled script or a pinned, reviewed release and avoid unattended `curl | bash` installs. <br>
+## Use Case:
 
+Developers and operators use this skill to install and operate shell-based recovery tooling for OpenClaw bots that stop responding, including diagnostics, service restart, rollback, network checks, and Telegram delivery tests.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/robertfarkash29-source/claw-sos) <br>
-- [Publisher profile](https://clawhub.ai/user/robertfarkash29-source) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privileged OpenClaw host recovery commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.2 (source: server release metadata) <br>
+Risk: The skill can grant broad system-changing authority through automatic repair flows that restart services, kill processes, change DNS behavior, and clean temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run read-only diagnostics first, and avoid sos auto as root on production or managed hosts unless service interruption and cleanup behavior are acceptable.
+
+Risk: The artifact documents a remote pipe-to-bash install path, which increases supply-chain and review risk.
+
+Mitigation: Prefer the bundled scripts/sos.sh from the reviewed artifact instead of installing from the remote GitHub command.
+
+Risk: Recovery actions can disrupt active OpenClaw sessions or alter the running service state.
+
+Mitigation: Back up configuration before repair actions and reserve force-kill or nuclear recovery paths for cases where read-only checks and graceful restart do not restore service.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/robertfarkash29-source/skills/claw-sos)
+- [ClawHub publisher profile](https://clawhub.ai/user/robertfarkash29-source)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to install or run bundled recovery scripts and to inspect generated diagnostic logs.]
+
+## Skill Version(s):
+
+6.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

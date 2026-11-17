@@ -1,42 +1,55 @@
-## Description: <br>
-Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and operators use this skill to find Clawdbot documentation, retrieve relevant pages, compare recent documentation changes, and produce configuration guidance for providers, gateway settings, automation, platforms, tools, and installation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may run local helper scripts or apply generated configuration without checking whether the referenced Clawdbot documentation is current for their environment. <br>
-Mitigation: Refresh cached documentation, cite the source URL, and review configuration snippets against the live documentation before deployment. <br>
-Risk: The skill includes shell-command workflows for searching, fetching, indexing, and tracking documentation. <br>
-Mitigation: Review the scripts and requested permissions before installation, and run helper commands only in an intended local workspace. <br>
+## Use Case:
 
+Developers and operators use this skill to navigate Clawdbot documentation, locate relevant setup or troubleshooting pages, and prepare configuration snippets for supported providers, gateway settings, automation, tools, platforms, and install workflows.
 
-## Reference(s): <br>
-- [Clawdbot Documentation](https://docs.clawd.bot/) <br>
-- [Clawdbot Discord Provider Documentation](https://docs.clawd.bot/providers/discord) <br>
-- [Common Config Snippets](snippets/common-configs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, links, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cited documentation URLs and JSON configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The gateway configuration snippet binds to 0.0.0.0, which can expose the service beyond localhost if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change the bind address to 127.0.0.1 unless remote access is intentional and protected by authentication, TLS, and network restrictions.
+
+Risk: The included scripts are lightweight documentation helpers with placeholder behavior, so users may overestimate search, cache, or version-tracking completeness.
+
+Mitigation: Treat script output as navigation assistance and verify important setup or troubleshooting details against the Clawdbot documentation.
+
+## Reference(s):
+
+- [Clawddocs Local on ClawHub](https://clawhub.ai/netanel-abergel/skills/clawddocs-local)
+- [Clawdbot documentation](https://docs.clawd.bot/)
+- [Discord provider documentation](https://docs.clawd.bot/providers/discord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should cite relevant Clawdbot documentation URLs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-# SEOwlsClaw — Brain Architecture (v0.6) Universal Brain System 🧠
+# SEOwlsClaw — Brain Architecture (v0.9.2) Universal Brain System 🧠
 
 ## Purpose
 
@@ -53,14 +53,6 @@ secondary_kw = extract_flag("--secondary-kw") # optional
 tone_override = extract_flag("--tone")        # optional override
 target        = extract_flag("--target")      # e.g. "ai-overview", "snippet:list", "paa"
 depth         = extract_flag("--depth")       # "light" | "standard" | "deep" (default: standard)
-persona_id   = extract_persona()      # e.g. "ecommerce-manager"
-page_type    = extract_page_type()    # e.g. "Productnew"
-content_prompt = extract_prompt()     # e.g. "Brand new eco-friendly water bottle"
-primary_kw   = extract_flag("--primary-kw")   # e.g. "sustainable water bottle"
-secondary_kw = extract_flag("--secondary-kw") # optional
-tone_override = extract_flag("--tone")        # optional override
-target        = extract_flag("--target")      # e.g. "ai-overview", "snippet:list", "paa"
-depth         = extract_flag("--depth")       # "light" | "standard" | "deep" (default: standard)
 brand_id      = extract_flag("--brand")       # NEW: e.g. "example-name" — loads BRANDS/<id>.md
 brief_id      = extract_flag("--from-brief")  # NEW: e.g. "leica-m6-guide-de" — loads SEO_BRIEFS/<id>.md
 plan_id    = extract_flag("--plan")   # NEW: "vintage-analog-cameras-de.qw-01" or just "vintage-analog-cameras-de"
@@ -68,9 +60,9 @@ plan_mode  = extract_flag("--mode")   # NEW: "cluster" (default) | "site"
 plan_priority = extract_flag("--priority")  # NEW: "balanced" (default) | "quickwins" | "strategic"
 ```
 
-**`/seoplan` command — special parse rules:**
+**`seoplan` command — special parse rules:**
 
-`/seoplan` is a strategic command. It does NOT run Steps 4–5 (no template, no HTML).
+`seoplan` is a strategic command. It does NOT run Steps 4–5 (no template, no HTML).
 Instead it runs a research + analysis pipeline and outputs a structured plan.
 
 Parse extracts:
@@ -127,7 +119,7 @@ IF `--from-brief <brief-id>` is present:
   available for variable substitution in Step 7.
 
 **Step 2d:** Load Brand Profile (NEW)
-**Runs only if `/brand <id>` was issued in the session OR `--brand <id>` flag is present.**
+**Runs only if `brand <id>` was issued in the session OR `--brand <id>` flag is present.**
 
 ```
 Step 2d-1: Read BRANDS/_index.md → find the row matching brand_id
@@ -139,7 +131,7 @@ Step 2d-3: Merge brand_vars{} into the variable dictionary:
             - Tone sliders stored as brand_tone{} for Step 3
 Step 2d-4: Store brand.compliance{} object for Step 6.6
 
-If no /brand command and no --brand flag → skip Step 2d. No brand rules apply.
+If no `brand` command and no --brand flag → skip Step 2d. No brand rules apply.
 ```
 
 **Tone Merge Logic (brand sliders + persona):**
@@ -169,14 +161,14 @@ brand_vars = {
 }
 ```
 
-**Default fallback:** If no `/persona` command was given → load `PERSONAS/blogger.md`  
+**Default fallback:** If no `persona` command was given → load `PERSONAS/blogger.md`  
 **Tone override:** If `--tone` flag is present → override persona's default tone, keep everything else
 
 **Step 2e:** SEO Plan Pipeline (NEW)
-**Runs only if `/seoplan` command is active.**
+**Runs only if `seoplan` command is active.**
 
-`/seoplan` runs a dedicated pipeline instead of the standard Steps 3–7.
-Steps 3–7 are for page content generation only — they do not run for `/seoplan`.
+`seoplan` runs a dedicated pipeline instead of the standard Steps 3–7.
+Steps 3–7 are for page content generation only — they do not run for `seoplan`.
 
 ```
 seoplan-Step A    Niche + Market Research
@@ -189,8 +181,25 @@ seoplan-Step G    Output + Save
 ```
 
 **Full rules for seoplan-Steps A–G:** See `SEO_PLANS/plan_workflow.md`
-Load this file immediately when `/seoplan` is triggered. Do not load `SEO_PLANS/plan_workflow.md` for any other command.
+Load this file immediately when `seoplan` is triggered. Do not load `SEO_PLANS/plan_workflow.md` for any other command.
 
+---
+
+### Step 2f — Load SEO Writing Rules
+
+**Runs for every `write`/`writehtml` call. Skipped for `seoplan`/`seobrief` — same skip
+condition as Step 2d/2e, no page content is generated for those commands.**
+
+```
+Step 2f-1: Load SEO_RULES/universal.md → merge into seo_rules{}
+Step 2f-2: Match page_type (from Step 0 intent detection or Step 1 explicit type) →
+           load SEO_RULES/<page_type>.md → merge into seo_rules{}
+Step 2f-3: seo_rules{} feeds Step 3 (Generate Variables) directly — headings, meta description
+           length, keyword placement, and required elements are written correctly the first
+           time instead of only being caught by the Step 6 audit afterward.
+```
+
+**Full rules:** See `SEO_RULES/_index.md` and the per-type file it points to.
 
 ---
 
@@ -321,16 +330,16 @@ def inject_variables(template_text: str, variables: dict) -> str:
 
 ### Step 6 — SEO Checks
 
-Run the appropriate checks from `SEO_CHECKS/`:
+Run the appropriate checks from `SEO_CHECKS/`, auditing generated content against the same
+`SEO_RULES/` values loaded in Step 2f:
 
 | Check File | When to Run |
 |------------|-------------|
-| `SEO_CHECKS/do-and-don-lists.md` | Every page type, every time |
-| `SEO_CHECKS/page-type-specific-checks.md` | Match section to current page type |
+| `SEO_CHECKS/seo-checks-reference.md` | Every page type, every time — audits against `SEO_RULES/universal.md` |
+| `SEO_CHECKS/page-type-specific-checks.md` | Match section to current page type — audits against `SEO_RULES/<type>.md` |
 | `SEO_CHECKS/seo-output-quality-checklist.md` | Every page type, every time |
 | `SEO_CHECKS/schema-markup.md` | Every page type — validate schema is correct |
 | `SEO_CHECKS/search_intent.md` | Confirm output format matches detected intent |
-| `SEO_CHECKS/seo-checks-reference.md` | Every page type, every time, workflow for SEO validation |
 
 ---
 
@@ -434,7 +443,7 @@ Fixing [n] hard fail(s) before output.
 
 ### Step 7 — Output
 
-Return the complete output as clean text or HTML in chat, depending if the user prompt was /write or /writehtml ready for deployment.
+Return the complete output as clean text or HTML in chat, depending if the user prompt was `write` or `writehtml` ready for deployment.
 
 **Output format:**
 ```html
@@ -459,7 +468,7 @@ Return the complete output as clean text or HTML in chat, depending if the user 
 
 **After output:** Offer the user:
 - `"give me raw HTML only"` → strip markdown, return pure HTML code block
-- `"run /checks"` → re-run SEO audit on the generated output
+- `"run checks"` → re-run SEO audit on the generated output
 
 ---
 
@@ -590,31 +599,32 @@ Complete variable lists per page type. All variables below are replaced in Step 
 
 ```
 Step 0    Search Intent Detection     → auto-select page format (search_intent.md)
-           SKIP for: /seoplan, /seobrief (strategy commands — no page format needed)
+           SKIP for: seoplan, seobrief (strategy commands — no page format needed)
 Step 1    Parse Command               → extract persona, type, prompt, flags
            --from-brief               → load SEO_BRIEFS/<id>.md if flag present
            --plan                     → load SEO_PLANS/<plan-id>.md node if flag present
 Step 2a   Load Persona Index          → PERSONAS/_index.md → find persona_id
 Step 2b   Load Persona File           → PERSONAS/<id>.md → style, tone, E-E-A-T
-           /seoplan + /seobrief       → always load researcher.md internally
+           seoplan + seobrief         → always load researcher.md internally
 Step 2c   Load Locale                 → LOCALE/base.md + LOCALE/<lang>.md
 Step 2d   Load Brand Profile (NEW)    → if /brand active: BRANDS/<id>.md → brand_vars{} + compliance{}
 Step 2e   SEO Plan Pipeline (NEW)     → if /seoplan active: load SEO_PLANS/plan_workflow.md → run Steps A–G → STOP
-Step 3    Generate Variables          → prompt + persona + brand + brief → full variable dict
+Step 2f   Load SEO Writing Rules (NEW)→ SEO_RULES/universal.md + SEO_RULES/<page_type>.md → seo_rules{}
+Step 3    Generate Variables          → prompt + persona + brand + brief + seo_rules → full variable dict
 Step 3.5  Zone Assignment Pass        → apply Zone A/B rules to content sections
 Step 4    Select Template             → match page type → load TEMPLATES/<type>.md
-           /write skips Steps 4–5 (plain text output)
+           write skips Steps 4–5 (plain text output)
 Step 5    Variable Substitution       → replace ALL {PLACEHOLDER} in template
-Step 6    SEO Checks                  → run all applicable check files in SEO_CHECKS/
+Step 6    SEO Checks                  → run all applicable check files in SEO_CHECKS/, audited against SEO_RULES/
 Step 6.5  Persona Compliance Check    → headings · depth · E-E-A-T · zones · no leakage
 Step 6.6  Brand Compliance Check (NEW)→ if brand active: banned phrases · urgency · disclosures
            HARD FAIL blocks output until resolved.
-Step 7    Output                      → /write: plain text | /writehtml: pure HTML
-           /seobrief: structured brief saved to SEO_BRIEFS/
+Step 7    Output                      → write: plain text | writehtml: pure HTML
+           seobrief: structured brief saved to SEO_BRIEFS/
 ```
 
 ---
 
-*Last updated: 05-04-2026 (v0.6)*
-*Adds: Step 2d (lean brand load), Step 2e (lean seoplan pointer), Step 6.6 (compliance)*
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: Step 2f (load SEO_RULES/ before generation), Step 6 audits against SEO_RULES/ instead of duplicating its values*
 *Maintainer: Chris — SEOwlsClaw brain logic, all page types*

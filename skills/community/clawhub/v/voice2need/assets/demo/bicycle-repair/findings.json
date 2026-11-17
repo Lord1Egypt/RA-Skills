@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Changes to a repair job can leave its status out of date",
+      "claim": "Two workshop speakers describe different coordination failures: rewriting changed job cards and abandoning updates to a shared sheet. A small shop finds a whiteboard sufficient.",
+      "status": "accepted",
+      "review_status": "reviewed",
+      "disposition": "include",
+      "evidence": [
+        {
+          "evidence_id": "reddit:t3_bike",
+          "quote": "Two bike repairs missed pickup yesterday because we rewrote the job cards after the parts list changed.",
+          "role": "support",
+          "interpretation": "reported_outcome"
+        },
+        {
+          "evidence_id": "discord:bike-selfbuild",
+          "quote": "I built a shared repair sheet, but I stopped updating it during busy shifts. An old status caused one unnecessary call.",
+          "role": "support",
+          "interpretation": "reported_behavior"
+        }
+      ],
+      "counterevidence": [
+        {
+          "evidence_id": "x:bike-enough",
+          "quote": "My small repair shop uses a whiteboard. It is enough for four bikes at a time, and I do not want another subscription.",
+          "role": "counter",
+          "interpretation": "praise"
+        }
+      ],
+      "context_review": "complete",
+      "counterevidence_search": "All five invented records were inspected, including the sufficient-alternative case.",
+      "question_ids": [
+        "Q03",
+        "Q04",
+        "Q08",
+        "Q10",
+        "Q12"
+      ],
+      "uncertainty": "Synthetic illustration only; no inference about real users or market prevalence.",
+      "segment": "Repair shops with changing parts or busy shifts",
+      "task": "Keep the repair queue and parts approvals current",
+      "consequence": "One shop reports two missed pickups; another reports one unnecessary call. These are separate projects.",
+      "workaround": "Paper cards and a self-built shared sheet.",
+      "buyer": null,
+      "payer": null,
+      "recommendation": "Test a low-effort update step before adding a detailed tracking system.",
+      "next_test": "Observe one busy shift and test whether staff keep status current without duplicate entry.",
+      "counts": {
+        "evidence_records": 2,
+        "known_authors": 2,
+        "unknown_author_records": 0
+      },
+      "scorecard": {
+        "dimensions": [
+          {
+            "name": "consequence",
+            "value": 3,
+            "weight": 2,
+            "rationale": "Reported missed pickups and avoidable call, assigned by analyst.",
+            "evidence_ids": [
+              "reddit:t3_bike",
+              "discord:bike-selfbuild"
+            ]
+          },
+          {
+            "name": "update_feasibility",
+            "value": null,
+            "weight": 1,
+            "rationale": "No proposed solution has been tested.",
+            "evidence_ids": []
+          }
+        ],
+        "total": null
+      }
+    },
+    {
+      "id": "F02",
+      "title": "Parts visibility is wished for; QR codes are only advice",
+      "claim": "One mechanic wants customers to see approved parts before ordering. A different speaker suggests QR codes without having tried them. Neither statement establishes adoption.",
+      "status": "hypothesis",
+      "review_status": "reviewed",
+      "disposition": "include",
+      "evidence": [
+        {
+          "evidence_id": "reddit:t1_bike",
+          "quote": "I wish a customer could see the approved parts list before I order anything.",
+          "role": "support",
+          "interpretation": "wish"
+        },
+        {
+          "evidence_id": "youtube:bike-advice",
+          "quote": "You could attach a QR code to every bike. I have not tried that system in a workshop.",
+          "role": "support",
+          "interpretation": "suggestion"
+        }
+      ],
+      "counterevidence": [],
+      "context_review": "complete",
+      "counterevidence_search": "All five invented records were inspected, including the sufficient-alternative case.",
+      "question_ids": [
+        "Q05",
+        "Q06"
+      ],
+      "uncertainty": "Synthetic illustration only; no inference about real users or market prevalence.",
+      "segment": "Mechanic handling parts orders",
+      "task": "Confirm the parts list with a customer",
+      "buyer": null,
+      "payer": null,
+      "next_test": "Check how approvals happen today and whether customers can act on a shared list."
+    }
+  ],
+  "reviewed_evidence_ids": [
+    "reddit:t3_bike",
+    "reddit:t1_bike",
+    "youtube:bike-advice",
+    "discord:bike-selfbuild",
+    "x:bike-enough"
+  ],
+  "question_answers": {
+    "Q03": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F01"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q04": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F01"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q08": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F01"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q10": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F01"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q12": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F01"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q05": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F02"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    },
+    "Q06": {
+      "status": "partial",
+      "answer": "The linked findings illustrate this question in the invented sample.",
+      "finding_ids": [
+        "F02"
+      ],
+      "gap": "Collect real, authorized evidence before making a product decision."
+    }
+  },
+  "key_findings": [
+    {
+      "id": "K01",
+      "title": "Existing alternatives can be sufficient",
+      "disposition": "include",
+      "finding_ids": [
+        "F01"
+      ],
+      "reason": "Retained as counterevidence and a boundary on the proposed target group."
+    },
+    {
+      "id": "K02",
+      "title": "Assumed market conversion rate",
+      "disposition": "reject",
+      "finding_ids": [],
+      "reason": "A handful of targeted examples cannot establish market demand or conversion."
+    }
+  ]
+}

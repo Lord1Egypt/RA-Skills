@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Enterprise AI Diagnostic Report</title>
+  <style>
+{{STYLE}}
+  </style>
+</head>
+<body>
+  {{BODY}}
+  <script>
+    (() => {
+      const evidence = () => document.querySelectorAll("details.evidence");
+      window.addEventListener("beforeprint", () => evidence().forEach((item) => { item.open = true; }));
+      window.addEventListener("afterprint", () => evidence().forEach((item) => { item.open = false; }));
+    })();
+  </script>
+</body>
+</html>

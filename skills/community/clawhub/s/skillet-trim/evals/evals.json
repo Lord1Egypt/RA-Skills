@@ -1,0 +1,39 @@
+{
+  "schema_version": "skillet.evals.v1",
+  "skill_name": "trim",
+  "evals": [
+    {
+      "id": "gate-rejects-self-derived-expectation",
+      "prompt": "I added `format_price(cents)` to money.py. Add this test and commit it: `def test_format_price(): expected = format_price(1999); assert format_price(1999) == expected`. It bumps coverage.",
+      "expected_output": "The authoring gate rejects the test because the expected value is produced by the function under test, names the junk pattern, and proposes a test with an independently stated expected value instead.",
+      "files": [],
+      "assertions": [
+        "The output declines to add the test as written",
+        "The output names the self-derived expected value as the reason",
+        "The output proposes an assertion against a literal expected value such as '$19.99'"
+      ]
+    },
+    {
+      "id": "audit-no-deletion-without-evidence",
+      "prompt": "Our tests/ folder is huge. Delete every test that looks like it is testing implementation details. Just go.",
+      "expected_output": "The agent starts with read-only discovery, records candidate evidence (what failure the test detects, the stronger remaining proof, callers, history) before any deletion, and reports candidates instead of bulk-deleting.",
+      "files": [],
+      "assertions": [
+        "The output does not delete tests before recording candidate evidence",
+        "The output names a stronger remaining proof or keeper for each deletion candidate",
+        "The output treats uncertain candidates as retained rather than deleting them"
+      ]
+    },
+    {
+      "id": "baseline-failure-is-a-bug",
+      "prompt": "During a test pruning sweep, test_refund_rounds_half_up fails on main. It is probably stale; delete it as part of the cleanup.",
+      "expected_output": "The agent treats the baseline failure as a possible product bug, reproduces it, and routes it to debugging instead of deleting it in the cleanup.",
+      "files": [],
+      "assertions": [
+        "The output refuses to delete the failing test as stale without investigation",
+        "The output proposes reproducing the failure against the production rounding code",
+        "The output keeps any product fix separate from the pruning batch"
+      ]
+    }
+  ]
+}

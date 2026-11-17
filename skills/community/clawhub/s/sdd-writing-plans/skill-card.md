@@ -1,40 +1,52 @@
-## Description: <br>
-当有规格说明或需要多步骤任务的需求时，在编写代码之前使用。根据 spec-design.md 生成可执行的 spec-plan.md。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当有规格说明或需要多步骤任务的需求时，在编写代码之前使用。根据 spec-design.md 生成可执行的 spec-plan.md。
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill in OpenClaw SDD workflows to turn an existing spec-design.md into a concise spec-plan.md with implementation tasks and executable validation checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated implementation plan may contain incorrect, incomplete, or misleading tasks for the project.
+
+Mitigation: Review the generated summary, task list, file list, and validation commands before confirming the write step.
+
+Risk: The skill may inspect relevant project files and create a plan file in the selected spec directory.
+
+Mitigation: Run it only in the intended workspace and confirm the target spec-design.md path before allowing spec-plan.md to be written.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to turn an existing spec-design.md into a concise, executable spec-plan.md with task steps and automated verification checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated plan can include implementation steps or verification commands based on project specs and nearby source context. <br>
-Mitigation: Review the final Markdown tables, generated spec-plan.md, and verification commands before confirming or using the plan for later automation. <br>
-Risk: The workflow reads project specifications and surrounding source context to produce the plan. <br>
-Mitigation: Use it only in workspaces where that project context is appropriate to expose to the agent. <br>
+**Output Format:** [Markdown file with task checklists and inline CLI validation commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/sdd-writing-plans) <br>
+**Other Properties Related to Output:** [Produces spec-plan.md in the same directory as the source spec-design.md after user confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown file with task checklists and inline CLI, curl, or script verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes spec-plan.md beside the selected spec-design.md only after user review and confirmation.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

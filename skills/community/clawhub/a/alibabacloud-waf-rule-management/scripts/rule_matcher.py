@@ -1,30 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-WAF 规则条件匹配诊断引擎
+WAF Rule Condition Matching Diagnosis Engine
 
-核心功能：将规则配置的每个条件与 SLS 日志逐一对比，
-找出不匹配项并给出诊断结论。
+Core function: Compare each condition in the rule configuration with the SLS log entry by entry,
+find mismatches and produce a diagnosis conclusion.
 
-用法:
+Usage:
   python rule_matcher.py --rule-json '{"config":...}' --log-json '{"real_client_ip":"1.2.3.4",...}'
   python rule_matcher.py --rule-file rule.json --log-file log.json
 
-输入:
-  --rule-json / --rule-file : 规则完整配置（rule_fetcher.py 输出中的 rule 字段）
-  --log-json  / --log-file  : SLS 日志条目（get_waf_log.py 输出中的单条日志）
-  --xff-status              : XFF 配置状态 (0=未开启, 1=xff第一个值, 2=自定义header)
-  --defense-scene           : 防护场景覆写（可选，默认从规则中读取）
+Inputs:
+  --rule-json / --rule-file : Full rule configuration (the rule field from rule_fetcher.py output)
+  --log-json  / --log-file  : SLS log entry (a single log entry from get_waf_log.py output)
+  --xff-status              : XFF configuration status (0=disabled, 1=first xff value, 2=custom header)
+  --defense-scene           : Defense scene override (optional, read from rule by default)
 
-输出:
-  JSON 格式的诊断结果，包含：
-  - conclusion: 诊断结论
-  - summary: 摘要
-  - pre_checks: 前置检查（白名单冲突、防护对象绑定、观察规则）
-  - condition_results: 每个条件的匹配/不匹配详情
-  - is_cc_rule: 是否为频率规则
-  - unrecorded_fields: 无法在日志中验证的字段
-  - recommendations: 处置建议
+Output:
+  JSON-formatted diagnosis result, containing:
+  - conclusion: diagnosis conclusion
+  - summary: summary
+  - pre_checks: pre-checks (whitelist conflict, protection object binding, observe rules)
+  - condition_results: match/mismatch details for each condition
+  - is_cc_rule: whether it is a frequency rule
+  - unrecorded_fields: fields that cannot be verified in the log
+  - recommendations: handling suggestions
 """
 
 import argparse
@@ -35,16 +35,16 @@ import sys
 from urllib.parse import urlparse, parse_qs
 
 # ==============================================================
-# 常量映射（从 test1.py 提取并整理）
+# Constant mappings (extracted and organized from test1.py)
 # ==============================================================
 
-# 规则配置 key -> SLS 日志字段名
+# Rule config key -> SLS log field name
 KEY_TO_SLS_FIELD = {
     'URL': 'request_uri',
     'IP': 'real_client_ip',
     'Referer': 'http_referer',
     'User-Agent': 'http_user_agent',
-    'Query String': 'request_uri',      # 规则底层叫 Params
+    'Query String': 'request_uri',      # Rule internally called Params
     'content_length': 'request_length',
     'Http-Method': 'request_method',
     'URLPath': 'request_path',
@@ -56,7 +56,7 @@ KEY_TO_SLS_FIELD = {
     'cnRegionList': 'remote_region_id',
 }
 
-# 规则 key -> 控制台显示名称
+# Rule key -> console display name
 KEY_TO_DISPLAY_NAME = {
     'URL': 'URI',
     'IP': 'IP',
@@ -81,200 +81,200 @@ KEY_TO_DISPLAY_NAME = {
     'Query String': 'Query String',
 }
 
-# 日志中无法查询到的字段
+# Fields not recorded in logs
 NOT_RECORDED_FIELDS = [
     "Cookie", "Content-Type", "X-Forwarded-For",
     "Post-Body", "Header", "Server-Port", "Cookie-Exact", "Post-Arg"
 ]
 
-# 操作符描述映射
+# Operator description mapping
 OP_DESC = {
-    "not-contain": "不包含",
-    "contain": "包含",
-    "none": "不存在",
-    "not-exist": "不存在",
-    "ne": "不等于",
-    "eq": "等于",
-    "lt": "小于",
-    "gt": "大于",
-    "len-lt": "长度小于",
-    "len-eq": "长度等于",
-    "len-gt": "长度大于",
-    "not-match": "不匹配",
-    "match-one": "等于多值之一",
-    "all-not-match": "都不等于任一值",
-    "all-not-contain": "都不包含任一值",
-    "contain-one": "包含多值之一",
-    "not-regex": "正则不匹配",
-    "regex": "正则匹配",
-    "all-not-regex": "都不正则匹配",
-    "regex-one": "正则匹配其中之一",
-    "prefix-match": "前缀匹配",
-    "suffix-match": "后缀匹配",
-    "empty": "内容为空",
-    "exists": "字段存在",
-    "inl": "在列表中",
-    "equal": "等于",
-    "not-equal": "不等于",
+    "not-contain": "does not contain",
+    "contain": "contains",
+    "none": "does not exist",
+    "not-exist": "does not exist",
+    "ne": "not equal",
+    "eq": "equal",
+    "lt": "less than",
+    "gt": "greater than",
+    "len-lt": "length less than",
+    "len-eq": "length equal",
+    "len-gt": "length greater than",
+    "not-match": "does not match",
+    "match-one": "equals one of multiple values",
+    "all-not-match": "not equal to any value",
+    "all-not-contain": "does not contain any value",
+    "contain-one": "contains one of multiple values",
+    "not-regex": "regex does not match",
+    "regex": "regex match",
+    "all-not-regex": "none regex match",
+    "regex-one": "regex match one of",
+    "prefix-match": "prefix match",
+    "suffix-match": "suffix match",
+    "empty": "content is empty",
+    "exists": "field exists",
+    "inl": "in list",
+    "equal": "equal",
+    "not-equal": "not equal",
 }
 
-# 白名单标签 -> 模块描述
+# Whitelist tag -> module description
 WHITELIST_TAGS = {
-    'waf': '全部模块',
-    'customrule': '自定义规则',
-    'blacklist': 'IP 黑名单',
-    'antiscan': '扫描防护',
-    'regular': '规则防护',
-    'regular_rule': '基于特定规则的基础防护规则',
-    'regular_type': '基于特定模块的基础防护规则',
-    'major_protection': '重保场景防护',
-    'cc': 'CC 防护',
-    'region_block': '区域封禁',
-    'antibot_scene': 'BOT 场景防护',
-    'dlp': '信息泄露防护',
-    'tamperproof': '网页防篡改',
-    'spike_throttle': '洪峰限流防护',
-    'regular_field': '指定字段',
-    'sema': '语义防护',
-    'compliance': '协议合规',
-    'deeplearning': '深度学习引擎',
-    'account': '账户安全',
-    'normalized': '主动防御',
-    'bot_intelligence': '爬虫威胁情报',
-    'bot_algorithm': '典型爬虫行为识别',
-    'bot_wxbb': 'App防护',
-    'antifraud': '数据风控',
+    'waf': 'All Modules',
+    'customrule': 'Custom Rules',
+    'blacklist': 'IP Blacklist',
+    'antiscan': 'Anti-Scan',
+    'regular': 'Rule Protection',
+    'regular_rule': 'Rule-based Basic Protection',
+    'regular_type': 'Module-based Basic Protection',
+    'major_protection': 'Major Event Protection',
+    'cc': 'CC Protection',
+    'region_block': 'Region Block',
+    'antibot_scene': 'BOT Scene Protection',
+    'dlp': 'Data Loss Prevention',
+    'tamperproof': 'Web Tamper Protection',
+    'spike_throttle': 'Spike Throttle Protection',
+    'regular_field': 'Specified Field',
+    'sema': 'Semantic Protection',
+    'compliance': 'Protocol Compliance',
+    'deeplearning': 'Deep Learning Engine',
+    'account': 'Account Security',
+    'normalized': 'Active Defense',
+    'bot_intelligence': 'Bot Threat Intelligence',
+    'bot_algorithm': 'Bot Behavior Recognition',
+    'bot_wxbb': 'App Protection',
+    'antifraud': 'Anti-Fraud',
 }
 
-# final_plugin -> 模块描述
+# final_plugin -> module description
 FINAL_PLUGIN_DESC = {
-    "waf": "Web核心防护规则",
-    "acl": "IP黑名单、自定义规则",
-    "cc": "CC防护",
-    "antiscan": "扫描防护",
-    "dlp": "防敏感信息泄露",
-    "scene": "场景化配置（APP也包括在内）",
-    "intelligence": "爬虫威胁情报",
-    "wxbb": "App防护",
-    "sema": "语义防护",
-    "scc_gdrl": "洪峰限流",
-    "major_protection": "重保场景防护",
-    "compliance": "协议违背（协议合规）",
+    "waf": "Web Core Protection Rules",
+    "acl": "IP Blacklist, Custom Rules",
+    "cc": "CC Protection",
+    "antiscan": "Anti-Scan",
+    "dlp": "Data Loss Prevention",
+    "scene": "Scene-based Configuration (including App)",
+    "intelligence": "Bot Threat Intelligence",
+    "wxbb": "App Protection",
+    "sema": "Semantic Protection",
+    "scc_gdrl": "Spike Throttle",
+    "major_protection": "Major Event Protection",
+    "compliance": "Protocol Violation (Compliance)",
 }
 
-# 地域代码映射（中国省份 + 国际国家）
+# Region code mapping (Chinese provinces + international countries)
 REGION_MAPPING = {
-    "110000": "北京市", "120000": "天津市", "130000": "河北省",
-    "140000": "山西省", "150000": "内蒙古自治区", "210000": "辽宁省",
-    "220000": "吉林省", "230000": "黑龙江省", "310000": "上海市",
-    "320000": "江苏省", "330000": "浙江省", "340000": "安徽省",
-    "350000": "福建省", "360000": "江西省", "370000": "山东省",
-    "410000": "河南省", "420000": "湖北省", "430000": "湖南省",
-    "440000": "广东省", "450000": "广西壮族自治区", "460000": "海南省",
-    "500000": "重庆市", "510000": "四川省", "520000": "贵州省",
-    "530000": "云南省", "540000": "西藏自治区", "610000": "陕西省",
-    "620000": "甘肃省", "630000": "青海省", "640000": "宁夏回族自治区",
-    "650000": "新疆维吾尔自治区",
-    "MO_01": "中国澳门", "HK_01": "中国香港", "TW_01": "中国台湾",
-    # 国际国家代码
-    "AD": "安道尔", "AE": "阿拉伯联合酋长国", "AF": "阿富汗",
-    "AG": "安提瓜和巴布达", "AI": "安圭拉", "AL": "阿尔巴尼亚",
-    "AM": "亚美尼亚", "AO": "安哥拉", "AP": "亚太地区",
-    "AQ": "南极洲", "AR": "阿根廷", "AS": "美属萨摩亚",
-    "AT": "奥地利", "AU": "澳大利亚", "AW": "阿鲁巴",
-    "AX": "奥兰群岛", "AZ": "阿塞拜疆", "BA": "波黑",
-    "BB": "巴巴多斯", "BD": "孟加拉共和国", "BE": "比利时",
-    "BF": "布基纳法索", "BG": "保加利亚", "BH": "巴林",
-    "BI": "布隆迪共和国", "BJ": "贝宁", "BL": "圣巴泰勒米岛",
-    "BM": "百慕大群岛", "BN": "文莱达鲁萨兰国", "BO": "玻利维亚",
-    "BQ": "博内尔、圣尤斯蒂休斯和萨巴", "BR": "巴西", "BS": "巴哈马群岛",
-    "BT": "不丹", "BW": "博茨瓦纳", "BY": "白俄罗斯",
-    "BZ": "伯利兹", "CA": "加拿大", "CD": "刚果民主共和国",
-    "CF": "中非共和国", "CG": "刚果", "CH": "瑞士",
-    "CI": "科特迪瓦", "CK": "库克群岛", "CL": "智利",
-    "CM": "喀麦隆", "CN": "中国", "CO": "哥伦比亚",
-    "CR": "哥斯达黎加", "CU": "古巴", "CV": "佛得角",
-    "CW": "库拉索", "CX": "澳大利亚圣诞岛", "CY": "塞浦路斯",
-    "CZ": "捷克共和国", "DE": "德国", "DJ": "吉布提",
-    "DK": "丹麦", "DM": "多米尼克国", "DO": "多米尼加共和国",
-    "DZ": "阿尔及利亚", "EC": "厄瓜多尔", "EE": "爱沙尼亚",
-    "EG": "埃及", "ER": "厄立特里亚", "ES": "西班牙",
-    "ET": "埃塞俄比亚", "FI": "芬兰", "FJ": "斐济",
-    "FK": "马尔维纳斯群岛", "FM": "密克罗尼西亚联邦", "FO": "法罗群岛",
-    "FR": "法国", "GA": "加蓬", "GB": "英国",
-    "GD": "格林纳达", "GE": "格鲁吉亚", "GF": "法属圭亚那",
-    "GG": "根西岛", "GH": "加纳", "GI": "直布罗陀",
-    "GL": "格陵兰岛", "GM": "冈比亚共和国", "GN": "几内亚",
-    "GP": "瓜德罗普", "GQ": "赤道几内亚", "GR": "希腊",
-    "GT": "危地马拉", "GU": "关岛", "GW": "几内亚比绍共和国",
-    "GY": "圭亚那", "HN": "洪都拉斯", "HR": "克罗地亚",
-    "HT": "海地", "HU": "匈牙利", "ID": "印度尼西亚",
-    "IE": "爱尔兰", "IL": "以色列", "IM": "马恩岛",
-    "IN": "印度", "IO": "英属印度洋领地", "IQ": "伊拉克共和国",
-    "IR": "伊朗", "IS": "冰岛", "IT": "意大利",
-    "JE": "泽西岛", "JM": "牙买加", "JO": "约旦",
-    "JP": "日本", "KE": "肯尼亚", "KG": "吉尔吉斯斯坦",
-    "KH": "柬埔寨", "KI": "基里巴斯", "KM": "科摩罗",
-    "KN": "圣基茨和尼维斯联邦", "KP": "朝鲜", "KR": "韩国",
-    "KW": "科威特", "KY": "开曼群岛", "KZ": "哈萨克斯坦",
-    "LA": "老挝", "LB": "黎巴嫩", "LC": "圣卢西亚",
-    "LI": "列支敦士登", "LK": "斯里兰卡", "LR": "利比里亚",
-    "LS": "莱索托", "LT": "立陶宛", "LU": "卢森堡",
-    "LV": "拉脱维亚", "LY": "利比亚", "MA": "摩洛哥",
-    "MC": "摩纳哥", "MD": "摩尔多瓦", "ME": "黑山共和国",
-    "MF": "圣马丁", "MG": "马达加斯加", "MH": "马绍尔群岛",
-    "MK": "马其顿", "ML": "马里", "MM": "缅甸",
-    "MN": "蒙古", "MP": "北马里亚纳群岛", "MQ": "马提尼克岛",
-    "MR": "毛里塔尼亚", "MS": "蒙塞拉特岛", "MT": "马耳他",
-    "MU": "毛里求斯", "MV": "马尔代夫", "MW": "马拉维",
-    "MX": "墨西哥", "MY": "马来西亚", "MZ": "莫桑比克",
-    "NA": "纳米比亚", "NC": "新喀里多尼亚", "NE": "尼日尔",
-    "NF": "诺福克岛", "NG": "尼日利亚", "NI": "尼加拉瓜",
-    "NL": "荷兰", "NO": "挪威", "NP": "尼泊尔",
-    "NR": "瑙鲁", "NU": "纽埃岛", "NZ": "新西兰",
-    "OM": "阿曼", "PA": "巴拿马", "PE": "秘鲁",
-    "PF": "法属波利尼西亚", "PG": "巴布亚新几内亚", "PH": "菲律宾",
-    "PK": "巴基斯坦", "PL": "波兰", "PM": "圣皮埃尔和密克隆岛",
-    "PR": "波多黎各", "PS": "巴勒斯坦", "PT": "葡萄牙",
-    "PW": "帕劳", "PY": "巴拉圭", "QA": "卡塔尔",
-    "RE": "留尼旺岛", "RO": "罗马尼亚", "RS": "塞尔维亚",
-    "RU": "俄罗斯", "RW": "卢旺达", "SA": "沙特阿拉伯",
-    "SB": "所罗门群岛", "SC": "塞舌尔", "SD": "苏丹",
-    "SE": "瑞典", "SG": "新加坡", "SI": "斯洛文尼亚",
-    "SK": "斯洛伐克", "SL": "塞拉利昂", "SM": "圣马力诺",
-    "SN": "塞内加尔", "SO": "索马里", "SR": "苏里南",
-    "SS": "南苏丹", "ST": "圣多美和普林西比", "SV": "萨尔瓦多",
-    "SX": "荷属圣马丁", "SY": "阿拉伯叙利亚共和国", "SZ": "斯威士兰",
-    "TC": "特克斯和凯科斯岛", "TD": "乍得", "TG": "多哥",
-    "TH": "泰国", "TJ": "塔吉克斯坦", "TK": "托克劳群岛",
-    "TL": "东帝汶", "TM": "土库曼斯坦", "TN": "突尼斯",
-    "TO": "汤加", "TR": "土耳其", "TT": "特立尼达和多巴哥",
-    "TV": "图瓦卢", "TZ": "坦桑尼亚", "UA": "乌克兰",
-    "UG": "乌干达", "UM": "美国本土外小岛屿", "US": "美国",
-    "UY": "乌拉圭", "UZ": "乌兹别克斯坦", "VA": "梵蒂冈",
-    "VC": "圣文森特和格林纳丁斯", "VE": "委内瑞拉", "VG": "英属维尔京群岛",
-    "VI": "美属维尔京群岛", "VN": "越南", "VU": "瓦努阿图",
-    "WF": "瓦利斯群岛和富图纳群岛", "WS": "萨摩亚群岛",
-    "YE": "也门", "YT": "马约特岛", "ZA": "南非",
-    "ZM": "赞比亚", "ZW": "津巴布韦",
+    "110000": "Beijing", "120000": "Tianjin", "130000": "Hebei",
+    "140000": "Shanxi", "150000": "Inner Mongolia", "210000": "Liaoning",
+    "220000": "Jilin", "230000": "Heilongjiang", "310000": "Shanghai",
+    "320000": "Jiangsu", "330000": "Zhejiang", "340000": "Anhui",
+    "350000": "Fujian", "360000": "Jiangxi", "370000": "Shandong",
+    "410000": "Henan", "420000": "Hubei", "430000": "Hunan",
+    "440000": "Guangdong", "450000": "Guangxi", "460000": "Hainan",
+    "500000": "Chongqing", "510000": "Sichuan", "520000": "Guizhou",
+    "530000": "Yunnan", "540000": "Tibet", "610000": "Shaanxi",
+    "620000": "Gansu", "630000": "Qinghai", "640000": "Ningxia",
+    "650000": "Xinjiang",
+    "MO_01": "Macau", "HK_01": "Hong Kong", "TW_01": "Taiwan",
+    # International country codes
+    "AD": "Andorra", "AE": "United Arab Emirates", "AF": "Afghanistan",
+    "AG": "Antigua and Barbuda", "AI": "Anguilla", "AL": "Albania",
+    "AM": "Armenia", "AO": "Angola", "AP": "Asia-Pacific",
+    "AQ": "Antarctica", "AR": "Argentina", "AS": "American Samoa",
+    "AT": "Austria", "AU": "Australia", "AW": "Aruba",
+    "AX": "Aland Islands", "AZ": "Azerbaijan", "BA": "Bosnia and Herzegovina",
+    "BB": "Barbados", "BD": "Bangladesh", "BE": "Belgium",
+    "BF": "Burkina Faso", "BG": "Bulgaria", "BH": "Bahrain",
+    "BI": "Burundi", "BJ": "Benin", "BL": "Saint Barthelemy",
+    "BM": "Bermuda", "BN": "Brunei", "BO": "Bolivia",
+    "BQ": "Bonaire, Sint Eustatius and Saba", "BR": "Brazil", "BS": "Bahamas",
+    "BT": "Bhutan", "BW": "Botswana", "BY": "Belarus",
+    "BZ": "Belize", "CA": "Canada", "CD": "DR Congo",
+    "CF": "Central African Republic", "CG": "Congo", "CH": "Switzerland",
+    "CI": "Ivory Coast", "CK": "Cook Islands", "CL": "Chile",
+    "CM": "Cameroon", "CN": "China", "CO": "Colombia",
+    "CR": "Costa Rica", "CU": "Cuba", "CV": "Cape Verde",
+    "CW": "Curacao", "CX": "Christmas Island", "CY": "Cyprus",
+    "CZ": "Czech Republic", "DE": "Germany", "DJ": "Djibouti",
+    "DK": "Denmark", "DM": "Dominica", "DO": "Dominican Republic",
+    "DZ": "Algeria", "EC": "Ecuador", "EE": "Estonia",
+    "EG": "Egypt", "ER": "Eritrea", "ES": "Spain",
+    "ET": "Ethiopia", "FI": "Finland", "FJ": "Fiji",
+    "FK": "Falkland Islands", "FM": "Micronesia", "FO": "Faroe Islands",
+    "FR": "France", "GA": "Gabon", "GB": "United Kingdom",
+    "GD": "Grenada", "GE": "Georgia", "GF": "French Guiana",
+    "GG": "Guernsey", "GH": "Ghana", "GI": "Gibraltar",
+    "GL": "Greenland", "GM": "Gambia", "GN": "Guinea",
+    "GP": "Guadeloupe", "GQ": "Equatorial Guinea", "GR": "Greece",
+    "GT": "Guatemala", "GU": "Guam", "GW": "Guinea-Bissau",
+    "GY": "Guyana", "HN": "Honduras", "HR": "Croatia",
+    "HT": "Haiti", "HU": "Hungary", "ID": "Indonesia",
+    "IE": "Ireland", "IL": "Israel", "IM": "Isle of Man",
+    "IN": "India", "IO": "British Indian Ocean Territory", "IQ": "Iraq",
+    "IR": "Iran", "IS": "Iceland", "IT": "Italy",
+    "JE": "Jersey", "JM": "Jamaica", "JO": "Jordan",
+    "JP": "Japan", "KE": "Kenya", "KG": "Kyrgyzstan",
+    "KH": "Cambodia", "KI": "Kiribati", "KM": "Comoros",
+    "KN": "Saint Kitts and Nevis", "KP": "North Korea", "KR": "South Korea",
+    "KW": "Kuwait", "KY": "Cayman Islands", "KZ": "Kazakhstan",
+    "LA": "Laos", "LB": "Lebanon", "LC": "Saint Lucia",
+    "LI": "Liechtenstein", "LK": "Sri Lanka", "LR": "Liberia",
+    "LS": "Lesotho", "LT": "Lithuania", "LU": "Luxembourg",
+    "LV": "Latvia", "LY": "Libya", "MA": "Morocco",
+    "MC": "Monaco", "MD": "Moldova", "ME": "Montenegro",
+    "MF": "Saint Martin", "MG": "Madagascar", "MH": "Marshall Islands",
+    "MK": "Macedonia", "ML": "Mali", "MM": "Myanmar",
+    "MN": "Mongolia", "MP": "Northern Mariana Islands", "MQ": "Martinique",
+    "MR": "Mauritania", "MS": "Montserrat", "MT": "Malta",
+    "MU": "Mauritius", "MV": "Maldives", "MW": "Malawi",
+    "MX": "Mexico", "MY": "Malaysia", "MZ": "Mozambique",
+    "NA": "Namibia", "NC": "New Caledonia", "NE": "Niger",
+    "NF": "Norfolk Island", "NG": "Nigeria", "NI": "Nicaragua",
+    "NL": "Netherlands", "NO": "Norway", "NP": "Nepal",
+    "NR": "Nauru", "NU": "Niue", "NZ": "New Zealand",
+    "OM": "Oman", "PA": "Panama", "PE": "Peru",
+    "PF": "French Polynesia", "PG": "Papua New Guinea", "PH": "Philippines",
+    "PK": "Pakistan", "PL": "Poland", "PM": "Saint Pierre and Miquelon",
+    "PR": "Puerto Rico", "PS": "Palestine", "PT": "Portugal",
+    "PW": "Palau", "PY": "Paraguay", "QA": "Qatar",
+    "RE": "Reunion", "RO": "Romania", "RS": "Serbia",
+    "RU": "Russia", "RW": "Rwanda", "SA": "Saudi Arabia",
+    "SB": "Solomon Islands", "SC": "Seychelles", "SD": "Sudan",
+    "SE": "Sweden", "SG": "Singapore", "SI": "Slovenia",
+    "SK": "Slovakia", "SL": "Sierra Leone", "SM": "San Marino",
+    "SN": "Senegal", "SO": "Somalia", "SR": "Suriname",
+    "SS": "South Sudan", "ST": "Sao Tome and Principe", "SV": "El Salvador",
+    "SX": "Sint Maarten", "SY": "Syria", "SZ": "Eswatini",
+    "TC": "Turks and Caicos Islands", "TD": "Chad", "TG": "Togo",
+    "TH": "Thailand", "TJ": "Tajikistan", "TK": "Tokelau",
+    "TL": "Timor-Leste", "TM": "Turkmenistan", "TN": "Tunisia",
+    "TO": "Tonga", "TR": "Turkey", "TT": "Trinidad and Tobago",
+    "TV": "Tuvalu", "TZ": "Tanzania", "UA": "Ukraine",
+    "UG": "Uganda", "UM": "US Minor Outlying Islands", "US": "United States",
+    "UY": "Uruguay", "UZ": "Uzbekistan", "VA": "Vatican",
+    "VC": "Saint Vincent and the Grenadines", "VE": "Venezuela", "VG": "British Virgin Islands",
+    "VI": "US Virgin Islands", "VN": "Vietnam", "VU": "Vanuatu",
+    "WF": "Wallis and Futuna", "WS": "Samoa",
+    "YE": "Yemen", "YT": "Mayotte", "ZA": "South Africa",
+    "ZM": "Zambia", "ZW": "Zimbabwe",
 }
 
 
 # ==============================================================
-# 匹配引擎核心函数
+# Matching engine core functions
 # ==============================================================
 
 def match_condition(config_value, op, log_value):
-    """单条件匹配判断
+    """Single condition matching.
 
     Args:
-        config_value: 规则中配置的值（字符串或列表）
-        op: 操作符（如 eq, contain, regex 等）
-        log_value: SLS 日志中对应字段的值
+        config_value: Configured value in the rule (string or list)
+        op: Operator (e.g., eq, contain, regex, etc.)
+        log_value: Corresponding field value from SLS log
 
     Returns:
-        匹配成功返回 True 或匹配到的具体值（match-one/contain-one 场景），
-        不匹配返回 False
+        True or the matched value (for match-one/contain-one) on success,
+        False on no match.
     """
     log_value = str(log_value) if log_value is not None else ""
     config_value = str(config_value) if config_value is not None else ""
@@ -291,7 +291,7 @@ def match_condition(config_value, op, log_value):
         elif op in ('none', 'not-exist'):
             return config_value == '' and log_value == ''
         elif op == 'exists':
-            return True  # 走到这里说明字段存在
+            return True  # Reaching here means the field exists
         elif op == 'empty':
             return log_value.strip() == ""
         elif op == 'lt':
@@ -339,11 +339,11 @@ def match_condition(config_value, op, log_value):
 
 
 def check_ip_in_list(ip_to_check, ip_list):
-    """检查 IP 是否在 IP/CIDR 列表中
+    """Check if an IP is in an IP/CIDR list.
 
     Args:
-        ip_to_check: 要检查的 IP 地址字符串
-        ip_list: IP 地址或 CIDR 列表（可以是逗号分隔字符串或 list）
+        ip_to_check: IP address string to check
+        ip_list: IP address or CIDR list (comma-separated string or list)
 
     Returns:
         dict: {matched: bool, match_type: "ip"/"cidr"/"", matched_entry: ""}
@@ -351,7 +351,7 @@ def check_ip_in_list(ip_to_check, ip_list):
     if isinstance(ip_list, str):
         ip_list = [s.strip() for s in ip_list.split(',') if s.strip()]
     elif isinstance(ip_list, list):
-        # 处理嵌套列表 ["1.1.1.1", "2.2.2.0/24"]
+        # Handle nested lists ["1.1.1.1", "2.2.2.0/24"]
         flat = []
         for item in ip_list:
             if isinstance(item, str):
@@ -385,14 +385,14 @@ def check_ip_in_list(ip_to_check, ip_list):
 
 
 def check_region_match(region_list_str, region_id):
-    """区域封禁匹配判断
+    """Region block matching.
 
     Args:
-        region_list_str: 逗号分隔的区域代码列表字符串
-        region_id: 日志中的区域 ID
+        region_list_str: Comma-separated region code list string
+        region_id: Region ID from the log
 
     Returns:
-        str or None: 匹配的区域代码，未匹配返回 None
+        str or None: Matched region code, or None if no match.
     """
     if not region_list_str or not region_id:
         return None
@@ -405,25 +405,25 @@ def check_region_match(region_list_str, region_id):
 
 
 # ==============================================================
-# 诊断主流程
+# Diagnosis main flow
 # ==============================================================
 
 def analyze_conditions(rule_config, log_entry, defense_scene):
-    """逐条分析规则条件与日志是否匹配
+    """Analyze rule conditions against log entry.
 
     Args:
-        rule_config: 规则的 config 字典（包含 conditions 等）
-        log_entry: SLS 单条日志
-        defense_scene: 防护场景
+        rule_config: Rule config dict (contains conditions, etc.)
+        log_entry: Single SLS log entry
+        defense_scene: Defense scene
 
     Returns:
         dict: {
-            matched_conditions: [...],   # 已匹配的条件
-            mismatched_conditions: [...], # 不匹配的条件
-            unrecorded_fields: [...],     # 无法验证的字段
-            has_recorded_fields: bool,    # 是否有可验证的已知字段
-            is_cc_rule: bool,             # 是否频率规则
-            cc_config: dict or None       # 频率配置
+            matched_conditions: [...],   # Matched conditions
+            mismatched_conditions: [...], # Mismatched conditions
+            unrecorded_fields: [...],     # Fields that cannot be verified
+            has_recorded_fields: bool,    # Whether there are verifiable known fields
+            is_cc_rule: bool,             # Whether it is a frequency rule
+            cc_config: dict or None       # Frequency config
         }
     """
     conditions = rule_config.get('conditions', [])
@@ -432,7 +432,7 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
     unrecorded = []
     has_recorded = False
 
-    # 判断是否频率规则
+    # Check if it is a frequency rule
     is_cc = rule_config.get('ccStatus') == 1 or defense_scene == 'custom_cc'
     cc_config = rule_config.get('ratelimit') if is_cc else None
 
@@ -442,7 +442,7 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
         rule_value = cond.get('values', cond.get('value', ''))
         sub_key = cond.get('subKey', '')
 
-        # 跳过无法在日志中验证的字段
+        # Skip fields that cannot be verified in logs
         if rule_key in NOT_RECORDED_FIELDS:
             unrecorded.append({
                 "field": rule_key,
@@ -450,7 +450,7 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
                 "op": rule_op,
                 "op_desc": OP_DESC.get(rule_op, rule_op),
                 "config_value": rule_value,
-                "reason": "该字段未记录在 SLS 日志中，无法验证"
+                "reason": "This field is not recorded in SLS logs, cannot verify"
             })
             continue
 
@@ -458,7 +458,7 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
         sls_field = KEY_TO_SLS_FIELD.get(rule_key, rule_key)
         log_value = log_entry.get(sls_field, '')
 
-        # 特殊处理: Query-Arg 需要解析 URI 参数
+        # Special handling: Query-Arg needs URI parameter parsing
         if rule_key == 'Query-Arg' and sub_key:
             try:
                 parsed = urlparse(str(log_value))
@@ -470,12 +470,12 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
         display_name = KEY_TO_DISPLAY_NAME.get(rule_key, rule_key)
         op_desc = OP_DESC.get(rule_op, rule_op)
 
-        # 处理列表值
+        # Handle list values
         config_val_str = rule_value
         if isinstance(rule_value, list):
             config_val_str = ','.join(str(v) for v in rule_value)
 
-        # IP 字段特殊处理（使用 CIDR 匹配）
+        # IP field special handling (CIDR matching)
         if rule_key == 'IP':
             ip_check = check_ip_in_list(str(log_value), rule_value)
             if rule_op == 'contain':
@@ -505,7 +505,7 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
                 mismatched.append(result_item)
             continue
 
-        # 通用匹配逻辑
+        # Generic matching logic
         match_result = match_condition(config_val_str, rule_op, log_value)
         result_item = {
             "field": rule_key,
@@ -539,18 +539,19 @@ def analyze_conditions(rule_config, log_entry, defense_scene):
 
 
 def check_whitelist_conflict(log_entry, defense_scene, bypass_config=None):
-    """检查白名单冲突
+    """Check whitelist conflict.
 
-    如果流量已命中白名单（bypass_matched_ids 非空），且当前诊断的不是白名单规则本身，
-    说明白名单导致了规则不生效。
+    If traffic has already matched a whitelist (bypass_matched_ids is non-empty),
+    and the current diagnosis is not for the whitelist rule itself,
+    the whitelist caused the rule to not take effect.
 
     Args:
-        log_entry: SLS 日志条目
-        defense_scene: 当前规则的防护场景
-        bypass_config: 白名单规则的配置（可选，用于精确判断）
+        log_entry: SLS log entry
+        defense_scene: Defense scene of the current rule
+        bypass_config: Whitelist rule config (optional, for precise judgment)
 
     Returns:
-        dict or None: 白名单冲突信息
+        dict or None: Whitelist conflict info
     """
     bypass_ids = log_entry.get('bypass_matched_ids', '')
     upstream_status = log_entry.get('upstream_status', '')
@@ -558,21 +559,21 @@ def check_whitelist_conflict(log_entry, defense_scene, bypass_config=None):
     if not bypass_ids or bypass_ids == 'null':
         return None
 
-    # 白名单规则自身不存在"被白名单跳过"的问题
+    # Whitelist rule itself does not have the "skipped by whitelist" problem
     if defense_scene == 'whitelist':
         return None
 
-    # upstream_status 为 '-' 时通常是 WAF 直接返回，非白名单相关
+    # upstream_status of '-' usually means WAF direct response, not whitelist related
     if upstream_status == '-':
         return None
 
     result = {
         "has_conflict": True,
         "bypass_matched_ids": bypass_ids,
-        "message": f"当前流量已命中白名单（规则ID: {bypass_ids}），导致拦截规则不生效"
+        "message": f"Current traffic matched a whitelist (rule ID: {bypass_ids}), causing the block rule to not take effect"
     }
 
-    # 如果有白名单详细配置，做精确判断
+    # If detailed whitelist config is available, do precise judgment
     if bypass_config:
         tags = bypass_config.get('tags', [])
         custom_rules = bypass_config.get('customRules', [])
@@ -580,12 +581,12 @@ def check_whitelist_conflict(log_entry, defense_scene, bypass_config=None):
 
         if defense_scene == 'custom_acl':
             if 'customrule' in tags or 'waf' in tags:
-                result["reason"] = "白名单跳过了自定义规则模块"
+                result["reason"] = "Whitelist skipped the custom rule module"
         elif defense_scene == 'ip_blacklist':
             if 'blacklist' in tags or 'waf' in tags:
-                result["reason"] = "白名单跳过了IP黑名单模块"
+                result["reason"] = "Whitelist skipped the IP blacklist module"
         elif defense_scene in tags:
-            result["reason"] = f"白名单跳过了 {WHITELIST_TAGS.get(defense_scene, defense_scene)} 模块"
+            result["reason"] = f"Whitelist skipped the {WHITELIST_TAGS.get(defense_scene, defense_scene)} module"
 
         result["whitelist_tags"] = tags
         result["whitelist_custom_rules"] = custom_rules
@@ -595,13 +596,13 @@ def check_whitelist_conflict(log_entry, defense_scene, bypass_config=None):
 
 
 def check_monitor_rules(log_entry):
-    """检查是否命中了观察模式的规则
+    """Check if monitor-mode rules were hit.
 
     Args:
-        log_entry: SLS 日志条目
+        log_entry: SLS log entry
 
     Returns:
-        dict or None: 观察规则信息
+        dict or None: Monitor rule info
     """
     matched_rules_detail = log_entry.get('matched_rules_detail', '')
     if not matched_rules_detail or matched_rules_detail == 'null':
@@ -619,10 +620,10 @@ def check_monitor_rules(log_entry):
     rules_list = detail.get(key, [])
     monitor_hits = []
     for rule in rules_list:
-        # test=True 表示命中了观察模式的规则
+        # test=True means a monitor-mode rule was hit
         if rule.get('test') is True:
             plugin = rule.get('plugin', '')
-            # 映射 plugin -> 日志字段名
+            # Map plugin -> log field name
             log_field_map = {
                 'compliance': 'waf_test',
                 'acl': 'acl_test',
@@ -641,20 +642,20 @@ def check_monitor_rules(log_entry):
     return {
         "has_monitor_hit": True,
         "monitor_rules": monitor_hits,
-        "message": f"流量命中了 {len(monitor_hits)} 条观察模式规则"
+        "message": f"Traffic hit {len(monitor_hits)} monitor-mode rule(s)"
     }
 
 
 def diagnose_ip_blacklist(rule_config, log_entry, xff_status):
-    """IP 黑名单规则专用诊断
+    """IP blacklist rule diagnosis.
 
     Args:
-        rule_config: 规则的 config
-        log_entry: SLS 日志条目
-        xff_status: XFF 配置状态
+        rule_config: Rule config
+        log_entry: SLS log entry
+        xff_status: XFF configuration status
 
     Returns:
-        dict: 诊断结论
+        dict: Diagnosis conclusion
     """
     ip_list = rule_config.get('remoteAddr', [])
     real_ip = log_entry.get('real_client_ip', '')
@@ -667,92 +668,92 @@ def diagnose_ip_blacklist(rule_config, log_entry, xff_status):
         xff_hint = _get_xff_hint(real_ip, xff_status)
         return {
             "conclusion": "not_matched",
-            "summary": f"IP {real_ip} 不在黑名单列表中",
-            "detail": f"real_client_ip ({real_ip}) 不在黑名单配置 {ip_list} 中",
+            "summary": f"IP {real_ip} is not in the blacklist",
+            "detail": f"real_client_ip ({real_ip}) is not in the blacklist config {ip_list}",
             "xff_hint": xff_hint,
         }
     else:
         if final_plugin == 'acl' and str(final_rule_id) != '':
             return {
                 "conclusion": "matched_but_other_rule",
-                "summary": f"IP {real_ip} 已在黑名单中（匹配 {ip_check['matched_entry']}），但流量被其他 ACL 规则 {final_rule_id} 优先拦截",
-                "detail": "当流量同时命中多个 ACL 规则时，最先配置的规则优先生效",
+                "summary": f"IP {real_ip} is in the blacklist (matched {ip_check['matched_entry']}), but traffic was intercepted by another ACL rule {final_rule_id} first",
+                "detail": "When traffic matches multiple ACL rules, the first configured rule takes effect",
             }
         return {
             "conclusion": "matched_timing",
-            "summary": f"IP {real_ip} 已在黑名单中（匹配 {ip_check['matched_entry']}），规则应生效",
-            "detail": "推测是规则刚配置，需要约1分钟下发生效",
+            "summary": f"IP {real_ip} is in the blacklist (matched {ip_check['matched_entry']}), rule should take effect",
+            "detail": "Likely the rule was just configured, needs about 1 minute to take effect",
         }
 
 
 def diagnose_region_block(rule_config, log_entry):
-    """区域封禁规则专用诊断
+    """Region block rule diagnosis.
 
     Args:
-        rule_config: 规则的 config
-        log_entry: SLS 日志条目
+        rule_config: Rule config
+        log_entry: SLS log entry
 
     Returns:
-        dict: 诊断结论
+        dict: Diagnosis conclusion
     """
     abroad_list = rule_config.get('abroadRegionList', '')
     cn_list = rule_config.get('cnRegionList', [])
     remote_country = log_entry.get('remote_country_id', '')
     remote_region = log_entry.get('remote_region_id', '')
 
-    # 检查海外区域
+    # Check international regions
     if abroad_list and check_region_match(abroad_list, remote_country):
         region_name = REGION_MAPPING.get(remote_country, remote_country)
         return {
             "conclusion": "matched_timing",
-            "summary": f"源IP所在区域({region_name})已匹配区域封禁规则",
-            "detail": "推测是规则刚配置，需要约1分钟下发生效",
+            "summary": f"Source IP region ({region_name}) matched the region block rule",
+            "detail": "Likely the rule was just configured, needs about 1 minute to take effect",
         }
 
-    # 检查国内区域
+    # Check domestic regions
     if cn_list:
         cn_list_str = ','.join(str(c) for c in cn_list) if isinstance(cn_list, list) else str(cn_list)
         if check_region_match(cn_list_str, remote_region):
             region_name = REGION_MAPPING.get(remote_region, remote_region)
             return {
                 "conclusion": "matched_timing",
-                "summary": f"源IP所在区域({region_name})已匹配区域封禁规则",
-                "detail": "推测是规则刚配置，需要约1分钟下发生效",
+                "summary": f"Source IP region ({region_name}) matched the region block rule",
+                "detail": "Likely the rule was just configured, needs about 1 minute to take effect",
             }
-        # 特殊处理: CN 代表所有国内
+        # Special handling: CN represents all domestic regions
         if 'CN' in cn_list and remote_country == 'CN':
             region_name = REGION_MAPPING.get(remote_region, remote_region)
             return {
                 "conclusion": "matched_timing",
-                "summary": f"源IP属于国内区域({region_name})，已匹配区域封禁规则",
-                "detail": "推测是规则刚配置，需要约1分钟下发生效",
+                "summary": f"Source IP belongs to a domestic region ({region_name}), matched the region block rule",
+                "detail": "Likely the rule was just configured, needs about 1 minute to take effect",
             }
 
-    # 未匹配
+    # No match
     region_name = REGION_MAPPING.get(remote_region, REGION_MAPPING.get(remote_country, f"{remote_country}/{remote_region}"))
     return {
         "conclusion": "not_matched",
-        "summary": f"源IP所在区域({region_name})不在区域封禁配置中",
-        "detail": "请检查区域封禁规则的配置是否包含该区域",
+        "summary": f"Source IP region ({region_name}) is not in the region block config",
+        "detail": "Please check if the region block rule config includes this region",
     }
 
 
 def diagnose_whitelist(rule_config, log_entry, rule_id):
-    """白名单规则专用诊断
+    """Whitelist rule diagnosis.
 
-    白名单不生效的场景：
-    1. 条件字段不匹配
-    2. 源站返回405（非WAF拦截）
-    3. 跳过模块不匹配
-    4. 未知字段不匹配
+    Scenarios where whitelist does not take effect:
+    1. Condition field mismatch
+    2. Origin returned 405 (not WAF block)
+    3. Skip module mismatch
+    4. Unknown field mismatch
 
     Args:
-        rule_config: 规则的 config
-        log_entry: SLS 日志条目
-        rule_id: 白名单规则 ID
+        rule_config: Rule config
+        log_entry: SLS log entry
+        rule_id: Whitelist rule ID
 
     Returns:
-        dict: 诊断结论
+        dict: Diagnosis conclusion
     """
     bypass_ids = log_entry.get('bypass_matched_ids', '')
     upstream_status = log_entry.get('upstream_status', '')
@@ -760,27 +761,27 @@ def diagnose_whitelist(rule_config, log_entry, rule_id):
     final_rule_id = log_entry.get('final_rule_id', '')
     final_rule_type = log_entry.get('final_rule_type', '')
 
-    # 检查白名单是否已经命中
+    # Check if whitelist already matched
     if str(rule_id) in str(bypass_ids):
         if upstream_status == '405':
             return {
                 "conclusion": "already_matched_origin_405",
-                "summary": f"白名单规则已命中（bypass_matched_ids 包含 {rule_id}），但当前 405 是源站返回的",
-                "detail": "upstream_status=405 说明源站返回了 405，非 WAF 拦截。白名单规则实际已生效。",
+                "summary": f"Whitelist rule already matched (bypass_matched_ids contains {rule_id}), but the 405 was returned by the origin",
+                "detail": "upstream_status=405 means the origin returned 405, not a WAF block. The whitelist rule is actually effective.",
             }
         return {
             "conclusion": "already_matched",
-            "summary": f"白名单规则已命中（bypass_matched_ids: {bypass_ids}）",
-            "detail": "白名单规则已经生效",
+            "summary": f"Whitelist rule already matched (bypass_matched_ids: {bypass_ids})",
+            "detail": "Whitelist rule is effective",
         }
 
-    # 获取白名单跳过模块配置
+    # Get whitelist skip module config
     tags = rule_config.get('tags', [])
     tags_desc = [WHITELIST_TAGS.get(t, t) for t in tags]
     regular_rules = rule_config.get('regularRules', [])
     regular_types = rule_config.get('regularTypes', [])
 
-    # 检查跳过模块是否匹配当前拦截模块
+    # Check if skip module matches the current interception module
     module_mismatch = None
     if final_plugin:
         plugin_desc = FINAL_PLUGIN_DESC.get(final_plugin, final_plugin)
@@ -789,17 +790,17 @@ def diagnose_whitelist(rule_config, log_entry, rule_id):
             if not any(t in tags for t in ['regular', 'regular_rule', 'regular_type', 'waf']):
                 module_mismatch = {
                     "type": "module_not_covered",
-                    "detail": f"流量被 {plugin_desc} 拦截，但白名单跳过模块为 {tags_desc}，未包含 Web 核心防护规则"
+                    "detail": f"Traffic was intercepted by {plugin_desc}, but whitelist skip modules are {tags_desc}, which do not include Web Core Protection Rules"
                 }
             elif 'regular_rule' in tags and str(final_rule_id) not in [str(r) for r in regular_rules]:
                 module_mismatch = {
                     "type": "specific_rule_not_covered",
-                    "detail": f"白名单配置了跳过特定规则 {regular_rules}，但流量命中的规则是 {final_rule_id}"
+                    "detail": f"Whitelist is configured to skip specific rules {regular_rules}, but the traffic matched rule is {final_rule_id}"
                 }
             elif 'regular_type' in tags and final_rule_type not in regular_types:
                 module_mismatch = {
                     "type": "specific_type_not_covered",
-                    "detail": f"白名单配置了跳过特定类型 {regular_types}，但流量命中的类型是 {final_rule_type}"
+                    "detail": f"Whitelist is configured to skip specific types {regular_types}, but the traffic matched type is {final_rule_type}"
                 }
 
         elif final_plugin == 'acl':
@@ -810,14 +811,14 @@ def diagnose_whitelist(rule_config, log_entry, rule_id):
                 if str(final_rule_id) not in [str(r) for r in custom_rules]:
                     module_mismatch = {
                         "type": "module_not_covered",
-                        "detail": f"流量被 {plugin_desc}({acl_rule_type}) 拦截，但白名单跳过模块为 {tags_desc}"
+                        "detail": f"Traffic was intercepted by {plugin_desc}({acl_rule_type}), but whitelist skip modules are {tags_desc}"
                     }
 
         else:
             if final_plugin not in tags and 'waf' not in tags:
                 module_mismatch = {
                     "type": "module_not_covered",
-                    "detail": f"流量被 {plugin_desc} 拦截，但白名单跳过模块为 {tags_desc}，未包含该模块"
+                    "detail": f"Traffic was intercepted by {plugin_desc}, but whitelist skip modules are {tags_desc}, which do not include this module"
                 }
 
     if module_mismatch:
@@ -832,60 +833,60 @@ def diagnose_whitelist(rule_config, log_entry, rule_id):
             }
         }
 
-    return None  # 返回 None 表示模块匹配正常，需要继续检查条件
+    return None  # Returns None means module match is normal, need to continue checking conditions
 
 
 def _get_xff_hint(real_ip, xff_status):
-    """根据 XFF 配置状态生成 IP 相关的提示信息"""
+    """Generate IP-related hints based on XFF configuration status."""
     if xff_status == 0:
         return (
-            f"如果 {real_ip} 不是真实出口 IP，需要在 WAF 控制台的接入配置中"
-            f"开启「WAF前是否有七层代理（高防/CDN等）」配置项"
+            f"If {real_ip} is not the real egress IP, enable the "
+            f"'Is there a Layer 7 proxy before WAF (Anti-DDoS/CDN, etc.)' option in the WAF console access config"
         )
     elif xff_status == 1:
         return (
-            f"已开启 XFF 取值。如果 {real_ip} 不是真实出口 IP，"
-            f"说明可能存在 XFF 伪造，可尝试通过自定义 header 获取真实 IP"
+            f"XFF value extraction is enabled. If {real_ip} is not the real egress IP, "
+            f"XFF spoofing may exist. Try obtaining the real IP via a custom header"
         )
     elif xff_status == 2:
         return (
-            f"已开启自定义 header 取值。如果 {real_ip} 不是真实出口 IP，"
-            f"说明当前 header 中未记录真实 IP，请检查 header 配置"
+            f"Custom header value extraction is enabled. If {real_ip} is not the real egress IP, "
+            f"the current header does not contain the real IP. Please check the header config"
         )
     return ""
 
 
 def build_mismatch_detail(item, xff_status):
-    """为不匹配的条件构建详细描述"""
+    """Build detailed description for mismatched conditions."""
     field = item['field']
     display = item['display_name']
     op_desc = item['op_desc']
     config_val = item['config_value']
     log_val = item['log_value']
 
-    detail = f"规则要求 {display} {op_desc}: {config_val}，但流量中实际值为: {log_val}"
+    detail = f"Rule requires {display} {op_desc}: {config_val}, but actual traffic value is: {log_val}"
 
     if field == 'IP':
         xff_hint = _get_xff_hint(log_val, xff_status)
         if xff_hint:
-            detail += f"。{xff_hint}"
+            detail += f". {xff_hint}"
 
     return detail
 
 
 def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_config=None, full_check=False):
-    """完整诊断入口
+    """Complete diagnosis entry point.
 
     Args:
-        rule_json: 规则完整信息（rule_fetcher.py 输出的 rule 字段）
-        log_json: SLS 单条日志（get_waf_log.py 输出的日志条目）
-        defense_scene: 防护场景（可选，默认从规则中读取）
-        xff_status: XFF 配置状态 (0/1/2)
-        bypass_config: 命中的白名单规则配置（可选）
-        full_check: 全量检查模式（默认False=快速返回，True=检查所有可能原因）
+        rule_json: Complete rule info (rule field from rule_fetcher.py output)
+        log_json: Single SLS log entry (from get_waf_log.py output)
+        defense_scene: Defense scene (optional, read from rule by default)
+        xff_status: XFF configuration status (0/1/2)
+        bypass_config: Matched whitelist rule config (optional)
+        full_check: Full check mode (default False=fast return, True=check all possible causes)
 
     Returns:
-        dict: 完整诊断结果
+        dict: Complete diagnosis result
     """
     rule_config = rule_json.get('config', {})
     if not defense_scene:
@@ -899,10 +900,10 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
         "pre_checks": {},
         "condition_results": {},
         "recommendations": [],
-        "all_issues": [],  # 全量检查模式：收集所有问题
+        "all_issues": [],  # Full check mode: collect all issues
     }
 
-    # === 前置检查 1: 白名单冲突 ===
+    # === Pre-check 1: Whitelist conflict ===
     whitelist_conflict = check_whitelist_conflict(log_json, defense_scene, bypass_config)
     if whitelist_conflict and whitelist_conflict.get('has_conflict'):
         result["pre_checks"]["whitelist_conflict"] = whitelist_conflict
@@ -910,18 +911,18 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
             "issue_type": "whitelist_bypass",
             "severity": "critical",
             "summary": whitelist_conflict["message"],
-            "recommendation": "检查并调整白名单规则，确保其不跳过当前需要拦截的模块"
+            "recommendation": "Check and adjust the whitelist rule to ensure it does not skip the module that needs to intercept"
         })
         result["recommendations"].append(
-            "检查并调整白名单规则，确保其不跳过当前需要拦截的模块"
+            "Check and adjust the whitelist rule to ensure it does not skip the module that needs to intercept"
         )
-        # 快速模式直接返回，全量模式继续检查
+        # Fast mode returns immediately, full mode continues checking
         if not full_check:
             result["conclusion"] = "whitelist_bypass"
             result["summary"] = whitelist_conflict["message"]
             return result
 
-    # === 前置检查 2: 观察规则 ===
+    # === Pre-check 2: Monitor rules ===
     monitor_info = check_monitor_rules(log_json)
     if monitor_info:
         result["pre_checks"]["monitor_rules"] = monitor_info
@@ -929,12 +930,12 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
             "issue_type": "monitor_mode_hit",
             "severity": "warning",
             "summary": monitor_info["message"],
-            "recommendation": "观察模式规则仅记录不拦截，如需拦截请修改规则动作为拦截"
+            "recommendation": "Monitor mode rules only log, not block. To block, change the rule action to block"
         })
 
-    # === 场景分支处理 ===
+    # === Scene branch processing ===
 
-    # IP 黑名单
+    # IP blacklist
     if defense_scene in ('ip_blacklist', 'blacklist'):
         diag = diagnose_ip_blacklist(rule_config, log_json, xff_status)
         result["condition_results"] = diag
@@ -956,13 +957,13 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
             result["conclusion"] = diag["conclusion"]
             result["summary"] = diag["summary"]
             return result
-        # 全量模式：设置主要结论但继续检查
+        # Full mode: set main conclusion but continue checking
         result["conclusion"] = diag["conclusion"]
         result["summary"] = diag["summary"]
-        # IP黑名单场景无后续检查，直接返回
+        # IP blacklist scene has no further checks, return directly
         return result
 
-    # 区域封禁
+    # Region block
     if defense_scene == 'region_block':
         diag = diagnose_region_block(rule_config, log_json)
         result["condition_results"] = diag
@@ -977,13 +978,13 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
             result["conclusion"] = diag["conclusion"]
             result["summary"] = diag["summary"]
             return result
-        # 全量模式：设置主要结论但继续检查
+        # Full mode: set main conclusion but continue checking
         result["conclusion"] = diag["conclusion"]
         result["summary"] = diag["summary"]
-        # 区域封禁场景无后续检查，直接返回
+        # Region block scene has no further checks, return directly
         return result
 
-    # 白名单规则自身不生效
+    # Whitelist rule itself not effective
     if defense_scene == 'whitelist':
         whitelist_diag = diagnose_whitelist(rule_config, log_json, rule_id)
         if whitelist_diag:
@@ -999,11 +1000,11 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
                 result["conclusion"] = whitelist_diag["conclusion"]
                 result["summary"] = whitelist_diag["summary"]
                 return result
-            # 全量模式：设置主要结论但继续检查
+            # Full mode: set main conclusion but continue checking
             result["conclusion"] = whitelist_diag["conclusion"]
             result["summary"] = whitelist_diag["summary"]
 
-    # === 通用条件分析（自定义规则、CC规则、白名单条件检查等）===
+    # === General condition analysis (custom rules, CC rules, whitelist condition checks, etc.) ===
     analysis = analyze_conditions(rule_config, log_json, defense_scene)
     result["condition_results"] = {
         "matched": analysis["matched_conditions"],
@@ -1019,110 +1020,110 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
     has_recorded = analysis["has_recorded_fields"]
     is_cc = analysis["is_cc_rule"]
 
-    # 生成诊断结论
+    # Generate diagnosis conclusion
     if has_mismatch:
-        # 有不匹配的条件
+        # Has mismatched conditions
         mismatch_details = []
         for item in analysis["mismatched_conditions"]:
             detail = build_mismatch_detail(item, xff_status)
             mismatch_details.append(detail)
     
         result["conclusion"] = "condition_mismatch"
-        result["summary"] = "规则中各个匹配条件之间是「与」的关系。未命中规则的原因：" + "；".join(mismatch_details)
+        result["summary"] = "Rule conditions are combined with AND logic. Reason for not matching: " + "; ".join(mismatch_details)
         result["mismatch_details"] = mismatch_details
             
-        # 全量检查：添加到问题列表
+        # Full check: add to issues list
         result["all_issues"].append({
             "issue_type": "condition_mismatch",
             "severity": "critical",
-            "summary": "规则条件与流量不匹配",
+            "summary": "Rule conditions do not match the traffic",
             "details": mismatch_details,
-            "recommendation": "检查规则配置的条件字段是否与请求特征一致"
+            "recommendation": "Check if the rule condition fields match the request characteristics"
         })
 
     elif not has_recorded and has_unrecorded:
-        # 所有条件都是无法验证的字段
+        # All conditions are fields that cannot be verified
         unrecorded_names = [f['field'] for f in analysis['unrecorded_fields']]
         if monitor_info:
             monitor_rule = monitor_info['monitor_rules'][0]
             result["conclusion"] = "all_unrecorded_with_monitor"
             result["summary"] = (
-                f"流量已命中观察规则 {monitor_rule['rule_id']}，"
-                f"可在 WAF 控制台日志字段 {monitor_rule['log_field']} 中查看。"
-                f"当前规则的所有条件字段 {unrecorded_names} 均未在日志中记录，无法完全验证。"
+                f"Traffic has hit monitor rule {monitor_rule['rule_id']}, "
+                f"viewable in WAF console log field {monitor_rule['log_field']}. "
+                f"All condition fields {unrecorded_names} of the current rule are not recorded in logs, cannot fully verify."
             )
         else:
             result["conclusion"] = "all_unrecorded"
             result["summary"] = (
-                f"当前规则的所有条件字段 {unrecorded_names} 均未在日志中记录（如 body、cookie 等），"
-                "无法通过日志验证匹配情况。"
+                f"All condition fields {unrecorded_names} of the current rule are not recorded in logs (e.g., body, cookie, etc.), "
+                "cannot verify matching through logs."
             )
         result["recommendations"].append(
-            f"建议在 WAF 控制台——日志服务——日志设置中勾选 {unrecorded_names} 字段，"
-            "然后触发新流量并观察新的日志"
+            f"It is recommended to select the {unrecorded_names} fields in WAF console - Log Service - Log Settings, "
+            "then trigger new traffic and observe the new logs"
         )
         
-        # 全量检查：添加到问题列表
+        # Full check: add to issues list
         result["all_issues"].append({
             "issue_type": result["conclusion"],
             "severity": "warning",
-            "summary": f"无法验证的字段：{unrecorded_names}",
-            "recommendation": f"在日志设置中勾选 {unrecorded_names} 字段后重新测试"
+            "summary": f"Cannot verify fields: {unrecorded_names}",
+            "recommendation": f"Select the {unrecorded_names} fields in Log Settings and retest"
         })
 
     elif has_recorded and not has_mismatch and has_unrecorded:
-        # 已知字段全部匹配，但存在无法验证的字段
+        # Known fields all match, but there are unverifiable fields
         unrecorded_names = [f['field'] for f in analysis['unrecorded_fields']]
         if is_cc:
             result["conclusion"] = "partial_match_cc_unrecorded"
             result["summary"] = (
-                "日志中可验证的字段均匹配规则条件，但存在无法验证的字段和频率条件。"
-                f"未记录字段: {unrecorded_names}。"
-                "推测可能原因: 1) 未记录字段不匹配 2) 频率未达阈值 "
-                "3) WAF 使用滚动窗口检测，非滑动窗口"
+                "Verifiable fields in the log all match rule conditions, but there are unverifiable fields and frequency conditions. "
+                f"Unrecorded fields: {unrecorded_names}. "
+                "Possible causes: 1) Unrecorded fields do not match 2) Frequency threshold not reached "
+                "3) WAF uses tumbling window detection, not sliding window"
             )
         elif monitor_info:
             monitor_rule = monitor_info['monitor_rules'][0]
             result["conclusion"] = "partial_match_with_monitor"
             result["summary"] = (
-                f"流量已命中观察规则 {monitor_rule['rule_id']}。"
-                "日志中可验证的字段均匹配规则条件，"
-                f"但 {unrecorded_names} 未在日志中记录，可能是这些字段不匹配导致规则不生效。"
+                f"Traffic has hit monitor rule {monitor_rule['rule_id']}. "
+                "Verifiable fields in the log all match rule conditions, "
+                f"but {unrecorded_names} are not recorded in logs, possibly these fields do not match causing the rule to not take effect."
             )
         else:
             result["conclusion"] = "partial_match_unrecorded"
             result["summary"] = (
-                "日志中可验证的字段均匹配规则条件，"
-                f"但 {unrecorded_names} 未在日志中记录，可能是这些字段不匹配导致规则不生效。"
+                "Verifiable fields in the log all match rule conditions, "
+                f"but {unrecorded_names} are not recorded in logs, possibly these fields do not match causing the rule to not take effect."
             )
         result["recommendations"].append(
-            f"建议在 WAF 控制台——日志服务——日志设置中勾选 {unrecorded_names} 字段，"
-            "然后触发新流量并观察新的日志"
+            f"It is recommended to select the {unrecorded_names} fields in WAF console - Log Service - Log Settings, "
+            "then trigger new traffic and observe the new logs"
         )
         
-        # 全量检查：添加到问题列表
+        # Full check: add to issues list
         result["all_issues"].append({
             "issue_type": result["conclusion"],
             "severity": "warning",
-            "summary": f"已知字段匹配，但未记录字段：{unrecorded_names}",
-            "recommendation": f"在日志设置中勾选 {unrecorded_names} 字段后重新测试"
+            "summary": f"Known fields match, but unrecorded fields: {unrecorded_names}",
+            "recommendation": f"Select the {unrecorded_names} fields in Log Settings and retest"
         })
 
     elif has_recorded and not has_mismatch and not has_unrecorded:
-        # 所有条件全部匹配
+        # All conditions match
         if is_cc:
             result["conclusion"] = "all_match_cc"
             result["summary"] = (
-                "所有匹配条件均满足规则要求，但这是一条频率规则，"
-                "可能是访问频率未达阈值或因滚动窗口检测机制导致未触发。"
-                "WAF 使用滚动窗口（非滑动窗口），统计窗口以第一个请求到达时间为起点。"
+                "All matching conditions satisfy the rule requirements, but this is a frequency rule. "
+                "The access frequency may not have reached the threshold, or the tumbling window detection mechanism caused it not to trigger. "
+                "WAF uses tumbling windows (not sliding windows), the counting window starts from the first request arrival time."
             )
         elif monitor_info:
             monitor_rule = monitor_info['monitor_rules'][0]
             result["conclusion"] = "all_match_with_monitor"
             result["summary"] = (
-                f"所有条件均匹配。流量已命中观察规则 {monitor_rule['rule_id']}（动作为观察）。"
-                f"可在 WAF 控制台勾选日志字段 {monitor_rule['log_field']} 查看命中情况。"
+                f"All conditions match. Traffic has hit monitor rule {monitor_rule['rule_id']} (action is monitor). "
+                f"You can select the log field {monitor_rule['log_field']} in the WAF console to view hit details."
             )
         else:
             final_plugin = log_json.get('final_plugin', '')
@@ -1130,30 +1131,30 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
             if final_plugin == 'acl' and final_rule_id_log and str(final_rule_id_log) != str(rule_id):
                 result["conclusion"] = "all_match_other_rule_priority"
                 result["summary"] = (
-                    f"所有条件均匹配。但流量已被另一条 ACL 规则 {final_rule_id_log} 优先拦截。"
-                    "当多条 ACL 规则同时满足时，最先配置的规则优先生效。"
+                    f"All conditions match. But traffic was intercepted by another ACL rule {final_rule_id_log} first. "
+                    "When multiple ACL rules are satisfied simultaneously, the first configured rule takes effect."
                 )
             else:
                 result["conclusion"] = "all_match_timing"
                 result["summary"] = (
-                    "所有条件均匹配规则要求。推测是规则配置时间不足，"
-                    "规则配置/变更后底层需要约1分钟才能生效。"
+                    "All conditions match the rule requirements. Likely the rule was configured too recently, "
+                    "the rule needs about 1 minute after configuration/change to take effect."
                 )
         
-        # 全量检查：添加到问题列表
+        # Full check: add to issues list
         if is_cc:
             result["all_issues"].append({
                 "issue_type": "cc_frequency_not_reached",
                 "severity": "warning",
-                "summary": "频率未达阈值或滚动窗口机制",
-                "recommendation": "检查CC防护频率配置，确认访问频率是否达到阈值"
+                "summary": "Frequency threshold not reached or tumbling window mechanism",
+                "recommendation": "Check CC protection frequency config, confirm if access frequency reaches the threshold"
             })
         elif monitor_info:
             result["all_issues"].append({
                 "issue_type": "monitor_mode_action",
                 "severity": "info",
-                "summary": "规则已命中但动作为观察模式",
-                "recommendation": "如需拦截请将规则动作修改为拦截"
+                "summary": "Rule was hit but action is monitor mode",
+                "recommendation": "To block, change the rule action to block"
             })
         else:
             final_plugin = log_json.get('final_plugin', '')
@@ -1162,21 +1163,21 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
                 result["all_issues"].append({
                     "issue_type": "rule_priority_conflict",
                     "severity": "warning",
-                    "summary": f"被其他ACL规则{final_rule_id_log}优先拦截",
-                    "recommendation": "调整规则顺序，将当前规则移到更靠前的位置"
+                    "summary": f"Intercepted by other ACL rule {final_rule_id_log} first",
+                    "recommendation": "Adjust rule order, move the current rule to an earlier position"
                 })
             else:
                 result["all_issues"].append({
                     "issue_type": "timing_delay",
                     "severity": "info",
-                    "summary": "规则配置不足1分钟，可能尚未生效",
-                    "recommendation": "等待约1分钟后重试"
+                    "summary": "Rule configured less than 1 minute ago, may not have taken effect yet",
+                    "recommendation": "Wait about 1 minute and retry"
                 })
     else:
         result["conclusion"] = "unknown"
-        result["summary"] = "无法确定规则不生效的原因，建议人工排查"
+        result["summary"] = "Unable to determine the reason why the rule is not effective, manual investigation recommended"
 
-    # 白名单场景的额外模块匹配检查
+    # Additional module match check for whitelist scenario
     if defense_scene == 'whitelist' and not has_mismatch:
         whitelist_module_check = diagnose_whitelist(rule_config, log_json, rule_id)
         if whitelist_module_check:
@@ -1188,30 +1189,30 @@ def diagnose(rule_json, log_json, defense_scene=None, xff_status=0, bypass_confi
 
 
 # ==============================================================
-# CLI 入口
+# CLI entry
 # ==============================================================
 
 def main():
-    parser = argparse.ArgumentParser(description='WAF 规则条件匹配诊断引擎')
+    parser = argparse.ArgumentParser(description='WAF rule condition matching diagnosis engine')
     parser.add_argument('--rule-json', type=str, default=None,
-                        help='规则 JSON 字符串')
+                        help='Rule JSON string')
     parser.add_argument('--log-json', type=str, default=None,
-                        help='日志 JSON 字符串')
+                        help='Log JSON string')
     parser.add_argument('--rule-file', type=str, default=None,
-                        help='规则 JSON 文件路径')
+                        help='Rule JSON file path')
     parser.add_argument('--log-file', type=str, default=None,
-                        help='日志 JSON 文件路径')
+                        help='Log JSON file path')
     parser.add_argument('--xff-status', type=int, default=0,
-                        help='XFF 配置状态 (0=未开启, 1=xff第一个值, 2=自定义header)')
+                        help='XFF configuration status (0=disabled, 1=first xff value, 2=custom header)')
     parser.add_argument('--defense-scene', type=str, default=None,
-                        help='防护场景覆写（默认从规则中读取）')
+                        help='Defense scene override (read from rule by default)')
     parser.add_argument('--bypass-config', type=str, default=None,
-                        help='白名单规则配置 JSON 字符串（可选）')
+                        help='Whitelist rule config JSON string (optional)')
     parser.add_argument('--full-check', action='store_true', default=False,
-                        help='全量检查模式：检查所有可能原因并一次性输出（默认快速模式，发现主要问题即返回）')
+                        help='Full check mode: check all possible causes and output at once (default fast mode, returns on first major issue)')
     args = parser.parse_args()
 
-    # 读取规则数据
+    # Read rule data
     rule_data = None
     if args.rule_json:
         rule_data = json.loads(args.rule_json)
@@ -1219,9 +1220,9 @@ def main():
         with open(args.rule_file, 'r', encoding='utf-8') as f:
             rule_data = json.load(f)
     else:
-        parser.error("必须指定 --rule-json 或 --rule-file")
+        parser.error("Must specify --rule-json or --rule-file")
 
-    # 读取日志数据
+    # Read log data
     log_data = None
     if args.log_json:
         log_data = json.loads(args.log_json)
@@ -1229,9 +1230,9 @@ def main():
         with open(args.log_file, 'r', encoding='utf-8') as f:
             log_data = json.load(f)
     else:
-        parser.error("必须指定 --log-json 或 --log-file")
+        parser.error("Must specify --log-json or --log-file")
 
-    # 读取白名单配置
+    # Read whitelist config
     bypass_cfg = None
     if args.bypass_config:
         bypass_cfg = json.loads(args.bypass_config)
@@ -1249,7 +1250,7 @@ def main():
     except Exception as e:
         print(json.dumps({
             "success": False,
-            "error": f"诊断失败: {str(e)}"
+            "error": f"Diagnosis failed: {str(e)}"
         }, ensure_ascii=False))
         sys.exit(1)
 

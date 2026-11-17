@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon亚马逊爆款评论分析 · VOC 洞察"
+  short_description: "拆解爆款评论：卖点、差评短板与选品验证"
+  default_prompt: "使用 $amazon-hot-review-analysis 分析一个爆款 Amazon ASIN 的评论，提炼卖点与差评风险。"

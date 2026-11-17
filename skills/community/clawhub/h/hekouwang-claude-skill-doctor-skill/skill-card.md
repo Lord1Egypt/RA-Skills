@@ -1,42 +1,62 @@
-## Description: <br>
-Reviews Claude and Agent Skill directories for SKILL.md quality, trigger clarity, progressive disclosure, portability, hardcoded secrets, and maintainability, then returns a scorecard with prioritized remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+体检 Agent Skill：默认 check.py 评 SKILL.md 触发/篇幅/渐进披露/可移植/安全；可选套件可检查项目说明文档与本机开发环境；可选 SkillSpector 深度扫描与 trigger_eval（会把 query/description 发给外部模型）；给评分卡并可代重构
 
-## Publisher: <br>
-[huiyonghkw](https://clawhub.ai/user/huiyonghkw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huiyonghkw](https://clawhub.ai/user/huiyonghkw)
 
-## Use Case: <br>
-Developers and skill authors use this skill to audit Agent Skill packages before publishing or installing them. It combines a deterministic Python checker with qualitative review guidance to identify trigger, structure, portability, documentation, and security issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad review trigger and may be invoked for general skill-structure requests. <br>
-Mitigation: Invoke it intentionally for Agent Skill audits and confirm the target directory before running the checker. <br>
-Risk: Running local review scripts against directories containing private material can expose sensitive filenames or findings in reports. <br>
-Mitigation: Review check.py before use on private directories and run it only against intended skill packages; the artifact states that secret files such as .env, .key, and .pem should not be read. <br>
+## Use Case:
 
+Developers use this skill to inspect Agent Skills and SKILL.md files for trigger clarity, structure, portability, and security, then receive a scorecard and practical repair guidance. Optional checks can assess related project documentation and development environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huiyonghkw/skills/hekouwang-claude-skill-doctor-skill) <br>
-- [Skill writing vocabulary](artifact/references/skill-writing-vocab.md) <br>
-- [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON reports, shell commands, and code-edit recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run the bundled zero-dependency Python checker and produce prioritized remediation steps for the reviewed skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The security review was partial: 17 of 19 components were fully inspected, leaving some checks incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill files and decide whether the available scan coverage is sufficient before installing.
+
+Risk: The optional trigger evaluation sends query text and the tested skill description to an external model service; sensitive content could be exposed and calls may incur costs.
+
+Mitigation: Avoid sensitive queries and descriptions, review the disclosed service and expected charges, and use isolated credentials when running the evaluation.
+
+Risk: The Docker examples rely on image references that should be checked before use.
+
+Mitigation: Review the image source and pinned digest before running the Docker examples.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/huiyonghkw/hekouwang-claude-skill-doctor-skill)
+- [ClawHub release page](https://clawhub.ai/huiyonghkw/skills/hekouwang-claude-skill-doctor-skill)
+- [SkillSpector](https://github.com/NVIDIA/skillspector)
+- [Trigger evaluation guide](references/trigger-eval.md)
+- [Doctor suite guide](references/doctor-suite.md)
+- [Skill writing vocabulary](references/skill-writing-vocab.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Text or JSON scorecard with Markdown repair guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional trigger evaluation sends queries and the tested description to an external model service and may incur usage costs.]
+
+## Skill Version(s):
+
+1.8.7 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

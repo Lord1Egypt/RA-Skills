@@ -1,44 +1,60 @@
-## Description: <br>
-Automates Xiaohongshu workflows for login, content publishing, content discovery, social interaction, and multi-step content operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Skills automates Xiaohongshu login, publishing, search and discovery, social interaction, and content operations through agent-routed commands and a browser bridge.
 
-## Publisher: <br>
-[zengfan-ai](https://clawhub.ai/user/zengfan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengfan-ai](https://clawhub.ai/user/zengfan-ai)
 
-## Use Case: <br>
-External users and developers use this skill to operate Xiaohongshu through an agent, including checking login status, publishing posts, searching and analyzing notes, commenting, liking, favoriting, and coordinating content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give a local browser extension and Python bridge broad control over a logged-in Xiaohongshu browser session. <br>
-Mitigation: Install only after reviewing the extension permissions and run it with a dedicated account or browser profile where possible. <br>
-Risk: Automated posts, comments, likes, and favorites can affect a real social account and may trigger platform enforcement if used too quickly. <br>
-Mitigation: Require review before every post, comment, like, or favorite action and keep operation frequency low. <br>
-Risk: Login flows and cookie handling involve sensitive account state. <br>
-Mitigation: Avoid the QR login flow unless the browser bridge permissions are understood, and clear stored cookies when switching or retiring accounts. <br>
+## Use Case:
 
+External users and developers use this skill to automate Xiaohongshu account workflows including login checks, content publishing, content discovery, commenting, likes, favorites, and multi-step content operations. It is intended for use with the user's own logged-in browser session and should be operated with explicit confirmation for publishing and social actions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zengfan-ai/xhs-skills) <br>
-- [Metadata homepage](https://github.com/xpzouying/xiaohongshu-skills) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI operations return structured JSON; analysis workflows may return markdown tables and summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: The skill and Chrome extension can broadly control a logged-in Xiaohongshu browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments and use an account whose browser session you are comfortable delegating to the agent.
+
+Risk: Sensitive login and browser data handling is under-disclosed.
+
+Mitigation: Authenticate the bridge before use, remove or tightly limit generic JavaScript evaluation and cookie access, and avoid sending QR login data to third-party services by default.
+
+Risk: Automated publishing or social actions can affect a real account.
+
+Mitigation: Require explicit user confirmation before publishing, commenting, liking, or favoriting content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengfan-ai/skills/xhs-skills)
+- [Publisher profile](https://clawhub.ai/user/zengfan-ai)
+- [Project homepage from ClawHub metadata](https://github.com/xpzouying/xiaohongshu-skills)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI operations return JSON; analysis workflows may produce Markdown tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and root SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

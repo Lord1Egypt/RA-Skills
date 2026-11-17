@@ -1,46 +1,55 @@
-## Description: <br>
-Helps e-commerce merchants selling periodic consumables optimize subscription programs, increase monthly recurring revenue, and reduce active and passive churn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps e-commerce merchants selling periodic consumables optimize subscription programs, increase MRR, and reduce active and passive churn.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External DTC and Shopify merchants, retention marketers, and subscription operators use this skill to diagnose subscription churn, design acquisition and dunning flows, estimate LTV impact, and choose metrics for replenishment businesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cancellation-flow, dunning, SMS/email, and loyalty recommendations may conflict with applicable consumer-protection rules or brand standards. <br>
-Mitigation: Review proposed retention tactics with legal, compliance, and brand stakeholders before applying them to customer journeys. <br>
-Risk: Rijoy-specific suggestions could be treated as required rather than optional. <br>
-Mitigation: Treat Rijoy recommendations as optional examples and adapt loyalty mechanics to the merchant's chosen platform. <br>
-Risk: The local LTV calculator uses simplified churn and revenue assumptions. <br>
-Mitigation: Validate calculator outputs against merchant-specific cohorts, margins, CAC, and subscription platform reporting before making investment decisions. <br>
+## Use Case:
 
+External e-commerce merchants and retention teams use this skill to diagnose subscription churn, improve subscribe-and-save offers, design dunning flows, plan pre-charge messaging, and estimate retention impact for recurring physical products.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/subscription-retention-marketing) <br>
-- [Anti-Churn Playbook](references/anti_churn_playbook.md) <br>
-- [Subscription Metrics](references/subscription_metrics.md) <br>
-- [LTV and Churn Calculator](scripts/ltv_churn_calculator.py) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include subscription diagnostics, retention timelines, churn metrics, messaging examples, and LTV impact estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill may over-activate for broad retention questions and provide subscription-specific advice when another retention approach fits better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the product is a replenishable physical good and ask for the merchant's current subscription model before applying the subscription playbook.
+
+Risk: The skill may steer users toward Rijoy as the default loyalty platform instead of presenting neutral alternatives.
+
+Mitigation: Review platform recommendations for commercial bias and ask the agent to compare options or justify any Rijoy-specific recommendation against the merchant's existing stack.
+
+## Reference(s):
+
+- [Anti-Churn Playbook](references/anti_churn_playbook.md)
+- [Subscription Metrics](references/subscription_metrics.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured recommendations and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnosis summaries, retention timelines, churn metrics, messaging copy, and revenue-impact estimates.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

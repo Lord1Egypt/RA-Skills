@@ -1,39 +1,52 @@
-## Description: <br>
-Analyzes form fields on a live webpage using browser automation when the user provides an online URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes form fields on a live webpage using browser automation.
 
-## Publisher: <br>
-[EvalGitHub](https://clawhub.ai/user/EvalGitHub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[evalgithub](https://clawhub.ai/user/evalgithub)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, QA engineers, and operators use this skill to inspect a provided webpage URL and summarize the visible form field types and counts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent opens user-provided URLs in a browser to inspect page structure.
+
+Mitigation: Only analyze pages the user trusts or intentionally wants inspected.
+
+Risk: Authenticated, private-network, localhost, admin, banking, or similarly sensitive pages can expose page structure during analysis.
+
+Mitigation: Avoid those pages unless the user specifically intends their structure to be inspected.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to inspect an online page and summarize the page's form fields by type and total count. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Browser access may load authenticated, internal, or sensitive pages if the user provides them. <br>
-Mitigation: Use trusted URLs where possible, avoid localhost, internal, or sensitive sites unless intended, and prefer a separate browser profile for pages requiring login. <br>
-Risk: Dynamic, hidden, collapsed, or tabbed form sections can lead to incomplete field counts. <br>
-Mitigation: Wait for single-page applications to finish loading and expand relevant tabs or sections before relying on the count. <br>
+**Output Format:** [Markdown table with concise notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include browser observations and guidance when authentication, dynamic loading, hidden sections, or multi-section pages affect field counting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown table with totals and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Counts visible or discoverable form fields by category and may include observations about page structure.] <br>
+0.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -119,11 +119,11 @@ At minimum, fill:
 ```bash
 .venv/bin/python scripts/update_config.py --config ./config.toml --set llm.model=REPLACE_WITH_REAL_MODEL
 .venv/bin/python scripts/update_config.py --config ./config.toml --set llm.base_url=REPLACE_WITH_REAL_URL
-.venv/bin/python scripts/update_config.py --config ./config.toml --set llm.api_key=sk-REPLACE_WITH_REAL_KEY
+.venv/bin/python scripts/update_config.py --config ./config.toml --set llm.api_key=REDACTED-SECRET
 
 .venv/bin/python scripts/update_config.py --config ./config.toml --set vlm.model=REPLACE_WITH_REAL_MODEL
 .venv/bin/python scripts/update_config.py --config ./config.toml --set vlm.base_url=REPLACE_WITH_REAL_URL
-.venv/bin/python scripts/update_config.py --config ./config.toml --set vlm.api_key=sk-REPLACE_WITH_REAL_KEY
+.venv/bin/python scripts/update_config.py --config ./config.toml --set vlm.api_key=REDACTED-SECRET
 ```
 
 Optional but common:

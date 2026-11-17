@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# fake dpkg-query (apt backend) — batch list (|-format) and file-owner query.
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+c1="${1:-}"; c2="${2:-}"; c3="${3:-}"; c4="${4:-}"
+case "$c1" in
+  -W)
+    if [ -n "$c3" ]; then
+      awk -F'\t' -v n="$c3" '$1==n{print $3}' "$DATA/dpkg.txt"
+    else
+      awk -F'\t' '{printf "ii  %s|%s|%s\n", $1, $2, $3}' "$DATA/dpkg.txt"
+    fi ;;
+  -S) o=$(awk -v p="$c2" '$1==p{print $2": "$1}' "$DATA/dpkg-files.txt")
+      [ -n "$o" ] && echo "$o" || { echo "dpkg-query: no path found matching $c2" >&2; exit 1; } ;;
+  *) exit 64 ;;
+esac

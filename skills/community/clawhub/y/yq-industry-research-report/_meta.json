@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-industry-research-report",
+  "id": 378623320145985,
   "version": "1.0.0",
-  "publishedAt": 1779584593365
+  "name": "yq-industry-research-report",
+  "updated_at": 1773990183591,
+  "platform": "minimax"
 }

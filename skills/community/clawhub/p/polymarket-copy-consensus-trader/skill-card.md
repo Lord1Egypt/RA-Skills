@@ -1,46 +1,61 @@
-## Description: <br>
-Trades Polymarket markets only when at least three top whale wallets independently agree on direction, filtering single-wallet noise and scaling position size with consensus strength. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Only trades Polymarket markets where 3+ top whale wallets independently agree on direction.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and prediction-market operators use this skill to run a configurable Simmer/Polymarket trading bot that finds multi-wallet consensus signals, checks market safeguards, and executes paper or explicitly requested live trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can execute real USDC trades when SIMMER_API_KEY is provided and --live is passed. <br>
-Mitigation: Use paper mode first, pass --live only for intentional live trading, and keep max position and open-position tunables conservative. <br>
-Risk: The SIMMER_API_KEY credential grants trading authority to the skill runtime. <br>
-Mitigation: Keep the credential private and provide it only in environments where the operator accepts the trading authority granted to the skill. <br>
-Risk: The skill depends on simmer-sdk for market access and execution. <br>
-Mitigation: Review the simmer-sdk dependency before live use, especially before supplying live credentials. <br>
+## Use Case:
 
+External users and developers can use this skill to run a Polymarket copy-trading strategy that aggregates recent activity from top public wallets, filters for multi-wallet consensus, and places paper or explicitly enabled live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/polymarket-copy-consensus-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [predicting.top Leaderboard API](https://predicting.top/api/leaderboard) <br>
-- [Polymarket Data API](https://data-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May place simulated trades by default and live trades only when explicitly run with --live and valid trading credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live trading can trade the wrong market because market matching uses progressive keyword search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default paper mode for evaluation and require exact market identity checks before enabling live orders.
+
+Risk: Live trading can exceed expected exposure because position limiting is per run rather than account-wide.
+
+Mitigation: Use a revocable low-limit API key and verify account-wide exposure controls before live use.
+
+Risk: The Simmer SDK dependency is not pinned in the artifact.
+
+Mitigation: Pin and audit simmer-sdk before providing live trading credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-copy-consensus-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+- [predicting.top leaderboard API](https://predicting.top/api/leaderboard)
+- [Polymarket data API](https://data-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and trading actions driven by Python configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless --live is passed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

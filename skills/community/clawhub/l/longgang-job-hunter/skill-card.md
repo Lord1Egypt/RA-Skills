@@ -1,37 +1,57 @@
-## Description: <br>
-自动抓取龙港325802人才招聘网职位信息，按用户偏好筛选并整理后发送邮件通知。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Longgang 325802 job postings by preference, collects listing and contact details, saves the results, and emails them to a configured recipient.
 
-## Publisher: <br>
-[ttzuozhe](https://clawhub.ai/user/ttzuozhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ttzuozhe](https://clawhub.ai/user/ttzuozhe)
 
-## Use Case: <br>
-Job seekers use this skill to crawl Longgang 325802 recruitment listings, filter them by job preference, collect company contact details, and receive the organized results by email. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically sends scraped job results by email using embedded QQ SMTP credentials and a default recipient. <br>
-Mitigation: Review the email behavior before installation; require user-provided mail credentials and recipient confirmation, and preview the exact job and contact data before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ttzuozhe/longgang-job-hunter) <br>
+## Use Case:
 
+External job seekers and agents assisting them use this skill to search Longgang-area job postings on the 325802 recruitment site, filter listings by job preference, and collect contact details for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Plain text job-search report, saved locally and sent by email] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes job title, company, address, phone, experience, education, and optional job description when found.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json; SKILL.md lists 1.1.0) <br>
+Global; job-search content is specific to Longgang, Zhejiang, China.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically email scraped job results to a hardcoded default mailbox using exposed SMTP credentials.
+
+Mitigation: Remove hardcoded SMTP credentials, require secrets from a protected configuration source, and require an explicit recipient plus confirmation before sending email.
+
+Risk: The skill scrapes recruitment listings and writes collected job and contact details to jobs_result.txt.
+
+Mitigation: Review collected results before sharing, respect the recruitment site's access expectations, and limit stored output to job-search data needed by the user.
+
+Risk: The security guidance says dependencies should be updated.
+
+Mitigation: Update dependencies before installation and rerun the release security scan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ttzuozhe/skills/longgang-job-hunter)
+- [325802 talent recruitment site](http://www.325802.net/ucregs/indexlist.asp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text job listings saved to jobs_result.txt and sent as email body text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include company name, position, address, phone, work experience, education requirement, and optional job description.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

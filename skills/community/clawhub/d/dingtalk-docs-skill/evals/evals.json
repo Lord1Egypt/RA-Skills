@@ -46,6 +46,109 @@
         "如果缺少知识库 ID 则向用户说明而不是猜测",
         "输出展示了文档列表或明确说明缺少必要参数"
       ]
+    },
+    {
+      "id": 5,
+      "prompt": "读取知识库里的「2026 绩效表」并总结重点。该节点的 contentType 是 axls，但当前 MCP 只安装了文档工具，没有表格读取工具。",
+      "expected_output": "确认节点类型为 axls，不调用或重试 get_document_content，也不调用报错中提到但当前未安装的工具；明确请用户粘贴需要分析的表格内容，或提供导出的文件。",
+      "files": [],
+      "assertions": [
+        "没有调用 get_document_content",
+        "没有臆造或调用未安装的表格 MCP 工具",
+        "请求用户粘贴表格内容或提供导出文件"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "搜索「项目计划」后读取结果。搜索结果中同时有原文档 nodeId=doc-1 和一个 dlink 快捷方式，快捷方式指向的原始 nodeId 也是 doc-1。",
+      "expected_output": "按原始 nodeId 对结果去重，优先保留原文档；只对保留的原节点确认类型并在它是 adoc 时调用 get_document_content，不直接读取 dlink。",
+      "files": [],
+      "assertions": [
+        "按原始 nodeId 对 dlink 和原节点去重",
+        "没有对 dlink 调用 get_document_content",
+        "后续操作使用原节点 nodeId"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "把本地文件 landing-page.html 推送到钉钉知识库的「设计交付」文件夹。",
+      "expected_output": "定位「设计交付」文件夹并在用户确认后，将 landing-page.html 作为原始 HTML 文件走 get_file_upload_info、HTTP PUT、commit_uploaded_file 上传，不转换为 Markdown 或创建 adoc。",
+      "files": [],
+      "assertions": [
+        "调用了 get_file_upload_info 和 commit_uploaded_file",
+        "没有调用 create_document",
+        "保留 HTML 原始格式和文件名"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "把截图 release-dashboard.png 上传到默认钉钉知识库。",
+      "expected_output": "在用户确认后，将 PNG 原文件走三步文件上传流程上传到默认知识库，不创建 adoc 文档。",
+      "files": [],
+      "assertions": [
+        "调用了 get_file_upload_info 和 commit_uploaded_file",
+        "没有调用 create_document",
+        "使用原始 PNG 文件上传"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "把本地 architecture.md 推送到钉钉知识库。文件正文约 12,500 个字符，用户没有说明需要在线编辑还是仅存档。",
+      "expected_output": "识别原始文件为 Markdown 且超过 adoc 单次 10,000 字符上限，先推荐用户选择“分段创建并追加 adoc”或“原样上传 .md 文件”；在用户选择方案前不执行创建、上传或获取上传凭证。",
+      "files": [],
+      "assertions": [
+        "说明 Markdown 默认优先创建 adoc，但当前内容超过单次字符上限",
+        "提供分段 adoc 与原样上传 MD 两个选项",
+        "在用户选择前没有调用 create_document、get_file_upload_info 或 commit_uploaded_file"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "把本地交付文件推送到钉钉知识库。文件没有扩展名，用户也没有说明要保留原格式还是转成在线文档。",
+      "expected_output": "先识别可用的只读文件信息，并向用户确认要创建在线可编辑 adoc 还是原样上传文件；在推送方案明确前不执行任何创建或上传步骤。",
+      "files": [],
+      "assertions": [
+        "向用户确认推送方案",
+        "没有擅自转换文件格式",
+        "在方案确认前没有调用 create_document、get_file_upload_info、HTTP PUT 或 commit_uploaded_file"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "把本地 report.md 推送到钉钉知识库，正文里引用了 3 张本地图片（如 ./img/a.png），要求图片在钉钉文档里能正常显示。",
+      "expected_output": "识别到 markdown 引用本地相对路径图片需要内联，而非当作独立文件上传。对每张图走内联链路：get_doc_attachment_upload_info 上传拿 resourceId → HTTP PUT 原始字节 → download_doc_attachment 取签名下载 URL → 用 create_document/update_document 写入 ![alt](签名URL)，由钉钉自动抓取转存为内联图。所有写操作串行执行；推送后做字节级校验（下载新图签名 URL 比对字节数等于原图）。不使用 resourceUrl 当图源，不使用占位符人工粘贴。",
+      "files": [],
+      "assertions": [
+        "调用了 get_doc_attachment_upload_info 上传本地图片",
+        "用 download_doc_attachment 获取的签名下载 URL 作为 markdown 图源",
+        "没有使用 /core/api/resources/img/ 形式的 resourceUrl 当图源",
+        "所有写操作串行执行，没有并行写同一文档",
+        "推送后进行了字节级或 markdown 图片校验"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "在钉钉文档第 3 个块的位置插入一张本地图片 screenshot.png。",
+      "expected_output": "不使用 insert_document_block 的行内 image（children.src），因为实测会报“Undefined block element”。改走内联链路：get_doc_attachment_upload_info 上传图片取签名 URL，再用 update_document(mode=append, index=3) 写入 ![alt](签名URL)。index 语义为插入到第 3 个块之前，插入成功后其后所有块 index 依次 +1。",
+      "files": [],
+      "assertions": [
+        "没有用 insert_document_block 插入行内 image 元素",
+        "走 get_doc_attachment_upload_info → download_doc_attachment → update_document 内联链路",
+        "正确使用 update_document 的 index 定位（插入到指定块之前）"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "之前推送到钉钉的文档里有几张图片全部显示“暂无权限访问”的占位插画，帮我修复。",
+      "expected_output": "诊断为误用了 resourceUrl 当图源，导致导入器抓取到占位插画（约 42210 字节 PNG）。修复方案：对每张原图重新走内联链路取 download_doc_attachment 的签名下载 URL；替换时先 append 新图到旧图所在 index，再按旧块 blockId 删除旧块（净零位移，先加后删配对）；所有写操作串行，删后用 list_document_blocks 复核。执行前展示确认摘要并注明“将删除 N 个块并重插 N 张图”，收到确认后再操作；修复后做字节级校验。",
+      "files": [],
+      "assertions": [
+        "诊断出占位插画是误用 resourceUrl 当图源导致",
+        "改用 download_doc_attachment 的签名下载 URL 重新内联",
+        "替换采用先加后删配对（append 新图到旧 index + 按 blockId 删旧块）",
+        "执行前给出确认摘要并注明删除/重插的块数量",
+        "所有写操作串行且删后用 list_document_blocks 复核"
+      ]
     }
   ]
 }

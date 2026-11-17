@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 Personality Core Pure Python Fallback
 
@@ -8,6 +14,10 @@ Personality Core Pure Python Fallback
 
 import math
 from typing import List
+from interfaces import TraceContext, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+from validation_framework import ValidationError, validate_params, validate_params
 
 
 def normalize_weights(weights: List[float]) -> List[float]:
@@ -142,3 +152,11 @@ if __name__ == "__main__":
     scores = compute_all_scores(maslow, intent_list)
     print(f"批量计算 {len(intent_list)} 个优先级: {(time.time() - start) * 1000:.2f}ms")
     print(f"平均每个: {(time.time() - start) * 1000 / len(intent_list):.4f}ms")
+
+
+# 错误处理
+def _handle_error(error: Exception, context: str = "") -> None:
+    """处理错误"""
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.error(f"错误发生在 {context}: {str(error)}", exc_info=True)

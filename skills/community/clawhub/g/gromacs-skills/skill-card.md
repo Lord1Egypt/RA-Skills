@@ -1,45 +1,59 @@
-## Description: <br>
-Provides a GROMACS command reference and workflow guidance for agents that need help preparing, running, or analyzing molecular dynamics commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language GROMACS molecular dynamics command reference guidance for agents that need help choosing commands, parameters, file formats, and workflow steps.
 
-## Publisher: <br>
-[CharlesHahn](https://clawhub.ai/user/CharlesHahn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charleshahn](https://clawhub.ai/user/charleshahn)
 
-## Use Case: <br>
-Developers, computational scientists, and agents use this skill to look up GROMACS commands, common parameters, file formats, and molecular simulation workflow guidance before proposing shell commands or run scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated GROMACS run commands can start long-running or resource-intensive jobs, especially mdrun, mpirun, and GPU-enabled commands. <br>
-Mitigation: Review commands before execution; for production or long-running simulations, generate a script for the user to run in the intended compute environment. <br>
-Risk: GROMACS command options and file compatibility vary by installed version and local binaries. <br>
-Mitigation: Use a trusted local GROMACS installation and check `gmx <command> -h` or version-matched documentation before relying on generated parameters. <br>
+## Use Case:
 
+Developers, computational scientists, and agents use this skill to prepare, run, troubleshoot, and analyze GROMACS molecular dynamics workflows while checking local command help for version-specific options.
 
-## Reference(s): <br>
-- [GROMACS command categories](references/command-categories.md) <br>
-- [Common GROMACS parameters](references/common-parameters.md) <br>
-- [GROMACS manual](https://manual.gromacs.org/) <br>
-- [GROMACS GitHub repository](https://github.com/gromacs/gromacs) <br>
-- [GROMACS user forum](https://gromacs.bioexcel.eu/) <br>
-- [GROMACS tutorials](http://www.mdtutorials.com/gmx/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and scripts should be reviewed before execution and matched to the local GROMACS installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Generated GROMACS commands or run scripts can consume substantial compute or overwrite simulation outputs, especially production mdrun jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands, file paths, resource settings, and scripts before execution; production runs should be executed by the user in the intended compute environment.
+
+Risk: GROMACS command-line options vary by installed version, so stale parameters can fail or produce unintended behavior.
+
+Mitigation: Run gmx <command> -h locally and compare generated commands against the installed GROMACS version before use.
+
+## Reference(s):
+
+- [GROMACS command categories](references/command-categories.md)
+- [Common GROMACS parameters](references/common-parameters.md)
+- [GROMACS manual](https://manual.gromacs.org/)
+- [GROMACS GitHub repository](https://github.com/gromacs/gromacs)
+- [GROMACS user forum](https://gromacs.bioexcel.eu/)
+- [GROMACS tutorials](http://www.mdtutorials.com/gmx/)
+- [ClawHub skill page](https://clawhub.ai/charleshahn/skills/gromacs-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce example GROMACS commands and run scripts for user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

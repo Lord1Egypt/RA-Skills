@@ -1,46 +1,56 @@
-## Description: <br>
-Use when multimodal embeddings are needed from Alibaba Cloud Model Studio models such as `qwen3-vl-embedding` for image, video, and text retrieval, cross-modal search, clustering, or offline vectorization pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares Alibaba Cloud Model Studio multimodal embedding request payloads for text, image, and video retrieval, cross-modal search, clustering, and offline vectorization workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Alibaba Cloud Model Studio multimodal embedding requests for text, image, and video retrieval, similarity search, clustering, and offline vectorization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alibaba/DashScope credentials may be exposed or over-permissioned. <br>
-Mitigation: Use a scoped API key, keep it out of generated files, and store it through `DASHSCOPE_API_KEY` or an approved credentials file. <br>
-Risk: Embedding inputs and generated request files may contain sensitive prompts, URLs, or local file references. <br>
-Mitigation: Only process content approved for the Alibaba Cloud workflow and remove generated request files when they are no longer needed. <br>
-Risk: Changing model or vector dimension within one index can create incompatible embeddings. <br>
-Mitigation: Pin the model and output dimension before writing vectors and record those settings with each run. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare normalized Alibaba Cloud Model Studio multimodal embedding requests and supporting guidance for retrieval, similarity search, clustering, and vectorization pipelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-qwen-multimodal-embedding) <br>
-- [Model Studio embedding documentation](https://help.aliyun.com/zh/model-studio/embedding) <br>
-- [Model Studio model list](https://help.aliyun.com/zh/model-studio/models) <br>
-- [Model Studio model release updates](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [Artifact reference sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and generated JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces normalized request payloads and records selected model, modality mix, and vector dimension for reproducibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Real embedding workflows require Alibaba Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DASHSCOPE_API_KEY or Alibaba Cloud credentials only in trusted environments, and avoid exposing credentials in logs, generated files, or shared output locations.
+
+Risk: Generated request files may contain sample text or media references.
+
+Mitigation: Keep output directories access-controlled and avoid placing sensitive inputs in shared directories.
+
+## Reference(s):
+
+- [Skill reference sources](references/sources.md)
+- [Alibaba Cloud Model Studio embedding documentation](https://help.aliyun.com/zh/model-studio/embedding)
+- [Alibaba Cloud Model Studio model list](https://help.aliyun.com/zh/model-studio/models)
+- [Alibaba Cloud Model Studio model updates](https://help.aliyun.com/zh/model-studio/newly-released-models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request payload files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write request JSON under output/aliyun-qwen-multimodal-embedding/ with model, modality mix, selected dimension, and sample input references.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-A content-only pediatrics reference skill set based on PMPH Pediatrics 10th Edition, covering 184 pediatric clinical skills across neonatology, growth and nutrition, immunization, infectious disease, system-based disease care, emergencies, genetics, laboratory diagnosis, and textbook evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A pediatric clinical knowledge skill collection based on People's Medical Publishing House Pediatrics, 10th Edition, covering neonatology, growth and development, nutrition, immunization, infectious disease, organ-system disorders, emergency care, genetic and metabolic disease, laboratory diagnosis, and textbook evaluation workflows.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Qualified pediatric clinicians, neonatal care teams, residents, medical students, public health workers, and supervised training programs can use this skill set to retrieve structured pediatric reference guidance, compare clinical criteria, and support education or case review. It is not appropriate for unsupervised self-diagnosis, caregiver-directed treatment, emergency decision-making, or medication dosing without licensed clinician review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains high-risk pediatric treatment, procedure, and medication dosing guidance that is not consistently gated to qualified clinical supervision. <br>
-Mitigation: Install and use only for qualified pediatric clinicians or supervised medical education, and require licensed clinician review before acting on any plan, threshold, procedure, or dose. <br>
-Risk: Clinical guidance may conflict with current local guidelines, institutional protocols, or patient-specific contraindications. <br>
-Mitigation: Verify recommendations against current local standards, institution-specific protocols, and patient-specific clinical context before use. <br>
-Risk: Emergency, neonatal resuscitation, invasive intervention, and critical care content may be unsafe if used as the primary decision source. <br>
-Mitigation: Use established emergency or ICU workflows and escalate immediately to appropriate clinical teams; treat skill output as reference support only. <br>
+## Use Case:
 
+External clinicians, medical students, neonatal care teams, public health workers, and resident training participants use this skill to retrieve structured pediatric clinical guidance and educational case analysis from a PMPH Pediatrics 10th Edition knowledge base. It should be used only with qualified clinician review or supervised medical education for treatment, dosing, emergency, or caregiver-facing decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/pediatrics-pmph-10edition) <br>
-- [Publisher profile](https://clawhub.ai/user/xllgreen) <br>
-- [English README](README_EN.md) <br>
-- [Skill registry](SKILL.md) <br>
-- [Skill index](index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown clinical reference guidance with tables, checklists, and calculations where the invoked skill supports them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only; may include clinical thresholds, procedures, protocols, and dosing calculations that require licensed clinician review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill contains directly actionable pediatric treatment, dosing, and emergency workflows that could be misused as standalone medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for qualified pediatric clinicians or supervised medical education, and require clinician review before acting on outputs.
+
+Risk: Guidance may conflict with current local guidelines, institutional protocols, or patient-specific contraindications.
+
+Mitigation: Verify recommendations against current local standards, institutional policy, and patient-specific contraindication checks before use.
+
+Risk: Emergency care, invasive procedures, neonatal resuscitation, pediatric dosing, and sensitive developmental or behavioral topics can create patient-safety or privacy risk if handled casually.
+
+Mitigation: Escalate emergencies to emergency or ICU care, use explicit warnings for high-risk scenarios, and restrict use to appropriate clinical or supervised educational contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xllgreen/skills/pediatrics-pmph-10edition)
+- [Top-Level Skill Definition](artifact/SKILL.md)
+- [English README](artifact/README_EN.md)
+- [Skill Index](artifact/index.md)
+- [Acute Kidney Injury Management](artifact/acute-nephritis-complications-management/references/acute-kidney-injury-management.md)
+- [Blood Gas Diagnostic Formulas](artifact/acute-respiratory-failure-classification-and-blood-gas-diagnosis/references/blood-gas-diagnostic-formulas.md)
+- [Pediatric Drug Dosage Calculation Formulas](artifact/pediatric-drug-dosage-calculation/references/calculation-formulas-and-adjustments.md)
+- [Neonatal Jaundice Thresholds](artifact/neonatal-jaundice-riREDACTED-SECRET/references/bhutani-curve-and-phototherapy-thresholds.md)
+- [Pediatric Type 1 Diabetes Insulin Regimens](artifact/pediatric-type1-diabetes-insulin-therapy/references/insulin-regimen-tables.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown with structured clinical reasoning, tables, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include treatment, dosing, diagnostic, and emergency workflow guidance that requires qualified clinician review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

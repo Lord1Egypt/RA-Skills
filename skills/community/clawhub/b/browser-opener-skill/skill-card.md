@@ -1,43 +1,54 @@
-## Description: <br>
-Opens URLs in the system default browser or a selected Chrome, Firefox, Edge, or Safari browser across supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform browser opening skill that supports launching URLs with the default browser or Chrome, Firefox, Edge, and Safari.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and agent workflows use this skill to launch URLs in local browsers for page inspection, browser-specific testing, and browser-opening automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open arbitrary URLs in a local browser session. <br>
-Mitigation: Confirm URLs before opening them, especially when the URL comes from generated content or an untrusted source. <br>
-Risk: Opening sites in a normal browser profile may use existing logged-in sessions or browser state. <br>
-Mitigation: Use private or incognito mode for sites that should not load in the user's normal browser session. <br>
-Risk: The README suggests installing standard-library modules with pip. <br>
-Mitigation: Do not run the README's `pip install webbrowser subprocess argparse` command; these modules are provided by Python's standard library. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent provide command-line and Python usage for opening trusted URLs in a selected local browser across Windows, macOS, or Linux.
 
-## Reference(s): <br>
-- [Browser Support Details](references/browser_support.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/panchenbo/browser-opener-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands or code that can open local browser windows and URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The README instructs users to run pip install for Python standard-library module names, which creates avoidable supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run that installation command; use the skill with the Python standard library modules already available.
+
+Risk: Using the skill can launch local browser tabs or windows and make network connections to supplied URLs.
+
+Mitigation: Run it in a normal user context and open only URLs you trust.
+
+## Reference(s):
+
+- [Browser Support Details](references/browser_support.md)
+- [ClawHub Skill Page](https://clawhub.ai/panchenbo/skills/browser-opener-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may launch local browser tabs or windows and make network connections when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

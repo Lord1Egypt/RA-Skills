@@ -1,40 +1,54 @@
-## Description: <br>
-8-step SEO content production workflow for newsletters and blogs that runs SERP analysis, builds an optimized outline, writes in a newsletter voice, screens for AI patterns, validates SEO metadata, formats the article, and generates a paste-ready publish document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An 8-step SEO content production workflow for newsletters and blogs that coordinates SERP analysis, outlining, drafting, AI-pattern screening, quality checks, SEO validation, formatting, and paste-ready publishing output.
 
-## Publisher: <br>
-[micphigoo](https://clawhub.ai/user/micphigoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[micphigoo](https://clawhub.ai/user/micphigoo)
 
-## Use Case: <br>
-Content operators, newsletter publishers, and marketing teams use this skill to produce long-form newsletter issues, evergreen SEO posts, and blog articles that need search-focused structure, metadata, quality gates, and publishing preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow reads project style files and article drafts and runs local helper scripts. <br>
-Mitigation: Use trusted project folders and companion skills, review the target article path before running commands, and inspect generated files before publishing. <br>
-Risk: SEO and quality checks can miss inaccurate claims, weak sourcing, or content that does not match the intended publishing voice. <br>
-Mitigation: Review facts, sources, metadata, and final copy manually before relying on the publish document. <br>
+## Use Case:
 
+Developers, content operators, and newsletter publishers use this skill to produce long-form newsletter or blog articles from a project slug, primary keyword, publish date, and article path. It guides the agent through SEO research, drafting, validation, formatting, and creation of a paste-ready publishing document.
 
-## Reference(s): <br>
-- [Writing Style Guide](artifact/references/writing-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown article and paste-ready Markdown publish document with validation status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes final article path, paste document path, QVP status, SEO validation status, and AI-pattern score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated article content, SEO metadata, or source claims may be inaccurate, incomplete, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final article and paste-ready Markdown manually, and enforce the skill's quality, source integrity, SEO validation, and AI-pattern checks before publishing.
+
+Risk: The workflow reads project files and writes a paste-ready Markdown output in the user's workspace.
+
+Mitigation: Run it only in the intended project with an explicit project slug, article path, keyword, and publish date, then inspect the generated file before using it in a publishing platform.
+
+## Reference(s):
+
+- [Writing Style Guide](references/writing-style.md)
+- [ClawHub Skill Page](https://clawhub.ai/micphigoo/skills/newsletter-seo-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated article and paste-ready Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a project slug, primary keyword, publish date, and article path; reports quality gate, SEO validation, and AI-pattern screening results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

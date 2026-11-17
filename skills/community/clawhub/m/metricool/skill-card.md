@@ -1,41 +1,58 @@
-## Description: <br>
-Schedule and manage social media posts via Metricool API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and manage social media posts via Metricool API.
 
-## Publisher: <br>
-[willscott-v2](https://clawhub.ai/user/willscott-v2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[willscott-v2](https://clawhub.ai/user/willscott-v2)
 
-## Use Case: <br>
-Developers, operators, and social media teams use this skill to list Metricool brands, schedule posts across connected social platforms, inspect queued posts, and check suggested posting times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can schedule public social posts on connected Metricool accounts using stored credentials. <br>
-Mitigation: Use a dedicated or least-privilege Metricool token where available, keep credentials out of committed files, and confirm the post text, platforms, and scheduled time before running scheduling commands. <br>
-Risk: Some scripts may use the first connected Metricool brand when a brand or blog ID is not provided. <br>
-Mitigation: Supply the exact blogId or brand and target platforms for scheduling and review the selected brand before publishing. <br>
+## Use Case:
 
+Developers, operators, and social media teams use this skill to list Metricool brands, schedule posts across connected social platforms, review scheduled posts, and retrieve best-time-to-post analytics.
 
-## Reference(s): <br>
-- [Metricool](https://metricool.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/willscott-v2/metricool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples; scripts can return text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Metricool credentials and connected brands before API-backed actions can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Metricool credentials can allow access to connected brands, scheduled posts, analytics, and post creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Metricool credentials where possible and keep unrelated secrets out of the workspace .env file.
+
+Risk: If blogId is omitted, scripts may auto-select the first available brand.
+
+Mitigation: Specify blogId explicitly when scheduling or reading posts so the intended brand is used.
+
+Risk: Scheduled content can be posted to multiple external social platforms.
+
+Mitigation: Review target platforms, scheduled time, post text, media URL, and platform character limits before running scheduling commands.
+
+## Reference(s):
+
+- [Metricool](https://metricool.com)
+- [ClawHub Metricool skill page](https://clawhub.ai/willscott-v2/skills/metricool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Metricool API scripts that return console text or JSON and can create scheduled social media posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

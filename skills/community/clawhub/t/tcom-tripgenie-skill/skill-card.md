@@ -1,44 +1,60 @@
-## Description: <br>
-TripGenie skill handles hotel booking, flight search, attraction recommendation, and travel consultation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TripGenie skill handles hotel booking, flight search, attraction recommendation, and travel consultation.
 
-## Publisher: <br>
-[ArthurChiao](https://clawhub.ai/user/ArthurChiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arthurchiao](https://clawhub.ai/user/arthurchiao)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to route hotel, flight, attraction, and general travel requests to TripGenie for current travel results and booking-oriented responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel prompts and booking searches are sent to a third-party Trip.com API. <br>
-Mitigation: Avoid entering highly sensitive personal details unless the deployment has approved this data sharing. <br>
-Risk: The skill depends on TRIPGENIE_API_KEY for API access. <br>
-Mitigation: Store the key securely, limit exposure in logs or prompts, and rotate it if it is disclosed. <br>
-Risk: Returned booking links and provider text are third-party content. <br>
-Mitigation: Review prices, terms, availability, and provider details before acting on booking results. <br>
+## Use Case:
 
+External users and agents use this skill to route travel requests to TripGenie for hotel booking, flight search, attraction recommendations, and trip planning. It is intended for travel queries where live Trip.com data, pricing, availability, or booking links are useful.
 
-## Reference(s): <br>
-- [Trip.com TripGenie](https://www.trip.com/tripgenie) <br>
-- [TripGenie OpenClaw Setup](https://www.trip.com/tripgenie/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ArthurChiao/tcom-tripgenie-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline bash examples for API calls and setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRIPGENIE_API_KEY and sends user travel queries to TripGenie API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Travel questions, itinerary details, locale information, and the TripGenie API token may be sent to Trip.com infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended provider lookups, avoid sending unnecessary sensitive travel details, and configure the API key through a protected environment or secret manager.
+
+Risk: Returned prices, availability, booking links, and related metadata are third-party content.
+
+Mitigation: Verify booking details and links directly with the provider before acting on them.
+
+Risk: Broad travel trigger patterns can route casual travel conversation to the external API.
+
+Mitigation: Enable or invoke the skill only when a Trip.com lookup is intended.
+
+## Reference(s):
+
+- [TripGenie homepage](https://www.trip.com/tripgenie)
+- [TripGenie OpenClaw token page](https://www.trip.com/tripgenie/openclaw)
+- [ClawHub skill page](https://clawhub.ai/arthurchiao/skills/tcom-tripgenie-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/arthurchiao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown API responses with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TRIPGENIE_API_KEY and may return third-party prices, availability, booking links, and related travel metadata.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

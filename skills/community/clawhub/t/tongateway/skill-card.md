@@ -1,47 +1,62 @@
-## Description: <br>
-Tongateway gives agents TON blockchain tools for wallet information, transfers, jettons, NFTs, .ton DNS resolution, prices, DEX orders, and autonomous agent wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tongateway gives agents access to TON blockchain tools for wallet information, token and NFT views, transfers, .ton lookup, prices, DEX orders, and autonomous agent wallets.
 
-## Publisher: <br>
-[pewpewgogo](https://clawhub.ai/user/pewpewgogo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pewpewgogo](https://clawhub.ai/user/pewpewgogo)
 
-## Use Case: <br>
-External developers and agent users use Tongateway to connect an MCP-capable agent to TON wallet, lookup, transfer, DEX, and agent-wallet workflows. The skill is intended for wallet-aware blockchain operations where users approve normal transfers and explicitly opt into autonomous agent wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent wallet access can remain available through local token and wallet files after authentication. <br>
-Mitigation: Protect or delete ~/.tongateway/token and ~/.tongateway/wallets.json when finished, and revoke the session token from the dashboard when access is no longer needed. <br>
-Risk: Autonomous agent wallets can spend funds without per-transfer approval once funded and deployed. <br>
-Mitigation: Prefer approval-gated safe mode for normal transfers, use autonomous wallets only when explicitly intended, and fund them only with amounts the user is prepared to lose. <br>
-Risk: Installing and running the MCP package delegates local execution to a package fetched through npx. <br>
-Mitigation: Pin or build the MCP package from source before trusting it with wallet authority, and run it in a sandboxed environment when appropriate. <br>
+## Use Case:
 
+External developers and agent users use this skill to connect an agent to TON blockchain workflows, including wallet inspection, owner-approved transfers, .ton name lookup, DEX orders, and explicitly enabled autonomous agent wallets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pewpewgogo/tongateway) <br>
-- [Publisher Profile](https://clawhub.ai/user/pewpewgogo) <br>
-- [Tongateway Website](https://tongateway.ai) <br>
-- [Tongateway API Docs](https://api.tongateway.ai/docs) <br>
-- [npm Package @tongateway/mcp](https://www.npmjs.com/package/@tongateway/mcp) <br>
-- [Smithery Listing](https://smithery.ai/servers/tongateway/agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include TON addresses, nanoTON amounts, transfer request IDs, wallet balances, token and NFT lists, DEX order details, and approval status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.3 (source: server release evidence) <br>
+Risk: Autonomous agent-wallet mode can transfer funds without per-transaction approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance agent wallet, fund it only with amounts the user is willing to risk, and revoke agent keys promptly when access is no longer needed.
+
+Risk: Local session tokens and agent-wallet keys may persist on disk.
+
+Mitigation: Protect or delete files under ~/.tongateway when the skill is not needed, and avoid using meaningful wallet balances in autonomous mode.
+
+Risk: The security verdict is suspicious because the skill combines blockchain trading, fund movement, autonomous transfers, and local credential storage.
+
+Mitigation: Review carefully before installing, prefer a pinned or source-audited MCP install, and run the skill in a restricted environment.
+
+## Reference(s):
+
+- [Tongateway ClawHub Skill Page](https://clawhub.ai/pewpewgogo/skills/tongateway)
+- [Tongateway Website](https://tongateway.ai)
+- [Tongateway API Docs](https://api.tongateway.ai/docs)
+- [Tongateway MCP Package](https://www.npmjs.com/package/@tongateway/mcp)
+- [Agent Wallet Contract](https://github.com/tongateway/ton-agent-gateway-contract)
+- [Smithery Listing](https://smithery.ai/servers/tongateway/agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger MCP tool calls that read TON wallet state, request owner-approved transfers, place DEX orders, or execute autonomous agent-wallet transfers when explicitly enabled.]
+
+## Skill Version(s):
+
+0.9.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

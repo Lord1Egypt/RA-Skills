@@ -1,38 +1,53 @@
-## Description: <br>
-Policy Writer helps agents draft professional internal business policies with structured sections, procedures, compliance references, and review schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional internal policies for business functions with clear rules, procedures, compliance references, and tailored formality for company size.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, HR, IT, finance, security, privacy, and compliance teams use this skill to draft internal policy documents for review and adaptation to their organization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated HR, legal, privacy, security, or compliance policies may not match the user's jurisdiction, industry, or actual operations. <br>
-Mitigation: Treat generated policies as drafts and require review by qualified legal, compliance, HR, security, or operational staff before adoption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Policy Writer on ClawHub](https://clawhub.ai/1kalin/afrexai-policy-writer) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, operators, and business teams use this skill to draft internal policies for HR, IT, finance, compliance, data privacy, acceptable use, and similar business functions. The generated drafts provide a structured starting point for organizational review and adoption.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown policy document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft policy content should be reviewed by qualified legal, compliance, HR, security, or operational staff before adoption.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated policies may be incomplete, jurisdiction-specific, or unsuitable for regulated requirements if adopted without review.
+
+Mitigation: Treat outputs as drafts and have qualified legal, HR, security, or compliance staff review them before adoption.
+
+Risk: Compliance references such as GDPR, HIPAA, SOC 2, or ISO 27001 may need organization-specific interpretation.
+
+Mitigation: Validate cited requirements against the organization's industry, geography, controls, and current compliance obligations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-policy-writer)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown policy document with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailors formality and detail to organization size when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

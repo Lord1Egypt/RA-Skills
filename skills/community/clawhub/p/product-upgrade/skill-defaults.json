@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "product-upgrade",
+  "workflow": "product",
+  "focus": "upgrade",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

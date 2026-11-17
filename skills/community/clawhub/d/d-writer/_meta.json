@@ -1,0 +1,15 @@
+{
+  "slug": "d-writer",
+  "name": "dragon-writer",
+  "version": "3.11.0",
+  "namespace": "@user_59dee265/d-writer",
+  "description": "用于需要持久故事状态与连续性审计的长篇虚构小说项目：创建新书、续写章节、导入旧稿、调整方向、改写章节、安全回滚，或在多会话间阅读 / 重建大纲与设定文件。工具无关，兼容各类 agent。附带可视化仪表盘。",
+  "homepage": "https://api.skillhub.cn/user_59dee265/d-writer",
+  "update": {
+    "enabled": true,
+    "check_url": "https://api.skillhub.cn/api/v1/search?q=d-writer",
+    "install_dir": ".",
+    "auto_check": true,
+    "skip_on_error": true
+  }
+}

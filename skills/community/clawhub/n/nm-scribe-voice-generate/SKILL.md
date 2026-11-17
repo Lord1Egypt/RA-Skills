@@ -1,7 +1,7 @@
 ---
 name: voice-generate
 description: Generates text in a learned writing voice
-version: 1.9.8
+version: 1.10.3
 triggers:
   - voice
   - generation
@@ -14,12 +14,17 @@ source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Voice Generation Skill
 
 Generate text in a user's extracted writing voice.
+
+## When NOT To Use
+
+- No profile exists yet (use `scribe:voice-extract`)
+- Checking the output for drift (use `scribe:voice-review`)
 
 ## Core Principle: Source Material Framing
 
@@ -31,7 +36,7 @@ like thinking. Material framed as summaries produces reporting.
 Always frame user-provided source material as raw notes unless
 the user explicitly requests otherwise.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `voice-generate:profile-loaded` - Voice profile read
 2. `voice-generate:register-selected` - Register chosen
@@ -122,6 +127,8 @@ Follow them as concrete instructions, not suggestions.
 
 {banned_phrases content, or default list:}
 - Em dashes (use commas, colons, semicolons, parentheses)
+- ", so" tails on fact after fact (cut the consequence, or give it
+  its own sentence)
 - "delve", "utilize", "leverage", "facilitate"
 - "it's important to note", "in today's world"
 - "here's the thing", "let that sink in"
@@ -152,9 +159,21 @@ After generation:
 
 ## Model Routing
 
-- **Generation**: Use Opus. Tonal shifts, parenthetical
+- **Generation**: Use Opus or larger. Tonal shifts, parenthetical
   subversion, and subtle voice qualities require the larger
-  model. Sonnet flattens these.
+  model. Sonnet flattens these. When this session runs
+  Sonnet or Haiku, run the Step 4 prompt as a dispatch:
+
+  ```
+  Agent(general-purpose):
+    - model: opus
+    - prompt: {the Step 4 prompt, every placeholder filled}
+  ```
+
+  The subagent sees nothing from this conversation. The filled
+  prompt must carry the voice features, register and source
+  material in full. On an Opus or Fable session, generate inline.
+  A pinned dispatch from Fable would downgrade the pass.
 - **Banned phrase scan**: Can run locally (regex/grep)
 - **Review agents**: Sonnet is sufficient (the prompts are
   templated, so Opus tonal range is not needed)
@@ -168,9 +187,9 @@ If `.voice/override.md` exists in the current project:
 
 ## Exit Criteria
 
-- Text generated in the specified voice
-- No banned phrases present
-- Craft techniques applied (concrete-first, naming, etc.)
-- Source material framed as raw notes
-- Review dispatched (if requested)
-- Snapshot saved (if learning mode active)
+- [ ] Text generated in the specified voice
+- [ ] No banned phrases present
+- [ ] Craft techniques applied (concrete-first, naming, etc.)
+- [ ] Source material framed as raw notes
+- [ ] Review dispatched (if requested)
+- [ ] Snapshot saved (if learning mode active)

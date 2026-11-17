@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * GET /v1/upload/url — body 必填 content_type（MIME），与 socialEchoApidocs_cn.md §5.5 一致。
+ * GET /v1/upload/url — QueryString 必填 content_type（MIME）。
  */
 import {
   buildRequestOptions,
@@ -49,7 +49,7 @@ if (!CONTENT_TYPE_ENUM.includes(contentType)) {
 const options = buildRequestOptions(args);
 const result = await callJsonGet(
   "/v1/upload/url",
-  { content_type: contentType },
+  { content_type: contentType, title: args.title },
   options
 );
 printAndExit(result);

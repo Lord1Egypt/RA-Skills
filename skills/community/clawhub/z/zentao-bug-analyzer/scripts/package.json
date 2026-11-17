@@ -1,0 +1,15 @@
+{
+  "name": "zentao-bug-analyzer-scripts",
+  "private": true,
+  "description": "禅道缺陷自动分析 - Playwright 脚本集",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "ffprobe-static": "^3.1.0"
+  }
+}

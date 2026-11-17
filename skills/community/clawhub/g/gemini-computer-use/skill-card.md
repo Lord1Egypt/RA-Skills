@@ -1,39 +1,52 @@
-## Description: <br>
-Build and run Gemini 2.5 Computer Use browser-control agents with Playwright, including a screenshot -> function_call -> action -> function_response loop and safety confirmation for risky UI actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run Gemini 2.5 Computer Use browser-control agents with Playwright.
 
-## Publisher: <br>
-[am-will](https://clawhub.ai/user/am-will) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[am-will](https://clawhub.ai/user/am-will)
 
-## Use Case: <br>
-Developers and automation builders use this skill to run Gemini 2.5 Computer Use browser-control loops with Playwright, including screenshot-driven model actions and user confirmation for actions that require safety review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser screenshots, page URLs, and prompts are sent to a third-party Gemini model during operation. <br>
-Mitigation: Use a sandboxed browser profile and avoid logged-in or sensitive sites unless that exposure is intentional. <br>
-Risk: Model-driven browser automation may take unwanted UI actions. <br>
-Mitigation: Keep turn limits low, use --exclude to block actions that should not be automated, and require confirmation for safety-sensitive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gemini Computer Use Notes](references/google-computer-use.md) <br>
+## Use Case:
 
+Developers use this skill to build and run browser-control agents that send screenshots and URLs to Gemini, execute supported Playwright actions, and ask for confirmation before actions marked as risky by the model.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with bash commands and a Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY; browser screenshots, page URLs, and prompts are sent to Gemini during operation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends browser screenshots and current URLs to Gemini during browser automation.
+
+Mitigation: Run it in an isolated browser or container, avoid authenticated or sensitive sites, and do not use it on private-network, payment, admin, or account-management tasks without additional review.
+
+Risk: The model can execute broad browser actions through Playwright without strong local limits.
+
+Mitigation: Use --exclude to block risky predefined actions and add local allowlists and explicit confirmations before high-impact actions.
+
+## Reference(s):
+
+- [Gemini Computer Use Notes](references/google-computer-use.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Playwright setup steps, Gemini API configuration, browser action exclusions, and operational safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

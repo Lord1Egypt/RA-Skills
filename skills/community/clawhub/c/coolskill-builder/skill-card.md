@@ -1,46 +1,61 @@
-## Description: <br>
-CoolSkill Builder helps agents turn repositories, API documentation, natural-language requirements, or code snippets into standardized zero-dependency skill modules with manifests, tests, registry metadata, and security checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CoolSkill Builder converts natural-language requirements, API documents, GitHub repositories, and code snippets into standardized zero-dependency skill packages with generated implementation files, tests, manifests, registry metadata, and security-check guidance.
 
-## Publisher: <br>
-[fredtai](https://clawhub.ai/user/fredtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredtai](https://clawhub.ai/user/fredtai)
 
-## Use Case: <br>
-Developers and agent builders use this skill to generate portable skill packages from source material, including skill.yaml, impl.py, test.py, and manifest.json outputs. It is intended for workflows that need local registry versioning, cross-agent tool compatibility, and security validation before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local registry files and generated artifacts with broad activation behavior. <br>
-Mitigation: Review generated files, manifests, and registry changes before registering or publishing them. <br>
-Risk: The skill can push generated content to GitHub when GITHUB_TOKEN and GITHUB_REPO are configured. <br>
-Mitigation: Keep those environment variables unset unless remote sync is intended, and verify the target repository before enabling sync. <br>
-Risk: The artifact includes an HTTP invocation example that may be unsafe outside trusted local networks. <br>
-Mitigation: Use the HTTP example only in trusted environments and add authentication, authorization, and network controls before exposing it. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert source material into reusable skill modules with a fixed Python run interface, cross-agent manifests, local registry entries, tests, and security scan guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fredtai/coolskill-builder) <br>
-- [ZeroSkill-Forge specification](artifact/references/spec.md) <br>
-- [File template specification](artifact/references/file-templates.md) <br>
-- [Security rules](artifact/references/security-rules.md) <br>
-- [Registry format](artifact/references/registry-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report with embedded YAML, Python, JSON, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces generated skill files, security scan results, test summaries, registry paths, and optional publishing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can write generated files and local registry entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a disposable or version-controlled workspace and review generated files before keeping or publishing them.
+
+Risk: Generated Python implementations and tests may be untrusted code.
+
+Mitigation: Review and scan generated code, then run tests in a sandbox or container before deployment.
+
+Risk: Optional GitHub sync can use environment credentials.
+
+Mitigation: Use least-privilege tokens, avoid exposing broad credentials in the environment, and require explicit confirmation before registry or GitHub writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredtai/skills/coolskill-builder)
+- [ZeroSkill-Forge specification](artifact/references/spec.md)
+- [File templates](artifact/references/file-templates.md)
+- [Security rules](artifact/references/security-rules.md)
+- [Registry format](artifact/references/registry-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with generated file contents and inline command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated skill package files and registry entries when used as directed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

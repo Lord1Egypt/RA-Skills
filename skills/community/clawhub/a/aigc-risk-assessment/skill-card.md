@@ -1,42 +1,58 @@
-## Description: <br>
-Provides portfolio risk metrics, stress testing, and position management guidance using VaR, volatility, and position sizing calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides portfolio risk metrics, stress testing, and position management advice using VaR, CVaR, volatility, Beta, Sharpe ratio, and Kelly-style position sizing.
 
-## Publisher: <br>
-[GBABYZS](https://clawhub.ai/user/GBABYZS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbabyzs](https://clawhub.ai/user/gbabyzs)
 
-## Use Case: <br>
-Developers and investment-analysis agents use this skill to calculate portfolio risk metrics and generate position management guidance for financial instruments. It supports VaR calculation, stress-testing workflows, and maximum position sizing based on capital, risk tolerance, price, and stop-loss inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Risk metrics and position sizing outputs can be mistaken for complete investment advice. <br>
-Mitigation: Review calculations, assumptions, input data, and suitability before using outputs for financial decisions. <br>
-Risk: The Python module depends on external market data and local scientific Python packages. <br>
-Mitigation: Install dependencies deliberately and verify data freshness, coverage, and source reliability before relying on generated metrics. <br>
+## Use Case:
 
+Developers and agents use this skill to calculate investment risk indicators, run stress-test style analyses, and produce position-sizing guidance for portfolio workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBABYZS/aigc-risk-assessment) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON-like calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include numeric risk metrics, timestamps, error strings, and position sizing recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill manifest) <br>
+Risk: Risk metrics and position-sizing output may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as analytical aids and require human review before trading, investment, or portfolio decisions.
+
+Risk: Runtime behavior can change if Python dependencies are installed without version pinning.
+
+Mitigation: Install the skill in an isolated Python environment and pin akshare, pandas, numpy, and scipy versions for reviewed deployments.
+
+Risk: Chinese-language user-facing text may be misunderstood by users who do not read Chinese.
+
+Mitigation: Route outputs to users or reviewers who can read Chinese, or translate and validate the guidance before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbabyzs/skills/aigc-risk-assessment)
+- [Publisher profile](https://clawhub.ai/user/gbabyzs)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets; callable functions return Python dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language risk metrics and position-sizing guidance; depends on akshare market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

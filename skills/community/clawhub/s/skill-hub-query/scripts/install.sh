@@ -45,10 +45,21 @@ fi
 # Security: validate the slug before it is used in any URL or filesystem path.
 validate_slug "$SLUG" || exit 1
 
-# Resolve version (use cache, fall back to API)
-# Note: skillhub.cn has no cache and no version-list API call here; the download
-# endpoint always serves the latest. If a specific version is requested for
-# skillhub.cn we honor it on the URL but the public download endpoint ignores it.
+# Resolve version (version-history API first, local cache only as a fallback)
+#
+# WARNING: the order MUST be "API first, cache only as fallback" -- never the
+# other way round. The cached `.latestVersion.version` field is a snapshot
+# written by sync.sh; in practice it drifts badly from the real latest version
+# (observed: cache said 1.3.0 while the version history's items[0] was 2.2.2),
+# and it is not invalidated when the Hub publishes a new version after a sync.
+# A cache-first implementation therefore silently installs an OLD version *and*
+# replaces the whole directory of the newer copy the user already had --
+# irreversible data loss. `/versions/<slug>?limit=1` items[0] is the source of
+# truth.
+#
+# Note: skillhub.cn has no cache and no version-list call here; its download
+# endpoint always serves the latest. If a specific version is requested we honor
+# it on the URL, but the public download endpoint may ignore it.
 if is_skillhub_cn; then
   if [[ -z "$VERSION" ]]; then
     # Try to resolve latest from skillhub.cn detail (informational only)
@@ -59,17 +70,52 @@ if is_skillhub_cn; then
     [[ -z "$VERSION" ]] && VERSION="latest"
   fi
 elif [[ -z "$VERSION" ]]; then
-  if [[ -f "$CACHE_FILE" ]]; then
-    VERSION="$(jq -r --arg s "$SLUG" '.[$s].latestVersion.version // empty' "$CACHE_FILE" 2>/dev/null || echo "")"
-  fi
-  if [[ -z "$VERSION" ]]; then
-    resp="$(api_get "${HUB_API_PREFIX}/versions/${SLUG}?limit=1")"
+  # api_get exits 3 on failure; inside command substitution that only kills the
+  # subshell, so $? is observable here. Its diagnostics (HTTP 403/500, response
+  # body) go to stderr and MUST be preserved rather than discarded: piping them
+  # to /dev/null leaves the user seeing only "falling back to cache" with no way
+  # to tell an expired token from a dead network. Capture to a temp file and
+  # surface it only when we actually fall back or fail.
+  _api_err="$(shq_mktemp shq-apierr)"
+  # Register in the EXIT trap so an early `set -e` exit cannot leak the file.
+  # NOTE: `trap ... EXIT` REPLACES any previously registered handler, so this must
+  # also re-do the cleanup that setup_legacy_notice installed -- otherwise an
+  # early exit on this path (unresolvable version) leaks the notice marker file.
+  trap 'rm -f "${_api_err:-}" 2>/dev/null; rm -f "${_LEGACY_NOTICE_MARKER:-}" 2>/dev/null' EXIT
+  set +e
+  resp="$(api_get "${HUB_API_PREFIX}/versions/${SLUG}?limit=1" 2>"$_api_err")"
+  api_rc=$?
+  set -e
+  if [[ "$api_rc" -eq 0 ]]; then
     VERSION="$(echo "$resp" | jq -r '.data.items[0].version // empty' 2>/dev/null || echo "")"
   fi
+
+  # Only fall back to the cache when the API is unusable (network / auth /
+  # endpoint change), and say so loudly.
+  if [[ -z "$VERSION" && -f "$CACHE_FILE" ]]; then
+    VERSION="$(jq -r --arg s "$SLUG" '.[$s].latestVersion.version // empty' "$CACHE_FILE" 2>/dev/null || echo "")"
+    if [[ -n "$VERSION" ]]; then
+      echo "[warn] version-history API unavailable; falling back to cached version v${VERSION}" >&2
+      if [[ -s "$_api_err" ]]; then
+        echo "       API failure reason:" >&2
+        sed 's/^/         /' "$_api_err" >&2
+      fi
+      echo "       The cache may lag behind the Hub's actual latest version. If the wrong" >&2
+      echo "       version gets installed, run sync.sh and reinstall, or pin it explicitly:" >&2
+      echo "       bash install.sh ${SLUG} <version>" >&2
+    fi
+  fi
+
   if [[ -z "$VERSION" ]]; then
     echo "[error] Cannot resolve latest version for ${SLUG}. Check the slug, or run sync.sh first." >&2
+    if [[ -s "$_api_err" ]]; then
+      echo "        API failure reason:" >&2
+      sed 's/^/          /' "$_api_err" >&2
+    fi
+    rm -f "$_api_err"
     exit 1
   fi
+  rm -f "$_api_err"
 fi
 
 SKILLS_ROOT="$(resolve_skills_dir)"
@@ -106,7 +152,16 @@ if [[ -d "$INSTALL_DIR" ]]; then
 fi
 
 # Download ZIP
-tmp_zip="$(mktemp 2>/dev/null || mktemp -t skill-hub-query-zip)"
+#
+# WARNING: the trap must be registered BEFORE mktemp -- otherwise any failure
+# between mktemp and the trap (download network error, stat failure) leaks the
+# temporary zip into the temp dir. `staging` does not exist yet, so the trap uses
+# ${staging:-} to stay safe under `set -u`.
+staging=""
+tmp_zip=""
+trap 'rm -rf "${staging:-}" 2>/dev/null; rm -f "${tmp_zip:-}" 2>/dev/null; rm -f "${_api_err:-}" 2>/dev/null; rm -f "${_LEGACY_NOTICE_MARKER:-}" 2>/dev/null' EXIT
+
+tmp_zip="$(shq_mktemp shq-zip)"
 mv "$tmp_zip" "${tmp_zip}.zip"
 tmp_zip="${tmp_zip}.zip"
 echo "[install] downloading..."
@@ -119,35 +174,40 @@ fi
 zip_size="$(stat -c %s "$tmp_zip" 2>/dev/null || stat -f %z "$tmp_zip")"
 echo "[install] zip size: $zip_size bytes"
 
-# Path-traversal defense: reject entries with .. or absolute paths
+# Path-traversal defense + extraction: both delegated to _zip_safe.py (Python zipfile)
 #
-# Note: awk's `END { exit bad?1:0 }` intentionally returns non-zero on bad
-# entries; under set -e + command substitution the whole script would die, so
-# wrap in set +e/set -e to isolate.
-echo "[install] verifying zip paths..."
+# Why not `unzip`: Info-ZIP UnZip 6.00 (Debian/Ubuntu and friends) ignores the
+# ZIP spec's UTF-8 filename flag (general purpose bit 11) and decodes filenames
+# with the legacy local codepage, so non-ASCII names become mojibake on disk
+# (`references/<non-ascii>.json` -> `references/\udcb5\udce1...`). Any script in
+# the installed skill that opens the file by its real name then raises
+# FileNotFoundError -- it looks like "the skill installed fine but crashes on
+# first run", and the blame lands on the installed skill instead of the
+# installer. `unzip -O UTF-8` exists only in the Windows build (the Linux build
+# fails with a usage error), so there is no flag-level workaround.
+#
+# _zip_safe.py applies the same absolute-path / traversal checks as the previous
+# awk pass, plus a per-entry resolve() check before extractall. Exit code 6 means
+# an unsafe path was found.
+echo "[install] verifying zip paths and extracting..."
+# Assignment is picked up by the trap registered above (single quotes -> expanded
+# at trap time, not at registration time).
+staging="$(shq_mktemp -d shq-install-staging)"
+
+# Staging + whole-directory replace instead of in-place overwrite: an in-place
+# overwrite only refreshes same-named files, leaving files deleted by the new
+# version behind as ghosts.
 set +e
-bad_entries="$(unzip -Z1 "$tmp_zip" 2>/dev/null | awk '
-  /^\// { print "absolute: " $0; bad=1 }
-  /(^|\/)\.\.(\/|$)/ { print "traversal: " $0; bad=1 }
-  END { exit bad?1:0 }
-')"
-awk_status=$?
+python3 "${SELF_DIR}/_zip_safe.py" extract "$tmp_zip" "$staging"
+zip_status=$?
 set -e
-
-if [[ "$awk_status" -ne 0 ]]; then
-  echo "[error] zip contains unsafe paths; refusing to extract:" >&2
-  echo "$bad_entries" >&2
-  rm -f "$tmp_zip"
+if [[ "$zip_status" -eq 6 ]]; then
+  echo "[error] zip contains unsafe paths; refusing to extract (existing install untouched)." >&2
   exit 6
+elif [[ "$zip_status" -ne 0 ]]; then
+  echo "[error] extraction failed (corrupt or truncated zip); existing install untouched." >&2
+  exit 1
 fi
-
-# Extract to a staging dir; replace whole dir atomically once validated.
-# (Naive `unzip -o` would leave ghost files from the old version behind.)
-echo "[install] extracting and validating..."
-staging="$(mktemp -d 2>/dev/null || mktemp -d -t skill-hub-query-stage)"
-trap 'rm -rf "$staging" 2>/dev/null; rm -f "$tmp_zip" 2>/dev/null; rm -f "${_LEGACY_NOTICE_MARKER:-}" 2>/dev/null' EXIT
-
-unzip -o -q "$tmp_zip" -d "$staging"
 rm -f "$tmp_zip"
 
 # Some zips wrap content in <slug>/; sink to subdir when needed
@@ -164,6 +224,36 @@ fi
 if [[ ! -f "$src_dir/SKILL.md" ]]; then
   echo "[error] Extracted content is missing SKILL.md; aborting without touching the existing install." >&2
   exit 7
+fi
+
+# Version consistency check -- done BEFORE the directory replace, while the
+# user's existing install is still untouched.
+#
+# Why this matters: the download endpoint has been observed to serve a different
+# version than the one requested (asked for v2.2.2, got the v1.3.0 package),
+# while the script happily printed "installed" and recorded the *requested*
+# version in the ledger. The user believes the new version is in place when in
+# fact an older one just overwrote their newer copy.
+#
+# This warns instead of failing hard: some Hubs host packages whose SKILL.md was
+# never bumped, and a hard failure would block those legitimate installs. But the
+# discrepancy must be visible, and the ledger must record the ACTUAL version.
+# Two SKILL.md conventions are in the wild and both must be recognised, or this
+# guard silently becomes dead code for half the ecosystem:
+#   (a) YAML frontmatter `version: 1.2.3`
+#   (b) open-source convention (frontmatter limited to name + description), with
+#       the version in the Markdown body as `- **Version**: 1.2.3`
+actual_version="$(sed -n 's/^version:[[:space:]]*//p' "$src_dir/SKILL.md" 2>/dev/null | head -1 | tr -d '"'"'"' \r')"
+if [[ -z "$actual_version" ]]; then
+  actual_version="$(sed -n 's/^[[:space:]]*[-*][[:space:]]*\*\*[Vv]ersion\*\*[[:space:]]*:[[:space:]]*//p' \
+    "$src_dir/SKILL.md" 2>/dev/null | head -1 | tr -d '"'"'"' \r' | sed 's/^v//')"
+fi
+if [[ -n "$actual_version" && "$actual_version" != "$VERSION" ]]; then
+  echo "[warn] version mismatch: requested v${VERSION}, but the package's SKILL.md says v${actual_version}" >&2
+  echo "       The Hub's download endpoint may have served a different version than requested." >&2
+  echo "       Recording the actual version v${actual_version}." >&2
+  echo "       If you need an exact version, pin it: bash install.sh ${SLUG} <version> (then re-check)." >&2
+  VERSION="$actual_version"
 fi
 
 # Move into place: backup old -> move new in -> remove backup. Roll back on failure.

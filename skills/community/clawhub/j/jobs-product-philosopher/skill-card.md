@@ -1,40 +1,57 @@
-## Description: <br>
-A Chinese-language advisory skill that applies Steve Jobs-inspired product philosophy to product direction, user experience, feature tradeoff, branding, and startup strategy questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于史蒂夫·乔布斯产品哲学的产品思维与创新方法论，帮助产品经理打造极致用户体验。
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Product managers, founders, brand builders, and product teams use this skill to reason through product direction, feature cuts, user experience issues, differentiation, and Jobs-style decision frameworks. Its outputs are advisory and should be reviewed before real-world product or investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides product-strategy and macro/investment context that could be mistaken for professional advice. <br>
-Mitigation: Treat outputs as general reference material, review them with human judgment, and consult qualified professionals for financial, legal, insurance, or high-stakes business decisions. <br>
-Risk: Steve Jobs-inspired framing may overemphasize intuition, simplification, or feature cutting for situations that need broader evidence. <br>
-Mitigation: Compare recommendations against user research, operational constraints, market data, and team capacity before acting. <br>
+## Use Case:
 
+Product managers, founders, and brand builders use this skill to explore product direction, prioritize or remove features, and improve user experience through Steve Jobs-inspired frameworks. Its output is advisory and requires human review before real-world decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/jobs-product-philosopher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text advisory analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses with English product terminology where useful; no executable code, network calls, persistent storage, or credential collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill's primarily Chinese responses may not suit every user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check language fit before use and request a suitable response language when needed.
+
+Risk: The security evidence is incomplete because a local path-like reference could not be resolved.
+
+Mitigation: Review the available source material and scan evidence before relying on the guidance.
+
+Risk: Policy, market, and industry updates in the skill may become outdated.
+
+Mitigation: Verify time-sensitive claims against current official sources; treat financial or other professional decisions as requiring qualified human review.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/jobs-product-philosopher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text, primarily in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory drafts for human review; no executable code or system actions.]
+
+## Skill Version(s):
+
+2.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

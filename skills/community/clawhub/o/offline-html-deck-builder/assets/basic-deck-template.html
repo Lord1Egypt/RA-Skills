@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>离线 HTML 演示稿</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #161616;
+      --muted: #5f6368;
+      --line: #d9dde3;
+      --paper: #f7f7f4;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    main {
+      width: min(1120px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+    section {
+      min-height: 680px;
+      padding: 56px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      align-content: center;
+      gap: 28px;
+    }
+    .kicker {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    h1, h2 {
+      margin: 0;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    h1 { font-size: 68px; max-width: 920px; }
+    h2 { font-size: 48px; max-width: 860px; }
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.45;
+      max-width: 760px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 22px;
+      background: #fff;
+      min-height: 160px;
+    }
+    .panel strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .panel span {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    .metric {
+      font-size: 76px;
+      line-height: 1;
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+    @media (max-width: 760px) {
+      main { width: min(100vw - 24px, 720px); }
+      section {
+        min-height: 620px;
+        padding: 36px 16px;
+      }
+      h1 { font-size: 42px; }
+      h2 { font-size: 34px; }
+      p { font-size: 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .metric { font-size: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <div class="kicker">提案</div>
+      <h1>把这里换成演示稿标题</h1>
+      <p>第一页直接说清楚主题，不要写空泛口号。</p>
+    </section>
+
+    <section>
+      <div class="kicker">问题</div>
+      <h2>当前流程有可以避免的阻力。</h2>
+      <p>写清楚现实矛盾、谁在承受它，以及如果不改会坏在哪里。</p>
+    </section>
+
+    <section>
+      <div class="kicker">证据</div>
+      <div class="metric">3x</div>
+      <p>放一个让人记得住的数字或事实。解释要短，能扫一眼看完。</p>
+    </section>
+
+    <section>
+      <div class="kicker">方案</div>
+      <h2>现在有三条路可走。</h2>
+      <div class="grid">
+        <div class="panel"><strong>方案 A</strong><span>最快，但最不耐用。</span></div>
+        <div class="panel"><strong>方案 B</strong><span>平衡方案，输出也能复用。</span></div>
+        <div class="panel"><strong>方案 C</strong><span>最完整，但更慢也更重。</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">建议</div>
+      <h2>选那条能产出可复用资产的路。</h2>
+      <p>结尾直接给决策，不要把前面说过的话再复述一遍。</p>
+    </section>
+  </main>
+</body>
+</html>

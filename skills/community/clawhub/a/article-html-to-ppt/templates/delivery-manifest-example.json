@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "deck_id": "deck-001",
+  "build_id": "build-001",
+  "profile": "premium",
+  "status": "final",
+  "generated_at": "2026-07-16T12:00:00+08:00",
+  "files": [
+    {
+      "role": "pptx",
+      "path": "deck.pptx",
+      "required": true,
+      "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "role": "preview_pdf",
+      "path": "deck-preview.pdf",
+      "required": true,
+      "hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "role": "verification_report",
+      "path": "verification-report.md",
+      "required": true,
+      "hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "role": "delivery_manifest",
+      "path": "delivery-manifest.json",
+      "required": true,
+      "hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  ],
+  "builder": {
+    "name": "pptxgenjs",
+    "version": "4.x"
+  },
+  "renderer": {
+    "name": "microsoft_powerpoint",
+    "version": "16.x"
+  },
+  "metrics": {
+    "editable_core_ratio": 0.97,
+    "native_text_ratio": 0.99,
+    "rasterized_area_ratio": 0.12,
+    "whole_slide_raster_count": 0,
+    "qa_error_count": 0,
+    "qa_warning_count": 2,
+    "rubric_score": 15
+  },
+  "fallbacks": [],
+  "known_limitations": [],
+  "privacy": {
+    "contains_private_assets": false,
+    "contains_external_links": false,
+    "issues": []
+  },
+  "resume": {
+    "resume_from": null,
+    "last_successful_stage": "qa",
+    "failed_stage": null,
+    "checkpoints": "checkpoints/"
+  }
+}

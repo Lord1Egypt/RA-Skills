@@ -1,0 +1,47 @@
+{
+  "plantilla": "split",
+  "handle": "@tuhandle",
+  "etiqueta": "10/10 hábitos",
+  "slides": [
+    {
+      "tipo": "partida",
+      "estilo": "fino",
+      "arriba": {
+        "foto": "fotos/foto-3.jpg",
+        "texto": "[dejé de …]",
+        "pos": "arriba"
+      },
+      "abajo": {
+        "foto": "fotos/foto-4.jpg",
+        "texto": "[y pasó …]",
+        "pos": "arriba"
+      }
+    },
+    {
+      "tipo": "partida",
+      "estilo": "titular",
+      "arriba": {
+        "foto": "fotos/foto-5.jpg",
+        "texto": "[Cómo empezó…]"
+      },
+      "abajo": {
+        "foto": "fotos/foto-2.jpg",
+        "texto": "[Y lo que logró]"
+      }
+    },
+    {
+      "tipo": "habito",
+      "titulo": "revisa tu número cada lunes",
+      "fotos": [
+        "fotos/foto-6.jpg",
+        "fotos/foto-7.jpg",
+        "fotos/foto-8.jpg"
+      ],
+      "bloque": {
+        "normal": "no a ojo. saber cuánto necesitas para pagar, comer y vivir.",
+        "italica": "y aun así sentirte persona.",
+        "negrita": "el dinero asusta menos cuando conoces tu número."
+      }
+    }
+  ]
+}

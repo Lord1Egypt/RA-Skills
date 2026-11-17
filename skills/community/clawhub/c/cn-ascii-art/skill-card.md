@@ -1,41 +1,57 @@
-## Description: <br>
-Converts user-provided text into ASCII art using pyfiglet when available, with a simple uppercase fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Ascii Art converts supplied text into ASCII art with selectable font styles and Chinese-language usage guidance.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and content creators can use this skill to generate ASCII-art renderings of short text for terminal output, signatures, examples, or lightweight decorative text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install or run the skill without reviewing local file access, credentials, external service usage, or background behavior. <br>
-Mitigation: Inspect the skill files and requested permissions during installation, following the supplied clawscan guidance. <br>
-Risk: ASCII-art output can vary or degrade when pyfiglet is unavailable or when a requested font is unsupported. <br>
-Mitigation: Install pyfiglet when consistent rendering is required and verify the selected font with representative text. <br>
+## Use Case:
 
+Developers and creators use this skill to generate ASCII-art text banners, signatures, and quick CLI-rendered text decorations from English or Chinese input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-ascii-art) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text ASCII art and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output quality depends on pyfiglet availability and the requested font.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: The optional pyfiglet dependency could be installed from an untrusted or unpinned environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install pyfiglet from a trusted package source in a pinned virtual environment before using the CLI.
+
+Risk: The included website links are promotional and are not required for the ASCII-art tool to run.
+
+Mitigation: Treat those links as publisher information, and review them separately before following them in a managed environment.
+
+Risk: Chinese characters may render incompletely because ASCII-art fonts are primarily designed for Latin text.
+
+Mitigation: Preview generated output before publishing it, especially when using Chinese text or non-default fonts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-ascii-art)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run as a local Python CLI; uses pyfiglet when installed and falls back to simple uppercase output.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence, released 2026-06-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

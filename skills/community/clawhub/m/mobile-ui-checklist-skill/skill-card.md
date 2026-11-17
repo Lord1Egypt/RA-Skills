@@ -1,40 +1,52 @@
-## Description: <br>
-Guides structured help for Mobile UI Checklist using clear templates, checks, and safe defaults (category: Product & Apps). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Mobile UI Checklist using clear templates, checks, and safe defaults (category: Product & Apps).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and product/app teams use this skill to structure mobile UI planning, critique draft outputs, and produce reusable checklists without collecting sensitive data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger wording may invoke the skill for general Product & Apps planning beyond mobile UI checklist work.
+
+Mitigation: Review the generated plan or checklist for relevance before using it.
+
+Risk: Users may include secrets or unnecessary personal data while requesting guidance.
+
+Mitigation: Do not provide passwords, tokens, private keys, session secrets, or unnecessary personal data in prompts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product teams, designers, and app builders use this skill to turn mobile UI goals into concise plans, reusable checklists, next actions, and editable draft copy without requesting secrets or external scraping. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets or sensitive personal data in prompts or pasted notes. <br>
-Mitigation: Ask for goals and constraints without passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary personal data. <br>
-Risk: The artifact includes a visible PayPal donation link that could be mistaken for required runtime behavior. <br>
-Mitigation: Treat the donation link as optional support only; it is not needed to use the skill. <br>
+**Output Format:** [Markdown checklist and short prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/mobile-ui-checklist-skill) <br>
+**Other Properties Related to Output:** [No code execution or external tooling required.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, hidden access, persistence, or credential use is identified in the release evidence.] <br>
+0.1.0 (source: frontmatter, metadata.json, release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

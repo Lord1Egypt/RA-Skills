@@ -1,43 +1,64 @@
-## Description: <br>
-Locally crawls recent articles from a WeChat public account from a supplied article link and saves Markdown, HTML, and articles.json outputs for later analysis or archiving. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Uses a local WeChat Official Accounts crawler to identify an account from an article link and batch-fetch recent posts as Markdown, HTML, and articles.json for corpus building, style analysis, fact checking, and archiving.
 
-## Publisher: <br>
-[DazhuangJammy](https://clawhub.ai/user/DazhuangJammy) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dazhuangjammy](https://clawhub.ai/user/dazhuangjammy)
 
-## Use Case: <br>
-Developers, content teams, and local automation agents use this skill to authenticate to a WeChat public-platform account, fetch recent articles from a target public account, and prepare local files for corpus building, style analysis, fact checking, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler uses persistent local WeChat login state and QR-code login artifacts, which can expose account access if copied or shared. <br>
-Mitigation: Run only on a trusted local machine; do not share .playwright-profile, login_artifacts, cookies, tokens, or QR codes, and run clear-login before handing off the project or machine. <br>
-Risk: The skill performs local browser automation against WeChat using the user's public-platform account. <br>
-Mitigation: Confirm the target article, intended batch size, platform rules, and authorization before running a fetch. <br>
-Risk: The launcher can create a virtual environment and install runtime dependencies before execution. <br>
-Mitigation: Review requirements and installation behavior first when using a hardened or reproducible environment. <br>
+## Use Case:
 
+Developers and automation users use this skill to run a local CLI workflow that logs into WeChat Official Accounts, fetches recent articles for a target public account, and stores the results for downstream analysis or local archiving. It is framed by the source documentation as learning, research, and local automation use.
 
-## Reference(s): <br>
-- [Crawler documentation](references/抓取器说明.md) <br>
-- [WeChat public platform](https://mp.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, HTML, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status/output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated article files are written locally under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill requires local shell, network, browser-profile, and WeChat session access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in an environment where that access is acceptable, and use a dedicated low-privilege WeChat Official Accounts account.
+
+Risk: Login state, QR artifacts, cookies, or browser profile data could expose account access if shared or synced.
+
+Mitigation: Keep the skill directory out of shared or synced folders, do not share QR or login artifacts, and clear local login state before handing the project to someone else.
+
+Risk: Dependencies, browser automation, and URL-handling paths need review before installation.
+
+Mitigation: Pin and review dependencies before first run, and review proposed shell commands before executing them.
+
+Risk: The clear-login path may delete unintended data when WECHAT_FETCHER_PROFILE_DIR or WECHAT_FETCHER_LOGIN_ARTIFACTS_DIR point to custom locations.
+
+Mitigation: Avoid clear-login when those environment variables are set unless the target paths have been checked.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [公众号抓取龙虾](artifact/references/抓取器说明.md)
+- [ClawHub skill page](https://clawhub.ai/dazhuangjammy/skills/wechat-articles-crawler)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; crawler output includes Markdown, HTML, and articles.json files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime workflow can return JSON status and result summaries, including account name, downloaded count, failed count, output directory, and index file path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

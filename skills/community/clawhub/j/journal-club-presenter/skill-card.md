@@ -1,43 +1,54 @@
-## Description: <br>
-Generate journal club slides with background, critique, and discussion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate journal club slides with background, critique, and discussion.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Students, researchers, and instructors use this skill to create structured journal club presentation outlines for lab meetings, graduate training, literature reviews, and critical appraisal sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged script writes to a user-supplied output path and may overwrite an existing file. <br>
-Mitigation: Use an output path inside the workspace and avoid names of important existing files. <br>
-Risk: Generated academic presentation content can be incomplete or inaccurate if the paper details are incomplete. <br>
-Mitigation: Review the generated outline for source faithfulness and accuracy before presenting. <br>
-Risk: Incomplete inputs or broad requests can weaken the skill boundary. <br>
-Mitigation: Confirm the paper details, audience, time limit, output path, and scope before execution; use the documented fallback path when required inputs are missing. <br>
+## Use Case:
 
+External users, developers, and academic teams use this skill to create bounded journal-club presentation outlines for lab meetings, graduate training, literature reviews, and critical appraisal.
 
-## Reference(s): <br>
-- [Audit Reference](artifact/references/audit-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/journal-club-presenter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured text or Markdown with optional shell commands for validation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces slide outlines, background context, key figure explanations, critical evaluation points, and discussion questions; the packaged script can also write a local text file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The packaged script can overwrite arbitrary writable files when an unrestricted output path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an output path inside the intended workspace and avoid letting untrusted content control the --output argument until path validation and overwrite safeguards are added.
+
+Risk: Journal-club outlines could overstate or drift beyond the source paper if the request lacks sufficient paper context.
+
+Mitigation: Use the skill only for journal-club presentation outlines and keep assumptions, missing inputs, risks, and validation needs explicit in the final response.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/journal-club-presenter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured text or Markdown slide outline, optionally accompanied by local shell commands for validation and execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local outline file; output path should be constrained to the intended workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

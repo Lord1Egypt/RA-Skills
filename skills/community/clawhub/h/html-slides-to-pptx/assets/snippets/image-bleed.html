@@ -1,0 +1,19 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:全出血大图页(图满画布 + 左下文字块 · 原型 11 · 出血满填)
+  参数:
+    {{IMG}}        图片路径(相对页面,如 ../assets/img/hero.png)
+    {{HEADLINE}}   图说的一句话结论    {{SUB}}  补充说明一行 · 来源
+    {{VEIL}}       文字垫条色(预算混合深色,如 var(--code-bg))
+  用法: 整页替换 .slide-container 内容(容器底色改深色,如 var(--charcoal));
+        装饰图用 background-image(截图还原);内容照片换 <img data-object object-fit:cover>;
+        图上文字 ≤2 行;垫条用预算混合纯色,不用 rgba/渐变蒙版
+  纪律: 不用居中巨标+渐变蒙版的"AI 英雄区";来源行 ≥16px
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:0;top:0;width:1920px;height:1080px;background-image:url('{{IMG}}');background-size:cover;background-position:center;"></div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:0;top:820px;width:1920px;height:260px;background:{{VEIL}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:870px;width:1500px;">
+  <div style="font-size:40px;font-weight:700;line-height:1.3;color:var(--white);">{{HEADLINE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:950px;width:1500px;">
+  <div style="font-size:22px;line-height:1.4;color:var(--brand-dark-tint);">{{SUB}}</div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "review-action",
+  "workflow": "product",
+  "focus": "action",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

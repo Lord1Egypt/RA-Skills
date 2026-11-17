@@ -1,40 +1,63 @@
-## Description: <br>
-AI机票助手实现国内航班搜索、舱位查询、预订下单、机票改期和机票退票，适用于用户询问航班、查询机票价格、提交机票订单、改期航班或退票时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI机票预订助手 helps users search Chinese domestic flights, compare fare classes, create flight booking orders, manage flight changes, and request refunds through the Fenbeitong flight workflow.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users use this skill to search domestic flights, compare cabin prices, create flight orders, inspect order details, and submit cancellation, change, or refund requests through guided agent commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real bookings, refunds, API keys, and passenger identity data. <br>
-Mitigation: Use only with a trusted flight-service provider, require explicit user confirmation for booking, cancellation, change, and refund actions, and avoid entering real passenger ID details until safeguards are reviewed. <br>
-Risk: The security summary identifies weak transport, token storage, PII masking, and temporary-file handling safeguards. <br>
-Mitigation: Review TLS verification, token storage, PII redaction, and temporary-file handling before deployment. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search Chinese domestic flights, compare fare and refund/change rules, create bookings, view orders, cancel unpaid orders, and submit change or refund requests after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/search-flight) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and plaintext tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and authenticated access to the external flight service; temporary files cache authentication and selected seat data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles passenger identity data, phone numbers, credentials, payments, refunds, and order details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in the intended Fenbeitong flight workflow, store credentials in a user-private secret store, and redact passenger identity data from outputs and logs.
+
+Risk: The security guidance calls out unsafe API transport choices and endpoint handling.
+
+Mitigation: Fix TLS verification and lock API traffic to an approved endpoint before operational use.
+
+Risk: Booking, cancellation, change, and refund actions can affect real travel orders and payment flows.
+
+Mitigation: Require explicit user confirmation before booking, cancellation, change, or refund actions.
+
+Risk: Inherited environment variables may be untrusted in shared or managed environments.
+
+Mitigation: Avoid shared machines for this skill and run it only where environment variables and local credential storage are controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/search-flight)
+- [Publisher profile](https://clawhub.ai/user/ryan-zry)
+- [Fenbeitong flight API endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with plaintext tables and shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write temporary JSON state files under /tmp and store authentication data in a local .fbt_auth.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,55 @@
-## Description: <br>
-Openclaw Ref is a Chinese-language reference for OpenClaw configuration, CLI commands, troubleshooting, model management, channels, automation, providers, tools, installation, and security topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw reference guidance for configuration, CLI operations, troubleshooting, and model management.
 
-## Publisher: <br>
-[astralwaveorg](https://clawhub.ai/user/astralwaveorg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[astralwaveorg](https://clawhub.ai/user/astralwaveorg)
 
-## Use Case: <br>
-Developers and operators use this skill as an operational reference when editing openclaw.json, running OpenClaw CLI commands, configuring gateways, channels, providers, automation, tools, and troubleshooting OpenClaw deployments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill documents powerful OpenClaw administrative features involving credentials, webhooks, shell or exec settings, node device commands, plugins, hooks, and reset or uninstall commands. <br>
-Mitigation: Treat those examples as sensitive operational guidance, prefer environment variables for secrets, and require explicit user approval for shell, elevated, node, and destructive operations. <br>
-Risk: OpenClaw channel and group examples can expose private conversations, group history, reasoning output, or unauthorized recipients if access is too broad. <br>
-Mitigation: Keep Telegram and group access allowlisted, avoid sending reasoning or private group history unless intentional, and review channel targets before enabling delivery. <br>
-Risk: Migration, cleanup, and configuration changes can affect the local ~/.openclaw state and running gateway behavior. <br>
-Mitigation: Back up ~/.openclaw before migration or cleanup and validate configuration with OpenClaw diagnostic commands before restarting services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Reference Skill Index](artifact/SKILL.md) <br>
-- [Configuration Fields Reference](artifact/core/config-fields.md) <br>
-- [CLI Reference](artifact/core/cli.md) <br>
-- [Model Management Reference](artifact/core/models.md) <br>
-- [Gateway Reference](artifact/core/gateway.md) <br>
-- [Channels Overview](artifact/channels/overview.md) <br>
-- [Automation Hooks and Webhooks Reference](artifact/automation/hooks-webhooks.md) <br>
-- [Tools Overview](artifact/tools/overview.md) <br>
-- [API and Security Reference](artifact/reference/api-security.md) <br>
-- [Installation and Deployment Reference](artifact/setup/install.md) <br>
-- [General Troubleshooting Reference](artifact/troubleshooting/general.md) <br>
+## Use Case:
 
+Developers and operators use this skill as a Chinese-language OpenClaw operations manual when editing openclaw.json, running CLI commands, configuring providers and channels, or troubleshooting deployments.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-style configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language operational reference material for OpenClaw administration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples may include reset, uninstall, force, shell execution, node execution, plugin, hook, webhook, credential, camera, screen, or location operations with administrative impact.
+
+Mitigation: Review and explicitly approve these operations before use; prefer allowlists, pairing, sandboxing, audit logs, backups, gateway tokens, and environment-variable secrets.
+
+Risk: Configuration guidance can affect OpenClaw gateway access, channel routing, automation behavior, and credential handling.
+
+Mitigation: Back up configuration before changes, validate field paths and types, avoid hard-coded secrets, and test changes with the documented diagnostic workflow.
+
+## Reference(s):
+
+- [Openclaw Ref on ClawHub](https://clawhub.ai/astralwaveorg/skills/openclaw-ref)
+- [OpenClaw Configuration Fields Reference](artifact/core/config-fields.md)
+- [OpenClaw CLI Reference](artifact/core/cli.md)
+- [OpenClaw API and Security Reference](artifact/reference/api-security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples may include administrative OpenClaw commands that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

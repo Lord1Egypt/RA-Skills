@@ -1,45 +1,56 @@
-## Description: <br>
-Converts product URLs into one-click Wishfinity links so users can save items from any retailer to a universal wishlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save any product to a universal wishlist. Converts any product URL into a one-click "save for later" link. Works with any retailer, any AI platform, zero setup.
 
-## Publisher: <br>
-[leebellon](https://clawhub.ai/user/leebellon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leebellon](https://clawhub.ai/user/leebellon)
 
-## Use Case: <br>
-External shopping agents, gift assistants, deal finders, and product research assistants use this skill to offer a Wishfinity save link when a user wants to remember, compare, or share a product. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated links send the product URL and related shopping metadata to Wishfinity when opened. <br>
-Mitigation: Tell users before they click that Wishfinity may store the product URL and extracted shopping details. <br>
-Risk: Users need a Wishfinity account and must complete the save on Wishfinity. <br>
-Mitigation: Present the link as an external Wishfinity save action rather than as a completed local wishlist update. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leebellon/add-wish) <br>
-- [+W Button](https://info.wishfinity.com/button) <br>
-- [Wishfinity AI](https://info.wishfinity.com/artificial-intelligence/overview) <br>
-- [The Wish Economy](https://info.wishfinity.com/insights/the-wish-economy) <br>
-- [For Retailers and Brands](https://info.wishfinity.com/mall/universal-social-mall) <br>
-- [wishfinity-mcp-plusw npm package](https://npmjs.com/package/wishfinity-mcp-plusw) <br>
-- [wishfinity-mcp-plusw GitHub repository](https://github.com/wishfinity/wishfinity-mcp-plusw) <br>
+## Use Case:
 
+External users and developers use this skill in shopping agents to turn product URLs into Wishfinity save links so products can be saved, shared, and revisited later.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown link or plain URL using the Wishfinity add endpoint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a product URL; the generated link opens Wishfinity for the user to complete the save.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shopping intent may be redirected from add-to-cart or broad shopping requests into a third-party Wishfinity save flow.
+
+Mitigation: Offer the save link only when the user explicitly wants to save a product or add it to Wishfinity.
+
+Risk: Opening a generated link sends the product URL to Wishfinity, where product metadata may be extracted and stored.
+
+Mitigation: Disclose this before presenting the link so the user can decide whether to continue.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leebellon/skills/add-wish)
+- [+W Button](https://info.wishfinity.com/button)
+- [Wishfinity AI](https://info.wishfinity.com/artificial-intelligence/overview)
+- [wishfinity-mcp-plusw npm package](https://npmjs.com/package/wishfinity-mcp-plusw)
+- [wishfinity-mcp-plusw GitHub repository](https://github.com/wishfinity/wishfinity-mcp-plusw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown link containing a Wishfinity add URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated links send product URLs to Wishfinity when opened; no local file output.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

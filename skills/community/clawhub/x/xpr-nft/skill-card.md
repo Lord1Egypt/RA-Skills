@@ -1,41 +1,56 @@
-## Description: <br>
-Manage the full AtomicAssets NFT lifecycle on XPR Network including creation, minting, selling, auctioning, transferring, and burning NFTs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the full AtomicAssets NFT lifecycle on XPR Network, including creation, minting, selling, auctioning, transferring, burning, and querying NFTs.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-External users and developers use this skill to query and manage AtomicAssets and AtomicMarket NFT operations on XPR Network, including collection setup, minting, transfers, sales, auctions, and burns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign real XPR Network NFT and marketplace transactions, which may be irreversible. <br>
-Mitigation: Install with a dedicated low-value or least-privilege XPR account and require explicit user approval for every write action. <br>
-Risk: Auction claiming needs additional review because evidence reports that one auction-claim action bypasses the documented confirmation pattern. <br>
-Mitigation: Require explicit user approval before auction claiming and review the transaction details before signing. <br>
-Risk: Misconfigured RPC endpoints or dependency sources can affect the integrity of blockchain reads and signed writes. <br>
-Mitigation: Verify the configured RPC endpoint and the @proton/js dependency source before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulgnz/xpr-nft) <br>
+## Use Case:
 
+External developers and agents use this skill to manage AtomicAssets and AtomicMarket NFT workflows on XPR Network. It supports collection, schema, template, asset, sale, and auction operations, including write actions that can submit blockchain transactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [JSON-like tool responses and concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read operations return NFT and marketplace records; write operations may return blockchain transaction identifiers after explicit confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.11 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet signing and blockchain write operations may move assets, spend tokens, consume resources, or be irreversible.
+
+Mitigation: Use a dedicated low-value XPR account, a restricted permission rather than active, and a trusted HTTPS RPC endpoint; review every write request before setting confirmed=true.
+
+Risk: Credential requirements for write operations are under-disclosed.
+
+Mitigation: Document and provision XPR_PRIVATE_KEY, XPR_ACCOUNT, XPR_PERMISSION, and XPR_RPC_ENDPOINT only in a secure runtime, and rotate or revoke credentials if exposure is suspected.
+
+Risk: One auction-claim write action bypasses the skill's stated confirmation rule.
+
+Mitigation: Manually review auction claim requests and restrict wallet permissions until confirmation handling is fixed or enforced by surrounding policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xpr-nft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance and JSON-like tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations may sign and submit XPR Network transactions when wallet environment variables are configured.]
+
+## Skill Version(s):
+
+0.2.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

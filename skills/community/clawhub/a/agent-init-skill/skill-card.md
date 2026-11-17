@@ -1,42 +1,55 @@
-## Description: <br>
-Initialize or update AGENTS.md/CLAUDE.md for a project. Use this skill whenever the user wants to create, initialize, generate, setup, or update a project-level AGENTS.md or CLAUDE.md file. Triggers on requests like "initialize AGENTS.md", "create CLAUDE.md", "generate project doc for AI", "setup agent guidelines", "create project rules", or any mention of AGENTS.md/CLAUDE.md creation or initialization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes or updates project-level AGENTS.md or CLAUDE.md instructions by analyzing a project and restructuring the result into a nine-section agent onboarding template.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Developers and engineers use this skill to create or update project-level AGENTS.md or CLAUDE.md guidance for AI coding tools. It analyzes project structure, commands, conventions, and documentation needs, then organizes them into a reusable Markdown template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repositories and rewrite project-level AI instruction files. <br>
-Mitigation: Require explicit approval before file writes and review AGENTS.md or CLAUDE.md diffs before committing them. <br>
-Risk: The artifact includes a self-evolution section that could encourage persistent changes outside the requested documentation task. <br>
-Mitigation: Remove or ignore the self-evolution section before use. <br>
-Risk: Generated project guidance can include incorrect commands, file paths, or conventions if repository inspection is incomplete. <br>
-Mitigation: Verify generated commands, referenced paths, and documented conventions against the repository before relying on the file. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or refresh repository-level guidance for AI coding agents. It helps produce AGENTS.md or CLAUDE.md files that document project structure, commands, conventions, local validation, and available documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/agent-init-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown project instruction file with tables, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or updates AGENTS.md or CLAUDE.md in the project root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can create or rewrite project-level agent instruction files, which can affect how agents behave in a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or modified AGENTS.md and CLAUDE.md files before committing or relying on them.
+
+Risk: The skill includes a self-evolution workflow that can persist failure notes and propose changes to the skill itself.
+
+Mitigation: Allow the self-evolution workflow only when explicitly desired, and review any diary or SKILL.md changes separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/agent-init-skill)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown file with tables, bullet lists, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets AGENTS.md or CLAUDE.md in the project root and may include TODO markers for genuinely unavailable facts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

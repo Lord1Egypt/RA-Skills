@@ -1,41 +1,56 @@
-## Description: <br>
-Audit a game feature, flow, event, onboarding step, progression action, monetization surface, retention mechanic, or social prompt using the Fogg Behavior Model: Motivation, Ability, Prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game feature, flow, event, onboarding step, progression action, monetization surface, retention mechanic, or social prompt using the Fogg Behavior Model: Motivation, Ability, Prompt.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product managers, and developers use this skill to evaluate whether a game feature or flow is likely to cause a specific player behavior. It helps diagnose weak adoption, friction, timing problems, and behavioral bottlenecks across onboarding, retention, progression, social, event, and monetization surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may affect live monetization, retention, or player-behavior systems. <br>
-Mitigation: Review recommendations before applying them to production game features or player-facing flows. <br>
-Risk: Prompts may include sensitive player data, credentials, or confidential telemetry. <br>
-Mitigation: Use only data approved for the agent environment and avoid pasting secrets or confidential telemetry unless that environment is authorized. <br>
+## Use Case:
 
+Game designers, product teams, and gameplay or UX reviewers use this skill to audit whether a specific game feature or flow is likely to cause the intended player behavior. It is suited for diagnosing weak adoption, friction, mistimed prompts, and unclear behavior targets in onboarding, retention, progression, social, event, or monetization surfaces.
 
-## Reference(s): <br>
-- [Fogg Notes](references/fogg-notes.md) <br>
-- [Game Examples](references/game-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured as target behavior, motivation read, ability read, prompt read, failure diagnosis, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask clarifying questions when the target player behavior is unclear.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unreleased monetization or retention designs may include sensitive product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the feature details needed for the audit and avoid unnecessary proprietary or player-identifying information.
+
+Risk: Behavior-design recommendations can over-focus on driving action without enough attention to player trust or consent.
+
+Mitigation: Review recommendations for product ethics and player experience before applying them to monetization, retention, social, or notification surfaces.
+
+## Reference(s):
+
+- [Fogg Notes](references/fogg-notes.md)
+- [Game Examples](references/game-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/game-design-fogg-behavior-audit)
+- [Publisher Profile](https://clawhub.ai/user/stanestane)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with structured behavior audit sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only critique organized around Target Behavior, Motivation, Ability, Prompt, Failure Diagnosis, and Recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

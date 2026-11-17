@@ -1,38 +1,52 @@
-## Description: <br>
-Supports a Vietnamese story-translation workflow by converting source files to Markdown, splitting long manuscripts, guiding consistent terminology and pronoun choices, and merging translated parts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates long-form fiction from a source language into Vietnamese through a sequential workflow that preserves names, forms of address, chapter structure, and final Markdown or EPUB outputs.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-Writers, translators, and agents use this skill to translate stories into Vietnamese while keeping proper names, places, terms, and character forms of address consistent across many manuscript parts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaibazax-dev/vn-translate) <br>
-- [Publisher Profile](https://clawhub.ai/user/kaibazax-dev) <br>
+External users and translation-focused developers use this skill to translate fiction into Vietnamese in manageable sequential chunks, maintain terminology and address-form consistency, and assemble the translated work as Markdown or EPUB.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces raw/part_*.md, out/part_*.md, TenRieng.md, XungHo.md, and full.md; check for existing same-name files before running helper scripts because local translation work can be overwritten.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: EPUB export can unintentionally package local files outside the intended assets folder if crafted Markdown image paths are supplied.
+
+Mitigation: Install only for trusted Markdown inputs or review and constrain EPUB image path handling before use; run the workflow in a dedicated project folder and preview cleanup deletes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-translate)
+- [Worked translation-session example](references/session-worked-example.md)
+- [Vietnamese idioms and terminology reference](references/thanh-ngu-va-tu-ngu.md)
+- [Token usage diagnostics](references/token-usage-diagnostics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python helper usage, JSON checkpoint data, translated Markdown files, and optional EPUB output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses sequential chunk processing and checkpoint files; EPUB export should be used only with trusted or reviewed Markdown inputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

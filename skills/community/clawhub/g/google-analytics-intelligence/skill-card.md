@@ -1,46 +1,56 @@
-## Description: <br>
-Analyze GA4 data, detect traffic anomalies, and generate actionable growth recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze GA4 data, detect traffic anomalies, and generate actionable growth recommendations. Use when the user needs revenue tracking, anomaly detection, or traffic optimization insights.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Marketing teams, SaaS founders, e-commerce managers, and growth analysts use this skill to analyze Google Analytics 4 metrics, detect unusual traffic or conversion changes, generate reports, and produce growth recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access Google Analytics metrics that reveal business performance, user behavior, revenue, or campaign details. <br>
-Mitigation: Use least-privileged Google credentials, limit the GA4 property scope, and run the skill only in approved environments. <br>
-Risk: Configured Slack webhooks can post analytics summaries or alerts to shared channels. <br>
-Mitigation: Send reports only to private approved channels, protect webhook URLs, and rotate them if exposed. <br>
-Risk: API keys and webhook URLs are required for normal operation and could be exposed if stored in shared files or transcripts. <br>
-Mitigation: Keep credentials out of shared files, use secret storage where available, and rotate credentials after any suspected exposure. <br>
+## Use Case:
 
+Marketing teams, SaaS founders, e-commerce managers, and growth analysts use this skill to turn GA4 property data into traffic anomaly checks, revenue tracking summaries, and growth recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/google-analytics-intelligence) <br>
-- [Publisher profile](https://clawhub.ai/user/ncreighton) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Google Analytics](https://analytics.google.com) <br>
-- [Slack API](https://api.slack.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and recommendations with inline configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analytics summaries, anomaly alerts, growth recommendations, report templates, and Slack-ready messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: GA4 credentials or property data could be exposed through broad agent access or generated analytics reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GA4 credentials and grant access only to properties the agent needs.
+
+Risk: Slack delivery can disclose revenue or customer-behavior summaries to unintended audiences.
+
+Mitigation: Keep the Slack webhook private, send reports only to restricted channels, and review generated summaries before broad sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/google-analytics-intelligence)
+- [Google Analytics 4](https://analytics.google.com)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Slack API](https://api.slack.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text reports with metrics, anomaly summaries, recommendations, and Slack-ready alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference GA4 credentials, property IDs, report time windows, anomaly sensitivity, currency, timezone, and optional Slack delivery settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Microsoft 365 Email & Calendar CLI via Microsoft Graph API. Supports multiple accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft 365 Email & Calendar CLI via Microsoft Graph API. Supports multiple accounts.
 
-## Publisher: <br>
-[droba07](https://clawhub.ai/user/droba07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[droba07](https://clawhub.ai/user/droba07)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent authenticate to Microsoft 365, inspect inbox and search results, read messages, send mail after confirmation, and list or create calendar events for one or more accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Microsoft Graph permissions to read mail, send mail, read and write calendar data, and read basic profile identity. <br>
-Mitigation: Install it only where those permissions are acceptable, and confirm before any mail-sending or calendar-changing command. <br>
-Risk: The skill stores refreshable Microsoft OAuth tokens on disk. <br>
-Mitigation: Use it only on a trusted machine, protect the local credential directory, and delete token files or revoke the Microsoft app when access is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to authenticate to Microsoft 365, inspect inbox and calendar data, send email, and create calendar events through Microsoft Graph from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/droba07/ms365-mail-calendar) <br>
-- [Microsoft Graph API endpoint](https://graph.microsoft.com/v1.0) <br>
-- [Publisher profile](https://clawhub.ai/user/droba07) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and terminal text from the Node CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and MICROSOFT_CLIENT_ID; Microsoft tokens are stored per account under ~/.openclaw/credentials/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can send email and create calendar events through Microsoft Graph, and the security evidence notes weak or misleading safeguards for these user-impacting actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use the least-privilege Microsoft app registration possible, and avoid granting access to accounts that should not be controlled by this CLI.
+
+Risk: Authentication tokens are stored locally for each named account.
+
+Mitigation: Protect the local credential directory, restrict filesystem access to the user running the skill, and remove stored account tokens when access is no longer needed.
+
+Risk: Mail sending and calendar creation occur without an actual confirmation prompt in the current code.
+
+Mitigation: Require human review of send and calendar-create command arguments before running the skill in workflows that affect real users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/droba07/skills/ms365-mail-calendar)
+- [Microsoft Graph API v1.0](https://graph.microsoft.com/v1.0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Command-line text with Microsoft Graph email and calendar results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and MICROSOFT_CLIENT_ID; supports separate named Microsoft 365 accounts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

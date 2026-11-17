@@ -1,0 +1,61 @@
+{
+  "changelog": "A new icon for this Skill. The helper shared by all Beatra Skills now keeps its connection file readable only by your account, clears its update records when you disconnect the last Beatra Skill, and stays on the network route you picked when an update check fails.",
+  "display_name": "Shopify Product-Page Stills",
+  "entry": "SKILL.md",
+  "homepage": "https://beatra.ai/skills/shopify-pdp-set",
+  "icon": "https://beatra.ai/textures/icons/shopify-pdp-set-0.2.4.png",
+  "localized": {
+    "en": {
+      "description": "Turn seller-supplied product facts into a Shopify product-page image set for a single SKU. This Shopify PDP set studio lays out each named theme as a product detail image, keeping one image per theme so the listing gallery stays consistent. Use it for Shopify detail pages, listing galleries, and product detail images.",
+      "display_name": "Shopify Product-Page Stills",
+      "summary": "Turn seller-supplied product facts into one Shopify product-page stills set for a single SKU.",
+      "tags": [
+        "Shopify product images",
+        "Shopify PDP set",
+        "product detail images",
+        "listing gallery images",
+        "Shopify detail page",
+        "product page images"
+      ],
+      "title": "Shopify Product Images: One Detail Set Per Theme"
+    },
+    "ja": {
+      "description": "Shopify商品ページセットは、出品者が提供した商品情報から、1つのSKUに対して商品詳細画像を揃えます。Shopify出品セットとして、商品ページ静画、詳細ページ画像、Shopifyギャラリーにも使えます。",
+      "display_name": "Shopify商品ページセット",
+      "summary": "出品者が提供した商品情報から、1つのSKUのShopify商品ページセットを揃えます。",
+      "tags": [
+        "Shopify商品ページセット",
+        "商品詳細画像",
+        "Shopify出品セット",
+        "商品ページ静画",
+        "詳細ページ画像",
+        "Shopifyギャラリー"
+      ],
+      "title": "Shopify商品ページセット：テーマごとに1枚の商品画像"
+    },
+    "zh": {
+      "description": "Shopify详情套图按卖家提供的商品事实，给同一SKU做成一组商品详情图。详情图、商品图和Shopify套图都按同一份主题清单出，每个主题一张。",
+      "display_name": "Shopify详情套图·上架静帧",
+      "summary": "按卖家提供的商品事实，做成Shopify详情套图，同一SKU一组上架静帧。",
+      "tags": [
+        "Shopify详情套图",
+        "商品图组",
+        "Shopify商品页",
+        "详情页图片",
+        "商品详情图",
+        "Shopify套图"
+      ],
+      "title": "Shopify详情套图：同一SKU的商品详情图组"
+    }
+  },
+  "mcp": {
+    "authentication": "device-bearer",
+    "credential_file": "~/.beatra/credentials.json",
+    "name": "beatra",
+    "transport": "streamable-http",
+    "url": "https://mcp.beatra.ai/mcp"
+  },
+  "name": "shopify-pdp-set",
+  "schema_version": 1,
+  "version": "0.2.4"
+}

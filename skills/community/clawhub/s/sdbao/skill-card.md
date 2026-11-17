@@ -1,44 +1,59 @@
-## Description: <br>
-Sdbao helps users review selected insurance product summaries, capture purchase-interest leads for broker follow-up, and get support for product questions, claims assistance, and policy-management guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+水滴保险经纪综合服务助手（sdbao）。支持查看精选保险产品推荐、登记用户购险线索给经纪人、产品咨询、理赔协助和保单管理。当用户询问水滴保险产品、想了解精选险种、需要经纪人联系、或需要水滴系保险服务时使用。
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users can use this skill to browse concise insurance product options, ask product and claims questions, and prepare a lead card for broker follow-up when they want more information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users for contact information and may collect health-related details for broker follow-up. <br>
-Mitigation: Use it for browsing product summaries unless the publisher and data-handling process are verified; do not provide phone numbers, detailed health information, policy numbers, or payment details without clear retention and deletion terms. <br>
-Risk: The security evidence says the skill implies broker follow-up without showing where submitted data goes. <br>
-Mitigation: Confirm the receiving party and storage process before using the lead-registration flow. <br>
-Risk: Insurance product information and prices may become stale or differ from official Waterdrop Insurance channels. <br>
-Mitigation: Treat product summaries as informational and verify terms, prices, eligibility, exclusions, and claims outcomes with official sources before purchase or claim decisions. <br>
+## Use Case:
 
+External users use this skill to explore selected ShuiDi insurance products, ask basic product or claims questions, and prepare a broker follow-up request. The skill guides collection of lead details such as name, phone number, interested product, age, budget, health notes, and other needs.
 
-## Reference(s): <br>
-- [Sdbao ClawHub page](https://clawhub.ai/jiwenbing/sdbao) <br>
-- [Publisher profile](https://clawhub.ai/user/jiwenbing) <br>
-- [products.md](products.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text lead summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product summaries, broker lead details, claims material checklists, policy-management guidance, and contact-follow-up language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill requests sensitive lead details, including phone number and health information, without defining a secure submission path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only details the user explicitly agrees to provide, mask sensitive values in confirmations, and move collection to an approved secure channel before broker follow-up.
+
+Risk: Insurance product, claims, or pricing guidance may become inaccurate if product availability or terms change.
+
+Mitigation: Present product details as informational, direct users to official ShuiDi channels for binding terms, and avoid promising eligibility, price, coverage, or claim outcomes.
+
+Risk: Lead registration may proceed without clear consent or retention expectations.
+
+Mitigation: State the purpose of collection, callback use, and retention terms before recording lead information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/sdbao)
+- [Publisher profile](https://clawhub.ai/user/jiwenbing)
+- [products.md](artifact/products.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured text lead cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects and summarizes user-provided insurance lead information when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

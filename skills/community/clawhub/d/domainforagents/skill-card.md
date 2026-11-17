@@ -1,45 +1,61 @@
-## Description: <br>
-Search, register, and manage internet domains for AI agents via DomainForAgents API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, register, and manage internet domains for AI agents via DomainForAgents API.
 
-## Publisher: <br>
-[midnight-rgb](https://clawhub.ai/user/midnight-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[midnight-rgb](https://clawhub.ai/user/midnight-rgb)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent search, register, renew, and configure domains through DomainForAgents, including DNS and payment-related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can register or renew domains and use payment-linked credentials. <br>
-Mitigation: Use a dedicated low-balance or scoped account when available, and require explicit confirmation before purchases, renewals, payments, or payment-link creation. <br>
-Risk: DNS record changes and webhook setup can affect live services. <br>
-Mitigation: Review requested DNS and webhook changes before execution, prefer test domains for validation, and require approval before applying changes to production domains. <br>
-Risk: The MCP server is installed from an external npm package. <br>
-Mitigation: Verify the @domainforagents/mcp package source and version before running it in an agent environment. <br>
+## Use Case:
 
+Developers and agents use this skill to search for domains, generate domain suggestions, register or renew domains, manage DNS records, and check domain pricing or account balance through the DomainForAgents API.
 
-## Reference(s): <br>
-- [DomainForAgents documentation](https://domainforagents.io/docs) <br>
-- [DomainForAgents OpenAPI specification](https://api.domainforagents.io/api/openapi.json) <br>
-- [DomainForAgents MCP package](https://www.npmjs.com/package/@domainforagents/mcp) <br>
-- [ClawHub skill listing](https://clawhub.ai/midnight-rgb/domainforagents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and curl code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup commands and REST API examples; external API operations can affect billing, domains, and DNS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can initiate real domain purchases, renewals, payment actions, or DNS writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any purchase, renewal, payment action, or DNS change.
+
+Risk: API keys and claim codes may be exposed in chat logs or command output.
+
+Mitigation: Store credentials in a secret store or environment variable and avoid printing secrets in chat, logs, or examples.
+
+Risk: The recommended MCP package is installed through an unpinned package command.
+
+Mitigation: Use a pinned and reviewed MCP package version where possible before installation.
+
+## Reference(s):
+
+- [DomainForAgents Documentation](https://domainforagents.io/docs)
+- [DomainForAgents OpenAPI Specification](https://api.domainforagents.io/api/openapi.json)
+- [DomainForAgents MCP Server](https://www.npmjs.com/package/@domainforagents/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/midnight-rgb/skills/domainforagents)
+- [Publisher Profile](https://clawhub.ai/user/midnight-rgb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST API calls, MCP setup commands, DNS record examples, and payment or renewal guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

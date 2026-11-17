@@ -1,43 +1,58 @@
-## Description: <br>
-SwipeNode is a web-extraction skill for AI agents that extracts structured JSON or cleaned text from modern web pages without using a headless browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swipenode is a web extraction skill for AI agents that extracts structured JSON from Next.js, Nuxt.js, Gatsby, and Remix pages without headless browsers while reducing raw HTML token overhead.
 
-## Publisher: <br>
-[Nefas11](https://clawhub.ai/user/Nefas11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nefas11](https://clawhub.ai/user/nefas11)
 
-## Use Case: <br>
-Developers and AI agent users use SwipeNode to extract structured JSON or cleaned text from data-rich web pages for e-commerce, news, market research, content analysis, and API-less data collection when browser or raw HTML workflows are too costly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes anti-bot bypass behavior for web extraction. <br>
-Mitigation: Use it only on sites you own or are authorized to access, respect site terms and rate limits, and avoid attempts to bypass access controls. <br>
-Risk: The skill can register a persistent local MCP integration. <br>
-Mitigation: Review the MCP registration before and after use, remove it when no longer needed, and avoid passing sensitive headers unless necessary. <br>
-Risk: The scanner marked this release suspicious because its safety scoping is limited. <br>
-Mitigation: Audit and pin the external source before installation, and run it in a controlled environment with clear network-use boundaries. <br>
+## Use Case:
 
+Developers and agent builders use Swipenode to extract structured data or clean text from modern web pages for e-commerce, news, market research, and other API-less data collection workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Nefas11/swipenode-2) <br>
-- [Publisher profile](https://clawhub.ai/user/Nefas11) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [JSON or cleaned plain text from extraction commands, with Markdown command guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-URL extraction, batch extraction, and local MCP server setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses WAF-bypass and TLS spoofing behavior for web scraping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sites where you have permission to automate access and where this access pattern complies with site terms and applicable policy.
+
+Risk: The skill directs users to build and run an external binary and MCP server.
+
+Mitigation: Review the exact source to be built, pin a trusted commit or release, confirm the canonical repository, and inspect MCP configuration changes before enabling the server.
+
+Risk: Extraction commands can accept custom headers that may contain sensitive values.
+
+Mitigation: Avoid passing secrets in headers unless required, and scope any credentials to the minimum permissions and lifetime needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nefas11/skills/swipenode-2)
+- [Publisher profile](https://clawhub.ai/user/nefas11)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and extracted JSON or text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured JSON from framework data, clean visible text fallback output, batch extraction commands, and MCP setup guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

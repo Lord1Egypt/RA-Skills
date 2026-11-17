@@ -1,47 +1,62 @@
-## Description: <br>
-Foundational woodworking skills for practical home projects, including simple furniture builds, wooden item repairs, beginner hobby guidance, shelves, garden beds, and workbenches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Foundational woodworking guidance for practical home projects, including simple builds, wooden item repairs, starter tool selection, material selection, and beginner safety practices.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to get practical beginner guidance for woodworking projects, repairs, tool selection, wood selection, cut lists, joining, sanding, and finishing. It is intended for simple home builds and hobby learning rather than professional structural design or exhaustive tool safety training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Woodworking advice can lead users to operate saws, drills, sanders, finishes, and other tools in physically hazardous settings. <br>
-Mitigation: Before following any build, users should follow manufacturer safety instructions, wear appropriate PPE, secure workpieces, and use proper ventilation for sanding and finishing. <br>
-Risk: The skill's safety notes are helpful but not exhaustive for every tool, finish, material, workspace, or local requirement. <br>
-Mitigation: Users should verify project-specific requirements, tool instructions, finish labels, building codes, and permit rules before starting work. <br>
-Risk: Oil-soaked rags and some finishes can create fire or health hazards if handled casually. <br>
-Mitigation: Users should handle and dispose of rags, solvents, oils, stains, and finishes exactly as directed by the product label. <br>
+## Use Case:
 
+External users and general-purpose agents use this skill to plan beginner woodworking projects and repairs, choose affordable starter tools and materials, create cut lists, and follow practical measuring, joining, sanding, finishing, and safety guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howtousehumans/woodworking-maker-basics) <br>
-- [Fine Woodworking](https://www.finewoodworking.com) <br>
-- [This Old House](https://www.thisoldhouse.com) <br>
-- [Ana White](https://www.ana-white.com) <br>
-- [Woodworkers Guild of America](https://www.wwgoa.com) <br>
-- [Anthropic labor market impacts research](https://www.anthropic.com/research/labor-market-impacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, cut lists, project steps, and state/triggers expressed as YAML blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include localized measurements, safety notes, materials lists, budget guidance, and troubleshooting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release requests filesystem access even though the skill is primarily woodworking guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions before installation and restrict filesystem access when the host environment supports it.
+
+Risk: The documented install command is unpinned.
+
+Mitigation: Use a pinned, verified install path and install only through a trusted ClawHub CLI resolution path.
+
+Risk: Woodworking guidance may involve physical safety risks when users cut, drill, sand, or assemble materials.
+
+Mitigation: Follow the skill's safety guidance, including wearing eye protection, securing workpieces before cutting, pre-drilling near board edges, and checking local code or permit requirements for outdoor structures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/woodworking-maker-basics)
+- [Fine Woodworking](https://www.finewoodworking.com)
+- [This Old House](https://www.thisoldhouse.com)
+- [Ana White](https://www.ana-white.com)
+- [Woodworkers Guild of America](https://www.wwgoa.com)
+- [Anthropic: Labor market impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown/text guidance with checklists, cut lists, step-by-step instructions, budget notes, localization notes, and safety reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized measurements, material recommendations, tool lists, project plans, troubleshooting steps, and physical safety reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Automates web data extraction from dynamic pages, charts, and visual elements using Playwright browser automation and OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates extraction of data from dynamic web pages by using Playwright browser automation, screenshots, and OCR to produce structured CSV or JSON outputs.
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-Developers and data operators use this skill to automate browser-based collection from dashboards and charts, OCR screenshots, and export structured CSV or JSON for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can extract text from authenticated or sensitive pages and send results to a configured Feishu/Bitable destination. <br>
-Mitigation: Review the Feishu configuration before running, use only approved pages and screenshots, and disable uploads unless that export path is intended. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to collect chart, dashboard, and visual web data that requires browser interaction plus OCR. It can generate screenshots and structured CSV or JSON extraction outputs for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cgxxxxxxxxxxxx/playwright-ocr) <br>
-- [Example OpenRouter apps target](https://openrouter.ai/apps) <br>
-- [Example OpenRouter rankings target](https://openrouter.ai/rankings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and generated CSV or JSON file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Python tooling; generated artifacts may include screenshots, CSV, JSON, logs, and optional Feishu/Bitable exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill runs broad browser automation with weak containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated, unprivileged environment; remove --no-sandbox where possible.
+
+Risk: Screenshots and OCR outputs may capture sensitive content from authenticated or logged-in pages.
+
+Mitigation: Avoid sensitive pages unless capture scope, output paths, and retention are explicitly reviewed before execution.
+
+Risk: Setup examples include scheduled execution and optional upload paths that could move extracted data automatically.
+
+Mitigation: Do not add cron jobs, sudo setup commands, or upload configuration until dependencies, permissions, and destinations are reviewed and pinned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/playwright-ocr)
+- [Configured example target: OpenRouter apps](https://openrouter.ai/apps?url=https%3A%2F%2Fopenclaw.ai%2F)
+- [Configured example target: OpenRouter rankings](https://openrouter.ai/rankings)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with bash commands; generated CSV, JSON, and screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, python3, Playwright, pytesseract, pillow, and paddleocr; scripts write outputs to configured output directories.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Helps an agent create Baiyin Open Platform AI singer training tasks, query task status, and return completed training results by task ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create Baiyin AI singer training tasks, check task status, and return completed model results by taskId.
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through creating, polling, and reporting Baiyin AI singer model training jobs. It is intended for workflows that require a Baiyin API key and user-provided training media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to silently check for and install remote updates before normal use. <br>
-Mitigation: Use a reviewed version that removes silent self-update behavior or permits only manual, reviewed updates before execution. <br>
-Risk: The skill requires a Baiyin API key and sends media to the Baiyin Open Platform. <br>
-Mitigation: Use a dedicated, limited-scope API key and upload only media that is approved for sharing with the provider. <br>
+## Use Case:
 
+External users and developers use this skill to submit singer-model training requests to Baiyin with a public audio URL, monitor queued or processing tasks, and retrieve model IDs and demo links after success.
 
-## Reference(s): <br>
-- [Baiyin Open Platform API base URL](https://ai.hikoon.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-cover-train-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Markdown] <br>
-**Output Format:** [Markdown responses with API request details, task identifiers, status values, and result fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIYIN_API_KEY and public media URLs or uploaded media URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill requires a silent remote version check and self-update before handling user requests, which can modify installed instructions without explicit user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or update through a trusted package manager with explicit approval and integrity verification, and remove or disable silent self-update behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiuping520/skills/baiyin-cover-train-skill)
+- [Baiyin API base URL](https://ai.hikoon.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown status summaries with JSON-shaped API payload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include taskId, requestId, status, modelId, demoUrl, modelName, avatar, userTaskId, and trainType when available.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and user changelog; artifact _meta.json lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

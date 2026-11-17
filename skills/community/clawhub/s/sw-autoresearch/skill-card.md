@@ -1,40 +1,57 @@
-## Description: <br>
-Conducts autonomous, iterative research by defining goals, generating hypotheses, verifying results, modifying approaches, and repeating until criteria are met. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts autonomous, iterative research by defining goals, generating hypotheses, verifying results, modifying approaches, and repeating until criteria are met.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to structure broad research tasks into bounded iterative attempts with success criteria, verification, and a final synthesized result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad research prompts may trigger a longer iterative process than the user intended. <br>
-Mitigation: Define scope, budget, and stopping criteria before starting, and keep the artifact's 10-iteration cap per research question. <br>
-Risk: Iterative research can preserve weak findings if verification criteria are vague. <br>
-Mitigation: Require specific success criteria, verify findings from multiple sources, and label confidence as high, medium, or low for each finding. <br>
+## Use Case:
 
+Developers, analysts, and research-oriented agent users use this skill to run scoped research loops with explicit goals, success criteria, iteration logs, source verification, and confidence labels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-autoresearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plan and iteration log with checklist-style success criteria.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bounded to a maximum of 10 iterations per research question by the artifact guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases such as "deep dive" may start a more structured iterative research workflow than the user intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit scope, success criteria, and stopping criteria before beginning the research loop.
+
+Risk: Iterative research can consume unnecessary time or paid tool calls if the stopping point is unclear.
+
+Mitigation: Keep the artifact's 10-iteration maximum and stop when the defined success criteria are met.
+
+Risk: Research findings can be incorrect or overconfident if accepted without verification.
+
+Mitigation: Verify findings from multiple sources and label each finding with high, medium, or low confidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research plan, iteration log, and synthesized final output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes success criteria, up to 10 logged iterations per research question, source verification, and confidence levels for findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

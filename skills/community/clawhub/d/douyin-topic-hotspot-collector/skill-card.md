@@ -1,43 +1,57 @@
-## Description: <br>
-Search Douyin for a user-specified topic and time range, then return the top hotspot videos ranked by visible engagement signals with strict no-fabrication rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Douyin for a user-specified topic and time range, then return the top hotspot videos ranked by visible engagement signals with strict no-fabrication rules.
 
-## Publisher: <br>
-[eanpeng0-debug](https://clawhub.ai/user/eanpeng0-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eanpeng0-debug](https://clawhub.ai/user/eanpeng0-debug)
 
-## Use Case: <br>
-External creators, content operators, and topic researchers use this skill to find recent Douyin videos for a specified topic and time range, then review a ranked top-10 Markdown table based on visible engagement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent opens Douyin pages and reads public result fields, which may expose browsing activity or fail when Douyin access is unavailable. <br>
-Mitigation: Use the skill only when public Douyin browsing is acceptable, do not log in for this task, and return the documented failure structure when page access or browser capability is unavailable. <br>
-Risk: Optional export can write collected results to local storage, including shared machines. <br>
-Mitigation: Confirm the export path before saving, write only to the user-specified directory or default desktop location, and report export failures without discarding the visible results. <br>
-Risk: Douyin engagement fields can be incomplete or change over time, so rankings may not match a platform-official or stable hotspot order. <br>
-Mitigation: Use only visible fields, mark optional missing fields as missing, state the sorting basis, and avoid fabricating data or claiming an official ranking. <br>
+## Use Case:
 
+Content creators, content operations teams, topic analysts, and learners use this skill to collect and rank recent Douyin videos for a chosen topic and time range using only visible engagement signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eanpeng0-debug/douyin-topic-hotspot-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/eanpeng0-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown table with summary notes, or a structured Markdown failure report; optional exported result file when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks up to 10 Douyin results by visible likes first, with comments and collections as secondary signals; marks missing optional fields instead of fabricating data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: The skill uses browser and network access to view public Douyin search results, so network restrictions, browser unavailability, or platform access changes can prevent collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check access before collecting and use the documented failure response when the environment cannot reach or read Douyin results.
+
+Risk: Export mode writes collected results to the user-specified folder or Desktop.
+
+Mitigation: Enable export only for intended destinations and keep writes limited to the requested result file.
+
+Risk: Engagement fields may be unavailable or incomplete because the skill relies on public visible page data.
+
+Mitigation: Exclude entries missing required fields, mark unavailable optional fields as missing, and rank only by visible engagement signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eanpeng0-debug/skills/douyin-topic-hotspot-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown table with concise status notes; optional exported result file when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on public visible Douyin fields and must mark missing optional fields instead of fabricating data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

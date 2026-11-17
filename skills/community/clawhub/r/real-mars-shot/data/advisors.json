@@ -1,0 +1,66 @@
+{
+  "lin_qiao": {
+    "zh": "林桥",
+    "en": "Lin Qiao",
+    "role_zh": "封闭生态",
+    "role_en": "Closed ecology",
+    "trust": 60,
+    "bias": "analogs_first"
+  },
+  "okonkwo": {
+    "zh": "阿德瓦莱·奥孔克沃",
+    "en": "Adewale Okonkwo",
+    "role_zh": "乘员安全",
+    "role_en": "Crew safety",
+    "trust": 65,
+    "bias": "no_premature_crew"
+  },
+  "varga": {
+    "zh": "叶莲娜·瓦尔加",
+    "en": "Elena Varga",
+    "role_zh": "辐射生物物理",
+    "role_en": "Radiation biophysics",
+    "trust": 58,
+    "bias": "dose"
+  },
+  "sato": {
+    "zh": "佐藤芽",
+    "en": "Mei Sato",
+    "role_zh": "原位资源与星壤",
+    "role_en": "ISRU and regolith",
+    "trust": 57,
+    "bias": "isru"
+  },
+  "iqbal": {
+    "zh": "拉斐尔·伊克巴尔",
+    "en": "Rafael Iqbal",
+    "role_zh": "推进与班次",
+    "role_en": "Propulsion and cadence",
+    "trust": 62,
+    "bias": "rocket_equation"
+  },
+  "hale": {
+    "zh": "索伦·黑尔",
+    "en": "Soren Hale",
+    "role_zh": "档案与火种",
+    "role_en": "Archive and ember doctrine",
+    "trust": 54,
+    "bias": "archive"
+  },
+  "noor": {
+    "zh": "努尔·哈提卜",
+    "en": "Noor Al-Khatib",
+    "role_zh": "外交与预算",
+    "role_en": "Diplomacy and budget",
+    "trust": 56,
+    "bias": "politics"
+  },
+  "shen_ji": {
+    "zh": "沈寂",
+    "en": "Shen Ji",
+    "role_zh": "系统工程",
+    "role_en": "Systems engineering",
+    "trust": 50,
+    "bias": "systems"
+  }
+}

@@ -1,0 +1,33 @@
+[
+  1,
+  2,
+  {
+    "progname": "ncdu",
+    "progver": "2.9",
+    "timestamp": 1789810000
+  },
+  [
+    {
+      "name": "/sample",
+      "asize": 0,
+      "dsize": 4096
+    },
+    [
+      {
+        "name": "cache",
+        "asize": 0,
+        "dsize": 8192
+      },
+      {
+        "name": "huge.log",
+        "asize": 3221225472,
+        "dsize": 3221225472
+      }
+    ],
+    {
+      "name": "notes.txt",
+      "asize": 512,
+      "dsize": 4096
+    }
+  ]
+]

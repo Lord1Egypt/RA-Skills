@@ -1,38 +1,53 @@
-## Description: <br>
-Turns a project folder into a polished open source repository by improving public documentation, community files, repository metadata, and Git/GitHub setup while preserving source code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a project folder into a polished public open-source repository by improving documentation, community files, repository metadata, and Git/GitHub setup while preserving source code.
 
-## Publisher: <br>
-[openghz](https://clawhub.ai/user/openghz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openghz](https://clawhub.ai/user/openghz)
 
-## Use Case: <br>
-Developers and maintainers use this skill to prepare an existing project for public open-source release by adding or improving documentation, community files, repository metadata, and GitHub setup while avoiding source-code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to creating and pushing to a public GitHub repository for projects without a configured remote, which can expose a project before the user has clearly approved publication. <br>
-Mitigation: Require explicit user approval of the GitHub account, repository name, visibility, files to publish, and secrets-scan results before creating a remote or pushing. <br>
+## Use Case:
 
+Developers and maintainers use this skill to prepare local projects for public open-source release by improving repository documentation, community health files, metadata, and Git/GitHub setup without changing product source code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openghz/open-source-project-polish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file edits, inline shell commands, and concise completion summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is constrained to documentation and repository metadata changes unless the user explicitly approves source-code edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create and push to a public GitHub repository, which may expose private files, secrets, or Git history if performed without sufficient review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the GitHub account, repository name, public visibility, branch or ref, and the results of a full secret and history review before any GitHub action.
+
+Risk: Repository polishing can accidentally publish local paths, private project details, or misleading documentation.
+
+Mitigation: Limit changes to documentation and repository metadata, use placeholders or relative paths, and review public-facing Markdown before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openghz/skills/open-source-project-polish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and repository file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add or update documentation, community files, repository metadata, Git configuration, and GitHub repository settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

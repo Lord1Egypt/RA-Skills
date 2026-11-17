@@ -1,40 +1,54 @@
-## Description: <br>
-Whois Toolkit helps agents query WHOIS data for domains, including registrar details, creation and expiry dates, nameservers, status, registrant information, raw responses, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain WHOIS lookup toolkit for querying registrar, creation/expiry dates, nameservers, status, and registrant info.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, engineers, and domain operators use this skill to look up domain registration details, check expiry dates, review nameservers and status, and export WHOIS results for monitoring or investigation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain names queried with this skill are sent to WHOIS servers. <br>
-Mitigation: Query only domains you are comfortable disclosing to the selected WHOIS server. <br>
-Risk: Custom WHOIS servers can observe queried domains and return raw response text. <br>
-Mitigation: Use the custom server option only with WHOIS hosts you trust, especially when raw output is enabled. <br>
+## Use Case:
 
+Developers, site reliability engineers, security analysts, and domain administrators use this skill to inspect domain registration details, check renewal timing, and collect structured WHOIS data for user-selected domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnywang2001/whois-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown usage guidance with bash examples; command output is plain text, JSON, or raw WHOIS text depending on flags.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-domain and batch lookups, expiry-only output, raw WHOIS output, JSON output, and custom WHOIS server selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Domain names are sent to external WHOIS infrastructure during lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with user-chosen domains and avoid submitting sensitive internal or unintended domain names.
+
+Risk: The --server option can direct queries to a user-specified WHOIS host.
+
+Mitigation: Use --server only with WHOIS hosts the user trusts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/whois-toolkit)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON from WHOIS lookup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include raw WHOIS responses when requested]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Converts Markdown or MDX content into Xiaohongshu-style PNG card images with built-in templates, theme modes, pagination, and CLI controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local Markdown or MDX content into Xiaohongshu-style PNG card images using built-in templates, light/dark modes, and pagination.
 
-## Publisher: <br>
-[tangyijun](https://clawhub.ai/user/tangyijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangyijun](https://clawhub.ai/user/tangyijun)
 
-## Use Case: <br>
-Developers, content creators, and agents use this skill to turn Markdown or MDX articles into styled social media card images and rendering reports through a local CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown, raw HTML, or MDX content may execute or render unexpected behavior inside Chromium. <br>
-Mitigation: Use trusted input files, avoid --mdx-mode for content from others, and review generated preview/debug HTML before relying on the output. <br>
-Risk: Image URLs or embedded remote resources in input content can contact external hosts during rendering. <br>
-Mitigation: Prefer local assets, sanitize external URLs, or run rendering in a network-restricted environment when processing unfamiliar content. <br>
-Risk: Installation downloads npm packages and Playwright Chromium. <br>
-Mitigation: Review the package lock and install in an isolated environment before using the skill in sensitive workflows. <br>
-Risk: Rendering writes PNG and report files to the chosen output directory. <br>
-Mitigation: Choose an explicit output directory and inspect generated files before sharing or publishing them. <br>
+## Use Case:
 
+Developers, creators, and content operators use this skill to guide an agent through choosing a template and running a local CLI that renders Markdown/MDX posts into paginated social card PNGs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangyijun/nuomi-xhs-card) <br>
-- [Template reference](references/templates.md) <br>
-- [CLI reference](references/cli-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated PNG files and an optional JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rendering writes card_*.png files and, when requested, report.json to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Rendering untrusted Markdown, MDX, or raw HTML may execute active content or preserve unsafe markup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted content by default; avoid MDX mode and raw HTML from other people unless the renderer is sandboxed.
+
+Risk: Remote image processing can make network requests while rendering content.
+
+Mitigation: Disable remote-image processing for untrusted documents or run it in an environment with contained network egress.
+
+Risk: Pinned dependencies may become stale before CI or sensitive-project use.
+
+Mitigation: Update and rescan dependencies before using the renderer in CI or on sensitive projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangyijun/skills/nuomi-xhs-card)
+- [CLI Reference](artifact/references/cli-reference.md)
+- [Template Reference](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands; the CLI produces PNG card files and optional JSON render reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports theme, mode, split strategy, size, scale, pager, output directory, maximum pages, MDX mode, and debug output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

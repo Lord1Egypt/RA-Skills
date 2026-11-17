@@ -1,44 +1,63 @@
-## Description: <br>
-Manage Fastmail mail, mailbox, identity, contact, and calendar workflows through JMAP API calls with safe batching and token hygiene. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use Fastmail's JMAP API for mail search and triage, sending, masked email, contacts, calendars, sync, migrations, and troubleshooting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate Fastmail JMAP workflows for mailbox management, message search, draft/send flows, identity settings, contacts, and calendar events with confirmation and verification around high-impact changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses token-based access to Fastmail account data, including mail, mailbox, identity, contact, and calendar workflows. <br>
-Mitigation: Use the narrowest Fastmail token scope available, keep FASTMAIL_API_TOKEN out of chat, logs, shell history, and repository files, and revoke or rotate the token when access is no longer needed. <br>
-Risk: Send, delete, move, identity, and bulk calendar actions can affect real communication or account state. <br>
-Mitigation: Require explicit confirmation for high-impact actions, execute the smallest safe batch first, and verify the final state with targeted read calls. <br>
-Risk: Local logs and snapshots in ~/fastmail-api/ can contain operational context or payload details from sensitive account workflows. <br>
-Mitigation: Periodically review or delete ~/fastmail-api/ logs and snapshots, and redact addresses, subjects, and payload details before sharing outputs. <br>
+## Use Case:
 
+Developers and technical users use this skill to operate Fastmail through JMAP: search and triage mail, prepare and send messages, manage masked addresses, contacts, calendars, sync, and migrations while preserving account scope and reversible operations.
 
-## Reference(s): <br>
-- [Fastmail API ClawHub release page](https://clawhub.ai/ivangdavila/fastmail-api) <br>
-- [Fastmail API skill homepage](https://clawic.com/skills/fastmail-api) <br>
-- [Fastmail JMAP session endpoint](https://api.fastmail.com/jmap/session) <br>
-- [Fastmail JMAP API endpoint](https://api.fastmail.com/jmap/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON JMAP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include Fastmail setup guidance, JMAP request patterns, account and mailbox identifiers, confirmation prompts, verification steps, troubleshooting notes, and redacted operation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The session command can send the Fastmail bearer token to an endpoint controlled by FASTMAIL_API_BASE.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Fastmail API token, keep FASTMAIL_API_BASE unset or restricted to the official Fastmail session URL, and revoke the token immediately if it may have been sent to a non-Fastmail endpoint.
+
+Risk: Bulk mail writes can affect the wrong account, mailbox, thread set, or object count.
+
+Mitigation: Resolve account and mailbox ids from the session, state affected counts before writes, snapshot prior state, use ifInState, and require confirmation above the configured threshold.
+
+Risk: The skill creates durable local records for account state, mailbox ids, identities, operations, snapshots, contacts, domains, bookings, and subscriptions.
+
+Mitigation: Review the configured local paths before installation and keep credentials out of Clawic data files, storing only pointers such as env:FASTMAIL_API_TOKEN.
+
+Risk: Sending mail and editing calendar events with participants can produce external side effects that are difficult or impossible to undo.
+
+Mitigation: Verify recipients, identities, participants, and notification effects before execution; use delayed-send cancellation only when the account supports it.
+
+## Reference(s):
+
+- [ClawHub Fastmail API skill](https://clawhub.ai/ivangdavila/skills/fastmail-api)
+- [Clawic Fastmail API skill page](https://clawic.com/skills/fastmail-api)
+- [Fastmail JMAP session endpoint](https://api.fastmail.com/jmap/session)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and FASTMAIL_API_TOKEN; may create persistent local records under configured Clawic data paths for account ids, mailbox ids, operations, snapshots, bookings, contacts, domains, and subscriptions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

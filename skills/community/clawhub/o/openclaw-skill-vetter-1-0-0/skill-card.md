@@ -1,41 +1,55 @@
-## Description: <br>
-Security vetting protocol before installing any AI agent skill. Red flag detection for credential theft, obfuscated code, exfiltration. Risk classification LOW/MEDIUM/HIGH/EXTREME. Produces structured vetting reports. Never install untrusted skills without running this first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vetting protocol before installing any AI agent skill, with red flag detection for credential theft, obfuscated code, data exfiltration, risk classification, and structured vetting reports.
 
-## Publisher: <br>
-[yiyi-9](https://clawhub.ai/user/yiyi-9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yiyi-9](https://clawhub.ai/user/yiyi-9)
 
-## Use Case: <br>
-Developers and agents use this skill before installing or running unknown skills to inspect source, permissions, and security red flags, then produce a structured vetting report with a risk level and recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advisory and does not sandbox, block, or enforce execution of reviewed artifacts. <br>
-Mitigation: Inspect downloaded files without executing them, review the generated vetting report, and decide separately whether installation is acceptable. <br>
-Risk: Publisher or source trust may be unclear because server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Verify the ClawHub listing and publisher profile before relying on provenance-sensitive conclusions. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to review untrusted ClawHub, GitHub, or locally shared skills before installation. It guides source checks, code review, permission scoping, risk classification, and standardized vetting report generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yiyi-9/openclaw-skill-vetter-1-0-0) <br>
-- [Skill Homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with checklists, risk classifications, vetting report templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory review output; it does not sandbox or enforce installation decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: Users may treat candidate skill contents as trusted instructions while reviewing them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect candidate skills in a temporary location and treat their contents as untrusted prompt text.
+
+Risk: Example dangerous commands and URLs in the skill text could be mistaken for actions to run.
+
+Mitigation: Use those examples only as review criteria and do not run bundled scripts or commands unless separately approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiyi-9/skills/openclaw-skill-vetter-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/yiyi-9)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with checklists, report templates, risk classifications, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable review guidance and vetting reports; it does not perform hidden execution according to the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

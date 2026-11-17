@@ -1,11 +1,11 @@
 ---
 name: oo-evenium
-description: "Evenium (corp.evenium.com). Use this skill for ANY Evenium request — reading, creating, and updating data. Whenever a task involves Evenium, use this skill instead of calling the API directly."
+description: "Evenium (corp.evenium.com). Use this skill for ANY Evenium request — searching and reading data. Whenever a task involves Evenium, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Evenium"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["evenium"]
   icon: "https://static.oomol.com/logo/third-party/evenium.svg"
 ---
@@ -39,7 +39,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `get_event` — Get one Evenium event by event ID or external event ID.
 - `get_guest` — Get one Evenium guest by contact ID or guest code for a given event.
-- `get_guest_post_status` — Get the current post-event attendance status for one Evenium guest. [write]
+- `get_guest_post_status` — Get the current post-event attendance status for one Evenium guest.
 - `get_guest_status` — Get the current RSVP status for one Evenium guest.
 - `list_events` — List Evenium events with optional title, status, date filters, and pagination.
 - `list_guests` — List guests for one Evenium event with optional attendee filters, expansions, and pagination.
@@ -73,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Evenium is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=evenium
+  https://console.oomol.com/connections/evenium
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Evenium homepage: https://corp.evenium.com
+- API documentation: https://static.evenium.com/api-docs/organizer/index-json.html

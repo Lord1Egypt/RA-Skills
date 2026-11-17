@@ -1,46 +1,62 @@
-## Description: <br>
-WorkTracker helps AI assistant teams keep a local record of work starts, progress updates, completions, status reports, logs, backups, and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WorkTracker helps AI assistant teams record starts, progress updates, completions, status reports, and local work logs for traceable team coordination.
 
-## Publisher: <br>
-[isenlink](https://clawhub.ai/user/isenlink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isenlink](https://clawhub.ai/user/isenlink)
 
-## Use Case: <br>
-External users, developers, and agent team operators use this skill to track assistant work activity, progress, completion notes, and team status in local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Work logs, backups, and exports may contain sensitive operational details and are treated as plaintext. <br>
-Mitigation: Avoid recording secrets, credentials, customer data, incident details, or other sensitive content; restrict local file access and retention. <br>
-Risk: The documentation claims security controls that the evidence says are not verifiably implemented. <br>
-Mitigation: Do not rely on encryption, access control, or audit-log claims until the publisher provides verifiable implementation evidence. <br>
-Risk: The skill persistently stores work activity on the local system. <br>
-Mitigation: Install only where persistent local work tracking is intended, and review log, backup, and export locations before operational use. <br>
+## Use Case:
 
+External developers and AI assistant team operators use this skill to track local work status, progress updates, completion notes, and team activity reports across one or more assistants.
 
-## Reference(s): <br>
-- [WorkTracker ClawHub release](https://clawhub.ai/isenlink/work-tracker) <br>
-- [README](artifact/README.md) <br>
-- [WorkTracker training manual](artifact/docs/WorkTracker培训手册.md) <br>
-- [Basic usage example](artifact/examples/basic_usage.sh) <br>
-- [Team collaboration example](artifact/examples/team_collaboration.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown and terminal text with local JSON, CSV, and Markdown file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and writes persistent plaintext work logs, status files, backups, and exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Local work logs and exports may contain confidential project, staffing, customer, or operational information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive workspaces, keep the WorkTracker directory private, and avoid exporting records to shared locations.
+
+Risk: The artifact advertises encryption, role permissions, audit logging, restore, repair, and cleanup controls that the security evidence says should not be relied on unless the implementation is updated.
+
+Mitigation: Treat those controls as unverified and use external access controls and backups until the implementation is reviewed and updated.
+
+Risk: Default documentation suggests broad filesystem permissions for records and backups.
+
+Mitigation: Use private permissions such as 700 for the WorkTracker directory and 600 for records and backups.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/isenlink/skills/work-tracker)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [WorkTracker training manual](artifact/docs/WorkTracker培训手册.md)
+- [Basic usage example](artifact/examples/basic_usage.sh)
+- [Team collaboration example](artifact/examples/team_collaboration.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Plain text and Markdown status/log output, with optional JSON or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local JSON and Markdown records under the user's workspace and can export status data.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

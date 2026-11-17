@@ -1,48 +1,59 @@
-## Description: <br>
-Generates informational crypto price-signal and DeFi-yield summaries from public market data, with text or JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides crypto price-signal and DeFi-yield summaries from public market-data APIs, with optional JSON output.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External users and developers use this skill to fetch public crypto market and DeFi yield data and produce informational trading-signal summaries for selected assets. Outputs should not be treated as financial advice or validated trading probabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives actionable trading guidance and the security summary says its stated trading-analysis capabilities are materially overstated. <br>
-Mitigation: Treat outputs as rough informational signals only, not financial advice, and verify conclusions against independent market analysis before acting. <br>
-Risk: Advertised confidence intervals, backtests, regime detection, and whale-flow analysis may not be validated by the implementation. <br>
-Mitigation: Do not rely on those probabilities or historical-performance claims unless the implementation is updated and independently verified. <br>
-Risk: The skill uses a CoinGecko API key and installs unpinned dependencies. <br>
-Mitigation: Use a limited CoinGecko key, review dependency versions before installation, and run the skill in a constrained environment. <br>
+## Use Case:
 
+External users and developers use this skill to request lightweight crypto market snapshots, price signals, and DeFi-yield summaries. Treat its output as market-data guidance, not professional or statistically validated trading advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/dfw-trading-signals) <br>
-- [Publisher profile](https://clawhub.ai/user/drivenautoplex1) <br>
-- [Project homepage from metadata](https://github.com/drivenautoplex1/openclaw-skills) <br>
-- [CoinGecko API endpoint](https://api.coingecko.com/api/v3) <br>
-- [DeFiLlama yield pools endpoint](https://yields.llama.fi/pools) <br>
-- [SaucerSwap pools endpoint](https://api.saucerswap.finance/pools) <br>
-- [Binance klines endpoint](https://api.binance.com/api/v3/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text report or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network-dependent market data output; requires review before use in trading decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release markets advanced financial analytics that the bundled code does not actually implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a basic crypto market-data helper and do not rely on it as professional or statistically validated trading advice.
+
+Risk: Selected assets and a CoinGecko API key can be sent to external market-data services.
+
+Mitigation: Review external data sharing before use and provide only an API key appropriate for this purpose.
+
+Risk: The release declares unused unpinned dependencies.
+
+Mitigation: Remove unused dependencies or pin package versions before using the skill in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/dfw-trading-signals)
+- [Publisher profile](https://clawhub.ai/user/drivenautoplex1)
+- [Project homepage from ClawHub metadata](https://github.com/drivenautoplex1/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Plain text report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and may use COINGECKO_API_KEY for CoinGecko requests.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

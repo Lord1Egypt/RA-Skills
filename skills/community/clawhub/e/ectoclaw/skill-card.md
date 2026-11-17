@@ -1,42 +1,60 @@
-## Description: <br>
-EctoClaw helps OpenClaw agents record signed, hash-chained audit activity, verify session integrity, manage policies, and export compliance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EctoClaw helps OpenClaw agents record actions in an immutable hash-chained audit ledger with Ed25519 signatures, Merkle proofs, policy rules, compliance exports, and security monitoring.
 
-## Publisher: <br>
-[EctoSpace](https://clawhub.ai/user/EctoSpace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ectospace](https://clawhub.ai/user/ectospace)
 
-## Use Case: <br>
-Developers, operators, and security teams use EctoClaw to log OpenClaw agent activity, verify tamper evidence, review policies, and generate compliance or forensic reports for sessions they operate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit sessions can contain sensitive prompts, tool outputs, memory contents, and agent activity records. <br>
-Mitigation: Keep ECTOCLAW_URL on localhost or infrastructure you control, protect exposed servers with authentication, and treat audit logs as sensitive retained records. <br>
-Risk: Policy changes can affect whether agent actions are blocked, redacted, flagged, or require approval. <br>
-Mitigation: Review policy changes before saving them and confirm the configured rules match the intended controls. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw agents to an EctoClaw audit service, inspect sessions, append signed lifecycle events, verify integrity, manage policy rules, and produce compliance reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EctoSpace/ectoclaw) <br>
-- [EctoClaw npm package](https://www.npmjs.com/package/ectoclaw) <br>
-- [EctoClaw website](https://ectospace.com/EctoClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries with HTTP API request guidance, JSON payloads, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ECTOCLAW_URL to target a user-controlled EctoClaw server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Audit logs may include sensitive prompts, tool outputs, memory contents, and other agent activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point ECTOCLAW_URL only at a local or trusted private instance and protect retained logs according to the sensitivity of the captured data.
+
+Risk: Exposing the EctoClaw service beyond localhost can make sensitive audit data reachable over the network.
+
+Mitigation: Put any non-local deployment behind authentication and access controls before use.
+
+Risk: The skill relies on installing and running the ectoclaw npm package.
+
+Mitigation: Pin or review the package version before installation when supply-chain control is required.
+
+## Reference(s):
+
+- [EctoClaw on ClawHub](https://clawhub.ai/ectospace/skills/ectoclaw)
+- [EctoClaw npm package](https://www.npmjs.com/package/ectoclaw)
+- [EctoClaw website](https://ectospace.com/EctoClaw)
+- [EctoClaw source repository](https://github.com/EctoSpace/EctoClaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown summaries with HTTP request descriptions, JSON payloads, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ECTOCLAW_URL to target a local or trusted private EctoClaw service.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,80 +1,77 @@
 ---
-name: agntdata-reddit
-description: "Use one API key to pull Reddit data (subreddits, posts, and community data) for agents, automations, and analytics. Structured JSON, credit-based pricing, no se"
-version: 1.0.15
+name: reddit-data
+description: "Reddit posts, comments, users, and subreddits for agents — no Reddit app or API approval needed."
+version: 2.0.14
+author: superagnt
+license: MIT-0
+platforms: [macos, linux, windows]
+required_environment_variables:
+  - SUPERAGNT_API_KEY
 metadata:
+  hermes:
+    tags: [reddit-data, community-research, research]
   openclaw:
     requires:
       env:
-        - AGNTDATA_API_KEY
+        - SUPERAGNT_API_KEY
       bins:
         - curl
-    primaryEnv: AGNTDATA_API_KEY
+    primaryEnv: SUPERAGNT_API_KEY
     emoji: "⚡"
-    homepage: https://agnt.mintlify.app/apis/social/reddit
+    homepage: https://superagnt.com/r/ch-reddit-data-docs
 ---
 
-# Reddit API
+# Reddit Data
 
-The agntdata Reddit API wraps Reddit surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call agntdata with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to subreddit metadata, post threads, user activity, and search with predictable billing and operational simplicity.
+The superagnt Reddit API wraps Reddit surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to subreddit metadata, post threads, user activity, and search with predictable billing and operational simplicity.
 
-## Recommended: Install the Plugin
+## Alternative install: the scoped MCP server
 
-**For the best experience, install the OpenClaw plugin for Reddit API instead of this skill.** The plugin provides native MCP tools, automatic authentication, and structured parameter validation.
+If this client speaks MCP, you can connect the Reddit Data facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
-Skill (this document):
-
-```bash
-clawhub install agntdata-reddit
+```
+https://mcp.superagnt.com/mcp/reddit
 ```
 
-Plugin (native tools; npm package matches `package.json`):
+That URL publishes full OAuth discovery: an MCP-capable client needs the URL
+and nothing else (approve once in the browser). On clients that hold a bearer
+instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
+https://www.superagnt.com/install?facet=reddit
 
-```bash
-openclaw plugins install @agntdata/openclaw-reddit
-```
-
-This skill is useful for environments where plugins are not supported.
+This skill document stays fully usable on curl-only environments — everything
+below works with just the API key.
 
 ## Authentication
 
-Before making API calls, you need an API key. Get one from the [agntdata dashboard](https://app.agntdata.dev/dashboard).
-
-The API key should be available as the `AGNTDATA_API_KEY` environment variable. Every request must include it as a Bearer token:
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-reddit-data-key) and export it as
+`SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
-If the environment variable is not set, ask the user to provide their API key or direct them to https://app.agntdata.dev/dashboard to create one.
+If the variable is not set, ask the user for their key or point them at
+https://superagnt.com/r/ch-reddit-data-key.
 
-## API Key Activation
+## Verify the install (do this first)
 
-After setting your API key, activate it by calling the registration endpoint. This only needs to be done once per key:
+One call proves the key, the credit balance, and this source end to end:
 
 ```bash
-curl -X POST https://api.agntdata.dev/v1/register \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"intendedApis": ["reddit"], "useCase": "Brief description of your use case"}'
+curl -s https://api.superagnt.com/v1/credits \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27;
 ```
 
-Replace the `useCase` value with a short description of how you plan to use this API.
-
-## Discovery Endpoints
-
-These public endpoints (no API key required) let you explore this platform's capabilities:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms/reddit
-```
-
-Returns: full endpoint list, OpenAPI spec, features, and use cases.
+A JSON result means you are live. A 401 means the key is wrong or missing; a
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
 ```
-https://api.agntdata.dev/v1/data/reddit
+https://api.superagnt.com/v1/data/reddit
 ```
 
 ## Available Endpoints
@@ -113,12 +110,13 @@ https://api.agntdata.dev/v1/data/reddit
 
 ## Tool Schemas
 
-The following JSON defines all available tools with their parameters. Each tool maps to an API endpoint.
+The following JSON defines every operation with its parameters. Each tool maps
+to an API endpoint under the base URL.
 
 ```json
 [
   {
-    "name": "agntdata_reddit_Similar_Subreddits",
+    "name": "superagnt_reddit_Similar_Subreddits",
     "description": "Similar Subreddits",
     "method": "GET",
     "path": "/getSimilarSubreddits",
@@ -140,7 +138,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Duplicates",
+    "name": "superagnt_reddit_Post_Duplicates",
     "description": "Post Duplicates",
     "method": "GET",
     "path": "/getPostDuplicates",
@@ -162,7 +160,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Moderators",
+    "name": "superagnt_reddit_Subreddit_Moderators",
     "description": "Subreddit Moderators",
     "method": "GET",
     "path": "/getSubredditModerators",
@@ -180,7 +178,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Rules",
+    "name": "superagnt_reddit_Subreddit_Rules",
     "description": "Subreddit Rules",
     "method": "GET",
     "path": "/getSubredditRules",
@@ -198,7 +196,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Overview",
+    "name": "superagnt_reddit_User_Overview",
     "description": "User Overview",
     "method": "GET",
     "path": "/getUserOverview",
@@ -229,7 +227,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Users",
+    "name": "superagnt_reddit_Search_Users",
     "description": "Search Users",
     "method": "GET",
     "path": "/getSearchUsers",
@@ -251,7 +249,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Best_Popular_Posts",
+    "name": "superagnt_reddit_Best_Popular_Posts",
     "description": "Best Popular Posts",
     "method": "GET",
     "path": "/getBestPopularPosts",
@@ -266,7 +264,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Controversial_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Controversial_Posts_By_Subreddit",
     "description": "Controversial Posts By Subreddit",
     "method": "GET",
     "path": "/getControversialPostsBySubreddit",
@@ -293,7 +291,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Post_Rank_In_Subreddit",
+    "name": "superagnt_reddit_User_Post_Rank_In_Subreddit",
     "description": "User Post Rank In Subreddit",
     "method": "GET",
     "path": "/getUserPostRankInSubreddit",
@@ -329,7 +327,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Info",
+    "name": "superagnt_reddit_Subreddit_Info",
     "description": "Subreddit Info",
     "method": "GET",
     "path": "/getSubredditInfo",
@@ -347,7 +345,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Comments_By_Subreddit",
+    "name": "superagnt_reddit_Comments_By_Subreddit",
     "description": "Comments By Subreddit",
     "method": "GET",
     "path": "/getCommentsBySubreddit",
@@ -369,7 +367,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Comments_With_Sort",
+    "name": "superagnt_reddit_Post_Comments_With_Sort",
     "description": "Post Comments With Sort",
     "method": "GET",
     "path": "/getPostCommentsWithSort",
@@ -396,7 +394,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Profile",
+    "name": "superagnt_reddit_Profile",
     "description": "Profile",
     "method": "GET",
     "path": "/getProfile",
@@ -414,7 +412,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Comments",
+    "name": "superagnt_reddit_Post_Comments",
     "description": "Post Comments",
     "method": "GET",
     "path": "/getPostComments",
@@ -432,7 +430,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Stats",
+    "name": "superagnt_reddit_User_Stats",
     "description": "User Stats",
     "method": "GET",
     "path": "/getUserStats",
@@ -450,7 +448,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Posts",
+    "name": "superagnt_reddit_Search_Posts",
     "description": "Search Posts",
     "method": "GET",
     "path": "/getSearchPosts",
@@ -467,7 +465,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "sort": {
           "type": "string",
-          "description": "you can just select one item from below:\n`relevance`\n`hot`\n`top`\n`new`\n`comments`"
+          "description": "Sort order. Use 'top' to filter by time."
         },
         "subreddit": {
           "type": "string",
@@ -475,7 +473,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "time": {
           "type": "string",
-          "description": "you can just select one item from below:\n`hour`\n`day`\n`week`\n`month`\n`year`\n`all`"
+          "description": "Time window. Only applies with sort 'top'; any other sort is refused with time set."
         }
       },
       "required": [
@@ -484,7 +482,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Subreddits",
+    "name": "superagnt_reddit_Search_Subreddits",
     "description": "Search Subreddits",
     "method": "GET",
     "path": "/getSearchSubreddits",
@@ -506,7 +504,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_New_Subreddits",
+    "name": "superagnt_reddit_New_Subreddits",
     "description": "New Subreddits",
     "method": "GET",
     "path": "/getNewSubreddits",
@@ -521,7 +519,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Popular_Subreddits",
+    "name": "superagnt_reddit_Popular_Subreddits",
     "description": "Popular Subreddits",
     "method": "GET",
     "path": "/getPopularSubreddits",
@@ -536,7 +534,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Details",
+    "name": "superagnt_reddit_Post_Details",
     "description": "Post Details",
     "method": "GET",
     "path": "/getPostDetails",
@@ -554,7 +552,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Posts_By_Subreddit",
     "description": "Posts By Subreddit",
     "method": "GET",
     "path": "/getPostsBySubreddit",
@@ -581,7 +579,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Comments_By_Username",
+    "name": "superagnt_reddit_Top_Comments_By_Username",
     "description": "Top Comments By Username",
     "method": "GET",
     "path": "/getTopCommentsByUsername",
@@ -608,7 +606,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Popular_Posts",
+    "name": "superagnt_reddit_Popular_Posts",
     "description": "Popular Posts",
     "method": "GET",
     "path": "/getPopularPosts",
@@ -630,7 +628,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Top_Posts_By_Subreddit",
     "description": "Top Posts By Subreddit",
     "method": "GET",
     "path": "/getTopPostsBySubreddit",
@@ -657,7 +655,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Comments_By_Username",
+    "name": "superagnt_reddit_Comments_By_Username",
     "description": "Comments By Username",
     "method": "GET",
     "path": "/getCommentsByUsername",
@@ -684,7 +682,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Posts_By_Username",
+    "name": "superagnt_reddit_Top_Posts_By_Username",
     "description": "Top Posts By Username",
     "method": "GET",
     "path": "/getTopPostsByUsername",
@@ -711,7 +709,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Posts_By_Username",
+    "name": "superagnt_reddit_Posts_By_Username",
     "description": "Posts By Username",
     "method": "GET",
     "path": "/getPostsByUsername",
@@ -738,7 +736,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Rising_Popular_Posts",
+    "name": "superagnt_reddit_Rising_Popular_Posts",
     "description": "Rising Popular Posts",
     "method": "GET",
     "path": "/getRisingPopularPosts",
@@ -753,7 +751,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Popular_Posts",
+    "name": "superagnt_reddit_Top_Popular_Posts",
     "description": "Top Popular Posts",
     "method": "GET",
     "path": "/getTopPopularPosts",
@@ -780,8 +778,8 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET &#x27;https://api.agntdata.dev/v1/data/reddit&#x27; \
-  -H &#x27;X-API-Key: your_api_key_here&#x27; \
+curl -X GET &#x27;https://api.superagnt.com/v1/data/reddit&#x27; \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27;
 ```
 
@@ -793,18 +791,16 @@ curl -X GET &#x27;https://api.agntdata.dev/v1/data/reddit&#x27; \
 - Developers prototyping LLM tools that need live network data
 - Data teams joining Reddit signals with CRM or warehouse data
 
-## Other Platforms
+## Scope
 
-agntdata provides unified access to social data across multiple platforms. Explore other available APIs:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms
-```
-
-Available platforms: LinkedIn, YouTube, TikTok, X, Instagram, Reddit, Facebook. Each uses the same API key and follows the same patterns.
+This skill covers Reddit Data only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/reddit)
-- [ClawHub skill](https://clawhub.ai/agntdata/agntdata-reddit)
+- [Documentation](https://superagnt.com/r/ch-reddit-data-docs)
+- [superagnt app / API keys](https://superagnt.com/r/ch-reddit-data-key)
+- [This listing](https://clawhub.ai/superagnt/skills/reddit-data)

@@ -1,42 +1,53 @@
-## Description: <br>
-Manage TinyTalkingTodos lists and items via the ttt CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TinyTalkingTodos lists and items via the ttt CLI.
 
-## Publisher: <br>
-[joshuacrowley](https://clawhub.ai/user/joshuacrowley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joshuacrowley](https://clawhub.ai/user/joshuacrowley)
 
-## Use Case: <br>
-Developers and agents use this skill to create, inspect, update, delete, and batch-manage TinyTalkingTodos lists and todo items through the ttt CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can log in to a TinyTalkingTodos account and export credentials for scripts. <br>
-Mitigation: Install only if you trust the external @ojschwa/ttt-cli package, avoid credential export unless necessary, and do not print or log exported credentials. <br>
-Risk: The skill supports todo and list mutations, including deletes and batch changes. <br>
-Mitigation: Confirm destructive or batch operations before running them and use the CLI undo capability when a supported operation needs to be reverted. <br>
-Risk: The daemon can maintain a background connection for faster commands. <br>
-Mitigation: Stop the daemon when a persistent background connection is not wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TinyTalkingTodos homepage](https://tinytalkingtodos.com) <br>
-- [ClawHub skill page](https://clawhub.ai/joshuacrowley/ttt) <br>
+## Use Case:
 
+Developers and agents use this skill to manage TinyTalkingTodos lists and todo items from the command line, including authentication, list management, item updates, batch operations, undo, and daemon usage.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ttt CLI and an authenticated TinyTalkingTodos account for account-backed operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server evidence release version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill operates on a TinyTalkingTodos account and can create, update, batch-edit, and delete synced todo data.
+
+Mitigation: Confirm the target list name or todo ID before mutating commands, use care with delete and force-delete operations, and use undo or history when correcting mistakes.
+
+Risk: The documented global npm install depends on a third-party CLI package.
+
+Mitigation: Review or pin the npm package before global installation and install it only from a trusted package source.
+
+## Reference(s):
+
+- [TinyTalkingTodos homepage](https://tinytalkingtodos.com)
+- [ClawHub skill page](https://clawhub.ai/joshuacrowley/skills/ttt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ttt CLI binary and an authenticated TinyTalkingTodos account.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

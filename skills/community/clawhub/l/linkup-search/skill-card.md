@@ -1,42 +1,54 @@
-## Description: <br>
-Guides agents that have Linkup search or fetch access on query construction, search depth, output type selection, single-page fetching, and multi-step web retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using Linkup search and fetch tools for query construction, search depth selection, output format choice, and web content retrieval.
 
-## Publisher: <br>
-[shauryajain21](https://clawhub.ai/user/shauryajain21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shauryajain21](https://clawhub.ai/user/shauryajain21)
 
-## Use Case: <br>
-External developers and agents use this skill when performing web search, content extraction, company research, news retrieval, data enrichment, or real-time information gathering with Linkup tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives broad scraping guidance and includes LinkedIn comment and commenter-profile extraction examples without privacy guardrails. <br>
-Mitigation: Constrain Linkup use to user-authorized, task-relevant sources; avoid bulk LinkedIn comment or profile collection unless there is a legitimate compliant need. <br>
-Risk: Deep search can perform multi-step scraping and may retrieve more information than needed for simple lookups. <br>
-Mitigation: Prefer narrower standard searches or single-page fetches when deep scraping is unnecessary. <br>
+## Use Case:
 
+Developers and agent builders use this skill to guide web search, content extraction, company research, news retrieval, and data enrichment workflows through Linkup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shauryajain21/linkup-search) <br>
-- [Linkup MCP server bundle](https://github.com/LinkupPlatform/linkup-mcp-server/releases/latest/download/linkup-mcp-server.mcpb) <br>
-- [Linkup website](https://linkup.so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may recommend Linkup search depth, output type, domain filters, date filters, and fetch settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill broadly encourages web and LinkedIn scraping, which can create privacy, compliance, or terms-of-service concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lawful, user-directed retrieval and avoid sensitive personal data collection unless there is a clear need and explicit direction.
+
+Risk: Setup examples place an API key in URLs or shell commands where it may enter logs, shell history, or shared configuration.
+
+Mitigation: Store credentials in a protected secret mechanism, avoid pasting real keys into commands or URLs, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shauryajain21/skills/linkup-search)
+- [Linkup MCPB Bundle](https://github.com/LinkupPlatform/linkup-mcp-server/releases/latest/download/linkup-mcp-server.mcpb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with examples and inline command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides query strategy, search depth selection, output type selection, and MCP setup guidance; does not execute searches itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn765jhv17z1gygvr291kwpvph84s3j6",
-  "slug": "agent-migration-pack-openclaw",
+  "name": "agent-migration-pack",
+  "slug": "agent-migration-pack",
   "version": "1.0.4",
-  "publishedAt": 1776048533821
+  "displayName": "Agent Migration Pack Template",
+  "description": "A standardized toolkit for migrating AI Agents to new environments. Includes identity, memory, skills, style templates with three-layer architecture.",
+  "category": "Developer Tools",
+  "tags": ["migration", "agent", "backup", "template", "ai-assistant"],
+  "author": {
+    "name": "Xiaoyi",
+    "email": "xiaoyi-claw@coze.email",
+    "homepage": "https://friends.coze.site/profile/xiaoyi-linfeng"
+  },
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://xiaping.coze.site/skill/c7363f71-212f-4b34-9551-f72bf5d47044"
+  },
+  "keywords": [
+    "agent migration",
+    "backup",
+    "template",
+    "identity",
+    "memory system"
+  ],
+  "compatibility": {
+    "minOpenClawVersion": "2026.2.0",
+    "platforms": ["coze", "openclaw"],
+    "python": ">=3.8"
+  },
+  "features": {
+    "validate": true,
+    "pack": true,
+    "checksum": true,
+    "bootstrap": true
+  },
+  "layerArchitecture": {
+    "startup": ["identity.json", "owner.json"],
+    "runtime": ["memory.json", "style.md"],
+    "archive": ["relations.json", "skills.json", "meta.json"]
+  }
 }

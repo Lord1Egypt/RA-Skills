@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
-"""Command line entry point for Word Formatter Pro v2.7.3."""
+"""Command line entry point for Word Formatter Pro."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import os
-import shutil
-import subprocess
 import sys
-import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
 from wfp_config import DEFAULT_CONFIG, FONT_SIZE_MAP
 from wfp_core import (
     BLANK_LINE_MODE_OPTIONS,
+    LEGACY_FORMAT_KEYS,
+    LegacyConversionUnavailable,
     SUPPORTED_FILE_EXTENSIONS,
-    WPSAppManager,
     WordProcessor,
+    WPSAppManager,
     _initialize_com_for_thread,
     _uninitialize_com_for_thread,
+    normalize_format_options,
 )
+from wfp_version import __version__
 
 
 CONFIG_FILE_NAME = "wfp_config.json"
 SUPPORTED_EXTENSIONS = set(SUPPORTED_FILE_EXTENSIONS)
-LEGACY_WORD_EXTENSIONS = {".doc", ".wps"}
 FONT_SIZE_NAMES = {value: label.split(" ", 1)[0] for label, value in FONT_SIZE_MAP.items()}
 INSTALL_HELP_TEXT = """LibreOffice 安装命令参考：
 macOS (Homebrew):
@@ -35,6 +35,10 @@ macOS (Homebrew):
 Debian/Ubuntu:
   sudo apt-get update
   sudo apt-get install libreoffice
+
+Kylin/银河麒麟（apt 系发行版）:
+  sudo apt-get update
+  sudo apt-get install libreoffice libreoffice-writer
 
 Fedora:
   sudo dnf install libreoffice
@@ -45,14 +49,18 @@ Arch Linux:
 安装后请确认 soffice 可用：
   soffice --version
 
-说明：CLI 会在 macOS/Linux 处理 .doc/.wps 时自动尝试调用 soffice 转换为 .docx。
+说明：CLI 会在 macOS/Kylin/Linux 处理 .doc/.wps 时自动尝试调用 soffice 转换为 .docx。
 如自动查找失败，可在 format 命令中使用 --soffice 指定 soffice 可执行文件路径。
+如果 macOS/Kylin/Linux 未安装 LibreOffice，.doc/.wps 会被记录为跳过；.docx/.txt/.md 仍可正常处理。
 """
 
 CONFIG_DESCRIPTIONS = {
+    "convert_auto_numbering": ("识别自动编号并转换为文字", "true/false，非 Windows 默认开启；Windows 忽略此项"),
     "page_number_align": ("页码对齐", "奇偶分页 / 居中"),
     "footer_distance": ("页脚距离", "厘米"),
-    "line_spacing": ("正文行距", "磅"),
+    "line_spacing": ("正文行距", "磅；line_spacing_unit=pt 时使用"),
+    "line_spacing_unit": ("正文行距单位", "pt / multiple；默认 pt"),
+    "line_spacing_multiple": ("正文行距倍数", "line_spacing_unit=multiple 时使用，默认 1.0"),
     "margin_top": ("上边距", "厘米"),
     "margin_bottom": ("下边距", "厘米"),
     "margin_left": ("左边距", "厘米"),
@@ -75,12 +83,40 @@ CONFIG_DESCRIPTIONS = {
     "figure_caption_size": ("图形标题字号", "pt"),
     "attachment_size": ("附件标识字号", "pt"),
     "subtitle_size": ("副标题字号", "pt"),
-    "title_line_spacing": ("题目行距", "磅"),
-    "subtitle_line_spacing": ("副标题行距", "磅"),
-    "left_indent_cm": ("段落左缩进", "厘米"),
-    "right_indent_cm": ("段落右缩进", "厘米"),
+    "title_line_spacing": ("题目行距", "磅；title_line_spacing_unit=pt 时使用"),
+    "title_line_spacing_unit": ("题目行距单位", "pt / multiple；默认 pt"),
+    "title_line_spacing_multiple": ("题目行距倍数", "title_line_spacing_unit=multiple 时使用，默认 1.0"),
+    "subtitle_line_spacing": ("副标题行距", "磅；subtitle_line_spacing_unit=pt 时使用"),
+    "subtitle_line_spacing_unit": ("副标题行距单位", "pt / multiple；默认 pt"),
+    "subtitle_line_spacing_multiple": ("副标题行距倍数", "subtitle_line_spacing_unit=multiple 时使用，默认 1.0"),
+    "enable_title_after_blank_line": ("标题后空一行", "true/false，默认 false；已有空行不重复添加，与段落间距互斥"),
+    "enable_title_after_spacing": ("设置标题后段落间距", "true/false，默认 false；只作用于主文标题组末尾"),
+    "title_after_spacing": ("标题后间距", "非负数；不插入或删除空段落"),
+    "title_after_spacing_unit": ("标题后间距单位", "pt / lines，磅 / 行"),
+    "enable_attachment_title_after_blank_line": ("附件标题后空一行", "true/false，默认 false；仅附件正文，已有空行不重复添加"),
+    "enable_attachment_title_after_spacing": ("设置附件标题后段落间距", "true/false，默认 false；附件清单不应用"),
+    "attachment_title_after_spacing": ("附件标题后间距", "非负数；只作用于附件标题组末尾"),
+    "attachment_title_after_spacing_unit": ("附件标题后间距单位", "pt / lines，磅 / 行"),
+    "enable_signature_formatting": ("启用落款格式化", "true/false，默认 false；仅确认的单一机关署名与日期"),
+    "signature_layout": ("落款排法", "sealed / unsealed；盖章公文文字布局 / 不盖章布局，不添加或移动印章"),
+    "signature_include_attachments": ("同时处理附件正文落款", "true/false，默认 false；仅已确认附件正文"),
+    "signature_normalize_date": ("规范落款日期文字", "true/false，默认 false；有效日期转完整阿拉伯数字年月日，月日不补零"),
+    "signature_before_spacing_mode": ("落款段前间距模式", "auto / preserve / custom；按模式 / 保持原间距 / 自定义"),
+    "signature_before_spacing": ("落款自定义段前间距", "非负数，custom 时生效；不增删空段落"),
+    "signature_before_spacing_unit": ("落款段前间距单位", "pt / lines；Word 段落行单位，与国标一行30磅不同"),
+    "left_indent_cm": ("段落左缩进", "厘米；paragraph_indent_unit=cm 时使用"),
+    "right_indent_cm": ("段落右缩进", "厘米；paragraph_indent_unit=cm 时使用"),
+    "paragraph_indent_unit": ("段落缩进单位", "cm / chars；默认 cm"),
+    "left_indent_chars": ("段落左缩进", "字符；paragraph_indent_unit=chars 时使用"),
+    "right_indent_chars": ("段落右缩进", "字符；paragraph_indent_unit=chars 时使用"),
+    "first_line_indent_chars": ("首行缩进", "字符；默认 2"),
+    "title_bold": ("题目加粗", "preserve / bold / normal；保留原样 / 加粗 / 不加粗"),
+    "subtitle_bold": ("副标题加粗", "preserve / bold / normal"),
+    "h1_bold": ("一级标题加粗", "preserve / bold / normal；旧 true/false 对应 bold/preserve"),
+    "h2_bold": ("二级标题加粗", "preserve / bold / normal；只作用于标题部分"),
+    "attachment_bold": ("附件标识加粗", "preserve / bold / normal"),
     "set_outline": ("设置大纲级别", "true/false"),
-    "enable_attachment_formatting": ("附件格式化", "true/false"),
+    "enable_attachment_formatting": ("附件格式化", "true/false；区分清单与正文，正文才强制分页；含糊的同段条目按清单保留并提示"),
     "force_a4": ("强制 A4", "true/false"),
     "use_custom_english_font": ("单独设置数字和字母字体", "true/false"),
     "english_font": ("数字和字母字体", "默认 Times New Roman"),
@@ -90,13 +126,17 @@ CONFIG_DESCRIPTIONS = {
     "table_header_font": ("表头字体", "enable_table_formatting 为 true 时生效"),
     "table_font": ("表格正文字体", "enable_table_formatting 为 true 时生效"),
     "table_size": ("表格字号", "pt"),
-    "table_line_spacing": ("表格行距", "磅"),
+    "table_line_spacing": ("表格行距", "磅；table_line_spacing_unit=pt 时使用"),
+    "table_line_spacing_unit": ("表格行距单位", "pt / multiple；默认 pt"),
+    "table_line_spacing_multiple": ("表格行距倍数", "table_line_spacing_unit=multiple 时使用，默认 1.0"),
     "table_row_height_cm": ("表格行高", "厘米"),
     "table_auto_col_width": ("自动调整列宽", "true/false"),
     "table_width_percent": ("表格宽度", "百分比"),
-    "table_header_bold": ("表头加粗", "true/false"),
-    "table_smart_align": ("表格智能对齐", "true/false"),
-    "table_unified_borders": ("统一表格边框", "true/false"),
+    "table_header_bold": ("表头加粗", "preserve / bold / normal；默认 bold"),
+    "table_alignment": ("表格整体位置", "preserve / left / center / right"),
+    "table_cell_alignment": ("单元格文字对齐", "preserve / smart / left / center / right"),
+    "table_remove_text_wrapping": ("取消表格文字环绕", "true/false；默认 false"),
+    "table_border_mode": ("表格边框", "preserve / unified；底纹始终保留"),
     "table_border_size_pt": ("表格边框粗细", "pt"),
 }
 
@@ -111,134 +151,6 @@ class InputRecord:
 class Job:
     source: Path
     output: Path
-
-
-class SofficeConverter:
-    """Small LibreOffice wrapper for converting legacy documents to docx."""
-
-    def __init__(self, soffice_path=None, timeout=120):
-        self.soffice_path = soffice_path or self._find_soffice()
-        self.timeout = int(timeout or 120)
-
-    @property
-    def available(self):
-        return bool(self.soffice_path)
-
-    @staticmethod
-    def _find_soffice():
-        for executable in ("soffice", "soffice.com", "libreoffice"):
-            found = shutil.which(executable)
-            if found:
-                return found
-
-        common_paths = []
-        if sys.platform == "darwin":
-            common_paths.extend(
-                [
-                    "/Applications/LibreOffice.app/Contents/MacOS/soffice",
-                    "/opt/homebrew/bin/soffice",
-                    "/usr/local/bin/soffice",
-                ]
-            )
-        elif os.name == "nt":
-            for base in (os.environ.get("PROGRAMFILES"), os.environ.get("PROGRAMFILES(X86)")):
-                if base:
-                    common_paths.extend(
-                        [
-                            os.path.join(base, "LibreOffice", "program", "soffice.com"),
-                            os.path.join(base, "LibreOffice", "program", "soffice.exe"),
-                        ]
-                    )
-        else:
-            common_paths.extend(
-                [
-                    "/usr/bin/soffice",
-                    "/usr/local/bin/soffice",
-                    "/snap/bin/libreoffice",
-                    "/opt/libreoffice/program/soffice",
-                ]
-            )
-
-        for path in common_paths:
-            if path and os.path.isfile(path):
-                return path
-        return None
-
-    def convert_to_docx(self, input_path, log=None):
-        input_path = Path(input_path).expanduser().resolve()
-        if not self.available:
-            raise RuntimeError(
-                "LibreOffice (soffice) 不可用，无法转换 "
-                f"{input_path}。请安装 LibreOffice，或先将文档另存为 .docx 后再处理。"
-            )
-
-        work_dir = Path(tempfile.mkdtemp(prefix="wfp_soffice_"))
-        out_dir = work_dir / "out"
-        profile_dir = work_dir / "profile"
-        out_dir.mkdir(parents=True, exist_ok=True)
-        profile_dir.mkdir(parents=True, exist_ok=True)
-        profile_uri = profile_dir.resolve().as_posix()
-        if os.name == "nt":
-            profile_uri = "/" + profile_uri
-
-        cmd = [
-            self.soffice_path,
-            "--headless",
-            "--norestore",
-            f"-env:UserInstallation=file://{profile_uri}",
-            "--convert-to",
-            "docx",
-            "--outdir",
-            str(out_dir),
-            str(input_path),
-        ]
-        if log:
-            log(f"  > 正在使用 LibreOffice 转换为 .docx: {input_path.name}")
-
-        creationflags = 0
-        if os.name == "nt" and hasattr(subprocess, "CREATE_NO_WINDOW"):
-            creationflags = subprocess.CREATE_NO_WINDOW
-
-        try:
-            proc = subprocess.run(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                timeout=self.timeout,
-                creationflags=creationflags,
-                check=False,
-            )
-        except subprocess.TimeoutExpired as exc:
-            shutil.rmtree(work_dir, ignore_errors=True)
-            raise RuntimeError(f"LibreOffice 转换超时 ({self.timeout}s): {input_path}") from exc
-        except FileNotFoundError as exc:
-            shutil.rmtree(work_dir, ignore_errors=True)
-            raise RuntimeError(f"找不到 soffice 可执行文件: {self.soffice_path}") from exc
-        except Exception:
-            shutil.rmtree(work_dir, ignore_errors=True)
-            raise
-
-        if proc.returncode != 0:
-            detail = (proc.stderr or proc.stdout or "").strip()
-            shutil.rmtree(work_dir, ignore_errors=True)
-            raise RuntimeError(
-                f"LibreOffice 无法将 {input_path} 转为 .docx。"
-                f"请先手动转为 .docx 后再处理。详细错误: {detail}"
-            )
-
-        generated_files = sorted(out_dir.glob("*.docx"))
-        if not generated_files:
-            detail = (proc.stderr or proc.stdout or "").strip()
-            shutil.rmtree(work_dir, ignore_errors=True)
-            raise RuntimeError(
-                f"LibreOffice 未生成 {input_path} 对应的 .docx。"
-                f"请先手动转为 .docx 后再处理。详细信息: {detail}"
-            )
-
-        if log:
-            log(f"  > LibreOffice 转换完成: {generated_files[0].name}")
-        return generated_files[0], work_dir
 
 
 def _stderr_log(enabled):
@@ -275,7 +187,7 @@ def load_json_file(path):
 
 
 def normalize_config(config):
-    config = dict(config)
+    config = normalize_format_options(config)
     if "blank_line_mode" not in config and "remove_blank_lines" in config:
         config["blank_line_mode"] = WordProcessor._normalize_blank_line_mode(
             None,
@@ -296,23 +208,23 @@ def normalize_config(config):
 
 def load_config(config_path=None, config_json=None):
     source = "内置默认配置"
-    config = dict(DEFAULT_CONFIG)
+    config = {}
 
     if config_path:
         path = Path(config_path).expanduser().resolve()
-        config.update(load_json_file(path))
+        config.update(normalize_format_options(load_json_file(path)))
         source = str(path)
     else:
         cwd_config = Path.cwd() / CONFIG_FILE_NAME
         if cwd_config.exists():
-            config.update(load_json_file(cwd_config))
+            config.update(normalize_format_options(load_json_file(cwd_config)))
             source = str(cwd_config.resolve())
 
     if config_json:
         inline_config = json.loads(config_json)
         if not isinstance(inline_config, dict):
             raise ValueError("--config-json 必须是 JSON 对象")
-        config.update(inline_config)
+        config.update(normalize_format_options(inline_config))
         source += " + --config-json"
 
     return normalize_config(config), source
@@ -326,9 +238,9 @@ def apply_set_overrides(config, set_items):
             raise ValueError(f"--set 参数必须使用 key=value 形式: {item}")
         key, raw_value = item.split("=", 1)
         key = key.strip()
-        if key not in DEFAULT_CONFIG:
+        if key not in DEFAULT_CONFIG and key not in LEGACY_FORMAT_KEYS:
             raise KeyError(f"未知配置项: {key}")
-        config[key] = parse_value(raw_value)
+        config.update(normalize_format_options({key: parse_value(raw_value)}))
 
 
 def apply_convenience_overrides(config, args):
@@ -443,18 +355,6 @@ def build_jobs(input_paths, output_arg, recursive=True):
     return jobs
 
 
-def is_legacy_word_file(path):
-    return Path(path).suffix.lower() in LEGACY_WORD_EXTENSIONS
-
-
-def format_via_soffice(processor, job, converter, log):
-    converted_path, work_dir = converter.convert_to_docx(job.source, log)
-    try:
-        processor.format_document(str(converted_path), str(job.output))
-    finally:
-        shutil.rmtree(work_dir, ignore_errors=True)
-
-
 def format_paths(args):
     input_paths = []
     if args.inputs:
@@ -472,40 +372,28 @@ def format_paths(args):
         print(str(exc), file=sys.stderr)
         return 1
 
-    has_legacy_jobs = any(is_legacy_word_file(job.source) for job in jobs)
-    soffice_converter = SofficeConverter(args.soffice, args.soffice_timeout) if has_legacy_jobs else None
-
     com_initialized = _initialize_com_for_thread(log)
     failures = []
+    skipped = []
     try:
         with WPSAppManager(log) as com_mgr:
-            processor = WordProcessor(config, log, com_manager=com_mgr)
+            processor = WordProcessor(
+                config,
+                log,
+                com_manager=com_mgr,
+                soffice_path=args.soffice,
+                soffice_timeout=args.soffice_timeout,
+            )
             for index, job in enumerate(jobs, start=1):
                 try:
                     if log:
                         log(f"开始处理 {index}/{len(jobs)}: {job.source}")
                     job.output.parent.mkdir(parents=True, exist_ok=True)
-                    is_legacy = is_legacy_word_file(job.source)
-                    prefer_soffice = is_legacy and not WordProcessor._com_available()
-                    if prefer_soffice:
-                        format_via_soffice(processor, job, soffice_converter, log)
-                    else:
-                        try:
-                            processor.format_document(str(job.source), str(job.output))
-                        except Exception as primary_exc:
-                            if not is_legacy:
-                                raise
-                            processor._cleanup_temp_files()
-                            if log:
-                                log(f"  > WPS/Word 转换失败，尝试使用 LibreOffice 兜底: {primary_exc}")
-                            try:
-                                format_via_soffice(processor, job, soffice_converter, log)
-                            except Exception as soffice_exc:
-                                raise RuntimeError(
-                                    f"WPS/Word 转换失败: {primary_exc}\n"
-                                    f"LibreOffice 兜底转换也失败: {soffice_exc}"
-                                ) from soffice_exc
+                    processor.format_document(str(job.source), str(job.output))
                     print(str(job.output.resolve()))
+                except LegacyConversionUnavailable as exc:
+                    skipped.append(job.source)
+                    print(f"已跳过: {job.source}: {exc}", file=sys.stderr)
                 except Exception as exc:  # CLI should continue directory batches.
                     failures.append((job.source, exc))
                     print(f"处理失败: {job.source}: {exc}", file=sys.stderr)
@@ -514,6 +402,8 @@ def format_paths(args):
     finally:
         _uninitialize_com_for_thread(com_initialized, log)
 
+    if skipped:
+        print(f"已跳过 {len(skipped)} 个旧格式文件。", file=sys.stderr)
     if failures:
         print(f"完成，但有 {len(failures)} 个文件失败。", file=sys.stderr)
         return 1
@@ -524,14 +414,22 @@ def show_config(args):
     config, source = load_config_with_overrides(args)
     payload = {
         "config_source": source,
+        "version": __version__,
         "config_file_auto_load": str((Path.cwd() / CONFIG_FILE_NAME).resolve()),
         "supported_inputs": sorted(SUPPORTED_EXTENSIONS),
         "output": "单文件输出 .docx；多文件或目录输出到目录，目录输入会递归保留原目录结构。",
-        "legacy_conversion": ".doc/.wps 在 Windows 优先使用 WPS/Word COM；macOS/Linux 或 COM 失败时尝试 LibreOffice soffice。",
+        "legacy_conversion": ".doc/.wps 在 Windows 优先使用 WPS/Word COM；macOS/Kylin/Linux 或 COM 失败时尝试 LibreOffice soffice；macOS/Kylin/Linux 未安装 LibreOffice 时会跳过旧格式文件。",
         "font_size_names": {str(key): value for key, value in FONT_SIZE_NAMES.items()},
         "blank_line_modes": BLANK_LINE_MODE_OPTIONS,
         "optional_features": [
+            "convert_auto_numbering=true 非 Windows 识别自动编号并转换为文字（默认开启，含表格；不支持的编号保留并记录警告）",
             "enable_table_formatting=true 启用表格内容自动调整",
+            "title_bold / subtitle_bold / h1_bold / h2_bold / attachment_bold / table_header_bold 支持 preserve、bold、normal",
+            "table_alignment 设置表格位置，table_cell_alignment 独立设置单元格文字对齐（支持 smart 智能对齐）",
+            "table_border_mode=preserve 保留原边框及底纹；table_remove_text_wrapping=true 取消表格文字环绕",
+            "enable_title_after_blank_line=true 在主文标题组末尾空一行，已有空行不重复；附件用 enable_attachment_title_after_blank_line，均默认关闭",
+            "enable_title_after_spacing=true 改用段落间距；空行模式优先，切换间距时将 enable_title_after_blank_line=false",
+            "enable_signature_formatting=true 启用单一机关落款排版；signature_layout=sealed/unsealed，日期规范化及附件落款另设开关，默认关闭",
             "use_custom_english_font=true 并设置 english_font，可单独指定数字和字母字体，默认 Times New Roman",
             "normalize_punctuation=true 启用符号标准化",
         ],
@@ -590,6 +488,7 @@ def build_parser():
     parser = argparse.ArgumentParser(
         description="Word Formatter Pro CLI：将 doc/docx/wps/txt/md 按公文排版规则格式化为 docx。"
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     fmt = subparsers.add_parser("format", help="格式化单文件、多文件或目录")

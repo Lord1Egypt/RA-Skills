@@ -1,43 +1,55 @@
-## Description: <br>
-通过搜索引擎公开数据，比较各大电商平台商品价格，生成对比报告并提供个人购买建议。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+通过搜索引擎公开数据，比较各大电商平台商品价格，生成对比报告并提供个人购买建议。
 
-## Publisher: <br>
-[zhongzhiqiang-test](https://clawhub.ai/user/zhongzhiqiang-test) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongzhiqiang-test](https://clawhub.ai/user/zhongzhiqiang-test)
 
-## Use Case: <br>
-Personal shoppers use this skill to research prices for a small number of products across Chinese e-commerce platforms, then compare search-result snippets in a markdown report before verifying final purchase details on the platforms themselves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search-result prices, coupons, shipping, stock, and seller details may be incomplete or stale. <br>
-Mitigation: Treat the report as initial research and verify final price, availability, seller trust, and platform terms directly before buying. <br>
-Risk: Product names, budgets, and optional saved JSON reports can reveal shopping interests. <br>
-Mitigation: Avoid sensitive purchase queries and handle saved reports as private files. <br>
-Risk: The skill is not designed for purchases, account access, or commercial price monitoring. <br>
-Mitigation: Use it only for limited personal research and rely on official platform or affiliate APIs for commercial workflows. <br>
+## Use Case:
 
+External users can use this skill for personal shopping research across Chinese e-commerce platforms, especially when they want a concise price comparison table and buying recommendation before checking the official product pages.
 
-## Reference(s): <br>
-- [Platform Information Reference](artifact/references/platform_info.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhongzhiqiang-test/z-price-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown comparison reports with tables, recommendations, and optional JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public search-result snippets for initial research; final prices and availability must be verified directly on each platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search-result prices, links, stock status, coupons, and member-only pricing may be stale or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as preliminary research and verify final prices and destination URLs directly on the official shopping platforms before buying.
+
+Risk: The skill is not suitable for bulk commercial price monitoring or redistribution of platform-specific pricing data.
+
+Mitigation: Use it for limited personal comparisons; commercial needs should use official platform or affiliate APIs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhongzhiqiang-test/skills/z-price-compare)
+- [Platform Information Reference](artifact/references/platform_info.md)
+- [Quick Start Guide](artifact/QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison reports with price tables, source links, caveats, and purchase recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prices and links are preliminary search-result summaries and should be verified on official shopping platforms before purchase.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
-name: destination-safety-index
-display_name: 目的地安全指数
-description: 25+国家旅行安全评级，5维度评分（犯罪/恐怖/自然/健康/交通），支持安全排名和多目的地对比，基于Global Peace Index等权威数据，零配置即装即用。
+name: 目的地安全指数
+display_name: "目的地安全指数"
+description: 25+国家旅行安全评级，5维度评分（犯罪/恐怖/自然/健康/交通），支持安全排名和多目的地对比，基于Global Peace Index等权威数据，零配置即装即用。暑期目的地安全评估，实时风险预警
 tags: [旅行安全, 目的地安全, 安全评级, 出行风险, 出国安全]
 tools:
   - name: check

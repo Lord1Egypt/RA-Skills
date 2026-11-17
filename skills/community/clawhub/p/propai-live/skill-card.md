@@ -1,42 +1,64 @@
-## Description: <br>
-PropAI Live is an AI-powered realtor automation suite that bundles OpenClaw core, PropAI Sync, Social Flow, lead-processing skills, license checks, and approval-focused CLI and UI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PropAI Live is the complete AI-powered realtor automation suite, bundling OpenClaw core, PropAI Sync for WhatsApp lead management, Social Flow for Meta operations, and essential realtor skills for lead processing and AI assistance.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-Real estate teams and developers use this skill to plan and run PropAI Live workflows for lead follow-up, WhatsApp and Meta operations, social posting, and AI assistance while checking license state and requiring confirmation for write actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill routes agents toward real WhatsApp, Meta, lead-storage, and spending workflows through dependencies and a CLI that are not included or scoped in the submitted artifact. <br>
-Mitigation: Install only from a trusted publisher, verify the propai-live CLI and dependency skills before use, and require explicit confirmation before live messages, social posts, lead writes, or spending actions. <br>
-Risk: License activation and validation depend on a configured remote license API and a locally cached license state file. <br>
-Mitigation: Use a trusted license API URL, protect the local license state file, and run the license guard before write or entitlement-gated workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PropAI Live ClawHub page](https://clawhub.ai/vishalgojha/propai-live) <br>
-- [OpenClaw docs](https://openclaw.ai) <br>
-- [License API contract](references/license-api-contract.md) <br>
-- [License API starter template](assets/license-api/) <br>
+## Use Case:
 
+External real estate teams and agents use PropAI Live to route lead follow-up, WhatsApp messaging, social posting, and general assistant requests into proposed CLI actions with license checks and explicit confirmation for writes.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON status output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions, mark risk levels, and request confirmation before write actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can propose high-impact messaging, social posting, spending, or lead-storage actions.
+
+Mitigation: Require explicit user confirmation before message sending, posting, spending, or data mutation, and keep write commands visible for review before execution.
+
+Risk: License keys and tokens could be exposed if they are sent to an untrusted or plain-HTTP license API endpoint.
+
+Mitigation: Use the documented HTTPS production endpoint or a trusted local development endpoint, and do not pass license keys to untrusted services.
+
+Risk: Connected WhatsApp, Meta, and lead-storage permissions may grant broader access than a task needs.
+
+Mitigation: Review connected account scopes before use and gate write flows with the license guard and feature-specific entitlements.
+
+Risk: Cached local license state and offline grace behavior can allow operation without a fresh remote validation check.
+
+Mitigation: Force remote validation before high-impact writes when connectivity is available, and treat degraded validation status as a reason to pause sensitive actions.
+
+## Reference(s):
+
+- [PropAI Live on ClawHub](https://clawhub.ai/vishalgojha/skills/propai-live)
+- [Publisher profile](https://clawhub.ai/user/vishalgojha)
+- [OpenClaw docs](https://openclaw.ai)
+- [PropAI Live License API Contract](references/license-api-contract.md)
+- [License API starter template](assets/license-api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command code blocks, status summaries, assumptions, and risk labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for confirmation before write actions and avoids printing secrets in output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

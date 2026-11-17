@@ -1,47 +1,58 @@
-## Description: <br>
-Performs deep market research for product ideas, including competitor analysis, user pain points, SEO/ASO keywords, naming and domain checks, and TAM/SAM/SOM sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep market research for competitor analysis, user pain points, SEO/ASO keywords, naming and domain availability, and TAM/SAM/SOM sizing.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers, product builders, and founders use this skill to investigate market opportunities before planning or building a product. It guides competitive research, demand analysis, naming checks, market sizing, and a GO/NO-GO/PIVOT recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct the agent to bypass Reddit CAPTCHA checks while collecting user research. <br>
-Mitigation: Remove or ignore CAPTCHA-bypass instructions and use approved, compliant access methods. <br>
-Risk: The skill can search private knowledge bases, prior sessions, and source code without a narrow scope. <br>
-Mitigation: Require explicit user approval and project boundaries before private-context searches. <br>
-Risk: The generated research file may include incorrect market claims, source interpretation, or sizing assumptions. <br>
-Mitigation: Review sources, calculations, and file diffs before using or publishing the research. <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to research a product idea before PRD generation, including competitors, pain points, search keywords, naming options, domains, and market sizing.
 
-## Reference(s): <br>
-- [Domain Check Reference](references/domain-check.md) <br>
-- [Research Output Template](references/research-template.md) <br>
-- [PRAW Python Reddit API Wrapper](https://github.com/praw-dev/praw) <br>
-- [SearXNG Docker Tavily Adapter](https://github.com/fortunto2/searxng-docker-tavily-adapter) <br>
-- [PullPush Reddit Submission Search](https://api.pullpush.io/reddit/submission/search) <br>
-- [TrustMRR Scraper](https://apify.com/actor_builder/trustmrr-scraper/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research document plus concise text summary and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes docs/research.md when run; asks before overwriting an existing research file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.1 (source: release metadata and skill frontmatter) <br>
+Risk: The skill can search prior sessions and sibling project source data, which may expose confidential context or cross-project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where cross-project research is acceptable, or disable session_search and codegraph/project_code_search tools unless the user explicitly wants that data consulted.
+
+Risk: The skill performs public web and Reddit research that may include unreliable, stale, or incomplete market signals.
+
+Mitigation: Review generated findings and source links before using the report for product, market, or investment decisions.
+
+## Reference(s):
+
+- [Domain & Naming Check Reference](references/domain-check.md)
+- [research.md Output Template](references/research-template.md)
+- [PRAW Python Reddit API Wrapper](https://github.com/praw-dev/praw)
+- [SearXNG Docker Tavily Adapter](https://github.com/fortunto2/searxng-docker-tavily-adapter)
+- [PullPush Reddit Submission Search](https://api.pullpush.io/reddit/submission/search)
+- [TrustMRR Scraper](https://apify.com/actor_builder/trustmrr-scraper/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, source links, summary bullets, recommendation, and generated docs/research.md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use public web, Reddit, YouTube, Product Hunt, market reports, domain lookup commands, and optional MCP search tools when available.]
+
+## Skill Version(s):
+
+1.7.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

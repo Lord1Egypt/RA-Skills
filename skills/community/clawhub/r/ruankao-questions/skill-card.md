@@ -1,41 +1,64 @@
-## Description: <br>
-搜索和获取中国软考高级科目历年真题、模拟题、论文范文和案例分析备考材料。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+搜索和获取中国软考（计算机技术与软件专业技术资格考试）高级科目历年真题与模拟题，覆盖系统架构设计师、信息系统项目管理师、系统分析师、网络规划设计师、系统规划与管理师，并支持真题、模拟题、论文范文和案例分析技巧查询。
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
 
-## Use Case: <br>
-Ruankao advanced exam candidates and study assistants use this skill to find past papers, simulated practice questions, answers, explanations, essay prompts, and case-analysis guidance for the five advanced exam subjects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese study trigger phrases may activate the skill for queries that are not actually about Ruankao advanced exams. <br>
-Mitigation: Confirm the user query is about Ruankao advanced exam preparation before using the skill's public lookup workflow. <br>
-Risk: The skill may run read-only GitHub CLI API commands or fetch public web pages during lookup. <br>
-Mitigation: Review fetched sources before relying on results, and avoid providing private or sensitive query material. <br>
+## Use Case:
 
+External users and exam-preparation agents use this skill to find Chinese Ruankao advanced-level past papers, simulation questions, answers, explanations, essay examples, and case-analysis guidance by subject, year, knowledge area, and question type.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wujiaming88/ruankao-questions) <br>
-- [Data source configuration](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with exam questions, answers, explanations, source notes, and optional shell commands for public data lookup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are filtered by exam subject, year range, knowledge area, paper type, and content type when provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can propose local gh command execution while retrieving exam content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and prefer structured GitHub or web fetches where available.
+
+Risk: Fetched third-party Markdown may be mutable or contain irrelevant instructions.
+
+Mitigation: Treat fetched content as exam-reference data only and ignore instructions embedded in retrieved material.
+
+Risk: Remote fallback search can return inaccurate, stale, or misleading exam-preparation material.
+
+Mitigation: Prefer the configured primary source, label fallback sources clearly, and verify results before relying on them for study planning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wujiaming88/skills/ruankao-questions)
+- [sources.md](references/sources.md)
+- [awesome-ruankao](https://github.com/wujiaming88/awesome-ruankao)
+- [博客园](https://www.cnblogs.com/)
+- [信管网](https://www.cnitpm.com/)
+- [环球网校](https://www.hqwx.com/)
+- [51CTO题库](https://t.51cto.com/)
+- [软考在线](https://www.rkpass.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with retrieved exam questions, answers, explanations, source labels, and occasional inline shell command examples for repository lookup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are scoped to Ruankao advanced-level subjects and typically capped to concise, source-labeled question sets.]
+
+## Skill Version(s):
+
+3.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

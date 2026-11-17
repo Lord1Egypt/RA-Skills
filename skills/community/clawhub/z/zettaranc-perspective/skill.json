@@ -1,0 +1,49 @@
+{
+  "name": "zettaranc-perspective",
+  "version": "4.13.1",
+  "description": "Z 哥（zettaranc/万千）思维框架与表达方式的独立 Skill 包：A 股技术面分析、战法解读、持仓诊断、职业/人生/商业决策。",
+  "author": {
+    "name": "lululu811",
+    "url": "https://github.com/lululu811"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lululu811/zettaranc-perspective.git"
+  },
+  "homepage": "https://github.com/lululu811/zettaranc-perspective",
+  "keywords": [
+    "A股",
+    "技术分析",
+    "交易纪律",
+    "人格蒸馏",
+    "AI Skill",
+    "Claude Code"
+  ],
+  "categories": [
+    "finance",
+    "trading",
+    "ai-skill"
+  ],
+  "compatibility": {
+    "runtimes": [
+      "Claude Code",
+      "Cursor",
+      "OpenClaw"
+    ],
+    "platforms": [
+      "macOS",
+      "Linux",
+      "Windows"
+    ]
+  },
+  "data_dependency": {
+    "optional": true,
+    "tool": "zt",
+    "provided_by": "zettaranc-skill",
+    "fallback": "websearch / offline framework mode"
+  },
+  "entrypoint": "SKILL.md",
+  "test_prompts": "test-prompts.json",
+  "disclaimer": "本 Skill 是分析框架，不是交易执行系统；所有输出均不构成投资建议。投资有风险，入市需谨慎。"
+}

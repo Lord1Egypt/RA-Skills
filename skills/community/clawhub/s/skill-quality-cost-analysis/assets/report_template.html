@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>质量成本分析报告</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2E86AB;
+        }
+        
+        .header h1 {
+            color: #2E86AB;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2E86AB;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 4px solid #2E86AB;
+        }
+        
+        .section h3 {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        
+        .summary-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-box .summary-item {
+            display: inline-block;
+            margin-right: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .summary-box .label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .summary-box .value {
+            color: #2E86AB;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #2E86AB;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .indicator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .indicator-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .indicator-card .label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .indicator-card .value {
+            color: #2E86AB;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .analysis-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .analysis-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .analysis-box p {
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .print-only {
+            display: none;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .print-only {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>质量成本分析报告</h1>
+            <div class="date">生成时间: {{ report_date }}</div>
+        </div>
+        
+        <!-- 执行摘要 -->
+        <div class="section">
+            <h2>执行摘要</h2>
+            <div class="summary-box">
+                <div class="summary-item">
+                    <div class="label">质量成本总额</div>
+                    <div class="value">¥{{ "{:,.2f}".format(indicators.total_amount) }}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">损失成本占比</div>
+                    <div class="value">{{ indicators.failure_ratio }}%</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">预防鉴定成本占比</div>
+                    <div class="value">{{ indicators.prevention_appraisal_ratio }}%</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 关键指标 -->
+        <div class="section">
+            <h2>关键指标</h2>
+            <div class="indicator-grid">
+                <div class="indicator-card">
+                    <div class="label">预防成本</div>
+                    <div class="value">¥{{ "{:,.2f}".format(indicators.prevention_cost) }}</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="label">鉴定成本</div>
+                    <div class="value">¥{{ "{:,.2f}".format(indicators.appraisal_cost) }}</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="label">内部损失成本</div>
+                    <div class="value">¥{{ "{:,.2f}".format(indicators.internal_failure_cost) }}</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="label">外部损失成本</div>
+                    <div class="value">¥{{ "{:,.2f}".format(indicators.external_failure_cost) }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分类分析 -->
+        <div class="section">
+            <h2>分类分析</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>成本分类</th>
+                            <th>金额（元）</th>
+                            <th>占比（%）</th>
+                            <th>记录数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in category_summary %}
+                        <tr>
+                            <td>{{ item.category }}</td>
+                            <td>{{ "{:,.2f}".format(item.total_amount) }}</td>
+                            <td>{{ item.percentage }}</td>
+                            <td>{{ item.record_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- 图表分析 -->
+        <div class="section">
+            <h2>图表分析</h2>
+            
+            <h3>质量成本分类占比</h3>
+            <div class="chart-container">
+                {{ charts.pie|safe }}
+            </div>
+            
+            <h3>质量成本分类金额对比</h3>
+            <div class="chart-container">
+                {{ charts.bar|safe }}
+            </div>
+            
+            {% if charts.line %}
+            <h3>质量成本趋势分析</h3>
+            <div class="chart-container">
+                {{ charts.line|safe }}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- 智能分析 -->
+        <div class="section">
+            <h2>分析建议</h2>
+            <div class="analysis-box">
+                <h4>质量成本结构分析</h4>
+                {% if indicators.failure_ratio > 50 %}
+                <p>⚠️ 损失成本占比较高（{{ indicators.failure_ratio }}%），建议加强预防和鉴定投入，降低内外部损失。</p>
+                {% elif indicators.failure_ratio > 30 %}
+                <p>⚡ 损失成本处于中等水平（{{ indicators.failure_ratio }}%），建议持续优化质量管理体系。</p>
+                {% else %}
+                <p>✓ 损失成本控制良好（{{ indicators.failure_ratio }}%），建议保持当前的质量管理策略。</p>
+                {% endif %}
+                
+                {% if indicators.prevention_appraisal_ratio < 20 %}
+                <p>⚠️ 预防鉴定成本占比较低（{{ indicators.prevention_appraisal_ratio }}%），可能导致更高的损失成本，建议适当增加预防投入。</p>
+                {% elif indicators.prevention_appraisal_ratio > 50 %}
+                <p>⚡ 预防鉴定成本占比较高（{{ indicators.prevention_appraisal_ratio }}%），建议评估投入效率，优化资源配置。</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>本报告由质量成本分析系统自动生成 | {{ report_date }}</p>
+        </div>
+    </div>
+</body>
+</html>

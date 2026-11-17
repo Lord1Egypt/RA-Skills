@@ -1,40 +1,54 @@
-## Description: <br>
-竞品分析神器 v1.0。输入你的产品和竞品列表，自动生成结构化竞品分析报告，含对比矩阵、战略建议、风险预警。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入产品和竞品列表，生成结构化竞品分析报告，包括行业概览、竞品逐一分析、对比矩阵、战略建议和风险预警。
 
-## Publisher: <br>
-[hyjaixiao](https://clawhub.ai/user/hyjaixiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyjaixiao](https://clawhub.ai/user/hyjaixiao)
 
-## Use Case: <br>
-External users such as founders, product managers, investors, strategy teams, freelancers, and students use this skill to create competitor analysis reports for product planning, due diligence, fundraising preparation, and market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deep-analysis mode can send product, market, strengths, and competitor details to the configured OpenAI-compatible API. <br>
-Mitigation: Use only trusted API endpoints, avoid submitting confidential strategy unless approved, and run template mode when external API sharing is not acceptable. <br>
-Risk: Generated reports may contain confidential business strategy and are saved to the configured output directory. <br>
-Mitigation: Keep the output directory private and apply normal access controls before sharing or storing reports. <br>
+## Use Case:
 
+Entrepreneurs, product managers, investors, strategy teams, freelancers, and student founders use this skill to draft competitor-analysis reports for product planning, fundraising preparation, due diligence, and market research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyjaixiao/hyjaixiao-competitor-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report saved as a .md file, with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be generated through an OpenAI-compatible API when OPENAI_API_KEY is configured, or as a template report when no API key is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Business inputs and the API key can be sent to the configured remote LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted endpoints, avoid confidential product strategy unless remote processing is acceptable, and review OPENAI_BASE before running.
+
+Risk: The documented CA_FREE_MODE setting does not prevent API calls when OPENAI_API_KEY is set in this version.
+
+Mitigation: Unset OPENAI_API_KEY or use quick mode when API calls must be avoided, and verify generated reports before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyjaixiao/skills/hyjaixiao-competitor-analysis)
+- [Publisher profile](https://clawhub.ai/user/hyjaixiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report files and terminal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in quick template mode or call a configured OpenAI-compatible chat completions endpoint when OPENAI_API_KEY is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "skill-a-create-meeting",
-  "version": "1.0.1",
-  "publishedAt": 1776526425294
+  "name": "skill-a-create-meeting",
+  "version": "2.0.0",
+  "description": "会议全流程自动化 Skill-A：由 OpenClaw 完成意图分析，并调用 tencent-meeting-skill / imap-smtp-email；Skill-A 负责 Gitea 会议目录、agenda、meta、日志与邮件内容编排",
+  "author": "mayidan"
 }

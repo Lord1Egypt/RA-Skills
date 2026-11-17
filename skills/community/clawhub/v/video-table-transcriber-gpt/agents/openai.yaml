@@ -1,0 +1,14 @@
+interface:
+  display_name: Video Table Transcriber GPT
+  short_description: Точное чтение таблиц из видео по границам строк
+  default_prompt: Используй $video-table-transcriber-gpt для переноса таблицы из видео
+    с проверкой строк по сетке и ссылками на кадры.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

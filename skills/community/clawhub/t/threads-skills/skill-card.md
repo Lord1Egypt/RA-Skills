@@ -1,41 +1,54 @@
-## Description: <br>
-Automates Threads account workflows including login management, feed and search retrieval, posting, replies, follows, batch interactions, filtering, and operational analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Threads account management, content discovery, posting, replies, engagement, filtering, and operations workflows through a Chrome-driven browser.
 
-## Publisher: <br>
-[gaojiongwenv587-beep](https://clawhub.ai/user/gaojiongwenv587-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaojiongwenv587-beep](https://clawhub.ai/user/gaojiongwenv587-beep)
 
-## Use Case: <br>
-Developers, operators, and social media teams can use this skill to guide Threads browser automation for account management, content discovery, publishing, engagement, batch replies, filtering, and competitive or trend analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect a live Threads account through posts, replies, follows, bulk actions, login changes, and cookie deletion. <br>
-Mitigation: Confirm each public post, reply, follow, bulk action, login change, and cookie deletion before execution, and review generated wording before it is posted. <br>
-Risk: Broad trigger phrases and automation workflows may lead to unintended social account actions. <br>
-Mitigation: Use the skill only for explicit requests, keep rate limits and batch limits in place, and stop when the requested action or target is ambiguous. <br>
+## Use Case:
 
+External operators and developers use this skill to manage Threads accounts, search and collect Threads content, publish posts or replies, and run filtered engagement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaojiongwenv587-beep/threads-skills) <br>
-- [Project homepage](https://github.com/gaojiongwenv587-beep/threads-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, uv, Chrome with a debugging port, and user review for account-affecting actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can perform live Threads account actions, including publishing, replying, reposting, following, and deleting cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer preview-and-confirm posting, and verify the active Threads account before public or bulk actions.
+
+Risk: The skill relies on local scripts that are not present in this artifact and therefore cannot be reviewed from the release package alone.
+
+Mitigation: Install and run it only in an environment where the expected local scripts are trusted and have been reviewed.
+
+## Reference(s):
+
+- [Threads Skills ClawHub listing](https://clawhub.ai/gaojiongwenv587-beep/skills/threads-skills)
+- [Project homepage](https://github.com/gaojiongwenv587-beep/threads-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead to live Threads account operations, including posting, replies, reposts, follows, and cookie deletion.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

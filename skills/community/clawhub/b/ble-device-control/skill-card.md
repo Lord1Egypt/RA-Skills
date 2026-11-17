@@ -1,42 +1,58 @@
-## Description: <br>
-Controls Bluetooth Low Energy devices through the airctl CLI for scanning, connecting, reading, writing, notifications, and device profile commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Bluetooth Low Energy device scanning, connection, GATT read and write operations, notifications, background tasks, and airctl configuration using the airctl CLI.
 
-## Publisher: <br>
-[skinapi2025](https://clawhub.ai/user/skinapi2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skinapi2025](https://clawhub.ai/user/skinapi2025)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agent interactions with local BLE devices, including discovery, GATT reads and writes, notifications, keep-alive polling, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BLE write commands and periodic write tasks can change real device behavior. <br>
-Mitigation: Review commands before execution, validate device addresses, UUIDs, and write payloads, and require explicit user approval before writes or periodic write tasks. <br>
-Risk: Background BLE tasks or daemon activity may keep operating after the immediate request is complete. <br>
-Mitigation: Stop background tasks and daemon activity when finished, and prefer bounded snapshot queries for event polling. <br>
-Risk: The skill depends on a local airctl CLI installation, which introduces tool provenance and installation risk. <br>
-Mitigation: Install airctl only with user approval, verify the package source before installation, and confirm the installed package origin before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan and review airctl commands for Bluetooth Low Energy devices, including scans, connections, GATT reads and writes, notifications, and local BLE configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skinapi2025/ble-device-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes input-validation guidance and user-confirmation steps for installation and write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: The skill asks users to rely on mutable remote code for the airctl dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install airctl only from a pinned, trusted release or reviewed commit, preferably in a virtual environment without elevated privileges.
+
+Risk: BLE writes, daemon actions, periodic tasks, aliases, and presets can affect physical devices or persist local configuration.
+
+Mitigation: Require explicit user approval before these operations, especially for unfamiliar devices or UUIDs.
+
+Risk: Incorrect addresses, UUIDs, handles, or write payloads can target the wrong device or characteristic.
+
+Mitigation: Validate user inputs against the documented formats and confirm the selected device and characteristic before issuing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skinapi2025/skills/ble-device-control)
+- [ClawHub publisher profile](https://clawhub.ai/user/skinapi2025)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user review before installing airctl or running BLE write, daemon, background task, alias, or preset commands.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

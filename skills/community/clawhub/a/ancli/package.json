@@ -1,0 +1,40 @@
+{
+  "name": "@gopaljigaur/ancli",
+  "version": "0.1.2",
+  "description": "Apple Notes CLI for macOS: list, search, read and write notes from the command line",
+  "main": "lib/jxa-runner.js",
+  "bin": {
+    "ancli": "bin/ancli.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "apple",
+    "notes",
+    "macos",
+    "cli",
+    "jxa"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopaljigaur/ancli.git"
+  },
+  "author": "Gopalji Gaur <gopaljigaur@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "scripts/",
+    "README.md",
+    "SKILL.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

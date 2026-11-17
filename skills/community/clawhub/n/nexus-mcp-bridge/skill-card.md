@@ -1,49 +1,58 @@
-## Description: <br>
-Bridge to MCP servers - IPFS, GitHub, filesystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge to MCP servers - IPFS, GitHub, filesystem.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agents use this skill to send paid requests to the NEXUS MCP bridge for IPFS, GitHub, and filesystem-oriented MCP services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid remote calls and payment proofs may be forwarded by an agent. <br>
-Mitigation: Use sandbox testing where appropriate, confirm payment intent before live calls, and do not expose wallet keys or reusable payment credentials. <br>
-Risk: Broad MCP routing to GitHub, IPFS, or filesystem-style services could expose sensitive prompts, repository context, or local file contents. <br>
-Mitigation: Review each request before forwarding and avoid sending secrets, private repository data, or local file contents unless explicitly approved. <br>
-Risk: Inputs are processed by the remote NEXUS service. <br>
-Mitigation: Install and use the skill only when the user trusts NEXUS with the data being sent. <br>
+## Use Case:
 
+Developers and agents use this skill to send text queries through the NEXUS service to MCP-backed IPFS, GitHub, and filesystem bridge capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-mcp-bridge) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [NEXUS MCP bridge endpoint](https://ai-service-hub-15.emergent.host/api/original-services/mcp-bridge) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls] <br>
-**Output Format:** [JSON object with a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a payment proof or payment credential and sends the input to the remote NEXUS API over HTTPS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: User prompts and payment proof data are sent to the third-party NEXUS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only data intended for NEXUS processing, avoid secrets and private repository contents, and use sandbox or tightly scoped payment credentials during testing.
+
+Risk: Paid requests can incur charges or consume payment credentials.
+
+Mitigation: Confirm payment requirements before retrying after HTTP 402 responses and prefer sandbox testing for initial validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/skills/nexus-mcp-bridge)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [MCP Bridge API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/mcp-bridge)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON response or text returned by the NEXUS API, with markdown usage guidance and curl examples in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or an x402/MPP payment credential; sends the user's input to a third-party HTTPS API.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

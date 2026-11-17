@@ -1,43 +1,60 @@
-## Description: <br>
-Provides no-key Exa MCP access for web search, code context lookup, and company research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free AI search via Exa MCP. Web search for news/info, code search for docs/examples from GitHub/StackOverflow, company research for business intel. No API key needed.
 
-## Publisher: <br>
-[Whiteknight07](https://clawhub.ai/user/Whiteknight07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whiteknight07](https://clawhub.ai/user/whiteknight07)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to configure and call Exa MCP for current web search, code examples, documentation lookup, and company research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and research inputs are sent to Exa's external service. <br>
-Mitigation: Avoid secrets, private code, confidential business information, and sensitive personal data in queries. <br>
-Risk: Optional people-search, crawling, and deep researcher tools can broaden collection or research scope. <br>
-Mitigation: Use those tools only for legitimate, policy-compliant purposes and review outputs before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Whiteknight07/exa-web-search-free) <br>
-- [Exa documentation](https://exa.ai/docs) <br>
-- [Exa MCP server GitHub reference](https://github.com/exa-labs/exa-mcp-server) <br>
-- [Exa MCP server npm package](https://www.npmjs.com/package/exa-mcp-server) <br>
-- [Exa Search Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and external users use this skill to configure and call Exa MCP search tools for current web information, code/documentation lookup, and company research. It also documents optional broader Exa tools for advanced web search, crawling, people search, and deep research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline mcporter shell commands and Exa MCP search-result text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the mcporter binary and sends search or research queries to Exa's external service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries and retrieved context may be sent to a third-party Exa MCP service.
+
+Mitigation: Use the skill only with information policy permits sending to Exa; avoid secrets, proprietary source code, personal data, and sensitive business research.
+
+Risk: The optional all-tools configuration persistently enables broader crawling, people search, and deep researcher capabilities.
+
+Mitigation: Enable only the specific Exa tools needed for the task, and keep advanced tools disabled unless their use has been reviewed.
+
+Risk: Search and research results can be incomplete, stale, or misleading.
+
+Mitigation: Review important outputs against authoritative sources before using them for decisions or downstream actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whiteknight07/skills/exa-web-search-free)
+- [Exa MCP server GitHub repository](https://github.com/exa-labs/exa-mcp-server)
+- [exa-mcp-server npm package](https://www.npmjs.com/package/exa-mcp-server)
+- [Exa documentation](https://exa.ai/docs)
+- [Exa Search Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and an Exa MCP server configuration; no API key is documented as required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

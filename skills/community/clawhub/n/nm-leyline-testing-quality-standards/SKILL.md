@@ -1,19 +1,22 @@
 ---
 name: testing-quality-standards
-description: Defines testing quality metrics, coverage thresholds, and anti-patterns
-version: 1.9.8
+description: |
+  Defines test quality metrics, coverage thresholds, anti-patterns, and pytest config
+version: 1.10.3
 triggers:
   - testing
   - quality
   - standards
   - metrics
-  - establishing test gates or validating a test suite's coverage targets
+  - setting test gates
+  - a suite's coverage target
+  - or pytest fixtures
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Testing Quality Standards
@@ -30,12 +33,6 @@ Shared quality standards and metrics for testing across all plugins in the Claud
 
 - Exploratory testing or spike work
 - Projects with established quality gates that meet requirements
-
-## Table of Contents
-
-1. [Coverage Thresholds](#coverage-thresholds)
-2. [Quality Metrics](#quality-metrics)
-3. [Detailed Topics](#detailed-topics)
 
 ## Coverage Thresholds
 
@@ -79,6 +76,16 @@ For implementation patterns and examples:
 - **[Anti-Patterns](modules/anti-patterns.md)** - Common testing mistakes with before/after examples
 - **[Best Practices](modules/best-practices.md)** - Core testing principles and exit criteria
 - **[Content Assertion Levels](modules/content-assertion-levels.md)** - L1/L2/L3 taxonomy for testing LLM-interpreted markdown files
+- **[Pytest Config](modules/pytest-config.md)** - Load when setting up or
+  auditing a Python plugin's pytest and coverage configuration
+- **[Conftest Patterns](modules/conftest-patterns.md)** - Load when writing
+  conftest.py fixtures and test markers
+- **[Git Testing Fixtures](modules/git-testing-fixtures.md)** - Load when a
+  test needs a throwaway git repository
+- **[Mock Fixtures](modules/mock-fixtures.md)** - Load when mocking Bash,
+  TodoWrite, or other Claude Code tools
+- **[CI Integration](modules/ci-integration.md)** - Load when wiring pytest
+  into GitHub Actions
 
 ## Integration with Plugin Testing
 
@@ -105,3 +112,21 @@ Check that the module being tested is in `PYTHONPATH` or install with `pip insta
 
 **Async tests failing**
 Install pytest-asyncio and decorate test functions with `@pytest.mark.asyncio`
+
+## Exit Criteria
+
+- [ ] Coverage threshold met for the project tier: 60% minimum for
+  legacy code, 80% for normal development, 90% for critical
+  systems, 95%+ for safety-critical; measured with
+  `pytest --cov` and threshold enforced in `pyproject.toml`
+- [ ] All four quality metric checklists pass: Structure (clear
+  organization, meaningful names, setup/teardown, isolation),
+  Coverage (critical paths, edge cases, error conditions,
+  integration points), Maintainability (DRY fixtures, clear
+  assertions, minimal mocking), Reliability (no flaky tests,
+  deterministic execution, no order dependencies)
+- [ ] Test files match discovery pattern `test_*.py` or `*_test.py`
+  confirmed by `pytest --collect-only` returning no errors
+- [ ] No snapshot tests present on non-deterministic output (hash
+  maps, timestamps, UUIDs); any found flagged as anti-patterns
+  per `modules/anti-patterns.md`

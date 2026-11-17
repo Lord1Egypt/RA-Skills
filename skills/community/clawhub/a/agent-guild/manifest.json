@@ -1,0 +1,287 @@
+{
+  "$schema": "https://github.com/dqsjqian/agent-guild/raw/main/spec/manifest.schema.json",
+  "name": "agent-guild",
+  "protocol_version": "4.0",
+  "skill_version": "4.1.0",
+  "spec_url": "https://github.com/dqsjqian/agent-guild/blob/main/references/SPEC.md",
+  "onboarding_url": "https://github.com/dqsjqian/agent-guild/blob/main/references/ONBOARDING.md",
+  "skill_url": "https://github.com/dqsjqian/agent-guild/blob/main/SKILL.md",
+  "conventions_url": "https://github.com/dqsjqian/agent-guild/blob/main/references/CONVENTIONS.md",
+  "portability_url": "https://github.com/dqsjqian/agent-guild/blob/main/references/PORTABILITY.md",
+  "security_url": "https://github.com/dqsjqian/agent-guild/blob/main/references/SECURITY.md",
+  "scripts": {
+    "cli": "scripts/ag.py",
+    "tasks": "scripts/ag_tasks.py",
+    "history": "scripts/ag_history.py",
+    "retention": "scripts/ag_retention.py",
+    "package": "scripts/package.sh"
+  },
+  "central_dir": "~/.agent-guild/",
+  "central_layout": {
+    "_note": "Protocol state and optional shared-asset directories coexist under ~/.agent-guild/. Placement conventions apply within the user-selected sharing scope.",
+    "protocol_layer": {
+      "identity/": "user identity profile + routine (read by all agents)",
+      "rules/": "shared rules (universal, public-repo, file-cleanup, safety)",
+      "toolchain/": "shared toolchain pointers",
+      "projects/": "active projects",
+      "handoff/": "active/<task-directory> + archive/<same-directory>; explicit task selection only",
+      "messages/": "inbox + archive for independent agent messages",
+      "history/": "bounded maintenance state, reviewed plans and managed recovery",
+      "log/": "daily logs (per-agent) + decisions + archive",
+      "learnings/": "cross-agent self-improvement ledgers: LEARNINGS.md (corrections/gaps/best practices) + ERRORS.md (failures) + FEATURE_REQUESTS.md (missing capabilities) — see references/LEARNINGS.md (protocol 3.1+)",
+      "registry.json": "agent presence + install metadata",
+      "ONBOARDING.md": "one-time joining flow",
+      "CONVENTIONS.md": "placement conventions for opted-in shared assets",
+      "hosts/<host-id>/": "device-scoped state: host.json (probed os/arch/link capability), host-notes.md (user-owned facts true on THIS device only), VERSION + groom.json (runtime state installed here) — protocol 3.3+"
+    },
+    "convention_layer": {
+      "skills/<name>/": "Selected shared skills; whole-root installations expose every entry, while per-skill integrations expose selected packages.",
+      "skills_data/<name>/": "Skill data explicitly selected for shared storage and backup; runtime-managed and intentionally private stores may remain separate.",
+      "memory/<agent>/": "Agent-namespaced memory, not access-isolated; recall searches it alongside shared memory.",
+      "memory/shared/": "cross-agent facts worth sharing with every joined agent",
+      "mcp/<server>/": "shared MCP server configs / local implementations (e.g. an MCP server installed once, used by every joined agent)",
+      "plugins/<name>/": "shared plugins (browser/editor/IDE extensions, etc.)",
+      "tools/<name>/": "shared scripts and CLI utilities (helpers users want available across all agents)",
+      "connectors/<name>/": "Optional manually placed connector state; configure filesystem access and actual backup exclusions. Never auto-adopted."
+    },
+    "_note_convention_layer": "Each asset retains its owner and runtime semantics. Explicit maintenance commands may inspect or move selected assets; placement alone does not provide sync or access isolation."
+  },
+  "files": {
+    "onboarding_entry": "references/ONBOARDING.md",
+    "conventions": "references/CONVENTIONS.md",
+    "learning_ledger_spec": "references/LEARNINGS.md",
+    "skill_entry": "SKILL.md",
+    "manifest": "manifest.json",
+    "identity_profile": "identity/profile.md",
+    "identity_routine": "identity/ROUTINE.md",
+    "rules_universal": "rules/universal.md",
+    "rules_public_repo": "rules/public-repo.md",
+    "rules_file_cleanup": "rules/file-cleanup.md",
+    "rules_safety": "rules/safety.md",
+    "toolchain_paths": "toolchain/paths.md",
+    "toolchain_github": "toolchain/github.md",
+    "toolchain_publishing": "toolchain/publishing.md",
+    "projects_active": "projects/active.md",
+    "registry": "registry.json",
+    "task_active_pattern": "handoff/active/{YYYYMMDD}-{12-hex-id}-{short-title}/meta.json",
+    "task_archive_pattern": "handoff/archive/{same-directory}/meta.json",
+    "task_sessions": "hosts/{host-id}/task-sessions/",
+    "daily_log_pattern": "log/daily/{YYYY-MM-DD}-{agent-name}.md",
+    "decision_pattern": "log/decisions/{YYYY-MM-DD}-{title}.md",
+    "learnings_ledger": "learnings/LEARNINGS.md",
+    "errors_ledger": "learnings/ERRORS.md",
+    "feature_requests_ledger": "learnings/FEATURE_REQUESTS.md",
+    "learning_entry_id_pattern": "{LRN|ERR|FEAT}-{YYYY-MM-DD}-{XXX}",
+    "inbox_pattern": "messages/inbox/from-{src}-to-{dst}-{topic}.md",
+    "portability": "references/PORTABILITY.md",
+    "tool_manifest_pattern": "tools/{tool-name}/tool.json",
+    "host_state_pattern": "hosts/{host-id}/{host.json,host-notes.md,VERSION,groom.json}",
+    "security": "references/SECURITY.md"
+  },
+  "lifecycle": {
+    "_note": "Onboarding (one-time) and runtime (recurring) are deliberately decoupled. Agents read ONBOARDING.md exactly once when joining; afterwards the runtime SKILL.md handles all ongoing operations.",
+    "onboarding": {
+      "ref": "ONBOARDING.md",
+      "frequency": "once per agent (or after major protocol-version bump)",
+      "trigger": "user says 'join Agent Guild' / 'read ~/.agent-guild/ONBOARDING.md' / equivalent",
+      "summary": "Choose memory-only access (per-skill link, copy or direct read), verify the memory loop and runtime trigger, then register. Whole-toolkit consolidation is a separate user-selected mode."
+    },
+    "runtime": {
+      "ref": "SKILL.md",
+      "frequency": "every relevant turn for an already-joined agent",
+      "trigger": "shared identity/rules, explicit todos request, selected task continuation, current-task checkpoint or independent message",
+      "summary": "Bootstrap background only; list metadata on request; resume only the selected task; checkpoint proactively and archive only on closure"
+    }
+  },
+  "actions": {
+    "init": {
+      "summary": "Bootstrap ~/.agent-guild/ when it does not exist: create the full protocol + convention skeleton (identity/rules/toolchain/projects/handoff/log/skills/skills_data/mcp/plugins/tools/memory), seed placeholder context files and registry.json, and install the agent-guild skill itself into skills/agent-guild/. Idempotent — safe to re-run every session; never clobbers existing data, only fills gaps.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py init <agent>",
+      "write_mode": "create_if_missing"
+    },
+    "link_root": {
+      "summary": "Optional full shared-center setup: replace this runtime's whole user-extensible skills directory with one link to ~/.agent-guild/skills. Preview by default; --apply requires the selected migration scope. Preserve link targets and aliases, block conflicting same-name links before mutation, and leave real skills or platform-managed items for separate handling. All current and future guild skills become visible to compatible runtimes.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py link-root <agent> [--apply]",
+      "write_mode": "move_and_symlink"
+    },
+    "adopt": {
+      "summary": "Self-audit the calling agent's home for assets that belong in the guild (skills / skills_data / mcp / tools / memory), then move them in and symlink back so the runtime keeps working. DEFAULT IS DRY-RUN — prints a candidate report and changes nothing; only `--apply` executes. Excludes rebuildable caches (.venv/node_modules/__pycache__/browsers, *.app/*.pid/*.log/*.pyc), credential stores (config.json etc.), runtime-internal bookkeeping (agent-created-skills.json etc.), platform-managed packages (__skillhub/connector-*) and connector-backed skills. Credentials are NEVER adopted (connectors/ is manually placed). Every move is verified after linking and automatically rolled back on failure. Deletions go to trash, never rm.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py adopt <agent> [--apply]",
+      "write_mode": "move_and_symlink"
+    },
+    "bootstrap": {
+      "summary": "Read identity/routine/universal rules only, never task context, global focus, project progress or inbox topics. Optional maintenance checks are report-only; update policy remains configurable. --no-maintenance skips these hooks.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py bootstrap <agent> [--no-maintenance]",
+      "write_mode": "policy_controlled_maintenance"
+    },
+    "doctor": {
+      "summary": "Health check across the whole installation: dangling symlinks inside the guild and inside every registered agent's skills_root, missing core protocol files, registry drift (recorded home / skills_root no longer exists), and protocol-version drift (agent joined under an older major version than central). Prints concrete fixes. Read-only — never repairs silently.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py doctor",
+      "write_mode": "none"
+    },
+    "platform": {
+      "summary": "Identify THIS device: canonical os tag (macos/windows/linux/android/ios), normalized arch, host-id (<os>-<arch>-<hostname>), probed link capability (symlink / junction / copy-only), python, and which other devices have written state into this guild. The host-id is computed at runtime and never read back from a stored file, so a guild copied onto a second device cannot inherit the first device's identity. AG_HOST_ID / AG_PLATFORM override id and platform detection.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py platform [--json]",
+      "write_mode": "read_only"
+    },
+    "tool": {
+      "summary": "Resolve a tool's executable for the current platform and print the path on stdout, so callers never hardcode a path that exists on one device only. Resolution order: tools/<name>/tool.json entry for <os>-<arch>, then <os>, then `any`, then PATH. Exit 3 means the tool is not available on this platform and prints the platform's install hint instead of a dead path.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py tool <name> [--json]",
+      "write_mode": "read_only"
+    },
+    "tools": {
+      "summary": "List every tool under tools/ against the current device: resolved path when available, reason plus install hint when not, and a marker for tools that carry no tool.json yet.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py tools",
+      "write_mode": "read_only"
+    },
+    "port": {
+      "summary": "Portability audit for a guild shared by several devices. Reports device identity, host-scoped state still at the pre-3.3 root, registry entries whose device paths are not scoped per host, links pointing out of the guild (the guild owns its payloads — an outbound link is dead on every other device), absolute intra-guild links, tools missing a tool.json platform declaration, machine paths written into shared text, and single-platform skills that declare no platforms. DEFAULT IS DRY-RUN. `--apply` performs only mechanical, reversible fixes: move host state under hosts/<host-id>/, fold registry device fields into the current host block, internalize outbound links and link the old external path back in, rewrite absolute intra-guild links as relative, and generate a tool.json for the platform it can see. User-written text is never rewritten automatically — it is reported with file:line for a human.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py port [--apply]",
+      "write_mode": "move_and_declare"
+    },
+    "upgrade": {
+      "summary": "Self-check + auto-update. Queries skillhub / github / clawhub (no auth, any ordinary user can run it) for the newest agent-guild version, reports each source, and picks the newest. Default is dry-run (report only); `--apply` downloads the GitHub release zip and installs it — refreshing the skill package + root docs while preserving ALL user data (identity/rules/log/handoff/skills_data/connectors/memory).",
+      "cmd": "python3 <skill_dir>/scripts/ag.py upgrade [--apply]",
+      "write_mode": "none"
+    },
+    "onboard": {
+      "summary": "Join within the user-selected scope. Memory-only access preserves existing skills and tool directories; use a per-skill link, copy or direct read. Full shared-center mode may adopt selected assets and link the whole skills root after preview. Discover only this runtime's user-extensible directory; verify its trigger, and report direct-read access honestly if automatic discovery is unavailable.",
+      "ref": "ONBOARDING.md"
+    },
+    "log_daily": {
+      "summary": "Append Markdown note to log/daily/YYYY-MM-DD-<agent>.md",
+      "write_mode": "append",
+      "per_agent_file": true
+    },
+    "learn": {
+      "summary": "Append a structured entry to the cross-agent learning ledger (learnings/LEARNINGS.md | ERRORS.md | FEATURE_REQUESTS.md). Auto-assigns the TYPE-YYYYMMDD-XXX id, stamps By: <agent>, detects recurrence via --pattern-key, and links similar entries with See Also. Never logs secrets — redacted summaries only.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py learn <agent> <learning|error|featreq> \"<summary>\" [--area A] [--priority P] [--pattern-key K] [--category C] (details from stdin)",
+      "write_mode": "append"
+    },
+    "review": {
+      "summary": "Ledger review: pending counts per file, high/critical open items, and Pattern-Key recurrence groups that reached the promotion threshold (>=3 total, or >=2 hits from >=2 distinct agents). Run before major tasks and after finishing features; resolve what you fixed, promote what recurs.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py review",
+      "write_mode": "none"
+    },
+    "resolve": {
+      "summary": "Mark a ledger entry resolved (Status: pending -> resolved + Resolution block with agent + timestamp + note). Any agent may resolve any entry — agent A logs, agent B fixes.",
+      "cmd": "python3 <skill_dir>/scripts/ag.py resolve <ENTRY-ID> [note]",
+      "write_mode": "edit_in_place"
+    },
+    "update_rules": {
+      "summary": "Edit rules/*.md or toolchain/*.md with local-replace, never Write/overwrite",
+      "write_mode": "edit_in_place"
+    },
+    "task": {
+      "summary": "Independent task packages with metadata-only lists, explicit selection, session ownership, expected revisions, immutable snapshots and whole-package closure",
+      "cmd": "python3 <skill_dir>/scripts/ag.py task <action>",
+      "write_mode": "locked_revision_checked"
+    },
+    "history": {
+      "summary": "One configurable 1 GiB historical budget; status and reviewed maintenance plans, protected references, no automatic destructive cleanup",
+      "cmd": "python3 <skill_dir>/scripts/ag.py history <action>",
+      "write_mode": "explicitly_confirmed_maintenance"
+    },
+    "send_message": {
+      "summary": "Append a local messages/inbox/from-<src>-to-<dst>-<topic>.md message. This does not wake or contact the receiving runtime; it reads the inbox on a later session.",
+      "write_mode": "append"
+    },
+    "register": {
+      "summary": "Update your entry in registry.json (Edit, not Write); include install_tier (dir-symlink|symlink|copy|readonly), install_verified, skills_root, protocol_version (the version you joined under, copied from this manifest at join time)",
+      "write_mode": "edit_in_place"
+    },
+    "refresh_last_seen": {
+      "summary": "Once per session, Edit your registry.json entry to update last_seen",
+      "write_mode": "edit_in_place"
+    },
+    "update_install": {
+      "summary": "Tier 2 (copy) ONLY: mirror-resync local snapshot from central (rsync --delete / Robocopy /MIR / staged temp-dir + atomic swap). Naive 'cp -R' is a protocol violation — it leaves ghost files for upstream deletes/renames. After resync, re-run the closed-loop trigger test (see ONBOARDING.md Step 4.B). On a major-version-bump (manifest protocol_version major > registered protocol_version major), redirect the agent to re-execute ONBOARDING.md instead.",
+      "write_mode": "mirror"
+    }
+  },
+  "install_tiers": [
+    {
+      "_precondition": "Defined in ONBOARDING.md Step 2: the agent MUST locate its OWN user-extensible skills directory (the path the runtime is allowed to load third-party skills from — sometimes called 'Custom Skills', 'User Skills', or 'Plugins'). Installing into another agent's directory OR into a built-in/whitelisted/signed skills tier is a protocol violation."
+    },
+    {
+      "_postcondition": "Verify runtime discovery/invocation for skill installation. Memory-only access tries symlink, copy, then direct reads; full sharing may start with dir-symlink. Direct-read access is usable without claiming automatic runtime triggering."
+    },
+    {
+      "tier": "dir-symlink",
+      "preferred": false,
+      "description": "Optional full shared-center mode selected by the user: link the whole dedicated skills directory to ~/.agent-guild/skills. Current and future guild skills become visible together; preview migration scope before applying."
+    },
+    {
+      "tier": "symlink",
+      "fallback": false,
+      "description": "Preferred memory-only skill integration: link only <own-user-extensible-skills-dir>/agent-guild to ~/.agent-guild/skills/agent-guild. Other skills stay in place. Also a fallback when full directory links are unsuitable.",
+      "preferred": true
+    },
+    {
+      "tier": "copy",
+      "fallback": true,
+      "description": "Agent copies ~/.agent-guild/skills/agent-guild/* into its OWN user-extensible skill dir. Re-sync periodically (see ONBOARDING.md Step 7)."
+    },
+    {
+      "tier": "readonly",
+      "last_resort": false,
+      "description": "Direct protocol access without local skill installation, also suitable for an initial memory trial. Read the central skill each session; report that automatic runtime triggering is unverified or unavailable. Write only where the runtime and user permit."
+    }
+  ],
+  "guidance_for_joined_agents": {
+    "_note": "Preserve the user's chosen sharing scope. Memory-only onboarding does not migrate runtime assets. For explicitly selected shared assets, use the locations below; existing full-center installations may continue unchanged.",
+    "where_to_persist_data": "For skill data the user chooses to share or back up with the guild, prefer ~/.agent-guild/skills_data/<skill-name>/. Keep intentionally separate, sensitive or runtime-managed data in the appropriate existing store; joining alone does not authorize importing it.",
+    "where_to_install_mcp_servers": "If you install or configure an MCP server that should be shared with all joined agents (not bound to a single agent's runtime), MUST place its config under ~/.agent-guild/mcp/<server-name>/.",
+    "where_to_drop_plugins": "Shared plugins (e.g. agent-agnostic browser/editor extensions) belong under ~/.agent-guild/plugins/<name>/.",
+    "where_to_drop_tools": "Shared CLI scripts / utilities the user might run from any shell session belong under ~/.agent-guild/tools/<name>/.",
+    "how_to_resolve_platform_tools": "Never hardcode a path under tools/ in shared files — a prebuilt binary lives on one platform only. Resolve with `ag tool <name>`: it prints the path for this device, or exits 3 with the install hint for this platform. Declare multi-platform payloads in tools/<name>/tool.json with binaries under tools/<name>/bin/<os>-<arch>/.",
+    "where_to_put_connector_credentials": "Keep credentials out of shared memory and skills_data. Use the existing runtime or OS secret store. If the user explicitly chooses guild-managed connector state, connectors/<name>/ is a placement convention only: configure actual backup exclusions and filesystem permissions separately.",
+    "naming": "Every subdirectory under skills/, skills_data/, and connectors/ MUST use a lowercase-hyphenated name ([a-z0-9-], e.g. qq-mail, agent-browser). No CJK characters, no spaces, no '-skill' suffix — the directory name is the identity, not a display label.",
+    "privacy_layering": "Separate mixed-sensitivity data into public/ and private/ to configure backup policies. These names are not access controls; .gitignore does not restrict agent reads or other sync services.",
+    "device_scoped_facts": "Before persisting a fact, ask: would this still be true on another device? Yes -> shared files as usual. Only on the same OS+arch -> declare it per platform (tool.json / skill `platforms`). Only on this machine (absolute local paths, what is installed here) -> hosts/<host-id>/host-notes.md. See references/PORTABILITY.md.",
+    "link_direction": "The guild owns its payloads. A link from inside the guild to an external path is a violation — every other device sees a dangling link. Move the payload into the guild and link the old external path back in (`ag port --apply`). Links that stay inside the guild use relative targets."
+  },
+  "principles": [
+    "Local-first: all data on the user's machine, no servers",
+    "Plaintext only: Markdown + JSON, readable and editable by hand",
+    "Per-agent file isolation in writes (avoid conflicts at the source)",
+    "Append-only logs, edit-in-place state",
+    "Data hygiene is built-in: groom archives expired data, never deletes it (protocol 3.2+)",
+    "Onboarding and runtime are decoupled — onboarding is a one-time action, the skill is an ongoing capability",
+    "Self-onboarding: agents install themselves, the protocol does not push code to them",
+    "Triggerable = done: install is only complete when the runtime can actually invoke the skill",
+    "Naming: lowercase-hyphenated ([a-z0-9-]) for every skills/ skills_data/ connectors/ subdir — no CJK, no spaces, no '-skill' suffix",
+    "Scope before you store: a fact is shared (true on any device), platform (true for one os+arch), or host (true for this machine only) — protocol 3.3+",
+    "The guild owns its payloads: links point into the guild, never out of it; intra-guild links are relative",
+    "Shared-memory value first; asset consolidation is a separate user-selected choice",
+    "No built-in sync transport; optional version checks and update downloads follow UPGRADE.md",
+    "Keep durable facts distinct from work logs and preserve their source, date and scope"
+  ],
+  "supported_agents": [
+    "Any AI agent that can read filesystem and follow natural-language instructions. Symlink support is preferred but not required (copy and readonly fallbacks exist)."
+  ],
+  "license": "MIT",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux",
+    "android",
+    "ios"
+  ],
+  "capability_disclosure": {
+    "_note": "Every sensitive operation the CLI can perform, why it exists, and its boundary. Full detail with source locations in references/SECURITY.md.",
+    "data_location": "The CLI stores plaintext locally and does not upload memory. No built-in encryption or per-agent ACLs; calling agent runtimes and user-chosen sync services have their own data handling.",
+    "network": "Public registry version checks on ag upgrade or rate-limited bootstrap (UPGRADE.md mode=check by default). mode=off disables bootstrap checks; mode=apply or upgrade --apply downloads this project's release. --no-maintenance bypasses bootstrap hooks. Requests contain no memory content.",
+    "process_creation": "OS trash helpers (trash / trash-put / gio trash), PowerShell Recycle Bin, and `cmd /c mklink /J` when symlinks need elevation. Fixed argument vectors, never a shell string.",
+    "temp_files": "Atomic writes (temp file in the same dir, then os.replace), upgrade staging, and probing whether this device supports symlinks. Concurrent appends to the same file (daily log, learning ledgers) are serialized with an advisory lock on a sidecar `.<name>.ag-lock` file (fcntl on POSIX, msvcrt on Windows), so two agents writing at the same moment cannot lose entries; lock files hold no data and stay next to their target inside ~/.agent-guild/.",
+    "env_vars": "AGENT_GUILD_DIR, AG_AGENT, AG_HOST_ID, AG_PLATFORM, APPDATA, PREFIX, ANDROID_ROOT. No credentials are read.",
+    "deletes": "Default maintenance is read-only. Lossless compaction verifies a complete ZIP before replacing original payload files. Permanent purge unlinks only exact managed recovery files after backup verification, explicit plan approval and a separate last-copy data-loss token, at most ten files per batch. Active tasks, held/referenced materials, user rules and original projects are excluded. Filesystem snapshots may retain blocks. Protocol code replacement is transactional and keeps a verified rollback copy; user history is not removed by upgrades.",
+    "task_handoff": "Metadata-only todo lists on request; only selected tasks return context. Independent host/session/agent ownership, expected revisions, immutable snapshots, hashed attachments and whole-package closure. Scripts are never auto-executed; local locks are not distributed locks.",
+    "history_budget": "One configurable 1 GiB default historical budget includes old checkpoints, session bindings, recovery and all maintenance metadata. Full retention provides provenance-bearing summaries, verified lossless compression, whole-task retirement/restore and an oldest-first remeasured cycle. Destructive operations require exact reviewed plans; final-copy purge requires a separate irreversible-loss token. Each batch handles at most ten files. A fixed 64 MiB maintenance reserve is counted and unavailable to ordinary writes; protected or unprogressing cleanup stops safely.",
+    "writes": "Inside ~/.agent-guild/. Outside it, only the links an agent asks for during adopt / link-root / port, which point back into the guild.",
+    "permissions": "chmod +x on this project's own scripts/ag.py and scripts/install.sh after download.",
+    "system_info": "OS tag, CPU architecture, hostname, Python version and link capability, used to tell devices apart. Written to hosts/<host-id>/host.json locally, never transmitted; AG_HOST_ID overrides the hostname.",
+    "file_moves": "adopt / link-root / port preview by default and apply only within the selected scope. groom applies retention only on an explicit manual call; startup grooming is report-only and --no-maintenance skips checks. Data is archived or moved to recoverable trash; credentials are excluded from adoption.",
+    "instruction_shaped_text": "references/ONBOARDING.md documents a joining procedure in the imperative because it is a procedure. It runs only when the user asks to join, stated at the top of the file. The skill never asks an agent to conceal actions, bypass host confirmation, or escalate privileges."
+  }
+}

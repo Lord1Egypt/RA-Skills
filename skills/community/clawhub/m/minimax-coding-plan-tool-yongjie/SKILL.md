@@ -53,7 +53,7 @@ MiniMax Token Plan 工具，支持：
 API Key 使用你的 OpenClaw OAuth Token：
 
 ```bash
-openclaw config set skills.entries.minimax-coding-plan-tool.apiKey "sk-cp-gr3tv5pdbN3aPQRhXbREJQrHymKxPZhdn9mdS2Ak9B2uD39bKTTJyRJhBdLRjWrd2KbkEFV8-Zd03HgRkJwCTbLq3NYtmAzZ6U2C2Dfb35o5g89RoDBLBv8"
+openclaw config set skills.entries.minimax-coding-plan-tool.apiKey "REDACTED-SECRET"
 ```
 
 ---

@@ -1,38 +1,51 @@
-## Description: <br>
-Comprehensive toys industry sourcing guide for international buyers that provides information about China's plastic, electronic, wooden, plush, model, and educational toy manufacturing clusters, supply chain structure, regional specializations, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive toys industry sourcing guide for international buyers, covering China's plastic, electronic, wooden, plush, model, and educational toy manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers, sourcing teams, and agents use this skill to research China's toy manufacturing clusters, compare subsectors, and get practical supplier-evaluation and safety-compliance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sourcing data and supplier guidance may be outdated or insufficient for purchasing due diligence. <br>
-Mitigation: Treat the output as market guidance and independently confirm certifications, compliance requirements, supplier claims, and current regulations before making purchasing decisions. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to research China's toy manufacturing clusters, supply chain structure, subsectors, and supplier evaluation considerations before making sourcing decisions.
 
-## Reference(s): <br>
-- [China Toys Sourcing ClawHub listing](https://clawhub.ai/1970168137/china-toys-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, code] <br>
-**Output Format:** [Natural-language guidance and structured Python data objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads bundled cluster-level data and does not include individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Market figures, industry projections, and supplier examples may become outdated or may not be sufficient for procurement decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data, supplier claims, certifications, and compliance requirements against current authoritative sources before making business commitments.
+
+## Reference(s):
+
+- [Bundled toy sourcing data](artifact/data.json)
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-toys-sourcing)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured Python dictionary responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled static reference data; market figures and supplier examples should be verified before business decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

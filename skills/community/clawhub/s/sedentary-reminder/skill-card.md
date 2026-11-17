@@ -1,51 +1,65 @@
-## Description: <br>
-Designs practical sedentary-break reminder systems with strong timing logic. Use when users want help deciding when to remind, how often to remind, when to defer, how to adapt to focus/meeting/presence context, and how to generate natural reminder copy or recurring reminder plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs practical sedentary-break reminder systems with strong timing logic for timing, deferral, focus or meeting adaptation, presence context, natural reminder copy, and recurring reminder plans.
 
-## Publisher: <br>
-[linhucong814-cyber](https://clawhub.ai/user/linhucong814-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linhucong814-cyber](https://clawhub.ai/user/linhucong814-cyber)
 
-## Use Case: <br>
-Employees, external users, developers, and productivity-tool builders use this skill to design context-aware sit-break reminder timing, reminder copy, user controls, and heartbeat or cron-friendly reminder plans for work, study, and desk use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reminder state could expose work-state, presence, pause, or activity-timing details if wired into heartbeat or automation. <br>
-Mitigation: Keep memory/heartbeat-state.json local, review stored fields, and provide simple inspect, pause, undo, and reset controls. <br>
-Risk: Direct state-editing behavior could change reminder settings unexpectedly if casual chat is treated as a command. <br>
-Mitigation: Require clear user commands for state changes and confirm ambiguous pause, resume, profile, or work-state requests before updating state. <br>
-Risk: Sedentary reminders may be mistaken for medical or posture-tracking advice. <br>
-Mitigation: Keep guidance general, avoid diagnosis or treatment claims, and recommend professional advice for pain, injury, rehabilitation, or medical concerns. <br>
-Risk: Poorly timed reminders can interrupt meetings, presentations, focus work, or unsafe moments. <br>
-Mitigation: Use the skill's deferral, cooldown, presence, meeting, and focus-state rules before sending reminders. <br>
+## Use Case:
 
+Employees, external users, developers, and automation builders use this skill to design sedentary-break reminders that account for sitting duration, work state, presence, interruption cost, and user controls. It helps produce reminder copy, timing policies, heartbeat or cron-friendly plans, state-update rules, and break-detection guidance.
 
-## Reference(s): <br>
-- [久坐提醒 Break 识别规则](references/break-detection-zh.md) <br>
-- [久坐提醒直改状态方案](references/direct-state-editing-zh.md) <br>
-- [久坐提醒状态自更新规则](references/heartbeat-state-rules-zh.md) <br>
-- [久坐提醒 Heartbeat 模板](references/heartbeat-template-zh.md) <br>
-- [久坐提醒落地指南](references/integration-guide-zh.md) <br>
-- [English sit-break reminder copy library](references/reminder-copy-en.md) <br>
-- [中文久坐提醒文案库](references/reminder-copy-zh.md) <br>
-- [久坐提醒用户控制说明](references/user-controls-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with reminder copy, timing rules, and optional JSON-like state fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include single-language reminder variants, rotation sets, timing profiles, heartbeat state rules, and cron-friendly plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill may maintain a local reminder state file and map user chat controls into state updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the state fields before integration, keep edits limited to sedentary reminder data, and confirm user control commands before enabling automated writeback.
+
+Risk: Presence, idle, lock, sleep, or activity signals can be incomplete or wrong, which may cause reminders at poor times or missed reminders.
+
+Mitigation: Use conservative defaults, suppress reminders when presence is uncertain or away, honor cooldowns, and allow manual pause, resume, and break confirmation controls.
+
+Risk: Sedentary-break reminders can be mistaken for medical, posture, or safety advice.
+
+Mitigation: Keep output general, avoid diagnosis or treatment claims, and recommend professional advice for pain, injury, rehabilitation, or medical questions.
+
+## Reference(s):
+
+- [Sedentary Reminder on ClawHub](https://clawhub.ai/linhucong814-cyber/skills/sedentary-reminder)
+- [Chinese reminder library](references/reminder-copy-zh.md)
+- [English reminder library](references/reminder-copy-en.md)
+- [Chinese integration guide](references/integration-guide-zh.md)
+- [Heartbeat template](references/heartbeat-template-zh.md)
+- [Heartbeat state rules](references/heartbeat-state-rules-zh.md)
+- [User controls guide](references/user-controls-zh.md)
+- [Break detection guide](references/break-detection-zh.md)
+- [Direct state editing guide](references/direct-state-editing-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, plain text, JSON snippets, and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-language reminder output unless bilingual output is explicitly requested; recurring reminders should rotate copy and respect cooldowns, quiet windows, presence, and user controls.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

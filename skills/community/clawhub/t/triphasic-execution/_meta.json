@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "triphasic-execution",
+  "name": "triphasic-execution",
   "version": "5.19.1",
-  "publishedAt": 1782383167873
+  "description": "Execute→Review→Advance 三步循环执行框架。增强步骤规划能力、增强语义理解；明确空转/重试/换思路/求助完整流转规则；最多重试3次、最多空转3次强制约束。",
+  "author": "wUwproject",
+  "tags": [
+    "framework",
+    "execution",
+    "debugging",
+    "problem-tracking",
+    "risk-tracking",
+    "lessons-learned",
+    "cross-platform",
+    "configuration",
+    "config-ui"
+  ],
+  "triggers": [
+    "三步循环",
+    "Execute",
+    "Review",
+    "Advance",
+    "步骤",
+    "pre_exec",
+    "verify_exec",
+    "retry",
+    "idle"
+  ],
+  "data_dir": "skills/.standardization/triphasic-execution/data/"
 }

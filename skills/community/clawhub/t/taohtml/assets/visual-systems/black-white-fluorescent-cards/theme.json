@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "black-white-fluorescent-cards",
+  "display_name": "黑白荧光卡片",
+  "description": "高反差、模块卡片、大标题，适合路演和强表达",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "16:9 黑白海报画布；巨型标题压住一侧，荧光卡片以不对称栅格叠放。",
+    "hierarchy": "标题先于一切；结论用黑底或荧光底整块承接；正文拆成短卡片。",
+    "image_treatment": "图片高反差去色，硬边裁切，叠加荧光编号或黑色标注条。",
+    "module_language": "粗黑边、零圆角、偏移硬阴影、模块化标签与编号。",
+    "chart_evidence": "粗柱、巨型数值、直接标注；证据以黑框窗口和荧光结论条绑定。",
+    "motion": "卡片短距离上推或横向切入；同组按 data-step 整块出现，不做柔和漂浮。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#f4f2e9", "ink": "#050505", "signal": "#d8ff19", "risk": "#ff5c00", "paper": "#fffdf5", "muted": "#5e625f"},
+    "font_stacks": {"display": "Arial Black, PingFang SC, sans-serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(58px, 6.2vw, 104px)", "heading": "clamp(40px, 4.2vw, 72px)", "body": "20px", "caption": "13px"},
+    "spacing": {"canvas_x": "68px", "canvas_y": "54px", "module": "24px", "gap": "18px"},
+    "borders": {"hairline": "1px solid #050505", "module": "3px solid #050505", "radius": "0", "shadow": "8px 8px 0 #050505"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "68px 68px 58px", "grid": "12 columns with deliberate 1-column offsets", "density": "medium, one dominant statement plus 2-4 modules"},
+  "layout_variants": [
+    {"id": "signal-poster", "use": "cover or chapter thesis"},
+    {"id": "card-stack", "use": "three-part problem or offer"},
+    {"id": "stepped-rail", "use": "mechanism or process"},
+    {"id": "metric-board", "use": "metrics, chart, and evidence"},
+    {"id": "action-wall", "use": "priority plan and closing claim"}
+  ],
+  "components": {
+    "chart": "Use thick rectangular bars, direct values, no legend when labels fit beside bars.",
+    "table": "Use black header bands, hard cell rules, and one fluorescent conclusion row or column.",
+    "evidence_card": "Frame the source with a 3px black border; place the interpretation in a touching fluorescent strip.",
+    "image": "Convert to grayscale/high contrast, crop aggressively, and add one hard-edged numbered annotation."
+  },
+  "motion": {"enter": "translate 20-28px with opacity over 360-480ms", "stagger": "one module group per data-step", "disabled": ["bounce", "continuous glow", "parallax", "cross-page morph"]},
+  "forbidden": ["pastel gradients", "rounded SaaS cards", "small centered headline", "decorative stock photo", "soft drop shadow", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

@@ -1,45 +1,68 @@
-## Description: <br>
-Backs up OpenClaw data with manual or scheduled runs, optional AES-256 encryption, SHA256 checksums, and cloud-sync oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Backup helps agents create manual, scheduled, and encrypted backups of OpenClaw data and list backup archives.
 
-## Publisher: <br>
-[halaoluan](https://clawhub.ai/user/halaoluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halaoluan](https://clawhub.ai/user/halaoluan)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to create local or encrypted backups of OpenClaw configuration, memory, skills, and related state, and to schedule recurring backup jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain sensitive OpenClaw data such as API keys, tokens, memory, conversation history, and channel login state. <br>
-Mitigation: Prefer the encrypted backup script, use a strong password stored outside the backup archive, and avoid uploading plaintext archives to cloud folders. <br>
-Risk: The scheduling script creates or replaces cron entries that run backup commands automatically. <br>
-Mitigation: Inspect the generated crontab entry, confirm the script path and log destination, and remove or adjust the cron job if it does not match the intended schedule. <br>
-Risk: Documented cleanup commands using rm, find, xargs, or delete flags can remove files if copied without review. <br>
-Mitigation: Preview matched files before deletion and run destructive cleanup commands only after confirming the target backup directory and patterns. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to back up local OpenClaw state, create encrypted archives, configure scheduled backups, and inspect existing backup files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/halaoluan/halaoluan-openclaw-backup) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenSSL documentation](https://www.openssl.org/docs/) <br>
-- [cron manual](https://man.openbsd.org/cron.8) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets and shell-script execution instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backup archives, encrypted backup archives, SHA256 checksum files, and cron entries when the user runs the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles sensitive OpenClaw data and server security evidence says it should be reviewed before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the scripts before use, especially temporary storage, cleanup behavior, cron changes, and password handling.
+
+Risk: Plaintext archives or predictable temporary directories could expose backup contents during execution.
+
+Mitigation: Use private random temporary directories, protected temporary storage, and cleanup traps before deploying the backup scripts.
+
+Risk: Backup passwords may be exposed through command-line arguments or long-lived environment variables.
+
+Mitigation: Avoid passing passwords on command lines or storing them in persistent environment variables; use an appropriate secret handling flow.
+
+Risk: Scheduled backup setup can modify user crontabs.
+
+Mitigation: Validate and display cron entries before installing or replacing scheduled backup jobs.
+
+Risk: Documented broad permission or live-directory deletion examples can weaken file security or damage data.
+
+Mitigation: Do not follow documented chmod -R 755 or live-directory deletion examples; operate on staged copies with narrow permissions.
+
+## Reference(s):
+
+- [Openclaw Backup on ClawHub](https://clawhub.ai/halaoluan/skills/halaoluan-openclaw-backup)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenSSL Documentation](https://www.openssl.org/docs/)
+- [cron Manual](https://man.openbsd.org/cron.8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run backup, encryption, checksum, listing, and cron setup commands depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Universe Explorer helps an agent explain astronomy and cosmology concepts, including cosmic structure, celestial bodies, fundamental physics, space exploration, and possible futures of the universe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universe Explorer helps an agent provide clear, structured explanations of cosmology, astronomy, celestial bodies, space exploration, and common universe-related misconceptions.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Learners, educators, and general users can use this skill to get structured explanations of astronomy and cosmology topics and to correct common misconceptions about space, gravity, dark matter, dark energy, and distance scales. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides educational astronomy guidance and is not a live scientific data source. <br>
-Mitigation: Use it for general learning and verify time-sensitive or decision-critical scientific details against current authoritative sources. <br>
+## Use Case:
 
+Learners, educators, writers, and general users can use this skill to get accessible astronomy and cosmology explanations, terminology checks, and corrections for common misconceptions. Agents can use it to structure educational responses about cosmic scale, celestial classifications, fundamental physics, space missions, and possible futures of the universe.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only educational responses; no tool, credential, private data, persistence, or system access requirements identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Astronomy missions, observations, and scientific interpretations can change after the skill is released.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for current sources when answers depend on recent missions, discoveries, measurements, or policy-sensitive space program status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/universe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text educational explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, credentials, persistence, or file changes are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

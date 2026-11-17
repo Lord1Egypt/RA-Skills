@@ -20,6 +20,15 @@ This skill is for routing Kling 3.0 Motion Control questions to the right APIDot
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Kling 3.0 Motion Control model page: https://apidot.ai/models/kling-3-0-motion-control
+- Read Kling 3.0 Motion Control API docs: https://apidot.ai/docs/kling-3-0-motion-control
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Kling 3.0 Motion Control, Kling 3 0 motion control, kling-3-0-motion-control, kling3 motion control, motion transfer, reference video to character image, dance transfer, action transfer, controllable animation, or APIDot Kling API.

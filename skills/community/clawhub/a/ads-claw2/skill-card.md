@@ -1,42 +1,66 @@
-## Description: <br>
-Core decision engine for Ads Manager Specialist; auto-calls tools for Facebook ads URLs, campaign queries, competitor research, budget, and performance tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core decision engine for an Ads Manager Specialist agent that routes ads-related commands, Facebook ad URLs, campaign questions, competitor research, budget reviews, performance analysis, and content requests into structured reports, proposals, and tool-driven workflows.
 
-## Publisher: <br>
-[Phap1106](https://clawhub.ai/user/Phap1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phap1106](https://clawhub.ai/user/phap1106)
 
-## Use Case: <br>
-Ads operators and agents use this skill to route Meta ads, campaign reporting, competitor research, budget, proposal, approval, and content-related requests into a strict tool-calling workflow. It is intended for credential-backed ad operations where the agent can call configured ads, search, HTTP, and memory tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad automatic authority over credential-backed ad, search, memory, approval, and generic HTTP workflows. <br>
-Mitigation: Install only with least-privilege credentials and confirm which approval or rejection actions can change live systems before use. <br>
-Risk: Competitor findings and operational notes may be saved to memory and reused later. <br>
-Mitigation: Ensure saved competitor memory can be inspected, corrected, and deleted according to the operator's data-retention expectations. <br>
-Risk: The skill intentionally discourages clarification questions and pushes immediate tool execution. <br>
-Mitigation: Use it only in environments where automatic tool use is expected, monitored, and constrained by external tool permissions. <br>
+## Use Case:
 
+External ads operators and agent builders use this skill to guide a Meta Ads specialist agent through campaign reporting, competitor analysis, budget planning, proposal creation, and Vietnamese-language response templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Phap1106/ads-claw2) <br>
+### Deployment Geography for Use:
 
+Global; operational defaults are tailored to Vietnamese Meta ads workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, tool calls] <br>
-**Output Format:** [Markdown responses and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Vietnamese user-facing ads reports, competitor analyses, proposals, and proactive observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can encourage broad automatic use of credential-backed ads, search, Facebook ad library, HTTP, and memory tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to explicit ads-management commands and review the skill before installing it in accounts with real ad-spend authority or private campaign data.
+
+Risk: Approval, rejection, budget, pause, resume, audience, and bid-strategy workflows may affect live advertising operations.
+
+Mitigation: Require explicit human confirmation before approve/reject actions or any budget-affecting change is executed.
+
+Risk: Instructions that discourage clarification or access-error reporting can cause misleading responses when tools fail or inputs are ambiguous.
+
+Mitigation: Allow truthful access-error reporting and clarification when needed to avoid incorrect campaign or competitor guidance.
+
+Risk: Facebook URLs and HTTP requests may route untrusted inputs into external calls.
+
+Mitigation: Sanitize and validate URLs before external calls.
+
+Risk: Competitor findings may be written to memory automatically.
+
+Mitigation: Make competitor memory writes opt-in or clearly scoped to the intended workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phap1106/skills/ads-claw2)
+- [Publisher profile](https://clawhub.ai/user/phap1106)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Vietnamese Markdown/text with structured campaign report, competitor report, proposal, and next-action templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to call credential-backed ads, search, Facebook ad library, HTTP, and memory tools when those tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

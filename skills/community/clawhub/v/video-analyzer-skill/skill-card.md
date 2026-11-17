@@ -1,42 +1,55 @@
-## Description: <br>
-Video Analyzer downloads, transcribes, and analyzes videos from YouTube, X/Twitter, and TikTok using local Whisper processing to produce transcripts, summaries, timestamps, and actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download, transcribe, and analyze videos from YouTube, X/Twitter, and TikTok with local Whisper processing for TL;DRs, timestamps, and actionable insights.
 
-## Publisher: <br>
-[minilozio](https://clawhub.ai/user/minilozio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minilozio](https://clawhub.ai/user/minilozio)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to inspect video URLs, produce timestamped transcripts, summarize key moments, answer content questions, or save video/audio locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the script can build unsafe shell commands from user-provided values, which could let a crafted request run unintended local commands. <br>
-Mitigation: Review before installing or use only with trusted video URLs and simple language codes, and review proposed commands before execution. <br>
-Risk: The skill may contact video sites, download Whisper models, create temporary transcripts, and save requested media to the user's Desktop. <br>
-Mitigation: Run it only where those network, storage, and Desktop writes are expected, and remove generated files when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to extract transcripts, summaries, key moments, and downloadable media from video URLs across common social and video platforms.
 
-## Reference(s): <br>
-- [Video Analyzer ClawHub Page](https://clawhub.ai/minilozio/video-analyzer-skill) <br>
-- [Video Analyzer Homepage](https://github.com/minilozio/video-analyzer-skill) <br>
-- [whisper.cpp Model Downloads](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown summaries, timestamped transcript text, local media files, and shell command invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary transcript files, download Whisper models when needed, and save requested media files to the user's Desktop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The bundled script has a command-injection flaw in shell command construction, especially around language values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; avoid untrusted prompts or unusual language values until the script replaces shell=True with argument arrays and validates language codes.
+
+Risk: The skill contacts video platforms, writes temporary transcripts, can save media to Desktop, and may download Whisper models on first use.
+
+Mitigation: Use it only where those network calls, downloads, and local file writes are acceptable, and confirm content permissions before processing third-party media.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/minilozio/skills/video-analyzer-skill)
+- [Declared project homepage](https://github.com/minilozio/video-analyzer-skill)
+- [Whisper.cpp model download source](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown summaries and timestamped transcript or download file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create transcript files under /tmp, save downloaded media to Desktop, and download Whisper models on first use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,50 @@
-## Description: <br>
-This skill guides Odoo 19 module development across project structure, model definitions, views, access control, business logic, cron jobs, and development workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Odoo 19 module development guidance covering project structure, model definitions, view design, access control, business logic, automated actions, and development workflows.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and ERP implementers use this skill to draft and review Odoo 19 modules, including manifests, models, XML views, access rules, server actions, cron jobs, and installation or debugging commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Odoo trigger terms may activate the skill on general Odoo development prompts. <br>
-Mitigation: Confirm the generated guidance matches the current task before applying it. <br>
-Risk: Generated ACLs, write or unlink logic, cron jobs, sudo usage, and Docker commands can affect live ERP data or permissions. <br>
-Mitigation: Review the generated code and commands, then test in a development database before applying them to production. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft and review Odoo 19 module structure, Python models, XML views, ACL files, record rules, manifests, and installation or debugging steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaobod1/huo15-odoo19-module-dev) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Huo15 website](https://www.huo15.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, XML, CSV, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only helper; generated Odoo code and commands should be reviewed before use against a real ERP database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The included Odoo ACL example can grant broad create, edit, and delete permissions, including an all-users manager row if copied directly into a production module.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the ACL template before production use: define explicit groups, avoid delete permission by default, and add record rules and tests for portal, public, internal, and manager users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-odoo19-module-dev)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, XML, CSV, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Odoo module file structures, manifest examples, model code, view definitions, ACL templates, record rules, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

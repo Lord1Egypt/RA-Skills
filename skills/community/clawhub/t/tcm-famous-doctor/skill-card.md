@@ -1,40 +1,59 @@
-## Description: <br>
-模拟中医名医临证逻辑，提供问诊整理、八纲辨证、体质匹配、方药结构说明、典籍依据、医案参考和禁忌提示等教育性中医风格内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+模拟顶级名医临证逻辑，智能问诊、八纲辨证、九种体质匹配，动态生成方药、君臣佐使解析、典籍出处及历代医案参考，新增多证型、细化舌脉判断，全程合规科普，不替代诊疗。
 
-## Publisher: <br>
-[zhuhuaikuan](https://clawhub.ai/user/zhuhuaikuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuhuaikuan](https://clawhub.ai/user/zhuhuaikuan)
 
-## Use Case: <br>
-External users can use this skill for educational Chinese-medicine-style symptom intake, pattern differentiation, body-constitution discussion, and structured herb-formula explanations. It should not be used as medical diagnosis, treatment, or a substitute for licensed clinical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive health details and can produce prescription-style herb guidance, including dose amounts and special-population cautions. <br>
-Mitigation: Use it only for educational TCM-style explanations, avoid sharing unnecessary personal health details, and confirm any herb formulas, dose amounts, child guidance, or pregnancy cautions with a licensed clinician. <br>
-Risk: Users may mistake generated TCM-style analysis for diagnosis or treatment. <br>
-Mitigation: Keep the output framed as educational content and do not rely on it as a substitute for licensed medical care. <br>
+## Use Case:
 
+External Chinese-speaking users and agents use this skill as educational Traditional Chinese Medicine reference material for structured symptom intake, pattern differentiation, constitution matching, classical context, and safety-oriented care guidance. It should not be used for diagnosis, treatment decisions, or unsupervised prescription-like recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuhuaikuan/tcm-famous-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style explanatory text with a Python invocation command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes educational TCM-style findings, formula-style herb guidance, dosage examples, classical references, case notes, and safety cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce medical-style diagnosis and prescription output, including herb names, dosages, pediatric guidance, pregnancy guidance, and contraindications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as educational TCM reference material and require review by a licensed clinician before any diagnosis, treatment, herb, dosage, pediatric, pregnancy, or contraindication decision.
+
+Risk: Symptom intake workflows may encourage users to share personal health details that are not necessary for an educational reference interaction.
+
+Mitigation: Ask users to avoid unnecessary personal health details and keep prompts limited to non-identifying information needed for general educational context.
+
+Risk: The artifact has limited safeguards before prescription-like output.
+
+Mitigation: Add explicit opt-in, scope limits, language handling, and safety gates before producing formula-style or contraindication content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuhuaikuan/skills/tcm-famous-doctor)
+- [Source skill definition](artifact/SKILL.md)
+- [Source helper script](artifact/scripts/tcm.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown-style Chinese text with optional shell command invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include symptom intake notes, TCM pattern differentiation, constitution assessment, formula-style herb lists with dosages, classical references, contraindication notes, and safety reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

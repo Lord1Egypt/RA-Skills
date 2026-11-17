@@ -16,7 +16,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-VERSION = "1.2.5"
+VERSION = "1.2.6"
 DESKTOP_APP_URL = "https://github.com/allen-Jmc/comfypet-jmcai-Dist"
 DEFAULT_CONFIG = {
     "bridge_url": "http://127.0.0.1:32100",
@@ -50,6 +50,7 @@ ASSET_FIELD_UPLOAD_EXTENSIONS = {
 SKILL_ROOT = Path(__file__).resolve().parent
 LOOPBACK_BRIDGE_HOSTS = {"127.0.0.1", "localhost", "::1"}
 CONFIG_WARNINGS_KEY = "__config_warnings__"
+WarningValue = str | dict[str, Any]
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -495,8 +496,10 @@ def infer_media_kind(path_value: str) -> str:
     suffix = Path(path_value).suffix.lower()
     if suffix in {".png", ".jpg", ".jpeg", ".webp", ".bmp"}:
         return "image"
-    if suffix in {".mp4", ".webm", ".mov", ".avi", ".gif"}:
+    if suffix in {".mp4", ".webm", ".mov", ".avi", ".gif", ".mkv"}:
         return "video"
+    if suffix in {".wav", ".mp3", ".ogg", ".flac", ".m4a", ".aac"}:
+        return "audio"
     return "file"
 
 
@@ -687,7 +690,7 @@ def localize_run_outputs(config: dict[str, Any], run_payload: dict[str, Any]) ->
     if not isinstance(outputs, list):
         return run_payload
 
-    warnings = normalize_warnings(run_payload.get("warnings"))
+    warnings: list[WarningValue] = normalize_warnings(run_payload.get("warnings"))
     localized_outputs = []
     for output in outputs:
         if not isinstance(output, dict):
@@ -868,10 +871,23 @@ def resolve_retry_backoff_ms(config: dict[str, Any]) -> int:
         return int(DEFAULT_CONFIG["retry_backoff_ms"])
 
 
-def normalize_warnings(value: Any) -> list[str]:
+def normalize_warnings(value: Any) -> list[WarningValue]:
     if not isinstance(value, list):
         return []
-    return [str(item) for item in value if isinstance(item, str) and item.strip()]
+
+    normalized: list[str | dict[str, Any]] = []
+    for item in value:
+        if isinstance(item, str) and item.strip():
+            normalized.append(item)
+        elif isinstance(item, dict):
+            # Bridge warnings carry useful stage/field/message context. Preserve
+            # the complete object so newer optional fields are not dropped.
+            if item and any(
+                isinstance(item.get(key), str) and item[key].strip()
+                for key in ("message", "summary", "field")
+            ):
+                normalized.append(dict(item))
+    return normalized
 
 
 def build_download_warning(config: dict[str, Any], file_name: str, error: RequestFailure) -> str:

@@ -15,7 +15,7 @@ import time
 import requests
 
 # ============ 配置 ============
-API_KEY = "sk-cp-F-oQWZsbhwv06vJlTx0ZdpsYS4lj6_SexMokhjTvL5I08cwoPHb22r49qvecJjxt8Qn1LHsIRlVJn12WLJjF9GIdjOcqJqyf8jSd33YhcYb3E9XciwvlrXM"
+API_KEY = "REDACTED-SECRET"
 API_BASE = "https://api.minimaxi.com/v1"
 DEFAULT_TIMEOUT = 600  # 600秒，等待音乐生成
 

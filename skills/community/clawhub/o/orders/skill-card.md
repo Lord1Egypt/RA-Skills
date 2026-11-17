@@ -1,43 +1,54 @@
-## Description: <br>
-Track orders locally. Use when creating orders, checking status, updating quantities, canceling, or generating sales reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track orders locally. Use when creating orders, checking status, updating quantities, canceling, or generating sales reports.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and operators use this skill to create, list, inspect, update, cancel, and summarize local order records for lightweight order tracking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Order records are stored locally as business data in ~/.orders/orders.json. <br>
-Mitigation: Apply appropriate local file permissions, backups, and data handling practices for order records. <br>
-Risk: Order notes can contain sensitive business or customer information. <br>
-Mitigation: Avoid placing secrets or unnecessary sensitive details in order notes. <br>
-Risk: Update and cancel commands can modify the wrong order if an incorrect ID is used. <br>
-Mitigation: Confirm the order ID and intended action before running update or cancel commands. <br>
+## Use Case:
 
+Developers and operational users can use this skill to create, list, update, cancel, and report on local order records from the command line.
 
-## Reference(s): <br>
-- [ClawHub Orders Skill Page](https://clawhub.ai/xueyetianya/orders) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, CSV, Files, Shell commands] <br>
-**Output Format:** [Plain text, JSON, or CSV stdout with persistent JSON records in ~/.orders/orders.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local order records; order IDs are generated automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: server release evidence) <br>
+Risk: Order, customer, pricing, notes, and cancellation data are stored locally in ~/.orders/orders.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted accounts, keep home directory and orders file permissions restrictive, and avoid storing sensitive data unnecessarily.
+
+Risk: CSV exports may be opened in spreadsheet software when order fields contain untrusted text.
+
+Mitigation: Review and sanitize user-provided fields before opening CSV exports in spreadsheet tools.
+
+## Reference(s):
+
+- [ClawHub Orders skill page](https://clawhub.ai/xueyetianya/skills/orders)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, csv, shell commands]
+
+**Output Format:** [Plain text, JSON, or CSV printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores order data locally in ~/.orders/orders.json.]
+
+## Skill Version(s):
+
+3.4.1 (source: server release metadata; artifact frontmatter reports 3.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

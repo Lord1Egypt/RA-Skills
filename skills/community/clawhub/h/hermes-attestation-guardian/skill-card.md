@@ -1,43 +1,65 @@
-## Description: <br>
-Hermes-only runtime security attestation and drift detection skill for operator-managed Hermes infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes-only runtime security attestation and drift detection skill for operator-managed Hermes infrastructure.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Hermes operators and security engineers use this skill to generate deterministic runtime posture attestations, verify attestation integrity, compare trusted baselines for drift, and run advisory-aware guarded verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated attestations can expose host identity, Hermes paths, security toggles, feed state, and watched-file or trust-anchor hashes. <br>
-Mitigation: Treat attestation files as sensitive operational records and review watch_files and trust_anchor_files before generation or scheduling. <br>
-Risk: Recurring jobs can be added to the user's crontab when scheduler helpers are run with --apply. <br>
-Mitigation: Use print-only previews first and run --apply only when the operator intentionally wants managed recurring attestation or advisory checks. <br>
-Risk: Unsigned advisory feed bypass weakens the default fail-closed verification posture. <br>
-Mitigation: Keep signed advisory verification enabled and use unsigned bypass only for short, audited emergency recovery windows. <br>
+## Use Case:
 
+Developers and operators use this skill to generate deterministic Hermes posture attestations, verify attestation integrity fail-closed, compare authenticated baseline drift, and run advisory-aware guarded verification for Hermes-managed infrastructure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/hermes-attestation-guardian) <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for operator-managed Hermes environments and may describe generated attestation JSON, checksum files, advisory verification state, and cron configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter, skill.json, changelog, server evidence) <br>
+Risk: Attestations may expose watched file paths, trust anchor paths, and hashes from Hermes security state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review watch_files and trust_anchor_files before use, protect ~/.hermes, and limit access to generated attestation artifacts.
+
+Risk: Recurring scheduler setup can mutate the current user's cron state when --apply is used.
+
+Mitigation: Preview scheduler entries with --print-only, avoid running scheduled jobs as root, and apply only the managed Hermes schedule blocks intentionally.
+
+Risk: Unsigned advisory feed bypass weakens fail-closed verification.
+
+Mitigation: Use --allow-unsigned only during a short audited emergency window and remove it immediately after recovery.
+
+Risk: Using the skill outside Hermes infrastructure can produce unsupported trust and attestation assumptions.
+
+Mitigation: Install and operate the skill only for Hermes CLI, Gateway, or profile-managed deployments.
+
+## Reference(s):
+
+- [ClawSec Homepage](https://clawsec.prompt.security)
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/hermes-attestation-guardian)
+- [Skill Operator Playbook](artifact/SKILL.md)
+- [Capability Overview](artifact/README.md)
+- [Release Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Hermes attestation JSON files, optional sha256 sidecar files, advisory feed verification state, and optional managed cron entries when explicitly applied.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter, changelog, server release evidence; released 2026-05-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

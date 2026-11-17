@@ -1,43 +1,54 @@
-## Description: <br>
-Manage your Operator fleet of AI agent instances: create, configure, monitor, message, and manage OpenClaw agents while handling authentication, instance lifecycle, secrets, automations, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operator helps agents manage an Operator fleet of OpenClaw instances, including authentication, instance lifecycle, secrets, automations, webhooks, and agent messaging.
 
-## Publisher: <br>
-[promptrotator](https://clawhub.ai/user/promptrotator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[promptrotator](https://clawhub.ai/user/promptrotator)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Operator and OpenClaw agent fleets through authenticated CLI-style API requests, including instance lifecycle tasks, logs, agent messaging, secrets, automations, and webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence security summary reports suspicious behavior involving nested review tooling with full filesystem and command access by default. <br>
-Mitigation: Install only after reviewing that authority, and prefer --no-yolo or AUTOREVIEW_YOLO=0 unless broader access is intentional. <br>
-Risk: The skill guides authenticated API use and credential storage for Operator. <br>
-Mitigation: Read credentials from the local config when needed, mask API keys in outputs, and reauthenticate on 401 responses instead of exposing raw tokens. <br>
-Risk: The skill can guide actions that affect instances, files, secrets, automations, and webhooks. <br>
-Mitigation: Review the requested operation and generated API command before execution, especially for destructive lifecycle changes or secret access changes. <br>
+## Use Case:
 
+Developers and operators use this skill to authenticate to Operator and manage OpenClaw agent instances, including monitoring, messaging, lifecycle operations, secrets, automations, and webhooks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/promptrotator/operator) <br>
-- [Operator application](https://www.operator.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl commands, JSON snippets, SSE parsing examples, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad Operator fleet control can create, delete, restart, configure, and message instances, and can manage secrets, automations, webhooks, and workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deletes, restarts, secret grants, file writes, automations, webhooks, or other lasting changes.
+
+Risk: Operator API keys stored in local configuration can grant powerful access if exposed or used with an untrusted origin.
+
+Mitigation: Restrict permissions on ~/.operator and its config file, keep operatorAppUrl pinned to a trusted HTTPS Operator origin, and mask API keys in outputs.
+
+## Reference(s):
+
+- [Operator service](https://www.operator.io)
+- [Operator ClawHub listing](https://clawhub.ai/promptrotator/skills/operator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python command snippets, configuration examples, API requests, and SSE parsing output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should mask raw Operator API keys and treat lasting fleet changes as confirmation-gated actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

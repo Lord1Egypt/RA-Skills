@@ -1,45 +1,58 @@
-## Description: <br>
-Windows RPA lets an agent control a Windows desktop with mouse, keyboard, screenshot, window management, application launch, clipboard, and shell-command tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents on Windows to automate desktop applications through mouse, keyboard, screenshot, image recognition, window management, clipboard, application launch, and shell-command tools.
 
-## Publisher: <br>
-[qgyz9613](https://clawhub.ai/user/qgyz9613) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qgyz9613](https://clawhub.ai/user/qgyz9613)
 
-## Use Case: <br>
-Developers and automation users can use this skill to operate Windows desktop applications, manage windows, launch programs, capture screenshots, use the clipboard, and run local commands from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad Windows desktop access and local command-line control under the user's account. <br>
-Mitigation: Enable approval for shell, application launch, clipboard-read, screenshot, and full-state actions, and review each proposed command before execution. <br>
-Risk: Screenshots, clipboard reads, and full desktop state capture may expose passwords, tokens, private documents, or sensitive business applications. <br>
-Mitigation: Use the skill only when sensitive windows are closed or hidden, clear sensitive clipboard contents first, and limit screenshot regions when possible. <br>
-Risk: Mouse, keyboard, and window actions can affect the wrong application if focus, resolution, or coordinates differ from the expected state. <br>
-Mitigation: Verify the active window and screen state before actions, prefer window activation or image matching over fixed coordinates, and test workflows in an isolated environment first. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent control Windows desktop applications, capture screen state, manage windows, interact with the clipboard, and run local commands when browser automation is not suitable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qgyz9613/windows-rpa) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Security policy](artifact/SECURITY.md) <br>
-- [Skill configuration](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [JSON status responses, command text, and screenshot image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only; requires Python and pyautogui or pywinauto. Sensitive actions include shell execution, clipboard reads, screenshots, and full desktop state capture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Arbitrary shell and run_app actions can execute local commands with the user's Windows privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a low-privilege or sandboxed Windows account and require explicit approval for every shell or run_app action.
+
+Risk: Screenshot, get_state, and clipboard-read actions can expose secrets, private documents, or other sensitive desktop content.
+
+Mitigation: Avoid using the skill while sensitive content is visible or copied, and require explicit approval before screenshot, clipboard-read, and get_state actions.
+
+Risk: Mouse and keyboard automation can affect the wrong application or window if the desktop state changes.
+
+Mitigation: Confirm the target window and test workflows in an isolated environment before using the skill on important desktop sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qgyz9613/skills/windows-rpa)
+- [Publisher Profile](https://clawhub.ai/user/qgyz9613)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-like tool results with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Windows only and may produce saved screenshot files when screenshot or state-capture tools are used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

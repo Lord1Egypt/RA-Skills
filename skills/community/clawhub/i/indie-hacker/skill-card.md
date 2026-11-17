@@ -1,44 +1,57 @@
-## Description: <br>
-Build profitable products as a solo founder with validation-first approach, time protection, and brutal honesty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build profitable products as a solo founder with validation-first approach, time protection, and brutal honesty.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External developers and solo founders use this skill to prioritize validation, pricing, distribution, productivity, and project tracking for indie products. It is intended to help an agent give direct recommendations and produce execution artifacts for founder workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages the agent to take action, run scripts, configure tools, make code changes, set up deployments, contact customers, handle payments, and post publicly without clear approval boundaries. <br>
-Mitigation: Require explicit user confirmation before scripts, code changes, CI/CD setup, deployments, account configuration, customer messages, payments, or public posts. <br>
-Risk: The skill stores project context in ~/indie-hacker/, which could expose business plans, customer details, metrics, or credentials if handled carelessly. <br>
-Mitigation: Keep ~/indie-hacker/ private, avoid storing secrets there, and review generated project notes before sharing or syncing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/indie-hacker) <br>
-- [Validation Process](artifact/validation.md) <br>
-- [Pricing for Indie Hackers](artifact/pricing.md) <br>
-- [Distribution for Solo Founders](artifact/distribution.md) <br>
-- [Time Protection for Solo Founders](artifact/productivity.md) <br>
-- [Indie Hacker Memory Setup](artifact/memory-template.md) <br>
+## Use Case:
 
+External founders and developer-operators use this skill to validate, price, launch, and prioritize solo-founder products while protecting limited weekly build time.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with optional code blocks, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project memory files under ~/indie-hacker/ when the agent is granted filesystem access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct an agent to make code, automation, CI/CD, or business-account changes without pausing for explanation.
+
+Mitigation: Use clear approval boundaries for file writes, shell commands, CI/CD configuration, customer contact, payment tools, and business-account actions.
+
+Risk: Local founder memory under ~/indie-hacker/ may contain project metrics, pricing decisions, revenue data, or customer context.
+
+Mitigation: Confirm memory creation and storage location first, and avoid storing secrets or sensitive customer data unless the user explicitly approves.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/indie-hacker)
+- [Validation Process](artifact/validation.md)
+- [Pricing for Indie Hackers](artifact/pricing.md)
+- [Distribution for Solo Founders](artifact/distribution.md)
+- [Time Protection for Solo Founders](artifact/productivity.md)
+- [Indie Hacker Memory Setup](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Natural-language guidance with optional Markdown, code snippets, shell commands, and configuration changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project memory under ~/indie-hacker/ when approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

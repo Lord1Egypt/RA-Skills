@@ -11,7 +11,7 @@ const path = require('path');
 class HomeworkAnalyzer {
   constructor(options = {}) {
     // 直接从脚本中读取 API Key，不再依赖环境变量
-    this.apiKey = options.apiKey || 'sk-14d72eaba86242d3ba368ee0c9b08dac';
+    this.apiKey = options.apiKey || 'REDACTED-SECRET';
     this.baseUrl = 'https://dashscope.aliyuncs.com/compatible-mode/v1';
     this.model = 'qwen-vl-max-latest';
   }

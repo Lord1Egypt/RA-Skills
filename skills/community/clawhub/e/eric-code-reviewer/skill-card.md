@@ -1,41 +1,54 @@
-## Description: <br>
-Code Reviewer helps developers review pull requests, diffs, and code snippets for code quality, security issues, performance risks, and language-specific best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Reviewer helps developers review pull requests, git diffs, and code snippets for code quality, security vulnerabilities, performance issues, and best practices across Python, JavaScript/TypeScript, Java, Go, Rust, and Shell.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review PRs, git diffs, branch comparisons, file paths, and pasted code before merging or sharing changes. It supports review across Python, JavaScript/TypeScript, Java, Go, Rust, and Shell scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may review private repositories, secrets, credentials, regulated data, or proprietary code if the user provides or grants access to that material. <br>
-Mitigation: Use only on code that the organization permits for agent review; avoid exposing secrets or sensitive repositories unless that review path is approved. <br>
-Risk: Review findings or proposed fixes may be incorrect, incomplete, or false positives. <br>
-Mitigation: Treat findings and patches as recommendations; have a developer verify issues, run tests, and review changes before merging. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review code changes before merging, check snippets for bugs or anti-patterns, audit common security issues, and improve code quality with actionable feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/eric-code-reviewer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ericlooi504) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with severity-ordered findings and optional inline code, patches, or shell commands when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by critical, important, and suggested issues; large reviews may focus on changed lines or critical areas first.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Code reviews may expose proprietary or secret-containing changes to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only in workspaces and model sessions approved for the code, diffs, or PRs being reviewed.
+
+Risk: Review findings can be incomplete or include false positives.
+
+Mitigation: Treat findings as advisory and have a developer verify security, correctness, and performance concerns before merging changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/eric-code-reviewer)
+- [Publisher profile](https://clawhub.ai/user/ericlooi504)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown review findings with severity sections, line references when available, and optional inline fixes or patch guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect user-provided code, git diffs, branch comparisons, or PR content; local diff workflows require git.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

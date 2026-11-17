@@ -1,41 +1,56 @@
-## Description: <br>
-Provides Speech-to-Text for Amharic audio and text translation between languages using the Addis Assistant API, with authentication through an x-api-key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Speech-to-Text (STT) and text Translation using the Addis Assistant API (api.addisassistant.com). Use when the user needs to convert an audio file to text (specifically Amharic), or translate text between languages (e.g., Amharic to English). Requires 'x-api-key'.
 
-## Publisher: <br>
-[dagmawibabi](https://clawhub.ai/user/dagmawibabi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dagmawibabi](https://clawhub.ai/user/dagmawibabi)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe Amharic audio and translate text through the Addis Assistant API. It is useful when a workflow needs scripted STT or language translation with an x-api-key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audio, text, and API keys are sent to an external service. <br>
-Mitigation: Use the skill only with audio or text that is appropriate to send to Addis Assistant and review the service handling requirements before use. <br>
-Risk: The scripts ask users to pass real API keys directly on the command line. <br>
-Mitigation: Prefer a safer secret source such as an environment variable or secret manager before using the scripts with production keys. <br>
-Risk: The artifact endpoints do not explicitly enforce https://. <br>
-Mitigation: Edit the scripts to use explicit https:// Addis Assistant endpoints before installation or deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Addis Assistant API Specifications](references/api_spec.md) <br>
+## Use Case:
 
+External users and developers use this skill to transcribe Amharic audio and translate text between supported language pairs through the Addis Assistant API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and curl command examples; scripts print API responses as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an x-api-key and sends audio or text to api.addisassistant.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends user audio and text to the Addis Assistant API.
+
+Mitigation: Use it only when the user trusts Addis Assistant with the submitted content and avoid sensitive content unless approved.
+
+Risk: The bundled scripts accept API keys as command-line arguments.
+
+Mitigation: Prefer a revised version that reads API keys from an environment variable or secret store before installation.
+
+Risk: The bundled scripts use endpoint strings without an explicit HTTPS scheme.
+
+Mitigation: Prefer a revised version with explicit HTTPS endpoints.
+
+## Reference(s):
+
+- [Addis Assistant API Specifications](references/api_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text or JSON API responses returned by Python scripts and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an x-api-key and sends submitted audio or text to the Addis Assistant API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-LeadGenerator generates B2B company lead lists in Poland by industry, location, and filters, with exports in CSV, JSON, and text formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LeadGenerator helps agents generate and export B2B company lead lists for Poland by industry, location, and optional company-size filters.
 
-## Publisher: <br>
-[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity)
 
-## Use Case: <br>
-Sales teams and business developers use this skill to draft prospect lists for Polish B2B outreach by industry and location. Generated contacts should be treated as unverified until checked against reliable business data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Poland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated business contacts may be synthetic or unverified while appearing to be real leads. <br>
-Mitigation: Treat output as draft or demo data and verify every company, contact, and data source before outreach, reporting, or paid delivery. <br>
-Risk: Using generated lead lists for outreach may create compliance and data-quality issues. <br>
-Mitigation: Complete an independent compliance review before using the output in sales campaigns or customer-facing reports. <br>
+## Use Case:
 
+Sales and business development users can ask an agent to draft Polish B2B lead lists filtered by industry and location, then export them for review. The generated contact records should be treated as unverified until checked against lawful, authoritative data sources.
 
-## Reference(s): <br>
-- [LeadGenerator on ClawHub](https://clawhub.ai/tomasz-pedzierski-infinity/leadgen-b2b) <br>
-- [Publisher profile](https://clawhub.ai/user/tomasz-pedzierski-infinity) <br>
+### Deployment Geography for Use:
 
+Poland
 
-## Skill Output: <br>
-**Output Type(s):** [text, csv, json, shell commands] <br>
-**Output Format:** [Plain text lead lists, CSV rows, or JSON objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lead data is generated from the skill logic and should be independently verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Generated company names and contact details may be mistaken for verified business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as unverified and validate leads against lawful, authoritative data sources before outreach, CRM import, or compliance-sensitive use.
+
+Risk: Users may rely on generated lead lists for commercial outreach without provenance or export safeguards.
+
+Mitigation: Require human review of generated records and document the source and consent basis before using the data in sales workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomasz-pedzierski-infinity/skills/leadgen-b2b)
+
+## Skill Output:
+
+**Output Type(s):** [text, CSV, JSON, shell commands]
+
+**Output Format:** [Plain text summaries with optional CSV or JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lead lists are generated from user-supplied industry and location criteria; script output is capped at 50 records and should be verified before business use.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

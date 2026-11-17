@@ -1,45 +1,60 @@
-## Description: <br>
-Teach your OpenClaw agent new abilities by creating custom skills from plain-English requests, including setup and testing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Skill Creator helps users generate custom OpenClaw skills from plain-English requests, including skill files, setup steps, testing prompts, and troubleshooting guidance.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate new OpenClaw skill files, installation steps, testing prompts, and troubleshooting guidance for workflow-specific agent capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may require API credentials for services such as Slack or Google Calendar. <br>
-Mitigation: Use least-privilege credentials, store secrets outside skill files, and review generated configuration before enabling the skill. <br>
-Risk: Generated skills may send messages, read local files, or handle sensitive workflow data. <br>
-Mitigation: Review generated code and add confirmation steps before actions that send messages or process sensitive data. <br>
-Risk: Generated skill code or setup guidance may be incomplete or unsuitable for a specific environment. <br>
-Mitigation: Test each generated skill in a controlled environment and scan it before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to create OpenClaw skills for workflow-specific integrations, local file processing, and API-backed automations without writing the skill manually.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennyzir/openclaw-skill-creator-pro) <br>
-- [OpenClaw Skill Creator documentation](https://claw0x.com/docs/openclaw-skill-creator) <br>
-- [Google Calendar API quickstart](https://developers.google.com/calendar/api/quickstart/nodejs) <br>
-- [Slack API quickstart](https://api.slack.com/start/quickstart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with TypeScript code blocks, installation steps, testing prompts, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated examples may reference local files, Slack, Google Calendar, or other services depending on the requested skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated skills may require sensitive credentials such as Google credential JSON files or Slack tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skills before installing them, avoid pasting real secrets into SKILL.md, and store credentials outside published skill folders.
+
+Risk: Generated skills may read sensitive calendars, files, or business data, or post messages to external collaboration services.
+
+Mitigation: Require explicit approval before enabling those actions and use least-privilege service permissions.
+
+Risk: Generated setup guidance may install dependencies that are not pinned.
+
+Mitigation: Pin and review dependencies before installation, then scan generated skills before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/kennyzir/skills/openclaw-skill-creator-pro)
+- [OpenClaw Skill Creator Documentation](https://claw0x.com/docs/openclaw-skill-creator)
+- [Google Calendar API Node.js Quickstart](https://developers.google.com/calendar/api/quickstart/nodejs)
+- [Slack API Quickstart](https://api.slack.com/start/quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON with embedded Markdown and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated skills may include dependency installation steps and environment-variable setup for external services.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

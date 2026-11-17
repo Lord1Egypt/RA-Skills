@@ -1,39 +1,50 @@
-## Description: <br>
-Expert guidance for building and maintaining projects with the Arcane Microframework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance for building and maintaining projects with the Arcane Microframework.
 
-## Publisher: <br>
-[capachow](https://clawhub.ai/user/capachow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[capachow](https://clawhub.ai/user/capachow)
 
-## Use Case: <br>
-Developers use this skill to build and maintain Arcane Microframework projects, including filesystem-based routing, layouts, helper loading, asset conventions, and localization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional initializer writes scaffold files into a target directory when run. <br>
-Mitigation: Run the initializer only when project file creation is intended, and review the target directory before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and maintain Arcane PHP microframework projects, including filesystem routes, layouts, helper cascades, automatic assets, and localization.
 
-## Reference(s): <br>
-- [Arcane Microframework Reference](references/DOCUMENTATION.md) <br>
-- [ClawHub skill page](https://clawhub.ai/capachow/arcane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with code examples and optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project structure recommendations and optional initializer usage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated guidance or project scaffolding changes could introduce incorrect routes, helper behavior, asset wiring, localization changes, or configuration edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file edits before applying them, with extra attention to configuration files such as .env.
+
+## Reference(s):
+
+- [Arcane Microframework Reference](references/DOCUMENTATION.md)
+- [Arcane on ClawHub](https://clawhub.ai/capachow/skills/arcane)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

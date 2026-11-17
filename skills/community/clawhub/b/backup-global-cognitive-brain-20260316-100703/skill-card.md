@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a persistent multi-layer memory and reasoning helper that records conversation context, retrieves stored facts and events, and suggests response strategies for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a persistent five-layer cognitive memory flow that records inputs, retrieves related working, episodic, and semantic memory, and suggests a response strategy.
 
-## Publisher: <br>
-[louiskwee](https://clawhub.ai/user/louiskwee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louiskwee](https://clawhub.ai/user/louiskwee)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local persistent memory, five-layer reasoning traces, and context enrichment to OpenClaw-style agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain conversation contents across sessions. <br>
-Mitigation: Use the skill only for projects where persistent memory is intended, and avoid entering secrets, credentials, private client data, or unrelated project content. <br>
-Risk: Stored memory can influence future agent responses in ways that are hard to audit if users do not inspect the memory files. <br>
-Mitigation: Confirm where the memory JSON files are stored and maintain a process to inspect, disable, or delete them before using the skill in sensitive workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to enrich an agent run with persistent memory recall, intent analysis, skill selection, and response guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/louiskwee/backup-global-cognitive-brain-20260316-100703) <br>
-- [Publisher profile](https://clawhub.ai/user/louiskwee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, Python API examples, JSON-like thought traces, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory summaries and suggested response strategies; persistent memory files may influence future sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, artifact __init__.py) <br>
+Risk: The skill stores raw prompts and can reuse remembered conversation content in later context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it with secrets, credentials, personal data, or confidential work unless persistence is opt-in, scoped, redacted, and deletable.
+
+Risk: The security evidence reports that memory files may be written outside the package folder.
+
+Mitigation: Configure storage to an approved host-controlled location and review write permissions before deployment.
+
+Risk: Automatically injected memory can carry stale or sensitive context into future agent responses.
+
+Mitigation: Review injected context, provide deletion and redaction controls, and limit memory scope per user or workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/louiskwee/skills/backup-global-cognitive-brain-20260316-100703)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Structured dictionary containing a thought trace, selected skill, and Markdown response suggestion.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist and reuse conversation content across sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1 @@
+Improves `ldm status` for installed-branch dogfood. Npm update probes now run with bounded concurrency instead of serially, so large extension sets can produce a useful status table before the total budget expires. Skipped update checks now include elapsed time, and new regression tests cover timeout reporting, concurrent probes, and the serial fallback path.

@@ -1,0 +1,200 @@
+# ==========================================================
+# mihomo 双订阅互备模板（已验证可用的结构）
+# 替换 <...> 占位符后使用；上传前务必校验 YAML
+# 设计要点：
+#   - 订阅更新走 proxy，避免"节点全挂 → 拉不到订阅"死锁
+#   - 自动切换靠 url-test 的 use 多 provider 混池，不用 fallback 套策略组
+#   - 国内 / 局域网直连，境外走节点
+# ==========================================================
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:9090
+secret: '<改成你自己的长随机串>'
+
+# ---------------- 订阅源 ----------------
+proxy-providers:
+  订阅A:
+    type: http
+    url: "<订阅A地址>"
+    interval: 3600
+    path: ./proxy_provider/a.yaml
+    proxy: DIRECT                      # 能直连就 DIRECT；被 SNI 阻断则改成引导节点名
+    exclude-filter: "流量|到期|重置|官网"
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+
+  订阅B:
+    type: http
+    url: "<订阅B地址>"
+    interval: 3600
+    path: ./proxy_provider/b.yaml
+    proxy: DIRECT
+    exclude-filter: "流量|到期|重置|官网"
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+
+# ---------------- 静态节点（仅在需要"引导"时启用） ----------------
+# 用途：订阅域名被 SNI 阻断时，用一条可用节点把订阅拉下来
+# proxies:
+#   - name: 🐣 引导节点
+#     type: vless
+#     server: <节点域名>
+#     port: <端口>
+#     uuid: <uuid>
+#     network: tcp
+#     udp: true
+#     tls: true
+#     flow: xtls-rprx-vision
+#     servername: <伪装 SNI>
+#     client-fingerprint: chrome
+#     skip-cert-verify: false
+#     reality-opts:
+#       public-key: <公钥>
+#       short-id: '<short-id>'
+#
+# 启用后把对应 provider 的 proxy 改成：proxy: 🐣 引导节点
+
+# ---------------- 策略组 ----------------
+proxy-groups:
+  # 总出口：默认走混池自动选择；也可手动锁定单家或直连
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - 🔯 自动选择
+      - ☁️ 订阅A
+      - ☁️ 订阅B
+      - 🖐️ 手动切换
+      - DIRECT
+
+  # 互为主备的核心：两家节点混成一个池子统一测速，谁快用谁
+  # 某一家整片失效 → 它的节点全部超时被排除 → 流量自动落到另一家
+  - name: 🔯 自动选择
+    type: url-test
+    use:
+      - 订阅A
+      - 订阅B
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 30
+    timeout: 3000
+    lazy: false
+
+  - name: ☁️ 订阅A
+    type: url-test
+    use:
+      - 订阅A
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 30
+    timeout: 3000
+    lazy: false
+
+  - name: ☁️ 订阅B
+    type: url-test
+    use:
+      - 订阅B
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 30
+    timeout: 3000
+    lazy: false
+
+  - name: 🖐️ 手动切换
+    type: select
+    use:
+      - 订阅A
+      - 订阅B
+
+  - name: 🎯 国内直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+
+# ---------------- 分流规则 ----------------
+rules:
+  # 1) 必须走代理的，放在 GEOIP 之前
+  - DOMAIN-SUFFIX,google.com,🚀 节点选择
+  - DOMAIN-SUFFIX,googleapis.com,🚀 节点选择
+  - DOMAIN-SUFFIX,gstatic.com,🚀 节点选择
+  - DOMAIN-SUFFIX,googleusercontent.com,🚀 节点选择
+  - DOMAIN-KEYWORD,google,🚀 节点选择
+  - DOMAIN-SUFFIX,github.com,🚀 节点选择
+  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,github.io,🚀 节点选择
+  - DOMAIN-SUFFIX,youtube.com,🚀 节点选择
+  - DOMAIN-SUFFIX,telegram.org,🚀 节点选择
+  - DOMAIN-SUFFIX,ollama.com,🚀 节点选择
+  - DOMAIN-SUFFIX,ollama.ai,🚀 节点选择
+  - DOMAIN-SUFFIX,pypi.org,🚀 节点选择
+  - DOMAIN-SUFFIX,pythonhosted.org,🚀 节点选择
+  - DOMAIN-SUFFIX,npmjs.org,🚀 节点选择
+  - DOMAIN-SUFFIX,huggingface.co,🚀 节点选择
+
+  # 2) 国内镜像强制直连
+  - DOMAIN-SUFFIX,pypi.tuna.tsinghua.edu.cn,DIRECT
+  - DOMAIN-SUFFIX,mirrors.aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,mirrors.cloud.tencent.com,DIRECT
+  - DOMAIN-SUFFIX,mirrors.ustc.edu.cn,DIRECT
+  - DOMAIN-SUFFIX,mirrors.huaweicloud.com,DIRECT
+  - DOMAIN-SUFFIX,registry.npmmirror.com,DIRECT
+  - DOMAIN-SUFFIX,hf-mirror.com,DIRECT
+
+  # 3) 局域网 / 内网（必须 no-resolve）
+  - DOMAIN-SUFFIX,localdomain,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - DST-PORT,5353,DIRECT
+
+  # 4) 国内 IP 直连
+  - GEOIP,CN,🎯 国内直连
+
+  # 5) 兜底
+  - MATCH,🚀 节点选择
+
+# ---------------- DNS ----------------
+dns:
+  enable: true
+  listen: 0.0.0.0:1053        # 53 常被宿主占用，改 1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.localdomain'
+    - '*.example.com'
+    - '*.test'
+    - '*.localhost'
+  default-nameserver:          # 只接受 IP
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:     # 解析节点域名，避免 fake-ip 污染
+    - https://dns.alidns.com/dns-query
+    - 223.5.5.5
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  fallback:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4

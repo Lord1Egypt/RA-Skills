@@ -1,47 +1,61 @@
-## Description: <br>
-Generates AI videos through the Baiyin open platform, including text-to-video, image-to-video, and task status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI videos through the Baiyin Open Platform, including text-to-video, image-to-video, and task status queries.
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure Baiyin video generation jobs, collect required prompt and media inputs, submit tasks, and poll for generated video results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Baiyin API key for authenticated requests to a third-party video service. <br>
-Mitigation: Use a scoped Baiyin API key, store it in the environment, and rotate or revoke it if exposed. <br>
-Risk: Local media paths may be uploaded automatically to Baiyin when a URL is not supplied. <br>
-Mitigation: Provide only media intended for upload and avoid sensitive files or signed URLs. <br>
-Risk: The security evidence flags hidden remote update checks and automatic media uploads for review. <br>
-Mitigation: Review before installing and require update checks and uploads to be explicit in deployment policy. <br>
+## Use Case:
 
+External users and developers use this skill to configure Baiyin video generation jobs, provide prompts or media inputs, submit jobs, and track completion until a video URL or failure message is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-video-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jiuping520) <br>
-- [API schema reference](references/api-schema.md) <br>
-- [Error and polling reference](references/error-and-polling.md) <br>
-- [Interaction rules](references/interaction-rules.md) <br>
-- [Example flow](references/example-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request/response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BAIYIN_API_KEY, may upload local media to Baiyin, submits generation tasks, and polls task status until completion, failure, or timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: The skill can upload local media paths to an external Baiyin service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Baiyin API key, provide only intended media files, and confirm uploads before sending local files.
+
+Risk: Prompts and media are sent to ai.hikoon.com for video generation.
+
+Mitigation: Avoid submitting confidential prompts, private files, or sensitive media unless the service is approved for that data.
+
+Risk: The skill asks agents to perform automatic self-update checks before normal operation.
+
+Mitigation: Review updates before installation and scan the skill package before deployment.
+
+## Reference(s):
+
+- [API Schema](references/api-schema.md)
+- [Interaction Rules](references/interaction-rules.md)
+- [Error and Polling](references/error-and-polling.md)
+- [Example Flow](references/example-flow.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiuping520/skills/baiyin-video-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [User-facing text or Markdown with shell command execution by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return task identifiers, request identifiers, status updates, error messages, and generated video URLs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

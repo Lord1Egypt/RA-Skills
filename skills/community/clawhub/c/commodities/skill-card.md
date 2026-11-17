@@ -1,43 +1,57 @@
-## Description: <br>
-Fetch commodity prices for WTI (Crude Oil), Brent, Natural Gas, and Gold using Yahoo Finance (yfinance). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch commodity prices for WTI (Crude Oil), Brent, Natural Gas, and Gold using Yahoo Finance (yfinance). Follow the same pattern as stock-price-checker-pro.
 
-## Publisher: <br>
-[youpele52](https://clawhub.ai/user/youpele52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youpele52](https://clawhub.ai/user/youpele52)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch current Yahoo Finance commodity prices, daily movement, recent ranges, volume context, and related headlines for WTI crude oil, Brent crude, natural gas, and gold futures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Yahoo Finance data and related headlines may be delayed, unavailable, or inaccurate for financial decisions. <br>
-Mitigation: Verify market data and news against authoritative sources before making trading, investment, or operational decisions. <br>
-Risk: The skill contacts Yahoo Finance through yfinance and returns external news links. <br>
-Mitigation: Run it only in environments where Yahoo Finance network access is expected, and treat returned links as external content. <br>
-Risk: Running through uv can install the yfinance dependency at execution time. <br>
-Mitigation: Review dependency installation policy and pin or preinstall dependencies in controlled environments when required. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current commodity price snapshots, daily changes, recent trading ranges, volume context, and available headlines for supported Yahoo Finance commodity tickers.
 
-## Reference(s): <br>
-- [Commodities skill page](https://clawhub.ai/youpele52/commodities) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text commodity price report with headline titles and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses uv to run a Python script that installs yfinance from the inline dependency block when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Runtime dependency resolution can introduce supply-chain or reproducibility risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review dependencies before deployment, especially yfinance resolved through uv.
+
+Risk: The skill makes outbound Yahoo Finance requests and live data or headlines may be unavailable or delayed.
+
+Mitigation: Run it only in environments where outbound finance-data requests are approved, and treat returned market data as informational rather than authoritative trading advice.
+
+Risk: The default temporary lock file is shared and may be unsuitable for high-security or multi-user systems.
+
+Mitigation: Set SKILL_MUTEX_LOCK to a private user-owned runtime path before use in shared environments.
+
+## Reference(s):
+
+- [Yahoo Finance](https://finance.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text commodity price report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and Python 3.12 or newer; resolves yfinance at runtime and may make outbound Yahoo Finance requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

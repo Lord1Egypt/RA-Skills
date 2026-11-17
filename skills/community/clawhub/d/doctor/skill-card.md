@@ -1,42 +1,59 @@
-## Description: <br>
-Provide health information, symptom guidance, and wellness support with appropriate medical boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doctor helps an agent triage health questions, interpret labs and medication safety issues, and produce urgency-focused guidance with clear escalation tripwires.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to provide general health information, symptom triage questions, wellness guidance, first-aid basics, and clear escalation advice while preserving medical safety boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general health guidance as a diagnosis or substitute for professional care. <br>
-Mitigation: State that responses are informational, encourage consultation with qualified medical professionals, and escalate severe, sudden, recurring, or persistent symptoms to appropriate care. <br>
-Risk: Medication or treatment questions can require individualized clinical judgment. <br>
-Mitigation: Avoid diagnosis, prescriptions, medication dosing, and treatment decisions; direct users to qualified clinicians for those decisions. <br>
-Risk: Emergency symptoms require immediate action outside an agent conversation. <br>
-Mitigation: Advise emergency services for urgent symptoms such as chest pain, difficulty breathing, severe bleeding, loss of consciousness, suspected stroke, or severe allergic reaction. <br>
+## Use Case:
 
+External users use Doctor through an agent to get urgency-oriented health guidance for symptoms, lab results, medications, chronic conditions, appointments, prevention, child health, mental health, reproductive health, and older-adult concerns. The skill is intended to help decide when to seek care and what to tell a clinician, not to diagnose or change prescription-only treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/doctor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces general health guidance only; it should not provide diagnosis, treatment decisions, medication dosing, or emergency-care substitutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles very sensitive health information and defaults to reading and persistently updating local medical records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use health_logging: minimal or health_logging: off when durable records are not wanted, and require manual approval before reads, writes, moves, or deletions if local health-record updates are a concern.
+
+Risk: Health guidance can be harmful if emergency warning signs are missed or reassurance is too broad.
+
+Mitigation: Keep red-flag escalation first, answer in urgency windows with explicit tripwires, and route diagnosis or prescription decisions to a qualified clinician.
+
+Risk: Medication advice may be unsafe if allergies, current medicines, pregnancy status, kidney or liver status, or existing conditions are not considered.
+
+Mitigation: Read the stored health profile before naming any drug or dose, avoid initiating or changing prescription-only medicine, and frame medication changes as questions for the prescriber or pharmacist.
+
+## Reference(s):
+
+- [Doctor ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/doctor)
+- [Doctor Clawic Skill Page](https://clawic.com/skills/doctor)
+- [Clawic Skill Library](https://clawic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files, Configuration]
+
+**Output Format:** [Markdown or plain text health guidance with optional local note updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local Clawic health notes when health_logging is enabled; credentials are represented as pointers rather than stored values.]
+
+## Skill Version(s):
+
+1.0.2 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

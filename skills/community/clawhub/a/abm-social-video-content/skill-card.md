@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents in creating platform-optimized social media videos with React and Remotion, including formats, composition structure, mobile-first layout guidance, and render commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create platform-optimized social video content with React and Remotion for vertical, square, and landscape formats.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Developers, marketers, and AI agents use this skill to create short-form and feed-ready social videos for Reels, TikTok, YouTube Shorts, YouTube, LinkedIn, Twitter/X, and related platforms. It helps select aspect ratios, durations, Remotion compositions, mobile-first layout rules, and render commands for each platform variant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated videos may contain incorrect, outdated, or off-brand social platform specifications or marketing content. <br>
-Mitigation: Verify current platform limits, brand assets, messaging, and final rendered video content before publishing. <br>
-Risk: Remotion render and preview commands execute inside the user's local project and depend on that project's installed dependencies. <br>
-Mitigation: Run suggested Remotion commands only in projects with trusted dependencies and review command targets before execution. <br>
+## Use Case:
 
+Developers, content teams, and marketing teams use this skill to plan and generate Remotion-based social video projects with platform-specific compositions, dimensions, durations, and render commands.
 
-## Reference(s): <br>
-- [Social Platform Specifications](references/platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript/React code examples and Remotion shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for Remotion project files, reusable scene components, preview commands, and one render command per platform variant] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Ready-to-run Remotion commands can fetch and execute an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-local, lockfile-managed Remotion dependency or pin the package version before running preview or render commands.
+
+Risk: Published platform limits may change over time.
+
+Mitigation: Verify current social platform creator documentation before publishing rendered videos.
+
+## Reference(s):
+
+- [Social Platform Specifications](artifact/references/platforms.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-social-video-content)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript/TSX and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces platform-specific Remotion composition guidance and render commands for social video variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

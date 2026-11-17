@@ -20,6 +20,15 @@ This skill is for routing Wan 2.7 Image questions to the right APIDot docs, mode
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Wan 2.7 Image model page: https://apidot.ai/models/wan-2-7-image
+- Read Wan 2.7 Image API docs: https://apidot.ai/docs/wan-2-7-image
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Wan 2.7 Image API, Wan 2 7 Image, wan2.7 image, wan27 image, wan-2-7-image, Wan 2.7 Image Pro, Wan image generation, Wan image editing, multi-reference image generation, or APIDot Wan API.

@@ -1,38 +1,53 @@
-## Description: <br>
-Monitor blood glucose via Dexcom G7/G6 CGM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blood glucose via Dexcom G7/G6 CGM.
 
-## Publisher: <br>
-[chris-clem](https://clawhub.ai/user/chris-clem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chris-clem](https://clawhub.ai/user/chris-clem)
 
-## Use Case: <br>
-External users and developers with Dexcom G6 or G7 Share access use this skill to retrieve current glucose readings as either a formatted report or raw JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dexcom credentials and glucose readings are sensitive health data and may be exposed through local config, agent context, logs, or chat history. <br>
-Mitigation: Use a secure secret store or tightly permissioned local config, avoid committing credentials, limit where output is shared, and rotate the Dexcom password if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dexcom](https://www.dexcom.com) <br>
-- [Dexcom CGM on ClawHub](https://clawhub.ai/chris-clem/dexcom) <br>
+## Use Case:
 
+Developers and Dexcom users with Share access use this skill to retrieve current G6/G7 glucose readings and provide an agent with either a formatted glucose status report or raw JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Formatted terminal report or raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, Dexcom Share credentials, and DEXCOM_USER and DEXCOM_PASSWORD environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global, subject to Dexcom Share account and regional service availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive Dexcom account credentials and glucose readings.
+
+Mitigation: Use a restricted environment, avoid checked-in or shared configuration files, and protect any local configuration that contains the password.
+
+Risk: Runtime dependencies are installed and executed through uv.
+
+Mitigation: Pin or lock dependencies before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris-clem/skills/dexcom)
+- [Dexcom](https://www.dexcom.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Formatted plaintext report or pretty-printed JSON from a command-line script, with Markdown setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEXCOM_USER and DEXCOM_PASSWORD; DEXCOM_REGION is optional and defaults to ous.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

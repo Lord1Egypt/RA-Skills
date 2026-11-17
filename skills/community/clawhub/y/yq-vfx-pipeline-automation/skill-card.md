@@ -1,40 +1,57 @@
-## Description: <br>
-Automates a VFX asset workflow that turns a user brief into optimized prompts, concept images, optional videos, and an execution report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a VFX media production workflow that parses requirements, creates optimized prompts, generates concept images, gates video creation on user confirmation, and writes an execution report.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-VFX artists, game teams, and creative production users can use this skill to structure VFX concept production from requirements through prompt generation, image output, optional video output, and a report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad VFX creation requests and create image or video output files in the workspace. <br>
-Mitigation: Review generated prompts and images before approving any video generation. <br>
-Risk: Generated concept images or videos may not match the requested composition or quality. <br>
-Mitigation: Use the built-in confirmation checkpoints and quality review before continuing to later workflow steps. <br>
+## Use Case:
 
+External creators, technical artists, and game or VFX teams use this skill to turn a VFX request into structured prompts, concept image batches, optional confirmed video generation, and an execution report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-vfx-pipeline-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Prompt text, generated media files, and a Markdown execution report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image generation is followed by user confirmation; video generation requires explicit user selection before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill can automatically generate concept images and write output files when a matching VFX-material request triggers it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants media generation before invoking the workflow; users who only want advice should state that clearly.
+
+Risk: Video generation may create unintended media or consume additional generation resources if started accidentally.
+
+Mitigation: Keep the documented video confirmation gate in place and require an explicit user selection before any video-generation step.
+
+Risk: Generated VFX concepts or reports may not match the user's artistic intent or production constraints.
+
+Mitigation: Review generated images, prompts, and the final report before using outputs in a production asset pipeline.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tianheihei002/skills/yq-vfx-pipeline-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown report, optimized prompts, generated media files, and concise workflow status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May organize outputs under /workspace/vfx-output by date, with images, videos, prompts, and report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release evidence, and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

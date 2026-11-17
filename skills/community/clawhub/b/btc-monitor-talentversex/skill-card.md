@@ -1,50 +1,60 @@
-## Description: <br>
-BTC and ETH market monitor with public API data, six bottom-fishing signals, and optional Discord delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BTC and ETH market monitor with public API data, six bottom-fishing signals, and optional Discord delivery. TalentverseX
 
-## Publisher: <br>
-[Liammme](https://clawhub.ai/user/Liammme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liammme](https://clawhub.ai/user/liammme)
 
-## Use Case: <br>
-Developers, operators, and market-monitoring users can run this skill to generate scheduled or on-demand BTC/ETH oversold-signal summaries from public market APIs. It is suited for lightweight informational reporting and optional Discord delivery, not trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market summaries and coarse recommendations may be mistaken for trading advice. <br>
-Mitigation: Treat the report as informational only, review the underlying signals, and note that the artifact does not place trades. <br>
-Risk: Discord delivery can post generated reports to an unintended channel if credentials or channel settings are misconfigured. <br>
-Mitigation: Enable Discord only for the intended channel and use a least-privilege bot token stored in the configured environment variable. <br>
-Risk: Recurring cron scheduling can run background monitoring more often or longer than intended. <br>
-Mitigation: Review config.json schedule before running setup_cron.sh and remove the marked crontab entry when recurring monitoring is no longer wanted. <br>
-Risk: Public market APIs may fail, rate-limit, or return incomplete data. <br>
-Mitigation: Monitor runtime errors, reduce scheduler frequency when needed, and treat missing indicators as a data availability issue rather than a signal. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to generate lightweight BTC/ETH market summaries, oversold-signal checks, and optional Discord alerts from public market APIs. Outputs are informational and are not trading advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Liammme/btc-monitor-talentversex) <br>
-- [Skill runtime documentation](docs/README.md) <br>
-- [Troubleshooting guide](docs/TROUBLESHOOTING.md) <br>
-- [Binance Klines API](https://api.binance.com/api/v3/klines) <br>
-- [Bybit Kline API](https://api.bybit.com/v5/market/kline) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3/coins) <br>
-- [Alternative.me Fear & Greed API](https://api.alternative.me/fng/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-text market report with optional Discord messages and shell setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are informational, include heuristic signal counts and recommendations, and do not place trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release evidence) <br>
+Risk: The optional cron installer can create persistent scheduled execution from unvalidated config.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid scripts/setup_cron.sh unless the config and resulting cron entry have been inspected and the operator is prepared to remove the entry manually.
+
+Risk: Optional Discord delivery sends the generated market report to a configured Discord channel using a bot token from the environment.
+
+Mitigation: Enable Discord only after verifying the destination channel, bot permissions, and environment token handling.
+
+Risk: The report depends on public market APIs and includes heuristic indicators such as an approximate MVRV proxy.
+
+Mitigation: Treat the output as informational, verify important market data independently, and do not use it as trading advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liammme/skills/btc-monitor-talentversex)
+- [Skill definition](artifact/SKILL.md)
+- [Runtime docs](artifact/docs/README.md)
+- [Troubleshooting](artifact/docs/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text market report with optional Discord messages and setup shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report includes BTC/ETH indicators, signal counts, coarse recommendations, and notes that outputs are informational only.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

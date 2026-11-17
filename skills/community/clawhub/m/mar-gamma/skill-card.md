@@ -1,40 +1,51 @@
-## Description: <br>
-Generate AI-powered presentations, documents, and social posts using SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-powered presentations, documents, and social posts using SkillBoss API Hub.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to generate presentations, pitch decks, documents, reports, and social carousels from provided content or topics through SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided content and the SKILLBOSS_API_KEY are sent to SkillBoss/HeyBossAI for generation. <br>
-Mitigation: Use only approved content, avoid secrets or regulated data, and prefer a limited-scope or revocable API key. <br>
+## Use Case:
 
+External users and developers use this skill to create presentations, pitch decks, documents, reports, and social media carousels from supplied content or topic prompts via SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-gamma) <br>
-- [Publisher profile](https://clawhub.ai/user/marjoriebroad) <br>
-- [SkillBoss API Hub pilot endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated content URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends user-provided content to SkillBoss/HeyBossAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User prompts, drafts, pitch decks, reports, and related instructions are sent to SkillBoss/HeyBossAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated data, or confidential business material unless SkillBoss/HeyBossAI is approved for the intended use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-gamma)
+- [ClawHub publisher profile](https://clawhub.ai/user/marjoriebroad)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and URL output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends submitted content to SkillBoss/HeyBossAI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

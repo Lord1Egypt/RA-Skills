@@ -1,388 +1,143 @@
 ---
 name: hybrid-gateway
-description: Set up and troubleshoot a hybrid OpenClaw architecture where the gateway runs on a cloud VPS and a local machine (Mac Mini, desktop, Raspberry Pi, etc.) acts as a node. Covers Tailscale networking, gateway bind modes, node pairing, LaunchAgent/systemd auto-start, exec routing, SSH fallback, and the common gotchas that break this setup. Use when connecting a local node to a remote gateway, debugging node connectivity, or planning a VPS + local hardware split.
-metadata:
-  openclaw:
-    env:
-      - name: OPENCLAW_GATEWAY_TOKEN
-        description: Your existing gateway auth token (already configured on your VPS). The node needs this to authenticate with the gateway.
-        scope: node-service
-      - name: OPENCLAW_ALLOW_INSECURE_PRIVATE_WS
-        description: Optional. Set to 1 to allow ws:// over Tailscale (safe — traffic is WireGuard-encrypted). Not needed if using wss:// via Tailscale Serve.
-        scope: node-service
-        required: false
+description: Set up and troubleshoot a secure hybrid OpenClaw architecture where the Gateway runs on a VPS and a Mac or other local machine is a paired node. Covers Tailscale node pairing (single-use join links), exact-request approval and reapproval, remote node exec with least-privilege allowlists, node reconnect, and SSH as a separate fallback. Use when connecting a local node to a remote Gateway, debugging node connectivity or "reapproval pending", or planning a VPS + local hardware split.
+license: MIT
 ---
 
-# Hybrid Gateway — VPS + Local Node
+# Hybrid Gateway: VPS + Local Node
 
-Run your OpenClaw gateway on a cloud VPS for reliability, and connect a local machine as a node for hardware capabilities the VPS lacks: residential IP, GPU/ML inference, browser automation, local models, macOS-only tools, etc.
+The Gateway runs on an always-on VPS and owns messaging, agents, and models. A local machine (Mac Mini, desktop, Pi) is a paired **node** for what the VPS lacks: GPU or local models, a real browser with a residential IP, macOS tools, local files. A node is a peripheral.
 
-## Why this architecture?
+## Safety contract
 
-| | VPS (Gateway) | Local Node |
-|---|---|---|
-| **Always online** | ✅ Static IP, no ISP outages | ❌ Power/network dependent |
-| **Messaging** | ✅ Handles Telegram, Discord, etc. | ❌ Not its job |
-| **Agent brain** | ✅ Runs models, routes tools | ❌ Peripheral only |
-| **GPU / ML** | ❌ Most VPS have no GPU | ✅ Apple Silicon, NVIDIA, etc. |
-| **Browser automation** | ⚠️ Headless only, cloud IP | ✅ Real browser, residential IP |
-| **Local models** | ❌ No hardware for it | ✅ Ollama, whisper, etc. |
-| **macOS tools** | ❌ Linux VPS | ✅ Native macOS (if using Mac) |
+- **Route:** Gateway stays on loopback; Tailscale Serve (or another stable HTTPS reverse proxy with WebSocket upgrade) gives it a `wss://` URL on the tailnet. Never expose port 18789 to the public internet, never use Tailscale Funnel for it. `gateway.bind=lan`, `0.0.0.0`, and plaintext `ws://` are not defaults.
+- **Pairing:** a single-use Node-host join link from the Control UI or `openclaw devices join-code`. Never paste Gateway tokens, setup codes, or keys into chat, logs, or shell history.
+- **Approval:** inspect the exact request (name, device id, IP, requested commands) and approve that request id only. A capability expansion is a new approval and may stay pending.
+- **Exec:** named absolute-path commands plus approval gates. No shell (`sh`, `bash`, `zsh`) in any allowlist.
+- **SSH:** optional, separate, least-privilege. It is not a substitute for pairing and is set up in the companion `remote-node-ssh` skill.
+
+Each step ends with a **Done when** check. Stop at a failed check.
 
 ## Prerequisites
 
-Before starting, you need:
+Upgrade the Gateway first; a node may run the same version or the previous supported release (N-1) until it is upgraded. Both machines are on one tailnet (`tailscale status` shows both) and the VPS Gateway is running (`openclaw gateway status`).
 
-1. **OpenClaw installed on both machines** — VPS (gateway) and local machine (node)
-2. **Tailscale installed on both machines** — this is how they talk to each other
-   - [Download Tailscale](https://tailscale.com/download)
-   - Sign in on both machines with the same Tailscale account
-   - Verify connectivity: `tailscale status` on either machine should show both devices
-3. **Gateway already running on the VPS** — `openclaw gateway status` should show running
-4. **Gateway auth token configured** — required for non-loopback connections
-
-If you don't have Tailscale set up yet, do that first. The rest of this guide assumes both machines are on the same tailnet.
-
-## Step 1 — Configure gateway bind mode
-
-By default, the gateway binds to `loopback` (127.0.0.1 only). Your node can't reach that from another machine.
-
-**Recommended: `lan` bind (listens on all interfaces)**
-
-```bash
-# On the VPS
-openclaw config set gateway.bind lan
-```
-
-This listens on `0.0.0.0` — both `127.0.0.1` (local agents) and your Tailscale IP (remote node) will work.
-
-**Alternative: `tailnet` bind (Tailscale IP only)**
-
-```bash
-openclaw config set gateway.bind tailnet
-```
-
-⚠️ **Warning:** `tailnet` bind breaks local agent-to-agent sessions. Local tools try `ws://127.0.0.1:18789` but the gateway only listens on the Tailscale IP. If you use multi-agent workflows, use `lan` instead.
-
-**Ensure auth is configured** (required for any non-loopback bind):
-
-```bash
-# Check current auth
-openclaw config get gateway.auth.mode
-openclaw config get gateway.auth.token
-
-# Set token auth if not configured
-openclaw config set gateway.auth.mode token
-openclaw config set gateway.auth.token "<your-token>"
-
-# Add rate limiting (recommended)
-openclaw config set gateway.auth.rateLimit.maxAttempts 10
-openclaw config set gateway.auth.rateLimit.windowMs 60000
-openclaw config set gateway.auth.rateLimit.lockoutMs 300000
-```
-
-Restart the gateway after config changes:
-
-```bash
-openclaw gateway restart
-```
-
-Verify:
-
-```bash
-openclaw gateway status
-# Should show: bind=lan (0.0.0.0) and RPC probe: ok
-```
-
-## Step 2 — Start the node on your local machine
-
-On the local machine (Mac Mini, desktop, etc.):
-
-```bash
-# Get your VPS Tailscale IP (run on VPS)
-tailscale ip -4
-# Example output: 100.x.y.z
-
-# On the local machine, set the gateway token
-export OPENCLAW_GATEWAY_TOKEN="<your-token>"
-
-# Start the node (foreground, for testing)
-openclaw node run --host <VPS_TAILSCALE_IP> --port 18789 --display-name "My Node"
-```
-
-If it connects, you'll see it register. If not, see Troubleshooting below.
-
-## Step 3 — Approve the device pairing
+## Step 1: Keep the Gateway private, publish it with Tailscale Serve
 
 On the VPS:
 
 ```bash
-openclaw devices list
-# Find the pending request from your node
-openclaw devices approve <requestId>
+openclaw config get gateway.bind          # keep "loopback"
+openclaw config get gateway.auth.mode     # "token" or "password"; never "none"
+tailscale serve --bg --https=443 http://127.0.0.1:18789
+tailscale serve status                    # https://<vps>.<tailnet>.ts.net (tailnet only)
+```
 
-# Verify
+Serve runs on the same host and forwards from 127.0.0.1, so for this exact setup `gateway.trustedProxies` should contain only `127.0.0.1`. If you already run another legitimate reverse proxy, keep its address too; never widen the list to the Tailscale range `100.0.0.0/8`, or every node counts as a proxy and is rejected with `403 Proxy client attribution is required`.
+
+A direct tailnet or LAN bind without Serve is possible but outside this skill: it needs token or password auth, a firewall limiting 18789 to private addresses, no port-forward or Funnel, and a TLS route for pairing. If you cannot prove that boundary, use Serve.
+
+**Done when:** `openclaw gateway status` shows `bind=loopback`, and `tailscale serve status` lists the `https://…ts.net` route as tailnet only.
+
+## Step 2: Mint a single-use join link
+
+Control UI: **Devices → Node host → Create pairing link**, then copy the link privately to the node machine. CLI equivalent on the VPS:
+
+```bash
+openclaw devices join-code --json    # prints {"joinUrl": "https://…/j/<code>", "command": "…"}
+```
+
+Put only the `joinUrl` value into a private file on the node (for example `~/join.txt`, `chmod 600`), not the JSON document. The link is single-use and expires. Never relay it through a chat transcript.
+
+**Done when:** the join URL exists in that one file on the node and nowhere in chat or shell history.
+
+## Step 3: Connect the node
+
+On the node machine, pick one. `--target-file` reads the join URL from the file and deletes it, and the link is single-use, so each command below needs its own link from Step 2.
+
+**A. Service install (normal path):**
+
+```bash
+openclaw connect --target-file ~/join.txt --display-name "Mac Mini" --service
+openclaw node status                          # service, pid, command
+```
+
+**B. Foreground proof first:** run `openclaw connect --target-file ~/join.txt --display-name "Mac Mini"` without `--service`, watch it register, stop it, then return to Step 2, mint a fresh link, and run A with that fresh file.
+
+The service form writes `~/Library/LaunchAgents/ai.openclaw.node.plist` on macOS or a systemd user unit on Linux; the node log is `~/Library/Logs/openclaw/node.log` on macOS.
+
+**Done when:** `openclaw node status` on the node shows the service running, and `openclaw nodes pending` on the VPS shows one new request from it.
+
+## Step 4: Approve the exact request
+
+On the VPS:
+
+```bash
+openclaw nodes pending                      # request id, node name, IP, requested caps
+openclaw nodes describe --node "Mac Mini"   # device, model, PATH, current vs pending caps and commands
+openclaw nodes approve <request-id>         # that id only; needs operator.admin
 openclaw nodes status
-# Should show your node as paired and connected
 ```
 
-## Step 4 — Install as a service (auto-start)
+Compare the request with the machine you just installed: display name, IP, hardware model, requested commands. Approve nothing you did not just create.
 
-You want the node to survive reboots and run headless.
+After an upgrade the node advertises new capabilities (for example `claude-sessions`, `mcp`, `fs.listDir`) and files a **reapproval** request. Existing caps keep working while it is pending. Approving it grants Gateway agents that new surface (including Claude Code session and terminal control), so read `describe` first and leave it pending if the workflow does not need it.
 
-### macOS (LaunchAgent)
+**Done when:** `openclaw nodes status` shows the node `paired · connected` with no unreviewed request accepted.
+
+## Step 5: Route exec and allowlist named binaries
 
 ```bash
-openclaw node install --host <VPS_TAILSCALE_IP> --port 18789 --display-name "My Node"
+openclaw config set tools.exec.node "Mac Mini"
+openclaw approvals get --node "Mac Mini"                   # defaults + current allowlist
+openclaw approvals allowlist add --agent main --node "Mac Mini" "/usr/bin/uname"
+openclaw approvals allowlist add --agent main --node "Mac Mini" "/opt/homebrew/bin/ollama"
+openclaw exec-policy show                                  # requested vs host vs effective
 ```
 
-This creates a LaunchAgent plist that auto-starts on login.
-
-**Important:** If the gateway requires `ws://` over a private network (not `wss://`), you may need to set an environment variable in the LaunchAgent plist:
-
-Add these environment variables to the plist's `EnvironmentVariables` dict:
-
-- `OPENCLAW_GATEWAY_TOKEN` — your existing gateway auth token (the same one from `openclaw config get gateway.auth.token` on the VPS)
-- `OPENCLAW_ALLOW_INSECURE_PRIVATE_WS` = `1` — allows `ws://` over Tailscale (safe — traffic is WireGuard-encrypted at the network layer)
-
-See the [OpenClaw node host docs](https://docs.openclaw.ai/nodes/) for the full plist reference.
-
-The insecure WS override is only needed because OpenClaw blocks plaintext `ws://` to non-loopback addresses by default. On Tailscale this is safe since all traffic is encrypted by WireGuard.
-
-The LaunchAgent plist location: `~/Library/LaunchAgents/ai.openclaw.node.plist`
-
-Load/unload manually:
+Agents then run `exec host=node command="/usr/bin/uname -a"`. Keep node defaults at `security=allowlist, ask=on-miss` so anything off the list raises an approval instead of running. One pattern per binary, absolute path, `--agent main` rather than `*`. Never allowlist a shell, an interpreter with arbitrary code, or `rm`. Direct probe from the VPS:
 
 ```bash
-launchctl load ~/Library/LaunchAgents/ai.openclaw.node.plist
-launchctl unload ~/Library/LaunchAgents/ai.openclaw.node.plist
+openclaw nodes invoke --node "Mac Mini" --command system.which --params '{"bins":["ollama"]}' --json
 ```
 
-Check logs: `~/.openclaw/logs/node.log`
+**Done when:** `approvals get` shows only binaries with a named use, and an unlisted command produces a pending approval rather than output.
 
-### Linux (systemd)
+## Step 6: SSH fallback (optional, separate)
+
+SSH covers file transfer, a full login shell, and an offline node. It is a second trust boundary: dedicated non-root user, ed25519 key, verified host key, `IdentitiesOnly yes`, private Tailscale route, `rsync -avn` preview before any write, no destructive defaults. Set it up with the companion `remote-node-ssh` skill only after Steps 1 to 5 pass.
+
+**Done when:** the fallback has a named owner, a least-privilege account, and a tested private route.
+
+## Diagnose by the first failed transition
+
+| Symptom | Meaning | Action |
+|---|---|---|
+| No connection attempt in `node.log` | route | fix DNS, Serve, TLS, firewall; `tailscale status` on both |
+| `403 Proxy client attribution is required` | trustedProxies too wide | narrow `gateway.trustedProxies`, restart |
+| `Cannot connect over plaintext ws://` | no TLS on the route | use the Serve `wss://` URL |
+| auth error, pending list empty | credential | mint a new join link (Step 2); old links expire |
+| `pairing required` | route and auth fine | `nodes pending` → approve the exact id |
+| `reapproval pending` after upgrade | new caps requested | `nodes describe`, then approve or leave pending |
+| paired but disconnected | node side | `openclaw node status` on the node; sleep, Wi-Fi; prefer Ethernet, disable sleep |
+| exec denied or `command not found` | allowlist or PATH | `approvals get --node`; use the absolute path from `nodes describe` PATH |
+
+A request id is stale after any retry that changed the node's identity or requested caps. Re-list before approving. Order: route → auth → pairing → disconnect.
+
+## Verify
 
 ```bash
-openclaw node install --host <VPS_TAILSCALE_IP> --port 18789 --display-name "My Node"
+openclaw doctor
+openclaw security audit
+openclaw security audit --deep
+openclaw nodes status
 ```
 
-Or create a systemd user service manually:
-
-In the systemd service `[Service]` section, add:
-
-- `Environment=OPENCLAW_GATEWAY_TOKEN=<your-gateway-token>` — same token from your VPS gateway config
-- `Environment=OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1` — only if not using `wss://` via Tailscale Serve
-
-See the [OpenClaw node host docs](https://docs.openclaw.ai/nodes/) for the full service file reference.
-
-```bash
-systemctl --user daemon-reload
-systemctl --user enable openclaw-node
-systemctl --user start openclaw-node
-```
-
-## Step 5 — Configure exec routing
-
-Tell the gateway to route `exec host=node` commands to your node:
-
-```bash
-# On the VPS
-openclaw config set tools.exec.node "My Node"
-```
-
-Now agents can run commands on your local machine:
-
-```
-exec host=node command="uname -a"
-```
-
-### Set up exec approvals on the node
-
-The node enforces its own allowlist. Add commands you want to permit:
-
-```bash
-# On the VPS (manages node approvals remotely)
-openclaw approvals allowlist add --node "My Node" "/usr/bin/uname"
-openclaw approvals allowlist add --node "My Node" "/bin/bash"
-openclaw approvals allowlist add --node "My Node" "/usr/local/bin/node"
-```
-
-Or edit `~/.openclaw/exec-approvals.json` on the node directly.
-
-## Step 6 — Set up SSH fallback (optional but recommended)
-
-The node protocol handles command execution, but SSH is still needed for:
-- **File transfers** (scp/rsync between VPS and node)
-- **Full shell environment** (commands needing `.bashrc`/`.zshrc` — nvm, homebrew PATH, env vars)
-- **Fallback** when the node disconnects
-
-### Set up SSH key access
-
-```bash
-Set up SSH key-based access between the VPS and the node:
-
-1. Generate an ed25519 key pair on the VPS
-2. Copy the public key to the node's `authorized_keys`
-3. Create an SSH config alias (e.g. `Host my-node`) pointing to the node's Tailscale IP
-4. Test with `ssh my-node` to confirm passwordless access
-
-See the [GitHub SSH key guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for detailed steps — the same process applies to any SSH host.
-```
-
-### When to use which transport
-
-| Task | Use |
-|---|---|
-| Run a command | `exec host=node` (node protocol) |
-| Transfer files | `scp my-node:/path/to/file .` (SSH) |
-| Commands needing shell env | `ssh my-node "source ~/.zshrc; command"` (SSH) |
-| Node disconnected | SSH fallback for everything |
-
-## Troubleshooting
-
-### "SECURITY ERROR: Cannot connect over plaintext ws://"
-
-The node is trying to connect via `ws://` (not `wss://`) to a non-loopback address. This is blocked by default.
-
-**Fix:** Set `OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1` in the node's environment. This is safe on Tailscale (WireGuard-encrypted). Add it to your LaunchAgent plist or systemd service.
-
-**Better fix (long-term):** Use [Tailscale Serve](https://tailscale.com/kb/1242/tailscale-serve) to get proper `wss://` on the gateway. Then you don't need the env override.
-
-### Local agent sessions fail after changing gateway.bind
-
-If you changed `gateway.bind` from `loopback` to `tailnet`, local agent-to-agent communication breaks. Local sessions try `ws://127.0.0.1` but the gateway only listens on the Tailscale IP.
-
-**Fix:** Use `gateway.bind: "lan"` instead. This listens on `0.0.0.0` — both loopback and Tailscale interfaces.
-
-### Node shows "pairing required"
-
-Network route is working, auth is fine, but the device hasn't been approved yet.
-
-```bash
-# On the VPS
-openclaw devices list
-openclaw devices approve <requestId>
-```
-
-### Node shows "bootstrap token invalid or expired"
-
-The setup code or pairing token is stale.
-
-**Fix:** Generate a fresh one and reconnect:
-```bash
-openclaw qr --json
-```
-
-### Node connects but exec host=node doesn't work
-
-1. Check the node is actually paired and connected:
-   ```bash
-   openclaw nodes status
-   ```
-2. Check `tools.exec.node` points to the right node:
-   ```bash
-   openclaw config get tools.exec.node
-   ```
-3. Check exec approvals on the node allow the command you're running.
-
-### Node disconnects frequently
-
-- Ensure the node machine doesn't sleep (macOS: System Settings → Energy → Prevent automatic sleeping)
-- Check Tailscale stays connected: `tailscale status`
-- Check node logs: `~/.openclaw/logs/node.log`
-- If on Wi-Fi, prefer ethernet for the node machine
-
-### Commands fail with "command not found" on node
-
-Node `system.run` uses a minimal PATH. Homebrew, nvm, and other tools that modify PATH via shell config won't be available.
-
-**Fix:** Use full binary paths:
-```bash
-exec host=node command="/opt/homebrew/bin/ollama run llama3"
-```
-
-Or fall back to SSH when you need the full shell environment:
-```bash
-ssh my-node "source ~/.zshrc; ollama run llama3"
-```
-
-## Architecture diagram
-
-```
-┌─────────────────────────────────────────────┐
-│                CLOUD VPS                     │
-│                                              │
-│  ┌──────────────────────────────────┐       │
-│  │     OpenClaw Gateway             │       │
-│  │     (bind: lan / 0.0.0.0)       │       │
-│  │     port: 18789                  │       │
-│  │                                  │       │
-│  │  ┌─────────┐  ┌──────────────┐  │       │
-│  │  │ Telegram │  │   Discord    │  │       │
-│  │  │  Bot     │  │   Bot       │  │       │
-│  │  └─────────┘  └──────────────┘  │       │
-│  │                                  │       │
-│  │  ┌─────────┐  ┌──────────────┐  │       │
-│  │  │ Agents  │  │   Models     │  │       │
-│  │  │ (main,  │  │   (API)     │  │       │
-│  │  │ workers)│  │              │  │       │
-│  │  └─────────┘  └──────────────┘  │       │
-│  └──────────────────────────────────┘       │
-│                    │                         │
-│              Tailscale VPN                   │
-│           (WireGuard encrypted)              │
-└────────────────────┼────────────────────────┘
-                     │
-                     │  ws:// (safe — encrypted by Tailscale)
-                     │
-┌────────────────────┼────────────────────────┐
-│             LOCAL NODE                       │
-│                                              │
-│  ┌──────────────────────────────────┐       │
-│  │     OpenClaw Node                │       │
-│  │     (LaunchAgent / systemd)      │       │
-│  │                                  │       │
-│  │  exec host=node → system.run    │       │
-│  │                                  │       │
-│  │  ┌─────────┐  ┌──────────────┐  │       │
-│  │  │ Ollama  │  │  Lighthouse  │  │       │
-│  │  │ (local  │  │  (browser    │  │       │
-│  │  │ models) │  │  automation) │  │       │
-│  │  └─────────┘  └──────────────┘  │       │
-│  │                                  │       │
-│  │  ┌─────────┐  ┌──────────────┐  │       │
-│  │  │ Whisper │  │  Playwright  │  │       │
-│  │  │ (speech │  │  (headless   │  │       │
-│  │  │ to text)│  │  browser)    │  │       │
-│  │  └─────────┘  └──────────────┘  │       │
-│  └──────────────────────────────────┘       │
-│                                              │
-│  Also accessible via SSH (file transfer,     │
-│  full shell env, fallback)                   │
-└──────────────────────────────────────────────┘
-```
-
-## Quick reference
-
-| Task | Command |
-|---|---|
-| Check gateway bind | `openclaw config get gateway.bind` |
-| Check node status | `openclaw nodes status` |
-| List pending pairings | `openclaw devices list` |
-| Approve a node | `openclaw devices approve <id>` |
-| Run command on node | `exec host=node command="..."` |
-| Check Tailscale | `tailscale status` |
-| Restart gateway | `openclaw gateway restart` |
-| Node logs | `~/.openclaw/logs/node.log` |
+Confirm the node reconnects after the last change, the Gateway is unreachable from outside the tailnet, and no log line holds a token. Resolve critical findings; document intentional warnings. Upgrade procedure: `references/upgrade-notes.md`.
 
 ## Tested with
 
-- OpenClaw 2026.4.x
-- Tailscale 1.x
-- macOS 15 (Sequoia) + Ubuntu 24.04 VPS
-- Mac Mini M4 as node, Hostinger VPS as gateway
-
-Should work with any VPS provider and any local machine that can run OpenClaw + Tailscale.
+OpenClaw 2026.9.3 (Gateway and node), Node 24, Tailscale 1.x, macOS 26 node, Ubuntu 24.04 VPS.
 
 ## License
 

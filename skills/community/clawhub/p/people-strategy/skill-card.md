@@ -1,43 +1,55 @@
-## Description: <br>
-Manage and query a persistent SQLite-based graph of people and their relationships for personal CRM, org charts, mentorship, and collaboration mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and query a persistent SQLite-based graph of people and their relationships for personal CRM, org charts, mentorship, and collaboration mapping.
 
-## Publisher: <br>
-[makkzone](https://clawhub.ai/user/makkzone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[makkzone](https://clawhub.ai/user/makkzone)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to maintain a local people relationship database, track professional contacts, map organizations, and export relationship graphs for analysis or visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores people, relationships, character notes, and other contact details in a local database that may be private or sensitive. <br>
-Mitigation: Collect only necessary details, protect people.db and exported JSON files, and review exports before sharing them. <br>
-Risk: Delete commands can remove people and cascade relationship records without built-in confirmation or recovery. <br>
-Mitigation: Make backups before delete operations and verify identifiers before running deletion commands. <br>
+## Use Case:
 
+Agents and developers use this skill to store, update, search, and export people relationship graphs for professional network management, organizational mapping, mentorship tracking, and collaboration analysis.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/makkzone/people-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/makkzone) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples, Python API usage, and JSON graph output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill stores people and relationship records in a local SQLite database and can export the graph as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can store sensitive personal details and relationship notes in a local SQLite database and exported graph JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect people.db and exported JSON files, avoid storing unnecessary sensitive details, and apply local access controls appropriate for personal contact data.
+
+Risk: Deletion, cascade deletion, or duplicate-prevention behavior may not fully match release claims in this version.
+
+Mitigation: Keep backups before deletions and verify relationship records after bulk edits or imports.
+
+## Reference(s):
+
+- [People Strategy ClawHub Skill Page](https://clawhub.ai/makkzone/skills/people-strategy)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python examples, and JSON graph output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local SQLite-backed records and exported graph JSON containing sensitive personal or relationship data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Add abstracts to .bib file entries by searching academic databases (arXiv, Semantic Scholar, CrossRef) with browser fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add abstracts to .bib file entries by searching academic databases (arXiv, Semantic Scholar, CrossRef) with browser fallback.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to enrich BibTeX bibliographies by finding missing abstracts from public academic indexes and adding them to .bib entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bibliography titles and author names may be sent to public academic APIs during abstract lookup. <br>
-Mitigation: Use the skill only for bibliographies that can be queried against public academic services. <br>
-Risk: The browser fallback can operate through a logged-in Chrome session and may expose institutional or personal browser context to searched sites. <br>
-Mitigation: Prefer the API-only script; when browser fallback is needed, use a separate Chrome profile with minimal logins and approve each site explicitly. <br>
-Risk: Fetched abstracts may be mismatched to similarly titled papers. <br>
-Mitigation: Verify that each returned abstract matches the intended paper title before accepting the generated BibTeX. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EasonC13/abstract-searcher) <br>
-- [arXiv API](http://export.arxiv.org/api/query?search_query=...) <br>
-- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1/paper/search?query=...) <br>
-- [Crossref Works API](https://api.crossref.org/works?query.title=...) <br>
-- [OpenAlex Works API](https://api.openalex.org/works?search=...) <br>
-- [Google Scholar](https://scholar.google.com) <br>
+## Use Case:
 
+Developers and researchers use this skill to enrich BibTeX bibliographies by finding missing abstracts through academic search APIs and browser-based lookup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated BibTeX text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces modified BibTeX entries on stdout and progress or summary messages on stderr when the helper script is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bibliography titles, authors, and related metadata may be sent to arXiv, OpenAlex, CrossRef, Semantic Scholar, Google Scholar, and publisher sites.
+
+Mitigation: Use the skill only on bibliographies that may be shared with those services, or restrict network access for confidential, unpublished, or enterprise material.
+
+Risk: The browser fallback can use a normal Chrome profile, including existing login sessions or institutional access.
+
+Mitigation: Run browser fallback in a dedicated browser profile without sensitive sessions unless that access is intentional.
+
+Risk: Fetched abstracts may belong to the wrong paper if title matching is ambiguous.
+
+Mitigation: Review matched titles and generated BibTeX abstracts before relying on or publishing the enriched bibliography.
+
+## Reference(s):
+
+- [Abstract Searcher ClawHub page](https://clawhub.ai/easonc13/skills/abstract-searcher)
+- [arXiv API endpoint](http://export.arxiv.org/api/query)
+- [Semantic Scholar Graph API search endpoint](https://api.semanticscholar.org/graph/v1/paper/search)
+- [Crossref works API endpoint](https://api.crossref.org/works)
+- [OpenAlex works API endpoint](https://api.openalex.org/works)
+- [Google Scholar](https://scholar.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and modified BibTeX text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces enriched BibTeX entries by adding abstract fields when matching abstracts are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

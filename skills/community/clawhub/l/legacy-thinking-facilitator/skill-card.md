@@ -1,38 +1,53 @@
-## Description: <br>
-Guides reflection on personal legacy and what lasting impact one wants to leave. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides reflection on personal legacy and what lasting impact one wants to leave.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Individuals, facilitators, and teams use this skill for structured self-reflection on legacy, values, life transitions, and concrete behavior changes that align daily choices with longer-term impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt users to discuss sensitive life, family, health, or legacy topics. <br>
-Mitigation: Users should avoid sharing details they do not want processed in the agent session and should consult qualified professionals for medical, mental-health, legal, or financial decisions. <br>
+## Use Case:
 
+External users and facilitators use this skill to guide values-based legacy reflection, document family stories, plan leadership workshops, and define near-term practices aligned with desired long-term impact.
 
-## Reference(s): <br>
-- [Legacy Thinking Facilitator on ClawHub](https://clawhub.ai/harrylabsj/legacy-thinking-facilitator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON with structured reflection guidance, recommendations, next steps, frameworks, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces descriptive personal-development guidance without external API calls or persistent data storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0 and artifact skill.json reports 1.0.0) <br>
+Risk: Users may treat reflective legacy guidance as therapy, medical, legal, crisis, or other professional support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as a personal-development aid only and direct users facing grief, acute distress, serious health decisions, or legal matters to qualified human support.
+
+Risk: Mixed English and Chinese examples may create unclear language expectations for users.
+
+Mitigation: Document the intended language posture or ask the user for a preferred language before generating reflection exercises.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/legacy-thinking-facilitator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object with reflective analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs or code execution; responses should preserve self-reflection boundaries and professional-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

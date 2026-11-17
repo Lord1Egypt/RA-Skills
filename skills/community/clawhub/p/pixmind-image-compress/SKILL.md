@@ -1,7 +1,6 @@
 ---
 name: pixmind-image-compress
 description: "Cloud-powered image compression and resize — compress JPG/PNG/WebP/HEIC to WebP/AVIF, resize images, batch process folders. No local dependencies, uses Tencent Cloud COS imageMogr2 via Pixmind API. Save 60-90% file size with scene presets (web, wechat, email, thumbnail). Supports format conversion, quality control, and dimension adjustment."
-homepage: https://www.pixmind.io
 metadata: {"openclaw": {"requires": {"env": ["PIXMIND_API_KEY"]}, "primaryEnv": "PIXMIND_API_KEY"}}
 ---
 
@@ -42,7 +41,7 @@ Powered by [Pixmind](https://www.pixmind.io) + Tencent Cloud COS [imageMogr2](ht
 ## Prerequisites
 
 1. Register at [pixmind.io](https://www.pixmind.io/) — **200 bonus points on signup** (free trial)
-2. Create an API key at [pixmind.io/api-keys](https://www.pixmind.io/api-keys)
+2. Create an API key in the [API Platform dashboard](https://www.pixmind.io/api-platform/dashboard/keys)
 3. Set env `PIXMIND_API_KEY` with your key
 
 ## Quick Start
@@ -75,8 +74,8 @@ Quick scene-based compression — no need to remember quality numbers:
 
 ## API Details
 
-**Endpoint**: `POST https://aihub-admin.aimix.pro/open/cos/image/compress`
-**Auth**: Header `X-API-Key: {API_KEY}` and `X-App-Key: {APP_KEY}`
+**Endpoint**: `POST https://aihub-admin.aimix.pro/api-platform/v1/image/compress`
+**Auth**: Header `Authorization: Bearer {API_KEY}`
 
 ### Request Body (JSON)
 

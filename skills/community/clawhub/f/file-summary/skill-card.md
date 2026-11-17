@@ -1,42 +1,53 @@
-## Description: <br>
-Local document summary and analysis tool that extracts text from txt, docx, pdf, xlsx, and xls files for summarization in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local document summary tool that extracts text from txt, docx, pdf, xlsx, and xls files and supports Chinese or English summary prompts.
 
-## Publisher: <br>
-[LeonThePro2012](https://clawhub.ai/user/LeonThePro2012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leonthepro2012](https://clawhub.ai/user/leonthepro2012)
 
-## Use Case: <br>
-OpenClaw users use this skill to summarize local documents they explicitly select. It is intended for txt, docx, pdf, xlsx, and xls files where the agent should extract readable text and produce a concise summary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local files selected for summarization. <br>
-Mitigation: Install only if you are comfortable granting access to the local files you explicitly ask it to summarize. <br>
-Risk: The skill may install Python dependencies in the active environment. <br>
-Mitigation: Use it in a trusted Python environment, and review or preinstall the listed dependencies if supply-chain control matters. <br>
-Risk: Extracted document content may be summarized through the configured OpenClaw LLM setup. <br>
-Mitigation: Avoid confidential documents unless the OpenClaw and LLM provider configuration is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeonThePro2012/file-summary) <br>
-- [Publisher profile](https://clawhub.ai/user/LeonThePro2012) <br>
+## Use Case:
 
+External users and developers use this skill to extract local document content and request concise summaries through an OpenClaw LLM flow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text content, summaries, or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports txt, docx, pdf, xlsx, and xls inputs through local Python execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read local documents selected by the user and pass extracted text into an LLM summarization flow.
+
+Mitigation: Use it only with files approved for LLM processing, and prefer deployments that require explicit confirmation before reading or summarizing document contents.
+
+Risk: The script may auto-install unpinned Python parser packages into the active Python environment.
+
+Mitigation: Install reviewed, pinned dependencies through a controlled environment before use, or disable automatic package installation in managed deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leonthepro2012/skills/file-summary)
+- [Publisher Profile](https://clawhub.ai/user/leonthepro2012)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Error messages]
+
+**Output Format:** [Plain text content, concise summaries, or plain text error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports txt, docx, pdf, xlsx, and xls inputs; document content may be passed to the OpenClaw LLM summarization flow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

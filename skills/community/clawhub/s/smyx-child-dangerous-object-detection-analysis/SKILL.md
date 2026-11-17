@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-dangerous-object-detection-analysis"
 description: "Using fixed cameras in the living room, child's room, kitchen, or other home zones, AI object detection and pose estimation analyze the video in real time to recognize a child's hand actions and the objects in hand, identifying whether the child grabs scissors, knives, medicine bottles, lighters, or other preset dangerous items, or inserts fingers into electrical socket holes. | 通过家庭客厅、儿童房或厨房等区域的固定摄像头，利用AI目标检测和姿态估计技术实时分析儿童手部动作及手中持有的物品，识别儿童是否抓握剪刀、刀具、药品瓶、打火机等预设危险品，或是否将手指插入电源插座孔。一旦检测到危险行为，立即输出预警，联动手机APP或智能音箱发出警报，提醒家长及时干预，预防意外伤害。"
-version: "1.0.3"
+version: "1.0.20"
 license: "MIT-0"
 ---
 
@@ -155,7 +155,7 @@ python -m scripts.smyx_child_dangerous_object_detection_analysis --list
 | 🔏 隐私合规 | 隐私合规：儿童视频涉及未成年人隐私，使用前需取得监护人知情同意，并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

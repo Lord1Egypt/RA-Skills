@@ -1,37 +1,58 @@
-## Description: <br>
-Helps QA reviewers challenge implicit assumptions in requirements and test cases, using critical questioning to find overlooked edge cases, alternative scenarios, and risk gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA reviewers challenge hidden assumptions in requirements and test cases to uncover overlooked failure scenarios.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, product reviewers, and developers use this skill to review requirements and test cases for missed assumptions, abnormal flows, boundary conditions, and downstream risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad opinion-seeking trigger phrases may activate the skill outside focused QA or requirements-review tasks. <br>
-Mitigation: Use narrower trigger wording or enable the skill only for testing, requirements review, and QA critique workflows. <br>
+## Use Case:
 
+QA testers and developers use this skill to review requirements and test cases, challenge implicit assumptions, and identify missing edge cases and risks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured critique sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected sections include thinking gaps, assumption challenges, alternative scenarios, and risk reevaluation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server evidence) <br>
+Risk: Broad trigger phrases may invoke this skill outside a QA review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for testing or requirement-review tasks.
+
+Risk: Requirements and test cases may contain sensitive customer, payment, identity, or production data.
+
+Mitigation: Remove or mask sensitive data before sharing it with the agent.
+
+Risk: The optional install command fetches a larger, unpinned skill package.
+
+Mitigation: Review the full package before running the optional install command.
+
+## Reference(s):
+
+- [Critical thinking exercises](references/thinking-exercises.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-critical-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Identifies thinking gaps, challenged assumptions, alternative scenarios, and reassessed risks; link findings to requirement or scenario IDs when available.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Recognizes text in local images, including Chinese-language content, using the OCR.space free API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes text in local images, including Chinese text, by sending resized images to the OCR.space API.
 
-## Publisher: <br>
-[xytest](https://clawhub.ai/user/xytest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xytest](https://clawhub.ai/user/xytest)
 
-## Use Case: <br>
-Developers and end users use this skill to extract OCR text from local image files, especially Chinese-language content, by running the included Python script against a selected image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images submitted for OCR are uploaded to OCR.space, which may expose sensitive visual content to a third-party service. <br>
-Mitigation: Use only images approved for third-party processing; avoid confidential IDs, financial records, medical documents, private screenshots, and regulated data unless that processing is acceptable. <br>
-Risk: OCR output is saved locally as a text file and may retain sensitive content after processing. <br>
-Mitigation: Review and delete generated OCR text files when they contain sensitive information. <br>
+## Use Case:
 
+Developers and external users use this skill to extract OCR text from local image files, especially Chinese-language images, through a CLI helper that calls OCR.space.
 
-## Reference(s): <br>
-- [OCR.space image parsing API endpoint](https://api.ocr.space/parse/image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text OCR output with a generated UTF-8 .txt file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads the selected image to OCR.space and writes extracted text to a local *_ocr.txt file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected images are uploaded to OCR.space for third-party OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid IDs, credentials, medical, financial, legal, or confidential business images unless third-party processing is approved.
+
+Risk: Extracted text is saved locally in a predictable file under the skill scripts directory.
+
+Mitigation: Review and delete generated OCR text files when they may contain sensitive content.
+
+## Reference(s):
+
+- [OCR.space API endpoint](https://api.ocr.space/parse/image)
+- [ClawHub skill page](https://clawhub.ai/xytest/skills/image-reader-xytest)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; OCR helper output is UTF-8 text saved to a local .txt file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local image path as input and returns or stores recognized text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

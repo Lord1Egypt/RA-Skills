@@ -1,45 +1,63 @@
-## Description: <br>
-Kubernetes operations plugin - 32 tools for cluster management, monitoring, troubleshooting, and security auditing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kubernetes operations plugin for cluster management, monitoring, troubleshooting, and security auditing.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to manage, monitor, troubleshoot, and audit Kubernetes clusters through OpenClaw with kubectl-backed operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can exercise real Kubernetes operational authority, including write operations against live clusters. <br>
-Mitigation: Use a dedicated least-privilege kubeconfig, verify the current context and namespace before write actions, and avoid cluster-admin except for explicit break-glass cases. <br>
-Risk: Remote manifests, rollout, scale, restart, namespace, and exec workflows may cause unintended production changes. <br>
-Mitigation: Review remote manifests and proposed kubectl operations before applying them, and test changes in non-production environments where possible. <br>
-Risk: SSH host configuration may expose sensitive access paths or credentials. <br>
-Mitigation: Configure only trusted hosts, prefer SSH key authentication, and avoid storing raw SSH passwords in plugin configuration. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to inspect, manage, troubleshoot, and audit Kubernetes clusters through OpenClaw tools backed by kubectl access.
 
-## Reference(s): <br>
-- [K8s Ops Agent Homepage](https://github.com/CN-big-cabbage/k8s-ops-agent) <br>
-- [Kubernetes Documentation](https://kubernetes.io/docs/) <br>
-- [Kubernetes Issues](https://github.com/kubernetes/kubernetes/issues) <br>
-- [Kubernetes Discussion Forum](https://discuss.kubernetes.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and JSON details, with documentation examples in Markdown containing bash and YAML snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires kubectl, a valid kubeconfig, and appropriate cluster permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Cluster administration actions may use broad Kubernetes authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged kubeconfig or ServiceAccount and test in a non-production cluster before production use.
+
+Risk: Cluster-admin binding guidance can grant full cluster control.
+
+Mitigation: Avoid cluster-admin bindings unless full cluster control is intentional and approved.
+
+Risk: Remote Kubernetes manifests and SSH host configuration can introduce supply-chain or credential exposure risk.
+
+Mitigation: Pin and inspect remote manifests before applying them, prefer SSH keys, and avoid plaintext SSH passwords.
+
+Risk: Weakly scoped tool parameters may allow unsafe Kubernetes operations.
+
+Mitigation: Require clear per-tool input validation and human review before trusting the skill for production operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-big-cabbage/skills/k8s-ops)
+- [Project Homepage](https://github.com/CN-big-cabbage/k8s-ops-agent)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON results with Kubernetes commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires kubectl and valid, appropriately scoped Kubernetes credentials.]
+
+## Skill Version(s):
+
+2.1.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Qa Domain Modeling helps agents clarify complex business logic and system boundaries by producing state-machine, data-flow, and service-dependency models for QA scope analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA practitioners model business states, data flows, and service dependencies to identify implicit rules, system boundaries, and test scope.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-Developers, QA engineers, and test analysts use this skill to turn complex requirements or scenario trees into domain models that expose state changes, data movement, service dependencies, failure impacts, and fallback strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad and may activate for generic modeling requests. <br>
-Mitigation: Disable the skill or narrow its local trigger wording if broad activation becomes distracting. <br>
+## Use Case:
 
+QA engineers and developers use this skill to turn complex requirements and scenario trees into traceable state-transition, data-flow, and service-dependency models for test planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-domain-modeling) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with text diagrams and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model IDs, linked scenario IDs, state-machine, data-flow, and service-dependency sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The optional installation command fetches a broader skill set from its current remote package state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the command and the package contents before running it.
+
+## Reference(s):
+
+- [Modeling views guide](references/modeling-views.md)
+- [qa-domain-modeling on ClawHub](https://clawhub.ai/kokxi/skills/qa-domain-modeling)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown tables and diagrams for state transitions, data flows, and service dependencies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Models have unique IDs and link to scenario IDs; coverage is qualified against the available requirements.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

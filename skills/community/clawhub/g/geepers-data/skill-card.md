@@ -1,39 +1,55 @@
-## Description: <br>
-Geepers Data helps agents fetch structured data from 17 external sources, including arXiv, Census Bureau, GitHub, NASA, Wikipedia, PubMed, news, weather, finance, FEC, and more, through a single API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch structured data from 17 authoritative APIs, including arXiv, Census Bureau, GitHub, NASA, Wikipedia, PubMed, news, weather, finance, and FEC, through a single endpoint.
 
-## Publisher: <br>
-[lukeslp](https://clawhub.ai/user/lukeslp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukeslp](https://clawhub.ai/user/lukeslp)
 
-## Use Case: <br>
-External developers, researchers, and data analysts use Geepers Data to discover and query multiple authoritative external data sources for research, visualizations, and analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party API, so sensitive queries or credentials could be exposed to the API operator or to logs if handled carelessly. <br>
-Mitigation: Trust the Dreamer API operator before use, keep DREAMER_API_KEY out of prompts and logs, and avoid confidential queries unless the service's privacy and retention practices are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lukeslp/geepers-data) <br>
-- [Dreamer Data API source listing](https://api.dr.eamer.dev/v1/data) <br>
-- [Dreamer Data API search endpoint](https://api.dr.eamer.dev/v1/data/search) <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to discover available data sources and request structured external data for research, visualizations, pipelines, and dataset enrichment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell snippets, endpoint examples, and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMER_API_KEY and sends data queries to the Dreamer Data API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and selected data-source requests are sent to the third-party api.dr.eamer.dev service.
+
+Mitigation: Avoid sending secrets, private data, or sensitive business context unless the provider and its data handling terms have been separately vetted.
+
+Risk: The skill requires a DREAMER_API_KEY for API access.
+
+Mitigation: Store the API key as a secret environment variable and avoid committing or sharing it in prompts, logs, examples, or generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukeslp/skills/geepers-data)
+- [Dreamer Data API](https://api.dr.eamer.dev)
+- [List available data sources](https://api.dr.eamer.dev/v1/data)
+- [Search data sources endpoint](https://api.dr.eamer.dev/v1/data/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline HTTP examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DREAMER_API_KEY and sends data-source queries to api.dr.eamer.dev.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

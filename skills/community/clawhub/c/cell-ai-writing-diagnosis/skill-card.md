@@ -1,40 +1,56 @@
-## Description: <br>
-AI-writing fingerprint diagnosis for Chinese text. Use when Codex needs to inspect a draft for overly smooth, formulaic, generic, or authorless writing patterns; quote the exact passages that feel machine-made; distinguish real problems from false alarms; and suggest what to fix first without immediately rewriting the whole piece. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Chinese drafts for AI-like writing patterns by quoting suspicious passages, explaining concrete issues, flagging false alarms, and suggesting priority fixes.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and developers use this skill to diagnose Chinese drafts for AI-like writing patterns, quote the passages that create that impression, distinguish real issues from false alarms, and identify the first revision priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/ai-writing-diagnosis) <br>
-- [AI writing fingerprint catalog](references/pattern-catalog.md) <br>
-- [Rewrite guidance](references/rewrite-guidance.md) <br>
-- [Diagnosis report template](assets/report-template.md) <br>
+Writers, editors, and agents use this skill to inspect Chinese drafts for overly smooth, formulaic, generic, or authorless passages before deciding whether to revise. It is diagnosis-first and avoids whole-piece rewrites unless requested.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnosis report with quoted passages, pattern labels, severity notes, summary judgment, and next-step guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis before rewriting and asks for more context when genre materially changes the judgment.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill quotes passages from user-provided drafts in its diagnosis report, which can expose sensitive text if the report is shared.
+
+Mitigation: Review and redact confidential passages before sharing reports or logs.
+
+Risk: AI-writing diagnosis can produce false alarms for formal or intentionally polished genres.
+
+Mitigation: Apply the skill's genre and false-alarm checks before asking for revision; treat weak signals as advisory.
+
+## Reference(s):
+
+- [AI writing pattern catalog](references/pattern-catalog.md)
+- [Rewrite guidance](references/rewrite-guidance.md)
+- [Diagnosis report template](assets/report-template.md)
+- [ClawHub metadata homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/ai-writing-diagnosis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown diagnosis report with quoted passages and prioritized revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quotes user-provided passages in reading order; defaults to diagnosis before rewriting.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

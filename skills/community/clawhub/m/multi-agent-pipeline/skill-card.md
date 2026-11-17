@@ -1,40 +1,58 @@
-## Description: <br>
-Generic multi-agent content pipeline - sequential and parallel agent stages with status tracking, error recovery, and progress callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Agent Pipeline provides a reusable staged workflow pattern for sequential and parallel agent tasks with status tracking, error handling, and progress callbacks.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design multi-stage agent workflows that generate, validate, transform, and deliver content while tracking status and handling stage failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is presented as a generic no-network pipeline, while the bundled code includes a specialized voice and story API that can send audio and text to external providers and store user content. <br>
-Mitigation: Review the bundled code, provider terms, API key handling, database/cache behavior, and privacy implications before enabling the skill. <br>
-Risk: The included voice and story flow can process audio and child-related content. <br>
-Mitigation: Use it only in environments with appropriate consent, retention, and privacy controls for the data being processed. <br>
+## Use Case:
 
+Developers and engineers can use this skill as a pattern for building multi-step AI workflows such as content generation, data processing, and generate-validate-transform-deliver pipelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/multi-agent-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code examples and source files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Status callbacks, retry behavior, caching guidance, and optional API-backed pipeline stages depend on the stage functions a user provides.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Package disclosure mismatch: server security evidence says the inspected code is a provider-specific story app that sends child-related audio and text to external APIs, while the package is labeled as a generic local pipeline skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review artifact behavior against the intended deployment and correct disclosures for ElevenLabs and Mistral use, required API keys, and outbound network access before installation.
+
+Risk: Child-related audio, prompts, generated story content, and cached media can involve sensitive personal data.
+
+Mitigation: Require explicit consent, data minimization, retention controls, and privacy review before processing or storing child-related content.
+
+Risk: Server security evidence reports stored story data exposed without visible authorization controls.
+
+Mitigation: Add authentication, per-record authorization, upload limits, and abuse controls on all routes before deploying the service behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/multi-agent-pipeline)
+- [ElevenLabs speech-to-text endpoint referenced by artifact](https://api.elevenlabs.io/v1/speech-to-text)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with Python code examples and source files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No fixed token cap; behavior depends on the stage functions or service routes used by the installing agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Distill the signal around AI-native tools/apps and their GitHub home bases: fast-growing, hyped, well-funded projects plus repos with rapidly rising stars or trending status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks and analyzes AI-native tools and GitHub repos with fast growth or major updates to reveal emerging trends in AI workflows and ecosystems.
 
-## Publisher: <br>
-[lopushok9](https://clawhub.ai/user/lopushok9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lopushok9](https://clawhub.ai/user/lopushok9)
 
-## Use Case: <br>
-External users and developers use this skill to produce concise, sourced updates on AI-native tools, emerging apps, funding or product signals, and GitHub repositories with notable momentum. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI-tool and GitHub momentum summaries may include stale, incorrect, or overinterpreted public metrics. <br>
-Mitigation: Verify cited metrics and sources before relying on the output for business, investment, or roadmap decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lopushok9/airadar) <br>
+## Use Case:
 
+External users and developers use this skill to produce concise, sourced momentum briefs on AI-native tools, apps, and GitHub repositories. It helps compare product news, funding, launches, star growth, and developer traction without treating hype as sufficient evidence.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analytical summary with sourced bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates results into Tools & Apps, GitHub Radar, and What to Watch sections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trend summaries can become stale or overstate momentum when public news or GitHub activity is incomplete.
+
+Mitigation: Verify current news, repository metrics, and cited sources before using the summary for decisions.
+
+Risk: The workflow is intended to rely on public web and GitHub sources, not credentials or private local files.
+
+Mitigation: Keep research inputs public and avoid providing secrets, private repositories, or local confidential files unless a separate review approves that use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lopushok9/skills/airadar)
+- [ClawHub publisher profile](https://clawhub.ai/user/lopushok9)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with sourced analytical sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically separates findings into Tools & Apps, GitHub Radar, and What to Watch sections with URLs or metrics when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

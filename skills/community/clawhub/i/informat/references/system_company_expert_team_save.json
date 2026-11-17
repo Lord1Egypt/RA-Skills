@@ -1,0 +1,210 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_expert_team_save",
+    "description": "Create or partially update a team expert team. Omit expertTeam.id when creating; when updating, pass an existing expertTeam.id and include only fields that should change. Omitted fields are preserved. Returns the expert team ID. Do not use _company_expert_save because it only creates ordinary experts.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "expertTeam": {
+          "type": "object",
+          "description": "Expert team base configuration. For create, pass name. For update, pass id and only fields that should change. companyId/createAccountId/updateAccountId/createTime/updateTime are set by the backend; do not pass them.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Expert team ID. Omit for create; pass an existing expert team ID for update."
+            },
+            "name": {
+              "type": "string",
+              "description": "Expert team name, required, up to 128 characters."
+            },
+            "avatar": {
+              "type": "string",
+              "description": "Avatar URL or Element UI icon class. Optional."
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon. Optional."
+            },
+            "iconColor": {
+              "type": "string",
+              "description": "Icon color. Optional, for example #4f40ef."
+            },
+            "description": {
+              "type": "string",
+              "description": "Expert team responsibility description, including goal, scope, collaboration model, stage outputs, and limits."
+            },
+            "category": {
+              "type": "string",
+              "description": "Category. Optional."
+            },
+            "status": {
+              "type": "string",
+              "description": "Expert team status. Use draft by default; use enabled only when explicitly requested.",
+              "enum": ["draft", "enabled", "disabled"]
+            },
+            "leadMemberId": {
+              "type": "string",
+              "description": "Team lead member ID. For a new team, omit this unless memberList contains an explicit stable id for the referenced member."
+            },
+            "aiModelKey": {
+              "type": "string",
+              "description": "AI model key. You may call _company_get_ai_model_list first. Optional."
+            },
+            "orchestrationMode": {
+              "type": "string",
+              "description": "Orchestration mode. Default linear.",
+              "enum": ["linear", "parallel", "hybrid"]
+            },
+            "permissionPolicy": {
+              "type": "string",
+              "description": "Permission policy. Default guidedWrite.",
+              "enum": ["readOnly", "proposalOnly", "guidedWrite", "autoWrite"]
+            },
+            "confirmBeforePersist": {
+              "type": "boolean",
+              "description": "Whether to confirm before persistence. Default true."
+            },
+            "configJson": {
+              "type": "string",
+              "description": "Extension configuration JSON string. Optional; omit unless clearly needed."
+            }
+          },
+          "anyOf": [
+            { "required": ["id"] },
+            { "required": ["name"] }
+          ]
+        },
+        "memberList": {
+          "type": "array",
+          "description": "Expert team members. When updating, omit this field to preserve all members, pass an empty array to clear them, or pass an array to replace the list. A replacement array must include every member that should remain; omitted members are deleted. For retained members, use IDs returned by _company_expert_team_get and include only fields that should change. Provide at least one member when creating a team.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Member ID. Optional for new members; required if referenced by expertTeam.leadMemberId or stageList.leadMemberId."
+              },
+              "name": {
+                "type": "string",
+                "description": "Member name, required."
+              },
+              "avatar": {
+                "type": "string",
+                "description": "Avatar. Optional."
+              },
+              "icon": {
+                "type": "string",
+                "description": "Icon. Optional."
+              },
+              "iconColor": {
+                "type": "string",
+                "description": "Icon color. Optional."
+              },
+              "description": {
+                "type": "string",
+                "description": "Member responsibility description."
+              },
+              "instruction": {
+                "type": "string",
+                "description": "Member execution instruction or prompt."
+              },
+              "aiModelKey": {
+                "type": "string",
+                "description": "AI model key for this member. Optional."
+              },
+              "role": {
+                "type": "string",
+                "description": "Member role key. Optional."
+              },
+              "roleDescription": {
+                "type": "string",
+                "description": "Member role description. Optional."
+              },
+              "stageCodes": {
+                "type": "string",
+                "description": "JSON string of stage codes this member participates in, for example [\"analysis\",\"review\"]."
+              },
+              "skillListJson": {
+                "type": "string",
+                "description": "JSON string of skills available to this member. Use only real skills; do not fabricate skill IDs."
+              },
+              "canBeLead": {
+                "type": "boolean",
+                "description": "Whether this member can be the team lead. At least one member should usually be true."
+              },
+              "configJson": {
+                "type": "string",
+                "description": "Extension configuration JSON string. Optional."
+              }
+            },
+            "anyOf": [
+              { "required": ["id"] },
+              { "required": ["name"] }
+            ]
+          }
+        },
+        "stageList": {
+          "type": "array",
+          "description": "Expert team stages. When updating, omit this field to preserve all stages, pass an empty array to clear them, or pass an array to replace the list. A replacement array must include every stage that should remain; omitted stages are deleted. For retained stages, use IDs returned by _company_expert_team_get and include only fields that should change. Provide at least one stage when creating a team.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Stage ID. Optional for new stages."
+              },
+              "code": {
+                "type": "string",
+                "description": "Stage code, required, for example analysis, design, execution, or review."
+              },
+              "name": {
+                "type": "string",
+                "description": "Stage name, required."
+              },
+              "description": {
+                "type": "string",
+                "description": "Stage goal, input, processing approach, and output."
+              },
+              "stageType": {
+                "type": "string",
+                "description": "Stage type. Default execution.",
+                "enum": ["analysis", "design", "execution", "review"]
+              },
+              "executionMode": {
+                "type": "string",
+                "description": "Execution mode. Default single.",
+                "enum": ["single", "parallel", "review"]
+              },
+              "leadMemberId": {
+                "type": "string",
+                "description": "Stage lead member ID. Must exist in memberList or existing members; omit for new teams unless member IDs are explicit."
+              },
+              "requiredInputJson": {
+                "type": "string",
+                "description": "Stage required input JSON string. Optional."
+              },
+              "outputSchemaJson": {
+                "type": "string",
+                "description": "Stage output schema JSON string. Optional."
+              },
+              "preStageCodes": {
+                "type": "string",
+                "description": "JSON string of prerequisite stage codes, for example [\"analysis\"]."
+              },
+              "configJson": {
+                "type": "string",
+                "description": "Extension configuration JSON string. Optional."
+              }
+            },
+            "anyOf": [
+              { "required": ["id"] },
+              { "required": ["code", "name"] }
+            ]
+          }
+        }
+      },
+      "required": ["expertTeam"]
+    }
+  }
+}

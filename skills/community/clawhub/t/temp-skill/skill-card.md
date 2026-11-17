@@ -1,47 +1,60 @@
-## Description: <br>
-Provides local multi-asset portfolio analysis with CSV-based backtesting, rolling-window risk-parity rebalancing, performance metrics, and report/chart generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multi-asset portfolio analysis with rolling-window risk-parity rebalancing, backtesting, and chart and report generation from local CSV market data.
 
-## Publisher: <br>
-[wzratgit](https://clawhub.ai/user/wzratgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wzratgit](https://clawhub.ai/user/wzratgit)
 
-## Use Case: <br>
-Developers, analysts, and agent workflows use this skill to run local portfolio backtests from intended CSV market data, inspect risk-parity allocations, and generate informational performance reports and charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill on unintended local CSV files may expose or process data the user did not mean to analyze. <br>
-Mitigation: Run it only on CSV files selected for this analysis and review generated reports before sharing them. <br>
-Risk: Generated report or chart filenames may replace existing files in the chosen output directory. <br>
-Mitigation: Point the output option to a dedicated folder for each run. <br>
-Risk: Reports and JSON outputs may include local file paths, timestamps, asset data, and analysis results. <br>
-Mitigation: Inspect generated artifacts and remove sensitive details before distribution. <br>
-Risk: Backtest and risk metrics can be mistaken for financial advice. <br>
-Mitigation: Treat the output as informational analysis and have qualified reviewers assess investment decisions. <br>
+## Use Case:
 
+Developers, financial analysts, and portfolio researchers use this skill to run local risk-parity portfolio backtests, inspect return and risk metrics, and produce supporting reports and visualizations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wzratgit/temp-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Usage guide](artifact/优化使用指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, guidance] <br>
-**Output Format:** [Console summaries plus text reports, JSON data, and PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports and charts to a user-selected output directory; outputs may include local file paths, timestamps, asset data, and financial analysis results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: Dependency versions may affect reproducibility of portfolio calculations and generated charts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in an isolated Python environment and pin or review dependency versions before relying on repeated analyses.
+
+Risk: API keys or local portfolio data may be exposed if stored in shared files or output locations.
+
+Mitigation: Keep API keys out of shared files and write reports, JSON data, and charts to a controlled local directory.
+
+Risk: Generated reports may contain local file paths and portfolio analysis data.
+
+Mitigation: Review generated artifacts before sharing them outside the intended workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzratgit/skills/temp-skill)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Optimization usage guide](artifact/优化使用指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated text reports, JSON data, PNG charts, and console summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes analysis artifacts to a user-selected local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

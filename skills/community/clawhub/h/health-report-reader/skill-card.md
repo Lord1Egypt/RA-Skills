@@ -1,44 +1,56 @@
-## Description: <br>
-AI-driven health checkup report interpreter that turns report images, indicator values, or natural language descriptions into interactive HTML visualization reports with indicator interpretation, risk assessment, and personalized health recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets health checkup reports from images, structured values, or natural-language descriptions and generates risk-graded explanations, recommendations, and interactive HTML visualizations.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users provide health checkup report images, structured lab values, or plain-language descriptions to receive a readable report that highlights abnormal indicators, trends, risk levels, and follow-up suggestions. The skill is for health education and report understanding, not diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive health information from reports and user descriptions. <br>
-Mitigation: Redact names, ID numbers, phone numbers, hospital IDs, and other identifiers before use; keep generated reports private. <br>
-Risk: Generated interpretations or recommendations may be incomplete or inaccurate for an individual medical situation. <br>
-Mitigation: Use the output for health education only and rely on a qualified clinician for diagnosis, treatment, urgent symptoms, or abnormal findings. <br>
-Risk: Generated HTML reports can preserve private health details if saved or shared. <br>
-Mitigation: Store reports securely, avoid sharing them publicly, and remove personal details before sending them to others. <br>
+## Use Case:
 
+External users and health-support agents use this skill to turn health checkup reports into readable indicator summaries, risk tiers, trend analysis, and practical follow-up guidance. The output is educational and should not replace professional medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/skills/health-report-reader) <br>
-- [Indicator reference library](references/indicators.md) <br>
-- [HTML report template](references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown containing a complete static HTML report, health indicator interpretation, risk labels, charts, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chart.js-based visualization, responsive layout, print styling, and a medical disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated reports may load unpinned third-party web code while displaying sensitive medical information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening it with real health data, and prefer self-contained reports without remote scripts or styles.
+
+Risk: Health interpretations may be mistaken for medical diagnosis.
+
+Mitigation: Keep the educational-use disclaimer in outputs and direct abnormal or critical findings to qualified medical professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/health-report-reader)
+- [README](README.md)
+- [Indicator reference library](references/indicators.md)
+- [HTML report template](references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Plain-language interpretation with optional Markdown and static HTML report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chart.js visualizations, responsive layout, print styles, risk tiers, recommendations, and medical disclaimer text.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

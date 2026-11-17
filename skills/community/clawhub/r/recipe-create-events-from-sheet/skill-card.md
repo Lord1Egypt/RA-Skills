@@ -1,39 +1,49 @@
-## Description: <br>
-Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and workspace operators use this skill to turn rows in a Google Sheet into Google Calendar events. It is suited for scheduling repeatable event batches from structured spreadsheet data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad spreadsheet range or incorrect row data could create unwanted calendar events or invitations. <br>
-Mitigation: Review the spreadsheet range, dates, attendee emails, target calendar, and configured Google account before running; test with a small range first. <br>
+## Use Case:
 
+Employees and productivity automation agents use this recipe to read event rows from Google Sheets and create matching Google Calendar entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-create-events-from-sheet) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws plus the gws-sheets and gws-calendar skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Incorrect sheet ranges or row data may create unwanted calendar events or add attendees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected sheet range carefully and test with a small range before running against uncertain sheet contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-create-events-from-sheet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-sheets and gws-calendar skills.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

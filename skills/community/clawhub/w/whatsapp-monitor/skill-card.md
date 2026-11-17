@@ -1,46 +1,69 @@
-## Description: <br>
-Monitor specified WhatsApp chats for keywords in real time and batch export matched messages to Feishu multi-dimensional tables with optional alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time WhatsApp message monitor that tracks specified chats or groups for keyword hits and periodically aggregates matching messages to a Feishu (Lark) multi-dimensional table.
 
-## Publisher: <br>
-[MrHanson](https://clawhub.ai/user/MrHanson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrhanson](https://clawhub.ai/user/mrhanson)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor authorized WhatsApp contacts or groups for configured keywords, collect matching messages, and export structured records to Feishu for follow-up and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill monitors private WhatsApp communications and exports matched message content to Feishu. <br>
-Mitigation: Install only for authorized monitoring where affected chats and administrators have approved collection. <br>
-Risk: Overbroad targets or keywords can collect more private communication than intended. <br>
-Mitigation: Narrow configured targets and keywords before running the monitor. <br>
-Risk: The OpenClaw WhatsApp gateway could expose message access if reachable beyond a protected host or network. <br>
-Mitigation: Keep the gateway on localhost or a tightly protected network. <br>
-Risk: Feishu credentials and exported WhatsApp messages may be retained or exposed through plaintext configuration, logs, or storage. <br>
-Mitigation: Store Feishu secrets outside plaintext repo files where possible, avoid printing configuration files, and define retention and deletion rules for stored messages. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor authorized WhatsApp chats or groups for configured keywords, collect matching messages, and export batches into Feishu multi-dimensional tables for review or alerting workflows.
 
-## Reference(s): <br>
-- [OpenClaw WhatsApp Channel Integration Guide](references/openclaw_whatsapp_integration.md) <br>
-- [OpenClaw Gateway Port Configuration](references/port_configuration.md) <br>
-- [ClawHub skill page](https://clawhub.ai/MrHanson/whatsapp-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and Python entry points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces monitoring setup guidance, runtime commands, status output, and structured Feishu export records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+Risk: The skill can monitor private WhatsApp conversations and export matched content to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for chats the operator is authorized to monitor, and align retention and export settings with the organization's privacy policy.
+
+Risk: The OpenClaw WhatsApp gateway may expose chat APIs if bound beyond localhost or deployed without access controls.
+
+Mitigation: Keep the gateway bound to localhost where possible, or protect any remote access with authenticated TLS and network restrictions.
+
+Risk: Feishu credentials and table tokens are configured in JSON files and may be displayed by the wrapper's config command.
+
+Mitigation: Store production secrets outside plaintext config when possible, restrict file permissions, and avoid running config-printing commands with real credentials.
+
+Risk: Dependency ranges are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before production deployment, then re-run tests and security scans after updates.
+
+Risk: Setup and reset-style commands can modify local config, data, and logs.
+
+Mitigation: Review setup and operational commands before running them on an existing deployment, and back up configuration and retained message data first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrhanson/skills/whatsapp-monitor)
+- [OpenClaw WhatsApp integration guide](artifact/references/openclaw_whatsapp_integration.md)
+- [OpenClaw Gateway port configuration](artifact/references/port_configuration.md)
+- [OpenClaw integration guide](artifact/openclaw_integration.md)
+- [Usage guide](artifact/USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated local JSON/message-export data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monitors configured WhatsApp targets, writes matched messages to local JSON storage, and exports matching message records to Feishu when run with valid credentials.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

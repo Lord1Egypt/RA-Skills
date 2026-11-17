@@ -1,39 +1,50 @@
-## Description: <br>
-Optimizes conversion by guiding placement of specific, credible trust signals such as named testimonials, third-party badges, and security details at points where users may hesitate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps improve conversion by placing specific, credible trust signals such as named testimonials, third-party badges, and security details at points where users may hesitate.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Marketing teams, growth practitioners, and product builders use this skill to improve landing pages, sign-up flows, checkout flows, and forms by adding credible trust signals where users feel risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage publication of customer counts, testimonials, logos, review badges, security certifications, or uptime claims that are inaccurate, outdated, or unauthorized. <br>
-Mitigation: Verify each public claim against current business records, permissions, certification status, and legal or brand approvals before publishing. <br>
-Risk: The artifact includes a Racoonn waitlist promotion that may be inappropriate or stale in some deployments. <br>
-Mitigation: Confirm the promotion is authorized and relevant for the intended audience, or remove it from generated public-facing guidance. <br>
+## Use Case:
 
+Marketing and growth teams use this skill to review landing pages, signup flows, checkout flows, and data-collection forms for credibility gaps. It guides them toward trust signals that reduce conversion anxiety without relying on vague or unverifiable claims.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; recommendations should be checked against real customer evidence, authorization, and current security claims before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may lead users to add customer, certification, security, or performance claims that are not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every trust, customer, certification, and performance claim against authoritative business records before using it in product copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/cro-trust-signals)
+- [Publisher profile](https://clawhub.ai/user/wellyxy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with rules, examples, a quick-reference table, and common mistakes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, configuration changes, or sensitive actions are produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

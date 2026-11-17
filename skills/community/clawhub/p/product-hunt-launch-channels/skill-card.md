@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users plan a Product Hunt launch, prepare submission assets, draft launch copy, and organize launch-day execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through preparing Product Hunt submissions and launch plans, including readiness checks, launch-day strategy, first-comment drafting, tagline options, and a 30-day timeline.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External makers, founders, and launch teams use this skill to prepare Product Hunt submissions, launch timelines, readiness checklists, first-comment drafts, and tagline options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated launch copy may include confidential metrics, unreleased features, customer details, or private strategy if those details are present in project context. <br>
-Mitigation: Review all launch copy before publishing and remove confidential or unreleased information. <br>
-Risk: Broad trigger wording may invoke the skill for Product Hunt mentions that are not launch-planning requests. <br>
-Mitigation: Confirm the user's intent before applying the full launch-planning workflow when the request is ambiguous. <br>
+## Use Case:
 
+External users and developers use this skill to plan Product Hunt launches for SaaS, AI tools, developer tools, apps, Chrome extensions, and productivity products. It helps prepare submission assets, launch timing, supporter outreach, launch-day engagement, and post-launch follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/product-hunt-launch-channels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown planning artifacts with checklists, tables, and drafted launch copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a readiness checklist, first-comment draft, tagline options, and 30-day timeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate on broad Product Hunt-related terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for Product Hunt launch planning before applying the workflow.
+
+Risk: Generated launch copy may draw from existing project-context files and become public-facing.
+
+Mitigation: Review all generated Product Hunt copy, taglines, first comments, and timelines before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/product-hunt-launch-channels)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with checklists, launch-plan timelines, draft copy, and option lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use existing project-context files as source material for public launch copy when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

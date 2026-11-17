@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .exceptions import SyncError
+from discogs_client.models import CollectionItemInstance
+
+from .exceptions import ConfirmationRequiredError, SyncError
 from .models import (
     CollectionItem,
     InputRecord,
@@ -13,7 +15,7 @@ from .models import (
     SyncActionType,
     SyncReport,
 )
-from .output import print_verbose
+from .output import print_info, print_verbose
 from .parsers import extract_artist_from_data
 from .rate_limiter import get_rate_limiter
 from .search import (
@@ -23,6 +25,7 @@ from .search import (
     resolve_to_release_id,
     search_release,
 )
+from .sync_wantlist import check_remove_extras_allowed, describe_release
 
 if TYPE_CHECKING:
     import discogs_client
@@ -40,8 +43,13 @@ def sync_collection(
     dry_run: bool = False,
     threshold: float = 0.7,
     verbose: bool = False,
+    confirm_removals: bool = False,
 ) -> SyncReport:
-    """Sync a list of input records to the user's collection."""
+    """Sync a list of input records to the user's collection.
+
+    With remove_extras (and not dry_run), raises SyncError before any change is
+    made if an input record failed to resolve or if confirm_removals is False.
+    """
     report = SyncReport(total_input=len(records))
     limiter = get_rate_limiter()
 
@@ -99,11 +107,28 @@ def sync_collection(
     if verbose:
         print_verbose(f"Current collection has {len(current)} unique releases, {len(current_masters)} unique masters")
 
+    # Plan preservation before confirmation or writes. Keep the actual pressings
+    # that satisfy an input, not just the release IDs returned by search.
+    target_ids = {result.release_id for _, result in resolved}
+    matches = []
+    for _, result in resolved:
+        if result.release_id in current:
+            matching_ids = {result.release_id}
+        elif result.master_id and result.master_id in current_masters:
+            matching_ids = current_masters[result.master_id]
+        else:
+            matching_ids = _fuzzy_match_release_ids(result.artist, result.title, current_items, verbose)
+        matches.append(matching_ids)
+        target_ids.update(matching_ids)
+    extras = set(current) - target_ids
+
+    if remove_extras and not dry_run:
+        pending = sum(len(current[release_id]) for release_id in extras)
+        check_remove_extras_allowed(report, pending, confirm_removals)
+
     # Step 3: Diff
-    target_ids = set()
-    for record, result in resolved:
+    for (record, result), matching_ids in zip(resolved, matches):
         release_id = result.release_id
-        target_ids.add(release_id)
 
         if release_id in current:
             if verbose:
@@ -129,7 +154,7 @@ def sync_collection(
                 artist=result.artist,
                 reason="Already in collection",
             ))
-        elif _fuzzy_match_items(result.artist, result.title, current_items, verbose):
+        elif matching_ids:
             report.add_action(SyncAction(
                 action=SyncActionType.SKIP,
                 input_record=record,
@@ -172,7 +197,6 @@ def sync_collection(
 
     # Step 4: Remove extras
     if remove_extras:
-        extras = set(current.keys()) - target_ids
         if verbose:
             print_verbose(f"Checking extras: {len(extras)} releases in collection not in input")
         for release_id in extras:
@@ -261,8 +285,13 @@ def remove_from_collection(
     format: str | None = None,
     folder_id: int = DEFAULT_READ_FOLDER,
     threshold: float = 0.7,
+    confirm: bool = False,
 ) -> SyncAction:
-    """Remove a single item from the collection."""
+    """Remove a single item (its first instance) from the collection.
+
+    Without confirm, nothing is removed: raises ConfirmationRequiredError whose
+    preview names the exact release and instance that would be removed.
+    """
     limiter = get_rate_limiter()
 
     release_id = _resolve_item(
@@ -270,7 +299,7 @@ def remove_from_collection(
         format=format, threshold=threshold,
     )
 
-    current, _, _ = _get_collection_release_ids(client, folder_id, limiter)
+    current, _, current_items = _get_collection_release_ids(client, folder_id, limiter)
     if release_id not in current:
         return SyncAction(
             action=SyncActionType.SKIP,
@@ -282,13 +311,30 @@ def remove_from_collection(
 
     # Remove first instance
     instance_id = current[release_id][0]
+    copies = len(current[release_id])
+    target = describe_release(release_id, current_items, artist, album)
+    description = (
+        f"{target['artist']} - {target['title']} "
+        f"(release_id={release_id}, instance {instance_id}, copies owned: {copies})"
+    )
+    if not confirm:
+        raise ConfirmationRequiredError(
+            f"Would remove one copy of {description} from collection. "
+            "Re-run with --yes to confirm. No changes were made.",
+            preview={
+                "action": "remove", "target": "collection", **target,
+                "instance_id": instance_id, "folder_id": folder_id, "copies_owned": copies,
+            },
+        )
+
+    print_info(f"Removing one copy of {description} from collection")
     _remove_from_collection(client, release_id, instance_id, folder_id, limiter)
 
     return SyncAction(
         action=SyncActionType.REMOVE,
         release_id=release_id,
-        artist=artist,
-        title=album,
+        artist=target["artist"],
+        title=target["title"],
     )
 
 
@@ -376,8 +422,8 @@ def _resolve_item(
     return resolved_id
 
 
-def _get_collection_release_ids(client, folder_id: int, limiter) -> tuple[dict[int, list[int]], set[int], list[tuple[str, str, int]]]:
-    """Fetch release_id -> [instance_id] mapping, set of master_ids, and (artist, title, release_id) tuples from collection."""
+def _get_collection_release_ids(client, folder_id: int, limiter) -> tuple[dict[int, list[int]], dict[int, set[int]], list[tuple[str, str, int]]]:
+    """Fetch instances by release, releases by master, and artist/title tuples."""
     me = _api_call_with_retry(lambda: client.identity(), limiter)
     folder = _api_call_with_retry(
         lambda: me.collection_folders[folder_id],
@@ -386,7 +432,7 @@ def _get_collection_release_ids(client, folder_id: int, limiter) -> tuple[dict[i
     releases = _api_call_with_retry(lambda: folder.releases, limiter)
 
     mapping: dict[int, list[int]] = {}
-    master_ids: set[int] = set()
+    master_ids: dict[int, set[int]] = {}
     items_info: list[tuple[str, str, int]] = []
     page_num = 1
     while True:
@@ -407,8 +453,8 @@ def _get_collection_release_ids(client, folder_id: int, limiter) -> tuple[dict[i
                     album_name = data.get("title", "")
                     items_info.append((artist_name, album_name, rid))
                 mid = data.get("master_id")
-                if mid:
-                    master_ids.add(mid)
+                if mid and rid:
+                    master_ids.setdefault(mid, set()).add(rid)
             page_num += 1
         except Exception:
             break
@@ -423,8 +469,19 @@ def _fuzzy_match_items(
     verbose: bool = False,
 ) -> bool:
     """Check if artist+title fuzzy-matches any item in the list."""
+    return bool(_fuzzy_match_release_ids(artist, title, items, verbose))
+
+
+def _fuzzy_match_release_ids(
+    artist: str | None,
+    title: str | None,
+    items: list[tuple[str, str, int]],
+    verbose: bool = False,
+) -> set[int]:
+    """Return all existing pressings satisfying the fuzzy duplicate check."""
+    matches = set()
     if not artist or not title:
-        return False
+        return matches
     for item_artist, item_title, item_rid in items:
         a_sim = _similarity(artist, item_artist)
         t_sim = _similarity(title, item_title)
@@ -434,8 +491,8 @@ def _fuzzy_match_items(
                     f"  SKIP (fuzzy match): '{artist} - {title}' matched '{item_artist} - {item_title}' "
                     f"(release_id={item_rid}, artist_sim={a_sim:.2f}, title_sim={t_sim:.2f})"
                 )
-            return True
-    return False
+            matches.add(item_rid)
+    return matches
 
 
 def _add_to_collection(client, release_id: int, folder_id: int, limiter) -> None:
@@ -450,7 +507,10 @@ def _add_to_collection(client, release_id: int, folder_id: int, limiter) -> None
 def _remove_from_collection(client, release_id: int, instance_id: int, folder_id: int, limiter) -> None:
     """Remove a release instance from a collection folder."""
     me = _api_call_with_retry(lambda: client.identity(), limiter)
+    instance = CollectionItemInstance(client, {
+        "id": release_id, "instance_id": instance_id, "folder_id": folder_id,
+    })
     _api_call_with_retry(
-        lambda: me.collection_folders[folder_id].remove_release(release_id, instance_id),
+        lambda: me.collection_folders[folder_id].remove_release(instance),
         limiter,
     )

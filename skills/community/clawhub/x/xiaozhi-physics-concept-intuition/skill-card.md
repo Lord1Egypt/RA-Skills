@@ -1,39 +1,58 @@
-## Description: <br>
-Helps agents tutor physics concepts by building intuition through everyday analogies, imagined experiments, and formula meaning before formal derivation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds middle- and high-school students’ intuition for physics concepts through everyday analogies, thought experiments, and explanations of what formulas mean.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, tutors, and learning agents use this skill to turn abstract middle-school physics concepts into intuitive explanations, controlled thought experiments, formula derivations, and verification questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Companion skill handoffs may store learning-progress fields or trigger reminder workflows when those integrations are enabled. <br>
-Mitigation: Review the learning-DNA and reminder integrations before enabling them, and limit shared handoff data to the concept, model, verification level, and remediation context needed for tutoring. <br>
+## Use Case:
 
+Middle- and high-school students use this skill to understand what physics concepts and formulas mean, using familiar examples and guided thought experiments. It routes calculation practice, error tracking, and experimental procedures to their respective learning skills.
 
-## Reference(s): <br>
-- [Physics analogy bank](artifact/references/physics-analogy-bank.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-physics-concept-intuition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with tables, structured prompts, analogy mappings, and verification checkpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; may include handoff guidance for related tutoring skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review was partial; evidence notes an unresolved local reference and a low-probability Unicode-related flag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved reference and the Unicode-related note before relying on this release.
+
+Risk: A learner may raise a personal safety or crisis concern during a physics lesson.
+
+Mitigation: Stop the lesson flow and follow the bundled crisis exception and referral protocol, including locally appropriate help channels.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-physics-concept-intuition)
+- [Publisher profile](https://clawhub.ai/user/qizhitang)
+- [Physics analogy bank](artifact/references/physics-analogy-bank.md)
+- [High-school physics concepts: required courses](artifact/references/physics-hs2-concepts.md)
+- [High-school physics concepts: elective courses](artifact/references/physics-hs3-concepts.md)
+- [Crisis referral protocol](artifact/shared/crisis-referral-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational explanations or Markdown using analogies, thought experiments, questions, and formula interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive, student-facing physics concept explanations; not worked solutions or experimental instructions.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

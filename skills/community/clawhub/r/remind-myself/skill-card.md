@@ -1,41 +1,59 @@
-## Description: <br>
-Set a one-shot reminder delivered via Telegram at a specific time or after a duration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set a one-shot reminder delivered via Telegram at a specific time or after a duration.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-External users and operators use this skill to schedule one-shot Telegram reminders through an OpenClaw gateway after confirming the reminder text and delivery time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reminder text containing shell metacharacters may be interpreted by the local shell when the documented command is invoked. <br>
-Mitigation: Review reminder text before scheduling and avoid quotes, backticks, dollar signs, semicolons, and command substitutions until invocation hardening is verified. <br>
-Risk: A reminder can be delivered to the wrong Telegram destination if the chat ID is missing or stale. <br>
-Mitigation: Verify the Telegram chat ID resolved from TOOLS.md or pass an explicit chat ID before scheduling. <br>
-Risk: Absolute reminder times can be interpreted in an unexpected timezone. <br>
-Mitigation: Confirm the human-readable delivery time and timezone with the user before running the scheduling script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Remind Myself on ClawHub](https://clawhub.ai/spideystreet/remind-myself) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to schedule one-shot reminders that are delivered through Telegram after a relative delay or at an absolute time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Schedules one OpenClaw cron reminder that delivers to Telegram and deletes after it runs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted reminder text may be interpreted as arbitrary local shell commands through the documented execution pattern.
+
+Mitigation: Invoke the reminder script with structured arguments or robust escaping, and review reminder text before scheduling.
+
+Risk: Reminder text is sent to Telegram and the workflow depends on a Telegram chat ID stored in the expected OpenClaw workspace file.
+
+Mitigation: Use this skill only when the user accepts Telegram delivery and has configured the intended chat ID.
+
+Risk: Absolute-time handling uses a fixed Europe/Paris timezone in the artifact workflow.
+
+Mitigation: Confirm the user's timezone before scheduling reminders for absolute times.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spideystreet/skills/remind-myself)
+- [OpenClaw binary requirement](artifact/SKILL.md)
+- [Reminder setup and usage](artifact/README.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw, a configured Telegram channel, and a Telegram chat ID available to the reminder script.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

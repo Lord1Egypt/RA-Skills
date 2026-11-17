@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "home-music-terry",
-  "version": "1.1.1",
-  "publishedAt": 1778544462984
+  "owner": "asteinberger",
+  "slug": "home-music",
+  "displayName": "Home Music",
+  "latest": {
+    "version": "1.1.0",
+    "publishedAt": 1769324742847,
+    "commit": "https://github.com/clawdbot/skills/commit/cea9c9f3812f278496a27baf988fe165b10d3214"
+  },
+  "history": []
 }

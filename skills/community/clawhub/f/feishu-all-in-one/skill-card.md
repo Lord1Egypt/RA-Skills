@@ -1,50 +1,64 @@
-## Description: <br>
-Feishu All In One helps agents configure Feishu bot messaging, send text, image, file, and interactive-card messages, handle card callbacks, and transcribe voice content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu All In One helps agents configure Feishu messaging workflows for text, image and file sending, voice transcription, proactive messages, and interactive cards.
 
-## Publisher: <br>
-[ArvenWang](https://clawhub.ai/user/ArvenWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arvenwang](https://clawhub.ai/user/arvenwang)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Feishu workflows for bot messaging, file delivery, interactive cards, callback handling, and voice-to-text support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Feishu messages and upload selected local files. <br>
-Mitigation: Install it only for agents that should have Feishu messaging and file-upload capability, and review selected file paths before use. <br>
-Risk: Feishu App Secret and OpenClaw configuration are required for operation. <br>
-Mitigation: Keep FEISHU_APP_SECRET and ~/.openclaw/openclaw.json private, and avoid committing credentials to shared repositories. <br>
-Risk: Card callback handling can forward full interaction data to a configurable OpenClaw Gateway. <br>
-Mitigation: Disable gateway forwarding with gateway.enabled=false or remove the gateway token unless forwarding raw callback data is intended. <br>
-Risk: The release security verdict is suspicious because gateway forwarding is not fully scoped in the user-facing documentation. <br>
-Mitigation: Review the callback server behavior, gateway settings, and dependency versions before deployment. <br>
+## Use Case:
 
+Developers and teams use this skill to connect agents with Feishu for bot messaging, file delivery, interactive card workflows, callback handling, and optional voice-to-text processing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ArvenWang/feishu-all-in-one) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [README.md](README.md) <br>
-- [Confirmation Card Template](references/confirmation-card.json) <br>
-- [Form Card Template](references/form-card.json) <br>
-- [Poll Card Template](references/poll-card.json) <br>
-- [Todo Card Template](references/todo-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, JSON] <br>
-**Output Format:** [Markdown guidance with inline command, code, and JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, node, Feishu app credentials, and an OpenClaw configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json; artifact SKILL.md lists a newer frontmatter version) <br>
+Risk: The callback server can forward full Feishu card interaction data to a configurable Gateway, which evidence.security flags as needing review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable Gateway forwarding unless required, restrict the Gateway URL to a trusted HTTPS or local endpoint, and avoid sending raw callback data.
+
+Risk: Feishu App Secret and Gateway tokens are required for message and callback flows.
+
+Mitigation: Store secrets in protected configuration or environment variables, limit access to the configuration file, and rotate tokens if exposed.
+
+Risk: The security guidance recommends regenerating the npm lockfile from an approved HTTPS registry with updated dependencies before production use.
+
+Mitigation: Regenerate and review package-lock.json in a trusted build environment before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arvenwang/skills/feishu-all-in-one)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [README.md](README.md)
+- [confirmation-card.json](references/confirmation-card.json)
+- [form-card.json](references/form-card.json)
+- [poll-card.json](references/poll-card.json)
+- [test-card.json](references/test-card.json)
+- [todo-card.json](references/todo-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, JavaScript snippets, and Feishu card JSON templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, node, Feishu App ID/App Secret, and OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json; artifact SKILL.md frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Provides summaries and organized information from Apizza's public product pages and documentation without account or project interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summaries and organized information from Apizza's public product pages and documentation without account or project interactions.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to collect concise summaries of public Apizza product features, versions, pricing information, documentation links, and examples. It is limited to public pages and excludes account actions, project writes, interface reverse engineering, and private data handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could provide private account, project, or API data even though the skill is intended for public Apizza research. <br>
-Mitigation: Keep usage limited to public Apizza pages and avoid supplying private account, project, API, credential, or other sensitive data. <br>
-Risk: Dynamic pages or repeated automation could produce incomplete extraction or unnecessary platform load. <br>
-Mitigation: Wait for pages to finish loading, review summaries against the public source page, and use frequency controls that respect platform access limits. <br>
+## Use Case:
 
+Developers, product teams, and external users use this skill to summarize public Apizza product, pricing, version, and documentation information for review and comparison.
 
-## Reference(s): <br>
-- [Apizza homepage](https://apizza.net/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/apizza) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and organized link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on public Apizza pages only and should avoid storing or exposing sensitive information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Users may try to use the skill for account operations, private projects, API calls, or interface analysis outside its stated scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to public Apizza product pages, documentation, pricing pages, and announcements; do not use it for account actions, project writes, API calls, or reverse engineering.
+
+Risk: Public-page summaries can become outdated or miss details from dynamically loaded pages.
+
+Mitigation: Re-check the live public page before relying on pricing, version, feature, or documentation summaries.
+
+Risk: Sensitive or private information could be introduced by a user despite the artifact's public-page boundary.
+
+Mitigation: Do not provide, store, or ask the skill to summarize sensitive information, private project content, or non-public account data.
+
+## Reference(s):
+
+- [Apizza Homepage](https://apizza.net/)
+- [ClawHub Apizza Skill Page](https://clawhub.ai/codekungfu/skills/apizza)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, comparison notes, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public-page information only; excludes account operations, private project actions, API calls, and sensitive data storage.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

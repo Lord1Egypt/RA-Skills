@@ -1,47 +1,63 @@
-## Description: <br>
-libtv-skill helps agents route AI image and video generation or editing requests through LibTV sessions and compatible Gemini, Sora, Veo, Grok, Doubao, and Vidu endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+libtv-skill helps agents generate and edit images or videos through LibTV session workflows and compatible Gemini, Sora, Veo, Grok, Doubao, and Vidu API paths.
 
-## Publisher: <br>
-[huguanjin](https://clawhub.ai/user/huguanjin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[huguanjin](https://clawhub.ai/user/huguanjin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, edit, monitor, and download AI-generated images or videos from natural-language requests, with optional direct calls to supported image and video providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected media may be sent to external services. <br>
-Mitigation: Use the skill only with trusted API endpoints and do not upload confidential or regulated media unless authorized. <br>
-Risk: API credentials are required for normal operation. <br>
-Mitigation: Use scoped or revocable API keys and avoid exposing secrets in shared command-line environments. <br>
-Risk: Generated files may be saved locally. <br>
-Mitigation: Confirm output directories before download and handle generated media according to local data handling requirements. <br>
+## Use Case:
 
+Developers and creator-facing agents use this skill to submit image and video generation or editing requests, upload reference media, poll job status, and retrieve generated assets from LibTV or compatible provider endpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huguanjin/huguanjin-libtv-skill) <br>
-- [LibTV platform](https://www.liblib.tv) <br>
-- [Configuration Guide](CONFIG.md) <br>
-- [Usage Guide](references/usage-guide.md) <br>
-- [Workflow Reference](references/workflows.md) <br>
-- [Output Format Reference](references/output-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script outputs; generated media may be returned as URLs or saved as local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API credentials and may produce local image or video downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact metadata reports 1.0.3) <br>
+Risk: The skill can upload local image or video files and download generated results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive input files, confirm transfer destinations, and confine downloads to a non-sensitive output directory.
+
+Risk: The security summary flags weak validation and unvalidated network destinations.
+
+Mitigation: Use only trusted HTTPS API endpoints and test with non-production credentials before broader use.
+
+Risk: The skill relies on private or paid API credentials.
+
+Mitigation: Keep credentials in environment variables, use least-privilege keys, and avoid sharing logs or artifacts that may contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huguanjin/skills/huguanjin-libtv-skill)
+- [LibTV](https://www.liblib.tv)
+- [Configuration Guide](CONFIG.md)
+- [Usage Guide](references/usage-guide.md)
+- [Workflows](references/workflows.md)
+- [Output Format](references/output-format.md)
+- [Smoke Tests](SMOKE_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return generated media URLs, project URLs, local downloaded files, status JSON, and configuration guidance for required environment variables.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact metadata version is 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

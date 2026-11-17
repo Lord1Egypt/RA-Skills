@@ -1,45 +1,60 @@
-## Description: <br>
-GhostBot ACLM helps agents manage Uniswap v4 concentrated liquidity on Ethereum Sepolia by checking status, adding liquidity, viewing positions, reading oracle signals, and posting authorized oracle updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GhostBot ACLM helps agents manage Uniswap v4 concentrated liquidity on Ethereum Sepolia by adding liquidity, checking positions and pool statistics, monitoring oracle signals, and posting authorized rebalance or fee recommendations.
 
-## Publisher: <br>
-[AqilJaafree](https://clawhub.ai/user/AqilJaafree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aqiljaafree](https://clawhub.ai/user/aqiljaafree)
 
-## Use Case: <br>
-External users, developers, and DeFi operators use this skill to inspect and manage Sepolia testnet Uniswap v4 liquidity positions, pool stats, dynamic fee signals, and authorized oracle actions from chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes transaction scripts with an embedded fallback private key. <br>
-Mitigation: Remove the hardcoded fallback key and require DEPLOYER_PRIVATE_KEY or an external signer before any state-changing command is run. <br>
-Risk: State-changing scripts can approve tokens, mint test tokens, add liquidity, or post oracle data. <br>
-Mitigation: Require a dry run and explicit user confirmation before executing commands that change blockchain state. <br>
-Risk: The deployed workflow is intended for Sepolia testnet contracts and test tokens. <br>
-Mitigation: Use only on Sepolia or an isolated local fork unless the contracts, configuration, and operational safeguards have been reviewed for another network. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GhostBot ACLM Architecture](artifact/references/architecture.md) <br>
-- [Deployed Contracts Reference](artifact/references/contracts.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AqilJaafree/ghostbot-uniswap-v4hooks-testnet) <br>
-- [OpenClawACLMHook on Sepolia Etherscan](https://sepolia.etherscan.io/address/0xbD2802B7215530894d5696ab8450115f56b1fAC0) <br>
-- [OpenClawOracle on Sepolia Etherscan](https://sepolia.etherscan.io/address/0x300Fa0Af86201A410bEBD511Ca7FB81548a0f027) <br>
+## Use Case:
 
+External DeFi developers and testnet operators use this skill to inspect and manage automated liquidity positions, pool state, and oracle-driven rebalance or fee signals for a Sepolia Uniswap v4 hook deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Sepolia Etherscan transaction links and contract addresses when commands interact with deployed contracts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scripts include a default signing key and RPC endpoint for Sepolia transaction flows.
+
+Mitigation: Use a dedicated testnet key with no mainnet funds, override DEPLOYER_PRIVATE_KEY and RPC_URL, and rotate or replace the embedded demo key before relying on the skill.
+
+Risk: Liquidity actions can mint test tokens, approve hook spending, and create persistent Sepolia positions.
+
+Mitigation: Review token allowances and transaction parameters before execution, keep usage on Sepolia, and inspect emitted Etherscan transaction links.
+
+Risk: The dependency declaration uses an unpinned viem version range.
+
+Mitigation: Install in an isolated workspace and prefer a release with pinned dependencies or a reviewed lockfile before operational use.
+
+## Reference(s):
+
+- [GhostBot ACLM Architecture](references/architecture.md)
+- [Deployed Contracts Reference](references/contracts.md)
+- [OpenClawACLMHook on Sepolia Etherscan](https://sepolia.etherscan.io/address/0xbD2802B7215530894d5696ab8450115f56b1fAC0)
+- [OpenClawOracle on Sepolia Etherscan](https://sepolia.etherscan.io/address/0x300Fa0Af86201A410bEBD511Ca7FB81548a0f027)
+- [ClawHub Skill Page](https://clawhub.ai/aqiljaafree/skills/ghostbot-uniswap-v4hooks-testnet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and transaction or status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Sepolia transaction links, position tables, pool statistics, token balances, and oracle signal summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

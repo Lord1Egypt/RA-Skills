@@ -1,46 +1,54 @@
-## Description: <br>
-Query Czech ARES business registry by ICO or name with human/JSON/raw outputs, retries, and legal-form decoding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Czech ARES business registry by ICO or name with human/JSON/raw outputs, retries, and legal-form decoding.
 
-## Publisher: <br>
-[PGhostek](https://clawhub.ai/user/PGhostek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pghostek](https://clawhub.ai/user/pghostek)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Czech business entities by ICO, name, city, or CZ-NACE filters and return human-readable or JSON registry results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business lookup terms such as ICO, name, city, or NACE filters are sent to the Czech ARES service. <br>
-Mitigation: Use the skill only with lookup terms that are acceptable to disclose to ARES. <br>
-Risk: A custom --base URL can redirect registry queries to a non-default service. <br>
-Mitigation: Use the default ARES endpoint unless the custom endpoint is intentionally trusted. <br>
-Risk: The skill creates a small local cache for legal-form names. <br>
-Mitigation: Account for the .cache/pravni_forma.json file in local data handling and clear it when needed. <br>
-Risk: City filtering is best-effort and ARES matching may return records outside the expected municipality. <br>
-Mitigation: Review returned entity details before using results for business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ARES links](references/ares-links.md) <br>
-- [ARES Swagger UI](https://ares.gov.cz/swagger-ui/#/) <br>
-- [ARES technical documentation catalog of public services](https://mf.gov.cz/assets/attachments/2024-02-16_ARES-Technical-documentation-Catalog-of-public-services_v02.pdf) <br>
-- [CZ-NACE classification](https://www.czso.cz/csu/czso/klasifikace_ekonomickych_cinnosti_cz_nace) <br>
+## Use Case:
 
+Developers and agents use this skill to look up Czech ARES business registry entities by ICO, name, city, or CZ-NACE code and return either concise summaries, normalized JSON, or raw ARES payloads.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands] <br>
-**Output Format:** [Human-readable text, normalized JSON, raw JSON payloads, and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ARES network calls, retry/backoff behavior, and a small 24-hour local legal-form cache.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review reports that the skill can send requests to arbitrary URLs through the --base option instead of only the official ARES service.
+
+Mitigation: Use the skill only where outbound network access is acceptable and do not allow prompts or untrusted inputs to set --base; prefer restricting requests to the official ARES host.
+
+## Reference(s):
+
+- [ARES Links](references/ares-links.md)
+- [ClawHub skill page](https://clawhub.ai/pghostek/skills/ares-business-registry)
+- [ARES Swagger UI](https://ares.gov.cz/swagger-ui/#/)
+- [ARES ICO endpoint](https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/{ico})
+- [ARES technical documentation catalog, 2023](https://mf.gov.cz/assets/attachments/2023-08-01_ARES-Technicka-dokumentace-Katalog-verejnych-sluzeb_v07.pdf)
+- [ARES technical documentation catalog, 2024](https://mf.gov.cz/assets/attachments/2024-02-16_ARES-Technical-documentation-Catalog-of-public-services_v02.pdf)
+- [CZ-NACE classification](https://www.czso.cz/csu/czso/klasifikace_ekonomickych_cinnosti_cz_nace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable text, normalized JSON, or raw JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports validation-error, ARES-error, and network-error JSON contracts when --json is used.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

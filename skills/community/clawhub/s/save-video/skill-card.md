@@ -1,42 +1,58 @@
-## Description: <br>
-Download videos from mainstream websites from a user-provided URL and save the media locally for viewing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download and save videos from mainstream websites by extracting a video URL from user input and saving the media locally.
 
-## Publisher: <br>
-[skill](https://clawhub.ai/user/skill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skill](https://clawhub.ai/user/skill)
 
-## Use Case: <br>
-Agents use this skill when a user provides a video URL and wants the video downloaded into the local workspace for later viewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads media from user-provided URLs, which can involve copyright restrictions or site terms of service. <br>
-Mitigation: Use it only for URLs the user is authorized to download and review applicable site terms before use. <br>
-Risk: Downloaded videos can consume significant disk space in the local workspace. <br>
-Mitigation: Run it in a workspace where a local videos directory and large media files are acceptable, then clean up files that are no longer needed. <br>
-Risk: Untrusted URLs can lead the agent to fetch unwanted or unsafe content. <br>
-Mitigation: Confirm the URL source is trusted before running the download. <br>
+## Use Case:
 
+Developers and agent users use this skill to download a video from a provided web URL into a local videos directory for later viewing.
 
-## Reference(s): <br>
-- [Save Video on ClawHub](https://clawhub.ai/skill/save-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text status message and downloaded video file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local videos directory in the current workspace and writes the downloaded media there.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill accepts arbitrary web URLs and makes outbound requests to retrieve remote media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public video URLs and consider an allowlist of supported video sites before broad use.
+
+Risk: The skill writes downloaded media to local storage.
+
+Mitigation: Run it in a restricted environment and review the local videos directory for storage and content handling expectations.
+
+Risk: The downloader dependency can change behavior across releases if left unpinned.
+
+Mitigation: Pin and review the yt-dlp version before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skill/skills/save-video)
+- [Publisher profile](https://clawhub.ai/user/skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text status message plus downloaded video file in a local videos directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the first URL found in the input and saves downloaded media under a local videos directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

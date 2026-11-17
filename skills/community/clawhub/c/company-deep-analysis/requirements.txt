@@ -1,0 +1,6 @@
+# company-deep-analysis 数据采集依赖
+requests>=2.28.0    # 联网抓取（行情/财务/研报/新闻/公告）
+pandas>=2.0.0       # 财务表格解析、清洗、时间序列
+lxml>=4.9.0         # pandas 解析 HTML 的首选引擎
+html5lib>=1.1       # lxml 失败时回退的备用引擎
+# matplotlib 为可选增强（图表渲染），非核心分析流程必需，已移至 SKILL.md optional_pip

@@ -1,43 +1,56 @@
-## Description: <br>
-Offline-first voice assistant stack for macOS with wake word detection, VAD recording, local Whisper ASR, OpenClaw agent response, offline macOS text-to-speech, and an HTTPS WebSocket web UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maylo Voice Assistant installs and runs an offline-first macOS voice assistant with wake-word listening, VAD recording, local Whisper transcription, OpenClaw responses, offline macOS text-to-speech, and an HTTPS WebSocket web UI.
 
-## Publisher: <br>
-[ugurozer84](https://clawhub.ai/user/ugurozer84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ugurozer84](https://clawhub.ai/user/ugurozer84)
 
-## Use Case: <br>
-Developers and operators use this skill to install, run, and troubleshoot a local macOS voice assistant that can listen for a wake word, transcribe speech locally, route requests to an OpenClaw agent, speak replies, and expose a web microphone interface. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The web UI can accept or trigger audio processing without built-in authentication when exposed on a network. <br>
-Mitigation: Bind the UI to localhost or a trusted interface, add authentication before using 0.0.0.0, and expose it only on trusted networks. <br>
-Risk: The assistant listens through the Mac microphone and can save audio and log artifacts locally. <br>
-Mitigation: Install only on a trusted machine, review stored recordings and logs, and avoid placing secrets or private keys in the skill directory. <br>
-Risk: Spoken or streamed audio becomes input to the configured local OpenClaw agent. <br>
-Mitigation: Review the OpenClaw agent's permissions and behavior before enabling the assistant, especially in shared or sensitive environments. <br>
-Risk: Web-started wake listening can begin background microphone processing unexpectedly. <br>
-Mitigation: Disable MAYLO_WEB_WAKE unless web-started wake listening is explicitly required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Maylo Voice Assistant on ClawHub](https://clawhub.ai/ugurozer84/maylo-voice-assistant) <br>
+## Use Case:
 
+Developers and Mac users use this skill to install, run, and troubleshoot a local voice assistant that can listen for a wake word, transcribe Turkish speech locally, send the transcript to a local OpenClaw agent, and speak the reply through macOS audio.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, run, and troubleshooting guidance for a local macOS voice assistant and its bundled app files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default web UI can expose microphone, transcript, and local-agent controls without authentication when bound to 0.0.0.0.
+
+Mitigation: Bind the web UI to 127.0.0.1 or a trusted private tunnel by default, and add authentication before allowing LAN access.
+
+Risk: The assistant records audio and stores WAV files, transcripts, and logs locally.
+
+Mitigation: Review retained recordings and logs, define a local retention policy, and avoid using the assistant where sensitive audio should not be stored.
+
+Risk: Voice transcripts are passed to a local OpenClaw agent that may perform local-agent actions.
+
+Mitigation: Restrict the OpenClaw agent permissions available to the assistant and review agent behavior before deployment.
+
+## Reference(s):
+
+- [Maylo Voice Assistant ClawHub listing](https://clawhub.ai/ugurozer84/skills/maylo-voice-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and bundled Python, shell, and HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup and operating guidance for a macOS voice assistant; the bundled app writes local recordings, transcripts, logs, bridge request files, and bridge response files during use.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,62 @@
-## Description: <br>
-Birthday helps agents manage member profiles, solar and lunar birthdays, anniversaries, and OpenClaw scheduled reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Birthday helps agents manage member profiles, solar and lunar birthdays, anniversaries, and OpenClaw reminders.
 
-## Publisher: <br>
-[IfeyChan702](https://clawhub.ai/user/IfeyChan702) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ifeychan702](https://clawhub.ai/user/ifeychan702)
 
-## Use Case: <br>
-External OpenClaw users use this skill to maintain personal or organizational member records, convert lunar birthdays, review upcoming events, and create birthday or anniversary reminders. It is intended for family, colleague, relative, and similar member-management workflows rather than general calendar scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Missing session identifiers can cause different users' member data to be stored in the same local namespace. <br>
-Mitigation: Require a real per-user session key in shared OpenClaw or bot deployments and avoid using the shared default namespace. <br>
-Risk: Member details, birthdays, notes, and reminder content may be stored as plaintext local JSON or embedded in persistent reminders. <br>
-Mitigation: Limit sensitive notes in reminders, restrict local data directory permissions, and use encrypted backups if the data is backed up. <br>
+## Use Case:
 
+External users and personal teams use this skill to track family, colleague, and relative birthdays or anniversaries, including lunar-date conversion and reminder setup. Agents can read and update local member records and configure scheduled reminders after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IfeyChan702/mybirthday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or text responses with JSON file updates and scheduled-task calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local member and reminder JSON files and persistent scheduled reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill stores names, phone numbers, birthdays, notes, and anniversaries as local plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the data directory private, restrict file permissions, and use encrypted backups for any copied data.
+
+Risk: Using a shared default session key can mix data between users in multi-user or bot deployments.
+
+Mitigation: Require an authenticated session key for each user and avoid the default shared data directory.
+
+Risk: Persistent reminder text can include user-supplied fields that should not become future agent instructions.
+
+Mitigation: Treat reminder labels, notes, and prompt text as untrusted data and review reminders before scheduled execution.
+
+Risk: Scheduled reminders may continue after records are changed or deleted if reminder cleanup is missed.
+
+Mitigation: Confirm writes and deletions with the user, synchronize reminder records, and disable stale scheduled tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ifeychan702/skills/mybirthday)
+- [Publisher Profile](https://clawhub.ai/user/ifeychan702)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON file updates, Python snippets, and scheduled-task configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists member and reminder data as local JSON and may create or update scheduled reminders after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

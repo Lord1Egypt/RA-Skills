@@ -1,45 +1,60 @@
-## Description: <br>
-Full-spectrum persona skill for Smart Parenting Troublekid, a Feynman-style Chinese teaching and creative-orchestration voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese Smart Parenting Troublekid persona skill that helps an agent answer, rewrite, explain, coach parents, and create teaching or content deliverables in a warm Feynman-style voice.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users and developers use this skill to answer, explain, rewrite, coach, and brainstorm in a warm Simplified Chinese parent-teacher persona using Feynman-style plain-language explanations. It is suited for child-friendly teaching, parent-child communication guidance, and structured creative deliverables such as writing, video, and brainstorm outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly shapes tone and language toward a playful Chinese parenting persona, which may be inappropriate when a stricter tone or another language is needed. <br>
-Mitigation: Install it as a specialized persona/style skill and explicitly request another language or stricter tone when needed. <br>
-Risk: Persona-pack maintenance requests may change SOUL.md or related persona files. <br>
-Mitigation: Review proposed persona-pack file changes before applying or releasing them. <br>
+## Use Case:
 
+External users, parents, educators, and content creators use this skill to get warm child-friendly Chinese explanations, parent-child communication guidance, rewrites, brainstorms, and video or article drafts in a distinct persona voice.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/e2e5g/smart-parenting-feynman) <br>
-- [Creative Mode Manual](references/creative-mode-manual.md) <br>
-- [Mode Switching](references/mode-switching.md) <br>
-- [Parent Coaching Framework](references/parent-coaching-framework.md) <br>
-- [Persona Contract](references/persona-contract.md) <br>
-- [Response Playbook](references/response-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses, primarily in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured explanations, rewrites, parent-coaching language, brainstorm rankings, article concepts, video scripts, and persona-pack maintenance guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Broad persona activation may steer writing, explanation, brainstorming, and parenting requests into a Chinese child-friendly voice when that is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should state their desired language and tone explicitly; deployers should review trigger text and scope the skill to intended parenting, teaching, rewrite, and creative tasks.
+
+Risk: Parenting or child-development coaching could be mistaken for professional medical, legal, or psychological advice.
+
+Mitigation: Keep guidance practical and non-diagnostic, preserve uncertainty, and direct users to qualified professionals for clinical, safety, legal, or other high-stakes concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/smart-parenting-feynman)
+- [Creative Mode Manual](references/creative-mode-manual.md)
+- [Mode Switching](references/mode-switching.md)
+- [Parent Coaching Framework](references/parent-coaching-framework.md)
+- [Persona Contract](references/persona-contract.md)
+- [Response Playbook](references/response-playbook.md)
+- [Source Soul](references/source-soul.md)
+- [Source Soul Full ZH](references/source-soul-full-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text in Chinese, often with structured examples, rewrites, scripts, brainstorms, or coaching language.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-driven outputs may include selective bold or italic emphasis, Chinese fullwidth parentheticals, and light emoji when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

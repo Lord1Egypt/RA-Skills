@@ -1,39 +1,53 @@
-## Description: <br>
-Creates, reads, edits, validates, converts, and manipulates Microsoft Word .docx files, including formatting, comments, images, and tracked changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, read, edit, validate, convert, and manipulate Word .docx documents, including formatting, comments, images, and tracked changes.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers and document-producing agents use this skill to create polished Word documents, inspect or modify existing DOCX packages, convert documents, and manage tracked changes and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary Anthropic Terms
 
-## Known Risks and Mitigations: <br>
-Risk: Local document tooling may run LibreOffice operations and use a temporary macro profile plus an LD_PRELOAD native shim for compatibility. <br>
-Mitigation: Install and run in a single-user or sandboxed environment, review helper scripts before deployment, and avoid shared systems for untrusted Office files. <br>
-Risk: Tracked changes, comments, and Office metadata may preserve sensitive information in generated or edited documents. <br>
-Mitigation: Review tracked changes, comments, and document metadata before sharing outputs, and validate generated DOCX files before distribution. <br>
+## Use Case:
 
+Developers, document automation users, and agent operators use this skill to produce polished Word documents and inspect or modify existing .docx files. It is suited for workflows involving document generation, XML-level repair, comments, tracked changes, validation, and format conversion.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and generated or modified DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local Office tooling such as LibreOffice, pandoc, docx-js, and helper scripts for unpacking, validation, comments, conversion, and tracked changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Document-processing paths may execute LibreOffice with unsafe profile or shim behavior and unpinned global dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment, avoid untrusted Office files until the flagged issues are fixed, and prefer pinned local dependencies over global installs.
+
+Risk: Comments and tracked changes can expose default author names in shared documents.
+
+Mitigation: Set explicit comment and tracked-change author names before producing documents for others.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/docx-anthropic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with code and shell command examples; generated artifacts may include .docx files and unpacked Office XML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local document tooling such as LibreOffice, pandoc, docx-js, and Python helper scripts when those tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

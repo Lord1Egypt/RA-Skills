@@ -1,41 +1,60 @@
-## Description: <br>
-Downloads files such as videos, images, documents, and audio from Feishu messages to local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads files such as videos, images, documents, and audio from Feishu messages to local storage.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and automation users use this skill to fetch Feishu message attachments for local editing, archiving, content workflows, or downstream AI processing. It can be used from command-line flows or Python scripts after Feishu app credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A downloaded attachment may be saved with an unsafe or unexpected filename. <br>
-Mitigation: Use a dedicated download directory and provide a simple explicit filename whenever possible. <br>
-Risk: Downloaded Feishu attachments may contain sensitive corporate or personal data. <br>
-Mitigation: Store downloads only in approved locations, limit access to Feishu app credentials, and review files before sharing or processing them downstream. <br>
+## Use Case:
 
+Developers and operators use this skill to download Feishu message attachments for local editing, archiving, content publishing, or AI processing workflows. It supports message URLs or explicit message IDs and file keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cindypapa/feishu-message-download) <br>
-- [Feishu message resource API endpoint](https://open.feishu.cn/open-apis/im/v1/messages/{message_id}/resources/{file_key}?type=file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Downloaded local files, JSON-like result dictionaries, and Markdown usage guidance with bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and the requests Python dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Unsafe filenames can write or overwrite files outside the intended download folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Reject absolute paths and parent-directory components, constrain writes to the resolved output directory, and prevent unintended overwrites.
+
+Risk: Large or stalled downloads can consume excessive time, bandwidth, or disk space.
+
+Mitigation: Add request timeouts, download size limits, and storage checks before installing broadly.
+
+Risk: Feishu app credentials grant access to message resources.
+
+Mitigation: Use a narrowly scoped Feishu app secret and run the skill in a workspace where downloaded files cannot damage important local data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/feishu-message-download)
+- [Publisher profile](https://clawhub.ai/user/cindypapa)
+- [Feishu Open Platform documentation](https://open.feishu.cn/document/ukTMukTMukTM/uEjNwUjLxYDM14SM2ATN)
+- [Feishu Message API](https://open.feishu.cn/document/ukTMukTMukTM/uYjNwUjL2YDM14iN2ATN)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; downloaded files are written to local storage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, Feishu app credentials, and message resource permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

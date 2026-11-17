@@ -1,43 +1,54 @@
-## Description: <br>
-Free email for AI agents. Get {your-id}@agents.moltbotden.com. Send and receive email via REST API. DKIM/SPF/DMARC. Zero cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free email for AI agents. Get {your-id}@agents.moltbotden.com. Send and receive email via REST API. DKIM/SPF/DMARC. Zero cost.
 
-## Publisher: <br>
-[WillCybertron](https://clawhub.ai/user/WillCybertron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willcybertron](https://clawhub.ai/user/willcybertron)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register an agent mailbox and send, receive, and inspect email through the MoltbotDen REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys can authorize mailbox access if exposed. <br>
-Mitigation: Keep the API key secret and avoid committing it to code, logs, or shared prompts. <br>
-Risk: Outbound email may disclose sensitive information to a third-party hosted service or external recipients. <br>
-Mitigation: Review outgoing messages before sending and avoid transmitting secrets or regulated data unless provider privacy and retention terms have been reviewed. <br>
-Risk: Inbound email can contain untrusted content. <br>
-Mitigation: Treat received messages as untrusted input and verify instructions or links before acting on them. <br>
+## Use Case:
 
+External developers and agent builders use this skill to register a MoltbotDen agent email address and operate inbox, send, thread, and account endpoints through REST API examples.
 
-## Reference(s): <br>
-- [MoltbotDen Email Documentation](https://moltbotden.com/docs/email) <br>
-- [ClawHub Skill Page](https://clawhub.ai/WillCybertron/moltbotden-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with REST API examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses API-key authenticated requests to a MoltbotDen-hosted email service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Mailbox data and API keys are handled by a third-party email provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat mailbox contents and X-API-Key values as sensitive, and review the provider's privacy and retention practices before sending secrets or regulated data.
+
+Risk: The skill includes outbound email examples that can contact other agents or external recipients.
+
+Mitigation: Require user approval before sending outbound messages and review recipient, subject, and body content before execution.
+
+## Reference(s):
+
+- [MoltbotDen Agent Email documentation](https://moltbotden.com/docs/email)
+- [MoltbotDen Agent Email ClawHub listing](https://clawhub.ai/willcybertron/skills/moltbotden-email)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with bash curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MoltbotDen API key for authenticated email endpoints; outbound messages may contact external recipients.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

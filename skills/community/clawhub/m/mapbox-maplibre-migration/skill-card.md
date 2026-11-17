@@ -1,49 +1,65 @@
-## Description: <br>
-Guide for migrating from MapLibre GL JS to Mapbox GL JS, covering API compatibility, token setup, style configuration, and the benefits of Mapbox's official support and ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for migrating from MapLibre GL JS to Mapbox GL JS, covering API compatibility, token setup, style configuration, and the benefits of Mapbox's official support and ecosystem.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to migrate web maps from MapLibre GL JS to Mapbox GL JS, including package changes, imports, access token setup, style URLs, and plugin replacements. It helps teams understand which map APIs usually remain compatible and where Mapbox-specific configuration is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copying token examples into source control can expose Mapbox access tokens. <br>
-Mitigation: Use environment variables, keep tokens out of git, restrict public tokens by domain, and rotate any token that may have been exposed. <br>
-Risk: Using Mapbox geocoding, routing, search, or precise-location features may send user location data or addresses to Mapbox services. <br>
-Mitigation: Review Mapbox privacy terms, add user notice or consent where needed, and avoid sending unnecessary sensitive location data. <br>
-Risk: Migrating from MapLibre to Mapbox introduces Mapbox-specific licensing, pricing, token, and service-dependency considerations. <br>
-Mitigation: Confirm that Mapbox commercial terms, pricing, billing alerts, and operational dependencies fit the application before applying the migration. <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate web mapping applications from MapLibre GL JS to Mapbox GL JS, including package changes, token setup, style updates, plugin swaps, and compatibility checks.
 
-## Reference(s): <br>
-- [API Compatibility Matrix](references/api-compatibility.md) <br>
-- [Mapbox-Exclusive Features](references/exclusive-features.md) <br>
-- [Why Choose Mapbox](references/why-mapbox.md) <br>
-- [Mapbox GL JS Documentation](https://docs.mapbox.com/mapbox-gl-js/) <br>
-- [Mapbox GL JS API Reference](https://docs.mapbox.com/mapbox-gl-js/api/) <br>
-- [Mapbox GL JS Examples](https://docs.mapbox.com/mapbox-gl-js/examples/) <br>
-- [Mapbox Studio](https://studio.mapbox.com/) <br>
-- [Mapbox GL JS GitHub Repository](https://github.com/mapbox/mapbox-gl-js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JavaScript, HTML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only migration guidance; no files are generated unless the agent applies suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Mapbox access tokens can be exposed, committed, or scoped too broadly in client applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public client tokens for browser code, store tokens in environment variables, add URL restrictions, avoid committing .env files, and rotate tokens if compromised.
+
+Risk: Migrating to Mapbox services can send map, geocoding, or related API traffic to Mapbox and may affect usage or billing.
+
+Mitigation: Review Mapbox service fit and pricing before deployment, monitor usage, and set billing alerts for production applications.
+
+Risk: Incorrect package, plugin, token, or style changes can break maps after migration.
+
+Mitigation: Test map initialization, tile loading, custom sources and layers, events, popups, and Mapbox plugin equivalents before release.
+
+## Reference(s):
+
+- [API Compatibility Matrix](references/api-compatibility.md)
+- [Mapbox-Exclusive Features](references/exclusive-features.md)
+- [Why Choose Mapbox](references/why-mapbox.md)
+- [Mapbox GL JS Documentation](https://docs.mapbox.com/mapbox-gl-js/)
+- [Mapbox GL JS Examples](https://docs.mapbox.com/mapbox-gl-js/examples/)
+- [Mapbox GL JS API Reference](https://docs.mapbox.com/mapbox-gl-js/api/)
+- [Mapbox Studio](https://studio.mapbox.com/)
+- [Mapbox GL JS GitHub Repository](https://github.com/mapbox/mapbox-gl-js)
+- [Mapbox Pricing](https://www.mapbox.com/pricing/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; may recommend package installs, token configuration, Mapbox API/CDN calls, and review of pricing or billing impacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

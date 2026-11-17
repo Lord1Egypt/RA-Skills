@@ -1,41 +1,54 @@
-## Description: <br>
-Collect and aggregate agent metrics from connections, peers, and custom events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect and aggregate agent metrics from connections, peers, and custom events.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Pilot Protocol agent health, connection state, peers, latency, throughput, and fleet metrics for monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the local pilotctl binary and a running Pilot Protocol daemon. <br>
-Mitigation: Install only in environments that already use Pilot Protocol monitoring and trust the pilotctl binary on PATH. <br>
-Risk: Exported fleet metrics can include operational details such as hostnames, peer information, latency, and throughput. <br>
-Mitigation: Write metrics to private directories or use restrictive file permissions when operational data is sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Pilot Protocol agent health, peer connectivity, connection activity, RTT, throughput, and custom metrics across individual agents or fleets.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-metrics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local pilotctl and jq commands that read operational metrics and can write JSON metrics files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: The fleet dashboard example writes predictable files under /tmp, which can be unsafe on shared or privileged hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use mktemp or a private output directory before adapting the example.
+
+Risk: The skill depends on trusted pilotctl output from the local Pilot Protocol environment.
+
+Mitigation: Confirm pilotctl is trusted in the target environment and review command output before using it for operational decisions.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Metrics on ClawHub](https://clawhub.ai/teoslayer/skills/pilot-metrics)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, the pilot-protocol skill, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

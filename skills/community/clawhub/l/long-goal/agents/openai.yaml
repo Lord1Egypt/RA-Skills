@@ -1,0 +1,4 @@
+interface:
+  display_name: "长期目标管理"
+  short_description: "稳定维护跨轮长期目标、当前检查点、进展证据与重大决策"
+  default_prompt: "使用 $long-goal 管理这个长期目标，并持续维护 goal.md、当前检查点、进展和证据。"

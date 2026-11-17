@@ -1,42 +1,62 @@
-## Description: <br>
-Connects a Feishu bot by starting a registration session, returning the required Open Feishu link with from=maxclaw, and guiding the user to finish pairing after configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects a user to a Feishu bot by creating a registration session, returning the required Feishu setup link, and polling once after the user confirms setup.
 
-## Publisher: <br>
-[EaseLearnAI](https://clawhub.ai/user/EaseLearnAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[easelearnai](https://clawhub.ai/user/easelearnai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when they need an agent to connect or bind a Feishu bot through the Feishu registration flow and then prompt the user for the bot pairing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow temporarily handles Feishu registration session data, including device codes, pairing codes, cookies, client_id, and client_secret. <br>
-Mitigation: Use the skill only for intended Feishu bot setup, keep credentials within the setup flow, and avoid sharing session values outside the agent and Feishu pages involved. <br>
-Risk: A malformed or substituted setup link could send users away from the expected Feishu/Open Feishu domains. <br>
-Mitigation: Verify generated links remain on accounts.feishu.cn or open.feishu.cn and include the required from=maxclaw parameter before sending them to users. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to help connect, bind, or create a Feishu bot for OpenClaw pairing.
 
-## Reference(s): <br>
-- [ClawHub release page: Feishu Connect](https://clawhub.ai/EaseLearnAI/feishu-connect) <br>
-- [Feishu app registration endpoint](https://accounts.feishu.cn/oauth/v1/app/registration) <br>
-- [Open Feishu OpenClaw setup page template](https://open.feishu.cn/page/openclaw?user_code=XXXX-XXXX&from=maxclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and direct links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct Feishu setup link and short follow-up instructions; it should not generate QR codes or continue polling automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Feishu app credentials may be exposed in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact client_secret from user-visible output and logs, and store credentials only in an approved secret manager.
+
+Risk: Cookie handling uses a predictable temporary cookie jar path.
+
+Mitigation: Use a unique protected temporary cookie jar for each session and clean it up after use.
+
+Risk: The workflow restricts relevant permission and approval guidance after setup confirmation.
+
+Mitigation: Allow the agent to provide necessary Feishu permission, approval, and setup guidance when it is relevant to successful connection.
+
+Risk: The Feishu setup link requires from=maxclaw attribution without explaining it to the user.
+
+Mitigation: Disclose the attribution parameter and its purpose before asking the user to open the link.
+
+## Reference(s):
+
+- [Feishu app registration endpoint](https://accounts.feishu.cn/oauth/v1/app/registration)
+- [Feishu OpenClaw registration page](https://open.feishu.cn/page/openclaw?user_code=XXXX-XXXX&from=maxclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain setup links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a Feishu setup URL, user code handling guidance, and one follow-up poll instruction.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

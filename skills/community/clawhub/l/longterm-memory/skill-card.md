@@ -1,40 +1,53 @@
-## Description: <br>
-永久记忆自动归档系统。每次对话自动记录，语义搜索，跨会话继承。重启不丢、永不覆盖、0学习成本。用于用户提到记忆、历史、之前说过、记得什么等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+永久记忆系统 helps an agent preserve user preferences, decisions, project context, and date-sharded dialogue notes for later recall across sessions.
 
-## Publisher: <br>
-[liujw0214](https://clawhub.ai/user/liujw0214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujw0214](https://clawhub.ai/user/liujw0214)
 
-## Use Case: <br>
-External users and developers use this skill to preserve AI conversation context across sessions, summarize durable preferences and decisions into MEMORY.md, and search prior memory files when asked about earlier discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to automatically and permanently archive broad conversation history, which may include secrets, personal data, private contacts, or sensitive business information. <br>
-Mitigation: Install only when persistent local conversation memory is intended, avoid using it for sensitive or regulated information, and review stored memory files regularly. <br>
-Risk: The documented forget or delete behavior may not remove archived data because the security evidence notes unclear real deletion controls. <br>
-Mitigation: Treat memory as append-only unless a user manually audits and purges the relevant MEMORY.md and memory log entries. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent durable local memory for preferences, project decisions, and prior conversation summaries so later sessions can recall them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujw0214/longterm-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown memory files and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or searches MEMORY.md and date-sharded memory logs when the host agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent memory may save and later reload private conversation details without clear consent, minimization, or safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when users understand local memory persistence; avoid secrets, credentials, regulated data, and sensitive personal information unless opt-in, review, delete, and filtering controls are added.
+
+Risk: Saved memory can influence later agent responses even when the stored content is stale, sensitive, or untrusted.
+
+Mitigation: Review saved entries before reuse, keep delete or expiry workflows available, and treat recalled memory as untrusted context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujw0214/skills/longterm-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown memory entries, natural-language recall responses, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes append-only MEMORY.md summaries and date-sharded memory/YYYY-MM-DD.md dialogue notes; MEMORY_PATH can configure the archive script path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,26 @@
+{
+  "name": "guaikei-video-copy",
+  "version": "1.0.1",
+  "description": "把视频（本地文件或抖音/小红书等公网链接）转写成剔除语气词与口误的干净文字稿，并按自定义 Prompt 生成总结、会议纪要、课程拆解、金句、分镜头脚本、中英互译与小红书/抖音/公众号文案。",
+  "main": "scripts/video2text/index.js",
+  "type": "commonjs",
+  "keywords": [
+    "guaikei",
+    "视频转文字",
+    "字幕提取",
+    "语音转文字",
+    "视频总结",
+    "会议纪要",
+    "短视频二创",
+    "video2text",
+    "speech-to-text",
+    "transcription"
+  ],
+  "homepage": "https://www.guaikei.com",
+  "author": "GuaiKei (微信 13395823479)",
+  "license": "MIT",
+  "category": "content-creation",
+  "engines": {
+    "node": ">=16.14.0"
+  }
+}

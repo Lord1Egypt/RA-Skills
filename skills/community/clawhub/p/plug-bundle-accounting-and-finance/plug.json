@@ -1,0 +1,75 @@
+{
+  "plug_slug": "plug-bundle-accounting-and-finance",
+  "bundle_slug": "bundle-accounting-and-finance",
+  "bundle_name": "Finance Bundle: accounting-and-finance",
+  "members": [
+    {
+      "slug": "accounting-and-finance",
+      "name": "accounting-and-finance",
+      "category": "Finance",
+      "role": "primary"
+    },
+    {
+      "slug": "finance-accounting",
+      "name": "finance-accounting",
+      "category": "Finance",
+      "role": "primary"
+    },
+    {
+      "slug": "quick-context-saver-free",
+      "name": "quick-context-saver-free",
+      "category": "Finance",
+      "role": "primary"
+    },
+    {
+      "slug": "reminder-engine",
+      "name": "reminder-engine-pro",
+      "category": "Finance",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "财务数据处理耗时易错",
+    "accounting-and-finance: 存在易出错问题 (风险)",
+    "finance-accounting: 存在易出错问题 (风险)",
+    "reminder-engine: 存在门槛高问题 (复杂)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "accounting-and-finance",
+        "name": "accounting-and-finance",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "finance-accounting",
+        "name": "finance-accounting",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "quick-context-saver-free",
+        "name": "quick-context-saver-free",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "reminder-engine",
+        "name": "reminder-engine-pro",
+        "price": 15.0,
+        "tier": "business"
+      }
+    ],
+    "total_individual": 15.0,
+    "bundle_price": 12.0,
+    "savings": 3.0,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价15.0元，Plug捆绑价12.0元，节省3.0元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- accounting-and-finance (Finance): 提供 read、write、exec\n- finance-accounting (Finance): 提供 read、exec、write\n- quick-context-saver-free (Finance): 提供 read、exec、write\n- reminder-engine-pro (Finance): 提供 read、exec、write\n\n组合工具集: read, write, exec\n\n典型工作流:\n  1. 使用 accounting-and-finance 的 read、write、exec 完成相关任务\n  2. 使用 finance-accounting 的 read、exec、write 完成相关任务\n  3. 使用 quick-context-saver-free 的 read、exec、write 完成相关任务\n  4. 使用 reminder-engine-pro 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:17.626312"
+}

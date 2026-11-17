@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Agent Skills"
+  short_description: "Run complete Crun media generation workflows"
+  default_prompt: "Use $crun-agent-skills to route, estimate, create, monitor, and retrieve this Crun media task."

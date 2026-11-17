@@ -1,40 +1,48 @@
-## Description: <br>
-Task Router analyzes a user's request and routes it to the most appropriate downstream agent or skill based on configured keyword rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能任务路由 - 自动分析任务类型并路由到最合适的Agent
 
-## Publisher: <br>
-[soroyue](https://clawhub.ai/user/soroyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[soroyue](https://clawhub.ai/user/soroyue)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users rely on this skill to automatically classify incoming tasks and route them to matching agents or skills for trading, planning, writing, coding, research, architecture review, calendar, document, spreadsheet, and presentation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad automatic routing may send sensitive workflows, including trading-related or document/calendar tasks, to named target agents or skills.
+
+Mitigation: Review the configured routing targets before installation and require extra confirmation for sensitive actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to delegate incoming tasks to specialized agents or document/calendar-generation skills without manually choosing the route. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic keyword routing may delegate sensitive, financial, private-file, calendar, document, or business-data requests to downstream agents or skills. <br>
-Mitigation: Review and trust the named downstream agents and skills before installation, and add confirmation or narrower routing rules for sensitive workflows. <br>
-Risk: Broad keyword matches may route a request to the wrong downstream agent or skill. <br>
-Mitigation: Confirm the selected route before acting on high-impact tasks or tune the routing rules to the user's environment. <br>
+**Output Format:** [Routing guidance in natural language]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soroyue/task-router) <br>
+**Other Properties Related to Output:** [Automatically triggers on user tasks and selects a target agent or skill based on keyword matching.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Routing guidance in text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes are selected from keyword-based mappings to named downstream agents and skills.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,51 @@
-## Description: <br>
-Call GET /api/imdb/title-contribution-questions/v1 for IMDb Contribution Questions through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-contribution-questions/v1 for IMDb Contribution Questions through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve IMDb title contribution question data by IMDb title ID for data maintenance workflows and title metadata review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token is sent in the request URL and may be exposed through logs, traces, screenshots, or copied URLs. <br>
-Mitigation: Use a limited, revokable token; avoid sharing request URLs or logs; rotate the token if a URL containing it is exposed. <br>
-Risk: The skill depends on a third-party API provider and a required JUST_ONE_API_TOKEN credential. <br>
-Mitigation: Install only when the provider is trusted and keep the token in the environment rather than pasting credential values into chat messages. <br>
+## Use Case:
 
+Developers and agents use this skill to look up IMDb title contribution question data for title metadata review and data maintenance workflows. The skill requires a JustOneAPI token and an IMDb title id.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-contribution-questions) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_contribution_questions&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_contribution_questions&utm_content=project_link) <br>
-- [generated/operations.md](generated/operations.md) <br>
-- [generated/operations.json](generated/operations.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and an IMDb title ID; optional languageCountry query parameter defaults to en_US.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be placed in request URLs, which may expose it through logs or telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-scope, revocable token, avoid sharing token values in chat or logs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_contribution_questions&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-contribution-questions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional raw JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the titleContributionQuestions operation on /api/imdb/title-contribution-questions/v1 and preserves user-provided lookup parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

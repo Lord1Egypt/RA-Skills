@@ -1,40 +1,54 @@
-## Description: <br>
-快速草稿 — 说两句就生成邮件或消息草稿 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick Draft helps users turn a few points into an email or message draft with a subject and structured bullet points.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users use this skill to turn brief notes into structured email or message drafts that can be reviewed and refined before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate in unrelated conversations because the scanner found broad triggers and cluttered merged content. <br>
-Mitigation: Install only after reviewing the prompt and prefer a cleaned version limited to quick-draft behavior. <br>
-Risk: Generated drafts can contain wording or structure that is inappropriate for the intended recipient or context. <br>
-Mitigation: Review and edit every draft before sending or publishing it. <br>
+## Use Case:
 
+Employees and external users can use this skill to draft emails or messages from brief intent, recipient, and content notes. It is best suited for first-draft assistance where the user reviews and edits the final wording before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/quick-draft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft text for user review; no executable code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill may activate on generic writing requests because its triggers are broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation wording before installation and invoke it only for intentional email or message drafting tasks.
+
+Risk: The bundled instructions include unrelated merged learning material that may distract from the drafting purpose.
+
+Mitigation: Keep use focused on drafting emails and messages, and review generated drafts for irrelevant content before sending.
+
+## Reference(s):
+
+- [Quick Draft on ClawHub](https://clawhub.ai/534422530/skills/quick-draft)
+- [Publisher profile: 534422530](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an email subject, structured points, and revision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

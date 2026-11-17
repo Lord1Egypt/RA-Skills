@@ -1,42 +1,53 @@
-## Description: <br>
-Generates a dated Markdown daily summary that includes OpenClaw token usage, task progress, and next-day planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese daily learning summary that includes OpenClaw token usage and saves it as a dated Markdown file.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-OpenClaw users who track daily agent activity use this skill to generate a Markdown report summarizing token usage, completed work, task status, and the next day's plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily summaries may record sensitive local task details or usage information. <br>
-Mitigation: Review generated summaries before sharing and keep the OpenClaw memory folder access-restricted. <br>
-Risk: The skill depends on reading local OpenClaw usage via openclaw status --json. <br>
-Mitigation: Install only in environments where the agent is allowed to read local OpenClaw usage status. <br>
-Risk: Scheduled automation could run outside an interactive review flow. <br>
-Mitigation: Inspect any separate cron script before enabling scheduled execution. <br>
+## Use Case:
 
+Agents use this skill when a user asks for a daily summary or token statistics, producing a concise Chinese learning report with token usage and task status. It is intended for OpenClaw users who want a persistent dated Markdown record of daily progress.
 
-## Reference(s): <br>
-- [Daily Summary on ClawHub](https://clawhub.ai/asterisk622/xiaoding-daily-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown daily summary file with a brief text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated summary to the OpenClaw memory folder when the local OpenClaw status command is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact SKILL.md and package.json list 1.0.0) <br>
+Risk: The skill writes a persistent dated Markdown file and may update an existing summary for the same day.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target date and existing daily summary before running it when prior notes must be preserved.
+
+Risk: The generated report includes OpenClaw token usage totals.
+
+Mitigation: Avoid sharing the generated daily summary where operational usage details should remain private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-daily-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown daily summary plus concise text status and token totals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or updates a dated memory/YYYY-MM-DD.md file under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

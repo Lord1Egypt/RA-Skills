@@ -1,40 +1,69 @@
-## Description: <br>
-Provides an OpenClaw local model router for configuring providers, routing free model traffic, rotating models, failing over, and diagnosing model availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw with a local free-model routing proxy for provider setup, automatic polling, failover, model switching, and availability diagnostics.
 
-## Publisher: <br>
-[laodao-agent](https://clawhub.ai/user/laodao-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laodao-agent](https://clawhub.ai/user/laodao-agent)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up a localhost router, configure model providers, switch primary or fallback models, and recover from provider or model outages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laodao-agent/free-model-router-v1) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Event system](references/event-system.md) <br>
-- [Idempotency guide](references/idempotency.md) <br>
+External developers and OpenClaw users use this skill to configure a local router that selects available free model providers, switches models, and diagnoses provider availability issues. It is intended for users who are comfortable running a persistent local proxy and reviewing provider data handling.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security posture: suspicious. Review the persistent localhost router, OpenClaw config modification, local provider key storage, freemodel server communication, and admin update surface before installation; keep the router bound to 127.0.0.1, avoid proxy or tunnel exposure, and leave reporting disabled unless explicitly needed.] <br>
+Global
 
-## Skill Version(s): <br>
-1.5.3 (source: evidence release and package.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill runs a persistent local router and stores provider API keys.
+
+Mitigation: Install only when the local router is needed, keep provider keys scoped and revocable, and stop or uninstall the router when it is no longer in use.
+
+Risk: The local admin surface may expose keys or high-impact controls too broadly.
+
+Mitigation: Treat the admin UI as sensitive and avoid running the router while browsing untrusted sites until the local admin and CORS behavior has been reviewed and fixed.
+
+Risk: The skill communicates with freemodel control servers for registration, provider metadata, and health reporting.
+
+Mitigation: Review the configured control-server communication and leave optional health reporting disabled unless the user intentionally enables it.
+
+Risk: Displayed curl-to-shell update commands can increase execution risk.
+
+Mitigation: Avoid curl-to-shell updates; inspect downloaded update content and run explicit commands from trusted release artifacts instead.
+
+Risk: Scheduled tasks may remain after uninstall.
+
+Mitigation: After uninstalling, verify and remove any remaining scheduled tasks associated with free-model-router.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laodao-agent/skills/free-model-router-v1)
+- [Publisher Profile](https://clawhub.ai/user/laodao-agent)
+- [Setup Guide](references/setup-guide.md)
+- [Event System](references/event-system.md)
+- [Idempotency Guide](references/idempotency.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to run Node.js CLI commands, configure OpenClaw provider settings, and report router or provider status.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

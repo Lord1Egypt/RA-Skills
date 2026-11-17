@@ -1,63 +1,102 @@
 ---
 name: notion-sync
-description: Bi-directional sync and management for Notion pages and databases. Use when working with Notion workspaces for collaborative editing, research tracking, project management, or when you need to sync markdown files to/from Notion pages or monitor Notion pages for changes.
+description: Read, search, export, create, update, monitor, query, inspect, batch-edit, and explicitly archive Notion pages and databases. Use when the user requests Notion content or database operations and a host secret manager can supply NOTION_API_KEY.
 homepage: https://github.com/robansuini/agent-skills
-repository: https://github.com/robansuini/agent-skills/tree/main/productivity/notion-sync
 license: MIT-0
+allowed-tools: Bash, Read, Write, WebFetch, Env
 metadata:
-  clawdis:
-    requires:
-      env: [NOTION_API_KEY]
-      bins: [node]
-    stateDirs: [memory]
+  {
+    "openclaw":
+      {
+        "emoji": "📝",
+        "requires": { "bins": ["node"], "env": ["NOTION_API_KEY"] },
+        "primaryEnv": "NOTION_API_KEY",
+        "network": { "outboundHosts": ["api.notion.com"] },
+      },
+  }
 ---
 
 # Notion Sync
 
 Bi-directional sync between markdown files and Notion pages, plus database management utilities for research tracking and project management.
 
+## Security and capability boundary
+
+- Reads `NOTION_API_KEY` from the environment and sends it only to
+  `https://api.notion.com`.
+- Reads and writes user-selected markdown and watch-state files. Workspace path
+  restrictions are enabled by default. Each external path requires an exact,
+  mode-specific `--allow-read-path` or `--allow-write-path` authorization.
+- Can search, read, create, update, batch-update, inspect, and archive Notion
+  content shared with the configured integration.
+- Mutating operations run only through an explicitly selected command. Batch
+  query updates require a filter, and page archiving additionally requires
+  `--confirm-archive`.
+
 ## Upgrading
 
-**From v2.0:** Replace `--token "ntn_..."` with `--token-file`, `--token-stdin`, or `NOTION_API_KEY` env var. Bare `--token` is no longer accepted (credentials should never appear in process listings).
+**v3.0 is a breaking security release.** It removes `--token-file`,
+`--token-stdin`, and automatic `~/.notion-token` loading. The scripts now use
+only `NOTION_API_KEY`, supplied by the host runtime's secret manager.
 
-**From v1.x:** See v2.0 changelog for migration details.
+Read [references/MIGRATION-V3.md](references/MIGRATION-V3.md) before upgrading
+from any v1 or v2 release. Keep v2.5.3 pinned until the replacement secret
+injection is configured and verified.
 
 ## Requirements
 
-- **Node.js** v18 or later
+- **Node.js** 18 or later
 - A **Notion integration token** (starts with `ntn_` or `secret_`)
+- A runtime or secret manager that injects `NOTION_API_KEY`
+
+## Credential workflow
+
+Supply `NOTION_API_KEY` through your platform's secret manager. Do not place
+the token in chat, source control, command arguments, URLs, or committed `.env`
+files. The scripts do not depend on a particular agent runtime.
+
+### OpenClaw protected-secret mode
+
+OpenClaw users should use version 2026.9.1 or later and its protected-secret
+egress workflow:
+
+Before the first Notion API operation in a run:
+
+1. Use the OpenClaw `secrets` tool with `action=list`. Inspect metadata only;
+   never request or read the credential in chat.
+2. If `NOTION_API_KEY` is missing, use `action=request` with:
+   - `name: NOTION_API_KEY`
+   - `kind: secret`
+   - `allowedHosts: ["api.notion.com"]`
+   - a one-line reason explaining that notion-sync needs Notion API access
+3. If the request is skipped or unavailable, stop and report the blocker.
+   Never ask the user to paste the token into chat or a command.
+4. Run scripts with Gateway-hosted exec. Do not override, expand, inspect, log,
+   or print `NOTION_API_KEY`; OpenClaw injects an opaque sentinel and replaces
+   it only for allowed HTTPS requests to `api.notion.com`.
+5. If any Gateway-hosted command already ran before the secret was stored or
+   changed, start a new agent run so the new secret snapshot is available.
 
 ## Setup
 
 1. Go to https://www.notion.so/my-integrations
 2. Create a new integration (or use an existing one)
-3. Copy the "Internal Integration Token"
-4. Pass the token using one of these methods (priority order used by scripts):
+3. Share your Notion pages/databases with the integration through the page's
+   **Connections** menu.
+4. Save the token as `NOTION_API_KEY` through your runtime's secret manager.
 
-   **Option A — Token file (recommended):**
+For OpenClaw, save it through the masked prompt or **Settings → Secrets** as a
+protected secret allowed only for `api.notion.com`, then enable protected
+egress and restart the Gateway:
    ```bash
-   echo "ntn_your_token" > ~/.notion-token && chmod 600 ~/.notion-token
-   node scripts/search-notion.js "query" --token-file ~/.notion-token
+   openclaw config set secrets.egressProxy.enabled true --strict-json
+   openclaw gateway restart
    ```
 
-   **Option B — Stdin pipe:**
-   ```bash
-   echo "$NOTION_API_KEY" | node scripts/search-notion.js "query" --token-stdin
-   ```
-
-   **Option C — Environment variable:**
-   ```bash
-   export NOTION_API_KEY="ntn_your_token"
-   node scripts/search-notion.js "query"
-   ```
-
-   **Auto default:** If `~/.notion-token` exists, scripts use it automatically even without `--token-file`.
-
-5. Share your Notion pages/databases with the integration:
-   - Open the page/database in Notion
-   - Click "Share" → "Invite"
-   - Select your integration
-
+When OpenClaw supplies a protected sentinel, a missing proxy, CA, host binding,
+or compatible Node runtime fails closed. This protected mode requires Node.js
+22.21+ in the 22.x line, 24.5+ in the 24.x line, or 25+. Ordinary environment
+credentials use the portable direct-HTTPS path on Node.js 18+.
 
 ## JSON Output Mode
 
@@ -78,15 +117,18 @@ Scripts that read/write local files are restricted to the current working direct
 
 - Prevents accidental reads/writes outside the intended workspace
 - Applies to: `md-to-notion.js`, `add-to-database.js`, `notion-to-md.js`, `watch-notion.js`
-- Override intentionally with `--allow-unsafe-paths`
+- Canonicalizes symlinked path ancestors before enforcement to block workspace-escape writes
+- Outside-workspace access requires the exact target path and access mode;
+  authorization does not extend to parent, child, or sibling paths
 
 Examples:
 ```bash
 # Default (safe): path must be inside current workspace
 node scripts/md-to-notion.js docs/draft.md <parent-id> "Draft"
 
-# Intentional override (outside workspace)
-node scripts/notion-to-md.js <page-id> ~/Downloads/export.md --allow-unsafe-paths
+# Explicit authorization for one outside-workspace output
+node scripts/notion-to-md.js <page-id> ~/Downloads/export.md \
+  --allow-write-path ~/Downloads/export.md
 ```
 
 ## Core Operations
@@ -107,9 +149,11 @@ node scripts/search-notion.js "newsletter"
 # Find only databases
 node scripts/search-notion.js "research" --filter database
 
-# Limit results
+# Limit results (1-100)
 node scripts/search-notion.js "AI" --limit 5
 ```
+
+`--filter` accepts only `page` or `database`; `--limit` must be a positive integer from 1 to 100.
 
 **Output:**
 ```json
@@ -131,6 +175,8 @@ Query database contents with advanced filters and sorting.
 ```bash
 node scripts/query-database.js <database-id> [--filter <json>] [--sort <json>] [--limit 10] [--json]
 ```
+
+`--limit` must be a positive integer from 1 to 100.
 
 **Examples:**
 ```bash
@@ -172,6 +218,8 @@ node scripts/update-page-properties.js <page-id> <property-name> <value> [--type
 
 **Supported types:** select, multi_select, checkbox, number, url, email, date, rich_text
 
+Long `rich_text` values are automatically split to Notion's 2,000-character per-item limit.
+
 **Examples:**
 ```bash
 # Set status
@@ -202,6 +250,8 @@ Batch update a single property across multiple pages in one command.
 node scripts/batch-update.js <database-id> <property-name> <value> --filter '<json>' [--type select] [--dry-run] [--limit 100]
 ```
 
+Query mode requires `--filter` so the command cannot update an entire database by accident. Use stdin mode when you already have an explicit page-id list.
+
 **Example:**
 ```bash
 node scripts/batch-update.js <db-id> Status Review \
@@ -217,7 +267,7 @@ echo "page-id-1\npage-id-2\npage-id-3" | \
 
 **Features:**
 - `--dry-run`: prints pages that would be updated (with current property value) without writing
-- `--limit <n>`: max pages to process (default `100`)
+- `--limit <n>`: positive integer max pages to process (default `100`)
 - Pagination in query mode (`has_more`/`next_cursor`) up to limit
 - Rate-limit friendly updates (300ms between page updates)
 - Progress and summary on stderr, JSON result array on stdout
@@ -230,7 +280,7 @@ Push markdown content to Notion with full formatting support.
 node scripts/md-to-notion.js \
   "<markdown-file-path>" \
   "<notion-parent-page-id>" \
-  "<page-title>" [--json] [--allow-unsafe-paths]
+  "<page-title>" [--json] [--allow-read-path <exact-path>]
 ```
 
 **Example:**
@@ -245,8 +295,8 @@ node scripts/md-to-notion.js \
 - Headings (H1-H3)
 - Bold/italic text
 - Links
-- Bullet lists
-- Code blocks with syntax highlighting
+- Bullet and numbered lists
+- Code blocks with syntax highlighting (``` or ~~~ fences)
 - Horizontal dividers
 - Paragraphs
 
@@ -254,6 +304,8 @@ node scripts/md-to-notion.js \
 - Batched uploads (100 blocks per request)
 - Automatic rate limiting (350ms between batches)
 - Rich text is automatically chunked to Notion's 2000-character limit (including bold/italic/link spans)
+- Unclosed fenced code blocks (` ``` ` or `~~~`) at end-of-file are preserved as code blocks
+- Fence-like lines with info strings inside code blocks (e.g. ````js`) are preserved as code content
 - Returns Notion page URL and ID
 
 **Output:**
@@ -271,7 +323,7 @@ Parsed 294 blocks from markdown
 Pull Notion page content and convert to markdown.
 
 ```bash
-node scripts/notion-to-md.js <page-id> [output-file] [--json] [--allow-unsafe-paths]
+node scripts/notion-to-md.js <page-id> [output-file] [--json] [--allow-write-path <exact-path>]
 ```
 
 **Example:**
@@ -284,6 +336,7 @@ node scripts/notion-to-md.js \
 **Features:**
 - Converts Notion blocks to markdown
 - Preserves formatting (headings, lists, code, quotes)
+- Resolves page titles from the actual Notion `title`-type property (even when the property key is custom)
 - Optional file output (writes to file or stdout)
 
 ### 7. Change Detection & Monitoring
@@ -291,7 +344,7 @@ node scripts/notion-to-md.js \
 Monitor Notion pages for edits and compare with local markdown files.
 
 ```bash
-node scripts/watch-notion.js "<page-id>" "<local-markdown-path>" [--state-file <path>] [--json] [--allow-unsafe-paths]
+node scripts/watch-notion.js "<page-id>" "<local-markdown-path>" [--state-file <path>] [--json] [--allow-read-path <exact-path>] [--allow-write-path <exact-path>]
 ```
 
 **Example:**
@@ -347,7 +400,7 @@ The script outputs JSON — pipe it to any notification system when `hasChanges`
 Add a markdown file as a new page in any Notion database.
 
 ```bash
-node scripts/add-to-database.js <database-id> "<page-title>" <markdown-file-path> [--json] [--allow-unsafe-paths]
+node scripts/add-to-database.js <database-id> "<page-title>" <markdown-file-path> [--json] [--allow-read-path <exact-path>]
 ```
 
 **Examples:**
@@ -407,10 +460,12 @@ node scripts/get-database-schema.js <database-id> [--json]
 #### Archive Pages
 
 ```bash
-node scripts/delete-notion-page.js <page-id> [--json]
+node scripts/delete-notion-page.js <page-id> --confirm-archive [--json]
 ```
 
 **Note:** This archives the page (sets `archived: true`), not permanent deletion.
+The explicit confirmation flag prevents an agent or user from archiving a page
+through an incomplete command.
 
 ## Common Workflows
 
@@ -442,7 +497,7 @@ node scripts/delete-notion-page.js <page-id> [--json]
 
 2. **Sync to Notion database:**
    ```bash
-   node scripts/add-research-to-db.js
+   node scripts/add-to-database.js <database-id> "Research Output - 2026-03-21" research-output.md
    ```
 
 3. **User adds metadata in Notion UI** (Type, Tags, Status properties)
@@ -504,4 +559,4 @@ All scripts use only built-in Node.js modules (https, fs) - no external dependen
 
 ### references/
 
-- **database-patterns.md** - Common database schemas and property patterns
+- **API-REFERENCE.md** - Detailed script signatures, options, and utility behavior

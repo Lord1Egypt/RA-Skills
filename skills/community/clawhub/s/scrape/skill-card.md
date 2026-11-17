@@ -1,42 +1,52 @@
-## Description: <br>
-Legal web scraping with robots.txt compliance, rate limiting, and GDPR/CCPA-aware data handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal web scraping with robots.txt compliance, rate limiting, and GDPR/CCPA-aware data handling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill to plan authorized scraping of public web pages with robots.txt checks, rate limits, and privacy-aware data handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scraping a site without authorization, contrary to robots.txt, terms of service, or available API access may create legal or compliance exposure. <br>
-Mitigation: Check robots.txt and site terms before scraping, prefer official APIs, stop when access is disallowed, and use the skill only for authorized public scraping. <br>
-Risk: Collected pages may contain personal data or sensitive URL parameters. <br>
-Mitigation: Avoid login-protected or personal data, strip unnecessary PII immediately, minimize retained data, and avoid logging sensitive URL parameters. <br>
-Risk: Aggressive request behavior can burden target services or trigger rate limits. <br>
-Mitigation: Use the documented rate limiting, backoff on 429 responses, identify requests with a contactable User-Agent, and fail closed when compliance checks cannot be completed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scrape on ClawHub](https://clawhub.ai/ivangdavila/scrape) <br>
-- [Code patterns](code.md) <br>
+## Use Case:
 
+Developers and external users use this skill to plan legally cautious web scraping by checking robots.txt, terms, authentication boundaries, request rate limits, and privacy-sensitive data handling before writing or running scraping code.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides compliance checklists, scraping boundaries, and reusable request-handling patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sample robots.txt helper can allow scraping when the robots.txt check fails.
+
+Mitigation: Change robots.txt errors to fail closed or ask for explicit approval before proceeding.
+
+Risk: Fetcher examples can be risky in shared tools or workflows that accept user-supplied URLs.
+
+Mitigation: Add URL, redirect, and IP validation before using the fetcher with untrusted inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/scrape)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklist-style guidance and sample request, robots.txt, rate limiting, and audit logging patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

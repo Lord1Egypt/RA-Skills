@@ -1,41 +1,63 @@
-## Description: <br>
-Ring-a-Ding lets an agent place US and Canada phone calls through the rad CLI for scheduling, reservations, customer-service calls, hands-free sessions, and returns transcripts, summaries, and optional structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ring-a-Ding lets an agent place AI phone calls in the US and Canada to call businesses, schedule or cancel appointments, run hands-free user conversations, and return transcripts, summaries, and structured extraction results.
 
-## Publisher: <br>
-[vlbeta](https://clawhub.ai/user/vlbeta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlbeta](https://clawhub.ai/user/vlbeta)
 
-## Use Case: <br>
-Agents and their users use this skill to delegate phone-based tasks such as appointment scheduling, reservation changes, customer-service follow-up, voicemail, and hands-free working sessions. It is intended for calls to US and Canadian numbers where the user has confirmed the recipient, purpose, and context to share. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States and Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real phone calls and share call metadata, transcripts, and provided context with Ring-a-Ding and downstream providers. <br>
-Mitigation: Install only when those providers are trusted for the call content; confirm the exact number, recipient, purpose, and details before each call. <br>
-Risk: Calls may include sensitive personal, medical, financial, insurance, address, or order details. <br>
-Mitigation: Avoid sensitive details unless necessary for the task and explicitly approved by the user. <br>
+## Use Case:
 
+External users and their agents use Ring-a-Ding to make real phone calls for scheduling, reservations, customer-service follow-up, voicemail, and phone-first working sessions. It is intended for US and Canadian calls and returns call status, transcript, summary, and optional extracted data.
 
-## Reference(s): <br>
-- [Ring-a-Ding documentation](https://ringading.ai/docs) <br>
-- [Ring-a-Ding OpenClaw quick start](https://ringading.ai/openclaw) <br>
+### Deployment Geography for Use:
 
+United States and Canada
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples; completed calls return transcript, summary, and optional extracted data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rad, RAD_API_KEY, and OPENAI_API_KEY; calls are limited to US and Canadian numbers and may require polling or scheduled follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: Phone calls and call context can expose sensitive personal, health, payment, insurance, address, or account details to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum call context needed for the task and avoid unnecessary sensitive details.
+
+Risk: The npm-installed CLI and external service influence call behavior and receive call data.
+
+Mitigation: Review the skill before installing, run it in a restricted environment, and provide only the required RAD_API_KEY and OPENAI_API_KEY credentials.
+
+Risk: Scheduled polling jobs can continue waking the agent after a call if they are not removed.
+
+Mitigation: Create polling jobs only for the intended call and remove them when the call reaches a terminal status.
+
+Risk: The skill only supports US and Canadian phone numbers.
+
+Mitigation: Confirm the destination is an E.164 +1 number before dialing and decline unsupported international calls up front.
+
+## Reference(s):
+
+- [Ring-a-Ding documentation](https://ringading.ai/docs)
+- [Ring-a-Ding OpenClaw quick-start](https://ringading.ai/openclaw)
+- [ClawHub skill page](https://clawhub.ai/vlbeta/skills/ring-a-ding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces call setup instructions and describes JSON call results including status, transcript, summary, and optional extracted data.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

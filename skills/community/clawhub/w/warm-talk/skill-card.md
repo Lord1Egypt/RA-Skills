@@ -1,40 +1,53 @@
-## Description: <br>
-聊天助理 helps users draft Chinese-language romantic chat replies, opening lines, and date invitations with brief intent analysis and caution notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+聊天助理帮助中文用户分析聊天回复、生成3-5个开场白或回应选项，并提示可能踩雷的表达。
 
-## Publisher: <br>
-[mahaodl](https://clawhub.ai/user/mahaodl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahaodl](https://clawhub.ai/user/mahaodl)
 
-## Use Case: <br>
-External users use this skill when they want Chinese-language suggestions for respectful, light interpersonal messages in dating or chat contexts. It provides reply options, opening lines, invitation wording, and reasoning that should be treated as suggestions rather than facts about another person. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may route the skill into conversations that are not clearly asking for romantic or interpersonal message help. <br>
-Mitigation: Hosts should route it only when the user is clearly asking for this kind of chat-response assistance. <br>
-Risk: The skill's interpretations of another person's intent or emotion may be incorrect or overstated. <br>
-Mitigation: Treat interpretations and proposed replies as suggestions, edit them respectfully, and avoid presenting them as facts. <br>
+## Use Case:
 
+External Chinese-speaking users use this skill for dating-chat assistance, including drafting openers, interpreting short replies, choosing response styles, and preparing invitations. The skill provides suggested wording, brief rationale, and cautionary notes for messages the user should review before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahaodl/warm-talk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with reply options, brief analysis, and caution notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Usually provides 3-5 suggested replies when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Emotion and intent labels may be generic keyword-based suggestions rather than reliable analysis of another person.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat labels as conversation prompts only, and review or edit every suggested message before sending it.
+
+Risk: Suggested flirtation or invitation wording may not fit the recipient's boundaries, context, or tone.
+
+Mitigation: Use the most respectful wording that matches the actual relationship context, and avoid escalating when the conversation appears unclear or unwelcome.
+
+## Reference(s):
+
+- [ClawHub skill page: warm-talk](https://clawhub.ai/mahaodl/skills/warm-talk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text with reply options, brief analysis, and cautionary notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No server-resolved provenance is available for this release; security evidence reports no hidden access, persistence, network use, or destructive behavior.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

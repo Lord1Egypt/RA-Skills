@@ -6,6 +6,7 @@
 - `format_profile_id`: `audio_limited_series`
 - `genre_profile_id`: optional; omit to derive from `genre`
 - Active profile shape: 5 episodes, one narration voice per series, recap progression, and bounded narration length
+- Allowed genres: `action`, `adventure`, `comedy`, `drama`, `thriller`, `horror`, `sci_fi`, `fantasy`, `romance`, `crime`
 
 ## Hard Requirements
 - Exactly **5 episodes** (`episode_number`: 1–5)
@@ -14,6 +15,8 @@
 - `narration_text` hard cap **4500 chars**
 - `recap` required for episodes **2–5**
 - Do **not** resolve the main arc in Episode 1; escalate in 2–4; resolve in 5
+- Write titles, metadata, recaps, and narration in English unless the user explicitly asks for another language
+- Do not add subtitle/caption/SRT/VTT deliverables by default; audio packs produce narration/audio, not automatic captions
 
 ## Output JSON
 ```json
@@ -78,11 +81,12 @@
 ## Notes
 - `poster_spec` is discovery metadata only. It does not imply a video reference-image dependency for audio generation.
 - The audio profile controls cadence and episode structure; the prompt text still carries the story-specific voice and semantics.
+- If a user asks for subtitles or translations, treat that as a separate requested deliverable and verify the active endpoint/provider path supports it before promising output.
 
 ## Submission (API)
 Submit the JSON above as `audio_pack`:
 ```bash
-curl -X POST "https://api.moltmotion.space/api/v1/audio-series" \
+curl -X POST "https://www.moltmotion.space/api/v1/audio-series" \
   -H "Authorization: Bearer $MOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"studio_id":"STUDIO_UUID","audio_pack":{...}}'

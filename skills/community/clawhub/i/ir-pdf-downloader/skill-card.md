@@ -1,43 +1,50 @@
-## Description: <br>
-Discovers and downloads static PDF files from Investor Relations sites, including annual reports and quarterly result PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and download static PDF files from Investor Relations (IR) sites, including annual reports and quarterly results, by finding PDF URLs, probing common IR paths, querying Wayback, or downloading known static PDFs.
 
-## Publisher: <br>
-[wangwllu](https://clawhub.ai/user/wangwllu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwllu](https://clawhub.ai/user/wangwllu)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to discover candidate public IR PDF URLs from company domains, Wayback, or SEC EDGAR, then download verified PDF documents for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public web sources and may download files from user-supplied or discovered URLs. <br>
-Mitigation: Use explicit trusted IR, SEC, or Wayback targets and review domains before running downloads. <br>
-Risk: Discovered links or issuer aliases can point to the wrong company, year, or archived document. <br>
-Mitigation: Double-check issuer matches, source, year, and downloaded PDF content before relying on the document. <br>
-Risk: Downloaded PDFs are saved into the workspace. <br>
-Mitigation: Choose output directories intentionally and inspect downloaded files before sharing or using them downstream. <br>
+## Use Case:
 
+Developers and agents use this skill to locate and download public IR PDFs such as annual reports or quarterly result documents. It is intended for document discovery and retrieval, not structured SEC/XBRL financial analysis.
 
-## Reference(s): <br>
-- [Issuer hints](references/issuers.json) <br>
-- [ClawHub skill page](https://clawhub.ai/wangwllu/ir-pdf-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI text or JSON results; downloaded PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact public IR, SEC, and Wayback sources; downloaded PDFs are saved under downloads/ or a requested output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad outbound download ability and local PDF write behavior without enough network safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use known public IR or SEC URLs, avoid untrusted URL lists, and prefer a network-restricted environment until URL validation, redirect validation, private-address blocking, and download size limits are added.
+
+## Reference(s):
+
+- [Issuer hints](references/issuers.json)
+- [Wayback Machine CDX API endpoint](https://web.archive.org/cdx/search/cdx)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and local PDF file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Makes outbound web requests and writes downloaded PDFs locally.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

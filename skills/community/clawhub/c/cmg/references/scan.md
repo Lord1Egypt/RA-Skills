@@ -18,7 +18,7 @@
 |------|------|---------|
 | macOS | Intel (amd64) | `aliyun-scanner-mac-amd64-1.0.0.tar.gz` |
 | macOS | Apple Silicon (arm64) | `aliyun-scanner-mac-arm64-1.0.0.tar.gz` |
-| Windows | amd64 | `aliyun-scanner-win-amd64-1.0.0.zip` |
+| Windows | amd64 | ⚠️ 不可用，见下方「已知不可用的产物」 |
 | Linux | amd64 | `aliyun-scanner-linux-1.0.0.tar.gz` |
 
 ### AWS
@@ -29,7 +29,7 @@ AWS 分国际站和国内站两个版本（`-zh-` 为国内站版本）：
 |------|------|--------|--------|
 | macOS | Intel (amd64) | `aws-scanner-mac-amd64-1.0.0.tar.gz` | `aws-scanner-mac-amd64-zh-1.0.0.tar.gz` |
 | macOS | Apple Silicon (arm64) | `aws-scanner-mac-arm64-1.0.0.tar.gz` | `aws-scanner-mac-arm64-zh-1.0.0.tar.gz` |
-| Windows | amd64 | `aws-scanner-win-amd64-1.0.0.zip` | `aws-scanner-win-amd64-zh-1.0.0.zip` |
+| Windows | amd64 | ⚠️ 不可用（404） | `aws-scanner-win-amd64-zh-1.0.0.zip` |
 | Linux | amd64 | `aws-scanner-linux-1.0.0.tar.gz` | `aws-scanner-linux-zh-1.0.0.tar.gz` |
 
 ### 华为云
@@ -41,13 +41,44 @@ AWS 分国际站和国内站两个版本（`-zh-` 为国内站版本）：
 | Windows | amd64 | `huaweicloud-scanner-win-amd64-1.0.0.zip` |
 | Linux | amd64 | `huaweicloud-scanner-linux-1.0.0.tar.gz` |
 
+### 下载方式（必须校验）
+
+扫描器是**预编译可执行文件**，会读取你的云凭据并遍历生产资源。执行前必须确认下载内容未被替换或篡改。
+
+**推荐：使用带校验的下载脚本**
+
 ```bash
-# 下载示例（以阿里云 macOS Apple Silicon 为例）
-BASE=https://msp-release-1258344699.cos.ap-shanghai.myqcloud.com/package/urp
-curl -O $BASE/aliyun-scanner-mac-arm64-1.0.0.tar.gz
+# 自动下载 + 比对 SHA-256，校验失败会拒绝落地文件
+{baseDir}/scripts/fetch_scanner.sh aliyun-scanner-mac-arm64-1.0.0.tar.gz
 tar -xzf aliyun-scanner-mac-arm64-1.0.0.tar.gz
 # 解压后目录包含：aliyun-scanner（可执行文件）+ config.yaml（配置模板）
 ```
+
+**手动下载时，必须自行核对校验和**
+
+```bash
+BASE=https://msp-release-1258344699.cos.ap-shanghai.myqcloud.com/package/urp
+curl -fSL --proto '=https' -O $BASE/aliyun-scanner-mac-arm64-1.0.0.tar.gz
+
+# 与 references/CHECKSUMS.md 中记录的值比对，不一致就不要解压执行
+shasum -a 256 aliyun-scanner-mac-arm64-1.0.0.tar.gz   # macOS
+sha256sum   aliyun-scanner-mac-arm64-1.0.0.tar.gz     # Linux
+```
+
+各产物的 SHA-256 见 [{baseDir}/references/CHECKSUMS.md]({baseDir}/references/CHECKSUMS.md)。
+
+> ⚠️ 上游未提供签名或官方校验和清单，清单中的值是维护者实测记录的。
+> 它能发现产物被替换或损坏，但不能证明原始产物本身可信。
+> **不要在校验和不匹配的情况下继续执行。**
+
+### 已知不可用的产物
+
+| 文件 | 问题 |
+| --- | --- |
+| `aws-scanner-win-amd64-1.0.0.zip` | 返回 HTTP 404，产物不存在 |
+| `aliyun-scanner-win-amd64-1.0.0.zip` | 仅 1,955 字节，包内只有 `ReadMe.txt` 与 `config.yaml`，缺少可执行文件 |
+
+Windows 用户请改用华为云 / AWS 国内站产物，或在 Linux / macOS 环境下执行扫描。不要引导用户下载上述两个产物。
 
 ## 快速开始
 

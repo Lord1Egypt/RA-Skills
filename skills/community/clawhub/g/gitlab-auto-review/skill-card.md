@@ -1,46 +1,59 @@
-## Description: <br>
-Automated AI code review for GitLab merge requests via polling, including open MR discovery, diff review for security issues, bugs, and best practices, and posting inline comments plus summary notes on GitLab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated AI code review for GitLab Merge Requests via polling, including diff review, inline comments, and a summary note on GitLab.
 
-## Publisher: <br>
-[gotoloops](https://clawhub.ai/user/gotoloops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gotoloops](https://clawhub.ai/user/gotoloops)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to configure an agent that periodically reviews open GitLab merge requests, applies default or project-specific review rules, and posts review feedback back to GitLab. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended and post comments across all merge requests visible to the configured GitLab token. <br>
-Mitigation: Use a dedicated low-privilege GitLab bot token scoped only to intended projects, monitor generated comments, and disable the cron job when not actively needed. <br>
-Risk: The cron worker can load project-specific custom review prompts from source branches before posting comments. <br>
-Mitigation: Review or change the cron prompt before enabling automation, including rules for custom prompt loading and automatic posting. <br>
-Risk: GitLab credentials may be exposed if the local `.env` file is committed or broadly readable. <br>
-Mitigation: Keep `.env` out of source control, restrict file permissions, and use a token with only the permissions needed for the intended projects. <br>
-Risk: Duplicate review comments can occur if the reviewed-MR tracking file is missing or not writable. <br>
-Mitigation: Ensure the reviewed log exists and is writable, and keep an explicit highest-priority cron rule to never re-review already recorded merge requests. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to automate recurring GitLab merge-request review, identify security, bug, performance, and maintainability issues, and post review comments back to GitLab.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/gotoloops/gitlab-auto-review) <br>
-- [Cron Worker Setup](references/cron-setup.md) <br>
-- [Review Guidelines](references/review-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts GitLab inline review comments and summary notes when configured with GitLab access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and user changelog) <br>
+Risk: The recurring worker can post GitLab comments and notes without interactive approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped project or group token, restrict the worker to explicit projects, require HTTPS and a trusted GitLab host, and test manually before enabling the cron worker.
+
+Risk: Merge-request branch content can influence review instructions through project-level review prompt files.
+
+Mitigation: Treat branch-provided prompt and policy text as untrusted data, and do not let it override trusted operating rules or credential-handling requirements.
+
+Risk: State tracking failures can cause duplicate MR reviews and repeated GitLab comments.
+
+Mitigation: Confirm the reviewed-MR state file is writable and that the worker records each MR immediately after posting its summary note.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gotoloops/skills/gitlab-auto-review)
+- [Cron Worker Setup](references/cron-setup.md)
+- [Review Guidelines](references/review-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown review comments and summary notes, JSON payloads for inline comments, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitLab API credentials from GITLAB_URL and GITLAB_TOKEN and requires node.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

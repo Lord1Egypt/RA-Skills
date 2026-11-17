@@ -1,39 +1,52 @@
-## Description: <br>
-A Chinese-language product-management skill that applies NetDragon product design methodology to produce product方案, research reports, PRD drafts, stakeholder analysis, competitor analysis, scenario analysis, and feature prioritization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent apply a Chinese product design methodology to produce user-centered proposals, research reports, PRDs, and related product planning guidance.
 
-## Publisher: <br>
-[0punchman](https://clawhub.ai/user/0punchman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[0punchman](https://clawhub.ai/user/0punchman)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, designers, and agents supporting product teams use this skill to structure product discovery, stakeholder analysis, competitive analysis, scenario analysis, feature prioritization, validation, and PRD-style outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact is primarily a Chinese product-design workflow reference, which may be misunderstood by users expecting another language.
+
+Mitigation: Ask the agent to translate or adapt outputs to the target language and review important deliverables with the intended audience.
+
+Risk: Generated product proposals, research reports, or PRDs may contain incomplete assumptions or methodology-driven recommendations that do not fit a specific organization.
+
+Mitigation: Validate outputs against actual user research, stakeholder input, legal or compliance requirements, and project constraints before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, designers, founders, and product teams use this skill to structure product discovery and planning work, including user needs, stakeholder analysis, competitor research, scenario analysis, feature lists, prioritization, validation, and PRD-style documentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed as a Chinese-language product-management aid, so default output may not match teams that need another language. <br>
-Mitigation: State the target language and document format when invoking the skill. <br>
-Risk: Generated PRDs, research notes, or prioritization recommendations may contain assumptions that do not match current market, user, or stakeholder reality. <br>
-Mitigation: Review outputs with product, user-research, and stakeholder evidence before using them for planning or delivery decisions. <br>
+**Output Format:** [Markdown or structured text product planning artifacts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs are primarily Chinese-language product methodology guidance unless the user requests another language.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown product-management guidance, outlines, reports, and PRD drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; content should be reviewed against project evidence and stakeholder context before use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

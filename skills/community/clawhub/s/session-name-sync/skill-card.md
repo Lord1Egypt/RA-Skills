@@ -1,42 +1,62 @@
-## Description: <br>
-Bidirectionally syncs session names between Claude Code CLI/VSCode and cc-connect so both systems keep consistent names for the same sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectionally syncs session names between Claude Code CLI/VSCode and cc-connect so Claude Code JSONL titles and cc-connect session names stay consistent.
 
-## Publisher: <br>
-[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007)
 
-## Use Case: <br>
-Developers and Claude Code users who also use cc-connect/Feishu can use this skill to set, compare, bind, register, and synchronize session names across both storage systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write local Claude Code session data and cc-connect session JSON. <br>
-Mitigation: Install only if you trust the publisher, review the exact sessions to be changed, and back up ~/.cc-connect session JSON before sync or register operations. <br>
-Risk: Register or sync workflows may perform bulk session changes and can require cc-connect daemon restarts. <br>
-Mitigation: Require explicit user confirmation before bulk registration or daemon restarts, and avoid running it with unusual or untrusted cc-connect work_dir values. <br>
+## Use Case:
 
+Developers using Claude Code with cc-connect use this skill to set, compare, synchronize, bind, or register session names across local Claude Code sessions and cc-connect session records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/session-name-sync) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Release README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify local Claude Code JSONL files and cc-connect session JSON when the user confirms write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may edit Claude Code and cc-connect session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up session state files before use and review proposed file changes before allowing writes.
+
+Risk: The skill may restart cc-connect and affect Feishu message handling.
+
+Mitigation: Ask explicitly before any daemon restart and avoid running the restart flow during active Feishu use.
+
+Risk: Unsafe local command execution patterns could mishandle arbitrary or untrusted session names.
+
+Mitigation: Pass session names as data, validate or quote inputs carefully, and avoid running commands with untrusted names.
+
+Risk: Broad daemon and state changes could target the wrong process or stale state.
+
+Mitigation: Verify daemon PIDs and target paths before stopping processes or changing cc-connect state.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/zhangyanbo2007/skills/session-name-sync)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangyanbo2007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file edits, state synchronization steps, and daemon restart guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

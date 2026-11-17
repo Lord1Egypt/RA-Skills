@@ -1,49 +1,67 @@
-## Description: <br>
-Turn papers, podcasts, and case studies into publish-ready social posts, infographics, and diagrams, with topic discovery through Exa and image generation through fal.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Claw turns papers, podcasts, case studies, and topical research into publish-ready social posts, infographics, diagrams, posters, captions, and related content assets.
 
-## Publisher: <br>
-[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba)
 
-## Use Case: <br>
-Content creators, marketers, and developer advocates use this skill to transform source URLs and long-form material into platform-ready posts, captions, diagrams, infographics, and local content artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches web sources and uses Playwright stealth scraping, which can conflict with site terms or expectations. <br>
-Mitigation: Use it only on sources you are permitted to process, review applicable site rules, and run it in a sandboxed environment for sensitive workflows. <br>
-Risk: The skill sends image prompts to fal.ai and topic-search queries to Exa. <br>
-Mitigation: Use scoped, usage-limited API keys and avoid including sensitive or internal material in prompts, source URLs, or brand keywords. <br>
-Risk: The Reddit drafting agent is designed to imitate ordinary human participation and could enable undisclosed promotion or fake anecdotes. <br>
-Mitigation: Use Reddit outputs only as transparent drafts, remove invented personal claims, disclose promotional context where required, and review platform rules before posting. <br>
-Risk: The skill stores generated artifacts locally. <br>
-Mitigation: Review generated files before sharing and clean local content directories when outputs include sensitive source material. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to extract source material, create recipe-driven content specs, generate platform-ready social copy, and produce image assets for social channels.
 
-## Reference(s): <br>
-- [Content Claw ClawHub page](https://clawhub.ai/thierrypdamiba/content-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/thierrypdamiba) <br>
-- [Clawdis homepage](https://github.com/scaleintelligence/content-claw) <br>
-- [Running Recipes](references/run-recipe.md) <br>
-- [Create Recipe Wizard](references/create-recipe.md) <br>
-- [Topic Discovery](references/topics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON specs, YAML recipes, local files, and image-generation artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local content directories and generated image files; may include hosted image URLs returned by fal.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.2 (source: server release metadata) <br>
+Risk: The skill can fetch arbitrary source URLs during extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run extraction in a sandbox with restricted network access and avoid internal, sensitive, or untrusted URLs.
+
+Risk: The skill can write generated files from user-controlled recipe, brand, and run names.
+
+Mitigation: Validate recipe and brand names before allowing writes and keep file operations constrained to the skill workspace.
+
+Risk: The Reddit agent is designed to make AI-written content read like organic human testimony.
+
+Mitigation: Review, disable, or rewrite that agent for transparent, fact-backed drafts before deployment.
+
+Risk: The skill depends on external services for image generation and topic discovery.
+
+Mitigation: Use scoped, usage-limited API keys and review what condensed image specs or search queries are sent to each service.
+
+## Reference(s):
+
+- [Content Claw ClawHub Page](https://clawhub.ai/thierrypdamiba/skills/content-claw)
+- [Content Claw Repository](https://github.com/scaleintelligence/content-claw)
+- [Running Recipes](references/run-recipe.md)
+- [Create Recipe Wizard](references/create-recipe.md)
+- [Brand Graphs](references/brand.md)
+- [Topic Discovery](references/topics.md)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Image files, YAML configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses, JSON specs, YAML recipes and brand graphs, shell commands, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recipe runs may write generated specs, rendered text, images, and metadata under the skill content directory; image generation requires FAL_KEY and topic discovery requires EXA_API_KEY.]
+
+## Skill Version(s):
+
+3.3.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

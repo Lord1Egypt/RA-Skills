@@ -1,40 +1,53 @@
-## Description: <br>
-Converts document formats such as PDF, Word, PowerPoint, Excel, HTML, text, and images to Markdown using Microsoft's markitdown library, with scripts for single-file conversion, batch conversion, and image extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDFs, Office documents, HTML, text, and other supported files to Markdown using Microsoft MarkItDown, with batch conversion and best-effort image extraction helper scripts.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to convert individual files or folders of common office, web, PDF, text, and OCR-supported image documents into Markdown, and to extract images from source documents when supported. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch conversion can create or overwrite local Markdown and extracted-image output files. <br>
-Mitigation: Use narrow input folders and choose a new or empty output directory before running conversion or extraction scripts. <br>
-Risk: The markitdown dependency and optional format-specific tools may affect the local Python environment. <br>
-Mitigation: Install dependencies in a virtual environment and add optional system packages only for the document formats being processed. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to convert individual files or folders of supported documents into Markdown and to attempt image extraction from documents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wang-junjian/markitdown-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files, extracted image files, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local output files and may create output directories; batch mode recursively processes supported files unless disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installation guidance includes an option that uses --break-system-packages and dependency versions are not pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment, prefer pinned dependency versions, and avoid --break-system-packages.
+
+Risk: Format preservation and image extraction may not be complete for every supported document type.
+
+Mitigation: Treat conversion and image extraction results as best-effort and review generated Markdown or extracted assets before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wang-junjian/skills/markitdown-converter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and concise shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes only the files or directories the user points it at; conversion fidelity and image extraction are best-effort.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "板块异动分析"
+  short_description: "识别板块放量异动、资金流向与个股联动，输出异动评分和操作建议"
+  default_prompt: "分析最近板块异动"

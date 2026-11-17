@@ -1,0 +1,28 @@
+@language nodecoda/1
+@mode workflow
+
+// 工具调用 + HTTP 请求 + LLM 汇总:先取结构化数据,再请求外部 API,最后让模型总结
+// 展示 tool("name","action",params)、http(method,url,opts)、结果字段访问
+
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+function main(string city) -> string {
+    // 1) 工具调用:天气服务(工具需先在 Dify 配置 Tool Provider)
+    let weather = tool("weather_provider", "get_forecast", {
+        "city": city
+    });
+
+    // 2) HTTP 请求:活动列表(无工具时直接请求外部 API)
+    let page = http("GET", `https://api.example.com/events?city=${city}`, {
+        "headers": { "Accept": "application/json" }
+    });
+
+    // 3) LLM 汇总两条数据源
+    let summary = llm(MODEL, {
+        "messages": [{
+            "role": "user",
+            "content": `城市:${city}\n天气:${weather.result}\n活动:${page.body}\n请用一句话给出出行建议。`
+        }]
+    });
+    return summary.text;
+}

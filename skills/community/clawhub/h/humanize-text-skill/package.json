@@ -1,0 +1,21 @@
+{
+  "name": "humanize-text-skill-detector",
+  "version": "0.1.0",
+  "description": "Bilingual (zh/en) detection + voice engine for the humanize-text-skill skill. Removes AI tone and pulls text toward a target human voice. Zero-dependency, runs in Node >=18 and the browser.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fendouai/humanize-text-skill.git"
+  },
+  "main": "detector/patterns.js",
+  "files": [
+    "detector"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node detector/__tests__/patterns.test.js && node detector/__tests__/categories.test.js && node detector/__tests__/bilingual.test.js && node detector/__tests__/fixtures.test.js && node detector/__tests__/readme-examples.test.js && node detector/__tests__/e2e.test.js",
+    "gen-fixtures": "node scripts/gen-fixtures.js"
+  }
+}

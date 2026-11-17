@@ -1,0 +1,131 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_subtable_create_tool_bar_btn",
+    "description": "Create a subtable toolbar button. Only Relation and LookupList field types support subtable toolbar buttons.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Main table ID (must exist)."
+        },
+        "fieldId": {
+          "type": "string",
+          "description": "Relation or LookupList field ID (must exist, field type must be Relation or LookupList)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Button display name, cannot contain special characters like , . / \\"
+        },
+        "action": {
+          "type": "string",
+          "description": "Button trigger behavior type. Options: RecordCreateRow (add a row; which fields are editable in the new row depends on the columnList in relationSetting or lookupListSetting — only columns with edit=true are editable), RecordDeleteRowList (delete selected rows), CallScript (call script), CallAutomatic (call automation)"
+        },
+        "actionSetting": {
+          "type": "object",
+          "description": "Button behavior configuration (only for CallScript or CallAutomatic actions). When action is CallScript, func, scriptId and args are needed; when action is CallAutomatic, automaticId is needed, varList is optional.",
+          "properties": {
+            "func": {
+              "type": "string",
+              "description": "Execution function name (required for CallScript)"
+            },
+            "scriptId": {
+              "type": "string",
+              "description": "Script ID to call (required for CallScript)"
+            },
+            "args": {
+              "type": "array",
+              "description": "Parameter list passed to the script (used for CallScript)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "valueVar": {
+                    "type": "string",
+                    "description": "Parameter variable expression. Supported variables: current user: ${user} (user object has id, name, roleList, departmentList properties, use ${user.id} for current user id); user selected record list: ${formSelectedRecordList}; user selected record ID list: ${formSelectedIdList}"
+                  }
+                },
+                "required": ["valueVar"]
+              }
+            },
+            "automaticId": {
+              "type": "string",
+              "description": "Automation ID to call (required for CallAutomatic)"
+            },
+            "varList": {
+              "type": "array",
+              "description": "Variable list passed to the automation (optional for CallAutomatic)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "Variable value. Supported variables: current user: ${user} (user object has id, name, roleList, departmentList properties, use ${user.id} for current user id); user selected record list: ${formSelectedRecordList}; user selected record ID list: ${formSelectedIdList}"
+                  }
+                },
+                "required": ["value"]
+              }
+            }
+          }
+        },
+        "subtableActionSetting": {
+          "type": "object",
+          "description": "Subtable-specific behavior configuration (only for RecordCreateRow or RecordDeleteRowList actions).",
+          "properties": {
+            "valueList": {
+              "type": "array",
+              "description": "Default value list when adding a row (used for RecordCreateRow).",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fieldId": {
+                    "type": "string",
+                    "description": "Subtable field ID"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Default value expression. Supports expressions like ${record.id} to reference the main table current record."
+                  }
+                },
+                "required": ["fieldId", "value"]
+              }
+            },
+            "recordListExpression": {
+              "type": "string",
+              "description": "Record list expression to delete (used for RecordDeleteRowList). Defaults to ${formSelectedRecordList}.",
+              "default": "${formSelectedRecordList}"
+            },
+            "relationFieldId": {
+              "type": "string",
+              "description": "Relation field ID (used for RecordDeleteRowList, can be empty string).",
+              "default": ""
+            }
+          }
+        },
+        "buttonSetting": {
+          "type": "object",
+          "description": "Button style configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Button style type, default is default. Options: default, primary, success, warning, danger"
+            },
+            "icon": {
+              "type": "string",
+              "description": "Button icon name. Common values: menu-add (add), delete-bin (delete)"
+            }
+          }
+        },
+        "hideExpression": {
+          "type": "string",
+          "description": "Hide button when expression condition is met. Button is hidden when expression evaluates to true. Note: visibleRoleList is deprecated. Use hideExpression and disableExpression for button permission control."
+        },
+        "disableExpression": {
+          "type": "string",
+          "description": "Disable button when expression condition is met. Button is disabled when expression evaluates to true. E.g. ${formSelectedIdList.size()==0} to disable delete when nothing selected."
+        }
+      },
+      "required": ["tableId", "fieldId", "name", "action", "buttonSetting"]
+    }
+  }
+}

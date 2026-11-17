@@ -1,0 +1,9 @@
+{
+  "name": "cross-session-passphrase",
+  "normalizedName": "cross-session-passphrase",
+  "description": "跨会话口令沟通 + 主动式并行会话感知，用于回答「怎么让另一个窗口读到这份文件」「并行会话之间怎么传结论」「另一个会话刚才做了什么」这类问题。用「注册口令」机制实现：把「触发词 → 操作」映射写入用户级 MEMORY.md，另一会话收到口令后自动执行（如读取文件并复述）。口令与映射按注册方法论（Registration Methodology）登记为可核验条目，会话归属确认对应三锚核验的身份锚。仅适用「本机 · 本账号 · 不同会话之间」。触发词：跨会话沟通、形成口令、让另一个窗口读到、跨会话传递、会话中继、共享产出索引、manifest 模式、并行会话、平行会话、另一个会话做了什么、扫工作区日志、cross-session。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺卫(Phylax)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.2.0",
+  "license": "MIT"
+}

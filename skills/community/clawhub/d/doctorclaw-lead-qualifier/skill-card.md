@@ -1,43 +1,58 @@
-## Description: <br>
-Lead qualifier that scores inbound leads against custom criteria, prioritizes hot prospects, and drafts outreach for on-demand or scheduled pipeline review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead qualifier - score inbound leads based on custom criteria, prioritize hot prospects, draft outreach.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Sales teams and business operators use this skill to score inbound leads, rank prospects, identify disqualification reasons, and prepare follow-up drafts for qualified leads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose lead details through alerts or outreach actions. <br>
-Mitigation: Use least-privilege CRM and email access, start in report-only mode, and require explicit approval before sending alerts or outreach. <br>
-Risk: The artifact includes a hard-coded alert recipient named Stephen. <br>
-Mitigation: Replace the hard-coded recipient with the configured business owner before installation or scheduled use. <br>
-Risk: Automated CRM updates could misclassify or prematurely change lead status. <br>
-Mitigation: Require review before updating CRM records, especially when running the skill on a cron schedule. <br>
+## Use Case:
 
+Sales teams and business operators use this skill to score inbound lead lists, rank prospects, identify disqualification reasons, and draft follow-up outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/doctorclaw-lead-qualifier) <br>
-- [DoctorClaw website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lead qualification report with scores, ranked categories, reasons, insights, and outreach drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed CRM status updates, alerts, or email outreach actions that should require user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Lead details may be routed through alerts, outreach, or connected CRM tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the lead data and tool access needed for the workflow, set approved recipients explicitly, and review generated lead reports before action.
+
+Risk: The skill includes an unexplained instruction to alert a named person.
+
+Mitigation: Do not allow lead details to be sent to that person unless they are intentionally authorized for the deployment.
+
+Risk: Outreach sends and CRM or source-record updates could affect customers or pipeline data.
+
+Mitigation: Require confirmation for first-time alerts, outreach sends, and CRM/status updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-lead-qualifier)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown lead qualification report with scored lead rankings and outreach drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include lead scores, rationale, qualification category, disqualification notes, alerts, and approval-gated outreach drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Grill With Docs guides an agent through a design-grilling session that resolves domain language and architectural decisions, then produces CONTEXT.md glossary content and ADR files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a design grilling session that interviews the user until shared understanding is reached, then generates CONTEXT.md and ADR files from the discussion.
 
-## Publisher: <br>
-[genortg](https://clawhub.ai/user/genortg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genortg](https://clawhub.ai/user/genortg)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to pressure-test a design, align on precise domain terminology, and capture durable documentation as a glossary and architecture decision records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or edit glossary and ADR files in the wrong project context or path. <br>
-Mitigation: Confirm the target CONTEXT.md and docs/adr paths before writing, especially when a repository has CONTEXT-MAP.md or multiple bounded contexts. <br>
-Risk: Resolved terms or ADRs may misrepresent the codebase or the team's intended design. <br>
-Mitigation: Preview diffs and have the relevant project owner review proposed documentation changes before accepting them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to clarify project design language, resolve domain decisions through a guided interview, and capture the outcome as repository documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/genortg/grill-docs) <br>
-- [Publisher profile](https://clawhub.ai/user/genortg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit CONTEXT.md and docs/adr files when the session resolves terms or decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated glossary or ADR documentation may misstate project decisions or code behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated CONTEXT.md and docs/adr files before committing or sharing them.
+
+Risk: The skill reads project context and may update repository documentation during the session.
+
+Mitigation: Use it only in repositories where documentation updates are intended, and inspect diffs before accepting changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/genortg/skills/grill-docs)
+- [GSD Core attribution](https://github.com/open-gsd/gsd-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown documentation files and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update CONTEXT.md and docs/adr Markdown files during the session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

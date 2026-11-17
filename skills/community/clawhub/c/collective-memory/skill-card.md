@@ -1,42 +1,63 @@
-## Description: <br>
-Broadcast a single memory note to multiple AI-agent workspaces in one shot, upserting into MEMORY.md, AGENTS.md, TOOLS.md, USER.md, or another Markdown file across all targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Broadcast a single memory note to multiple AI-agent workspaces in one shot, upserting into MEMORY.md, AGENTS.md, TOOLS.md, USER.md, or another Markdown file across all targets.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep Markdown-based memory notes consistent across local agent workspaces. It helps broadcast one note, preview changes, and idempotently update or append matching memory sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad trigger phrase could cause a memory broadcast when the user intended a narrower update. <br>
-Mitigation: Require the agent to show the target files, content preview, and lookup key before multi-target writes, and use dry-run when intent is uncertain. <br>
-Risk: Sensitive information may be written into multiple shared memory files. <br>
-Mitigation: Avoid broadcasting secrets or credentials; when sensitive terms appear, warn the user and require explicit confirmation before writing. <br>
-Risk: Auto-discovery may select more workspaces than intended. <br>
-Mitigation: Prefer explicit targets for normal use and review discovered targets before committing changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to broadcast a persistent Markdown memory note across multiple local agent workspaces and keep repeated broadcasts idempotent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songhonglei/collective-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance, shell command examples, human-readable status lines, optional JSON status, and Markdown file updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update or append sections in one or more local Markdown memory files; dry-run mode previews without writing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can persistently rewrite memory files across multiple workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit target lists, review every target before execution, and run with --dry-run when broadcasting to more than one workspace.
+
+Risk: Sensitive notes could be copied into every selected memory file.
+
+Mitigation: Do not broadcast secrets, account details, secret paths, tokens, passwords, API keys, or private keys.
+
+Risk: Auto-discovery and custom filenames may select or write to unintended paths.
+
+Mitigation: Prefer explicit --target arguments and confirm discovered workspaces and filenames before allowing writes.
+
+Risk: Literal heading matching can update the wrong Markdown section when headings share broad tokens.
+
+Mitigation: Use specific lookup keys, preview changes with --dry-run, and review target headings before updating existing sections.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/collective-memory)
+- [Publisher profile](https://clawhub.ai/user/songhonglei)
+- [Repository link from artifact documentation](https://github.com/Songhonglei/better-agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Files, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples; script results are plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can update or preview Markdown memory files across one or more local workspaces.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

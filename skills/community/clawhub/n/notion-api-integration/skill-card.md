@@ -1,47 +1,74 @@
-## Description: <br>
-Complete Notion API for databases, pages, blocks, users, search, comments, and property types with pagination and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and debugs Notion API integrations for data sources, pages, blocks, properties, filters, files, webhooks, bulk imports, authentication, rate limits, pagination, and version migration.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to guide Notion API operations for databases, pages, blocks, users, search, comments, properties, pagination, and error handling through their own Notion integration token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Notion integration token can expose or modify workspace data if it is shared too broadly or leaked. <br>
-Mitigation: Use a least-privilege Notion integration, share only the pages and databases needed, and keep NOTION_API_KEY out of chats, logs, screenshots, and repositories. <br>
-Risk: Create, update, archive, delete, or comment operations can change real Notion workspace content. <br>
-Mitigation: Review any command that writes to Notion before running it against production workspace content. <br>
+## Use Case:
 
+Developers and automation builders use this skill to design, debug, and operate Notion API integrations from code, curl, or SDKs. It helps with access setup, schema-aware payloads, database and data-source queries, pagination, bulk imports and exports, sync workflows, file handling, comments, and common Notion API errors.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/notion-api-integration) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill Homepage](https://clawic.com/skills/notion-api-integration) <br>
-- [Setup - Notion API Integration](artifact/setup.md) <br>
-- [Databases - Notion API](artifact/databases.md) <br>
-- [Pages - Notion API](artifact/pages.md) <br>
-- [Blocks - Notion API](artifact/blocks.md) <br>
-- [Pagination - Notion API](artifact/pagination.md) <br>
-- [Error Handling - Notion API](artifact/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is intended to be adapted to the user's Notion workspace and integration permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The agent can access Notion pages connected to the user's integration token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Notion integration and connect only the parent pages the workflow needs.
+
+Risk: The skill keeps local operational notes under ~/Clawic/data.
+
+Mitigation: Review local note contents and store only pointers to secrets, not token values or signed file URLs.
+
+Risk: Write operations can alter, archive, or overwrite Notion content when the integration has write capabilities.
+
+Mitigation: Keep write_mode at confirm-writes or dry-run for sensitive work and grant update, insert, comment, or user-email capabilities only when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/notion-api-integration)
+- [Clawic Skill Page](https://clawic.com/skills/notion-api-integration)
+- [Access, Integrations, and OAuth](auth.md)
+- [Data Sources](data-sources.md)
+- [Databases and Schemas](databases.md)
+- [Pages](pages.md)
+- [Blocks](blocks.md)
+- [Property Values](properties.md)
+- [Filters and Sorts](filters.md)
+- [Pagination](pagination.md)
+- [Bulk Work](bulk.md)
+- [Sync](sync.md)
+- [Files](files.md)
+- [Search](search.md)
+- [Users](users.md)
+- [Comments](comments.md)
+- [Errors, Retries, and Rate Limits](errors.md)
+- [Working File Templates](memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, curl, and SDK-oriented code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Notion API requests, local note updates, migration runbooks, retry plans, and schema-aware payloads.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

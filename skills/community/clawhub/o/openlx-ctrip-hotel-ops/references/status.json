@@ -1,0 +1,98 @@
+{
+  "version": "0.1.1",
+  "updated_at": "2026-09-05T18:27:44.270372+00:00",
+  "product_completion": "PARTIAL",
+  "summary": [
+    {
+      "title": "经营快照导入与完整免费报告",
+      "state": "LOCAL_RUN_PASS",
+      "label": "本地运行通过，演示数据已标注"
+    },
+    {
+      "title": "点评分流与价格护栏",
+      "state": "MOCK_PASS",
+      "label": "本地模拟通过"
+    },
+    {
+      "title": "素材、人设与内容草稿",
+      "state": "MOCK_PASS",
+      "label": "素材、模型适配和日程模拟通过"
+    },
+    {
+      "title": "专属Chrome与字段适配",
+      "state": "IMPLEMENTED_UNVERIFIED",
+      "label": "实际账号待验证"
+    },
+    {
+      "title": "改价、房态、接单和点评提交",
+      "state": "IMPLEMENTED_UNVERIFIED",
+      "label": "真实后台待验证"
+    },
+    {
+      "title": "笔记提交与公开回读",
+      "state": "IMPLEMENTED_UNVERIFIED",
+      "label": "实际内容账号待验证"
+    },
+    {
+      "title": "共享注册、支付与独立许可证",
+      "state": "MOCK_PASS",
+      "label": "真实交易待验证"
+    },
+    {
+      "title": "年度人设与人工服务",
+      "state": "IMPLEMENTED_UNVERIFIED",
+      "label": "模块已建，真人交付另计"
+    }
+  ],
+  "evidence": {
+    "unit_tests": {
+      "status": "MOCK_PASS",
+      "passed": 28,
+      "total": 28,
+      "command": "node --test --test-reporter=spec tests/*.test.mjs",
+      "artifact": "evidence/local-tests.txt"
+    },
+    "installation": {
+      "macos": "LOCAL_RUN_PASS",
+      "linux": "LOCAL_RUN_PASS",
+      "windows": "NOT_RUN"
+    },
+    "live_hotel_read": "NOT_RUN",
+    "live_hotel_write": "NOT_RUN",
+    "note_submit": "NOT_RUN",
+    "note_public_readback": "NOT_RUN",
+    "payment_transaction": "NOT_RUN",
+    "smtp_delivery": "NOT_RUN",
+    "website": "DEPLOYED_HTTPS_PUBLIC_READBACK_PASS",
+    "github_release": "BUILD_READY",
+    "smtp_connection_auth": "CONNECTION_AUTH_PASS",
+    "shared_identity_proxy": "CONFIGURED_BACKEND_ALIVE_LOGIN_NOT_RUN",
+    "payment_configuration": {
+      "alipay": true,
+      "wechat": true
+    },
+    "ui": {
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "features": 12,
+      "annual_standard_fen": 9990,
+      "annual_supreme_fen": 39999,
+      "horizontal_overflow": false,
+      "page_errors": 0
+    },
+    "github_url": "https://github.com/openlxcn/openlx-ctrip-hotel-ops/releases/tag/v0.1.1",
+    "website_url": "https://ctrip.openlx.cn"
+  },
+  "open_gaps": [
+    "真实商家与内容账号字段映射和权限需实测",
+    "PMS具体字段主从对接、库存与订单自动策略仍需完善适配",
+    "长期守护运行、真实价格调度与业务写入及同对象回读待验收",
+    "模型API、素材到笔记日程已实现；真实模型连接和自动提交、后台与公开回读未实测",
+    "设备续取与服务器写租约已实现并模拟验证；真实双设备后台并发与迁移未实测",
+    "真实支付交易与邮箱送达未实测；收费暂未开放",
+    "Windows安装尚未实测"
+  ],
+  "artifact_state": "BUILT",
+  "publication_status_url": "https://ctrip.openlx.cn/status.json",
+  "publication_note": "安装包内记录构建时状态；网站和GitHub发布后证据以publication_status_url及仓库evidence/release-verification.json为准。"
+}

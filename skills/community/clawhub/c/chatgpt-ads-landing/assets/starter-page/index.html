@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 标题 = 品牌 + 用户在 ChatGPT 里会搜的核心诉求,≤ 60 字符,不堆砌关键词 -->
+  <title>填【Brand · Offer in plain words | Key benefit】</title>
+  <meta name="description" content="填【一句话说清楚提供什么、给谁、核心利益;与 JSON-LD description 一致】" />
+  <link rel="canonical" href="{{PAGE_URL}}" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph: ad image = hero image (end-to-end consistency with the ad creative) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="填【Brand · Offer】" />
+  <meta property="og:description" content="填【同 meta description】" />
+  <meta property="og:image" content="{{PAGE_URL}}assets/hero.jpg" />
+
+  <!-- Page icon: our own mark unless the client has authorised use of their logo -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Structured data: keep word-for-word consistent with the visible copy below
+       (check.js compares the FAQPage questions with the visible FAQ). -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "填【Offer name】",
+      "provider": { "@type": "Organization", "name": "填【Brand legal/public name】", "url": "https://填【brand site】" },
+      "areaServed": ["填【US】"],
+      "description": "填【同 meta description】",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "填【Benefit 1 name】",
+          "description": "填【Benefit 1, same words as the page】"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "填【Question 1?】", "acceptedAnswer": { "@type": "Answer", "text": "填【Answer 1】" } },
+        { "@type": "Question", "name": "填【Question 2?】", "acceptedAnswer": { "@type": "Answer", "text": "填【Answer 2】" } },
+        { "@type": "Question", "name": "填【Question 3?】", "acceptedAnswer": { "@type": "Answer", "text": "填【Answer 3】" } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner wrap">
+    <a class="nav__logo" href="#top" aria-label="填【Brand】">填【BRAND】</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--outline nav__cta" data-cta="hero" href="{{cta:hero}}">填【Short CTA】</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 首屏:唯一 h1 + 一句价值主张 + 2~3 个可核实的卖点 + 主 CTA(必须在第一个 h2 之前) -->
+<section class="hero">
+  <div class="hero__inner wrap">
+    <p class="hero__eyebrow">填【BRAND · CAMPAIGN】</p>
+    <h1 class="hero__title">填【Headline that matches the ad】</h1>
+    <p class="hero__subhead">填【One sentence: what you get and why it matters】</p>
+    <ul class="hero__points">
+      <li><strong>填【Fact 1】</strong><span>填【detail】</span></li>
+      <li><strong>填【Fact 2】</strong><span>填【detail】</span></li>
+      <li><strong>填【Fact 3】</strong><span>填【detail】</span></li>
+    </ul>
+    <a class="btn btn--primary" data-cta="hero" href="{{cta:hero}}">填【Primary CTA】</a>
+    <p class="hero__note">填【Eligibility / terms in one line, if any】</p>
+  </div>
+</section>
+
+<section class="section" id="benefits">
+  <div class="wrap">
+    <h2>填【What you get】</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>填【Benefit 1】</h3>
+        <p>填【2~3 sentences with concrete, checkable facts. ChatGPT reads this to decide relevance.】</p>
+      </article>
+      <article class="card">
+        <h3>填【Benefit 2】</h3>
+        <p>填【…】</p>
+      </article>
+      <article class="card">
+        <h3>填【Benefit 3】</h3>
+        <p>填【…】</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- #details 是 page.json 里 contents_viewed 的触发区块;改 id 时同步改 page.json -->
+<section class="section section--soft" id="details">
+  <div class="wrap">
+    <h2>填【How it works】</h2>
+    <ol class="steps">
+      <li><h3>填【Step 1】</h3><p>填【…】</p></li>
+      <li><h3>填【Step 2】</h3><p>填【…】</p></li>
+      <li><h3>填【Step 3】</h3><p>填【…】</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <h2>填【Questions before you start】</h2>
+    <div class="faq">
+      <details class="faq__item">
+        <summary>填【Question 1?】</summary>
+        <div class="faq__a"><p>填【Answer 1】</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>填【Question 2?】</summary>
+        <div class="faq__a"><p>填【Answer 2】</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>填【Question 3?】</summary>
+        <div class="faq__a"><p>填【Answer 3】</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__bottom wrap">
+    <span>填【© 2026 Brand legal name. All rights reserved.】</span>
+    <nav class="footer__legal" aria-label="Legal">
+      <a data-link="privacy" href="{{link:privacy}}">Privacy Policy</a>
+      <!-- 有 consent 国家时,在 page.json links 里加 cookies,并在这里加一个 data-link="cookies" 的链接(href 用 link token,见 references/page-config.md) -->
+      <button type="button" class="footer__consent" data-consent-settings hidden>Cookie settings</button>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

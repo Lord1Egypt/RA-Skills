@@ -1,0 +1,4 @@
+interface:
+  display_name: "Address Review Comments"
+  short_description: "Fix the latest reviewer batch, self-audit, commit, and reply"
+  default_prompt: "Use $address-review-comments for the given PR number to fix the latest reviewer batch and reply point-by-point."

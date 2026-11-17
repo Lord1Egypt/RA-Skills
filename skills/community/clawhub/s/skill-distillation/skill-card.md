@@ -1,40 +1,51 @@
-## Description: <br>
-Skill Distillation helps agents extract reusable agent skills from large models, human experts, methods, and books. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Distillation helps agents extract reusable Agent Skill methods and toolchains from large models, human experts, methods, and books.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent builders use this reference skill to understand when skill distillation is appropriate and how to choose between SkillAlchemy, Nuwa-Skill, and Cangjie-Skill workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example npx commands and linked GitHub projects are outside this package. <br>
-Mitigation: Inspect those separate projects before running commands or installing linked skills. <br>
+## Use Case:
 
+Developers and agent builders use this skill to understand how to distill knowledge into reusable Agent Skills, including conditions, policies, termination criteria, and reusable interfaces.
 
-## Reference(s): <br>
-- [SkillAlchemy](https://github.com/agentsope/SkillAlchemy) <br>
-- [Nuwa-Skill](https://github.com/alchaincyf/nuwa-skill) <br>
-- [Cangjie-Skill](https://github.com/kangarooking/cangjie-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable payload; example commands reference external projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill references unpinned remote installation commands for third-party skills, which can change what code or instructions are installed later.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review referenced repositories and resolved packages before use, prefer pinned versions or immutable commit hashes, and run installations in a least-privileged environment without unnecessary credentials.
+
+## Reference(s):
+
+- [SkillAlchemy](https://github.com/agentsope/SkillAlchemy)
+- [Nuwa-Skill](https://github.com/alchaincyf/nuwa-skill)
+- [Cangjie-Skill](https://github.com/kangarooking/cangjie-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes conceptual skill-structure guidance and example third-party installation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

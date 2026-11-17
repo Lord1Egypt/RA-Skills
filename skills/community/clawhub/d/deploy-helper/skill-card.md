@@ -1,41 +1,63 @@
-## Description: <br>
-Deploy Helper is a one-command deployment assistant that generates Dockerfiles, docker-compose configs, Nginx configs, CI/CD pipelines, Vercel/Netlify configs, and Kubernetes manifests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-command deployment assistant. Generate Dockerfiles, docker-compose configs, Nginx configs, CI/CD pipelines, Vercel/Netlify configs, Kubernetes manifests.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate starter deployment files and operational guidance for container, web server, CI/CD, serverless, SSL, and Kubernetes release paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Docker, CI/CD, Kubernetes, Nginx, and SSL templates may include placeholder values or defaults that are not suitable for a production environment. <br>
-Mitigation: Review generated files before use, replace placeholders with environment-specific values, and use managed secret storage for credentials. <br>
-Risk: The secondary helper can record command arguments in a local history file. <br>
-Mitigation: Do not pass tokens, passwords, or other sensitive values as command arguments; clear local helper history if sensitive arguments were used. <br>
+## Use Case:
 
+External developers and engineers use Deploy Helper to generate copy-and-review deployment configuration and command guidance for containers, web servers, CI/CD, serverless hosting, Kubernetes, and SSL setup.
 
-## Reference(s): <br>
-- [Deploy Helper on ClawHub](https://clawhub.ai/xueyetianya/deploy-helper) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style snippets printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated deployment templates require review and replacement of placeholder secrets before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Generated Docker Compose examples include insecure default database credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all database credentials with real secrets or environment-based secret management before use.
+
+Risk: The unrelated script.sh records local command history under the user's deploy-helper data directory.
+
+Mitigation: Do not run script.sh unless local command-history logging is acceptable, or remove the logging behavior before installation.
+
+Risk: The SSL guidance includes privileged certbot and package-manager commands.
+
+Mitigation: Treat SSL output as copy-and-review guidance and run adapted commands manually only after confirming the target host and domain.
+
+Risk: Generated deployment templates may not match the target application's runtime, secret, networking, or production requirements.
+
+Mitigation: Review, test, and scan generated configuration before applying it to any deployed environment.
+
+## Reference(s):
+
+- [Deploy Helper on ClawHub](https://clawhub.ai/xueyetianya/skills/deploy-helper)
+- [xueyetianya publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text containing deployment templates, code blocks, YAML/TOML/JSON snippets, and shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated as copy-and-review templates; the skill does not deploy infrastructure by itself.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

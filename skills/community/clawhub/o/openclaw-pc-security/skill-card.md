@@ -1,44 +1,63 @@
-## Description: <br>
-Local security self-check for your Windows PC and OpenClaw server setup (password protection, port, and exposure), producing a local report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local security self-check for your Windows PC and OpenClaw server setup (password protection, port, and exposure), producing a local report.
 
-## Publisher: <br>
-[openclawvincent](https://clawhub.ai/user/openclawvincent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawvincent](https://clawhub.ai/user/openclawvincent)
 
-## Use Case: <br>
-Developers, IT administrators, and OpenClaw users use this skill to audit Windows patch posture, OpenClaw CLI freshness, and OpenClaw server exposure. It supports local report generation and optional authorized OpenClaw service checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include system, network, and configuration details. <br>
-Mitigation: Review reports before sharing and send them only through an approved secure destination. <br>
-Risk: Target scans and credential checks can affect systems outside the user's authorization. <br>
-Mitigation: Run target scans and credential checks only against systems the user owns or is explicitly authorized to test. <br>
-Risk: The bundled mock server can expose test behavior if run in an inappropriate environment. <br>
-Mitigation: Run the mock server only in an isolated test environment. <br>
+## Use Case:
 
+Developers, engineers, and OpenClaw users use this skill to audit Windows and OpenClaw security posture, check update status, review server configuration, and generate local HTML or JSON reports for authorized systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawvincent/openclaw-pc-security) <br>
-- [Skill README](artifact/README.md) <br>
-- [Microsoft Security Response Center CVRF API](https://api.msrc.microsoft.com/cvrf/v2.0/cvrf/{cid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated reports may be JSON or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include system, network, and configuration details and should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Network scans and optional credential or leak checks can affect systems outside the user's authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run active checks only against systems you own or are explicitly allowed to test, and keep credential and leak checks disabled unless needed.
+
+Risk: Generated reports may contain sensitive local security, configuration, token, credential, or exposure details.
+
+Mitigation: Store reports privately, do not publish output/ files, and share reports only through a secure destination when explicitly required.
+
+Risk: Optional npm and MSRC lookup flags make external requests.
+
+Mitigation: Use online lookup flags only when external network access is acceptable for the environment.
+
+Risk: The included mock server is intended for isolated testing.
+
+Mitigation: Do not run the mock server outside an isolated test environment.
+
+## Reference(s):
+
+- [OpenClaw PC Security README](artifact/README.md)
+- [Example usage](artifact/examples/example.md)
+- [MSRC CVRF API](https://api.msrc.microsoft.com/cvrf/v2.0/cvrf/{cid})
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, code]
+
+**Output Format:** [Markdown guidance with shell commands and generated local HTML/JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated under output/ and may contain sensitive local security information.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

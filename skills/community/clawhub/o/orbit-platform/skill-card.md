@@ -1,48 +1,69 @@
-## Description: <br>
-ORBIT Platform guides developers in building and operating an agentic intelligence platform with a Node.js/TypeScript backend, OpenAI Agents SDK agents, Supabase storage, Telegram intake, and a React dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ORBIT Platform helps developers build and operate an agentic applied-intelligence platform using Node.js/TypeScript, Fastify, OpenAI Agents SDK, Supabase, Telegram, and a React dashboard.
 
-## Publisher: <br>
-[drivercagropecuaria-cyber](https://clawhub.ai/user/drivercagropecuaria-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivercagropecuaria-cyber](https://clawhub.ai/user/drivercagropecuaria-cyber)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or extend the ORBIT platform, including specialized research, analysis, dossier, presentation, and quality-review agents. It also guides Supabase schema usage, Telegram webhook integration, React dashboard work, queue processing, tracing, migrations, and quality gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes broad Supabase admin credentials and service_role-style access. <br>
-Mitigation: Replace broad defaults with least-privilege keys and scoped database policies before deployment. <br>
-Risk: The artifact points agents toward local credential-file access. <br>
-Mitigation: Inject secrets through managed secret stores or environment variables and prevent agents from reading credential files directly. <br>
-Risk: Telegram messages and user profile data may contain personal or sensitive information. <br>
-Mitigation: Define privacy, retention, and deletion rules before storing Telegram content or user profile records. <br>
-Risk: Generated dossiers, analyses, and presentations may contain incorrect or misleading claims. <br>
-Mitigation: Require the documented quality gates, source review, and human approval before user-facing delivery. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and operate the ORBIT workflow: Telegram or dashboard intake, specialized research and analysis agents, Supabase persistence, dossier generation, presentation output, tracing, and quality gates.
 
-## Reference(s): <br>
-- [Contratos de Dados - ORBIT](references/contratos-dados.md) <br>
-- [Perfis Completos dos Agentes - ORBIT](references/perfis-agentes.md) <br>
-- [Schema Supabase - ORBIT](references/schema-supabase.md) <br>
-- [Exemplos de Codigo - Agentes ORBIT](references/exemplos-agentes.md) <br>
-- [OpenAlex Works API](https://api.openalex.org/works?search=) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, SQL, JSON, and command-oriented implementation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Portuguese-language project guidance for ORBIT implementation and operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and artifact metadata) <br>
+Risk: The skill references live credential locations and broad platform setup guidance, which could lead agents to read or expose secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let agents read, echo, or persist credential files; use environment variables, secret scanning, and explicit secret-handling review before deployment.
+
+Risk: The artifact recommends broad Supabase service role access for platform operations.
+
+Mitigation: Replace blanket service role use with least-privilege server-side credentials, route privileged actions through trusted backend code, and review row-level security boundaries.
+
+Risk: Telegram webhook ingestion can accept untrusted external input into the ORBIT workflow.
+
+Mitigation: Authenticate webhook requests, validate and sanitize payloads, rate-limit ingress, and record only the minimum data required for operation.
+
+Risk: Stored user profiles, conversation memory, research evidence, dossiers, and notifications may contain personal or sensitive data.
+
+Mitigation: Add privacy, retention, deletion, and access-control policies before use with real users or customer data.
+
+Risk: Generated self-contained HTML presentations may include unsafe or misleading content.
+
+Mitigation: Escape dynamic content, sandbox previews, block external dependencies, and require quality review before publication or delivery.
+
+## Reference(s):
+
+- [Contratos de Dados - ORBIT](artifact/references/contratos-dados.md)
+- [Perfis Completos dos Agentes - ORBIT](artifact/references/perfis-agentes.md)
+- [Schema Supabase - ORBIT](artifact/references/schema-supabase.md)
+- [Exemplos de Codigo - Agentes ORBIT](artifact/references/exemplos-agentes.md)
+- [OpenAlex Works API](https://api.openalex.org/works?search=)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples, JSON data contracts, Supabase schema notes, and operational rules.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language operating guidance for ORBIT agents, quality gates, tracing, and generated dossier or presentation artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

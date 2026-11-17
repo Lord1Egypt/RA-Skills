@@ -2,13 +2,13 @@
 
 | API | Line |
 |-----|------|
-| Mixpanel | 2 |
-| Amplitude | 70 |
-| PostHog | 135 |
-| Segment | 213 |
-| Sentry | 296 |
-| Datadog | 361 |
-| Algolia | 429 |
+| Mixpanel | 15 |
+| Amplitude | 83 |
+| PostHog | 148 |
+| Segment | 226 |
+| Sentry | 309 |
+| Datadog | 374 |
+| Algolia | 442 |
 
 ---
 

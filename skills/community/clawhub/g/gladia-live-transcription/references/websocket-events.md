@@ -9,7 +9,7 @@ Complete reference for all WebSocket messages received during a live transcripti
 - Transcript Events (partial and final transcripts)
 - Speech Events (speech_start, speech_end)
 - Real-time Intelligence Events (translation, sentiment_analysis, named_entity_recognition)
-- Post-Processing Events (post_transcript, post_final_transcript, post_summarization, post_chapterization)
+- Post-Processing Events (post_transcript, post_final_transcript, post_summarization)
 - Acknowledgment Events (audio_chunk, stop_recording)
 - SDK Event Mapping
 - Error Messages
@@ -229,32 +229,6 @@ Summary generated from the complete session (if enabled).
   "type": "post_summarization",
   "data": {
     "results": "• Key point 1\n• Key point 2\n• Key point 3"
-  }
-}
-```
-
-### `post_chapterization`
-
-Chapter segmentation of the session (if enabled).
-
-```json
-{
-  "type": "post_chapterization",
-  "data": {
-    "results": [
-      {
-        "headline": "Introduction",
-        "summary": "...",
-        "start": 0.0,
-        "end": 45.2
-      },
-      {
-        "headline": "Main discussion",
-        "summary": "...",
-        "start": 45.2,
-        "end": 180.0
-      }
-    ]
   }
 }
 ```

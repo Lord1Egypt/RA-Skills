@@ -1,45 +1,64 @@
-## Description: <br>
-A complete pipeline to build your AI Second Me: distill your identity from personal data, grow a private knowledge base, train a local model, and govern what gets shared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A complete pipeline to build your AI Second Me: distill your identity from personal data, grow a private knowledge base, train a local model, and govern what gets shared.
 
-## Publisher: <br>
-[neiljo-gy](https://clawhub.ai/user/neiljo-gy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neiljo-gy](https://clawhub.ai/user/neiljo-gy)
 
-## Use Case: <br>
-Developers, maintainers, and end users use this skill to orchestrate a local-first personal AI persona pipeline across data ingestion, identity distillation, knowledge management, model training, evaluation, integration, and release reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal data while creating persona, knowledge, and model artifacts. <br>
-Mitigation: Use a dedicated workspace, authorize only specific source folders, keep local-first defaults, and require explicit approval before external sharing. <br>
-Risk: External interoperability features such as ACN, A2A, on-chain integration, and external sharing may expose identity artifacts beyond the local workspace. <br>
-Mitigation: Disable or tightly gate external interoperability unless it is intentionally needed, and audit any export or sharing action. <br>
-Risk: Generated persona and model artifacts can be promoted before quality gates are satisfied. <br>
-Mitigation: Run the bundled gate scripts and keep report or deployment recommendations blocked unless data, training, quality, governance, sync, model integration, and publish checks pass. <br>
+## Use Case:
 
+Developers and users building a personal AI double use this skill to orchestrate identity distillation, private knowledge-base construction, local persona-model training, evaluation gates, and release reports.
 
-## Reference(s): <br>
-- [Product Report](references/product-report.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Submission Split Checklist](references/submission-split.md) <br>
-- [ACN Gateway](https://acn-production.up.railway.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration references, and report file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged pipeline instructions and gated report artifacts under reports/data, reports/model, and reports/deploy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Sensitive identity data may be exposed because the skill combines personal-data workflows with broad file, shell, and optional network capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it in an isolated workspace, limit filesystem access to the intended persona project data, and require explicit approval before Colab, ACN, A2A, or other network use.
+
+Risk: Regeneration and integration scripts execute local commands and package tooling that can affect generated runtime files.
+
+Mitigation: Pin and verify OpenPersona and related tooling before running regeneration scripts, then run the sync, model-integration, and publish gates before release.
+
+Risk: A persona model could be promoted before it has enough data, acceptable quality, or integrated model artifacts.
+
+Mitigation: Keep the report and deployment recommendation blocked unless data, training, quality, governance, and persona model integration gates pass.
+
+Risk: External publishing or sharing of identity artifacts can exceed the user's consent boundary.
+
+Mitigation: Require explicit human approval for external publishing or sharing of identity artifacts and audit exported outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neiljo-gy/skills/secondme-skill)
+- [Product report](references/product-report.md)
+- [Report template](references/report-template.md)
+- [Submission split guide](references/submission-split.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON state and configuration, shell commands, and generated OpenPersona runtime files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces data, model, and deployment reports only after the configured gates pass.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

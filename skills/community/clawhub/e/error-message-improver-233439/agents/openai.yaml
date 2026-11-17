@@ -1,0 +1,7 @@
+interface:
+  display_name: "Error Message Improver"
+  short_description: "Helps with Remote workers and technically curious households..."
+  default_prompt: "Use $error-message-improver to help me Remote workers and technically curious households need local diagnostic workflows for network issues such as bufferbloat."
+
+policy:
+  allow_implicit_invocation: true

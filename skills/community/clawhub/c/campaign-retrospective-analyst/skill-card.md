@@ -1,39 +1,56 @@
-## Description: <br>
-Run retrospective analysis for campaigns on Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run retrospective analysis for campaigns on Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic channels.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing, growth, and advertising operations teams use this skill to review campaign performance, identify root causes behind KPI changes, extract lessons, and design measurable next actions for future ad cycles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget, bidding, or strategy recommendations may affect live advertising spend if applied without review. <br>
-Mitigation: Manually review recommendations before making changes in ad platforms, and include rollback or stop-loss conditions when spend risk exists. <br>
-Risk: Incomplete or inconsistent campaign metrics can lead to weak conclusions. <br>
-Mitigation: Clarify KPI definitions, date ranges, data source scope, attribution windows, and confidence level before treating findings as conclusive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ads Campaign Review on ClawHub](https://clawhub.ai/danyangliu-sandwichlab/campaign-retrospective-analyst) <br>
+## Use Case:
 
+Marketing, growth, and advertising operations teams use this skill to review campaign performance, diagnose variance drivers, and plan measurable next actions across paid media platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured analysis sections, query plans, result summaries, caveats, and decision recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include metric definitions, platform-specific slices, confidence notes, rollback or stop-loss conditions, and structured handoff details for high-risk issues.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommendations based on incomplete KPI definitions, date ranges, or data-source scope could misstate campaign performance.
+
+Mitigation: Require metric scope, date range, and data-source context before drawing conclusions, and mark low-confidence findings as directional.
+
+Risk: Campaign optimization advice can affect paid media spend.
+
+Mitigation: Use measurable recommendations with rollback or stop-loss conditions when spend risk exists.
+
+Risk: Users may provide sensitive advertising account details while requesting analysis.
+
+Mitigation: Use only the campaign data needed for the review and avoid providing account credentials unless a separate trusted integration explicitly requires them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/skills/campaign-retrospective-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured analysis, query plans, caveats, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compact query specifications and JSON-shaped result examples when useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Gladia helps an agent operate Gladia transcription workflows through an OOMOL-connected account, including listing, retrieving, starting, uploading, downloading, and deleting transcription-related data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gladia (app.gladia.io). Use this skill for ANY Gladia request — reading, creating, updating, and deleting data. Whenever a task involves Gladia, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage Gladia pre-recorded transcription jobs through the oo CLI with an OOMOL-connected Gladia account. It supports read workflows, media upload and download, job creation, and explicit deletion of transcription data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start transcription jobs and upload audio or video files to Gladia. <br>
-Mitigation: Confirm the exact payload, media source, and intended account effect with the user before running write-tagged actions. <br>
-Risk: The skill can delete a Gladia pre-recorded transcription job and associated data. <br>
-Mitigation: Require explicit user approval for the target transcription job before running the destructive delete action. <br>
-Risk: The skill depends on an OOMOL-connected Gladia account and sensitive credentials managed outside the skill bundle. <br>
-Mitigation: Use the documented oo CLI authentication and connection flow only after an action fails for authentication or connection reasons. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Gladia pre-recorded transcription jobs through an OOMOL-connected account, including uploading media, starting transcriptions, and retrieving or deleting results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-gladia) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Gladia homepage](https://app.gladia.io/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects returned by the oo CLI when actions are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release version and artifact frontmatter) <br>
+Risk: Setup directs the agent to run remote installers whose contents are unverified, without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI separately before enabling the skill, using a verified release where available.
+
+Risk: Requested audio and transcription data pass through OOMOL and Gladia.
+
+Mitigation: Confirm the media source and data-sharing expectations before uploading media or starting a transcription.
+
+Risk: Automatic skill synchronization can update the installed skill.
+
+Mitigation: Review upstream synchronization behavior and use OO_SKILLS_SYNC_DISABLED if automatic updates are not appropriate.
+
+## Reference(s):
+
+- [Gladia API authentication documentation](https://docs.gladia.io/api-reference/authentication)
+- [Gladia](https://app.gladia.io/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payloads and responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use the oo CLI; action payloads are JSON.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-A NetEase Cloud Music assistant that analyzes listening preferences, plans search strategies, recommends playlists, albums, and songs, manages playback and scheduled recommendations, and can push results to IM channels through OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A NetEase Cloud Music assistant that analyzes user listening preferences, plans searches, recommends playlists, albums, and tracks, controls playback, schedules recommendation pushes, sends results through IM channels such as Feishu via OpenClaw, and can create or update playlists through ncm-cli.
 
-## Publisher: <br>
-[JunfengL](https://clawhub.ai/user/JunfengL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junfengl](https://clawhub.ai/user/junfengl)
 
-## Use Case: <br>
-External users use this skill to get personalized NetEase Cloud Music recommendations, preference analysis, playback guidance, playlist creation assistance, and optional scheduled recommendation delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduling workflow can create persistent cron jobs for recommendation pushes. <br>
-Mitigation: Inspect the exact crontab entry and script path before enabling scheduled pushes, confirm the IM destination, and keep removal steps documented for the user. <br>
-Risk: The assistant may access NetEase Music listening preferences and local files under ~/.config/ncm. <br>
-Mitigation: Install only when the user accepts that local preference, history, and schedule files may be read or updated for recommendations. <br>
+## Use Case:
 
+External users and personal automation agents use this skill to analyze NetEase Cloud Music preferences and produce actionable music recommendations, playback actions, scheduled pushes, and playlist-management steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JunfengL/netease-music-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recommendations with links, ratings, rationale, optional cover URLs, and inline shell commands or JSON configuration when scheduling is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local NetEase Music preference, history, and schedule files under ~/.config/ncm; scheduled delivery may require cron registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled recommendation pushes can create persistent cron or plist jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every scheduled job before enabling it, keep a clear list of active jobs, and provide disable and delete controls so users can revoke scheduling.
+
+Risk: The assistant stores music preference, recommendation-history, and schedule files under the user's local configuration directory.
+
+Mitigation: Tell users what files are created, avoid storing unnecessary personal data, and support deletion or refresh of cached preference and history data.
+
+Risk: Recommendation content may be sent to configured IM channels such as Feishu.
+
+Mitigation: Confirm the destination channel before pushing recommendations and let users disable IM delivery separately from local recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junfengl/skills/netease-music-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with NetEase Cloud Music links, recommendation scores and reasons, optional cover links, confirmation messages, and inline shell/configuration steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local preference, recommendation-history, and schedule JSON files; scheduled pushes may register persistent cron or plist jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Financial Search Engine lets an agent use natural-language queries to retrieve financial news, announcements, research reports, exchange updates, and policy information from Eastmoney services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Search Engine lets agents run natural-language searches against Eastmoney financial data for news, announcements, research reports, policy updates, and market signals.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-Developers and analysts use this skill to query timely financial information about companies, sectors, themes, policies, and market events. It supports event tracking, sentiment monitoring, report review, announcement analysis, and market-signal gathering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and the EM_API_KEY are sent to Eastmoney services. <br>
-Mitigation: Use a revocable API key, avoid confidential portfolio or business-sensitive query details, and confirm the key scope, expiration, and revocation path before use. <br>
-Risk: Retrieved financial content can be written to local .txt files by default. <br>
-Mitigation: Use --no-save when local persistence is not needed, and store any saved outputs in an access-controlled workspace. <br>
-Risk: Retrieved financial information may be incomplete, stale, or unsuitable as sole support for investment decisions. <br>
-Mitigation: Validate important findings against primary sources and keep key numbers, named entities, and source meaning intact when summarizing. <br>
+## Use Case:
 
+External users, developers, and financial research agents use this skill to retrieve timely financial information about companies, sectors, themes, policies, and market events. It supports event tracking, sentiment monitoring, research report review, announcement analysis, and investment research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/financial-ai-analyst/mx-finance-search) <br>
-- [Eastmoney Miaoxiang API Key Portal](https://ai.eastmoney.com/mxClaw) <br>
-- [Eastmoney Search News Endpoint](https://ai-saas.eastmoney.com/proxy/b/mcp/tool/searchNews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, JSON] <br>
-**Output Format:** [Plain text response, optional local .txt file, and structured Python dictionary for code use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY. Command-line use saves retrieved content locally by default unless --no-save is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill requires an Eastmoney EM_API_KEY and sends financial research queries to the configured Eastmoney service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved Eastmoney credentials, avoid confidential client or regulated information in queries unless the service is approved for that use, and rotate or revoke the key if exposed.
+
+Risk: Returned financial search results can be saved locally by default.
+
+Mitigation: Use --no-save for sensitive searches and review local output files before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/mx-finance-search)
+- [Eastmoney MX Claw](https://ai.eastmoney.com/mxClaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Code, Configuration]
+
+**Output Format:** [Plain text financial search results, optional .txt files, and Python dictionary results with raw JSON available for code use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY; saves results locally by default unless --no-save is used.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

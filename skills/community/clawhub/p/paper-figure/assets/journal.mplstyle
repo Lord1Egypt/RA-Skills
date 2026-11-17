@@ -1,0 +1,94 @@
+# paper-figure journal style for matplotlib (optional)
+#
+# 用法（三选一）：
+#   import matplotlib.pyplot as plt; plt.style.use("assets/journal.mplstyle")
+#   plt.style.use("https://...")            # 不建议，离线环境会失败
+#   cp assets/journal.mplstyle ~/.config/matplotlib/stylelib/journal.mplstyle
+#   # 之后 plt.style.use("journal")
+#
+# 这套参数的目标：出「单栏 89 mm、字号 5–7 pt、线宽 0.6–0.8 pt、色盲安全」的期刊图。
+# 默认尺寸是 Nature 单栏 3.50 x 2.30 in；双栏改成 7.20 x 4.50 in（183 mm）。
+# 绘图时注意：字号是「成品尺寸」上的字号，先定 figsize，再调 font.size。
+#
+# 本文件只在用 matplotlib 时有用；paper-figure 本身零依赖，不需要 Python。
+
+# ---- 字体 ----
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, Liberation Sans, DejaVu Sans
+font.size: 7
+axes.titlesize: 7
+axes.labelsize: 7
+xtick.labelsize: 6
+ytick.labelsize: 6
+legend.fontsize: 6
+legend.title_fontsize: 7
+text.color: black
+axes.unicode_minus: True
+mathtext.fontset: dejavusans
+
+# ---- 画布：单栏 89 mm ----
+figure.figsize: 3.50, 2.30
+figure.dpi: 150
+figure.autolayout: False
+savefig.dpi: 600
+savefig.bbox: tight
+savefig.pad_inches: 0.02
+savefig.transparent: False
+savefig.facecolor: white
+
+# ---- 线 ----
+lines.linewidth: 0.8
+lines.markersize: 3.0
+lines.markeredgewidth: 0.6
+lines.markeredgecolor: white
+lines.solid_capstyle: round
+lines.dash_capstyle: round
+
+# ---- 色盲安全调色板（Okabe–Ito；Nature 官方同源）----
+# 蓝 / 朱红 / 蓝绿 / 红紫 / 橙 / 天蓝 / 黄 / 黑
+axes.prop_cycle: cycler('color', ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#E69F00', '#56B4E9', '#F0E442', '#000000'])
+
+# ---- 坐标轴 ----
+axes.linewidth: 0.6
+axes.edgecolor: black
+axes.labelcolor: black
+axes.labelsize: 7
+axes.labelpad: 2.0
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: False
+axes.axisbelow: True
+axes.formatter.use_mathtext: False
+xtick.color: black
+xtick.direction: out
+xtick.major.width: 0.6
+xtick.major.size: 2.5
+xtick.minor.visible: False
+ytick.color: black
+ytick.direction: out
+ytick.major.width: 0.6
+ytick.major.size: 2.5
+ytick.minor.visible: False
+
+# ---- 图例：不要边框，别抢正文 ----
+legend.frameon: False
+legend.handlelength: 1.6
+legend.handletextpad: 0.5
+legend.labelspacing: 0.3
+legend.borderaxespad: 0.4
+legend.columnspacing: 1.0
+
+# ---- 误差棒与补丁 ----
+errorbar.capsize: 2.0
+patch.linewidth: 0.5
+patch.edgecolor: black
+patch.force_edgecolor: False
+
+# ---- 图像与网格 ----
+image.cmap: viridis
+image.aspect: equal
+
+# ---- 输出：嵌字体（EPS/PS 用 Type 42，SVG 保留文字）----
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none

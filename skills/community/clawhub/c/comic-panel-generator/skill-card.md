@@ -1,39 +1,58 @@
-## Description: <br>
-Generates AI comic book panels, manga strips, and graphic novel art from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI comic book panels, manga strips, and graphic novel art from text descriptions via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to create comic-panel, manga, webcomic, storyboard, and graphic-novel style images from text prompts, with optional size and reference-image controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid secrets, private business data, and sensitive personal information in prompts, and rotate the token if it is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to generate comic panels, manga-style strips, storyboards, and graphic novel artwork from text prompts. It is suited for agent workflows that need a direct image URL from a third-party image generation service.
 
-## Reference(s): <br>
-- [Comic Panel Generator on ClawHub](https://clawhub.ai/blammectrappora/comic-panel-generator) <br>
-- [Neta AI token and free trial](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a direct image URL after polling the Neta/TalesOfAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts and reference image identifiers are sent to the Neta/TalesOfAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and references suitable for third-party processing, and avoid sensitive personal, proprietary, or secret content.
+
+Risk: The Neta API token is a credential used to access the image generation service.
+
+Mitigation: Treat the token as a secret, avoid exposing it in shared terminals or logs, and rotate it if it may have been exposed.
+
+Risk: Untrusted or unpinned installs can introduce supply-chain risk.
+
+Mitigation: Install from a trusted source and prefer a pinned or ClawHub-managed install path when available.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/blammectrappora/skills/comic-panel-generator)
+- [Neta API Access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and may use an optional size preset or reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

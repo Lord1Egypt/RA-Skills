@@ -1,45 +1,56 @@
-## Description: <br>
-Get current weather and forecasts (no API key required). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts (no API key required).
 
-## Publisher: <br>
-[clearlovetop7](https://clawhub.ai/user/clearlovetop7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clearlovetop7](https://clawhub.ai/user/clearlovetop7)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for simple weather lookup commands, compact forecasts, and JSON weather data without managing API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups reveal the requested location to the public weather provider. <br>
-Mitigation: Avoid submitting sensitive locations, and use only the level of location precision needed for the forecast. <br>
-Risk: Weather data and command examples depend on public third-party services. <br>
-Mitigation: Prefer HTTPS endpoints where supported and verify results before using them for decisions that require current or exact weather data. <br>
-Risk: Publisher identity may matter for installation decisions. <br>
-Mitigation: Review the server-resolved publisher profile before installing or relying on the skill. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to fetch current weather, compact forecasts, and programmatic weather JSON for a requested city, airport code, or coordinate pair.
 
-## Reference(s): <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [Open-Meteo documentation](https://open-meteo.com/en/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/clearlovetop7/weatherclear) <br>
-- [Publisher profile](https://clawhub.ai/user/clearlovetop7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys required; examples use curl and public weather services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Weather lookups may disclose the requested city, airport code, or coordinates to wttr.in or Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or unnecessary precise locations; prefer coarse city or airport-code queries when exact coordinates are not required.
+
+Risk: Public weather service responses can be unavailable, stale, or formatted differently than expected.
+
+Mitigation: Use Open-Meteo as a fallback for programmatic JSON and verify weather-sensitive decisions against an authoritative source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clearlovetop7/skills/weatherclear)
+- [wttr.in help](https://wttr.in/:help)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current_weather=true)
+- [Open-Meteo documentation](https://open-meteo.com/en/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return text, PNG image files, or JSON depending on the selected weather endpoint and curl options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

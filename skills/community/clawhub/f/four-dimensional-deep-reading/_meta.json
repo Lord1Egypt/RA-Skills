@@ -1,6 +1,7 @@
 {
   "ownerId": "kn7bj8mtcw6j7s73kyz9zhck6985kv85",
   "slug": "four-dimensional-deep-reading",
-  "version": "1.8.0",
-  "publishedAt": 1780730599657
+  "version": "1.7.3",
+  "publishedAt": 1777169602205,
+  "requirements": "requirements.txt"
 }

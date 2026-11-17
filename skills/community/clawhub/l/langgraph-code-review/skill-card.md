@@ -1,39 +1,54 @@
-## Description: <br>
-Reviews LangGraph code for bugs, anti-patterns, and improvements across StateGraph usage, nodes, edges, checkpointing, state management, graph structure, and async patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews LangGraph code for bugs, anti-patterns, and improvements.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review LangGraph implementations for state-management, graph-structure, checkpointing, async, tool-integration, and persistence issues. It guides reviewers to cite freshly read source artifacts before issuing findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative scan marks the release suspicious because related maintainer workflows can run nested review agents with full local access or perform admin moderation actions. <br>
-Mitigation: Install only when those maintainer or operator workflows are needed, disable full-access autoreview where possible, and use moderation workflows only with intended staff credentials, explicit targets, and a clear reason. <br>
-Risk: Code review guidance can produce incorrect or misleading findings if it relies on context rather than the reviewed source. <br>
-Mitigation: Require each finding to quote the freshly read source artifact and include file and line evidence before making the claim. <br>
+## Use Case:
 
+Developers and engineers use this skill to review LangGraph projects for state-management, graph-structure, checkpointing, tool-integration, and async-pattern issues with cited source evidence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown code review findings with file and line citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings must quote the relevant same-turn source artifact before making a claim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Review guidance can produce incorrect or misleading findings if the agent does not ground each claim in the reviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill requires same-turn quotation of the exact code artifact and file location before any bug, anti-pattern, or improvement is reported.
+
+Risk: The skill directs the agent to inspect LangGraph project files, so review output may quote sensitive source snippets from the user's repository.
+
+Mitigation: Use the skill only in authorized review scopes and keep quoted evidence minimal, limited to the code needed to substantiate each finding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/langgraph-code-review)
+- [Publisher profile](https://clawhub.ai/user/anderskev)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings with cited file paths, line numbers, quoted code evidence, and checklist status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires same-turn source quotation before issuing review findings.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

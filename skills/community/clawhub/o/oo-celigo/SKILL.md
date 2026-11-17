@@ -1,11 +1,11 @@
 ---
 name: oo-celigo
-description: "Celigo (celigo.com). Use this skill for ANY Celigo request — reading, creating, and updating data. Whenever a task involves Celigo, use this skill instead of calling the API directly."
+description: "Celigo (celigo.com). Use this skill for ANY Celigo request — searching and reading data. Whenever a task involves Celigo, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Celigo"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["celigo"]
   icon: "https://static.oomol.com/logo/third-party/Celigo.svg"
 ---
@@ -40,7 +40,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_connection` — Get one Celigo connection by connection ID.
 - `get_export` — Get one Celigo export by export ID.
 - `get_flow` — Get one Celigo flow by flow ID.
-- `get_import` — Get one Celigo import by import ID. [write]
+- `get_import` — Get one Celigo import by import ID.
 - `get_token_info` — Get metadata for the current Celigo API token.
 - `list_exports` — List exports available in the current Celigo account.
 - `list_flows` — List flows available in the current Celigo account.
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Celigo is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=celigo
+  https://console.oomol.com/connections/celigo
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Celigo homepage: https://www.celigo.com
+- API documentation: https://docs.celigo.com/hc/en-us/articles/360042281231-Getting-started-with-standard-REST-API

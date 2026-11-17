@@ -2,11 +2,12 @@
 name: codia-image-to-design
 description: Convert screenshots or images into editable Codia design data. Trigger when the user asks to turn an image, screenshot, poster, UI, or design mockup into structured editable design output.
 api: image-to-design
-endpoint: POST /v2/open/image_to_design
+endpoint: POST /v2/open/image_to_design + POST /v2/open/tasks + GET /v2/open/tasks/:task_id
 cli: codia-design image-to-design
 credits_per_call: 13
 sync: true
-response_type: design_tree
+async: true
+response_type: design_tree_or_task
 ---
 
 # codia-image-to-design
@@ -20,7 +21,14 @@ Convert UI screenshots into editable hierarchical design trees (VisualElement tr
 ## CLI Command
 
 ```bash
+# Synchronous direct conversion
 codia-design image-to-design --image <PATH|URL> [--out FILE]
+
+# Asynchronous task submit
+codia-design image-to-design --image <HTTPS_URL> --async [--callback URL] [--idempotency KEY] [--out task.json]
+
+# Asynchronous task submit and poll
+codia-design image-to-design --image <HTTPS_URL> --poll [--timeout 300000] [--out result.json]
 ```
 
 ## Parameters
@@ -28,9 +36,22 @@ codia-design image-to-design --image <PATH|URL> [--out FILE]
 | Flag | Type | Required | Default | Description |
 |---|---|---|---|---|
 | `--image` | path \| URL | yes | — | Local PNG/JPG/WebP path, or public HTTPS URL |
+| `--async` | boolean | no | false | Create an `image_to_design` task and return `task_id` without waiting |
+| `--poll` | boolean | no | false | Create an `image_to_design` task, poll `/v2/open/tasks/:task_id`, and return the completed design tree |
+| `--timeout` | milliseconds | no | 300000 | Maximum wait time for `--poll` |
+| `--callback` | URL | no | — | Optional task callback URL for async mode |
+| `--idempotency` | string | no | — | Sends `Idempotency-Key` for async task creation |
 | `--out` | path | no | stdout | Write JSON results to file (recommended for large responses) |
 
+## Sync vs Async Selection
+
+Use synchronous `POST /v2/open/image_to_design` for one image, especially local files and images below 2K on the longest edge. It keeps the result in a single request and supports direct multipart upload for local files.
+
+Use asynchronous `POST /v2/open/tasks` with `operation: "image_to_design"` for multiple images, images at 2K or above, or flows that need callback/idempotency/retry behavior. Submit one task per image. Task mode currently accepts `input.image_url`, so the CLI requires `--image` to be a public HTTPS URL in `--async` or `--poll` mode. For a local large image, upload it to user-owned storage/CDN first and pass that URL, or use synchronous mode if the expected runtime is acceptable.
+
 ## Response
+
+Synchronous mode and completed `--poll` mode return the design data. `--poll` also includes task metadata fields such as `task_id`, `operation`, `status`, and `progress`.
 
 ```json
 {
@@ -118,11 +139,17 @@ positionMode: "Flex" | "Absolute" | "Normal" | "Relative"
 ## Usage Example
 
 ```bash
-# local file
+# Synchronous local file, recommended for a single small image
 codia-design image-to-design --image ./screenshot.png --out result.json
 
-# URL pattern
+# Synchronous URL
 codia-design image-to-design --image https://example.com/screen.png --out result.json
+
+# Submit an async task for a large image and return task_id
+codia-design image-to-design --image https://example.com/large-screen.png --async --out task.json
+
+# Submit and wait for completion
+codia-design image-to-design --image https://example.com/large-screen.png --poll --timeout 300000 --out result.json
 ```
 
 Traverse the tree after reading the results (Node.js):
@@ -173,4 +200,4 @@ The maximum size and file size of input images depend on the plan level:
 | 429 | Rate limit exceeded | Retry after backing off |
 | 500 | Service internal error | Safe to try again |
 
-**Credits**: 13 credits/request. After the command completes, the CLI checks `available_credits` and reminds the user if the remaining balance is below 26 credits (2x estimate); this does not block generation. · **Duration**: Synchronous, mobile screenshots are usually < 10s, desktop intensive pages are longer
+**Credits**: 13 credits/request. After the command completes, the CLI checks `available_credits` and reminds the user if the remaining balance is below 26 credits (2x estimate); this does not block generation. **Duration**: synchronous mobile screenshots are usually < 10s, desktop intensive pages are longer. Prefer async task mode for large images, 2K+ images, and batches.

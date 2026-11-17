@@ -1,42 +1,53 @@
-## Description: <br>
-Use this skill any time a .xlsx file is involved as input, output, or both, including creating spreadsheets, financial models, dashboards, or trackers; reading, parsing, or extracting data from .xlsx files; editing existing workbooks; working with formulas, charts, pivot tables, or templates; and importing CSV/TSV data into Excel format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, inspect, edit, format, validate, and troubleshoot Excel .xlsx workbooks and CSV/TSV imports using OfficeCLI.
 
-## Publisher: <br>
-[iceyliu](https://clawhub.ai/user/iceyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iceyliu](https://clawhub.ai/user/iceyliu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to read, create, edit, validate, and quality-check Excel workbooks through OfficeCLI workflows. It is aimed at spreadsheet-heavy tasks such as financial models, dashboards, trackers, workbook templates, formulas, charts, and CSV/TSV-to-XLSX conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic download and execution of an unpinned remote OfficeCLI installer or updater can introduce supply-chain risk. <br>
-Mitigation: Install OfficeCLI separately from a pinned, verified release and disable or review automatic upgrade steps before using the skill. <br>
-Risk: Workbook editing commands can remove, import, merge, or alter raw XML and may damage important spreadsheets if applied incorrectly. <br>
-Mitigation: Work on backup copies and run OfficeCLI validation and issue checks before delivering modified workbooks. <br>
+## Use Case:
 
+Developers and agents use this skill when a task involves Excel workbooks, financial models, dashboards, trackers, formulas, charts, pivot tables, templates, or CSV/TSV import. It guides workbook construction and QA so spreadsheet outputs remain live, readable, and validated.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iceyliu/officecli-xlsx) <br>
-- [Creating Workbooks from Scratch](artifact/creating.md) <br>
-- [Editing Existing Workbooks](artifact/editing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and OfficeCLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent instructions for workbook creation, inspection, editing, validation, and QA; generated or modified workbook files are produced by OfficeCLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Setup instructions pipe remote installer scripts directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer first and prefer a pinned OfficeCLI release with published checksums or signatures before execution.
+
+Risk: OfficeCLI commands can modify local spreadsheet files.
+
+Mitigation: Review proposed commands, work on copies when editing existing workbooks, and run the skill's validation and visual QA steps before delivery.
+
+## Reference(s):
+
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that create or modify local spreadsheet files; users should inspect commands and validate workbook outputs before delivery.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

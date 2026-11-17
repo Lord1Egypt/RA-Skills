@@ -1,49 +1,64 @@
-## Description: <br>
-Gaokao Advisor helps students and families plan Chinese college applications by gathering scores, province, subject track, interests, and preferences, then producing data-grounded school, major, and application-tier guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese gaokao admissions-advice skill that helps users gather exam and preference details, compare recent admissions data, assess school and major fit, and structure reach, target, and safety recommendations.
 
-## Publisher: <br>
-[jannik689](https://clawhub.ai/user/jannik689) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jannik689](https://clawhub.ai/user/jannik689)
 
-## Use Case: <br>
-Students, parents, and education advisors use this skill to structure gaokao application planning, compare admission data, assess school and major fit, and prepare cautious reach-match-safety recommendations. It is guidance only; final choices should be verified against official provincial exam authority and university sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with content focused on China's gaokao admissions system <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions recommendations can be incorrect or outdated if score lines, rank tables, or university program data are not current. <br>
-Mitigation: Verify all final choices against official provincial exam authority, university, Sunshine Gaokao, and other authoritative sources before submitting applications. <br>
-Risk: Users may disclose more personal or family information than needed for application advice. <br>
-Mitigation: Collect only the admissions details needed for guidance, such as score, province, subject track, rank, preferences, and relevant constraints. <br>
-Risk: The skill provides planning support, not guaranteed admission outcomes. <br>
-Mitigation: Present recommendations as advisory and include clear reminders that final admission depends on annual policy, applicant pool, program quotas, and official submission rules. <br>
+## Use Case:
 
+External users, students, and families use this skill to discuss Chinese gaokao志愿填报 decisions, including admissions score lookup, province and subject-type context, major fit, school shortlist planning, and follow-up verification steps.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/jannik689/gaokao-tool) <br>
-- [Data Sources Guide](references/data-sources.md) <br>
-- [Hexagon Analysis Methodology](references/hexagon-analysis.md) <br>
-- [Majors Guide](references/majors-guide.md) <br>
-- [National Government Services Platform](https://gjzwfw.www.gov.cn/col/col1567/index.html) <br>
-- [Sunshine Gaokao](https://gaokao.chsi.com.cn/) <br>
-- [China Education Online](https://www.eol.cn/) <br>
-- [Gaokao.cn](https://www.gaokao.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted advisory text with tables, checklists, citations or source links when data is used, and structured reach-match-safety recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided admissions details and public education data; no executable code, credential access, persistence, or hidden behavior was found in the reviewed artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive educational and preference details such as scores, province, subject category, interests, and family constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the information needed for the recommendation and avoid unnecessary personally identifying details.
+
+Risk: Admissions cutoffs, rankings, and school data can be stale or inaccurate if not checked against current official sources.
+
+Mitigation: Verify all admissions cutoffs, one-score-one-rank tables, enrollment plans, and school information against provincial exam authorities or official school sources before making final decisions.
+
+Risk: Recommendation outputs can influence high-stakes education decisions.
+
+Mitigation: Treat outputs as planning guidance, compare multiple authoritative sources, and involve the student and family in the final decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jannik689/skills/gaokao-tool)
+- [Gaokao admissions data sources](references/data-sources.md)
+- [Gaokao hexagon analysis methodology](references/hexagon-analysis.md)
+- [Major selection and employment guide](references/majors-guide.md)
+- [National Government Service Platform gaokao services](https://gjzwfw.www.gov.cn/col/col1567/index.html)
+- [Sunshine Gaokao](https://gaokao.chsi.com.cn/)
+- [China Education Online](https://www.eol.cn/)
+- [Gaokao.cn](https://www.gaokao.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown-style conversational guidance with tables, ranked recommendations, source links, and data disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for exam score, province, subject category, preferences, and optional personal-interest details before giving recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Changelog is a command-line utility skill for quick changelog-related terminal tasks and local text-history exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Changelog is a command-line utility for recording changelog-related entries, checking status, and exporting local logs.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and automation users use this skill to handle quick changelog-related terminal tasks such as checking, generating, formatting, linting, previewing, reporting, and exporting local entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the included script keeps command text under ~/.local/share/changelog/ and can export that history. <br>
-Mitigation: Do not enter secrets, customer data, private incident notes, or confidential release details unless local plaintext retention is acceptable. <br>
-Risk: The security verdict is suspicious because the included script behaves more like a local text-history and export utility than the advertised changelog generator. <br>
-Mitigation: Review the script behavior before installation and run it only in environments where local history logging and export are acceptable. <br>
+## Use Case:
 
+Developers and automation users can use this skill to record changelog-related terminal activity, review recent entries, check status, and export local records for downstream review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/changelog) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with command examples and concise terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point users to local data under ~/.local/share/changelog/ and exports in json, csv, or txt when used through its shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill stores command inputs in plaintext local logs under ~/.local/share/changelog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for non-sensitive changelog activity and avoid passing secrets, tokens, private prompts, or confidential drafts to its commands.
+
+Risk: Exported JSON and CSV files may contain unsanitized logged text.
+
+Mitigation: Inspect and sanitize exported files before sharing them or opening them in spreadsheet tools.
+
+Risk: The security verdict is suspicious because the implementation behaves mainly as a persistent local text logger/exporter with unclear scope.
+
+Mitigation: Review the artifact and scanner guidance before installing or running it in an agent environment.
+
+## Reference(s):
+
+- [Changelog ClawHub skill page](https://clawhub.ai/xueyetianya/skills/changelog)
+- [xueyetianya ClawHub publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON, CSV]
+
+**Output Format:** [Terminal text plus local export files in JSON, CSV, or TXT]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local logs under ~/.local/share/changelog.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

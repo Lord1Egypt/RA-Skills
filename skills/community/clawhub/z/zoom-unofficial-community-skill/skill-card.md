@@ -1,43 +1,63 @@
-## Description: <br>
-A Python CLI for interacting with Zoom's REST API that manages meetings, recordings, team chat, AI meeting summaries, live meeting monitoring, and RTMS control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zoom API integration for meetings, calendar, chat, and user management. Use when the user asks to schedule meetings, check Zoom calendar, list recordings, send Zoom chat messages, manage contacts, or interact with any Zoom Workplace feature. Supports Server-to-Server OAuth and OAuth apps.
 
-## Publisher: <br>
-[tanchunsiong](https://clawhub.ai/user/tanchunsiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tanchunsiong](https://clawhub.ai/user/tanchunsiong)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents manage Zoom meetings, recordings, summaries, chat, users, phone logs, and RTMS controls through Zoom's REST API after configuring OAuth credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform sensitive Zoom account actions, including delete, send-message, RTMS, and download commands. <br>
-Mitigation: Use the minimum required Zoom scopes and require explicit user confirmation before executing sensitive commands. <br>
-Risk: OAuth credentials and tokens can expose Zoom account access if mishandled. <br>
-Mitigation: Protect the .env file, avoid committing credentials, and prefer a virtual environment for dependencies. <br>
-Risk: The token cache uses a predictable temporary file path. <br>
-Mitigation: Change the token cache to a private user directory with 0600 permissions before use. <br>
+## Use Case:
 
+Developers, operators, and agent users can use this skill to manage Zoom meetings, recordings, summaries, chat, users, contacts, and phone call logs through a Python CLI backed by Zoom OAuth credentials.
 
-## Reference(s): <br>
-- [Zoom Authentication Setup](references/AUTH.md) <br>
-- [Zoom Marketplace](https://marketplace.zoom.us/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI-produced text, JSON, media, transcript, and markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Zoom OAuth credentials and selected scopes; some commands may download recordings, transcripts, or summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: server release metadata) <br>
+Risk: The skill can use broad Zoom account-level API privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create a dedicated Zoom app and grant only the scopes needed for the commands you plan to use.
+
+Risk: Zoom credentials and cached access tokens are sensitive.
+
+Mitigation: Protect the local `.env` file and `/tmp/zoom_token.json`, and remove cached tokens when the workspace is shared or no longer trusted.
+
+Risk: Some commands can delete meetings or recordings, send chat messages, or change meeting settings.
+
+Mitigation: Review destructive and posting commands before allowing an agent to execute them.
+
+Risk: The documented install command uses a system-wide pip override.
+
+Mitigation: Prefer a virtual environment or another isolated Python environment instead of system-wide installation.
+
+## Reference(s):
+
+- [Zoom Authentication Setup](references/AUTH.md)
+- [ClawHub Skill Page](https://clawhub.ai/tanchunsiong/skills/zoom-unofficial-community-skill)
+- [Zoom Marketplace](https://marketplace.zoom.us/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, shell command examples, terminal text, JSON responses, and downloaded files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands create, update, delete, post, or download Zoom resources using account-scoped OAuth access.]
+
+## Skill Version(s):
+
+0.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-基于五层拆解法的AI图片提示词生成器。将模糊的创意想法转化为结构严谨、可执行的图像生成规格书，支持多种风格预设和目标工具适配。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于五层拆解法的AI图片提示词生成器，将模糊创意转化为结构化图像生成规格书，并适配 Midjourney、DALL-E 和 Stable Diffusion 输出。
 
-## Publisher: <br>
-[349840432m-dev](https://clawhub.ai/user/349840432m-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[349840432m-dev](https://clawhub.ai/user/349840432m-dev)
 
-## Use Case: <br>
-Creators, designers, and developers use this skill to turn image ideas into structured prompt specifications and ready-to-use prompts for Midjourney, DALL-E, Stable Diffusion, and general Chinese image-generation tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered image descriptions are sent through the local OpenClaw Gateway to the configured model provider. <br>
-Mitigation: Avoid entering secrets, confidential client briefs, or private creative material unless the configured provider is approved for that data. <br>
+## Use Case:
 
+Creators, designers, and developers use this skill to turn rough image ideas into structured prompt specifications and ready-to-use prompts for Midjourney, DALL-E, Stable Diffusion, and general Chinese image-generation tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/349840432m-dev/image-prompt-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/349840432m-dev) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt specification with image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include generic Chinese prompts plus Midjourney, DALL-E, and Stable Diffusion prompt variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and claw.json list 2.0.0) <br>
+Risk: User-entered creative briefs are sent through the local OpenClaw Gateway to the configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the configured provider is trusted and avoid entering confidential creative briefs or client material unless that provider is approved.
+
+Risk: The skill depends on Gateway routing and the configured model provider for generated prompt quality and data handling.
+
+Mitigation: Review the generated prompt before reuse and verify the Gateway configuration before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/349840432m-dev/skills/image-prompt-generator)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt specification with Chinese sections and optional English tool-specific prompt blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tool-specific variants for Midjourney, DALL-E, Stable Diffusion, and a general Chinese prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and claw.json list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Generates three parallel Nano Banana Pro image options from one prompt, then lets the user pick a winner or refine another set. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nano Triple generates three parallel image options from one prompt using Nano Banana Pro so the user can choose a winner or request another set.
 
-## Publisher: <br>
-[mvanhorn](https://clawhub.ai/user/mvanhorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mvanhorn](https://clawhub.ai/user/mvanhorn)
 
-## Use Case: <br>
-External users and creative operators use this skill to generate three candidate images from a single image prompt and quickly select or refine an option. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill passes raw user prompt text to shell commands, which can be unsafe if an agent interpolates the prompt into a shell string. <br>
-Mitigation: Pass prompt text as a safely quoted argument or argv value, and avoid shell interpolation when calling the image helper. <br>
-Risk: The skill depends on an external Nano Banana Pro helper and Gemini credentials for generation. <br>
-Mitigation: Install only trusted helper code, configure GEMINI_API_KEY or OpenClaw credentials intentionally, and avoid putting secrets or sensitive data in prompts. <br>
-Risk: Each prompt or refinement triggers three image generations. <br>
-Mitigation: Set user expectations for cost and latency before repeated refinement cycles. <br>
+## Use Case:
 
+External users and creative teams use this skill to compare three generated image candidates from the same prompt, then select one or refine the prompt for another three-option round.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvanhorn/nano-triple) <br>
-- [Google AI Studio](https://aistudio.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, Markdown] <br>
-**Output Format:** [Markdown with shell commands and three labeled generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates three 1K image options per prompt or refinement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The command template can run unintended commands if untrusted prompt text is pasted into shell-interpolated command strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass prompts as literal arguments or through a parameter file, and quote or escape user text before command execution.
+
+Risk: The workflow calls an external Gemini image API and writes three files per image request.
+
+Mitigation: Require a configured GEMINI_API_KEY, disclose external API use, and review generated files before sharing or using them.
+
+## Reference(s):
+
+- [Nano Triple on ClawHub](https://clawhub.ai/mvanhorn/skills/nano-triple)
+- [Google AI Studio](https://aistudio.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, configuration, files]
+
+**Output Format:** [Markdown guidance with bash command examples and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates three labeled image options per request and uses GEMINI_API_KEY from the environment or OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

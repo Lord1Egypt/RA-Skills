@@ -1,0 +1,289 @@
+# 🐟 BigFish 鱼种知识库
+# 常见淡水/海水鱼种的习性、食性、分布和钓法
+
+species:
+  - name: 翘嘴鲌
+    alias: [翘嘴, 白鱼, 大白鱼]
+    scientific: Culter alburnus
+    habitat: 中上层，喜欢大水面水库、湖泊、江河缓流区
+    water_quality: 较清水质，溶氧量高
+    temp_range: 15-30°C
+    best_temp: 18-28°C
+    pressure: 1005-1020hPa 稳定
+    active_time: 清晨5-8点 / 黄昏17-20点 / 夜间
+    season: 春季产卵后→秋季(3-11月), 夏季夜钓最佳
+    feeding: 凶猛肉食性，捕食小鱼小虾
+    lure:
+      - 亮片(5-15g) — 远投搜索
+      - 米诺(50-100mm) — 抽停
+      - 铅笔 — 水面系
+      - VIB — 全水层搜索
+      - 活虾/泥鳅 — 传统钓法
+    tips: |
+      翘嘴对声音敏感，路亚操作要轻。
+      夏季夜晚用浅水米诺或铅笔效果最好。
+      大翘嘴多在离岸较远的深水区。
+      连续阴天全天都有口。
+
+  - name: 鳜鱼
+    alias: [桂花鱼, 季花鱼, 花鲫鱼]
+    scientific: Siniperca chuatsi
+    habitat: 中下层，喜欢乱石底、陡坡、桥墩、水闸边
+    water_quality: 较清水质，溶氧量高
+    temp_range: 15-30°C
+    best_temp: 18-26°C
+    pressure: 稳定或缓慢上升
+    active_time: 清晨 / 阴天 / 雨后
+    season: 4-11月，5-6月产卵期最佳
+    feeding: 伏击型肉食性，躲藏等待猎物靠近
+    lure:
+      - 软虫(卷尾蛆/T骨) — 跳底
+      - 铅头钩+卷尾 — 跳底搜索
+      - 米诺 — 沿岸搜索
+      - VIB — 深水搜索
+      - 活虾/小鱼 — 传统钓
+    tips: |
+      鳜鱼是伏击型猎手，喜欢躲在石头边、陡坎下。
+      操作要点：跳底—到底提竿尖2-3圈，等沉底再跳。
+      春秋在浅水区，夏天退到深水。
+      水电站放水后鳜鱼活跃。
+      水质越清越好钓。
+
+  - name: 大口黑鲈
+    alias: [加州鲈, 大嘴鲈, 鲈鱼]
+    scientific: Micropterus salmoides
+    habitat: 中上层，喜欢草区、倒树、障碍物、码头边
+    water_quality: 广适应
+    temp_range: 10-30°C
+    best_temp: 15-25°C
+    pressure: 1005-1020hPa
+    active_time: 早晚窗口期 / 阴天全天
+    season: 3-11月，春季产卵前(3-4月)和秋季(9-11月)最佳
+    feeding: 伏击型，捕食小鱼虾蟹昆虫
+    lure:
+      - 软虫(德州/卡罗来纳) — 障碍物
+      - 复合亮片 — 快速搜索
+      - 胖型米诺 — 浅水区
+      - 水面系(波扒/青蛙) — 草区
+      - 摇摆米诺 — 深水区
+    tips: |
+      鲈鱼最看结构和障碍物。
+      春季浅滩产卵，秋季深水湾。
+      草区用不挂草软虫或者青蛙。
+      夏季找阴凉深水，冬季找向阳浅水。
+      打氧充足的区域是好标点。
+
+  - name: 草鱼
+    alias: [草棒, 草鲩]
+    scientific: Ctenopharyngodon idella
+    habitat: 中下层，喜欢草区、水库湾子、江河回水
+    water_quality: 适应性强
+    temp_range: 18-32°C
+    best_temp: 22-30°C
+    pressure: 稳定
+    active_time: 全天（夏季早晚最活跃）
+    season: 5-10月最佳，盛夏最活跃
+    feeding: 草食性，喜食水草、嫩草叶
+    bait:
+      - 嫩草叶 — 打窝
+      - 玉米 — 经典钓饵
+      - 商品草鱼饵 — 发酵型
+      - 颗粒饲料 — 黑坑专用
+    tips: |
+      草鱼喜高温，夏天是黄金季节。
+      用草打窝草钓，注意保持安静。
+      巨物多在深水区。
+      浮钓效果优于底钓（夏季）。
+      雨后涨水时活跃。
+
+  - name: 鲤鱼
+    alias: [鲤子, 鲤拐子]
+    scientific: Cyprinus carpio
+    habitat: 底层，喜欢软泥底、水草边、回水湾
+    water_quality: 适应性强
+    temp_range: 10-32°C
+    best_temp: 18-28°C
+    pressure: 稳定或微降
+    active_time: 清晨 / 傍晚 / 夜间
+    season: 3-11月，春季产卵后(4-5月)和秋季(9-10月)最佳
+    feeding: 杂食性，底栖拱食
+    bait:
+      - 玉米 — 野生鲤鱼经典
+      - 红薯 — 蒸熟切块
+      - 商品鲤鱼饵 — 薯味/酒香味
+      - 螺鲤 — 黑坑/野钓通用
+      - 蚯蚓 — 万能饵
+    tips: |
+      鲤鱼很警惕，需要安静环境。
+      打窝很重要，提前1-2天打重窝。
+      钓钝，让饵躺底。
+      大鲤鱼吃口轻，小顿口就提竿。
+      夏季夜钓鲤鱼是明智选择。
+
+  - name: 鲫鱼
+    alias: [鲫壳, 土鲫]
+    scientific: Carassius auratus
+    habitat: 底层，广适应，各种水域都有
+    water_quality: 适应性强，耐低氧
+    temp_range: 5-30°C
+    best_temp: 15-25°C
+    pressure: 稳定
+    active_time: 全天
+    season: 全年可钓，春秋两季最佳
+    feeding: 杂食性
+    bait:
+      - 蚯蚓 — 万能
+      - 红虫 — 冬季利器
+      - 商品鲫鱼饵 — 腥香型
+      - 麦粒 — 避小鱼
+      - 米饭粒 — 传统钓
+    tips: |
+      鲫鱼耐寒，冬天也钓得到。
+      小钩细线是关键。
+      冬季找深水草区。
+      春季浅滩产卵成群。
+      连续晴暖天最好钓。
+
+  - name: 罗非鱼
+    alias: [非洲鲫, 福寿鱼]
+    scientific: Oreochromis mossambicus
+    habitat: 中下层，喜欢静水、缓流、水草区
+    water_quality: 耐低氧，耐污染
+    temp_range: 18-38°C
+    best_temp: 24-32°C
+    pressure: 不限
+    active_time: 全天（天热最活跃）
+    season: 5-10月，夏季高峰期
+    feeding: 杂食性
+    bait:
+      - 腥味商品饵 — 冷冻饵最佳
+      - 蚯蚓
+      - 虾肉
+      - 福寿鱼专用饵
+    tips: |
+      罗非怕冷，低于12°C危险。
+      夏天暴晒天反而好钓。
+      筑巢期公鱼容易钓。
+      大罗非多在深水区。
+      用冷冻饵效果远超其他。
+
+  - name: 黑鱼
+    alias: [乌鱼, 生鱼, 雷龙]
+    scientific: Channa argus
+    habitat: 底层，喜欢水草密集区、浅水草丛
+    water_quality: 耐低氧极强
+    temp_range: 15-35°C
+    best_temp: 22-32°C
+    pressure: 不限
+    active_time: 白天（夏季早晚口期）
+    season: 5-10月，夏季巅峰
+    feeding: 凶猛肉食性，伏击捕食
+    lure:
+      - 雷蛙 — 草区必备
+      - 软蛙 — 轻草区
+      - 水面系铅笔 — 亮水区
+      - 活鱼 — 传统钓
+    tips: |
+      黑鱼护崽，看到小黑鱼群必有亲鱼。
+      雷蛙打草必须暴力扬竿。
+      水草洞是好标点。
+      夏天雷蛙钓法最刺激。
+      秋季疯狂进食贴秋膘。
+
+  - name: 鲶鱼
+    alias: [土鲶, 大口鲶]
+    scientific: Silurus asotus
+    habitat: 底层，喜欢泥底、深潭、桥墩下、涵洞
+    water_quality: 耐低氧，喜浑浊
+    temp_range: 15-32°C
+    best_temp: 22-30°C
+    pressure: 稳定或微降
+    active_time: 夜间为主 / 阴雨白天也活跃
+    season: 5-10月，夏季夜间最佳
+    feeding: 肉食性，夜间觅食
+    bait:
+      - 鸡肝/鸭肝 — 经典
+      - 大蚯蚓
+      - 活泥鳅
+      - 腥味颗粒
+    tips: |
+      鲶鱼昼伏夜出，夜钓是王道。
+      大雨后水浑浊是好时机。
+      用鸡肝挂钩味道大效果好。
+      大鲶鱼在深水潭底。
+      闷热低压天反而活跃。
+
+  - name: 黄颡鱼
+    alias: [黄辣丁, 黄骨鱼, 昂刺鱼]
+    scientific: Pelteobagrus fulvidraco
+    habitat: 底层，喜欢沙石底、缓流区、水草边
+    water_quality: 喜清水
+    temp_range: 15-30°C
+    best_temp: 20-28°C
+    pressure: 稳定
+    active_time: 傍晚 / 夜间 / 雨后白天
+    season: 5-10月，夏季夜钓好
+    feeding: 肉食性，底栖觅食
+    bait:
+      - 蚯蚓 — 首选
+      - 红虫
+      - 虾肉
+      - 鸡肠
+    tips: |
+      黄颡鱼刺有毒，摘钩要小心。
+      夜钓效果远超白天。
+      雨后岸边浅水好钓。
+      群居性，钓到一条说明附近还有。
+      天热时浅水、天冷退深水。
+
+  - name: 白条鱼
+    alias: [餐条, 白鲦]
+    habitat: 中上层，群居
+    feeding: 杂食
+    bait: 各种小钩细线，腥味饵
+    tips: 闹窝烦人但油炸好吃
+
+  - name: 马口鱼
+    alias: [马口]
+    habitat: 中上层，清溪、河流上游
+    water_quality: 喜清水高氧流水
+    feeding: 肉食性
+    lure: [小型亮片(1-3g), 飞蝇]
+    tips: 溪流路亚最经典目标鱼
+
+  - name: 军鱼
+    alias: [光倒刺鲃]
+    habitat: 中上层，山区溪流、水库
+    temp_range: 15-28°C
+    feeding: 杂食
+    lure: [亮片, 米诺]
+    tips: 拉力极猛，国内淡水搏鱼首选之一
+
+  - name: 鳡鱼
+    alias: [水老虎, 鳡丝]
+    habitat: 中上层，大型水库、大江大河
+    feeding: 凶残肉食性
+    lure: [大型米诺(130mm+), 大型铅笔, 大型波扒]
+    tips: |
+      淡水之王，拉力爆表。
+      需要大克数装备。
+      不常见但遇到必然终身难忘。
+
+  - name: 海鲈
+    alias: [七星鲈, 花鲈]
+    habitat: 近海/咸淡水交汇
+    feeding: 肉食性
+    lure: [米诺, 软虫, 铁板]
+    tips: 路亚海钓入门首选
+
+  - name: 金目鲈
+    alias: [盲曹]
+    habitat: 近海/红树林/河口
+    feeding: 肉食性
+    tips: 东南亚/华南沿海热门目标
+
+  - name: 石斑鱼
+    alias: [石斑]
+    habitat: 礁石区底层
+    feeding: 伏击型肉食性
+    tips: 礁石区路亚/矶钓经典

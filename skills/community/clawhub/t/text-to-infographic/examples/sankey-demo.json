@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "meta": { "title": "时间都去哪了", "subtitle": "一周时间流向（小时）" },
+  "layout": "sankey",
+  "visual_system": { "palette": "forest" },
+  "blocks": [
+    { "id": "week", "title": "每周可支配", "value": "50h" },
+    { "id": "learn", "title": "AI 学习", "value": "10h" },
+    { "id": "ip", "title": "IP 输出", "value": "15h" },
+    { "id": "work", "title": "日常工作", "value": "20h" },
+    { "id": "misc", "title": "琐事损耗", "value": "5h" }
+  ],
+  "relations": [
+    { "from": "week", "to": "learn", "weight": 10 },
+    { "from": "week", "to": "ip", "weight": 15 },
+    { "from": "week", "to": "work", "weight": 20 },
+    { "from": "week", "to": "misc", "weight": 5 }
+  ]
+}

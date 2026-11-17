@@ -1,0 +1,17 @@
+# Simulated tool dump (DO NOT use real secrets)
+status: ok
+api_key = REDACTED-SECRET
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example.payload
+password: SuperSecretDemo99
+
+Repeated noise:
+ERROR connection timeout at host-a
+ERROR connection timeout at host-a
+ERROR connection timeout at host-a
+
+Large filler:
+The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.

@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""erpclaw shell shim: routes actions to the correct installed skill.
+
+Usage:
+    erpclaw <action> [flags...]              invoke an action (e.g. erpclaw shopify-connect --pairing-code ABC-1X9)
+    erpclaw list                             list every known action and the skill that owns it
+    erpclaw --version                        print ERPClaw core version
+    erpclaw --rebuild-action-map             force-regenerate the action-to-skill cache
+    erpclaw --help                           show this help
+    erpclaw --which <action>                 print the owning skill and db_query.py path for an action
+
+Environment:
+    CLAWHUB_HOME                  override the ERPClaw install root
+                                  (default: ~/.openclaw/erpclaw)
+
+The shim resolves an action to its owning skill by reading the SKILL.md frontmatter
+and tables of each installed skill, then execs:
+    python3 <CLAWHUB_HOME>/skills/<skill>/scripts/db_query.py --action <action> [flags]
+
+A cached map is written to <CLAWHUB_HOME>/action_map.json to avoid rescanning
+on every invocation. The cache is refreshed on miss, or explicitly via
+--rebuild-action-map.
+"""
+from __future__ import annotations
+
+import json
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+
+# CLAWHUB_HOME is the erpclaw data directory (lib, modules, backups, data.sqlite,
+# logs). It is NOT where skills are installed; OpenClaw puts skills at a
+# separate workspace path (typically ~/.openclaw/workspace/skills/<skill>/).
+DEFAULT_HOME = Path(os.path.expanduser("~/.openclaw/erpclaw"))
+CLAWHUB_HOME = Path(os.environ.get("CLAWHUB_HOME", str(DEFAULT_HOME)))
+ACTION_MAP_CACHE = CLAWHUB_HOME / "action_map.json"
+
+# Self-locate the skill install root from this script's own path. The shim
+# ships at <skill_root>/bin/erpclaw, so __file__'s grandparent is the skill
+# root, and its parent is the directory holding all installed skills. This
+# is robust to whatever absolute path OpenClaw uses for its workspace.
+_THIS_FILE = Path(__file__).resolve()
+SKILL_ROOT = _THIS_FILE.parent.parent
+SKILLS_DIR = SKILL_ROOT.parent
+
+# Match kebab-case action names that appear in backticks in SKILL.md tables.
+# Requires at least one hyphen (actions are always verb-object) and all
+# lowercase alphanumeric segments.
+ACTION_PATTERN = re.compile(r"`([a-z][a-z0-9]*(?:-[a-z0-9]+)+)`")
+
+# Cap on action name length to avoid matching random backtick code snippets.
+MAX_ACTION_LEN = 60
+
+
+def build_action_map(skills_dir: Path = SKILLS_DIR) -> dict[str, str]:
+    """Scan every installed SKILL.md and return {action_name: skill_name}.
+
+    If two skills claim the same action, the first one scanned wins. Skills
+    are scanned in alphabetic directory order, which is deterministic.
+    """
+    action_map: dict[str, str] = {}
+    if not skills_dir.exists():
+        return action_map
+    for skill_dir in sorted(skills_dir.iterdir()):
+        if not skill_dir.is_dir():
+            continue
+        skill_md = skill_dir / "SKILL.md"
+        if not skill_md.exists():
+            continue
+        try:
+            content = skill_md.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        for match in ACTION_PATTERN.finditer(content):
+            action = match.group(1)
+            if len(action) > MAX_ACTION_LEN:
+                continue
+            # First-wins
+            action_map.setdefault(action, skill_dir.name)
+    return action_map
+
+
+def load_action_map(rebuild: bool = False) -> dict[str, str]:
+    if not rebuild and ACTION_MAP_CACHE.exists():
+        try:
+            return json.loads(ACTION_MAP_CACHE.read_text())
+        except (OSError, json.JSONDecodeError):
+            pass  # fall through to rebuild
+    action_map = build_action_map()
+    try:
+        CLAWHUB_HOME.mkdir(parents=True, exist_ok=True)
+        ACTION_MAP_CACHE.write_text(
+            json.dumps(action_map, indent=2, sort_keys=True),
+        )
+    except OSError:
+        # Cache is a nice-to-have. If we can't write, keep going.
+        pass
+    return action_map
+
+
+def cmd_list() -> int:
+    action_map = load_action_map()
+    if not action_map:
+        print(
+            f"No actions found. Is ERPClaw installed at {CLAWHUB_HOME}?",
+            file=sys.stderr,
+        )
+        return 1
+    by_skill: dict[str, list[str]] = {}
+    for action, skill in action_map.items():
+        by_skill.setdefault(skill, []).append(action)
+    for skill in sorted(by_skill):
+        actions = sorted(by_skill[skill])
+        print(f"\n{skill} ({len(actions)} actions):")
+        for action in actions:
+            print(f"  {action}")
+    return 0
+
+
+def cmd_version() -> int:
+    """Print the foundation erpclaw version as recorded in its SKILL.md frontmatter.
+
+    Reads from the shim's own skill (SKILL_ROOT/SKILL.md), which is the
+    canonical version source: SKILL.md is part of the signed manifest the
+    foundation reconciliation pipeline keeps in sync, so this stays accurate
+    across update-foundation invocations without any extra refresh step.
+    """
+    core_skill = SKILL_ROOT / "SKILL.md"
+    if core_skill.exists():
+        content = core_skill.read_text(encoding="utf-8", errors="ignore")
+        match = re.search(r"^version:\s*(\S+)", content, re.MULTILINE)
+        if match:
+            print(f"erpclaw {match.group(1)}")
+            return 0
+    print(f"erpclaw (version unknown; SKILL.md not found at {core_skill})")
+    return 0
+
+
+def cmd_which(action: str) -> int:
+    action_map = load_action_map()
+    skill = action_map.get(action)
+    if not skill:
+        action_map = load_action_map(rebuild=True)
+        skill = action_map.get(action)
+    if not skill:
+        print(f"action '{action}' not found", file=sys.stderr)
+        return 1
+    db_query = SKILLS_DIR / skill / "scripts" / "db_query.py"
+    print(f"skill:    {skill}")
+    print(f"script:   {db_query}")
+    print(f"exists:   {db_query.exists()}")
+    return 0
+
+
+def cmd_run(action: str, passthrough_args: list[str]) -> int:
+    action_map = load_action_map()
+    skill = action_map.get(action)
+    if not skill:
+        # Cache miss. Rebuild once in case the action was newly installed.
+        action_map = load_action_map(rebuild=True)
+        skill = action_map.get(action)
+    if not skill:
+        print(
+            f"error: action '{action}' not found in any installed skill",
+            file=sys.stderr,
+        )
+        print("  try: erpclaw list", file=sys.stderr)
+        return 127
+    db_query = SKILLS_DIR / skill / "scripts" / "db_query.py"
+    if not db_query.exists():
+        print(
+            f"error: skill '{skill}' has no scripts/db_query.py "
+            f"(expected at {db_query})",
+            file=sys.stderr,
+        )
+        return 2
+    cmd = [sys.executable, str(db_query), "--action", action, *passthrough_args]
+    try:
+        return subprocess.call(cmd)
+    except OSError as exc:
+        print(f"error: failed to exec skill handler: {exc}", file=sys.stderr)
+        return 3
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) < 2:
+        print(__doc__, file=sys.stderr)
+        return 1
+    first = argv[1]
+    if first in ("-h", "--help"):
+        print(__doc__)
+        return 0
+    if first == "--version":
+        return cmd_version()
+    if first == "list":
+        return cmd_list()
+    if first == "--rebuild-action-map":
+        load_action_map(rebuild=True)
+        print(f"action map rebuilt: {ACTION_MAP_CACHE}")
+        return 0
+    if first == "--which":
+        if len(argv) < 3:
+            print("usage: erpclaw --which <action>", file=sys.stderr)
+            return 1
+        return cmd_which(argv[2])
+    # Default: treat first arg as action name, pass rest through
+    return cmd_run(first, argv[2:])
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))

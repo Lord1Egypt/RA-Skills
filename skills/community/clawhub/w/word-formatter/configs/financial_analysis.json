@@ -1,0 +1,319 @@
+{
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins_cm": {
+      "top": 2.54,
+      "bottom": 2.54,
+      "left": 2.8,
+      "right": 2.6
+    }
+  },
+  "styles": {
+    "Normal": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "color_rgb": "#1A1A1A",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 0,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 2,
+      "alignment": "justify"
+    },
+    "Heading 1": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 16,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 17,
+      "space_after_pt": 16,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 2": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 14,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 3": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Note": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "color_rgb": "#595959",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 0,
+      "alignment": "justify"
+    },
+    "Heading 4": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 8,
+      "space_after_pt": 6,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 5": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 6,
+      "space_after_pt": 4,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 6": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "italic": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 2,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    }
+  },
+  "table": {
+    "font_cn": "宋体",
+    "font_en": "Times New Roman",
+    "size_pt": 10.5,
+    "style": "three_line",
+    "header_bold": true,
+    "color_rgb": "#1A1A1A",
+    "header_color_rgb": "#000000",
+    "alignment": "center",
+    "zebra": false,
+    "fill_color": null
+  },
+  "figures": {
+    "caption_font_cn": "宋体",
+    "caption_size_pt": 9,
+    "caption_alignment": "center",
+    "width_cm": 15,
+    "max_width_cm": 17,
+    "min_width_cm": 11,
+    "alignment": "center",
+    "numbering": "per_chapter",
+    "image_spacing_before_pt": 6,
+    "image_spacing_after_pt": 12,
+    "image_border": true,
+    "image_border_color": "#C0C0C0",
+    "image_border_width_pt": 0.5,
+    "caption_spacing_before_pt": 4,
+    "caption_spacing_after_pt": 12,
+    "caption_color_rgb": "#595959"
+  },
+  "numbering_scheme": [
+    "一、",
+    "（一）",
+    "1.",
+    "（1）"
+  ],
+  "cleanup": {
+    "remove_fullwidth_spaces": true,
+    "normalize_empty_paragraphs": true
+  },
+  "design_language": {
+    "summary": "严肃、专业、简洁；仅以黑/白/灰为基调，不使用任何彩色（含深蓝、深红等均禁用），强调处一律用加粗或灰度层次区分，杜绝高饱和度与渐变。",
+    "palette": {
+      "ink": "#1A1A1A",
+      "heading": "#000000",
+      "note": "#595959"
+    },
+    "rule": "标题/正文/注释以字号与灰度层次区分；表格用三线表或全线表，表头加粗、无填色、无斑马纹、无彩色。"
+  },
+  "doc_type": "财务分析报告类",
+  "standard": "锚定财政部《管理会计应用指引第801号——企业管理会计报告》+ 通用财务分析框架（概况→比率→趋势→结构→对标→诊断→建议）。无强制法定模板，按该框架重建骨架，视觉统一为正式报告语言。",
+  "structure": [
+    "封面（报告期间 / 对象）",
+    "摘要与重要提示",
+    "一、财务概况（三大表核心数据）",
+    "二、财务指标分析（偿债 / 营运 / 盈利 / 成长 四类，三线表）",
+    "三、趋势分析（3-5 年，图表）",
+    "四、结构分析（收入 / 成本 / 资产结构，图表）",
+    "五、行业对标（同业关键指标对比表）",
+    "六、问题诊断（差异—原因—影响）",
+    "七、建议与展望",
+    "附件（财务指标明细表）"
+  ],
+  "common_diagrams": [
+    "财务分析框架（流程图）",
+    "趋势图/结构图（以三线表+文字呈现，或外接图表）"
+  ],
+  "manual_checks": [
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "表格确为三线表（仅顶线/表头下细线/底线），无竖线、无填色、无斑马纹",
+    "字体层级：标题黑体加粗、正文宋体、注释灰色小字，三者区分清晰",
+    "封面：机构标识、报告名称、委托方、出具日期、密级/保密声明齐全",
+    "目录层级不超过三级，页码正确（Word 中按 F9 刷新域）",
+    "页眉含机构名称或报告简称，页脚页码格式统一",
+    "图表编号连续，图题在下、表题在上",
+    "免责声明 / 使用限制条款完整",
+    "财务指标分析按偿债/营运/盈利/成长四类，以三线表列示并标注行业参考值",
+    "趋势与结构分析优先用图表，图题在下、表题在上，编号连续",
+    "问题诊断遵循「差异—原因—影响」逻辑，建议须可执行"
+  ],
+  "header_footer": {
+    "header_text": "财务分析报告",
+    "header_alignment": "right",
+    "header_font_cn": "宋体",
+    "header_font_en": "Times New Roman",
+    "header_size_pt": 9,
+    "header_color_rgb": "#595959",
+    "header_border": false,
+    "footer_mode": "page_of",
+    "footer_alignment": "center",
+    "footer_font_cn": "宋体",
+    "footer_font_en": "Times New Roman",
+    "footer_size_pt": 9,
+    "footer_color_rgb": "#595959",
+    "show_page_number": true,
+    "different_odd_even": false,
+    "header_client": "示例股份有限公司"
+  },
+  "cover": {
+    "title": "财务分析报告",
+    "subtitle": "（2025年度）",
+    "client": "示例股份有限公司",
+    "issuer": "【尽调机构名称】",
+    "date": "【报告日期】",
+    "title_font_cn": "黑体",
+    "title_font_en": "Arial",
+    "title_size_pt": 22,
+    "subtitle_size_pt": 14,
+    "client_size_pt": 16,
+    "info_size_pt": 12,
+    "color_rgb": "#000000",
+    "client_in_title": true
+  },
+  "template_text": {
+    "disclaimer": "本财务分析报告（以下简称“本报告”）系基于【公司名称】提供的财务报表及经营数据，依据财政部《管理会计应用指引》及通用财务分析方法编制，仅供贵方经营管理与决策参考。\n\n历史财务数据基于管理层提供的资料，我们未作审计验证；分析结果受数据口径、会计政策及估算假设影响，具有局限性，不构成任何投资建议。\n\n本报告因使用不当产生的责任与出具方无关。",
+    "preamble": "为全面反映【公司名称】（以下简称“公司”）在【分析期间】的财务状况、经营成果与现金流量，识别关键问题与风险，支持经营决策，特编制本财务分析报告。报告以公司提供的财务报表及附注为基础进行分析。",
+    "abstract_title": "执行摘要",
+    "abstract_guide": "执行摘要必须用一页说清“这期财务表现好/差在哪里，最该重视什么”：核心指标、主要亮点、最重大的 2–3 项问题与风险、关键建议方向。",
+    "abstract_placeholder": "【示例】本期营业收入【X】万元（同比【X%】），净利率【X%】；盈利能力【稳健】，但经营现金流为负、应收账款周转放缓，存在回款与偿债压力。建议优先优化信用政策与债务期限结构。",
+    "body_sections": [
+      {
+        "title": "一、企业基本情况",
+        "guide": "简述主营业务、组织架构、行业地位与分析期间范围。"
+      },
+      {
+        "title": "二、财务报表总体分析",
+        "guide": "从整体视角解读三张报表的结构与变动。",
+        "table": {
+          "caption": "表2-1 财务比率分析（示例）",
+          "headers": [
+            "维度",
+            "指标",
+            "本期",
+            "上期",
+            "行业均值",
+            "简要分析"
+          ],
+          "rows": [
+            [
+              "盈利能力",
+              "净利率",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ],
+            [
+              "偿债能力",
+              "资产负债率",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ],
+            [
+              "营运能力",
+              "存货周转天数",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "三、盈利能力分析",
+        "guide": "分析毛利率、净利率、ROE/ROA及成本费用结构，解释变动原因。"
+      },
+      {
+        "title": "四、偿债能力分析",
+        "guide": "分析流动/速动比率、资产负债率、利息保障倍数与债务结构。"
+      },
+      {
+        "title": "五、营运能力分析",
+        "guide": "分析应收、存货、总资产周转效率及营运资金占用。"
+      },
+      {
+        "title": "六、成长能力与发展趋势",
+        "guide": "分析收入/利润增长率与趋势，结合业务背景解读。"
+      },
+      {
+        "title": "七、行业对标与结构分析",
+        "guide": "与行业均值/竞争对手对标，拆解报表内部结构驱动因素。"
+      },
+      {
+        "title": "八、问题与风险提示",
+        "guide": "基于数据定位关键问题（畸高/畸低指标、异常变动）并预警风险。"
+      },
+      {
+        "title": "九、改进建议",
+        "guide": "针对核心问题提出具体、可量化、分优先级的改进举措。"
+      },
+      {
+        "title": "十、附录",
+        "guide": "列示原始报表数据、指标计算明细与数据来源说明（可选）。"
+      }
+    ],
+    "closing": "（以下无正文）\n\n出具机构：【尽调机构名称】\n报告日期：【报告日期】"
+  }
+}

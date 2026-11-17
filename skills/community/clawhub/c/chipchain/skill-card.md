@@ -1,49 +1,66 @@
-## Description: <br>
-Semiconductor supply chain intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semiconductor supply chain intelligence.
 
-## Publisher: <br>
-[lboquillon](https://clawhub.ai/user/lboquillon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lboquillon](https://clawhub.ai/user/lboquillon)
 
-## Use Case: <br>
-External analysts, developers, and research teams use ChipChain to investigate semiconductor materials, equipment suppliers, dependencies, chokepoints, and supply-chain scenarios with sourced multilingual evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional verification scripts can install Python packages and write local verification reports. <br>
-Mitigation: Review scripts before running them, execute them in an isolated environment, and inspect generated reports before relying on their results. <br>
-Risk: Research workflows may send queries to external search, filing, trade, patent, and financial-data services. <br>
-Mitigation: Use approved API keys, avoid placing secrets or sensitive deal details in prompts or queries, and follow the skill's search log and source registry workflow. <br>
-Risk: Static semiconductor supply-chain data in the artifact is intended as leads and may be stale or unverified. <br>
-Mitigation: Require live source access, confidence labels, a source registry, and a 'What I Could Not Verify' section before treating findings as current. <br>
+## Use Case:
 
+External researchers, analysts, policy teams, and developers use ChipChain to investigate semiconductor materials, equipment suppliers, dependencies, and chokepoints. It guides multilingual searches, filing and database checks, source registries, confidence grading, and explicit reporting of unverified gaps.
 
-## Reference(s): <br>
-- [ChipChain on ClawHub](https://clawhub.ai/lboquillon/chipchain) <br>
-- [Data Sources & API Reference](sources.md) <br>
-- [Evidence Types & Confidence Caps](evidence-guide.md) <br>
-- [UN Comtrade API](https://comtradeapi.un.org/data/v1/get/C/A/HS) <br>
-- [OpenDART API](https://opendart.fss.or.kr/api/) <br>
-- [e-Stat API](https://api.e-stat.go.jp/rest/3.0/app/json/) <br>
-- [KIPRIS Plus](https://plus.kipris.or.kr) <br>
-- [Lens Patent Search API](https://api.lens.org/patent/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with source registries, confidence labels, search logs, and actionable next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use declared API keys and optional local verification scripts for ticker, CAS, trade, patent, and filing checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Optional verifier scripts may install or execute unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before running them and execute them only in an isolated virtual environment.
+
+Risk: Some documented API examples can expose credentials, including KIPRIS examples over plaintext HTTP.
+
+Mitigation: Use least-privilege research API keys, avoid sending real keys over plaintext HTTP unless the transport risk is accepted, and rotate any key previously used that way.
+
+Risk: Static supply-chain data can become stale or be mistaken for confirmed current relationships.
+
+Mitigation: Treat bundled entity and chemistry files as leads, require fresh source access for current claims, and preserve confidence labels and unverified-gap sections in reports.
+
+## Reference(s):
+
+- [ChipChain ClawHub Skill Page](https://clawhub.ai/lboquillon/skills/chipchain)
+- [Data Sources and API Reference](sources.md)
+- [Evidence Types and Confidence Caps](evidence-guide.md)
+- [Supplier Identification Workflow](queries/supplier-id.md)
+- [Scenario Analysis Workflow](queries/scenario.md)
+- [Chemistry Chain Workflow](queries/chemistry-chain.md)
+- [Trade HS Codes](trade/hs-codes.md)
+- [UN Comtrade API](https://comtradeapi.un.org/data/v1/get/C/A/HS)
+- [OpenDART API](https://opendart.fss.or.kr/api/)
+- [Lens Patent API](https://api.lens.org/patent/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with source registries, confidence grades, search logs, gaps, and occasional shell or API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite accessed sources, distinguish confirmed findings from inferences, and state what could not be verified.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

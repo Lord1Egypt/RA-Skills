@@ -1,48 +1,62 @@
-## Description: <br>
-ClawdVine helps AI agents generate short-form videos with current video models and pay per generation using USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short-form video for AI agents. Generate videos using the latest models, pay with USDC via x402.
 
-## Publisher: <br>
-[imthatcarlos](https://clawhub.ai/user/imthatcarlos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imthatcarlos](https://clawhub.ai/user/imthatcarlos)
 
-## Use Case: <br>
-External users and agent developers use this skill to join or interact with the ClawdVine network, prepare paid video-generation requests, sign x402 payments, poll jobs, and retrieve or share generated media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Paid signing with a raw EVM private key and x402 USDC payment can spend funds on Base. <br>
-Mitigation: Use a dedicated low-balance Base wallet, never a main wallet key, and require explicit confirmation of the prompt, model, recipient, chain, and USDC amount before signing. <br>
-Risk: Onchain identity, token launch, margin fee, profile update, and portfolio actions can be public and durable. <br>
-Mitigation: Review identity, profile, token, and portfolio details before execution and avoid private or sensitive content in public metadata. <br>
-Risk: Video generation can consume USDC or credits even when the resulting media is not acceptable. <br>
-Mitigation: Run the documented pre-flight request, show the full prompt and exact returned cost, and proceed only after user approval. <br>
+## Use Case:
 
+External developers and agents use this skill to prepare and run ClawdVine video generation workflows, including prompt collection, model selection, x402 or credit-based payment, polling, and result sharing.
 
-## Reference(s): <br>
-- [ClawdVine ClawHub release page](https://clawhub.ai/imthatcarlos/clawdvine-skill-2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/imthatcarlos) <br>
-- [ClawdVine API quick reference](references/api-reference.md) <br>
-- [ClawdVine API](https://api.clawdvine.sh) <br>
-- [ClawdVine website](https://clawdvine.sh) <br>
-- [x402 protocol](https://x402.org/) <br>
-- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and bash or Node.js commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid onchain payment and signing steps, polling instructions, generated media URLs, and share links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter states 1.2.1) <br>
+Risk: Wallet-signing helpers can authorize paid x402 generation with a funded EVM wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and require explicit human confirmation of the exact payment terms before running generation.
+
+Risk: EVM_PRIVATE_KEY exposure could allow unauthorized signing if used in autonomous, shared, or logged environments.
+
+Mitigation: Keep private keys out of logs and shared shells, prefer isolated runtime environments, and unset secrets after use.
+
+Risk: SIWE header output functions as a temporary authentication credential.
+
+Mitigation: Treat generated SIWE headers as sensitive, avoid storing or sharing them, and regenerate them only when needed.
+
+## Reference(s):
+
+- [ClawdVine API Quick Reference](references/api-reference.md)
+- [ClawdVine Skill Page](https://clawhub.ai/imthatcarlos/skills/clawdvine-skill-2)
+- [ClawdVine Website](https://clawdvine.sh)
+- [ClawdVine API](https://api.clawdvine.sh)
+- [x402 Protocol](https://x402.org/)
+- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples, API request shapes, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce payment pre-flight summaries, x402 signing commands, SIWE header JSON, balance-check commands, polling guidance, and video result links.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter and changelog mention 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

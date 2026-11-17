@@ -1,44 +1,59 @@
-## Description: <br>
-Generates vertical WeryAI videos that show an artwork moving from sketch through color and detail to a final reveal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical short videos of painting and retouching creative processes with WeryAI, showing layered progression from sketch to finished art.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agents use this skill to prepare and submit WeryAI text-to-video or image-to-video jobs for art-process reels. It expands short briefs into production prompts, confirms generation parameters, and returns playable video URLs or clear failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WERYAI_API_KEY for paid WeryAI network generation, and successful wait runs can consume credits. <br>
-Mitigation: Keep the API key secret and rotatable, review the confirmation table, and run generation only after explicit user confirmation. <br>
-Risk: URL override environment variables could send prompts, image URLs, or bearer tokens to an unintended service if misconfigured. <br>
-Mitigation: Leave WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL unset unless the endpoints are trusted; review the environment before production use. <br>
-Risk: Image-to-video inputs must be public HTTPS URLs and may be sent to WeryAI for processing. <br>
-Mitigation: Use only intended public HTTPS image URLs and avoid submitting private or sensitive source images. <br>
+## Use Case:
 
+External creators, designers, and agents use this skill to turn text briefs or public HTTPS image inputs into WeryAI-generated vertical art-process videos. It is intended for painting timelapse, design creation reels, image-to-video color progression, and short-form creative storytelling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zoucdr/art-process-video) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI API host](https://api.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, JSON, Text] <br>
-**Output Format:** [Markdown guidance with confirmation tables, inline shell commands, and JSON command results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY; image inputs must be public HTTPS URLs; successful wait runs may consume paid WeryAI credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill requires WERYAI_API_KEY and sends prompts, image URLs, and generation requests to WeryAI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the API key only in trusted runtime environments, never commit it to the skill package, and review any WERYAI_BASE_URL or WERYAI_MODELS_BASE_URL override before running.
+
+Risk: Successful wait runs consume paid WeryAI credits.
+
+Mitigation: Use the pre-submit confirmation step to review the full prompt and parameters before starting generation.
+
+Risk: Unsupported model, duration, aspect ratio, resolution, or local image inputs can cause failed generation requests.
+
+Mitigation: Keep parameters within the documented WeryAI model constraints and use only public HTTPS image URLs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zoucdr/skills/art-process-video)
+- [WeryAI API Service](https://api.weryai.com)
+- [WeryAI Models Service](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns WeryAI task status, task IDs, generated video URLs, cover URLs, or structured error details when available.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+{
+  "slides": [
+    {
+      "type": "starting_slide",
+      "heading": "5 LinkedIn Growth Tips",
+      "sub_heading": "For founders and creators",
+      "description": "Simple habits that compound into real reach.",
+      "cta_button": "Swipe →"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Post when your audience is awake",
+      "description": "Check your analytics for peak hours and schedule around them, not around when you happen to be free."
+    },
+    {
+      "type": "body_slide",
+      "heading": "Hook in the first line",
+      "description": "The first sentence decides whether anyone reads the rest. Lead with the payoff, not the setup."
+    },
+    {
+      "type": "ending_slide",
+      "heading": "Pick one and start today",
+      "sub_heading": "Consistency beats intensity",
+      "description": "Follow for more practical growth playbooks.",
+      "cta_button": "Follow"
+    }
+  ]
+}

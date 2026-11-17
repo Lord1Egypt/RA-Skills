@@ -1,44 +1,58 @@
-## Description: <br>
-Reforge everyday actions as factory-floor industrial-mecha short videos using WeryAI Seedance 2.0, with expanded prompts, optional single-image input, and strict model boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reforge everyday actions as factory-floor power fantasy with hydraulics, sparks, armor plates, heavy synchronized motion, and WeryAI Seedance 2.0 video generation.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Creators and agents use this skill to turn text briefs or a single public HTTPS image into short industrial-mecha style videos. It guides prompt expansion, parameter confirmation, and WeryAI Seedance 2.0 video generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a paid WERYAI_API_KEY and makes network requests to WeryAI. <br>
-Mitigation: Use a dedicated or limited API key, keep the key out of files and prompts, and run the skill only when the WeryAI service and billing model are acceptable. <br>
-Risk: Each confirmed generation can consume WeryAI credits. <br>
-Mitigation: Confirm the full expanded prompt, SEEDANCE_2_0 model, duration, aspect ratio, resolution, and audio setting before submitting a task. <br>
-Risk: Image-to-video use can involve uploading an image to WeryAI. <br>
-Mitigation: Prefer public HTTPS image URLs and use local image paths only with explicit user consent. <br>
+## Use Case:
 
+External users and creative agents use this skill to turn text prompts or a single image into short industrial mecha-style videos through WeryAI Seedance 2.0. It guides prompt expansion, parameter confirmation, submission, polling, and delivery of playable video links.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/zoucdr/industrial-mecha-transform-video-gen-seedance2-0) <br>
-- [WeryAI Video API Reference](resources/WERYAI_VIDEO_API.md) <br>
-- [Publisher Profile](https://clawhub.ai/user/zoucdr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces expanded prompts, confirmation tables, WeryAI CLI JSON, and playable video URLs when generation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a WeryAI API key and outbound network access for paid video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated runtime or separate account, keep WERYAI_API_KEY secret, and install only when this external access is acceptable.
+
+Risk: Local image paths may cause local files to be uploaded to WeryAI.
+
+Mitigation: Use public HTTPS image URLs by default and require explicit user consent before any local file upload path is used.
+
+Risk: Documented shell examples can create command-injection risk if prompts are interpolated into shell command strings.
+
+Mitigation: Invoke the Node CLI with structured JSON arguments and avoid constructing shell commands directly from untrusted prompt text.
+
+## Reference(s):
+
+- [WeryAI Video API Reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub Skill Page](https://clawhub.ai/zoucdr/skills/industrial-mecha-transform-video-gen-seedance2-0)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline video links, confirmation tables, JSON-backed CLI calls, and clear failure guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, outbound network access, and paid WeryAI generation credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

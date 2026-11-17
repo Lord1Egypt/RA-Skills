@@ -1,44 +1,60 @@
-## Description: <br>
-Guides agents through configuring an OpenClaw DingTalk enterprise bot channel, including plugin installation, channel configuration, verification, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users set up and troubleshoot an OpenClaw DingTalk enterprise internal bot channel with plugin installation, Stream mode configuration, gateway restart, and message-delivery checks.
 
-## Publisher: <br>
-[shaoyunhao0107](https://clawhub.ai/user/shaoyunhao0107) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoyunhao0107](https://clawhub.ai/user/shaoyunhao0107)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw to DingTalk enterprise internal bots, configure Stream mode, and troubleshoot channel installation or message-response failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guide contains DingTalk Client Secret/AppSecret values and configuration examples that users may accidentally expose in shared files, logs, or screenshots. <br>
-Mitigation: Use placeholders in shared examples, keep OpenClaw configuration files private, avoid sharing logs or screenshots containing secrets, and rotate any real secret that was exposed. <br>
-Risk: Open DM or group chat settings can broaden who can interact with the DingTalk bot. <br>
-Mitigation: Prefer allowlists for DM and group access when deploying beyond a controlled test environment. <br>
-Risk: Installing the wrong plugin package could configure an unintended DingTalk integration. <br>
-Mitigation: Verify that @soimy/dingtalk is the intended plugin before installation. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw to DingTalk enterprise internal bots, configure required DingTalk credentials, validate gateway status, and troubleshoot plugin or messaging failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaoyunhao0107/dingtalk-setup) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, troubleshooting checks, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup asks users to install an unpinned third-party DingTalk plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin source and install a pinned, trusted version where possible.
+
+Risk: DingTalk Client Secret values may be exposed through command-line use or local OpenClaw configuration.
+
+Mitigation: Avoid passing secrets on the command line, restrict permissions on ~/.openclaw/openclaw.json, and rotate any example-looking secret if it was ever real.
+
+Risk: The optional automation path modifies OpenClaw configuration and restarts the gateway.
+
+Mitigation: Back up the OpenClaw configuration before running automation and review the resulting channel settings before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaoyunhao0107/skills/dingtalk-setup)
+- [DingTalk Plugin Repository](https://github.com/soimy/openclaw-channel-dingtalk)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [DingTalk Open Platform](https://open.dingtalk.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON or PowerShell configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes manual setup steps, optional automation guidance, verification checks, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

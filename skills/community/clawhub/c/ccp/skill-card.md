@@ -1,40 +1,53 @@
-## Description: <br>
-Continuous session event recording for inter-session memory survival. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous Context Preserver records concise session context during active agent sessions so recent decisions, discoveries, and recovery notes can survive restarts or crashes.
 
-## Publisher: <br>
-[ivaavimusic](https://clawhub.ai/user/ivaavimusic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivaavimusic](https://clawhub.ai/user/ivaavimusic)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep concise local session summaries so recent context can survive crashes, restarts, or session boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local session summaries may contain privacy-sensitive context. <br>
-Mitigation: Use the shortest retention period that works and avoid logging secrets, tokens, private keys, regulated data, or confidential details. <br>
-Risk: Cleanup settings can write logs or delete session files in unexpected locations if paths are misconfigured. <br>
-Mitigation: Review AGENTS.md, HEARTBEAT.md, the sessions directory, cleanup.sh, and any cron entry before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain a rolling local archive of key session context for crash recovery and continuity between sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivaavimusic/ccp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown session notes with shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes concise local session summaries and supports configurable log retention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Local session-memory files may retain sensitive conversation context if users include secrets, credentials, regulated data, or private personal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Log only concise recovery context, avoid sensitive data, and review or delete the sessions directory regularly.
+
+Risk: The cleanup script deletes aged Markdown files under the configured sessions directory, and custom environment variables can change that deletion scope.
+
+Mitigation: Review the configured SESSIONS_DIR and RETENTION_DAYS values before scheduled use, and fix or test the cleanup script before using cron or custom environment variables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivaavimusic/skills/ccp)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown session notes with shell-command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates concise local session-memory files and cleanup guidance; no external API output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

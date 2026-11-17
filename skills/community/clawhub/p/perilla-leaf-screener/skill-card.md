@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents apply Serenity's Perilla Leaf supply-chain bottleneck method to surface US and A-share investment research leads in AI, physical AI, and embodied-intelligence supply chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 Serenity 的“紫苏叶理论”供应链瓶颈方法，帮助用户为 AI 供应链、物理 AI 与具身智能赛道挖掘美股和 A 股投资研究线索。
 
-## Publisher: <br>
-[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom)
 
-## Use Case: <br>
-External users and analysts use this skill to generate investment research leads by decomposing a target supply chain, scoring bottleneck candidates, verifying supply evidence with current web sources, and producing a table with risks and evidence links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs could be mistaken for investment advice or buy/sell recommendations. <br>
-Mitigation: Keep the skill's disclaimer visible and treat outputs only as research leads for independent review. <br>
-Risk: Supply relationships, valuations, and market momentum can be stale or incorrect. <br>
-Mitigation: Require current web checks and confirm claims against primary filings, company announcements, and current market data before relying on them. <br>
-Risk: The method targets small-cap bottleneck suppliers, which can carry high volatility, liquidity, and drawdown risk. <br>
-Mitigation: Surface these risks in the output table and require the user to make their own investment decision. <br>
+## Use Case:
 
+External users and analysts use this Chinese-language skill to identify and score public-market supply-chain bottleneck candidates in AI, physical AI, and embodied-intelligence themes. It returns research leads that require current web verification and independent review, not investment recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chujindan-dotcom/perilla-leaf-screener) <br>
-- [Publisher profile](https://clawhub.ai/user/chujindan-dotcom) <br>
-- [Serenity profile credited by the skill](https://x.com/aleabitoreddit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown table with concise analysis, risk notes, evidence links, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web verification for supply relationships, market data, and evidence links; limited to US-listed and A-share companies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can surface high-risk stock research leads that may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research prompts only; preserve the required disclaimer and require users to make independent investment decisions.
+
+Risk: Supply-chain evidence, market capitalization, and recent price movement can be wrong or stale.
+
+Mitigation: Verify each candidate against current public sources, company filings, and source links before relying on the result.
+
+Risk: Candidates may involve small-cap or low-liquidity stocks with high volatility and drawdown risk.
+
+Mitigation: Highlight liquidity, concentration, governance, and substitution risks in the output instead of presenting candidates as recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chujindan-dotcom/skills/perilla-leaf-screener)
+- [Source skill definition](artifact/SKILL.md)
+- [Serenity X profile](https://x.com/aleabitoreddit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown table with concise analysis, ranked candidates, risk notes, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web verification; covers only U.S. and A-share stocks.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

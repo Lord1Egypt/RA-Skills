@@ -1,46 +1,58 @@
-## Description: <br>
-Emotional processing layer for AI agents with persistent emotional states that can influence future behavior and responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotional processing layer for AI agents with persistent emotional states that can influence behavior and responses.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and agent users can use this skill to give an OpenClaw-style agent a persistent emotional state, track emotional dimensions over time, and optionally encode conversation history into that state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent emotional state can influence future sessions and responses. <br>
-Mitigation: Review or delete AMYGDALA_STATE.md, emotional-state.json, and brain-events.jsonl when persistent emotional context should not affect future work. <br>
-Risk: Automatic encoding may process conversation history through SkillBoss on a schedule. <br>
-Mitigation: Enable cron or automatic encoding only after reviewing the behavior and use a dedicated, revocable SkillBoss_API_KEY. <br>
-Risk: The evidence package references runtime scripts that are not included in the artifact. <br>
-Mitigation: Inspect the source scripts before running install, cron, or encoding commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent emotional-state tracking, decay, visualization, and conversation-derived emotional encoding to OpenClaw-style agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-amygdala-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
-- [OpenClaw metadata repository](https://github.com/ImpKind/amygdala-memory) <br>
-- [Related hippocampus skill](https://www.clawhub.ai/skills/hippocampus) <br>
-- [Related VTA memory skill](https://www.clawhub.ai/skills/vta-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, awk, and SkillBoss_API_KEY when automatic emotional encoding is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Persistent emotional state can influence future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated state files and confirm there is a clear way to inspect, disable, reset, and delete persistent state before use.
+
+Risk: Conversation-derived data may be processed by an external SkillBoss API.
+
+Mitigation: Avoid sending sensitive details in free-form triggers or conversation history, and review privacy expectations before enabling automatic encoding.
+
+Risk: Optional cron jobs can run recurring background updates.
+
+Mitigation: Do not enable cron until the scheduled scripts and generated cron entries have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-amygdala-memory)
+- [Metadata repository link](https://github.com/ImpKind/amygdala-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent JSON and Markdown state files, HTML dashboard output, cron entries, and external API requests when installed and configured.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

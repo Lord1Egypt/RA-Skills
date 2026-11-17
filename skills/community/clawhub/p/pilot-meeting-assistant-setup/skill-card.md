@@ -1,42 +1,57 @@
-## Description: <br>
-Deploy a three-agent meeting assistant system for scheduling, note taking, and action tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a meeting assistant system with three agents for scheduling, note capture, and action item tracking.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a three-agent Pilot meeting workflow that schedules meetings, captures structured notes and decisions, and routes action items to reminders or downstream tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting titles, attendee identifiers, notes, decisions, action items, reminders, and links can contain sensitive or confidential information. <br>
-Mitigation: Use test data in examples, redact confidential content where possible, and confirm attendee or company approval before sharing meeting data. <br>
-Risk: The workflow can send meeting information to configured calendar, Slack, archive, or other downstream destinations. <br>
-Mitigation: Review retention, access controls, and destination configuration before connecting production meeting workflows. <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure three coordinated meeting-assistant agents: a scheduler, a note-taker, and an action tracker. The skill helps set hostnames, install role-specific dependencies, write setup manifests, and establish peer handshakes for meeting workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-meeting-assistant-setup) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs multiple unpinned dependent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify each dependent skill before installing it in a real workspace.
+
+Risk: Meeting notes, attendee details, action items, archives, and reminders may be processed by agents and external destinations.
+
+Mitigation: Confirm organizational approval for the meeting data and notification destinations before configuring the workflow.
+
+Risk: Incorrect peer identity or hostname choices can route meeting data to the wrong agent.
+
+Mitigation: Use a simple hostname-safe prefix and confirm each peer identity before completing handshakes.
+
+## Reference(s):
+
+- [Pilot Protocol Network](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps, manifest templates, hostnames, handshake commands, and example publish/subscribe commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

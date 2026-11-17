@@ -1,43 +1,55 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[yottol](https://clawhub.ai/user/yottol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yottol](https://clawhub.ai/user/yottol)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run the gog command-line tool for Google Workspace workflows across Gmail, Calendar, Drive, Contacts, Sheets, and Docs. It supports interactive use and scripting with JSON output after Google OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires broad Google Workspace account authority through OAuth. <br>
-Mitigation: Use a verified Google OAuth client, inspect the consent screen, and grant only the services needed for the workflow. <br>
-Risk: Commands can send mail, create calendar events, or modify Sheets data. <br>
-Mitigation: Require explicit approval before running commands that send messages, create events, update spreadsheets, append rows, or clear ranges. <br>
-Risk: The release evidence notes under-disclosed OAuth and package provenance details. <br>
-Mitigation: Install only if you trust the Homebrew formula and publisher, and review the package source before use. <br>
+## Use Case:
 
+Developers and Google Workspace users use this skill to set up and run the gog CLI for Gmail, Calendar, Drive, Contacts, Sheets, Docs, and scripting workflows that prefer JSON output.
 
-## Reference(s): <br>
-- [gog homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/yottol/gog-jasmine-yottol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and Google OAuth setup; examples include JSON output and no-input mode for scripting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: The artifact includes a Google OAuth client credential file that the security evidence says is not needed for the documented setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a release that removes credentials.json and requires each user to supply their own Google OAuth client configuration.
+
+Risk: Authorizing the CLI can grant broad access to Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
+
+Mitigation: Review requested OAuth scopes and confirm before sending mail, creating calendar events, or modifying Workspace data.
+
+## Reference(s):
+
+- [gog homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/yottol/skills/gog-jasmine-yottol)
+- [Publisher profile](https://clawhub.ai/user/yottol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command examples include optional JSON output modes for scripting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Expert MCP developer specializing in Model Context Protocol server and client development, SDK implementation, and production-ready integrations between AI systems and external tools and data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert MCP developer specializing in Model Context Protocol server and client development, protocol specification, SDK implementation, and production-ready integrations between AI systems and external tools/data sources.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design, implement, test, secure, and deploy MCP servers and clients that connect AI systems with external tools and data sources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may propose concrete MCP integrations involving filesystems, APIs, databases, authentication, or deployment access.
+
+Mitigation: Review proposed implementation changes before granting credentials or production access.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, review, and harden MCP servers and clients. It supports protocol compliance, SDK usage, integration patterns, security controls, testing, deployment, and operational readiness for AI integrations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated MCP implementations may grant overly broad access to tools, filesystem paths, APIs, authentication flows, authorization checks, or webhooks. <br>
-Mitigation: Review any MCP code before production use and validate permissions, authentication, authorization, request filtering, audit logging, and webhook behavior. <br>
-Risk: Performance, uptime, or production-readiness claims produced during MCP implementation planning may be inaccurate without environment-specific validation. <br>
-Mitigation: Benchmark, load test, and monitor generated implementations in the target environment before relying on operational claims. <br>
+**Output Format:** [Markdown with code, shell command, and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-mcp-developer) <br>
+**Other Properties Related to Output:** [May include implementation plans, protocol designs, test guidance, and deployment recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; the artifact contains no executable code or install script.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

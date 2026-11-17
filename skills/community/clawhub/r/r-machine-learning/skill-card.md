@@ -1,43 +1,57 @@
-## Description: <br>
-R Machine Learning Workbench runs local R workflows for data splitting, feature engineering and selection, model training and tuning, evaluation, explainability, survival analysis, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+R Machine Learning Workbench helps agents run local R workflows for data splitting, feature engineering, model training, model evaluation, survival machine learning, explainability, and report generation.
 
-## Publisher: <br>
-[sanweisg](https://clawhub.ai/user/sanweisg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanweisg](https://clawhub.ai/user/sanweisg)
 
-## Use Case: <br>
-External developers, analysts, and biomedical or bioinformatics researchers use this skill to run R-based machine-learning pipelines, compare models, evaluate predictions, explain model behavior, and generate shareable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command can add many R packages from CRAN and GitHub to the local R environment. <br>
-Mitigation: Install and run the skill only in an environment where adding those dependencies is acceptable. <br>
-Risk: Generated reports, plots, tables, predictions, and model objects can contain dataset-derived information. <br>
-Mitigation: Run the workflow on copies of sensitive datasets and review the output folder before sharing artifacts. <br>
-Risk: Calibration analysis depends on predicted probabilities and ground-truth rows matching correctly. <br>
-Mitigation: Verify calibration inputs have matching row order and row counts before relying on the calibration results. <br>
+## Use Case:
 
+External researchers, data scientists, and developers use this skill to build and compare R machine-learning pipelines for tabular and biomedical datasets, producing models, plots, predictions, result tables, and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanweisg/r-machine-learning) <br>
-- [Skill README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands plus local files such as CSV tables, RDS model objects, HTML or PDF reports, and PDF, PNG, or SVG plots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are saved under output/plots, output/models, output/predictions, output/reports, and output/tables when the bundled launchers are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The install flow may execute mutable third-party R package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated R environment and review or pin dependencies before running the install command.
+
+Risk: Input handling may allow untrusted datasets, attacker-supplied column names, or unsafe tags to affect local execution or output paths.
+
+Mitigation: Avoid untrusted datasets, use simple alphanumeric tags, and review generated paths until path validation is added.
+
+Risk: Generated output files may contain dataset-derived values, including raw train and test splits.
+
+Mitigation: Treat the output directory as sensitive when working with private or regulated datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanweisg/skills/r-machine-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; local R scripts generate CSV, RDS, PNG, PDF, HTML, and TeX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Rscript and an R environment with the documented machine-learning packages installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

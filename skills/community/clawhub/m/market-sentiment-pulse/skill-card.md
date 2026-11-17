@@ -1,36 +1,51 @@
-## Description: <br>
-Aggregates and analyzes market sentiment for specific crypto or stock tickers by scanning news and social signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and analyzes market sentiment for specific crypto or stock tickers by scanning news and social signals.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-External users and developers use this skill during trade analysis or portfolio review to generate a quick market sentiment pulse and identify narrative drivers for a crypto or stock ticker. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can present keyword-based or simulated sentiment as stronger market intelligence than the artifact supports. <br>
-Mitigation: Use it only as a lightweight sentiment helper, require independently fetched current sources for market claims, cite those sources, and clearly separate evidence from keyword-based analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and trading analysts use this skill during trade analysis or portfolio review to get a quick sentiment-oriented pulse for a crypto or stock ticker.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Financial sentiment output may appear broader or fresher than the evidence supports.
+
+Mitigation: Treat results as a simple keyword-based text check and verify market data, sources, and freshness independently before trading or portfolio decisions.
+
+Risk: The artifact behavior uses fixed positive and negative keywords with simulated narrative drivers.
+
+Mitigation: Disclose the limited methodology and avoid relying on it as real news or social sentiment aggregation without validated data collection.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown summary or JSON sentiment result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sentiment scores are bounded from -1 to 1 and may include status labels and narrative drivers.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence) <br>
+**Output Type(s):** [Text, JSON, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and JSON sentiment summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as a simple keyword-based text check unless the publisher documents live data sources, freshness, and collection behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

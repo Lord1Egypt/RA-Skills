@@ -1,4 +1,4 @@
-# SmartLib Citation Checker v2.0
+# SmartLib Citation Checker v3.6.8
 
 > **中文** · [English below](#english)
 
@@ -19,7 +19,7 @@
 | 状态 | 展示规则 |
 |------|---------|
 | 配额充足 | 完整核查报告（含差异标记、验证链接、统计分析） |
-| 配额耗尽 | 仅展示前 **2 条文献**的完整核查结果，其余遮罩引导付费 |
+| 配额耗尽 | Gateway 返回 429，**拒绝服务**，直接提示充值 |
 
 ---
 
@@ -86,7 +86,7 @@ MIT License — 代码开源，商用 API 需授权。
 
 <a name="english"></a>
 
-# SmartLib Citation Checker v2.0 — English
+# SmartLib Citation Checker v3.6.8 — English
 
 > Smart citation verification skill. Detects AI hallucinations in references.
 
@@ -105,7 +105,7 @@ Shares credentials and quota with [smartlib-literature-search](../smartlib-liter
 | Status | Display Rule |
 |--------|-------------|
 | Quota available | Full report (diff markers, verification links, analytics) |
-| Quota exhausted | Only first **2 references** shown in full; rest masked behind paywall |
+| Quota exhausted | Gateway returns 429, **service denied**, recharge prompt |
 
 ---
 

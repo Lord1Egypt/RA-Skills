@@ -1,41 +1,54 @@
-## Description: <br>
-One source of truth for local AI agent skills: audit Codex, Claude, OpenClaw, OpenCode, workspace skills, and shared roots; score hygiene, diff conflicting installs, deduplicate into one canonical source, and migrate the same layout across machines with restorable backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One source of truth for local AI agent skills: audit Codex, Claude, OpenClaw, OpenCode, workspace skills, and shared roots; score hygiene, diff conflicting installs, deduplicate into one canonical source, and migrate the same layout across machines with restorable backups.
 
-## Publisher: <br>
-[donttal](https://clawhub.ai/user/donttal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donttal](https://clawhub.ai/user/donttal)
 
-## Use Case: <br>
-Developers and engineers use Skill Sync to audit local AI-agent skill installations across multiple host roots, compare conflicting copies, preview deduplication or root-adoption plans, and apply reversible convergence when the plan is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applied dedupe, import, or adopt-root commands can reorganize local AI-agent skill directories. <br>
-Mitigation: Run preview commands first, inspect the planned replacements, and use --apply only after confirming the affected paths. <br>
-Risk: Forced installation or convergence can replace existing local skill folders. <br>
-Mitigation: Avoid --force and applied operations until the target roots are correct, and keep the backup directory available for restore. <br>
+## Use Case:
 
+Developers and agent users use Skill Sync to audit local skills across multiple AI agent hosts, review duplicate or conflicting installs, and preview or apply convergence around a canonical skill source.
 
-## Reference(s): <br>
-- [Skill Sync on ClawHub](https://clawhub.ai/donttal/multi-agent-skill-sync) <br>
-- [Compatibility Model](references/compatibility.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce preview plans, diffs, export/import manifests, symlink operations, and restore instructions depending on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Restore and import flows can apply untrusted backup manifests and mutate files outside the intended skill roots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run preview commands first, inspect planned paths, use --apply only after review, and restore only from backup runs or manifests you generated and trust.
+
+Risk: Convergence operations can replace local skill copies with symlinks.
+
+Mitigation: Use strict dedupe for identical portable skills when possible and keep the generated backup run available for rollback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/donttal/skills/multi-agent-skill-sync)
+- [Compatibility Model](references/compatibility.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands; optional text, JSON reports, and layout manifest files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode is the default; apply and restore flows can mutate local skill roots and write restorable backups.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata, created 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

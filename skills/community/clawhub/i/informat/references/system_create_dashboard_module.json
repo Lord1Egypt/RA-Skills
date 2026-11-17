@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_create_dashboard_module",
-    "description": "Generate Informat dashboard",
+    "description": "Generate Informat dashboard. [Generation Workflow - MUST READ] Before calling this tool, you should first determine: 1) the business scenario (determines theme selection); 2) the list of cards (determines layout template). After creating the dashboard, create cards one by one; before creating any card you MUST call _read_informat_dashboard_ui_preset to read the UI preset (7 theme palettes + 6 layout templates + card style presets), and strictly fill cardStyle/proChartSetting/numberSetting per the preset defaults for each card. All cards in the same dashboard MUST use the same theme palette, and width/height MUST follow the chosen layout template.",
     "parameters": {
       "type": "object",
       "properties": {

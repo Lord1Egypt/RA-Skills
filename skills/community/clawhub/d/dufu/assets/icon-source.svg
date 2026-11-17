@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#132238"/>
+  <path d="M122 116h211c19 0 34 15 34 34v214c0 19-15 34-34 34H122c-19 0-34-15-34-34V150c0-19 15-34 34-34Z" fill="#F5F1E8"/>
+  <path d="M333 116v69c0 13 11 24 24 24h10" fill="none" stroke="#D9D0BF" stroke-width="8"/>
+  <path d="M137 181h128M137 220h128M137 259h95" stroke="#9BA7B7" stroke-width="12" stroke-linecap="round"/>
+  <path d="M135 330c45-59 83-100 133-137 18-13 41-9 54 8 12 16 9 38-7 51-45 38-94 69-157 99" fill="none" stroke="#4DA3FF" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m151 351 8-35 27 24z" fill="#4DA3FF"/>
+  <rect x="315" y="313" width="79" height="79" rx="10" fill="#D9685F" transform="rotate(8 315 313)"/>
+  <text x="355" y="371" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, Noto Serif CJK SC, serif" font-size="48" font-weight="700" fill="#FFF8ED">杜</text>
+</svg>

@@ -1,45 +1,58 @@
-## Description: <br>
-Generate children's drawings and coloring pages with modular prompts, style packs, and print-ready constraints across image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate children's drawings and coloring pages with modular prompts, style packs, and print-ready constraints across image models.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to turn drawing, coloring-page, worksheet, or educational illustration requests into kid-safe, model-portable image prompts with clear style, age, and print constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text or reference images may be sent to the selected image provider through the user's active image-generation workflow. <br>
-Mitigation: Use trusted providers, avoid unnecessary personal details or identifiable child photos, and review prompts before generation. <br>
-Risk: The skill can remember drawing preferences, age bands, style choices, and recurring prompt constraints under ~/drawing/. <br>
-Mitigation: Review or clear ~/drawing/ to reset saved preferences, and tell the agent when preference memory should be paused or avoided. <br>
+## Use Case:
 
+External users and developers use this skill to turn drawing, coloring-page, worksheet, or educational illustration requests into model-portable image prompts with age-appropriate style, composition, and print constraints.
 
-## Reference(s): <br>
-- [Drawing on ClawHub](https://clawhub.ai/ivangdavila/drawing) <br>
-- [Drawing homepage](https://clawic.com/skills/drawing) <br>
-- [OpenAI image generation guide](https://platform.openai.com/docs/guides/image-generation) <br>
-- [OpenAI GPT Image cookbook example](https://cookbook.openai.com/examples/generate_images_with_gpt_image) <br>
-- [Google Vertex AI image prompt guide](https://cloud.google.com/vertex-ai/generative-ai/docs/image/image-prompts-design) <br>
-- [OpenClaw models documentation](https://docs.openclaw.ai/concepts/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with reusable prompt templates, style guidance, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local preference notes under ~/drawing/ and produces provider-neutral prompt guidance unless the user asks for OpenClaw model configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Risk: The skill may ask the agent to remember drawing preferences or activation behavior, including outside the skill-local folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether preference memory should be used, keep saved notes minimal, and honor paused or declined memory preferences.
+
+Risk: Prompt text and optional reference images may be sent to the selected image provider, which can expose personal details or identifiable child photos.
+
+Mitigation: Use generic descriptions where possible, avoid unnecessary personal details or identifiable child images, and use only trusted providers.
+
+## Reference(s):
+
+- [Drawing skill page](https://clawhub.ai/ivangdavila/skills/drawing)
+- [Drawing homepage](https://clawic.com/skills/drawing)
+- [OpenAI image generation guide](https://platform.openai.com/docs/guides/image-generation)
+- [OpenAI cookbook image generation example](https://cookbook.openai.com/examples/generate_images_with_gpt_image)
+- [Google Vertex AI image prompt guide](https://cloud.google.com/vertex-ai/generative-ai/docs/image/image-prompts-design)
+- [OpenClaw models guide](https://docs.openclaw.ai/concepts/models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with reusable image prompt templates, refinement guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local preference memory under ~/drawing/ and provider-neutral image model workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

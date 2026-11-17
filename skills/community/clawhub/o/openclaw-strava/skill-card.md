@@ -1,46 +1,55 @@
-## Description: <br>
-Official Strava OAuth integration for OpenClaw that connects to Strava, stores and refreshes tokens, fetches workout activity data for a day or date range, and supports training summaries, weekly mileage, activity lists, and Wellness hub normalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Strava OAuth integration for OpenClaw that helps agents connect to Strava, store and refresh tokens, fetch workout activities, normalize activity data, and render short training summaries.
 
-## Publisher: <br>
-[gavinchengcool](https://clawhub.ai/user/gavinchengcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinchengcool](https://clawhub.ai/user/gavinchengcool)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to authorize Strava, fetch daily or date-range workout activities, normalize them for a Wellness hub, and render concise training summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Strava OAuth tokens locally and uses a Strava client secret. <br>
-Mitigation: Keep STRAVA_CLIENT_SECRET and STRAVA_TOKEN_PATH contents private, restrict token file permissions, and revoke the Strava OAuth grant when access is no longer needed. <br>
-Risk: Fetched activity exports may contain sensitive workout, location, timing, heart-rate, or wellness-related data. <br>
-Mitigation: Avoid sharing raw activity exports and review normalized JSON or rendered summaries before sending them outside the intended workflow. <br>
-Risk: Daily activity filtering depends on the configured timezone. <br>
-Mitigation: Set STRAVA_TZ to the user's IANA timezone before fetching today, yesterday, or date-specific activity data. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to authorize Strava access, fetch recent activity data, and produce normalized workout summaries for OpenClaw and Wellness hub workflows.
 
-## Reference(s): <br>
-- [Strava API quick reference](references/strava_api.md) <br>
-- [Output schema](references/output_schema.md) <br>
-- [Strava OAuth authorize endpoint](https://www.strava.com/oauth/authorize) <br>
-- [Strava athlete activities endpoint](https://www.strava.com/api/v3/athlete/activities) <br>
-- [ClawHub skill page](https://clawhub.ai/gavinchengcool/openclaw-strava) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown or text summaries, shell command guidance, and JSON activity files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normalized activity JSON includes workout timing, type, duration, distance, heart rate, calories, source metadata, and raw file references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill stores Strava OAuth tokens locally, including refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep STRAVA_CLIENT_SECRET and the token file private, set STRAVA_TOKEN_PATH to a private directory, and revoke the Strava authorization if the token file may have been exposed.
+
+Risk: Fetched workout data can include sensitive activity, health, and location-adjacent information.
+
+Mitigation: Avoid shared output paths for real activity data, restrict access to generated JSON files, and review summaries before sharing them outside the intended workflow.
+
+## Reference(s):
+
+- [Strava API (quick reference)](references/strava_api.md)
+- [Output schema (for Wellness hub)](references/output_schema.md)
+- [ClawHub skill page](https://clawhub.ai/gavinchengcool/skills/openclaw-strava)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text summaries, normalized JSON files, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches Strava activity data for today, yesterday, or a supplied date range and can normalize output for Wellness hub ingestion.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

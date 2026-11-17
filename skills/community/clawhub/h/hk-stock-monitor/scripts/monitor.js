@@ -63,7 +63,7 @@ const CONFIG = {
   dataDir: path.join(__dirname, '..', 'data'),
   reportsDir: path.join(__dirname, '..', 'reports'),
   // QVeris API
-  qverisApiKey: process.env.QVERIS_API_KEY || 'sk-pQbZOXNY3p1gPIg4cXPRiM7k6_SfXpw190ZRO7ac5Gs',
+  qverisApiKey: process.env.QVERIS_API_KEY || 'REDACTED-SECRET',
   qverisScript: path.join(__dirname, '../../skills/qveris-official/scripts/qveris_tool.mjs')
 };
 

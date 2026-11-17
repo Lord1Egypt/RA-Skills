@@ -1,41 +1,50 @@
-## Description: <br>
-Complete on-page SEO system for any website — page optimization, schema markup, technical SEO checklist, internal linking strategy, Core Web Vitals guidance, and AI-driven content gap analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through on-page SEO audits and optimization covering page metadata, schema markup, technical SEO, internal linking, Core Web Vitals, and content gap analysis for websites across common CMS platforms.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-External site owners, marketers, and developers use this skill to audit and improve page-level SEO, technical fundamentals, schema markup, internal linking, and ongoing monitoring for websites across common CMS platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share website content, business details, keywords, or analytics context while using the SEO workflow. <br>
-Mitigation: Provide only information that is appropriate to share in chat and omit sensitive customer, credential, or private analytics data. <br>
-Risk: The skill links to ContentAI Suite as a third-party promotional destination. <br>
-Mitigation: Treat the linked site as external to NVIDIA and evaluate it separately before relying on it. <br>
+## Use Case:
 
+External website owners, SEO practitioners, marketers, and developers use this skill to audit and improve website pages, generate JSON-LD schema suggestions, plan internal links, and monitor ongoing SEO health.
 
-## Reference(s): <br>
-- [Schema.org](https://schema.org) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with checklists, prompts, recommendations, and JSON-LD examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or hidden behavior was found in the supplied security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Using the skill may involve sharing website URLs, page copy, business contact details, or target keywords with an agent or model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private business material unless that is acceptable for the workflow, and redact sensitive details before analysis.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org)
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, prompts, and JSON-LD examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO audit recommendations, page metadata suggestions, internal-linking plans, and schema markup examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Automates GitHub contribution workflows, including issue discovery, fork synchronization, branch setup, and pull request preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Github Contribution helps agents discover maintainer-approved GitHub issues, prepare clean fork branches, and produce pull request contribution guidance with proof expectations.
 
-## Publisher: <br>
-[linux2010](https://clawhub.ai/user/linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and external contributors use this skill to find maintainer-approved issues, prepare clean fork branches, and create pull requests for open source repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destructive Git cleanup and reset steps can discard local commits or untracked work. <br>
-Mitigation: Run the workflow only in a clean, backed-up worktree or disposable clone; review commands first and prefer dry-run cleanup checks. <br>
-Risk: Push and history-rewrite steps can affect the wrong branch or overwrite pull request history. <br>
-Mitigation: Confirm remotes, branch names, and ownership before pushing; use force-with-lease instead of force pushes when history rewriting is required. <br>
+## Use Case:
 
+Developers and coding agents use this skill to identify suitable GitHub issues, prepare a synchronized fork and feature branch, and draft contribution-ready pull requests with concrete validation evidence.
 
-## Reference(s): <br>
-- [ClawHub GitHub Contribution release](https://clawhub.ai/linux2010/github-contribution) <br>
-- [GitHub contribution workflow artifact](artifact/github-contribution-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Bash workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed before use, especially cleanup, reset, and push operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The workflow can reset and clean a local repository, which may discard uncommitted work or untracked files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in disposable or freshly cloned fork directories, check git status first, and back up or commit any local work before execution.
+
+Risk: The workflow may encourage broader GitHub token permissions than are needed for normal contribution tasks.
+
+Mitigation: Prefer existing GitHub CLI or SSH authentication, or use fine-grained credentials limited to the relevant fork or repository.
+
+Risk: The automation depends on repository branch conventions and upstream remote state.
+
+Mitigation: Manually verify the target repository, fork, upstream remote, and branch names before allowing push or pull request actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linux2010/skills/github-contribution)
+- [Publisher Profile](https://clawhub.ai/user/linux2010)
+- [Skill Instructions](artifact/SKILL.md)
+- [Contribution Workflow](artifact/github-contribution-workflow.md)
+- [Live Proof Cases](artifact/live-proof-cases.md)
+- [Automation Script](artifact/scripts/github-contribution.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository-specific command sequences, PR text, checklists, and validation evidence templates.]
+
+## Skill Version(s):
+
+1.7.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Explain error messages and suggest fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain error messages and suggest fixes.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External users and developers use this skill to send error text to the NEXUS service and receive explanations plus suggested fixes. It is intended for agent workflows that can approve paid external requests and handle payment proof credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Error text may be sent to an external AI service and can include sensitive diagnostics, secrets, tokens, customer data, or internal hostnames. <br>
-Mitigation: Redact sensitive data before use and install only where sending error text to NEXUS is acceptable. <br>
-Risk: The skill can use payment credentials for paid external requests without clear per-use approval. <br>
-Mitigation: Require explicit approval before each paid call and prefer sandbox or tightly scoped payment credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to send error text to the NEXUS service and receive explanations with suggested fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-error-explain) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [Error explain API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/error-explain) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object with a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF for paid requests; sandbox usage is documented by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Error text can contain secrets, private code, internal hostnames, customer data, or credentials that would be sent to a paid third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive error details before use, and install only when the NEXUS service is trusted for the data being submitted.
+
+Risk: The skill may make paid external requests using payment credentials without clear per-request consent boundaries.
+
+Mitigation: Use sandbox mode or require explicit confirmation before each paid request where the agent runtime supports it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-error-explain)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [NEXUS x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [NEXUS MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [NEXUS AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [NEXUS XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [NEXUS Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [NEXUS A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object containing a result string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill calls a paid external HTTPS service and returns the service response.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

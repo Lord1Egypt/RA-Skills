@@ -1,45 +1,59 @@
-## Description: <br>
-Multi-platform content publisher via browser automation that adapts and posts text and images to Weibo, Xiaohongshu, Zhihu, Twitter/X, Reddit, V2EX, Douban, LinkedIn, and similar platforms from one command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Post helps an agent adapt and publish text and image posts across platforms such as Weibo, Xiaohongshu, Zhihu, Twitter/X, Reddit, V2EX, Douban, and LinkedIn using browser automation with the user's logged-in sessions.
 
-## Publisher: <br>
-[jeffchang2024](https://clawhub.ai/user/jeffchang2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffchang2024](https://clawhub.ai/user/jeffchang2024)
 
-## Use Case: <br>
-External users and creators use this skill to adapt one piece of content for multiple social platforms and publish it through browser sessions where they are already logged in. It is intended for cross-platform posting workflows that need platform-specific length, tone, image, subreddit, node, or title handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live content through accounts already logged into Chrome without a built-in confirmation step. <br>
-Mitigation: Require a final preview and explicit user approval for each destination before any publish button is clicked. <br>
-Risk: Content may be posted to the wrong platform, account, subreddit, or V2EX node if the target is underspecified. <br>
-Mitigation: Specify the exact target platforms and accounts before execution, and provide required destination details such as subreddit, node, and title. <br>
-Risk: Browser automation can encounter platform rate limits, upload failures, login redirects, or CAPTCHA challenges. <br>
-Mitigation: Run platforms sequentially, wait between destinations, retry uploads once when appropriate, and skip blocked or CAPTCHA-gated flows while reporting the status. <br>
+## Use Case:
 
+External users and developers use this skill to prepare platform-specific post drafts, attach local images where supported, publish through existing logged-in browser sessions, and receive per-platform success or failure reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeffchang2024/multi-post) <br>
-- [Publisher Profile](https://clawhub.ai/user/jeffchang2024) <br>
-- [Platform Automation Flows](artifact/references/platform-flows.md) <br>
-- [Platform Content Rules](artifact/references/platform-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, browser automation steps] <br>
-**Output Format:** [Markdown-style adapted post content, browser action guidance, and per-platform success or failure summaries with URLs when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill operates sequentially across selected platforms and may publish live posts through logged-in browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish modified content and upload media from logged-in social accounts without a clear final approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run drafting by default, display the exact text, media, active account, and destination for each platform, and require explicit confirmation before every publish or clearly scoped batch publish.
+
+Risk: The skill can post publicly from any supported account already logged in to the user's browser.
+
+Mitigation: Verify the active account and target destination before publishing, and skip any platform where the account or destination cannot be confirmed.
+
+Risk: Image handling may involve external image hosting for some destinations.
+
+Mitigation: Ask separately before uploading media to any external image host and report when image publishing is skipped.
+
+## Reference(s):
+
+- [Platform Automation Flows](references/platform-flows.md)
+- [Platform Content Rules](references/platform-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/jeffchang2024/skills/multi-post)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status summaries with platform-specific post text and publish results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination platform, publish status, captured post URL, timestamp, and failure reason.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

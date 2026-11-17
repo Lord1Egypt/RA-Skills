@@ -1,39 +1,52 @@
-## Description: <br>
-Audit GitHub Actions runs for fail-then-success retry recovery patterns to quantify flaky rerun waste. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions runs for fail-then-success retry recovery patterns to quantify flaky rerun waste.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze exported GitHub Actions workflow run data, identify fail-then-success retry patterns, and prioritize flaky reruns by wasted minutes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports can expose repository, branch, commit, run, and URL details from GitHub Actions exports. <br>
-Mitigation: Use only GitHub Actions JSON files that are appropriate for local reports or CI logs, and review generated output before sharing it. <br>
-Risk: CI fail gates based on retry waste thresholds can block workflows when critical recoveries are detected. <br>
-Mitigation: Set WARN_WASTE_MINUTES, CRITICAL_WASTE_MINUTES, and FAIL_ON_CRITICAL intentionally for the repository's tolerance before enabling enforcement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-retry-recovery-audit) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit exported GitHub Actions workflow runs, identify flaky retry recovery patterns, and prioritize wasted CI minutes for triage or CI enforcement.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON summary with ranked recoveries and critical recovery groups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit with a non-zero status when FAIL_ON_CRITICAL=1 and critical recoveries are present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports may include private repository metadata if the input GitHub Actions JSON exports contain it.
+
+Mitigation: Limit RUN_GLOB to intended exports and handle generated reports according to the repository metadata sensitivity.
+
+Risk: The optional critical fail gate can cause a nonzero CI exit.
+
+Mitigation: Enable FAIL_ON_CRITICAL only when CI enforcement is intended and threshold values have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-retry-recovery-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Text report or JSON summary with ranked retry recoveries and critical recovery entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code is 0 in report mode, or 1 when FAIL_ON_CRITICAL=1 and critical recoveries are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

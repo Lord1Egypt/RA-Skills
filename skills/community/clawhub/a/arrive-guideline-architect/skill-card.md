@@ -1,43 +1,56 @@
-## Description: <br>
-Generate ARRIVE 2.0 compliant animal research protocols with structured experimental design, sample size calculations, and reporting checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ARRIVE 2.0 compliant animal research protocols with structured experimental design, sample size calculations, and reporting checklists.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers and research-support teams use this skill to draft animal-study protocols, ARRIVE 2.0 reporting checklists, and protocol validation summaries for in vivo study planning and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes stronger animal-research compliance, sample-size, IACUC readiness, and animal-welfare claims than the code supports. <br>
-Mitigation: Treat outputs as drafting and checklist aids only; require review by a qualified biostatistician and institutional ethics reviewer before using them for study approval, conduct, or publication. <br>
-Risk: The bundled CLI writes generated protocols or checklists to caller-provided output paths. <br>
-Mitigation: Run the CLI in a dedicated working folder and choose output filenames deliberately before execution. <br>
+## Use Case:
 
+External researchers and developers use this skill to draft or check animal research protocols against ARRIVE 2.0 reporting expectations before ethics review, grant review, or manuscript preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/arrive-guideline-architect) <br>
-- [ARRIVE 2.0 Essential 10 checklist](artifact/arrive_checklist.md) <br>
-- [Example generated protocol](artifact/example_protocol.md) <br>
-- [Example study brief](artifact/example_study_brief.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown protocols and checklists, plain-text validation summaries, JSON study briefs, and Python or shell usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write protocol or checklist files to user-selected paths when the bundled CLI is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Generated protocols may omit institution-specific ethics, animal welfare, or statistical requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the protocol reviewed by the relevant ethics committee, animal care staff, and statistical reviewer before study execution.
+
+Risk: The skill can run shell commands and write protocol or checklist files.
+
+Mitigation: Run it in a controlled workspace with intended study inputs and review output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/arrive-guideline-architect)
+- [ARRIVE 2.0 checklist evidence](artifact/arrive_checklist.md)
+- [Example ARRIVE protocol evidence](artifact/example_protocol.md)
+- [Example study brief evidence](artifact/example_study_brief.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown protocols and checklists, JSON study briefs, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write protocol or checklist files to a user-specified output path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

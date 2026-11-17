@@ -1,44 +1,59 @@
-## Description: <br>
-Semantic Prospect discovers, qualifies, and enriches high-intent business leads from public forums, Reddit, communities, and web sources using semantic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered semantic lead prospecting that discovers, qualifies, and enriches high-intent business opportunities from public web communities, forums, Reddit, and other public discussions.
 
-## Publisher: <br>
-[simplysemantics](https://clawhub.ai/user/simplysemantics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[simplysemantics](https://clawhub.ai/user/simplysemantics)
 
-## Use Case: <br>
-External sales teams, SaaS companies, consultants, creators, and AI builders use this skill to turn public web discussions into prioritized lead records for outreach, enrichment, or agent handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prospecting criteria are sent to an external Simply Semantics SaaS provider. <br>
-Mitigation: Use a dedicated API key where possible, avoid submitting confidential targeting strategy or private customer data, and review vendor retention and export controls before production use. <br>
-Risk: Returned public lead data may be used for outreach subject to source community terms and compliance obligations. <br>
-Mitigation: Review each source community's terms of service and apply internal compliance review before using collected leads for outreach. <br>
-Risk: New accounts can return synthetic mock leads rather than real prospects. <br>
-Mitigation: Pass strategy as brave or llm for real lead discovery and clearly label mock results as test data. <br>
+## Use Case:
 
+External developers, sales teams, SaaS companies, consultants, agencies, and AI builders use this skill to turn public discussion signals into prioritized lead records for review, outreach planning, enrichment, or agent handoff.
 
-## Reference(s): <br>
-- [Semantic Prospect product page](https://www.simplysemantics.com/semantic-prospect.html) <br>
-- [ClawHub listing](https://clawhub.ai/simplysemantics/semantic-prospect) <br>
-- [Simply Semantics publisher profile](https://clawhub.ai/user/simplysemantics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API calls, Guidance] <br>
-**Output Format:** [Markdown lead report with JSON API request and response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMPLY_SEMANTICS_API_KEY. Real lead discovery requires an explicit brave or llm strategy; mock strategy returns synthetic test data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and clawhub.json; SKILL.md frontmatter and CHANGELOG list 1.0.0) <br>
+Risk: Prospecting criteria are sent to Simply Semantics and discovered public lead records are stored in the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for criteria and account data acceptable for Simply Semantics processing and storage.
+
+Risk: Lead exports or outreach may be subject to source community terms, privacy requirements, and applicable outreach rules.
+
+Mitigation: Review community terms and applicable privacy or outreach rules before exporting, contacting, or automating follow-up with leads.
+
+Risk: New accounts may return mock test data when no real search strategy is selected.
+
+Mitigation: Set strategy to brave or llm for real searches and check is_mock or search_strategy before treating results as real leads.
+
+## Reference(s):
+
+- [Semantic Prospect product page](https://www.simplysemantics.com/semantic-prospect.html)
+- [Semantic Prospect ClawHub listing](https://clawhub.ai/simplysemantics/skills/semantic-prospect)
+- [Semantic Prospect API endpoint](https://dashboard.simplysemantics.com/sp/mcp/forum-leads-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown summary with structured lead records from JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMPLY_SEMANTICS_API_KEY; real lead searches should explicitly set strategy to brave or llm.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/clawhub.json; artifact/SKILL.md and artifact/CHANGELOG.txt list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

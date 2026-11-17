@@ -1,39 +1,55 @@
-## Description: <br>
-Fast meme coin trading execution for AI agents on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast meme coin trading execution for AI agents that need to trade meme coins, snipe new Solana token launches, execute rapid buys and sells, and manage fast-paced positions with MEV protection, auto-slippage, rug detection, and position management.
 
-## Publisher: <br>
-[inkoak23-code](https://clawhub.ai/user/inkoak23-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[inkoak23-code](https://clawhub.ai/user/inkoak23-code)
 
-## Use Case: <br>
-Developers and agent builders use this skill to guide fast Solana meme-coin trading workflows, including planned token sniping, rapid buy/sell execution, safety checks, and position management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes high-risk automated Solana meme-coin trading without documented confirmation, wallet, spending, or stop controls. <br>
-Mitigation: Do not connect a wallet or permit live trades until the implementation documents per-trade approval, spending caps, slippage limits, retry behavior, dry-run support, cancellation controls, and financial risk warnings. <br>
-Risk: The artifact describes planned trading modules that are not present in the submitted files. <br>
-Mitigation: Treat execution, sniping, monitoring, safety, and portfolio behavior as unavailable until concrete scripts or references are reviewed and scanned. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inkoak23-code/trench) <br>
+## Use Case:
+
+Developers and trading agents use this skill to plan fast Solana meme-coin trading actions such as token launch monitoring, pool sniping, rapid buys and sells, and position management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is a high-risk trading skill and may lead an agent toward irreversible live Solana transactions.
+
+Mitigation: Require explicit human approval for every live transaction before execution.
+
+Risk: Incorrect token addresses, excessive slippage, or oversized positions can cause financial loss.
+
+Mitigation: Verify token addresses independently and set strict SOL, slippage, and position limits.
+
+Risk: Providing wallet credentials or signing authority can expose funds to unauthorized or unintended transactions.
+
+Mitigation: Do not provide wallet credentials or signing authority unless the operator fully understands and accepts the risk.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Analysis] <br>
-**Output Format:** [Markdown with natural-language trading instructions and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only placeholder; future live-trading use should document wallet handling, approval, spending, slippage, retry, dry-run, and cancellation controls.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe high-risk trading actions that require explicit human approval before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

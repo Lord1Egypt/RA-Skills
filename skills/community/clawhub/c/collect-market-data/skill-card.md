@@ -1,46 +1,63 @@
-## Description: <br>
-Collects global financial market, policy, company, and economic data for daily market reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects global financial market data across U.S., China, Hong Kong, Europe, and Asia-Pacific markets to support daily financial report generation.
 
-## Publisher: <br>
-[szrw1825](https://clawhub.ai/user/szrw1825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szrw1825](https://clawhub.ai/user/szrw1825)
 
-## Use Case: <br>
-Analysts and agents preparing daily financial reports use this skill to collect market performance, policy updates, technology-company news, economic data, market-holiday status, and a qualitative global market summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is network-heavy and contacts multiple external market-data and search providers. <br>
-Mitigation: Run it only in environments where those outbound requests are expected, and review provider availability, rate limits, and logs before relying on collected data. <br>
-Risk: The skill requires search/API credentials such as BOCHA_API_KEY. <br>
-Mitigation: Provide credentials through environment variables or a controlled secret store, and avoid embedding secrets in skill files or logs. <br>
-Risk: The artifact depends on an external config.py path, output directory, and log path. <br>
-Mitigation: Review and adapt the configuration paths before first use so generated reports and logs are written to approved locations. <br>
-Risk: Broad trigger phrases may start local report generation and external data collection when a narrower quote lookup was intended. <br>
-Mitigation: Use explicit invocation wording or add a confirmation step in deployments where simple market queries should not create files or call external providers. <br>
+## Use Case:
 
+External users and financial-reporting agents use this skill to gather market performance, policy, company, economic, holiday, and daily-summary data before producing a financial daily report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szrw1825/collect-market-data) <br>
-- [Bocha Web Search API endpoint](https://api.bocha.cn/v1/web-search) <br>
-- [FRED CSV data endpoint](https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}&limit={limit}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON market-data file with console and log output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes market_data.json under the configured daily output directory and logs execution details to the configured log file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs scripts with broad network and file access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and execute it only in a contained environment with reviewed network and filesystem permissions.
+
+Risk: The artifact imports configuration from hard-coded external user paths and writes to configured output and log paths.
+
+Mitigation: Verify config.py, output directories, and log paths before use, and replace hard-coded paths with deployment-local configuration.
+
+Risk: Market symbols and web-search queries may be sent to third-party providers.
+
+Mitigation: Review provider terms and avoid submitting confidential prompts, watchlists, or business-sensitive market queries.
+
+Risk: Browser automation disables the Chromium sandbox.
+
+Mitigation: Remove or constrain the no-sandbox setting before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szrw1825/skills/collect-market-data)
+- [Bocha Web Search API endpoint](https://api.bocha.cn/v1/web-search)
+- [FRED CSV data endpoint](https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}&limit={limit})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON market_data file with logs and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes market_data.json under a configured daily output directory and records collection activity in a configured log file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

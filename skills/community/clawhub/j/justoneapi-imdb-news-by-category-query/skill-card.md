@@ -1,43 +1,51 @@
-## Description: <br>
-Call GET /api/imdb/news-by-category-query/v1 for IMDb News by Category through JustOneAPI with category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/news-by-category-query/v1 for IMDb News by Category through JustOneAPI with category.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch IMDb news by category through JustOneAPI, then summarize headlines, summaries, and source metadata for media monitoring or news research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token is sent in the URL query string and may appear in request URLs, command output, shell history, or logs. <br>
-Mitigation: Use a limited-scope token if available, avoid sharing logs or screenshots that may include request URLs, and rotate the token if exposure is suspected. <br>
-Risk: The skill depends on an external JustOneAPI service and will fail if the service, token, network, or endpoint contract is unavailable. <br>
-Mitigation: Check backend error payloads, keep the token current, and treat returned IMDb news data as service-provided content that may need verification before publication. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve IMDb news by category from JustOneAPI for media monitoring and news research. It supports TOP, MOVIE, TV, and CELEBRITY categories, with an optional language and country preference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-news-by-category-query) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_news_by_category_query&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_news_by_category_query&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN value supplied at runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sent as a query parameter and may be exposed in logs or monitoring systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or low-quota token, avoid pasting token values into chat or logs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_news_by_category_query&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-news-by-category-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, JSON, guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and a category query parameter; languageCountry defaults to en_US.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,53 @@
-## Description: <br>
-Guides agents through configuring mihomo proxy routing so mainland China servers can reach Binance API endpoints and troubleshoot common connection, DNS, and HTTP 451 failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在中国大陆服务器通过代理访问币安API的完整配置指南。涵盖代理选型、mihomo安装配置、vmess连接、币安域名路由、API签名调用。当用户在中国大陆需要调用币安API、配置币安代理、解决币安API连接问题（Connection reset、HTTP 451区域限制、DNS污染）时使用此技能。
 
-## Publisher: <br>
-[eastnomoring](https://clawhub.ai/user/eastnomoring) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eastnomoring](https://clawhub.ai/user/eastnomoring)
 
-## Use Case: <br>
-Developers and operators managing mainland China servers use this skill to configure a local mihomo proxy, route Binance API traffic through a non-US VPS, and test signed or unsigned Binance API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland origin servers with non-US proxy exit regions such as Japan, Hong Kong, Singapore, South Korea, or Europe. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures a persistent system proxy and routes sensitive financial API traffic through proxy infrastructure. <br>
-Mitigation: Review before installation, use only trusted or self-managed proxy infrastructure, run services with least privilege, and avoid sending signed or private Binance requests through shared or untrusted nodes. <br>
-Risk: The skill downloads and installs mihomo as part of the setup flow. <br>
-Mitigation: Download mihomo only from an official source and verify checksums or signatures before installing it. <br>
-Risk: Signed Binance API examples can expose account privileges if broad API keys are used. <br>
-Mitigation: Use restricted Binance API keys, such as read-only keys unless trading is explicitly needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a mainland China server to reach Binance APIs through a non-US proxy path, including mihomo routing, vmess proxy settings, Binance API signing examples, and troubleshooting for common connectivity failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eastnomoring/binance-proxy-cn) <br>
-- [MetaCubeX mihomo release download referenced by the skill](https://ghfast.top/https://github.com/MetaCubeX/mihomo/releases/download/v1.19.0/mihomo-linux-amd64-v1.19.0.gz) <br>
-- [Binance API time endpoint used for connectivity testing](https://api.binance.com/api/v3/time) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, YAML, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes proxy configuration examples, systemd service setup, API signing commands, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The setup asks users to install an unverified proxy binary and run it persistently with high privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download mihomo from an official source, verify a pinned checksum or signature, test before enabling boot persistence, and run the service as a dedicated unprivileged user with systemd hardening.
+
+Risk: The workflow handles financial API credentials through proxy infrastructure.
+
+Mitigation: Use read-only or IP-restricted Binance API keys, avoid sharing secrets in shell history or logs, and route traffic only through proxy infrastructure the operator controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eastnomoring/skills/binance-proxy-cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash, YAML, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes proxy setup guidance, configuration snippets, API call examples, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

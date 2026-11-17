@@ -1,0 +1,63 @@
+{
+  "id": "domain-instagram",
+  "label": "Instagram — Social Feed Browser",
+  "emoji": "📸",
+  "domain": "instagram.com",
+  "description": "Extracted from: ScrapeClaw instagram-scraper, drawrowfly/instagram-scraper, instascrape, scrapfly.io Instagram guides. Verified 2026-07-16: 939px landing page. Login gate — no feed content without auth. Requires main mode with active session.",
+  "source_patterns": [
+    "Infinite scroll feed: 200-400px per pass, 2-4s between (image consumption)",
+    "Modal open after click: wait 1-2s for post overlay to render",
+    "Like: hover on target (1s) → click. Double-tap also common on mobile UA",
+    "Comment: click icon → 800ms → type slowly → 2-4s → post",
+    "Login: type username (pause 300-800ms per field), click login, wait 3-5s"
+  ],
+  "active_hours": {
+    "description": "Peak social media hours — lunch, evening",
+    "peak": [12, 14, 18, 23],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "wpm": { "min": 50, "max": 85 },
+    "profile": "careful",
+    "think_prob": 0.025,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.05,
+    "comment_speed_wpm": { "min": 40, "max": 65 },
+    "bio_typing_wpm": { "min": 30, "max": 50 }
+  },
+  "scroll": {
+    "passes": 6,
+    "description": "Feed-style: short bursts, looking at content between. Source: instascrape",
+    "speed_px_per_ms": { "min": 15, "max": 40 },
+    "pause_between_passes_ms": { "min": 2000, "max": 5000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 },
+    "infinite_scroll_detection": "document.body.scrollHeight changes",
+    "scroll_method": "gradual (not jump-to-bottom)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 5000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1200 },
+    "inter_action_pause_ms": { "min": 400, "max": 1500 },
+    "post_modal_pause_ms": { "min": 1000, "max": 2500 }
+  },
+  "mouse": {
+    "speed": 0.8,
+    "curvature": 0.25,
+    "jitter": 0.35,
+    "description": "Moderate-slow — browsing mode"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "like_button": "[aria-label='Like'], svg[aria-label='Like']",
+      "comment_box": "textarea[aria-label='Add a comment…']",
+      "post_modal": "div[role='dialog'] article"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 300, "max": 800 },
+      "post_login_wait_ms": { "min": 4000, "max": 7000 }
+    },
+    "sequence_hint": "navigate → scroll feed (4-6 passes) → click post → wait modal → scroll post → interact"
+  }
+}

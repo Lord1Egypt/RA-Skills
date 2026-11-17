@@ -1,46 +1,62 @@
-## Description: <br>
-Loomal capabilities - agent inbox at mailgent.dev, encrypted credential vault with 2FA, calendar, and USDC payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loomal capabilities: agent inbox at mailgent.dev, encrypted credential vault with 2FA, calendar, and USDC payments, with actions user-directed and scope-gated by a Loomal API key.
 
-## Publisher: <br>
-[masteratwork](https://clawhub.ai/user/masteratwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masteratwork](https://clawhub.ai/user/masteratwork)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with Loomal mail, credential vault, 2FA, calendar, identity signing, and USDC payment workflows under a scope-gated Loomal API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad Loomal API key could allow the agent to access more mail, vault, calendar, identity, or payment tools than the task needs. <br>
-Mitigation: Use narrow per-task keys, review granted scopes, and rotate or revoke keys when work is complete. <br>
-Risk: Sensitive actions such as sending mail, deleting data, using credentials, making a calendar public, or redeeming payments can have external effects. <br>
-Mitigation: Require explicit user review for those actions and confirm the active Loomal identity before sensitive work. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent work with Loomal-provided mail, credential vault, calendar, identity signing, and USDC payment workflows under the scopes granted to the user's Loomal API key.
 
-## Reference(s): <br>
-- [Loomal](https://loomal.ai) <br>
-- [Loomal Console](https://console.loomal.ai) <br>
-- [Loomal Documentation](https://docs.loomal.ai) <br>
-- [Loomal API Reference](https://docs.loomal.ai/api-reference) <br>
-- [@loomal/mcp package](https://www.npmjs.com/package/@loomal/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/masteratwork/loomal-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/masteratwork) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and tool-use guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LOOMAL_API_KEY and an MCP client with npx or bunx available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: The Loomal API key can delegate access to sensitive mail, vault, calendar, signing, and payment capabilities depending on granted scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow per-task API keys, avoid combining broad scopes unless needed, and rotate keys when a task ends or a key is no longer needed.
+
+Risk: Public calendar sharing and USDC payment actions can expose information or move real value.
+
+Mitigation: Require explicit user confirmation for public calendar changes and payment redemption, including amount, destination, and visibility impact.
+
+Risk: Installing the skill relies on trust in Loomal and the @loomal/mcp package used by the MCP server.
+
+Mitigation: Install only when the user trusts Loomal and the package source, and keep the MCP package version pinned or updated intentionally.
+
+## Reference(s):
+
+- [Loomal homepage](https://loomal.ai)
+- [Loomal documentation](https://docs.loomal.ai)
+- [Loomal OpenClaw integration documentation](https://docs.loomal.ai/integrations/openclaw)
+- [Loomal API reference](https://docs.loomal.ai/api-reference)
+- [@loomal/mcp npm package](https://www.npmjs.com/package/@loomal/mcp)
+- [ClawHub skill page](https://clawhub.ai/masteratwork/skills/loomal-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-selection instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOOMAL_API_KEY; available actions depend on the scopes granted to that key.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

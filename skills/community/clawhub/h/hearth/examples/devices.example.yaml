@@ -29,6 +29,11 @@ defaults:
   device_timeout: 18        # hard upper bound per device
   ping_count: 1
   ping_timeout: 2
+  # Health thresholds — a device is flagged DEGRADED when any is exceeded.
+  disk_warn_pct: 90         # warn when / usage >= this %
+  mem_warn_pct: 90          # warn when memory used >= this %
+  load_warn_per_cpu: 2      # warn when 1-min load > (cores x this)
+  temp_warn_c: 75           # warn when CPU temp >= this °C (Pi / thermal-zone hosts)
 
 # ──────────────────────────────────────────────────────────────────────────
 # DEVICES — minimal schema examples (one per auth type)

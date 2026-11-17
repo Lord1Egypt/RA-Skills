@@ -16,7 +16,7 @@ Hardcoded secrets, credentials, and sensitive data in source code is a major sec
 
 ```go
 const (
-    AWS_ACCESS_KEY    = "AKIAIOSFODNN7EXAMPLE"  // DON'T
+    AWS_ACCESS_KEY    = "REDACTED-SECRET"  // DON'T
     AWS_SECRET_KEY    = "wJalrXUtnFEMI/K7MDENG"  // DON'T
     DATABASE_PASSWORD = "SuperSecret123!"         // DON'T
     JWT_SECRET        = "my-super-secret-jwt-key" // DON'T

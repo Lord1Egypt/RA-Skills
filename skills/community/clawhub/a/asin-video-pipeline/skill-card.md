@@ -1,46 +1,63 @@
-## Description: <br>
-ASIN营销视频全自动流水线 helps agents guide setup of an n8n, Topview AI, Apify, and Google Sheets workflow for turning ASIN lists into Amazon product marketing videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide setup of an n8n workflow that turns Amazon ASIN rows into marketing video previews and approved final exports using Apify, Topview AI, and Google Sheets.
 
-## Publisher: <br>
-[kkk402373342](https://clawhub.ai/user/kkk402373342) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkk402373342](https://clawhub.ai/user/kkk402373342)
 
-## Use Case: <br>
-Developers, marketers, and automation engineers use this skill to configure and validate a workflow that reads ASINs from Google Sheets, retrieves product data, generates preview videos, supports review, and exports final marketing videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends ASIN and product data from Google Sheets to Apify and Topview AI. <br>
-Mitigation: Use least-privilege API keys, share the service account only with the intended spreadsheet, and avoid placing sensitive internal notes in processed columns. <br>
-Risk: Automated scheduling can consume third-party quotas or incur costs before behavior is confirmed. <br>
-Mitigation: Test on a copy of the sheet first and enable scheduling only after confirming cost, quota, and update behavior. <br>
+## Use Case:
 
+Developers, automation builders, and ecommerce operators use this skill to configure a pipeline that reads ASINs from Google Sheets, retrieves product data, submits video generation tasks, tracks review status, and writes resulting video links back to the sheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kkk402373342/asin-video-pipeline) <br>
-- [Workflow setup guide](references/WORKFLOW_SETUP.md) <br>
-- [n8n preview workflow](references/n8n-workflow-preview.json) <br>
-- [n8n export workflow](references/n8n-workflow-export.json) <br>
-- [Topview AI](https://www.topview.ai) <br>
-- [Apify](https://apify.com) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON workflow files and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions, validation guidance, n8n workflow imports, and configuration commands for external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow sends ASINs, product images, titles, descriptions, and generated video metadata to third-party services including Apify, Topview AI, and Google Sheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing requirements before use and only process product data that may be shared with those services.
+
+Risk: The workflow depends on API keys and service account credentials for Topview AI, Apify, and Google Sheets.
+
+Mitigation: Use least-privilege keys, restrict the Google service account to the target spreadsheet, and keep secrets out of repositories and screenshots.
+
+Risk: Unpinned n8n runtime images or changing third-party APIs can alter workflow behavior.
+
+Mitigation: Pin the n8n Docker image for production use and re-run setup validation after dependency or API changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kkk402373342/skills/asin-video-pipeline)
+- [WORKFLOW_SETUP.md](references/WORKFLOW_SETUP.md)
+- [n8n preview workflow](references/n8n-workflow-preview.json)
+- [n8n export workflow](references/n8n-workflow-export.json)
+- [Topview AI](https://www.topview.ai)
+- [Apify](https://apify.com)
+- [Google Cloud Console](https://console.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps, credential guidance, n8n workflow import commands, and validation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

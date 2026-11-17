@@ -1,41 +1,53 @@
-## Description: <br>
-Create rule-based reasoning systems for knowledge graphs that infer new relationships and facts from existing data using declarative logic rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates rule-based reasoning systems for knowledge graphs that infer new relationships and facts from existing data using declarative logic rules, including derivation, constraint, aggregation, conditional rules, and cycle detection.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and knowledge-graph engineers use this skill to design declarative rules that infer relationships, validate constraints, compute aggregations, and materialize graph facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed rules or inferred facts could introduce incorrect graph relationships or misleading outputs in fraud, compliance, classification, or business workflows. <br>
-Mitigation: Review and test rules before materializing inferred facts into production graphs, validate results against domain data, and require human approval for consequential decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to design rule-based knowledge graph reasoning workflows that derive relationships, validate constraints, compute aggregations, and materialize inferred facts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/graph-rule-engine-builder) <br>
-- [ClawHub Homepage](https://clawhub.com) <br>
-- [Graph Rule Patterns](references/graph-rule-patterns.md) <br>
-- [Graph Rule Examples](examples/graph-rule-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON-style rule results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rule definitions, inference plans, validation findings, materialized fact descriptions, and rule execution summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The bundled graph rule engine should not be treated as production-ready for fraud, compliance, recommendations, or other consequential decisions without additional controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add real cycle detection, deduplication, resource limits, tests, and human review before using generated rules or engine outputs for enforcement actions.
+
+## Reference(s):
+
+- [Graph Rule Engine Builder Skill Page](https://clawhub.ai/fisa712/skills/graph-rule-engine-builder)
+- [ClawHub Homepage](https://clawhub.com)
+- [Graph Rule Engine Builder README](README.md)
+- [Graph Rule Patterns](references/graph-rule-patterns.md)
+- [Graph Rule Examples](examples/graph-rule-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce inferred facts, constraint violations, materialized triples, aggregated metrics, and rule execution statistics for knowledge graph workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

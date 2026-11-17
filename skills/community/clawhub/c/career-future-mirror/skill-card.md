@@ -1,44 +1,58 @@
-## Description: <br>
-Career Future Mirror collects career background information, generates three differentiated career path options with an HTML career report, role-plays a three-years-later future self, and produces an immersive HTML future letter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Career Future Mirror collects career background, generates three differentiated career paths as an HTML report, supports a future-self dialogue, and creates an immersive future-letter HTML page.
 
-## Publisher: <br>
-[shaniu001](https://clawhub.ai/user/shaniu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaniu001](https://clawhub.ai/user/shaniu001)
 
-## Use Case: <br>
-External users use this skill to explore career uncertainty, compare three possible career paths, and receive Chinese-language career planning artifacts. Agents use it to gather career context, produce a styled career report, conduct a future-self dialogue, and generate a future letter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive career background, resume-like details, income goals, and future-self dialogue that may be saved locally. <br>
-Mitigation: Before use, remove contact details, addresses, IDs, employer-confidential information, and anything the user does not want retained; review or delete output/data/conversation_log.json after generating the letter. <br>
-Risk: Generated career paths, salary expectations, and future-self dialogue can influence personal career decisions without guaranteeing accuracy. <br>
-Mitigation: Review generated plans against current market information and personal constraints before acting on them, and treat the output as planning support rather than authoritative advice. <br>
+## Use Case:
 
+External users and career-planning agents use this skill to collect career-stage details, analyze skill and resource gaps, compare three career paths, and generate Chinese-language planning reports and future-self letters.
 
-## Reference(s): <br>
-- [Career survey data schema](artifact/reference/career_survey_data.json) <br>
-- [Skill page](https://clawhub.ai/shaniu001/career-future-mirror) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
-- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js) <br>
-- [Alpine.js CDN](https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, HTML files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Chinese conversational text with generated HTML reports, JSON conversation logs, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates output/reports/career_report.html, output/reports/future_letter.html, and output/data/conversation_log.json when run as described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may save sensitive career conversations, including resume details, employer history, salary goals, and personal career concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information the user is comfortable saving locally, avoid unnecessary identifying details, and review generated local files before sharing them.
+
+Risk: Career background could be exposed through web searches.
+
+Mitigation: Show and confirm search terms before searching, and remove identifying details from queries unless the user explicitly approves them.
+
+Risk: Generated HTML reports may contact third-party CDNs when opened.
+
+Mitigation: Open reports only in environments where remote font and script loading is acceptable, or review and replace remote assets before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaniu001/skills/career-future-mirror)
+- [Career survey schema](artifact/reference/career_survey_data.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown dialogue, generated HTML reports, and JSON conversation data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML reports may load third-party CDN scripts when opened.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

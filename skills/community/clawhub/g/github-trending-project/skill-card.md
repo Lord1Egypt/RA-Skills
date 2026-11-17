@@ -1,44 +1,57 @@
-## Description: <br>
-查询 GitHub Trending 热门项目，支持按编程语言、日期范围、口语（文档语言）筛选。当用户想了解 GitHub 今日/本周/本月热门项目、特定语言的热门仓库、或中文文档的热门项目时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Constructs GitHub Trending repository and developer links with optional filters for programming language, time range, and spoken or documentation language.
 
-## Publisher: <br>
-[langlyyy](https://clawhub.ai/user/langlyyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[langlyyy](https://clawhub.ai/user/langlyyy)
 
-## Use Case: <br>
-Developers and technical users use this skill to construct GitHub Trending repository or developer links filtered by programming language, daily/weekly/monthly time window, and spoken documentation language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is reviewed for constructing GitHub Trending links only; requests for tokens, shell commands, local file access, or repository changes are outside its reviewed scope. <br>
-Mitigation: Use the skill only to build and explain GitHub Trending URLs, and treat any future behavior requesting credentials, execution, or data modification as out of scope. <br>
-Risk: GitHub Trending pages and filter values can change over time, so generated links may not always produce the expected view. <br>
-Mitigation: Open the generated GitHub Trending link and verify that the displayed filters match the requested language, time range, and spoken language. <br>
+## Use Case:
 
+Developers and external users use this skill to generate direct GitHub Trending web links for repository or developer discovery, filtered by language, time window, or documentation language.
 
-## Reference(s): <br>
-- [GitHub Trending](https://github.com/trending) <br>
-- [GitHub Trending Developers](https://github.com/trending/developers) <br>
-- [GitHub Trending Programming Language Parameters](references/languages.md) <br>
-- [GitHub Trending Spoken Language Parameters](references/spoken-languages.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/langlyyy/github-trending-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with GitHub Trending links and brief parameter explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include constructed URLs for GitHub Trending repositories or developers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may assume the generated links come from an official GitHub Trending API or live API query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill constructs GitHub web URLs and that users should open GitHub to view current results.
+
+Risk: Trending filter values may stop matching user intent if GitHub changes supported language labels or URL parameters.
+
+Mitigation: Confirm language and spoken-language values on GitHub Trending when results do not match expectations.
+
+## Reference(s):
+
+- [GitHub Trending](https://github.com/trending)
+- [GitHub Trending Developers](https://github.com/trending/developers)
+- [GitHub Trending Language Parameters](references/languages.md)
+- [GitHub Trending Spoken Language Parameters](references/spoken-languages.md)
+- [ClawHub Skill Page](https://clawhub.ai/langlyyy/skills/github-trending-project)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with GitHub Trending URLs and brief filter explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces web links only; does not call the GitHub API or execute local code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

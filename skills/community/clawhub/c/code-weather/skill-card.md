@@ -1,40 +1,49 @@
-## Description: <br>
-A daily weather report for your codebase that translates tests, coverage, bugs, dependency health, code quality, churn, complexity, and readability into intuitive weather conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A daily weather report for your codebase: clear skies when tests pass and coverage is high, thunderstorms when bugs cluster, fog when modules are hard to understand, and hurricane warnings when critical vulnerable dependencies remain unpatched.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineering teams use Code Weather to summarize repository health before daily work, sprint planning, standups, deployment checks, and weekly trend reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Publisher provenance is limited for this release. <br>
-Mitigation: Review the SKILL.md content and publisher profile before enabling the skill in sensitive workflows. <br>
-Risk: The report may simplify repository health signals into broad weather-style guidance. <br>
-Mitigation: Use the report as a summary layer and confirm important decisions with the underlying tests, coverage data, dependency scans, and issue tracker. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Code Weather skill page](https://clawhub.ai/jcools1977/code-weather) <br>
-- [Publisher profile](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to translate codebase health signals into a concise weather-style status report before daily work, sprint planning, standups, deployments, or weekly trend reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text weather-style report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no external API calls or executable code are included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill presents codebase health as guidance that may influence planning, deploy, or risk decisions.
+
+Mitigation: Review the generated report and underlying project signals before acting on suggested alerts or risk areas.
+
+## Reference(s):
+
+- [Code Weather on ClawHub](https://clawhub.ai/jcools1977/skills/code-weather)
+- [Publisher profile: jcools1977](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text weather-style codebase health report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Zero external dependencies and no API calls are indicated by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-Use when the user needs to discover Canton Fair exhibitor or buyer leads, find exhibitor contacts, identify product categories and booth numbers, and prepare outreach drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user needs to discover Canton Fair exhibitor leads, find trade-show business opportunities, retrieve exhibitor contacts, product categories, and booth numbers, and prepare outreach content.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External business development and export sales users use this skill to research Canton Fair leads, rank potential prospects, organize contact information, and draft personalized follow-up messages for manual outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote API use may send queries and lead data to YunlvAI, while the release security summary notes conflicting privacy and storage disclosures. <br>
-Mitigation: Use a dedicated revocable API key, avoid submitting unnecessary sensitive data, and review YunlvAI privacy and retention terms before deployment. <br>
-Risk: The skill supports lead discovery and outreach drafting, which can enable bulk or non-compliant contact practices. <br>
-Mitigation: Use generated outreach only after human review, avoid bulk outreach, and verify GDPR, CAN-SPAM, and local contact-data obligations. <br>
-Risk: Exported leads, query history, outreach drafts, and logs may contain contact or business-sensitive data. <br>
-Mitigation: Store outputs in controlled locations, restrict access, and delete exported leads, query history, outreach drafts, and logs when no longer needed. <br>
+## Use Case:
 
+External business-development and export-sales users use this skill to query Canton Fair lead data, rank prospects, organize contact details, and generate personalized email or messaging content for user-directed outreach.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/wangm-a3/yunlv-guangjiao) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [YunlvAI homepage](https://yunlvai.com) <br>
-- [YunlvAI MatchGPT API](https://api.yunlvai.com) <br>
-- [Canton Fair Categories Reference](references/canton_fair_categories.md) <br>
-- [Outreach Templates](references/outreach_templates.md) <br>
-- [Follow-up Strategy](references/followup_strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured lead-list examples, JSON examples, outreach templates, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRADEGPT_API_KEY for YunlvAI MatchGPT API use; generated email and messaging content is intended for user review and manual sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Lead exports and generated outreach may include personal or business contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the data source and intended outreach are lawful for the target market, avoid bulk unsolicited messaging, and delete lead exports when no longer needed.
+
+Risk: The skill depends on a TRADEGPT_API_KEY credential for the Yunlv AI MatchGPT API.
+
+Mitigation: Store the API key in the environment only, protect it from logs and shared outputs, and rotate it if exposure is suspected.
+
+Risk: Match scores and contact completeness are advisory and may be inaccurate or stale.
+
+Mitigation: Manually verify high-priority contacts, booth details, and outreach claims before acting on them.
+
+## Reference(s):
+
+- [Skill Guangjiao ClawHub listing](https://clawhub.ai/wangm-a3/skills/yunlv-guangjiao)
+- [Yunlv AI homepage](https://yunlvai.com)
+- [Yunlv AI MatchGPT API](https://api.yunlvai.com)
+- [Canton Fair product category reference](references/canton_fair_categories.md)
+- [Outreach template reference](references/outreach_templates.md)
+- [Follow-up strategy reference](references/followup_strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, API Calls]
+
+**Output Format:** [Markdown and structured text, with JSON examples for lead lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated outreach copy, ranked lead summaries, booth or category lookup guidance, and user-managed follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

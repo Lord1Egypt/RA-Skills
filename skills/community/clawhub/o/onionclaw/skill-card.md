@@ -1,45 +1,59 @@
-## Description: <br>
-Searches the Tor dark web, fetches .onion hidden-service pages, rotates Tor identities, and supports structured multi-step OSINT investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the Tor dark web, fetch .onion hidden-service pages, rotate Tor identities, and run structured multi-step OSINT investigations.
 
-## Publisher: <br>
-[JacobJandon](https://clawhub.ai/user/JacobJandon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacobjandon](https://clawhub.ai/user/jacobjandon)
 
-## Use Case: <br>
-Security researchers, threat-intelligence teams, and incident responders use this skill to search Tor indexes, fetch hidden-service pages, monitor dark-web mentions, and generate structured OSINT reports for lawful investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for Tor, setup, and script execution authority while referenced executable scripts are not included in the artifact for review. <br>
-Mitigation: Review the upstream OnionClaw code before running setup or operational scripts, and test changes in a controlled environment. <br>
-Risk: Automatic setup and Tor configuration can change local service behavior. <br>
-Mitigation: Use automatic setup only after reviewing the Tor service and torrc changes, or perform manual setup with least-privilege configuration. <br>
-Risk: Reports and watch outputs may contain leaked credentials, PII, or internal company data. <br>
-Mitigation: Write outputs to private access-controlled directories, avoid shared temporary paths, and clear or disable watch jobs when finished. <br>
-Risk: LLM-assisted analysis may send sensitive investigation material to a remote provider. <br>
-Mitigation: Do not submit leaked credentials, PII, or internal company data to a remote LLM without authorization; use local inference or redact sensitive content when required. <br>
+## Use Case:
 
+Security researchers, threat-intelligence analysts, and developers use this skill to run Tor-based dark-web searches, fetch .onion pages, rotate Tor identities, and produce structured OSINT reports for leak, ransomware, credential, and corporate exposure investigations.
 
-## Reference(s): <br>
-- [ClawHub OnionClaw listing](https://clawhub.ai/JacobJandon/onionclaw) <br>
-- [OnionClaw repository](https://github.com/JacobJandon/OnionClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, STIX, MISP, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional structured OSINT report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tor and Python dependencies; LLM-based analysis may require a configured provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.13 (source: server evidence release version and OpenClaw metadata) <br>
+Risk: The skill is intended for Tor-based dark-web OSINT and may surface sensitive leak, credential, or corporate exposure data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lawful security research or threat-intelligence work, and handle search terms, fetched pages, and generated reports as sensitive data.
+
+Risk: Setup can involve Tor configuration changes and unpinned Python dependency installation.
+
+Mitigation: Use a virtual environment, review the referenced source repository before running setup scripts, pin dependencies where possible, and avoid system-wide Tor changes unless they are intentionally accepted.
+
+Risk: Recurring watch jobs and output locations can retain sensitive investigation results.
+
+Mitigation: Choose output and watch directories carefully, restrict access to generated files, and remove investigation outputs when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacobjandon/skills/onionclaw)
+- [OnionClaw repository](https://github.com/JacobJandon/OnionClaw)
+- [SICRY upstream repository](https://github.com/JacobJandon/Sicry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, STIX, MISP, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional Markdown, JSON, CSV, STIX 2.1, or MISP investigation outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate reports, result lists, watch outputs, and Tor status or rotation results depending on the selected command.]
+
+## Skill Version(s):
+
+2.1.13 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

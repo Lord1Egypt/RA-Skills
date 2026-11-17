@@ -1,0 +1,20 @@
+name: miniprogram-topic-cocreation
+displayName: 小程序选题共创
+version: 1.0.0
+description: 小程序选题共创（选题与共创落地）。当用户说做小程序、收集选题、有点子想推到可落地SOP、问小程序开发方向或选题规则，或给小程序点子想梳理可执行方案时触发。不适用于已有小程序的代码编写、调试，或纯小程序技术问答。
+author: luo
+category: 效率工具
+license: MIT
+type: prompt
+tags:
+  - 小程序
+  - 选题
+  - 产品共创
+  - SOP
+  - 微信小程序
+triggers:
+  - 做小程序
+  - 小程序选题
+  - 小程序点子
+  - 选题池
+  - 可落地SOP

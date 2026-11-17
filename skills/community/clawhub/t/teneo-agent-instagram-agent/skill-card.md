@@ -1,45 +1,60 @@
-## Description: <br>
-The Instagram Agent allows agents to retrieve public Instagram profile, post, hashtag, and comment data through the Teneo SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Instagram Agent extracts public Instagram profile, post, hashtag, and comment data through Teneo Protocol commands.
 
-## Publisher: <br>
-[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev)
 
-## Use Case: <br>
-Businesses, researchers, and developers use this skill to query public Instagram profiles, posts, hashtags, and comments for market trend, competitor, and community sentiment analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys and USDC payment setup can expose funds if a primary wallet or seed phrase is used. <br>
-Mitigation: Use a dedicated low-balance wallet, never provide a primary wallet or seed phrase, and verify the Teneo SDK package and endpoints before use. <br>
-Risk: Automatic paid Instagram queries can incur unintended USDC charges. <br>
-Mitigation: Require explicit approval and a spending limit before any paid Instagram query. <br>
-Risk: Collection of public Instagram data may create compliance or platform-policy obligations. <br>
-Mitigation: Limit use to public information and confirm the planned data use complies with applicable regulations, platform terms, and research ethics. <br>
+## Use Case:
 
+External users, businesses, researchers, and developers use this skill to retrieve public Instagram data for profile audits, hashtag monitoring, competitor research, and sentiment analysis. Developers can integrate the Teneo SDK commands into monitoring or analysis workflows.
 
-## Reference(s): <br>
-- [Instagram Agent on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-instagram-agent) <br>
-- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk) <br>
-- [Teneo SDK npm Package](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Protocol](https://teneo-protocol.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and shell command examples; agent responses may include formatted text or raw structured data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Teneo SDK access, wallet authentication, USDC payments, and a supported payment network; command scope and volume are user-specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Connecting a real wallet can authorize wallet-backed automatic USDC payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an external or hardware signer and independently confirm the network, token, recipient, amount, and spending limits before approving payments.
+
+Risk: Installing an unpinned SDK can pull mutable dependency code.
+
+Mitigation: Pin package versions, commit a lockfile, and review dependency changes before running the skill in a production workflow.
+
+Risk: Monitoring targets or retrieved public identifiers may involve sensitive or regulated data handling.
+
+Mitigation: Submit only authorized public targets and avoid regulated personal data unless Teneo-operated infrastructure is approved for that use.
+
+## Reference(s):
+
+- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk)
+- [Teneo Protocol SDK on npm](https://www.npmjs.com/package/@teneo-protocol/sdk)
+- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk)
+- [Teneo Protocol](https://teneo-protocol.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and TypeScript code blocks; runtime agent responses may include formatted text or structured content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands accept an Instagram target, optional count, and selected Teneo payment network.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

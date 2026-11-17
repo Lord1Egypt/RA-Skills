@@ -1,42 +1,57 @@
-## Description: <br>
-Desktop Gui helps agents automate desktop GUI workflows with Python, xdotool, scrot, OCR, and optional vision-model screen analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full desktop GUI automation using Python libraries, xdotool, and scrot for mouse and keyboard simulation, screenshots, and visual recognition.
 
-## Publisher: <br>
-[baimaxx](https://clawhub.ai/user/baimaxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baimaxx](https://clawhub.ai/user/baimaxx)
 
-## Use Case: <br>
-Developers and automation users can use this skill to generate Python and shell-command guidance for controlling local desktop applications, taking screenshots, recognizing UI elements, and managing windows when no API is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to move the mouse, type, click, take screenshots, and manage real desktop windows. <br>
-Mitigation: Use a VM or disposable desktop session, close sensitive windows, keep failsafe and pause controls enabled, and require manual approval before clicks or typing. <br>
-Risk: The recommended vision workflow can upload full-screen screenshots to a hard-coded HTTP model endpoint. <br>
-Mitigation: Prefer local OCR or a local vision model; if a remote endpoint is intentional, use a controlled HTTPS endpoint and crop or redact screenshots before sending them. <br>
-Risk: The visual model example uses a bearer token for model access. <br>
-Mitigation: Store credentials outside scripts, avoid exposing them in shell history or logs, and rotate the token if it may have been shared. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to control desktop applications, capture screens, locate visual elements, run OCR, and coordinate cross-application workflows when direct APIs are unavailable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baimaxx/desktop-gui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and bash code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include desktop automation steps, dependency installation commands, screenshots or OCR workflow guidance, and safety precautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automate mouse and keyboard actions against a real desktop, which may trigger unintended clicks, text entry, or window changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated desktop or virtual machine first, enable pyautogui FAILSAFE, add pauses, and require confirmation before destructive or irreversible actions.
+
+Risk: Full desktop screenshots may contain sensitive data and the evidence reports a hard-coded plaintext HTTP vision endpoint.
+
+Mitigation: Use a trusted HTTPS or local model endpoint configured by the user, crop or redact screenshots before sending them, and delete temporary screenshot files after use.
+
+Risk: Unpinned Python and system dependencies may change behavior or increase supply-chain exposure.
+
+Mitigation: Install dependencies in an isolated environment and pin package versions before repeated or sensitive use.
+
+## Reference(s):
+
+- [Desktop Gui ClawHub page](https://clawhub.ai/baimaxx/skills/desktop-gui)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces executable desktop automation examples and operational guidance; actions may affect the active desktop session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,70 @@
+{
+  "name": "lygo-kernel-egg-planter",
+  "displayName": "LYGO Kernel Egg Planter",
+  "version": "1.3.1",
+  "description": "Consent-gated core kernel egg plant + mandatory verify + consent-gated retrieve. Requires --i-trust-stack. Allowlisted stack tools only. Catalog/champions/stubs are separate scripts; catalog external anchor is --anchor-external opt-in. Never auto git/HF/ClawHub/social. No skip-verify/force.",
+  "slug": "lygo-kernel-egg-planter",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-kernel-egg-planter",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-kernel-egg-planter",
+  "signature": "Delta9Phi963-KERNEL-EGG-PLANTER-v1.3",
+  "tags": ["latest", "lygo", "kernel", "egg", "merkle", "tamper", "security", "consent"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "preflight": "scripts/preflight.py",
+    "plant": "scripts/plant_with_consent.py",
+    "verify": "scripts/verify_eggs.py",
+    "retrieve": "scripts/retrieve_egg.py",
+    "verify_all_layers": "scripts/verify_all_layers.py",
+    "smoke": "scripts/smoke_test.py"
+  },
+  "openclaw": {
+    "emoji": "🥚",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https": "optional Turbo/permaweb only when turbo surface and not --local-only (stack tool)",
+      "http_post": false,
+      "clawhub_api_publish": false,
+      "git_push": false,
+      "social": false
+    },
+    "filesystem": {
+      "read": "trusted LYGO_STACK_ROOT only (markers required)",
+      "write": "stack data/kernel_eggs registry + docs KernelEggRegistry when planting with consent",
+      "shell": false,
+      "os_system": false,
+      "subprocess": "list-argv python only: preflight, verify, stack build/anchor/retrieve tools, local catalog plant"
+    },
+    "environment": {
+      "reads": ["LYGO_STACK_ROOT", "LYGO_EGG_PLANT_CONSENT"],
+      "writes": false,
+      "harvest_secrets": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub_skill_publish": false,
+      "social": false,
+      "note": "surfaces pages/clawhub only prepare local artifacts; human publishes separately"
+    }
+  },
+  "security": {
+    "consent_required": true,
+    "mandatory_post_plant_verify": true,
+    "no_skip_verify_flag": true,
+    "no_force_retrieve_flag": true,
+    "retrieve_requires_consent": true,
+    "no_auto_publish": true,
+    "version": "1.3.1",
+    "require_i_trust_stack": true,
+    "allowlisted_stack_tools": ["build_kernel_eggs.py", "anchor_kernel_eggs.py"],
+    "catalog_external_anchor": "opt-in --anchor-external only"
+  }
+}

@@ -1,0 +1,11 @@
+# Book Learning Tutor（授业）—— 引擎依赖统一说明
+#
+# 本仓库的**唯一依赖真相源**是仓库根 `requirements.txt`（核心）+
+# `requirements-extra.txt`（在线书源 / 爬虫可选）。
+# 根文件已覆盖本目录全部运行所需（格式解析 + 课程化 + 爬虫轨道）。
+#
+# 安装一律使用根文件：
+#   python setup_env.py                              # 建 venv_slim + 装根 requirements.txt
+# 或手动：venv_slim\Scripts\python.exe -m pip install -r requirements.txt
+#
+# 本文件不再单独维护版本号，避免与根文件冲突（旧版 PyMuPDF 固定值已废弃）。

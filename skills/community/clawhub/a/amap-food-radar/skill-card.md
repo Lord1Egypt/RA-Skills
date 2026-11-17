@@ -1,44 +1,55 @@
-## Description: <br>
-说出你想吃什么，立刻搜索附近餐厅，按评分和距离排序，给出推荐理由。基于高德地图真实 POI 数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find nearby restaurants with Amap POI data, sorting options by rating and distance and explaining recommendations.
 
-## Publisher: <br>
-[770600682-cyber](https://clawhub.ai/user/770600682-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[770600682-cyber](https://clawhub.ai/user/770600682-cyber)
 
-## Use Case: <br>
-External users use this skill to find nearby restaurants from natural-language food, price, distance, and location preferences. The agent queries AMap location data, ranks options, and returns concise restaurant recommendations with reasons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AMap API key. <br>
-Mitigation: Store AMAP_API_KEY securely and avoid sharing it in prompts, logs, or public configuration. <br>
-Risk: Address, landmark, and location queries are sent to AMap through the configured MCP server. <br>
-Mitigation: Avoid submitting sensitive location details unless the user is comfortable sharing them with AMap for restaurant search. <br>
-Risk: The setup runs the external @amap/mcp-server package through npx. <br>
-Mitigation: Verify the package and configuration before installation or execution. <br>
+## Use Case:
 
+External users and agent operators use this skill to ask for nearby restaurant recommendations based on cuisine, location, price, distance, and other dining preferences.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/770600682-cyber/amap-food-radar) <br>
-- [AMap Open Platform](https://lbs.amap.com) <br>
-- [AMap MCP Server documentation](https://lbs.amap.com/api/mcp-server/summary) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, guidance] <br>
-**Output Format:** [Markdown tables and concise natural-language recommendations, with JSON configuration examples for setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations may include restaurant names, ratings, distance, average price, address, phone, hours, and ranked reasons when available from AMap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The setup runs an unpinned npm MCP server with the user's Amap API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the MCP setup before installing, pin @amap/mcp-server to a reviewed version, and use a dedicated quota-limited Amap API key.
+
+Risk: Restaurant searches may send location or landmark queries to Amap services.
+
+Mitigation: Avoid sharing unnecessary precise locations and understand what location data is sent before use.
+
+## Reference(s):
+
+- [Amap Open Platform](https://lbs.amap.com)
+- [Amap MCP Server documentation](https://lbs.amap.com/api/mcp-server/summary)
+- [ClawHub skill page](https://clawhub.ai/770600682-cyber/skills/amap-food-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown tables and concise natural-language recommendations, with JSON configuration snippets for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_API_KEY and an Amap MCP server configuration before live restaurant search can work.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

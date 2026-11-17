@@ -1,47 +1,57 @@
-## Description: <br>
-Detects 43 AI writing patterns and rewrites text in 5 voice profiles. Use when (1) AI text reads like a chatbot, (2) preparing content for publication, (3) auditing prose for AI tells, (4) editing a file in place. Outputs a 0-100 AI-tell score on demand. Pure Markdown, zero dependencies, no network calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects AI writing patterns, scores AI-tell density, and rewrites text into one of several human voice profiles without external dependencies or network calls.
 
-## Publisher: <br>
-[aboudjem](https://clawhub.ai/user/aboudjem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aboudjem](https://clawhub.ai/user/aboudjem)
 
-## Use Case: <br>
-Writers, editors, developers, and other external users use this skill to detect AI-like writing patterns, rewrite prose in a chosen voice, score AI-tell density, or apply targeted in-place edits to Markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make AI-assisted writing harder to identify as AI-assisted. <br>
-Mitigation: Use it only where that transformation is acceptable, and keep human review accountable for publication, authorship, or disclosure requirements. <br>
-Risk: Edit mode can modify local Markdown files in place. <br>
-Mitigation: Run detect or rewrite mode first, review proposed changes, and check diffs before keeping edits to important files. <br>
-Risk: Optional brand context may include sensitive writing samples or private material. <br>
-Mitigation: Keep secrets and confidential content out of humanizer-context.md. <br>
+## Use Case:
 
+External users, developers, and content editors use this skill to audit AI-sounding prose, rewrite text for publication, score AI-tell density, or apply targeted edits to Markdown files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aboudjem/humanizer-skill) <br>
-- [Hacker News discussion on AI writing patterns](https://news.ycombinator.com/item?id=46646939) <br>
-- [Gone Travelling Productions: AI giveaways in writing](https://gonetravellingproductions.com/2025/08/20/ai-giveaways-in-writing/) <br>
-- [Writewithai: dead giveaways in AI content](https://writewithai.substack.com/p/10-dead-giveaways-your-content-screams) <br>
-- [Wikipedia: signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [AI Detectors: spotting AI writing patterns](https://www.aidetectors.io/blog/spotting-ai-writing-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, rewritten text, edit summaries, and optional score headers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit local Markdown files in place when invoked with edit mode and a file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill may auto-load project-level humanizer-context.md and apply stale or inappropriate voice guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review humanizer-context.md before use and remove any outdated samples, banned phrases, or project-specific rules that should not affect the current text.
+
+Risk: In-place edit mode can change Markdown files directly.
+
+Mitigation: Use detect or rewrite mode first for important files, then review the resulting changes before applying or keeping edits.
+
+## Reference(s):
+
+- [Hacker News discussion on AI writing patterns](https://news.ycombinator.com/item?id=46646939)
+- [Gone Travelling Productions AI writing giveaways](https://gonetravellingproductions.com/2025/08/20/ai-giveaways-in-writing/)
+- [Writewithai dead giveaways article](https://writewithai.substack.com/p/10-dead-giveaways-your-content-screams)
+- [Wikipedia signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [AIDetectors spotting AI writing patterns](https://www.aidetectors.io/blog/spotting-ai-writing-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown reports, rewritten prose, concise change summaries, and in-place Markdown file edits when edit mode is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional 0-100 AI-tell score; optional voice, purpose, aggressiveness, and iteration controls.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

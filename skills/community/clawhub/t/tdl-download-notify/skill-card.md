@@ -1,42 +1,51 @@
-## Description: <br>
-Downloads Telegram resources with tdl and sends Server Chan WeChat notifications that include file names, sizes, timing, and success or failure details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Telegram resources with tdl and sends ServerChan WeChat notifications with file names, sizes, timing, and success or failure status.
 
-## Publisher: <br>
-[tang2606](https://clawhub.ai/user/tang2606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tang2606](https://clawhub.ai/user/tang2606)
 
-## Use Case: <br>
-Developers and automation users use this skill to download specific Telegram channel messages through tdl and receive WeChat notifications when long-running downloads complete or fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled Server Chan SendKey can route private Telegram source links, filenames, sizes, paths, timestamps, and errors to an account the installer may not control. <br>
-Mitigation: Replace the SendKey before use and rotate or revoke the exposed key if it belongs to you. <br>
-Risk: The skill downloads files from Telegram into a local directory and reports file metadata externally. <br>
-Mitigation: Use a dedicated download directory and run it only for Telegram resources and notification recipients you trust. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to download a Telegram message resource with tdl and receive a WeChat notification when the download succeeds or fails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tang2606/tdl-download-notify) <br>
-- [TDL Official Documentation](https://github.com/iyear/tdl) <br>
-- [Server Chan](https://sct.ftqq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, json, guidance] <br>
-**Output Format:** [Markdown notification content, console text, and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tdl login, Python requests, network access to Telegram and Server Chan, and a configured Server Chan SendKey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/_meta.json) <br>
+Risk: The security evidence reports a hardcoded ServerChan key that can send Telegram download details, filenames, file sizes, local output paths, timestamps, and failure output to a fixed external channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, replace the embedded SendKey with user-controlled secret configuration, and minimize notification payloads before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tang2606/skills/tdl-download-notify)
+- [TDL documentation](https://github.com/iyear/tdl)
+- [ServerChan website](https://sct.ftqq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown notifications and JSON command-line result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the tdl binary, Telegram login state, Python requests, and ServerChan notification access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

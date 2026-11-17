@@ -1,39 +1,59 @@
-## Description: <br>
-Advanced thinking model that improves decision-making speed and accuracy. Integrates with memory system to compare and integrate previous thinking models for continuous enhancement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced thinking model that improves decision-making speed and accuracy. Integrates with memory system to compare and integrate previous thinking models for continuous enhancement.
 
-## Publisher: <br>
-[xqicxx](https://clawhub.ai/user/xqicxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqicxx](https://clawhub.ai/user/xqicxx)
 
-## Use Case: <br>
-Developers and agent users use this skill to choose structured thinking modes, compare previous approaches from memory, and produce decision-support guidance for complex decisions, skill creation, or troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local memory feature can retain prompts, summaries, and usage history on the user's computer. <br>
-Mitigation: Avoid entering secrets or highly sensitive personal or business details unless local retention under ~/.claude/thinking_models is acceptable. <br>
-Risk: Decision-support, troubleshooting, or fix-script recommendations may be incomplete or context-specific. <br>
-Mitigation: Review recommendations before acting on them and test operational changes in a controlled environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqicxx/thinking-model-enhancer) <br>
+## Use Case:
 
+Developers and external users use this skill to apply a structured decision-making framework that selects thinking modes, compares prior approaches from memory, and produces recommendations or conclusions with documented confidence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands and JSON-like summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local thinking-model memory when the memory modules are active.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-01-31) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change agent reasoning style when invoked, which may introduce overconfident or misleading decision guidance.
+
+Mitigation: Review outputs before acting on them, narrow use to appropriate decision-analysis tasks, and revise broad system-prompt language before deployment.
+
+Risk: The skill writes local plaintext thinking history and configuration under ~/.claude/thinking_models.
+
+Mitigation: Avoid using the skill with secrets, credentials, private business details, medical/legal/financial matters, or shared machines unless persistence is disabled or reviewed.
+
+Risk: Automatic memory behavior may retain more task context than users expect.
+
+Mitigation: Make memory opt-in, document stored fields and retention, and provide clear deletion, recovery, and permission controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqicxx/skills/thinking-model-enhancer)
+- [Publisher profile](https://clawhub.ai/user/xqicxx)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured decision analysis, selected thinking mode, confidence notes, performance metrics, and memory-informed recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-01-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Minimal MCP server example for invoking add and hello_world tools in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mcp Hello World is a minimal MCP server example for calling add and hello_world tools from OpenClaw.
 
-## Publisher: <br>
-[Crystaria](https://clawhub.ai/user/Crystaria) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystaria](https://clawhub.ai/user/crystaria)
 
-## Use Case: <br>
-Developers and learners use this skill as a small MCP server example for testing OpenClaw MCP integration, adding two numbers, returning greetings, and adapting the template for simple tool-server development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs npm dependencies and runs a local Node.js MCP server. <br>
-Mitigation: Review package.json and package-lock.json before installation in stricter environments, then run it in a local demo or development context. <br>
-Risk: The exposed tools are simple demo utilities and are suitable only for low-risk examples. <br>
-Mitigation: Use the add and hello_world tools for testing, teaching, or template development rather than high-stakes workflows. <br>
+## Use Case:
 
+Developers, educators, and MCP learners use this skill to run a small stdio MCP server, test simple tool calls, and use the example as a starting point for custom MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Crystaria/mcp-hello-world) <br>
-- [MCP official documentation](https://modelcontextprotocol.io) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [MCP text responses with Markdown documentation and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a local Node.js MCP server over stdio and exposes add and hello_world tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md changelog) <br>
+Risk: The skill installs and runs a Node.js MCP demo with npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package-lock.json, install from the official npm registry or another trusted reviewed source, and update vulnerable dependencies before deployment.
+
+Risk: The documentation and tool messages are Chinese-first.
+
+Mitigation: Review expected tool outputs and translate or adapt documentation for the target user group before rollout.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/crystaria/skills/mcp-hello-world)
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text MCP tool responses and Markdown documentation with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The MCP server exposes add and hello_world tools over stdio and requires Node.js.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md changelog, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

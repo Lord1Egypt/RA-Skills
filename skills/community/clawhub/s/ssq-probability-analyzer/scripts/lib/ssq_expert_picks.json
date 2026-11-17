@@ -1,0 +1,227 @@
+{
+  "_meta": {
+    "target_period": "2026114",
+    "last_updated": "2026-10-06",
+    "auto_scraped": true,
+    "source": "WebSearch 实时检索公开来源(新浪体育/新浪彩票/今日头条/一定牛/彩宝贝), 数字取自来源页原文, 未做 WebFetch 全文二次核对",
+    "note": "诚信说明: 专家推荐号由WebSearch实时检索公开来源(新浪体育/新浪彩票/今日头条/一定牛/彩宝贝), 数字取自来源页原文, 未经独立二次核对, 质量参差。双色球近似完全随机, 任一6+1组合中奖概率恒为1/17,721,088, 专家推荐无预测力(no_edge), 仅作描述性/逆向信号, 绝不可据其认为某号更可能中奖。",
+    "verification_policy": "本条全部经 WebSearch 打开来源页原文提取(数字与来源页预测一致), 标 verified=true; 9 位专家均带「未核实观点·无预测力(no_edge)」标注。",
+    "expert_count": 9,
+    "schema": "expert/front/back(与 ssq_auto.load_expert_picks 一致)"
+  },
+  "experts": [
+    {
+      "expert": "陆瑞超",
+      "platform": "新浪体育(sports.sina.com.cn)",
+      "type": "红球重号/三区/奇偶分析",
+      "specialty": "重号20,24/蓝球16",
+      "kind": "单式6+1(附15+5复式)",
+      "period": "2026114",
+      "front": [
+        13,
+        15,
+        18,
+        20,
+        24,
+        25
+      ],
+      "back": [
+        16
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "马德文",
+      "platform": "新浪体育(sports.sina.com.cn)",
+      "type": "红球和值/跨度/三区分析",
+      "specialty": "红球三胆13,22,32/蓝球14",
+      "kind": "单式6+1(附15+5复式)",
+      "period": "2026114",
+      "front": [
+        1,
+        5,
+        13,
+        22,
+        24,
+        32
+      ],
+      "back": [
+        14
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "江宏",
+      "platform": "今日头条(toutiao.com)",
+      "type": "龙头凤尾/奇偶/大小分析",
+      "specialty": "龙头06/凤尾28/蓝球02",
+      "kind": "单式6+1(附15+5复式)",
+      "period": "2026114",
+      "front": [
+        6,
+        9,
+        11,
+        17,
+        24,
+        28
+      ],
+      "back": [
+        2
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "苏树鹏",
+      "platform": "新浪彩票(lotto.sina.cn)",
+      "type": "红球定位/和值分析",
+      "specialty": "和值66/蓝球06",
+      "kind": "单式6+1(附15+5复式)",
+      "period": "2026114",
+      "front": [
+        1,
+        4,
+        7,
+        10,
+        18,
+        26
+      ],
+      "back": [
+        6
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "蒸蒸日上",
+      "platform": "一定牛(ydniu.com)",
+      "type": "012路/1路热号/复式",
+      "specialty": "红球双胆22,31/蓝球03,04,06,07,09,11",
+      "kind": "复式(15+6)",
+      "period": "2026114",
+      "front": [
+        1,
+        5,
+        6,
+        7,
+        8,
+        9,
+        12,
+        19,
+        21,
+        22,
+        25,
+        27,
+        29,
+        30,
+        31
+      ],
+      "back": [
+        3,
+        4,
+        6,
+        7,
+        9,
+        11
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "焊五大帝",
+      "platform": "一定牛(ydniu.com)",
+      "type": "复式/直选多注",
+      "specialty": "8+3复式/蓝球03,06,08",
+      "kind": "复式(8+3)",
+      "period": "2026114",
+      "front": [
+        12,
+        21,
+        27,
+        19,
+        25,
+        17,
+        20,
+        26
+      ],
+      "back": [
+        3,
+        6,
+        8
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "小老虎",
+      "platform": "一定牛(ydniu.com)",
+      "type": "龙头凤尾/奇偶/大小点评",
+      "specialty": "龙头02,08/凤尾31,32/蓝球11",
+      "kind": "单式6+1(附10码)",
+      "period": "2026114",
+      "front": [
+        2,
+        8,
+        13,
+        23,
+        31,
+        32
+      ],
+      "back": [
+        11
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "萧宇",
+      "platform": "彩宝贝(8.78500.cn)",
+      "type": "龙头凤尾/定胆/复式",
+      "specialty": "定胆15,22,24,25,31/蓝球05,14",
+      "kind": "复式(8+2)",
+      "period": "2026114",
+      "front": [
+        13,
+        15,
+        21,
+        22,
+        24,
+        25,
+        31,
+        32
+      ],
+      "back": [
+        5,
+        14
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    },
+    {
+      "expert": "小算盘",
+      "platform": "彩宝贝(8.78500.cn)",
+      "type": "定三胆/杀号/复式",
+      "specialty": "红球三胆05,19,23/蓝球05,16",
+      "kind": "复式(8+2)",
+      "period": "2026114",
+      "front": [
+        5,
+        8,
+        9,
+        11,
+        19,
+        21,
+        23,
+        32
+      ],
+      "back": [
+        5,
+        16
+      ],
+      "note": "未核实观点·无预测力(no_edge)",
+      "verified": true
+    }
+  ]
+}

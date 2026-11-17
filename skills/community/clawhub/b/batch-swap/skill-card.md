@@ -1,40 +1,52 @@
-## Description: <br>
-Executes multiple token swaps in sequence for rebalancing or multi-step trading plans, with each swap independently safety-validated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes multiple token swaps in sequence for rebalancing or multi-step trading plans, with independent safety validation for each swap.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and wallet operators use this skill to plan and execute a sequence of Uniswap token swaps, such as portfolio rebalancing or multi-leg trading plans, while checking safety and balances for each leg. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate multiple wallet-affecting trades in one workflow. <br>
-Mitigation: Require explicit user confirmation for the full batch and for each swap, including token contracts, chain, input amounts, expected outputs, slippage, gas, and maximum total spend. <br>
-Risk: A trusted wallet and trade-executor setup is required for safe operation. <br>
-Mitigation: Use only trusted wallet and trade-executor configurations with strict spending limits before enabling batch execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/batch-swap) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+Developers and trading agents use this skill to parse, validate, execute, and summarize batches of Uniswap token swaps for portfolio rebalancing or multi-step trading workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, markdown] <br>
-**Output Format:** [Markdown summary with swap outcomes, transaction identifiers, gas totals, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses sequential execution with independent safety and balance checks; default behavior halts remaining swaps after the first failure.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger multiple real token trades in one workflow.
+
+Mitigation: Require explicit approval before execution and review every token, chain, amount, slippage, gas estimate, and batch total.
+
+Risk: Installation instructions reference mutable remote installers.
+
+Mitigation: Install only from a pinned, reviewed version or commit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/batch-swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with transaction summaries and error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include swap-by-swap status, transaction hashes, gas totals, partial-failure details, and suggested corrective actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 ---
 name: clawme
-version: 1.0.0
+slug: clawme
+version: 1.0.1
+displayName: ClawMe 真实浏览器执行
+summary: 让 AI 在你自己的 Chrome 里填表、发推、发邮件、点击和提取，每一步你确认后才执行。
+license: AGPL-3.0
+homepage: https://github.com/dongsheng123132/clawme
 description: Send instructions to user's real browser via ClawMe Chrome extension. Fill forms, tweet, email, click, extract — user sees and confirms each action in the side panel. Unlike headless browsers, runs in the user's actual Chrome with their login sessions.
 tags: ["browser", "automation", "form-fill", "chrome-extension", "twitter", "email"]
 metadata: {"openclaw":{"emoji":"🦞","primaryEnv":"CLAWME_CLIENT_TOKEN","requires":{"env":["CLAWME_CLIENT_TOKEN"]}}}

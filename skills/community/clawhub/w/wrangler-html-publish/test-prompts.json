@@ -1,0 +1,5 @@
+[
+  {"id":1,"prompt":"刚生成一份合成 HTML，放在路径含中文和空格的临时目录。只保存本地，不要上传。用隔离临时 HOME，不运行登录或联网命令。","expected":"归档到当前测试用户 Documents/published-html/<slug>/index.html，保留源文件，不登录不部署。"},
+  {"id":2,"prompt":"模拟第二次部署：已有旧页面的 manifest 与完整快照，新增一个合成报告，归档根目录还有未授权草稿。禁止真实部署，仅构建本地计划与 staging。","expected":"旧页和新页同时在白名单，保留 slug/index.html，草稿不进入 staging；哈希改变时停止。"},
+  {"id":3,"prompt":"仅根据模拟日志分析两次发布：第一次 Wrangler 提示未登录；第二次返回部署 URL 但页面验证得到错误页。不要运行真实 Cloudflare 命令。","expected":"首次阻塞并提示通用 wrangler login；第二次保存实际模拟部署回执为 deployed_unverified，不伪造成功也不丢失已部署状态。"}
+]

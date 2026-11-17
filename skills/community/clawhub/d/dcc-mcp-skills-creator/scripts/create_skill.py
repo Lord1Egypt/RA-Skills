@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -11,6 +12,7 @@ _DCC_NAME = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 _TOOL_NAME = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
 _AFFINITIES = {"any", "main"}
 _EXECUTION_MODES = {"sync", "async"}
+_LAYERS = {"thin-harness", "infrastructure", "domain", "example"}
 
 
 def _validate_skill_name(name: str) -> None:
@@ -37,7 +39,7 @@ def _validate_choice(value: str, allowed: set, label: str) -> None:
 
 
 def _stage_line(stage: str) -> str:
-    return f"    stage: {stage}\n" if stage else ""
+    return f"    stage: {json.dumps(stage)}\n" if stage else ""
 
 
 def _depends_line(depends) -> str:
@@ -70,7 +72,7 @@ def create_skill(
         dcc: Target DCC (e.g. "maya", "blender", "houdini", "python").
         tool_name: First generated tool name. Must be snake_case, never dotted.
         layer: Skill taxonomy layer, usually thin-harness, infrastructure, domain, or example.
-        stage: Optional progressive-loading stage such as scene, authoring, or pipeline.
+        stage: Optional single-line kebab-case identifier, or empty to omit.
         depends: Optional iterable of prerequisite DCC-MCP skill names.
         affinity: Tool thread affinity. Use "main" for host API / scene work.
         execution: "sync" or "async".
@@ -81,8 +83,6 @@ def create_skill(
     """
     dcc = dcc.strip()
     tool_name = tool_name.strip()
-    layer = layer.strip() or "thin-harness"
-    stage = stage.strip()
     affinity = affinity.strip().lower() or "any"
     execution = execution.strip().lower() or "sync"
     depends_line = _depends_line(depends)
@@ -90,6 +90,9 @@ def create_skill(
     _validate_skill_name(name)
     _validate_dcc_name(dcc)
     _validate_tool_name(tool_name)
+    _validate_choice(layer, _LAYERS, "layer")
+    if stage and not _KEBAB_CASE.fullmatch(stage):
+        raise ValueError("stage must be a single-line kebab-case identifier or empty")
     _validate_choice(affinity, _AFFINITIES, "affinity")
     _validate_choice(execution, _EXECUTION_MODES, "execution")
 
@@ -98,16 +101,24 @@ def create_skill(
         raise FileExistsError(f"Skill directory already exists: {skill_dir}")
 
     skill_dir.mkdir(parents=True)
+    (skill_dir / "agents").mkdir()
     (skill_dir / "scripts").mkdir()
     (skill_dir / "references").mkdir()
 
     title = name.replace("-", " ").title()
     script_file = f"scripts/{tool_name}.py"
+    job_strategy_line = "    job_strategy: monolithic\n" if execution == "async" else ""
+    deferred_hint = "true" if execution == "async" else "false"
+    default_prompt = f"Use ${name} to complete this DCC-MCP workflow."
+    if execution == "async":
+        default_prompt += (
+            " Start it once, follow typed job progress to a terminal state, and do not relaunch on timeout."
+        )
 
     skill_md = skill_dir / "SKILL.md"
     skill_md.write_text(
         f"""---
-name: {name}
+name: {json.dumps(name)}
 description: >-
   DCC skill - TODO: describe the user intent this skill serves. Use when an
   agent needs TODO. Not for TODO.
@@ -116,7 +127,7 @@ compatibility: "Python 3.7+; dcc-mcp-core 0.17+"
 allowed-tools: Bash Read Write Edit
 metadata:
   dcc-mcp:
-    dcc: {dcc}
+    dcc: {json.dumps(dcc)}
     version: "0.1.0"
     layer: {layer}
 {_stage_line(stage)}{depends_line}    tags: ["generated", "{dcc}"]
@@ -142,10 +153,20 @@ adding small Python dependencies to DCC hosts.
         encoding="utf-8",
     )
 
+    openai_yaml = skill_dir / "agents" / "openai.yaml"
+    openai_yaml.write_text(
+        f'''interface:
+  display_name: "{title}"
+  short_description: "Run a structured DCC-MCP workflow"
+  default_prompt: "{default_prompt}"
+''',
+        encoding="utf-8",
+    )
+
     tools_yaml = skill_dir / "tools.yaml"
     tools_yaml.write_text(
         f"""tools:
-  - name: {tool_name}
+  - name: {json.dumps(tool_name)}
     description: "Example read-only scaffold. Replace with one concrete DCC intent and describe side effects."
     source_file: {script_file}
     input_schema:
@@ -169,7 +190,7 @@ adding small Python dependencies to DCC hosts.
         context:
           type: object
     execution: {execution}
-    affinity: {affinity}
+{job_strategy_line}    affinity: {affinity}
     enforce_thread_affinity: true
     timeout_hint_secs: 30
     annotations:
@@ -177,7 +198,7 @@ adding small Python dependencies to DCC hosts.
       destructive_hint: false
       idempotent_hint: true
       open_world_hint: false
-      deferred_hint: false
+      deferred_hint: {deferred_hint}
     next-tools:
       on-success: []
       on-failure: []

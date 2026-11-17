@@ -1,43 +1,64 @@
-## Description: <br>
-Production-ready context continuity skill for autonomous AI agents. Use when tasks may outlive a single LLM context window, when you need durable checkpoints, structured summaries, restart recovery, pressure-aware trimming, or when the agent must stop safely instead of continuing blindly after context loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Guardian helps autonomous AI agents preserve long-running task continuity with durable checkpoints, structured summaries, restart recovery, pressure-aware trimming, and safe stops before context loss.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
 
-## Use Case: <br>
-Developers and agent-integration engineers use this skill to add durable checkpoints, structured summaries, restart recovery, and pressure-aware halt behavior to long-running autonomous agent tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves task state and summaries to disk, which can expose local task history or sensitive details if goals, summaries, or checkpoints contain secrets. <br>
-Mitigation: Install only where local task-history persistence is acceptable, keep the configured context path inside the intended project, avoid putting secrets in goals or summaries, review retention practices for .context_guardian, and use stronger file permissions on shared machines. <br>
+## Use Case:
 
+Developers and agent platform engineers use this skill to add durable task state, compact recovery summaries, context-pressure checks, and halt behavior to autonomous agent loops that may outlive one LLM context window.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Task State Schema](references/task-state-schema.md) <br>
-- [Summary Template](references/summary-template.md) <br>
-- [Integration Checklist](references/integration-checklist.md) <br>
-- [Implementation Notes](references/implementation-notes.md) <br>
-- [Configuration Example](references/config-example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON task state, Markdown summaries, status strings, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local checkpoint and summary artifacts when integrated with a host filesystem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release metadata and packaging checklist) <br>
+Risk: Local checkpoint and summary files may contain sensitive task details if the host writes secrets or raw outputs into durable state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated state directory with limited permissions and avoid storing secrets or sensitive raw outputs in task state or summaries.
+
+Risk: Context-pressure decisions can be unreliable if a production host relies on fallback estimation instead of host-owned pressure reporting.
+
+Mitigation: Integrate an explicit numeric context-pressure signal and reserve the character-based estimator for reference or test environments.
+
+Risk: Agents may resume from stale or ambiguous recovery data after context loss.
+
+Mitigation: Read the durable task state and latest summary before each major action, stop on missing state, and resume only from a non-empty next_action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ciklopentan/skills/context-guardian-keeper)
+- [Task State Schema](references/task-state-schema.md)
+- [Summary Template](references/summary-template.md)
+- [Configuration Example](references/config-example.yaml)
+- [Integration Checklist](references/integration-checklist.md)
+- [Implementation Notes](references/implementation-notes.md)
+- [Persisted Task State Example](references/persisted-task-state.example.json)
+- [Summary Example](references/summary-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON state files, markdown summaries, Python reference code, shell commands, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local checkpoint and summary artifacts under host-configured paths; production hosts should provide explicit numeric context-pressure values.]
+
+## Skill Version(s):
+
+1.1.7 (source: server release metadata and packaging checklist)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

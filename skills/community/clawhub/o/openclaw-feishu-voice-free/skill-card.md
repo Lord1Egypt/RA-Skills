@@ -1,48 +1,68 @@
-## Description: <br>
-Adds local Feishu voice chat support for OpenClaw by using Whisper for speech recognition and Qwen3-TTS for speech synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Feishu Voice Free adds local voice-message transcription and speech synthesis for Feishu conversations using Whisper ASR and Qwen3-TTS.
 
-## Publisher: <br>
-[shuaishi1991](https://clawhub.ai/user/shuaishi1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuaishi1991](https://clawhub.ai/user/shuaishi1991)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to handle Feishu voice messages locally, transcribe incoming audio, generate assistant replies, and return synthesized voice responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled configuration may contain sensitive credentials or tokens. <br>
-Mitigation: Replace the bundled openclaw.json with a minimal local configuration and rotate any exposed secrets before use. <br>
-Risk: Voice-processing services may be reachable beyond the local machine if exposed on a broad network interface. <br>
-Mitigation: Bind services to 127.0.0.1 where possible, use firewall controls, and avoid running the services as root. <br>
-Risk: Voice cloning can process biometric voice data and may be misused without consent. <br>
-Mitigation: Clone voices only with explicit permission and keep generated voice embeddings protected. <br>
-Risk: Remote clone mode can send voice data to another endpoint. <br>
-Mitigation: Use remote clone mode only with a trusted endpoint and an accepted data-handling policy. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add Feishu voice-chat workflows that transcribe incoming voice messages, generate agent replies, and return synthesized speech through local ASR and TTS services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuaishi1991/openclaw-feishu-voice-free) <br>
-- [Publisher profile](https://clawhub.ai/user/shuaishi1991) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) <br>
-- [Whisper](https://github.com/openai/whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Audio, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and local HTTP service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local text transcription and synthesized audio when the required models and services are running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Embedded credentials or tokens may be present in configuration examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and rotate all embedded credentials before installation or reuse.
+
+Risk: Local ASR and TTS services may be exposed without authentication or request limits.
+
+Mitigation: Bind services to 127.0.0.1 and add authentication, request limits, and network access controls.
+
+Risk: Persistence examples run services as root.
+
+Mitigation: Run the services under a dedicated unprivileged account and avoid the root systemd units as written.
+
+Risk: Voice cloning and automatic voice-message processing can create consent and misuse concerns.
+
+Mitigation: Use only trusted voice clone files and require consent for voice cloning or automatic voice-message processing.
+
+Risk: Unsafe file handling could expose or overwrite unintended media or voice-clone files.
+
+Mitigation: Restrict accessible paths and review file permissions for audio input, generated output, and clone embedding files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuaishi1991/skills/openclaw-feishu-voice-free)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS)
+- [Whisper](https://github.com/openai/whisper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON and shell command snippets; runtime services return JSON transcription text and generated audio responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local model files, local HTTP ASR/TTS services, OpenClaw configuration, and Feishu channel setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

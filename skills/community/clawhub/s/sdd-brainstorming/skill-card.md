@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents through a Chinese-language SDD brainstorming process before implementation, using structured questions, design approval, and specification writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a design-first brainstorming workflow before implementing new features, building components, adding functionality, or changing behavior.
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
 
-## Use Case: <br>
-Developers and product teams use this skill to turn new or updated feature ideas into approved Chinese-language design specifications before implementation. It is intended for OpenClaw workspaces that use an SDD spec directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may write or overwrite SDD specification files in the configured workspace. <br>
-Mitigation: Confirm the selected feature folder and review proposed updates before allowing the skill to write spec-design.md. <br>
-Risk: The background /gen-image step may create files, incur cost, or send project and design details to an image-generation tool without a separate image-count limit. <br>
-Mitigation: Review or disable the image-generation step before use in sensitive projects, and set explicit limits for generated images. <br>
+## Use Case:
 
+Developers and agents use this skill to turn feature ideas into approved Chinese design specifications before implementation. It helps inspect workspace context, clarify requirements, compare approaches, document the selected design, and optionally request supporting design images.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mahingbun-dev/sdd-brainstorming) <br>
-- [Publisher profile](https://clawhub.ai/user/mahingbun-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese-language Markdown specifications with structured prompts and optional image references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes spec-design.md under the configured workspace spec directory and may launch background design-image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can broadly take over feature work by requiring a mandatory design-first workflow before implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that workflow is intended, and keep user approval gates before design finalization and implementation.
+
+Risk: The skill writes or overwrites design documents under the configured SDD workspace.
+
+Mitigation: Verify that .sdd-workspace points to the intended project and review proposed overwrite summaries before accepting updates.
+
+Risk: The skill may launch background image generation after writing project files, which can create unexpected files or consume resources.
+
+Mitigation: Constrain or disable background image generation when file creation or resource use must be tightly controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/skills/sdd-brainstorming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown design specifications with concise conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image placeholder references and follow-up image generation requests for design diagrams.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

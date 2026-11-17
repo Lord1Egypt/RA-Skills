@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn7fzrpz1j6m4evc3qr6jyapkd82x2r2",
+  "name": "Photo Editor Pro",
   "slug": "photo-editor-pro",
   "version": "1.0.0",
-  "publishedAt": 1774754660252
+  "description": "AI-powered photo editing skill with background removal, color correction, batch processing, and professional tools. One-click enhancements for social media, e-commerce, and content creators.",
+  "author": "El Rudo Larios LLC",
+  "category": "creative",
+  "tags": ["photo", "image", "editing", "background-removal", "ai", "batch", "resize", "social-media"],
+  "pricing": {
+    "one-time": 14.99
+  },
+  "features": [
+    "AI auto-enhance",
+    "Background removal",
+    "Object removal",
+    "Color correction",
+    "Batch processing",
+    "Format conversion",
+    "Smart resize",
+    "Watermarks"
+  ],
+  "integrations": [
+    "File system",
+    "Cloud storage",
+    "Social APIs"
+  ],
+  "formats": ["PNG", "JPG", "WebP", "GIF", "BMP", "TIFF"],
+  "agentRequired": false,
+  "primaryUser": "CMO Team D (Doctor Strange) - Personal Brand",
+  "targetTeams": [
+    "CMO Team D - Personal Brand",
+    "CMO Team B - Product Marketing",
+    "CMO Team A - Brand",
+    "CMO Team C - Growth"
+  ]
 }

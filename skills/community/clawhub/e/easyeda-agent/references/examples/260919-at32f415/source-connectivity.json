@@ -1,0 +1,1805 @@
+{
+  "schemaVersion": 1,
+  "kind": "exam-source-connectivity",
+  "exam": "260919-at32f415-learning-board",
+  "status": "source-only",
+  "source": {
+    "file": "原理图.pdf",
+    "page": 1,
+    "method": "visual transcription plus PDF text cross-check"
+  },
+  "evidenceBoundary": [
+    "This is a transcription of the question schematic, not an EasyEDA netlist export.",
+    "Derived local net names identify otherwise unlabelled wires and may be renamed without changing topology.",
+    "pinNumbersFromSource=false means the PDF showed a functional terminal or two-ended part but not a trustworthy library pin/pad mapping.",
+    "Before materialization, query the real symbol pins, footprint pads and device pin-to-pad mapping; preserve any mismatch instead of guessing."
+  ],
+  "counts": {
+    "components": 69,
+    "bomInstances": 69,
+    "explicitNC": 13
+  },
+  "netDefinitions": {
+    "GND": {
+      "kind": "source-label"
+    },
+    "+5V": {
+      "kind": "source-label"
+    },
+    "+3V3": {
+      "kind": "source-label"
+    },
+    "USB_D+": {
+      "kind": "source-label"
+    },
+    "USB_D-": {
+      "kind": "source-label"
+    },
+    "PA0": {
+      "kind": "source-label"
+    },
+    "PA1": {
+      "kind": "source-label"
+    },
+    "PA2": {
+      "kind": "source-label"
+    },
+    "PA3": {
+      "kind": "source-label"
+    },
+    "PA4": {
+      "kind": "source-label"
+    },
+    "PA5": {
+      "kind": "source-label"
+    },
+    "PA6": {
+      "kind": "source-label"
+    },
+    "PA7": {
+      "kind": "source-label"
+    },
+    "PA8": {
+      "kind": "source-label"
+    },
+    "PA9": {
+      "kind": "source-label"
+    },
+    "PA10": {
+      "kind": "source-label"
+    },
+    "PA11": {
+      "kind": "source-label"
+    },
+    "PA12": {
+      "kind": "source-label"
+    },
+    "PA13": {
+      "kind": "source-label"
+    },
+    "PA14": {
+      "kind": "source-label"
+    },
+    "PA15": {
+      "kind": "source-label"
+    },
+    "PB0": {
+      "kind": "source-label"
+    },
+    "PB1": {
+      "kind": "source-label"
+    },
+    "PB2": {
+      "kind": "source-label"
+    },
+    "PB3": {
+      "kind": "source-label"
+    },
+    "PB4": {
+      "kind": "source-label"
+    },
+    "PB5": {
+      "kind": "source-label"
+    },
+    "PB6": {
+      "kind": "source-label"
+    },
+    "PB7": {
+      "kind": "source-label"
+    },
+    "PB8": {
+      "kind": "source-label"
+    },
+    "BOOT0": {
+      "kind": "source-label"
+    },
+    "NRST": {
+      "kind": "source-label"
+    },
+    "OSC_IN": {
+      "kind": "source-label"
+    },
+    "OSC_OUT": {
+      "kind": "source-label"
+    },
+    "CANH": {
+      "kind": "source-label"
+    },
+    "CANL": {
+      "kind": "source-label"
+    },
+    "USB_CC1": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire USB1.CC1-R2",
+      "renameable": true
+    },
+    "USB_CC2": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire USB1.CC2-R1",
+      "renameable": true
+    },
+    "RGB_BUF_IN": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire R3-U1.INA",
+      "renameable": true
+    },
+    "RGB_DATA": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire U1.Y-LED1.DIN",
+      "renameable": true
+    },
+    "LCD_BASE": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire R4-Q1.B-R5",
+      "renameable": true
+    },
+    "LCD_Q1_COLLECTOR": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire Q1.C-R6",
+      "renameable": true
+    },
+    "LCD_LEDK": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire R6-U3.LEDK",
+      "renameable": true
+    },
+    "BUZZER_POS": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire R15-BUZZER1(+)-D2.K",
+      "renameable": true
+    },
+    "BUZZER_NEG": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire BUZZER1(-)-D2.A-Q2.C",
+      "renameable": true
+    },
+    "BUZZER_BASE": {
+      "kind": "derived-local-name",
+      "basis": "unlabelled local wire R16-Q2.B-R17",
+      "renameable": true
+    }
+  },
+  "components": [
+    {
+      "reference": "BUZZER1",
+      "functionalZone": "buzzer",
+      "value": "MLT-5020",
+      "footprint": "BUZ-SMD_L5.0-W5.5-P4.60",
+      "pins": [
+        {
+          "terminal": "+",
+          "net": "BUZZER_POS"
+        },
+        {
+          "terminal": "-",
+          "net": "BUZZER_NEG"
+        },
+        {
+          "terminal": "NC",
+          "state": "nc"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "题图明确显示第三个 NC 端，但未给出数字端子号；现场选中的 C94598 Device 回读为 pin 3/name NC"
+    },
+    {
+      "reference": "C1",
+      "functionalZone": "rgb-led",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+5V"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C2",
+      "functionalZone": "rgb-led",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+5V"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C3",
+      "functionalZone": "ldo",
+      "value": "10uF",
+      "footprint": "C0805",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+5V"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C4",
+      "functionalZone": "ldo",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+5V"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C5",
+      "functionalZone": "ldo",
+      "value": "10uF",
+      "footprint": "C0805",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C6",
+      "functionalZone": "ldo",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C7",
+      "functionalZone": "lcd",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C8",
+      "functionalZone": "buttons",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "NRST"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C9",
+      "functionalZone": "usb-uart",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C10",
+      "functionalZone": "usb-uart",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C11",
+      "functionalZone": "photoresistor",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PB1"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C12",
+      "functionalZone": "can",
+      "value": "10uF",
+      "footprint": "C0805",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C13",
+      "functionalZone": "can",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C14",
+      "functionalZone": "mcu",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C15",
+      "functionalZone": "mcu",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C16",
+      "functionalZone": "mcu",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C17",
+      "functionalZone": "buzzer",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C18",
+      "functionalZone": "micro-sd",
+      "value": "10uF",
+      "footprint": "C0805",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C19",
+      "functionalZone": "micro-sd",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C20",
+      "functionalZone": "crystal",
+      "value": "18pF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "OSC_OUT"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C21",
+      "functionalZone": "crystal",
+      "value": "18pF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "OSC_IN"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "C22",
+      "functionalZone": "swd",
+      "value": "100nF",
+      "footprint": "C0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "CARD1",
+      "functionalZone": "micro-sd",
+      "value": "TF-115",
+      "footprint": "TF-SMD_TF-115",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA6"
+        },
+        {
+          "terminal": "2",
+          "net": "PA7"
+        },
+        {
+          "terminal": "3",
+          "net": "PA3"
+        },
+        {
+          "terminal": "4",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "5",
+          "net": "PA2"
+        },
+        {
+          "terminal": "6",
+          "net": "GND"
+        },
+        {
+          "terminal": "7",
+          "net": "PA4"
+        },
+        {
+          "terminal": "8",
+          "net": "PA5"
+        },
+        {
+          "terminal": "9",
+          "net": "PB0"
+        },
+        {
+          "terminal": "10",
+          "net": "GND"
+        },
+        {
+          "terminal": "11",
+          "net": "GND"
+        },
+        {
+          "terminal": "12",
+          "net": "GND"
+        },
+        {
+          "terminal": "13",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true,
+      "note": "10-13 为 SHELL；DAT/CMD/CD 上拉，CLK 不上拉"
+    },
+    {
+      "reference": "CN1",
+      "functionalZone": "can",
+      "value": "KF2EDGR-3.81-3P",
+      "footprint": "CONN-TH_3P-P3.81_KF2EDGR-3.81-3P",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "CANL"
+        },
+        {
+          "terminal": "2",
+          "net": "CANH"
+        },
+        {
+          "terminal": "3",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "D1",
+      "functionalZone": "can",
+      "value": "PESD1CAN",
+      "footprint": "SOT-23-3",
+      "pins": [
+        {
+          "terminal": "CANH",
+          "net": "CANH"
+        },
+        {
+          "terminal": "CANL",
+          "net": "CANL"
+        },
+        {
+          "terminal": "GND",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "PESD1CAN 三个功能端从图面读取，数字 pin/pad 顺序必须从真实库读取"
+    },
+    {
+      "reference": "D2",
+      "functionalZone": "buzzer",
+      "value": "1N4148WS",
+      "footprint": "SOD-323",
+      "pins": [
+        {
+          "terminal": "K",
+          "net": "BUZZER_POS"
+        },
+        {
+          "terminal": "A",
+          "net": "BUZZER_NEG"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "续流二极管极性按图形读取；1N4148WS 数字 pin/pad 必须从真实库读取"
+    },
+    {
+      "reference": "H1",
+      "functionalZone": "swd",
+      "value": "PZ254V-11-04P",
+      "footprint": "HDR-TH_4P-P2.54-V-M",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "GND"
+        },
+        {
+          "terminal": "2",
+          "net": "PA14",
+          "sourceAlias": "SWCLK"
+        },
+        {
+          "terminal": "3",
+          "net": "PA13",
+          "sourceAlias": "SWDIO"
+        },
+        {
+          "terminal": "4",
+          "net": "+3V3"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "LED1",
+      "functionalZone": "rgb-led",
+      "value": "WS2812B-B/W",
+      "footprint": "LED-SMD_4P-L5.0-W5.0-BL_TC5050RGB",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+5V"
+        },
+        {
+          "terminal": "2",
+          "state": "nc",
+          "pinName": "DOUT"
+        },
+        {
+          "terminal": "3",
+          "net": "GND"
+        },
+        {
+          "terminal": "4",
+          "net": "RGB_DATA"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "Q1",
+      "functionalZone": "lcd",
+      "value": "S8050",
+      "footprint": "SOT-23-3",
+      "pins": [
+        {
+          "terminal": "B",
+          "net": "LCD_BASE"
+        },
+        {
+          "terminal": "C",
+          "net": "LCD_Q1_COLLECTOR"
+        },
+        {
+          "terminal": "E",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "B/C/E 来自图形端子角色；S8050 实际封装 pad 映射必须从库读取"
+    },
+    {
+      "reference": "Q2",
+      "functionalZone": "buzzer",
+      "value": "S8050",
+      "footprint": "SOT-23-3",
+      "pins": [
+        {
+          "terminal": "B",
+          "net": "BUZZER_BASE"
+        },
+        {
+          "terminal": "C",
+          "net": "BUZZER_NEG"
+        },
+        {
+          "terminal": "E",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "B/C/E 来自图形端子角色；S8050 实际封装 pad 映射必须从库读取"
+    },
+    {
+      "reference": "R1",
+      "functionalZone": "type-c",
+      "value": "5.1kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "USB_CC2"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R2",
+      "functionalZone": "type-c",
+      "value": "5.1kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "USB_CC1"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R3",
+      "functionalZone": "rgb-led",
+      "value": "22Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA8"
+        },
+        {
+          "terminal": "2",
+          "net": "RGB_BUF_IN"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R4",
+      "functionalZone": "lcd",
+      "value": "330Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA15"
+        },
+        {
+          "terminal": "2",
+          "net": "LCD_BASE"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R5",
+      "functionalZone": "lcd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "LCD_BASE"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R6",
+      "functionalZone": "lcd",
+      "value": "22Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "LCD_Q1_COLLECTOR"
+        },
+        {
+          "terminal": "2",
+          "net": "LCD_LEDK"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R7",
+      "functionalZone": "buttons",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "NRST"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R8",
+      "functionalZone": "buttons",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA0"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R9",
+      "functionalZone": "buttons",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA1"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R10",
+      "functionalZone": "photoresistor",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PB1"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R11",
+      "functionalZone": "photoresistor",
+      "value": "GT36516",
+      "footprint": "RES-SMD_L3.6-W2.4",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PB1"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "光敏电阻两端；实际库 pin1/pin2 朝向待回读"
+    },
+    {
+      "reference": "R12",
+      "functionalZone": "can",
+      "value": "120Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "CANH"
+        },
+        {
+          "terminal": "2",
+          "net": "CANL"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R13",
+      "functionalZone": "boot",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "BOOT0"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R14",
+      "functionalZone": "boot",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PB2"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R15",
+      "functionalZone": "buzzer",
+      "value": "22Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "BUZZER_POS"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R16",
+      "functionalZone": "buzzer",
+      "value": "330Ω",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PB8"
+        },
+        {
+          "terminal": "2",
+          "net": "BUZZER_BASE"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R17",
+      "functionalZone": "buzzer",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "BUZZER_BASE"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R18",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA6"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R19",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA7"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R20",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA3"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R21",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA4"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R22",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA5"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "R23",
+      "functionalZone": "micro-sd",
+      "value": "10kΩ",
+      "footprint": "R0603",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PB0"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "两端连接从图面读取；电阻/无极性电容的库 pin1/pin2 朝向仍需实例回读"
+    },
+    {
+      "reference": "SCREW1",
+      "functionalZone": "mounting",
+      "value": "M3",
+      "footprint": "M3",
+      "pins": [
+        {
+          "terminal": "1",
+          "state": "nc"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "题图明确 NC；不得自行接 GND"
+    },
+    {
+      "reference": "SCREW2",
+      "functionalZone": "mounting",
+      "value": "M3",
+      "footprint": "M3",
+      "pins": [
+        {
+          "terminal": "1",
+          "state": "nc"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "题图明确 NC；不得自行接 GND"
+    },
+    {
+      "reference": "SCREW3",
+      "functionalZone": "mounting",
+      "value": "M3",
+      "footprint": "M3",
+      "pins": [
+        {
+          "terminal": "1",
+          "state": "nc"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "题图明确 NC；不得自行接 GND"
+    },
+    {
+      "reference": "SCREW4",
+      "functionalZone": "mounting",
+      "value": "M3",
+      "footprint": "M3",
+      "pins": [
+        {
+          "terminal": "1",
+          "state": "nc"
+        }
+      ],
+      "pinNumbersFromSource": false,
+      "note": "题图明确 NC；不得自行接 GND"
+    },
+    {
+      "reference": "SW1",
+      "functionalZone": "buttons",
+      "value": "SH-6X6X5H-TP",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "NRST"
+        },
+        {
+          "terminal": "3",
+          "net": "NRST"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        },
+        {
+          "terminal": "4",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "SW2",
+      "functionalZone": "buttons",
+      "value": "SH-6X6X5H-TP",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "3",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA0"
+        },
+        {
+          "terminal": "4",
+          "net": "PA0"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "SW3",
+      "functionalZone": "buttons",
+      "value": "SH-6X6X5H-TP",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "3",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "PA1"
+        },
+        {
+          "terminal": "4",
+          "net": "PA1"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "U1",
+      "functionalZone": "rgb-led",
+      "value": "SN74LVC1G125DCKR(UMW)",
+      "footprint": "SC-70-5",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "GND"
+        },
+        {
+          "terminal": "2",
+          "net": "RGB_BUF_IN"
+        },
+        {
+          "terminal": "3",
+          "net": "GND"
+        },
+        {
+          "terminal": "4",
+          "net": "RGB_DATA"
+        },
+        {
+          "terminal": "5",
+          "net": "+5V"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "U2",
+      "functionalZone": "ldo",
+      "value": "AMS1117-3.3",
+      "footprint": "SOT-223-4",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "GND"
+        },
+        {
+          "terminal": "2",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "3",
+          "net": "+5V"
+        },
+        {
+          "terminal": "4",
+          "net": "+3V3"
+        }
+      ],
+      "pinNumbersFromSource": true,
+      "note": "pin2 VOUT 与 pin4 TAB 同属 +3V3"
+    },
+    {
+      "reference": "U3",
+      "functionalZone": "lcd",
+      "value": "N096-1608TBBIG11-H13",
+      "footprint": "OLED-SMD_ST7735S",
+      "pins": [
+        {
+          "terminal": "1",
+          "state": "nc"
+        },
+        {
+          "terminal": "2",
+          "state": "nc"
+        },
+        {
+          "terminal": "3",
+          "net": "PB5"
+        },
+        {
+          "terminal": "4",
+          "net": "PB3"
+        },
+        {
+          "terminal": "5",
+          "net": "PB4"
+        },
+        {
+          "terminal": "6",
+          "net": "PB6"
+        },
+        {
+          "terminal": "7",
+          "net": "PB7"
+        },
+        {
+          "terminal": "8",
+          "net": "GND"
+        },
+        {
+          "terminal": "9",
+          "state": "nc"
+        },
+        {
+          "terminal": "10",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "11",
+          "net": "LCD_LEDK"
+        },
+        {
+          "terminal": "12",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "13",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "U4",
+      "functionalZone": "usb-uart",
+      "value": "CH340N",
+      "footprint": "SOP-8",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "USB_D+"
+        },
+        {
+          "terminal": "2",
+          "net": "USB_D-"
+        },
+        {
+          "terminal": "3",
+          "net": "GND"
+        },
+        {
+          "terminal": "4",
+          "state": "nc",
+          "pinName": "RTS#"
+        },
+        {
+          "terminal": "5",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "6",
+          "net": "PA10"
+        },
+        {
+          "terminal": "7",
+          "net": "PA9"
+        },
+        {
+          "terminal": "8",
+          "net": "+3V3"
+        }
+      ],
+      "pinNumbersFromSource": true,
+      "note": "VCC pin5 与 V3 pin8 都接 +3V3，并各有 100nF"
+    },
+    {
+      "reference": "U5",
+      "functionalZone": "can",
+      "value": "SIT65HVD230DR",
+      "footprint": "SOP-8",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "PA12"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        },
+        {
+          "terminal": "3",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "4",
+          "net": "PA11"
+        },
+        {
+          "terminal": "5",
+          "state": "nc",
+          "pinName": "VREF"
+        },
+        {
+          "terminal": "6",
+          "net": "CANL"
+        },
+        {
+          "terminal": "7",
+          "net": "CANH"
+        },
+        {
+          "terminal": "8",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true
+    },
+    {
+      "reference": "U6",
+      "functionalZone": "mcu",
+      "value": "AT32F415KBU7-4",
+      "footprint": "QFN-32",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "2",
+          "net": "OSC_IN"
+        },
+        {
+          "terminal": "3",
+          "net": "OSC_OUT"
+        },
+        {
+          "terminal": "4",
+          "net": "NRST"
+        },
+        {
+          "terminal": "5",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "6",
+          "net": "PA0"
+        },
+        {
+          "terminal": "7",
+          "net": "PA1"
+        },
+        {
+          "terminal": "8",
+          "net": "PA2"
+        },
+        {
+          "terminal": "9",
+          "net": "PA3"
+        },
+        {
+          "terminal": "10",
+          "net": "PA4"
+        },
+        {
+          "terminal": "11",
+          "net": "PA5"
+        },
+        {
+          "terminal": "12",
+          "net": "PA6"
+        },
+        {
+          "terminal": "13",
+          "net": "PA7"
+        },
+        {
+          "terminal": "14",
+          "net": "PB0"
+        },
+        {
+          "terminal": "15",
+          "net": "PB1"
+        },
+        {
+          "terminal": "16",
+          "net": "PB2"
+        },
+        {
+          "terminal": "17",
+          "net": "+3V3"
+        },
+        {
+          "terminal": "18",
+          "net": "PA8"
+        },
+        {
+          "terminal": "19",
+          "net": "PA9"
+        },
+        {
+          "terminal": "20",
+          "net": "PA10"
+        },
+        {
+          "terminal": "21",
+          "net": "PA11"
+        },
+        {
+          "terminal": "22",
+          "net": "PA12"
+        },
+        {
+          "terminal": "23",
+          "net": "PA13"
+        },
+        {
+          "terminal": "24",
+          "net": "PA14"
+        },
+        {
+          "terminal": "25",
+          "net": "PA15"
+        },
+        {
+          "terminal": "26",
+          "net": "PB3"
+        },
+        {
+          "terminal": "27",
+          "net": "PB4"
+        },
+        {
+          "terminal": "28",
+          "net": "PB5"
+        },
+        {
+          "terminal": "29",
+          "net": "PB6"
+        },
+        {
+          "terminal": "30",
+          "net": "PB7"
+        },
+        {
+          "terminal": "31",
+          "net": "BOOT0"
+        },
+        {
+          "terminal": "32",
+          "net": "PB8"
+        },
+        {
+          "terminal": "33",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true,
+      "note": "pin33 EP 接 GND；VDD1/VDDA/VDD17 分别对应 C14/C15/C16"
+    },
+    {
+      "reference": "USB1",
+      "functionalZone": "type-c",
+      "value": "TYPE-C 16PIN 2MD(073)",
+      "footprint": "USB-C-SMD_TYPE-C-16PIN-2MD-073",
+      "pins": [
+        {
+          "terminal": "B1/A12",
+          "net": "GND"
+        },
+        {
+          "terminal": "B4/A9",
+          "net": "+5V"
+        },
+        {
+          "terminal": "B5",
+          "net": "USB_CC2",
+          "pinName": "CC2"
+        },
+        {
+          "terminal": "A8",
+          "state": "nc",
+          "pinName": "SBU1"
+        },
+        {
+          "terminal": "B6",
+          "net": "USB_D+"
+        },
+        {
+          "terminal": "A7",
+          "net": "USB_D-"
+        },
+        {
+          "terminal": "A6",
+          "net": "USB_D+"
+        },
+        {
+          "terminal": "B7",
+          "net": "USB_D-"
+        },
+        {
+          "terminal": "A5",
+          "net": "USB_CC1",
+          "pinName": "CC1"
+        },
+        {
+          "terminal": "B8",
+          "state": "nc",
+          "pinName": "SBU2"
+        },
+        {
+          "terminal": "A4/B9",
+          "net": "+5V"
+        },
+        {
+          "terminal": "A1/B12",
+          "net": "GND"
+        },
+        {
+          "terminal": "13",
+          "net": "GND"
+        },
+        {
+          "terminal": "14",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true,
+      "note": "重复 D+/D-、VBUS、GND 必须逐个物理脚回读；13/14 为图面 EH/外壳端"
+    },
+    {
+      "reference": "X1",
+      "functionalZone": "crystal",
+      "value": "8MHz",
+      "footprint": "CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+      "pins": [
+        {
+          "terminal": "1",
+          "net": "OSC_IN"
+        },
+        {
+          "terminal": "2",
+          "net": "GND"
+        },
+        {
+          "terminal": "3",
+          "net": "OSC_OUT"
+        },
+        {
+          "terminal": "4",
+          "net": "GND"
+        }
+      ],
+      "pinNumbersFromSource": true
+    }
+  ]
+}

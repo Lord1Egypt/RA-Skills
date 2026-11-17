@@ -1,40 +1,63 @@
-## Description: <br>
-Control Nest smart home devices (thermostat, cameras, doorbell) via the Device Access API. Use when asked to check or adjust home temperature, view camera feeds, check who's at the door, monitor rooms, or set up temperature schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Nest smart home devices (thermostat, cameras, doorbell) via the Device Access API. Use when asked to check or adjust home temperature, view camera feeds, check who's at the door, monitor rooms, or set up temperature schedules.
 
-## Publisher: <br>
-[amogower](https://clawhub.ai/user/amogower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amogower](https://clawhub.ai/user/amogower)
 
-## Use Case: <br>
-Developers and smart home operators use this skill to configure Google Device Access credentials, inspect Nest devices, control thermostat settings, generate camera stream URLs, and optionally run event alerts for doorbell or person detections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amogower/nest-devices) <br>
-- [Publisher profile](https://clawhub.ai/user/amogower) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Google Nest Device Access Console](https://console.nest.google.com/device-access) <br>
-- [Cloudflared release download](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell commands, Python examples, JSON responses, and systemd or YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run API calls against Google Device Access, expose a webhook for Pub/Sub events, and send Nest event images or alerts to Telegram and Clawdbot when configured.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+External users and developers use this skill to inspect and control Nest thermostats, cameras, and doorbells through Google's Smart Device Management API. It also supports setup guidance for real-time Nest events, including doorbell and person alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can expose an always-on Nest event webhook through Cloudflare.
+
+Mitigation: Require authenticated Pub/Sub push validation and restrict the endpoint before enabling external delivery.
+
+Risk: Doorbell and person events can send camera snapshots and activity alerts to Telegram.
+
+Mitigation: Use explicit opt-in for camera and third-party alerting paths, and confirm the recipient chat and bot token before deployment.
+
+Risk: The workflows depend on long-lived credentials and tokens for Nest, Clawdbot, Telegram, and 1Password.
+
+Mitigation: Store secrets in restricted secret files or systemd credentials, rotate them when exposed, and avoid passing the full environment to subprocesses.
+
+Risk: The setup downloads cloudflared from a latest-release URL.
+
+Mitigation: Pin the intended cloudflared version and verify the downloaded binary before installing or running it as a persistent service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amogower/skills/nest-devices)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google Nest Device Access Console](https://console.nest.google.com/device-access)
+- [Cloudflare cloudflared Download](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, Python, YAML, and systemd snippets; operational scripts emit JSON for device commands and status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Google Smart Device Management APIs, 1Password, Cloudflare Tunnel, Clawdbot hooks, Telegram, and ffmpeg depending on the selected workflow.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

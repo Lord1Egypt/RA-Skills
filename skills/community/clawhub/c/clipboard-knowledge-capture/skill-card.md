@@ -1,46 +1,57 @@
-## Description: <br>
-Turns supplied clipboard snippets into reviewable local knowledge-base entries with sources, tags, importance notes, follow-up actions, and archive suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures clipboard snippets into a local knowledge base by adding source context, tags, importance notes, follow-up actions, and suggested archive locations.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, researchers, and knowledge workers use this skill to turn clipboard text, source notes, and tag intent into structured Markdown or JSON records for a local knowledge base. The skill is designed for reviewable drafts and checklists before any downstream action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive clipboard text could be included in generated notes or output files. <br>
-Mitigation: Redact secrets, credentials, personal data, and confidential material before using the skill or saving generated Markdown or JSON. <br>
-Risk: Knowledge entries may become hard to verify if source information is missing. <br>
-Mitigation: Require source information when capturing a snippet and keep unresolved source gaps in the pending confirmations section. <br>
-Risk: The local Python helper can read chosen inputs and write user-selected output files. <br>
-Mitigation: Run it only on intended local files, use dry-run or stdout review where appropriate, and avoid changing the bundled spec to inspect broader local paths unless that is intentional. <br>
+## Use Case:
 
+External users and developers use this skill to turn clipboard text, source notes, and tagging intent into reviewable Markdown knowledge cards and follow-up checklists for a local notes workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/clipboard-knowledge-capture) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Structured output spec](resources/spec.json) <br>
-- [Output template](resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown or JSON, with an optional local Python command for file-based generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sections include excerpt, source, tags, importance, follow-up actions, suggested archive location, pending confirmations, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security review flags this release as suspicious because the bundled script contains local audit and scanning modes beyond the headline clipboard-capture workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing if a narrow clipboard formatter was expected, run it only on deliberate non-sensitive local inputs, and avoid pointing it at broad private directories.
+
+Risk: Clipboard material may contain secrets, personal data, or claims without source context that could be copied into a knowledge base.
+
+Mitigation: Redact sensitive content before use, require source information, and treat generated cards and action checklists as reviewable drafts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/clipboard-knowledge-capture)
+- [README](artifact/README.md)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown brief or JSON report, with optional local file output from the bundled Python script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 only; supports dry-run behavior and reviewable drafts before any execution or follow-up action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

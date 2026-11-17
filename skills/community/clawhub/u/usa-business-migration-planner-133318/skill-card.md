@@ -1,42 +1,54 @@
-## Description: <br>
-Helps maintainers and users turn requests about waffle-menu options versus normally displayed links into repeatable workflows, checklists, analyses, or implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users turn requests about menu and link display options into a repeatable workflow, checklist, analysis, or implementation plan.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Maintainers and users asking for software improvements use this skill to turn waffle-menu and link-display requirements into actionable plans, checklists, lightweight analyses, code changes, or decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger language may activate the skill on unrelated requests. <br>
-Mitigation: Invoke the skill explicitly when possible and review outputs for relevance before acting on them. <br>
-Risk: Generated workflows or implementation suggestions may be misleading when the user's constraints are incomplete. <br>
-Mitigation: Restate assumptions and success criteria, then review any checklist, analysis, or code change before implementation. <br>
+## Use Case:
 
+Maintainers and software users use this skill to clarify menu or link display requests, convert them into reusable workflows or checklists, and produce actionable implementation support with assumptions and verification notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/usa-business-migration-planner-133318) <br>
-- [Requirement plan](references/requirement-plan.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with checklists, workflow steps, validation notes, and optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, limits, risks, and next steps for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Security evidence says the skill purpose, evidence, and automatic trigger scope are inconsistent and broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the intended use case is explicit, invoke it deliberately, and review outputs before relying on them.
+
+Risk: Security guidance recommends narrowing triggers and disabling implicit invocation before broad deployment.
+
+Mitigation: Ask the publisher to align the title, evidence, and stated use case, and to narrow invocation behavior before organization-wide use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/usa-business-migration-planner-133318)
+- [Requirement Plan](references/requirement-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include clear assumptions, a concrete deliverable, and a short verification note.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

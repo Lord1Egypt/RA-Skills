@@ -1,45 +1,61 @@
-## Description: <br>
-Ask a question in plain English, get data from 13,000+ APIs in one call, including crypto prices, social data, and market intelligence, with cryptographically signed responses and optional x402 payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw-Net lets agents ask plain-language questions and route them to ClawNet APIs for orchestrated data answers, structured data-skill queries, and optional provenance checks.
 
-## Publisher: <br>
-[1xmint](https://clawhub.ai/user/1xmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1xmint](https://clawhub.ai/user/1xmint)
 
-## Use Case: <br>
-Developers and agents use Claw-Net to route natural-language data questions to external data APIs, browse available data skills, estimate costs, and retrieve structured or synthesized responses. It is especially oriented toward market, crypto, social, and provenance-aware data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and payloads are sent to the external ClawNet API and may contain sensitive business, wallet, or personal data. <br>
-Mitigation: Confirm trust in ClawNet before use, avoid unnecessary sensitive data in prompts and variables, and configure CLAWNET_API_KEY only for this service. <br>
-Risk: Protected endpoints require an API key, credits, or paid x402 calls that may incur charges. <br>
-Mitigation: Use free browse endpoints and cost-estimation endpoints before paid calls, and monitor credit or wallet usage. <br>
-Risk: Returned market or API data may be time-sensitive or decision-impacting. <br>
-Mitigation: Cross-reference important results against independent sources before acting on business, financial, or operational decisions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to ClawNet for natural-language data orchestration, marketplace skill browsing, direct structured data queries, and paid x402/API-key workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/1xmint/claw-net) <br>
-- [Claw-Net homepage](https://claw-net.org) <br>
-- [Claw-Net SOMA identity](https://api.claw-net.org/.well-known/soma.json) <br>
-- [ClawNet API base](https://api.claw-net.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and API endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWNET_API_KEY for protected endpoints or wallet-based x402 payment for paid calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: Queries and related metadata are sent to ClawNet and may be routed to downstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and confidential data in prompts; review ClawNet data handling before using sensitive workloads.
+
+Risk: Paid x402/API usage can spend credits or USDC automatically.
+
+Mitigation: Use spending controls, low-balance wallets, and cost estimation before production use.
+
+Risk: The MCP setup references an unpinned local command for code that is not included while exposing an API key.
+
+Mitigation: Review the referenced server code, pin dependencies through a controlled lockfile, and scope CLAWNET_API_KEY before enabling MCP.
+
+## Reference(s):
+
+- [Claw-Net ClawHub listing](https://clawhub.ai/1xmint/skills/claw-net)
+- [ClawNet homepage](https://claw-net.org)
+- [ClawNet SOMA identity](https://api.claw-net.org/.well-known/soma.json)
+- [Soma protocol paper](https://doi.org/10.5281/zenodo.19260081)
+- [ERC-8004 specification](https://eips.ethereum.org/EIPS/eip-8004)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides API-key, x402, and MCP setup; protected endpoints require CLAWNET_API_KEY or wallet-based payment.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

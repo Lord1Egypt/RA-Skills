@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-gpt-4o-image
 description: Use PoYo AI GPT-4o Image through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants to generate or edit media with this model family, prepare PoYo-compatible payloads, submit jobs, or poll task status for `gpt-4o-image`, `gpt-4o-image-edit`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/gpt-4o-image", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/gpt-4o-image-api", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo GPT 4O Image
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gpt-4o-image-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/gpt-4o-image>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill to submit and track PoYo jobs for the GPT-4o Image family.
 
@@ -52,4 +58,3 @@ When helping with this model family, include:
 Notes:
 
 Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

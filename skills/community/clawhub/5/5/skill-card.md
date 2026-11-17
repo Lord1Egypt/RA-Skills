@@ -1,46 +1,55 @@
-## Description: <br>
-58区块同城 helps agents query a blockchain-based digital city platform for city rankings, city details, NFT avatar marketplace information, and block activity participation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+58区块同城 helps agents retrieve digital city information, city popularity rankings, NFT avatar information, and block activity details for users of a blockchain-based digital city platform.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-External users and agents use this skill to explore digital city information, check city popularity rankings and city details, browse or manage NFT avatars, and get information about block activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-linked NFT purchases, trades, and governance actions can create financial or irreversible blockchain consequences. <br>
-Mitigation: Require the agent to show every wallet connection, purchase, trade, vote, and exact amount, then obtain explicit user approval before taking action. <br>
-Risk: External city, block, and NFT endpoints may return incomplete, stale, or untrusted information. <br>
-Mitigation: Treat returned data as informational, cite the source endpoint when presenting results, and ask the user to confirm before relying on it for purchases or governance decisions. <br>
-Risk: The skill declares local file read and write permissions, which may expose or modify user data if used too broadly. <br>
-Mitigation: Keep file access read-only unless the user approves the exact file path and intended write operation. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for digital city rankings, city details, NFT avatar marketplace information, and block activity summaries. It is most relevant when the user wants blockchain city data or NFT-related guidance surfaced through the documented 58区块同城 workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/5) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
-- [58区块同城 homepage](https://www.58.tl) <br>
-- [City ranking endpoint](https://www.blockcity.vip/pages/block/area) <br>
-- [City detail URL pattern](https://www.blockcity.vip/{city-area-code}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries with optional API-derived city, block, and NFT data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access; wallet connection, purchase, trade, vote, and local file actions should be shown for explicit user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The security review flags requested local file read/write access as potentially unnecessary for the documented workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the network access needed for documented city and NFT lookup workflows unless local file access is separately justified.
+
+Risk: The skill describes NFT, wallet, purchase, trading, and governance activity that can have financial consequences.
+
+Mitigation: Require the user to verify sites and wallet prompts directly, never request seed phrases or private keys, and obtain explicit confirmation before any transaction-like action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/5)
+- [58区块同城 official site](https://www.58.tl)
+- [BlockCity city ranking endpoint](https://www.blockcity.vip/pages/block/area)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with optional inline shell commands and API-derived summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access; wallet, NFT purchase, trading, and governance actions should require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

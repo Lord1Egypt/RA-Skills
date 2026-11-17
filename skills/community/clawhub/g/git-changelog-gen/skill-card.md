@@ -1,43 +1,53 @@
-## Description: <br>
-Generate changelogs from git commits. Supports markdown, plain text, and JSON output with date ranges and tag-based filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate changelogs from git commits. Supports markdown, plain text, and JSON output with date ranges and tag-based filtering.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate readable changelogs from local Git commit history for release notes, project summaries, or programmatic changelog processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Changelog output can expose commit metadata such as hashes, subjects, authors, and dates. <br>
-Mitigation: Run it only on repositories whose commit history is appropriate to print or share, and review generated output before publishing. <br>
-Risk: The script runs local Git commands inside a user-supplied repository path. <br>
-Mitigation: Use trusted local repository paths and review command arguments before execution. <br>
-Risk: Grouped output relies on Bash 4+, while some macOS environments ship an older Bash. <br>
-Mitigation: Use a Bash 4+ interpreter for grouped output or run without the grouping option. <br>
+## Use Case:
 
+Developers and release engineers use this skill to generate changelogs from trusted git commit history for release notes, summaries, or automation inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/git-changelog-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/rogue-agent1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown, plain text, or JSON changelog entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Git history, excludes merge commits, supports date ranges and tag-based filtering, and can group conventional commit types when Bash 4+ is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: Generated changelogs can include untrusted commit subjects, author names, or dates from repository history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with trusted repositories, or review and sanitize generated changelogs before publishing or feeding JSON output into automation.
+
+Risk: Manual JSON construction and output escaping weaknesses could produce malformed output or preserve unsafe Markdown or terminal control content.
+
+Mitigation: Review JSON output before automation use and replace manual JSON construction with a serializer when maintaining the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/git-changelog-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown, plain text, or JSON changelog output with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports date ranges, tag-based filtering, merge-commit exclusion, and optional grouping by conventional commit type.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

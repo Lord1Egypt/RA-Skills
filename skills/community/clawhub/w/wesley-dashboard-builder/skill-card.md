@@ -1,43 +1,65 @@
-## Description: <br>
-Creates live dashboards, complete websites, and social-proof pages for Wesley-Agent with self-contained HTML, CSS, and JavaScript output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates live dashboards, complete websites, and social-proof pages for Wesley-Agent with mobile-first HTML, CSS, JavaScript, live API data, media integration, and Cloudflare sharing.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-Developers and operators use this skill to generate mobile-first Wesley dashboard pages, live signal views, trading performance screens, and deployment guidance for VPS and Cloudflare-hosted sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes deployment workflows for live VPS, Docker, public tunnel, Telegram, and persistence operations. <br>
-Mitigation: Use only on controlled Wesley infrastructure, replace hard-coded hosts and domains, avoid root access, and require explicit approval before SSH, Docker, Cloudflare, or Telegram actions. <br>
-Risk: Generated dashboards may expose live portfolio or signal data through public sharing links. <br>
-Mitigation: Publish only intentionally public data, restrict CORS to known origins, and add authentication when dashboards expose non-public information. <br>
+## Use Case:
 
+Developers and operators use this skill to generate and deploy live marketing dashboards, trading views, signal pages, and proof galleries for Wesley-Agent. It produces standalone web files and deployment guidance for VPS and Cloudflare tunnel workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/georges91560/wesley-dashboard-builder) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
-- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js) <br>
-- [Google Fonts](https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline HTML, CSS, JavaScript, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained frontend files and deployment instructions; optional Telegram integration requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Deployment guidance can expose dashboard and API services publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not expose the API until access controls are reviewed; restrict CORS to approved origins and use Cloudflare sharing intentionally.
+
+Risk: Deployment commands can involve root SSH, container changes, open ports, and long-running services.
+
+Mitigation: Replace hardcoded infrastructure details, avoid root SSH where possible, use a least-privilege deploy user, and confirm each administrator action before running it.
+
+Risk: Telegram uploads require bot credentials and can introduce external data into generated galleries.
+
+Mitigation: Store Telegram tokens as environment secrets and enable uploads only after explicit user approval and content handling review.
+
+Risk: Unpinned dependencies and public CDN imports can change behavior over time.
+
+Mitigation: Pin dependency versions and review third-party script and font imports before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georges91560/skills/wesley-dashboard-builder)
+- [Publisher Profile](https://clawhub.ai/user/georges91560)
+- [Deployment Guide](artifact/DEPLOYMENT.md)
+- [Design System](artifact/DESIGN_SYSTEM.md)
+- [Telegram Bot API](https://api.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, configuration snippets, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce standalone inline web files, deployment steps, API integration guidance, and fallback data behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Scene Replace guides an agent to call the Flyelep AI Tool API to replace an image background using a public source image URL, scene reference image URL, and prompt text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replaces an image’s background scene through Flyelep’s AI API, optionally using a reference image and text prompt to guide the result.
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to replace the background scene of an image, such as changing a product display environment while preserving the subject. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected image URLs, reference image URLs, prompt text, and a Flyelep API key to Flyelep. <br>
-Mitigation: Use it only with images and prompts suitable for that provider, and keep the secretKey private. <br>
-Risk: The API requires publicly reachable image URLs, so private or expiring links may fail or expose content to a third-party service. <br>
-Mitigation: Provide only intended public image links and avoid sensitive images unless the provider's handling is acceptable. <br>
+## Use Case:
 
+Designers and agents use this skill to request a new environment for a product or subject while retaining the main subject. It returns the generated image URL for the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flyelepai/flyelep-scene-replace) <br>
-- [Flyelep scene replacement API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/sceneReplace) <br>
-- [Flyelep controlboard](https://www.flyelep.cn/controlboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the generated image URL from the Flyelep API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Local images may be uploaded to Flyelep to obtain a URL for processing; the documented upload links are described as temporary (24 hours).
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Upload only images the user has chosen to process, and avoid retaining or reusing the temporary URL beyond the current task.
+
+Risk: The documented Windows example writes a request payload to a local temporary JSON file.
+
+Mitigation: Keep credentials out of saved files and remove the temporary payload after the API call, as the instructions specify.
+
+## Reference(s):
+
+- [Scene Replace on ClawHub](https://clawhub.ai/flyelepai/skills/flyelep-scene-replace)
+- [Flyelep scene replacement API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/sceneReplace)
+- [Flyelep image upload API](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Image URL, Text]
+
+**Output Format:** [A generated image URL with brief status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to present the result URL without retrieving the image contents.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

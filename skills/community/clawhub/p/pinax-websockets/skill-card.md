@@ -1,42 +1,57 @@
-## Description: <br>
-Connects agents to a substreams-websocket fan-out server for real-time blockchain table data over WebSocket, with selectors, SQE filters, reconnect handling, chain reorg handling, and backpressure guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents that connect to Substreams WebSocket fan-out servers and consume live DatabaseChanges streams with selectors, filters, reconnects, chain reorg handling, and backpressure awareness.
 
-## Publisher: <br>
-[pinax](https://clawhub.ai/user/pinax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinax](https://clawhub.ai/user/pinax)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to live Substreams DatabaseChanges feeds, subscribe to network and table streams, filter events, and handle live-feed operational cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or misconfigured WebSocket servers can expose subscriptions or deliver unreliable blockchain data. <br>
-Mitigation: Connect only to trusted operators and confirm advertised streams through the session message or /streams before relying on data. <br>
-Risk: The feed is live-only and may drop frames or report chain reorganizations. <br>
-Mitigation: Handle dropped and undo lifecycle frames, reconnect with backoff, and backfill gaps from Substreams or another authoritative source. <br>
-Risk: Broad wildcard subscriptions or weak filters can overwhelm clients or increase irrelevant data exposure. <br>
-Mitigation: Scope selectors and SQE filters to required networks, tables, and fields, and monitor backpressure or HTTP 503 responses. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to live blockchain table streams over WebSocket, discover available streams, subscribe or filter by network and table, and handle lifecycle events such as reconnects, reorgs, and dropped frames.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pinax/pinax-websockets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, code] <br>
-**Output Format:** [Markdown with WebSocket URL examples and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; consumers must provide and trust the WebSocket endpoint they connect to.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release metadata) <br>
+Risk: Endpoint-provided discovery documents and stream data can vary by host and may not match assumptions from another deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm available streams through the session message or /streams endpoint before subscribing, and bind downstream parsing to the observed network, table, and module metadata.
+
+Risk: Wildcard subscriptions can ingest broader data than intended.
+
+Mitigation: Use narrow network@table selectors when possible, confirm active subscriptions with LIST_SUBSCRIPTIONS, and use SQE filters for event-level scoping.
+
+Risk: Dropped-frame warnings indicate the live stream may have gaps.
+
+Mitigation: Do not forward incomplete results as complete data; reconcile gaps with Substreams backfill before using or publishing derived output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pinax/skills/pinax-websockets)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON and WebSocket examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WebSocket URLs, JSON request and response envelopes, SQE filter examples, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.6.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

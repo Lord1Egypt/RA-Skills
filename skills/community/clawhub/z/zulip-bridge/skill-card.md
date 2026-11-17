@@ -1,40 +1,54 @@
-## Description: <br>
-OpenClaw Zulip Bridge enables OpenClaw agents to send Zulip messages, monitor streams, and perform configured user or stream administration actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance Zulip bridge skill that enables messaging, stream monitoring, and administrative actions on Zulip servers.
 
-## Publisher: <br>
-[niyazmft](https://clawhub.ai/user/niyazmft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niyazmft](https://clawhub.ai/user/niyazmft)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an OpenClaw agent to Zulip for stream and private-message workflows, monitored message intake, reaction feedback, and optional administrative operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge requires sensitive Zulip bot credentials and can monitor or post messages as that bot. <br>
-Mitigation: Use a least-privilege bot account, store credentials securely, and review who can trigger the bot before enabling broad stream or DM access. <br>
-Risk: The bridge exposes high-impact delete and administration actions when administrative capability is enabled. <br>
-Mitigation: Keep enableAdminActions disabled unless explicitly needed, avoid admin credentials for routine use, and manually review any deployment that enables administrative actions. <br>
+## Use Case:
 
+Developers and teams use this skill to let an agent interact with Zulip workspaces through the OpenClaw Zulip Bridge plugin, including sending messages, monitoring streams, managing streams, handling reactions, and performing gated administrative actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niyazmft/zulip-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Zulip messaging targets, setup steps, and operational guidance for OpenClaw channel use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.13 (source: frontmatter, package.json, openclaw.plugin.json, server release) <br>
+Risk: The skill is deprecated and points users to an unpinned third-party code plugin that handles Zulip credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact @niyazmft/openclaw-zulip plugin version before installing and prefer a pinned or verified release.
+
+Risk: The Zulip integration can send outbound messages and may perform administrative workspace actions when enabled.
+
+Mitigation: Use a dedicated least-privilege Zulip bot account, keep enableAdminActions disabled unless needed, and require explicit approval before stream, user, or sensitive outbound-message changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/niyazmft/skills/zulip-bridge)
+- [Publisher Profile](https://clawhub.ai/user/niyazmft)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Zulip plugin and configured Zulip credentials; message responses may be chunked, converted to Markdown, and uploaded as media by the bridge.]
+
+## Skill Version(s):
+
+2026.7.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

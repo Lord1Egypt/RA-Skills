@@ -1,46 +1,61 @@
-## Description: <br>
-Advisor Board helps users analyze business, product, investment, life-planning, strategy, and technical decisions through a multi-advisor consultation workflow with web search and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advisor Board helps agents produce decision consultation reports by combining web-search context with multiple named advisory frameworks.
 
-## Publisher: <br>
-[mambamentatily24](https://clawhub.ai/user/mambamentatily24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mambamentatily24](https://clawhub.ai/user/mambamentatily24)
 
-## Use Case: <br>
-External OpenClaw users use this skill to request structured decision-support reports for commercial, product, investment, life-planning, strategy, and technical questions. The skill coordinates named advisor perspectives, current search findings, quality checks, and next-step action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform web searches using information supplied by the user. <br>
-Mitigation: Avoid entering secrets, confidential business plans, regulated personal data, or sensitive financial details unless the web-query handling environment is approved for that data. <br>
-Risk: The skill may save consultation history, retrieved intelligence, feedback, and follow-up notes in agent memory. <br>
-Mitigation: Confirm the OpenClaw environment's retention, access, and deletion behavior before using the skill with sensitive topics. <br>
-Risk: Decision-support outputs can be incomplete or misleading when source context is incomplete, stale, or outside the advisor frameworks. <br>
-Mitigation: Review recommendations before acting and use the skill's quality checks, feedback flow, and follow-up review process for important decisions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze business, product, investment, life-planning, strategy, and technical questions through a structured advisory-board workflow. The skill produces a consultation report with web-search findings, advisor perspectives, recommendations, and next actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mambamentatily24/advisor-board) <br>
-- [Advisor profiles](references/advisor-profiles.md) <br>
-- [Mindmap](references/mindmap.md) <br>
-- [Quality assurance](references/quality-assurance.md) <br>
-- [Quick reference](references/quick-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown consultation report with search summary, advisor perspectives, recommendations, checklists, and optional quality or feedback summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save consultation history, retrieved intelligence, feedback, and follow-up notes in agent memory when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Automatic web searching can expose sensitive prompts or regulated information to retrieval systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or regulated data unless search behavior is acceptable and controls to disable or limit search are available.
+
+Risk: The skill stores consultation, retrieval, feedback, and follow-up records without clear consent, retention, or deletion controls.
+
+Mitigation: Review local memory behavior before use, avoid sensitive inputs, and confirm there are controls to skip saving records, delete history, and opt out of follow-ups.
+
+Risk: Decision-advisory outputs may influence personal, business, investment, or technical decisions.
+
+Mitigation: Treat reports as decision support, verify important claims independently, and apply human review before acting.
+
+## Reference(s):
+
+- [Advisor Board on ClawHub](https://clawhub.ai/mambamentatily24/skills/advisor-board)
+- [Advisor Profiles](references/advisor-profiles.md)
+- [Mindmap](references/mindmap.md)
+- [Quality Assurance](references/quality-assurance.md)
+- [Quick Reference](references/quick-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation report with web-search findings, advisor viewpoints, recommendations, and action checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save consultation, retrieval, feedback, and follow-up records to local memory paths described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Harden OpenClaw agent deployments with SSH lockdown, firewall rules, automated security audits, secret rotation reminders, RAM/process monitoring, and CVE alerting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harden OpenClaw agent deployments with SSH lockdown, firewall rules, automated security audits, secret rotation reminders, RAM/process monitoring, and CVE alerting.
 
-## Publisher: <br>
-[nogravedev](https://clawhub.ai/user/nogravedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nogravedev](https://clawhub.ai/user/nogravedev)
 
-## Use Case: <br>
-Developers and operators use this skill to review and harden OpenClaw agent hosts, including SSH, firewall, ports, secrets, processes, recurring audits, and incident-response playbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose sensitive host changes such as SSH or firewall edits, process termination, cron installation, or broad secret scans. <br>
-Mitigation: Use read-only audit mode by default and require explicit approval before executing changes or scanning sensitive locations. <br>
-Risk: Recurring reports or security findings could expose secrets, host details, or incident context if sent to an unsafe channel. <br>
-Mitigation: Confirm the report destination, redact sensitive values, and avoid sending findings to broad or untrusted channels. <br>
-Risk: The linked paid kit is outside the reviewed artifact. <br>
-Mitigation: Review and scan the paid kit separately before installing or following its commands. <br>
+## Use Case:
 
+Developers and operators use this skill to guide security hardening, audit workflows, exposure checks, monitoring, and incident response for OpenClaw agent deployments on local machines, VPS hosts, and small devices.
 
-## Reference(s): <br>
-- [Security Essentials on ClawHub](https://clawhub.ai/nogravedev/security-essentials) <br>
-- [Publisher profile](https://clawhub.ai/user/nogravedev) <br>
-- [ClawKits website](https://clawkits.xyz) <br>
-- [ClawKits Gumroad listing](https://clawkits.gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review command proposals before execution, especially for host security changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and OpenClaw metadata) <br>
+Risk: Automatic process killing could disrupt legitimate workloads if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before killing processes and scope actions to named hosts or processes.
+
+Risk: Recurring audits and outbound reports can expose sensitive security findings.
+
+Mitigation: Configure report destinations deliberately, limit report contents, and disable scheduled monitoring when it is no longer needed.
+
+Risk: Secret scans and local security inspections may access sensitive files or personal machines.
+
+Mitigation: Run only in environments where local inspection is authorized and review proposed commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nogravedev/skills/security-essentials)
+- [ClawKits Publisher Site](https://clawkits.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prioritized findings, checklists, playbooks, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local scans, cron setup, process actions, and outbound reports that require explicit user approval.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

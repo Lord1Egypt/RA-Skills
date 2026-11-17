@@ -1,465 +1,585 @@
 #!/usr/bin/env python3
-"""Teleskopiq API CLI \u2014 interact with the Teleskopiq GraphQL API."""
+"""Teleskopiq CLI. JSON on stdout, progress on stderr; no mutation retries."""
 
 import argparse
+import base64
 import json
+import mimetypes
 import os
+import re
+import shlex
 import sys
-import time
-from datetime import datetime, timedelta
+from datetime import date, time
+from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 
-ENDPOINT = os.environ.get("TELESKOPIQ_ENDPOINT", "https://teleskopiq.com/api/graphql")
-API_KEY = os.environ.get("TELESKOPIQ_API_KEY", "")
-
-DEFAULT_AI_PROMPT = (
-    "Write a complete YouTube script for this video using the channel's style. "
-    "Include proper section headers (##), and use production tags "
-    "[B-ROLL: ...], [VISUAL: ...], [GRAPHIC: ...], [MUSIC: ...], [SFX: ...] throughout."
-)
+from oauth_login import OAuthCredentials, OAuthError
 
 
-def gql(query, variables=None):
-    if not API_KEY:
-        print("Error: TELESKOPIQ_API_KEY not set", file=sys.stderr)
-        sys.exit(1)
-    body = {"query": query}
-    if variables:
-        body["variables"] = variables
-    r = requests.post(
-        ENDPOINT,
-        json=body,
-        headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
-        timeout=30,
-    )
-    r.raise_for_status()
-    data = r.json()
-    if "errors" in data:
-        print(f"GraphQL errors: {json.dumps(data['errors'], indent=2)}", file=sys.stderr)
-        sys.exit(1)
-    return data["data"]
+class APIError(RuntimeError):
+    pass
 
 
-def parse_channel_id():
-    """Extract channel ID from API key format: tsk_{channelId}_{64hex}."""
-    parts = API_KEY.split("_")
-    if len(parts) >= 3 and parts[0] == "tsk":
-        return parts[1]
-    print("Error: cannot parse channel ID from API key", file=sys.stderr)
-    sys.exit(1)
+class QuestionPending(APIError):
+    def __init__(self, result):
+        self.result = result
+        super().__init__("AI needs an answer; resume this script with --call-id and --answer.")
 
 
-def ws_endpoint():
-    """Convert HTTP endpoint to WebSocket endpoint."""
-    pass  # ws_endpoint kept for legacy, unused
+SCRIPT_FIELDS = """
+    id title content status { name } createdAt updatedAt scheduledFor publishedAt
+    activeCheckpointId activeMessageId activeVersionId showForwardMessages
+    metadata { titles description tags suggestedPacing { targetMinutes targetWPM targetWords } }
+    thumbnailIdeas { text visual } thumbnails { url idea ideaIndex }
+    thumbnailAssets { url mimeType } thumbnailsGenerated
+    comments { id type text status selectedText contextBefore contextAfter createdAt updatedAt resolvedAt lastAppliedAt }
+"""
+STYLE_FIELDS = """
+    id channelName channelDescription targetAudience tone speakers signature_phrases structure
+    vocabulary { words phrases } pacingTargets { targetMinutes targetWPM }
+    sourceType originalDescription thumbnailAdditionalInstructions thumbnailAssets
+    channelMetrics { wpm { avg median p90 sampleCount } videoLength { avgSeconds sampleCount } computedAt }
+"""
+HISTORY_FIELDS = """
+    id role content files { uri mimeType name } createdAt archivedAt checkpointId
+    agentQuestion { callId question options allowCustom answer answeredAt }
+"""
+VERSION_FIELDS = "id content author createdAt source kind checkpointId parentVersionId messageId"
+EVENT_FIELDS = """
+    type text reply script thought title patches { search replace } error
+    question options allowCustom callId memoryUpdated memoryUpdates
+"""
+OPERATIONS = {
+    "style": "query { styleProfile { " + STYLE_FIELDS + " } }",
+    "channel": "query($id: String!) { channel(channelId: $id) { id title platform platformId preferredPublishingDay } }",
+    "scripts": "query { scripts { id title status { name } scheduledFor updatedAt } }",
+    "search": "query($q: String!, $limit: Int) { searchScripts(q: $q, limit: $limit) { id title status { name } scheduledFor } }",
+    "script": "query($id: String!) { script(id: $id) { " + SCRIPT_FIELDS + " } }",
+    "create": "mutation($input: CreateScriptInput!) { createScript(input: $input) { id title content status { name } } }",
+    "update": "mutation($input: UpdateScriptInput!) { updateScript(input: $input) { success } }",
+    "delete": "mutation($id: String!) { deleteScript(id: $id) { success } }",
+    "comments": "mutation($id: String!, $comments: [ScriptCommentInput!]!) { updateScriptComments(id: $id, comments: $comments) { success } }",
+    "history": "query($id: String!) { chatHistory(pageId: $id) { " + HISTORY_FIELDS + " } }",
+    "versions": "query($id: String!) { scriptVersions(pageId: $id) { id checkpoint { " + VERSION_FIELDS + " } latestVersion { " + VERSION_FIELDS + " } manualSnapshots { " + VERSION_FIELDS + " } } }",
+    "save-version": "mutation($id: String!, $content: String!) { saveScriptVersion(pageId: $id, content: $content) { success } }",
+    "restore-version": "mutation($id: String!, $version: String!) { restoreScriptHistoryVersion(pageId: $id, versionId: $version) { success } }",
+    "revert-checkpoint": "mutation($id: String!, $version: String!) { revertToScriptCheckpoint(pageId: $id, checkpointId: $version) { success } }",
+    "schedule": "mutation($id: String!, $urgent: Boolean) { autoScheduleScript(scriptId: $id, urgent: $urgent) { scriptId scheduledFor slotsChecked bumped } }",
+    "metadata": "subscription($id: String!, $content: String!) { metadataJob(scriptId: $id, scriptContent: $content) { type error result { titles description tags } } }",
+    "thumbnail": "mutation($id: String!, $idea: String!, $index: Int, $assets: [ThumbnailAssetInput]) { generateScriptThumbnail(id: $id, idea: $idea, ideaIndex: $index, additionalAssets: $assets) { success url } }",
+    "save-asset": "mutation($id: String!, $asset: ThumbnailAssetInput!) { saveScriptThumbnailAsset(id: $id, asset: $asset) { url } }",
+    "remove-asset": "mutation($id: String!, $url: String!) { removeScriptThumbnailAsset(id: $id, assetUrl: $url) { success } }",
+    "ideas": "subscription { ideasJob { type text error result { ideas } } }",
+    "script-ideas": "subscription($id: String!) { scriptIdeasJob(scriptId: $id) { type text error result { ideas } } }",
+    "chat": """subscription(
+        $id: String!, $message: String!, $content: String, $history: [ChatHistoryInput!]!,
+        $files: [FileInput], $tool: AgentToolResponseInput, $comments: [ScriptCommentInput!],
+        $apply: Boolean, $kind: String, $pacing: SuggestedPacingInput,
+        $selection: String, $context: SelectionContextInput
+    ) { chatJob(pageId: $id, message: $message, currentScript: $content, history: $history,
+        files: $files, toolResponse: $tool, comments: $comments, applyComments: $apply,
+        requestKind: $kind, pacingTarget: $pacing, selection: $selection, selectionContext: $context
+    ) { """ + EVENT_FIELDS + " } }",
+}
+DEFAULT_PROMPT = "Write a complete YouTube script for this video's title using the channel style and pacing. Use Markdown sections and relevant production directions."
+STATUSES = ("Draft", "InProgress", "ReadyToShoot", "Recorded", "Editing", "Ready", "Published", "OnIce")
 
 
-def ai_write_script(script_id, prompt):
-    """Use Teleskopiq AI to write a script via SSE (Server-Sent Events) subscription."""
-    channel_id = parse_channel_id()
-
-    subscription_query = """subscription ChatJob(
-  $pageId: String!, $message: String!, $currentScript: String,
-  $history: [ChatHistoryInput!]!, $activeChannelId: String, $aiMode: String
-) {
-  chatJob(pageId: $pageId, message: $message, currentScript: $currentScript,
-    history: $history, activeChannelId: $activeChannelId, aiMode: $aiMode
-  ) { type text thought script error }
-}"""
-
-    variables = {
-        "pageId": script_id,
-        "message": prompt,
-        "currentScript": "",
-        "history": [],
-        "activeChannelId": channel_id,
-        "aiMode": "author",
-    }
-
-    payload = json.dumps({
-        "query": subscription_query,
-        "variables": variables,
-    })
-
-    accumulated = []
-    with requests.post(
-        ENDPOINT,
-        headers={
-            "Content-Type": "application/json",
-            "Accept": "text/event-stream",
-            "Authorization": f"Bearer {API_KEY}",
-        },
-        data=payload,
-        stream=True,
-        timeout=180,
-    ) as resp:
-        if not resp.ok:
-            print(f"Error: HTTP {resp.status_code}", file=sys.stderr)
-            sys.exit(1)
-
-        done = False
-        for line in resp.iter_lines(decode_unicode=True):
-            if done:
-                break
-            if not line.startswith("data: "):
-                continue
-            data = line[6:].strip()
-            if not data:
+def load_credentials():
+    """Read our env file as data, never execute shell code or print its contents."""
+    path = Path(os.environ.get("TELESKOPIQ_ENV_FILE", "~/.config/teleskopiq/env")).expanduser()
+    if path.is_file():
+        for line in path.read_text().splitlines():
+            if not re.match(r"^(?:export\s+)?TELESKOPIQ_(?:API_KEY|ENDPOINT)=", line.strip()):
                 continue
             try:
-                parsed = json.loads(data)
-            except json.JSONDecodeError:
-                continue
-
-            job = (parsed.get("data") or {}).get("chatJob") or {}
-            chunk_type = job.get("type", "")
-            if chunk_type in ("text_chunk", "script_chunk", "script") and job.get("text"):
-                accumulated.append(job["text"])
-                print(".", end="", flush=True)
-            elif chunk_type == "complete":
-                done = True
-            if job.get("error"):
-                print(f"\nAI error: {job['error']}", file=sys.stderr)
-                done = True
-
-    content = "".join(accumulated)
-    print(f"\nAI writing complete: {len(content)} chars")
-    if content:
-        print(f"Preview: {content[:200]}...")
-    return content
+                words = shlex.split(line, comments=True)
+            except ValueError:
+                raise APIError("Invalid credential-file syntax") from None
+            if words and words[0] == "export":
+                words = words[1:]
+            if len(words) != 1:
+                raise APIError("Invalid credential-file assignment")
+            name, value = words[0].split("=", 1)
+            os.environ.setdefault(name, value)
 
 
-def save_script_content(script_id, content):
-    """Save content to a script via updateScript mutation."""
-    q = """mutation UpdateScript($input: UpdateScriptInput!) {
-      updateScript(input: $input) { success }
-    }"""
-    gql(q, {"input": {"id": script_id, "content": content}})
-    print(f"Script {script_id} content saved.")
+def emit(value):
+    print(json.dumps(value, ensure_ascii=False, indent=2))
 
 
-def poll_script(script_id, field, attempts=7, interval=5):
-    """Poll script query until field is populated."""
-    q = """query($id: String!) {
-      script(id: $id) {
-        title metadata { titles description tags }
-        thumbnailIdeas { text visual }
-        thumbnails { url }
-      }
-    }"""
-    for i in range(attempts):
-        if i > 0:
-            print(f"  polling ({i}/{attempts-1})...")
-        time.sleep(interval)
-        data = gql(q, {"id": script_id})
-        val = data.get("script", {}).get(field)
-        if val:
-            return data["script"]
-    return None
+def json_file(path):
+    return json.loads(Path(path).read_text()) if path else None
 
 
-def cmd_get_style(_args):
-    q = """{
-      styleProfile {
-        channelName channelDescription targetAudience tone speakers
-        signature_phrases structure additionalInstructions
-        vocabulary { words phrases }
-        pacingTargets { targetMinutes targetWPM }
-      }
-    }"""
-    data = gql(q)
-    sp = data.get("styleProfile", {})
-    if not sp:
-        print("No style profile found.")
-        return
-
-    print("=== Channel Style Profile ===")
-    print(f"Channel: {sp.get('channelName', 'N/A')}")
-    print(f"Description: {sp.get('channelDescription', 'N/A')}")
-    print(f"Audience: {sp.get('targetAudience', 'N/A')}")
-    print(f"Tone: {sp.get('tone', 'N/A')}")
-    print(f"Speakers: {sp.get('speakers', 'N/A')}")
-
-    pacing = sp.get("pacingTargets") or {}
-    if pacing:
-        mins = pacing.get("targetMinutes", "?")
-        wpm = pacing.get("targetWPM", "?")
-        print(f"Pacing: {mins} min target, {wpm} WPM")
-
-    vocab = sp.get("vocabulary") or {}
-    words = vocab.get("words") or []
-    phrases = vocab.get("phrases") or []
-    if words:
-        print("Vocabulary: " + ", ".join(words))
-    if phrases:
-        print("Vocabulary phrases: " + ", ".join(phrases))
-
-    sig = sp.get("signature_phrases") or []
-    if sig:
-        quoted = ['"' + p + '"' for p in sig]
-        print("Signature phrases: " + ", ".join(quoted))
-
-    structure = sp.get("structure")
-    if structure:
-        print(f"Structure: {structure}")
-
-    additional = sp.get("additionalInstructions")
-    if additional:
-        print(f"Additional instructions: {additional}")
+def content_arg(args):
+    if getattr(args, "content_file", None):
+        return Path(args.content_file).read_text()
+    return getattr(args, "content", None)
 
 
-def cmd_list_scripts(_args):
-    data = gql("{ scripts { id title status { name } scheduledFor } }")
-    scripts = data.get("scripts", [])
-    if not scripts:
-        print("No scripts found.")
-        return
-    for s in scripts:
-        sched = s.get("scheduledFor") or "unscheduled"
-        status = s.get("status", {}).get("name", "?")
-        print(f"  {s['id']}  [{status}]  {s['title']}  ({sched})")
+def image_asset(path):
+    mime, _ = mimetypes.guess_type(path)
+    if mime not in {"image/png", "image/jpeg", "image/webp", "image/gif"}:
+        raise APIError("Thumbnail assets must be PNG, JPEG, WebP, or GIF images")
+    return {"data": base64.b64encode(Path(path).read_bytes()).decode(), "mimeType": mime}
 
 
-def cmd_create_script(args):
-    q = """mutation CreateScript($input: CreateScriptInput!) {
-      createScript(input: $input) { id title status { name } }
-    }"""
-    inp = {"title": args.title}
-    if args.content:
-        inp["content"] = args.content
-    data = gql(q, {"input": inp})
-    s = data["createScript"]
-    print(f"Created: {s['id']}  [{s['status']['name']}]  {s['title']}")
-    return s["id"]
+def sse_messages(response):
+    """Parse SSE frames, including heartbeats, multiline data and transport errors."""
+    event, data = "message", []
+    for line in response.iter_lines(chunk_size=1, decode_unicode=True):
+        if not line:
+            if data or event in ("complete", "error"):
+                yield event, "\n".join(data)
+            event, data = "message", []
+        elif line.startswith("event:"):
+            event = line[6:].lstrip(" ")
+        elif line.startswith("data:"):
+            data.append(line[5:].lstrip(" "))
+    if data or event in ("complete", "error"):
+        yield event, "\n".join(data)
 
 
-def cmd_generate_metadata(args):
-    sid = args.script_id
-    s = gql("query($id: String!) { script(id: $id) { title content } }", {"id": sid})["script"]
-    content = s.get("content") or ""
-    if not content:
-        print("Warning: script has no content, metadata may be poor", file=sys.stderr)
-    print(f"Starting metadata job for {sid}...")
-    gql('mutation($sid: String!, $c: String!) { startMetadataJob(scriptId: $sid, scriptContent: $c) { success } }',
-        {"sid": sid, "c": content})
-    print("Polling for results...")
-    result = poll_script(sid, "metadata")
-    if result and result.get("metadata"):
-        m = result["metadata"]
-        print(f"\nTitles: {json.dumps(m.get('titles', []), indent=2)}")
-        desc = m.get('description', '')[:200]
-        print(f"Description: {desc}")
-        print("Tags: " + ", ".join(m.get("tags", [])))
-    else:
-        print("Timeout \u2014 metadata not ready yet. Try querying the script later.")
+class Client:
+    def __init__(self, key, endpoint="https://teleskopiq.com/api/graphql", timeout=300, oauth=None):
+        self.oauth = oauth
+        if oauth:
+            if oauth.endpoint != endpoint:
+                raise APIError('OAuth credentials belong to a different endpoint')
+            key = oauth.token()["access_token"]
+        if not key:
+            raise APIError("Not connected; run login, or set TELESKOPIQ_API_KEY in the environment or ~/.config/teleskopiq/env")
+        if not oauth and not re.fullmatch(r"tsk_(.+)_[a-f0-9]{64}", key):
+            raise APIError("Invalid Teleskopiq API-key format; check for extra pasted characters before tsk_ or after the key")
+        parsed = urlparse(endpoint)
+        if parsed.scheme != "https" and not (parsed.scheme == "http" and parsed.hostname in {"localhost", "127.0.0.1", "::1"}):
+            raise APIError("Use HTTPS for the API endpoint (HTTP is allowed only for localhost)")
+        if parsed.username or parsed.password or parsed.query or parsed.fragment:
+            raise APIError("API endpoint must not contain credentials, a query, or a fragment")
+        self.key, self.endpoint, self.timeout = key, endpoint, timeout
+        self.session = requests.Session()
+        self.session.headers.update({"Authorization": f"Bearer {key}"})
+
+    @property
+    def channel_id(self):
+        if self.oauth:
+            return self.oauth.token()["channel_id"]
+        match = re.fullmatch(r"tsk_(.+)_[a-f0-9]{64}", self.key)
+        if not match:
+            raise APIError("Cannot extract channel from this credential; expected a Teleskopiq API key")
+        return match[1]
+
+    def error(self, message):
+        return APIError(str(message).replace(self.key, "[REDACTED]"))
+
+    def payload(self, response):
+        try:
+            payload = response.json()
+        except ValueError:
+            raise self.error(f"API returned HTTP {response.status_code} with a non-JSON body") from None
+        if isinstance(payload, dict) and payload.get("errors"):
+            raise self.error("; ".join(str(e.get("message", "GraphQL error")) for e in payload["errors"]))
+        if not response.ok:
+            raise self.error(f"API returned HTTP {response.status_code}")
+        if not isinstance(payload, dict) or not isinstance(payload.get("data"), dict):
+            raise self.error("API response has no GraphQL data")
+        return payload["data"]
+
+    def refresh_auth(self):
+        if self.oauth:
+            self.key = self.oauth.token()["access_token"]
+            self.session.headers.update({"Authorization": f"Bearer {self.key}"})
+
+    def gql(self, query, variables=None, long=False):
+        self.refresh_auth()
+        try:
+            with self.session.post(self.endpoint, json={"query": query, "variables": variables or {}},
+                                   timeout=(10, self.timeout if long else 30), allow_redirects=False) as response:
+                data = self.payload(response)
+        except requests.RequestException as exc:
+            raise self.error(f"Request failed ({type(exc).__name__}); not retried. Check existing results before retrying.") from None
+        for result in data.values():
+            if isinstance(result, dict) and result.get("success") is False:
+                raise self.error("Operation returned success=false")
+        return data
+
+    def op(self, name, variables=None, long=False):
+        return self.gql(OPERATIONS[name], variables, long=long)
+
+    def stream(self, name, field, variables=None):
+        self.refresh_auth()
+        try:
+            with self.session.post(self.endpoint, json={"query": OPERATIONS[name], "variables": variables or {}},
+                                   headers={"Accept": "text/event-stream"}, stream=True,
+                                   timeout=(10, self.timeout), allow_redirects=False) as response:
+                response.encoding = "utf-8"
+                if not response.ok or "text/event-stream" not in response.headers.get("Content-Type", ""):
+                    self.payload(response)
+                    raise self.error("Expected an SSE stream")
+                for event, raw in sse_messages(response):
+                    if event == "complete" and not raw:
+                        break
+                    try:
+                        payload = json.loads(raw)
+                    except ValueError:
+                        raise self.error("Invalid JSON in SSE stream") from None
+                    if event == "error" or (isinstance(payload, dict) and payload.get("errors")):
+                        errors = payload.get("errors", []) if isinstance(payload, dict) else payload
+                        raise self.error("GraphQL stream error: " + json.dumps(errors))
+                    if not isinstance(payload, dict):
+                        raise self.error("Invalid GraphQL stream response")
+                    job = (payload.get("data") or {}).get(field)
+                    if not isinstance(job, dict):
+                        continue
+                    if job.get("error") or job.get("type") == "error":
+                        raise self.error(job.get("error") or "Generation failed")
+                    yield job
+                    if job.get("type") in {"complete", "question"}:
+                        return
+        except requests.RequestException as exc:
+            raise self.error(f"Stream interrupted ({type(exc).__name__}); not retried. Inspect this script before retrying.") from None
+        raise self.error("Stream ended without completion; inspect this script before retrying")
+
+    def terminal(self, name, field, variables=None):
+        terminal = None
+        for job in self.stream(name, field, variables):
+            terminal = job
+        if not terminal or terminal.get("type") not in {"complete", "question"}:
+            raise self.error("No terminal event received")
+        return terminal
+
+    def script(self, script_id):
+        script = self.op("script", {"id": script_id}).get("script")
+        if not script:
+            raise self.error("Script not found")
+        return script
+
+    def create(self, title, content=None):
+        if not title or not title.strip():
+            raise self.error("A nonempty title is required")
+        value = {"title": title}
+        if content is not None:
+            value["content"] = content
+        script = self.op("create", {"input": value})["createScript"]
+        print(f"Script ID: {script['id']}", file=sys.stderr)
+        return script
+
+    def chat(self, script_id, prompt, args):
+        script = self.script(script_id)
+        history = self.op("history", {"id": script_id})["chatHistory"] or []
+        visible = [h for h in history if not h.get("archivedAt")]
+        variables = {
+            "id": script_id, "message": prompt, "content": script.get("content") or "",
+            "history": [{"role": h["role"], "content": h["content"], "files": h.get("files") or []} for h in visible],
+        }
+        if getattr(args, "call_id", None):
+            variables["tool"] = {"callId": args.call_id, "answer": args.answer}
+        if getattr(args, "apply_comments", False):
+            variables.update({"comments": script["comments"], "apply": True, "kind": "apply_comments"})
+        if getattr(args, "request_kind", None):
+            variables["kind"] = args.request_kind
+        if getattr(args, "pacing_file", None):
+            variables["pacing"] = json_file(args.pacing_file)
+        if getattr(args, "files_json", None):
+            variables["files"] = json_file(args.files_json)
+        if getattr(args, "selection_file", None):
+            selection = json_file(args.selection_file)
+            variables.update({"selection": selection["selection"], "context": {"before": selection["before"], "after": selection["after"]}})
+        terminal = self.terminal("chat", "chatJob", variables)
+        if terminal["type"] == "question":
+            raise QuestionPending({"scriptId": script_id, "status": "needs_answer", "question": terminal})
+        # The server persists title, patches, content and checkpoints BEFORE its terminal event.
+        # Never replace that canonical state with concatenated stream deltas.
+        return {"script": self.script(script_id), "reply": terminal.get("reply"), "status": "complete"}
+
+    def metadata(self, script_id):
+        script = self.script(script_id)
+        content = script.get("content") or ""
+        if not content.strip():
+            raise self.error("Cannot generate metadata for an empty script")
+        self.terminal("metadata", "metadataJob", {"id": script_id, "content": content})
+        return self.script(script_id)
+
+    def thumbnails(self, script_id, args):
+        script = self.script(script_id)
+        assets = [image_asset(path) for path in (getattr(args, "asset", None) or [])]
+        prompt = getattr(args, "prompt", None)
+        index = getattr(args, "idea_index", None)
+        if prompt:
+            jobs = [(None, prompt)]
+        else:
+            ideas = script.get("thumbnailIdeas") or []
+            if not ideas:
+                raise self.error("No thumbnail ideas; generate metadata first or provide --prompt")
+            if len(ideas) > 3 or (index is not None and index >= len(ideas)):
+                raise self.error("Invalid thumbnail idea slot")
+            slots = [index] if index is not None else range(len(ideas))
+            jobs = [(i, "\n".join(filter(None, [ideas[i].get("visual"),
+                    f"Text overlay: {ideas[i]['text']}" if ideas[i].get("text") else None]))) for i in slots]
+        if any(not idea.strip() for _, idea in jobs):
+            raise self.error("Thumbnail idea is empty")
+        results = []
+        for slot, idea in jobs:
+            # Synchronous resolver returns the result of this exact generation, not a stale slot.
+            result = self.op("thumbnail", {"id": script_id, "idea": idea, "index": slot, "assets": assets}, long=True)["generateScriptThumbnail"]
+            if not result.get("url"):
+                raise self.error("Thumbnail operation completed without a URL")
+            results.append({"ideaIndex": slot, "url": result["url"]})
+            print(f"Thumbnail slot {slot}: complete", file=sys.stderr)
+        return {"scriptId": script_id, "thumbnails": results}
 
 
-def cmd_generate_thumbnails(args):
-    sid = args.script_id
-    s = gql('query($id: String!) { script(id: $id) { thumbnailIdeas { text visual } } }',
-            {"id": sid})["script"]
-    ideas = s.get("thumbnailIdeas") or []
-    if not ideas:
-        print("No thumbnail ideas found. Generate metadata first.")
-        return
-    for i, idea in enumerate(ideas):
-        txt = idea.get("text", "")[:60]
-        print(f"Starting thumbnail job {i}: {txt}...")
-        gql('mutation($sid: String!, $idea: String!, $idx: Int!) { startThumbnailJob(scriptId: $sid, idea: $idea, ideaIndex: $idx) { success } }',
-            {"sid": sid, "idea": idea.get("text", ""), "idx": i})
-    print(f"Started {len(ideas)} thumbnail jobs. Polling...")
-    result = poll_script(sid, "thumbnails", attempts=10, interval=5)
-    if result and result.get("thumbnails"):
-        for t in result["thumbnails"]:
-            print(f"  {t['url']}")
-    else:
-        print("Timeout \u2014 thumbnails not ready yet. Query the script later.")
-
-
-def cmd_auto_schedule(args):
-    sid = args.script_id
-    urgent = getattr(args, "urgent", False)
-    q = """mutation AutoScheduleScript($scriptId: String!, $urgent: Boolean) {
-      autoScheduleScript(scriptId: $scriptId, urgent: $urgent) {
-        scriptId scheduledFor slotsChecked bumped
-      }
-    }"""
-    variables = {"scriptId": sid}
-    if urgent:
-        variables["urgent"] = True
-    data = gql(q, variables)
-    result = data["autoScheduleScript"]
-    bumped_msg = f", bumped {result['bumped']} script(s)" if result.get("bumped") else ""
-    print(f"Auto-scheduled {result['scriptId']} for {result['scheduledFor']} (checked {result['slotsChecked']} slots{bumped_msg})")
+def schedule(client, script_id, args):
+    if args.date:
+        value = {"id": script_id, "scheduledFor": date.fromisoformat(args.date).isoformat() + "T12:00:00.000Z"}
+        if getattr(args, "status", None):
+            value["status"] = args.status
+        client.op("update", {"input": value})
+        return client.script(script_id)
+    result = client.op("schedule", {"id": script_id, "urgent": getattr(args, "urgent", False)})
+    if getattr(args, "status", None):
+        client.op("update", {"input": {"id": script_id, "status": args.status}})
     return result
 
 
-def cmd_schedule(args):
-    sid = args.script_id
-    dt = args.date
-    tm = args.time or "12:00"
-    iso = f"{dt}T{tm}:00Z"
-    status = args.status or "ReadyToShoot"
-    q = f'mutation {{ updateScript(input: {{ id: "{sid}", scheduledFor: "{iso}", status: {status} }}) {{ success }} }}'
-    gql(q)
-    print(f"Scheduled {sid} for {iso} [{status}]")
+def run(client, args):
+    command = args.command
+    sid = getattr(args, "script_id", None)
+    if command == "get-style":
+        return client.op("style")
+    if command == "get-channel":
+        return client.op("channel", {"id": client.channel_id})
+    if command == "list-scripts":
+        return client.op("scripts")
+    if command == "search-scripts":
+        return client.op("search", {"q": args.query, "limit": args.limit})
+    if command == "get-script":
+        return client.script(sid)
+    if command == "create-script":
+        return client.create(args.title, content_arg(args))
+    if command == "update-script":
+        value = json_file(args.input_file) or {}
+        if not isinstance(value, dict):
+            raise APIError("--input-file must contain a JSON object")
+        value["id"] = sid
+        for field in ("title", "status"):
+            if getattr(args, field, None) is not None:
+                value[field] = getattr(args, field)
+        content = content_arg(args)
+        if content is not None:
+            value["content"] = content
+        if len(value) == 1:
+            raise APIError("Provide fields to update")
+        if "content" in value:
+            existing = client.script(sid)
+            if existing.get("content", "").strip():
+                client.op("save-version", {"id": sid, "content": existing["content"]})
+        client.op("update", {"input": value})
+        return client.script(sid)
+    if command == "delete-script":
+        return client.op("delete", {"id": sid})
+    if command == "set-comments":
+        comments = json_file(args.comments_file)
+        if not isinstance(comments, list):
+            raise APIError("Comments file must contain a JSON array")
+        return client.op("comments", {"id": sid, "comments": comments})
+    if command in {"history", "versions"}:
+        return client.op(command, {"id": sid})
+    if command == "save-version":
+        content = content_arg(args)
+        if content is None:
+            content = client.script(sid).get("content") or ""
+        return client.op(command, {"id": sid, "content": content})
+    if command in {"restore-version", "revert-checkpoint"}:
+        return client.op(command, {"id": sid, "version": args.version_id})
+    if command in {"schedule", "auto-schedule"}:
+        return schedule(client, sid, args)
+    if command == "generate-metadata":
+        return client.metadata(sid)
+    if command == "generate-thumbnails":
+        return client.thumbnails(sid, args)
+    if command == "select-thumbnail":
+        if args.url not in {t["url"] for t in client.script(sid).get("thumbnails") or []}:
+            raise APIError("Select a URL from this script's generated thumbnails")
+        return client.op("update", {"input": {"id": sid, "thumbnails": {"selectedUrl": args.url}}})
+    if command == "save-asset":
+        return client.op(command, {"id": sid, "asset": image_asset(args.file)})
+    if command == "remove-asset":
+        return client.op(command, {"id": sid, "url": args.url})
+    if command == "ideas":
+        return client.terminal("script-ideas" if sid else "ideas", "scriptIdeasJob" if sid else "ideasJob", {"id": sid} if sid else {})
+    if command in {"chat", "ai-write"}:
+        # Fetch style before creating a new record so auth/schema errors leave no orphan script.
+        client.op("style")
+        if not sid:
+            sid = client.create(args.title)["id"]
+        result = client.chat(sid, args.prompt or DEFAULT_PROMPT, args)
+        if command == "ai-write" and not (result["script"].get("content") or "").strip():
+            raise APIError(f"AI returned no script content; inspect script {sid} and its chat history")
+        return result
+    if command == "full-flow":
+        client.op("style")
+        if not sid:
+            sid = client.create(args.title, None if args.ai_write else content_arg(args))["id"]
+        if args.ai_write:
+            result = client.chat(sid, args.prompt or DEFAULT_PROMPT, args)
+            if not (result["script"].get("content") or "").strip():
+                raise APIError(f"AI returned no script content; inspect script {sid}")
+        client.metadata(sid)
+        # AI writing prompt is not a custom thumbnail prompt.
+        thumbnail_args = argparse.Namespace(asset=args.asset, prompt=None, idea_index=None)
+        client.thumbnails(sid, thumbnail_args)
+        schedule(client, sid, args)
+        return client.script(sid)
+    if command == "graphql":
+        return client.gql(Path(args.query_file).read_text(), json_file(args.variables_file))
+    raise APIError("Unknown command")
 
 
-def cmd_ai_write(args):
-    prompt = args.prompt or DEFAULT_AI_PROMPT
-
-    print("=== Creating script ===")
-    q = """mutation CreateScript($input: CreateScriptInput!) {
-      createScript(input: $input) { id title status { name } }
-    }"""
-    data = gql(q, {"input": {"title": args.title}})
-    sid = data["createScript"]["id"]
-    print(f"Created: {sid}")
-
-    print("\n=== AI writing script ===")
-    content = ai_write_script(sid, prompt)
-
-    if content:
-        save_script_content(sid, content)
-
-    print(f"\nScript ID: {sid}")
-
-
-def next_sunday():
-    today = datetime.utcnow()
-    days = (6 - today.weekday()) % 7
-    if days == 0:
-        days = 7
-    return (today + timedelta(days=days)).strftime("%Y-%m-%d")
-
-
-def cmd_full_flow(args):
-    use_ai = getattr(args, "ai_write", False)
-    prompt = getattr(args, "prompt", None) or DEFAULT_AI_PROMPT
-
-    print("=== Creating script ===")
-    q = """mutation CreateScript($input: CreateScriptInput!) {
-      createScript(input: $input) { id title status { name } }
-    }"""
-    inp = {"title": args.title}
-    if not use_ai:
-        inp["content"] = args.content
-    data = gql(q, {"input": inp})
-    sid = data["createScript"]["id"]
-    print(f"Created: {sid}")
-
-    if use_ai:
-        print("\n=== AI writing script ===")
-        content = ai_write_script(sid, prompt)
-        if content:
-            save_script_content(sid, content)
-    else:
-        content = args.content
-
-    print("\n=== Generating metadata ===")
-    gql('mutation($sid: String!, $c: String!) { startMetadataJob(scriptId: $sid, scriptContent: $c) { success } }',
-        {"sid": sid, "c": content or ""})
-    result = poll_script(sid, "metadata")
-    if result and result.get("metadata"):
-        n = len(result["metadata"].get("titles", []))
-        print(f"Metadata ready: {n} titles")
-    else:
-        print("Metadata timeout \u2014 continuing anyway")
-
-    print("\n=== Generating thumbnails ===")
-    s = gql('query($id: String!) { script(id: $id) { thumbnailIdeas { text visual } } }', {"id": sid})["script"]
-    ideas = s.get("thumbnailIdeas") or []
-    for i, idea in enumerate(ideas):
-        gql('mutation($sid: String!, $idea: String!, $idx: Int!) { startThumbnailJob(scriptId: $sid, idea: $idea, ideaIndex: $idx) { success } }',
-            {"sid": sid, "idea": idea.get("text", ""), "idx": i})
-    if ideas:
-        print(f"Started {len(ideas)} thumbnail jobs")
-        poll_script(sid, "thumbnails", attempts=10, interval=5)
-
-    if args.date:
-        dt = args.date
-        tm = args.time or "12:00"
-        iso = f"{dt}T{tm}:00Z"
-        print(f"\n=== Scheduling for {iso} ===")
-        gql(f'mutation {{ updateScript(input: {{ id: "{sid}", scheduledFor: "{iso}", status: ReadyToShoot }}) {{ success }} }}')
-        print(f"Done! Script {sid} scheduled for {iso}")
-    else:
-        print("\n=== Auto-scheduling ===")
-        urgent = getattr(args, "urgent", False)
-        auto_q = """mutation AutoScheduleScript($scriptId: String!, $urgent: Boolean) {
-          autoScheduleScript(scriptId: $scriptId, urgent: $urgent) { scriptId scheduledFor slotsChecked bumped }
-        }"""
-        variables = {"scriptId": sid}
-        if urgent:
-            variables["urgent"] = True
-        result = gql(auto_q, variables)["autoScheduleScript"]
-        bumped_msg = f", bumped {result['bumped']} script(s)" if result.get("bumped") else ""
-        print(f"Done! Script {sid} auto-scheduled for {result['scheduledFor']} (checked {result['slotsChecked']} slots{bumped_msg})")
+def parser():
+    root = argparse.ArgumentParser(description=__doc__)
+    root.add_argument("--timeout", type=int, default=300, help="Generation read timeout in seconds (no automatic retries)")
+    sub = root.add_subparsers(dest="command", required=True)
+    for name in ("get-style", "get-channel", "list-scripts"):
+        sub.add_parser(name)
+    p = sub.add_parser("search-scripts")
+    p.add_argument("--query", required=True)
+    p.add_argument("--limit", type=int, default=20)
+    script_commands = ("get-script", "update-script", "delete-script", "set-comments", "history", "versions",
+                       "save-version", "restore-version", "revert-checkpoint", "schedule", "auto-schedule",
+                       "generate-metadata", "generate-thumbnails", "select-thumbnail", "save-asset", "remove-asset", "chat")
+    parsers = {}
+    for name in script_commands:
+        parsers[name] = sub.add_parser(name)
+        parsers[name].add_argument("--script-id", required=True)
+    for name in ("create-script", "ai-write", "full-flow", "ideas"):
+        parsers[name] = sub.add_parser(name)
+        if name != "create-script":
+            parsers[name].add_argument("--script-id")
+    for name in ("create-script", "update-script", "ai-write", "full-flow"):
+        parsers[name].add_argument("--title", required=name == "create-script")
+    for name in ("create-script", "update-script", "save-version", "full-flow"):
+        group = parsers[name].add_mutually_exclusive_group()
+        group.add_argument("--content")
+        group.add_argument("--content-file")
+    parsers["update-script"].add_argument("--input-file", help="JSON UpdateScriptInput fields")
+    for name in ("update-script", "schedule", "auto-schedule", "full-flow"):
+        parsers[name].add_argument("--status", choices=STATUSES)
+    parsers["set-comments"].add_argument("--comments-file", required=True)
+    for name in ("restore-version", "revert-checkpoint"):
+        parsers[name].add_argument("--version-id", required=True)
+    for name in ("schedule", "auto-schedule", "full-flow"):
+        parsers[name].add_argument("--date", help="Publishing day YYYY-MM-DD; omit for automatic scheduling")
+        parsers[name].add_argument("--time", help="Deprecated; publishing schedules store a day, not a time")
+        parsers[name].add_argument("--urgent", action="store_true")
+    parsers["generate-thumbnails"].add_argument("--idea-index", type=int, choices=range(3))
+    parsers["generate-thumbnails"].add_argument("--prompt", help="Generate the single custom thumbnail slot")
+    for name in ("generate-thumbnails", "full-flow"):
+        parsers[name].add_argument("--asset", action="append", help="Reference image path, repeatable")
+    for name in ("select-thumbnail", "remove-asset"):
+        parsers[name].add_argument("--url", required=True)
+    parsers["save-asset"].add_argument("--file", required=True)
+    for name in ("chat", "ai-write", "full-flow"):
+        p = parsers[name]
+        p.add_argument("--prompt")
+        p.add_argument("--call-id")
+        p.add_argument("--answer")
+        p.add_argument("--apply-comments", action="store_true")
+        p.add_argument("--request-kind", choices=("lengthen", "shorten"))
+        p.add_argument("--pacing-file", help="JSON targetMinutes/targetWPM/targetWords")
+        p.add_argument("--files-json", help="JSON FileInput array using uploaded Gemini URIs")
+        p.add_argument("--selection-file", help="JSON selection, before, and after strings")
+    parsers["full-flow"].add_argument("--ai-write", action="store_true")
+    p = sub.add_parser("graphql", help="Execute a GraphQL document from disk; mutations are not retried")
+    p.add_argument("--query-file", required=True)
+    p.add_argument("--variables-file")
+    login = sub.add_parser("login", help="Authorize this skill in your browser")
+    login.add_argument("--no-browser", action="store_true")
+    login.add_argument("--scope", default="scripts:read scripts:write thumbnails:write channel:read")
+    sub.add_parser("logout", help="Revoke the saved OAuth connection")
+    sub.add_parser("auth-status", help="Show saved login metadata without displaying credentials")
+    return root
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Teleskopiq API CLI")
-    sub = parser.add_subparsers(dest="command")
+def validate_args(args):
+    if args.timeout <= 0:
+        raise APIError("--timeout must be positive")
+    sid = getattr(args, "script_id", None)
+    if args.command in {"ai-write", "full-flow"} and not sid and not args.title:
+        raise APIError("Provide --title or an existing --script-id")
+    if getattr(args, "call_id", None) or getattr(args, "answer", None) is not None:
+        if not sid or not args.call_id or not (args.answer or "").strip():
+            raise APIError("Resuming requires --script-id, --call-id, and a nonempty --answer")
+    if getattr(args, "date", None):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", args.date):
+            raise APIError("Use a publishing day in YYYY-MM-DD format")
+        date.fromisoformat(args.date)
+        if args.urgent:
+            raise APIError("--urgent applies only to automatic scheduling")
+    if getattr(args, "time", None):
+        time.fromisoformat(args.time)
+        print("--time is ignored: Teleskopiq schedules publishing days, not times.", file=sys.stderr)
+    if args.command == "full-flow":
+        content = content_arg(args)
+        if args.ai_write and content is not None:
+            raise APIError("Choose supplied content or --ai-write, not both")
+        if sid and content is not None:
+            raise APIError("Use update-script for existing content before full-flow --script-id")
+        if not sid and not args.ai_write and not (content or "").strip():
+            raise APIError("full-flow needs nonempty content or --ai-write")
+        if args.call_id and not args.ai_write:
+            raise APIError("full-flow question continuation requires --ai-write")
+    if args.command == "generate-thumbnails" and args.prompt and args.idea_index is not None:
+        raise APIError("Choose --prompt for a custom thumbnail or --idea-index for an idea slot")
+    if args.command == "search-scripts" and args.limit <= 0:
+        raise APIError("--limit must be positive")
+    # Read local inputs before creating any remote records.
+    for field in ("input_file", "comments_file", "pacing_file", "files_json", "selection_file", "variables_file"):
+        path = getattr(args, field, None)
+        if path:
+            value = json_file(path)
+            expected = list if field in {"comments_file", "files_json"} else dict
+            if not isinstance(value, expected):
+                raise APIError(f"--{field.replace('_', '-')} must contain a JSON {expected.__name__}")
+            if field == "selection_file" and not all(isinstance(value.get(key), str) for key in ("selection", "before", "after")):
+                raise APIError("Selection file needs selection, before, and after strings")
+    content_arg(args)
+    for path in getattr(args, "asset", None) or []:
+        image_asset(path)
 
-    sub.add_parser("get-style")
-    sub.add_parser("list-scripts")
 
-    p = sub.add_parser("create-script")
-    p.add_argument("--title", required=True)
-    p.add_argument("--content", default="")
-
-    p = sub.add_parser("generate-metadata")
-    p.add_argument("--script-id", required=True)
-
-    p = sub.add_parser("generate-thumbnails")
-    p.add_argument("--script-id", required=True)
-
-    p = sub.add_parser("auto-schedule")
-    p.add_argument("--script-id", required=True)
-    p.add_argument("--urgent", action="store_true", help="Take next slot and bump displaced scripts forward")
-
-    p = sub.add_parser("schedule")
-    p.add_argument("--script-id", required=True)
-    p.add_argument("--date", required=True)
-    p.add_argument("--time", default="12:00")
-    p.add_argument("--status", default="ReadyToShoot")
-
-    p = sub.add_parser("ai-write")
-    p.add_argument("--title", required=True)
-    p.add_argument("--prompt", default=None, help="Custom writing prompt for AI")
-
-    p = sub.add_parser("full-flow")
-    p.add_argument("--title", required=True)
-    p.add_argument("--content", default=None)
-    p.add_argument("--ai-write", action="store_true", help="Use Teleskopiq AI to write the script")
-    p.add_argument("--prompt", default=None, help="Custom writing prompt for AI (requires --ai-write)")
-    p.add_argument("--date", default=None)
-    p.add_argument("--time", default="12:00")
-    p.add_argument("--urgent", action="store_true", help="Use urgent scheduling")
-
-    args = parser.parse_args()
-    cmds = {
-        "get-style": cmd_get_style,
-        "list-scripts": cmd_list_scripts,
-        "create-script": cmd_create_script,
-        "generate-metadata": cmd_generate_metadata,
-        "generate-thumbnails": cmd_generate_thumbnails,
-        "auto-schedule": cmd_auto_schedule,
-        "schedule": cmd_schedule,
-        "ai-write": cmd_ai_write,
-        "full-flow": cmd_full_flow,
-    }
-    if args.command not in cmds:
-        parser.print_help()
-        sys.exit(1)
-
-    if args.command == "full-flow" and not getattr(args, "ai_write", False) and not args.content:
-        print("Error: full-flow requires either --content or --ai-write", file=sys.stderr)
-        sys.exit(1)
-
-    cmds[args.command](args)
+def main(argv=None):
+    args = parser().parse_args(argv)
+    try:
+        validate_args(args)
+        load_credentials()
+        endpoint = os.environ.get("TELESKOPIQ_ENDPOINT", "https://teleskopiq.com/api/graphql")
+        oauth_path = Path(os.environ.get("TELESKOPIQ_OAUTH_FILE", "~/.config/teleskopiq/oauth.json")).expanduser()
+        oauth = OAuthCredentials(endpoint) if oauth_path.exists() or args.command in {"login", "logout", "auth-status"} else None
+        if args.command in {"login", "logout", "auth-status"}:
+            result = oauth.login(args.no_browser, args.scope) if args.command == "login" else (
+                oauth.logout() if args.command == "logout" else oauth.status())
+            emit(result)
+            return 0
+        client = Client(os.environ.get("TELESKOPIQ_API_KEY", ""), endpoint, args.timeout,
+                        oauth=oauth)
+        emit(run(client, args))
+        return 0
+    except QuestionPending as exc:
+        emit(exc.result)
+        return 2
+    except (APIError, OAuthError, ValueError, OSError) as exc:
+        key = os.environ.get("TELESKOPIQ_API_KEY", "")
+        message = str(exc).replace(key, "[REDACTED]") if key else str(exc)
+        print(f"Error: {message}", file=sys.stderr)
+        return 1
+    except KeyboardInterrupt:
+        print("Interrupted; inspect the existing script before retrying.", file=sys.stderr)
+        return 130
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

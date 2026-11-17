@@ -1,38 +1,54 @@
-## Description: <br>
-Evaluates whether a user's available holiday days are enough for a destination by gathering timing estimates from travel guides and returning a concise adequacy assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses whether a user's available vacation days are enough for a destination by gathering real travel-guide timing data and returning a concise adequacy judgment with supporting itinerary timing.
 
-## Publisher: <br>
-[mrlyk](https://clawhub.ai/user/mrlyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrlyk](https://clawhub.ai/user/mrlyk)
 
-## Use Case: <br>
-Travel-planning agents use this skill when a user provides a destination and available days. It estimates whether the trip timing is generous, adequate, or tight, then suggests focused adjustments based on commonly reported attraction and transit times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad control of a user's live Chrome browser, which is more access than the travel-planning task normally requires. <br>
-Mitigation: Install only after review, use a separate Chrome profile with no sensitive accounts or tabs, avoid private sessions and local files, and stop the proxy after use. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to compare a destination against available holiday days, estimate recommended trip length from real user guides, and decide whether the schedule is generous, adequate, or tight.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrlyk/holiday-enough) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with concise recommendation sections and supporting command snippets for browser-based retrieval.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 22+ and Chrome remote debugging; may use a local CDP proxy to collect page content from the user's browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires control over a Chrome instance with remote debugging enabled, which can expose more browser access than the travel-planning task requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated temporary browser profile, restrict activity to pages opened for the task, and disable remote debugging after use.
+
+Risk: The local CDP proxy exposes endpoints for arbitrary page evaluation, screenshots, and file input actions on reachable Chrome tabs.
+
+Mitigation: Run the proxy only on localhost for the shortest necessary time, avoid using a primary browsing profile, and review each requested browser action before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrlyk/skills/holiday-enough)
+- [Publisher profile](https://clawhub.ai/user/mrlyk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with concise travel assessment sections and inline shell commands when setup is required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended days, the user's available days, an adequacy rating, attraction timing evidence, and schedule adjustment suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Review Responder helps draft positive and negative customer review replies, build response templates, analyze review patterns, suggest improvements, and prepare batch replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Responder helps agents draft responses to positive and negative customer reviews, build reply templates, analyze review trends, suggest improvements, and prepare batch-response guidance.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External customer support, ecommerce, and operations teams use this skill to draft review replies, prepare reusable response templates, analyze customer review trends, and convert negative feedback into product or service improvement actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised command may invoke an unrelated local data utility that stores entered text under ~/.local/share/review-responder. <br>
-Mitigation: Verify which executable the review-responder command invokes before use, and do not enter private customer details, order identifiers, or sensitive business review text unless local retention is acceptable and manual cleanup is planned. <br>
-Risk: Customer-facing replies can contain inappropriate commitments, refunds, or explanations if templates are used without review. <br>
-Mitigation: Review and adapt replies before publishing so compensation, return, privacy, and support commitments match approved business policy. <br>
+## Use Case:
 
+Customer support, ecommerce, and operations teams use this skill to prepare customer-review replies and review-analysis guidance. It supports positive-review responses, negative-review handling, template selection, improvement planning, and batch-response workflows.
 
-## Reference(s): <br>
-- [Review Responder on ClawHub](https://clawhub.ai/xueyetianya/review-responder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown templates and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes customer review response templates, analysis outlines, improvement prompts, and batch-reply guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package includes an under-disclosed utility that can persist and export user-supplied text locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid entering customer, order, credential, or internal business data unless local plaintext retention is acceptable, and require clear documentation of storage paths, retention, deletion behavior, and consent.
+
+## Reference(s):
+
+- [Review Responder on ClawHub](https://clawhub.ai/xueyetianya/skills/review-responder)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with reusable response templates, tables, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Templates and guidance are generated from user-provided review context when supplied.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

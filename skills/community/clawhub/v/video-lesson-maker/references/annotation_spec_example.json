@@ -1,0 +1,13 @@
+{
+  "canvas": {"width": 1536, "height": 864},
+  "regions": [
+    {"x": 268, "y": 60, "width": 1000, "height": 140, "dur": 2500},
+    {"x": 120, "y": 240, "width": 520, "height": 240, "dur": 4000},
+    {"x": 900, "y": 240, "width": 520, "height": 240,
+     "protectedRegions": [{"x": 930, "y": 270, "width": 200, "height": 60}], "dur": 4000},
+    {"x": 120, "y": 540, "width": 1300, "height": 220, "dur": 4500}
+  ],
+  "durationMs": 3000,
+  "leadMs": 0,
+  "gazeMs": 1500
+}

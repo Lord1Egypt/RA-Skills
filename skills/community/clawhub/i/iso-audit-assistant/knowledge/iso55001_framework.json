@@ -1,0 +1,36 @@
+{
+  "standard": "ISO 55001:2014 资产管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "资产", "相关方"],
+    "5": ["领导作用", "资产方针", "职责"],
+    "6": ["策划", "资产目标", "资产生命周期", "风险"],
+    "7": ["支持", "资产信息", "能力", "成文信息"],
+    "8": ["运行", "资产配置", "运行维护", "退役处置"],
+    "9": ["绩效评价", "资产绩效监视", "内部审核", "管理评审"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-am-policy", "name_zh": "资产方针与价值实现", "name_en": "Asset management policy",
+     "keywords_zh": ["资产方针", "资产价值", "资产管理目标"], "keywords_en": ["asset policy", "value"],
+     "description_zh": "须制定资产方针，明确以最优成本实现资产价值与组织目标。",
+     "compliance_statement": ["已发布资产方针", "方针与组织战略一致"]},
+    {"id": "hv-am-lifecycle", "name_zh": "资产生命周期控制", "name_en": "Asset lifecycle",
+     "keywords_zh": ["资产生命周期", "规划", "采购", "运维", "退役"], "keywords_en": ["lifecycle", "asset"],
+     "description_zh": "须对资产全生命周期（规划-采购-运行-退役）进行策划与控制。",
+     "compliance_statement": ["已建立资产生命周期流程", "关键资产有维护策略"]},
+    {"id": "hv-am-info", "name_zh": "资产信息准确性", "name_en": "Asset information",
+     "keywords_zh": ["资产台账", "资产信息", "资产清单"], "keywords_en": ["asset register", "asset information"],
+     "description_zh": "须保持准确、及时的资产信息与台账，支撑决策。",
+     "compliance_statement": ["已建立资产台账并动态更新", "信息可信可用"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-RA", "name": "风险与机遇管理程序", "clause": "6.1", "match_keywords": ["风险管理"], "priority": "medium"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-AM-001", "name": "资产目标与规划程序", "clause": "6.2/6.3", "match_keywords": ["资产目标", "资产配置"], "priority": "high"},
+    {"id": "SP-AM-002", "name": "资产生命周期控制程序", "clause": "8.2", "match_keywords": ["资产生命周期", "运维"], "priority": "high"}
+  ]
+}

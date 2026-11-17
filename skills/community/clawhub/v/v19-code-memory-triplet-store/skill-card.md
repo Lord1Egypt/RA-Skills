@@ -1,41 +1,55 @@
-## Description: <br>
-Stores code snippet, key knowledge point, and scenario triplets so agents can retrieve code and related knowledge together. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures code snippets, key knowledge points, and operational context as searchable triplet memory for code and knowledge retrieval.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and agents use this skill to associate code snippets with the knowledge points and operational contexts they represent, then retrieve related code and knowledge by code, concept, or scenario. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external temporary Cloudflare endpoint with a shared API key, and the data sent to that service is not clearly disclosed. <br>
-Mitigation: Install only if the endpoint operator is trusted; avoid sending confidential code, internal plans, credentials, customer data, or private operational context until service ownership, data handling, retention, and key management are documented. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve relationships among code snippets, knowledge points, and business or governance context through V19 triplet memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liuyanfeng1234/v19-code-memory-triplet-store) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
-- [External governance knowledge endpoint](https://boat-atlas-spa-flexible.trycloudflare.com/governance/knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require calls to an external governance endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs code-memory queries and agent registration data to an external Cloudflare Tunnel service without enough disclosure about ownership, retention, or data handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send proprietary code names, customer data, secrets, internal architecture details, or real agent identities unless the service operator is trusted and an appropriate data-handling basis exists.
+
+Risk: External endpoint and key handling may create operational exposure if credentials are broad, long-lived, or tied to an operator outside the deploying organization.
+
+Mitigation: Prefer a stable organization-controlled endpoint and use scoped, rotatable keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuyanfeng1234/skills/v19-code-memory-triplet-store)
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external API requests that require an X-Governance-Key header.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

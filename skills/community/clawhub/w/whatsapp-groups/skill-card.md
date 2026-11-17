@@ -1,39 +1,54 @@
-## Description: <br>
-Discover, list, and search WhatsApp groups from Baileys session data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, list, and search WhatsApp groups from Baileys session data.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and operators use this skill to discover WhatsApp groups available to an OpenClaw bot account, search group names, retrieve group IDs, and optionally add disabled group entries to OpenClaw configuration for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local WhatsApp/Baileys session data and can expose group IDs and names. <br>
-Mitigation: Install only when the agent is allowed to inspect the bot account's WhatsApp session data; use list, search, and get-id for read-only discovery. <br>
-Risk: The sync command edits openclaw.json by adding newly discovered groups. <br>
-Mitigation: Run sync only intentionally, then review the added disabled group entries before enabling any group. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect WhatsApp groups visible in local Baileys session files, search for group names or IDs, and optionally sync newly discovered groups into OpenClaw configuration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, configuration] <br>
-**Output Format:** [JSON command output with optional openclaw.json updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Baileys sender-key, store, and contacts files from the local OpenClaw state directory; the sync command writes disabled group entries to openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local WhatsApp Baileys session-derived files that may expose group names and IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where access to local WhatsApp session data is intended, and review command output before sharing it.
+
+Risk: The sync command can modify openclaw.json by adding newly discovered groups.
+
+Mitigation: Run sync only when configuration changes are desired, then review openclaw.json before enabling any added groups.
+
+## Reference(s):
+
+- [WhatsApp Groups on ClawHub](https://clawhub.ai/marcosrippel/skills/whatsapp-groups)
+- [Publisher profile: marcosrippel](https://clawhub.ai/user/marcosrippel)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON printed by Node.js CLI commands, with command guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Group listings include group IDs, display names when available, and active status from OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

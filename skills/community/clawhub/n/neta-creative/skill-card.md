@@ -1,46 +1,67 @@
-## Description: <br>
-Neta API creative skill for generating and editing images, videos, songs, and MVs, and for deconstructing creative ideas from existing works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neta Creative helps agents use the Neta CLI to generate and edit images, videos, songs, and music videos, query character settings, and deconstruct existing works for creative remixing.
 
-## Publisher: <br>
-[huxiuhan](https://clawhub.ai/user/huxiuhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huxiuhan](https://clawhub.ai/user/huxiuhan)
 
-## Use Case: <br>
-External creators and developers use this skill to guide Neta CLI workflows for multimedia asset creation, character-grounded generation, background removal, and creative remixing from existing works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the Neta CLI package and Neta service, including use of a NETA_TOKEN. <br>
-Mitigation: Install only when the Neta CLI package and service are trusted, keep NETA_TOKEN in a secure environment, and consider pinning a package version instead of using @latest. <br>
-Risk: Creative prompts, source media, or reference materials may be sent to an external generation service. <br>
-Mitigation: Avoid submitting secrets, private personal data, confidential drafts, or copyrighted material unless the user has rights and is comfortable sending it to Neta services. <br>
+## Use Case:
 
+Developers and creative agents use this skill to compose Neta CLI commands and prompts for multimedia generation, character-based creation, background removal, and creative remix workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huxiuhan/neta-creative) <br>
-- [Best Practices for Image Generation](references/image-generation.md) <br>
-- [Best Practices for Video Generation](references/video-generation.md) <br>
-- [Best Practices for Song Generation](references/song-creation.md) <br>
-- [Best Practices for Song MVs](references/song-mv.md) <br>
-- [Best Practices for Character Search](references/character-search.md) <br>
-- [Best Practices for Creative Remix](references/collection-remix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a NETA_TOKEN environment variable and the Neta CLI package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill sends prompts, lyrics, image references, and collection references to external Neta services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private, confidential, or rights-restricted media and review service terms before use.
+
+Risk: The skill depends on a NETA_TOKEN credential for Neta CLI access.
+
+Mitigation: Store NETA_TOKEN in a secure environment variable or secret store and avoid exposing it in logs, prompts, or generated files.
+
+Risk: The install examples use a mutable global package reference with @latest.
+
+Mitigation: Prefer a pinned Neta CLI package version for reviewed or repeatable deployments.
+
+Risk: Some character tag and browsing examples are outside the stated creative-generation scope.
+
+Mitigation: Use this skill for creation workflows and route browsing, feed exploration, or tag research to the appropriate companion skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huxiuhan/skills/neta-creative)
+- [Best Practices for Image Generation](references/image-generation.md)
+- [Best Practices for Video Generation](references/video-generation.md)
+- [Best Practices for Song Generation](references/song-creation.md)
+- [Best Practices for Song MVs](references/song-mv.md)
+- [Best Practices for Character Search](references/character-search.md)
+- [Best Practices for Creative Remix](references/collection-remix.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Neta CLI commands that call external Neta services using user-provided prompts, lyrics, images, and collection identifiers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

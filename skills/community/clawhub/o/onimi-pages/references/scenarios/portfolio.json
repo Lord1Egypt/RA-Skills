@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "portfolio",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "personal",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "个人作品集",
+      "goal": "围绕作品与过程建立清楚、可信的个人展示。",
+      "optionalInputs": [
+        {
+          "key": "audience",
+          "question": "面向招聘、客户还是个人记录？"
+        },
+        {
+          "key": "projects",
+          "question": "有哪些作品、图片和链接可以展示？"
+        },
+        {
+          "key": "role",
+          "question": "每个作品中自己的角色与贡献是什么？"
+        },
+        {
+          "key": "style",
+          "question": "有没有喜欢的视觉方向与联系渠道？"
+        }
+      ],
+      "sections": [
+        "个人定位",
+        "精选作品",
+        "角色、过程与结果",
+        "技能与经历",
+        "联系或下一步"
+      ],
+      "qualityChecks": [
+        "让真实作品成为视觉主角，按叙事组织而非填满统一卡片。",
+        "项目筛选、放大与外链要可用；没有作品图时优先排版与过程说明。",
+        "不伪造客户评价、雇主、奖项或成果；联系表单展示不等于已经接通采集。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Portfolio",
+      "goal": "Present selected work and process with a clear and credible personal narrative.",
+      "optionalInputs": [
+        {
+          "key": "audience",
+          "question": "Is this for recruiters, clients or a personal archive?"
+        },
+        {
+          "key": "projects",
+          "question": "Which projects, images and links can be shown?"
+        },
+        {
+          "key": "role",
+          "question": "What was your role and contribution in each project?"
+        },
+        {
+          "key": "style",
+          "question": "Do you have a visual preference and a contact method to include?"
+        }
+      ],
+      "sections": [
+        "Positioning",
+        "Selected work",
+        "Role, process and results",
+        "Skills and experience",
+        "Contact or next step"
+      ],
+      "qualityChecks": [
+        "Let real work lead the design and organize it through a narrative.",
+        "Make filters, image views and links work; use process and typography when images are unavailable.",
+        "Do not invent clients, employers, awards or testimonials; a contact form is not automatically connected."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

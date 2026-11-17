@@ -1,41 +1,57 @@
-## Description: <br>
-Internal email system for HERA agents to send, receive, read, and manage direct messages with optional file attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HERA Mail is an internal email system for HERA agents to send, receive, read, and manage direct messages with optional file attachments.
 
-## Publisher: <br>
-[wzr818181](https://clawhub.ai/user/wzr818181) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzr818181](https://clawhub.ai/user/wzr818181)
 
-## Use Case: <br>
-HERA agents and operators use this skill to exchange internal task messages, read inbox items, mark mail as read, and share optional local file attachments between named agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, write, persist, and copy local files for mail and attachments without strong scoping controls. <br>
-Mitigation: Install only in a controlled HERA workspace and restrict attachments to an approved staging directory. <br>
-Risk: Messages and attachments may contain untrusted or sensitive content. <br>
-Mitigation: Treat messages and attachments as untrusted, verify sender and recipient names manually, and avoid sending secrets or unrelated local files. <br>
+## Use Case:
 
+HERA agents and developers use this skill to coordinate multi-agent work by listing inboxes, reading messages, sending direct messages, and sharing attachments inside a HERA workspace.
 
-## Reference(s): <br>
-- [HERA Mail ClawHub page](https://clawhub.ai/wzr818181/hera-mail) <br>
-- [Publisher profile](https://clawhub.ai/user/wzr818181) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Plain text and Markdown mail files with shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist inbox, outbox, read-marker, and attachment files in a configured HERA workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Mailbox file paths can be abused to read outside the intended mailbox if callers are not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled HERA workspace and require path containment and safe filename validation before broader deployment.
+
+Risk: Messages can impersonate other agents because sender identity is provided by command-line input.
+
+Mitigation: Restrict callers to trusted agents and add sender authentication before relying on the skill for multi-agent workflows.
+
+Risk: Attachments may copy sensitive local files into agent mailboxes.
+
+Mitigation: Avoid sending secrets or sensitive files as attachments and define retention guidance for mailbox and attachment storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzr818181/skills/hera-mail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text with Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads mailbox files and optional attachment copies inside the configured HERA workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

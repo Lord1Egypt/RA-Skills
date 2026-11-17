@@ -1,40 +1,52 @@
-## Description: <br>
-Scan codebase for dependency graph, tech debt hotspots, and module health scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan codebase for dependency graph, tech debt hotspots, and module health scores
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect a codebase for dependency structure, module health, tech debt signals, dead code, and refactoring priorities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The scanner is read-only, but weak path and limit controls may read or report files outside the intended project.
+
+Mitigation: Run it only on trusted repositories or inside a constrained workspace, check for symlinks and very large trees first, and do not rely on --exclude or --max-files as complete read boundaries.
+
+Risk: Generated Mermaid output from untrusted code may carry untrusted text into downstream documentation or renderers.
+
+Mitigation: Review generated diagrams before publishing or rendering them in privileged contexts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use Codebase Radar to inspect repositories for dependency structure, tech debt signals, circular dependencies, and module health scores before planning maintenance or refactoring work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The ClawHub security review flags the release as suspicious because an autoreview helper may bypass sandbox and approval protections by default. <br>
-Mitigation: Review before installing, use only in trusted repositories, and disable the full-access autoreview default unless that behavior is explicitly required. <br>
-Risk: Large repositories can increase scan time or memory use. <br>
-Mitigation: Use a max-files limit for large repositories and review generated reports before acting on refactoring recommendations. <br>
+**Output Format:** [Plain text, JSON, Markdown reports, and Mermaid dependency diagrams]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Codebase Radar on ClawHub](https://clawhub.ai/harrylabsj/codebase-radar) <br>
+**Other Properties Related to Output:** [May include project summaries, dependency edges, circular dependency counts, tech debt findings, health scores, and ranked refactoring priorities.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, or Mermaid dependency graph output depending on command options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis output; large repositories may require a max-files limit.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

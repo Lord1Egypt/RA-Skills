@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-competitor-radar",
+  "version": "1.1.4",
+  "description": "从小红书评论和相关内容中归纳用户问题、消费者问题、购买顾虑、使用反馈、需求词和情绪证据，用于评论区洞察、用户反馈总结、产品改进和客服话术准备。",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "数据分析",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

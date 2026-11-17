@@ -1,43 +1,57 @@
-## Description: <br>
-Tax Deadline Calendar helps businesses, individuals, and accounting professionals track U.S. federal and state tax deadlines, generate compliance reminders and checklists, and estimate penalty exposure for late filings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tax deadline tracking and compliance calendar for businesses and individuals that tracks federal and state filing deadlines, estimated tax payments, payroll deposits, information-return due dates, extension windows, reminders, compliance checklists, and penalty exposure.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Business owners, CFOs, accountants, and agents use this skill to answer deadline questions, build tax compliance calendars, create reminder prompts, and assess late-filing penalty exposure. It is for deadline awareness and planning, not for preparing returns, filing returns, calculating actual tax liability, or giving jurisdiction-specific tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax deadlines, thresholds, and penalty amounts can change and may vary by taxpayer facts or state jurisdiction. <br>
-Mitigation: Verify current IRS and state revenue department guidance, or consult a licensed tax professional, before acting on reminders or penalty estimates. <br>
-Risk: Users may mistake deadline reminders or penalty exposure estimates for professional tax advice, return preparation, filing authority, or tax liability calculations. <br>
-Mitigation: Use the skill only for reference, planning, and user-confirmed calendar prompts; route preparation, filing, liability calculation, and advice to a licensed CPA, PTIN-backed service, or qualified tax professional. <br>
-Risk: Automated reminders may be scheduled incorrectly or fail to reflect weekends, holidays, time zones, or client-specific facts. <br>
-Mitigation: Require user confirmation of entity type, tax year end, state, employee and vendor counts, dates, and reminder timing before relying on calendar prompts. <br>
+## Use Case:
 
+Business owners, CFOs, and accountants use this skill to plan U.S. tax compliance calendars, identify upcoming federal and state filing or payment deadlines, generate reminder checklists, and estimate exposure from missed deadlines. It is not for preparing or filing tax returns, calculating actual tax liability, or replacing a licensed tax professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/tax-deadline-calendar) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with deadline tables, compliance checklists, reminder text, penalty formulas, and JSON cron payload examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user and verified against current IRS, state revenue, or licensed tax professional guidance before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Tax dates, rates, penalty thresholds, and state rules can change or vary by jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current IRS and state revenue guidance, or consult a qualified tax professional, before relying on any deadline, rate, penalty amount, or filing obligation.
+
+Risk: The skill can suggest reminders and accounting integrations that may involve business tax, payroll, or vendor data.
+
+Mitigation: Enable reminders or integrations only intentionally and limit shared data to what is needed for deadline tracking.
+
+Risk: Users may treat deadline guidance as tax preparation, filing, liability calculation, or state nexus advice.
+
+Mitigation: Use the skill only as a calendar and reminder aid, and rely on a licensed CPA, PTIN-backed service, or state-qualified professional for filing decisions and tax advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/tax-deadline-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with date tables, checklists, penalty-estimate formulas, and JSON reminder payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; deadline, rate, penalty, and filing-obligation guidance should be verified against current official sources before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

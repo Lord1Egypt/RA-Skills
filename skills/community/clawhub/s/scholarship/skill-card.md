@@ -1,41 +1,54 @@
-## Description: <br>
-Provides guidance for national and university scholarship application rules, deadlines, and shared application experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on national and university scholarship application rules, deadlines, and applicant experience sharing.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Students and scholarship applicants can use this skill to ask for scholarship eligibility, deadlines, application rules, and experience-sharing guidance. They should verify scholarship requirements with official school or government sources because the release is flagged for mixing scholarship framing with course-shopping and study-product guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scholarship eligibility, deadline, and requirement guidance may be incorrect or outdated. <br>
-Mitigation: Verify all scholarship details with official school or government sources before relying on them. <br>
-Risk: The release is flagged as suspicious because it is advertised as scholarship help while its instructions also cover courses, learning metrics, and paid classes. <br>
-Mitigation: Treat course recommendations and paid-program claims as unverified and separate them from scholarship application decisions. <br>
+## Use Case:
 
+External learners and scholarship applicants can use this skill to ask for scholarship application rules, deadlines, and experience-sharing guidance. Reviewers should confirm the release content aligns with the scholarship use case before relying on responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/scholarship) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scholarship and study guidance should be checked against official sources before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users expecting scholarship guidance may receive course or paid-learning recommendations because the release framing and artifact body are not fully aligned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and align the name, description, examples, and body before release; verify scholarship requirements against authoritative institution or government sources before acting.
+
+Risk: Study-platform fields such as course outlines, teacher backgrounds, downloads, and paid-course advice may be mistaken for scholarship eligibility or deadline evidence.
+
+Mitigation: Label course-selection content clearly or remove it from the scholarship workflow, and require human review for deadline, eligibility, and award decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/scholarship)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scholarship rules, deadlines, filters, course or study-related fields, and experience-sharing notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-AI-powered tool for searching and analyzing PubMed biomedical literature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered tool for searching and analyzing PubMed biomedical literature.
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-Researchers, clinicians, and biomedical developers use this skill to search PubMed, retrieve article metadata by PMID, prepare literature analysis prompts, and access open-access full text when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A configured PubMed API key may appear in generated search URLs, command output, or logs. <br>
-Mitigation: Treat outputs and logs as sensitive when PUBMED_API_KEY is set, and prefer redacting api_key values before sharing command output. <br>
-Risk: The skill performs PubMed/NCBI network requests and may write local result or PDF files. <br>
-Mitigation: Run it in an environment where outbound NCBI requests and local file writes are expected, and review output paths before saving results or PDFs. <br>
+## Use Case:
 
+Researchers and literature reviewers use this skill to search PubMed, retrieve article metadata, generate abstract-based paper analysis, and download open-access PDFs when available.
 
-## Reference(s): <br>
-- [PubMed E-utilities Documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/) <br>
-- [NCBI Account](https://www.ncbi.nlm.nih.gov/account/) <br>
-- [PubMed E-utilities API Endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [ClawHub Skill Page](https://clawhub.ai/JackKuo666/pubmed-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Console text, JSON, Markdown, saved Markdown or JSON files, and open-access PDF files when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches and metadata retrieval use PubMed E-utilities network requests; PDF download is limited to open-access articles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The recommended install paths include mutable remote code execution or unpinned package execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed local pip/venv installation path and pin or verify dependencies before use.
+
+Risk: PubMed API keys and email addresses may appear in generated URLs, console output, or agent transcripts.
+
+Mitigation: Avoid setting a PubMed API key unless higher rate limits are needed, and treat logs and transcripts as sensitive when credentials are configured.
+
+Risk: Paper analysis is generated from available article metadata and abstracts, which may omit important study details.
+
+Mitigation: Verify findings, limitations, and citations against the original papers before relying on the analysis.
+
+## Reference(s):
+
+- [PubMed E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/)
+- [NCBI account for PubMed API keys](https://www.ncbi.nlm.nih.gov/account/)
+- [PubMed E-utilities API endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [ClawHub skill page](https://clawhub.ai/jackkuo666/skills/pubmed-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance, files]
+
+**Output Format:** [Console text, JSON, Markdown, and downloaded PDF files when open access is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save search results, analysis text, metadata, or PDFs to user-specified paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

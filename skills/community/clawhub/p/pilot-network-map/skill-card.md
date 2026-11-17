@@ -1,43 +1,54 @@
-## Description: <br>
-Visualize Pilot Protocol network topology, trust graphs, active connections, and latency maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize Pilot Protocol network topology, trust graphs, active connections, and latency maps.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators working with Pilot Protocol use this skill to inspect peer topology, trust relationships, active connections, and latency using pilotctl output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose network topology, peer, trust, active connection, and latency information from a Pilot Protocol environment. <br>
-Mitigation: Use it only in environments where the operator is comfortable allowing an agent to query that Pilot Protocol data through a trusted pilotctl installation. <br>
-Risk: Latency checks can generate network traffic. <br>
-Mitigation: Run latency queries intentionally and scope them to the nodes needed for the map or investigation. <br>
-Risk: The artifact shows jq and Graphviz dot usage even though only pilotctl is declared as a required binary. <br>
-Mitigation: Confirm jq and Graphviz are installed before requesting JSON transformations or rendered graph output. <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent for network diagrams, adjacency views, trust relationship maps, connection summaries, and latency-oriented views for a Pilot Protocol environment.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-network-map) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and Graphviz DOT code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to query pilotctl JSON output and render Graphviz diagrams when jq and dot are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose network topology, trust relationships, connection state, and latency information to the agent through local pilotctl output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where the local pilotctl setup is trusted and sharing that operational network information with the agent is acceptable.
+
+Risk: Generated diagrams or maps can be incomplete or misleading if the Pilot Protocol daemon is not running or local network state is stale.
+
+Mitigation: Confirm the daemon and pilotctl commands are working before relying on generated topology or latency views.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Network Map on ClawHub](https://clawhub.ai/teoslayer/skills/pilot-network-map)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON-oriented command examples, and Graphviz DOT examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on local pilotctl JSON output, a running Pilot Protocol daemon, and optional Graphviz rendering.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

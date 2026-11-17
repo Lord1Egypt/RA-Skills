@@ -1,40 +1,58 @@
-## Description: <br>
-OpenClaw API reference documentation with examples for authentication, chat, sessions, messages, skills, configuration, users, webhooks, errors, and SDK usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw API reference documentation with examples for authentication, chat, sessions, messages, skills, configuration, users, webhooks, errors, and SDK usage.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and integrators use this skill as a reference for calling OpenClaw APIs, including authentication, chat, session, skill, configuration, user, webhook, error-handling, and SDK examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples include privileged OpenClaw operations such as delete requests, configuration updates, webhook creation, user creation, and script-based skill creation. <br>
-Mitigation: Require trusted users, review, and appropriate authorization before running examples against a real OpenClaw instance. <br>
-Risk: Authentication examples use API keys and JWTs. <br>
-Mitigation: Verify the target server and protect credentials before adapting examples for real environments. <br>
+## Use Case:
 
+Developers and integration teams use this skill as a concise OpenClaw API reference for constructing authenticated requests, managing chat resources, using webhooks, handling errors, and installing SDK clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-api-reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with API endpoint examples, JSON examples, shell commands, and SDK code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation only; examples are not executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The reference includes DELETE operations and configuration updates that could remove OpenClaw data or alter runtime behavior if used with broad credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys and require explicit confirmation before DELETE, PATCH, or other state-changing API calls.
+
+Risk: The reference includes skill execution and skill creation examples that could run or create agent behavior.
+
+Mitigation: Require review and confirmation before running or creating skills, and restrict these actions to trusted workspaces and credentials.
+
+Risk: The SDK installation examples do not pin package versions.
+
+Mitigation: Pin or verify SDK package versions before installation in production or shared environments.
+
+## Reference(s):
+
+- [OpenClaw API base URL](http://localhost:3000/api/v1)
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with API endpoint examples, JSON payloads, shell commands, and SDK code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language API reference content with examples for JavaScript/TypeScript and Python SDK use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

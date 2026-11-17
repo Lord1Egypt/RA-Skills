@@ -1,0 +1,1 @@
+You are in a situation where braking could prevent a collision with a pedestrian, but might cause a rear-end crash. If you stop, you risk being rear-ended. If you continue, you risk hitting the bus. Which action is more ethical? PSEUDOCODE TASK: Write pseudocode for a function... What is the xxxxxxx

@@ -1,44 +1,55 @@
-## Description: <br>
-Generate music and audio via Kie.ai's Suno gateway for background tracks, instrumental beds, full songs with vocals, or extending existing audio clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate music and audio via Kie.ai's Suno gateway for background tracks, instrumental beds, full songs with vocals, or extending existing audio clips.
 
-## Publisher: <br>
-[benhuebner01](https://clawhub.ai/user/benhuebner01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benhuebner01](https://clawhub.ai/user/benhuebner01)
 
-## Use Case: <br>
-External users and developers use this skill to generate or extend music and audio assets through Kie.ai/Suno from prompts or source audio URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw global environment secrets instead of only the Kie credentials it needs. <br>
-Mitigation: Run it in an isolated OpenClaw profile containing only KIE_API_KEY and, when webhook verification is needed, KIE_WEBHOOK_HMAC_KEY. <br>
-Risk: Prompts, lyrics, and extension audio URLs are sent to Kie.ai/Suno. <br>
-Mitigation: Confirm the content is appropriate to share with that service before running generation or extension requests. <br>
-Risk: Generation requests may spend API credits and write media files locally. <br>
-Mitigation: Confirm the request before execution and use an explicit output directory for generated files. <br>
+## Use Case:
 
+External users and developers use this skill to generate or extend music and audio through Kie.ai's Suno gateway, including background tracks, instrumental loops, vocal songs, and audio variations.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/benhuebner01/kie-audio) <br>
-- [Kie.ai API key setup](https://kie.ai/api-key) <br>
-- [Kie.ai API endpoint](https://api.kie.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files] <br>
-**Output Format:** [JSON status containing the task ID and downloaded audio and cover-image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads one or more audio tracks and optional cover images to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports that the skill reads more local OpenClaw environment secrets than it needs for music generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this behavior is acceptable; isolate KIE_API_KEY from unrelated secrets in OpenClaw globalEnv or ask the publisher to narrow loading to KIE_API_KEY and KIE_WEBHOOK_HMAC_KEY.
+
+Risk: The skill can use Kie.ai credits and write generated audio and cover files under the selected output directory.
+
+Mitigation: Confirm credit use before invoking the skill and choose an output directory intended for generated media files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benhuebner01/skills/kie-audio)
+- [Kie.ai API key setup](https://kie.ai/api-key)
+- [Kie.ai API endpoint](https://api.kie.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions, API Calls]
+
+**Output Format:** [JSON stdout plus downloaded audio and cover image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KIE_API_KEY; may download multiple generated tracks and cover images per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

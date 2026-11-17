@@ -1,44 +1,60 @@
-## Description: <br>
-Provides API endpoints and Python components for ingesting JEP/JAC-style audit events, inspecting chains, and exporting compliance-oriented reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify signed audit evidence and inspect tenant-scoped event references.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Developers and engineers can use this skill to prototype judgment-event audit ingestion, chain inspection, violation summaries, and compliance-oriented report exports. Review the implementation before relying on its output for legal, regulatory, security, or tamper-evident audit evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may overstate security and compliance guarantees. <br>
-Mitigation: Treat generated reports as prototype analysis until the skill is reviewed for the intended legal, regulatory, and security context. <br>
-Risk: The security evidence says not to rely on the skill for tamper-evident audit evidence without additional hardening. <br>
-Mitigation: Add and review real JWS/signature verification, authentication, deployment hardening, sensitive-data handling guidance, and locked dependency versions before production use. <br>
-Risk: The artifact accepts and stores audit events through API endpoints, which can include sensitive decision data. <br>
-Mitigation: Deploy only in controlled environments with access controls, input validation, retention rules, and data-handling review appropriate to the logged data. <br>
+## Use Case:
 
+External developers and operators use this skill to run or integrate a local authenticated audit API that verifies signed audit evidence, stores tenant-scoped event records, and supports permissioned reads and exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/schchit/jep-guard-audit) <br>
-- [README](artifact/jep-guard-audit-skill/README.md) <br>
-- [CHANGELOG](artifact/jep-guard-audit-skill/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API responses, compliance report text, Python interfaces, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include event-ingestion status, chain inspection results, violation and warning summaries, findings, recommendations, and raw compliance report text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, frontmatter, manifest, changelog) <br>
+Risk: Stored audit events and exported reports may contain sensitive operational evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the SQLite database, backups, and exports as sensitive data; use a private database path and restrict file access to the service account.
+
+Risk: Exposing the API beyond loopback without perimeter controls can increase unauthorized access and denial-of-service risk.
+
+Mitigation: Run on 127.0.0.1 by default; for remote use, terminate TLS and enforce request-rate and read-time limits at a trusted reverse proxy.
+
+Risk: Weak bearer tokens, incorrect trusted keys, or missing tenant quotas can undermine authentication, signature verification, or storage isolation.
+
+Mitigation: Configure strong bearer tokens, out-of-band trusted public keys, least-privilege permissions, and operator-controlled tenant quotas before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/schchit/skills/jep-guard-audit)
+- [Security profile](SECURITY.md)
+- [README](README.md)
+- [Release changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code, configuration examples, and JSON API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local authenticated audit service; outputs and exports may contain sensitive operational evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata, SKILL.md frontmatter, manifest.json, BUILD-INFO.json, and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

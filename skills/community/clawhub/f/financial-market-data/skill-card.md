@@ -1,41 +1,58 @@
-## Description: <br>
-Provides unified access to multi-source financial market data for stocks, futures, ETFs, real-time quotes, sectors, financials, and macroeconomic indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a unified interface and examples for retrieving financial market data from TickFlow, AkShare, BaoStock, pytdx, Tonghuashun, and Eastmoney.
 
-## Publisher: <br>
-[bjdenglun](https://clawhub.ai/user/bjdenglun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bjdenglun](https://clawhub.ai/user/bjdenglun)
 
-## Use Case: <br>
-Developers and analysts use this skill to add Python-based access to A-share, Hong Kong, U.S. equity, futures, ETF, sector, financial statement, fund-flow, and macroeconomic market data. It is suited for agents that need implementation guidance, helper functions, or example commands for market-data retrieval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because it ships with and uses a concrete third-party API key. <br>
-Mitigation: Remove or rotate the bundled Eastmoney key before use and configure your own key locally, preferably through an environment variable or secret manager. <br>
-Risk: Live market-data requests go to external financial data providers. <br>
-Mitigation: Install and run the skill only where external market-data queries are allowed, and review provider terms and data-handling requirements before use. <br>
+## Use Case:
 
+Developers and analysts use this skill to add market-data retrieval workflows for equities, futures, ETFs, sectors, financials, fund flows, and macroeconomic indicators, with fallback examples across several data providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bjdenglun/financial-market-data) <br>
-- [Eastmoney MX API documentation](https://openapi.eastmoney.com/mx/v1/api-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, dependency installation commands, and local configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill contacts external financial-data providers with requested symbols.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this network behavior is acceptable for the intended symbols and environment.
+
+Risk: The release evidence reports an embedded reusable Eastmoney API key.
+
+Mitigation: Treat the key as exposed, replace it with a user-provided secret before use, and avoid committing replacement secrets.
+
+Risk: The security evidence identifies data-quality and dependency risks.
+
+Mitigation: Prefer pinned dependencies or a lockfile, and verify intraday data correctness before relying on results for trading, alerts, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bjdenglun/skills/financial-market-data)
+- [Eastmoney MX API documentation](https://openapi.eastmoney.com/mx/v1/api-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced Python helpers can return pandas DataFrames, lists, and JSON-like dictionaries from external financial-data providers.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

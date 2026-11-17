@@ -1,39 +1,50 @@
-## Description: <br>
-Networkmanager provides plain-text reference documentation for concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for NetworkManager concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, sysops practitioners, and agents use this skill to retrieve quick reference guidance for Networkmanager concepts and operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be generic and not tailored to a user's production network environment. <br>
-Mitigation: Review recommendations against local system documentation, change-control policies, and tested operational procedures before acting on them. <br>
+## Use Case:
 
+Developers, engineers, and system operators use this skill to retrieve concise NetworkManager reference guidance, including quickstart, debugging, performance, security, migration, and cheatsheet material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/networkmanager) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected topic output; no API keys, external network access, or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: NetworkManager guidance may be generic and may not match a specific production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify real commands, security practices, and operational changes against local documentation and environment requirements before applying them.
+
+## Reference(s):
+
+- [Networkmanager ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/networkmanager)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, or persistent state are required according to the artifact and security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

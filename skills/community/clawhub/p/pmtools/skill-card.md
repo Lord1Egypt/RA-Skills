@@ -1,46 +1,59 @@
-## Description: <br>
-Operate Feishu OKR via Feishu OpenAPI (periods, OKR list, progress records, images, reviews). Invoke when you need to query or update OKR progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Feishu OKR via Feishu OpenAPI (periods, OKR list, progress records, images, reviews). Invoke when you need to query or update OKR progress.
 
-## Publisher: <br>
-[taoxiang-org](https://clawhub.ai/user/taoxiang-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taoxiang-org](https://clawhub.ai/user/taoxiang-org)
 
-## Use Case: <br>
-Developers and operators use this skill to query and update Feishu OKR periods, OKRs, progress records, images, and reviews from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically checks for and applies updates before normal use, which can change reviewed code. <br>
-Mitigation: Set PM_TOOLS_DISABLE_AUTO_UPDATE=1 when deployments require reviewed code to remain fixed. <br>
-Risk: The skill stores a Feishu tenant token in a local cache. <br>
-Mitigation: Protect or clear ~/.cache/pmtools token files and use least-privileged Feishu credentials. <br>
-Risk: Environment variable base URL overrides can redirect Feishu API traffic. <br>
-Mitigation: Avoid untrusted FEISHU_OPEN_API_BASE_URL and FEISHU_OKR_BASE_URL values. <br>
-Risk: The skill can delete progress records, change period status, and upload files. <br>
-Mitigation: Require explicit confirmation before destructive or state-changing commands. <br>
+## Use Case:
 
+Developers and operators use pmtools to query and update Feishu OKR periods, OKRs, progress records, images, and reviews from an agent-assisted workflow.
 
-## Reference(s): <br>
-- [ClawHub pmtools release page](https://clawhub.ai/taoxiang-org/pmtools) <br>
-- [Feishu OpenAPI base URL](https://open.feishu.cn/open-apis) <br>
-- [Feishu OKR API base URL](https://open.feishu.cn/open-apis/okr/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; commands print JSON to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and Feishu credentials; mutating commands can create, update, or delete Feishu OKR records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can modify Feishu OKR data, including progress records and period status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution, confirm destructive or status-changing operations, and use least-privilege Feishu credentials.
+
+Risk: Automatic self-update can change local skill code before commands run.
+
+Mitigation: Disable auto-update with PM_TOOLS_DISABLE_AUTO_UPDATE=1, pin reviewed versions, and update only from trusted sources.
+
+Risk: Tenant access tokens may be cached locally.
+
+Mitigation: Use restricted credentials, protect the token cache path, avoid plaintext token persistence where policy prohibits it, and clear cached tokens after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taoxiang-org/skills/pmtools)
+- [Feishu OpenAPI](https://open.feishu.cn/open-apis)
+- [Feishu OKR OpenAPI v1](https://open.feishu.cn/open-apis/okr/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Feishu credentials and may read or modify OKR records depending on the selected command.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

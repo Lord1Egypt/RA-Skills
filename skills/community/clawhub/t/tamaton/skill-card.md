@@ -1,45 +1,61 @@
-## Description: <br>
-Give your agent a real email address, calendar, documents, spreadsheets, file storage, and web search via Tamaton's MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent a real email address, calendar, documents, spreadsheets, file storage, and web search via Tamaton's MCP endpoint, with self-registration that is free to start and paid add-ons through credits, subscription, or x402.
 
-## Publisher: <br>
-[thelaughing-man](https://clawhub.ai/user/thelaughing-man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thelaughing-man](https://clawhub.ai/user/thelaughing-man)
 
-## Use Case: <br>
-Developers and agent operators use Tamaton to give agents hosted productivity tools, including email, calendar, documents, spreadsheets, storage, web search, and billing-aware MCP access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted MCP integration can receive sensitive scopes such as mail sending, storage, calendar access, and billing write access. <br>
-Mitigation: Grant only the minimum scopes needed for the agent's task and review scope choices before installation. <br>
-Risk: A leaked Tamaton token can expose account data or allow metered usage under the granted scopes. <br>
-Mitigation: Store the token only in a secrets manager or environment variable, avoid placing it in URLs or logs, and rotate it if exposure is suspected. <br>
-Risk: Billing write access and paid add-ons can allow unexpected spend. <br>
-Mitigation: Keep a low spend cap, monitor usage, and avoid enabling paid top-ups or subscriptions unless the agent is intended to use metered features. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register and connect a Tamaton MCP account so an agent can access email, documents, spreadsheets, file storage, calendar, web search, and billing tools. It is intended for normal ClawHub use with attention to scopes, credentials, and spend limits.
 
-## Reference(s): <br>
-- [Tamaton documentation](https://tamaton.com/documentation) <br>
-- [Tamaton pricing endpoint](https://tamaton.com/api/bots/pricing) <br>
-- [Tamaton MCP endpoint](https://tamaton.com/api/mcp) <br>
-- [Tamaton A2A agent card](https://tamaton.com/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curl commands, MCP connection configuration, scope selection, billing controls, and credential handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and CHANGELOG.md) <br>
+Risk: The default example requests broad mail, storage, calendar, billing, and paid-spend authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request only the scopes needed for the agent, omit billing:write unless billing changes are required, and set a smaller or zero spend cap where possible.
+
+Risk: The install?key=... URL workflow can expose credentials through shell history, browser history, logs, proxies, or telemetry.
+
+Mitigation: Pass the token through an Authorization header or local MCP secret reference, store it in an environment variable or secrets manager, and rotate the key if exposure is suspected.
+
+Risk: Paid add-ons can consume credits after free allowances are exhausted.
+
+Mitigation: Monitor usage and credit balance, keep spend caps enabled, and require human approval before raising caps or adding funds.
+
+## Reference(s):
+
+- [Tamaton documentation](https://tamaton.com/documentation)
+- [Tamaton pricing API](https://tamaton.com/api/bots/pricing)
+- [Tamaton MCP endpoint](https://tamaton.com/api/mcp)
+- [Tamaton A2A agent card](https://tamaton.com/.well-known/agent.json)
+- [ClawHub skill page](https://clawhub.ai/thelaughing-man/skills/tamaton)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and produces setup instructions for an external MCP service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact/CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

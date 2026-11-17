@@ -1,11 +1,11 @@
 # ISYS\_MessageBusTask interface
 
-消息总线任务
+Message bus task
 
 ## Signature
 
 ```typescript
-interface ISYS_MessageBusTask 
+interface ISYS_MessageBusTask
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface ISYS_MessageBusTask
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [cancel](./ISYS_MessageBusTask.md)
 
-
 </td><td>
-
 
 </td><td>
 
 () =&gt; void
 
-
 </td><td>
 
 调用以取消任务
-
 
 </td></tr>
 <tr><td>
 
 [execute](./ISYS_MessageBusTask.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (message: any) =&gt; Promise&lt;void&gt;
 
-
 </td><td>
 
 任务处理
-
 
 </td></tr>
 <tr><td>
 
 [running](./ISYS_MessageBusTask.md)
 
-
 </td><td>
-
 
 </td><td>
 
 () =&gt; boolean
 
-
 </td><td>
 
 检查运行状态
-
 
 </td></tr>
 </tbody></table>

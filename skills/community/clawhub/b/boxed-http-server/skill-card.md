@@ -1,41 +1,58 @@
-## Description: <br>
-WebAssembly sandbox static HTTP server with HTTP Basic auth and proxy support for serving static files, protecting sites, configuring proxies, and running local development servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boxed HTTP Server is a WebAssembly sandbox static HTTP server with HTTP Basic authentication and proxy/reverse proxy support.
 
-## Publisher: <br>
-[guyoung](https://clawhub.ai/user/guyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyoung](https://clawhub.ai/user/guyoung)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a sandboxed static HTTP server, add Basic authentication, and configure proxy or reverse-proxy routes for local development or static site deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill serves local or static content through a downloaded WASM component. <br>
-Mitigation: Inspect the source before use, prefer a pinned release or checksum, and bind the server only to the needed interface. <br>
-Risk: Proxy and authentication examples include placeholder credentials and outbound host settings. <br>
-Mitigation: Replace example secrets, avoid admin/admin credentials, and keep allowedOutboundHosts limited to required destinations. <br>
+## Use Case:
 
+Developers and engineers use this skill to run static websites in an OpenClaw WebAssembly sandbox, add Basic authentication, and configure outbound proxy or reverse proxy routes for local development or deployment.
 
-## Reference(s): <br>
-- [Boxed HTTP Server on ClawHub](https://clawhub.ai/guyoung/boxed-http-server) <br>
-- [Boxed HTTP Server WASM component](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-http-server/files/boxed_http_server_component.wasm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WASM component paths, work directory settings, Basic auth variables, proxy rules, and allowed outbound host configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill instructs users to download and run a remote WebAssembly component.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted upstream sources, pin and verify the downloaded component before execution, and review before installing.
+
+Risk: Server or proxy configuration can expose local files or outbound network access beyond the intended scope.
+
+Mitigation: Expose only the intended website directory, allow only required outbound hosts, and bind to localhost unless remote access is needed.
+
+Risk: The examples include placeholder credentials and tokens.
+
+Mitigation: Replace all example credentials and tokens with strong secrets managed outside static configuration.
+
+## Reference(s):
+
+- [Boxed HTTP Server Skill Page](https://clawhub.ai/guyoung/skills/boxed-http-server)
+- [Boxed HTTP Server WebAssembly Component](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-http-server/files/boxed_http_server_component.wasm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript, Bash, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command and configuration examples for OpenClaw WebAssembly sandbox server setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

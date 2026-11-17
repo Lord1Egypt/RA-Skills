@@ -1,44 +1,54 @@
-## Description: <br>
-Plan campaign visuals and hooks for healthcare promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for healthcare promotions.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Healthcare operators, clinic teams, and patient educators use this skill to draft paid campaign creative briefs, including audience goals, visual directions, hooks, and review-ready content constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft healthcare advertising content may include inaccurate, misleading, or regulated medical claims. <br>
-Mitigation: Have qualified reviewers check patient-facing copy, medical claims, and campaign constraints before publication. <br>
-Risk: Prompts or generated briefs may include real patient identifiers or sensitive health details. <br>
-Mitigation: Do not include patient identifiers or sensitive health information unless the organization has explicitly approved that use. <br>
-Risk: Generated imagery or visual concepts may be unsuitable for patient-facing healthcare advertising. <br>
-Mitigation: Review generated images and visual directions for accuracy, appropriateness, consent, and regulatory fit before use. <br>
+## Use Case:
 
+Healthcare operators, clinic teams, and patient educators use this skill to plan paid campaign visuals, hooks, and creative brief drafts for healthcare promotions. Outputs should be reviewed by a human before use in patient-facing or regulated medical claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/generate-healthcare-ad-creative-brief) <br>
-- [Publisher profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-healthcare-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft creative brief content should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requests Bash access even though its stated purpose is generating healthcare ad creative briefs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, prefer a version without Bash access, and grant Read only when local campaign documents are expected inputs.
+
+Risk: Healthcare promotional content may include incorrect, misleading, or regulated medical claims.
+
+Mitigation: Require human review for accuracy, readability, actionability, and compliance before publishing patient-facing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/generate-healthcare-ad-creative-brief)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-healthcare-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text creative brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visual concepts and campaign hooks that require human review before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

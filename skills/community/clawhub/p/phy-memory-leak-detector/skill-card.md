@@ -1,43 +1,54 @@
-## Description: <br>
-Scans Node.js, Python, Go, and Java projects for common memory leak patterns and guides optional local Node.js heap-diff confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static memory leak pattern scanner for Node.js, Python, Go, and Java that reports common leak patterns and can guide optional local Node.js heap-diff confirmation.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect application source code for likely memory leak patterns, prioritize findings by severity, and get concrete cleanup guidance. Node.js users can also run local heap-diff checks to confirm whether a suspected leak grows under load. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad scans can inspect repository content outside the intended review scope. <br>
-Mitigation: Run scans only on repositories or directories the user intends to inspect. <br>
-Risk: Optional heap/profiler examples can create local load, background processes, and profiler files. <br>
-Mitigation: Run runtime confirmation only in a local or test environment against harmless endpoints, then clean up background Node.js, profiler, and load-test artifacts. <br>
-Risk: Static pattern matching can produce false positives or incomplete fixes. <br>
-Mitigation: Review each finding and proposed code change before applying fixes or enforcing CI thresholds. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan Node.js, Python, Go, and Java codebases for memory leak patterns, review suggested fixes, and optionally confirm suspected Node.js leaks with local heap profiling.
 
-## Reference(s): <br>
-- [Phy Memory Leak Detector on ClawHub](https://clawhub.ai/PHY041/phy-memory-leak-detector) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports static findings with file, line, severity, explanation, and suggested fix; optional Node.js heap-diff guidance may generate local profiler output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Optional runtime profiling can execute unpinned npm tools and local load tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin clinic and autocannon through a lockfile-managed test environment before running heap profiling or load tests.
+
+Risk: Runtime heap profiling and load tests may affect production services or expose sensitive local sessions.
+
+Mitigation: Use the skill for static analysis first, and run runtime confirmation only in an isolated test environment against non-sensitive services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-memory-leak-detector)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with findings, severity summaries, code examples, fixes, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static analysis output with optional local Node.js heap profiling guidance]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

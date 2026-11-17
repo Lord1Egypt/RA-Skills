@@ -1,43 +1,58 @@
-## Description: <br>
-Manage multiple OpenAI Codex accounts by capturing current login tokens, switching between saved accounts, and auto-selecting the best one based on quota budget scoring; it can also explicitly sync saved Codex tokens into OpenClaw agent auth stores on this machine and reads and writes local authentication files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple OpenAI Codex accounts by saving and switching local tokens, comparing quota headroom, and optionally syncing saved Codex tokens into OpenClaw agent auth stores.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Developers and Codex users use this skill to save, switch, compare, and auto-select local Codex account tokens, with optional explicit syncing to OpenClaw agent auth stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local Codex access and refresh tokens, including saved account snapshots. <br>
-Mitigation: Review the script before installation and keep ~/.codex authentication files private with restrictive file permissions. <br>
-Risk: Server security evidence notes that the tool may save active Codex credentials during normal account operations. <br>
-Mitigation: Install only when credential snapshot behavior is acceptable and inspect saved accounts after use. <br>
-Risk: OpenClaw token propagation can write saved Codex tokens into agent auth stores. <br>
-Mitigation: Use explicit sync only when needed, prefer sync --dry-run first, and use --agent to limit which OpenClaw agents are updated. <br>
+## Use Case:
 
+Developers and power users with multiple Codex identities use this skill to save, switch, compare, and choose Codex account tokens by quota headroom, with optional explicit sync into OpenClaw agent auth profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odrobnik/codex-account-switcher) <br>
-- [Setup instructions](SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local Codex and OpenClaw authentication files when the user runs the provided script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill rewrites and duplicates live Codex credentials in local snapshots and, when requested, OpenClaw agent auth files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only on trusted machines, keep credential directories private, and review generated token snapshots before relying on them.
+
+Risk: OpenClaw sync can propagate saved Codex tokens into agent auth stores.
+
+Mitigation: Use sync --dry-run to preview planned writes and --agent <name> to limit which agents receive token updates.
+
+Risk: Server security guidance flags incomplete account-name path containment and silent snapshot-write behavior.
+
+Mitigation: Avoid untrusted or unusual account names and review saved account files after commands until path validation and silent persistence behavior are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odrobnik/skills/codex-account-switcher)
+- [Setup instructions](SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Markdown usage guidance with shell commands plus plain text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads and writes local Codex and OpenClaw authentication files when the provided script commands are run.]
+
+## Skill Version(s):
+
+1.4.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

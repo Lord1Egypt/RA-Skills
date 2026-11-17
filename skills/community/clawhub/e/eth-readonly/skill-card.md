@@ -1,41 +1,58 @@
-## Description: <br>
-Read-only Ethereum blockchain queries for blocks, transactions, balances, contracts, logs, RPC endpoints, and Etherscan APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Ethereum blockchain queries for blocks, transactions, balances, contracts, and logs via RPC and Etherscan APIs.
 
-## Publisher: <br>
-[apexfork](https://clawhub.ai/user/apexfork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apexfork](https://clawhub.ai/user/apexfork)
 
-## Use Case: <br>
-Developers, engineers, and agents use this skill to inspect Ethereum blockchain state, transactions, balances, contracts, event logs, gas data, and Etherscan responses without wallet access or transaction signing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Address, transaction, contract, and timing queries may be visible to the configured RPC or Etherscan provider. <br>
-Mitigation: Use trusted providers, avoid pasting sensitive API keys into chat, and prefer private or organization-approved endpoints for sensitive investigations. <br>
-Risk: Broad event-log or history queries can exhaust provider rate limits or quotas. <br>
-Mitigation: Keep log filters narrow by contract and block range, and use paid or local infrastructure for high-volume lookups. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apexfork/eth-readonly) <br>
-- [Publisher profile](https://clawhub.ai/user/apexfork) <br>
-- [Skill homepage](https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/eth-readonly) <br>
+## Use Case:
 
+Developers and analysts use this skill to inspect Ethereum blockchain state, transactions, balances, contract data, logs, and gas information without wallet access or transaction signing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires cast or curl for queries; Etherscan API usage requires a user-provided API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: RPC providers and Etherscan can observe addresses, contracts, transaction hashes, and API keys used in queries.
+
+Mitigation: Use trusted providers for sensitive investigations and avoid unnecessary disclosure of sensitive query targets.
+
+Risk: Wallet private keys are unnecessary for this skill and would create avoidable secret exposure.
+
+Mitigation: Keep usage read-only and do not configure private keys, wallets, signing commands, or transaction submission.
+
+Risk: Broad event log queries can exhaust RPC limits or fail on public endpoints.
+
+Mitigation: Use specific contract addresses and narrow block ranges for event log requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apexfork/skills/eth-readonly)
+- [Publisher profile](https://clawhub.ai/user/apexfork)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires either cast or curl; RPC provider and Etherscan API keys are optional depending on query path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

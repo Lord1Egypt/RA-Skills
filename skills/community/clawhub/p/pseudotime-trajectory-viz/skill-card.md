@@ -1,43 +1,54 @@
-## Description: <br>
-Analyze single-cell AnnData files with a reproducible pseudotime trajectory workflow that validates inputs and produces review-ready visualizations and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze data with `pseudotime-trajectory-viz` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, analysts, and computational biology teams use this skill to infer developmental trajectories, calculate pseudotime, visualize lineage branching, and inspect gene expression dynamics from preprocessed single-cell AnnData files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CSV, JSON, plots, and AnnData files may include cell IDs, annotations, or sample-derived metadata. <br>
-Mitigation: Send outputs to a controlled directory and review generated artifacts before sharing. <br>
-Risk: Automatically inferred roots, lineages, and pseudotime values are exploratory biological results. <br>
-Mitigation: Validate trajectories against marker genes, biological knowledge, and alternate methods before relying on conclusions. <br>
-Risk: The skill reads local AnnData files and writes local analysis results. <br>
-Mitigation: Install dependencies in an isolated Python environment and use only datasets you are authorized to analyze. <br>
+## Use Case:
 
+Developers, computational biologists, and data analysts use this skill to run reproducible pseudotime trajectory analysis on preprocessed single-cell AnnData files and review trajectory plots, pseudotime values, lineage assignments, and analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/pseudotime-trajectory-viz) <br>
-- [Runtime checklist](references/runtime_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local output files including plots, CSV, JSON, and AnnData artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trajectory plots, pseudotime values, analysis reports, and updated AnnData files in a user-controlled output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted gene name can cause plot files to be written outside the chosen output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated workspace or container, use trusted .h5ad files, validate requested gene names, and review generated file paths before sharing results.
+
+Risk: Trajectory results can be misleading when input data are low quality, batch affected, or interpreted as absolute time.
+
+Mitigation: Validate trajectories with known marker genes and biological knowledge, compare methods for critical analyses, and document preprocessing assumptions.
+
+## Reference(s):
+
+- [Runtime Checklist](references/runtime_checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/pseudotime-trajectory-viz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; executed workflow writes plots, CSV, JSON, and AnnData files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a preprocessed AnnData (.h5ad) input; generated files are written to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

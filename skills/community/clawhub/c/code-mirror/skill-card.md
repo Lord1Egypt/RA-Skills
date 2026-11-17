@@ -1,42 +1,55 @@
-## Description: <br>
-Mirror frontend and backend code across the stack. Invoke when user wants to generate backend from frontend code, generate frontend from backend code, sync existing code across stack, or scaffold full-stack features from one side. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mirror frontend and backend code across the stack. Invoke when user wants to generate backend from frontend code, generate frontend from backend code, sync existing code across stack, or scaffold full-stack features from one side.
 
-## Publisher: <br>
-[liangach](https://clawhub.ai/user/liangach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangach](https://clawhub.ai/user/liangach)
 
-## Use Case: <br>
-Developers and engineers use Code Mirror to generate matching frontend or backend code from the opposite side of an application stack, including API contracts, data models, routes, validation logic, typed clients, hooks, and scaffolding for full-stack features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated routes or CRUD logic may create, update, or delete application data incorrectly if applied without review. <br>
-Mitigation: Review generated CRUD, authentication, authorization, validation, and error-handling code before applying it to a project. <br>
-Risk: The skill may read project files to infer stack details and code structure. <br>
-Mitigation: Use it in workspaces where project source access is appropriate and avoid exposing unrelated sensitive files. <br>
+## Use Case:
 
+Developers and engineers use Code Mirror to generate backend implementations from frontend code, generate frontend integrations from backend code, synchronize types and API calls, and scaffold full-stack features from one side of an application.
 
-## Reference(s): <br>
-- [Code Mirror on ClawHub](https://clawhub.ai/liangach/code-mirror) <br>
-- [Server-resolved GitHub provenance](https://github.com/liangach/code-mirror) <br>
-- [Publisher profile](https://clawhub.ai/user/liangach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with file paths, code blocks, diffs, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code should be reviewed for correctness, security, and fit with the existing project before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated CRUD, authentication, database, or migration code may affect sensitive application behavior or account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated routes, authorization checks, database changes, and migrations before applying them to a real project.
+
+Risk: Mirrored frontend and backend code may mismatch request shapes, response shapes, validation rules, or error handling.
+
+Mitigation: Compare generated code against the source-side contracts and run project tests before deployment.
+
+## Reference(s):
+
+- [Code Mirror source repository](https://github.com/liangach/code-mirror)
+- [Code Mirror provenance commit](https://github.com/liangach/code-mirror/commit/6a3a80259406d62b02ba236b19310cd11726e976)
+- [Code Mirror ClawHub skill page](https://clawhub.ai/liangach/skills/code-mirror)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with file-path headings and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide full generated files or diffs depending on the requested sync operation.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

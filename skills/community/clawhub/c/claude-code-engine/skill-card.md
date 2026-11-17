@@ -1,43 +1,61 @@
-## Description: <br>
-Upgrades OpenClaw toward a Claude-Code-style agent architecture with concurrent subagents, self-reflection, vector memory search, and context compression guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and example scripts for upgrading OpenClaw with Claude-Code-style concurrent execution, self-reflection, vector memory retrieval, sub-agent orchestration, and context compression.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw with Claude-Code-style agent workflows, including an N0 loop, parallel subagents, vector memory search, periodic self-reflection, health checks, and context compression. It provides installation-oriented scripts and configuration examples for adapting OpenClaw to longer-running autonomous work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cron jobs and background health checks can keep automation running after setup. <br>
-Mitigation: Review each command before installation, enable scheduled jobs only when persistent automation is intended, and keep clear cleanup steps for removing cron entries and generated scripts. <br>
-Risk: The subagent executor can run broad shell or skill commands against local files and accounts. <br>
-Mitigation: Run it in a sandbox or non-root account, restrict allowed commands and working directories, and avoid using it around important credentials or production data. <br>
-Risk: Dependency installation and vector memory indexing can add supply-chain and data exposure risk. <br>
-Mitigation: Pin and review dependencies before installation, store vector memory with controlled permissions, and avoid indexing secrets or sensitive operational data. <br>
+## Use Case:
 
+Developers and agent operators use this skill as implementation guidance for upgrading OpenClaw with concurrent task handling, memory retrieval, scheduled self-reflection, long-running health checks, and context compression.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/claude-code-engine) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/smseow001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash, Python, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language OpenClaw upgrade guidance with scripts for cron-based reflection, vector search, subagent execution, health checks, and context compression] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent root-scoped automation and cron jobs can create privileged background behavior that users may not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before use, avoid /root paths, and make scheduled jobs a separate explicit opt-in.
+
+Risk: The proposed task executor can run broad shell commands without tight safeguards.
+
+Mitigation: Replace shell-based execution with allowlisted commands, constrained arguments, timeouts, and explicit operator approval for high-impact actions.
+
+Risk: Unpinned dependencies and npx @latest can change behavior between installs.
+
+Mitigation: Pin package versions and verify dependencies before installation or execution.
+
+Risk: Vector memory and reflection logs may retain sensitive agent context over time.
+
+Mitigation: Define retention limits, deletion controls, and review procedures before enabling persistent memory.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/smseow001/skills/claude-code-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are implementation guidance and example automation snippets for an agent to review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

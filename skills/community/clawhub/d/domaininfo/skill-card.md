@@ -1,40 +1,51 @@
-## Description: <br>
-Looks up domain WHOIS information, checks DMARC/SPF/DKIM email security, inspects TLS certificates, and can capture website screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up domain WHOIS information, check email security (DMARC/SPF/DKIM), inspect TLS certificates, and capture website screenshots.
 
-## Publisher: <br>
-[sxlderek](https://clawhub.ai/user/sxlderek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxlderek](https://clawhub.ai/user/sxlderek)
 
-## Use Case: <br>
-Developers, security analysts, and support teams use this skill to inspect a domain, URL, or email domain and receive a domain-only report covering registration, DNS, email security, TLS, and optional screenshot evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain lookups and optional screenshots can disclose queried domains to external network services or visited sites. <br>
-Mitigation: Use the skill only for domains the user is comfortable querying, and keep screenshot capture optional when browser tooling is not already available. <br>
-Risk: The security evidence notes a limited robustness issue around custom screenshot output paths. <br>
-Mitigation: Use the screenshot helper's default output path or tighten its path check before relying on custom output locations. <br>
+## Use Case:
 
+Developers, security analysts, and operations teams use this skill to produce a domain-only report covering WHOIS, DNS records, email security signals, TLS certificate details, and an optional website screenshot.
 
-## Reference(s): <br>
-- [Skill Setup Notes](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Single final Markdown-style text report with an optional screenshot file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Buffers results before sending the final response; screenshot capture is optional and skipped when tooling is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The optional screenshot helper can be directed at local or private network targets in environments that can reach internal dashboards, localhost services, cloud metadata, or private networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable screenshot capture before installation; if enabled, restrict targets to public registrable hostnames and fixed in-skill output paths.
+
+## Reference(s):
+
+- [Skill setup notes](references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/sxlderek/skills/domaininfo)
+- [ipinfo country endpoint](https://ipinfo.io/{IP}/country)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Single Markdown-style domain report, optionally accompanied by a website screenshot image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Buffered final response only; screenshot capture is optional and skipped when browser tooling is unavailable.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

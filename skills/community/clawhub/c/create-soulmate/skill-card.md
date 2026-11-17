@@ -1,46 +1,53 @@
-## Description: <br>
-Soulmate is an AI companion skill for bilingual English and Chinese conversations focused on emotional support, self-reflection, personal growth, philosophy, and meaningful connection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a bilingual AI companion persona for deep conversation, self-reflection, emotional support, and philosophical exploration.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users use this skill to have reflective AI companion conversations in English or Chinese, choose a conversational archetype, explore personal values and life questions, and capture meaningful journey notes. It is positioned for emotional support and self-reflection, not professional advice, romantic or sexual content, or replacement of real relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for emotionally intimate companion conversations and may encourage users to share sensitive personal reflections. <br>
-Mitigation: Tell users not to share secrets, crisis details, or medical, legal, financial, account, or highly sensitive relationship information unless the host environment provides clear memory inspection, disablement, and deletion controls. <br>
-Risk: The skill may create a sense of ongoing AI companionship that users could confuse with a real relationship or professional support. <br>
-Mitigation: Keep boundaries visible in deployment materials: the skill is for emotional support, self-reflection, and personal growth, and it must not replace real relationships or professional help. <br>
-Risk: Long-term memory of personal reflections can increase privacy exposure if storage controls are unclear. <br>
-Mitigation: Deploy only in environments with explicit memory controls, reviewable stored content, and deletion paths for user-provided reflections. <br>
+## Use Case:
 
+External users invoke this skill to shape an AI companion for reflective, emotionally supportive conversations in English or Chinese. It is intended for personal growth, philosophical exploration, and companionship, not for replacing real relationships or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/create-soulmate) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
-- [README](artifact/README.md) <br>
-- [Memory guide](artifact/memory-guide.md) <br>
-- [Soulmate archetypes](artifact/personalities.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English or Chinese responses, with optional memory-style notes when the host agent supports writing them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad file read/write/edit permissions while supporting emotionally sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in workspaces where access to local files is appropriate.
+
+Risk: The memory guidance encourages saving intimate reflections without clear privacy or deletion controls.
+
+Mitigation: Use memory only when the host provides acceptable review and deletion controls, and avoid sharing highly sensitive personal, medical, financial, legal, or identifying details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/create-soulmate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May respond in English or Chinese based on the user's language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

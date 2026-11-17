@@ -1,39 +1,55 @@
-## Description: <br>
-Calculate pricing based on costs, margins, market positioning, and competitor analysis. For freelancers, product builders, and service providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates product and service pricing from costs, margins, market positioning, competitor prices, break-even analysis, pricing tiers, and discount impact.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Freelancers, product builders, and service providers use this skill to estimate service rates, product prices, break-even points, tiered pricing, and discount impact from cost, margin, market, and competitor inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing outputs may be treated as financial, legal, tax, or professional advice. <br>
-Mitigation: Treat outputs as estimates and verify costs, margins, tax assumptions, and competitor data before making business decisions. <br>
+## Use Case:
 
+External freelancers, product builders, and service providers use this skill to estimate hourly rates, product prices, package tiers, break-even units, margins, and discount effects from local inputs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/TheShadowRose/pricing-calc) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown with JavaScript examples and calculated pricing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local pricing estimates only; outputs are not financial, legal, tax, or professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Pricing recommendations may be inaccurate or unsuitable for a specific business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as estimates and independently verify pricing decisions before relying on them commercially.
+
+Risk: Users may mistake calculator output for financial, legal, or professional advice.
+
+Mitigation: Keep the disclaimer visible in downstream usage and require professional review for high-impact business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/theshadowrose/skills/pricing-calc)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript usage examples and structured calculator outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local calculations only; outputs are estimates and should be independently reviewed before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

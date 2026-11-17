@@ -1,44 +1,60 @@
-## Description: <br>
-Location awareness via privacy-friendly GPS tracking (Home Assistant, OwnTracks, GPS Logger). Set location-based reminders and ask about movement history, travel time, and nearby POIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Location awareness via privacy-friendly GPS tracking (Home Assistant, OwnTracks, GPS Logger). Set location-based reminders and ask about movement history, travel time, and nearby POIs.
 
-## Publisher: <br>
-[Hegghammer](https://clawhub.ai/user/Hegghammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hegghammer](https://clawhub.ai/user/hegghammer)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to query personal location state, calculate travel time, manage saved places, geofences, and reminders, and inspect recent movement history from configured location providers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive location and credential data. <br>
-Mitigation: Review before installing, use a dedicated minimal configuration or environment, and avoid placing unrelated secrets in ~/.openclaw/.env. <br>
-Risk: Location coordinates or place searches may be sent to public mapping services. <br>
-Mitigation: Confirm the deployment is comfortable with external location lookups before enabling commands that geocode, reverse geocode, search nearby places, or calculate routes. <br>
-Risk: Cron-based checks can create continuous location monitoring and trigger reminder or geofence actions. <br>
-Mitigation: Enable scheduled checks only when continuous monitoring is intended, and require confirmation before deleting or changing saved places, reminders, or geofence rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hegghammer/location-awareness) <br>
-- [OpenStreetMap Nominatim service](https://nominatim.openstreetmap.org/) <br>
-- [Overpass API](https://overpass-api.de/api/interpreter) <br>
-- [OSRM public route service](http://router.project-osrm.org/) <br>
+## Use Case:
 
+External users and administrators use this skill to let an agent answer location questions, manage saved places and location reminders, estimate travel time, and surface nearby points of interest from configured location providers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Human-readable text, Markdown command guidance, and optional JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and configured location-provider credentials; environment variables take precedence over config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles precise location, destinations, saved places, reminders, and location-service credentials.
+
+Mitigation: Install only for users who accept that data handling, protect ~/.openclaw/.env and local configuration files, and use dedicated least-privilege provider credentials.
+
+Risk: ETA, nearby-place, address, and map-link features can disclose precise location or destination data to third-party mapping services.
+
+Mitigation: Run those features only when third-party location disclosure is acceptable, and document the mapping services used in deployment review.
+
+Risk: Cron-based checks can create ongoing background location processing and notifications.
+
+Mitigation: Enable scheduled checks only when continuous monitoring is intended, and disable or avoid them for one-off interactive use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hegghammer/skills/location-awareness)
+- [Publisher Profile](https://clawhub.ai/user/hegghammer)
+- [OpenStreetMap Nominatim](https://nominatim.openstreetmap.org/)
+- [OpenStreetMap Overpass API](https://overpass-api.de/api/interpreter)
+- [OSRM Demo Server](http://router.project-osrm.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON returned by shell commands, with setup guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can emit map links, coordinates, geofence and reminder state, travel estimates, history summaries, nearby place lists, and configuration instructions.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Prethereum creates verifiable proofs for user-provided computation artifacts using Ed25519 signatures over SHA-256 digests, with TEE-backed signing and offline verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifiable proofs for any computation. Ed25519 over SHA-256. TEE-backed signing, offline verification.
 
-## Publisher: <br>
-[mikeargento](https://clawhub.ai/user/mikeargento) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[mikeargento](https://clawhub.ai/user/mikeargento)
 
-## Use Case: <br>
-Developers and engineers use Prethereum to commit explicit byte payloads to a notary, receive self-contained proof JSON, and verify proofs offline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Commit data is sent to the configured external notary endpoint. <br>
-Mitigation: Only commit data that is acceptable to transmit; do not send credentials, private keys, or sensitive personal information. <br>
-Risk: The workflow relies on npm packages for installation. <br>
-Mitigation: Confirm packages come from the expected source before installing and consider pinning package versions. <br>
+## Use Case:
 
+Developers and engineers use this skill to commit explicit input bytes to a notary for signed proof generation and to verify returned proofs offline.
 
-## Reference(s): <br>
-- [Prethereum Wire Format](references/protocol.md) <br>
-- [ClawHub Prethereum listing](https://clawhub.ai/mikeargento/prethereum) <br>
-- [Declared Prethereum repository](https://github.com/mikeargento/prethereum) <br>
-- [Declared MCP package source](https://github.com/mikeargento/prethereum/tree/main/packages/occ-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and bash code blocks; proof outputs are self-contained JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commit operations send only user-provided bytes to the configured notary endpoint; verification is offline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: Commit operations send user-provided bytes to the configured notary endpoint over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only commit data that is acceptable to send to the notary endpoint, and do not send credentials, private keys, or sensitive personal data.
+
+Risk: Installing or running the Prethereum packages can introduce package supply-chain exposure.
+
+Mitigation: Pin the package version where possible and inspect the package contents before installing.
+
+## Reference(s):
+
+- [Prethereum Skill Page](https://clawhub.ai/mikeargento/skills/prethereum)
+- [Prethereum Wire Format](references/protocol.md)
+- [Prethereum Repository](https://github.com/mikeargento/prethereum)
+- [Prethereum MCP Source](https://github.com/mikeargento/prethereum/tree/main/packages/occ-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for proof generation and offline verification; commit operations send only user-provided bytes to the configured notary endpoint.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

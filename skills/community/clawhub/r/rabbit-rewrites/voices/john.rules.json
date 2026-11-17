@@ -1,0 +1,95 @@
+{
+  "voice": "john",
+  "description": "Mechanically checkable subset of voices/john.md. Built from five samples (~70,900 words) of published review-essay prose; every count below is measured there. Judgment rules stay in the markdown.",
+  "default_priority": "P0",
+  "mechanics": {
+    "em_dash": "allow",
+    "semicolon": "allow",
+    "emoji": "forbid",
+    "curly_quotes": "allow",
+    "oxford_comma": "allow",
+    "one_word_sentence": "allow",
+    "date_format": "mdy",
+    "max_sentence_words": 45
+  },
+  "mechanics_by_register": {},
+  "engine_exemptions": {
+    "chatbot-artifact": "attested conversational style ('of course,' / 'certainly,' connective in review-essays)"
+  },
+  "banned_words": [
+    "delve",
+    "tapestry",
+    "synergy",
+    "plethora",
+    "myriad"
+  ],
+  "banned_phrases": [
+    {"phrase": "circle back", "inflect": true},
+    {"phrase": "thought leader", "inflect": true},
+    "needless to say",
+    "it is important to note",
+    "in conclusion",
+    "to summarize",
+    "in summary"
+  ],
+  "banned_regex": [
+    {
+      "id": "hype-register",
+      "label": "Hype-register adjectives",
+      "rx": "(?i)\\b(game-?chang(?:er|ing)|revolutionary|unparalleled|cutting-edge|best-in-class|world-class|seamless(?:ly)?)\\b",
+      "priority": "P0",
+      "example": "The tool's seamless integration has been game-changing for the whole team.",
+      "note": "Zero occurrences across 70,893 words. The samples praise and pan in plain words and star ratings, never in launch-note adjectives."
+    },
+    {
+      "id": "committee-hedge",
+      "label": "Committee hedge",
+      "rx": "(?i)\\b(it could be argued|one might argue|it is (?:widely )?believed that)\\b",
+      "priority": "P0",
+      "example": "It could be argued that the policy helped consumers.",
+      "note": "Opinions in this voice are owned in the first person, including the uncertain ones: 'I think', 'I suppose', 'I don't know'."
+    }
+  ],
+  "required_when": [],
+  "signature_moves": [
+    {
+      "id": "star-rating-close",
+      "label": "Explicit star-rating verdict",
+      "rx": "(?i)\\bI give\\b[^.!?\n]{0,90}\\bstars?\\b",
+      "max_allowed": 2,
+      "applies_to_registers": ["blog", "formal"],
+      "note": "The review-essay close: 'I give X four and a half stars.' One per piece, after the turn. Two is already a callback; three is a tic."
+    },
+    {
+      "id": "of-course-connective",
+      "label": "'of course' as connective",
+      "rx": "(?i)\\bof course\\b",
+      "max_allowed": 12,
+      "max_per_1000w": 2.5,
+      "note": "Genuine habit (37 in 70,893 words, 0.52/1k), listed with a ceiling rather than a floor so a conversion cannot carpet a draft with it. The engine's chatbot lexicon flags this phrase at P0; over this writer it is a false positive."
+    }
+  ],
+  "preferred_substitutions": {
+    "facilitate": "help",
+    "utilize": "use",
+    "apprehensive": "scared",
+    "sufficient": "enough"
+  },
+  "contrastive_pairs": [
+    {
+      "rule": "connectors",
+      "would": "But luck decided most of it.",
+      "would_never": "However, it is important to note that luck decided most of it."
+    },
+    {
+      "rule": "closers",
+      "would": "I give hotel breakfasts three stars.",
+      "would_never": "In conclusion, hotel breakfasts merit a rating of three stars."
+    },
+    {
+      "rule": "mechanics",
+      "would": "We used a lot of it.",
+      "would_never": "We utilized a sufficient quantity of it."
+    }
+  ]
+}

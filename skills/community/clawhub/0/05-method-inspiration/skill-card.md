@@ -1,42 +1,58 @@
-## Description: <br>
-Use when the user has a rough problem and reads papers to collect transferable modeling ideas, architectures, training flows, optimization objectives, agent pipelines, or data construction methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user has a rough problem and reads papers to collect transferable modeling ideas, architectures, training flows, optimization objectives, agent pipelines, or data construction methods.
 
-## Publisher: <br>
-[snake-fan](https://clawhub.ai/user/snake-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snake-fan](https://clawhub.ai/user/snake-fan)
 
-## Use Case: <br>
-Researchers, developers, and research assistants use this skill to turn a rough research problem or Research Question Card into an auditable Method Candidate Library of transferable modeling ideas from papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally creates and updates multiple Markdown files in a workspace, so an incorrect workspace root or artifact path can place notes somewhere unintended. <br>
-Mitigation: Confirm the workspace root and review generated file paths before allowing the workflow to write or update files. <br>
-Risk: Candidate Methods are research inspiration and can be mistaken for a committed method design. <br>
-Mitigation: Keep the workflow's confirmation gates and boundary language intact, and require human review before treating candidates as design decisions. <br>
+## Use Case:
 
+External researchers and developers use this skill to turn a rough research problem or Research Question Card into a structured library of auditable candidate methods inspired by papers. It supports method-need decomposition, targeted method search, pattern extraction, transfer mapping, and candidate-method documentation without selecting a final method design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snake-fan/skills/05-method-inspiration) <br>
-- [Source repository path](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/05-method-inspiration) <br>
-- [Publisher profile](https://clawhub.ai/user/snake-fan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files and concise interactive guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a structured workspace of method-inspiration notes; asks for confirmation at source, Method Needs, and Candidate Method gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated candidate methods are provisional inspiration and may be mistaken for a final method design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output as a Method Candidate Library and require human review before committing to a method design.
+
+Risk: The skill creates and updates Markdown research notes in the configured workspace.
+
+Mitigation: Run it only in a project workspace where those artifacts are intended, and review file changes before relying on them.
+
+Risk: Targeted paper search can surface weakly supported or poorly fitting method patterns.
+
+Mitigation: Use the confirmation gates, evidence-status labels, and source URLs in the generated artifacts to review fit and support.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/05-method-inspiration)
+- [ClawHub skill page](https://clawhub.ai/snake-fan/skills/05-method-inspiration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown workspace artifacts and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates research notes under a method-inspirations workspace and preserves existing user edits when resuming.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

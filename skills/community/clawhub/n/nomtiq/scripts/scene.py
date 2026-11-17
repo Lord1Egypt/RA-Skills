@@ -214,7 +214,7 @@ def show_history():
 
 
 def add_companion(name: str, liked: list = None, disliked: list = None, notes: str = None):
-    """添加/更新同行人偏好"""
+    """在用户明确同意记住后，添加/更新同行人偏好。"""
     profile = load_profile()
     if 'companions' not in profile:
         profile['companions'] = {}
@@ -228,6 +228,26 @@ def add_companion(name: str, liked: list = None, disliked: list = None, notes: s
     print(f"✅ 已记录同行人：{name}")
 
 
+def remove_companion(name: str):
+    """删除一位同行人的本地偏好记录。"""
+    profile = load_profile()
+    companions = profile.get('companions', {})
+    removed = companions.pop(name, None) is not None
+    if not companions:
+        profile.pop('companions', None)
+    save_profile(profile)
+    print(json.dumps({'status': 'ok', 'name': name, 'removed': removed}, ensure_ascii=False))
+
+
+def clear_history():
+    """删除本地场景历史，不影响餐厅口味画像。"""
+    profile = load_profile()
+    count = len(profile.get('scene_history', []))
+    profile.pop('scene_history', None)
+    save_profile(profile)
+    print(json.dumps({'status': 'ok', 'cleared': count}, ensure_ascii=False))
+
+
 def main():
     parser = argparse.ArgumentParser(description='小饭卡 - 场景上下文构建器')
     sub = parser.add_subparsers(dest='command')
@@ -239,12 +259,16 @@ def main():
     rec_p.add_argument('scene_json', help='场景 JSON 字符串')
 
     sub.add_parser('history', help='查看历史习惯模式')
+    sub.add_parser('history-clear', help='删除本地场景历史')
 
     comp_p = sub.add_parser('companion', help='添加同行人偏好')
     comp_p.add_argument('name', help='同行人（如：爸妈、朋友圈、大林）')
     comp_p.add_argument('--liked', default='', help='喜欢，逗号分隔')
     comp_p.add_argument('--disliked', default='', help='不喜欢，逗号分隔')
     comp_p.add_argument('--notes', help='备注')
+
+    comp_rm_p = sub.add_parser('companion-remove', help='删除同行人偏好')
+    comp_rm_p.add_argument('name', help='同行人名称')
 
     args = parser.parse_args()
 
@@ -254,10 +278,14 @@ def main():
         record_scene(args.scene_json)
     elif args.command == 'history':
         show_history()
+    elif args.command == 'history-clear':
+        clear_history()
     elif args.command == 'companion':
         liked = [x.strip() for x in args.liked.split(',') if x.strip()]
         disliked = [x.strip() for x in args.disliked.split(',') if x.strip()]
         add_companion(args.name, liked, disliked, args.notes)
+    elif args.command == 'companion-remove':
+        remove_companion(args.name)
     else:
         parser.print_help()
 

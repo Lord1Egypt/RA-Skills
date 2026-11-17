@@ -1,5 +1,5 @@
 -- OpenClaw Token Ledger Schema
--- Version: 2026-03-07
+-- Version: 2026-03-17-unified
 
 CREATE TABLE IF NOT EXISTS calls (
   call_id            TEXT PRIMARY KEY,
@@ -24,15 +24,24 @@ CREATE TABLE IF NOT EXISTS calls (
   cost_source        TEXT DEFAULT 'unknown',
 
   channel            TEXT,
+  chat_id            TEXT,
+  thread_id          TEXT,
   message_id         TEXT,
-  price_version      TEXT DEFAULT '2026-03-07',
+  source_kind        TEXT DEFAULT 'interactive',  -- interactive | cron | subagent | api_cron
+  cron_job_id        TEXT,                          -- for cron runs: job ID
+  price_version      TEXT DEFAULT '2026-03-17-unified',
   usage_raw          TEXT,
   created_at         TEXT DEFAULT (datetime('now'))
 );
 
-CREATE INDEX IF NOT EXISTS idx_calls_session ON calls(session_key);
-CREATE INDEX IF NOT EXISTS idx_calls_ts      ON calls(ts);
-CREATE INDEX IF NOT EXISTS idx_calls_model   ON calls(provider, model);
+CREATE INDEX IF NOT EXISTS idx_calls_session     ON calls(session_key);
+CREATE INDEX IF NOT EXISTS idx_calls_ts          ON calls(ts);
+CREATE INDEX IF NOT EXISTS idx_calls_model       ON calls(provider, model);
+CREATE INDEX IF NOT EXISTS idx_calls_chat_id     ON calls(chat_id);
+CREATE INDEX IF NOT EXISTS idx_calls_thread      ON calls(thread_id);
+CREATE INDEX IF NOT EXISTS idx_calls_source_kind ON calls(source_kind);
+CREATE INDEX IF NOT EXISTS idx_calls_cron_job    ON calls(cron_job_id);
+CREATE INDEX IF NOT EXISTS idx_calls_ts_kind     ON calls(ts, source_kind);
 
 CREATE TABLE IF NOT EXISTS turns (
   turn_id            TEXT PRIMARY KEY,
@@ -41,6 +50,8 @@ CREATE TABLE IF NOT EXISTS turns (
   ended_at           TEXT,
   latency_ms         INTEGER,
   channel            TEXT,
+  chat_id            TEXT,
+  thread_id          TEXT,
   source_kind        TEXT,
   message_id         TEXT,
   total_input        INTEGER DEFAULT 0,
@@ -51,13 +62,15 @@ CREATE TABLE IF NOT EXISTS turns (
   call_count         INTEGER DEFAULT 1,
   provider           TEXT,
   model              TEXT,
-  price_version      TEXT DEFAULT '2026-03-07',
+  price_version      TEXT DEFAULT '2026-03-17-unified',
   created_at         TEXT DEFAULT (datetime('now'))
 );
 
-CREATE INDEX IF NOT EXISTS idx_turns_session ON turns(session_key);
-CREATE INDEX IF NOT EXISTS idx_turns_ts      ON turns(started_at);
-CREATE INDEX IF NOT EXISTS idx_turns_channel ON turns(channel);
+CREATE INDEX IF NOT EXISTS idx_turns_session  ON turns(session_key);
+CREATE INDEX IF NOT EXISTS idx_turns_ts       ON turns(started_at);
+CREATE INDEX IF NOT EXISTS idx_turns_channel  ON turns(channel);
+CREATE INDEX IF NOT EXISTS idx_turns_chat_id  ON turns(chat_id);
+CREATE INDEX IF NOT EXISTS idx_turns_thread   ON turns(thread_id);
 
 CREATE TABLE IF NOT EXISTS price_versions (
   version            TEXT NOT NULL,

@@ -1,49 +1,61 @@
-## Description: <br>
-CLI for querying Prometheus and PromQL-compatible engines, including instant queries, range queries, metric discovery, table/csv/json/graph output, and PromQL troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI assistance for querying Prometheus and PromQL-compatible engines, including instant queries, range queries, metric discovery, troubleshooting, and table, CSV, JSON, or graph output.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to run promql-cli queries, discover Prometheus metrics and labels, visualize time series, and investigate latency, error, saturation, and other observability issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of Prometheus credentials or bearer tokens while configuring promql-cli. <br>
-Mitigation: Keep credentials in local files with restricted permissions and avoid passing tokens or passwords through chat, command arguments, shell history, or process listings. <br>
-Risk: The skill runs promql-cli commands against user-selected Prometheus-compatible endpoints and can expose operational metrics in outputs. <br>
-Mitigation: Confirm the intended Prometheus host and scope before running queries, and avoid sharing sensitive metric labels or results outside the authorized environment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to run PromQL queries, inspect metrics and labels, visualize range-query trends, and troubleshoot latency, errors, saturation, and other observability issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samber/promql-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
-- [Source skill collection](https://github.com/samber/cc-skills) <br>
-- [promql-cli documentation](https://github.com/nalbury/promql-cli) <br>
-- [promql-cli releases](https://github.com/nalbury/promql-cli/releases) <br>
-- [Installation reference](references/installation.md) <br>
-- [Usage reference](references/usage.md) <br>
-- [Graphing reference](references/graphing.md) <br>
-- [Debugging methodology](references/debugging.md) <br>
-- [PromQL reference](references/promql-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline PromQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include promql-cli command lines, PromQL expressions, jq pipelines, setup guidance, and analysis of table, CSV, JSON, or ASCII graph output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installation guidance references third-party binaries and system-wide placement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install steps before use, prefer a user-local install path, pin an immutable version, and verify checksums or signatures for promql-cli before executing it.
+
+Risk: Prometheus tokens, password files, TLS keys, or production monitoring data could be exposed if pasted into agent chat or passed through shell history.
+
+Mitigation: Configure credentials manually in local files with restricted permissions and do not paste monitoring credentials into the agent conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/promql-cli)
+- [Publisher homepage](https://github.com/samber/cc-skills)
+- [promql-cli documentation](https://github.com/nalbury/promql-cli)
+- [promql-cli releases](https://github.com/nalbury/promql-cli/releases)
+- [Installation reference](references/installation.md)
+- [Usage reference](references/usage.md)
+- [Debugging methodology](references/debugging.md)
+- [PromQL reference](references/promql-reference.md)
+- [ASCII graphing reference](references/graphing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline PromQL, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include table, CSV, JSON, raw API response, or ASCII graph output formats produced by promql-cli.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

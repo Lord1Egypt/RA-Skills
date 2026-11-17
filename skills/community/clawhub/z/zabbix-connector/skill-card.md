@@ -1,41 +1,57 @@
-## Description: <br>
-Skill for Zabbix API monitoring and interaction. Use it to check active alerts, list problems, manage hosts, and query monitoring data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for Zabbix API monitoring and interaction. Use it to check active alerts, list problems, manage hosts, and query monitoring data.
 
-## Publisher: <br>
-[rickkbarbosa](https://clawhub.ai/user/rickkbarbosa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rickkbarbosa](https://clawhub.ai/user/rickkbarbosa)
 
-## Use Case: <br>
-Operations teams and engineers use this skill to query Zabbix monitoring data, review active alerts and problems, inspect hosts and metrics, and acknowledge events when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Zabbix API token and can expose monitoring data if credentials are over-permissive or mishandled. <br>
-Mitigation: Use a least-privilege token, keep the .env file private, and use HTTPS for ZABBIX_URL. <br>
-Risk: The skill can acknowledge Zabbix events, which may change operational incident state. <br>
-Mitigation: Require explicit confirmation and verify the target host or event before acknowledging any event or problem. <br>
+## Use Case:
 
+Developers and operations teams use this skill to query Zabbix monitoring data, inspect active problems, list hosts and items, review history, and acknowledge events when authorized.
 
-## Reference(s): <br>
-- [Zabbix References](references/guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rickkbarbosa/zabbix-connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, JSON API results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ZABBIX_URL and ZABBIX_TOKEN from a local .env file when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release.json and server evidence) <br>
+Risk: The skill handles a Zabbix API token and may send it to a configured endpoint that is not HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only an HTTPS Zabbix endpoint you control and use a dedicated least-privilege Zabbix token.
+
+Risk: Credential files can expose Zabbix access if shared or packaged.
+
+Mitigation: Keep the .env file out of release packages and avoid putting unrelated secrets in the skill .env file.
+
+Risk: Event acknowledgement can change Zabbix operational state.
+
+Mitigation: Reserve acknowledgement permissions for users who need them and confirm the target host or event before acknowledging.
+
+## Reference(s):
+
+- [Zabbix References](references/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, optionally including JSON returned from Zabbix API queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured ZABBIX_URL and ZABBIX_TOKEN for live Zabbix API queries.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and artifact/release.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

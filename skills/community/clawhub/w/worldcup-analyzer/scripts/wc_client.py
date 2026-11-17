@@ -1,4 +1,4 @@
-"""World Cup Analyzer API client.
+"""Football Match Analyzer API client.
 
 Thin wrapper around the prediction service at WORLDCUP_API_BASE
 (default: https://www.jiajielitong.com).
@@ -9,6 +9,7 @@ Features:
   - Configurable base URL (WORLDCUP_API_BASE)
   - In-memory TTL cache (resets on process restart — intentional)
   - Friendly error mapping
+  - EPL-first prediction helpers plus World Cup compatibility
   - format_response() to attach the mandatory compliance disclaimer
 
 The cache lives in this Python process's memory. It is per-session and
@@ -44,18 +45,33 @@ FIRST_USE_MODEL_NOTE_EN = (
     "First time using this skill? You can try 2 predictions per day for free "
     "with an Agent temporary key. The backend model combines multiple data "
     "dimensions to build a scientific team-strength assessment model and is "
-    "continuously retrained. Typical inputs include club performance, national "
-    "team rankings, historical head-to-head records, weather factors, player "
-    "market value, and related signals. English Premier League assessment is "
-    "planned for a future release."
+    "continuously retrained. Typical inputs include club performance, league "
+    "and national-team ranking signals, historical head-to-head records, "
+    "weather factors, player market value, and related signals. English "
+    "Premier League assessment is now the primary supported mode, while World "
+    "Cup matchups remain available."
 )
 FIRST_USE_MODEL_NOTE_ZH = (
     "首次使用本 Skill？Agent 临时 key 每日可免费试用 2 次预测。"
     "后台模型收集多个维度数据，建立科学的球队实力评估模型，"
     "并持续训练。典型数据包括球员在俱乐部的表现、国家队排名、国家队历史交锋记录、"
-    "天气因素、球员身价等。后续也会推出英格兰超级联赛的评估。"
+    "天气因素、球员身价等。当前优先支持英格兰超级联赛评估，同时保留世界杯球队评估。"
 )
-SUPPORTED_COMPETITIONS = ("worldcup", "england-premium")
+DEFAULT_COMPETITION = "epl"
+SUPPORTED_COMPETITIONS = ("epl", "worldcup")
+COMPETITION_ALIASES = {
+    "epl": "epl",
+    "premier league": "epl",
+    "english premier league": "epl",
+    "england premium": "epl",
+    "英超": "epl",
+    "英格兰超级联赛": "epl",
+    "worldcup": "worldcup",
+    "world cup": "worldcup",
+    "world-cup": "worldcup",
+    "fifa world cup": "worldcup",
+    "世界杯": "worldcup",
+}
 
 # Cache TTL in seconds. Predictions are deterministic for given inputs over
 # short windows, so 6h is a good default — long enough to dedup repeat
@@ -162,6 +178,36 @@ def _team_name_from_api(value: Any) -> Any:
     if isinstance(value, str) and " - " in value:
         return value.split(" - ", 1)[0].strip()
     return value
+
+
+def _normalize_competition(competition: str) -> str:
+    """Normalize user/API aliases to the competitions supported by this client."""
+    if not isinstance(competition, str):
+        raise WorldCupAPIError("competition must be a string.")
+    key = competition.strip().lower()
+    normalized = COMPETITION_ALIASES.get(key)
+    if normalized:
+        return normalized
+    raise WorldCupAPIError(
+        "competition must be one of "
+        f"{', '.join(repr(c) for c in SUPPORTED_COMPETITIONS)}, "
+        f"got {competition!r}"
+    )
+
+
+def _prediction_results(data: dict) -> Optional[dict]:
+    """Return a response's prediction result payload across supported envelopes."""
+    results = data.get("results")
+    if isinstance(results, dict):
+        return results
+    nested = data.get("data")
+    if isinstance(nested, dict):
+        nested_results = nested.get("results")
+        if isinstance(nested_results, dict):
+            return nested_results
+        if {"home_team", "visitor_team", "away_team", "win_or_not", "win_goals"} & set(nested):
+            return nested
+    return None
 
 
 # ----------- HTTP layer -----------
@@ -278,15 +324,14 @@ def _get(path: str, params: Optional[dict] = None) -> Any:
 def predict_match(
     home_team: str,
     visitor_team: str,
-    competition: str = "worldcup",
+    competition: str = DEFAULT_COMPETITION,
 ) -> dict:
-    """POST /matches/predict/ — predict the outcome of a match.
+    """Predict the outcome of a match.
 
     Args:
-        home_team: Home team name, e.g. "Germany".
-        visitor_team: Away team name, e.g. "France".
-        competition: "worldcup" (default for this skill) or
-            "england-premium" when the upstream API enables it.
+        home_team: Home team name, e.g. "Arsenal" or "Germany".
+        visitor_team: Away team name, e.g. "Chelsea" or "France".
+        competition: "epl" (default) or "worldcup".
 
     Returns:
         The full response dict from the API, e.g.:
@@ -306,12 +351,10 @@ def predict_match(
             }
         }
     """
-    if competition not in SUPPORTED_COMPETITIONS:
-        raise WorldCupAPIError(
-            "competition must be one of "
-            f"{', '.join(repr(c) for c in SUPPORTED_COMPETITIONS)}, "
-            f"got {competition!r}"
-        )
+    competition = _normalize_competition(competition)
+    if competition == "epl":
+        return simulate_epl_match(home_team, visitor_team)
+
     home = canonicalize_team_name(home_team)
     away = canonicalize_team_name(visitor_team)
     if home == away:
@@ -324,17 +367,57 @@ def predict_match(
 
     data = _request(
         "POST",
-        "/matches/predict/",
+        "/matches/simulate/",
         payload={
             "home_team": home,
             "visitor_team": away,
             "competition": competition,
         },
     )
-    if "results" not in data:
+    if _prediction_results(data) is None:
         raise WorldCupAPIError(
             f"Malformed predict response (no 'results' field): {data!r}"
         )
+    if "results" not in data:
+        data["results"] = _prediction_results(data)
+    if not _permanent_api_key_configured():
+        data.setdefault("agent_temp_key", {"daily_free_limit": 2})
+    _cache_set(key, data)
+    return data
+
+
+def simulate_epl_match(
+    home_team: str,
+    visitor_team: str,
+    match_date: Optional[str] = None,
+    season: str = "2026-27",
+) -> dict:
+    """POST /matches/epl/simulate/ — predict an EPL fixture."""
+    home = canonicalize_club_name(home_team)
+    away = canonicalize_club_name(visitor_team)
+    if home == away:
+        raise WorldCupAPIError("home_team and visitor_team must differ.")
+
+    key = f"predict:epl:{season}:{match_date or ''}:{home}:{away}"
+    cached = _cache_get(key, PREDICT_TTL)
+    if cached is not None:
+        return cached
+
+    payload = {
+        "home_team": home,
+        "visitor_team": away,
+        "season": season,
+    }
+    if match_date:
+        payload["match_date"] = match_date
+
+    data = _request("POST", "/matches/epl/simulate/", payload=payload)
+    if _prediction_results(data) is None:
+        raise WorldCupAPIError(
+            f"Malformed EPL simulate response (no prediction results): {data!r}"
+        )
+    if "results" not in data:
+        data["results"] = _prediction_results(data)
     if not _permanent_api_key_configured():
         data.setdefault("agent_temp_key", {"daily_free_limit": 2})
     _cache_set(key, data)
@@ -347,26 +430,72 @@ def predict_match(
 # strikes a balance between freshness (squad announcements, replacements)
 # and avoiding unnecessary roundtrips for every prediction lookup.
 TEAMS_TTL = 12 * 3600
+EPL_SCHEDULE_TTL = 6 * 3600
 
 
-def list_teams(competition: str = "worldcup") -> list[str]:
-    """GET /matches/teams/ — return the supported team list.
+def list_epl_schedule() -> Any:
+    """GET /matches/epl/schedule/ — return the provider's EPL schedule payload."""
+    cached = _cache_get("schedule:epl", EPL_SCHEDULE_TTL)
+    if cached is not None:
+        return cached
+    data = _request("GET", "/matches/epl/schedule/", require_auth=False)
+    _cache_set("schedule:epl", data)
+    return data
+
+
+def _collect_team_names(value: Any, teams: set[str]) -> None:
+    """Collect likely team-name strings from schedule payloads."""
+    team_keys = {
+        "home_team",
+        "visitor_team",
+        "away_team",
+        "home",
+        "away",
+        "homeTeam",
+        "awayTeam",
+        "team",
+        "name",
+    }
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if key in team_keys and isinstance(child, str):
+                teams.add(canonicalize_club_name(child))
+            else:
+                _collect_team_names(child, teams)
+    elif isinstance(value, list):
+        for child in value:
+            _collect_team_names(child, teams)
+
+
+def list_epl_teams() -> list[str]:
+    """Return EPL team names inferred from the provider schedule endpoint."""
+    key = "teams:epl"
+    cached = _cache_get(key, TEAMS_TTL)
+    if cached is not None:
+        return cached
+    teams: set[str] = set()
+    _collect_team_names(list_epl_schedule(), teams)
+    if not teams:
+        raise WorldCupAPIError("Could not infer EPL teams from schedule response.")
+    result = sorted(teams)
+    _cache_set(key, result)
+    return result
+
+
+def list_teams(competition: str = DEFAULT_COMPETITION) -> list[str]:
+    """Return the supported team list.
 
     Args:
-        competition: "worldcup" (default) or "england-premium" when the
-            upstream API enables it.
+        competition: "epl" (default) or "worldcup".
 
     Returns:
         A list of canonical team-name strings as accepted by predict_match.
 
     Cached for 12 hours per competition. Use cache_clear() to force refresh.
     """
-    if competition not in SUPPORTED_COMPETITIONS:
-        raise WorldCupAPIError(
-            "competition must be one of "
-            f"{', '.join(repr(c) for c in SUPPORTED_COMPETITIONS)}, "
-            f"got {competition!r}"
-        )
+    competition = _normalize_competition(competition)
+    if competition == "epl":
+        return list_epl_teams()
 
     key = f"teams:{competition}"
     cached = _cache_get(key, TEAMS_TTL)
@@ -394,7 +523,7 @@ def list_teams(competition: str = "worldcup") -> list[str]:
     return teams
 
 
-def validate_team(name: str, competition: str = "worldcup") -> tuple[bool, Optional[str]]:
+def validate_team(name: str, competition: str = DEFAULT_COMPETITION) -> tuple[bool, Optional[str]]:
     """Check whether `name` is a supported team for the competition.
 
     Returns:
@@ -408,7 +537,8 @@ def validate_team(name: str, competition: str = "worldcup") -> tuple[bool, Optio
     """
     import difflib
 
-    canonical = canonicalize_team_name(name)
+    competition = _normalize_competition(competition)
+    canonical = canonicalize_club_name(name) if competition == "epl" else canonicalize_team_name(name)
     teams = list_teams(competition)
     if canonical in teams:
         return True, canonical
@@ -467,6 +597,70 @@ _TEAM_ALIASES = {
     "佛得角": "Cape Verde",
 }
 
+_CLUB_ALIASES = {
+    "arsenal": "Arsenal",
+    "阿森纳": "Arsenal",
+    "aston villa": "Aston Villa",
+    "维拉": "Aston Villa",
+    "bournemouth": "Bournemouth",
+    "伯恩茅斯": "Bournemouth",
+    "brentford": "Brentford",
+    "布伦特福德": "Brentford",
+    "brighton": "Brighton",
+    "brighton and hove albion": "Brighton",
+    "brighton & hove albion": "Brighton",
+    "布莱顿": "Brighton",
+    "chelsea": "Chelsea",
+    "切尔西": "Chelsea",
+    "crystal palace": "Crystal Palace",
+    "水晶宫": "Crystal Palace",
+    "everton": "Everton",
+    "埃弗顿": "Everton",
+    "fulham": "Fulham",
+    "富勒姆": "Fulham",
+    "ipswich": "Ipswich",
+    "ipswich town": "Ipswich",
+    "伊普斯维奇": "Ipswich",
+    "leeds": "Leeds",
+    "leeds united": "Leeds",
+    "利兹联": "Leeds",
+    "liverpool": "Liverpool",
+    "利物浦": "Liverpool",
+    "man city": "Man City",
+    "manchester city": "Man City",
+    "曼城": "Man City",
+    "man united": "Man United",
+    "man utd": "Man United",
+    "manchester united": "Man United",
+    "曼联": "Man United",
+    "newcastle": "Newcastle",
+    "newcastle united": "Newcastle",
+    "纽卡": "Newcastle",
+    "nottingham forest": "Nott'm Forest",
+    "forest": "Nott'm Forest",
+    "nott'm forest": "Nott'm Forest",
+    "诺丁汉森林": "Nott'm Forest",
+    "spurs": "Tottenham",
+    "tottenham": "Tottenham",
+    "tottenham hotspur": "Tottenham",
+    "热刺": "Tottenham",
+    "west ham": "West Ham",
+    "west ham united": "West Ham",
+    "西汉姆": "West Ham",
+    "wolves": "Wolves",
+    "wolverhampton": "Wolves",
+    "wolverhampton wanderers": "Wolves",
+    "狼队": "Wolves",
+    "coventry": "Coventry",
+    "coventry city": "Coventry",
+    "考文垂": "Coventry",
+    "hull": "Hull",
+    "hull city": "Hull",
+    "赫尔城": "Hull",
+    "sunderland": "Sunderland",
+    "桑德兰": "Sunderland",
+}
+
 
 def canonicalize_team_name(name: str) -> str:
     """Normalize a team name to the form the API expects."""
@@ -476,6 +670,14 @@ def canonicalize_team_name(name: str) -> str:
     if key in _TEAM_ALIASES:
         return _TEAM_ALIASES[key]
     return name.strip()
+
+
+def canonicalize_club_name(name: str) -> str:
+    """Normalize an EPL club name to the form the API expects."""
+    if not name or not name.strip():
+        raise WorldCupAPIError("Team name cannot be empty.")
+    key = name.strip().lower()
+    return _CLUB_ALIASES.get(key, name.strip())
 
 
 # ----------- response formatting -----------
@@ -515,10 +717,16 @@ def format_prediction(data: dict, language: str = "en") -> str:
     results = data.get("results", {}) or {}
     usage = data.get("usage", {}) or {}
 
-    home = results.get("home_team", "?")
-    away = results.get("visitor_team", "?")
-    win_goals_raw = results.get("win_goals", "?")
-    outcome = results.get("win_or_not", "?")  # from home team's POV
+    home = results.get("home_team") or results.get("homeTeam") or results.get("home") or "?"
+    away = (
+        results.get("visitor_team")
+        or results.get("away_team")
+        or results.get("awayTeam")
+        or results.get("away")
+        or "?"
+    )
+    win_goals_raw = results.get("win_goals", results.get("goal_difference", "?"))
+    outcome = results.get("win_or_not") or results.get("outcome") or "?"  # from home team's POV
     updated_at = results.get("updatedAt")     # optional freshness hint
 
     # win_goals may arrive as a stringified float ("0.7") or a real float

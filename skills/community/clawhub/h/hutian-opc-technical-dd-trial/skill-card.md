@@ -1,40 +1,53 @@
-## Description: <br>
-技术尽调初筛工具，用于投资前的技术可行性评估、团队背景核查、专利验证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技术尽调初筛工具，用于投资前的技术可行性评估、团队背景核查、专利验证。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Investors, analysts, and due-diligence reviewers use this skill to screen technology projects before investment by checking feasibility, team background, patent claims, business logic, and risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit confidential investment materials or personal data for analysis. <br>
-Mitigation: Avoid sharing sensitive information unless the agent environment is approved for that data. <br>
-Risk: Legal, patent, financial, or investment conclusions may be incomplete or wrong. <br>
-Mitigation: Verify high-stakes conclusions with authoritative sources and qualified reviewers before acting. <br>
+## Use Case:
 
+External investors, analysts, and technical reviewers use this skill for first-pass technical due diligence before deeper investment review. It guides checks for technical feasibility, team background, patent claims, business logic, and visible red flags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/hutian-opc-technical-dd-trial) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and checklist-style analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static due-diligence framework; no executable code or tool calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The skill content includes an unrelated upgrade promotion that is not part of the technical assessment methodology.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance before use and ignore promotional content when applying the due-diligence checklist.
+
+Risk: The checklist is an initial screening aid and may not be sufficient for investment or legal decisions by itself.
+
+Mitigation: Use it to structure review questions, then verify claims against authoritative records, subject-matter experts, and formal diligence processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-technical-dd-trial)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist and assessment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; produces due-diligence review guidance for human follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

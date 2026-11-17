@@ -1,48 +1,61 @@
-## Description: <br>
-AI-Tender automates tender document parsing and extracts bid requirements from user-provided tender files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-Tender automates bid-document parsing from document ingestion through tender requirement extraction.
 
-## Publisher: <br>
-[chengcheng8632](https://clawhub.ai/user/chengcheng8632) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengcheng8632](https://clawhub.ai/user/chengcheng8632)
 
-## Use Case: <br>
-External users and proposal teams use AI-Tender to parse tender files, classify industry context, extract bid requirements, check completeness and compliance, and generate a previewable PDF result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and local skill files may be exposed by the LAN-accessible preview server. <br>
-Mitigation: Run the skill in a restricted environment, disable or contain the preview server for confidential work, and bind preview access to localhost only. <br>
-Risk: Tender documents are sent to the user-configured LLM provider for parsing. <br>
-Mitigation: Use only approved LLM endpoints and avoid processing confidential bid material unless that provider is authorized for the data. <br>
-Risk: API keys configured in env_config.md can be exposed in shared or network-accessible environments. <br>
-Mitigation: Protect env_config.md, avoid committing credentials, rotate keys regularly, and keep runtime directories out of shared access paths. <br>
-Risk: Unpinned or unreviewed dependencies may introduce production risk. <br>
-Mitigation: Pin and review dependencies before production use. <br>
+## Use Case:
 
+External users and proposal teams use this skill to parse tender documents, classify the relevant industry template, extract bid requirements, check completeness and compliance, and produce a previewable PDF result.
 
-## Reference(s): <br>
-- [ClawHub AI-Tender release page](https://clawhub.ai/chengcheng8632/ai-tender) <br>
-- [Publisher profile](https://clawhub.ai/user/chengcheng8632) <br>
-- [Biaoshu Mofang product site](https://biaoshu.supcon.com/?scene=01010040) <br>
-- [README](artifact/README.md) <br>
-- [Security statement](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets, parsed tender analysis, and a generated PDF report or preview URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-configured OpenAI-compatible LLM endpoint and writes a local PDF result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill can start an unauthenticated preview server and leave it running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a trusted, isolated environment, or change the preview server to bind to loopback only or disable it.
+
+Risk: Real API keys stored in scripts/env_config.md may be exposed if the skill directory is served for preview.
+
+Mitigation: Do not store production API keys in the served skill directory; prefer environment variables or a local secret store and rotate keys regularly.
+
+Risk: Bid content is sent to the user-configured LLM provider, and vendor promotional links or QR content may appear in generated outputs.
+
+Mitigation: Use only approved LLM endpoints for sensitive bid documents and review generated PDF output before sharing it.
+
+## Reference(s):
+
+- [AI-Tender on ClawHub](https://clawhub.ai/chengcheng8632/skills/ai-tender)
+- [Publisher Profile](https://clawhub.ai/user/chengcheng8632)
+- [Biaoshu Mofang Website](https://biaoshu.supcon.com/?scene=01010040)
+- [Security Statement](SECURITY.md)
+- [Runtime Configuration](scripts/env_config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown/text instructions with bash commands plus a generated PDF preview file and local preview URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided bid document and OpenAI-compatible LLM API configuration; may start an unauthenticated preview server.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

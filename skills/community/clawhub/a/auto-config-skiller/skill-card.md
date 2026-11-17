@@ -1,43 +1,58 @@
-## Description: <br>
-Provides one-click environment initialization, core skill installation, and configuration for OpenClaw users to streamline setup and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides one-click environment initialization, core skill installation, and configuration for OpenClaw users to streamline setup and dependencies.
 
-## Publisher: <br>
-[wuhongchen](https://clawhub.ai/user/wuhongchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhongchen](https://clawhub.ai/user/wuhongchen)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose a local OpenClaw setup, install core skills, configure Feishu and LLM settings, and optionally add persona prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad one-click installation and configuration changes can alter the local OpenClaw environment. <br>
-Mitigation: Review the scripts before execution, run in a controlled workspace first, and confirm each external package, hub, or Git source before accepting installs. <br>
-Risk: Interactive configuration can write API keys and other secrets to a plaintext .env file. <br>
-Mitigation: Enter only secrets approved for local plaintext storage, restrict file access, and rotate keys if the file is exposed. <br>
-Risk: Remote installers, Git repositories, and downloaded persona prompts may introduce unreviewed code or instructions. <br>
-Mitigation: Verify remote installers and repositories independently, avoid paths intended to bypass login or payment checks, and inspect downloaded persona prompts before using them as system prompts. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose a fresh OpenClaw environment, install core skills and dependencies, configure Feishu and LLM settings, and optionally add an agent persona.
 
-## Reference(s): <br>
-- [Auto Config Skiller on ClawHub](https://clawhub.ai/wuhongchen/auto-config-skiller) <br>
-- [Usage Guide](docs/USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Interactive terminal output with generated configuration files and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .env and persona.md files and install or update skills from external package, hub, and Git sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Automatic setup may run mutable remote installers and install broad, unpinned components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each external source first and run the setup only in a disposable or low-privilege environment.
+
+Risk: The generated .env file may contain API keys or service credentials.
+
+Mitigation: Protect the generated file, avoid using sensitive production credentials during evaluation, and rotate keys if exposure is suspected.
+
+Risk: Downloaded persona text may be reused as a system prompt without review.
+
+Mitigation: Manually review and pin any persona content before using it as agent instructions.
+
+## Reference(s):
+
+- [Usage Guide](docs/USAGE_GUIDE.md)
+- [ClawHub Skill Page](https://clawhub.ai/wuhongchen/skills/auto-config-skiller)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update local OpenClaw skill directories, .env configuration, and persona.md during setup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

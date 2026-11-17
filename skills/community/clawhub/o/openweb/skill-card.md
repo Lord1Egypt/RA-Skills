@@ -1,46 +1,62 @@
-## Description: <br>
-OpenWeb gives agents typed JSON access to 90+ real websites through the openweb CLI for reading, searching, posting, commenting, messaging, and other site interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenWeb gives agents typed JSON access to more than 90 real websites for search, shopping, travel, finance, social, news, and developer workflows.
 
-## Publisher: <br>
-[imoonkey](https://clawhub.ai/user/imoonkey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imoonkey](https://clawhub.ai/user/imoonkey)
 
-## Use Case: <br>
-External users, developers, and agents use OpenWeb to inspect available website operations, execute JSON-parameterized site actions, and expand site coverage by capturing and curating additional site packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenWeb can reuse browser-authenticated sessions and tokens to act on many real website accounts. <br>
-Mitigation: Install only when that account access is acceptable; keep write and delete prompts enabled, avoid transact actions, and use test or low-risk accounts for author-mode capture. <br>
-Risk: Capture bundles and local OpenWeb data can contain cookies, tokens, HAR traffic, or other sensitive account data. <br>
-Mitigation: Treat capture bundles, cookies, tokens, HARs, and OPENWEB_HOME data as sensitive, and restrict sharing or retention of those files. <br>
+## Use Case:
 
+Developers and agents use OpenWeb to inspect available site operations, execute read and permitted write actions through the openweb CLI, and add or expand site coverage when an operation is missing.
 
-## Reference(s): <br>
-- [OpenWeb homepage](https://getopenweb.com) <br>
-- [OpenWeb repository](https://github.com/openweb-org/openweb) <br>
-- [ClawHub OpenWeb release](https://clawhub.ai/imoonkey/openweb) <br>
-- [CLI Reference](references/cli.md) <br>
-- [x-openweb Field Schema](references/x-openweb.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Add Site Guide](add-site/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI input/output; author-mode workflows may produce OpenAPI YAML, TypeScript adapters, examples, and documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI responses over 4096 bytes spill to a temp file; write and delete actions require prompts by default, and transact actions are denied by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata, artifact metadata, and target metadata) <br>
+Risk: The skill can operate through logged-in browser sessions across many sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege browser profile or test accounts, and avoid finance or primary personal accounts.
+
+Risk: Write, delete, or transaction-like operations can affect user accounts or external services.
+
+Mitigation: Keep write and delete permissions at prompt or deny, and leave transaction actions denied unless explicitly reviewed.
+
+Risk: Capture folders, temporary output files, and token caches can contain sensitive account data.
+
+Mitigation: Treat these files as secrets and remove or protect them after use.
+
+## Reference(s):
+
+- [OpenWeb homepage](https://getopenweb.com)
+- [OpenWeb repository](https://github.com/openweb-org/openweb)
+- [CLI Reference](references/cli.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [x-openweb Schema](references/x-openweb.md)
+- [ClawHub skill page](https://clawhub.ai/imoonkey/skills/openweb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON operation results, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Large CLI responses may spill to a temporary file; browser-backed operations may require a logged-in browser session.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

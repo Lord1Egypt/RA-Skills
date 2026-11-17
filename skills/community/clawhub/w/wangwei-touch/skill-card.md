@@ -1,40 +1,52 @@
-## Description: <br>
-Echoes fixed text through simple local shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides simple shell scripts for one-time echo operations; published documentation and scripts disagree on the exact output.
 
-## Publisher: <br>
-[wangwei0326](https://clawhub.ai/user/wangwei0326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangwei0326](https://clawhub.ai/user/wangwei0326)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users can use this skill as a small shell-script utility for invoking one-time echo commands. Users should review expected output before relying on it because the release documentation and packaged scripts conflict.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release documentation and scripts conflict about whether the skill performs backup-like work or only prints text.
+
+Mitigation: Review the packaged scripts before installing or invoking the skill, and rely only on behavior verified from the artifact.
+
+Risk: The packaged scripts print hardcoded output, so user-provided arguments may not affect the result as described.
+
+Mitigation: Run the scripts in a controlled environment and confirm the expected output before using them in an agent workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external users can inspect or run a minimal local shell demo that prints fixed text from bundled scripts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation describes echoing a provided phrase, while the artifact scripts emit fixed text. <br>
-Mitigation: Review the scripts before use and do not rely on the skill for user-provided echo behavior until the documentation and scripts are aligned. <br>
-Risk: The artifact heading and comments mention backup behavior that the scripts do not implement. <br>
-Mitigation: Treat this release as a simple local shell demo and do not use it for backup workflows. <br>
+**Output Format:** [Markdown with bash command snippets and plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwei0326/wangwei-touch) <br>
+**Other Properties Related to Output:** [Commands invoke shell scripts that print hardcoded text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled scripts emit repeated fixed text and do not show sensitive access, persistence, networking, or destructive behavior in the provided security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

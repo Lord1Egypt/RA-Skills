@@ -1,43 +1,55 @@
-## Description: <br>
-Provides mental-health support responses and mental-health knowledge Q&A through task-specific prompts for counseling and education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides mental-health support responses and psychological health Q&A through task-specific prompts to a remote medical chat-completions model.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External users and integrators use this command-line skill to send mental-health support or mental-health knowledge questions to a configured medical LLM and receive structured answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mental-health prompts and saved outputs may contain sensitive personal or patient data. <br>
-Mitigation: De-identify real patient data before use, avoid secrets in prompts, and protect terminal logs and --output files. <br>
-Risk: Questions are sent to the configured remote medical LLM endpoint. <br>
-Mitigation: Use this skill only when that data flow is acceptable for the deployment environment and keep the required app key protected. <br>
-Risk: Model-assisted mental-health responses can be incomplete or inappropriate for crisis or clinical decision needs. <br>
-Mitigation: Review outputs before relying on them and route crisis, diagnosis, or treatment decisions to qualified professionals. <br>
+## Use Case:
 
+Developers and integrators use this skill to route user-provided mental-health consultation or education prompts to a medical language model and receive structured responses. It supports direct questions, JSON, JSONL, plain text, stdin, dry-run parsing, and optional saved output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-mental-health) <br>
-- [Configured medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON by default, answer text with --text-only, or NDJSON for batch output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write complete results to --output; --dry-run emits parsed input without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Sensitive patient or mental-health text can be sent to a configurable remote API with a bearer key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint, avoid overriding --api-url unless the destination is controlled, use a scoped key, and de-identify real patient or personal mental-health information before use.
+
+Risk: The model output is supportive or educational assistance and may be mistaken for formal diagnosis or treatment advice.
+
+Mitigation: Review outputs before clinical or operational use and direct crisis-risk cases to professional help and local emergency procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-mental-health)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default medical chat-completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, plain text with --text-only, or NDJSON for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write UTF-8 JSON or NDJSON to a file; dry-run mode emits parsed request data without calling the model.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

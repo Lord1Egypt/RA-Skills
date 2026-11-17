@@ -1,43 +1,53 @@
-## Description: <br>
-Assists with drafting, reviewing, and revising Chinese tax-law legal documents, including tax planning reports, legal opinions, tax administrative reconsideration applications, litigation pleadings, tax consultation reports, due diligence reports, and tax treatment opinion letters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts and reviews China-focused tax legal documents, including tax planning reports, legal opinions, contract tax clauses, tax administrative reconsideration applications, litigation complaints, consultation reports, due diligence reports, and tax treatment letters.
 
-## Publisher: <br>
-[codefarmerman](https://clawhub.ai/user/codefarmerman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codefarmerman](https://clawhub.ai/user/codefarmerman)
 
-## Use Case: <br>
-Tax lawyers and legal professionals working on PRC tax matters use this skill to structure legal documents, draft tax-law analysis, cite applicable legal authority, and prepare document frameworks for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may include incorrect legal citations, deadlines, tax calculations, or analysis. <br>
-Mitigation: Verify citations, deadlines, calculations, and legal conclusions independently before relying on the output. <br>
-Risk: User prompts may include confidential client information. <br>
-Mitigation: Provide only the confidential information necessary for the drafting task and handle outputs as draft legal work product. <br>
-Risk: The workflow refers to helper skills for legal research, case research, tax calculation, and document export. <br>
-Mitigation: Review any helper skill before relying on its output or integrating it into a legal drafting workflow. <br>
+## Use Case:
 
+Legal and tax professionals use this skill to draft, review, or revise China-focused tax legal documents with structured formats, cited legal bases, risk disclosures, and document-specific templates.
 
-## Reference(s): <br>
-- [Document Templates](references/doc-templates.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/codefarmerman/legal-doc-writer) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured legal drafting text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft legal work product requiring independent professional review] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Drafted legal documents may contain incorrect citations, facts, deadlines, or professional conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited law, facts, deadlines, and professional requirements with a qualified China tax-law reviewer before use.
+
+Risk: The skill is scoped to China-focused tax and legal drafting and may be unsuitable for other jurisdictions or practice areas.
+
+Mitigation: Use it only for China-focused tax and legal workflows, and route other matters to appropriate local legal expertise.
+
+## Reference(s):
+
+- [Legal Document Template Library](references/doc-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured legal document text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be converted to .docx with a separate docx skill when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

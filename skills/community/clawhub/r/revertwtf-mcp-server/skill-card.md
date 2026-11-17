@@ -1,42 +1,48 @@
-## Description: <br>
-Maintain or use the read-only revert.wtf MCP server that exposes bounded catalog search, parser, selector lookup, AA explanations, x402 entries, and Blockscout registry tools to agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain or use the read-only revert.wtf MCP server that exposes bounded catalog search, parser, selector lookup, AA explanations, x402 entries, and Blockscout registry tools to agents.
 
-## Publisher: <br>
-[mrtdlgc](https://clawhub.ai/user/mrtdlgc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mrtdlgc](https://clawhub.ai/user/mrtdlgc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to maintain, test, document, or consume a read-only MCP server for catalog-backed EVM, RPC, provider, wallet, account-abstraction, x402, and Blockscout registry error assistance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Manual smoke testing may leave a local MCP server process running.
+
+Mitigation: Stop the server after smoke testing, as the skill instructs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to maintain MCP behavior, test MCP changes, document agent integration, or help agents consume revert.wtf catalog data for EVM, RPC, provider, wallet, AA, and x402 errors. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates in crypto and wallet-related contexts where sensitive credentials may be nearby. <br>
-Mitigation: Do not provide private keys, wallet seed phrases, session tokens, or live transaction-signing authority to the agent. <br>
-Risk: Changing MCP behavior could accidentally expand the server beyond read-only lookup and explanation workflows. <br>
-Mitigation: Keep MCP behavior read-only and exclude signing, transaction sending, payment gating, chain calls, browser scraping, and provider fetches. <br>
-Risk: Unbounded catalog or chain searches can create inefficient or overly large agent outputs. <br>
-Mitigation: Keep search and list tools bounded and paginated, returning summaries first and full entries only after a selected id is requested. <br>
+**Output Format:** [Markdown guidance with inline code, shell commands, tool names, resource URIs, and JSON-output expectations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrtdlgc/revertwtf-mcp-server) <br>
+**Other Properties Related to Output:** [Focuses on read-only MCP behavior, bounded search, paginated lists, explicit input schemas, and JSON payload compatibility.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON text examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports read-only MCP tool and resource guidance with bounded, paginated lookup behavior.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter says 0.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

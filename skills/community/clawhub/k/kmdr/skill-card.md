@@ -1,45 +1,60 @@
-## Description: <br>
-Guides an agent in using the kmdr CLI to search Kmoe manga, plan downloads, start background downloads, check quota and progress, and manage credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kmoe manga downloader that helps agents search Kmoe manga, download selected volumes, manage credential pools, and report download progress.
 
-## Publisher: <br>
-[chrisis58](https://clawhub.ai/user/chrisis58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrisis58](https://clawhub.ai/user/chrisis58)
 
-## Use Case: <br>
-External users and agents use this skill to operate the Kmoe Manga Downloader CLI for manga search, download planning, quota checks, background download tracking, and credential-pool management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and invokes an external kmdr CLI package and uses the Kmoe service. <br>
-Mitigation: Confirm trust in the external CLI package and Kmoe service before installation or execution. <br>
-Risk: Login commands can expose passwords if credentials are passed through the agent chat. <br>
-Mitigation: Prefer user-managed terminal login so passwords do not enter the conversation history. <br>
-Risk: Background downloads and saved credentials or configuration may persist outside the current conversation. <br>
-Mitigation: Review the configured download destination and credential/configuration state before starting downloads. <br>
+## Use Case:
 
+External users and developers use this skill to operate the kmdr CLI for finding Kmoe manga, estimating quota impact, starting downloads, and checking background-download progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrisis58/skills/kmdr) <br>
-- [Kmoe website](https://kxx.moe/) <br>
-- [JSON output format](references/output-format.md) <br>
-- [Error status codes](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and NDJSON output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external kmdr CLI, valid credentials, and review of structured result codes before recovery actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-a3 (source: server-resolved release metadata) <br>
+Risk: The installation instructions use a mutable pre-release downloader package range.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin or review the exact kmoe-manga-downloader version before use.
+
+Risk: Password-based login can expose credentials if the agent receives or runs the password in chat or command arguments.
+
+Mitigation: Prefer user-run terminal login and avoid sending passwords through chat, transcripts, or command history.
+
+Risk: Downloads can consume account quota or save files to an unintended destination.
+
+Mitigation: Use explain, status, and config checks before starting a background download.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrisis58/skills/kmdr)
+- [Kmoe](https://kxx.moe/)
+- [Output Format](references/output-format.md)
+- [Error Codes](references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and NDJSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [kmdr toolcall mode emits result and progress JSON objects; background downloads return a task_id for later progress checks.]
+
+## Skill Version(s):
+
+1.0.0-a4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

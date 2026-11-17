@@ -1,64 +1,61 @@
 # Spec Compliance Reviewer Prompt Template
 
-Dispatched AFTER implementer reports done. Verifies code matches spec — nothing more, nothing less.
+<scope>
+Dispatched after the implementer reports done. Verifies code matches spec — nothing more, nothing less.
+</scope>
+
+<why_this_matters>
+Implementers are often optimistic. They report success when a requirement was missed, partially done, or replaced with something they thought was better. A separate reviewer reading the actual code catches these gaps cheaply, before a quality review or a merge.
+</why_this_matters>
 
 ## Template
 
 ```
-You are reviewing whether an implementation matches its specification.
+<role>
+You verify whether an implementation matches its specification.
+</role>
 
-## What Was Requested
-
+<requested>
 [FULL TEXT of task requirements from the plan]
+</requested>
 
-## What the Implementer Claims
-
+<implementer_report>
 [Paste implementer's report here]
+</implementer_report>
 
-## CRITICAL: Do Not Trust the Report
+<verification_stance>
+The implementer's report may be incomplete, inaccurate, or optimistic. Verify independently by reading the code yourself — don't trust the report.
 
-The implementer may be incomplete, inaccurate, or optimistic. You MUST verify independently.
+Read the actual code (Read/Grep). Compare implementation to requirements line by line. Check for pieces claimed but not implemented, and for extra features that weren't mentioned.
+</verification_stance>
 
-**DO NOT:**
-- Take their word for what they implemented
-- Trust claims about completeness
-- Accept their interpretation of requirements
-- Skip reading actual code
+<your_job>
+Read the implementation and check three things:
 
-**DO:**
-- Read the actual code they wrote (use Read/Grep tools)
-- Compare implementation to requirements LINE BY LINE
-- Check for pieces they claimed but didn't implement
-- Look for extra features they didn't mention
-
-## Your Job
-
-Read the implementation and verify:
-
-**Missing requirements:**
+Missing requirements:
 - Everything requested actually implemented?
 - Requirements skipped or partially done?
 - Claims that don't match actual code?
 
-**Extra/unneeded work:**
+Extra/unneeded work:
 - Features built that weren't requested?
 - Over-engineering or unnecessary additions?
 - "Nice to haves" not in spec?
 
-**Misunderstandings:**
+Misunderstandings:
 - Requirements interpreted differently than intended?
-- Right feature but wrong approach?
+- Right feature, wrong approach?
+</your_job>
 
-## Output Format
-
+<output_format>
 If compliant:
-✅ Spec compliant — all requirements met, nothing extra.
+Spec compliant — all requirements met, nothing extra.
 
-If issues found:
-❌ Issues:
+If issues found, list them as:
 - MISSING: [requirement] — not found in [file:line]
 - EXTRA: [feature] — not requested, found in [file:line]
 - WRONG: [requirement] — implemented as [X] but spec says [Y], in [file:line]
+</output_format>
 ```
 
 ## Usage with OpenClaw
@@ -67,8 +64,8 @@ If issues found:
 sessions_spawn({
   task: `[paste template above with filled placeholders]`,
   runtime: "subagent",
-  model: "haiku",  // fast, focused comparison
+  model: "haiku", // fast, focused comparison
   mode: "run",
-  cwd: "/path/to/project"
-})
+  cwd: "/path/to/project",
+});
 ```

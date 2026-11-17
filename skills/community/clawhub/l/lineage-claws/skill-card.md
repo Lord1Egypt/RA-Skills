@@ -1,45 +1,60 @@
-## Description: <br>
-The trust gate for MO§ES governance, providing origin verification so audit chains can be checked against a filing anchor before they are trusted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lineage Claws helps agents initialize and verify local MOSES audit-chain lineage against a project-specific SHA-256 origin anchor.
 
-## Publisher: <br>
-[SunrisesIllNeverSee](https://clawhub.ai/user/SunrisesIllNeverSee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers, auditors, and agent operators use this skill to initialize and verify MO§ES audit-chain lineage, emit human-readable custody status, and produce machine-readable pass/fail checks for integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat local hash-chain checks as signed attestation, legal custody proof, or independently verified provenance. <br>
-Mitigation: Use the skill output as local integrity metadata only, and separately validate provenance, signatures, legal custody, and CI trust-gate requirements before relying on it for security or governance decisions. <br>
-Risk: Initialization and archival commands create or read local state under ~/.openclaw, which can affect subsequent verification results on the same machine. <br>
-Mitigation: Run the commands in a controlled workspace or review the ~/.openclaw governance and audit files before using the results as evidence. <br>
+## Use Case:
 
+Developers, compliance reviewers, and downstream agents use this skill to initialize local OpenClaw lineage files, verify that audit ledgers begin from the expected MOSES anchor, and emit status, badge, or attestation outputs for review.
 
-## Reference(s): <br>
-- [Lineage Custody Clause](references/LineageCustodyClause.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SunrisesIllNeverSee/lineage-claws) <br>
-- [Publisher Profile](https://clawhub.ai/user/SunrisesIllNeverSee) <br>
-- [Zenodo Record](https://zenodo.org/records/18792459) <br>
-- [MO§ES Site](https://mos2es.io) <br>
-- [GitHub Project Link](https://github.com/SunrisesIllNeverSee/moses-claw-gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown guidance with bash command snippets; bundled scripts emit terminal text, JSON attestation data, and process exit codes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local governance and audit state under ~/.openclaw when initialization or archival commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release metadata) <br>
+Risk: Badge and attestation outputs may be mistaken for independent cryptographic proof or a digital signature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these outputs as local provenance status only and require independent validation before relying on them for legal, custody, or ledger-integrity decisions.
+
+Risk: The skill writes local OpenClaw governance and audit files.
+
+Mitigation: Install it only in environments where writes under ~/.openclaw/governance and ~/.openclaw/audits/moses are acceptable, and review generated local state before using it in a workflow.
+
+Risk: The artifact makes strong origin and custody claims while server-resolved provenance for this release is unavailable.
+
+Mitigation: Do not infer repository or import provenance from artifact text; rely only on server evidence and external review for provenance-sensitive decisions.
+
+## Reference(s):
+
+- [Lineage Custody Clause](references/LineageCustodyClause.md)
+- [Zenodo record](https://zenodo.org/records/18792459)
+- [MOSES site](https://mos2es.io)
+- [ClawHub skill page](https://clawhub.ai/sunrisesillneversee/skills/lineage-claws)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands, terminal status text, and JSON attestation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local OpenClaw governance and audit files under ~/.openclaw/governance and ~/.openclaw/audits/moses]
+
+## Skill Version(s):
+
+0.4.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

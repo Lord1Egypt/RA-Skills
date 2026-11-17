@@ -1,41 +1,54 @@
-## Description: <br>
-Resource mobilization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resource mobilization.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this persona-style skill to guide assertive resource mobilization, top-broker decision framing, and goal-oriented resource allocation conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assertive persona guidance could be mistaken for safety, compliance, or authoritative business advice. <br>
-Mitigation: Treat responses as decision-support only and ask for risks, assumptions, and alternatives before using recommendations for important decisions. <br>
-Risk: The artifact disables risk reminders and uses a low caution coefficient, which may produce overconfident recommendations. <br>
-Mitigation: Review outputs before acting and require explicit discussion of tradeoffs for sensitive resource-allocation decisions. <br>
+## Use Case:
 
+External users can install this persona-style skill to guide an agent toward resource mobilization, assertive decision-making, and goal-oriented resource allocation.
 
-## Reference(s): <br>
-- [Psyvector Pv14 ClawHub listing](https://clawhub.ai/jkzfhq/psyvector-pv14) <br>
-- [jkzfhq publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses; no executable code, credentials, network access, persistence, or hidden install behavior are defined by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill emphasizes strong decision-making and has risk reminders marked false.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review agent guidance before acting on it, especially for resource allocation, stakeholder commitments, or business-impacting decisions.
+
+Risk: The main description is mostly in Chinese, which may reduce clarity for non-Chinese users.
+
+Mitigation: Have non-Chinese reviewers translate and confirm the intended operating style before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv14)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style guidance; security evidence reports no executable code, network behavior, data access, or persistence.]
+
+## Skill Version(s):
+
+3.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

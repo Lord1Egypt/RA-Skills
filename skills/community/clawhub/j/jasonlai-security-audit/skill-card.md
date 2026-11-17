@@ -1,40 +1,59 @@
-## Description: <br>
-Security Audit by Jason helps agents pre-screen external repositories, downloaded skills, and files for risky file types, suspicious content patterns, and README/content mismatches before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit for external resources (GitHub repos, downloaded skills, files). Detects malicious code, suspicious executables, and content mismatches.
 
-## Publisher: <br>
-[ITHACAJASON](https://clawhub.ai/user/ITHACAJASON) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ithacajason](https://clawhub.ai/user/ithacajason)
 
-## Use Case: <br>
-Developers and agents use this skill before trusting or executing external code, downloaded skills, or local repositories. It reports risky file types, suspicious patterns, and README/content mismatches so a human can decide whether to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic audit results can miss malicious behavior or create false confidence. <br>
-Mitigation: Treat the output as a local pre-screen, not proof of safety, and manually inspect unfamiliar code even when the audit passes. <br>
-Risk: Scanning broad private directories or sharing saved reports can expose local file paths or project details. <br>
-Mitigation: Run the audit from the exact repo, skill, or folder being checked, avoid broad private directories, and review any saved report before sharing it. <br>
+## Use Case:
 
+Developers and agents use this skill to run a lightweight static security review of external repositories, downloaded skills, files, or scripts before execution. It helps surface suspicious file types, obfuscated content, README/content mismatches, and safe/warning/critical audit guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ITHACAJASON/jasonlai-security-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/ITHACAJASON) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text report with optional plain-text report file and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports Safe, Warning, or Critical recommendations; optional --output writes a local report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scanner can incorrectly label risky packages as safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as lightweight triage, review suspicious code manually, and do not execute downloaded code solely because the scan is clean.
+
+Risk: The audit may inspect local directory contents.
+
+Mitigation: Run it only on directories intended for review and disclosure to the scanner.
+
+Risk: Using --output carelessly could overwrite an important file.
+
+Mitigation: Choose a dedicated report path and check before writing audit output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ithacajason/skills/jasonlai-security-audit)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain-text terminal report with optional saved report file and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports summarize total files scanned, source files, high-risk files, suspicious patterns, README mismatches, and a safe, warning, or critical recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

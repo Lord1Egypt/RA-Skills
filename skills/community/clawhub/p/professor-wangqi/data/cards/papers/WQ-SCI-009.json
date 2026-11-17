@@ -1,0 +1,143 @@
+{
+  "card_id": "WQ-SCI-009",
+  "source_type": "paper",
+  "source_file": "5 Enlightenment about using TCM constitutions for individualized medicine and construction of Chinese-style precision medicine research progress with TCM constitutions.pdf",
+  "title": "Enlightenment about using TCM constitutions for individualized medicine and construction of Chinese-style precision medicine: research progress with TCM constitutions",
+  "authors": [
+    "Lingru Li",
+    "Zhenyu Wang",
+    "Ji Wang",
+    "Yanfei Zheng",
+    "Yingshuai Li",
+    "Qi Wang"
+  ],
+  "year": 2020,
+  "journal": "Sci China Life Sci",
+  "language": "en",
+  "abstract": "TCM constitution is a new branch of TCM. It provides enlightenment on individualized medicine, including the development of new models of individualized research based on nine constitutions, the acquisition of comprehensive health information for individuals, and establishment of a consistent individualized diagnosis and treatment system. Further, we propose a Chinese- style “precision medicine” based on individualization using the TCM constitutions. TCM constitution, constitutional classification, individualized medicine, precision medicine",
+  "keywords": [
+    "TCM constitution",
+    "constitutional classification",
+    "individualized medicine",
+    "precision medicine"
+  ],
+  "doi": "10.1007/s11427-020-1872-7",
+  "research_focus": {
+    "constitution_type": [
+      "气虚质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 840,
+    "study_design": "队列研究"
+  },
+  "results": {},
+  "conclusions": "Further, we propose a Chinese- style “precision medicine” based on individualization using the TCM constitutions.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "Further, we propose a Chinese- style “precision medicine” based on individualization using the TCM constitutions",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "TCM constitution is a new branch of TCM",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "TCM constitution, constitutional classification, individualized medicine, precision medicine",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [],
+  "page_info": {
+    "total_pages": 8,
+    "sections": {
+      "introduction": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:12.356925",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.443264",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.443270"
+  }
+}

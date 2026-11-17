@@ -1,47 +1,61 @@
-## Description: <br>
-Agent-first engineering knowledge base distilled from OpenAI's Harness Engineering post and expanded with industry practices for codebase structure, context management, observability, agentic review, and technical debt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-first engineering knowledge base distilled from OpenAI's Harness Engineering post and expanded with industry practices for agentic software development.
 
-## Publisher: <br>
-[zhelunsun](https://clawhub.ai/user/zhelunsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhelunsun](https://clawhub.ai/user/zhelunsun)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to get concise guidance for building codebases and workflows that AI coding agents can navigate effectively. It supports questions about AGENTS.md design, progressive disclosure, architecture constraints, agent-readable observability, self-review loops, and technical debt cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may load this engineering guidance for general questions about codebase structure, context management, AGENTS.md, observability, or agentic technical debt. <br>
-Mitigation: Narrow or disable the skill when its guidance distracts from a more specific task. <br>
-Risk: The skill provides documentation-derived engineering advice that may be incomplete or misapplied to a specific repository. <br>
-Mitigation: Review recommendations against the target codebase, project constraints, and current engineering standards before applying them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to get practical guidance on structuring codebases, managing agent context, writing AGENTS.md, enforcing architecture constraints, improving agent-readable observability, and managing technical debt in agent-first workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhelunsun/skill-factory-claw) <br>
-- [Harness Engineering](https://openai.com/zh-Hans-CN/index/harness-engineering/) <br>
-- [Core Principles](references/core-principles.md) <br>
-- [Harness Engineering Distillation](references/harness-engineering.md) <br>
-- [Extended Sources](references/extended-sources.md) <br>
-- [Claude Code Overview](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) <br>
-- [Aider](https://github.com/Aider-AI/aider) <br>
-- [Eugene Yan](https://eugeneyan.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text guidance with occasional inline code, tables, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code, tool calls, MCP references, or credential access were found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata) <br>
+Risk: Users may treat advisory engineering guidance as authoritative policy for their own organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against local engineering standards, security requirements, and production constraints before adopting them.
+
+Risk: The maintenance checklist describes fetching external sources and updating repository files.
+
+Mitigation: Only fetch external sources or modify repositories when the user explicitly intends that work and the sources have been reviewed.
+
+## Reference(s):
+
+- [Harness Engineering](https://openai.com/zh-Hans-CN/index/harness-engineering/)
+- [Core Principles](references/core-principles.md)
+- [Harness Engineering Distillation](references/harness-engineering.md)
+- [Extended Sources](references/extended-sources.md)
+- [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [Aider](https://github.com/Aider-AI/aider)
+- [GitHub Copilot Workspace](https://github.blog/news-insights/product-news/github-copilot-workspace/)
+- [Eugene Yan](https://eugeneyan.com/)
+- [Chip Huyen](https://huyenchip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with optional code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory engineering guidance grounded in bundled reference documents.]
+
+## Skill Version(s):
+
+2.4.0 (source: ClawHub release metadata; artifact changelog top entry v1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

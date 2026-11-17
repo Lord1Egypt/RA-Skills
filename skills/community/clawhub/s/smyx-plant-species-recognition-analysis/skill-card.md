@@ -1,42 +1,59 @@
-## Description: <br>
-Identifies plant species from images or videos and returns structured details such as species name, family, growth habits, maintenance tips, analysis results, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies plant species from images or video and returns structured species, family, growth habit, care guidance, and report information.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users can use this skill to identify plants from local files or public URLs and receive structured plant knowledge for gardening, ecological field work, and natural education. It also supports querying prior cloud-generated analysis reports linked to the current account identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends uploaded plant images or videos, account-linked identifiers, and report queries to external lifeemergence/open.lifeemergence services. <br>
-Mitigation: Install only where that external processing is acceptable, and review the service data handling expectations before use. <br>
-Risk: The skill may create local workspace data containing reusable service tokens or identity state. <br>
-Mitigation: Review or clear the workspace data directory when persistent identity reuse is not desired. <br>
+## Use Case:
 
+External users, educators, researchers, and gardening users can submit plant media or URLs to identify species and receive structured plant knowledge. Agents can also retrieve prior cloud-hosted plant recognition reports for the resolved user identity.
 
-## Reference(s): <br>
-- [API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-plant-species-recognition-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Structured plant-recognition analysis reports, Markdown report lists, or JSON detail output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include species classification, family/genus details, growth and care guidance, analysis status, and report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter version: 1.0.7) <br>
+Risk: Plant photos, videos, URLs, and an internal user identifier are sent to lifeemergence.com for cloud analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when cloud processing by that vendor is acceptable, and avoid submitting sensitive or unnecessary media.
+
+Risk: The skill may create or reuse local identity data and cloud tokens in workspace data files.
+
+Mitigation: Treat data/smyx-api-key.txt and data/smyx-common-claw.db as sensitive local files and do not store real phone numbers or secrets in the API key file.
+
+Risk: Plant identification and care guidance may be incorrect or incomplete for high-consequence uses.
+
+Mitigation: Use results as informational guidance and consult qualified experts before relying on them for edible, medicinal, safety, or ecological decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-plant-species-recognition-analysis)
+- [Skill Demo](https://lifeemergence.com/sample.html)
+- [API Interface Documentation](skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-like structured text with optional report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save analysis output to a user-specified file when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,26 +2,22 @@
 name: Insurance Anti-Fraud Expert
 description: AI-powered insurance anti-fraud analysis skill — detects and prevents insurance fraud across all major insurance types. Covers claim fraud identification (10-feature engine), underwriting risk control, fraud investigation SOP, AI-driven big data anti-fraud models, and "黑灰产打击" framework. Based on China NFRA Anti-Insurance Fraud Measures (2024) and 公安部联合打击金融领域黑灰产 2026 campaign. Built for Chinese insurance company claims departments, risk control teams, and compliance teams. Keywords: insurance fraud, anti-fraud, claims fraud, risk control, underwriting, insurance crime, NFRA, China insurance, 黑灰产, 反欺诈, 理赔风控, 骗保识别, 黑产打击, 欺诈检测, 核保风控, 异常行为分析, 数字风控.
 slug: insurance-anti-fraud
-version: 2.0.0
-
-capabilities:
-  - educational-reference
-  - advisory-only
-  - requires-human-review
-  - no-executable-code
+version: "5.0.0"
 ---
 
 # Insurance Anti-Fraud Expert / 保险反欺诈分析专家
 
-> **⚠️ SECURITY NOTICE / 安全声明**
-> - **Type:** Educational reference / analytical framework ONLY
-> - **No executable code, scripts, or binaries are included in this skill**
-> - **No persistent storage, network calls, background execution, or credential collection**
-> - **All outputs are for reference only and require human review before real-world application**
-> - **This skill does NOT provide financial, legal, or insurance advice**
-> - **Users must exercise their own judgment and consult qualified professionals**
 
+### 保险监管最新动态 [2026-05-25更新]
 
+| 动态类型 | 内容摘要 | 影响范围 |
+|---------|---------|---------|
+| 保险监管 | 2026年Q1反洗钱监管力度加大，洗钱风险评估要求提升 | 反欺诈模型需整合合规审查和快速理赔风控逻辑 |
+| 保险监管 | NFRA 2026年Q1保险业处罚数据更新，合规管理持续深化 | 反欺诈模型需整合合规审查和快速理赔风控逻辑 |
+| 保险监管 | 车险理赔提速：5000元以下小额事故'一键理赔、24小时到账' | 反欺诈模型需整合合规审查和快速理赔风控逻辑 |
+
+> **数据截止**: 2026-05-25 | 来源：国家金融监督管理总局、安永Q1分析、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 > **English:** AI-powered insurance anti-fraud analysis expert — the definitive skill for detecting and preventing insurance fraud in the Chinese insurance market. Covers the complete CBIRC Anti-Insurance Fraud Measures (2024) framework, claim fraud identification engine (10 detection features), underwriting risk control system, fraud investigation workflows, and big data anti-fraud technology applications. Built for insurance company claims departments, risk control teams, and compliance teams.
 >
@@ -235,3 +231,81 @@ def blacklist_check(claimant_info):
 | `references/claim_investigation_sop.md` | 理赔欺诈调查 SOP，含调查话术和流程图 |
 | `references/fraud_case_study.md` | 典型欺诈案例分析（含真实案例改编） |
 | `references/data_model_guide.md` | 反欺诈数据模型构建指南，含评分卡示例 |
+
+---
+
+## 附录G：阿里点金(Dianjin)融合精华 — 理赔欺诈检测与异常模式识别
+
+### G.1 核心工作流程（Dianjin融合版）
+
+#### 步骤1：理赔欺诈特征识别
+| 欺诈类型 | 识别特征 | 风险信号 |
+|---------|---------|---------|
+| **虚构事故** | 事故时间/地点/天气交叉验证 | 事故描述矛盾、天气不符、地点异常 |
+| **夸大损失** | 维修估价vs市场价、定损单比对 | 估价超市场价30%、定损单不一致 |
+| **重复索赔** | 历史索赔记录、跨公司查询 | 同一事故多公司索赔、相似事故频繁 |
+| **团伙作案** | 关系图谱、IP/MAC地址聚类 | 多案件关联同一修理厂/医院 |
+
+#### 步骤2：风险量化评分
+| 评分维度 | 评分指标 | 权重 | 风险阈值 |
+|---------|---------|------|---------|
+| 材料异常 | 伪造检测得分、交叉验证结果 | 30% | 伪造检测得分<60分 |
+| 行为异常 | 索赔频率、跨公司记录 | 25% | 12个月内索赔>3次 |
+| 损失异常 | 损失程度与事故匹配度 | 20% | 损失程度异常超30% |
+| 关联异常 | 与修理厂/医院关联关系 | 15% | 关联修理厂/医院历史欺诈率>10% |
+| 合规异常 | 理赔时效、客户服务合规 | 10% | 超理赔时效或客户投诉 |
+
+#### 步骤3：异常模式挖掘
+- **关系网络分析**：被保险人-修理厂-医院关系图谱
+- **时空模式分析**：事故时间/地点聚类分析
+- **金额模式分析**：索赔金额分布异常检测
+- **行为序列分析**：索赔前行为模式异常
+
+#### 步骤4：处置决策与报告
+- **处置决策**：正常赔付/加强调查/拒赔/报警
+- **调查报告**：欺诈调查报告、证据链文档
+- **监管报送**：重大欺诈案件监管报送
+
+---
+
+### G.2 风险评分机制（Dianjin精髓）
+
+**综合风险等级**：
+- 低风险（0-20分）：正常赔付，标准流程
+- 中风险（21-40分）：加强调查，必要时现场查勘
+- 高风险（41-60分）：重点调查，必要时外调或第三方公估
+- 极高风险（61-80分）：疑似欺诈，移交反欺诈部门或报警
+
+---
+
+### G.3 合规约束（Dianjin精髓）
+
+1. **不适用边界**：本技能不适用于法律诉讼代理、刑事责任认定，此类需求需转交法律合规部门
+2. **禁止承诺**：不使用"一定拒赔""guaranteed denial"等承诺性表述
+3. **禁止替代决策**：仅输出分析建议，最终理赔决策由理赔主管/核赔师出具
+4. **数据溯源**：医疗数据、事故证据必须标注来源和获取日期
+5. **隐私保护**：客户信息、调查细节必须保密
+6. **客观中立**：分析不得受绩效考核影响，须客观呈现风险
+
+---
+
+### G.4 测试用例（Dianjin精髓）
+
+| 用例ID | 输入场景 | 预期输出 | 验证点 |
+|--------|---------|---------|---------|
+| TC001 | 车险：事故损伤轻微但定损5万，关联修理厂历史欺诈率15% | 极高风险（70分），建议移交反欺诈调查 | 关联异常识别准确 |
+| TC002 | 医疗险：诊断感冒但发票2万，患者12个月内索赔5次 | 极高风险（75分），建议医院调查+费用核查 | 行为异常识别准确 |
+| TC003 | 财产险：火灾索赔500万，同类事故3次，关系网含3家修理厂 | 极高风险（80分），建议公安报案 | 团伙模式识别准确 |
+
+---
+
+### G.5 关联技能（Dianjin精髓）
+
+- **保险理赔专家**（`insurance-claims-intelligence`）：提供理赔材料分析、责任认定、理赔流程
+- **保险核保专家**（`insurance-actuarial-cn`）：提供核保规则、健康核验、风险分类
+- **保险代理人**（`insurance-agent-trainer`）：提供客户画像、保障缺口分析
+
+---
+
+*融合来源：阿里点金(Dianjin) claim-expert*
+*融合时间：2026-05-31*

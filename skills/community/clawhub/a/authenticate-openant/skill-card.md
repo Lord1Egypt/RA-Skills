@@ -1,42 +1,53 @@
-## Description: <br>
-Sign in to OpenAnt via key-based login or email OTP, then register agents and check identity for authenticated OpenAnt operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sign in to OpenAnt via key-based login or email OTP, register new agents, check identity, and recover from authentication-required errors before OpenAnt write operations.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-Developers and autonomous coding agents use this skill to establish OpenAnt authentication, register or identify an agent profile, and recover from authentication-required errors before performing write operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent OpenAnt login state and local keys. <br>
-Mitigation: Require explicit user approval before key login, email binding, logout, or any action that changes local authentication state. <br>
-Risk: The skill can register or announce an agent profile through OpenAnt. <br>
-Mitigation: Confirm the intended agent name, category, capabilities, and heartbeat status before running registration or heartbeat commands. <br>
-Risk: The skill may access wallet-related account information or sensitive authentication flows. <br>
-Mitigation: Require explicit approval before wallet checks, email OTP verification, or commands involving credentials, and avoid exposing returned secrets in conversation logs. <br>
+## Use Case:
 
+External developers and agents use this skill to authenticate to OpenAnt, register agent profiles, inspect account identity, and handle session or OTP flows before creating tasks, accepting work, submitting, or other write operations.
 
-## Reference(s): <br>
-- [OpenAnt](https://openant.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands request JSON output from the OpenAnt CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill uses an unpinned OpenAnt CLI runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @openant-ai/cli to a reviewed version before deployment.
+
+Risk: The skill can guide high-impact account and wallet-adjacent actions including key login, agent registration, heartbeat/profile publication, email recovery changes, and wallet reads.
+
+Mitigation: Require confirmation before key login, agent registration, heartbeat/profile publication, and email recovery changes, and narrow wallet permissions to exact read-only commands.
+
+## Reference(s):
+
+- [OpenAnt](https://openant.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to append --json for structured CLI output.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Automates deployment of FastapiAdmin in WSL2 Ubuntu, including dependency setup, backend and frontend initialization, Nginx routing fixes, host access, and SSL configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates deployment guidance for FastapiAdmin on Windows WSL2 Ubuntu, covering environment setup, backend and frontend setup, Nginx SPA routing, host access, SSL configuration, and troubleshooting.
 
-## Publisher: <br>
-[bamboo-art](https://clawhub.ai/user/bamboo-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bamboo-art](https://clawhub.ai/user/bamboo-art)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy FastapiAdmin on Windows machines through WSL2 Ubuntu, with commands and configuration for local services, frontend builds, Nginx routing, and host access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment guidance can make broad privileged system changes in WSL2, including package installation, service changes, and Nginx replacement. <br>
-Mitigation: Use a fresh or disposable WSL2 Ubuntu environment, or back up Nginx and confirm no existing local services depend on it before running privileged commands. <br>
-Risk: Default local credentials and cloned dependency trees may be unsuitable for a durable or shared environment. <br>
-Mitigation: Review the cloned repositories and dependency files, replace the default database password, and keep secrets out of committed configuration files. <br>
-Risk: Network and SSL settings are environment-specific and can break access when the WSL2 IP changes or a self-signed certificate is used. <br>
-Mitigation: Confirm the current WSL2 IP, rebuild frontend environment values when it changes, and prefer reviewed HTTP or trusted certificate settings for local access. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy FastapiAdmin in a Windows WSL2 Ubuntu environment, including required services, application setup, Nginx configuration, and cross-host browser access.
 
-## Reference(s): <br>
-- [FastapiAdmin WSL2 troubleshooting guide](references/troubleshooting.md) <br>
-- [FastapiAdmin source repository](https://gitee.com/fastapiadmin/FastapiAdmin.git) <br>
-- [FastDocs source repository](https://gitee.com/fastapiadmin/FastDocs.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and Nginx configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may require sudo and environment-specific WSL2 IP values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Privileged setup commands can overwrite system web-server configuration or remove existing Nginx site configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, back up the WSL2 instance and Nginx configuration, and avoid replacing global Nginx files unless the instance is dedicated to this app.
+
+Risk: The documented default database credential is weak for a deployed service.
+
+Mitigation: Generate unique database credentials and update the application environment configuration before exposing the service.
+
+Risk: Unpinned repositories and package installs can change behavior between runs.
+
+Mitigation: Pin repository commits and dependency versions before using the deployment in a shared or production environment.
+
+## Reference(s):
+
+- [FastapiAdmin WSL2 deployment troubleshooting](references/troubleshooting.md)
+- [FastapiAdmin source repository](https://gitee.com/fastapiadmin/FastapiAdmin.git)
+- [FastDocs source repository](https://gitee.com/fastapiadmin/FastDocs.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, nginx, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that may require privileged execution in WSL2.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

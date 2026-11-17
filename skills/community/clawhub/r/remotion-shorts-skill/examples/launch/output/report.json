@@ -1,0 +1,161 @@
+{
+  "source": "../launch.json",
+  "seconds": 14.37,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "coverFrame": 30,
+  "scenes": [
+    {
+      "type": "hook",
+      "start": 0,
+      "seconds": 2.9,
+      "blocks": {
+        "main": {
+          "fontSize": 166,
+          "lines": [
+            "THIS VIDEO",
+            "WAS MADE",
+            "FROM ONE",
+            "JSON FILE"
+          ]
+        }
+      }
+    },
+    {
+      "type": "item",
+      "start": 2.9,
+      "seconds": 2.67,
+      "blocks": {
+        "rank": {
+          "fontSize": 200,
+          "lines": [
+            "01"
+          ]
+        },
+        "title": {
+          "fontSize": 104,
+          "lines": [
+            "TEXT THAT",
+            "CLEARS EVERY",
+            "APP'S BUTTONS"
+          ]
+        },
+        "progress": {
+          "fontSize": 40,
+          "lines": [
+            "1/4"
+          ]
+        }
+      }
+    },
+    {
+      "type": "item",
+      "start": 5.57,
+      "seconds": 2.37,
+      "blocks": {
+        "rank": {
+          "fontSize": 200,
+          "lines": [
+            "02"
+          ]
+        },
+        "title": {
+          "fontSize": 108,
+          "lines": [
+            "TIMED TO HOW",
+            "FAST PEOPLE READ"
+          ]
+        },
+        "progress": {
+          "fontSize": 40,
+          "lines": [
+            "2/4"
+          ]
+        }
+      }
+    },
+    {
+      "type": "item",
+      "start": 7.93,
+      "seconds": 2.47,
+      "blocks": {
+        "rank": {
+          "fontSize": 200,
+          "lines": [
+            "03"
+          ]
+        },
+        "title": {
+          "fontSize": 104,
+          "lines": [
+            "A REVIEW",
+            "SHEET BEFORE",
+            "THE RENDER"
+          ]
+        },
+        "progress": {
+          "fontSize": 40,
+          "lines": [
+            "3/4"
+          ]
+        }
+      }
+    },
+    {
+      "type": "item",
+      "start": 10.4,
+      "seconds": 1.8,
+      "blocks": {
+        "rank": {
+          "fontSize": 200,
+          "lines": [
+            "04"
+          ]
+        },
+        "title": {
+          "fontSize": 124,
+          "lines": [
+            "POSTED AFTER",
+            "ONE YES"
+          ]
+        },
+        "progress": {
+          "fontSize": 40,
+          "lines": [
+            "4/4"
+          ]
+        }
+      }
+    },
+    {
+      "type": "end",
+      "start": 12.2,
+      "seconds": 2.17,
+      "blocks": {
+        "main": {
+          "fontSize": 112,
+          "lines": [
+            "FREE ON GITHUB"
+          ]
+        },
+        "sub": {
+          "fontSize": 64,
+          "lines": [
+            "Remotion",
+            "Shorts skill, MIT"
+          ]
+        },
+        "handle": {
+          "fontSize": 52,
+          "lines": [
+            "social-media-skills.com"
+          ]
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "video": "launch.mp4",
+  "bytes": 1913820
+}

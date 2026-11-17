@@ -1,42 +1,55 @@
-## Description: <br>
-A dependency update assistant for npm/yarn projects that helps agents report outdated packages and suggest prioritized update commands and review steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-powered dependency update assistant that helps agents inspect npm and yarn package updates, categorize update risk, and propose reports or commands for dependency maintenance.
 
-## Publisher: <br>
-[supermario11](https://clawhub.ai/user/supermario11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supermario11](https://clawhub.ai/user/supermario11)
 
-## Use Case: <br>
-Developers and engineers use this skill to review npm/yarn dependency drift, prioritize security and major-version updates, and get suggested package-manager commands and migration guidance before changing a project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises safe automated updating, testing, rollback, and security analysis that the shipped code does not clearly provide. <br>
-Mitigation: Treat it as a basic npm outdated reporter, not a safe updater; run independent tests, backups, and vulnerability checks before applying changes. <br>
-Risk: Suggested package-manager commands can modify dependencies, lockfiles, or node_modules and may introduce breakages. <br>
-Mitigation: Use it only in version-controlled projects, inspect commands before running them, and require explicit approval before changing package files. <br>
+## Use Case:
 
+Developers and engineers use this skill to review outdated npm or yarn dependencies, prioritize security-related package maintenance, and draft update plans, shell commands, configuration, or changelog notes for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supermario11/cuihua-dependency-updater) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reports with package-manager command snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; review generated commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill metadata) <br>
+Risk: The skill may overstate the reliability of its safety checks for dependency updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat update classifications and generated reports as informational, then verify them with independent vulnerability checks and project-specific review.
+
+Risk: Generated npm update, npm audit fix, package.json, lockfile, or changelog changes could be applied without enough user control.
+
+Mitigation: Require explicit approval before making package or lockfile changes and run the project's tests before accepting dependency updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supermario11/skills/cuihua-dependency-updater)
+- [Publisher profile](https://clawhub.ai/user/supermario11)
+- [Discord community](https://discord.gg/clawd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as proposed dependency-maintenance guidance requiring review before package or lockfile changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

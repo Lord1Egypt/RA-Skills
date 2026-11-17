@@ -1,44 +1,54 @@
-## Description: <br>
-Send, compose, reply, reply-all, or forward emails with HTML formatting and attachments from a Ravi email account; it is not for reading incoming email or handling credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Composes, replies to, reply-alls, and forwards email from a Ravi email address with HTML formatting and optional attachments.
 
-## Publisher: <br>
-[raunaksingwi](https://clawhub.ai/user/raunaksingwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunaksingwi](https://clawhub.ai/user/raunaksingwi)
 
-## Use Case: <br>
-External users or agents with an authenticated Ravi CLI use this skill to draft and send new email, replies, reply-all responses, and forwards with HTML bodies and attachments. It should be paired with Ravi contact, inbox, and writing skills when resolving recipients, replying to existing messages, or drafting polished email content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated CLI use can send email from the user's Ravi account or upload selected local files without clearly declared approval boundaries. <br>
-Mitigation: Require explicit user approval before each compose, reply, reply-all, forward, or attachment operation; confirm recipients, subject, body, and selected files before execution. <br>
-Risk: The artifact does not declare where the Ravi CLI comes from, which account it sends from, or where credentials are stored. <br>
-Mitigation: Confirm the CLI source, account identity, and credential storage model before installing the skill or granting it access to an authenticated Ravi environment. <br>
-Risk: Bulk or repeated sends can hit Ravi account rate limits or create unintended outbound email volume. <br>
-Mitigation: Honor the documented 60 emails per hour and 500 emails per day limits, parse retry_after_seconds on 429 responses, and avoid autonomous send loops. <br>
+## Use Case:
 
+Agents and Ravi users use this skill to compose outbound emails, reply or reply-all to existing messages, and forward threads after confirming recipients and message content.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/raunaksingwi/ravi-email-send) <br>
-- [Ravi Messages API schema](https://ravi.id/docs/schema/messages.json) <br>
-- [Ravi Attachments API schema](https://ravi.id/docs/schema/attachments.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash command examples and HTML email body examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Ravi CLI command patterns for composing, replying, reply-all, forwarding, recipient resolution, and rate-limit handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Accidental outbound email may be sent to the wrong recipients or with unintended subject, body, quoted thread content, or attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recipients, subject, body, quoted thread content, and attachment-related details before compose, reply-all, forward, or attachment-related use.
+
+Risk: Email content or user input may be handled unsafely if used to construct shell-evaluated command strings.
+
+Mitigation: Pass Ravi CLI arguments safely as arguments rather than building shell-evaluated command strings from email content or user input.
+
+## Reference(s):
+
+- [Ravi Messages API schema](https://ravi.id/docs/schema/messages.json)
+- [Ravi Attachments API schema](https://ravi.id/docs/schema/attachments.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Ravi CLI command patterns, HTML email body guidance, recipient resolution guidance, and rate-limit handling notes.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

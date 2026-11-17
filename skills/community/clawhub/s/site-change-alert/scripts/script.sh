@@ -479,7 +479,7 @@ Methods:
   stdout             Print alerts to stdout (default)
 
 Examples:
-  bash scripts/script.sh notify webhook "https://hooks.slack.com/services/T.../B.../..."
+  bash scripts/script.sh notify webhook "REDACTED-SECRET.../B.../..."
   bash scripts/script.sh notify email "admin@example.com"
   bash scripts/script.sh notify stdout
 

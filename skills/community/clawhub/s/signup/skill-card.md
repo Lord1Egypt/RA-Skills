@@ -1,41 +1,54 @@
-## Description: <br>
-Organize and track signups with simple terminal commands and export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and track signups with simple terminal commands and export. Use when logging registrations, checking status, analyzing trends, generating reports.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and command-line users use Signup to log registration-style entries, inspect recent activity, search saved records, and export local logs for backup or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can save unexpected free-form input to local logs under ~/.local/share/signup. <br>
-Mitigation: Avoid entering secrets or unrelated sensitive data, and review the stored log files before sharing exports. <br>
-Risk: The security scan reports broken status/export behavior from duplicate command handlers. <br>
-Mitigation: Treat status and export output as unreliable until the command dispatch is fixed and retested. <br>
+## Use Case:
 
+Developers, operators, and teams use this skill to log signup-related activity, check local status, review recent entries, search records, and export collected data from a terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub Signup listing](https://clawhub.ai/bytesagain3/signup) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local log entries and optional JSON, CSV, or text exports under ~/.local/share/signup/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Signup-related text entered through the tool is saved locally under ~/.local/share/signup and may include personal or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive personal data, and review local file permissions before using the skill with real signup records.
+
+Risk: Some documented commands such as export and status may behave inconsistently with their descriptions.
+
+Mitigation: Test command behavior with non-sensitive sample data before relying on the generated logs, status output, or exports.
+
+## Reference(s):
+
+- [Signup ClawHub listing](https://clawhub.ai/bytesagain3/skills/signup)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with inline shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local signup logs and exports under ~/.local/share/signup.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,64 @@
-## Description: <br>
-Posts Weibo text, media, and Markdown-based headline articles by composing content in a logged-in Chrome or Chromium session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts content to Weibo, including regular text, image, and video posts and headline articles from Markdown via Chrome CDP.
 
-## Publisher: <br>
-[nengnengZ](https://clawhub.ai/user/nengnengZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nengnengz](https://clawhub.ai/user/nengnengz)
 
-## Use Case: <br>
-External users and social media operators use this skill to prepare Weibo posts and long-form articles from text, media files, or Markdown, then review and publish them manually in Weibo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate a real logged-in Chrome or Chromium session for Weibo. <br>
-Mitigation: Use a dedicated Chrome profile and review composed content before publishing. <br>
-Risk: Clipboard automation can expose or overwrite sensitive clipboard contents. <br>
-Mitigation: Avoid sensitive clipboard contents while it runs and clear unrelated secrets before use. <br>
-Risk: Its documented troubleshooting path may kill Chrome or Chromium debugging processes automatically. <br>
-Mitigation: Run it in an isolated browser profile or session and avoid active browser debugging work during execution. <br>
+## Use Case:
 
+External users and developers use this skill to prepare Weibo posts and long-form Weibo headline articles from text, media files, or Markdown. The skill fills content into a real browser session so the user can review and publish manually.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nengnengZ/baoyu-post-to-weibo-2) <br>
-- [Baoyu Post to Weibo Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-weibo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bun or npx, Chrome or Chromium, and a logged-in Weibo session; scripts compose content for manual review rather than publishing automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Browser and clipboard automation can act through a saved Weibo browser session and read user-provided Markdown or media files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile, keep only intended files in scope, and review every filled post or article before publishing.
+
+Risk: The npx fallback can download or run an unpinned Bun runtime.
+
+Mitigation: Install and use a trusted Bun runtime directly in sensitive environments instead of relying on the npx fallback.
+
+Risk: PlantUML content may be rendered through a remote data flow.
+
+Mitigation: Avoid confidential PlantUML blocks unless remote rendering is disabled or configured to use a trusted server.
+
+Risk: The recovery flow can kill Chrome or Chromium processes using a remote debugging port.
+
+Mitigation: Run the skill in a dedicated browser profile or workspace so recovery does not interrupt unrelated browser automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nengnengz/skills/baoyu-post-to-weibo-2)
+- [ClawHub publisher profile](https://clawhub.ai/user/nengnengz)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-weibo)
+- [Weibo article editor](https://card.weibo.com/article/v3/editor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser-published draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Chrome or Chromium browser session, Bun runtime access, and user review before publishing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter reports 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

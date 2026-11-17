@@ -1,46 +1,60 @@
-## Description: <br>
-Initialize and manage Lattice organizations, a file-based operating system for AI agent teams that supports stable, long-running iterative development through an 8-phase pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initialize and manage Lattice organizations, a file-based operating system for AI agent teams that supports stable long-running development through an 8-phase pipeline.
 
-## Publisher: <br>
-[CNF6682](https://clawhub.ai/user/CNF6682) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cnf6682](https://clawhub.ai/user/cnf6682)
 
-## Use Case: <br>
-Developers and agent-team operators use Lattice to scaffold file-backed organizations, departments, projects, and pipeline state for long-running multi-agent development work. It is intended for workflows that need persistent project memory, phased execution, model escalation, peer consultation, and cron-scheduled orchestration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Autonomous cron-driven pipeline activity can modify the selected repository over time. <br>
-Mitigation: Use a dedicated repository path, review the generated PIPELINE_STATE.json and cron schedule, and keep human review around sensitive changes. <br>
-Risk: Pipeline files and organization memory can accidentally capture sensitive operational details. <br>
-Mitigation: Keep secrets out of ORG and pipeline files, and review generated organization and project files before use. <br>
-Risk: Peer consult and auto-triage may make unsuitable decisions for sensitive work. <br>
-Mitigation: Disable or tighten peer consult and auto-triage when confidentiality, compliance, or high-impact changes require stricter human control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lattice ClawHub release](https://clawhub.ai/CNF6682/lattice) <br>
-- [Pipeline framework design](artifact/templates/ORG/PROJECTS/pipeline-framework/DESIGN.md) <br>
-- [Pipeline guide](artifact/templates/ORG/PIPELINE_GUIDE.md) <br>
-- [Pipeline guide for sub-agents](artifact/templates/ORG/PROJECTS/pipeline-framework/templates/PIPELINE_GUIDE_FOR_SUBAGENTS.md) <br>
-- [Orchestrator prompt template](artifact/templates/ORG/PROJECTS/pipeline-framework/templates/ORCHESTRATOR_PROMPT.template.md) <br>
-- [Pipeline state template](artifact/templates/ORG/PROJECTS/pipeline-framework/templates/PIPELINE_STATE.template.json) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scaffold persistent organization and project files for multi-agent work, configure an 8-phase project pipeline, and maintain status across long-running iterations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file templates, JSON configuration, and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scaffolded organization and project files, pipeline state configuration, cron setup instructions, and concise status summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring autonomous workflow can continue modifying project files, spawning agents, and running generated test commands after setup.
+
+Mitigation: Enable it only for intended repositories and confirm the repo path, ORG path, schedule, model budget, notification target, and stop or delete procedure before enabling cron.
+
+Risk: Generated TASKS.md test commands may be unsafe or inappropriate for the current repository.
+
+Mitigation: Review generated commands before execution or constrain allowed commands with an allowlist.
+
+Risk: Scheduled agents may access unrelated files or secrets if granted broad filesystem or credential access.
+
+Mitigation: Run with least-privilege sandbox permissions and avoid exposing secrets, home directories, credential stores, or unrelated repositories.
+
+## Reference(s):
+
+- [Lattice Skill Page](https://clawhub.ai/cnf6682/skills/lattice)
+- [Pipeline Framework Design](artifact/templates/ORG/PROJECTS/pipeline-framework/DESIGN.md)
+- [Pipeline Guide](artifact/templates/ORG/PIPELINE_GUIDE.md)
+- [Pipeline State Template](artifact/templates/ORG/PROJECTS/pipeline-framework/templates/PIPELINE_STATE.template.json)
+- [Orchestrator Prompt Template](artifact/templates/ORG/PROJECTS/pipeline-framework/templates/ORCHESTRATOR_PROMPT.template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration files, shell command suggestions, and file scaffolding instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent ORG and project files, pipeline status artifacts, model and agent role configuration, and optional cron orchestration guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-小红书短视频运营增长助手适合内容创作者、运营、品牌方、电商在用户提供了小红书笔记链接时使用，帮助基于输入材料生成情绪和舆情视图、用户画像和意图分析、优化与转化建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书评论分析 helps content creators, operators, brands, and ecommerce teams analyze Xiaohongshu note comments for sentiment, audience intent, user profile signals, and practical optimization recommendations.
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-Content creators, operations teams, brands, and ecommerce users use this skill to analyze Xiaohongshu note or short-video comments after providing a Xiaohongshu link. It returns sentiment and public-opinion views, user profile and intent analysis, and practical content optimization or conversion suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Xiaohongshu links, parsed content details, and comment-analysis task data are sent to ai-skills.ai using the user's API key. <br>
-Mitigation: Submit only content that is approved for external processing, and avoid private, regulated, or unauthorized business or customer content unless that processing is acceptable. <br>
-Risk: The skill requires a sensitive API credential to run. <br>
-Mitigation: Store AISKILLS_API_KEY securely, avoid committing it to source control, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External content creators, marketing operators, brand teams, and ecommerce teams use this skill when they have a Xiaohongshu note link and need comment sentiment, audience intent, user profile clues, and next-step content or conversion recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/xhs-sentiment-dashboard) <br>
-- [Form schema](references/form-schema.json) <br>
-- [Skill metadata](references/skill.json) <br>
-- [AI Skills](https://ai-skills.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis, Guidance] <br>
-**Output Format:** [JSON task result with sentiment summary, labeled comments, user insights, and operation advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns an asynchronous comment-analysis task result after polling reaches a terminal status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User-provided Xiaohongshu links, parsed note metadata, and analysis requests are sent to the AI Skills service using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data transfer is acceptable for the intended use case, and manage AISKILLS_API_KEY as a secret.
+
+Risk: Changing AISKILLS_BASE_URL changes where requests and the API key are sent.
+
+Mitigation: Review or control AISKILLS_BASE_URL before running the skill, and leave it at the default service endpoint unless a trusted endpoint is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/allinherog-star/skills/xhs-sentiment-dashboard)
+- [Input Form Schema](references/form-schema.json)
+- [Skill Metadata](references/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON response with comment sentiment, analysis summary, labeled comments, and operating recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Xiaohongshu note link and AISKILLS_API_KEY; returns a single completed analysis task result after polling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and user-provided changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

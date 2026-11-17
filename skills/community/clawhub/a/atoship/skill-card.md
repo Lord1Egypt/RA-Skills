@@ -1,45 +1,52 @@
-## Description: <br>
-Ship packages with AI — compare rates across USPS, FedEx, and UPS, buy discounted labels, track shipments, and manage orders. Requires user confirmation before any purchase or wallet-affecting action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ship packages with AI: compare rates across USPS, FedEx, and UPS, buy discounted labels, track shipments, and manage orders with required user confirmation before any purchase or wallet-affecting action.
 
-## Publisher: <br>
-[atoship-dev](https://clawhub.ai/user/atoship-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atoship-dev](https://clawhub.ai/user/atoship-dev)
 
-## Use Case: <br>
-External e-commerce sellers, small business operators, logistics coordinators, and developers use this skill to compare carrier rates, create shipping labels, track packages, validate addresses, and manage shipping orders through the Atoship API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make wallet-affecting API calls such as purchasing labels or voiding labels. <br>
-Mitigation: Require explicit user confirmation after showing carrier, service, price, and full address details before any purchase or void request. <br>
-Risk: Server security evidence says the skill treats remote order creation as read-only even though it changes remote state. <br>
-Mitigation: Require explicit confirmation before creating orders or performing any other remote state-changing action. <br>
-Risk: The Atoship API key authorizes shipping activity and wallet charges. <br>
-Mitigation: Use a test key or small wallet balance while evaluating, keep the API key private, and rotate or revoke keys if exposure is suspected. <br>
+## Use Case:
 
+External users, small businesses, e-commerce sellers, logistics teams, and developers use this skill to compare shipping rates, create and purchase labels, track packages, validate addresses, and manage shipping orders through the atoship API.
 
-## Reference(s): <br>
-- [Atoship homepage](https://atoship.com) <br>
-- [Atoship documentation](https://atoship.com/docs) <br>
-- [Atoship API reference](https://atoship.com/docs/api) <br>
-- [Atoship ClawHub listing](https://clawhub.ai/atoship-dev/atoship) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include carrier rates, tracking details, label links, account balance summaries, and order or shipment status returned from the Atoship API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The atoship API key can authorize label purchases and wallet-affecting actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with a sandbox key or small wallet balance, keep spending alerts enabled, and require explicit confirmation before purchases, voids, and preferably order creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atoship-dev/skills/atoship)
+- [Atoship homepage](https://atoship.com)
+- [Atoship documentation](https://atoship.com/docs)
+- [Atoship API reference](https://atoship.com/docs/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands and REST API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATOSHIP_API_KEY. Purchase and void actions should be confirmed explicitly before execution.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

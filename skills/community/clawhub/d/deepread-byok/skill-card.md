@@ -1,42 +1,59 @@
-## Description: <br>
-DeepRead BYOK guides users through connecting an OpenAI, Google, or OpenRouter API key to DeepRead so document processing uses the user's provider account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepRead BYOK guides users through connecting their own OpenAI, Google, or OpenRouter API key so DeepRead document processing routes through the user's provider account.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-External developers and DeepRead users use this skill to set up Bring Your Own Key document processing, understand provider billing changes, and continue using the same DeepRead API endpoints after configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users provide provider API keys to DeepRead through its dashboard. <br>
-Mitigation: Confirm trust in DeepRead before setup, use scoped or limited provider keys where possible, and monitor provider billing. <br>
-Risk: Sensitive API keys may be exposed through chats, logs, screenshots, committed files, or local plaintext storage. <br>
-Mitigation: Avoid pasting production keys into shared contexts, keep DEEPREAD_API_KEY in an environment variable or secrets manager, and rotate keys regularly. <br>
+## Use Case:
 
+Developers and external DeepRead users use this skill to configure Bring Your Own Key processing, understand provider choices, and keep existing DeepRead API workflows while billing LLM usage to their own provider account.
 
-## Reference(s): <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [DeepRead BYOK dashboard](https://www.deepread.tech/dashboard/byok) <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-byok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DeepRead account and DEEPREAD_API_KEY; provider API keys are entered by the user in the DeepRead dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Users must provide a third-party provider API key through the DeepRead dashboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable with that key flow; use scoped or revocable provider keys where possible.
+
+Risk: Documents are sent to DeepRead's API for processing.
+
+Mitigation: Review DeepRead's service and data-handling policies before sending sensitive documents.
+
+Risk: Plaintext key handling can expose credentials.
+
+Mitigation: Prefer environment variables or a secrets manager over plaintext .env storage, and avoid sharing keys in chat, screenshots, or logs.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead BYOK dashboard](https://www.deepread.tech/dashboard/byok)
+- [DeepRead skill page](https://clawhub.ai/uday390/skills/deepread-byok)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only setup guidance; it does not collect, store, or transmit provider keys itself.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

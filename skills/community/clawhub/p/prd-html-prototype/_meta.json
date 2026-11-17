@@ -1,0 +1,12 @@
+{
+  "name": "prd-html-prototype",
+  "displayName": "PRD 原型与需求说明 (Interactive PRD + single-file HTML prototype)",
+  "version": "1.4.0",
+  "author": "QQ 965621229",
+  "description": "把一句话需求变成「能点、能演示」的 PRD 原型（文字 PRD + 单文件 HTML）。交互效果清晰直观、业务一看就懂；本地零门槛预览，也能一键发布分享给同事在线查看。内置方法论自动补全缺口、自动生成交互说明，支持小程序/桌面/后台，中英双语。",
+  "requires": { "env": [], "credentials": [] },
+  "tags": ["prd", "prototype", "product-management", "html", "interactive", "documentation"],
+  "ownerId": "606147",
+  "publishedAt": 1784687285837,
+  "slug": "prd-html-prototype"
+}

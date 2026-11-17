@@ -1,40 +1,54 @@
-## Description: <br>
-Maimai is a career networking assistant for personal branding, resume optimization, workplace networking, and industry insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maimai helps agents provide career-networking guidance for profile optimization, personal branding, connection strategy, anonymous-post credibility assessment, industry research, resume improvement, and job-change preparation.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and employees use this skill to improve Maimai profile content, resumes, workplace networking messages, and career strategy decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated networking messages or resume guidance may include inaccurate, overstated, or unsuitable claims. <br>
-Mitigation: Review and edit generated content before sending or publishing, and keep claims truthful and supported by personal experience. <br>
-Risk: Career discussions may expose confidential employer information, sensitive personal details, or unverified salary and company claims. <br>
-Mitigation: Remove confidential and sensitive details, anonymize examples where appropriate, and verify salary or company information before use. <br>
+## Use Case:
 
+External users and career-focused professionals use this skill to draft Maimai networking strategies, improve profiles and resumes, evaluate anonymous workplace claims cautiously, and plan industry research or job-change due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/maimai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text career guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code, shell commands, files, account access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Users may paste confidential company or personal information while asking for profile, networking, resume, or anonymous-post guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential company information, sensitive personal data, or identifiable workplace details in prompts or generated examples.
+
+Risk: Anonymous workplace claims on Maimai may be inaccurate, exaggerated, biased, or incomplete.
+
+Mitigation: Treat anonymous claims as unverified signals and independently corroborate them before using them for career, hiring, legal, or business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/maimai)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text career-networking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tool calls, account access, persistence, or hidden data handling were identified in the server security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

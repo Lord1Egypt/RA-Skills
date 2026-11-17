@@ -1,43 +1,59 @@
-## Description: <br>
-Control LaMetric TIME/SKY smart displays from the command line for notifications, brightness and volume settings, timers, and device data display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control LaMetric TIME/SKY smart displays from the command line for notifications, brightness and volume changes, timers, and device data display.
 
-## Publisher: <br>
-[dedene](https://clawhub.ai/user/dedene) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dedene](https://clawhub.ai/user/dedene)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to configure and run LaMetric CLI commands that send display notifications, control device settings, manage timers, and stream content to LaMetric TIME/SKY devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: LaMetric API keys can grant device-control access if exposed. <br>
-Mitigation: Keep LAMETRIC_API_KEY private, prefer the CLI key store where practical, and avoid exposing credentials in logs or shared shell history. <br>
-Risk: Commands may change brightness, volume, Bluetooth, radio, timers, alarms, or streamed display content. <br>
-Mitigation: Review commands that affect device state before execution and confirm the intended device target before sending commands. <br>
+## Use Case:
 
+Developers and operators use this skill to generate LaMetric CLI commands and setup guidance for sending notifications, controlling display and audio settings, managing timers, and streaming content to LaMetric devices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dedene/lametric-cli) <br>
-- [LaMetric CLI project homepage](https://github.com/dedene/lametric-cli) <br>
-- [Homebrew tap: dedene/tap lametric](https://github.com/dedene/homebrew-tap) <br>
-- [Go package: github.com/dedene/lametric-cli/cmd/lametric](https://github.com/dedene/lametric-cli/tree/main/cmd/lametric) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference LaMetric device names, IP addresses, API-key environment variables, and CLI flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill depends on an external LaMetric CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the CLI source before installing and use the install methods declared in the ClawHub metadata.
+
+Risk: Notifications and streamed content may expose secrets or private operational details on a visible display.
+
+Mitigation: Review messages and piped input before sending them to a device, especially when using logs, CI output, or shell pipelines.
+
+Risk: Commands can change device state, including brightness, volume, timers, streaming sessions, Bluetooth, and app navigation.
+
+Mitigation: Confirm state-changing commands before execution and target the intended device.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dedene/skills/lametric-cli)
+- [LaMetric CLI repository](https://github.com/dedene/lametric-cli)
+- [Publisher profile](https://clawhub.ai/user/dedene)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that may change device state or send visible notifications to LaMetric displays.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

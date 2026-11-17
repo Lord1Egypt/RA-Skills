@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_get_table_info",
+		"description": "Get the structure information of the specified data table, including field list, field type, field description, etc.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"appId": {
+					"type": "string",
+					"description": "The ID of the application where the data table module is located."
+				},
+				"tableId": {
+					"type": "string",
+					"description": "Data table ID"
+				}
+			},
+			"required": ["appId", "tableId"]
+		}
+	}
+}

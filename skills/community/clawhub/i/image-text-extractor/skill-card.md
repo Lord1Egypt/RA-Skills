@@ -1,43 +1,63 @@
-## Description: <br>
-从图片或 PDF 文档中识别并提取文字内容，支持多种图片格式和 PDF 文件，自动判断是否包含文字并保留原始格式输出结构化结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from images and PDFs, including scanned PDF pages, PDF tables, and batches of documents, with results organized for copying or saving.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to extract editable text from uploaded images and text-based PDFs, preserving structure as Markdown when possible. It is suited for office document handling, academic note-taking, content reuse, and scripted PDF extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PDF extraction script contacts a third-party usage endpoint when it runs. <br>
-Mitigation: Review, remove, or block that telemetry before processing sensitive documents. <br>
-Risk: Extracted Markdown can become a persistent copy of source document text. <br>
-Mitigation: Store saved extraction results only where appropriate and delete them when no longer needed. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to extract readable text and Markdown tables from uploaded images, PDFs, scanned documents, and folders of mixed PDF/image files. It is useful for document digitization, report/table extraction, notes, citations, and content reuse when the user accepts the RedFox API-key and vision-processing requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/image-text-extractor) <br>
-- [README.md](artifact/README.md) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [PDF extraction script](artifact/scripts/pdf_text_extractor.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, files, guidance] <br>
-**Output Format:** [Markdown text for image results and JSON-wrapped Markdown for PDF extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF extraction returns success, text, page_count, and error fields; saved results may create Markdown files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The server security summary rates the release as suspicious because it requires a RedFox API key and performs a remote permission check before local processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a revocable RedFox API key, confirm the key source and scope, and avoid exposing the key in prompts, logs, code, or output files.
+
+Risk: Document pages or images may be handled by the agent's vision tooling, which can be inappropriate for confidential or regulated documents.
+
+Mitigation: Avoid confidential documents unless external vision processing is acceptable for the use case and workspace policy.
+
+Risk: The skill can create local OCR page images and Markdown output files, while the security summary notes that file-writing behavior is understated.
+
+Mitigation: Run the skill in a constrained workspace, choose output directories deliberately, review generated files, and remove temporary OCR images when they are no longer needed.
+
+Risk: The skill depends on local Python packages and processes user-selected files or directories.
+
+Mitigation: Use pinned dependencies where possible and limit execution to trusted files and expected directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/image-text-extractor)
+- [RedFoxHub skills](https://redfox.hk/skills)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown text, JSON extraction results, and optional local Markdown or rendered image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF tables are emitted as Markdown tables; scanned pages and image inputs can be listed for agent vision processing.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

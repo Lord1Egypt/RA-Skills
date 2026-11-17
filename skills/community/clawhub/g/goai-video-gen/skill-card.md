@@ -1,46 +1,54 @@
-## Description: <br>
-Generates text-to-video and image-to-video clips through the GoAI API while preserving the user's prompt language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos via GoAI API for text-to-video and image-to-video requests, including Chinese-language prompts.
 
-## Publisher: <br>
-[goai](https://clawhub.ai/user/goai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goai](https://clawhub.ai/user/goai)
 
-## Use Case: <br>
-External users and developers use this skill to generate videos from text prompts or reference images through GoAI, including Chinese-language requests. The skill returns both a saved local MP4 path and a public media URL after successful generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and local reference images are sent to GoAI for video generation. <br>
-Mitigation: Avoid using private or sensitive prompts and images unless the user is comfortable uploading them to GoAI. <br>
-Risk: The generated media URL may be externally shareable. <br>
-Mitigation: Treat returned URLs as public or shareable and avoid generating content that should remain confidential. <br>
-Risk: An exposed GOAI_API_KEY could allow unauthorized API use. <br>
-Mitigation: Keep GOAI_API_KEY private and configure it only in the intended skill environment. <br>
-Risk: Changing GOAI_BASE_URL sends requests to a different endpoint. <br>
-Mitigation: Leave GOAI_BASE_URL at the default production endpoint unless the user intentionally trusts another GoAI-compatible endpoint. <br>
+## Use Case:
 
+Developers and external users use this skill to generate AI video clips from text prompts or optional image references through the GoAI API. It preserves the user's original prompt language and returns both the saved media path and public media URL.
 
-## Reference(s): <br>
-- [GoAI homepage](https://mustgoai.com) <br>
-- [ClawHub skill page](https://clawhub.ai/goai/goai-video-gen) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/goai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text result lines containing local file paths and public media URLs, with concise error guidance on failure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local MP4 file and an externally shareable media URL; requires uv and GOAI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata; artifact frontmatter and pyproject.toml report 0.3.0) <br>
+Risk: A malicious or compromised API endpoint could influence the server-provided task ID used in the downloaded video filename and overwrite unexpected local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill from a workspace where generated media files can be safely written, use the default GoAI endpoint unless another endpoint is intentionally trusted, and confine downloads to a dedicated output directory before routine use.
+
+Risk: Local image references are uploaded to GoAI when image-to-video generation is requested.
+
+Mitigation: Avoid passing sensitive local images unless the user is comfortable uploading them to GoAI.
+
+## Reference(s):
+
+- [GoAI homepage](https://mustgoai.com)
+- [ClawHub skill page](https://clawhub.ai/goai/skills/goai-video-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated media file paths and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [On success, emits MEDIA, MEDIA_URL, RESULT_PATH, and RESULT_URL lines; generated media is saved as an MP4 file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

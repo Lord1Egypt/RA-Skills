@@ -13,35 +13,17 @@ set -euo pipefail
 #   dev-backup my-app --list              # list all snapshots
 #   dev-backup my-app --restore           # restore latest snapshot
 #   dev-backup my-app --restore --snapshot 2  # restore specific snapshot
+#   dev-backup my-app --dry-run           # dry run restore (show what would change)
 #
 # Snapshots are named: <project>-snapshot-1, <project>-snapshot-2, …
 # A .latest symlink always points to the newest snapshot.
 # Default retention: 5 snapshots per project (use --keep to change).
 
-# Project name is mandatory (unless --help/-h)
+# Project name is mandatory
 if [[ $# -lt 1 ]]; then
-  echo "Usage: $0 <project-name> [--project-dir PATH] [--output-dir PATH] [--list|--restore] [--snapshot N] [--keep N]"
+  echo "Usage: $0 <project-name> [--project-dir PATH] [--output-dir PATH] [--list|--restore] [--snapshot N] [--keep N] [--dry-run]"
   echo "Example: $0 my-app --project-dir /home/user/projects/my-app"
   exit 1
-fi
-
-# Handle --help as first arg
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-  echo "Usage: $0 <project-name> [--project-dir PATH] [--output-dir PATH] [--list|--restore] [--snapshot N] [--keep N]"
-  echo "Options:"
-  echo "  --project-dir PATH   Path to the project (default: current dir)"
-  echo "  --output-dir PATH    Where to store backups (default: ../backups/)"
-  echo "  --list               List all snapshots for this project"
-  echo "  --restore            Restore latest snapshot"
-  echo "  --snapshot N         Restore specific snapshot number"
-  echo "  --keep N             Number of snapshots to retain (default: 5)"
-  echo ""
-  echo "Examples:"
-  echo "  $0 my-app --project-dir /path/to/app"
-  echo "  $0 my-app --list"
-  echo "  $0 my-app --restore"
-  echo "  $0 my-app --restore --snapshot 2"
-  exit 0
 fi
 
 PROJECT_NAME="$1"
@@ -56,6 +38,7 @@ PREFIX="${PROJECT_NAME}-snapshot"
 KEEP=5
 ACTION="backup"
 SNAPSHOT_NUM=""
+DRY_RUN=false
 
 # Parse args
 while [[ $# -gt 0 ]]; do
@@ -66,8 +49,9 @@ while [[ $# -gt 0 ]]; do
     --restore) ACTION="restore"; shift ;;
     --snapshot) SNAPSHOT_NUM="$2"; shift 2 ;;
     --keep) KEEP="$2"; shift 2 ;;
+    --dry-run) DRY_RUN=true; shift ;;
     --help|-h)
-      echo "Usage: $0 <project-name> [--project-dir PATH] [--output-dir PATH] [--list|--restore] [--snapshot N] [--keep N]"
+      echo "Usage: $0 <project-name> [--project-dir PATH] [--output-dir PATH] [--list|--restore] [--snapshot N] [--keep N] [--dry-run]"
       echo "Options:"
       echo "  --project-dir PATH   Path to the project (default: current dir)"
       echo "  --output-dir PATH    Where to store backups (default: ../backups/)"
@@ -75,12 +59,14 @@ while [[ $# -gt 0 ]]; do
       echo "  --restore            Restore latest snapshot"
       echo "  --snapshot N         Restore specific snapshot number"
       echo "  --keep N             Number of snapshots to retain (default: 5)"
+      echo "  --dry-run            Preview restore without making changes"
       echo ""
       echo "Examples:"
       echo "  $0 my-app --project-dir /path/to/app"
       echo "  $0 my-app --list"
       echo "  $0 my-app --restore"
       echo "  $0 my-app --restore --snapshot 2"
+      echo "  $0 my-app --restore --dry-run"
       exit 0
       ;;
     *) echo "Unknown arg: $1"; exit 1 ;;
@@ -96,10 +82,7 @@ if [[ "$ACTION" == "list" ]]; then
   echo "==> Snapshots for '${PROJECT_NAME}':"
   echo ""
   COUNT=0
-  for dir in "$OUTPUT_DIR"/${PREFIX}-*; do
-    if [[ ! -e "$dir" ]]; then
-      continue
-    fi
+  for dir in "$OUTPUT_DIR"/${PREFIX}-* 2>/dev/null; do
     if [[ -d "$dir" ]]; then
       COUNT=$((COUNT + 1))
       NAME=$(basename "$dir")
@@ -146,18 +129,53 @@ if [[ "$ACTION" == "restore" ]]; then
 
   if [[ ! -d "$TARGET" ]]; then
     echo "Error: Snapshot not found: $TARGET"
-    exit 1
+      exit 1
   fi
 
   echo "==> Restoring snapshot: $(basename "$TARGET")"
   echo "    Source:  $TARGET"
   echo "    Target:  $PROJECT_DIR"
 
-  # Verify checksum if exists
+  # Verify checksum integrity
   if [[ -f "$TARGET/.checksum" ]]; then
-    CURRENT_CHECKSUM=$(cut -d' ' -f1 "$TARGET/.checksum")
-    echo "    Checksum: ${CURRENT_CHECKSUM:0:16}..."
+    STORED_CHECKSUM=$(cut -d' ' -f1 "$TARGET/.checksum")
+    CURRENT_CHECKSUM=$(find "$TARGET" -type f ! -name '.checksum' -exec sha256sum {} \; 2>/dev/null | sort | sha256sum | cut -d' ' -f1)
+    if [[ "$STORED_CHECKSUM" == "$CURRENT_CHECKSUM" ]]; then
+      echo "    Checksum: ✅ VERIFICATO (${STORED_CHECKSUM:0:16}...) — integrità OK"
+    else
+      echo "    Checksum: ⚠️ NON CORRESPONDE! (${STORED_CHECKSUM:0:16}... vs ${CURRENT_CHECKSUM:0:16}...)"
+      echo "    ATTENZIONE: Lo snapshot potrebbe essere stato modificato o corrotto!"
+    fi
+  else
+    echo "    Checksum: ℹ️ Nessun checksum disponibile per questo snapshot"
   fi
+
+  # DRY-RUN mode: show what would change without executing
+  if [[ "$DRY_RUN" == true ]]; then
+    echo ""
+    echo "==> DRY-RUN: ecco cosa verrebbe sovrascritto:"
+    if command -v rsync &>/dev/null; then
+      rsync -avn --exclude '.checksum' "${TARGET}/" "${PROJECT_DIR}/" 2>&1 | head -50
+    else
+      diff -rq --exclude='.checksum' "${TARGET}/" "${PROJECT_DIR}/" 2>&1 | head -50
+    fi
+    echo ""
+    echo "==> Nessuna modifica è stata eseguita. Rimuovi --dry-run per confermare."
+    exit 0
+  fi
+
+  # WARNING: destructive operation
+  echo ""
+  echo "⚠️ ATTENZIONE: Il restore sovrascriverà i file esistenti!"
+  echo "   Cambiamenti non salvati andranno persi."
+  echo ""
+  echo -n "Confermi il restore? (sì/no): "
+  read -r CONFIRM
+  if [[ "$CONFIRM" != "sì" && "$CONFIRM" != "si" && "$CONFIRM" != "y" && "$CONFIRM" != "yes" ]]; then
+    echo "==> Restore annullato dall'utente."
+    exit 0
+  fi
+  echo ""
 
   # Copy snapshot back to project dir
   if command -v rsync &>/dev/null; then
@@ -199,8 +217,14 @@ if command -v rsync &>/dev/null; then
     --exclude 'backups' \
     "${PROJECT_DIR}/" "${SNAPSHOT_DIR}/"
 else
-  mkdir -p "$SNAPSHOT_DIR"
-  tar -C "$(dirname "$PROJECT_DIR")" -cf - "$(basename "$PROJECT_DIR")" | tar -C "$SNAPSHOT_DIR" -xf -
+  # Fallback: tar with explicit exclusions matching rsync defaults
+  EXCLUDES=""
+  for excl in .git node_modules .vite .cache '*.log' .env backups; do
+    EXCLUDES="$EXCLUDES --exclude $excl"
+  done
+  tar -C "$(dirname "$PROJECT_DIR")" -cf - \
+    $(basename "$PROJECT_DIR") $EXCLUDES | \
+    tar -C "$SNAPSHOT_DIR" -xf -
 fi
 
 # Generate checksum for integrity verification
@@ -209,11 +233,12 @@ find "$SNAPSHOT_DIR" -type f ! -name '.checksum' -exec sha256sum {} \; 2>/dev/nu
 # Size report
 TOTAL_SIZE=$(du -sh "$SNAPSHOT_DIR" 2>/dev/null | cut -f1 || echo "?")
 echo "==> Snapshot created: ${SNAPSHOT_DIR} (${TOTAL_SIZE})"
+echo "    SHA256: $(cut -d' ' -f1 "$SNAPSHOT_DIR/.checksum" | head -c 16)..."
 
 # Update .latest symlink
 LATEST="${OUTPUT_DIR}/.latest"
 rm -f "$LATEST"
-ln -s "${SNAPSHOT_NAME}" "${LATEST}"
+ln -s "$SNAPSHOT_NAME" "$LATEST"
 
 echo "Done. Latest backup: ${LATEST}"
 
@@ -223,7 +248,7 @@ SNAPSHOT_COUNT=$(ls -1d "$OUTPUT_DIR/${PREFIX}-"* 2>/dev/null | wc -l)
 if [[ $SNAPSHOT_COUNT -gt $KEEP ]]; then
   REMOVE_COUNT=$((SNAPSHOT_COUNT - KEEP))
   echo ""
-  echo "==> Retention: keeping last $KEEP snapshots, removing $REMOVE_COUNT old..."
+  echo "⚠️ RETENTION: elimino definitivamente $REMOVE_COUNT snapshot vecchi (non recuperabili)."
   ls -1d "$OUTPUT_DIR/${PREFIX}-"* | sort -t'-' -k$(echo "$PREFIX" | tr -cd '-' | wc -c) -n | head -$REMOVE_COUNT | while read dir; do
     echo "    Removing: $(basename "$dir")"
     rm -rf "$dir"

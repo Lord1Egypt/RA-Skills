@@ -1,41 +1,58 @@
-## Description: <br>
-Cross-platform local printer CLI - Manage and print to local printers (Windows/macOS/Linux) via the printer-ai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform local printer CLI - Manage and print to local printers (Windows/macOS/Linux) via the printer-ai CLI.
 
-## Publisher: <br>
-[NullYing](https://clawhub.ai/user/NullYing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nullying](https://clawhub.ai/user/nullying)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to list local printers, check printer status and attributes, print local files, and inspect or cancel print jobs through the printer-ai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to submit or cancel local print jobs, which may produce unintended physical output or affect active printer queues. <br>
-Mitigation: Confirm the target printer, file path, job id, and print options with the user before running printer-ai print or cancel-job commands. <br>
-Risk: Future versions could change the local risk profile if they add dependencies, network access, file access, credential handling, or broader commands. <br>
-Mitigation: Review future versions and their security evidence before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to list local printers, check printer status, print local files, inspect printer capabilities, and manage print jobs through the printer-ai CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NullYing/printer-ai-skills) <br>
-- [printer-ai install package](https://github.com/NullYing/printer-ai-skills.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON option examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference platform-specific print option formats for Windows, macOS, and Linux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The install metadata points to an unpinned executable package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned commit or versioned release before installing printer-ai.
+
+Risk: The skill can print files and cancel print jobs, which can cause physical output or job disruption.
+
+Mitigation: Require confirmation of the file, printer, print options, and job ID before printing or canceling jobs.
+
+Risk: Printed documents may expose sensitive content on shared or unattended printers.
+
+Mitigation: Avoid sending sensitive documents to shared or unattended printers.
+
+## Reference(s):
+
+- [Printer Ai ClawHub skill page](https://clawhub.ai/nullying/skills/printer-ai-skills)
+- [printer-ai install package metadata](https://github.com/NullYing/printer-ai-skills.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON option examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for local printer operations and printer-ai CLI usage.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

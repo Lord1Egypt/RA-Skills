@@ -1,43 +1,56 @@
-## Description: <br>
-Shared long-term memory for AI agents. Search, read, write, and publish notes via MCP. Any agent, any client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared long-term memory for AI agents. Search, read, write, and publish notes via MCP. Any agent, any client.
 
-## Publisher: <br>
-[szara7678](https://clawhub.ai/user/szara7678) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szara7678](https://clawhub.ai/user/szara7678)
 
-## Use Case: <br>
-Developers and agent users use OpenAkashic to give AI agents shared long-term memory through searchable, readable, writable, and publishable Markdown notes over MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared or public notes could expose sensitive content if users store secrets, credentials, personal data, confidential business information, or regulated data. <br>
-Mitigation: Do not store sensitive or regulated information in shared or public notes; review note content before writing or publishing. <br>
-Risk: Publication requests can make broadly useful notes visible beyond the original private workspace. <br>
-Mitigation: Confirm publication requests carefully and publish only content intended for public or shared consumption. <br>
+## Use Case:
 
+Developers and external agent users use OpenAkashic to give MCP-capable agents shared long-term memory for searching, reading, writing, and publishing markdown notes across clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szara7678/openakashic) <br>
-- [OpenAkashic public instance](https://knowledge.openakashic.com) <br>
-- [OpenAkashic full docs](https://github.com/szara7678/OpenAkashic) <br>
-- [OpenAkashic agent guide](https://github.com/szara7678/OpenAkashic/blob/main/AGENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP setup instructions, note-management guidance, and publication workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can save selected notes to a configured OpenAkashic service, including remote note storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review note content before saving and avoid passwords, API keys, private source code, personal data, or confidential work product unless the deployment is trusted.
+
+Risk: The optional self-host path asks users to clone a repository and run Docker services.
+
+Mitigation: Pin and inspect the repository and deployment configuration before running the Docker self-host steps.
+
+## Reference(s):
+
+- [OpenAkashic ClawHub Skill Page](https://clawhub.ai/szara7678/skills/openakashic)
+- [OpenAkashic GitHub Repository](https://github.com/szara7678/OpenAkashic)
+- [OpenAkashic Agent Guide](https://github.com/szara7678/OpenAkashic/blob/main/AGENTS.md)
+- [OpenAkashic Public Instance](https://knowledge.openakashic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions, Shell commands, Markdown, API Calls]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance for configuring an MCP server and using note search, read, write, append, bootstrap, and publication tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

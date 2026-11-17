@@ -1,42 +1,53 @@
-## Description: <br>
-Detects capital rotation between BTC, ETH, alts, and stables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls a paid x402 endpoint that returns a signal about capital rotation among BTC, ETH, altcoins, and stablecoins.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to call an x402-authenticated APEX Runner endpoint for real-time crypto capital rotation signals across BTC, ETH, alts, and stables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an EVM wallet private key to authorize USDC payments for each API call. <br>
-Mitigation: Use a dedicated wallet funded only with USDC you are willing to spend, monitor repeated calls, and avoid wallets holding significant or unrelated assets. <br>
+## Use Case:
 
+Developers and trading agents can request a paid capital-rotation signal to inform analysis of BTC, ETH, altcoin, and stablecoin allocation. The skill documents the x402 wallet setup and the JSON response format.
 
-## Reference(s): <br>
-- [Capital Rotation Signal](https://apexrunner.ai/signals/capital-rotation-signal) <br>
-- [Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
-- [BTC Dominance Signal](https://apexrunner.ai/signals/btc-dominance) <br>
-- [Altcoin Season Signal](https://apexrunner.ai/signals/altcoin-season) <br>
-- [Regime Transition Signal](https://apexrunner.ai/signals/regime-transition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response data with concise agent-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an EVM private key for x402 payment authorization and returns paid real-time trading signal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requests use a wallet private key to authorize paid USDC calls, and returned allocation signals could be mistaken for trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep EVM_PRIVATE_KEY in a secure secret store, enforce a per-call spending cap, and independently assess signals before trading.
+
+## Reference(s):
+
+- [Capital Rotation Signal endpoint](https://apexrunner.ai/signals/capital-rotation-signal)
+- [BTC Dominance signal](https://apexrunner.ai/signals/btc-dominance)
+- [Altcoin Season signal](https://apexrunner.ai/signals/altcoin-season)
+- [Regime Transition signal](https://apexrunner.ai/signals/regime-transition)
+- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/capital-rotation-signal)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON signal response with x402 request guidance and a Python example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One paid signal response per call; the example configures a maximum USDC payment.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

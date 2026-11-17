@@ -1,43 +1,57 @@
-## Description: <br>
-Audits food package labels from images or PDFs against GB7718, GB28050, and claim-language guidance, then produces a structured compliance report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能审核食品包装标签的合规性，支持图片/PDF设计稿；当用户需要审核标签强制性标识、营养标签规范性、声称用语合规性或格式要求时使用
 
-## Publisher: <br>
-[cloudyxuq](https://clawhub.ai/user/cloudyxuq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudyxuq](https://clawhub.ai/user/cloudyxuq)
 
-## Use Case: <br>
-External users and compliance reviewers use this skill to review food packaging label artwork for required label elements, nutrition label correctness, claim-language compliance, allergen labeling, formatting issues, and remediation suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food label compliance conclusions may be incomplete or legally insufficient if OCR, vision extraction, or regulatory interpretation is wrong. <br>
-Mitigation: Use the output as an audit aid and have qualified legal or regulatory reviewers confirm conclusions before relying on them for packaging release. <br>
-Risk: Uploaded packaging artwork may contain confidential product or design information. <br>
-Mitigation: Confirm how the runtime agent processes images and PDFs, including whether any third-party OCR or vision services are used, before submitting confidential materials. <br>
+## Use Case:
 
+External label, product, and compliance reviewers use this skill to review Chinese food packaging label drafts from images or PDFs. It extracts label content, checks GB7718 and GB28050 requirements, claim wording, allergen and format issues, and returns nonconformities with risk levels and remediation guidance.
 
-## Reference(s): <br>
-- [GB7718 Prepackaged Food Label Standard](references/gb7718-standard.md) <br>
-- [GB28050 Nutrition Label Standard](references/gb28050-standard.md) <br>
-- [Claim Language Compliance Guide](references/claims-guideline.md) <br>
-- [Label Audit Checklist Template](assets/audit-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown compliance report with checklist findings, risk levels, and remediation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on the agent's native OCR or vision handling for uploaded image and PDF label artwork.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Uploaded packaging drafts may contain confidential product designs or label information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading confidential designs unless the user is comfortable having the agent process them.
+
+Risk: Food-label compliance findings may be incomplete or incorrect when source images are hard to read or regulatory judgment is required.
+
+Mitigation: Have a qualified compliance reviewer verify the report before using it for commercial or regulatory decisions.
+
+## Reference(s):
+
+- [GB7718 prepackaged food label reference](references/gb7718-standard.md)
+- [GB28050 nutrition label reference](references/gb28050-standard.md)
+- [Claims wording compliance guideline](references/claims-guideline.md)
+- [Audit checklist template](assets/audit-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/cloudyxuq/skills/label-compliance-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include checklist-style pass/fail/N/A entries, nonconformity summaries, risk levels, and remediation suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, released 2026-04-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

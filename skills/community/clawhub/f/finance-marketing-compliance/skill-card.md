@@ -1,47 +1,62 @@
-## Description: <br>
-Reviews and drafts financial product marketing materials against financial marketing compliance rules, returning compliance status, risk level, cited clauses, and revision guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and drafts financial product marketing content against financial marketing rules, industry-specific controls, and risk disclosure patterns.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Financial marketing, compliance, legal-review, and operations users can use this skill to review articles or campaign plans for financial products and draft marketing plans with compliance prompts, risk notes, and revision suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews and drafts financial marketing compliance materials, but its output is advisory rather than legal advice. <br>
-Mitigation: Verify recommendations and current regulatory requirements with a qualified reviewer before publication or customer-facing use. <br>
-Risk: The release evidence notes broad tool permissions and triggers that users should scope carefully. <br>
-Mitigation: Limit permissions for the agent session and avoid granting broad Write access unless saved reports are specifically required. <br>
-Risk: Regulatory references and rule lists can become stale or be incomplete for a specific financial product, channel, or jurisdiction. <br>
-Mitigation: Check the latest applicable regulations and product-specific rules before relying on the generated review. <br>
+## Use Case:
 
+Compliance, marketing, and product teams use this skill to review financial product articles, campaign plans, and industry-specific copy, and to draft marketing plans with risk notes and revision suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/finance-marketing-compliance) <br>
-- [Regulations Knowledge Base](references/regulations.md) <br>
-- [Review Rules Knowledge Base](references/rules.md) <br>
-- [Financial Violation Case Library](references/cases.md) <br>
-- [Risk Disclaimer Templates](templates/disclaimers.md) <br>
-- [Compliance Review Report Template](templates/review-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain-text compliance reports, generated marketing-plan guidance, and formatted CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include compliance status, risk level, cited clauses, warnings, risk prompts, and revision suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may incorrectly label risky financial marketing content as compliant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all outputs as drafting aids and require review by qualified legal, compliance, and product owners before publication.
+
+Risk: The skill requests broad agent powers, including shell and write-oriented tools.
+
+Mitigation: Run with read-only project access and without general shell or write privileges unless a reviewer explicitly approves a bounded operation.
+
+Risk: Financial regulations and enforcement expectations can change or vary by jurisdiction.
+
+Mitigation: Confirm cited rules, effective dates, and jurisdictional applicability against current authoritative sources before relying on the output.
+
+## Reference(s):
+
+- [金融监管法规汇编](references/regulations.md)
+- [审查规则库](references/rules.md)
+- [金融违规处罚案例库](references/cases.md)
+- [金融风险提示模板库](templates/disclaimers.md)
+- [合规审查报告模板](templates/review-report.md)
+- [合规检查脚本](scripts/compliance-checker.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style review reports, generated marketing-plan text, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include compliance status, risk level, cited rule labels, warnings, and suggested revisions; they require human legal and compliance review before publication.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

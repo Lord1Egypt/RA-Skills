@@ -67,7 +67,7 @@
       }
     },
     "bgm": {
-      "volume": 0.05,
+      "volume": 0.10,
       "track": "perfect-beauty",
       "tracks": {
         "perfect-beauty": "perfect-beauty-191271.mp3",

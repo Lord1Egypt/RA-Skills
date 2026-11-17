@@ -1,45 +1,59 @@
-## Description: <br>
-Provides verified French business data for autonomous B2B agents by querying real-time signals from official registries through pay-per-call MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+French Business Analyser gives autonomous B2B agents real-time French business, supplier-risk, invoice, and registry checks from official sources through an MCP service.
 
-## Publisher: <br>
-[vannelier](https://clawhub.ai/user/vannelier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vannelier](https://clawhub.ai/user/vannelier)
 
-## Use Case: <br>
-External business and procurement agents use this skill to check French suppliers, invoices, VAT details, liens, certifications, director risk, and due diligence signals before payment or onboarding decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-France <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid checks can spend funds when invoked. <br>
-Mitigation: Keep approval gates enabled and show the exact cost before each paid tool call. <br>
-Risk: Hosted checks send French business identifiers, optional IBAN details, and invoice text to the remote service. <br>
-Mitigation: Use the hosted service only for acceptable data, and self-host when invoices or identifiers require stricter data control. <br>
-Risk: Returned business signals do not guarantee solvency and may miss confidential or delayed public registry events. <br>
-Mitigation: Treat pay, hold, and block verdicts as decision support and escalate hold, block, incomplete, or high-value cases to a human reviewer. <br>
+## Use Case:
 
+External agents and developers use this skill to verify French suppliers, invoices, VAT details, liens, certifications, director risk, and due-diligence signals before payments, onboarding, procurement, or portfolio monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/vannelier/french-business-analyser) <br>
-- [Publisher profile](https://clawhub.ai/user/vannelier) <br>
-- [Source code](https://github.com/Vannelier/MCP-business-checker) <br>
-- [Hosted MCP endpoint](https://mcp-business-checker-production.up.railway.app/mcp) <br>
+### Deployment Geography for Use:
 
+France
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some tools require explicit user approval and per-call payment before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and skill frontmatter) <br>
+Risk: French company identifiers and optional invoice text or IBAN data may be sent to the hosted MCP service and disclosed server-side providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the hosted service only for data you are comfortable submitting, or self-host the service for confidential documents and infrastructure control.
+
+Risk: Paid tools can create costs and submit business data if an automated workflow calls them without approval.
+
+Mitigation: Confirm the MCP client enforces the documented consent prompt and displays the cost before any paid call.
+
+Risk: A pay verdict is a risk signal, not a solvency guarantee, and some confidential procedures or delayed registry publications may be unavailable.
+
+Mitigation: Treat verdicts as decision support, review returned flags and timestamps, and escalate hold, block, incomplete, or high-value payment cases to a human reviewer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vannelier/skills/french-business-analyser)
+- [Source code and documentation](https://github.com/Vannelier/MCP-business-checker)
+- [Hosted MCP service](https://mcp-business-checker-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or structured text from MCP tool calls, with JSON configuration snippets for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces supplier-risk verdicts, invoice extraction and compliance checks, registry lookup summaries, comparative rankings, and recommended actions.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

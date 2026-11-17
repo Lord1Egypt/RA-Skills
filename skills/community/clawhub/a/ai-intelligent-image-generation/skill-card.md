@@ -1,38 +1,54 @@
-## Description: <br>
-AI image generation for text-to-image and image-to-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generation for text-to-image and image-to-image workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from prompts, transform reference images, edit images, and run batch image-generation workflows for content, advertising, ecommerce, and social media assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or reference images may be sent to a configured external image-generation provider. <br>
-Mitigation: Avoid confidential, personal, regulated, or proprietary prompts and images unless the provider privacy and retention terms have been reviewed. <br>
+## Use Case:
 
+Content creators, marketers, ecommerce teams, social media teams, and developers use this skill to work with AI image generation tasks including text-to-image creation, image-to-image style transfer, image editing, batch generation, and custom model use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-image-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with installation commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve prompts and reference images sent to a configured external image-generation provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Install instructions fetch and run unpinned remote code that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependency list before installing, pin a known commit, and use locked dependency hashes.
+
+Risk: Private prompts or images may be processed by external AI services.
+
+Mitigation: Do not submit confidential prompts or private images until the receiving services and their data policies are understood and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-image-generation)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide setup and operation of image-generation workflows; external AI service handling should be reviewed before using private prompts or images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

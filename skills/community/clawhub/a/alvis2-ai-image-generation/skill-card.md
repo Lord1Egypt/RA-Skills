@@ -1,41 +1,58 @@
-## Description: <br>
-Generate AI images with FLUX, Gemini, Grok, Seedream, Reve and 50+ models via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images with 50+ models via SkillBoss API Hub, supporting text-to-image, image-to-image, inpainting, LoRA, editing, upscaling, and text rendering.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and developers use this skill to generate, edit, upscale, and route image-generation requests through SkillBoss API Hub for AI art, mockups, marketing visuals, illustrations, and similar creative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, referenced image URLs, and request metadata are sent to SkillBoss for generation or editing. <br>
-Mitigation: Use the skill only when SkillBoss data handling terms are acceptable, and avoid confidential prompts, private image links, or proprietary visual material unless approved. <br>
-Risk: The skill requires a sensitive SkillBoss_API_KEY credential. <br>
-Mitigation: Use a dedicated, revocable API key and rotate or revoke it if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users use this skill to guide image generation through SkillBoss API Hub for AI art, product mockups, concept art, social media graphics, marketing visuals, and illustrations.
 
-## Reference(s): <br>
-- [SkillBoss API Hub](https://api.SkillBoss.co) <br>
-- [ClawHub skill listing](https://clawhub.ai/alvisdunlop/alvis2-ai-image-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with Python API examples and JSON request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a SkillBoss_API_KEY and returns image URLs from the SkillBoss API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Image prompts and supplied image URLs are sent to SkillBoss API Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive prompts or private image URLs unless the user has approved sharing them with SkillBoss.
+
+Risk: The skill requires a SkillBoss_API_KEY credential.
+
+Mitigation: Store the API key in a secret manager or environment variable and avoid printing, logging, or committing it.
+
+Risk: Generated images and returned image URLs may need review before external or commercial use.
+
+Mitigation: Review outputs for policy, quality, rights, and brand requirements before publication.
+
+## Reference(s):
+
+- [SkillBoss API Hub](https://api.SkillBoss.co)
+- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alvis2-ai-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, guidance]
+
+**Output Format:** [Markdown with Python code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead agents to produce SkillBoss API calls that return generated image URLs.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

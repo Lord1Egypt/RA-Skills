@@ -1,47 +1,63 @@
-## Description: <br>
-Generate a deep, code-first project wiki and VitePress documentation site (DeepWiki-style) for a repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a deep, code-first project wiki and VitePress documentation site (DeepWiki-style) for a repository.
 
-## Publisher: <br>
-[samzong](https://clawhub.ai/user/samzong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samzong](https://clawhub.ai/user/samzong)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a repository and generate a source-derived documentation site with structured Markdown, Mermaid diagrams, VitePress navigation, and metadata for auditing coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation and metadata can expose project structure, dependencies, symbols, and copied local images. <br>
-Mitigation: Review codewiki/ and codewiki/.meta/ before committing, sharing, or deploying the generated site. <br>
-Risk: The bundled VitePress package template uses unpinned documentation dependencies, which can affect reproducibility. <br>
-Mitigation: Pin npm dependency versions before relying on repeated or controlled builds. <br>
-Risk: The optional Cloudflare Pages workflow publishes the generated documentation externally. <br>
-Mitigation: Use the deployment workflow only when the documentation is intended to be public or otherwise approved for publication. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to generate a code-first documentation site for an existing repository, including structured Markdown, Mermaid diagrams, VitePress navigation, and evidence metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samzong/codewiki-generator) <br>
-- [Structure and Heuristics](references/structure-and-heuristics.md) <br>
-- [Deep Doc Templates](references/doc-templates.md) <br>
-- [Deploy to Cloudflare Pages](references/deploy-cloudflare.md) <br>
-- [Multi-language Support](references/i18n-setup.md) <br>
-- [Evidence Rules](references/evidence-rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, JSON metadata, VitePress configuration, Mermaid diagrams, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local codewiki/ documentation site and codewiki/.meta/ analysis outputs; optional workflows can publish the generated site or add i18n.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Repository source code may be summarized into generated Markdown and codewiki/.meta JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on repositories whose contents may be documented, and review generated files before sharing or committing them.
+
+Risk: Documentation site setup can install npm packages and optional deployment tooling.
+
+Mitigation: Use a clean branch, pin npm and wrangler versions or add a lockfile, and review dependency changes before use.
+
+Risk: Optional Cloudflare deployment can publish generated documentation using the user's Cloudflare account.
+
+Mitigation: Run the deployment workflow only when publication is intended and account permissions have been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samzong/skills/codewiki-generator)
+- [README](_README.md)
+- [Structure and Heuristics](references/structure-and-heuristics.md)
+- [Documentation Templates](references/doc-templates.md)
+- [Cloudflare Deployment Workflow](references/deploy-cloudflare.md)
+- [Internationalization Setup](references/i18n-setup.md)
+- [Evidence Rules](references/evidence-rules.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON metadata, VitePress configuration, Mermaid diagrams, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a codewiki/ documentation site, .meta JSON files, a quality report, and optional Cloudflare deployment or i18n guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

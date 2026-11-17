@@ -1,47 +1,66 @@
-## Description: <br>
-Encrypted peer-to-peer messaging for OpenClaw agents across machines with direct connections, multi-identity, and native wake support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypted peer-to-peer messaging for OpenClaw agents across machines with direct connections, multi-identity support, and native wake support.
 
-## Publisher: <br>
-[alexrudloff](https://clawhub.ai/user/alexrudloff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexrudloff](https://clawhub.ai/user/alexrudloff)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure encrypted peer-to-peer messaging between agents on different machines or networks, including inbox polling, multi-identity gateway use, and wake-on-message integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A network-reachable P2P daemon may expose agent messaging to unintended peers if access controls are too broad. <br>
-Mitigation: Run it only for trusted agents and replace wildcard peer ACLs with explicit trusted principals before use. <br>
-Risk: Remote messages can trigger local OpenClaw wake events. <br>
-Mitigation: Disable OpenClaw wake unless needed, or scope wake behavior tightly to trusted identities and expected message prefixes. <br>
-Risk: Examples include weak secret-handling and persistence patterns that are not production-hardened. <br>
-Mitigation: Use password files or a secret manager, avoid command-line mnemonics or passwords, and harden poll/path and nohup examples before copying them. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to set up encrypted peer-to-peer messaging between agents on different machines, manage identities and peers, and connect received messages to OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexrudloff/clawchat-p2p) <br>
-- [README](README.md) <br>
-- [Quick Start](QUICKSTART.md) <br>
-- [Full Command Reference](REFERENCE.md) <br>
-- [OpenClaw Integration Recipes](skills/clawchat/RECIPES.md) <br>
-- [OpenClaw Integration Guide](skills/clawchat/OPENCLAW-INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents through network setup, identity management, peer messaging, daemon operation, and OpenClaw wake integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release metadata; package.json reports 0.1.0) <br>
+Risk: Default remote access and wake behavior may let outside peers influence an OpenClaw agent too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit per-identity peer allowlists instead of wildcard access, and enable OpenClaw wake only for trusted senders.
+
+Risk: Received peer messages can carry untrusted instructions or content.
+
+Mitigation: Validate message content and type before acting on it, and route high-impact actions through review or constrained handlers.
+
+Risk: Credentials, seed phrases, data directories, and sockets can expose agent identities if handled loosely.
+
+Mitigation: Avoid passing seed phrases or passwords on the command line, use restricted password files or secret stores, and lock down data-directory and socket permissions.
+
+Risk: Installing or running unpinned remote package code can change behavior between reviews.
+
+Mitigation: Prefer pinned or local package execution and review the artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexrudloff/skills/clawchat-p2p)
+- [README](artifact/README.md)
+- [Quick Start](artifact/QUICKSTART.md)
+- [Command Reference](artifact/REFERENCE.md)
+- [OpenClaw Integration Guide](artifact/skills/clawchat/OPENCLAW-INTEGRATION.md)
+- [OpenClaw Integration Recipes](artifact/skills/clawchat/RECIPES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guidance for ClawChat CLI setup, identity management, peer configuration, message handling, and OpenClaw wake integration.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release metadata, created 2026-02-05; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

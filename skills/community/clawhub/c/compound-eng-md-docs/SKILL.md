@@ -2,7 +2,7 @@
 name: ia-md-docs
 class: workflow
 description: >-
-  Manages project documentation: CLAUDE.md, AGENTS.md, README.md, CONTRIBUTING.md.
+  Manages project documentation: CLAUDE.md, AGENTS.md, README.md, CONTRIBUTING.md, DOCS.md.
   Use when asked to update, create, or init these context files. Not for general
   markdown editing.
 paths: "**/*.md"
@@ -10,173 +10,44 @@ paths: "**/*.md"
 
 # Markdown Documentation
 
-Manage project documentation by verifying against actual codebase state. Emphasize verification over blind generation -- analyze structure, files, and patterns before writing.
+Manage project documentation by verifying against actual codebase state: analyze structure, files, and patterns before writing; never generate blind.
+
+## Working rules
+
+- Read existing documentation and verify its claims against actual code and commands before editing.
+- Preserve request authority, external-action boundaries, proof standards, and failure-attribution rules when condensing context.
+- Do not create CONTRIBUTING.md or DOCS.md as a side effect; apply the specific workflow's creation limits.
+- Keep cross-cutting conventions discoverable in the main context file and avoid duplicated volatile facts.
+- Report actual edits and checks; do not claim snippets or external identifiers verified without checking them.
 
 ## Portability
 
-AGENTS.md is the universal context file (works with Claude Code, Codex, Kilocode). If the project uses CLAUDE.md, treat it as a symlink to AGENTS.md or migrate content into AGENTS.md and create the symlink:
+AGENTS.md is the universal context file (works with Claude Code, Codex, Kilocode). During Initialize Context or Update Context Files workflows only: if CLAUDE.md exists without AGENTS.md, confirm with the user first (Ask via AskUserQuestion (Claude Code; load with ToolSearch `select:AskUserQuestion` if not loaded) or request_user_input (Codex); fall back to numbered options in chat), then `mv CLAUDE.md AGENTS.md`. Never migrate as a side effect of another task.
 
-```bash
-# If CLAUDE.md exists and AGENTS.md doesn't
-mv CLAUDE.md AGENTS.md && ln -sf AGENTS.md CLAUDE.md
-```
+The CLAUDE.md symlink is optional compatibility, not a required step. Claude Code v2.1.277 and later reads AGENTS.md natively when no `CLAUDE.md`, `.claude/CLAUDE.md`, or `CLAUDE.local.md` exists in the working directory or above it; any of those three found there silently stops that loading, so flag it. For harnesses or sessions that read only CLAUDE.md, offer a CLAUDE.md containing `@AGENTS.md`; offer `ln -s AGENTS.md CLAUDE.md` only when no contributor uses Windows (a clone without `core.symlinks` gets a one-line text file); Edit/Write refuse to write through the link. Keep an existing symlink unless the user asks to remove it. Details and fixes: [init-agents.md](./references/init-agents.md), section "Claude Code compatibility".
 
-When this skill references "context files", it means AGENTS.md (and CLAUDE.md if present as symlink).
+When this skill references "context files", it means AGENTS.md (and CLAUDE.md if present, as a symlink or an `@AGENTS.md` import).
 
-## Workflows
 
-### Update Context Files
+## Monorepos
 
-Verify and fix AGENTS.md against the actual codebase. See [update-agents.md](./references/update-agents.md) for the full verification workflow.
+Multi-package repo? Read [monorepo.md](./references/monorepo.md) before any `update-*`/`init-*` sweep (discovery commands, per-file scoping, context-loading rules). Enumerate targets; if the sweep would create or rewrite more than 3 files, stop: list planned targets and confirm before writing (same ask mechanism as in Portability above).
 
-1. Read existing AGENTS.md, extract verifiable claims (paths, commands, structure, tooling)
-2. Verify each claim against codebase (`ls`, `cat package.json`, `cat pyproject.toml`, etc.)
-3. Fix discrepancies: outdated paths, wrong commands, missing sections, stale structure
-4. Discover undocumented patterns (scripts, build tools, test frameworks not yet documented)
-5. Report changes
-
-### Update README
-
-Generate or refresh README.md from project metadata and structure. See [update-readme.md](./references/update-readme.md) for section templates and language-specific patterns.
-
-1. Detect language/stack from config files (package.json, pyproject.toml, composer.json)
-2. Extract metadata: name, version, description, license, scripts
-3. If README exists and `--preserve`: keep custom sections (About, Features), regenerate standard sections (Install, Usage)
-4. Generate sections appropriate to project type (library vs application)
-5. Report changes
-
-### Update CONTRIBUTING
-
-Update existing CONTRIBUTING.md only -- never auto-create. See [update-contributing.md](./references/update-contributing.md).
-
-When updating, detect project conventions automatically:
-- Package manager from lock files (package-lock.json → npm, yarn.lock → yarn, pnpm-lock.yaml → pnpm, bun.lockb → bun)
-- Branch conventions from git history (feature/, fix/, chore/ prefixes)
-- Test commands from package.json scripts or pyproject.toml
-
-**Merge advisory.** When CONTRIBUTING.md sits next to an AGENTS.md (repo root or any package root), surface a one-line recommendation: merge the contribution workflow section into the sibling AGENTS.md so the context file owns dev workflow, branch conventions, and review process as a single source of truth. Then suggest the user delete CONTRIBUTING.md after the merge. Never auto-merge and never auto-delete -- the user performs both. Continue the requested workflow regardless; the CONTRIBUTING file is advisory only.
-
-### Update DOCS
-
-If `DOCS.md` exists, treat it as API-level documentation (endpoints, function signatures, type definitions). Verify against actual code the same way as AGENTS.md. Never auto-create DOCS.md -- only update existing.
-
-### Initialize Context
-
-Create AGENTS.md from scratch for projects without documentation. See [init-agents.md](./references/init-agents.md).
-
-1. Analyze project: language, framework, structure, build/test tools
-2. Generate terse, expert-to-expert context sections
-3. Write AGENTS.md, create CLAUDE.md symlink
-
-## What Belongs in Context Files
-
-Keep AGENTS.md / CLAUDE.md to durable signal. Do NOT enumerate:
-
-- **Installed skills, plugins, or extensions** -- these change with the user's environment, not the project. The list rots within weeks and turns into a confusing catalog of names that may not be installed for the next reader.
-- **Tool versions outside the project's source of truth** -- `package.json` engines, `.nvmrc`, `pyproject.toml` Python constraint, `composer.json` PHP version. List the source-of-truth file path; do not duplicate the version inline.
-- **Linter / formatter rule restatements** -- if `.eslintrc`, `ruff.toml`, `phpcs.xml` already enforce it, the file is the spec. List the command to run; do not paraphrase rules.
-- **README content** -- if information is already in README.md (install, badges, intro), reference it; do not re-paste.
-
-The test: if a fact will be wrong in two months without anyone touching this file, it does not belong here. The file is for project-specific rules that survive tool churn.
-
-## Context File Hierarchy
-
-Structure CLAUDE.md (and AGENTS.md) content by priority so the most critical information loads first when context is compacted:
-
-1. **Rules** -- project constraints, forbidden patterns, required conventions. Override everything else.
-2. **Tech stack** -- languages, frameworks, package managers. For exact versions, point at the project's source-of-truth file (`package.json` engines, `.nvmrc`, `pyproject.toml`, `composer.json`); do not duplicate the version inline.
-3. **Commands** -- how to build, test, lint, deploy. Exact commands, not descriptions.
-4. **Conventions** -- naming patterns, file organization, architectural decisions.
-5. **Boundaries** -- what's off-limits, what requires approval, scope constraints.
-
-Rules that prevent mistakes outweigh background information. Place them at the top so they survive aggressive context compaction.
-
-## Monorepo Discovery (Authoring)
-
-Before invoking any `update-*` or `init-*` workflow on a multi-package repo, enumerate every package root that should own an AGENTS.md / README.md. Authoring is recursive by default; pass `--root-only` to collapse back to the repo root.
-
-**Resolve the repository root once:**
-
-```bash
-git rev-parse --show-toplevel
-```
-
-**Find existing context files to refresh (`update-*` discovery):**
-
-```bash
-git ls-files --cached --others --exclude-standard \
-  -- '**/README.md' 'README.md' '**/AGENTS.md' 'AGENTS.md'
-```
-
-**Find package roots that should get a new file (`init-*` discovery):** package roots are directories holding a language/tooling manifest -- the repo root plus the unique directories of these files:
-
-```bash
-git ls-files --cached --others --exclude-standard \
-  -- '**/package.json' 'package.json' '**/Cargo.toml' 'Cargo.toml' \
-     '**/pyproject.toml' 'pyproject.toml' '**/setup.py' 'setup.py' \
-     '**/go.mod' 'go.mod' '**/composer.json' 'composer.json'
-```
-
-If the repo uses workspace globs (`pnpm-workspace.yaml`, `package.json` `workspaces:`, `Cargo.toml` `[workspace]`, `go.work`), prefer those as ground truth over file enumeration — they declare the canonical package set and avoid false positives from nested vendored manifests.
-
-**Always exclude during discovery:** `.git`, `node_modules`, `vendor`, `.venv`, `target`, `dist`, `build`, `out`, `.next`, `coverage`, anything ignored by git, and hidden dot-directories that lack a manifest.
-
-**Per-file scoping.** Treat each target independently:
-- The metadata source is the nearest enclosing manifest (the one in its own directory; otherwise walk up to the repo root).
-- A nested `README.md` links to its **sibling** `AGENTS.md`, not the root one.
-- Each `AGENTS.md` gets a sibling `CLAUDE.md` symlink in the **same** directory (`ln -sf AGENTS.md CLAUDE.md`, run from that directory).
-- `CONTRIBUTING.md` is checked per directory; apply the merge advisory from the Update CONTRIBUTING section.
-
-Process deepest-first or root-first consistently, and report results grouped by path. When a sweep would create or rewrite more than a handful of files, list the planned targets and get confirmation before writing.
-
-## Monorepo Context Loading
-
-Claude Code's context-file loading in monorepos follows three rules -- understanding them determines where content belongs:
-
-- **Ancestors load immediately**: walking UP from the current working directory, every AGENTS.md / CLAUDE.md encountered is loaded at startup. Put shared conventions at the repo root.
-- **Descendants load lazily**: an AGENTS.md deeper in the tree loads only when Claude reads or edits a file inside that subtree. Put package-specific conventions at each package's root (`packages/api/AGENTS.md`, `apps/web/AGENTS.md`).
-- **Siblings never load**: `packages/a/AGENTS.md` will NOT auto-load when working in `packages/b/`. Do not rely on sibling-package context leaking across.
-
-Implication for monorepo layouts: duplicate any rule that must apply across sibling packages into each package's AGENTS.md (or hoist it to the repo root). The loader will not discover it laterally. Conversely, avoid putting package-specific rules at the root -- they'll load into every session regardless of relevance and burn context.
 
 ## Arguments
 
-All workflows support:
+Treat these as user-request modifiers: apply when the request contains the flag or equivalent phrasing. All workflows support:
 
-- `--dry-run`: preview changes without writing
+- `--dry-run`: preview changes as a diff, write nothing
 - `--preserve`: keep existing structure, fix inaccuracies only
 - `--minimal`: quick pass, high-level structure only
 - `--thorough`: deep analysis of all files
 
+
 ## Backup Handling
 
-Before overwriting, back up existing files:
+Before overwriting, create a unique adjacent backup path with exclusive creation (for example, `mktemp FILE.backup.XXXXXX`). Copy the source bytes into that new path. Report the backup path. If creation or copying fails, stop before overwriting the source. Never replace or auto-delete an existing backup.
 
-```bash
-cp AGENTS.md AGENTS.md.backup
-cp README.md README.md.backup
-```
-
-Never delete backups automatically.
-
-## Writing Style
-
-- **Lead with the answer.** First sentence of each section states the conclusion; reasoning follows. No "In this section, we'll..." preamble.
-- **Imperative form** for instructions: "Build the project" not "The project is built" — verify no passive voice in any directive sentence.
-- **Expert-to-expert**: cut explanations of concepts the target reader already knows. For CLAUDE.md/AGENTS.md, assume familiarity with git, package managers, test runners, and the project's main language.
-- **Scannable**: headings every ~20 lines, bullet lists for ≥3 parallel items, fenced code blocks for every command.
-- **Verify every command and path against the codebase.** Run each command before committing; grep for each referenced path. Stale paths and untested commands are the most common doc defect.
-- **Sentence case headings**, no emoji decoration (exception: changelog entries may use emoji per project convention).
-- **Actionable headings**: "Set SAML before adding users" — not "SAML configuration timing". Reader should know what to do from the heading alone.
-- **Collapse depth** with `<details>` blocks instead of deleting content (blank line required after `<summary>` for GitHub rendering).
-
-## README Anti-Patterns
-
-Flag during `Update README` workflows:
-- Framework-first lead (explaining the tech stack before the problem it solves)
-- Jargon before definition (using project-specific terms without introduction)
-- Theory before try (architecture explanation before a working example)
-- Claims without evidence ("blazingly fast" with no benchmarks)
 
 ## Report Format
 
@@ -194,8 +65,23 @@ After every operation, display a summary:
 [--] CONTRIBUTING.md not found (skipped)
 ```
 
+
 ## Verify
 
 - Every factual claim in updated docs verified against current codebase
 - No stale file paths or component names
 - Formatting renders correctly in markdown preview
+
+## Task-specific references
+
+Read the relevant reference before implementing or reviewing the matching behavior:
+
+- For updating or initializing a context file, README, CONTRIBUTING, or API documentation: [documentation-workflows.md](./references/documentation-workflows.md).
+- For selecting durable context, organizing documentation, or editing prose: [context-content-and-writing.md](./references/context-content-and-writing.md).
+
+Existing specialized references, when the corresponding topic applies:
+
+- [update-agents.md](./references/update-agents.md).
+- [update-readme.md](./references/update-readme.md).
+- [update-contributing.md](./references/update-contributing.md).
+- [init-agents.md](./references/init-agents.md).

@@ -1,42 +1,55 @@
-## Description: <br>
-Xiaozhi Math Gradient Trainer helps students identify their current math thinking ceiling, generate leveled practice sequences from learner weakness profiles, and record progress in a math growth diary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为初中和高中学生提供五级数学进阶练习，帮助定位当前练习层级并逐步提升。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External learners, tutors, and education agents use this skill to assess a student's current math level, create stepwise challenge problems, and summarize training progress over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs long-term learner profile tracking, weakness tracking, growth diary records, and reminders, which can be sensitive for students and especially minors. <br>
-Mitigation: Review before installation for student use, ask before writing learner profile or progress records, and provide a clear way to view, edit, or delete stored progress. <br>
-Risk: Personalized level assessment and challenge sequencing may affect learner confidence or study plans if the outputs are treated as definitive. <br>
-Mitigation: Use the generated assessments as coaching guidance and have a tutor, guardian, or educator review high-impact learning decisions. <br>
+## Use Case:
 
+供初中和高中学生在已掌握某个数学知识点后练习更高难度题目，逐层定位当前练习层级并记录阶段性成长。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-math-gradient-trainer) <br>
-- [Publisher profile](https://clawhub.ai/user/qizhitang) <br>
-- [Gradient Levels Reference](references/gradient-levels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text coaching responses with leveled math problems, assessment feedback, diary entries, and weekly progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include learner weakness summaries, training history, target levels, and reminder-oriented follow-up guidance when the host environment supports those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review is medium-confidence and partial: Skillspector could not resolve a path-like reference in SKILL.md and flagged Unicode content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved reference and Unicode flags before installing, and consider the partial scan when evaluating the benign verdict.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-math-gradient-trainer)
+- [初中数学各知识模块梯度分层参考](references/gradient-levels.md)
+- [高一衔接段各知识模块梯度分层参考](references/math-hs1-gradient-levels.md)
+- [高中必修后半各知识模块梯度分层参考](references/math-hs2-gradient-levels.md)
+- [高中选择性必修各知识模块梯度分层参考](references/math-hs3-gradient-levels.md)
+- [提示阶梯与完整示例出口](shared/hint-ladder.md)
+- [AI 出题自检协议](shared/ai-item-check.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language exercises, hints, and Markdown progress summaries; structured handover JSON when supported.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Training records and reminders depend on platform capabilities and student consent; without cross-session storage, report only the current session's results.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

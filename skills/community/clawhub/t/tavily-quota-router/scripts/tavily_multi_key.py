@@ -12,6 +12,11 @@ CONFIG = BASE / 'config' / 'keys.json'
 STATE = BASE / 'state' / 'quota.json'
 SEARCH_URL = 'https://api.tavily.com/search'
 USAGE_URL = 'https://api.tavily.com/usage'
+CONFIG_FORMAT_VERSION = 2
+# 401/403 临时冷却时间（秒）：不再永久 disable，过期后自动重新探测 key
+# 默认 1 小时（3600 秒）。用户反馈：401/403 永久 disable 太激进，
+# key 可能因账号改密码、配额月度重置、临时 API 故障后恢复。
+AUTH_COOLDOWN_SECONDS = 3600
 
 
 def now():
@@ -36,11 +41,55 @@ def save_json(path, data):
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
+def normalize_key_entry(item):
+    if isinstance(item, str):
+        return {
+            'key': item,
+            'account': None,
+            'notes': None,
+        }
+    if isinstance(item, dict):
+        key = item.get('key')
+        if not key:
+            raise ValueError(f'invalid key entry without key: {item!r}')
+        return {
+            'key': key,
+            'account': item.get('account') or item.get('source'),
+            'notes': item.get('notes'),
+        }
+    raise ValueError(f'unsupported key entry: {item!r}')
+
+
+def config_needs_migration(raw_cfg):
+    if raw_cfg.get('format_version') != CONFIG_FORMAT_VERSION:
+        return True
+    for item in raw_cfg.get('keys', []):
+        if isinstance(item, str):
+            return True
+        if isinstance(item, dict) and 'source' in item:
+            return True
+    return False
+
+
+def migrate_config(raw_cfg):
+    migrated = {
+        'format_version': CONFIG_FORMAT_VERSION,
+        'cooldown_minutes': int(raw_cfg.get('cooldown_minutes', 10)),
+        'keys': [normalize_key_entry(item) for item in raw_cfg.get('keys', [])],
+    }
+    save_json(CONFIG, migrated)
+    return migrated
+
+
 def load_config():
-    cfg = load_json(CONFIG, {})
+    raw_cfg = load_json(CONFIG, {})
+    if config_needs_migration(raw_cfg):
+        raw_cfg = migrate_config(raw_cfg)
+    keys = [normalize_key_entry(item) for item in raw_cfg.get('keys', [])]
     return {
-        'cooldown_minutes': int(cfg.get('cooldown_minutes', 10)),
-        'keys': list(cfg.get('keys', [])),
+        'format_version': CONFIG_FORMAT_VERSION,
+        'cooldown_minutes': int(raw_cfg.get('cooldown_minutes', 10)),
+        'keys': keys,
     }
 
 
@@ -80,6 +129,19 @@ def mask(k):
     return k[:8] + '...' + k[-4:]
 
 
+def key_value(item):
+    return item['key'] if isinstance(item, dict) else item
+
+
+def key_meta(item):
+    if isinstance(item, dict):
+        return {
+            'account': item.get('account'),
+            'notes': item.get('notes'),
+        }
+    return {'account': None, 'notes': None}
+
+
 def fetch_usage(api_key):
     req = urllib.request.Request(USAGE_URL, headers={'Authorization': f'Bearer {api_key}'})
     with urllib.request.urlopen(req, timeout=30) as resp:
@@ -116,9 +178,31 @@ def update_usage_snapshot(state, idx, usage_data):
     save_json(STATE, state)
 
 
-def mark_error(cfg, state, idx, msg, disable=False):
+def mark_error(cfg, state, idx, msg, disable=False, retry_after_seconds=None):
+    """Record an error against state.keys[idx].
+
+    If retry_after_seconds is given (e.g. parsed from Tavily's Retry-After
+    header on a 429), use that as the cooldown window. Otherwise fall back
+    to cfg['cooldown_minutes'] so the worst case is still bounded — but
+    defaulted to 20s when cfg hasn't been configured, instead of the
+    previous 10-minute hard floor. Caller is responsible for converting
+    header strings to ints before passing.
+    """
     state['keys'][idx]['last_error'] = msg
-    state['keys'][idx]['cooldown_until'] = None if disable else (now() + timedelta(minutes=cfg['cooldown_minutes'])).isoformat(timespec='seconds')
+    if disable:
+        cd = None
+    elif retry_after_seconds is not None and retry_after_seconds > 0:
+        cd = (now() + timedelta(seconds=retry_after_seconds)).isoformat(timespec='seconds')
+    else:
+        minutes = cfg.get('cooldown_minutes', 10)
+        if minutes >= 1:
+            # Legacy minutes-based config: honour it.
+            cd = (now() + timedelta(minutes=minutes)).isoformat(timespec='seconds')
+        else:
+            # Sub-minute config (e.g. 0.05 = 3s): treat as fractional minutes
+            # → use seconds directly so we can express <1 minute cooldowns.
+            cd = (now() + timedelta(seconds=minutes * 60)).isoformat(timespec='seconds')
+    state['keys'][idx]['cooldown_until'] = cd
     state['keys'][idx]['disabled'] = disable
     save_json(STATE, state)
 
@@ -132,7 +216,8 @@ def mark_success(state, idx):
 
 def choose_key(cfg, state):
     candidates = []
-    for i, key in enumerate(cfg['keys']):
+    for i, item in enumerate(cfg['keys']):
+        key = key_value(item)
         st = state['keys'][i]
         if st.get('disabled'):
             continue
@@ -166,39 +251,50 @@ def do_search_with_key(api_key, query, count):
 
 def sync_all_usage(cfg, state):
     result = []
-    for i, key in enumerate(cfg['keys']):
+    for i, item in enumerate(cfg['keys']):
+        key = key_value(item)
+        meta = key_meta(item)
         try:
             raw = fetch_usage(key)
             summary = parse_usage_summary(raw)
             update_usage_snapshot(state, i, summary)
             state['keys'][i]['disabled'] = False
             state['keys'][i]['last_error'] = None
-            result.append({'index': i, 'key': mask(key), 'ok': True, 'usage': summary})
+            result.append({'index': i, 'key': mask(key), 'ok': True, 'usage': summary, **meta})
         except urllib.error.HTTPError as e:
             msg = f'HTTP {e.code}'
-            disable = e.code in (401, 403)
-            mark_error(cfg, state, i, msg, disable=disable)
-            result.append({'index': i, 'key': mask(key), 'ok': False, 'error': msg, 'disabled': disable})
+            disable = False  # 401/403 走 1h 临时 cooldown，不永久 disable
+            retry_after_seconds = AUTH_COOLDOWN_SECONDS if e.code in (401, 403) else None
+            if e.code in (401, 403):
+                msg = f'HTTP {e.code} (auth error, retry in 1h)'
+            mark_error(cfg, state, i, msg, disable=disable, retry_after_seconds=retry_after_seconds)
+            result.append({'index': i, 'key': mask(key), 'ok': False, 'error': msg, 'disabled': disable,
+                           'retry_after_seconds': retry_after_seconds, **meta})
         except Exception as e:
             msg = str(e)
             mark_error(cfg, state, i, msg, disable=False)
-            result.append({'index': i, 'key': mask(key), 'ok': False, 'error': msg, 'disabled': False})
+            result.append({'index': i, 'key': mask(key), 'ok': False, 'error': msg, 'disabled': False, **meta})
     return result
 
 
 def cmd_status(cfg, state):
     sync_all_usage(cfg, state)
     out = {
+        'format_version': cfg.get('format_version', CONFIG_FORMAT_VERSION),
         'month': state['month'],
         'key_count': len(cfg['keys']),
         'keys': []
     }
-    for i, key in enumerate(cfg['keys']):
+    for i, item in enumerate(cfg['keys']):
+        key = key_value(item)
+        meta = key_meta(item)
         st = state['keys'][i]
         usage = st.get('last_usage') or {}
         out['keys'].append({
             'index': i,
             'key': mask(key),
+            'account': meta.get('account'),
+            'notes': meta.get('notes'),
             'disabled': st.get('disabled', False),
             'cooldown_until': st.get('cooldown_until'),
             'last_error': st.get('last_error'),
@@ -237,7 +333,6 @@ def cmd_search(cfg, state, query, count):
         print(json.dumps({'ok': False, 'error': 'no keys configured', 'config': str(CONFIG)}, ensure_ascii=False))
         sys.exit(2)
 
-    sync_all_usage(cfg, state)
     tried = []
     while True:
         picked = choose_key(cfg, state)
@@ -265,9 +360,24 @@ def cmd_search(cfg, state, query, count):
             return
         except urllib.error.HTTPError as e:
             msg = f'HTTP {e.code}'
-            disable = e.code in (401, 403)
-            tried.append({'index': idx, 'key': mask(key), 'error': msg, 'disabled': disable})
-            mark_error(cfg, state, idx, msg, disable=disable)
+            disable = False  # 401/403 改为临时 cooldown，不再永久 disable（key 可能恢复）
+            retry_after_seconds = None
+            if e.code == 429:
+                ra = e.headers.get('Retry-After') if e.headers else None
+                if ra:
+                    try:
+                        retry_after_seconds = int(ra)
+                    except (TypeError, ValueError):
+                        pass
+                if retry_after_seconds:
+                    msg = f'HTTP {e.code} (retry in {retry_after_seconds}s)'
+            elif e.code in (401, 403):
+                # 401/403 走 1 小时临时 cooldown，过期后 choose_key 会自动重试探测
+                retry_after_seconds = AUTH_COOLDOWN_SECONDS
+                msg = f'HTTP {e.code} (auth error, retry in 1h)'
+            tried.append({'index': idx, 'key': mask(key), 'error': msg, 'disabled': disable,
+                          'retry_after_seconds': retry_after_seconds})
+            mark_error(cfg, state, idx, msg, disable=disable, retry_after_seconds=retry_after_seconds)
         except Exception as e:
             msg = str(e)
             tried.append({'index': idx, 'key': mask(key), 'error': msg, 'disabled': False})

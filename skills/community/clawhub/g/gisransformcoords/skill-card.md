@@ -1,43 +1,53 @@
-## Description: <br>
-GIS 坐标转换工具，支持点、线、面 GeoJSON 数据在 WGS84（经纬度）和 Web Mercator（EPSG:3857）之间批量转换。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts GeoJSON point, line, and polygon coordinates between WGS84 (EPSG:4326) and Web Mercator (EPSG:3857) for WebGIS and GPS data workflows.
 
-## Publisher: <br>
-[pointGH](https://clawhub.ai/user/pointGH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pointgh](https://clawhub.ai/user/pointgh)
 
-## Use Case: <br>
-Developers and GIS practitioners use this skill to convert GeoJSON geometries between GPS-friendly WGS84 coordinates and Web Mercator coordinates used by common web mapping systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local GeoJSON input path supplied by the user. <br>
-Mitigation: Run it only on intended local files and review the selected input path before execution. <br>
-Risk: The skill can overwrite the output path supplied with the command. <br>
-Mitigation: Choose output filenames deliberately, avoid existing important files, and validate converted GeoJSON before relying on it. <br>
-Risk: The script depends on pyproj being installed in the execution environment. <br>
-Mitigation: Install pyproj from a trusted package source, preferably inside a virtual environment. <br>
+## Use Case:
 
+Developers and GIS practitioners use this skill to convert GeoJSON geometries and feature collections between geographic coordinates and Web Mercator for web maps, GPS processing, and vector-data preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pointGH/gisransformcoords) <br>
-- [Publisher profile](https://clawhub.ai/user/pointGH) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and GeoJSON JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The conversion script can write a GeoJSON output file or print converted GeoJSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The coordinate conversion script depends on pyproj, so an unreviewed or unpinned dependency version could change behavior or introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment and prefer a pinned, reviewed pyproj version.
+
+Risk: Using the output-file option writes directly to the selected path and can overwrite existing data.
+
+Mitigation: Choose a new output path or back up existing GeoJSON files before using -o or --output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pointgh/skills/gisransformcoords)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and GeoJSON JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write converted GeoJSON to stdout or to a user-specified output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

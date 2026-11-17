@@ -1,47 +1,51 @@
-## Description: <br>
-SkillFlowChart helps an agent turn natural-language skill definitions into structured nodes and self-contained HTML decision flowcharts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates deterministic, self-contained HTML/SVG decision flowcharts from SKILL.md files or skill definitions by having an agent extract nodes.json and a Python script render the layout.
 
-## Publisher: <br>
-[codermoray](https://clawhub.ai/user/codermoray) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codermoray](https://clawhub.ai/user/codermoray)
 
-## Use Case: <br>
-Developers and agent builders use this skill to document skill execution logic, decision trees, and workflows as readable flowcharts. The agent extracts a nodes.json structure from a SKILL.md-style definition, then the bundled Python renderer produces deterministic HTML/SVG output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated flowchart can reflect mistakes in the agent-extracted nodes.json structure. <br>
-Mitigation: Review nodes, edges, labels, and loops before rendering or publishing the HTML output. <br>
-Risk: The renderer writes files to the output path supplied by the user. <br>
-Mitigation: Choose output paths deliberately and avoid overwriting important local files. <br>
-Risk: Bundled HaluCatch and security-review documents may be mistaken for runtime authority. <br>
-Mitigation: Treat bundled documents as examples for flowchart structure, not as operational instructions for SkillFlowChart. <br>
+## Use Case:
 
+Developers and skill authors use this skill to turn natural-language skill definitions into structured flowchart node data and render that data as portable HTML/SVG diagrams for review, documentation, and workflow visualization.
 
-## Reference(s): <br>
-- [ClawHub SkillFlowChart page](https://clawhub.ai/codermoray/skills/skill-flowchart) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Flowchart renderer](artifact/scripts/flowchart.py) <br>
-- [HaluCatch example nodes](artifact/docs/halucatch-nodes.json) <br>
-- [Security review example nodes](artifact/docs/security-review-nodes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, HTML files, Shell commands, Guidance] <br>
-**Output Format:** [Structured nodes.json plus self-contained HTML/SVG flowchart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The renderer is a local Python script that uses the standard library and writes to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Generated HTML from untrusted skill definitions may carry content-handling risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or reviewed nodes.json inputs and avoid opening generated HTML from untrusted sources until loop labels are escaped, legend colors are validated, and a restrictive Content Security Policy is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codermoray/skills/skill-flowchart)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON node data and shell commands that produce self-contained HTML/SVG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The rendered flowchart is deterministic for the same nodes.json input and supports light, dark, and transparent themes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

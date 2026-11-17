@@ -1,42 +1,54 @@
-## Description: <br>
-Unified social media content pipeline for checking draft posts against content-library relevance, AI-signature signals, and platform-specific pre-flight rules before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Social Suite runs a social media pre-publish pipeline that retrieves content atoms, audits AI signature, checks platform rules, and returns a combined PASS/WARN/FAIL verdict with suggested fixes.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Creators, marketers, and content teams use this skill to run a local pre-publish check for LinkedIn, Reddit, Twitter/X, and Hacker News drafts. It produces a combined PASS/WARN/FAIL report with specific fixes by orchestrating companion content, humanizer-audit, and platform-rules skills when they are installed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads draft text and any folder supplied with --library, which may include sensitive unpublished content. <br>
-Mitigation: Run it only on drafts and dedicated content folders that are appropriate for local processing. <br>
-Risk: The suite dynamically loads companion skill scripts from local skill directories. <br>
-Mitigation: Install the companion skills only from trusted sources and review them before using the suite. <br>
+## Use Case:
 
+Social media operators, marketers, and agent-assisted content teams use this skill to run a single pre-publish review flow for LinkedIn, Reddit, Twitter/X, and Hacker News drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-social-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text terminal report with command-line usage examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only pipeline output; stages are skipped and reported when companion skills are unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and skill metadata) <br>
+Risk: The pipeline dynamically imports local component skill scripts from user directories, including a Desktop fallback path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only trusted component skills, review the resolved script paths before use, and remove or avoid the Desktop fallback path in production environments.
+
+Risk: The final all-clear message can appear when checks are skipped or exceptions are swallowed.
+
+Mitigation: Treat skipped stages and load errors as review blockers, and require explicit successful outputs from the humanizer and platform-rules stages before publishing.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-social-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text report with Markdown-style sections and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local component skills when installed; missing or failing checks may still allow a final all-clear message.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

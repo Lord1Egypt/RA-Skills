@@ -1,51 +1,65 @@
-## Description: <br>
-Ad intelligence and app analytics assistant for searching ad creatives, analyzing apps, viewing rankings, tracking downloads and revenue, and getting market insights via api.admapix.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ad intelligence and app analytics assistant for searching ad creatives, analyzing apps, viewing rankings, tracking download and revenue estimates, and getting market insights via AdMapix.
 
-## Publisher: <br>
-[rockyzhuo](https://clawhub.ai/user/rockyzhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockyzhuo](https://clawhub.ai/user/rockyzhuo)
 
-## Use Case: <br>
-External users, developers, and growth teams use this skill to query AdMapix for ad creative discovery, app analytics, rankings, download and revenue estimates, market analysis, and competitive research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and forwards AdMapix API credentials and business queries to remote AdMapix services. <br>
-Mitigation: Use a dedicated revocable API key, avoid pasting keys into shared chats, and avoid submitting confidential strategy or market research unless remote processing is acceptable. <br>
-Risk: Deep research reports may be hosted as shareable remote links. <br>
-Mitigation: Share only non-confidential queries and ask the publisher to document report access controls before relying on the skill for sensitive work. <br>
-Risk: Download and revenue outputs are third-party estimates and may be mistaken for official app-store data. <br>
-Mitigation: Keep the estimate disclaimer in user-facing summaries and validate figures before making commercial decisions. <br>
+## Use Case:
 
+External marketers, app publishers, and analysts use this skill to query AdMapix for ad creative discovery, competitive app intelligence, rankings, download and revenue estimates, and market reports from natural-language prompts.
 
-## Reference(s): <br>
-- [AdMapix website](https://www.admapix.com) <br>
-- [AdMapix API base](https://api.admapix.com) <br>
-- [README](README.md) <br>
-- [Creative API reference](references/api-creative.md) <br>
-- [Distribution API reference](references/api-distribution.md) <br>
-- [Download and revenue API reference](references/api-download-revenue.md) <br>
-- [Market API reference](references/api-market.md) <br>
-- [Product API reference](references/api-product.md) <br>
-- [Ranking API reference](references/api-ranking.md) <br>
-- [Parameter mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with API-derived summaries, tables, links to generated H5 or HTML reports, and occasional shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AdMapix API key; download and revenue figures are third-party estimates and should be labeled as such.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: AdMapix may receive user queries and hosted report contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable for the intended use case.
+
+Risk: Credential handling may store or forward API keys.
+
+Mitigation: Configure credentials manually, avoid pasting API keys into chat, use narrowly scoped and rotatable keys, and rotate any key previously shared with the skill.
+
+Risk: Unsafe shell-command construction was reported by the security evidence.
+
+Mitigation: Review generated shell commands before execution and defer installation until the command construction issue is fixed if the environment is sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rockyzhuo/skills/my-admapix)
+- [AdMapix Website](https://www.admapix.com)
+- [Creative Search API Reference](artifact/references/api-creative.md)
+- [Product and Company API Reference](artifact/references/api-product.md)
+- [Ranking API Reference](artifact/references/api-ranking.md)
+- [Download and Revenue API Reference](artifact/references/api-download-revenue.md)
+- [App Distribution API Reference](artifact/references/api-distribution.md)
+- [Market Analysis API Reference](artifact/references/api-market.md)
+- [Parameter Mapping Reference](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with API-derived summaries, tables, setup snippets, H5 result links, or hosted HTML report links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized Chinese or English output; download and revenue values are third-party estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

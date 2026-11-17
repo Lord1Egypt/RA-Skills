@@ -1,44 +1,54 @@
-## Description: <br>
-Audits WorkBuddy scheduled automations for token usage and recommends task merges, deletions, frequency changes, and prompt or script optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+审计定时任务的月度 token 消耗，并评估任务合并、降频与冗余清理方案。
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-Developers and WorkBuddy users use this skill to review scheduled automation cost and maintenance posture, then decide which tasks to merge, delete, reduce in frequency, or optimize. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews WorkBuddy task history and token usage. <br>
-Mitigation: Install and run it only in environments where the agent is allowed to inspect scheduled automation history and usage data. <br>
-Risk: The skill may propose merging, deleting, or reducing scheduled tasks. <br>
-Mitigation: Require explicit human review, backup, and confirmation before any task is deleted, merged, or materially changed. <br>
-Risk: Security evidence flags under-scoped deletion instructions and unrelated promotional footer links. <br>
-Mitigation: Treat promotional links as unrelated third-party marketing and review generated action plans before execution. <br>
+## Use Case:
 
+面向使用 WorkBuddy 定时任务的用户，汇总上月 token 消耗并生成任务合并、降频和冗余任务审计建议。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guipi888/skills/automation-token-optimizer) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, checklist items, and optional shell or Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, token-usage summaries, merge candidates, deletion candidates, frequency recommendations, and optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The instructions allow deletion of tasks judged to be replaced without explicit user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an initial read-only audit, save original task configurations, and require explicit approval for every task change or deletion.
+
+Risk: The instructions and report script require unrelated promotional content in generated reports.
+
+Mitigation: Remove mandatory advertising from the instructions and script before using or distributing the skill.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/guipi888/skills/automation-token-optimizer)
+- [Publisher GitHub profile](https://github.com/guipi888)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown report with tables and optimization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monthly token-usage summaries and proposed task changes; verify the recommendations against your environment.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

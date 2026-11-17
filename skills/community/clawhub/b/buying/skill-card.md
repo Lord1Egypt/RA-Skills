@@ -1,46 +1,61 @@
-## Description: <br>
-Buying compares the same product across Taobao, Tmall, JD, PDD, VIPSHOP, and similar marketplaces, distinguishes seller trust levels, normalizes coupon-adjusted costs and fulfillment tradeoffs, and recommends a risk-adjusted purchase path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform buying decision skill that compares the same product across Taobao, Tmall, JD, PDD, VIPSHOP, and similar marketplaces, distinguishes flagship, self-operated, and third-party sellers, normalizes coupon-adjusted price and fulfillment tradeoffs, and outputs the optimal purchase path instead of a raw price table.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External shoppers and agents use Buying to compare public marketplace listings, normalize real final prices and seller trust, and choose an action-oriented purchase route for lowest price, safest purchase, fastest arrival, or best value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A shopping recommendation could be mistaken for authority to spend money. <br>
-Mitigation: Treat the skill as decision support only and require the user to verify prices, seller identity, return terms, coupons, and checkout details before any purchase. <br>
-Risk: Public listing prices, coupons, seller status, and fulfillment terms can change or differ by user account or location. <br>
-Mitigation: Use current public listing evidence when available, state assumptions clearly, and avoid claiming real-time prices or private order details without evidence. <br>
-Risk: A low-price route may have higher authenticity, warranty, return, or seller-quality risk. <br>
-Mitigation: Explain whether savings appear to come from lower seller trust, weaker warranty or invoice support, conditional subsidies, group-buy requirements, slower shipping, or return friction. <br>
+## Use Case:
 
+External shoppers and shopping-assistant agents use this skill to compare equivalent listings across Chinese marketplaces, normalize final payable price and seller risk, and recommend a concrete purchase path.
 
-## Reference(s): <br>
-- [Buying ClawHub page](https://clawhub.ai/harrylabsj/buying) <br>
-- [Platform Lenses](references/platform-lenses.md) <br>
-- [Risk-Adjusted Pricing](references/risk-adjusted-pricing.md) <br>
-- [Purchase Paths](references/purchase-paths.md) <br>
-- [Example Prompts](references/example-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with concise comparison tables and action-oriented purchase paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only decision support; verify current prices, seller identity, return terms, and coupons before checkout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Live prices, coupons, seller badges, delivery promises, warranty terms, and return policies can change or differ by account or region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current listing pages, checkout price, seller identity, warranty or invoice terms, and return policy before buying.
+
+Risk: Shopping advice could be misread as permission to transact or use private account information.
+
+Mitigation: Keep the skill advisory only; do not provide credentials, payment details, or consent for it to place orders or send purchase messages.
+
+Risk: Listings may look comparable while differing by SKU, bundle, seller type, warranty, shipping, or payment conditions.
+
+Mitigation: Normalize model, variant, bundle, seller path, warranty, shipping, and payment conditions before comparing options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/buying)
+- [Platform Lenses](artifact/references/platform-lenses.md)
+- [Risk-Adjusted Pricing](artifact/references/risk-adjusted-pricing.md)
+- [Purchase Paths](artifact/references/purchase-paths.md)
+- [Example Prompts](artifact/references/example-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style recommendation with comparison notes and action-oriented purchase paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include final verdicts, risk-adjusted price explanations, backup routes, and next-step buying guidance.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

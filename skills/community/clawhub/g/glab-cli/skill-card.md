@@ -1,40 +1,52 @@
-## Description: <br>
-Interact with GitLab using the `glab` CLI for merge requests, CI/CD pipelines, issues, releases, and API requests across gitlab.com and self-hosted instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitLab using the `glab` CLI for merge requests, CI/CD pipelines, issues, releases, and API requests across gitlab.com and self-hosted instances.
 
-## Publisher: <br>
-[Portavion](https://clawhub.ai/user/Portavion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[portavion](https://clawhub.ai/user/portavion)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent operate GitLab workflows through `glab`, including merge requests, CI/CD pipelines, issues, releases, variables, and API queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may use the authenticated GitLab CLI context to perform broad read or write actions. <br>
-Mitigation: Use a least-privilege GitLab token and review generated commands before execution. <br>
-Risk: Merge approvals, merges, releases, CI retries, variable changes, and non-GET API calls can alter project state or expose private data. <br>
-Mitigation: Require explicit approval for those actions and inspect project, repository, and endpoint targets before running commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Portavion/glab-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/Portavion) <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent work with GitLab projects through the `glab` CLI, including merge requests, CI/CD pipelines, issues, releases, variables, and REST or GraphQL API queries.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include `glab` commands that read or change GitLab project state, depending on the authenticated CLI context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples can change repository state through merge request approval, merge, release creation, CI retry, issue updates, variable changes, and raw API commands.
+
+Mitigation: Confirm the target GitLab project, merge request, issue, release tag, variable name, and command intent before execution.
+
+Risk: CI/CD variable and API commands can expose or modify sensitive project data.
+
+Mitigation: Do not reveal secret CI/CD variable values in chat or logs, and treat raw REST or GraphQL API calls as sensitive operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/portavion/skills/glab-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented `glab api` and `jq` command patterns for automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

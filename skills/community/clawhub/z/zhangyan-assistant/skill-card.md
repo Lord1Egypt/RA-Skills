@@ -1,50 +1,67 @@
-## Description: <br>
-专注文物、书画、瓷器、玉器与古董收藏领域的智能鉴定助手，帮助用户进行初步分析、风险识别、收藏建议与鉴定思路讲解。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专注文物、书画、瓷器、玉器与古董收藏领域的智能鉴定助手，帮助用户进行初步分析、风险识别、收藏建议与鉴定思路讲解。
 
-## Publisher: <br>
-[aojax](https://clawhub.ai/user/aojax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aojax](https://clawhub.ai/user/aojax)
 
-## Use Case: <br>
-External collectors, buyers, and antiques enthusiasts use this skill for preliminary analysis of paintings, calligraphy, ceramics, jade, bronze, and other collectibles, including risk identification, purchase caution, and next-step research guidance. It is not intended to replace official, judicial, customs, or in-person expert appraisal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on image-based preliminary analysis for high-value purchases or official authentication. <br>
-Mitigation: State that image review is preliminary, avoid guarantees, and recommend in-person expert review or official channels for high-value, legal, customs, or formal appraisal needs. <br>
-Risk: Broad trigger phrases such as generic appraisal or purchase questions may activate the skill outside its intended antiques and collectibles context. <br>
-Mitigation: Narrow the response to antiques and collectibles, ask clarifying questions when the item type is unclear, and avoid acting as a general legal, financial, or official appraisal authority. <br>
+## Use Case:
 
+External collectors, antiques enthusiasts, and advisors use this Chinese-language skill for preliminary object analysis, authenticity-risk triage, dating logic, and collection or pre-purchase guidance. It is not a substitute for official, judicial, customs, legal, or in-person professional appraisal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aojax/zhangyan-assistant) <br>
-- [README](README.md) <br>
-- [门类鉴定总则](references/门类鉴定总则.md) <br>
-- [书画鉴定要点](references/书画鉴定要点.md) <br>
-- [瓷器鉴定要点](references/瓷器鉴定要点.md) <br>
-- [玉器鉴定要点](references/玉器鉴定要点.md) <br>
-- [铜器与杂项鉴定要点](references/铜器与杂项鉴定要点.md) <br>
-- [常见作伪手法总表](references/常见作伪手法总表.md) <br>
-- [结论分级模板](references/结论分级模板.md) <br>
-- [补图清单](references/补图清单.md) <br>
-- [风险场景与回复边界](references/风险场景与回复边界.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown guidance with cautious preliminary assessments, risk notes, follow-up image requests, and collection or purchase suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should preserve appraisal boundaries, avoid absolute authenticity claims, and recommend in-person review or official channels for high-stakes cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: Users may treat image-based preliminary analysis as official authentication, legal appraisal, customs advice, or a guaranteed valuation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the preliminary-only boundary in responses and direct users to formal or in-person appraisal channels for official, legal, customs, or high-stakes valuation needs.
+
+Risk: Users may make purchase decisions from incomplete photos, provenance stories, certificates, or seller claims.
+
+Mitigation: Ask for complete images and key object details, treat provenance and certificates as supporting context only, and recommend in-person review before high-value transactions.
+
+Risk: The assistant could overstate confidence or market value in a collecting context.
+
+Mitigation: Use restrained, evidence-based confidence levels, avoid absolute authenticity claims, and separate market value from scholarly or collection value.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aojax/skills/zhangyan-assistant)
+- [门类鉴定总则](references/门类鉴定总则.md)
+- [书画鉴定要点](references/书画鉴定要点.md)
+- [瓷器鉴定要点](references/瓷器鉴定要点.md)
+- [玉器鉴定要点](references/玉器鉴定要点.md)
+- [铜器与杂项鉴定要点](references/铜器与杂项鉴定要点.md)
+- [常见作伪手法总表](references/常见作伪手法总表.md)
+- [结论分级模板](references/结论分级模板.md)
+- [补图清单](references/补图清单.md)
+- [风险场景与回复边界](references/风险场景与回复边界.md)
+- [术语解释](references/术语解释.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured Chinese prose with section headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request additional images or object details and should preserve preliminary-only appraisal boundaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

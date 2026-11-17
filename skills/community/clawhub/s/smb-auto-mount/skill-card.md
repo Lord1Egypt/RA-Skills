@@ -1,40 +1,56 @@
-## Description: <br>
-Auto-mount Windows SMB shares on Linux with systemd automount. Credentials entered interactively. Required binaries: mount.cifs (cifs-utils), smbclient. Requires sudo. Modifies /etc/fstab and /etc/smb-creds-*.txt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-mount Windows SMB shares on Linux with systemd automount using interactive credential prompts, sudo, cifs-utils, smbclient, /etc/fstab, and /etc/smb-creds-*.txt files.
 
-## Publisher: <br>
-[swor-dart](https://clawhub.ai/user/swor-dart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[swor-dart](https://clawhub.ai/user/swor-dart)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system administrators use this skill to discover SMB shares, mount them temporarily, or configure persistent on-demand Linux automounts for Windows SMB shares.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The scripts use sudo and can make persistent SMB mount changes in /etc/fstab.
+
+Mitigation: Review the generated mount entries before use and back up /etc/fstab before running the persistent automount script.
+
+Risk: SMB credentials may be stored on disk in /etc/smb-creds-*.txt files.
+
+Mitigation: Restrict credential files to root-only access, remove stale credential files when no longer needed, and avoid shared or automated use without hardening.
+
+Risk: Unsafe handling of user-supplied mount fields or temporary credentials could cause incorrect configuration or credential exposure.
+
+Mitigation: Validate mount fields, add cleanup traps for temporary credential files, and test changes in a controlled environment before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and Linux administrators use this skill to discover Windows SMB shares and prepare commands or scripts for one-time CIFS mounts or persistent systemd automount entries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead to persistent root-level mount changes in /etc/fstab. <br>
-Mitigation: Install only after reviewing the exact mount entry, back up /etc/fstab first, and confirm the mount path and credential file path before applying changes. <br>
-Risk: SMB passwords may be stored on disk in root-readable credential files. <br>
-Mitigation: Use a low-privilege SMB account, keep credential files restricted, and remove or rotate credentials when the mount is no longer needed. <br>
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swor-dart/smb-auto-mount) <br>
+**Other Properties Related to Output:** [Produces guidance for scripts that require sudo and may modify /etc/fstab and create root-readable SMB credential files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and script-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include SMB discovery commands, mount commands, and fstab/systemd automount configuration guidance.] <br>
+1.0.7 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.7 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

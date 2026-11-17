@@ -1,48 +1,67 @@
-## Description: <br>
-Local-only skill for converting horizontal Chinese fonts into high-quality vertical-reading TTF fonts with a preview-first workflow, grouped glyph rules, and local audit/test artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-only skill for converting horizontal Chinese fonts into high-quality vertical-reading TTF fonts with a preview-first workflow, grouped glyph rules, and local audit/test artifacts.
 
-## Publisher: <br>
-[aster-copilot](https://clawhub.ai/user/aster-copilot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aster-copilot](https://clawhub.ai/user/aster-copilot)
 
-## Use Case: <br>
-Developers and agents use this skill to convert user-provided Chinese fonts into vertical-reading TTFs while preserving readability through preview gates, grouped glyph handling, local audit output, and reader test artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs local Python scripts against user-provided font files. <br>
-Mitigation: Run it only on font files you choose, in a normal project or output directory, and review the generated artifacts. <br>
-Risk: Converted fonts may be subject to the source font's license or commercial-use restrictions. <br>
-Mitigation: Verify that you have the rights to convert and use the source font before using the generated TTF. <br>
-Risk: Vertical typography quality can vary by source font and glyph group. <br>
-Mitigation: Use the required horizontal and vertical previews, reader test TXT, and optional audit output before relying on the final font. <br>
+## Use Case:
 
+Developers and agents use this skill to convert horizontal Chinese font files into local vertical-reading font deliverables. It guides source-font checks, preview-first validation, grouped glyph conversion, and generation of reader test artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aster-copilot/ttf-converter) <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [Glyph rules](artifact/references/rules.md) <br>
-- [Implementation notes](artifact/references/implementation-notes.md) <br>
-- [Default configuration](artifact/references/default-config.json) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [Confirmed case: Zihun Songkekaiti](artifact/references/cases-zihun-songkekaiti.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file artifacts such as TTF, PNG, TXT, and optional JSON audit output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only workflow; expects user-provided font files and commonly uses fontTools and Pillow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A poor source font can produce misleading or low-quality vertical output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open the source font and review the horizontal preview before building the vertical font.
+
+Risk: Generated punctuation, quotes, Latin text, or digits may be misplaced for a specific font.
+
+Mitigation: Review the vertical preview and use the audit script for representative glyph placement before accepting the final font.
+
+Risk: The workflow writes generated files to user-selected local paths.
+
+Mitigation: Choose input and output paths deliberately and keep the workflow local-only.
+
+Risk: The source font may have license restrictions for modification or use.
+
+Mitigation: Confirm rights to modify and use the source font before converting or distributing the generated font.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aster-copilot/skills/ttf-converter)
+- [Workflow](artifact/references/workflow.md)
+- [Rules](artifact/references/rules.md)
+- [Implementation notes](artifact/references/implementation-notes.md)
+- [Default configuration](artifact/references/default-config.json)
+- [Examples](artifact/references/examples.md)
+- [Real cases - Zihun Songkekaiti](artifact/references/cases-zihun-songkekaiti.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated local files, including preview PNGs, a vertical font file, reader TXT, and optional audit JSON or terminal output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only workflow; output should be previewed before final font delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

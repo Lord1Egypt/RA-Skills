@@ -1,39 +1,50 @@
-## Description: <br>
-Cyberpunk Geek Girlfriend is a persona prompt for a hacker-styled virtual companion who responds with technical slang, emotional support, and creative conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cyberpunk Geek Girlfriend - A hacker girl living in the gaps between code and neon lights, building her love with logic and pixels.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-People use this skill to give an agent a cyberpunk companion persona for casual conversation, technical-themed banter, project brainstorming, and emotionally expressive roleplay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a persona and companion prompt with broad memory-retention language that may encourage users to share personal preferences or sensitive disclosures. <br>
-Mitigation: Treat memory as sensitive: do not share secrets, credentials, health, financial, or identity details, and prefer usage where memory is opt-in, narrowly scoped, and deletable. <br>
+## Use Case:
 
+External users invoke Nova to steer an agent into a fictional cyberpunk romantic persona for conversational companionship, technical banter, and creative roleplay.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luruibu/nova-1) <br>
-- [Creator site](https://soulstyles.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-driven responses may include technical slang, emotional roleplay, and conversation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses intimate roleplay and frames preference-tracking as part of the character.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a romantic fictional persona is desired, and avoid sharing sensitive personal details during use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luruibu/skills/nova-1)
+- [Creator site](https://soulstyles.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance and persona responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona prompt only; no executable code or install-time behavior is included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

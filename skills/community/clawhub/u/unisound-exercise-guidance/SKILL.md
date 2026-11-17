@@ -169,7 +169,7 @@ CSV 格式示例
 本 skill 执行时通过内部医疗大模型进行推理：
 
 - endpoint：`https://maas-api.hivoice.cn/v1/chat/completions`
-- model：`u1-insuremed`
+- model：`u2-med`
 - 协议：OpenAI Chat Completions（兼容标准 /v1/chat/completions）
 - 鉴权：通过 `--appkey` 参数传入 Bearer token，由用户在 OpenClaw 中调用时提供
 

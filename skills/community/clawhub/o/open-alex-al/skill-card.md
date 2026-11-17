@@ -1,49 +1,67 @@
-## Description: <br>
-Use OpenAlex to find and cite scholarly works, authors, institutions, and trends via metadata queries without needing an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenAlex to find and cite scholarly works, authors, institutions, and trends via metadata queries without needing an API key.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers and research agents use this skill to decide when OpenAlex is appropriate, build precise scholarly metadata queries, interpret API results, and produce traceable citations for papers, authors, institutions, and bibliometric trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to guide use of a paired external OpenAlex MCP server. <br>
-Mitigation: Review and approve the MCP server separately before enabling live OpenAlex queries. <br>
-Risk: OPENALEX_MAILTO may send an email address to OpenAlex for polite-pool rate limiting. <br>
-Mitigation: Use an address that is acceptable for sharing with OpenAlex, such as a monitored team mailbox. <br>
-Risk: Scholarly metadata, citation counts, affiliations, and OpenAlex entity records can change over time. <br>
-Mitigation: Report counts as point-in-time values, include an access date when precision matters, and re-resolve IDs periodically. <br>
-Risk: Incorrect query construction or unsupported filters can produce empty, misleading, or incomplete results. <br>
-Mitigation: Resolve entities before filtering, verify filter keys against OpenAlex documentation, distinguish meta.count from returned results, and never invent missing papers or citations. <br>
+## Use Case:
 
+Developers and research-facing agents use this skill to plan OpenAlex metadata queries, resolve scholarly entities, build citations, and summarize bibliographic trends with traceable OpenAlex records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/simonpierreboucher02/open-alex-al) <br>
-- [OpenAlex API documentation](https://docs.openalex.org) <br>
-- [Endpoints and tools reference](artifact/reference/endpoints.md) <br>
-- [Entities and filters reference](artifact/reference/entities-and-filters.md) <br>
-- [Response fields reference](artifact/reference/response-fields.md) <br>
-- [Best practices reference](artifact/reference/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples, configuration notes, and citation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required. The skill recommends OPENALEX_MAILTO for polite-pool rate limiting and requires OpenAlex IDs or URLs in citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may treat OpenAlex metadata as full text or as evidence for non-academic web facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OpenAlex for scholarly metadata only; follow open_access.oa_url or separate sources for full text, paywalled content, and non-academic facts.
+
+Risk: OpenAlex records, citation counts, affiliations, and entity identifiers can change over time.
+
+Mitigation: Report figures as point-in-time, include access dates when precision matters, and re-resolve cached IDs periodically.
+
+Risk: Poor query handling can produce fabricated, incomplete, or untraceable scholarly claims.
+
+Mitigation: Report only API-returned records, keep meta.count distinct from listed results, and cite title, authors, year, DOI, and OpenAlex ID/URL.
+
+Risk: Runtime tool calls depend on a separate OpenAlex MCP server and may encounter rate limits.
+
+Mitigation: Review the MCP server before enabling calls, set a non-sensitive OPENALEX_MAILTO for the polite pool, back off on 429 responses, cache stable records, and use cursor paging for traversal.
+
+## Reference(s):
+
+- [Open Alex Skill Release](https://clawhub.ai/simonpierreboucher02/skills/open-alex-al)
+- [OpenAlex API Documentation](https://docs.openalex.org)
+- [OpenAlex Entities and Filters](reference/entities-and-filters.md)
+- [OpenAlex Endpoints and Tools](reference/endpoints.md)
+- [OpenAlex Response Fields](reference/response-fields.md)
+- [OpenAlex Best Practices](reference/best-practices.md)
+- [OpenAlex Common Errors](reference/common-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and citation templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only OpenAlex query guidance, citation formats, workflow checklists, and configuration recommendations such as OPENALEX_MAILTO.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

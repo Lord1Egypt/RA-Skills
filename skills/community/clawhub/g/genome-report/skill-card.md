@@ -1,43 +1,62 @@
-## Description: <br>
-Analyze 23andMe raw genome data to generate health, trait, ancestry, pharmacogenomic, athletic, and family comparison reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze 23andMe raw genome data to generate comprehensive health, trait, and family comparison reports.
 
-## Publisher: <br>
-[nomadrex](https://clawhub.ai/user/nomadrex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nomadrex](https://clawhub.ai/user/nomadrex)
 
-## Use Case: <br>
-Developers and external users can use this skill to run local analysis of 23andMe v5 raw data, generate individual reports, and compare multiple family genome files for educational or informational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes and can save sensitive genetic, health, trait, and family comparison information. <br>
-Mitigation: Use only with informed consent, store inputs and generated HTML or JSON reports in private non-synced locations, and delete or protect outputs after use. <br>
-Risk: Genome report results may be mistaken for medical guidance. <br>
-Mitigation: Treat results as educational information only and consult a healthcare professional before making health decisions. <br>
-Risk: Family comparison can expose information about relatives who did not agree to participate. <br>
-Mitigation: Run family comparison only when every included person has explicitly agreed to that use. <br>
+## Use Case:
 
+External users and developers use this skill to run local educational analysis of 23andMe raw genome files, generate health and trait summaries, and compare genome files in family mode.
 
-## Reference(s): <br>
-- [SNP database](references/snp_database.json) <br>
-- [ClawHub skill listing](https://clawhub.ai/nomadrex/genome-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Console text, structured JSON, or HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include per-SNP details, category risk scores, disclaimers, and family comparison summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive DNA and health data may be processed or exposed without proper authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only genome files you are authorized to process and keep reports in controlled local storage.
+
+Risk: Family comparison can process genome files from multiple people without clear consent.
+
+Mitigation: Run family comparison only after each person's consent has been obtained.
+
+Risk: Report content may be mistaken for medical or medication guidance.
+
+Mitigation: Treat results as rough educational summaries and do not use them for medical, medication, or clinical decisions.
+
+Risk: Generated HTML reports from untrusted genome files may be unsafe until escaping and validation are fixed.
+
+Mitigation: Avoid opening generated HTML reports from untrusted genome files; review and validate inputs before HTML use.
+
+## Reference(s):
+
+- [SNP database](references/snp_database.json)
+- [ClawHub skill page](https://clawhub.ai/nomadrex/skills/genome-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, HTML, Files]
+
+**Output Format:** [Plain text, JSON, or HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write HTML reports to a path and compare multiple genome files in family mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

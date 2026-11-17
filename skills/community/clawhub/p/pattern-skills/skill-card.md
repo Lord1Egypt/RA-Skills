@@ -1,45 +1,64 @@
-## Description: <br>
-Automates jewellery product marketing using Google Vertex AI, Imagen, and Google Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates jewellery product marketing using Google Vertex AI (Gemini and Imagen) and Google Drive.
 
-## Publisher: <br>
-[itsmebasil](https://clawhub.ai/user/itsmebasil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsmebasil](https://clawhub.ai/user/itsmebasil)
 
-## Use Case: <br>
-Marketing and ecommerce teams can use this skill to turn jewellery product photos and metadata into generated lifestyle images, studio product images, social captions, hashtags, and organized Google Drive assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product images and metadata may be sent to Anthropic and Google services. <br>
-Mitigation: Use only product data approved for those services and disclose external processing to operators before running the skill. <br>
-Risk: The runnable worker exposes a web endpoint that evidence.security says lacks authentication. <br>
-Mitigation: Add authentication and URL allowlisting before exposing the FastAPI worker. <br>
-Risk: Drive links and generated outputs may persist in a broad Redis or local cache. <br>
-Mitigation: Restrict the Google service account to a dedicated Drive folder and disable or re-scope caching in shared environments. <br>
+## Use Case:
 
+External jewellery marketers and developers use this skill to turn product photos and metadata into generated lifestyle images, product images, Instagram captions, hashtags, and organized Google Drive asset folders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/itsmebasil/pattern-skills) <br>
-- [Google Drive file scope](https://www.googleapis.com/auth/drive.file) <br>
-- [Vertex AI Gemini 1.5 Pro endpoint](https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/gemini-1.5-pro:generateContent) <br>
-- [Vertex AI Imagen 3 endpoint](https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/imagen-3.0-generate-002:predict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Images, URLs, Files, JSON] <br>
-**Output Format:** [JSON payload with generated image links, caption text, hashtags, and a Google Drive folder link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs include a product image and jewellery metadata; generated assets may be cached for up to 30 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow sends product images and metadata to Anthropic, Google Vertex AI, Redis, and Google Drive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose these data flows before use and run the skill only with data approved for those services.
+
+Risk: The bundled worker accepts image URLs for cloud-backed processing.
+
+Mitigation: Use URL allowlisting or direct uploads, and enforce download size and timeout limits in a controlled environment.
+
+Risk: Generated assets are uploaded to Google Drive folders.
+
+Mitigation: Restrict Drive destinations and sharing permissions before deployment.
+
+Risk: Server security evidence marks the release suspicious and notes broad cloud-backed processing exposure.
+
+Mitigation: Add authentication, rate limits, strict metadata schemas, and deployment controls before installation or execution.
+
+## Reference(s):
+
+- [Pattern Skill Page](https://clawhub.ai/itsmebasil/skills/pattern-skills)
+- [Google Drive API scope used by the worker](https://www.googleapis.com/auth/drive.file)
+- [Gemini Vertex AI endpoint declared in artifact](https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/gemini-1.5-pro:generateContent)
+- [Imagen Vertex AI endpoint declared in artifact](https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/imagen-3.0-generate-002:predict)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON payloads, image links, Drive links, captions, hashtags, and supporting implementation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated image assets and text files stored in Google Drive, with cache reuse for matching image and metadata payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact config declares 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

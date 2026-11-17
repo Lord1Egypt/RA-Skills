@@ -1,43 +1,58 @@
-## Description: <br>
-Taopiaopiao helps agents summarize public movie, cinema, showtime, price, rating, and basic film information from Taopiaopiao pages without booking or bulk scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summaries of movie showtimes, prices, ratings, and basic public movie or cinema information from Taopiaopiao pages.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and developers use this skill to summarize public Taopiaopiao movie and cinema pages, compare showtimes and price ranges, and prepare lightweight reminders or analysis with source links and collection time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live ticketing pages can contain time-sensitive showtime, region, and price information. <br>
-Mitigation: Include the collection time, region, and source link in summaries, and ask the user to verify details before relying on them. <br>
-Risk: Automating public ticketing pages can create scraping or platform-compliance concerns. <br>
-Mitigation: Keep activity user-directed, apply frequency control, and avoid bulk scraping or interface reverse engineering. <br>
-Risk: Ticketing or account pages may request credentials or payment-related actions. <br>
-Mitigation: Do not book tickets, place orders, or provide account credentials unless the user separately trusts the browsing session and site. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Taopiaopiao movie and cinema pages, including showtimes, theater details, price ranges, ratings, cast, runtime, and release information. It is intended for lightweight analysis and reminders, not booking or account actions.
 
-## Reference(s): <br>
-- [Taopiaopiao homepage](https://dianying.taobao.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/taopiaopiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown summaries with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should include the city or region, collection time, and source page when reporting time-sensitive showtime or price information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Showtimes, prices, and availability may vary by time and region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include the collection time, region, and source link in summaries that use showtime or price information.
+
+Risk: The skill could be misused for purchases, account actions, or attempts to bypass platform controls.
+
+Mitigation: Keep usage limited to public-page summarization and do not perform booking, payment, account, reverse-engineering, or platform-bypass actions.
+
+Risk: High-frequency collection could become bulk scraping.
+
+Mitigation: Use frequency control, avoid bulk collection, and prefer human-opened public pages before parsing when dynamic rendering or location context matters.
+
+## Reference(s):
+
+- [Taopiaopiao Homepage](https://dianying.taobao.com/)
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/taopiaopiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should include collection time, region, and source links when showtime or price information is used.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence, created 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

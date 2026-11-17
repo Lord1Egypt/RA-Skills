@@ -1,43 +1,60 @@
-## Description: <br>
-ClawBus is Managed OpenClaw for creator workflows, providing a directory, installer, and activation guide for YouTube API, Instagram publishing, and TikTok publishing skill packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBus is a managed OpenClaw directory and activation skill for creator workflows across YouTube, Instagram, and TikTok publishing through MyBrandMetrics.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-Developers and creator-operations agents use this skill to discover, install, refresh, and activate ClawBus creator workflow skills for YouTube API workflows, Instagram publishing, and TikTok publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote skill packages may overwrite local skill instructions and be activated immediately. <br>
-Mitigation: Review downloaded files before use, confirm the exact slug and source, and avoid broad automatic refresh or overwrite behavior. <br>
-Risk: Creator publishing workflows can use sensitive credentials and create public content. <br>
-Mitigation: Confirm final caption, title, media, privacy setting, and destination account before publishing, and do not expose tokens or API keys in logs or replies. <br>
+## Use Case:
 
+External users and agents use this skill to discover, install, refresh, and activate ClawBus creator workflow skills for YouTube API operations, Instagram publishing, and TikTok publishing. It helps route requests for supported ClawBus skill slugs to the current installable skill package.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawbus/clawbus-skill) <br>
-- [ClawBus website](https://www.clawbus.com/) <br>
-- [MyBrandMetrics API](https://mybrandmetrics.com/) <br>
-- [ClawBus API base](https://www.clawbus.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct an agent to fetch, write, refresh, and inspect local skill files before activating a selected ClawBus skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.6 (source: server release metadata) <br>
+Risk: The skill may refresh and activate remote instructions that replace local skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review downloaded files before use and install only when ClawBus is trusted as a live source of skill instructions.
+
+Risk: Publishing workflows can post public content or make irreversible account changes.
+
+Mitigation: Require explicit confirmation of caption, title, media, privacy setting, and destination account before any posting, publishing, or irreversible action.
+
+Risk: Creator platform credentials or API keys may be exposed if handled carelessly.
+
+Mitigation: Avoid ambient credentials and do not expose private tokens, API keys, or user credentials in logs or replies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawbus/skills/clawbus-skill)
+- [ClawBus website](https://www.clawbus.com/)
+- [MyBrandMetrics API](https://mybrandmetrics.com/)
+- [ClawBus API](https://www.clawbus.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands, URLs, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to install or refresh remote skill files before following the downloaded skill instructions.]
+
+## Skill Version(s):
+
+4.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

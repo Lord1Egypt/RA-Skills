@@ -1,52 +1,63 @@
-## Description: <br>
-Helps 1688 merchants inspect AI customer groups, review buyer details, activate Wangwang marketing plans, and get buyer follow-up recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps 1688 merchants inspect AI customer segments, review buyer details, generate buyer follow-up advice, monitor customer opportunities, and activate confirmed Wangwang marketing plans.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External 1688 merchants use this skill to identify customer opportunities, inspect customer groups and buyer profiles, and prepare or activate follow-up outreach after merchant confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 1688 account credential and can access customer data. <br>
-Mitigation: Install only when the publisher is trusted, confirm why the credential is needed, and verify where the AK is stored before configuration. <br>
-Risk: Confirmed Wangwang marketing plans can initiate customer outreach. <br>
-Mitigation: Review every generated or recommended marketing message before activation and keep merchant confirmation in the workflow. <br>
-Risk: Security evidence flags inconsistent credential handling and undisclosed usage reporting. <br>
-Mitigation: Review credential handling and usage reporting expectations before deployment, especially for production merchant accounts. <br>
+## Use Case:
 
+External 1688 merchants and sales operators use this skill to identify high-value customer segments, inspect buyer profiles, receive follow-up guidance, and launch confirmed customer outreach plans.
 
-## Reference(s): <br>
-- [Configure AK](artifact/references/capabilities/configure.md) <br>
-- [List Customer Cluster](artifact/references/capabilities/list_customer_cluster.md) <br>
-- [List Cluster Buyer Detail](artifact/references/capabilities/list_cluster_buyer_detail.md) <br>
-- [List Customer Details](artifact/references/capabilities/list_customer_details.md) <br>
-- [Customer Reception Advice](artifact/references/capabilities/customer_reception_advice.md) <br>
-- [Customer Crowd Analysis](artifact/references/capabilities/customer_crowd_analysis.md) <br>
-- [Get Cluster Marketing Plan](artifact/references/capabilities/get_cluster_marketing_plan.md) <br>
-- [Activate Cluster Plan](artifact/references/capabilities/activate_cluster_plan.md) <br>
-- [Interaction Specs](artifact/references/interaction-specs.md) <br>
-- [Language Rules](artifact/references/lang-rules.md) <br>
-- [Display Rules](artifact/references/display-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON command results with merchant-facing Markdown and interactive table or input payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows require merchant confirmation before customer outreach; tool markdown is expected to be preserved verbatim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Access Keys can be exposed through chat, command-line use, local files, or an untrusted gateway configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, prefer platform-managed secret handling, avoid pasting production Access Keys unless the exposure risk is accepted, trust only approved OPENCLAW_GATEWAY_URL values, and check permissions on any openclaw.json file storing credentials.
+
+Risk: The skill can read customer and buyer-operation data.
+
+Mitigation: Use it only in approved merchant contexts and verify that operators have permission to access the customer data returned by the skill.
+
+Risk: The skill can activate a Wangwang marketing plan after confirmation.
+
+Mitigation: Require merchant review of the marketing copy and plan details before activation.
+
+## Reference(s):
+
+- [Configure Access Key](artifact/references/capabilities/configure.md)
+- [List Customer Clusters](artifact/references/capabilities/list_customer_cluster.md)
+- [List Cluster Buyer Detail](artifact/references/capabilities/list_cluster_buyer_detail.md)
+- [Customer Reception Advice](artifact/references/capabilities/customer_reception_advice.md)
+- [Customer Crowd Analysis](artifact/references/capabilities/customer_crowd_analysis.md)
+- [Get Cluster Marketing Plan](artifact/references/capabilities/get_cluster_marketing_plan.md)
+- [Activate Cluster Plan](artifact/references/capabilities/activate_cluster_plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured JSON returned by local CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language merchant-facing responses; may include tables, buyer profiles, follow-up suggestions, and CRM links.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

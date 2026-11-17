@@ -1,43 +1,56 @@
-## Description: <br>
-Discover AI agent services including tools, platforms, and infrastructure categorized for easy integration and exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The directory for AI agent services, helping agents discover tools, platforms, and infrastructure built for agent integration.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Agents, developers, and integration teams use this skill to discover categorized AI agent services and fetch service skill.md documents for evaluation and integration planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SkillBoss API key and sends service listing and skill document requests to api.skillboss.co. <br>
-Mitigation: Install only if external API processing is acceptable, protect the API key, and review outbound requests before use. <br>
-Risk: Fetched third-party skill.md documents are external content and may propose credentials, commands, account connections, or other actions. <br>
-Mitigation: Review fetched skill documents as untrusted external content before granting credentials, running commands, or following operational instructions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find agent-oriented services, inspect service metadata, and retrieve service skill.md files before deciding how to integrate them.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/godferylindsay/martin-agent-directory) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [Ctxly agent service directory](https://ctxly.com) <br>
-- [Ctxly services JSON](https://ctxly.com/services.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python request examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and network requests to api.skillboss.co; fetched third-party skill.md content should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Fetched service skill.md content can change outside this release and may contain unsafe instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched service content as untrusted evidence; review it before following instructions or allowing credential use, file access, command execution, or further network transmission.
+
+Risk: Using the skill sends requested service URLs to SkillBoss and requires a SKILLBOSS_API_KEY.
+
+Mitigation: Use the skill only when sending those URLs to SkillBoss is acceptable, and scope the API key according to the deployment's credential policy.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/godferylindsay/skills/martin-agent-directory)
+- [Publisher profile](https://clawhub.ai/user/godferylindsay)
+- [Agent Directory homepage](https://ctxly.com)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for SkillBoss API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

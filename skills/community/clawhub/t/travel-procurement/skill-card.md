@@ -1,41 +1,53 @@
-## Description: <br>
-Source, compare, and recommend travel transport options (bus/train/shuttle/taxi/private transfer) from user-provided trip constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Source, compare, and recommend travel transport options (bus/train/shuttle/taxi/private transfer) from user-provided trip constraints for route planning, quote comparison, and decision-ready recommendations.
 
-## Publisher: <br>
-[austineyapp](https://clawhub.ai/user/austineyapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[austineyapp](https://clawhub.ai/user/austineyapp)
 
-## Use Case: <br>
-Travel planners, operations teams, and individual travelers use this skill to compare transport options against route, timing, passenger, luggage, budget, and comfort constraints. It supports decision-ready recommendations for value, convenience, and fallback travel choices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel prices, schedules, cancellation terms, or availability may be stale or incorrect. <br>
-Mitigation: Verify live provider details before relying on an option or presenting it for purchase. <br>
-Risk: A recommended provider or booking channel may not be legitimate or suitable for the traveler. <br>
-Mitigation: Check provider legitimacy, payment details, route fit, passenger capacity, and luggage capacity before booking. <br>
-Risk: The skill can prepare next-step execution after a user chooses an option, which may lead toward booking or payment. <br>
-Mitigation: Require separate explicit approval before any booking, payment, or irreversible travel commitment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Option Format](references/option-format.md) <br>
+## Use Case:
 
+Travel planners and assistants use this skill to collect trip constraints, compare public and private transport options, and produce concise recommendations with a fallback option.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown comparison with normalized options, recommendations, fallback, and decision ask] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each option should include total price, practical caveat, cancellation terms, capacity fit, and a risk note.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A transport comparison may be used to initiate booking, payment, or account-based actions without enough user review.
+
+Mitigation: Require explicit user confirmation before any booking, payment, or account-based action.
+
+Risk: Travel quote requests may expose more personal trip detail than needed.
+
+Mitigation: Provide only the travel details needed to obtain and compare the requested options.
+
+## Reference(s):
+
+- [Option Format](references/option-format.md)
+- [Travel Procurement on ClawHub](https://clawhub.ai/austineyapp/skills/travel-procurement)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recommendations with normalized option details and a decision prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes total price, practical caveat, risk note, and fallback option for each comparison set.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

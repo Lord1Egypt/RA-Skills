@@ -1,0 +1,14 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "prompt": "Image 1 defines the product appearance. Video 1 is only a camera-movement reference. Generate a product demonstration in natural light.",
+  "duration_seconds": 10,
+  "resolution": "720p",
+  "aspect_ratio": "9:16",
+  "omni_reference_task_type": "reference",
+  "reference_image_urls": [
+    "https://example.com/product.jpg"
+  ],
+  "reference_video_urls": [
+    "https://example.com/camera.mp4"
+  ]
+}

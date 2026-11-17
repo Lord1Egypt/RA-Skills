@@ -1,42 +1,50 @@
-## Description: <br>
-Helps users check in rituals, track streaks, and view tribe activity on TribuRuby. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users check in rituals, track streaks, and view tribe activity on TribuRuby.
 
-## Publisher: <br>
-[a8ns](https://clawhub.ai/user/a8ns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a8ns](https://clawhub.ai/user/a8ns)
 
-## Use Case: <br>
-External TribuRuby users and athletes use this skill to view training context, track ritual completion and streaks, review tribe activity, and submit ritual check-ins. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a TribuRuby API key that can access training context and tribe member activity. <br>
-Mitigation: Use a dedicated TribuRuby Agent API key and revoke or rotate it if the agent no longer needs access. <br>
-Risk: The skill can submit ritual check-ins that affect user training records. <br>
-Mitigation: Review the ritual, quantity, protocol, and date before allowing the agent to submit a check-in. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TribuRuby homepage](https://triburuby.app) <br>
-- [TribuRuby agent API](https://triburuby.app/api/agent) <br>
-- [ClawHub skill page](https://clawhub.ai/a8ns/triburuby) <br>
-- [Publisher profile](https://clawhub.ai/user/a8ns) <br>
+## Use Case:
 
+External TribuRuby users use this skill to review tribe activity, monitor ritual completion and streaks, and submit training ritual check-ins through their TribuRuby account.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text, markdown] <br>
-**Output Format:** [Markdown and concise text with API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TRIBURUBY_API_KEY to access TribuRuby training context and submit check-ins when appropriate.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses the user's TribuRuby API key and can read training activity and submit ritual check-ins to the user's TribuRuby account.
+
+Mitigation: Use it only when the user is comfortable with agent access to TribuRuby activity, and confirm the ritual, date, and quantity before submitting any check-in.
+
+## Reference(s):
+
+- [TribuRuby Homepage](https://triburuby.app)
+- [TribuRuby Agent API Base](https://triburuby.app/api/agent)
+- [ClawHub Skill Listing](https://clawhub.ai/a8ns/skills/triburuby)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown responses with API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRIBURUBY_API_KEY for authenticated TribuRuby account access.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

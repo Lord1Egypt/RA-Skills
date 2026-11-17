@@ -1,41 +1,58 @@
-## Description: <br>
-FinStep Tools provides A-share financial data access for real-time quotes, sector data, company information, macroeconomic indicators, research reports, news, and announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FinStep Tools helps agents retrieve FinStep financial market, sector, company, macroeconomic, research, and news data through shell wrappers around the FinStep service.
 
-## Publisher: <br>
-[zacbai](https://clawhub.ai/user/zacbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zacbai](https://clawhub.ai/user/zacbai)
 
-## Use Case: <br>
-Developers and financial-data users can use this skill to query FinStep for market quotes, sector rankings, company fundamentals, macroeconomic indicators, financial news, reports, announcements, and trading calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FINSTEP_SIGNATURE and financial queries are sent to the FinStep service, and the security evidence reports that the required API signature is sent in URL parameters over plain HTTP. <br>
-Mitigation: Install only if the publisher and service are trusted, treat FINSTEP_SIGNATURE as a secret, avoid confidential queries, and prefer a version that uses HTTPS with credentials sent through an Authorization header or managed secret store. <br>
-Risk: The security verdict is suspicious because credential handling is unsafe, even though the skill appears to provide legitimate financial-data functionality. <br>
-Mitigation: Use a review-before-execution posture, inspect generated shell commands before running them, and rotate the FinStep signature if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users use this skill to query A-share market quotes, sector rankings, company fundamentals, macroeconomic indicators, trading calendars, and finance-related search results through FinStep's API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zacbai/finstep-tools) <br>
-- [FinStep API base URL](http://fintool-mcp.finstep.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown command guidance and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSTEP_SIGNATURE; some API endpoints may be rate limited or return endpoint-specific errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill sends the FINSTEP API signature and user financial queries over plaintext HTTP, with the signature included in the request URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a low-value or short-lived signature, avoid sensitive queries, and prefer a restricted network environment until the publisher supports HTTPS and non-query-string credential handling.
+
+Risk: General web and URL fetching features are present but underdocumented.
+
+Mitigation: Review or restrict use of the web search and URL parsing commands before deployment, especially in environments handling confidential data.
+
+Risk: User-provided inputs are passed into shell-built request payloads.
+
+Mitigation: Avoid passing untrusted strings directly to the scripts and review input serialization before using the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zacbai/skills/finstep-tools)
+- [FinStep MCP API base URL](http://fintool-mcp.finstep.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON responses from the FinStep service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FINSTEP_SIGNATURE environment variable before script execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

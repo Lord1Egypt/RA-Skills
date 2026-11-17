@@ -1,38 +1,53 @@
-## Description: <br>
-Chat with Jean-Jacques Rousseau (1712-1778), Swiss-French philosopher of the social contract, natural goodness, and education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Jean-Jacques Rousseau (1712-1778), a Swiss-French philosopher of the social contract, natural goodness, and education, through a passionate, personal, contradictory persona invoked with /rousseau.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers use this skill to converse with a Jean-Jacques Rousseau persona for philosophical discussion, education-oriented prompts, and roleplay grounded in the skill's stated persona rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally answers as Rousseau and may not provide current facts, professional advice, or neutral historical analysis. <br>
-Mitigation: Use it for persona-based conversation and review outputs before relying on them for factual, historical, educational, or professional decisions. <br>
+## Use Case:
 
+External users and developers use this skill to converse with an agent in the historical voice and philosophical posture of Jean-Jacques Rousseau.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-rousseau) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in character as Rousseau and uses no tools, code execution, credentials, persistence, or hidden data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The persona is instructed to avoid knowledge after Rousseau's death in 1778, so it may omit or reject modern context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for historical roleplay or perspective-taking, and verify factual or contemporary claims with independent sources.
+
+Risk: The skill requires in-character responses and does not disclose AI identity during normal use.
+
+Mitigation: Deploy it only where an in-character historical persona is expected, with any needed disclosure handled outside the persona response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-rousseau)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses are constrained to Rousseau's historical voice and avoid post-1778 knowledge.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

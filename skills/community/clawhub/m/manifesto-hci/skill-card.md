@@ -1,47 +1,58 @@
-## Description: <br>
-Implement "Explicit State & Continuous Consensus" HCI pattern (v3.0) to combat information entropy, prevent intent drift, and maintain a shared Manifesto source of truth across long-term interactions using Tri-Track Architecture and Git-backed state management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manifesto HCI implements the Explicit State & Continuous Consensus pattern to maintain Git-backed project state, conversation logs, and intent synchronization for long-running agent work.
 
-## Publisher: <br>
-[leozhoski](https://clawhub.ai/user/leozhoski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leozhoski](https://clawhub.ai/user/leozhoski)
 
-## Use Case: <br>
-Developers, writers, planners, and other external users use this skill to keep long-running AI projects aligned around an explicit project Manifesto, local conversation logs, and Git-backed state snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records full user and assistant messages into local project history. <br>
-Mitigation: Avoid secrets, regulated data, or sensitive business content unless local storage and retention are acceptable. <br>
-Risk: Git commits can preserve sensitive content even after working files are edited. <br>
-Mitigation: Inspect the created projects/prj_<project_id>/ directory and delete or rewrite both logs and Git history if sensitive content is captured. <br>
-Risk: Project state changes are driven by explicit slash-command workflows and may persist across long-running interactions. <br>
-Mitigation: Use /manifesto pause or /manifesto stop when persistent state updates are no longer intended. <br>
+## Use Case:
 
+Developers, writers, and planners use this skill to keep durable goals, constraints, decisions, and active work state aligned across long-running projects. It is intended for projects where intent drift and loss of shared context are material risks.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/leozhoski/manifesto-hci) <br>
-- [Specification](references/specification.md) <br>
-- [Diff Sub-Agent Prompt](references/diff_agent_prompt.md) <br>
-- [Manifesto Template](references/manifesto_template.md) <br>
-- [Light Mode Protocol](references/light_mode_protocol.md) <br>
-- [Light Mode Guide](references/light_mode_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command snippets, JSON audit receipts, and local project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local project directories, JSONL logs, Manifesto Markdown files, and Git commits when the slash-command workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist full conversation history and project state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for projects where local Git-backed memory is desired, avoid sharing secrets while it is active, and review generated logs and commits.
+
+Risk: Broad activation triggers and weak input scoping can record more context than expected.
+
+Mitigation: Use a dedicated, non-sensitive project_id and avoid shared or untrusted conversations unless consent controls and path validation are added.
+
+## Reference(s):
+
+- [Manifesto HCI System Architecture and Protocol](references/specification.md)
+- [Diff Sub-Agent System Prompt](references/diff_agent_prompt.md)
+- [Manifesto Template](references/manifesto_template.md)
+- [Light Mode Protocol](references/light_mode_protocol.md)
+- [Light Mode Guide](references/light_mode_guide.md)
+- [ClawHub skill page](https://clawhub.ai/leozhoski/skills/manifesto-hci)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON audit receipts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project state, append JSONL conversation logs, and create Git commits during use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

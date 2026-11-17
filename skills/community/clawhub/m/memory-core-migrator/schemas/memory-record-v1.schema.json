@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openclaw-memory-migrator:schema:memory-record-v1",
+  "title": "MemoryRecord v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "scope",
+    "source_id",
+    "timestamp",
+    "category",
+    "importance",
+    "metadata",
+    "text",
+    "content_hash",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "source_id": {"type": ["string", "null"]},
+    "timestamp": {"type": ["string", "null"]},
+    "category": {"type": "string", "minLength": 1},
+    "importance": {"type": ["number", "null"]},
+    "metadata": {"type": "object"},
+    "text": {"type": "string", "minLength": 1},
+    "content_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "provenance": {"type": "object"}
+  }
+}

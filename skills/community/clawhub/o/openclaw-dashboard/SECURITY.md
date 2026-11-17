@@ -1,71 +1,73 @@
 # Security Model — OpenClaw Dashboard
 
-## Threat Model & Design Philosophy
+## Boundary
 
-This dashboard is an **administrative control plane** for OpenClaw — analogous to Terraform, Ansible, or Kubernetes Dashboard. Administrative tools inherently require elevated capabilities (file access, process control, service management). The security model is **defense-in-depth with opt-in escalation**: all sensitive capabilities are disabled by default and require explicit operator consent to activate.
+This package is a local-first, read-only observability surface. It reads selected OpenClaw runtime files and local service endpoints to render health, session, usage, cron, Spark, and task views.
 
-**Key principle:** No sensitive capability is available without the operator explicitly setting an environment variable AND being on localhost.
+It does not register routes for task/file mutation, agent spawning, model changes, restart, doctor repair, package updates, backup/restore, or a legacy backend proxy. Use the authenticated OpenClaw Control UI or CLI for operator actions.
 
 ## Authentication
 
-- **Primary**: HttpOnly + SameSite=Strict cookie (`ds`), set at `/auth` endpoint.
-- **Initial handoff**: URL `?token=` parameter accepted once on page load, then immediately stripped from the address bar via `history.replaceState` to prevent leakage in Referer headers, server logs, and browser history.
-- **API calls**: All subsequent API requests use `Authorization: Bearer <token>` header — never URL query parameters.
-- **No client-side token storage**: Auth tokens are NOT stored in localStorage or sessionStorage. This eliminates XSS-based token theft.
-- **Localhost-only by default**: Dashboard binds to `127.0.0.1`. External access requires explicit Tailscale Funnel or reverse proxy setup.
+- **Primary:** URL-encoded HttpOnly + SameSite=Strict cookie (`ds`), set by `POST /login`.
+- **HTTPS deployments:** Set `DASHBOARD_COOKIE_SECURE=1` so the cookie also carries `Secure`.
+- **API clients:** `Authorization: Bearer <token>` is supported.
+- **Login boundary:** Authentication is accepted only through `POST /login`, the `ds` cookie, or a Bearer header.
+- **Query boundary:** Query-string tokens are rejected on all routes so credentials do not enter browser history, referrers, or proxy access logs.
+- **No browser token storage:** The frontend does not write the token to localStorage or sessionStorage.
+- **Bind safety:** The default bind is `127.0.0.1`; the server refuses a non-loopback bind when `OPENCLAW_AUTH_TOKEN` is empty.
 
-## Capability Escalation Matrix
+Incoming request URLs are parsed against a fixed internal base. An invalid or attacker-controlled `Host` header is never used as the URL base.
 
-All elevated capabilities follow the same pattern: **off by default → env flag to enable → localhost-only → input sanitization**.
+## Capability boundaries
 
-| Capability | Env Flag Required | Default | Localhost-Only | Input Sanitization |
-|---|---|---|---|---|
-| File attachment copy | `OPENCLAW_ALLOW_ATTACHMENT_FILEPATH_COPY=1` | ❌ Off | ✅ Yes | `realpathSync` symlink resolution, directory allowlist (`/tmp`, `~/.openclaw`, workspace) |
-| Git push / backup | `OPENCLAW_ENABLE_MUTATING_OPS=1` | ❌ Off | ✅ Yes | `execFileSync` with array args (no shell expansion) |
-| npm install | `OPENCLAW_ENABLE_MUTATING_OPS=1` | ❌ Off | ✅ Yes | `execFileSync` with array args |
-| Service restart | `OPENCLAW_ENABLE_MUTATING_OPS=1` | ❌ Off | ✅ Yes | Proxied via authenticated API endpoint with env-sourced token |
-| Task CRUD / notes | `OPENCLAW_AUTH_TOKEN` (always required) | N/A | ✅ Yes | SQL parameterized queries, `escHtml` output encoding |
+| Surface | Default | Boundary |
+|---|---|---|
+| Runtime metrics, sessions, usage, cron, tasks | Enabled after dashboard auth | Read-only |
+| Config details | Disabled | Requires `OPENCLAW_ENABLE_CONFIG_ENDPOINT=1`; values are redacted |
+| Meeting Copilot | Disabled | Requires `OPENCLAW_ENABLE_COPILOT=1`, `ALIBABA_CLOUD_API_KEY`, and authenticated WebSocket upgrade |
+| Operator actions | Not registered | Use OpenClaw Control UI or CLI |
 
-**Without any flags set**, the dashboard is a **read-only monitoring tool** with zero mutating surface.
+The public `/health` response reports these boundaries through `capabilities`.
 
-### File Copy Path Restrictions
+## Meeting Copilot
 
-When `OPENCLAW_ALLOW_ATTACHMENT_FILEPATH_COPY=1` is set:
-- Paths are resolved via `fs.realpathSync` to prevent symlink traversal attacks
-- Only files under these directories are accessible: `/tmp`, `~/.openclaw`, and the configured workspace
-- All other paths are rejected with 403
+- Microphone access begins only after an explicit **Start** click and a confirmation covering participant consent and cloud-audio processing.
+- WebSocket upgrades reject unauthenticated, disabled, or incomplete configurations.
+- WebSocket messages are bounded by a 64 KiB maximum payload.
+- Credentials come only from the process environment; the provider does not scan `keys.env` or `~/.openclaw/.env`.
+- Each browser connection gets a random meeting ID and scoped Redis channels:
 
-### Process Execution Safety
-
-All `child_process` calls use `execFileSync` with **array arguments** (never string concatenation), which prevents shell injection by design. No user input is ever interpolated into a shell command string.
-
-## Prompt Injection Surface
-
-The dashboard relays task descriptions and cron messages to the OpenClaw agent via `sessions_send`. This is an inherent prompt injection surface in any AI agent system.
-
-**Mitigations in place:**
-1. `sanitizeUntrustedText()` strips control characters, trims to max length, and rejects known injection patterns.
-2. All task fields are wrapped with `[UNTRUSTED USER INPUT]` markers before reaching the agent.
-3. The agent's system prompt instructs it to treat these fields as data, not instructions.
-
-**Residual risk:** A sufficiently crafted payload could still influence agent behavior. This is a fundamental limitation of LLM-based systems, not specific to this dashboard. This risk is equivalent to any system that passes user input to an LLM (e.g., ChatGPT plugins, Slack bots, email assistants).
-
-## XSS Prevention
-
-- **Markdown rendering**: All markdown output (task descriptions, file previews) is sanitized through DOMPurify before injection into the DOM.
-- **Static text**: Uses `escHtml()` for all user-supplied strings in non-markdown contexts.
-- **Gateway restart**: Proxied through authenticated `/ops/restart` endpoint on the API server — no tokens embedded in client-side code.
-
-## Data Storage
-
-- SQLite database and logs stored under `~/.openclaw/` (not web-accessible)
-- No secrets stored in the dashboard's own files
-- Dashboard reads `OPENCLAW_AUTH_TOKEN` from environment, never writes it to disk
-
-## Summary of Security Layers
-
-```
-Request → Localhost check → Auth (cookie/Bearer) → Env flag gate → Input sanitization → Action
+```text
+meeting.<meetingId>.transcript
+meeting.<meetingId>.rag_hits
+meeting.<meetingId>.insights
 ```
 
-Every elevated action passes through **4 independent security checks** before execution. Disabling any single layer does not compromise the others.
+Only the first active meeting receives legacy unscoped-channel compatibility. Concurrent meetings do not share global Redis events.
+
+## Browser output safety
+
+- Markdown output is sanitized with DOMPurify before insertion.
+- Non-Markdown dynamic text uses `escHtml()` or text nodes.
+- Frontend API calls are same-origin.
+- The Control UI link is supplied by the authenticated runtime health configuration and hidden when a loopback target would be unusable for a remote viewer.
+
+## Local data and subprocesses
+
+- Runtime task data is stored under `~/.openclaw/dashboard/`, outside the skill bundle.
+- Config, session, cron, watchdog, and ledger data remain under `~/.openclaw/`.
+- The dashboard never writes credentials to disk.
+- SQLite reads invoke the `sqlite3` executable with an argument array and no shell expansion.
+
+## Request hardening
+
+- Malformed cookie fragments are ignored instead of throwing.
+- Cookie values are split on the first `=` and percent-decoded per fragment.
+- Request bodies and Copilot WebSocket payloads have explicit size limits.
+- CORS is loopback-only by default; set `DASHBOARD_CORS_ORIGINS` to an explicit comma-separated allowlist for other origins.
+
+## Security flow
+
+```text
+Request → safe URL parse → auth → registered read route or opt-in Copilot → bounded output
+```

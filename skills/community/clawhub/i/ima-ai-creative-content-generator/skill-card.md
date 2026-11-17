@@ -1,44 +1,61 @@
-## Description: <br>
-All-in-one AI content generator for creative, marketing, and social media workflows across image, video, music, and text-to-speech generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one AI content generator for creative, marketing, and social media workflows across image, video, music, and text-to-speech generation.
 
-## Publisher: <br>
-[dai-shuo](https://clawhub.ai/user/dai-shuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dai-shuo](https://clawhub.ai/user/dai-shuo)
 
-## Use Case: <br>
-External users, marketers, creators, and developers use this skill to generate AI images, videos, music, speech, ads, social content, and multi-step creative workflows through IMA Studio services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid IMA credits, private prompts, or local media may be used or uploaded during generation. <br>
-Mitigation: Use a scoped or test IMA key first, confirm the intended media task and model before execution, and avoid sensitive local files unless upload is intended. <br>
-Risk: Local preferences and operational logs can retain usage metadata. <br>
-Mitigation: Periodically inspect or delete ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ when local retention is not desired. <br>
-Risk: Broad auto-activation and multimodal routing can lead to unintended API calls or costs. <br>
-Mitigation: Review the planned media type, model, estimated cost, and requested output before running generation. <br>
+## Use Case:
 
+Creators, marketers, social media teams, and developers use this skill to generate campaign assets, product visuals, promotional clips, background music, jingles, narration, and multi-media creative workflows through IMA Studio services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dai-shuo/ima-ai-creative-content-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/dai-shuo) <br>
-- [IMA Studio homepage](https://imastudio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration guidance, Media URLs] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command output, progress messages, and generated media URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY and python3; image/video/music/TTS results are returned as service-generated URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can expose API keys, prompts, URLs, and local files beyond the clearly bounded generation flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a scoped or test IMA API key, and avoid passing sensitive local paths as image inputs.
+
+Risk: A custom base URL can receive the API key and prompts.
+
+Mitigation: Use the default IMA endpoint or another destination only when you fully control and trust it.
+
+Risk: Local preference and log files may retain workflow details after use.
+
+Mitigation: Check or clear ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dai-shuo/skills/ima-ai-creative-content-generator)
+- [IMA Studio homepage](https://imastudio.com)
+- [IMA API key management](https://www.imaclaw.ai/imaclaw/apikey)
+- [IMA credits and subscription](https://www.imaclaw.ai/imaclaw/subscription)
+- [Security disclosure](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, media URLs]
+
+**Output Format:** [Markdown guidance with shell command examples, progress messages, and generated media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMA_API_KEY for IMA service requests; generated outputs may include image, video, audio, or speech URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

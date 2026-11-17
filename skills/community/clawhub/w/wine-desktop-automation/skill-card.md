@@ -1,41 +1,57 @@
-## Description: <br>
-Controls desktop applications with mouse and keyboard automation. Invoke when user needs to automate GUI operations, control desktop software, or perform UI testing on Ubuntu+Wine environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls desktop applications with mouse and keyboard automation for GUI operations, desktop software control, and UI testing in Ubuntu + Wine environments.
 
-## Publisher: <br>
-[xiaodu](https://clawhub.ai/user/xiaodu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaodu](https://clawhub.ai/user/xiaodu)
 
-## Use Case: <br>
-Developers and test engineers use this skill to automate GUI workflows, UI testing, Wine-hosted Windows applications, and repetitive desktop tasks on Ubuntu systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local desktop automation can click controls, type text, switch windows, launch executables, capture screenshots, and manage Wine processes in the active user session. <br>
-Mitigation: Use it only for precise user-controlled tasks, keep sensitive windows closed, avoid typing secrets, and require explicit human approval before launching unknown executables, saving screenshots, killing windows or processes, or changing Wine prefixes. <br>
-Risk: Window and image matching can target the wrong application or UI element if titles, coordinates, templates, screen resolution, or DPI settings differ. <br>
-Mitigation: Prefer exact window titles or process names, constrain image searches to known regions, add UI-response delays, and verify behavior on the target screen configuration before unattended use. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate Linux and Wine-hosted Windows GUI workflows, including UI testing, image-based control, window management, and repetitive desktop tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaodu/wine-desktop-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaodu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe or invoke local desktop actions such as mouse and keyboard input, window management, Wine process control, and screenshots when explicitly used by an agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live desktop control can affect active applications or sensitive windows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run automation in a dedicated test desktop or VM when possible, and keep sensitive windows closed before execution.
+
+Risk: The skill can launch applications, close or kill windows and processes, and change Wine prefixes.
+
+Mitigation: Review automation scripts before use and require explicit target applications, windows, processes, and prefixes for destructive actions.
+
+Risk: Screenshot and image-recognition workflows may capture sensitive on-screen information.
+
+Mitigation: Limit capture to the required screen region where possible and avoid running the skill while confidential content is visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaodu/skills/wine-desktop-automation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

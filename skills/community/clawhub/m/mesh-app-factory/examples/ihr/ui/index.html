@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>iHr</title>
+<style>
+/*设置标准字体*/body {font-family:'微软雅黑', sans-serif !important;}
+/*设置衬线字体*/.serif {font-family:'宋体', serif !important;}
+/*设置无衬线字体*/.sans-serif {font-family:'微软雅黑', sans-serif !important;}
+</style>
+</head>
+<body>
+<div id="app" v-cloak><router-view></router-view></div>
+
+<template id="tpl_home">
+<q-layout view="hHh lpr fFf">
+<q-header>
+  <q-toolbar>
+   <q-avatar><img src="./favicon.png"></q-avatar>
+   <q-toolbar-title>{{tags.app_name}}</q-toolbar-title>
+  </q-toolbar>
+  <div class="text-right bg-white q-pt-sm">
+    <q-btn :label="tags.cfg.title" @click="goto('/config')"
+     icon="settings" color="accent" flat class="q-pl-none"
+     v-if="service.userInfo.powers.ihr=='admin'"></q-btn>
+    <q-btn :label="tags.pool.title" @click="goto('/pool')"
+     icon="group" color="primary" padding="xs" flat class="q-pl-none"></q-btn>
+    <q-btn :label="tags.employee.title" @click="goto('/employees')" 
+     icon="badge" color="primary" flat class="q-pl-none"></q-btn>
+    <q-btn :label="tags.grp.title" @click="goto('/grp?id=0')"
+     icon="account_tree" color="orange" flat padding="xs"></q-btn>
+    <q-btn :label="tags.salary.title" @click="goto('/salary')"
+     icon="attach_money" color="primary" flat class="q-pl-none"></q-btn>
+  </div>
+</q-header>
+<q-page-container>
+ <q-page class="q-pa-sm">
+  <q-separator spaced="sm"></q-separator>
+  <ibf></ibf>
+ </q-page>
+</q-page-container>
+</q-layout>
+</template>
+
+</body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script type="module">
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import DateInput from "/assets/v3/components/date_input.js"
+import MonthInput from "/assets/v3/components/month_input.js"
+import UserSelector from "/assets/v3/components/user_selector.js"
+import UserInput from "/assets/v3/components/user_input.js"
+import IBF from '/ibfbase/ibf.js'
+
+import Language from "./language.js"
+import { registerIbf } from '/ibfbase/ibf.js';
+
+const homeTpl=document.getElementById('tpl_home');
+const Home = {
+inject:['tags','service'],
+methods:{
+goto(url) {
+    this.$router.push(url);
+}
+},
+template:homeTpl.innerHTML
+}
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+  {path:'/home', component:Home},
+  {path:'/grp', component:()=>import('./grp.js')}, //群组、成员管理
+  {path:'/config', component:()=>import('./config.js')},
+  {path:'/zone', component:()=>import('./zone.js')}, //大区管理
+  {path:'/calendar', component:()=>import('./calendar.js')}, //工作日历
+  {path:'/salary', component:()=>import('./salary.js')}, //奖金、分红，工资自动生成，由hr确认
+  {path:'/employees', component:()=>import('./employees.js')}, //雇员列表
+  {path:'/employee', component:()=>import('./employee.js')}, //雇员详情、关键事件
+  {path:'/pool', component:()=>import('./pool.js')}, //人才库
+  {path:'/person', component:()=>import('./person.js')}, //人才详情
+  {path:'/workflow', component:()=>import('./workflow.js')} //entry,leave,stock、salary、grade工作流
+]});
+
+//service定义
+const service = {name:"ihr",N_PAGE:10,N_SMPG:5,lang:l,
+userInfo:{id:-1,powers:{}},
+zones:[],offices:[],officeMap:{},worktimes:[],worktimeMap:{},
+zoneList() {
+    if(this.zones.length>0){
+        return new Promise(resolve=>{ resolve(this.zones) });
+    }
+    var url="/api/config/queryZone";
+    return request({method:"GET",url:url}, this.name).then(resp=>{
+        if(resp.code != 0) {
+            return [];
+        }
+        var opts=[];
+        for(var l of resp.data.list) {
+            opts.push({label:l.name,value:l.id});
+        }
+        this.zones=opts;
+        return opts;
+    });
+},
+allOffices() {
+    if(this.offices.length>0){
+        return new Promise(resolve=>{ resolve(this.offices)});
+    }
+    var url="/api/config/queryOffice";
+    return request({method:"GET",url:url}, this.name).then(resp=>{
+        if(resp.code != RetCode.OK) {
+            return [];
+        }
+        var opts=[];
+        var map={};
+        for(var l of resp.data.list) {
+            opts.push({label:l.name,value:l.id,z:l.zone});
+            map[l.id]=l.name;
+        }
+        this.offices=opts;
+        this.officeMap=map;
+        return opts;
+    });
+},
+officeList(zone) {
+    return this.allOffices().then(offices=>{
+        var opts=[];
+        for(var o of offices) {
+            if(o.z==zone) {
+                opts.push(o)
+            }
+        }
+        return opts;
+    });
+},
+worktimeList() {
+    if(this.worktimes.length>0){
+        return new Promise(resolve=>{ resolve(this.worktimes) });
+    }
+    var url="/api/config/queryWorktime";
+    return request({method:"GET",url:url}, this.name).then(resp=>{
+        if(resp.code != 0) {
+            return [];
+        }
+        var opts=[];
+        var map={};
+        for(var l of resp.data.list) {
+            opts.push({label:l.name,value:l.id});
+            map[l.id]=l.name;
+        }
+        this.worktimes=opts;
+        this.worktimeMap=map;
+        return opts;
+    });
+},
+back() { //返回，在页面中通过service.back调用
+    router.back();
+},
+goto(url) {
+    router.push(url)
+}
+};
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+created(){
+    registerIbf(app,router,service.name).then(userInfo => {
+        service.userInfo=userInfo;
+        this.$router.push('/home').catch(err => {err});
+    });
+},
+mounted() {
+    window.sys_go_back = this.sysGoBack;//给webview调用
+},
+methods:{
+sysGoBack() {
+    //声明全局函数，在webview中调用，
+    //实现按回退按钮回退历史页面，如果无历史，则退出activity或应用
+    if(this.$router.currentRoute.value.path==="/home") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+app.component('ibf', IBF);
+app.component('alert-dialog', AlertDialog);
+app.component('date-input', DateInput);
+app.component('month-input', MonthInput);
+app.component('user-selector', UserSelector);
+app.component('user-input', UserInput);
+//启动APP
+app.mount('#app');
+</script>
+</html>

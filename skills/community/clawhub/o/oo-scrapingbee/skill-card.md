@@ -1,42 +1,57 @@
-## Description: <br>
-ScrapingBee (scrapingbee.com). Use this skill for ANY ScrapingBee request -- searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ScrapingBee (scrapingbee.com). Use this skill for ANY ScrapingBee request — searching and reading data. Whenever a task involves ScrapingBee, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch HTML, extract structured JSON from public web pages, and retrieve ScrapingBee usage statistics through an OOMOL-connected ScrapingBee account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected OOMOL/ScrapingBee account and routes requested URLs and extracted page data through an external connector service. <br>
-Mitigation: Install and use it only when the user trusts OOMOL's oo CLI and accepts that ScrapingBee requests and extracted page data are processed by the connected service. <br>
-Risk: First-time setup may require running an oo CLI install command and signing in. <br>
-Mitigation: Review installation commands before execution and only run setup steps after an auth, connection, or missing-command failure. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch HTML, extract structured data from public URLs, and check ScrapingBee usage statistics through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-scrapingbee) <br>
-- [ScrapingBee Homepage](https://www.scrapingbee.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include external connector responses containing HTML, structured JSON extraction results, usage statistics, or setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: The setup instructions include downloads that were not verified in this review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified CLI release yourself and require approval for installation changes.
+
+Risk: Automatic skill-file synchronization can make broader agent changes insufficiently disclosed.
+
+Mitigation: Review the CLI configuration and use OO_SKILLS_SYNC_DISABLED=1 to prevent automatic skill-file synchronization.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment variable documentation](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [ScrapingBee API documentation](https://www.scrapingbee.com/documentation/)
+- [ScrapingBee](https://www.scrapingbee.com)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-scrapingbee)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, API calls, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action inputs follow the connector's live schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

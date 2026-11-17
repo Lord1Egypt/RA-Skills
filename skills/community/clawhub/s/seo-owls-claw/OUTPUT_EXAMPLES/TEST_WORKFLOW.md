@@ -70,7 +70,7 @@ Word Count Target: 1500 words
 1. **Parse Persona Guidelines** → Enthusiastic tone, benefit-first language
 2. **Extract Variables from Prompt** → "Sustainable hiking", "why matters", "2026"
 3. **Research Keywords (Optional)** → Auto-suggest long-tail variations
-4. **Load Template** → templates/blog_post_template.md
+4. **Load Template** → TEMPLATES/blog_post_template.md
 5. **Replace ALL {PLACEHOLDER} Text** → Real content injected everywhere!
 6. **Generate HTML** → Complete output ready for copy-paste!
 
@@ -149,5 +149,6 @@ def inject_variables(template_text, variables):
 
 ---
 
-*Last updated: 2026-03-20 (v0.2 with test workflow)*  
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: fixed lowercase templates/ folder reference to TEMPLATES/*
 *Maintainer: Chris — test the variable substitution engine now!*

@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes nested JSON through Expanso Edge CLI or HTTP pipeline modes and returns the parsed object, top-level keys, key count, and run metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Expanso Edge pipelines that process nested JSON input and return JSON metadata such as the original object, top-level keys, key counts, and trace information.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect JSON payload structure from the command line or through an HTTP endpoint backed by Expanso Edge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: HTTP mode listens broadly by default and returns submitted JSON in the response. <br>
-Mitigation: Use CLI mode for sensitive JSON, or bind and firewall the HTTP endpoint so it is not exposed to untrusted networks. <br>
-Risk: The published metadata describes flattened dot-notation output, while the pipeline behavior reports the original object and top-level structure metadata. <br>
-Mitigation: Validate the returned JSON shape against downstream expectations before relying on it as a fully flattened object. <br>
+## Use Case:
 
+Developers and automation agents use this skill to process nested JSON through Expanso Edge in either a local CLI pipeline or an HTTP/MCP-style pipeline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-json-flatten) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON object from CLI stdout or HTTP sync response, with Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI mode reads stdin with a 1 MiB buffer; HTTP mode accepts POST requests at /flatten on the configured port, defaulting to 8080.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The MCP mode exposes an unauthenticated HTTP endpoint on all network interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the CLI pipeline, or bind the HTTP server to localhost and add authentication plus request-size and rate limits before using it on any reachable host.
+
+Risk: Deploying the pipeline from a remote URL depends on trusting that source at run time.
+
+Mitigation: Review and pin trusted pipeline content before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-json-flatten)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON objects and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI pipeline reads standard input with a 1 MiB buffer; the MCP pipeline exposes a POST /flatten HTTP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

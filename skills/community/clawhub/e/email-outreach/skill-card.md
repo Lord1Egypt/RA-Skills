@@ -1,41 +1,55 @@
-## Description: <br>
-Builds email outreach campaigns, cold email sequences, follow-up cadences, personalization variants, subject lines, and deliverability checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated email outreach campaign builder and optimizer.
 
-## Publisher: <br>
-[v3ads](https://clawhub.ai/user/v3ads) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v3ads](https://clawhub.ai/user/v3ads)
 
-## Use Case: <br>
-Sales, marketing, and business development users can use this skill to draft outreach sequences, personalize templates with merge fields, generate subject line options, and review copy for deliverability concerns before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach copy may be sent to real recipients before review. <br>
-Mitigation: Require human approval before any real email sending or campaign automation. <br>
-Risk: Lead or contact data may be broader than needed for a campaign. <br>
-Mitigation: Keep lead and contact data scoped to the intended project and audience. <br>
+## Use Case:
 
+External users and sales or marketing teams use this skill to draft cold emails, build multi-touch outreach sequences, personalize templates, generate subject line variants, and review copy for deliverability before sending.
 
-## Reference(s): <br>
-- [Email Outreach Sequence Template](artifact/assets/sequence-template.md) <br>
-- [Email Copywriting Frameworks](artifact/references/copywriting-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with numbered sequences, subject lines, preheaders, email bodies, personalization notes, A/B test recommendations, and optional shell command examples for deliverability checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses merge-field placeholders such as {{first_name}}, {{company}}, and {{pain_point}} for campaign personalization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated outreach may be sent without appropriate legal, consent, or anti-spam review, especially for bulk campaigns or lead-list use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipient sourcing, consent, opt-out handling, claims, and applicable anti-spam requirements before sending.
+
+Risk: Deliverability checks are local heuristics and may miss campaign-specific or provider-specific issues.
+
+Mitigation: Treat deliverability output as guidance, then review copy, links, formatting, and sending setup before launch.
+
+## Reference(s):
+
+- [Email Copywriting Frameworks](artifact/references/copywriting-frameworks.md)
+- [Email Outreach Sequence Template](artifact/assets/sequence-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/v3ads/skills/email-outreach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with ready-to-copy email sequence sections, subject lines, personalization notes, A/B test recommendations, and deliverability guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mail-merge variables and local deliverability-check command guidance when useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

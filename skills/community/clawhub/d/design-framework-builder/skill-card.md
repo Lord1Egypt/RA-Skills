@@ -1,39 +1,54 @@
-## Description: <br>
-设计框架自动生成套件（框架生成器）：收到设计需求后自动生成完整设计框架并发送群预览。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+设计框架自动生成套件（框架生成器）：收到设计需求后自动生成完整设计框架并发送群预览
 
-## Publisher: <br>
-[807209066](https://clawhub.ai/user/807209066) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[807209066](https://clawhub.ai/user/807209066)
 
-## Use Case: <br>
-Design automation users and developers use this skill to turn structured design requests from a Telegram group into a design framework, generated image prompt, and group preview for confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow relies on separate companion scripts that may handle OpenRouter keys, Telegram bot tokens, and group messaging behavior. <br>
-Mitigation: Inspect and trust the design-framework-sender scripts before installation, confirm credential storage, and restrict the Telegram bot to the intended chat. <br>
-Risk: Design requests or reference images may contain confidential material that is sent through a group workflow and an external API provider. <br>
-Mitigation: Avoid confidential design requests or reference images unless the Telegram group and API provider are approved for that material. <br>
+## Use Case:
 
+Design automation users can use this skill to turn Telegram design requests into a complete design framework, generated image prompt, and group preview for confirmation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown-style design framework text, generated prompt text, and Telegram preview actions executed through companion shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on the separate design-framework-sender scripts for prompt generation, Telegram messaging, and configuration loading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Design requirements, reference images, generated prompts, and previews may be transmitted to Telegram and OpenRouter through the companion sender workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with information approved for those services, and avoid confidential client or product plans until data boundaries are explicit.
+
+Risk: The skill depends on external sender scripts whose credentials handling, endpoints, attachment behavior, and lock cleanup are not proven by the artifact.
+
+Mitigation: Review the exact design-framework-sender implementation and configuration before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/807209066/skills/design-framework-builder)
+- [Publisher profile](https://clawhub.ai/user/807209066)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown-style design framework and prompt text delivered through shell-driven Telegram preview workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send design requirements, reference images, generated prompts, and previews through configured Telegram and OpenRouter services.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

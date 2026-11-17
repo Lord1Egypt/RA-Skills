@@ -1,40 +1,53 @@
-## Description: <br>
-Assesses market, credit, and operational risks, evaluates likely business impacts, and returns targeted risk management recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps enterprises identify, assess, and manage market, credit, operational, and other risks by returning risk levels, impact analysis, and response recommendations.
 
-## Publisher: <br>
-[Wen-Si](https://clawhub.ai/user/Wen-Si) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wen-si](https://clawhub.ai/user/wen-si)
 
-## Use Case: <br>
-Chief risk officers, enterprise risk teams, compliance reviewers, and developers can use this skill to triage supplied risk factors, estimate broad financial, reputational, and operational impacts, and draft initial mitigation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses generic hardcoded scoring and recommendations that may not reflect a specific organization's financial, legal, compliance, or operational context. <br>
-Mitigation: Use the output as an illustrative triage aid only, and route material risk decisions through qualified subject-matter review. <br>
-Risk: Users may over-rely on concise generated recommendations for high-impact business decisions. <br>
-Mitigation: Document assumptions, validate risk factors against current data, and require human approval before acting on recommendations. <br>
+## Use Case:
 
+Risk, compliance, and business operations teams use this agent skill to produce lightweight risk assessments, impact summaries, and response recommendations from a risk type, company context, and listed risk factors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wen-Si/risk-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [JSON-like Python dictionaries with risk scores, impact analysis, and recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes status, risk type, assessment details, recommendations, and a timestamp when executed locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Outputs are lightweight advisory examples and may be inaccurate or incomplete for financial, compliance, or operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review assessments with qualified business, legal, compliance, or risk professionals before relying on them.
+
+Risk: Publishing examples use an unpinned npx ClawHub CLI command.
+
+Mitigation: Use a trusted or pinned ClawHub CLI version when running publishing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wen-si/skills/risk-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON-compatible structured object with risk assessment fields and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes status, risk type, risk level, risk score, identified risks, impact analysis, recommendations, and a timestamp.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

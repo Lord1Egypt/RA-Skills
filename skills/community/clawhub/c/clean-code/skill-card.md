@@ -1,40 +1,51 @@
-## Description: <br>
-Pragmatic coding standards - concise, direct, no over-engineering, no unnecessary comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pragmatic coding standards for concise, direct, maintainable agent-generated code.
 
-## Publisher: <br>
-[gabrielsubtil](https://clawhub.ai/user/gabrielsubtil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gabrielsubtil](https://clawhub.ai/user/gabrielsubtil)
 
-## Use Case: <br>
-Developers and coding agents use this skill to apply concise, pragmatic coding standards, avoid over-engineering, and verify code changes before completion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to edit related files beyond the initially requested file. <br>
-Mitigation: Keep work under version control and set explicit file or scope limits when narrow changes are required. <br>
-Risk: The skill references validation scripts from other local skill folders that are not bundled with this release. <br>
-Mitigation: Review any referenced local validation scripts before allowing an agent to run them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clean Code on ClawHub](https://clawhub.ai/gabrielsubtil/clean-code) <br>
-- [Publisher profile: gabrielsubtil](https://clawhub.ai/user/gabrielsubtil) <br>
+## Use Case:
+
+Developers and engineering agents use this skill to apply pragmatic clean-code standards, keep changes focused, and validate work before completion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may pressure agents to run local validation scripts outside the reviewed package.
+
+Mitigation: Treat the listed .agent/skills Python commands as untrusted unless the scripts are separately verified and appropriate for the current task.
+
+Risk: The skill imposes mandatory cross-agent validation workflows that may not match a project's own process.
+
+Mitigation: Review the skill before deployment and prefer user-specified or project-specific validation requirements when they conflict.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt agents to inspect related files, summarize validation output, and ask before fixing validation findings.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, code, shell commands, markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May influence validation workflow and coding-style decisions during agent tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter declares 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

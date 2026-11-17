@@ -1,46 +1,62 @@
-## Description: <br>
-ValueScan Skill Beta helps agents analyze cryptocurrency fund flows, whale activity, sector rotation, opportunity and risk tokens, and major-holder cost trends using ValueScan API data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ValueScan Skill Beta helps agents query ValueScan cryptocurrency market APIs for major fund-flow analysis, whale and wallet monitoring, sector rotation, opportunity and risk token signals, large-holder cost analysis, and support or resistance data.
 
-## Publisher: <br>
-[majincheng](https://clawhub.ai/user/majincheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[majincheng](https://clawhub.ai/user/majincheng)
 
-## Use Case: <br>
-External users and developers use this skill to query ValueScan cryptocurrency analytics for market signals, fund-flow monitoring, whale transaction analysis, sector rotation, and address-level position trends. The skill is useful when an agent needs structured crypto market context, but its outputs should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ValueScan API key and secret stored locally for signed requests. <br>
-Mitigation: Store credentials only in the documented local credentials file, restrict file access, and rotate keys if the local environment is shared or suspected to be exposed. <br>
-Risk: Vague market questions can trigger API calls that consume ValueScan credits. <br>
-Mitigation: Ask clarifying questions before making fund-flow, sentiment, or token-screening requests when the user's intent or scope is ambiguous. <br>
-Risk: Crypto analytics outputs may be mistaken for investment advice. <br>
-Mitigation: Present results as market-data analysis only and tell users to make independent financial decisions. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to answer cryptocurrency market-analysis questions by retrieving ValueScan API data about token flows, whale activity, K-line history, on-chain wallet behavior, social sentiment, and AI-curated opportunity or risk signals. Outputs should be treated as informational market analysis rather than financial advice.
 
-## Reference(s): <br>
-- [ValueScan homepage](https://beta.valuescan.io) <br>
-- [ValueScan API documentation](https://beta-claw.valuescan.io/zh-CN/) <br>
-- [ValueScan developer portal](https://beta.valuescan.io/dev-portal/home/) <br>
-- [ValueScan SDK README](artifact/script/sdk/README.md) <br>
-- [ValueScan endpoint references](artifact/references/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional JSON, JavaScript, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ValueScan API query guidance, credential configuration steps, signed request examples, endpoint selection, and market-analysis summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and frontmatter) <br>
+Risk: The SDK can forward signed ValueScan API credentials to an arbitrary URL if a caller supplies an unsafe path or URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only call trusted ValueScan API paths, validate that the final request origin is ValueScan before sending signed headers, and avoid passing user-controlled URLs to the SDK.
+
+Risk: The skill sends token, wallet-address, and market-analysis queries to the ValueScan service.
+
+Mitigation: Use the skill only when the user trusts ValueScan with those queries and store API credentials securely outside prompts or shared logs.
+
+Risk: Cryptocurrency opportunity, risk, flow, sentiment, and support or resistance signals may be mistaken for financial advice.
+
+Mitigation: Present outputs as informational market analysis, disclose uncertainty, and encourage independent verification before trading or investment decisions.
+
+## Reference(s):
+
+- [ValueScan Homepage](https://beta.valuescan.io)
+- [ValueScan Developer Portal](https://beta.valuescan.io/dev-portal/home/)
+- [ValueScan API Documentation](https://beta-claw.valuescan.io/zh-CN/)
+- [ClawHub Skill Page](https://clawhub.ai/majincheng/skills/mjc-test-destory)
+- [SDK README](artifact/script/sdk/README.md)
+- [API Reference Definitions](artifact/references/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with summarized JSON API data, configuration snippets, and JavaScript usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ValueScan API credentials and HMAC-SHA256 request signing; some API numeric fields may be returned as strings.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

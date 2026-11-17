@@ -25,7 +25,7 @@ from preprocess import PreprocessError, SUPPORTED_FILE_TYPES, detect_input_type,
 
 
 DEFAULT_LLM_BASE = "https://maas-api.hivoice.cn/v1"
-DEFAULT_LLM_MODEL = "u1-insuremed"
+DEFAULT_LLM_MODEL = "u2-med"
 
 OPERATION_RECORD_INSTRUCTIONS = """请你作为临床外科病历书写专家，严格依据提供的患者手术相关病历素材，生成一份规范、完整、专业的手术记录。手术记录需符合临床手术记录书写标准，内容真实忠于原文，无编造、无遗漏、无多余无关信息，医疗术语规范，逻辑严谨，语句通顺，结构完整。
 核心生成要求及结构规范（务必严格遵守）：

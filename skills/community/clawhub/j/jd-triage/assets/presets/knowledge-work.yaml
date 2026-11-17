@@ -1,0 +1,39 @@
+# Preset: profession-neutral knowledge work
+# (consulting, research, policy, marketing, operations, finance, legal, education)
+#
+# Use this when no other preset fits, or when the user's field is outside tech.
+# A preset is a MENU, not a default. Offer these lines, let the user pick and
+# reword, and write only what they chose.
+
+preset_id: knowledge-work
+label: "Knowledge work — general"
+
+suggested_org_traits:
+  - "mission-driven or nonprofit"
+  - "public sector or government"
+  - "academic or research institution"
+  - "professional services firm"
+  - "family-owned or founder-controlled"
+  - "publicly traded"
+  - "heavily regulated industry"
+  - "under 50 people"
+  - "international, English-speaking office"
+
+suggested_red_line_starters:
+  - "billable-hours target"
+  - "significant travel required"
+  - "fixed on-site five days a week"
+  - "individual sales or fundraising quota"
+  - "rotating shifts"
+
+vibe_prompt: >
+  Name 1-3 organizations or teams you would be glad to work in — any sector, any
+  size, including ones only people in your field would recognize. One line each
+  on WHY. The reason is what the skill actually reasons from.
+
+axis_weights:
+  role_fit: 25
+  domain_fit: 20
+  org_fit: 15
+  vibe_fit: 25
+  comp_fit: 15

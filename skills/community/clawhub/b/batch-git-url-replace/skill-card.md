@@ -1,37 +1,53 @@
-## Description: <br>
-Batch-replaces remote URLs for Git repositories under a specified directory to help migrate repositories between Git servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch replaces remote URLs across Git repositories under a specified directory for repository migration workflows.
 
-## Publisher: <br>
-[zxfcn](https://clawhub.ai/user/zxfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxfcn](https://clawhub.ai/user/zxfcn)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to generate PowerShell or Bash commands that update matching Git remote URLs across repositories in a chosen directory during server migrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk replacement can unintentionally change many repository remote URLs if the scan directory or URL strings are too broad. <br>
-Mitigation: Use a narrow scan directory, verify the old and new URL strings carefully, consider backing up affected .git/config files, test on a small folder first, and check representative repositories with git remote -v before pushing code. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill when migrating Git repositories between hosting servers and need agent-produced shell commands to update remotes in bulk.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with PowerShell and Bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scan directory, old URL, and new URL before command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated commands can modify Git remote configuration across many repositories at once.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped scan directory, review the commands before execution, and verify affected repositories with git remote -v afterward.
+
+Risk: User-supplied paths and URLs can be unsafe when inserted directly into shell command templates.
+
+Mitigation: Avoid untrusted path or URL inputs and prefer implementations that use git remote get-url and git remote set-url with a dry run or backup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxfcn/skills/batch-git-url-replace)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with PowerShell and Bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires scan directory, old URL, and new URL before generating commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

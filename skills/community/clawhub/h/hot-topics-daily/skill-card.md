@@ -1,46 +1,61 @@
-## Description: <br>
-Fetches daily hot-topic rankings from Weibo, Zhihu, Baidu, Bilibili, Douyin, and Toutiao, then formats the results for Discord delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot Topics Daily fetches trending topics from Weibo, Zhihu, Baidu, Bilibili, Douyin, and Toutiao and formats a Discord-oriented daily roundup.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-External users and operators use this skill to collect trending-topic summaries from configured public news and social platforms and prepare a concise Discord-ready daily briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external news APIs and prepares output for a configured Discord thread. <br>
-Mitigation: Confirm that the external API endpoints and Discord destination are intended before installing or scheduling the skill. <br>
-Risk: The optional international-news module uses Currents and GNews API keys when provided. <br>
-Mitigation: Provide only the intended API keys, and avoid running the optional module if international news is not needed. <br>
-Risk: The fetch script stores a backup copy of generated Markdown under /tmp. <br>
-Mitigation: Review host retention expectations for /tmp files or remove the backup behavior if local copies are not desired. <br>
+## Use Case:
 
+External users and automation operators use this skill to fetch daily trending topics from configured Chinese platforms and produce a Discord-ready roundup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyhot/hot-topics-daily) <br>
-- [60s API project](https://github.com/vikiboss/60s) <br>
-- [60s API endpoint](https://60s.viki.moe/v2) <br>
-- [Currents API endpoint](https://api.currentsapi.services/v1) <br>
-- [GNews API endpoint](https://gnews.io/api/v4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text formatted for Discord, with configuration-driven platform selection and item limits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a temporary Markdown backup to /tmp/hot-topics-message.md when the Node.js fetch script runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: Scheduled outbound retrieval and Discord-oriented posting can send current-topic content to an unintended destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Discord destination before enabling automation and run the skill as an unprivileged account.
+
+Risk: The backup news module uses Currents and GNews API keys that are not central to the described hot-topic roundup.
+
+Mitigation: Document or remove the backup module, and use only limited API keys if it remains enabled.
+
+Risk: The push script writes a backup to a fixed path under /tmp.
+
+Mitigation: Remove the backup write or change it to a safer per-run path before scheduled use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/hot-topics-daily)
+- [60s API repository](https://github.com/vikiboss/60s)
+- [60s API base URL](https://60s.viki.moe/v2)
+- [Currents API](https://api.currentsapi.services/v1)
+- [GNews API](https://gnews.io/api/v4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown-formatted Discord message and concise shell or configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads configurable platform settings, emits one roundup message, and may write a local backup message file.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

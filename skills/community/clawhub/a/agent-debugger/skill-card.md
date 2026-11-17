@@ -1,40 +1,56 @@
-## Description: <br>
-Debug AI agent issues systematically, including tool failures, infinite loops, context overflow, rate limits, memory issues, permission errors, and performance bottlenecks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Debugger helps developers systematically diagnose and fix AI agent issues such as tool failures, infinite loops, context overflow, rate limits, and performance bottlenecks.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[engsathiago](https://clawhub.ai/user/engsathiago)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to debug misbehaving AI agents, isolate failure modes, and choose fixes for loops, tool errors, context limits, rate limits, memory issues, permission failures, and performance bottlenecks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Guidance to expose hidden or internal reasoning can disclose protected system behavior or sensitive prompt context.
+
+Mitigation: Do not enable hidden/internal reasoning visibility; rely on visible logs, traces, and user-approved diagnostics.
+
+Risk: Memory or tool-policy changes can persist unwanted behavior or broaden agent permissions.
+
+Mitigation: Apply memory and tool-policy updates only with explicit user intent, narrow scope, and review before deployment.
+
+Risk: Debugging recommendations may be incorrect for a specific agent environment.
+
+Mitigation: Review proposed code, command, and configuration changes against local tool schemas and sandbox policies before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to diagnose misbehaving agents and choose practical fixes for loops, failed tools, context limits, rate limits, memory setup, permissions, and slow execution. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The debugging guidance includes advice that could expose internal reasoning or verbose agent traces. <br>
-Mitigation: Do not enable hidden or internal reasoning visibility; use user-safe diagnostics and externally reviewable logs instead. <br>
-Risk: Verbose logging of prompts, tool arguments, tool results, or memory contents could disclose credentials or private data. <br>
-Mitigation: Redact sensitive values, avoid logging raw prompts and private file contents, and keep memory writes and tool-permission changes narrow, temporary, and explicitly user-approved. <br>
+**Output Format:** [Markdown with diagnostic steps, checklists, and inline code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Agent Debugger on ClawHub](https://clawhub.ai/engsathiago/agent-debugger) <br>
+**Other Properties Related to Output:** [Includes suggested fixes and prevention tips; proposed changes should be reviewed before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not call tools or require credentials.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

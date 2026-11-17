@@ -1,41 +1,61 @@
-## Description: <br>
-Generate, edit, and compose images using Gemini models, including logos, posters, icons, banners, photo edits, and multi-image compositions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, edit, and compose images using Gemini models from text prompts and input images.
 
-## Publisher: <br>
-[wangyan](https://clawhub.ai/user/wangyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyan](https://clawhub.ai/user/wangyan)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create, edit, or combine images through Gemini-compatible image models, then save and send the resulting image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Gemini API credentials and can load shared .env files. <br>
-Mitigation: Use a dedicated Gemini key, prefer a skill-local .env with only GEMINI_* values, and avoid placing unrelated secrets in shared environment files. <br>
-Risk: Prompts and input images are sent to the configured API provider or custom endpoint. <br>
-Mitigation: Install only if you trust the publisher, dependencies, and provider, and do not submit private images or sensitive prompts to untrusted endpoints. <br>
+## Use Case:
 
+Developers and end users use this skill to generate new images, edit photos, compose multiple images, and create assets such as logos, posters, icons, banners, covers, and brand visuals through Gemini-compatible image APIs.
 
-## Reference(s): <br>
-- [API Formats Reference](references/api-formats.md) <br>
-- [Project Homepage](https://github.com/wangyan/wangyan-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Generated image files with terminal status text and an IMAGE_PATH line for agent delivery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and GEMINI_BASE_URL; supports optional input images, aspect ratio, resolution, quality, style, model, API format, timeout, and output directory settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unverified installer commands may execute code from remote endpoints during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation commands before use and prefer trusted package-manager or ClawHub installation paths over curl-to-shell setup.
+
+Risk: Shared .env loading can expose unrelated secrets to this skill at runtime.
+
+Mitigation: Use a dedicated Gemini API key and prefer explicit command-line or skill-local configuration instead of broad shared .env files.
+
+Risk: Custom base URLs receive prompts, input images, and API credentials.
+
+Mitigation: Configure only trusted Gemini-compatible endpoints and avoid sending sensitive prompts or images to untrusted providers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyan/skills/wangyan-gemini-image-gen)
+- [Publisher profile](https://clawhub.ai/user/wangyan)
+- [Project homepage](https://github.com/wangyan/wangyan-skills)
+- [Release changelog](https://github.com/wangyan/wangyan-skills/blob/main/CHANGELOG.md)
+- [API formats reference](references/api-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Saved image files with IMAGE_PATH status output and Markdown-oriented usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Gemini API key, trusted base URL, python3, uv, and messaging permission when the agent sends generated images to a user.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

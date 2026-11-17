@@ -1,43 +1,65 @@
-## Description: <br>
-Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists, alerts, dividend analysis, 8-dimension stock scoring, viral trend detection, and rumor or early-signal detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists, dividend analysis, 8-dimension stock scoring, viral trend detection, and rumor or early-signal detection.
 
-## Publisher: <br>
-[squally2k](https://clawhub.ai/user/squally2k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[squally2k](https://clawhub.ai/user/squally2k)
 
-## Use Case: <br>
-External users and agents use this skill to analyze equities and supported cryptocurrencies, compare tickers, manage portfolios and watchlists, review dividend metrics, and scan for trending or rumor-driven market signals. Outputs are informational and not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional Twitter/X scanning uses sensitive AUTH_TOKEN and CT0 session cookies and an external CLI with broader access than users may expect. <br>
-Mitigation: Prefer non-social scans such as --no-social; if Twitter/X is enabled, keep tokens out of source control, avoid broad terminal permissions, and rotate or revoke exposed sessions. <br>
-Risk: Market data, news, short interest, and insider activity can lag or be incomplete, so outputs may be stale or misleading. <br>
-Mitigation: Treat analysis as informational, verify material findings against current market sources, and consult a licensed financial advisor before making investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/squally2k/stock-analysis-6-2-0) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Usage Guide](docs/USAGE.md) <br>
-- [Hot Scanner Documentation](docs/HOT_SCANNER.md) <br>
-- [Architecture Documentation](docs/ARCHITECTURE.md) <br>
+## Use Case:
 
+External users and developers use this skill to generate stock and cryptocurrency analysis, compare tickers, track portfolios and watchlists, inspect dividends, scan trending assets, and surface early market rumors. Outputs are informational and should not be treated as financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Console text or Markdown summaries, with optional JSON output from supported scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local portfolio and watchlist JSON files under the user's ClawDBot skill data directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-6.2.0 (source: SKILL.md frontmatter; ClawHub release version 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Twitter/X social scanning can expose live X session credentials to a third-party CLI.
+
+Mitigation: Use --no-social for hot scans unless you have reviewed and accepted that access, and do not place unrelated secrets in the skill .env.
+
+Risk: Portfolio and watchlist files may contain sensitive local financial data.
+
+Mitigation: Treat these files as sensitive data, restrict local access, and avoid granting Terminal Full Disk Access unless it is necessary.
+
+Risk: Market analysis, rumors, and trend signals may be delayed, incomplete, or incorrect.
+
+Mitigation: Use the output for informational screening only, verify material facts with authoritative sources, and consult a licensed financial advisor before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/squally2k/skills/stock-analysis-6-2-0)
+- [Publisher Profile](https://clawhub.ai/user/squally2k)
+- [Artifact README](artifact/README.md)
+- [Usage Guide](artifact/docs/USAGE.md)
+- [Hot Scanner Guide](artifact/docs/HOT_SCANNER.md)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [CoinGecko](https://coingecko.com)
+- [SEC EDGAR](https://www.sec.gov/edgar)
+- [Google News](https://news.google.com)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, console reports, and optional JSON output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local portfolio and watchlist JSON files; market data and some sentiment inputs can be delayed.]
+
+## Skill Version(s):
+
+6.2.0 (source: artifact/SKILL.md frontmatter; ClawHub release version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

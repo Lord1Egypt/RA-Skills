@@ -1,41 +1,50 @@
-## Description: <br>
-Generates a Mermaid architecture diagram showing high-level component relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Mermaid architecture diagram showing high-level component relationships
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand, document, and review high-level component relationships in a codebase by producing a Mermaid architecture diagram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram generation may include sensitive or unnecessary repository structure when run over a broad private codebase. <br>
-Mitigation: Provide a narrow scope for private or large repositories and review the generated Mermaid content before rendering. <br>
-Risk: Generated architecture diagrams may omit relationships or simplify components in ways that mislead reviewers. <br>
-Mitigation: Use the diagram as a review aid and compare it against the codebase before relying on it for documentation or PR decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to map how packages, plugins, or modules relate, supporting onboarding, architecture documentation, and PR reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-cartograph-architecture-diagram) <br>
-- [Cartograph homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Mermaid flowchart code and a brief text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mermaid flowcharts summarize high-level component relationships and should usually be limited to 15-20 nodes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: The architecture diagram workflow reportedly sends codebase details to Mermaid Chart, which may disclose sensitive system structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before rendering, check whether the architecture details can be shared with Mermaid Chart; remove sensitive components or obtain approval before submitting them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-cartograph-architecture-diagram)
+- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Image]
+
+**Output Format:** [Mermaid flowchart syntax and rendered diagram]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A high-level diagram that groups related modules into package subgraphs.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

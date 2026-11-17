@@ -1,45 +1,57 @@
-## Description: <br>
-Ai Interview provides paired AI job-seeker and recruiter agents for Feishu group-chat interviews with an optional local web viewer for observing conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Interview provides a two-agent AI interview workflow with a Feishu group chat interview and a local web viewer for observing the conversation.
 
-## Publisher: <br>
-[jeeban-G](https://clawhub.ai/user/jeeban-G) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeeban-g](https://clawhub.ai/user/jeeban-g)
 
-## Use Case: <br>
-Developers or hiring teams use this skill to configure a two-agent simulated interview workflow in Feishu, with one agent acting as a frontend candidate and another as an interviewer. It also supports local observation through a web viewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local viewer can expose OpenClaw session history and interview content. <br>
-Mitigation: Run the viewer only on a trusted machine, bind or firewall port 8091 to localhost, stop it when not in use, and obtain consent before observing interview content. <br>
-Risk: Viewer actions can delete OpenClaw session history. <br>
-Mitigation: Back up OpenClaw session logs before using any clear-history function. <br>
-Risk: Feishu App Secrets and interview transcripts are sensitive. <br>
-Mitigation: Use dedicated low-privilege Feishu apps and keep App Secrets out of source control. <br>
+## Use Case:
 
+Developers and teams use this skill to configure a simulated AI interview between a job-seeker agent and a recruiter agent, with Feishu group chat as the interaction channel and a local viewer for monitoring the exchange.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeeban-G/ai-interview-system) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Job-seeker identity template](artifact/config/job-seeker/IDENTITY.md) <br>
-- [Recruiter identity template](artifact/config/recruiter/IDENTITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and a MoonShot API key; includes an optional localhost web viewer for conversation observation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The local web viewer can expose OpenClaw conversation logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the viewer bound to localhost, do not expose port 8091 to a network, and restrict access to the intended agents.
+
+Risk: The viewer includes an endpoint that can delete local conversation logs.
+
+Mitigation: Remove or protect the clear endpoint before use in shared or sensitive environments.
+
+Risk: Feishu app secrets are required for setup.
+
+Mitigation: Store app secrets outside version control and maintain a rotation plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeeban-g/skills/ai-interview-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw agent identity templates, Feishu configuration guidance, installation commands, and local viewer usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

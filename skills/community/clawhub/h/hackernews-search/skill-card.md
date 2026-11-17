@@ -1,45 +1,59 @@
-## Description: <br>
-一个通过Model Context Protocol提供HackerNews内容搜索、检索和分析的服务，适用于AI代理和开发者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个通过Model Context Protocol提供HackerNews内容搜索、检索和分析的服务，适用于AI代理和开发者。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-AI agents and developers use this skill to search Hacker News content, inspect front-page or recent posts, retrieve item details, and look up public user profiles through the configured API service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Hacker News queries and the configured API key to an unrelated xiaobenyang.com backend. <br>
-Mitigation: Install only if the user trusts xiaobenyang.com with those queries and credentials. <br>
-Risk: The skill can persist the API key locally in a .env file as XBY_APIKEY. <br>
-Mitigation: Review or remove the .env file when the skill should no longer retain API access. <br>
-Risk: Server security evidence marks the release suspicious because of backend routing and disclosure mismatches. <br>
-Mitigation: Review the skill and its security evidence before deployment. <br>
+## Use Case:
 
+Developers and AI agents use this skill to search Hacker News content, inspect front-page and recent posts, retrieve item discussion trees, and look up public user profiles through the configured API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/hackernews-search) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
-- [XiaoBenYang API key service](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP backend](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, configuration guidance] <br>
-**Output Format:** [Markdown summaries derived from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and returns raw API data for the agent to summarize.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill requires an XBY_APIKEY for a third-party backend that is under-explained in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide the API key after trusting xiaobenyang.com with the key and query parameters.
+
+Risk: The skill stores XBY_APIKEY in a local .env file in plaintext.
+
+Mitigation: Prefer an updated release that avoids persistent plaintext secrets, or remove the .env value when the skill is no longer needed.
+
+Risk: The release evidence recommends clearer backend documentation and pinned dependencies.
+
+Mitigation: Review the backend behavior and dependency set before installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/hackernews-search)
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration guidance]
+
+**Output Format:** [Markdown summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY before making upstream requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

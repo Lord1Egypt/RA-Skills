@@ -1,43 +1,60 @@
-## Description: <br>
-AI+Crypto Twitter automation agent. Post tweets, reply to KOLs, and quote tweet trending content. Integrates with opentwitter/opennews (6551) for hot topic fetching and Claude for content generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI+Crypto Twitter automation agent. Post tweets, reply to KOLs, and quote tweet trending content. Integrates with opentwitter/opennews (6551) for hot topic fetching and Claude for content generation.
 
-## Publisher: <br>
-[pearl799](https://clawhub.ai/user/pearl799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pearl799](https://clawhub.ai/user/pearl799)
 
-## Use Case: <br>
-External users and developers use this skill to operate a Twitter/X account through an agent that can draft and publish original posts, replies, and quote tweets around AI and crypto topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live Twitter/X posts, replies, and quote tweets from an agent-controlled account. <br>
-Mitigation: Use a test or dedicated account, review generated content before execution, and avoid broad autonomous posting commands. <br>
-Risk: The skill requires Twitter/X write credentials and a 6551 API token. <br>
-Mitigation: Store tokens locally, limit account permissions where possible, and rotate or revoke credentials when finished. <br>
+## Use Case:
 
+External users and social media operators use this skill to have an agent draft and publish AI and crypto Twitter/X posts, replies, and quote tweets from their configured account.
 
-## Reference(s): <br>
-- [Twitter/X Developer Platform](https://developer.x.com) <br>
-- [6551 opentwitter API](https://6551.io/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/pearl799/twitter-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/pearl799) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [JSON from helper scripts, with Markdown and shell command guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts return success status, tweet identifiers, published URLs, and submitted text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can immediately publish live public Twitter/X posts, replies, or quote tweets from the configured account without a built-in confirmation or dry-run step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content before execution and add an explicit approval or dry-run step before allowing the agent to publish.
+
+Risk: The skill requires Twitter/X write credentials and a 6551 API token.
+
+Mitigation: Use an account appropriate for delegated posting, protect the tokens locally, and rotate credentials if exposure is suspected.
+
+Risk: The release depends on the unpinned tweepy package.
+
+Mitigation: Pin and review the dependency before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pearl799/skills/twitter-agent)
+- [Publisher Profile](https://clawhub.ai/user/pearl799)
+- [X Developer Platform](https://developer.x.com)
+- [6551 MCP](https://6551.io/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Script results include success status, tweet or reply identifiers, post URLs, and published text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

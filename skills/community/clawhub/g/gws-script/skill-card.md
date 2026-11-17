@@ -1,41 +1,50 @@
-## Description: <br>
-Manage Google Apps Script projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Apps Script projects.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect and run gws script commands for managing Google Apps Script projects, including project metadata, content, metrics, deployments, versions, and process listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running gws commands through this skill can overwrite Google Apps Script project contents. <br>
-Mitigation: Confirm the target script ID, source directory, and backup or recovery path before executing update or push commands. <br>
-Risk: Using the wrong Google or gws account can apply changes to an unintended Apps Script project. <br>
-Mitigation: Check the active Google/GWS account and intended project before running commands that modify project content. <br>
+## Use Case:
 
+Developers and automation agents use this skill to discover and invoke gws CLI commands for Google Apps Script processes, projects, deployments, versions, and script execution.
 
-## Reference(s): <br>
-- [Gws Script ClawHub release](https://clawhub.ai/googleworkspace-bot/gws-script) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and an authenticated Google Workspace context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Google Apps Script project update operations can replace existing project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the agent inspect the gws schema, confirm the target project, and retrieve or back up existing content before using projects.updateContent or the push helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-script)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI; agents should inspect gws schema output before building command parameters.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; internal skill metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

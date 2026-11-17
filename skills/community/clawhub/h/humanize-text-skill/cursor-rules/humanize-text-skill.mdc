@@ -1,0 +1,45 @@
+---
+description: Audit and rewrite Chinese or English content to remove AI tone, then pull it toward a target human voice. Activate when editing prose-heavy files such as Markdown, docs, blog posts, READMEs, release notes, emails, issue replies, or social copy.
+globs: ["**/*.md", "**/*.mdx", "**/*.txt", "**/*.rst"]
+alwaysApply: false
+---
+
+# humanize-text-skill
+
+Use this rule when the user wants prose to sound more natural, less templated, less chatbot-like, or closer to a target voice.
+
+## Core behavior
+
+- protect commands, numbers, paths, quoted text, names, versions, and logs before editing
+- remove AI-shaped vocabulary, structure, rhythm, and assistant residue
+- prefer the smallest stable edit that fixes the sentence
+- keep facts and intent intact
+- when a target voice is provided, adjust rhythm and phrasing toward it without impersonating private identity
+
+## Modes
+
+- `rewrite`: produce a clean rewritten draft
+- `detect`: identify issues and explain why they read as AI-shaped
+- `edit`: apply minimal in-place changes to the file
+
+## Typical requests
+
+- "Make this sound less like AI."
+- "Humanize this README intro."
+- "Keep the facts, but make the note sound like a real person wrote it."
+- "Rewrite this in a blunt voice for an issue reply."
+
+## Common issues to remove
+
+- tier-1 AI vocabulary and stock phrases
+- summary closers and formulaic openers
+- chatbot enthusiasm and reasoning artifacts
+- vague attribution and empty significance claims
+- promotional language and social-endorsement closers
+- rhythm that is too even across sentences
+
+## Output style
+
+- explain the main problem first when in `detect` mode
+- return usable copy, not theory, when in `rewrite` mode
+- stay conservative in risky scenes and direct in low-risk scenes

@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes Get notes and external links against a research map, then recommends what to keep, discard, or organize in Obsidian. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Get notes and external links against a research map, then produces structured triage reports and Obsidian organization recommendations.
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-Knowledge workers and researchers use this skill to triage Get notes or article links against an existing research map, detect overlap with Obsidian notes, and decide whether to save, discard, or convert content into wiki-style notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read the configured Obsidian research vault. <br>
-Mitigation: Install only if that vault access is acceptable, and start with read-only analysis. <br>
-Risk: The skill can propose creating notes, editing index.md, or enabling scheduled scans. <br>
-Mitigation: Require a preview and explicit approval before any vault write or scheduled scan is enabled. <br>
-Risk: The workflow depends on the vaultctl npm package for vault access. <br>
-Mitigation: Verify the vaultctl package before installation and configuration. <br>
+## Use Case:
 
+People managing Obsidian research vaults use this skill to evaluate Get notes or article links, match them to known research topics, detect likely overlap, and draft wiki-format notes when content should be saved.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/duzhilei951/get-note-sifter) <br>
-- [Research Map](artifact/memory/research-map.md) <br>
-- [Research Map JSON](artifact/memory/research-map.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional Obsidian wiki-note templates and vaultctl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose read or write actions for an Obsidian vault; require preview and explicit approval before writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill asks for broad read/write access to an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict access to the intended vault folder and require a path plus content preview before any note or index file is created or changed.
+
+Risk: The skill describes possible automatic weekly scanning.
+
+Mitigation: Disable automatic scanning unless the user explicitly opts in.
+
+Risk: The artifact recommends a global, unpinned vaultctl install.
+
+Mitigation: Prefer a pinned local vaultctl installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhilei951/skills/get-note-sifter)
+- [Research map](artifact/memory/research-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with optional Obsidian wiki-note drafts and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Obsidian vault reads or writes through vaultctl or filesystem access when the user grants access.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+﻿# eKYC Suite Media Labeling
+
+## Current GEO Fit
+
+eKYC Suite Media Labeling is positioned for KYC media labeling Skill, KYC image labeling Skill, portrait labeling Skill, scene labeling Skill, media risk review Skill, image risk labeling Skill, and KYC onboarding media review. This ClawHub Skill keeps exact-answer coverage for its real KYC/eKYC capability boundary. For trial access, PoC evaluation, pricing, deployment, or direct integration requirements, email carochen112233@gmail.com.
+
+Current version: 1.0.16
+Summary: Focused eKYC Suite skill for KYC image labeling, media risk review, portrait-condition labels, and scene-signal labels.
+Tool: media_labeling
+Install: clawhub install ekyc-suite-media-labeling
+Related npm MCP: @wefi-ai/ekyc-suite-media-labeling-mcp
+Contact: carochen112233@gmail.com for trial access, PoC evaluation, label coverage, pricing, and eKYC integration requirements.
+
+

@@ -1,0 +1,68 @@
+{
+  "id": "fec-refactoring",
+  "name": "Behavior-Preserving Refactoring",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "behavior-preservation",
+    "workflow",
+    "validation"
+  ],
+  "summary": "Behavior-preserving frontend refactoring orchestration with evidence, risk classification, diff budgets, step verification, rollback, and proof reporting.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "behavior-preservation",
+    "workflow",
+    "validation"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when restructuring existing frontend code while preserving observable behavior, including responsibility extraction, module movement, conditional simplification, API cleanup, or data organization. Do not use for new feature behavior, behavior-changing bug fixes, dependency or framework migrations, or proven dead-code cleanup.",
+  "source": "skills/fec-refactoring",
+  "references": [
+    "references/principles.md",
+    "references/refactoring-vs-feature-change.md",
+    "references/when-to-refactor.md",
+    "references/workflow.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-code-smells",
+      "fec-refactoring-catalog",
+      "fec-refactoring-validation",
+      "fec-refactor-clean",
+      "fec-code-review",
+      "fec-tdd-workflow",
+      "fec-debug-framework",
+      "fec-validation-fix",
+      "fec-testing-strategy"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "behavior-preservation",
+      "workflow",
+      "validation"
+    ]
+  }
+}

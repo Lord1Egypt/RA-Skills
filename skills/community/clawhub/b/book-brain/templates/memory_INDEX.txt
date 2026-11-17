@@ -1,0 +1,7 @@
+# memory/ — BOOK BRAIN daily + topic snips
+
+- Daily index: YYYY-MM-DD.md
+- Topic snips: YYYY-MM-DD-<slug>.md
+- Pair with lyra-brain for graph grow (LYRA_CORE/memory/)
+
+Do not store secrets here.

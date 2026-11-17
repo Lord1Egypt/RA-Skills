@@ -1,0 +1,56 @@
+part: SY8032ABC
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "Silergy SY8032 \u2014 synchronous buck DC-DC converter (3A)"
+main_page: https://www.silergy.com/product/sy8032
+datasheet_path_expected: ../../datasheets/SY8032_semikey.pdf
+datasheet_source_note: 'SY8032 datasheet (PDF, 6 pages, 526KB) hosted at semikey.com CDN mirror - found via Tavily web search.
+  NOTE: SY8032 datasheet is for the SY8032 chip (not specifically SY8032ABC sub-variant), but SY8032ABC uses SY8032 die. Spec
+  page 1 features: 2.7-5.5V input, 2.5A continuous / 3A peak output, SOT23-6, 1MHz switching, Rds(on) 100mOhm top / 80mOhm
+  bottom.'
+specs:
+  function: Synchronous buck (step-down) DC-DC converter
+  topology: Synchronous buck with internal MOSFETs (top + bottom)
+  input_voltage_v_min: 2.7
+  input_voltage_v_max: 5.5
+  output_current_a_continuous: 2.5
+  output_current_a_peak: 3.0
+  rds_on_mohm_top_fet: 100
+  rds_on_mohm_bottom_fet: 80
+  switching_frequency_mhz: 1.0
+  package: SOT23-6
+  temperature_range_c_ambient: -40 to 85
+  temperature_range_c_junction: -40 to 125
+  use_case_categories:
+  - Synchronous buck DC-DC
+  - Portable devices
+  - Battery-powered applications
+unverified:
+- exact_input_voltage_range_v
+- exact_switching_frequency_mhz
+- exact_feedback_voltage_v
+- exact_efficiency_at_load
+- exact_output_voltage_options_for_ABC_variant
+- exact_quiescent_current_ua
+- thermal_shutdown_threshold_c
+- exact_package_dimensions
+notes:
+- "Promoted from \"missing yaml\" to family-page-only_2026-06-30 \u2014 Silergy product pages are JS-rendered and not accessible\
+  \ via Firecrawl scrape."
+- 'Use case: 3A synchronous buck for high-current rails (e.g. ESP32-S3 with 500mA Wi-Fi TX peak, or LED drivers).'
+- 'Open gap: requires manual datasheet download from silergy.com.'
+- 'Family differentiator vs SY8089 / SY8090 / SY8120i: SY8032 is the highest-current variant (3A) in the SY80xx family.'
+- "Distributor search 2026-07-01: Mouser returns 0 results for SY8032ABC; LCSC has the part in Voltage Regulators / DC-DC\
+  \ Switching Regulators category but 0 in-stock listings. Direct datasheet PDF not available from public distributors. Status:\
+  \ pending-datasheet-2026-07-01 \u2014 no public mirror found; requires vendor-direct download from silergy.com (logged-in).\
+  \ Roadmap: v0.4.1."
+- 'Verified 2026-07-01 via firecrawl-html-extract against SY8032ABC_lcsc.html: 1/9 spec fields matched (11%). Source: https://www.lcsc.com/search?q=SY8032ABC
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via Tavily-found mirror PDF (semikey CDN, 6 pages, 526KB). Spec fields above sourced from SY8032 datasheet
+  features list page 1. BUG FIX: yaml previously had max_output_current_a=3, datasheet shows 2.5A continuous / 3A peak - corrected
+  to output_current_a_continuous=2.5 / output_current_a_peak=3.0. SY8032ABC sub-variant uses SY8032 die; ABC suffix is package/temperature/output
+  voltage combination.'
+extracted_at: '2026-06-30T01:10:00+08:00'
+extracted_from_pages: []
+extraction_method: family-overview inference (product page JS-rendered, not accessible)
+extraction_source: references/semiconductor-vendor/Silergy/firecrawl-snapshots/DC-DC_clean.md
+datasheet_source_url: https://cdn.semikey.com/upload/pdfs/92/68/9268d90571fec05d7043870318c93320.pdf

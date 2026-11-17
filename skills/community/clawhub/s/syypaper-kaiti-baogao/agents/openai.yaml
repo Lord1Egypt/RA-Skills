@@ -1,0 +1,4 @@
+interface:
+  display_name: "syypaper 开题报告助手"
+  short_description: "中文开题报告文献检索、学校模板适配与可编辑 DOCX 生成"
+  default_prompt: "使用 $syypaper-kaiti-baogao 根据我的学历层次、论文题目和可选参考文献生成开题报告。"

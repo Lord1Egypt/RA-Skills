@@ -1,0 +1,11 @@
+interface:
+  display_name: "Event Staffing Procurement"
+  short_description: "Answer staffing procurement questions, then plan"
+  default_prompt: "Use $event-staffing-procurement to answer COI, insurance, and vendor-onboarding questions from policy, then build a staffing plan I confirm."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "Live TempGuru planning, pricing, policy, compliance, and quote tools"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

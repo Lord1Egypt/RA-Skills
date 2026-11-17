@@ -1,0 +1,113 @@
+# packs/edu_research.yaml — 教育 / 科研院所行业包 (Education & Research Institution)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 零侵入说明：本文件为新增 pack，不改动 24 部门模板、159 动作库、decision/roles/semantic/logic、init.py。
+# ⚠️ 教育/科研含未成年人保护与职务科技成果权属；本包红线为参考框架，须由合规/法务核验并以最新法规为准。
+
+meta:
+  pack_id: edu_research
+  display_name: 教育 / 科研院所 (Education & Research Institution)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [学校, 高校, 大学, 中小学, 幼儿园, 科研院所, 教育, 职教, 培训, 研究院, 实验室, 课题组]
+  description: >
+    适用于学校（高教/职教/基教/培训）与科研院所（事业单位研究院/新型研发机构/企业研发中心）。
+    主包覆盖教育共性（招生/教学/评估）与科研共性（立项/经费/成果转化），红线为参考框架。
+
+# ── 一、教育/科研共性实体 ──
+entities_extra:
+  - type: SchoolOrInstitute
+    extends: Organization
+    properties:
+      - { name: school_type, type: enum, enum: [高等教育, 职业教育, 基础教育, 培训机构, 科研院所, 新型研发机构], required: true, desc: "机构类型" }
+      - { name: license_no, type: string, desc: "办学许可/设立批复号" }
+      - { name: funding_source, type: enum, enum: [财政, 自筹, 捐赠, 混合], desc: "经费来源" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: Student
+    extends: Customer
+    properties:
+      - { name: student_no, type: string, pii: true, desc: "学号，PII 强护栏" }
+      - { name: minor, type: boolean, desc: "是否未成年人（触发未成年人保护）" }
+  - type: ResearchProject
+    extends: Project
+    properties:
+      - { name: grant_no, type: string, desc: "项目批准号（国家级/省部级）" }
+      - { name: funding_source, type: enum, enum: [国家级, 省部级, 横向, 自筹], desc: "经费来源" }
+      - { name: budget, type: number, desc: "立项经费" }
+  - type: ResearchOutcome
+    extends: Document
+    properties:
+      - { name: patent_no, type: string, desc: "专利号（职务成果）" }
+      - { name: transfer_status, type: enum, enum: [未转化, 许可, 转让, 作价投资], desc: "成果转化状态" }
+      - { name: owner_unit, type: boolean, desc: "是否职务科技成果（单位所有）", default: true }
+
+# ── 二、推荐部门 ──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+  # 教育/科研相关可选
+  - { code: operations,  name: 运营 }        # 教务/科研管理
+  - { code: quality,     name: 质量管理 }    # 教学评估/质控
+  - { code: investor,    name: 投融资 }      # 成果转化/产学研
+
+suggested_custom_departments:
+  - { code: academic, name: 教务/教研, gender_default: female, expertise: "招生/排课/教学评估", when: "学校即建议加" }
+  - { code: research_mgmt, name: 科研管理, gender_default: female, expertise: "立项/经费/结题/成果转化", when: "有科研项目即建议加" }
+  - { code: tech_transfer, name: 成果转化, gender_default: male, expertise: "专利运营/许可/转让合规", when: "有职务成果即建议加" }
+
+# ── 三、默认工作流 ──
+default_workflow: edu_research_ops
+workflow_bindings:
+  edu_research_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [招生/立项, 教学/科研, 成果转化, 评估, 复盘]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.edu_research       # 科研经费/成果转化/办学合规/数据保护（本 pack 触发，参考框架）
+    - compliance_redlines.tax
+    - compliance_redlines.general            # 个保法/未成年人保护
+  local_services: []
+  note: 红线为参考框架，落地前须合规/法务核验并以最新法规为准。
+
+# ── 五、B 层风味 ──
+flavor:
+  default: >-
+    你服务的是教育/科研机构；科研经费须专款专用、不得挪用或虚假列支；职务科技成果权属归单位，
+    转化须合规（尽调/评估/公示）且收益分配按《促进科技成果转化法》。学生/受试者信息属 PII 强护栏，
+    未成年人须额外保护、不得泄露。
+  legal: 办学许可与招生合规；学历教育资质；职务科技成果权属与转化程序；涉及人的研究须伦理审查。
+  finance: 科研经费按预算执行；差旅/会议/劳务费按规；结题审计；财政/自筹分账管理。
+  rnd: 项目立项与过程管理留痕；数据真实可溯源；成果转化评估与公示合规。
+  hr: 教职工聘任与职称合规；学生管理合规；编外/劳务派遣合规。
+  quality: 教学评估与专业认证；培养质量闭环；科研诚信（不得学术不端）。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述机构类型（高校/职教/中小学/科研院所/新型研发）与资质（办学许可/设立批复）"
+  - "请介绍机构情况（名称、地区、经费来源、是否雇人）"
+  - "想搭建哪些部门（默认 12 核心 + 运营/质量/投融资；建议加教务/科研管理/成果转化）"
+  - "核心业务循环（如 招生 → 教学 → 评估；或 立项 → 科研 → 成果转化）"
+  - "是否有国家级科研经费/职务成果/未成年人学生（影响红线）"
+
+# ── 七、教育科研特有监测信号（配合 monitoring.yaml 的 edu_research 域）──
+edu_research_signals:
+  signals:
+    - { id: fund_misuse, name: 科研经费挪用, owner: [research_mgmt, finance], desc: "经费超预算/虚假列支" }
+    - { id: transfer_gap, name: 成果转化程序缺口, owner: [tech_transfer, legal], desc: "未评估/未公示即转化" }
+    - { id: student_pii_leak, name: 学生信息泄露, owner: [it_security, legal], desc: "学号/未成年人信息未脱敏外发" }
+    - { id: academic_misconduct, name: 科研诚信风险, owner: [rnd, legal], desc: "学术不端/数据造假预警" }

@@ -1,50 +1,67 @@
-## Description: <br>
-Import sources such as URLs, YouTube videos, files, and text into Google NotebookLM, then generate selected learning artifacts including podcasts, videos, reports, quizzes, flashcards, mind maps, slides, infographics, and data tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Import sources into Google NotebookLM and generate user-selected learning artifacts, including podcasts, videos, reports, quizzes, flashcards, mind maps, slides, infographics, and data tables.
 
-## Publisher: <br>
-[jasontsaicc](https://clawhub.ai/user/jasontsaicc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasontsaicc](https://clawhub.ai/user/jasontsaicc)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to turn source material into NotebookLM-generated study, briefing, audio, video, and presentation artifacts. The skill guides the agent through setup checks, artifact option selection, generation, local download, and optional Telegram delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local Google NotebookLM session file that can grant account access if exposed. <br>
-Mitigation: Treat ~/.notebooklm/storage_state.json like a password, keep file permissions restricted, and avoid shared servers for this credential. <br>
-Risk: Optional Telegram delivery may send generated artifacts to the wrong recipient if the chat ID is incorrect. <br>
-Mitigation: Confirm the Telegram chat ID before delivery and verify delivery status for each artifact. <br>
-Risk: Optional recovery polling can continue checking and downloading pending artifacts in the background. <br>
-Mitigation: Enable the recovery cron only when background polling is intended, and review pending delivery-status.json files. <br>
-Risk: The workflow depends on an external notebooklm-py CLI dependency and authenticated access to Google NotebookLM. <br>
-Mitigation: Install only from trusted sources, run the auth precheck before generation, and stop if the session check fails. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to turn URLs, YouTube videos, documents, text, audio, images, and Google Drive files into NotebookLM-generated study and presentation materials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jasontsaicc/notebooklm-studio) <br>
-- [Agent Skills specification](https://agentskills.io) <br>
-- [Artifact Types](references/artifacts.md) <br>
-- [Artifact Options Reference](references/artifact-options.md) <br>
-- [Output Contracts](references/output-contracts.md) <br>
-- [Supported Source Types](references/source-types.md) <br>
-- [Telegram Delivery Contract](references/telegram-delivery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated local files such as Markdown, JSON, CSV, PDF, PPTX, PNG, MP3, and MP4 artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires notebooklm CLI authentication; uses ffmpeg for audio compression; optional Telegram delivery is available in OpenClaw environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release evidence) <br>
+Risk: The workflow depends on an authenticated NotebookLM session and stores browser session state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated NotebookLM or Google account when possible, protect ~/.notebooklm/storage_state.json like a password, and avoid copying it to shared or less-trusted systems.
+
+Risk: Optional cron recovery jobs can continue polling and downloading artifacts without direct user supervision.
+
+Mitigation: Enable recovery jobs only when unattended recovery is needed, run them as a non-root user, and keep output and status files in a private directory.
+
+Risk: The recovery workflow uses local output paths and status files for downloads.
+
+Mitigation: Review output directory paths before enabling recovery, keep the workspace private, and avoid running recovery against untrusted status files.
+
+Risk: The skill requires external CLI dependencies, including notebooklm and ffmpeg.
+
+Mitigation: Install dependencies from trusted sources, prefer pinned versions, and verify authentication with notebooklm auth check --test before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jasontsaicc/skills/notebooklm-studio)
+- [Agent Skills Specification](https://agentskills.io)
+- [Artifact Types](references/artifacts.md)
+- [Artifact Options](references/artifact-options.md)
+- [Output Contracts](references/output-contracts.md)
+- [Source Types](references/source-types.md)
+- [Telegram Delivery Contract](references/telegram-delivery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON status files, and generated local artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces selected NotebookLM artifacts such as MP3, MP4, Markdown, JSON, PDF/PPTX, PNG, and CSV files; slow audio, video, and slide artifacts may be handled asynchronously.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release evidence; artifact frontmatter says 2.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

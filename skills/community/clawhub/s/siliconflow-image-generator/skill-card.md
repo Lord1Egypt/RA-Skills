@@ -1,45 +1,55 @@
-## Description: <br>
-SiliconFlow text-to-image and image-to-image generation for covers, posters, and campaign creatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cover images, posters, campaign creatives, and image variations through SiliconFlow text-to-image and image-to-image workflows.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate social covers, posters, campaign creatives, and image variations from prompts or reference images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential scoping could expose a broader API key than intended. <br>
-Mitigation: Prefer a dedicated SILICONFLOW_API_KEY and avoid relying on generic API_KEY or memory-search configuration. <br>
-Risk: Prompts or private reference images are sent to SiliconFlow for processing. <br>
-Mitigation: Do not submit sensitive prompts or private images unless the user is comfortable sharing them with SiliconFlow. <br>
-Risk: Server security evidence marks the release as suspicious. <br>
-Mitigation: Review the skill before installing and confirm the credential and data-disclosure behavior is acceptable. <br>
+## Use Case:
 
+Developers and content teams use this skill to generate social covers, promotional posters, concept visuals, and variations from reference images. It is not intended for OCR, visual question answering, text chat, code help, or high-precision document layout reconstruction.
 
-## Reference(s): <br>
-- [SiliconFlow Console](https://siliconflow.cn) <br>
-- [SiliconFlow Image Generation API Endpoint](https://api.siliconflow.cn/v1/images/generations) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangziiiiii/siliconflow-image-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangziiiiii) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [JSON response containing SiliconFlow image-generation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SiliconFlow API key and sends prompts and optional reference images to SiliconFlow for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, reference image URLs, image base64 data, or local image file contents may be uploaded to SiliconFlow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and images approved for upload to SiliconFlow, and avoid private or sensitive image paths unless that upload is acceptable.
+
+Risk: The scripts may use a generic API_KEY when SILICONFLOW_API_KEY is not set, which could send an unrelated service token to SiliconFlow.
+
+Mitigation: Configure a dedicated SILICONFLOW_API_KEY for this skill and avoid running it in sessions where API_KEY contains another provider's credential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangziiiiii/skills/siliconflow-image-generator)
+- [SiliconFlow Console](https://siliconflow.cn)
+- [SiliconFlow Image Generation API Endpoint](https://api.siliconflow.cn/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls SiliconFlow image generation endpoints and may return image URLs or service error payloads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

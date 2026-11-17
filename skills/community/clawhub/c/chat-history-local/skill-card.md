@@ -1,41 +1,57 @@
-## Description: <br>
-Searches local WhatsApp and chat conversations stored in the openclaw_audit PostgreSQL database so an agent can find, quote, or reply to past messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches past WhatsApp and chat conversations stored in a local audit-log PostgreSQL database so an agent can find, quote, or reply to previous messages.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers or operators running a local OpenClaw WhatsApp audit database use this skill to help an agent search prior conversations, retrieve context, and reference messages by message_id. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad database access can expose private messages and unrelated telemetry. <br>
-Mitigation: Use a dedicated read-only database role limited to the messages table and scope each lookup by chat, date, person, or keyword. <br>
-Risk: Conversation searches can reveal sensitive personal content beyond the user's immediate request. <br>
-Mitigation: Require explicit user authorization for each lookup and avoid broad private conversation dumps. <br>
+## Use Case:
 
+Developers and authorized operators use this skill to let an agent search local WhatsApp/chat history, retrieve conversation context, and reference prior messages by message_id. It is intended for environments where the local audit database is deliberately available to the agent and the user is authorized to search the relevant chats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/chat-history-local) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/netanel-abergel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with SQL examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should keep database searches scoped by chat, date, person, or keyword and use LIMIT when querying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose broad private chat history if the local audit database is available to the agent without clear authorization controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where users are authorized to search the relevant chats and require explicit confirmation before private-history lookups.
+
+Risk: The documented database connection uses a powerful local PostgreSQL role for direct query execution.
+
+Mitigation: Prefer a read-only scoped database role and parameterized or fixed search commands with conservative LIMIT clauses.
+
+Risk: Examples or outputs may reveal personal chat identifiers or sensitive message contents.
+
+Mitigation: Remove real personal identifiers from examples and review retrieved messages for privacy before quoting or replying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/chat-history-local)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with shell and SQL command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results should be limited, reviewed for privacy, and used only with authorized local chat data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

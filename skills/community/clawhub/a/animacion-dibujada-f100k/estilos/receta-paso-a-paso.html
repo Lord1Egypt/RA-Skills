@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Receta paso a paso</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const RUBRO = 'pasteleria';                  // pasteleria | psicologo | dentista | restaurante | nutricionista | tienda-ropa | inmobiliario | makeup | fitness | centro-estetico | joyeria | veterinaria | generico
+const TITULO = 'lo que hay detrás de un pastel';   // arriba al inicio y en el resumen final (≤ 45 letras)
+const PASOS = [                              // 3 a 6 pasos. objeto = uno del catálogo (ver objetosDisponibles()); texto ≤ 36 letras
+  { objeto: 'harina', texto: 'primero, la harina' },
+  { objeto: 'huevo', texto: 'los huevos' },
+  { objeto: 'batidor', texto: 'a batir' },
+  { objeto: 'horno', texto: 'al horno' },
+  { objeto: 'pastel-pisos', texto: 'y se arma en pisos' },
+];
+const SEG_POR_PASO = 1.35;                   // cuánto dura cada paso en pantalla
+const ESTILO = 'vector';                     // 'vector' | 'pixel'
+const PALETA = {};
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+const T0 = .55, N = PASOS.length, T_RES = T0 + N * SEG_POR_PASO + .1;
+const DUR = +(T_RES + .8 + 1.6).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script src="../nucleo/objetos.js"></script>
+<script src="../nucleo/kits/pasteleria.js"></script>
+<script src="../nucleo/kits/psicologo.js"></script>
+<script src="../nucleo/kits/dentista.js"></script>
+<script src="../nucleo/kits/restaurante.js"></script>
+<script src="../nucleo/kits/nutricionista.js"></script>
+<script src="../nucleo/kits/tienda-ropa.js"></script>
+<script src="../nucleo/kits/inmobiliario.js"></script>
+<script src="../nucleo/kits/makeup.js"></script>
+<script src="../nucleo/kits/fitness.js"></script>
+<script src="../nucleo/kits/centro-estetico.js"></script>
+<script src="../nucleo/kits/joyeria.js"></script>
+<script src="../nucleo/kits/veterinaria.js"></script>
+<script>
+const KIT = kitDe(RUBRO), PAL = Object.assign({}, KIT.paleta, PALETA);
+const CX = W / 2, BASE = PISO_Y + 70, GRANDE = 620;   // el objeto del paso: de 780 a 1400
+
+function tarjeta(y0, rotulo, texto, k, colRotulo) {
+  if (k <= 0) return;
+  const aj = autoajuste(texto, LETRA_LIMPIA, 800, 800, 2, 92, 50);
+  const alto = aj.rs.length * aj.size * 1.14 + 100;
+  ctx.save(); ctx.globalAlpha = clamp(k * 2); ctx.translate(CX, y0 + alto / 2); ctx.scale(.9 + .1 * k, .9 + .1 * k); ctx.translate(-CX, -(y0 + alto / 2));
+  ctx.fillStyle = 'rgba(0,0,0,.14)'; ctx.beginPath(); ctx.roundRect(CX - 450 + 12, y0 + 16, 900, alto, 36); ctx.fill();
+  ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.roundRect(CX - 450, y0, 900, alto, 36); ctx.fill();
+  ctx.lineWidth = 6; ctx.strokeStyle = PAL.tinta; ctx.stroke();
+  ctx.font = `800 30px ${LETRA_LIMPIA}`; const rw = medir(rotulo, ctx.font) + 56;
+  ctx.fillStyle = colRotulo; ctx.beginPath(); ctx.roundRect(CX - rw / 2, y0 - 26, rw, 52, 26); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(rotulo, CX, y0);
+  ctx.fillStyle = PAL.tinta; ctx.font = aj.font; ctx.textBaseline = 'alphabetic';
+  aj.rs.forEach((r, i) => ctx.fillText(r, CX, y0 + 60 + aj.size * .86 + i * aj.size * 1.14));
+  ctx.restore();
+}
+function puntos(actual, k) {                          // barra de avance: un punto por paso
+  const y = 700, sep = 54, x0 = CX - (N - 1) * sep / 2;
+  ctx.save(); ctx.globalAlpha = k;
+  for (let i = 0; i < N; i++) { const on = i <= actual;
+    ctx.fillStyle = on ? PAL.acento : 'rgba(255,255,255,.85)'; ctx.strokeStyle = PAL.tinta; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(x0 + i * sep, y, i === actual ? 17 : 12, 0, 7); ctx.fill(); ctx.stroke(); }
+  ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  escenario(KIT.escenario, t, { estilo: ESTILO, paleta: PAL });
+  ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fillRect(0, 0, W, H);                 // el fondo pasa a segundo plano
+  const res = prog(t, T_RES, T_RES + .8);                                              // 0..1 = transición al resumen
+  if (res <= 0) {
+    // ---- pasos: cada objeto entra deslizando desde la derecha y sale por la izquierda ----
+    const i = clamp(Math.floor((t - T0) / SEG_POR_PASO), 0, N - 1);
+    for (const j of [i - 1, i]) {
+      if (j < 0) continue;
+      const tj = t - (T0 + j * SEG_POR_PASO);
+      const entra = easeOut(prog(tj, .1, .55)), sale = j < N - 1 ? Math.pow(prog(tj, SEG_POR_PASO - .05, SEG_POR_PASO + .3), 2) : 0;   // el que sale se va antes de que llegue el otro
+      if (tj < 0 || sale >= 1) continue;
+      const x = lerp(W + 360, CX, entra) + lerp(0, -W / 2 - 400, sale);
+      const giro = (1 - entra) * .25 - sale * .25;
+      dibujarObjeto(PASOS[j].objeto, x, BASE, GRANDE, { t: tj, estilo: ESTILO, rot: giro, tinta: PAL.tinta });
+    }
+    const ti = t - (T0 + i * SEG_POR_PASO);
+    if (t < T0 + .15) tarjeta(330, KIT.nombre.split(' /')[0].toUpperCase(), TITULO, back(prog(t, .05, .45)), PAL.tinta);
+    else {   // la tarjeta del paso nuevo sale cuando su objeto ya está llegando al centro, no antes
+      const ic = i > 0 && ti < .28 ? i - 1 : i, tc = ic === i ? ti - .28 * (i > 0) : SEG_POR_PASO;
+      tarjeta(330, `PASO ${ic + 1} DE ${N}`, PASOS[ic].texto, ic === i ? back(prog(tc, 0, .3)) : 1, PAL.acento);
+      puntos(ic, clamp((t - T0) * 3));
+    }
+  } else {
+    // ---- resumen: todos los objetos en fila, el último se encoge a su lugar ----
+    const n = N, tam = Math.min(230, 900 / n * 1.05), sep = Math.min(200, 960 / n), x0 = CX - (n - 1) * sep / 2;
+    PASOS.forEach((p, j) => {
+      const tj = t - T_RES - j * .07, k = easeOut(prog(tj, 0, .5));
+      if (j === n - 1) dibujarObjeto(p.objeto, lerp(CX, x0 + j * sep, easeOut(res)), lerp(BASE, BASE - 40, easeOut(res)), lerp(GRANDE, tam, easeOut(res)), { t: t - T0, estilo: ESTILO, tinta: PAL.tinta });
+      else if (k > 0) dibujarObjeto(p.objeto, x0 + j * sep, BASE - 40, tam, { t: tj, estilo: ESTILO, anim: 'aparece', tinta: PAL.tinta });
+      // número bajo cada objeto
+      if (k > 0) { ctx.save(); ctx.globalAlpha = k; ctx.fillStyle = PAL.acento; ctx.strokeStyle = PAL.tinta; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.arc(x0 + j * sep, BASE + 20, 26, 0, 7); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = `800 30px ${LETRA_LIMPIA}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(j + 1, x0 + j * sep, BASE + 21); ctx.restore(); }
+    });
+    if (t < T_RES + .3) tarjeta(330, `PASO ${N} DE ${N}`, PASOS[N - 1].texto, 1, PAL.acento);   // sin cuadro vacío entre la tarjeta del paso y la del resumen
+    else tarjeta(330, KIT.nombre.split(' /')[0].toUpperCase(), TITULO, back(prog(t, T_RES + .3, T_RES + .7)), PAL.tinta);
+  }
+});
+</script>
+</body>
+</html>

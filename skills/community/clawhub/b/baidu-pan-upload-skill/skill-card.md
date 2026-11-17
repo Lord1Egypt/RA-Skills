@@ -1,43 +1,57 @@
-## Description: <br>
-Uploads user-selected local files to Baidu Pan with chunked upload, resumable transfer, progress monitoring, and remote directory creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files to Baidu Netdisk with chunked uploads, resumable transfer state, progress monitoring, and remote directory creation.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and operators use this skill to upload local files, including large files, into a Baidu Pan account using existing Baidu Open Platform credentials. It is useful for backup, document transfer, and other workflows that need resumable cloud uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads a user-chosen local file to a Baidu Pan account using credentials from a local .env file. <br>
-Mitigation: Keep the .env file private and out of version control, and run the upload command only for files intended for that Baidu Pan account. <br>
-Risk: An incorrect remote directory can place files in an unintended cloud location. <br>
-Mitigation: Verify the remote directory argument before execution; remote paths should start with /. <br>
-Risk: The --overwrite option can replace an existing cloud file. <br>
-Mitigation: Use --overwrite only when replacing the existing Baidu Pan file is intended. <br>
+## Use Case:
 
+Developers and agents use this skill to upload selected local files to Baidu Netdisk directories, including large files that need chunking, retry handling, and resumable progress after interruption.
 
-## Reference(s): <br>
-- [Baidu Open Platform application console](https://pan.baidu.com/union/console/applist) <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/baidu-pan-upload-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces upload status, progress, retry, resume, and completion messages when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill handles Baidu Netdisk access tokens and may expose the token in the curl command line while uploads run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted local environments and avoid shared machines or process listings where other users can inspect command-line arguments.
+
+Risk: The resumable upload state file is written beside the selected source file.
+
+Mitigation: Avoid running uploads from shared or sensitive directories, and remove stale .upload_state.json files if an upload is abandoned.
+
+Risk: The skill uploads selected local files to Baidu Netdisk.
+
+Mitigation: Confirm file selection, destination path, and token scope before execution, especially for confidential or regulated data.
+
+## Reference(s):
+
+- [Baidu Netdisk Open Platform App Console](https://pan.baidu.com/union/console/applist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces upload commands and status guidance; the bundled script writes resumable upload state beside the selected source file while uploads are in progress.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

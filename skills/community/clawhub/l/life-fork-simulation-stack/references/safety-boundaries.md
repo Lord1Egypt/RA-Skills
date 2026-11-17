@@ -1,5 +1,7 @@
 # 安全边界
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 本 Skill 用于结构化复盘和决策系统校准，需控制判断强度。
 
 ## 核心边界

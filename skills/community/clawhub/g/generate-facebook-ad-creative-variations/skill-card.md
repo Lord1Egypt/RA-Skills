@@ -1,41 +1,54 @@
-## Description: <br>
-Creates multiple ad copy and image variations optimized for different audiences and placements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates multiple ad copy and image variations optimized for different audiences and placements.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Marketers, agencies, and growth teams use this skill to draft Facebook ad copy and image concepts for paid campaign setup and A/B testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ad creative may be inaccurate, misleading, or unsuitable for publication without brand, policy, and legal review. <br>
-Mitigation: Review all generated copy and image concepts before publishing or using them in paid campaigns. <br>
-Risk: The skill declares Bash and Read tool access even though the evidence describes an instruction-only creative drafting workflow. <br>
-Mitigation: Limit Bash and local file access when the agent environment does not need those tools for this workflow. <br>
+## Use Case:
 
+Marketers, agencies, and growth teams use this skill to draft Facebook ad creative variations for paid campaigns, including audience-specific copy and image concepts for A/B testing.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-facebook-ad-creative-variations) <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/generate-facebook-ad-creative-variations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ad headlines, body copy, audience or placement variants, and image creative prompts or concepts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests Bash and Read access that is broader than its ad creative workflow appears to require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and prefer a version that removes Bash and Read unless local file inspection or command execution is explicitly needed under user control.
+
+Risk: Generated ad copy or image concepts may be inaccurate, misleading, or unsuitable for external publication.
+
+Mitigation: Review all generated creative variations for factual accuracy, brand fit, audience appropriateness, and campaign requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/generate-facebook-ad-creative-variations)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-facebook-ad-creative-variations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text containing ad copy variations, audience notes, placement guidance, and image creative concepts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested image concepts or prompts for generated creative assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

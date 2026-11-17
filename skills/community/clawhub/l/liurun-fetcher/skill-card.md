@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically fetches Liu Run's latest WeChat public articles and generates structured summaries with key insights and trend judgments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liurun Fetcher helps an agent fetch recent Liu Run WeChat public-account articles through Sogou/WeChat access paths and produce structured daily business summaries.
 
-## Publisher: <br>
-[coolfzb](https://clawhub.ai/user/coolfzb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolfzb](https://clawhub.ai/user/coolfzb)
 
-## Use Case: <br>
-Developers and operators use this skill to trigger or schedule retrieval of Liu Run WeChat/Sogou articles, archive article material locally, and receive concise business-news summaries with insights and trend judgments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad keyword triggers or schedules may fetch and store article material locally when the user did not intend a run. <br>
-Mitigation: Confirm before enabling cron schedules or broad triggers, and review saved files in the articles folder. <br>
-Risk: Personalized financial holdings context may be included in generated summaries and saved locally. <br>
-Mitigation: Avoid providing portfolio or Trade Arena data unless it is intended for local storage, or redact it before summary generation. <br>
-Risk: Automated WeChat/Sogou browsing may depend on a logged-in browser profile and external anti-scraping behavior. <br>
-Mitigation: Use a dedicated browser profile where possible, respect site access limits, and review fetched content before relying on it. <br>
+## Use Case:
 
+External users and developers can use this skill to monitor Liu Run's public WeChat content and receive concise summaries, key insights, personalized business implications, and trend judgments. It is suited to recurring business-news briefings where the user explicitly wants WeChat/Sogou retrieval and local summary archives.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/coolfzb/liurun-fetcher) <br>
-- [Skill source overview](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries plus saved article and raw text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save article summaries, raw article text, and debug HTML under the articles folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary reports unsafe network-fetching code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fetch helpers before use, require HTTPS, restrict allowed hosts to intended WeChat and Sogou endpoints, and limit redirects.
+
+Risk: The security guidance warns against granting portfolio access or enabling scheduled runs without explicit intent.
+
+Mitigation: Run the skill only with the minimum data access needed, keep financial or portfolio data out of routine summaries unless deliberately supplied, and approve any scheduled execution separately.
+
+Risk: The security verdict is suspicious because the skill combines WeChat article summarization with requests to use and persist investment holdings.
+
+Mitigation: Treat personalized financial implications as user-provided context, review generated summaries before relying on them, and avoid storing sensitive holdings unless retention is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coolfzb/skills/liurun-fetcher)
+- [Publisher Profile](https://clawhub.ai/user/coolfzb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with optional saved text or HTML files from fetch helpers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries usually include a one-sentence summary, five key insights, personalized implications, and trend judgments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

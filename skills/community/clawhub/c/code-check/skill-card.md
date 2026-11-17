@@ -1,40 +1,52 @@
-## Description: <br>
-Run project quality checks and security reviews, fixing all errors by priority until all pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run project quality checks and security reviews, fixing all errors by priority until all pass.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run linting, type checks, tests, security audits, formatting, and build checks, then fix reported issues until the project checks pass.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to edit repository files while resolving check failures.
+
+Mitigation: Use it in trusted repositories and explicitly request diagnostic-only behavior when code changes are not desired.
+
+Risk: Automated fixes may change behavior while addressing lint, test, build, or security findings.
+
+Mitigation: Review the resulting diff and re-run the relevant project checks before relying on the changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to run project linting, type checks, tests, security audits, formatting, and build checks, then fix reported issues until the checks pass. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Project check commands, tests, builds, and audit tools may run repository code, consume time, or access the network. <br>
-Mitigation: Review configured commands in unfamiliar repositories before execution and run only the checks needed for the task. <br>
-Risk: Automated fixes may alter code beyond the user's intended scope if check output is broad or ambiguous. <br>
-Mitigation: Keep changes scoped to reported check failures, rerun checks after each fix, and review the final diff before accepting the result. <br>
+**Output Format:** [Markdown with inline shell commands and code edits]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/code-check) <br>
+**Other Properties Related to Output:** [May modify repository files to resolve issues reported by project checks; does not commit code or change version numbers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit project files while resolving reported check failures; the skill instructs the agent not to commit code or change version numbers.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

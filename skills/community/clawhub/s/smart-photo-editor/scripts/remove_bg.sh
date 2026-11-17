@@ -31,12 +31,18 @@ if [ -n "$OUT_DIR" ] && [ ! -d "$OUT_DIR" ]; then
     mkdir -p "$OUT_DIR"
 fi
 
-# Method 1: Try rembg first if available (check system and venv)
+# Method 1: Try rembg first if available (check PATH, then common venv locations)
 REMBG_CMD=""
 if command -v rembg >/dev/null 2>&1; then
     REMBG_CMD="rembg"
-elif [ -f "/home/guoxh/.openclaw/venv-clawd/bin/rembg" ]; then
-    REMBG_CMD="/home/guoxh/.openclaw/venv-clawd/bin/rembg"
+else
+    # Search common venv locations for rembg
+    for venv_bin in "$HOME/.openclaw"/venv*/bin/rembg; do
+        if [ -x "$venv_bin" ]; then
+            REMBG_CMD="$venv_bin"
+            break
+        fi
+    done
 fi
 
 if [ -n "$REMBG_CMD" ]; then
@@ -62,7 +68,7 @@ if [ -z "$IM_CONVERT" ]; then
     exit 1
 fi
 
-echo "⚠️  rembg not found, falling back to ImageMagick (solid color only)..."
+echo "⚠️  rembg not found, falling back to ImageMagick (solid-color backgrounds only)..."
 echo "   Removing color: $COLOR with tolerance: ${TOLERANCE}%"
 
 # Parse hex color to RGB
@@ -71,14 +77,17 @@ R=$((16#${COLOR_TRIMMED:0:2}))
 G=$((16#${COLOR_TRIMMED:2:2}))
 B=$((16#${COLOR_TRIMMED:4:2}))
 
+# Floodfill starting coordinate (top-left corner)
+BG_X=0
+BG_Y=0
+
 # Determine output format from extension
 case "${OUTPUT##*.}" in
     png|PNG)
-        # For PNG: make specified color transparent with alpha
+        # For PNG: floodfill from corner to make background transparent
         $IM_CONVERT "$INPUT" -fuzz ${TOLERANCE}% \
             -fill "rgba(0,0,0,0)" \
-            -draw "matte ${R},${G},${B} floodfill" \
-            -alpha extract \
+            -draw "matte ${BG_X},${BG_Y} floodfill" \
             "$OUTPUT"
         ;;
     *)
@@ -91,4 +100,4 @@ echo "✓ Background removed with ImageMagick: $OUTPUT"
 
 echo ""
 echo "💡 Tip: Install rembg for better AI-powered background removal:"
-echo "   source ~/.openclaw/venv-clawd/bin/activate && pip install rembg"
+echo "   pip install rembg"

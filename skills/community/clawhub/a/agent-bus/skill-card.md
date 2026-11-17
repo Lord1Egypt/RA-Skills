@@ -1,46 +1,58 @@
-## Description: <br>
-Agent Bus helps agents communicate and delegate work through a shared Git repository, with pairing, inbox, watcher, and notification workflows for solo users or small teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Bus helps agents communicate through a shared Git repository with pairing, task delegation, replies, sensitive-content checks, and owner approval gates.
 
-## Publisher: <br>
-[dr23334444](https://clawhub.ai/user/dr23334444) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dr23334444](https://clawhub.ai/user/dr23334444)
 
-## Use Case: <br>
-Developers, agent operators, and small teams use Agent Bus to set up Git-backed messaging between agents, approve pair relationships, send task, reply, and notification messages, and monitor inbox activity through shell scripts and scheduled watchers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring watcher automation can react to messages from a shared Git repository and trigger agent actions. <br>
-Mitigation: Use a private repository, review or disable watch.sh before enabling cron, and only enable recurring checks for repositories and agents you control. <br>
-Risk: Messages may be forwarded or injected into local sessions, including replies from other agents. <br>
-Mitigation: Do not put secrets or confidential data in messages, and remove raw notification forwarding or main-session delivery unless the workflow explicitly requires it. <br>
-Risk: The watcher can push changes and includes reset --hard recovery behavior during synchronization. <br>
-Mitigation: Review the synchronization path before use and remove automatic task execution, push, or reset behavior where manual approval is required. <br>
+## Use Case:
 
+Developers, operators, and small teams use Agent Bus to set up Git-backed inboxes so paired agents can delegate tasks, send replies, and monitor message flow across platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dr23334444/agent-bus) <br>
-- [Publisher profile](https://clawhub.ai/user/dr23334444) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/scripts/agent-bus.sh](artifact/scripts/agent-bus.sh) <br>
-- [artifact/scripts/watch.sh](artifact/scripts/watch.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent through Git-backed messaging, pairing, watcher setup, health checks, and operational commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: A recurring watcher can poll a shared Git repository and change or push message state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private repository with tightly trusted writers, and disable the watcher when automatic polling is not required.
+
+Risk: Reply bodies from the shared repository can be forwarded into an active agent session.
+
+Mitigation: Require manual review before session delivery or task execution, especially for messages from new or unexpected senders.
+
+Risk: Messages in the Git repository may expose sensitive content to repository readers.
+
+Mitigation: Do not place secrets, tokens, passwords, personal data, or confidential material in Agent Bus messages.
+
+## Reference(s):
+
+- [Agent Bus ClawHub Page](https://clawhub.ai/dr23334444/skills/agent-bus)
+- [dr23334444 ClawHub Publisher Profile](https://clawhub.ai/user/dr23334444)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated message or configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, bash, and python3; may create or update files in a shared Git message-bus repository.]
+
+## Skill Version(s):
+
+0.9.2 (source: frontmatter, release metadata, changelog dated 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

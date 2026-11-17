@@ -1,45 +1,58 @@
-## Description: <br>
-Helps agents prepare, submit, and explain PoYo Grok Imagine text-to-video and image-to-video generation jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and submit PoYo Grok Imagine video-generation jobs for text-to-video and image-to-video workflows.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to work with short Grok Imagine video generation jobs on PoYo, including prompt setup, optional reference images, duration, aspect ratio, mode selection, and status follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A PoYo API key can be exposed if copied into prompts, logs, or shared shell history. <br>
-Mitigation: Keep POYO_API_KEY private, prefer environment variables or secret storage, and avoid printing credentials in generated examples. <br>
-Risk: Prompts and optional image URLs are sent to PoYo for processing. <br>
-Mitigation: Avoid sensitive prompts or private image URLs unless that processing is acceptable for the use case. <br>
-Risk: Webhook callbacks can send task results to the wrong destination if an untrusted callback URL is used. <br>
-Mitigation: Use only trusted HTTPS callback URLs controlled by the user, or omit callbacks and poll task status instead. <br>
+## Use Case:
 
+Developers and agent operators use this skill to construct PoYo Grok Imagine requests, submit them with a POYO_API_KEY, and track the returned task_id for status polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Grok Imagine API Reference](references/api.md) <br>
-- [PoYo Grok Imagine Documentation](https://docs.poyo.ai/api-manual/video-series/grok-imagine) <br>
-- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [PoYo Grok Imagine OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/grok-imagine.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the model id, payload summary, reference image use, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, image URLs, callback URLs, and job metadata are sent to the PoYo third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sharing that data with PoYo and avoid submitting secrets or private media.
+
+Risk: API credentials can be exposed if passed directly on a command line or stored in logs.
+
+Mitigation: Use the POYO_API_KEY environment variable, avoid echoing credentials, and rotate keys that may have appeared in shell history or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-grok-imageine)
+- [PoYo Grok Imagine model page](https://poyo.ai/models/grok-imagine)
+- [PoYo Grok Imagine API docs](https://docs.poyo.ai/api-manual/video-series/grok-imagine)
+- [PoYo Grok Imagine OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/grok-imagine.json)
+- [PoYo task status docs](https://docs.poyo.ai/api-manual/task-management/status)
+- [Artifact API reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the chosen model id, request payload or parameter summary, image-reference usage, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,14 +1,38 @@
 ---
+
+
 name: freqtrade-backtester
 description: "Run Freqtrade backtests for cryptocurrency trading strategies, interpret results, and iterate. Use when downloading historical data, running a backtest, reading backtest output, comparing strategies, or deciding whether a strategy is ready for live trading. Trigger phrases: backtest freqtrade, run backtest, download freqtrade data, compare strategies, is my strategy good, freqtrade results."
-metadata: {"clawdbot":{"emoji":"📊","requires":{"bins":["docker","docker-compose"]},"os":["linux","darwin","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83d\udcca","requires":{"bins":["docker","docker-compose"]},"os":["linux","darwin","win32"],"version":"1.0.4"}}
 ---
+
+
 
 # Freqtrade Backtester
 
 Run backtests on your trading strategies, interpret results, and iterate safely before going live.
 
 ## What Backtesting Does
+
+## Before You Run: Keys and Scope
+
+**Use this skill only for explicit Freqtrade backtesting work.** It is not a
+general trading-assistant skill; it should activate for backtest, hyperopt,
+and strategy-validation requests specifically.
+
+**Never paste exchange API secrets into a chat, a file committed to git, or an
+issue.** Backtesting against live exchange data needs read access only:
+
+- Use **read-only / trading-disabled** API keys. A backtest never needs the
+  ability to place orders.
+- **Disable withdrawal permission** on the exchange key entirely.
+- Keep keys in the environment or a gitignored `.env`, never in a committed
+  config file.
+- Scope the key to the single exchange and account you need, and revoke it
+  when the backtesting work is done.
+
+If the task does not actually require authenticated exchange access, use
+Freqtrade's bundled historical data instead of connecting to an exchange at all.
 
 Backtesting runs your strategy against historical market data to see how it would have performed. It shows you win rates, losses, drawdowns, and exit reasons — everything you need to decide if a strategy is worth trading with real money.
 

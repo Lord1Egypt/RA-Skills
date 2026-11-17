@@ -11,17 +11,17 @@ from pathlib import Path
 from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).parent))
-from elba import load_credentials, login, URL_DOCUMENTS, PROFILE_DIR, _get_bearer_token, _clear_cached_token, _safe_output_path, WORKSPACE_ROOT
+from elba import load_credentials, login, URL_DOCUMENTS, _get_bearer_token, _clear_cached_token, _safe_output_path, WORKSPACE_ROOT
 
 try:
     from playwright.sync_api import sync_playwright
 except ImportError:
-    print("ERROR: playwright not installed")
+    print("ERROR: playwright not installed", file=sys.stderr)
     sys.exit(1)
 
 def get_bearer_token_from_browser(page):
     """Extract bearer token from browser"""
-    print("[token] Extracting bearer token...", flush=True)
+    print("[token] Extracting bearer token...", flush=True, file=sys.stderr)
     
     # Try localStorage/sessionStorage first
     token = page.evaluate("""() => {
@@ -60,18 +60,18 @@ def get_bearer_token_from_browser(page):
     }""")
     
     if token:
-        print(f"[token] Found token: {token[:20]}...", flush=True)
+        print("[token] Found token", flush=True, file=sys.stderr)
         return token
     
     # Capture from network request
-    print("[token] Capturing from API request...", flush=True)
+    print("[token] Capturing from API request...", flush=True, file=sys.stderr)
     captured_token = {'value': None}
     
     def handle_request(route, request):
         auth_header = request.headers.get('authorization', '')
         if auth_header.startswith('Bearer '):
             captured_token['value'] = auth_header[7:]
-            print(f"[token] Captured: {captured_token['value'][:20]}...", flush=True)
+            print("[token] Captured", flush=True, file=sys.stderr)
         route.continue_()
     
     page.route('**/api/**', handle_request)
@@ -91,20 +91,20 @@ def fetch_products(token, cookies):
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15"
     }
     
-    print(f"[api] Fetching products...", flush=True)
+    print(f"[api] Fetching products...", flush=True, file=sys.stderr)
     
     try:
         response = requests.get(url, headers=headers, cookies=cookies)
         
         if response.status_code == 200:
             products = response.json()
-            print(f"[api] Found {len(products)} products", flush=True)
+            print(f"[api] Found {len(products)} products", flush=True, file=sys.stderr)
             return products
         else:
-            print(f"[api] Request failed with status {response.status_code}: {response.text}", flush=True)
+            print(f"[api] Request failed with status {response.status_code}: {response.text}", flush=True, file=sys.stderr)
             return None
     except Exception as e:
-        print(f"[api] Error: {e}", flush=True)
+        print(f"[api] Error: {e}", flush=True, file=sys.stderr)
         return None
 
 def fetch_transactions(token, cookies, iban, date_from, date_to, limit=3001, id_bis=None, neuanlage_bis=None):
@@ -137,7 +137,7 @@ def fetch_transactions(token, cookies, iban, date_from, date_to, limit=3001, id_
         "limit": limit
     }
     
-    print(f"[api] Fetching transactions for {iban} from {date_from} to {date_to}...", flush=True)
+    print(f"[api] Fetching transactions for {iban} from {date_from} to {date_to}...", flush=True, file=sys.stderr)
     
     try:
         response = requests.post(url, json=body, headers=headers, cookies=cookies)
@@ -147,13 +147,13 @@ def fetch_transactions(token, cookies, iban, date_from, date_to, limit=3001, id_
             transactions = data.get('kontoumsaetze', [])
             if not transactions:
                 transactions = data.get('list', [])
-            print(f"[api] Received {len(transactions)} transactions", flush=True)
+            print(f"[api] Received {len(transactions)} transactions", flush=True, file=sys.stderr)
             return data, transactions, response.status_code
         else:
-            print(f"[api] Request failed with status {response.status_code}: {response.text}", flush=True)
+            print(f"[api] Request failed with status {response.status_code}: {response.text}", flush=True, file=sys.stderr)
             return {"error": response.text}, None, response.status_code
     except Exception as e:
-        print(f"[api] Error: {e}", flush=True)
+        print(f"[api] Error: {e}", flush=True, file=sys.stderr)
         return None, None, None
 
 def _get_next_cursor(data, transactions):
@@ -193,7 +193,7 @@ def fetch_transactions_all(token, cookies, iban, date_from, date_to, limit=3001)
     page = 1
     
     while True:
-        print(f"[api] Fetching page {page}...", flush=True)
+        print(f"[api] Fetching page {page}...", flush=True, file=sys.stderr)
         data, transactions, status_code = fetch_transactions(
             token,
             cookies,
@@ -220,11 +220,11 @@ def fetch_transactions_all(token, cookies, iban, date_from, date_to, limit=3001)
         
         next_id, next_neuanlage = _get_next_cursor(data, transactions)
         if not next_id and not next_neuanlage:
-            print("[api] WARNING: No pagination cursor found; stopping to avoid duplicates.", flush=True)
+            print("[api] WARNING: No pagination cursor found; stopping to avoid duplicates.", flush=True, file=sys.stderr)
             break
         
         if next_id == id_bis and next_neuanlage == neuanlage_bis:
-            print("[api] WARNING: Pagination cursor did not advance; stopping.", flush=True)
+            print("[api] WARNING: Pagination cursor did not advance; stopping.", flush=True, file=sys.stderr)
             break
         
         id_bis = next_id
@@ -236,10 +236,10 @@ def fetch_transactions_all(token, cookies, iban, date_from, date_to, limit=3001)
 def export_to_csv(transactions, output_file):
     """Export transactions to CSV"""
     if not transactions:
-        print(f"[csv] No transactions to export")
+        print(f"[csv] No transactions to export", file=sys.stderr)
         return
     
-    print(f"[csv] Writing {len(transactions)} transactions to {output_file}...", flush=True)
+    print(f"[csv] Writing {len(transactions)} transactions to {output_file}...", flush=True, file=sys.stderr)
     
     # Define CSV columns based on actual API response
     fieldnames = [
@@ -277,25 +277,26 @@ def export_to_csv(transactions, output_file):
             }
             writer.writerow(row)
     
-    print(f"[csv] Export complete: {output_file}", flush=True)
+    print(f"[csv] Export complete: {output_file}", flush=True, file=sys.stderr)
 
 def export_to_json(transactions, output_file):
     """Export transactions to JSON"""
     if not transactions:
-        print(f"[json] No transactions to export")
+        print(f"[json] No transactions to export", file=sys.stderr)
         return
     
-    print(f"[json] Writing {len(transactions)} transactions to {output_file}...", flush=True)
+    print(f"[json] Writing {len(transactions)} transactions to {output_file}...", flush=True, file=sys.stderr)
     
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(transactions, f, indent=2, ensure_ascii=False)
     
-    print(f"[json] Export complete: {output_file}", flush=True)
+    print(f"[json] Export complete: {output_file}", flush=True, file=sys.stderr)
 
 def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Download ELBA transactions as CSV/JSON')
+    parser.add_argument('--profile', default='default', help='Profile to use')
     parser.add_argument('--list-accounts', action='store_true', help='List all accounts and exit')
     parser.add_argument('--iban', help='IBAN to fetch transactions for')
     parser.add_argument('--from', dest='date_from', help='Start date (YYYY-MM-DD)')
@@ -304,6 +305,11 @@ def main():
     parser.add_argument('--output', help='Output filename (without extension)')
     
     args = parser.parse_args()
+
+    # Initialize profile
+    if hasattr(args, "profile"):
+        import elba
+        elba.set_active_profile(args.profile)
     
     # Validate arguments
     if not args.list_accounts:
@@ -321,7 +327,7 @@ def main():
             sys.exit(1)
     
     # Default output filename
-    if not args.output:
+    if not args.output and not args.list_accounts:
         args.output = f"transactions_{args.iban.replace('AT', '')}_{args.date_from}_{args.date_to}"
     
     # Get credentials and login
@@ -330,17 +336,20 @@ def main():
         print("ERROR: Credentials not found")
         sys.exit(1)
     
-    if not PROFILE_DIR.exists():
-        PROFILE_DIR.mkdir(parents=True)
+    import elba
+    profile_dir = elba.PROFILE_DIR
+    
+    if not profile_dir.exists():
+        profile_dir.mkdir(parents=True)
         try:
             from elba import _harden_path
-            _harden_path(PROFILE_DIR)
+            _harden_path(profile_dir)
         except:
             pass
     
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
-            user_data_dir=str(PROFILE_DIR),
+            user_data_dir=str(profile_dir),
             headless=False,
             viewport={"width": 1280, "height": 800}
         )

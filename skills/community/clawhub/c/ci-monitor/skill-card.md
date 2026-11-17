@@ -1,43 +1,57 @@
-## Description: <br>
-Monitor and interact with CI/CD pipelines for Jenkins, GitHub Actions, and GitLab CI by checking build status, triggering builds, analyzing failed jobs, and viewing logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and interact with CI/CD pipelines across Jenkins, GitHub Actions, and GitLab CI by checking build status, triggering builds, analyzing failed jobs, and viewing logs.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect CI/CD status, review failed job logs, summarize pipeline failures, and trigger or retry builds when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CI credentials and job logs can expose sensitive project or deployment information. <br>
-Mitigation: Use least-privilege or temporary CI tokens and avoid pasting real tokens into shared chats or logs. <br>
-Risk: Build triggers, workflow reruns, and pipeline retries are operational actions. <br>
-Mitigation: Require explicit user confirmation before triggering builds, rerunning workflows, or retrying pipelines. <br>
-Risk: Failure summaries based on logs may be incomplete or misleading. <br>
-Mitigation: Confirm conclusions against the CI platform's source logs and test reports before taking corrective action. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect CI/CD pipeline status, review failed job output, trigger or retry builds, and summarize failure causes across Jenkins, GitHub Actions, and GitLab CI.
 
-## Reference(s): <br>
-- [CI Monitor on ClawHub](https://clawhub.ai/zhanghengyi1986-afk/ci-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CI status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests against Jenkins, GitHub Actions, or GitLab CI when credentials and user authorization are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credentialed CI access can expose build logs, project metadata, or sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege CI tokens and limit log retrieval to the lines needed for the requested status or failure analysis.
+
+Risk: Build-triggering or retry commands can consume CI capacity or affect deployment workflows.
+
+Mitigation: Confirm the target job, repository, branch, environment, and parameters before running commands that trigger or retry CI jobs.
+
+Risk: Failure summaries may omit context or misidentify root causes when based on partial logs.
+
+Mitigation: Review the cited CI log output and test reports before applying proposed fixes or escalating incidents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanghengyi1986-afk/skills/ci-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status reports and failure summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CI API requests and log excerpts when the user provides authorized access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

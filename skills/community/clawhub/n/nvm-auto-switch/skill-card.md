@@ -1,41 +1,50 @@
-## Description: <br>
-Detects a Node.js version requirement from a project's package.json engines.node field and helps switch to a matching Node version with nvm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据 package.json 中的 engines 字段自动检测 Node.js 版本要求，如未安装 nvm 则自动安装，并切换到正确的 Node 版本。
 
-## Publisher: <br>
-[piaolingwuyu](https://clawhub.ai/user/piaolingwuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piaolingwuyu](https://clawhub.ai/user/piaolingwuyu)
 
-## Use Case: <br>
-Developers and engineers use this skill when setting up or entering Node.js projects that declare an engines.node requirement, so an agent can run or recommend the appropriate nvm-based version switch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the Bash script can download and execute the nvm installer from GitHub and change the user's local Node.js environment. <br>
-Mitigation: Install nvm manually first or inspect the script and installer before execution, then run it only in environments where changing Node versions is acceptable. <br>
-Risk: The skill documentation advertises Windows PowerShell usage, but the artifact only includes the Bash implementation. <br>
-Mitigation: Do not rely on the advertised Windows command unless a PowerShell script is separately provided and reviewed. <br>
+## Use Case:
 
+Developers and engineers use this skill to detect a Node.js version requirement from a project's package.json and switch the local nvm-managed Node version for development setup, project entry, version mismatch fixes, or CI/CD setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/piaolingwuyu/nvm-auto-switch) <br>
-- [nvm installer referenced by the skill](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local shell commands that inspect package.json, install nvm, install Node.js, and switch the active Node version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can download and execute an unverified remote nvm installer and change the local developer environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer manually installing nvm from a trusted source first, then use this skill only for version switching or require download verification and an explicit consent gate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/piaolingwuyu/skills/nvm-auto-switch)
+- [nvm installer script referenced by artifact](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to run scripts that change the local Node.js and nvm environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

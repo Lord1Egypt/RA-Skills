@@ -1,43 +1,58 @@
-## Description: <br>
-Guided creation of multiple OpenClaw agents and their workspace templates, including scoped questions, draft review, confirmed file writes, optional CLI setup, and summary reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through batch creation of OpenClaw agents and workspace templates, including scope confirmation, agent-by-agent drafting, approved file writes, and summary reporting.
 
-## Publisher: <br>
-[zcxGGmu](https://clawhub.ai/user/zcxGGmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcxggmu](https://clawhub.ai/user/zcxggmu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create one or more OpenClaw agent workspaces with structured agent identity, operating rules, user-profile, bootstrap, and style files. It helps gather requirements, draft files, confirm writes, optionally run OpenClaw CLI setup, and summarize created agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent workspace changes, including overwriting files when forced. <br>
-Mitigation: Confirm each target workspace path, review every generated file before writing, and use --force only when an overwrite is intended. <br>
-Risk: Profile and preference files such as USER.md can accidentally capture sensitive personal or operational information. <br>
-Mitigation: Keep secrets and sensitive credentials out of generated profile files and review drafts before committing them to disk. <br>
-Risk: CLI setup commands may change OpenClaw agent configuration. <br>
-Mitigation: Run CLI setup only after confirming the agent id, workspace path, and whether the user wants docs-only output. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create one or more agent workspaces, collect configuration preferences, draft core agent files, and optionally run OpenClaw CLI setup commands after explicit confirmation.
 
-## Reference(s): <br>
-- [Create Agents Wizard on ClawHub](https://clawhub.ai/zcxGGmu/create-agents-wizard) <br>
-- [Question Bank](references/question-bank.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, workspace files, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update OpenClaw workspace files after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated AGENTS, SOUL, IDENTITY, BOOTSTRAP, USER, and STYLE files may encode incorrect agent behavior if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated workspace file before confirming writes.
+
+Risk: Workspace paths or OpenClaw CLI commands can behave unexpectedly when paths contain spaces or shell-special characters.
+
+Mitigation: Use trusted workspace paths and structured arguments or proper shell quoting for OpenClaw CLI commands.
+
+Risk: The helper script can overwrite existing workspace files when run with --force.
+
+Mitigation: Use --force only when replacing existing files is intentional.
+
+## Reference(s):
+
+- [Question Bank](artifact/references/question-bank.md)
+- [Create Agents Wizard on ClawHub](https://clawhub.ai/zcxggmu/skills/create-agents-wizard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts with inline shell commands, file paths, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-confirmed workspace files and may suggest optional OpenClaw CLI commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

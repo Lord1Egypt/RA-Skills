@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.seller_top_offer.service import get_top_offer, DEFAULT_INDEX_CODE
 
-COMMAND_NAME = "seller_top_offer"
+COMMAND_NAME = "alibaba.1688.seller.top.offer"
 COMMAND_DESC = "获取优秀商品榜单（成交/流量/拉新/复购）"
 
 def main():
@@ -27,7 +27,8 @@ def main():
     parser.add_argument("--order_by", "-o", default="payAmt",
                         choices=["payAmt", "uv", "payNewByrCnt", "itemMultiByrCnt"],
                         help="排序字段: payAmt(成交,默认) / uv(流量) / payNewByrCnt(拉新) / itemMultiByrCnt(复购)")
-    parser.add_argument("--range_type", "-r", default="RECENT_7",
+    parser.add_argument("--date_type", "--range_type", "-r", default="RECENT_7",
+                        dest="range_type",
                         choices=["RECENT_7", "RECENT_30"],
                         help="时间范围: RECENT_7(近7天,默认) / RECENT_30(近30天)")
     parser.add_argument("--device", "-v", default="ALL",
@@ -39,6 +40,8 @@ def main():
     parser.add_argument("--page_size", "-s", type=int, default=50, help="每页数量,默认50")
     parser.add_argument("--index_code", default=DEFAULT_INDEX_CODE,
                         help="返回指标列（逗号分隔）")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
@@ -50,6 +53,7 @@ def main():
             page=args.page,
             page_size=args.page_size,
             index_code=args.index_code,
+            login_id=args.NEWTON_SHOP_LOGIN_ID,
         )
         print_output(True, f"优秀商品榜单（{args.order_by}）查询成功", {
             "data": result,

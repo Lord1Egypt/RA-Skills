@@ -1,0 +1,48 @@
+{
+  "storyforgeFramework": "0.5.0",
+  "generatedAt": "2026-10-15",
+  "hashAlgorithm": "sha256",
+  "hashCanonicalization": "sf-c14n-v1",
+  "recordsFile": "storyforge-framework.json",
+  "baseline": {
+    "docs/DATA-GOVERNANCE.md": "v1.8.0",
+    "docs/products/LONGFORM-AND-NODE.md": "v1.6.0"
+  },
+  "unresolvedRefs": [],
+  "blockProvenance": [
+    {
+      "table": "characters",
+      "recordCount": 2,
+      "contentHash": "sha256:74faaf3027cd160568b2e8f6882cf2e5db80e7c7f1f2a2920d8a4d0b209ce9bb",
+      "evidenceGrade": "OBSERVED",
+      "sources": [
+        {
+          "md": "settings/characters.md",
+          "revision": "r1",
+          "grade": "OBSERVED"
+        }
+      ]
+    },
+    {
+      "table": "characterRelations",
+      "recordCount": 1,
+      "contentHash": "sha256:0912e674200576e2feee4ee8be5d28d81f1dfa44e9dd78c28cd44b9b475eeef0",
+      "evidenceGrade": "INFERRED",
+      "sources": [
+        {
+          "md": "settings/characters.md",
+          "revision": "r1",
+          "grade": "INFERRED"
+        }
+      ]
+    },
+    {
+      "table": "chapters",
+      "recordCount": 1,
+      "contentHash": "sha256:39d4568dbb4cf5fb3da11d2cf65dabd80a860e050259528eef89c82aeacce6cf",
+      "evidenceGrade": "INFERRED",
+      "sources": [],
+      "notes": "由本章正文候选推导，正文尚未落盘为 md 来源"
+    }
+  ]
+}

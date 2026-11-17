@@ -1,41 +1,50 @@
-## Description: <br>
-P5 namespace for Netsnek e.U. creative coding platform. Interactive sketch creation, generative art, and visual programming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P5 namespace for Netsnek e.U. creative coding platform. Interactive sketch creation, generative art, and visual programming.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers, artists, designers, and creative coding users can use this skill to retrieve concise P5 platform information, capabilities, and structured metadata for the Netsnek e.U. creative coding namespace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release describes creative-coding capabilities that the current artifact does not implement. <br>
-Mitigation: Present the skill as an informational/reference helper unless the publisher updates the implementation. <br>
-Risk: The skill requests exec permission to run a local script. <br>
-Mitigation: Review the supplied script before deployment and run only the included static information commands. <br>
+## Use Case:
 
+Developers, artists, designers, and creative coding users use this skill to ask an agent for concise P5 platform information, capabilities, and metadata.
 
-## Reference(s): <br>
-- [ClawHub p5 release page](https://clawhub.ai/kleberbaum/p5) <br>
-- [Netsnek](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from a local shell script, typically summarized in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The current artifact is an informational helper and does not create or export sketches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, claw.json, release evidence) <br>
+Risk: The skill requests exec permission so the agent can run a bundled shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation and use it only when static P5 information output justifies granting exec permission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/p5)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell command output and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a bundled shell script that prints static P5 platform information.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

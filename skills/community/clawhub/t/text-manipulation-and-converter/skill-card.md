@@ -1,42 +1,57 @@
-## Description: <br>
-Text Manipulation and Converter helps agents manipulate, convert, clean, normalize, sort, deduplicate, wrap, quote, and count text through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text Manipulation and Converter helps agents clean, transform, convert, sort, deduplicate, wrap, quote, and count text through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to perform text cleanup, case conversion, line operations, quoting, wrapping, and character or word counts with the AgentPMT text manipulation service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted text is processed by the remote AgentPMT service and may include sensitive content if users paste it into tool calls. <br>
-Mitigation: Avoid sending secrets, regulated data, private code, customer data, or confidential text unless AgentPMT processing is acceptable. <br>
-Risk: Generic cleanup requests could trigger remote calls that consume credits. <br>
-Mitigation: Use explicit invocation and review intended AgentPMT actions before running paid remote text-processing calls. <br>
+## Use Case:
 
+Developers, engineers, and external agents use this skill to normalize text, convert naming conventions, format lists, add quotes, wrap or unwrap content, and compute line, word, and character counts.
 
-## Reference(s): <br>
-- [Text Manipulation And Converter on ClawHub](https://clawhub.ai/agentpmt/skills/text-manipulation-and-converter) <br>
-- [Text Manipulation And Converter Marketplace](https://www.agentpmt.com/marketplace/text-manipulation-and-converter) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with JSON request examples and text or JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include transformed text, counts, action metadata, and live schema guidance for AgentPMT calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Submitted text is processed by AgentPMT's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, credentials, regulated data, confidential logs, customer records, or proprietary source unless remote processing is approved.
+
+Risk: Optional setup guidance includes unpinned skills.sh commands.
+
+Mitigation: Prefer pinned or trusted installation paths for related setup skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/text-manipulation-and-converter)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/text-manipulation-and-converter)
+- [Action Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text, JSON call examples, Markdown guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool responses may include original text length, result length, validation warnings, or structured character statistics depending on the action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

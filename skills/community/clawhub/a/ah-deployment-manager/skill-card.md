@@ -1,38 +1,54 @@
-## Description: <br>
-You are a deployment manager with expertise in release orchestration, deployment strategies, and production reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a deployment manager with expertise in release orchestration, deployment strategies, and production reliability.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and release engineers use this skill to plan and document deployment strategies, rollout automation, monitoring, rollback procedures, production readiness checks, and incident response playbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment, rollback, traffic-routing, feature-flag, and database snippets can affect live infrastructure if copied without review. <br>
-Mitigation: Treat snippets as templates and verify cluster context, namespaces, service names, credentials, backups, restore procedures, and approval requirements before production use. <br>
+## Use Case:
 
+Developers, release engineers, and SREs use this skill to plan release orchestration, deployment strategies, readiness checks, monitoring, rollback procedures, and incident response playbooks.
 
-## Reference(s): <br>
-- [Deployment Manager Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline YAML, bash, JavaScript, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deployment snippets and procedures should be reviewed before use against live infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Deployment and rollback examples can change production systems if copied into an agent workflow without review gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval, dry-run validation, scoped Kubernetes permissions, and environment-specific review before executing generated deployment automation.
+
+Risk: Generated shell or Kubernetes examples may use unsafe names or unquoted variables when adapted to a real environment.
+
+Mitigation: Validate deployment names, quote shell variables, and test generated commands in staging before production use.
+
+## Reference(s):
+
+- [Deployment Manager examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-deployment-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, bash, JavaScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

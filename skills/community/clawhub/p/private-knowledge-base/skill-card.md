@@ -1,41 +1,53 @@
-## Description: <br>
-Personal knowledge base for PDFs, papers, and documents with cross-document Q&A and concept retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal knowledge base for PDFs, papers, and documents with cross-document Q&A and concept retrieval.
 
-## Publisher: <br>
-[WIREC-yzx](https://clawhub.ai/user/WIREC-yzx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wirec-yzx](https://clawhub.ai/user/wirec-yzx)
 
-## Use Case: <br>
-Developers and document-heavy users use this skill to ingest local PDFs, search stored document text, and summarize concepts across a personal knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ingest workflow can store extracted PDF text and source paths persistently in plaintext. <br>
-Mitigation: Set KB_ROOT deliberately, treat the knowledge base directory as sensitive local storage, and delete it when retained documents are no longer needed. <br>
-Risk: The ingest script has an unsafe fallback path when used with untrusted filenames or folders, especially on systems without pdftotext. <br>
-Mitigation: Review or patch scripts/ingest.sh before using it with untrusted inputs. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to ingest local PDFs or folders, search stored document text, and summarize concepts across a personal document collection.
 
-## Reference(s): <br>
-- [Knowledge Base Index Schema](references/schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/WIREC-yzx/private-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and local text or JSON files created by scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores extracted document text and metadata locally under the configured knowledge base root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The ingestion workflow can execute unsafe behavior when run on files or paths supplied by untrusted parties.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ingest only trusted PDFs and folders, and review or harden the Python interpolation and JSON/search handling before using untrusted inputs.
+
+Risk: The knowledge base retains private document text and source paths on disk.
+
+Mitigation: Set KB_ROOT to a private location with restrictive permissions, avoid sensitive documents unless retention is acceptable, and delete stored text and metadata when no longer needed.
+
+## Reference(s):
+
+- [Knowledge Base Index Schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and cited document names when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local knowledge-base text, metadata, and index files under KB_ROOT when ingestion scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

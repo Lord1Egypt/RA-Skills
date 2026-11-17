@@ -1,46 +1,60 @@
-## Description: <br>
-Extracts text and structured social security card fields from local image or PDF files by sending them to the Scnet OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes social security card images only when explicitly requested and extracts core card fields such as name, social security number, and national ID number.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users, developers, and operations teams can use this skill to OCR social security card images and receive structured JSON fields such as name, social security number, card number, bank card number, and issuing institution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads social security card images and extracted identity or financial fields to a remote OCR service. <br>
-Mitigation: Use only with explicit user consent and after privacy, retention, and compliance requirements for the Scnet OCR API have been reviewed. <br>
-Risk: The skill requires an API key for a third-party OCR service. <br>
-Mitigation: Store SCNET_API_KEY outside chat, restrict file permissions for local configuration, and rotate the key if it is exposed or no longer needed. <br>
-Risk: The OCR endpoint and base URL can be configured, which may send sensitive files to an unintended service if misconfigured. <br>
-Mitigation: Verify SCNET_API_BASE before use and keep it pointed at the expected Scnet API endpoint. <br>
+## Use Case:
 
+External users and agents use this skill to extract structured fields from an authorized social security card image through SCNet OCR. It is limited to social security card recognition and is not intended for general OCR or other identity documents.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/scnet-sugon/social-security-card-ocr) <br>
-- [scnet-sugon Publisher Profile](https://clawhub.ai/user/scnet-sugon) <br>
-- [Sugon-Scnet OCR API Documentation Summary](artifact/references/api-docs.md) <br>
-- [Social Security Card Field Summary](artifact/assets/templates/fields-summary.md) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON written to stdout, with setup and error guidance in text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and sends the provided file to the configured Scnet OCR API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata, SKILL.md frontmatter, skill.yaml) <br>
+Risk: Sensitive social security card images and extracted identity data are uploaded to a third-party OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization from the card holder and only when privacy and compliance requirements permit third-party OCR processing.
+
+Risk: A configurable SCNET_API_BASE can direct sensitive documents and the API key away from the declared SCNet endpoint.
+
+Mitigation: Keep SCNET_API_BASE fixed to the documented SCNet HTTPS endpoint and review configuration before processing real documents.
+
+Risk: SCNET_API_KEY exposure could allow unauthorized OCR requests.
+
+Mitigation: Store the key outside chat, protect local configuration files, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API documentation](references/api-docs.md)
+- [Social security card field summary](assets/templates/fields-summary.md)
+- [SCNet website](https://www.scnet.cn)
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/social-security-card-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls]
+
+**Output Format:** [Structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns OCR result records for social security card fields; confidence metadata is removed when present.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence; artifact frontmatter is 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

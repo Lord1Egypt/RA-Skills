@@ -1,42 +1,54 @@
-## Description: <br>
-Feynman Cognition guides agents through a five-step framework for deep understanding: plain-language explanation, consensus mapping, controversy surfacing, cross-disciplinary mapping, and heuristic questioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A five-step framework for helping agents deconstruct complex concepts through plain-language explanation, consensus mapping, controversy surfacing, cross-disciplinary mapping, and heuristic questioning.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to deconstruct complex concepts, theories, technologies, or phenomena into clear explanations, consensus points, controversies, cross-disciplinary connections, and heuristic questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad requests for clarity and produce a full five-step framework when a shorter answer would be enough. <br>
-Mitigation: Apply the activation criteria: reserve it for deep, multi-angle understanding requests and avoid simple definition or fact-confirmation prompts. <br>
-Risk: Consensus and controversy sections may overstate certainty if the agent does not separate established facts from mainstream interpretations and unknowns. <br>
-Mitigation: Label confidence levels, distinguish facts from interpretations, and explicitly state what is unknown. <br>
-Risk: Cross-disciplinary mappings can become forced analogies rather than useful structural comparisons. <br>
-Mitigation: Use only real structural similarities and state the boundaries of each analogy. <br>
+## Use Case:
 
+External users, learners, educators, and developers use this skill when they need an agent to turn a complex concept into a structured Feynman-style explanation, map consensus and controversies, connect ideas across disciplines, and surface blind spots.
 
-## Reference(s): <br>
-- [Feynman Methodology — Deep Reference](references/feynman-methods.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown structured into five deconstruction sections plus a one-line essence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long-form explanatory response; no files, shell commands, or system actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad requests for clarity and produce a longer five-part answer than the user intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when deep understanding or multi-angle deconstruction is needed, and avoid activation for simple definitions, fact checks, or quick lookups.
+
+Risk: Consensus and controversy sections can introduce misleading guidance if the agent overstates certainty.
+
+Mitigation: Keep confidence labels explicit, distinguish facts from interpretations, and honestly mark unknowns.
+
+## Reference(s):
+
+- [Feynman Methodology — Deep Reference](references/feynman-methods.md)
+- [Feynman Cognition on ClawHub](https://clawhub.ai/openlark/skills/feynman-cognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured into five labeled sections plus a one-line essence.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; responses may be longer than a simple definition because the workflow requires five ordered steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

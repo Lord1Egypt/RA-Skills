@@ -1,45 +1,60 @@
-## Description: <br>
-Build copy trading infrastructure with verified leader performance, follower allocation models, slippage handling, performance escrow, and revenue sharing, using detailed Python code examples with marketplace and escrow integration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through building protocol-agnostic copy trading infrastructure with verified leader performance, follower allocation models, slippage handling, performance escrow, revenue sharing, and Python integration examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and engineers use this skill to design protocol-agnostic copy trading infrastructure with GreenHelix marketplace registration, signed leader metrics, follower allocation controls, slippage handling, performance escrow, and revenue sharing. The skill is instruction-only and provides illustrative Markdown, Python, and shell examples rather than an executable trading system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples involve sensitive financial automation, trading permissions, and credentials. <br>
-Mitigation: Use sandbox endpoints and test credentials first; do not provide production API keys, signing keys, wallet credentials, or exchange access until the implementation is audited and constrained. <br>
-Risk: The guide includes under-scoped safety checks and verification claims for copy-trading workflows. <br>
-Mitigation: Add real signature verification, period-bounded metric checks, webhook authentication, replay protection, and explicit audit logging before relying on any leader performance data. <br>
-Risk: Automated follower execution can create financial loss through bad signals, slippage, or correlated order flow. <br>
-Mitigation: Require manual approval gates, dry-run or paper-trading defaults, strict allocation caps, and slippage monitoring before allowing live order execution. <br>
+## Use Case:
 
+Developers and engineers use this skill as a guide for designing copy trading agents and services that use GreenHelix marketplace, event, reputation, and escrow patterns. The artifact is educational and non-executing, with examples that should be hardened before any live trading or fund movement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-copy-trading-infrastructure) <br>
-- [GreenHelix sandbox endpoint](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guide; no executable install step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Production-adaptable financial automation examples could be copied into live trading before they are ready.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the code as architecture notes, require paper trading first, and add manual approval thresholds and loss limits before connecting exchange credentials or moving funds.
+
+Risk: Weak signal verification or replay handling could allow incorrect or forged trade actions.
+
+Mitigation: Use authenticated webhooks, real Ed25519 verification, and replay protection before processing leader signals.
+
+Risk: Automatic escrow or revenue-release examples could move funds incorrectly if enforcement is incomplete.
+
+Mitigation: Require server-side escrow enforcement and review automatic release behavior carefully before production use.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/mirni/skills/greenhelix-copy-trading-infrastructure)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API reference](https://api.greenhelix.net/v1)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python examples and curl command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing educational guide; examples reference GREENHELIX_API_KEY and AGENT_SIGNING_KEY.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

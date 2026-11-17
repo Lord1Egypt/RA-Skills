@@ -1,44 +1,55 @@
-## Description: <br>
-Custom Telegram Bot helps agents use an AgentPMT-hosted integration to send and receive Telegram messages, media, and updates through a user-owned custom bot token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Custom Telegram Bot enables agents to send and receive Telegram messages, photos, and documents through a user-owned bot token via AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and business automation teams use this skill to connect their own Telegram bot to AgentPMT for branded support, business notifications, inbound customer replies, media sharing, and update polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram messages and attachments may pass through AgentPMT and Telegram. <br>
-Mitigation: Install only when this routing is acceptable, keep tool inputs scoped to the minimum needed, and avoid sending secrets or sensitive payment material in prompts or logs. <br>
-Risk: Optional attachment ingestion can persist copies of inbound Telegram media in AgentPMT File Manager. <br>
-Mitigation: Enable attachment ingestion only for files the user is allowed to store, and set expiration and maximum-file parameters deliberately. <br>
-Risk: Mark-as-read behavior can change which updates later polling treats as unread. <br>
-Mitigation: Review unread_only, cursor_offset, offset, and mark_as_read settings before polling workflows that depend on unread state. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to a branded Telegram bot for customer support, business notifications, inbound replies, media sharing, and conversational workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/custom-telegram-bot) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/custom-telegram-bot) <br>
-- [Generated action schema](schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown with JSON code blocks and action parameter summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers five AgentPMT remote actions: get_updates, list_known_chat_ids, send_document, send_message, and send_photo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Telegram bot messages, media, update metadata, and optional ingested files may be routed through Telegram and AgentPMT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved by policy, avoid secrets or regulated data unless permitted, and keep tool inputs limited to the minimum needed for the task.
+
+Risk: Related setup examples include unpinned npx install commands.
+
+Mitigation: Prefer pinned or official install commands and confirm live schemas before production integrations.
+
+## Reference(s):
+
+- [Custom Telegram Bot on ClawHub](https://clawhub.ai/agentpmt/skills/custom-telegram-bot)
+- [AgentPMT Custom Telegram Bot Marketplace Page](https://www.agentpmt.com/marketplace/custom-telegram-bot)
+- [Custom Telegram Bot Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request examples and action schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes five AgentPMT actions: get_updates, list_known_chat_ids, send_document, send_message, and send_photo.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

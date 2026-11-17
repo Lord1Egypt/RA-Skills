@@ -1,66 +1,109 @@
 ---
-name: Judgment Analyzer 判决书分析
-slug: judgment-analyzer
-version: 1.2.1
-description: 分析判决书文档，提取关键信息并生成结构化分析报告。当用户提到「分析判决书」「解读判决书」「判决书总结」「生成判决书报告」「批量分析判决书」时使用。支持 PDF 和 Word (.docx/.doc) 格式，可处理单个文件或整个文件夹。
-author: szzzcode
-homepage: https://github.com/szzzcode/judgment-analyzer
+name: szzz-case-study-lite
+description: SZZZ Case Study Lite 基础版。用于对用户已有的本地 PDF、DOCX、DOC 民事裁判文书执行批量提取、案号去重、增量入库、逐案专家摘要、Master Report、案例库问答和原文回溯。用户要求分析判决书、整理本地案例库、追加新案例或向已提取材料提问时使用；不包含外部案例检索和 Obsidian 导出。
 ---
 
-# 判决书分析技能
+# SZZZ Case Study Lite｜案例分析技能
 
-分析本地判决书文档，提取案件关键信息，生成结构化的摘要报告和综合分析报告。
+## 作者
 
-## 工作流程
+八股仙人，长期关注法律实务、文档自动化与 AI 工作流，分享面向中文法律文本处理的工具和方法。
 
-### 步骤 1：接收输入
+小红书 @八股仙人｜AI工作流<br>
+微信公众号 @八股仙人<br>
+微博 @八股仙人AI
 
-用户指定判决书路径，支持：
-- **单文件**：`/path/to/judgment.pdf`
-- **文件夹**：`/path/to/cases/`（批量处理所有 PDF/Word 文件）
-- 支持格式：PDF、Word (.docx/.doc)
+把用户已有的本地裁判文书整理为准确、可溯源、可持续增量更新的案例库。
 
-### 步骤 2：文本提取（Python）
+## 执行协议
 
-运行 `scripts/analyzer.py` 提取原始文本：
+不要自行另写临时代码扫描或统计文件。提取、去重、进度和数量对账均以 `scripts/main.py` 为准。
+
+运行脚本时，将工作目录设为本 `SKILL.md` 所在的技能目录。不要假定技能安装在 `~/.claude`；以下相对路径适用于任意安装位置。
+
+### Step 1：扫描与建库
+
+用户提供包含 `.pdf`、`.docx` 或 `.doc` 的文件夹后，运行：
 
 ```bash
-python3 ~/.claude/skills/judgment-analyzer/scripts/analyzer.py <输入路径>
+python3 scripts/main.py init "[项目路径]"
 ```
 
-脚本会：
-1. 读取每个判决书文件（PDF 或 Word）
-2. 提取纯文本内容
-3. 将文本保存到 `输入路径/摘要/` 文件夹，文件名为 `原文件名.txt`
+PDF 保留页码标记；DOCX 直接提取；DOC 在 macOS 使用 `textutil`，其他系统优先使用 LibreOffice。转换器不可用或提取为空时，如实报告，不生成空白 raw 文件。
 
-### 步骤 3：生成摘要（AI）
+### Step 2：去重与纳入范围
 
-1. 读取 `摘要/` 文件夹中的所有 txt 文件
-2. 按照输出格式模板，对每个案件生成结构化摘要
-3. 将摘要保存为 `案件名_摘要.md`
-4. 批量处理时，额外生成 `综合分析报告.md`
+`init` 自动执行：
 
+- 对民事判决书、民事裁定书按“案号 + 文书类型”去重；
+- 纳入执行异议、案外人异议、执行复议等实质争议类执行裁定；
+- 纳入典型案例、指导性案例、裁判要旨等参考材料；
+- 无标准案号时使用正文相似度辅助去重；
+- 把重复、范围排除和提取失败情况写入 `law_analysis_results/dedup_report.txt`。
 
+### Step 3：逐案专家摘要
 
-### 输出格式要求
+初始化后运行：
 
-在提取信息和生成报告时，**必须严格遵守**模板文件中的格式和要求设置。
-具体格式以及各项指引，请读取并遵循此文件：
-`~/.claude/skills/judgment-analyzer/references/output-template.md`
+```bash
+python3 scripts/main.py focus "[项目路径]"
+```
 
-- **单案件摘要**：遵照模板文件中【摘要报告模式】的 6 个核心模块提取并输出。
-- **批量综合报告**：遵照模板文件中【综合分析报告模式】的结构和表格要求输出。
+每批只处理脚本派发的材料。读取 `prompts/analyzer-logic.md`，穷尽原文中的全部争议焦点，逐份生成摘要。
 
-### 触发方式
-- 「分析判决书 /path/to/case.pdf」
-- 「批量分析 /Users/xxx/Desktop/cases/」
-- 「生成判决书综合报告」
-- 「对比分析这几份判决书」
+摘要必须：
 
-## 注意事项
+- 保存到 `law_analysis_results/individual_cases/`；
+- 使用 `案号-文书类型-当事人简称-案由-摘要.md`；
+- 无法确认的信息写“原文未披露”，不得推测；
+- 每批落盘后再次运行 `focus`，直到脚本明确提示队列清空。
 
-- 脚本路径：`~/.claude/skills/judgment-analyzer/scripts/analyzer.py`
-- 首次使用需安装依赖：`pip install -r ~/.claude/skills/judgment-analyzer/scripts/requirements.txt`
-- 批量处理时，自动跳过非判决书文件（.pdf, .docx, .doc）
-- 摘要文件夹创建在输入文件夹同级目录
-- 优先提取文本，如文本质量差可标记"扫描件，需OCR"
+### Step 4：三个后续方向
+
+队列清空并完成数量对账后，先阅读全部单案摘要，提炼三个高频、重要的争议焦点 A、B、C，再向用户提供：
+
+1. 提供具体案情或问题，从案例库检索并在必要时回溯原文；
+2. 从 A/B/C 中选择一个，作为 Master Report 的重点专题；
+3. 提供自定义报告关键词。
+
+不要默认直接生成 Master Report。
+
+### Step 5：Master Report
+
+用户确认专题后运行：
+
+```bash
+python3 scripts/main.py report "[专题词]" "[项目路径]"
+```
+
+读取脚本生成的 `master_data.json`、全部单案摘要及 `prompts/master-report-logic.md`，生成与 Pro 相同结构、带案号来源的实务报告，并保存为：
+
+```text
+law_analysis_results/Master_Report.md
+```
+
+## 增量处理
+
+既有项目加入新文书后再次运行 `init`。如果发现唯一的新材料，立即运行：
+
+```bash
+python3 scripts/main.py focus_incremental "[项目路径]"
+```
+
+持续处理到增量队列清空。汇报时必须分别说明“本轮增量数量”和“全库累计数量”。增量完成后，除三个常规方向外，还应提供“只围绕本轮增量案件提问”的选项；除非用户要求，不扩大到全库。
+
+## 既有案例库问答
+
+用户向已提取材料提问时，按问题精度逐层回溯：
+
+1. **宏观统计、趋势和分布**：优先读取 `Master_Report.md`；没有报告时汇总 `individual_cases/`。
+2. **案件比较、裁判规则和法律适用**：读取相关单案摘要进行交叉分析。
+3. **最相似案件、特定事实、抗辩原话、证据或日期金额**：必须读取对应 `source_texts/*-raw.md`，不能只依赖摘要。
+
+回答采用“结论—原文证据对齐—实务评论”结构，明确说明来自哪份摘要或 raw 原文。摘要与 raw 不一致时以 raw 为准；原文没有披露时明确回答“判决书原文未披露此细节”。
+
+再次运行 `init` 且没有新材料时，向用户提供：案例库问答、重写 Master Report、结束本轮或明确确认后重置。
+
+## 功能边界
+
+Lite 只处理用户已有的本地材料，不调用元典或其他外部案例库，也不写入 Obsidian Vault。需要外部类案检索、动态选案、元典归档或 Obsidian 知识库时，使用 SZZZ Case Study Pro。

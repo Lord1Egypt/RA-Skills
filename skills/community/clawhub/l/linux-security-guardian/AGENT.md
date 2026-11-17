@@ -37,7 +37,7 @@ for each client in SERVER_PROFILE.md:
   for each server in client.server_fleet:
     ssh_conn → test/save connection if needed
     ssh_exec(op="open", connectionId) → sessionId
-    Run all 18 modules via ssh_exec(op="run", sessionId, ...)
+    Run all 26 modules via ssh_exec(op="run", sessionId, ...)
     Compile per-server findings → audit/results/<client>/<server>/<severity>/
     Compile per-server report → reports/<client>/<server>/daily/YYYY-MM-DD.md
     ssh_exec(op="close", sessionId)
@@ -165,7 +165,7 @@ Before any auto-action or approved action that modifies config:
 
 ## Rule 11 — Audit Must Be Complete
 
-All 18 modules must run per server.
+All 26 modules must run per server.
 If a module fails (command not found, permission error):
 Log failure: `[MODULE FAILED] <client>/<server> 07-cve: ...`
 Never silently skip a module.

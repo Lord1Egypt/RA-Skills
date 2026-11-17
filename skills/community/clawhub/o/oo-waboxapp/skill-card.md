@@ -1,45 +1,56 @@
-## Description: <br>
-waboxapp (waboxapp.com). Use this skill for ANY waboxapp request: reading, creating, and updating data through the OOMOL waboxapp connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+waboxapp (waboxapp.com). Use this skill for ANY waboxapp request — reading, creating, and updating data. Whenever a task involves waboxapp, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect the live waboxapp connector schema, check the connected WhatsApp account status, and send WhatsApp chats, images, links, or media through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected waboxapp account. <br>
-Mitigation: Install and run it only in a trusted ClawHub maintainer environment, and rely on OOMOL server-side credential injection instead of exposing raw tokens. <br>
-Risk: Write actions can send WhatsApp chats, images, links, and media through the connected account. <br>
-Mitigation: Confirm the exact action payload and expected effect with the user before running any action tagged as write. <br>
-Risk: Server security evidence marks the release as suspicious and says review is warranted because an autoreview helper grants nested Codex full local authority by default. <br>
-Mitigation: Review the autoreview helper before use, consider disabling YOLO behavior, and be cautious with fallback reviewer CLIs because generated diffs may be sent to those tools. <br>
+## Use Case:
 
+Users and developers can check the status of a connected Waboxapp account and send WhatsApp text messages, links, images, or files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-waboxapp) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [waboxapp homepage](https://www.waboxapp.com) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Action execution returns JSON from the oo connector, including data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: artifact frontmatter and server release evidence) <br>
+Risk: Setup can run unverified remote code and may add agent skills without clearly explaining those changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation separately, inspect any added skills, and consider disabling startup skill synchronization with OO_SKILLS_SYNC_DISABLED.
+
+Risk: Sending a message or media changes the connected account's external state.
+
+Mitigation: Confirm the connected account, recipient, and exact message or media before sending.
+
+## Reference(s):
+
+- [Waboxapp homepage](https://www.waboxapp.com)
+- [Waboxapp API documentation](https://www.waboxapp.com/assets/doc/waboxapp-API-v3.pdf)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-waboxapp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON]
+
+**Output Format:** [JSON connector responses summarized in user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads account status and sends text or media through the connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

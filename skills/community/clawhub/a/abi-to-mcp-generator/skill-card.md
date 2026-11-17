@@ -1,39 +1,53 @@
-## Description: <br>
-Interact with ERC-20 smart contracts through read and write functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with ERC20 smart contracts through read and write functions.
 
-## Publisher: <br>
-[justinxai](https://clawhub.ai/user/justinxai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justinxai](https://clawhub.ai/user/justinxai)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Ethereum RPC access, query ERC-20 contract state, and prepare token write operations such as transfers, approvals, minting, and burns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a raw wallet private key for ERC-20 write transactions. <br>
-Mitigation: Use a dedicated low-value wallet key and avoid main wallet credentials. <br>
-Risk: Transfers, approvals, minting, and burns can have permanent financial consequences. <br>
-Mitigation: Before any write call, manually verify the network, contract address, recipient or spender, amount, gas, and approval impact. <br>
+## Use Case:
 
+Developers and Web3 engineers use this skill to query ERC20 token state and prepare contract-changing calls such as transfers, approvals, minting, and burning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript examples and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RPC_URL, PRIVATE_KEY, and CONTRACT_ADDRESS environment configuration before write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Private key configuration can expose or misuse funds if the key is shared, stored insecurely, or connected to the wrong contract.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance key or secure signer and verify the RPC endpoint and contract address before any write operation.
+
+Risk: Transfers, approvals, minting, and burning can be irreversible or privileged token-changing actions.
+
+Mitigation: Review every recipient, spender, amount, and permission before execution, avoid broad approvals, and confirm that mint or burn applies to the target token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justinxai/skills/abi-to-mcp-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RPC_URL, PRIVATE_KEY, and CONTRACT_ADDRESS configuration before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

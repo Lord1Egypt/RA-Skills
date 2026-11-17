@@ -1,0 +1,547 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-uspto-gov",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:42.643Z",
+  "entry": {
+    "url": "https://www.uspto.gov/patents/search/patent-public-search",
+    "final_url": "https://www.uspto.gov/patents/search/patent-public-search",
+    "title": "Patent Public Search | USPTO",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:42.643Z",
+    "identity": {
+      "declared_name": "USPTO 专利检索",
+      "hostname": "www.uspto.gov",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Search",
+        "href": "https://www.uspto.gov/patents/search",
+        "target": ""
+      },
+      {
+        "text": "Basic search",
+        "href": "https://ppubs.uspto.gov/basic/",
+        "target": ""
+      },
+      {
+        "text": "Advanced search",
+        "href": "https://ppubs.uspto.gov/pubwebapp/",
+        "target": ""
+      },
+      {
+        "text": "Searchable indexes",
+        "href": "https://www.uspto.gov/patents/search/patent-public-search/searchable-indexes",
+        "target": ""
+      },
+      {
+        "text": "Efficient searching",
+        "href": "https://www.uspto.gov/patents/search/patent-public-search/efficient-searching",
+        "target": ""
+      },
+      {
+        "text": "Patent Assignment Search",
+        "href": "https://assignmentcenter.uspto.gov/search/patent",
+        "target": ""
+      },
+      {
+        "text": "Patent searches",
+        "href": "https://www.uspto.gov/patents/search",
+        "target": ""
+      },
+      {
+        "text": "Search for patents",
+        "href": "https://www.uspto.gov/patents/search",
+        "target": ""
+      },
+      {
+        "text": "Search for trademarks",
+        "href": "https://www.uspto.gov/trademarks/search",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Here’s how you know keyboard_arrow_down",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Here’s how you know keyboard_arrow_down",
+        "exact": true
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "search\nSearch",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "search\nSearch",
+        "exact": true
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Patents",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "menu-btn-1",
+      "css": "#menu-btn-1",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#menu-btn-1"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Trademarks",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "menu-btn-2",
+      "css": "#menu-btn-2",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#menu-btn-2"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "IP Policy",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "menu-btn-3",
+      "css": "#menu-btn-3",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#menu-btn-3"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Learning and Resources",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "menu-btn-4",
+      "css": "#menu-btn-4",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#menu-btn-4"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Find It Fast",
+      "label": "",
+      "aria_label": "Find It Fast",
+      "placeholder": null,
+      "name": null,
+      "id": "find-it-fast-toggle",
+      "css": "#find-it-fast-toggle",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#find-it-fast-toggle"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Close",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "share Share this page",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Enter your email to subscribe or update your preferences",
+      "label": "Enter your email to subscribe or update your preferences",
+      "aria_label": null,
+      "placeholder": "your@email.com",
+      "name": "email",
+      "id": "email",
+      "css": "#email",
+      "role": null,
+      "form_action": "https://public.govdelivery.com/accounts/USPTO/subscribers/qualify",
+      "locator": {
+        "css": "#email"
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Subscribe",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://public.govdelivery.com/accounts/USPTO/subscribers/qualify",
+      "locator": {
+        "role": "button",
+        "name": "Subscribe",
+        "exact": true
+      },
+      "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "observed_at": "2026-10-09T09:04:41.244Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-uspto-gov:record-lookup",
+      "source_id": "quiz-uspto-gov",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Here’s how you know keyboard_arrow_down",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Here’s how you know keyboard_arrow_down",
+            "exact": true
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "search\nSearch",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "search\nSearch",
+            "exact": true
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Patents",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "menu-btn-1",
+          "css": "#menu-btn-1",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#menu-btn-1"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Trademarks",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "menu-btn-2",
+          "css": "#menu-btn-2",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#menu-btn-2"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "IP Policy",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "menu-btn-3",
+          "css": "#menu-btn-3",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#menu-btn-3"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Learning and Resources",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "menu-btn-4",
+          "css": "#menu-btn-4",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#menu-btn-4"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Find It Fast",
+          "label": "",
+          "aria_label": "Find It Fast",
+          "placeholder": null,
+          "name": null,
+          "id": "find-it-fast-toggle",
+          "css": "#find-it-fast-toggle",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#find-it-fast-toggle"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Close",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Enter your email to subscribe or update your preferences",
+          "label": "Enter your email to subscribe or update your preferences",
+          "aria_label": null,
+          "placeholder": "your@email.com",
+          "name": "email",
+          "id": "email",
+          "css": "#email",
+          "role": null,
+          "form_action": "https://public.govdelivery.com/accounts/USPTO/subscribers/qualify",
+          "locator": {
+            "css": "#email"
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Subscribe",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://public.govdelivery.com/accounts/USPTO/subscribers/qualify",
+          "locator": {
+            "role": "button",
+            "name": "Subscribe",
+            "exact": true
+          },
+          "observed_url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "observed_at": "2026-10-09T09:04:41.244Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-048"
+    ],
+    "example_ids": [
+      "KH-Q047"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:42.643Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-uspto-gov-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-uspto-gov-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

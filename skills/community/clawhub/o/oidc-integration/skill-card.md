@@ -1,40 +1,53 @@
-## Description: <br>
-Plan and implement OIDC and OAuth 2.0 integration for React or TypeScript frontends and Java or Spring Boot backends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and implement OIDC and OAuth 2.0 integration for React or TypeScript frontends and Java or Spring Boot backends.
 
-## Publisher: <br>
-[Jeff-Tian](https://clawhub.ai/user/Jeff-Tian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeff-tian](https://clawhub.ai/user/jeff-tian)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement OIDC/OAuth login, provider configuration, token validation, route protection, refresh behavior, logout, and multi-provider authentication in frontend and backend applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication changes can affect issuer, audience, scope, redirect URI, token storage, refresh, logout, CORS, and route-protection behavior. <br>
-Mitigation: Review generated authentication and authorization code and configuration before deploying it. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan or implement OIDC login, route protection, token validation, logout, refresh, and multi-provider authentication flows in React, TypeScript, Java, or Spring Boot projects.
 
-## Reference(s): <br>
-- [React SPA Example](references/react-spa.md) <br>
-- [Spring Resource Server Example](references/spring-resource-server.md) <br>
-- [Multi-Provider Example](references/multi-provider.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with inline code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Repository-specific recommendations should be reviewed before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A React SPA API helper example could attach a bearer token to an arbitrary request URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain authenticated API calls to a trusted API origin or relative paths before adapting that helper for production code.
+
+## Reference(s):
+
+- [React SPA Example](references/react-spa.md)
+- [Spring Resource Server Example](references/spring-resource-server.md)
+- [Multi-Provider Example](references/multi-provider.md)
+- [Publisher Profile](https://clawhub.ai/user/jeff-tian)
+- [ClawHub Skill Page](https://clawhub.ai/jeff-tian/skills/oidc-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository-specific implementation steps, environment variables, and security checks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

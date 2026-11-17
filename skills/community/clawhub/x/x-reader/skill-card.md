@@ -1,47 +1,64 @@
-## Description: <br>
-X Reader fetches, transcribes, and analyzes content from URLs, files, or transcripts across supported web, social, video, RSS, and messaging platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches, transcribes, and analyzes content from URLs, files, or transcripts across supported web, social, RSS, Telegram, and video platforms.
 
-## Publisher: <br>
-[lifecn](https://clawhub.ai/user/lifecn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lifecn](https://clawhub.ai/user/lifecn)
 
-## Use Case: <br>
-Developers, analysts, and agent users use X Reader to turn web pages, posts, feeds, videos, and transcripts into structured content, summaries, and action-oriented analysis. It is useful when an agent needs to fetch source material, preserve useful excerpts, or produce concise takeaways from multi-platform content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, fetched content, and sometimes audio may be sent to third-party services such as Jina, Groq, Telegram, and platform APIs. <br>
-Mitigation: Use only approved public URLs, avoid private or internal links, and configure service credentials only for accounts intended for this workflow. <br>
-Risk: Fetched content can be retained locally in a JSON inbox or optional Markdown archive. <br>
-Mitigation: Leave OUTPUT_DIR and OBSIDIAN_VAULT unset when archives are not needed, and store any configured inbox or vault in an approved location. <br>
-Risk: Authenticated browser or Telegram sessions may reuse user-created platform logins. <br>
-Mitigation: Avoid saved logins when authenticated scraping is not intended, protect session files, and rotate or revoke credentials if a session is no longer trusted. <br>
-Risk: The MCP server can expose content-reading tools if configured for network transport. <br>
-Mitigation: Prefer stdio or localhost use; require authentication and a trusted reverse proxy before exposing the server beyond the local machine. <br>
+## Use Case:
 
+Developers and content-focused agent users use X Reader to turn URLs, local files, or transcripts into structured content, summaries, sourced insights, and action-oriented analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lifecn/x-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/lifecn) <br>
-- [Groq API keys](https://console.groq.com/keys) <br>
-- [Telegram API credentials](https://my.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and analysis, JSON content records, and shell or configuration snippets when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save fetched content to a JSON inbox and optional Markdown archive when configured; transcript completeness depends on available subtitles or transcription services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata, pyproject.toml) <br>
+Risk: Arbitrary URL fetching could expose private network resources or authenticated content if used on untrusted links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted URLs, avoid running it in sensitive cloud or corporate networks, and add network egress controls or URL allowlists before broad deployment.
+
+Risk: Saved browser sessions can retain cookies or login state for supported platforms.
+
+Mitigation: Avoid saved sessions unless required, use low-privilege dedicated accounts, restrict access to session files, and delete stored sessions when no longer needed.
+
+Risk: Fetched content may be saved locally as JSON or Markdown.
+
+Mitigation: Set inbox and output paths deliberately, review stored content before syncing it to shared locations, and disable optional Markdown output when persistence is not needed.
+
+Risk: External MCP exposure can make URL-reading tools reachable over the network.
+
+Mitigation: Prefer stdio or localhost operation; require authentication and a trusted reverse proxy before enabling external access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lifecn/skills/x-reader)
+- [Source Repository](https://github.com/runesleo/x-reader)
+- [Issue Tracker](https://github.com/runesleo/x-reader/issues)
+- [Groq API Keys](https://console.groq.com/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and structured JSON/text results, with inline shell commands and configuration snippets where setup is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save fetched content to a JSON inbox or optional Markdown output when configured.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

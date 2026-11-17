@@ -1,41 +1,59 @@
-## Description: <br>
-Google search via Serper API with full page content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serper lets an agent run Google searches through the Serper API and enrich results with extracted full-page content.
 
-## Publisher: <br>
-[nesdeq](https://clawhub.ai/user/nesdeq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nesdeq](https://clawhub.ai/user/nesdeq)
 
-## Use Case: <br>
-Agents and developers use this skill to run web searches, retrieve current or general results, and extract readable page content for research and source review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Serper and result URLs are fetched from external websites. <br>
-Mitigation: Avoid sensitive secrets, private internal URLs, and confidential investigations in queries. <br>
-Risk: Extracted webpage text may be incomplete, misleading, or controlled by third parties. <br>
-Mitigation: Treat fetched content as untrusted research material and verify important claims against authoritative sources. <br>
+## Use Case:
 
+External developers and agent operators use this skill to answer current or research questions by retrieving Google Search and Google News results with extracted page text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nesdeq/serper) <br>
-- [Serper API](https://serper.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Streamed JSON array containing search metadata and result objects with extracted text content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Serper API key; default mode returns five enriched web results and current mode returns recent web and news results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release evidence) <br>
+Risk: The skill automatically fetches search-result pages, which can reach destinations the agent did not explicitly vet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing on machines with private network, local admin panel, cloud metadata, or sensitive intranet access; use a restricted network environment where possible.
+
+Risk: Search queries and requests are sent to an external Serper API service.
+
+Mitigation: Avoid sensitive search queries and keep the Serper API key in a private skill-local environment file.
+
+Risk: Dependency behavior can change if runtime packages are installed without pinning.
+
+Mitigation: Prefer pinned dependencies and scan the skill before deployment.
+
+## Reference(s):
+
+- [Serper API](https://serper.dev)
+- [ClawHub skill page](https://clawhub.ai/nesdeq/skills/serper)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Streamed JSON array with search metadata, result URLs, source labels, dates when available, and extracted page content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPER_API_KEY or SERP_API_KEY; default mode returns 5 web results and current mode combines recent web and news results.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata; artifact metadata reports 3.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

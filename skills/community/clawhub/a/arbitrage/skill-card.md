@@ -1,48 +1,69 @@
-## Description: <br>
-Find, validate, and compare arbitrage opportunities across markets with fee-aware math, execution sequencing, and failure-mode checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, validate, and compare arbitrage opportunities across markets with fee-aware math, execution sequencing, and failure-mode checks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to screen apparent price gaps, hedges, surebets, basis trades, multi-leg baskets, and cross-venue spreads. It helps produce fee-aware arbitrage analysis, execution sequencing, settlement checks, and clear rejection criteria for fake edge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local arbitrage notes could contain sensitive financial preferences, venue notes, opportunity details, account identifiers, or wallet-related information if the user records them. <br>
-Mitigation: Use the scoped ~/arbitrage/ notes only for explicit preferences and opportunity notes, and keep credentials, wallet secrets, account identifiers, and sensitive financial details out of those files. <br>
-Risk: Arbitrage analysis can be mistaken for trade execution guidance or a guarantee when fills, fees, settlement, venue rules, or timing assumptions are incomplete. <br>
-Mitigation: Treat outputs as analysis, verify costs and settlement mechanics before acting, label soft locks and failure modes clearly, and do not execute trades or provide personalized financial, tax, or legal advice. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate apparent arbitrage opportunities such as price gaps, surebets, basis trades, multi-leg baskets, and cross-venue spreads. It helps produce fee-aware decision memos that classify lock quality, surface settlement and fill risks, and identify proceed, verify, watchlist, or reject next actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/arbitrage) <br>
-- [Arbitrage Homepage](https://clawic.com/skills/arbitrage) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Locked Spread Protocol](artifact/workflow.md) <br>
-- [Fee-Aware Arbitrage Calculator](artifact/calculator.md) <br>
-- [Venue and Settlement Checks](artifact/venue-checks.md) <br>
-- [Arbitrage Playbooks](artifact/playbooks.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
-- [Safe Language for Arbitrage Analysis](artifact/legal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown decision memos with formulas, checklists, and occasional shell setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update scoped local notes under ~/arbitrage/ when the user chooses to use persistent arbitrage memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Arbitrage analysis may be mistaken for personalized financial, legal, or tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as market-structure analysis, avoid suitability recommendations, and include concise reminders that outcomes still depend on fills, fees, and settlement working as modeled.
+
+Risk: Headline spreads can overstate edge when fees, financing, transfer costs, FX, depth, or settlement timing are incomplete.
+
+Mitigation: Use fee-aware calculations, classify lock quality, identify missing cost lines, and reject or downgrade opportunities that do not survive net-edge and settlement checks.
+
+Risk: Local notes in ~/arbitrage/ can persist user preferences, constraints, venue notes, and active opportunity details.
+
+Mitigation: Use a narrow activation preference when desired, save only explicit user-stated constraints, and avoid providing exchange keys, wallet secrets, or broker credentials.
+
+Risk: Live market data can be stale or unavailable unless the user provides it or explicitly asks for it to be fetched.
+
+Mitigation: Reference timestamps and missing inputs, ask for current venue data when needed, and avoid calling an opportunity locked until the relevant quotes, rules, depth, and settlement mechanics are verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/arbitrage)
+- [Skill Homepage](https://clawic.com/skills/arbitrage)
+- [Locked Spread Protocol](artifact/workflow.md)
+- [Fee-Aware Arbitrage Calculator](artifact/calculator.md)
+- [Venue and Settlement Checks](artifact/venue-checks.md)
+- [Arbitrage Playbooks](artifact/playbooks.md)
+- [Safe Language for Arbitrage Analysis](artifact/legal.md)
+- [Memory Template](artifact/memory-template.md)
+- [Setup Guide](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown decision memos with plain-text formulas and occasional shell commands for local setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local notes under ~/arbitrage/; no credentials or extra binaries are required; live public data is used only when provided by the user or explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

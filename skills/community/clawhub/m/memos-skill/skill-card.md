@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent manage a Memos note system, including creating, listing, searching, updating, deleting, and organizing memos, attachments, comments, and reactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memos Skill helps agents configure and operate a Memos note system, including creating, listing, searching, updating, deleting, commenting on, reacting to, and attaching files to memos.
 
-## Publisher: <br>
-[xiaomait](https://clawhub.ai/user/xiaomait) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomait](https://clawhub.ai/user/xiaomait)
 
-## Use Case: <br>
-Developers and end users use this skill to connect an agent to a self-hosted or hosted Memos instance for personal knowledge management, quick note capture, note search, and note organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to store and use a persistent Memos account token. <br>
-Mitigation: Use a dedicated low-privilege or revocable token when available, keep config.json out of version control, and avoid pasting real tokens into chat. <br>
-Risk: The skill can delete notes, bulk edit notes, upload files, change visibility, overwrite configuration, and create new access tokens. <br>
-Mitigation: Require explicit user confirmation before destructive, bulk, upload, visibility, configuration, or token-creation actions. <br>
+## Use Case:
 
+Developers and personal-knowledge-management users use this skill to let an agent manage notes in a configured Memos instance through authenticated API calls. It supports routine memo capture, search, organization, attachments, comments, reactions, and selected administrative workflows.
 
-## Reference(s): <br>
-- [Memos website](https://usememos.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, JavaScript, HTTP, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl commands, config.json examples, API request payloads, memo summaries, tables, or raw JSON responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and reuses a Memos bearer token for API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an environment variable or secret manager when possible; if config.json is used, restrict it to owner-only permissions, keep it out of version control, and prefer limited-scope tokens.
+
+Risk: The skill can modify private notes through delete, bulk edit, upload, and token-creation workflows.
+
+Mitigation: Require explicit user confirmation before destructive or broad mutation actions, and verify the target Memos instance before executing authenticated requests.
+
+Risk: The agent can read and search private note contents once configured.
+
+Mitigation: Install only for trusted Memos instances and only when the user accepts agent access to private note content.
+
+## Reference(s):
+
+- [Memos project website](https://usememos.com)
+- [ClawHub skill page](https://clawhub.ai/xiaomait/skills/memos-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON, JavaScript, HTTP, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute authenticated Memos API calls when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

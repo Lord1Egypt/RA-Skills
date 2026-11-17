@@ -1,42 +1,54 @@
-## Description: <br>
-Full suite for TokenDraft fantasy crypto tournaments: authenticate with a Solana wallet, query and join tournaments, set up auto-join, and manage auto-draft asset priority rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokenDraft helps agents authenticate with a Solana wallet, query and join fantasy crypto tournaments, configure auto-join workflows, and manage auto-draft asset priority rankings.
 
-## Publisher: <br>
-[Nikzt](https://clawhub.ai/user/Nikzt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nikzt](https://clawhub.ai/user/nikzt)
 
-## Use Case: <br>
-External users and developers use this skill to operate TokenDraft fantasy crypto tournament workflows through an agent, including wallet authentication, tournament discovery, free or paid entry, and asset-priority ranking for automated drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Solana private key and can sign wallet authentication challenges and paid tournament buy-in transactions. <br>
-Mitigation: Install only if the publisher is trusted, use a dedicated low-balance wallet, and review each paid transaction before allowing an agent to sign it. <br>
-Risk: Auto-join cron workflows can repeatedly enter paid tournaments without clear built-in spending limits or per-transaction approval. <br>
-Mitigation: Disable paid auto-join unless external spend limits are in place, monitor cron activity, and remove or disable cron jobs when they are not actively needed. <br>
+## Use Case:
 
+External users and agents use this skill to operate TokenDraft fantasy crypto tournament workflows, including wallet authentication, tournament entry, paid buy-in transaction handling, asset ranking, and scheduled auto-join or auto-ranking tasks.
 
-## Reference(s): <br>
-- [TokenDraft ClawHub release](https://clawhub.ai/Nikzt/tokendraft) <br>
-- [TokenDraft API base URL](https://tokendraft-production.up.railway.app) <br>
-- [TokenDraft publisher profile](https://clawhub.ai/user/Nikzt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, JavaScript signing examples, endpoint payloads, and cron configuration commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOLANA_PRIVATE_KEY for wallet-derived authentication and transaction signing; may store TokenDraft JWT and user ID environment variables after login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A Solana private key can be used to sign server-supplied buy-in transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a wallet with limited funds and require decoded transaction review plus explicit approval before any buy-in transaction is signed.
+
+Risk: Recurring auto-join workflows can enter paid tournaments without spending limits.
+
+Mitigation: Avoid paid auto-join unless the user sets clear spend limits and reviews the scheduled workflow before enabling it.
+
+## Reference(s):
+
+- [TokenDraft ClawHub listing](https://clawhub.ai/nikzt/skills/tokendraft)
+- [TokenDraft API base URL](https://tokendraft-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash, JavaScript, TypeScript, JSON, and OpenClaw cron command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOLANA_PRIVATE_KEY and may propose authenticated API requests, transaction-signing steps, and scheduled cron workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Shuffle repetitive JSON objects safely by validating schema consistency before randomising entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shuffle repetitive JSON objects safely by validating schema consistency before randomising entries.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to validate flat JSON object arrays and shuffle entries while preserving valid JSON structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invalid, nested, or inconsistent JSON could be shuffled into unusable or misleading output. <br>
-Mitigation: Validate syntax, object properties, and nesting assumptions before shuffling; stop and report inconsistencies when validation fails. <br>
-Risk: Prompt-level variable overrides could change which collections or properties are shuffled. <br>
-Mitigation: Review supplied overrides for ignored properties, required properties, and nesting behavior before returning shuffled data. <br>
+## Use Case:
 
+Developers and data engineers use this skill to validate flat JSON object collections and return a safely shuffled version without breaking JSON syntax or schema consistency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhauga/shuffle-json-data) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jhauga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON, depending on whether validation succeeds and shuffled data can be returned safely] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves JSON validity and reports validation failures instead of modifying unsafe input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Shuffling records can change meaning when JSON order carries business or workflow significance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where record order can safely change and review the shuffled output before replacing original data.
+
+Risk: Nested objects or inconsistent properties can produce unsafe or misleading output in the default mode.
+
+Mitigation: Validate syntax and schema consistency first; stop and report inconsistencies unless explicit overrides describe how to handle them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhauga/skills/shuffle-json-data)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON with concise validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves JSON validity and original formatting conventions when returning shuffled data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

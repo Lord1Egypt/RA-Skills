@@ -1,41 +1,53 @@
-## Description: <br>
-Helps secure JavaScript projects by detecting malicious npm packages, enforcing trusted publishing, verifying releases, and auditing dependencies for threats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps secure JavaScript projects by identifying npm supply chain risks, configuring trusted publishing, verifying releases, and auditing dependencies for suspicious patterns.
 
-## Publisher: <br>
-[robinyves](https://clawhub.ai/user/robinyves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinyves](https://clawhub.ai/user/robinyves)
 
-## Use Case: <br>
-Developers and security engineers use this skill to review npm supply-chain risks, configure trusted publishing, and apply practical dependency-audit heuristics to JavaScript projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example npm publishing workflows and token guidance could be copied into a repository without adapting permissions to the intended release process. <br>
-Mitigation: Review workflows before use, prefer trusted publishing or scoped short-lived credentials, and restrict publishing permissions to the intended repository and release event. <br>
-Risk: The dependency-audit snippets use simple heuristics that can produce false positives or miss malicious behavior. <br>
-Mitigation: Treat snippet output as triage guidance and pair it with established package review, lockfile review, provenance checks, and security scanning. <br>
+## Use Case:
 
+Developers and security engineers use this skill to harden JavaScript package publishing workflows and review npm dependencies for supply chain attack indicators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robinyves/npm-supply-chain-security) <br>
-- [Publisher profile](https://clawhub.ai/user/robinyves) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON, YAML, Python, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory content and example snippets; examples should be reviewed before use in a live release workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The trusted-publishing workflow example includes an npm token secret, which could lead to long-lived or overly broad token use if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt the workflow to the registry's current trusted publishing guidance and prefer short-lived, scoped credentials or tokenless OIDC where supported.
+
+Risk: The package-release and dependency heuristics are simplified and can miss malicious behavior or flag benign packages.
+
+Mitigation: Use the examples as review prompts alongside registry metadata, release provenance, dependency diffs, scanning tools, and human review before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinyves/skills/npm-supply-chain-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, YAML, Python, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes practical security heuristics and publishing examples that should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Documentation-only master skill for GLM ecosystem discovery and installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documentation-only master skill for GLM ecosystem discovery and installation, providing a curated list of official GLM skills, install methods, and source links without executing scripts or subprocess commands.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Developers and agents use this guide to discover GLM OCR, image, and vision skills, choose the relevant downstream skill, and follow installation or source-reference instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following catalog commands may install downstream GLM skills with different behavior and requirements than this guide-only skill. <br>
-Mitigation: Review and scan each downstream skill before installation, and avoid bulk-installing skills that are not needed. <br>
-Risk: Downstream GLM skills may require a ZHIPU_API_KEY, which could be exposed if stored insecurely. <br>
-Mitigation: Keep the API key in a secure environment variable or secret store, never hardcode it, and rotate or revoke unused keys. <br>
+## Use Case:
 
+Developers and agents use this guide-only skill to discover GLM OCR, image, and vision skills, choose an installation path, and find downstream setup links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaredforreal/glm-master-skill) <br>
-- [GLM Master Skill homepage](https://github.com/zai-org/GLM-skills/tree/main/skills/glm-master-skill) <br>
-- [BigModel API documentation](https://docs.bigmodel.cn/) <br>
-- [GLM-5](https://github.com/zai-org/GLM-5) <br>
-- [GLM-OCR](https://github.com/zai-org/GLM-OCR) <br>
-- [GLM-Image](https://github.com/zai-org/GLM-Image) <br>
-- [GLM-V](https://github.com/zai-org/GLM-V) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not execute scripts or subprocess commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Installation guidance uses unpinned ClawHub commands that can fetch current remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned clawhub version and inspect downstream skills before installing them.
+
+Risk: Bulk-install guidance can install many downstream GLM skills at once.
+
+Mitigation: Install only the specific downstream skills needed for the task and review each selected skill before use.
+
+Risk: Downstream GLM skills may require ZHIPU_API_KEY credentials.
+
+Mitigation: Use limited-scope API keys, avoid exposing unnecessary credentials, and keep keys out of source control.
+
+## Reference(s):
+
+- [GLM-Master-Skill Source](https://github.com/zai-org/GLM-skills/tree/main/skills/glm-master-skill)
+- [GLM-5](https://github.com/zai-org/GLM-5)
+- [GLM-OCR](https://github.com/zai-org/GLM-OCR)
+- [GLM-Image](https://github.com/zai-org/GLM-Image)
+- [GLM-V](https://github.com/zai-org/GLM-V)
+- [BigModel API Docs](https://docs.bigmodel.cn/)
+- [ClawHub Skill Page](https://clawhub.ai/jaredforreal/skills/glm-master-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; the skill itself does not execute commands or read credentials.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "axiotic-experiments"
+version = "0.1.0"
+description = "Machine-neutral, durable ML experiment execution and provenance"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Antreas Antoniou" }]
+dependencies = [
+  "huggingface-hub>=0.29",
+  "tomli-w>=1.2",
+  "wandb>=0.19",
+]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.12"]
+
+[project.scripts]
+axexp = "axiotic_experiments.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

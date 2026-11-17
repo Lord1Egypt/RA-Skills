@@ -1,0 +1,23 @@
+{
+  "language": "en",
+  "hermes_home": null,
+  "state_db": null,
+  "workspace": "/absolute/path/to/your/workspace",
+  "journal": null,
+  "day_start_hour": 4,
+  "max_windows": 4,
+  "digest_chars": 2600,
+  "max_sessions": 10,
+  "max_prompts": 6,
+  "prompt_chars": 150,
+  "max_outcomes": 2,
+  "outcome_chars": 110,
+  "max_files": 8,
+  "max_tools": 6,
+  "dedupe_cosine": 0.88,
+  "skip_dirs": [".git", "node_modules", "__pycache__", ".venv", "venv", "archive", "memory", "tmp"],
+  "ollama_url": "http://127.0.0.1:11434",
+  "embed_model": "qwen3-embedding:0.6b",
+  "local_model": "qwen3:1.7b",
+  "local_mode": "auto"
+}

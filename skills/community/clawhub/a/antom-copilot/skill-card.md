@@ -1,46 +1,61 @@
-## Description: <br>
-Antom Copilot delegates Antom payment success-rate requests to a reporting expert that fetches merchant data, generates analysis reports, and sends them by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Antom Copilot is an Antom intelligent assistant that analyzes user intent and delegates payment success rate data retrieval, analysis, report generation, and report sending to a payment success rate expert.
 
-## Publisher: <br>
-[miscocox](https://clawhub.ai/user/miscocox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jewellzhu](https://clawhub.ai/user/jewellzhu)
 
-## Use Case: <br>
-External Antom merchants and operators use this skill to pull payment success-rate data, generate PDF and executive-summary reports, and email those reports to selected recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles merchant tokens and SMTP credentials. <br>
-Mitigation: Use a revocable least-privilege merchant token, use an app-specific SMTP password, and restrict permissions on ~/antom/conf.json. <br>
-Risk: The server security summary says the merchant token is sent to a different API host than the documentation states. <br>
-Mitigation: Verify with Antom that antomaplusai.antom.com is an official endpoint before entering or using a merchant token. <br>
-Risk: The skill can email merchant payment reports to recipients. <br>
-Mitigation: Confirm report recipients and report contents before sending email. <br>
+## Use Case:
 
+External merchants and operators use this skill to retrieve Antom payment success rate data, generate PDF and text reports with charts and executive summaries, and send those reports to selected recipients by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miscocox/antom-copilot) <br>
-- [Antom Portal](https://dashboard.antom.com/) <br>
-- [Documented Antom API endpoint](https://ibotservice.alipayplus.com/almpapi/v1/message/chat) <br>
-- [Configured Antom API endpoint](https://antomaplusai.antom.com/antomcopilotai/mcp/api/v1/antomcopilot/RECALL_data) <br>
-- [Antom support](https://global.alipay.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, PDF reports, charts, email] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, local report files, charts, PDF attachments, and email body text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Antom merchant credentials and SMTP configuration; report steps are sequential because later steps depend on files from earlier steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release metadata) <br>
+Risk: The workflow stores and uses merchant and SMTP credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped and revocable merchant tokens, an app-specific SMTP password, restrictive permissions on ~/antom/conf.json, and TLS-only SMTP.
+
+Risk: Payment success rate reports can be sent by email to user-supplied recipients.
+
+Mitigation: Review recipient addresses and report contents before sending reports.
+
+Risk: The merchant token is sent to an API host that differs from the endpoint named in the documentation.
+
+Mitigation: Install and run the skill only after verifying that the actual Antom API host used by the code is trusted for the merchant account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jewellzhu/skills/antom-copilot)
+- [Antom Portal](https://dashboard.antom.com/)
+- [Documented Antom API endpoint](https://ibotservice.alipayplus.com/almpapi/v1/message/chat)
+- [Antom Copilot API host used by query script](https://antomaplusai.antom.com/antomcopilotai/mcp/api/v1/antomcopilot/RECALL_data)
+- [Antom support](https://global.alipay.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated JSON data, PDF reports, text executive summaries, chart images, and email messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Antom configuration file with merchant and SMTP credentials; report generation depends on date input and prior workflow steps.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

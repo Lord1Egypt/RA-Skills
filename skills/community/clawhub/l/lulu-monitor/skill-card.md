@@ -1,42 +1,58 @@
-## Description: <br>
-LuLu Monitor is an AI-powered LuLu Firewall companion for macOS that monitors firewall alerts, analyzes connections, and sends Telegram notifications with Allow/Block actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered LuLu Firewall companion for macOS that monitors firewall alerts, analyzes connections with AI, sends Telegram notifications, and supports Allow or Block actions.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers and macOS operators use this skill to install, configure, and troubleshoot a LuLu Firewall monitor that forwards connection alerts to Telegram and can apply selected firewall actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer creates a persistent LaunchAgent and installs unpinned remote code. <br>
-Mitigation: Review the repository and npm dependencies before installation, and remove the LaunchAgent when the monitor is no longer needed. <br>
-Risk: AI-driven or auto-executed actions can change firewall rules. <br>
-Mitigation: Keep auto-execute disabled unless automatic firewall changes are acceptable, and prefer temporary allow/block actions over permanent rules. <br>
-Risk: The monitor depends on macOS Accessibility permission to control LuLu. <br>
-Mitigation: Grant Accessibility only to the required terminal or automation process, and revoke it when the monitor is no longer in use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LuLu Firewall](https://objective-see.org/products/lulu.html) <br>
-- [OpenClaw Telegram Channel Documentation](https://docs.openclaw.ai/channels/telegram) <br>
+## Use Case:
 
+External macOS users and developers use this skill to install, configure, and troubleshoot a LuLu Firewall companion that monitors alerts, requests AI analysis, and routes Telegram Allow or Block decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operator-facing setup, callback-handling, and troubleshooting instructions for macOS, LuLu Firewall, OpenClaw Gateway, and Telegram.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation creates a persistent macOS LaunchAgent that runs code pulled from the publisher's GitHub repository at install time.
+
+Mitigation: Review or pin the remote repository before installation, monitor the LaunchAgent and logs after setup, and uninstall the service when it is no longer needed.
+
+Risk: The setup requires Accessibility permissions for Terminal or osascript and enables sessions_spawn, giving the integration broad local control.
+
+Mitigation: Grant the minimum required permissions, avoid permanent auto-allow rules, and audit the OpenClaw allowlist before enabling the integration.
+
+Risk: Optional auto-execute mode can automatically approve firewall actions without a manual button press.
+
+Mitigation: Keep autoExecute disabled unless the environment is trusted; if enabled, prefer the temporary allow-once action and review Telegram notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/easonc13/skills/lulu-monitor)
+- [LuLu Firewall](https://objective-see.org/products/lulu.html)
+- [OpenClaw Telegram channel documentation](https://docs.openclaw.ai/channels/telegram)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, configuration, callback-handling, troubleshooting, and uninstall guidance for a macOS LuLu Monitor setup.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

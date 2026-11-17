@@ -1,41 +1,58 @@
-## Description: <br>
-Extracts plain text with word-level bounding box coordinates from images and scanned documents using the Upstage OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract plain text with word-level bounding box coordinates from images and scanned documents using the Upstage OCR API.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and external users use this skill when they need an agent to OCR images or scanned documents, return extracted text, and preserve word-level coordinate data. It is not intended for layout-aware document parsing or schema-driven field extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents selected for OCR are sent to Upstage's external OCR service for processing. <br>
-Mitigation: Avoid highly sensitive IDs, legal, medical, financial, or confidential business documents unless the user has reviewed and accepted Upstage's data handling terms. <br>
-Risk: The skill requires an UPSTAGE_API_KEY credential. <br>
-Mitigation: Read the key from the environment and do not paste, print, or store the secret in generated code or output files. <br>
+## Use Case:
 
+Developers and document-processing agents use this skill to run OCR on images, scans, and supported document files when they need raw text plus word-level bounding boxes. It is not intended for layout-aware conversion or schema-driven field extraction.
 
-## Reference(s): <br>
-- [Upstage OCR documentation](https://console.upstage.ai/api/document-digitization/ocr) <br>
-- [ClawHub skill page](https://clawhub.ai/upstage-deployment/upstage-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and curl examples; OCR results are JSON files when implemented by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload user-selected documents to Upstage for OCR processing; agents should print the resolved absolute output path when writing OCR JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documents submitted for OCR are sent to Upstage for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for third-party processing, and avoid highly confidential or regulated files unless that processing is acceptable.
+
+Risk: Async OCR results are retained for a period of time and download URLs are refreshed through polling.
+
+Mitigation: Use synchronous OCR when suitable, and apply the async workflow only when retention and polling behavior are acceptable for the document.
+
+Risk: OCR results may be saved locally in a default temporary path.
+
+Mitigation: Prefer a private, random, owner-only output path and share only the resolved path needed by the user.
+
+## Reference(s):
+
+- [Upstage OCR API documentation](https://console.upstage.ai/api/document-digitization/ocr)
+- [ClawHub skill page](https://clawhub.ai/upstage-deployment/skills/upstage-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with API examples and JSON OCR result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR results may include page text, word bounding boxes, confidence scores, usage counts, and a resolved output file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Audits Kubernetes RBAC configurations to identify overly permissive roles, wildcard permissions, dangerous bindings, service account exposure, and privilege escalation paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Kubernetes RBAC configurations to identify overly permissive roles, wildcard permissions, dangerous ClusterRoleBindings, service account abuse, and privilege escalation paths using kubectl, rbac-tool, KubiScan, and Kubeaudit.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-Security engineers and platform teams use this skill to audit Kubernetes RBAC in EKS, GKE, AKS, or self-managed clusters before remediation, access reviews, or compliance assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may require sensitive cluster-wide visibility into RBAC resources, service accounts, pods, and audit logs. <br>
-Mitigation: Run it only with authorization and prefer a short-lived, dedicated read-only kubeconfig scoped to the resources needed for the audit. <br>
-Risk: Generated reports can reveal cluster permissions, privileged workloads, service account usage, and other security posture details. <br>
-Mitigation: Store and share audit outputs as sensitive security artifacts according to the organization's access-control and retention policies. <br>
+## Use Case:
 
+Developers, platform engineers, and security teams use this skill to audit Kubernetes cluster RBAC policies, bindings, and service accounts for least-privilege gaps and privilege escalation paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ling-qian/auditing-k8s-rbac) <br>
-- [API Reference: Auditing Kubernetes Cluster RBAC](references/api-reference.md) <br>
-- [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) <br>
-- [Kubernetes Python client](https://pypi.org/project/kubernetes/) <br>
-- [KubiScan](https://github.com/cyberark/KubiScan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local RBAC audit reports such as k8s_rbac_audit.json; reports can contain sensitive cluster permissions and workload security posture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be run with cluster-admin or equivalent credentials for a read-oriented audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, short-lived, read-only Kubernetes audit identity instead of production cluster-admin credentials.
+
+Risk: The workflow relies on third-party audit tools that may be installed without pinned versions.
+
+Mitigation: Pin and verify rbac-tool, KubiScan, Kubeaudit, and related dependencies before use.
+
+Risk: Generated RBAC reports can expose sensitive cluster structure, subjects, bindings, and permissions.
+
+Mitigation: Store reports only in approved locations with access controls appropriate for security audit data.
+
+## Reference(s):
+
+- [API Reference: Auditing Kubernetes Cluster RBAC](references/api-reference.md)
+- [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+- [Kubernetes Python client](https://pypi.org/project/kubernetes/)
+- [KubiScan](https://github.com/cyberark/KubiScan)
+- [ClawHub skill page](https://clawhub.ai/ling-qian/skills/auditing-k8s-rbac)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Kubernetes RBAC findings, remediation notes, and local report files such as k8s_rbac_audit.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

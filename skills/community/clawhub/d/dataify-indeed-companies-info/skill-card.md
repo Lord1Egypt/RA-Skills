@@ -1,44 +1,58 @@
-## Description: <br>
-Collect Indeed company information through Dataify Scraper API by creating collection tasks from Indeed company list URLs, keywords, industries and states, or company URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Indeed company records by company-list URL, keyword, industry and state, or company URL, excluding Indeed job listings and Glassdoor company URLs.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and external users use this skill to configure and submit Dataify Scraper API tasks that collect Indeed company profile information from list URLs, keywords, industry and location filters, or specific company URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Indeed company URLs, keywords, industries, locations, task metadata, and account-authenticated requests to Dataify. <br>
-Mitigation: Install only if this data sharing is acceptable for the account and use case, and confirm parameters before each API call. <br>
-Risk: The skill handles a Dataify API token and may receive one through command-line arguments or local environment configuration. <br>
-Mitigation: Prefer a scoped DATAIFY_API_TOKEN environment variable, avoid passing tokens with --token when possible, never echo tokens, and review any permanent shell-profile storage before use. <br>
+## Use Case:
 
+External users and developers use this skill to create and monitor Dataify collection tasks that retrieve Indeed company profile data by list URL, keyword, industry/state, or company URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-indeed-companies-info) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify Indeed Companies Info API Reference](references/indeed_companies_info_api.md) <br>
-- [Dataify Scraper API builder endpoint](https://scraperapi.dataify.com/builder?platform=1) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Markdown confirmation tables, command examples, and task status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Dataify API token and submits Indeed collection parameters to Dataify after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Dataify receives collection parameters and uses the configured Dataify API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when that data sharing is acceptable, and use a proper secret manager or session-scoped environment variable for the token.
+
+Risk: Credential setup guidance could encourage long-lived shell-profile token storage.
+
+Mitigation: Prefer session-scoped environment variables, avoid pasting tokens into chat or command lines, and avoid the Chinese persistent shell-profile setup commands.
+
+Risk: The result-waiting workflow relies on an external local dataify-task-operations dependency.
+
+Mitigation: Review and trust that dependency as part of the runtime before using workflows that wait for final results.
+
+## Reference(s):
+
+- [Dataify Indeed Companies Info API Reference](references/indeed_companies_info_api.md)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-indeed-companies-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown responses with optional shell commands and JSON task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit Dataify builder tasks and wait for asynchronous results when a valid DATAIFY_API_TOKEN is available.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

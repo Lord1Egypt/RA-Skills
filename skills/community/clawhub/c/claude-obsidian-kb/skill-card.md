@@ -1,45 +1,60 @@
-## Description: <br>
-Claude-Obsidian 知识引擎 helps an agent organize an Obsidian-style personal knowledge vault with raw, wiki, and output layers, frontmatter templates, bidirectional links, entity extraction, and maintenance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and maintains an Obsidian-style personal knowledge vault by organizing raw notes into structured wiki pages, creating bidirectional links, and generating maintenance reports.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-External users and developers use this skill to turn notes, source material, and project knowledge into an Obsidian-style personal knowledge base with structured wiki pages, links, indexes, and maintenance reports. It is suited for personal knowledge management workflows where the agent can inspect and modify a local vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad automatic edits to an Obsidian-style vault. <br>
-Mitigation: Use backups and preview or dry-run workflows before bulk changes. <br>
-Risk: Persistent note metadata and cache files may expose private knowledge-base state. <br>
-Mitigation: Keep vault caches private and review generated metadata before sharing notes. <br>
-Risk: Private notes could be sent to external AI or API services if an agent adds that behavior. <br>
-Mitigation: Do not allow private notes to leave the local environment unless the external service is explicitly disclosed and the user consents. <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to turn loose notes, source material, and project knowledge into an Obsidian-style vault with raw, wiki, and output layers. The skill guides agents to create structured Markdown notes, apply frontmatter, maintain links, detect contradictions, and run vault maintenance scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/claude-obsidian-kb) <br>
-- [frontmatter 模板库](assets/frontmatter_templates.md) <br>
-- [Claude-Obsidian × iBrain 整合方案](references/ibrain-integration.md) <br>
-- [脚本使用指南](references/scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML frontmatter examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify markdown notes, indexes, cache files, and generated vault reports when run by an agent with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can make broad persistent changes to an Obsidian-style vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or preview workflows where available, keep backups before batch organization, and review proposed changes before applying them.
+
+Risk: The auto-link workflow can generate a .claude_fix_suggestions.sh shell script.
+
+Mitigation: Inspect the generated shell script carefully before execution and run only commands that are necessary and understood.
+
+Risk: Notebook content may include confidential information that could be processed through an API-based workflow.
+
+Mitigation: Confirm where note content is sent before processing confidential material and avoid external API workflows when data handling is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/skills/claude-obsidian-kb)
+- [Scripts usage guide](references/scripts.md)
+- [Claude-Obsidian x iBrain integration](references/ibrain-integration.md)
+- [Frontmatter templates](assets/frontmatter_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated vault files or reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Markdown vault content, frontmatter, bidirectional links, index files, .cache/hot_cache.json, and .claude_fix_suggestions.sh.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-ClawSec for NanoClaw helps agents check installed skills against security advisories, verify skill package signatures, and monitor protected NanoClaw files for unauthorized changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when checking for security vulnerabilities in NanoClaw skills, before installing new skills, or when asked about security advisories affecting the bot.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-NanoClaw operators and agents use this skill before installing skills and during audits to identify known vulnerabilities, refresh a signed advisory cache, verify package signatures, and check protected files for drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can automatically restore or approve protected NanoClaw files, and the security evidence says this authority needs Review. <br>
-Mitigation: Restrict integrity tools to trusted or admin agents, review guardian/policy.json before enabling them, run checks with autoRestore=false first, and require human approval for baseline changes. <br>
-Risk: Installing the full skill enables host-side integrity enforcement, not only advisory checks. <br>
-Mitigation: Install it only when host-side enforcement is intended, and preserve backups of the soul-guardian state, audit log, patches, and quarantine files before relying on restore behavior. <br>
+## Use Case:
 
+Developers and NanoClaw operators use this skill to check installed or candidate skills against ClawSec security advisories, verify skill package signatures, and monitor protected bot files for unauthorized changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-nanoclaw) <br>
-- [ClawSec advisory feed](https://clawsec.prompt.security/advisories/feed.json) <br>
-- [Installation Guide](INSTALL.md) <br>
-- [File Integrity Monitoring](docs/INTEGRITY.md) <br>
-- [Skill Package Signing and Verification](docs/SKILL_SIGNING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing MCP tools return advisory, signature, integrity, and audit status data; integrity operations can request host-side file checks or restores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.10 (source: SKILL.md frontmatter, CHANGELOG, skill.json, server release evidence; released 2026-06-23) <br>
+Risk: Agents receive host-side integrity tools that can approve protected-file changes or restore critical bot files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate human or administrator approval before exposing integrity approval or auto-restore for global instructions or group registration files.
+
+Risk: Production installs could trust a modified release package or unpinned installation path.
+
+Mitigation: Use a pinned installer or the documented signed release verification path before installing or extracting the release.
+
+Risk: Advisory scans may inspect an unintended skills directory if broad paths are supplied.
+
+Mitigation: Restrict advisory scans to the intended NanoClaw skills directory and review scan scope during deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-nanoclaw)
+- [ClawSec Advisory Feed](https://clawsec.prompt.security/advisories/feed.json)
+- [Installation Guide](INSTALL.md)
+- [File Integrity Monitoring for NanoClaw](docs/INTEGRITY.md)
+- [Skill Package Signing and Verification](docs/SKILL_SIGNING.md)
+- [ClawSec Security Architecture](https://clawsec.prompt.security/docs/architecture)
+- [Ed25519 Specification (RFC 8032)](https://tools.ietf.org/html/rfc8032)
+- [OpenSSL Ed25519 Documentation](https://www.openssl.org/docs/man3.0/man7/Ed25519.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-oriented tool results with inline TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing MCP tool output can include advisory matches, safety recommendations, signature verification results, integrity status, audit verification, and remediation guidance.]
+
+## Skill Version(s):
+
+0.0.10 (source: SKILL.md frontmatter, artifact/skill.json, CHANGELOG, ClawHub release evidence; released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

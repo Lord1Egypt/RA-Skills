@@ -1,41 +1,52 @@
-## Description: <br>
-Generates Waze navigation links for addresses, establishment names, and calendar-event locations, including resolving vague destinations against the user's city before producing the link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Waze navigation links for addresses, establishments, and calendar-event locations, resolving vague destinations against the user's city before producing a clickable route link.
 
-## Publisher: <br>
-[dicasdomaroto-maker](https://clawhub.ai/user/dicasdomaroto-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dicasdomaroto-maker](https://clawhub.ai/user/dicasdomaroto-maker)
 
-## Use Case: <br>
-External users and assistants use this skill to create clean, clickable Waze route links for conversations and morning briefings. It is intended for navigation requests involving specific addresses, establishment names, or calendar locations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved profile location and calendar-event location text can be sensitive. <br>
-Mitigation: Use full addresses manually for sensitive appointments and avoid sending vague destination searches when privacy matters. <br>
-Risk: Vague destination requests may be resolved through an external search provider and can identify the wrong nearby location. <br>
-Mitigation: Confirm the user's city, include state and country in generated addresses, and present options when multiple plausible matches exist. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Waze skill page](https://clawhub.ai/dicasdomaroto-maker/waze) <br>
-- [Publisher profile](https://clawhub.ai/user/dicasdomaroto-maker) <br>
-- [Waze deep link format used by the skill](https://waze.com/ul?q=ENDERECO_CODIFICADO&navigate=yes) <br>
+## Use Case:
 
+Users and assistants use this skill to create clean, clickable Waze route links for explicit destinations or scheduled events with locations. It is also intended to resolve vague local destination requests, such as nearby businesses, using the user's city.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown link with concise destination text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a clickable Waze URL and may include resolved destination details when needed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may read broad profile files and use city, state, destination, or calendar-location details when resolving routes.
+
+Mitigation: Limit use to explicit user requests or approved profile fields, and confirm before sending sensitive location or agenda context to external search services.
+
+Risk: Automatic briefing integration can create navigation links from calendar locations without a separate user request.
+
+Mitigation: Review calendar-location handling before deployment and require confirmation for sensitive events or workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dicasdomaroto-maker/skills/waze)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown links with destination text and Waze deep links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include URL-encoded destination strings for Waze navigation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

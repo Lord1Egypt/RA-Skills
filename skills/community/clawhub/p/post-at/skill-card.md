@@ -1,39 +1,58 @@
-## Description: <br>
-Manage Austrian Post (post.at) deliveries - list packages, check delivery status, set delivery place preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Austrian Post (post.at) deliveries - list packages, check delivery status, set delivery place preferences.
 
-## Publisher: <br>
-[KrauseFx](https://clawhub.ai/user/KrauseFx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krausefx](https://clawhub.ai/user/krausefx)
 
-## Use Case: <br>
-External users and automation agents use this skill to check post.at delivery status, inspect package details, and prepare delivery-place commands for Austrian Post shipments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires post.at account credentials to use the external CLI. <br>
-Mitigation: Keep credentials in environment variables or approved secret storage, and avoid sharing usernames or passwords in chat logs. <br>
-Risk: Delivery-place commands can change where packages are left. <br>
-Mitigation: Require explicit user approval before running routing place commands, especially when applying changes to multiple deliveries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Post.at Tracking on ClawHub](https://clawhub.ai/KrauseFx/post-at) <br>
+## Use Case:
 
+External users and automation-focused developers use this skill to manage Austrian Post deliveries, inspect package status and delivery details, and prepare post-at CLI commands for delivery-place preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-output command variants for scripting workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global, for Austrian Post (post.at) account workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Post.at account credentials may be exposed if users place passwords directly in command-line flags or logs.
+
+Mitigation: Prefer POST_AT_USERNAME and POST_AT_PASSWORD environment variables or an interactive secret mechanism, and avoid storing credentials in shell history or shared scripts.
+
+Risk: Delivery-place preference commands may change where a package is delivered.
+
+Mitigation: Review the tracking number, selected place option, and description before running routing commands, especially in scripts that process multiple deliveries.
+
+Risk: Session tokens expire and not all deliveries support Wunschplatz redirection or package pictures.
+
+Mitigation: Handle reauthentication and missing fields in automation, and verify CLI output before relying on it for downstream actions.
+
+## Reference(s):
+
+- [Post.at Tracking ClawHub page](https://clawhub.ai/krausefx/skills/post-at)
+- [post-at-cli homepage](https://github.com/krausefx/post-at-cli)
+- [krausefx ClawHub profile](https://clawhub.ai/user/krausefx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the post-at CLI and Node.js are available, with post.at credentials supplied by environment variables or an interactive secret mechanism.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

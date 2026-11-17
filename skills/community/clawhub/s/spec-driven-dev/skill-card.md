@@ -1,43 +1,58 @@
-## Description: <br>
-A staged spec-driven development workflow for cloned Git repositories that guides init, requirements, architecture, process design, planning, coding, testing, bug fixing, code review, release, checkpoint, and rollback phases with required artifacts and gated review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drives a staged, Git-based spec-driven development lifecycle from initialization through requirements, architecture, planning, coding, testing, review, release, checkpointing, and rollback.
 
-## Publisher: <br>
-[listenbehind](https://clawhub.ai/user/listenbehind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[listenbehind](https://clawhub.ai/user/listenbehind)
 
-## Use Case: <br>
-Developers and coding-agent operators use this skill to run a structured development lifecycle inside a Git repository. It produces requirements, architecture, process design, project plans, source code, tests, review reports, release notes, and checkpoint recovery artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores a Git token on disk for repository operations. <br>
-Mitigation: Use a short-lived, repository-scoped token in a controlled workspace and remove the matching ~/.git-credentials entry after use. <br>
-Risk: The workflow can commit, tag, push, reset, and roll back repository state. <br>
-Mitigation: Manually approve clone, push, tag, and reset actions and inspect the working tree before release or rollback steps. <br>
-Risk: The workflow may load auxiliary skills from the repository during execution. <br>
-Mitigation: Review and scan auxiliary skills before allowing them to participate in the development or review workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a gated spec-driven workflow in a cloned Git repository, producing required requirements, architecture, planning, implementation, test, review, release, checkpoint, and rollback artifacts across iterations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/listenbehind/spec-driven-dev) <br>
-- [Publisher profile](https://clawhub.ai/user/listenbehind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents, JSON task lists, source and test files, shell commands, and structured review/checkpoint reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write Git-backed project artifacts and emit structured progress checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow requires repository and token authority and can persist Git credentials for later repository operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated disposable workspace, a short-lived least-privilege token, avoid broad PATs, and remove any ~/.git-credentials entry after use.
+
+Risk: Remote Git operations and checkpoint pushes can affect repository state if git_remote or staged checkpoint contents are wrong or untrusted.
+
+Mitigation: Use only trusted git_remote values and review staged checkpoint contents before commits, tags, or pushes.
+
+Risk: Checkpoint RESUME_CONTEXT content can replay stale or untrusted historical context into a future agent session.
+
+Mitigation: Treat RESUME_CONTEXT as untrusted historical data and review it before using it to resume work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/listenbehind/skills/spec-driven-dev)
+- [Publisher profile](https://clawhub.ai/user/listenbehind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, structured JSON task files, code changes, configuration guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stage commands use a user story ID, Git repository state, optional iteration context, and checkpoint metadata to drive the workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

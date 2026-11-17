@@ -1,51 +1,67 @@
-## Description: <br>
-HiFleet provides agent guidance and scripts for querying vessel positions and related maritime data such as archives, voyages, PSC records, port information, traffic statistics, charter workflows, schedules, and pre-arrival vessels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HiFleet supports vessel position, profile, voyage, casualty, sanction, maritime penalty, PSC, port, public tonnage, liner schedule, fleet, weather, and AIS workflows for maritime queries.
 
-## Publisher: <br>
-[charleiwang](https://clawhub.ai/user/charleiwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charleiwang](https://clawhub.ai/user/charleiwang)
 
-## Use Case: <br>
-External maritime users and developers use this skill to ask an agent for vessel position, voyage, archive, PSC, port, area traffic, charter, schedule, and pre-arrival information backed by HiFleet APIs and local chartering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox credentials and HiFleet API keys may be exposed or over-permissioned if reused from normal accounts. <br>
-Mitigation: Use a dedicated mailbox app password or limited credential, avoid sharing full secrets in chat, and review where config.json is stored before enabling the skill. <br>
-Risk: Scheduled charter parsing can repeatedly fetch emails, parse them, store extracted data locally, and enrich records remotely. <br>
-Mitigation: Enable scheduled parsing only after reviewing the mail parsing schedule, local database location, and enrichment behavior; disable it when continuous ingestion is not needed. <br>
-Risk: Local charter data in charter_facts.sqlite3 may contain sensitive commercial email content. <br>
-Mitigation: Keep the local database in a protected workspace, limit file access, and remove stored data when the charter workflow is no longer needed. <br>
+## Use Case:
 
+External maritime users and developers use this skill to query HiFleet vessel position and related maritime data through authenticated HiFleet API workflows.
 
-## Reference(s): <br>
-- [HiFleet homepage](https://www.hifleet.com) <br>
-- [HiFleet API base](https://api.hifleet.com) <br>
-- [MyTonnages homepage](https://mytonnages.hifleet.com) <br>
-- [Skills index](references/skills_index.md) <br>
-- [Position API reference](references/position_api.md) <br>
-- [Voyage API reference](references/voyage_api.md) <br>
-- [PSC API reference](references/psc_api.md) <br>
-- [Port API reference](references/port_api.md) <br>
-- [Charter module setup](hifleet-mytonnages/FIRST_SETUP.md) <br>
-- [Security notes](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with optional shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured vessel, port, PSC, schedule, charter, and traffic results; some workflows require API keys, mailbox credentials, or local storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.4 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles HiFleet API keys and account setup workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store API keys in environment variables, avoid pasting full keys into chat, and rotate any exposed key.
+
+Risk: Payment, subscription, invoice, contact retrieval, and console SSO actions can affect accounts or expose sensitive links.
+
+Mitigation: Require explicit user confirmation before orders, subscription changes, invoices, refunds, contact retrieval for many rows, or console SSO links.
+
+Risk: The security evidence flags insecure endpoint and install practices, including an HTTP ZIP install path.
+
+Mitigation: Prefer the ClawHub release or trusted source links and avoid installing from the HTTP ZIP path.
+
+Risk: The API base can be overridden.
+
+Mitigation: Set API base variables only to trusted HiFleet HTTPS hosts.
+
+## Reference(s):
+
+- [HiFleet Skills Homepage](https://skills.hifleet.com)
+- [ClawHub Skill Page](https://clawhub.ai/charleiwang/skills/hifleet-skills)
+- [Security](SECURITY.md)
+- [First Setup](FIRST_SETUP.md)
+- [Position API](references/position_api.md)
+- [API Base URL](references/api_base.md)
+- [Billing API](references/billing_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HIFLEET_API_KEY for authenticated HiFleet APIs.]
+
+## Skill Version(s):
+
+0.3.21 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

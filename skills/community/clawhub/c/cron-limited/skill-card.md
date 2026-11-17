@@ -1,39 +1,57 @@
-## Description: <br>
-Creates limited-repeat OpenClaw cron reminders that remove themselves after the requested number of runs, and supports lunar birthday reminders with optional yearly recurrence and advance notice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates limited-run recurring OpenClaw cron reminders that clean themselves up after a set number of executions, and supports lunar-calendar birthday reminders with yearly repeats, reminder times, and advance notice.
 
-## Publisher: <br>
-[yuzhiyongcn-coder](https://clawhub.ai/user/yuzhiyongcn-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhiyongcn-coder](https://clawhub.ai/user/yuzhiyongcn-coder)
 
-## Use Case: <br>
-OpenClaw users use this skill to schedule reminders that repeat only a fixed number of times, or to configure lunar birthday reminders that can recur yearly with a chosen reminder time and advance notice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent scheduled messages and stores reminder data locally. <br>
-Mitigation: Review the generated schedules and local reminder configuration before installing, use trusted recipients and channels only, and remove cron entries or stored reminders when they are no longer needed. <br>
-Risk: The security evidence reports unsafe scripting that could execute crafted local input. <br>
-Mitigation: Avoid untrusted reminder text, channel, recipient, lunar date, or timing values until inputs are safely serialized and the Python environment is explicitly trusted. <br>
+## Use Case:
 
+OpenClaw users use this skill to schedule reminders that repeat for a limited number of runs and then stop automatically. They can also configure lunar birthday reminders, including yearly recurrence, a reminder time, and reminders sent a specified number of days in advance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw CLI, jq, and Python with lunarcalendar for lunar reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Crafted reminder arguments can execute code as the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the script before installation; validate inputs and pass user data to Python safely.
+
+Risk: The skill creates persistent scheduled jobs and local reminder records containing message and recipient data.
+
+Mitigation: Review scheduled jobs and stored reminder records, and prefer a patched version with list, remove, and purge controls.
+
+Risk: The script uses an interpreter path under /tmp.
+
+Mitigation: Use a trusted, stable Python environment instead of relying on an interpreter in /tmp.
+
+## Reference(s):
+
+- [Cron Limited release page](https://clawhub.ai/yuzhiyongcn-coder/skills/cron-limited)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent scheduled jobs and local reminder records when used.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

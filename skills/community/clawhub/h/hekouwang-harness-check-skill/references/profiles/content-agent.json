@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "id": "content-agent",
+  "name": "内容 Agent 工作流",
+  "scoreMax": 35,
+  "description": "在通用 Harness 完整性分之外，检查内容生产、渠道交付和人工验收的关键规则是否可发现。",
+  "controls": [
+    {
+      "id": "published_status_gate",
+      "name": "已发布状态门",
+      "weight": 5,
+      "description": "开始制作前能查询已发布状态，避免把物料齐或待发误当成未发布。",
+      "paths": ["AGENTS.md", ".harness", ".agents", "README.md"],
+      "patterns": ["已发布", "禁止再发", "published", "sync_published", "发布状态", "换角度"]
+    },
+    {
+      "id": "source_provenance",
+      "name": "来源与事实证据",
+      "weight": 5,
+      "description": "文章、贴图和平台数据要求来源、统计时点或可追溯证据。",
+      "paths": ["AGENTS.md", ".harness", ".agents", "README.md"],
+      "patterns": ["来源", "source", "citation", "统计时点", "证据", "事实"]
+    },
+    {
+      "id": "channel_contracts",
+      "name": "渠道内容合同",
+      "weight": 5,
+      "description": "公众号、头条、小红书和视频等渠道有明确适配入口，而不是只复制一份正文。",
+      "paths": ["AGENTS.md", ".agents", ".harness", "README.md"],
+      "patterns": ["内容合同", "渠道", "公众号", "小红书", "头条", "channel"]
+    },
+    {
+      "id": "artifact_boundary",
+      "name": "生成物边界",
+      "weight": 4,
+      "description": "配方、源码和渲染产物分离，生成 HTML、PNG、视频和临时目录有明确归属。",
+      "paths": ["AGENTS.md", ".harness", ".agents", "README.md"],
+      "patterns": ["生成物", "产物", "中间产物", "output", "_build.py", "不入库", "源码"]
+    },
+    {
+      "id": "visual_acceptance",
+      "name": "视觉验收边界",
+      "weight": 4,
+      "description": "截图、画布填充、裁切和最终视觉检查不被脚本通过冒充。",
+      "paths": ["AGENTS.md", ".agents", ".harness", "README.md"],
+      "patterns": ["视觉检查", "视觉验收", "截图", "screenshot", "render", "画布", "裁切"]
+    },
+    {
+      "id": "human_content_review",
+      "name": "人工内容审阅",
+      "weight": 4,
+      "description": "事实、来源、自然度、第一人称和人工审阅仍然是显式交付条件。",
+      "paths": ["AGENTS.md", ".agents", ".harness", "README.md"],
+      "patterns": ["第一人称", "事实", "来源", "人工", "自然度", "视觉"]
+    },
+    {
+      "id": "external_side_effect_gate",
+      "name": "外部副作用门",
+      "weight": 4,
+      "description": "MCP、浏览器、平台发布和真实宿主动作需要单独确认，不以 headless 结果替代。",
+      "paths": ["AGENTS.md", ".agents", ".harness", "README.md"],
+      "patterns": ["外部副作用", "MCP", "浏览器", "平台发布", "发布动作", "真实宿主", "用户"]
+    },
+    {
+      "id": "precheck_delivery",
+      "name": "预检与交付门",
+      "weight": 4,
+      "description": "内容预检、渠道发布检查和自动检查/人工视觉检查的分层流程可执行。",
+      "paths": ["AGENTS.md", ".agents", ".harness", "README.md"],
+      "patterns": ["precheck", "预检", "发布检查", "交付", "待发", "自动检查", "人工视觉"]
+    }
+  ]
+}

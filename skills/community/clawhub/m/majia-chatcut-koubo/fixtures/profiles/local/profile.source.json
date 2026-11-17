@@ -1,0 +1,48 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json",
+  "$comment": "Anonymous local-layer fixture modeled on a multi-generation personal profile.",
+  "extends": "../base/profile.source.json",
+  "schemaVersion": "2.0.0",
+  "policyVersion": "1.2.0",
+  "profileId": "fixture-local-anonymous",
+  "profileVersion": "2.1.0",
+  "status": "validated",
+  "provenance": {
+    "projectId": "fixture-current-project",
+    "validatedTimelineIds": [
+      "fixture-current-timeline"
+    ],
+    "validatedTimelineRevisions": {
+      "fixture-current-timeline": "fixture-timeline-revision"
+    },
+    "validatedSourceRevisions": {
+      "fixture-source-asset": "fixture-source-revision"
+    },
+    "note": "Leaf-owned anonymous validation identity."
+  },
+  "timeline": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "captions": {
+    "maxCharactersPerLine": 20,
+    "shortCardPolicy": {
+      "approvedTerms": [
+        "AI"
+      ]
+    },
+    "displayOverridePolicy": {
+      "maxReplacementCharacters": 3
+    }
+  },
+  "terminology": null,
+  "privacyRedaction": {
+    "requiredFor": [
+      "fixture-sensitive-region"
+    ]
+  },
+  "audio": {
+    "fallbackRequiresCompatibilityEvidence": true
+  }
+}

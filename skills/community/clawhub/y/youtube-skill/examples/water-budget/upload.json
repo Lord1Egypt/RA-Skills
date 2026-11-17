@@ -1,0 +1,78 @@
+{
+  "video": "water.mp4",
+  "phrase": "how much water is on earth",
+  "titles": [
+    "How Much Water Is on Earth? Only 0.01% Is in Lakes and Rivers",
+    "How Much Water Is on Earth, and How Little of It We Can Drink",
+    "How Much Drinkable Water Is There on Earth? Less Than You Think",
+    "Earth's Water Budget: How Much Water Is on Earth, and Where",
+    "Where Is All of Earth's Water? The Water Budget Explained",
+    "How Much Water Is Left on Earth to Drink?",
+    "96.5% of Earth's Water Is Undrinkable. Here's Where the Rest Is",
+    "All of Earth's Water in One Drop Would Be 860 Miles Wide",
+    "How Much Water Is on Earth? The Water Budget in 4 Minutes",
+    "How Much Water Is on Earth? Oceans, Ice, Groundwater and 0.01%"
+  ],
+  "description": {
+    "top": "How much water is on Earth? About 370 quintillion gallons, yet only 0.01% sits in lakes and rivers. Here's where the rest is, and how much of it we can use.",
+    "body": "Earth's water budget in under four minutes: the oceans, fresh water frozen in glaciers and ice caps, groundwater and aquifers, and how the water cycle moves water between them. It answers what percentage of Earth's water is fresh and how much drinkable water there is on Earth.",
+    "links": [
+      "Animation: courtesy NASA/JPL-Caltech (images.nasa.gov)"
+    ],
+    "hashtags": [
+      "#water",
+      "#watercycle",
+      "#earthscience"
+    ]
+  },
+  "chapters": [
+    [
+      "0:00",
+      "How much water is on Earth"
+    ],
+    [
+      "0:48",
+      "Oceans hold 96.5%"
+    ],
+    [
+      "1:11",
+      "Fresh water, half of it frozen"
+    ],
+    [
+      "1:30",
+      "Groundwater and aquifers"
+    ],
+    [
+      "1:59",
+      "The last 0.1%"
+    ],
+    [
+      "2:33",
+      "How the water cycle moves it"
+    ],
+    [
+      "3:05",
+      "Satellites tracking Earth's water"
+    ]
+  ],
+  "tags": [
+    "how much water is on earth",
+    "earth water budget",
+    "how much drinkable water is there on earth",
+    "what percentage of earth is water",
+    "fresh water on earth",
+    "groundwater",
+    "aquifer",
+    "water cycle"
+  ],
+  "category": "Education",
+  "made_for_kids": false,
+  "altered_content": false,
+  "privacy": "unlisted",
+  "replace": {
+    "earth's": "Earth's",
+    "earth": "Earth"
+  },
+  "pinned_comment": "Only 0.01% of Earth's water is in lakes and rivers. Which number surprised you most?",
+  "made_for_kids_reason": "general-audience science explainer; the channel owner declares this"
+}

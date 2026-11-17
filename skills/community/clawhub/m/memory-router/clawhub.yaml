@@ -1,0 +1,16 @@
+slug: memory-router
+name: Memory Router
+owner: jlacroix82
+description: Intelligent memory file management with manifest generation, auditing, entity indexing, and tiering
+version: 2.4.2
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - memory
+  - indexing
+  - routing
+  - agent
+  - manifest
+entry: SKILL.md
+dependencies: []

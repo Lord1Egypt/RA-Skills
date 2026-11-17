@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw Beautify Github Readme</title>
+  <desc id="desc">OpenClaw Beautify Github Readme: turn a repository homepage into a project-native visual story — make the project clear before asking people to keep reading. Pure SVG / hybrid composition / GitHub-safe GIF.</desc>
+
+  <rect width="1200" height="340" rx="28" fill="#10151F"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="56" y="58" width="10" height="10" rx="2" fill="#F5C842"/>
+    <text x="78" y="68" fill="#F5C842" font-size="15" font-weight="700" letter-spacing="2.5">OPENCLAW SKILL · GITHUB README</text>
+  </g>
+
+  <text x="56" y="132" fill="#F4F6FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="46" font-weight="800">OpenClaw Beautify Github Readme</text>
+
+  <text x="56" y="184" fill="#B9C0CF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="500">Turn a repository homepage into a project-native visual story.</text>
+
+  <!-- left pills -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600">
+    <rect x="56" y="236" width="116" height="46" rx="23" fill="#1A2130" stroke="#2A3346" stroke-width="1"/>
+    <text x="114" y="265" text-anchor="middle" fill="#F4F6FA">Pure SVG</text>
+    <rect x="186" y="236" width="196" height="46" rx="23" fill="#1A2130" stroke="#2A3346" stroke-width="1"/>
+    <text x="284" y="265" text-anchor="middle" fill="#F4F6FA">Hybrid composition</text>
+    <rect x="396" y="236" width="196" height="46" rx="23" fill="#1A2130" stroke="#2A3346" stroke-width="1"/>
+    <text x="494" y="265" text-anchor="middle" fill="#F4F6FA">GitHub-safe GIF</text>
+  </g>
+
+  <!-- right: mini README mock (vertical card) -->
+  <g transform="translate(880 52)">
+    <rect width="264" height="236" rx="18" fill="#1A2130" stroke="#2A3346" stroke-width="1"/>
+    <circle cx="24" cy="24" r="4.5" fill="#FF5F57"/>
+    <circle cx="44" cy="24" r="4.5" fill="#FEBC2E"/>
+    <circle cx="64" cy="24" r="4.5" fill="#28C840"/>
+    <rect x="20" y="46" width="224" height="66" rx="8" fill="#232C40"/>
+    <rect x="34" y="62" width="130" height="11" rx="5.5" fill="#F5C842"/>
+    <rect x="34" y="80" width="170" height="7" rx="3.5" fill="#5A6478"/>
+    <rect x="34" y="93" width="140" height="7" rx="3.5" fill="#5A6478"/>
+    <rect x="20" y="126" width="86" height="9" rx="4.5" fill="#8B93A7"/>
+    <rect x="34" y="146" width="196" height="7" rx="3.5" fill="#3A4458"/>
+    <rect x="34" y="160" width="176" height="7" rx="3.5" fill="#3A4458"/>
+    <rect x="34" y="174" width="186" height="7" rx="3.5" fill="#3A4458"/>
+    <rect x="34" y="188" width="160" height="7" rx="3.5" fill="#3A4458"/>
+    <path d="M238 218 L238 200" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+    <path d="M231 206 L238 196 L245 206" fill="none" stroke="#F5C842" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

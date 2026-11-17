@@ -10,7 +10,7 @@ import time
 try:
     import requests
 except ImportError:
-    print("ERROR: requests not installed. Run: python -m pip install requests")
+    print("ERROR: requests not installed. Run: pip install requests")
     sys.exit(1)
 
 
@@ -510,21 +510,8 @@ def export_svgs(file_key: str, node_ids: list, token: str) -> dict:
 
 
 def _load_token() -> str | None:
-    """Load FIGMA_TOKEN from environment, or a local dotenv file."""
-    token = os.environ.get("FIGMA_TOKEN")
-    if not token:
-        for env_path in [".env.local", ".env"]:
-            if not os.path.exists(env_path):
-                continue
-            with open(env_path, encoding="utf-8", errors="replace") as ef:
-                for line in ef:
-                    line = line.strip()
-                    if line.startswith("FIGMA_TOKEN="):
-                        token = line.split("=", 1)[1].strip().strip('"').strip("'")
-                        break
-            if token:
-                break
-    return token
+    """Load FIGMA_TOKEN from environment variable only."""
+    return os.environ.get("FIGMA_TOKEN")
 
 
 def _require_token() -> str:
@@ -533,15 +520,16 @@ def _require_token() -> str:
     if not token:
         print("FIGMA_TOKEN_NOT_SET")
         print("")
-        print("FIGMA_TOKEN is not set.")
-        print("Do NOT paste tokens into chat logs or commit them to git.")
+        print("To use this skill, set the FIGMA_TOKEN environment variable.")
         print("")
-        print("Recommended: set the FIGMA_TOKEN environment variable locally, then retry.")
-        print("The token starts with 'figd_'. Get one at:")
-        print("  Figma > avatar > Settings > Security > Personal Access Tokens")
+        print("  Windows (persist for new terminals):")
+        print('    setx FIGMA_TOKEN "figd_xxx"')
         print("")
-        print("If you insist on using a dotenv file, create/edit it locally and gitignore it:")
-        print("  - .env.local (preferred) or .env in your project root")
+        print("  macOS/Linux (add to ~/.zshrc or ~/.bashrc):")
+        print('    export FIGMA_TOKEN="figd_xxx"')
+        print("")
+        print("Get your token at: Figma > avatar > Settings > Security > Personal Access Tokens")
+        print("The token starts with 'figd_'.")
         sys.exit(1)
     return token
 

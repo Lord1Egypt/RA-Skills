@@ -1,39 +1,49 @@
-## Description: <br>
-Create Ticket helps an agent request a private Discord support channel for unresolved user issues that require manual help or privacy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a private Discord support ticket channel request for a user who needs manual help with unresolved or privacy-sensitive issues.
 
-## Publisher: <br>
-[charles-lpd](https://clawhub.ai/user/charles-lpd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charles-lpd](https://clawhub.ai/user/charles-lpd)
 
-## Use Case: <br>
-Support agents use this skill to open a private Discord ticket channel when automated repair cannot resolve a user issue, when a complex technical error needs human intervention, or when sensitive screenshots and transaction details should be handled privately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private Discord ticket channels may expose sensitive support details to unintended viewers if channel permissions or retention are misconfigured. <br>
-Mitigation: Before installing, confirm the Discord bot can create channels only in the intended support area, users are told before a ticket is opened, and there is a clear process for who can access, retain, and delete private ticket channels. <br>
+## Use Case:
 
+External support agents and Discord server operators use this skill to request a private ticket channel when a user's issue cannot be resolved automatically or requires sensitive troubleshooting details.
 
-## Reference(s): <br>
-- [Create Ticket on ClawHub](https://clawhub.ai/charles-lpd/create-ticket) <br>
-- [Publisher profile: charles-lpd](https://clawhub.ai/user/charles-lpd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, API Calls] <br>
-**Output Format:** [JSON string containing a private-channel creation action, payload, and user-facing message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires username and Discord user ID; issue defaults to General Support when not provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill may report that a private Discord channel was created before channel creation and permission overwrites are verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted OpenClaw Discord adapter that verifies channel creation and permission overwrites before telling the user the channel is private or asking for sensitive details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charles-lpd/skills/create-ticket)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [JSON string containing a channel-creation action, payload, and user-facing message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires username and userId; optional issue defaults to General Support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

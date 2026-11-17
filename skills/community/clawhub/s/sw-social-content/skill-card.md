@@ -1,38 +1,52 @@
-## Description: <br>
-Create tailored social media content with platform-specific formats, optimized hooks, relevant hashtags, and best posting times for maximum engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create tailored social media content with platform-specific formats, optimized hooks, relevant hashtags, and best posting time recommendations.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Social media creators, marketers, and communications teams use this skill to draft platform-native posts, captions, threads, carousel outlines, hashtags, posting-time suggestions, and visual prompts for social channels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest hashtags or posting times that are stale or unsuitable for a brand, region, or current event.
+
+Mitigation: Review and refresh time-sensitive recommendations before publishing.
+
+Risk: The skill drafts content but does not post it or manage account access.
+
+Mitigation: Keep human approval in the publishing workflow and use platform-native controls for account actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, marketers, and communications teams use this skill to draft platform-native posts, captions, threads, and carousel copy for social media campaigns. It helps shape each output around brand voice, platform conventions, hooks, hashtags, and suggested posting times. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social content, hashtag suggestions, and posting-time recommendations may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review and edit all generated content and recommendations before publishing. <br>
+**Output Format:** [Markdown with structured platform-specific content blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-social-content) <br>
+**Other Properties Related to Output:** [Produces draft copy, hashtags, posting-time recommendations, expected format labels, and image suggestions for each requested platform.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with platform-specific copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hooks, body copy, hashtags, posting-time recommendations, expected format, and image suggestions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

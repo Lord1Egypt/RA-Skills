@@ -1,44 +1,61 @@
-## Description: <br>
-Clean Content Fetch extracts readable main content from modern public web pages and converts cleaned article text to Markdown or JSON when ordinary fetch output is noisy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean Content Fetch extracts readable main content from modern web pages, blogs, news, announcements, WeChat articles, and other noisy pages, returning cleaned Markdown or JSON for downstream use.
 
-## Publisher: <br>
-[jllyzzd](https://clawhub.ai/user/jllyzzd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jllyzzd](https://clawhub.ai/user/jllyzzd)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public news, blogs, announcements, WeChat articles, and similar pages as cleaned main-text content for summarization, translation, archiving, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching web pages can bring untrusted or noisy third-party content into the agent context. <br>
-Mitigation: Use the skill for public pages only, keep output size bounded with max_chars, and review fetched content before relying on it for downstream decisions. <br>
-Risk: Attempting to fetch login-only, private, or restricted resources could expose data the skill is not intended to handle. <br>
-Mitigation: Follow the skill boundary documented in the artifact: do not use it for authenticated pages, private data, restricted resources, or permission bypass. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public web-page article bodies, reduce page noise, and convert the result into Markdown or JSON for summarization, archiving, analysis, or batch collection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jllyzzd/clean-content-fetch) <br>
-- [Usage](references/usage.md) <br>
-- [Selector Strategy](references/selectors.md) <br>
-- [Release Notes 1.0.1](references/release-1.0.1.md) <br>
-- [Site Overrides Example](references/site-overrides.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON output and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output is truncated to the requested max_chars value; optional selector overrides can tune extraction by site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill installs unpinned third-party packages and may execute web-fetching dependencies with broad behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in an isolated project environment, pin and review dependencies before use, and avoid system-wide package installation.
+
+Risk: The artifact references implementation scripts that are not included in the bundle.
+
+Mitigation: Verify any separately obtained script before running it and confirm it matches the documented public-page fetching behavior.
+
+Risk: Using the skill on logged-in, private, credentialed, or restricted pages could expose non-public content.
+
+Mitigation: Use it only for public pages and do not run it with logged-in sessions, credentials, private pages, or restricted content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jllyzzd/skills/clean-content-fetch)
+- [Usage](references/usage.md)
+- [Selector Strategy](references/selectors.md)
+- [Release Notes 1.0.1](references/release-1.0.1.md)
+- [Site Overrides Example](references/site-overrides.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown by default, with optional JSON output for structured or batch use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is truncated by the requested max_chars value; selector overrides can customize extraction per site.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

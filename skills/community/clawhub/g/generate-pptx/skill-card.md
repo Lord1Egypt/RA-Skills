@@ -1,39 +1,59 @@
-## Description: <br>
-Clarifies presentation requirements, confirms a slide-by-slide plan, generates SVG slides, and packages them into a PPTX file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Generator helps an agent clarify presentation requirements, confirm a slide outline, generate SVG slides, and package them into a PPTX file.
 
-## Publisher: <br>
-[likegakki](https://clawhub.ai/user/likegakki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likegakki](https://clawhub.ai/user/likegakki)
 
-## Use Case: <br>
-Employees, external users, developers, and presentation authors use this skill to turn briefs, outlines, long-form copy, or existing SVG slides into structured presentation plans and downloadable PPTX files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or reuse a Python virtual environment and install python-pptx from pip. <br>
-Mitigation: Run it in a dedicated virtual environment or container, or preinstall the dependency before using the PPTX packaging scripts. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to turn a topic, outline, or source text into a confirmed slide plan and a generated PPTX presentation. It is best suited for business or technical presentations that can be represented as structured SVG slides.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/likegakki/generate-pptx) <br>
-- [Gazee Glacier visual preset](references/presets/gazee-glacier.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, JSON slide arrays containing SVG strings, shell commands, intermediate SVG files, and PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated slides are expected to use 16:9 SVG with a 1280x720 viewBox before packaging into PPTX.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may install python-pptx from pip and run local Python scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated or approved Python environment and review dependency installation before use.
+
+Risk: SVG slide content is embedded into the PPTX without strong sanitizer enforcement.
+
+Mitigation: Use trusted slide content and inspect exported SVGs for unsupported or unsafe elements before sharing the PPTX.
+
+Risk: Generated presentations may contain inaccurate, incomplete, or unsuitable slide content.
+
+Mitigation: Confirm the slide outline before generation and review the final PPTX before using it in a business setting.
+
+## Reference(s):
+
+- [Gazee Glacier visual preset](references/presets/gazee-glacier.md)
+- [ClawHub skill page](https://clawhub.ai/likegakki/skills/generate-pptx)
+- [Publisher profile](https://clawhub.ai/user/likegakki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance, JSON slide data, SVG strings, and PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reuse a Python virtual environment, install python-pptx, and optionally export intermediate SVG files for inspection.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

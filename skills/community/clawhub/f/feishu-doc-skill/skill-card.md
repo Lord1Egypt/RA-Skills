@@ -1,45 +1,56 @@
-## Description: <br>
-Reads, summarizes, compares, extracts from, writes back to, and inserts local images into Feishu wiki and docx documents through Feishu OpenAPI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read, summarize, compare, extract from, and update Feishu wiki or docx pages through Feishu OpenAPI workflows, with Markdown output preferred for analysis and JSON output available for API debugging.
 
-## Publisher: <br>
-[carryours](https://clawhub.ai/user/carryours) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carryours](https://clawhub.ai/user/carryours)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to read Feishu documents, summarize or extract document content, compare Feishu pages, write results back to a Feishu document, or insert a local image into a Feishu document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read or modify Feishu documents that are accessible to the configured token. <br>
-Mitigation: Use a least-privilege Feishu app or user account and verify target document links before running read, write, or upload commands. <br>
-Risk: Reusable Feishu credentials may be saved locally in plaintext token and OAuth configuration files. <br>
-Mitigation: Delete or tightly protect .feishu-user-token.json and .feishu-oauth-config.json when the workflow is finished. <br>
-Risk: Document JSON output can expose sensitive document content in shared logs or transcripts. <br>
-Mitigation: Prefer concise Markdown output for normal reading tasks and avoid dumping raw JSON into shared locations unless it is needed for debugging. <br>
-Risk: Image insertion can upload an unintended local file to a Feishu document. <br>
-Mitigation: Confirm the local image path and target Feishu document before running image insertion commands. <br>
+## Use Case:
 
+Developers and agents use this skill to work with Feishu documents: reading wiki/docx links, producing concise summaries or structured extracts, comparing document content, and inserting local images back into target documents when authorized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carryours/feishu-doc-skill) <br>
-- [Feishu OpenAPI endpoint](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Feishu document titles, source links, summaries, extracted content previews, write results, and error explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reusable Feishu credentials and access tokens may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a dedicated low-scope Feishu app, avoid committing local token/config files, and restrict permissions on .feishu-user-token.json and .feishu-oauth-config.json.
+
+Risk: Write-capable workflows can modify the wrong Feishu document or insert unintended local images.
+
+Mitigation: Confirm document targets and local image paths before executing write or image insertion workflows, and use the least-privileged Feishu permissions available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carryours/skills/feishu-doc-skill)
+- [Publisher profile](https://clawhub.ai/user/carryours)
+- [Feishu OpenAPI](https://open.feishu.cn/open-apis)
+- [Feishu OAuth authorization endpoint](https://open.feishu.cn/open-apis/authen/v1/index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries or JSON command output, with shell commands and configuration guidance for OAuth, reading documents, and inserting local images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include document title, source link, concise summary, requested key information, target document, write result, and explicit failure reason.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

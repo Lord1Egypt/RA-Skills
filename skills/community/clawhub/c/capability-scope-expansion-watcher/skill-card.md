@@ -1,39 +1,52 @@
-## Description: <br>
-Helps detect incremental capability scope expansion across skill versions, including risk-class contradiction detection in version 1.1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect incremental capability scope expansion across skill versions, including risk-class contradiction detection.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use this skill to examine whether a skill's permissions and declared capabilities have expanded across versions in ways that increase attack surface or contradict its stated risk class. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Providing a full installed skill list can disclose local agent configuration details. <br>
-Mitigation: Prefer specific skill IDs or version ranges, and share a full installed skill list only when that disclosure is acceptable. <br>
-Risk: Scope expansion analysis depends on preserved version history and accurate capability declarations. <br>
-Mitigation: Treat missing or inconsistent historical metadata as a review limitation and corroborate findings with registry records, changelogs, and capability declarations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/capability-scope-expansion-watcher) <br>
+## Use Case:
 
+Developers, security reviewers, and agent platform maintainers use this skill to examine skill version history for cumulative permission drift, behavioral scope expansion, capability composition amplification, changelog gaps, and risk-class contradictions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scope expansion report with per-version deltas, cumulative analysis, alignment assessment, and an expansion verdict.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended actions for reviewing or restricting future capability expansion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reviews metadata and version history that may include installed-skill lists or capability declarations supplied by the user.
+
+Mitigation: Review inputs before use and avoid providing sensitive installed-skill inventories or capability records unless they are needed for the audit.
+
+Risk: Scope expansion analysis requires complete historical metadata, so incomplete version history can produce incomplete conclusions.
+
+Mitigation: Use the report as an audit aid and confirm findings against preserved version metadata, changelogs, and capability declarations before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/capability-scope-expansion-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with per-version deltas, cumulative expansion analysis, alignment assessment, amplification points, changelog review, and an expansion verdict.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report depends on user-provided skill identifiers, version ranges, installed-skill lists, capability declarations, and available version history.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

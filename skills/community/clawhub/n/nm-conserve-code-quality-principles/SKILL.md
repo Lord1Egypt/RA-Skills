@@ -1,7 +1,7 @@
 ---
 name: code-quality-principles
 description: Applies KISS, YAGNI, and SOLID principles for clean code with reduced complexity
-version: 1.9.8
+version: 1.10.3
 triggers:
   - design
   - principles
@@ -13,7 +13,7 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Code Quality Principles
@@ -101,9 +101,11 @@ class AbstractDataProcessor:
     def validate(self, data): ...
     def transform(self, data): ...
 
+
 class CSVProcessor(AbstractDataProcessor):
     def process(self, data):
         return self.transform(self.validate(data))
+
 
 # Good: Simple function until more cases appear
 def process_csv(data: list[str]) -> list[dict]:
@@ -138,14 +140,17 @@ Each module/class should have one reason to change.
 class UserManager:
     def create_user(self, data): ...
     def send_welcome_email(self, user): ...  # Email responsibility
-    def generate_report(self, users): ...     # Reporting responsibility
+    def generate_report(self, users): ...  # Reporting responsibility
+
 
 # Good: Separated responsibilities
 class UserRepository:
     def create(self, data): ...
 
+
 class EmailService:
     def send_welcome(self, user): ...
+
 
 class UserReportGenerator:
     def generate(self, users): ...
@@ -159,23 +164,27 @@ Open for extension, closed for modification.
 # Bad: Requires modification for new types
 def calculate_area(shape):
     if shape.type == "circle":
-        return 3.14 * shape.radius ** 2
+        return 3.14 * shape.radius**2
     elif shape.type == "rectangle":
         return shape.width * shape.height
     # Must modify to add new shapes
 
+
 # Good: Extensible without modification
 from abc import ABC, abstractmethod
+
 
 class Shape(ABC):
     @abstractmethod
     def area(self) -> float: ...
 
+
 class Circle(Shape):
     def __init__(self, radius: float):
         self.radius = radius
+
     def area(self) -> float:
-        return 3.14 * self.radius ** 2
+        return 3.14 * self.radius**2
 ```
 
 ### Liskov Substitution Principle
@@ -185,20 +194,27 @@ Subtypes must be substitutable for their base types.
 ```python
 # Bad: Violates LSP - Square changes Rectangle behavior
 class Rectangle:
-    def set_width(self, w): self.width = w
-    def set_height(self, h): self.height = h
+    def set_width(self, w):
+        self.width = w
+
+    def set_height(self, h):
+        self.height = h
+
 
 class Square(Rectangle):  # Breaks when used as Rectangle
     def set_width(self, w):
         self.width = self.height = w  # Unexpected side effect
+
 
 # Good: Separate types with common interface
 class Shape(ABC):
     @abstractmethod
     def area(self) -> float: ...
 
+
 class Rectangle(Shape):
     def __init__(self, width: float, height: float): ...
+
 
 class Square(Shape):
     def __init__(self, side: float): ...
@@ -241,12 +257,15 @@ class OrderService:
     def __init__(self):
         self.db = PostgresDatabase()  # Tight coupling
 
+
 # Good: Depend on abstraction
 from abc import ABC, abstractmethod
+
 
 class Database(ABC):
     @abstractmethod
     def save(self, data): ...
+
 
 class OrderService:
     def __init__(self, db: Database):
@@ -286,3 +305,17 @@ When reviewing code, check:
 
 - `imbue:karpathy-principles` - The "Simplicity First" principle wraps KISS, YAGNI, and SOLID into a four-principle synthesis derived from Karpathy's observations on LLM coding pitfalls
 - See `docs/quality-gates.md#skill-level-quality-gate-composition` for the full gate-skill federation graph
+
+## Exit Criteria
+
+- [ ] Every proposed code change checked against the integration
+  review checklist: no unnecessary complexity (KISS), no speculative
+  features (YAGNI), single responsibility per class (SRP), no god
+  classes over 500 lines, dependencies injected not created (DIP)
+- [ ] When KISS and SOLID conflict, the resolution is documented:
+  KISS wins for small projects, SOLID patterns applied as complexity
+  grows. The choice is explicit, not silent
+- [ ] `wc -l <file>` run on any modified file and result noted if
+  the file exceeds 500 lines (god-class threshold)
+- [ ] No new abstraction introduced with only one implementor unless
+  it is a mock boundary for testing

@@ -1,46 +1,64 @@
-## Description: <br>
-Generate NIH Biosketch documents compliant with the 2022 OMB-approved format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate NIH Biosketch documents compliant with the 2022 OMB-approved format.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, grant writers, and agent operators use this skill to prepare NIH biosketch DOCX files from structured JSON input. It can also generate template JSON and optionally import publication details from PubMed using PMIDs or author search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional PubMed import and search can send publication IDs, names, and optional affiliation terms to NCBI/PubMed. <br>
-Mitigation: Use networked PubMed features only with data approved for external lookup, or run the skill without PubMed import/search. <br>
-Risk: The script writes DOCX or JSON files to the output path supplied by the user. <br>
-Mitigation: Review output paths before execution and run the skill in a workspace or sandbox with appropriate file permissions. <br>
-Risk: Dependencies are required for document generation and network lookup behavior. <br>
-Mitigation: Pin and audit dependencies in managed environments before deployment. <br>
+## Use Case:
 
+Researchers, administrators, and grant-writing agents use this skill to create NIH-style biosketch DOCX files from structured JSON data and optional PubMed publication imports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/nih-biosketch-builder) <br>
-- [Audit reference](references/audit-reference.md) <br>
-- [NIH Biosketch Format Instructions](https://grants.nih.gov/grants/forms/biosketch.htm) <br>
-- [SciENcv](https://www.ncbi.nlm.nih.gov/sciencv/) <br>
-- [NCBI Entrez E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [DOCX and JSON files, with Markdown guidance and shell commands for agent execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to user-provided output paths; optional PubMed import and search use NCBI/PubMed network APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md body) <br>
+Risk: The executable skill has under-controlled dependency and file path handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a sandboxed workspace, pin and verify dependencies, and use only explicit input and output paths that are acceptable to read from or overwrite.
+
+Risk: The packaged requirements list names docx, while the security guidance identifies python-docx as the intended dependency.
+
+Mitigation: Replace docx with python-docx and verify dependencies before execution.
+
+Risk: PubMed import or search can send publication identifiers or author queries to NCBI.
+
+Mitigation: Avoid sensitive grant or biosketch data in shared or synced locations and treat PubMed lookups as external network disclosure.
+
+Risk: Archived audit evidence found one partial stress scenario related to executable path and fallback behavior.
+
+Mitigation: Use validated runnable commands and require a strict fallback response when parameters are missing or execution fails.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/aipoch-ai/skills/nih-biosketch-builder)
+- [NIH Biosketch Format Instructions](https://grants.nih.gov/grants/forms/biosketch.htm)
+- [SciENcv](https://www.ncbi.nlm.nih.gov/sciencv/)
+- [Audit Reference](artifact/references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [DOCX or JSON files with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit input and output paths; optional PubMed import sends publication identifiers or author queries to NCBI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

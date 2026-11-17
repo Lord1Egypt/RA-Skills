@@ -1,42 +1,57 @@
-## Description: <br>
-Build a personal quotes system for saving, discovering, and automatically surfacing meaningful words. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal quotes system for saving, discovering, and automatically surfacing meaningful words.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to organize a local Markdown-based quotes library, capture context and tags, discover relevant saved quotes, and configure quote reminders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local quotes library may contain sensitive personal context or notes. <br>
-Mitigation: Avoid storing sensitive personal notes unless the local ~/quotes/ workspace is an acceptable place to keep them. <br>
-Risk: Automated reminders may surface quotes through an unsuitable schedule, notification channel, or mood/context trigger. <br>
-Mitigation: Choose the schedule, notification channel, and trigger criteria before enabling reminders. <br>
-Risk: Saved quotes can become misleading if attribution or source context is missing or incorrect. <br>
-Mitigation: Verify quote text, author, and source where possible, and keep context with each saved quote. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/quotes) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to capture meaningful quotes, organize them by author, topic, source, and favorites, and surface relevant quotes through manual lookup or configured delivery schedules.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file outlines and example quote entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local organization guidance for files under ~/quotes/; no API calls or external data sharing were found in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Personal quotes, conversation snippets, tags, and optional mood or context notes may contain private or emotionally sensitive information stored locally in ~/quotes/.
+
+Mitigation: Use the skill only when local storage of this material is acceptable, and avoid saving sensitive quotes or context notes that should not persist.
+
+Risk: Automatic delivery can surface private or sensitive quotes unexpectedly if schedules, categories, or notification channels are too broad.
+
+Mitigation: Configure explicit delivery schedules, categories, and channels before enabling automatic quote surfacing.
+
+Risk: Quotes can lose usefulness or become misleading if attribution and source context are missing or incorrect.
+
+Mitigation: Verify authorship when possible and save source, tags, and context with each quote.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/quotes)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and file organization patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local quote collection files under ~/quotes/ when the agent is asked to save or organize quotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

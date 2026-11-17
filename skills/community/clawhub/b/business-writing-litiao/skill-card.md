@@ -1,42 +1,53 @@
-## Description: <br>
-Business Writing Litiao helps agents draft sourced business reports, business insights, consulting analyses, company research, competitive analysis, user research, market analysis, and related business-writing outputs using Tavily-backed research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Writing Litiao helps an agent produce business research reports, market analysis, company research, competitive analysis, user research, consulting analysis, and related business writing with Tavily-powered sourcing.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Employees, external business users, and analysts use this skill to produce sourced industry research reports, business insights, consulting analysis, company research, competitive analysis, user research, and market analysis in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business research queries may be sent to Tavily when source gathering is used. <br>
-Mitigation: Install only if Tavily use is acceptable for the intended data, and avoid sending confidential queries unless approved. <br>
-Risk: The skill depends on a separate Tavily helper skill and a TAVILY_API_KEY. <br>
-Mitigation: Review the Tavily helper skill before use and configure the API key through approved secret handling. <br>
-Risk: Generated business reports can contain misleading claims if cited sources are not checked. <br>
-Mitigation: Follow the skill's source verification and cross-reference instructions before relying on generated analysis. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to draft well-sourced business reports, market analyses, company research, competitive reviews, and strategic insights. It is suited for workflows that need current research, citations, Markdown tables, and Mermaid diagrams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/business-writing-litiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with citations, tables, and Mermaid diagrams when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY when Tavily-backed source gathering is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill performs external research through Tavily and requires a Tavily API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external search is appropriate, provide the API key through the expected environment variable, and avoid sending confidential query content to third-party search services unless approved.
+
+Risk: Business reports can contain incorrect, outdated, or poorly supported claims if sources are not checked.
+
+Mitigation: Review cited sources, cross-check important claims across multiple authoritative references, and verify that tables and Mermaid diagrams are based on real source data before publishing.
+
+## Reference(s):
+
+- [Business Writing Litiao on ClawHub](https://clawhub.ai/litiao1224/skills/business-writing-litiao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with citations, tables, Mermaid diagrams, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY for Tavily-powered research.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

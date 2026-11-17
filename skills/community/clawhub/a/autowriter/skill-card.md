@@ -1,44 +1,59 @@
-## Description: <br>
-Autowriter helps agents turn user-provided source material into technical articles through an iterative draft, humanization, self-evaluation, and rewrite loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autowriter helps an agent draft technical articles, paper explainers, and AI/ML content through a closed loop of source-grounded research, writing, de-AI rewriting, self-evaluation, and iteration.
 
-## Publisher: <br>
-[lifei68801](https://clawhub.ai/user/lifei68801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifei68801](https://clawhub.ai/user/lifei68801)
 
-## Use Case: <br>
-Developers, technical writers, and AI/ML practitioners use this skill to draft blogs, articles, paper explainers, and project writeups from source material they provide in the workspace. It emphasizes fact extraction, direct technical prose, visible self-evaluation, and iterative rewrites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notes, drafts, and logs may summarize sensitive source material from the workspace. <br>
-Mitigation: Install and run the skill only in workspaces where the source material may be read and summarized, then review or delete generated files that contain sensitive information. <br>
-Risk: AI-assisted articles may require disclosure depending on the publication, school, employer, or audience. <br>
-Mitigation: Disclose AI assistance wherever the relevant policy or audience expectation requires it. <br>
-Risk: Drafted technical claims can be wrong or unsupported if the supplied source material is incomplete. <br>
-Mitigation: Review generated claims, examples, and data against the provided sources before publishing. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use Autowriter to turn user-provided papers, project files, notes, or references into technical articles with iterative self-evaluation and draft logs.
 
-## Reference(s): <br>
-- [Autowriter on ClawHub](https://clawhub.ai/lifei68801/autowriter) <br>
-- [autoresearch Design Philosophy Deep Dive](references/autoresearch-philosophy.md) <br>
-- [Karpathy Code Style to Writing Style](references/karpathy-code-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured prose written to workspace files or returned as agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce research_facts.md, article drafts, self-evaluation tables, and draft logs from user-supplied sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill applies an opinionated first-person, anti-AI writing style that may not fit every publication voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final draft against the target publication style before use.
+
+Risk: Generated writing quality depends on the completeness and accuracy of user-provided or workspace source material.
+
+Mitigation: Provide authoritative sources and verify claims, code, and data before publishing.
+
+Risk: The skill can read and write workspace files.
+
+Mitigation: Run it only in workspaces that contain material appropriate for the writing task.
+
+## Reference(s):
+
+- [autoresearch Design Philosophy Deep Dive](references/autoresearch-philosophy.md)
+- [Karpathy Code Style to Writing Style](references/karpathy-code-style.md)
+- [Autowriter on ClawHub](https://clawhub.ai/lifei68801/skills/autowriter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown articles, research fact checklists, self-evaluation tables, and draft log summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided or workspace source material; the declared behavior has no network, telemetry, or credential use.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

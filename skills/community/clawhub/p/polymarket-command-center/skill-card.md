@@ -1,45 +1,60 @@
-## Description: <br>
-Read-only Polymarket interface for browsing trending markets, viewing detailed odds, searching active markets, and tracking watchlists through public Gamma and CLOB APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Polymarket interface for browsing trending markets, viewing detailed odds, searching active markets, and tracking watchlists without an API key.
 
-## Publisher: <br>
-[kingmadellc](https://clawhub.ai/user/kingmadellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingmadellc](https://clawhub.ai/user/kingmadellc)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch read-only Polymarket market data, compare odds, search active markets, and monitor configured watchlists without API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market queries and configured watchlist slugs may be sent to public Polymarket APIs. <br>
-Mitigation: Avoid entering private text as market queries or watchlist slugs. <br>
-Risk: The local watchlist file is user-controlled configuration. <br>
-Mitigation: Review watchlist configuration before relying on results in sensitive workflows. <br>
-Risk: Market data can be unavailable, delayed, or affected by local cache freshness. <br>
-Mitigation: Verify important market decisions against Polymarket directly and account for the skill's short cache TTL. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public Polymarket market data, compare probabilities, search active markets, and monitor configured watchlists. It is informational and read-only; it does not place trades or require account credentials.
 
-## Reference(s): <br>
-- [Polymarket API Reference](references/api-reference.md) <br>
-- [Gamma API](https://gamma-api.polymarket.com) <br>
-- [CLOB API](https://clob.polymarket.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kingmadellc/polymarket-command-center) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-formatted text with command examples, market summaries, probability bars, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact public Polymarket APIs and may read a local watchlist configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill makes public HTTP requests to Polymarket Gamma and CLOB APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where outbound requests to gamma-api.polymarket.com and clob.polymarket.com are acceptable, and review domain permissions before deployment.
+
+Risk: The skill creates and reads a local watchlist state directory under ~/.openclaw/state.
+
+Mitigation: Use non-sensitive market slugs in watchlists and review local file permissions on shared systems.
+
+Risk: Market outputs can be delayed, unavailable, or temporarily stale because they depend on public APIs and short-lived caching.
+
+Mitigation: Treat results as informational market data and verify time-sensitive values against the source before making decisions.
+
+## Reference(s):
+
+- [Polymarket API Reference](references/api-reference.md)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [ClawHub Skill Page](https://clawhub.ai/kingmadellc/skills/polymarket-command-center)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text with market summaries, probability bars, market slugs, links, and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public market data; responses may use short-lived in-memory caching; watchlist output depends on local watchlist configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; changelog: v1.1.0 unified stack release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

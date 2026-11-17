@@ -119,11 +119,11 @@ OpenStoryline 是一个剪辑 Agent，用户可使用自己的素材，通过自
 ```bash
 cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set llm.model=REPLACE_WITH_REAL_MODEL
 cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set llm.base_url=REPLACE_WITH_REAL_URL
-cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set llm.api_key=sk-REPLACE_WITH_REAL_KEY
+cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set llm.api_key=REDACTED-SECRET
 
 cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set vlm.model=REPLACE_WITH_REAL_MODEL
 cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set vlm.base_url=REPLACE_WITH_REAL_URL
-cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set vlm.api_key=sk-REPLACE_WITH_REAL_KEY
+cd <repo-root> && source .venv/bin/activate && python scripts/update_config.py --config ./config.toml --set vlm.api_key=REDACTED-SECRET
 ```
 
 #### 选填配置

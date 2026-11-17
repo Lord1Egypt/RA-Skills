@@ -1,42 +1,55 @@
-## Description: <br>
-Daily report generator that summarizes today's tasks from OpenClaw memory notes or user input and generates formatted daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily report generator that summarizes today's tasks from OpenClaw memory or user input and produces formatted daily reports with optional Markdown and Word export.
 
-## Publisher: <br>
-[youyancheng1](https://clawhub.ai/user/youyancheng1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youyancheng1](https://clawhub.ai/user/youyancheng1)
 
-## Use Case: <br>
-Employees, external users, and OpenClaw users can use this skill to turn dated memory notes or manually supplied task lists into daily work reports for review, sharing, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain sensitive work details from dated OpenClaw memory notes. <br>
-Mitigation: Review generated reports before sharing them and avoid writing sensitive reports to Desktop or synced folders unless that is intended. <br>
-Risk: Word export requires installing the python-docx dependency. <br>
-Mitigation: Install python-docx only from a trusted package source when .docx output is needed. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn daily task memory or manually supplied work items into shareable daily reports. It supports quick status summaries, report archival, and Word document export for formal updates.
 
-## Reference(s): <br>
-- [Daily Report Workflows](references/workflows.md) <br>
-- [Daily Report Config Schema](references/config-schema.json) <br>
-- [ClawHub skill page](https://clawhub.ai/youyancheng1/dailys-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text, Markdown, or Word report files, with shell command examples and JSON configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports date selection, optional statistics, configurable output paths, and optional python-docx dependency for Word export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated reports may include confidential details from local OpenClaw memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report content before sharing, exporting, or archiving it.
+
+Risk: DOCX or other exported report files may be saved to the Desktop or another user-selected path.
+
+Mitigation: Choose an appropriate output location and verify the generated file before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youyancheng1/skills/dailys-report)
+- [Daily Report Config Schema](artifact/references/config-schema.json)
+- [Daily Report Workflows](artifact/references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Plain text, Markdown, and DOCX report files, with optional JSON configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read local OpenClaw memory files and write report files to user-selected paths or the Desktop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Maintains EvoMap node availability by checking status, sending heartbeat requests, and configuring recurring heartbeat automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically maintains EvoMap node online status by checking node health and sending periodic heartbeat signals.
 
-## Publisher: <br>
-[zhanglingAI](https://clawhub.ai/user/zhanglingAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhanglingai](https://clawhub.ai/user/zhanglingai)
 
-## Use Case: <br>
-External developers and EvoMap node operators use this skill to monitor node status and keep a configured node active through manual or scheduled heartbeat commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup command can add a recurring user-level cron task that continues sending EvoMap heartbeat requests. <br>
-Mitigation: Review the crontab after setup and remove the heartbeat entry when the skill is no longer needed. <br>
-Risk: EVOMAP_SECRET is used as a node credential for heartbeat requests. <br>
-Mitigation: Treat EVOMAP_SECRET like a password and avoid exposing it in shared shell history, logs, or support messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanglingAI/evomap-auto-maintainer) <br>
-- [EvoMap](https://evomap.ai) <br>
+## Use Case:
 
+External users and operators use this skill to keep an EvoMap node online by configuring node credentials, checking status, sending heartbeats, and optionally installing recurring maintenance.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses EVOMAP_NODE_ID, EVOMAP_SECRET, and optional EVOMAP_LOG environment variables; setup can add a user-level cron heartbeat entry.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports an indefinite user-level cron job that runs every 15 minutes and sends authenticated EvoMap heartbeat data.
+
+Mitigation: Run setup only when persistent maintenance is intended, inspect the crontab before and after setup, and document how to remove the entry manually.
+
+Risk: The security evidence warns that EVOMAP_SECRET may be exposed through logs, commits, or shell history.
+
+Mitigation: Keep EVOMAP_SECRET in a protected local environment and avoid pasting, committing, or logging the secret.
+
+Risk: The security summary reports no confirmation, removal controls, or reliable duplicate handling for the cron job.
+
+Mitigation: Confirm the installed cron entry manually and remove duplicate or unwanted entries from the user crontab.
+
+## Reference(s):
+
+- [EvoMap](https://evomap.ai)
+- [ClawHub Skill Page](https://clawhub.ai/zhanglingai/skills/evomap-auto-maintainer)
+- [Publisher Profile](https://clawhub.ai/user/zhanglingai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and shell output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands for status checks, manual heartbeat requests, and cron-based maintenance setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

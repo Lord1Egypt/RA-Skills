@@ -1,40 +1,58 @@
-## Description: <br>
-Routes user requests to specialist agents using configured intent-matching rules, then integrates the results with retry, fallback, logging, and limited parallel dispatch support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user requests to specialist agents using rule-based intent matching, task dispatch, result integration, retry handling, fallback behavior, and limited parallel execution.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Agent users and builders can use this skill to classify incoming requests, route work to coding, research, writing, design, or management agents, and combine the returned results into a single response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be forwarded to routed specialist agents and recorded as dispatch metadata. <br>
-Mitigation: Avoid secrets, private business data, and regulated personal information unless that content is approved for routed agent processing and logging. <br>
-Risk: Broad routing rules may send a request to an unintended specialist agent. <br>
-Mitigation: Review routing patterns and test representative prompts before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate requests across specialist agents for coding, research, writing, design, management, and general fallback tasks. It is most useful when a main agent needs consistent routing rules, retry behavior, and concise result integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/daxiang-agent-dispatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route prompts to specialist agents, retry failed dispatches, fall back to the main agent, and log dispatch metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically route broad user requests and raw prompt content to other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets or sensitive personal or business data unless that content is approved for downstream agent handling.
+
+Risk: Routing metadata logging may expose sensitive task details in operational records.
+
+Mitigation: Review and tighten logging policy before using the skill in sensitive environments.
+
+Risk: Rule-based routing may send requests to an unintended specialist agent or trigger fallback handling.
+
+Mitigation: Review routing patterns and priorities before deployment, and test representative requests for each configured route.
+
+## Reference(s):
+
+- [Daxiang Agent Dispatch on ClawHub](https://clawhub.ai/daxiangnaoyang/skills/daxiang-agent-dispatch)
+- [daxiangnaoyang publisher profile](https://clawhub.ai/user/daxiangnaoyang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses with agent routing results, examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected agent name, execution timing, retry count, fallback status, and integrated specialist-agent output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

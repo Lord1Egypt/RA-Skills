@@ -1,38 +1,52 @@
-## Description: <br>
-帮助应届毕业生搭建简历结构、润色校园经历、自我介绍和岗位适配内容，以提升求职简历质量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps fresh graduates structure resumes, rewrite campus and project experience in professional language, tailor content to target roles, and improve self-introductions for Chinese-language job applications.
 
-## Publisher: <br>
-[bicky716](https://clawhub.ai/user/bicky716) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bicky716](https://clawhub.ai/user/bicky716)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Fresh graduates and students preparing for campus recruiting use this skill to draft, rewrite, and adapt Chinese-language resumes when they have limited work experience. It supports resume structure, experience phrasing, self-evaluation, and role-specific emphasis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share unnecessary sensitive personal details while asking for resume edits.
+
+Mitigation: Ask users to provide only the resume details needed for the requested edit and to omit sensitive identifiers where possible.
+
+Risk: Generated resume language may overstate experience or fit poorly for a specific role.
+
+Mitigation: Encourage users to review suggestions for factual accuracy and adapt them to their real experience before submission.
+
+## Reference(s):
 
 
-## Use Case: <br>
-应届毕业生、毕业求职学生和实习申请者 use this skill to draft, refine, and tailor resumes for target roles when they have limited work experience or need stronger resume language. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Resume drafting may involve sensitive personal, education, or employment details. <br>
-Mitigation: Users should avoid sharing unnecessary sensitive personal details unless they are comfortable providing that information to the agent session. <br>
+**Output Format:** [Markdown prose with structured resume suggestions and examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bicky716/resume-writer-helper) <br>
+**Other Properties Related to Output:** [Chinese-language resume-writing guidance; no code, tools, persistence, or hidden authority.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured prose with resume wording suggestions, examples, and revision guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or dependencies are produced by the skill.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

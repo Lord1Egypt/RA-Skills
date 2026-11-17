@@ -1,42 +1,54 @@
-## Description: <br>
-Monitor log files in real-time, filter noise, surface errors, summarize patterns, and alert on anomalies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor log files in real-time. Filter noise, surface errors, summarize patterns, alert on anomalies. Makes logs readable.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to monitor selected local log files, reduce noisy entries, identify errors and warnings, and summarize recent log patterns for triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured log files may contain secrets, personal data, or other sensitive operational details. <br>
-Mitigation: Point the skill only at specific log files you intend to process, avoid broad or sensitive paths, and review log-retention practices before use. <br>
-Risk: Heuristic severity detection and summaries may miss context or group unrelated errors together. <br>
-Mitigation: Use generated summaries for triage and verify important findings against the original logs or existing monitoring system. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor local log files, filter noisy entries, and summarize recent errors and warnings during debugging or operations work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/log-tail-sr) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code examples and local log summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include filtered log entries, severity labels, counts, error rates, top error groups, and short pattern summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may rely on advertised anomaly alerting, highlighting, or correlation behavior that is not fully evidenced by the scanner summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify required alerting, highlighting, and correlation behavior in the target environment or add that functionality before operational use.
+
+Risk: Selected log files may contain secrets or sensitive operational data that will be processed locally by the skill.
+
+Mitigation: Use non-sensitive logs where possible, redact secrets before monitoring, and limit file access to logs approved for local agent processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/log-tail-sr)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Code]
+
+**Output Format:** [JavaScript objects and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes selected local log files and keeps a bounded in-memory buffer of recent entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

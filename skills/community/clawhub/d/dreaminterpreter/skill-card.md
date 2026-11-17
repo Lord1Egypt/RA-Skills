@@ -1,47 +1,60 @@
-## Description: <br>
-Drema interprets dream descriptions through traditional Zhougong dream symbolism and psychology, with dream history, calendar, reporting, fortune, TTS, and image-generation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drema interprets user-described dreams with traditional Zhougong symbolism and psychological analysis, plus dream history, calendar/report, fortune, TTS, and image-generation interactions.
 
-## Publisher: <br>
-[bonniesilva](https://clawhub.ai/user/bonniesilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bonniesilva](https://clawhub.ai/user/bonniesilva)
 
-## Use Case: <br>
-External users use this skill to analyze dreams, save dream records, review patterns, generate calendar or monthly summaries, request fortune-style interpretations, and optionally create spoken or visual dream outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive dream descriptions may be saved locally and later summarized. <br>
-Mitigation: Use only with consent for local dream history; add opt-in storage, deletion, and retention controls before broad deployment. <br>
-Risk: The image-generation path includes a hardcoded API key and reconstructs a script for execution. <br>
-Mitigation: Remove embedded credentials, require environment-based secrets, and review or disable script execution before installation. <br>
-Risk: TTS and image-generation features may send dream content or prompts to third-party providers. <br>
-Mitigation: Avoid these features for sensitive dreams unless users accept provider processing, and document the configured providers. <br>
-Risk: The supplied security verdict is suspicious. <br>
-Mitigation: Review the skill before installing and scan any modified release before deployment. <br>
+## Use Case:
 
+External users use this skill to record and interpret dream descriptions, combining traditional dream symbolism with psychological framing. It can also generate fortune summaries, dream-history views, TTS prompts, and image-generation prompts around those dream records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bonniesilva/dreaminterpreter) <br>
-- [DashScope](https://dashscope.aliyun.com) <br>
-- [OpenAI platform](https://platform.openai.com) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown-style chat responses with optional JSON dream records, shell commands, Python snippets, and generated image file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store dream records locally and may call configured TTS or image-generation providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release evidence and clawhub.json) <br>
+Risk: Dream descriptions may be sensitive and are saved locally, with optional flows that may send content to external TTS or image services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before storing or transmitting dream content, and provide clear retention, delete, and export controls.
+
+Risk: The artifact includes image-generation commands with an exposed API key.
+
+Mitigation: Remove and rotate the exposed key, and require secret values to come from user-managed environment variables or a secure secret store.
+
+Risk: The artifact directs agents to execute or recreate scripts from /tmp and uses unpinned dependencies.
+
+Mitigation: Avoid running scripts from /tmp, review generated commands before execution, and pin dependencies before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bonniesilva/skills/dreaminterpreter)
+- [DashScope](https://dashscope.aliyun.com)
+- [OpenAI Platform](https://platform.openai.com)
+- [ElevenLabs](https://elevenlabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with button payloads and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store dream records locally and may involve external TTS or image services when those options are used.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,60 @@
-## Description: <br>
-Execute cryptocurrency trades on exchanges (Binance, OKX) with risk controls, user confirmation, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute cryptocurrency trades on exchanges (Binance, OKX) with risk controls, user confirmation, and audit logging.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and execute user-confirmed cryptocurrency trades on Binance or OKX while applying risk checks, stop-loss requirements, and audit logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live cryptocurrency orders when installed with exchange credentials. <br>
-Mitigation: Install only when agent-assisted live trading is intended, require explicit confirmation for every order, and keep exchange-side trading limits small. <br>
-Risk: Exchange API keys could allow broader account actions than the skill requires. <br>
-Mitigation: Use API keys restricted to trading and disable withdrawals, transfers, and permission changes. <br>
-Risk: A user may approve an incorrect order preview or miss unfavorable order parameters. <br>
-Mitigation: Verify the exchange, pair, side, type, quantity, price, stop-loss, take-profit, and estimated amount before confirming. <br>
-Risk: Audit logs and risk-tracking records may contain sensitive trading activity. <br>
-Mitigation: Confirm where gateway audit logs and risk-tracking data are stored and restrict access according to the user's operational requirements. <br>
+## Use Case:
 
+Developers and trading operators use this skill to have an agent prepare and submit Binance or OKX cryptocurrency orders after configured risk checks and explicit confirmation. It is intended for controlled trading workflows that need rejection reasons, order results, and audit-ready trade records.
 
-## Reference(s): <br>
-- [Trade Executor on ClawHub](https://clawhub.ai/patches429/trade-executor) <br>
-- [Publisher profile: patches429](https://clawhub.ai/user/patches429) <br>
-- [Binance](https://www.binance.com) <br>
-- [Binance order API](https://api.binance.com/api/v3/order) <br>
-- [Binance OCO order API](https://api.binance.com/api/v3/order/oco) <br>
-- [OKX order API](https://api.okx.com/api/v5/trade/order) <br>
-- [OKX algorithmic order API](https://api.okx.com/api/v5/trade/order-algo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration, text, JSON] <br>
-**Output Format:** [Markdown and structured order or audit records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires exchange API credentials and explicit order confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can give an agent live cryptocurrency trading authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API keys with withdrawals disabled, least-privilege trading permissions, exchange-side IP restrictions when available, and small trading limits.
+
+Risk: Confirmation and stop-loss safeguards are underspecified for high-value financial actions.
+
+Mitigation: Require fresh order-specific confirmation for every submitted trade and verify stop-loss protection is active after execution.
+
+Risk: Incorrect parameters or automated signals could place unwanted orders.
+
+Mitigation: Prefer sandbox or dry-run testing before connecting real funds, and keep whitelist pairs plus per-trade and daily limits enabled.
+
+## Reference(s):
+
+- [Trade Executor ClawHub release](https://clawhub.ai/patches429/skills/trade-executor)
+- [Binance](https://www.binance.com)
+- [Binance spot order endpoint](https://api.binance.com/api/v3/order)
+- [OKX trade order endpoint](https://api.okx.com/api/v5/trade/order)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown or text confirmations, rejection reasons, order results, and JSON audit-record structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires exchange API credentials and fresh order-specific user confirmation before live trade submission.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Provides Qianlu inquiry-management spreadsheet header, filename, terminology, workflow, and quote-comparison standards for agents reviewing Excel documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer and check Qianlu inquiry-management Excel header, filename, terminology, process, and quote-comparison standards.
 
-## Publisher: <br>
-[kami1983](https://clawhub.ai/user/kami1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kami1983](https://clawhub.ai/user/kami1983)
 
-## Use Case: <br>
-Employees and external collaborators who work with Qianlu inquiry-management documents use this skill to check Excel headers, aliases, filenames, quote-comparison expectations, and terminology before importing, exporting, or discussing inquiry-side records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect spreadsheet header, filename, or terminology guidance could lead to failed imports or mismatched Qianlu inquiry records. <br>
-Mitigation: Use REFERENCE.md for full header tables and naming rules, and treat SKILL.md as a routing summary rather than the complete source of truth. <br>
-Risk: A filebrowser upload could transfer a spreadsheet to an unintended destination if another upload-capable skill is invoked without clear approval. <br>
-Mitigation: Only approve uploads when the user intentionally wants that spreadsheet transferred and understands the destination and permissions. <br>
-Risk: The skill covers inquiry-management standards, while WMS and warehouse-side formats are still outside its authoritative scope. <br>
-Mitigation: Flag WMS or warehouse-side questions as out of scope and use the relevant WMS requirements or implementation documents instead. <br>
+## Use Case:
 
+External users and agents use this skill to answer Qianlu inquiry-management document-standard questions and to check spreadsheet headers, filenames, terminology, and quote-comparison workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kami1983/kam-qianlu-doc-standards) <br>
-- [REFERENCE.md - Qianlu spreadsheet and filename standards](artifact/REFERENCE.md) <br>
-- [naming-and-terminology.md - Qianlu terminology standards](artifact/naming-and-terminology.md) <br>
-- [process-and-rules.md - Qianlu workflow and validation rules](artifact/process-and-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown or concise text summaries with spreadsheet header mappings, filename checks, and workflow guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local reference documents for full table headers; any filebrowser upload should be separately approved by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.2 (source: server release evidence and SKILL.md frontmatter v6.1.2) <br>
+Risk: Excel inspection or upload delegation could act on the wrong user-provided business document or destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the document type, target file, and destination before inspecting spreadsheets or delegating upload actions.
+
+Risk: Users may confuse inquiry-management document standards with WMS or warehouse-process standards that are outside this skill's authority.
+
+Mitigation: State that WMS and warehouse-side formats are out of scope unless separate WMS evidence is provided.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kami1983/skills/kam-qianlu-doc-standards)
+- [REFERENCE.md](REFERENCE.md)
+- [naming-and-terminology.md](naming-and-terminology.md)
+- [process-and-rules.md](process-and-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with optional code paths, commands, and structured check results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; Excel inspection and upload delegation depend on user-provided files and separately available tools.]
+
+## Skill Version(s):
+
+6.1.2 (source: release evidence and SKILL.md frontmatter v6.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

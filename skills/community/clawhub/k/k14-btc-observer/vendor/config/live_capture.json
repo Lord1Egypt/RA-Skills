@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "enabled": true,
+  "mode": "OFFICIAL_PUBLIC_SHADOW_ONLY",
+  "created_ms": 1792850489970,
+  "deadline_ms": null,
+  "max_capture_bytes": null,
+  "minimum_free_bytes": 5368709120,
+  "threshold_file": "config/thresholds_2026-10.json",
+  "threshold_sha256": "53d5655737c06ba4a94b5f3165791ba08b8a73b401c262c267b3d7214a1f73e3",
+  "maker_fill_model": "UNIDENTIFIABLE: no synthetic receipts from public book touches",
+  "order_submission": "NONE",
+  "queue_capacity": 16384,
+  "disk_flush_seconds": 1,
+  "validation_usage": "forward observation only; no parameter search",
+  "notes": "User authorized continuous observation on 2026-10-25. No scheduled expiry or fixed total capture quota. Preserve all history; minimum 5 GiB free disk, write-error and data-integrity protections remain. No live orders or strategy changes.",
+  "run_policy": "UNTIL_USER_STOPS",
+  "authorized_host_ms": 1792940419190,
+  "previous_deadline_ms": 1792936889970
+}

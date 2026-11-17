@@ -1,41 +1,51 @@
-## Description: <br>
-Provides Java performance optimization guidance for JVM tuning, concurrency, memory management, caching, database optimization, and collection usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+执行 Java 代码性能优化，包括 JVM 调优、并发编程、内存管理、缓存策略、数据库优化、集合框架优化等。Invoke when user needs to optimize Java code performance.
 
-## Publisher: <br>
-[ohalo](https://clawhub.ai/user/ohalo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohalo](https://clawhub.ai/user/ohalo)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Java performance recommendations, code examples, and configuration snippets for JVM tuning, caching, concurrency, database access, profiling, benchmarking, and memory optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route generic performance, cache, or database-tuning requests to this Java-focused skill. <br>
-Mitigation: Use confirmation or scoped skill routing unless the request is clearly about Java optimization. <br>
-Risk: Optimization advice and snippets may be applied without enough context for a specific production system. <br>
-Mitigation: Review recommendations against the application workload, test changes in a non-production environment, and benchmark before deployment. <br>
+## Use Case:
 
+Developers and engineers use this Chinese-language skill to get Java performance optimization guidance, code examples, and configuration snippets for JVM tuning, concurrency, memory management, caching, database access, profiling, and benchmarking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohalo/java-optimization) <br>
-- [Arthas boot jar](https://arthas.aliyun.com/arthas-boot.jar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Java, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance with scenario-based recommendations and ready-to-use snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill suggests downloading and running Arthas from a remote URL without pinning a version or verifying a checksum.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an official pinned Arthas release, verify its checksum or signature, run it with least privilege, and handle heap dumps or profiling output as sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohalo/skills/java-optimization)
+- [Publisher profile](https://clawhub.ai/user/ohalo)
+- [Arthas boot jar](https://arthas.aliyun.com/arthas-boot.jar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Java, YAML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance with practical examples and tuning checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

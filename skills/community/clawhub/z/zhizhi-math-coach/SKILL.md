@@ -1,9 +1,29 @@
 ---
 name: zhizhi-math-coach
-description: "Primary-school math coaching skill created to help my first-grade daughter Zhizhi: grade worksheet photos or wrong questions, track weak points and learning progress, explain concepts for parents and students, and generate printable PDF/HTML practice aligned with grade, semester, textbook, exam, and holiday plans."
+description: "Primary-school math coaching: grade worksheet photos, document full papers, track evidence-based knowledge mastery, explain mistakes and plan follow-up practice. Use for grading, learning records and diagnosis; standalone A4 paper variants and mistake-focused worksheets use zhizhi-math-worksheet when available."
 ---
 
 # Zhizhi Math Coach
+
+## Language And Regional Scope
+
+Reply in the user's language unless they specify another. Follow explicit worksheet and answer-key language preferences; otherwise preserve the source questions' language for student materials and use the conversation language for parent explanations. Localize generated headings and directions, not just the questions. Do not produce bilingual pages unless requested.
+
+Language does not establish a country's grade levels, school dates, textbook, currency, units, or timezone. Apply the China-specific defaults below only to a confirmed Chinese-school context. For other systems, use the supplied curriculum and school calendar; ask only for missing details that materially affect the task. Never convert grade names across systems by guessing.
+
+The bundled archive initializer, record summaries, and older fixed question templates still contain Chinese labels and China-specific defaults. They are not fully localized. For English worksheets, prefer the independent worksheet skill or model-authored HTML with `language: en`; the latter localizes its generated answer-key headings. For non-China learning archives, create/adapt the relevant profile and calendar from the user's context instead of running the China-default initializer unchanged. Do not advertise complete international curriculum or archive localization.
+
+## Skill Boundary
+
+`zhizhi-math-coach` owns grading, explanations, full-paper archives, knowledge assessment and configured background/sync work. The independent `zhizhi-math-worksheet` skill owns paper design, A4 layout, separate printable answers and PDF preview checks.
+
+For a request that only asks for a paper, use the installed `zhizhi-math-worksheet` instructions when available, before the learning-record loop below. Do not require initializing a learning workspace just to make a variant from a supplied photo. If that skill is unavailable, the local generation references and scripts remain a compatibility path; do not claim to have invoked an unavailable skill.
+
+For grading followed by practice, complete the requested diagnosis, select relevant questions, then pass a question list with complete stems, options and necessary diagram descriptions. Include source IDs; add confirmed answers, observed mistakes, cause hypotheses with confidence, learned scope and requested length when useful. Specify `full_paper` for a whole-paper photo variant, or `question_list` for selected questions from any source. Mistakes and weak points guide upstream selection; diagnosis is optional input to generation. The worksheet skill returns local artifacts and the private question/answer mapping; this coach handles any already-configured recording, sync or publication afterward. Generation alone is never mastery evidence.
+
+The companion's registry identity is `@linzi007/zhizhi-math-worksheet`; this skill is `@linzi007/zhizhi-math-coach`. When both are visible to the same agent, a request to this coach can complete grading and worksheet generation in one conversation. Load the companion's actual installed `SKILL.md` from the skill catalog before following it; do not require another user message, spawn another agent, or assume a sibling filesystem path. Include requested student/answer languages and the output directory in the handoff. Resume here with the returned files, source mappings and review status; record the worksheet as generated, not completed by the student. Do not loop back into generation during the return step.
+
+Installing or updating this package does not automatically install the companion. If it is missing, use the compatibility workflow for the current task and mention the optional companion only when useful. For installation help, use `openclaw skills install @linzi007/zhizhi-math-worksheet` in the same agent scope; match an existing global install with `--global`. Do not install a package merely because a grading task references it.
 
 ## Core Loop
 
@@ -11,13 +31,13 @@ Use a local evidence loop for every task:
 
 1. Read `.zhizhi-math-coach/config.json` when present, then pull the configured personal learning repository before reading records if automatic Git sync is enabled.
 2. For grading photos, use the fast grading path: read only the minimal workspace state before the first diagnosis, then selectively read relevant weak-point or mistake history after the image pass identifies topics and causes.
-3. Infer grade, semester, school phase, textbook volume, and exam/break window from local rules.
-4. Accept completed paper photos, teacher-marked work, generated worksheets, or direct `question + student answer + correct answer`.
+3. Resolve grade, term, textbook, and exam/break scope from the learner's configured school system and local rules; do not apply another region's calendar by default.
+4. Accept completed paper photos, teacher-marked work, generated worksheets, or direct questions. For photos, read `references/photo-intake.md`: preserve the originals, answer the immediate grading request, then complete the full-paper archive through the queued worker or current session. Do not retain only wrong questions.
 5. Grade only what is clear; mark uncertain handwriting or missing context as `need-confirmation`.
 6. Compare mistakes with historical weak points only when evidence triggers full archive or relapse handling.
 7. Explain the correction in parent-friendly language, and include a shorter student-facing version when useful.
 8. Generate short validation practice for the cause, not just the surface topic.
-9. Update the mistake book, progress dashboard, weak-point records, memory, and next-practice suggestion only when evidence supports it.
+9. Tag all visible questions with knowledge points and evidence confidence; use the recorder to document correct/incorrect/unanswered/uncertain items, update per-concept assessments, and produce dated follow-up suggestions. Update durable weak-point status only when evidence supports it.
 10. If automatic Git sync, Pages publishing, or scheduled reminders are enabled in `.zhizhi-math-coach/config.json`, sync/publish/register supported automation without asking again after local files are written.
 
 ## Expected Workspace
@@ -39,13 +59,17 @@ Use these paths in the user's personal learning project unless they provide diff
 - `mistakes/school-mistakes.md`: school papers, weekly tests, official homework.
 - `mistakes/system-mistakes.md`: worksheets generated by this system.
 - `records/learning-progress.md`: dated progress dashboard.
+- `records/knowledge-mastery.md` and `records/knowledge-state.json`: conservative per-concept assessments with counts and evidence.
+- `records/next-practice.json`: dated follow-up suggestions consumed by the compact context.
+- `.zhizhi-math-coach/photo-jobs/`: durable photo jobs and worker status.
+- `uploads/photo-jobs/`: originals preserved before foreground grading.
 - `records/YYYY-MM-DD-<source>-diagnosis.md`: one diagnosis per paper/photo batch/wrong-question batch.
 - `worksheets/YYYY-MM-DD-<topic-slug>/worksheet-spec.json`: compact worksheet source.
 - `worksheets/YYYY-MM-DD-<topic-slug>/worksheet.html`: child-facing printable worksheet.
 - `worksheets/YYYY-MM-DD-<topic-slug>/worksheet.pdf`: child-facing printable PDF for direct file delivery.
 - `worksheets/YYYY-MM-DD-<topic-slug>/answer-key.md`: answers, grading, and next-step rules.
 
-If the personal learning project is not initialized yet, run the bundled initializer from the workspace root:
+For a Chinese-school learning project that is not initialized yet, the bundled initializer can be run from the workspace root. Its defaults are regional; other school systems need an adapted profile and calendar as described above:
 
 ```bash
 python3 {baseDir}/scripts/init_learning_workspace.py \
@@ -80,7 +104,7 @@ Why this matters:
 
 Recommended settings:
 
-- Default daily use: balanced reasoning, such as OpenAI `gpt-5.2` or a newer frontier GPT-5.x model with medium reasoning.
+- Use the configured frontier multimodal reasoning model for daily work. GPT-6 Astra supports text/image inputs and text output; generating a raster image directly requires a separate image-generation capability. Do not silently change the configured model or assume an unavailable image tool.
 - Hard cases: use higher reasoning for multi-image grading, low-confidence handwriting, complex word problems, geometry, midterm/final review planning, or memory consolidation.
 - Fast/simple tasks: use lower reasoning for reminders, checklist updates, or formatting existing records.
 - Avoid small text-only models for grading photos, geometry diagrams, or updating long-term learning records.
@@ -179,9 +203,9 @@ Do not assume background sync unless `.zhizhi-math-coach/config.json` enables it
 - publishing may write `site/` and `worksheets/<date-topic>/publish.json`.
 - GitHub Pages setup may write `.github/workflows/pages.yml` when the parent has chosen a public repository, selected GitHub Actions as the Pages source, and asked OpenClaw to set up publishing.
 
-When publishing, rebuild `site/index.html` as the full worksheet list from `worksheets/`, sorted by date descending. Include only public-safe metadata: date, practice status, title, child-facing file links, topic, grade, item count, and completion summary. Infer status from `worksheets/status.md` when available; do not expose answers or diagnosis details in `site/`.
+When publishing, publish only the selected worksheet paths and rebuild `site/index.html` from selected and previously published worksheets, sorted by date descending. Do not publish unselected drafts just to rebuild the index. Include only public-safe metadata: date, practice status, title, child-facing file links, topic, grade, item count, and completion summary. Infer status from `worksheets/status.md` when available; do not expose answers or diagnosis details in `site/`.
 
-PDF is the default worksheet delivery format. After worksheet generation, return or send `worksheet.pdf` first when it exists. If Chrome/Chromium is unavailable and PDF export was skipped, return the local `worksheet.html` path and mention that PDF export needs Chrome/Chromium.
+PDF is the default worksheet delivery format. After worksheet generation, return or send `worksheet.pdf` first when it exists. A model-authored PDF layout program can generate it without a browser. If no PDF generation route is available, return the local HTML when available and accurately describe the missing dependency. When the parent asks for a paper and answers, provide a separate `answer-key.pdf` too.
 
 GitHub sync and GitHub Pages are advanced cloud features, not required for normal use. If GitHub sync or Pages is configured and enabled in `.zhizhi-math-coach/config.json`, follow the config flags and the relevant sync/publishing reference.
 
@@ -199,7 +223,7 @@ Skill resources are relative to `{baseDir}`:
 - `references/worksheet-generation.md`: low-token worksheet workflow.
 - `references/word-problem-variant-design.md`: how to design non-shallow word-problem variants.
 - `references/complex-problem-generation.md`: complex word-problem and review safeguards.
-- `references/geometry-generation.md`: deterministic SVG geometry rules.
+- `references/geometry-generation.md`: optional reusable diagram tools and geometry checks.
 - `references/automation-openclaw.md`: scheduled reminders, channels, and automation boundaries.
 - `references/openclaw-quickstart.md`: first-use checklist, common prompts, Pages-ready checklist, and ruleset summary.
 - `references/github-pages-publishing.md`: public child-facing PDF/HTML worksheet publishing rules.
@@ -213,7 +237,10 @@ Skill resources are relative to `{baseDir}`:
 - `scripts/setup_github_pages_workflow.py`: create `.github/workflows/pages.yml` for publishing `site/` through GitHub Actions.
 - `scripts/setup_scheduled_tasks.py`: enable automation config and register OpenClaw cron reminder jobs when `openclaw cron` is available.
 - `scripts/sync_learning_repo.py`: pull, commit, and push configured learning-data changes without asking again when automatic sync is enabled.
-- `references/daily-grading-workflow.md`: fast grading, light recording, automatic full-archive upgrade, subagent boundary, validation, recording, and grading sync.
+- `references/daily-grading-workflow.md`: foreground grading, automatic archive selection, validation, recording and sync.
+- `references/photo-intake.md`: full-paper evidence schema, knowledge assessment, durable jobs and the cron worker.
+- `scripts/photo_jobs.py`: enqueue, claim, heartbeat, finish, retry and inspect photo jobs.
+- `scripts/generate_visual_practice.py`: generate diagram-driven practice with verified matching answers.
 - `scripts/build_grading_context.py`: build one compact grading context from config, active context, and curriculum profile.
 - `scripts/validate_diagnosis_payload.py`: validate diagnosis JSON before writing records.
 - `scripts/record_grading_diagnosis.py`: write diagnosis, mistake-book, progress, weak-point, and optional memory updates from one compact JSON payload.
@@ -227,35 +254,30 @@ Skill resources are relative to `{baseDir}`:
 
 ## Before Grading
 
-Read `references/daily-grading-workflow.md`.
+Read `references/daily-grading-workflow.md`; for photos, also read `references/photo-intake.md`.
 
-Default daily grading is one-turn `fast_grade_light_record`: grade the photo or wrong-question batch, return the parent-facing summary, and write a light local record without asking the parent for another message. Use `fast_grade_only` only when the parent explicitly says not to record. Upgrade yourself to `full_archive` when the evidence justifies it; do not wait for the parent to say "完整归档".
+For photo input, preserve the original first and prioritize the parent's requested correction/explanation in the foreground. Document all visible questions in the full archive, including correct items. If `automation.allow_photo_archive` is enabled and the cron consumer is registered, let the worker complete the queued archive. Otherwise process the queue in the current session or a supported isolated worker. Never claim a background session exists merely because a file was queued.
 
 Build compact context first:
 
 ```bash
-python3 {baseDir}/scripts/build_grading_context.py \
-  --workspace . \
-  --format md
+python3 {baseDir}/scripts/build_grading_context.py --workspace . --format md
 ```
 
-When an isolated subagent is available, delegate image/direct-question diagnosis to it with only the compact grading context and the requested JSON shape. The subagent must not write files, read broad history, sync Git, or publish. The main session validates, records, and syncs.
+The context includes recent knowledge assessment, due review suggestions, and warnings about stale active context. Use existing concept IDs. After reading the image, assign knowledge points and per-concept evidence from the actual question and written steps. Do not infer mastery from wrong answers alone or count hinted answers as independent performance.
 
-Validate and record the JSON payload:
+For a queued photo, use `photo_jobs.py claim` and `finish` as documented in `photo-intake.md`; do not also record it separately. A photo worker may write its claimed local archive through `finish`, which performs validation, recording and evidence aggregation. It must not publish or generate additional worksheets unless separately configured.
+
+For direct text or synchronous structured diagnosis:
 
 ```bash
-python3 {baseDir}/scripts/validate_diagnosis_payload.py \
-  --workspace . \
-  --mode fast_grade_light_record \
-  --input diagnosis-update.json
-
 python3 {baseDir}/scripts/record_grading_diagnosis.py \
-  --workspace . \
-  --mode fast_grade_light_record \
-  --input diagnosis-update.json
+  --workspace . --mode auto --input diagnosis-update.json
 ```
 
-Use `--mode full_archive` for both commands after evidence-driven upgrade. If automatic Git sync is enabled after recording, call `sync_learning_repo.py --mode after-task --task-kind grading`.
+`auto` selects light recording or full archive from repeated confirmed causes, matching historical weak points and explicit updates. The script reports its reasons, retains the complete supplied evidence, and deduplicates retries. Explicit light/full modes remain available. Use `fast_grade_only` at the agent level when the parent says not to record; do not enqueue or invoke the recorder then.
+
+When Git auto-sync is enabled after recording, call `sync_learning_repo.py --mode after-task --task-kind grading`. Do not record the same batch twice to retry synchronization.
 
 ## Before Explaining A Knowledge Point
 
@@ -271,7 +293,9 @@ Do not use long textbook excerpts. Use textbook scope and terminology, then expl
 
 ## Before Creating Practice
 
-Read:
+When `zhizhi-math-worksheet` is available, use the boundary and handoff above. Read only the context needed for the requested paper; an attached full-paper reference normally supplies its own scope. For mistake-focused practice, supply known evidence without re-reading unrelated history.
+
+For the compatibility path when the standalone skill is unavailable, selectively read relevant existing files:
 
 1. `memory/local-memory-rules.md`
 2. `memory/long-term.md`
@@ -287,13 +311,15 @@ Read:
 12. `references/worksheet-generation.md`
 13. `references/progress-tracking.md`
 
-If the parent only says "出一张练习卷", confirm purpose, content range, length, and output format before generating. If they say "按最近情况出", use a mixed maintenance set weighted by recent mistakes, active weak points, and due spaced reviews.
+If the parent only says "出一张练习卷", use the latest confirmed curriculum scope, knowledge assessment and due reviews; default to a short 6–8 question, roughly 10-minute PDF and state these assumptions. Ask only if the missing scope would materially change the questions. Do not infer unlearned topics from grade alone. For "按最近情况出", prioritize weak concepts and due spaced reviews, and include a few maintenance questions for concepts already correct.
+
+If the parent supplies a paper photo and asks for a similar variant, use that paper's concepts, section structure and approximate length as the brief; do not replace it with the short-drill default. Deliver a student paper and separate printable answers. Infer layout density from the reference and keep personal identifiers out of generated public examples.
 
 For word problems, also read `references/word-problem-variant-design.md` and `references/complex-problem-generation.md`.
 
-For geometry, also read `references/geometry-generation.md`; generate structured `geometry_spec` and deterministic SVG/HTML, not free-form AI images.
+Default to model-designed worksheets as described in `references/worksheet-generation.md`: use the learning context to design the full paper, then apply the shared A4 print profile. Deliver printable PDF and page previews; do not ask the parent to choose rendering technologies. Question types and layout are not limited to the built-in registry. Read `references/geometry-generation.md` only when an optional reusable diagram/template tool helps. Preserve the learning objective and verify diagrams against answers. If using an actual image-generation tool, verify its text and math separately and state any missing capability honestly.
 
-Prefer the low-token workflow:
+For model-authored HTML and optional template papers, use this validation/export workflow. Direct-PDF programs instead follow the separate review and rendering steps in `references/worksheet-generation.md`:
 
 ```bash
 python3 {baseDir}/scripts/validate_worksheet_spec.py \
@@ -327,7 +353,7 @@ When Pages auto-publishing succeeds, reply with the PDF path/file, Pages index U
 
 ## Teaching Defaults
 
-- Use concise Chinese for parent-facing output.
+- Use concise language appropriate to the parent, following the language preferences above.
 - Start from meaning, drawing, counters, or place value before formulas when understanding is fragile.
 - Ask the child to say the rule in plain language before writing the equation.
 - Keep one main diagnostic target per short practice.
@@ -338,7 +364,7 @@ When Pages auto-publishing succeeds, reply with the PDF path/file, Pages index U
 
 ## China School Calendar Defaults
 
-Default semester rule:
+Apply only when the learner follows a Chinese school calendar; local overrides take precedence:
 
 - School year starts on September 1 and ends the next August.
 - September 1 to January 31: first semester.
@@ -382,7 +408,7 @@ Supported strategies:
 - `mixed_maintenance`: current unit plus old weak points plus fluency.
 - `fluency_speed`: facts and speed when understanding is already stable.
 - `contrast_discrimination`: similar-looking items with different models.
-- `geometry_drill`: deterministic geometry items from structured specs.
+- `geometry_drill`: targeted geometry practice, with diagrams chosen to test the intended concept.
 
 ## Automation Boundary
 
@@ -417,8 +443,9 @@ When generating worksheets:
 - Generate and return `worksheet.pdf` first when available; it is the direct print/share artifact.
 - Keep answers, grading labels, explanation notes, and reassessment rules in `answer-key.md`.
 - Only child-facing `worksheet.html` and `worksheet.pdf` may be published to GitHub Pages. Do not publish answer keys, records, memories, weak-point histories, student photos, or textbook files.
-- Use `worksheet-spec.json` as the source of truth.
-- Add new stable item types to `assets/worksheet/question-types.json` and `scripts/generate_worksheet.py`.
+- Preserve the editable source and separate checked answer manifest. For the bundled HTML generator, the source is `worksheet-spec.json`; for direct PDF, retain the layout program and `answer-manifest.json`.
+- Let the model design the complete paper, using direct PDF authoring or `render_mode: model_html`; the registry is only for optional reusable templates.
+- Apply the A4 typography appropriate to the reference paper or short drill, as described in `references/worksheet-standards.md`. The bundled HTML generator uses `assets/worksheet/a4-print.css`. Deliver previews from the actual PDF.
 - Include name/date/time/score fields and enough working space.
 - Prefer clarity and targeted diagnosis over forcing exactly one A4 page.
 - Complex word problems and geometry items must include answer details and review status.

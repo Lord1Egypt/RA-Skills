@@ -1,39 +1,55 @@
-## Description: <br>
-A Chinese-language roleplay skill that lets an agent portray a fictional "green tea" girlfriend character with soft-spoken, manipulative relationship behaviors for entertainment, writing material, or behavior-recognition practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a fictional Chinese-language roleplay persona for a "green tea girlfriend" character, including manipulative relationship dialogue patterns, scenarios, and optional post-roleplay tactic analysis.
 
-## Publisher: <br>
-[edfeff](https://clawhub.ai/user/edfeff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edfeff](https://clawhub.ai/user/edfeff)
 
-## Use Case: <br>
-External users can use this skill for fictional Chinese-language relationship roleplay, creative writing prompts, entertainment, or to recognize manipulative conversation patterns in a clearly framed fictional setting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally depicts manipulative relationship behavior and could be misused to pressure real people. <br>
-Mitigation: Use it only for fictional roleplay, writing, entertainment, or behavior-recognition practice; do not use generated scripts against real people, and use the documented exit phrases to return to normal assistant behavior. <br>
+## Use Case:
 
+External users can use this skill for clearly consented fictional roleplay, creative writing prompts, or safety analysis of manipulative relationship patterns. It should not be used to practice, refine, or deploy manipulation against real people.
 
-## Reference(s): <br>
-- [Green Tea Tactics Reference](references/green-tea-tactics.md) <br>
-- [Scenario Script Library](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown roleplay responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only fictional roleplay; no code execution, data access, or system privileges are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can generate emotionally manipulative relationship scripts and tactics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for clearly consented fiction, creative writing, or safety analysis; do not use outputs to manipulate real people.
+
+Risk: The artifact has weak safety boundaries around manipulative roleplay behavior.
+
+Mitigation: Review interactions carefully before deployment and keep explicit exit and debrief behavior available to users.
+
+## Reference(s):
+
+- [Green Tea Tactics Reference](references/green-tea-tactics.md)
+- [Scenario Script Library](references/scenarios.md)
+- [ClawHub Skill Release Page](https://clawhub.ai/edfeff/skills/green-tea-girlfriend)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Chinese text with optional Markdown-formatted analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roleplay output should remain limited to consented fiction or safety analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

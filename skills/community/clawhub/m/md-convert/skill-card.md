@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Md Convert. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Md Convert is a devtools reference skill that provides quick lookup guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheat-sheet topics.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise reference guidance for Md Convert concepts, commands, troubleshooting, performance, security, and migration topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill appears to provide generic documentation text rather than performing real markdown conversion. <br>
-Mitigation: Use it as a lightweight local reference helper and verify any conversion workflow or implementation advice before relying on it. <br>
-Risk: Generic devtools guidance may not match a user's specific production environment. <br>
-Mitigation: Review the emitted guidance against local requirements before applying it to operational systems. <br>
+## Use Case:
 
+Developers and engineers use Md Convert as a quick reference for md-convert concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/md-convert) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with Markdown headings, tables, and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference content; no API keys, credentials, network access, or external calls are reported by the artifact and security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: The static guidance may mention credentials as generic documentation, which readers could mistake for a request to provide secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat credential references as general documentation only; do not paste secrets into the skill, and verify operational steps against project-specific procedures.
+
+## Reference(s):
+
+- [Md Convert on ClawHub](https://clawhub.ai/xueyetianya/skills/md-convert)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted plain text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no external API calls, credentials, network access, or persistent state per security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -33,7 +33,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(8, 1fr);
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
@@ -124,7 +124,7 @@
       margin-bottom: 1.5rem;
     }
 
-    input, select {
+    input, select, textarea {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: #fff;
@@ -135,10 +135,111 @@
       transition: all 0.2s ease;
     }
 
-    input:focus, select:focus {
+    textarea { resize: vertical; min-height: 84px; font-family: inherit; line-height: 1.4; }
+
+    input:focus, select:focus, textarea:focus {
       border-color: rgba(0, 212, 255, 0.35);
       box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
     }
+
+    .action-panel {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1.2fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .field { display: grid; gap: 0.35rem; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: #888; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .model-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem;
+      padding: 0.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .model-switch input { display: none; }
+
+    .model-switch span {
+      display: block;
+      min-height: 2.25rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .model-switch input:checked + span {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.28), rgba(123, 47, 255, 0.28));
+      color: #fff;
+      box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.2);
+    }
+
+    .button-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.85rem; }
+
+    .primary-btn, .ghost-btn {
+      border: none;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .primary-btn { background: linear-gradient(135deg, #00d4ff, #7b2fff); }
+    .ghost-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+    .primary-btn:hover:not(:disabled), .ghost-btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.1); }
+    .primary-btn:disabled, .ghost-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .settings-note {
+      color: #888;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      margin-top: 0.7rem;
+    }
+
+    .call-metrics {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.7rem 0;
+    }
+
+    .cost-pill { border-color: rgba(0, 200, 83, 0.28); color: #8ff0b2; }
+    .warn-text { color: #ffb86b; font-size: 0.85rem; margin-top: 0.55rem; min-height: 1.2rem; }
 
     .timeline { position: relative; padding-left: 2rem; }
     .timeline::before {
@@ -348,6 +449,7 @@
       h1 { font-size: 1.75rem; }
       .stats-grid { grid-template-columns: repeat(4, 1fr); }
       .controls { grid-template-columns: 1fr; }
+      .action-panel { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -399,6 +501,84 @@
         <div class="stat-value" id="stat-messages">-</div>
         <div class="stat-label">MESSAGES</div>
       </div>
+      <div class="stat-card" data-filter="all">
+        <div class="stat-icon">💵</div>
+        <div class="stat-value" id="stat-cost">-</div>
+        <div class="stat-label">Est. Cost</div>
+      </div>
+    </div>
+
+    <div class="action-panel">
+      <div class="panel">
+        <div class="panel-title">
+          <span>One-Touch Call</span>
+          <span class="pill">localhost bridge</span>
+        </div>
+        <div class="settings-grid">
+          <div class="field">
+            <label for="setting-test-to">Test number</label>
+            <input id="setting-test-to" type="tel" placeholder="+14165551234" />
+          </div>
+          <div class="field">
+            <label for="setting-bridge-url">Bridge URL</label>
+            <input id="setting-bridge-url" type="url" placeholder="http://127.0.0.1:8000" />
+          </div>
+          <div class="field full">
+            <label>Realtime model</label>
+            <div class="model-switch">
+              <label>
+                <input type="radio" name="setting-realtime-model" value="gpt-realtime" />
+                <span>Regular</span>
+              </label>
+              <label>
+                <input type="radio" name="setting-realtime-model" value="gpt-realtime-mini" />
+                <span>Mini</span>
+              </label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="setting-objective">Call objective</label>
+            <textarea id="setting-objective" placeholder="Place a short Amber test call..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="setting-bridge-token">Bridge token</label>
+            <input id="setting-bridge-token" type="password" autocomplete="off" placeholder="Optional if bridge is localhost-only" />
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="primary-btn" id="test-call">☎ Call Test Number</button>
+          <button class="ghost-btn" id="save-settings">Save Settings</button>
+        </div>
+        <div class="warn-text" id="call-status"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <span>Cost Visibility</span>
+          <span class="pill">editable estimate</span>
+        </div>
+        <div class="settings-grid">
+          <div class="field">
+            <label for="setting-currency">Currency</label>
+            <input id="setting-currency" type="text" maxlength="6" />
+          </div>
+          <div class="field">
+            <label for="setting-telecom-rate">Telephony / minute</label>
+            <input id="setting-telecom-rate" type="number" min="0" step="0.001" />
+          </div>
+          <div class="field">
+            <label for="setting-input-rate">Realtime input / 1M tokens</label>
+            <input id="setting-input-rate" type="number" min="0" step="0.01" />
+          </div>
+          <div class="field">
+            <label for="setting-output-rate">Realtime output / 1M tokens</label>
+            <input id="setting-output-rate" type="number" min="0" step="0.01" />
+          </div>
+        </div>
+        <div class="settings-note">
+          Estimates use call duration from event logs plus saved Realtime token usage. Adjust these rates to match your provider plan.
+        </div>
+      </div>
     </div>
 
     <div class="controls">
@@ -433,6 +613,17 @@
     let allCalls = [];
     let currentFilter = 'all';
     let followups = new Set();
+    let settings = {
+      bridgeUrl: 'http://127.0.0.1:8000',
+      bridgeToken: '',
+      testTo: '',
+      testObjective: 'Place a short Amber test call. Say hello, confirm two-way audio is working, and end politely.',
+      realtimeModel: 'gpt-realtime',
+      currency: 'USD',
+      telecomPerMinute: 0.013,
+      realtimeInputPer1M: 4,
+      realtimeOutputPer1M: 16
+    };
 
     // Load followups from localStorage
     function loadFollowups() {
@@ -462,6 +653,76 @@
 
     loadFollowups();
 
+    function loadSettings() {
+      try {
+        const stored = localStorage.getItem('calllog-settings');
+        if (stored) settings = { ...settings, ...JSON.parse(stored) };
+      } catch {}
+      document.getElementById('setting-bridge-url').value = settings.bridgeUrl;
+      document.getElementById('setting-bridge-token').value = settings.bridgeToken;
+      document.getElementById('setting-test-to').value = settings.testTo;
+      document.getElementById('setting-objective').value = settings.testObjective;
+      const modelInput = document.querySelector(`input[name="setting-realtime-model"][value="${settings.realtimeModel}"]`);
+      if (modelInput) modelInput.checked = true;
+      document.getElementById('setting-currency').value = settings.currency;
+      document.getElementById('setting-telecom-rate').value = settings.telecomPerMinute;
+      document.getElementById('setting-input-rate').value = settings.realtimeInputPer1M;
+      document.getElementById('setting-output-rate').value = settings.realtimeOutputPer1M;
+    }
+
+    function readSettingsFromForm() {
+      settings = {
+        bridgeUrl: document.getElementById('setting-bridge-url').value.trim() || 'http://127.0.0.1:8000',
+        bridgeToken: document.getElementById('setting-bridge-token').value,
+        testTo: document.getElementById('setting-test-to').value.trim(),
+        testObjective: document.getElementById('setting-objective').value.trim(),
+        realtimeModel: document.querySelector('input[name="setting-realtime-model"]:checked')?.value || 'gpt-realtime',
+        currency: document.getElementById('setting-currency').value.trim() || 'USD',
+        telecomPerMinute: Number(document.getElementById('setting-telecom-rate').value || 0),
+        realtimeInputPer1M: Number(document.getElementById('setting-input-rate').value || 0),
+        realtimeOutputPer1M: Number(document.getElementById('setting-output-rate').value || 0)
+      };
+      return settings;
+    }
+
+    function saveSettings() {
+      readSettingsFromForm();
+      persistSettings();
+      updateStats();
+      applyFilters();
+      showCallStatus('Settings saved. Bridge token stays in memory only.', '#8ff0b2');
+    }
+
+    function persistSettings() {
+      const { bridgeToken, ...persistedSettings } = settings;
+      localStorage.setItem('calllog-settings', JSON.stringify(persistedSettings));
+    }
+
+    function showCallStatus(msg, color = '#ffb86b') {
+      const el = document.getElementById('call-status');
+      el.style.color = color;
+      el.textContent = msg;
+    }
+
+    function apiUrl(path) {
+      const loopbackHosts = new Set(['127.0.0.1', 'localhost', '::1', '[::1]']);
+      const isApiOrigin = loopbackHosts.has(window.location.hostname) && window.location.port === '8787';
+      return isApiOrigin ? path : `http://127.0.0.1:8787${path}`;
+    }
+
+    async function parseJsonResponse(resp, apiPath) {
+      const text = await resp.text();
+      try {
+        return text ? JSON.parse(text) : {};
+      } catch (_) {
+        const looksLikeHtml = text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html');
+        if (looksLikeHtml) {
+          throw new Error(`${apiPath} returned HTML instead of JSON. Open http://127.0.0.1:8787/ or make sure that local server is still running.`);
+        }
+        throw new Error(`${apiPath} returned non-JSON response: ${text.slice(0, 120) || resp.statusText}`);
+      }
+    }
+
     function escapeHtml(s) {
       return String(s ?? '')
         .replaceAll('&', '&amp;')
@@ -482,6 +743,40 @@
         minute: '2-digit',
         hour12: true
       });
+    }
+
+    function formatDuration(ms) {
+      const n = Number(ms);
+      if (!Number.isFinite(n) || n <= 0) return null;
+      const totalSeconds = Math.max(1, Math.round(n / 1000));
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${minutes}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function getUsage(call) {
+      return call?.usage && typeof call.usage === 'object' ? call.usage : {};
+    }
+
+    function estimateCost(call) {
+      const usage = getUsage(call);
+      const inputTokens = Number(usage.inputTokens || usage.input_tokens || 0);
+      const outputTokens = Number(usage.outputTokens || usage.output_tokens || 0);
+      const durationMs = Number(call.duration || call.durationMs || 0);
+      const minutes = durationMs > 0 ? durationMs / 60000 : 0;
+      const model = (inputTokens / 1000000 * settings.realtimeInputPer1M) +
+        (outputTokens / 1000000 * settings.realtimeOutputPer1M);
+      const telecom = minutes * settings.telecomPerMinute;
+      const total = model + telecom;
+      if (!total && !inputTokens && !outputTokens && !minutes) return null;
+      return { total, model, telecom, minutes, inputTokens, outputTokens };
+    }
+
+    function formatMoney(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return '-';
+      const precision = n > 0 && n < 0.01 ? 4 : 2;
+      return `${settings.currency} ${n.toFixed(precision)}`;
     }
 
     function hasCaptured(call) {
@@ -508,6 +803,16 @@
       const toLine = `<div class="row"><span class="label">To:</span> ${displayParty(call.toName, call.to)}</div>`;
 
       const sidLine = call.twilioCallSid ? `<div class="row"><span class="label">Sid:</span> <span class="pill">${escapeHtml(call.twilioCallSid)}</span></div>` : '';
+      const cost = estimateCost(call);
+      const duration = formatDuration(call.duration || call.durationMs);
+      const usage = getUsage(call);
+      const metricsHTML = (duration || cost || usage.totalTokens) ? `
+        <div class="call-metrics">
+          ${duration ? `<span class="pill">${escapeHtml(duration)}</span>` : ''}
+          ${usage.totalTokens ? `<span class="pill">${escapeHtml(Number(usage.totalTokens).toLocaleString())} tokens</span>` : ''}
+          ${cost ? `<span class="pill cost-pill">${escapeHtml(formatMoney(cost.total))}</span>` : ''}
+        </div>
+      ` : '';
 
       const captured = Array.isArray(call.capturedMessages) ? call.capturedMessages : [];
       const capturedHTML = captured.length ? `
@@ -572,6 +877,7 @@
             ${toLine}
             ${sidLine}
           </div>
+          ${metricsHTML}
           ${summaryHTML}
           ${capturedHTML}
           ${transcriptHTML}
@@ -636,6 +942,7 @@
       const transcripts = allCalls.filter(c => hasTranscript(c)).length;
       const missing = total - transcripts;
       const followupCount = allCalls.filter(c => followups.has(c.id)).length;
+      const totalCost = allCalls.reduce((sum, c) => sum + (estimateCost(c)?.total || 0), 0);
 
       document.getElementById('stat-total').textContent = total;
       document.getElementById('stat-inbound').textContent = inbound;
@@ -644,6 +951,45 @@
       document.getElementById('stat-transcripts').textContent = transcripts;
       document.getElementById('stat-missing').textContent = missing;
       document.getElementById('stat-followup').textContent = followupCount;
+      document.getElementById('stat-cost').textContent = totalCost ? formatMoney(totalCost).replace(settings.currency + ' ', '') : '-';
+    }
+
+    async function startTestCall() {
+      readSettingsFromForm();
+      const btn = document.getElementById('test-call');
+      if (!/^\+[1-9]\d{6,14}$/.test(settings.testTo)) {
+        showCallStatus('Enter a test number in E.164 format, like +14165551234.');
+        return;
+      }
+      if (!settings.testObjective) {
+        showCallStatus('Add a call objective first.');
+        return;
+      }
+
+      btn.disabled = true;
+      showCallStatus('Starting call...', '#00d4ff');
+      try {
+        const plan = { bridgeUrl: settings.bridgeUrl, bridgeToken: settings.bridgeToken,
+          to: settings.testTo, objective: settings.testObjective, model: settings.realtimeModel };
+        const previewResp = await fetch(apiUrl('/api/call/preview'), {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(plan)
+        });
+        const preview = await parseJsonResponse(previewResp, apiUrl('/api/call/preview'));
+        if (!previewResp.ok || !preview.approvalToken) throw new Error(preview.error || 'Preview failed');
+        if (!window.confirm(`Call ${plan.to}?\nObjective: ${plan.objective}\nModel: ${plan.model}\nCarrier/API charges may apply.`)) return;
+        const resp = await fetch(apiUrl('/api/call'), {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...plan, confirmed: true, approvalToken: preview.approvalToken })
+        });
+        const result = await parseJsonResponse(resp, apiUrl('/api/call'));
+        if (!resp.ok || !result.success) throw new Error(result.error || 'Call failed');
+        persistSettings();
+        showCallStatus(`Call started: ${result.sid || 'bridge accepted request'}`, '#8ff0b2');
+      } catch (err) {
+        showCallStatus(`Call failed: ${err.message}`, '#ff7777');
+      } finally {
+        btn.disabled = false;
+      }
     }
 
     async function load() {
@@ -687,6 +1033,14 @@
     document.getElementById('msg').addEventListener('change', applyFilters);
 
     document.getElementById('refresh').addEventListener('click', load);
+    document.getElementById('save-settings').addEventListener('click', saveSettings);
+    document.getElementById('test-call').addEventListener('click', startTestCall);
+    document.querySelectorAll('input[name="setting-realtime-model"]').forEach(el => {
+      el.addEventListener('change', saveSettings);
+    });
+    ['setting-currency', 'setting-telecom-rate', 'setting-input-rate', 'setting-output-rate'].forEach(id => {
+      document.getElementById(id).addEventListener('change', saveSettings);
+    });
 
     // Sync button — triggers process_logs.js via serve.js /api/sync endpoint
     document.getElementById('sync').addEventListener('click', async () => {
@@ -707,8 +1061,8 @@
       showToast('⏳ Syncing call logs…', '#00d4ff');
 
       try {
-        const resp = await fetch('/api/sync', { method: 'POST' });
-        const result = await resp.json();
+        const resp = await fetch(apiUrl('/api/sync'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+        const result = await parseJsonResponse(resp, apiUrl('/api/sync'));
         if (result.success) {
           showToast('✅ Sync complete — reloading…', '#00c853');
           setTimeout(() => load(), 600);
@@ -742,6 +1096,7 @@
     }
 
     // Initial load
+    loadSettings();
     setActiveStat('all');
     load();
 

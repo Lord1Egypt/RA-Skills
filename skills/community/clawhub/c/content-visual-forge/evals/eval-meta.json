@@ -1,0 +1,11 @@
+{
+  "router_command": "",
+  "expectation_prefix": "",
+  "minimum_assertion_coverage": 0.0,
+  "note": "content-visual-forge is an LLM-based skill without a CLI runner. Evals test cover-engine routing, template selection (knowledge-card / learning-card / social-card / character-card / cover-card), style-atlas consistency through prompt-based evaluation. Structural validation (id, files, expected_output) is the automated gate.",
+  "dimension_semantics": {
+    "blind": "manual: LLM judge evaluates if output matches expected_output",
+    "confusion_matrix": "manual: categorize by cover / knowledge / social / character / learning",
+    "stability": "manual: re-run eval with same prompt to check output consistency"
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Routes tasks to cost-effective capable models, handles provider failures, and keeps model routing configuration current. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selects a cost-effective capable model for agent tasks, handles provider and rate-limit failures, and supports health, cost, configuration, and provider-sync checks.
 
-## Publisher: <br>
-[adroidian](https://clawhub.ai/user/adroidian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adroidian](https://clawhub.ai/user/adroidian)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose an appropriate model tier for delegated work, retry after rate limits, inspect model health and costs, and maintain routing configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The provider sync script reads local provider credentials and can contact external or private provider endpoints. <br>
-Mitigation: Review the sync behavior before installation, run dry-run mode first, and only enable providers and endpoints that are approved for the deployment environment. <br>
-Risk: The bundled sync workflow can mutate routing configuration and send model-change notifications to a hard-coded Telegram destination. <br>
-Mitigation: Replace or disable the Telegram configuration and review generated config changes before enabling scheduled or live sync runs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route delegated tasks to configured model providers by task complexity, cost, and provider availability. They can also inspect health and cost output, record failed models for cooldown, and review provider sync results before promoting newly discovered models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adroidian/chitin-core) <br>
-- [Publisher profile](https://clawhub.ai/user/adroidian) <br>
-- [Chitin homepage](https://chitin.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON command results and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Router commands return structured model-selection, failure, health, cost, and validation information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The provider sync script includes a hardcoded Telegram bot credential and fixed chat destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the bundled token before installing, and require notification credentials and destinations to be supplied by the user.
+
+Risk: Live provider sync can query external model-provider APIs and update local router configuration.
+
+Mitigation: Run provider sync with --dry-run first, provide only intended provider API keys, and review sync-report.json and discovered models before promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adroidian/skills/chitin-core)
+- [Publisher profile](https://clawhub.ai/user/adroidian)
+- [Chitin agentic OS](https://chitin.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routing output includes tier, model, confidence, estimated cost, and signals; provider sync can update local configuration after a dry run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

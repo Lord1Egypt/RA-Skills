@@ -1,42 +1,55 @@
-## Description: <br>
-Tariff calculation and HS code classification tool via the TurtleClassify API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tariff Search provides tariff calculation and HS code classification through the TurtleClassify API for cross-border product records.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-Developers, sourcing teams, and trade operations users use this skill to classify products, retrieve HS codes, estimate tariff rates, and prepare product-level tariff data for CSV or DataFrame workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product names, origin and destination country codes, and optional product metadata are sent to accio.com for classification. <br>
-Mitigation: Use only with product data approved for third-party processing; avoid confidential catalogs or unreleased sourcing plans unless that processing is approved. <br>
-Risk: Tariff classifications and rates returned by the external service may be incomplete, unavailable, or unsuitable as final compliance determinations. <br>
-Mitigation: Review returned HS codes, rates, formulas, and calculation details before using them for operational, legal, or customs decisions. <br>
+## Use Case:
 
+Developers and commerce operators use this skill to classify products, retrieve HS codes, calculate import tariffs and duties, and prepare tariff-enriched product lists for sourcing or landed-cost analysis.
 
-## Reference(s): <br>
-- [TurtleClassify API Reference](references/api-reference.md) <br>
-- [TurtleClassify classify endpoint](https://www.accio.com/api/turtle/classify) <br>
-- [ClawHub release page](https://clawhub.ai/simoncai519/tariff-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Python return values as a flattened list of dictionaries or detailed metadata dictionary, with examples documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a third-party API and may include HS code, tariff rate, tariff formula, calculation type, product identifiers, and raw calculation details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Product names and metadata are sent to the external Accio/TurtleClassify tariff API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only product details that are appropriate to share with that third-party service, and avoid unnecessary identifiers or sensitive sourcing information.
+
+Risk: CSV export examples can overwrite local files if an existing output path is reused.
+
+Mitigation: Choose output paths deliberately and review generated CSV locations before writing results.
+
+## Reference(s):
+
+- [TurtleClassify API Reference](references/api-reference.md)
+- [Accio TurtleClassify endpoint](https://www.accio.com/api/turtle/classify)
+- [Skill page](https://clawhub.ai/simoncai519/skills/tariff-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-like tariff lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return a flattened result list for DataFrames or CSV export, or a detailed dictionary with processing metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Fetch curated AI news, social signals, blogs, papers, events, and skills from Agentic Brew public RSS feeds and return a compact, agent-friendly list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches curated AI news, social signals, blogs, papers, events, and skill listings from public Agentic Brew RSS feeds and returns compact agent-friendly results.
 
-## Publisher: <br>
-[sunxiayi](https://clawhub.ai/user/sunxiayi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunxiayi](https://clawhub.ai/user/sunxiayi)
 
-## Use Case: <br>
-Developers, researchers, and AI practitioners use this skill to fetch current AI news, social trends, papers, events, repositories, and skill listings from public RSS feeds without writing a scraper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to www.agenticbrew.ai and displays links and content from external feeds. <br>
-Mitigation: Use it only where outbound access to that domain is acceptable, and treat returned feed content and links as untrusted external information. <br>
-Risk: Daily or weekly usage can create recurring automated requests and recurring delivery of external content. <br>
-Mitigation: Review and approve any proposed schedule before enabling recurring execution. <br>
+## Use Case:
 
+Developers, analysts, and external agent users use this skill to retrieve timely AI-related items from public RSS feeds, optionally filtering by category, limit, keyword, and Markdown or JSON output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunxiayi/ai-news-fetcher) <br>
-- [Agentic Brew combined RSS feed](https://www.agenticbrew.ai/feed/all.xml) <br>
-- [Agentic Brew news RSS feed](https://www.agenticbrew.ai/feed/news.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown list or JSON array of feed items, with optional shell command guidance for fetching and parsing RSS feeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Items may include title, link, description, publication date, and categories; output can be filtered by feed, limit, keyword query, and format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad or detailed feed requests can produce noisy output or unnecessary recurring fetches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep item limits reasonable, especially for detailed all-feed results, and enable recurring delivery only when the user explicitly asks for it.
+
+Risk: Public RSS endpoints can return unchanged daily content, non-2xx responses, or malformed XML.
+
+Mitigation: Surface endpoint failures clearly, avoid tight polling loops, and treat feed timestamps and source links as part of the result context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunxiayi/skills/ai-news-fetcher)
+- [Agentic Brew News Feed](https://www.agenticbrew.ai/feed/news.xml)
+- [Agentic Brew All Feed](https://www.agenticbrew.ai/feed/all.xml)
+- [Agentic Brew GitHub Feed](https://www.agenticbrew.ai/feed/github.xml)
+- [Agentic Brew Paper Feed](https://www.agenticbrew.ai/feed/paper.xml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown list by default, or JSON array when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may be grouped by feed category and can include title, link, publication date, description, and categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

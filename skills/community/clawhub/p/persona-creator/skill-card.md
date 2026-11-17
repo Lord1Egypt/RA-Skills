@@ -1,40 +1,63 @@
-## Description: <br>
-Persona Creator analyzes a user's Markdown chat history to create, refresh, delete, and apply persona JSON profiles for style-aware role play. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona Creator analyzes at least 10 messages from memory/*.md to create, refresh, reset, and use persona JSON profiles for style-aware role play.
 
-## Publisher: <br>
-[taget](https://clawhub.ai/user/taget) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taget](https://clawhub.ai/user/taget)
 
-## Use Case: <br>
-External users and developers use this skill to turn workspace chat memories into reusable persona profiles, refresh or forget those profiles, and temporarily answer in a selected profile's communication style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local chat-history memory files into persistent persona profiles, which can expose sensitive personal data if broad or sensitive histories are used. <br>
-Mitigation: Use a narrow memory directory, avoid histories containing secrets or sensitive personal data, and review generated persona JSON before using role-play mode. <br>
-Risk: The security summary notes that sensitive intermediate data is insufficiently contained during persona generation. <br>
-Mitigation: Delete /tmp/persona_meta.json, /tmp/persona_analysis_prompt.txt, /tmp/persona_analysis_result.json, and unneeded persona backups after use. <br>
+## Use Case:
 
+External users and developers use this skill to create reusable persona profiles from chat history, refresh them as new memory files arrive, reset or delete them, and use them for style-based role play.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taget/persona-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown status messages, JSON persona files, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least 10 extracted user messages; may create temporary analysis files and persona backups during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads local memory files that may contain private conversation history and sends sampled text through the model for style analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent, limit analysis to intended memory files, review sampled text before model submission, and avoid processing sensitive conversations.
+
+Risk: Persona profiles and temporary analysis files can contain reusable style and identity data.
+
+Mitigation: Store persona output only in the intended persona directory, restrict access to generated profiles, and clean up temporary analysis files after use.
+
+Risk: Unsafe username or path handling could affect unintended persona files.
+
+Mitigation: Validate usernames and enforce containment within the persona directory before reading, writing, deleting, or resetting profiles.
+
+Risk: Real-person style imitation can be misused or misunderstood.
+
+Mitigation: Disclose style imitation, restrict imitation to consenting users, and avoid presenting generated responses as the real person.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taget/skills/persona-creator)
+- [Skill definition](artifact/SKILL.md)
+- [Persona template](artifact/persona/yourself.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status messages and summaries, JSON persona profiles, and shell command invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persona/<user>.json profiles and may use temporary analysis prompt/result metadata under /tmp during generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

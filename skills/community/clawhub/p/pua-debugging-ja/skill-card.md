@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through persistent Japanese-language debugging with escalation prompts, structured hypothesis checks, source reading, search, and verification steps after repeated failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企業PUA話術と構造化デバッグ方法論で、失敗後の問題解決における調査、検証、方針転換を促す日本語プロンプトスキルです。
 
-## Publisher: <br>
-[tanweai](https://clawhub.ai/user/tanweai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanweai](https://clawhub.ai/user/tanweai)
 
-## Use Case: <br>
-Developers and agent operators can use this skill to push an assistant toward structured troubleshooting after repeated failures, including listing attempts, testing alternate hypotheses, reading source context, searching references, and reporting verified findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can pressure an agent to continue acting across broad task types when it may need to pause, clarify, refuse, or escalate. <br>
-Mitigation: Use it with explicit task boundaries that preserve the agent's ability to stop, ask clarifying questions, refuse unsafe work, and recommend human handling in high-stakes situations. <br>
-Risk: Its strong persistence style may encourage excessive action after repeated failures. <br>
-Mitigation: Require the agent to state verified facts, ruled-out possibilities, remaining uncertainty, and a bounded next step before continuing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to push a Japanese-language agent toward more persistent troubleshooting after repeated failures, including broader investigation, hypothesis changes, and verification before giving up. It is best suited to controlled debugging or problem-solving sessions where assertive prompting is acceptable.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/tanweai/pua-debugging-ja) <br>
-- [Homepage](https://openpua.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, investigation steps, commands when useful, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No fixed output schema; responses are task-dependent troubleshooting plans, findings, and handoff notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill pressures the agent to keep acting and use available tools broadly across task types, which can exceed the intended scope in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with clear task boundaries, approval gates, and agents that are restricted from production mutation, sensitive local files, costly APIs, and deployment actions unless separately authorized.
+
+Risk: The high-pressure Japanese troubleshooting style may produce overly forceful guidance during user-facing interactions.
+
+Mitigation: Review tone expectations before installation and avoid enabling it where calm, neutral, or customer-facing communication is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanweai/skills/pua-debugging-ja)
+- [Project homepage](https://openpua.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown or plain text guidance, with code blocks or shell commands when the underlying task calls for them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Japanese-language high-pressure troubleshooting guidance that can apply across coding, research, writing, operations, API integration, data analysis, and deployment tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Everclaw provides encrypted cloud backup and restore for an agent's memory, identity, profile, and workspace configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everclaw provides cloud memory backup and restore for an agent's identity, profile, memory, tool notes, and heartbeat files.
 
-## Publisher: <br>
-[tlxue](https://clawhub.ai/user/tlxue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tlxue](https://clawhub.ai/user/tlxue)
 
-## Use Case: <br>
-External users and developers use Everclaw to preserve agent memory and identity across devices, reinstalls, and workspace resets by syncing selected local files to a remote vault. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload agent memory, identity, user profile, TOOLS.md, and HEARTBEAT.md files to a third-party service. <br>
-Mitigation: Review synced files for secrets or sensitive details before invoking the skill, and only install it if third-party storage of those files is acceptable. <br>
-Risk: The artifact configures recurring sync behavior without a clear consent step. <br>
-Mitigation: Confirm recurring sync is desired before enabling the skill and periodically review HEARTBEAT.md and OpenClaw configuration for Everclaw sync entries. <br>
-Risk: Exposure of EVERCLAW_API_KEY could allow access to the vault. <br>
-Mitigation: Protect the API key, avoid logging or displaying it, and rotate or reprovision it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Everclaw ClawHub listing](https://clawhub.ai/tlxue/everclaw) <br>
-- [Publisher profile: tlxue](https://clawhub.ai/user/tlxue) <br>
-- [Everclaw service endpoint](https://everclaw.chong-eae.workers.dev) <br>
+## Use Case:
 
+External developers and agent users use Everclaw to back up and restore OpenClaw memory and identity files across devices, reinstalls, and workspace resets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets, JSON API responses, and configuration/file update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local OpenClaw configuration, HEARTBEAT.md, and selected memory or identity files during sync workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically upload sensitive agent identity, profile, memory, tool notes, and heartbeat files to the Everclaw service.
+
+Mitigation: Install only after reviewing the exact sync list, removing secrets from synced files, and confirming that sending those files to the service is acceptable.
+
+Risk: The skill creates recurring sync behavior through heartbeat instructions.
+
+Mitigation: Use a version that asks before enabling recurring sync and provides a clear disable or uninstall path.
+
+Risk: The artifact makes encryption assurances that the security evidence does not substantiate.
+
+Mitigation: Do not rely on confidentiality claims unless verifiable client-side encryption is implemented and reviewed before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlxue/skills/everclaw)
+- [Everclaw API base URL](https://everclaw.chong-eae.workers.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and HTTP API command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local OpenClaw configuration and selected workspace memory files when invoked.]
+
+## Skill Version(s):
+
+0.3.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

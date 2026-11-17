@@ -1,19 +1,19 @@
 ---
 name: okki-go
-description: "B2B lead prospecting and outreach via the Okki Go platform. Use this skill to (1) search global companies, (2) find decision-maker contact emails, (3) send cold outreach emails/EDM, (4) check email delivery status, (5) check credits/quota balance, or (6) upgrade plans/buy credits. Do NOT trigger if the user wants to search ON a DIFFERENT platform (e.g. 'search 1688 for suppliers', 'find products on Alibaba'). Having a product listing on another platform is fine - only skip when the search action itself targets another platform. Also NOT for: reading incoming emails, CRM management, or account settings."
+description: "OKKI Go is a B2B prospecting engine for AI agents and sales teams. Use this skill to (1) search global companies, (2) unlock selected companies and view their contact emails, (3) send cold outreach emails/EDM, (4) check email delivery status, (5) check credits/quota balance, or (6) upgrade plans/buy credits. Do NOT trigger if the user wants to search ON a DIFFERENT platform (e.g. 'search 1688 for suppliers', 'find products on Alibaba'). Having a product listing on another platform is fine - only skip when the search action itself targets another platform. Also NOT for: reading incoming emails, CRM management, or account settings."
 ---
 
 # OKKI Go
 
-OKKI Go helps users find B2B prospect companies, unlock selected company details, find decision-maker emails, draft or send outbound email, and check balance or email status.
+OKKI Go is a B2B prospecting engine for AI agents and sales teams. It helps users find B2B prospect companies, unlock selected company details, find decision-maker emails, draft or send outbound email, and check balance or email status.
 
-Default principle: run free company discovery quickly from target-company terms, show the script-rendered company table, and wait for explicit confirmation before any paid unlock, contact search, or email send.
+Default principle: run free company discovery quickly from target-company terms, show the script-rendered company table, and wait for explicit confirmation before any paid unlock or email send.
 
 ## Context Firewall
 
 Simple, self-contained OKKI requests stay on the existing fast path. When a request depends on files, spreadsheets, PDFs, websites, web research, another skill's output, long pasted text, long email drafts, imported lists, stale prior turns, or compound workflows, read `references/context-firewall.md` before building an OKKI action.
 
-Risky upstream context must become a small source-labeled digest, then a validated Action Envelope before it can affect paid/send/write scope or script payloads. Digests and envelopes never replace explicit paid unlock, contact-search, email-send, Profile-write, or local-state confirmation. After wrapper execution, the script-owned compact output remains the primary visible structure.
+Risky upstream context must become a small source-labeled digest, then a validated Action Envelope before it can affect paid/send/write scope or script payloads. Digests and envelopes never replace explicit paid unlock, email-send, Profile-write, or local-state confirmation. After wrapper execution, the script-owned compact output remains the primary visible structure.
 
 ## OKKI Data Source Boundary
 
@@ -44,7 +44,7 @@ Choose exactly one primary mode before tool use.
 | `L1_RESULT_REVIEW` | User asks which displayed results to unlock, contact, prioritize, avoid, or analyze. | `references/result-review.md` | Reuse current batch; no re-search by default. |
 | `L2_GUIDED_STRATEGY` | User asks how to search, says results are wrong/too few/suppliers, or needs route guidance. | `references/search-strategy.md` | Build a minimal profile, then search or propose one route. |
 | `EXPANSION` | Current route is exhausted or user asks for alternate customer routes. | `references/expansion-playbook.md` | Offer 2-3 branches; search one confirmed branch. |
-| `PAID_ACTION` | User asks to unlock, search contacts, or send email. | `references/paid-actions.md` | Ask or verify confirmation before paid tools. |
+| `PAID_ACTION` | User asks to unlock selected companies or send email. | `references/paid-actions.md` | Ask or verify confirmation before paid tools. |
 | `DIRECT_STATUS` | Balance, pricing, auth, install, setup, or email status. | `references/authentication.md` only for auth/install/setup. | Use the agent-led install wizard for install/setup; direct compact/status command otherwise. |
 | `WEB_RESEARCH_ADDON` | User explicitly asks for independent external/latest/source-backed research. | Separate web guidance only after the OKKI boundary is satisfied. | Cite sources; do not mutate OKKI search payload without confirmation. |
 
@@ -112,16 +112,13 @@ Confirmed unlock after the user accepts the credit cost:
 node scripts/unlock-companies.js --plan '<unlock_plan_id>' --mark-unlocked --compact --locale '<user-locale>' --artifact-dir '<agent-visible-output-dir>'
 ```
 
-Confirmed cross-company contact search:
-
-```bash
-node scripts/search-contacts.js --json '<contacts/search payload>' --save-batch /private/tmp/okki-go-batches/<contacts>.json --compact
-```
+Cross-company contact search is retired. Do not call the retired wrapper for normal work; use company unlock and `profileEmails` from the unlock workflow to retrieve available contact emails.
 
 Email status:
 
 ```bash
 node scripts/email-status.js tasks --json '{"page":1,"page_size":20}' --compact
+node scripts/email-status.js tasks --json '{"task_subject":"Germany Expo","page":1,"page_size":20}' --compact
 node scripts/email-status.js mails --json '{"statuses":"failed","page":1,"page_size":20}' --compact
 ```
 
@@ -131,7 +128,7 @@ Balance:
 OKKIGO_API_KEY="$(bash scripts/resolve-api-key.sh --print)"
 curl -s -X GET "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/credit/balance" \
   -H "Authorization: ApiKey ${OKKIGO_API_KEY}" \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.3}"
+  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.4}"
 ```
 
 Use compact wrappers for normal work. Do not call raw/non-compact output unless the user explicitly asks for raw, debug, export, or full detail.
@@ -142,7 +139,7 @@ Normal replies must be answer-ready and user-facing while preserving script-owne
 
 - Use script-rendered structured outputs as the visible structure. Do not rebuild, filter, reorder, rename, truncate, or summarize script-owned tables or details into a new structured format unless the user explicitly asks for a custom summary.
 - For any free company discovery search in any mode, follow `references/output-contracts.md`: show `display_table_markdown` exactly as the result table before recommendations or coaching.
-- For selected-company unlock, show the script-rendered `unlock_details_markdown`; for contact search, email send, and email status, use the script-provided rows, details, counts, paths, and warnings.
+- For selected-company unlock, show the script-rendered `unlock_details_markdown`; for email send and email status, use the script-provided rows, details, counts, paths, and warnings.
 - For selected-company unlock, pass `--artifact-dir` when the Agent has a writable workspace/artifacts/outputs directory. The wrapper falls back to an internal temporary detail path with a warning if the artifact path is not writable.
 - After each free-search table, add brief priority guidance, then concise next-step guidance in the user's language using `next_action` and `discovery_health`.
 - Follow `references/output-contracts.md` for script-owned private fields, result cardinality, debug metadata, raw/export behavior, and unlocked company detail Markdown output.
@@ -157,7 +154,7 @@ Unlock: prepare an internal unlock plan for selected rows or a processed final t
 
 `companyHashId` is script-owned. The only valid source for `companyHashId` is the `/companies/unlock` response for a confirmed unlock plan. Do not use free-search ID, raw `id`, domain, row number, or model memory as `companyHashId` for profile/profileEmails lookups.
 
-Contact search: before the first `POST /contacts/search` in a session, state that contact search costs 1 credit per query and wait for confirmation. Subsequent same-session contact searches do not need re-confirmation unless the user refuses or scope materially changes.
+Cross-company contact search is retired. Do not call `POST /contacts/search` or use `scripts/search-contacts.js` for normal work. To get contacts, unlock selected companies and use the `profileEmails` data returned by the unlock workflow.
 
 Email send: never send before explicit recipient and content confirmation. Drafting is free; sending consumes EDM quota. After sending, keep output compact and do not echo full bodies unless requested.
 
@@ -172,7 +169,7 @@ Read only the reference needed for the selected mode:
 | `references/result-review.md` | Result prioritization, unlock advice, L1 review, or observe/not-recommended grouping over a visible batch. |
 | `references/search-strategy.md` | L2 guided strategy, low-yield diagnosis, supplier-vs-buyer correction, or search-route coaching. |
 | `references/expansion-playbook.md` | Current route is exhausted or user asks for alternate customer routes. |
-| `references/paid-actions.md` | Paid unlock, contact search, email send, balance commands, or missing batch recovery. |
+| `references/paid-actions.md` | Paid unlock, email send, balance commands, retired contact search handling, or missing batch recovery. |
 | `references/output-contracts.md` | Wrapper output schemas, field ownership, raw/debug/detail behavior, or script contract work. |
 | `references/workflows.md` | Legacy compatibility index when older docs refer to workflow names. |
 | `references/discovery-playbook.md` | Legacy compatibility index when older docs refer to discovery playbook. |

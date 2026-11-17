@@ -1,43 +1,59 @@
-## Description: <br>
-AI music generation via Suno API. Submit prompts, style tags, and lyrics to generate songs. Check generation status and download audio/cover art. Use when user asks to create music, generate songs, compose tracks, or produce audio content with AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI music generation via Suno API. Submit prompts, style tags, and lyrics to generate songs. Check generation status and download audio/cover art. Use when user asks to create music, generate songs, compose tracks, or produce audio content with AI.
 
-## Publisher: <br>
-[kennedydqz-del](https://clawhub.ai/user/kennedydqz-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennedydqz-del](https://clawhub.ai/user/kennedydqz-del)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to submit music prompts, lyrics, and style settings to a Suno-compatible API, then check task status and retrieve generated audio or cover-art links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Suno API key and sends prompts, lyrics, task data, and generated-content requests to a remote Suno-compatible service. <br>
-Mitigation: Install only when that data sharing is acceptable, and provide the API key through the expected SUNO_API_KEY environment variable rather than embedding credentials in prompts or files. <br>
-Risk: SUNO_BASE_URL can redirect requests to a custom endpoint. <br>
-Mitigation: Keep SUNO_BASE_URL unset for the default service or pin it to a trusted endpoint before running the skill. <br>
-Risk: The artifact includes local-file upload behavior that can send explicitly selected media files to a remote service. <br>
-Mitigation: Do not use upload-file or upload-based commands with sensitive local files. <br>
+## Use Case:
 
+Developers and creators use this skill to generate songs, extend or transform audio, check Suno generation status, and retrieve generated audio, cover art, lyrics, MIDI, and video outputs through a command-line client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennedydqz-del/suno-music-skill) <br>
-- [Suno API documentation](https://docs.sunoapi.org/cn/suno-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Text] <br>
-**Output Format:** [Markdown with inline bash commands and JSON or text API output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUNO_API_KEY and may return remote media URLs for generated audio and cover art.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, lyrics, task IDs, media URLs, and generated media data may be sent to external Suno API services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid submitting sensitive content, and use only trusted HTTPS endpoints for SUNO_BASE_URL.
+
+Risk: The CLI includes file-upload behavior that can send local audio files to an external upload host.
+
+Mitigation: Use upload-file only for intentionally selected non-sensitive audio files and confirm the external upload destination is acceptable.
+
+Risk: The skill forwards SUNO_API_KEY as a bearer credential to configured API endpoints.
+
+Mitigation: Keep API keys scoped and private, and do not override SUNO_BASE_URL to an untrusted endpoint.
+
+## Reference(s):
+
+- [Suno API documentation](https://docs.sunoapi.org/cn/suno-api/)
+- [ClawHub skill page](https://clawhub.ai/kennedydqz-del/skills/suno-music-skill)
+- [Publisher profile](https://clawhub.ai/user/kennedydqz-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or retrieve external URLs for generated audio, cover art, lyrics, MIDI, and video assets.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

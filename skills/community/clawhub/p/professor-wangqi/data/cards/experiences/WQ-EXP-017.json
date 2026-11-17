@@ -1,0 +1,230 @@
+{
+  "card_id": "WQ-EXP-017",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授基于“肤-体相关论”治疗慢性荨麻疹经验_王雅琦.pdf",
+  "title": "临证体会王琦教授基于“肤-体相关论”治疗慢性荨麻疹经验王雅琦骆",
+  "authors": [
+    "博士后",
+    "研究员"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨识，发现体质与证候、疾病之间的关系，肤体同治，获得较好的临床效果，为慢性荨麻疹的中医治疗提出了新思路。"
+  },
+  "treatment_approach": {
+    "main_formula": "过敏煎",
+    "related_formulas": [
+      "过敏煎"
+    ],
+    "principle": "温阳散寒、健脾化痰、疏肝解郁",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "人参",
+      "茯苓",
+      "甘草",
+      "山药",
+      "泽泻"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质学理论和多年诊疗皮肤疾病的临床经验，提出“肤-体相关论”。他重视皮肤病的外在表现与个体体质的相关性，同时强调引入现代医学评价体系，对患者就诊前后进行疗效对比。在临证治疗慢性荨麻疹的过程中，他以“肤-体相关论”为指导，通过体质辨识，发现体质与证候、疾病之间的关系，肤体同治，获得较好的临床效果，为慢性荨麻疹的中医治疗提出了新思路。 体病相关性的研究中总结了“肤-体相关论”，指引临床诊疗皮肤疾病的新方向。 认为CU 应属“瘾疹”范畴，经文献整理研究发现其内因为根本，受外邪侵袭而发病。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "“肤-体相关论”阐明了皮肤与体质的关系，是局部与整体、内在与外在关系的体现",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "“肤-体相关论”又是“体病相关”理论的一部分，不同的体质类型罹患不同的皮肤疾病",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "我们基于近年多项CU 中医体质类型分布的研究，总结发现9 种体质都有罹患CU 的可能，可以是单一偏颇质，也可是多种偏颇质兼夹，其中单一偏颇质主要分布于特禀质、阳虚质、气虚质、湿热质; 多种偏颇质兼夹多以阳虚质、特禀质为基础体质兼夹其他体质 ［5-8］",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨识，发现体质与证候、疾病之间的关系，肤体同治，获得较好的临床效果，为慢性荨麻疹的中医治疗提出了新思路。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为温阳散寒、健脾化痰、疏肝解郁。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为过敏煎。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、人参、茯苓、甘草、山药、泽泻。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体质学理论和多年诊疗皮肤疾病的临床经验，提出“肤-体相关论”",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "平和质",
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "“肤-体相关论”阐明了皮肤与体质的关系，是局部与整体、内在与外在关系的体现",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "“肤-体相关论”又是“体病相关”理论的一部分，不同的体质类型罹患不同的皮肤疾病",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "我们基于近年多项CU 中医体质类型分布的研究，总结发现9 种体质都有罹患CU 的可能，可以是单一偏颇质，也可是多种偏颇质兼夹，其中单一偏颇质主要分布于特禀质、阳虚质、气虚质、湿热质; 多种偏颇质兼夹多以阳虚质、特禀质为基础体质兼夹其他体质 ［5-8］",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "平和质",
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 5,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 5
+      },
+      "methods": {
+        "start": 3,
+        "end": 5
+      },
+      "discussion": {
+        "start": 4,
+        "end": 5
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.737000",
+  "methods": {
+    "sample_size": 199
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.545564",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.545570"
+  }
+}

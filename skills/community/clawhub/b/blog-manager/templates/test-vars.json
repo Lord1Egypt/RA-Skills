@@ -1,0 +1,201 @@
+{
+  "skill_name": "blog-manager",
+  "auth_type": "none",
+  "cred_prefix": "BLOG_MANAGER",
+  "base_url_env": "BLOG_MANAGER_BASE_URL",
+  "test_cases": [
+    {
+      "name": "list-articles",
+      "command": "python3 scripts/blog_manager.py list-articles --page 1 --size 10",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章列表"
+    },
+    {
+      "name": "create-article",
+      "command": "python3 scripts/blog_manager.py create-article --title test --content hello",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建文章",
+      "cleanup": "执行 delete-article 删除刚创建的测试文章"
+    },
+    {
+      "name": "get-article",
+      "command": "python3 scripts/blog_manager.py get-article --id 1",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取文章详情及评论"
+    },
+    {
+      "name": "update-article",
+      "command": "python3 scripts/blog_manager.py update-article --id 1 --title updated",
+      "method": "PUT",
+      "category": "mutable",
+      "description": "更新文章"
+    },
+    {
+      "name": "delete-article",
+      "command": "python3 scripts/blog_manager.py delete-article --id 1 --soft true",
+      "method": "DELETE",
+      "category": "mutable",
+      "description": "软删除文章"
+    },
+    {
+      "name": "restore-article",
+      "command": "python3 scripts/blog_manager.py restore-article --id 1",
+      "method": "POST",
+      "category": "mutable",
+      "description": "恢复软删除的文章"
+    },
+    {
+      "name": "top-articles",
+      "command": "python3 scripts/blog_manager.py top-articles --limit 5",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取热门文章"
+    },
+    {
+      "name": "list-labels",
+      "command": "python3 scripts/blog_manager.py list-labels",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出所有标签"
+    },
+    {
+      "name": "create-label",
+      "command": "python3 scripts/blog_manager.py create-label --lname test-label",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建标签"
+    },
+    {
+      "name": "list-users",
+      "command": "python3 scripts/blog_manager.py list-users",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出所有用户"
+    },
+    {
+      "name": "create-user",
+      "command": "python3 scripts/blog_manager.py create-user --uname test-user",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建用户"
+    },
+    {
+      "name": "create-comment",
+      "command": "python3 scripts/blog_manager.py create-comment --uid 1 --aid 1 --content test-comment",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建评论",
+      "cleanup": "执行 delete-comment 删除刚创建的测试评论"
+    },
+    {
+      "name": "list-comments",
+      "command": "python3 scripts/blog_manager.py list-comments --aid 1",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出文章评论"
+    },
+    {
+      "name": "delete-comment",
+      "command": "python3 scripts/blog_manager.py delete-comment --id 1",
+      "method": "DELETE",
+      "category": "mutable",
+      "description": "删除评论"
+    },
+    {
+      "name": "list-messages",
+      "command": "python3 scripts/blog_manager.py list-messages",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出留言及回复"
+    },
+    {
+      "name": "create-message",
+      "command": "python3 scripts/blog_manager.py create-message --uid 1 --content test-message",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建留言",
+      "cleanup": "执行 delete-message 删除刚创建的测试留言"
+    },
+    {
+      "name": "reply-message",
+      "command": "python3 scripts/blog_manager.py reply-message --uid 1 --mid 1 --content test-reply",
+      "method": "POST",
+      "category": "mutable",
+      "description": "回复留言"
+    },
+    {
+      "name": "delete-message",
+      "command": "python3 scripts/blog_manager.py delete-message --id 1",
+      "method": "DELETE",
+      "category": "mutable",
+      "description": "删除留言"
+    },
+    {
+      "name": "list-moods",
+      "command": "python3 scripts/blog_manager.py list-moods",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出说说"
+    },
+    {
+      "name": "create-mood",
+      "command": "python3 scripts/blog_manager.py create-mood --content test-mood",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建说说",
+      "cleanup": "执行 delete-mood 删除刚创建的测试说说"
+    },
+    {
+      "name": "delete-mood",
+      "command": "python3 scripts/blog_manager.py delete-mood --id 1",
+      "method": "DELETE",
+      "category": "mutable",
+      "description": "删除说说"
+    },
+    {
+      "name": "upload-file",
+      "command": "python3 scripts/blog_manager.py upload-file --file /tmp/test.txt",
+      "method": "POST",
+      "category": "mutable",
+      "description": "上传单个文件"
+    },
+    {
+      "name": "upload-files",
+      "command": "python3 scripts/blog_manager.py upload-files --files /tmp/test1.txt /tmp/test2.txt",
+      "method": "POST",
+      "category": "mutable",
+      "description": "批量上传文件"
+    },
+    {
+      "name": "list-uploads",
+      "command": "python3 scripts/blog_manager.py list-uploads",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出已上传文件"
+    },
+    {
+      "name": "delete-upload",
+      "command": "python3 scripts/blog_manager.py delete-upload --filename test.txt",
+      "method": "DELETE",
+      "category": "mutable",
+      "description": "删除已上传文件"
+    },
+    {
+      "name": "health-check",
+      "command": "python3 scripts/blog_manager.py health-check",
+      "method": "GET",
+      "category": "readonly",
+      "description": "健康检查"
+    },
+    {
+      "name": "capability-list",
+      "command": "python3 scripts/blog_manager.py capability-list",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出全部 27 个子命令"
+    }
+  ]
+}

@@ -1,41 +1,50 @@
-## Description: <br>
-Plan AI music generation prompts and production workflows with Riffusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan AI music generation prompts and production workflows with Riffusion.
 
-## Publisher: <br>
-[eavemma5-tech](https://clawhub.ai/user/eavemma5-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eavemma5-tech](https://clawhub.ai/user/eavemma5-tech)
 
-## Use Case: <br>
-Creative users, developers, and content teams use this skill to plan Riffusion text-to-music prompts, compare variations, and shape songs, vocals, instrumentals, loops, or soundtrack ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompt or workflow guidance could be inaccurate or unsuitable for the intended creative project. <br>
-Mitigation: Review the proposed prompt, musical direction, and workflow before using them in production. <br>
-Risk: Using Riffusion outputs may involve external service terms, licensing, account, upload, or copyright considerations outside this document-only skill. <br>
-Mitigation: Review Riffusion's current terms and content rights guidance before publishing or commercializing generated music. <br>
+## Use Case:
 
+External creators and developers use this skill to plan Riffusion music-generation prompts for songs, vocals, instrumentals, loops, and soundtrack ideas. It helps define style, mood, structure, tempo, vocal direction, and intended creative use before generating variations in Riffusion.
 
-## Reference(s): <br>
-- [Riffusion AI music generator](https://riffusion.org) <br>
-- [ClawHub skill page](https://clawhub.ai/eavemma5-tech/skills/riffusion-ai-music-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with prompt and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only guidance; no code execution, credentials, persistence, or local data access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Users may mistake a generated prompt or workflow plan for clearance to publish or monetize resulting music.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Riffusion's service terms and the target project's rights requirements before uploading, publishing, or monetizing generated music.
+
+## Reference(s):
+
+- [Riffusion AI music generator](https://riffusion.org)
+- [ClawHub skill page](https://clawhub.ai/eavemma5-tech/skills/riffusion-ai-music-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text workflow plan with an AI music prompt checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creative planning guidance only; it does not execute code, request credentials, access local data, or call APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

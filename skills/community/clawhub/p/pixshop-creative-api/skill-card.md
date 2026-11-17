@@ -1,47 +1,65 @@
-## Description: <br>
-Pixshop Creative API helps developers use Pixshop REST endpoints for image generation and editing, video generation, prompts, apps, and community workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pixshop Developer REST API guides agents through Pixshop image generation and editing, video generation, prompts, apps, community endpoints, and HTTP integration examples.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Pixshop AI creative workflows into applications through HTTP APIs, curl examples, and endpoint parameter guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens may be exposed through logs, copied command history, or shared shell snippets. <br>
-Mitigation: Store tokens in protected environment variables or secret stores, avoid printing them, and redact them before sharing logs or examples. <br>
-Risk: Image uploads may include private images, faces, ID-style photos, or sensitive prompts. <br>
-Mitigation: Upload only content you have consent to process and avoid sending sensitive personal images or prompts unless the user accepts the Pixshop data handling risk. <br>
-Risk: The skill suggests installing and using the Pixshop CLI. <br>
-Mitigation: Verify the CLI package source before installation and follow normal dependency review practices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizhijun/pixshop-creative-api) <br>
-- [Publisher profile](https://clawhub.ai/user/lizhijun) <br>
-- [Pixshop](https://pixshop.app) <br>
-- [Nano Banana Apps](https://pixshop.app/apps) <br>
-- [Pixshop Prompt Library](https://pixshop.app/prompt-library) <br>
-- [Pixshop Design Agent](https://pixshop.app/agent) <br>
-- [Pixshop Pricing](https://pixshop.app/pricing) <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Pixshop AI creative services into applications through REST endpoints, bearer-token authentication, curl examples, and JSON request and response patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with endpoint tables, JSON examples, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples that require a Pixshop bearer token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bearer tokens may be exposed through chat transcripts, shell history, logs, or printed configuration files.
+
+Mitigation: Treat Pixshop tokens as passwords, avoid echoing them in shared contexts, mask them in logs, and rotate them if exposure is suspected.
+
+Risk: The skill suggests installing a global CLI before retrieving account credentials.
+
+Mitigation: Prefer a pinned or isolated CLI install and review the package source and permissions before using it with account tokens.
+
+Risk: Image tools may process face, person, clothing, or ID-photo media.
+
+Mitigation: Upload images only with appropriate permission and after reviewing Pixshop service privacy and usage terms for sensitive media.
+
+Risk: Pixshop API calls may consume credits, hit rate limits, or require polling for long-running video jobs.
+
+Mitigation: Handle 402 and 429 responses, add retry or backoff logic, and poll asynchronous task IDs until completion or timeout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lizhijun/skills/pixshop-creative-api)
+- [Pixshop](https://pixshop.app)
+- [Nano Banana Apps](https://pixshop.app/apps)
+- [Pixshop Prompt Library](https://pixshop.app/prompt-library)
+- [Pixshop Design Agent](https://pixshop.app/agent)
+- [Pixshop MCP endpoint](https://pixshop.app/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with endpoint tables, curl examples, and JSON request and response snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bearer-token API usage, workflow notes, credit and rate-limit considerations, asynchronous task notes, and error-code guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

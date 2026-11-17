@@ -1,0 +1,108 @@
+{
+  "mode": "workflow",
+  "theme": "showcase",
+  "title": "Architecture Artifact Engine",
+  "summary": "A compact agent workflow: typed spec, validation, deterministic rendering, receipt, and public proof surface.",
+  "nodes": [
+    {
+      "id": "brief",
+      "label": "Task Brief",
+      "subtitle": "Intent and acceptance criteria",
+      "kind": "service",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "spec",
+      "label": "Typed Spec",
+      "subtitle": "JSON contract",
+      "kind": "memory",
+      "x": 480,
+      "y": 160
+    },
+    {
+      "id": "validator",
+      "label": "Validator",
+      "subtitle": "Schema and route checks",
+      "kind": "agent",
+      "x": 840,
+      "y": 160
+    },
+    {
+      "id": "renderer",
+      "label": "Renderer",
+      "subtitle": "SVG and HTML",
+      "kind": "llm",
+      "x": 1200,
+      "y": 160
+    },
+    {
+      "id": "receipt",
+      "label": "Receipt",
+      "subtitle": "Hashes and metrics",
+      "kind": "memory",
+      "x": 1560,
+      "y": 160
+    },
+    {
+      "id": "readme",
+      "label": "README Proof",
+      "subtitle": "Gallery and share cards",
+      "kind": "service",
+      "x": 1560,
+      "y": 400
+    }
+  ],
+  "edges": [
+    {
+      "from": "brief",
+      "to": "spec",
+      "kind": "primary-data",
+      "label": "author"
+    },
+    {
+      "from": "spec",
+      "to": "validator",
+      "kind": "control",
+      "label": "check"
+    },
+    {
+      "from": "validator",
+      "to": "renderer",
+      "kind": "primary-data",
+      "label": "passed"
+    },
+    {
+      "from": "renderer",
+      "to": "receipt",
+      "kind": "memory-write",
+      "label": "hash"
+    },
+    {
+      "from": "receipt",
+      "to": "readme",
+      "kind": "primary-data",
+      "label": "publish",
+      "source_side": "bottom",
+      "target_side": "top",
+      "label_offset": [
+        42,
+        0
+      ]
+    }
+  ],
+  "story": [
+    {
+      "title": "Author",
+      "text": "A compact JSON spec declares the artifact claim."
+    },
+    {
+      "title": "Validate",
+      "text": "Local checks verify structure, route hazards, evidence, and quality."
+    },
+    {
+      "title": "Deliver",
+      "text": "The tool writes SVG, HTML, share card, and receipt as one reviewable unit."
+    }
+  ]
+}

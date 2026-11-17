@@ -1,0 +1,23 @@
+name: 投标模拟评标 · 评标表逆向工程
+slug: bid-mock-evaluation
+emoji: "⚖️"
+version: 1.3.0
+author: 一线评标专家
+license: MIT-0
+description: 投标人侧「评标表逆向工程」三合一技能：A 模拟评标（魔鬼评委逐项打分找最弱项）、B 得分点导航+响应覆盖审计（得分地图+隐性丢分/废标风险+评分索引表）、C 评标表合规审查（找歧视/违规条款、生成可质疑点清单与法条依据）。支持无脚本降级、输入预检、多标段识别、价格分开标前策略、法条核验声明；内置 is_knockout 否决红线标记、覆盖初判脚本、禁编造证据/禁骗分护栏。
+changelog:
+  - version: 1.3.0
+    date: 2026-07-17
+    change: 细节打磨 v1.3.0：① §2.2 多包差异比对路径+《多包响应差异化核对清单》；② §3.4 价格分敏感度按算法分轨（低价优先可精确/基准价综合禁止编造改趋势推演+开标后复盘）；③ §4 新增 ⚠️ format-risk 形式瑕疵状态+判定规则（references/templates 同步）；④ §3.5/§4.4/§5.3 输出长度控制（>15项折叠）；⑤ §9 部署建议（KB挂载+Welcome Message+Few-Shot扩展位）。
+  - version: 1.2.0
+    date: 2026-07-17
+    change: 吸收千问深度诊断（采纳8条+轻吸收2条）：脚本降为可选加速器+§2.4无脚本降级模式；§2.1输入预检；§2.2多标段识别；§3.3多维补强优先级矩阵；§3.4价格分开标前策略；三模式输出骨架内联(§3.5/§4.4/§5.3)；§4.3评委视角索引表；§6.8法条时效+§6.9平台差异；模式C内置§1硬法条速查表+硬软法区分+核验声明；轻吸收历史对标(§8)与平台适配。
+  - version: 1.1.1
+    date: 2026-07-17
+    change: 真实运行验证驱动修复（基于 IMA 知识库 3 份真实评分表）：① txt 模式新增 markdown 表格解析，兼容窄量规4列/宽矩阵多投标人列/续行合并单元格空白，修复对真实评分表 100% 失效；② 覆盖审计关键词改为「标点断句+3/4字滑动窗口」，修正中文无分词下召回近零/全假阳性；③ 修正 compliance-review.md 价格分占比规则为分档（货物≥30%/服务≥10%，87号令第55条）。
+  - version: 1.1.0
+    date: 2026-07-17
+    change: 三模式合一升级：A 模拟评标 + B 得分点导航+覆盖审计 + C 评标表合规审查。解析脚本加 is_knockout 标记与 --mode audit 覆盖初判；新增 references/score-point-navigation.md、compliance-review.md、templates/coverage-audit-report.md、compliance-report.md、demo/eval_table_noncompliant.docx、test_cases 用例 M/N。
+  - version: 1.0.0
+    date: 2026-07-17
+    change: 首版：SKILL.md（魔鬼评委系统提示，思维链+少样本+结构化输出+护栏）；scripts/parse_score_table.py；references/mock-evaluation-method.md；templates/mock-eval-report.md；demo 夹具；test_cases 用例 L。

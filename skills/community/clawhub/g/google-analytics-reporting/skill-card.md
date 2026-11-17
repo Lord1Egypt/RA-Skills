@@ -1,47 +1,58 @@
-## Description: <br>
-Run GA4 reports, inspect properties, list audiences and data streams, and analyze traffic and conversion data via the Google Analytics Data API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run GA4 reports, inspect properties, list audiences and data streams, and analyze traffic and conversion data via the Google Analytics Data API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, operators, and analysts use this skill to connect an agent to Google Analytics through ClawLink, discover accessible GA4 properties, run standard or realtime reports, inspect metadata, and review audiences, data streams, key events, and related property settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OAuth credentials and can access GA4 properties available to the connected Google account. <br>
-Mitigation: Connect only the intended account, verify the active Google Analytics integration before running tools, and limit use to properties the user is authorized to inspect. <br>
-Risk: Configuration or write-capable tools could affect Google Analytics settings if the wrong property, event, or change is approved. <br>
-Mitigation: Before any write action, confirm the exact property, event, and intended change with the user; verify GA4 key-event changes in the Google Analytics UI when the API path is unsupported. <br>
-Risk: Complex GA4 reports can fail or mislead if dimensions and metrics are incompatible. <br>
-Mitigation: Use the compatibility-check workflow before running complex reports and report API errors directly instead of inferring unsupported capabilities. <br>
+## Use Case:
 
+Developers, operators, and analytics teams use this skill to connect an agent to Google Analytics through ClawLink, discover GA4 accounts and properties, run standard or realtime reports, inspect metadata, and review traffic, campaign, audience, data stream, and conversion information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/google-analytics-reporting) <br>
-- [GA4 Data API Documentation](https://developers.google.com/analytics/devguides/reporting/data/v1) <br>
-- [GA4 Dimensions & Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema) <br>
-- [GA4 Realtime API](https://developers.google.com/analytics/devguides/reporting/realtime/v1) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include GA4 report summaries, setup steps, tool-call parameters, compatibility guidance, and confirmation prompts for write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: The skill enables a third-party ClawLink plugin with hosted OAuth credentials and access to Google Analytics properties available to the connected Google account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the requested Google OAuth scopes and GA4 property permissions, and revoke the ClawLink Google connection when it is no longer needed.
+
+Risk: Some available analytics tools can create or update Google Analytics resources.
+
+Mitigation: Preview write-capable actions and approve them only when the proposed operation exactly matches the user's intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hith3sh/skills/google-analytics-reporting)
+- [Google Analytics Data API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1)
+- [GA4 dimensions and metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema)
+- [GA4 Realtime API](https://developers.google.com/analytics/devguides/reporting/realtime/v1)
+- [ClawLink documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance for choosing and confirming Google Analytics tool calls; write-capable actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

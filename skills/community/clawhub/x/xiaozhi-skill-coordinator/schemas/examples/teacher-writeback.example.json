@@ -1,0 +1,28 @@
+{
+  "$comment": "示例：xiaozhi-teach-math-error-analyzer → xiaozhi-learning-dna（teacher_writeback）。收发双方都是其他 SKILL；xiaozhi-skill-coordinator 只定义协议、校验格式、按路由表分发，自己不发写回、不存档案。",
+  "sessionId": "sess-demo-004",
+  "protocolVersion": "2.12.7",
+  "handoverType": "teacher_writeback",
+  "sender": "xiaozhi-teach-math-error-analyzer",
+  "recipient": "xiaozhi-learning-dna",
+  "consent": {
+    "crossSkillSharing": true,
+    "teacherWritebackConsent": true
+  },
+  "payload": {
+    "teacherWritebackData": {
+      "teacherSkill": "xiaozhi-teach-math-error-analyzer",
+      "studentAlias": "小A",
+      "weakKnowledgePointUpdates": [
+        {
+          "subject": "数学",
+          "knowledgePoint": "一次函数解析式推导",
+          "status": "突破中",
+          "masteryLevel": "会解释"
+        }
+      ],
+      "note": "课堂上能解释待定系数法，独立完成两道同型题"
+    }
+  },
+  "timestamp": "2026-05-12T18:00:00+08:00"
+}

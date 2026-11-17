@@ -1,42 +1,55 @@
-## Description: <br>
-Mission control dashboard for OpenClaw - real-time session monitoring, LLM usage tracking, cost intelligence, and system vitals. View all your AI agents in one place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mission control dashboard for OpenClaw - real-time session monitoring, LLM usage tracking, cost intelligence, and system vitals. View all your AI agents in one place.
 
-## Publisher: <br>
-[jontsai](https://clawhub.ai/user/jontsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jontsai](https://clawhub.ai/user/jontsai)
 
-## Use Case: <br>
-External developers and OpenClaw operators use this skill to run a local dashboard for monitoring AI sessions, LLM usage, costs, scheduled jobs, and system vitals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard exposes sensitive agent data and operational controls with under-scoped default access protections. <br>
-Mitigation: Install it only for intended OpenClaw administration, bind it to localhost or a trusted interface, and enable token, Tailscale, or Cloudflare Access before remote use. <br>
-Risk: Operators, Memory, Sessions, Jobs, and Cerebro views can reveal sensitive operational data. <br>
-Mitigation: Restrict access to trusted users and networks, and avoid public tunnels unless strong access controls are configured. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to run a local command center for monitoring AI agent sessions, LLM usage, costs, system vitals, scheduled tasks, topics, and privacy controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jontsai/openclaw-command-center) <br>
-- [README](README.md) <br>
-- [Architecture Overview](docs/architecture/OVERVIEW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Dashboard, API data] <br>
-**Output Format:** [Local web dashboard, REST/SSE API responses, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Node.js dashboard server; Node.js >=18 is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The dashboard can expose sensitive OpenClaw session data and controls beyond the local user if it is reachable from an untrusted network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind it explicitly to loopback, avoid exposing port 3333 to LAN, VPN, or public interfaces, and enable token or properly enforced proxy authentication before remote use.
+
+Risk: Persistent operator discovery from transcripts may reveal workspace participants or activity patterns.
+
+Mitigation: Review whether transcript-derived operator tracking is acceptable for the workspace and use privacy controls when sharing demos or screenshots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jontsai/skills/openclaw-command-center)
+- [OpenClaw Command Center repository](https://github.com/jontsai/openclaw-command-center)
+- [OpenClaw Command Center documentation](https://github.com/jontsai/openclaw-command-center#readme)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a Node.js dashboard server on port 3333 by default.]
+
+## Skill Version(s):
+
+1.4.1 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

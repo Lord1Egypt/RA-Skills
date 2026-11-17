@@ -1,43 +1,57 @@
-## Description: <br>
-Sends text, Markdown, image, news, file, and template-card notifications to WeChat Work chats through a configured group robot webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends WeChat Work group robot notifications through a configured webhook, supporting text, Markdown, news-card, image, file, and template-card messages.
 
-## Publisher: <br>
-[kriouerlia](https://clawhub.ai/user/kriouerlia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kriouerlia](https://clawhub.ai/user/kriouerlia)
 
-## Use Case: <br>
-Developers and workflow operators use this skill to send operational alerts, scheduled reports, trading signals, and automation notifications into WeChat Work groups or users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured webhook URL is a secret that can send messages into a WeChat Work chat. <br>
-Mitigation: Keep the webhook URL out of source control and configure it through a protected environment variable. <br>
-Risk: Messages may include sensitive business data or notify all members of a group. <br>
-Mitigation: Use a limited-purpose group or bot where possible and review scheduled jobs or automations before enabling them. <br>
-Risk: High-frequency scheduled notifications can exceed documented webhook limits or create noisy alerts. <br>
-Mitigation: Throttle automation that calls the webhook and keep scheduled intervals above the documented minimum guidance. <br>
+## Use Case:
 
+Developers and automation users use this skill to send operational alerts, scheduled reports, trading-signal notifications, and workflow messages to WeChat Work groups or users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kriouerlia/wechat-notify) <br>
-- [Publisher profile](https://clawhub.ai/user/kriouerlia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Python API calls and command-line usage guidance with webhook response dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a WeChat Work webhook URL and the requests Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The WeChat Work webhook URL contains a usable key and can be abused if committed, logged, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the webhook URL in an environment variable or local secret store, rotate it if exposed, and avoid including it in source control or shared logs.
+
+Risk: Selected message content is sent to the configured WeChat Work webhook.
+
+Mitigation: Review notification payloads before enabling automated sends, and avoid sending secrets, personal data, or sensitive business data unless the receiving group is approved.
+
+Risk: The setup script may install the Python requests dependency into the active interpreter environment.
+
+Mitigation: Install and run the skill inside a virtual environment or managed runtime so dependency changes are isolated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kriouerlia/skills/wechat-notify)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Python return dictionaries, command-line status text, and Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends caller-provided message content to the configured WeChat Work webhook and returns success or error details from the webhook response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

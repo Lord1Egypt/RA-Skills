@@ -1,0 +1,59 @@
+# roles.yaml — Role governance model
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `roles.zh.yaml`.
+# Borrows the roles paradigm of A2: each role has memory_paths / tool set / concurrency limit / audit.
+# The employee (real enterprise staff) role is reserved, activated in Phase 6 when connecting
+# DingTalk / WeCom / Feishu.
+
+meta:
+  layer: decision-roles
+  version: 0.1.0
+  description: Multi-role governance; when template and instance are separated, an enterprise instance = an instance where multiple users each have a different role scope
+
+roles:
+  system:
+    description: Runtime kernel (WorkBuddy / EdgeClaw / fully local)
+    memory_paths: [system/*]
+    tools: [all_read_only]
+    concurrency: 1
+    audit: full
+
+  owner:                      # Owner / legal representative / the one-person company principal (highest permission by default)
+    description: Company owner, full permissions, can approve sensitive actions
+    memory_paths: [instance/*, company/*]
+    tools: [all]
+    concurrency: 1
+    audit: full
+    can_approve: [tax_filing, role_grant, expert_create]
+
+  admin:                      # Administrator (a trusted AI general manager role that can be granted)
+    description: Governance role assisting the owner
+    memory_paths: [instance/*]
+    tools: [department_mgmt, expert_mgmt]
+    concurrency: 1
+    audit: full
+    delegated_by: owner
+
+  experts:                    # Department AI employees (instantiated from experts-template)
+    description: Department expert, scope limited to its own department
+    scope: per_department
+    memory_paths: ["department/{dept}/inbox", "department/{dept}/knowledge"]
+    tools: ["department_actions.{dept}.*"]
+    concurrency: 1
+    audit: per_action
+    report_to: owner
+
+  employee:                   # Real enterprise employees (reserved; activated in Phase 6 after IM connectivity)
+    description: After enterprise onboarding, bind real people, one role each bound to an ontology view
+    scope: assigned_department
+    memory_paths: ["department/{dept}/shared"]
+    tools: by_role_assignment
+    concurrency: 1
+    audit: full
+    note: "After connecting DingTalk / WeCom / Feishu, create employee roles per the connectors/ integration contract"
+
+  guest:
+    description: Read-only visitor
+    memory_paths: []
+    tools: [read_only]
+    audit: minimal

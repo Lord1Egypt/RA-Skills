@@ -1,0 +1,12 @@
+@startjson
+{
+  "order": {
+    "id": "20260902-001",
+    "items": [
+      {"sku": "A001", "qty": 2},
+      {"sku": "B002", "qty": 1}
+    ],
+    "total": 128.00
+  }
+}
+@endjson

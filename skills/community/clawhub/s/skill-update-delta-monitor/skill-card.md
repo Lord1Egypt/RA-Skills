@@ -1,39 +1,52 @@
-## Description: <br>
-Helps detect security-relevant changes in AI skills after installation by tracking deltas between audited and current versions that expand permissions, add network endpoints, or alter behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect security-relevant changes in AI skills after installation by tracking deltas between the audited version and current version, flagging updates that expand permissions, add new network endpoints, or alter behavior in ways that bypass install-time security checks.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to compare installed AI skill versions and identify update-related changes that may warrant review before continued use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews installed skill contents and may fetch comparison data, which can expose more local or network context than a normal writing skill. <br>
-Mitigation: Review configuration for allowed skill directories and network sources before use. <br>
-Risk: Delta monitoring surfaces signals and cannot determine whether a permission, endpoint, dependency, or instruction change is malicious. <br>
-Mitigation: Manually review flagged changes before continuing use or rolling back a skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skill-update-delta-monitor) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to compare an audited skill version against a newer version and identify security-relevant changes in permissions, endpoints, dependencies, instructions, and update velocity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown delta report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes permission, network endpoint, dependency, instruction drift, version velocity, and risk classification fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Delta reports may flag legitimate feature updates, telemetry, or dependency changes as suspicious.
+
+Mitigation: Use the report as a review trigger and confirm intent against release notes, source diffs, and the skill publisher before taking rollback action.
+
+Risk: The skill may guide an agent to inspect local skill files, git history, dependency changes, and endpoint references.
+
+Mitigation: Run reviews in a workspace scoped to the target skill and avoid exposing unrelated private repositories or credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/skills/skill-update-delta-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown delta report with risk classification and review recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports permission scope diffs, new network endpoints, dependency changes, instruction drift score, version velocity, and CLEAN / WATCH / REVIEW / ROLLBACK classification.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Multi-timeframe technical analysis skill using CCXT that calculates indicators including RSI, MACD, Bollinger Bands, Ichimoku, Stochastic, Williams %R, ADX, MFI, CCI, Fibonacci, Pivot Points, Support/Resistance, and detects chart patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-timeframe technical analysis skill using CCXT. Calculates 20+ indicators including RSI, MACD, Bollinger Bands, Ichimoku, Stochastic, Williams %R, ADX, MFI, CCI, Fibonacci, Pivot Points, Support/Resistance, and detects 10+ chart patterns.
 
-## Publisher: <br>
-[raphael2025](https://clawhub.ai/user/raphael2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[raphael2025](https://clawhub.ai/user/raphael2025)
 
-## Use Case: <br>
-External users and developers use this skill to fetch public Binance market data and generate multi-timeframe technical analysis for crypto symbols. It supports indicator review, chart-pattern detection, support and resistance analysis, and informational buy/sell-style signal summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-style recommendations may be mistaken for financial advice or automated execution instructions. <br>
-Mitigation: Use outputs only as informational market analysis, verify them independently, and do not connect the skill to trading execution without separate safeguards and review. <br>
-Risk: Market indicators and chart patterns can be incomplete, stale, or misleading when public exchange data is unavailable or volatile. <br>
-Mitigation: Cross-check the returned analysis against independent market data and treat stop loss, take profit, and buy/sell outputs as review prompts rather than decisions. <br>
+## Use Case:
 
+Developers and external users use this skill to fetch public crypto market data and generate multi-timeframe technical-analysis summaries, indicator values, chart-pattern detections, and trading-style signals.
 
-## Reference(s): <br>
-- [Ta Analyzer on ClawHub](https://clawhub.ai/raphael2025/ta-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JSON-like analysis objects and human-facing technical-analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes indicator values, detected patterns, trend summaries, buy/sell-style recommendations, stop loss, and take profit levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and release metadata) <br>
+Risk: Trading recommendations, stop-loss, take-profit, and price-prediction outputs may be incorrect or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all outputs as informational technical analysis, validate them against independent market data, and do not use them as professional financial advice.
+
+Risk: The skill depends on public Binance market data fetched through CCXT, so results may be unavailable, delayed, rate-limited, or affected by exchange data issues.
+
+Mitigation: Check for fetch errors, confirm timestamps and prices before acting, and retry or compare against another trusted data source when results look stale or incomplete.
+
+Risk: Some generated reasons and volume-analysis strings may appear in Chinese.
+
+Mitigation: Review localized text before presenting it to users who require English-only outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/raphael2025/skills/ta-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/raphael2025)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance]
+
+**Output Format:** [JSON object with indicator values, detected patterns, trend summaries, recommendations, stop-loss, and take-profit fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public Binance OHLCV data via CCXT; outputs are informational trading signals and may include Chinese text.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

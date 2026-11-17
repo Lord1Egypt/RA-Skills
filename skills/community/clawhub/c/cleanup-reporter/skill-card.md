@@ -1,42 +1,54 @@
-## Description: <br>
-Scan your machine for large directories, duplicate files, and stale resume files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan your machine for large directories, duplicate files, and stale resume files.
 
-## Publisher: <br>
-[MalavyaRaval](https://clawhub.ai/user/MalavyaRaval) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malavyaraval](https://clawhub.ai/user/malavyaraval)
 
-## Use Case: <br>
-Developers and local machine users use this skill to scan disk usage, identify duplicate files, find stale resume files, and generate a local cleanup report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated reports and duplicate-file listing may expose private local file paths. <br>
-Mitigation: Review report contents before sharing them, and delete ~/reports/cleanup_report_*.md and /tmp/duplicates.txt when they are no longer needed. <br>
-Risk: The scanner targets /mnt/c/Users/malav, which may not match the installing user's machine. <br>
-Mitigation: Confirm or adjust the scan path before running the script. <br>
-Risk: The skill depends on local shell tools for disk analysis and duplicate detection. <br>
-Mitigation: Install ncdu and rdfind from trusted package sources before use. <br>
+## Use Case:
 
+External users and developers use this skill to scan a local filesystem for large directories, duplicate files, and stale resume-related files, then generate a local cleanup report.
 
-## Reference(s): <br>
-- [Cleanup Reporter on ClawHub](https://clawhub.ai/MalavyaRaval/cleanup-reporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown report with shell command status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated cleanup report under ~/reports and a temporary duplicate-file listing under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The scan target is hard-coded to /mnt/c/Users/malav and may collect file paths, duplicate metadata, and resume-related file names from an unintended local account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when /mnt/c/Users/malav is the intended scan scope; prefer a version that asks for and confirms the scan directory before each run.
+
+Risk: Generated reports and duplicate-scan output persist local file metadata in ~/reports and /tmp/duplicates.txt.
+
+Mitigation: Keep generated outputs private, review them before sharing, and delete reports or temporary files when they are no longer needed.
+
+## Reference(s):
+
+- [Cleanup Reporter ClawHub Page](https://clawhub.ai/malavyaraval/skills/cleanup-reporter)
+- [Declared Homepage](https://github.com/MalavyaRaval/cleanup-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, text]
+
+**Output Format:** [Markdown report file with shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated cleanup report under ~/reports and duplicate-scan output under /tmp/duplicates.txt.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

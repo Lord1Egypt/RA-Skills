@@ -1,6 +1,39 @@
 # Async Basics
 
-Rust's async is cooperative: `.await` is an explicit yield point. There is no built-in runtime; you pick one. In 2026, that runtime is `tokio` for almost every application. This file covers what you need to write async Rust well from day 1, and the small set of pitfalls that cause most async bugs.
+Rust's async is cooperative: `.await` is an explicit yield point. There is no built-in runtime; you pick one. In 2026, that runtime is `tokio` for almost every application. (If a tutorial hands you `async-std`, stop: it has been discontinued, carries a RustSec advisory for that reason, and its own site still shows no notice. `smol` is the named replacement.) This file covers what you need to write async Rust well from day 1, and the small set of pitfalls that cause most async bugs.
+
+## Threads First, Async Second
+
+Before any of this: **async is for I/O concurrency, not for speed.** If your work is CPU-bound - parsing, hashing, image processing, simulation - you want threads, and the standard library already gives you everything you need. Reaching for `tokio` because you want to "use all the cores" is the wrong tool.
+
+```rust
+use std::thread;
+use std::sync::mpsc;
+
+// Detached-ish: a handle you join to get the result back
+let h = thread::spawn(|| expensive(1));   // must be 'static - move owned data in
+let a = h.join().unwrap();                // Result: Err means the thread panicked
+
+// Scoped threads: borrow from the stack, guaranteed joined at the end of the scope
+let data = vec![1, 2, 3];
+thread::scope(|s| {
+    s.spawn(|| println!("{:?}", &data));   // &data borrow is fine here
+    s.spawn(|| println!("{}", data.len()));
+});                                        // both joined before this line returns
+
+// Message passing: the idiomatic way to get results out
+let (tx, rx) = mpsc::channel();
+for id in 0..4 {
+    let tx = tx.clone();
+    thread::spawn(move || tx.send(work(id)).unwrap());
+}
+drop(tx);                                  // the last sender must drop or rx never ends
+for result in rx { }                       // iterates until every sender is gone
+```
+
+`thread::scope` is the one worth remembering: it is what lets a thread borrow local data instead of forcing you to `Arc`-wrap everything, because the scope cannot exit until every thread inside it has finished. That `drop(tx)` is the classic hang - a receiver loop ends when all senders are dropped, and the original `tx` you cloned from is a sender.
+
+For data parallelism over a collection, do not hand-roll any of this: `rayon`'s `.par_iter()` is one word and covers most of it (see `performance.md`).
 
 ## Mental Model
 
@@ -50,7 +83,7 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "fs", "
 Common ones:
 - `macros` - `#[tokio::main]`, `#[tokio::test]`, `tokio::select!`, `tokio::join!`
 - `rt-multi-thread` - the default work-stealing runtime
-- `rt` - single-threaded runtime (use this in WASM, embedded, or to avoid `Send` bounds)
+- `rt` - the current-thread runtime (WASM, embedded, small tools). It does **not** lift the `Send` bound: `tokio::spawn` requires `Send` on every runtime flavor. For `!Send` futures (an `Rc`, a non-thread-safe FFI handle), use `#[tokio::main(flavor = "local")]` or `LocalRuntime` (stable since tokio 1.51) with `tokio::task::spawn_local`
 - `net` - TCP/UDP
 - `fs` - async filesystem
 - `sync` - `Mutex`, `RwLock`, `mpsc`, `broadcast`, `oneshot`, `Notify`
@@ -78,6 +111,18 @@ async fn main() {
 ```
 
 `spawn` returns a `JoinHandle<T>`. Awaiting it gives you the task's return value (wrapped in `Result` to handle panic).
+
+That `Result` is the only place a task's panic goes. tokio catches it - "panics in the spawned task are caught by Tokio" - and hands it back as a `JoinError`, so a panic in a spawned task does **not** take the process down. A `main` that logs the `JoinError` and returns normally exits with status 0: the container reports `Completed`, the supervisor never restarts it, and the crash is visible only if someone reads the log. Decide what a task panic should mean, and make it happen:
+
+```rust
+match handle.await {
+    Ok(v) => v,
+    Err(e) if e.is_panic() => std::panic::resume_unwind(e.into_panic()), // re-raise in this task
+    Err(e) => return Err(e.into()),                                       // cancelled
+}
+```
+
+For a service where any panic is a bug, `panic = "abort"` under `[profile.release]` makes every panic, in any task, end the process.
 
 ## `Send`, `Sync`, and `'static` Bounds
 
@@ -135,6 +180,22 @@ do_async_thing(&mut g).await;       // holding the lock across await is OK
 
 `tokio::sync::Mutex` is slower than `std::sync::Mutex`. Default to `std::sync::Mutex` and scope your locks tightly. Reach for `tokio::sync::Mutex` only when you genuinely need to hold a lock across awaits.
 
+**Two different problems wear the same name.** Holding a `std::sync::MutexGuard` across `.await` is a *compile error* (the future stops being `Send`) - that one is not a judgment call, just fix it. Holding a `tokio::sync::Mutex` across `.await` compiles fine, and whether it is wrong is a *design* question. "Never hold a lock across an await" is repeated as though it settled both, and it does not.
+
+The clearest case where holding it is exactly right is **single-flight**: guarding an expensive one-time load (a model, a connection pool, a parsed index) so that N concurrent cold-start callers coalesce into one load instead of N.
+
+```rust
+use tokio::sync::Mutex;
+
+// Concurrent first-callers all block here; exactly one does the load.
+let mut slot = cache.lock().await;
+if slot.is_none() {
+    *slot = Some(expensive_load().await);   // lock held across .await, deliberately
+}
+```
+
+Drop the lock and each caller kicks off its own `expensive_load()`. Judge it by the numbers, not the slogan: an uncontended `tokio::sync::Mutex` acquire is tens to hundreds of nanoseconds, so if the work it guards is milliseconds long, the warm-path cost is noise and the coalescing is the whole point. If the warm path is genuinely hot, keep the load gate but serve warm reads without the lock (an `arc_swap::ArcSwapOption` read plus a `Mutex<()>` held only during the load).
+
 ## Don't Block the Runtime
 
 Async runtimes assume tasks yield quickly. CPU-bound work (parsing big files, encoding video, expensive computations) starves other tasks. Two escapes:
@@ -144,7 +205,9 @@ Async runtimes assume tasks yield quickly. CPU-bound work (parsing big files, en
 let result = tokio::task::spawn_blocking(|| expensive_computation()).await?;
 ```
 
-**`tokio::task::block_in_place`** runs a blocking section inside the current async task without starving sibling tasks. It works only on the multi-threaded runtime - it **panics** on a `current_thread` runtime - and it suspends any other code running concurrently in the same task (e.g. under `join!`). Prefer `spawn_blocking`; reach for `block_in_place` only when the blocking work genuinely cannot move into its own task:
+The blocking pool is sized for threads that wait (up to 512 by default), not for CPU work. For many CPU-bound jobs tokio's own docs say "a semaphore or some other synchronization primitive should be used to limit the number of computations executed in parallel" - or hand the work to `rayon`, which is sized to your cores.
+
+**`tokio::task::block_in_place`** runs a blocking section inside the current async task without starving sibling tasks. It **panics on a `current_thread` runtime** - that is the constraint to remember. (Outside any runtime it is simply allowed, and just calls the closure normally, so a helper using it still works in a plain sync test.) It also suspends any other code running concurrently in the same task, e.g. under `join!`. Prefer `spawn_blocking`; reach for `block_in_place` only when the blocking work genuinely cannot move into its own task:
 ```rust
 tokio::task::block_in_place(|| do_blocking_thing());
 ```
@@ -173,6 +236,22 @@ select! {
 }
 ```
 
+**`select!` in a loop over a future you keep.** To wait on a long-lived task while handling other events, you pass the handle by reference - `r = &mut handle => ...` - so the branch does not consume it. Once that branch has fired, the next iteration polls the finished handle again, and tokio panics with "JoinHandle polled after completion". Disable the branch with a precondition:
+
+```rust
+let mut handle = tokio::spawn(work());
+let mut done = false;
+loop {
+    tokio::select! {
+        r = &mut handle, if !done => { done = true; handle_result(r); }
+        Some(msg) = rx.recv() => handle_msg(msg),
+        else => break,
+    }
+}
+```
+
+In tokio's words, "If the precondition returns `false`, then the branch is disabled." The same applies to any future you `select!` on by `&mut`, not only `JoinHandle`.
+
 For dynamic-sized concurrency, use `futures::future::join_all` or `tokio::task::JoinSet`:
 
 ```rust
@@ -184,6 +263,29 @@ for id in 0..100 {
 }
 while let Some(res) = set.join_next().await {
     println!("{:?}", res?);
+}
+```
+
+That starts all 100 at once. Against a real API or database, that is a self-inflicted outage: every task opens a connection in the same instant. Bound it. `buffer_unordered(n)` from `futures::StreamExt` keeps at most `n` futures in flight, and a `tokio::sync::Semaphore` does the same for spawned tasks:
+
+```rust
+use futures::stream::{self, StreamExt};
+
+// At most 8 requests in flight; results arrive in completion order
+let results: Vec<_> = stream::iter(0..100)
+    .map(fetch_user)
+    .buffer_unordered(8)
+    .collect()
+    .await;
+
+// The same limit for spawned tasks: the permit lives until the task ends
+let permits = Arc::new(tokio::sync::Semaphore::new(8));
+for id in 0..100 {
+    let permit = Arc::clone(&permits).acquire_owned().await?;
+    set.spawn(async move {
+        let _permit = permit;
+        fetch_user(id).await
+    });
 }
 ```
 
@@ -201,6 +303,49 @@ match timeout(Duration::from_secs(5), slow_op()).await {
     Ok(Err(e)) => { /* slow_op returned Err */ }
     Err(_) => { /* timed out */ }
 }
+```
+
+**`abort()` is not a fence.** `JoinHandle::abort` requests cancellation; it does not guarantee it. In tokio's words, "aborting a task does not guarantee that it fails with a cancelled error, since it may complete normally first." So a debounce or cancel-and-replace loop (abort the previous search, start a new one) can still receive the old task's result after the abort. Tag each request with a generation counter and drop any result whose generation is stale.
+
+### Handle SIGTERM, not just Ctrl-C
+
+Almost every shutdown snippet online awaits `tokio::signal::ctrl_c()` and stops there. That is SIGINT only. Docker, Kubernetes, and systemd all stop a process with **SIGTERM** first and SIGKILL after a grace period - so a `ctrl_c()`-only service is hard-killed on every ordinary deploy, mid-request, and you will never see it locally because Ctrl-C in your terminal works perfectly.
+
+```rust
+use tokio::signal::unix::{signal, SignalKind};
+
+async fn shutdown_signal() {
+    let mut term = signal(SignalKind::terminate()).expect("install SIGTERM handler");
+    tokio::select! {
+        _ = tokio::signal::ctrl_c() => {}
+        _ = term.recv() => {}
+    }
+}
+```
+
+Two things that bite after you fix that. A server's `with_graceful_shutdown` waits for **all** connections to close, so one long-lived streaming connection (SSE, a websocket, a follow-style tail) holds shutdown open forever - cancel that stream's own token as well, and put a bounded `timeout` around the drain as a backstop. And check that the handler is actually installed in the shipped artifact: on Linux, `grep SigCgt /proc/<pid>/status` tells you which signals the process is catching, which is how you find out that the binary in the container is not the one you tested.
+
+Cancelling is half of shutdown; the other half is waiting for what you cancelled. `tokio_util::task::TaskTracker` is the pair to `CancellationToken`: spawn through it, and once the token fires, `close()` it and `wait()` for every tracked task to finish.
+
+```rust
+use tokio_util::{sync::CancellationToken, task::TaskTracker};
+
+let token = CancellationToken::new();
+let tracker = TaskTracker::new();
+for id in 0..4 {
+    let token = token.clone();
+    tracker.spawn(async move {
+        tokio::select! {
+            _ = token.cancelled() => {}    // shutdown requested
+            _ = worker(id) => {}
+        }
+    });
+}
+
+shutdown_signal().await;
+token.cancel();
+tracker.close();                            // accept no new tasks
+tracker.wait().await;                       // every tracked task has finished
 ```
 
 ## Channels (`tokio::sync`)
@@ -260,6 +405,44 @@ pub trait Greeter {
 5. **`select!` arms with side effects**: when one arm completes, the others are dropped (cancelled). Make sure that is safe for the operations involved.
 6. **Forgetting that `async fn` returns immediately**: until you `.await` or `spawn`, no work happens.
 7. **One giant `tokio::main` task with no concurrency**: if your `main` is awaiting things sequentially, you may not need async at all. Async pays off when you have concurrent I/O.
+8. **Assuming `impl Stream` means the body streams.** The signature promises an incremental *type*, not incremental *behavior* - a function returning `impl Stream` can happily read an entire file into a `String`, parse every record into a `Vec`, and only then yield item one. Nothing in the type system catches that. If a stream exists to bound memory, check that its body never materializes the whole input; the same trap hides inside `async_stream::stream!` blocks, where a plain `std::fs` call also blocks a runtime thread for the whole operation.
+
+## Windows: The Main Thread Has a 1 MiB Stack
+
+An `async fn` compiles to a state machine sized for everything live across every `.await`, and nested futures inline into their parent. A big application's top-level future can reach hundreds of KiB, and `#[tokio::main]` runs it with `block_on` on the **main thread**. On Linux and macOS that thread gets 8 MiB. On Windows the stack reserve comes from the executable, and Microsoft's linker documents "the default stack size is 1 MB" - so the same binary that runs fine everywhere else overflows on Windows before it parses its arguments, and even `--version` crashes.
+
+Two fixes. Shrink the future: `Box::pin` the large sub-futures so they live on the heap. Clippy's `large_futures` lint finds them, but it is in the `pedantic` group - off unless you enable it (`large_futures = "warn"` under `[lints.clippy]`), with a default threshold of 16 KiB (`future-size-threshold` in `clippy.toml`). Or give the runtime a thread whose stack you choose:
+
+```rust
+fn main() -> anyhow::Result<()> {
+    std::thread::Builder::new()
+        .stack_size(8 * 1024 * 1024)
+        .spawn(|| -> anyhow::Result<()> {
+            tokio::runtime::Builder::new_multi_thread()
+                .enable_all()
+                .build()?
+                .block_on(run())
+        })?
+        .join()
+        .expect("runtime thread panicked")
+}
+
+async fn run() -> anyhow::Result<()> { Ok(()) }
+```
+
+Worker threads have their own size, set with the runtime builder's `thread_stack_size`. Only a run on real Windows catches this; see `releasing.md`.
+
+## Testing Time-Dependent Async Code
+
+`tokio::time::pause` (and `#[tokio::test(start_paused = true)]`, which needs the `test-util` feature and the current-thread runtime) lets a test advance the clock instantly instead of sleeping. There is a precondition nobody mentions until it bites: **it can only control `tokio::time::Instant`, not `std::time::Instant`.** If your cache expiry, rate limiter, or backoff computes deadlines from `std::time::Instant::now()`, a paused test has no effect on it and you are back to real sleeps.
+
+The fix is in the *production* code, not the test: use `tokio::time::Instant` there. Outside a paused runtime it is `std::time::Instant::now()`, so behavior is identical - you are only buying testability.
+
+Inside the test, let time pass with `tokio::time::sleep`, not `advance`. A paused runtime auto-advances to the next timer whenever every task is idle, so `sleep(Duration::from_secs(5)).await` returns instantly with every timer due in those 5 seconds fired in order. `advance` is the sharper tool and the easier one to misuse: tokio's own docs say that to "reliably trigger a timeout, prefer using [`sleep`] with auto-advance rather than `advance`", because `advance` "jumps time forward but doesn't guarantee that all timers will be processed before your code continues".
+
+## Debugging a Running Runtime
+
+When a service is stalling and the profiler shows nothing hot, the problem is usually a task that is not being polled rather than one burning CPU. `tokio-console` is the debugger for exactly that: it attaches over a `tracing` subscriber and shows live per-task state, poll counts, busy versus idle time, and warnings for tasks that have blocked the runtime. It needs the `tokio_unstable` cfg flag set at build time, which is why it is a deliberate step rather than something you leave on. If your own code gates on `#[cfg(tokio_unstable)]`, declare the cfg (`[lints.rust] unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_unstable)'] }`), or the `unexpected_cfgs` lint fires - a hard error under `build.warnings = "deny"`.
 
 ## What to Defer
 

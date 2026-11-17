@@ -1,41 +1,54 @@
-## Description: <br>
-Anti-Hallucination provides an operational workflow that helps AI agents verify facts, code, file paths, and sources before delivering answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-Hallucination provides behavioral verification workflows that help AI agents reduce fabrication by checking facts, code, files, and outputs before responding.
 
-## Publisher: <br>
-[qianmao1989](https://clawhub.ai/user/qianmao1989) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianmao1989](https://clawhub.ai/user/qianmao1989)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to add pre-answer, in-process, and post-output verification routines for tasks involving dates, numbers, citations, code, files, and other accuracy-sensitive outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt agents to browse the web, inspect local paths, run generated code, or handle dependencies with broad authority. <br>
-Mitigation: Run it with network access, filesystem checks outside the task, package installation, and code execution gated by user confirmation; use sandboxed execution for code checks. <br>
-Risk: Verification workflows can slow responses and still cannot eliminate hallucinations completely. <br>
-Mitigation: Use strict mode for high-stakes work, require source labels for critical claims, and keep human review for financial, legal, medical, account, or critical configuration outputs. <br>
+## Use Case:
 
+Developers, agent operators, and external users can use this skill to add structured fact-checking, code verification, source labeling, and post-output review workflows to accuracy-sensitive agent tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qianmao1989/anti-hallucination-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/qianmao1989) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python scripts and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes strict, balanced, and fast verification modes plus output-scanning and post-tool validation helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill can encourage broad file inspection, web searching, URL access, and code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval and task-specific scope before running code, browsing arbitrary URLs, searching broadly, or using filesystem and shell tools.
+
+Risk: Persistent installation of the rules can change agent behavior beyond the immediate task.
+
+Mitigation: Review the rules before adding them to persistent agent instruction files and disable automatic execution in environments with shell, filesystem, or network tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianmao1989/skills/anti-hallucination-v2)
+- [Repository listed in artifact metadata](https://github.com/CherryAI/anti-hallucination)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes strict, balanced, and fast verification modes with confidence and source-labeling conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

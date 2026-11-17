@@ -1,41 +1,53 @@
-## Description: <br>
-Western astrology-style guidance for the twelve zodiac signs (Aries-Pisces), including daily, weekly, or monthly themes, elements, modalities, and light compatibility framing for entertainment and reflection only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Western astrology-style sun-sign guidance for the twelve zodiac signs, including daily, weekly, or monthly reflective themes, elements, modalities, and light compatibility framing.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and assistants use this skill to produce entertainment-only Western sun-sign readings, identify a sun sign from a birthday, and frame light compatibility without deterministic claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat horoscope-style output as scientific prediction or professional advice. <br>
-Mitigation: Frame responses as entertainment and reflection, avoid deterministic claims, and do not provide medical, legal, or financial advice. <br>
-Risk: Birthday, birth time, or birth location details can be personal. <br>
-Mitigation: Ask only for details needed to resolve a sign or cusp ambiguity, and remind users they can avoid sharing exact birth details. <br>
+## Use Case:
 
+External users and assistants use this skill to answer horoscope, zodiac, star sign, sun sign, cusp, and light compatibility questions with entertainment-only, non-deterministic language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/western-sun-signs) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entertainment and reflection only; not medical, legal, or financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake horoscope-style output for scientific or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as entertainment and reflection only, and do not present them as medical, legal, financial, therapeutic, or scientific guidance.
+
+Risk: Cusp or timezone-sensitive birthdays can produce ambiguous sun-sign assignments.
+
+Mitigation: Ask for birthday details when needed, note ambiguity, and offer both adjacent signs' themes instead of claiming precision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/western-sun-signs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text horoscope-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entertainment-only framing; no executable code, persistence, credential use, or hidden authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

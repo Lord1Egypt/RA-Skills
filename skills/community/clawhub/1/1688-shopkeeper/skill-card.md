@@ -1,47 +1,62 @@
-## Description: <br>
-1688 Shopkeeper helps OpenClaw agents search 1688 products, review bound downstream shops, configure a 1688 access key, and publish selected items to Douyin, Pinduoduo, Xiaohongshu, and Taobao stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps merchants use 1688 to search for products, review bound downstream shops, publish selected products to supported commerce platforms, and configure a 1688 access key.
 
-## Publisher: <br>
-[yclovebf-stack](https://clawhub.ai/user/yclovebf-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yclovebf-stack](https://clawhub.ai/user/yclovebf-stack)
 
-## Use Case: <br>
-External merchants and store operators use this skill to source products from 1688, compare candidate listings, inspect bound downstream stores, and publish selected products to supported commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive 1688 access key that can query shops and authorize store operations. <br>
-Mitigation: Use a dedicated low-privilege AK where possible, rely on safe secret handling, and rotate the key after testing or if it is pasted into chat. <br>
-Risk: Publish commands can create real downstream store listings. <br>
-Mitigation: Verify the target shop, selected item IDs, and publish preview before approving a publish command. <br>
-Risk: Persisted configuration may keep the AK available beyond the current session. <br>
-Mitigation: Avoid production credentials for evaluation, remove stored credentials when no longer needed, and reauthorize or rotate keys after testing. <br>
+## Use Case:
 
+External merchants and commerce operators use this skill to find product candidates on 1688, evaluate search results, check connected shops, and publish selected items to Douyin, Pinduoduo, Xiaohongshu, or Taobao stores. The skill also guides first-time setup and AK configuration.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yclovebf-stack/1688-shopkeeper) <br>
-- [Configure AK guide](references/configure.md) <br>
-- [Search workflow guide](references/search.md) <br>
-- [Publish workflow guide](references/publish.md) <br>
-- [Operations FAQ index](references/FAQ.md) <br>
-- [1688 AI app setup](https://air.1688.com/kapp/1688-ai-app/pages/home?from=1688-shopkeeper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command results containing a markdown field, plus direct Markdown guidance from reference files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and ALI_1688_AK; search results may be stored as local JSON for later publish commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The AK can authorize 1688 account and shop actions, including product publishing, and may be exposed if pasted into chat, command text, transcripts, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure OpenClaw secret-entry mechanism where available, avoid sharing the AK in chat or command text, and rotate the AK if it has already appeared in transcripts or logs.
+
+Risk: The skill can publish products to connected downstream shops, which may create incorrect listings, platform compliance issues, or unintended commercial activity.
+
+Mitigation: Review selected products, target shop, item count, and dry-run results before publishing; use the skill's confirmation and dry-run flow for product publishing.
+
+Risk: A nontrusted gateway endpoint could receive sensitive configuration or commerce commands.
+
+Mitigation: Keep OPENCLAW_GATEWAY_URL restricted to a trusted local endpoint before configuring or using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yclovebf-stack/skills/1688-shopkeeper)
+- [1688 AI App](https://air.1688.com/kapp/1688-ai-app/pages/home?from=1688-shopkeeper)
+- [Search guide](artifact/references/search.md)
+- [Publishing guide](artifact/references/publish.md)
+- [AK configuration guide](artifact/references/configure.md)
+- [Operations FAQ index](artifact/references/FAQ.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command output with a Markdown display field, plus concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command outputs include success, markdown, and data fields; publishing and search actions are limited to 20 products per command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

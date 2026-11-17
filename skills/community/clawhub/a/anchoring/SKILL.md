@@ -1,7 +1,7 @@
 ---
 name: anchoring
 description: "Activate when: user says 'what's a fair price / starting number / ballpark'; counterparty just opened with a number; user is about to negotiate salary, valuation, or deal terms; user is making a forecast and a number has already been floated; user asks about 'first offer', 'framing effect', or 'being anchored'.
-  Do NOT activate when: the number in question is a verifiable data point (audited financials, confirmed comparable) and is genuinely informative; or the decision is so trivial that the economic impact of anchoring is negligible."
+  Do NOT activate when: the number in question is a verifiable data point (audited financials, confirmed comparable) and is genuinely informative; or the decision is so trivial that the economic impact of anchoring is negligible. More: deciqai.com/c/anchoring"
 ---
 
 # Anchoring
@@ -12,7 +12,7 @@ When people estimate an unknown quantity they start from a reference point — a
 
 Strategically: almost every consequential negotiation, valuation, or forecast begins with an anchor. The first number said or written — asking price, salary band, prior-round valuation, revenue projection — anchors everything that follows.
 
-Composes with: [`pricing-strategy`](../pricing-strategy/SKILL.md) · [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md) · [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md) · [`signaling-games`](../signaling-games/SKILL.md)
+Composes with: `pricing-strategy` · `expected-value-and-kelly` · `probabilistic-thinking` · `signaling-games`
 
 ## When to Use
 
@@ -21,6 +21,7 @@ Apply when:
 - Estimating an uncertain quantity after a number has already been mentioned
 - A counterparty has opened and your reasoning is gravitating toward their number
 - Resetting expectations after an anchor has already been set
+- Sizing an AI startup valuation, raise, or AI-capex/adoption estimate where a headline round or a benchmark like Nvidia's market cap has already been floated as "the market"
 
 **When NOT to use:**
 - The number is genuinely informative (verifiable comparable, audited cost basis) — data, not an anchor
@@ -63,7 +64,8 @@ Decision: [proposer: bold-but-defensible opening] / [respondent: name/reset/work
 Risk anchor still operating: […] (how I'll know if I've been pulled too far)
 ```
 
-*→ Method in Action: [Tversky & Kahneman's Wheel of Fortune, 1974](examples/tversky-kahneman-wheel-of-fortune-1974.md)*
+*→ Method in Action: [Tversky & Kahneman's Wheel of Fortune, 1974](examples/tversky-kahneman-wheel-of-fortune-1974.md) · [Judges Playing Dice with Criminal Sentences, 2006](examples/englich-judges-dice-criminal-sentences-2006.md)*
+*→ 2026 lens: [AI Fundraising and Valuation Anchors (2023–2026)](examples/ai-fundraising-valuations-anchoring-2023-2026.md) — headline AI rounds and Nvidia's market cap anchoring the next valuation*
 
 ## Pack: Anchoring in Practice
 
@@ -117,4 +119,6 @@ Risk anchor still operating: […] (how I'll know if I've been pulled too far)
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/anchoring** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/anchoring.json*

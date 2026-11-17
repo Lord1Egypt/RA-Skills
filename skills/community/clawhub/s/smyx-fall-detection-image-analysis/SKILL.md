@@ -1,7 +1,7 @@
 ---
 name: "fall-detection-image-analysis"
 description: "Detects whether anyone has fallen within a specified target area. Supports both image and short video analysis. Suitable for scenarios such as home care for elderly people living alone and safety monitoring in nursing homes. | 检测目标区域内是否有人跌倒，支持图片和短视频检测，适用于独居老人居家看护、养老院安全监测等场景"
-version: "1.0.5"
+version: "1.0.15"
 license: "MIT-0"
 ---
 

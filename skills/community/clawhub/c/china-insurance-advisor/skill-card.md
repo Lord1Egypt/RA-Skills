@@ -1,43 +1,59 @@
-## Description: <br>
-A thin proxy to the remote whylingxi.cn insurance-advisor chat for insurance planning, product comparison, budget allocation, and Q&A, preserving session continuity and returning the service's reply with minimal transformation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Insurance Advisor is a thin proxy to the remote 中国保险顾问 web chat at whylingxi.cn for insurance planning, product comparison, budget allocation, and insurance Q&A.
 
-## Publisher: <br>
-[lpb123](https://clawhub.ai/user/lpb123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lpb123](https://clawhub.ai/user/lpb123)
 
-## Use Case: <br>
-External users and agents use this skill to forward China insurance-planning, product-comparison, budget-allocation, and insurance Q&A requests to a remote advisor while preserving multi-turn session continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Insurance messages may contain sensitive medical, financial, identity, or family details and are sent to a third-party chat service. <br>
-Mitigation: Install only if comfortable with whylingxi.cn receiving the messages, and avoid sharing unnecessary sensitive details. <br>
-Risk: Session continuity can link later messages to an earlier upstream conversation. <br>
-Mitigation: Use --reset-session or clear the session mapping file when a fresh conversation is desired. <br>
-Risk: The remote service can fail, time out, or change behavior. <br>
-Mitigation: Report remote-service unavailability and do not fabricate product names, prices, or planning results. <br>
+## Use Case:
 
+External users and agents use this skill to forward Chinese insurance planning, product comparison, budget allocation, and Q&A requests to a remote insurance advisor while preserving session continuity when needed.
 
-## Reference(s): <br>
-- [Integration notes](artifact/integration-notes.md) <br>
-- [Remote insurance advisor endpoint](https://whylingxi.cn/chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown-style upstream chat response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve upstream tables, product names, prices, links, and session continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: Insurance questions are sent to whylingxi.cn and may include personal, financial, medical, or policy details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unnecessary identifiers, policy numbers, payment details, medical documents, and other sensitive personal data.
+
+Risk: Session mode preserves conversation continuity through a local-to-upstream session mapping.
+
+Mitigation: Use reset or avoid session mode when continuity is not needed.
+
+Risk: The remote service can fail, time out, or change its response contract.
+
+Mitigation: Report the remote advisor as temporarily unavailable and do not fabricate product names, prices, or planning results.
+
+## Reference(s):
+
+- [Integration Notes](artifact/integration-notes.md)
+- [Remote insurance advisor chat endpoint](https://whylingxi.cn/chat)
+- [ClawHub skill page](https://clawhub.ai/lpb123/skills/china-insurance-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown returned from the remote insurance advisor]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May preserve upstream tables, product names, prices, links, and session-continuity context.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

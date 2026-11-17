@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "fixture-source-check-001",
+  "fixture_only": true,
+  "input_sha256": "f06be7dd6ebe02782dfc3d443ff5ad989829d0c77bf561d804fcebfc420c8c7f",
+  "sources": [
+    {
+      "source_id": "S1",
+      "url": "https://fixture.invalid/aster-v2",
+      "title": "Aster API v2.0 synthetic fixture",
+      "version": "2.0",
+      "retrieved_at": null,
+      "provenance": "SYNTHETIC_FIXTURE",
+      "snapshot_sha256": "c48da1b7a2af2a184f5350a173e2ebaf01459d1d4838f97b8bc46c5865ac2cad",
+      "locator": "fixture-source.txt, lines 3\u20135",
+      "excerpt": "Responses use JSON. The service accepts no more than 100 items in a batch. No retention period or service-level guarantee is specified in this fixture."
+    }
+  ],
+  "limitations": [
+    "Synthetic demonstration only. Comparison against supplied fixture, not independent public-source authentication."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "status": "SUPPORTED",
+      "evidence_ids": [
+        "S1"
+      ],
+      "explanation": "The supplied fixture explicitly states that responses use JSON.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ],
+      "original_claim": "Aster API v2.0 uses JSON responses.",
+      "version_scope": "Aster API v2.0 synthetic fixture only",
+      "as_of": "2026-09-28",
+      "unresolved_reason": null
+    },
+    {
+      "claim_id": "C2",
+      "status": "CONTRADICTED",
+      "evidence_ids": [
+        "S1"
+      ],
+      "explanation": "The supplied fixture limits a batch to 100 items, below the claimed 200.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ],
+      "original_claim": "Aster API v2.0 accepts 200 items in one batch.",
+      "version_scope": "Aster API v2.0 synthetic fixture only",
+      "as_of": "2026-09-28",
+      "unresolved_reason": null
+    },
+    {
+      "claim_id": "C3",
+      "status": "UNRESOLVED",
+      "evidence_ids": [
+        "S1"
+      ],
+      "explanation": "The approved corpus gives no retention duration. Absence does not establish a contrary duration.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ],
+      "original_claim": "Aster API v2.0 retains input data for 30 days.",
+      "version_scope": "Aster API v2.0 synthetic fixture only",
+      "as_of": "2026-09-28",
+      "unresolved_reason": "The approved corpus gives no retention duration. Absence does not establish a contrary duration."
+    }
+  ]
+}

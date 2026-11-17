@@ -1,0 +1,25 @@
+{
+    "display_name": "AI通识课教学专家 V8.2-AIPC",
+    "display_description": "基于本地 OpenVINO 模型的端云协同 AI 通识课教与学工作流（V8.2-AIPC：每次工作自动对比本地/云端 + 每个互动控件必须实际可用 + 双轨学科 AI 模块 H 面向北师港浸会大学博雅智能学院）",
+    "detail_describe": "V8.2-AIPC 升级版：本地 DeepSeek-R1-1.5B INT4 推理模型 + Python 工具链 + 每次工作后自动生成「本地 vs 云端」对比报告（work_summary.py）+ p5.js 课件/游戏 8 类互动控件完整性门控（button/slider/select/input/canvas/key/touch/drag 共 27 项检查，B1-B9 + S/Se/I/C/K/T/D 系列）+ Module H 双轨学科 AI 模块（5+N 学科 AI 地图 / 学科工具栈 / FYP 脚手架 / 学科针对性教案 / 教师提效四件套 / 博智坊双服务 / 共同性与扩展性 / 开拓性与育人答卷）。覆盖模型检→安→配→运全流程、4 阶段教学流水线（prepare→analyze→select→compose）、端云协同协议 Python SDK、规则层容错（G001-G008）、4 级 PII 脱敏、成本监控与熔断。端云协同设计哲学：重活端侧做、决策云端做、用 JSON 契约做接缝、用规则层做容错、用 work_summary 做透明、用全互动控件门控做质量。",
+    "name": "ai-literacy-expert-v8.2.0-aipc",
+    "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4aa'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='20' font-weight='bold' text-anchor='middle' fill='white'%3EV8.1%3C/text%3E%3C/svg%3E",
+    "use_cases": [
+        "为高一信息技术课编排 AI 通识课教学路径",
+        "扫描课程材料并生成 Markdown 课件 + assessment.json + HTML 互动课件",
+        "本地推理分析课程材料知识点，零上传保护学生隐私",
+        "端云协同请求教学策略推荐，5 级降级保障可用性",
+        "成本监控与预算告警，月度云端成本 < $10",
+        "每次工作后自动输出本地 vs 云端对比报告（成本/延迟/隐私）",
+        "p5.js 课件/游戏的每个按钮通过 9 项完整性门控（B1-B9）",
+        "p5.js 课件/游戏的每个互动控件（button/slider/select/input/canvas/key/touch/drag）通过 27 项完整性门控（V8.1-AIPC 扩展）",
+        "为北师港浸会大学博雅智能学院（BNBU SAI）5+N 项目（计算媒介+N / 数字全球传播+N / 智能商业领袖+N / 数学+N / 智能科技+N）35 个专业方向生成 AI 切入点与工具栈",
+        "为 BNBU 学生提供毕业项目（FYP I/II）8+16 周 AI 脚手架，覆盖选题 / 文献综述 / 方法论 / 实验设计 / 论文写作全流程",
+        "为 BNBU 教师提供 5 课时学科针对性 AI 教案模板（12 个代表专业），支持主工具+辅助+实验+本地四件套组合",
+        "为 BNBU 教师提供备课/出题/评估/答疑提效四件套，与 V8.1 流水线无缝集成，月省 ≥ 30 小时",
+        "通过 10 期博智坊工作坊 + 21 门公共核心课 + 5+N 跨专业项目实现 AI 共同性与扩展性（学生 5 级递进）",
+        "通过数字人 / 3D 重建 / AIGC / 自动驾驶等前沿领域开拓性 + 学生 5 维 / 教师 4 维育人答卷评估闭环"
+    ],
+    "author": "AI Literacy Expert Team",
+    "version": "8.2.0-aipc"
+}

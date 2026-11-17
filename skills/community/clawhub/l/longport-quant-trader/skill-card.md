@@ -1,46 +1,64 @@
-## Description: <br>
-LongPort Quant Trader helps agents configure and use LongPort-based quantitative trading scripts for Hong Kong and U.S. equities, including mean-reversion and momentum strategies, monitoring, reporting, and Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LongPort Quant Trader helps agents configure, monitor, backtest, and run LongPort OpenAPI trading strategies for Hong Kong and U.S. equities with Feishu notifications and performance tracking.
 
-## Publisher: <br>
-[fxm1618-gmail](https://clawhub.ai/user/fxm1618-gmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fxm1618-gmail](https://clawhub.ai/user/fxm1618-gmail)
 
-## Use Case: <br>
-Personal investors and quantitative trading practitioners can use this skill to set up, review, and operate LongPort trading workflows for scanning markets, generating strategy signals, tracking performance, and sending notifications. Live trading should be gated behind paper-trading validation and credential review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place brokerage orders with LongPort credentials. <br>
-Mitigation: Use paper trading or read-only review first, audit all order paths, and require an explicit live-trading opt-in before providing production credentials. <br>
-Risk: Credential handling and message-recipient controls are not adequate for the requested authority. <br>
-Mitigation: Remove and rotate any hardcoded LongPort or Feishu secrets, configure recipients explicitly, and store API keys only in protected environment variables or a managed secret store. <br>
-Risk: Logs and state files may expose sensitive financial data. <br>
-Mitigation: Treat logs, reports, portfolio state, and notification payloads as sensitive data with restricted access, retention limits, and redaction where possible. <br>
+## Use Case:
 
+External users, individual investors, and quantitative trading developers use this skill to generate and operate Python-based LongPort trading workflows, including market scans, strategy execution, backtests, notification setup, and performance reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fxm1618-gmail/longport-quant-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/fxm1618-gmail) <br>
-- [LongPort Open Platform](https://open.longportapp.com) <br>
-- [LongPort API documentation](https://open.longportapp.com/docs) <br>
-- [LongPort API account credentials](https://open.longportapp.com/account) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console-style text with Python configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading signals, order/status summaries, performance metrics, setup steps, and credential configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package can submit live brokerage orders through LongPort credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require paper-trading validation, explicit live-trading enablement, position limits, and a kill switch before any real account use.
+
+Risk: Bundled credential material may expose broker or notification access.
+
+Mitigation: Remove bundled secrets, rotate any exposed keys or tokens, and require users to supply credentials through local environment variables or a secrets manager.
+
+Risk: A hard-coded Feishu recipient can send trading notifications to an unintended destination.
+
+Mitigation: Make all Feishu webhook and recipient values user-configured and verify the destination before enabling notifications.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin dependency versions and review updates before deploying the trading workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fxm1618-gmail/skills/longport-quant-trader)
+- [LongPort OpenAPI](https://open.longportapp.com)
+- [LongPort OpenAPI Docs](https://open.longportapp.com/docs)
+- [LongPort API Account](https://open.longportapp.com/account)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python code, shell commands, JSON-like configuration, and console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and LongPort API environment variables for live API workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

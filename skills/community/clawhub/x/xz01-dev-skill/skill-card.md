@@ -1,46 +1,69 @@
-## Description: <br>
-Guides Hermes and Claude Code agents through xz01 template development, role boundaries, live-site validation gates, dual-end navigation, xz01_demo pagination, and full-page visual QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Hermes and Claude Code workflows for OpenClaw/xz01 template development, validation, role separation, read-only corpus handling, dual-end navigation and pagination checks, visual QA, and packaging gates.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-Developers and site-maintenance agents use this skill to coordinate Hermes, Claude Code, and validation roles for xz01/900az theme-template work. It helps constrain writes, run template checks, validate PC and mobile pages, and package or publish only after required gates pass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct agents toward broad live-site and publishing actions for the xz01/900az workflow. <br>
-Mitigation: Install only for that intended workflow and require explicit approval before webroot writes, live theme replacement, runtime deletion, Docker/MCP setup, credential use, self-update, or clawhub publish. <br>
-Risk: Template or validation actions may affect live site behavior if applied directly to production paths. <br>
-Mitigation: Prefer staging paths, review diffs before release, and run the documented validation gates before packaging or publishing. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate xz01/OpenClaw template work with separated main, dev, test, and rule roles. It helps preserve read-only source boundaries while producing verified template changes, validation reports, shell commands, configuration guidance, and packaging handoffs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/amd5/xz01-dev-skill) <br>
-- [Skill metadata](artifact/skill.json) <br>
-- [Release metadata](artifact/_meta.json) <br>
-- [xz01 Template Factory Architecture Notes](artifact/references/xz01-template-factory-architecture.md) <br>
-- [Lanhu MCP installation for xz01 workflow](artifact/references/lanhu-mcp-installation.md) <br>
-- [Hermes-native xz01 live deploy validation](artifact/references/hermes-native-xz01-live-deploy-validation.md) <br>
-- [Pagination data-volume validation correction](artifact/references/session-2026-05-18-pagination-data-volume-validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline commands, file paths, code references, and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs may include proposed template edits, validation commands, screenshot/report paths, and release notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.44 (source: server release metadata, SKILL.md frontmatter, skill.json, _meta.json) <br>
+Risk: Live-site deployment and runtime-clearing actions can affect production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation gates before live deploys and runtime clears, and keep backups before replacing production theme files.
+
+Risk: Automatic publishing can release skill changes without fresh approval.
+
+Mitigation: Require a human approval gate before registry publishing and verify version, description, and changelog alignment before release.
+
+Risk: Lanhu MCP usage depends on external Docker service setup and credentials.
+
+Mitigation: Pin and review the Lanhu MCP dependency, protect credential files, and validate the service health before use.
+
+Risk: Deletion or cleanup scripts could remove unintended files if paths are too broad.
+
+Mitigation: Restrict deletion scripts to fixed allowlisted paths and review each destructive command before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amd5/skills/xz01-dev-skill)
+- [xz01 Template Factory Architecture Notes](references/xz01-template-factory-architecture.md)
+- [Hermes native xz01 live deployment and validation notes](references/hermes-native-xz01-live-deploy-validation.md)
+- [Lanhu MCP installation for xz01 workflow](references/lanhu-mcp-installation.md)
+- [xz01 dual-end list pagination rule](references/session-2026-05-18-dual-end-list-pagination.md)
+- [Pagination data-volume validation correction](references/session-2026-05-18-pagination-data-volume-validation.md)
+- [Dual-end top navigation dynamic menu rule](references/session-2026-05-18-dual-end-nav-dynamic-menu.md)
+- [OpenClaw temporary artifact boundary](references/session-2026-05-18-openclaw-temp-artifact-boundary.md)
+- [Full-page visual QA correction](references/session-2026-05-18-fullpage-visual-qa-correction.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, checklists, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include role-specific boundaries, validation gates, file path constraints, and packaging criteria.]
+
+## Skill Version(s):
+
+1.0.44 (source: SKILL.md frontmatter, artifact/skill.json, artifact/_meta.json, evidence release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

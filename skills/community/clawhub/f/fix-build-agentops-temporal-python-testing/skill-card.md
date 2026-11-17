@@ -1,45 +1,60 @@
-## Description: <br>
-Test Temporal workflows with pytest, time-skipping, and mocking strategies. Covers unit testing, integration testing, replay testing, and local development setup. Use when implementing Temporal workflow tests or debugging test failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test Temporal workflows with pytest, time-skipping, mocked activities, replay testing, and local development setup.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and debug Temporal Python workflow tests, including time-skipping unit tests, mocked integration tests, replay determinism checks, and local pytest setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Replay testing can expose sensitive production workflow histories when histories are exported into local files or CI artifacts. <br>
-Mitigation: Use sanitized or non-production histories where possible; export production histories only with explicit authorization, least-privilege read-only access, redaction or minimization, protected storage, short retention, and controls that prevent raw histories from being committed or uploaded as CI artifacts. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and debug Temporal Python workflow tests across unit, integration, replay, local development, and CI scenarios.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wu-uk/fix-build-agentops-temporal-python-testing) <br>
-- [Temporal Python SDK Testing](https://docs.temporal.io/develop/python/testing-suite) <br>
-- [Temporal Testing Patterns](https://github.com/temporalio/temporal/blob/main/docs/development/testing.md) <br>
-- [Temporal Python Samples](https://github.com/temporalio/samples-python) <br>
-- [Unit Testing Resource](resources/unit-testing.md) <br>
-- [Integration Testing Resource](resources/integration-testing.md) <br>
-- [Replay Testing Resource](resources/replay-testing.md) <br>
-- [Local Development Resource](resources/local-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, YAML, INI, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes progressive disclosure resources for unit, integration, replay, and local setup workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Replay testing examples may encourage exporting production workflow histories into local or CI environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized or synthetic histories where possible, require explicit approval before exporting production histories, and prevent history files from entering logs, caches, or build artifacts.
+
+Risk: Local setup examples include credentials, services, dependency images, and destructive reset commands.
+
+Mitigation: Restrict credentials, pin dependencies and container images, bind services to localhost, and treat docker-compose down -v as a destructive operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wu-uk/skills/fix-build-agentops-temporal-python-testing)
+- [Temporal Python SDK Testing Suite](https://docs.temporal.io/develop/python/testing-suite)
+- [Temporal Testing Patterns](https://github.com/temporalio/temporal/blob/main/docs/development/testing.md)
+- [Temporal Python Samples](https://github.com/temporalio/samples-python)
+- [Unit Testing Resource](artifact/resources/unit-testing.md)
+- [Integration Testing Resource](artifact/resources/integration-testing.md)
+- [Replay Testing Resource](artifact/resources/replay-testing.md)
+- [Local Setup Resource](artifact/resources/local-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python, YAML, INI, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples require adaptation to the user's Temporal workflows and environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

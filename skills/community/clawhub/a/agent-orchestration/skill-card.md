@@ -1,43 +1,60 @@
-## Description: <br>
-Helps agents structure prompts, coordinate sub-agents, track active work, and capture learnings from outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master the art of spawning and managing sub-agents. Write prompts that actually work, track running agents, and learn from every outcome. Part of the Hal Stack.
 
-## Publisher: <br>
-[clawdnw](https://clawhub.ai/user/clawdnw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawdnw](https://clawhub.ai/user/clawdnw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to design structured prompts for builder, research, and review agents, coordinate active sub-agent work, and record learnings after completion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broadly scoped sub-agent prompts can lead to unintended writes, command use, installs, or long-running work. <br>
-Mitigation: Set clear write locations, command and install limits, time budgets, and approval rules for destructive or sensitive actions before using the skill. <br>
-Risk: Local tracking notes may expose secrets, credentials, personal data, or confidential project details. <br>
-Mitigation: Do not record secrets, credentials, personal data, or confidential project information in active-agents.md or LEARNINGS.md. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawdnw/agent-orchestration) <br>
-- [Active agents tracking template](artifact/examples/active-agents.md) <br>
-- [Builder agent prompt template](artifact/templates/builder-agent.md) <br>
-- [Research agent prompt template](artifact/templates/research-agent.md) <br>
-- [Review agent prompt template](artifact/templates/review-agent.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure prompts for research, build, and review agents, track active sub-agents, and capture learnings from agent outcomes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance and reusable prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; server security evidence reports no hidden execution, credential use, exfiltration, or destructive behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Builder and orchestration prompts can lead agents to create files, run commands, or affect external systems outside the user's intended scope.
+
+Mitigation: Use narrow output paths, explicit technical constraints, and manual confirmation before running commands that could modify important files or external systems.
+
+Risk: Agent tracking and learning notes can persist sensitive prompt details if users record secrets or confidential context.
+
+Mitigation: Avoid recording secrets or confidential details in tracking logs, and review persistent notes before sharing or publishing them.
+
+Risk: Session-management guidance includes investigating stalled agents and potentially killing running agents.
+
+Mitigation: Manually confirm the target session and expected impact before stopping an agent or restarting work.
+
+## Reference(s):
+
+- [Agent Orchestration on ClawHub](https://clawhub.ai/clawdnw/skills/agent-orchestration)
+- [Builder Agent Template](artifact/templates/builder-agent.md)
+- [Research Agent Template](artifact/templates/research-agent.md)
+- [Review Agent Template](artifact/templates/review-agent.md)
+- [Active Agents Tracking Template](artifact/examples/active-agents.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prompt templates, checklists, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are structured for direct agent prompting and workspace tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

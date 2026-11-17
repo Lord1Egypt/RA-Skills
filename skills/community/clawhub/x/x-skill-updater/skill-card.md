@@ -1,45 +1,55 @@
-## Description: <br>
-Checks installed OpenClaw skills for updates, reports available upgrades, and supports user-approved upgrades from configured SkillHub and ClawHub sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks OpenClaw skills for updates, supports weekly scheduled or manual checks, and notifies the user before running an upgrade.
 
-## Publisher: <br>
-[snlcc](https://clawhub.ai/user/snlcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snlcc](https://clawhub.ai/user/snlcc)
 
-## Use Case: <br>
-OpenClaw users and workspace administrators use this skill to scan installed and workspace skills, compare local metadata with configured registries, review a generated update report, and run upgrades only after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The updater reads installed and workspace skill metadata and writes local report and source-tracking files. <br>
-Mitigation: Use it only in OpenClaw environments where local skill metadata scanning and report generation are expected. <br>
-Risk: Approved upgrades can replace installed skill code from configured external SkillHub or ClawHub sources. <br>
-Mitigation: Review the generated report before approving upgrades, and be especially cautious with bulk upgrades. <br>
-Risk: Incorrect source configuration can lead to checking or upgrading the wrong skill source. <br>
-Mitigation: Keep skill-sources.json accurate and confirm unknown sources through the reply workflow before running upgrades. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to scan installed skills, compare local metadata against SkillHub or ClawHub registry data, review generated update reports, and run approved skill upgrades.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snlcc/x-skill-updater) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/snlcc) <br>
-- [SkillHub Registry Index](https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/skills.json) <br>
-- [ClawHub Skill API](https://clawhub.ai/api/skill?slug=) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local update reports and source-tracking JSON files; upgrade commands depend on configured external skill sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The updater can inspect installed OpenClaw skills and trigger remote updates through external registries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted OpenClaw environments and review configured sources, publishers, versions, and changelogs before accepting an update.
+
+Risk: Bulk update mode can install multiple remote skill updates in one run without an enforced integrity check.
+
+Mitigation: Prefer per-skill updates for normal use; reserve --all for reviewed source configurations and scan updated skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snlcc/skills/x-skill-updater)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local update reports and source-tracking JSON files when its scripts are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; frontmatter lists v1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

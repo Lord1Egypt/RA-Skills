@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAF8F5" />
+  <rect x="0" y="0" width="1280" height="6" fill="#CFAC6A" />
+  <rect x="60" y="25" width="50" height="50" rx="6" fill="#1A2744" />
+  <text x="85" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#CFAC6A">{{CHAPTER_NUM}}</text>
+  <text x="130" y="58" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="28" font-weight="bold" fill="#1A2744">{{PAGE_TITLE}}</text>
+  <line x1="60" y1="95" x2="1220" y2="95" stroke="#CFAC6A" stroke-width="1" stroke-dasharray="6,4" stroke-opacity="0.5" />
+  <rect x="60" y="110" width="1160" height="550" fill="#FFFFFF" rx="8" stroke="#E5E0D5" stroke-width="1" />
+  <rect x="60" y="110" width="1160" height="4" fill="#CFAC6A" fill-opacity="0.4" rx="2" />
+  <text x="640" y="375" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#CCCCCC">{{CONTENT_AREA}}</text>
+  <text x="1220" y="700" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF">{{PAGE_NUM}}</text>
+</svg>

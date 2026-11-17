@@ -1,17 +1,17 @@
-# PWA 实现
+# PWA implementation
 
-Frontend Craft skill for PWA 实现.
+Add installability, service workers, offline caching, and update behavior to a web app.
 
 ## Skill
 
 - ID: `fec-pwa-implementation`
 - Category: `implementation-capability`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-pwa-implementation/SKILL.md`
 
 ## Description
 
-Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, 离线, Service Worker.
+Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, offline, Service Worker.
 
 ## Usage
 

@@ -1,0 +1,16 @@
+# 论衡流程真源 · 第二部分：节点 t4_analysis（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t4_analysis
+  phase: "Phase 2"
+  phase_seq: 7
+  input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+  kind: agent
+  agent: T4
+  role: T4
+  write_authority: executor
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  output: analysis/分析大纲.md + analysis/T5-写作上下文.md   # T5 写作上下文包由 T4 产出（v2.12.37 审计 P1-1：原仅散落角色卡/派发话术，未入真源）
+  output_chars_max: 12000   # 写盘上限（回传另受平台 4096 字符硬上限约束）
+  next: phase2_5_outline

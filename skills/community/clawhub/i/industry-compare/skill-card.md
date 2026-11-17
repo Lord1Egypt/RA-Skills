@@ -1,44 +1,57 @@
-## Description: <br>
-Industry Compare helps compare financial metrics across companies in the same industry and assess industry position. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry Compare helps agents compare multiple companies in the same industry, assess industry position, analyze competitive advantages, and generate informational investment suggestions.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-Investors, analysts, and finance-focused developers use this skill to compare peer-company financial metrics, evaluate industry ranking, and generate competitive-position summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial comparisons and investment suggestions may be incomplete, stale, or unsuitable for a user's situation. <br>
-Mitigation: Treat outputs as analysis support and verify data, assumptions, and conclusions before making investment or business decisions. <br>
-Risk: Use may involve package installation or shell command execution. <br>
-Mitigation: Review commands before execution and avoid granting write access or credentials unless they are required for the intended workflow. <br>
+## Use Case:
 
+External users, developers, and finance-oriented agents use this skill to compare peer companies, evaluate industry rankings, summarize competitive advantages, and prepare informational market-analysis output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alsoforever/industry-compare) <br>
-- [Publisher Profile](https://clawhub.ai/user/alsoforever) <br>
-- [Industry Analysis Framework](https://aigogoai.com/knowledge/industry-analysis) <br>
-- [Porter Five Forces](https://aigogoai.com/knowledge/porter-five-forces) <br>
-- [Competitive Advantage Analysis](https://aigogoai.com/knowledge/competitive-advantage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require python3, pip, and optional TUSHARE_TOKEN configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Investment suggestions, rankings, or comparison metrics may be incomplete, stale, or unsuitable for a user's specific financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and verify market data, assumptions, and conclusions independently before making decisions.
+
+Risk: The optional TUSHARE_TOKEN environment variable is a credential that may expose access to a third-party data service if mishandled.
+
+Mitigation: Provide a Tushare token only when the intended skill behavior requires it and store, scope, and rotate the token according to local credential-management practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alsoforever/skills/industry-compare)
+- [Project homepage](https://aigogoai.com)
+- [Industry analysis framework](https://aigogoai.com/knowledge/industry-analysis)
+- [Porter's Five Forces model](https://aigogoai.com/knowledge/porter-five-forces)
+- [Competitive advantage analysis](https://aigogoai.com/knowledge/competitive-advantage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus terminal text output from the comparison script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language finance comparison output; examples include industry rankings, valuation metrics, profitability metrics, growth metrics, and competitive advantage summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Connect to remote servers over SSH, read sibling config.yaml to understand service metadata and log locations, download only required log snippets to local temp for analysis, and diagnose issues from evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to remote servers over SSH, read sibling config.yaml to understand service metadata and log locations, download only required log snippets to local temp for analysis, and diagnose issues from evidence.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to troubleshoot remote service incidents by using configured service metadata and log paths to scope SSH checks, retrieve minimal log snippets, and produce an evidence-based diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The example SSH configuration uses root and password-style credential fields. <br>
-Mitigation: Replace example credentials with a least-privileged account and a secure secret source such as SSH keys, environment variables, or a vault before installation. <br>
-Risk: Downloaded logs are kept locally by default and may contain sensitive operational data. <br>
-Mitigation: Limit collection to the smallest useful snippets, protect local temp files, and delete or archive them according to the incident handling policy after troubleshooting. <br>
-Risk: SSH-based investigation can inspect the wrong host, service, log path, or time window if configuration is stale. <br>
-Mitigation: Confirm the target host, service, log files, and time window before running remote checks or copying logs. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to troubleshoot remote service issues by scoping incidents, checking configured log locations over SSH, downloading minimal log snippets, and reporting evidence-backed diagnoses.
 
-## Reference(s): <br>
-- [Reference Notes](artifact/reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hgvgfgvh/server-log-analysis-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown diagnosis with evidence, confidence, and suggested next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed SSH log-check commands and references to locally downloaded log snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The default configuration uses root SSH access and an inline password field.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the sample connection with a least-privilege SSH account and use a secret manager, environment reference, or key-based authentication before installation.
+
+Risk: Downloaded log snippets may contain sensitive operational or user data and are preserved by default.
+
+Mitigation: Store snippets in a restricted per-session location and change retention so downloads are deleted by default unless preservation is explicitly required.
+
+Risk: Remote log investigation can fetch more data than necessary if the scope is too broad.
+
+Mitigation: Use the documented workflow to define a target service, host, time window, and candidate files, then prefer remote filtering or tail output before downloading logs.
+
+## Reference(s):
+
+- [Reference Notes](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/server-log-analysis-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnosis with evidence, confidence, suggested next steps, and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local log snippet files under the configured temporary directory during investigations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

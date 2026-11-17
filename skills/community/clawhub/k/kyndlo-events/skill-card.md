@@ -1,43 +1,58 @@
-## Description: <br>
-Kyndlo Events guides an agent through Kyndlo campaign task selection, venue research, event creation, image upload, and event validation workflows using the gokyn CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kyndlo Events guides an agent through Kyndlo campaign-based event creation, venue research, duplicate checks, AI image generation, and event validation using the Kyndlo CLI workflow.
 
-## Publisher: <br>
-[pirumpi](https://clawhub.ai/user/pirumpi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pirumpi](https://clawhub.ai/user/pirumpi)
 
-## Use Case: <br>
-External users and operators use this skill to create Kyndlo events from campaign tasks, research matching venues, attach images, and validate existing event records in controlled batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can use the configured Kyndlo token to claim tasks, create events, submit validations, and access broader event-management commands. <br>
-Mitigation: Use the least-privileged token available, start with small batches, and review planned actions before confirming the workflow. <br>
-Risk: Administrative commands such as update, delete, or campaign seeding can change production event or campaign data. <br>
-Mitigation: Avoid those commands unless the user explicitly requests the administrative change and has reviewed the target records. <br>
-Risk: Venue research and validation depend on current place data, so stale or incorrect venue details could produce inaccurate event records. <br>
-Mitigation: Use the documented duplicate, county, hours, and validation checks, and pause after each batch to review results. <br>
+## Use Case:
 
+External developers and operators managing Kyndlo campaigns use this skill to create and validate event records from campaign tasks, including venue discovery, duplicate checks, recurring event setup, image attachment, and batch reporting.
 
-## Reference(s): <br>
-- [Kyndlo Events on ClawHub](https://clawhub.ai/pirumpi/kyndlo-events) <br>
-- [gokyn CLI homepage](https://github.com/kyndlo/gokyn-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with CLI commands and JSON-aware summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke gokyn and goplaces commands that create, update, validate, or report event data after workflow confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill gives an agent broad live-system authority through Kyndlo CLI workflows, including admin, update, and delete examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the Kyndlo CLI package, the Kyndlo dashboard administrators, and the token permissions; avoid admin, update, and delete commands unless those live changes are intended.
+
+Risk: Remote dashboard rules influence event creation and may be under-scoped or change between batches.
+
+Mitigation: Review dashboard rules before each batch and pause for human confirmation before creating events.
+
+Risk: API tokens or other secrets could be exposed if pasted into chat or logs.
+
+Mitigation: Use least-privilege tokens and avoid pasting secrets into chat, command transcripts, or logs.
+
+## Reference(s):
+
+- [Kyndlo Events ClawHub release](https://clawhub.ai/pirumpi/skills/kyndlo-events)
+- [Kyndlo CLI homepage](https://github.com/kyndlo/gokyn-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with shell command blocks and JSON-oriented CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KYNDLO_API_TOKEN, node, and gokyn; venue discovery uses goplaces and GOOGLE_PLACES_API_KEY when creating events.]
+
+## Skill Version(s):
+
+3.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

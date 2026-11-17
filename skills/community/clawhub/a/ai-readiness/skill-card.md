@@ -1,43 +1,62 @@
-## Description: <br>
-Generates a complete set of AI readiness files for any website from a single command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a complete set of AI readiness files for any website from a single command.
 
-## Publisher: <br>
-[russwittmann](https://clawhub.ai/user/russwittmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[russwittmann](https://clawhub.ai/user/russwittmann)
 
-## Use Case: <br>
-Developers, site owners, and marketing teams use this skill to research a website and generate deployable AI-readiness files such as ai.txt, llms.txt, schema, RAG indexes, and deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated website claims, URLs, crawler rules, policy text, schema, or AI-readiness files may be inaccurate if the research results are stale, incomplete, or misinterpreted. <br>
-Mitigation: Review every generated file before publishing, with particular attention to robots.txt, policy text, schema, and claims derived from web research. <br>
-Risk: The skill creates deployable files in the workspace that may affect how AI systems and crawlers interpret a website if published without review. <br>
-Mitigation: Publish only after confirming the generated files match the site's intended crawler permissions, training-data policy, brand facts, and deployment location. <br>
+## Use Case:
 
+Developers, marketers, and site owners use this skill to research a website and generate AI-readiness files that help AI assistants, search systems, and RAG pipelines understand and represent the site.
 
-## Reference(s): <br>
-- [AI Readiness File Specifications](references/file-specs.md) <br>
-- [AI Readiness documentation](https://ai.silverbackmarketing.com) <br>
-- [@silverbackmarketing/ai-readiness npm package](https://www.npmjs.com/package/@silverbackmarketing/ai-readiness) <br>
-- [llms.txt standard](https://llmstxt.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [A workspace folder containing text, Markdown, JSON, JSONL, XML, and configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an 18-file AI-readiness set for the target domain, including ai.txt, llms.txt, llms-full.txt, ai-sitemap.xml, schema files, RAG indexes, policy text, a deployment checklist, README, and robots.txt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad activation wording can cause the skill to run during loosely related AI crawler, llms.txt, RAG indexing, or AI-search requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target domain and intended file generation task before execution, especially when the user is asking a general question rather than requesting generated files.
+
+Risk: Unpinned npx installer and MCP usage can introduce supply-chain or hosted-service trust risk.
+
+Mitigation: Prefer manual installation from reviewed files or pin and inspect npm packages before running installer commands; use the hosted MCP only with site data you are comfortable sending to that service.
+
+Risk: The workflow creates many files in the workspace and produces content intended for deployment to a website root.
+
+Mitigation: Run the skill in a controlled workspace and review generated files, URLs, policies, and crawler directives before deploying them publicly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/russwittmann/skills/ai-readiness)
+- [AI Readiness Documentation](https://ai.silverbackmarketing.com)
+- [AI Readiness MCP Documentation](https://ai.silverbackmarketing.com/#mcp)
+- [npm Package](https://www.npmjs.com/package/@silverbackmarketing/ai-readiness)
+- [llmstxt.org](https://llmstxt.org/)
+- [AI Readiness File Specifications](references/file-specs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, XML, JSONL, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Workspace folder containing 18 website AI-readiness files plus a concise completion summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated set includes deployable web-root files, project documentation, and a JSONL file derived from rag-index.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

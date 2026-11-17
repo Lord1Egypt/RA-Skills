@@ -1,47 +1,66 @@
-## Description: <br>
-Analyze any stock using Serenity's supply-chain bottleneck investment framework. 5-layer pyramid (macro→bottleneck→company→position→execution). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze any stock using Serenity's supply-chain bottleneck investment framework, including macro demand, bottleneck mapping, company screening, position sizing, execution planning, risk factors, and online data verification.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-External users and financial-research agents use this skill to produce structured stock-analysis reports that apply Serenity's five-layer supply-chain bottleneck framework to thesis evaluation, position sizing, execution planning, and risk factors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces high-risk stock-analysis and trading guidance that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational research, independently verify facts, and consider risk tolerance, liquidity, and tax impacts before acting. <br>
-Risk: The artifact includes position sizing, day-trading, and stop-loss style guidance that can lead to large losses in volatile markets. <br>
-Mitigation: Require explicit user control for any trading decision and avoid connecting outputs to brokerage or automated trading actions. <br>
-Risk: Self-reported performance examples and supply-chain claims may be incomplete, stale, or market-specific. <br>
-Mitigation: Validate current company filings, earnings reports, supply-chain news, and thesis checkpoints before relying on an analysis. <br>
+## Use Case:
 
+External users and analysts use this skill to apply Serenity's supply-chain bottleneck framework to stocks, sectors, or industries. It generates research-oriented investment analysis with position-sizing and thesis-validation prompts that should be independently verified before any real-money decision.
 
-## Reference(s): <br>
-- [Serenity framework homepage](https://github.com/kooui/serenity-framework) <br>
-- [Serenity X profile](https://x.com/aleabitoreddit) <br>
-- [Methodology](docs/methodology.md) <br>
-- [Serenity Background](docs/serenity_background.md) <br>
-- [Supply Chain Bottleneck Analysis Template](examples/template.md) <br>
-- [AAOI Case Study](examples/aaoi_case_study.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes macro demand, bottleneck map, company screening, position sizing, execution plan, and risk factors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can produce concrete trading, position-sizing, margin, and day-trading guidance that users might mistake for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research prompts only, require independent verification, and avoid acting on recommendations without qualified financial review.
+
+Risk: The skill may trigger web or financial-data lookups for current market, policy, or supply-chain information.
+
+Mitigation: Require explicit user consent before external lookups and clearly label data sources, retrieval times, and uncertainty.
+
+Risk: The framework emphasizes volatile small-cap, semiconductor, and geopolitically sensitive supply-chain names, where liquidity, drawdowns, and policy shifts can materially affect outcomes.
+
+Mitigation: Highlight liquidity, leverage, policy, customer concentration, and thesis-break risks in every generated report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/serenity-framework)
+- [Project homepage](https://github.com/kooui/serenity-framework)
+- [Serenity X profile](https://x.com/aleabitoreddit)
+- [Methodology](docs/methodology.md)
+- [Serenity Background](docs/serenity_background.md)
+- [Online Analysis Template](references/online_analysis_template.md)
+- [Serenity Deep Analysis Report](references/serenity_deep_analysis_report.md)
+- [SMM](https://www.smm.cn/)
+- [a16z](https://a16z.com/)
+- [PitchBook](https://pitchbook.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include supply-chain maps, company screening, position-sizing suggestions, thesis checkpoints, risk factors, and cited online data verification.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

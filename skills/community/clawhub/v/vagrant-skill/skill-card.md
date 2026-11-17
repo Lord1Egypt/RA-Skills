@@ -1,50 +1,66 @@
-## Description: <br>
-Disposable VMs for safe testing with sudo access, Docker, Go, nested KVM, and repeatable destroy-and-recreate workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and operates disposable Vagrant Ubuntu VMs so agents and developers can test privileged commands, Docker workloads, networking, systemd services, and project builds away from the host.
 
-## Publisher: <br>
-[jpoley](https://clawhub.ai/user/jpoley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpoley](https://clawhub.ai/user/jpoley)
 
-## Use Case: <br>
-Developers and agents use this skill to create disposable Vagrant-based Ubuntu VMs for isolated build, test, networking, Docker, systemd, and privileged experimentation without modifying the host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated Vagrantfile template may forward the user's SSH agent into a VM used for risky experimentation. <br>
-Mitigation: Review the generated Vagrantfile before use and disable SSH agent forwarding unless it is explicitly required. <br>
-Risk: Credentials, project files, or other host data copied or forwarded into the VM can be accessed by code running inside the VM. <br>
-Mitigation: Treat synced project data and forwarded credentials as available to VM workloads, and limit what is synced or forwarded for untrusted tests. <br>
-Risk: Destroying the VM removes VM-local state and work products. <br>
-Mitigation: Copy needed VM-local work back to the project or another durable location before running vagrant destroy -f. <br>
-Risk: The skill can propose repository infrastructure changes such as Vagrantfiles, .gitignore updates, and provisioning scripts. <br>
-Mitigation: Review and approve generated repository file changes before committing or relying on them. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to create disposable Vagrant VMs for build, test, Docker, networking, firewall, systemd, and KVM-oriented experimentation. It is useful when work needs root access or isolation from the host environment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jpoley/vagrant-skill) <br>
-- [Platform Setup Reference](references/platform-setup.md) <br>
-- [VM Contents Reference](references/vm-contents.md) <br>
-- [microvm-sandbox to daax: Security Layer Integration](docs/microvm-sandbox-for-daax.md) <br>
-- [microvm-sandbox to nanofuse: Reuse Analysis](docs/microvm-sandbox-vs-nanofuse.md) <br>
-- [Agent Skills standard](https://agentskills.io) <br>
-- [bats-core](https://github.com/bats-core/bats-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify a Vagrantfile, .gitignore entries, provisioning scripts, and commands to run inside a VM.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.4 (source: server release metadata and package.json) <br>
+Risk: Forwarding the host SSH agent into the VM can expose host credentials to code running inside the sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable SSH agent forwarding by default and only enable it for trusted workflows that require it.
+
+Risk: Mutable installer and plugin sources can change between runs, which may alter the VM contents unexpectedly.
+
+Mitigation: Pin installer, package, and provider plugin versions and prefer verified downloads with stable checksums.
+
+Risk: Checksum verification that continues when expected hashes are unavailable weakens supply-chain assurance.
+
+Mitigation: Make checksum verification fail closed for downloaded toolchains and document any deliberate exception.
+
+Risk: The isolation posture can be weaker than the skill's safety wording suggests when host credentials or synced project data are exposed to the VM.
+
+Mitigation: Review generated Vagrantfiles before use, avoid passing host secrets into the VM, and destroy disposable VMs after risky testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jpoley/skills/vagrant-skill)
+- [Platform Setup Reference](references/platform-setup.md)
+- [VM Contents Reference](references/vm-contents.md)
+- [microvm-sandbox to daax: Security Layer Integration](docs/microvm-sandbox-for-daax.md)
+- [microvm-sandbox to nanofuse: Reuse Analysis](docs/microvm-sandbox-vs-nanofuse.md)
+- [Agent Skills Standard](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and Vagrantfile or provisioning snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for a local Vagrant workflow and depend on an installed provider such as Parallels, libvirt, or VirtualBox.]
+
+## Skill Version(s):
+
+0.7.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

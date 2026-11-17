@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes fixed-camera emergency shelter video to detect visible acute stress behavior signals such as stupor, tremor, unresponsiveness, and hypervigilance, then produces psychological crisis alerts for authorized human responders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes fixed-camera video from emergency shelters for visible behavior associated with acute stress and returns alerts for review by on-site psychological rescue teams.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External emergency-response teams and authorized psychological-rescue staff use this skill to analyze shelter or temporary-resettlement video, flag visible acute stress behaviors, locate affected people by zone, and generate reviewable crisis alerts with PFA-oriented response guidance. It should support human triage and responder dispatch, not provide clinical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive emergency-shelter video to an external service. <br>
-Mitigation: Install only in an authorized emergency-response setting with clear legal authority, notice or consent procedures, and a data-processing agreement that covers video, report, retention, and access controls. <br>
-Risk: The skill silently creates or reuses persistent identities and tokens, and history queries may expose prior reports. <br>
-Mitigation: Confirm local token storage, automatic account creation, report retention, and history-query permissions before deployment; restrict access to trained and authorized personnel. <br>
-Risk: Automated crisis alerts can be wrong or misused as clinical conclusions. <br>
-Mitigation: Require human review before escalation or dispatch decisions, present results as visual behavior observations rather than ASD/PTSD diagnoses, and use qualified responders following PFA principles. <br>
+## Use Case:
 
+Authorized emergency command centers and licensed psychological rescue teams can use this skill to review fixed-camera shelter video for visible stress-related behavior and prioritize in-person checks. It provides behavioral observations and response suggestions, not clinical diagnoses.
 
-## Reference(s): <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-trauma-stress-behavior-detection-analysis) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown and JSON-formatted structured analysis reports with observed behavior signals, crisis levels, zone/location markers, recommended response actions, and report links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Historical-report queries can be rendered as Markdown tables; optional file output can save the generated report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive shelter video may be uploaded for external processing; identity and credential handling, including credentials sent to caller-selected destinations, is also reported as a concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an authorized emergency-response deployment, confirm service destinations and access controls, restrict footage to rescue use, and delete raw video within seven days.
+
+Risk: The security scan is partial and reports concerns that are not clearly justified by the stated analysis purpose; it does not establish the skill's full behavior or malicious intent.
+
+Mitigation: Review the deployment and data flow before use. Treat alerts as behavioral observations, and require licensed responders to verify high-risk findings before dispatch; do not use them as diagnoses.
+
+## Reference(s):
+
+- [API interface documentation](artifact/references/api_doc.md)
+- [Skill introduction demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured behavioral analysis reports with alerts, location cues, response suggestions, and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Observational alerts require human review and are not clinical diagnoses.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

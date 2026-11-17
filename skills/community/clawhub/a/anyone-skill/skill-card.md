@@ -1,43 +1,64 @@
-## Description: <br>
-Distill anyone into a runnable OpenPersona skill pack for real or fictional, personal or public, living or historical subjects by collecting chat logs, documents, and public content, extracting a 4-dimension persona, and generating a portable OpenPersona pack via skills/open-persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill anyone into a runnable OpenPersona skill pack, using chat logs, documents, and public content to extract persona dimensions and generate a portable OpenPersona pack.
 
-## Publisher: <br>
-[neiljo-gy](https://clawhub.ai/user/neiljo-gy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neiljo-gy](https://clawhub.ai/user/neiljo-gy)
 
-## Use Case: <br>
-Developers and agent users use this skill to collect source material, extract persona traits, and generate an OpenPersona-compatible skill pack. It is intended for persona distillation workflows that may involve private files, public sources, or fictional and historical material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can transform private chats, diaries, emails, and social archives into persistent persona files and training datasets. <br>
-Mitigation: Use it only for yourself or with clear consent, redact sensitive details before processing, and delete raw data, persona-knowledge stores, snapshots, and exports when no longer needed. <br>
-Risk: Private third-party conversations or files may be included in persona generation without adequate consent. <br>
-Mitigation: Avoid using private third-party material unless authorized, treat messages from others as context only, and review generated persona and training files before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to collect authorized source material, extract a structured persona profile, and generate a runnable OpenPersona skill pack for a real, fictional, historical, or synthetic subject.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neiljo-gy/anyone-skill) <br>
-- [Ethics & Copyright Reference](references/ethics.md) <br>
-- [Output Format Reference](references/output-format.md) <br>
-- [Training Data Export](references/training-export.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, JSONL, Python and shell command examples, and generated OpenPersona skill files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce local persona files, training datasets, raw data snapshots, and OpenPersona-compatible skill pack configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server evidence and frontmatter) <br>
+Risk: The skill handles sensitive private communications and persona source files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the operator is authorized to process, get consent for private third-party communications, and review collected material before creating a persona pack.
+
+Risk: The skill can build personas that could be used for deception, harassment, or impersonation.
+
+Mitigation: Apply the artifact's ethics rules: require personal-use confirmation for people the user knows, add disclaimers for public figures, and avoid deceptive deployment.
+
+Risk: The workflow may run local shell commands and live npx OpenPersona commands.
+
+Mitigation: Run in a restricted working directory and pin or preinstall OpenPersona instead of relying on live npx execution.
+
+Risk: Rollback, update, or init operations with untrusted slug or version values can affect local skill files.
+
+Mitigation: Do not use those commands with untrusted values until path validation is added; review target paths before execution.
+
+## Reference(s):
+
+- [Ethics & Copyright Reference](references/ethics.md)
+- [Output Format Reference](references/output-format.md)
+- [Training Data Export](references/training-export.md)
+- [ClawHub skill page](https://clawhub.ai/neiljo-gy/skills/anyone-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, generated skill-pack files, training-data files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include persona.json, persona.md, training data, metadata, and an OpenPersona-compatible skill pack.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

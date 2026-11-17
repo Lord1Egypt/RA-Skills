@@ -8,39 +8,9 @@ Usage: python3 fetch-bodies.py
 """
 import json, base64, re, sys, os
 
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
+from briefed_common import get_gmail_service, write_private_json
 
 STORIES_FILE = os.path.join(os.path.dirname(__file__), '..', '..', 'newsletter-today.json')
-TOKEN_FILE = os.environ.get('BRIEFED_GMAIL_TOKEN_FILE', os.path.expanduser('~/.openclaw/workspace/briefed-gmail-token.json'))
-CLIENT_SECRET_FILE = os.environ.get('BRIEFED_GMAIL_CLIENT_SECRET', os.path.expanduser('~/client_secret.json'))
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-
-
-def get_gmail_service():
-    creds = None
-    if os.path.exists(TOKEN_FILE):
-        creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
-
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            if not os.path.exists(CLIENT_SECRET_FILE):
-                raise RuntimeError(
-                    f"Missing OAuth client file: {CLIENT_SECRET_FILE}\n"
-                    "Set BRIEFED_GMAIL_CLIENT_SECRET to your Google OAuth client JSON."
-                )
-            flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
-            creds = flow.run_local_server(port=0, open_browser=True)
-
-        os.makedirs(os.path.dirname(TOKEN_FILE), exist_ok=True)
-        with open(TOKEN_FILE, 'w') as token:
-            token.write(creds.to_json())
-
-    return build('gmail', 'v1', credentials=creds, cache_discovery=False)
 
 
 def b64url_decode(data):
@@ -122,8 +92,7 @@ def main():
         else:
             print('⚠️  no HTML found')
 
-    with open(STORIES_FILE, 'w') as f:
-        json.dump(data, f, indent=2)
+    write_private_json(STORIES_FILE, data)
 
     print(f'\nDone. Updated {updated} stories.')
 

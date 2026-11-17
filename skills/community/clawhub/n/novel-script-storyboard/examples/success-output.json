@@ -1,0 +1,82 @@
+{
+  "title": "雨夜的信",
+  "source_type": "novel_or_screenplay_excerpt",
+  "duration_seconds": 15,
+  "characters": [
+    {
+      "name": "林舟",
+      "role": "推动当前事件的视角人物",
+      "goal": "原文只写明收起信封；人物内心目标未说明",
+      "conflict": "信封来历未明；原文未说明这是否构成阻碍",
+      "relationship": "原文未说明",
+      "facts": [
+        "夜里，林舟在车站等末班车"
+      ],
+      "source_anchor": "夜里，林舟在车站等末班车"
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "location": "车站（具体区域未说明）",
+      "time": "夜里",
+      "purpose": "按原文呈现等车、发现信封、收起信封的动作；不推断后续意图",
+      "characters": [
+        "林舟"
+      ],
+      "actions": [
+        "夜里，林舟在车站等末班车。",
+        "他发现长椅下有一个湿透的信封，封面写着自己的名字。",
+        "远处列车进站，林舟抬头看向站台，随后把信收进外套。"
+      ],
+      "dialogue": [],
+      "source_anchor": "夜里，林舟在车站等末班车",
+      "shots": [
+        {
+          "shot_id": "S01-01",
+          "duration_seconds": 4,
+          "framing": "远景",
+          "camera": "固定机位",
+          "visual": "夜色中的车站候车区，林舟独自等候末班车；长椅和站台进入画面。",
+          "action": "夜里，林舟在车站等末班车。",
+          "dialogue_or_voiceover": "",
+          "sound": "雨声与车站环境声",
+          "source_anchor": "夜里，林舟在车站等末班车。",
+          "creative_note": "候车区构图为镜头表达；具体区域原文未说明。"
+        },
+        {
+          "shot_id": "S01-02",
+          "duration_seconds": 6,
+          "framing": "特写",
+          "camera": "低机位缓慢推进",
+          "visual": "长椅下的湿信封占据前景，封面写着林舟的名字；人物停在画面边缘。",
+          "action": "林舟发现长椅下湿透的信封，看到封面上的名字。",
+          "dialogue_or_voiceover": "",
+          "sound": "雨声近景，压低车站环境声",
+          "source_anchor": "他发现长椅下有一个湿透的信封，封面写着自己的名字。",
+          "creative_note": "信封与姓名以原文为准；人物的发现过程用近景呈现。"
+        },
+        {
+          "shot_id": "S01-03",
+          "duration_seconds": 5,
+          "framing": "中近景",
+          "camera": "固定机位后轻微摇向站台",
+          "visual": "远处列车进站，林舟抬头看向站台，随后将信封收进外套。",
+          "action": "列车进站，林舟抬头看向站台并把信收进外套。",
+          "dialogue_or_voiceover": "",
+          "sound": "列车进站声由远及近，衣料摩擦声",
+          "source_anchor": "远处列车进站，林舟抬头看向站台，随后把信收进外套。",
+          "creative_note": "不推断林舟收信的动机。"
+        }
+      ],
+      "gaps": [
+        "原文未说明林舟为何收起信封，也未交代信封来历。"
+      ]
+    }
+  ],
+  "gaps": [
+    "这段原文没有对白。",
+    "人物收信的动机与信件来历未交代，未在分镜中补写为事实。"
+  ],
+  "status": "needs_review"
+}

@@ -1,40 +1,49 @@
-## Description: <br>
-Plan and track cryptographic key rotations for API keys, encryption keys, signing keys, and service credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and track cryptographic key rotations for API keys, encryption keys, signing keys, and service credentials. Inventory all keys, assess rotation urgency, generate rotation runbooks, and verify post-rotation health.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inventory credentials, prioritize rotations by age and exposure, draft rotation runbooks, and verify service health after key changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory commands may expose secret names, credential locations, or other sensitive operational details in generated reports. <br>
-Mitigation: Run discovery in an authorized environment, redact sensitive values before sharing output, and store reports in approved security tooling. <br>
-Risk: Rotation runbooks can affect production authentication if steps are executed without coordination. <br>
-Mitigation: Use change management, backups, staged rollout, service health checks, and rollback plans before revoking or replacing live credentials. <br>
+## Use Case:
 
+Developers, security engineers, and operations teams use this skill to inventory service credentials, rank rotation urgency, produce rotation runbooks, and verify post-rotation health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/key-rotation-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tabular reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance, inventory report templates, rotation runbooks, verification checklists, and reminder schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Inventory commands may expose real secret values in command output, chat, reports, tickets, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope scans to the intended repository, use redacted or metadata-only scanner output, avoid copying discovered secret values into shared systems, and rotate any exposed value as compromised.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/key-rotation-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include inventory reports, prioritized schedules, rotation runbooks, and verification steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

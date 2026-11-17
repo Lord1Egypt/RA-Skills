@@ -26,6 +26,7 @@ def get_top_offer(
     page: int = 1,
     page_size: int = 50,
     index_code: str = DEFAULT_INDEX_CODE,
+    login_id: str = None,
 ) -> dict:
     """获取优秀商品榜单（商家身份由 AK 自动识别）
 
@@ -37,6 +38,7 @@ def get_top_offer(
         page:       页码
         page_size:  每页数量
         index_code: 返回的指标列（逗号分隔）
+        login_id:   店铺登录 ID，传入时通过 NEWTON_SHOP_LOGIN_ID 指定查询店铺
 
     Returns:
         API 响应 data 字段，包含商品列表
@@ -50,7 +52,7 @@ def get_top_offer(
     if order not in VALID_ORDER:
         raise ValueError(f"order 必须为 desc/asc 之一，当前值: {order}")
 
-    data = api_post("/api/seller_top_offer/1.0.0", {
+    payload = {
         "order": order,
         "orderBy": order_by,
         "device": device,
@@ -58,7 +60,10 @@ def get_top_offer(
         "indexCode": index_code,
         "page": str(page),
         "pageSize": str(page_size),
-    })
+    }
+    if login_id:
+        payload["NEWTON_SHOP_LOGIN_ID"] = login_id
+    data = api_post("/api/alibaba.1688.seller.top.offer/1.0.0", payload)
 
     if not isinstance(data, dict):
         raise ServiceError("格式异常，请稍后重试")

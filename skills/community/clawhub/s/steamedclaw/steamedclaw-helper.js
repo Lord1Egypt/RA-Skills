@@ -5,7 +5,7 @@
  * SteamedClaw helper script — batches HTTP + file operations into single exec invocations.
  * Reduces LLM calls per game turn from 5-6 (individual web_fetch) to 1-2 (exec this script).
  *
- * @version 1.3.10
+ * @version 1.3.11
  *
  * Usage:
  *   node steamedclaw-helper.js whoami                registration check (never prints the API key)
@@ -38,6 +38,15 @@ const LONG_POLL_WAIT_MS = 15000;
 // (forced/constrained positions); above it only the count is shown and the
 // agent derives sequences from points + dice.
 const BACKGAMMON_LEGAL_LIST_MAX = 8;
+
+// Werewolf/discussion rendering (#537). Per-message display cap matches the
+// server ceiling (MAX_MESSAGE_LENGTH = 1000) so agents see full arguments, not
+// an 80-char clip. A total budget bounds the single status line: when the
+// debate exceeds it, the OLDEST messages drop off the front (the most recent
+// ones matter most for the pending vote) and the count of dropped messages is
+// noted, keeping the helper's one-compact-line-per-command design intact.
+const MAX_DISCUSSION_MSG_CHARS = 1000;
+const MAX_DISCUSSION_TOTAL_CHARS = 4000;
 
 const DATA_DIR = path.join(os.homedir(), '.config', 'steamedclaw-state');
 const LEGACY_DATA_DIR = path.join(os.homedir(), '.config', 'steamedclaw');
@@ -365,6 +374,30 @@ function formatGameOverLine(s, agentId, seq) {
   return enc ? `${line}\n${enc}` : line;
 }
 
+// Render the werewolf day-discussion status line (#537). Each message is shown
+// up to the server's 1000-char ceiling (was clipped to 80); the total line is
+// bounded by MAX_DISCUSSION_TOTAL_CHARS, dropping the oldest messages first and
+// prefixing `(+N earlier)` so the agent knows history was elided.
+function formatDiscussionLine(messages, seq) {
+  const all = (messages || []).map(
+    (m) => `${(m.from || '').slice(0, 8)}:"${(m.text || '').slice(0, MAX_DISCUSSION_MSG_CHARS)}"`,
+  );
+  // Walk newest→oldest, keeping messages until the budget is spent. Always keep
+  // at least the most recent one even if it alone is long (a single message is
+  // capped at 1000, well under the total budget).
+  const kept = [];
+  let total = 0;
+  for (let i = all.length - 1; i >= 0; i--) {
+    total += all[i].length + 3; // + " | " separator
+    if (total > MAX_DISCUSSION_TOTAL_CHARS && kept.length > 0) break;
+    kept.unshift(all[i]);
+  }
+  const omitted = all.length - kept.length;
+  const prefix = omitted > 0 ? `(+${omitted} earlier) ` : '';
+  const body = kept.join(' | ') || '(no messages yet)';
+  return `discussion seq:${seq} ${prefix}${body} fmt:{"type":"message","text":"..."} or {"type":"ready"}`;
+}
+
 // ── Commands ──────────────────────────────────────────────────────────────────
 
 // Registration check WITHOUT exposing the API key. SKILL.md Step 1 calls this
@@ -616,12 +649,7 @@ async function cmdStatus() {
   }
 
   if (s.status === 'discussion') {
-    const msgs = (s.messages || [])
-      .map((m) => `${m.from.slice(0, 8)}:"${m.text.slice(0, 80)}"`)
-      .join(' | ');
-    console.log(
-      `discussion seq:${seq} ${msgs || '(no messages yet)'} fmt:{"type":"message","text":"..."} or {"type":"ready"}`,
-    );
+    console.log(formatDiscussionLine(s.messages, seq));
     return;
   }
 
@@ -706,7 +734,7 @@ async function cmdMove(arg) {
 // Test seam: lets tools/steamedclaw-skill-tests require the formatters without
 // running the CLI. Inert on agent installs (the CLI path is the require.main
 // branch below).
-module.exports = { compactView, formatGameOverLine, ACTION_HINTS };
+module.exports = { compactView, formatGameOverLine, formatDiscussionLine, ACTION_HINTS };
 
 if (require.main === module) {
   const [, , cmd, ...args] = process.argv;

@@ -1,44 +1,62 @@
-## Description: <br>
-Memory Fusion Lite adds lightweight memory maintenance for OpenClaw users with Dreaming enabled, using incremental session scanning, a rolling seven-day memory zone, anti-recursion safeguards, and weekly memory governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Fusion Lite helps Dreaming users maintain a rolling seven-day memory update area by incrementally scanning OpenClaw session logs, filtering recursion, and supporting weekly memory governance.
 
-## Publisher: <br>
-[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm)
 
-## Use Case: <br>
-Developers and OpenClaw users who already run Dreaming use this skill to keep MEMORY.md fresher through daily incremental extraction and weekly promotion or pruning of recent memory entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw conversation history, which may contain sensitive personal, project, or credential-adjacent information. <br>
-Mitigation: Install only in workspaces where session-log processing is intended, confirm where summarization data is sent, and review generated memory entries before relying on them. <br>
-Risk: The skill updates local memory files and can prune or promote entries during scheduled runs. <br>
-Mitigation: Test manual commands first, keep backups of MEMORY.md, and verify weekly pruning behavior before enabling automatic schedules. <br>
+## Use Case:
 
+Developers and OpenClaw users with Dreaming enabled use this skill to keep MEMORY.md current through incremental daily extraction, a rolling recent-updates zone, anti-recursion safeguards, and weekly promotion or pruning of memory entries.
 
-## Reference(s): <br>
-- [A Prime Zone](references/a-prime-zone.md) <br>
-- [Anti Recursion](references/anti-recursion.md) <br>
-- [Byte Cursor](references/byte-cursor.md) <br>
-- [Diff From Dreaming](references/diff-from-dreaming.md) <br>
-- [Weekly Governance](references/weekly-governance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated memory-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local MEMORY.md rolling-zone updates, weekly archive notes, and status summaries when executed in a configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2026.4.16) <br>
+Risk: The skill scans private conversation logs as part of its memory workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that access is acceptable, restrict file permissions and allowed paths, and run the scanner in preview before enabling automated use.
+
+Risk: The workflow can change persistent agent memory and weekly archive files.
+
+Mitigation: Keep backups of MEMORY.md and require review before promoting, pruning, or deleting memory entries.
+
+Risk: Security evidence flags weak safeguards and a redaction bug.
+
+Mitigation: Fix redaction before use and review scan output for sensitive content before it is summarized or written to memory.
+
+## Reference(s):
+
+- [Memory Fusion Lite ClawHub Release](https://clawhub.ai/dxiaofeng0811-lgtm/skills/memory-fusion-lite)
+- [A-prime Rolling Seven-Day Zone](references/a-prime-zone.md)
+- [Anti-Recursion Safeguards](references/anti-recursion.md)
+- [Byte Cursor Incremental Scan](references/byte-cursor.md)
+- [Memory Fusion Lite vs Dreaming](references/diff-from-dreaming.md)
+- [Weekly Memory Governance](references/weekly-governance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated memory-entry text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update persistent memory files and weekly archive files when used with the documented cron workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2026.4.16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

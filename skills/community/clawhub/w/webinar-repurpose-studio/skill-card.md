@@ -1,46 +1,64 @@
-## Description: <br>
-Transforms webinar source material into reviewable Markdown drafts for replay descriptions, short copy, social outlines, FAQs, follow-up emails, and repurposing suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurposes webinar source material into reviewable Markdown drafts for replay descriptions, short copy, social outlines, FAQ content, follow-up email drafts, and secondary content ideas.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, content marketers, and event operators use this skill to turn webinar topics, transcripts, and highlighted segments into structured, reviewable content assets for post-event reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes webinar material locally, which may include unpublished, personal, or sensitive content. <br>
-Mitigation: Keep unpublished or personal material out unless necessary, use explicit input and output paths, and review drafts before publishing or sending. <br>
-Risk: Generated repurposed content may be mistaken for publication-ready copy without human review. <br>
-Mitigation: Treat outputs as reviewable drafts, verify facts against the provided source material, and do not use the skill to invent guest details or disclose non-public information. <br>
-Risk: The bundled script includes unused audit helper code outside the primary drafting workflow. <br>
-Mitigation: Use the documented drafting commands and do not modify the bundled specification to audit arbitrary directories unless that behavior is intentional. <br>
+## Use Case:
 
+Content, marketing, and event operations teams use this skill after a webinar to turn supplied topics, transcripts, and highlights into structured, reviewable content assets. It is intended for draft generation and planning, not for fabricating speaker details, exposing unpublished material, or publishing directly to external systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/webinar-repurpose-studio) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Structured output spec](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown drafts, optional JSON, and local command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable drafts and explicit confirmation items; local script requires python3 and uses only standard-library dependencies according to the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive or confidential webinar transcripts may be included in user-provided input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only material suitable for local processing, redact sensitive details first, and review generated drafts before sharing.
+
+Risk: Generated repurposed content may imply unsupported facts, speaker details, or unpublished information if source material is incomplete.
+
+Mitigation: Use the skill's待确认项 review flow and verify all names, claims, and unpublished details before publication.
+
+Risk: The helper can write output to a user-selected local file path.
+
+Mitigation: Use dry-run or stdout when reviewing behavior, and choose output paths deliberately to avoid overwriting unrelated files.
+
+Risk: Dormant audit and scanning code in the package may make the behavior harder to assess.
+
+Mitigation: Keep installation scoped to this content workflow and ask the publisher to remove or separate dormant audit/scanning paths in future releases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/webinar-repurpose-studio)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Structured Markdown draft, with optional JSON output from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write a chosen local output file when invoked through the bundled Python helper; otherwise returns reviewable draft content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

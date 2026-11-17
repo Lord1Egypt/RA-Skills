@@ -1,48 +1,62 @@
-## Description: <br>
-YouTube 全场景数据查询助手，支持 Web/V2 API workflows for video, channel, search, comments, subtitles, Shorts, and related analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual YouTube data assistant that uses MaxHub read-only APIs to retrieve video, channel, search, comment, subtitle, playlist, Shorts, and community-post data.
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External creators, marketers, analysts, and developers use this skill to query YouTube channel, video, search, subtitle, Shorts, playlist, and comment data through MaxHub APIs and turn the returned data into browse results, comparisons, or structured analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MAXHUB_API_KEY and sends YouTube query data to MaxHub/aconfig.cn. <br>
-Mitigation: Install only when the publisher and MaxHub service are trusted, scope the API key where possible, and avoid exposing the key in prompts, logs, or rendered output. <br>
-Risk: The security summary flags non-YouTube automatic fallback routes in the artifact. <br>
-Mitigation: Review the fallback table before use and remove or disable unrelated Douyin fallback behavior if the deployment should remain YouTube-only. <br>
-Risk: The security guidance flags media stream or download endpoints with potential copyright or platform-terms implications. <br>
-Mitigation: Use stream and download features only for authorized media-access workflows and communicate limits clearly to users. <br>
+## Use Case:
 
+External content creators, marketers, and analysts use this skill to search YouTube and collect channel, video, comment, caption, playlist, Shorts, and community-post data through MaxHub read-only APIs for competitive research, SEO analysis, and feedback reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/youtube-aggregate-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/new-ironman) <br>
-- [MaxHub API website](https://www.aconfig.cn) <br>
-- [Channel API reference](references/api-channel.md) <br>
-- [Search API reference](references/api-search.md) <br>
-- [Video API reference](references/api-video.md) <br>
-- [Parameter mapping reference](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with tables, bullets, inline links, and curl/API examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should match the user's language, summarize API data, keep API keys out of responses, and note endpoint failures or empty results honestly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill requires a MaxHub API key and sends YouTube data requests to a third-party API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MAXHUB_API_KEY private and scoped, and install only if comfortable using MaxHub as the third-party provider.
+
+Risk: Stream URL and comment-data features may have platform or policy implications depending on use.
+
+Mitigation: Use outputs only for authorized, policy-compliant analysis and review downstream use before acting.
+
+Risk: Third-party API data may be incomplete, cached, or inaccurate.
+
+Mitigation: Treat results as reference data and validate important conclusions against primary sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/new-ironman/skills/youtube-aggregate-scraper)
+- [MaxHub API Service](https://www.aconfig.cn)
+- [Channel Data API](artifact/references/api-channel.md)
+- [Search & Comments API](artifact/references/api-search.md)
+- [Video Data API](artifact/references/api-video.md)
+- [Parameter Mappings](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, bullet points, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese/English responses matching the user's language; API key values should not be emitted.]
+
+## Skill Version(s):
+
+3.6.1 (source: server evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

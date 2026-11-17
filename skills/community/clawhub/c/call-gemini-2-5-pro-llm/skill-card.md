@@ -1,40 +1,48 @@
-## Description: <br>
-Instruction-only skill advertised for Gemini 2.5 Pro LLM tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill claims to support calling Gemini 2.5 Pro, but the artifact primarily defines language-matching, creative-team persona, and meeting-minutes response rules.
 
-## Publisher: <br>
-[urrrich](https://clawhub.ai/user/urrrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich](https://clawhub.ai/user/urrrich)
 
-## Use Case: <br>
-External agents may use this skill to shape responses for the advertised Gemini 2.5 Pro LLM task flow. Reviewers should confirm intended behavior because the artifact instructions define language-matching and brainstorming-meeting role behavior instead of a clear Gemini integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact instructions do not match the advertised Gemini-calling purpose. <br>
-Mitigation: Review the skill before installing and require clear documentation of when it runs, what model or API it calls, what data it sends, and how user instructions remain in control. <br>
-Risk: The skill steers the agent into an unrelated brainstorming role and strict language-matching behavior. <br>
-Mitigation: Use only in contexts where that role behavior is intended, or revise the skill instructions to match the published Gemini task description. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urrrich/call-gemini-2-5-pro-llm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/urrrich) <br>
+## Use Case:
 
+Agents would use this skill to produce language-matched creative brainstorming responses that follow meeting-minutes context and answer the current Chief Creative Officer prompt.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable, tool, credential, or API access was found in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill's claimed Gemini-calling purpose is not supported by its artifact instructions; the content mainly reshapes the agent's role, language behavior, and authority model.
+
+Mitigation: Review before installation and require the author to narrow the scope and remove priority, persona, and meeting-minutes authority claims before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urrrich/skills/call-gemini-2-5-pro-llm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Language-matched Markdown or plain text response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on runtime template variables such as $SHOW_NAME$ when provided by the host agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,58 @@
-## Description: <br>
-Use when working with Google Stitch through a disciplined MCP-first workflow for project inspection, controlled screen generation and editing, prompt structuring, and failure recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working with Google Stitch through a disciplined MCP-first workflow. Prefer this skill for project inspection, controlled screen generation and editing, DESIGN.md-based design systems, visual review, prompt structuring, and failure recovery.
 
-## Publisher: <br>
-[luischarro](https://clawhub.ai/user/luischarro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luischarro](https://clawhub.ai/user/luischarro)
 
-## Use Case: <br>
-Developers, designers, and agent operators use this skill to run Google Stitch as a controlled design exploration workflow: inspect projects, generate or edit one screen at a time, review visual artifacts, and hand off accepted directions to implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on external Google Stitch and MCP services that may require credentials or account access. <br>
-Mitigation: Use only approved external services, keep API keys scoped, and confirm the active project before generation, editing, or export. <br>
-Risk: Agent actions can create or revise design screens and may continue after client-side timeouts. <br>
-Mitigation: Inspect projects and screens first, poll for timed-out generations before retrying, and review the actual visual artifact before further edits. <br>
-Risk: Generated exports or code can be mistaken for production-ready implementation. <br>
-Mitigation: Treat Stitch code as a seed, require an accepted canonical screen, and run parity, accessibility, routing, state, and data-boundary checks before completion. <br>
-Risk: Some Stitch browser features may not be available through the MCP surface. <br>
-Mitigation: Verify available tools in the active runtime and request browser-side export or preview steps when MCP cannot provide the needed artifact. <br>
-Risk: Setup or handoff steps may involve package installs, GitHub pushes, cloud publishing, registry setup, or agent configuration changes. <br>
-Mitigation: Require explicit user approval before those operations and keep changes scoped to the intended workflow. <br>
+## Use Case:
 
+Developers and designers use this skill to inspect Stitch projects, generate and refine screens, review visual results, and prepare accepted designs for implementation.
 
-## Reference(s): <br>
-- [Google Stitch Workflow](https://clawhub.ai/luischarro/google-stitch-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/luischarro) <br>
-- [Complete Operator Manual](references/complete-operator-manual.md) <br>
-- [Core Operating Model](references/sections/core-operating-model.md) <br>
-- [MCP API and Failure Recovery](references/sections/mcp-api-and-failure-recovery.md) <br>
-- [Prompt Structuring](references/prompt-structuring.md) <br>
-- [Visual Review and Artifacts](references/visual-review-and-artifacts.md) <br>
-- [Export and Code Translation](references/sections/export-and-code-translation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and implementation handoff instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Google Stitch MCP server or an equivalent runtime tool-call interface for Stitch operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Design material may be sent to Google Stitch or other AI services during workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check for confidential or personal information and confirm the destination is appropriate before sending design material.
+
+Risk: The automated scan could not resolve several local references, so coverage is incomplete.
+
+Mitigation: Review the full skill bundle and its references before relying on it.
+
+## Reference(s):
+
+- [Google Stitch Workflow listing](https://clawhub.ai/luischarro/skills/google-stitch-workflow)
+- [Official Google Stitch MCP server](https://stitch.googleapis.com/mcp)
+- [Complete operator manual](artifact/references/complete-operator-manual.md)
+- [Prompt structuring](artifact/references/prompt-structuring.md)
+- [Visual review and artifacts](artifact/references/visual-review-and-artifacts.md)
+- [MCP API and failure recovery](artifact/references/sections/mcp-api-and-failure-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code]
+
+**Output Format:** [Markdown guidance and prompts, Stitch screen and design artifacts, and optional implementation code or handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Varies with the task and available Stitch capabilities.]
+
+## Skill Version(s):
+
+1.9.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

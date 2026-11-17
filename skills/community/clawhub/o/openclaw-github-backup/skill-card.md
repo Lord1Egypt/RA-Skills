@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically backup OpenClaw configuration to a private GitHub repository with API key sanitization, activity detection, smart backup frequency, and recovery guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically backs up OpenClaw configuration to a private GitHub repository with API key sanitization, activity detection, smart backup frequency, and recovery guidance.
 
-## Publisher: <br>
-[wang5sheng](https://clawhub.ai/user/wang5sheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang5sheng](https://clawhub.ai/user/wang5sheng)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure backups of local OpenClaw configuration, workspaces, memory, credentials, and agent history to a private GitHub repository for migration or disaster recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can include sensitive OpenClaw configuration, memory, credentials, sessions, and workspaces even though API keys in openclaw.json are sanitized. <br>
-Mitigation: Use a new empty private repository, review exactly which files will be uploaded, and add exclusions for secrets, credentials, session data, and workspaces that should not leave the machine. <br>
-Risk: The scripts use force-push behavior and remove nested .git directories during initial backup, which can overwrite remote history or remove repository metadata under ~/.openclaw. <br>
-Mitigation: Review and edit the scripts before installation, remove force-push behavior, and remove recursive .git deletion unless the target directory has been backed up and inspected. <br>
-Risk: The installer changes global Git user.name and user.email settings. <br>
-Mitigation: Prefer repository-local Git configuration or manually restore global Git settings after installation. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to configure automated backups of local OpenClaw state to a private GitHub repository and to receive restore guidance for migration or disaster recovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wang5sheng/openclaw-github-backup) <br>
-- [GitHub new repository page](https://github.com/new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash commands and bundled shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs backup and activity-check scripts that operate on ~/.openclaw and a user-provided private GitHub repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Broad OpenClaw data may be staged and uploaded to GitHub, including private agent state or configuration beyond sanitized API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated empty private repository, inspect the exact files staged from ~/.openclaw, and add a file allowlist plus secret scanning or encryption before backup.
+
+Risk: Installer-driven Git and SSH changes may alter global Git identity, SSH keys, or known_hosts entries.
+
+Mitigation: Review and modify the installer before execution, avoid global Git config changes, and require explicit consent for SSH key generation or known_hosts updates.
+
+Risk: Force pushes and recursive .git deletion can lose backup history or remove nested repository metadata.
+
+Mitigation: Remove force-push behavior and recursive .git deletion, then test backup and restore in a disposable OpenClaw profile before use.
+
+## Reference(s):
+
+- [OpenClaw GitHub Backup on ClawHub](https://clawhub.ai/wang5sheng/skills/openclaw-github-backup)
+- [wang5sheng ClawHub profile](https://clawhub.ai/user/wang5sheng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide commands that operate on ~/.openclaw and a user-provided GitHub repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

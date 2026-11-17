@@ -195,9 +195,7 @@ listener_protocol                = "TERMINATED_HTTPS"
 listener_server_certificate_name = "your_server_certificate_name"
 
 listener_server_certificate_private_key = <<EOT
------BEGIN RSA PRIVATE KEY-----
-[Your private key content here]
------END RSA PRIVATE KEY-----
+REDACTED-SECRET
 EOT
 listener_server_certificate_certificate = <<EOT
 -----BEGIN CERTIFICATE-----

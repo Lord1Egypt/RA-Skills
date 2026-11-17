@@ -45,6 +45,9 @@ _无参数_
 | `socialLevel` | 社会等级 | — |
 | `governanceScore` | 公司治理得分 | — |
 | `governanceLevel` | 公司治理等级 | — |
+| `pageNum` | page number | `1` |
+| `pageSize` | page size | `100` |
+| `totalCount` | total count | `0` |
 
 ### 接口示例
 

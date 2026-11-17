@@ -1,37 +1,48 @@
-## Description: <br>
-Write cold emails that get opened, read, and replied to. Perfect for sales professionals, business developers, and entrepreneurs reaching out to prospects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write cold emails that get opened, read, and replied to for sales professionals, business developers, and entrepreneurs reaching out to prospects.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users such as sales representatives, business development managers, startup founders, freelancers, recruiters, and networkers use this skill to draft personalized outbound emails with subject lines, value propositions, and clear calls to action.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may help generate outbound sales or recruiting messages that involve prospect information.
+
+Mitigation: Use it responsibly and avoid providing unnecessary sensitive personal data about prospects.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External sales professionals, business developers, founders, freelancers, recruiters, and other outbound teams use this skill to draft personalized cold outreach emails. It supports first-contact sales messages, partnership proposals, investor outreach, media pitches, recruiting, networking, subject lines, CTAs, and A/B variations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown or plain text email drafts and outreach guidance]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/cold-outreach-email-writer) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [May include subject lines, personalized email copy, variations for testing, and call-to-action wording.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with ready-to-send email drafts, subject lines, CTAs, and optional variations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include personalization guidance, value propositions, social proof cues, and concise follow-up-ready messaging.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.0 (source: evidence.release.version)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

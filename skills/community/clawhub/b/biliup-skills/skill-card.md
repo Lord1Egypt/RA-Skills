@@ -1,47 +1,66 @@
-## Description: <br>
-Uses the Python biliup CLI to help an agent log in to Bilibili, collect video submission details, upload local or downloaded video files, and return the upload result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through installing the Python biliup CLI, logging in to Bilibili with QR authorization, collecting upload metadata, submitting videos, and reporting upload results.
 
-## Publisher: <br>
-[PokersKun](https://clawhub.ai/user/PokersKun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pokerskun](https://clawhub.ai/user/pokerskun)
 
-## Use Case: <br>
-External creators and operators use this skill to publish videos to their own Bilibili accounts from an agent workflow, including first-time QR login, upload metadata collection, and submission result reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and reuses a Bilibili login token in cookies.json. <br>
-Mitigation: Run it only in a trusted workspace, keep cookies.json out of version control, and remove or rotate the token when it is no longer needed. <br>
-Risk: The skill can install Python packages and helper dependencies. <br>
-Mitigation: Review the setup commands before execution and prefer an isolated Python environment or pipx installation. <br>
-Risk: The skill may download media from provided URLs before upload. <br>
-Mitigation: Accept downloads only from trusted sources and verify the downloaded file before submitting it. <br>
-Risk: The skill can post videos publicly to the user's Bilibili account. <br>
-Mitigation: Require a final human review of title, tags, category, copyright settings, and target files before running the upload command. <br>
+## Use Case:
 
+External users and content publishers use this skill to prepare and upload local videos to a Bilibili account through the biliup command-line tool. It helps the agent handle setup, QR login, metadata collection, category selection, upload execution, and result reporting.
 
-## Reference(s): <br>
-- [biliup project](https://github.com/biliup/biliup) <br>
-- [Bilibili upload category page](https://member.bilibili.com/platform/upload/video/frame) <br>
-- [Bilibili category tid list](artifact/references/tid_list.md) <br>
-- [ClawHub skill page](https://clawhub.ai/PokersKun/biliup-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, file paths, and upload status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a QR-code image path for login and a Bilibili BV identifier after a successful upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill may install Python packages before upload operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation step, prefer an isolated environment such as pipx when available, and proceed only if installing biliup and QR-code dependencies is acceptable.
+
+Risk: Bilibili login stores an access credential in cookies.json.
+
+Mitigation: Keep cookies.json private, avoid committing or sharing it, and remove or rotate it when it is no longer needed.
+
+Risk: The upload workflow can publish videos to the user's Bilibili account.
+
+Mitigation: Confirm the target account, video files, title, tags, category, copyright setting, and source information before running the upload command.
+
+Risk: The workflow can download user-provided video URLs before upload.
+
+Mitigation: Use trusted URLs and verify downloaded files before submitting them to Bilibili.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/pokerskun/skills/biliup-skills)
+- [Publisher profile](https://clawhub.ai/user/pokerskun)
+- [Bilibili category tid list](references/tid_list.md)
+- [biliup project](https://github.com/biliup/biliup)
+- [Bilibili upload category reference](https://member.bilibili.com/platform/upload/video/frame)
+- [pip installation documentation](https://pip.pypa.io/en/stable/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference a QR-code PNG and a local cookies.json credential file during login.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

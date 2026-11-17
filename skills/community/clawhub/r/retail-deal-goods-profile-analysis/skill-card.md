@@ -1,41 +1,57 @@
-## Description: <br>
-成交商品画像分析 analyzes retail transaction data by category, price band, color, bag shape, launch date, and period-over-period changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+成交商品画像分析工具，用于分析成交商品的品类、价格带、颜色、包型、上市时间等特征分布及环比变化。
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail analysts and store operations teams use this skill to profile sold goods for a store and date range. It produces ranked feature distributions, period-over-period changes, and concise business findings for merchandise review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads an undeclared local api_client from a hardcoded path outside the package. <br>
-Mitigation: Inspect and approve the external api_client before use, or replace it with a reviewed packaged dependency. <br>
-Risk: The skill accesses store BI transaction data for a supplied store and date range. <br>
-Mitigation: Run it only with the expected store BI permissions and review outputs before sharing business-sensitive analysis. <br>
+## Use Case:
 
+Retail operators and analysts use this skill to review sold-product feature distributions and period-over-period changes for a selected store and date range. It supports category, price band, bag shape, color, launch-date, and summary finding analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gwyang7/retail-deal-goods-profile-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gwyang7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis] <br>
-**Output Format:** [Console text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports category, price band, bag shape, color, launch-date distribution, period-over-period changes, and summary findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill loads code from an unmanaged absolute local path outside the reviewed package before calling the BI API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Package or pin api_client inside a trusted dependency path before use.
+
+Risk: The skill queries store dashboard data by storeId and date range, which could expose retail performance data if used by an unauthorized user.
+
+Mitigation: Verify the user is authorized for the requested storeId and date range before running the skill.
+
+Risk: The generated report is Chinese-only.
+
+Mitigation: Confirm Chinese-language output is acceptable for intended users or add localization before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwyang7/skills/retail-deal-goods-profile-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Guidance]
+
+**Output Format:** [Plain text console report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses store ID, date range, and optional store name inputs to print current and previous-period retail feature distributions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-twitter-cli helps agents read and manage Twitter/X timelines, tweets, profiles, searches, and account actions through a terminal CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+twitter-cli helps agents read Twitter/X timelines, bookmarks, searches, tweet details, and user profiles, and can also perform authenticated account actions such as posting, deleting, liking, retweeting, bookmarking, following, and unfollowing.
 
-## Publisher: <br>
-[jackwener](https://clawhub.ai/user/jackwener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackwener](https://clawhub.ai/user/jackwener)
 
-## Use Case: <br>
-Developers and agent operators use this skill to script Twitter/X reading workflows and explicit account actions such as posting, replying, liking, retweeting, bookmarking, and following from a local CLI session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use access equivalent to a logged-in Twitter/X session and includes account-changing commands. <br>
-Mitigation: Run it only in a trusted local environment and require explicit user confirmation before posting, replying, deleting, liking, retweeting, bookmarking, following, or unfollowing. <br>
-Risk: Browser cookies and Cookie headers can expose the user's Twitter/X session. <br>
-Mitigation: Prefer local browser cookie extraction or local environment variables; do not paste full Cookie headers into chat, remote agents, logs, or shared terminals. <br>
-Risk: Automated or high-volume account activity may create account safety or rate-limit issues. <br>
-Mitigation: Keep request volumes low, review account-changing commands before execution, and avoid unattended write workflows. <br>
+## Use Case:
 
+Developers and external agents use this skill to automate Twitter/X reading, search, profile lookup, and account-management workflows from a terminal-oriented interface. It is best suited for cases where the user intentionally grants account credentials and reviews write actions before execution.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jackwener/twitter-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jackwener) <br>
-- [Structured Output Schema](SCHEMA.md) <br>
-- [README](README.md) <br>
-- [PyPI project](https://pypi.org/project/twitter-cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, YAML, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output in rich text, YAML, or JSON envelopes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured output uses an ok/schema_version/data envelope; compact mode can reduce returned tweet fields for agent context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: release evidence and pyproject.toml; SKILL.md frontmatter lists 2.0.0) <br>
+Risk: The skill can obtain or request live Twitter/X session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cookies as secrets, do not paste full cookie strings into chat or shared logs, and prefer local explicit credential setup.
+
+Risk: Authenticated commands can change account state, including posting, deleting, liking, retweeting, bookmarking, following, and unfollowing.
+
+Mitigation: Require explicit user review before any write action and use only an account the user is comfortable delegating to the agent.
+
+Risk: Runtime browser-cookie extraction may expose high-trust browser profiles to unnecessary account-control risk.
+
+Mitigation: Avoid browser-cookie extraction from high-trust profiles and use a dedicated browser profile or environment variables where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackwener/skills/twitter-cli)
+- [Structured Output Schema](SCHEMA.md)
+- [PyPI package page](https://pypi.org/project/twitter-cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML or JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Machine-readable command output uses a shared envelope with ok, schema_version, data, or error fields; compact mode reduces tweet fields for lower-token agent context.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release evidence and pyproject.toml; SKILL.md frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

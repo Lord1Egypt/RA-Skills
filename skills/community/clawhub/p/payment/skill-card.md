@@ -1,51 +1,67 @@
-## Description: <br>
-Shopping Claw gives agents and OpenClaw bots controlled spending, checkout, wallet, storefront, and payment-management workflows through CreditClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopping Claw gives agents spending power, financial management, and checkout guidance for CreditClaw and OpenClaw bots.
 
-## Publisher: <br>
-[triplehippo](https://clawhub.ai/user/triplehippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to let an agent request owner-approved purchases, complete merchant checkouts, monitor spending status, manage wallet activity, and create payment links or storefront pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize agents to spend money and complete purchases. <br>
-Mitigation: Use ask-for-everything approval, strict per-transaction limits, daily or monthly caps, and domain allowlists before enabling purchases. <br>
-Risk: The CREDITCLAW_API_KEY can grant access to payment and wallet workflows if exposed. <br>
-Mitigation: Store CREDITCLAW_API_KEY in a secrets manager and use it only for CreditClaw API requests. <br>
-Risk: Merchant checkouts, invoices, public shop changes, and final order details can cause unintended financial activity. <br>
-Mitigation: Avoid unknown merchant checkouts and have the owner verify invoices, storefront changes, and final order details before proceeding. <br>
-Risk: Checkout flows may involve decrypted card data during a transaction. <br>
-Mitigation: Keep decrypted card data in memory only for the active checkout, never log or persist it, and discard it immediately after confirmation or failure. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register and operate CreditClaw-enabled agents that can request payment approval, complete browser checkouts, manage wallet status, and sell through checkout pages or payment links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/triplehippo/payment) <br>
-- [CreditClaw Homepage](https://creditclaw.com) <br>
-- [CreditClaw API Base](https://creditclaw.com/api/v1) <br>
-- [Main Skill Guide](artifact/SKILL.md) <br>
-- [Checkout Guide](artifact/CHECKOUT-GUIDE.md) <br>
-- [Shopping Guide](artifact/SHOPPING-GUIDE.md) <br>
-- [Stripe x402 Wallet Guide](artifact/STRIPE-X402-WALLET.md) <br>
-- [OpenClaw Checkout Guide](artifact/agents/OPENCLAW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with curl examples, JSON request and response examples, and browser checkout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and user-confirmed invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.0 (source: server evidence and artifact metadata) <br>
+Risk: The skill can spend real money through a wallet-linked API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep approval mode set to ask_for_everything unless the service is fully trusted, and enforce strict merchant, category, and amount limits.
+
+Risk: Checkout flows can retrieve keys that decrypt payment-card details.
+
+Mitigation: Do not store, log, or persist decrypted card data; use ephemeral checkout sessions and discard card data immediately after each transaction.
+
+Risk: Remote Markdown or message content may influence checkout behavior.
+
+Mitigation: Do not treat remote Markdown or message instructions as trusted commands without extra validation and human review.
+
+Risk: Broad financial authority can create misuse or overspending exposure.
+
+Mitigation: Avoid broad auto-approval rules, monitor the CreditClaw dashboard, and review activity before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/payment)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw API base](https://creditclaw.com/api/v1)
+- [Main skill guide](artifact/SKILL.md)
+- [Checkout guide](artifact/CHECKOUT-GUIDE.md)
+- [OpenClaw sub-agent checkout guide](artifact/agents/OPENCLAW.md)
+- [Stripe Wallet x402 guide](artifact/STRIPE-X402-WALLET.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guides with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY; OpenClaw metadata indicates user_confirmed invocation.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

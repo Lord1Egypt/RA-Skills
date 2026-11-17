@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \".wiki/scripts/wiki_remind.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,6 +1,47 @@
 {
-  "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
-  "slug": "instagram-page",
-  "version": "1.0.1",
-  "publishedAt": 1772355101476
+    "slug":  "instagram-page",
+    "version":  "1.0.1",
+    "requires":  {
+                     "os":  [
+                                "windows",
+                                "macos",
+                                "linux"
+                            ],
+                     "anyBinaries":  [
+                                         "powershell",
+                                         "pwsh"
+                                     ]
+                 },
+    "publishedAt":  "2026-03-01T08:51:19Z",
+    "ownerId":  "kn7824yf4srh3akes6axhmqf5n81q7dh",
+    "requiredConfigPaths":  [
+                                "~/.config/instagram-page/credentials.json"
+                            ],
+    "requiredEnvVars":  [
+
+                        ],
+    "primaryCredential":  {
+                              "fields":  [
+                                             "IG_ACCESS_TOKEN",
+                                             "IG_USER_ID",
+                                             "IG_APP_ID",
+                                             "IG_APP_SECRET"
+                                         ],
+                              "optional":  [
+                                               "IG_APP_ID",
+                                               "IG_APP_SECRET"
+                                           ],
+                              "path":  "~/.config/instagram-page/credentials.json",
+                              "type":  "file",
+                              "required":  [
+                                               "IG_ACCESS_TOKEN",
+                                               "IG_USER_ID"
+                                           ],
+                              "sensitive":  true,
+                              "notes":  "IG_ACCESS_TOKEN and IG_USER_ID required for all API calls. IG_APP_ID and IG_APP_SECRET for one-time token exchange only - delete IG_APP_SECRET afterward. IG_ACCESS_TOKEN expires every 60 days - refresh using ig_refresh_token grant. Rotate immediately if host is compromised. Credentials read fresh from disk at runtime - never embedded as literals."
+                          },
+    "credentialSetup":  {
+                            "type":  "manual",
+                            "description":  "Requires Instagram Business/Creator account linked to a Facebook Page. Exchange short-lived token from Graph API Explorer for long-lived token. Save IG_USER_ID (from FB Page instagram_business_account field) and IG_ACCESS_TOKEN to credentials.json. Delete IG_APP_SECRET after setup."
+                        }
 }

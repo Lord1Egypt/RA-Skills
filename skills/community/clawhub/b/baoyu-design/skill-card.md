@@ -1,52 +1,65 @@
-## Description: <br>
-Baoyu Design helps file-capable agents create polished self-contained HTML design artifacts, including UI mockups, interactive prototypes, wireframes, dashboards, mobile app screens, slide decks, videos, documents, and reusable design systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baoyu Design helps agents create self-contained HTML design artifacts, including UI mockups, interactive prototypes, wireframes, decks, dashboards, app screens, mobile apps, documents, videos, and design-system outputs.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers, designers, product teams, and file-capable agents use this skill to produce, preview, iterate on, and export design artifacts as HTML-based deliverables. It is suited for UI mockups, prototypes, wireframes, decks, mobile screens, design-system authoring, and related visual exploration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read design source files that the user points it at. <br>
-Mitigation: Review requested source paths before use and provide only files that are appropriate for the design task. <br>
-Risk: The skill writes generated artifacts under project design folders. <br>
-Mitigation: Keep generated work in the requested designs/ project folder and review outputs before sharing or deploying them. <br>
-Risk: Preview, export, and connector workflows may run local tools or use services such as GitHub, Figma, Canva, image generation, or Google Fonts. <br>
-Mitigation: Use those workflows only when needed, confirm connector scope with the user, and review generated files before execution or publication. <br>
+## Use Case:
 
+Developers, designers, and agent users use this skill to turn product and interface design requests into HTML-based artifacts, then preview, iterate, and export selected outputs such as PPTX, PDF, video, Figma/Canva handoffs, or standalone HTML.
 
-## Reference(s): <br>
-- [Skill entry point](SKILL.md) <br>
-- [Core design workflow](system-prompt.md) <br>
-- [Codex harness reference](references/codex.md) <br>
-- [Claude harness reference](references/claude.md) <br>
-- [Cursor harness reference](references/cursor.md) <br>
-- [Hi-fi design workflow](built-in-skills/hi-fi-design.md) <br>
-- [Interactive prototype workflow](built-in-skills/interactive-prototype.md) <br>
-- [Deck creation workflow](built-in-skills/make-a-deck.md) <br>
-- [Editable PPTX export workflow](built-in-skills/export-as-pptx-editable.md) <br>
-- [Video export workflow](built-in-skills/export-as-video.md) <br>
-- [Design system authoring workflow](built-in-skills/design-system-authoring-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, JSX, JSON, and shell command snippets; generated deliverables are typically files under a designs/ project folder.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce self-contained or multi-file HTML artifacts and optional exports such as PPTX, PDF, video, or design-system bundles when the corresponding workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Imported third-party design-system prose can become binding agent guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted publishers, review design-system folders before binding them, and treat imported design content as reference material rather than user instructions.
+
+Risk: Some workflows reference remote dependencies or execute local export scripts.
+
+Mitigation: Prefer offline or vendored dependencies where available, review commands before execution, and scan generated artifacts before sharing or deploying them.
+
+Risk: PPTX export configurations can include `showJs` snippets that execute in the captured page.
+
+Mitigation: Review `showJs` values before running exports and use them only with trusted deck artifacts.
+
+## Reference(s):
+
+- [Baoyu Design ClawHub page](https://clawhub.ai/jimliu/skills/baoyu-design)
+- [Core design workflow](system-prompt.md)
+- [Codex harness reference](references/codex.md)
+- [Claude Code harness reference](references/claude.md)
+- [Cursor harness reference](references/cursor.md)
+- [Design system authoring guide](built-in-skills/design-system-authoring-guide.md)
+- [Editable PPTX export](built-in-skills/export-as-pptx-editable.md)
+- [Video export](built-in-skills/export-as-video.md)
+- [Standalone HTML export](built-in-skills/save-as-standalone-html.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and generated HTML, JavaScript, CSS, JSON, and export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce self-contained HTML artifacts, multi-file HTML/JSX bundles, design-system bundles, PDFs, PPTX files, videos, Figma/Canva handoff instructions, and local preview commands depending on the requested workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

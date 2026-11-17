@@ -1,44 +1,59 @@
-## Description: <br>
-Daily Rhythm automates daily planning and reflection with morning briefs, wind-down prompts, sleep nudges, and weekly reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated daily planning and reflection system with morning briefs, wind-down prompts, sleep nudges, and weekly reviews.
 
-## Publisher: <br>
-[AnthonyFrancis](https://clawhub.ai/user/AnthonyFrancis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anthonyfrancis](https://clawhub.ai/user/anthonyfrancis)
 
-## Use Case: <br>
-External users, founders, and professionals use this skill to set up recurring personal planning workflows, morning brief generation, task synchronization, optional ARR tracking, wind-down prompts, and weekly reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Google Tasks and optional Stripe credentials, which can expose personal task data and business subscription data if stored or shared carelessly. <br>
-Mitigation: Use restricted Google and Stripe credentials, keep token files and .env.stripe out of source control, and enable only the integrations needed. <br>
-Risk: Some scripts and cron examples include hard-coded local paths under /Users/tom, which can fail or write data to unexpected locations in another workspace. <br>
-Mitigation: Edit scripts and cron entries to use the target workspace paths before installation or scheduled execution. <br>
-Risk: Recurring cron automation can run API syncs and planning prompts without further review once installed. <br>
-Mitigation: Install only cron jobs the user understands, review their schedules and commands, and keep removal steps available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Daily Rhythm Configuration Guide](references/CONFIGURATION.md) <br>
-- [Daily Rhythm ClawHub Release](https://clawhub.ai/AnthonyFrancis/daily-rhythm) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [Stripe Dashboard API Keys](https://dashboard.stripe.com/apikeys) <br>
+## Use Case:
 
+External users, founders, and professionals use Daily Rhythm to configure automated morning briefs, evening wind-down prompts, sleep reminders, and weekly reviews that combine tasks, calendar context, optional ARR tracking, and personal planning notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, cron examples, and local JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local planning artifacts and optional synced task and ARR data when configured with user credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Google Tasks, optional Stripe billing data, calendar data, and local planning memory that may include sensitive personal or business information.
+
+Mitigation: Review before installing, keep credentials and generated memory files out of shared folders and repositories, and lock down file permissions.
+
+Risk: Optional ARR tracking can use live Stripe billing credentials and persist derived customer and revenue data locally.
+
+Mitigation: Use a restricted Stripe key where possible and avoid production credentials unless necessary.
+
+Risk: Cron jobs can repeatedly run data sync and brief-generation scripts without interactive review.
+
+Mitigation: Enable only scheduled jobs you understand, use paths and commands you have reviewed, and keep a clear disable procedure.
+
+## Reference(s):
+
+- [Daily Rhythm Configuration Guide](references/CONFIGURATION.md)
+- [HEARTBEAT Template](assets/HEARTBEAT_TEMPLATE.md)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Stripe API Keys Dashboard](https://dashboard.stripe.com/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown brief and prompt text with shell command and configuration snippets; supporting scripts write local JSON state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read Google Tasks, optional Stripe billing data, calendar ICS data, weather configuration, and local memory files when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

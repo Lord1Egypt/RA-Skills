@@ -1,40 +1,57 @@
-## Description: <br>
-AI Agent Security Suite - Real-time protection against prompt injection, command injection, SSRF, path traversal, secrets exposure, and content policy violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Security Suite - Real-time protection against prompt injection, command injection, SSRF, path traversal, secrets exposure, and content policy violations.
 
-## Publisher: <br>
-[PaoloRollo](https://clawhub.ai/user/PaoloRollo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paolorollo](https://clawhub.ai/user/paolorollo)
 
-## Use Case: <br>
-Developers and security engineers use this skill to validate agent prompts, commands, URLs, paths, and content for common attack patterns before or during OpenClaw workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent security hooks may inspect and log prompts and tool-call parameters. <br>
-Mitigation: Review hook behavior, database path, retention settings, and notification endpoints before installation; reduce retention or disable logging where policy requires it. <br>
-Risk: Automatic hook setup can change OpenClaw-wide behavior after installation. <br>
-Mitigation: Review the postinstall hook behavior and confirm owner bypass and tool-call blocking settings match the intended environment before enabling the hooks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Openclaw Sec on ClawHub](https://clawhub.ai/PaoloRollo/openclaw-sec) <br>
-- [Hooks documentation](hooks/README.md) <br>
+## Use Case:
 
+Developers and security engineers use this skill to validate AI agent prompts, tool calls, URLs, file paths, shell commands, and content for common injection, SSRF, traversal, secret exposure, and obfuscation risks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-style text with security findings, severity, actions, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return allow, warn, log, or block actions depending on configured severity policy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.6 (source: server release metadata, released 2026-02-10) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic persistent hooks can intercept prompts and tool parameters after installation.
+
+Mitigation: Require an explicit hook installation step and review enabled hooks before use.
+
+Risk: Prompts, tool parameters, or secrets may be stored locally in plaintext.
+
+Mitigation: Disable or minimize raw database logging, reduce retention, and verify database file permissions.
+
+Risk: Outbound notifications may transmit sensitive security event data.
+
+Mitigation: Only enable notifications to trusted endpoints and review webhook, Slack, or Discord destinations.
+
+## Reference(s):
+
+- [Openclaw Sec ClawHub page](https://clawhub.ai/paolorollo/skills/openclaw-sec)
+- [Publisher profile](https://clawhub.ai/user/paolorollo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-style text with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return severity, action, findings, recommendations, event summaries, statistics, or configuration status depending on the command.]
+
+## Skill Version(s):
+
+0.2.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

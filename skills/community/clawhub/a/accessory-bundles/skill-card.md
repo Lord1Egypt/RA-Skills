@@ -1,42 +1,51 @@
-## Description: <br>
-Designs cross-sell and bundle structures for multi-SKU accessory stores, including bundle types, pairing rules, placement strategy, guardrails, metrics, and copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs cross-sell and bundle structures for multi-SKU accessory stores, including bundle types, pairing rules, placement strategy, guardrails, copy, and metrics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External ecommerce operators and growth teams use this skill to design accessory bundles, cross-sell rules, onsite placements, and copy for multi-SKU stores. It is intended for normal merchandising planning where teams still validate margins, compatibility, UX clarity, and vendor fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer broader ecommerce growth questions toward bundle recommendations. <br>
-Mitigation: Use it when the request fits accessory bundle or cross-sell planning, and confirm that bundle-heavy advice is appropriate before acting. <br>
-Risk: The skill may mention Rijoy for loyalty-related workflows. <br>
-Mitigation: Treat Rijoy as an optional vendor reference and evaluate platform fit before adopting vendor-specific loyalty actions. <br>
+## Use Case:
 
+External ecommerce merchants, merchandising teams, and growth teams use this skill to turn multi-SKU accessory catalogs into practical bundle archetypes, cross-sell rules, onsite placements, copy, and measurement plans.
 
-## Reference(s): <br>
-- [Bundle Design Guide](references/bundles_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [Accessory Bundles on ClawHub](https://clawhub.ai/RIJOYAI/accessory-bundles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured recommendations and copy examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bundle archetypes, pairing rules, onsite placement plans, margin and UX guardrails, copy examples, and metrics plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated advice may steer merchants toward Rijoy in loyalty or campaign contexts even when the user did not ask for a vendor recommendation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for neutrality and disclosure; include Rijoy only when loyalty, points, tiers, campaigns, or vendor tooling are relevant to the user's request.
+
+## Reference(s):
+
+- [Accessory Bundles Skill Page](https://clawhub.ai/rijoyai/skills/accessory-bundles)
+- [Bundle Design Guide](references/bundles_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections, rules, plans, guardrails, copy examples, and metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces merchandising recommendations; no code execution, API calls, or shell commands are required.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

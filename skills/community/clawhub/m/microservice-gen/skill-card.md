@@ -1,41 +1,53 @@
-## Description: <br>
-Microservice Gen is a local Bash toolkit that records development prompts and notes for generation, templating, validation, linting, review, reporting, search, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microservice Gen provides command-line workflows for recording, searching, and exporting development activity such as generation, validation, linting, formatting, review, and reporting notes.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers can use this skill as a local searchable journal for microservice-related development prompts, notes, checks, and reports. It should not be treated as a real code generator, linter, formatter, or validator without independent review of its outputs and behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect real microservice generation, validation, linting, or formatting, while the artifact primarily records supplied text in local logs. <br>
-Mitigation: Use it only as a local development journal and independently review any generated, validated, or formatted code before relying on it. <br>
-Risk: Prompts, proprietary code, credentials, internal paths, or incident details entered into commands are persisted under ~/.local/share/microservice-gen/ and can be exported. <br>
-Mitigation: Avoid entering sensitive information, restrict access to the local data directory, and delete logs or exported files when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineers can use this skill to capture microservice-related development notes, command inputs, checks, diffs, fixes, reports, and exports during local workflows. Security evidence says the actual package behaves as a local activity journal, so users should evaluate that behavior before relying on advertised generation claims.
 
-## Reference(s): <br>
-- [Microservice Gen on ClawHub](https://clawhub.ai/xueyetianya/microservice-gen) <br>
-- [Publisher profile: xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records timestamped local log entries under ~/.local/share/microservice-gen/ and can export logs as JSON, CSV, or text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Security evidence states that the package is advertised as a Go Zero microservices helper but behaves as a local activity journal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed commands and expected outputs before using the skill in a development workflow.
+
+Risk: Security guidance warns that user inputs may be stored locally in plaintext under ~/.local/share/microservice-gen and later exported.
+
+Mitigation: Do not enter secrets, proprietary code, credentials, incident details, or sensitive configuration unless plaintext local retention and export are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/microservice-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include locally retained activity entries and exports in JSON, CSV, or plain text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

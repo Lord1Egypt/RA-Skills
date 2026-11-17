@@ -1,42 +1,63 @@
-## Description: <br>
-Generate EIP-681 Ethereum payment links and QR codes for any EVM chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate EIP-681 Ethereum payment links and QR codes for any EVM chain, including Base, Ethereum, Arbitrum, Optimism, and Polygon.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-Developers and operators use this skill to create payment requests, invoices, donation links, and mobile-friendly checkout links for ETH or supported ERC-20 tokens across configured EVM networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated payment links may encode an unintended recipient address, token contract, network, or amount. <br>
-Mitigation: Verify the generated payment details in the wallet before sharing links or making payments. <br>
-Risk: The configured Ethereum DAI token address is malformed. <br>
-Mitigation: Avoid Ethereum DAI payment links until the token address is corrected and independently verified. <br>
-Risk: QR code generation depends on local Python packages. <br>
-Mitigation: Install qrcode and pillow in a virtual environment before generating QR files. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to create local payment requests, invoices, donation links, QR codes, and wallet links for ETH and ERC-20 payments on supported EVM networks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bevanding/evm-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Human-readable CLI text, JSON output, EIP-681 and MetaMask links, transaction payload details, and optional PNG QR code files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 plus qrcode and pillow for QR code generation; generated payment details should be verified in a wallet before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill can generate invalid or misleading payment requests if recipient addresses, token symbols, amounts, networks, or token configuration are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify recipient addresses, amounts, tokens, networks, and generated wallet links before sharing or using them.
+
+Risk: QR generation can overwrite a caller-chosen output file path.
+
+Mitigation: Write QR files only to safe new paths in a disposable or controlled directory.
+
+Risk: The server security guidance flags Ethereum DAI output as unreliable until configuration is corrected.
+
+Mitigation: Avoid relying on Ethereum DAI payment output unless the token configuration has been reviewed and corrected.
+
+Risk: QR generation requires third-party Python packages.
+
+Mitigation: Install qrcode and pillow in an isolated Python environment when QR generation is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bevanding/skills/evm-payment)
+- [Publisher profile](https://clawhub.ai/user/bevanding)
+- [MetaMask deep link examples](https://metamask.app.link/send/...)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable CLI text, JSON, EIP-681 links, MetaMask deep links, transaction fields, and optional PNG QR code files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated locally from caller-provided recipient, amount, token, network, and optional QR path.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

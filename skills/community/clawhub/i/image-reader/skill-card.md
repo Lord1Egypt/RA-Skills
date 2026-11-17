@@ -1,43 +1,58 @@
-## Description: <br>
-Image Reader analyzes user-provided images with a multimodal model to extract OCR text, describe visual content, or provide mixed image analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Reader uses a multimodal OpenAI-compatible model API to analyze images, extract OCR text, and generate image descriptions.
 
-## Publisher: <br>
-[simonjoe246](https://clawhub.ai/user/simonjoe246) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonjoe246](https://clawhub.ai/user/simonjoe246)
 
-## Use Case: <br>
-Developers and agent users use this skill to analyze screenshots or image files, extract visible text, and generate concise image descriptions through a configured multimodal API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, screenshots, and visible text are sent to the configured external multimodal API endpoint. <br>
-Mitigation: Use the skill only with images approved for that provider, and avoid sensitive screenshots unless sharing has been reviewed and authorized. <br>
-Risk: API credentials are configured through config.yaml. <br>
-Mitigation: Replace the placeholder with a scoped key, restrict access to the configuration file, and avoid committing real credentials. <br>
-Risk: Dependencies are declared with lower bounds rather than pinned versions. <br>
-Mitigation: Pin and review dependency versions before use in sensitive or production environments. <br>
+## Use Case:
 
+Developers and agents use this skill to process screenshots or image files when they need OCR text extraction, scene description, or general image analysis through a configured multimodal model API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonjoe246/image-reader) <br>
-- [Configured Volcengine-compatible API endpoint](https://ark.cn-beijing.volces.com/api/coding/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown returned from command-line or agent skill invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include extracted OCR text, visual descriptions, mixed image analysis, or error messages from the configured API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send local image contents to a configured external model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images approved for external processing and avoid credentials, private keys, sensitive documents, or internal screenshots unless that sharing is explicitly allowed.
+
+Risk: The command accepts any readable local path and does not enforce strong type or size validation before upload.
+
+Mitigation: Run it through a wrapper or agent policy that restricts inputs to confirmed image files and applies size limits before invocation.
+
+Risk: The artifact relies on API configuration and a placeholder API key in config.yaml.
+
+Mitigation: Configure credentials through an approved secret-management process and review the endpoint before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonjoe246/skills/image-reader)
+- [Configured OpenAI-compatible API endpoint](https://ark.cn-beijing.volces.com/api/coding/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown returned by the model, with command-line examples and configuration guidance in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include extracted text, visual descriptions, mixed OCR and description content, or an error string from the API call.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

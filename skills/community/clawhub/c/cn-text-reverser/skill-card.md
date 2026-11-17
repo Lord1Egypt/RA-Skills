@@ -1,38 +1,53 @@
-## Description: <br>
-Reverse Chinese text in whole-sentence or character-by-character order using a simple local command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse Chinese text in whole-sentence or character-by-character order using a simple command-line tool.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agent users can use this skill to reverse short Chinese text from the command line, either by whitespace-delimited segments or by individual characters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documentation contains external promotional links. <br>
-Mitigation: Treat those links as separate from running the local text reverser and review destinations before opening them. <br>
+## Use Case:
 
+Developers and content users can use this skill to ask an agent to reverse supplied Chinese text by whitespace-delimited word order or by character.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-text-reverser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library only; no network use is indicated by the executable script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Chinese-only documentation and help text may be misunderstood by reviewers or users who do not read Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate or review the short usage instructions before deployment, especially the --text and --char command options.
+
+Risk: The README includes promotional AISoBrand links that are outside the executable reversing behavior.
+
+Mitigation: Review external links separately and do not treat them as required for running the local text reversal tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-text-reverser)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can reverse whitespace-delimited word order by default or character order with the --char option.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

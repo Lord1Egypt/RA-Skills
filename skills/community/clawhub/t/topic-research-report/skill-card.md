@@ -1,44 +1,59 @@
-## Description: <br>
-Generates structured thematic research reports for events, policies, trends, and cross-industry investment topics from a natural-language query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured thematic research reports from natural-language queries for topics, events, policies, investment themes, cross-industry impacts, and trend analysis.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External users and analysts use this skill to request thematic research or deep-dive reports on policies, events, trends, and cross-industry topics. It returns report text, sharing information, and local document attachments when the Eastmoney service provides them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Eastmoney EM_API_KEY and sends research queries to Eastmoney. <br>
-Mitigation: Install only when that credential use and external service interaction are acceptable, and keep the API key out of prompts, logs, and generated files. <br>
-Risk: The advertised no-save option is inconsistent with the implementation and may still write returned documents locally. <br>
-Mitigation: Do not rely on --no-save to prevent file writes until fixed; inspect the configured output directory after use. <br>
-Risk: Generated DOCX/PDF reports are external files produced by a third-party service. <br>
-Mitigation: Treat generated documents as untrusted external files and review them before opening, sharing, or relying on their contents. <br>
+## Use Case:
 
+External users and analysts use this skill to request deep thematic research reports on events, policies, market themes, technology trends, and cross-industry questions. The skill calls EastMoney's thematic research service and returns report content, a share link, and generated attachments when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/topic-research-report) <br>
-- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw) <br>
-- [Eastmoney thematic research API endpoint](https://ai-saas.eastmoney.com/proxy/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown report text with title, share URL, and optional DOCX/PDF attachment paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY and may create local DOCX/PDF files returned by the Eastmoney service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Research queries are sent to EastMoney using EM_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this external API use is acceptable, and handle EM_API_KEY as a secret that is not written to code, prompts, logs, or output files.
+
+Risk: Generated DOCX/PDF attachments from the remote service can be saved locally, including when users expect non-persistent behavior from --no-save.
+
+Mitigation: Do not rely on --no-save for non-persistent operation until fixed, and avoid opening generated attachments unless the API source is trusted.
+
+Risk: Financial or thematic research output can be incomplete, delayed, or unsuitable as investment advice.
+
+Mitigation: Present report content as reference material, include risk notice language, and return explicit errors instead of inventing conclusions when the service fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/topic-research-report)
+- [Financial AI Analyst publisher profile](https://clawhub.ai/user/financial-ai-analyst)
+- [EastMoney Miaoxiang service](https://ai.eastmoney.com/mxClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown report text with share-link text and optional local DOCX/PDF file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and may save generated DOCX/PDF attachments locally when the EastMoney API returns them.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

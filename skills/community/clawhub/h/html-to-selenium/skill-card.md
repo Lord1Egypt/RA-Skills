@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes webpage HTML and interactive elements to help agents generate Selenium automation scripts for authorized pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes webpage HTML structure, identifies interactive elements, and helps generate Selenium automation code for authorized pages.
 
-## Publisher: <br>
-[icestorms](https://clawhub.ai/user/icestorms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icestorms](https://clawhub.ai/user/icestorms)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to inspect public or explicitly authorized web pages, identify form controls and links, and draft Selenium scripts for tasks such as login, search, and form submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Page HTML captured for model analysis may include tokens, credentials, CSRF values, or other sensitive data. <br>
-Mitigation: Use the skill only on public or explicitly authorized pages, avoid sensitive authenticated or internal systems, and redact HTML before sending it to any model. <br>
-Risk: The page fetch script uses browser flags that can bypass normal certificate and automation safeguards. <br>
-Mitigation: Run it only in controlled environments for intended Selenium inspection work, and do not rely on it for validating page trust or certificate status. <br>
-Risk: Retained HTML files, including error captures, can preserve sensitive page content after analysis. <br>
-Mitigation: Delete retained HTML outputs, including error_page.html, after review unless there is an explicit retention need. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect authorized webpages, inventory form controls and links, and draft Selenium automation scripts for workflows such as login, search, and form submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icestorms/html-to-selenium) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with element inventories, notes, and Python Selenium code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples and generated Selenium control scripts; captured HTML should be deleted or redacted after analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can expose sensitive page HTML, including tokens or credentials, when page source is saved or sent for model analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on public or explicitly authorized pages, avoid internal or sensitive pages, redact HTML before model submission, and delete temporary HTML files after analysis.
+
+Risk: The browser automation script has broad page access and disables certificate-error handling in the bundled fetch workflow.
+
+Mitigation: Run in an isolated environment, restrict target URLs before use, validate TLS instead of ignoring certificate errors, and use browser sandboxing.
+
+## Reference(s):
+
+- [HTML-to-Selenium ClawHub skill page](https://clawhub.ai/icestorms/skills/html-to-selenium)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with element inventory tables, Python Selenium code, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or handle local HTML files and page element summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

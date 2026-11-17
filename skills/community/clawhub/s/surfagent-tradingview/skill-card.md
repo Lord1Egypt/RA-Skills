@@ -1,41 +1,54 @@
-## Description: <br>
-TradingView platform skill for SurfAgent, covering chart workflows, proof rules, blockers, and when to use the TradingView adapter over generic browser control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TradingView platform skill for SurfAgent, covering chart workflows, proof rules, blockers, and when to use the TradingView adapter over generic browser control.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-Developers and agents use this skill to operate TradingView charts through SurfAgent workflows, including chart state inspection, market-data reads, indicator checks, Pine workflows, alerts, drawings, and watchlist updates with explicit proof standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TradingView account changes such as alerts, drawings, cleanup, and watchlist updates can affect a user's workspace. <br>
-Mitigation: Use adapter-level state checks and visual proof where appropriate, and require human confirmation when the TradingView flow still needs it. <br>
-Risk: Chart, market-data, indicator, or Pine results can be misleading if the agent relies on page loads or clicks as proof. <br>
-Mitigation: Verify results with TradingView adapter state, quote, OHLCV, indicator, study, alert, drawing, watchlist, compile, or screenshot evidence before claiming success. <br>
+## Use Case:
 
+Developers and external users use this skill to guide agents through TradingView chart inspection, market data reads, indicator checks, alerts, drawings, Pine editor workflows, and proof-backed chart changes through SurfAgent adapter workflows.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-tradingview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with tool and workflow names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Agent-directed TradingView workflows may change watchlists, alerts, drawings, or Pine editor state when the user requests those actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested changes and require adapter state, data, or screenshot proof before treating a TradingView task as complete.
+
+Risk: Chart or technical-analysis claims can be misleading if they are based only on navigation, clicks, or an unverified rendered chart.
+
+Mitigation: Use the skill's proof standard: verify chart state with adapter reads, verify market or indicator data with adapter data outputs, and capture visual proof when the task is visual.
+
+## Reference(s):
+
+- [SurfAgent homepage](https://surfagent.app)
+- [ClawHub skill page](https://clawhub.ai/surfagentapp/skills/surfagent-tradingview)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown skill instructions with workflow checklists and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TradingView adapter availability for the referenced tv_* workflows and emphasizes state, data, or visual proof before completion claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

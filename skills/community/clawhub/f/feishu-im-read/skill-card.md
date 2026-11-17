@@ -1,43 +1,53 @@
-## Description: <br>
-Guides an agent through reading Feishu IM chat history, thread replies, cross-chat message search, and downloading message image or file resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through reading Feishu IM conversation history, thread replies, cross-chat message search, and message attachment downloads within the user's existing access permissions.
 
-## Publisher: <br>
-[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it)
 
-## Use Case: <br>
-Developers and external agent users use this skill when they need an agent to retrieve Feishu group or direct-message history, inspect thread replies, search messages by filters, or fetch attached message resources under the user's Feishu authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the user's Feishu authorization to read chats and fetch message resources, which can expose sensitive conversations or files. <br>
-Mitigation: Use narrow requests that specify the exact chat, person, keyword, date range, and whether attachments or thread replies should be included. <br>
-Risk: Broad searches, pagination, or automatic thread expansion can retrieve more message content than the user intended. <br>
-Mitigation: Confirm scope before expanding threads or continuing pagination when the user asks for a summary or a limited result set. <br>
-Risk: Downloaded images, files, audio, or video may contain private or regulated information. <br>
-Mitigation: Fetch resources only when the user explicitly needs them and keep the result handling aligned with the user's access permissions. <br>
+## Use Case:
 
+Employees and authorized operators use this skill to retrieve Feishu chat history, inspect thread context, search across messages, and fetch message resources for conversations they can already access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3152557994-ship-it/feishu-im-read) <br>
-- [Publisher profile](https://clawhub.ai/user/a3152557994-ship-it) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with JSON tool-call parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retrieve Feishu messages, thread replies, search results, and message resources under the user's authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles sensitive Feishu chat content and attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest practical chat, keyword, sender, and time filters, and only expand threads or download files when needed.
+
+Risk: Broad searches or unnecessary resource downloads can expose more conversation data than the task requires.
+
+Mitigation: Keep retrieval scoped to the user's stated purpose and existing Feishu permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3152557994-ship-it/skills/feishu-im-read)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Text]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead the agent to request Feishu messages, thread replies, search results, or resources according to user-provided filters and access permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

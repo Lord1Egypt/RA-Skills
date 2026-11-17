@@ -1,39 +1,51 @@
-## Description: <br>
-Practical estimation techniques for software tasks, including method comparison, decomposition, complexity multipliers, buffer calculation, bias awareness, and stakeholder communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical estimation guidance for software tasks, including method selection, decomposition, complexity multipliers, buffers, calibration, bias awareness, and stakeholder communication.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to estimate features, bug fixes, sprint work, project timelines, and stakeholder-facing delivery ranges. It helps decompose tasks, compare estimation methods, apply buffers, track calibration, and communicate uncertainty. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Estimation practices may not fit every team's workflow or planning process. <br>
-Mitigation: Review the README.md and SKILL.md guidance before adoption, then calibrate estimates against the team's historical actuals. <br>
-Risk: Estimates can be treated as commitments if the agent's guidance is copied without context. <br>
-Mitigation: Present ranges with confidence levels and explicitly name assumptions, exclusions, and risks before sharing timelines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/estimation-atterns) <br>
+## Use Case:
+
+Developers, engineering leads, and product stakeholders use this skill to create clearer software estimates for features, bug fixes, sprint planning, roadmap forecasting, and stakeholder timeline discussions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Mutable remote install commands can change what is installed over time.
+
+Mitigation: Install from a reviewed commit or a trusted pinned installer version, especially on machines with developer credentials.
+
+Risk: Estimation guidance can be misused as a fixed commitment when requirements, dependencies, or scope are still uncertain.
+
+Mitigation: Present ranges with confidence, list assumptions and exclusions, and update estimates when new information changes scope or risk.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, formulas, checklists, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool calls, hidden execution, sensitive access, or persistence are indicated by the security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with tables, formulas, checklists, and inline shell commands for installation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no API calls, credentials, MCP tools, or hidden runtime behavior were identified in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

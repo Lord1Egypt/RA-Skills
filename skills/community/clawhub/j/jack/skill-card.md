@@ -1,41 +1,54 @@
-## Description: <br>
-Guides Chinese-speaking users through generating jack CAD drawings and guest production-sheet links with the JXT mechanical parts service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a Chinese-language workflow for collecting jack design parameters and generating CAD production sheet links through jixietools.com.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-Chinese-speaking mechanical parts users and CAD operators use this skill to select a jack type, enter parameters one at a time, calculate CAD values, create a guest production sheet, and monitor drawing generation progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered CAD design parameters are sent to an external CAD service. <br>
-Mitigation: Use the skill only for the intended jack CAD workflow, and avoid confidential designs unless the service's sharing and retention model is acceptable. <br>
-Risk: The workflow can create guest-access links or codes for generated production sheets. <br>
-Mitigation: Share generated links only with intended recipients and review outputs before ordering or relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to collect jack CAD parameters one at a time, calculate design outputs, and create or monitor guest production sheets on jixietools.com.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liv09370/jack) <br>
-- [JXT Mechanical Tools Service](https://jixietools.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese conversational Markdown with tables, inline shell commands, generated links, and progress updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CAD calculation summaries, guest production-sheet links, and status updates based on user-provided jack parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends jack design parameters to jixietools.com and creates persistent guest production sheet links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, disclose external data sharing to users, and require explicit confirmation before creating a guest production sheet.
+
+Risk: The security evidence flags unsafe shell-style API templates for external HTTP requests.
+
+Mitigation: Prefer a structured HTTP client where possible, or carefully review generated curl commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liv09370/skills/jack)
+- [JixieTools API endpoint](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown with tables, JSON examples, curl commands, and production sheet status or link updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation at each step and may create persistent guest production sheets on jixietools.com.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

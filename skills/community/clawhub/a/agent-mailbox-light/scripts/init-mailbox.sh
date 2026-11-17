@@ -3,7 +3,7 @@ set -euo pipefail
 
 workspace="${1:-$(pwd)}"
 root="$workspace/.agent-mailbox"
-mkdir -p "$root/inbox" "$root/archive"
+mkdir -p "$root/inbox" "$root/keep" "$root/archive"
 
 cat <<EOF
 Initialized mailbox:
@@ -11,5 +11,6 @@ Initialized mailbox:
 
 Subdirectories:
   $root/inbox
+  $root/keep
   $root/archive
 EOF

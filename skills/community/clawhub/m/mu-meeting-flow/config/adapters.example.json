@@ -1,0 +1,29 @@
+{
+  "_comment": "这是示例配置。请复制为 adapters.json 后按自己的工具填写。\"none\" 表示不使用该适配器，对应步骤将降级为手动模式。",
+  "calendar": {
+    "provider": "google",
+    "credentials": "path/to/google-credentials.json"
+  },
+  "transcription": {
+    "provider": "whisper",
+    "model": "base",
+    "language": "auto"
+  },
+  "knowledge": {
+    "provider": "notion",
+    "token": "your-notion-integration-token",
+    "database_id": "your-database-id"
+  },
+  "messaging": {
+    "provider": "slack",
+    "webhook_url": "REDACTED-SECRET"
+  },
+  "meeting": {
+    "provider": "zoom",
+    "api_key": "",
+    "api_secret": ""
+  },
+  "room": {
+    "provider": "none"
+  }
+}

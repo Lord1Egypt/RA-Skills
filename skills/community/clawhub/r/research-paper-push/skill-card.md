@@ -1,44 +1,59 @@
-## Description: <br>
-Create scheduled research-paper alerts using OpenAlex and OpenClaw cron. Use to subscribe to journals, conferences, or research topics; list/update/cancel subscriptions; test real OpenAlex queries; and push concise daily Chinese summaries of newly matched papers. Designed for topic monitoring such as AD/MCI, dynamic functional connectivity, rs-fMRI, graph neural networks, and medical imaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create scheduled research-paper alerts using OpenAlex and OpenClaw cron for journal, conference, or topic subscriptions, test queries, subscription management, and concise Chinese summaries of newly matched papers.
 
-## Publisher: <br>
-[zjuncher](https://clawhub.ai/user/zjuncher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjuncher](https://clawhub.ai/user/zjuncher)
 
-## Use Case: <br>
-Researchers and research teams use this skill to maintain scheduled alerts for new papers by topic, journal, or conference, then receive concise Chinese summaries of matching OpenAlex results. It is suited for recurring topic monitoring rather than one-off literature reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local subscription state and create or remove OpenClaw cron jobs. <br>
-Mitigation: Ask for confirmation before creating or deleting scheduled jobs, verify timezone and recipient details, and review generated commands before execution. <br>
-Risk: Recipient identifiers are local user data and generated subscription files may contain sensitive routing details. <br>
-Mitigation: Keep generated data/*.json files out of published artifacts and avoid storing API keys, tokens, cookies, or private channel credentials in the skill folder. <br>
-Risk: Full-access autoreview modes or trusted-maintainer workflows can change code, services, GitHub state, or ClawHub moderation state. <br>
-Mitigation: Install only in a trusted development or maintainer environment and consider disabling full-access autoreview mode with --no-yolo or AUTOREVIEW_YOLO=0 for untrusted repositories. <br>
+## Use Case:
 
+Researchers and research-support agents use this skill to monitor new papers by topic, journal, or conference, schedule daily OpenClaw cron alerts, and produce concise Chinese summaries of matching OpenAlex results.
 
-## Reference(s): <br>
-- [Research Paper Push on ClawHub](https://clawhub.ai/zjuncher/research-paper-push) <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [OpenAlex Works endpoint](https://api.openalex.org/works) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and concise Chinese paper-summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local subscription JSON state and register or remove OpenClaw cron jobs when the user asks for scheduling changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can create or remove scheduled OpenClaw cron jobs for recurring paper alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants scheduling changes before running add, update, or remove actions that affect cron jobs.
+
+Risk: The skill stores subscription state and recipient identifiers in local data files.
+
+Mitigation: Treat generated data/*.json files as local user data and exclude them from published skill artifacts.
+
+Risk: Research topics are sent to OpenAlex when queries run.
+
+Mitigation: Confirm the research topics are suitable for an external OpenAlex query and do not store tokens or private channel credentials in the skill folder.
+
+## Reference(s):
+
+- [OpenAlex API](https://api.openalex.org)
+- [OpenAlex Works API](https://api.openalex.org/works)
+- [ClawHub skill page](https://clawhub.ai/zjuncher/skills/research-paper-push)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text Chinese paper summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local subscription JSON under data/ and named OpenClaw cron jobs when scheduling is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-A股个股深度分析 uses a five-module framework to collect public A-share data and produce individual-stock analysis across fundamentals, valuation, technical signals, recent news, and buy/sell reference points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes individual A-share stocks with a five-module report covering fundamentals, price and volume trends, Serenity-style moat logic, recent market news, and summary views using a-stock-data and public market sources.
 
-## Publisher: <br>
-[flynnliu](https://clawhub.ai/user/flynnliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flynnliu](https://clawhub.ai/user/flynnliu)
 
-## Use Case: <br>
-External users and analysts use this skill to generate structured A-share individual-stock reports from public market, financial, analyst-report, news, and technical data. It is intended for informational analysis and valuation discussion, not as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries public Chinese finance sites and web search providers for stocks the user asks about. <br>
-Mitigation: Use it only when those lookups are acceptable, and avoid entering non-public portfolio, strategy, or client-sensitive information. <br>
-Risk: Generated buy/sell points, valuation ranges, and target prices can be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational analysis, verify the data independently, and make trading decisions outside the skill workflow. <br>
-Risk: Market, analyst-report, or financial-statement data may be incomplete or unavailable from public sources. <br>
-Mitigation: Mark unavailable fields explicitly and do not infer missing financial data. <br>
+## Use Case:
 
+External users and analysts use this skill to produce structured, public-data-based deep-dive reports for individual A-share equities, including valuation, technical trend, capital flow, news, and risk-review sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flynnliu/a-stock-individual-analysis) <br>
-- [Tencent Finance quote endpoint](https://qt.gtimg.cn/) <br>
-- [Eastmoney data center API](https://datacenter-web.eastmoney.com/api/data/v1/get) <br>
-- [Eastmoney report API](https://reportapi.eastmoney.com/report/list) <br>
-- [Tonghuashun public stock pages](https://basic.10jqka.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables and optional JSON data collection output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a stock code; missing financial or market data should be marked unavailable rather than inferred.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may make external market-data and web requests while preparing stock analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations and source reliability before deployment, and require users to treat the resulting report as analysis rather than investment advice.
+
+Risk: The skill instructs agents to persist newly discovered data sources into its own instructions without explicit review.
+
+Mitigation: Require human review before adding newly discovered endpoints to trusted future-use instructions.
+
+Risk: Market data or news may be unavailable, stale, incomplete, or inconsistent across public sources.
+
+Mitigation: Preserve the artifact behavior of marking unavailable data explicitly and avoid filling missing values with unsupported estimates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flynnliu/skills/a-stock-individual-analysis)
+- [Tencent Finance quote endpoint](https://qt.gtimg.cn/)
+- [Eastmoney data center API](https://datacenter-web.eastmoney.com/api/data/v1/get)
+- [Eastmoney report API](https://reportapi.eastmoney.com/report/list)
+- [Eastmoney quote API](https://push2.eastmoney.com/)
+- [10jqka valuation page](https://basic.10jqka.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with embedded Python and shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock metrics, valuation tables, risk notes, endpoint fallback notes, and investment disclaimers; outputs are analytical guidance and not financial advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

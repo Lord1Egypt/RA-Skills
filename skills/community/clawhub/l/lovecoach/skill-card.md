@@ -1,44 +1,59 @@
-## Description: <br>
-LoveCoach is an AI love coach for people navigating attraction, attachment, cold wars, breakup recovery, and mixed signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LoveCoach provides relationship coaching for attraction, attachment patterns, cold wars, breakup recovery, mixed signals, date planning, conflict resolution, and healthier relationship patterns.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill for informal relationship coaching, including message interpretation, reply drafting, date planning, attachment-style reflection, conflict de-escalation, and breakup recovery guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informal relationship guidance as therapy or safety advice. <br>
-Mitigation: Frame outputs as informal coaching and encourage users to seek qualified professional or emergency help for safety, abuse, self-harm, stalking, coercion, or severe distress. <br>
-Risk: The skill can invite users to share intimate chats, screenshots, contact details, or third-party personal data, especially when using external Pro features. <br>
-Mitigation: Ask users to redact private chats, screenshots, names, contact details, and other identifying information before sharing content, and review any external service privacy terms first. <br>
-Risk: Some relationship scenarios involve boundary risk, including advice about appearing in person during conflict. <br>
-Mitigation: Only suggest in-person contact when the other person has clearly invited contact, and prefer consent-respecting, non-escalatory communication. <br>
+## Use Case:
 
+External users use this skill for bilingual dating and relationship coaching, including message interpretation, reply drafting, attachment-style analysis, date planning, post-date review, conflict de-escalation, and breakup recovery guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/lovecoach) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ReplyHer Pro site](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown relationship coaching with structured analyses, recommended replies, plans, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May respond in the user's language and may include message drafts, relationship-stage labels, attachment-style interpretations, date ideas, timelines, and conflict or breakup recovery steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release evidence) <br>
+Risk: The skill may advertise external services while handling sensitive relationship context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review external-service privacy terms before sharing intimate chats, screenshots, or third-party personal information, and treat upgrade links as optional rather than required for basic coaching.
+
+Risk: Promotional links are inconsistent across the artifact, which can confuse users about the intended external service.
+
+Mitigation: Verify the intended service domain before release and remove or correct unexpected promotional links.
+
+Risk: The bundled publish script commits, pushes, and invokes an unpinned CLI package.
+
+Mitigation: Review the diff before running the script and pin or otherwise verify the CLI dependency before publishing.
+
+## Reference(s):
+
+- [Lovecoach Skill Pub on ClawHub](https://clawhub.ai/imwyvern/skills/lovecoach)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted conversational advice with structured sections, signal assessments, concrete next steps, and short message options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are expected to match the user's language and may include concise timelines, relationship-stage labels, and cautionary notes.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-微信机器人快速搭建 - 基于 wechaty/itchat 的微信机器人模板。适合：想做微信自动化的开发者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers quickly scaffold WeChat bots using Wechaty or itchat for auto-replies, message monitoring, group management, forwarding, scheduled messages, and optional OpenClaw integration.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers use this skill as a starter guide for creating WeChat automation with Wechaty or itchat, including auto-replies, message monitoring, group management, forwarding, scheduled messages, and OpenClaw integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat monitoring, automated posting, and message forwarding can expose private conversation content or send unintended messages. <br>
-Mitigation: Use a dedicated test or business WeChat account, restrict the bot to approved chats, add allowlists and confirmations for outbound messages, and rate-limit sends. <br>
-Risk: External AI processing can disclose chat content if OpenClaw or another API endpoint is not appropriately protected. <br>
-Mitigation: Do not forward chat content to OpenClaw or any API unless the endpoint is authenticated, protected, and governed by clear data-handling rules. <br>
-Risk: Participants may not expect automated monitoring or forwarding in chat contexts. <br>
-Mitigation: Document participant consent and usage boundaries before enabling monitoring, forwarding, or automated replies. <br>
+## Use Case:
 
+Developers use this skill to create starter WeChat bot implementations, compare Wechaty, itchat, Enterprise WeChat, and ComWechat options, and add common automation patterns such as auto-replies, group handling, forwarding, scheduled messages, and OpenClaw-backed responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/wechat-bot-starter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JavaScript, Python, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup commands, bot examples, configuration snippets, and operational guidance for WeChat automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Chat access, message monitoring, and forwarding can expose sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bot account where possible, limit the bot to intended chats, and get consent before monitoring or forwarding messages.
+
+Risk: Automated sending can create abuse, spam, or account-enforcement risk.
+
+Mitigation: Add rate limits, keep logs, avoid unintended marketing content, and review behavior before deployment.
+
+Risk: Unpinned dependencies or an exposed OpenClaw chat endpoint can create supply-chain or access-control risk.
+
+Mitigation: Review and pin dependencies, and keep the OpenClaw endpoint local or protect remote access with authentication and HTTPS.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/wechat-bot-starter)
+- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, JavaScript, Python, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm for the Wechaty examples; Python examples use itchat and related packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

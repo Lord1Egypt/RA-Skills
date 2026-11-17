@@ -1,32 +1,30 @@
 ---
 name: dgr
-description: Audit-ready decision artifacts for LLM outputs — assumptions, risks, recommendation, and review gating (schema-valid JSON).
+version: "1.1.0"
+description: Superseded reference skill: structured reasoning records, kept for provenance. Enforcement moved to DGR Gate, a pre-execution gate for OpenClaw tool calls: clawhub.ai/dgr-ai-labs/plugins/openclaw-dgr-gate
 homepage: https://www.clawhub.ai/sapenov/dgr
 metadata:
-  clawdbot:
+  openclaw:
     emoji: "🧭"
   category: "reasoning"
 ---
+
+> **Superseded — kept as a reference.** This skill formats reasoning into a structured record. It cannot stop an action; the model decides whether to follow it.
+>
+> **A rule in the prompt is a request. A rule in the tool is a gate.** The enforcing successor is [DGR Gate](https://clawhub.ai/dgr-ai-labs/plugins/openclaw-dgr-gate), a pre-execution gate that checks a call against operator-configured policy before it runs. It currently gates two demo tools, not your real ones.
+>
+> This page remains published as the record of the earlier approach and why it was replaced. Existing installs keep working; no further development.
 
 # DGR — Decision‑Grade Reasoning (Governance Protocol)
 
 **Purpose:** produce an auditable, machine‑validated decision record for review and storage.
 
-**Slug:** dgr · **Version:** 1.0.4 · **Modes:** dgr_min / dgr_full / dgr_strict · **Output:** schema-valid JSON
+**Slug:** dgr · **Version:** 1.1.0 · **Modes:** dgr_min / dgr_full / dgr_strict · **Output:** schema-valid JSON
 
 ## What this skill does
-DGR is a **reasoning governance protocol** that produces a **machine‑validated, auditable artifact** describing:
-- the decision context,
-- explicit assumptions and risks,
-- a recommendation with rationale,
-- and a consistency check.
+This skill produced a structured decision record: decision context, explicit assumptions, identified risks, a recommendation with rationale, and a consistency check. The output was documentation of reasoning, formatted as schema-valid JSON for easier review and storage.
 
-This skill is designed for **high‑stakes** or **review‑required** decisions where you want traceability and structured review.
-
-## How to use
-1. **Ask your question** — Provide a decision request or problem context
-2. **Pick mode:** `dgr_min` | `dgr_full` | `dgr_strict`
-3. **Store JSON artifact** in ticket / incident / audit log
+That was insufficient. A model's own justification is not evidence — a better-formatted rationale from the same model does not change that. A prompt-level instruction can be lost during context compaction or ignored after the model reads untrusted text. This approach documented reasoning but could not enforce constraints on tool execution.
 
 ## What this skill is NOT (non‑claims)
 This skill does **NOT** guarantee:
@@ -48,14 +46,6 @@ Use when you need:
 - A user request/question (free text).
 - Optional: context identifiers (ticket ID, policy name), and desired **mode**: `dgr_min`, `dgr_full`, or `dgr_strict`.
 
-## Mode Behavior
-
-| Mode | Speed | Detail Level | Clarifications | Review Required | Use Case |
-|------|-------|--------------|---------------|----------------|----------|
-| `dgr_min` | Fastest | Minimal compliant output | Only critical gaps | Risk-based | Quick decisions, low stakes |
-| `dgr_full` | Moderate | Fuller decomposition + alternatives | More proactive | Balanced | Standard decision support |
-| `dgr_strict` | Slower | Conservative analysis | More questioning | Default on ambiguity | High-stakes, uncertain contexts |
-
 ## Outputs
 A single JSON artifact matching `schema.json`.
 
@@ -71,18 +61,9 @@ Minimum acceptance criteria (see `schema.json`):
 - If uncertainty is high, explicitly state uncertainty and limit scope.
 - Do not fabricate sources or cite documents you did not see.
 
-## Files in this skill
-- `prompt.md` — operational instructions
-- `schema.json` — output schema (stub aligned to DGR spec)
-- `examples/*.md` — example inputs and outputs
-- `field_guide.md` — how to interpret DGR artifact fields
-
-## Quick start
-1) Provide a decision request.
-2) Choose a mode (`dgr_min` default).
-3) The skill returns a JSON artifact suitable for review and storage.
-
 ## Changelog
+**1.1.0** — Repositioned as a superseded reference. Terminology aligned with DGR Gate (pre-execution gate). Removed usage guidance; this skill formats reasoning and does not enforce. Existing installs unaffected.
+
 **1.0.4** — Remove redundant CLAWHUB_SUMMARY.md; summary now sourced from SKILL.md front-matter.
 
 **1.0.3** — Tighten front-matter description for better conversion, add reasoning category, compress identity block for faster scanning.

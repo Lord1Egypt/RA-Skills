@@ -1,42 +1,56 @@
-## Description: <br>
-Generates structured anime short-video and comic storyboard scripts for AI drawing from a requested 9-, 16-, or 25-panel format and character reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates structured anime short-video or comic storyboard scripts from a requested 9-, 16-, or 25-panel layout and uploaded character reference images.
 
-## Publisher: <br>
-[wutzh195-max](https://clawhub.ai/user/wutzh195-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wutzh195-max](https://clawhub.ai/user/wutzh195-max)
 
-## Use Case: <br>
-External creators and content production teams use this skill to draft panel-by-panel anime or comic storyboard copy, including scene descriptions, actions, dialogue, audio cues, transitions, and optional AI image prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Storyboard generation may rely on public fiction, platform trends, or recognizable story beats that are too close to existing works. <br>
-Mitigation: Use owned or licensed source material where possible, request original plot treatments, and review outputs for substantial similarity before publication. <br>
-Risk: Character reference images may include personal or third-party likenesses. <br>
-Mitigation: Use images the user is authorized to provide and avoid generating content that misrepresents a real person or violates likeness rights. <br>
+## Use Case:
 
+External creators and developers use this skill to turn character reference images and a selected panel count into structured anime storyboard copy and optional AI drawing prompts for short-video production.
 
-## Reference(s): <br>
-- [AI Prompt Tags](references/ai_prompt_tags.md) <br>
-- [Plot Highlights](references/plot_highlights.md) <br>
-- [Storyboard Template](references/storyboard_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown storyboard script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 9-, 16-, and 25-panel storyboard formats with optional English AI drawing prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uploaded character reference images may include private or sensitive visual information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive images or obtain consent before providing character references for style and character inference.
+
+Risk: Storyboard generation may draw on public source material and popular plot patterns.
+
+Mitigation: Review generated storyboards for originality, attribution needs, and rights clearance before commercial publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wutzh195-max/skills/anime-storyboard-creator)
+- [Storyboard template](artifact/references/storyboard_template.md)
+- [AI prompt tags](artifact/references/ai_prompt_tags.md)
+- [Plot highlights](artifact/references/plot_highlights.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown storyboard script with per-panel fields and optional AI drawing prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 9, 16, or 25 storyboard panels; may use uploaded character reference images and public source material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

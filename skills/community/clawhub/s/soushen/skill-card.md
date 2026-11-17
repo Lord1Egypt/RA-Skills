@@ -1,39 +1,53 @@
-## Description: <br>
-Soushen is a Playwright-based Bing search skill that returns structured search results and can extract page elements such as links, forms, buttons, scripts, metadata, cookies, and text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SouShen Hunter is a Playwright-based Bing search and page extraction skill that returns structured search results and page element data.
 
-## Publisher: <br>
-[hexian2001](https://clawhub.ai/user/hexian2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hexian2001](https://clawhub.ai/user/hexian2001)
 
-## Use Case: <br>
-External users and developers use this skill to run Bing searches without an API key and to inspect public webpages for structured search results, page text, and page elements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Deep browsing mode can collect sensitive page data, including cookies, form values, and page content. <br>
-Mitigation: Restrict use to public, non-sensitive sites unless cookie output, form-value capture, and privacy warnings are explicitly gated by user consent. <br>
-Risk: The browsing implementation weakens normal browser protections beyond what the stated search purpose requires. <br>
-Mitigation: Review and narrow the browsing behavior before installation, remove or gate unsafe browser flags, and scope execution to approved domains. <br>
+## Use Case:
 
+Developers and agents use this skill to run Bing searches without a search API and to inspect public web pages for links, forms, buttons, scripts, metadata, and visible content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code] <br>
-**Output Format:** [JSON for CLI results and Markdown-style guidance for agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search mode returns result objects; deep mode can return page text, links, forms, buttons, scripts, metadata, and cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Deep analysis can visit arbitrary URLs from the user's machine and return detailed page data, including cookies and form values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use deep analysis only on public, non-sensitive pages unless URL restrictions and output filtering are added.
+
+Risk: The browser launch configuration uses unsafe Chromium flags and anti-detection behavior.
+
+Mitigation: Review and tighten browser flags before deployment, especially in enterprise, authenticated, internal, or sensitive browsing contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexian2001/skills/soushen)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, code, guidance]
+
+**Output Format:** [JSON from the CLI and Python API, with shell command examples in documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search mode returns titles, URLs, snippets, sources, and result types; deep mode returns page text slices plus links, forms, buttons, scripts, metadata, and cookies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

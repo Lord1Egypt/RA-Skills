@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors API billing errors, alerts owner and admin contacts, and guides fallback model switching when provider billing failures affect an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors API billing failures, alerts the owner and admin when action is needed, and guides fallback model switching and incident logging.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Agent operators use this skill to detect provider billing failures, notify the owner and admin, log the incident, and switch to a configured fallback model when service continuity is affected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Silent scheduled checks can use provider API keys and write billing status without direct user visibility. <br>
-Mitigation: Limit deployment to trusted environments, protect local context files, and review logs and cron schedules before enabling automated checks. <br>
-Risk: Automatic fallback model changes can alter agent behavior or cost profile. <br>
-Mitigation: Validate fallback model configuration in advance and require human approval before persistent model switching. <br>
-Risk: Peer-agent billing reports could trigger escalation or operational changes without direct provider confirmation. <br>
-Mitigation: Treat peer reports as signals for admin review and confirm billing status with provider checks before lasting changes. <br>
+## Use Case:
 
+Developers and operators use this skill to detect billing-related API failures, notify the responsible owner or admin, and switch to a configured fallback model when service continuity requires it.
 
-## Reference(s): <br>
-- [Billing Monitor on ClawHub](https://clawhub.ai/netanel-abergel/billing-monitor) <br>
-- [Anthropic Messages API](https://api.anthropic.com/v1/messages) <br>
-- [OpenAI Chat Completions API](https://api.openai.com/v1/chat/completions) <br>
-- [Google Generative Language Models API](https://generativelanguage.googleapis.com/v1beta/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes alert text, logging commands, health-check logic, and fallback configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill can source executable local context before using owner, admin, log, and fallback settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local configuration and prefer a non-executable config format for deployment values.
+
+Risk: Scheduled health checks can use credential-backed provider API calls and write incident logs.
+
+Mitigation: Limit checks to explicitly approved provider keys, use dedicated monitoring credentials where possible, and set appropriate log retention and file permissions.
+
+Risk: The skill can change model configuration automatically during a billing incident.
+
+Mitigation: Require clear owner or admin control before automatic model switching and document the configured fallback model.
+
+## Reference(s):
+
+- [Billing Monitor on ClawHub](https://clawhub.ai/netanel-abergel/skills/billing-monitor)
+- [Anthropic Messages API endpoint](https://api.anthropic.com/v1/messages)
+- [OpenAI Chat Completions API endpoint](https://api.openai.com/v1/chat/completions)
+- [Google Generative Language models endpoint](https://generativelanguage.googleapis.com/v1beta/models)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes alert message templates, provider health-check commands, fallback configuration guidance, and incident logging steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

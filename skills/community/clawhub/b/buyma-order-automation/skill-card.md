@@ -1,47 +1,67 @@
-## Description: <br>
-Automates BUYMA order processing for daily and ad hoc order-range runs, including memo checks, CSV or fallback input, Tmazon workbook generation, history enrichment, Naver Mail delivery, and Telegram failure notification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates BUYMA order processing for regular daily runs and ad hoc order-range runs, including memo checks, CSV parsing, workbook creation, history enrichment, mail delivery, and Telegram failure notification.
 
-## Publisher: <br>
-[innoucon-blip](https://clawhub.ai/user/innoucon-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[innoucon-blip](https://clawhub.ai/user/innoucon-blip)
 
-## Use Case: <br>
-External operators and automation maintainers use this skill to prepare BUYMA order workbooks for regular daily processing or requested order-number ranges, then send the result through Naver Mail with Telegram notification on completion or failure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to operate in logged-in BUYMA and Naver Mail browser sessions. <br>
-Mitigation: Use a dedicated browser profile where possible, confirm the active account before each run, and keep browser-only steps as procedural placeholders until they are implemented and tested. <br>
-Risk: Order workbooks may be sent by email or Telegram without enough recipient or channel controls. <br>
-Mitigation: Require manual confirmation before any email or Telegram send, verify recipients and channels, and avoid attaching sensitive files unless necessary. <br>
-Risk: Failure handling can attach generated order files to Telegram. <br>
-Mitigation: Confirm file scope before sending fallback attachments and limit attachments to the minimum output needed to resolve the failed run. <br>
+## Use Case:
 
+External operators use this skill to prepare BUYMA order workbooks for daily deadlines or requested order-number ranges. It helps an agent select a base workbook, process BUYMA CSV data, enrich rows from prior workbook history, validate outputs, and coordinate Naver Mail or Telegram notifications.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Run Modes](references/run-modes.md) <br>
-- [Failure Rules](references/failure-rules.md) <br>
-- [File Rules](references/file-rules.md) <br>
-- [Memo Rules](references/memo-rules.md) <br>
-- [Column Mapping](references/column-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated workbook, JSON, and state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates order workbooks, normalized JSON records, state JSON, logs, and notification text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad browser and session access for BUYMA and Naver Mail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile only for BUYMA and Naver Mail, and review browser actions before execution.
+
+Risk: The workflow can edit receipt memos and send order workbooks or attachments externally.
+
+Mitigation: Require operator confirmation before memo edits or email/Telegram sends, and verify recipients and attachment paths.
+
+Risk: Generated spreadsheets may contain untrusted cell values from BUYMA CSV data or manual fallback files.
+
+Mitigation: Sanitize spreadsheet cells against formulas and validate generated workbooks before delivery.
+
+Risk: Generated workbooks, logs, and state files may retain order information after processing.
+
+Mitigation: Define retention and cleanup rules for generated workbooks, logs, CSV files, and state files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/innoucon-blip/skills/buyma-order-automation)
+- [Workflow](references/workflow.md)
+- [Run Modes](references/run-modes.md)
+- [Failure Rules](references/failure-rules.md)
+- [File Rules](references/file-rules.md)
+- [Memo Rules](references/memo-rules.md)
+- [Column Mapping](references/column-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python script commands and generated JSON/XLSX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates order workbooks, normalized JSON records, validation output, and last_state.json; browser-only BUYMA, Naver Mail, and Telegram actions are procedural.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Book cleanings and manage property maintenance, including one-time or recurring cleanings, maintenance issue tracking, service professional management, availability checks, and pricing through CLI, MCP server, and REST API approaches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book cleanings and manage property maintenance by scheduling one-time or recurring cleanings, reporting and tracking maintenance issues, managing service professionals, and checking availability and pricing through CLI, MCP, or REST API approaches.
 
-## Publisher: <br>
-[mchusma](https://clawhub.ai/user/mchusma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mchusma](https://clawhub.ai/user/mchusma)
 
-## Use Case: <br>
-Homeowners, office managers, building managers, and property operators use this skill to let an agent schedule cleaning services, report and track maintenance issues, manage service professionals, and check availability or pricing through TIDY integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent trigger real-world cleaning bookings, cancellations, repairs, concierge assignment, or third-party outreach. <br>
-Mitigation: Require manual confirmation before bookings, cancellations, repair scheduling, concierge assignment, or third-party outreach. <br>
-Risk: The skill can involve sensitive property details, access instructions, personal data, and TIDY credentials. <br>
-Mitigation: Use a dedicated TIDY account or token where possible, keep tokens secure, and avoid sharing lockbox codes, alarm codes, key locations, or unnecessary personal data. <br>
+## Use Case:
 
+Homeowners, office managers, and building managers use this skill to ask an agent to book cleanings, manage recurring schedules, report maintenance issues, track status, and coordinate service professionals through TIDY.
 
-## Reference(s): <br>
-- [Cleaning Maintenance on ClawHub](https://clawhub.ai/mchusma/cleaning-maintenance) <br>
-- [TIDY Homepage](https://tidy.com) <br>
-- [Authentication](references/authentication.md) <br>
-- [Cleaning & Maintenance Workflows](references/maintenance-workflows.md) <br>
-- [MCP Server Reference](references/mcp-server-reference.md) <br>
-- [REST API Reference](references/rest-api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, JSON, and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce operational instructions that trigger real-world bookings, cancellations, repairs, and third-party outreach when used with TIDY credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can trigger real-world property-service actions such as booking, canceling, deleting, spending, or assigning concierge work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before those actions are submitted.
+
+Risk: Property addresses, access notes, booking data, maintenance details, and vendor contact information may be shared with TIDY.
+
+Mitigation: Use the skill only when the user trusts TIDY with that information, and do not include hidden-key locations or other entry secrets in notes.
+
+Risk: TIDY tokens are long-lived credentials.
+
+Mitigation: Store TIDY_API_TOKEN securely, restrict access to the runtime environment, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [TIDY Homepage](https://tidy.com)
+- [Authentication](references/authentication.md)
+- [Cleaning & Maintenance Workflows](references/maintenance-workflows.md)
+- [MCP Server Reference](references/mcp-server-reference.md)
+- [REST API Reference](references/rest-api-reference.md)
+- [TIDY Public API Docs](https://public-api.tidy.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI, MCP, and REST API paths for the same cleaning or maintenance workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

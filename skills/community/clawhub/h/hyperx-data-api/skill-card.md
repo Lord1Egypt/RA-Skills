@@ -1,45 +1,57 @@
-## Description: <br>
-HyperX Data API provides reference guidance for building applications with Hyperliquid wallet analytics, market data, crypto Twitter, and news feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building apps with HyperX Data API for Hyperliquid wallet analytics, market data, Twitter feeds, and news feeds.
 
-## Publisher: <br>
-[hyperxtrade](https://clawhub.ai/user/hyperxtrade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyperxtrade](https://clawhub.ai/user/hyperxtrade)
 
-## Use Case: <br>
-Developers and agents use this skill to construct HyperX Data API requests for Hyperliquid wallet analytics, market positions, trading fills, Twitter feeds, news feeds, and BTC mining data while accounting for authentication and rate limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens or session cookies can expose authenticated HyperX access if pasted into chat, logs, or shared code. <br>
-Mitigation: Use API tokens instead of session cookies where possible, store credentials in environment variables or a secret manager, and redact secrets from examples and logs. <br>
-Risk: Wallet addresses and authenticated requests may be sent to HyperX when using wallet analytics or fills endpoints. <br>
-Mitigation: Query only wallet addresses the user intends to analyze and avoid sending sensitive account context beyond what the API request requires. <br>
-Risk: Rate limits and endpoint weights can cause failed requests or unexpected quota use. <br>
-Mitigation: Check the documented tier budget and endpoint weight before batching requests, and throttle or paginate calls when needed. <br>
+## Use Case:
 
+Developers use this skill to build applications that call the HyperX Data API for Hyperliquid wallet analytics, market positions, fills, market snapshots, crypto Twitter feeds, news feeds, and related trading data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyperxtrade/hyperx-data-api) <br>
-- [Publisher profile](https://clawhub.ai/user/hyperxtrade) <br>
-- [HyperX Data API base URL](https://data-api.hyperx.trade) <br>
-- [HyperX API token settings](https://hyperx.trade/hyperliquid/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with endpoint tables, authentication guidance, and Python and WebSocket examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides API usage against HyperX endpoints; authenticated wallet analysis may require an API token or session cookie.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: API credentials or session cookies could be exposed if copied into code, logs, prompts, or shared artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer API tokens, store credentials outside source code, and avoid logging or sharing headers, cookies, and secrets.
+
+Risk: Wallet analytics, trading metrics, pricing, rate limits, and API responses may change or be unsuitable as the sole basis for financial decisions.
+
+Mitigation: Verify current API responses, pricing, and rate limits directly with HyperX before production use or financial reliance.
+
+## Reference(s):
+
+- [HyperX Data API base URL](https://data-api.hyperx.trade)
+- [HyperX](https://hyperx.trade)
+- [HyperX API token settings](https://hyperx.trade/hyperliquid/settings)
+- [ClawHub skill page](https://clawhub.ai/hyperxtrade/skills/hyperx-data-api)
+- [ClawHub publisher profile](https://clawhub.ai/user/hyperxtrade)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API endpoint details and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST and WebSocket examples, authentication guidance, endpoint paths, request parameters, response fields, rate limits, and pricing-tier notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

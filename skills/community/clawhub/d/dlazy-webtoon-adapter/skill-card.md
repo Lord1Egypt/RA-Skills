@@ -1,45 +1,54 @@
-## Description: <br>
-Adapts web novels into Chinese webtoon or comic scripts through genre selection, plot breakdown, episode tagging, per-episode script writing, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps creators adapt web novels into webtoon dramas through plot breakdowns, episode planning, and script drafting.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Writers, comic production teams, and agents use this skill to convert user-provided web-novel chapters or revision notes into structured Chinese webtoon breakdowns and episode scripts. It can also guide confirmed, single-step dLazy CLI generation commands when visual outputs are requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key that may be saved in local CLI configuration. <br>
-Mitigation: Use an environment variable or npx flow when avoiding persistent global configuration, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and media may be sent to dLazy API and file services. <br>
-Mitigation: Review inputs before sending them, avoid sensitive material unless the user accepts that transfer, and make cloud API use clear before generation. <br>
-Risk: The skill can lead an agent to run local dLazy CLI generation commands. <br>
-Mitigation: Review each command before allowing execution and run only explicit, single generation commands after user confirmation. <br>
+## Use Case:
 
+Writers and creators use the skill to turn web-novel material into structured webtoon plot breakdowns, episode plans, and scripts.
 
-## Reference(s): <br>
-- [Dlazy Webtoon Adapter on ClawHub](https://clawhub.ai/dlazyai/dlazy-webtoon-adapter) <br>
-- [dLazy CLI source and homepage](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy website](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown conversation output with structured Chinese adaptation sections and inline shell commands when generation is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on the conversation context and may include prompts, episode breakdowns, scripts, revision guidance, and explicit dLazy CLI commands for user-approved generation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill documentation says prompts and optional media are sent to dLazy-hosted services; the security scan did not assess the separately installed CLI implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive material, and review the linked CLI project and package before installation.
+
+Risk: The CLI stores an API key in local configuration when using its login or manual authentication flow.
+
+Mitigation: Keep the configuration private and rotate or revoke the key if it is exposed.
+
+## Reference(s):
+
+- [dLazy CLI project (linked in skill metadata)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown with plot breakdowns, episode tags, and webtoon scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation-based output organized by the adaptation workflow.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

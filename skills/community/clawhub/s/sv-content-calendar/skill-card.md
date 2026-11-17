@@ -1,40 +1,55 @@
-## Description: <br>
-Plans and structures short video posting schedules, content themes, and production timelines for creators and marketing teams across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans and structures short video posting schedules, content themes, and production timelines for creators and marketing teams across platforms.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Content creators, social media managers, marketing teams, and multi-platform publishers use this skill to plan short-video calendars, posting cadence, content themes, production milestones, and balanced content mixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad scheduling language when content-calendar help was not intended. <br>
-Mitigation: Invoke it explicitly for short-video content-calendar planning and review whether its scheduling assumptions match the task. <br>
-Risk: Posting-time and platform-optimization recommendations are guidelines and may become inaccurate as platform behavior changes. <br>
-Mitigation: Validate recommendations against the user's own analytics and update calendars when platform performance data changes. <br>
+## Use Case:
 
+Creators, social media managers, marketing teams, and multi-platform publishers use this skill to plan weekly or monthly short-video calendars, map themes, schedule production milestones, and balance content formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sv-content-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown planning guidance with calendar grids, posting schedules, production milestones, and content-mix recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only guidance; server evidence reports no code execution, network access, credential use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Posting-time, trend-fit, and content-mix recommendations may not predict actual platform performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as planning guidance and validate them with the user's own platform analytics.
+
+Risk: Broad trigger terms may route general content-planning requests to this skill even when a narrower specialist skill would be better.
+
+Mitigation: Review trigger terms if tighter routing is needed for a deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sv-content-calendar)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown planning guidance with calendar grids, schedules, content mix recommendations, and scenario-based advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document-only informational guidance; recommendations should be validated against the user's platform analytics.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

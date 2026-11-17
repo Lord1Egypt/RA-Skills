@@ -1,41 +1,52 @@
-## Description: <br>
-Multi-user workspace management with sandbox permissions, user profiles, and relationship networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-user workspace management with sandbox permissions, user profiles, and relationship networks.
 
-## Publisher: <br>
-[shun-dong](https://clawhub.ai/user/shun-dong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shun-dong](https://clawhub.ai/user/shun-dong)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to configure multi-user OpenClaw workspaces with per-user profiles, relationship-aware information sharing, and role-based sandbox settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User profile and relationship files can contain private data. <br>
-Mitigation: Treat FRIENDS/ and RELATIONS/ as private data and share information only when explicitly permitted by RELATIONS/. <br>
-Risk: Malformed or spoofed user IDs could select the wrong profile or relationship file. <br>
-Mitigation: Validate userId with a strict lowercase letters, numbers, underscores, and hyphens pattern, and match it to USER.md before reading files. <br>
-Risk: Untrusted users with unsandboxed administrator sessions may access broader workspace data. <br>
-Mitigation: Reserve unsandboxed administrator sessions for trusted users and keep guest sessions in isolated, periodically cleaned directories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shun-dong/multi-user-workspace) <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to structure OpenClaw workspaces for multiple users with per-user sessions, sandbox permissions, profile files, relationship files, and cross-user information boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON5 and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Loose session suffix matching can route the wrong user into an admin or privileged configuration.
+
+Mitigation: Use authenticated identities, strict user ID allowlists, and exact session bindings or full-key matches.
+
+Risk: Profile and relationship files can expose other users' data when relationship matching, privacy rules, or consent rules are weak.
+
+Mitigation: Use exact relationship membership checks, explicit privacy and consent rules for stored profile and relationship data, and a restricted sandbox for unmatched sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shun-dong/skills/multi-user-workspace)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON5 configuration examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers workspace structure, session routing, sandbox permissions, user profiles, relationship files, and cross-user information boundaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

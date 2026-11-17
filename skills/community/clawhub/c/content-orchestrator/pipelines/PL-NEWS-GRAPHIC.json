@@ -1,0 +1,143 @@
+{
+  "pipeline_type": "PL-NEWS-GRAPHIC",
+  "version": "1.0.0",
+  "description": "新闻播报图文生成管道(C1每日新闻播报专用)",
+  "steps": [
+    {
+      "name": "热点新闻采集",
+      "tool": "dailyhot-mcp",
+      "action": "get_multi_hot",
+      "params": {}
+    },
+    {
+      "name": "选题策划",
+      "tool": "content-research-mcp",
+      "action": "generate_topic_suggestions",
+      "params": {
+        "focus": "hot_trend"
+      }
+    },
+    {
+      "name": "新闻文案生成",
+      "tool": "content-template",
+      "action": "generate",
+      "params": {
+        "template_type": "article",
+        "topic": "${prev_output.topic}"
+      }
+    },
+    {
+      "name": "品牌特质注入",
+      "tool": "agency-portal-mcp",
+      "action": "portal_get_tenant_brand_profile",
+      "params": {}
+    },
+    {
+      "name": "人设特质注入",
+      "tool": "pps-mcp",
+      "action": "get_persona_profile",
+      "params": {}
+    },
+    {
+      "name": "写作风格应用",
+      "tool": "agency-portal-mcp",
+      "action": "portal_get_tenant_style",
+      "params": {}
+    },
+    {
+      "name": "营销注入",
+      "tool": "market-copywriter",
+      "action": "adapt_platform",
+      "params": {
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "SEO优化",
+      "tool": "seo-optimizer",
+      "action": "optimize",
+      "params": {
+        "content": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "GEO优化",
+      "tool": "geo-content-optimizer",
+      "action": "optimize",
+      "params": {
+        "content": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "防查重检测",
+      "tool": "content-rewriter",
+      "action": "detect",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "内容质量评分",
+      "tool": "content-calibrator",
+      "action": "score",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "内容审核",
+      "tool": "sensitive-word-mcp",
+      "action": "check_sensitive_words",
+      "params": {
+        "text": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "AI声明注入",
+      "tool": "inline",
+      "action": "inject_ai_declaration",
+      "params": {}
+    },
+    {
+      "name": "配图生成",
+      "tool": "flux-mcp",
+      "action": "generate_image",
+      "params": {
+        "prompt": "${prev_output.title}"
+      }
+    },
+    {
+      "name": "合规风控(U19)",
+      "tool": "content-qa-guard",
+      "action": "check",
+      "params": {}
+    },
+    {
+      "name": "图文排版",
+      "tool": "content-formatter",
+      "action": "format",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}",
+        "format_level": "auto"
+      }
+    },
+    {
+      "name": "多平台发布",
+      "tool": "content-publisher",
+      "action": "publish_content",
+      "params": {}
+    },
+    {
+      "name": "发布反馈(U13)",
+      "tool": "self-growth",
+      "action": "learn",
+      "params": {
+        "category": "publish_feedback",
+        "importance": 5
+      }
+    }
+  ]
+}

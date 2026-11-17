@@ -1,34 +1,157 @@
 ---
-name: fec-dependency-upgrade
-description: Use when planning, implementing, or reviewing frontend dependency upgrades, package migrations, lockfile changes, major framework version bumps, CVE remediation, peer dependency conflicts, ESM/CJS shifts, build-tool compatibility, or CI verification matrices; Chinese triggers include 依赖升级, 版本升级, lockfile, peer dependency, CVE 修复, 大版本迁移.
+name: fec-debug-framework
+description: Use when diagnosing frontend build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, or unexplained production exceptions; Chinese triggers include debugging, debug, troubleshooting, positioning, error reporting, exceptions, white screens, request failures.
 ---
 
-# 依赖升级
-
-适用于前端依赖升级、漏洞修复、大版本迁移和 lockfile 风险评审。需要具体流程和检查清单时加载 [references/dependency-upgrade-workflow.md](references/dependency-upgrade-workflow.md)。
+# Front-end diagnostic framework
 
 ## Purpose
 
-用来源驱动和小批验证的方式升级依赖，降低破坏性变更、供应链风险和 CI 回归。
+Use an evidence-driven triage, collection, hypothesis, verification, and remediation process to locate front-end faults and avoid relying on intuition to expand the scope of changes.
 
 ## Procedure
 
-1. 建立事实基线：读取 package manager、lockfile、Node 版本、workspace 范围、CI 命令和当前验证状态。
-2. 分类升级目标：安全修复、补丁升级、小版本升级、大版本迁移、框架迁移、构建工具迁移或依赖清理。
-3. 查证来源：对版本敏感的库读取官方 release notes、migration guide、peer dependency、Node/browser 支持和弃用项。
-4. 拆小批次：安全补丁可集中处理；大版本、构建工具、框架和测试工具必须单独批次验证。
-5. 处理兼容边界：检查 ESM/CJS、TypeScript 类型、CSS 处理、SSR/RSC、插件 API、peer dependency 和 polyfill 变化。
-6. 运行验证矩阵：至少覆盖 install、typecheck、unit/component tests、build；关键应用补 E2E、Storybook 或手工冒烟。
-7. 同步文档：记录升级原因、版本、破坏性变更、迁移命令、回滚方式和仍需人工验证的路径。
+All front-end problem diagnosis follows a unified process:
+
+### Step 1: Classify
+
+Identify problem type and scope of impact:
+
+| Type | Judgment basis | Diagnosis entrance |
+| ------- | ---------------------------- | -------------- |
+| build | Command exit is non-zero, stderr has error | → Build module |
+| runtime | Console exception, white screen, function unavailable | → Runtime module |
+| ui | Visual deviation, interaction not as expected | → UI module |
+| api | Request status code exception, data inconsistency | → API module |
+
+Cross-type problems (such as API failure leading to UI exceptions) start with the most superficial symptoms and drill down layer by layer.
+
+### Step 2: Collect
+
+Collect evidence by type (specific strategies for each module, see below).
+
+### Step 3: Hypothesize
+
+Propose possible root causes based on evidence, ranked by likelihood:
+
+- Every hypothesis must be testable (have clear verification methods)
+- Keep at most 3 hypotheses to avoid divergence
+- Format: "Because X leads to Y, which can be verified by Z"
+
+### Step 4: Verify
+
+Test the hypotheses one by one:
+
+- Start with the most likely hypothesis
+- Only change one variable at a time
+- Verification result record: confirmed / falsified / pending
+- If all assumptions are falsified, return to Step 2 and collect again.
+
+### Step 5: Fix & Validate
+
+- Apply minimal fixes
+- Run affected verification commands
+- Confirmed no regression
+- Output repair report
+
+---
+
+## Diagnostic module
+
+### Build module
+
+**Collect**: Run minimal failing commands, capture full stderr/stdout
+**Assumptions**: Grouped by error type (type error, import failure, configuration resolution, missing dependency), match known patterns
+**Verification**: Fix a type of root cause → rerun the command → confirm that errors are reduced
+**Special handling**:
+
+- Collect evidence for dependency version, peer dependency, ESM/CJS, and lockfile related failures first as build compatibility issues
+- Log package manager, Node version, lockfile diff, related package version and full error log
+- No longer upgrade dependencies, manually edit lockfiles when evidence is lacking, or mix dependency migrations with normal debug fixes in the same batch of changes
+- If the task goal itself is version upgrade, CVE repair or lockfile risk review, it should be transferred to the dependency upgrade workflow
+- CI exclusive failure check Node version, package manager, environment variable differences
+
+### Runtime module
+
+**Collect**:
+
+- Recurrence path (sequence of user operations)
+- Console errors and stack
+- Component rendering tree status (check whether key components are mounted correctly)
+- Relevant store/state snapshot
+
+**Assumptions**:
+
+- Stack reverse tracing: trace back from the exception location to the trigger source
+- State flow analysis: Check whether state changes are as expected
+- Life cycle analysis: whether uninitialized data is accessed at the wrong time
+
+**Verification**:
+
+- Add temporary log confirmation status value
+- Add assertions on suspicious paths
+- Recurrence path verification fix
+
+### UI module
+
+**Collect**:
+
+- Current screenshot vs desired effect
+- DOM structure check (whether the element exists and whether the level is correct)
+- Computed style checks (actual applied CSS values)
+- Responsive breakpoint testing
+
+**Assumptions**:
+
+- CSS specificity conflict (selector weight is not enough to be overridden)
+- Component state mismatch (props/state not passed correctly)
+- Layout model problem (flex/grid configuration error)
+- Missing responsive breakpoints
+
+**Verification**:
+
+- Browser DevTools real-time adjustment verification
+- Isolated component testing (excluding external style interference)
+- Multiple breakpoints to verify one by one
+
+### API module
+
+**Collect**:
+
+- Request URL, method, headers, body
+- Respond to status, headers, body
+- Network waterfall timing
+- Cache data in related store/state
+
+**Assumptions**:
+
+- Request link hop-by-hop inspection (URL → Middleware → Interceptor → Server)
+- Data conversion checks (response parsing, type mapping)
+- Cache policy check (expiration, invalidation, race condition)
+- Concurrent request race condition (race condition)
+
+**Verification**:
+
+- curl independent reproduction (excluding front-end interference)
+- Mock layer by layer to locate the problem level
+- End-to-end request validation fixes
+
+---
+
+## Detailed reference
+
+When writing a diagnostic report, load [references/report-template.md](references/report-template.md).
 
 ## Constraints
 
-- 不在缺少来源和验证的情况下进行大版本连跳。
-- 不为了消除 audit 警告盲目升级运行时关键包；先判断可利用路径和修复影响。
-- 不手工编辑 lockfile 规避依赖冲突。
-- 不把依赖升级和无关重构混在一个批次。
-- 不移除 peer dependency 或构建插件，除非有证据证明没有被运行时、子包或 CI 使用。
+- Don't guess at root cause when evidence is lacking
+- Not "fixed" by turning off rules, removing tests, or reducing type safety
+- Change only one variable at a time to test your hypothesis
+- Do not expand the scope of changes before verification
+- The same hypothesis fails verification 3 times in a row, stops and reports blocking
 
 ## Expected Output
 
-输出升级清单、风险分类、来源依据、批次策略、修改范围、验证命令、失败处理和回滚建议。完成后 lockfile 与 package 清单一致，关键验证通过，破坏性变更有记录。
+- The diagnostic report is saved as `reports/debug-YYYY-MM-DD-HHmmss.md`
+- The report includes issue type, key evidence, hypothesis verification records, root cause, fix content, verification results and remaining risk
+- Build/runtime/ui/api problems can explain the reproduction path, verification command or next blocking point

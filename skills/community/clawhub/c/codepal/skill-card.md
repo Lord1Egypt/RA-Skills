@@ -1,41 +1,54 @@
-## Description: <br>
-Analyze codebases quickly with AI-powered intelligence and insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codepal is a Bash devtools logger for recording, searching, summarizing, and exporting developer notes about code review, linting, code generation, diffs, fixes, and repository understanding.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Codepal to record code review notes, validation findings, generation prompts, explanations, diffs, fixes, and reports, then search or export the local activity history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered content may include secrets, private source code, vulnerability details, or confidential notes and is saved locally for later search or export. <br>
-Mitigation: Avoid entering sensitive material unless local persistence is acceptable, review exported files before sharing, and delete ~/.local/share/codepal when the history is no longer needed. <br>
-Risk: The skill description may overstate AI analysis capabilities compared with the bundled local logging script. <br>
-Mitigation: Treat Codepal as an activity/history logger and verify any code quality conclusions independently. <br>
+## Use Case:
 
+Developers and engineers use Codepal to keep a local activity trail of code review findings, lint notes, generated snippet descriptions, diffs, fixes, and repo-understanding notes, then search or export those records.
 
-## Reference(s): <br>
-- [Codepal ClawHub page](https://clawhub.ai/xueyetianya/codepal) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and local log/export files in text, JSON, or CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists command inputs under ~/.local/share/codepal and can export saved history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Developer text entered into Codepal can include secrets, proprietary source, customer data, or sensitive vulnerability notes and is retained locally under ~/.local/share/codepal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive material unless local retention and later search or export are acceptable; review and remove local logs before sharing exports or workstations.
+
+Risk: The release is marketed as AI code analysis, while the security evidence says the script mainly saves and exports entered developer text.
+
+Mitigation: Treat Codepal as a local logging and export utility, and use separate trusted analysis, review, or scanning tools for code-quality and security conclusions.
+
+## Reference(s):
+
+- [Codepal on ClawHub](https://clawhub.ai/xueyetianya/skills/codepal)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text command output with local log and export files in text, JSON, or CSV formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped records under ~/.local/share/codepal and can export accumulated records.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

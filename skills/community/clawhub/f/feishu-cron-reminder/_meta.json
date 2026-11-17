@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7fxbqgyjb36jnknycry1qyg583g9d8",
-  "slug": "feishu-cron-reminder",
-  "version": "1.0.1",
-  "publishedAt": 1775552963741
+  "name": "feishu-cron-reminder",
+  "version": "1.0.0",
+  "description": "在飞书机器人上创建和管理定时提醒任务，支持一次性提醒和循环提醒，自动推送消息到飞书用户或群组。",
+  "tags": ["飞书", "定时提醒", "cron", "通知", "自动化"],
+  "author": "ZZQSAMA066",
+  "license": "MIT",
+  "platform": "openclaw",
+  "requires": {
+    "openclaw": ">=1.0.0",
+    "feishu_integration": true
+  },
+  "features": [
+    "一次性定时提醒",
+    "每日循环提醒",
+    "工作日循环提醒",
+    "每周定时提醒",
+    "推送消息到飞书用户",
+    "推送消息到飞书群组",
+    "自动清理一次性任务"
+  ]
 }

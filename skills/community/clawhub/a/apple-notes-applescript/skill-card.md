@@ -1,44 +1,57 @@
-## Description: <br>
-Apple Notes.app integration for macOS. List folders, read, create, search, edit, and delete notes via AppleScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Notes.app integration for macOS. List folders, read, create, search, edit, and delete notes via AppleScript.
 
-## Publisher: <br>
-[shad0wca7](https://clawhub.ai/user/shad0wca7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shad0wca7](https://clawhub.ai/user/shad0wca7)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to automate Apple Notes workflows, including folder navigation, note search, note reading, note creation, note editing, note deletion, and attachment export. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access broad Apple Notes contents, attachments, and OCR search results. <br>
-Mitigation: Grant access only when that scope is acceptable, prefer narrow folder arguments, and avoid broad searches unless necessary. <br>
-Risk: The skill can edit or delete notes and partial title matching may target the first matching note. <br>
-Mitigation: Review edit and delete requests before execution, use exact note IDs where possible, and provide narrow folder scopes for name-based operations. <br>
-Risk: Read and export operations can copy note attachments to /tmp/notes-export. <br>
-Mitigation: Clean /tmp/notes-export after workflows that read or export attachments. <br>
-Risk: Untrusted search text may produce unexpected Spotlight or AppleScript search behavior. <br>
-Mitigation: Avoid untrusted query strings and prefer simple, specific search terms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shad0wca7/apple-notes-applescript) <br>
-- [Publisher profile](https://clawhub.ai/user/shad0wca7) <br>
+## Use Case:
 
+Developers and macOS users use this skill to let an agent operate Apple Notes through bundled shell scripts that call AppleScript for listing folders, reading notes, searching, creating, editing, deleting, and exporting note attachments.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text command output, shell command examples, note metadata, note body text, and filesystem paths for exported attachments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary files for note bodies and exported attachments under /tmp, including /tmp/notes-export.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify or delete personal Apple Notes.
+
+Mitigation: Back up Notes before use, keep operations scoped to explicit folders, and review edit or delete targets before execution.
+
+Risk: Read, attachment, and PDF export workflows can expose private note content or write attachments to a shared temporary directory.
+
+Mitigation: Avoid export workflows unless the output directory is private and explicitly approved; prefer folder-scoped reads and searches.
+
+Risk: Input-handling issues could allow unintended commands or unintended Apple Notes operations.
+
+Mitigation: Use only trusted note names, folder names, queries, and limits, and inspect proposed shell commands before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shad0wca7/skills/apple-notes-applescript)
+- [Publisher profile](https://clawhub.ai/user/shad0wca7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, terminal text output, and exported attachment file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs on macOS with Apple Notes access; attachment and PDF workflows may write files under /tmp/notes-export.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

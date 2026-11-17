@@ -1,45 +1,61 @@
-## Description: <br>
-Captures learnings, errors, and corrections so agents can log, review, and promote reusable knowledge across future work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so coding agents can preserve reusable knowledge and improve future work.
 
-## Publisher: <br>
-[fangwei-frank](https://clawhub.ai/user/fangwei-frank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangwei-frank](https://clawhub.ai/user/fangwei-frank)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture command failures, user corrections, missing capabilities, and recurring best practices in structured learning files for later review and promotion into agent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning files and promoted memory may retain secrets, personal data, proprietary content, raw transcripts, or raw command output. <br>
-Mitigation: Require review and redaction before writing or promoting entries, and avoid storing sensitive raw outputs. <br>
-Risk: Broad hooks or cross-session sharing can spread low-quality or sensitive context beyond the intended workspace. <br>
-Mitigation: Keep hooks project-local, avoid global empty matchers, and use cross-session transcript or messaging features only with explicit approval. <br>
-Risk: Incorrect or misleading lessons can be promoted into persistent agent context and affect future behavior. <br>
-Mitigation: Review learning entries before promotion and resolve or remove entries that are stale, inaccurate, or too project-specific. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, knowledge gaps, feature requests, and reusable practices in markdown learning logs. They can optionally promote reviewed patterns into persistent agent instruction files or extracted skills.
 
-## Reference(s): <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured learning, error, and feature-request entries intended for human review before promotion into persistent agent context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent learning logs can retain sensitive details if secrets, raw transcripts, or private operational context are copied into `.learnings/`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use project-local learning files, keep secrets and raw transcripts out of logs, and review entries before sharing or committing them.
+
+Risk: Promoting learnings into agent instruction files can make behavior changes durable across future sessions.
+
+Mitigation: Require a reviewed diff before updating AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or Copilot instructions.
+
+Risk: Always-on or broad hook matchers can inject reminders more widely than intended.
+
+Mitigation: Prefer project-level setup, avoid global hooks unless explicitly needed, and replace empty matchers with narrow trigger patterns where practical.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/fangwei-frank/skills/frank-self-improving-agent)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [Entry Examples](artifact/references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown learning entries, setup snippets, hook reminder text, shell commands, and skill scaffold files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional hooks emit reminder text; the extraction helper can create a new skill scaffold under a relative local skills directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

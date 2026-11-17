@@ -1,39 +1,58 @@
-## Description: <br>
-Tap provides MCP-native browser automation for running pre-built site skills or forging repeatable site automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI browser automation protocol \u2014 run pre-built skills for 41 sites, or forge new ones. MCP native, deterministic, zero AI at runtime.
 
-## Publisher: <br>
-[leonting1010](https://clawhub.ai/user/leonting1010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonting1010](https://clawhub.ai/user/leonting1010)
 
-## Use Case: <br>
-Developers and agent users use Tap to automate browser workflows, collect structured data from supported sites, and create repeatable site automation skills without model calls at runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent control an active logged-in browser tab and publish, submit, purchase, or change account settings. <br>
-Mitigation: Use a separate browser profile or test accounts, review the binary, extension, and community .tap.js scripts, and require explicit approval for sensitive browser actions. <br>
+## Use Case:
 
+Developers and agent builders use Tap to configure deterministic browser automation through MCP, run pre-built site skills, and create reusable site-specific automation.
 
-## Reference(s): <br>
-- [Tap homepage](https://github.com/LeonTing1010/tap) <br>
-- [Tap ClawHub listing](https://clawhub.ai/leonting1010/tap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured data, screenshots, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, shell commands, MCP tool-call examples, and structured browser automation results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the tap binary and browser extension for browser control; community skills and locally forged taps may be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+Risk: Browser automation can act inside logged-in accounts and perform sensitive actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm posts, purchases, form submissions, destructive navigation, and tab-closing actions before running Tap workflows.
+
+Risk: Community .tap.js scripts may execute behavior the user has not reviewed.
+
+Mitigation: Review community scripts before installing or executing them, especially when they interact with authenticated sites.
+
+Risk: Installing the Tap binary or Chrome extension from an untrusted source could expose the browser session to unwanted automation.
+
+Mitigation: Install only from trusted sources and review the binary or source and Chrome extension before enabling Tap.
+
+## Reference(s):
+
+- [ClawHub Tap skill page](https://clawhub.ai/leonting1010/skills/tap)
+- [Tap homepage](https://github.com/LeonTing1010/tap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool names, install commands, browser automation examples, and configuration snippets.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  icon_small: "./assets/brand/pathway-atlas-logo.webp"
+  icon_large: "./assets/brand/pathway-atlas-logo.png"
+  brand_color: "#A65E43"

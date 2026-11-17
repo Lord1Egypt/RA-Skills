@@ -1,42 +1,57 @@
-## Description: <br>
-Automatically segments OKKI CRM customers into five tiers, scores lifecycle and value signals, syncs tags, and generates strategy recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically segments OKKI CRM customers into VIP, active, normal, dormant, and lost groups, generates lifecycle and value-based strategy recommendations, and can sync prefixed segment tags back to OKKI CRM.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to collect OKKI CRM customer data, score accounts into VIP, active, normal, dormant, and lost segments, generate recommended follow-up strategies, and optionally sync segment tags back to OKKI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses an OKKI CRM account and local OKKI config or token files. <br>
-Mitigation: Use least-privileged OKKI credentials and review or override OKKI_WORKSPACE and ENV_PATH before running it. <br>
-Risk: Raw customer data, generated recommendations, logs, and backups may contain sensitive customer information. <br>
-Mitigation: Treat generated data and logs directories as sensitive; do not commit, broadly back up, or share them. <br>
-Risk: Tag synchronization can write customer segment tags back to OKKI CRM. <br>
-Mitigation: Use dry-run mode and small --limit batches before running with --confirm. <br>
+## Use Case:
 
+Sales, customer success, and CRM operations teams use this skill through an agent to collect OKKI CRM customer activity, score customer value and lifecycle status, generate strategy recommendations, and prepare or apply segment tag updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-customer-segmentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, JSON data files, and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes customer data, scores, strategy recommendations, metrics, logs, and tag backups to local data and logs directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: CRM credentials, token cache, customer data, logs, backups, and generated reports may be stored in plaintext on local disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege OKKI credentials and protect or encrypt .env files, token cache, generated data, logs, backups, and reports before running against real customer data.
+
+Risk: The OKKI API destination is read from external configuration and may point at unintended endpoints.
+
+Mitigation: Review config.json before execution and allow only the intended HTTPS OKKI endpoints.
+
+Risk: Confirmed tag sync can update CRM customer tags in bulk.
+
+Mitigation: Run tag sync in dry-run first, verify the planned SEG: tag changes, then use --limit or --customer before any broad --confirm operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/ssa-customer-segmentation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands, console summaries, and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local customer data, scoring, strategy, log, backup, and tag-sync report JSON files; OKKI tag sync is dry-run unless confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

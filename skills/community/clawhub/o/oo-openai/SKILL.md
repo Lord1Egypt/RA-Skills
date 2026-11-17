@@ -1,11 +1,11 @@
 ---
 name: oo-openai
-description: "OpenAI (openai.com). Use this skill for ANY OpenAI request — reading, creating, and updating data. Whenever a task involves OpenAI, use this skill instead of calling the API directly."
+description: "OpenAI (openai.com). Use this skill for ANY OpenAI request — reading, creating, updating, and deleting data. Whenever a task involves OpenAI, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "OpenAI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["openai"]
   icon: "https://static.oomol.com/logo/third-party/OpenAI.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `cancel_batch` — Cancel one OpenAI batch job by its identifier. [write]
+- `cancel_batch` — Cancel one OpenAI batch job by its identifier. [destructive]
 - `create_audio_transcription` — Transcribe one uploaded audio file with the OpenAI audio transcription API. [write]
 - `create_audio_translation` — Translate one uploaded audio file into English with the OpenAI audio translation API. [write]
 - `create_batch` — Create an OpenAI batch job from an uploaded input file. [write]
@@ -82,11 +82,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OpenAI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=openai
+  https://console.oomol.com/connections/openai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - OpenAI homepage: https://openai.com/api/
+- API documentation: https://platform.openai.com/docs/api-reference

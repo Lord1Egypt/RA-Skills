@@ -1,42 +1,63 @@
-## Description: <br>
-A Markdown security guide for hardening autonomous AI agents that handle GreenHelix commerce workflows, credentials, payments, prompt injection defenses, monitoring, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OWASP-aligned security hardening guide for autonomous AI commerce agents on GreenHelix, covering identity, credentials, payments, prompt injection defenses, financial guardrails, monitoring, and audit logging.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and security engineers use this guide to review and adapt hardening patterns for autonomous commerce agents that interact with GreenHelix tools, payment flows, signing keys, and audit logs. It is intended as human-facing guidance with illustrative code, not as a runnable agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide references GreenHelix, Stripe, and signing credentials, and copied examples could encourage unsafe private-key or payment-secret handling. <br>
-Mitigation: Read without providing production credentials; when adapting examples, use an isolated signer, KMS/HSM, or secret manager rather than broad environment-based secret access. <br>
-Risk: The security scan reports that an illustrative mutual-authentication example should fail closed before production use. <br>
-Mitigation: Review and correct authentication examples before deployment, and test failure paths so transaction flows deny access when verification is incomplete. <br>
+## Use Case:
 
+Developers and security engineers use this guide to harden autonomous commerce agents that interact with GreenHelix payments, escrow, identity, trust, and monitoring workflows. It provides threat modeling guidance, defensive code examples, configuration patterns, and deployment checklists for agents that may handle credentials or funds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-commerce-security) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python examples, checklists, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; references GreenHelix, signing, and Stripe credentials that users supply in their own environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Copy-paste examples can touch live financial APIs or real credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox credentials first and review every example before connecting it to real funds.
+
+Risk: The security evidence flags unsafe fail-open examples and active permission probing.
+
+Mitigation: Replace probing with read-only capability introspection and fail closed for payment, escrow, and credential paths.
+
+Risk: Private keys and payment credentials may be exposed if copied into a normal runtime environment.
+
+Mitigation: Keep keys in a signer, KMS, or secret manager and scope GreenHelix and Stripe credentials to the minimum required actions.
+
+Risk: Autonomous payment, escrow, or key revocation actions can have high-value impact.
+
+Mitigation: Require explicit human approval for key revocation, escrow release, and other high-value payment actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-commerce-security)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix developer documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python, YAML, and shell-oriented examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples require review before use with real credentials or funds.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

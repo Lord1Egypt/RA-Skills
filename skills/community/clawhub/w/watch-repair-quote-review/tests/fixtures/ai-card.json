@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-07-21T16:39:40.933Z",
+  "priceReference": {
+    "pageUrl": "https://www.wuhanhengdeli.cn/price",
+    "verifiedAt": "2026-07-17",
+    "headers": {"brand":"品牌","battery":"换电池","base":"基础款","complex":"计时款"},
+    "rows": [
+      {"brand":"劳力士、万国、卡地亚、沛纳海、真力时、欧米茄","battery":"500","base":"3000","complex":"4000"},
+      {"brand":"浪琴、雷达、豪利时、名仕、古驰","battery":"300","base":"1300","complex":"1800"}
+    ],
+    "notes": ["以上报价不包括零件费。", "具体处理方式与费用以实物检测和当次确认报价为准。"],
+    "disclaimer": "公开价格为维修保养参考，具体费用和周期以到店或寄修后的实际检测结果为准。"
+  },
+  "evidence": {
+    "representativeCases": [
+      {"title":"浪琴机械表进水误差大夜间停走修复自动轮","brand":"浪琴","date":"2026-07-06","url":"https://www.wuhanhengdeli.cn/cases/longines-water-damage-auto-wheel-20260706","issueSlugs":["water-damage","time-error","stoppage"],"summary":"浪琴自动机械表进水后走时误差变大并夜间停走，检修保养并修复自动轮，总费用1300元。","costAndTiming":"费用1300元，维修周期7天。"},
+      {"title":"欧米茄2500C同轴机芯停走检修保养","brand":"欧米茄","date":"2026-07-18","url":"https://www.wuhanhengdeli.cn/cases/omega-2500c-coaxial-stoppage-20260718","issueSlugs":["stoppage","maintenance"],"summary":"欧米茄2500C同轴机芯停走，检修保养费用3000元。","costAndTiming":"费用3000元，维修周期7天。"}
+    ]
+  }
+}

@@ -1,43 +1,59 @@
-## Description: <br>
-Shows and records today's postoperative rehabilitation tasks from an existing care plan, with structured status data and Markdown reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a daily postoperative rehabilitation task workflow that filters an existing rehabilitation plan by date, reports completion status, and generates patient-facing reminders.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Patients or care teams use this skill to filter an existing rehabilitation plan for a target date, see what must be completed today, and record completed, pending, or skipped task states. It does not adjust clinical training intensity or generate a new rehabilitation plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive rehabilitation task details may be sent to a remote model API. <br>
-Mitigation: Use only in environments where that remote processing is approved, and avoid uploading real patient documents without consent and data-handling assurances. <br>
-Risk: Broad PDF, Office, and image inputs may require conversion or OCR on untrusted files. <br>
-Mitigation: Prefer JSON or CSV inputs when possible, and run document conversion in a sandbox with resource limits. <br>
-Risk: Generated reminder text could be mistaken for clinical plan changes. <br>
-Mitigation: Treat output as a reminder and status summary for an existing plan; clinical staff should review any medical interpretation before use. <br>
+## Use Case:
 
+External healthcare or rehabilitation applications use this skill to present today's postoperative rehab tasks from an existing plan and record completed, skipped, or pending status. It is not intended to adjust training intensity or create a new rehabilitation plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-today-rehab-task) <br>
-- [CareKit](https://github.com/carekit-apple/CareKit) <br>
+### Deployment Geography for Use:
 
+Global, subject to local medical-data privacy, compliance, and data-residency review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, structured data, guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured task data and Markdown reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for the remote medical model API; JSON input works without optional document conversion dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive rehabilitation or patient task data and send selected task data to a fixed external medical-model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that external processing is acceptable for privacy, compliance, and data-residency requirements; prefer structured JSON inputs with the minimum necessary data.
+
+Risk: Broad document and image input support can expose document conversion or OCR paths to untrusted patient files.
+
+Mitigation: Sandbox PDF, office-document, and OCR preprocessing, and restrict accepted file types when JSON input is sufficient.
+
+Risk: The command-line appkey parameter can expose credentials through shell history or process listings.
+
+Mitigation: Use platform-managed secrets or a wrapper that avoids placing real API keys directly on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-today-rehab-task)
+- [CareKit daily tasks and scheduling reference](https://github.com/carekit-apple/CareKit)
+- [Hivoice medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [UTF-8 JSON with structured task data and a Markdown reminder in the text field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filters tasks by date, summarizes completion counts, and uses an external medical-model API when generating reminders for scheduled tasks.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

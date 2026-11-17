@@ -1,46 +1,59 @@
-## Description: <br>
-Analyze OpenClaw costs and detect billing issues with bundled source code, no runtime fetches, and only the node binary required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze OpenClaw costs and detect billing issues using bundled Node.js logic that runs locally.
 
-## Publisher: <br>
-[echoudhry](https://clawhub.ai/user/echoudhry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[echoudhry](https://clawhub.ai/user/echoudhry)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to audit local configuration, session usage, workspace size, and cost exposure, then review deterministic findings and suggested remediation commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw configuration, session metadata, and transcript-derived usage files. <br>
-Mitigation: Review the bundled files before installing and run it only in workspaces where local cost and session analysis is acceptable. <br>
-Risk: Generated reports can summarize session and cost history. <br>
-Mitigation: Review Markdown, JSON, terminal, and HTML outputs before sharing them outside the local environment. <br>
-Risk: Generated HTML snapshots can contact Google Fonts. <br>
-Mitigation: Avoid opening or sharing generated HTML in privacy-sensitive or offline contexts until the font import is removed. <br>
-Risk: Suggested fix commands may change OpenClaw configuration if copied and executed. <br>
-Mitigation: Treat suggested commands as manual advice and review each change before running it. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to inspect local cost drivers across configuration, session usage, transcripts, and workspace signals. It returns cost findings, estimates, and concrete fix guidance so users can reduce avoidable model spend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/echoudhry/clawculator) <br>
-- [Declared project homepage](https://github.com/echoudhry/clawculator) <br>
-- [Live demo](https://echoudhry.github.io/clawculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown, JSON, and local HTML reports with suggested fix commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Session keys are truncated in output; Markdown reports may be written to a default or user-provided path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill analyzes sensitive local OpenClaw data and the security evidence says some local data access is under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only where local configuration, session, transcript, and web-chat data may be inspected.
+
+Risk: Generated reports or JSON output may expose configuration details, identifiers, third-party network metadata, tokens, or commands.
+
+Mitigation: Check and redact generated reports before sharing them outside the local environment.
+
+Risk: Optional dashboard paths and unpinned npx examples are called out as unsuitable for sensitive systems until issues are fixed.
+
+Mitigation: Prefer the reviewed ClawHub release and non-dashboard output modes on sensitive systems; pin external package execution when running outside ClawHub.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/echoudhry/skills/clawculator)
+- [Project Homepage](https://github.com/echoudhry/clawculator)
+- [Live Demo](https://echoudhry.github.io/clawculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Terminal text, Markdown report, JSON, and optional local HTML dashboard depending on flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include local OpenClaw configuration and session-derived identifiers; review before sharing.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

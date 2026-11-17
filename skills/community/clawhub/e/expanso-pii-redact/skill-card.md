@@ -1,47 +1,59 @@
-## Description: <br>
-Redacts personally identifiable information from text by replacing sensitive data with configurable placeholders using Expanso Edge pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redact personally identifiable information from text by replacing sensitive data with configurable placeholders using Expanso Edge pipelines.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and operators use this skill to redact PII from logs, analytics data, and text prepared for public sharing or compliance workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unredacted sensitive text may be sent to OpenAI when the remote backend is used. <br>
-Mitigation: Install only when policy allows this processing, or configure a local backend for sensitive or regulated data. <br>
-Risk: MCP mode can expose a network redaction service using the user's API key. <br>
-Mitigation: Bind the service to localhost or add authentication before exposure, and stop the background server after use. <br>
-Risk: Deploying the pipeline to a remote Expanso Cloud endpoint can move sensitive processing outside the local environment. <br>
-Mitigation: Verify the deployment URL and data-handling policy before deploying remote jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-pii-redact) <br>
-- [Publisher profile](https://clawhub.ai/user/aronchick) <br>
-- [README.md](README.md) <br>
-- [skill.yaml](skill.yaml) <br>
-- [pipeline-cli.yaml](pipeline-cli.yaml) <br>
-- [pipeline-mcp.yaml](pipeline-mcp.yaml) <br>
-- [Expanso](https://expanso.io) <br>
+## Use Case:
 
+Developers and operators use this skill to redact names, emails, phone numbers, identifiers, addresses, and other PII from text before storage, analytics, sharing, or public release.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON object with redacted text, redaction count, redacted PII types, and metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports a configurable replacement placeholder and can return results through CLI stdout or an MCP HTTP response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive text may be exposed through an unauthenticated network endpoint.
+
+Mitigation: Run only on trusted hosts, avoid exposing the MCP server to a network, and add authentication and rate limits before broader deployment.
+
+Risk: OpenAI processing can transfer PII off-device.
+
+Mitigation: Treat remote model processing as an off-device data transfer and confirm the data handling requirements for regulated or confidential inputs.
+
+Risk: Model output may be returned as redacted text without independent proof that all PII was removed.
+
+Mitigation: Validate redaction results before relying on them and use a fail-closed error path for parsing or model-output failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-pii-redact)
+- [ClawHub publisher profile](https://clawhub.ai/user/aronchick)
+- [Expanso](https://expanso.io)
+- [Expanso pii-redact pipeline](https://skills.expanso.io/pii-redact/pipeline-cli.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing redacted_text, redaction_count, redacted_types, and metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The replacement placeholder is configurable; output includes trace metadata such as mode, model, placeholder, input hash, input length, trace ID, and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-每周一键更新PPT讲师备注，从教案中提取讲师活动，自动写入对应PPT幻灯片备注。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每周一键更新PPT讲师备注，从教案中提取讲师活动并自动写入对应PPT幻灯片备注。
 
-## Publisher: <br>
-[wuxixixi](https://clawhub.ai/user/wuxixixi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxixixi](https://clawhub.ai/user/wuxixixi)
 
-## Use Case: <br>
-Educators or course-maintenance agents use this skill to update PowerPoint speaker notes by extracting instructor-activity content from matching Word lesson plans in local course folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process local course folders and create updated PowerPoint copies in those folders. <br>
-Mitigation: Review the target course directory and planned input and output files before execution. <br>
-Risk: The artifact may automatically install python-pptx if it is missing. <br>
-Mitigation: Preinstall python-pptx from a trusted package source before running the skill. <br>
-Risk: Weekly automation could run against an unintended directory if configured incorrectly. <br>
-Mitigation: Enable scheduling only after confirming the target directory and expected file naming pattern. <br>
+## Use Case:
 
+Educators and course-content maintainers use this skill to update PowerPoint speaker notes from DOCX lesson-plan content. It is intended for local course folders where matching lesson-plan and presentation files can be scanned, paired, and saved as updated PPTX copies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxixixi/ppt-lecture-notes) <br>
-- [Publisher profile](https://clawhub.ai/user/wuxixixi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples; runtime output is updated .pptx files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates updated PowerPoint copies next to the original files and preserves existing notes unless forced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local course DOCX and PPTX files and can create updated PPTX copies in course folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended course directories, preview target file paths before execution, and keep backups of source presentations.
+
+Risk: The scripts can install python-pptx through pip at runtime.
+
+Mitigation: Install reviewed, pinned dependencies ahead of time and avoid ad hoc runtime dependency installation where possible.
+
+Risk: Weekly automatic execution can change course materials without per-run review.
+
+Mitigation: Enable scheduled execution only after explicitly configuring the target directory and requiring preview or confirmation before writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxixixi/skills/ppt-lecture-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
+
+**Output Format:** [PPTX files with concise text status messages and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates updated PPTX copies alongside source presentations and preserves existing notes unless forced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

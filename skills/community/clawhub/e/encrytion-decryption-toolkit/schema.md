@@ -1,4 +1,4 @@
-# Encrytion Decryption Toolkit Schema
+# Encryption Decryption Toolkit Schema
 
 This generated reference belongs to the adjacent `SKILL.md`. Use it for exact action names, action slugs, parameter summaries, sample parameters, and generated JSON parameter schemas.
 

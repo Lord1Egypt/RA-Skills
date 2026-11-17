@@ -1,39 +1,50 @@
-## Description: <br>
-Claude 提示词工程专家，精通系统提示词设计、XML 标签、思维链、工具调用. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude 提示词工程专家，精通系统提示词设计、XML 标签、思维链、工具调用
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and prompt authors use this skill to design and refine Claude prompts with structured instructions, XML sections, examples, output controls, and tool-use guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may shape downstream model behavior in unintended ways, especially when they include tool-use instructions or requests for detailed reasoning. <br>
-Mitigation: Review and test drafted prompts before production use, with extra attention to tool permissions, output format constraints, and reasoning disclosure requirements. <br>
+## Use Case:
 
+Developers and prompt authors use this skill to design, review, and improve Claude prompts with XML structure, role instructions, examples, output controls, long-document handling, and tool-use guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/claude-prompt) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with prompt examples and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt-writing guidance only; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Chinese-language examples and role text may influence the agent to answer in Chinese even when a different response language is desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired response language explicitly when invoking or adapting the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/claude-prompt)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with prompt templates and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language guidance and examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

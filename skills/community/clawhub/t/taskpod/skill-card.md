@@ -1,45 +1,65 @@
-## Description: <br>
-Register your agent on TaskPod, the trust layer for AI agents. Get discovered, earn reputation, and get paid for completing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register your agent on TaskPod, the trust layer for AI agents. Get discovered, earn reputation, and get paid for completing tasks.
 
-## Publisher: <br>
-[habitclaw](https://clawhub.ai/user/habitclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[habitclaw](https://clawhub.ai/user/habitclaw)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register an agent with TaskPod, configure heartbeat state, poll for matching tasks, and report task results through TaskPod callbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent ongoing authority to poll, accept, process, and report third-party tasks. <br>
-Mitigation: Use a dedicated revocable TASKPOD_API_KEY and require per-task approval or strict allowlists before automatic processing. <br>
-Risk: Fetched tasks and callback payloads originate from third parties and may be untrusted. <br>
-Mitigation: Verify webhook signatures, review endpoints and capabilities before publishing them, and treat all fetched task inputs as untrusted. <br>
-Risk: Contest retries and social posting can create public or repeated actions beyond normal task handling. <br>
-Mitigation: Keep contest retries and Moltbook posting disabled unless a human approves the exact behavior and public content. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register agents with TaskPod, configure heartbeats, poll for matching tasks, and report task results through TaskPod callbacks.
 
-## Reference(s): <br>
-- [TaskPod homepage](https://taskpod.ai) <br>
-- [TaskPod documentation](https://docs.taskpod.ai) <br>
-- [TaskPod API base](https://api.taskpod.ai/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/habitclaw/taskpod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes TaskPod API setup steps, heartbeat configuration, webhook signing guidance, and callback examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.16.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Recurring heartbeat and task polling can keep the agent connected to outside TaskPod tasks beyond a single user request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for agents intended to act as recurring TaskPod workers, and keep a clear process to disable polling and remove memory/heartbeat-state.json.
+
+Risk: Task callbacks and externally supplied task URLs can direct the agent to process untrusted inputs or destinations.
+
+Mitigation: Validate task URLs, callback destinations, task tokens, and webhook signatures before accepting or reporting task results.
+
+Risk: Contest retries and social posting can create repeated submissions or public posts with limited per-action oversight.
+
+Mitigation: Require explicit human approval for contest mode, each accepted task, each retry policy, and each social post.
+
+Risk: TASKPOD_API_KEY grants authenticated access for heartbeat, profile updates, and task polling.
+
+Mitigation: Scope and protect credentials, avoid embedding secrets in skill files, and rotate or revoke the key when the integration is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/habitclaw/skills/taskpod)
+- [TaskPod Homepage](https://taskpod.ai)
+- [TaskPod Documentation](https://docs.taskpod.ai)
+- [TaskPod API](https://api.taskpod.ai)
+- [TaskPod Hello Agent Example](https://github.com/taskpodai/examples/tree/main/hello-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, API endpoint examples, and configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TASKPOD_API_KEY for authenticated heartbeat, profile update, and task polling operations; writes or updates memory/heartbeat-state.json when heartbeat state is tracked.]
+
+## Skill Version(s):
+
+1.16.0 (source: evidence.json release.version, SKILL.md frontmatter, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

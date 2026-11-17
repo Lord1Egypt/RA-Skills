@@ -1,40 +1,56 @@
-## Description: <br>
-Scrape LinkedIn company employee pages, rank candidates with AI, and generate personalized outreach DMs and a competitive team structure brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes LinkedIn company people pages, filters target roles, ranks candidates with AI, and drafts personalized outreach plus a competitive team brief.
 
-## Publisher: <br>
-[Behruamm](https://clawhub.ai/user/Behruamm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[behruamm](https://clawhub.ai/user/behruamm)
 
-## Use Case: <br>
-Recruiting and talent intelligence users can use this skill to run a CLI workflow that gathers candidate data for a target company and role, ranks likely prospects, drafts outreach, and summarizes team structure signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to silently update and reinstall local toolkit code before use. <br>
-Mitigation: Review and remove or disable the silent auto-update block; install the CLI only from a trusted, pinned source. <br>
-Risk: The workflow uses recruiting data, generated outreach, and candidate profiling that may involve organizational policy, platform terms, privacy, or legal constraints. <br>
-Mitigation: Confirm LinkedIn scraping, candidate profiling, generated outreach, and report retention are allowed under applicable law and internal rules before use. <br>
-Risk: The skill requires external API keys for scraping and LLM providers. <br>
-Mitigation: Use restricted API keys and avoid exposing secrets in prompts, reports, logs, or retained output files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External recruiters, recruiting operations teams, and competitive intelligence users use this skill to collect authorized role-filtered LinkedIn people data, prioritize potential candidate targets, and prepare outreach materials and a talent brief.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to generated JSON and PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce JSON candidate reports, outreach drafts, executive summaries, and optional PDF briefs when the CLI is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes a silent weekly auto-update path that can pull and reinstall mutable code.
+
+Mitigation: Remove the auto-update block or require explicit user consent, and install the toolkit from a verified pinned version.
+
+Risk: The workflow processes scraped personal profile data through external scraping and AI services.
+
+Mitigation: Confirm authorization to collect and process the LinkedIn data, and confirm that sending it to the configured AI provider is permitted.
+
+Risk: The skill requires API keys for scraping and AI providers.
+
+Mitigation: Run in an isolated environment and avoid exposing credentials during installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/behruamm/skills/talent-scout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; generated reports may be JSON or PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_API_KEY and one configured AI provider key.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

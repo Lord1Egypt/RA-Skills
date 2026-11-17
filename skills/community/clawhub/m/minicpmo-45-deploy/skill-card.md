@@ -1,49 +1,62 @@
-## Description: <br>
-Deploy MiniCPM-o 4.5 multimodal services with guidance for Web Demo setup, model download and verification, HTTPS configuration, service startup, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy MiniCPM-o 4.5 multimodal services through the Web Demo flow, with guidance for model download, configuration, startup, verification, and troubleshooting.
 
-## Publisher: <br>
-[ZMXJJ](https://clawhub.ai/user/ZMXJJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmxjj](https://clawhub.ai/user/zmxjj)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy, configure, start, and troubleshoot MiniCPM-o 4.5 services on supported NVIDIA GPU systems. It helps select the supported Web Demo path, prepare the environment, verify model files, configure HTTPS access, and diagnose startup issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment commands install packages, clone third-party code, and download large model files. <br>
-Mitigation: Use a fresh virtual environment, container, or dedicated machine, and review the cloned repository and install script before running them. <br>
-Risk: Some setup examples use sudo for system package installation. <br>
-Mitigation: Avoid sudo unless you accept system package changes and have reviewed the exact package operations. <br>
-Risk: Self-signed certificate examples may train users to bypass browser certificate warnings. <br>
-Mitigation: Treat certificate bypass examples as localhost-only testing guidance and replace self-signed certificates with proper certificates for shared or production access. <br>
-Risk: Unsupported devices or deployment paths may fail or produce misleading troubleshooting paths. <br>
-Mitigation: Follow the artifact's support boundary: use Web Demo on NVIDIA GPUs with at least 12 GB VRAM, and do not guide unsupported vLLM, llamacpp-omni, CPU-only, Apple Silicon, AMD, Intel Arc, Ascend NPU, or low-VRAM deployments. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and troubleshoot MiniCPM-o 4.5 interactive multimodal services on supported NVIDIA GPU systems. It helps choose a supported deployment path, download and verify the model, configure the service, and start or validate the Web Demo endpoint.
 
-## Reference(s): <br>
-- [MiniCPM-o Documentation](https://minicpm-o.readthedocs.io/) <br>
-- [MiniCPM-o 4.5 Hugging Face Model](https://huggingface.co/openbmb/MiniCPM-o-4_5) <br>
-- [MiniCPM-o 4.5 AWQ Hugging Face Model](https://huggingface.co/openbmb/MiniCPM-o-4_5-awq) <br>
-- [MiniCPM-o 4.5 ModelScope Model](https://modelscope.cn/models/OpenBMB/MiniCPM-o-4_5) <br>
-- [MiniCPM-o Demo Repository](https://github.com/OpenBMB/MiniCPM-o-Demo.git) <br>
-- [Web Demo Deployment Reference](references/web-demo-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and Python utility usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance only; commands should be reviewed before execution in the user's environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide users through host environment changes, privileged package installation, and upstream installer execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run deployment steps in a disposable VM, container, or dedicated virtual environment, and require explicit approval before sudo or install commands.
+
+Risk: The deployment flow depends on mutable upstream repositories, installer scripts, and Python packages.
+
+Mitigation: Review and pin the upstream Git commit, installer checksum, model source, and Python package versions before execution.
+
+Risk: The service setup may expose a local HTTPS endpoint using a self-signed certificate.
+
+Mitigation: Bind the service only to intended interfaces, avoid public exposure by default, and replace self-signed certificates with trusted certificates for shared environments.
+
+## Reference(s):
+
+- [Web Demo Deployment Reference](references/web-demo-reference.md)
+- [MiniCPM-o Documentation](https://minicpm-o.readthedocs.io/)
+- [MiniCPM-o 4.5 Model Card](https://huggingface.co/openbmb/MiniCPM-o-4_5)
+- [MiniCPM-o 4.5 AWQ Model Card](https://huggingface.co/openbmb/MiniCPM-o-4_5-awq)
+- [MiniCPM-o 4.5 ModelScope Model](https://modelscope.cn/models/OpenBMB/MiniCPM-o-4_5)
+- [MiniCPM-o Demo Repository](https://github.com/OpenBMB/MiniCPM-o-Demo.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose environment setup, package installation, model download, SSL certificate generation, service startup, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

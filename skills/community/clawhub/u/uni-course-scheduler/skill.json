@@ -1,0 +1,16 @@
+{
+  "name": "uni-course-scheduler",
+  "version": "2.7.14",
+  "description": "AI-powered university course planning assistant: analyze course catalogs, recommend courses based on student goals, generate conflict-free weekly timetables with enrollment priority markers, and export Excel + ICS calendar files. Supports international education systems (US/AU/UK/ECTS/CN). Cloud (paid, batch) and local (free, personal) dual modes.",
+  "author": "ez-hq",
+  "license": "MIT",
+  "compatibility": ">=2026.7.1",
+  "tags": [
+    "university",
+    "course-planner",
+    "timetable",
+    "education",
+    "excel",
+    "ics"
+  ]
+}

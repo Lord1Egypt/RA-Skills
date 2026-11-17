@@ -1,50 +1,65 @@
-## Description: <br>
-AI-powered user research through natural language that installs the Cookiy MCP server and orchestrates tool workflows for study creation, AI interviews, discussion guide editing, participant recruitment, report generation, and optional quantitative questionnaires. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cookiy gives agents AI-powered user-research workflows through the Cookiy MCP server for study creation, AI interviews, discussion guide editing, participant recruitment, report generation, and optional quantitative questionnaires.
 
-## Publisher: <br>
-[yupeng-dev](https://clawhub.ai/user/yupeng-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yupeng-dev](https://clawhub.ai/user/yupeng-dev)
 
-## Use Case: <br>
-External researchers, product teams, and agents use Cookiy to plan user research, create or edit discussion guides, run AI-moderated interviews, recruit participants, generate insight reports, and work with optional quantitative questionnaires through Cookiy MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install or repair an external MCP server and modify local MCP client configuration. <br>
-Mitigation: Use only when the publisher and cookiy-mcp package are trusted, and review MCP configuration changes before operational use. <br>
-Risk: Paid actions, checkout links, cash credit, report access, and recruitment launch can create financial or operational commitments. <br>
-Mitigation: Require explicit user confirmation before checkout, cash-credit purchase, report-link retrieval that requires payment, or recruitment launch. <br>
-Risk: Uploaded screenshots, research materials, interviews, and report share links may expose confidential user-research content. <br>
-Mitigation: Confirm that uploads and share links are intended, avoid confidential screenshots unless approved, and use only URLs returned by Cookiy tools. <br>
+## Use Case:
 
+External users, researchers, product teams, and developers use Cookiy to run user-research workflows from natural-language goals, including guide generation, simulated or real interviews, recruitment, report access, and optional quantitative survey work.
 
-## Reference(s): <br>
-- [Cookiy ClawHub Page](https://clawhub.ai/yupeng-dev/cookiy) <br>
-- [Study Creation Workflow](references/study-creation.md) <br>
-- [AI Interview Workflow](references/ai-interview.md) <br>
-- [Discussion Guide Editing Workflow](references/guide-editing.md) <br>
-- [Recruitment Workflow](references/recruitment.md) <br>
-- [Report & Insights Workflow](references/report-insights.md) <br>
-- [Cookiy MCP Tool Usage Contract](references/tool-contract.md) <br>
-- [Cookiy MCP Endpoint](https://s-api.cookiy.ai/mcp) <br>
-- [Cookiy OAuth Discovery](https://s-api.cookiy.ai/.well-known/oauth-authorization-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with inline shell commands and structured MCP workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OAuth setup steps, checkout links returned by tools, report share links, and exact Cookiy identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill can change local MCP configuration and run an unpinned installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before MCP installation or repair, and prefer a pinned and reviewed cookiy-mcp version.
+
+Risk: Cookiy receives research materials and manages study, report, recruitment, and billing workflows.
+
+Mitigation: Use only when those data flows are acceptable, and confirm any payment or recruitment step before proceeding.
+
+Risk: Report links, passwords, uploaded images, and server-provided instructions may be sensitive.
+
+Mitigation: Treat those values as sensitive, avoid unnecessary sharing, and review server-provided guidance before acting on it.
+
+## Reference(s):
+
+- [Cookiy ClawHub Skill Page](https://clawhub.ai/yupeng-dev/skills/cookiy)
+- [Cookiy Production MCP Server](https://s-api.cookiy.ai/mcp)
+- [Cookiy OAuth Discovery](https://s-api.cookiy.ai/.well-known/oauth-authorization-server)
+- [Study Creation Workflow](references/study-creation.md)
+- [AI Interview Workflow](references/ai-interview.md)
+- [Discussion Guide Editing Workflow](references/guide-editing.md)
+- [Recruitment Workflow](references/recruitment.md)
+- [Report & Insights Workflow](references/report-insights.md)
+- [Cookiy MCP Tool Usage Contract](references/tool-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with MCP tool-call guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include report links, passwords, exact identifiers, payment summaries, checkout URLs, JSON-like tool inputs, and survey result previews when returned by Cookiy tools.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

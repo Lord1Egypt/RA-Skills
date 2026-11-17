@@ -1,44 +1,58 @@
-## Description: <br>
-AI机票预订助手 helps agents search domestic flights, query fares and rules, create flight orders, manage order details, change flights, and request refunds through Python command-line API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI机票助手 supports domestic flight search, fare and cabin detail lookup, booking orders, flight changes, refunds, cancellations, and order-detail queries through Python command-line tools.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search flights, compare fare details, create bookings, inspect orders, and submit change or refund requests after user confirmation. The skill requires phone-based authentication and handles passenger identity data for booking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles passenger identity data, phone numbers, login tokens, and refund actions. <br>
-Mitigation: Use only after trusting the flight service, obtain explicit user confirmation for booking, change, and refund actions, and avoid exposing passenger data in logs or responses. <br>
-Risk: The security summary reports unsafe transport and credential-storage practices. <br>
-Mitigation: Do not use for booking, changing, or refunding tickets until TLS verification is enabled and credentials are stored in a protected location. <br>
-Risk: Refund and change workflows can affect real tickets and payments. <br>
-Mitigation: Confirm the exact order, ticket, passenger, fee, and action with the user before submitting any change or refund request. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search domestic flights, compare cabin prices and rules, create bookings, inspect orders, and request flight changes or refunds after authentication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/ai-flight) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ryan-zry) <br>
-- [AI flight service API endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with plaintext tables and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include flight tables, fare details, order identifiers, payment links, authentication status, and change or refund results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Passenger identity details and authentication data may be exposed through local storage, command arguments, or terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local environment, avoid shared machines, and redact passenger names, phone numbers, identity numbers, and API keys from logs and responses.
+
+Risk: Network protections and endpoint validation are not strong enough for real booking workflows.
+
+Mitigation: Do not use for real bookings, changes, or refunds until TLS verification and endpoint validation are fixed and reviewed.
+
+Risk: Booking, payment, flight-change, and refund actions can have financial or travel consequences.
+
+Mitigation: Require explicit user confirmation immediately before any booking, payment, change, cancellation, or refund submission, including zero-fee refunds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/ai-flight)
+- [Fenbeitong flight service endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with plaintext table blocks, command examples, and short status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include order identifiers, payment links, passenger details, refund estimates, and temporary local state created by helper scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

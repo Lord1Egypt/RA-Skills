@@ -1,40 +1,58 @@
-## Description: <br>
-聚焦企业最新发布新品，提炼核心技术参数与卖点，评估市场竞争壁垒及代际升级差异，输出详实竞品分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes newly released enterprise products from public sources, extracts technical parameters and market signals, and produces a Chinese competitiveness and sentiment brief.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Business analysts, investors, procurement teams, and competitive intelligence users use this skill to research newly released products, extract public technical parameters and selling points, compare upgrades or market baselines, and produce a concise product competitiveness brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may browse public web sources using company or product context supplied by the user. <br>
-Mitigation: Use public market and product information only; avoid providing confidential business plans, private procurement data, or non-public product details. <br>
-Risk: Public product reporting can be incomplete, promotional, or inconsistent across sources. <br>
-Mitigation: Prefer official company sources and reputable industry media, cite the basis for claims, and mark unavailable parameters as not publicly disclosed. <br>
+## Use Case:
 
+Business development, investment, competitive intelligence, and procurement teams use this skill to build a current baseline for a company's newly released product. It helps compare technical upgrades, market positioning, customer reputation signals, and competitive barriers from public information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/new-product-sentiment-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown report with tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web research; marks missing or undisclosed parameters instead of fabricating them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Time-sensitive product specifications, launch dates, prices, and market claims may become outdated or differ across sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify product claims against cited official company sources and clearly mark unavailable or undisclosed parameters.
+
+Risk: Public media, forum, and reputation signals may be promotional, incomplete, or biased.
+
+Mitigation: Prefer official announcements for factual claims, separate opinion signals from verified specifications, and cite the source type for important conclusions.
+
+Risk: The artifact is Chinese-only, which may not match every user's preferred output language.
+
+Mitigation: State a preferred output language when invoking the skill if Chinese is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/new-product-sentiment-intelligence)
+- [Publisher profile](https://clawhub.ai/user/daviddatamining)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown report with tables and bullet points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current public web search; time-sensitive product claims should be cited and verified against official sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

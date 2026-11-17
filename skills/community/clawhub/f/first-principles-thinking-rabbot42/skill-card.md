@@ -1,37 +1,52 @@
-## Description: <br>
-Uses first-principles thinking to help the agent revisit core user needs, avoid assumptions, challenge unclear or overly complex plans, and suggest better alternatives when deeper analysis is warranted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent apply first-principles thinking by clarifying the user's underlying need, challenging assumptions, and suggesting simpler or better paths when deeper analysis is warranted.
 
-## Publisher: <br>
-[rabbot42](https://clawhub.ai/user/rabbot42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rabbot42](https://clawhub.ai/user/rabbot42)
 
-## Use Case: <br>
-External users and developers use this skill to prompt an agent to question assumptions, clarify goals, and recommend simpler paths before solving ambiguous or potentially overcomplicated requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause the agent to ask extra clarifying questions or take a more analytical posture than needed. <br>
-Mitigation: Use it for ambiguous, strategic, or overcomplicated requests, and avoid it for routine tasks where direct execution is preferred. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rabbot42/first-principles-thinking-rabbot42) <br>
+## Use Case:
 
+External users and developers use this skill to make an agent more deliberative for ambiguous requests, proposed optimizations, or implementation ideas where the core goal may need clarification before acting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural language responses, usually Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reasoning aid; does not request tools, files, credentials, network access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make the agent more deliberative than users expect for simple requests.
+
+Mitigation: Use it for ambiguous or assumption-heavy tasks, and avoid it when the user asks for a direct answer, routine execution, or urgent action.
+
+Risk: The instructions are Chinese-first, which may be unexpected in non-Chinese interactions.
+
+Mitigation: Review language expectations before deployment and adapt surrounding agent instructions when the target user experience should be in another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rabbot42/skills/first-principles-thinking-rabbot42)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language guidance in Markdown-compatible text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first interaction guidance; no tool, network, credential, or filesystem access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

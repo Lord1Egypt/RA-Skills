@@ -1,47 +1,58 @@
-## Description: <br>
-Amazon Ads data retrieval and reporting via amazon-ads-open-cli for checking ad performance, pulling Sponsored Products, Sponsored Brands, Sponsored Display, and DSP data, managing audiences, and generating async reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Ads data retrieval and reporting via amazon-ads-open-cli for checking ad performance, pulling Sponsored Products, Sponsored Brands, Sponsored Display, and DSP data, and generating async performance reports.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-External advertisers, agencies, analysts, and developers use this skill to configure and run amazon-ads-open-cli commands for Amazon Ads account exploration, campaign structure inspection, DSP review, audience checks, and performance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Amazon Ads OAuth credentials and a client ID, which could expose advertising account access if mishandled. <br>
-Mitigation: Use least-privileged, short-lived credentials, avoid printing tokens or credential file contents, and protect credential files with restrictive permissions. <br>
-Risk: Report downloads, report URLs, and ad performance data may contain sensitive business information. <br>
-Mitigation: Treat generated reports and returned URLs as sensitive data and share outputs only with authorized users. <br>
-Risk: The skill depends on an external npm CLI that will call Amazon Ads APIs in the user's environment. <br>
-Mitigation: Install and run the CLI only when the user trusts the package and understands the permissions granted to its Amazon Ads credentials. <br>
+## Use Case:
 
+External developers, advertising operators, and analysts use this skill to retrieve Amazon Ads profiles, campaign entities, DSP objects, audiences, brand-safety lists, and performance reports through a read-only CLI workflow.
 
-## Reference(s): <br>
-- [amazon-ads-open-cli documentation](https://github.com/Bin-Huang/amazon-ads-open-cli) <br>
-- [Amazon Ads API overview](https://advertising.amazon.com/API/docs/en-us/info/api-overview) <br>
-- [Sponsored Products API](https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod) <br>
-- [Sponsored Brands API](https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi) <br>
-- [Sponsored Display API](https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi) <br>
-- [Amazon DSP API](https://advertising.amazon.com/API/docs/en-us/dsp/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON credential examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the referenced CLI commands return pretty-printed or compact JSON from Amazon Ads APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill recommends installing an unpinned third-party CLI that handles Amazon Ads credentials and business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI before use, prefer a pinned and isolated installation, and avoid global installs when possible.
+
+Risk: Amazon Ads OAuth tokens, client IDs, profile IDs, reports, and report URLs may expose sensitive advertising account information.
+
+Mitigation: Use least-privileged credentials, store tokens with restrictive permissions, and treat profile, campaign, report, and download URL data as sensitive.
+
+## Reference(s):
+
+- [amazon-ads-open-cli documentation](https://github.com/Bin-Huang/amazon-ads-open-cli)
+- [Amazon Ads API overview](https://advertising.amazon.com/API/docs/en-us/info/api-overview)
+- [Sponsored Products API](https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod)
+- [Sponsored Brands API](https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi)
+- [Sponsored Display API](https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi)
+- [Amazon DSP API](https://advertising.amazon.com/API/docs/en-us/dsp/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI produces pretty-printed JSON by default and compact JSON when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

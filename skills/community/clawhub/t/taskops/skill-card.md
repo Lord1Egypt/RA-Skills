@@ -1,48 +1,65 @@
-## Description: <br>
-Manage AI-agent work as an execution graph instead of a flat TODO list. Use TaskOps to structure objectives, task decomposition, run readiness, execution logs, exploration, delegation/waiting, EoW closure, validation, summaries, and runner-driven progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI-agent work as an execution graph instead of a flat TODO list.
 
-## Publisher: <br>
-[jimmylegendary](https://clawhub.ai/user/jimmylegendary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmylegendary](https://clawhub.ai/user/jimmylegendary)
 
-## Use Case: <br>
-Developers and operators use TaskOps to plan, run, validate, and close complex human and AI-agent work with markdown-backed task graphs, run records, blocker/delegation state, summaries, and guarded runner workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git sync and push workflows can affect the selected vault or repository. <br>
-Mitigation: Review the target directory for unrelated files or secrets, confirm the remote repository and branch, and use dry-run or bounded runs before unattended synchronization. <br>
-Risk: Runner watch and daemon install workflows can start persistent local automation. <br>
-Mitigation: Install or start daemons only when persistent automation is intended, set timeouts and retry limits for unattended runs, and monitor status and logs. <br>
-Risk: Runner-controlled execution can mutate TaskOps work state. <br>
-Mitigation: Validate and summarize the work directory before claiming success, and prefer bounded runner invocations with explicit stop reasons. <br>
+## Use Case:
 
+Developers and engineers use TaskOps to structure complex agentic work as markdown-backed work graphs with explicit decomposition, execution logs, blockers, delegation, validation, summaries, and closure evidence.
 
-## Reference(s): <br>
-- [TaskOps on ClawHub](https://clawhub.ai/jimmylegendary/taskops) <br>
-- [README](README.md) <br>
-- [Core Model](references/core-model.md) <br>
-- [Markdown-First Format](references/md-first-format.md) <br>
-- [Decomposition Protocol](references/decomposition-protocol.md) <br>
-- [Run Readiness](references/run-readiness.md) <br>
-- [Legacy Graph Task CLI](references/cli.graph-task.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-producing CLI workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and validates file-backed TaskOps work state; runner and daemon workflows may mutate local markdown state, queue ledgers, git repositories, or user-systemd services when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.4 (source: server-resolved release metadata) <br>
+Risk: Persistent agent execution and daemon installation can continue operating on local work graphs beyond a single interactive step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use daemon install/start only after reviewing the target work directory, service name, runtime, timeout, retry, and service lifetime; prefer bounded dry-run or single-step execution for initial validation.
+
+Risk: Git sync and file mutation paths can change local markdown state or push vault changes to a remote branch.
+
+Mitigation: Review the exact work directory, git diff, repository URL, and branch before enabling vault auto-sync, watch-sync, or git-sync.
+
+Risk: Progress reporting through openclaw-chat-inject may expose run status to a configured chat session.
+
+Mitigation: Avoid openclaw-chat-inject until the report sink, master session key handling, and intended recipient session have been reviewed.
+
+Risk: Legacy graph_task.py migration tooling can be misapplied to untrusted graph IDs or forceful export flows.
+
+Mitigation: Use the current TaskOps CLI for normal validation and summaries; run legacy graph_task.py only for explicit migration work in a contained workspace.
+
+## Reference(s):
+
+- [TaskOps core model](references/core-model.md)
+- [TaskOps md-first format](references/md-first-format.md)
+- [TaskOps Decomposition Protocol](references/decomposition-protocol.md)
+- [Run Readiness](references/run-readiness.md)
+- [TaskOps ClawHub release page](https://clawhub.ai/jimmylegendary/skills/taskops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON-oriented CLI output, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update markdown work-graph files, run logs, summaries, SQLite queue projections, git-sync metadata, and local daemon/service configuration when the documented CLI paths are used.]
+
+## Skill Version(s):
+
+0.5.4 (source: server release metadata, released 2026-06-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-主动向元宝派（Yuanbao Pai）群聊和私聊发送消息和文件，独立于 OpenClaw 插件通道，通过 WebSocket 协议直接推送，适用于 cron 定时任务、跨 session 通知等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends proactive Yuanbao Pai group or private messages and selected file uploads through the Yuanbao bot channel for scheduled jobs, cross-session notifications, and background automation.
 
-## Publisher: <br>
-[luhuiwang](https://clawhub.ai/user/luhuiwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luhuiwang](https://clawhub.ai/user/luhuiwang)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents or scheduled jobs send Yuanbao Pai group or direct messages and upload files through a configured bot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents or scheduled jobs can send messages and upload files as the configured Yuanbao bot. <br>
-Mitigation: Restrict who can invoke the skill, confirm recipients and file paths before execution, and avoid sending secrets or private files. <br>
-Risk: The skill depends on local Yuanbao credentials stored in ~/.openclaw/openclaw.json. <br>
-Mitigation: Protect the configuration file and limit filesystem access for users or processes that can run the skill. <br>
-Risk: Using the direct WebSocket connection can disrupt the normal OpenClaw Yuanbao plugin connection. <br>
-Mitigation: Run the skill only when proactive messaging is intentional and avoid using it while the normal Yuanbao plugin must remain online. <br>
+## Use Case:
 
+Developers and operators use this skill to send Yuanbao Pai group or private notifications and upload selected local files from cron jobs, background scripts, or other agent sessions without waiting for an inbound mention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luhuiwang/yuanbao-send) <br>
-- [Publisher profile](https://clawhub.ai/user/luhuiwang) <br>
-- [Release provenance](unavailable: No server-resolved GitHub import provenance is stored for this version.) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, websocket-client, cos-python-sdk-v5, and Yuanbao app credentials in ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server evidence and frontmatter) <br>
+Risk: The skill can send messages and upload selected local files to Tencent/Yuanbao infrastructure using local bot credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted publishers and intended Yuanbao messaging workflows; use a dedicated bot credential, restrict who can invoke the skill, and avoid sending secrets or personal data.
+
+Risk: Message recipients and upload paths are provided at invocation time, and the evidence reports no built-in guardrails.
+
+Mitigation: Add recipient and path allowlists where possible, review message and file content before use, and run the skill in a reviewed dependency environment.
+
+Risk: The artifact notes that using the same bot identity can disconnect the active OpenClaw Yuanbao plugin session.
+
+Mitigation: Use the skill only when the plugin does not need an active connection, avoid frequent calls, and schedule proactive sends during acceptable interruption windows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luhuiwang/skills/yuanbao-send)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, websocket-client, cos-python-sdk-v5, and local Yuanbao appKey/appSecret configuration.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Generates Chinese-language company and industry research, diligence reports, interview question lists, competitive analysis, and listed-company financial analysis with separate workflows for investment-sensitive reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language company and industry research outputs, including diligence reports, competitive analysis, financial review, risk review, and interview question lists.
 
-## Publisher: <br>
-[xwz119](https://clawhub.ai/user/xwz119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwz119](https://clawhub.ai/user/xwz119)
 
-## Use Case: <br>
-Analysts, investors, and business researchers use this skill to structure China-focused company or industry research, produce interview questions, compare competitors, and prepare diligence-style Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment-related sections can produce concrete buy, sell, hold, or position-sizing guidance. <br>
-Mitigation: Require explicit user confirmation before investment-related output and remove or disable action and sizing instructions unless a compliant financial-advice workflow governs the use. <br>
-Risk: Research history may include confidential targets, requester names, internal links, portfolio details, or deal context. <br>
-Mitigation: Make memory archival opt-in and redact confidential company, requester, link, portfolio, and deal details before retaining or sharing outputs. <br>
-Risk: The security review recommends manual review before installation. <br>
-Mitigation: Review and edit the skill before use, especially any investment-decision and memory-archival behavior. <br>
+## Use Case:
 
+Employees and external users use this skill to structure Chinese-language company or industry research, including diligence, competitive landscape analysis, financial review, risk review, and role-targeted interview preparation.
 
-## Reference(s): <br>
-- [Analysis Frameworks](references/analysis-frameworks.md) <br>
-- [Due Diligence Framework](references/due-diligence-framework.md) <br>
-- [Interview Guide](references/interview-guide.md) <br>
-- [Risk Review Prompt](references/risk-review-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports, interview question lists, risk review summaries, and decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source citations, research boundary statements, risk ratings, and optional investment-decision sections when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Risk: The skill can produce specific financial actions from research outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as decision-support only and require qualified human review before taking investment actions.
+
+Risk: The workflow saves research details to a predictable memory file by default, which may retain sensitive diligence information.
+
+Mitigation: Use only where that retention is acceptable, and avoid confidential, personal, or regulated investment contexts unless consent and scope controls are added.
+
+## Reference(s):
+
+- [Analysis Frameworks](references/analysis-frameworks.md)
+- [Due Diligence Framework](references/due-diligence-framework.md)
+- [Interview Guide](references/interview-guide.md)
+- [Risk Review Prompt](references/risk-review-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, structured question lists, and decision-support summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citations, research boundaries, risk ratings, and action-oriented recommendations.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

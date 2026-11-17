@@ -1,41 +1,53 @@
-## Description: <br>
-Apply the most relevant mental models to a problem or decision by explicitly matching and working through 2-3 frameworks per query to surface non-obvious insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies relevant mental models to a user's problem or decision by selecting 2-3 frameworks and surfacing non-obvious insights.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn unclear decisions, planning questions, or stuck problems into structured reflection. The agent selects 2-3 relevant mental models, applies them to the user's situation, and synthesizes the main insight without presenting the output as professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence sensitive personal, business, financial, legal, medical, or ethical decisions by framing them through mental models. <br>
-Mitigation: Use the output as structured reflection only, and keep normal professional review, domain expertise, compliance checks, and ethical judgment in place for consequential decisions. <br>
-Risk: A concise mental-model framing may make an incomplete or biased interpretation feel more authoritative than the available facts support. <br>
-Mitigation: Validate key assumptions, seek missing context, and treat the selected models as prompts for further reasoning rather than final advice. <br>
+## Use Case:
 
+External users use this skill to structure uncertain problems, decisions, plans, and postmortems with 2-3 relevant mental models. It helps surface assumptions, blind spots, downstream consequences, and a concise synthesis without telling the user what to decide.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/decision-mental-models) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only structured decision framing; no code execution, external tools, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may over-rely on decision framing for legal, medical, financial, or otherwise high-stakes choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as thinking support only and require appropriate professional review before acting in high-stakes domains.
+
+Risk: Neutral decision-analysis instructions may be misread as permission to bypass safety, legality, or ethics checks for sensitive situations.
+
+Mitigation: Keep safety, legality, and ethics constraints in force when applying mental models to sensitive or regulated decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/decision-mental-models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with selected model sections and a short synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects and applies 2-3 mental models; asks one clarifying question when the problem is too vague.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

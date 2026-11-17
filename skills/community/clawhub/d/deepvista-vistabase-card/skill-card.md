@@ -1,41 +1,54 @@
-## Description: <br>
-DeepVista Card helps agents manage DeepVista knowledge cards, including creating, searching, reading, organizing, editing, pinning, archiving, and deleting context cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista Card: Manage your knowledge cards - create, search, and organize context cards.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-External developers and agent users use this skill to operate DeepVista Vistabase knowledge cards through the DeepVista CLI. It supports read workflows such as list, get, hybrid search, semantic similarity, and regex grep, plus user-confirmed write workflows for create, update, edit, delete, pin, and archive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive commands can change or delete DeepVista knowledge-base records. <br>
-Mitigation: Confirm with the user before running create, update, edit, delete, pin, or archive commands, and show the resulting card URL after create or update when available. <br>
-Risk: The skill depends on the DeepVista CLI package and the deepvista-shared authentication/profile skill. <br>
-Mitigation: Install the DeepVista CLI only from trusted sources and complete the shared authentication/profile setup before using card commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage DeepVista Vistabase knowledge cards through the DeepVista CLI, including listing, reading, creating, updating, editing, deleting, pinning, archiving, and searching cards.
 
-## Reference(s): <br>
-- [DeepVista CLI](https://cli.deepvista.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jingconan/deepvista-vistabase-card) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline DeepVista CLI commands and DeepVista card URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations should be confirmed with the user before execution; create and update workflows should show the resulting card URL when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release evidence) <br>
+Risk: The skill can create, edit, delete, pin, or archive DeepVista knowledge cards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm write or destructive card operations with the user before execution.
+
+Risk: The skill depends on the external deepvista-cli package.
+
+Mitigation: Use a pinned or otherwise trusted deepvista-cli release in environments that require stricter dependency control.
+
+## Reference(s):
+
+- [DeepVista CLI homepage](https://cli.deepvista.ai)
+- [ClawHub skill page](https://clawhub.ai/jingconan/skills/deepvista-vistabase-card)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and DeepVista card URLs when write operations return card IDs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the DeepVista CLI and the shared DeepVista authentication/profile skill.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

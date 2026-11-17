@@ -1,0 +1,962 @@
+[
+  {
+    "name": "总部员工管理API列表",
+    "title": "总部员工管理API列表",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "总部-创建员工",
+    "title": "总部-创建员工",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/create"
+  },
+  {
+    "name": "总部-启用员工",
+    "title": "总部-启用员工",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/enable"
+  },
+  {
+    "name": "总部-修改员工信息",
+    "title": "总部-修改员工信息",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/update"
+  },
+  {
+    "name": "总部-查询员工详情",
+    "title": "总部-查询员工详情",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/getDetail"
+  },
+  {
+    "name": "总部-停用员工",
+    "title": "总部-停用员工",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/disable"
+  },
+  {
+    "name": "总部-查询员工列表",
+    "title": "总部-查询员工列表",
+    "method": "POST",
+    "path": "/open/standard/employee/brand/list"
+  },
+  {
+    "name": "员工信息变更通知",
+    "title": "员工信息变更通知",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "门店员工管理API列表",
+    "title": "门店员工管理API列表",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "门店-创建员工",
+    "title": "门店-创建员工",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/create"
+  },
+  {
+    "name": "门店-修改员工信息",
+    "title": "门店-修改员工信息",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/update"
+  },
+  {
+    "name": "门店-停用员工",
+    "title": "门店-停用员工",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/disable"
+  },
+  {
+    "name": "门店-查询员工详情",
+    "title": "门店-查询员工详情",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/getDetail"
+  },
+  {
+    "name": "门店-启用员工",
+    "title": "门店-启用员工",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/enable"
+  },
+  {
+    "name": "门店-查询员工列表",
+    "title": "门店-查询员工列表",
+    "method": "POST",
+    "path": "/open/standard/employee/shop/list"
+  },
+  {
+    "name": "门店商品信息分页查询",
+    "title": "门店分页查询菜品基本信息",
+    "method": "POST",
+    "path": "/open/standard/dish/shop/pageQueryBaseDish"
+  },
+  {
+    "name": "门店商品详情查询",
+    "title": "门店查询菜品详情",
+    "method": "POST",
+    "path": "/open/standard/dish/shop/listQueryDetailDish"
+  },
+  {
+    "name": "门店商品分类信息查询",
+    "title": "门店查询分类信息",
+    "method": "POST",
+    "path": "/open/standard/dish/shop/listQueryCategory"
+  },
+  {
+    "name": "门店商品开放消息",
+    "title": "门店商品开放消息",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "门店商品库存查询",
+    "title": "查询菜品库存",
+    "method": "POST",
+    "path": "/open/standard/dish/stock/query/batch"
+  },
+  {
+    "name": "商品库存信息变更",
+    "title": "商品库存信息变更",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "门店商品批量改价",
+    "title": "商品批量改价",
+    "method": "POST",
+    "path": "/open/standard/dish/batchModifyDishPrice"
+  },
+  {
+    "name": "获取预订营业日信息",
+    "title": "获取预订营业日信息",
+    "method": "POST",
+    "path": "/open/standard/book/queryShopBookPeriodTime"
+  },
+  {
+    "name": "查询桌台信息与预订单聚合信息",
+    "title": "查询桌台信息与预订单聚合信息",
+    "method": "POST",
+    "path": "/open/standard/book/queryBookingTableInfo"
+  },
+  {
+    "name": "预订单保存接口",
+    "title": "预订单保存接口",
+    "method": "POST",
+    "path": "/open/standard/book/save"
+  },
+  {
+    "name": "预订单详情查询",
+    "title": "预订单详情查询",
+    "method": "POST",
+    "path": "/open/standard/book/queryBookOrderDetailByOrderNo"
+  },
+  {
+    "name": "预订到店",
+    "title": "预订到店",
+    "method": "POST",
+    "path": "/open/standard/book/confirmArrival"
+  },
+  {
+    "name": "取消预订",
+    "title": "取消预订",
+    "method": "POST",
+    "path": "/open/standard/book/cancel"
+  },
+  {
+    "name": "预订单消息变更通知（含各端预订单）",
+    "title": "预订单状态推送消息通知（全部）",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "预订单关联的交易单的状态通知",
+    "title": "预订单关联的交易单的状态通知",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "预订单状态消息通知",
+    "title": "预订单状态消息通知",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "C端预订下单",
+    "title": "C端预订下单",
+    "method": "POST",
+    "path": "/open/standard/book/c-terminal/save"
+  },
+  {
+    "name": "取消C端预订",
+    "title": "取消C端预订",
+    "method": "POST",
+    "path": "/open/standard/book/c-terminal/cancel"
+  },
+  {
+    "name": "C端预订状态变更消息",
+    "title": "C端预订状态变更消息",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "C端预订单详情查询",
+    "title": "C端预订单详情查询",
+    "method": "POST",
+    "path": "/open/standard/book/c-terminal/queryBookOrderDetailByOrderNo"
+  },
+  {
+    "name": "C端预订单分页查询",
+    "title": "C端预订单分页查询",
+    "method": "POST",
+    "path": "/open/standard/book/c-terminal/pageQuery"
+  },
+  {
+    "name": "会员创建",
+    "title": "会员创建",
+    "method": "POST",
+    "path": "/open/standard/crm/CustomerOpenFacade/createCustomer"
+  },
+  {
+    "name": "修改会员信息",
+    "title": "修改会员信息",
+    "method": "POST",
+    "path": "/open/standard/crm/brand/updateCustomer"
+  },
+  {
+    "name": "批量查询会员详情",
+    "title": "批量查询会员详情",
+    "method": "POST",
+    "path": "/open/standard/crm/CustomerQueryFacade/queryByCustomerIds"
+  },
+  {
+    "name": "会员查询",
+    "title": "会员查询",
+    "method": "POST",
+    "path": "/open/standard/crm/CustomerOpenFacade/queryByMobile"
+  },
+  {
+    "name": "查询会员标签列表",
+    "title": "查询会员标签列表",
+    "method": "POST",
+    "path": "/open/standard/crm/pageQueryTagList"
+  },
+  {
+    "name": "查询会员卡方案等级规则",
+    "title": "查询会员卡方案等级规则",
+    "method": "POST",
+    "path": "/open/standard/crm/listLevelRules"
+  },
+  {
+    "name": "储值",
+    "title": "查询会员卡方案等级规则",
+    "method": "POST",
+    "path": "/open/standard/crm/listLevelRules"
+  },
+  {
+    "name": "积分",
+    "title": "查询会员卡方案等级规则",
+    "method": "POST",
+    "path": "/open/standard/crm/listLevelRules"
+  },
+  {
+    "name": "券模板",
+    "title": "查询会员卡方案等级规则",
+    "method": "POST",
+    "path": "/open/standard/crm/listLevelRules"
+  },
+  {
+    "name": "券实例",
+    "title": "查询会员卡方案等级规则",
+    "method": "POST",
+    "path": "/open/standard/crm/listLevelRules"
+  },
+  {
+    "name": "会员及资产查询",
+    "title": "会员及资产查询",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "会员资产核销",
+    "title": "会员资产核销",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "会员资产反核销",
+    "title": "会员资产反核销",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "查询核销结果",
+    "title": "查询核销结果",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "订单列表查询接口（报表）",
+    "title": "订单列表查询接口",
+    "method": "POST",
+    "path": "/open/standard/order/queryList"
+  },
+  {
+    "name": "订单详情查询接口（报表）",
+    "title": "订单详情查询接口",
+    "method": "POST",
+    "path": "/open/standard/order/queryDetail"
+  },
+  {
+    "name": "订单变更事件同步（报表）",
+    "title": "订单变更事件同步",
+    "method": "POST",
+    "path": ""
+  },
+  {
+    "name": "店内营收统计",
+    "title": "店内营收统计",
+    "method": "POST",
+    "path": "/open/standard/report/business/income/v3/list"
+  },
+  {
+    "name": "收入构成统计",
+    "title": "收入构成统计",
+    "method": "POST",
+    "path": "/open/standard/report/business/income/constitute/v3/list"
+  },
+  {
+    "name": "优惠构成统计",
+    "title": "优惠构成统计",
+    "method": "POST",
+    "path": "/open/standard/report/business/income/promo/v3/list"
+  },
+  {
+    "name": "收入优惠统计",
+    "title": "收入优惠统计报表",
+    "method": "POST",
+    "path": "/open/standard/report/income/promo/statistics"
+  },
+  {
+    "name": "营业收款统计",
+    "title": "营业收款统计",
+    "method": "POST",
+    "path": "/open/standard/report/paid/income/v6/list"
+  },
+  {
+    "name": "支付方式收款统计",
+    "title": "支付方式收款统计",
+    "method": "POST",
+    "path": "/open/standard/report/paymethod/statistics"
+  },
+  {
+    "name": "支付结算统计",
+    "title": "支付结算统计",
+    "method": "POST",
+    "path": "/open/standard/report/payment/reconciliation/v4/list"
+  },
+  {
+    "name": "菜品销售统计",
+    "title": "菜品销售统计",
+    "method": "POST",
+    "path": "/open/standard/report/orderItem/list"
+  },
+  {
+    "name": "菜品分类营收统计",
+    "title": "菜品分类营收统计",
+    "method": "POST",
+    "path": "/open/standard/report/orderItem/itemType/list"
+  },
+  {
+    "name": "销售品项统计",
+    "title": "销售品项统计",
+    "method": "POST",
+    "path": "/open/standard/report/orderItem/department/list"
+  },
+  {
+    "name": "服务费统计",
+    "title": "服务费统计",
+    "method": "POST",
+    "path": "/open/standard/report/extrafee/statistics"
+  },
+  {
+    "name": "套餐销售统计",
+    "title": "套餐销售统计",
+    "method": "POST",
+    "path": "/open/standard/report/combo/sale/statistics"
+  },
+  {
+    "name": "取餐叫号统计表",
+    "title": "取餐叫号统计表",
+    "method": "POST",
+    "path": "/open/standard/report/CdsOrderDetailClient/statistics"
+  },
+  {
+    "name": "后厨员工出品统计",
+    "title": "后厨员工出品统计",
+    "method": "POST",
+    "path": "/open/standard/report/kitchen/produced/statistics"
+  },
+  {
+    "name": "会员储值金额变动统计",
+    "title": "会员储值金额变动统计",
+    "method": "POST",
+    "path": "/open/standard/report/crm/recharge/summary"
+  },
+  {
+    "name": "查询储值明细",
+    "title": "查询储值明细",
+    "method": "POST",
+    "path": "/open/standard/report/queryRechargeOrderDetail"
+  },
+  {
+    "name": "储值店间结算列表",
+    "title": "储值店间结算列表",
+    "method": "POST",
+    "path": "/open/standard/report/pageRechargeSettlement"
+  },
+  {
+    "name": "营业数据-跨天反结账汇总指标",
+    "title": "营业数据-汇总指标",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryBusinessIndexSummary"
+  },
+  {
+    "name": "营业数据-跨天反结账差异明细",
+    "title": "营业数据-差异明细",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryBusinessDiffDetailList"
+  },
+  {
+    "name": "菜品数据-跨天反结账汇总指标",
+    "title": "菜品数据-汇总指标",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryItemIndexSummary"
+  },
+  {
+    "name": "菜品数据-跨天反结账差异明细",
+    "title": "菜品数据-差异明细",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryItemDiffDetailList"
+  },
+  {
+    "name": "收款数据-跨天反结账汇总指标",
+    "title": "收款数据-汇总指标",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryPayIndexSummary"
+  },
+  {
+    "name": "收款数据-跨天反结账按支付方式构成汇总",
+    "title": "收款数据-按支付方式构成汇总",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryPayMethodSummaryList"
+  },
+  {
+    "name": "收款数据-跨天反结账差异明细",
+    "title": "收款数据-差异明细",
+    "method": "POST",
+    "path": "/open/standard/report/crdOrderStatistics/queryPayMethodDiffDetailList"
+  },
+  {
+    "name": "报损出库单列表",
+    "title": "报损出库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/lossOut/findByCondition"
+  },
+  {
+    "name": "报损出库单详情",
+    "title": "报损出库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/lossOut/findDetailByBillId"
+  },
+  {
+    "name": "其他入库单列表",
+    "title": "其他入库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherIn/findByCondition"
+  },
+  {
+    "name": "其他入库单详情",
+    "title": "其他入库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherIn/findDetailByBillId"
+  },
+  {
+    "name": "其他出库单详情",
+    "title": "其他出库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherOut/findDetailByBillId"
+  },
+  {
+    "name": "其他出库单列表",
+    "title": "其他出库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherOut/findByCondition"
+  },
+  {
+    "name": "组织内调拨订单列表",
+    "title": "组织内调拨订单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/internal/findByCondition"
+  },
+  {
+    "name": "组织内调拨订单详情",
+    "title": "组织内调拨订单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/internal/findDetailByBillId"
+  },
+  {
+    "name": "盘点单列表",
+    "title": "盘点单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/check/findByCondition"
+  },
+  {
+    "name": "盘点单详情",
+    "title": "盘点单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/check/findDetailByBillId"
+  },
+  {
+    "name": "组织间调拨出库单详情",
+    "title": "组织间调拨出库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/out/findDetailByBillId"
+  },
+  {
+    "name": "组织间调拨入库单列表",
+    "title": "组织间调拨入库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/in/store-to-store/findByCondition"
+  },
+  {
+    "name": "组织间调拨出库单列表",
+    "title": "组织间调拨出库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/out/store-to-store/findByCondition"
+  },
+  {
+    "name": "组织间调拨入库单详情",
+    "title": "组织间调拨入库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/transfer/in/findDetailByBillId"
+  },
+  {
+    "name": "消耗出库单详情",
+    "title": "消耗出库单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/sale-out/findDetailByBillId"
+  },
+  {
+    "name": "消耗出库单列表",
+    "title": "消耗出库单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/stock/sale-out/list"
+  },
+  {
+    "name": "其他入库（接收）",
+    "title": "其他入库（接收）",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherIn/audit/add"
+  },
+  {
+    "name": "其他出库（接收）",
+    "title": "其他出库（接收）",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/otherOut/audit/add"
+  },
+  {
+    "name": "采购入库（接收）",
+    "title": "采购入库（接收）",
+    "method": "POST",
+    "path": "/open/standard/supply/purchase/in/store/audit"
+  },
+  {
+    "name": "采购退货出库（接收）",
+    "title": "采购退货出库（接收）",
+    "method": "POST",
+    "path": "/open/standard/supply/purchase/back/store/auditAPI"
+  },
+  {
+    "name": "库存查询",
+    "title": "库存查询",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/goods/findByCondition"
+  },
+  {
+    "name": "新增或修改物品分类",
+    "title": "新增或修改物品分类",
+    "method": "POST",
+    "path": "/open/standard/supply/goodscategory/saveOrUpdateGoodsCate"
+  },
+  {
+    "name": "删除物品分类",
+    "title": "删除物品分类",
+    "method": "POST",
+    "path": "/open/standard/supply/goodscategory/deleteGoodsCate"
+  },
+  {
+    "name": "查询组织机构信息",
+    "title": "查询组织机构信息",
+    "method": "POST",
+    "path": "/open/standard/basic/supply/prodbase/orgInfoCommon/simple-info"
+  },
+  {
+    "name": "新增物品档案",
+    "title": "新增物品档案",
+    "method": "POST",
+    "path": "/open/standard/supply/goods/saveGoods"
+  },
+  {
+    "name": "修改物品档案",
+    "title": "修改物品档案",
+    "method": "POST",
+    "path": "/open/standard/supply/goods/updateGoods"
+  },
+  {
+    "name": "删除物品档案",
+    "title": "删除物品档案",
+    "method": "POST",
+    "path": "/open/standard/supply/goods/deleteGoods"
+  },
+  {
+    "name": "查询成本卡方案",
+    "title": "查询成本卡方案",
+    "method": "POST",
+    "path": "/open/standard/supply/bom/queryAllBomSchemeWithStore"
+  },
+  {
+    "name": "分页查询商品及其成本卡",
+    "title": "分页查询商品及其成本卡",
+    "method": "POST",
+    "path": "/open/standard/supply/bom/pageQueryBom"
+  },
+  {
+    "name": "分页查询加工品及其bom",
+    "title": "分页查询加工品及其bom",
+    "method": "POST",
+    "path": "/open/standard/produce/bom/pageQueryBom"
+  },
+  {
+    "name": "供应商分页查询接口",
+    "title": "供应商分页查询接口",
+    "method": "POST",
+    "path": "/open/standard/basic/supplier/pageQuerySupplier"
+  },
+  {
+    "name": "采购入库单列表",
+    "title": "采购入库单列表",
+    "method": "POST",
+    "path": "/open/standard/procurement/supply/purchase/open/standard/purchase/in/list"
+  },
+  {
+    "name": "采购入库单详情",
+    "title": "采购入库单详情",
+    "method": "POST",
+    "path": "/open/standard/procurement/supply/purchase/in/detail"
+  },
+  {
+    "name": "采购退货单列表",
+    "title": "采购退货单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/purchase/out/list"
+  },
+  {
+    "name": "采购退货单详情",
+    "title": "采购退货单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/purchase/out/detail"
+  },
+  {
+    "name": "查询采购结算单详情",
+    "title": "查询采购结算单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/openapi/ord-settlement/queryOrdSettlementDetail"
+  },
+  {
+    "name": "分页查询采购结算单",
+    "title": "分页查询采购结算单",
+    "method": "POST",
+    "path": "/open/standard/supply/openapi/ord-settlement/pageQuerySettlement"
+  },
+  {
+    "name": "物品详情",
+    "title": "物品详情",
+    "method": "POST",
+    "path": "/open/standard/supply/goods/findById"
+  },
+  {
+    "name": "物品列表",
+    "title": "物品列表",
+    "method": "POST",
+    "path": "/open/standard/supply/goods/findListForPage"
+  },
+  {
+    "name": "退菜入库列表查询",
+    "title": "退菜入库列表查询",
+    "method": "POST",
+    "path": "/open/standard/posreturn/stock/subtract/queryReturnBill"
+  },
+  {
+    "name": "退菜入库详情查询",
+    "title": "退菜入库详情查询",
+    "method": "POST",
+    "path": "/open/standard/supply/posreturn/stock/subtract/queryReturnBillWithDetail"
+  },
+  {
+    "name": "销售订单列表",
+    "title": "销售订单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/saleOrderCommon/getOrderWithNoDetail4OpenApi"
+  },
+  {
+    "name": "销售订单详情",
+    "title": "销售订单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/saleOrderCommon/getOrderDetail4OpenApi"
+  },
+  {
+    "name": "配送验收入库单详情",
+    "title": "配送验收入库单详情",
+    "method": "POST",
+    "path": "/open/standard/delivery/check/v1/findByCondition/findDetailByBillId"
+  },
+  {
+    "name": "配送验收入库单列表",
+    "title": "配送验收入库单列表",
+    "method": "POST",
+    "path": "/open/standard/delivery/check/v1/findByCondition"
+  },
+  {
+    "name": "向总部退货单详情",
+    "title": "向总部退货单详情",
+    "method": "POST",
+    "path": "/open/standard/supply/back/out/v1/findByCondition/findDetailByBillId"
+  },
+  {
+    "name": "向总部退货单列表",
+    "title": "向总部退货单列表",
+    "method": "POST",
+    "path": "/open/standard/supply/dispatch/back/v1/findByCondition"
+  },
+  {
+    "name": "进销存明细列表",
+    "title": "进销存明细列表",
+    "method": "POST",
+    "path": "/open/standard/supply/stock/report/stockInOutDetail"
+  },
+  {
+    "name": "门店毛利分析列表",
+    "title": "门店毛利分析列表",
+    "method": "POST",
+    "path": "/open/standard/supply/profit/report/listStoreGrossProfit"
+  },
+  {
+    "name": "商品毛利分析列表",
+    "title": "商品毛利分析列表",
+    "method": "POST",
+    "path": "/open/standard/supply/profit/report/listDishGrossProfit"
+  },
+  {
+    "name": "销售发货单写入",
+    "title": "销售发货单写入",
+    "method": "POST",
+    "path": "/open/standard/supply/dispatch/sale-delivery/v1/save"
+  },
+  {
+    "name": "供应商创建接口",
+    "title": "供应商创建接口",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplierFacade/add"
+  },
+  {
+    "name": "供应商主收款人查询接口",
+    "title": "供应商主收款人查询接口",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplierFacade/queryMainPayee"
+  },
+  {
+    "name": "机构可用余额查询",
+    "title": "供应链可用余额查询(新)",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplyChainTradeFacade/queryAccountBalance"
+  },
+  {
+    "name": "分账支付接口",
+    "title": "供应链分账支付接口（新）",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplyChainTradeFacade/pay"
+  },
+  {
+    "name": "分账退款接口",
+    "title": "供应链分账退款接口（新）",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplyChainTradeFacade/refund"
+  },
+  {
+    "name": "供应商提现接口",
+    "title": "供应商提现接口",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplierFacade/withdarwApply"
+  },
+  {
+    "name": "供应商提现结果查询",
+    "title": "供应商提现结果查询",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplierFacade/queryWithdrawResult"
+  },
+  {
+    "name": "供应商流水查询接口",
+    "title": "供应商流水查询接口",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplierFacade/queryAccountIo"
+  },
+  {
+    "name": "分账交易结果查询接口",
+    "title": "供应链分账交易结果查询接口(新)",
+    "method": "POST",
+    "path": "/open/standard/supply/fund/SupplyChainTradeFacade/queryTradeResult"
+  },
+  {
+    "name": "银行分账三方对账文件导入",
+    "title": "银行分账三方对账文件导入",
+    "method": "POST",
+    "path": "/open/standard/supply/fileFacade/syncUpload"
+  },
+  {
+    "name": "品牌账户查询",
+    "title": "品牌账户查询",
+    "method": "POST",
+    "path": "/open/standard/supply/shareprodSubjectFacade/queryBusSubjectListByCompany"
+  },
+  {
+    "name": "资金提现结果查询",
+    "title": "资金提现结果查询",
+    "method": "POST",
+    "path": "/open/standard/supply/fundTradeFacade/queryWithdrawOrderByOrderNo"
+  },
+  {
+    "name": "资金账户提现",
+    "title": "资金账户提现",
+    "method": "POST",
+    "path": "/open/standard/supply/fundTradeFacade/applyWithdraw"
+  },
+  {
+    "name": "自定义付款",
+    "title": "自定义付款",
+    "method": "POST",
+    "path": "/open/standard/supply/fundTradeFacade/applyBatchTransfer"
+  },
+  {
+    "name": "分账收款方查询",
+    "title": "分账收款方查询",
+    "method": "POST",
+    "path": "/open/standard/supply/payeeQueryFacade/pageQueryFundPayee"
+  },
+  {
+    "name": "资金账户余额查询接口",
+    "title": "资金账户余额查询接口",
+    "method": "POST",
+    "path": "/open/standard/supply/prodAccountQueryFacade/queryCanWithdrawBalance"
+  },
+  {
+    "name": "银行分账到账记录查询",
+    "title": "银行分账到账记录查询",
+    "method": "POST",
+    "path": "/open/standard/supply/bankReceiptOrderFacade/pageQuerySummaryOrder"
+  },
+  {
+    "name": "自定义收付款结果明细查询",
+    "title": "自定义收付款结果明细查询",
+    "method": "POST",
+    "path": "/open/standard/supply/fundTradeFacade/getTradeBizDetail"
+  },
+  {
+    "name": "账户流水查询",
+    "title": "账户流水查询",
+    "method": "POST",
+    "path": "/open/standard/supply/ShareprodAccountIoFacade/queryFundAccountIO"
+  },
+  {
+    "name": "销售计划-分页获取商品",
+    "title": "销售计划-分页获取商品",
+    "method": "POST",
+    "path": "/open/standard/purchase/pageQueryByTenantId"
+  },
+  {
+    "name": "销售计划-获取计划销量",
+    "title": "销售计划-获取计划销量",
+    "method": "POST",
+    "path": "/open/standard/purchase/commoditysalesplan/salesplan"
+  },
+  {
+    "name": "销售计划-营业额预估",
+    "title": "销售计划-营业额预估",
+    "method": "POST",
+    "path": "/open/standard/purchase/commoditysalesplan/turnover"
+  },
+  {
+    "name": "销售计划-计算预估订货量",
+    "title": "销售计划-计算预估订货量",
+    "method": "POST",
+    "path": "/open/standard/purchase/commoditysalesplan/apply"
+  },
+  {
+    "name": "销售计划-获取商品分类",
+    "title": "销售计划-获取商品分类",
+    "method": "POST",
+    "path": "/open/standard/purchase/commoditysalesplan/findTreeListByTenantId"
+  },
+  {
+    "name": "千元用量-计算预估订货量",
+    "title": "千元用量-计算预估订货量",
+    "method": "POST",
+    "path": "/open/standard/purchase/thousand/predictbill"
+  },
+  {
+    "name": "千元用量-营业额预估",
+    "title": "千元用量-营业额预估",
+    "method": "POST",
+    "path": "/open/standard/purchase/thousand/turnover"
+  },
+  {
+    "name": "分页查询简单生产单",
+    "title": "分页查询简单生产单",
+    "method": "POST",
+    "path": "/open/standard/produce/simple-prod/pageQuerySimpleProd"
+  },
+  {
+    "name": "获取accessToken",
+    "title": "获取免登accessToken",
+    "method": "POST",
+    "path": "/open/standard/oauth/accessToken"
+  },
+  {
+    "name": "刷新accessToken",
+    "title": "根据refreshToken刷新token",
+    "method": "POST",
+    "path": "/open/standard/oauth/refreshToken"
+  },
+  {
+    "name": "获取用户信息",
+    "title": "根据accessToken获取用户信息",
+    "method": "POST",
+    "path": "/open/standard/oauth/queryUserInfo"
+  },
+  {
+    "name": "获取授权二维码",
+    "title": "获取授权二维码",
+    "method": "POST",
+    "path": "/open/standard/auth/getQrcode"
+  },
+  {
+    "name": "应用已授权机构查询",
+    "title": "应用已授权机构查询",
+    "method": "POST",
+    "path": "/open/standard/auth/org/list"
+  }
+]

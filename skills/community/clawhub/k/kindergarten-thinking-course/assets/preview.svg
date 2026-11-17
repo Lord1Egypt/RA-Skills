@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" font-family="Segoe UI, Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#fef9e7"/>
+      <stop offset="1" stop-color="#e8f4fc"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="360" fill="url(#bg)"/>
+  <!-- Page 1 -->
+  <g transform="translate(40,30)">
+    <rect width="280" height="320" rx="10" fill="#ffffff" stroke="#4a90d9" stroke-width="2"/>
+    <rect x="10" y="10" width="260" height="22" rx="4" fill="#4a90d9"/>
+    <text x="20" y="26" fill="#fff" font-size="12" font-weight="bold">幼儿思维训练 · L2 (中班 4-5岁)</text>
+    <text x="14" y="56" fill="#333" font-size="11">姓名：<tspan text-decoration="underline">　　　　　　　</tspan>　|　共 6 题</text>
+    <!-- Title 1 classify -->
+    <rect x="14" y="68" width="252" height="70" rx="4" fill="#fef9e7" stroke="#e07b39" stroke-width="1.2"/>
+    <text x="20" y="82" fill="#2c5f8a" font-size="11" font-weight="bold">1. 分类（找一找）</text>
+    <text x="20" y="96" fill="#555" font-size="10">把所有"水果"圈出来：</text>
+    <text x="20" y="124" font-size="22">🍎🚗🍌🐶🍇🚒</text>
+    <!-- Title 2 pattern -->
+    <rect x="14" y="146" width="252" height="70" rx="4" fill="#fef9e7" stroke="#e07b39" stroke-width="1.2"/>
+    <text x="20" y="160" fill="#2c5f8a" font-size="11" font-weight="bold">2. 找规律</text>
+    <text x="20" y="174" fill="#555" font-size="10">在空格处填上正确的图形：</text>
+    <text x="20" y="202" font-size="22">🔴 🟡 🔴 🟡 ⬜ ⬜</text>
+    <!-- Title 3 same -->
+    <rect x="14" y="224" width="252" height="80" rx="4" fill="#fef9e7" stroke="#e07b39" stroke-width="1.2"/>
+    <text x="20" y="238" fill="#2c5f8a" font-size="11" font-weight="bold">3. 找相同（连线）</text>
+    <text x="20" y="252" fill="#555" font-size="10">把左右两边相同的连起来：</text>
+    <text x="20" y="280" font-size="22">🐰　🐱　🦊　　·　　🐰　🦁　🐱</text>
+  </g>
+  <!-- Page 2 (answer) -->
+  <g transform="translate(360,30)">
+    <rect width="280" height="320" rx="10" fill="#ffffff" stroke="#a8c5e6" stroke-width="2"/>
+    <rect x="10" y="10" width="260" height="22" rx="4" fill="#a8c5e6"/>
+    <text x="20" y="26" fill="#fff" font-size="12" font-weight="bold">答案 / Answer Key</text>
+    <text x="14" y="56" fill="#333" font-size="11">按编号给出本题标准答案</text>
+    <g font-size="11" fill="#444">
+      <text x="20" y="86">1. 分类 → 第 1、3、5 个 (水果)</text>
+      <text x="20" y="106">2. 找规律 → 🔴 🟡</text>
+      <text x="20" y="126">3. 找相同 → 🐰-🐰、🐱-🐱 (对应连线)</text>
+      <text x="20" y="156" fill="#666">……</text>
+      <text x="20" y="180" fill="#666">第 N 题答案（仅答案，不带题干）</text>
+    </g>
+    <rect x="14" y="220" width="252" height="80" rx="4" fill="#fafcff" stroke="#cfd9e6"/>
+    <text x="20" y="238" fill="#444" font-size="11" font-weight="bold">家长操作提示</text>
+    <text x="20" y="254" fill="#666" font-size="10">使用建议：</text>
+    <text x="20" y="270" fill="#666" font-size="10">· 先让孩子自己说出思路再写答案</text>
+    <text x="20" y="284" fill="#666" font-size="10">· 建议用时：约 10 分钟</text>
+  </g>
+  <!-- Right side panel: CLI + skill highlight -->
+  <g transform="translate(680,40)">
+    <text x="0" y="0" fill="#2c5f8a" font-size="14" font-weight="bold">5 秒上手</text>
+    <rect x="0" y="14" width="240" height="86" rx="6" fill="#1e2333"/>
+    <text x="10" y="34" fill="#9cdcfe" font-size="11" font-family="Consolas,Menlo,monospace"># 一份 L2 练习</text>
+    <text x="10" y="54" fill="#d4d4d4" font-size="11" font-family="Consolas,Menlo,monospace">python scripts/generate_worksheet.py</text>
+    <text x="10" y="74" fill="#d4d4d4" font-size="11" font-family="Consolas,Menlo,monospace">  --level L2 --seed 7 --name 小明</text>
+    <text x="10" y="94" fill="#d4d4d4" font-size="11" font-family="Consolas,Menlo,monospace">  --out p.html --json p.json</text>
+
+    <text x="0" y="124" fill="#2c5f8a" font-size="14" font-weight="bold">特性</text>
+    <g font-size="12" fill="#333">
+      <text x="0" y="148">📑 A4 可打印（含答案页）</text>
+      <text x="0" y="168">🌱 L1-L4 四级进阶</text>
+      <text x="0" y="188">🎯 11 类题型（插件可扩展）</text>
+      <text x="0" y="208">📚 全班批量（CSV 花名册）</text>
+      <text x="0" y="228">🌏 中英文双语界面</text>
+      <text x="0" y="248">🔁 seed 级复现（--regen 字节级）</text>
+      <text x="0" y="268">🛡 MIT · 零外网 · 零凭证</text>
+    </g>
+    <rect x="0" y="280" width="240" height="36" rx="6" fill="#4a90d9"/>
+    <text x="120" y="302" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">→ install on skillhub.cn</text>
+  </g>
+  <text x="480" y="350" fill="#aaa" font-size="9" text-anchor="middle">预览图 · 示例页与答案页拼版示意（实际页含 6-10 题）</text>
+</svg>

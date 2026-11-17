@@ -23,6 +23,15 @@ This skill is for routing Seedance 2 questions to the right APIDot docs, example
 
 This ClawHub package contains `SKILL.md`, non-executable notes in `references/api.md`, and one optional script at `scripts/submit_seedance_2.sh`. The GitHub repository also keeps `skill-card.md` for public behavior, risk, and maintenance notes. The package includes no install-time automation, review automation helpers, background jobs, bundled API clients, automatic network calls, or stored credentials. The script runs only when a user explicitly invokes it with a reviewed JSON payload and a server-side `APIDOT_API_KEY` environment variable.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Seedance 2 model page: https://apidot.ai/models/seedance-2
+- Read Seedance 2 API docs: https://apidot.ai/docs/seedance-2
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use runnable Seedance 2 examples: https://github.com/APIDotAI/seedance-2-api
+
 ## When To Use
 
 Use this skill when the user asks to:

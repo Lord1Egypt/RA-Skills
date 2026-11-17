@@ -1,40 +1,57 @@
-## Description: <br>
-Scans installed OpenClaw skills for malicious patterns including prompt injection, credential theft, data exfiltration, obfuscated payloads, and backdoors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans installed OpenClaw skills for malicious patterns including prompt injection, credential theft, data exfiltration, obfuscated payloads, and backdoors.
 
-## Publisher: <br>
-[itsclawdbro](https://clawhub.ai/user/itsclawdbro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsclawdbro](https://clawhub.ai/user/itsclawdbro)
 
-## Use Case: <br>
-Developers and agents use this skill to scan newly installed, updated, or periodically audited OpenClaw skills for malicious patterns before use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scanner results are heuristic and can miss issues or flag benign security examples. <br>
-Mitigation: Review findings manually for sensitive installs and use the single-skill scanner or raw findings when maximum transparency is needed. <br>
-Risk: Batch scans use allowlists to suppress known false positives, which can hide details during aggregate review. <br>
-Mitigation: Run targeted scans without exclusions when a skill needs stricter review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Threat Patterns Reference](references/threat-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/itsclawdbro/skill-defender) <br>
+## Use Case:
 
+Developers and security reviewers use Skill Defender to scan individual or installed OpenClaw skills for deterministic malicious-pattern findings before installation, after updates, or during periodic audits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable scanner summaries or JSON reports with verdicts, findings, counts, timestamps, and exit codes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs offline with Python standard library only; results are deterministic heuristic scanner output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary reports broad bypass and coverage gaps that could make unsafe skills look clean.
+
+Mitigation: Treat clean results as advisory and require independent review before using the scan result for approval decisions.
+
+Risk: Skipped directories, symlinks, allowlists, or excluded patterns may reduce scan coverage.
+
+Mitigation: Review scan scope and suppression choices, especially for clean aggregate verdicts.
+
+Risk: The release security verdict is suspicious even though no discrete risk findings were reported.
+
+Mitigation: Install only when the user accepts the advisory posture and understands it is not a definitive security gate.
+
+## Reference(s):
+
+- [Threat Patterns Reference](references/threat-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/itsclawdbro/skills/skill-defender)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, shell commands, guidance]
+
+**Output Format:** [Human-readable text or JSON scan reports with verdicts, findings, counts, and timestamps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses deterministic pattern matching and may suppress known false positives through allowlists or exclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

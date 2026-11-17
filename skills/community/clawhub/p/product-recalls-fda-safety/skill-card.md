@@ -1,38 +1,55 @@
-## Description: <br>
-Product recall and FDA safety data for AI agents to track FDA drug recalls, medical device recalls, 510(k) clearances, and drug labels by company or keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Recalls & FDA Safety Alerts helps agents look up FDA drug recalls, medical device recalls, 510(k) clearances, drug approvals, and labels by company or keyword.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-External developers, compliance teams, and supplier-risk agents use this skill to monitor FDA recall events, device clearances, drug labels, and related regulatory risk by company, product, or keyword. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/colinhughes2121/product-recalls-fda-safety) <br>
-- [GoCreative Agent Compliance & Data API](https://api.gocreativeai.com) <br>
+Developers and external compliance, safety, and supplier-risk teams use this skill to monitor FDA recall and product safety signals for companies, products, or topics.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTPS GET endpoints and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses x402 USDC pay-per-call access; no API key or signup is described in the artifact.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill describes paid x402 API calls, so an agent or wallet runtime could spend funds while performing lookups.
+
+Mitigation: Configure spending visibility and caps before use.
+
+Risk: The skill depends on a third-party GoCreative API provider for FDA data lookup responses.
+
+Mitigation: Confirm the provider is acceptable for the intended workflow before installing or enabling the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/colinhughes2121/skills/product-recalls-fda-safety)
+- [GoCreative API Base URL](https://api.gocreativeai.com)
+- [Publisher Profile](https://clawhub.ai/user/colinhughes2121)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance describing HTTPS GET endpoints that return JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses disclosed x402 USDC pay-per-call requests; no API key or signup is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

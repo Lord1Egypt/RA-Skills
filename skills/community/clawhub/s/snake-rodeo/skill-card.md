@@ -1,45 +1,60 @@
-## Description: <br>
-Autoplay daemon for the Trifle Snake Rodeo game that connects to a live game server, authenticates with a Trifle token, and votes on snake directions using pluggable strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Snake Rodeo is an autoplay daemon for the Trifle Snake Rodeo game that connects to a live game server, authenticates via wallet, and votes on snake directions using pluggable AI strategies.
 
-## Publisher: <br>
-[okwme](https://clawhub.ai/user/okwme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[okwme](https://clawhub.ai/user/okwme)
 
-## Use Case: <br>
-External users and developers use this skill to run an automated Snake Rodeo player, inspect game state, submit manual votes, configure strategies, and build custom strategy behavior around the Snake Rodeo game. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run as a persistent authenticated game bot and automatically spend Snake Rodeo ball balance. <br>
-Mitigation: Use a game-specific or throwaway Trifle token, review strategy settings before starting, set conservative balance limits, and pause or stop the daemon when finished. <br>
-Risk: The package installs a mutable GitHub dependency for the strategy and game client library. <br>
-Mitigation: Review or pin the snake-rodeo-agents dependency before use, especially in shared or production-like environments. <br>
-Risk: Telegram logging can send game activity to an external chat when configured. <br>
-Mitigation: Keep Telegram disabled unless needed and protect any Telegram bot token used for notifications. <br>
+## Use Case:
 
+Players and developers use Snake Rodeo to automate Trifle Snake Rodeo gameplay, inspect game state and balance, submit manual votes, and tune or build AI strategies.
 
-## Reference(s): <br>
-- [Snake Rodeo Homepage](https://snake.rodeo) <br>
-- [Trifle Game Site](https://trifle.life) <br>
-- [snake-rodeo-agents Library](https://github.com/trifle-labs/snake-rodeo-agents) <br>
-- [ClawHub Skill Page](https://clawhub.ai/okwme/snake-rodeo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output with command examples and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start or control a persistent local daemon that reads Trifle authentication, polls game state, writes local state and logs, and submits game votes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata and clawdhub.json) <br>
+Risk: The daemon can spend live account game balance when it submits votes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use staging first, configure conservative balance and round-budget limits, and monitor daemon status before enabling live autoplay.
+
+Risk: The package installs mutable dependency code from snake-rodeo-agents.
+
+Mitigation: Pin snake-rodeo-agents to a reviewed commit or release before installation.
+
+Risk: Telegram logging can expose gameplay or status data to Telegram and configured chat members, and bot tokens are sensitive.
+
+Mitigation: Prefer the TELEGRAM_BOT_TOKEN environment variable, avoid storing bot tokens in settings, and only enable Telegram logging for trusted chats.
+
+## Reference(s):
+
+- [Snake Rodeo ClawHub listing](https://clawhub.ai/okwme/skills/snake-rodeo)
+- [Snake Rodeo homepage](https://snake.rodeo)
+- [Trifle Snake Rodeo](https://trifle.life)
+- [snake-rodeo-agents library](https://github.com/trifle-labs/snake-rodeo-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript examples, configuration keys, and daemon status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start, stop, pause, resume, and inspect a local daemon that interacts with live or staging Snake Rodeo servers.]
+
+## Skill Version(s):
+
+3.2.1 (source: server-resolved release metadata and clawdhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

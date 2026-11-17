@@ -1,0 +1,679 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/class-teaching-workspace.schema.json",
+  "title": "ClassTeachingWorkspace",
+  "x-distributed-to": "xiaozhi-teach-math-error-analyzer",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-teach-math-error-analyzer 分发，已按其 SKILL.md 的“读：/写：”声明裁剪：读 classProfile、examBlueprints、homeworkAssignments、itemScores、itemStats、studentWeaknesses、weaknessRank；写 homeworkAssignments、interactionLogs、weaknessRank（同一键既读又写时，读/写各自的子字段列在 x-skill-scope.fields；各字段只留声明列出的子字段；删去 4 个顶层字段）。完整定义在归属技能处。",
+    "paths": [
+      "classProfile",
+      "examBlueprints",
+      "homeworkAssignments",
+      "interactionLogs",
+      "itemScores",
+      "itemStats",
+      "studentWeaknesses",
+      "weaknessRank"
+    ],
+    "reads": [
+      "classProfile",
+      "examBlueprints",
+      "homeworkAssignments",
+      "itemScores",
+      "itemStats",
+      "studentWeaknesses",
+      "weaknessRank"
+    ],
+    "writes": [
+      "homeworkAssignments",
+      "interactionLogs",
+      "weaknessRank"
+    ],
+    "fields": {
+      "homeworkAssignments": {
+        "reads": [
+          "completionSummary"
+        ],
+        "writes": [
+          "completionSummary"
+        ]
+      },
+      "itemScores": {
+        "reads": [
+          "examId",
+          "studentAlias",
+          "itemNo",
+          "score",
+          "maxScore"
+        ]
+      },
+      "itemStats": {
+        "reads": [
+          "pValue",
+          "dValue",
+          "groupingMethod",
+          "flag"
+        ]
+      },
+      "weaknessRank": {
+        "reads": [
+          "knowledgePoint",
+          "dimension",
+          "stubbornCount"
+        ],
+        "writes": [
+          "weaknessId",
+          "knowledgePoint",
+          "errorRate",
+          "dimension",
+          "evidenceExamIds",
+          "lastUpdated"
+        ]
+      },
+      "studentWeaknesses": {
+        "reads": [
+          "studentAlias",
+          "knowledgePoint",
+          "dimension",
+          "hitCount"
+        ]
+      },
+      "examBlueprints": {
+        "reads": [
+          "items"
+        ]
+      },
+      "classProfile": {
+        "reads": [
+          "gradeBand",
+          "classSize",
+          "fullScore"
+        ]
+      },
+      "interactionLogs": {
+        "writes": [
+          "misconceptionsObserved"
+        ]
+      }
+    }
+  },
+  "description": "班级教学工作空间：老师通用 6 个 SKILL（教案、课堂、作业、测评、复习、学情）与学科教师 SKILL 之间的唯一数据契约。所有接口路径必须是本文件中的真实字段。学生只用化名/座号，不记真实姓名与联系方式。词表以 shared/vocab.md 为准。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "classProfile": {
+      "$ref": "#/$defs/classProfile"
+    },
+    "interactionLogs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interactionLog"
+      }
+    },
+    "homeworkAssignments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/homeworkAssignment"
+      }
+    },
+    "examBlueprints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/examBlueprint"
+      }
+    },
+    "itemScores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/itemScore"
+      }
+    },
+    "itemStats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/itemStat"
+      }
+    },
+    "weaknessRank": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/weaknessEntry"
+      }
+    },
+    "studentWeaknesses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/studentWeaknessEntry"
+      }
+    }
+  },
+  "required": [
+    "classProfile"
+  ],
+  "$defs": {
+    "classProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "classId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "gradeBand": {
+          "type": "string",
+          "enum": [
+            "小学低段",
+            "小学中段",
+            "小学高段",
+            "初中",
+            "高中"
+          ]
+        },
+        "classSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 80
+        },
+        "periodMinutes": {
+          "type": "integer",
+          "enum": [
+            30,
+            35,
+            40,
+            45,
+            60,
+            90
+          ],
+          "description": "一节课分钟数（小学默认 40，初中默认 45）"
+        },
+        "fullScore": {
+          "type": "integer",
+          "enum": [
+            100,
+            120,
+            150
+          ],
+          "description": "本学科常用卷面满分，学情分析的阈值按此换算"
+        }
+      },
+      "required": [
+        "classId",
+        "subject",
+        "gradeBand",
+        "periodMinutes"
+      ]
+    },
+    "cognitiveLevel": {
+      "type": "string",
+      "enum": [
+        "了解",
+        "理解",
+        "掌握",
+        "运用"
+      ],
+      "description": "2022 版课标结果目标四级。与 Bloom 对照：了解≈记忆，理解≈理解，掌握≈应用，运用≈分析/评价/创造"
+    },
+    "difficultyBand": {
+      "type": "string",
+      "enum": [
+        "基础",
+        "中等",
+        "较难"
+      ],
+      "description": "难度档。校内形成性默认 6:3:1，期末/模拟按 7:2:1"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ],
+      "description": "A=需补基础，B=达标，C=可拓展。依据近 3 次测评得分率，课前可得"
+    },
+    "interactionLog": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "planId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "misconceptionsObserved": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "required": [
+        "logId",
+        "planId",
+        "date"
+      ]
+    },
+    "homeworkAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assignmentId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "诊断",
+            "巩固",
+            "补救",
+            "拓展"
+          ]
+        },
+        "tasks": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "taskNo": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "knowledgePoint": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "cognitiveLevel": {
+                "$ref": "#/$defs/cognitiveLevel"
+              },
+              "difficultyBand": {
+                "$ref": "#/$defs/difficultyBand"
+              },
+              "tier": {
+                "$ref": "#/$defs/tier"
+              },
+              "estimatedMinutes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 60
+              },
+              "resourceId": {
+                "type": "string",
+                "maxLength": 40
+              }
+            },
+            "required": [
+              "taskNo",
+              "knowledgePoint",
+              "estimatedMinutes"
+            ]
+          }
+        },
+        "completionSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "submitted": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "commonErrors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/errorTally"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "assignmentId",
+        "date",
+        "purpose",
+        "tasks"
+      ]
+    },
+    "errorTally": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "knowledgePoint": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "概念模糊",
+            "计算失误",
+            "读题失误",
+            "方法用错"
+          ]
+        },
+        "teacherCategory": {
+          "type": "string",
+          "enum": [
+            "知识漏洞",
+            "规则错误",
+            "计算错误",
+            "审题错误",
+            "策略错误",
+            "表达/书写不规范",
+            "习惯性失误"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "knowledgePoint",
+        "dimension",
+        "count"
+      ]
+    },
+    "examBlueprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "examId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "assessmentType": {
+          "type": "string",
+          "enum": [
+            "诊断性",
+            "形成性",
+            "终结性"
+          ]
+        },
+        "fullScore": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 150
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "itemNo": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "itemType": {
+                "type": "string",
+                "enum": [
+                  "选择",
+                  "填空",
+                  "判断",
+                  "计算",
+                  "解答",
+                  "作图",
+                  "实验",
+                  "阅读",
+                  "写作",
+                  "听力",
+                  "口语",
+                  "材料解析",
+                  "论述",
+                  "其他"
+                ]
+              },
+              "knowledgePoint": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "cognitiveLevel": {
+                "$ref": "#/$defs/cognitiveLevel"
+              },
+              "difficultyBand": {
+                "$ref": "#/$defs/difficultyBand"
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0
+              },
+              "expectedP": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "预期难度 P（得分率）"
+              },
+              "resourceId": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "aiGenerated": {
+                "type": "boolean",
+                "default": false
+              },
+              "verifiedByTeacher": {
+                "type": "boolean",
+                "default": false,
+                "description": "AI 生成题必须人工验算后才能为 true；未验算的题不得进入试卷"
+              }
+            },
+            "required": [
+              "itemNo",
+              "itemType",
+              "knowledgePoint",
+              "cognitiveLevel",
+              "difficultyBand",
+              "score"
+            ]
+          }
+        }
+      },
+      "required": [
+        "examId",
+        "title",
+        "assessmentType",
+        "fullScore",
+        "items"
+      ]
+    },
+    "itemScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "逐题得分。studentAlias 用化名/座号。学情分析的热力图与顽固弱项均以此为唯一来源；只有总分时不可生成逐知识点分析",
+      "properties": {
+        "examId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "studentAlias": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "itemNo": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxScore": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "examId",
+        "studentAlias",
+        "itemNo",
+        "score",
+        "maxScore"
+      ]
+    },
+    "itemStat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "examId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "itemNo": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pValue": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "难度 = 平均得分 / 满分"
+        },
+        "dValue": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "区分度 = 高分组得分率 − 低分组得分率；分组按总分前后 27%"
+        },
+        "groupingMethod": {
+          "type": "string",
+          "enum": [
+            "27%",
+            "上下各半"
+          ],
+          "default": "27%"
+        },
+        "flag": {
+          "type": "string",
+          "enum": [
+            "正常",
+            "偏难",
+            "偏易",
+            "区分度低",
+            "疑似错题"
+          ],
+          "description": "基础题允许 D<0.2；只对中等/较难题要求 D≥0.2"
+        }
+      },
+      "required": [
+        "examId",
+        "itemNo",
+        "pValue"
+      ]
+    },
+    "weaknessEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "班级共性弱项：一条是一个知识点 + 一个通用错因维度，不记学生。个人的顽固与高危不记在这里（由 xiaozhi-teach-student-analyzer 另记）",
+      "properties": {
+        "weaknessId": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "knowledgePoint": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "errorRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "本次测评该知识点的班级错误率 = 1 − 班级得分率（得分率 = 该知识点的班级平均得分 ÷ 满分）"
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "概念模糊",
+            "计算失误",
+            "读题失误",
+            "方法用错"
+          ]
+        },
+        "stubbornCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4,
+          "description": "班级层面的顽固计数：该知识点最近 4 次测评中班级错误率 >30% 的次数（被判为待复核的那次不计），3 次及以上为班级顽固弱项（shared/vocab.md §5 学校班级工作区口径）。由 xiaozhi-teach-student-analyzer 唯一计数，每次新测评后按最近 4 次重算；个人的顽固与高危不记在这里"
+        },
+        "evidenceExamIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "description": "得出本条的测评（班级顽固计数计入的各次都列上）"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "weaknessId",
+        "knowledgePoint",
+        "errorRate"
+      ]
+    },
+    "studentWeaknessEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "个人的顽固与高危（shared/vocab.md §4、§5 学校班级工作区口径）：一条是一名学生的一个知识点（次数按知识点计，不按维度拆开；dimension 只记最近一次归过的主维度）。只由 xiaozhi-teach-student-analyzer 判定，经老师确认后写入；只写化名/座号，不作为学生的身份标签，家长版不写这几个档名。与班级层面的 weaknessRank[].stubbornCount 分开记，互不累加",
+      "properties": {
+        "studentAlias": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "knowledgePoint": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "概念模糊",
+            "计算失误",
+            "读题失误",
+            "方法用错"
+          ],
+          "description": "通用四维：该生这个知识点最近一次归过的主维度；老师或学科错因技能没归过的不填"
+        },
+        "hitCount": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 4,
+          "description": "该知识点最近 4 次测评中，该生得分率低于班级同题得分率、且低于 0.60 的次数（被判为待复核的那次不计）：2 = 初步弱项（输出带初步趋势标签），3 = 顽固弱项，4 = 高危；不足 2 次的不写，每次新测评后按最近 4 次重算"
+        }
+      },
+      "required": [
+        "studentAlias",
+        "knowledgePoint",
+        "hitCount"
+      ]
+    }
+  }
+}

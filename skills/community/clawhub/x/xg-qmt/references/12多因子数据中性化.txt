@@ -1,0 +1,64 @@
+#encoding:gbk
+'''
+12多因子数据中性化
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd
+import numpy as np
+import math
+from sklearn.linear_model import LinearRegression, Lasso, Ridge
+
+def init(ContextInfo):
+	ContextInfo.number = 0
+	ContextInfo.accID = 'test'
+
+def handlebar(ContextInfo):
+	if ContextInfo.number == 0:
+		#国信iQuant平台提供的申万一级行业分类字段
+		industry_set = ['SW银行成份','SW食品饮料成份','SW家用电器成份','SW化工成份','SW钢铁成份','SW采掘成份',
+		'SW房地产成份','SW建筑材料成份','SW建筑装饰成份','SW计算机成份','SW电子成份','SW通信成份','SW传媒成份','SW商业贸易成份',
+		'SW纺织服装成份','SW公用事业成份','SW轻工制造成份','SW交通运输成份','SW医药生物成份','SW国防军工成份','SW电气设备成份','SW有色金属成份',
+		'SW机械设备成份','SW汽车成份','SW综合成份','SW农林牧渔成份','SW休闲服务成份']
+		VOL20_M_Z= pd.read_csv('C:/Users/QZM/Desktop/duoyinzi/VOL20_M_Z.csv',index_col=[0])
+		VOL20 = VOL20_M_Z*0.
+		market_cap = pd.DataFrame()
+		#对每个时间点的因子数据分别进行行业和市值中性化
+		for i in range(len(VOL20_M_Z.index)):
+			#求市值
+			MC_fieldList = ['CAPITALSTRUCTURE.total_capital']  # 总股数字段
+			time= str(VOL20_M_Z.index[i])
+			stocks=list(VOL20.columns)
+			total_capital= ContextInfo.get_financial_data(MC_fieldList, stocks, time, time)  #获取总股数
+			close =ContextInfo.get_market_data(['close'],stocks,start_time=time,end_time=time,skip_paused=True,period='1d',dividend_type=ContextInfo.dividend_type,count= -1)
+			mc=total_capital*0
+			mc.columns = ['market_cap']
+			for k in VOL20.columns:
+				if len(close[k]['close']) ==1: #过滤掉价格空值
+					mc.loc[k,'market_cap'] = total_capital.loc[k,'total_capital']*close[k]['close'][0]  #总股数*市价,close是panel数据
+			df = pd.DataFrame() #df即为行业和市值的回归矩阵
+			df['market_cap']= pd.Series(mc['market_cap']) # 市场价值
+			df['VOL20_M_Z']= VOL20_M_Z.iloc[i]
+			for k in range(len(industry_set)):#创建行业分布矩阵
+				industry =ContextInfo.get_stock_list_in_sector(industry_set[k])#获取行业成分股
+				s = pd.Series([0]*df.shape[0], index=df.index)
+				s[set(industry) & set(df.index)]=1 #将同时在行业k和沪深300中的股票赋值为1
+				df[industry_set[k]] = s #行业分布矩阵
+			c= df.drop(['VOL20_M_Z'],axis=1)
+			factor= OLS(df)#使用自定义函数获取中性化的因子值
+			VOL20.loc[VOL20.index[i]]= factor['VOL20_M_Z']
+		VOL20.to_csv('C:/Users/QZM/Desktop/finally/VOL20.csv')
+	ContextInfo.number += 1
+#获取中性化后的因子
+def OLS(DataFrame): 
+	y=DataFrame['VOL20_M_Z']
+	x=DataFrame.drop(['VOL20_M_Z'],axis=1)
+	Y = y.fillna(0)
+	X = x.fillna(0)
+	LR = Lasso()
+	LR.fit(X, Y)
+	factor = pd.DataFrame(Y) - pd.DataFrame(LR.predict(X), index = Y.index, columns = ['VOL20_M_Z'])
+	return factor
+	
+
+
+

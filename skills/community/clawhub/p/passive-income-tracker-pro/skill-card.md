@@ -1,42 +1,60 @@
-## Description: <br>
-Integrates and tracks passive income across multiple platforms with categorization, trend analysis, forecasting, tax reports, and financial goal monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates and tracks multi-platform passive income with categorization, trend analysis, AI forecasting, tax reports, and financial goal monitoring.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Creators, operators, and developers with passive income streams use this skill to consolidate platform revenue, analyze trends, forecast future income, prepare tax reports, and track financial goals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Live financial API keys could be exposed if pasted into Markdown configuration files that agents or source-control tools can read.
+
+Mitigation: Use read-only, least-privilege credentials through a secrets manager or local environment variables, and do not commit or share credential-bearing Markdown.
+
+Risk: Connected financial accounts may grant broader access than the income-tracking workflow requires.
+
+Mitigation: Verify account scopes before syncing, prefer read-only access, and document revocation steps for every connected platform.
+
+Risk: Local storage and backups may retain sensitive income and account data longer than intended.
+
+Mitigation: Confirm encryption, backup, deletion, and recovery behavior before using real accounts or importing production financial records.
+
+Risk: Forecasts, tax estimates, and generated reports may be incomplete or inaccurate.
+
+Mitigation: Reconcile generated reports against source platform records and review tax outputs with qualified financial or tax guidance before filing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, developers, and small businesses use this skill to consolidate passive-income streams, sync or manually import platform data, review trends, forecast income, prepare tax-oriented reports, and track financial goals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting financial and monetization accounts can expose sensitive account data or credentials. <br>
-Mitigation: Use read-only, least-privilege API keys where available and store secrets outside shared folders or chat logs. <br>
-Risk: Generated reports, exports, and backups may contain sensitive financial or tax-related information. <br>
-Mitigation: Review exported files and keep reports or backups in encrypted or access-controlled locations. <br>
-Risk: Forecasts and tax-oriented summaries may be incomplete or inaccurate for financial decisions or filings. <br>
-Mitigation: Review generated calculations against source records and confirm tax treatment with an appropriate professional before filing. <br>
+**Output Format:** [Markdown and text reports with inline shell commands and optional CSV or PDF exports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/passive-income-tracker-pro) <br>
+**Other Properties Related to Output:** [May include financial summaries, trend analysis, forecasts, tax-report preparation output, and goal-tracking status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text guidance with ClawHub commands and report/export descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe generated income reports, forecasts, tax-oriented summaries, and CSV/PDF exports.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

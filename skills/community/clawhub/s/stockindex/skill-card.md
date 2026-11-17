@@ -1,44 +1,55 @@
-## Description: <br>
-Queries minute-level quotes for major mainland China stock indices, including the SSE Composite, SZSE Component, ChiNext, CSI 300, and SSE STAR 50 indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries minute-level market data for major Chinese stock indices including the Shanghai Composite, Shenzhen Component, ChiNext, CSI 300, and STAR 50.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer current mainland China market-index questions and summarize index points, previous close, opening price, and minute-level trends from JisuAPI data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JisuAPI key for stock-index requests. <br>
-Mitigation: Store JISU_API_KEY in the agent environment or secret manager and avoid exposing it in prompts, logs, or shared transcripts. <br>
-Risk: Live index data can be mistaken for investment advice or used outside the intended market scope. <br>
-Mitigation: Use the skill only for mainland China index quote retrieval and summarize results as market data, not recommendations. <br>
-Risk: Responses depend on a third-party API and may fail or return business errors. <br>
-Mitigation: Surface the structured error JSON to the user and retry or verify against another source before relying on time-sensitive market data. <br>
+## Use Case:
 
+External users and developers use this skill to answer current-market questions about major Chinese stock indices and to retrieve JSON data that an agent can summarize or use for trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/stockindex) <br>
-- [JisuAPI stock index documentation](https://www.jisuapi.com/api/stockindex/) <br>
-- [JisuAPI homepage](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON responses from the stock-index API, with Markdown usage guidance and shell examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable; returns structured error JSON for request, HTTP, JSON parsing, and API errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill requires a JisuAPI AppKey and sends requests to JisuAPI for its intended functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or low-privilege JisuAPI key where available, avoid exposing logs that may include request details, and rotate the key if it may have been disclosed.
+
+Risk: Market index data may be delayed, unavailable, or returned as API error responses.
+
+Mitigation: Check the returned JSON for error fields and timestamps before using the data in trading, reporting, or user-facing summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/stockindex)
+- [JisuAPI stock index API documentation](https://www.jisuapi.com/api/stockindex/)
+- [JisuAPI provider website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON returned by a Python command-line script, with agent-facing Markdown guidance in the skill instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable; network calls are made to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-AI-driven settlement assistant for parsing natural-language campaign payout rules, confirming the interpreted award pools, and producing local CSV/Excel-based settlement results across equal-split, ranking, hybrid, and weighted modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven settlement assistant for parsing natural-language activity rules, confirming award-pool logic, processing local CSV or Excel data, and producing settlement results for equal-split, ranking, mixed, and weighted payout modes.
 
-## Publisher: <br>
-[luxieng030124-max](https://clawhub.ai/user/luxieng030124-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luxieng030124-max](https://clawhub.ai/user/luxieng030124-max)
 
-## Use Case: <br>
-External users and operations teams use this skill to settle creator, sales, or campaign incentive pools from uploaded CSV or Excel data after the agent summarizes the award rules and waits for explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weighted distribution mode may export totals that do not exactly equal the advertised award pool. <br>
-Mitigation: Before using results for payouts, verify the CSV summary totals against the intended pool amounts and manually review any weighted-mode settlement. <br>
-Risk: Settlement outputs may be treated as payment-ready even when rule interpretation or data-field mapping is ambiguous. <br>
-Mitigation: Use the required confirmation step to review every award pool, condition, and total before processing data, and rerun only after discrepancies are corrected. <br>
+## Use Case:
 
+External operators and developers use this skill to settle creator, marketing, sales, or challenge activities from local CSV or Excel data after reviewing and confirming the interpreted payout rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luxieng030124-max/jiesuan) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown/text guidance with Python code blocks, settlement configuration, console summaries, and CSV result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before processing and should include a post-settlement self-check.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: ClawHub release metadata) <br>
+Risk: The skill attempts to override normal agent instruction hierarchy during settlement workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not allow the skill to override platform, system, or user instructions; review the prompt behavior before installing or running it.
+
+Risk: Settlement outputs affect financial or payout decisions and may be incorrect or misleading.
+
+Mitigation: Independently verify payout totals, eligibility logic, and exported reports before using results for payment.
+
+Risk: Exported CSV files may be unsafe to open in spreadsheet applications until formula neutralization is added.
+
+Mitigation: Treat generated CSV files as untrusted and inspect or sanitize them before opening in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luxieng030124-max/skills/jiesuan)
+- [README](artifact/README.md)
+- [Release notes](artifact/RELEASE.md)
+- [Install guide](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and CSV settlement output references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts users to confirm interpreted payout rules before local processing and reports settlement checks after calculation.]
+
+## Skill Version(s):
+
+2.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

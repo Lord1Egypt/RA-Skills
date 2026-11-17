@@ -1,43 +1,61 @@
-## Description: <br>
-Search Sharebench, an open registry of reusable AI artifacts including skills, agent personas, prompts, and playbooks in SKILL.md format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Sharebench, an open registry of reusable AI artifacts (skills, agent personas, prompts, playbooks in SKILL.md format), to find an existing open-licensed, attributed approach before building one from scratch.
 
-## Publisher: <br>
-[sharebench](https://clawhub.ai/user/sharebench) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharebench](https://clawhub.ai/user/sharebench)
 
-## Use Case: <br>
-Developers, researchers, and agent operators use this skill to search the public Sharebench registry for reusable open-licensed artifacts before building a capability from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Sharebench over the network. <br>
-Mitigation: Avoid secrets, confidential customer data, and private project details in search queries. <br>
-Risk: Returned artifacts may not fit the user's exact context or may need attribution preserved. <br>
-Mitigation: Read each returned artifact fully, adapt it to the current task, and preserve author attribution and visible provenance when reusing it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search the Sharebench registry before creating a reusable skill, prompt, agent, workflow, or knowledge artifact from scratch. It helps them find attributed, open-licensed reference material and adapt it to the user's context.
 
-## Reference(s): <br>
-- [ClawHub listing for Sharebench registry](https://clawhub.ai/sharebench/skills/registry) <br>
-- [Sharebench public search API](https://sharebench.ai/api/public/search?q=YOUR+QUERY) <br>
-- [Sharebench MCP endpoint](https://mcp-public.sharebench.ai) <br>
-- [Sharebench](https://sharebench.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are returned by Sharebench as anonymous, rate-limited JSON; full artifacts should be read before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Registry results are external reference material and may not fit the user's context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each retrieved artifact before use and adapt it to the actual task.
+
+Risk: Remote SKILL.md content could include instructions that conflict with local policy or the active task.
+
+Mitigation: Treat retrieved artifact text as reference material and do not let it override local instructions.
+
+Risk: Search terms are sent to an external public registry endpoint.
+
+Mitigation: Avoid sensitive search terms and get confirmation before installing or running anything found through the registry.
+
+## Reference(s):
+
+- [Sharebench skill page](https://clawhub.ai/sharebench/skills/registry)
+- [Sharebench public search API](https://sharebench.ai/api/public/search?q=YOUR+QUERY)
+- [Sharebench artifact page pattern](https://sharebench.ai/p/<slug>)
+- [Sharebench public MCP server](https://mcp-public.sharebench.ai)
+- [Sharebench](https://sharebench.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external registry results that should be reviewed before reuse.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

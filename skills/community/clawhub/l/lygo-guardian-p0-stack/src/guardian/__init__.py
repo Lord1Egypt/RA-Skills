@@ -1,0 +1,1 @@
+"""LYGO Guardian P0 stack — portable text gate + optional stack byte gate bridge."""

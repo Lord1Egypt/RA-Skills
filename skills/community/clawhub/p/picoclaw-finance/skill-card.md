@@ -1,43 +1,59 @@
-## Description: <br>
-Web scraping skill for LinkedIn job postings using public API endpoints; extracts job data without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping skill for LinkedIn job postings using public API endpoints. Extract job data without authentication.
 
-## Publisher: <br>
-[nicolassantos23](https://clawhub.ai/user/nicolassantos23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicolassantos23](https://clawhub.ai/user/nicolassantos23)
 
-## Use Case: <br>
-Developers and operators use this skill to search public LinkedIn job postings by keyword, location, and filters, then collect listing details through a CLI or Python module. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LinkedIn scraping may violate LinkedIn terms or trigger IP blocking when used at high volume. <br>
-Mitigation: Review LinkedIn terms before use, keep usage low-volume, and follow the documented throttling guidance. <br>
-Risk: The skill makes web requests and can save scraped job data to local files. <br>
-Mitigation: Run it in a controlled Python environment with pinned dependencies and review output paths before saving results. <br>
+## Use Case:
 
+External users, developers, recruiters, and job-search automation workflows use this skill to collect public LinkedIn job listings and optional job details with filters for location, remote status, experience, job type, posting date, salary, company, and industry.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicolassantos23/picoclaw-finance) <br>
-- [Project homepage](https://github.com/nicolasteofilo/opencode-skills) <br>
-- [Support issues](https://github.com/nicolasteofilo/opencode-skills/issues) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [CLI text, Python dictionaries, JSON files, CSV files, and Markdown guidance with shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save scraped job listings locally as CSV or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: CSV exports can carry spreadsheet formula-injection or unsafe-opening risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer JSON where possible, or sanitize CSV values before opening exported files in spreadsheet applications.
+
+Risk: Scraping LinkedIn may create terms-of-service and rate-limit concerns.
+
+Mitigation: Review LinkedIn terms, use conservative request limits, and follow the skill's throttling guidance.
+
+Risk: User-directed exports can write data to unintended paths.
+
+Mitigation: Choose explicit output paths and review destination paths before saving results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicolassantos23/skills/picoclaw-finance)
+- [Project homepage](https://github.com/nicolasteofilo/opencode-skills)
+- [Project support issues](https://github.com/nicolasteofilo/opencode-skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; job results can be returned as Python dictionaries or exported as JSON or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-selected search filters and user-directed output paths; CSV output should be sanitized before opening in spreadsheet applications.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

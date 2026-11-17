@@ -1,44 +1,55 @@
-## Description: <br>
-AgentRank helps agents find, compare, and recommend current MCP servers, agent tools, and AI skills using live quality-scored search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentRank helps agents find, compare, and evaluate MCP servers, agent tools, and AI skills using live scored search results.
 
-## Publisher: <br>
-[superlowburn](https://clawhub.ai/user/superlowburn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superlowburn](https://clawhub.ai/user/superlowburn)
 
-## Use Case: <br>
-Developers and agents use this skill when they need live tool-discovery evidence for MCP servers, agent tools, or AI skills. It is intended for install-time recommendations, explicit tool comparisons, and mid-project capability gaps where a tool or skill may help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may disclose secrets, private project names, customer data, or confidential internal details to an external API. <br>
-Mitigation: Avoid including sensitive or confidential information in AgentRank searches; use broad capability terms where possible. <br>
-Risk: AgentRank scores are recommendation signals, not security guarantees. <br>
-Mitigation: Review candidate tools independently before installation or deployment, including security posture, maintenance state, and project fit. <br>
-Risk: The skill may over-activate for general tool recommendation requests. <br>
-Mitigation: Use AgentRank when the user asks to find, compare, install, or fill a capability gap with agent tools, MCP servers, or skills. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to discover relevant MCP servers, agent tools, and AI skills when installing tools, comparing options, or encountering a capability gap during a project.
 
-## Reference(s): <br>
-- [ClawHub AgentRank release page](https://clawhub.ai/superlowburn/agentrank) <br>
-- [AgentRank search API](https://agentrank-ai.com/api/search) <br>
-- [AgentRank tool detail pages](https://agentrank-ai.com/tool/owner/repo-name/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API Calls] <br>
-**Output Format:** [Markdown summaries with links to AgentRank results and JSON returned by the AgentRank search API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include names, links, AgentRank scores, ranks, verdict labels, and one-line descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Search terms are sent to agentrank-ai.com and could expose confidential project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep queries generic and omit secrets, customer names, internal hostnames, private repository names, and other sensitive project details.
+
+Risk: AgentRank scores may be mistaken for independent security validation.
+
+Mitigation: Treat scores as one recommendation signal and separately review any selected tool or skill before adoption.
+
+## Reference(s):
+
+- [AgentRank ClawHub Skill Page](https://clawhub.ai/superlowburn/skills/agentrank)
+- [AgentRank Search API](https://agentrank-ai.com/api/search)
+- [AgentRank Tool Detail Page Example](https://agentrank-ai.com/tool/modelcontextprotocol/servers/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with links, AgentRank scores, ranks, and concise result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are based on user-provided query terms and may include links to AgentRank detail pages.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

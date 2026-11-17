@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7egw93kajavr3tpgn3tfww0s82t9ft",
-  "slug": "g0atbot-content-machine",
-  "version": "1.0.0",
-  "publishedAt": 1773439442086
+  "name": "content-machine",
+  "description": "Automated content generation system that discovers trending topics and publishes to social media. Multi-platform posting with AI-powered research and scheduling.",
+  "price": 24,
+  "category": "content",
+  "tags": ["content", "automation", "social-media", "marketing"],
+  "requires": {
+    "env": ["OPENAI_API_KEY", "POSTIZ_API_KEY"],
+    "bins": []
+  },
+  "documentation": {
+    "setup_time": "20 minutes",
+    "difficulty": "intermediate"
+  }
 }

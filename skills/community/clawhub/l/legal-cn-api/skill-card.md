@@ -1,49 +1,63 @@
-## Description: <br>
-Provides a paid FastAPI service for structured full-text search over Chinese legal provisions using Meilisearch and x402 micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+legal-cn-api provides a paid FastAPI service for AI agents and applications to search structured Chinese legal provisions backed by Meilisearch and x402 micropayments.
 
-## Publisher: <br>
-[fengfelix](https://clawhub.ai/user/fengfelix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengfelix](https://clawhub.ai/user/fengfelix)
 
-## Use Case: <br>
-Developers and AI agent builders use this skill to deploy or call a searchable API for Chinese legal text, including category discovery and paid search endpoints. It is intended for legal-data retrieval workflows, not as a substitute for legal advice or independent verification of the source corpus. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the dataset and use case are focused on Chinese law. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release handles wallet credentials for x402 payment configuration. <br>
-Mitigation: Use a dedicated low-balance wallet or safer secret store, and avoid committing private keys or production payment credentials. <br>
-Risk: The artifact includes a bundled Moltbook API key file. <br>
-Mitigation: Remove the bundled key before deployment and rotate it if it was ever usable. <br>
-Risk: Unpinned Python dependencies and a latest-tagged Meilisearch image can change behavior over time. <br>
-Mitigation: Pin dependency versions and the Meilisearch container image before production deployment. <br>
-Risk: Database import and update scripts can overwrite or change the indexed legal corpus. <br>
-Mitigation: Back up the Meilisearch index before imports and verify the dataset source and update date before relying on search results. <br>
+## Use Case:
 
+Developers building legal AI agents and legal AI products can use this skill to deploy or call a search API for structured Chinese law articles without maintaining their own legal database. Operators can run the service with a local Meilisearch backend and paid search access.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/fengfelix/legal-cn-api) <br>
-- [Publisher profile](https://clawhub.ai/user/fengfelix) <br>
-- [china_law source dataset](https://github.com/pengxiao1997/china_law) <br>
-- [laws-markdown update source](https://github.com/AdamBear/laws-markdown) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global, for Chinese law search use cases
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, JSON API responses, Python/FastAPI code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include law title, article number, article title, content, effective date, category, score, and total count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: The release includes committed service credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the credential file from the release, rotate the exposed credentials, and load secrets from a deployment secret manager or environment variables.
+
+Risk: Paid deployments may continue in open-access mode if payment configuration is missing or initialization fails.
+
+Mitigation: Fail closed for paid search routes when x402 configuration or initialization is invalid, and alert operators before serving traffic.
+
+Risk: Default Meilisearch keys, floating dependency ranges, and a floating container image can weaken deployment security and reproducibility.
+
+Mitigation: Require a unique Meilisearch master key, pin reviewed package versions, and pin the Meilisearch image to a vetted version or digest.
+
+Risk: Database update and import flows can replace the search index and ingest externally pulled legal data.
+
+Mitigation: Run updates in staging first, keep index backups, review upstream data changes, and restrict who can run import or update jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengfelix/skills/legal-cn-api)
+- [Initial legal corpus source](https://github.com/pengxiao1997/china_law)
+- [Publisher profile](https://clawhub.ai/user/fengfelix)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON API responses and Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses include law title, article number, article title, content, effective date, category, score, and total result count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

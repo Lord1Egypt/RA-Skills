@@ -1,43 +1,48 @@
-## Description: <br>
-Deploy trading strategies with risk gating, monitoring, and guarded live promotion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy trading strategies with risk gating, monitoring, and guarded live promotion.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mzfshark](https://clawhub.ai/user/mzfshark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and trading system operators use this skill to move a strategy from validation into paper deployment and, with explicit approval and controls, guarded live promotion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Malformed trigger metadata may leave this high-impact live-trading workflow insufficiently scoped.
+
+Mitigation: Install only in environments where invocation can be controlled, keep live trading blocked by default, and require explicit approval, defined risk limits, validated paper results, and a working stop mechanism before any live promotion.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and trading operators use this skill to move a strategy from validation into paper deployment, monitor risk, and require explicit approval before guarded live promotion. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The malformed trigger configuration may activate the skill outside clearly intended trading-deployment contexts. <br>
-Mitigation: Fix the trigger configuration so the skill only activates for explicit strategy deployment requests. <br>
-Risk: Live trading is financially sensitive and can cause real losses if promoted without sufficient controls. <br>
-Mitigation: Keep paper mode as the default and require explicit human approval, preflight checks, and platform-level broker controls before live trading. <br>
-Risk: Users may treat historical or paper performance as a profit guarantee. <br>
-Mitigation: Report performance as historical or conditional and avoid claims of profit certainty. <br>
+**Output Format:** [Markdown guidance with structured deployment status, risk limits, and audit event fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Strategy Deployer documentation](artifact/strategy-deployer.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-strategy-deployer) <br>
+**Other Properties Related to Output:** [Outputs should identify paper or live mode, deployment status, markets, risk limits, audit events, monitoring checklist items, and stop triggers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML-style deployment status blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment status, risk limits, audit events, monitoring checklists, and stop triggers.] <br>
+1.0.0 (source: server release metadata and artifact frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.yml and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

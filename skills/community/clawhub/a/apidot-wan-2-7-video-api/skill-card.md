@@ -1,48 +1,63 @@
-## Description: <br>
-Use APIDot for Wan 2.7 Video API workflows, including text-to-video API, image-to-video API, reference-to-video, edit-video, Wan 2.7, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Wan 2.7 Video API workflows, including text-to-video API, image-to-video API, reference-to-video, edit-video, Wan 2.7, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to route Wan 2.7 Video integration work to APIDot documentation, async task guidance, webhook planning, and model-specific reference notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys or private media details could be exposed if copied into frontend code, logs, screenshots, or chat output. <br>
-Mitigation: Store APIDOT_API_KEY only in server-side environment variables or a backend secret manager, and avoid logging private prompts, media URLs, generated video URLs, callback URLs, or credentials. <br>
-Risk: Live APIDot requests may create cost, privacy, or workflow side effects if made unintentionally. <br>
-Mitigation: Make live API calls only after explicit user intent and from a safe server-side environment. <br>
-Risk: Model-specific fields, limits, availability, or commercial terms may be outdated if inferred from local notes. <br>
-Mitigation: Use the current APIDot docs and model page as the source of truth before preparing request payloads or making claims. <br>
+## Use Case:
 
+Developers and engineers use this skill to route Wan 2.7 Video integration questions to APIDot documentation, examples, and async workflow guidance for text-to-video, image-to-video, reference-to-video, edit-video, polling, and webhook-based delivery.
 
-## Reference(s): <br>
-- [APIDot Wan 2.7 Video Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Wan 2.7 Video Model Page](https://apidot.ai/models/wan-2-7-video) <br>
-- [APIDot Wan 2.7 Video Docs](https://apidot.ai/docs/wan-2-7-video) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; live API calls require explicit user intent and a server-side APIDOT_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Real APIDot API use requires an APIDOT_API_KEY that could be exposed if placed in browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep API keys in server-side environment variables or a backend secret manager, and avoid logging keys, private prompts, private media URLs, generated video URLs, or callback URLs.
+
+Risk: Wan 2.7 Video request fields, model availability, limits, and commercial terms may change in APIDot's live service.
+
+Mitigation: Use the current APIDot model page and API documentation for model-specific fields and product details; do not invent payload fields or copy fields from another model family unless APIDot documents them for Wan 2.7 Video.
+
+Risk: Async video workflows can lose task state or duplicate visible results if polling and webhook callbacks are not reconciled carefully.
+
+Mitigation: Persist task_id, selected model, user ID, source media references, request status, and final video URLs together; treat webhook handlers as idempotent and retry only transient failures with backoff.
+
+## Reference(s):
+
+- [APIDot Wan 2.7 Video Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [Wan 2.7 Video Model Page](https://apidot.ai/models/wan-2-7-video)
+- [Wan 2.7 Video API Docs](https://apidot.ai/docs/wan-2-7-video)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code snippets and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; it does not include executable files, bundled API clients, automatic network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

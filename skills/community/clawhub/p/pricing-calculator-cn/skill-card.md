@@ -1,40 +1,53 @@
-## Description: <br>
-Helps freelancers, independent developers, and consultants estimate project complexity, market pricing, quote ranges, payment strategy, and draft quotation or contract language for Chinese-language client work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language pricing assistant that estimates freelance project effort, difficulty, risk, market benchmarks, and quote strategy, with optional quotation or contract text.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Freelancers, independent developers, outsourcing programmers, and consultants use this skill to evaluate client projects, estimate effort and risk, compare domestic and overseas market pricing, and prepare quote or contract drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing estimates and market references may be inaccurate, incomplete, or outdated for a specific client, region, or project scope. <br>
-Mitigation: Review the assumptions, compare against current market data, and adjust quotes before sending them to clients. <br>
-Risk: Generated contract language and payment terms may not satisfy legal or business requirements. <br>
-Mitigation: Treat contract text as drafting assistance and have important terms reviewed before use. <br>
+## Use Case:
 
+Freelancers, independent developers, outsourced programmers, and consultants use this skill to turn project details into Chinese-language pricing ranges, payment strategy, market references, and client-facing quote materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/pricing-calculator-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown pricing analysis with quote ranges, market references, strategy notes, and optional quotation or contract drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include effort estimates, risk assessment, payment terms, and client-facing draft language for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pricing ranges and market references may be inaccurate, stale, or mismatched to a specific client engagement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the suggested quote against current market data, project scope, delivery risk, and local business practices before sharing it.
+
+Risk: Generated quotation or contract language may be mistaken for verified legal or financial advice.
+
+Mitigation: Treat contract and payment terms as draft business guidance and have qualified reviewers approve them before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/pricing-calculator-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style pricing analysis with tables, quote ranges, strategy notes, and optional quotation or contract text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business guidance that should be reviewed before being sent to clients or used as legal or financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

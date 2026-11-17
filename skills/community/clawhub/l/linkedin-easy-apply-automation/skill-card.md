@@ -1,40 +1,62 @@
-## Description: <br>
-Automate LinkedIn Easy Apply searches and applications with Puppeteer/Chromium, a verified resume PDF, remote/job-title filtering, stateful daily reruns, and conservative answer guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate LinkedIn Easy Apply searches and applications with Puppeteer/Chromium, a verified resume PDF, remote/job-title filtering, stateful daily reruns, and conservative answer guardrails.
 
-## Publisher: <br>
-[ralyodio](https://clawhub.ai/user/ralyodio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ralyodio](https://clawhub.ai/user/ralyodio)
 
-## Use Case: <br>
-AI coding and operations agents use this skill to prepare and run repeatable LinkedIn Easy Apply searches from a verified resume PDF. It supports conservative form filling, duplicate avoidance, daily reruns, and concise application reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The automation can submit real LinkedIn applications from a logged-in browser session. <br>
-Mitigation: Keep dry-run mode enabled until reviewed, use low scan and apply limits, and require operator approval for unknown required fields or account-security prompts. <br>
-Risk: The workflow stores local browser profile, state, and run-history files that may contain personal application context. <br>
-Mitigation: Use a dedicated protected browser profile, review logs for personal data, and delete profile and state files when they are no longer needed. <br>
+## Use Case:
 
+Developers and operations agents use this skill to build and run a repeatable LinkedIn Easy Apply workflow from a verified resume PDF while skipping unknown or subjective application questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ralyodio/linkedin-easy-apply-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript, shell, JSON, and text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes local state and JSONL log paths for submitted, skipped, and already-seen applications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent live authority to submit job applications on behalf of the operator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep DRY_RUN enabled until search targets and answers are inspected, and require manual approval before each live submission.
+
+Risk: The skill uses an authenticated browser profile, which can expose account state during automation.
+
+Mitigation: Use a dedicated browser profile and preferably a separate OS account or container for the workflow.
+
+Risk: The suggested Chromium launch pattern disables sandbox protections.
+
+Mitigation: Remove the sandbox-disabling flags unless the execution environment has a reviewed and well-understood reason to keep them.
+
+Risk: Automated application flows may encounter CAPTCHA, MFA, identity verification, or suspicious-login checks.
+
+Mitigation: Stop automation and return control to the operator whenever account-security prompts appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ralyodio/skills/linkedin-easy-apply-automation)
+- [Publisher profile](https://clawhub.ai/user/ralyodio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JavaScript, JSON, and text snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operator-guided browser automation steps, environment-variable configuration, dry-run defaults, and state/log file conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

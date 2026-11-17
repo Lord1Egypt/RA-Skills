@@ -1,40 +1,60 @@
-## Description: <br>
-Provision and manage @clawemail.com Google Workspace email accounts. Use when the user wants to create an email for their AI agent, check email availability, or manage existing ClawEmail accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision and manage @clawemail.com Google Workspace email accounts for AI agents, including account creation, availability checks, and existing account administration.
 
-## Publisher: <br>
-[cto1](https://clawhub.ai/user/cto1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cto1](https://clawhub.ai/user/cto1)
 
-## Use Case: <br>
-Developers and operators use this skill to create, check, list, suspend, unsuspend, and delete ClawEmail Google Workspace accounts for AI agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent authority over ClawEmail administration, including permanent deletion of email accounts and their data. <br>
-Mitigation: Require manual confirmation before suspend or delete actions, especially permanent deletion. <br>
-Risk: The skill handles API keys, returned passwords, and OAuth connection details. <br>
-Mitigation: Use only an API key the user is comfortable giving to an agent and treat returned passwords and OAuth details as secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cto1/claw-admin) <br>
-- [ClawEmail service](https://clawemail.com) <br>
+## Use Case:
 
+External users and developers use this skill to provision @clawemail.com Google Workspace email accounts for agents, check prefix availability, and administer account lifecycle actions such as suspend, unsuspend, and delete.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEMAIL_API_KEY for administrative endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use CLAWEMAIL_API_KEY to administer ClawEmail accounts.
+
+Mitigation: Install it only when ClawEmail administration is intended, scope API key access carefully, and avoid exposing the key in shared logs or prompts.
+
+Risk: Created accounts return passwords, OAuth connect URLs, and credentials JSON that are sensitive secrets.
+
+Mitigation: Store returned secrets securely immediately and avoid pasting them into public or untrusted contexts.
+
+Risk: Account deletion is destructive and can remove the Google Workspace account and associated data.
+
+Mitigation: Require explicit confirmation before running delete actions and prefer suspend or unsuspend when reversible administration is sufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cto1/skills/claw-admin)
+- [ClawHub publisher profile](https://clawhub.ai/user/cto1)
+- [ClawEmail service](https://clawemail.com)
+- [ClawEmail admin API](https://clawemail.com/api/emails)
+- [ClawEmail self-service signup](https://clawemail.com/signup?prefix=DESIRED_PREFIX)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWEMAIL_API_KEY for admin endpoints; public availability checks and self-service signup do not require the API key.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

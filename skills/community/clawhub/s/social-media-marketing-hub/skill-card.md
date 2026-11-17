@@ -1,44 +1,65 @@
-## Description: <br>
-Social Media Marketing Hub analyzes Douyin trends and competitor accounts, then generates AI-assisted titles, spoken sales scripts, product-selection analysis, and marketing reports from a keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Media Marketing Hub analyzes Douyin trend patterns, generates AI-assisted titles and spoken scripts, supports product selection analysis, competitor account analysis, and a local memory system.
 
-## Publisher: <br>
-[dadajuanzhenren](https://clawhub.ai/user/dadajuanzhenren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadajuanzhenren](https://clawhub.ai/user/dadajuanzhenren)
 
-## Use Case: <br>
-External marketers, creators, and operators use this skill to research Douyin content patterns, compare accounts, and draft titles or spoken scripts for social media campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use TikHub/Douyin and DeepSeek APIs, so collected content and prompts may be sent to external services. <br>
-Mitigation: Use approved API credentials, avoid sensitive workspaces, and review what data will be submitted before running analyses. <br>
-Risk: The skill can browse, download, transcribe, and analyze third-party videos, which may raise platform, copyright, or competitor-content obligations. <br>
-Mitigation: Confirm platform and legal permissions for the target content before downloading or transcribing media. <br>
-Risk: The skill can persist analysis files and memory on disk. <br>
-Mitigation: Run it in a controlled workspace and delete generated reports or memory files when they are no longer needed. <br>
+## Use Case:
 
+External marketers, social media operators, and agent users use this skill to analyze Douyin keywords or competitor accounts, identify content and product patterns, and generate titles, sales scripts, and actionable marketing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dadajuanzhenren/social-media-marketing-hub) <br>
-- [TikHub API access](https://user.tikhub.io/register?ref=teKGFLs1) <br>
-- [DeepSeek API platform](https://platform.deepseek.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text, with JSON analysis files written by the skill] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TikHub and DeepSeek credentials; may save analysis memory and author reports on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.3.1 (source: server release metadata) <br>
+Risk: The security scan reports unsafe and under-disclosed credential behavior for API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables for TikHub and DeepSeek credentials, avoid file-based credential storage, and rotate credentials if they were passed through command output or local files.
+
+Risk: The security scan reports command construction and subprocess behavior that should be reviewed before use.
+
+Mitigation: Run only in a restricted workspace with minimal subprocess permissions, review inputs before invoking browser, curl, ffmpeg, whisper, or process-control commands, and avoid shared or sensitive environments until maintainer fixes are available.
+
+Risk: The security scan reports unsafe filename handling and local file-write behavior.
+
+Mitigation: Use non-sensitive keywords and account names, constrain write roots to the skill directory, and inspect generated memory and author report JSON before reuse or sharing.
+
+Risk: The security scan reports a TikHub host mismatch and broad Xvfb process killing.
+
+Mitigation: Confirm allowed network hosts match the runtime API host and avoid browser mode on shared systems until process cleanup behavior is narrowed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dadajuanzhenren/skills/social-media-marketing-hub)
+- [dadajuanzhenren Publisher Profile](https://clawhub.ai/user/dadajuanzhenren)
+- [TikHub API Access](https://user.tikhub.io/register?ref=teKGFLs1)
+- [DeepSeek Platform](https://platform.deepseek.com/)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON files, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style analysis, with local JSON memory and report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist keyword memory and author analysis JSON under the skill scripts directory.]
+
+## Skill Version(s):
+
+8.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

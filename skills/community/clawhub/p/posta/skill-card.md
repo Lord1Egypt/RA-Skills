@@ -1,45 +1,65 @@
-## Description: <br>
-Posta helps agents create, upload, schedule, publish, and analyze social media posts across Instagram, TikTok, LinkedIn, YouTube, X/Twitter, Facebook, Pinterest, Threads, and Bluesky from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posta helps agents create, upload, schedule, publish, and analyze social media content across Instagram, TikTok, LinkedIn, YouTube, X/Twitter, Facebook, Pinterest, Threads, and Bluesky.
 
-## Publisher: <br>
-[stgime](https://clawhub.ai/user/stgime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stgime](https://clawhub.ai/user/stgime)
 
-## Use Case: <br>
-Developers, creators, and marketing operators use this skill to manage Posta-connected social accounts from an agent: draft content, upload media, schedule or publish posts, and review analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live social accounts by scheduling, publishing, deleting media, exporting analytics, or triggering third-party image generation. <br>
-Mitigation: Require a visible preview and explicit user approval before mutating account state, exporting analytics, or spending third-party generation credits. <br>
-Risk: Credentials and API responses may be exposed on shared machines or through temporary token and response caching. <br>
-Mitigation: Prefer a revocable POSTA_API_TOKEN over email/password, avoid shared machines, and clear local temporary token or response files after sensitive sessions. <br>
-Risk: Generated or uploaded content can be published to the wrong platform, account, time, or caption length limit. <br>
-Mitigation: Validate target accounts, platform requirements, caption limits, media properties, and scheduled time before publish or schedule actions. <br>
+## Use Case:
 
+External users and developers use this skill to manage social media workflows from an agent: authenticate with Posta, create captions and media, upload assets, schedule or publish posts, inspect platform limits, and review analytics.
 
-## Reference(s): <br>
-- [Posta ClawHub Skill Page](https://clawhub.ai/stgime/posta) <br>
-- [Posta API Reference](references/posta-api-reference.md) <br>
-- [Content Generation Patterns](references/content-generation.md) <br>
-- [Workflow Examples](examples/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTA_API_TOKEN, curl, and jq; FAL_KEY is optional for image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Posta credentials, fal.ai credentials, and cached tokens can expose social media accounts if stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer POSTA_API_TOKEN, keep Posta and fal.ai credentials out of project .env files, and clear /tmp/.posta_token after use.
+
+Risk: Publish, schedule, and delete actions can change live social media content or account state.
+
+Mitigation: Require explicit user confirmation before publishing, scheduling, deleting, or changing TikTok privacy settings.
+
+Risk: Image generation sends prompts and campaign context to fal.ai and may spend API credits.
+
+Mitigation: Confirm before calling fal.ai and avoid sending confidential prompts or unreleased campaign content unless external sharing is acceptable.
+
+Risk: Changing POSTA_BASE_URL can redirect authenticated API calls away from the production Posta API.
+
+Mitigation: Set POSTA_BASE_URL only for trusted development environments.
+
+## Reference(s):
+
+- [Posta ClawHub Skill Page](https://clawhub.ai/stgime/skills/posta)
+- [Posta API Reference](references/posta-api-reference.md)
+- [Content Generation Patterns](references/content-generation.md)
+- [Workflow Examples](examples/workflows.md)
+- [fal.ai API Keys](https://fal.ai/dashboard/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request bodies, and formatted analytics summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Posta and fal.ai APIs when credentials are configured and the user confirms actions that publish, schedule, delete, or spend image-generation credits.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

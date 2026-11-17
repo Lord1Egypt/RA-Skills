@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn77hnf77v0m1mvvb7wtkwf12182p10s",
   "slug": "deepseek-dev-assistant",
   "version": "1.0.0",
-  "publishedAt": 1779562615901
+  "displayName": "你聊我干",
+  "tagline": "你在 DeepSeek 里聊天，我在 OpenClaw 帮你干活"
 }

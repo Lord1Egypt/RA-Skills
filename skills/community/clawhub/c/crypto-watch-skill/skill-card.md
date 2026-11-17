@@ -1,46 +1,59 @@
-## Description: <br>
-Provides cryptocurrency and precious-metals market data plus technical-analysis indicators for assets such as BTC, ETH, BNB, ZEC, SOL, and gold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cryptocurrency and precious metals market data analysis with K-line data, funding rates, open interest, long/short ratios, liquidation data, option ratios, sentiment data, and technical indicators for assets such as Bitcoin, Ethereum, BNB, ZEC, SOL, and Gold.
 
-## Publisher: <br>
-[burceasn](https://clawhub.ai/user/burceasn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[burceasn](https://clawhub.ai/user/burceasn)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch crypto market data, calculate technical indicators, and structure market-analysis or trading-plan guidance without granting trade-execution authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes external market-data requests to public providers. <br>
-Mitigation: Install and run it in an isolated Python environment and disclose that market queries may be sent to public data providers. <br>
-Risk: Trading-plan or leverage guidance may be mistaken for financial advice. <br>
-Mitigation: Present outputs as educational market analysis, require human review, and avoid granting agents authority to trade. <br>
-Risk: Users may expose wallet keys, exchange API keys, or other credentials while discussing crypto workflows. <br>
-Mitigation: Do not request or store wallet keys or exchange API keys, and remind users to keep credentials outside the agent workflow. <br>
-Risk: Unpinned or broad Python dependencies can change behavior over time. <br>
-Mitigation: Use an isolated environment and consider pinning dependency versions before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve market data, calculate technical indicators, and prepare educational cryptocurrency or precious-metals analysis for human review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/burceasn/crypto-watch-skill) <br>
-- [Technical indicator guide](references/INDICATORS.md) <br>
-- [Trading strategy guide](references/STRATEGY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market data depends on public provider availability and network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Leveraged trading outputs may be mistaken for personal financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat leverage, entry, stop-loss, and position-size outputs as educational analysis that requires human judgment before action.
+
+Risk: The skill contacts public market-data APIs, so responses may fail or depend on stale, delayed, or incomplete upstream data.
+
+Mitigation: Run the skill in a normal virtual environment with reviewed dependency versions and verify important results against current market sources.
+
+Risk: Users may expose exchange credentials or authorize trading beyond the skill's intended scope.
+
+Mitigation: Do not provide exchange API keys and do not let an agent trade, custody funds, or execute financial decisions based on this skill.
+
+## Reference(s):
+
+- [Technical Indicators Reference](references/INDICATORS.md)
+- [Trading Strategy Guidelines](references/STRATEGY.md)
+- [Crypto Technical Analysis Skill README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON from CLI commands and Markdown guidance for analysis responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to public OKX and alternative.me market-data APIs; does not require exchange API keys.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

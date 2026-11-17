@@ -1,41 +1,58 @@
-## Description: <br>
-Deploys an end-to-end ML training pipeline across data preparation, training, evaluation, and serving agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys an end-to-end machine learning training pipeline across data preparation, training, evaluation, and serving agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and ML infrastructure teams use this skill to configure a four-agent Pilot pipeline for data preparation, training, evaluation, and model serving. It helps coordinate role-specific skill installation, hostnames, peer handshakes, and pipeline manifests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trust links and model or dataset transfers can expose sensitive assets if peers are misidentified. <br>
-Mitigation: Confirm each Pilot hostname belongs to the intended node, handshake only with known peers, and apply required approvals before transferring sensitive datasets or model checkpoints. <br>
-Risk: Role setup may replace an existing ML training pipeline manifest. <br>
-Mitigation: Check or back up ~/.pilot/setups/ml-training-pipeline.json before applying generated setup steps. <br>
+## Use Case:
 
+Developers and ML platform engineers use this skill to configure a four-agent Pilot Protocol pipeline for dataset preparation, model training, evaluation approval, and serving handoff.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-ml-training-pipeline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup instructions and manifest templates; does not execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing role-specific packages or skills without review can introduce unintended dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected role, deployment prefix, peer hostnames, and exact packages before installation; prefer pinned or internally approved dependency versions for production use.
+
+Risk: Datasets, model checkpoints, and inference metrics shared across agents may be sensitive.
+
+Mitigation: Only exchange artifacts with trusted agents in the intended deployment and treat shared training, model, and inference data as sensitive.
+
+Risk: The persistent ~/.pilot manifest can retain deployment details after setup.
+
+Mitigation: Keep a record of the generated manifest so it can be audited or removed later.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-ml-training-pipeline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific setup guidance depends on the selected role and deployment prefix.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

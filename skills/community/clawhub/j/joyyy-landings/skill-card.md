@@ -1,41 +1,54 @@
-## Description: <br>
-Rapid interactive prototypes for products, investors, and AI agents. Game engines, simulations, visual analytics. Human + AI. One link, open and run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns a landing URL for rapid interactive prototypes, including game engines, simulations, visual analytics, and investor-ready demos.
 
-## Publisher: <br>
-[vziatkov](https://clawhub.ai/user/vziatkov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vziatkov](https://clawhub.ai/user/vziatkov)
 
-## Use Case: <br>
-External users, founders, AI teams, and product teams use this skill to return a public landing page for interactive prototype demos, including game engines, simulations, visual analytics, and procedural systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional screenshot and video helper scripts run local Python dependencies and browser automation. <br>
-Mitigation: Run those scripts only intentionally, preferably in a disposable environment with reviewed or pinned dependency versions. <br>
-Risk: The skill mainly returns public portfolio and demo URLs, so link availability and demo behavior can affect the usefulness of the response. <br>
-Mitigation: Check the landing page and core demos before relying on them in a customer-facing or investor-facing workflow. <br>
+## Use Case:
 
+External users, founders, AI teams, and product teams use this skill when they need an agent-callable portfolio entry that returns live interactive demo links for prototypes, investor demos, simulations, and visual explainers.
 
-## Reference(s): <br>
-- [Interactive prototypes landing page](https://vziatkov.github.io/neuro/landing-with-art-cards.html) <br>
-- [ClawHub skill listing](https://clawhub.ai/vziatkov/joyyy-landings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing public demo links and concise reply guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys or configuration are required for normal use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact clawhub.json) <br>
+Risk: The skill may trigger on broad portfolio, demo, investor, or prototype wording and return this creator's demo links when a user expected a different portfolio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for vziatkov's interactive prototype portfolio or demos before invoking or sharing the returned links.
+
+Risk: Optional screenshot and demo-video utilities install and run third-party Python tooling.
+
+Mitigation: Run those utilities only in a clean virtual environment with reviewed dependencies before publishing generated media.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vziatkov/skills/joyyy-landings)
+- [Landing Demo](https://vziatkov.github.io/neuro/landing-with-art-cards.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text containing one or more demo URLs and a concise reply phrase.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, credentials, or backend services are required for normal skill use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

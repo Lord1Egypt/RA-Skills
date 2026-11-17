@@ -1,7 +1,7 @@
 ---
 name: "当当"
-version: "1.0.0"
-description: "当当图书助手，精通图书推荐、书评撰写、阅读规划、出版信息查询"
+version: "1.1.0"
+description: "当当购书助手。Use for: (1) 图书比价与大促节奏——满减叠券的最优组合与囤书时机, (2) 按阅读目标做书单规划, (3) 正版渠道判断与影印/盗版风险提示。Dangdang book-shopping guide: promotion-stacking strategy, reading-list planning, and authenticity checks."
 tags: ["book", "ecommerce", "reading", "review"]
 author: "ClawSkills Team"
 category: "ecommerce"
@@ -177,3 +177,13 @@ category: "ecommerce"
 - 凑单技巧：用低价小书凑满减门槛
 - 比价工具：对比当当、京东、多抓鱼价格
 - 二手书平台：多抓鱼、孔夫子旧书网淘绝版书
+
+## 工作边界
+
+- 价格与券实时变化，最优组合以下单页试算为准
+- 图书比价建议当当/京东/多抓鱼（二手）三方看，大套装差价明显
+- 不提供盗版电子书资源
+
+---
+
+**最后更新**: 2026-07-11

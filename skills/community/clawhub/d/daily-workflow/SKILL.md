@@ -1,355 +1,271 @@
 ---
 name: daily-workflow
-description: "Bilingual EN/ZH project memory workflow for start work, checkpoint, wrap-up, and handoff. Maintains project-local Docs/ notes with target, metadata, status, compressed context, completed work, pending work, next actions, archives, and legacy migration from older Daily Workflow file names."
+description: Say 开工啦 or 收工啦 and get a resumable project note written for you, so tomorrow you or another AI can pick up without re-reading everything. Use when a user asks to resume a project, save progress, record a checkpoint, end a work session, prepare a handoff, switch to a new AI session, or reconcile stale working notes. Typical triggers include 开工啦, 中段检查, 吃饭啦, 收工啦, 交接, 记一下进度, 存个档, 明天接着做, 换个 AI 继续, 上下文快满了, start work, checkpoint, wrap up, handoff, save progress, resume tomorrow, and switch to a new agent session. Reads existing project authority first, preserves dirty worktrees and governance evidence, avoids competing state files, archives rather than deletes history, and records commands, final outcomes, blockers, risks, and exact next actions without claiming unverified completion or QA acceptance.
 ---
 
 # Daily Workflow / 项目记忆工作流
 
-Version: 3.0.0  
-Purpose: keep a project understandable and resumable across work sessions, context resets, and AI-to-AI handoffs.  
-Storage: project-local `Docs/` only.
-Upgrade note: This is the upgraded version of the previous Chinese and English Daily Workflow editions; going forward, both language editions will be maintained together in this single bilingual package. / 这是此前中文与英文 Daily Workflow 两版的升级版；以后中英文版本会合并在这个双语包里统一维护。
+Version: 4.1.0
 
-## Core Principle / 核心原则
+Use this skill to make work resumable. Record only the compact factual state needed by the user or next agent; do not turn project memory into a second project-management system.
 
-Write concise, factual project state that a user and the next AI can continue from. Prefer concrete targets, decisions, files, commands, blockers, risks, and next actions over narrative.
+Respond in the user's language. Keep machine-readable status values in English.
 
-记录应当简洁、可验证、可继续执行。优先保存目标、决策、文件路径、命令结果、阻塞、风险和下一步，而不是聊天记录全文。
+## Scope And Ownership
 
-Do not record secrets, credentials, private customer data, full confidential documents, large logs, or unrelated source excerpts.
+This skill owns session continuity only: orientation, checkpoint summaries, wrap-up records, and handoffs.
 
-## Trigger Phrases / 触发语
+- `cms-project-governance` owns formal targets, Programs, Work Orders, Controller/QA decisions, and acceptance state.
+- `agent-loop-engineering` owns active coding-loop evidence, stop gates, evaluation, and loop records.
+- `project-lifecycle-navigator` owns lifecycle analysis and rebaseline proposals.
+- `web-search-rules` owns research intake and source rules.
+- `ai-workflow-os` may route here but must not create a parallel memory state.
 
-Treat these phrases as equivalent triggers:
+When another system already owns a field, read and summarize it; do not overwrite it.
 
-- Start work / 开工: `开工啦`, `开始工作`, `start work`, `begin work`, `starting work`, `start of day`
-- Checkpoint / 中段检查: `中段检查`, `吃饭啦`, `checkpoint`, `lunch check`, `lunch time`, `break time`, `midday check`
-- Wrap up / 收工: `收工啦`, `结束工作`, `wrap up`, `end work`, `ending work`, `end of day`
-- Handoff / 交接: `交接`, `handoff`, `next AI`, `下一任 AI`
-- Reconfigure / 重新配置: `重新配置工作流`, `configure workflow`, `update workflow config`
+## Trigger And Authorization
 
-If the user defines custom triggers in `Docs/CONFIG.md`, honor them.
+Use this skill when the user explicitly asks to:
 
-## Managed Files / 管理文件
+- start or resume work;
+- save progress or create a checkpoint;
+- wrap up or end work;
+- prepare a handoff;
+- reconcile or migrate workflow notes.
 
-Create `Docs/` if missing. Maintain these files:
+Common phrases include `开工啦`, `中段检查`, `吃饭啦`, `收工啦`, `交接`, `start work`, `checkpoint`, `wrap up`, and `handoff`.
 
-- `Docs/PROJECT.md`: project metadata, owner, workspace, repository, phase, language, and last checkpoint.
-- `Docs/TARGET.md`: project purpose, success criteria, scope, and out-of-scope items. Default read-only after creation unless the user changes the goal.
-- `Docs/STATUS.md`: current state, progress, active context, compressed context, latest update history, and known risks.
-- `Docs/COMPLETED.md`: completed work log. Append only; never overwrite older entries.
-- `Docs/PENDING.md`: current pending work, blockers, and decisions needed. May be rewritten as the current queue while preserving unresolved blockers.
-- `Docs/NEXT_ACTIONS.md`: immediate continuation plan and handoff plan. Overwrite each checkpoint/wrap-up with the latest actionable plan.
-- `Docs/CONFIG.md`: optional trigger and language preferences.
+A casual mention of one phrase is not enough when intent is ambiguous. Inspect read-only first. Persist files only when the request clearly asks to initialize or update project memory, or when an established project workflow already defines the trigger as a write command.
 
-Compatibility alias:
+## Read-Only Orientation First
 
-- `Docs/SCHEDULE.md` is a legacy/current alias for next actions. If it exists, read it. Prefer writing `NEXT_ACTIONS.md` in v3.0.0. If a project already depends on `SCHEDULE.md`, either keep both synchronized or explain the migration before changing.
+Before writing:
 
-Optional files:
+1. resolve the actual workspace and repository root, including nested repositories;
+2. inspect Git branch, commit, and dirty state without modifying it;
+3. locate governing files and determine current authority precedence;
+4. locate product scope, entrypoints, build/test commands, and runtime surfaces relevant to the session;
+5. read existing memory files and compatible aliases;
+6. identify contradictions, missing evidence, and ownership conflicts.
 
-- `Docs/HANDOFF.md`: create only when the user asks for a standalone handoff file or when the handoff block becomes too long.
-- `Docs/archive/YYYY-MM.md`: monthly archive for older status updates.
+Do not use `git reset`, `git clean`, broad deletion, or ambiguous process termination. Existing changes belong to the user unless proven otherwise.
 
-## Configuration / 配置
+## Choose A Memory Profile
 
-Optional configuration is project-local:
+### Existing Governance Profile
 
-```text
-Docs/CONFIG.md
-```
+Use when project-owned governance or loop files already exist. Follow that project's names and authority. Do not create duplicate `Docs/` files merely because this skill has default templates.
 
-Default config block:
+### Lightweight Profile
 
-```json
-{
-  "version": "3.0.0",
-  "startPhrase": "开工啦",
-  "checkpointPhrase": "中段检查",
-  "lunchPhrase": "吃饭啦",
-  "endPhrase": "收工啦",
-  "handoffPhrase": "交接",
-  "language": "bilingual",
-  "primaryNextActionsFile": "NEXT_ACTIONS.md",
-  "archiveAfterStatusEntries": 10,
-  "firstRun": false
-}
-```
-
-Create or update config only inside `Docs/`. Do not write global user state.
-
-## Legacy Migration / 旧版迁移
-
-Before creating new files, check for legacy Daily Workflow files.
-
-Legacy English v1 names:
+Use only when no authoritative workflow exists and persistence is requested. Start with the smallest useful set:
 
 ```text
-Docs/PROJECT_TARGET.md      -> Docs/TARGET.md
-Docs/PROJECT_STATUS.md      -> Docs/STATUS.md
-Docs/COMPLETED_JOBS.md      -> Docs/COMPLETED.md
-Docs/PENDING_JOBS.md        -> Docs/PENDING.md
-Docs/NEXT_STEPS.md          -> Docs/NEXT_ACTIONS.md
-.workbuddy/daily-workflow-config.json -> Docs/CONFIG.md
+Docs/STATUS.md
+Docs/NEXT_ACTIONS.md
 ```
 
-Legacy v2/current alias:
+Add files only when their information has a distinct owner:
 
 ```text
-Docs/SCHEDULE.md -> Docs/NEXT_ACTIONS.md
+Docs/PROJECT.md       project identity and metadata
+Docs/TARGET.md        Owner-confirmed target, scope, Non-Goals, success criteria
+Docs/COMPLETED.md     append-only historical completion log
+Docs/PENDING.md       current queue, blockers, and decisions
+Docs/HANDOFF.md       standalone handoff only when requested or too large to embed
+Docs/CONFIG.md        explicit local workflow preferences
+Docs/archive/YYYY-MM.md
 ```
 
-Migration rules:
+Do not create `TARGET.md` from an AI guess. If the target is unclear, record a proposed summary in `STATUS.md` as `TBD - Owner Confirmation Required`.
 
-1. Read legacy files before creating replacements.
-2. If the v3 target file is missing, create it from the legacy content and add `Migrated from: <legacy file>`.
-3. If both legacy and v3 files exist, do not overwrite. Summarize the difference and ask the user whether to merge.
-4. Never delete legacy files automatically.
-5. Never migrate secrets or secret-like fields.
-6. Add a migration entry to `STATUS.md` or `Docs/archive/YYYY-MM.md`.
+### Legacy Migration Profile
 
-## File Templates / 文件模板
+Detect legacy files read-only. If old and new forms coexist, show the conflict and ask before merging. Never delete legacy files automatically.
 
-### PROJECT.md
+Compatibility mappings:
 
-```markdown
-# Project Metadata / 项目元数据
-
-- Project ID / 项目编号:
-- Project Name / 项目名称:
-- Owner / 负责人:
-- Workspace / 工作区:
-- Repository / 代码仓库:
-- Current Phase / 当前阶段:
-- Primary Language / 主要语言:
-- Risk Level / 风险等级:
-- Last Checkpoint / 最近检查点:
-- Last Updated / 最近更新:
+```text
+PROJECT_TARGET.md  -> TARGET.md
+PROJECT_STATUS.md  -> STATUS.md
+COMPLETED_JOBS.md  -> COMPLETED.md
+PENDING_JOBS.md    -> PENDING.md
+NEXT_STEPS.md      -> NEXT_ACTIONS.md
+SCHEDULE.md        -> NEXT_ACTIONS.md compatibility alias
 ```
 
-### TARGET.md
+## Evidence Vocabulary
 
-```markdown
-# Project Target / 项目目标
+Use precise states:
 
-## Purpose / 目的
-[What the project is trying to accomplish.]
+- `implemented`: source or artifact exists;
+- `verified`: a relevant current check passed;
+- `partial`: only part of the intended behavior exists;
+- `unverified`: required evidence was not run or observed;
+- `unusable`: present but the real user flow cannot complete;
+- `documentation-conflict`: current records disagree;
+- `not-executed`: a scenario was not run;
+- `blocked`: progress requires authority, user input, or an unavailable dependency;
+- `accepted`: only when the authorized independent acceptance role has recorded it.
 
-## Success Criteria / 成功标准
-- [Criterion 1]
-- [Criterion 2]
+Never promote Developer self-report, historical logs, a health endpoint, compilation, a narrow test, or a screenshot into broader acceptance.
 
-## Scope / 范围
-In scope / 范围内:
-- [Item]
+For each verification record, preserve:
 
-Out of scope / 范围外:
-- [Item]
+- exact command or manual scenario;
+- relevant environment or data boundary;
+- final exit, timeout, interruption, or not-executed state;
+- result summary;
+- evidence/artifact path when useful;
+- residual risk.
 
-## Assumptions / 假设
-- [Assumption]
-
-## Last Reviewed / 最后确认
-[YYYY-MM-DD]
-```
-
-If the target is unclear, create a provisional section instead of stopping:
-
-```markdown
-## Unconfirmed Target / 待确认目标
-[Best-effort summary based on current context. Ask the user to confirm or correct.]
-```
+## Canonical Record Structure
 
 ### STATUS.md
 
-```markdown
-# Project Status / 项目状态
-
-## Current State / 当前状态
-[Short factual summary.]
-
-## Progress / 进度
-[Percent or milestone-based progress when known.]
-
-## Active Context / 当前上下文
-- Files or areas being worked on:
-- Important constraints:
-- Known risks:
-
-## Compressed Context / 提炼上下文
-- User intent / 用户意图:
-- Decisions made / 已作决策:
-- Current state / 当前状态:
-- Completed work / 已完成:
-- Pending work / 待处理:
-- Blockers / risks / 阻塞与风险:
-- Files touched / 涉及文件:
-- Commands/tests run / 已运行命令或测试:
-- Immediate next action / 下一步立即行动:
-
-## Update History / 更新历史
-### [YYYY-MM-DD HH:mm] [start/checkpoint/wrap-up/handoff/migration]
-- [What changed]
-- [Evidence, command, or file reference when useful]
-```
-
-### COMPLETED.md
+Keep a current snapshot plus short history:
 
 ```markdown
-# Completed Jobs / 已完成工作
+# Project Status
 
-## [YYYY-MM-DD]
-- [Completed item with enough detail for another AI to understand what changed.]
-```
+## Current State
+- Status:
+- Current goal:
+- Active scope:
+- Latest verified behavior:
+- Blockers:
+- Residual risks:
 
-### PENDING.md
+## Latest Verification
+- Command or scenario:
+- Final result:
+- Evidence boundary:
+- Evidence path:
+- Not executed / deferred:
 
-```markdown
-# Pending Jobs / 待办工作
+## Compressed Context
+- User intent:
+- Decisions:
+- Completed since last checkpoint:
+- Pending:
+- Files touched:
+- Dirty worktree notes:
+- Exact next action:
 
-## Immediate / 立即处理
-- [ ] [Task, owner/context if known, acceptance condition]
-
-## Later / 稍后处理
-- [ ] [Task]
-
-## Blockers and Decisions / 阻塞与待决策
-- [Blocker or decision needed]
+## Update History
+### YYYY-MM-DD HH:mm [start|checkpoint|wrap-up|handoff|migration]
+- Factual change and evidence.
 ```
 
 ### NEXT_ACTIONS.md
 
+Keep exactly one current continuation plan:
+
 ```markdown
-# Next Actions / 下一步行动
+# Next Actions
 
-## Immediate Next Action / 下一步立即行动
-1. [Action with file/path/context]
-2. [Action]
+## Immediate Next Action
+1. [Action with context and acceptance condition]
 
-## Handoff Summary / 交接摘要
-- Current state / 当前状态:
-- Completed since last checkpoint / 上次检查后完成:
-- Pending work / 待处理:
-- Blockers / risks / 阻塞与风险:
-- Files touched / 涉及文件:
-- Commands/tests run / 已运行命令或测试:
-- Immediate next action / 下一步立即行动:
+## Then
+1. [Ordered action]
 
-## Notes for Next AI / 给下一任 AI 的说明
-[Any context the next AI must know before acting.]
+## Blockers And Owner Decisions
+- [Decision or blocker]
+
+## Handoff Snapshot
+- Current state:
+- Completed:
+- Pending:
+- Risks:
+- Files/artifacts:
+- Commands and final results:
+- Exact next action:
 ```
 
-## Context Compression and Reset / 上下文提炼与清理
+## Start Work
 
-At checkpoint, wrap-up, and handoff time, compress the current conversation context before updating workflow files.
+1. Orient read-only.
+2. Determine the memory profile and authority.
+3. Summarize target, current state, latest verified evidence, dirty changes, pending work, blockers, and exact next action.
+4. Reconcile stale notes against current repository/runtime evidence.
+5. Write a start entry only when persistence is authorized.
+6. Do not create speculative targets or mark historical completion as current verification.
 
-Compression means extracting only what is needed to continue work:
+## Checkpoint
 
-- Current user intent and target
-- Decisions already made
-- Completed work
-- Pending work
-- Blockers, risks, and assumptions
-- Files touched or important paths
-- Commands/tests run and outcomes
-- Immediate next action
+1. Compress only the context required to continue.
+2. Record actual completed work and current evidence.
+3. Record failed, timed-out, interrupted, deferred, and unrun checks explicitly.
+4. Update the current queue without dropping unresolved blockers or Owner decisions.
+5. Refresh the single exact next action.
+6. Preserve governance and coding-loop fields owned by other skills.
 
-Write this into `Docs/STATUS.md` under the latest update entry and into `Docs/NEXT_ACTIONS.md` for continuation. Do not paste the full conversation transcript.
+## Wrap Up
 
-After saving compressed context, treat the old long working context as cleared for workflow purposes. Continue from `STATUS.md` and `NEXT_ACTIONS.md`.
+1. Record the final state observed in this session.
+2. Append completed history only for work that actually occurred.
+3. Keep current status aligned with the latest verified state; preserve earlier failed attempts in history with timestamps.
+4. List unfinished work, blockers, residual risks, and deferred scenarios.
+5. Do not change the target unless the Owner explicitly changed it.
+6. Prepare a resumable next action.
 
-For checkpoint only, return the compressed context to the current AI in the response so work can continue immediately.
+## Handoff
 
-## Start Work Flow / 开工流程
+Create a self-contained handoff that includes:
 
-When triggered by start work:
+- product/architecture context necessary to continue;
+- current authoritative decisions and scope;
+- exact artifacts and files;
+- completed work and what evidence supports it;
+- unverified or not-executed scenarios;
+- blockers, risks, and Owner decisions;
+- commands/tests with final outcomes;
+- exact next actions and prohibited actions.
 
-1. Check `Docs/`; create missing managed files from templates.
-2. Detect and offer legacy migration when legacy files exist.
-3. Check `Docs/CONFIG.md`; honor it if present.
-4. Read all managed files and compatible legacy aliases.
-5. Summarize target, metadata, current status, recently completed work, pending work, blockers, and immediate next action.
-6. If target is missing or unclear, create or preserve an `Unconfirmed Target` section and ask the user to confirm or correct it.
-7. Update `STATUS.md` with a start entry.
-8. Refresh `NEXT_ACTIONS.md` only if next steps are missing, stale, or contradicted by the user.
+Do not rely on chat history. Do not include hidden reasoning or a full transcript.
 
-## Checkpoint Flow / 中段检查流程
+## Atomic Update Rules
 
-When triggered by checkpoint or lunch check:
+When several memory files describe one state transition, update them as one coherent change and re-read them afterward. If interrupted, report which files changed and which did not.
 
-1. Compress the current conversation into a concise continuation summary.
-2. Append completed items to `COMPLETED.md`.
-3. Update `PROJECT.md` last checkpoint and phase if known.
-4. Update `STATUS.md` with current state, progress, risks, commands/tests run, and compressed context.
-5. Rewrite `PENDING.md` as the current queue while preserving unresolved blockers.
-6. Rewrite `NEXT_ACTIONS.md` with the latest continuation and handoff block.
-7. Archive older `STATUS.md` entries if the configured threshold is exceeded.
-8. Return the compressed context plus the immediate next action.
+- One current fact should have one authoritative home.
+- Append historical records; rewrite current snapshots intentionally.
+- Preserve unresolved blockers.
+- Preserve external ownership fields such as acceptance evidence, QA decisions, loop evaluations, and `LOOP_RUNS.jsonl`.
+- Archive older status entries by moving them to `Docs/archive/YYYY-MM.md`; never delete history automatically.
+- Use UTF-8 for all Markdown and JSONL files.
+- Report absolute paths to the user.
 
-## Wrap Up Flow / 收工流程
+## Memory Bloat Control
 
-When triggered by wrap up:
+Session memory must stay cheap enough to be read at the start of the next session.
 
-1. Compress the current conversation into an end-of-session summary.
-2. Append all completed work to `COMPLETED.md`.
-3. Update `PROJECT.md` last checkpoint and phase if known.
-4. Update `STATUS.md` with final state, commands/tests run, risks, and compressed context.
-5. Update `PENDING.md` with unfinished work, blockers, and decisions needed.
-6. Update `TARGET.md` only if the goal changed or the user explicitly asks.
-7. Rewrite `NEXT_ACTIONS.md` as the main handoff document.
-8. Archive older `STATUS.md` entries if needed.
-9. Give the user a short wrap-up summary and the immediate next action for the next session.
+- Keep the live memory set small: a current snapshot plus one continuation plan. Everything older moves to `Docs/archive/YYYY-MM.md`.
+- Never annotate a live file with `Superseded`, `CURRENT OVERRIDE`, or `this section is void`. If the target changed, write a new `REBASELINE-<date>.md` and archive the previous one in the same pass. A reader should never have to reconstruct which layer is current.
+- Do not create a new file for information that already has an owner elsewhere. Summarize and link instead.
+- If the memory directory grows while verified behavior does not, report that imbalance as the checkpoint finding rather than adding another note.
 
-## Handoff Flow / 交接流程
+## Before A Bulk Restructure
 
-When triggered by handoff:
+A checkpoint or handoff that precedes a rename, split, migration, or bulk deletion must first confirm a clean commit or an out-of-workspace backup exists. Record the backup location in the checkpoint. Back up first, then change code.
 
-1. Read the managed files.
-2. Compress the current conversation into a concise handoff summary.
-3. Update `PROJECT.md`, `STATUS.md`, and `NEXT_ACTIONS.md`.
-4. Include only actionable context: current state, completed work since last checkpoint, pending tasks, blockers and risks, touched files, commands/tests run and outcomes, and immediate next action.
-5. Treat previous long context as cleared for workflow purposes.
-6. Do not invent results that were not observed.
-7. Create `Docs/HANDOFF.md` only if the user asks for a separate handoff artifact.
+## Safety
 
-## Archive Policy / 归档规则
+Never record API keys, tokens, passwords, cookies, private keys, `.env` values, browser sessions, real personal contact data, counterparty-confidential details, full private customer records, confidential source bodies, large logs, or sensitive exploit detail. A handoff is frequently pasted into a new session, a chat, or an issue tracker, so treat it as a document that travels.
 
-Keep `STATUS.md` readable.
+Summarize sensitive context safely and reference only an appropriate non-secret source location.
 
-- Keep the latest 5-10 update entries in `STATUS.md`, using `archiveAfterStatusEntries` from config when available.
-- Move older update entries to `Docs/archive/YYYY-MM.md`.
-- Never delete history.
-- Add archive notes with source file, date range, and reason.
+## User-Facing Summary
 
-## Write Rules / 写入规则
-
-- Use absolute paths when reporting file locations to the user.
-- Append to `COMPLETED.md`; do not overwrite it.
-- Preserve `STATUS.md` update history unless archiving older entries.
-- Preserve unresolved blockers when rewriting `PENDING.md`.
-- Overwrite `NEXT_ACTIONS.md` at each checkpoint or wrap-up so the next AI has a single current plan.
-- Never delete managed or legacy files automatically.
-- Do not edit files outside `Docs/` for this workflow unless the user's broader task requires it.
-
-## Safety Rules / 安全规则
-
-Do not write:
-
-- API keys, tokens, passwords, cookies, private keys, `.env` values, or browser sessions.
-- Full private customer records or confidential source text.
-- Sensitive security findings beyond concise status summaries.
-- Large unrelated logs.
-
-If important context contains sensitive details, summarize safely and refer to the secure source location only when appropriate.
-
-## User Response Style / 用户反馈格式
-
-Keep responses short and useful:
+Keep the response compact:
 
 ```text
-Saved workflow state.
-- Updated: PROJECT.md, STATUS.md, NEXT_ACTIONS.md
-- Appended: COMPLETED.md
-- Pending: 3 items, 1 blocker
-- Next: run the failing test and inspect the parser change
+Project memory updated.
+- Current state: Needs Fix
+- Verified: 2 checks passed; browser flow not executed
+- Updated: STATUS.md, NEXT_ACTIONS.md
+- Preserved: active QA and loop evidence
+- Blocker: Owner decision on target scope
+- Next: reproduce the failing user-visible flow with the current data boundary
 ```

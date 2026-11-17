@@ -1,40 +1,53 @@
-## Description: <br>
-Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps frontend developers ground version-sensitive decisions in project facts, official documentation, and verifiable tests.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to ground frontend implementation, review, and architecture decisions in project facts, official documentation, current version behavior, and verifiable validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation wording may be broader than necessary, so the skill could appear during unrelated routine frontend work. <br>
-Mitigation: Review when the skill activates and narrow or disable the trigger description if it appears outside concrete framework, version, migration, or documentation-uncertainty cases. <br>
+## Use Case:
 
+Frontend developers use this skill to check project conventions and current authoritative sources before choosing implementations, migrations, or public API changes. It also supports evidence-backed answers from a specified local knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-source-driven-development) <br>
-- [Publisher profile](https://clawhub.ai/user/bovinphang) <br>
-- [Project homepage listed in metadata](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with source lists, frontend decision notes, implementation impact, validation commands, and unresolved risk notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite project or official sources for version-sensitive decisions and keep copied external documentation concise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata, artifact metadata, package.json) <br>
+Risk: Local project or knowledge-base files may contain sensitive internal material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the project and knowledge paths before granting access; keep sensitive content out of shared answers.
+
+Risk: Version-sensitive guidance may be inaccurate if source material is stale or cannot be verified.
+
+Mitigation: Check current official sources and project tests, and flag any conclusions that remain unverified.
+
+## Reference(s):
+
+- [Source Driven Development on ClawHub](https://clawhub.ai/bovinphang/skills/fec-source-driven-development)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Plain text or Markdown, with code when implementation is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Source paths or links, applicable versions, validation steps, and unresolved risks when relevant]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

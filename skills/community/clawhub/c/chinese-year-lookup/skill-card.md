@@ -1,43 +1,60 @@
-## Description: <br>
-中国历史年份查询与转换技能，可将公元纪年、朝代年号纪年和干支纪年互相转换，并查询相关中国历史事件、世界历史事件、皇帝年号和重要历史事件简介。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Chinese historical year expressions, reign eras, and sexagenary cycle years, and helps answer Chinese emperor and historical event date queries.
 
-## Publisher: <br>
-[ltap266](https://clawhub.ai/user/ltap266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltap266](https://clawhub.ai/user/ltap266)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese historical year, era-name, sexagenary-cycle, emperor, and major-event lookup questions in concise Chinese-language responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical answers may be incomplete or inaccurate because the bundled conversion data and formulas are simplified. <br>
-Mitigation: Verify important historical results against authoritative references before relying on them. <br>
-Risk: Supplemental lookups may send query text to external search or wiki sites. <br>
-Mitigation: Avoid including sensitive personal information in historical queries. <br>
+## Use Case:
 
+External users and agents use this skill to convert Chinese calendar and reign-era year inputs, summarize matching dynasty context, and answer Chinese emperor or historical event date questions.
 
-## Reference(s): <br>
-- [中国朝代年号数据参考](references/dynasty_data.md) <br>
-- [中国皇帝年号与功绩数据](references/emperor_data.md) <br>
-- [中国历史重要事件数据](references/events_data.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ltap266/chinese-year-lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese text with short lists and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include converted calendar years, dynasty or era labels, sexagenary-cycle names, event summaries, and source-dependent supplemental historical context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence) <br>
+Risk: Historical dates and era conversions may be incomplete or approximate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important dates against authoritative historical references before relying on the result.
+
+Risk: Supplemental web lookups may introduce variable or low-quality historical details.
+
+Mitigation: Treat web-sourced additions as supporting context and prefer the bundled reference data or trusted sources for final answers.
+
+Risk: Broad Chinese history trigger terms may activate the skill on some general history questions.
+
+Mitigation: Confirm the user's intent before applying the skill when the query is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ltap266/skills/chinese-year-lookup)
+- [中国朝代年号数据参考](references/dynasty_data.md)
+- [中国皇帝年号与功绩数据](references/emperor_data.md)
+- [中国历史重要事件数据](references/events_data.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with bullet lists or tables, plus optional shell command examples for the bundled converter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on local reference data and supplemental web lookups for historical context.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

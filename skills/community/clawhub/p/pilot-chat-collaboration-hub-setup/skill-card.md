@@ -1,43 +1,54 @@
-## Description: <br>
-Deploy a chat and collaboration hub with four agents for group chat, threaded conversations, moderation, translation, and archival workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent chat and collaboration hub with chat server, moderator, translator, and archive-bot roles.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a four-agent, self-hosted collaboration hub with a chat server, moderator, translator, and archive bot. It guides installation, host naming, trust handshakes, data flows, and example message exchange commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted pilotctl, clawhub, or pilot-* packages could affect the deployed chat hub. <br>
-Mitigation: Verify tool and package provenance before installation, and deploy only between nodes you control. <br>
-Risk: Translation, moderation, and archive flows can expose or retain sensitive conversation content. <br>
-Mitigation: Define retention periods, backup protection, access controls, redaction rules, and user notice or consent before using the hub for real conversations. <br>
-Risk: Trust handshakes determine which nodes can exchange chat, moderation, translation, and archive messages. <br>
-Mitigation: Review handshake targets and verify trust state with pilotctl trust before sending operational messages. <br>
+## Use Case:
 
+Developers and operators use this skill to set up a self-hosted multi-agent chat hub with moderation, translation, presence, threaded conversations, archival, and backups.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-chat-collaboration-hub-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON manifest examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes pilotctl, clawhub, pilot-protocol, and a running daemon are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Chat messages may be moderated, translated, archived, indexed, backed up, and routed across multiple agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where operators and participants understand those data flows, and restrict translation or archival for private or sensitive rooms.
+
+Risk: Trust relationships, retention behavior, and dependency controls are under-specified for a multi-agent chat deployment.
+
+Mitigation: Pin and verify installed pilot-* skills, manually confirm trust handshakes, and define archive retention and deletion rules before use.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-chat-collaboration-hub-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific setup steps, trust handshakes, hostnames, data-flow descriptions, and manifest templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

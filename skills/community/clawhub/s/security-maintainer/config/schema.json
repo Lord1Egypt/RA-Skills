@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecurityMaintainerConfig",
+  "type": "object",
+  "required": ["version", "mode", "windows", "wsl", "advisories", "execution"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Versión del esquema de configuración"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["audit", "ask", "auto"],
+      "default": "ask",
+      "description": "Modo de funcionamiento: audit (solo lectura), ask (aprobación requerida), auto (política automática)"
+    },
+    "windows": {
+      "type": "object",
+      "required": ["enabled", "allow_reboots", "excluded_packages"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "winget": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "include_unknown": { "type": "boolean" }
+          }
+        },
+        "windows_update": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "check_only": { "type": "boolean" }
+          }
+        },
+        "allow_major_upgrades": { "type": "boolean", "default": false },
+        "allow_reboots": { "type": "boolean", "default": false },
+        "excluded_packages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "allowed_packages": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "wsl": {
+      "type": "object",
+      "required": ["enabled", "auto_start_stopped_distros", "allow_reboots"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "auto_start_stopped_distros": { "type": "boolean", "default": false },
+        "allow_reboots": { "type": "boolean", "default": false },
+        "distributions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "security_updates_only": { "type": "boolean", "default": true },
+              "excluded_packages": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "allowed_packages": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "configured_services": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "projects": {
+      "type": "object",
+      "description": "Optional paths to audit, remediate, and verify local project package manifests (package.json, requirements.txt) and their test suites.",
+      "properties": {
+        "registered_paths": {
+          "type": "array",
+          "description": "List of explicit filesystem directories where project manifests should be audited for supply-chain vulnerabilities.",
+          "items": { "type": "string" }
+        },
+        "auto_run_tests": {
+          "type": "boolean",
+          "description": "Whether to verify project test suites after applying dependency updates.",
+          "default": true
+        }
+      }
+    },
+    "advisories": {
+      "type": "object",
+      "required": ["osv", "cisa_kev", "min_severity_to_alert"],
+      "properties": {
+        "osv": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "timeout_seconds": { "type": "integer", "minimum": 1 },
+            "max_retries": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "cisa_kev": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "cache_ttl_hours": { "type": "integer", "minimum": 1 },
+            "url": { "type": "string" }
+          }
+        },
+        "min_severity_to_alert": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["max_actions_per_run", "plan_validity_minutes", "lock_timeout_seconds"],
+      "properties": {
+        "max_actions_per_run": { "type": "integer", "minimum": 1 },
+        "plan_validity_minutes": { "type": "integer", "minimum": 1 },
+        "lock_timeout_seconds": { "type": "integer", "minimum": 5 },
+        "report_format": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["json", "markdown"] }
+        },
+        "reports_directory": { "type": "string" },
+        "history_retention_days": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

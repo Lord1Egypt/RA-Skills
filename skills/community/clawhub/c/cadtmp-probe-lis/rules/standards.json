@@ -1,0 +1,539 @@
+{
+  "schema": "cad-normative-metadata/v1",
+  "boundary": "仅索引规范/图集元数据、授权入口与输入缺口；不保存全文，不输出合规结论。",
+  "known": [
+    {
+      "id": "GB50010-2010(2015年版)",
+      "kind": "standard",
+      "name": "混凝土结构设计规范",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/混凝土",
+      "note": "以图纸注明版本为准；注意通用规范衔接"
+    },
+    {
+      "id": "GB50011-2010(2016年版)",
+      "kind": "standard",
+      "name": "建筑抗震设计规范",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/抗震",
+      "note": "以图纸注明版本为准；注意通用规范衔接"
+    },
+    {
+      "id": "GB50009-2012",
+      "kind": "standard",
+      "name": "建筑结构荷载规范",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/荷载",
+      "note": "以图纸注明版本为准；注意通用规范衔接"
+    },
+    {
+      "id": "JGJ3-2010",
+      "kind": "standard",
+      "name": "高层建筑混凝土结构技术规程",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/混凝土",
+      "note": "以图纸注明版本为准；注意通用规范衔接"
+    },
+    {
+      "id": "22G101-1",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（现浇混凝土框架、剪力墙、梁、板）",
+      "status": "以图纸指定版本为准",
+      "discipline": "结构/平法",
+      "note": "常用平法图集；以图纸指定版本为准"
+    },
+    {
+      "id": "18G901-1",
+      "kind": "atlas",
+      "name": "混凝土结构施工钢筋排布规则与构造详图",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/钢筋",
+      "note": "钢筋排布图集；以图纸指定版本为准"
+    },
+    {
+      "id": "18G901-2",
+      "kind": "atlas",
+      "name": "混凝土结构施工钢筋排布规则与构造详图（现浇混凝土板式楼梯）",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/钢筋",
+      "note": "楼梯钢筋排布图集；以图纸指定版本为准"
+    },
+    {
+      "id": "18G901-3",
+      "kind": "atlas",
+      "name": "混凝土结构施工钢筋排布规则与构造详图（独立基础、条形基础、筏形基础、桩基承台）",
+      "status": "以图纸注明版本为准",
+      "discipline": "结构/钢筋",
+      "note": "基础钢筋排布图集；以图纸指定版本为准"
+    },
+    {
+      "id": "11G329-2",
+      "kind": "atlas",
+      "name": "建筑物抗震构造详图（多层砌体房屋和底部框架砌体房屋）",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/11G329-2.md",
+      "source_url": ""
+    },
+    {
+      "id": "12G614-1",
+      "kind": "atlas",
+      "name": "砌体填充墙结构构造",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/12G614-1.md",
+      "source_url": ""
+    },
+    {
+      "id": "13J104",
+      "kind": "atlas",
+      "name": "蒸压加气混凝土砌块、板材构造",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/13J104.md",
+      "source_url": ""
+    },
+    {
+      "id": "CECS289-2011",
+      "kind": "standard",
+      "name": "蒸压加气混凝土砌块砌体结构技术规范",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/CECS 289-2011.md",
+      "source_url": ""
+    },
+    {
+      "id": "GB50203-2011",
+      "kind": "standard",
+      "name": "砌体结构工程施工质量验收规范",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/GB 50203-2011.md",
+      "source_url": ""
+    },
+    {
+      "id": "GB50924-2014",
+      "kind": "standard",
+      "name": "砌体结构工程施工规范",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/GB 50924-2014.md",
+      "source_url": ""
+    },
+    {
+      "id": "JGJ/T17-2008",
+      "kind": "standard",
+      "name": "蒸压加气混凝土建筑应用技术规程",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/JGJ_T 17-2008.md",
+      "source_url": ""
+    },
+    {
+      "id": "JGJ/T223-2010",
+      "kind": "standard",
+      "name": "预拌砂浆应用技术规程",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/JGJ_T 223-2010.md",
+      "source_url": ""
+    },
+    {
+      "id": "L13G7",
+      "kind": "atlas",
+      "name": "钢筋混凝土过梁",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/L13G7.md",
+      "source_url": ""
+    },
+    {
+      "id": "L13J3-3",
+      "kind": "atlas",
+      "name": "加气混凝土砌块墙",
+      "status": "待确认",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "二次结构/L13J3-3.md",
+      "source_url": ""
+    },
+    {
+      "id": "DB37/T2366-2022",
+      "kind": "standard",
+      "name": "山东省回弹法检测混凝土抗压强度技术规程",
+      "status": "现行（2023-02-01实施，待人工核对）",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "回弹法/DB37_T 2366-2022.md",
+      "source_url": ""
+    },
+    {
+      "id": "GB50015-2019",
+      "kind": "standard",
+      "name": "建筑给水排水设计标准",
+      "status": "现行",
+      "discipline": "给水排水",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50015-2019 建筑给水排水设计标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=115664"
+    },
+    {
+      "id": "GB50084-2017",
+      "kind": "standard",
+      "name": "自动喷水灭火系统设计规范",
+      "status": "现行",
+      "discipline": "消防",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50084-2017 自动喷水灭火系统设计规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=100402"
+    },
+    {
+      "id": "GB50116-2013",
+      "kind": "standard",
+      "name": "火灾自动报警系统设计规范",
+      "status": "现行",
+      "discipline": "消防/火灾自动报警",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50116-2013 火灾自动报警系统设计规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=61051"
+    },
+    {
+      "id": "GB50207-2012",
+      "kind": "standard",
+      "name": "屋面工程质量验收规范",
+      "status": "现行",
+      "discipline": "防水/屋面",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50207-2012 屋面工程质量验收规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=57960"
+    },
+    {
+      "id": "GB50208-2011",
+      "kind": "standard",
+      "name": "地下防水工程质量验收规范",
+      "status": "现行",
+      "discipline": "防水/屋面",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50208-2011 地下防水工程质量验收规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=57488"
+    },
+    {
+      "id": "GB50209-2010",
+      "kind": "standard",
+      "name": "建筑地面工程施工质量验收规范",
+      "status": "现行",
+      "discipline": "装饰/防火",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50209-2010 建筑地面工程施工质量验收规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=57755"
+    },
+    {
+      "id": "GB50210-2018",
+      "kind": "standard",
+      "name": "建筑装饰装修工程质量验收标准",
+      "status": "现行",
+      "discipline": "装饰/防火",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50210-2018 建筑装饰装修工程质量验收标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=105532"
+    },
+    {
+      "id": "GB50222-2017",
+      "kind": "standard",
+      "name": "建筑内部装修设计防火规范",
+      "status": "现行",
+      "discipline": "装饰/防火",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50222-2017 建筑内部装修设计防火规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=103203"
+    },
+    {
+      "id": "GB50325-2020",
+      "kind": "standard",
+      "name": "民用建筑工程室内环境污染控制标准",
+      "status": "现行",
+      "discipline": "装饰/防火",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50325-2020 民用建筑工程室内环境污染控制标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=126823"
+    },
+    {
+      "id": "GB50327-2001",
+      "kind": "standard",
+      "name": "住宅装饰装修工程施工规范",
+      "status": "现行",
+      "discipline": "装饰/防火",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50327-2001 住宅装饰装修工程施工规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=60342"
+    },
+    {
+      "id": "GB50345-2012",
+      "kind": "standard",
+      "name": "屋面工程技术规范",
+      "status": "现行",
+      "discipline": "防水/屋面",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50345-2012 屋面工程技术规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=60869"
+    },
+    {
+      "id": "GB50411-2019",
+      "kind": "standard",
+      "name": "建筑节能工程施工质量验收标准",
+      "status": "现行",
+      "discipline": "节能/保温",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50411-2019 建筑节能工程施工质量验收标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=114930"
+    },
+    {
+      "id": "GB50500-2013",
+      "kind": "standard",
+      "name": "建设工程工程量清单计价规范",
+      "status": "现行",
+      "discipline": "造价/工程量",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50500-2013 建设工程工程量清单计价规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=60345"
+    },
+    {
+      "id": "GB50854-2013",
+      "kind": "standard",
+      "name": "房屋建筑与装饰工程工程量计算规范",
+      "status": "现行",
+      "discipline": "造价/工程量",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50854-2013 房屋建筑与装饰工程工程量计算规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=58360"
+    },
+    {
+      "id": "GB50856-2013",
+      "kind": "standard",
+      "name": "通用安装工程工程量计算规范",
+      "status": "现行",
+      "discipline": "造价/工程量",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 50856-2013 通用安装工程工程量计算规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=58448"
+    },
+    {
+      "id": "GB51309-2018",
+      "kind": "standard",
+      "name": "消防应急照明和疏散指示系统技术标准",
+      "status": "现行",
+      "discipline": "消防",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 51309-2018 消防应急照明和疏散指示系统技术标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=110780"
+    },
+    {
+      "id": "GB51348-2019",
+      "kind": "standard",
+      "name": "民用建筑电气设计标准",
+      "status": "现行",
+      "discipline": "电气",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 51348-2019 民用建筑电气设计标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=131716"
+    },
+    {
+      "id": "GB55001-2021",
+      "kind": "standard",
+      "name": "工程结构通用规范",
+      "status": "现行",
+      "discipline": "结构",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 55001-2021 工程结构通用规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=147169"
+    },
+    {
+      "id": "GB55002-2021",
+      "kind": "standard",
+      "name": "建筑与市政工程抗震通用规范",
+      "status": "现行",
+      "discipline": "抗震",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 55002-2021 建筑与市政工程抗震通用规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=148672"
+    },
+    {
+      "id": "GB55008-2021",
+      "kind": "standard",
+      "name": "混凝土结构通用规范",
+      "status": "现行",
+      "discipline": "结构/平法",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 55008-2021 混凝土结构通用规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=149507"
+    },
+    {
+      "id": "GB55030-2022",
+      "kind": "standard",
+      "name": "建筑与市政工程防水通用规范",
+      "status": "现行",
+      "discipline": "防水/屋面",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB 55030-2022 建筑与市政工程防水通用规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=154718"
+    },
+    {
+      "id": "GB/T50001-2017",
+      "kind": "standard",
+      "name": "房屋建筑制图统一标准",
+      "status": "现行",
+      "discipline": "制图",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB_T 50001-2017 房屋建筑制图统一标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=102879"
+    },
+    {
+      "id": "GB/T50105-2010",
+      "kind": "standard",
+      "name": "建筑结构制图标准",
+      "status": "现行",
+      "discipline": "制图",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB_T 50105-2010 建筑结构制图标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=59350"
+    },
+    {
+      "id": "GB/T50353-2013",
+      "kind": "standard",
+      "name": "建筑工程建筑面积计算规范",
+      "status": "现行",
+      "discipline": "造价/工程量",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "国家标准/GB_T 50353-2013 建筑工程建筑面积计算规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=60362"
+    },
+    {
+      "id": "07J306",
+      "kind": "atlas",
+      "name": "窗井、设备吊装口、排水沟、集水坑",
+      "status": "待确认",
+      "discipline": "技术质量",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "建筑构造/07J306.md",
+      "source_url": ""
+    },
+    {
+      "id": "JG/T163-2013",
+      "kind": "standard",
+      "name": "钢筋机械连接用套筒",
+      "status": "现行（待人工核对）",
+      "discipline": "结构/二次结构",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "机械连接/JG_T 163-2013.md",
+      "source_url": ""
+    },
+    {
+      "id": "16G101-1",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（现浇混凝土框架、剪力墙、梁、板）",
+      "status": "待确认",
+      "discipline": "结构/平法",
+      "note": "旧版平法图集；不得与新图混用；知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "结构图集/16G101-1.md",
+      "source_url": ""
+    },
+    {
+      "id": "16G101-2",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（现浇混凝土板式楼梯）",
+      "status": "待确认",
+      "discipline": "结构/平法",
+      "note": "旧版平法图集；不得与新图混用；知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "结构图集/16G101-2.md",
+      "source_url": ""
+    },
+    {
+      "id": "16G101-3",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（独立基础、条形基础、筏形基础及桩基承台）",
+      "status": "待确认",
+      "discipline": "结构/平法",
+      "note": "旧版平法图集；不得与新图混用；知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "结构图集/16G101-3.md",
+      "source_url": ""
+    },
+    {
+      "id": "22G101-2",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（现浇混凝土板式楼梯）",
+      "status": "现行",
+      "discipline": "结构/平法",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "结构图集/22G101-2.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=153225"
+    },
+    {
+      "id": "22G101-3",
+      "kind": "atlas",
+      "name": "混凝土结构施工图平面整体表示方法制图规则和构造详图（独立基础、条形基础、筏形基础、桩基础）",
+      "status": "现行",
+      "discipline": "结构/平法",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "结构图集/22G101-3.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=153226"
+    },
+    {
+      "id": "04S519",
+      "kind": "atlas",
+      "name": "隔油池图集",
+      "status": "待确认",
+      "discipline": "给排水",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "给排水/04S519.md",
+      "source_url": ""
+    },
+    {
+      "id": "JGJ144-2019",
+      "kind": "standard",
+      "name": "外墙外保温工程技术标准",
+      "status": "现行",
+      "discipline": "节能/保温",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "行业标准/JGJ 144-2019 外墙外保温工程技术标准.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=114866"
+    },
+    {
+      "id": "JGJ298-2013",
+      "kind": "standard",
+      "name": "住宅室内防水工程技术规范",
+      "status": "现行",
+      "discipline": "防水/屋面",
+      "note": "知识库在线入口元数据；不替代图纸指定版本",
+      "kb_path": "行业标准/JGJ 298-2013 住宅室内防水工程技术规范.md",
+      "source_url": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=57466"
+    },
+    {
+      "id": "CJJ1-2008",
+      "kind": "standard",
+      "name": "城镇道路工程施工与质量验收规范",
+      "status": "待确认",
+      "discipline": "道路",
+      "note": "知识库附件跳转元数据；版本与全文需人工核对",
+      "kb_path": "道路/CJJ 1-2008.md",
+      "source_url": ""
+    }
+  ],
+  "covered_ids": [
+    "22G101-1",
+    "16G101-1"
+  ],
+  "knowledge_base": {
+    "root_key": "外部公开资料/规范图集",
+    "scope": "仅保存规范/图集元数据与授权入口，不复制全文；正式使用前核对现行版本和图纸指定版本",
+    "updated": "2026-09-18"
+  }
+}

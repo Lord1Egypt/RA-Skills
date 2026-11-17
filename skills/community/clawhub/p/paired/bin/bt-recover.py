@@ -14,9 +14,19 @@ This script:
   4. Re-checks and reports.
 
 Requires sudo. Either:
-  * configure passwordless sudo for the commands this script runs (recommended):
+  * configure passwordless sudo for the commands this script runs (recommended).
+    Pin to the EXACT commands this tool invokes — never grant a shell
+    (/usr/bin/sh) or an unrestricted wildcard, which would be an effective
+    passwordless root login:
       visudo -f /etc/sudoers.d/paired-bt-recover
-      <youruser> ALL=(root) NOPASSWD: /usr/sbin/rfkill, /usr/bin/systemctl, /usr/sbin/hciconfig, /usr/bin/sh
+      <youruser> ALL=(root) NOPASSWD: \
+          /usr/sbin/rfkill unblock bluetooth, \
+          /usr/sbin/rfkill block bluetooth, \
+          /usr/bin/systemctl restart bluetooth, \
+          /usr/sbin/hciconfig hci[0-9] up, \
+          /usr/sbin/hciconfig hci[0-9] down, \
+          /usr/sbin/hciconfig hci[0-9] reset, \
+          /usr/bin/tee /sys/bus/usb/devices/*/authorized
   * or set SUDO_PASS in the environment before invoking (insecure on shared hosts)
   * or run interactively and let sudo prompt
 """
@@ -36,6 +46,20 @@ def _sudo(*args: str) -> tuple[int, str]:
     pw = os.environ.get("SUDO_PASS")
     cmd = ["sudo", "-S" if pw else "-n", *args]
     stdin_input = (pw + "\n") if pw else None
+    p = subprocess.run(cmd, input=stdin_input, capture_output=True, text=True)
+    return p.returncode, (p.stdout + p.stderr).strip()
+
+
+def _sudo_write_sysfs(path: str, value: str) -> tuple[int, str]:
+    """Write `value` to a root-owned sysfs file via `sudo tee` (no shell).
+
+    Replaces the earlier `sudo sh -c 'echo ... > path'`, which required a
+    passwordless rule for /usr/bin/sh — an effective root shell. `tee` pinned
+    to the USB `authorized` path is the narrow primitive the sudoers rule grants.
+    """
+    pw = os.environ.get("SUDO_PASS")
+    cmd = ["sudo", "-S" if pw else "-n", "tee", path]
+    stdin_input = ((pw + "\n") if pw else "") + value + "\n"
     p = subprocess.run(cmd, input=stdin_input, capture_output=True, text=True)
     return p.returncode, (p.stdout + p.stderr).strip()
 
@@ -103,9 +127,9 @@ def main() -> int:
     for sysdir, vid, pid in btusb_devs:
         dev = Path(sysdir).name
         print(f"  Resetting USB device {dev} (vid={vid} pid={pid})")
-        _sudo("sh", "-c", f"echo 0 > {sysdir}/authorized")
+        _sudo_write_sysfs(f"{sysdir}/authorized", "0")
         time.sleep(1)
-        _sudo("sh", "-c", f"echo 1 > {sysdir}/authorized")
+        _sudo_write_sysfs(f"{sysdir}/authorized", "1")
         time.sleep(4)
 
     _sudo("systemctl", "restart", "bluetooth")

@@ -1,44 +1,57 @@
-## Description: <br>
-Use when researchers need a Nature-inspired, context-first workflow to polish academic paragraphs, abstracts, reviewer responses, peer-review comments, or editorial feedback. Revises for clarity, coherence, concision, and journal-ready tone while preserving author intent, avoiding invented claims or citations, and flagging ambiguity or meaning risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when researchers need a Nature-inspired, context-first workflow to polish academic paragraphs, abstracts, reviewer responses, peer-review comments, or editorial feedback while preserving author intent, avoiding invented claims or citations, and flagging ambiguity or meaning risks.
 
-## Publisher: <br>
-[figpad](https://clawhub.ai/user/figpad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[figpad](https://clawhub.ai/user/figpad)
 
-## Use Case: <br>
-Researchers, authors, reviewers, and editors use this skill to polish academic text, reviewer responses, peer-review comments, and editorial feedback while preserving intended meaning and flagging ambiguity or meaning risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Polished academic prose can accidentally change scientific meaning, certainty, citations, statistics, or technical terms. <br>
-Mitigation: Review the polished text against the original and verify claims, citations, statistical values, technical terms, and uncertainty language before use. <br>
-Risk: Academic drafts, reviewer material, and editorial notes may contain confidential or sensitive information. <br>
-Mitigation: Share only content appropriate for the agent environment and remove confidential details when they are not needed for the revision task. <br>
+## Use Case:
 
+Researchers and academic authors use this skill to polish user-provided scholarly text for clarity, coherence, concision, and professional tone. It is also used to refine reviewer responses and organize peer-review or editorial feedback without inventing claims, citations, or manuscript details.
 
-## Reference(s): <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
-- [Examples](references/examples.md) <br>
-- [Academic Writing Polisher homepage](https://github.com/Figpad/academic-writing-polisher) <br>
-- [Nature source inspiration](https://doi.org/10.1038/d41586-024-01042-3) <br>
-- [ClawHub skill page](https://clawhub.ai/figpad/academic-writing-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with revised prose, change notes, meaning checks, and risk flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves provided claims, citations, technical terms, statistics, and uncertainty levels unless the user asks otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Users may paste confidential manuscript or review material into the agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text that the user's normal agent workflow is allowed to process, and avoid sharing confidential manuscript material unless permitted.
+
+Risk: Academic polishing can unintentionally change meaning, certainty, citations, or author intent.
+
+Mitigation: Review the polished output, meaning check, and risk flags before using the text in scholarly or publication workflows.
+
+## Reference(s):
+
+- [Academic Writing Polisher on ClawHub](https://clawhub.ai/figpad/skills/academic-writing-polisher)
+- [Homepage](https://github.com/Figpad/academic-writing-polisher)
+- [Source Inspiration: Nature Career Column](https://doi.org/10.1038/d41586-024-01042-3)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with revised text, change notes, meaning checks, and risk flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Works on user-provided academic text and may ask for context before revising.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Converts Word, Excel, or PDF clinical CRF and protocol documents into REDCap-compatible data dictionary CSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redcap Crf Generator converts clinical trial CRF, protocol, questionnaire, or survey documents into REDCap data dictionary CSV files.
 
-## Publisher: <br>
-[kenlcj](https://clawhub.ai/user/kenlcj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenlcj](https://clawhub.ai/user/kenlcj)
 
-## Use Case: <br>
-Clinical research teams and REDCap builders use this skill to turn CRF, protocol, questionnaire, or survey documents into import-ready REDCap data dictionaries. It is intended for workflows where users can review the generated CSV before importing it into a study. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical-derived CSV files may contain sensitive study or patient-related information, and the artifact instructs users to share CSV output through Feishu without clear consent, recipient, or privacy controls. <br>
-Mitigation: Use de-identified test documents unless sharing and output handling are explicitly approved; avoid Feishu sharing when controls are unclear. <br>
-Risk: Generated REDCap dictionaries can misrepresent clinical fields, validation rules, identifiers, or branching logic if the source document is complex or ambiguous. <br>
-Mitigation: Manually validate the generated CSV, including identifier flags and REDCap import behavior, before using it in a study. <br>
+## Use Case:
 
+Clinical data managers, researchers, and agents working with allowed CRF, protocol, questionnaire, or survey documents use this skill to create REDCap import-ready data dictionary CSVs. It helps identify forms, sections, field types, validation rules, branching logic, calculated fields, file upload fields, and REDCap-compatible variable names.
 
-## Reference(s): <br>
-- [ClawHub skill homepage](https://clawhub.ai/skills/redcap-crf-generator) <br>
-- [Published skill page](https://clawhub.ai/kenlcj/redcap-crf-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [CSV REDCap data dictionary with Markdown or terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write UTF-8 CSV files for REDCap import and show preview output for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence; artifact metadata reports 1.1.0) <br>
+Risk: Clinical data or generated CSVs could be shared through Feishu without explicit recipient, consent, or privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only CSV output by default, process only documents the user is allowed to handle, and send files through Feishu only after recipient and approval are explicit.
+
+Risk: Generated CSVs may contain sensitive fields or content that is unsafe to open directly in spreadsheet software or import into REDCap.
+
+Mitigation: Inspect generated CSVs before spreadsheet use or REDCap import, and confirm identifier fields, validation rules, and branching logic against the source CRF.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenlcj/skills/redcap-crf-generator)
+- [OpenClaw metadata homepage](https://clawhub.ai/skills/redcap-crf-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python commands and REDCap-compatible CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated CSV data dictionaries should be reviewed before opening in spreadsheet software or importing into REDCap.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; bundled OpenClaw metadata says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

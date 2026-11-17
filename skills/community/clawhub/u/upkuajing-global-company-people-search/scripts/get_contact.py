@@ -23,7 +23,7 @@ def get_contact(bus_ids: list, bus_type: int) -> dict:
         'bus_ids': bus_ids,
         'bus_type': bus_type
     }
-    response = make_request('/search/contact/batch', params)
+    response = make_request('/agent/search/contact/batch', params)
     return response
 
 
@@ -58,9 +58,15 @@ def main():
     # 从响应中提取数据
     if response.get('code') == 0:
         data = response.get('data', {})
-        print_json_output({"data": data, "fee": cover_fee_info(response.get('fee', {}))})
+        print_json_output({
+            "data": data,
+            "fee": cover_fee_info(response.get('fee', {})),
+            "requestId": response.get('requestId')
+        })
     else:
         print(f"错误：{response.get('msg', '未知错误')}", file=sys.stderr)
+        if response.get('requestId'):
+            print(f"requestId：{response.get('requestId')}", file=sys.stderr)
         sys.exit(1)
 
 

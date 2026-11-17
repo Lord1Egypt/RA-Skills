@@ -1,0 +1,9 @@
+{
+  "slug": "ssh-executor-full",
+  "displayName": "SSH Executor (Full)",
+  "version": "2.4.2",
+  "packageFile": "ssh-executor-full-2.4.2.zip",
+  "shortDescription": "v2.4.2 full — Complete SSH tool with sudo, password auth, and vault integration.",
+  "tags": ["ssh", "remote", "cross-platform", "sudo", "devops", "multiplexing", "security-hardened"],
+  "changelog": "v2.4.2 — Full edition with sudo support and password auth. For production use, prefer the base edition (key-only) when sudo is not required."
+}

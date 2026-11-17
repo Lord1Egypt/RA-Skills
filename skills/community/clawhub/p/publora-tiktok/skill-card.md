@@ -1,43 +1,63 @@
-## Description: <br>
-Post or schedule video content to TikTok using the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule video content to TikTok using the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Publora API calls for creating, uploading, and scheduling TikTok video posts. It is suited for workflows that need TikTok-specific platform limits, upload steps, and common posting error guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps create, upload, and schedule TikTok videos through Publora, so incorrect captions, platform IDs, schedule times, or video files could publish unintended content. <br>
-Mitigation: Review the caption, platform ID, schedule time, and selected video before sending API requests or allowing an agent to execute them. <br>
-Risk: Publora API keys are required for publishing workflows and could grant posting access if exposed. <br>
-Mitigation: Use a scoped Publora API key when available, avoid pasting long-lived secrets into shared logs or prompts, and revoke keys that are no longer needed. <br>
+## Use Case:
 
+Developers and social media operators use this skill to prepare API calls and guidance for uploading, drafting, or scheduling TikTok videos through Publora.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sergebulaev/publora-tiktok) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
-- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post) <br>
-- [Publora upload URL endpoint](https://api.publora.com/api/v1/get-upload-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with JavaScript and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Publora request guidance for TikTok video posts; users provide captions, platform IDs, schedule times, and video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Publora API keys could be exposed or misused if handled as ordinary text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the Publora API key as sensitive and avoid placing real keys in shared prompts, code examples, logs, or public files.
+
+Risk: A post could be uploaded to the wrong TikTok account or scheduled for the wrong time.
+
+Mitigation: Confirm the target TikTok platform ID and scheduled time before running examples against a real account.
+
+Risk: Captions or videos that exceed TikTok API limits may fail or trigger posting errors.
+
+Mitigation: Review captions and videos before upload, including caption length, video duration, daily posting volume, and rate limits.
+
+Risk: Unaudited TikTok apps may publish posts as private by default.
+
+Mitigation: Confirm TikTok app audit status and expected visibility before relying on a scheduled post for public distribution.
+
+## Reference(s):
+
+- [Publora API base URL](https://api.publora.com/api/v1)
+- [Create post endpoint](https://api.publora.com/api/v1/create-post)
+- [Upload URL endpoint](https://api.publora.com/api/v1/get-upload-url)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Publora API endpoints, TikTok platform limits, required platform ID format, and upload workflow notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

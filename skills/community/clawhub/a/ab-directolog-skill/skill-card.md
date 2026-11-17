@@ -1,45 +1,61 @@
-## Description: <br>
-A Yandex.Direct automation skill that helps an agent manage campaigns, retrieve advertising data, generate reports, analyze performance, and suggest bid or campaign optimizations through the Yandex.Direct API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AB-Directolog-Skill helps an agent automate Yandex.Direct campaign management, reporting, bid analysis, and optimization through the Yandex.Direct API v5.
 
-## Publisher: <br>
-[alexburrstudio](https://clawhub.ai/user/alexburrstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexburrstudio](https://clawhub.ai/user/alexburrstudio)
 
-## Use Case: <br>
-Advertising operators, marketers, and developers use this skill to connect an agent to Yandex.Direct, inspect campaigns and keywords, create or edit campaigns, request reports, and produce optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live authority over advertising campaigns, including campaign creation and bid or budget changes. <br>
-Mitigation: Require explicit human approval or a dry-run review before any campaign, budget, bid, ad, or keyword mutation is executed. <br>
-Risk: OAuth client secrets, access tokens, and refresh tokens are required and may be retained in memory or printed by example token-refresh behavior. <br>
-Mitigation: Use a dedicated revocable Yandex application and token, keep secrets out of agent memory and logs, remove token printing, and redact diagnostics before use. <br>
-Risk: Advertising reports and account data may include sensitive business performance information. <br>
-Mitigation: Limit account scope, store reports only where authorized, and review generated summaries before sharing them outside the operational team. <br>
+## Use Case:
 
+Marketing operators, agencies, and developers use this skill to let an agent inspect Yandex.Direct campaigns, request performance reports, manage bids and keywords, and prepare optimization recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alexburrstudio/ab-directolog-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/alexburrstudio) <br>
-- [Yandex.Direct token documentation](https://yandex.ru/dev/direct/doc/ru/token) <br>
-- [Yandex OAuth application portal](https://oauth.yandex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and report tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Yandex.Direct API endpoints using OAuth credentials supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can give an agent live Yandex.Direct account authority through OAuth credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted OAuth credentials, test first on non-production or low-budget accounts, and review account access before enabling campaign changes.
+
+Risk: Mutating examples can create or alter live advertising campaigns if run casually.
+
+Mitigation: Review every mutating command before execution and separate read-only reporting workflows from campaign creation or bid-change workflows.
+
+Risk: OAuth tokens or refresh responses could be exposed in markdown memory or logs.
+
+Mitigation: Keep tokens in environment variables or a secret store, avoid saving OAuth responses in memory files, and redact command output before logging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexburrstudio/skills/ab-directolog-skill)
+- [Yandex.Direct token documentation](https://yandex.ru/dev/direct/doc/ru/token)
+- [Yandex OAuth](https://oauth.yandex.com)
+- [Yandex developer projects](https://developer.tech.yandex.ru/projects)
+- [Yandex.Direct dashboard](https://direct.yandex.ru)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Yandex.Direct API requests, reports, campaign recommendations, and token setup instructions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

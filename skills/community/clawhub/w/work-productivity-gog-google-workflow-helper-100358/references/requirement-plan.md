@@ -1,0 +1,81 @@
+# Requirement Plan
+
+## Live Requirement
+
+Validated demand: Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+
+## Audience
+
+AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
+
+## Category
+
+work-productivity
+
+## Requirement Score
+
+Total: 100/100
+
+Demand: 70/70
+
+Local feasibility: 30/30
+
+Evidence coverage: 10 signals across 3 source families.
+
+Scoring rationale:
+
+- Evidence count: 10; required minimum: 3.
+- Distinct source families: 3; sources: clawhub, csdn, hacker-news.
+- Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
+- Local feasibility score: 30/30.
+- Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
+- Clawhub-derived idea: popularity is only a seed signal; this idea is scored by the same 100-point requirement scorer and must meet the implementation threshold.
+
+## Evidence
+
+- clawhub-popular-skill (2026-07-05T13:28:03.853000+00:00): [Popular Clawhub skill demand: self-improving agent has 469,035 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Gog has 189,145 downloads](https://clawhub.ai/skills/gog)
+- clawhub-popular-skill (2026-05-11T07:50:52.489000+00:00): [Popular Clawhub skill demand: ontology has 193,956 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill (2026-06-12T12:48:37.834000+00:00): [Popular Clawhub skill demand: Github has 193,423 downloads](https://clawhub.ai/skills/github)
+- clawhub-popular-skill (2026-05-11T07:50:48.771000+00:00): [Popular Clawhub skill demand: Agent Browser has 149,344 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill (2026-05-18T20:48:40.034000+00:00): [Popular Clawhub skill demand: Obsidian has 105,508 downloads](https://clawhub.ai/skills/obsidian)
+- clawhub-popular-skill (2026-05-11T07:48:49.679000+00:00): [Popular Clawhub skill demand: Nano Pdf has 116,482 downloads](https://clawhub.ai/skills/nano-pdf)
+- clawhub-popular-skill (2026-05-11T09:38:07.825000+00:00): [Popular Clawhub skill demand: PollyReach has 100,201 downloads](https://clawhub.ai/skills/pollyreach)
+- hacker-news-ask-hn (2026-07-17T14:21:25+00:00): [Is GPT-5.6 Sol Max Worth It?](https://news.ycombinator.com/item?id=48947713)
+- csdn-search (2026-07-19T10:07:23.310511+00:00): [OpenClaw里装技能有几种靠谱方法？各有什么适用场景？](https://wenku.csdn.net/answer/63d9agn1gki4?ops_request_misc=elastic_search_misc&request_id=05910de852604d6b9974b446b74f4089&biz_id=&utm_medium=distribute.pc_search_result.none-task-chatgpt-2~all~ElasticSearch~search_v2-7-63d9agn1gki4-null-null.142^v102^pc_search_result_base7&utm_term=gog%20google%20workspace%20cli)
+
+## How The Skill Meets The Requirement
+
+Transforms the live request into a repeatable workflow that clarifies the user's context, produces a concrete deliverable, checks the result against the original need, and keeps execution feasible on ordinary CPU or family GPU hardware.
+
+## Executable Implementation Plan
+
+1. Restate the user's outcome, constraints, available inputs, and success criteria.
+2. Create a concise work plan, template, automation outline, or decision aid that reduces manual coordination.
+3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
+4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
+5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
+6. Validate the output against the success criteria and list any remaining risks or follow-up work.
+
+## Expected Outputs
+
+- A tailored answer or artifact for the user's immediate situation.
+- A reusable checklist or workflow when the task is repeatable.
+- A verification note showing how the result was checked.
+
+## Review Criteria
+
+- The output directly addresses the discovered requirement.
+- The user can act on the result without reading the original source post.
+- Assumptions, limits, and required inputs are visible.
+- The final response includes a short usage or next-step note when helpful.
+
+## Usage Signals
+
+Keywords: work-productivity, gog, google, workspace, cli, gmail, calendar, drive, contacts, bug fix
+
+Trigger sentences:
+
+- Help me Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup.
+- I need a practical workflow for Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup.
+- Use $work-productivity-gog-google-workflow-helper to handle Agent users show strong demand for Gog-style workflows on Clawhub. They need practical help fixing bugs, hardening setup.

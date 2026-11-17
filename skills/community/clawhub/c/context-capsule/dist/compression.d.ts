@@ -7,9 +7,13 @@
  * from older history. This is still lossy, but it preserves the material that
  * usually matters in long agent sessions while keeping prompt tokens bounded.
  *
- * Dependencies: Node.js built-ins only — `node:zlib` (deflate) and
- * `node:crypto` (SHA-256). No network, file I/O, dynamic imports, or
- * third-party packages.
+ * Crypto/compression run through a platform shim (./platform): the Node build
+ * uses `node:zlib` + `node:crypto`; a browser build aliases it to
+ * ./platform.browser (@noble/hashes + pako) so this exact source also runs in a
+ * browser tab. The SHA-256 path is byte-identical across backends, so a capsule's
+ * merkleRoot / capsuleId / injected memory are identical in a browser and in Node
+ * (the audit blob is round-trip-identical) — see test/platform-parity.test.mjs.
+ * No network, file I/O, or dynamic imports.
  */
 export interface Message {
     role: string;

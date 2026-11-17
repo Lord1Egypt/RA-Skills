@@ -1,43 +1,59 @@
-## Description: <br>
-High school geography tutoring skill for precise Q&A, textbook lookup, study tools, mistake tracking, past-exam analysis, and score-improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides high-school geography study support for Q&A, textbook and syllabus lookup, formula and chart tools, wrong-question organization, exam question explanations, and score-improvement practice.
 
-## Publisher: <br>
-[chenleimap](https://clawhub.ai/user/chenleimap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenleimap](https://clawhub.ai/user/chenleimap)
 
-## Use Case: <br>
-External high school geography learners use this skill to ask concept questions, interpret textbook and syllabus material, review formulas and charts, organize mistakes, and get basic past-exam explanations. The content is oriented toward Chinese high school geography curricula and exam preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide incorrect or incomplete study guidance for important exam answers. <br>
-Mitigation: Treat responses as study aid output and verify important answers against official materials or a teacher. <br>
-Risk: Questions, photos, voice input, and saved mistakes may include sensitive study records. <br>
-Mitigation: Only upload or save content that the learner is comfortable retaining in the host app. <br>
+## Use Case:
 
+Students and education users use this skill for high-school geography study help, including concept explanations, textbook and syllabus lookup, basic problem solving, formula lookup, chart interpretation, wrong-question organization, and exam review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenleimap/dili) <br>
-- [Publisher profile](https://clawhub.ai/user/chenleimap) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text tutoring responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured study guidance, answer steps, knowledge-point labels, and mistake classifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Geography answers or exam explanations may be wrong or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use responses as study assistance and verify important answers against teacher guidance, textbooks, or official exam materials.
+
+Risk: Uploaded questions or wrong-answer collections may be retained for study organization.
+
+Mitigation: Avoid uploading sensitive personal information and confirm retention expectations before installation.
+
+Risk: Claims about broad authoritative reference coverage were not verifiable from the shipped files.
+
+Mitigation: Treat source-coverage claims as publisher-provided and validate critical curriculum or exam content against official materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenleimap/skills/dili)
+- [Publisher profile](https://clawhub.ai/user/chenleimap)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown study responses with explanations, lists, and examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May respond to text, image, or voice-based study prompts; no executable output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

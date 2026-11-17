@@ -1,39 +1,52 @@
-## Description: <br>
-Guides creators from channel idea through launch, audience growth, monetization, and troubleshooting of titles, thumbnails, retention, and format strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach a creator from "I want to start a YouTube channel" through the first 1000 subscribers, monetization, and growth past the algorithm cliffs.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and channel operators use this skill to plan a YouTube channel launch, diagnose growth or monetization stalls, and turn niche, format, packaging, retention, and posting cadence decisions into a concrete action plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate the skill for generic video-title or thumbnail requests that are not about YouTube.
+
+Mitigation: Confirm the request is YouTube-specific before relying on this skill's channel strategy, title, thumbnail, or growth guidance.
+
+Risk: The skill gives advisory creator-growth and monetization recommendations that can affect channel business decisions.
+
+Mitigation: Treat recommendations as planning support and check current YouTube policies, analytics, and audience data before making material launch or monetization decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators and creator-supporting teams use this skill to launch and grow YouTube channels, choose niche and format strategy, improve packaging and retention, diagnose growth stalls, and plan monetization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Advice may include monetization, gear, third-party service, or channel strategy recommendations that affect spending or business outcomes. <br>
-Mitigation: Treat recommendations as planning guidance; require user approval and independent review before purchases, account changes, or monetization decisions. <br>
-Risk: Broad video critique, title, or thumbnail requests may activate YouTube growth coaching when the user's intent is ambiguous. <br>
-Mitigation: Confirm the user wants YouTube channel coaching before applying channel-growth advice to ambiguous requests. <br>
+**Output Format:** [Markdown guidance with structured recommendations, checklists, tables, and milestone plans]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Advisory output may include stage diagnosis, format recommendation, niche fit assessment, title ideas, production tier, posting schedule, tracking template, and 30/90/180-day milestones.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stage diagnosis, format recommendation, video-title ideas, tracking template, and 30 / 90 / 180-day milestone plan.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

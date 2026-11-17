@@ -1,43 +1,54 @@
-## Description: <br>
-Interactive wizard to configure agent-to-agent communication policies for federated peers, including multi-framework workflows, peer identity, and multi-agent routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive wizard to configure agent-to-agent communication policies (updated for multi-framework `--for` workflows, OGP 0.2.24+ peer identity, and 0.2.28+ multi-agent routing).
 
-## Publisher: <br>
-[dp-pcs](https://clawhub.ai/user/dp-pcs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dp-pcs](https://clawhub.ai/user/dp-pcs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OGP agent-to-agent communication policies. It helps them set peer-specific topics, response levels, human delivery behavior, and multi-agent routing for federated agent messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad global defaults can let federated peers receive more detail than intended. <br>
-Mitigation: Prefer per-peer and per-topic policies, and use summary, escalate, deny, or approval-required modes for sensitive topics. <br>
-Risk: Full or autonomous response modes can allow replies without human review. <br>
-Mitigation: Use the delegated-authority interview and require escalation or approval for untrusted peers and sensitive message classes. <br>
-Risk: Activity logs can contain message contents and peer details. <br>
-Mitigation: Treat activity logs as sensitive and restrict access according to local policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure how an agent responds to incoming federated agent-comms messages, including topic policies, peer-specific response levels, human delivery behavior, and multi-framework OGP state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dp-pcs/ogp-agent-comms) <br>
-- [OGP documentation](https://github.com/dp-pcs/ogp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces policy configuration guidance for an agent; no binary artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks users to install and run an unpinned global npm tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the `@dp-pcs/ogp` package and update channel are trusted; prefer a reviewed pinned version or an isolated environment.
+
+Risk: The OGP daemon, activity logs, agent policies, and human-delivery targets can affect autonomous peer access and message routing.
+
+Mitigation: Avoid administrator shells and review agent policies, activity logs, background daemon behavior, and human-delivery targets before enabling broad or autonomous peer access.
+
+## Reference(s):
+
+- [OGP documentation](https://github.com/dp-pcs/ogp)
+- [ClawHub skill page](https://clawhub.ai/dp-pcs/skills/ogp-agent-comms)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides policy choices and OGP CLI commands; it does not directly modify configuration without user action.]
+
+## Skill Version(s):
+
+0.6.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Systematic debug and root cause investigation framework that guides agents through investigation, analysis, hypothesis, verification, and root-cause fixes for bugs, abnormal behavior, and service errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Investigate guides agents through a systematic root-cause debugging workflow for bugs, abnormal behavior, and service errors, emphasizing investigation, hypothesis validation, minimal fixes, regression tests, and verifiable reports.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate software bugs and service failures before proposing fixes. It emphasizes evidence collection, reproducible hypotheses, regression tests, and a structured debug report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging workflows may inspect repository contents, logs, stack traces, git history, and test output that contain sensitive information. <br>
-Mitigation: Use it only in repositories the agent is allowed to inspect, and review logs, traces, history, and test output for secrets before sharing them externally. <br>
-Risk: A proposed fix can address symptoms instead of the verified root cause or introduce regressions. <br>
-Mitigation: Require reproduction evidence, a confirmed root-cause hypothesis, a regression test, and test-suite output before treating the fix as complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through disciplined debugging: collecting symptoms, tracing code paths, checking recent changes, forming testable root-cause hypotheses, validating fixes, and reporting evidence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code references, and structured debug reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include root-cause hypotheses, verification evidence, regression test recommendations, status labels, and requests for user input when investigation scope is high.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Agents using the skill may read relevant project code and run tests while debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in workspaces where code inspection and test execution are expected, and review proposed commands and reports before accepting changes.
+
+Risk: The skill intentionally changes debugging behavior by discouraging unverified symptom fixes.
+
+Mitigation: Require the agent to provide the stated root-cause hypothesis, validation evidence, test output, and final debug report before applying or accepting a fix.
+
+## Reference(s):
+
+- [Openclaw Investigate on ClawHub](https://clawhub.ai/x-rayluan/skills/openclaw-investigate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured debug reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Expert guidance to plan, implement, and audit analytics tracking including event taxonomy, conversion funnels, UTM strategy, and dashboard KPI setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance to plan, implement, and audit analytics tracking including event taxonomy, conversion funnels, UTM strategy, and dashboard KPI setup.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Developers, product teams, and growth teams use this skill to create analytics tracking plans, event taxonomies, conversion funnels, UTM strategies, implementation checks, and dashboard KPI definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics recommendations may lead to collection of user behavior data without adequate consent, privacy notice, or data minimization. <br>
-Mitigation: Review proposed tracking events against consent requirements, privacy notices, and data minimization practices before implementation. <br>
-Risk: Incorrect event naming, funnel definitions, or KPI formulas can produce misleading analytics and business decisions. <br>
-Mitigation: Define events before implementation, test each event in debug mode, and audit dashboard calculations before relying on results. <br>
+## Use Case:
 
+Developers, marketers, and analytics practitioners use this skill to plan, implement, and audit analytics tracking for events, funnels, UTM campaigns, consent-aware collection, and reporting dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-analytics-tracking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown tracking plan with tables and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Analytics tracking can collect personal or behavioral data without sufficient consent or privacy-policy alignment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the privacy policy, consent mechanism, and regional requirements before implementation, especially for EU users.
+
+Risk: Poorly defined or untested events can produce inaccurate reporting and conversion analysis.
+
+Mitigation: Define the event taxonomy before implementation and test every event in debug mode before going live.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-analytics-tracking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown tracking plan with tables, naming conventions, funnel definitions, KPI definitions, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

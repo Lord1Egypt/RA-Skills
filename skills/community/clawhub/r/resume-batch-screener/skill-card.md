@@ -1,42 +1,57 @@
-## Description: <br>
-第一阶段批量筛选 - 通用岗位简历批量筛选工具，自动从JD提取评估维度，多候选人打分排序，生成筛选报告和面试邀请名单 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch resume screening skill that parses job descriptions, scores and ranks multiple candidates, and generates screening and interview invitation reports.
 
-## Publisher: <br>
-[suql82](https://clawhub.ai/user/suql82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suql82](https://clawhub.ai/user/suql82)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to batch-screen resumes against a job description, score candidates with a shared rubric, and prepare ranked screening and interview invitation outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive candidate resume and hiring data. <br>
-Mitigation: Install and use it only when authorized to process the resumes, and store generated spreadsheets according to the applicable hiring data policy. <br>
-Risk: Generated reports may influence hiring decisions based on incomplete, incorrect, or unreviewed scoring criteria. <br>
-Mitigation: Review the scoring criteria and candidate recommendations before relying on them for screening or interview decisions. <br>
-Risk: The artifact describes deleting older report files during regeneration. <br>
-Mitigation: Use a dedicated output folder and allow deletion only after the exact files are shown, confirmed, or backed up. <br>
+## Use Case:
 
+HR employees and recruiting teams use this skill to compare multiple resumes against a job description with consistent scoring, ranking, and interview recommendation outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/suql82/resume-batch-screener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Guidance] <br>
-**Output Format:** [Excel workbooks with concise screening rationale and ranked candidate lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces standardized resume screening reports, interview invitation lists, scoring templates, and detailed candidate scoring rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Regeneration guidance includes broad wildcard deletion of prior HR report spreadsheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact output directory and target filenames before cleanup; prefer versioned report outputs over deletion.
+
+Risk: Resume screening handles sensitive candidate and HR data.
+
+Mitigation: Use only in an approved local HR workspace and avoid shared or synced folders unless that storage is intended.
+
+Risk: Keyword-based scoring and weights may not match the actual role.
+
+Mitigation: Verify the scoring keywords, dimensions, and thresholds against the job description before relying on rankings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suql82/skills/resume-batch-screener)
+
+## Skill Output:
+
+**Output Type(s):** [files, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with code and shell snippets; generated spreadsheet files are described as XLSX reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ranked screening reports, interview invitation lists, scoring templates, and candidate scoring details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

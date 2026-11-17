@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents plan AARRR growth funnels, diagnose customer lifecycle bottlenecks, and prioritize acquisition, activation, retention, referral, and revenue actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to plan growth using the AARRR framework, diagnose growth bottlenecks, or map actions across the customer lifecycle.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External teams, growth operators, product managers, and marketers use this skill to structure funnel analysis around AARRR stages, identify the largest drop-off, and produce prioritized growth actions with relevant metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad growth-metrics wording even when a more specific growth or retention skill would fit better. <br>
-Mitigation: Confirm the user's requested scope before applying the AARRR framework, and route retention-specific work to a retention-focused skill when appropriate. <br>
-Risk: Recommendations may include paid acquisition, budget reallocation, or other commercial tactics. <br>
-Mitigation: Treat outputs as proposals and review costs, attribution data, and business constraints before acting. <br>
+## Use Case:
 
+External operators, founders, marketers, product teams, and customer success teams use this skill to evaluate AARRR lifecycle stages, identify growth bottlenecks, and prioritize metrics-driven actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/growth-funnel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with stage assessment, metrics, prioritized actions, and related skills.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory growth framework output; no code execution, credential access, persistence, or external actions indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Growth recommendations can be too broad for a specific product, funnel, or market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the guidance to concrete funnel events, cohorts, and current versus target metrics before acting.
+
+Risk: Prioritized actions may overemphasize acquisition before validating activation, retention, referral, or revenue bottlenecks.
+
+Mitigation: Review each AARRR stage and prioritize the stage with the largest measured drop-off.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/growth-funnel)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown guidance with stage assessments, metrics, prioritized actions, and related skill suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, data access, or external tool use is requested by the artifact.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

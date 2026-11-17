@@ -1,50 +1,66 @@
-## Description: <br>
-Cleans, validates, and standardizes clinical trial data for CDISC SDTM-oriented workflows, including missing value handling, outlier detection, date standardization, and audit report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans and standardizes clinical trial datasets with SDTM-oriented validation, missing value handling, outlier detection, date standardization, and audit reporting.
 
-## Publisher: <br>
-[renhaosu2024](https://clawhub.ai/user/renhaosu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renhaosu2024](https://clawhub.ai/user/renhaosu2024)
 
-## Use Case: <br>
-Clinical programmers, data managers, and developers use this skill to prepare clinical trial datasets for SDTM-oriented review, analysis, migration, or submission workflows. It helps validate required DM, LB, and VS fields, standardize dates, handle missing values, detect outliers, and generate an audit report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical cleaning actions can alter trial datasets in ways that affect analysis or submission decisions. <br>
-Mitigation: Run the tool on copies of raw data, keep raw clinical data unchanged, review audit reports, and require independent clinical, statistical, or regulatory QC before relying on results. <br>
-Risk: Removing or capping outliers can discard or change clinically meaningful values. <br>
-Mitigation: Prefer flagging outliers unless removal or capping is explicitly approved for the study workflow. <br>
-Risk: Outputs may contain PHI or trial identifiers. <br>
-Mitigation: Protect input and output files in a controlled environment and apply the organization's handling requirements for clinical data. <br>
-Risk: Unpinned dependencies can change runtime behavior over time. <br>
-Mitigation: Pin and review dependency versions before deployment. <br>
+## Use Case:
 
+Developers, clinical data managers, and data engineers use this skill to prepare clinical trial CSV or Excel datasets for SDTM-aligned validation, cleaning, outlier review, date normalization, and audit trail generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renhaosu2024/clinical-data-cleaner) <br>
-- [CDISC SDTM Implementation Guide Reference](references/sdtm_ig_guide.md) <br>
-- [Domain-specific field requirements](references/domain_specs.json) <br>
-- [Clinical outlier thresholds](references/outlier_thresholds.json) <br>
-- [Common usage patterns](references/common-patterns.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Sample demographics dataset](references/sample_dm.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and bash examples; executed workflows can produce CSV or Excel datasets and JSON audit reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports DM, LB, and VS SDTM domains; runtime behavior depends on selected missing-value and outlier handling options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can alter sensitive clinical trial spreadsheets and write cleaned datasets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on copies in an isolated workspace, preserve raw source files, avoid overwriting inputs, and review generated audit reports before use.
+
+Risk: Generated CSV or Excel outputs may be unsafe when opened in spreadsheet software if formula-like cell values are present.
+
+Mitigation: Neutralize spreadsheet formulas before sharing or opening outputs, or treat generated spreadsheet files as potentially unsafe.
+
+Risk: Python dependencies are unpinned.
+
+Mitigation: Pin and review numpy, pandas, and scipy versions before installation or deployment.
+
+Risk: Missing-value imputation and outlier handling can change clinical interpretation.
+
+Mitigation: Have a qualified data manager or statistician review cleaning parameters and favor flagging outliers over removal for regulated workflows.
+
+## Reference(s):
+
+- [CDISC SDTM Implementation Guide Reference](references/sdtm_ig_guide.md)
+- [Domain Specifications](references/domain_specs.json)
+- [Clinical Outlier Thresholds](references/outlier_thresholds.json)
+- [Common Clinical Data Cleaning Patterns](references/common-patterns.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/renhaosu2024/skills/clinical-data-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and bash snippets; generated CSV or Excel datasets and JSON audit reports when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can alter clinical trial data outputs; preserve raw inputs and review generated audit reports before relying on results.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

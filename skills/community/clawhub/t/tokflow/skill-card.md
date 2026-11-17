@@ -1,39 +1,57 @@
-## Description: <br>
-Token consumption monitoring and optimization analysis for querying LLM usage, costs, provider balances, prompt-style statistics, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokFlow lets an agent query a local TokFlow backend for LLM token usage, model costs, provider balances, and prompt optimization suggestions.
 
-## Publisher: <br>
-[wangyaok1](https://clawhub.ai/user/wangyaok1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyaok1](https://clawhub.ai/user/wangyaok1)
 
-## Use Case: <br>
-Developers and OpenClaw users use TokFlow to inspect local LLM token usage, spending, model and provider statistics, balances, and prompt-style optimization opportunities. The skill helps answer cost and usage questions by querying a local TokFlow API and summarizing the returned JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive LLM usage, spending, provider balance, and prompt-statistics data to the agent. <br>
-Mitigation: Install only when the local TokFlow backend is trusted, and avoid balance or prompt-stat queries when account or session-derived usage information should not be surfaced in chat. <br>
-Risk: Queries depend on a local backend at localhost:8001, so responses may fail or be stale if that service is unavailable or not synchronized. <br>
-Mitigation: Confirm TokFlow is running locally and verify important cost, balance, or optimization conclusions against the source service before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TokFlow ClawHub page](https://clawhub.ai/wangyaok1/tokflow) <br>
+## Use Case:
 
+Developers and OpenClaw users use TokFlow to monitor token consumption, model spend, paid-provider balances, and prompt efficiency from a local TokFlow installation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Natural-language summaries derived from JSON API responses, with shell commands when invocation details are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted TokFlow backend on localhost:8001; balance and prompt-stat commands may surface account, spending, usage, and session-derived statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter, _meta.json, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can reveal local OpenClaw usage, cost, prompt-metric, and provider balance data to the agent.
+
+Mitigation: Use it only in trusted agent sessions and limit questions to the usage, cost, balance, and optimization data needed for the task.
+
+Risk: The skill depends on a local TokFlow backend at localhost:8001, so an untrusted or unexpected local service could provide sensitive or misleading data.
+
+Mitigation: Run the TokFlow backend locally from a trusted installation and confirm the local endpoint before using the skill.
+
+Risk: Command-line token login can expose credentials in shell history or process listings.
+
+Mitigation: Prefer browser-based login or safer secret handling, and use pinned ClawHub CLI versions when installing or publishing.
+
+## Reference(s):
+
+- [TokFlow ClawHub skill page](https://clawhub.ai/wangyaok1/skills/tokflow)
+- [TokFlow publisher profile](https://clawhub.ai/user/wangyaok1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON from the query script, typically summarized by the agent as Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted local TokFlow backend at http://localhost:8001/api.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Automatically add technical jargon to the user's tech glossary GitHub repository when encountered during coding sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically adds unfamiliar technical jargon from coding sessions to the user's tech glossary with analogy-based explanations.
 
-## Publisher: <br>
-[emanxchan](https://clawhub.ai/user/emanxchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emanxchan](https://clawhub.ai/user/emanxchan)
 
-## Use Case: <br>
-Developers and coding agents use this skill to recognize unfamiliar technical terms during coding sessions and add concise, analogy-based glossary entries to a user's tech glossary repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically edit, commit, and push to a GitHub glossary repository from broad coding-session triggers without a clear approval step. <br>
-Mitigation: Require the agent to show proposed glossary entries and local diffs first, then require explicit approval before any commit or git push. <br>
+## Use Case:
 
+Developers and coding assistants use this skill to recognize technical terms that may be unfamiliar and add clear glossary entries for later learning. It is tailored to a personal GitHub-hosted tech glossary workflow.
 
-## Reference(s): <br>
-- [Glossary Format Reference](references/glossary-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown glossary entries with inline code examples and git shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a glossary file and propose or run git commit and push commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Project code or sensitive examples may be copied into the glossary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show proposed entries first, sanitize examples, and avoid real project code by default.
+
+Risk: Glossary changes may be committed and pushed to GitHub without explicit approval.
+
+Mitigation: Require the agent to show the Git diff and remote, then ask for explicit approval before any commit or push.
+
+## Reference(s):
+
+- [Glossary Format Reference](artifact/references/glossary-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/emanxchan/skills/auto-glossary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown glossary entries with optional code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform glossary file edits and Git commit/push steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

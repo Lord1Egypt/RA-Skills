@@ -1,48 +1,62 @@
-## Description: <br>
-OpenOcean-skills is a skill package for interacting with the OpenOcean Aggregator API. Use it to get swap quotes, build swap transactions, execute swaps, and troubleshoot OpenOcean workflows across 40+ chains, including EVM, Solana, and Sui. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenOcean-skills is a skill package for interacting with the OpenOcean Aggregator API to get swap quotes, build swap transactions, execute swaps, and troubleshoot OpenOcean workflows across 40+ chains, including EVM, Solana, and Sui.
 
-## Publisher: <br>
-[openocean-admin](https://clawhub.ai/user/openocean-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openocean-admin](https://clawhub.ai/user/openocean-admin)
 
-## Use Case: <br>
-External developers and agent users use this skill to quote, build, and optionally execute OpenOcean token swaps across supported EVM and non-EVM chains while troubleshooting API and transaction failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare and execute irreversible token swaps, and the fast path can broadcast without a confirmation step. <br>
-Mitigation: Prefer quote, build, and confirmed execution flows; reserve the fast path for trusted automation with small transaction limits, strict external controls, and accepted transaction risk. <br>
-Risk: The security summary identifies unsafe shell command construction in the fast execution path. <br>
-Mitigation: Fix the fast execution script to remove eval and validate transaction fields before use. <br>
-Risk: The skill requires wallet access, RPC configuration, and transaction signing for execution flows. <br>
-Mitigation: Protect wallet credentials, use hardware wallet or keystore flows where appropriate, verify chain and transaction fields, and test with small amounts before larger swaps. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve OpenOcean swap quotes, build transaction calldata, execute confirmed or automated swaps, and troubleshoot token swap failures across supported chains.
 
-## Reference(s): <br>
-- [OpenOcean homepage](https://openocean.finance) <br>
-- [OpenOcean Aggregator API](https://apis.openocean.finance/) <br>
-- [OpenOcean Swap API v4](https://apis.openocean.finance/developer/apis/swap-api/api-v4) <br>
-- [Foundry](https://getfoundry.sh/) <br>
-- [OpenOcean API reference](references/api-reference.md) <br>
-- [OpenOcean token registry](references/token-registry.md) <br>
-- [Basic quote example](skills/quote/references/basic-quote.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with structured JSON blocks and Foundry cast commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction calldata, router addresses, gas estimates, slippage settings, transaction hashes, and wallet execution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The fast execution path can immediately broadcast real blockchain transactions without a confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer quote, swap-build, and confirmed swap-execute flows; use swap-execute-fast only for intentional unattended automation with a dedicated low-balance wallet and narrow token allowances.
+
+Risk: The security evidence reports unsafe shell-script patterns in the execution scripts.
+
+Mitigation: Review and fix the eval and Python interpolation issues before running scripts, and independently verify router and chain details.
+
+Risk: On-chain swaps are irreversible and can incur gas costs even when a transaction fails.
+
+Mitigation: Test with small amounts, verify balances and token allowances, use conservative slippage, and monitor gas before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openocean-admin/skills/openocean-multichain-token-swap)
+- [OpenOcean Homepage](https://openocean.finance)
+- [OpenOcean API Documentation](https://apis.openocean.finance/)
+- [OpenOcean API Reference](artifact/references/api-reference.md)
+- [OpenOcean Token Registry](artifact/references/token-registry.md)
+- [Basic Quote Example](artifact/skills/quote/references/basic-quote.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with JSON transaction payloads and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include swap quotes, token addresses, transaction calldata, router addresses, gas estimates, transaction hashes, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

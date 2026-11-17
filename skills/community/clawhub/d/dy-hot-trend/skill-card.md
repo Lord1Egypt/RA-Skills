@@ -1,46 +1,64 @@
-## Description: <br>
-专注于获取抖音最新的热榜数据，每小时更新，包含热点事件、热度值和跳转链接；支持查询近7天、近30天历史热榜，并支持订阅定时推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专注于获取抖音最新的热榜数据，每小时更新，包含热点事件、热度值和跳转链接；支持查询近7天、近30天历史热榜，并支持订阅定时推送。
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-Content creators, MCN operators, brand marketers, and short-video operations teams use this skill to fetch Douyin hot-list data, review recent trend history, compare time periods, and generate creator-oriented insight reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and may read it from environment or shell profile configuration. <br>
-Mitigation: Set REDFOX_API_KEY directly in the runtime environment, avoid hardcoding or sharing it in prompts, logs, or files, and rotate or revoke the key if exposure is suspected. <br>
-Risk: The skill sends requests to redfox.hk and depends on that service for Douyin trend data. <br>
-Mitigation: Install only where outbound requests to redfox.hk are acceptable and use explicit Douyin trend prompts when invoking data retrieval, subscriptions, or reports. <br>
-Risk: The skill can create local JSON, HTML, and PDF report files containing trend data and links. <br>
-Mitigation: Review generated files before sharing and store or delete reports according to the workspace's data handling expectations. <br>
+## Use Case:
 
+External content creators, MCN operations teams, brand marketers, and short-video operators use this skill to query current and recent Douyin hot trends, compare trend movement, and generate creator-oriented content guidance and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/dy-hot-trend) <br>
-- [Publisher profile](https://clawhub.ai/user/if530770) <br>
-- [RedFoxHub](https://redfox.hk/) <br>
-- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Core workflow reference](references/core_workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML files, PDF files, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown responses with trend tables and analysis, plus generated local JSON, HTML, and PDF report files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and network access to redfox.hk; supports real-time, recent-history, comparison, and subscription-style workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill requires a REDFOX_API_KEY and sends that key to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable key; set it as an environment variable; and avoid placing it in prompts, logs, generated files, or source code.
+
+Risk: The skill can read shell startup files while looking for REDFOX_API_KEY.
+
+Mitigation: Review before installing and prefer environment-only key configuration instead of storing credentials in shell startup files.
+
+Risk: The skill writes local JSON, HTML, and PDF report artifacts.
+
+Mitigation: Review generated artifacts before sharing them and remove any files that contain sensitive or unwanted trend data.
+
+Risk: Generated HTML reports can execute JavaScript from embedded data and cdnjs when opened.
+
+Mitigation: Open generated reports only in a controlled browser context and review report contents before distribution.
+
+## Reference(s):
+
+- [Agent execution workflow](references/core_workflow.md)
+- [RedFoxHub](https://redfox.hk/)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub Douyin hotspot API endpoint](https://redfox.hk/story/api/hotSpot/getListByPlatform)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown trend tables and guidance, JSON API data, and generated HTML/PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a REDFOX_API_KEY and may create local JSON, HTML, and PDF report artifacts.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

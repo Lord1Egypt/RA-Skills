@@ -1,40 +1,57 @@
-## Description: <br>
-Guides agents in using the mysql CLI to connect to MySQL databases, run queries and data changes, inspect schemas, manage transactions, and format results as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the MySQL CLI to help agents connect to MySQL databases, run queries and data changes, inspect schemas, manage imports and exports, and format results as JSON.
 
-## Publisher: <br>
-[429668385](https://clawhub.ai/user/429668385) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[429668385](https://clawhub.ai/user/429668385)
 
-## Use Case: <br>
-Developers and database operators use this skill to inspect MySQL databases, run SQL statements, generate reports, import or export data, and troubleshoot schema or performance issues from an agent-controlled CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through broad MySQL write, delete, export, import, DDL, and transaction operations that could change or expose production data. <br>
-Mitigation: Use least-privileged credentials, prefer read-only accounts by default, avoid production write access unless strictly needed, and require explicit approval after showing the exact SQL before INSERT, UPDATE, DELETE, DDL, LOAD DATA, export, script execution, or COMMIT operations. <br>
-Risk: Database credentials and remote connections may expose secrets or sensitive data if handled casually. <br>
-Mitigation: Avoid putting passwords directly on the command line, protect configuration files, require SSL for production connections, and limit agent access to only the databases and tables needed for the task. <br>
+## Use Case:
 
+Developers and database operators use this skill to have an agent prepare and run MySQL CLI commands for querying data, inspecting schemas, generating reports, importing and exporting data, and troubleshooting database connections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/429668385/mysql-database-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with mysql CLI commands, SQL snippets, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may execute live database reads, writes, exports, imports, DDL, or transactions depending on credentials and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can guide broad database writes, bulk import or export, script execution, schema changes, and administrative actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit user-directed database targets, least-privilege accounts, reviewed SQL, staging systems or backups for writes, and confirmation before write, import, export, schema, script, or admin actions.
+
+Risk: Credential-handling examples may expose secrets if passwords are placed in commands, process lists, shell history, or unsecured config files.
+
+Mitigation: Prefer interactive password prompts, mysql_config_editor, or an approved secret manager; secure any client configuration files and avoid command-line passwords.
+
+Risk: Use against production or sensitive databases could cause data loss, disclosure, or service impact.
+
+Mitigation: Avoid production use unless the agent is required to request confirmation before risky actions and the operator has appropriate backups, access controls, and change-review procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/429668385/skills/mysql-database-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, shell command, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON output patterns for query results and safety guidance for database credentials and write operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

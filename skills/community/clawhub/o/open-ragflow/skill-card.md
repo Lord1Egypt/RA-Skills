@@ -1,50 +1,64 @@
-## Description: <br>
-RAGFlow open-source Retrieval-Augmented Generation (RAG) engine — deployment, configuration, management, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RAGFlow open-source Retrieval-Augmented Generation (RAG) engine \u2014 deployment, configuration, management, and troubleshooting.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy, configure, manage, and troubleshoot RAGFlow self-hosted RAG systems, including Docker services, LLM provider settings, CLI workflows, API usage, and architecture review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands that remove Docker volumes can delete RAGFlow deployment data. <br>
-Mitigation: Use disposable or test environments when possible, and back up RAGFlow data before running any reset command such as `docker compose down -v`. <br>
-Risk: Docker cleanup or deployment commands can affect shared or production hosts. <br>
-Mitigation: Review commands before execution and avoid host-wide Docker cleanup unless the impact on other workloads is understood. <br>
-Risk: RAGFlow configuration can involve API keys and service passwords. <br>
-Mitigation: Protect LLM API keys and service passwords, avoid exposing them in shared logs or commits, and rotate credentials if they are disclosed. <br>
-Risk: Deployed services may be reachable over the network if ports are exposed broadly. <br>
-Mitigation: Restrict network exposure with firewall, binding, and access-control settings appropriate for the deployment environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy, configure, administer, and troubleshoot RAGFlow installations. It also helps users understand RAGFlow architecture and operate datasets, documents, agents, chats, model providers, and REST or CLI workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/open-ragflow) <br>
-- [RAGFlow Deployment Reference](artifact/references/deployment.md) <br>
-- [RAGFlow Architecture Reference](artifact/references/architecture.md) <br>
-- [RAGFlow CLI Reference](artifact/references/cli-reference.md) <br>
-- [RAGFlow documentation](https://ragflow.io/docs/dev/) <br>
-- [RAGFlow website](https://ragflow.io) <br>
-- [RAGFlow source repository](https://github.com/infiniflow/ragflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment steps, configuration snippets, CLI commands, API guidance, architecture notes, and troubleshooting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Deployment commands can change host or container state if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use a pinned RAGFlow release or commit, and prefer an isolated host or container environment for Docker and source-build work.
+
+Risk: Default service passwords and LLM API keys can expose deployed systems or secrets.
+
+Mitigation: Change default MySQL and MinIO passwords before exposure, and keep API keys out of shell history and version control.
+
+Risk: Destructive commands such as volume removal, dataset drops, or Docker pruning can cause data loss.
+
+Mitigation: Confirm destructive commands before running them and back up important RAGFlow data before cleanup or migration operations.
+
+## Reference(s):
+
+- [RAGFlow website](https://ragflow.io)
+- [RAGFlow documentation](https://ragflow.io/docs/dev/)
+- [RAGFlow GitHub repository](https://github.com/infiniflow/ragflow)
+- [RAGFlow Architecture Reference](references/architecture.md)
+- [RAGFlow CLI Reference](references/cli-reference.md)
+- [RAGFlow Deployment Reference](references/deployment.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/open-ragflow)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, CLI examples, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Docker Compose commands, CLI statements, REST API paths, and configuration file edits for RAGFlow deployments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

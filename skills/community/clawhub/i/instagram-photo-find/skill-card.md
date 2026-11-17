@@ -1,39 +1,58 @@
-## Description: <br>
-Find high-quality Instagram photos for any destination or place. Searches for Instagram posts via web search, downloads candidate images, vision-scores them for quality and iconic-ness, and returns the best matches with source URLs. Use when you need travel/destination photos from Instagram, hero images for a location, or Instagram post images for any place or attraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find high-quality Instagram photos for any destination or place by searching Instagram posts, downloading candidate images, scoring them for quality and place fit, and returning the best matches with source URLs.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to find scenic public Instagram post images for destinations, places, attractions, or travel-focused hero imagery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may download untrusted public images into /tmp for vision scoring. <br>
-Mitigation: Use it only for public content you are comfortable fetching and processing, and delete temporary image files after use if retention is not desired. <br>
-Risk: Image scoring may select misleading, low-quality, or non-representative destination photos. <br>
-Mitigation: Review the returned descriptions, scores, source URLs, and local files before reusing any image. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/psyduckler/instagram-photo-find) <br>
+## Use Case:
 
+External users and content teams use this skill to find ranked Instagram photo candidates for destinations, attractions, restaurants, or other places. It is useful when an agent needs scenic or representative image options with source URLs and local file paths.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown text with ranked results, source URLs, local file paths, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns score, brief description, Instagram post URL, and local /tmp file path for each selected image.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill downloads public image candidates to /tmp during execution.
+
+Mitigation: Delete temporary image files after use if local retention is not desired.
+
+Risk: Returned Instagram images may be subject to platform terms, copyright, publicity rights, or other reuse limits.
+
+Mitigation: Review image rights and Instagram platform terms before public or commercial reuse.
+
+Risk: Vision scoring is subjective and may rank images that are visually strong but not appropriate for the intended destination or use.
+
+Mitigation: Review ranked candidates manually before publishing or using them in customer-facing materials.
+
+## Reference(s):
+
+- [Instagram media endpoint pattern](https://www.instagram.com/p/{shortcode}/media/?size=l)
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/instagram-photo-find)
+- [Publisher profile](https://clawhub.ai/user/psyduckler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with ranked results, brief descriptions, source URLs, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a ranked list of image candidates scored by a vision model; downloaded images are stored temporarily under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "schema_version": "glr.demonstration-policy.v1",
+  "allowed_origins": [
+    "human",
+    "scripted-expert"
+  ],
+  "allowed_outcomes": [
+    "success"
+  ],
+  "origin_weights": {
+    "human": 1,
+    "scripted-expert": 1
+  },
+  "outcome_weights": {
+    "success": 1
+  },
+  "reject_unknown": true
+}

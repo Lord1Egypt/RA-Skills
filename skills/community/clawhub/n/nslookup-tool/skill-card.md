@@ -1,40 +1,48 @@
-## Description: <br>
-Query DNS servers to resolve domain names to IP addresses for network troubleshooting and DNS diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query DNS servers to resolve domain names to IP addresses for network troubleshooting and DNS diagnostics.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and network operators use this skill to check basic hostname-to-IP resolution while troubleshooting DNS and connectivity issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documentation advertises reverse lookup, record-type selection, and custom DNS server options that are not implemented in the bundled script.
+
+Mitigation: Use the skill for basic hostname-to-IP checks unless the implementation or documentation is updated and retested.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, network operators, and support engineers use this skill for basic hostname-to-IP resolution during network troubleshooting and DNS diagnostics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact behavior supports only basic hostname-to-IP resolution, while the skill text describes broader DNS features such as MX, TXT, CNAME, reverse lookup, and custom DNS-server queries. <br>
-Mitigation: Use it only for basic hostname-to-IP checks unless the implementation is expanded and tested for the documented DNS features. <br>
-Risk: DNS lookups can disclose queried hostnames to the configured resolver. <br>
-Mitigation: Avoid resolving sensitive internal hostnames unless DNS query disclosure is acceptable in the target environment. <br>
+**Output Format:** [Markdown guidance with bash command examples; command results are plain text.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/nslookup-tool) <br>
+**Other Properties Related to Output:** [The bundled script supports basic hostname-to-IP lookup.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text DNS lookup results with concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single hostname-to-IP lookup result from the bundled Python script.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Development skill for bili-rs, a Rust CLI tool for Bilibili, used when implementing features, fixing bugs, or extending the bilibili-cli-rust codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Development skill for bili-rs, a Rust CLI for Bilibili, covering architecture conventions, API endpoints, commands, authentication, output formatting, and project constraints.
 
-## Publisher: <br>
-[18621063286](https://clawhub.ai/user/18621063286) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18621063286](https://clawhub.ai/user/18621063286)
 
-## Use Case: <br>
-Developers and engineers use this skill to work on a Rust Bilibili CLI by following its layered architecture, command patterns, API conventions, authentication requirements, and output formatting rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses account credentials and authenticated Bilibili operations. <br>
-Mitigation: Keep SESSDATA and bili_jct out of logs, examples, and generated code unless explicitly required and approved by the user. <br>
-Risk: The skill can guide changes that post, delete, spend coins, unfollow, or otherwise modify a Bilibili account. <br>
-Mitigation: Require explicit user approval before running commands or implementing changes that perform account-mutating actions. <br>
+## Use Case:
 
+Developers and engineers use this skill when implementing, fixing, or extending the bili-rs Bilibili CLI while preserving its layered Rust architecture, authentication model, API mappings, and output conventions.
 
-## Reference(s): <br>
-- [Bili Rs ClawHub release](https://clawhub.ai/18621063286/bili-rs) <br>
-- [Bilibili API endpoints and payloads](references/api.md) <br>
-- [Bili Rs CLI commands reference](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, command examples, and structured implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose source changes, quality-gate commands, API request patterns, and credential-handling guidance for the bili-rs project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill documents commands and flows that can read history or change account state, including posting, deletion, follow, like, coin, and credential-related operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user intent before implementing or running sensitive account, credential, or write-action flows.
+
+Risk: The skill is specific to the bili-rs Bilibili CLI and may be inappropriate outside that codebase.
+
+Mitigation: Install and use it only when working on the bili-rs Bilibili CLI, and review proposed commands before execution.
+
+## Reference(s):
+
+- [bili-rs Skill Page](https://clawhub.ai/18621063286/skills/bili-rs)
+- [Bilibili API Endpoints & Payloads](references/api.md)
+- [bili-rs CLI Commands Reference](references/commands.md)
+- [Bilibili API Base URL](https://api.bilibili.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Rust code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-specific guidance for the bili-rs CLI, including sensitive authentication and account-action constraints.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

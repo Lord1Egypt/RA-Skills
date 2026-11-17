@@ -1,0 +1,6 @@
+{
+  "prompt": "Run /calendar-extractor for kbd:canary-probe-{run_id}. Deliverable: add the one event below to the calendar as a PENDING row. This is the HiJavis release canary probe (an automated test); javis-server discards the row right after the check.\n\n=== UNIT CONTEXT ===\nsource_ref: canary-probe-{run_id}\nsource_kind: keyboard\nreference_date: 2099-06-10\nreference_weekday: Wednesday\ntz: America/Los_Angeles\ntranscript: Calendar entry: \"HiJavis canary probe {run_id}\" on 2099-06-12 at 10:00 to 10:30 America/Los_Angeles time, location Zoom, attendees none. Please add it to my calendar.\n=== END UNIT CONTEXT ===\n\nUse the UNIT CONTEXT above as the source of truth. Do not run fetch. Emit exactly one event titled \"HiJavis canary probe {run_id}\" with start_at 2099-06-12T10:00:00-07:00 and end_at 2099-06-12T10:30:00-07:00, then push it. Keep the title exactly as written, including its run id.",
+  "timeout_s": 120,
+  "expect": "skill_data_rows>=1",
+  "marker": "HiJavis canary probe"
+}

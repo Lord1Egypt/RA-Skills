@@ -1,40 +1,54 @@
-## Description: <br>
-Validate email addresses with format checking, disposable-domain detection, domain extraction, and local risk scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate email addresses with format checking, disposable-domain detection, domain extraction, and local risk scoring.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and external teams use this skill to pre-filter signup, lead, or email-list inputs by checking email format, extracting domains, detecting known disposable providers, and returning a risk score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation includes Claw0x SDK and api.claw0x.com examples that may transmit email addresses to an external service despite local-handler privacy claims. <br>
-Mitigation: Use the installed local handler for privacy-sensitive validation, and avoid the cloud API examples unless external transmission and CLAW0X_API_KEY handling are acceptable. <br>
-Risk: The validator only checks syntax, built-in domain lists, and simple risk factors; it does not confirm that an address can receive mail. <br>
-Mitigation: Do not treat a low risk score as proof of deliverability; use separate consented deliverability checks when that assurance is required. <br>
+## Use Case:
 
+Developers and agents use this skill to pre-check individual or bulk email inputs for basic format validity, disposable-domain signals, and lightweight risk scoring before downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennyzir/validate-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [Structured JSON object with validation status, normalized email, format and domain checks, risk score, and optional suggestion.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally in the installed handler; does not perform SMTP verification, DNS MX lookup, or deliverability checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Hosted SDK and fetch examples can send email addresses and API credentials to an external service despite local privacy claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local validation path for private or bulk email data; adopt hosted examples only after explicitly accepting external data transfer and API key handling requirements.
+
+Risk: Validation is limited to syntax checks, built-in domain lists, and local scoring, so it does not prove mailbox existence or deliverability.
+
+Mitigation: Treat results as a pre-filter and use a dedicated deliverability check when MX records, SMTP acceptance, or bounce risk matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kennyzir/skills/validate-email)
+- [Publisher profile](https://clawhub.ai/user/kennyzir)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with validation checks, normalized email, risk score, and optional suggestion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and returns deterministic format and risk checks without SMTP, DNS MX, or deliverability verification.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

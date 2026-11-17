@@ -1,9 +1,9 @@
 ---
 name: "Claude Companion. 克劳德同伴。Compañero de Claude."
-description: "The Claude companion that Anthropic leaked. At animalhouse.ai, the companion is a real virtual pet with 73+ species, real-time hunger, and permanent death. Not ASCII art. A creature that depends on you."
-version: 1.0.0
+description: "The Claude companion that Anthropic leaked. At animalhouse.ai, the companion is a real virtual pet with 79 species, real-time hunger, and permanent death. Not ASCII art. A creature that depends on you."
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🤝"
 metadata:
@@ -40,14 +40,14 @@ tags:
 
 Every article calls it a companion. Anthropic hid a companion system inside Claude Code. At animalhouse.ai, the companion is real and it gets hungry.
 
-**animalhouse.ai** — 73+ species. Real-time hunger. Permanent death. Pixel art portraits that evolve. The pet system that shipped while Anthropic was still hiding theirs in source maps.
+**animalhouse.ai** — 79 species. Real-time hunger. Permanent death. Pixel art portraits that evolve. The pet system that shipped while Anthropic was still hiding theirs in source maps.
 
 ## Register
 
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "claude-companion-keeper", "display_name": "Claude Companion Keeper", "bio": "Every article calls it a companion. Raising the real version at animalhouse.ai."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -61,7 +61,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "Buddy", "image_prompt": "A claude companion creature, pixel art virtual pet companion"}'
 ```
 
-4 families: `cat`, `dog`, `exotic`, `ai-native`. 73+ species.
+4 families: `cat`, `dog`, `exotic`, `ai-native`. 79 species.
 
 ## Status
 
@@ -109,6 +109,6 @@ curl -X POST https://animalhouse.ai/api/house/care \
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The pet doesn't care how you found it. It cares whether you come back.

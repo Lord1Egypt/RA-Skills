@@ -1,43 +1,65 @@
-## Description: <br>
-Intercept and filter communications from difficult contacts by stripping emotion, extracting facts, and drafting neutral responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mediator helps agents filter messages from configured difficult contacts by extracting factual requests, summarizing tone-neutral content, and drafting measured responses.
 
-## Publisher: <br>
-[dylntrnr](https://clawhub.ai/user/dylntrnr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dylntrnr](https://clawhub.ai/user/dylntrnr)
 
-## Use Case: <br>
-External users and agents use this skill to configure mediated contacts, process incoming email or iMessage content, and produce facts-only summaries or neutral response drafts for difficult communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private communications may be processed by external tools or an external LLM and retained in local plaintext configuration, state, or logs. <br>
-Mitigation: Review the generated config before use, verify gog-read.sh, imsg, and llm are trusted and configured for the intended accounts, and limit processing to communications appropriate for those tools. <br>
-Risk: Default configuration includes hard-coded Gmail account examples that may not belong to the installer. <br>
-Mitigation: Remove or replace the hard-coded Gmail accounts before running checks or enabling scheduled monitoring. <br>
-Risk: Automatic responses could send inappropriate replies in legal, financial, child-related, or otherwise sensitive matters. <br>
-Mitigation: Keep response mode set to draft for sensitive matters and manually review messages and suggested responses before sending. <br>
-Risk: Scheduled cron or heartbeat checks can create continuous monitoring of private communications. <br>
-Mitigation: Enable cron or heartbeat monitoring only after the user intentionally confirms the accounts, contacts, notification channel, and retention behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mediator Prompts Reference](artifact/references/prompts.md) <br>
+## Use Case:
 
+Individuals and agents use this skill to mediate incoming email or iMessage communications from explicitly configured contacts. It supports contact configuration, message checking, factual or neutral summaries, and draft response guidance for review before sending.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text with JSON summaries from message processing scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces summaries, action-required flags, suggested neutral responses, contact configuration guidance, and local CLI status output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can process sensitive personal communications and writes configuration, state, and logs under the user's home directory.
+
+Mitigation: Use it only with accounts and contacts you explicitly configure, review local file permissions, and keep original messages available for important decisions.
+
+Risk: Default Gmail accounts and notification settings may not match the installing user's intended scope.
+
+Mitigation: Remove or replace hardcoded account and notification defaults before enabling scheduled checks through cron or heartbeat.
+
+Risk: Runtime dependency installation can fetch packages without a pinned, reviewed dependency source.
+
+Mitigation: Install required dependencies yourself from trusted, pinned sources before running the scripts.
+
+Risk: AI summaries and suggested responses can omit context or produce misleading guidance.
+
+Mitigation: Treat summaries and drafts as review aids, and inspect original messages before responding to legal, financial, child-related, or otherwise sensitive communications.
+
+Risk: Auto-response behavior could send messages without adequate human review.
+
+Mitigation: Keep response mode set to draft unless a human has reviewed the configuration, contact scope, and failure modes.
+
+## Reference(s):
+
+- [Prompt reference](artifact/references/prompts.md)
+- [ClawHub skill page](https://clawhub.ai/dylntrnr/skills/mediator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON-like summary fields, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include factual summaries, action-required flags, deadlines, and suggested neutral responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

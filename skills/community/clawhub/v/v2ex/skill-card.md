@@ -1,45 +1,60 @@
-## Description: <br>
-V2EX API 2.0 integration for accessing V2EX forum data, notifications, topics, nodes, and member profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V2EX API 2.0 integration for accessing V2EX forum data, notifications, topics, nodes, and member profiles.
 
-## Publisher: <br>
-[timqian](https://clawhub.ai/user/timqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[timqian](https://clawhub.ai/user/timqian)
 
-## Use Case: <br>
-Developers use this skill to integrate agents and tooling with V2EX forum APIs for notifications, topics, nodes, token information, and member profile workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: V2EX Personal Access Tokens can expose account access if pasted into chat, code, or logs. <br>
-Mitigation: Store the token in an environment variable or another secure store and avoid echoing it in shared outputs. <br>
-Risk: Notification deletion is a destructive V2EX API action. <br>
-Mitigation: Require explicit user approval before issuing DELETE requests for notifications. <br>
-Risk: V2EX API requests can fail or be throttled when rate limits are reached. <br>
-Mitigation: Check V2EX rate-limit headers, use pagination where supported, and back off or retry gracefully. <br>
+## Use Case:
 
+Developers use this skill to guide agents in working with the V2EX API for forum notifications, topics, nodes, member profiles, token checks, and example client code.
 
-## Reference(s): <br>
-- [V2EX API Documentation](https://www.v2ex.com/help/api) <br>
-- [V2EX Personal Access Tokens](https://www.v2ex.com/settings/tokens) <br>
-- [V2EX API Node](https://www.v2ex.com/go/v2ex-api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/timqian/v2ex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, HTTP, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes V2EX endpoint references, authentication guidance, error handling notes, rate-limit handling guidance, and example client code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to use a V2EX Personal Access Token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token outside code, use the least-privileged token available, and avoid exposing it in prompts, logs, or committed files.
+
+Risk: The documented V2EX API workflows include deleting notifications.
+
+Mitigation: Require explicit user confirmation before performing delete operations.
+
+Risk: API use can exceed V2EX rate limits.
+
+Mitigation: Check rate limit headers, apply backoff, and cache responses where appropriate.
+
+## Reference(s):
+
+- [V2EX skill page](https://clawhub.ai/timqian/skills/v2ex)
+- [V2EX API Documentation](https://www.v2ex.com/help/api)
+- [Personal Access Tokens](https://www.v2ex.com/settings/tokens)
+- [V2EX API Node](https://www.v2ex.com/go/v2ex-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline HTTP, bash, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe authenticated API calls that require a V2EX Personal Access Token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

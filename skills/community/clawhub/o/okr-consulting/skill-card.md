@@ -1,46 +1,60 @@
-## Description: <br>
-Manage, consult on, and optimize OKRs (Objectives and Key Results) with guidance for setting, tracking, reviewing, scoring, and improving OKRs across philosophy, antipatterns, cadence management, visualization, check-ins, retrospectives, coaching prompts, workshops, and dashboard patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, consult on, and optimize OKRs by helping set, track, review, score, and improve objectives, key results, cadences, retrospectives, and dashboards.
 
-## Publisher: <br>
-[npfaerber](https://clawhub.ai/user/npfaerber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npfaerber](https://clawhub.ai/user/npfaerber)
 
-## Use Case: <br>
-Employees, managers, team leads, and OKR facilitators use this skill to set, review, score, and improve OKRs during planning, check-ins, retrospectives, and operating reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Company strategy, goals, metrics, team feedback, and blockers may be sensitive business information. <br>
-Mitigation: Use only approved runtime environments and review generated updates before sharing them in collaboration tools, documents, or OKR trackers. <br>
-Risk: Generated OKR guidance can be misaligned with business strategy, incentives, or team context. <br>
-Mitigation: Have accountable owners review proposed objectives, key results, scoring, and retrospectives before adoption or wider distribution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OKR Philosophy & Origins](references/philosophy.md) <br>
-- [OKR Antipatterns & How to Fix Them](references/antipatterns.md) <br>
-- [CFRs: Conversations, Feedback, Recognition](references/cfrs.md) <br>
-- [OKR Workshop Facilitation Guide](references/workshops.md) <br>
-- [OKR Check-in Cadences & Templates](references/check-ins.md) <br>
-- [OKR Scoring Guide](references/scoring.md) <br>
-- [OKR Visualization & Display Patterns](references/visualization.md) <br>
-- [OKR Templates](references/templates.md) <br>
+## Use Case:
 
+Employees, managers, team leads, and consultants use this skill to create and refine OKRs, run check-ins and workshops, score progress, visualize status, and prepare retrospectives.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, coaching prompts, review templates, scoring rubrics, and dashboard patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it produces advisory content and templates rather than code, tool calls, or persisted data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated OKR material may contain business goals, staffing details, blockers, or performance-sensitive information.
+
+Mitigation: Share or publish generated OKR material only to channels, documents, dashboards, and trackers intended for that audience.
+
+Risk: OKR guidance and templates can be applied without enough organization-specific context.
+
+Mitigation: Review generated objectives, key results, scores, and cadences with the responsible team before treating them as operational commitments.
+
+## Reference(s):
+
+- [Okr Consulting ClawHub release page](https://clawhub.ai/npfaerber/skills/okr-consulting)
+- [OKR Philosophy & Origins](references/philosophy.md)
+- [OKR Antipatterns & How to Fix Them](references/antipatterns.md)
+- [CFRs: Conversations, Feedback, Recognition](references/cfrs.md)
+- [OKR Workshop Facilitation Guide](references/workshops.md)
+- [OKR Check-in Cadences & Templates](references/check-ins.md)
+- [OKR Scoring Guide](references/scoring.md)
+- [OKR Visualization & Display Patterns](references/visualization.md)
+- [OKR Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance, prompts, templates, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; may include OKR templates, scoring tables, workshop agendas, dashboard patterns, and coaching prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

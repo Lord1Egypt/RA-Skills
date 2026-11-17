@@ -1,42 +1,55 @@
-## Description: <br>
-Oura Health lets an agent query Oura Ring sleep, readiness, activity, heart rate, trends, and health alerts through the Oura API v2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Oura Ring sleep, readiness, activity, heart rate, trends, and health alerts via the Oura API v2.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Oura users and their agents use this skill to check sleep, readiness, activity, recent heart rate, multi-day trends, and daily health alerts from local command output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Oura health, profile, and account data that may appear in agent responses, shared chats, or logs. <br>
-Mitigation: Use it only in trusted sessions, avoid sharing status or alert output in public channels, and limit command use to data the user intends to disclose. <br>
-Risk: The skill depends on a local Oura personal access token and configurable API base URL. <br>
-Mitigation: Keep the credentials file private, leave the base URL pointed at the official Oura API unless intentionally testing, and revoke the token if it is exposed. <br>
+## Use Case:
 
+External users with Oura accounts use this skill to let an agent retrieve and summarize personal sleep, readiness, activity, heart-rate, and trend data. It can also run a local alert checker for notable health signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jarvis563/oura-health) <br>
-- [Oura personal access tokens](https://cloud.ouraring.com/personal-access-tokens) <br>
-- [Oura API v2 endpoint](https://api.ouraring.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Human-readable text from Python scripts, with setup guidance in Markdown and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Oura personal access token; reads Oura account data and does not write to the account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The credentials file can configure a non-Oura base_url, which could send the Oura bearer token and health/profile requests to an unintended service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep base_url set to https://api.ouraring.com/v2 or hard-code it before scheduled use; rotate the token if the credentials file or output is exposed.
+
+Risk: The skill reads sensitive personal, sleep, readiness, activity, heart-rate, and profile data from Oura.
+
+Mitigation: Install only where that local data access is acceptable, keep ~/.config/oura/credentials.json private with restrictive permissions, and avoid sharing command output externally.
+
+## Reference(s):
+
+- [Oura API v2](https://api.ouraring.com/v2)
+- [Oura Personal Access Tokens](https://cloud.ouraring.com/personal-access-tokens)
+- [ClawHub Skill Page](https://clawhub.ai/jarvis563/skills/oura-health)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable text and Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local credentials at ~/.config/oura/credentials.json and prints one-line alerts when notable health thresholds are met.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

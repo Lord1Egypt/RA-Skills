@@ -1,41 +1,53 @@
-## Description: <br>
-Use when creating or reviewing Next.js 14+ App Router projects, file routes, layouts, server/client component boundaries, SSR/SSG/ISR, streaming, metadata, middleware, server actions, or Next-specific data fetching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides the creation and review of Next.js App Router projects, including routes, rendering, server and client boundaries, caching, and metadata.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to create or review Next.js 14+ App Router projects, choose rendering and caching strategies, and keep server and client component responsibilities clear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Next.js changes could expose sensitive authentication logic, server actions, internal APIs, or environment variables to client-side code. <br>
-Mitigation: Review auth, middleware, server actions, and NEXT_PUBLIC environment usage before accepting generated changes. <br>
-Risk: Incorrect rendering, caching, or client/server boundary choices can cause stale data, unnecessary hydration, or larger client bundles. <br>
-Mitigation: Verify the selected SSR, SSG, ISR, or CSR mode, fetch cache policy, and placement of browser-only libraries in client leaf components. <br>
+## Use Case:
 
+Developers use this skill to structure and review Next.js 14+ App Router applications, select rendering and caching strategies, and keep sensitive logic on the server.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-nextjs-project-standard) <br>
-- [Frontend Craft Repository](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on Next.js App Router structure, rendering modes, data-fetching boundaries, metadata, middleware, and server/client component placement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata, package.json, metadata.json, README.md) <br>
+Risk: Incorrect rendering or cache guidance could expose private data or produce stale pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify route behavior with build output, response headers, traces, or routing tests; review private-data caching before deployment.
+
+Risk: Putting sensitive logic or credentials in client components could expose them to users.
+
+Mitigation: Keep sensitive logic on the server and exclude credentials from public environment variables.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-nextjs-project-standard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations call for build, header, trace, or routing evidence when evaluating rendering and caching behavior.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release metadata and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Searches Baidu News, Toutiao, Bing News, Google News, and Sina News, aggregates matching news results, and removes duplicate links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Baidu News, Toutiao, Bing News, Google News, and Sina News, then aggregates and deduplicates news results.
 
-## Publisher: <br>
-[dlutwuwei](https://clawhub.ai/user/dlutwuwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlutwuwei](https://clawhub.ai/user/dlutwuwei)
 
-## Use Case: <br>
-Agents and developers use this skill to run browser-based news searches for a keyword across multiple public news/search providers and return deduplicated result summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords are sent to the selected third-party news and search providers. <br>
-Mitigation: Avoid submitting confidential or sensitive terms unless sharing them with those providers is acceptable. <br>
-Risk: The skill uses automated browser access with a stealth plugin and launches Chromium with no-sandbox flags. <br>
-Mitigation: Run it in a constrained environment and confirm the selected providers' terms of service and isolation requirements before deployment. <br>
+## Use Case:
 
+Developers and external users can use this skill to run keyword-based news searches across multiple news search services and receive deduplicated result lists with titles, links, sources, channels, and times when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlutwuwei/news-search) <br>
-- [Publisher profile](https://clawhub.ai/user/dlutwuwei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON news result summaries with titles, links, sources, channels, and available times.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on third-party page structure, availability, regional access, and the selected engine and result limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill drives a headless browser against third-party search sites and the security evidence flags this as suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this behavior is acceptable for the intended environment and review the dependency set before deployment.
+
+Risk: The skill disables Chromium sandboxing while visiting external sites.
+
+Mitigation: Run it in an isolated, non-root environment and consider removing the no-sandbox launch flags before use on systems with sensitive files or credentials.
+
+Risk: The skill uses an anti-bot stealth plugin.
+
+Mitigation: Confirm that use of browser automation and stealth behavior is acceptable for the target sites and deployment policy; consider removing the stealth plugin when it is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlutwuwei/skills/news-search)
+- [Baidu News search](https://www.baidu.com/s?tn=news&word={keyword})
+- [Toutiao news search](https://so.toutiao.com/search?keyword={keyword}&pd=news)
+- [Bing News search](https://www.bing.com/news/search?q={keyword})
+- [Google News search](https://news.google.com/search?q={keyword})
+- [Sina News search](https://search.sina.com.cn/?q={keyword}&c=news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown or JSON news result list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are deduplicated by link; caller can choose engine, per-engine maximum result count, and output format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

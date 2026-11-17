@@ -1,5 +1,5 @@
 ## Description: <br>
-Generates AI chart visualization projects from pasted tables or uploaded data through the aitubiao API. <br>
+AI智能图表生成：根据用户提供的数据生成图表配置，并通过 aitubiao API 创建可视化项目。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to turn pasted tables or uploaded CSV, TXT, or spreadsheet data into chart projects hosted by aitubiao. It guides authentication, data confirmation, quota checking, fee confirmation, chart creation, optional screenshots, and project export. <br>
+External users and developers use this skill to turn provided tables or files into aitubiao chart projects after authentication, quota checking, and user cost confirmation. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill stores a persistent aitubiao API key on the user's machine. <br>
-Mitigation: Use the skill only if you trust aitubiao with the key, keep the credentials file private, and revoke or delete the key after use when appropriate. <br>
-Risk: Chart data is sent to a third-party service for generation. <br>
-Mitigation: Avoid sensitive, confidential, or regulated datasets unless that use has been approved for aitubiao. <br>
-Risk: The bundled CLI exposes broader aitubiao API commands than chart generation alone. <br>
-Mitigation: Review the command being invoked and keep use scoped to the intended chart workflow unless the user explicitly requests a supported follow-up action. <br>
-Risk: Project exports write files to local paths. <br>
-Mitigation: Confirm export paths before downloading and avoid paths that could overwrite important local files. <br>
+Risk: The skill stores a persistent aitubiao API key in ~/.aitubiao/credentials and the CLI loads that file as shell code. <br>
+Mitigation: Use only a revocable API key from the legitimate aitubiao API-key page, inspect or delete ~/.aitubiao/credentials after use, and rotate the key if it may have been exposed or tampered with. <br>
+Risk: The API key can query quota and create billable projects through the aitubiao service. <br>
+Mitigation: Confirm quota and cost before creating projects, and install the skill only when the user trusts aitubiao with submitted data and billing actions. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/aitubiao/aitubiao-ai-chart) <br>
-- [aitubiao application](https://app.aitubiao.com) <br>
+- [aitubiao API key management](https://app.aitubiao.com/setting/api-keys) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request bodies, API response summaries, project links, and downloaded file paths] <br>
+**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with inline shell commands and JSON API results] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to api.aitubiao.com, Bash, curl, jq, and a user-provided aitubiao API key.] <br>
+**Other Properties Related to Output:** [May produce chart project URLs, project identifiers, screenshot links, quota details, and downloaded export files through the aitubiao service.] <br>
 
 ## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+1.1.5 (source: ClawHub release evidence and skill frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,44 +1,59 @@
-## Description: <br>
-Claude Session Warmer helps users align Claude Pro/Max usage windows to working hours by scheduling small official Claude Code CLI primer prompts on an always-on box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aligns a Claude Pro/Max usage window to working hours by guiding setup of an opt-in scheduled primer through the official Claude Code CLI on an always-on machine, without increasing quota.
 
-## Publisher: <br>
-[daryn-louw](https://clawhub.ai/user/daryn-louw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daryn-louw](https://clawhub.ai/user/daryn-louw)
 
-## Use Case: <br>
-Developers and operators who run Claude Code on an always-on VPS use this skill to generate setup guidance, cron commands, and configuration for scheduled primer prompts that align Claude usage windows with their workday. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled Claude CLI prompts can consume account quota and depend on current Claude or Anthropic subscription policy. <br>
-Mitigation: Install only when intentional, keep enabled=false until ready, use a trivial primer prompt, and verify current Claude or Anthropic terms before enabling the schedule. <br>
-Risk: The skill requires an authenticated Claude Code CLI on an always-on VPS and handles a sensitive account context. <br>
-Mitigation: Log in on the VPS through the official Claude flow and avoid copying OAuth tokens or credentials between machines. <br>
-Risk: The install flow prints cron entries that can run prompts repeatedly if added without review. <br>
-Mitigation: Review the generated cron block before adding it and use the documented check, schedule, dry_run, and enabled controls before unattended use. <br>
+## Use Case:
 
+External developers and Claude Pro/Max subscribers use this skill to configure, preview, and schedule a low-volume CLI primer so Claude usage windows line up with their working day. It is intended for users who already run an authenticated official Claude Code CLI on an always-on VPS or similar host.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daryn-louw/claude-session-warmer) <br>
-- [Project website](https://decisionvex.github.io/claude-session-warmer/) <br>
-- [Terms and usage boundaries](references/tos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for Node-based checks, schedule previews, cron installation, and config.json setup; it does not generate authentication tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring scheduled jobs may repeatedly invoke an authenticated Claude CLI on the user's host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated crontab or scheduled-task line before installing it, keep the schedule low-volume, and document how to remove the entries.
+
+Risk: Cron entries are generated from user-editable configuration.
+
+Mitigation: Keep config.json trusted and simple, avoid piping generated output directly into crontab, and inspect the exact commands before activation.
+
+Risk: Misuse could be framed as bypassing limits or could involve unsafe credential handling.
+
+Mitigation: Use only the official Claude Code CLI logged in on the same machine, do not copy tokens or use shared accounts, and describe the behavior as usage-window alignment rather than quota bypass.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daryn-louw/skills/claude-session-warmer)
+- [Project website](https://decisionvex.github.io/claude-session-warmer/)
+- [Terms-of-service position](references/tos.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce cron entries and scheduled-task commands for user review before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

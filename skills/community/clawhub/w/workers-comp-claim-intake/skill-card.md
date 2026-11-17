@@ -1,44 +1,56 @@
-## Description: <br>
-Guides HR managers, safety officers, employer representatives, and workers' compensation coordinators through workplace injury claim intake, OSHA recordability review, state FROI data collection and deadline flags, and draft FROI and incident investigation report preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides HR managers, safety officers, employer representatives, and workers' compensation coordinators through workplace injury or illness claim intake, OSHA recordability review, state FROI data collection, deadline flags, and draft incident documentation.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+HR managers, safety officers, employer representatives, and workers' compensation coordinators use this skill to collect incident facts, identify OSHA recordability considerations, gather state FROI fields, compute filing deadline reminders, and draft documents for authorized review before submission.
+
+### Deployment Geography for Use:
+
+United States
+
+## Known Risks and Mitigations:
+
+Risk: Workers' compensation documents may contain employee health, witness, and identity information.
+
+Mitigation: Use only with authorized HR or safety personnel, avoid entering SSNs or full dates of birth into unsecured drafts, and keep outputs in approved secure systems.
+
+Risk: State filing deadlines and FROI requirements can vary and incorrect guidance may affect claim handling.
+
+Mitigation: Confirm deadlines, forms, and filing requirements with the carrier, TPA, or state workers' compensation board before submission.
+
+Risk: The skill drafts documentation but cannot make legal, medical, compensability, or final OSHA recordability decisions.
+
+Mitigation: Route drafts to authorized HR, safety, carrier, or legal reviewers before filing or relying on determinations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-HR managers, safety officers, employer representatives, and workers' compensation coordinators use this skill to collect workplace injury facts, draft a state-structured First Report of Injury, and prepare an incident investigation report for authorized review before filing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Workers' compensation intake may involve sensitive employee health information or personal identifiers. <br>
-Mitigation: Use placeholders or pseudonyms where possible, avoid unnecessary SSNs, full dates of birth, and detailed medical records, and store or transmit drafts only through authorized secure channels. <br>
-Risk: OSHA recordability, state FROI deadlines, and workers' compensation requirements can be jurisdiction-specific and may require qualified review. <br>
-Mitigation: Treat generated determinations and deadlines as preliminary drafts, then verify them with qualified HR, safety personnel, the carrier, TPA, or state workers' compensation board before filing. <br>
-Risk: Contractor status and compensability questions can require legal or carrier judgment. <br>
-Mitigation: Flag contractor classification and compensability issues for legal, carrier, or authorized employer review before relying on the draft. <br>
+**Output Format:** [Markdown draft documents and structured intake guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+**Other Properties Related to Output:** [Produces a draft First Report of Injury and a draft incident investigation report for authorized HR and safety review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft documents with structured sections, sensitive-field flags, deadline reminders, and review blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces two draft documents: a First Report of Injury draft and an incident investigation report for HR and safety officer review.] <br>
+0.1.0 (source: release metadata and changelog, released 2026-05-30)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and CHANGELOG, released 2026-05-30) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

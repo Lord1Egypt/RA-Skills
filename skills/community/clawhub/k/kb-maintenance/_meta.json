@@ -1,0 +1,33 @@
+{
+  "name": "kb_maintenance",
+  "version": "0.2.0",
+  "description": "Research KB skill: scheduled maintenance for the six team-level overview pages from the existing Gitea-backed knowledge base, with OpenClaw-led inspection and reasoning, strict overview-only validation, catalog/index maintenance, hidden maintenance status files for frontend display, and no backend scheduling dependency.",
+  "entry": "SKILL.md",
+  "runtime": {
+    "type": "python",
+    "workflow": [
+      "python3 scripts/run_task.py inspect --output <inspection.json> --quiet",
+      "python3 scripts/run_task.py read-pages --paths <comma-separated-page-paths> --output <evidence.json> --quiet",
+      "python3 scripts/run_task.py validate-pages --draft-dir <overview-drafts> --quiet",
+      "python3 scripts/run_task.py apply --draft-dir <overview-drafts> --summary <summary> --quiet",
+      "python3 scripts/run_task.py record-failure --summary <summary> --error <error> --quiet"
+    ]
+  },
+  "selfContained": true,
+  "requiredEnv": [
+    "GITEA_URL",
+    "GITEA_BOT_TOKEN",
+    "GITEA_BOT_USERNAME",
+    "TEAM_KB_REPO"
+  ],
+  "optionalEnv": [
+    "GITEA_ORG",
+    "TEAM_NAME",
+    "TEAM_RESEARCH_DIRECTION",
+    "OPENCLAW_SHARED_DIR"
+  ],
+  "input": "Optional backend or manual payload JSON. OpenClaw cron runs may omit payload and rely on environment variables.",
+  "output": "apply writes changed overview pages, catalog/index, .kb/maintenance/kb_maintenance_status.json, and .kb/maintenance/kb_maintenance_runs.json. Successful cron runs can be quiet; failures should call record-failure so frontend status does not stay stale, while command errors still print diagnostics."
+}
+
+

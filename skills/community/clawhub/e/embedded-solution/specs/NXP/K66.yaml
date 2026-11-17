@@ -1,0 +1,33 @@
+part: K66
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: Kinetis MCU (Arm Cortex-M4)
+main_page: https://www.nxp.com/products/K66_180
+datasheet_path_expected: ../../embedded_dev/nxp/datasheet/K66_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ram: 256 KB
+  cores: ARM Cortex-M4
+  clock_mhz_max: 180
+  flash: 2048 KB
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 4 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- Kinetis K66 Cortex-M4 @ 180 MHz, Ethernet, USB, large RAM.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 3/4 spec fields matched
+  (75%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:19:53+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

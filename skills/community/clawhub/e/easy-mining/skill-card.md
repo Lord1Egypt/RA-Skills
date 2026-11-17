@@ -1,43 +1,60 @@
-## Description: <br>
-Easy Mining helps agents monitor and manage BTC mining farms through natural-language requests, including farm overviews, miner status, abnormal miner detection, revenue history, and confirmed batch operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Easy Mining lets agents manage BTC mining farms through natural-language requests, including farm overviews, miner status checks, abnormal miner detection, batch operations, and revenue history.
 
-## Publisher: <br>
-[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom)
 
-## Use Case: <br>
-External BTC mining farm operators and their agents use this skill to inspect farm health, hashrate, revenue, miner status, and task progress, then prepare operational actions such as reboots, power-mode changes, firmware updates, network scans, pool configuration, and locator-light flashes. Write operations should be executed only after the affected miners and task parameters are confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a live Nonce API key in chat. <br>
-Mitigation: Use a tightly scoped and revocable API key where possible, avoid sharing long-lived credentials, and rotate the key if it may have been exposed. <br>
-Risk: The skill can create sensitive miner task batches, including pool configuration, firmware updates, network scans, and reboots. <br>
-Mitigation: Review the exact farm ID, miner IDs, task type, and parameters before approval, and require explicit confirmation before any write operation. <br>
+## Use Case:
 
+External users and mining operators use this skill to inspect BTC mining farm health, query miner and revenue data, and request administrative miner operations through an MCP-backed workflow.
 
-## Reference(s): <br>
-- [ClawHub Easy Mining release](https://clawhub.ai/deanpeng-dotcom/easy-mining) <br>
-- [Nonce MCP Tools Reference](references/nonce-tools.md) <br>
-- [Nonce App](https://app.nonce.app) <br>
-- [Antalpha](https://www.antalpha.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries, JSON-style tool results, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can perform read-only mining farm queries and user-confirmed write operations using a user-provided Nonce API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill asks users to provide a powerful Nonce API key in chat or CLI contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable keys; avoid ordinary chat for production secrets; and rotate any key shared with the agent.
+
+Risk: The skill can initiate administrative miner operations such as reboot, firmware update, network scan, and pool configuration.
+
+Mitigation: Treat write operations as admin actions and require explicit, out-of-band confirmation of the target farm, miner list, and task before execution.
+
+Risk: The artifact documents confirmation expectations, but the included CLI wrapper can call create-task directly when invoked.
+
+Mitigation: Wrap CLI or agent use with an approval gate before calling task-creation tools, especially in production mining environments.
+
+## Reference(s):
+
+- [Nonce MCP Tools Reference](references/nonce-tools.md)
+- [ClawHub Easy Mining Skill Page](https://clawhub.ai/deanpeng-dotcom/skills/easy-mining)
+- [Antalpha MCP Endpoint](https://mcp-skills.ai.antalpha.com/mcp)
+- [Nonce App](https://app.nonce.app)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, API calls]
+
+**Output Format:** [Markdown with inline commands and structured MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a per-use Nonce API key and may propose write operations that require explicit confirmation.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

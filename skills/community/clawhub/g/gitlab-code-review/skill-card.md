@@ -1,42 +1,57 @@
-## Description: <br>
-Automatically monitors a GitLab project for new commits on a schedule, prepares pending commit data, and guides the agent to generate and send code review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors a configured GitLab project for new commits, prepares pending commit data, and guides an agent to generate and send code review reports.
 
-## Publisher: <br>
-[zhanghaiyu0511](https://clawhub.ai/user/zhanghaiyu0511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhanghaiyu0511](https://clawhub.ai/user/zhanghaiyu0511)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to configure scheduled GitLab commit checks and receive code review reports for newly detected changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GitLab read_api token and stores configuration in workspace/.env. <br>
-Mitigation: Use a dedicated least-privilege token with an expiration, keep workspace/.env private, and remove the token when automated review is no longer needed. <br>
-Risk: The scheduled job fetches private commit diffs from the configured GitLab project. <br>
-Mitigation: Verify the GitLab URL, project path, and branch before saving configuration, and restrict token access to only the intended project where possible. <br>
-Risk: Automated hourly review continues until the cron job is removed. <br>
-Mitigation: Review the configured cron job and remove it when scheduled code review is no longer required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitLab Code Review on ClawHub](https://clawhub.ai/zhanghaiyu0511/gitlab-code-review) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to configure scheduled GitLab commit monitoring and receive code review reports for new commits on a selected branch.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, JSON pending-review files, shell commands, and workspace configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates scheduled review state and pending-review files; sends reports only when new commits are found.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores a GitLab personal access token in workspace/.env and reuses it through an hourly background job.
+
+Mitigation: Use a dedicated least-privilege read_api token, restrict access to workspace/.env, and rotate or revoke the token when monitoring is no longer needed.
+
+Risk: The configured GitLab URL determines where the token is sent during API calls.
+
+Mitigation: Configure only a trusted HTTPS GitLab URL and review the configuration before enabling scheduled monitoring.
+
+Risk: The cron job continues accessing the selected GitLab project until it is removed.
+
+Mitigation: Periodically review the cron configuration and remove the job when scheduled code review is no longer required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanghaiyu0511/skills/gitlab-code-review)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and generated review-report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates pending review JSON, review state JSON, and Markdown code review reports in workspace memory when configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

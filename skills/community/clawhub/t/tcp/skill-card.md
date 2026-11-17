@@ -1,39 +1,53 @@
-## Description: <br>
-Helps with TCP sockets, client/server connections, and network debugging when users need to open TCP connections, write socket code, test ports, debug connection refused or timeouts, or work with raw TCP protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps with TCP sockets, client/server connections, and network debugging.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and engineers use this skill for TCP socket programming, TCP client and server examples, port connectivity checks, and troubleshooting common TCP connection failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Port checks and packet captures can be misused against systems the user is not authorized to test. <br>
-Mitigation: Use suggested network tools only on systems the user owns or has permission to test. <br>
-Risk: TCP service examples may expose sensitive capabilities if deployed publicly without protection. <br>
-Mitigation: Add authentication, rate limiting, firewall rules, and configuration-based host and port settings before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to write TCP client or server examples, test port connectivity, debug connection failures, and reason about raw TCP protocol behavior.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; outputs are advisory instructions, troubleshooting steps, and examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated network test commands can perform real network activity against hosts and ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generated commands only against systems and networks where the user has permission.
+
+Risk: Generated TCP server examples can expose a listening service if bound to public interfaces.
+
+Mitigation: Use loopback addresses for local testing and add authentication, rate limiting, and firewall controls before exposing services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/tcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands and examples may need OS, shell, host, port, and permission context before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

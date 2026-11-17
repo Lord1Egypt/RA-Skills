@@ -1,43 +1,54 @@
-## Description: <br>
-This skill helps an agent use the ofw-mcp MCP server for OurFamilyWizard co-parenting messages, calendar events, shared expenses, and journal entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server for OurFamilyWizard that provides read/write access to messages, calendar events, expenses, and journal entries.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to OurFamilyWizard data, check messages and calendar items, manage expenses, and draft or send OFW records with explicit review for sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The integration handles sensitive OurFamilyWizard credentials and co-parenting records with read/write access. <br>
-Mitigation: Install only in trusted environments, store credentials carefully, and review messages or records before any write action. <br>
-Risk: Reading notifications or unread messages may update OFW state, including last-seen or read status. <br>
-Mitigation: Avoid silent background reads and warn the user before calls that can change message or notification state. <br>
-Risk: Synced OFW data may remain in a local cache. <br>
-Mitigation: Use explicit OFW requests, limit access to trusted machines, and remove cached data when it is no longer needed. <br>
+## Use Case:
 
+External OurFamilyWizard users use this skill to let an agent inspect and manage co-parenting messages, calendar events, shared expenses, and journal entries. It is intended for workflows where the user wants OFW data access through MCP while preserving explicit review for sensitive actions.
 
-## Reference(s): <br>
-- [ofw-mcp npm package](https://www.npmjs.com/package/ofw-mcp) <br>
-- [ofw-mcp project link declared in artifact](https://github.com/chrischall/ofw-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MCP tool calls that read or write OurFamilyWizard records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence) <br>
+Risk: The skill asks users to run external MCP server code with reusable OFW credentials and broad read/write access to sensitive legal-family records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version, keep OFW credentials out of project files and shell history, and store secret files with restrictive permissions.
+
+Risk: Some OFW operations can send messages, delete records, mark messages read, or update last-seen status.
+
+Mitigation: Require explicit user confirmation before sending messages, deleting records, reading unread messages that may mark them read, or calling notification reads that update status.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrischall/skills/ofw-mcp)
+- [npm Package](https://www.npmjs.com/package/ofw-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP tool calls that read or modify OurFamilyWizard records.]
+
+## Skill Version(s):
+
+2.11.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

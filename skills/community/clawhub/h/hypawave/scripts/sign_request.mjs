@@ -21,10 +21,11 @@
  *
  * CLI:
  *   node sign_request.mjs --gen                                         # generate a new identity key (save as $HYPAWAVE_PRIVKEY)
- *   echo '{"amount":1,...}' | node sign_request.mjs --key <privhex>     # signed POST body
- *   node sign_request.mjs --key <privhex> --bodyless                    # header-only (GET/DELETE)
- *   node sign_request.mjs --selftest                                    # verify against llms.txt vector
- *   (private key also read from $HYPAWAVE_PRIVKEY if --key is omitted)
+ *   echo '{"amount":1,...}' | HYPAWAVE_PRIVKEY=<privhex> node sign_request.mjs   # signed POST body
+ *   HYPAWAVE_PRIVKEY=<privhex> node sign_request.mjs --bodyless                  # header-only (GET/DELETE)
+ *   node sign_request.mjs --selftest                                              # verify against llms.txt vector
+ *   (--key <hex> is accepted for one-off tests only — it leaks into shell history and
+ *    process listings; the script warns on stderr when it is used)
  */
 
 import * as secp from "./vendor/noble-secp256k1.mjs";
@@ -138,6 +139,9 @@ async function main() {
   if (argv.includes("--gen")) return genKey();
 
   const keyIdx = argv.indexOf("--key");
+  if (keyIdx >= 0) {
+    console.error("warning: --key puts the private key in shell history and process listings; prefer the HYPAWAVE_PRIVKEY environment variable");
+  }
   const privKey = (keyIdx >= 0 ? argv[keyIdx + 1] : process.env.HYPAWAVE_PRIVKEY) || "";
   if (!/^[0-9a-fA-F]{64}$/.test(privKey)) {
     console.error("error: provide a 32-byte hex private key via --key <hex> or $HYPAWAVE_PRIVKEY");

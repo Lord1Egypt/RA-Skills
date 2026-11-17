@@ -1,44 +1,61 @@
-## Description: <br>
-Find wasted AI spend in OpenClaw, Hermes, and Cursor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits AI agent runtime spending, attributes costs, and identifies evidence-backed opportunities to reduce waste.
 
-## Publisher: <br>
-[xerg](https://clawhub.ai/user/xerg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xerg](https://clawhub.ai/user/xerg)
 
-## Use Case: <br>
-Developers and engineering teams use Xerg to audit local OpenClaw, Hermes, and Cursor usage for wasted AI spend, compare workflow changes, and optionally push summarized audit results to Xerg Cloud. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The closed-source npm CLI reads local AI usage logs and session transcripts for cost analysis. <br>
-Mitigation: Run local audit commands first, review the CLI's requested sources, and install only when that local file access matches the intended audit scope. <br>
-Risk: Optional push, connect, and hosted MCP commands can send summarized audit results to Xerg Cloud. <br>
-Mitigation: Use cloud sync only when intended, review remote or hosted setup before enabling it, and avoid push/connect features for local-only audits. <br>
+## Use Case:
 
+Developers and operators use Xerg to audit AI agent runtime spend, assess detector and pricing coverage, investigate supported waste findings, and compare costs after changes.
 
-## Reference(s): <br>
-- [Xerg documentation](https://xerg.ai/docs) <br>
-- [Xerg skill definition](https://xerg.ai/skill.md) <br>
-- [@xerg/cli npm package](https://www.npmjs.com/package/@xerg/cli) <br>
-- [Xerg homepage](https://xerg.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/xerg/skills/xerg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, json] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON audit output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local audit results may include spend totals, rollups, findings, recommendations, comparison deltas, and source metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.6 (source: server release evidence) <br>
+Risk: The pinned, non-open-source npm CLI can read approved local AI runtime logs or databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected data sources and package before granting separate permission to fetch the CLI and inspect local evidence.
+
+Risk: Remote collection or a hosted push could expose runtime information outside the local machine.
+
+Mitigation: Approve the exact remote host and evidence paths separately; keep local audit, hosted pairing, and upload as distinct approvals, and preview push data with a dry run.
+
+Risk: Estimated or unpriced runtime spending may be mistaken for an authoritative provider bill.
+
+Mitigation: Report pricing and detector coverage, separate neutral signals from waste findings, and avoid presenting modeled costs as invoice totals.
+
+## Reference(s):
+
+- [Xerg documentation](https://xerg.ai/docs)
+- [Xerg skill documentation](https://xerg.ai/skill.md)
+- [Xerg CLI package](https://www.npmjs.com/package/@xerg/cli)
+- [Hermes analysis guide](https://xerg.ai/docs/hermes-analysis)
+- [ClawHub skill listing](https://clawhub.ai/xerg/skills/xerg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and CLI commands; JSON audit reports when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spend estimates depend on pricing and detector coverage; findings and neutral signals remain distinct.]
+
+## Skill Version(s):
+
+0.35.5 (source: ClawHub release metadata; reviewed CLI pin: 0.35.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

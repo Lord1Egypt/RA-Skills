@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7egw93kajavr3tpgn3tfww0s82t9ft",
-  "slug": "g0atbot-seo-analyzer",
-  "version": "1.0.0",
-  "publishedAt": 1773439334027
+  "name": "seo-analyzer",
+  "description": "Free alternative to Ahrefs/SEMrush. Analyze websites for SEO factors - meta tags, headings, keywords, competitor analysis, and site audits.",
+  "price": 9,
+  "category": "marketing",
+  "tags": ["seo", "marketing", "analytics", "analysis"],
+  "requires": {
+    "env": [],
+    "bins": []
+  },
+  "documentation": {
+    "setup_time": "5 minutes",
+    "difficulty": "beginner"
+  }
 }

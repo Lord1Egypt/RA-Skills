@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7expjc3a3skyesxdg25d55n184p52s",
-  "slug": "great-people-hedge-fund-sms",
-  "version": "1.0.1",
-  "publishedAt": 1776246947110
+  "ownerId": "smseow001",
+  "slug": "great-people-hedge-fund",
+  "version": "1.0.0",
+  "name": "Great People Hedge Fund",
+  "description": "Multi-agent AI investment analyst team implementing legendary investor philosophies (Buffett, Munger, Lynch, Taleb, Burry) to analyze stocks",
+  "tags": ["finance", "investing", "stock-analysis", "ai-agents", "value-investing"],
+  "publishedAt": 1744709400000
 }

@@ -1,6 +1,48 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
+  "name": "github-issue-auto-triage",
   "slug": "github-issue-auto-triage",
-  "version": "1.0.0",
-  "publishedAt": 1773654927591
+  "version": "2.0.0",
+  "description": "自动分类 GitHub Issue，AI 智能打标签、分配负责人、检测重复、回复 FAQ",
+  "author": "于金泽",
+  "installedAt": "2026-03-16T15:45:00Z",
+  "source": "local",
+  "vetted": true,
+  "vettingRequired": true,
+  "riskLevel": "MEDIUM",
+  "dependencies": [
+    "requests",
+    "tqdm",
+    "python>=3.6"
+  ],
+  "environmentVariables": [
+    "GITHUB_TOKEN",
+    "GITHUB_OWNER",
+    "GITHUB_REPO",
+    "DASHSCOPE_API_KEY"
+  ],
+  "permissions": {
+    "network": true,
+    "networkEndpoints": [
+      "api.github.com",
+      "dashscope.aliyuncs.com"
+    ],
+    "fileRead": false,
+    "fileWrite": true,
+    "fileWriteScope": "current_directory_only"
+  },
+  "scripts": {
+    "main": "scripts/triage.py",
+    "test": "python3 -m pytest tests/test_triage.py -v"
+  },
+  "tags": [
+    "github",
+    "automation",
+    "issue",
+    "triage",
+    "ai",
+    "developer"
+  ],
+  "category": "developer-tools",
+  "vettingReport": "memory/skill-reviews/2026-03-16-github-issue-auto-triage.md",
+  "changelog": "CHANGELOG.md"
 }

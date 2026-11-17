@@ -1,43 +1,55 @@
-## Description: <br>
-Analyzes fixed-camera reptile feeding videos to identify prey attack, swallowing, feeding refusal, vomiting or regurgitation, unreliable footage, and alert-level guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes reptile feeding and post-feeding videos to record prey-attack, swallowing, feeding-refusal, and regurgitation behavior.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External reptile keepers, vivarium operators, and developers use this skill to analyze feeding-session video or video URLs and produce behavior records, refusal or vomiting alerts, recommendations, and report links. The skill is intended to support monitoring and escalation to a reptile veterinarian, not to diagnose disease or prescribe treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reptile videos or video URLs are sent to a vendor cloud service for analysis. <br>
-Mitigation: Use the skill only for media that is appropriate to share with the vendor cloud and confirm cloud processing is acceptable for the deployment. <br>
-Risk: The skill automatically creates or reuses an account-linked identity and may keep authentication or profile data locally. <br>
-Mitigation: Run it in an environment where local data can be inspected and deleted, and use cloud-history access only when explicitly intended. <br>
-Risk: Behavior analysis may be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Treat outputs as visual behavior records and escalation guidance only; use a professional reptile veterinarian for diagnosis, medication, dosing, force-feeding, or treatment decisions. <br>
+## Use Case:
 
+Reptile keepers use feeding footage to review whether an animal attacked and swallowed prey, refused food, or regurgitated after feeding. The skill provides behavior records and alerts; it does not diagnose disease.
 
-## Reference(s): <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown or JSON structured analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include event fields, alert levels, recommendations, report links, and saved output files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.3) <br>
+Risk: The security summary reports credential and account handling and broad credentialed network requests; the scan was partial and its findings do not establish intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review credential scope and account behavior before use, and run with only the access required for the task.
+
+Risk: The security summary reports that video may be uploaded even in export-only mode.
+
+Mitigation: Confirm whether footage is transmitted and where it goes before using private enclosure video; use non-sensitive footage until verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-reptile-feeding-refusal-vomiting-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](artifact/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Alerts]
+
+**Output Format:** [Structured feeding-event report with behavior findings, recommendations, and report links; JSON or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include event timing, confidence values, and feeding-context indicators when available.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

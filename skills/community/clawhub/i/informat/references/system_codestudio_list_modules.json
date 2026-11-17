@@ -1,0 +1,12 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_list_modules",
+		"description": "List all existing AICodeStudio modules under the current app (returns a list of moduleId / name / remark). [IMPORTANT] Before calling _codestudio_create_module to create a new module, you MUST call this first: if an existing AICodeStudio module fits the purpose, reuse its moduleId instead of creating a duplicate; only create a new module when none is suitable.",
+		"parameters": {
+			"type": "object",
+			"properties": {},
+			"additionalProperties": false
+		}
+	}
+}

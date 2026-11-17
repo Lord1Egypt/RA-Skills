@@ -1,40 +1,53 @@
-## Description: <br>
-Manage Feishu Wiki knowledge bases by listing spaces, viewing, creating, moving, and renaming wiki pages with appropriate permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Feishu Wiki knowledge bases by listing spaces, viewing, creating, moving, and renaming wiki pages with appropriate permissions.
 
-## Publisher: <br>
-[erick0309](https://clawhub.ai/user/erick0309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erick0309](https://clawhub.ai/user/erick0309)
 
-## Use Case: <br>
-Employees, developers, and workspace operators use this skill to manage Feishu Wiki knowledge-base spaces and pages, including listing spaces and nodes, retrieving page content, and creating, moving, or renaming wiki pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and notes unusually broad execution authority in the release bundle. <br>
-Mitigation: Install only if you trust the publisher and review the skill before deployment; prefer least-privilege execution settings unless full access is intentionally required. <br>
-Risk: Feishu Wiki actions can expose, create, move, or rename workspace knowledge-base content. <br>
-Mitigation: Use a Feishu account with only the permissions needed for the intended wiki spaces and review planned changes before applying them. <br>
+## Use Case:
 
+Developers and Feishu workspace users use this skill to inspect wiki spaces and nodes, retrieve page content, and manage wiki organization through authorized create, move, and rename actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erick0309/feishu-wiki-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses based on Feishu Wiki tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Feishu account with permissions for the target knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can access Feishu wiki content through the user's account permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the agent should access that Feishu wiki data, and use an account with appropriate wiki permissions.
+
+Risk: Create, move, and rename actions can change shared knowledge base structure or content.
+
+Mitigation: Review proposed create, move, and rename actions before approving them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erick0309/skills/feishu-wiki-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or text responses with Feishu wiki tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, move, or rename wiki nodes when the user approves the action and account permissions allow it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

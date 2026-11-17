@@ -1,46 +1,57 @@
-## Description: <br>
-Send local files, uploaded attachments, or URLs for e-signature with Nota Sign while handling credential setup, environment selection, file validation, signer collection, and Node.js runtime fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send supported local files, uploaded attachments, or URLs for e-signature through Nota Sign in PROD or UAT while collecting signer details and required credentials.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-External users and developers use this skill to collect Nota Sign credentials, validate supported documents, gather signer names and emails, and initiate Nota Sign envelopes in PROD or UAT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads documents and signer details to Nota Sign. <br>
-Mitigation: Install and use it only when the publisher is trusted and the user is authorized to send the documents and signer data to Nota Sign. <br>
-Risk: Nota Sign credentials include a private signing key stored in plaintext configuration files. <br>
-Mitigation: Prefer the home config, avoid committing or backing up the config, restrict permissions such as chmod 600, and rotate the key if the config may have been exposed. <br>
-Risk: PROD and UAT use separate credential sets. <br>
-Mitigation: When switching environments, collect and replace appId, appKey, userCode, and serverRegion for the target environment instead of only changing the environment field. <br>
-Risk: The temporary runtime fallback can download node@20 and tsx from npm. <br>
-Mitigation: Use an existing Node.js 18 or newer runtime when possible; allow the fallback only in environments where temporary npm downloads are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to configure Nota Sign credentials and send supported documents or URLs for signature to one or more signers through PROD or UAT.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/notasign/notasign) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Operator Guide](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global, with Nota Sign API regions CN, AP1, AP2, and EU1 selected during configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns envelope ID and send summary on success; surfaces validation or API errors with the next required action on failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill stores a Nota Sign signing private key in a local JSON config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or strict file permissions, avoid local override files that may be synced or committed, and keep secrets out of normal responses.
+
+Risk: The fallback execution path can download Node.js and tsx through unpinned npx commands.
+
+Mitigation: Prefer a reviewed local Node.js 18+ runtime with pinned tooling, and review before allowing npm network access.
+
+Risk: The skill uploads documents and signer data to Nota Sign endpoints.
+
+Mitigation: Use it only with documents and recipient data the user is authorized to send, and confirm the target environment, region, and credentials before sending.
+
+## Reference(s):
+
+- [ClawHub Nota Sign skill page](https://clawhub.ai/notasign/skills/notasign)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns an envelope ID and send summary on success; surfaces validation or API errors on failure.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

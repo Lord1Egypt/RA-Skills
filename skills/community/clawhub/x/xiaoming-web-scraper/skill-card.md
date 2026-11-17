@@ -1,45 +1,63 @@
-## Description: <br>
-Web Scraper Pro helps agents collect webpage data, export tables, schedule recurring collection, download images, and make API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Scraper Pro helps agents scrape web data, export tables, and schedule recurring collection jobs.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to generate web-scraping, table-export, and scheduled-collection workflows for price monitoring, competitor data collection, market research, and general data gathering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping may violate a site's terms, robots.txt policy, or collection expectations. <br>
-Mitigation: Use the skill only on sites where collection is allowed and review robots.txt and site terms before running jobs. <br>
-Risk: High-frequency collection can burden target sites or trigger blocking. <br>
-Mitigation: Keep request rates low and configure schedules conservatively. <br>
-Risk: Collected pages may include personal or sensitive data. <br>
-Mitigation: Avoid collecting personal or sensitive data without permission and review exported files before sharing or storing them. <br>
-Risk: Scheduled scraping jobs can continue collecting data after the original need has ended. <br>
-Mitigation: Confirm every scheduled scrape has a clear way to list, audit, and stop it. <br>
+## Use Case:
 
+External users and developers use this skill to collect authorized web data for ecommerce price monitoring, competitor data collection, market research, and general data gathering.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/xiaoming-web-scraper) <br>
-- [Publisher Profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe CSV or Excel table exports, scheduled scraping jobs, image downloads, and API-call workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can scrape websites or APIs outside the user's authorization or against site policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sites and APIs the user is authorized to access, and review robots.txt and rate limits before collection.
+
+Risk: Exports and downloaded images may store sensitive or regulated data in unexpected locations.
+
+Mitigation: Verify where CSV, Excel, and image outputs are stored and review exported content before sharing or retaining it.
+
+Risk: Scheduled scraping jobs may continue running after the immediate task is complete.
+
+Mitigation: Confirm how scheduled jobs can be listed, monitored, and removed before enabling recurring collection.
+
+Risk: Installing through an unpinned package command may pull a newer or unexpected installer version.
+
+Mitigation: Prefer a pinned and trusted ClawHub installer version when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-web-scraper)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and exported CSV/Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create scheduled scraping jobs, exported tables, and downloaded images; use only on authorized sites.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

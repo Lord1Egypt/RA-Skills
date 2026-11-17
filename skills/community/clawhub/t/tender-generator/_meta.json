@@ -1,0 +1,11 @@
+{
+  "name": "tender-generator",
+  "slug": "tender-generator",
+  "version": "3.0.0",
+  "description": "智能标书生成器，通过对话收集项目信息，自动填充模板生成全套投标文档包。",
+  "author": "Yue Ma",
+  "license": "MIT",
+  "keywords": ["标书", "投标", "文档生成", "docx"],
+  "skills": ["word-docx"],
+  "entry": "SKILL.md"
+}

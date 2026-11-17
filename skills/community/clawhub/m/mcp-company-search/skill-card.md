@@ -1,44 +1,59 @@
-## Description: <br>
-Searches corporate registries across multiple jurisdictions via the L402 API to find companies by name and jurisdiction for due diligence, compliance, and business research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches corporate registries across multiple jurisdictions via the L402 API to find companies by name and jurisdiction for due diligence, compliance, and business research.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Compliance analysts, investigators, and developers use this skill to search company registry records by jurisdiction and company name, and to list supported jurisdictions for due diligence, KYC, partner verification, and business research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The npm package name and setup examples differ across artifact files, which may cause users to install an unintended package. <br>
-Mitigation: Verify the intended npm package before installation and pin the exact package version in MCP client configuration. <br>
-Risk: Company names and jurisdictions submitted through the skill are sent to an external Nautdev/L402 API provider. <br>
-Mitigation: Avoid submitting sensitive investigation targets unless sharing those queries with the provider is acceptable for the workflow. <br>
-Risk: The documented environment variable differs between metadata and implementation, which may lead to unexpected default endpoint use. <br>
-Mitigation: Use the implementation-supported NAUTDEV_BASE_URL when overriding the default API endpoint and validate configuration before deployment. <br>
+## Use Case:
 
+External users and developers use this MCP server to search corporate registry records by company name and jurisdiction for KYC, due diligence, compliance research, and business partner verification.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/haveblue997/mcp-company-search) <br>
-- [Publisher profile](https://clawhub.ai/user/haveblue997) <br>
-- [Default Nautdev API endpoint](https://api.nautdev.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, shell commands, guidance] <br>
-**Output Format:** [MCP tool responses with JSON-formatted text and setup guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requests require a jurisdiction code and company name; jurisdiction listing has no parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Install instructions name different npm packages and use an unpinned npx install path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended npm package owner and package name, pin a reviewed version, and reconcile the README and SKILL.md configuration before installation.
+
+Risk: Company names and jurisdictions searched through the tool are sent to Nautdev's API and requests may involve L402 metered charges.
+
+Mitigation: Confirm pricing and authorization before use, and avoid sending sensitive search terms unless the deployment has appropriate data-handling approval.
+
+Risk: The MCP server performs outbound network requests from the agent runtime.
+
+Mitigation: Run it with restricted filesystem, environment, and network access where practical, exposing only required configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-company-search)
+- [Nautdev API base URL](https://api.nautdev.com)
+- [Blue-Trianon-Ventures pricing reference](https://github.com/Blue-Trianon-Ventures)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls]
+
+**Output Format:** [MCP tool responses containing JSON-formatted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results depend on Nautdev API availability, configured base URL, and metered L402 access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

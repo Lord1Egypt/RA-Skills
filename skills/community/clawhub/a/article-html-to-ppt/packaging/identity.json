@@ -1,0 +1,42 @@
+{
+  "registry_slug": "article-html-to-ppt",
+  "public_slug": "meowclaw-pptsmith",
+  "display_name": "PPT Smith",
+  "brand_aliases": [
+    "article-html-to-ppt",
+    "meowclaw-decksmith"
+  ],
+  "owner": "SkillMelody",
+  "license": "Apache-2.0",
+  "archive_name_template": "meowclaw-pptsmith-{version}.zip",
+  "consumers": [
+    {
+      "path": "SKILL.md",
+      "asserts": [
+        "registry_slug",
+        "public_slug",
+        "display_name",
+        "brand_aliases",
+        "version"
+      ]
+    },
+    {
+      "path": "README.md",
+      "asserts": [
+        "public_slug",
+        "display_name",
+        "version",
+        "license"
+      ]
+    },
+    {
+      "path": "README.en.md",
+      "asserts": [
+        "public_slug",
+        "display_name",
+        "version",
+        "license"
+      ]
+    }
+  ]
+}

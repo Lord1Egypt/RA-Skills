@@ -1,45 +1,60 @@
-## Description: <br>
-Fetches live theme park wait times and park metadata from Queue-Times.com JSON APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches live theme park wait times and park metadata from Queue-Times.com JSON APIs.
 
-## Publisher: <br>
-[adaclaw](https://clawhub.ai/user/adaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adaclaw](https://clawhub.ai/user/adaclaw)
 
-## Use Case: <br>
-External users and agents use this skill to resolve theme park IDs and fetch or summarize live Queue-Times.com wait times, ride status, park metadata, and closures for requested parks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent makes outbound requests to Queue-Times.com when users ask for park wait times. <br>
-Mitigation: Use the skill only when that external lookup is expected, and avoid sending sensitive personal details in park queries. <br>
-Risk: Queue time data is refreshed about every 5 minutes and may not reflect second-by-second conditions. <br>
-Mitigation: Describe results as recently refreshed live data, and avoid presenting wait times as instantaneous measurements. <br>
-Risk: Queue-Times.com requires prominent attribution when API data is displayed. <br>
-Mitigation: Include a visible "Powered by Queue-Times.com" attribution link whenever presenting fetched queue-time data. <br>
+## Use Case:
 
+External users and developers use this skill to resolve theme park IDs, fetch public wait-time and status data, and summarize ride waits, closures, and park metadata from Queue-Times.com.
 
-## Reference(s): <br>
-- [Queue-Times.com API documentation](https://queue-times.com/pages/api) <br>
-- [Queue-Times.com](https://queue-times.com/) <br>
-- [Reference excerpts](reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/adaclaw/theme-park-queue-times) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text response with Queue-Times.com attribution when API data is presented] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound HTTPS requests to Queue-Times.com; live data refreshes about every 5 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Public wait-time data may be delayed or differ from official park operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the approximate five-minute refresh cadence and verify important park details against official park sources when accuracy matters.
+
+Risk: User-facing output that displays API data may omit the required Queue-Times.com attribution.
+
+Mitigation: Include a prominent Powered by Queue-Times.com link whenever presenting wait-time or park data.
+
+Risk: Broad park-name or region queries may match the wrong park.
+
+Mitigation: Resolve parks through parks.json using park name, country, and operator group clues; clarify ambiguous matches before summarizing live waits.
+
+## Reference(s):
+
+- [Queue Times API documentation](https://queue-times.com/pages/api)
+- [Queue-Times.com](https://queue-times.com/)
+- [ClawHub skill page](https://clawhub.ai/adaclaw/skills/theme-park-queue-times)
+- [Queue Times reference excerpts](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text summaries with Queue-Times.com attribution and, when useful, referenced API URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Queue-Times.com API data that refreshes about every five minutes; last_updated values are UTC.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

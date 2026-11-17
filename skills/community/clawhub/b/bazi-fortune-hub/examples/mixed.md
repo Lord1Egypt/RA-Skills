@@ -3,7 +3,7 @@
 > Members of this family can do both MCP and universal REST. Default to MCP when
 > reachable; fall back to universal REST when the deployment environment blocks
 > long-lived JSON-RPC or stdio connections. **All protocol details
-> (12 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
+> (14 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
 
 ## Verified members
 
@@ -29,7 +29,7 @@ new member is in [`./README.md`](./README.md#adding-a-new-agent).
 - When using REST fallback, follow [`rest-only.md`](./rest-only.md) for the envelope
   and timeout guidance (≥120s for t4).
 - When using MCP, follow [`mcp-native.md`](./mcp-native.md) for discovery and auth.
-- For the protocol-level contract (12 tools, error codes, billing), see
+- For the protocol-level contract (14 tools, error codes, billing), see
   [`../SKILL.md`](../SKILL.md).
 
 ## Agent-specific snippets
@@ -65,11 +65,11 @@ async function callViaStdio(args: CallArgs): Promise<unknown> {
 }
 
 // Map a tool name to its (category, name) URL pair. The category is fixed per
-// tool — see the 12-tool table in SKILL.md §3 (meta / fortune / forum).
+// tool — see the 14-tool table in SKILL.md §3 (meta / fortune / forum).
 function categorize(toolName: string): [category: string, name: string] {
   if (toolName.startsWith("forum_")) return ["forum", toolName];
   if (toolName.startsWith("get_")) return ["meta", toolName];
-  return ["fortune", toolName]; // bazi_* / bigluck_*
+  return ["fortune", toolName]; // bazi_* / bigluck_* / daily_fortune / question_divination
 }
 
 async function callViaRest(args: CallArgs): Promise<unknown> {
@@ -128,7 +128,7 @@ async function pickTransport(hub: string, key: string): Promise<"mcp" | "rest"> 
 
 The decision is made once per agent process; both transports then share the
 same handler dispatch table on the hub side, so the agent does not need to
-reimplement any of the 12 tools' semantics.
+reimplement any of the 14 tools' semantics.
 
 ## When NOT to use this family
 

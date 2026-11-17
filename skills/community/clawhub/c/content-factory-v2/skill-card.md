@@ -1,50 +1,72 @@
-## Description: <br>
-Create complete WeChat Official Account viral articles from a user-provided title by researching high-view YouTube videos, confirming topic/outline with user, writing professional content through self-iteration, and outputting both Markdown and HTML formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create complete WeChat Official Account viral articles from a user-provided title by researching high-view YouTube videos, confirming topic/outline with user, writing professional content through self-iteration, and outputting both Markdown and HTML formats.
 
-## Publisher: <br>
-[jeffli2002](https://clawhub.ai/user/jeffli2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffli2002](https://clawhub.ai/user/jeffli2002)
 
-## Use Case: <br>
-Content creators, operators, and agent users use this skill to research a topic, develop WeChat article angles, draft long-form Chinese content, generate formatted Markdown and HTML, and optionally prepare cover images or WeChat draft submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access WeChat publishing credentials and create WeChat drafts or previews. <br>
-Mitigation: Install only when that publishing access is intended, keep credentials out of chat output and logs, and require manual review before any draft or preview submission. <br>
-Risk: Credential-looking values or .env contents may be exposed if diagnostic commands are run carelessly. <br>
-Mitigation: Remove or rotate any exposed secrets, avoid commands that print API keys or dump .env files, and use environment variables or protected .env files with least-privilege credentials. <br>
-Risk: The workflow can use a WeChat proxy for publishing actions. <br>
-Mitigation: Use only a trusted HTTPS proxy that the publisher controls and verify the destination before sending WeChat API credentials or article content. <br>
-Risk: Generated article claims or viral-style framing may be inaccurate or misleading without source review. <br>
-Mitigation: Review citations, dates, and statistics against the gathered sources before publishing the generated Markdown or HTML. <br>
+## Use Case:
 
+Content creators, marketing teams, and agent developers use this skill to research timely source material, confirm an article direction with the user, and produce Chinese WeChat Official Account articles with Markdown and HTML publishing assets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeffli2002/content-factory-v2) <br>
-- [YouTube Research Checklist](references/youtube_research_checklist.md) <br>
-- [WeChat Viral Content Frameworks](references/wechat_viral_frameworks.md) <br>
-- [WeChat Formatting Rules](references/wechat-format-rules.md) <br>
-- [WeChat Publish Rules](references/WECHAT_PUBLISH_RULES.md) <br>
-- [Configuration Guide](CONFIGURATION.md) <br>
-- [API Key Setup Guide](API_KEY_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and HTML article drafts with optional shell commands, configuration guidance, and publishing workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WeChat-ready HTML, cover-image generation commands, and draft publishing steps that require human review before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Credential handling may expose or reuse WeChat, Tavily, Brave, or GLM secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hardcoded secrets, avoid printing credential values, avoid passing secrets on command lines, and rotate any credentials previously used in logged environments.
+
+Risk: Publishing authority is under-scoped for a workflow that can create or submit WeChat drafts.
+
+Mitigation: Require explicit user approval before publishing and review account permissions before enabling automated WeChat operations.
+
+Risk: Proxying publishing requests can weaken transport or destination controls.
+
+Mitigation: Use only HTTPS proxies with an explicit allowlist for expected WeChat API endpoints.
+
+Risk: Promotional calls to action or reference behavior may be added unexpectedly.
+
+Mitigation: Make promotional CTA and reference insertion opt-in and review final article content before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffli2002/skills/content-factory-v2)
+- [API key setup](artifact/API_KEY_SETUP.md)
+- [Configuration guide](artifact/CONFIGURATION.md)
+- [Update summary](artifact/UPDATE_SUMMARY.md)
+- [WeChat publish rules](artifact/references/WECHAT_PUBLISH_RULES.md)
+- [WeChat format rules](artifact/references/wechat-format-rules.md)
+- [WeChat viral frameworks](artifact/references/wechat_viral_frameworks.md)
+- [YouTube research checklist](artifact/references/youtube_research_checklist.md)
+- [WeChat Official Account platform](https://mp.weixin.qq.com/)
+- [WeChat access token API](https://api.weixin.qq.com/cgi-bin/token)
+- [WeChat draft API](https://api.weixin.qq.com/cgi-bin/draft/add)
+- [WeChat free publish API](https://api.weixin.qq.com/cgi-bin/freepublish/submit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and HTML article assets with supporting commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-approved outlines, source notes, cover-image workflow guidance, and optional WeChat publishing steps.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

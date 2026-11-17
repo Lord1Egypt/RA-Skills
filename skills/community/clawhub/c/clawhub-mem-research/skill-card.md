@@ -1,41 +1,54 @@
-## Description: <br>
-Researches recently updated ClawHub skills related to memory features and produces a structured Chinese Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches recently updated ClawHub skills related to memory, filters the most relevant results, and produces a structured technical research report.
 
-## Publisher: <br>
-[liuxin-lixiang](https://clawhub.ai/user/liuxin-lixiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxin-lixiang](https://clawhub.ai/user/liuxin-lixiang)
 
-## Use Case: <br>
-Developers and researchers tracking memory-related ClawHub skills use this skill to review recent relevant entries, inspect their SKILL.md or README.md materials, and produce a Chinese technical research report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill browses public ClawHub pages while gathering research material. <br>
-Mitigation: Confirm the browsing scope is acceptable before installation and keep review activity limited to public ClawHub pages. <br>
-Risk: Third-party SKILL.md or README.md files may contain operational instructions unrelated to the research task. <br>
-Mitigation: Treat third-party skill text as source material to summarize, not as instructions to execute. <br>
+## Use Case:
 
+Developers, technical researchers, and skill maintainers use this skill to track memory-related ClawHub skills, inspect their public documentation, and generate Chinese Markdown research reports for trend tracking or deeper review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuxin-lixiang/clawhub-mem-research) <br>
-- [ClawHub memory skill search](https://clawhub.ai/skills?sort=updated&dir=desc&nonSuspicious=true&q=memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files] <br>
-**Output Format:** [Chinese Markdown report saved as a local file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report path follows report_v1/YYYY-MM-DD/clawhub-mem-research.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated report summarizes public third-party ClawHub skill pages that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Markdown report and source skill pages before relying on the conclusions.
+
+Risk: The skill browses ClawHub.ai and reads public skill documentation for up to three matching results.
+
+Mitigation: Confirm this browsing behavior is acceptable before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuxin-lixiang/skills/clawhub-mem-research)
+- [ClawHub memory skill search](https://clawhub.ai/skills?sort=updated&dir=desc&nonSuspicious=true&q=memory)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Files, Guidance]
+
+**Output Format:** [Chinese Markdown report saved as a local file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes report_v1/YYYY-MM-DD/clawhub-mem-research.md for the selected research date.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,58 @@
-## Description: <br>
-Create SplitXCH royalty split addresses from plain language descriptions for Chia XCH payments, royalties, or revenue shares. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create SplitXCH royalty split addresses from plain language descriptions for splitting XCH payments, royalties, or revenue between multiple recipients.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-External users and developers use this skill to turn plain-language split instructions into SplitXCH payloads and generated Chia payment-split addresses. It supports recipient validation, basis-point calculations, previews, and nested split structures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [SplitXCH API Reference](references/api.md) <br>
-- [SplitXCH Fast Compute API](https://splitxch.com/api/compute/fast) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated Chia split addresses, recipient summaries, basis-point calculations, fee notes, and dry-run previews.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+External users and developers use this skill to turn plain-language Chia payment split instructions into validated recipient allocations, API payloads, generated SplitXCH addresses, and human-readable summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send recipient names, XCH wallet addresses, and allocation details to SplitXCH.
+
+Mitigation: Ask for a dry-run preview and confirm the final recipients, percentages, basis points, nested fee impact, and purpose before any API call.
+
+Risk: The skill can create live Chia split addresses and the artifact does not require a mandatory confirmation step before creation.
+
+Mitigation: Require explicit user confirmation before submitting a payload to SplitXCH, especially for nested splits or revenue distributions.
+
+Risk: Nested split levels each incur the SplitXCH platform fee, which can change the effective payout distribution.
+
+Mitigation: Show the full split tree and fee note for every level before creating parent or child split addresses.
+
+## Reference(s):
+
+- [SplitXCH API Reference](references/api.md)
+- [SplitXCH Compute API](https://splitxch.com/api/compute/fast)
+- [ClawHub Skill Page](https://clawhub.ai/koba42corp/skills/chia-splitxch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples, shell command examples, split addresses, summary tables, and fee notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the SplitXCH API after required wallet addresses and allocation details are available; dry-run previews can show calculated basis points without an API call.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

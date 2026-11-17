@@ -9,7 +9,7 @@ These endpoints publish to Dev.to through YouMind. The caller only sends a YouMi
 All requests require:
 
 ```text
-x-api-key: sk-ym-xxxxxxxxxxxxxxxxxxxx
+x-api-key: REDACTED-SECRET
 Content-Type: application/json
 ```
 

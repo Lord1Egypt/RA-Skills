@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup documentation for Security Suite concepts, patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Security Suite.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill for quick, local reference guidance on Security Suite workflows, including setup, implementation patterns, debugging, performance tuning, security practices, migration, and command lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic reference guidance may be incomplete or unsuitable for a specific production environment. <br>
-Mitigation: Review recommendations against current system requirements, security policy, and authoritative vendor documentation before implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise Security Suite reference guidance across setup, patterns, troubleshooting, performance, security practices, migration, and quick-reference workflows.
 
-## Reference(s): <br>
-- [Security Suite on ClawHub](https://clawhub.ai/ckchzh/security-suite) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local documentation; no API keys, credentials, network access, persistence, or system changes are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and release evidence) <br>
+Risk: Generic documentation mentions credentials and access requirements, which users could mistake as a request to provide secrets to the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those references as informational only; do not provide secrets to the skill, and manage credentials through approved systems outside the skill.
+
+Risk: Static reference guidance may not reflect an organization's current security policies or environment-specific controls.
+
+Mitigation: Review the guidance against local policy and production requirements before using it to drive operational changes.
+
+## Reference(s):
+
+- [Security Suite on ClawHub](https://clawhub.ai/ckchzh/skills/security-suite)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected static reference content; no external API calls, credentials, or network access are described by the artifact.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

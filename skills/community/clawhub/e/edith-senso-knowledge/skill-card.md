@@ -1,43 +1,56 @@
-## Description: <br>
-Search your Senso.ai knowledge base hands-free through Edith smart glasses. Triggers on knowledge/document queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search your Senso.ai knowledge base hands-free through Edith smart glasses.
 
-## Publisher: <br>
-[samdickson22](https://clawhub.ai/user/samdickson22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samdickson22](https://clawhub.ai/user/samdickson22)
 
-## Use Case: <br>
-External users wearing Edith smart glasses use this skill to search their own Senso.ai knowledge base for documents, policies, and stored information, then receive concise spoken answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow may expose a raw Senso API key in a voice-first smart-glasses workflow. <br>
-Mitigation: Configure the key through a protected secret or settings flow when available, use a limited Senso key, and rotate the key if it was spoken or pasted into chat history. <br>
-Risk: Knowledge-base queries and possible document excerpts may be sent through OpenClaw and Senso. <br>
-Mitigation: Use the skill only when those services are trusted for the relevant knowledge-base content and review organizational data-handling requirements before deployment. <br>
+## Use Case:
 
+External users with Edith smart glasses use this skill to search their own Senso.ai knowledge base for documents, policies, or stored information and receive short spoken summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samdickson22/edith-senso-knowledge) <br>
-- [Senso.ai](https://senso.ai) <br>
-- [Senso search endpoint](https://sdk.senso.ai/api/v1/search) <br>
-- [Senso generate endpoint](https://sdk.senso.ai/api/v1/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain spoken text with optional JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to be concise for voice output; SENSO_API_KEY must be configured before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: shipables.json and release metadata) <br>
+Risk: The skill handles API keys and user questions in ways that could expose sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store Senso.ai API keys in a proper secret store, avoid pasting secrets into chat, and use the skill only when the user is comfortable sending questions and relevant document passages to Senso.ai.
+
+Risk: The curl examples could allow unsafe shell execution if user questions are interpolated directly into shell commands.
+
+Mitigation: Build requests with safely serialized JSON and avoid placing untrusted user text directly into shell command strings.
+
+## Reference(s):
+
+- [Senso.ai](https://senso.ai)
+- [Senso.ai Search API](https://sdk.senso.ai/api/v1/search)
+- [Senso.ai Generate API](https://sdk.senso.ai/api/v1/generate)
+- [ClawHub skill page](https://clawhub.ai/samdickson22/skills/edith-senso-knowledge)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance, Text]
+
+**Output Format:** [Concise spoken text with optional JSON API responses used as intermediate evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to summarize the top one or two knowledge-base results without markdown, bullet points, or URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and shipables.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

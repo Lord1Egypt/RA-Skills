@@ -1,42 +1,54 @@
-## Description: <br>
-Agent Monitor tracks subagent work status, detects prolonged stalled states, and can send activation messages to resume work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent work status monitoring and automatic activation system. Triggers when monitoring subagent runtime status, detecting prolonged unresponsive "stalled" states, and automatically activating them to resume operation. Suitable for long-running task monitoring, automated operations, agent health checks, and similar scenarios.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor long-running agent workflows, detect idle or stalled subagents, and optionally nudge selected agents to continue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic activation can interrupt normal long-running agent work if an agent is incorrectly classified as stalled. <br>
-Mitigation: Test with --dry-run first, tune thresholds for the task type, and prefer targeted monitoring or allowlists for sensitive workflows. <br>
-Risk: Monitoring and steering other agents can create operational noise or unintended continuation messages when scheduled continuously. <br>
-Mitigation: Enable logging or human review before scheduled automatic activation, and use longer thresholds for complex tasks. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor long-running subagents, detect agents that appear stalled after an idle threshold, and optionally send activation messages to resume work.
 
-## Reference(s): <br>
-- [ClawHub Agent Monitor listing](https://clawhub.ai/openlark/agent-monitor) <br>
-- [Agent Monitor skill definition](artifact/SKILL.md) <br>
-- [monitor_agents.py script](artifact/scripts/monitor_agents.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the bundled script can also emit JSON monitoring results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports threshold, target agent, dry-run, auto-activate, and JSON output options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically steer or reactivate other agents across a broad scope with limited built-in safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry-run or target-specific use, add allowlists and logging before scheduled auto-activation, and set thresholds that account for long-running quiet work.
+
+Risk: False stall detection can interrupt agents that are still doing useful quiet work.
+
+Mitigation: Tune the idle threshold by task type and review activation logs before enabling continuous operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/agent-monitor)
+- [Publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, JSON]
+
+**Output Format:** [Markdown guidance with Python and bash examples; optional JSON from the monitoring script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run mode, target-specific monitoring, configurable idle thresholds, and optional automatic activation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

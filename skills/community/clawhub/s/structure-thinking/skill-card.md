@@ -1,42 +1,52 @@
-## Description: <br>
-Structured problem analysis and communication using system mapping and hierarchical logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures messy, multi-factor problems into clear recommendations using system mapping, root-cause analysis, feedback-loop reasoning, and hierarchical communication.
 
-## Publisher: <br>
-[Caoyumin97](https://clawhub.ai/user/Caoyumin97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caoyumin97](https://clawhub.ai/user/caoyumin97)
 
-## Use Case: <br>
-Employees, external users, developers, and engineers use this skill to structure messy, multi-factor problems into a decision-ready diagnosis, intervention plan, and concise recommendation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's output is structured reasoning based on user-provided information and assumptions, not independently verified fact. <br>
-Mitigation: Review assumptions, evidence, and counterfactuals before using the recommendation for decisions. <br>
-Risk: Recommendations could be mistaken for authorization to act automatically. <br>
-Mitigation: Keep human review in the loop and treat proposed interventions as guidance requiring approval before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Integrated Framework: Structure + Dynamics](references/integrated-framework.md) <br>
-- [Structured Communication Core](references/structured-communication-core.md) <br>
-- [Systems Dynamics Core](references/systems-dynamics-core.md) <br>
-- [Software Playbooks](references/software-playbooks.md) <br>
+## Use Case:
 
+Developers, operators, and decision makers use this skill to analyze messy situations, identify system levers, and produce decision-ready recommendations with assumptions, evidence, risks, and interventions.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured bullets and decision-ready outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, open questions, provisional diagnoses, intervention risks, evidence checks, system maps, and recommendation outlines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can shape an agent's problem framing and recommendations, which may lead to overconfident or incomplete decisions if the user provides limited context.
+
+Mitigation: Review assumptions, open questions, evidence links, and counterfactual checks before acting on recommendations.
+
+## Reference(s):
+
+- [Structured Communication Core](references/structured-communication-core.md)
+- [Systems Dynamics Core](references/systems-dynamics-core.md)
+- [Integrated Framework: Structure + Dynamics](references/integrated-framework.md)
+- [Software Playbooks](references/software-playbooks.md)
+- [ClawHub skill page](https://clawhub.ai/caoyumin97/skills/structure-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown with structured outlines and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, open questions, system map notes, issue trees, intervention shortlists, recommendations, confidence levels, and known gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

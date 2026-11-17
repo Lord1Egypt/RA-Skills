@@ -1,40 +1,48 @@
-## Description: <br>
-Master SQL query optimization, indexing strategies, and EXPLAIN analysis to improve database performance and eliminate slow queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master SQL query optimization, indexing strategies, and EXPLAIN analysis to dramatically improve database performance and eliminate slow queries.
 
-## Publisher: <br>
-[watermelon11](https://clawhub.ai/user/watermelon11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[watermelon11](https://clawhub.ai/user/watermelon11)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose slow SQL queries, interpret EXPLAIN plans, choose indexes, rewrite inefficient queries, and plan database maintenance for better application performance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated SQL maintenance or schema changes could lock tables, affect write performance, or damage production data if applied without review.
+
+Mitigation: Review proposed SQL with a database owner, verify backups, test in staging, and schedule production changes during an appropriate maintenance window.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database engineers use this skill to analyze slow SQL queries, interpret EXPLAIN plans, choose indexes, and apply query rewrites for better database performance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested SQL may alter schema, data, indexes, statistics, storage, or query planner behavior when applied to a real database. <br>
-Mitigation: Test changes in staging, confirm backups, review lock and storage impact, benchmark results, and use maintenance windows or online/concurrent alternatives where supported. <br>
-Risk: Optimization patterns may be inaccurate for a specific database engine, data shape, or workload. <br>
-Mitigation: Review EXPLAIN output and benchmark changes against production-like data before adopting them. <br>
+**Output Format:** [Markdown with SQL and code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/watermelon11/sql-optimization-patterns) <br>
+**Other Properties Related to Output:** [Provides advisory database optimization patterns and example SQL; generated recommendations should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with SQL and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples may include database-changing SQL that should be reviewed before execution.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

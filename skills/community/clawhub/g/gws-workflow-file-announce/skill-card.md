@@ -1,40 +1,55 @@
-## Description: <br>
-Google Workflow: Announce a Drive file in a Chat space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workflow: Announce a Drive file in a Chat space.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators using Google Workspace automation use this skill to ask an agent for the gws command and required inputs to announce a selected Drive file in a Google Chat space. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The command posts a real announcement to the selected Google Chat space. <br>
-Mitigation: Before running it, verify the Drive file ID, Chat space, optional message, and active Google Workspace account, and follow the shared gws authentication guidance. <br>
+## Use Case:
 
+Developers and Google Workspace operators use this skill to prepare the gws command and required inputs for announcing a Google Drive file in a Google Chat space.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-workflow-file-announce) <br>
-- [gws-shared](../gws-shared/SKILL.md) <br>
-- [gws-workflow](../gws-workflow/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command flags for Drive file ID, Chat space, optional message, and output format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: release metadata; skill metadata version 0.22.5) <br>
+Risk: The command reads a Drive file name and posts a message to a user-specified Chat space.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users who intend to grant the gws CLI the needed Google Workspace permissions, and verify the file ID, Chat space, and message before execution.
+
+Risk: Authentication and global security behavior are defined in a referenced shared gws skill.
+
+Mitigation: Review the shared gws auth and security instructions from the same publisher before using this workflow.
+
+## Reference(s):
+
+- [Gws Workflow File Announce on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/gws-workflow-file-announce)
+- [gws-shared auth and global flags](../gws-shared/SKILL.md)
+- [gws-workflow command collection](../gws-workflow/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace authorization; the described command sends a Chat message to the specified space.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

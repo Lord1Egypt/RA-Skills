@@ -1,0 +1,24 @@
+{
+  "name": "travel-checklist-hy",
+  "version": "1.0.0",
+  "description": "个性化出行清单与旅行备忘录生成技能，按目的地、天气、活动和同行人生成行李清单、待办与安全提醒。",
+  "keywords": [
+    "travel",
+    "packing-list",
+    "checklist",
+    "travel-memo",
+    "claude-skill",
+    "openclaw-skill",
+    "出行清单",
+    "行李清单",
+    "旅行备忘录"
+  ],
+  "author": "cryptocxf",
+  "license": "MIT-0",
+  "files": [
+    "SKILL.md",
+    "agents/",
+    "references/",
+    "README.md"
+  ]
+}

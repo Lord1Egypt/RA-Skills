@@ -1,46 +1,63 @@
-## Description: <br>
-AI Agent's crypto wallet manager - generate wallets, manage transactions, and claim ORA token rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent's crypto wallet manager - generate wallets, manage transactions, and claim ORA token rewards.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-External users and agent developers use MoltsPay to generate local BTC, ETH, and SOL wallet credentials, register public wallet addresses with MoltPay, track ORA balance and transaction history, and request withdrawals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill asks an agent to handle real wallet secrets and financial flows with weak safeguards. <br>
-Mitigation: Do not use with real funds unless the user has reviewed the flow; prefer an audited wallet or encrypted key store and require explicit human approval for registration, withdrawal, transaction recording, and funding requests. <br>
-Risk: The artifact stores generated private keys and mnemonics in a local wallets.json file. <br>
-Mitigation: Store wallet secrets only in an encrypted keystore or hardware-backed wallet, restrict file permissions, and avoid retaining plaintext mnemonics in agent-accessible files. <br>
-Risk: The security guidance notes external sharing of wallet and transaction data. <br>
-Mitigation: Share only intended public addresses and transaction metadata, review the destination services before use, and avoid sending private keys, mnemonics, or unnecessary personal information. <br>
-Risk: The artifact includes recurring network checks and prompts to display wallet QR codes to request funding. <br>
-Mitigation: Disable or tightly scope heartbeat checks, inspect responses before acting on them, and require explicit user approval before displaying QR codes or asking a human to send crypto. <br>
+## Use Case:
 
+External users and developers use MoltsPay to guide agents through generating local BTC, ETH, and SOL wallets, storing wallet credentials, recording transaction activity, and interacting with MoltPay or MoltWork reward and registration APIs.
 
-## Reference(s): <br>
-- [MoltsPay ClawHub listing](https://clawhub.ai/asterisk622/xiaoding-moltpay) <br>
-- [MoltPay service](https://moltpay.net) <br>
-- [Publisher profile](https://clawhub.ai/user/asterisk622) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with Python, bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet setup guidance, local file paths, QR code display steps, and API endpoint examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill handles cryptocurrency secrets and private wallet material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not generate wallets with real funds unless private keys are stored in a secure wallet or encrypted keystore.
+
+Risk: Wallet registration can link public wallet addresses to an agent identity.
+
+Mitigation: Register addresses with MoltPay or MoltWork only when that linkage is acceptable.
+
+Risk: The QR-code display and request for cryptocurrency can function as promotional solicitation.
+
+Mitigation: Treat QR-code display and crypto requests as optional promotional behavior and review them before presenting them to a human owner.
+
+Risk: The skill encourages recurring contact with external services for balances, rewards, and marketplace registration.
+
+Mitigation: Review network calls before use and limit service contact to interactions the user explicitly approves.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-moltpay)
+- [MoltPay service](https://moltpay.net)
+- [MoltWork registration API](https://moltwork-production.up.railway.app/users/register)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local wallet file paths, HTTP API examples, and QR-code display steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

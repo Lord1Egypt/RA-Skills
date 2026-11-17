@@ -1,41 +1,61 @@
-## Description: <br>
-Converts article HTML or plain text into Xiaohongshu-style visual card sets with a cover card, content cards, and a quote card, output as a single browser-previewable HTML file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将任意文章 HTML 页面或纯文本，自动切片生成小红书风格图文卡片组（封面 + 内容图 + 金句图），输出单个可直接在浏览器预览的 HTML 文件。
 
-## Publisher: <br>
-[yangchao228](https://clawhub.ai/user/yangchao228) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yangchao228](https://clawhub.ai/user/yangchao228)
 
-## Use Case: <br>
-Content creators, marketers, and publishing teams use this skill to turn long-form articles or notes into short visual card sets suitable for Xiaohongshu-style publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may include content or layout issues that are not suitable for publication as-is. <br>
-Mitigation: Review the generated HTML in a browser before publishing or screenshotting the cards. <br>
-Risk: Generated pages load Google Fonts from the internet when opened in a browser. <br>
-Mitigation: Replace Google Fonts with local or system fonts when offline output is required or external browser requests should be avoided. <br>
+## Use Case:
 
+Content creators, marketers, and knowledge workers use this skill to convert articles or plain text into Xiaohongshu-style visual card sets for previewing, screenshotting, and publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangchao228/redbook-cards-skill) <br>
-- [Google Fonts stylesheet for Noto Serif SC and Noto Sans SC](https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Single complete HTML document with inline CSS] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 5 to 7 cards from article content; output may load Google Fonts when opened in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated HTML may contain errors or unsuitable content for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated HTML preview before opening broadly, screenshotting, or publishing.
+
+Risk: Input articles may contain sensitive private content.
+
+Mitigation: Avoid feeding sensitive private articles unless that content is necessary for the card-generation task.
+
+Risk: Browser previews may contact Google Fonts.
+
+Mitigation: Replace the Google Fonts link with local fonts when network contact is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangchao228/skills/redbook-cards-skill)
+- [Publisher profile](https://clawhub.ai/user/yangchao228)
+- [Google Fonts stylesheet](https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap)
+- [Example](artifact/EXAMPLE.md)
+- [Prompt](artifact/PROMPT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Single complete HTML document as a string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 5 to 7 visual cards with inline CSS and no JavaScript; generated previews may contact Google Fonts unless local fonts are substituted.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

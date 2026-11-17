@@ -1,46 +1,69 @@
-## Description: <br>
-Guides agents through integrating Doubao/ByteDance Podcast TTS, including WebSocket binary frames, streaming audio handling, browser proxy architecture, caching, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when calling the Doubao/ByteDance podcast TTS API to generate audio, parse WebSocket binary frames, handle streaming audio chunks, extract audio URLs, troubleshoot generation issues, or design podcast playback architecture.
 
-## Publisher: <br>
-[mileszhang001-boom](https://clawhub.ai/user/mileszhang001-boom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mileszhang001-boom](https://clawhub.ai/user/mileszhang001-boom)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Doubao/ByteDance podcast text-to-speech into applications, generate podcast audio from article URLs or short text, and troubleshoot streaming, timeout, credential, and metadata issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generic podcast TTS requests may trigger this Doubao-specific skill when another provider is intended. <br>
-Mitigation: Confirm that the task is for Doubao or ByteDance podcast TTS before applying provider-specific protocol and API guidance. <br>
-Risk: Article URLs and text sent to the API may be processed by a third-party service. <br>
-Mitigation: Do not send private articles, internal URLs, or confidential text unless third-party processing by ByteDance is approved. <br>
-Risk: API credentials can be exposed if copied into client-side code or committed files. <br>
-Mitigation: Keep credentials in environment variables or a secrets manager and route browser integrations through a server-side proxy. <br>
-Risk: The helper script performs network calls and writes generated MP3 files. <br>
-Mitigation: Review the script before execution and run it only in an environment where Doubao API access and local audio output are expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Doubao/ByteDance podcast text-to-speech generation into agent workflows, server-side services, and browser-facing applications. It provides implementation guidance for authentication, binary WebSocket framing, streaming audio handling, caching, and operational troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mileszhang001-boom/doubao-podcast) <br>
-- [Volcengine Console](https://console.volcengine.com/) <br>
-- [Agent Skills](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python or Node.js implementation guidance for WebSocket frames, API credentials, audio handling, and caching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Article URLs and text are sent to the Doubao/ByteDance podcast TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive articles or text unless the user accepts sending that content to ByteDance.
+
+Risk: Batch generation can write MP3 files outside the selected output folder when file IDs are not validated.
+
+Mitigation: Do not run batch JSON from untrusted sources, and validate file IDs before using them in output paths.
+
+Risk: Generated audio files may be stored in unintended locations or depend on short-lived CDN URLs.
+
+Mitigation: Store generated MP3s in a controlled location and download audio promptly instead of relying on expiring audio URLs.
+
+Risk: The trigger scope is broader than the Doubao-specific implementation.
+
+Mitigation: Use the skill for Doubao/ByteDance podcast TTS work and confirm applicability before applying it to other podcast TTS providers.
+
+Risk: Dependencies and source provenance are not server-resolved for this release.
+
+Mitigation: Prefer a reviewed commit and pinned dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mileszhang001-boom/skills/doubao-podcast)
+- [Publisher profile](https://clawhub.ai/user/mileszhang001-boom)
+- [Agent Skills](https://agentskills.io)
+- [Volcengine Console](https://console.volcengine.com/)
+- [Reference generator script](artifact/scripts/generate_podcast.py)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code examples, command snippets, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to generate MP3 podcast files through the referenced API and local helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Zanna Aperta is an MCP bridge that exposes 45 OpenClaw and ClawX tools for agents, workspaces, projects, cron jobs, browser and canvas control, nodes, messaging, gateway operations, Docker/Git, and Ollama. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP Bridge completo per OpenClaw con 45 tool per agenti, workspace, progetti, cron, browser, canvas, nodes, messaging, gateway, Ollama e ClawX.
 
-## Publisher: <br>
-[raidone632-create](https://clawhub.ai/user/raidone632-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raidone632-create](https://clawhub.ai/user/raidone632-create)
 
-## Use Case: <br>
-Developers and OpenClaw operators use Zanna Aperta to let an MCP-capable agent administer an OpenClaw workspace and related local services from one tool surface. It is intended for environments where broad workspace, browser, node, gateway, Ollama, Docker/Git, and ClawX actions are explicitly desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge gives agents broad OpenClaw administration powers, including delete, cron, Docker/Git, browser, canvas_eval, camera, messaging, gateway, and ClawX controls. <br>
-Mitigation: Install only when that level of control is intentional; use a dedicated disposable OPENCLAW_WORKSPACE, pin OPENCLAW_BIN to a trusted binary, and require out-of-band confirmation before destructive or sensitive actions. <br>
-Risk: Insufficient scoping, consent, or recovery safeguards can make unintended local changes difficult to reverse. <br>
-Mitigation: Run the skill in a contained workspace, keep recoverable backups for managed state, and limit use to trusted agents and operators. <br>
+## Use Case:
 
+Developers and engineers use this MCP bridge to let MCP clients operate OpenClaw agents, workspaces, projects, cron jobs, browser and canvas sessions, nodes, messaging, gateway controls, Ollama, and ClawX from one tool surface.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raidone632-create/zanna-aperta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON-RPC tool responses containing text content and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw and Python 3.8+; optional Ollama and ClawX integrations depend on local services and paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.0 (source: server release metadata) <br>
+Risk: The security summary flags broad OpenClaw bridge authority, including Docker commands, scheduled jobs, camera capture, and file deletion without enough guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a tightly controlled local environment, trust every MCP caller, and avoid exposing the server to untrusted prompts or remote clients.
+
+Risk: Tools such as exec_docker, cron_add, camera capture, and permanent delete operations can perform high-impact local actions.
+
+Mitigation: Review or remove these tools before general use and limit access to operators who are authorized to perform those actions.
+
+## Reference(s):
+
+- [Zanna Aperta ClawHub release page](https://clawhub.ai/raidone632-create/skills/zanna-aperta)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-RPC tool responses with text content and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill exposes 45 MCP tools that can call local OpenClaw, Docker, Git, browser, canvas, node, messaging, gateway, Ollama, and ClawX actions.]
+
+## Skill Version(s):
+
+3.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

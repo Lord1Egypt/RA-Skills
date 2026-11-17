@@ -1,41 +1,51 @@
-## Description: <br>
-IELTS Tutor provides structured IELTS writing, grammar, vocabulary, and translation practice through a quiz, attempt, correction, and review loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IELTS Tutor guides learners through IELTS writing, grammar, vocabulary, and translation practice using a structured quiz, attempt, correction, and review loop.
 
-## Publisher: <br>
-[liuchang0812](https://clawhub.ai/user/liuchang0812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuchang0812](https://clawhub.ai/user/liuchang0812)
 
-## Use Case: <br>
-External learners use this skill to practice IELTS General Training English with adaptive exercises, detailed Chinese-language corrections, vocabulary work, grammar explanations, scoring, and review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares wallet access even though IELTS tutoring does not require wallet permissions. <br>
-Mitigation: Review the permission prompt carefully and do not grant wallet access unless the publisher provides a clear reason. <br>
-Risk: Learner notes, errors, and progress summaries may be saved in memory files across sessions. <br>
-Mitigation: Avoid storing sensitive personal information and periodically review or clear memory files when using shared or regulated environments. <br>
+## Use Case:
 
+External IELTS learners use this skill to receive adaptive English practice, detailed corrections, vocabulary drills, grammar explanations, progress summaries, and weak-point tracking.
 
-## Reference(s): <br>
-- [Learner Profile Reference](references/learner-profile.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuchang0812/ielts-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown teaching exercises, correction tables, vocabulary lists, grammar explanations, progress summaries, and memory update guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to update learner progress notes in memory files across sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Learner progress and weak-point notes may be saved persistently without clear consent, retention, or isolation controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an isolated workspace or with persistence disabled or controlled, and avoid sharing sensitive personal writing during tutoring.
+
+## Reference(s):
+
+- [Learner Profile Reference](references/learner-profile.md)
+- [ClawHub skill page](https://clawhub.ai/liuchang0812/skills/ielts-tutor)
+- [Publisher profile](https://clawhub.ai/user/liuchang0812)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with tables, quoted corrections, examples, scoring summaries, and progress notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update learner progress memory and daily logs after tutoring sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Instructs the OpenClaw agent on how to request geolocation, claim P-SSSU Habitable Slots with user consent, and negotiate boundaries with other agents in the outdoor environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instructs the OpenClaw agent on how to request geolocation, claim P-SSSU Habitable Slots with user consent, and negotiate boundaries with other agents in the outdoor environment.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and developers use this skill to guide an OpenClaw agent through consent-based outdoor geolocation, P-SSSU slot claiming, and boundary negotiation. It is intended to keep spatial actions transparent and advisory unless additional authorization is granted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests sensitive geolocation and environmental-sensor access. <br>
-Mitigation: Run it only in an environment that prompts before location reads, claim actions, expansion radius changes, and priority-based override decisions. <br>
-Risk: Grid claiming and boundary negotiation may be mistaken for authorization to intervene in physical systems. <br>
-Mitigation: Treat outputs as advisory unless the user and any required building-management or public-hardware authority grants additional authorization. <br>
-Risk: The handler relies on the agent or runtime to enforce consent checks. <br>
-Mitigation: Require explicit human-in-the-loop approval before invoking location-related tools or executing outdoor takeover actions. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to guide outdoor agents through consent-based geolocation requests, P-SSSU grid claims, and boundary negotiation reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-nomad-agent-protocol) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions, plugin configuration, shell entrypoint, and JSON tool-call results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user or system authorization before location reads, grid claiming, expansion actions, or priority-based override decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, SKILL.md frontmatter, package.json, openclaw.plugin.json) <br>
+Risk: The skill requests sensitive geolocation and environmental sensor permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to explicit per-action user or system approval and remove unused device permissions before deployment.
+
+Risk: Location-based claim or override actions can run without authorization enforcement in code.
+
+Mitigation: Validate agent identity, priority, and recorded consent before claim or ripple_expand actions, especially before any ownership override.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-nomad-agent-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [Markdown instructions with JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before location or grid-claim actions; tool responses include status and data fields.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, package.json, openclaw.plugin.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

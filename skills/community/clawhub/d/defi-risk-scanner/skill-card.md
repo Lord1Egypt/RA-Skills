@@ -1,43 +1,62 @@
-## Description: <br>
-DeFi Risk Scanner helps agents assess Web3 and DeFi protocol or token risk using structured scoring, factor breakdowns, key metric interpretation, and actionable review guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi Risk Scanner helps agents assess DeFi protocols and tokens using public TVL, liquidity, market, and FDV data to produce structured risk scores and verification guidance.
 
-## Publisher: <br>
-[emeraldring3134-netizen](https://clawhub.ai/user/emeraldring3134-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emeraldring3134-netizen](https://clawhub.ai/user/emeraldring3134-netizen)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to screen DeFi protocols or token addresses for TVL, liquidity, market-cap, FDV, activity, and chain-diversity signals before deeper due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local bash helper that uses curl and jq and sends the target protocol slug or token address to public API services. <br>
-Mitigation: Install only when that execution model and data sharing are acceptable, and review the script before use. <br>
-Risk: The generated score can be mistaken for investment or safety advice. <br>
-Mitigation: Treat the score as an educational screening aid and verify important conclusions with independent sources before acting. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to screen DeFi protocols or token contracts for risk indicators before deeper due diligence. It produces a 0-100 risk score, explains major risk factors, and suggests independent verification steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/emeraldring3134-netizen/defi-risk-scanner) <br>
-- [Reference data sources and checklist](references/sources.md) <br>
-- [DeFiLlama protocol API](https://api.llama.fi/protocol/{name}) <br>
-- [DexScreener token API](https://api.dexscreener.com/latest/dex/tokens/{address}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Terminal text report with risk scores, metric summaries, factor breakdowns, and follow-up recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public DeFiLlama and DexScreener API data; results are screening guidance, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The authoritative security summary reports unsafe handling of API response values in AWK that could allow malicious API data to execute local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a low-privilege environment until numeric validation or awk -v style argument passing is implemented.
+
+Risk: Queries to third-party APIs can disclose the protocols, token addresses, or investigation targets being analyzed.
+
+Mitigation: Avoid submitting confidential targets unless third-party API disclosure is acceptable for the investigation.
+
+Risk: Risk scores can be incomplete or misleading if public market and liquidity data are stale, unavailable, or manipulated.
+
+Mitigation: Treat outputs as educational screening guidance and verify findings with independent on-chain, audit, and authorization-review tools before acting.
+
+## Reference(s):
+
+- [DeFi Risk Scanner ClawHub listing](https://clawhub.ai/emeraldring3134-netizen/skills/defi-risk-scanner)
+- [Reference data sources and checklist](references/sources.md)
+- [DefiLlama](https://defillama.com)
+- [DexScreener](https://dexscreener.com/)
+- [Token Sniffer](https://tokensniffer.com/)
+- [Revoke.cash](https://revoke.cash/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text risk report with a numeric score, factor breakdown, and recommended verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public DeFi data APIs and may include financial-risk disclaimers; not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

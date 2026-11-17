@@ -1,42 +1,60 @@
-## Description: <br>
-Jenkins Fix helps an agent list Jenkins jobs, trigger builds for default or specified branches and tags, check build status, and return build results or artifact links while using environment-variable-based Jenkins authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jenkins build assistant for listing Jenkins jobs, triggering default or branch-specific builds, and checking build status and artifact links.
 
-## Publisher: <br>
-[gitboy123](https://clawhub.ai/user/gitboy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gitboy123](https://clawhub.ai/user/gitboy123)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and CI/CD operators use this skill to inspect Jenkins jobs, trigger builds with optional branch or tag parameters, and receive build status, failure details, and artifact links in agent responses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Jenkins credentials and build permissions can have high impact if the skill is installed too broadly.
+
+Mitigation: Use a least-privilege Jenkins service token, restrict the runtime environment, and limit which users or chats can invoke build actions.
+
+Risk: Build commands may trigger unintended Jenkins jobs when project names are ambiguous.
+
+Mitigation: Require exact job matching or an explicit confirmation step before triggering a matched job.
+
+Risk: Raw build logs can expose secrets, internal paths, or operational details in chat responses.
+
+Mitigation: Redact sensitive log content or disable console-log output before returning failures to chat.
+
+Risk: The documented default Jenkins endpoint uses HTTP.
+
+Mitigation: Configure an HTTPS Jenkins URL before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release operators use this skill to operate Jenkins from agent chat: listing jobs, starting builds for requested projects and branches, checking completion, and returning build results or artifact links. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real Jenkins CI/CD builds from broad chat prompts without a built-in confirmation step. <br>
-Mitigation: Require human confirmation before running builds or deployments and restrict the Jenkins credential to least-privilege jobs and branches. <br>
-Risk: Jenkins credentials and endpoint settings are required for operation. <br>
-Mitigation: Use a dedicated Jenkins API token via environment variables and avoid storing credentials in source or chat history. <br>
-Risk: The DingTalk helper uses a fixed local script path that may not match the deployment. <br>
-Mitigation: Update or remove the helper path before deploying the DingTalk integration. <br>
+**Output Format:** [Markdown with inline shell commands and Jenkins status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitboy123/jenkins-fix) <br>
+**Other Properties Related to Output:** [May include Jenkins job names, build numbers, build duration, artifact links, and excerpts from failing build logs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with shell command snippets and Jenkins result/status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Jenkins build numbers, console-log summaries, and artifact download URLs.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

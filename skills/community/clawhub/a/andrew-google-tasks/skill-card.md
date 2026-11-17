@@ -1,41 +1,58 @@
-## Description: <br>
-Provides Google Tasks API helpers for listing task lists and creating, updating, completing, and deleting tasks after OAuth 2.0 authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Andrew Google Tasks helps an agent manage Google Tasks task lists and tasks through OAuth 2.0, including listing, creating, updating, completing, and deleting tasks.
 
-## Publisher: <br>
-[ibluewind](https://clawhub.ai/user/ibluewind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibluewind](https://clawhub.ai/user/ibluewind)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent manage Google Tasks for an authorized Google account, including task list lookup and task creation, updates, completion, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, create, modify, complete, and delete Google Tasks after OAuth authorization. <br>
-Mitigation: Install only for accounts where this access is acceptable, and revoke the OAuth grant or delete ~/.google-tasks-token.pickle when access is no longer needed. <br>
-Risk: Local OAuth credential and token files grant access to the selected Google account's Tasks data. <br>
-Mitigation: Keep ~/.google-credentials.json and ~/.google-tasks-token.pickle private, and do not use token pickle files from untrusted sources. <br>
+## Use Case:
 
+Developers and end users who want an agent to operate Google Tasks can use this skill to list task lists, create tasks with notes and due dates, update or complete tasks, and delete tasks after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ibluewind/andrew-google-tasks) <br>
-- [Google Tasks OAuth scope](https://www.googleapis.com/auth/tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with Python examples, shell commands, and Google Tasks API operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or mutate Google Tasks after OAuth authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests full Google Tasks access and can create, update, complete, or delete tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to an appropriate Google account and review task deletion or update actions before invoking them.
+
+Risk: The OAuth token is stored and reloaded through a local Python pickle file, which could execute local code if the file is tampered with.
+
+Mitigation: Replace pickle token storage with Google's JSON credential serialization where possible, keep credential and token files private, and regenerate the token if tampering is suspected.
+
+Risk: The skill runs local Python code and depends on Google API packages installed in the local environment.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions and review the script before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ibluewind/skills/andrew-google-tasks)
+- [Google Tasks OAuth scope](https://www.googleapis.com/auth/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google Tasks OAuth credentials and local Python dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

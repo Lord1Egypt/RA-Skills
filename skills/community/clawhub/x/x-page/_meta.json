@@ -1,6 +1,48 @@
 {
-  "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
-  "slug": "x-page",
-  "version": "1.0.2",
-  "publishedAt": 1772355353477
+    "slug":  "x-page",
+    "version":  "1.0.1",
+    "requires":  {
+                     "os":  [
+                                "windows",
+                                "macos",
+                                "linux"
+                            ],
+                     "anyBinaries":  [
+                                         "powershell",
+                                         "pwsh"
+                                     ]
+                 },
+    "publishedAt":  "2026-03-01T08:51:19Z",
+    "ownerId":  "kn7824yf4srh3akes6axhmqf5n81q7dh",
+    "requiredConfigPaths":  [
+                                "~/.config/x-twitter/credentials.json"
+                            ],
+    "requiredEnvVars":  [
+
+                        ],
+    "primaryCredential":  {
+                              "fields":  [
+                                             "X_API_KEY",
+                                             "X_API_SECRET",
+                                             "X_ACCESS_TOKEN",
+                                             "X_ACCESS_SECRET"
+                                         ],
+                              "optional":  [
+
+                                           ],
+                              "path":  "~/.config/x-twitter/credentials.json",
+                              "type":  "file",
+                              "required":  [
+                                               "X_API_KEY",
+                                               "X_API_SECRET",
+                                               "X_ACCESS_TOKEN",
+                                               "X_ACCESS_SECRET"
+                                           ],
+                              "sensitive":  true,
+                              "notes":  "All four fields required. X_API_KEY and X_API_SECRET are app-level credentials - keep permanently. X_ACCESS_TOKEN and X_ACCESS_SECRET are account-level - rotate periodically and immediately if host is compromised. All credentials read fresh from disk at runtime - never embedded as literals. Regenerate Access Token and Secret via X Developer Portal if compromised."
+                          },
+    "credentialSetup":  {
+                            "type":  "manual",
+                            "description":  "Create a Project and App at developer.twitter.com. Enable OAuth 1.0a with Read and Write permissions. Generate Access Token and Secret for your own account. Save all four values to credentials.json and restrict file permissions (icacls/chmod 600)."
+                        }
 }

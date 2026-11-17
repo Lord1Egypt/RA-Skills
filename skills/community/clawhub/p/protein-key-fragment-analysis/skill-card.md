@@ -1,47 +1,64 @@
-## Description: <br>
-Analyzes multi-species protein FASTA inputs to derive consensus sequences, identify conserved key fragments, summarize amino acid composition, and predict likely fragment functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes multi-species FASTA inputs for protein families to produce consensus sequences, conserved key fragments, amino-acid composition summaries, and heuristic functional predictions.
 
-## Publisher: <br>
-[wuhen9nine](https://clawhub.ai/user/wuhen9nine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhen9nine](https://clawhub.ai/user/wuhen9nine)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics analysts use this skill to run local protein key-fragment analysis over FASTA sequence sets and produce conserved-region, composition, and predicted-function summaries. It is intended for protein family exploration and comparative analysis, with biological claims requiring domain review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Predicted functional regions and disulfide-bond interpretations may be biologically incorrect or incomplete. <br>
-Mitigation: Treat generated claims as computational predictions and validate them with domain expertise, curated databases, or experimental evidence before using them for scientific or operational decisions. <br>
-Risk: MSA-based analysis can fail or produce incomplete results when the clustalo system dependency is unavailable. <br>
-Mitigation: Install and verify Clustal Omega before running full analysis workflows, and document the installed version in reproducible analyses. <br>
-Risk: Some documentation references optional combined aa-pair workflows that are not included in this package. <br>
-Mitigation: Scope use to the packaged key-fragment analysis workflow unless the missing aa-pair workflow is separately installed and reviewed. <br>
-Risk: Threshold choices can materially change the biological interpretation of conserved regions. <br>
-Mitigation: Record consensus and key-fragment thresholds with each run and review sensitivity when comparing species or protein families. <br>
+## Use Case:
 
+Bioinformatics users and developers use this skill to run local protein-family analysis over FASTA sequences, compare conserved fragments across species, and generate structured reports for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhen9nine/protein-key-fragment-analysis) <br>
-- [Method reference](references/method.md) <br>
-- [Functional domains reference](references/functional_domains.md) <br>
-- [Fibrinogen domains reference](references/fibrinogen_domains.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON key-fragment files, FASTA-derived text outputs, and shell/configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create per-species analysis reports and key-fragment JSON files; local FASTA inputs and the clustalo system dependency are required for full MSA-based analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence and artifact skill.json) <br>
+Risk: Unsafe path handling can write analysis files outside the intended results directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a disposable or project-specific workspace and reject species names containing path separators, '..', or absolute paths.
+
+Risk: The skill creates files locally while running bioinformatics scripts.
+
+Mitigation: Avoid running the analysis as root and review generated files before moving them into shared or production locations.
+
+Risk: Biological function and disulfide-bond claims are heuristic.
+
+Mitigation: Treat predictions as candidates until supported by explicit domain hits, structural prediction, or experimental evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhen9nine/skills/protein-key-fragment-analysis)
+- [Analysis method](references/method.md)
+- [Functional domain reference](references/functional_domains.md)
+- [Fibrinogen domain reference](references/fibrinogen_domains.md)
+- [Pfam](http://pfam.xfam.org/)
+- [InterPro](https://www.ebi.ac.uk/interpro/)
+- [UniProt](https://www.uniprot.org/)
+- [PROSITE](https://prosite.expasy.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown reports, JSON fragment files, consensus FASTA files, and console progress text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Python scripts and requires ClustalOmega for multi-sequence alignment.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

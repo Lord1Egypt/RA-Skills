@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "name": "byted-sol-live-highlight-slicer",
+  "displayName": "Live Highlight Slicer",
+  "version": "1.0.0",
+  "description": "Detect and export highlight clips from local livestream recordings.",
+  "author": "byted-sol",
+  "license": "MIT",
+  "entrypoint": "SKILL.md",
+  "categories": ["video", "media", "automation"],
+  "tags": ["livestream", "highlight", "ffmpeg", "video-editing", "asr"],
+  "runtime": {
+    "python": ">=3.9",
+    "commands": ["python3", "ffmpeg", "ffprobe"],
+    "pythonPackages": ["librosa", "numpy", "pydub"]
+  },
+  "permissions": {
+    "filesystem": ["read input video", "read optional ASR file", "write output clips and metadata"],
+    "network": []
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "requirements.txt",
+    "scripts/highlight_slicer.py"
+  ]
+}

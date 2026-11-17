@@ -1,40 +1,47 @@
-## Description: <br>
-Auto-retries failed cron jobs after connection recovery by using heartbeat checks to identify network-related failures and rerun eligible enabled jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-retry failed cron jobs on connection recovery. Use when cron jobs fail due to network errors and should be retried when connectivity is restored. Integrates with heartbeat to detect failed jobs and re-run them automatically.
 
-## Publisher: <br>
-[jrbobbyhansen-pixel](https://clawhub.ai/user/jrbobbyhansen-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jrbobbyhansen-pixel](https://clawhub.ai/user/jrbobbyhansen-pixel)
 
-## Use Case: <br>
-Developers and operators use this skill to recover cron jobs that failed because of transient network or connection errors. It guides an agent to inspect cron job status, identify retryable network failures, rerun eligible enabled jobs, and report recovery attempts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic retries can rerun broad background jobs without clear retry limits or per-job safeguards. <br>
-Mitigation: Enable the skill only for explicitly allowlisted cron jobs that are safe to repeat, and configure a retry cap and cooldown before heartbeat-based retries run. <br>
-Risk: Retried jobs may post publicly, send duplicate messages, spend money, or modify important data. <br>
-Mitigation: Exclude jobs with public posting, payment, duplicate-message, or important data-modification side effects unless they have idempotency controls and human approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cron Retry on ClawHub](https://clawhub.ai/jrbobbyhansen-pixel/cron-retry) <br>
-- [Publisher profile](https://clawhub.ai/user/jrbobbyhansen-pixel) <br>
+## Use Case:
+
+Developers and operators use this skill to help an agent identify cron jobs that failed from transient network errors and retry eligible jobs after connectivity returns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic retry behavior can rerun cron jobs with repeated or duplicate side effects when safeguards are missing.
+
+Mitigation: Install only for cron jobs that are idempotent or have duplicate-suppression protections, and add per-job opt-in, cooldowns using lastRunAtMs, retry limits, logging, and manual review for repeated failures.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and heartbeat configuration text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces retry criteria, cron command examples, and recovery reporting guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for heartbeat-based cron recovery workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

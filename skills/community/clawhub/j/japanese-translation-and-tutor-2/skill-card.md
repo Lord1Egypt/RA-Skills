@@ -1,42 +1,54 @@
-## Description: <br>
-Japanese Translation And Tutor provides Japanese-English translation and language tutoring with kanji readings, vocabulary, grammar help, and cultural notes using SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Japanese-English translator and language tutor powered by SkillBoss API Hub that produces translations with kanji readings, vocabulary, and cultural notes.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and language learners use this skill to translate Japanese text and understand vocabulary, kanji readings, grammar, register, and cultural nuance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for translation is sent to SkillBoss. <br>
-Mitigation: Avoid submitting confidential messages or documents unless SkillBoss is approved for that data. <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Use a dedicated SkillBoss API key, keep it in the SKILLBOSS_API_KEY environment variable, and rotate it if exposed. <br>
+## Use Case:
 
+External users and language learners use this skill to translate Japanese text into English and understand Japanese vocabulary, grammar, kanji readings, register, and cultural nuance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/japanese-translation-and-tutor-2) <br>
-- [SkillBoss Japanese Translation And Tutor](https://skillboss.co/skills/japanese-translation-and-tutor) <br>
-- [SkillBoss API Hub endpoint](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with structured translation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes translation, kanji readings, vocabulary, and notes; Slack/Discord and plain-text formatting are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text submitted for translation or explanation is sent to SkillBoss using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm third-party processing is approved for the intended use and avoid submitting confidential, regulated, or secret material unless approved.
+
+Risk: The skill depends on SKILLBOSS_API_KEY for external API access.
+
+Mitigation: Store the API key securely and rotate it if it is exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/japanese-translation-and-tutor-2)
+- [SkillBoss Japanese Translation And Tutor page](https://skillboss.co/skills/japanese-translation-and-tutor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown or plain text with translation, reading, vocabulary, and notes sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends submitted text to the SkillBoss API for translation and tutoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

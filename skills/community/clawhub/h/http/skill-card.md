@@ -1,37 +1,48 @@
-## Description: <br>
-Use HTTP correctly with proper methods, status codes, headers, and caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use HTTP correctly with proper methods, status codes, headers, and caching.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise HTTP reference when choosing redirect behavior, cache controls, conditional requests, CORS handling, security headers, range responses, error formats, retry patterns, and connection behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HTTP implementation advice can affect production behavior, security posture, caching, and client compatibility if applied without local validation. <br>
-Mitigation: Validate recommendations against the application framework, deployment environment, security requirements, and current HTTP behavior before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/http) <br>
+## Use Case:
 
+Developers and engineers use this skill as concise HTTP reference guidance for choosing methods, status codes, caching behavior, headers, redirects, retries, and related web API behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown reference guidance with inline HTTP headers, status codes, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no code execution, credential use, persistence, or hidden behavior reported by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect HTTP header, caching, redirect, or retry choices can affect production site behavior.
+
+Mitigation: Apply the guidance deliberately in the context of the target service and review HSTS, cache headers, redirects, and retry behavior before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/http)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Passive reference material; no code execution or automatic actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Aihot Skill Lite helps agents fetch current Chinese-language AI news from AI HOT and format results as readable Markdown briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aihot Skill Lite lets an agent fetch current AI HOT news from aihot.virxact.com and produce concise Chinese Markdown briefings.
 
-## Publisher: <br>
-[kkkkhazix](https://clawhub.ai/user/kkkkhazix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkkkhazix](https://clawhub.ai/user/kkkkhazix)
 
-## Use Case: <br>
-External users and agents use this skill to answer current AI news questions by fetching AI HOT items or daily summaries and presenting Chinese Markdown briefings with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate eagerly on ambiguous AI or news-related prompts. <br>
-Mitigation: Use it when the user is asking for current AI news, AI HOT, daily summaries, model releases, product releases, papers, or related industry updates. <br>
-Risk: The skill may respond in Chinese even when the user uses another language. <br>
-Mitigation: Preserve the user's language preference unless the user asks for Chinese output or the source material requires Chinese labels. <br>
-Risk: Generated news briefings can be misleading if source links or timing context are omitted. <br>
-Mitigation: Include source URLs and human-readable times for reported items, and avoid presenting fetched data as broader coverage than the source supports. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve recent AI industry news, AI HOT daily reports, category updates, and keyword-specific AI news, then present the results as readable Chinese Markdown briefings.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kkkkhazix/aihot) <br>
-- [AI HOT website](https://aihot.virxact.com) <br>
-- [AI HOT OpenAPI specification](https://aihot.virxact.com/openapi.yaml) <br>
-- [Full AI HOT skill documentation](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefings with sourced AI news items and occasional curl command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language summaries; current data fetched from public AI HOT endpoints; no API key required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: AI-news search terms and timing parameters may be sent to aihot.virxact.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using confidential or sensitive search terms, and deploy only where sending those queries to the disclosed public service is acceptable.
+
+Risk: The skill relies on live public AI news data, which may be incomplete, unavailable, or changed after retrieval.
+
+Mitigation: Keep source URLs in the briefing and review important claims before using them in business-critical decisions.
+
+Risk: The skill instructs curl to use a browser-like User-Agent for public API calls.
+
+Mitigation: Limit calls to the disclosed AI HOT service and ensure usage follows the service's access expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kkkkhazix/skills/aihot)
+- [Publisher profile](https://clawhub.ai/user/kkkkhazix)
+- [AI HOT public site](https://aihot.virxact.com)
+- [AI HOT OpenAPI specification](https://aihot.virxact.com/openapi.yaml)
+- [Full AI HOT skill documentation](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown briefing with source links and optional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should summarize current AI news in plain language and preserve source URLs.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

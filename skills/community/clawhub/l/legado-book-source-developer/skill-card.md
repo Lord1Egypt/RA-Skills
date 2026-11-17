@@ -1,48 +1,58 @@
-## Description: <br>
-Helps developers create, debug, validate, and manage Legado book source JSON by analyzing authorized website HTML, encoding, selectors, and Legado rules for search, book info, tables of contents, and content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legado (阅读) Android app book source development skill for creating book sources for novel and manga websites, debugging source rules, querying Legado rule knowledge, and analyzing website HTML structure for authorized targets.
 
-## Publisher: <br>
-[yuluoxci](https://clawhub.ai/user/yuluoxci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuluoxci](https://clawhub.ai/user/yuluoxci)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, debug, validate, and manage Legado book source JSON for websites they own or are authorized to test. It helps analyze real HTML, encoding, selectors, search rules, table-of-contents rules, content extraction rules, and related Legado source fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide scraping-oriented network requests and local HTML snapshot storage. <br>
-Mitigation: Use it only on websites the user owns or is authorized to test, and review generated requests before execution. <br>
-Risk: The skill includes material related to cookie/session handling and anti-bot bypass. <br>
-Mitigation: Do not provide passwords, MFA codes, live cookies, or Authorization headers, and avoid anti-bot bypass workflows. <br>
-Risk: The skill includes upload tooling that can send book source content to an external destination. <br>
-Mitigation: Review the upload destination and payload before running upload tools. <br>
+## Use Case:
 
+Developers and advanced Legado users use this skill to create, validate, debug, and share Legado book-source JSON for websites they own or are authorized to test. It supports HTML structure analysis, encoding handling, CSS selector rules, ruleSearch/ruleToc/ruleContent/ruleBookInfo configuration, and book-source validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuluoxci/legado-book-source-developer) <br>
-- [Legado development guide](artifact/references/legado_development_guide.md) <br>
-- [Legado data structures](artifact/references/legado_data_structures.md) <br>
-- [Comprehensive Legado book source guide](artifact/references/Legado书源开发完整指南.md) <br>
-- [Encoding handling guide](artifact/references/Legado书源编码处理指南.md) <br>
-- [Tool usage guide](artifact/references/工具使用说明.md) <br>
-- [No Python workflow](artifact/references/no_python_workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce complete Legado book source JSON arrays and validation or upload commands for user-approved targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.7 (source: server release metadata) <br>
+Risk: Complete source configurations can be uploaded to a public third-party host, which may expose sensitive headers, cookies, session IDs, private endpoints, passwords, or proprietary rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every source configuration before upload and remove credentials, Authorization headers, cookies, session data, private endpoints, and proprietary rules.
+
+Risk: Website analysis and anti-bot bypass materials can be misused against sites without permission.
+
+Mitigation: Use the skill only on websites the user owns or is explicitly authorized to test, and avoid anti-bot bypass workflows unless permission is clear.
+
+## Reference(s):
+
+- [Legado Development Guide](references/legado_development_guide.md)
+- [Legado Data Structures](references/legado_data_structures.md)
+- [Legado Book Source Complete Guide](references/Legado书源开发完整指南.md)
+- [User Interaction Guide](references/用户交互指南.md)
+- [Tool Usage Guide](references/工具使用说明.md)
+- [No-Python Workflow](references/no_python_workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON book-source configurations and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Legado book-source JSON arrays and validation or analysis notes for authorized targets.]
+
+## Skill Version(s):
+
+2.3.7 (source: target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

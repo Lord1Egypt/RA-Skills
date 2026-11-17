@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn79bgz41p3ymzte28g3vpb55d82qh97",
+  "name": "Agent Guardian",
   "slug": "agent-guardian",
   "version": "1.0.0",
-  "publishedAt": 1773234972262
+  "description": "AI助手体验守护系统：看门狗监控、智能状态汇报、即时查询、语言一致性过滤、消息队列追踪。多渠道适配。",
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "author": "fanxinyun1991",
+  "tags": ["monitoring", "guardian", "status", "language-filter"]
 }

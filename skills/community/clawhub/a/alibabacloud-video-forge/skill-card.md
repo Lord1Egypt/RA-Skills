@@ -1,50 +1,67 @@
-## Description: <br>
-Alibabacloud Video Forge helps agents run Alibaba Cloud MPS workflows for video upload, media probing, snapshots, transcoding, content moderation, and downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibabacloud Video Forge guides agents through Alibaba Cloud Media Processing Service workflows for video upload, media probing, cover snapshots, multi-resolution transcoding, content moderation, and output retrieval.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and media operations teams use this skill to standardize video assets on Alibaba Cloud by uploading source media, generating covers, transcoding to multiple resolutions, running content moderation, and collecting output links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Alibaba Cloud credentials to process media, create or select MPS pipelines, and access OSS objects. <br>
-Mitigation: Use least-privilege RAM policies, configure credentials through the Alibaba Cloud default credential chain, and avoid running the skill against sensitive media unless the environment is approved. <br>
-Risk: OSS cleanup commands can delete objects recursively or with force options. <br>
-Mitigation: Prefer dry-run cleanup first, review every delete target, and grant OSS delete permissions only when cleanup is required. <br>
-Risk: Automatic pipeline selection can create or choose cloud resources without an explicitly reviewed pipeline ID. <br>
-Mitigation: Prefer explicit pipeline IDs for controlled environments and review pipeline permissions before running production workflows. <br>
-Risk: Environment loading can import cloud-related variables from local shell profiles. <br>
-Mitigation: Use a dedicated shell profile or execution environment with only the variables required for this skill. <br>
+## Use Case:
 
+Developers, media operations teams, and content platform engineers use this skill to standardize video assets on Alibaba Cloud by uploading source media to OSS, submitting MPS snapshot/transcoding/moderation jobs, polling job status, and retrieving processed outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-video-forge) <br>
-- [Capability Overview](references/capability-overview.md) <br>
-- [Security Guidelines](references/security-guidelines.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [Script Parameters](references/params.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration steps, and script output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce cloud job identifiers, media metadata, moderation results, and OSS object links depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Installer and plugin update steps can run unverified latest code or automatically install Aliyun CLI plugins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install sources before use, avoid curl-to-bash and unverified latest binary installers, and avoid enabling automatic CLI plugin installation unless the environment explicitly allows it.
+
+Risk: Cloud actions can use broad permissions and include recursive or forceable OSS deletion.
+
+Mitigation: Use a dedicated low-privilege RAM role scoped to one OSS bucket or prefix where possible, avoid full-access policy examples, preview deletes with dry-run, and do not use force for recursive deletes.
+
+Risk: Credential and environment loading can expose or mix sensitive Alibaba Cloud settings if reused across shells or projects.
+
+Mitigation: Use the Alibaba Cloud default credential chain, never print or read raw credentials, and keep only required Alibaba Cloud settings in a dedicated config environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-video-forge)
+- [Capability Overview](references/capability-overview.md)
+- [Security Guidelines](references/security-guidelines.md)
+- [RAM Permission Policies](references/ram-policies.md)
+- [Script Parameter Reference](references/params.md)
+- [Script Usage Examples](references/scripts-detail.md)
+- [Verification Method](references/verification-method.md)
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [SDK Installation Guide](references/sdk-installation.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Alibaba Cloud MPS RAM Authorization Overview](https://help.aliyun.com/zh/mps/developer-reference/api-mts-2014-06-18-overview)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python script invocations, optional JSON responses, and generated or downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Alibaba Cloud OSS object paths, MPS job IDs, task status summaries, content moderation results, signed URLs, and locally downloaded media artifacts.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

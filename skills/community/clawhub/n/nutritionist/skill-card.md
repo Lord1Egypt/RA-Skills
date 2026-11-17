@@ -1,36 +1,48 @@
-## Description: <br>
-Holistic nutrition guidance — food-health relationships, eating behaviors, sustainable habits, and nutritional education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Holistic nutrition guidance — food-health relationships, eating behaviors, sustainable habits, and nutritional education.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this role skill for general nutrition education, sustainable habit coaching, and food-health relationship guidance. It should direct users with clinical needs or red flags to a registered dietitian or clinician. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general nutrition education as medical care for eating disorders, pregnancy or breastfeeding needs, chronic illness, medication-food interactions, or unexplained health changes. <br>
-Mitigation: Keep guidance educational and refer those users to a registered dietitian or clinician, consistent with the security guidance and artifact referral language. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill for general nutrition coaching, food-health education, sustainable habit formation, and identifying situations where professional clinical support is appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General nutrition education only; no code, permissions, data access, or persistence behavior according to the security summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may apply general nutrition coaching to medical situations that require clinical oversight.
+
+Mitigation: Use the skill for general habit guidance and refer pregnancy, chronic disease, eating disorders, rapid weight changes, medication interactions, or lab monitoring to a registered dietitian or doctor.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/nutritionist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or conversational text with nutrition coaching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, code, data access, or hidden behavior according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

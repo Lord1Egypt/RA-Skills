@@ -1,47 +1,62 @@
-## Description: <br>
-发票票据识别虾 automatically identifies invoice and receipt images, extracts key fields such as amounts, dates, merchants, and tax IDs, supports batch processing, expense categorization, tax verification, and can prepare Feishu table data or export Excel files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动识别发票和票据图片或 PDF，提取金额、日期、商家、税号等关键字段，支持批量汇总、费用分类、税务验真，并生成飞书报销草稿或 Excel/JSON 导出。
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Finance staff, operations teams, and agents use this skill to process Chinese invoice and receipt images or PDFs, extract reimbursable fields, flag validation issues, classify expenses, verify VAT invoices when configured, and prepare spreadsheet or Feishu expense outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice images, tax data, API keys, and exported files are sensitive. <br>
-Mitigation: Use scoped credentials in environment variables, process invoices only with approved OCR, model, tax-verification, and Feishu providers, and store exported JSON or Excel files in protected locations. <br>
-Risk: OCR or AI-vision extraction may produce incorrect invoice fields, especially when images are unclear or API fallback is used. <br>
-Mitigation: Review extracted results before uploads or reimbursement workflows, and manually confirm high-value invoices and validation warnings. <br>
-Risk: Batch processing can read unintended input folders or write outputs to unintended paths. <br>
-Mitigation: Confirm exact input directories and output paths before running batch extraction or expense-form generation. <br>
+## Use Case:
 
+Employees, finance operations teams, and agents use this skill to extract structured data from Chinese invoices and receipts, check key validation rules, classify expense categories, and prepare reimbursement records or summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tujinsama/invoice-ocr-extractor) <br>
-- [Invoice Type Recognition Rules](references/invoice-types.md) <br>
-- [Field Extraction Rules](references/field-extraction.md) <br>
-- [Expense Category Rules](references/expense-categories.md) <br>
-- [Tax Verification Interface Notes](references/tax-verification.md) <br>
-- [National VAT Invoice Verification Platform](https://inv.chinatax.gov.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, Excel files] <br>
-**Output Format:** [Markdown guidance with bash commands, plus JSON or Excel invoice extraction outputs and draft expense-form JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require scoped OCR, tax-verification, or Feishu credentials; extracted amounts and tax results should be reviewed before upload or reimbursement use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Invoice images and extracted invoice metadata may be sent to configured OCR, AI vision, tax-verification, or Feishu systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped API keys, obtain approval before processing sensitive invoices, and add an explicit confirmation step before cloud OCR or external sync.
+
+Risk: OCR or AI vision extraction can misread amounts, dates, seller names, tax numbers, or invoice status.
+
+Mitigation: Require human review for high-value, low-confidence, failed-validation, voided, or red-corrected invoices before reimbursement or accounting use.
+
+Risk: Tax verification may be rate-limited, unavailable, or only advisory for the reimbursement workflow.
+
+Mitigation: Throttle batch verification and direct users to confirm final invoice validity through the official tax verification platform when automated verification fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/invoice-ocr-extractor)
+- [Invoice type recognition rules](references/invoice-types.md)
+- [Field extraction rules](references/field-extraction.md)
+- [Expense category rules](references/expense-categories.md)
+- [Tax verification interface notes](references/tax-verification.md)
+- [National VAT invoice verification platform](https://inv.chinatax.gov.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain-text summaries, JSON invoice records, and Excel or JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require configured OCR, tax-verification, or Feishu credentials for cloud recognition, verification, or sync flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

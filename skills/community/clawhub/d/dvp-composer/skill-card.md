@@ -1,49 +1,62 @@
-## Description: <br>
-Guides users through a structured workflow to compose, draft, and review a clinical trial Data Validation Plan for CRO or sponsor data management contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through a structured clinical trial Data Validation Plan workflow, from study material collection through check design, internal review, and Excel DVP generation.
 
-## Publisher: <br>
-[unfallenwill](https://clawhub.ai/user/unfallenwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unfallenwill](https://clawhub.ai/user/unfallenwill)
 
-## Use Case: <br>
-Clinical data management teams use this skill to turn study materials, protocol details, CRF information, and review decisions into a structured Data Validation Plan. It supports phased collection, validation strategy, check design, alignment, drafting, Excel generation, and internal quality review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to overwrite files under dvp_workspace during normal workflow execution. <br>
-Mitigation: Run it in a fresh project or back up existing DVP outputs before use, and review generated files before relying on them. <br>
-Risk: The scanner verdict is suspicious because of explicit overwrite behavior, even though no credential or tool-risk findings were reported. <br>
-Mitigation: Review the workspace changes and generated DVP content before deployment or distribution. <br>
+## Use Case:
 
+Clinical data management teams, CRO staff, sponsors, and developers use this skill to draft and review Data Validation Plans for clinical studies. It helps collect study inputs, define validation scope, design executable check rules, align them against source materials, and produce a final Excel workbook.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/unfallenwill/dvp-composer) <br>
-- [DVP Document Structure Catalog](references/section-catalog.md) <br>
-- [Excel Output Specification](references/excel-spec.md) <br>
-- [Example DVP Output](references/example-output.md) <br>
-- [Phase 1: Collection](references/stages/phase-1-collection.md) <br>
-- [Phase 2: Scope & Strategy](references/stages/phase-2-strategy.md) <br>
-- [Phase 3: Design Check Content](references/stages/phase-3-design.md) <br>
-- [Phase 4: Alignment](references/stages/phase-4-alignment.md) <br>
-- [Phase 5: Draft](references/stages/phase-5-draft.md) <br>
-- [Phase 6: Internal Review](references/stages/phase-6-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, Excel workbook, and workspace file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates phase deliverables under dvp_workspace/ and generates a final DVP Excel workbook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can overwrite project files in dvp_workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups of existing DVP work and review workspace contents before continuing a workflow.
+
+Risk: Generated Excel workbooks may include content derived from untrusted study materials or templates.
+
+Mitigation: Use trusted source materials and inspect generated XLSX files for unexpected formulas or links before distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/unfallenwill/skills/dvp-composer)
+- [Excel Output Specification](references/excel-spec.md)
+- [DVP Document Structure Catalog](references/section-catalog.md)
+- [Example DVP Output](references/example-output.md)
+- [Phase 1: Collection](references/stages/phase-1-collection.md)
+- [Phase 2: Scope & Strategy](references/stages/phase-2-strategy.md)
+- [Phase 3: Design Check Content](references/stages/phase-3-design.md)
+- [Phase 4: Alignment](references/stages/phase-4-alignment.md)
+- [Phase 5: Draft](references/stages/phase-5-draft.md)
+- [Phase 6: Internal Review](references/stages/phase-6-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Excel workbook, Shell commands, Guidance]
+
+**Output Format:** [Markdown phase deliverables, JSON workbook input, structured review text, and .xlsx final DVP files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes workflow files under dvp_workspace and can generate DVP_<ProtocolNumber>_v1.0.xlsx from JSON input or a user-provided Excel template.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

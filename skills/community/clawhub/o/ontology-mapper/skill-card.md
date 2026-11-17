@@ -1,43 +1,56 @@
-## Description: <br>
-This skill maps construction data to standard ontologies and creates semantic mappings between different data schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map construction data to standard ontologies and create semantic mappings between different data schemas.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction data teams, BIM specialists, and developers use this skill to map project schemas and field values to IFC, COBie, Uniclass, OmniClass, MasterFormat, UniFormat, or custom ontologies, then review mapping confidence and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can work with project files and offer exports, so it may access or write data outside the user's intended scope if paths are not reviewed. <br>
-Mitigation: Grant access only to the project files that should be mapped and review any export path before writing Excel, CSV, or JSON output. <br>
-Risk: Ontology mappings may include low-confidence, uncertain, or unmapped fields that could affect downstream construction data interpretation. <br>
-Mitigation: Review confidence distributions, recommendations, and unmapped fields before relying on generated mappings. <br>
-Risk: The scan guidance notes a version mismatch between the artifact manifest and the registry release metadata. <br>
-Mitigation: Use the server release version for this card and confirm release provenance if exact package lineage matters. <br>
+## Use Case:
 
+Construction data teams, developers, and project managers use this skill to map project schemas and field values to construction ontologies such as IFC, COBie, Uniclass, OmniClass, MasterFormat, and UniFormat. It supports semantic interoperability work by reporting mappings, confidence levels, coverage, unmapped fields, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/ontology-mapper) <br>
-- [Data Driven Construction homepage](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured tables, JSON exports, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Excel, CSV, or JSON exports; results can include mapping confidence, coverage statistics, recommendations, and custom mapping guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill may read user-specified local project files that contain unintended or sensitive construction data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only files intended for ontology mapping and review inputs before running mapping workflows.
+
+Risk: Ontology mappings can be low confidence, incomplete, or incorrect for project-specific schemas.
+
+Mitigation: Review confidence levels, unmapped fields, and recommendations before using results in downstream construction workflows.
+
+## Reference(s):
+
+- [Ontology Mapper skill source](artifact/SKILL.md)
+- [DataDrivenConstruction](https://datadrivenconstruction.io)
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/ontology-mapper)
+- [datadrivenconstruction publisher profile](https://clawhub.ai/user/datadrivenconstruction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured tables, JSON exports, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include mapping confidence, coverage summaries, unmapped fields, recommendations, and optional CSV, Excel, or JSON export guidance.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

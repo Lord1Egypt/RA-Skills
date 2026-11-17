@@ -2,16 +2,12 @@
 """
 Calendar Manager
 Create, edit and delete events in the family Google Calendar.
-Uses natural language parsing to extract event details.
+Callers pass explicit dates and times; the agent does the language part.
 """
 
 import os
-import re
-from datetime import datetime, timedelta
-from typing import Dict, Optional, Tuple
-
-from core.keychain_secrets import load_google_secrets
-load_google_secrets()
+from datetime import datetime, timedelta, timezone
+from typing import Dict, Tuple
 
 def _get_calendar_id():
     try:
@@ -21,251 +17,84 @@ def _get_calendar_id():
         return ""
 CALENDAR_ID = _get_calendar_id()
 
+def _get_timezone():
+    try:
+        from core.config_loader import config
+        return config.timezone
+    except Exception:
+        return "America/Los_Angeles"
+TIMEZONE = _get_timezone()
+
 # ─── Auth ────────────────────────────────────────────────────────────────────
-
-def get_calendar_service():
-    """Build Google Calendar service with auto-refresh."""
-    from google.oauth2.credentials import Credentials
-    from google.auth.transport.requests import Request
-    from googleapiclient.discovery import build
-
-    creds = Credentials(
-        token="",
-        refresh_token=os.environ.get("GOOGLE_REFRESH_TOKEN"),
-        token_uri="https://oauth2.googleapis.com/token",
-        client_id=os.environ.get("GOOGLE_CLIENT_ID"),
-        client_secret=os.environ.get("GOOGLE_CLIENT_SECRET")
-    )
-    creds.refresh(Request())
-    return build('calendar', 'v3', credentials=creds)
-
-
-# ─── Date/Time Parsing ───────────────────────────────────────────────────────
-
-MONTH_MAP = {
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
-    "january": 1, "february": 2, "march": 3, "april": 4, "june": 6,
-    "july": 7, "august": 8, "september": 9, "october": 10,
-    "november": 11, "december": 12
-}
-
-DAY_MAP = {
-    "monday": 0, "tuesday": 1, "wednesday": 2, "thursday": 3,
-    "friday": 4, "saturday": 5, "sunday": 6,
-    "mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6
-}
-
-
-def parse_datetime(text: str) -> Tuple[Optional[str], Optional[str], bool]:
-    """
-    Parse date and time from natural language.
-    Returns (date_str, time_str, is_all_day)
-    date_str format: YYYY-MM-DD
-    time_str format: HH:MM
-    """
-    text = text.lower().strip()
-    now = datetime.now()
-    date = None
-    time_str = None
-    is_all_day = True
-
-    # Relative dates
-    if "today" in text:
-        date = now
-    elif "tomorrow" in text:
-        date = now + timedelta(days=1)
-    elif "next week" in text:
-        date = now + timedelta(weeks=1)
-    elif "monday" in text or "tuesday" in text or "wednesday" in text or \
-         "thursday" in text or "friday" in text or "saturday" in text or "sunday" in text:
-        for day_name, day_num in DAY_MAP.items():
-            if day_name in text:
-                days_ahead = (day_num - now.weekday()) % 7
-                if days_ahead == 0:
-                    days_ahead = 7
-                date = now + timedelta(days=days_ahead)
-                break
-
-    # Absolute dates — "March 20", "Mar 20", "3/20", "20th March"
-    if not date:
-        # "Month Day" or "Day Month"
-        month_day = re.search(
-            r'(?:(\d{1,2})(?:st|nd|rd|th)?\s+(' + '|'.join(MONTH_MAP.keys()) + r')|'
-            r'(' + '|'.join(MONTH_MAP.keys()) + r')\s+(\d{1,2})(?:st|nd|rd|th)?)',
-            text
-        )
-        if month_day:
-            if month_day.group(1):
-                day = int(month_day.group(1))
-                month = MONTH_MAP[month_day.group(2)]
-            else:
-                month = MONTH_MAP[month_day.group(3)]
-                day = int(month_day.group(4))
-            year = now.year
-            # If date has passed this year, assume next year
-            try:
-                candidate = datetime(year, month, day)
-                if candidate.date() < (now - timedelta(days=7)).date():
-                    year += 1
-                date = datetime(year, month, day)
-            except ValueError:
-                pass
-
-        # "MM/DD" or "MM/DD/YYYY"
-        if not date:
-            slash_date = re.search(r'(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?', text)
-            if slash_date:
-                month = int(slash_date.group(1))
-                day   = int(slash_date.group(2))
-                year  = int(slash_date.group(3)) if slash_date.group(3) else now.year
-                if year < 100:
-                    year += 2000
-                try:
-                    date = datetime(year, month, day)
-                except ValueError:
-                    pass
-
-    # Time parsing
-    # Time parsing — require "at" before time to avoid matching date numbers
-    time_match = re.search(
-        r'\bat\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)',
-        text
-    )
-    # Fallback — time with am/pm but no "at"
-    if not time_match:
-        time_match = re.search(
-            r'(?<!\d)(\d{1,2})(?::(\d{2}))?\s*(am|pm)',
-            text
-        )
-
-    if time_match:
-        # Adjust group indices based on which pattern matched
-        if 'at' in time_match.group(0):
-            hour   = int(time_match.group(1))
-            minute = int(time_match.group(2)) if time_match.group(2) else 0
-            ampm   = time_match.group(3)
-        else:
-            hour   = int(time_match.group(1))
-            minute = int(time_match.group(2)) if time_match.group(2) else 0
-            ampm   = time_match.group(3)
-
-        if ampm == 'pm' and hour < 12:
-            hour += 12
-        elif ampm == 'am' and hour == 12:
-            hour = 0
-
-        time_str = f"{hour:02d}:{minute:02d}"
-        is_all_day = False
-
-    if not date:
-        return None, None, True
-    return date.strftime("%Y-%m-%d"), time_str, is_all_day
-
-
-def parse_event_details(message: str) -> Dict:
-    """
-    Extract event title, date, time, and duration from natural language.
-    Examples:
-      "add dentist appointment March 25 at 2pm"
-      "create team meeting tomorrow at 3:30pm for 1 hour"
-      "schedule gymnastics every Tuesday at 4pm"
-    """
-    msg = message.lower()
-
-    # Remove action words
-    title_msg = re.sub(
-        r'^(?:add|create|schedule|set up|book|new event|new|put)\s+',
-        '', message.strip(), flags=re.IGNORECASE
-    )
-
-    # Extract duration
-    duration_minutes = 60  # default 1 hour
-    duration_match = re.search(r'for\s+(\d+)\s*(hour|hr|minute|min)', msg)
-    if duration_match:
-        val  = int(duration_match.group(1))
-        unit = duration_match.group(2)
-        duration_minutes = val * 60 if 'hour' in unit or 'hr' in unit else val
-
-    # Parse date/time
-    date_str, time_str, is_all_day = parse_datetime(msg)
-
-    # Extract title — remove date/time phrases from message
-    title = title_msg
-    # Remove date/time patterns
-    title = re.sub(
-        r'\b(?:today|tomorrow|next week|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b',
-        '', title, flags=re.IGNORECASE
-    )
-    title = re.sub(
-        r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|january|february|march|'
-        r'april|june|july|august|september|october|november|december)\s+\d{1,2}\b',
-        '', title, flags=re.IGNORECASE
-    )
-    title = re.sub(r'\d{1,2}/\d{1,2}(?:/\d{2,4})?', '', title)
-    title = re.sub(r'\bat\s+\d{1,2}(?::\d{2})?\s*(?:am|pm)?\b', '', title, flags=re.IGNORECASE)
-    title = re.sub(r'\bfor\s+\d+\s*(?:hour|hr|minute|min)s?\b', '', title, flags=re.IGNORECASE)
-    title = re.sub(r'\s+', ' ', title).strip().strip(',').strip()
-
-    return {
-        "title": title,
-        "date": date_str,
-        "time": time_str,
-        "is_all_day": is_all_day,
-        "duration_minutes": duration_minutes
-    }
-
+#
+# There is none here any more (2026-09-07). `get_calendar_service` and its
+# memoized `_SERVICE`, plus `reset_calendar_service`, are gone: core/gcal.py
+# shells out to the `gog` CLI, which resolves its own refresh token from the
+# Keychain per invocation.
+#
+# The memoization those functions existed for is gone with them, and so is
+# what it was worth: building a service once per process saved a token refresh
+# round trip on each of create/delete/update, which mattered most to
+# confirm_pending_school_events calling create_event in a loop. gog pays its
+# own auth cost per subprocess, so a five-event confirmation is five
+# invocations again. Measure before optimizing that — a batch create in gog,
+# not a service cache here, is the fix if it ever shows up.
 
 # ─── Calendar Operations ─────────────────────────────────────────────────────
 
 def create_event(title: str, date_str: str, time_str: str = None,
-                 duration_minutes: int = 60, is_all_day: bool = False) -> Dict:
-    """Create an event in the family calendar."""
-    service = get_calendar_service()
+                 duration_minutes: int = 60, is_all_day: bool = False,
+                 description: str = "", end_date: str = None,
+                 location: str = "") -> Dict:
+    """Create an event in the family calendar.
+
+    `end_date` is the INCLUSIVE last day of a multi-day all-day event — pass
+    the day the trip actually ends and the exclusive form Google wants is
+    derived here. Ignored for timed events, whose length comes from
+    `duration_minutes`.
+    """
+    from core import gcal
 
     if is_all_day or not time_str:
-        event_body = {
-            "summary": title,
-            "start": {"date": date_str},
-            "end":   {"date": date_str}
-        }
-    else:
-        start_dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
-        end_dt   = start_dt + timedelta(minutes=duration_minutes)
-        tz       = "America/Los_Angeles"
-        event_body = {
-            "summary": title,
-            "start": {"dateTime": start_dt.isoformat(), "timeZone": tz},
-            "end":   {"dateTime": end_dt.isoformat(),   "timeZone": tz}
-        }
+        # Google's all-day `end.date` is exclusive, so a one-day event ends the
+        # day AFTER it starts. This used to send end == start, i.e. a
+        # zero-length span, which Google silently normalizes for a single day
+        # but which cannot express a multi-day event at all.
+        #
+        # The conversion stays HERE rather than in core.gcal: homebase speaks
+        # inclusive end dates everywhere (a trip ends the day it ends), and
+        # exactly one place should know that Google disagrees.
+        last_day = end_date or date_str
+        exclusive_end = (
+            datetime.strptime(last_day, "%Y-%m-%d") + timedelta(days=1)
+        ).strftime("%Y-%m-%d")
+        return gcal.create_event(
+            CALENDAR_ID, title, date_str, exclusive_end,
+            all_day=True, description=description, location=location,
+        )
 
-    created = service.events().insert(
-        calendarId=CALENDAR_ID,
-        body=event_body
-    ).execute()
-
-    return created
+    start_dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
+    end_dt   = start_dt + timedelta(minutes=duration_minutes)
+    return gcal.create_event(
+        CALENDAR_ID, title, start_dt.isoformat(), end_dt.isoformat(),
+        description=description, location=location, timezone=TIMEZONE,
+    )
 
 
 def delete_event(search_term: str, date_str: str = None) -> Tuple[bool, str]:
     """
     Find and delete an event by title (and optionally date).
-    Returns (success, message)
+    Returns (success, message). If more than one upcoming event matched,
+    the earliest one is still deleted (existing behavior — callers like the
+    club_studio watcher rely on loose matching plus a silent "not found"),
+    but the message flags how many other events also matched so an ambiguous
+    delete is never silent.
     """
-    service = get_calendar_service()
-    now = datetime.utcnow().isoformat() + 'Z'
+    from core import gcal
+    now = datetime.now(timezone.utc).isoformat()
+    horizon = (datetime.now(timezone.utc) + timedelta(days=400)).isoformat()
 
-    # Search upcoming events
-    results = service.events().list(
-        calendarId=CALENDAR_ID,
-        timeMin=now,
-        maxResults=50,
-        singleEvents=True,
-        orderBy='startTime',
-        q=search_term
-    ).execute()
-
-    events = results.get('items', [])
+    events = gcal.list_events(CALENDAR_ID, now, horizon, query=search_term)
     if not events:
         return False, f"No upcoming event found matching '{search_term}'"
 
@@ -277,77 +106,109 @@ def delete_event(search_term: str, date_str: str = None) -> Tuple[bool, str]:
     if not events:
         return False, f"No event matching '{search_term}' on {date_str}"
 
-    # Delete first match
+    # Delete first (earliest) match
     event = events[0]
-    service.events().delete(calendarId=CALENDAR_ID, eventId=event['id']).execute()
-    return True, event.get('summary', 'Event')
+    gcal.delete_event(CALENDAR_ID, event['id'])
+    deleted_summary = event.get('summary', 'Event')
+
+    if len(events) > 1:
+        others = ", ".join(e.get('summary', 'Event') for e in events[1:4])
+        return True, f"{deleted_summary} (⚠️ {len(events) - 1} other event(s) also matched '{search_term}': {others} — verify this was the right one)"
+
+    return True, deleted_summary
 
 
 def update_event(search_term: str, new_title: str = None,
                  new_date: str = None, new_time: str = None) -> Tuple[bool, str]:
-    """Find and update an event."""
-    service = get_calendar_service()
-    now = datetime.utcnow().isoformat() + 'Z'
+    """Find and update an event. Returns (success, message). If more than
+    one upcoming event matched, the earliest one is still updated (existing
+    behavior), but the message flags how many others also matched so an
+    ambiguous update is never silent."""
+    from core import gcal
+    now = datetime.now(timezone.utc).isoformat()
+    horizon = (datetime.now(timezone.utc) + timedelta(days=400)).isoformat()
 
-    results = service.events().list(
-        calendarId=CALENDAR_ID,
-        timeMin=now,
-        maxResults=20,
-        singleEvents=True,
-        orderBy='startTime',
-        q=search_term
-    ).execute()
-
-    events = results.get('items', [])
+    events = gcal.list_events(CALENDAR_ID, now, horizon, query=search_term)
     if not events:
         return False, f"No upcoming event found matching '{search_term}'"
 
     event = events[0]
 
+    # Accumulated into a PATCH rather than mutated onto the event and PUT back.
+    patch: Dict = {}
     if new_title:
-        event['summary'] = new_title
+        patch["summary"] = new_title
 
-    if new_date and new_time:
-        start_dt = datetime.strptime(f"{new_date} {new_time}", "%Y-%m-%d %H:%M")
-        end_dt   = start_dt + timedelta(hours=1)
-        tz       = "America/Los_Angeles"
-        event['start'] = {"dateTime": start_dt.isoformat(), "timeZone": tz}
-        event['end']   = {"dateTime": end_dt.isoformat(),   "timeZone": tz}
-    elif new_date:
-        event['start'] = {"date": new_date}
-        event['end']   = {"date": new_date}
+    if new_date or new_time:
+        # What kind of event is this *now*? A timed event moved to a new date
+        # must stay timed — the previous code rewrote start/end as bare
+        # {"date": ...} whenever new_time was absent, silently converting a
+        # 4pm appointment into an all-day block. For a trip event that also
+        # flips travel_window's most load-bearing input.
+        was_timed = "dateTime" in event.get("start", {})
+        old_start = event.get("start", {}).get("dateTime", "")
+        old_date  = (event.get("start", {}).get("date")
+                     or old_start[:10])
+        old_time  = old_start[11:16] if old_start else None
 
-    updated = service.events().update(
-        calendarId=CALENDAR_ID,
-        eventId=event['id'],
-        body=event
-    ).execute()
+        target_date = new_date or old_date
+        target_time = new_time or (old_time if was_timed else None)
 
-    return True, updated.get('summary', 'Event')
+        if target_time:
+            # Preserve the original duration rather than forcing an hour.
+            duration = timedelta(hours=1)
+            old_end = event.get("end", {}).get("dateTime", "")
+            if old_start and old_end:
+                try:
+                    duration = (datetime.fromisoformat(old_end)
+                                - datetime.fromisoformat(old_start))
+                except ValueError:
+                    pass
+            start_dt = datetime.strptime(f"{target_date} {target_time}", "%Y-%m-%d %H:%M")
+            end_dt   = start_dt + duration
+            patch["start"]    = start_dt.isoformat()
+            patch["end"]      = end_dt.isoformat()
+            patch["timezone"] = TIMEZONE
+        else:
+            # All-day. Google's end.date is EXCLUSIVE, so a one-day event ends
+            # the day AFTER it starts. Preserve the event's ORIGINAL span
+            # rather than forcing one day: re-dating a 9-day `Trip to Seattle`
+            # collapsed it to a single day, and travel_window gates on exactly
+            # that span, so the remaining 8 days silently reverted to home
+            # weather. create_event derives its span from `end_date`; this
+            # branch has no equivalent argument, so it reads the span off the
+            # event it is editing.
+            span_days = 1
+            old_exclusive = event.get("end", {}).get("date")
+            if old_exclusive and old_date:
+                try:
+                    span_days = max(
+                        (datetime.strptime(old_exclusive, "%Y-%m-%d")
+                         - datetime.strptime(old_date, "%Y-%m-%d")).days,
+                        1,
+                    )
+                except ValueError:
+                    span_days = 1
+            exclusive_end = (
+                datetime.strptime(target_date, "%Y-%m-%d")
+                + timedelta(days=span_days)
+            ).strftime("%Y-%m-%d")
+            patch["start"]   = target_date
+            patch["end"]     = exclusive_end
+            patch["all_day"] = True
+
+    updated = gcal.update_event(CALENDAR_ID, event['id'], **patch)
+
+    updated_summary = updated.get('summary') or new_title or event.get('summary', 'Event')
+    if len(events) > 1:
+        others = ", ".join(e.get('summary', 'Event') for e in events[1:4])
+        return True, f"{updated_summary} (⚠️ {len(events) - 1} other event(s) also matched '{search_term}': {others} — verify this was the right one)"
+
+    return True, updated_summary
 
 
 # ─── CLI ─────────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) < 2:
-        print("Usage: calendar_manager.py <natural language command>")
-        print("Examples:")
-        print("  calendar_manager.py 'add dentist March 25 at 2pm'")
-        print("  calendar_manager.py 'delete dentist'")
-        sys.exit(1)
-
-    msg = " ".join(sys.argv[1:])
-    details = parse_event_details(msg)
-    print(f"Parsed: {details}")
-
-    if details["date"] and details["title"]:
-        result = create_event(
-            title=details["title"],
-            date_str=details["date"],
-            time_str=details["time"],
-            duration_minutes=details["duration_minutes"],
-            is_all_day=details["is_all_day"]
-        )
-        print(f"Created: {result.get('summary')} on {result['start']}")
+#
+# Production reaches this module through tools.py (add_calendar_event and
+# friends), which passes explicit date/time arguments. There is no natural
+# language left to parse here — the agent does that — so there is no CLI.

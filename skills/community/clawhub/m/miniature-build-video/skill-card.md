@@ -1,43 +1,57 @@
-## Description: <br>
-Generates vertical miniature build and reveal videos using WeryAI from text briefs or finished-shot images, with prompt expansion and confirmation before paid generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical miniature build and reveal videos with WeryAI from a text brief or a finished-shot image, using shallow depth of field, push-in camera movement, and lights-on reveal language.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators, designers, and developers use this skill to turn miniature scene briefs or reference images into vertical WeryAI video generations, including shallow-depth push-ins, lights-on reveals, and diorama motion shots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid runs send prompts, public image URLs, and explicitly uploaded local images to WeryAI with WERYAI_API_KEY authentication. <br>
-Mitigation: Use dry-run first, avoid sensitive prompts or images, and set the API key only in an environment where the publisher and WeryAI are trusted. <br>
-Risk: Local image paths can be read and uploaded by the bundled script when used for image-to-video generation. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after reviewing the script and confirming the exact file path with the user. <br>
-Risk: Each confirmed generation can consume WeryAI credits. <br>
-Mitigation: Show the full expanded prompt and all generation parameters, then wait for explicit confirmation before submitting a paid run. <br>
+## Use Case:
 
+External creators and developers use this skill to turn miniature diorama concepts or public finished-shot image URLs into short vertical WeryAI videos. It helps agents expand a user brief into a production prompt, confirm generation parameters, run the bundled video CLI, and return playable video links or clear error details.
 
-## Reference(s): <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [Miniature Build Video on ClawHub](https://clawhub.ai/zoucdr/miniature-build-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with parameter tables, inline shell commands, and JSON-derived video URLs or error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18+ for paid API calls; dry-run can inspect requests without the key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.2) <br>
+Risk: The helper script can upload any readable local file if a local path is supplied as an image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public HTTPS image URLs; allow local paths only after reviewing the exact path and receiving explicit user consent.
+
+Risk: Prompts, image URLs, API-key-authenticated requests, and uploaded images are sent to WeryAI.
+
+Mitigation: Do not include secrets or sensitive images; use an isolated environment or short-lived key when strict data control is needed.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/miniature-build-video)
+- [WeryAI video generation API](https://api.weryai.com)
+- [WeryAI model registry API](https://api-growth-agent.weryai.com)
+- [WeryAI local file upload API](https://api-growth-agent.weryai.com/growthai/v1/generation/upload-file)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with JSON command payloads and playable video URLs returned by the CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task IDs, batch IDs, video URLs, cover URLs, error codes, and error messages from WeryAI.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

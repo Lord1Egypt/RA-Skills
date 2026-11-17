@@ -1,40 +1,54 @@
-## Description: <br>
-记忆索引管理器维护长期项目记忆索引，按明确的回忆触发词读取历史上下文，并在后台整理索引与整合文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+记忆索引系统。用于管理长期项目记忆、自动维护索引、快速定位历史项目。仅在用户明确说"回忆一下""remember""recall"时触发读取，写入与OpenClaw原生机制保持一致，索引维护在后台自动进行。
 
-## Publisher: <br>
-[zxc159620352](https://clawhub.ai/user/zxc159620352) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxc159620352](https://clawhub.ai/user/zxc159620352)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to recover project context from long-running conversations and keep memory topics indexed over time. It supports explicit recall, daily memory archival, and topic consolidation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic memory maintenance can archive and reorganize conversation memory without clear opt-in or disable controls. <br>
-Mitigation: Confirm the daily flush and index update behavior before installation, and verify that indexed or archived memory entries can be disabled or deleted. <br>
-Risk: Scheduled daily flush behavior may create or rely on local automation that affects stored memory outside explicit recall requests. <br>
-Mitigation: Review any scheduled job setup before use, including the referenced daily flush script and launch agent configuration. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to maintain a topic index over long-running project memory, recover prior context on explicit recall requests, and consolidate older memory entries into durable Markdown summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxc159620352/memory-index-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with file-path conventions, workflow steps, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory index and consolidation files when used in an OpenClaw memory workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can process long-term memory that may contain sensitive personal, business, or credential-adjacent information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory contents and workspace trust boundaries before enabling indexing or consolidation.
+
+Risk: The daily flush design can perform scheduled background memory maintenance without a direct user prompt.
+
+Mitigation: Keep scheduled flush setup opt-in, auditable, and easy to disable or remove.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxc159620352/skills/memory-index-manager)
+- [Publisher profile](https://clawhub.ai/user/zxc159620352)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown responses plus memory index and consolidation file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads memory on explicit recall triggers; background maintenance may update index and consolidation files.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

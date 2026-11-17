@@ -1,44 +1,60 @@
-## Description: <br>
-Persistent memory for agents that stores preferences, decisions, facts, and events as a connected knowledge graph recalled by who, what, when, or why. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for agents that stores preferences, decisions, facts, and events as a connected knowledge graph recalled by who, what, when, or why.
 
-## Publisher: <br>
-[harshidwasekar](https://clawhub.ai/user/harshidwasekar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[harshidwasekar](https://clawhub.ai/user/harshidwasekar)
 
-## Use Case: <br>
-Developers and agents use this skill to persist, recall, consolidate, and expire long-term memories about user preferences, project decisions, facts, procedures, and events. It is suited for agent workflows that need structured memory across sessions through an MCP server backed by a local SQLite database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can expose private or sensitive user and project information if inappropriate data is stored. <br>
-Mitigation: Use the skill only when long-term memory is intended, avoid saving credentials or highly sensitive personal, health, legal, financial, or HR data unless clearly needed and consented to, and review memories periodically. <br>
-Risk: The local SQLite memory database can retain information beyond the original interaction context. <br>
-Mitigation: Protect the database file path configured by HYPABASE_DB_PATH and use forget to expire old, low-strength, or entity-specific memories. <br>
-Risk: The skill installs and runs through uvx, which may matter in environments with stricter package supply-chain controls. <br>
-Mitigation: Pin or verify the uvx package source according to the deployment environment's dependency and provenance requirements. <br>
+## Use Case:
 
+Developers and agent users use this skill to add persistent MCP-backed memory for preferences, project facts, decisions, events, and procedures. It helps agents remember structured facts in PENMAN form and later recall, consolidate, or forget those memories through the exposed memory tools.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/harshidwasekar/hypabase-memory) <br>
-- [Hypabase homepage](https://hypabase.app) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup guidance for uvx and HYPABASE_DB_PATH plus examples for remember, recall, consolidate, and forget.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: The skill stores broad user, project, preference, decision, fact, and event memories in a persistent local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an explicit retention policy and avoid storing secrets, credentials, health, financial, legal, or confidential work data.
+
+Risk: The MCP server is launched through an unpinned external `hypabase` package.
+
+Mitigation: Pin and review the package version before deployment where possible.
+
+Risk: Using the OpenAI embedder can send memory contents to an external provider for processing.
+
+Mitigation: Keep the default local embedder or choose another non-external option unless external processing is approved.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/harshidwasekar/skills/hypabase-memory)
+- [Publisher profile](https://clawhub.ai/user/harshidwasekar)
+- [Hypabase homepage](https://hypabase.app)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell command examples, and PENMAN memory examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool usage examples for remember, recall, consolidate, and forget.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

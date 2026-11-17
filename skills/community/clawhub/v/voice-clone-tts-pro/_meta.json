@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "voice-clone-tts-pro",
+  "name": "voice-clone",
   "version": "1.0.0",
-  "publishedAt": 1773741319494
+  "author": "OpenClaw"
 }

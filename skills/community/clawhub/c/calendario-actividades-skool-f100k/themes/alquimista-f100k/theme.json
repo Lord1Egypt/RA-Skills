@@ -1,0 +1,15 @@
+{
+  "name": "Alquimista F100K",
+  "fondo": "fondo.jpg",
+  "vars": {
+    "--overlay": "linear-gradient(180deg, rgba(6,14,32,.18), rgba(6,14,32,.42))",
+    "--fondo-css": "radial-gradient(120% 120% at 70% 20%, #14315c 0%, #0c1d3a 45%, #060f22 100%)",
+    "--panel-bg": "rgba(7,16,36,.46)",
+    "--panel-border": "rgba(150,190,255,.30)",
+    "--accent": "#6aa0ff",
+    "--grid-line": "rgba(170,205,255,.20)",
+    "--daynum-bg": "rgba(40,82,150,.55)",
+    "--daynum-fg": "#dcebff",
+    "--special-bg": "linear-gradient(135deg,#1f6f8b,#2bb6c9)"
+  }
+}

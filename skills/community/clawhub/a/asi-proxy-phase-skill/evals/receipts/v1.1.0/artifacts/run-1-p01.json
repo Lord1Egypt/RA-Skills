@@ -1,0 +1,293 @@
+{
+  "authority_boundary": {
+    "allowed_actions": [
+      "inspect the declared workspace",
+      "prepare a bounded local intervention",
+      "run local validation"
+    ],
+    "approval_required": [
+      "push",
+      "release",
+      "external communication",
+      "destructive operation"
+    ],
+    "prohibited_actions": [
+      "invent missing observations",
+      "claim real ASI"
+    ]
+  },
+  "candidate_gate": {
+    "candidate_regime": false,
+    "conditions": {
+      "capability_reproduction": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "critical_unknowns": {
+        "criterion": "No critical unknown may remain.",
+        "evidence_refs": [
+          "fact:post-intervention-independence-unmeasured"
+        ],
+        "rationale": "The proposed isolated path has not yet been implemented or tested for correlated failure.",
+        "status": "fail"
+      },
+      "hold_period": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "phase_readiness": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "residual_ratio": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "resource_floor": {
+        "criterion": "Projected resource stock must remain at or above 0.40 for the declared run.",
+        "evidence_refs": [
+          "local:resource-budget"
+        ],
+        "observed_value": 0.7,
+        "rationale": "The declared matched budget projects 0.70 after implementation and operation cost.",
+        "status": "pass"
+      },
+      "verification_coverage": {
+        "criterion": "Measured coverage must be at least 0.60.",
+        "evidence_refs": [
+          "local:baseline-coverage"
+        ],
+        "observed_value": 0.35,
+        "rationale": "Baseline verification coverage is directly measured at 0.35.",
+        "status": "fail"
+      }
+    },
+    "unknowns": [
+      {
+        "critical": true,
+        "description": "Post-intervention failure correlation and effective independence have not been measured.",
+        "evidence_refs": [
+          "fact:shared-failure-mode-rejected"
+        ],
+        "id": "independence-after-isolated-path"
+      }
+    ]
+  },
+  "execution": {
+    "actions": [
+      "Add a verifier path with separate fixtures and a declared failure domain.",
+      "Measure coverage and correlated failures against the same baseline.",
+      "Stop and roll back if coverage does not improve or residual debt increases."
+    ],
+    "artifacts": [
+      "planned:independent-verifier-configuration",
+      "planned:matched-comparison-receipt"
+    ],
+    "status": "planned"
+  },
+  "interventions": [
+    {
+      "cost": {
+        "implementation": 2,
+        "operation": 1,
+        "uncertainty": "Declared standardized budget units for this isolated evaluation only.",
+        "unit": "standardized budget units"
+      },
+      "dependencies": [
+        "separate fixtures",
+        "distinct declared failure domain",
+        "matched baseline"
+      ],
+      "effect_overlap_group": "verification_core",
+      "evidence_refs": [
+        "local:baseline-coverage",
+        "repo:verification-ecology-kit"
+      ],
+      "expected_effect": "Test whether independently scoped verification raises measured coverage without counting correlated checks twice.",
+      "id": "isolated-verifier-path",
+      "mechanism": "Route a second verifier through separate fixtures and failure-domain receipts, then compare coverage and correlation against the same baseline.",
+      "non_claims": [
+        "The planned path is not yet evidence of improved coverage.",
+        "A second verifier label does not establish effective independence."
+      ],
+      "target_dimensions": [
+        "verification_capacity",
+        "effective_independence"
+      ],
+      "title": "Test an independently scoped verifier path"
+    }
+  ],
+  "next_binding_dimension": "verification_capacity",
+  "non_claims": [
+    "The ASI-proxy quantity is protocol-relative and model-dependent.",
+    "A candidate regime is not ASI attainment.",
+    "Repository availability or adoption is not a measured causal effect.",
+    "Synthetic priors and simulation bands are not world forecasts.",
+    "Verification supports only claims within the declared evidence and procedure.",
+    "Unmodeled physical, social, economic, and institutional constraints remain possible."
+  ],
+  "objective": "Raise independently scoped verification coverage in an isolated claim pipeline",
+  "outcome_status": "planned",
+  "phase_assessment": {
+    "causal_formation": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "coordination_protocol_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "dimensional_consistency": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "effective_independence": {
+      "evidence_refs": [
+        "fact:shared-failure-mode-rejected"
+      ],
+      "rationale": "The existing proposed duplicate is correlated; effective independence after the isolated path is unmeasured.",
+      "status": "unknown",
+      "value": null
+    },
+    "exact_self_maintenance": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "finite_horizon_resource_persistence": {
+      "evidence_refs": [
+        "local:resource-budget"
+      ],
+      "lower_bound": 0.65,
+      "rationale": "The matched budget supports a bounded 0.65 to 0.75 resource interval over the isolated run.",
+      "status": "bounded",
+      "upper_bound": 0.75
+    },
+    "perturbation_robustness": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "provenance_integrity": {
+      "evidence_refs": [
+        "local:provenance-identifiers"
+      ],
+      "rationale": "Required provenance identifiers are directly checked as complete for the isolated fixtures.",
+      "status": "observed",
+      "value": 1
+    },
+    "structural_reachability": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "target_bound_generative_catalysis": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "temporal_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "trust_quorum": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "verification_capacity": {
+      "evidence_refs": [
+        "local:baseline-coverage"
+      ],
+      "rationale": "Coverage is directly measured at 0.35 against a declared 0.60 threshold.",
+      "status": "observed",
+      "value": 0.35
+    }
+  },
+  "residuals": {
+    "evidence_refs": [],
+    "status": "unknown",
+    "unresolved": [
+      "Post-intervention coverage is unmeasured.",
+      "Post-intervention failure correlation and effective independence are unmeasured.",
+      "The complete hold period and causal comparison have not been run.",
+      "Nine readiness dimensions remain unknown."
+    ]
+  },
+  "rollback": {
+    "available": true,
+    "steps": [
+      "Remove the isolated verifier configuration.",
+      "Restore the baseline routing configuration.",
+      "Retain failed comparison and residual receipts."
+    ],
+    "trigger": "Coverage does not improve, correlated failure remains material, residual debt rises, or the resource floor fails."
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "evaluation_horizon": "One matched isolated validation run.",
+    "in_scope": [
+      "local verifier configuration",
+      "local fixtures",
+      "local validation receipts"
+    ],
+    "out_of_scope": [
+      "real-world ASI certification",
+      "undeclared external systems"
+    ],
+    "systems": [
+      "isolated claim-verification pipeline"
+    ],
+    "workspace": "declared-workspaces/copper/P01"
+  },
+  "sources": {
+    "papers": [],
+    "repositories": [
+      {
+        "head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+        "url": "https://github.com/kadubon/verification-ecology-kit"
+      }
+    ]
+  },
+  "validation": {
+    "checks": [
+      {
+        "evidence_refs": [],
+        "name": "matched coverage comparison",
+        "status": "not_run"
+      },
+      {
+        "evidence_refs": [],
+        "name": "failure-correlation perturbation",
+        "status": "not_run"
+      },
+      {
+        "evidence_refs": [],
+        "name": "rollback exercise",
+        "status": "not_run"
+      }
+    ],
+    "status": "not_run"
+  }
+}

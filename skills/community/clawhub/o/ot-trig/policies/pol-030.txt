@@ -1,0 +1,1 @@
+A pedestrian suddenly steps into the road Uncertainty about the exact speed and the other vehicle's intentions. Write pseudocode for a decision-making process that prioritizes lane changes over braking when safe. Include rules for specified functions Decide on a single actionThe bundle stores one   

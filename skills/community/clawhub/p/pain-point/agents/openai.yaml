@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊用户痛点挖掘 · 评论需求洞察"
+  short_description: "提炼痛点与未满足需求，附原评论佐证"
+  default_prompt: "使用 $amazon-pain-point-miner 挖掘一个 Amazon ASIN 评论里的用户痛点。"

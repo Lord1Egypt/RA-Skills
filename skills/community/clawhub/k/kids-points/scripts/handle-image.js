@@ -1,65 +1,69 @@
 /**
- * 图片处理（可选功能）
- * 
- * 功能：保存学习相关图片到 archive 目录
+ * 图片处理脚本
+ * 将学习图片按日期重命名并存档
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const WORKSPACE = process.env.WORKSPACE || '/home/wang/.openclaw/agents/kids-study/workspace';
-const POINTS_DIR = process.env.POINTS_DIR || path.join(WORKSPACE, 'kids-points');
-const ARCHIVE_DIR = path.join(POINTS_DIR, 'archive');
+const ARCHIVE_DIR = path.join(WORKSPACE, 'kids-points', 'archive');
 
 /**
- * 处理图片附件
+ * 获取今日日期字符串
  */
-function handleImage(attachment, message) {
+function getTodayStr() {
+  const now = new Date();
+  return now.toISOString().split('T')[0];
+}
+
+/**
+ * 处理图片
+ * @param {string} imagePath - 图片路径
+ * @param {string} description - 图片描述（可选）
+ * @returns {string} - 存档后的路径
+ */
+function handleImage(imagePath, description = '学习') {
   // 确保存档目录存在
   if (!fs.existsSync(ARCHIVE_DIR)) {
     fs.mkdirSync(ARCHIVE_DIR, { recursive: true });
   }
   
-  const dateStr = new Date().toISOString().split('T')[0];
+  // 获取文件扩展名
+  const ext = path.extname(imagePath);
+  const dateStr = getTodayStr();
   const timestamp = Date.now();
   
-  // 从消息中提取描述
-  let description = '学习';
-  if (message) {
-    if (message.includes('口算')) description = '口算';
-    else if (message.includes('抄写')) description = '抄写';
-    else if (message.includes('默写')) description = '默写';
-    else if (message.includes('英语')) description = '英语';
-    else if (message.includes('跳绳')) description = '跳绳';
-    else if (message.includes('作业')) description = '作业';
-  }
+  // 生成新文件名
+  const safeDesc = description.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
+  const newFileName = `${dateStr}_${safeDesc}_${timestamp}${ext}`;
+  const newPath = path.join(ARCHIVE_DIR, newFileName);
   
-  // 生成文件名
-  const ext = attachment.path ? path.extname(attachment.path) : '.jpg';
-  const fileName = `${dateStr}_${description}_${timestamp}${ext}`;
-  const destPath = path.join(ARCHIVE_DIR, fileName);
+  // 复制文件到存档目录
+  fs.copyFileSync(imagePath, newPath);
   
-  // 如果附件有本地路径，复制文件
-  if (attachment.path && fs.existsSync(attachment.path)) {
-    fs.copyFileSync(attachment.path, destPath);
-    return `✅ **图片已存档**\n\n📁 文件名：\`${fileName}\`\n📂 位置：\`kids-points/archive/\``;
-  }
+  console.log(`✅ 图片已存档：${newFileName}`);
   
-  // 如果是远程图片，记录信息
-  if (attachment.url) {
-    const infoFile = path.join(ARCHIVE_DIR, `${fileName}.info.json`);
-    fs.writeFileSync(infoFile, JSON.stringify({
-      originalUrl: attachment.url,
-      description,
-      date: dateStr,
-      message: message?.substring(0, 200)
-    }, null, 2));
-    return `✅ **图片信息已记录**\n\n📝 描述：${description}\n📅 日期：${dateStr}`;
-  }
-  
-  return null;
+  return newPath;
 }
 
-module.exports = {
-  handleImage
-};
+// 命令行调用
+if (require.main === module) {
+  const imagePath = process.argv[2];
+  const description = process.argv[3] || '学习';
+  
+  if (!imagePath) {
+    console.log('用法：node handle-image.js <图片路径> [描述]');
+    console.log('例如：node handle-image.js ./photo.jpg 口算题卡');
+    process.exit(1);
+  }
+  
+  if (!fs.existsSync(imagePath)) {
+    console.log(`❌ 文件不存在：${imagePath}`);
+    process.exit(1);
+  }
+  
+  handleImage(imagePath, description);
+}
+
+module.exports = { handleImage, getTodayStr, ARCHIVE_DIR };

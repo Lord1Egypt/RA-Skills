@@ -1,44 +1,59 @@
-## Description: <br>
-微信读书 AI 阅读助手，可通过扫码登录获取阅读进度、归档章节内容、拉取标注笔记，并支持围绕阅读内容的 AI 对话。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信读书 AI 阅读助手支持扫码登录、阅读进度跟踪、章节内容存档、AI 对话以及标注和笔记拉取。
 
-## Publisher: <br>
-[colorlessboy](https://clawhub.ai/user/colorlessboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colorlessboy](https://clawhub.ai/user/colorlessboy)
 
-## Use Case: <br>
-External users and developers use this skill to automate WeRead browser sessions, export reading progress, chapters, highlights, notes, screenshots, and chat records for personal reading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores WeRead session cookies and private reading data in local files. <br>
-Mitigation: Use it only on trusted machines, keep the generated profile and books directories out of shared or synced folders, and delete profile/weread-cookies.json when the session is no longer needed. <br>
-Risk: The login flow includes an avoidable unsafe shell call for QR download. <br>
-Mitigation: Review or patch the login flow to use Node or Playwright download APIs before deployment. <br>
-Risk: The artifact warns that third-party WeRead automation may create account risk. <br>
-Mitigation: Use an account and workflow appropriate for that risk and confirm the service terms before relying on automated export. <br>
+## Use Case:
 
+External users and developers use this skill to automate WeRead login, list books, extract reading progress, archive chapter content, screenshots, notes, and chat records, and discuss current reading context with an AI assistant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colorlessboy/weread-dl) <br>
-- [Playwright documentation](https://playwright.dev) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated local Markdown, JSON, screenshot, cookie, and chapter files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local WeRead cookies, reading history, notes, chapter text, screenshots, metadata, and chat logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Reusable WeRead login cookies are stored locally and can grant account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat profile/weread-cookies.json like a password and avoid storing it in shared, synced, backed-up, or source-controlled workspaces.
+
+Risk: The skill writes private reading exports, screenshots, notes, metadata, and chat records to local folders.
+
+Mitigation: Keep books/, output/, screenshots, notes, metadata, and chat files private and review them before sharing or committing workspace contents.
+
+Risk: QR-code download during login uses a shell command and was flagged by ClawScan as risky for higher-risk environments.
+
+Mitigation: Review the login workflow before installation and replace QR download with a shell-free, host-validated implementation before higher-risk use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colorlessboy/skills/weread-dl)
+- [Playwright documentation](https://playwright.dev)
+- [WeRead web application](https://weread.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-oriented guidance; generated local artifacts can include JSON metadata, Markdown notes and chat logs, chapter files, and screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, Playwright, a browser session, and local storage for cookies and private reading exports.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Designs, optimizes, or audits sidebars for blogs, documentation, and content pages, including placement, widgets, mobile behavior, and conversion tradeoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to design, optimize, or audit a sidebar for blogs, docs, or content pages.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and content teams use this skill to design, optimize, or audit sidebars for blogs, documentation, e-commerce, and other content pages. It helps choose sidebar placement, widgets, mobile behavior, and conversion posture.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on generic sidebar-related wording.
+
+Mitigation: Install it for users who frequently design or audit blog, documentation, or content-page sidebars, and review activation behavior during deployment.
+
+Risk: The skill may read local project context files when available.
+
+Mitigation: Keep secrets and sensitive credentials out of project context files used by agents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to plan sidebar layouts for content sites. It helps choose placement, widgets, mobile behavior, and whether sidebar CTAs should be replaced by stronger in-content or sticky alternatives. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner summary says artifact contents were limited, so users may not have a deeper coherence review available before installation. <br>
-Mitigation: Review the skill contents and installation context before deployment, especially for any future changes that add local file access, credentials, network services, or long-running behavior. <br>
-Risk: Sidebar recommendations can affect conversion and user navigation if applied without product context. <br>
-Mitigation: Validate recommendations against the site's goals, analytics, and mobile layout before shipping. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces sidebar placement, widget, mobile behavior, and conversion notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with sidebar placement, widget, mobile behavior, and conversion notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, API keys, MCP tools, or shell commands are required by the artifact evidence.] <br>
+1.0.1 (source: release evidence and frontmatter metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

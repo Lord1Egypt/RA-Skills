@@ -1,42 +1,61 @@
-## Description: <br>
-Find and recommend free Linux Journey lessons on LabEx when the user wants to learn Linux fundamentals, Linux basics, command line concepts, filesystems, permissions, processes, networking, package management, shell usage, or beginner Linux skills through free lesson pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and recommend free Linux Journey lessons on LabEx when the user wants to learn Linux fundamentals, Linux basics, command line concepts, filesystems, permissions, processes, networking, package management, shell usage, or beginner Linux skills through free lesson pages.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-External users and developers use this skill to find short, practical Linux Journey lesson recommendations for Linux fundamentals and beginner command-line topics. The skill maps user learning goals to public LabEx lesson URLs from the bundled canonical lesson index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional refresh script fetches a public lesson sitemap and can write an updated lesson index. <br>
-Mitigation: Run scripts/fetch_lessons.py only intentionally, use trusted sitemap URLs, and keep generated output within the skill directory unless a different path is deliberate. <br>
+## Use Case:
 
+External users and developers use this skill to find a small set of relevant Linux Journey lesson pages for Linux fundamentals, command-line basics, filesystems, permissions, networking, package management, and related beginner Linux topics.
 
-## Reference(s): <br>
-- [Linux Journey](https://labex.io/linuxjourney) <br>
-- [LabEx](https://labex.io) <br>
-- [Linux Journey Lessons Index](references/lessons.md) <br>
-- [Linux Journey Lessons Sitemap](https://labex.io/linuxjourney-lessons-sitemap.xml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huhuhang/linux-journey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with public lesson URLs and optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations should stay short, practical, and limited to Linux Journey lesson URLs from the bundled index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The refresh script can make outbound requests to a caller-supplied URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Refresh the lesson index only with the default LabEx sitemap or another reviewed trusted source; do not let untrusted prompts choose refresh arguments.
+
+Risk: The refresh script can write generated Markdown to a caller-supplied output path.
+
+Mitigation: Run refreshes in a controlled workspace and write only to the intended references/lessons.md destination.
+
+Risk: Security evidence marks the release suspicious pending review of the maintenance script behavior.
+
+Mitigation: Review and scan the skill before installation, and use the skill primarily for reading the bundled lesson index and recommending public LabEx lesson URLs.
+
+## Reference(s):
+
+- [Linux Journey lesson index](references/lessons.md)
+- [Linux Journey on LabEx](https://labex.io/linuxjourney)
+- [LabEx](https://labex.io)
+- [Linux Journey lessons sitemap](https://labex.io/linuxjourney-lessons-sitemap.xml)
+- [ClawHub skill page](https://clawhub.ai/huhuhang/skills/linux-journey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with public lesson URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short recommendations focused on one to three Linux Journey lessons, or a concise beginner progression when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, created 2026-03-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

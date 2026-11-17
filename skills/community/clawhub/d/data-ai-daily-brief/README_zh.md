@@ -320,7 +320,6 @@ python scripts/deploy_github.py 2026-03-11       # GitHub Pages
 
 ## ❤️ 支持本项目
 
-如果这个项目对你有帮助，欢迎 [成为 Sponsor](https://github.com/sponsors/haiyangchenbj)，你的支持是持续维护和改进的动力。
 
 ## 🤝 参与贡献
 

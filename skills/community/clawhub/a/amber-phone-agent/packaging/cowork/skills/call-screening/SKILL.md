@@ -13,6 +13,8 @@ Amber acts as an AI receptionist for inbound calls. She answers professionally,
 gathers information, and delivers structured summaries — so you only pick up
 calls that matter.
 
+Privacy: screening can process caller audio/metadata through your configured providers and may produce local transcripts/summaries. Configure caller notice/consent, retention, and access controls before production use.
+
 ## Screening Flow
 
 1. **Greeting** — Amber answers with a customizable greeting

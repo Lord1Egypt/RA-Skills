@@ -1,40 +1,55 @@
-## Description: <br>
-Geographic utilities for geocoding, reverse geocoding, country information, timezone lookup, and sunrise/sunset times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geographic utilities for geocoding, reverse geocoding, country information, timezone lookup, and sunrise/sunset times.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to convert place names and coordinates, retrieve country metadata, resolve local timezones, and calculate daylight information through a remote MCP geography service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location queries and coordinates may be sent to Pipeworx's remote gateway and upstream public APIs. <br>
-Mitigation: Avoid sending sensitive location data unless the remote service is acceptable for the user's privacy requirements. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to convert place names and coordinates, retrieve country details, check local timezones, and calculate daylight information for a specific location and date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-geo) <br>
-- [Pipeworx geo homepage](https://pipeworx.io/packs/geo) <br>
-- [Pipeworx geo MCP gateway](https://gateway.pipeworx.io/geo/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return location data, coordinates, timezone details, country metadata, and sunrise/sunset information from remote services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The documented MCP setup runs mcp-remote through npx with an unpinned latest package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, use a lockfile or managed install, and run the MCP server with minimal filesystem and credential access.
+
+Risk: The skill can process sensitive addresses, coordinates, or site locations through an external service.
+
+Mitigation: Avoid sending sensitive home addresses, private coordinates, or confidential site locations unless the Pipeworx service is approved for the use case.
+
+## Reference(s):
+
+- [Pipeworx Geo homepage](https://pipeworx.io/packs/geo)
+- [Pipeworx Geo ClawHub listing](https://clawhub.ai/b-gutman/skills/pipeworx-geo)
+- [Publisher profile](https://clawhub.ai/user/b-gutman)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks; tool responses are JSON-compatible location data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and connects to the Pipeworx Geo MCP gateway; no API keys are documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

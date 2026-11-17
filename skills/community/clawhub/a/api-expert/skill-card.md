@@ -1,39 +1,50 @@
-## Description: <br>
-FastAPI development best practices and conventions. Use when building, reviewing, or debugging FastAPI applications, REST APIs, or Pydantic models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastAPI development best practices and conventions for building, reviewing, or debugging FastAPI applications, REST APIs, and Pydantic models.
 
-## Publisher: <br>
-[dapan0902](https://clawhub.ai/user/dapan0902) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dapan0902](https://clawhub.ai/user/dapan0902)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply FastAPI conventions while writing, reviewing, or debugging REST APIs and Pydantic models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FastAPI guidance or generated code may not fully match a project's security, validation, or architecture requirements. <br>
-Mitigation: Review generated API code and recommendations before use, treating the skill's conventions as style guidance rather than a security guarantee. <br>
+## Use Case:
 
+Developers and engineers use this skill to apply FastAPI conventions when writing code and to review FastAPI code for type annotations, dependency injection style, HTTP route metadata, Pydantic model fields, and project structure.
 
-## Reference(s): <br>
-- [FastAPI 开发最佳实践规范](references:conventions.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dapan0902/api-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses should be reviewed against project requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and release evidence) <br>
+Risk: Guidance depends partly on a Chinese-language conventions reference and may be misapplied if the reference path is unavailable in the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the conventions reference loads correctly in OpenClaw and review generated FastAPI recommendations before applying them.
+
+## Reference(s):
+
+- [FastAPI 开发最佳实践规范](artifact/references:conventions.md)
+- [ClawHub skill page](https://clawhub.ai/dapan0902/skills/api-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown text with code examples and review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

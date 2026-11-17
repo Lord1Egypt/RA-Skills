@@ -1,39 +1,54 @@
-## Description: <br>
-Renders Mermaid diagrams as terminal ASCII text by default, or exports supported diagrams as PNG images when the user requests image output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders Mermaid diagrams as terminal ASCII output or PNG image files for flowcharts, sequence diagrams, class diagrams, pie charts, Git graphs, state diagrams, and ER diagrams.
 
-## Publisher: <br>
-[smallnest](https://clawhub.ai/user/smallnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallnest](https://clawhub.ai/user/smallnest)
 
-## Use Case: <br>
-Developers, technical writers, and external users can use this skill to turn Mermaid flowcharts, sequence diagrams, class diagrams, pie charts, Git graphs, state diagrams, and ER diagrams into readable terminal output or PNG files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PNG export can create a local image and may use the documented BOS upload behavior, which is privacy-relevant for sensitive diagrams. <br>
-Mitigation: Use terminal ASCII mode for sensitive diagrams, and request PNG export only when local file creation and the documented upload behavior are acceptable. <br>
+## Use Case:
 
+Developers and technical teams use this skill to turn Mermaid syntax into quick terminal previews or PNG diagrams for workflows, architecture, data models, and project histories.
 
-## Reference(s): <br>
-- [Mermaid chart types reference](references/chart-types.md) <br>
-- [ClawHub release page](https://clawhub.ai/smallnest/mermaid-renderer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Terminal ASCII text or PNG image file, typically accompanied by concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PNG export writes a local image file and may use the documented BOS upload behavior when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private architecture, internal system names, credentials, or business details in diagrams may be exposed when image export uploads output externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diagram content before rendering and use image export only when external BOS upload is acceptable.
+
+Risk: Image export can write to arbitrary output paths, which can cause accidental overwrites or misplaced files.
+
+Mitigation: Write exports only to a dedicated export directory with non-sensitive filenames and review the output path before execution.
+
+## Reference(s):
+
+- [Chart Types Reference](references/chart-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallnest/skills/mermaid-renderer)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands]
+
+**Output Format:** [Terminal ASCII text by default, or PNG image files when export is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Mermaid flowchart, sequence, class, pie, gitGraph, state, and ER diagram syntax; image export writes to a requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

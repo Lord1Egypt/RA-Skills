@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
-  "slug": "axelhu-playwright-scrape",
-  "version": "1.2.2",
-  "publishedAt": 1775113019902
+  "name": "axelhu-playwright-scrape",
+  "version": "1.2.0",
+  "description": "使用系统 Chrome 抓取动态网页（JS 渲染内容），支持简单模式和隐身模式。适用于需要登录或 JS 渲染的网站。",
+  "author": "axelhu",
+  "homepage": "",
+  "keywords": ["playwright", "scraper", "web", "browser", "automation"]
 }

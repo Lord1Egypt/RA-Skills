@@ -1,44 +1,60 @@
-## Description: <br>
-Classify documents into user-defined categories using the Upstage Document Classification API, with optional splitting for multi-document PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify documents into user-defined categories using Upstage Document Classification API, with optional document splitting for multi-document PDFs.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to classify PDFs or document URLs into defined categories, inspect confidence scores, and optionally split mixed PDFs into separate document groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents or document URLs classified with the skill are sent to Upstage's hosted API. <br>
-Mitigation: Use the skill only when the organization has approved Upstage's privacy, retention, billing, and compliance terms for the documents being processed. <br>
-Risk: Regulated, confidential, or highly sensitive documents could be exposed through hosted processing or generated local outputs. <br>
-Mitigation: Avoid those documents unless explicitly approved, restrict access to generated classified JSON and split-PDF outputs, and remove local outputs when they are no longer needed. <br>
-Risk: The skill requires an Upstage API key. <br>
-Mitigation: Provide the key through the UPSTAGE_API_KEY environment variable and do not hardcode it in prompts, scripts, or saved examples. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to classify files into user-defined categories, route documents by type, and split mixed PDFs into separate document groups.
 
-## Reference(s): <br>
-- [Upstage Document Classification API](https://console.upstage.ai/api/document-classification) <br>
-- [Document Split - Multi-Document Separation](references/document-split.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/upstage-deployment/upstage-document-classification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files] <br>
-**Output Format:** [Markdown guidance with Python and curl snippets, JSON response examples, and resolved output file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an Upstage API key from UPSTAGE_API_KEY and may produce classified JSON files or split PDF outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents or document URLs submitted for classification are sent to Upstage's remote API under the user's Upstage account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for that service, and avoid highly sensitive, regulated, or confidential content unless organizational policy allows it.
+
+Risk: Classification and split results may persist on disk at the resolved output path.
+
+Mitigation: Review output locations before use and clean up generated files according to local data-handling requirements.
+
+Risk: Low-confidence classifications can route documents incorrectly.
+
+Mitigation: Use returned confidence scores to flag uncertain results for manual review.
+
+## Reference(s):
+
+- [Upstage Document Classification API](https://console.upstage.ai/api/document-classification)
+- [Document Split - Multi-Document Separation](references/document-split.md)
+- [ClawHub Skill Page](https://clawhub.ai/upstage-deployment/skills/upstage-document-classification)
+- [Publisher Profile](https://clawhub.ai/user/upstage-deployment)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, json, files]
+
+**Output Format:** [Markdown guidance with Python and curl examples, JSON response structures, and resolved output file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce classified JSON files or split-document output files when the agent applies the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

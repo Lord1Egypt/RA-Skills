@@ -1,37 +1,52 @@
-## Description: <br>
-You are a Rust expert specializing in systems programming, memory safety, and high-performance applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a Rust expert specializing in systems programming, memory safety, and high-performance applications. Use when: rust language mastery, memory management, concurrent programming, performance optimization, web development.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for Rust programming guidance across systems programming, memory management, concurrency, performance optimization, web development, testing, and security-sensitive implementation patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Rust code may include unsafe blocks, unsuitable dependencies, or security-sensitive implementation mistakes.
+
+Mitigation: Review generated code before production use, with particular attention to unsafe Rust, dependency choices, authentication, secret handling, and cryptographic comparisons.
+
+Risk: The skill may activate for a broad range of Rust questions and provide guidance outside the user's intended scope.
+
+Mitigation: Use it for clearly Rust-related tasks and verify that recommendations fit the target runtime, crate ecosystem, and operational constraints.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for Rust language guidance across systems programming, memory management, concurrent programming, performance optimization, web development, testing, and security-aware implementation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Rust guidance may include unsafe Rust, cryptography-related advice, or other code that is incorrect for a production context. <br>
-Mitigation: Review generated code, run tests and linters such as clippy and rustfmt, and audit unsafe or cryptography-related changes before production use. <br>
+**Output Format:** [Markdown with Rust code examples and inline shell commands when applicable]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include implementation guidance, tests, documentation notes, and review recommendations for Rust code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Rust code examples and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Rust implementations, tests, documentation, performance recommendations, and security review guidance.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

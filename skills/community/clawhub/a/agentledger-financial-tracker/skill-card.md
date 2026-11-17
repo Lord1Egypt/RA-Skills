@@ -1,44 +1,59 @@
-## Description: <br>
-AI-powered financial tracking for solopreneurs \u2014 log income and expenses, monitor revenue toward monthly goals, generate P&L snapshots, flag cash flow risks, and build a running financial picture with zero spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered financial tracking for solopreneurs that helps log income and expenses, monitor revenue goals, generate profit-and-loss snapshots, flag cash-flow risks, and maintain a running financial picture without spreadsheets.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-External users and solopreneurs use this skill to have an agent maintain local income, expense, target, monthly P&L, cash-flow, and tax-estimate tracking files. The skill supports lightweight business finance operations without requiring a spreadsheet or accounting application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax estimates and financial summaries may be inaccurate, incomplete, or unsuitable for compliance decisions. <br>
-Mitigation: Treat outputs as rough tracking aids, reconcile them against source records, and consult qualified tax, accounting, or legal professionals for binding decisions. <br>
-Risk: Finance files can contain sensitive business or personal financial data. <br>
-Mitigation: Store only the amounts, vendors, categories, and notes needed for business tracking; do not store account numbers, full payment-card numbers, banking credentials, or other secrets. <br>
-Risk: Agent-maintained logs, monthly close summaries, and state files can misclassify entries or drift from source records. <br>
-Mitigation: Review income-log, expense-log, finance-state, tax-estimate, and monthly-summary updates before relying on them for business planning. <br>
+## Use Case:
 
+External solopreneurs and small-business operators use this skill to configure an agent as a lightweight finance tracker for local income logs, expense logs, revenue targets, monthly summaries, cash-flow flags, and rough tax reserve estimates.
 
-## Reference(s): <br>
-- [Financial Tracker on ClawHub](https://clawhub.ai/Clawdssen/agentledger-financial-tracker) <br>
-- [Clawdssen publisher profile](https://clawhub.ai/user/Clawdssen) <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown finance logs and summaries plus JSON state/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local finance files such as income logs, expense logs, monthly summaries, tax estimates, and finance-state JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Advanced automation can send recurring financial summaries externally when the cron example is configured with announcement and destination options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the advanced automation before use; do not run the cron example with announcement or destination options unless recurring external summaries are intentional and the scheduled task can be removed.
+
+Risk: Financial, tax, legal, and investment outputs are rough organizational estimates, not professional advice.
+
+Mitigation: Treat summaries and tax reserves as tracking aids only, and consult qualified professionals for financial, tax, legal, or investment decisions.
+
+Risk: Local finance files may contain sensitive business information.
+
+Mitigation: Keep finance files local, avoid storing account numbers, full card numbers, or banking credentials, and record only the amounts and vendors needed for business tracking.
+
+## Reference(s):
+
+- [Financial Tracker Advanced Patterns](references/advanced-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/clawdssen/skills/agentledger-financial-tracker)
+- [The Agent Ledger](https://www.theagentledger.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates, JSON state examples, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local finance logs, summaries, dashboards, and reminders; optional cron examples may send summaries externally when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

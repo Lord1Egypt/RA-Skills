@@ -1,43 +1,54 @@
-## Description: <br>
-Analyzes intraday XAUUSD BUY opportunities on H1 using multiple technical indicators, structured scoring, and risk-management checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes intraday XAUUSD BUY opportunities on H1 using multi-indicator confirmation and strict risk management.
 
-## Publisher: <br>
-[Bagass98](https://clawhub.ai/user/Bagass98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bagass98](https://clawhub.ai/user/bagass98)
 
-## Use Case: <br>
-Traders and agent users can use this skill to request structured XAUUSD intraday BUY analysis, including technical-indicator checks, signal scoring, entry zones, stop loss, take-profit targets, and risk notes. It is advisory analysis and should not be treated as a trading guarantee. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial guidance can be mistaken for a guarantee or used without independent validation. <br>
-Mitigation: Verify market data, economic news, and account risk independently before acting on any signal. <br>
-Risk: Automating trade execution from the skill output could amplify losses. <br>
-Mitigation: Keep execution manual and do not connect the skill directly to broker automation. <br>
-Risk: Technical signals can be invalidated quickly by high-impact economic news or fast market moves. <br>
-Mitigation: Check high-impact news and current volatility before entering a trade, and apply the stated position-size and stop-loss rules. <br>
+## Use Case:
 
+External traders and agent users use this skill to structure Indonesian/WIB-oriented intraday XAUUSD BUY analysis, including indicator scoring, entry zones, stop loss, take profit, session checks, and news filters. Its output should be treated as informational market analysis rather than financial advice or authorization to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bagass98/xauusd-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/Bagass98) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style trading signal analysis with indicator breakdown, scoring, entry/exit levels, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisory output; does not execute trades, access broker accounts, or retrieve market data by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trading signals may be mistaken for financial advice or authorization to trade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat BUY, WAIT, and NO TRADE outputs as informational analysis and make final trading decisions independently.
+
+Risk: Outputs can be wrong if timezone, current market data, volatility, or high-impact news timing is stale or inaccurate.
+
+Mitigation: Confirm WIB timing, live XAUUSD market data, ATR, and economic-news timing before relying on any signal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bagass98/skills/xauusd-analyzer)
+- [Publisher profile](https://clawhub.ai/user/bagass98)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured trading-signal fields and indicator breakdowns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Indonesian-language output oriented around WIB session timing and XAUUSD intraday BUY analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

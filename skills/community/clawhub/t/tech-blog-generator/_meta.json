@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "tech-blog-generator",
+  "schema_version": "1",
+  "name": "tech-blog-generator",
   "version": "1.0.0",
-  "publishedAt": 1772439654869
+  "description": "Generate professional technical blog posts from simple outlines",
+  "homepage": "",
+  "author": {
+    "name": "Sunshine-del-ux",
+    "email": "",
+    "url": ""
+  },
+  "repository": "",
+  "keywords": [
+    "blog",
+    "generator",
+    "markdown",
+    "technical",
+    "writing"
+  ],
+  "license": "MIT",
+  "dependencies": {}
 }

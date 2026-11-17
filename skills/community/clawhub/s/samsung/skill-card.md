@@ -1,52 +1,64 @@
-## Description: <br>
-Lets an agent shop online through CreditClaw wallets, payment rails, and owner approval controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent request purchases, check spending permissions, poll wallet or order status, and route payments through CreditClaw payment methods under owner-set guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; Amazon and pre-paid wallet shipping flows documented in the artifact require US addresses. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release label suggests Samsung shopping, but the security evidence says the artifact grants broad CreditClaw spending, payment-signing, and payment-link authority. <br>
-Mitigation: Install only when broad CreditClaw payment capability is intended; review the full payment scope with the user before enabling the skill. <br>
-Risk: The skill can initiate real-money purchase and payment workflows using CREDITCLAW_API_KEY. <br>
-Mitigation: Use a dedicated API key, keep auto-approval disabled or tightly capped, and set strict merchant, category, domain, per-transaction, daily, and monthly limits. <br>
-Risk: Payment links and x402 signing expand the skill beyond ordinary shopping flows. <br>
-Mitigation: Do not enable payment links or x402 signing unless those capabilities are explicitly required for the deployment. <br>
-Risk: Payment API keys, payment headers, and shipping details are sensitive. <br>
-Mitigation: Store credentials in a secrets manager and avoid logging API keys, shipping addresses, or payment authorization headers. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent shop online and manage payment flows through CreditClaw wallets, with owner-controlled spending limits, approvals, and order tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TripleHippo/samsung) <br>
-- [CreditClaw Skill Entry Point](https://creditclaw.com/creditcard/skill.md) <br>
-- [CreditClaw API Base](https://creditclaw.com/api/v1) <br>
-- [General Shopping Guide](https://creditclaw.com/creditcard/shopping.md) <br>
-- [Amazon Shopping Guide](https://creditclaw.com/creditcard/amazon.md) <br>
-- [Pre-paid Wallet Guide](https://creditclaw.com/creditcard/prepaid-wallet.md) <br>
-- [Self-Hosted Card Guide](https://creditclaw.com/creditcard/self-hosted-card.md) <br>
-- [Stripe x402 Wallet Guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md) <br>
-- [Heartbeat Guide](https://creditclaw.com/creditcard/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global; Amazon Pre-paid Wallet purchases require U.S. shipping addresses where documented.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with curl examples and JSON request and response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; bundled skill metadata reports CreditClaw version 2.3.1) <br>
+Risk: The skill can authorize real-money spending and payment workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when delegated spending is intended; keep ask-for-everything approval enabled unless explicitly accepted, and set tight merchant, category, and budget limits.
+
+Risk: The skill can create payment links that request money from third parties.
+
+Mitigation: Do not enable or use payment-link creation unless that collection workflow is explicitly desired.
+
+Risk: A leaked CreditClaw API key could allow unauthorized spending through the linked account.
+
+Mitigation: Use a least-privilege CreditClaw key, store it in a secure secrets manager, and send it only to CreditClaw API endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/samsung)
+- [CreditClaw skill definition](https://creditclaw.com/creditcard/skill.md)
+- [Shopping guide](https://creditclaw.com/creditcard/shopping.md)
+- [Amazon purchase guide](https://creditclaw.com/creditcard/amazon.md)
+- [Pre-paid Wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md)
+- [Self-Hosted Cards guide](https://creditclaw.com/creditcard/self-hosted-card.md)
+- [Stripe x402 Wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md)
+- [Heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); artifact skill metadata reports 2.3.1
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

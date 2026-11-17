@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps agents run the futurizerush Apify Google Maps Scraper actor to collect Google Maps business listings, contact details, ratings, opening hours, and optional emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use an Apify actor to search Google Maps and retrieve business listings with fields such as name, address, phone, website, email, ratings, and opening hours.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers, analysts, and go-to-market users use this skill to start and poll Apify actor runs for Google Maps searches, then retrieve structured business listing data for enrichment, lead research, or local market analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches and scraped results are processed by Apify. <br>
-Mitigation: Use the skill only for data suitable for Apify processing and review the remote actor before sensitive or large jobs. <br>
-Risk: The skill requires APIFY_API_TOKEN. <br>
-Mitigation: Treat APIFY_API_TOKEN as a secret and avoid logging or sharing it. <br>
-Risk: The skill may collect business emails by default. <br>
-Mitigation: Disable scrapeEmails unless the user explicitly requests email collection and has a compliant reason to collect contact data. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to collect Google Maps business listing data through Apify for local business research, lead generation, deduplication, or mapping workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/apify-google-maps) <br>
-- [Apify actor page](https://apify.com/futurizerush/google-maps-scraper?fpr=rush) <br>
-- [Apify API docs](https://docs.apify.com/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and bash examples plus JSON result schemas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_API_TOKEN; output may include business contact data and emails when scrapeEmails is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release) <br>
+Risk: The examples place the Apify token in request URLs, which can expose credentials through logs, shell history, or copied commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Apify token where possible, prefer authorization headers over token-in-URL examples, and avoid sharing commands or logs that contain credentials.
+
+Risk: Email scraping may automatically visit business websites and collect contact information.
+
+Mitigation: Treat email scraping as an explicit opt-in setting and confirm the user's target, authorization, and compliance requirements before enabling it.
+
+Risk: The broad trigger phrases can route general local-business requests into a scraping workflow.
+
+Mitigation: Confirm that the user intends to run Google Maps scraping through Apify before starting a run or sending queries to the third-party actor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/futurizerush/skills/apify-google-maps)
+- [Apify Actor Page](https://apify.com/futurizerush/google-maps-scraper?fpr=rush)
+- [Apify API Documentation](https://docs.apify.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, bash, JSON request, and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides Apify actor runs that return Google Maps business listing datasets; it does not create local files itself.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

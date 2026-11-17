@@ -1,40 +1,56 @@
-## Description: <br>
-通过 Clawec API 搜索 Ozon 商品，返回价格、销量、评分、市场、链接与图片等。在用户需要 Ozon 搜品、俄罗斯及东欧跨境选品、竞品调研、关键词找货、Ozon 产品搜索时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Ozon products through the ClawEC API and returns product prices, sales, ratings, market, links, and images for cross-border ecommerce research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and agents use this skill to search Ozon products through the ClawEC API for product discovery, competitor research, keyword-based sourcing, and Russia or Eastern Europe market analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's Ozon search keyword and Clawec API token to clawec.com. <br>
-Mitigation: Store CLAWEC_API_KEY in an environment variable or secret manager, avoid sensitive private search terms, and review ClawEC data-handling terms before business use. <br>
+## Use Case:
 
+External ecommerce sellers, product researchers, and agent operators use this skill to search Ozon products and compare prices, sales, ratings, rankings, markets, links, and images for Russia and Eastern Europe product selection or competitor research.
 
-## Reference(s): <br>
-- [Ozon product search response schema](references/response-schema.md) <br>
-- [ClawEC API base](https://www.clawec.com/api) <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-ozon-product-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with optional tables, shell commands, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CLAWEC_API_KEY for authenticated API calls and returns product fields such as name, price, sales, rating, market, link, and image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Search keywords are sent to ClawEC and may reveal sensitive product plans or market research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive keywords unless approved, and review ClawEC service terms and data handling before sending confidential business information.
+
+Risk: The skill requires a ClawEC API key for authenticated requests.
+
+Mitigation: Read the key from the CLAWEC_API_KEY environment variable, do not hard-code it, and avoid exposing it in commands, logs, or files.
+
+## Reference(s):
+
+- [Response schema](references/response-schema.md)
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-ozon-product-search)
+- [ClawEC API base URL](https://www.clawec.com/api)
+- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown summaries and tables, with optional shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese summaries; output may include Ozon product names, prices, sales, ratings, rankings, markets, links, image URLs, and ClawEC point information.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

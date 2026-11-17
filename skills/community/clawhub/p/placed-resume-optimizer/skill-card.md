@@ -1,43 +1,57 @@
-## Description: <br>
-Placed Resume Optimizer helps users check ATS compatibility, match resumes to job descriptions, analyze resume gaps, and improve resume bullets through the Placed API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users optimize resumes for ATS compatibility, keyword matching, job fit, resume quality, gap analysis, bullet improvements, and tailored resume content using the Placed API.
 
-## Publisher: <br>
-[ajitsingh25](https://clawhub.ai/user/ajitsingh25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajitsingh25](https://clawhub.ai/user/ajitsingh25)
 
-## Use Case: <br>
-External job seekers and career advisors use this skill to evaluate resumes against job descriptions, identify ATS and keyword gaps, and request targeted resume improvements through the Placed service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume content, job descriptions, and generated recommendations are sent to the Placed/Exidian service for processing. <br>
-Mitigation: Use the skill only when that service is acceptable for the resume data involved, and avoid unnecessary personal or confidential details. <br>
-Risk: The default setup stores the Placed API key on disk at ~/.config/placed/credentials. <br>
-Mitigation: Use a dedicated revocable API key, keep it session-only when possible, and rotate or remove the key when the skill is no longer used. <br>
-Risk: Resume optimization output may be incorrect, overstated, or poorly matched to the user's actual experience. <br>
-Mitigation: Review all suggested changes before applying them and keep a master resume copy separate from tailored versions. <br>
+## Use Case:
 
+External users and career-focused agents use this skill to score, tailor, and improve resumes against job descriptions through the Placed API. It supports ATS checks, gap analysis, match scoring, section optimization, bullet rewriting, and resume generation.
 
-## Reference(s): <br>
-- [Placed Resume Optimizer API Reference](references/api-guide.md) <br>
-- [Placed](https://placed.exidian.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls the Placed API with a bearer token and may process resume text, job descriptions, and generated resume recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter is 1.0.0) <br>
+Risk: Resume, job-description, and career-history data is sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sharing that data with Placed, and avoid submitting unnecessary sensitive personal information.
+
+Risk: The artifact documents persisting and sourcing a Placed API key from a plaintext shell file.
+
+Mitigation: Prefer a session-scoped environment variable or secure secret manager; if a credentials file is used, restrict file permissions and ensure it cannot be modified by other users.
+
+## Reference(s):
+
+- [Placed Resume Optimizer API Reference](references/api-guide.md)
+- [Placed homepage](https://placed.exidian.tech)
+- [Placed API endpoint](https://placed.exidian.tech/api/mcp)
+- [Publisher profile](https://clawhub.ai/user/ajitsingh25)
+- [ClawHub skill page](https://clawhub.ai/ajitsingh25/skills/placed-resume-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Placed API key and sends resume, job-description, and career-history data to the Placed API.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

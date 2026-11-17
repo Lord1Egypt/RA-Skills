@@ -1,41 +1,54 @@
-## Description: <br>
-Directly connects agents to Alibaba Cloud DashScope Qwen Wan 2.6 video generation for text-to-video and image-to-video workflows without an intermediate proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Directly calls the Alibaba Cloud DashScope Qwen Wan 2.6 video generation model for text-to-video and image-to-video creation without an intermediate API proxy.
 
-## Publisher: <br>
-[wuchhao](https://clawhub.ai/user/wuchhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchhao](https://clawhub.ai/user/wuchhao)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short videos from text prompts or reference image URLs through Alibaba Cloud DashScope, with controls such as duration and resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, referenced image URLs, and DashScope credentials are used with Alibaba Cloud DashScope. <br>
-Mitigation: Avoid confidential prompts, private image URLs, or regulated data unless account terms and organization policy allow it; configure DASHSCOPE_API_KEY through the environment. <br>
-Risk: Video generation and polling may incur provider charges. <br>
-Mitigation: Monitor DashScope usage, quotas, and account billing before running generation jobs. <br>
+## Use Case:
 
+Developers and creative automation agents use this skill to generate short videos from text prompts or reference image URLs through Alibaba Cloud DashScope. It supports parameterized video generation workflows that need direct API access and asynchronous result polling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuchhao/qwen-wan-video) <br>
-- [DashScope API endpoint](https://dashscope.aliyuncs.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with Python and bash code blocks; generated video URLs returned as strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DASHSCOPE_API_KEY and asynchronous polling; generated video duration is up to 5 seconds per artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Prompts, reference image URLs, and the DashScope API key are sent to Alibaba Cloud DashScope for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with provider approval, avoid confidential prompts or private image URLs unless allowed, and manage DASHSCOPE_API_KEY as a secret.
+
+Risk: The artifact performs outbound API calls and long-running polling for generated video results.
+
+Mitigation: Review generated commands before execution and add request timeouts or operational limits before heavy use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchhao/skills/qwen-wan-video)
+- [DashScope API endpoint used by the artifact](https://dashscope.aliyuncs.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples; runtime functions return a video URL string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and polls asynchronous DashScope tasks for up to 10 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

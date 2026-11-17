@@ -1,43 +1,60 @@
-## Description: <br>
-Automatically trades prediction markets when prices deviate beyond a configured probability threshold, using Kelly Criterion sizing and safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically trades prediction markets when prices deviate beyond a configured probability threshold, using Kelly Criterion sizing and safety checks.
 
-## Publisher: <br>
-[skybinjf](https://clawhub.ai/user/skybinjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skybinjf](https://clawhub.ai/user/skybinjf)
 
-## Use Case: <br>
-Developers and prediction-market operators use this skill to configure and run threshold-based trading automation for Simmer venues, with paper trading by default and live trading only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform prediction-market account actions and may use real venues when configured for polymarket, kalshi, or live mode. <br>
-Mitigation: Start with a limited or test Simmer API key, keep SIMMER_VENUE set to sim during evaluation, and enable live trading only after reviewing the configuration and expected financial exposure. <br>
-Risk: The automaton configuration can run scans and redemption checks every 15 minutes. <br>
-Mitigation: Disable the scheduled automaton or run the script manually when unattended market scans or account checks are not desired. <br>
+## Use Case:
 
+Developers and trading-automation users use this skill as a configurable template for scanning prediction markets and submitting trades when market prices diverge from their probability estimates. It can run in simulated venues for testing or against supported real-money venues when explicitly configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skybinjf/threshold-trader) <br>
-- [Simmer Dashboard](https://simmer.markets/dashboard) <br>
-- [Simmer Skills Documentation](https://docs.simmer.markets/skills/building) <br>
-- [Simmer Skills Registry](https://simmer.markets/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Console text, environment-variable configuration, and Simmer SDK trading or redemption actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading on the sim venue and may run on a 15-minute automaton schedule.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Automated trading can affect authenticated trading-account state, including against real-money venues when live mode and venue settings are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code and configuration before use, test on the sim venue first, and enable real-money trading only after explicitly accepting the trading risk.
+
+Risk: Dry-run mode is not fully read-only because auto-redemption can still interact with account state.
+
+Mitigation: Use credentials and accounts appropriate for testing, and review auto-redemption behavior before running the skill with production credentials.
+
+Risk: Unpinned dependencies or publishing scripts run from a broader repository could expose private files or credentials.
+
+Mitigation: Pin dependencies for operational use and avoid running bundled publish scripts from repositories that contain unrelated private material or secrets.
+
+## Reference(s):
+
+- [Threshold Trader on ClawHub](https://clawhub.ai/skybinjf/skills/threshold-trader)
+- [Simmer Skill-Building Documentation](https://docs.simmer.markets/skills/building)
+- [Simmer Dashboard](https://simmer.markets/dashboard)
+- [Simmer Skills Registry](https://simmer.markets/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation, shell command examples, JSON configuration, and a Python trading script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and supports environment-variable configuration for venue, probability threshold, side, minimum edge, Kelly multiplier, and maximum position size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

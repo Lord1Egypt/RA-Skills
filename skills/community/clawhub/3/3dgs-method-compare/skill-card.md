@@ -1,40 +1,54 @@
-## Description: <br>
-Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 523+ methods across 24 categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare 3D Gaussian Splatting variants across 10+ dimensions with built-in knowledge of 523+ methods across 24 categories.
 
-## Publisher: <br>
-[jaccen](https://clawhub.ai/user/jaccen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaccen](https://clawhub.ai/user/jaccen)
 
-## Use Case: <br>
-Researchers, developers, and technical reviewers use this skill to compare 3D Gaussian Splatting methods, generate structured comparison tables, and choose methods for use cases such as novel view synthesis, surface reconstruction, real-time rendering, dynamic scenes, and autonomous driving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The built-in method database includes many recent research claims that may be incomplete, outdated, or misstated. <br>
-Mitigation: Verify important paper details, metrics, and citations against primary sources before relying on the output. <br>
-Risk: Generated recommendations may overstate confidence when comparison data is missing for a method or use case. <br>
-Mitigation: Review recommendations for the target use case and preserve explicit uncertainty when reliable data is unavailable. <br>
+## Use Case:
 
+Developers, researchers, and technical evaluators use this skill to compare 3D Gaussian Splatting methods, summarize trade-offs, and choose methods for specific reconstruction, rendering, editing, robotics, or autonomous-driving scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaccen/3dgs-method-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown comparison tables and narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes overview tables, detailed trade-off analysis, recommendations, and uncertainty notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.7 (source: frontmatter and server release evidence) <br>
+Risk: The embedded 3DGS method database and paper metrics may become outdated or contain claims that need confirmation for important work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited methods, paper claims, and numerical metrics against current primary sources before using the comparison for decisions.
+
+Risk: The artifact includes a promotional GitHub star request that may be inappropriate in some deployments.
+
+Mitigation: Review public-facing skill text before deployment and remove promotional language if it conflicts with distribution policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaccen/skills/3dgs-method-compare)
+- [Awesome Gaussian Skills repository](https://github.com/jaccen/Awesome-Gaussian-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison tables and narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommendations, metric comparisons, and uncertainty notes when reliable data is unavailable.]
+
+## Skill Version(s):
+
+1.4.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

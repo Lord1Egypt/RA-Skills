@@ -1,46 +1,57 @@
-## Description: <br>
-Zero-Knowledge Execution for Sensitive Agent Tasks - Privacy computing framework for AI Agents <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-Knowledge Execution for Sensitive Agent Tasks - Privacy computing framework for AI Agents.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add privacy-oriented credential storage, sensitive task execution, and audit logging patterns to TypeScript and Node.js agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release makes strong privacy, zero-knowledge, TEE, HIPAA, and GDPR claims that are not supported by the provided documentation evidence. <br>
-Mitigation: Treat the package as an unverified credential-handling SDK until the implementation and security claims are independently reviewed. <br>
-Risk: The skill examples handle API keys and other secrets. <br>
-Mitigation: Use test credentials during evaluation and avoid regulated data or production secrets until storage behavior and audit-log guarantees are verified. <br>
-Risk: Roadmap items describe zero-knowledge proofs and TEE support as future or planned work. <br>
-Mitigation: Do not rely on strict zero-knowledge or TEE isolation modes for production controls unless the installed package proves those features are implemented. <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance, commands, configuration, and TypeScript examples for an AI-agent private computation framework that stores credentials, executes sensitive tasks, and records audit logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/private-computation) <br>
-- [Project homepage](https://github.com/ZhenRobotics/openclaw-private-computation) <br>
-- [Documentation](https://github.com/ZhenRobotics/openclaw-private-computation#readme) <br>
-- [Quick Start Guide](https://github.com/ZhenRobotics/openclaw-private-computation/blob/main/QUICKSTART.md) <br>
-- [Examples](https://github.com/ZhenRobotics/openclaw-private-computation/tree/main/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential names, security-level configuration, task-execution examples, and audit-log usage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release advertises zero-knowledge execution, TEE isolation, and HIPAA/GDPR compliance, while security evidence says those protections are not implemented yet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the skill for regulated, medical, financial, or other high-sensitivity workloads until the publisher provides the reviewed implementation, version pinning, key-management details, audit-log safeguards, and evidence that unavailable security modes fail closed.
+
+Risk: The skill examples handle API keys and other secrets.
+
+Mitigation: Review the actual credential storage and key-management implementation before installing or using it with real secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/private-computation)
+- [OpenClaw Private Computation Homepage](https://github.com/ZhenRobotics/openclaw-private-computation)
+- [OpenClaw Private Computation Documentation](https://github.com/ZhenRobotics/openclaw-private-computation#readme)
+- [Quick Start Guide](https://github.com/ZhenRobotics/openclaw-private-computation/blob/main/QUICKSTART.md)
+- [Examples](https://github.com/ZhenRobotics/openclaw-private-computation/tree/main/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API examples for credential storage, task execution, audit logging, and security-level configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

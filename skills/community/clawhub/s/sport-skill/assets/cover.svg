@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1f3a"/>
+      <stop offset="0.55" stop-color="#102a52"/>
+      <stop offset="1" stop-color="#1a3a6b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E84E18"/>
+      <stop offset="1" stop-color="#CA090A"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16335f"/>
+      <stop offset="1" stop-color="#0e2447"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <!-- 右侧雷达装饰 -->
+  <g transform="translate(905,150)" opacity="0.9">
+    <circle r="120" fill="none" stroke="#2f568f" stroke-width="1.5"/>
+    <circle r="85" fill="none" stroke="#2f568f" stroke-width="1.2"/>
+    <circle r="50" fill="none" stroke="#2f568f" stroke-width="1"/>
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="#2f568f" stroke-width="1"/>
+    <line x1="0" y1="-120" x2="0" y2="120" stroke="#2f568f" stroke-width="1"/>
+    <polygon points="60,-40 95,30 -10,70 -55,10" fill="#E84E18" fill-opacity="0.55" stroke="#ff7a45" stroke-width="2"/>
+  </g>
+  <!-- 品牌 -->
+  <text x="60" y="92" fill="#ffffff" font-size="58" font-weight="700">球讯通</text>
+  <text x="62" y="132" fill="#9fb3d0" font-size="26" font-weight="400">今日赛事全景助手 · 球赛信息一站看清</text>
+  <!-- 搜索词标签 -->
+  <g font-size="20" fill="#dbe6f5">
+    <rect x="60" y="160" rx="14" ry="14" width="120" height="38" fill="#16335f"/><text x="84" y="185">今日赛事</text>
+    <rect x="192" y="160" rx="14" ry="14" width="88" height="38" fill="#16335f"/><text x="214" y="185">NBA</text>
+    <rect x="292" y="160" rx="14" ry="14" width="96" height="38" fill="#16335f"/><text x="314" y="185">英超</text>
+    <rect x="400" y="160" rx="14" ry="14" width="96" height="38" fill="#16335f"/><text x="422" y="185">中超</text>
+    <rect x="508" y="160" rx="14" ry="14" width="96" height="38" fill="#16335f"/><text x="530" y="185">欧冠</text>
+  </g>
+  <!-- 样例赛事卡 -->
+  <g transform="translate(60,250)">
+    <rect width="600" height="180" rx="16" ry="16" fill="url(#card)" stroke="#2f568f" stroke-width="1"/>
+    <text x="28" y="44" fill="#E84E18" font-size="20" font-weight="700">今日重点 · 中超</text>
+    <text x="28" y="92" fill="#ffffff" font-size="30" font-weight="700">上海申花 <tspan fill="#9fb3d0" font-size="22">vs</tspan> 北京国安</text>
+    <text x="28" y="128" fill="#9fb3d0" font-size="20">北京 19:35 · 已联网核实对阵</text>
+    <text x="28" y="158" fill="#7fd1a0" font-size="18">✅ 阵容伤停 · 交锋 · 看点 全整理</text>
+  </g>
+  <!-- 盾标 -->
+  <g transform="translate(60,470)">
+    <rect width="760" height="120" rx="16" ry="16" fill="#0e2447" stroke="#CA090A" stroke-width="2"/>
+    <text x="32" y="52" fill="#ffffff" font-size="30" font-weight="700">🛡️ 只整理 · 不荐单 · 防割韭菜</text>
+    <text x="32" y="92" fill="#9fb3d0" font-size="20">信息全 · 来源透明 · 零预测话术 · 帮你远离大师套路</text>
+  </g>
+  <text x="1140" y="650" text-anchor="end" fill="#5e779e" font-size="18">体育 · 赛事信息 · v2.9.7</text>
+</svg>

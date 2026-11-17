@@ -1,43 +1,58 @@
-## Description: <br>
-AI-powered trading bot framework for OpenClaw that connects to crypto exchanges and prediction markets, supports strategy templates, and can run paper or live trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered trading bot framework for OpenClaw that connects to crypto exchanges and prediction markets, provides strategy templates and risk management configuration, and supports paper-trading workflows.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Developers and trading-agent builders use this skill to configure and run crypto trading workflows, inspect exchange connectivity, simulate strategies, and review risk status before considering live execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used in real-money trading workflows and the server security review flags the financial framing as under-scoped. <br>
-Mitigation: Use paper mode only unless the script has been inspected, start with limited balances, and require human review before any live execution. <br>
-Risk: Exchange API credentials may grant account access if configured too broadly. <br>
-Mitigation: Use restricted API keys with withdrawals disabled, store them only in environment variables, and rotate keys after testing. <br>
-Risk: The documented live trading, backtesting, kill-switch, and risk controls may overstate actual completeness. <br>
-Mitigation: Do not rely on these controls as complete; validate behavior manually and monitor positions outside the skill. <br>
+## Use Case:
 
+External developers and agent builders use this skill to configure trading-bot workflows, run paper trades, inspect risk status, and evaluate built-in strategies for OpenClaw. Treat live-trading behavior as requiring independent review before use with real funds.
 
-## Reference(s): <br>
-- [Built-in Trading Strategies](references/strategies.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/stevojarvisai-star/agent-trading-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read exchange credentials from environment variables and write local trading state under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review says the skill overstates live-trading safety features and kill-switch behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a paper-trading or educational helper only until live behavior, stop-loss protection, drawdown protection, backtesting, multi-exchange automation, and emergency position closure are corrected and independently verified.
+
+Risk: Live trading or trading-capable credentials could expose real funds to incorrect automation or incomplete safeguards.
+
+Mitigation: Do not provide trading-capable API keys for live use; when testing connectivity, use least-privilege keys, disable withdrawals, and prefer sandbox or paper-trading accounts.
+
+Risk: Strategy outputs and risk dashboards can produce incorrect or misleading financial guidance.
+
+Mitigation: Require human review of strategy decisions and risk output before any financial action, and do not rely on the skill as financial advice.
+
+## Reference(s):
+
+- [Built-in Trading Strategies](artifact/references/strategies.md)
+- [ClawHub Skill Page](https://clawhub.ai/stevojarvisai-star/skills/agent-trading-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference exchange API keys, local OpenClaw configuration files, paper-trading state, and trading logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

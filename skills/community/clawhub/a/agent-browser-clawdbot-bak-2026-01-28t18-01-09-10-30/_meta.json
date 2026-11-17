@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b944nr4v3gv0bn25f68qqyn803vh4",
-  "slug": "agent-browser-clawdbot-bak-2026-01-28t18-01-09-10-30",
-  "version": "1.0.0",
-  "publishedAt": 1769585524601
+  "owner": "matrixy",
+  "slug": "agent-browser-clawdbot",
+  "displayName": "Agent Browser",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1769032854381,
+    "commit": "https://github.com/clawdbot/skills/commit/65f2bb56f0124f0b812889da4fd968161fe39179"
+  },
+  "history": []
 }

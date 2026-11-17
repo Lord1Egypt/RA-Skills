@@ -1,40 +1,52 @@
-## Description: <br>
-Preserve user-critical instructions across long sessions and context compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preserves user-critical instructions across long sessions and context compaction by capturing anchors, rehydrating them during planning, and checking for drift.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve important user constraints during long-running tasks, compaction, or session restart and to check plans for drift before execution and final responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent local reminders can retain sensitive instructions longer than intended. <br>
-Mitigation: Avoid anchoring secrets or sensitive personal details, review anchor files periodically, and use the skill's delete or pause controls when an anchor should stop influencing work. <br>
-Risk: Stored anchors may affect future planning after their context is no longer valid. <br>
-Mitigation: Use expiry controls, keep anchors scoped to the task or session when possible, and correct or remove stale anchors during routine review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dalomeve/instruction-anchor-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/Dalomeve) <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve explicit user constraints during long-running or compacted sessions. It helps an agent track high-priority instructions, resolve conflicts, and surface drift checks before final responses or destructive actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with ledger templates and control commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local anchor ledger files when the user approves persistent instruction reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist user-derived constraints into workspace memory files, which may retain sensitive, outdated, or overly broad instructions.
+
+Mitigation: Use explicit opt-in for anchor creation, redact secrets and unnecessary personal data, inspect or clear the ledger regularly, and keep ledgers only in trusted workspaces.
+
+Risk: Reloaded anchors may influence later planning without enough validation or user control.
+
+Mitigation: Review active anchors before long or sensitive tasks, pause or delete stale anchors, and require fresh confirmation before destructive actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dalomeve/skills/instruction-anchor-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown anchor ledger entries, compact status blocks, and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to persist selected instruction anchors in workspace memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter mentions 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-AI agent memory backup. Register at agentsmem.com, get an API key, then encrypt and upload memory via the API; owner manages backups on the web. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent memory backup. Register at agentsmem.com, get an API key, then encrypt and upload memory via the API; owner manages backups on the web.
 
-## Publisher: <br>
-[ocmuuu](https://clawhub.ai/user/ocmuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ocmuuu](https://clawhub.ai/user/ocmuuu)
 
-## Use Case: <br>
-External users and agent operators use this skill to register an agent with AgentsMem, claim the account, encrypt local memory files, upload backups, and restore backed-up memory when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to handle API keys, account passwords, session cookies, and encryption keys. <br>
-Mitigation: Avoid sharing existing account passwords or encryption keys in chat, restrict local permissions on credentials.json, .vault, and session.txt, and verify downloaded helper scripts before execution. <br>
-Risk: Memory backups are uploaded to agentsmem.com and the skill states the service is not end-to-end encrypted. <br>
-Mitigation: Use the skill only if the owner trusts agentsmem.com, confirm exactly which files will be backed up, and avoid uploading memory content outside the owner's acceptable data policy. <br>
-Risk: Losing the local vault key can make encrypted backups unrecoverable. <br>
-Mitigation: Have the owner save the generated encryption key offline before relying on backups, and do not overwrite an existing .vault file without explicit owner confirmation. <br>
+## Use Case:
 
+Agents and their owners use AgentsMem to set up memory backup, encrypt local memory files, upload backups to agentsmem.com, and restore selected backups when needed.
 
-## Reference(s): <br>
-- [AgentsMem homepage](https://agentsmem.com) <br>
-- [AgentsMem API base](https://agentsmem.com/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/ocmuuu/agentsmem) <br>
-- [Publisher profile](https://clawhub.ai/user/ocmuuu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, backup, restore, credential-handling, and API-use instructions for the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can back up sensitive agent memory to agentsmem.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the sensitivity of memory files before use and back up only content the owner has approved for this external service.
+
+Risk: API keys, session material, and encryption keys are stored locally and may be exposed in chat transcripts or logs.
+
+Mitigation: Keep credentials and vault keys out of logs, source control, and third-party tools; send API keys only to https://agentsmem.com/api/v1 endpoints.
+
+Risk: The service is not end-to-end encrypted and lost encryption keys can make backups unrecoverable.
+
+Mitigation: Do not describe the service as E2EE, save the local encryption key offline, and avoid high-sensitivity backups unless the owner accepts the risk.
+
+Risk: The setup flow runs tools fetched from the service at install time.
+
+Mitigation: Review downloaded tools before execution and verify the install source before deploying the skill.
+
+## Reference(s):
+
+- [AgentsMem homepage](https://agentsmem.com)
+- [AgentsMem API base](https://agentsmem.com/api/v1)
+- [ClawHub skill page](https://clawhub.ai/ocmuuu/skills/agentsmem)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, credential handling, encryption-key handling, backup, restore, rate-limit, and error-handling procedures.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,17 +18,18 @@ As a library:
 import sys
 
 # Python version guard
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 10):
     sys.exit(
-        f"ERROR: Python 3.9+ is required (you have "
+        f"ERROR: Python 3.10+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
 import argparse
 import json
-import os
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+
+from _common import write_private
 
 HISTORY_FILE = Path.home() / ".apple-music-dj" / "playlist_history.json"
 
@@ -38,21 +39,18 @@ def load_history() -> list[dict]:
     if not HISTORY_FILE.exists():
         return []
     try:
-        with open(HISTORY_FILE, "r") as f:
+        with open(HISTORY_FILE) as f:
             data = json.load(f)
         if isinstance(data, list):
             return data
     except (json.JSONDecodeError, OSError):
-        pass
-    return []
+        return []
+    return []  # valid JSON, but not a list
 
 
 def save_history(history: list[dict]) -> None:
     """Save playlist history to disk."""
-    HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
-    fd = os.open(str(HISTORY_FILE), os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-    with os.fdopen(fd, "w") as f:
-        json.dump(history, f, indent=2)
+    write_private(HISTORY_FILE, json.dumps(history, indent=2))
 
 
 def log_playlist(name: str, strategy: str, track_ids: list[str]) -> dict:
@@ -106,7 +104,7 @@ def cmd_log(args):
     """Log a playlist creation."""
     track_ids = []
     if args.track_ids_file:
-        with open(args.track_ids_file, "r") as f:
+        with open(args.track_ids_file) as f:
             track_ids = [line.strip() for line in f if line.strip()]
     elif args.track_ids:
         track_ids = args.track_ids

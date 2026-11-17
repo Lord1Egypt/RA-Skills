@@ -1,44 +1,55 @@
-## Description: <br>
-Search 3.2 billion leaked credentials in the COMB dataset via ProxyNova API (no API key required). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 3.2 billion leaked credentials in the COMB dataset via ProxyNova API (no API key required).
 
-## Publisher: <br>
-[ibnaleem](https://clawhub.ai/user/ibnaleem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibnaleem](https://clawhub.ai/user/ibnaleem)
 
-## Use Case: <br>
-Security practitioners and developers use this skill for authorized defensive checks of emails, usernames, or passwords against the COMB leaked-credential dataset through the ProxyNova API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches a leaked-credential API and may expose sensitive credential data. <br>
-Mitigation: Use only for authorized defensive security work, redact returned credentials, and rotate affected secrets according to organizational policy. <br>
-Risk: Submitting live passwords or credentials can disclose sensitive information to an external service. <br>
-Mitigation: Do not submit live passwords or credentials that the operator does not own or administer. <br>
-Risk: The security summary notes that the skill lacks clear warnings and authorization limits for sensitive queries and results. <br>
-Mitigation: Review usage scope before installation and limit access to approved security personnel and approved investigations. <br>
+## Use Case:
 
+Security practitioners and developers use this skill to query ProxyNova's COMB dataset for authorized breach exposure checks by email, username, or password.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ibnaleem/comb) <br>
-- [ProxyNova COMB tool](https://www.proxynova.com/tools/comb/) <br>
-- [Cybernews COMB coverage](https://cybernews.com/news/largest-compilation-of-emails-and-passwords-leaked-free/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Text] <br>
-**Output Format:** [Markdown with inline bash commands and API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; supports Linux, macOS, and Windows; ProxyNova returns up to 100 results per query and rate limits at about 100 requests per minute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Queries containing emails, usernames, or passwords are sent to ProxyNova, a third-party leaked-credential API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only identifiers you are authorized to investigate and avoid submitting live passwords, API keys, tokens, or other secrets.
+
+Risk: Returned breach data can include sensitive credentials.
+
+Mitigation: Redact returned credentials before sharing or storing results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ibnaleem/skills/comb)
+- [ProxyNova COMB Tool](https://www.proxynova.com/tools/comb/)
+- [Cybernews COMB Coverage](https://cybernews.com/news/largest-compilation-of-emails-and-passwords-leaked-free/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key required; ProxyNova returns up to 100 results per query and limits usage to about 100 requests per minute.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

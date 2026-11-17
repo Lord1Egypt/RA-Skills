@@ -1,47 +1,56 @@
-## Description: <br>
-Generate AI videos (text-to-video, image-to-video) with optional custom LoRA styles via the Phosor AI platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Phosor AI to create H3 videos, images, speech, and e-commerce photography, and to access LLM chat and LoRA workflows.
 
-## Publisher: <br>
-[JasonStarlight](https://clawhub.ai/user/JasonStarlight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phosor.ai](https://clawhub.ai/user/phosor.ai)
 
-## Use Case: <br>
-External users and developers use this skill to submit text-to-video and image-to-video jobs, manage generated video requests, and upload or import custom LoRA styles through the Phosor AI platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, uploaded images, LoRA files, and imported URLs are sent to Phosor AI for processing and may be billed to the configured API key. <br>
-Mitigation: Use a trusted Phosor account, avoid sensitive prompts or media, keep the API key private, and review pricing and quota output before submitting jobs. <br>
-Risk: A custom PHOSOR_BASE_URL changes where authenticated requests and uploaded content are sent. <br>
-Mitigation: Use the default Phosor endpoint unless a trusted alternate endpoint is required, and verify any override before running commands. <br>
-Risk: The CLI stores pending job metadata locally in phosor-pending.json. <br>
-Mitigation: Remove the local pending job file when retained job metadata is no longer needed. <br>
-Risk: The delete-lora command can remove a LoRA model from the user's Phosor account. <br>
-Mitigation: Confirm the target LoRA ID before deletion. <br>
+## Use Case:
 
+Developers and creators use the skill to submit video, image, speech, and chat requests to Phosor AI, manage generation jobs, and run product or model photography workflows.
 
-## Reference(s): <br>
-- [Phosor AI API Reference](references/api.md) <br>
-- [Phosor AI](https://phosor.ai) <br>
-- [Phosor AI API Documentation](https://phosor.ai/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/JasonStarlight/phosor-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill's CLI sends authenticated requests to Phosor AI and can write local pending job metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Requests may send prompts and upload supplied media to Phosor AI for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only content you are authorized to send and are comfortable having processed externally.
+
+Risk: The security scan reports medium confidence, a capability mismatch, and incomplete inspection of part of the code.
+
+Mitigation: Review the skill and any generated actions before use, and confirm they fit the requested task and data.
+
+## Reference(s):
+
+- [Phosor API documentation](https://docs.phosor.ai)
+- [API reference](artifact/references/api.md)
+- [H3 prompt guide](artifact/references/h3-prompt-guide.md)
+- [Generation examples](artifact/references/generation-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, JSON, Generated media]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON API responses with generated media URLs and job status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation jobs may be asynchronous and require status polling.]
+
+## Skill Version(s):
+
+1.4.1 (source: frontmatter, CHANGELOG, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -39,12 +39,43 @@ class TestCreateFolder:
         mock_client.me.mail_folders.by_mail_folder_id.return_value = child_mock
 
         result = await create_folder(
-            mock_client, name="Sub Folder", parent_folder="AAMkAGparent123=", config=_CFG,
+            mock_client,
+            name="Sub Folder",
+            parent_folder="AAMkAGparent123=",
+            config=_CFG,
         )
 
         assert result == {"id": "folder123", "name": "My Folder"}
         mock_client.me.mail_folders.by_mail_folder_id.assert_called_once_with("AAMkAGparent123=")
         child_mock.child_folders.post.assert_called_once()
+
+    async def test_create_under_a_display_name_resolves_it(self):
+        """The docstring has always said "name or ID"; a name used to reach Graph as an id."""
+        receipts = _mock_folder("AAMkReceipts=", "Receipts")
+        receipts.child_folder_count = 0
+        mock_client = MagicMock()
+        mock_client.me.mail_folders.get = AsyncMock(
+            return_value=MagicMock(value=[receipts], odata_next_link=None)
+        )
+        parent = MagicMock()
+        parent.child_folders.post = AsyncMock(return_value=_mock_folder())
+        mock_client.me.mail_folders.by_mail_folder_id.return_value = parent
+
+        await create_folder(mock_client, name="2026", parent_folder="Receipts", config=_CFG)
+
+        mock_client.me.mail_folders.by_mail_folder_id.assert_called_once_with("AAMkReceipts=")
+        parent.child_folders.post.assert_awaited_once()
+
+    async def test_create_under_a_well_known_alias_resolves_it(self):
+        """ "Junk Email" used to fail locally: a space is not valid in an id."""
+        mock_client = MagicMock()
+        parent = MagicMock()
+        parent.child_folders.post = AsyncMock(return_value=_mock_folder())
+        mock_client.me.mail_folders.by_mail_folder_id.return_value = parent
+
+        await create_folder(mock_client, name="Held", parent_folder="Junk Email", config=_CFG)
+
+        mock_client.me.mail_folders.by_mail_folder_id.assert_called_once_with("junkemail")
 
     async def test_create_raises_read_only(self):
         """create_folder raises ReadOnlyError in read-only mode."""
@@ -62,7 +93,10 @@ class TestRenameFolder:
         mock_client.me.mail_folders.by_mail_folder_id.return_value = folder_builder
 
         result = await rename_folder(
-            mock_client, folder_id="AAMkAGfolder123=", name="Renamed Folder", config=_CFG,
+            mock_client,
+            folder_id="AAMkAGfolder123=",
+            name="Renamed Folder",
+            config=_CFG,
         )
 
         assert result == {"id": "folder123", "name": "Renamed Folder"}
@@ -80,7 +114,10 @@ class TestRenameFolder:
         mock_client = MagicMock()
         with pytest.raises(ReadOnlyError):
             await rename_folder(
-                mock_client, folder_id="AAMkAG123=", name="New", config=_CFG_RO,
+                mock_client,
+                folder_id="AAMkAG123=",
+                name="New",
+                config=_CFG_RO,
             )
 
 
@@ -121,3 +158,19 @@ class TestDeleteFolder:
         mock_client = MagicMock()
         with pytest.raises(ReadOnlyError):
             await delete_folder(mock_client, folder_id="AAMkAG123=", config=_CFG_RO)
+
+
+async def test_a_well_known_folder_with_a_trailing_newline_is_not_deleted():
+    """`"inbox\n"` missed the well-known-name guard and passed the ID check."""
+    from unittest.mock import AsyncMock, MagicMock
+
+    from outlook_mcp.config import Config
+    from outlook_mcp.tools.mail_folders import delete_folder
+
+    client = MagicMock()
+    client.me.mail_folders.by_mail_folder_id.return_value.delete = AsyncMock()
+
+    with pytest.raises(ValueError):
+        await delete_folder(client, "inbox\n", config=Config(client_id="test"))
+
+    client.me.mail_folders.by_mail_folder_id.return_value.delete.assert_not_called()

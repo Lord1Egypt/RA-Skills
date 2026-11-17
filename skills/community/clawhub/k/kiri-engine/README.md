@@ -108,7 +108,7 @@ cd scripts
 ### 输入限制
 
 - **视频**：分辨率 ≤ 1920×1080，时长 ≤ 3 分钟
-- **图片集**：20~300 张
+- **图片集**：20~300 张，**仅 jpg / jpeg / png / tif / tiff**。文件夹、通配符、逗号分隔路径都按这个白名单过滤，其余文件跳过且不上传（1.0.1 起）。
 
 ## 任务时长估算
 
@@ -129,7 +129,14 @@ cd scripts
 ## API 文档
 
 - Base URL: `https://api.kiriengine.app/api/`
-- 官方文档: https://gentlebandit.feishu.cn/wiki/PsHawWV0gi2jePkmRoycwMwXnIc
+- 官方文档: https://docs.kiriengine.app/
+
+## 变更
+
+### 1.0.1
+
+- 修复图片集上传：通配符与显式文件路径此前不校验扩展名，可能把非图片文件发到 KIRI Engine。现在文件夹、通配符、逗号分隔路径统一只收 jpg/jpeg/png/tif/tiff，其余跳过并提示。
+- 文档补上上传边界与 API Key 明文存储的说明。
 
 ## License
 

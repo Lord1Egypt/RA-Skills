@@ -1,41 +1,58 @@
-## Description: <br>
-Automated cryptocurrency trading system powered by AI. Instruct the agent to analyze the market and execute Binance spot trades based on technical indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated cryptocurrency trading system powered by AI. Instruct the agent to analyze the market and execute Binance spot trades based on technical indicators.
 
-## Publisher: <br>
-[totoxu](https://clawhub.ai/user/totoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[totoxu](https://clawhub.ai/user/totoxu)
 
-## Use Case: <br>
-External users and developers use this skill to request Binance market analysis and, when authorized, place spot buy or sell orders with user-supplied Binance credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live Binance spot trades with real funds when production API keys are supplied. <br>
-Mitigation: Use Binance testnet first, require manual confirmation for every live order, and use a dedicated trade-only API key with withdrawals disabled, IP restrictions enabled, and limited funds available. <br>
-Risk: Billing defaults and SkillPay configuration need review before user IDs or credentials are passed to the scripts. <br>
-Mitigation: Verify the SkillPay configuration and billing behavior before use, and stop execution when a payment URL or billing error is returned. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/totoxu/totoxu-auto-trader) <br>
-- [Binance API endpoint used for market data](https://api.binance.com/api/v3) <br>
-- [SkillPay billing endpoint](https://skillpay.me/api/v1/billing) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to analyze Binance cryptocurrency markets and, when configured with exchange credentials, submit Binance spot market orders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands; invoked scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a billing user ID. Live trading requires BINANCE_API_KEY and BINANCE_SECRET environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can charge users and place live Binance market orders with weak confirmation controls.
+
+Mitigation: Use Binance Testnet first, require an explicit preview-and-confirm step before charges or live orders, and avoid production trading until that control exists.
+
+Risk: Exchange credentials and billing credentials can be exposed or over-privileged if configured carelessly.
+
+Mitigation: Restrict Binance API keys to minimum trading permissions, disable withdrawals, prefer IP allowlisting, provide secrets through environment variables, and remove the hardcoded SkillPay key.
+
+Risk: Unpinned dependencies can change behavior or introduce vulnerabilities after installation.
+
+Mitigation: Pin reviewed versions of runtime dependencies such as requests and ccxt before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/totoxu/skills/totoxu-auto-trader)
+- [Binance API endpoint used by the artifact](https://api.binance.com/api/v3)
+- [SkillPay billing API endpoint used by the artifact](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external billing, Binance market data, and Binance trading APIs when the user provides required credentials.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

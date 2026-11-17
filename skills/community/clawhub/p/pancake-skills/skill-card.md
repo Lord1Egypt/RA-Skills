@@ -1,45 +1,65 @@
-## Description: <br>
-Pancake Skills helps agents interact with the Pancake Platform API to manage pages, conversations, messages, customers, statistics, tags, posts, users, media uploads, and chat plugin operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pancake Skills helps agents use the Pancake Platform API to manage pages, conversations, messages, customers, analytics, tags, posts, users, media uploads, and chat plugin operations.
 
-## Publisher: <br>
-[suminhthanh](https://clawhub.ai/user/suminhthanh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[suminhthanh](https://clawhub.ai/user/suminhthanh)
 
-## Use Case: <br>
-Developers and operators use this skill to run Pancake Platform API workflows from an agent session, including page administration, customer conversation handling, messaging, analytics, media upload, and staff assignment tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe scripting around URL encoding can mishandle sensitive values used in authenticated API requests. <br>
-Mitigation: Review or patch scripts before installation, including changing url_encode to pass values as Python argv. <br>
-Risk: High-impact account and messaging actions may occur without sufficient write confirmation. <br>
-Mitigation: Require CONFIRM_WRITE=YES for token generation and chat-plugin sends, and use the skill only in trusted sessions where those actions are intended. <br>
-Risk: Pancake access tokens and customer data may be exposed through logs or chat history. <br>
-Mitigation: Avoid pasting tokens into shared transcripts, keep tokens out of logs, and run the skill only where Pancake customer data handling is authorized. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Pancake Platform sales-channel data from an agent-assisted shell workflow, including conversations, customer records, staff assignments, analytics, media uploads, and outbound messages.
 
-## Reference(s): <br>
-- [Pancake OpenAPI specification](references/openapi-pancake.yaml) <br>
-- [Pancake API base URL](https://pages.fm) <br>
-- [Pancake support contact](https://www.pancake.biz/contact) <br>
-- [ClawHub skill page](https://clawhub.ai/suminhthanh/pancake-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute authenticated Pancake API requests when the user provides access tokens and enables write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pancake access tokens can authorize page, customer, conversation, and messaging operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Pancake tokens, keep them out of repositories and logs, avoid shell tracing, and rotate tokens according to your internal policy.
+
+Risk: Write-capable commands can send messages, generate tokens, update customer data, change assignments or tags, upload media, and export data.
+
+Mitigation: Require `CONFIRM_WRITE=YES`, run a read-only command first to confirm IDs and payload shape, and manually review every write payload before execution.
+
+Risk: `PANCAKE_BASE_URL` can redirect API calls to an alternate host.
+
+Mitigation: Leave the default `https://pages.fm` endpoint in place unless using a trusted test host.
+
+Risk: The helper scripts execute local shell and curl commands.
+
+Mitigation: Install only from a trusted publisher and run the skill in a controlled shell environment.
+
+## Reference(s):
+
+- [OpenAPI Pancake Specification](references/openapi-pancake.yaml)
+- [ClawHub skill page](https://clawhub.ai/suminhthanh/skills/pancake-skills)
+- [Pancake User API](https://pages.fm/api/v1)
+- [Pancake Page API v1](https://pages.fm/api/public_api/v1)
+- [Pancake Page API v2](https://pages.fm/api/public_api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that call Pancake APIs with user-provided access tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

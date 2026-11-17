@@ -1,44 +1,55 @@
-## Description: <br>
-Practical small livestock management starting with chickens and progressing to goats, for users raising chickens for eggs, keeping goats for milk or meat, or evaluating whether livestock fits their situation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical small livestock management starting with chickens and progressing to goats for people raising chickens for eggs, keeping goats for milk or meat, or evaluating whether livestock fits their situation.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to assess readiness for small livestock, plan chicken and goat setup, and get practical care, feeding, housing, cost, and health guidance. It is intended to support decision-making and routine husbandry, not to replace local legal checks or veterinary care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Livestock zoning, HOA rules, animal registration, and slaughter regulations vary by locality. <br>
-Mitigation: Verify municipal, county, HOA, and country-specific requirements before acquiring animals or acting on slaughter or movement guidance. <br>
-Risk: Animal illness, vaccination, deworming, injuries, and emergency care require qualified veterinary judgment. <br>
-Mitigation: Use the skill for preparation and routine guidance, and consult a livestock or farm veterinarian for diagnosis, treatment, vaccination, deworming, slaughter, or urgent care decisions. <br>
-Risk: Breed availability, climate needs, feed products, and measurement units differ across regions. <br>
-Mitigation: Localize breed recommendations, feed types, climate assumptions, and units to the user's region before giving final advice. <br>
+## Use Case:
 
+External users and agents use this skill to assess readiness for small livestock, plan chicken and goat setup, and get practical guidance on housing, feeding, health checks, costs, and local-law considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/raising-livestock) <br>
-- [Backyard Poultry magazine](https://backyardpoultry.iamcountryside.com/) <br>
-- [USDA Animal and Plant Health Inspection Service](https://www.aphis.usda.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, routines, warnings, and localized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include practical readiness screening, livestock setup plans, care routines, health triage guidance, and region-specific legal or unit localization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The installation command uses an unpinned npx installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only through a trusted or pinned ClawHub installer and avoid running the command with administrator privileges.
+
+Risk: Animal health and slaughter guidance can be consequential and varies by jurisdiction.
+
+Mitigation: Verify health, veterinary, slaughter, and livestock-keeping decisions against local regulations and with a qualified veterinarian.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/howtousehumans/skills/raising-livestock)
+- [Backyard Poultry magazine](https://backyardpoultry.iamcountryside.com/)
+- [USDA Animal and Plant Health Inspection Service](https://www.aphis.usda.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, decision steps, and practical care recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized reminders to check zoning, animal welfare rules, veterinary availability, and measurement units.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents through signing in to the Finance District agent wallet with the fdx CLI and resolving authentication failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sign in to the Finance District agent wallet when a user needs to log in, connect, configure the wallet, or recover from authentication errors before wallet operations.
 
-## Publisher: <br>
-[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt)
 
-## Use Case: <br>
-Developers and wallet users use this skill to authenticate a Finance District agent wallet before wallet operations such as sending tokens, swapping, and checking balances. It helps the agent choose the browser or device OAuth flow, check authentication status, and log out when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be triggered by broad login, setup, or connection requests even though it handles sensitive wallet authentication. <br>
-Mitigation: Use it only for expected Finance District wallet authentication or explicit fdx authentication failures, and confirm the account and intended wallet action before continuing. <br>
-Risk: OAuth prompts and locally stored wallet credentials are sensitive. <br>
-Mitigation: Keep the human in control of browser or device authorization, avoid exposing tokens or codes in chat, and use fdx logout on shared or untrusted machines. <br>
+## Use Case:
 
+Developers and users working with the Finance District agent wallet use this skill to check authentication status, start browser or device OAuth setup, handle common token errors, and log out when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rachidjarray-hk-qa-fdt/authenticate) <br>
-- [Finance District MCP server](https://mcp.fd.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the human to complete browser or device authorization; does not itself produce tokens for display.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores wallet authentication state locally, and that auth file may grant wallet access while tokens remain valid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the local auth file as sensitive and use fdx logout when the agent wallet should no longer remain signed in.
+
+Risk: A user could authorize an unexpected OAuth destination during setup.
+
+Mitigation: Confirm the authorization or verification URL is expected before completing browser or device authorization.
+
+## Reference(s):
+
+- [Authenticate skill page](https://clawhub.ai/rachidjarray-hk-qa-fdt/skills/authenticate)
+- [Finance District MCP server](https://mcp.fd.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and environment variable guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide a human through browser or device OAuth authorization and references local token storage.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Reviews Remix v2 code for v1-shape meta exports, cookie security gaps, misplaced auth gates, and missing CSRF protection in meta/SEO, session, auth, or form-mutation code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Remix v2 code for v1-shape meta exports, cookie security gaps, auth gates in the wrong layer, and missing CSRF protection.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Remix v2 applications for SEO metadata regressions, insecure session cookie configuration, misplaced authentication checks, and missing CSRF validation before changes are accepted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide inspection of sensitive auth, session, CSRF, cookie configuration, environment examples, or relevant git history. <br>
-Mitigation: Use it only in repositories where the agent is authorized to inspect those materials. <br>
-Risk: Generated review findings could be incorrect or overstate a Remix security or SEO issue. <br>
-Mitigation: Require human review of each finding, including the cited file location or quoted evidence, before acting on it. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Remix v2 code for SEO metadata regressions, session and cookie security gaps, misplaced authentication gates, and missing CSRF protections.
 
-## Reference(s): <br>
-- [Meta V2 Shape](references/meta-v2-shape.md) <br>
-- [Cookie Security](references/cookie-security.md) <br>
-- [Auth Gates](references/auth-gates.md) <br>
-- [CSRF](references/csrf.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to cite concrete file locations or quotes before recommending changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may inspect security-sensitive Remix application files and git history while reviewing auth, session, cookie, meta, and CSRF code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where reviewers are authorized to expose that code to the agent, and review findings before applying changes.
+
+Risk: Companion-document links can mislead reviewers if they point outside trusted review material.
+
+Mitigation: Rely on the bundled references and server-resolved ClawHub release page when checking the review guidance.
+
+## Reference(s):
+
+- [Auth Gates - Anti-Patterns](references/auth-gates.md)
+- [Cookie Security - Anti-Patterns](references/cookie-security.md)
+- [CSRF - Anti-Patterns](references/csrf.md)
+- [Meta v2 Shape - Anti-Patterns](references/meta-v2-shape.md)
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/remix-v2-meta-sessions-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review findings and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing review guidance; no executable payload is included in the release evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

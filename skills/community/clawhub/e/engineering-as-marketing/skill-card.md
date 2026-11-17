@@ -1,39 +1,54 @@
-## Description: <br>
-Build free tools to drive organic search traffic and convert visitors into customers through an Engineering as Marketing growth strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build free tools to drive organic search traffic and convert visitors into customers through an Engineering as Marketing growth strategy.
 
-## Publisher: <br>
-[gprecious](https://clawhub.ai/user/gprecious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gprecious](https://clawhub.ai/user/gprecious)
 
-## Use Case: <br>
-Developers, founders, and growth teams use this skill to plan free utility tools that rank for low-competition search terms and route qualified visitors toward a paid product. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Marketing or SEO recommendations may lead to production website changes that affect search visibility or conversion behavior. <br>
-Mitigation: Review planned site changes, schema markup, CTAs, and analytics events before publishing them on a production domain. <br>
-Risk: Automation examples may involve paid SEO APIs, analytics accounts, or search-console access when implemented. <br>
-Mitigation: Review each external service, credential scope, cost model, and rate limit before connecting APIs or running automated workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Engineering as Marketing Strategy Playbook](references/strategy-playbook.md) <br>
+## Use Case:
 
+External builders, product marketers, and developers use this skill to plan SEO-focused free tools, prioritize low-competition keywords, design tool pages, and connect those pages to paid-product conversion funnels.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and example implementation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SEO strategy recommendations, free-tool page structure, tracking guidance, and automation examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional third-party SEO, analytics, keyword, or SERP services may involve paid accounts, external terms, or site analytics data.
+
+Mitigation: Review provider pricing, data handling, and terms before connecting any service or sharing site analytics.
+
+Risk: Traffic, lead, conversion, and revenue benchmarks in the guidance may not generalize to every product or market.
+
+Mitigation: Treat benchmarks as planning assumptions and validate results with ranking, traffic, click-through, trial, and paid-conversion metrics.
+
+## Reference(s):
+
+- [Engineering as Marketing Strategy Playbook](references/strategy-playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/gprecious/skills/engineering-as-marketing)
+- [Publisher Profile](https://clawhub.ai/user/gprecious)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with checklists, tables, inline code examples, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are included; the skill provides strategy and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE) for live information, documentation, and research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Developers and agents use this skill to run live Baidu web searches for current information, documentation, and research topics when a Baidu AI Search API key is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu through the Baidu AI Search API. <br>
-Mitigation: Avoid placing secrets or sensitive private data in search queries and review Baidu's applicable terms before use. <br>
-Risk: The skill requires a Baidu API key that may carry quota, billing, or account-access impact if exposed. <br>
-Mitigation: Use a dedicated or revocable API key, keep it in environment configuration, and monitor usage. <br>
+## Use Case:
 
+Developers and agents use this skill to run live Baidu web searches for current information, documentation, and research topics through the Baidu AI Search API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/tianshu-baidu-search) <br>
-- [Baidu AI Search API Key Console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey) <br>
-- [Baidu AI Search Web Search Endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON search result references from a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and accepts query, count, and freshness parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: Search queries are sent to Baidu's Qianfan AI Search API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries unless that data sharing is acceptable under the user's Baidu account and data-handling expectations.
+
+Risk: The skill requires a BAIDU_API_KEY in the environment.
+
+Mitigation: Provide the key only in the intended runtime environment and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/skills/tianshu-baidu-search)
+- [Baidu AI Search API Key Console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey)
+- [Baidu AI Search Web Search Endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; accepts query, optional count from 1 to 50, and optional freshness filters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

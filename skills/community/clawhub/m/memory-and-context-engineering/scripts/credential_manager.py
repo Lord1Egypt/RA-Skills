@@ -158,7 +158,7 @@ class CredentialManager:
         key_file = self.storage_path / MASTER_KEY_FILE
         
         if key_file.exists():
-            key_b64 = key_file.read_text().strip()
+            key_b64 = key_file.read_text(encoding="utf-8").strip()
             return base64.b64decode(key_b64)
         
         # 自动生成密钥
@@ -166,7 +166,7 @@ class CredentialManager:
         key_b64 = base64.b64encode(new_key).decode("utf-8")
         
         # 保存密钥文件
-        key_file.write_text(key_b64)
+        key_file.write_text(key_b64, encoding="utf-8")
         
         # 设置文件权限（仅所有者可读写）
         key_file.chmod(stat.S_IRUSR | stat.S_IWUSR)
@@ -181,7 +181,7 @@ class CredentialManager:
             return CredentialStorage()
         
         try:
-            encrypted_b64 = storage_file.read_text().strip()
+            encrypted_b64 = storage_file.read_text(encoding="utf-8").strip()
             encrypted = base64.b64decode(encrypted_b64)
             decrypted = self._decrypt(encrypted)
             data = json.loads(decrypted)
@@ -199,7 +199,7 @@ class CredentialManager:
         encrypted = self._encrypt(json_str.encode("utf-8"))
         encrypted_b64 = base64.b64encode(encrypted).decode("utf-8")
         
-        storage_file.write_text(encrypted_b64)
+        storage_file.write_text(encrypted_b64, encoding="utf-8")
         
         # 设置文件权限
         storage_file.chmod(stat.S_IRUSR | stat.S_IWUSR)

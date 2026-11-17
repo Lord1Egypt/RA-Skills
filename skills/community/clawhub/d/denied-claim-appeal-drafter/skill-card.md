@@ -1,42 +1,56 @@
-## Description: <br>
-Helps medical billers, denials specialists, revenue-cycle analysts, and coders convert denied medical insurance claims into draft appeal packets with denial-code routing, appeal-level selection, deadline tracking, and enclosures for biller or clinician review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a medical biller, denials specialist, revenue-cycle analyst, or coder needs to convert a denied insurance claim into a draft appeal packet with denial-code routing, appeal-level guidance, deadline tracking, and enclosures for biller, coder, or clinician review before submission.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External medical billing, denials, coding, revenue-cycle, and clinician-review teams use this skill to turn EOB or 835 ERA denial details and chart excerpts into a draft, single-issue appeal packet. It helps route the denial by CARC/RARC pattern, identify the appeal level, assemble evidence anchors, and track filing deadlines for human review before submission.
+
+### Deployment Geography for Use:
+
+United States
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive healthcare billing workflows may involve PHI, claim identifiers, or chart excerpts.
+
+Mitigation: Use minimum necessary data, redact full identifiers, avoid pasting PHI into external services, and keep every output as a draft for qualified review.
+
+Risk: Incorrect payer deadlines, appeal levels, or policy citations could harm the appeal record.
+
+Mitigation: Verify payer procedures, filing windows, policy citations, and deadline calculations against the denial letter or payer documentation before submission.
+
+Risk: Unsupported clinical or coding assertions could overstate the record.
+
+Mitigation: Anchor each assertion to user-provided chart, coding, or policy evidence; mark missing facts as unknown and require biller, coder, or clinician review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Medical billers, denials specialists, coders, revenue-cycle analysts, and clinicians use this skill to draft payer-specific medical claim appeal packets from denied claims, remittance data, denial codes, and chart evidence. It is intended for human review before submission, not automated filing or clinical decision-making. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-United States <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Draft appeal packets may involve protected health information or payer/member identifiers. <br>
-Mitigation: Use minimum-necessary identifiers, avoid full DOB, SSN, and full member IDs in working drafts, and follow the organization's HIPAA and data-handling requirements. <br>
-Risk: Incorrect payer rules, plan type, appeal level, or filing deadline could harm the appeal. <br>
-Mitigation: Verify deadlines, appeal rights, payer procedures, delivery address, and portal or fax requirements against source documents before submission; treat deadlines within seven days as critical. <br>
-Risk: Generated arguments may overstate chart evidence or include unsupported medical, coding, policy, or authorization facts. <br>
-Mitigation: Require every clinical and policy assertion to be anchored to supplied evidence and have the appropriate biller, coder, or clinician review the draft before use. <br>
+**Output Format:** [Markdown draft appeal packet with structured tables and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/archlab-space/denied-claim-appeal-drafter) <br>
+**Other Properties Related to Output:** [Draft only; includes an appeal letter, denial-reason mapping table, enclosures index, filing-deadline tracker, certified-delivery checklist, escalation calendar, and unresolved-information list.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft appeal packet with cover letter, denial mapping table, enclosures index, deadline tracker, delivery checklist, escalation calendar, and unresolved-information list.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output for biller, coder, or clinician review before any submission.] <br>
+0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence release and changelog, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

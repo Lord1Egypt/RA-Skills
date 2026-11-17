@@ -1,44 +1,60 @@
-## Description: <br>
-Converts scripts or copy into high-fidelity voice audio with selectable voices, emotion controls, SSML guidance, and post-processing for MP3 or WAV delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能配音合成虾 helps agents turn scripts or plain text into AI voiceover audio with selectable voice styles, emotion controls, SSML guidance, and optional post-processing.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External creators, developers, and production teams use this skill to turn written content into narration, podcast audio, advertisements, audiobooks, or other voice assets using available TTS providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires paid-service credentials and its instructions include a command that can print API keys. <br>
-Mitigation: Use presence-only credential checks and never echo or log API key values. <br>
-Risk: Text submitted for synthesis may be sent to ElevenLabs or OpenAI, and generated audio files are written locally. <br>
-Mitigation: Use only text suitable for those providers and review local output paths before sharing or storing generated audio. <br>
-Risk: Voice cloning or use of another person's voice can create consent and authorization concerns. <br>
-Mitigation: Use cloned or third-party voices only when the user confirms they have the necessary rights and authorization. <br>
+## Use Case:
 
+External users and agents use this skill to convert copy, scripts, podcast text, audiobook text, and narration requests into voiceover audio with selected voices, speed, emotion, SSML markup, and optional background music.
 
-## Reference(s): <br>
-- [Voice style guide](references/voice-style-guide.md) <br>
-- [SSML guide](references/ssml-guide.md) <br>
-- [Audio processing guide](references/audio-processing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated MP3 or WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated and post-processed audio files locally; uses external TTS providers when API keys are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Setup guidance can expose API keys in plaintext logs or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check only whether required environment variables are set, do not print secret values, and rotate any key already exposed.
+
+Risk: Voice synthesis sends provided text to external TTS providers.
+
+Mitigation: Use the skill only with text that is appropriate to send to ElevenLabs or OpenAI, and review provider terms before processing sensitive content.
+
+Risk: Advertised engine coverage and dependency behavior may not match every runtime path.
+
+Mitigation: Verify the available engines against the script before relying on Azure or local fallback behavior, and install pinned dependencies in an isolated environment.
+
+## Reference(s):
+
+- [Audio Processing Guide](references/audio-processing-guide.md)
+- [SSML Guide](references/ssml-guide.md)
+- [Voice Style Guide](references/voice-style-guide.md)
+- [W3C Speech Synthesis Namespace](http://www.w3.org/2001/10/synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated MP3 or WAV audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call ElevenLabs or OpenAI TTS using API keys; optional post-processing can normalize audio and mix background music.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

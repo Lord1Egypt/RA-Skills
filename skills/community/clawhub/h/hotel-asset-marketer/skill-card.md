@@ -1,46 +1,61 @@
-## Description: <br>
-Generate, review, and publish social media content through MCP with AgentAuth and workspace token authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, review, and publish social media content through MCP with AgentAuth and workspace token authentication.
 
-## Publisher: <br>
-[tourmind](https://clawhub.ai/user/tourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tourmind](https://clawhub.ai/user/tourmind)
 
-## Use Case: <br>
-Marketing teams and hotel operators use this skill to generate social media drafts from HotelPost scenarios, review or regenerate copy and images, and publish or schedule approved content to connected social accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive HotelPost workspace and AgentAuth user tokens could grant workspace access if exposed. <br>
-Mitigation: Keep tokens private, configure only the required MCP headers, verify the MCP endpoint, and rotate or recreate tokens if exposure is suspected. <br>
-Risk: The skill can publish or schedule content on connected social media accounts. <br>
-Mitigation: Review generated drafts, selected accounts, publishing time, and post status before publishing or scheduling. <br>
-Risk: Feishu notifications may be sent to the wrong recipient if the conversation target is misidentified. <br>
-Mitigation: Confirm the Feishu recipient or group identifier before sending cards or images. <br>
+## Use Case:
 
+Hotel marketing teams and their agents use this skill to generate draft social media posts from HotelPost scenarios, review copy and images, and publish or schedule approved content to connected social accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tourmind/hotel-asset-marketer) <br>
-- [HotelPost MCP user onboarding](references/user-onboarding.md) <br>
-- [Error handling](references/error-handling.md) <br>
-- [Conversation examples](references/conversation-examples.md) <br>
-- [Feishu platform sending guide](references/feishu-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with MCP tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include social media draft copy, image handling commands, and publishing or scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish or schedule real social media posts through connected accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every publish or schedule action, and verify the selected account and platform before calling publishing tools.
+
+Risk: The skill depends on powerful HotelPost workspace and AgentAuth tokens configured in the agent environment.
+
+Mitigation: Store hp_sk_* and uk_* values in a protected secret store when possible, limit each token to the intended workspace, and rotate tokens if exposure is suspected.
+
+Risk: Image URLs returned by the MCP service may be downloaded and forwarded by the agent.
+
+Mitigation: Confirm image URLs are expected, preserve full signed URL parameters, avoid forwarding unexpected assets blindly, and clean up temporary local image files after use.
+
+## Reference(s):
+
+- [User Onboarding](references/user-onboarding.md)
+- [Error Handling](references/error-handling.md)
+- [Conversation Examples](references/conversation-examples.md)
+- [Feishu Platform Sending Guide](references/feishu-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/tourmind/skills/hotel-asset-marketer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls, configuration snippets, publishing status summaries, and optional shell commands for local image handling.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can produce social post drafts, platform-specific copy, image handling steps, scheduling instructions, and publishing status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

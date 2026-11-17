@@ -1,43 +1,57 @@
-## Description: <br>
-Detect personally identifiable information in text using Expanso Edge pipelines for CLI, MCP server, or cloud deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects personally identifiable information in text using Expanso Edge pipelines for CLI, MCP server, or cloud deployment.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and privacy, security, or data engineering teams use this skill to scan text for PII before logging, storage, sharing, or downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive text can be sent to OpenAI during PII detection. <br>
-Mitigation: Use only text you are authorized to send to OpenAI, configure approved credentials, and confirm data handling requirements before processing regulated or confidential content. <br>
-Risk: MCP mode exposes an unauthenticated HTTP endpoint when run as configured. <br>
-Mitigation: Run MCP mode only on trusted networks, bind it to localhost where possible, and add authentication or network controls before shared or exposed use. <br>
-Risk: Artifact metadata mentions local regex detection, but the provided pipelines use OpenAI chat completion. <br>
-Mitigation: Do not rely on regex-only local detection unless you verify or add a local regex pipeline path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-pii-detect) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Expanso Edge](https://expanso.io) <br>
+## Use Case:
 
+Developers and engineers use this skill to scan text, logs, support tickets, and pipeline payloads for PII before processing, logging, storing, or sharing data.
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, shell commands, configuration] <br>
-**Output Format:** [Structured JSON findings with summary text and CLI or HTTP usage commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include PII type, value, character offsets, confidence, has_pii status, and audit metadata when returned by the pipeline.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive text may be sent to OpenAI during PII detection.
+
+Mitigation: Use only under the installer's own data-handling rules and avoid regulated, customer, employee, payment, health, or identity data unless that transfer is approved.
+
+Risk: The advertised local regex mode is not available in this artifact.
+
+Mitigation: Treat OpenAI-backed detection as the available operating mode and do not rely on this release for local-only PII scanning.
+
+Risk: HTTP mode listens on all interfaces without authentication.
+
+Mitigation: Bind MCP mode to localhost or a private interface, add authentication and rate limits, and avoid direct network exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-pii-detect)
+- [Expanso Edge](https://expanso.io)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON object with findings, has_pii, summary, and metadata fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include detected PII values, positions, confidence scores, input metadata, and trace identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

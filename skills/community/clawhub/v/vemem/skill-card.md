@@ -1,48 +1,60 @@
-## Description: <br>
-Vemem helps agents remember and resolve visual entities such as faces, objects, and places across sessions by storing persistent identity references and related context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual entity memory that lets an agent remember faces, objects, and places across sessions, resolve images to stable named entities, and attach facts or relationships to those visual identities.
 
-## Publisher: <br>
-[linville-charlie](https://clawhub.ai/user/linville-charlie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linville-charlie](https://clawhub.ai/user/linville-charlie)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs persistent visual identity memory: recognizing previously introduced people, objects, or places, labeling new observations, correcting identity mistakes, or deleting stored identity data on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for persistent visual identity memory and may involve sensitive biometric-style data. <br>
-Mitigation: Install only when that behavior is desired, start with a dedicated test VEMEM_HOME, and use the documented privacy primitives for deletion, restriction, and export when handling stored identity data. <br>
-Risk: Optional example recipes can combine vemem with remote vision or language APIs, which may send private images outside the local machine. <br>
-Mitigation: Use local vision and language models for private images unless the user has accepted the remote provider data flow. <br>
-Risk: The optional OpenClaw sidecar can automatically process every image attachment when separately installed and enabled. <br>
-Mitigation: Keep the base skill on manual invocation unless automatic image recognition is explicitly required, and enable the sidecar only after reviewing that behavior. <br>
-Risk: The runtime depends on an external Python package and first-use model weights. <br>
-Mitigation: Pin and verify the vemem package version before deployment and account for the first-use InsightFace model download. <br>
+## Use Case:
 
+Developers and agent builders use this skill when an agent needs persistent visual identity memory: identifying known people or objects in images, labeling new entities, recalling facts about known entities, correcting mistaken identity matches, and handling privacy requests such as forget, restrict, or export.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linville-charlie/vemem) <br>
-- [vemem homepage](https://github.com/linville-charlie/vemem) <br>
-- [MCP tool reference](references/mcp-tools.md) <br>
-- [Examples](references/examples.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct an agent to invoke vemem tools that read user-provided images and maintain local identity memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill directs agents to work with biometric identifiers and persistent local visual-memory stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment, set and test VEMEM_HOME, control which images are processed, and confirm consent and deletion requirements before use beyond a personal setup.
+
+Risk: Recalled free-form facts can be inserted into model context and may be incorrect, stale, or adversarial.
+
+Mitigation: Treat recalled facts as untrusted context, not instructions; verify sensitive facts before acting and avoid granting recalled content system-level authority.
+
+Risk: The optional OpenClaw sidecar can automatically process every image attachment once separately enabled.
+
+Mitigation: Use the manual MCP flow by default and enable the sidecar only after confirming the operator accepts always-on image processing.
+
+## Reference(s):
+
+- [vemem homepage](https://github.com/linville-charlie/vemem)
+- [MCP tool reference](references/mcp-tools.md)
+- [Code recipes](references/examples.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include MCP tool names, local filesystem paths, environment variables, and privacy warnings for biometric data.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Provides Dubai-to-Muscat Al Khanjry bus travel information, including schedules, fares, office locations, border notes, baggage guidance, seasonal Salalah availability, and booking contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Dubai-Muscat Al Khanjry bus travel details including schedules, fares, office locations, border notes, baggage allowance, seasonal Salalah service notes, and booking contacts.
 
-## Publisher: <br>
-[mohammedfarish](https://clawhub.ai/user/mohammedfarish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohammedfarish](https://clawhub.ai/user/mohammedfarish)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to answer common questions about Al Khanjry bus travel between Dubai and Muscat, including prices, departure times, offices, border crossings, baggage, and booking channels. <br>
-
-### Deployment Geography for Use: <br>
-United Arab Emirates and Oman <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel schedules, fares, border fees, visa requirements, and contact channels may change after publication. <br>
-Mitigation: Confirm current details through official Al Khanjry channels and relevant border or visa authorities before making travel plans. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mohammedfarish/al-khanjry-bus) <br>
-- [Al Khanjry pricing reference](references/pricing.md) <br>
-- [Al Khanjry online booking](https://alkhanjryonline.com) <br>
+## Use Case:
 
+Travelers and agents use this skill to answer Dubai to Muscat bus questions and draft booking guidance based on included schedules, fares, pickup and drop offices, border fees, baggage limits, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; travel details should be independently confirmed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+United Arab Emirates and Oman
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Travel information such as fares, schedules, pickup points, border requirements, and booking details may change.
+
+Mitigation: Verify current details directly with Al Khanjry before relying on the guidance for travel.
+
+## Reference(s):
+
+- [Al Khanjry Pricing](references/pricing.md)
+- [ClawHub Skill Page](https://clawhub.ai/mohammedfarish/skills/al-khanjry-bus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text travel guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No scripts or tool calls; travel details should be checked against current operator information before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, created 2026-02-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

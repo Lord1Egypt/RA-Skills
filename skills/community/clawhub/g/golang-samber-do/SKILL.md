@@ -3,10 +3,10 @@ name: golang-samber-do
 description: "Dependency injection in Golang using samber/do — service containers, lifecycle management, scopes, health checks, graceful shutdown, and module organization. Apply when using or adopting samber/do, when the codebase imports github.com/samber/do or github.com/samber/do/v2, or when refactoring manual constructor injection into a DI container."
 user-invocable: true
 license: MIT
-compatibility: Designed for Claude Code or similar AI coding agents, and for projects using Golang.
+compatibility: Designed for Claude Code, Codex or similar harness, and for projects using Golang.
 metadata:
   author: samber
-  version: "1.2.1"
+  version: "1.3.0"
   openclaw:
     emoji: "💉"
     homepage: https://github.com/samber/cc-skills-golang
@@ -15,7 +15,9 @@ metadata:
         - go
     install: []
     skill-library-version: "2.0.0"
-allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
+allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
+paths:
+  - "**/*.go"
 ---
 
 **Persona:** You are a Go architect setting up dependency injection. You keep the container at the composition root, depend on interfaces not concrete types, and treat provider errors as first-class failures.
@@ -30,7 +32,7 @@ Type-safe dependency injection toolkit for Go based on Go 1.18+ generics.
 - [do.samber.dev](https://do.samber.dev)
 - [github.com/samber/do/v2](https://github.com/samber/do)
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. For Go package docs, symbols, versions, importers, and known vulnerabilities, → See `samber/cc-skills-golang@golang-pkg-go-dev` skill (`godig`) — prefer it over Context7 for Go package facts. To navigate this library's usage in your own code (definitions, call sites, diagnostics), → See `samber/cc-skills-golang@golang-gopls` skill (`gopls`). Context7 remains a fallback for docs not indexed on pkg.go.dev.
 
 DO NOT USE v1 OF THIS LIBRARY. INSTALL v2 INSTEAD:
 
@@ -92,12 +94,15 @@ do.ProvideValue(injector, &Config{Port: 8080})
 The container MUST only be accessed at the composition root:
 
 ```go
-// Invoke with error handling
+// Invoke with error handling — reserve for call sites outside the DI graph
+// (e.g. an HTTP handler that must degrade gracefully instead of crashing)
 db, err := do.Invoke[Database](injector)
 
-// MustInvoke panics on error (use when confident service exists)
+// MustInvoke panics on error — preferred in providers, recovered by do.Invoke on the parent call
 db := do.MustInvoke[Database](injector)
 ```
+
+Inside a provider function, always use `do.MustInvoke` (or `MustInvokeAs`/`MustInvokeNamed`/`MustInvokeStruct`) rather than the error-returning variant. A provider already returns `(T, error)`, so propagating a dependency failure with `do.Invoke` costs an extra `if err != nil { return nil, err }` on every call. `do.MustInvoke` panics instead, but samber/do correctly catches and recovers that panic at the enclosing `Invoke` call and converts it back into a regular error — this recover happens inside the library itself, not in caller code, so `MustInvoke` is safe to use inside providers. The failure still surfaces as an error at the composition root, just without the manual boilerplate in every provider.
 
 ### 3. Service Dependencies
 
@@ -183,6 +188,7 @@ func main() {
 3. Keep dependency trees shallow — chains beyond 3-4 levels make initialization order fragile and errors harder to trace
 4. Handle errors in provider functions — a silently failing provider creates a broken service that crashes later in unexpected places
 5. Use scopes to organize services by lifecycle — request-scoped services prevent leaks, global services prevent redundant initialization
+6. Use `do.MustInvoke*` inside provider functions instead of `do.Invoke*` — samber/do correctly catches and recovers the panic at the outer `Invoke` call, turning it back into a returned error, so it's safe to use inside providers and you get the same error propagation without the boilerplate
 
 For scopes, lifecycle management, struct injection, and debugging, see [Advanced Usage](./references/advanced.md).
 

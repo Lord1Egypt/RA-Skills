@@ -1,45 +1,54 @@
-## Description: <br>
-ADHD-friendly life management assistant for SkillBoss API Hub that helps with daily planning, task breakdown, time management, prioritization, body doubling, dopamine regulation, and maintaining routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADHD-friendly life management assistant for SkillBoss API Hub that helps with daily planning, task breakdown, time management, prioritization, body doubling, dopamine regulation, and maintaining routines.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users use this skill to plan days and weeks, break tasks into small actions, manage time blindness, maintain routines, and get accountability or body-doubling support. It is intended for practical executive-function support, not diagnosis, medical advice, or therapy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive health-adjacent details such as routines, triggers, treatment context, and reminder preferences. <br>
-Mitigation: Only save user-approved preferences and patterns, and avoid retaining diagnosis, medication, therapy, emotional triggers, or reminder channels unless the user explicitly asks. <br>
-Risk: The skill can propose file writes, recurring reminders, and scheduled check-ins that affect the user's workflow. <br>
-Mitigation: Confirm every file update, memory entry, reminder, or recurring schedule before creating it. <br>
-Risk: ADHD support can drift into medical or mental-health guidance. <br>
-Mitigation: Keep responses focused on planning and executive-function support, avoid diagnosis or treatment advice, and direct crisis or persistent health concerns to appropriate professionals. <br>
+## Use Case:
 
+External users and assistants use this skill to plan days and weeks, break tasks into small next actions, manage time blindness, prioritize work, and support accountability routines. It also helps users create ADHD-friendly checklists, reminder drafts, reviews, and self-compassionate recovery plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/marjorie-adhd-assistant) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/marjoriebroad) <br>
-- [CHADD](https://chadd.org) <br>
-- [ADDitude Magazine](https://additudemag.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Conversational text and Markdown plans, checklists, schedules, reminder proposals, and review summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose task-file updates, memory entries, or recurring reminders when connected tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill may save sensitive ADHD status, treatment context, routines, triggers, or accountability preferences across sessions without clear consent, limits, or deletion guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear memory controls and avoid saving diagnosis, medication, therapy, crisis details, routines, or triggers unless the user explicitly asks to remember that specific information.
+
+Risk: Users may treat productivity or emotional-support guidance as medical, psychiatric, or crisis advice.
+
+Mitigation: Do not diagnose, prescribe, or replace professional care; direct crisis or self-harm disclosures to appropriate professional or regional crisis resources.
+
+## Reference(s):
+
+- [CHADD](https://chadd.org)
+- [ADDitude Magazine](https://www.additudemag.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown checklists, schedules, reminder drafts, planning prompts, and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose memory, file, or scheduling actions when the host agent provides those capabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

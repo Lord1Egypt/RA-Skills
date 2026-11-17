@@ -1,4 +1,4 @@
-﻿# 技能清单 / Skills Index
+# 技能清单 / Skills Index
 
 中英双语。
 
@@ -19,6 +19,36 @@
 | 名称 | 档案 / Archive (Vessel Profile) |
 | 描述 | 船舶与公司档案：船籍、船型、建造年份、船东、管理公司等。按 IMO 查询。 |
 | 触发词 | 档案、船舶信息、船籍、船型、船东、管理公司 / archive, vessel profile, ship info, flag, ship type, owner, manager |
+
+## 2b. 事故事件 / Casualty & Events ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 事故事件 / Casualty & Events |
+| 描述 | 按 IMO 查船舶事故/事件列表，再按 eventId 查详情（描述、位置、航次、货物、关联事件）。需 `api_key`。 |
+| 触发词 | 事故、事件、casualty、碰撞、搁浅、海事事故、事故记录 / casualty, marine casualty, incident, collision, grounding |
+
+**API**：[casualty_api.md](casualty_api.md)。**脚本**：`scripts/get_casualty.py list <IMO>`、`detail <eventId>`。
+
+## 2c. 制裁 / Sanction ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 制裁 / Sanction Risk |
+| 描述 | 按 IMO 评估船舶制裁风险（US/EU/UK/Canada/UN/CN）。接口 `{base}/sanction/assess/shiprisk/token`，参数 **`imonumber`**（不是 `imo`）。需 `api_key`。 |
+| 触发词 | 制裁、制裁风险、OFAC、SDN、是否被制裁 / sanction, sanction risk, OFAC, SDN |
+
+**API**：[sanction_api.md](sanction_api.md)。**脚本**：`scripts/get_sanction.py <IMO>`。
+
+## 2d. 海事处罚 / Maritime Penalty ✅
+
+| 中文 | 英文 |
+|------|------|
+| 名称 | 海事处罚 / Maritime Administrative Penalty |
+| 描述 | 按船名/MMSI/时间查询海事行政处罚公示（案号、案由、处罚结果）。需 `api_key`。 |
+| 触发词 | 海事处罚、行政处罚、海事局处罚、案号、案由 / maritime penalty, administrative penalty, MSA penalty |
+
+**API**：[maritime_penalty_api.md](maritime_penalty_api.md)。**脚本**：`scripts/get_maritime_penalty.py --ship-name ...`。
 
 ## 3. 红海/波斯湾海峡通航 / Strait Traffic ✅
 
@@ -98,17 +128,7 @@ OpenClaw **不得**据此断言「无 PSC 风险」；应说明仅为「异常�
 | 描述 | 推荐航线、航路点、距离与航时、历史航线对比。 |
 | 触发词 | 航线、航路、推荐航线、距离、航时、航路点 / route, shipping route, recommended route, distance, sailing time, waypoint |
 
-## 10. 租船 / Charter ✅
-
-| 中文 | 英文 |
-|------|------|
-| 名称 | 租船 / Charter（邮箱船货盘 + 预抵） |
-| 描述 | 分册 **`hifleet-mytonnages/`**：**A** 邮件船货盘；**C** 预抵船舶（全量列表见 `FULL_LIST_POLICY.md`）；联系方式按需 **`CONTACT_API.md`**（`product_will_arrive_charter`）。需邮箱（A）与 `hifleet_api_key`（C + 富化）。班轮船期见下条 **`hifleet-schedule`**。 |
-| 触发词 | 租船、船盘、货盘、预抵、即将到港、ETA、我的邮件 / charter, open vessel, cargo, pre-arrival, in my mail |
-
-**路由**：A=邮件；C=预抵。详见 `hifleet-mytonnages/ROUTING_AND_WHEN.md`。
-
-## 10b. 班轮船期 / Liner schedule ✅
+## 10. 班轮船期 / Liner schedule ✅
 
 | 中文 | 英文 |
 |------|------|
@@ -116,9 +136,9 @@ OpenClaw **不得**据此断言「无 PSC 风险」；应说明仅为「异常�
 | 描述 | 分册 **`hifleet-schedule/`**：散杂货、滚装、集装箱班轮船期；需 `hifleet_api_key`；**须全量返回**（`FULL_LIST_POLICY.md`）；联系方式按需 unlock（`product_vessel_liner_charter`）。 |
 | 触发词 | 班轮船期、船期表、航线班轮、散杂货船期、滚装船期、集装箱船期 / liner schedule, line schedule, bulk schedule, Ro-Ro schedule, container schedule |
 
-**API**：`hifleet-schedule/SCHEDULE_API.md`；四类产品 unlock 对照 **`references/charter_contact_unlock.md`**。
+**API**：`hifleet-schedule/SCHEDULE_API.md`；三类产品 unlock 对照 **`references/charter_contact_unlock.md`**。
 
-## 10c. 公开船货盘 / Public open market ✅
+## 10b. 公开船货盘 / Public open market ✅
 
 | 中文 | 英文 |
 |------|------|
@@ -165,10 +185,18 @@ OpenClaw **不得**据此断言「无 PSC 风险」；应说明仅为「异常�
 | 中文 | 英文 |
 |------|------|
 | 名称 | 账户与用量 / Account & Usage |
-| 描述 | OpenClaw **api_key** 自助查询：**积分概览**（`openclaw/account/summary`）、**调用汇总**（`usage`）、**调用明细**（`usage/details`）、**积分流水**（`transactions`）。查询不扣积分。响应含 **`agentSummary`** 供 Agent 直接转述。 |
-| 触发词 | 积分、余额、还剩多少、用了多少、调用记录、扣费、消费、流水、account balance、usage、credits、billing |
+| 描述 | **全链路**（已实现）：[FIRST_SETUP.md](../FIRST_SETUP.md) 引导注册；`summary` / `usage` / `transactions`；充值/订阅/发票见 [billing_api.md](billing_api.md)；**已有 Key 换票进控制台**见 [console_sso_api.md](console_sso_api.md)。 |
+| 触发词 | 积分、余额、注册、开户、充值、订阅、包月、Token Plan、付费、发票、报销、api_key、还剩多少、调用记录、扣费、流水、控制台、打开控制台、用 api_key 登录、account balance、usage、credits、billing、invoice、signup、console SSO |
 
-**Agent 必守**：余额只强调 **`availablePoints`**；真正扣款看 **`transactions`**；调用明细与流水勿混谈。详见 [account_api.md](account_api.md)。
+**Agent 必守**：
+
+- 无 `api_key` → [FIRST_SETUP.md](../FIRST_SETUP.md) → [account_onboarding_api.md](account_onboarding_api.md)  
+- **已有 Key 要打开控制台** → [console_sso_api.md](console_sso_api.md)（api 换票 → 打开 skills.hifleet.com 的 `consoleUrl`）  
+- 余额只强调 **`availablePoints`**；`availablePoints <= 0` 或 `code=4021` → 先查 `billing/subscription` 再引导 [billing_api.md](billing_api.md)  
+- 付费优先发 **`paymentPageUrl`** 收银台链接，勿只给二维码或编造渠道  
+- 订阅到期为**邮件提醒 + 手动续费**，勿称自动扣款  
+- 真正扣款看 **`transactions`**；调用明细与流水勿混谈  
+- 详见 [account_api.md](account_api.md)、[billing_api.md](billing_api.md)、[console_sso_api.md](console_sso_api.md)
 
 ---
 

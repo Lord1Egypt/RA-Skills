@@ -1,41 +1,69 @@
-## Description: <br>
-Drive a self-hosted Huly workspace through the huly CLI for issues, projects, cards, documents, calendars, channels, direct messages, actions, time tracking, notifications, and approvals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive self-hosted Huly workspaces through the huly CLI for project tracking, scheduling, documents, chat, notifications, approvals, and other workspace automation.
 
-## Publisher: <br>
-[iamcoder18](https://clawhub.ai/user/iamcoder18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamcoder18](https://clawhub.ai/user/iamcoder18)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to choose safe huly CLI commands, verify workspace context, read or mutate Huly records, and understand side effects before operating a self-hosted Huly workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through broad workspace operations, including destructive CLI actions. <br>
-Mitigation: Confirm the active Huly workspace, preview destructive changes, and require explicit approval before deletes or other irreversible mutations. <br>
-Risk: Raw huly api or huly ws commands can bypass safer task-specific CLI surfaces. <br>
-Mitigation: Use standard huly CLI commands first and allow raw API/RPC escape hatches only when the normal command cannot complete the task. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to let an agent inspect and automate a self-hosted Huly workspace through CLI commands, including issue tracking, project setup, documents, cards, chat, calendars, time logs, notifications, and approvals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamcoder18/skills/huly) <br>
-- [Server-resolved GitHub source](https://github.com/IamCoder18/huly-cli/tree/main/packages/huly-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command patterns for programmatic reads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill installs and relies on an unpinned third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the @iamcoder18/huly-cli package source; prefer a pinned, reviewed CLI version.
+
+Risk: The skill can manage persistent Huly credentials and workspace access.
+
+Mitigation: Use a least-privileged service account and prefer a short-lived HULY_TOKEN over stored passwords.
+
+Risk: The skill can trigger powerful workspace changes, including deletes, DM sends, approvals, raw API calls, and credential resets.
+
+Mitigation: Review and explicitly confirm sensitive actions before allowing the agent to run them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamcoder18/skills/huly)
+- [huly CLI issue tracker](https://github.com/IamCoder18/huly-cli)
+- [Auth and setup](references/auth-and-setup.md)
+- [Issues and actions](references/issues-and-todos.md)
+- [Tracker projects](references/tracker-projects.md)
+- [Cards](references/cards.md)
+- [Documents](references/documents.md)
+- [Chat and collaboration](references/chat-and-collaboration.md)
+- [Calendar and schedule](references/calendar-and-schedule.md)
+- [Direct SDK access](references/direct-sdk-access.md)
+- [Notifications and approvals](references/notifications-and-approvals.md)
+- [Spaces, types, and relations](references/spaces-types-and-relations.md)
+- [Workspace and user](references/workspace-and-user.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Encourages --json or --ci for programmatic reads, dry-run where available, and explicit confirmation before persistent workspace writes.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence, created 2026-08-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

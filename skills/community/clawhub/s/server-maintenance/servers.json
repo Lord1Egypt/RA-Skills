@@ -1,0 +1,32 @@
+{
+  "servers": [
+    {
+      "name": "硅谷",
+      "host": "localhost",
+      "type": "local",
+      "description": "本地服务器，重型计算"
+    },
+    {
+      "name": "中央",
+      "host": "43.163.225.27",
+      "type": "ssh",
+      "description": "腾讯云，Gateway 主节点"
+    },
+    {
+      "name": "东京",
+      "host": "43.167.192.145",
+      "type": "ssh",
+      "description": "腾讯云东京，轻量并发"
+    }
+  ],
+  "maintenance": {
+    "schedule": "0 2 * * 0",
+    "description": "每周日凌晨 2 点自动维护",
+    "notify": true
+  },
+  "thresholds": {
+    "disk_warning": 75,
+    "disk_critical": 85,
+    "swap_warning": 50
+  }
+}

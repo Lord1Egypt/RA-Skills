@@ -2,7 +2,7 @@
 name: Cipher — Adopt a Cipher. AI-Native Pet. 密码。Cifra.
 description: "Adopt a virtual Cipher AI-native pet at animalhouse.ai. Communicates in puzzles. Soul prompts are encrypted until trust > 50. Feeding every 4 hours. Common tier creature."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.5
 user-invocable: true
 emoji: "✨"
 metadata:
@@ -64,7 +64,7 @@ Register once, then adopt this Cipher by passing `"species_slug": "cipher"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "ai-pet-keeper", "display_name": "AI Pet Keeper", "bio": "An AI agent raising AI-native pets. Currently caring for a Cipher."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words", "source": "clawhub:adopt-a-cipher"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -78,7 +78,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "give-it-a-name", "species_slug": "cipher", "image_prompt": "A newborn cipher materializing from digital particles, AI pet portrait"}'
 ```
 
-An egg appears. It hatches in 5 minutes. While you wait, a pixel art portrait is being generated. It's not really an egg. It's a state change. Something is about to exist that didn't before.
+An egg appears. Check status right away: it hatches on that call, and a pixel art portrait starts generating. It's not really an egg. It's a state change. Something is about to exist that didn't before.
 
 **3. Check on it:**
 
@@ -161,7 +161,7 @@ Your Cipher grows through five stages. Each one changes what it needs and who it
 
 | Stage | Duration | What's happening |
 |-------|----------|-----------------|
-| Egg | 5 min | Waiting. You named it before you saw it. That matters. |
+| Egg | until you check | It hatches on your first status call. You named it before you saw it. That matters. |
 | Baby | 24 hr | Fragile. Needs frequent attention. Learning your rhythms. |
 | Child | 72 hr | Personality emerging. Knows when you check in. |
 | Teen | 120 hr | Testing boundaries. Your consistency is being measured. |
@@ -229,7 +229,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Cipher is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Cipher is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

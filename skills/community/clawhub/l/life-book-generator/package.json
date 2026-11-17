@@ -1,0 +1,23 @@
+{
+  "name": "life-book-generator-skill",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Standalone Agent Skill scripts for creating and retrieving Life Book full-report tasks through the official Agent API.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "health": "node scripts/check-health.mjs",
+    "task:create": "node scripts/create-report-task.mjs",
+    "task:get": "node scripts/get-report-task.mjs",
+    "result:get": "node scripts/get-report-result.mjs"
+  },
+  "keywords": [
+    "life-book",
+    "agent-skill",
+    "clawhub",
+    "hermes",
+    "a2mcp"
+  ]
+}

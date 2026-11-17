@@ -1,43 +1,53 @@
-## Description: <br>
-Text-to-speech using Kokoro local TTS. Use when the user wants to convert text to audio, read aloud, or generate speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech using Kokoro local TTS. Use when the user wants to convert text to audio, read aloud, or generate speech.
 
-## Publisher: <br>
-[babysor](https://clawhub.ai/user/babysor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[babysor](https://clawhub.ai/user/babysor)
 
-## Use Case: <br>
-Developers and users use this skill to run local text-to-speech with Kokoro TTS, including converting text, EPUB, and PDF inputs to audio, selecting voices, blending voices, adjusting speed, and streaming playback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a third-party Kokoro TTS CLI and model files downloaded from GitHub. <br>
-Mitigation: Install and use the CLI only after reviewing the third-party project and verifying the downloaded model and voices files are acceptable for the deployment environment. <br>
-Risk: Generated audio from private documents can contain sensitive local output. <br>
-Mitigation: Store, share, retain, or delete generated audio according to the sensitivity of the source documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/babysor/speak1) <br>
-- [Kokoro TTS Project](https://github.com/nazdridoy/kokoro-tts) <br>
-- [Kokoro v1.0 ONNX Model](https://github.com/nazdridoy/kokoro-tts/releases/download/v1.0.0/kokoro-v1.0.onnx) <br>
-- [Kokoro v1.0 Voices File](https://github.com/nazdridoy/kokoro-tts/releases/download/v1.0.0/voices-v1.0.bin) <br>
-- [Kokoro TTS Reference](reference.txt) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to convert text, text files, EPUBs, and PDFs into local speech audio with Kokoro TTS, including voice selection, voice blending, streaming playback, and split chapter output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers local CLI installation, model download commands, voice and language options, and audio output choices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned kokoro-tts installation and downloaded model or voice files can introduce supply-chain uncertainty.
+
+Mitigation: Pin the kokoro-tts package version and verify downloaded model and voice files before use.
+
+Risk: Text, EPUB, or PDF inputs may contain sensitive content that will be processed by the local TTS environment.
+
+Mitigation: Run the skill only in environments approved for the selected documents and avoid processing secrets or credentials unless that handling is acceptable.
+
+## Reference(s):
+
+- [Kokoro TTS Reference](artifact/reference.txt)
+- [Kokoro TTS](https://github.com/nazdridoy/kokoro-tts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of audio files or streaming playback through local kokoro-tts commands; Python 3.9-3.12 is required by the artifact reference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

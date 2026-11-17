@@ -1,40 +1,59 @@
-## Description: <br>
-Convert PDF pages to images (PNG, JPG, or WebP). Supports DPI control, resize, background color, and page selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF pages to images (PNG, JPG, or WebP). Supports DPI control, resize, background color, and page selection.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert selected PDF pages into image outputs for thumbnails, previews, print exports, product galleries, and slide extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF content, PDF URLs, and the required API key are sent to pdfapihub.com for conversion. <br>
-Mitigation: Use only with documents and credentials that are acceptable to share with the provider, and avoid confidential, regulated, or internal documents unless the provider's data-handling, retention, and security terms have been reviewed. <br>
+## Use Case:
 
+Developers and document workflow teams use this skill to convert selected PDF pages into PNG, JPG, or WebP images for thumbnails, previews, social media images, print exports, and slide extraction.
 
-## Reference(s): <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [PDF to Image ClawHub Page](https://clawhub.ai/rishabhdugar/pdf-to-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON responses containing image URLs, base64 image data, or downloadable image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports PNG, JPG, JPEG, and WebP outputs; page selection; DPI from 72 to 300; resize dimensions; background color fill; and URL, base64, both, or file output modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF files or PDF URLs are sent to pdfapihub.com for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use confidential, regulated, or internal-only documents unless the organization has approved the provider and its retention and privacy practices.
+
+Risk: The skill requires an API key in the CLIENT-API-KEY header.
+
+Mitigation: Store the key in an approved secret manager or environment variable, avoid including it in shared prompts or files, and rotate it if exposed.
+
+Risk: URL output can place generated images behind externally hosted links.
+
+Mitigation: Use base64 or file output when externally hosted image links are not appropriate for the document sensitivity or workflow.
+
+## Reference(s):
+
+- [PDF API Hub documentation](https://pdfapihub.com/docs)
+- [PDF to Image API endpoint](https://pdfapihub.com/api/v1/convert/pdf/image)
+- [ClawHub skill page](https://clawhub.ai/rishabhdugar/skills/pdf-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell commands; API responses may contain image URLs, base64 image data, or downloadable image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PNG, JPG, JPEG, and WebP output, page selection, DPI from 72 to 300, resize dimensions up to 10000 px, and up to 100 pages per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2412,7 +2412,7 @@ describe("LifecycleTelemetry", () => {
       {
         runId: "run-1", sessionId: "sess-1", provider: "anthropic",
         model: "claude-3",
-        prompt: "My key is sk-ant-abc1234567890123456789012345678901234567890123",
+        prompt: "My key is REDACTED-SECRET",
         historyMessages: [], imagesCount: 0,
       },
       { sessionKey: "sk-1", sessionId: "sess-1" },

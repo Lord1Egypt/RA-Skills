@@ -1,44 +1,63 @@
-## Description: <br>
-国家公务员考试（国考）和地方公务员考试（省考）全流程备考指导技能，覆盖考试概述、行测、申论、复习计划、时政热点、真题解析和结构化面试训练。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为国考和省考备考提供考试信息、行测与申论策略、复习计划、时政素材、真题解析和结构化面试训练，并可生成交互式 HTML 备考报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External exam candidates and study coaches use this skill to plan and structure preparation for Chinese national and provincial civil service exams, including written-test strategy, current-affairs study, past-question review, and structured interview practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad exam-prep triggers and current-affairs web search may activate the skill in more conversations than intended or surface time-sensitive information. <br>
-Mitigation: Installers should confirm the trigger scope fits their workflow and verify current-affairs guidance against authoritative sources before relying on it. <br>
+## Use Case:
 
+External learners and exam-preparation agents use this skill to plan and practice for Chinese national and provincial civil-service exams. It supports exam consultation, personalized study planning, 行测 and 申论 coaching, current-affairs material organization, past-question review, and structured interview practice.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/bettermen/civil-service-exam-prep) <br>
-- [公务员考试概述](references/exam_overview.md) <br>
-- [行测（行政职业能力测验）备考策略](references/xingce_strategy.md) <br>
-- [申论备考策略](references/shenlun_strategy.md) <br>
-- [复习计划制定指南](references/study_plan_templates.md) <br>
-- [时政热点追踪与真题解析](references/current_affairs_and_practice.md) <br>
-- [结构化面试指南](references/interview_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Structured Chinese guidance with tables and optional HTML-style study reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search for current-affairs questions; no executable code or credential handling was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Civil-service exam timelines, provincial requirements, and current-affairs topics can become stale or vary by jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the target province and date range, then verify fresh information from authoritative sources before giving time-sensitive guidance.
+
+Risk: Generic preparation plans may not fit a learner's baseline, schedule, or exam target.
+
+Mitigation: Collect the learner's exam target, available preparation time, current level, and daily study hours before producing a plan.
+
+Risk: Specific past-exam questions may carry copyright or reuse restrictions.
+
+Mitigation: Provide methodology, scoring logic, and user-supplied question analysis without reproducing protected question text unnecessarily.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/civil-service-exam-prep)
+- [公务员考试概述](references/exam_overview.md)
+- [行测（行政职业能力测验）备考策略](references/xingce_strategy.md)
+- [申论备考策略](references/shenlun_strategy.md)
+- [复习计划制定指南](references/study_plan_templates.md)
+- [时政热点追踪与真题解析](references/current_affairs_and_practice.md)
+- [结构化面试指南](references/interview_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language structured guidance and interactive HTML reports with tables, examples, plans, and scoring rubrics when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for target exam, province, preparation window, current level, daily study time, and specific question context; current-affairs topics should be verified against fresh authoritative sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

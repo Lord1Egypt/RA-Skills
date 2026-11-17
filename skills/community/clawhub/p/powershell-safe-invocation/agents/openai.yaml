@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerShell 安全调用"
+  short_description: "在 Windows 安全处理路径、引号、参数转义和原生命令调用"
+  default_prompt: "使用 $powershell-safe-invocation 编写或修复当前 PowerShell 命令。"

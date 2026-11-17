@@ -1,44 +1,58 @@
-## Description: <br>
-Network marketing and MLM business assistant for prospecting, follow-ups, team building, compliance, objection handling, income calculations, and duplication systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network marketing / MLM business assistant for prospecting, follow-ups, team building, and compliance.
 
-## Publisher: <br>
-[jrbobbyhansen-pixel](https://clawhub.ai/user/jrbobbyhansen-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrbobbyhansen-pixel](https://clawhub.ai/user/jrbobbyhansen-pixel)
 
-## Use Case: <br>
-External network marketing, direct sales, and MLM participants use this skill to draft prospecting, follow-up, objection-handling, team-building, compliance, and income-projection assistance. Users should manually review outputs before using them in sales or recruiting conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MLM outreach guidance may be used to pressure people who decline or to present sales and recruiting conversations as non-commercial education. <br>
-Mitigation: Manually review outputs, clearly frame sales or recruiting intent, and avoid further outreach after a prospect declines. <br>
-Risk: Income or product guidance may become misleading if used without disclosure or substantiation. <br>
-Mitigation: Use income disclosures, avoid unsupported income or health claims, and verify company-specific claims before sharing. <br>
-Risk: Prospecting workflows may encourage unnecessary collection or use of personal prospect data. <br>
-Mitigation: Collect only necessary prospect information, avoid scraping social signals, and follow applicable privacy and consent requirements. <br>
+## Use Case:
 
+External network marketing and direct sales users use this skill to draft prospecting messages, follow-up sequences, objection responses, compliance-aware sales language, team workflows, and income projection examples.
 
-## Reference(s): <br>
-- [Enagic / Kangen Water Reference](references/enagic.md) <br>
-- [MLM Objection Handling](references/objections.md) <br>
-- [ClawHub release page](https://clawhub.ai/jrbobbyhansen-pixel/mlm-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON from the income calculator script, and shell command examples when invoking scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include outreach drafts, follow-up sequences, objection responses, activity tracking guidance, compliance reminders, and projected income calculations with disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Prospecting and follow-up workflows may involve personal contact data and repeated outreach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only necessary prospect information, obtain appropriate consent, honor opt-out requests immediately, and avoid uploading sensitive contact details.
+
+Risk: Product, sanitation, medical, or disease-related claims could mislead customers or require legal review.
+
+Mitigation: Avoid cure, treatment, sanitation, FDA, or guaranteed benefit claims unless they are verified, disclosed, and approved for the specific jurisdiction and product.
+
+Risk: Income projections and opportunity language could imply typical or guaranteed earnings.
+
+Mitigation: Pair any earnings discussion with current income disclosures, explain that results vary, and avoid guaranteed-income or replacement-income claims.
+
+## Reference(s):
+
+- [Enagic / Kangen Water Reference](references/enagic.md)
+- [MLM Objection Handling](references/objections.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with scripts, tables, and optional JSON output from the income calculator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include outreach templates, activity plans, compliance reminders, and projected income calculations with disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,65 @@
-## Description: <br>
-Star Office helps an agent deploy and operate a pixel-art office dashboard with multi-agent status visualization, mobile viewing, public access, and optional AI room redesign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Star Office helps an agent deploy a pixel-art office dashboard for multi-agent status visualization, mobile viewing, and public access.
 
-## Publisher: <br>
-[18153](https://clawhub.ai/user/18153) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18153](https://clawhub.ai/user/18153)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent set up a local or publicly shared AI office dashboard, push assistant status updates, invite other agents, and configure optional room-design features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard may be exposed publicly while using weak default secrets or the default sidebar password. <br>
-Mitigation: Set strong FLASK_SECRET_KEY and ASSET_DRAWER_PASS values, replace the default 1234 password, and restrict public access with Cloudflare Access, basic authentication, or IP allowlists. <br>
-Risk: Shared status text and yesterday memo files may reveal private work details. <br>
-Mitigation: Review and limit status messages and memo content before sharing the dashboard outside a trusted audience. <br>
-Risk: Gemini API credentials are entered into and used by the server-side application. <br>
-Mitigation: Configure a Gemini API key only when that storage and usage model is acceptable, protect runtime configuration files, and rotate the key if exposure is suspected. <br>
-Risk: Desktop wrappers and asset upload or editing surfaces are experimental/admin-oriented areas. <br>
-Mitigation: Treat those features as trusted-admin workflows and avoid enabling them for untrusted users. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to launch and share a Star Office UI dashboard that shows agent work states, yesterday memos, multi-agent presence, and optional AI-generated room customization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18153/star-office) <br>
-- [Publisher profile](https://clawhub.ai/user/18153) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.en.md](README.en.md) <br>
-- [Guest onboarding skill](frontend/join-office-skill.md) <br>
-- [Desktop pet state API](desktop-pet/STATE_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python snippets plus configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local setup commands, environment variables, dashboard URLs, and status-push configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Public sharing and agent-sync endpoints can expose control of the dashboard or local activity when defaults are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on localhost until default secrets are changed, sample join keys are removed, mutation and memo endpoints are disabled or authenticated, and the exact deployed code has been reviewed.
+
+Risk: Remote downloaded push scripts may run unreviewed code in an agent environment.
+
+Mitigation: Use an audited local copy of office-agent-push.py instead of running a remotely downloaded script.
+
+Risk: Status details and yesterday memos can include private work information.
+
+Mitigation: Curate status text and memo files before exposing the dashboard to other users or public networks.
+
+Risk: Bundled or referenced art assets may have non-commercial restrictions separate from code license terms.
+
+Mitigation: Replace art assets with original or fully licensed assets before commercial use.
+
+## Reference(s):
+
+- [Star Office ClawHub release](https://clawhub.ai/18153/skills/star-office)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Star Office UI overview](docs/STAR_OFFICE_UI_OVERVIEW.md)
+- [March 2026 changelog](docs/CHANGELOG_2026-03.md)
+- [Desktop pet state API](desktop-pet/STATE_API.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, deployment, status-sync, public-access, and security-hardening guidance for running the Star Office UI dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,55 @@
+{
+  "name": "csv-tools",
+  "version": "1.1.0",
+  "description": "CSV 工具集 v1.1.0 — 预览、筛选、排序、合并、分割、去重、验证、统计、列操作、类型检测、数据画像、抽样。12个子命令覆盖CSV全流程。纯Python标准库(csv模块)，无外部依赖。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "csv",
+    "data-processing",
+    "数据处理",
+    "数据清洗",
+    "csv-tools",
+    "data-analysis",
+    "etl",
+    "data-profiling"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "preview": "python3 scripts/csv_tools.py preview",
+    "filter": "python3 scripts/csv_tools.py filter",
+    "sort": "python3 scripts/csv_tools.py sort",
+    "merge": "python3 scripts/csv_tools.py merge",
+    "split": "python3 scripts/csv_tools.py split",
+    "dedup": "python3 scripts/csv_tools.py dedup",
+    "validate": "python3 scripts/csv_tools.py validate",
+    "stats": "python3 scripts/csv_tools.py stats",
+    "columns": "python3 scripts/csv_tools.py columns",
+    "detect": "python3 scripts/csv_tools.py detect",
+    "profile": "python3 scripts/csv_tools.py profile",
+    "sample": "python3 scripts/csv_tools.py sample"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "data-analysis",
+    "region": "global",
+    "dependencies": [],
+    "emoji": "📊"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/csv-tools"
+  }
+}

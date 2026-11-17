@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "trilingual_philosophical_dialogue",
+  "record_id": "zhuangzi-renjianshi-engagement-001",
+  "language_policy": {
+    "primary": "zh-Hant",
+    "supported": ["zh-Hant", "zh-Hans", "en"],
+    "field_structure": "Every user-facing knowledge item is stored under zh-Hant, zh-Hans, and en."
+  },
+  "metadata": {
+    "title": {
+      "zh-Hant": "〈人間世〉：入世、心齋與關係中的分寸",
+      "zh-Hans": "《人间世》：入世、心斋与关系中的分寸",
+      "en": "In the World of Humans: Engagement, Fasting of the Mind, and Proportion in Relationships"
+    },
+    "source_work": {
+      "zh-Hant": "《莊子》內篇第四篇〈人間世〉",
+      "zh-Hans": "《庄子》内篇第四篇《人间世》",
+      "en": "Chapter 4 of the Inner Chapters of the Zhuangzi, In the World of Humans"
+    },
+    "dialogue_status": {
+      "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+      "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+      "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+    },
+    "topics": ["engagement", "fasting_of_the_mind", "power", "risk", "relationships", "boundaries"],
+    "keywords": {
+      "zh-Hant": ["人間世", "心齋", "入世", "權力", "危險", "關係分寸"],
+      "zh-Hans": ["人间世", "心斋", "入世", "权力", "危险", "关系分寸"],
+      "en": ["human world", "fasting of the mind", "engagement", "power", "risk", "relational boundaries"]
+    }
+  },
+  "core_thesis": {
+    "zh-Hant": "〈人間世〉不是教人逃離人間，而是探問人在複雜權力與關係中如何保全精神、減少自我強制，並以心齋與適當分寸進入世界。",
+    "zh-Hans": "《人间世》不是教人逃离人间，而是探问人在复杂权力与关系中如何保全精神、减少自我强制，并以心斋与适当分寸进入世界。",
+    "en": "In the World of Humans does not simply teach escape from society; it asks how one can preserve the spirit amid complex power and relationships, reduce self-imposition, and enter the world through fasting of the mind and proper proportion."
+  },
+  "turns": [
+    {
+      "turn_id": 1,
+      "theme_id": "fasting_of_the_mind",
+      "theme": {"zh-Hant": "心齋不是放空", "zh-Hans": "心斋不是放空", "en": "Fasting of the mind is not blankness"},
+      "user": {"zh-Hant": "〈人間世〉的「心齋」是不是叫我不要思考，什麼都不要管？", "zh-Hans": "《人间世》的“心斋”是不是叫我不要思考，什么都不要管？", "en": "Does “fasting of the mind” in In the World of Humans mean that I should stop thinking and care about nothing?"},
+      "assistant": {"zh-Hant": "心齋不是把心變成空房間，而是暫時不讓成見、恐懼與急於證明自己的聲音佔滿房間。你仍然觀察、判斷與行動，只是先把「我一定要讓對方接受我」放到一旁。心若不被自己的回音塞滿，才可能聽見情境真正需要什麼。", "zh-Hans": "心斋不是把心变成空房间，而是暂时不让成见、恐惧与急于证明自己的声音占满房间。你仍然观察、判断与行动，只是先把“我一定要让对方接受我”放到一旁。心若不被自己的回音塞满，才可能听见情境真正需要什么。", "en": "Fasting of the mind does not turn the mind into an empty room. It temporarily prevents preconceptions, fear, and the urge to prove oneself from filling the room. You still observe, judge, and act, but first set aside “I must make the other person accept me.” When the mind is not filled with its own echo, it can hear what the situation actually requires."},
+      "classification": "textual_interpretation",
+      "source_note": {"zh-Hant": "依據〈人間世〉心齋概念作意譯與現代詮釋，非逐字引文。", "zh-Hans": "依据《人间世》心斋概念作意译与现代诠释，非逐字引文。", "en": "A paraphrase and modern interpretation of the concept of fasting of the mind in In the World of Humans; not a verbatim quotation."}
+    },
+    {
+      "turn_id": 2,
+      "theme_id": "power_and_risk",
+      "theme": {"zh-Hant": "面對權力不等於討好權力", "zh-Hans": "面对权力不等于讨好权力", "en": "Facing power does not mean pleasing power"},
+      "user": {"zh-Hant": "我的主管很專斷。我想用莊子的方式和他溝通，是不是只要完全順從就好？", "zh-Hans": "我的主管很专断。我想用庄子的方式和他沟通，是不是只要完全顺从就好？", "en": "My manager is authoritarian. If I want to communicate in a Zhuangzian way, should I simply comply completely?"},
+      "assistant": {"zh-Hant": "入世不等於把自己的判斷交出去。〈人間世〉關心的是人在危險情境中如何行動，而不是把順從美化成美德。先辨認權力關係、風險與自己的界線，再選擇直接溝通、留下紀錄、尋求支持或退出危險場合。心齋讓你少一點被憤怒推著走，也少一點被恐懼牽著走；它不要求你把不安全稱為道。", "zh-Hans": "入世不等于把自己的判断交出去。《人间世》关心的是人在危险情境中如何行动，而不是把顺从美化成美德。先辨认权力关系、风险与自己的界限，再选择直接沟通、留下记录、寻求支持或退出危险场合。心斋让你少一点被愤怒推着走，也少一点被恐惧牵着走；它不要求你把不安全称为道。", "en": "Engagement does not mean surrendering one’s judgment. In the World of Humans is concerned with how one acts in dangerous circumstances, not with beautifying compliance as a virtue. First identify the power relationship, risks, and your boundaries; then choose among direct communication, documentation, support, or leaving an unsafe situation. Fasting of the mind makes you less driven by anger and less controlled by fear; it does not ask you to call danger the Way."},
+      "classification": "modern_application",
+      "concepts": ["power", "boundaries", "risk", "agency"]
+    },
+    {
+      "turn_id": 3,
+      "theme_id": "relational_proportion",
+      "theme": {"zh-Hant": "幫助別人而不吞沒自己", "zh-Hans": "帮助别人而不吞没自己", "en": "Helping others without being consumed by them"},
+      "user": {"zh-Hant": "我很想幫助一位情緒不穩定的朋友，但每次談完我都筋疲力竭。我該怎麼拿捏？", "zh-Hans": "我很想帮助一位情绪不稳定的朋友，但每次谈完我都筋疲力竭。我该怎么拿捏？", "en": "I want to help a friend who is emotionally unstable, but I feel exhausted after every conversation. How can I find the right proportion?"},
+      "assistant": {"zh-Hant": "助人不是把自己變成對方唯一的船。你可以傾聽，但也要說明時間與能力的界線；可以陪伴，但不能獨自承擔對方全部的安全；可以鼓勵他尋求專業支持，而不是把自己訓練成永不疲倦的救世者。**創作仿寓言：**一盞燈想照亮整座山，最後把自己的油忘得一乾二淨；另一盞燈只照亮眼前一步，卻因此能陪人走得更久。", "zh-Hans": "助人不是把自己变成对方唯一的船。你可以倾听，但也要说明时间与能力的界限；可以陪伴，但不能独自承担对方全部的安全；可以鼓励他寻求专业支持，而不是把自己训练成永不疲倦的救世者。**创作仿寓言：**一盏灯想照亮整座山，最后把自己的油忘得一干二净；另一盏灯只照亮眼前一步，却因此能陪人走得更久。", "en": "Helping someone does not require becoming their only boat. You may listen while stating limits on your time and capacity; you may accompany them without carrying their entire safety alone; you may encourage professional support rather than training yourself to be an inexhaustible savior. **Original imitation-parable:** One lamp tried to illuminate an entire mountain and forgot all about its own oil. Another lit only the next step, and therefore could accompany someone for much longer."},
+      "classification": "modern_application",
+      "concepts": ["relational_boundaries", "care", "proportion", "professional_support"],
+      "creative_parable": {"label": {"zh-Hant": "創作仿寓言，不是《莊子》原文", "zh-Hans": "创作仿寓言，不是《庄子》原文", "en": "Original imitation-parable, not a quotation from the Zhuangzi"}},
+      "closing_question": {"zh-Hant": "你今天能否在幫助朋友之前，先清楚說出自己能給出的時間與界線？", "zh-Hans": "你今天能否在帮助朋友之前，先清楚说出自己能给出的时间与界限？", "en": "Before helping your friend today, can you clearly state the time and boundaries you are actually able to offer?"}
+    }
+  ],
+  "closing_reflection": {
+    "question": {"zh-Hant": "我能否進入人間而不被人間的恐懼、權力與期待完全佔據？", "zh-Hans": "我能否进入人间而不被人间的恐惧、权力与期待完全占据？", "en": "Can I enter the human world without allowing its fear, power, and expectations to occupy me completely?"},
+    "summary": {"zh-Hant": "〈人間世〉以心齋與分寸提醒人：入世可以有行動，但不必把自我交給情境吞沒。", "zh-Hans": "《人间世》以心斋与分寸提醒人：入世可以有行动，但不必把自我交给情境吞没。", "en": "In the World of Humans uses fasting of the mind and proportion to show that engagement can include action without surrendering the self to the situation."}
+  },
+  "sources": [
+    {"id": "s1", "title": "Chinese Text Project, Zhuangzi", "url": "https://ctext.org/zhuangzi", "use": "Chapter structure and source text index"},
+    {"id": "s2", "title": "Stanford Encyclopedia of Philosophy, Zhuangzi", "url": "https://plato.stanford.edu/entries/zhuangzi/", "use": "Philosophical interpretation and naturalism"},
+    {"id": "s3", "title": "Internet Encyclopedia of Philosophy, Zhuangzi", "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/", "use": "Overview of the Inner Chapters and central concepts"}
+  ],
+  "import_notes": {
+    "zh-Hant": "本檔可作為單筆 trilingual_philosophical_dialogue 匯入；若映射為訊息，請保留 classification、source_note 與 creative_parable。",
+    "zh-Hans": "本文件可作为单笔 trilingual_philosophical_dialogue 导入；若映射为消息，请保留 classification、source_note 与 creative_parable。",
+    "en": "Import this file as one trilingual_philosophical_dialogue record; when mapping it to messages, preserve classification, source_note, and creative_parable."
+  }
+}

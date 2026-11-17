@@ -1,50 +1,69 @@
-## Description: <br>
-目的地PK对比助手，帮助纠结于多个目的地的用户快速做出决策。输入2-3个候选目的地、出发城市、出行日期，自动生成机票、酒店、景点的多维度对比卡片。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+目的地PK对比助手，帮助纠结于多个目的地的用户快速做出决策。输入2-3个候选目的地、出发城市、出行日期，自动生成机票、酒店、景点的多维度对比卡片。当用户提到"选哪个目的地"、"XX还是XX"、"纠结去哪"、"对比目的地"、"PK"时使用。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-Travel users use this skill to compare two or three candidate destinations by flights, hotels, attractions, estimated cost, and stated preferences, then receive a concise recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes setup and troubleshooting guidance that can weaken machine or network security, including global CLI installation, sudo use, and disabling TLS certificate verification. <br>
-Mitigation: Install the FlyAI CLI only after review, prefer a pinned local or sandboxed install, avoid sudo, and do not use NODE_TLS_REJECT_UNAUTHORIZED=0. <br>
-Risk: The skill can read or save travel preferences, budget, family details, and accessibility needs through memory or ~/.flyai/user-profile.md. <br>
-Mitigation: Ask for user consent before saving preferences, and review or delete stored memory and ~/.flyai/user-profile.md when reuse is not desired. <br>
-Risk: Travel prices, availability, and recommendation inputs can be incomplete or change after the comparison is generated. <br>
-Mitigation: Treat generated comparisons as decision support and verify live flight, hotel, and attraction details before booking. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to compare 2-3 candidate destinations by flight, hotel, attraction, estimated cost, and preference fit before choosing where to go.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-destination-pk) <br>
-- [Core workflow](artifact/reference/core-workflow.md) <br>
-- [Tools](artifact/reference/tools.md) <br>
-- [Flight search](artifact/reference/search-flight.md) <br>
-- [Hotel search](artifact/reference/search-hotel.md) <br>
-- [POI search](artifact/reference/search-poi.md) <br>
-- [Keyword search](artifact/reference/keyword-search.md) <br>
-- [User profile storage](artifact/reference/user-profile-storage.md) <br>
-- [Examples](artifact/reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with comparison tables, recommendation text, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include travel price ranges, route availability, hotel summaries, attraction counts, and next-step FlyAI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks users to install mutable command-line software globally and includes a sudo fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer a pinned, verified, unprivileged FlyAI CLI installation and do not run the sudo install path unless explicitly approved.
+
+Risk: The skill suggests disabling TLS certificate verification when certificate errors occur.
+
+Mitigation: Do not disable TLS certificate checks; resolve local certificate or network trust issues before running travel-search commands.
+
+Risk: The skill can read and persist travel-profile data in memory or ~/.flyai/user-profile.md.
+
+Mitigation: Save profile data only after user confirmation, avoid sensitive details, and inspect or delete ~/.flyai/user-profile.md if persistent travel-profile data is not desired.
+
+Risk: Travel prices, availability, and recommendations may be incomplete or time-sensitive.
+
+Mitigation: Treat generated comparisons as decision support and verify final prices, routes, hotels, and booking terms before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-destination-pk)
+- [Core workflow](reference/core-workflow.md)
+- [Tools](reference/tools.md)
+- [Flight search](reference/search-flight.md)
+- [Hotel search](reference/search-hotel.md)
+- [POI / attraction search](reference/search-poi.md)
+- [Keyword search](reference/keyword-search.md)
+- [User profile storage](reference/user-profile-storage.md)
+- [Examples](reference/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown destination comparison card with optional FlyAI CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current FlyAI search results and may read or save travel-profile preferences when supported and confirmed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

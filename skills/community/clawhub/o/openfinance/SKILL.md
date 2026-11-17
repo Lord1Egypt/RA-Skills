@@ -1,7 +1,7 @@
 ---
 name: openfinance
 slug: openfinance
-version: 0.0.3
+version: 0.0.4
 description: Connect bank accounts to AI models using openfinance.sh
 tags:
   - finance
@@ -58,6 +58,8 @@ Response shape per account:
 - `status` — "active" or "hidden"
 - `isSyncing` (boolean), `syncError` (object or null)
 
+A non-null `syncError` means the bank connection needs the owner to sign in again. Use [Create Reconnect Link](#4-create-reconnect-link) to fix it.
+
 ---
 
 ## 2. Get Transactions
@@ -73,7 +75,7 @@ curl -s -G "$BASE_URL/api/transactions" \
   --data-urlencode "merchants=Starbucks,Walmart" \
   --data-urlencode "accountId=123" \
   --data-urlencode "limit=100" \
-  --data-urlencode "cursor=CURSOR_VALUE" \
+  --data-urlencode "cursor=YYYY-MM-DD:ID" \
   --data-urlencode "pending=false" \
   --data-urlencode "status=active,hidden" \
   --data-urlencode "fields=name,amount,date,merchantName" \
@@ -93,7 +95,7 @@ All query parameters are **optional**. Only include the ones you need.
 | `merchants` | comma-separated | Filter by exact merchant names |
 | `accountId` | number | Filter by account ID |
 | `limit` | number | Max results (default 100, max 500) |
-| `cursor` | string | Cursor for pagination (from previous response) |
+| `cursor` | string | Next page: `<date>:<id>` of the last transaction you received. Date sort only |
 | `pending` | boolean | Filter pending transactions |
 | `status` | comma-separated | Filter by status: `active`, `hidden`, `deleted` |
 | `fields` | comma-separated | Return only these fields per transaction (reduces payload) |
@@ -107,7 +109,11 @@ All query parameters are **optional**. Only include the ones you need.
 
 ## 3. Query Transactions (SQL)
 
-Run a SQL SELECT against the `txns` CTE for aggregations, grouping, and analysis. The query runs read-only with a 5-second timeout and 1000-row limit.
+Run one validated SQL SELECT (maximum 2000 characters) against the unqualified `txns` relation for aggregations, grouping, and analysis. Only the caller's transactions are available; deleted transactions and hidden accounts are excluded. The query runs read-only with a 5-second timeout and a maximum of 1000 result rows. Aggregations still use all matching input rows, and smaller LIMITs and OFFSETs are preserved.
+
+Filtering, DISTINCT, grouping, HAVING, sorting, subqueries, joins, and UNION/UNION ALL are supported. Every table source must be `txns` or a derived SELECT whose sources are `txns`. Other tables and schemas, caller-defined CTEs, window functions, SELECT INTO, locking clauses, table functions, transaction commands, and multiple statements are rejected.
+
+Approved functions: COUNT, SUM, AVG, MIN, MAX, ABS, ROUND, CEIL, CEILING, FLOOR, LOWER, UPPER, LENGTH, TRIM, BTRIM, LTRIM, RTRIM, SUBSTRING, SUBSTR, REPLACE, DATE_TRUNC, DATE_PART, EXTRACT, TO_CHAR. CASE, COALESCE, NULLIF, GREATEST, LEAST, CURRENT_DATE, and CURRENT_TIMESTAMP are also supported. Casts are limited to built-in boolean, integer, numeric, floating-point, text, date, timestamp, and interval types. Arithmetic, comparisons, LIKE/ILIKE, IN, BETWEEN, and NULL/boolean tests are supported; custom operators, regex operators, COLLATE, and unlisted syntax are rejected. Function and type names may be unqualified or qualified with `pg_catalog`.
 
 ```bash
 curl -s -X POST "$BASE_URL/api/transactions/query" \
@@ -156,10 +162,48 @@ Error: `{ "error": "error message" }` — fix the SQL and retry.
 
 ---
 
+## 4. Create Reconnect Link
+
+Create a public link that reconnects a disconnected account without signing in to OpenFinance. Give the URL to the account's owner. Opening it walks them through their bank's sign-in (Plaid or Quiltt), then shows the account re-syncing. Only the owner can finish this step: bank credentials and verification codes can't be sent through the API.
+
+Find accounts that need reconnecting:
+
+```bash
+curl -s "$BASE_URL/api/accounts" -H "$AUTH_HEADER" \
+  | jq '.accounts[] | select(.syncError != null) | {id, institutionName, syncError}'
+```
+
+Create a link for one of them:
+
+```bash
+curl -s -X POST "$BASE_URL/api/accounts/ACCOUNT_ID/reconnect-link" \
+  -H "$AUTH_HEADER" \
+  | cat
+```
+
+Response (`201`):
+```json
+{
+  "url": "https://app.openfinance.sh/reconnect/<token>",
+  "expiresAt": "2026-01-02T15:04:05.000Z",
+  "accountId": 123,
+  "institutionName": "Chase",
+  "provider": "plaid"
+}
+```
+
+- Links expire after **24 hours**. Once the account is reconnected, the link only shows the sync's progress. If the bank still wants a sign-in afterwards, the same link can try again.
+- To check it worked, poll `GET /api/accounts`: the account's `syncError` turns `null` as soon as the owner reconnects, and `isSyncing` stays `true` until the re-sync finishes, which can take a few minutes.
+- Reconnecting repairs the account's whole bank connection, so it also fixes the other accounts linked through the same sign-in.
+- `404`: no account with that ID. `422`: the account's provider (MX) isn't supported.
+
+---
+
 ## Tips
 
-- **Use SQL for aggregations** — monthly totals, top merchants, category breakdowns. It's faster and returns less data than fetching all transactions.
+- **Use SQL for aggregations** — monthly totals, top merchants, recurring charges. It's faster and returns less data than fetching all transactions. Transactions have no categories; group by `COALESCE(merchant_name, name)`.
 - **Use `fields` parameter** on GET /api/transactions to reduce payload size when you only need a few columns.
-- **Pagination**: if there are more results, the response includes a cursor. Pass it as `cursor` in the next request.
+- **Pagination**: the response doesn't include a cursor. If a page returns `limit` transactions, request the next one with `cursor=<date>:<id>` from the last transaction, keeping the other parameters the same. Cursors only work with the default date sort.
 - **Amount values** are positive for debits (money spent) and negative for credits (money received).
 - When constructing SQL, always reference the `txns` CTE directly — do not define your own CTE or use transaction control statements.
+- **Disconnected accounts**: if an account has a `syncError`, create a reconnect link and send it to the owner rather than asking them to open the app.

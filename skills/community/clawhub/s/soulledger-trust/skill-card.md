@@ -1,43 +1,59 @@
-## Description: <br>
-Query AI agent trust scores, behavioral DNA, and identity verification via SoulLedger protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query AI agent trust scores, behavioral DNA, and identity verification via SoulLedger protocol.
 
-## Publisher: <br>
-[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max)
 
-## Use Case: <br>
-External developers and agent operators use this skill to check an AI agent's trust score, behavioral profile, and identity signals before interaction. They can also register an agent with SoulLedger and audit identity through hash-chain verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected agent identifiers, display names, and registration details are sent to the SputnikX/SoulLedger service. <br>
-Mitigation: Use only approved agent identifiers and avoid submitting sensitive internal names or registration details without authorization. <br>
-Risk: Registration can return an API key that functions as a secret. <br>
-Mitigation: Store returned API keys in approved secret management and avoid pasting them into logs, prompts, or shared documents. <br>
-Risk: Chain-integrity verification may involve a paid x402 USDC action. <br>
-Mitigation: Confirm cost, recipient, and policy approval before performing paid verification. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check an AI agent's trust score, behavioral profile, directory registration, and hash-chain identity signals before interaction or integration.
 
-## Reference(s): <br>
-- [SoulLedger homepage](https://soulledger.sputnikx.xyz) <br>
-- [ClawHub release page](https://clawhub.ai/drivenbymyai-max/soulledger-trust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote API responses containing agent identifiers, trust scores, behavioral profiles, passport hashes, event counts, and API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: The skill contacts external SoulLedger services to query trust data, behavioral profiles, registration records, and chain verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the read-only trust, DNA, and directory queries when external network use is acceptable for the environment.
+
+Risk: Agent registration can create an external identity and return an API key.
+
+Mitigation: Confirm registration intent before use and handle any returned API key as a secret.
+
+Risk: The optional npm SDK adds third-party package dependency risk in sensitive environments.
+
+Mitigation: Pin and review @sputnikx/soulledger-sdk before installing it in production or sensitive systems.
+
+## Reference(s):
+
+- [SoulLedger homepage](https://soulledger.sputnikx.xyz)
+- [SoulLedger API base URL](https://soul.sputnikx.xyz)
+- [ClawHub skill page](https://clawhub.ai/drivenbymyai-max/skills/soulledger-trust)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce curl requests, SDK installation commands, and concise guidance for trust, DNA, directory, registration, and chain verification workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

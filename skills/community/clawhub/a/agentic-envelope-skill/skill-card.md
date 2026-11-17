@@ -1,43 +1,56 @@
-## Description: <br>
-Generates branded CompleteTech LLC printable #10 addressed envelope PDFs and delivery-package metadata from verified recipient, attachment, branding, and delivery facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate branded CompleteTech LLC printable #10 addressed envelope PDFs and delivery packages with sender, recipient, optional attention line, postage box text, return-address toggle, logo, brand palette, attachment manifests, filenames, recipient metadata, and delivery-readiness checks.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-Developers and agent operators use this skill to package CompleteTech delivery workflows with printable envelopes, attachment manifests, recipient metadata, filenames, and delivery-readiness notes. It is intended for mailing or external handoff of contracts, certificates, invoices, proposals, notices, and related artifacts after recipient and approval facts are verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or external delivery material could be packaged before recipient details, addresses, attachments, or approval status are verified. <br>
-Mitigation: Confirm recipient and approval facts before packaging; return missing facts or a blocked delivery-readiness note instead of guessing. <br>
-Risk: The generator writes a local PDF to the configured output path, which could place delivery material in an unintended location. <br>
-Mitigation: Choose the --out path deliberately and review the generated path before sharing, printing, or archiving the envelope. <br>
-Risk: Demo configuration values or default branding could be mistaken for final delivery data. <br>
-Mitigation: Use per-recipient override INI files for real deliveries and verify live sender, recipient, and brand details before use. <br>
+## Use Case:
 
+Developers and business operators use this skill to prepare CompleteTech-branded envelope PDFs, attachment manifests, package filenames, and delivery-readiness notes for physical mail, digital handoff, or internal archive workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/completetech/agentic-envelope-skill) <br>
-- [Homepage](https://github.com/CompleteTech-LLC/agentic-envelope-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration references, generated file paths, manifests, and delivery-readiness notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local envelope PDF at the selected output path when the generator is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The local generator reads user-provided INI files and logo paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config and override files before running the generator, and use only trusted local logo paths.
+
+Risk: An envelope or delivery package could be prepared with an incorrect recipient, address, attachment list, or approval state.
+
+Mitigation: Verify recipient details, delivery mode, attachments, and approval status before external mailing or handoff.
+
+## Reference(s):
+
+- [Agentic Envelope Skill ClawHub Page](https://clawhub.ai/completetech/skills/agentic-envelope-skill)
+- [Agentic Envelope Skill Homepage](https://github.com/CompleteTech-LLC/agentic-envelope-skill)
+- [OpenClaw Skill Metadata](artifact/SKILL.md)
+- [References](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and delivery package metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to generate a local PDF at the selected output path and report missing recipient, attachment, or approval facts.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

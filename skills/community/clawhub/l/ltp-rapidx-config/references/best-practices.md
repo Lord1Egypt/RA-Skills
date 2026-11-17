@@ -310,6 +310,8 @@ BINANCE_PERP_ETH_USDT
 OKX_PERP_BTC_USDT
 ```
 
+Ticker, orderbook, klines, and open-interest market queries support OKX symbols. Use the same `interval` and optional `limit` inputs for Binance and OKX klines.
+
 Normalize common user expressions:
 
 | User expression | RapidX symbol |

@@ -1,41 +1,53 @@
-## Description: <br>
-Helps plan and draft tailored promotional content for projects, products, or articles across multiple platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps plan and draft tailored promotional content for a project across multiple platforms, with context-appropriate messaging and staged publishing.
 
-## Publisher: <br>
-[MichaelLod](https://clawhub.ai/user/MichaelLod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaellod](https://clawhub.ai/user/michaellod)
 
-## Use Case: <br>
-Developers, maintainers, and project owners use this skill to draft platform-specific promotional content and publishing plans for a project, product, or article. It emphasizes context gathering, audience fit, draft review, and staggered publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional drafts may be posted before they are reviewed for accuracy, platform rules, and relationship disclosure. <br>
-Mitigation: Review every draft, confirm live posts explicitly, and ensure each post follows the target platform's rules and discloses the user's relationship to the promoted project when appropriate. <br>
-Risk: Generic cross-posting can produce content that is poorly matched to a community or channel. <br>
-Mitigation: Tailor drafts per platform, research community expectations, and stagger publication across channels. <br>
+## Use Case:
 
+Developers, founders, and project maintainers use this skill to turn project context into platform-specific promotional drafts and user-approved posts for developer and social communities.
 
-## Reference(s): <br>
-- [Promote on ClawHub](https://clawhub.ai/MichaelLod/openclaw-promote) <br>
-- [MichaelLod publisher profile](https://clawhub.ai/user/MichaelLod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Platform-specific promotional drafts and publishing guidance in Markdown or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-first workflow; user review and explicit publishing approval are expected before live posts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server evidence release.version) <br>
+Risk: The skill can prepare content for public or professional publishing channels, where inaccurate or unsuitable drafts could affect reputation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated drafts carefully and approve live posts only after confirming the target audience, claims, tone, and publishing destination.
+
+Risk: Connected publishing tools may let an agent create drafts or posts across multiple platforms.
+
+Mitigation: Confirm access to connected publishing tools before installing and keep the draft-first workflow enabled where platform support allows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaellod/skills/openclaw-promote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text drafts with platform-specific publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-first workflow with user review before live publishing.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata, released 2026-03-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Authentic J.A.R.V.I.S. voice synthesis using Piper TTS with HuggingFace-trained model. Generates movie-accurate voice locally and can push to connected Android devices via OpenClaw nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authentic J.A.R.V.I.S. voice synthesis using Piper TTS with a HuggingFace-trained model, with optional delivery to connected Android devices through OpenClaw nodes.
 
-## Publisher: <br>
-[kishen35](https://clawhub.ai/user/kishen35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kishen35](https://clawhub.ai/user/kishen35)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate local J.A.R.V.I.S.-style speech with Piper TTS and optionally send announcements to trusted Android devices over ADB. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup depends on upstream Piper TTS, HuggingFace CLI, ffmpeg, and a downloaded voice model. <br>
-Mitigation: Verify those upstream packages and model sources before installing or running the workflow. <br>
-Risk: ADB pairing permits file pushes and playback actions on connected Android devices. <br>
-Mitigation: Use ADB only with trusted devices and review pairing state before sending generated audio. <br>
-Risk: The artifact references jarvis-speak and jarvis-tts wrapper commands that are not included in the scanned files. <br>
-Mitigation: Review any local wrapper scripts with those names before adding them to the workflow. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to synthesize J.A.R.V.I.S.-style speech locally with Piper TTS and optionally send generated audio to a paired Android device.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kishen35/jarvis-vocal) <br>
-- [jgkawell/jarvis Hugging Face model](https://huggingface.co/jgkawell/jarvis) <br>
-- [jgkawell/jarvis discussions](https://huggingface.co/jgkawell/jarvis/discussions) <br>
-- [Piper TTS](https://github.com/rhasspy/piper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce WAV audio files locally and can optionally push audio to a paired Android device via ADB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill depends on external TTS tooling and downloaded model files without pinned checksums in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install external tooling only from trusted sources and pin or verify downloaded model artifacts before operational use.
+
+Risk: Synthesized audio may be pushed or streamed to a connected Android device.
+
+Mitigation: Avoid synthesizing sensitive text and confirm the intended ADB target before sending audio.
+
+Risk: The artifact describes jarvis-tts and jarvis-speak wrapper behavior, but the release artifact does not include those wrapper scripts.
+
+Mitigation: Review or create the wrapper scripts before relying on device playback workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kishen35/skills/jarvis-vocal)
+- [jgkawell/jarvis Hugging Face model](https://huggingface.co/jgkawell/jarvis)
+- [jgkawell/jarvis discussions](https://huggingface.co/jgkawell/jarvis/discussions)
+- [Piper TTS](https://github.com/rhasspy/piper)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of local WAV audio files or playback on a connected Android device when commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

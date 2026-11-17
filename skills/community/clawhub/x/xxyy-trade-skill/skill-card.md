@@ -1,44 +1,60 @@
-## Description: <br>
-Xxyy Trade enables on-chain token trading, wallet queries, token scans, and token launches on Solana, Ethereum, BSC, and Base through the XXYY Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to use the XXYY Open API for on-chain token trading, token launches, wallet checks, PNL queries, token scans, and market data queries on Solana, Ethereum, BSC, and Base.
 
-## Publisher: <br>
-[jimmy-holiday](https://clawhub.ai/user/jimmy-holiday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy-holiday](https://clawhub.ai/user/jimmy-holiday)
 
-## Use Case: <br>
-External users and developers use this skill to query wallet and token data, scan on-chain opportunities, launch tokens, and submit explicitly confirmed buy or sell requests through XXYY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-linked API keys can execute real on-chain trades, and the skill evidence states there is no separate read-only key. <br>
-Mitigation: Use a least-privilege or low-balance key if available, configure an IP whitelist, keep the key out of logs and version control, and rotate it after suspected exposure. <br>
-Risk: Broad activation phrases are paired with wallet-linked trading authority. <br>
-Mitigation: Install only when an XXYY trading assistant is intended, and confirm wallet, chain, token, amount, fees, and action before any trade request. <br>
-Risk: Token scans and query outputs can be mistaken for trading advice. <br>
-Mitigation: Treat scan results as informational and verify token safety, taxes, holder distribution, and transaction costs before acting. <br>
+## Use Case:
 
+External developers and agents use this skill to prepare and execute XXYY Open API calls for crypto trading, wallet inspection, token discovery, token launch, trade status, PNL, and market intelligence workflows.
 
-## Reference(s): <br>
-- [XXYY Homepage](https://www.xxyy.io) <br>
-- [XXYY API Key Management](https://www.xxyy.io/apikey) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimmy-holiday/xxyy-trade-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with JSON snippets and curl-based API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XXYY_API_KEY; may submit real trades only after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The XXYY API key can authorize wallet-funded trading actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when wallet-spending access is intended; keep the key out of logs and public channels, rotate it after suspected exposure, and manually verify wallet, chain, amount, fees, and launch parameters before any transaction.
+
+Risk: The same API key is used for both read and trading workflows, with no separate read-only mode documented.
+
+Mitigation: Treat all use as transaction-capable access and apply XXYY IP allowlisting where available.
+
+Risk: A configurable API destination can redirect credential-bearing requests away from the default XXYY host.
+
+Mitigation: Keep XXYY_API_BASE_URL unset unless the destination is fully trusted and controlled.
+
+## Reference(s):
+
+- [XXYY homepage](https://www.xxyy.io)
+- [XXYY API key management](https://www.xxyy.io/apikey)
+- [ClawHub skill page](https://clawhub.ai/jimmy-holiday/skills/xxyy-trade-skill)
+- [Publisher profile](https://clawhub.ai/user/jimmy-holiday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XXYY_API_KEY and curl; may use XXYY_API_BASE_URL when explicitly trusted.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

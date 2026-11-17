@@ -1,42 +1,57 @@
-## Description: <br>
-Free basic version that converts YouTube transcript into a structured blog draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts YouTube transcripts into structured Markdown blog drafts, with reserved premium upgrade hooks for SEO optimization and multi-platform publishing formats.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-Creators, marketers, and developers can use this skill to turn a YouTube video title and transcript into a structured markdown blog draft. It supports a free draft workflow and exposes reserved upgrade metadata for future premium publishing features. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes payment and upgrade metadata that can route users to a SkillPay endpoint. <br>
-Mitigation: Confirm the SkillPay endpoint and fee model before installation, and clearly inform users before any charged workflow is enabled. <br>
-Risk: Billing-related data can include user identifiers, wallet details, or sensitive context if callers pass it through metadata. <br>
-Mitigation: Keep sensitive conversation content and private business details out of billing metadata. <br>
-Risk: Payment integrations may expose API keys or returned credentials if handled carelessly. <br>
-Mitigation: Store SkillPay API keys in environment variables and avoid logging secret tokens or returned credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wingogx/youtube-video-to-blog-converter) <br>
+## Use Case:
 
+External users and developers use this skill to turn a YouTube video title, transcript, and optional video URL into a structured blog draft. It supports a free blog-draft workflow while indicating that premium SEO, image suggestion, and multi-platform output features are reserved.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [JSON result containing a markdown blog draft and upgrade metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user_id, video_title, and transcript; optional video_url and tier affect validation and upgrade messaging.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release evidence flags under-disclosed payment and billing behavior in a transcript converter.
+
+Mitigation: Review payment prompts and billing artifacts before installation, and do not allow the skill to initiate charges automatically.
+
+Risk: Payment URL configuration may direct users to untrusted destinations if configured carelessly.
+
+Mitigation: Restrict payment URL configuration to trusted HTTPS hosts and encoded parameters.
+
+Risk: Users needing non-Chinese output may not get the expected language coverage.
+
+Mitigation: Confirm language support before using the skill in workflows that require output outside the demonstrated Chinese draft format.
+
+## Reference(s):
+
+- [SkillPay API Contract](references/skillpay-api-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/wingogx/skills/youtube-video-to-blog-converter)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON containing a Markdown blog draft and upgrade metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user_id, video_title, and transcript inputs; video_url and tier are optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

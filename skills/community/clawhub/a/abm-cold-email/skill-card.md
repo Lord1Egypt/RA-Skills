@@ -1,44 +1,61 @@
-## Description: <br>
-Writes concise B2B cold outreach emails, subject lines, and follow-up sequences using prospect context, personalization, proof points, and low-friction calls to action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write B2B cold emails and follow-up sequences that get replies.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Sales and marketing users use this skill to draft, revise, and evaluate cold outreach for B2B prospecting. It helps produce short, personalized emails and multi-touch follow-up sequences while distinguishing cold outbound from lifecycle or nurture email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage external prospect research and may suggest search-helper commands. <br>
-Mitigation: Confirm before running search helpers, limit queries to non-sensitive business information, and review any gathered context before using it in outreach. <br>
-Risk: Cold outreach copy can become misleading if it disguises vendor identity, impersonates a colleague, or makes sales email look internal. <br>
-Mitigation: Use honest sender identity, do not impersonate others, and check subject lines and body copy against applicable privacy, marketing, unsubscribe, and anti-spam rules. <br>
+## Use Case:
 
+Sales, marketing, and founder operators use this skill to draft, diagnose, and improve unsolicited B2B outreach, including first-touch emails, subject lines, personalization, calls to action, and multi-touch follow-up sequences.
 
-## Reference(s): <br>
-- [Benchmarks, Data & Expert Methods](references/benchmarks.md) <br>
-- [Follow-Up Sequences](references/follow-up-sequences.md) <br>
-- [Cold Email Copywriting Frameworks](references/frameworks.md) <br>
-- [Personalization at Scale](references/personalization.md) <br>
-- [Subject Line Optimization](references/subject-lines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with email drafts, subject lines, sequence outlines, critique notes, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for accuracy, compliance, and appropriate outreach identity before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 1.1.0) <br>
+Risk: The skill directs external prospect and company lookups before writing outreach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved research tools and require explicit user approval before running external searches.
+
+Risk: Subject-line guidance can make outreach look colleague-like or internal.
+
+Mitigation: Keep subject lines truthful and clearly connected to the actual business context; do not imply an existing relationship or internal thread.
+
+Risk: Generated outreach may contain incorrect, overstated, or misleading claims.
+
+Mitigation: Review all copy before sending, verify personalization signals and proof points, and remove unsupported performance claims.
+
+## Reference(s):
+
+- [Benchmarks, Data & Expert Methods](artifact/references/benchmarks.md)
+- [Follow-Up Sequences](artifact/references/follow-up-sequences.md)
+- [Cold Email Copywriting Frameworks](artifact/references/frameworks.md)
+- [Personalization at Scale](artifact/references/personalization.md)
+- [Subject Lines](artifact/references/subject-lines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with email drafts, subject lines, follow-up sequences, critiques, and occasional shell command examples for approved prospect research.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple email variations, quality checks, timing recommendations, and concise rationale for copy choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

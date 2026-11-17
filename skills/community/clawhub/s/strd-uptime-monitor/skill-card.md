@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor uptime of websites/services and alert when down. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor uptime of websites and services and alert when they go down.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers and operators use this skill to check HTTP endpoint reachability, send outage alerts through configured webhook or email channels, and generate Markdown uptime reports from local logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes HTTP requests to user-provided URLs. <br>
-Mitigation: Monitor only endpoints you are authorized to check and avoid embedding secrets in monitored URLs. <br>
-Risk: Configured webhook or email alerts can send outage details outside the local environment. <br>
-Mitigation: Use a narrowly scoped alert destination and review what endpoint details are included before enabling alerts. <br>
-Risk: Local status and alert logs may contain endpoint names or outage history. <br>
-Mitigation: Periodically clear or protect local uptime logs when endpoint names or history are sensitive. <br>
+## Use Case:
 
+Developers and operations teams use this skill to check HTTP endpoints, receive webhook or email alerts when services are unreachable, and generate markdown uptime reports from local logs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Status lines, webhook or email alert text, and Markdown uptime reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured URLs and optional webhook or email settings; writes local status and alert logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes outbound HTTP requests to monitored URLs and optional alert destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Monitor only trusted URLs and configure webhook or email destinations that the user controls.
+
+Risk: Alert payloads can disclose service URLs, status codes, response times, and error details to external systems.
+
+Mitigation: Avoid sensitive internal endpoints unless external alerting is intentional and approved.
+
+Risk: Generated logs and uptime reports are operational records, not tamper-resistant audit evidence.
+
+Mitigation: Use the reports for monitoring visibility and keep separate audit controls where integrity guarantees are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/strd-uptime-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Shell command output and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; checks and alert scripts write local operational logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Design CLI tools as local APIs for AI agents, covering TTY detection, JSON output, stdout/stderr separation, exit codes, and noninteractive flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-CLI Design provides guidance for designing AI-callable CLI tools with TTY-aware output, JSON mode, stdout/stderr separation, and simple exit codes.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design CLI tools that behave predictably for AI agents and scripts, including structured output, noninteractive flags, and clear error handling.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: CLI designs based on this guidance may include destructive actions or automated confirmation flags.
+
+Mitigation: Review destructive command examples carefully and add explicit user safeguards before implementing real tools.
+
+Risk: Chinese-first documentation may be misunderstood by non-Chinese readers.
+
+Mitigation: Translate or localize the guidance before adoption by teams that need another language.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill as a design checklist for creating AI-friendly command-line tools with predictable structured output and automation-safe behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Applying --yes or --no-input patterns to destructive, account-changing, or business-impacting commands can remove human confirmation. <br>
-Mitigation: Prefer dry-run or preview behavior, require explicit safeguards for high-impact actions, and test JSON output, stdout/stderr separation, and exit codes before relying on a CLI in automation. <br>
+**Output Format:** [Markdown guidance with Go, shell, TSV, and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongsheng123132/ai-cli-design) <br>
+**Other Properties Related to Output:** [Documentation-only; no hidden execution, persistence, credential use, or destructive behavior in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code or external access.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+# ClawHub 发布忽略模式（.gitignore 亦会被采用）
+# Python 字节码缓存
+__pycache__/
+*.py[cod]
+
+# 运行时数据（不随 skill 发布）
+config.yaml
+state.json
+.smtp_secret
+monitor.log
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store

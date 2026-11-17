@@ -1,0 +1,29 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "id": 102,
+    "title": "北京市第二医院实验室仪器采购招标公告",
+    "areaName": "北京市-北京市-西城区",
+    "purchasingUnit": "北京市第二医院",
+    "publishTime": "2026-04-11",
+    "infoType": "公告-招标公告",
+    "registrationEndTime": "2026-04-21 17:00:00",
+    "biddingEndTime": "2026-04-26 09:30:00",
+    "budgetAmount": "900000.00",
+    "purchasingUnitLinkName": "李老师",
+    "purchasingUnitLinkPhone": "010-55555555",
+    "winningBidderUnit": "",
+    "winningBidderUnitLinkName": "",
+    "winningBidderUnitLinkPhone": "",
+    "winningBidderAmount": "",
+    "agencyUnit": "北京采购代理有限公司",
+    "agencyUnitLinkName": "王工",
+    "agencyUnitLinkPhone": "010-22222222",
+    "url": "https://www.qianlima.com/bid-102.html",
+    "targetKeywords": [
+      "实验室仪器",
+      "设备"
+    ]
+  }
+}

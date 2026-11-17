@@ -1,54 +1,67 @@
-## Description: <br>
-AI-assisted workflow for producing professional Chinese real-estate market research reports across residential, commercial, office, industrial, feasibility, investment-return, REITs, competitor-comparison, SWOT, and operations-forecasting use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language real estate market research workflow that guides agents through project definition, report outlining, evidence-backed drafting, quality review, and Word document export for residential, commercial, office, industrial, and REITs-related reports.
 
-## Publisher: <br>
-[hoar12](https://clawhub.ai/user/hoar12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoar12](https://clawhub.ai/user/hoar12)
 
-## Use Case: <br>
-External users and real-estate consulting teams use this agent skill to structure, draft, review, and export market research reports with staged project definition, framework design, source-backed writing, quality checks, and Markdown-to-DOCX delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create local Markdown and DOCX files and merge report parts. <br>
-Mitigation: Run it in a dedicated project folder and review output paths before export. <br>
-Risk: The workflow relies on web research and market data that may be incomplete, stale, or inconsistent. <br>
-Mitigation: Review cited sources and use the built-in L1/L2/L3 checks for key data, logic, and external validation before delivery. <br>
-Risk: The workflow can install dependencies and run bundled Python and Node scripts. <br>
-Mitigation: Approve dependency installation and script execution explicitly, and inspect commands before running them. <br>
-Risk: Real-estate reports may contain sensitive client, project, or transaction information. <br>
-Mitigation: Avoid sensitive client data in shared workspaces and limit access to generated report files. <br>
+## Use Case:
 
+External users and real estate professionals use this skill to produce structured market research, feasibility, investment return, competitor comparison, SWOT, operating forecast, and REITs-support reports. The workflow is designed for agent-assisted drafting with human confirmation at planning, review, and delivery checkpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hoar12/real-estate-report-workflow) <br>
-- [README](README.md) <br>
-- [Core Workflow](references/core_workflow.md) <br>
-- [Execution Guardrail Protocol](references/protocol.md) <br>
-- [Writing Principles](references/writing_principles.md) <br>
-- [Macro Background Analysis Rules](references/section_rules/01_宏观背景分析.md) <br>
-- [Mid-Market Analysis Rules](references/section_rules/02_中观市场分析.md) <br>
-- [Micro-Market Analysis Rules](references/section_rules/03_微观市场分析.md) <br>
-- [Competitor Comparison Rules](references/section_rules/04_竞品对比.md) <br>
-- [SWOT Analysis Rules](references/section_rules/05_SWOT分析.md) <br>
-- [Operations Forecast Rules](references/section_rules/06_运营预测.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, report-part files, quality-check output, shell commands, and DOCX exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files, run Python and Node scripts, perform web research, and export Word documents when the host agent provides the required tools and approvals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.6 (source: server release metadata and package.json) <br>
+Risk: The skill asks the agent to run local commands and install dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace, review each command before execution, and pin dependencies or use reviewed lockfiles.
+
+Risk: The workflow may use external search while handling real estate client, deal, or account information.
+
+Mitigation: Avoid entering confidential data unless authorized and comfortable with the search and data-handling environment.
+
+Risk: The workflow creates, merges, exports, and may commit persistent report artifacts.
+
+Mitigation: Confirm file paths and generated content before saving, exporting, merging, or committing report files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hoar12/skills/real-estate-report-workflow)
+- [Publisher Profile](https://clawhub.ai/user/hoar12)
+- [Complete Workflow](artifact/references/core_workflow.md)
+- [Execution Guardrail Protocol](artifact/references/protocol.md)
+- [Writing Principles](artifact/references/writing_principles.md)
+- [Macro Background Analysis Rules](artifact/references/section_rules/01_宏观背景分析.md)
+- [Market-Level Analysis Rules](artifact/references/section_rules/02_中观市场分析.md)
+- [Micro Market Analysis Rules](artifact/references/section_rules/03_微观市场分析.md)
+- [Competitor Comparison Rules](artifact/references/section_rules/04_竞品对比.md)
+- [SWOT Analysis Rules](artifact/references/section_rules/05_SWOT分析.md)
+- [Operating Forecast Rules](artifact/references/section_rules/06_运营预测.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report drafts with tables, review findings, shell command snippets, generated project files, and optional Word document export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python and Node scripts for report checks and document export when the user approves the workflow.]
+
+## Skill Version(s):
+
+1.5.6 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

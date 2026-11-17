@@ -1,46 +1,64 @@
-## Description: <br>
-Identifies high-conviction stock opportunities and tracks JB's retirement portfolio with weekly scans, quarterly reviews, and FIRE signal analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies high-conviction stock opportunities and tracks a retirement portfolio with weekly scans, quarterly reviews, and FIRE signal analysis.
 
-## Publisher: <br>
-[j3m2b](https://clawhub.ai/user/j3m2b) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3m2b](https://clawhub.ai/user/j3m2b)
 
-## Use Case: <br>
-Personal finance and investing users can use this skill to scan a stock watchlist, calculate RSI-based buy or sell signals, and maintain FIRE-oriented portfolio review notes. It is intended for recurring personal analysis and alerting rather than regulated financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release bundles private financial records and portfolio details. <br>
-Mitigation: Remove or redact personal financial records before installation, sharing, or reuse. <br>
-Risk: The skill can post financial information to Discord without enough scoping or user control. <br>
-Mitigation: Verify the Discord destination, move channel targets into private configuration, and require explicit confirmation before posting financial details externally. <br>
-Risk: The artifact includes an exposed API key. <br>
-Mitigation: Rotate the exposed key and move credentials into private environment variables or another secret store before running the skill. <br>
+## Use Case:
 
+Agents supporting the publisher's finance workflow use this skill to scan a small stock watchlist, produce RSI-based buy/sell/hold signals, and maintain retirement/FIRE planning summaries. It is intended for weekly monitoring, quarterly portfolio review, and concise Discord-ready financial updates.
 
-## Reference(s): <br>
-- [Catalyst Edge ClawHub release](https://clawhub.ai/j3m2b/jb-catalyst-edge) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [FIRE model](artifact/FIRE_MODEL.md) <br>
-- [Portfolio analysis](artifact/PORTFOLIO_ANALYSIS.md) <br>
-- [Cash flow analysis](artifact/CASH_FLOW_ANALYSIS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON scan results, Discord-ready alert text, Python scripts, shell commands, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read personal financial records, fetch market data, write local scan logs, and send formatted alerts to Discord.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The package includes real personal and household financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace private financial records before installation, distribution, or agent use.
+
+Risk: The package includes an exposed Alpha Vantage key.
+
+Mitigation: Rotate the key and require secrets to be supplied through a secure runtime configuration.
+
+Risk: The skill can post financial summaries to a fixed Discord destination without clear confirmation controls.
+
+Mitigation: Make delivery opt-in, show a payload preview, and require destination verification before sending.
+
+Risk: The skill references broad memory access for personal context.
+
+Mitigation: Limit memory reads to the minimum necessary files and require user approval before including private context in reports.
+
+## Reference(s):
+
+- [Catalyst Edge on ClawHub](https://clawhub.ai/j3m2b/skills/jb-catalyst-edge)
+- [Publisher profile](https://clawhub.ai/user/j3m2b)
+- [Yahoo Finance chart API endpoint](https://query1.finance.yahoo.com/v8/finance/chart/)
+- [Alpha Vantage query endpoint](https://www.alphavantage.co/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON scan results, Discord-ready alert payloads, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include dated market data, ticker scores, local file updates, and financial planning notes that require human review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

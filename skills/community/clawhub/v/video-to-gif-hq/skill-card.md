@@ -1,39 +1,56 @@
-## Description: <br>
-Convert video files or clips into animated GIFs or WebP using ffmpeg, with resizing, fps control, trimming, palette generation, and file-size optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts video files or clips into animated GIF or WebP files with ffmpeg, including trimming, resizing, fps control, palette generation, and size optimization.
 
-## Publisher: <br>
-[xiwei26](https://clawhub.ai/user/xiwei26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiwei26](https://clawhub.ai/user/xiwei26)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, creators, and support teams use this skill to turn local video files or short clips into shareable animated GIF or WebP files with controlled size and quality.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Existing files can be overwritten at the selected output path.
+
+Mitigation: Choose output paths deliberately and confirm before reusing an existing filename.
+
+Risk: Large or long videos can consume significant CPU time and disk space during conversion.
+
+Mitigation: Use shorter clips, smaller dimensions, lower frame rates, or fewer colors for large videos.
+
+Risk: The skill processes local video files selected by the user.
+
+Mitigation: Run it only on intended local files and avoid processing sensitive media unless local conversion is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users use this skill to convert local video files or selected clips into shareable animated GIF or WebP outputs with trimming, frame-rate, size, palette, and quality controls. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite the chosen output path during conversion. <br>
-Mitigation: Choose an output path that is safe to create or overwrite and review it before running conversion. <br>
-Risk: Video processing depends on local ffmpeg and ffprobe binaries and local input files. <br>
-Mitigation: Install ffmpeg and ffprobe only from trusted sources and use videos you intend to process locally. <br>
+**Output Format:** [Markdown response with shell command snippets and generated GIF/WebP file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires local ffmpeg and ffprobe; output is a GIF or WebP file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Animated GIF/WebP files with concise Markdown status and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and ffprobe on PATH; output size depends on source duration, resolution, fps, colors, and format.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

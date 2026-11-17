@@ -1,44 +1,54 @@
-## Description: <br>
-BitMart Web3 Wallet skill lets agents query public token, chain, market, smart money, wallet balance, recent transaction, swap quote, and batch price data across supported chains without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BitMart Web3 Wallet Skills provides agent guidance for 12 public BitMart Web3 API endpoints covering token search, chain details, token info, K-line charts, rankings, smart money analysis, address balances, recent transactions, swap quotes, and batch prices without an API key.
 
-## Publisher: <br>
-[mccoysc](https://clawhub.ai/user/mccoysc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mccoysc](https://clawhub.ai/user/mccoysc)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to answer BitMart Web3 market and wallet questions, including token discovery, prices, smart money rankings, wallet balances, recent transactions, and swap quote estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses and token queries may be sent to BitMart APIs. <br>
-Mitigation: Avoid querying wallet addresses or token searches that should not be associated with requests to BitMart. <br>
-Risk: Swap quotes and market data can be mistaken for trade execution or financial advice. <br>
-Mitigation: Treat returned quotes and market data as informational only and require separate user review before any trading action. <br>
-Risk: The public API may rate limit requests or return unavailable quotes for unsupported token pairs or low-liquidity markets. <br>
-Mitigation: Respect the documented 15 requests per second per IP limit and tell users when data or quotes are unavailable instead of fabricating results. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to look up BitMart Web3 token, market, smart money, wallet balance, recent transaction, and quote data across Solana, BSC, Ethereum, Arbitrum, and Base. It helps agents resolve token identifiers, select compatible chains, and prepare BitMart public API requests for read-only analysis and swap quote workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mccoysc/bitmart-wallet-skill) <br>
-- [BitMart homepage](https://www.bitmart.com) <br>
-- [BitMart public API base URL](https://api-cloud.bitmart.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown or text responses grounded in JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public POST requests to BitMart APIs; no API key required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wallet address lookups can expose privacy-sensitive public on-chain activity to BitMart API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit wallet addresses only when there is a legitimate reason to inspect that public activity, and avoid addresses that identify a person unless necessary.
+
+Risk: Market, ranking, smart money, and swap quote results may be incomplete, rate-limited, or unavailable for a requested token pair or chain.
+
+Mitigation: Resolve token and chain identifiers through the documented workflow, confirm same-chain swap compatibility, and retry later when BitMart returns rate-limit errors.
+
+## Reference(s):
+
+- [BitMart homepage](https://www.bitmart.com)
+- [BitMart Web3 API base URL](https://api-cloud.bitmart.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; BitMart documents a limit of 15 requests per second per IP.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

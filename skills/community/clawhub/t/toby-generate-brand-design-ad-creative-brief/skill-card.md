@@ -1,41 +1,54 @@
-## Description: <br>
-Plan campaign visuals and hooks for brand design promotions for paid campaign planning by designers, brand teams, and ecommerce operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for brand design promotions for paid campaign planning by designers, brand teams, and ecommerce operators.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External designers, brand teams, and ecommerce operators use this skill to plan paid campaign ad creative, clarify goals and constraints, and draft concise briefs for visuals, hooks, and supporting assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill lists Bash as an allowed tool even though the evidence does not show a need for shell access. <br>
-Mitigation: Keep tool permissions scoped to the minimum needed for drafting and review any shell command before execution. <br>
-Risk: Generated ad briefs or image concepts may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Have a human review creative outputs, claims, and generated visuals before external publication or automated use. <br>
+## Use Case:
 
+Designers, brand teams, and ecommerce operators use this skill to plan paid advertising creative briefs, including audience goals, campaign visuals, hooks, and refinement steps before publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/toby-generate-brand-design-ad-creative-brief) <br>
-- [SkillBoss Skill Homepage](https://www.skillboss.co/skills/generate-brand-design-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text creative brief guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference chat and image generation workflows; outputs should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requests Bash access that is not explained by its ad creative brief workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove Bash access or tightly sandbox shell use unless the publisher documents a specific, user-directed need.
+
+Risk: Generated campaign brief guidance may be inaccurate, off-brand, or unsuitable for external publication without review.
+
+Mitigation: Review outputs for accuracy, brand fit, readability, and actionability before publishing or using them in automated execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-brand-design-ad-creative-brief)
+- [SkillBoss Skill Homepage](https://www.skillboss.co/skills/generate-brand-design-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text creative brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign hooks, visual direction, audience and goal framing, SEO keywords, and review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

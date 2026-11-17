@@ -1,40 +1,51 @@
-## Description: <br>
-Generates formatted Excel cost analysis reports from project expense spreadsheets, grouped by customer category with yearly totals, monthly detail, and monthly averages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates formatted Excel cost analysis reports from project expense workbooks, grouping customer categories such as 帝国, BAT, MT, and ITMS and summarizing 2025 and 2026 costs by month and year.
 
-## Publisher: <br>
-[richard052317](https://clawhub.ai/user/richard052317) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard052317](https://clawhub.ai/user/richard052317)
 
-## Use Case: <br>
-Employees, finance teams, and operations analysts use this skill to convert project-cost Excel workbooks into customer-segmented cost analysis reports for 2025 and 2026. It is intended for local processing of spreadsheets that match the documented cost-column and customer-category structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source spreadsheets and generated reports can contain sensitive business cost data. <br>
-Mitigation: Process files locally, choose an explicit output directory with appropriate access controls, and review the report before sharing. <br>
-Risk: Reports may omit or misclassify data when input spreadsheets do not match the documented columns or supported customer categories. <br>
-Mitigation: Confirm the source workbook structure and customer category values before relying on the generated financial analysis. <br>
+## Use Case:
 
+Finance, operations, and project teams use this skill to turn customer project expense workbooks into categorized annual, monthly, and average cost reports. It is intended for user-directed report generation from trusted or reviewed Excel inputs.
 
-## Reference(s): <br>
-- [Cost Report Generator on ClawHub](https://clawhub.ai/richard052317/cost-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, code, guidance] <br>
-**Output Format:** [Excel workbook (.xlsx) with console status messages and optional Python return path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped local Excel reports with separate 2025 and 2026 cost-analysis worksheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Excel reports may preserve formula-like text from source workbooks as active spreadsheet content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before using customer, vendor, or otherwise untrusted files; sanitize spreadsheet text or use only trusted input workbooks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richard052317/skills/cost-report-generator)
+- [Skill instructions](artifact/SKILL.md)
+- [Cost report generation script](artifact/scripts/generate_cost_report.py)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Code]
+
+**Output Format:** [Excel workbook (.xlsx) with brief command-line status text and Python invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workbook contains formatted 2025 and 2026 cost-analysis worksheets with grouped customer categories and monthly cost summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

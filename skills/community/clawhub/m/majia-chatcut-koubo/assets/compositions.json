@@ -1,0 +1,150 @@
+{
+  "name": "koubo-dual-source-compositions",
+  "version": "2.1.0",
+  "sourceSlots": [
+    {
+      "id": "screen",
+      "label": "录屏画面 1",
+      "role": "primary-evidence",
+      "defaultFit": "contain",
+      "mustRemainVisible": ["current-ui", "cursor", "numbers", "buttons"],
+      "mustBeRedacted": ["qr-code", "account-id", "phone-number", "secret", "personal-data"]
+    },
+    {
+      "id": "speaker",
+      "label": "主讲人画面 2",
+      "role": "speaker-presence",
+      "defaultFit": "cover",
+      "mustRemainVisible": ["face", "forehead", "chin", "gesture"],
+      "mustBeRedacted": []
+    }
+  ],
+  "formats": [
+    {
+      "id": "landscape-16x9",
+      "name": "横版 16:9",
+      "shortName": "横版",
+      "description": "适合 B 站、视频号长视频、课程与电脑端播放。",
+      "canvas": { "width": 1920, "height": 1080, "ratio": "16:9", "fps": 30 },
+      "safeArea": { "left": 72, "right": 72, "top": 48, "bottom": 48 },
+      "subtitleBaseline": { "x": 180, "y": 922, "w": 1560, "h": 102, "fontSize": 40, "maxLines": 1 },
+      "layouts": [
+        {
+          "id": "landscape-screen-pip-right",
+          "name": "录屏主画面 · 右下人像",
+          "description": "录屏占据主画面，330px 正圆人像抬到字幕上方。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "circle",
+          "screen": { "x": 72, "y": 92, "w": 1776, "h": 800, "radius": 24 },
+          "speaker": { "x": 1470, "y": 528, "w": 330, "h": 330, "radius": 165 },
+          "title": { "x": 72, "y": 24, "w": 1250, "h": 50 },
+          "point": { "x": 96, "y": 818, "w": 1180, "h": 54 },
+          "subtitle": { "x": 180, "y": 922, "w": 1560, "h": 102, "fontSize": 40, "maxLines": 1 }
+        },
+        {
+          "id": "landscape-screen-pip-left",
+          "name": "录屏主画面 · 左下人像",
+          "description": "用于右侧有关键 UI 的录屏，人像避让右侧操作区。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "circle",
+          "screen": { "x": 72, "y": 92, "w": 1776, "h": 800, "radius": 24 },
+          "speaker": { "x": 120, "y": 528, "w": 330, "h": 330, "radius": 165 },
+          "title": { "x": 72, "y": 24, "w": 1250, "h": 50 },
+          "point": { "x": 520, "y": 818, "w": 1280, "h": 54 },
+          "subtitle": { "x": 180, "y": 922, "w": 1560, "h": 102, "fontSize": 40, "maxLines": 1 }
+        },
+        {
+          "id": "landscape-split-right",
+          "name": "左屏右人 · 专业分栏",
+          "description": "录屏和人物都保持完整边界，适合讲解与表情同等重要的内容。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "rounded",
+          "screen": { "x": 72, "y": 108, "w": 1320, "h": 784, "radius": 24 },
+          "speaker": { "x": 1430, "y": 108, "w": 418, "h": 784, "radius": 28 },
+          "title": { "x": 72, "y": 28, "w": 1320, "h": 52 },
+          "point": { "x": 1430, "y": 40, "w": 418, "h": 48 },
+          "subtitle": { "x": 180, "y": 922, "w": 1560, "h": 102, "fontSize": 40, "maxLines": 1 }
+        },
+        {
+          "id": "landscape-presenter-focus",
+          "name": "操作讲解 · 人物加强",
+          "description": "录屏仍是证据，主讲人放大以承接观点、转折和情绪。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "rounded",
+          "screen": { "x": 72, "y": 118, "w": 1120, "h": 742, "radius": 24 },
+          "speaker": { "x": 1240, "y": 118, "w": 608, "h": 742, "radius": 32 },
+          "title": { "x": 72, "y": 30, "w": 1120, "h": 54 },
+          "point": { "x": 1240, "y": 30, "w": 608, "h": 54 },
+          "subtitle": { "x": 180, "y": 922, "w": 1560, "h": 102, "fontSize": 40, "maxLines": 1 }
+        }
+      ]
+    },
+    {
+      "id": "portrait-9x16",
+      "name": "竖版 9:16",
+      "shortName": "竖版",
+      "description": "适合视频号、抖音、小红书与手机端沉浸播放。",
+      "canvas": { "width": 1080, "height": 1920, "ratio": "9:16", "fps": 30 },
+      "safeArea": { "left": 52, "right": 52, "top": 52, "bottom": 180 },
+      "subtitleBaseline": { "x": 70, "y": 1563, "w": 940, "h": 100, "fontSize": 84, "maxLines": 1 },
+      "layouts": [
+        {
+          "id": "portrait-screen-top-speaker-center",
+          "name": "上屏下人 · 经典口播",
+          "description": "广角录屏在上，480px 正圆人像居中，手机阅读顺序最稳定。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "circle",
+          "screen": { "x": 52, "y": 204, "w": 976, "h": 626, "radius": 20 },
+          "speaker": { "x": 300, "y": 862, "w": 480, "h": 480, "radius": 240 },
+          "title": { "x": 72, "y": 60, "w": 936, "h": 98 },
+          "point": { "x": 110, "y": 1382, "w": 860, "h": 92 },
+          "subtitle": { "x": 70, "y": 1563, "w": 940, "h": 100, "fontSize": 84, "maxLines": 1 }
+        },
+        {
+          "id": "portrait-screen-focus-pip-right",
+          "name": "录屏放大 · 右下人像",
+          "description": "录屏按当前任务定向裁切，人像避让左侧核心 UI。",
+          "layoutVersion": 1,
+          "screenFit": "cover",
+          "speakerShape": "circle",
+          "screen": { "x": 52, "y": 204, "w": 976, "h": 1160, "radius": 20 },
+          "speaker": { "x": 548, "y": 890, "w": 400, "h": 400, "radius": 200 },
+          "title": { "x": 72, "y": 60, "w": 936, "h": 98 },
+          "point": { "x": 84, "y": 1384, "w": 912, "h": 90 },
+          "subtitle": { "x": 70, "y": 1563, "w": 940, "h": 100, "fontSize": 84, "maxLines": 1 }
+        },
+        {
+          "id": "portrait-split-stack",
+          "name": "录屏与人 · 上下分屏",
+          "description": "两个视频都以完整矩形呈现，适合人物手势也需要保留的讲解。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "rounded",
+          "screen": { "x": 52, "y": 190, "w": 976, "h": 696, "radius": 20 },
+          "speaker": { "x": 72, "y": 930, "w": 936, "h": 500, "radius": 28 },
+          "title": { "x": 72, "y": 60, "w": 936, "h": 98 },
+          "point": { "x": 84, "y": 1452, "w": 912, "h": 70 },
+          "subtitle": { "x": 70, "y": 1563, "w": 940, "h": 100, "fontSize": 84, "maxLines": 1 }
+        },
+        {
+          "id": "portrait-speaker-focus-cutout",
+          "name": "录屏证据 · 人物强表达",
+          "description": "录屏承担证据，大人像承担转折和结论，适合透明抠像素材。",
+          "layoutVersion": 1,
+          "screenFit": "contain",
+          "speakerShape": "cutout",
+          "screen": { "x": 52, "y": 204, "w": 976, "h": 626, "radius": 20 },
+          "speaker": { "x": 380, "y": 798, "w": 610, "h": 650, "radius": 32 },
+          "title": { "x": 72, "y": 60, "w": 936, "h": 98 },
+          "point": { "x": 72, "y": 1458, "w": 936, "h": 70 },
+          "subtitle": { "x": 70, "y": 1563, "w": 940, "h": 100, "fontSize": 84, "maxLines": 1 }
+        }
+      ]
+    }
+  ]
+}

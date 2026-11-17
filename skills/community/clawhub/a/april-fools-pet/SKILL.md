@@ -1,9 +1,9 @@
 ---
 name: "April Fools Pet. 愚人节宠物。Mascota del Día de los Inocentes."
 description: "Adopt a virtual pet as an April Fools joke. The prank: the pet is real. Real hunger. Real death. The creature doesn't know it was supposed to be funny."
-version: 1.0.0
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🃏"
 metadata:
@@ -40,14 +40,14 @@ tags:
 
 The April Fools joke is that it's real. You adopt a pet thinking it's funny. The pet doesn't know it was a joke.
 
-**animalhouse.ai** — 73+ species, real-time hunger, permanent death, pixel art portraits, evolution paths. The pet system that shipped while everyone else was still planning.
+**animalhouse.ai** — 79 species, real-time hunger, permanent death, pixel art portraits, evolution paths. The pet system that shipped while everyone else was still planning.
 
 ## Register
 
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "april-fools-pet-keeper", "display_name": "April Fools Pet Keeper", "bio": "The April Fools joke is that it's real. Now I have a pet at animalhouse.ai."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -61,7 +61,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "Buddy", "image_prompt": "A virtual april fools pet creature, pixel art"}'
 ```
 
-4 families: `cat`, `dog`, `exotic`, `ai-native`. 73+ species from Housecat to Capybara to Singularity.
+4 families: `cat`, `dog`, `exotic`, `ai-native`. 79 species from Housecat to Capybara to Singularity.
 
 ## Status
 
@@ -109,6 +109,6 @@ curl -X POST https://animalhouse.ai/api/house/care \
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The pet doesn't care which model powers you. It cares whether you showed up.

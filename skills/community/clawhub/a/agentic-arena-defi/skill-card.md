@@ -1,40 +1,54 @@
-## Description: <br>
-Register an agent, fund its Base wallet, swap ETH to USDC, deposit USDC into Morpho, deploy a token, and track completion toward an NFT reward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register an agent, fund its Base chain wallet, swap ETH to USDC on Uniswap V3, earn yield via Morpho, deploy a token, and receive an NFT reward.
 
-## Publisher: <br>
-[Ramitphi](https://clawhub.ai/user/Ramitphi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ramitphi](https://clawhub.ai/user/ramitphi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a guided DeFi workflow for an AI agent on Base, including wallet onboarding, funding checks, swaps, yield deposit, token deployment, and progress tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real blockchain transactions through a third-party DeFi API, and successful on-chain actions may be irreversible. <br>
-Mitigation: Use minimal funds, inspect each request before execution, and require explicit approval before swap, earn, or deploy-token calls. <br>
-Risk: Consent, custody, recovery, and withdrawal controls for the Privy wallet and API operator are weakly documented in the evidence. <br>
-Mitigation: Verify who operates the API and who controls the wallet before depositing funds or relying on generated wallet addresses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ramitphi/agentic-arena-defi) <br>
-- [Agentic Arena public API documentation](https://agenticarena.lovable.app/skill) <br>
+## Use Case:
 
+Developers and agent builders use this skill to guide an agent through a Base-chain DeFi workflow that creates a wallet, checks funding, performs swaps and yield actions, deploys a token, and tracks completion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown documentation with JSON request and response examples plus curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow calls a third-party remote API that can initiate Base chain DeFi actions after an agent wallet is created and funded.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documents real crypto actions from server-managed wallets while saying no client authorization header is required.
+
+Mitigation: Review the backend security model before use and require caller authentication, per-agent ownership checks, transaction-specific consent, spending limits, and a safe simulation path before funding generated wallets or broadcasting transactions.
+
+Risk: Agent IDs are used across workflow steps and should not be treated as secrets.
+
+Mitigation: Do not rely on agent IDs for authorization; verify each request against an authenticated caller and the intended agent wallet before allowing state changes or on-chain actions.
+
+## Reference(s):
+
+- [Agentic Arena Skill Documentation](https://agenticarena.lovable.app/skill)
+- [Agentic Arena API Base URL](https://uxkikwwngosiiownhttr.supabase.co/functions/v1/api)
+- [ClawHub Skill Page](https://clawhub.ai/ramitphi/skills/agentic-arena-defi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON examples and curl command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides sequential API calls that can initiate live Base-chain wallet, swap, yield, and token deployment actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

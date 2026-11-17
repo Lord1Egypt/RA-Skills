@@ -1,40 +1,54 @@
-## Description: <br>
-Ideonomy Engine provides structured creative reasoning prompts through ideonomic lenses for exploring problems from multiple perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ideonomy Engine helps agents generate structured creative prompts through ideonomic lenses for brainstorming, debugging, strategy, ethics, diagnostics, and other problem-solving contexts.
 
-## Publisher: <br>
-[morpheis](https://clawhub.ai/user/morpheis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morpheis](https://clawhub.ai/user/morpheis)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to invoke the Ideonomy CLI for structured brainstorming, diagnostic reasoning, strategic planning, and perspective exploration when default problem-solving stalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install an external global npm CLI package. <br>
-Mitigation: Review the @clawdactual/ideonomy-engine package and publisher before use on sensitive systems, and uninstall it when no longer needed. <br>
-Risk: The CLI produces structured prompts rather than final answers. <br>
-Mitigation: Treat generated lenses and questions as reasoning aids and review conclusions before acting on them. <br>
+## Use Case:
 
+Developers, product teams, and agents use this skill to turn open-ended problems into structured prompts and ideonomic lenses for brainstorming, root-cause analysis, strategy, ethical reflection, and decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/morpheis/ideonomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown-style CLI text, or JSON when --json is selected] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output includes core questions, guiding questions, cross-domain sparks, and conceptual palettes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release evidence) <br>
+Risk: The skill depends on a globally installed, unpinned third-party npm CLI whose package contents are not included in the artifact for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and publisher before installing; prefer a pinned version matching the skill metadata, a project-local install, and inspection of package contents and lifecycle scripts before running it around sensitive files or credentials.
+
+Risk: The skill produces structured prompts rather than answers, so outputs may be incomplete, irrelevant, or unsuitable for direct action without review.
+
+Mitigation: Treat generated lenses and questions as reasoning aids; review and adapt them before using them to make decisions or modify systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/morpheis/skills/ideonomy)
+- [Publisher profile](https://clawhub.ai/user/morpheis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and optional structured JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reasoning output can be constrained by profile, selected divisions, lens count, concise mode, or JSON mode.]
+
+## Skill Version(s):
+
+0.3.4 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

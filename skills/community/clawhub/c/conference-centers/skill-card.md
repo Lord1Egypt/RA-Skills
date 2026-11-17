@@ -1,40 +1,53 @@
-## Description: <br>
-Find nearby conference centers. Invoke when user asks for conference venues near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby conference centers. Invoke when user asks for conference venues near me.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to find nearby conference centers, event venues, and activity spaces from an authorized location or city-level query. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Venue searches can expose precise location data. <br>
-Mitigation: Use approximate coordinates or a city-level location when exact proximity is not required, and query only after user location authorization. <br>
-Risk: Provider errors, rate limits, or unavailable data sources can prevent complete venue results. <br>
-Mitigation: Handle INVALID_LOCATION, RADIUS_TOO_LARGE, PROVIDER_UNAVAILABLE, and RATE_LIMITED responses, and apply short-term caching for repeated location, category, and radius queries. <br>
+## Use Case:
 
+External users and developers use this skill to find nearby conference centers, event venues, and meeting spaces from an authorized location with optional rating, price, and keyword filters.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeKungfu/conference-centers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or structured text describing nearby conference-center results and query constraints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, limit, and optional rating, price, or keyword filters; category is fixed to conference-centers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill uses precise latitude and longitude, which can expose sensitive location information if retained or shared unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location authorization, use coordinates only when needed for venue lookup, and avoid storing precise coordinates longer than necessary.
+
+Risk: Venue lookup may fail or degrade when the location provider is unavailable, rate-limited, or queried with invalid bounds.
+
+Mitigation: Validate location, radius, and result limits before lookup, then return clear error states for invalid input, provider outages, and rate limiting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/conference-centers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured text or JSON-like POI list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized latitude and longitude; supports radius, result limit, rating, price, and keyword filters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

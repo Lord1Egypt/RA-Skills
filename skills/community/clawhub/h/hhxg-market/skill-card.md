@@ -1,48 +1,57 @@
-## Description: <br>
-A 股量化数据助手 — 日报快照、A股日历、融资融券、实时快讯，零配置无需安装任何依赖。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A 股量化数据助手 — 日报快照、A股日历、融资融券、实时快讯，零配置无需安装任何依赖。
 
-## Publisher: <br>
-[Niceck](https://clawhub.ai/user/Niceck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[niceck](https://clawhub.ai/user/niceck)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve public A-share market snapshots, trading calendars, margin data, and financial news inside an agent workflow or from terminal scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts hhxg.top for public market data and may show hhxg.top promotional or tool links. <br>
-Mitigation: Install and use it only when that network dependency and those links are acceptable for the target environment. <br>
-Risk: Market data may be served from local cached JSON when the network is unavailable. <br>
-Mitigation: Check the skill's date and cache notices before relying on recency-sensitive output. <br>
-Risk: The README install command includes rm -rf against a skill directory path. <br>
-Mitigation: Inspect the command before running it and confirm the removal path points only to the intended hhxg-market skill directory. <br>
-Risk: A-share market summaries can be mistaken for investment advice. <br>
-Mitigation: Treat the output as research reference material and review source data before making financial decisions. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and summarize A-share market snapshots, trading calendars, margin financing data, and real-time financial news from hhxg.top.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Niceck/hhxg-market) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Niceck) <br>
-- [Data schema reference](references/data-schema.md) <br>
-- [恢恢量化](https://hhxg.top) <br>
-- [hhxg.top public data endpoint](https://hhxg.top/static/data/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and optional JSON data emitted by Python scripts, with shell commands for invocation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public hhxg.top data, retries once on network errors, and can fall back to locally cached JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The ClawHub security scan marked the release suspicious because it automatically promotes financial-tool links and redirects ETF or fund questions to hhxg.top, with some displayed URLs controlled by remote data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, verify displayed links before following them, and disclose or remove promotional link behavior if it is not appropriate for the deployment.
+
+Risk: The skill provides market and financial-news outputs that may be cached, delayed, or informational rather than investment advice.
+
+Mitigation: Preserve the skill's date and cache notices in agent responses and require users to treat the data as research reference material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niceck/skills/hhxg-market)
+- [Publisher profile](https://clawhub.ai/user/niceck)
+- [Data source](https://hhxg.top)
+- [Data schema](references/data-schema.md)
+- [Static data endpoint](https://hhxg.top/static/data/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports and optional JSON data emitted by Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts fetch remote JSON data, cache fallback data locally, and may display hhxg.top tool links in responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

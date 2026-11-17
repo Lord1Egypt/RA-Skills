@@ -1,37 +1,49 @@
-## Description: <br>
-Intelligent caching with LRU/LFU strategies and TTL management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent caching with LRU/LFU strategies and TTL management.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Developers use this skill to add an in-memory JavaScript cache with configurable LRU or LFU eviction, TTL-based expiration, and basic cache statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cached values may include secrets or sensitive personal data that remain readable in the surrounding application until expiration or deletion. <br>
-Mitigation: Avoid storing sensitive data unless application access controls and TTL settings are appropriate for the data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smart Cache on ClawHub](https://clawhub.ai/raghulpasupathi/smart-cache) <br>
+## Use Case:
 
+Developers use this skill to add an in-memory JavaScript cache with configurable LRU or LFU eviction, item TTLs, basic cache operations, and statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a JavaScript SmartCache utility with configurable strategy, maximum size, and default TTL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Caller-provided values remain in memory until they expire, are evicted, or are cleared.
+
+Mitigation: Do not cache secrets or sensitive records longer than necessary; set short TTLs and clear entries when they are no longer needed.
+
+## Reference(s):
+
+- [Smart Cache release page](https://clawhub.ai/raghulpasupathi/skills/smart-cache)
+- [raghulpasupathi publisher profile](https://clawhub.ai/user/raghulpasupathi)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an in-memory cache utility pattern for agent use; avoid retaining secrets or sensitive records longer than necessary.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

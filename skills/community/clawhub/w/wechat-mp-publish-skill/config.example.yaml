@@ -35,7 +35,7 @@ image:
     # --- 通义万相配置 ---
     tongyi-wanxiang:
       enabled: true  # ON=true, OFF=false
-      api_key: "sk-your-dashscope-api-key-here"
+      api_key: "REDACTED-SECRET"
       api_url: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
       model: "wanx-v1"
       size: "1024*1024"
@@ -56,7 +56,7 @@ image:
     # --- DALL-E 3 配置 ---
     dall-e-3:
       enabled: true  # ON=true, OFF=false
-      api_key: "sk-your-dalle-api-key-here"
+      api_key: "REDACTED-SECRET"
       model: "dall-e-3"
       size: "1024x1024"
       quality: "standard"

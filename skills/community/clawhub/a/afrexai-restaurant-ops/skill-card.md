@@ -1,39 +1,54 @@
-## Description: <br>
-Provides data-driven restaurant operations guidance using concept-specific benchmarks, KPI frameworks, menu engineering, staffing models, startup cost ranges, delivery economics, and inspection-prep references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide precise, data-driven restaurant operations advice based on concept, location, and challenges using industry benchmarks and key performance metrics.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Restaurant owners, operators, managers, and consultants use this skill to benchmark food, labor, prime cost, revenue density, staffing, startup budgets, delivery mix, and operational KPIs for restaurant planning and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global, with several examples and seasonal benchmarks framed for United States restaurant operations. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Health inspection, certification, temperature, penalty, labor, pricing, and cost guidance may vary by jurisdiction and market conditions. <br>
-Mitigation: Verify compliance requirements with the applicable local health department or a certified food-safety professional, and validate financial benchmarks against current local market data before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-restaurant-ops) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
+## Use Case:
 
+Restaurant owners, operators, managers, and consultants use this skill to benchmark concepts, evaluate food and labor costs, plan staffing, assess menu performance, prepare for inspections, and estimate startup or operating economics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with tables, calculations, and numeric benchmarks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory operational benchmarks and should be checked against current local rules, supplier prices, wage conditions, and market data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Restaurant cost, labor, permit, inspection, and penalty numbers are general reference material and may not match current local rules or business conditions.
+
+Mitigation: Verify current local regulations, inspection requirements, market wages, vendor costs, and financial assumptions before making operational or investment decisions.
+
+Risk: The artifact includes disclosed promotional links to AfrexAI resources.
+
+Mitigation: Treat linked resources as optional external material; the skill does not automatically fetch or run anything from those links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-restaurant-ops)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with benchmark tables, calculations, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; responses should be tailored to the restaurant concept, size, location, stage, or operating challenge supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

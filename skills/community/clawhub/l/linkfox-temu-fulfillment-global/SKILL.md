@@ -39,6 +39,14 @@ description: Temu 全球站（非 US/EU）电商履行/发货 API（合一）：
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
 ## 相关 skill
 
 | 场景 | skill |
@@ -106,6 +114,10 @@ python scripts/global_self_fulfilled_logistics_shipment_shippingtype_update.py '
   "request": { "editPackageRequestList": [{ "packageSn": "PKG-1", "trackingNumber": "1Z..." }] }
 }'
 ```
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback：** `skillName`：`linkfox-temu-fulfillment-global`
 

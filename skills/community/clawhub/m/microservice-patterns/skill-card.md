@@ -1,37 +1,50 @@
-## Description: <br>
-Provides guidance and patterns for decomposing monoliths, inter-service communication, data management, and resilience in microservice architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and patterns for decomposing monoliths, inter-service communication, data management, and resilience in microservice architectures.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and software architects use this skill to evaluate when microservices are appropriate and to apply decomposition, communication, data, and resilience patterns to distributed systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example Python, Kafka, and HTTP snippets may need adaptation before use with real service URLs, credentials, or production data. <br>
-Mitigation: Review and adapt snippets for the target environment before putting them into a real service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wpank/microservice-patterns) <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate when microservices are appropriate and to apply common decomposition, communication, data, and resilience patterns when designing distributed systems.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides architecture guidance and example snippets for microservice design patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The README includes a mutable main-branch npx install command, which can change after review.
+
+Mitigation: Review the skill before installing and prefer a pinned commit or trusted installer path, especially on machines with production credentials.
+
+## Reference(s):
+
+- [Microservice Patterns ClawHub page](https://clawhub.ai/wpank/skills/microservice-patterns)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code examples, tables, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no sensitive access is requested by the reviewed skill content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

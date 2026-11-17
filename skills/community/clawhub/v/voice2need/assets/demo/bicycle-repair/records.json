@@ -1,0 +1,97 @@
+[
+  {
+    "evidence_id": "reddit:t3_bike",
+    "platform": "reddit",
+    "native_id": "t3_bike",
+    "kind": "post",
+    "text": "Two bike repairs missed pickup yesterday because we rewrote the job cards after the parts list changed.",
+    "author_id": "bike-owner",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/reddit/t3_bike",
+    "conversation_id": "t3_bike",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "reddit:t1_bike",
+    "platform": "reddit",
+    "native_id": "t1_bike",
+    "kind": "comment",
+    "text": "I wish a customer could see the approved parts list before I order anything.",
+    "author_id": "bike-mechanic",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/reddit/t1_bike",
+    "conversation_id": "t3_bike",
+    "parent_id": "t3_bike",
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "youtube:bike-advice",
+    "platform": "youtube",
+    "native_id": "bike-advice",
+    "kind": "post",
+    "text": "You could attach a QR code to every bike. I have not tried that system in a workshop.",
+    "author_id": "bike-viewer",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/youtube/bike-advice",
+    "conversation_id": "bike-advice",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "discord:bike-selfbuild",
+    "platform": "discord",
+    "native_id": "bike-selfbuild",
+    "kind": "post",
+    "text": "I built a shared repair sheet, but I stopped updating it during busy shifts. An old status caused one unnecessary call.",
+    "author_id": "bike-builder",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/discord/bike-selfbuild",
+    "conversation_id": "bike-selfbuild",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "x:bike-enough",
+    "platform": "x",
+    "native_id": "bike-enough",
+    "kind": "post",
+    "text": "My small repair shop uses a whiteboard. It is enough for four bikes at a time, and I do not want another subscription.",
+    "author_id": "bike-small",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/x/bike-enough",
+    "conversation_id": "bike-enough",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  }
+]

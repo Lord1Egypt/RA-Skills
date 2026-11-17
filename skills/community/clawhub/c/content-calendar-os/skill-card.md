@@ -1,41 +1,50 @@
-## Description: <br>
-Content Calendar helps users plan, create, and track content across platforms, including pipelines, ideas, drafts, schedules, performance notes, and repurposing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, create, and track a content pipeline across channels, including ideas, drafts, calendar views, publishing status, performance notes, and repurposing.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External creators, marketers, and small business owners use this skill to manage multi-channel content planning from ideas through drafts, scheduling, publishing, repurposing, and performance notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content calendars, drafts, ideas, channel notes, and performance observations may include sensitive unpublished strategy stored locally. <br>
-Mitigation: Use the skill only when local storage of that information is acceptable, and inspect or delete content-data.json when needed. <br>
-Risk: Generated drafts and repurposing suggestions may not match a brand, legal, or compliance standard without review. <br>
-Mitigation: Review drafted content before publishing and adjust tone, claims, and platform-specific details for the intended audience. <br>
+## Use Case:
 
+Creators, marketers, and small business owners use this skill to plan multi-channel content, maintain an idea bank and calendar, draft posts, and track publishing status and performance notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/content-calendar-os) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown responses with tables, numbered lists, draft copy, and JSON-backed content updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local content-data.json for channels, content, themes, ideas, drafts, and performance notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill stores channels, drafts, ideas, notes, schedules, and performance observations in a local content-data.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive or confidential campaign material unless local retention is acceptable, and establish a process for reviewing or deleting stored data.
+
+## Reference(s):
+
+- [Content Calendar on ClawHub](https://clawhub.ai/chris/skills/content-calendar-os)
+- [Content Calendar README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and structured text, with JSON data updates managed by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local content-data.json data store for channels, content items, themes, ideas, drafts, and performance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

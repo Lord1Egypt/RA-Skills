@@ -1,45 +1,56 @@
-## Description: <br>
-Build high-performing OpenClaw agents end-to-end by designing a new agent's persona and operating rules, generating required OpenClaw workspace files, and iterating on existing agent behavior, guardrails, autonomy model, heartbeat plan, and skill roster. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-performing OpenClaw agents end-to-end by designing a persona, operating rules, safety posture, and required OpenClaw workspace files.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Developers and advanced OpenClaw users use this skill to interview for requirements, generate a complete agent workspace, add practical safety guardrails, and create short acceptance tests for the resulting agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agent workspace files can affect future agent behavior and persistence. <br>
-Mitigation: Review generated AGENTS.md, MEMORY.md, HEARTBEAT.md, and related workspace files before using them. <br>
-Risk: Memory or workspace files may accidentally include secrets or sensitive information. <br>
-Mitigation: Keep credentials, tokens, session transcripts, and private configuration out of generated memory and workspace files. <br>
-Risk: Heartbeat or autopilot behavior can increase autonomous activity beyond the user's intent. <br>
-Mitigation: Enable heartbeat or autopilot behavior only when explicitly desired and keep heartbeat checklists short and reviewable. <br>
+## Use Case:
 
+Developers and advanced agent users use this skill to create or revise OpenClaw agent workspaces with tailored identity, behavior, memory, heartbeat, and safety files.
 
-## Reference(s): <br>
-- [OpenClaw agent workspace](references/openclaw-workspace.md) <br>
-- [OpenClaw agent file templates](references/templates.md) <br>
-- [Agent Architecture Patterns](references/architecture.md) <br>
-- [Project homepage](https://github.com/ryan-wuxl/agent-creator-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with generated workspace file contents, checklists, and scenario prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or generate OpenClaw workspace files such as IDENTITY.md, SOUL.md, AGENTS.md, USER.md, HEARTBEAT.md, optional MEMORY.md, memory/YYYY-MM-DD.md, and TOOLS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated workspace memory and heartbeat files can create durable agent behavior that persists across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated MEMORY.md and HEARTBEAT.md content before use, and enable heartbeat behavior only after the generated agent rules are trusted.
+
+Risk: Workspace files may accidentally capture sensitive user, credential, or session details.
+
+Mitigation: Keep credentials and private session transcripts out of generated workspace files, and review memory content before committing or sharing the workspace.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/ryan-wuxl/agent-creator-suite)
+- [OpenClaw workspace reference](references/openclaw-workspace.md)
+- [OpenClaw agent file templates](references/templates.md)
+- [Agent architecture patterns](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and OpenClaw workspace file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or revise IDENTITY.md, SOUL.md, AGENTS.md, USER.md, HEARTBEAT.md, optional MEMORY.md, daily memory notes, and acceptance-test prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

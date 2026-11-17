@@ -1,42 +1,54 @@
-## Description: <br>
-Use this skill when a user is actively planning, in the middle of, or wrapping up a residential move. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Move Planner helps an agent manage residential move logistics, including timelines, tasks, vendors, address changes, budgets, and buy or sell milestones in a local tracker.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users planning a residential move use this skill to organize move timelines, tasks, vendors, address changes, budgets, and buy/sell milestones in a local tracker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local move tracker can contain addresses, household notes, vendor contacts, and budget items. <br>
-Mitigation: Keep move-data.json in a trusted local workspace and do not enter SSNs, full account numbers, full ID numbers, passport numbers, or mortgage application documents. <br>
-Risk: Printable timelines, vendor lists, or move-day plans may expose personal move details if shared without review. <br>
-Mitigation: Review generated exports before sharing them and remove details that third parties do not need. <br>
+## Use Case:
 
+External users planning, executing, or closing out a residential move use this skill to keep move dates, tasks, vendors, budget items, address changes, and closing milestones organized in one local tracker.
 
-## Reference(s): <br>
-- [Move Planner ClawHub Page](https://clawhub.ai/chris-openclaw/move-planner) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses, with local JSON tracker updates when the agent is allowed to write files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local move-data.json file for move details, task progress, vendors, address changes, budget items, and milestone tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, changelog, release evidence) <br>
+Risk: The local tracker can contain personal move details such as addresses, household notes, vendor information, and budget items.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep move-data.json in a user-controlled local workspace and avoid entering full account numbers, SSNs, passport numbers, driver's license numbers, or mortgage application documents.
+
+Risk: The evidence notes a documentation mismatch about whether move-data.json is stored in the working directory or the skill data directory.
+
+Mitigation: Clarify the intended storage path before deployment and verify the agent only reads and writes the expected local tracker file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris/skills/move-planner)
+- [Publisher profile](https://clawhub.ai/user/chris)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, guidance]
+
+**Output Format:** [Conversational Markdown summaries with local JSON tracker updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists move state in move-data.json and may produce local printable timelines, vendor lists, or move-day plans.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

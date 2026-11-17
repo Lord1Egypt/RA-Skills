@@ -1,0 +1,37 @@
+{
+  "product": "<one line: what the product is, who uses it, the core action>",
+  "url": "http://localhost:3000",
+  "pages": [
+    "/ (home: <what is on this page>)",
+    "/<core page> (<what is on this page>)"
+  ],
+  "scenario": "<product type and context, e.g. \"Tool website. Judge retention as a tool: rechecks, update prompts, saving and sharing; no deductions for missing levels or points\">",
+  "references": [
+    "refs/<site>-*.png: <site> (<award> · <year>, jury <x.xx>)"
+  ],
+  "rubric": {
+    "typography": "6 <…> · 7 <…> · 8 <…> · 9 <…> (<reference site>)",
+    "whitespace": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "hierarchy": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "color": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "motion": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "micro-interactions": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "responsive": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "originality": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "usability": "6 <…> · 7 <…> · 8 <…> · 9 <…>",
+    "retention": "6 <…> · 7 <…> · 8 <…> · 9 <…>"
+  },
+  "signature_moments": [
+    "moments/<name>/contact-<n>.png: <what this moment is> (40ms per frame)"
+  ],
+  "sounds": [
+    "<levels.json written by sound_levels.py>: <which flow was measured> (delete this field if the site has no sound)"
+  ],
+  "deliberate_flaws": [],
+  "rejected_looks": [],
+  "how_to_operate": [
+    "Open headless with Python Playwright. Phone: viewport 375x812, device_scale_factor 2, is_mobile=True, has_touch=True; desktop: 1440x900.",
+    "There is a cookie banner on first visit; after looking at the first screen you may close it before scrolling."
+  ],
+  "machine_limits": "Start only one browser instance for the whole review, at most one page open at a time, no more than 40 screenshots in total, close the browser right after; do not run several Python or browser processes at once."
+}

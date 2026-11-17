@@ -1,41 +1,55 @@
-## Description: <br>
-Uses OpenCLI to help an agent retrieve website and platform data, download media, control supported desktop apps, and route commands through external CLI tools across social, video, knowledge, finance, developer, and productivity services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCLI Tool Integration helps an agent use OpenCLI to retrieve website and social platform data, download media, control desktop applications, and pass commands to external CLI tools.
 
-## Publisher: <br>
-[Wike-CHI](https://clawhub.ai/user/Wike-CHI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wike-chi](https://clawhub.ai/user/wike-chi)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill when they need an agent to query supported web platforms, export or download media, automate local desktop applications, or invoke tools such as GitHub CLI, Docker, and kubectl through OpenCLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents access to logged-in browser sessions, desktop apps, downloads, and powerful local CLIs. <br>
-Mitigation: Install only when OpenCLI, its browser extension, and reachable accounts or local tools are trusted; prefer a separate Chrome profile and non-production GitHub, Docker, and Kubernetes contexts. <br>
-Risk: Commands may perform logged-in access, writes, deletes, publishing, downloads, desktop automation, or infrastructure-changing actions. <br>
-Mitigation: Require explicit approval before running commands that change state, access authenticated data, download media, automate desktop applications, or modify infrastructure. <br>
+## Use Case:
 
+Developers and agent users use this skill when they want an agent to collect data from supported websites, download media, interact with local desktop apps, or run registered CLI tools through OpenCLI.
 
-## Reference(s): <br>
-- [OpenCLI GitHub repository](https://github.com/jackwener/opencli) <br>
-- [OpenCLI npm package](https://www.npmjs.com/package/@jackwener/opencli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and OpenCLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that access logged-in browser sessions, local desktop apps, downloads, and external CLI contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can give an agent broad access to authenticated Chrome sessions, desktop applications, and powerful local CLIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is intended, prefer a separate Chrome profile and least-privileged accounts, and confirm write, message-sending, download, or administrative actions before allowing them.
+
+Risk: Docker or Kubernetes access may expose sensitive local or cluster resources.
+
+Mitigation: Enable Docker or Kubernetes commands only when needed and review the upstream OpenCLI package and browser extension before installation.
+
+## Reference(s):
+
+- [OpenCLI GitHub Repository](https://github.com/jackwener/opencli)
+- [OpenCLI npm Package](https://www.npmjs.com/package/@jackwener/opencli)
+- [ClawHub Skill Page](https://clawhub.ai/wike-chi/skills/opencli-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured command output such as JSON, YAML, tables, CSV, or Markdown when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local commands that access authenticated browser sessions, desktop applications, downloaded files, and external CLI tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

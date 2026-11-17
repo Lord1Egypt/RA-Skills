@@ -1,44 +1,59 @@
-## Description: <br>
-Operate TickTick through an OOMOL-connected account for reading, creating, updating, moving, completing, and deleting projects, tasks, and habit check-ins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TickTick (ticktick.com). Use this skill for ANY TickTick request — reading, creating, updating, and deleting data. Whenever a task involves TickTick, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and agents use this skill to manage TickTick projects, tasks, completed-task views, and habit check-ins through an OOMOL-connected TickTick account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions can change TickTick projects, tasks, and habit check-ins. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: Destructive actions can delete TickTick projects or tasks. <br>
-Mitigation: Confirm the target and obtain explicit approval before running destructive actions. <br>
-Risk: The skill requires a connected OOMOL and TickTick account with sensitive credential access handled server-side. <br>
-Mitigation: Use only the intended account connection and grant mutation authority that matches the requested task. <br>
+## Use Case:
 
+People using TickTick can ask an agent to read and organize their tasks, projects, and habits through their connected account. The skill also supports creating, updating, completing, moving, and deleting TickTick items, with confirmation safeguards for changes.
 
-## Reference(s): <br>
-- [TickTick homepage](https://ticktick.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL app connections for TickTick](https://console.oomol.com/app-connections?provider=ticktick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and JSON snippets; connector action responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup can execute unverified software whose documented effects extend to other installed agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately; consult the publisher's command reference for OO_SKILLS_SYNC_DISABLED=1 if you want to prevent broader skill changes.
+
+Risk: TickTick task data passes through OOMOL, and writes or deletions can change account data.
+
+Mitigation: Account for OOMOL in the data path, confirm the exact payload for writes, and require explicit approval for destructive actions.
+
+## Reference(s):
+
+- [TickTick](https://ticktick.com)
+- [TickTick API documentation](https://developer.ticktick.com/docs/index.html)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command and environment variable reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [OOMOL TickTick connection](https://console.oomol.com/connections/ticktick)
+- [ClawHub TickTick release](https://clawhub.ai/oomol/skills/oo-ticktick)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON input and structured JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live action schema for payloads; state-changing actions require user confirmation and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

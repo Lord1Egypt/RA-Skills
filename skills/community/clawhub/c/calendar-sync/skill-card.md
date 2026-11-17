@@ -1,40 +1,58 @@
-## Description: <br>
-Calendar Sync extracts deadlines, event dates, and date ranges from structured document data and turns them into Apple Calendar entries or importable ICS files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calendar Sync converts structured document date fields such as deadlines, event dates, and periods into Apple Calendar events.
 
-## Publisher: <br>
-[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk)
 
-## Use Case: <br>
-Developers and document-automation users use this skill to convert structured document dates into calendar events, reminders, and importable calendar files. It supports workflows where parsed documents need follow-up deadlines, events, or periods reflected in Apple Calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct Apple Calendar mode builds executable AppleScript from document fields. <br>
-Mitigation: Prefer the ICS workflow, inspect generated events before import, and use direct AppleScript mode only when the structured JSON comes from a trusted source. <br>
-Risk: Calendar entries can persist sensitive document details such as amounts, file paths, names, Notion links, and document IDs. <br>
-Mitigation: Redact sensitive notes before syncing to calendars that may be shared, backed up, or visible to other users. <br>
+## Use Case:
 
+Developers and operators use this skill to turn structured document outputs into calendar reminders for deadlines, meetings, events, and date ranges. It can generate an ICS file for import or, on trusted macOS inputs, attempt direct Apple Calendar registration through AppleScript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkbeomjun-gkgkgk/calendar-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [ICS calendar files, AppleScript or osascript commands, Python code, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates calendar_events.ics by default and can attempt direct Apple Calendar registration on macOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The optional AppleScript path can execute unsafe script content derived from document data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ICS generation by default and allow AppleScript only for trusted input JSON after reviewing the generated events.
+
+Risk: Calendar event notes may sync to Apple or iCloud calendars and expose document summaries, amounts, source paths, IDs, or Notion links.
+
+Mitigation: Redact sensitive note fields before import and confirm the target calendar account before syncing.
+
+Risk: Dependency versions are not pinned in the artifact guidance.
+
+Mitigation: Pin and review the icalendar dependency in the deployment environment before routine use.
+
+## Reference(s):
+
+- [Calendar Sync ClawHub listing](https://clawhub.ai/parkbeomjun-gkgkgk/skills/calendar-sync)
+- [Publisher profile](https://clawhub.ai/user/parkbeomjun-gkgkgk)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Guidance, Text]
+
+**Output Format:** [ICS calendar file, AppleScript command path, Markdown/text guidance, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and the icalendar package; direct calendar registration is macOS-specific.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

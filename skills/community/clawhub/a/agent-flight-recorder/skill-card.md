@@ -1,45 +1,63 @@
-## Description: <br>
-Agent Flight Recorder creates an immutable, cryptographically verifiable audit trail for OpenClaw agent executions by registering SHA-256 file hashes, fetching Cryptowerk blockchain seals, and verifying proof sidecars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a Cryptowerk-backed, cryptographically verifiable audit trail for OpenClaw agent executions by registering SHA-256 file hashes, fetching blockchain seals, and verifying proofs with local sidecar artifacts.
 
-## Publisher: <br>
-[cryptowerk-main](https://clawhub.ai/user/cryptowerk-main) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptowerk-main](https://clawhub.ai/user/cryptowerk-main)
 
-## Use Case: <br>
-Developers and engineers use this skill to create proof-carrying audit artifacts for agent runs, decisions, and data files. It supports registering exact file hashes, retrieving seals, and verifying later proofs with local sidecar state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled or locally stored Cryptowerk credentials may be exposed if cwconfig.json is committed, backed up, or left broadly readable. <br>
-Mitigation: Keep the skill directory out of watched source trees and backups, restrict permissions on cwconfig.json, and rotate credentials if the file is exposed. <br>
-Risk: Registering or verifying a file sends its SHA-256 hash and proof data to Cryptowerk without an explicit confirmation step. <br>
-Mitigation: Use the skill only for files whose hashes may be shared with Cryptowerk and require explicit approval before network registration or verification. <br>
-Risk: .cwseal sidecars can contain retrieval IDs, seals, and verification history that may reveal workflow metadata. <br>
-Mitigation: Store .cwseal files with the same access controls as the source data and avoid placing them in public or shared repositories. <br>
+## Use Case:
 
+Developers and engineers use this skill to add proof-of-existence and later verification to AI workflow files, decisions, logs, and data artifacts while preserving privacy by registering hashes rather than raw content.
 
-## Reference(s): <br>
-- [Cryptowerk homepage](https://www.cryptowerk.com) <br>
-- [Agent Flight Recorder on ClawHub](https://clawhub.ai/cryptowerk-main/agent-flight-recorder) <br>
-- [Cryptowerk API Notes](references/cryptowerk-api-notes.md) <br>
-- [Storage and State](references/storage-and-state.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python command examples and JSON sidecar artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local .cwseal sidecar files and cwconfig.json credential state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill contacts Cryptowerk's external API for registration, seal retrieval, credential issuance, and verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound requests to Cryptowerk are approved and where submitted hashes and lookup metadata are acceptable for that workflow.
+
+Risk: The bundled cwconfig.json contains credential-like values and the skill can persist credentials in the skill directory.
+
+Mitigation: Treat bundled values as exposed, replace them with user-provided or secret-manager credentials, keep credential files out of synced or committed directories, and restrict file permissions.
+
+Risk: Proof metadata is stored in local <file>.cwseal sidecar files.
+
+Mitigation: Keep sidecar files with the audited artifacts, protect them from unauthorized modification, and review their contents before sharing.
+
+## Reference(s):
+
+- [Agent Flight Recorder on ClawHub](https://clawhub.ai/cryptowerk-main/skills/agent-flight-recorder)
+- [Cryptowerk](https://www.cryptowerk.com)
+- [Cryptowerk API Notes](references/cryptowerk-api-notes.md)
+- [Storage and State](references/storage-and-state.md)
+- [Cryptowerk Register API](https://aiagent.cryptowerk.com/platform/API/v8/register)
+- [Cryptowerk Get Seal API](https://aiagent.cryptowerk.com/platform/API/v8/getseal)
+- [Cryptowerk Verify Seal API](https://aiagent.cryptowerk.com/platform/API/v8/verifyseal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python script commands and local JSON sidecar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces retrieval IDs, seals, and verification results through Cryptowerk proof APIs; stores proof metadata in <file>.cwseal sidecar files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Starton"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["starton"]
   icon: "https://static.oomol.com/logo/third-party/starton.jpg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_pin` — Delete a Starton pin by pin identifier. [destructive]
 - `get_pin` — Read one IPFS pin from Starton by pin identifier.
 - `list_pins` — List IPFS pins from the current Starton project.
-- `pin_existing_file` — Create a Starton pin for an existing IPFS CID.
+- `pin_existing_file` — Create a Starton pin for an existing IPFS CID. [write]
 
 ## Safety
 
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Starton is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=starton
+  https://console.oomol.com/connections/starton
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Starton homepage: https://starton.com
+- API documentation: https://github.com/starton-io/starton-openapi

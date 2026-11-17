@@ -101,14 +101,15 @@ Bundled under `network_aiops.governance` — no external dependency. State lives
 under `~/.network-aiops/` (override with `NETWORK_AIOPS_HOME`):
 
 - `audit.db` — every tool call (skill, tool, params, status, duration, agent).
-- `rules.yaml` — policy deny rules, maintenance windows, risk tiers.
 - Token/runaway budget guard (`NETWORK_MAX_TOOL_CALLS`, `NETWORK_MAX_TOOL_SECONDS`,
   `NETWORK_RUNAWAY_MAX`, `NETWORK_RUNAWAY_WINDOW_SEC`).
 - Undo store — inverse descriptors for reversible writes (config merge/replace).
 - Encrypted secret store (`secrets.enc`) — device passwords + NetBox token,
   unlocked by `NETWORK_AIOPS_MASTER_PASSWORD`.
-- Accountability: set `NETWORK_AUDIT_APPROVED_BY` / `NETWORK_AUDIT_RATIONALE` to
-  record who authorized a high-tier operation and why.
+- Accountability (optional): set `NETWORK_AUDIT_APPROVED_BY` /
+  `NETWORK_AUDIT_RATIONALE` to annotate the audit row with who asked for a change
+  and why. They are optional and never block a call — the skill does not authorize
+  operations; that is the agent's judgement or the connecting account's privilege.
 
 ## MCP client config
 
@@ -129,5 +130,5 @@ Prefer the installed entry point — it does not re-resolve PyPI at launch.
 ## Static analysis
 
 ```bash
-uvx bandit -r network_aiops/ mcp_server/
+uvx bandit -r network_aiops/
 ```

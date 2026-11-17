@@ -1,46 +1,59 @@
-## Description: <br>
-Searches Odessa rental sites for long-term two-room apartments up to 15,000 UAH per month using filters for district, pets, new buildings, living area, and furnishings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Realtor searches public real-estate sites for long-term two-room apartment rentals in Odessa under 15,000 UAH with filters for district, area, furnishings, pets, and new builds.
 
-## Publisher: <br>
-[kapishdima](https://clawhub.ai/user/kapishdima) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kapishdima](https://clawhub.ai/user/kapishdima)
 
-## Use Case: <br>
-External users looking for rentals in Odessa use this skill to have an agent browse public listing sites, apply the stated apartment filters, and return candidate listings with links and key details. <br>
-
-### Deployment Geography for Use: <br>
-Odessa, Ukraine <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rental listings may be outdated, incomplete, inaccurate, or unavailable when the agent checks external sites. <br>
-Mitigation: Verify listing details directly on the source site before contacting anyone or making rental decisions. <br>
-Risk: The skill opens external real-estate websites during normal use. <br>
-Mitigation: Invoke it explicitly with /rent and review the visited sources and returned links before acting on the results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kapishdima/rent) <br>
-- [OLX Odessa rental listings](https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/?currency=UAH) <br>
-- [DOM.RIA Odessa rental listings](https://dom.ria.com/uk/search/?category=1&realty_type=2&operation=3&state_id=12&price_cur=1&wo_dupl=1&sort=inspected_sort&firstIteraction=false&limit=20&market=3&excludeSold=1&type=map&without_entity_group=1&city_ids=12&ch=246_244#map_state=30.72139_46.48608_0.0_10.0) <br>
-- [Flatfy Odessa rental listings](https://flatfy.ua/%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0-%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80-%D0%BE%D0%B4%D0%B5%D1%81%D1%81%D0%B0) <br>
-- [Rieltor Odessa rental listings](https://rieltor.ua/ru/odessa/flats-rent/#10.5/0/0) <br>
-- [LUN Odessa rental listings](https://lun.ua/rent/odesa/flats/ru?srsltid=AfmBOopj60sLsMOT7sdNo_rAx-Cwj4dAttnTGCIg4ms30rFTkdykFNjx) <br>
-- [Atlanta Odessa rental listings](https://www.atlanta.ua/odessa/filters/arenda/kvartiry) <br>
-- [REM Odessa rental listings](https://rem.ua/arenda-kvartir-odessa) <br>
+## Use Case:
 
+External users looking for rentals in Odessa use this skill to have an agent browse listed real-estate sources and return matching long-term two-room apartment listings with prices, districts, floors, area, links, and source fallback notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown list of apartment listings with links, prices, districts, floors, and areas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-specific notes when no listings are found or a source cannot be searched.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may browse several public real-estate sites when rental trigger phrases are used.
+
+Mitigation: Review or narrow the source list and criteria before installation if users need explicit confirmation before browsing.
+
+Risk: Results are tied to fixed Odessa two-room rental criteria and may not match other cities, budgets, or languages.
+
+Mitigation: Adjust the filters, sources, and trigger phrases before using it for a different rental search.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kapishdima/skills/rent)
+- [OLX apartment rentals](https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/?currency=UAH)
+- [DOM.RIA Odessa rentals](https://dom.ria.com/uk/search/?category=1&realty_type=2&operation=3&state_id=12&price_cur=1&wo_dupl=1&sort=inspected_sort&firstIteraction=false&limit=20&market=3&excludeSold=1&type=map&without_entity_group=1&city_ids=12&ch=246_244#map_state=30.72139_46.48608_0.0_10.0)
+- [flatfy Odessa rentals](https://flatfy.ua/%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0-%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80-%D0%BE%D0%B4%D0%B5%D1%81%D1%81%D0%B0)
+- [rieltor Odessa rentals](https://rieltor.ua/ru/odessa/flats-rent/#10.5/0/0)
+- [LUN Odessa rentals](https://lun.ua/rent/odesa/flats/ru?srsltid=AfmBOopj60sLsMOT7sdNo_rAx-Cwj4dAttnTGCIg4ms30rFTkdykFNjx)
+- [Atlanta Odessa rentals](https://www.atlanta.ua/odessa/filters/arenda/kvartiry)
+- [REM Odessa rentals](https://rem.ua/arenda-kvartir-odessa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with rental listing links and fallback notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links, prices, districts, floors, and apartment area; dependent on public listing availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

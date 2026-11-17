@@ -1,7 +1,7 @@
-﻿---
+---
 name: resend-send-native-node
 description: Send email via Resend.com's HTTPS API - native Node.js, zero dependencies. Use when the user explicitly asks to email, send a message, mail a report, or deliver a notification to an email address. Externally sends email only with --send; defaults to dry-run and requires RESEND_ALLOWED_TO allowlist for real sends. Requires RESEND_API_KEY in the process environment for real sends. No OAuth, no 2FA, no Gmail required.
-version: 1.0.12
+version: 1.0.20
 risk_class: external-email-send-dry-run-default-send-gated
 ---
 
@@ -34,7 +34,7 @@ This skill is send-only, but it is still externally mutating. For agent use:
 1. **Draft first.** Generate or inspect the exact body text before sending.
 2. **Dry-run first.** The script dry-runs by default; review the printed payload.
 3. **Explicit approval.** Use `--send` only after the user explicitly approves the exact `to`, `cc`, `bcc`, `from`, `reply-to`, `subject`, and body. Treat `reply-to` as response-routing control and review display-name text in `from` for spoof-like wording before any real send.
-4. **Use an allowlist.** Real sends fail closed unless `RESEND_ALLOWED_TO=addr@example.com,other@example.com` is set in the process environment for approved recipients.
+4. **Use an allowlist.** Real sends fail closed unless `RESEND_ALLOWED_TO=addr@example.com,other@example.com` is set in the process environment for approved recipients. Treat `RESEND_ALLOWED_TO` as an operator-controlled, approval-scoped guard; agents must not broaden or set it merely to make a send succeed unless the user explicitly approves that exact allowlist change.
 5. **No raw memory dumps.** Email only curated report text, not unfiltered memory, transcripts, logs, or private workspace context.
 
 ## How to run
@@ -42,6 +42,21 @@ This skill is send-only, but it is still externally mutating. For agent use:
 The script is in `scripts/send.mjs`. Requires Node.js 18+ because real sends use native `fetch` and `AbortController`.
 
 For operator workflows, prefer `--json` so dry-runs and real sends produce a stable machine-readable receipt with `mode`, `sent`, recipients, subject, body byte count, full body SHA-256, SHA-256 prefix, allowlist status, and `resendId` on successful real sends.
+
+### Agent-safe invocation boundary
+
+For agent-generated, user-supplied, multiline, or otherwise arbitrary `subject`, `body`, `from`, `reply-to`, `to`, `cc`, or `bcc` values, **do not interpolate those values into a shell command string**. Shell quoting is outside this script's control and can be broken before the script's dry-run, allowlist, or approval gates execute.
+
+Canonical agent path: invoke Node directly with an argv array and pass reviewed message fields as one JSON object on stdin with `--input-json-stdin`. Keep mode flags such as `--dry-run`, `--send`, and `--json` in argv; the stdin JSON payload accepts only message fields and cannot set send mode.
+
+Example argv shape for agents/orchestrators:
+
+```text
+argv: ["<skill-dir>/scripts/send.mjs", "--json", "--dry-run", "--input-json-stdin"]
+stdin JSON: {"to":["you@example.com"],"subject":"Reviewed subject","body":"Approved body text"}
+```
+
+The shell examples below are for simple literal operator commands only. They are not the safe transfer path for arbitrary generated content.
 
 **Basic:**
 ```powershell
@@ -65,6 +80,8 @@ node "<skill-dir>/scripts/send.mjs" --html --to "you@example.com" --subject "Sty
 node "<skill-dir>/scripts/send.mjs" --dry-run --to "you@example.com" --subject "Test" --body "..."
 ```
 
+If `--dry-run` and `--send` are both present, dry-run wins and no email is sent.
+
 **Real send (only after explicit approval):**
 ```powershell
 node "<skill-dir>/scripts/send.mjs" --send --to "you@example.com" --subject "Weekly report" --body "Approved report text"
@@ -74,9 +91,9 @@ node "<skill-dir>/scripts/send.mjs" --send --to "you@example.com" --subject "Wee
 
 | Flag | Required? | Purpose |
 |---|---|---|
-| `--to` | yes | Comma-separated recipient addresses |
-| `--subject` | yes | Message subject |
-| `--body` | yes | Inline message body |
+| `--to` | yes unless supplied by `--input-json-stdin` | Comma-separated recipient addresses |
+| `--subject` | yes unless supplied by `--input-json-stdin` | Message subject |
+| `--body` | yes unless supplied by `--input-json-stdin` | Inline message body; use stdin JSON instead for agent-generated or arbitrary text |
 | `--cc` | no | Comma-separated cc |
 | `--bcc` | no | Comma-separated bcc |
 | `--from` | no | Override sender, e.g. `"Example Sender <onboarding@resend.dev>"` |
@@ -85,11 +102,12 @@ node "<skill-dir>/scripts/send.mjs" --send --to "you@example.com" --subject "Wee
 | `--dry-run` | no | Don't send; print the JSON payload |
 | `--send` | no | Actually send. Without this, the script dry-runs by default |
 | `--json` | no | Print a stable JSON receipt for dry-run or real send |
+| `--input-json-stdin` | no | Read message fields from one JSON object on stdin; preferred for agent-generated/arbitrary text because it avoids shell interpolation |
 | `-h`, `--help` | no | Show help |
 
 Recipients in `--to`, `--cc`, `--bcc`, and `--reply-to` must be bare email addresses. Only `--from` accepts display-name format such as `"Reports <reports@example.com>"`.
 
-`--body-file` is intentionally not supported in the public package. Review file contents yourself and pass approved text with `--body`.
+`--body-file` is intentionally not supported in the public package. Review file contents yourself and pass approved text with `--body`, or for agent workflows pass the exact reviewed message fields through `--input-json-stdin` without shell interpolation.
 
 ## Credentials
 
@@ -98,6 +116,7 @@ Requires process environment values:
 - `RESEND_API_KEY` - starts with `re_...`
 - `RESEND_ALLOWED_TO` - comma-separated recipient allowlist for real sends
 - Real sends require `RESEND_ALLOWED_TO`; without it the script refuses `--send`
+- Treat `RESEND_ALLOWED_TO` as operator-controlled. Setting or widening it is a separate approval-scoped action, not something an agent should do automatically to satisfy `--send`.
 
 **How to get one:**
 1. Sign up at https://resend.com and check the current pricing/limits for the account
@@ -123,7 +142,7 @@ By default, emails are sent from `onboarding@resend.dev` - Resend's default send
 ## What this skill does
 
 - Reads `RESEND_API_KEY` from the process environment only
-- POSTs a JSON request to `https://api.resend.com/emails`
+- POSTs a JSON request to the fixed endpoint `https://api.resend.com/emails` with redirects disabled
 - Prints a one-line confirmation with the Resend message ID
 - Defaults to dry-run unless `--send` is present
 - Validates basic recipient address shape before sending
@@ -136,7 +155,7 @@ By default, emails are sent from `onboarding@resend.dev` - Resend's default send
 - Does not read or manage email (this is send-only)
 - Does not read local files or support `--body-file`
 - Does not write any files
-- Does not make network calls other than to `api.resend.com`
+- Does not intentionally make network calls other than the fixed `https://api.resend.com/emails` request; redirects are disabled with `redirect: "error"`
 - Does not auto-update
 - Does not support attachments in this version
 
@@ -158,6 +177,7 @@ On failure, clear error on stderr with a non-zero exit code.
 - **HTTP 403** - API key doesn't have send permission, or the from address can only send to the account owner until a domain is verified (check dashboard). On Windows, a Node.js cleanup assertion may appear after a 403 exit; this is cosmetic and does not indicate a successful send.
 - **HTTP 422** - the from address isn't verified on your Resend account (use `onboarding@resend.dev` or verify your own domain)
 - **HTTP 429** - rate limited; check https://resend.com/pricing or the Resend dashboard for current limits
+- **HTTP 5xx** - Resend/server-side failure or ambiguity; if the request may have reached Resend, check the dashboard before retrying to avoid duplicate sends.
 - **Network error or timeout** - transient, but a network/timeout/read error after the request was sent does not prove the email was not delivered. Check the Resend dashboard before retrying to avoid duplicate sends.
 
 ## Sample output
@@ -186,11 +206,25 @@ $ node scripts/send.mjs --send --to "you@example.com" --subject "Hello" --body "
 error: RESEND_ALLOWED_TO must be set for real sends. Refusing --send without a recipient allowlist.
 
 # PowerShell:
+# Only set or widen RESEND_ALLOWED_TO after explicit approval for that exact allowlist change.
 $env:RESEND_ALLOWED_TO="you@example.com"; node scripts/send.mjs --send --to "you@example.com" --subject "Hello" --body "Hi there"
 # bash/zsh:
 # RESEND_ALLOWED_TO="you@example.com" node scripts/send.mjs --send --to "you@example.com" --subject "Hello" --body "Hi there"
 error: RESEND_API_KEY not set in process environment. Create one at https://resend.com, check current pricing/limits, and export RESEND_API_KEY.
 ```
+
+## Required checks before publishing/updating
+
+Minimum no-send checks:
+
+```powershell
+node --check skills\resend-send-native-node\scripts\send.mjs
+node skills\resend-send-native-node\scripts\send.mjs --help
+node skills\resend-send-native-node\scripts\send.mjs --to "test@example.com" --subject "Smoke" --body "Hello" --json
+node skills\resend-send-native-node\tests\run-resend-send-tests.mjs
+```
+
+The smoke command above must remain a dry-run: do not include `--send`. Real sends require separate explicit approval for the exact recipient headers, subject, and body plus an allowlist.
 
 ## Account limits
 
@@ -198,6 +232,14 @@ Resend pricing and free-tier limits can change. Check the current Resend dashboa
 
 ## Changelog
 
+- `1.0.20`: Mirror the operator-controlled `RESEND_ALLOWED_TO` warning in CLI help and document 5xx retry ambiguity/support guidance. No send behavior change.
+- `1.0.19`: Make `RESEND_ALLOWED_TO` ownership explicit: it is an operator-controlled, approval-scoped guard, and agents must not set or widen it merely to make a send succeed. No send behavior change.
+- `1.0.18`: Clarify the flags table/help that required message fields may be supplied through `--input-json-stdin` instead of inline flags, so support handoffs do not steer arbitrary generated/user content through shell interpolation. No send behavior change.
+- `1.0.17`: Add canonical `--input-json-stdin` agent invocation path for arbitrary reviewed message fields, document that agents must not shell-interpolate generated email content, add hostile metacharacter stdin regression coverage, and enforce fixed-endpoint no-redirect behavior with `redirect: "error"`. No real-send approval semantics changed.
+- `1.0.16`: Add committed no-send regression coverage for `--dry-run --send` precedence and `cc`/`bcc` allowlist blocking before any API-key/fetch path. No send behavior change.
+- `1.0.15`: Document the actual no-send publish/update checks, including the existing `tests\run-resend-send-tests.mjs` runner, so public update gates do not rely on a nonexistent self-test path. No send behavior change.
+- `1.0.14`: Public package eval hygiene: generate the Resend API-key-shaped test sentinel at runtime so package scanners do not see a static key-shaped string in source; no send behavior change.
+- `1.0.13`: Source-polish retest prep: genericized a review fixture subject, documented that `--dry-run --send` resolves to dry-run, and normalized SKILL.md line endings; no send behavior change.
 - `1.0.12`: ClawHub publication/version refresh after JSON receipt fix and public-readiness review; no additional runtime behavior change.
 - `1.0.11`: Add `--json` structured receipts for dry-run and real send output so operators can capture stable subjects, body hashes, allowlist status, and `resendId` without scraping human text.
 - `1.0.10`: Clarify explicit approval must cover all delivery/reply headers (`to`, `cc`, `bcc`, `from`, `reply-to`), subject, and body before real sends.

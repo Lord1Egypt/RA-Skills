@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <body>
+    <input id="q" />
+    <button id="send">Send</button>
+    <pre id="out"></pre>
+    <script>
+      document.getElementById("send").onclick = async () => {
+        const res = await fetch("http://localhost:3001/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: [{ role: "user", content: document.getElementById("q").value }] }),
+        });
+        document.getElementById("out").textContent = (await res.json()).content;
+      };
+    </script>
+  </body>
+</html>

@@ -1,38 +1,49 @@
-## Description: <br>
-Guides an agent to create generic mouse ASCII or text art, including sitting-profile examples and simple Python string snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and examples for creating text-based mouse illustrations, including sitting-profile ASCII-style mouse art.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Users can ask an agent for lightweight generic mouse text art for comments, documentation, examples, or small scripts. The skill is best suited for static ASCII-style illustration guidance rather than brand-specific character rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing metadata may imply Disney or Mickey output, while the artifact describes a generic non-Mickey mouse drawing guide. <br>
-Mitigation: Present and use the skill as generic mouse text-art guidance, and review listing text before relying on it for brand-specific output. <br>
+## Use Case:
 
+Developers and agent users can use this skill when they need concise guidance or examples for drawing a mouse with text characters in comments, documentation, or generated content.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/DuanC-Chao/disney) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with plain text art and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static text output; no tool execution required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Risk: Some example glyphs may not be true ASCII and may be inappropriate or low quality for public-facing use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated art before publication and prefer simple ASCII-only examples when the target context requires ASCII.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/disney)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Code]
+
+**Output Format:** [Markdown with plain-text art examples and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include static text-art examples that should be reviewed for quality and appropriateness.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

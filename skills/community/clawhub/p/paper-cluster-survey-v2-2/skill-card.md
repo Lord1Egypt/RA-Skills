@@ -1,43 +1,61 @@
-## Description: <br>
-Extract structured paper records from one or more local PDFs, arXiv links, DOI links, or general paper URLs, then classify the papers and write an academic survey review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured paper records from one or more local PDFs, arXiv links, DOI links, or general paper URLs, then classify the papers and write an academic survey review.
 
-## Publisher: <br>
-[huang888596](https://clawhub.ai/user/huang888596) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huang888596](https://clawhub.ai/user/huang888596)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to turn mixed paper sources into structured records, defensible classifications, and an integrated literature review. It is suited to URL-first literature collection, PDF-based review drafting, taxonomy building, and formal academic survey preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read supplied PDFs or local paths and fetch paper URLs, which may expose confidential documents or private-network resources if the user provides them. <br>
-Mitigation: Use only intended public or approved research sources, avoid confidential files and localhost/private-network URLs, and review the source list before extraction. <br>
-Risk: Extracted metadata and generated survey claims may be incomplete or inaccurate when source text is weak, missing, or recovered through fallback methods. <br>
-Mitigation: Check important claims, classifications, and citations against the original papers, especially when extraction notes indicate low-confidence methods. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to convert a set of paper PDFs or URLs into structured paper records, a defensible classification table, and an academic survey-style review.
 
-## Reference(s): <br>
-- [Extraction Pipeline](references/extraction-pipeline.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Review Paper Style](references/review-paper-style.md) <br>
-- [Taxonomy Guidelines](references/taxonomy-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, and command-line examples for generated literature review workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write requested manifest, paper-record, and review files; default review output includes corpus summary, classification scheme, classification table, formal review article, and references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The helper scripts can read arbitrary local text, HTML, and PDF paths supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained workspace and avoid private paths or sensitive documents unless their contents are intended to be processed.
+
+Risk: The helper scripts can fetch unrestricted paper URLs.
+
+Mitigation: Use sandboxed network egress controls and review source URLs before running extraction.
+
+Risk: Weak extraction fallbacks can produce incomplete or noisy metadata that may affect classifications and survey claims.
+
+Mitigation: Treat extraction notes as quality signals, reopen weak sources when important details are missing, and keep uncertain claims explicit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huang888596/skills/paper-cluster-survey-v2-2)
+- [Extraction Pipeline](artifact/references/extraction-pipeline.md)
+- [Output Schema](artifact/references/output-schema.md)
+- [Review Paper Style](artifact/references/review-paper-style.md)
+- [Taxonomy Guidelines](artifact/references/taxonomy-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown survey review with classification tables, optional JSON paper records, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output order is corpus summary, classification scheme, classification table, formal review article, and references.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

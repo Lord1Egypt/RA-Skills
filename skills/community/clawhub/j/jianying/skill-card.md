@@ -1,42 +1,54 @@
-## Description: <br>
-注册“剪映”技能；用于创作工具公开页面、模板能力、功能说明与帮助文档整理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes and explains public Jianying/CapCut template categories, editing features, export specifications, copyright notes, and plan benefits.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and content operations teams use this skill to organize public Jianying/CapCut information about templates, editing capabilities, export specifications, help content, pricing, copyright notes, and commercial-use boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public website details, platform rules, pricing, help pages, and source links may change over time. <br>
-Mitigation: Verify dates and original source links before relying on extracted summaries or tables. <br>
-Risk: Copyright and commercial-use details may be misapplied if summarized without source context. <br>
-Mitigation: Preserve original links for copyright, commercial-use, pricing, and help-page claims in outputs. <br>
+## Use Case:
 
+Developers, creators, and content operations teams use this skill to summarize public Jianying/CapCut pages, including templates, editing capabilities, export specifications, help content, pricing, and copyright or commercial-use notes.
 
-## Reference(s): <br>
-- [Jianying official site](https://www.capcut.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/jianying) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and linked source lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should retain original links for copyright, commercial-use, pricing, and help-page claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may summarize pricing, copyright, or commercial-use details that can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify those details through the original Jianying/CapCut links before relying on them.
+
+Risk: The skill is not intended for private projects, account actions, paid-resource access, or copyright bypass.
+
+Mitigation: Use it only for public Jianying/CapCut information and keep account assets, non-public materials, and restricted resources out of scope.
+
+## Reference(s):
+
+- [CapCut official site](https://www.capcut.cn/)
+- [ClawHub Jianying skill page](https://clawhub.ai/codenova58/skills/jianying)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Jianying/CapCut sources and preserves original links for copyright, commercial-use, pricing, and plan details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

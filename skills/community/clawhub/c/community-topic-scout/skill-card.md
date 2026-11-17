@@ -1,41 +1,59 @@
-## Description: <br>
-Help a new Skool or online-community creator choose a community topic, name, audience, proof promise, and first 7-day validation challenge using the creator's inputs plus public benchmark patterns, without scraping private communities or promising revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help a new Skool or online-community creator choose a community topic, name, audience, proof promise, and first 7-day validation challenge using the creator's inputs plus public benchmark patterns, without scraping private communities or promising revenue.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-External creators use this skill to choose and validate an online community topic, name, proof promise, and first seven-day challenge before making a paid offer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private community, customer, account, or payment data could be exposed if users provide it as input. <br>
-Mitigation: Use public benchmark data only as directional context, and replace private member lists, DMs, paid content, customer exports, credentials, payment details, and platform session data with synthetic examples or user-owned notes. <br>
-Risk: Public benchmark patterns could be mistaken for proof of revenue, growth, or market demand. <br>
-Mitigation: Treat visible public metrics as examples only, avoid income or growth promises, and require validation gates before any paid offer. <br>
-Risk: A suggested community name could imply unauthorized platform affiliation or trademark rights. <br>
-Mitigation: Avoid names that depend on another platform's trademark unless the user confirms rights and final copy makes non-affiliation clear. <br>
+## Use Case:
 
+External creators use this skill to choose and validate an online community topic, positioning, name, proof promise, and first 7-day proof challenge before charging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ranked topic candidates, scored name options, a selected promise, validation metrics, and a reject list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The agent may overstate what public benchmark patterns prove about demand or revenue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat public benchmark patterns as directional examples only and require validation gates before any paid offer.
+
+Risk: The user may provide private community data, paid lessons, member lists, DMs, credentials, payment data, or private exports.
+
+Mitigation: Refuse to use private or sensitive material and ask for synthetic examples or user-owned notes instead.
+
+Risk: A suggested community name may imply affiliation with another platform or misuse a trademark.
+
+Mitigation: Avoid names that depend on another platform's trademark unless the user has rights and the final copy clearly states non-affiliation.
+
+## Reference(s):
+
+- [Community Topic Scout skill page](https://clawhub.ai/zack-dev-cm/skills/community-topic-scout)
+- [SKILL.md](artifact/SKILL.md)
+- [OpenAI agent interface](artifact/agents/openai.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with ranked recommendations, scored name options, validation metrics, and draft community copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill output should include a reject list and avoid revenue, growth, health, financial, legal, or education outcome promises.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

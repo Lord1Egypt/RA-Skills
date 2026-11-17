@@ -1,43 +1,55 @@
-## Description: <br>
-Generate a reusable runbook plus self-contained skill kit from a validated workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a reusable runbook plus self-contained skill kit from a validated workflow.
 
-## Publisher: <br>
-[grey0758](https://clawhub.ai/user/grey0758) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grey0758](https://clawhub.ai/user/grey0758)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to turn a validated workflow into a reusable runbook, knowledge documentation, and self-contained skill kit that can be published to ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated kits may accidentally include secrets, credentials, raw transcripts, or private draft notes. <br>
-Mitigation: Review generated kit contents before syncing memory or publishing, and remove sensitive or private material. <br>
-Risk: Publish and sync steps can affect the wrong local folder, slug, version, or ClawHub account. <br>
-Mitigation: Confirm the target folder, slug, version, and logged-in ClawHub account before running publish or sync commands. <br>
-Risk: Template output can encode incorrect or unstable workflow guidance if the source workflow was not validated. <br>
-Mitigation: Use the skill only with validated workflows and review the generated runbook and skill bundle before reuse. <br>
+## Use Case:
 
+Developers and operators use this skill to turn validated workflows into reusable documentation kits and self-contained skill bundles that can be shared or published.
 
-## Reference(s): <br>
-- [ClawHub Documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [ClawHub Skill Page](https://clawhub.ai/grey0758/runbook-skill-kit-template-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reusable runbook and skill-kit templates intended for review before syncing or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog) <br>
+Risk: Generated packages may accidentally include secrets, raw transcripts, or sensitive workflow details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before publishing and remove secrets, raw transcripts, and sensitive material.
+
+Risk: Example sync, inspect, or publish commands may affect local or shared ClawHub content if run without review.
+
+Mitigation: Review generated content and command arguments before running sync, inspect, or publish commands.
+
+## Reference(s):
+
+- [OpenClaw ClawHub Documentation](https://docs.openclaw.ai/tools/clawhub)
+- [ClawHub Skill Page](https://clawhub.ai/grey0758/skills/runbook-skill-kit-template-factory)
+- [Publisher Profile](https://clawhub.ai/user/grey0758)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown templates with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a knowledge index, runbook, FAQ, self-contained skill bundle, and release changelog for review before publishing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Detect and automatically fix spelling errors in Markdown, plain text, and documentation files with support for custom dictionaries and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects spelling issues in documentation files and can apply common typo fixes for Markdown, plain text, MDX, and reStructuredText files.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers, documentation maintainers, and CI operators use this skill to check project documentation for spelling issues and apply common spelling corrections before review or release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script may attempt to install aspell with a package manager, including sudo apt-get on supported systems. <br>
-Mitigation: Review the script first and install aspell manually through the environment's approved package management process. <br>
-Risk: Fix mode can rewrite documentation files, while the security evidence notes weaker safeguards than the documentation advertises. <br>
-Mitigation: Run check mode or fix --dry-run first, and only run fix mode on files covered by version control or backups. <br>
-Risk: The documentation advertises backup, rollback, and atomic commit behavior that is not fully reflected in the observed script behavior. <br>
-Mitigation: Treat those safeguards as unverified and inspect diffs before committing generated edits. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to check project documentation for spelling errors, preview changes, and apply common typo corrections before commits or CI checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Linux2010/doc-spellcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and terminal-style status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify documentation files when fix mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: Running the bundled script can automatically install aspell with Homebrew or sudo apt-get without an explicit opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pre-install aspell through an approved package-management process and avoid running the script with passwordless sudo or elevated privileges.
+
+Risk: Fix mode edits documentation files in place and temporary-file handling is not documented as hardened.
+
+Mitigation: Use dry-run or check mode first, run fix mode only on trusted directories, and review version-control diffs before committing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linux2010/skills/doc-spellcheck)
+- [Publisher profile](https://clawhub.ai/user/linux2010)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report spelling findings, file counts, dry-run diffs, and applied typo fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

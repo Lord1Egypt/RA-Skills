@@ -1,40 +1,53 @@
-## Description: <br>
-Checkers Sixty60 helps an agent shop on Checkers.co.za by browsing groceries, managing a basket, selecting delivery options, handling backup preferences, reordering regular items, and evaluating deals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through shopping on Checkers.co.za Sixty60, including product search, cart management, backup preferences, regular-item reordering, deal evaluation, and delivery-type selection.
 
-## Publisher: <br>
-[snopoke](https://clawhub.ai/user/snopoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[snopoke](https://clawhub.ai/user/snopoke)
 
-## Use Case: <br>
-External users can use this skill to have an agent help shop for groceries in a Checkers Sixty60 account, including finding products, comparing deals, managing quantities, choosing backups, and preparing a cart for user review. <br>
-
-### Deployment Geography for Use: <br>
-South Africa, where Checkers.co.za and Sixty60 delivery are available. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect a live grocery cart, including quantities, substitutions, delivery address context, and checkout preparation. <br>
-Mitigation: Before any purchase, review the delivery address, cart contents, quantities, backup choices, substitutions, and total, then give explicit approval for checkout or payment. <br>
-Risk: Stock, delivery eligibility, promotions, and cart updates may change while the agent is shopping. <br>
-Mitigation: Verify the page state after each add, remove, or quantity change, and report stock or cart errors instead of assuming an action succeeded. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snopoke/checkers-sixty60) <br>
-- [Checkers.co.za](https://www.checkers.co.za/) <br>
+## Use Case:
 
+External users and shopping agents use this skill to browse Checkers.co.za, select Sixty60-eligible groceries, manage basket contents, evaluate deals, and prepare orders with user confirmation before checkout or payment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text shopping guidance and browser-action summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product choices, quantities, deal comparisons, backup preferences, cart-state checks, and checkout review items.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+South Africa
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent could prepare an order with the wrong delivery type, quantities, substitutions, or total.
+
+Mitigation: Confirm delivery type, quantities, substitutions, and total with the user before checkout or any payment step.
+
+Risk: Shopping actions may fail because items are out of stock, delivery-incompatible, or not reflected correctly in the cart.
+
+Mitigation: Verify the cart state after each add, increase, decrease, or removal action and report any site error to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snopoke/skills/checkers-sixty60)
+- [Publisher profile](https://clawhub.ai/user/snopoke)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown guidance for browser-based shopping workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on Sixty60 filtering, cart verification, substitution preferences, deal evaluation, and checkout confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

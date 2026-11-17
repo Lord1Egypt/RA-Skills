@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{stock_name}} {{stock_code}} · 投研简报</title>
+<style>
+:root {
+  --gh-bg: #ffffff;
+  --gh-bg-soft: #f6f8fa;
+  --gh-border: #d0d7de;
+  --gh-text: #1f2328;
+  --gh-text-soft: #59636e;
+  --gh-blue: #0b3d91;
+  --gh-red: #cf222e;
+  --gh-green: #1a7f37;
+  --gh-purple: #8250df;
+  --gh-yellow-bg: #fff8c5;
+  --gh-yellow-border: #d4a72c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--gh-bg-soft);
+  color: var(--gh-text);
+  line-height: 1.6;
+  padding: 24px 16px;
+  -webkit-font-smoothing: antialiased;
+}
+.card {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--gh-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.header {
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid var(--gh-border);
+  background: var(--gh-bg);
+  position: relative;
+}
+.btn-icon {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  padding: 3px 9px;
+  font-size: 11.5px;
+  border-radius: 5px;
+}
+.btn-icon:hover {
+  background: var(--gh-bg-soft);
+  border-color: var(--gh-text-soft);
+}
+.stock-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.stock-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gh-text);
+}
+.stock-code {
+  font-size: 14px;
+  color: var(--gh-text-soft);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--gh-text-soft);
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.badge-buy {
+  background: #dafbe1;
+  color: #1a7f37;
+  border: 1px solid #1a7f37;
+}
+.badge-overweight {
+  background: #ddf4ff;
+  color: #0969da;
+  border: 1px solid #0969da;
+}
+.badge-hold {
+  background: var(--gh-yellow-bg);
+  color: #7d4e00;
+  border: 1px solid var(--gh-yellow-border);
+}
+.badge-underweight {
+  background: #ffebe9;
+  color: #cf222e;
+  border: 1px solid #cf222e;
+}
+.badge-sell {
+  background: #ffebe9;
+  color: #82071e;
+  border: 1px solid #82071e;
+}
+.sep { color: var(--gh-border); }
+.section { padding: 18px 24px; border-bottom: 1px solid var(--gh-border); }
+.section:last-of-type { border-bottom: none; }
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gh-text-soft);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.kpi {
+  background: var(--gh-bg-soft);
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--gh-text-soft);
+  margin-bottom: 4px;
+}
+.kpi-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gh-text);
+  font-variant-numeric: tabular-nums;
+}
+.kpi-sub {
+  font-size: 12px;
+  color: var(--gh-text-soft);
+  margin-top: 2px;
+}
+.kpi-value.pos { color: var(--gh-red); }
+.advice-block {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gh-text);
+}
+.advice-block strong { color: var(--gh-text); font-weight: 700; }
+.conclusion-list { list-style: none; counter-reset: li; }
+.conclusion-list li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.conclusion-list li::before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  background: var(--gh-blue);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.risk-list { list-style: none; }
+.risk-list li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--gh-text);
+}
+.risk-list li::before {
+  content: "⚠";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  color: var(--gh-yellow-border);
+  font-size: 14px;
+}
+.actions {
+  /* 保留空壳，便于复制图片时仍可定位隐藏（如以后需要） */
+  display: none;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--gh-bg);
+  color: var(--gh-text);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.btn:hover {
+  background: var(--gh-bg-soft);
+  border-color: var(--gh-text-soft);
+}
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1f2328;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.25s;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.footer-meta {
+  text-align: center;
+  padding: 12px 24px 8px;
+  font-size: 11px;
+  color: var(--gh-text-soft);
+  background: var(--gh-bg);
+  border-top: 1px solid var(--gh-border);
+  line-height: 1.5;
+}
+.disclaimer {
+  text-align: center;
+  padding: 0 24px 14px;
+  font-size: 11px;
+  color: var(--gh-text-soft);
+  background: var(--gh-bg);
+  line-height: 1.5;
+}
+.disclaimer strong { color: #57606a; }
+</style>
+</head>
+<body>
+
+<!--
+  投研简报 HTML 模板 · 30s 必读卡片
+  =====================================
+  使用方法：
+  1. 复制本文件到工作目录，命名为 {公司名}_投研简报_{YYYYMMDD}.html
+  2. 用 `{{占位符}}` 替换为实际值（见下方"占位符说明"）
+  3. 在 WorkBuddy 文件树里双击 .md 深度报告，在浏览器里打开本 .html 简报
+
+  占位符说明：
+  - {{stock_name}}       公司名（如：国恩股份）
+  - {{stock_code}}       股票代码（如：002768.SZ）
+  - {{rating}}           评级文字（如：持有 / 增持 / 买入 / 减持 / 卖出）
+  - {{rating_class}}     评级 CSS 类（buy/overweight/hold/underweight/sell，对应 5 种颜色）
+  - {{price_range}}      目标区间文字（如：53-67 元）
+  - {{price_current}}    当前价（如：54.60 元）
+  - {{date}}             报告日期（如：2026-07-03）
+  - {{kpi1_label}}       KPI 1 标签（如：营收 2026Q1）
+  - {{kpi1_value}}       KPI 1 数值（如：53.77 亿）
+  - {{kpi1_sub}}         KPI 1 副标（如：+21.86% YoY）
+  - {{kpi1_pos}}         KPI 1 数值是否红色（yes/no，控制涨红跌绿）
+  - {{kpi2_label}} {{kpi2_value}} {{kpi2_sub}} {{kpi2_pos}}    KPI 2
+  - {{kpi3_label}} {{kpi3_value}} {{kpi3_sub}} {{kpi3_pos}}    KPI 3
+  - {{kpi4_label}} {{kpi4_value}} {{kpi4_sub}} {{kpi4_pos}}    KPI 4
+  - {{advice_text}}      操作建议（1 段文字，含 <strong> 强调）
+  - {{conclusion1}}      3 句话结论第 1 句
+  - {{conclusion2}}      3 句话结论第 2 句
+  - {{conclusion3}}      3 句话结论第 3 句
+  - {{risk1}}            关键风险第 1 条
+  - {{risk2}}            关键风险第 2 条
+  - {{risk3}}            关键风险第 3 条
+  - {{data_source}}      数据来源描述
+  - {{generated_at}}     生成时间戳
+-->
+
+<div class="card" id="card">
+
+  <div class="header">
+    <div class="stock-title">
+      <span class="stock-name">{{stock_name}}</span>
+      <span class="stock-code">{{stock_code}}</span>
+    </div>
+    <div class="meta-row">
+      <span class="badge badge-{{rating_class}}">{{rating}}</span>
+      <span>目标区间</span>
+      <strong style="color:var(--gh-text);font-variant-numeric:tabular-nums;">{{price_range}}</strong>
+      <span class="sep">·</span>
+      <span>当前价</span>
+      <strong style="color:var(--gh-text);font-variant-numeric:tabular-nums;">{{price_current}}</strong>
+      <span class="sep">·</span>
+      <span style="font-size:12px;">{{date}}</span>
+    </div>
+    <button class="btn btn-icon" onclick="copyImage()">复制为图片</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">核心数据 · {{date}}</div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">{{kpi1_label}}</div>
+        <div class="kpi-value {{kpi1_pos}}">{{kpi1_value}}</div>
+        <div class="kpi-sub">{{kpi1_sub}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">{{kpi2_label}}</div>
+        <div class="kpi-value {{kpi2_pos}}">{{kpi2_value}}</div>
+        <div class="kpi-sub">{{kpi2_sub}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">{{kpi3_label}}</div>
+        <div class="kpi-value {{kpi3_pos}}">{{kpi3_value}}</div>
+        <div class="kpi-sub">{{kpi3_sub}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">{{kpi4_label}}</div>
+        <div class="kpi-value {{kpi4_pos}}">{{kpi4_value}}</div>
+        <div class="kpi-sub">{{kpi4_sub}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">操作建议</div>
+    <div class="advice-block">
+      {{advice_text}}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3 句话结论</div>
+    <ol class="conclusion-list">
+      <li>{{conclusion1}}</li>
+      <li>{{conclusion2}}</li>
+      <li>{{conclusion3}}</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <div class="section-title">关键风险（3 条）</div>
+    <ul class="risk-list">
+      <li>{{risk1}}</li>
+      <li>{{risk2}}</li>
+      <li>{{risk3}}</li>
+    </ul>
+  </div>
+
+  <div class="actions"></div>
+
+  <div class="footer-meta">
+    数据来源：{{data_source}} · 生成于 {{generated_at}}
+  </div>
+
+  <div class="disclaimer">
+    本简报由 AI 辅助生成，数据与结论仅供参考，<strong>不构成任何投资建议</strong>，据此操作风险自担。
+  </div>
+
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+async function copyImage() {
+  const card = document.getElementById('card');
+  const btn = card.querySelector('.btn-icon');
+  const prevDisplay = btn.style.display;
+  btn.style.display = 'none';
+  try {
+    const canvas = await html2canvas(card, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      logging: false
+    });
+    canvas.toBlob(async (blob) => {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        showToast('已复制为图片，去微信/IM 粘贴');
+      } catch (e) {
+        const link = document.createElement('a');
+        link.download = '{{stock_name}}_简报卡片_{{date}}.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showToast('已下载 PNG（浏览器不支持直接复制图片）');
+      }
+    }, 'image/png');
+  } catch (e) {
+    showToast('复制失败：' + e.message);
+  } finally {
+    btn.style.display = prevDisplay;
+  }
+}
+</script>
+
+</body>
+</html>

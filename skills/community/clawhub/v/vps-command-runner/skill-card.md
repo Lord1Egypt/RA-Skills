@@ -1,41 +1,49 @@
-## Description: <br>
-Run commands across multiple VPS simultaneously to execute SSH commands, deploy updates, check logs, and manage services across servers from one place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run commands across multiple VPS simultaneously. Execute SSH commands, deploy updates, check logs, manage Docker services, and check health across all your servers from one place. Use when managing multiple VPS, running commands across all hosts, checking status of distributed services, or deploying changes to multiple servers.
 
-## Publisher: <br>
-[chmikiro](https://clawhub.ai/user/chmikiro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chmikiro](https://clawhub.ai/user/chmikiro)
 
-## Use Case: <br>
-Developers and operators use this skill to manage their own VPS fleet by running SSH commands, status checks, service updates, and deployment tasks across one or more hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad remote command execution can change services, containers, files, users, firewall rules, or deployments across multiple VPS hosts. <br>
-Mitigation: Require explicit approval for state-changing commands and test commands on one host before running them across the fleet. <br>
-Risk: Password-based sshpass flows and disabled host key checking weaken SSH credential and host authenticity protections. <br>
-Mitigation: Replace password flows with least-privilege SSH keys or a secure secret source and keep host key verification enabled. <br>
-Risk: Host inventory and credentials may be exposed if edited directly into shared skill scripts. <br>
-Mitigation: Store host inventory and secrets outside the shared skill and inject them from a secure local source at runtime. <br>
+## Use Case:
 
+Developers and system administrators use this skill to run commands and manage Docker services across VPS fleets, check host health, and inspect logs. Review the remote-command input handling before production use.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied VPS inventory and SSH credentials before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe remote-command input handling can turn a log request into arbitrary commands across configured servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix and validate remote-command arguments, including log line counts and container, image, and filter values, before production use. Use restricted SSH accounts and a limited host inventory, verify host keys, and choose trusted image digests.
+
+## Reference(s):
+
+- [VPS Command Runner on ClawHub](https://clawhub.ai/chmikiro/skills/vps-command-runner)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text]
+
+**Output Format:** [Shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs commands against configured VPS hosts; fleet-wide actions may require interactive confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

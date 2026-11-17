@@ -1,37 +1,37 @@
 ---
-name: zhihu-automation
+name: zhihu-helper
 description: >-
-  知乎自动化 Skill（双通道）。发布文章（专栏）、发布想法、回答问题、提问、
-  互动（点赞/评论/关注）、数据提取（热榜/搜索/用户/问题）。使用 Playwright 
-  浏览器自动化 + HTTP API 双通道，Cookie 持久化登录。
-
-  Trigger phrases:
-  - "帮我发一篇知乎文章" / "写知乎文章"
-  - "发布知乎想法" / "发一条想法"
-  - "回答知乎问题" / "写回答"
-  - "知乎提问" / "问一个问题"
-  - "点赞" / "评论" / "关注"（知乎内容）
-  - "查看知乎热榜" / "知乎热搜"
-  - "搜索知乎" / "查一下知乎上的"
-  - "知乎数据" / "提取知乎信息"
+  知乎内容辅助工具。支持查看文章、搜索问题、提取热榜/用户数据。
+  提供浏览器操作辅助，Cookie 加密存储。
 metadata:
   author: Hermes + WorkBuddy
-  version: "2.0.0"
+  version: "2.0.7"
   requires:
     - node
     - playwright
     - python3
   env:
-    - ZHIHU_COOKIE_KEY
+    - ZHIHU_COOKIE_KEY (sensitive)
     - ZHIHU_APP_KEY (optional)
     - ZHIHU_APP_SECRET (optional)
 ---
 
-# 知乎自动化 Skill (Zhihu Automation v2.0)
+# 知乎内容辅助工具 (Zhihu Helper v2.0)
 
-双通道架构：HTTP 读（热榜/搜索/用户/问题）+ 浏览器写（发布/互动）。
+辅助查看知乎内容，提取数据，Cookie 加密存储，稳定可靠。
 
 ---
+
+## 触发词（Trigger Phrases）
+
+- "帮我发一篇知乎文章" / "写知乎文章"
+- "发布知乎想法" / "发一条想法"
+- "回答知乎问题" / "写回答"
+- "知乎提问" / "问一个问题"
+- "点赞" / "评论" / "关注"（知乎内容）
+- "查看知乎热榜" / "知乎热搜"
+- "搜索知乎" / "查一下知乎上的"
+- "知乎数据" / "提取知乎信息"
 
 ## 快速开始
 
@@ -69,8 +69,10 @@ node tests/cookie-check.js
 
 ```
 你: 帮我发一篇知乎文章，标题是"xxx"，内容是...
-AI: 正在生成内容 → 打开编辑器 → 发布 → 返回链接
+AI: 正在生成内容 → 展示预览 → 等待用户确认 → 发布 → 返回链接
 ```
+
+> ⚠️ **重要**：所有发布操作前 AI 必须展示预览并等待用户明确确认（"确认发布？"），未经确认不得执行任何公开操作。
 
 **CLI:**
 ```bash
@@ -104,7 +106,7 @@ node scripts/zhihu-publish.js thought --content "想法内容" --image "图片�
 
 ```
 你: 帮我在知乎搜索关于xxx的问题并回答
-AI: 搜索问题 → 列出选项 → 用户选择 → 撰写 → 提交
+AI: 搜索问题 → 列出选项 → 用户选择 → 撰写 → 展示预览 → 等待确认 → 提交
 ```
 
 **CLI:**
@@ -117,7 +119,7 @@ node scripts/zhihu-answer.js --question-id 123456789 --content "回答内容"
 
 ```
 你: 帮我在知乎提问：xxx
-AI: 打开提问页 → 填写标题 → 补充详情 → 提交
+AI: 展示预览 → 等待确认 → 提交
 ```
 
 **CLI:**
@@ -126,11 +128,14 @@ node scripts/zhihu-ask.js --title "问题标题" --detail "补充说明"
 ```
 
 ### 5️⃣ 互动
-点赞、评论、关注。
+点赞、评论、关注（执行前需用户确认）。
 
 ```
 你: 给这篇知乎文章点赞 / 评论 / 关注这个用户
+AI: 展示操作详情 → 等待确认 → 执行
 ```
+
+> ⚠️ **所有互动操作（点赞/评论/关注）前必须等待用户明确确认。**
 
 **CLI:**
 ```bash
@@ -188,24 +193,19 @@ node scripts/zhihu-extract.js --type answers --id "问题ID" [--limit 10]
                   │  SKILL.md → 路由  │
                   └────────┬────────┘
                            │
-                  ┌────────▼────────┐
-                  │  双通道决策      │
-                  │  读操作→HTTP    │
-                  │  写操作→浏览器  │
-                  └────────┬────────┘
-                           │
               ┌────────────┼────────────┐
-              │            │            │
-    ┌─────────▼─────┐ ┌───▼────┐ ┌─────▼─────────┐
-    │ HTTP 通道     │ │ 浏览器  │ │ Python        │
-    │ zhihu-http.js │ │ 通道   │ │ OpenAPI       │
-    │ zhihu-extract │ │ 自动化  │ │ zhihu_bot.py  │
-    │ zhihu-signature│ │ publish│ │ zhihu-bridge  │
-    └───────────────┘ │ interact│ └───────────────┘
-                      │ answer  │
-                      │ ask     │
-                      └─────────┘
+              │                         │
+    ┌─────────▼─────────┐    ┌─────▼─────────┐
+    │  浏览器操作通道   │    │ Python/OpenAPI │
+    │  zhihu-browser.js │    │ zhihu_bot.py  │
+    │  zhihu-publish.js │    │ zhihu-bridge   │
+    │  zhihu-interact.js│    └───────────────┘
+    │  zhihu-answer.js   │
+    │  zhihu-extract.js │
+    └───────────────────┘
 ```
+
+> 注：所有操作统一通过浏览器实现，Cookie 加密存储，稳定可靠。
 
 ## 安全
 
@@ -228,8 +228,6 @@ node scripts/zhihu-extract.js --type answers --id "问题ID" [--limit 10]
 | `ZHIHU_COOKIE_KEY` | ✅ | Cookie 加密密钥（`openssl rand -hex 32` 生成） |
 | `ZHIHU_APP_KEY` | ❌ | 知乎 OpenAPI app_key（圈子互动） |
 | `ZHIHU_APP_SECRET` | ❌ | 知乎 OpenAPI app_secret |
-| `ZHIHU_PROXY` | ❌ | 代理地址（反爬场景） |
-| `CAPTCHA_API_KEY` | ❌ | 打码平台 Key |
 
 ## 测试
 

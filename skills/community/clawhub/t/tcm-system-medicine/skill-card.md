@@ -1,42 +1,54 @@
-## Description: <br>
-Provides educational Traditional Chinese Medicine and systems-medicine analysis that integrates TCM theory, system science, complexity science, information theory, cybernetics, and selected scholarly frameworks for pattern discussion and case-study reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an educational Traditional Chinese Medicine and systems-medicine analysis framework for interpreting TCM concepts, syndrome patterns, formula rationale, spleen-stomach theory, and Ying-Wei/San-Jiao reasoning.
 
-## Publisher: <br>
-[roberning](https://clawhub.ai/user/roberning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberning](https://clawhub.ai/user/roberning)
 
-## Use Case: <br>
-External users and agents use this skill as an educational TCM and systems-medicine discussion aid for interpreting concepts such as yin-yang, qi-blood, zang-fu, ying-wei, prescriptions, spleen-stomach theory, and pattern-differentiation reasoning. It should not be used for diagnosis, prescriptions, dosing, urgent symptoms, serious disease decisions, or as a replacement for licensed medical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational TCM pattern discussion for medical diagnosis, treatment, prescription, or dosing guidance. <br>
-Mitigation: Frame outputs as educational discussion only and direct users to qualified licensed care for diagnosis, prescriptions, dosing, persistent symptoms, worsening symptoms, or concerning symptoms. <br>
-Risk: Symptom questioning and treatment-style conclusions may create medical-safety risk without strong boundaries. <br>
-Mitigation: Keep questioning limited to user-requested TCM analysis, avoid definitive clinical conclusions, and escalate urgent or serious symptoms to professional medical care. <br>
+## Use Case:
 
+External users use this skill for educational discussion and structured analysis of Traditional Chinese Medicine theory, including syndrome reasoning, concept mapping, formula-composition rationale, and case-study learning. It should not be used for real diagnosis, emergency triage, medication changes, or herbal self-treatment decisions.
 
-## Reference(s): <br>
-- [TCM System Medicine Skill Page](https://clawhub.ai/roberning/tcm-system-medicine) <br>
-- [TCM System Framework](references/TCM_System_Framework.md) <br>
-- [TCM YingWei Deep Dive](references/TCM_YingWei_Deep_Dive.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell command generation, or external tool access is indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: release evidence) <br>
+Risk: The skill can guide symptom classification and herbal treatment reasoning without adequate medical safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for educational TCM theory discussion; qualified medical professionals should handle diagnosis, treatment, medication changes, herbal use, pregnancy, serious conditions, allergies, liver or kidney disease, and worsening symptoms.
+
+Risk: Health questions may involve urgent or serious symptoms that require timely care.
+
+Mitigation: Escalate acute chest pain, breathing difficulty, high fever, severe symptoms, worsening symptoms, or other red flags to qualified medical care instead of relying on the skill.
+
+## Reference(s):
+
+- [TCM System Framework](references/TCM_System_Framework.md)
+- [TCM Ying-Wei Deep Dive](references/TCM_YingWei_Deep_Dive.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured analysis, follow-up questions, and reasoning chains]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include educational TCM interpretations, syndrome-reasoning summaries, formula rationale, and safety cautions.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

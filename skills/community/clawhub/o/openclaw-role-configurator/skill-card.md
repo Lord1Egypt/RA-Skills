@@ -1,41 +1,56 @@
-## Description: <br>
-OpenClaw role configuration assistant that guides users through creating or replacing an assistant persona, applying preset role templates, writing SOUL.md, and recommending related skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users configure or reconfigure an assistant role through guided prompts, bundled role templates, local SOUL.md generation, and related skill recommendations.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-OpenClaw users use this skill during initial setup or later reconfiguration to define an assistant name, role, tasks, capabilities, and communication style. It can apply one of the bundled role templates, generate the resulting SOUL.md configuration, and suggest complementary skills for the selected role. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently replace the assistant's active SOUL.md role configuration. <br>
-Mitigation: Preview the selected template and keep a backup of SOUL.md before applying a new configuration. <br>
-Risk: Bundled medical, pregnancy, infant-care, and mental-health personas may be under-scoped for sensitive advice. <br>
-Mitigation: Use these personas only with strong safety limits and do not treat their output as professional medical or mental-health advice. <br>
+## Use Case:
 
+OpenClaw users use this skill during first-time setup or later role changes to choose an assistant persona, define its tasks and communication style, apply one of 21 bundled templates, and receive related skill recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhuqingsonga/openclaw-role-configurator) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and SOUL.md configuration text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or replace the active SOUL.md role configuration when the bundled writer is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill can change the persistent SOUL.md assistant profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated role text before applying it and keep the backup if rollback may be needed.
+
+Risk: Some bundled templates cover health, pregnancy, newborn-care, and therapy-style use cases.
+
+Mitigation: Use those templates only for general support and do not rely on them for medical or mental-health decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/openclaw-role-configurator)
+- [README](artifact/README.md)
+- [Role templates](artifact/data/role_templates.json)
+- [Skill recommendation rules](artifact/data/skill_recommendations.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated SOUL.md configuration text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local SOUL.md role configuration file and create a backup of an existing SOUL.md file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

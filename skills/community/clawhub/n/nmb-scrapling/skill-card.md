@@ -1,44 +1,59 @@
-## Description: <br>
-Nmb Scrapling helps agents produce Scrapling-based web scraping guidance, code, shell commands, and configuration for static, dynamic, stealthy, and large-scale crawling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping framework supporting anti-bot bypass, adaptive parsing, session and proxy management, large-scale crawling, and dynamic content extraction.
 
-## Publisher: <br>
-[Superowl](https://clawhub.ai/user/Superowl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superowl](https://clawhub.ai/user/superowl)
 
-## Use Case: <br>
-Developers and data practitioners use this skill when they want an agent to explain or scaffold Scrapling workflows for scraping websites, extracting structured data, handling dynamic pages, managing sessions, monitoring changes, or setting up the Scrapling MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth mode, Cloudflare solving, proxy rotation, logged-in sessions, and large crawls can be misused or violate site rules. <br>
-Mitigation: Use the skill only for websites you are authorized to scrape, make bypass and proxy features explicit opt-ins, respect robots.txt and site terms, and set clear scope and rate limits. <br>
-Risk: Scraping workflows can collect sensitive or excessive data. <br>
-Mitigation: Minimize collected fields, avoid credentials or personal data unless approved, and clean up crawl and session state when finished. <br>
-Risk: Generated commands may install or execute the third-party Scrapling package and browser components. <br>
-Mitigation: Review generated commands before execution and pin or verify Scrapling package versions where practical. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate Scrapling for website scraping, structured extraction, dynamic page rendering, session-based crawling, and site-change monitoring. It is intended for authorized collection workflows where the user controls target selection and compliance obligations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Superowl/nmb-scrapling) <br>
-- [Scrapling documentation](https://scrapling.readthedocs.io) <br>
-- [Scrapling GitHub repository](https://github.com/D4Vinci/Scrapling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python, Bash, and JSON snippets; the bundled quick-scrape script can also produce JSON or text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on target URLs, CSS selectors, fetcher mode, output path, authorization scope, and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill supports anti-bot and Cloudflare-bypass scraping modes against arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those modes only for sites where access is authorized, and disable or avoid stealth and bypass options for routine collection.
+
+Risk: Broad network fetching and proxy-enabled crawling can collect sensitive or unauthorized data at scale.
+
+Mitigation: Run in an isolated environment with restricted network egress, review target lists before execution, and handle scraped data as potentially sensitive.
+
+Risk: Unreviewed dependency changes could alter scraping behavior or browser automation behavior.
+
+Mitigation: Pin reviewed dependency versions and scan the environment before deployment.
+
+## Reference(s):
+
+- [Scrapling documentation](https://scrapling.readthedocs.io)
+- [Scrapling GitHub repository](https://github.com/D4Vinci/Scrapling)
+- [ClawHub skill page](https://clawhub.ai/superowl/skills/nmb-scrapling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown with bash, Python, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local scrape outputs as JSON, text, Markdown, or HTML when the helper script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

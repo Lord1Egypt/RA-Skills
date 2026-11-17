@@ -1,42 +1,54 @@
-## Description: <br>
-Olares profile and authentication foundation for olares-cli, covering profile login, token import, profile switching, keychain-backed token storage, automatic access token refresh, and auth-error recovery for Olares CLI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Olares profile and authentication foundation for olares-cli, covering profile login, refresh-token import, profile switching, keychain-backed token storage, automatic token refresh, and auth-error recovery for Olares CLI workflows.
 
-## Publisher: <br>
-[olares](https://clawhub.ai/user/olares) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olares](https://clawhub.ai/user/olares)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to authenticate olares-cli, manage Olares profiles, recover from token errors, or prepare the active profile required by other Olares CLI skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Olares credentials and token handling. <br>
-Mitigation: Use interactive entry, `--password-stdin`, environment variables, or a secret manager; do not place passwords, refresh tokens, or access tokens directly in commands or shared scripts. <br>
-Risk: The security scan flagged suspicious behavior in the broader release because review helpers may run nested reviewers with broad local access or send diffs to fallback AI review CLIs. <br>
-Mitigation: Install only from trusted maintainers; run autoreview with `--no-yolo` or `AUTOREVIEW_YOLO=0`, and set fallback reviewers to `none` if local diffs should not be shared with other review CLIs. <br>
-Risk: Profile removal or overwrite operations can delete stored authentication state. <br>
-Mitigation: Confirm user intent before running write or delete actions such as `olares-cli profile remove`, token import, or overwrite-style commands. <br>
+## Use Case:
 
+Developers and agents use this skill as the authentication and profile-management foundation for Olares CLI workflows. It helps users log in safely, import refresh tokens, switch profiles, understand token storage, and recover from common authentication failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olares/olares-shared) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include credential-handling instructions, profile-management commands, and auth-error recovery steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Long-lived refresh tokens or 2FA codes may be exposed through shared shells, CI logs, recorded terminals, or monitored systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer interactive login where the user enters credentials directly, and avoid refresh-token import or --totp in shared or logged environments.
+
+Risk: Tokens stored through file fallback have different security properties than a system keychain.
+
+Mitigation: Treat file-fallback token storage as sensitive local credential material and review the environment before installing or using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olares/skills/olares-shared)
+- [Olares publisher profile](https://clawhub.ai/user/olares)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and recovery tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires olares-cli and relies on the active local Olares profile.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,66 @@
-## Description: <br>
-Assists Chinese-language study conversations for Chapter 10, "Stress and Strain," from Rowland S. Miller's Intimate Relationships, using progressive disclosure and local reference notes for concepts such as relational value, hurt feelings, ostracism, jealousy, deception, betrayal, and forgiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports Chinese-language study of Chapter 10, "Stress and Strain," from Rowland S. Miller's Intimate Relationships with progressive explanations of relational value, hurt feelings, ostracism, jealousy, deception, betrayal, and forgiveness.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, educators, and agents use this skill to review Miller's Intimate Relationships Chapter 10 in Chinese through concise Q&A, terminology support, textbook examples, research summaries, and misconception correction. It is intended as educational study support, not counseling, legal, medical, or crisis guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat textbook study explanations about relationship stress, betrayal, or forgiveness as personal counseling or crisis advice. <br>
-Mitigation: Keep responses framed as educational support for the textbook chapter and direct users with therapy, crisis, medical, legal, or safety needs to qualified professionals or emergency resources. <br>
-Risk: Users may share highly private real-life relationship details while using the skill. <br>
-Mitigation: Encourage minimal, non-identifying context and avoid requesting sensitive details unless they are necessary for the educational question. <br>
+## Use Case:
 
+External learners use this skill as a Chinese study companion for Miller's Intimate Relationships Chapter 10. It helps review definitions, theories, research findings, examples, and common misconceptions about relationship stress and strain while keeping real-world clinical, legal, and crisis questions outside its scope.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/intimate-ch10-stress-strain) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Theories And Models](references/theories.md) <br>
-- [Relational Value Hurt And Ostracism](references/relational-value-hurt-ostracism.md) <br>
-- [Jealousy](references/jealousy.md) <br>
-- [Deception And Lying](references/deception-lying.md) <br>
-- [Betrayal And Forgiveness](references/betrayal-forgiveness.md) <br>
-- [Research](references/research.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese responses with English terms on first use; concise progressive disclosure based on local markdown references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat relationship-stress explanations as therapy, crisis, legal, or medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as textbook study support and direct users with clinical, crisis, legal, or medical needs to qualified professionals.
+
+Risk: The skill may answer broad relationship questions through this chapter's concepts even when the topic is outside Chapter 10.
+
+Mitigation: State the scope boundary and redirect to the Chapter 10 relationship-value and stress framework only when relevant.
+
+Risk: The skill may answer in Chinese by default.
+
+Mitigation: Make the Chinese-language posture clear to users and switch languages only when the user asks or the deployment policy permits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/intimate-ch10-stress-strain)
+- [Betrayal And Forgiveness](references/betrayal-forgiveness.md)
+- [Common Misconceptions](references/common-misconceptions.md)
+- [Deception And Lying](references/deception-lying.md)
+- [Examples](references/examples.md)
+- [Jealousy](references/jealousy.md)
+- [Key Terms](references/key-terms.md)
+- [Relational Value Hurt And Ostracism](references/relational-value-hurt-ostracism.md)
+- [Research](references/research.md)
+- [Theories And Models](references/theories.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational study guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and cites bundled reference files only as needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

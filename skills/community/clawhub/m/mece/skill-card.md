@@ -1,43 +1,57 @@
-## Description: <br>
-Guides an agent to decompose broad or overlapping problems into mutually exclusive, collectively exhaustive issue trees, test for gaps and overlap, and identify the load-bearing branch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through MECE decomposition to structure complex questions into non-overlapping, exhaustive branches and identify where to focus.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and developers use this skill to structure complex business, strategy, or analytical questions into a MECE decomposition. It helps turn broad or messy problem spaces into testable branches, identify missing or overlapping categories, and produce a concise issue-tree-style markdown artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad problem-solving or presentation-prep requests when the user prefers less structured brainstorming. <br>
-Mitigation: Invoke it explicitly for structured decomposition, or ask the agent to stay exploratory when early structure would constrain ideation. <br>
-Risk: A decomposition can look rigorous while still using overlapping categories, missing residual cases, or choosing the wrong top-level dimension. <br>
-Mitigation: Review the overlap check, gap check, sum-to-whole test, and alternative decompositions before relying on the output. <br>
+## Use Case:
 
+Analysts and strategy teams use the skill to structure complex problems, option sets, and market questions into clear branches. It helps check for overlap and missing cases, compare possible ways to divide the problem, and focus on the branches that matter most.
 
-## Reference(s): <br>
-- [Sources - mece](references/sources.md) <br>
-- [Lou Gerstner's IBM Turnaround Decomposition (1993)](examples/lou-gerstner-ibm-turnaround-decomposition-1993.md) <br>
-- [IBM Investor Relations](https://www.ibm.com/investor/) <br>
-- [ClawHub listing](https://clawhub.ai/deciqai/skills/mece) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured MECE decomposition with the whole problem, top-level split, ME and CE tests, optional sub-decomposition, load-bearing branch, implied action, and alternatives considered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A decomposition may create misleading confidence if its categories overlap, leave gaps, or use the wrong dimension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check overlap and missing cases, sum the branches back to the defined whole, consider alternative dimensions, and independently verify important conclusions.
+
+Risk: Documented failure examples could expose confidential details.
+
+Mitigation: Avoid including confidential details when recording failure examples.
+
+## Reference(s):
+
+- [MECE skill page](https://clawhub.ai/deciqai/skills/mece)
+- [MECE overview and examples](https://www.deciqai.com/c/mece)
+- [Primary sources and supporting references](artifact/references/sources.md)
+- [IBM Investor Relations](https://www.ibm.com/investor/)
+- [NVIDIA Investor Relations](https://investor.nvidia.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown decomposition]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines the whole, proposed branches, overlap and coverage checks, load-bearing branch, and action implications; depth adapts to the problem.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

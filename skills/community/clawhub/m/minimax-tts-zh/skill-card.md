@@ -1,42 +1,63 @@
-## Description: <br>
-Converts text to MP3 speech with the MiniMax speech-2.8-hd API through an interactive token, text, and voice-selection workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the MiniMax API to convert Chinese text-to-speech requests into MP3 audio files through a guided token, text, and voice-selection flow.
 
-## Publisher: <br>
-[ggttol](https://clawhub.ai/user/ggttol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggttol](https://clawhub.ai/user/ggttol)
 
-## Use Case: <br>
-OpenClaw users and messaging agents use this skill to collect a MiniMax API token, text content, and a voice choice, then generate an MP3 file for delivery through chat platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores one shared MiniMax API token locally in server/.env for the OpenClaw instance. <br>
-Mitigation: Install only in trusted OpenClaw instances, remove server/.env when access should end, and rotate the MiniMax token if local persistence is no longer acceptable. <br>
-Risk: Text submitted for conversion is sent to MiniMax for text-to-speech processing. <br>
-Mitigation: Avoid converting private, regulated, or sensitive text unless MiniMax processing is approved for that data. <br>
+## Use Case:
 
+External users and agents use this skill in messaging workflows to collect Chinese text and a voice choice, call MiniMax text-to-speech, and return an MP3 audio file instead of playing local audio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ggttol/minimax-tts-zh) <br>
-- [MiniMax developer site](https://minimaxi.com) <br>
-- [MiniMax text-to-audio API endpoint](https://api.minimaxi.com/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, CLI status text, FILE path output, and MP3 audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates MP3 files under /tmp/openclaw by default and emits a FILE: path for platform media delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill sends user-provided text to MiniMax for text-to-speech generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for content approved for MiniMax processing, and avoid submitting sensitive or regulated text unless that use is permitted.
+
+Risk: The skill stores one shared MiniMax token locally in the skill directory.
+
+Mitigation: Use a scoped token where possible, limit local filesystem access, and rotate the token if the workspace may have been exposed.
+
+Risk: The README recommends broad persistent workspace instruction changes to force TTS behavior.
+
+Mitigation: Avoid applying the global TOOLS.md override across workspaces; review any persistent instruction changes per workspace before deployment.
+
+Risk: The output path can be supplied by the caller and may overwrite existing files.
+
+Mitigation: Prefer the default temporary output location or a dedicated scratch directory, and do not pass paths for important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ggttol/skills/minimax-tts-zh)
+- [MiniMax platform](https://minimaxi.com)
+- [MiniMax text-to-audio API endpoint](https://api.minimaxi.com/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Text]
+
+**Output Format:** [MP3 audio files with command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API token; generated speech is written to a local MP3 output path.]
+
+## Skill Version(s):
+
+1.2.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Mines categorized open research problems from one un-mined literature record at a time, deduplicates them against existing platform problems, and publishes the surviving problem records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mines categorized research problems from the human-free platform's un-mined literature backlog, processing one paper per run, deduplicating against existing problems, and publishing surviving scientific, technical, theoretical, or methodological problems.
 
-## Publisher: <br>
-[zbc0315](https://clawhub.ai/user/zbc0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbc0315](https://clawhub.ai/user/zbc0315)
 
-## Use Case: <br>
-Developers and research agents use this skill to process a platform backlog of research literature, extract high-quality open problems, avoid duplicates, and publish only distinct problem records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Bearer API key that can read queued literature and write problem records. <br>
-Mitigation: Use a role-scoped ideator key, configure it only in the MCP client, and avoid exposing the authorization header in shared logs or transcripts. <br>
-Risk: The internal MCP endpoint may use a self-signed certificate. <br>
-Mitigation: Prefer the public TLS-terminated MCP endpoint when possible; when using the internal endpoint, verify the endpoint and certificate with the platform operator. <br>
-Risk: The workflow writes problem records and marks literature as mined after successful publication. <br>
-Mitigation: Review extracted candidates before publishing, perform the documented de-duplication checks, and mark literature as mined only after publish calls succeed. <br>
+## Use Case:
 
+Agents and developers use this skill to process one un-mined literature item, extract at most one open research problem per supported category, deduplicate candidates, and publish or link the surviving results.
 
-## Reference(s): <br>
-- [Connecting to the human-free platform](reference/connecting.md) <br>
-- [Writing a good problem](reference/problem-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown status report with MCP tool calls and structured problem-record fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one literature item per run; publishes at most one problem per category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill directs agents to make credentialed changes to an external research platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a scoped and revocable ideator token, and keep host-side confirmation for publish, link, mark, and feedback operations.
+
+Risk: Endpoint setup may involve weak certificate-trust guidance.
+
+Mitigation: Configure a verified MCP endpoint and avoid blindly trusting self-signed certificates.
+
+Risk: The skill's autonomy language may reduce review before writes.
+
+Mitigation: Confirm that write operations align with operator policy before granting credentials.
+
+## Reference(s):
+
+- [Mine Problems Skill Page](https://clawhub.ai/zbc0315/skills/mine-problems)
+- [Connecting to the human-free platform](reference/connecting.md)
+- [Problem Rubric](reference/problem-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown run report with structured platform tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish problems, link literature, mark literature mined, and submit feedback when platform friction occurs.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

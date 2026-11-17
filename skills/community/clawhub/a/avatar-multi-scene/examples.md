@@ -5,8 +5,8 @@
 Proven pattern from production runs:
 
 1. **Character sheet** — photoreal founder, early 30s, locked **`seed`**, one **`voice`** preset.
-2. **Hero** — `p-image` (documentary photoreal) → slop gate → approve identity anchor.
-3. **Per scene** — `p-image-edit` (from hero anchor; change **only** angle + background) → slop gate → `p-video-avatar`. **Run edits and avatar jobs in parallel batches** per phase once dependencies are met ([parallel-execution.md](../../../../../references/shared/parallel-execution.md)); use **one subagent per scene lane** when the host supports it.
+2. **Hero** — `p-image-ideogram` (documentary photoreal) → slop gate → approve identity anchor.
+3. **Per scene** — `p-image-edit` (from hero anchor; change **only** angle + background) → slop gate → `p-video-avatar`. **Run edits and avatar jobs in parallel batches** per phase once dependencies are met (pruna-api.md#parallel-async-multi-scene--batch (`pruna-api`)); use **one subagent per scene lane** when the host supports it.
 4. **Vary every scene** — e.g. dark close-up → mountain overlook → ISS cupola → desk window light → studio CTA. Never repeat the same office framing twice.
 5. **Natural voice** — contractions, conversational hooks; **`voice_prompt`** describes human delivery, not product copy.
 
@@ -20,7 +20,7 @@ Scene 4: "What's actually cool is the speed — cheap enough that you can genuin
 Scene 5: "Anyway — check out Tellers. Link's in the post. I'd love to see what you build."
 ```
 
-Store scenes in JSON (`v2_avatar_only_scripts.json` pattern in `prompt-templates.md`) with **`project_seed`**, per-scene **`video_prompt`**, and **`still_prompt`** deltas.
+Store scenes in JSON (`v2_avatar_only_scripts.json` pattern in `prompt-templates.md`) with **`ritual_seed`**, per-scene **`video_prompt`**, and **`still_prompt`** deltas.
 
 ## Mixed announcement (avatar + animate slider beats)
 
@@ -40,7 +40,7 @@ Model roles and alignment: [animate-beats.md](./animate-beats.md).
 
 **Alignment reminder:** animate rows fail when a meme/mascot still meets human full-body dance motion—pick bust-only templates or repose first (see SKILL **Alignment prep**).
 
-**Style ladder reminder:** each persona still in an animate slider row should use a different **`visual_style_tag`** (photoreal, anime, claymation, Disney 3D, cyberpunk, game cinematic) with its own background, camera angle, and lighting — [visual-variety-bible.md](../../../../../references/shared/visual-variety-bible.md).
+**Style ladder reminder:** each persona still in an animate slider row should use a different **`visual_style_tag`** (photoreal, anime, claymation, Disney 3D, cyberpunk, game cinematic) with its own background, camera angle, and lighting — generation-diversity.md#visual-variety (`generation-diversity`).
 
 ## Motion-transfer-only reel (animate rows)
 
@@ -48,7 +48,7 @@ All-slider showcase (UGC variations, recasting demo):
 
 1. Scene table with only **`animate`** rows.
 2. Upload motion templates + reference stills in parallel.
-3. Parallel **`p-video-animate`** → batch slider render via [`batch.template.json`](../../../examples/workflows/launches/p-video-animate-comparison/batch.template.json).
+3. Parallel **`p-video-animate`** → batch slider render via [`batch.template.json`](./templates/batch.template.json).
 4. Concat comparison MP4s:
 
 ```bash
@@ -63,12 +63,7 @@ ffmpeg -f concat -safe 0 -i concat_list.txt -c copy output/recast_reel.mp4
 
 **Slider-only** (animate outputs already exist):
 
-```bash
-python3 catalog/workflows/_shared/scripts/generate_video_comparison.py \
-  --source assets/motion/scene2_template.mp4 \
-  --output output/scene2_animated.mp4 \
-  --render output/scene2_compare.mp4
-```
+Build side-by-side sliders with **ffmpeg hstack** (see `this skill` — agent runs ffmpeg locally; no Python runner).
 
 ## Multi-scene rhythm (generic cast)
 
@@ -118,8 +113,8 @@ Avoid stuffing script, product names, or brand slogans into **`voice_prompt`**�
 ```markdown
 # [Project] — multi-scene avatar (Pruna)
 
-## project_seed
-- seed: 482901 (hero p-image + all p-video-avatar)
+## ritual_seed
+- ritual_seed: "k7Qm2xP9" (SSoT planning — do not pass to API)
 
 ## Character sheet
 - role, age, hair, realism, wardrobe baseline, personality

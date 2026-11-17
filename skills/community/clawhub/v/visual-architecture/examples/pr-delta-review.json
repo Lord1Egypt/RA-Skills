@@ -1,0 +1,110 @@
+{
+  "mode": "pr-delta",
+  "title": "PR Delta Review Map",
+  "summary": "A review artifact shows the base path, proposed change, and proof gate before merge.",
+  "show_grid": false,
+  "nodes": [
+    {
+      "id": "base",
+      "label": "Base Snapshot",
+      "subtitle": "current main",
+      "kind": "memory",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "head",
+      "label": "Head Snapshot",
+      "subtitle": "PR branch",
+      "kind": "memory",
+      "x": 120,
+      "y": 320
+    },
+    {
+      "id": "delta",
+      "label": "Delta Engine",
+      "subtitle": "added/removed/moved",
+      "kind": "agent",
+      "x": 360,
+      "y": 240
+    },
+    {
+      "id": "boundary",
+      "label": "Boundary Check",
+      "subtitle": "new crossings",
+      "kind": "agent",
+      "x": 600,
+      "y": 160
+    },
+    {
+      "id": "deps",
+      "label": "Dependency Check",
+      "subtitle": "new services",
+      "kind": "agent",
+      "x": 600,
+      "y": 320
+    },
+    {
+      "id": "review",
+      "label": "Review Artifact",
+      "subtitle": "comment-ready",
+      "kind": "service",
+      "x": 840,
+      "y": 240
+    }
+  ],
+  "edges": [
+    {
+      "from": "base",
+      "to": "delta",
+      "kind": "primary-data",
+      "label": "before",
+      "source_side": "right",
+      "target_side": "left",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "head",
+      "to": "delta",
+      "kind": "primary-data",
+      "label": "after",
+      "source_side": "right",
+      "target_side": "left",
+      "label_offset": [0, 28]
+    },
+    {
+      "from": "delta",
+      "to": "boundary",
+      "kind": "control",
+      "label": "security",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "from": "delta",
+      "to": "deps",
+      "kind": "control",
+      "label": "imports",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "from": "boundary",
+      "to": "review",
+      "kind": "memory-write",
+      "label": "findings",
+      "source_side": "right",
+      "target_side": "left",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "deps",
+      "to": "review",
+      "kind": "memory-write",
+      "label": "receipt",
+      "source_side": "right",
+      "target_side": "left",
+      "label_offset": [0, 28]
+    }
+  ]
+}

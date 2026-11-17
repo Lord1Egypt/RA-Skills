@@ -1,42 +1,59 @@
-## Description: <br>
-IP geolocation lookup via MCP for IP location, ASN, country, city, domain-to-IP, and batch IP lookup requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up geographic and ASN information for public IPv4 and IPv6 addresses, including IPs resolved from domains, through a fixed MCP geolocation service.
 
-## Publisher: <br>
-[marc-chen](https://clawhub.ai/user/marc-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marc-chen](https://clawhub.ai/user/marc-chen)
 
-## Use Case: <br>
-External users, developers, and support teams use this skill to look up public IP geolocation and ASN details, including batch IP checks and domain-to-IP geolocation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public IP addresses and domain-resolved public IPs are sent to an external MCP service. <br>
-Mitigation: Use the skill for public IP and public domain geolocation, and avoid sensitive internal infrastructure details unless external disclosure is acceptable. <br>
-Risk: Private or reserved IP addresses can expose internal network details if queried externally. <br>
-Mitigation: Keep the documented and script-level private/reserved IP blocking in place before external lookup. <br>
+## Use Case:
 
+Developers, operators, and external users can use this skill to answer IP or domain geolocation questions, compare batches of public IPs, and return concise country, city, and ASN details. It is suited for quick network investigation and support workflows where public IP metadata is useful.
 
-## Reference(s): <br>
-- [MCP API Reference](references/api.md) <br>
-- [MCP GeoIP endpoint](https://ip.api4claw.com/mcp) <br>
-- [ClawHub release page](https://clawhub.ai/marc-chen/ip-geo-location-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API Calls] <br>
-**Output Format:** [Concise text or Markdown tables, with JSON returned by helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns IP, country, country code, province or state, city, ASN, ASN organization, or explicit validation/error status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Risk: Public IP addresses and IPs resolved from domains are sent to ip.api4claw.com over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that external lookup is acceptable; avoid sensitive internal network data and prefer a self-hosted or first-party geolocation source for privacy-sensitive workflows.
+
+Risk: Private or reserved addresses could expose internal network context if queried externally.
+
+Mitigation: The helper script blocks common private and reserved IPv4 and IPv6 ranges before external lookup, and users should review inputs before calling the MCP service directly.
+
+Risk: Geolocation and country text can be incomplete, empty, or affected by client encoding issues.
+
+Mitigation: Keep raw values visible, include country_code for reliability, use '-' for empty fields, and do not fabricate missing location details.
+
+## Reference(s):
+
+- [MCP API Reference](artifact/references/api.md)
+- [mcp-geoip-server endpoint](https://ip.api4claw.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/marc-chen/skills/ip-geo-location-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise text and Markdown tables for agent responses; JSON arrays when using the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses '-' for empty geolocation fields, marks invalid or blocked inputs explicitly, and may return multiple rows for domains with multiple A or AAAA records.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

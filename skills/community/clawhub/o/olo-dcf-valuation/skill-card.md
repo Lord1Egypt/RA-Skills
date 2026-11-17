@@ -1,40 +1,54 @@
-## Description: <br>
-DCF valuation methodology for M&A due diligence, including projections, sensitivity analysis, and terminal value calculation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DCF valuation methodology for M&A due diligence - projections, sensitivity analysis, and terminal value calculation.
 
-## Publisher: <br>
-[aniebyl](https://clawhub.ai/user/aniebyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aniebyl](https://clawhub.ai/user/aniebyl)
 
-## Use Case: <br>
-Finance teams, M&A advisors, and agent users use this skill to structure DCF valuation work for acquisition diligence, including revenue projections, WACC and terminal value checks, sensitivity tables, and valuation range outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Financial valuation outputs can be misleading if assumptions such as WACC, tax rates, margins, growth rates, terminal value, or jurisdiction-specific inputs are inaccurate. <br>
-Mitigation: Independently verify key assumptions and calculations before relying on outputs for business decisions. <br>
+## Use Case:
 
+External users and developers use this skill to guide discounted cash flow valuation work for M&A due diligence, including projections, WACC and terminal value analysis, sensitivity tables, and valuation outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aniebyl/olo-dcf-valuation) <br>
-- [Publisher profile](https://clawhub.ai/user/aniebyl) <br>
-- [OloLand](https://ololand.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown guidance with formulas, validation checks, valuation outputs, sensitivity tables, and chart recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, credentials, file access, or background behavior identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can activate on broad finance terms and may provide valuation defaults in contexts where company-specific assumptions are required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation scope and verify WACC, growth, margin, tax, jurisdiction, market, and company assumptions before relying on outputs.
+
+Risk: DCF outputs may be mistaken for final financial advice.
+
+Mitigation: Treat outputs as modeling guidance for diligence workflows and require qualified human review before business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aniebyl/skills/olo-dcf-valuation)
+- [OloLand](https://ololand.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown prose with formulas, assumptions, sensitivity tables, valuation ranges, and chart recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; valuation assumptions and defaults require human review before reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

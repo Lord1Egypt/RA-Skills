@@ -1,43 +1,56 @@
-## Description: <br>
-Analyzes event sequences to produce causal dependency graphs, risk-weighted paths, and responsibility-chain attribution against protocol constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V19 Causal Dependency Analyzer analyzes event sequences to produce causal dependency graphs, risk-weighted paths, and responsibility-chain attribution to the process constraint associated with a failure.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze failure-event chains, map causal dependencies, estimate path risk, and identify the protocol constraint most responsible for a failure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to send causal-event and protocol data to an unverified external API using a public/shared key or self-registered key. <br>
-Mitigation: Use only if the endpoint is trusted, avoid confidential or regulated data, and prefer a user-owned endpoint with a dedicated low-privilege key. <br>
-Risk: External causal attribution and remediation suggestions may be incomplete or misleading for real incidents. <br>
-Mitigation: Treat results as decision support and validate responsibility findings against incident records, protocol owners, and operational review before acting. <br>
+## Use Case:
 
+Developers and engineers use this skill to submit failure-event sequences and protocol constraints for causal-path analysis, risk weighting, and responsibility attribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuyanfeng1234/v19-causal-dependency-analyzer) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
-- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts event sequences and protocol constraints; responses may include causal paths, risk weights, responsibility chains, and suggested remediation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The workflow may transmit sensitive incident details, internal module names, protocol thresholds, credentials, or proprietary data to an external endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized test data unless the operator is trusted and privacy, retention, deletion, and credential-scope terms are clear.
+
+Risk: The documented public key is not a reliable control for sensitive use.
+
+Mitigation: Treat the public key as non-secret and avoid relying on it to protect confidential submissions.
+
+## Reference(s):
+
+- [V19 Causal Dependency Analyzer on ClawHub](https://clawhub.ai/liuyanfeng1234/skills/v19-causal-dependency-analyzer)
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented workflow sends event and protocol data to a remote Cloudflare Tunnel endpoint and returns causal paths, risk weights, responsibility-chain entries, and suggested constraint changes.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

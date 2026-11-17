@@ -1,40 +1,51 @@
-## Description: <br>
-Production Rust patterns covering ownership, async Tokio, Axum web framework, SQLx, error handling, CLI tools, WASM, and PyO3 Python bindings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production Rust patterns covering ownership, async Tokio, Axum web framework, SQLx, error handling, CLI tools, WASM, and PyO3 Python bindings.
 
-## Publisher: <br>
-[msruruguay](https://clawhub.ai/user/msruruguay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msruruguay](https://clawhub.ai/user/msruruguay)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical Rust guidance on ownership, error handling, async services, database access, CLI tools, WebAssembly, and Python bindings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Rust examples may involve databases, network listeners, package installation, or file I/O that can affect local systems if run unchanged. <br>
-Mitigation: Review and adapt generated code before execution, especially examples that open network services, connect to databases, install packages, or read and write files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rust Book](https://doc.rust-lang.org/book/) <br>
-- [Tokio Tutorial](https://tokio.rs/tokio/tutorial) <br>
-- [Axum Documentation](https://docs.rs/axum/latest/axum/) <br>
-- [PyO3 Documentation](https://pyo3.rs/) <br>
+## Use Case:
 
+Developers and engineers use this skill as a Rust programming reference for ownership, error handling, async Tokio, Axum services, database access, CLI tools, WebAssembly, and PyO3 bindings.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Rust code examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; users should review generated code before running it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Rust examples may start network listeners, connect to databases, install crates, or otherwise affect a local development environment if run without review.
+
+Mitigation: Review generated Rust code and commands before running them, especially examples involving Axum servers, database connections, crate installation, or Python extension builds.
+
+## Reference(s):
+
+- [The Rust Book](https://doc.rust-lang.org/book/)
+- [Tokio Tutorial](https://tokio.rs/tokio/tutorial)
+- [Axum Docs](https://docs.rs/axum/latest/axum/)
+- [PyO3 Docs](https://pyo3.rs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with Rust code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Bingo Email lets an agent read, send, reply to, forward, draft, move, and delete email across IMAP/SMTP mailboxes through a local Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bingo Email lets an agent manage IMAP/SMTP mailboxes by reading, sending, replying to, forwarding, drafting, deleting, moving, and listing email through a Python CLI.
 
-## Publisher: <br>
-[soulcoolzzz](https://clawhub.ai/user/soulcoolzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soulcoolzzz](https://clawhub.ai/user/soulcoolzzz)
 
-## Use Case: <br>
-Developers and end users with configured mailbox access use this skill to let an agent manage routine email workflows, including reading messages, preparing drafts, sending replies, forwarding messages, and organizing mailbox folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send, forward, or reply-all to email using the configured mailbox. <br>
-Mitigation: Review recipients, subject, body text, and reply-all behavior before allowing any send, forward, or reply command to run. <br>
-Risk: The skill requires an app password or mailbox authorization code stored in a local configuration file. <br>
-Mitigation: Use a dedicated app password where possible, keep the configuration file private with restrictive permissions, and rotate credentials if exposure is suspected. <br>
-Risk: The delete command can permanently remove mailbox data because it marks a message deleted and expunges it. <br>
-Mitigation: Avoid delete unless permanent removal is intended, and prefer reviewing or moving messages before deleting them. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent perform mailbox operations across providers such as QQ, 126/163, Gmail, Outlook, and custom IMAP/SMTP servers. It is suited to email triage, message drafting, replies, forwarding, folder management, and scripted mailbox workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soulcoolzzz/bingo-email) <br>
-- [Project homepage](https://github.com/soulcoolzzz/bingo-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read mailbox content and may create, send, move, or delete email when invoked with the corresponding command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can access mailbox contents and send, forward, reply to, move, or delete email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, message bodies, reply-all actions, forwards, moves, and deletes before allowing an agent to execute them.
+
+Risk: The local configuration stores an app password or authorization code for IMAP/SMTP access.
+
+Mitigation: Keep ~/.config/bingo-email/config.toml private, preserve restrictive file permissions, and rotate the credential if it is exposed.
+
+Risk: Weak transport or install choices can increase exposure when connecting to mail servers or installing the tool.
+
+Mitigation: Use TLS or STARTTLS, do not use encryption = none, and prefer the reviewed packaged script over standalone curl installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soulcoolzzz/skills/bingo-email)
+- [Project homepage](https://github.com/soulcoolzzz/bingo-email)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or modify mailbox state through IMAP/SMTP using local configuration at ~/.config/bingo-email/config.toml.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

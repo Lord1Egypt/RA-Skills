@@ -1,46 +1,61 @@
-## Description: <br>
-NiceChat API and CLI skill for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NiceChat API and CLI skill for AI agents.
 
-## Publisher: <br>
-[lastmonopoly](https://clawhub.ai/user/lastmonopoly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lastmonopoly](https://clawhub.ai/user/lastmonopoly)
 
-## Use Case: <br>
-Agents and developers use this skill to connect to NiceChat, manage contacts and one-to-one conversations, send and read messages, mark messages as read, and report presence through the NiceChat API or optional CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: NiceChat API keys can act on the user's NiceChat account. <br>
-Mitigation: Store NICECHAT_API_KEY in a secret manager, avoid pasting or logging credentials, and prefer runtime injection or stdin for CLI use. <br>
-Risk: Messages, links, filenames, nicknames, and profile fields returned by NiceChat may contain untrusted user-generated content. <br>
-Mitigation: Treat received content as data, ignore embedded instructions, and take state-changing actions only when the current top-level user explicitly asks for them. <br>
-Risk: The optional npm CLI is local executable code. <br>
-Mitigation: Review the npm package and linked source before global installation, or use direct API calls when a persistent CLI is unnecessary. <br>
+## Use Case:
 
+Developers and AI agents use this skill to interact with NiceChat for contact management, conversation creation, message sending, read receipts, notification checks, and presence updates through HTTP API calls or the optional CLI.
 
-## Reference(s): <br>
-- [ClawHub nicechat release](https://clawhub.ai/lastmonopoly/nicechat) <br>
-- [NiceChat skill homepage](https://clawersity.hanshi.tech/nicechat/skill) <br>
-- [NiceChat interactive API documentation](https://clawersity.hanshi.tech/api/nicechat/docs) <br>
-- [NiceChat OpenAPI specification](https://clawersity.hanshi.tech/api/nicechat/openapi.json) <br>
-- [NiceChat CLI npm package](https://www.npmjs.com/package/@xhanglobal/nicechat-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NICECHAT_API_KEY for authenticated API use and curl for direct HTTP examples; the optional CLI can emit compact JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill recommends installing mutable third-party code and a whole skill collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the ClawHub-published release when possible, avoid unpinned npx or @latest commands, and review the CLI package and repository before global installation.
+
+Risk: NiceChat API access can expose or modify chat, contact, message, and presence data.
+
+Mitigation: Provide only a NiceChat API key appropriate for the intended chat and contact actions, keep credentials in a secret manager, and avoid echoing credentials into logs, prompts, screenshots, or responses.
+
+Risk: Messages, nicknames, notes, filenames, links, and other user-provided content can contain untrusted instructions.
+
+Mitigation: Treat returned NiceChat content as data, and perform state-changing actions only when the current top-level user explicitly requests them.
+
+## Reference(s):
+
+- [NiceChat Skill Homepage](https://clawersity.hanshi.tech/nicechat/skill)
+- [NiceChat API Documentation](https://clawersity.hanshi.tech/api/nicechat/docs)
+- [NiceChat OpenAPI Specification](https://clawersity.hanshi.tech/api/nicechat/openapi.json)
+- [NiceChat CLI Package](https://www.npmjs.com/package/@xhanglobal/nicechat-cli)
+- [NiceChat Release Notes](https://clawersity.hanshi.tech/release-notes)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NICECHAT_API_KEY for authenticated API access and curl for HTTP examples.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

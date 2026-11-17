@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup documentation for Serverless Runner concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serverless Runner is a static devtools reference skill that provides plain-text guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Serverless Runner reference material, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference output is generic and may not reflect current vendor-specific serverless security or operations guidance. <br>
-Mitigation: Check current vendor documentation before relying on the guidance for production security, compliance, or operational decisions. <br>
-Risk: Future behavior that asks for credentials, network access, persistence, privileged actions, or unrelated command execution would fall outside the reviewed clean behavior. <br>
-Mitigation: Review and scan any modified release before deployment, and treat such requests as out of scope for this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly retrieve serverless-runner reference documentation and operational guidance while working in devtools contexts.
 
-## Reference(s): <br>
-- [Serverless Runner on ClawHub](https://clawhub.ai/bytesagain3/serverless-runner) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, persistence, or privileged actions are expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release and frontmatter) <br>
+Risk: The cheatsheet may include an inaccurate command name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm command names against the skill help output before relying on cheatsheet guidance.
+
+## Reference(s):
+
+- [Serverless Runner on ClawHub](https://clawhub.ai/bytesagain3/skills/serverless-runner)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access indicated by evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

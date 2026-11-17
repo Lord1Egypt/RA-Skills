@@ -1,53 +1,75 @@
-## Description: <br>
-Guides agents through setting up and using Capawesome Cloud for Capacitor native builds, live updates, app-store publishing, and CI/CD workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through setting up and using Capawesome Cloud for Capacitor apps, including native builds, live updates, app store publishing, and CI/CD integration.
 
-## Publisher: <br>
-[robingenz](https://clawhub.ai/user/robingenz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robingenz](https://clawhub.ai/user/robingenz)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Capawesome Cloud for Capacitor apps, including signed iOS and Android builds, over-the-air live updates, app-store submissions, and CI/CD automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers workflows that use Apple, Google, CI, keystore, certificate, service-account, and live-update signing materials. <br>
-Mitigation: Use secret managers or masked CI variables, avoid pasting secrets into chat or shell history, and rotate any exposed credentials. <br>
-Risk: Deployment, deletion, live-update upload, and commands using --yes can affect production apps or users. <br>
-Mitigation: Before execution, explicitly confirm the app, channel, destination, track, build, and whether the action affects production users. <br>
-Risk: Live updates can ship incompatible web changes or reload an app unexpectedly if not scoped and tested. <br>
-Mitigation: Use versioned channels or versioned bundles, enable rollback protection where appropriate, test on the intended native version, and ask for user consent before reloads. <br>
+## Use Case:
 
+Developers and mobile release engineers use this skill to configure Capawesome Cloud for Capacitor apps, automate iOS and Android builds, ship live updates, and publish builds to app stores.
 
-## Reference(s): <br>
-- [Native Builds](references/native-builds.md) <br>
-- [Live Updates](references/live-updates.md) <br>
-- [App Store Publishing](references/app-store-publishing.md) <br>
-- [CLI Commands Reference](references/cli-commands.md) <br>
-- [Build Configuration](references/build-configuration.md) <br>
-- [Environments](references/environments.md) <br>
-- [Android Signing Certificates](references/certificates-android.md) <br>
-- [iOS Signing Certificates](references/certificates-ios.md) <br>
-- [Live Update Configuration](references/live-update-configuration.md) <br>
-- [Live Update CI/CD Integrations](references/live-update-ci-cd-integrations.md) <br>
-- [Capawesome Cloud Console](https://console.cloud.capawesome.io) <br>
-- [Trapeze](https://trapeze.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown with inline bash, JSON, YAML, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent guidance may include Capawesome CLI commands, Capacitor configuration snippets, CI/CD examples, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Mutable command-line installs can execute newer CLI behavior than the reviewed skill examples assume.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and prefer pinned, lockfile-managed CLI versions.
+
+Risk: Release credentials, signing keys, app store credentials, and Capawesome tokens can authorize sensitive build and publishing operations.
+
+Mitigation: Use CI secret stores or interactive prompts, keep signing keys outside the repository with restrictive permissions, and grant only the minimum required permissions.
+
+## Reference(s):
+
+- [Capawesome Cloud](https://console.cloud.capawesome.io)
+- [Trapeze](https://trapeze.dev/)
+- [App Store Connect CLI](https://github.com/rudrankriyam/App-Store-Connect-CLI)
+- [Native Builds](references/native-builds.md)
+- [Live Updates](references/live-updates.md)
+- [App Store Publishing](references/app-store-publishing.md)
+- [CLI Commands Reference](references/cli-commands.md)
+- [App Configuration](references/build-configuration.md)
+- [Build Types](references/build-types.md)
+- [Build Stacks](references/build-stacks.md)
+- [Build Troubleshooting](references/build-troubleshooting.md)
+- [Environments](references/environments.md)
+- [Android Signing Certificates](references/certificates-android.md)
+- [iOS Signing Certificates](references/certificates-ios.md)
+- [Apple App Store Credentials](references/apple-app-store-credentials.md)
+- [Google Play Store Credentials](references/google-play-store-credentials.md)
+- [Live Update Plugin API Reference](references/live-update-plugin-api.md)
+- [Plugin Configuration](references/live-update-configuration.md)
+- [Live Update CI/CD Integrations](references/live-update-ci-cd-integrations.md)
+- [Live Update Advanced Topics](references/live-update-advanced-topics.md)
+- [Update Strategies](references/update-strategies.md)
+- [Live Update FAQ](references/live-update-faq.md)
+- [Advanced Guides](references/build-guides.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that authenticate services, configure CI/CD, manage signing credentials, and publish mobile app releases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

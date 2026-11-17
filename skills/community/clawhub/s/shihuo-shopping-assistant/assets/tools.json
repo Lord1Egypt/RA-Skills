@@ -1,0 +1,329 @@
+{
+  "tools": [
+    {
+      "name": "search_goods_by_keyword",
+      "description": "按关键词搜索识货站内商品，返回商品基础信息、价格、销量、品牌和一级类目密文及识货链接。默认每页 10 条；不返回属性、配色、style_list、SKU 或筛选项。适用：用户给出商品词、品牌、型号、品类或预算。不适用：图片找同款（用 search_goods_by_image）、查看款式属性（用 goods_styles）、规格 SKU 查询（用 search_sku）、下单、加购、订单查询或渠道链接解析。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "检索关键词，如品牌、型号或商品类型"
+          },
+          "brand_id": {
+            "type": "string",
+            "description": "品牌 id 过滤，可选。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "root_category_id": {
+            "type": "string",
+            "description": "一级类目 id 过滤，可选。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "price_from": {
+            "type": "number",
+            "description": "价格下限，单位元，可选"
+          },
+          "price_to": {
+            "type": "number",
+            "description": "价格上限，单位元，可选"
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "hot"
+            ],
+            "description": "排序方式，当前只支持热度排序 hot"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "description": "页码，从 1 开始，默认 1"
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30,
+            "description": "每页商品数，默认 10"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "search_goods_by_image",
+      "description": "按图片 URL 搜索识货站内相似商品，返回商品基础信息、价格、销量、品牌和一级类目密文及识货链接。默认每页 10 条；不返回属性、配色、style_list、SKU 或筛选项。适用：用户提供商品图片 URL 要找同款或相似商品。不适用：关键词搜索（用 search_goods_by_keyword）、查看款式属性（用 goods_styles）、规格 SKU 查询（用 search_sku）、下单、加购、订单查询或渠道链接解析。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "待搜索的商品图片 URL"
+          },
+          "brand_id": {
+            "type": "string",
+            "description": "品牌 id 过滤，可选。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "root_category_id": {
+            "type": "string",
+            "description": "一级类目 id 过滤，可选。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "price_from": {
+            "type": "number",
+            "description": "价格下限，单位元，可选"
+          },
+          "price_to": {
+            "type": "number",
+            "description": "价格上限，单位元，可选"
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "hot"
+            ],
+            "description": "排序方式，当前只支持热度排序 hot"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "description": "页码，从 1 开始，默认 1"
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30,
+            "description": "每页商品数，默认 10"
+          }
+        },
+        "required": [
+          "image_url"
+        ]
+      }
+    },
+    {
+      "name": "goods_styles",
+      "description": "按识货商品 id 查询商品款式/配色及其属性，唯一调用 GetStyleListByGoodsId。默认每页 10 条，支持翻页；返回 style_id、名称、图片、价格、链接和属性信息。适用：已经拿到 goods_id，需要查看有哪些款式、配色或属性。不适用：关键词或图片找商品（用对应搜索工具）、查询具体规格 SKU（用 search_sku）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "页码，从 1 开始，默认 1"
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30,
+            "description": "每页款式/配色数，默认 10"
+          }
+        },
+        "required": [
+          "goods_id"
+        ]
+      }
+    },
+    {
+      "name": "search_sku",
+      "description": "按识货商品 id 与款式 id 查询该款式下的 SKU，返回规格组成、SKU id、图片、原价、券后价与 30 日销量。适用：已通过 goods_styles 确认款式/配色后，需要确认尺码、颜色、版本等具体规格。不适用：只有商品名称或尚未确认 style_id、商品详情查询或当前全网比价。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "style_id": {
+            "type": "string",
+            "description": "款式/配色 id，来自 goods_styles 返回的 style_id。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          }
+        },
+        "required": [
+          "goods_id",
+          "style_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_detail",
+      "description": "按识货商品 id 查询商品详情，返回商品参数、配置、热度、榜单信息与鉴别记录。适用：已经拿到 goods_id，用户想了解商品参数、热度、榜单、正品保障或鉴别记录。不适用：只有商品名称尚未搜索、查看款式属性、查询 SKU 或当前全网比价。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          }
+        },
+        "required": [
+          "goods_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_notes",
+      "description": "按识货商品 id 查询站内商品笔记，返回笔记总数与当前页笔记列表。默认第 1 页、每页固定 10 条，支持多页；仅提供商品笔记，不提供商品评论能力。适用：用户想查看商品晒图、穿着或使用笔记和反馈。不适用：商品参数、热度或鉴别记录（用 goods_detail）、按关键词或图片找商品（用对应搜索工具）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "页码，从 1 开始，默认 1；每页固定返回 10 条笔记"
+          }
+        },
+        "required": [
+          "goods_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_price_trend",
+      "description": "按识货商品 id 查询最近 90 个完整自然日的商品每日最低价趋势，返回价格点、平均价和中位价。工具内部固定打开 WithAverage 与 WithMedian，不接收日期或统计开关参数。适用：用户想看商品整体历史价格、价格走势或价格统计。不适用：具体 SKU 或款式/配色价格走势。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自商品搜索或商品详情关联结果。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          }
+        },
+        "required": [
+          "goods_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_style_price_trend",
+      "description": "按识货商品款式/配色 id 查询最近 90 个完整自然日的每日最低价趋势，返回价格点、平均价和中位价。工具内部固定打开 WithAverage 与 WithMedian，不接收日期或统计开关参数。适用：用户想看某个款式或配色的历史价格、价格走势或价格统计。不适用：商品整体或具体 SKU 价格走势。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "style_id": {
+            "type": "string",
+            "description": "识货商品款式/配色 id，来自 goods_styles 返回的 style_id。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          }
+        },
+        "required": [
+          "style_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_sku_price_trend",
+      "description": "按识货商品 id 与 SKU id 查询该 SKU 的历史价格趋势，返回各价格类型的最高价、最低价与价格点。适用：已定位具体 SKU，用户想看历史价格、历史低价或走势。不适用：尚未定位 SKU、商品详情、款式属性或当前全网比价。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "sku_id": {
+            "type": "string",
+            "description": "识货 SKU id，来自 search_sku 返回的 goods_sku_id。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          }
+        },
+        "required": [
+          "goods_id",
+          "sku_id"
+        ]
+      }
+    },
+    {
+      "name": "goods_sku_price_comparision",
+      "description": "按识货商品 id 与 SKU id 查询该 SKU 的全网渠道报价，返回商城、店铺、商品规格、到手价、原价、运费、履约标签、优惠券、购买链接、渠道推荐理由与渠道信任背书信息。适用：已定位具体 SKU，用户想比较哪里买、当前到手价或获取购买链接。不适用：尚未定位 SKU 或未完成商品与 SKU 定位。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "goods_id": {
+            "type": "string",
+            "description": "识货商品 id，来自搜索工具或 link_parse。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "sku_id": {
+            "type": "string",
+            "description": "识货 SKU id，来自 search_sku 返回的 goods_sku_id。只使用工具返回的 id 字段值，不要从链接中提取数字；区分大小写，原样回传"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "页码，从 1 开始，默认 1"
+          }
+        },
+        "required": [
+          "goods_id",
+          "sku_id"
+        ]
+      }
+    },
+    {
+      "name": "link_parse",
+      "description": "把商品链接或包含链接的原始文本解析成识货站内的 goods_id、goods_style_id 和 goods_sku_id。按商品 SKU ID 去重；无法确认的商品、配色或 SKU 维度返回字符串 \"0\"，不选择默认 SKU。适用：需要把渠道商品链接定位到识货站内商品、配色或具体 SKU。不适用：查询渠道价格、优惠券、库存、下单、加购或订单。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string",
+            "description": "待解析的渠道商品链接，或包含商品链接的原始文本"
+          }
+        },
+        "required": [
+          "link"
+        ]
+      }
+    },
+    {
+      "name": "goods_link_query",
+      "description": "根据用户传入的商品链接或含链接文本查询商品链接详情，返回渠道、店铺、渠道 sku 规格、当前到手价、券前价、额外优惠券列表、普通优惠券列表、近 180 天历史低点、渠道购买入口和识货商品绑定信息。两类券均返回券名和券链接。适用：用户给出淘宝、天猫、京东、拼多多、得物、唯品会等渠道商品链接或口令，需要确认这条链接本身买多少钱、有没有可领的优惠券。不适用：识货站内关键词或图片搜索、识货商品详情、识货款式与 SKU 查询、下单、加购或订单查询。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string",
+            "description": "待解析的商品链接，或包含商品链接的原始文本"
+          }
+        },
+        "required": [
+          "link"
+        ]
+      }
+    },
+    {
+      "name": "link_convert",
+      "description": "把商品链接或优惠券链接转换为识货可跟单链接。适用：展示第三方商城商品或优惠券链接前先转链。不适用：识货 H5 链接、非 http/https 链接、下单、加购或订单查询。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "goods",
+              "coupon"
+            ],
+            "description": "转链类型，goods 表示商品链接，coupon 表示优惠券链接"
+          },
+          "link": {
+            "type": "string",
+            "description": "待转链的 http/https 商品链接或优惠券链接"
+          }
+        },
+        "required": [
+          "type",
+          "link"
+        ]
+      }
+    }
+  ]
+}

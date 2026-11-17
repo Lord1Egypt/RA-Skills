@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
   "slug": "web-freedom-toolkit",
   "version": "8.0.0",
-  "publishedAt": 1773579489084
+  "publishedAt": 1773577500000,
+  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
+  "description": "The Ultimate General Web Freedom Toolkit for OpenClaw. Harmonizes multi-tier bypass technologies.",
+  "name": "Web Freedom Toolkit",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🕊️",
+      "disable-model-invocation": true,
+      "requires": {
+        "bins": ["google-chrome-stable", "xvfb-run", "dbus-launch"],
+        "python": ["scrapling", "curl_cffi", "DrissionPage", "lxml"]
+      }
+    }
+  }
 }

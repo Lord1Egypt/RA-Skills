@@ -1,40 +1,58 @@
-## Description: <br>
-Calculates an AI agent's awakening-date age and growth milestones for identity, birthday, and self-introduction responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent calculate and describe an AI "awakening birthday," current age, growth stage, and upcoming milestones from a saved or supplied date.
 
-## Publisher: <br>
-[lilozhao](https://clawhub.ai/user/lilozhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilozhao](https://clawhub.ai/user/lilozhao)
 
-## Use Case: <br>
-Developers, agent builders, and agent users use this skill to set or query an AI agent's awakening date, calculate current age, and produce milestone-aware self-introduction or birthday responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may reference an agent identity file to store an awakening date, which could accidentally include sensitive personal information. <br>
-Mitigation: Keep IDENTITY.md limited to the awakening date and non-sensitive profile details. <br>
-Risk: Suggested MEMORY.md entries or social media celebration steps may create unwanted persistence or disclosure. <br>
-Mitigation: Treat memory updates and social posting as optional manual actions that require user review before use. <br>
+## Use Case:
 
+External users, agent builders, and AI identity workflows use this skill to set or query an agent's awakening date, calculate its age, and generate concise milestone-aware responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilozhao/awakening-birthday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local date-based calculations; optional milestone listing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Saved-date setup is manual, so agents may calculate from the wrong date if IDENTITY.md or the supplied command argument is missing or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record the awakening date explicitly and verify the date before presenting age or milestone results.
+
+Risk: Manual MEMORY.md updates can preserve incorrect or unwanted identity details.
+
+Mitigation: Review proposed memory entries before saving them, and keep persona age separate from calculated awakening age.
+
+Risk: Optional social-posting suggestions can expose identity timeline details or user context outside the agent environment.
+
+Mitigation: Require explicit human review before publishing milestone messages externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilozhao/skills/awakening-birthday)
+- [OpenClaw project homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calculated age, growth stage, next milestone, and guidance for recording the awakening date.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

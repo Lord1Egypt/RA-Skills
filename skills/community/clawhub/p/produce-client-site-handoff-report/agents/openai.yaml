@@ -1,0 +1,13 @@
+interface:
+  display_name: "Client Site Handoff Report"
+  short_description: "Live link evidence at handoff"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-broken-link-check"
+      description: "Broken Link Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/broken-link-check/mcp"

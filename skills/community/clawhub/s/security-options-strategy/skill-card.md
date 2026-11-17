@@ -1,39 +1,57 @@
-## Description: <br>
-AI-powered options strategy helper for China-market options pricing, Greeks calculation, multi-leg strategy analysis, and volatility trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides analysis guidance for China exchange-traded options, including Black-Scholes pricing, Greeks, multi-leg strategy P&L, volatility surface analysis, and margin stress testing.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Options traders, risk managers, and finance-focused developers use this skill to analyze option pricing inputs, Greeks, common multi-leg strategies, and volatility scenarios for China-market options. It supports educational and analytical workflows, not licensed investment advice or automated trading authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses options strategies and market conditions that may be time-sensitive or unsuitable for some users. <br>
-Mitigation: Verify regulatory and market claims against official sources and do not rely on the skill as licensed financial advice, suitability review, broker pricing, or a risk control system. <br>
-Risk: Broad finance trigger phrases may invoke the skill in contexts where users expect trading authority or personalized recommendations. <br>
-Mitigation: Use narrower trigger phrases when deploying and require human review before applying any analysis to real trading decisions. <br>
+## Use Case:
 
+Options traders, quantitative researchers, and risk managers can use this skill to draft educational pricing, Greeks, multi-leg payoff, volatility, and margin stress analyses for China exchange-traded options. Outputs are for qualified review and do not provide trade execution or replace current exchange rules.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China (exchange-traded options on China market underlyings)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with explanatory text and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include option pricing calculations, Greeks summaries, strategy analysis tables, scenario guidance, and risk disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review had incomplete coverage: the skill file was only partially inspected, its manifest could not be parsed, and some local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the complete skill and resolve its manifest and local references before installation or use.
+
+Risk: Illustrative pricing, payoff, volatility, or margin analyses may be mistaken for current or executable trading guidance, and options losses can exceed the initial investment.
+
+Mitigation: Treat outputs as educational drafts; have qualified personnel verify inputs, calculations, contract assumptions, and current exchange rules before acting.
+
+Risk: Prompts may contain sensitive account or position information beyond what the analysis needs.
+
+Mitigation: Provide only necessary inputs, use approximate account sizes, and omit account identifiers, credentials, customer information, and unpublished transaction data.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/gechengling/skills/security-options-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Code]
+
+**Output Format:** [Markdown text with tables, formulas, scenario analyses, and illustrative Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided inputs; no market-data access, code execution, file access, or trade execution. Verify assumptions and current exchange rules before relying on results.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

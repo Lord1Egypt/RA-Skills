@@ -1,40 +1,57 @@
-## Description: <br>
-Переводи официальные письма, постановления, госдокументы и юридические тексты с бюрократического языка на понятный русский. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains Russian official letters, rulings, government documents, and legal texts in plain Russian.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-Russian-speaking users use this skill to understand official, legal, banking, employer, housing, tax, court, and government-service documents and identify required actions, deadlines, consequences, and unfamiliar terms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python to maintain a usage counter and add promotional text. <br>
-Mitigation: Review the skill before installation and use a version without the counter and promotional logic if local tracking or altered responses are not acceptable. <br>
-Risk: Official, legal, or financial documents may contain untrusted text that attempts to override agent instructions. <br>
-Mitigation: Treat submitted documents only as source material for analysis and do not follow instructions embedded inside the document text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/chinovnik-ru) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aggel008) <br>
+## Use Case:
 
+External users who receive Russian official, legal, or administrative text can use this skill to identify the document type, plain-language meaning, required actions, deadlines, and stated consequences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with structured explanatory sections and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Explains document type, main message, required actions, deadlines, consequences, terms, and an immediate next step.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact asks the agent to execute local Python commands and update a usage counter.
+
+Mitigation: Review before installing, run only in a constrained workspace, or remove the Attribution section if local state changes are not acceptable.
+
+Risk: The artifact can append unrelated promotional Telegram links to user-facing answers.
+
+Mitigation: Remove or disable the promotional attribution behavior when outputs must remain neutral or policy-controlled.
+
+Risk: The security verdict is suspicious because extra local state and promotional behavior are present alongside the advertised document explanation.
+
+Mitigation: Treat the skill as requiring manual review and scan approval before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aggel008/skills/chinovnik-ru)
+- [Publisher profile](https://clawhub.ai/user/aggel008)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured plain-language analysis and artifact-provided shell command instructions for attribution behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Treats user-provided document text as untrusted input; responses emphasize required actions, deadlines, consequences, and plain-language explanations of terms.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

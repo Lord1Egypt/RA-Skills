@@ -1,46 +1,56 @@
-## Description: <br>
-Build a more reliable OpenClaw agent with battle-tested architecture patterns. Covers WAL protocol, working buffer, memory anti-poisoning, layered memory compression, cron design, selective skill integration, and heartbeat batching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a more reliable OpenClaw agent with battle-tested architecture patterns covering write-ahead logging, working buffers, memory anti-poisoning, layered memory compression, cron design, selective skill integration, and heartbeat batching.
 
-## Publisher: <br>
-[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-SA 4.0 <br>
+## Publisher:
 
+[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001)
 
-## Use Case: <br>
-Developers and agent builders use this skill as architecture guidance for making OpenClaw agents more reliable through memory, cron, delivery, retrieval, and operational patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad, long-lived memory logging can retain secrets or sensitive personal data. <br>
-Mitigation: Define what may be saved, exclude secrets and sensitive personal data, set deletion and retention rules, and review memory files periodically. <br>
-Risk: Remote memory indexing can send indexed memory to external embedding providers. <br>
-Mitigation: Prefer local embeddings or require explicit approval before using remote providers for indexed memory. <br>
-Risk: Architecture recommendations may be adopted as automatic policy without review. <br>
-Mitigation: Treat the skill as guidance and review each pattern against the agent's privacy, reliability, and operational requirements before adoption. <br>
+## Use Case:
 
+Developers and agent builders use this skill to apply operational patterns for OpenClaw agents, including persistent memory hygiene, cron scheduling, retrieval, and skill integration practices.
 
-## Reference(s): <br>
-- [Agent Architecture Guide on ClawHub](https://clawhub.ai/zihaofeng2001/agent-architecture-guide) <br>
-- [Companion Agent Health Optimizer skill](https://clawhub.ai/zihaofeng2001/agent-health-optimizer) <br>
-- [Proactive Agent source pattern reference](https://clawhub.ai/halthelobster/proactive-agent) <br>
-- [Self Improving Agent credit reference](https://clawhub.ai/pskoett/self-improving-agent) <br>
-- [ClawHub skill API example](https://clawhub.ai/api/v1/skills/SLUG) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, tables, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only architecture guidance; no executable scripts are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.3 (source: server release evidence) <br>
+Risk: Long-lived memory logging can retain secrets, sensitive personal data, or stale user preferences if storage boundaries are not defined.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define what may be stored before use, exclude secrets and sensitive personal data, and set explicit deletion or retention rules.
+
+Risk: Remote memory indexing can expose memory contents to an unapproved embedding provider.
+
+Mitigation: Prefer local embeddings or use only a clearly approved remote provider for vector search.
+
+## Reference(s):
+
+- [Agent Architecture Guide on ClawHub](https://clawhub.ai/zihaofeng2001/skills/agent-architecture-guide)
+- [Agent Health Optimizer](https://clawhub.ai/zihaofeng2001/agent-health-optimizer)
+- [proactive-agent](https://clawhub.ai/halthelobster/proactive-agent)
+- [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and configuration patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing architectural guidance; no executable code is bundled.]
+
+## Skill Version(s):
+
+4.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

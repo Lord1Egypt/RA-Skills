@@ -1,48 +1,67 @@
-## Description: <br>
-Posts content to WeChat Official Account via API or Chrome CDP, supporting article publishing from HTML, markdown, or plain text and image-text posting with multiple images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts content to WeChat Official Account via API or Chrome CDP, supporting article posting from HTML, Markdown, or plain text and image-text posting with multiple images.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers and content publishers use this skill to prepare and publish WeChat Official Account drafts from markdown, HTML, plain text, or image collections. It helps agents guide setup, choose API or browser workflows, configure account preferences, and report publishing results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles WeChat login material, API credentials, browser sessions, clipboard input, and local preference files. <br>
-Mitigation: Use a dedicated browser profile and WeChat account context, keep .env and EXTEND.md private, and review permissions before running publishing workflows. <br>
-Risk: Telegram QR forwarding can expose a login handoff if the bot or chat is not controlled by the user. <br>
-Mitigation: Enable Telegram QR forwarding only with a bot and chat the user fully controls, and remove related tokens when forwarding is not needed. <br>
-Risk: Remote SSH publishing can route publishing traffic through a remote host. <br>
-Mitigation: Use remote publishing only with trusted SSH hosts, key-based authentication, and known host verification, or use local API/browser publishing when remote routing is unnecessary. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare and publish WeChat Official Account drafts from Markdown, HTML, plain text, or image collections. It supports local browser publishing, direct WeChat API publishing, remote API publishing through an allowlisted server, and multi-account configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimliu/baoyu-post-to-wechat) <br>
-- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat) <br>
-- [API Credential Setup](references/api-setup.md) <br>
-- [Article Posting](references/article-posting.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [Image-Text Posting](references/image-text-posting.md) <br>
-- [Multi-Account Support](references/multi-account.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, HTML, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated content files, configuration values, and publishing status summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local markdown or HTML publishing inputs and may invoke WeChat API, browser automation, clipboard, or SSH-based remote publishing workflows depending on user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.118.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles WeChat login sessions and AppSecrets during publishing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, keep AppSecrets in a protected secret store or locked-down local file, and avoid enabling Telegram QR forwarding unless the bot and chat are fully controlled.
+
+Risk: Untrusted Markdown or image URLs could affect the content prepared for publication.
+
+Mitigation: Review article inputs and image sources before publishing, and process only content from trusted sources.
+
+Risk: Remote API publishing depends on SSH tunneling through a server whose IP is allowlisted by WeChat.
+
+Mitigation: Use key-only SSH access, verify the remote host configuration, and confirm the allowlisted server is controlled by the operator.
+
+Risk: Runtime installation through npx can execute a freshly resolved Bun runtime.
+
+Mitigation: Prefer a preinstalled trusted Bun runtime over invoking npx to fetch Bun at execution time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-post-to-wechat)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat)
+- [API credential setup](references/api-setup.md)
+- [Article posting](references/article-posting.md)
+- [Image-text posting](references/image-text-posting.md)
+- [Multi-account support](references/multi-account.md)
+- [First-time setup](references/config/first-time-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Text, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Markdown drafts and preference files, and may trigger browser or WeChat API publishing workflows when the agent executes the skill.]
+
+## Skill Version(s):
+
+1.118.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze ad material videos and produce a markdown report with framework, material traits, acquisition keywords, new material production frameworks, and detailed storyboard tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze ad material videos and produce a markdown report with framework, material traits, and acquisition keywords, then propose new material production frameworks and detailed storyboard tables.
 
-## Publisher: <br>
-[fevolq](https://clawhub.ai/user/fevolq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fevolq](https://clawhub.ai/user/fevolq)
 
-## Use Case: <br>
-Developers, marketers, and creative operators use this skill to analyze local ad video assets, identify reusable creative patterns, and generate markdown storyboard guidance for new performance-ad material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local ad videos and extracted frame images may contain sensitive material. <br>
-Mitigation: Use only videos suitable for local analysis and run the skill from a directory where generated frame images are acceptable. <br>
-Risk: Unsafe shell construction around video paths could expose command-injection risk when invoking ffmpeg. <br>
-Mitigation: Invoke ffmpeg with the video path as a file argument rather than interpolating raw shell text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Report template](artifact/references/report_template.md) <br>
-- [Material Report on ClawHub](https://clawhub.ai/fevolq/material-report) <br>
+## Use Case:
 
+Marketing creatives, growth teams, and agents use this skill to analyze performance-ad videos, identify their creative structure and material traits, and draft new storyboard-ready ad concepts for the same category and target platform.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown report with storyboard tables and optional local frame image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use ffmpeg to extract frames from a user-provided local video path before producing the report.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may read a user-provided video and create extracted frame images in the current working directory using ffmpeg.
+
+Mitigation: Use the skill only on video assets appropriate for local analysis and confirm file-system permissions before frame extraction.
+
+Risk: The bundled report template is Chinese by default.
+
+Mitigation: Adapt the final report language to the user's requested language or clearly confirm the preferred language before delivery.
+
+## Reference(s):
+
+- [Report Template](references/report_template.md)
+- [ClawHub Skill Page](https://clawhub.ai/fevolq/skills/material-report)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with structured analysis, keyword lists, creative frameworks, and storyboard tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create extracted frame images in a folder named after the source video when frame extraction is needed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

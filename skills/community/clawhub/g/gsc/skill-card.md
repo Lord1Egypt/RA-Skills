@@ -1,41 +1,63 @@
-## Description: <br>
-Query Google Search Console for SEO data, including search queries, top pages, CTR opportunities, URL inspection, and sitemaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Google Search Console properties, Search Analytics, URL Inspection, and sitemaps for explicit Search Console or GSC SEO performance, indexing, and freshness analysis.
 
-## Publisher: <br>
-[jdrhyne](https://clawhub.ai/user/jdrhyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jdrhyne](https://clawhub.ai/user/jdrhyne)
 
-## Use Case: <br>
-Developers, SEO analysts, and site owners use this skill to query Search Console properties, review search analytics, inspect indexing status, and identify low-CTR optimization opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The OAuth setup helper prints the client ID, client secret, and refresh token after authentication. <br>
-Mitigation: Run the helper in a private local terminal, avoid sharing the output in chats or logs, and store credentials in a protected secret store or private environment file. <br>
-Risk: Exposed OAuth credentials could allow read-only access to Search Console properties available to the account. <br>
-Mitigation: Use the documented read-only scope, limit account access to required properties, and revoke or rotate the refresh token if it is exposed. <br>
+## Use Case:
 
+Developers, site owners, and SEO analysts use this skill to authenticate read-only Google Search Console access and inspect properties, Search Analytics rows, URL Inspection state, and sitemaps. It is intended for bounded GSC analysis, not general web search.
 
-## Reference(s): <br>
-- [Google Search Console documentation](https://developers.google.com/webmaster-tools) <br>
-- [ClawHub skill page](https://clawhub.ai/jdrhyne/gsc) <br>
-- [Publisher profile](https://clawhub.ai/user/jdrhyne) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON or tabular command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and Google OAuth environment variables for read-only Search Console access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill requires OAuth access to Google Search Console data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the documented read-only scope and install it only where access to the relevant Search Console data is acceptable.
+
+Risk: OAuth client secrets and token files could expose account data if mishandled.
+
+Mitigation: Keep credential files private, use protected local paths, and avoid sharing secrets, authorization codes, refresh tokens, or access tokens in chat or command arguments.
+
+Risk: Python dependencies are version-ranged rather than pinned by a lockfile.
+
+Mitigation: Use an isolated Python environment and pin or lock dependencies before production use.
+
+Risk: Search Console returns top rows and bounded pagination can produce partial results.
+
+Mitigation: Preserve and review pagination, freshness, has_more, partial, and provider_top_rows_only metadata before treating results as complete.
+
+## Reference(s):
+
+- [Search Analytics query](https://developers.google.com/webmaster-tools/v1/searchanalytics/query)
+- [URL Inspection](https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect)
+- [Installed-app OAuth](https://developers.google.com/identity/protocols/oauth2/native-app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve Search Console freshness and pagination metadata, including partial result indicators.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

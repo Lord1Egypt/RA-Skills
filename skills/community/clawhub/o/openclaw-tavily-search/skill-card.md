@@ -1,38 +1,55 @@
-## Description: <br>
-Web search via Tavily API for looking up sources, finding links, and returning a small set of relevant results with titles, URLs, snippets, and optional short answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the public web through Tavily and return structured results with URLs and snippets.
 
-## Publisher: <br>
-[Jacky1n7](https://clawhub.ai/user/Jacky1n7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jacky1n7](https://clawhub.ai/user/jacky1n7)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need Tavily-backed web search from an OpenClaw workspace, especially when Brave web search is unavailable or undesired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the Tavily API key are sent to Tavily. <br>
-Mitigation: Use a dedicated Tavily API key and avoid including secrets, private customer data, unreleased project details, or other sensitive information in search queries. <br>
+## Use Case:
 
+Developers and agents use this skill to discover public web sources, retrieve structured search results, and support current-information lookup workflows. It is not intended for private, authenticated, or sensitive queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jacky1n7/openclaw-tavily-search) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Command output as raw JSON, brave-like JSON, or compact Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include query, titles, URLs, snippets or content, and optional short answer summaries; max results are capped at 10 by the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Search queries, domain filters, and the Tavily API key are sent to Tavily's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public web search workflows and avoid private, authenticated, or sensitive queries.
+
+Risk: Search result titles and snippets may be incomplete or unverified discovery data.
+
+Mitigation: Open and verify relevant source pages before using results as evidence for factual claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jacky1n7/skills/openclaw-tavily-search)
+- [Project Homepage](https://github.com/Jacky1n7/openclaw-skill-tavily-search)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include raw JSON, Brave-like JSON, or compact Markdown links with snippets.]
+
+## Skill Version(s):
+
+0.2.1 (source: server evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

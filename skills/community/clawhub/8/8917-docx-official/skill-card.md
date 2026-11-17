@@ -1,41 +1,54 @@
-## Description: <br>
-Converts prepared Markdown or text into Chinese official-document DOCX files and can optionally produce PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts prepared Markdown or text into Chinese official-document DOCX files and can optionally produce PDF output.
 
-## Publisher: <br>
-[Blicae8917](https://clawhub.ai/user/Blicae8917) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blicae8917](https://clawhub.ai/user/blicae8917)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn already prepared Markdown or text into formal Chinese government-style documents such as reports, notices, plans, briefings, opinions, and meeting minutes. It handles document formatting and conversion, not content planning or approval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF conversion runs LibreOffice and may load locally compiled native code from a shared temporary location. <br>
-Mitigation: Prefer DOCX-only output when PDF is not required, run without elevated privileges, and use a trusted isolated workspace. <br>
-Risk: Document conversion depends on local binaries, so missing or untrusted dependencies can cause failures or unsafe execution. <br>
-Mitigation: Install only if the publisher is trusted, verify python3, gcc, and soffice are expected on the host, and review generated DOCX or PDF files before distribution. <br>
+## Use Case:
 
+Developers and document-preparation agents use this skill to turn already prepared Markdown or text into formatted Chinese official-document Word files, including reports, notices, meeting minutes, plans, and similar formal documents. Users may request PDF output when LibreOffice is available.
 
-## Reference(s): <br>
-- [Official format rules](references/official-format-rules.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Blicae8917/8917-docx-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [DOCX or PDF files plus a Markdown response with output paths or conversion errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF output requires LibreOffice; the artifact declares python3, gcc, and soffice runtime dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence) <br>
+Risk: The optional PDF path compiles and loads a native LibreOffice hook with LD_PRELOAD.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the DOCX-only path for sensitive documents, or require the publisher to remove or clearly document the native helper before production use.
+
+Risk: PDF conversion relies on LibreOffice child-process execution and temporary native artifacts.
+
+Mitigation: Run PDF conversion only in a controlled environment and require safer temporary-file handling plus a minimized child-process environment before handling sensitive documents.
+
+## Reference(s):
+
+- [Official format rules](artifact/references/official-format-rules.md)
+- [ClawHub skill page](https://clawhub.ai/blicae8917/skills/8917-docx-official)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated DOCX or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 for DOCX output; optional PDF output requires gcc and LibreOffice/soffice.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

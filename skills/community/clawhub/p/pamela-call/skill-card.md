@@ -1,50 +1,66 @@
-## Description: <br>
-Make AI phone calls instantly. No lag, no setup, unlimited scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make AI phone calls instantly. No lag, no setup, unlimited scale.
 
-## Publisher: <br>
-[eypam](https://clawhub.ai/user/eypam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eypam](https://clawhub.ai/user/eypam)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent place Pamela AI phone calls for tasks such as appointment scheduling, order checks, customer-support navigation, information gathering, and follow-ups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent place real, billable outbound phone calls. <br>
-Mitigation: Confirm each recipient, task, expected cost, and legal basis before initiating calls; enable billing alerts. <br>
-Risk: The Pamela API key grants access to call functionality and billing. <br>
-Mitigation: Protect PAMELA_API_KEY, avoid placing production keys in logs or public configuration, and use restricted or test keys when evaluating. <br>
-Risk: Call audio, transcripts, and webhook payloads leave the local environment. <br>
-Mitigation: Review Pamela privacy and data practices, secure webhook endpoints, and validate the X-Pamela-Signature header. <br>
-Risk: Outbound calling can create consent, policy, or legal exposure if used for unsolicited or non-consensual calls. <br>
-Mitigation: Use the skill only for appropriate calls with a valid legal basis and confirmed recipient context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pamela documentation](https://docs.thisispamela.com) <br>
-- [JavaScript SDK documentation](https://docs.thisispamela.com/sdk/javascript) <br>
-- [Python SDK documentation](https://docs.thisispamela.com/sdk/python) <br>
-- [React components documentation](https://docs.thisispamela.com/sdk/react) <br>
-- [Widget documentation](https://docs.thisispamela.com/sdk/widget) <br>
-- [MCP server documentation](https://docs.thisispamela.com/sdk/mcp) <br>
-- [CLI documentation](https://docs.thisispamela.com/sdk/cli) <br>
-- [Webhook signature verification](https://docs.thisispamela.com/sdk/javascript#verifywebhooksignature) <br>
+## Use Case:
 
+Developers and operators use this skill to set up agents that place outbound AI phone calls, navigate phone trees, collect call status, and receive transcripts through SDKs, CLI, webhooks, or MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API usage guidance for billable Pamela phone calls that require a PAMELA_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.12 (source: server release evidence and skill documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Outbound AI calls can create consent, recording, telemarketing, do-not-call, and jurisdictional compliance obligations.
+
+Mitigation: Confirm the calls are lawful for the target numbers and jurisdictions, obtain consent where required, and avoid telemarketing or do-not-call violations before use.
+
+Risk: Call audio and transcripts may contain sensitive personal data.
+
+Mitigation: Treat call recordings and transcripts as sensitive data, review Pamela's data practices, and avoid sending unnecessary personal or confidential information.
+
+Risk: API keys and billing-enabled accounts can be misused or create unexpected costs.
+
+Mitigation: Use restricted or test API keys while evaluating, keep production keys out of public configs and logs, enable billing alerts, and monitor usage.
+
+Risk: Installing unpinned packages or a global CLI increases supply-chain and local execution exposure.
+
+Mitigation: Verify official package names, prefer pinned versions, and avoid global CLI installation unless it is required and trusted.
+
+## Reference(s):
+
+- [Pamela documentation](https://docs.thisispamela.com)
+- [JavaScript SDK reference](https://docs.thisispamela.com/sdk/javascript)
+- [Python SDK reference](https://docs.thisispamela.com/sdk/python)
+- [Webhook signature verification](https://docs.thisispamela.com/sdk/javascript#verifywebhooksignature)
+- [MCP server reference](https://docs.thisispamela.com/sdk/mcp)
+- [npm @thisispamela organization](https://www.npmjs.com/org/thisispamela)
+- [PyPI thisispamela package](https://pypi.org/project/thisispamela/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell, JavaScript, TypeScript, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Pamela API subscription and PAMELA_API_KEY.]
+
+## Skill Version(s):
+
+1.1.12 (source: server release evidence and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

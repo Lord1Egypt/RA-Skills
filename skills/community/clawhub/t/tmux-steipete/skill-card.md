@@ -1,43 +1,58 @@
-## Description: <br>
-Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
 
-## Publisher: <br>
-[securecloudprojo](https://clawhub.ai/user/securecloudprojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[securecloudprojo](https://clawhub.ai/user/securecloudprojo)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when an interactive TTY is needed for tmux-backed CLI sessions, including sending keystrokes, watching pane output, and managing multiple agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to launch other coding agents in unattended modes. <br>
-Mitigation: Use isolated git worktrees, avoid unattended subagents unless explicitly intended, and inspect diffs before keeping changes. <br>
-Risk: Capturing tmux panes can expose terminal history that may contain sensitive text. <br>
-Mitigation: Avoid capturing panes that may contain secrets and kill tmux sessions or sockets when finished. <br>
-Risk: Interactive tmux automation can keep commands running after the initiating task appears complete. <br>
-Mitigation: Monitor sessions with tmux attach or capture-pane commands and clean up sessions with kill-session or kill-server. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent needs an interactive TTY to control tmux sessions, send input, monitor pane output, and coordinate interactive CLI work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/securecloudprojo/tmux-steipete) <br>
-- [Publisher profile](https://clawhub.ai/user/securecloudprojo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tmux on PATH and is gated to macOS and Linux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Unattended coding-agent runs with reduced approval safeguards can make unreviewed changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated worktrees or disposable environments, avoid reduced-safeguard examples unless necessary, and review all changes afterward.
+
+Risk: Cleanup commands can terminate active tmux jobs.
+
+Mitigation: Verify the target socket and session before cleanup, and avoid broad kill commands when unrelated sessions may be active.
+
+Risk: Capturing tmux pane output can expose sensitive terminal content.
+
+Mitigation: Limit capture history to what is needed and avoid running the skill in panes that display secrets or private data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/securecloudprojo/skills/tmux-steipete)
+- [Publisher profile](https://clawhub.ai/user/securecloudprojo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and helper script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux on PATH and is gated for macOS and Linux environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Manage Linear projects, issues, and tasks via the bundled Node CLI and the official Linear API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Linear projects, issues, and tasks via a bundled Node.js CLI and the official Linear API.
 
-## Publisher: <br>
-[MaTriXy](https://clawhub.ai/user/MaTriXy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[matrixy](https://clawhub.ai/user/matrixy)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and update Linear teams, projects, issues, labels, workflow states, comments, and user records through a local CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local CLI uses LINEAR_API_KEY and can act according to the token's Linear permissions. <br>
-Mitigation: Use a dedicated least-privilege Linear token and avoid sharing it outside the local environment. <br>
-Risk: Create or update commands can change Linear projects, issues, comments, labels, and workflow state. <br>
-Mitigation: Read current state first, confirm issue and project IDs before mutations, prefer narrow updates, and summarize changed records after execution. <br>
-Risk: Secrets or sensitive data could be exposed if placed in Linear issue descriptions or comments. <br>
-Mitigation: Do not include secrets in Linear content and review generated descriptions or comments before submitting them. <br>
-Risk: Runtime dependencies are installed locally with npm. <br>
-Mitigation: Install from the included lockfile before use. <br>
+## Use Case:
 
+Developers and project teams use this skill to let an agent read, create, update, and organize Linear issues, projects, comments, labels, states, and related workflow data through a local CLI.
 
-## Reference(s): <br>
-- [Linear API Reference](references/API.md) <br>
-- [Project homepage](https://github.com/MaTriXy/linear-skill) <br>
-- [Linear API key settings](https://linear.app/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from or mutate Linear records through the bundled local CLI when LINEAR_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can read and update Linear work items using the user's LINEAR_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege API key, keep the token out of issues and comments, and revoke it when automation no longer needs access.
+
+Risk: Incorrect or broad mutations could unintentionally change Linear issues, projects, or comments.
+
+Mitigation: Fetch current state first, prefer narrow updates, and review proposed bulk changes before allowing execution.
+
+Risk: The documentation claims a few Linear resource types that the current CLI does not actually support.
+
+Mitigation: Confirm the intended task is covered by the listed CLI commands before relying on the skill for that workflow.
+
+## Reference(s):
+
+- [Linear API Reference](references/API.md)
+- [ClawHub Skill Page](https://clawhub.ai/matrixy/skills/linear-skill)
+- [Project Homepage](https://github.com/MaTriXy/linear-skill)
+- [Linear GraphQL API](https://api.linear.app/graphql)
+- [Linear API Key Settings](https://linear.app/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Linear object IDs, state changes, assignees, comments, and follow-up actions; requires LINEAR_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,190 @@
+{
+  "language": "es",
+  "stopwords": [
+    "de",
+    "la",
+    "que",
+    "el",
+    "en",
+    "los",
+    "del",
+    "las",
+    "por",
+    "un",
+    "para",
+    "con",
+    "no",
+    "una",
+    "su",
+    "al",
+    "es",
+    "como",
+    "más",
+    "pero"
+  ],
+  "patterns": [
+    {
+      "id": "ES001",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+el\\s+vertiginoso\\s+mundo\\s+actual",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES002",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+la\\s+era\\s+digital\\s+actual",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES003",
+      "type": "SLOP_PHRASE",
+      "pattern": "cabe\\s+destacar\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES004",
+      "type": "SLOP_PHRASE",
+      "pattern": "es\\s+importante\\s+recordar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES005",
+      "type": "SLOP_PHRASE",
+      "pattern": "no\\s+se\\s+puede\\s+negar\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES006",
+      "type": "SLOP_PHRASE",
+      "pattern": "un\\s+tapiz\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES007",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+conclusión",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES008",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+resumen",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES009",
+      "type": "SLOP_PHRASE",
+      "pattern": "además",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES010",
+      "type": "SLOP_PHRASE",
+      "pattern": "por\\s+otro\\s+lado",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES011",
+      "type": "SLOP_PHRASE",
+      "pattern": "sin\\s+lugar\\s+a\\s+dudas",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES012",
+      "type": "SLOP_PHRASE",
+      "pattern": "juega\\s+un\\s+papel\\s+crucial",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES013",
+      "type": "SLOP_PHRASE",
+      "pattern": "un\\s+testimonio\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES014",
+      "type": "SLOP_PHRASE",
+      "pattern": "sumergirse\\s+en",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES015",
+      "type": "SLOP_PHRASE",
+      "pattern": "no\\s+solo",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES016",
+      "type": "SLOP_PHRASE",
+      "pattern": "sino\\s+también",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES017",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+el\\s+panorama\\s+actual",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES018",
+      "type": "SLOP_PHRASE",
+      "pattern": "es\\s+fundamental",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES019",
+      "type": "SLOP_PHRASE",
+      "pattern": "vale\\s+la\\s+pena\\s+señalar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES020",
+      "type": "SLOP_PHRASE",
+      "pattern": "a\\s+medida\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES021",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+última\\s+instancia",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES022",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+un\\s+mundo\\s+en\\s+constante\\s+evolución",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES023",
+      "type": "SLOP_PHRASE",
+      "pattern": "abre\\s+la\\s+puerta\\s+a",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES024",
+      "type": "SLOP_PHRASE",
+      "pattern": "cambiar\\s+las\\s+reglas\\s+del\\s+juego",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES025",
+      "type": "SLOP_PHRASE",
+      "pattern": "sin\\s+problemas",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ES026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:En el contexto de|En el ámbito de|En el mundo de) [\\w\\s]+,",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "ES027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "\\bno\\s+solo\\b[\\s\\S]{0,100}?\\bsino\\s+también\\b",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "discussion-structure-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose the structural completeness and move ordering of the Discussion section in an English psychology research paper. Checks whether the draft contains expected moves (revisit results, map to literature, identify applications, limitations, future work, achievement/contribution statement) and whether the order is logical and mirrors the Introduction's Block 1-4 symmetry.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "structure",
+    "psychology",
+    "academic-writing",
+    "diagnosis"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "🧱",
+      "triggers": [
+        "check Discussion structure",
+        "is my Discussion complete",
+        "discussion 缺什么",
+        "Discussion 结构"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4.2 (Generic Discussion Model) + 4.1.1 (narrative wrap)"
+    }
+  }
+}

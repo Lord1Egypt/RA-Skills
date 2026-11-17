@@ -1,43 +1,59 @@
-## Description: <br>
-Uses the FOFA OpenAPI to run batch asset searches and export results as CSV, with optional JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fofa Search v1.0 helps agents run FOFA OpenAPI searches in batch, paginate results, and export findings to CSV with optional JSON.
 
-## Publisher: <br>
-[biglizi775](https://clawhub.ai/user/biglizi775) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biglizi775](https://clawhub.ai/user/biglizi775)
 
-## Use Case: <br>
-Developers and security engineers use this skill to run FOFA queries, automatically page through results, and export asset data for review or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive FOFA API key. <br>
-Mitigation: Provide the key at runtime, prefer environment variables, and avoid storing credentials in code, artifacts, or commits. <br>
-Risk: FOFA search results may contain sensitive asset information. <br>
-Mitigation: Choose export paths carefully, restrict access to generated CSV or JSON files, and review results before sharing. <br>
-Risk: A custom FOFA base URL could send credentials and queries to an untrusted endpoint. <br>
-Mitigation: Keep the default FOFA endpoint unless the alternative endpoint is explicitly trusted. <br>
+## Use Case:
 
+Developers and security engineers use this skill to query FOFA with an API key and search expression, then export selected fields for asset discovery workflows.
 
-## Reference(s): <br>
-- [FOFA](https://fofa.info) <br>
-- [ClawHub skill page](https://clawhub.ai/biglizi775/fofasearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled CLI writes CSV and optional JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FOFA API key at runtime and may export sensitive asset information to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: FOFA API keys and queries can be sent to a user-supplied API URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default FOFA endpoint and avoid untrusted --base-url values.
+
+Risk: FOFA API keys may be exposed if stored in repository files or command history.
+
+Mitigation: Provide keys through environment variables or secure local storage and avoid committing secrets.
+
+Risk: Unpinned Python dependencies can change before operational use.
+
+Mitigation: Review and pin dependencies before deploying the skill in sensitive environments.
+
+## Reference(s):
+
+- [FOFA](https://fofa.info)
+- [ClawHub skill page](https://clawhub.ai/biglizi775/skills/fofasearch)
+- [Publisher profile](https://clawhub.ai/user/biglizi775)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples for CSV and optional JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local CSV files by default and optional JSON files when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

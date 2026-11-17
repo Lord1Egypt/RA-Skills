@@ -1,42 +1,55 @@
-## Description: <br>
-Send push notifications to iOS devices via Bark app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send push notifications to iOS devices through the Bark app.
 
-## Publisher: <br>
-[yanbo92](https://clawhub.ai/user/yanbo92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanbo92](https://clawhub.ai/user/yanbo92)
 
-## Use Case: <br>
-External users and developers use this skill to send Bark push notifications to iOS devices from an agent workflow, including optional title, subtitle, URL, sound, group, urgency level, and critical alert settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification titles, bodies, URLs, and the Bark key may be sent to the configured Bark server. <br>
-Mitigation: Avoid sending secrets or sensitive content, prefer POST requests, and consider a self-hosted Bark server for more control. <br>
-Risk: The Bark key may be stored locally in plaintext at ~/.bark/key. <br>
-Mitigation: Restrict file permissions for ~/.bark/key and delete or rotate the key when it is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to configure a Bark key and send iOS push notifications from an agent through the Bark API.
 
-## Reference(s): <br>
-- [Bark project](https://github.com/Finb/Bark) <br>
-- [Bark default API endpoint](https://api.day.app/) <br>
-- [ClawHub skill page](https://clawhub.ai/yanbo92/bark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write a plaintext Bark key at ~/.bark/key and send notification content to the configured Bark server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The Bark device key is stored locally and can allow notification sending if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.bark/key as a secret, keep it owner-readable only, and rotate the Bark key if exposure is suspected.
+
+Risk: Notification text is sent through the Bark API.
+
+Mitigation: Avoid sending sensitive notification content unless the user is comfortable with that data flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanbo92/skills/bark)
+- [Bark project](https://github.com/Finb/Bark)
+- [Bark API endpoint](https://api.day.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Bark API calls that send notification text to a configured device.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

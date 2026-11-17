@@ -1,41 +1,58 @@
-## Description: <br>
-具备持续自主进化、长期记忆、全流程自主执行能力的高级自迭代智能体。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+具备持续自主进化、长期记忆、全流程自主执行能力的高级自迭代智能体，支持长周期复杂任务的拆解规划、技能匹配、执行落地、排障修复、复盘优化和能力进化。
 
-## Publisher: <br>
-[yangruoqing86-stack](https://clawhub.ai/user/yangruoqing86-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangruoqing86-stack](https://clawhub.ai/user/yangruoqing86-stack)
 
-## Use Case: <br>
-Developers and external users can use this skill to delegate long-running or complex automation tasks to an autonomous agent that plans, matches skills, executes steps, handles failures, tracks progress, and performs scheduled reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests unattended command execution, automatic installation, scheduled triggers, and high-control autonomous behavior. <br>
-Mitigation: Run it only in a sandboxed environment with restricted sources, inspected logs, and explicit approval for high-risk actions. <br>
-Risk: The skill can use long-term memory and bridge access, which may retain state or extend behavior across sessions. <br>
-Mitigation: Grant memory or bridge access only when needed, and regularly disable or delete retained state. <br>
+## Use Case:
 
+External users and developers use this agent skill to plan and run long-duration automation workflows that require task decomposition, skill matching, progress tracking, retry handling, review, and cross-agent coordination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangruoqing86-stack/self-iterating-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/yangruoqing86-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or text with possible shell commands, task plans, progress updates, and configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger unattended execution, scheduled follow-up, automatic installation, cross-agent coordination, and retained long-term memory when granted those capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unattended command execution and automatic installation can change the environment without timely review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained environment, require per-task approval, and disable or tightly restrict exec-plus and automatic installs.
+
+Risk: Scheduled autonomous activity can continue longer than intended.
+
+Mitigation: Set explicit schedule expiration, revocation controls, and regular operator review for any recurring task.
+
+Risk: Long-term memory can retain sensitive task history or secrets.
+
+Mitigation: Do not store secrets or sensitive history in long-term memory, and review memory retention settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangruoqing86-stack/skills/self-iterating-agent)
+- [Publisher profile](https://clawhub.ai/user/yangruoqing86-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with plans, status updates, commands, configuration changes, and delivery notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate autonomous execution steps, scheduled follow-ups, retries, skill installation requests, and long-term memory updates when permitted by the runtime.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

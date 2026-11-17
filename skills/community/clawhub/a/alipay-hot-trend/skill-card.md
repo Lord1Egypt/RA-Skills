@@ -1,43 +1,55 @@
-## Description: <br>
-Summarizes public Alipay product features, announcements, and city service updates without login or payment actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public Alipay product features, announcements, and city service updates without login, payment, or private account actions.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Alipay product, announcement, news, and city service pages for monitoring and internal analysis. It should not be used for login, payments, account support, authenticated content, or bypassing platform limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill on authenticated Alipay pages or payment flows could expose account data or trigger unintended actions. <br>
-Mitigation: Use it only for public pages and announcements; do not use it for login, payment, account-specific support, authenticated content, or bypassing platform limits. <br>
-Risk: Summaries of dynamic public pages may be incomplete or stale if content has not fully loaded. <br>
-Mitigation: Wait for pages to load, include source links and collection time when available, and review summaries before relying on them. <br>
-Risk: High-frequency automated access may violate Alipay platform limits. <br>
-Mitigation: Rate-limit requests and respect platform access limits. <br>
+## Use Case:
 
+External users and analysts use this skill to collect concise summaries of public Alipay service pages, announcements, news items, and city service updates. It is limited to public information and excludes account support, logged-in sessions, payment operations, identity verification, and private financial data.
 
-## Reference(s): <br>
-- [Alipay homepage](https://www.alipay.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/alipay-hot-trend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are limited to public Alipay pages and announcements; no account, login, or payment actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill could be misapplied to account support, payments, identity verification, logged-in sessions, or user-specific financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public Alipay page summaries and announcement monitoring, and reject tasks involving private accounts, payments, identity checks, or user-specific financial data.
+
+Risk: Dynamic public pages and access-rate limits can lead to incomplete or outdated summaries.
+
+Mitigation: Wait for page loading, include source links and collection time in summaries when available, and respect platform access limits.
+
+## Reference(s):
+
+- [Alipay homepage](https://www.alipay.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/alipay-hot-trend)
+- [ClawHub publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text summaries with extracted links and timestamps when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service names, feature summaries, announcement titles, publication times, impact scope, source links, city names, and collection time.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

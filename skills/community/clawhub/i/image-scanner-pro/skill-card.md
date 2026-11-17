@@ -1,43 +1,57 @@
-## Description: <br>
-Scans image folders and uses Gemini 2.0 Flash to analyze and categorize photos by composition, lighting, subject, mood, tone, style, and related photography attributes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans image folders and uses Gemini 2.0 Flash to analyze and categorize photos by photography attributes such as composition, lighting, mood, and style.
 
-## Publisher: <br>
-[mrxolin](https://clawhub.ai/user/mrxolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrxolin](https://clawhub.ai/user/mrxolin)
 
-## Use Case: <br>
-Developers, photographers, and content managers use this skill to batch-scan local image folders, classify photos, and generate structured analysis reports with a Gemini vision model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send selected local image contents to Gemini for analysis. <br>
-Mitigation: Use it only on folders whose images are approved for external model processing, and avoid sensitive or regulated images. <br>
-Risk: Folder scanning can process more images than intended. <br>
-Mitigation: Run it against an explicit review folder and confirm the target path before execution. <br>
-Risk: Proxy and API key settings affect where image analysis traffic is routed. <br>
-Mitigation: Use trusted network settings and manage the Gemini API key through approved secret-handling practices. <br>
+## Use Case:
 
+Developers, photographers, and content teams use this skill to batch scan image folders, classify photo content, and produce structured analysis reports for organizing or reviewing photo collections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrxolin/image-scanner-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mrxolin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console report and optional JSON report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key for model-backed image analysis; without one, it falls back to filename-based basic classification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected image files may be sent to Google's Gemini service for visual analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on images appropriate for external API processing, avoid private or regulated image folders, and confirm data handling requirements before scanning.
+
+Risk: Providing an API key on the command line can expose it through shell history or process listings.
+
+Mitigation: Prefer the GEMINI_API_KEY environment variable over the --api-key option.
+
+Risk: The dependency lockfile may need review before sensitive use.
+
+Mitigation: Review or update package-lock.json and dependencies before using the skill in a sensitive environment.
+
+## Reference(s):
+
+- [Image Scanner Pro on ClawHub](https://clawhub.ai/mrxolin/skills/image-scanner-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report summarizes scanned files, image metadata, style and subject counts, and per-image analysis when a Gemini API key is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

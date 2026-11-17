@@ -1,45 +1,60 @@
-## Description: <br>
-Analyzes conversation topic continuity to manage context, switch between topics, compress drifting history, and reduce token usage for multitask agent conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes conversation topic continuity to manage context switches, compress drifting context, load relevant memory, and monitor token use.
 
-## Publisher: <br>
-[nicochow](https://clawhub.ai/user/nicochow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicochow](https://clawhub.ai/user/nicochow)
 
-## Use Case: <br>
-Developers and agent users use this skill to track topic continuity across multi-task conversations, decide whether to continue, compress, or switch context, and monitor token usage. It is useful for project workflows, research sessions, and long-running conversations where saved context should stay relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores conversation snippets and topic history in a local state file, which may retain sensitive conversation content. <br>
-Mitigation: Review before installing for confidential conversations, avoid passing secrets as conversation content, and clear memory/context_switch_state.json before first use. <br>
-Risk: Automatic token optimization and context switching may change saved context when token usage or similarity thresholds are met. <br>
-Mitigation: Set TOKEN_OPTIMIZER_ENABLED=false when context changes should be manual, and review configuration thresholds before deployment. <br>
-Risk: A reset action may not be sufficient for every operational cleanup expectation unless the saved state file is inspected. <br>
-Mitigation: Use the context_manager.py reset path and manually inspect memory/context_switch_state.json when context must be fully cleared. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage long, multi-topic conversations by preserving relevant context, compressing weakly related history, and monitoring token budgets.
 
-## Reference(s): <br>
-- [Context Switch Token Optimizer on ClawHub](https://clawhub.ai/nicochow/context-switch-token-optimizer) <br>
-- [Topic and Continuity Logic](artifact/docs/TOPIC_AND_CONTINUITY.md) <br>
-- [Usage Guide](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON configuration, and status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local context state and topic history in memory/context_switch_state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Conversation summaries and snippets can be retained locally in memory/context_switch_state.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces approved for local retention and avoid processing secrets or sensitive personal data through it.
+
+Risk: The reset command may report that context was cleared while saved state remains on disk.
+
+Mitigation: Verify or remove memory/context_switch_state.json when a true reset or deletion of retained summaries is required.
+
+Risk: Matching files under memory/topic can be loaded into context.
+
+Mitigation: Keep sensitive files out of memory/topic unless they are intended to be surfaced to the agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nicochow/skills/context-switch-token-optimizer)
+- [README Usage Guide](artifact/README.md)
+- [Topic and Continuity Logic](artifact/docs/TOPIC_AND_CONTINUITY.md)
+- [Security Review Source](evidence.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON-style CLI output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local context state and load matching local memory files when used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

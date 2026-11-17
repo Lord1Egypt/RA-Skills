@@ -1,43 +1,49 @@
-## Description: <br>
-根据小红书文章内容自动生成配图，使用PIL将文章标题、副标题、内容生成在图片上，适合小红书笔记配图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据小红书文章内容自动生成配图。使用PIL将文章标题、副标题、内容生成在图片上，适合小红书笔记配图。
 
-## Publisher: <br>
-[binsonHao](https://clawhub.ai/user/binsonHao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binsonhao](https://clawhub.ai/user/binsonhao)
 
-## Use Case: <br>
-Content creators and operators use this skill to generate Xiaohongshu-style cover images from a title, optional subtitle, and optional multi-line body text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local script overwrites the fixed output file xhs_cover.jpg in the OpenClaw workspace. <br>
-Mitigation: Review the output path before running and preserve any existing image that should not be replaced. <br>
-Risk: Image generation depends on Pillow and the referenced CJK font being available in the runtime environment. <br>
-Mitigation: Install Pillow and verify the font path before use; inspect fallback-font output when the preferred font is unavailable. <br>
-Risk: Generated images may not be publication-ready without human review. <br>
-Mitigation: Review the generated image before publishing it. <br>
+## Use Case:
 
+External creators and agents use this skill to generate Xiaohongshu-style cover images from a title, optional subtitle, and optional multiline article content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binsonHao/redbook-image-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/binsonHao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files] <br>
-**Output Format:** [Command-line invocation that writes a JPEG image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Pillow and a local CJK font; writes xhs_cover.jpg to a fixed OpenClaw workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated output is saved to a fixed local file path, so rerunning the script can replace the previous image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Move or rename the generated xhs_cover.jpg file before rerunning when multiple images need to be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binsonhao/skills/redbook-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands]
+
+**Output Format:** [JPEG image file with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated image to xhs_cover.jpg at a fixed local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

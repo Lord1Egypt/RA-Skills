@@ -1,43 +1,58 @@
-## Description: <br>
-x402 payment layer for AI agents - charge USDC per skill call. Meta-skill that wraps any skill with per-call pricing and on-chain payment verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x402 payment layer for AI agents that charges USDC per skill call and wraps skills with per-call pricing and on-chain payment verification.
 
-## Publisher: <br>
-[strouddustinn-bot](https://clawhub.ai/user/strouddustinn-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[strouddustinn-bot](https://clawhub.ai/user/strouddustinn-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add per-call USDC payments, HTTP 402 responses, and payment ledger tracking to agent skills or APIs. It is intended for monetizing skill calls while keeping payment limits, wallet handling, and verification controls explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move real funds and depends on wallet credentials. <br>
-Mitigation: Use a dedicated low-balance wallet, protect private keys outside code, configure strict max_price limits, and call only trusted endpoints. <br>
-Risk: Payment verification is described as on-chain but the artifact behavior does not fully validate USDC transfer sender, recipient, amount, and replay durability. <br>
-Mitigation: Do not rely on it as a production paywall until verification decodes and checks USDC transfer details and replay records are stored durably. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to add x402-style USDC payment requirements to agent skill calls, verify payments, and track payment activity in a ledger.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/strouddustinn-bot/x402-paywall) <br>
-- [Agent Economy docs](https://agent-economy.io/docs) <br>
-- [x402 spec](https://x402.dev) <br>
-- [Agent Economy issues](https://github.com/agent-economy/agent-economy/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration instructions, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Python examples, JSON response examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces integration guidance for wrapping skills with a paywall, configuring networks and prices, verifying payments, and tracking payments in SQLite.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Core payment verification and automatic payment behavior are unsafe for real-money use without careful review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use for production or autonomous real-money payments until payment verification, spending approval, trusted recipient controls, and replay handling are reviewed and fixed.
+
+Risk: Payment verification may not validate the actual USDC transfer details.
+
+Mitigation: Validate the recipient, sender, amount, token contract, chain, and confirmation status for each transaction, and fail closed when dependencies or RPC checks fail.
+
+Risk: Transaction replay protection may not be durable across process restarts.
+
+Mitigation: Persist used transaction hashes in the ledger before accepting payment and reject reused transaction hashes across service instances.
+
+## Reference(s):
+
+- [Agent Economy Docs](https://agent-economy.io/docs)
+- [x402 Spec](https://x402.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes HTTP 402 payment response shapes, payment client behavior, and ledger usage patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

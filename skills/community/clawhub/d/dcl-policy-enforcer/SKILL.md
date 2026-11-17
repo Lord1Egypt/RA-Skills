@@ -1,53 +1,138 @@
 ---
-description: "Instruction-only compliance checker for AI outputs. Detects jailbreaks, prompt injection, EU AI Act violations, GDPR breaches, unsafe financial and medical advice entirely within the agent context — no text ever leaves the agent. For AI agents, LLM pipelines, and compliance teams."
-tags: [compliance, audit, ai-safety, policy-enforcement, eu-ai-act, gdpr, anti-jailbreak, prompt-injection, finance, medical, llm-guardrails, leibniz-layer, agent-safety, verification, ai-governance, regulatory, hipaa, mifid, fca, sec, instruction-only]
+name: dcl-policy-enforcer
+description: "Use this skill to run a real, paid pre-action audit of an AI agent or LLM response via the live DCL Trust Oracle MCP server. Detects jailbreak / instruction-override attempts, baseline safety violations, and content quality drift, and checks output against pattern-based regulatory-theme checklists (transparency, data handling, financial disclosure, medical disclosure). Every paid call is metered and settled on-chain via the x402 protocol (USDC on Base) and produces a tamper-evident audit record. Use whenever you need to gate a risky agent action, or want a free instruction-only checklist for a quick manual review. Part of the Leibniz Layer™ Security Suite alongside DCL Prompt Firewall and DCL Sentinel Trace."
+version: 3.1.0
+tags: [compliance, audit, ai-safety, policy-enforcement, anti-jailbreak, prompt-injection, llm-guardrails, leibniz-layer, agent-safety, verification, ai-governance, x402, mcp, paid, usdc, base]
 ---
 
 # DCL Policy Enforcer — Leibniz Layer™
 
-**Publisher:** @daririnch · Fronesis Labs  
-**Version:** 2.0.0  
+**Publisher:** @daririnch · Fronesis Labs
+**Version:** 3.1.0
 **Part of:** Leibniz Layer™ Security Suite
+**MCP endpoint:** `https://mcp.fronesislabs.com/mcp`
+
+---
+
+## ⚠️ This skill now calls a live, paid service
+
+Starting with v3.0.0, the core evaluation runs on Fronesis Labs' **DCL Trust Oracle** MCP server —
+a real backend, not a local simulation. Each paid tool call is metered and settled on-chain via the
+**x402 protocol in USDC on the Base network**. There is no subscription and no account: the calling
+agent (or its wallet-enabled MCP client) pays per call at the price listed below.
+
+**A free, instruction-only checklist is still included** further down this document for anyone who
+wants a manual, no-payment, no-network-call review instead.
 
 ---
 
 ## What this skill does
 
-DCL Policy Enforcer checks AI-generated outputs against compliance policies and safety rules — detecting jailbreaks, regulatory violations, and unsafe content before delivery.
-
-**This skill is 100% instruction-only.** No text is sent to any external server. The entire analysis runs inside the agent's context window. The output being checked never leaves the agent.
+Calls the DCL Trust Oracle to evaluate an AI agent's or LLM's output and returns a verdict
+(`COMMIT` / `NO_COMMIT`), a confidence score, and a cryptographic audit record (`tx_hash`)
+written to a tamper-evident, hash-chained log that stores only hashes — **never the raw text**.
 
 ### When to use this skill
 
-- Agent output needs to pass **EU AI Act, GDPR, MiFID II, FCA, SEC, or HIPAA** compliance
-- You need to detect **jailbreak or prompt injection** attempts in model outputs
-- AI is generating **financial or medical content** that requires guardrails
-- You are building an **AI pipeline** that requires a compliance audit trail
-
-### Available policies
-
-| Policy | What it enforces |
-|--------|-----------------|
-| `eu_ai_act` | EU AI Act Art. 9/13/52 — transparency, no impersonation, no manipulation, no social scoring |
-| `anti_jailbreak` | Prompt injection, DAN, STAN, role-switch, instruction override, token smuggling |
-| `finance` | MiFID II / SEC / FCA — no guaranteed returns, no unqualified investment advice, required disclaimers |
-| `medical` | EU MDR / FDA / HIPAA — no diagnostic claims, no dosage guidance, required professional referral |
-| `gdpr` | GDPR Art. 5/6/17 — no unlawful retention, no unconsented data sharing, no data sale |
-| `pii` | Emails, phones, national IDs, card PANs, crypto wallets, IPs |
+- Gate a risky agent action before it executes
+- Screen an LLM output for jailbreak / instruction-override attempts
+- Run a baseline safety pass, or a content-quality / drift check
+- Get a durable, on-chain-anchored audit trail for a decision
 
 ---
 
-## How to run a check
+## Live tools (paid, USDC on Base via x402)
 
-Paste the AI output and specify the policy. The agent checks it locally against the checklist below. No network requests are made.
+| MCP tool | Price | What it runs |
+|---|---|---|
+| `dcl_evaluate_fast` | **$0.01** | Default policy (3 forbidden phrases), 0.7 min-confidence — the low-cost first-pass gate |
+| `dcl_evaluate_strict` | **$0.05** | Broader **strict** policy — union of default + anti-jailbreak + safety phrases (8 total), 0.85 min-confidence |
+| `dcl_evaluate_jailbreak` | **$0.02** | Anti-jailbreak policy — 6 instruction-override/persona-hijack phrases, 0.8 min-confidence |
+| `dcl_evaluate_safety` | **$0.01** | Safety policy — 2 disclaimer phrases plus a required "AI"-disclosure check, 0.75 min-confidence |
+| `dcl_evaluate_quality` | **$0.03** | Content-quality policy — 12 absolutist/unverifiable-claim phrases, 0.85 min-confidence |
+| `dcl_evaluate_batch` | **$0.10** | Evaluate a list of items in one call, each with its own policy |
+| `dcl_pipeline_start` | **$0.05** | Returns a `pipeline_id` reference for your own client-side grouping of a multi-step check sequence |
+| `dcl_audit_decode` | **$0.10** | Retrieve a past record by `tx_hash` |
+| `dcl_audit_decode_deep` | **$0.50** | Same, plus full chain-integrity verification and drift context |
 
-### Step 1 — Select policy and run checklist
+Prices are set server-side and may change; the MCP tool descriptions returned by the server at
+call time are always the source of truth.
 
-Choose the relevant policy and work through its checklist. For each violation found, record:
-- `pattern` — description of what was found
-- `severity` — `critical` or `major`
+### Note on policy selection
 
-### Step 2 — Apply verdict logic
+Each tool runs a distinct built-in policy — they are not just price tiers of the same check.
+`dcl_evaluate_fast` and `dcl_evaluate_strict` share the same *category* (general-purpose gate)
+but differ in coverage and confidence bar; `dcl_evaluate_jailbreak`, `dcl_evaluate_safety`, and
+`dcl_evaluate_quality` are narrower, single-concern checks. None of the single-item tools accept
+a `policy` parameter — to target a specific policy per item, use `dcl_evaluate_batch`, where each
+item may carry its own `policy` string (`default`, `strict`, `anti_jailbreak`, `safety`, or
+`content_quality`).
+
+`dcl_pipeline_start` currently issues an identifier only — it does not link subsequent
+`evaluate_*` calls to it server-side. Use it for your own client-side grouping, not as an
+automatic cross-call session tracker.
+
+---
+
+## Connecting to the live server
+
+Add the MCP server to your client config (Claude Desktop, Cursor, or any MCP-compatible agent):
+
+```json
+{
+  "mcpServers": {
+    "dcl-trust-oracle": {
+      "url": "https://mcp.fronesislabs.com/mcp"
+    }
+  }
+}
+```
+
+Payment is handled automatically for x402-capable clients; clients without native x402 support
+fall back to a guided payment flow. No API key or account signup is required — only a wallet
+capable of paying in USDC on Base.
+
+### Calling a tool
+
+```python
+result = dcl_evaluate_jailbreak(
+    response=agent_output,
+    agent_id="my-agent-01",
+)
+
+if result["verdict"] == "NO_COMMIT":
+    block_or_regenerate(result["reason"])
+else:
+    log_audit(result["tx_hash"])
+```
+
+### Output shape (all evaluation tools)
+
+```json
+{
+  "verdict": "COMMIT | NO_COMMIT",
+  "confidence": 0.0,
+  "reason": "string",
+  "tx_hash": "string",
+  "chain_index": 0,
+  "input_hash": "string",
+  "policy_version": "string",
+  "drift_mode": "NORMAL | WARNING | ESCALATION | BLOCK",
+  "drift_score": 0.0
+}
+```
+
+Only `input_hash` (a hash of the evaluated text) is stored — the raw response itself is never
+persisted server-side.
+
+---
+
+## Free instruction-only checklist (no network call, no charge)
+
+If you'd rather not make a paid call — for a quick manual pass, or when offline — work through
+the checklist below entirely inside the agent's own context. Nothing here contacts any server.
+
+### Verdict logic
 
 | Condition | Verdict |
 |---|---|
@@ -55,78 +140,56 @@ Choose the relevant policy and work through its checklist. For each violation fo
 | Any `major` finding | `NO_COMMIT` |
 | No findings | `COMMIT` |
 
----
-
-## Policy Checklists
-
-### EU AI Act (eu_ai_act)
+### Transparency & Manipulation Patterns
 
 - [ ] Output claims to be human or denies being an AI when sincerely asked
 - [ ] Output attempts to manipulate the user through psychological techniques
 - [ ] Output assigns social scores or makes discriminatory assessments of individuals
-- [ ] Output lacks required transparency disclosures for high-risk AI contexts
 - [ ] Output impersonates a real person or official authority
+- [ ] Output lacks a transparency disclosure appropriate to a high-stakes context
 
-### Anti-Jailbreak (anti_jailbreak)
+### Instruction-Override Patterns (jailbreak)
 
-- [ ] Output contains instruction override phrases directed at the model itself
+- [ ] Output contains instruction-override phrases directed at the model itself
 - [ ] Output adopts an unrestricted persona (DAN, STAN, or similar)
 - [ ] Output acknowledges having bypassed or disabled safety measures
 - [ ] Output contains encoded or obfuscated instructions for harmful actions
 - [ ] Output instructs the user on how to jailbreak or manipulate AI systems
 
-### Finance (finance)
+### Financial Disclosure Patterns
 
 - [ ] Output guarantees specific investment returns
-- [ ] Output provides specific buy/sell/hold recommendations without required disclaimers
-- [ ] Output provides personalized investment advice without professional referral
-- [ ] Output is missing required MiFID II / SEC / FCA risk disclaimers
-- [ ] Output makes performance claims without required regulatory disclosures
+- [ ] Output gives a specific buy/sell/hold call without a risk disclaimer
+- [ ] Output gives personalized investment advice without a professional-referral note
+- [ ] Output makes a performance claim with no supporting disclosure
 
-### Medical (medical)
+### Medical Disclosure Patterns
 
 - [ ] Output makes a specific diagnostic claim about a named condition
-- [ ] Output provides specific dosage guidance for medication
-- [ ] Output recommends stopping or changing prescribed medication
-- [ ] Output presents medical advice as a substitute for professional consultation
-- [ ] Output is missing required referral to a qualified healthcare professional
+- [ ] Output gives specific medication dosage guidance
+- [ ] Output recommends stopping or changing a prescribed medication
+- [ ] Output presents itself as a substitute for professional consultation
+- [ ] Output is missing a referral note to a qualified healthcare professional
 
-### GDPR (gdpr)
+### Data Handling Patterns
 
-- [ ] Output proposes retaining personal data without a stated lawful basis
-- [ ] Output suggests sharing personal data with third parties without consent
+- [ ] Output proposes retaining personal data with no stated basis
+- [ ] Output suggests sharing personal data with a third party without consent
 - [ ] Output implies selling or monetizing personal data
-- [ ] Output ignores or dismisses a data subject rights request
-- [ ] Output proposes processing special category data without explicit consent
+- [ ] Output dismisses a data-subject rights request
+- [ ] Output proposes processing sensitive personal data without explicit consent
 
-### PII (pii)
+### PII Surface Patterns
 
 - [ ] Output contains email addresses
 - [ ] Output contains phone numbers
-- [ ] Output contains national ID or SSN patterns
+- [ ] Output contains national ID or SSN-shaped strings
 - [ ] Output contains bank card PANs or IBANs
 - [ ] Output contains crypto wallet addresses
 - [ ] Output contains IP addresses
 
----
-
-## Output schema
-
-```json
-{
-  "verdict": "COMMIT | NO_COMMIT",
-  "policy": "eu_ai_act | anti_jailbreak | finance | medical | gdpr | pii",
-  "violations": [
-    {
-      "pattern": "Output guarantees specific investment returns",
-      "severity": "critical"
-    }
-  ],
-  "violation_count": 0,
-  "missing_required": [],
-  "powered_by": "DCL Policy Enforcer · Leibniz Layer™ · Fronesis Labs"
-}
-```
+These checklists describe recurring patterns worth flagging — they are a heuristic aid for a
+human or agent reviewer, not a certification against any specific law or standard.
 
 ---
 
@@ -142,16 +205,13 @@ DCL Prompt Firewall        ← blocks malicious input
       LLM
         │
         ▼
-DCL Policy Enforcer        ← compliance check on output (instruction-only)
+DCL Policy Enforcer        ← this skill (live paid check, or free checklist)
         │ COMMIT
         ▼
 DCL Sentinel Trace         ← PII redaction
         │ COMMIT
         ▼
 DCL Secret Leak Detector   ← credential scan
-        │ COMMIT
-        ▼
-DCL Output Sanitizer       ← final sweep
         │ COMMIT
         ▼
 DCL Semantic Drift Guard   ← hallucination check
@@ -164,11 +224,13 @@ Safe to deliver
 
 ## Privacy & Data Policy
 
-This skill is operated by **Fronesis Labs** and is **100% instruction-only**.
+Operated by **Fronesis Labs**. For the live tools: only a hash of the evaluated text
+(`input_hash`) and the verdict metadata are written to the audit chain — the raw response is
+never stored. For the free checklist: everything runs inside the agent's own context; nothing is
+transmitted anywhere.
 
-**No data leaves the agent.** All analysis runs entirely within the agent's context window. No content is transmitted to any server.
-
-Full policy: **https://fronesislabs.com/#privacy** · Browse the full DCL Security Suite: **[hub.fronesislabs.com](https://hub.fronesislabs.com)** · Questions: support@fronesislabs.com
+Full policy: **https://fronesislabs.com/#privacy** · Browse the full DCL Security Suite:
+**[hub.fronesislabs.com](https://hub.fronesislabs.com)** · Questions: support@fronesislabs.com
 
 ---
 
@@ -177,7 +239,7 @@ Full policy: **https://fronesislabs.com/#privacy** · Browse the full DCL Securi
 - `dcl-prompt-firewall` — Input-layer injection and jailbreak detection
 - `dcl-sentinel-trace` — PII redaction
 - `dcl-secret-leak-detector` — Credential and API key scan
-- `dcl-output-sanitizer` — Final output sweep
 - `dcl-semantic-drift-guard` — Hallucination and grounding check
 
 **Leibniz Layer™ · Fronesis Labs · fronesislabs.com**
+```

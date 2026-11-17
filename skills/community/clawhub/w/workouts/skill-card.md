@@ -1,38 +1,49 @@
-## Description: <br>
-Build a personal workout tracking system with exercises, routines, progression, and PRs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal workout tracking system with exercises, routines, progression, and PRs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a personal workout log, organize exercises and routines, track progression, and surface personal records from local history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workout records and notes may be saved locally in ~/workouts/, which can retain personal fitness history on the user's machine. <br>
-Mitigation: Use a private machine or delete/change that folder when persistent local fitness history is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/workouts) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to maintain local workout logs, routines, exercise lists, progression notes, and personal records. The agent can summarize prior sessions and suggest next workout targets based on the user's recorded history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text guidance for local workout logs and tracking files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local workout records under ~/workouts/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workout, recovery, injury, and optional health-related notes may be stored as local Markdown files under ~/workouts/.
+
+Mitigation: Avoid recording sensitive medical details unless the user is comfortable keeping them in local files, and review the local ~/workouts/ contents before sharing or syncing them.
+
+## Reference(s):
+
+- [ClawHub Workouts skill page](https://clawhub.ai/ivangdavila/skills/workouts)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown workout logs, routines, exercise lists, personal-record notes, and concise text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to create and maintain local files under ~/workouts/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

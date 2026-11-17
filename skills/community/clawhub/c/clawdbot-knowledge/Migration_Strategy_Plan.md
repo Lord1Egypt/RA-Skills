@@ -620,7 +620,7 @@ echo "Step 6: Updating DNS to old system..."
 
 # 7. Notify stakeholders
 echo "Step 7: Notifying stakeholders..."
-curl -X POST "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK" \
+curl -X POST "REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "text": "🚨 ROLLBACK COMPLETED: Migration has been rolled back to previous system. Old N8N system is now active.",

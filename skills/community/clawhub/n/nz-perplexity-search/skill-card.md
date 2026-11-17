@@ -1,40 +1,55 @@
-## Description: <br>
-Search the web with Perplexity Sonar API for current information, citations, and web-grounded answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web with Perplexity Sonar API for current information, citations, and web-grounded answers.
 
-## Publisher: <br>
-[NitinZadpe](https://clawhub.ai/user/NitinZadpe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitinzadpe](https://clawhub.ai/user/nitinzadpe)
 
-## Use Case: <br>
-Developers and agent users use this skill to send web-search questions to Perplexity and receive current, citation-backed answers inside an OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Perplexity, a third-party service, and may consume API quota or billing. <br>
-Mitigation: Use the skill only when sharing the query with Perplexity is acceptable, and avoid secrets, private documents, customer data, internal URLs, or confidential project details. <br>
+## Use Case:
 
+Developers and agent users use this skill to get current, cited web-search answers from Perplexity Sonar without leaving an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NitinZadpe/nz-perplexity-search) <br>
-- [Perplexity API key settings](https://www.perplexity.ai/settings/api) <br>
-- [Perplexity chat completions endpoint](https://api.perplexity.ai/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown report by default, or raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes answer text, citations, search results, related questions, and usage metadata when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: Search prompts are sent to Perplexity and may be billed to the user's Perplexity API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for prompts intended for external web search, keep secrets and private local data out of search queries, and configure the API key intentionally.
+
+Risk: Web-grounded answers can still reflect incomplete, stale, or low-quality source material.
+
+Mitigation: Review the returned citations and search results before relying on the answer for important decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nitinzadpe/skills/nz-perplexity-search)
+- [Perplexity API key settings](https://www.perplexity.ai/settings/api)
+- [Perplexity chat completions endpoint](https://api.perplexity.ai/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Citations, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with answer, citations, search results, related questions, and optional usage metadata; raw JSON is available with a flag.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and PERPLEXITY_API_KEY; queries are sent to Perplexity.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

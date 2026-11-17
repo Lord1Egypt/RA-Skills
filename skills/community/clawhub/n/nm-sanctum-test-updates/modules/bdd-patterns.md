@@ -75,19 +75,21 @@ Feature: Git Workflow Management
 #### Step Definitions
 
 ```python
-@given('a git repository with staged changes')
+@given("a git repository with staged changes")
 def step_given_git_repo_with_changes(context):
     context.repo = create_test_repo()
-    context.repo.stage_changes(['file1.py', 'file2.py'])
+    context.repo.stage_changes(["file1.py", "file2.py"])
 
-@when('I run the commit workflow')
+
+@when("I run the commit workflow")
 def step_when_run_commit_workflow(context):
     context.result = run_commit_workflow(context.repo)
 
-@then('a commit should be created with proper message')
+
+@then("a commit should be created with proper message")
 def step_then_commit_created(context):
     assert context.repo.has_commit()
-    assert context.repo.last_commit_message().startswith('feat:')
+    assert context.repo.last_commit_message().startswith("feat:")
 ```
 
 #### When to Use
@@ -104,6 +106,24 @@ def step_then_commit_created(context):
 BDD-style pytest tests with descriptive names and docstrings
 for unit and API testing.
 
+#### The summary line is not optional
+
+Every docstring below opens with a one-line summary, then a blank
+line, then the GIVEN/WHEN/THEN clauses. Both halves are load-bearing
+and they answer to different checkers:
+
+- ruff's `D212` rejects a docstring whose summary does not start on
+  the first line, so opening with a bare `"""` and dropping straight
+  into `GIVEN` fails the repo lint gate.
+- `scripts/quality_checker.py` scores a test file on whether each
+  docstring contains all four of `given`, `when`, `then`, and `and`.
+  The match is a case-insensitive substring, so `Given:` counts the
+  same as `GIVEN`.
+
+Writing only the summary passes lint and scores poorly. Writing only
+the clauses scores well and fails lint. Both, in that order, satisfy
+each.
+
 #### Structure Example
 
 ```python
@@ -112,7 +132,8 @@ class TestGitWorkflow:
 
     @pytest.mark.bdd
     def test_commit_workflow_with_staged_changes(self):
-        """
+        """Committing with staged changes produces a formatted commit.
+
         GIVEN a Git repository with staged changes
         WHEN the user runs the commit workflow
         THEN it should create a commit with proper message format
@@ -120,7 +141,7 @@ class TestGitWorkflow:
         """
         # Given
         repo = create_git_repo()
-        repo.stage_changes(['feature.py'])
+        repo.stage_changes(["feature.py"])
 
         # When
         result = run_commit_workflow(repo)
@@ -128,11 +149,12 @@ class TestGitWorkflow:
         # Then
         assert result.success is True
         assert repo.has_commit()
-        assert repo.last_commit_message().startswith('feat:')
+        assert repo.last_commit_message().startswith("feat:")
 
     @pytest.mark.bdd
     def test_commit_workflow_rejects_empty_changes(self):
-        """
+        """Committing with nothing staged is rejected.
+
         GIVEN a Git repository with no staged changes
         WHEN the user runs the commit workflow
         THEN it should reject with appropriate error message
@@ -188,9 +210,9 @@ def test_git_status_parsing():
 
     result = parse_git_status(status_output)
 
-    assert 'modified_file.py' in result.modified
-    assert 'added_file.py' in result.added
-    assert 'untracked_file.py' in result.untracked
+    assert "modified_file.py" in result.modified
+    assert "added_file.py" in result.added
+    assert "untracked_file.py" in result.untracked
 ```
 
 #### Best Practices

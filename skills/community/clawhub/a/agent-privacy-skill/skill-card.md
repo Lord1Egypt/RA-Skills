@@ -1,43 +1,62 @@
-## Description: <br>
-Clawked helps agents interact with the Ceaser privacy protocol on Base L2 by querying protocol status and preparing shield or unshield workflows through API and CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Ceaser privacy protocol on Base L2 to query pool state, fees, Merkle roots, nullifier status, facilitator health, and prepare shield or unshield workflows through API and CLI commands.
 
-## Publisher: <br>
-[Se7enHvn](https://clawhub.ai/user/Se7enHvn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[se7enhvn](https://clawhub.ai/user/se7enhvn)
 
-## Use Case: <br>
-External developers and agent users use this skill to inspect Ceaser protocol state, calculate fees, monitor Merkle and nullifier status, and prepare shield or unshield workflows on Base L2. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate ETH shield, unshield, import, and settlement workflows through an external npm command. <br>
-Mitigation: Install only when the publisher and ceaser-mcp package are trusted, and require explicit confirmation of Base network, amount, recipient address, fees, and note ID before transaction-related actions. <br>
-Risk: Ceaser note backups and ~/.ceaser-mcp/notes.json contain secrets needed to recover or spend notes. <br>
-Mitigation: Treat note backups and notes.json like private keys: keep them protected, do not paste them into shared chats or logs, and avoid exposing them in command output. <br>
-Risk: The artifact documents client-side ZK proof generation and requires confirmed notes before unshielding. <br>
-Mitigation: Use the Ceaser frontend or ceaser-mcp for proof generation, verify that the shield transaction has confirmed and the note has a valid leaf index, and check nullifier status before unshielding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Se7enHvn/agent-privacy-skill) <br>
-- [Ceaser homepage](https://ceaser.org) <br>
-- [ceaser-mcp npm package](https://www.npmjs.com/package/ceaser-mcp) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Ceaser privacy-pool state, estimate fees, monitor facilitator and indexer status, and receive shell-command guidance for shielding or unshielding ETH on Base L2.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON API examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command outputs from Ceaser APIs and ceaser-mcp are described as JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends unpinned npm execution for cryptocurrency privacy operations.
+
+Mitigation: Use a pinned, audited ceaser-mcp package version and review command output before signing transactions or settling withdrawals.
+
+Risk: Note backups and ~/.ceaser-mcp/notes.json can control access to funds.
+
+Mitigation: Keep note backups and local notes files out of chats, logs, shell history, and insecure backups.
+
+Risk: Withdrawal flows can send funds to an unintended recipient if command arguments or generated transaction data are wrong.
+
+Mitigation: Verify recipient addresses, transaction data, fees, and settlement outputs before signing or submitting any operation.
+
+Risk: Persistent MCP registration can expose local note-management workflows to future agent sessions.
+
+Mitigation: Register the MCP server only in trusted environments and remove or disable it when it is no longer needed.
+
+## Reference(s):
+
+- [Ceaser homepage](https://ceaser.org)
+- [ClawHub skill page](https://clawhub.ai/se7enhvn/skills/agent-privacy-skill)
+- [ceaser-mcp npm package](https://www.npmjs.com/package/ceaser-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference public Ceaser API responses and local CLI note-management outputs; does not itself generate zero-knowledge proofs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

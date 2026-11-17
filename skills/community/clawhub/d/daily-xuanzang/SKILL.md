@@ -18,6 +18,19 @@ description: >
 
 ---
 
+## 🛡️ 弹性优先交付（Resilience First · 重要）
+
+本 skill 默认要稳定交付【文字 + 地图 + 语音】三件，必须做到**单步失败不拖垮整体**：
+
+1. **文字最先发、必送达。** 先把讲稿正文发出去，再去做地图/语音。文字是保底——哪怕地图和语音都失败，用户也已经拿到了今天的讲解。
+2. **地图、语音各自独立交付。** 三件互不阻塞：地图失败不影响语音，语音失败不影响地图，二者都失败也不影响已发出的文字。
+3. **吞错继续，绝不整轮 abort。** 任何工具调用报错/中断（尤其是 `image_generate` 的 abort/超时），都要就地捕获、跳过该件、继续下一件，**严禁让单步失败导致整个任务 abort、用户什么都收不到**。
+4. **进度只在文字发出后推进**，避免重复，也避免漏发。
+5. **给 image_generate 设合理 timeoutMs**（如 180000），失败最多重试 1 次就放弃该件。
+6. 若用定时任务驱动，建议再配一个**延时校验补发**任务（如主任务后 20–30 分钟跑一次），检查今天三件是否齐全、缺哪件补哪件（已送达则不重发）。
+
+> 经验教训（真实案例）：曾有一期因为地图生成环节 abort，整个定时任务被 abort，导致**文字和语音都没发出去**（只出了图）。根因就是把文字/地图/语音纳入了同一条「要么全成、要么全挂」的线性流程。修正办法就是上面六条：文字先发、各件独立、吞错继续。
+
 ## 默认交付要求（重要）
 
 - 默认不要只给"短摘要版"；应交付一篇**完整讲稿**（原文 / 翻译 / 讲解三部分都要展开）。
@@ -29,6 +42,35 @@ description: >
 - **只要用户当前配置或当前任务明确包含文字 / 地图 / 图片 / 语音中的任一项，就必须把对应产物全部生成出来。**
 - **地图是本 skill 的核心特色，默认每期都要有**，除非用户明确关闭。
 - 如果用户明确只要文字，才可以跳过地图/图/语音；否则默认至少"文字 + 地图"都要有。
+
+---
+
+## 📚 书库归档（Library · 每期必做）
+
+本 skill 产出的**所有东西（讲稿 / 路线地图 / 语音 / 朗读稿）都要按章节顺序归档到自己的书目录**，将来可以按顺序导出成一本书（Markdown / HTML，后续可转 PDF、PPT），用户不用 AI、也不用在聊天记录里翻。
+
+- 书目录：`/workspace/library/xuanzang/`（本书专属，别的 skill 不往这里写）
+- 每期一个文件夹：`/workspace/library/xuanzang/volVV/epNNN/`（VV = 卷号两位，NNN = 期号三位，如 `vol01/ep004/`）
+  - `lecture.md` 讲稿（图片/音频用**相对路径**引用，文件夹自包含）
+  - `map.png` 路线地图
+  - `voice.mp3` 语音
+  - `read.txt` 朗读稿
+- `book.json`：按期号排序的清单（导出脚本读它）；`index.md`：目录（期号、卷、标题、日期、相对链接）。两者都由归档脚本自动维护，**不要手改**。
+- 归档脚本：`/workspace/library/library.py`（导出：`/workspace/library/export_book.py xuanzang`）。脚本源文件在本仓库 `daily-library/`；安装时复制或软链接到 `/workspace/library/`，上面的命令默认走这个运行时路径。
+
+归档命令（文件可以先生成在任意临时位置，脚本会复制进书目录、把讲稿里的图片/音频改成相对链接、更新 `book.json` 和 `index.md`）：
+
+```bash
+python3 /workspace/library/library.py add --book xuanzang --episode <N> --chapter <卷号> --title "本期标题" \
+  --date <YYYY-MM-DD，太平洋时间当天> --range "本期涉及的古国" \
+  --lecture <讲稿.md> --image <路线地图文件> --audio <语音.mp3> --read <朗读稿.txt>
+```
+
+- **分件归档、可重复执行**：文字写好就先 `add --lecture`（保底）；路线地图、语音做好后再用**同一个 `--episode` 和 `--chapter`** 各补一次 `add --image …` / `add --audio … --read …`。重复 add 同一期只会补齐/覆盖对应文件，不会重复建期。
+- 查缺补漏：`python3 /workspace/library/library.py status --book xuanzang` 列出每期缺哪件（`missing`），以及 `next_episode`。
+- 期号 `<N>` 以本 skill 进度为准（`progress.py next` 前的已完成期数 + 1，即 `history` 条数 + 1），与讲稿标题里的"第 N 期"一致。
+- 归档失败**不阻塞**给用户的交付（吞错继续），但要尽量完成；不要把归档路径、脚本输出念给用户或写进讲稿正文。
+- 用户说"导出 西域记"时：`python3 /workspace/library/export_book.py xuanzang` → 生成 `/workspace/library/xuanzang/export/xuanzang.md` 和 `xuanzang.html`（按期序、带图和音频播放器）；加 `--embed-images` 可把图片内嵌进单个 HTML，`--from/--to` 选期号范围。
 
 ---
 
@@ -134,7 +176,7 @@ python3 SKILL_DIR/scripts/progress.py next
 ### Step 4: 生成中英文路线地图（默认执行 · 本 skill 核心）
 
 - 用图像生成工具，**优先选当前环境里渲染文字标签最清晰的模型**。经验：`google/gemini-3.1-flash-image-preview` 在标签清晰度上表现好；若 `openai/gpt-image-*` 在本环境已正确鉴权，它对密集文字标签通常更强，可优先尝试。
-- `aspectRatio 16:9`，分辨率 2K，文件名形如 `xiyuji-map-NNN.png`。
+- `aspectRatio 16:9`，分辨率 2K，文件名形如 `xuanzang-NNN-map.png`；生成后用 `library.py add --image` 归档为 `/workspace/library/xuanzang/volVV/epNNN/map.png`（见「书库归档」）。
 - **prompt 要点：**
   - 古地图 / 古籍插图风，强对比、深色线条、**标签清晰可读、填满画面**
   - 金色虚线标出玄奘西行路线，**从东往西**推进
@@ -144,16 +186,29 @@ python3 SKILL_DIR/scripts/progress.py next
   - 标签以中文为主、辅以英文
 - 若地图生成失败，仍照常交付文字讲稿，并诚实说明地图缺失，不要假装有图。
 
-### Step 5: 配图与语音（按配置可选）
+### Step 5: 语音朗读（按配置可选 · 默认带轻背景音乐）
 
-- **配图**：从本期最有画面感的圣迹/场景生成（佛塔、石窟、那烂陀讲堂、雪山垭口、商旅入城等），水墨/工笔/电影分镜感，重氛围不画证件照。
-- **语音**：中文默认生成适合朗读的稿（300–800 字），讲史/诵经般庄重；若工作区有"叙事配轻背景音乐（古琴/箫/古筝）"偏好，遵循之。
+- **语音**：中文默认生成适合朗读的稿（300–800 字），讲史/诵经般庄重；叙事类默认**配轻背景音乐（古琴/箫/古筝）**，只做氛围铺底、音量低、**不盖人声**。
+- **推荐用封装好的音频助手脚本**（已集成 edge-tts 语音 + 古琴/箫氛围 + 侧链压制，且自带容错与 NO_TTS 检查），避免每次手搓 ffmpeg：
+
+  ```bash
+  # 1) 先把朗读纯文本写到一个文件（只放可朗读正文，无 markdown / 路径 / JSON）
+  # 2) 调用助手（使用方可把脚本放在自己的 scripts/ 下；参考实现见下）
+  bash <WORKSPACE>/scripts/xuanzang-audio.sh /tmp/xz_read_NNN.txt /tmp/xuanzang-NNN-voice.mp3
+  # 脚本不可用时兜底：uvx edge-tts --voice zh-CN-XiaoxiaoNeural --rate=-10% --file <read.txt> --write-media <out.mp3>
+  # 然后归档：library.py add --book xuanzang --episode N --chapter V --audio <mp3> --read <read.txt>
+  ```
+
+  脚本 stdout：`XZAUDIO_OK` = 成功；`XZAUDIO_SKIP` = NO_TTS 跳过（正常）；`XZAUDIO_ERR/WARN` = 音频不可用（跳过，别 abort）。
+  > 参考脚本：`~/clawd/scripts/xuanzang-audio.sh`（合成五声音阶 drone 做古琴/箫氛围，sidechain 让配乐自动避让人声）。
+- 投递语音：在 Telegram 用消息工具 `asVoice=true` + `media=<本地mp3>` 发语音气泡；只对可朗读正文做 TTS，不要把执行说明/进度播报念出来。
+- **配图（可选）**：从本期最有画面感的圣迹/场景生成（佛塔、石窟、那烂陀讲堂、雪山垭口、商旅入城等），水墨/工笔/电影分镜感，重氛围不画证件照。
 
 ### Step 6: 写盘 + 推进进度
 
-**顺序：** 先文字 → 地图 →（可选图/语音）→ 最后推进进度。
+**交付顺序（弹性优先）：** 先写讲稿 → **先发文字（保底）** → 推进进度 → 地图（独立交付）→ 语音（独立交付）。
 
-讲稿建议写入使用方工作区的讲解库（如 `~/clawd/data/xiyuji/讲解/NNN-标题.md` 或使用方自定路径），并在文件内附地图路径引用。
+讲稿**必须**归档进书库：`library.py add --book xuanzang --episode N --chapter <卷号> --title … --lecture <讲稿.md>`（详见「书库归档」），落到 `/workspace/library/xuanzang/volVV/epNNN/lecture.md`。讲稿正文里不要再写绝对路径的地图引用（如“（路线地图：/workspace/...）”），图片和语音由归档脚本以相对链接插入。
 
 推进进度（`<consumed>` 用 Step 1 拿到的值）：
 
@@ -163,6 +218,18 @@ python3 SKILL_DIR/scripts/progress.py advance <consumed> --title "本期标题"
 
 - 若本期配置为 **文字 + 地图 +（图/语音）**，缺项不算完成（除非用户接受缺项版本）。
 - 不允许"先推进进度、地图/语音以后再补"的默认行为。
+
+### Step 6.5: 归档地图与语音（书库 · 重要）
+
+地图、语音各自做好后，分别用同一期号补进书库（互不阻塞，失败吞错继续）：
+
+```bash
+python3 /workspace/library/library.py add --book xuanzang --episode N --chapter V --image <地图.png>
+python3 /workspace/library/library.py add --book xuanzang --episode N --chapter V --audio <语音.mp3> --read <朗读稿.txt>
+```
+
+交付结束前跑一次 `library.py status --book xuanzang`，确认本期 `missing` 为空（或只缺确实失败的那件）。
+定时任务的「延时校验补发」也以 `status` 的 `missing` 为准：缺哪件补哪件，并补归档。
 
 ---
 
@@ -238,3 +305,4 @@ python3 SKILL_DIR/scripts/progress.py advance <consumed> --title "本期标题"
 - 地图标签必须**中英文都有**。
 - 全书约 39 万字，以每期约 900 字计，约 430+ 期可读完。
 - 不要把内部脚本细节 / 路径 / 进度 JSON 输出给用户，用户只看到讲稿 + 地图成品。
+- 每期产物以 `/workspace/library/xuanzang/` 书库为准；`/workspace/xuanzang/` 只是旧的临时目录，不再作为存档。

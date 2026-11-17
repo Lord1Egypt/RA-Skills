@@ -4,7 +4,7 @@ set -o pipefail
 
 # Zotero note update script
 # Updates existing notes with new content and/or tags
-# Version: 1.3.6
+# Version: 1.3.14
 # Safety: Only calls Zotero API. No eval, no obfuscation.
 
 # Argument handling
@@ -45,7 +45,7 @@ EOF
             exit 0
             ;;
         --version)
-            echo "zotero-enhanced update_note.sh v1.3.8"
+            echo "zotero-enhanced update_note.sh v1.3.14"
             exit 0
             ;;
         --dry-run)

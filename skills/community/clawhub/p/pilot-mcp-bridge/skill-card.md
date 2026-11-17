@@ -1,41 +1,57 @@
-## Description: <br>
-MCP server wrapping the Pilot daemon for OpenClaw/Claude Code integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server wrapping the Pilot daemon for OpenClaw/Claude Code integration.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent builders use this skill to expose Pilot Protocol daemon operations as MCP tools for Claude Code or OpenClaw workflows. It supports Pilot identity, status, peer discovery, messaging, pub/sub, and gateway workflows through a running pilotctl daemon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge can give an agent broad Pilot messaging, listening, pub/sub, and gateway authority. <br>
-Mitigation: Install only in trusted environments, restrict peers, hosts, ports, topics, and gateway mappings, and require explicit approval before sending messages, listening, subscribing, starting gateways, or mapping local IPs. <br>
-Risk: Incoming Pilot messages may contain untrusted content. <br>
-Mitigation: Treat received messages as untrusted input and review them before using them to drive agent actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose Pilot Protocol daemon operations as MCP tools for Claude Code and OpenClaw workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-mcp-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and MCP tool specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, the pilot-protocol skill, a Python MCP server framework, and an MCP-compatible client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version: 1.0) <br>
+Risk: The example daemon command uses a hard-coded external registry/beacon endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only Pilot infrastructure you trust and replace or avoid the endpoint unless its operator and purpose are known.
+
+Risk: The command templates accept target, port, topic, and message values that could be unsafe if passed through shell interpolation.
+
+Mitigation: Validate MCP inputs and invoke pilotctl through argument arrays or an equivalent non-shell execution path.
+
+Risk: Daemon, listener, gateway, and mapping operations can expose network surfaces or local routes.
+
+Mitigation: Run the daemon with least privilege and avoid exposing listeners or gateway mappings on untrusted networks.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command templates and MCP tool definitions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, an MCP server framework, and an MCP-compatible client.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

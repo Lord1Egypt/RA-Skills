@@ -1,39 +1,51 @@
-## Description: <br>
-Save Token is a documentation-only guidance skill that helps agents reduce repeated context by summarizing older conversation, referencing prior reads, deduplicating repeated blocks, and compressing long outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save Token guides agents to reduce token usage by recognizing repeated or verbose context and summarizing, referencing, deduplicating, or compressing it instead of resending it.
 
-## Publisher: <br>
-[yesilsin-netizen](https://clawhub.ai/user/yesilsin-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesilsin-netizen](https://clawhub.ai/user/yesilsin-netizen)
 
-## Use Case: <br>
-Developers, operators, and other agent users use this skill when conversation context is long or repeated content is increasing token cost. It guides the agent to summarize, reference prior material, deduplicate repeated blocks, and compress verbose outputs before continuing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarization or deduplication can omit details needed for legal, security, debugging, compliance, or other precision-sensitive work. <br>
-Mitigation: For precision-sensitive tasks, explicitly tell the agent to preserve important details or re-read source material instead of relying only on summaries. <br>
-Risk: The skill provides guidance only and does not directly modify runtime context or guarantee exact savings. <br>
-Mitigation: Treat token-saving actions as agent-applied recommendations and review the optimization summary before relying on the result. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help agents reduce avoidable token usage during long conversations, repeated file reads, repeated errors, and verbose tool outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with examples and concise optimization summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; agent applies the strategies and may report estimated token savings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Agents may summarize or omit repeated context to save tokens when precision, auditability, safety, or regulated-domain details matter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preserve full context or quote exact source material for high-precision, safety-sensitive, legal, financial, medical, or audit workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesilsin-netizen/skills/save-token)
+- [Publisher profile](https://clawhub.ai/user/yesilsin-netizen)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable code, persistence, credential access, or hidden data flow identified in the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

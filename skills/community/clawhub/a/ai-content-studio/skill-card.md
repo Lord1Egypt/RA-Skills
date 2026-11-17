@@ -1,41 +1,60 @@
-## Description: <br>
-AI全链路内容工坊 — 多平台内容一键创作与发布自动化工作流，涵盖选题研究、文章撰写、知识卡片生成、全平台发布。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI全链路内容工坊 coordinates multi-platform content creation and publishing, covering topic research, article drafting, knowledge-card generation, and public distribution.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Content creators, brand operators, personal IP builders, and enterprise marketing teams use this skill to research topics, draft long-form WeChat articles, generate knowledge-card assets, adapt Xiaohongshu copy, and coordinate multi-platform publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish to real WeChat and Xiaohongshu accounts without a clearly enforced approval step. <br>
-Mitigation: Configure draft or preview output by default, keep credentials in a secure secret store with minimal scopes, and require explicit human confirmation before each platform post. <br>
-Risk: The workflow depends on multiple content, rendering, and publishing skills, so downstream behavior can affect the safety of the overall release. <br>
-Mitigation: Install only trusted dependent skills and review generated articles, captions, images, and scheduled publishing settings before deployment. <br>
+## Use Case:
 
+Creators, brand operators, personal-brand builders, and enterprise marketing teams use this skill to turn a topic into WeChat article content, Xiaohongshu copy, knowledge cards, and publishing actions across both platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zlszhonglongshen/ai-content-studio) <br>
-- [RSSHub 36Kr feed](https://rsshub.app/36kr/posts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with workflow steps, inline shell commands, generated article text, captions, and file references for image cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce public-posting actions through dependent publishing skills when configured with platform credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The workflow can publish generated content to public WeChat and Xiaohongshu accounts without a clearly enforced final approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft or preview mode where available, require explicit approval before every live post, and verify connected accounts and credentials before publishing.
+
+Risk: Automated topic research, summarization, and writing can produce inaccurate or misleading public-facing content.
+
+Mitigation: Review claims, sources, images, captions, and hashtags before release, especially for branded or business-critical posts.
+
+Risk: Scheduled or highly automated runs can publish stale or unintended content at scale.
+
+Mitigation: Avoid scheduled runs unless review, approval, monitoring, and rollback procedures are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-content-studio)
+- [RSSHub 36Kr feed used for topic research](https://rsshub.app/36kr/posts)
+- [Skill README](artifact/README.md)
+- [Workflow definition](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Images, Links, Shell commands, Guidance]
+
+**Output Format:** [Markdown articles, short-form captions, PNG knowledge cards, platform post URLs, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured publishing credentials and human review before live WeChat or Xiaohongshu posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, workflow.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

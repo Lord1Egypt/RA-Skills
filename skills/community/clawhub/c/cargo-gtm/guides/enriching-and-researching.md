@@ -8,17 +8,20 @@ How to enrich companies and contacts on Cargo. Covers waterfall enrichment, fall
 Goal → which provider chain?
 
 Firmographics on a known company (industry, size, geo, revenue, …)?
-  ├─ cargo.matchBusiness (0.5) → cargo.enrichBusinessFirmographics (0.5)
-  ├─ Fallback for unmatched: waterfall.enrichCompany (1)
+  ├─ aiArk.enrichCompany (0.01) — domain or LinkedIn URL, cheapest in catalog
+  ├─ Thin result: companyEnrich.enrichByDomain (0.25) — fuller field set
+  ├─ Fallback: waterfall.enrichCompany (1) / apolloio.enrichOrganization (1)
   └─ Heavy backfill: peopleDataLabs.enrichCompany (3)
 
 Contact details on a known person (title, location, social, …)?
-  ├─ cargo.matchProspect (0.5) → cargo.enrichProspectDetails (2)
-  ├─ Fallback: waterfall.enrichContact (2)
+  ├─ LinkedIn URL in hand: aiArk.enrichPerson (0.1) — profile + verified email, bills 0 on no-email
+  ├─ No URL: waterfall.enrichContact (2) — keys on email or name + domain
+  ├─ Niche coverage (investor-backed, portfolio): apolloio.enrichPerson (1)
   └─ Heavy backfill: peopleDataLabs.enrichPerson (3)
 
-Find an email from name + company?
-  ├─ FullEnrich.findEmail (1)               ← default
+Find an email?
+  ├─ LinkedIn URL in hand: aiArk.enrichPerson (0.1) — email comes with the profile
+  ├─ From name + company: FullEnrich.findEmail (1)   ← default
   ├─ Cheap fallback: hunter.findEmail (0.5) / icypeas.findEmail (0.1)
   └─ Last resort: peopleDataLabs.enrichPerson (3, includes email)
 
@@ -27,8 +30,9 @@ Verify an email?
   └─ Alt: zeroBounce.verifyEmail (0.1) / icypeas.verifyEmail (0.01)
 
 Find a phone number?
+  ├─ aiArk.findMobilePhone (0.5)            ← first rung; mobile-only, bills 0 on a miss
+  ├─ Landline/DID fallback: prospeo.findPhone (3)
   ├─ FullEnrich.findPhone (6)               ← higher quality
-  ├─ Cheap fallback: prospeo.findPhone (3)
   └─ Combined: FullEnrich.findPhoneAndEmail (7) when both are needed
 
 Resolve a LinkedIn URL from name + company?
@@ -36,19 +40,20 @@ Resolve a LinkedIn URL from name + company?
      See `../recipes/linkedin-url-lookup.md` for the strict-validation pattern.
 
 Funding / acquisition signals?
-  ├─ cargo.enrichBusinessFundingAndAcquisitions (0.5)
-  └─ Alt: enrichCrm.getFunding (1)
+  └─ enrichCrm.getFunding (1) — only credits-based funding action in the catalog
 
 Tech stack / hiring intent?
-  ├─ cargo.enrichBusinessTechnographics (1)
+  ├─ builtwith.getDomainSummary (0) — free, always run first on a known domain
   ├─ theirStack.searchTechnologies (0.5) for catalog-style lookup
+  ├─ builtwith.enrichDomain (1) on the rows the free summary didn't settle
   └─ theirStack.searchJobs (0.5) for hiring-intent
 
 Job change detection?
   └─ waterfall.detectJobChange (3) — only credits-based action of this kind in catalog
 
 Reverse-email lookup (email → person + company)?
-  └─ FullEnrich.reverseEmailLookup (2)
+  ├─ aiArk.reverseLookup (0.05) — email *or* phone → full profile
+  └─ FullEnrich.reverseEmailLookup (1) — email → LinkedIn URL
 ```
 
 ## Waterfall enrichment pattern
@@ -56,28 +61,28 @@ Reverse-email lookup (email → person + company)?
 When one provider misses, escalate to the next. Run each step only on the rows where the prior step came up empty.
 
 ```bash
-# Step 1 — try cargo first (cheapest + best for known companies)
+# Step 1 — try aiArk first (0.01, cheapest company enrich in the catalog)
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"cargo","actionSlug":"enrichBusinessFirmographics","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"aiArk","actionSlug":"enrichCompany"}' \
   --records '[{"domain":"acme.com"}, ... ]' \
   --wait-until-finished > /tmp/step1.json
 
 # Step 2 — extract rows where step 1 returned no firmographics, retry with waterfall
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"enrichCompany","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"waterfall","actionSlug":"enrichCompany"}' \
   --records '<rows from step 1 where firmographics empty>' \
   --wait-until-finished > /tmp/step2.json
 
 # Step 3 — last-resort backfill with peopleDataLabs (3 credits flat)
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"peopleDataLabs","actionSlug":"enrichCompany","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"peopleDataLabs","actionSlug":"enrichCompany"}' \
   --records '<rows still empty after step 2>' \
   --wait-until-finished > /tmp/step3.json
 
 # Step 4 — coalesce all three into a single enriched dataset
 ```
 
-Same shape applies for person enrichment (`cargo.enrichProspectDetails` → `waterfall.enrichContact` → `peopleDataLabs.enrichPerson`) and for email lookup (`FullEnrich.findEmail` → `hunter.findEmail` → `peopleDataLabs.enrichPerson`).
+Same shape applies for person enrichment (`aiArk.enrichPerson` where a LinkedIn URL exists → `waterfall.enrichContact` → `apolloio.enrichPerson` → `peopleDataLabs.enrichPerson`) and for email lookup (`FullEnrich.findEmail` → `hunter.findEmail` → `peopleDataLabs.enrichPerson`).
 
 ## Coalesce pattern (multi-pass enrichment)
 
@@ -85,11 +90,11 @@ When enriching the same record across multiple providers, merge results column-b
 
 | Column | Prefer |
 |---|---|
-| Firmographics (industry, size, hq) | cargo > peopleDataLabs > waterfall |
-| Funding / financials | cargo.enrichBusinessFundingAndAcquisitions > enrichCrm.getFunding |
-| Technographics | cargo.enrichBusinessTechnographics > theirStack > peopleDataLabs |
-| Email | FullEnrich > hunter > peopleDataLabs |
-| Phone | FullEnrich > prospeo > waterfall |
+| Firmographics (industry, size, hq) | aiArk > companyEnrich > peopleDataLabs > waterfall > apolloio |
+| Funding / financials | enrichCrm.getFunding (only source) |
+| Technographics | builtwith.getDomainSummary (free) > theirStack > builtwith.enrichDomain > peopleDataLabs |
+| Email | aiArk.enrichPerson > FullEnrich > hunter > peopleDataLabs |
+| Phone | aiArk.findMobilePhone (mobile) > FullEnrich > prospeo > waterfall |
 | LinkedIn URL | linkedin.findProfileUrl > FullEnrich.reverseEmailLookup |
 | Job change signal | waterfall.detectJobChange (only source) |
 
@@ -102,17 +107,16 @@ cargo-ai orchestration run download-outputs \
   --workflow-uuid <uuid> \
   --output-node-slug <slug> \
   --batch-uuid <uuid> \
-  --format json \
-  --is-finished
+  --format json
 ```
 
 Returns `{"url": "..."}` — a signed URL to a CSV/JSON containing only the output node's data with input/output context per record. See [`../../cargo-analytics/SKILL.md`](../../cargo-analytics/SKILL.md#downloading-run-results) for the full reference.
 
-For ad-hoc `action execute` / `action execute-batch` runs (no saved tool), use `--wait-until-finished` and read the response directly. The response shape is documented in [`../../cargo-orchestration/references/response-shapes.md`](../../cargo-orchestration/references/response-shapes.md). Per-node output lives at `runContext.<nodeSlug>` for runs and per-record `output` fields for batches.
+For ad-hoc `action execute` runs (no saved tool), use `--wait-until-finished` and read the run in the response; the shape is documented in [`../../cargo-orchestration/references/response-shapes.md`](../../cargo-orchestration/references/response-shapes.md). `action execute-batch --wait-until-finished` prints the batch object only, not rows: fetch them with `cargo-ai orchestration batch download --uuid <batch-uuid>`, which returns `{"url": "<signed CSV URL>"}`. The CSV keeps each input record's columns and adds every top-level output key as `cargo_<key>` (nested objects become dotted columns such as `cargo_person.company_name`; a search's result array lands in one `cargo` column); failed rows keep only the input columns.
 
 ## Action shape rules
 
-`kind: "connector"` action: `{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>","config":{}}`. **`connectorUuid` is NOT in `config`.** The platform resolves the workspace's authenticated connector from `integrationSlug`. See [`../../cargo-orchestration/references/actions.md`](../../cargo-orchestration/references/actions.md).
+`kind: "connector"` action: `{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>"}`. **`connectorUuid` is NOT in `config`.** The platform resolves the workspace's authenticated connector from `integrationSlug`. See [`../../cargo-orchestration/references/examples/actions.md`](../../cargo-orchestration/references/examples/actions.md).
 
 ## Polling guidance
 

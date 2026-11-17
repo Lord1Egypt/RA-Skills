@@ -1,49 +1,65 @@
-## Description: <br>
-Decentralized Monad token launchpad guidance for bonding curve trading, token creation, event streaming, and historical data querying with viem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NadFun helps agents work with the nad.fun Monad token launchpad for bonding-curve trading, token creation, quotes, token data, event indexing, and REST API access using viem.
 
-## Publisher: <br>
-[portdeveloper](https://clawhub.ai/user/portdeveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[portdeveloper](https://clawhub.ai/user/portdeveloper)
 
-## Use Case: <br>
-Developers, traders, bot builders, and analytics teams use this skill to integrate with NadFun on Monad for quotes, trades, token creation, token operations, event indexing, and agent-facing REST API access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents through real crypto wallet and NadFun account operations. <br>
-Mitigation: Use a dedicated low-balance wallet and require human review before signing or sending transactions. <br>
-Risk: Examples involve private keys, session cookies, and API keys. <br>
-Mitigation: Never paste, hardcode, print, or log production secrets; store credentials outside prompts and code snippets. <br>
-Risk: Token approvals and spender addresses can authorize asset movement. <br>
-Mitigation: Verify contract, spender, network, and approval amount before signing; avoid unlimited approvals unless intentionally accepted. <br>
-Risk: The skill includes remote download instructions from nad.fun. <br>
-Mitigation: Review downloaded files before execution or reliance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/portdeveloper/nadfun) <br>
-- [Publisher profile](https://clawhub.ai/user/portdeveloper) <br>
-- [NadFun integration guide](https://nad.fun/skill.md) <br>
-- [NadFun agent API guide](https://nad.fun/agent-api.md) <br>
-- [NadFun trading guide](https://nad.fun/trading.md) <br>
-- [NadFun token creation guide](https://nad.fun/create.md) <br>
-- [NadFun wallet guide](https://nad.fun/wallet.md) <br>
+## Use Case:
 
+Developers, trading bot builders, token creators, and analytics teams use this skill to integrate NadFun trading, token creation, quoting, wallet, and event-query workflows on Monad testnet or mainnet.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes viem examples, API request patterns, contract addresses, and network configuration for Monad testnet and mainnet.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet private keys, wallet signatures, session cookies, and API keys may be exposed if examples are copied directly into source code or logs.
+
+Mitigation: Use testnet first, keep secrets in environment variables or a secret manager, never paste real private keys into examples, and never print private keys or API keys.
+
+Risk: Trading and token examples can create token approvals, including unlimited approvals, or sign transactions on the wrong network or contract.
+
+Mitigation: Prefer exact approvals, verify spender addresses, contract addresses, chain IDs, amounts, and slippage before signing, and reset or revoke allowances when no longer needed.
+
+Risk: The artifact includes curl-based skill file downloads from mutable remote URLs.
+
+Mitigation: Avoid remote update flows unless downloaded files and hashes can be verified against trusted release evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/portdeveloper/skills/nadfun)
+- [NadFun](https://nad.fun)
+- [ABI Reference](https://nad.fun/abi.md)
+- [Agent API Reference](https://nad.fun/agent-api.md)
+- [Token Creation Guide](https://nad.fun/create.md)
+- [Historical Event Querying Guide](https://nad.fun/indexer.md)
+- [Quote Guide](https://nad.fun/quote.md)
+- [Token Operations Guide](https://nad.fun/token.md)
+- [Trading Guide](https://nad.fun/trading.md)
+- [Wallet Guide](https://nad.fun/wallet.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for Monad testnet and mainnet; users should verify network, contract addresses, secrets, and transaction details before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

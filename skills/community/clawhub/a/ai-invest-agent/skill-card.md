@@ -1,43 +1,53 @@
-## Description: <br>
-Provides cross-market investment review, index valuation-temperature checks, holdings analysis, and multi-format reports for A-share, Hong Kong, and U.S. markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Invest Agent supports cross-market investment reviews, index temperature checks, holdings analysis, and multi-format investment reports.
 
-## Publisher: <br>
-[vivifishtl](https://clawhub.ai/user/vivifishtl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivifishtl](https://clawhub.ai/user/vivifishtl)
 
-## Use Case: <br>
-Individual investors, investment advisors, fund managers, and portfolio analysts use this skill to run weekly market reviews, daily checks, single-instrument analysis, and index-temperature updates. Outputs should be treated as investment research support rather than personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market analysis or buy/sell ranges may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as research support only and require human review before making investment decisions. <br>
-Risk: Feishu integrations may expose more documents or portfolio data than necessary. <br>
-Mitigation: Scope Feishu permissions to specific documents or folders and avoid providing account numbers or unnecessary portfolio identifiers. <br>
-Risk: The configured deep-research-pro dependency may process sensitive investment data. <br>
-Mitigation: Verify the separate deep-research-pro tool before using this skill with sensitive data. <br>
+## Use Case:
 
+External users such as individual investors, advisors, fund managers, and analysts use the skill to run weekly reviews, daily market checks, single-security analysis, and portfolio assessment across A-share, Hong Kong, and U.S. markets. Outputs should be treated as investment research support, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vivifishtl/ai-invest-agent) <br>
-- [deep-research-pro](https://github.com/paragshah/deep-research-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, summaries, structured tables, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate Word and Excel report artifacts when the host agent supports those formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Investment analysis outputs may be mistaken for financial advice or may rely on market data that changes quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research support, verify market data independently, and make investment decisions through an appropriate review process.
+
+Risk: Feishu and file integrations can expose or modify documents beyond the user's intended scope if permissions are too broad.
+
+Mitigation: Limit Feishu and file permissions to the specific documents or folders the skill needs to read or write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivifishtl/skills/ai-invest-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, concise summaries, structured tables, and optional DOCX/XLSX report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web research and Feishu document or table access when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

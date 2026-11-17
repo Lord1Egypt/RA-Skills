@@ -1,47 +1,58 @@
-## Description: <br>
-HumanCanHelp starts a local human-in-the-loop help session so a trusted helper can view and interact with a shared browser tab or desktop when an AI workflow is blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for a short local human handoff when an AI workflow is blocked on a visual or interactive step.
 
-## Publisher: <br>
-[metalony](https://clawhub.ai/user/metalony) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metalony](https://clawhub.ai/user/metalony)
 
-## Use Case: <br>
-Developers and agent operators use HumanCanHelp to hand off short blocked visual or interactive browser or desktop steps to a trusted person, then resume the automated workflow based on the helper's outcome. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A live browser tab or desktop can be exposed over a LAN or public URL, and authentication is optional. <br>
-Mitigation: Use the skill only for intentional trusted handoffs, set a strong unique password for LAN or public sharing, share access through a trusted channel, and stop the server immediately after the handoff. <br>
-Risk: Full-desktop VNC mode can expose more local context than a single browser tab. <br>
-Mitigation: Prefer CDP browser-tab sharing when it is sufficient, and use an isolated browser profile, VM, or clean desktop session for sensitive workflows. <br>
-Risk: Helpers may see or control sensitive flows such as secrets, MFA, payments, account changes, or owner-bound identity steps. <br>
-Mitigation: Avoid those steps unless the real account owner is present; use the owner-action-required outcome when only the account owner can continue. <br>
-Risk: Helper-side masking can hide regions and block pointer input in the helper UI, but it does not sanitize the underlying CDP or VNC transport stream. <br>
-Mitigation: Do not rely on masking as a complete privacy boundary; remove or isolate sensitive content before starting the session. <br>
+## Use Case:
 
+Developers and agent operators use HumanCanHelp to hand a blocked visual or interactive browser or desktop step to a human helper for short-lived completion. It is suited to CDP browser-tab sharing, VNC desktop sharing, and workflows where the agent needs human observation or input before continuing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metalony/hcl) <br>
-- [ClawHub publisher profile: metalony](https://clawhub.ai/user/metalony) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI outcome semantics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [At runtime, the CLI prints local or public helper URLs and exits with success, failure, timeout, or owner-action-required outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: A helper session can expose live browser or desktop control over a network or the public internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted helpers, prefer CDP browser-tab sharing over VNC desktop sharing, keep access local or firewalled, and avoid --public unless it is necessary.
+
+Risk: Sessions do not require authentication unless the operator configures a password.
+
+Mitigation: Set a strong, unique password for each session, especially when exposing a public tunnel or working outside a trusted local network.
+
+Risk: Mask regions are helper-side controls and should not be treated as full redaction of the underlying CDP or VNC stream.
+
+Mitigation: Do not use masking as the only protection for secrets, payments, privileged administration, sensitive recovery flows, or other information that must not be visible or controllable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metalony/skills/hcl)
+- [Publisher profile](https://clawhub.ai/user/metalony)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and CLI options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent to run a local helper session and interpret completion, owner-action-required, cannot-solve, and timeout outcomes.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

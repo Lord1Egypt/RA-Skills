@@ -1,6 +1,6 @@
 ---
 name: mdac-filler
-description: "Auto-fill and submit Malaysia Digital Arrival Card (MDAC) for travelers entering Malaysia. Use when a user wants to fill or submit MDAC (马来西亚数字入境卡) for Malaysia entry. Handles form filling, slider CAPTCHA solving, and submission automatically. Requires traveler info: name, passport number, DOB, passport expiry, email, phone, arrival/departure dates, transport, accommodation address."
+description: "Auto-fill and submit Malaysia Digital Arrival Card (MDAC) for travelers entering Malaysia. Use when a user wants to fill or submit MDAC (马来西亚数字入境卡) for Malaysia entry. Handles form filling, slider CAPTCHA bypass, and submission automatically. Requires traveler info: name, passport number, DOB, passport expiry, email, phone, arrival/departure dates, transport, accommodation address."
 ---
 
 # MDAC Auto-Filler
@@ -47,7 +47,7 @@ python3 skills/mdac-filler/scripts/fill_and_submit.py --file traveler.json
 ## CAPTCHA Bypass Strategy
 
 The MDAC uses `longbow.slidercaptcha.js`. Bypass approach:
-1. **Patch `$.ajax`** to handle the `/captcha` verification response
+1. **Hook `$.ajax`** to intercept `/captcha` POST and return `{result: true}`
 2. **Read `instance.x`** (real gap coordinate) via `$('.slidercaptcha').data('plugin_sliderCaptcha').x`
 3. **Calculate moveX**: `instance.x * (width-40) / (width-40-20)` where width=271
 4. **Drag slider** with ease-in-out-cubic + slight y-jitter to avoid bot detection

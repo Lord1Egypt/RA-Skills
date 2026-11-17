@@ -1,42 +1,55 @@
-## Description: <br>
-MiVisionForgeSVOR helps agents run a CLI workflow for stable video object removal using SVOR-backed segmentation and erasure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes selected objects from short videos using SVOR-based segmentation and video object removal.
 
-## Publisher: <br>
-[wangfei1204](https://clawhub.ai/user/wangfei1204) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfei1204](https://clawhub.ai/user/wangfei1204)
 
-## Use Case: <br>
-Developers and video workflow operators use this skill to segment objects in short videos, review target object IDs, and run object removal through the disclosed Xiaomi Tools SVOR service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos and derived masks are sent to the disclosed Xiaomi Tools SVOR endpoint for processing. <br>
-Mitigation: Use non-sensitive test videos first and avoid private, identifiable, regulated, or confidential content unless the service's data-handling terms are acceptable. <br>
-Risk: SVOR_API_KEY authenticates requests to the remote service. <br>
-Mitigation: Protect SVOR_API_KEY like a password and avoid exposing it in shared environments, logs, or version control. <br>
+## Use Case:
 
+External users and developers use this skill to segment target objects in short videos, inspect suggested object IDs, and remove selected objects through the XiaomiTools SVOR service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangfei1204/mi-visionforge-svor) <br>
-- [Xiaomi SVOR reference repository](https://github.com/xiaomi-research/svor) <br>
-- [Xiaomi Tools SVOR endpoint](https://mipixgen-pre.ai.mioffice.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline CLI commands and generated video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, ffmpeg, and SVOR_API_KEY; uploads selected videos and derived masks to the disclosed remote SVOR service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: Video inputs, prompts, masks, and API-key authenticated requests are sent to the XiaomiTools service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive test videos first, avoid media with personal or confidential content, and keep SVOR_API_KEY out of shared machines, logs, and version control.
+
+Risk: The remote service controls returned result-download URLs, and the evidence notes no local URL validation or size/time limits.
+
+Mitigation: Run the skill in an isolated environment, review returned URLs before relying on outputs, and avoid networks with sensitive internal services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangfei1204/skills/mi-visionforge-svor)
+- [Publisher Profile](https://clawhub.ai/user/wangfei1204)
+- [SVOR Project Reference](https://github.com/xiaomi-research/svor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated video or mask files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, ffmpeg, and SVOR_API_KEY; uploads video inputs to a remote service and downloads returned results.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

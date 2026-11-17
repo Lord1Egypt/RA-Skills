@@ -1,42 +1,52 @@
-## Description: <br>
-Uses Bing CN search to retrieve current web information and summarize results with cited source sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Bing CN search to retrieve current internet information for Chinese-language news, events, and explicit web-search requests.
 
-## Publisher: <br>
-[EvenSix66](https://clawhub.ai/user/EvenSix66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[evensix66](https://clawhub.ai/user/evensix66)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill when an agent needs current Chinese-language web search results from Bing CN, especially for news, recent events, and user requests to search online.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The setup installs unpinned npm packages and registers a persistent MCP server.
+
+Mitigation: Pin and review package versions before installation, avoid elevated privileges, and keep the MCP server registered only where it is needed.
+
+Risk: Searches may be triggered on broad Chinese terms and the results come from third-party sites with possible Bing indexing delays.
+
+Mitigation: Use the skill for explicit current-information searches, cite the listed sources, and verify time-sensitive or sensitive claims against authoritative sources.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill when a user asks for Chinese-language web search, recent news, current events, or online information that requires Bing CN results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and result retrieval are routed through Bing CN and may expose sensitive topics to an external search provider. <br>
-Mitigation: Avoid using the skill for secrets, credentials, private personal information, or confidential work topics. <br>
-Risk: Search results come from third-party websites and may be stale, incomplete, or inaccurate. <br>
-Mitigation: Review the listed sources and verify important claims before relying on the summarized answer. <br>
-Risk: The setup requires adding npm tools and an MCP server before use. <br>
-Mitigation: Install only in environments where the listed tools are acceptable and confirm the configured MCP server before running searches. <br>
+**Output Format:** [Markdown summary with source list and inline shell commands for setup or MCP calls]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EvenSix66/bing-cn-search) <br>
+**Other Properties Related to Output:** [Search calls request up to 10 Bing CN results; source websites should be listed after the summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with source list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are summarized in prose and followed by source website names and domains.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

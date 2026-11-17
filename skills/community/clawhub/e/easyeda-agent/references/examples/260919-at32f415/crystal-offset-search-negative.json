@@ -1,0 +1,3813 @@
+{
+  "status": "offline-verified",
+  "designStatus": "candidate-rejected",
+  "source": "2026-09-22 fresh measured AT32F415 snapshot; repository crystal-guard offset search",
+  "boardSemanticSha256": "65caea63a4c28da3262fcd30b9b17d72d3745f3b9807ea90d71cf07b846c24ec",
+  "layoutSha256": "78e42cab513195b6efa1cd2c7daa7c031860baa2121b4ab9a2a6e60db8da45c2",
+  "parameters": {
+    "maxXMil": 180,
+    "maxAwayMil": 160,
+    "stepMil": 20,
+    "gapsMil": [
+      40,
+      50,
+      60
+    ],
+    "rotationDeltasDeg": [
+      0
+    ]
+  },
+  "command": "easyeda pcb layout-plan --from layout-plan-crystal-guard.json --board before.json --module crystal-guard --candidates 3 --out candidates/",
+  "candidateCount": 0,
+  "rejectedCount": 2842,
+  "firstReasonCounts": {
+    "X1 is closer than 6.00mil to obstacle C10": 39,
+    "crystal-guard via fence conflicts": 16,
+    "C21 is closer than 6.00mil to obstacle R4": 1,
+    "C21 is closer than 6.00mil to obstacle C10": 806,
+    "C21 is closer than 6.00mil to obstacle U4": 526,
+    "C21 is closer than 6.00mil to obstacle C9": 223,
+    "C20 is closer than 6.00mil to obstacle C5": 551,
+    "C20 is closer than 6.00mil to obstacle C10": 262,
+    "C20 is closer than 6.00mil to obstacle C6": 418
+  },
+  "passedComponentGeometryButRejectedCopper": [
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(89.5840,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1561.412,650.345) conflicts with pad U4.5; (1636.790,650.345) conflicts with pad C10.1; (1712.167,650.345) conflicts with pad C10.2; (2013.678,650.345) conflicts with pad C5.2; (2089.056,650.345) conflicts with pad C5.2; (1862.923,957.510) conflicts with pad U6.10; (1787.545,957.510) conflicts with pad U6.33; (1561.412,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 1987.321,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1927.6,
+            "minY": 770.9845,
+            "maxX": 2047.046,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2014.919,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1959.719,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1663.147,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1603.422,
+            "minY": 703.9785,
+            "maxX": 1722.868,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1635.549,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1690.749,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1829.734,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1737.868,
+            "minY": 692.355,
+            "maxX": 1912.6,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1786.434,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1873.034,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1873.034,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1786.434,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1603.422,
+          "minY": 692.355,
+          "maxX": 2047.046,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 7.101,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C10",
+          "distanceMil": 7.101
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(96.4640,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1568.292,650.345) conflicts with pad U4.5; (1643.670,650.345) conflicts with pad C10.1; (1719.047,650.345) conflicts with pad C10.2; (1869.803,650.345) conflicts with pad C6.2; (2020.558,650.345) conflicts with pad C5.2; (1869.803,957.510) conflicts with pad U6.10; (1794.425,957.510) conflicts with pad U6.33; (1568.292,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 1994.201,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1934.48,
+            "minY": 770.9845,
+            "maxX": 2053.926,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2021.799,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1966.599,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1670.027,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1610.302,
+            "minY": 703.9785,
+            "maxX": 1729.748,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1642.429,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1697.629,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1836.614,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1744.748,
+            "minY": 692.355,
+            "maxX": 1919.48,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1793.314,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1879.914,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1879.914,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1793.314,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1610.302,
+          "minY": 692.355,
+          "maxX": 2053.926,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 13.0551,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "U4",
+          "distanceMil": 13.0551
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(96.5840,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1568.412,650.345) conflicts with pad U4.5; (1643.790,650.345) conflicts with pad C10.1; (1719.167,650.345) conflicts with pad C10.2; (1869.923,650.345) conflicts with pad C6.2; (2020.678,650.345) conflicts with pad C5.2; (1869.923,957.510) conflicts with pad U6.10; (1794.545,957.510) conflicts with pad U6.33; (1568.412,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 1994.321,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1934.6,
+            "minY": 770.9845,
+            "maxX": 2054.046,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2021.919,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1966.719,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1670.147,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1610.422,
+            "minY": 703.9785,
+            "maxX": 1729.868,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1642.549,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1697.749,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1836.734,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1744.868,
+            "minY": 692.355,
+            "maxX": 1919.6,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1793.434,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1880.034,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1880.034,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1793.434,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1610.422,
+          "minY": 692.355,
+          "maxX": 2054.046,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 13.1096,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "U4",
+          "distanceMil": 13.1096
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(100.0000,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1571.828,650.345) conflicts with pad U4.5; (1647.206,650.345) conflicts with pad C10.1; (1722.583,650.345) conflicts with pad C10.2; (1873.339,650.345) conflicts with pad C6.2; (2024.094,650.345) conflicts with pad C5.2; (1873.339,957.510) conflicts with pad U6.10; (1797.961,957.510) conflicts with pad U6.33; (1571.828,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 1997.737,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1938.016,
+            "minY": 770.9845,
+            "maxX": 2057.462,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2025.335,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1970.135,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1673.563,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1613.838,
+            "minY": 703.9785,
+            "maxX": 1733.284,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1645.965,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1701.165,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1840.15,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1748.284,
+            "minY": 692.355,
+            "maxX": 1923.016,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1796.85,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1883.45,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1883.45,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1796.85,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1613.838,
+          "minY": 692.355,
+          "maxX": 2057.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 14.9841,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "U4",
+          "distanceMil": 14.9841
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(100.9395,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1572.767,650.345) conflicts with pad U4.5; (1648.145,650.345) conflicts with pad C10.1; (1723.523,650.345) conflicts with pad C10.2; (1874.278,650.345) conflicts with pad C6.2; (2025.034,650.345) conflicts with pad C5.2; (1874.278,957.510) conflicts with pad U6.10; (1798.901,957.510) conflicts with pad U6.33; (1572.767,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 1998.6765,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1938.9555,
+            "minY": 770.9845,
+            "maxX": 2058.4015,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2026.2745,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1971.0745,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1674.5025,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1614.7775,
+            "minY": 703.9785,
+            "maxX": 1734.2235,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1646.9045,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1702.1045,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1841.0895,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1749.2235,
+            "minY": 692.355,
+            "maxX": 1923.9555,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1797.7895,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1884.3895,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1884.3895,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1797.7895,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1614.7775,
+          "minY": 692.355,
+          "maxX": 2058.4015,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(120.0000,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1591.828,650.345) conflicts with pad U4.5; (1667.206,650.345) conflicts with pad C10.2; (1893.339,650.345) conflicts with pad C6.2; (2044.094,650.345) conflicts with pad C5.2; (1817.961,957.510) conflicts with pad U6.33; (1667.206,957.510) conflicts with pad U6.30; (1591.828,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2017.737,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1958.016,
+            "minY": 770.9845,
+            "maxX": 2077.462,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2045.335,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1990.135,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1693.563,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1633.838,
+            "minY": 703.9785,
+            "maxX": 1753.284,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1665.965,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1721.165,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1860.15,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1768.284,
+            "minY": 692.355,
+            "maxX": 1943.016,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1816.85,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1903.45,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1903.45,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1816.85,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1633.838,
+          "minY": 692.355,
+          "maxX": 2077.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(124.9870,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1596.815,650.345) conflicts with pad U4.5; (1672.193,650.345) conflicts with pad C10.2; (1898.326,650.345) conflicts with pad C6.2; (2049.081,650.345) conflicts with pad C5.2; (1822.948,957.510) conflicts with pad U6.10; (1672.193,957.510) conflicts with pad U6.29; (1596.815,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2022.724,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1963.003,
+            "minY": 770.9845,
+            "maxX": 2082.449,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2050.322,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1995.122,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1698.55,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1638.825,
+            "minY": 703.9785,
+            "maxX": 1758.271,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1670.952,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1726.152,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1865.137,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1773.271,
+            "minY": 692.355,
+            "maxX": 1948.003,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1821.837,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1908.437,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1908.437,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1821.837,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1638.825,
+          "minY": 692.355,
+          "maxX": 2082.449,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(128.3890,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1600.217,650.345) conflicts with pad U4.5; (1675.595,650.345) conflicts with pad C10.2; (1901.728,650.345) conflicts with pad C6.2; (2052.483,650.345) conflicts with pad C5.2; (1826.350,957.510) conflicts with pad U6.10; (1675.595,957.510) conflicts with pad U6.29; (1600.217,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2026.126,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1966.405,
+            "minY": 770.9845,
+            "maxX": 2085.851,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2053.724,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1998.524,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1701.952,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1642.227,
+            "minY": 703.9785,
+            "maxX": 1761.673,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1674.354,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1729.554,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1868.539,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1776.673,
+            "minY": 692.355,
+            "maxX": 1951.405,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1825.239,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1911.839,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1911.839,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1825.239,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1642.227,
+          "minY": 692.355,
+          "maxX": 2085.851,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(140.0000,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1611.828,650.345) conflicts with pad C10.1; (1687.206,650.345) conflicts with pad C10.2; (1913.339,650.345) conflicts with pad C6.2; (2064.094,650.345) conflicts with pad C5.2; (1837.961,957.510) conflicts with pad U6.10; (1687.206,957.510) conflicts with pad U6.29; (1611.828,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2037.737,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1978.016,
+            "minY": 770.9845,
+            "maxX": 2097.462,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2065.335,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2010.135,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1713.563,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1653.838,
+            "minY": 703.9785,
+            "maxX": 1773.284,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1685.965,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1741.165,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1880.15,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1788.284,
+            "minY": 692.355,
+            "maxX": 1963.016,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1836.85,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1923.45,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1923.45,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1836.85,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1653.838,
+          "minY": 692.355,
+          "maxX": 2097.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(143.6040,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1615.432,650.345) conflicts with pad C10.1; (1690.810,650.345) conflicts with pad C10.2; (1916.943,650.345) conflicts with pad C6.2; (2067.698,650.345) conflicts with pad C5.2; (1841.565,957.510) conflicts with pad U6.10; (1690.810,957.510) conflicts with pad U6.29; (1615.432,880.719) conflicts with pad C14.2"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2041.341,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1981.62,
+            "minY": 770.9845,
+            "maxX": 2101.066,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2068.939,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2013.739,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1717.167,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1657.442,
+            "minY": 703.9785,
+            "maxX": 1776.888,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1689.569,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1744.769,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1883.754,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1791.888,
+            "minY": 692.355,
+            "maxX": 1966.62,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1840.454,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1927.054,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1927.054,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1840.454,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1657.442,
+          "minY": 692.355,
+          "maxX": 2101.066,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(150.6040,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1622.432,650.345) conflicts with pad C10.1; (1697.810,650.345) conflicts with pad C10.2; (1923.943,650.345) conflicts with pad C6.2; (2074.698,650.345) conflicts with pad C5.2; (1848.565,957.510) conflicts with pad U6.10; (1773.187,957.510) conflicts with pad U6.33; (1697.810,957.510) conflicts with pad U6.29; (1622.432,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2048.341,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1988.62,
+            "minY": 770.9845,
+            "maxX": 2108.066,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2075.939,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2020.739,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1724.167,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1664.442,
+            "minY": 703.9785,
+            "maxX": 1783.888,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1696.569,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1751.769,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1890.754,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1798.888,
+            "minY": 692.355,
+            "maxX": 1973.62,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1847.454,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1934.054,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1934.054,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1847.454,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1664.442,
+          "minY": 692.355,
+          "maxX": 2108.066,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(154.9595,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1626.787,650.345) conflicts with pad C10.1; (1702.165,650.345) conflicts with pad C10.2; (1928.298,650.345) conflicts with pad C6.2; (2079.054,650.345) conflicts with pad C5.2; (1852.921,957.510) conflicts with pad U6.10; (1777.543,957.510) conflicts with pad U6.33; (1702.165,957.510) conflicts with pad U6.29; (1626.787,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2052.6965,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1992.9755,
+            "minY": 770.9845,
+            "maxX": 2112.4215,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2080.2945,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2025.0945,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1728.5225,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1668.7975,
+            "minY": 703.9785,
+            "maxX": 1788.2435,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1700.9245,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1756.1245,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1895.1095,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1803.2435,
+            "minY": 692.355,
+            "maxX": 1977.9755,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1851.8095,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1938.4095,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1938.4095,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1851.8095,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1668.7975,
+          "minY": 692.355,
+          "maxX": 2112.4215,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(160.0000,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1631.828,650.345) conflicts with pad C10.1; (1707.206,650.345) conflicts with pad C10.2; (1933.339,650.345) conflicts with pad C6.2; (2008.717,650.345) conflicts with pad C5.2; (2084.094,650.345) conflicts with pad C5.2; (1857.961,957.510) conflicts with pad U6.10; (1782.583,957.510) conflicts with pad U6.33; (1707.206,957.510) conflicts with pad U6.29; (1631.828,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2057.737,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1998.016,
+            "minY": 770.9845,
+            "maxX": 2117.462,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2085.335,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2030.135,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1733.563,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1673.838,
+            "minY": 703.9785,
+            "maxX": 1793.284,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1705.965,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1761.165,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1900.15,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1808.284,
+            "minY": 692.355,
+            "maxX": 1983.016,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1856.85,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1943.45,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1943.45,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1856.85,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1673.838,
+          "minY": 692.355,
+          "maxX": 2117.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 15.4215,
+        "closestExternalComponentGap": {
+          "from": "C21",
+          "to": "C10",
+          "distanceMil": 15.4215
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(173.7405,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1645.569,650.345) conflicts with pad C10.1; (1720.946,650.345) conflicts with pad C10.2; (1871.702,650.345) conflicts with pad C6.2; (2022.457,650.345) conflicts with pad C5.2; (1871.702,957.510) conflicts with pad U6.10; (1796.324,957.510) conflicts with pad U6.33; (1645.569,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2071.4775,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2011.7565,
+            "minY": 770.9845,
+            "maxX": 2131.2025,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2099.0755,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2043.8755,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1747.3035,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1687.5785,
+            "minY": 703.9785,
+            "maxX": 1807.0245,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1719.7055,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1774.9055,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1913.8905,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1822.0245,
+            "minY": 692.355,
+            "maxX": 1996.7565,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1870.5905,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1957.1905,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1957.1905,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1870.5905,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1687.5785,
+          "minY": 692.355,
+          "maxX": 2131.2025,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 14.6685,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C5",
+          "distanceMil": 14.6685
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(179.0070,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1650.835,650.345) conflicts with pad C10.1; (1726.213,650.345) conflicts with pad C10.2; (1876.968,650.345) conflicts with pad C6.2; (2027.724,650.345) conflicts with pad C5.2; (1876.968,957.510) conflicts with pad U6.10; (1801.590,957.510) conflicts with pad U6.33; (1650.835,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2076.744,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2017.023,
+            "minY": 770.9845,
+            "maxX": 2136.469,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2104.342,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2049.142,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1752.57,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1692.845,
+            "minY": 703.9785,
+            "maxX": 1812.291,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1724.972,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1780.172,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1919.157,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1827.291,
+            "minY": 692.355,
+            "maxX": 2002.023,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1875.857,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1962.457,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1962.457,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1875.857,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1692.845,
+          "minY": 692.355,
+          "maxX": 2136.469,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 9.402,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C5",
+          "distanceMil": 9.402
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)-offset(180.0000,0.0000)-bounded-obstacle-pad-search",
+      "reasons": [
+        "crystal-guard via fence conflicts: (1651.828,650.345) conflicts with pad C10.1; (1727.206,650.345) conflicts with pad C10.2; (1877.961,650.345) conflicts with pad C6.2; (2028.717,650.345) conflicts with pad C5.2; (1877.961,957.510) conflicts with pad U6.10; (1802.583,957.510) conflicts with pad U6.33; (1651.828,880.719) conflicts with pad C14.1"
+      ],
+      "placements": [
+        {
+          "ref": "C20",
+          "primitiveId": "62653f985ffdd4f1",
+          "xMil": 2077.737,
+          "yMil": 803.9385,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2018.016,
+            "minY": 770.9845,
+            "maxX": 2137.462,
+            "maxY": 836.8955
+          },
+          "pads": [
+            {
+              "primitiveId": "62653f985ffdd4f1e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2105.335,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "62653f985ffdd4f1e15",
+              "padNumber": "1",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 2050.135,
+              "y": 803.937,
+              "width": 31.5,
+              "height": 35.4,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "C21",
+          "primitiveId": "f1aeb3112ddb5043",
+          "xMil": 1753.563,
+          "yMil": 736.9355,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1693.838,
+            "minY": 703.9785,
+            "maxX": 1813.284,
+            "maxY": 769.8895
+          },
+          "pads": [
+            {
+              "primitiveId": "f1aeb3112ddb5043e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1725.965,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "f1aeb3112ddb5043e15",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1781.165,
+              "y": 736.937,
+              "width": 31.500000000000004,
+              "height": 35.400000000000006,
+              "rotation": 180,
+              "shape": [
+                "RECT",
+                31.5,
+                35.4,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        },
+        {
+          "ref": "X1",
+          "primitiveId": "7078bcba12779f84",
+          "xMil": 1920.15,
+          "yMil": 770.437,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1828.284,
+            "minY": 692.355,
+            "maxX": 2003.016,
+            "maxY": 839.529
+          },
+          "pads": [
+            {
+              "primitiveId": "7078bcba12779f84e13",
+              "padNumber": "1",
+              "net": "OSC_IN",
+              "layer": 1,
+              "x": 1876.85,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1963.45,
+              "y": 736.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e15",
+              "padNumber": "3",
+              "net": "OSC_OUT",
+              "layer": 1,
+              "x": 1963.45,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            },
+            {
+              "primitiveId": "7078bcba12779f84e16",
+              "padNumber": "4",
+              "net": "GND",
+              "layer": 1,
+              "x": 1876.85,
+              "y": 803.937,
+              "width": 55.1,
+              "height": 47.2,
+              "shape": [
+                "RECT",
+                55.1,
+                47.2,
+                0
+              ],
+              "specialPad": []
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1693.838,
+          "minY": 692.355,
+          "maxX": 2137.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 8.409,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C5",
+          "distanceMil": 8.409
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    }
+  ],
+  "limitation": "Finite search rejection only; does not prove global infeasibility. Fixed rectangular via-fence sampling conflicts with live pads; obstacle-aware fence placement/shape and owner entry envelope need further reusable capability."
+}

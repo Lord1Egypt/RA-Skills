@@ -1,0 +1,27 @@
+# 孙子兵法量化交易系统 · 用户配置
+# 个人资金/仓位参数全部在此配置，SKILL.md 不内嵌个人化数值。
+# 未修改的项使用默认值。所有数值为通用默认，请按实际情况调整。
+
+# 单只基金/股票仓位上限（按兵法总分分档）
+single_position_max_high: 0.20   # 兵法总分 ≥ 8 时，单只 ≤ 20%
+single_position_max_mid: 0.10    # 兵法总分 6-8 时，单只 ≤ 10%
+single_position_max_low: 0.00    # 兵法总分 < 6 时，不建仓
+
+# 总仓位上限（含所有持仓）
+total_position_max: 0.80         # 权益仓位不超过 80%
+
+# 持仓数量上限（超过视为过度分散）
+max_positions: 8
+
+# 现金比例下限（低于此值视为无后备军）
+min_cash_ratio: 0.20
+
+# 可选：用户资产概况（用于生成相对仓位建议，可为空）
+# total_assets: 15000            # 总资产（元）
+# current_cash_ratio: 0.34       # 当前现金比例 0-1
+# position_count: 10             # 当前持仓数
+
+# 风控默认参数
+stop_loss_pct: 0.08              # 默认止损 -8%
+take_profit_first: 0.15          # 第一止盈 +15% 减半
+take_profit_second: 0.30         # 第二止盈 +30% 清仓

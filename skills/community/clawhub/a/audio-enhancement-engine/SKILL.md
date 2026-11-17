@@ -73,4 +73,4 @@ metadata:
 4. **调用命令**：使用以下兼容性命令启动脚本（优先 `python3`，失败则 `python`）。脚本会自动检查环境、初始化模型并处理。
 
    ```bash
-   (python3 scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>]) || (python scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>])
+   (python3 scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>] [--re] [--nfe <数值>] [--solver <euler|midpoint|rk4>] [--lambd <数值>] [--tau <数值>]) || (python scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>] [--re] [--nfe <数值>] [--solver <euler|midpoint|rk4>] [--lambd <数值>] [--tau <数值>])

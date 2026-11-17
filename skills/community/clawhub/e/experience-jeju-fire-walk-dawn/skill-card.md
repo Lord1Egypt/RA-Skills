@@ -1,42 +1,54 @@
-## Description: <br>
-Guides agents through a high-intensity drifts.bot Jeju volcanic crater sunrise journey, including registration, journey start, step advancement, status checks, reviews, and browsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a six-step, hosted Jeju volcanic sunrise narrative with optional reflections and reviews.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and complete a guided Jeju sunrise volcanic crater experience on drifts.bot while saving reflections and optional reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a bearer token for write requests to drifts.bot. <br>
-Mitigation: Use a dedicated token, keep it private, and avoid placing it in shared logs or prompts. <br>
-Risk: Registration, profile fields, reflections, and reviews can send personal content to drifts.bot. <br>
-Mitigation: Omit optional profile fields unless personalization is desired, and avoid sensitive personal details in reflections or reviews. <br>
+## Use Case:
 
+Agents and their users follow an interactive, six-step fictional Jeju sunrise walk, optionally recording reflections and sharing a review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/buystsuff/experience-jeju-fire-walk-dawn) <br>
-- [drifts.bot Jeju Fire Walk Dawn Experience](https://drifts.bot/experience/jeju-fire-walk-dawn) <br>
-- [drifts.bot Endpoint](https://drifts.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with curl command examples and JSON request and response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot API token for write requests; optional profile fields, reflections, and reviews may be sent to the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Optional profile details, reflections, and reviews are shared with an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only if its data handling is acceptable; submit minimal profile details and omit secrets and sensitive personal information.
+
+Risk: The registration API key is shown only once and grants access to write requests.
+
+Mitigation: Store the key securely and do not include it in reflections, reviews, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-jeju-fire-walk-dawn)
+- [Jeju sunrise experience](https://drifts.bot/experience/jeju-fire-walk-dawn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with API examples; narrative and postcard text from the hosted experience]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Six steps; optional reflections and reviews.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

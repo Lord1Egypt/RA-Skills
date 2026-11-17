@@ -1,39 +1,53 @@
-## Description: <br>
-Due Diligence supports investment, partnership, acquisition, people, deal, and property reviews by producing structured risk assessments with Go / No-Go / Renegotiate recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment, partnership, and acquisition due diligence framework for deep dives on companies, people, deals, and properties, producing a structured risk assessment with a clear Go / No-Go / Renegotiate recommendation.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serkaion](https://clawhub.ai/user/serkaion)
 
-## Use Case: <br>
-External users and employees use this skill to structure due diligence research for companies, people, deals, and properties, capture red flags and mitigants, and produce a clear recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence financial, legal, partnership, acquisition, or property decisions. <br>
-Mitigation: Treat outputs as decision-support research, verify important claims with reliable sources, and involve qualified professionals for material financial or legal decisions. <br>
-Risk: A clear Go / No-Go / Renegotiate recommendation may overstate confidence if source evidence is incomplete. <br>
-Mitigation: Require documented sources, confidence level, conditions for proceeding, and explicit red flags before acting on the recommendation. <br>
+## Use Case:
 
+External users, employees, and analysts use this skill to structure due diligence on companies, people, deals, and properties. It guides evidence-backed risk assessment, red flag review, mitigant tracking, and a final Go / No-Go / Renegotiate recommendation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured due-diligence sections, risk table, confidence statement, and Go / No-Go / Renegotiate decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Due diligence outputs could be mistaken for financial or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a structured research aid, verify sources, and consult qualified financial or legal professionals before acting on recommendations.
+
+Risk: Private financial, legal, or personal information may be included in due diligence inputs.
+
+Mitigation: Avoid sharing unnecessary sensitive information and apply appropriate privacy controls before analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/serkaion/skills/serkaion-due-diligence)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections and a risk table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executive summary, red flags and mitigants, decision confidence, conditions, sources, and comparable benchmarks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

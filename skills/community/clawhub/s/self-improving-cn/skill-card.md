@@ -1,47 +1,62 @@
-## Description: <br>
-Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection + Self-criticism + Self-learning + Self-organizing memory for agents that evaluate their own work, catch mistakes, and improve permanently after failures, corrections, outdated knowledge, or better approaches.
 
-## Publisher: <br>
-[sharemen](https://clawhub.ai/user/sharemen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharemen](https://clawhub.ai/user/sharemen)
 
-## Use Case: <br>
-Developers and agent users install this skill when they want an agent to keep local, cross-session memory about corrections, preferences, work patterns, and reusable self-reflection lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local cross-session memory about corrections, preferences, and work patterns, which can create privacy and persistence tradeoffs. <br>
-Mitigation: Install only when this persistence is desired, inspect ~/self-improving periodically, and avoid storing secrets or sensitive personal data. <br>
-Risk: Setup and maintenance can create or modify local memory and workspace steering files. <br>
-Mitigation: Review the exact files before setup and require confirmation before memory exports, wipes, or heartbeat maintenance changes. <br>
-Risk: Learning from weak signals could encode incorrect or overbroad preferences. <br>
-Mitigation: Use the documented confirmation flow, avoid inferring from silence, and keep tentative lessons revisable until the user confirms them. <br>
+## Use Case:
 
+External developers and agent operators use this skill to add durable self-improvement behavior to an agent, including correction logging, scoped memory, self-reflection, heartbeat maintenance, and Chinese-adapted interaction cues. It is intended for agents that should preserve reusable lessons across sessions while keeping memory changes visible and reviewable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sharemen/self-improving-cn) <br>
-- [Skill homepage](https://clawic.com/skills/self-improving) <br>
-- [Security boundaries](artifact/boundaries.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory operations](artifact/operations.md) <br>
-- [Learning mechanics](artifact/learning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and maintains local memory files under ~/self-improving/ and may update workspace steering files when the user chooses setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.16 (source: frontmatter and server release evidence) <br>
+Risk: Persistent local memory can influence future agent behavior across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when durable memory is desired, keep memory entries visible, and audit stored memory on request.
+
+Risk: Workspace steering files such as AGENTS.md, SOUL.md, and HEARTBEAT.md can change how future sessions behave.
+
+Mitigation: Review and approve each workspace steering change separately before relying on the skill.
+
+Risk: Memory files may accidentally contain credentials, health, financial, third-party, or sensitive personal details.
+
+Mitigation: Do not store those categories, and remove or redact them immediately if they appear.
+
+Risk: Export and forget-everything flows can create an additional copy of memory before deletion.
+
+Mitigation: Treat exports as sensitive artifacts and verify deletion after wipe operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sharemen/skills/self-improving-cn)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown memory files and optional workspace steering files when the agent applies the skill.]
+
+## Skill Version(s):
+
+1.2.16 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

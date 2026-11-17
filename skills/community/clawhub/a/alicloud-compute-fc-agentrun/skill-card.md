@@ -1,44 +1,61 @@
-## Description: <br>
-Manage Function Compute AgentRun resources via OpenAPI for runtimes, sandboxes, model services, memory, credentials, endpoint creation, status checks, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Function Compute AgentRun resources via OpenAPI for runtime, sandbox, model, memory, and credential workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to operate Alibaba Cloud Function Compute AgentRun resources, including creating runtimes and endpoints, checking resource status, and troubleshooting AgentRun workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup script can delete AgentRun runtime endpoints and runtimes when run with real resource IDs. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials and verify region, runtime ID, and endpoint ID before running cleanup. <br>
-Risk: Generated API response files may contain operational details from the target Alibaba Cloud account. <br>
-Mitigation: Review generated response files before sharing or committing them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud Function Compute AgentRun runtimes, endpoints, sandboxes, model services, memory collections, and credentials through OpenAPI-backed workflows.
 
-## Reference(s): <br>
-- [AgentRun OpenAPI overview](references/api_overview.md) <br>
-- [AgentRun OpenAPI endpoints](references/endpoints.md) <br>
-- [AgentRun SDK guidance](references/sdk.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-compute-fc-agentrun) <br>
-- [Publisher profile](https://clawhub.ai/user/cinience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON response artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated API response summaries are written under output/compute-fc-agentrun/responses when scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill uses Alibaba Cloud credentials for AgentRun resource operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege RAM credentials and avoid sharing generated response files that may contain cloud metadata.
+
+Risk: Cleanup workflows can delete AgentRun runtime endpoints and runtimes.
+
+Mitigation: Verify the account, region, runtime ID, and endpoint ID before running cleanup_runtime.py.
+
+Risk: Endpoint selection is user-controlled and weakly scoped.
+
+Mitigation: Set AGENTRUN_ENDPOINT only to an official endpoint listed in references/endpoints.md.
+
+## Reference(s):
+
+- [AgentRun API Overview](references/api_overview.md)
+- [AgentRun OpenAPI Endpoints](references/endpoints.md)
+- [AgentRun SDK Guidance](references/sdk.md)
+- [Source List](references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-compute-fc-agentrun)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands, Python script references, and JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated API response summaries under output/compute-fc-agentrun/responses.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

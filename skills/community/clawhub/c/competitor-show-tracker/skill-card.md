@@ -1,41 +1,63 @@
-## Description: <br>
-Ranks upcoming trade shows by how many selected competitors are confirmed as exhibitors, then summarizes overlaps and follow-up actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rank upcoming trade shows by how many competitors in a provided company list match Lensmor exhibitor records.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Business development, marketing, and competitive-intelligence teams use this skill before a trade show cycle to compare competitor attendance, prioritize events, and decide where to investigate or invest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends competitor company names to Lensmor's external service. <br>
-Mitigation: Confirm trust in Lensmor and its terms before use, and avoid submitting highly confidential internal labels. <br>
-Risk: The skill depends on a bearer API key for Lensmor access. <br>
-Mitigation: Use a dedicated revocable API key where possible and do not include the key in prompts, outputs, logs, or shared artifacts. <br>
+## Use Case:
 
+External users and go-to-market teams use this skill to compare competitor show circuits, prioritize trade show budgets, and identify events where multiple named competitors appear in Lensmor exhibitor records.
 
-## Reference(s): <br>
-- [Competitor Show Tracker on ClawHub](https://clawhub.ai/weilun88313/competitor-show-tracker) <br>
-- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=competitor-show-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with summary fields, ranked tables, event detail sections, insights, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; outputs should not reveal the key and should state when Lensmor results may be incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security summary flags an unverified personal namespace and mutable source checkout in the install path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the @weilun88313 package is officially controlled by LensmorOfficial, and prefer a pinned reviewed version or commit with a checksum before installation.
+
+Risk: Running the skill sends competitor names to Lensmor and may consume credits for non-empty successful searches.
+
+Mitigation: Confirm the maximum first-page credit cost and obtain explicit user approval before the first live lookup.
+
+Risk: Successful searches record API activity and asynchronously update the API-key owner's HubSpot last_search_date.
+
+Mitigation: Disclose the HubSpot activity side effect before execution and proceed only after the user approves it.
+
+Risk: Lensmor matches are database records and are not independently verified attendance confirmations.
+
+Mitigation: Present results as matches in Lensmor exhibitor records and advise users to verify current event editions, dates, and exhibitor listings before budget decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weilun88313/skills/competitor-show-tracker)
+- [Lensmor API Documentation](https://api.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=competitor-show-tracker)
+- [Fictional Industrial Automation Example](examples/industrial-automation-show-circuit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown summary with ranked tables, event detail sections, insights, and follow-up suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; successful non-empty lookups can consume credits and update HubSpot last_search_date.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

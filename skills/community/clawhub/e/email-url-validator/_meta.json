@@ -1,6 +1,19 @@
 {
   "ownerId": "kn76sr6rknd7syssezr3rs38dn83w855",
   "slug": "email-url-validator",
-  "version": "1.0.2",
-  "publishedAt": 1775018784422
+  "version": "1.0.0",
+  "publishedAt": 1774901001330,
+  "contact": "novlease.contact@gmail.com",
+  "hostedAt": "https://deep-validator-production.up.railway.app",
+  "sourceCode": "https://github.com/nathanleclaire/Agent_Validator",
+  "agentEnvVars": [],
+  "serverEnvVars": [
+    "NVM_API_KEY",
+    "NVM_PLAN_ID_EMAIL",
+    "NVM_PLAN_ID_URL"
+  ],
+  "serverEnvVarsOptional": [
+    "NVM_ENVIRONMENT",
+    "DEEP_VALIDATOR_API_KEY"
+  ]
 }

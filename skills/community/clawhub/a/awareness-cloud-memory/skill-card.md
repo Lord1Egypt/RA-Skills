@@ -1,42 +1,63 @@
-## Description: <br>
-Persistent cloud memory across sessions that automatically recalls past decisions, code, and tasks before each request, saves summaries after each session, and provides manual Bash tools for searching, recording, and querying memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cloud memory across sessions that automatically recalls prior context before each request, captures session checkpoints, and provides manual Bash tools for searching, recording, and querying memory.
 
-## Publisher: <br>
-[everest-an](https://clawhub.ai/user/everest-an) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[everest-an](https://clawhub.ai/user/everest-an)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain persistent cloud-backed memory across sessions, retrieve prior decisions and tasks, and record new implementation context through automatic hooks or manual Node.js commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic hooks may send prompts, search queries, memory records, task/session metadata, and recalled context to a remote cloud memory service. <br>
-Mitigation: Install only when cloud memory is intended; prefer local mode or a narrowly scoped memory for sensitive work, and avoid entering secrets or regulated/customer data. <br>
-Risk: Setup can persist credentials in shell profiles, and logout may not clean up every exported credential. <br>
-Mitigation: Review and remove shell profile exports when disabling the skill, and rotate credentials if they may have been exposed. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve project decisions, tasks, knowledge, and handoff context across sessions. It can automatically inject relevant memory into prompts and expose manual commands for recall, lookup, recording, setup, and agent prompt retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/everest-an/awareness-cloud-memory) <br>
-- [Awareness service](https://awareness.market) <br>
-- [Awareness API endpoint](https://awareness.market/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [XML memory context blocks, JSON responses, and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatic hooks can inject recalled context before prompts and save session checkpoints after responses when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Always-on recall can send prompt text and memory summaries to the configured memory service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for work where cloud memory processing is acceptable, and avoid entering secrets or regulated data while it is active.
+
+Risk: Remote memory content can influence prompt context before each request.
+
+Mitigation: Review injected memory context for relevance and treat it as untrusted context when making security-sensitive decisions.
+
+Risk: Setup can persist API credentials in local files and shell profile exports.
+
+Mitigation: Protect the API key, revoke it or run logout when access is no longer needed, and manually remove shell profile exports during uninstall.
+
+Risk: Project-local configuration can alter the endpoint or memory used by the skill.
+
+Mitigation: Inspect project-local openclaw.json before use and prefer a trusted, tightly scoped endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/everest-an/skills/awareness-cloud-memory)
+- [Publisher Profile](https://clawhub.ai/user/everest-an)
+- [Awareness Service](https://awareness.market)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Bash command examples, XML memory context from hooks, and JSON responses from command scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and AWARENESS_API_KEY plus AWARENESS_MEMORY_ID for cloud use; supports a local endpoint through AWARENESS_LOCAL_URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

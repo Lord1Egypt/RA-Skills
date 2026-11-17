@@ -1,45 +1,59 @@
-## Description: <br>
-Fetches WeChat Official Account articles from mp.weixin.qq.com with Playwright and returns the title, body text, and final URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wechat Mp Fetch extracts titles, body text, and final URLs from accessible WeChat Official Account articles on mp.weixin.qq.com using Playwright.
 
-## Publisher: <br>
-[write31bug](https://clawhub.ai/user/write31bug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[write31bug](https://clawhub.ai/user/write31bug)
 
-## Use Case: <br>
-Developers and content workflows use this skill to extract article text from WeChat Official Account links for archiving, note-taking, research collection, writing reference, or content repurposing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens a user-supplied WeChat article URL in a local headless browser. <br>
-Mitigation: Use trusted mp.weixin.qq.com article links and run the skill in an isolated local environment when processing untrusted content. <br>
-Risk: The skill requires npm dependencies and an installed Chromium browser. <br>
-Mitigation: Install dependencies from trusted registries, keep Playwright and Chromium updated, and scan the package before deployment. <br>
-Risk: URL validation is basic. <br>
-Mitigation: Restrict execution to expected WeChat article links and review the resolved final URL for sensitive workflows. <br>
+## Use Case:
 
+Developers and content workflows use this skill to fetch text and metadata from accessible WeChat Official Account articles for archival, note-taking, research, and writing reference. Users should only archive or repurpose fetched content where they have permission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/write31bug/wechat-mp-fetch) <br>
-- [GitHub Project Homepage](https://github.com/write31bug/wechat-mp-fetch) <br>
-- [npm Package](https://www.npmjs.com/package/wechat-mp-fetch) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown returned by a command-line Node.js script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes success status, extracted title, extracted content, final URL, or an error message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Weak URL checks can allow a supplied link to make the local browser visit unintended sites or private network addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article URLs, avoid running the skill in environments with sensitive network access, and add strict host and redirect validation before broader deployment.
+
+Risk: Fetched article content may be subject to access, copyright, or reuse restrictions.
+
+Mitigation: Archive or repurpose fetched content only where the user has permission and keep downstream use aligned with the article source terms.
+
+Risk: The skill depends on Playwright and command-line package installation.
+
+Mitigation: Install pinned dependencies from a trusted registry and review dependency updates before use in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/write31bug/skills/wechat-mp-fetch)
+- [Project homepage](https://github.com/write31bug/wechat-mp-fetch)
+- [npm package](https://www.npmjs.com/package/wechat-mp-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or Markdown article extraction output from a command-line workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied mp.weixin.qq.com article URL; supports timeout, debug, and output format options.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

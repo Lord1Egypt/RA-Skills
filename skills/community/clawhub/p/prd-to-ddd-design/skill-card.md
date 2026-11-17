@@ -1,42 +1,56 @@
-## Description: <br>
-Converts PRDs and business requirements into AI-friendly DDD domain design documents in Markdown, including domain models, aggregate and entity design, ER diagrams, domain logic placement, and sequence or flow diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PRDs, requirement documents, or business descriptions into AI-friendly DDD domain design documents in Markdown.
 
-## Publisher: <br>
-[qitongfire](https://clawhub.ai/user/qitongfire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qitongfire](https://clawhub.ai/user/qitongfire)
 
-## Use Case: <br>
-Developers, engineers, product teams, and domain modelers use this skill to turn a PRD or business description into a structured DDD design document before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DDD designs may be incomplete, incorrect, or misaligned with implementation constraints. <br>
-Mitigation: Review the generated design, diagrams, schema mappings, and cross-layer contracts before using them for implementation. <br>
-Risk: PRDs can contain confidential product, customer, or business information. <br>
-Mitigation: Use the skill only in an agent environment that is already trusted for the PRD contents, and avoid sharing confidential PRDs in untrusted environments. <br>
+## Use Case:
 
+Developers, architects, and AI coding agents use this skill before implementation to turn natural language requirements into DDD models, aggregate designs, ER diagrams, database schema mappings, domain logic placement, API contracts, and behavior diagrams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qitongfire/prd-to-ddd-design) <br>
-- [Phase Guide](phase-guide.md) <br>
-- [DDD Design Template](ddd-design-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Mermaid diagrams, tables, schema mappings, API contracts, and code-style type or method definitions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a docs/design/<feature-name>-ddd-design.md file when the agent has workspace write access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated domain designs may misinterpret requirements or introduce architecture decisions that are not valid for the target system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated design document and complete the included quality checklist before using it for implementation.
+
+Risk: The default output may mix Chinese business descriptions with English technical names, which can be unsuitable for some teams or review processes.
+
+Mitigation: Normalize language and naming conventions during review if the project requires a single-language document.
+
+## Reference(s):
+
+- [Skill workflow](artifact/SKILL.md)
+- [Phase guide](artifact/phase-guide.md)
+- [DDD design template](artifact/ddd-design-template.md)
+- [ClawHub skill page](https://clawhub.ai/qitongfire/skills/prd-to-ddd-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Structured Markdown with Mermaid diagrams, tables, API contracts, database schema mappings, and package structure guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact directs business descriptions to be written in Chinese and technical names in English.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

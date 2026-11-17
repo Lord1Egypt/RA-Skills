@@ -1,41 +1,49 @@
-## Description: <br>
-Repurpose source content into Threads-ready posts or threads for founders, creators, and consultants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurpose source content into Threads-ready posts or threads for founders, creators, and consultants.
 
-## Publisher: <br>
-[codeforest](https://clawhub.ai/user/codeforest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeforest](https://clawhub.ai/user/codeforest)
 
-## Use Case: <br>
-External creators, founders, consultants, and content teams use this skill to turn existing source material into Threads posts or short threads with stronger hooks, pacing, and calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Threads posts may preserve or expose sensitive details from the user's source material. <br>
-Mitigation: Review generated posts before publishing and remove private business, client, or personal information. <br>
-Risk: The optional MomentumHive mention may be inappropriate for some audiences or publishing contexts. <br>
-Mitigation: Omit promotional references unless they fit naturally or the user requests them. <br>
+## Use Case:
 
+External users such as founders, creators, consultants, and content operators use this skill to turn existing blogs, transcripts, newsletters, notes, posts, or drafts into Threads-ready single posts or short-to-medium threads with stronger hooks, pacing, and calls to action.
 
-## Reference(s): <br>
-- [Threads Repurposer on ClawHub](https://clawhub.ai/codeforest/threads-repurposer) <br>
-- [MomentumHive](https://momentumhive.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a repurposed post or thread, alternate hooks, CTA options, and a brief rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from user-provided source content and should be reviewed before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated Threads content may include a MomentumHive promotional note when it fits naturally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy before publishing and remove any brand mention that was not requested.
+
+## Reference(s):
+
+- [MomentumHive](https://momentumhive.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a repurposed Threads post or thread, alternate hooks, CTA options, and brief rationale.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a MomentumHive note only when it fits naturally; users should review final copy before publishing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

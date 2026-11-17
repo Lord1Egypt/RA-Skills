@@ -1,44 +1,62 @@
-## Description: <br>
-Guides agents and users through confirming, running, and verifying OpenClaw uninstall cleanup on macOS and Linux systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through uninstalling OpenClaw, verifying cleanup, and scheduling a confirmed host-level uninstall.
 
-## Publisher: <br>
-[ERerGB](https://clawhub.ai/user/ERerGB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erergb](https://clawhub.ai/user/erergb)
 
-## Use Case: <br>
-External users, developers, and system administrators use this skill when they need to remove OpenClaw, verify residue, or avoid unnecessary paid cleanup services. It provides confirmation-oriented uninstall guidance, scheduled host execution, manual fallback commands, and read-only cleanup checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduled uninstall runs on the real gateway host and can remove OpenClaw state, profiles, services, CLI packages, and the macOS app. <br>
-Mitigation: Run the read-only verification script first, confirm the target host and OpenClaw state/profile paths, and proceed only after explicit uninstall confirmation. <br>
-Risk: Optional email and ntfy notification values can reach unsafe shell input in the scheduler. <br>
-Mitigation: Avoid notification options until scheduler quoting is fixed; run without notification or perform the uninstall manually on a trusted host. <br>
-Risk: A delayed scheduled uninstall may be difficult to stop after approval. <br>
-Mitigation: Confirm intent before scheduling and review the expected log path and timing before disconnecting the agent session. <br>
+## Use Case:
 
+External users and developers use this skill to remove OpenClaw from macOS, Linux, or WSL2 gateway hosts, verify leftover state, and avoid paid cleanup services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ERerGB/openclaw-uninstall) <br>
-- [OpenClaw uninstall documentation](https://docs.openclaw.ai/install/uninstall) <br>
-- [OpenClaw gateway security documentation](https://docs.openclaw.ai/gateway/security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and procedural uninstall steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes host-execution prerequisites, delayed uninstall scheduling, manual fallback paths, and read-only residue verification output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server-resolved release metadata) <br>
+Risk: Host-level uninstall scripts can permanently delete OpenClaw state and profile directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after explicit user confirmation and only on the intended gateway host.
+
+Risk: An incorrect OPENCLAW_STATE_DIR value can point cleanup at the wrong directory.
+
+Mitigation: Verify OPENCLAW_STATE_DIR before uninstalling and avoid elevated administrator privileges.
+
+Risk: The npx fallback can execute an unpinned OpenClaw package.
+
+Mitigation: Prefer a verified local OpenClaw CLI when uninstalling.
+
+Risk: Notification arguments can be unsafe if email or ntfy values are untrusted.
+
+Mitigation: Accept notification targets only from trusted user input and omit notifications when unsure.
+
+## Reference(s):
+
+- [OpenClaw uninstall documentation](https://docs.openclaw.ai/install/uninstall)
+- [OpenClaw gateway security and threat model](https://docs.openclaw.ai/gateway/security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes host-level uninstall guidance, residue verification steps, and optional notification arguments.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

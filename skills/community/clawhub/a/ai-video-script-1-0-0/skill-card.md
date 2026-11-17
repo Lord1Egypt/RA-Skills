@@ -1,41 +1,61 @@
-## Description: <br>
-Generates AI video scripts from a topic or keywords, including shot descriptions, visual prompts, voiceover copy, subtitles, and platform-oriented script structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-oriented video scripts from a topic or keywords, including scene breakdowns, visual prompts, voiceover copy, subtitles, and style guidance.
 
-## Publisher: <br>
-[zou-cc](https://clawhub.ai/user/zou-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zou-cc](https://clawhub.ai/user/zou-cc)
 
-## Use Case: <br>
-External creators, AI video producers, and content marketers use this skill to draft short-form or longer-form video scripts with scene-by-scene plans, prompts for image or video generation tools, and voiceover text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to respond to generic video-planning requests. <br>
-Mitigation: Confirm the user wants an AI video script before relying on generated shot lists, prompts, or voiceover copy. <br>
-Risk: Generated scripts and prompts may include unsuitable, inaccurate, copyrighted, or platform-sensitive content. <br>
-Mitigation: Review and edit outputs for factual accuracy, originality, brand fit, copyright concerns, and platform content rules before publication. <br>
-Risk: The package is a third-party ClawHub release, not an NVIDIA-owned skill. <br>
-Mitigation: Verify the publisher profile and package identity before adopting the skill in a managed workflow. <br>
+## Use Case:
 
+External creators, AI video producers, and content marketers use this skill to draft Chinese-oriented scripts for short-form and AI-generated videos, including shot plans, image or video prompts, and voiceover text.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured script sections, shot tables, prompts, voiceover copy, and subtitles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code execution, credential access, network use, or persistence reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated scripts, prompts, or copy may contain copyright-sensitive elements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content for originality and remove protected names, characters, media references, or other infringing elements before publication.
+
+Risk: Generated content may conflict with platform policies or contain unsuitable wording for the target channel.
+
+Mitigation: Check each script against the publishing platform's current content, advertising, and sensitive-word policies before use.
+
+Risk: Scripts for educational, product, or marketing videos may include inaccurate or unsupported claims.
+
+Mitigation: Fact-check claims and product details before recording, publishing, or using the script in commercial material.
+
+Risk: The skill is Chinese-oriented by default and may not match another target language or locale without explicit direction.
+
+Mitigation: Specify the desired language, locale, platform, audience, and style requirements in the prompt when non-Chinese output is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zou-cc/skills/ai-video-script-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown script outlines with scene tables, visual prompts, voiceover copy, subtitles, and style notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented output by default; users can request another language explicitly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

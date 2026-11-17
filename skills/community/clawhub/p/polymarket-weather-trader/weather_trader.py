@@ -17,10 +17,12 @@ Requires:
 
 from __future__ import annotations
 
+import os
 import sys
 import re
 import json
 import argparse
+from collections import Counter, defaultdict
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
@@ -55,16 +57,26 @@ from simmer_sdk.skill import load_config, update_config, get_config_path
 # resolved as fallbacks below for backwards compatibility.
 CONFIG_SCHEMA = {
     "entry_threshold":   {"env": "SIMMER_WEATHER_ENTRY_THRESHOLD",   "default": 0.15,  "type": float},
+    "min_entry_price":   {"env": "SIMMER_WEATHER_MIN_ENTRY_PRICE",   "default": 0.0,   "type": float,
+                          "help": "Reject entries below this mid (lottery-ticket floor). 0 = disabled (back-compat). ENTRY_THRESHOLD is the upper bound only."},
+    "min_hours_to_resolve": {"env": "SIMMER_WEATHER_MIN_HOURS_TO_RESOLVE", "default": 2, "type": float,
+                             "help": "Skip if market resolves in fewer than this many hours (time-decay safeguard). Discovery looks ahead max(this, 48h) so a morning run can still see +1/+2 day events."},
     "exit_threshold":    {"env": "SIMMER_WEATHER_EXIT_THRESHOLD",    "default": 0.45,  "type": float},
     "max_position_usd":  {"env": "SIMMER_WEATHER_MAX_POSITION_USD",  "default": 2.00,  "type": float},
     "sizing_pct":        {"env": "SIMMER_WEATHER_SIZING_PCT",        "default": 0.05,  "type": float},
     "max_trades_per_run":{"env": "SIMMER_WEATHER_MAX_TRADES_PER_RUN","default": 5,     "type": int},
+    "max_buys_per_market":{"env": "SIMMER_WEATHER_MAX_BUYS_PER_MARKET","default": 1,   "type": int,
+                          "help": "Cap on buy-fills into the same market (bucket), checked against get_positions() "
+                                  "before entry. Replay fills every attempt (no balance/backoff throttle) while live "
+                                  "is naturally throttled, so an unbounded entry loop makes the two disagree (SIM-5499). "
+                                  "1 = one entry then hold (default). Raise to keep DCA; 0 disables the cap entirely "
+                                  "(unbounded, pre-SIM-5499 behavior)."},
     "locations":         {"env": "SIMMER_WEATHER_LOCATIONS",         "default": "NYC", "type": str},
     "binary_only":       {"env": "SIMMER_WEATHER_BINARY_ONLY",       "default": False, "type": bool},
     "slippage_max":      {"env": "SIMMER_WEATHER_SLIPPAGE_MAX",      "default": 0.15,  "type": float},
     "min_liquidity":     {"env": "SIMMER_WEATHER_MIN_LIQUIDITY",     "default": 0.0,   "type": float},
     "order_type":        {"env": "SIMMER_WEATHER_ORDER_TYPE",        "default": "GTC", "type": str,
-                          "help": "Order type: GTC (default, limit order that waits for fill) or FAK (cancel if not filled immediately). FAK is automatically overridden to GTC because weather markets are structurally illiquid — FAK orders are rejected immediately with no fill."},
+                          "help": "Order type: GTC (default, limit order that waits for fill), FAK, or FOK (cancel if not filled immediately). FAK and FOK are automatically overridden to GTC because weather markets are structurally illiquid — immediate-cancel orders are rejected with no fill."},
     "vol_targeting":     {"env": "SIMMER_WEATHER_VOL_TARGETING",     "default": False, "type": bool,
                           "help": "Enable volatility targeting: scale position sizes by target_vol / realized_vol."},
     "target_vol":        {"env": "SIMMER_WEATHER_TARGET_VOL",        "default": 0.20,  "type": float,
@@ -95,13 +107,14 @@ _config = load_config(CONFIG_SCHEMA, __file__, slug="polymarket-weather-trader")
 
 NOAA_API_BASE = "https://api.weather.gov"
 _configured_order_type = (_config.get("order_type") or "GTC").upper()
-if _configured_order_type == "FAK":
-    # FAK (Fill And Kill) fails on weather markets because liquidity is structurally
-    # thin — the order gets cancelled immediately with no fill. Force GTC so limit
-    # orders queue on the book and wait for a counterparty. Users who set
-    # SIMMER_WEATHER_ORDER_TYPE=FAK or order_type=FAK in config.json get this override.
+if _configured_order_type in ("FAK", "FOK"):
+    # FAK (Fill And Kill) and FOK (Fill Or Kill) both fail on weather markets because
+    # liquidity is structurally thin — the order gets cancelled immediately with no fill.
+    # Force GTC so limit orders queue on the book and wait for a counterparty. Users who
+    # set SIMMER_WEATHER_ORDER_TYPE=FAK/FOK or order_type=FAK/FOK in config.json get
+    # this override.
     print(
-        "[weather-trader] WARNING: order_type=FAK is not suitable for weather markets "
+        f"[weather-trader] WARNING: order_type={_configured_order_type} is not suitable for weather markets "
         "(thin liquidity → immediate cancel). Overriding to GTC. "
         "Set SIMMER_WEATHER_ORDER_TYPE=GTC to silence this warning."
     )
@@ -149,6 +162,7 @@ MIN_TICK_SIZE = 0.01        # Minimum tradeable price
 
 # Strategy parameters - from config
 ENTRY_THRESHOLD = _config["entry_threshold"]
+MIN_ENTRY_PRICE = _config.get("min_entry_price", 0.0)
 EXIT_THRESHOLD = _config["exit_threshold"]
 MAX_POSITION_USD = _config["max_position_usd"]
 
@@ -157,6 +171,7 @@ SMART_SIZING_PCT = _config["sizing_pct"]
 
 # Rate limiting
 MAX_TRADES_PER_RUN = _config["max_trades_per_run"]
+MAX_BUYS_PER_MARKET = _config["max_buys_per_market"]
 
 # Market type filter
 BINARY_ONLY = _config["binary_only"]
@@ -171,7 +186,11 @@ VOL_SPAN = _config["vol_span"]
 # Context safeguard thresholds
 SLIPPAGE_MAX_PCT = _config["slippage_max"]  # Skip if slippage exceeds this (tunable)
 MIN_LIQUIDITY_USD = _config["min_liquidity"]  # Skip markets with liquidity below this (0 = disabled)
-TIME_TO_RESOLUTION_MIN_HOURS = 2  # Skip if resolving in < 2 hours
+TIME_TO_RESOLUTION_MIN_HOURS = _config.get("min_hours_to_resolve", 2)  # Entry-only: skip if resolving sooner
+EXIT_MIN_HOURS_TO_RESOLVE = 2  # Exits keep the original 2h floor regardless of the env knob
+# Same-day fetch/import is newest-first and morning-starves a 24h floor.
+# Horizon tracks the hours knob with a 48h floor so +1/+2 calendar days are visible.
+DISCOVERY_HORIZON_FLOOR_HOURS = 48
 
 # Multi-source bucket-confidence (SIM-2420)
 REQUIRE_SOURCE_AGREEMENT = _config["require_source_agreement"]
@@ -196,6 +215,9 @@ LOCATIONS = {
     "Seattle": {"lat": 47.4502, "lon": -122.3088, "name": "Seattle (Sea-Tac)", "station": "KSEA"},
     "Atlanta": {"lat": 33.6407, "lon": -84.4277, "name": "Atlanta (Hartsfield)", "station": "KATL"},
     "Miami": {"lat": 25.7959, "lon": -80.2870, "name": "Miami (MIA)", "station": "KMIA"},
+    "Austin": {"lat": 30.1831, "lon": -97.6806, "name": "Austin-Bergstrom", "station": "KAUS"},
+    "Houston": {"lat": 29.6458, "lon": -95.2821, "name": "William P. Hobby", "station": "KHOU"},
+    "Denver": {"lat": 39.7130, "lon": -104.7580, "name": "Buckley Space Force Base", "station": "KBKF"},
 }
 
 # Per-station coordinates for NOAA `/points/{lat},{lon}` lookup. Keyed by the
@@ -232,6 +254,9 @@ STATION_ID_TO_NOAA = {
     "KDEN": {"lat": 39.8561, "lon": -104.6737, "name": "Denver International"},
     "KMSP": {"lat": 44.8848, "lon": -93.2223, "name": "Minneapolis-St. Paul International"},
     "KPHL": {"lat": 39.8744, "lon": -75.2424, "name": "Philadelphia International"},
+    "KAUS": {"lat": 30.1831, "lon": -97.6806, "name": "Austin-Bergstrom International Airport"},
+    "KHOU": {"lat": 29.6458, "lon": -95.2821, "name": "William P. Hobby Airport"},
+    "KBKF": {"lat": 39.7130, "lon": -104.7580, "name": "Buckley Space Force Base"},
 }
 
 # Active locations - from config
@@ -283,6 +308,29 @@ INTERNATIONAL_STATION_COORDS = {
     "EHAM": {"lat": 52.3105, "lon": 4.7683, "tz": "Europe/Amsterdam",  "city": "Amsterdam",  "name": "Amsterdam Schiphol Airport"},
     "RCSS": {"lat": 25.0697, "lon": 121.5519, "tz": "Asia/Taipei",     "city": "Taipei",     "name": "Taipei Songshan Airport"},
     "RCTP": {"lat": 25.0777, "lon": 121.2328, "tz": "Asia/Taipei",     "city": "Taipei",     "name": "Taoyuan International Airport"},
+    "ZBAA": {"lat": 40.0820, "lon": 116.6030, "tz": "Asia/Shanghai",    "city": "Beijing",    "name": "Beijing Capital International Airport"},
+    "ZSPD": {"lat": 31.1460, "lon": 121.8000, "tz": "Asia/Shanghai",    "city": "Shanghai",   "name": "Shanghai Pudong International Airport"},
+    "ZGGG": {"lat": 23.3920, "lon": 113.3070, "tz": "Asia/Shanghai",    "city": "Guangzhou",  "name": "Guangzhou Baiyun International Airport"},
+    "ZGSZ": {"lat": 22.6390, "lon": 113.8030, "tz": "Asia/Shanghai",    "city": "Shenzhen",   "name": "Shenzhen Bao'an International Airport"},
+    "ZUUU": {"lat": 30.5760, "lon": 103.9500, "tz": "Asia/Shanghai",    "city": "Chengdu",    "name": "Chengdu Shuangliu International Airport"},
+    "ZUCK": {"lat": 29.7180, "lon": 106.6390, "tz": "Asia/Shanghai",    "city": "Chongqing",  "name": "Chongqing Jiangbei International Airport"},
+    "ZHHH": {"lat": 30.7830, "lon": 114.2050, "tz": "Asia/Shanghai",    "city": "Wuhan",      "name": "Wuhan Tianhe International Airport"},
+    "ZSQD": {"lat": 36.3620, "lon": 120.0870, "tz": "Asia/Shanghai",    "city": "Qingdao",    "name": "Qingdao Jiaodong International Airport"},
+    "ZHCC": {"lat": 34.5200, "lon": 113.8340, "tz": "Asia/Shanghai",    "city": "Zhengzhou",  "name": "Zhengzhou Xinzheng International Airport"},
+    "WSSS": {"lat": 1.3680, "lon": 103.9820, "tz": "Asia/Singapore",    "city": "Singapore",  "name": "Singapore Changi Airport"},
+    "WMKK": {"lat": 2.7470, "lon": 101.7140, "tz": "Asia/Kuala_Lumpur", "city": "Kuala Lumpur", "name": "Kuala Lumpur International Airport"},
+    "RPLL": {"lat": 14.5070, "lon": 121.0040, "tz": "Asia/Manila",      "city": "Manila",     "name": "Ninoy Aquino International Airport"},
+    "RKPK": {"lat": 35.1790, "lon": 128.9380, "tz": "Asia/Seoul",       "city": "Busan",      "name": "Gimhae International Airport"},
+    "CYYZ": {"lat": 43.6790, "lon": -79.6290, "tz": "America/Toronto",   "city": "Toronto",    "name": "Toronto Pearson International Airport"},
+    "SAEZ": {"lat": -34.8220, "lon": -58.5360, "tz": "America/Argentina/Buenos_Aires", "city": "Buenos Aires", "name": "Minister Pistarini International Airport"},
+    "SBGR": {"lat": -23.4320, "lon": -46.4690, "tz": "America/Sao_Paulo", "city": "Sao Paulo", "name": "Sao Paulo-Guarulhos International Airport"},
+    "MMMX": {"lat": 19.4360, "lon": -99.0720, "tz": "America/Mexico_City", "city": "Mexico City", "name": "Benito Juarez International Airport"},
+    "FACT": {"lat": -33.9650, "lon": 18.6020, "tz": "Africa/Johannesburg", "city": "Cape Town", "name": "Cape Town International Airport"},
+    "EFHK": {"lat": 60.3270, "lon": 24.9570, "tz": "Europe/Helsinki",   "city": "Helsinki",   "name": "Helsinki Vantaa Airport"},
+    "OEJN": {"lat": 21.6850, "lon": 39.1660, "tz": "Asia/Riyadh",       "city": "Jeddah",     "name": "King Abdulaziz International Airport"},
+    "EPWA": {"lat": 52.1630, "lon": 20.9610, "tz": "Europe/Warsaw",      "city": "Warsaw",     "name": "Warsaw Chopin Airport"},
+    "LFPB": {"lat": 48.9670, "lon": 2.4280, "tz": "Europe/Paris",        "city": "Paris",      "name": "Paris-Le Bourget Airport"},
+    "MPMG": {"lat": 8.9670, "lon": -79.5550, "tz": "America/Panama",     "city": "Panama City", "name": "Marcos A. Gelabert International Airport"},
 }
 
 
@@ -334,8 +382,26 @@ def _build_station_name_index() -> dict:
         nm = _normalize_station_name(info.get("name", ""))
         if nm:
             index[nm] = icao
+    for alias, icao in _STATION_NAME_ALIASES.items():
+        index[_normalize_station_name(alias)] = icao
     return index
 
+
+# Names Polymarket cites that don't normalize onto the name our coord tables
+# carry for the same airport. Verified against the live criteria corpus on
+# 2026-09-06: each alias is the exact station Polymarket names, mapped to the
+# ICAO we already hold coordinates for. Aliases only — never add an entry here
+# for an airport whose coordinates we don't have, because routing a market to
+# the wrong airport is silent and profitable-looking (the KDFW/KDAL Dallas
+# bug). A genuinely new station needs a coord-table entry, not an alias.
+_STATION_NAME_ALIASES = {
+    # ours: "Hartsfield-Jackson Atlanta International Airport"
+    "Hartsfield-Jackson International Airport": "KATL",
+    # ours: "Amsterdam Schiphol Airport"
+    "Amsterdam Airport Schiphol": "EHAM",
+    # ours: "Milan Malpensa Airport"
+    "Malpensa Intl Airport": "LIMC",
+}
 
 _STATION_NAME_INDEX = _build_station_name_index()
 
@@ -377,10 +443,30 @@ _WUNDERGROUND_URL_RE = re.compile(
     r"wunderground\.com/history/daily/[a-z]{2}/(?:[a-z0-9_\-]+/)+([A-Z]{4})\b",
     re.IGNORECASE,
 )
+# Polymarket reworded every weather-temperature market on 2026-08-22: the
+# Wunderground URL was dropped (resolution source moved to NOAA) and the
+# station phrase gained an agency clause — "recorded BY NOAA at the LaGuardia
+# Airport Station". The old pattern matched neither, so the parser returned
+# None on 100% of current criteria and the skill skipped every event. The
+# agency clause is optional and generic here so the next reword ("by NWS",
+# "by the National Weather Service") does not break us again.
+# Matched against whitespace-collapsed text (see _collapse_ws), so every gap
+# here is a literal single space. Writing them as \s+ instead lets the runs
+# overlap the lazy (.+?) capture, and the engine repartitions the whitespace
+# on every failure: "recorded at the" + 1600 spaces took 6.8s, growing ~8x per
+# doubling. Criteria text is authored upstream, so a single malformed market
+# would stall the whole scan. Keep the gaps literal.
 _STATION_PHRASE_RE = re.compile(
-    r"recorded at the (.+?) Station",
+    r"recorded(?: by [A-Za-z][A-Za-z .'-]{0,60}?)? at the (.{1,120}?) Station\b",
     re.IGNORECASE,
 )
+
+
+def _collapse_ws(text: str) -> str:
+    """Collapse whitespace runs to single spaces so the station phrase can be
+    matched with literal spaces. Criteria arrives with newlines and wrapped
+    indentation; station names themselves never contain a run."""
+    return " ".join(text.split())
 
 
 def parse_resolution_station(criteria: str) -> dict:
@@ -389,9 +475,41 @@ def parse_resolution_station(criteria: str) -> dict:
     Returns a dict with `station_id` (4-letter ICAO, uppercase) and
     `station_name` (human-readable airport name), or None if the criteria
     doesn't reference a recognized weather station.
+
+    Use parse_resolution_station_result() when you need to tell "the market
+    carries no criteria at all" apart from "criteria is present but names a
+    station we can't read" — the two used to share one (wrong) log line.
+    """
+    result = parse_resolution_station_result(criteria)
+    return result["station"]
+
+
+# Why a market could not be routed to a station. Distinct values so the caller
+# can log the true cause instead of blaming a stale SDK for both.
+SKIP_MISSING_CRITERIA = "missing_criteria"
+SKIP_UNPARSEABLE_CRITERIA = "unparseable_criteria"
+
+# Fraction of criteria-bearing events we must be able to read a station out of
+# before a run is considered healthy. Below this, the parser has almost
+# certainly fallen behind Polymarket's wording rather than hit a few odd
+# markets. Polymarket reworded every weather market at once on 2026-08-22 and
+# our coverage went to zero, so the realistic failure is total, not gradual —
+# a half threshold separates it from normal per-market noise.
+MIN_STATION_PARSE_COVERAGE = 0.5
+
+
+def parse_resolution_station_result(criteria: str) -> dict:
+    """parse_resolution_station() plus the reason it failed.
+
+    Returns {"station": {...} | None, "reason": str | None}. `reason` is
+    SKIP_MISSING_CRITERIA when the market carries no criteria text, and
+    SKIP_UNPARSEABLE_CRITERIA when criteria is present but no station phrase
+    or Wunderground URL could be read out of it. That second case is the one
+    that means "our parser is behind Polymarket's wording", and it is the
+    signal the coverage guard counts.
     """
     if not criteria or not isinstance(criteria, str):
-        return None
+        return {"station": None, "reason": SKIP_MISSING_CRITERIA}
 
     station_id = None
     url_match = _WUNDERGROUND_URL_RE.search(criteria)
@@ -399,14 +517,17 @@ def parse_resolution_station(criteria: str) -> dict:
         station_id = url_match.group(1).upper()
 
     station_name = None
-    phrase_match = _STATION_PHRASE_RE.search(criteria)
+    phrase_match = _STATION_PHRASE_RE.search(_collapse_ws(criteria))
     if phrase_match:
         station_name = phrase_match.group(1).strip()
 
     if not station_id and not station_name:
-        return None
+        return {"station": None, "reason": SKIP_UNPARSEABLE_CRITERIA}
 
-    return {"station_id": station_id, "station_name": station_name}
+    return {
+        "station": {"station_id": station_id, "station_name": station_name},
+        "reason": None,
+    }
 
 
 OPEN_METEO_BASE = "https://api.open-meteo.com/v1/forecast"
@@ -599,8 +720,11 @@ def get_noaa_forecast(location: str) -> dict:
 # Market Parsing
 # =============================================================================
 
-def parse_weather_event(event_name: str) -> dict:
-    """Parse weather event name to extract location, date, metric."""
+def parse_weather_event(event_name: str, now=None) -> dict:
+    """Parse weather event name to extract location, date, metric.
+
+    `now` pins the year / 7-day rollover (tests pass a frozen morning clock).
+    """
     if not event_name:
         return None
 
@@ -621,6 +745,9 @@ def parse_weather_event(event_name: str) -> dict:
         'atlanta': 'Atlanta', 'hartsfield': 'Atlanta',
         'dallas': 'Dallas', 'dfw': 'Dallas',
         'miami': 'Miami',
+        'austin': 'Austin',
+        'houston': 'Houston', 'hobby': 'Houston',
+        'denver': 'Denver', 'buckley': 'Denver',
         # International cities (Open-Meteo)
         'tel aviv': 'Tel Aviv',
         'munich': 'Munich',
@@ -634,6 +761,29 @@ def parse_weather_event(event_name: str) -> dict:
         'milan': 'Milan',
         'amsterdam': 'Amsterdam',
         'taipei': 'Taipei',
+        'beijing': 'Beijing',
+        'shanghai': 'Shanghai',
+        'guangzhou': 'Guangzhou',
+        'shenzhen': 'Shenzhen',
+        'chengdu': 'Chengdu',
+        'chongqing': 'Chongqing',
+        'wuhan': 'Wuhan',
+        'qingdao': 'Qingdao',
+        'zhengzhou': 'Zhengzhou',
+        'singapore': 'Singapore',
+        'kuala lumpur': 'Kuala Lumpur',
+        'manila': 'Manila',
+        'busan': 'Busan',
+        'toronto': 'Toronto',
+        'buenos aires': 'Buenos Aires', 'ezeiza': 'Buenos Aires',
+        'sao paulo': 'Sao Paulo', 'são paulo': 'Sao Paulo',
+        'mexico city': 'Mexico City',
+        'cape town': 'Cape Town',
+        'helsinki': 'Helsinki',
+        'jeddah': 'Jeddah',
+        'warsaw': 'Warsaw',
+        'paris': 'Paris',
+        'panama': 'Panama City',
     }
 
     for alias, loc in location_aliases.items():
@@ -665,7 +815,9 @@ def parse_weather_event(event_name: str) -> dict:
     if not month:
         return None
 
-    now = datetime.now(timezone.utc)
+    now = _clock() if now is None else now
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
     year = now.year
     try:
         target_date = datetime(year, month, day, tzinfo=timezone.utc)
@@ -676,6 +828,67 @@ def parse_weather_event(event_name: str) -> dict:
         return None
 
     return {"location": location, "date": date_str, "metric": metric, "unit": temp_unit}
+
+
+# Full month names matching parse_weather_event / Polymarket titles ("on September 9").
+_EVENT_MONTH_NAMES = (
+    "january", "february", "march", "april", "may", "june",
+    "july", "august", "september", "october", "november", "december",
+)
+
+
+def discovery_horizon_hours(min_hours=None):
+    """Hours ahead discovery must look: max(MIN_HOURS_TO_RESOLVE, 48h)."""
+    hours = TIME_TO_RESOLUTION_MIN_HOURS if min_hours is None else min_hours
+    try:
+        hours = float(hours)
+    except (TypeError, ValueError):
+        hours = 2.0
+    return max(hours, float(DISCOVERY_HORIZON_FLOOR_HOURS))
+
+
+def discovery_event_dates(now=None, min_hours=None):
+    """UTC calendar dates from today through the discovery horizon (inclusive)."""
+    now = _clock() if now is None else now
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    start = now.date()
+    end = (now + timedelta(hours=discovery_horizon_hours(min_hours))).date()
+    dates = []
+    day = start
+    while day <= end:
+        dates.append(day.isoformat())
+        day += timedelta(days=1)
+    return dates
+
+
+def event_date_query_token(date_str):
+    """'2026-09-10' → 'september 10' (matches parse_weather_event titles)."""
+    dt = datetime.strptime(date_str, "%Y-%m-%d")
+    return f"{_EVENT_MONTH_NAMES[dt.month - 1]} {dt.day}"
+
+
+def discovery_fetch_queries(now=None, min_hours=None):
+    """Unscoped page (None) plus `q` tokens for each extra horizon date."""
+    dates = discovery_event_dates(now=now, min_hours=min_hours)
+    queries = [None]
+    for date_str in dates[1:]:
+        queries.append(event_date_query_token(date_str))
+    return queries
+
+
+def discovery_search_terms(location, now=None, min_hours=None):
+    """Location keywords plus dated terms for +1/+2… days in the horizon."""
+    base = LOCATION_SEARCH_TERMS.get(location, [f"temperature {location.lower()}"])
+    dates = discovery_event_dates(now=now, min_hours=min_hours)
+    extra = [f"{base[0]} {event_date_query_token(date_str)}" for date_str in dates[1:]]
+    return list(base) + extra
+
+
+def select_events_in_horizon(event_infos, now=None, min_hours=None):
+    """Keep parsed events whose date falls in the discovery horizon."""
+    allowed = set(discovery_event_dates(now=now, min_hours=min_hours))
+    return [info for info in event_infos if info and info.get("date") in allowed]
 
 
 def parse_temperature_bucket(outcome_name: str) -> tuple:
@@ -723,8 +936,8 @@ def parse_temperature_bucket(outcome_name: str) -> tuple:
 #                  (or skip if REQUIRE_SOURCE_AGREEMENT=true).
 #   - wide       → temp spread > MAX_SOURCE_SPREAD_F, or buckets non-adjacent.
 #                  Always skip.
-#   - missing_secondary → no secondary available (intl today). Behave per
-#                  REQUIRE_SOURCE_AGREEMENT flag.
+#   - missing_secondary → no secondary available (intl today). Cap to
+#                  MAX_CANARY_USD (or skip if REQUIRE_SOURCE_AGREEMENT=true).
 
 def _bucket_for_temp(temp, all_markets):
     """Find the market whose bucket contains the given temperature."""
@@ -803,7 +1016,8 @@ def apply_source_tier_to_sizing(tier, base_size):
     if tier == 'missing_secondary':
         if REQUIRE_SOURCE_AGREEMENT:
             return (None, "no secondary source; REQUIRE_SOURCE_AGREEMENT=true")
-        return (base_size, "no secondary source — single-source mode")
+        capped = min(base_size, MAX_CANARY_USD)
+        return (capped, f"no secondary source — canary cap ${MAX_CANARY_USD:.2f}")
     if tier == 'wide':
         return (None, f"source spread > {MAX_SOURCE_SPREAD_F}°F equivalent — skip")
     if tier == 'adjacent':
@@ -853,13 +1067,28 @@ def get_price_history(market_id: str) -> list:
         return []
 
 
-def check_context_safeguards(context: dict, use_edge: bool = True) -> tuple:
+def check_entry_price(price: float) -> tuple:
+    """ENTRY_THRESHOLD is an upper bound. MIN_ENTRY_PRICE is the optional floor (0 = off).
+
+    Returns (should_enter, reason). reason is empty when should_enter is True.
+    Used on the entry path only — exits must not inherit the lottery-ticket floor.
+    """
+    if price < MIN_ENTRY_PRICE:
+        return False, f"Price ${price:.2f} below min entry ${MIN_ENTRY_PRICE:.2f}"
+    if price >= ENTRY_THRESHOLD:
+        return False, f"Price ${price:.2f} above threshold ${ENTRY_THRESHOLD:.2f}"
+    return True, ""
+
+
+def check_context_safeguards(context: dict, use_edge: bool = True, min_hours: float = None) -> tuple:
     """
     Check context for safeguards. Returns (should_trade, reasons).
     
     Args:
         context: Context response from SDK
         use_edge: If True, respect edge recommendation (TRADE/HOLD/SKIP)
+        min_hours: Time-decay floor in hours. Defaults to the entry knob
+            TIME_TO_RESOLUTION_MIN_HOURS; exits pass EXIT_MIN_HOURS_TO_RESOLVE.
     """
     if not context:
         return True, []  # No context = proceed (fail open)
@@ -883,8 +1112,10 @@ def check_context_safeguards(context: dict, use_edge: bool = True) -> tuple:
     elif warning_level == "mild":
         reasons.append("Mild flip-flop warning (proceed with caution)")
 
-    # Check time to resolution
+    # Check time to resolution. Live context uses "10h" / "1d 3h".
+    # Replay listings expose seconds_to_resolution and omit the string.
     time_str = market.get("time_to_resolution", "")
+    hours = None
     if time_str:
         try:
             hours = 0
@@ -896,11 +1127,17 @@ def check_context_safeguards(context: dict, use_edge: bool = True) -> tuple:
                 if "d" in h_part:
                     h_part = h_part.split("d")[-1].strip()
                 hours += int(h_part)
-
-            if hours < TIME_TO_RESOLUTION_MIN_HOURS:
-                return False, [f"Resolves in {hours}h - too soon"]
         except (ValueError, IndexError):
-            pass
+            hours = None
+    elif market.get("seconds_to_resolution") is not None:
+        try:
+            hours = float(market["seconds_to_resolution"]) / 3600.0
+        except (TypeError, ValueError):
+            hours = None
+    if hours is not None:
+        floor = TIME_TO_RESOLUTION_MIN_HOURS if min_hours is None else min_hours
+        if hours < floor:
+            return False, [f"Resolves in {hours:g}h - too soon"]
 
     # Check liquidity (pre-filter before slippage, avoids wasting a context call)
     if MIN_LIQUIDITY_USD > 0:
@@ -1049,7 +1286,8 @@ def apply_vol_targeting(base_size: float, current_vol: float | None,
 # (/search requires auth). Tested Feb 2026: 600+ events paginated, zero weather.
 # This path is slower but is the only way to discover weather markets by keyword.
 # Trading does NOT depend on discovery — v1.10.1+ trades from already-imported
-# markets via GET /api/sdk/markets?tags=weather.
+# markets via GET /api/sdk/markets?tags=weather (live) or q=temperature
+# (replay; the tape rejects tags/status).
 # =============================================================================
 
 # Search terms per location (matching Polymarket event naming)
@@ -1063,7 +1301,7 @@ LOCATION_SEARCH_TERMS = {
 }
 
 
-def discover_and_import_weather_markets(log=print):
+def discover_and_import_weather_markets(log=print, now=None, min_hours=None):
     """Discover weather markets on Polymarket and auto-import to Simmer.
 
     Searches the importable markets endpoint for weather events matching
@@ -1076,7 +1314,7 @@ def discover_and_import_weather_markets(log=print):
     seen_urls = set()
 
     for location in ACTIVE_LOCATIONS:
-        search_terms = LOCATION_SEARCH_TERMS.get(location, [f"temperature {location.lower()}"])
+        search_terms = discovery_search_terms(location, now=now, min_hours=min_hours)
 
         for term in search_terms:
             try:
@@ -1123,34 +1361,467 @@ def discover_and_import_weather_markets(log=print):
 # Simmer API - Trading
 # =============================================================================
 
-def fetch_weather_markets():
+class MarketFetchError(RuntimeError):
+    """Weather market listing failed. Fail-closed so a backtest is not clean
+    on a 0-eval tick (replay maps a non-zero skill exit to failed_ticks)."""
+
+
+def _is_replay() -> bool:
+    """True inside the Simmer replay harness (SIMMER_REPLAY=1)."""
+    return os.environ.get("SIMMER_REPLAY") == "1"
+
+
+def _clock() -> datetime:
+    """Wall clock, or the replay frozen tick (`SIMMER_REPLAY_NOW`).
+
+    `parse_weather_event` and the discovery horizon date events from
+    `datetime.now()`. Under replay that is the real present, so a 2026-04
+    tape is dated 2027 and `select_events_in_horizon` drops every row.
+    The harness already sets `SIMMER_REPLAY_NOW` per tick.
+    """
+    if _is_replay():
+        raw = os.environ.get("SIMMER_REPLAY_NOW")
+        if raw:
+            try:
+                dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                return dt.astimezone(timezone.utc)
+            except ValueError:
+                pass
+    return datetime.now(timezone.utc)
+
+
+def _market_yes_price(market: dict) -> float:
+    """Live path is `external_price_yes or 0.5`. Replay may fall through.
+
+    On live, `None` and `0.0` are both falsy — same as main. Replay listings
+    omit `external_price_yes` and expose `yes_price` / `current_probability`.
+    """
+    if not market:
+        return 0.5
+    if not _is_replay():
+        return market.get("external_price_yes") or 0.5
+    for key in ("yes_price", "current_probability"):
+        val = market.get(key)
+        if val is None:
+            continue
+        try:
+            return float(val)
+        except (TypeError, ValueError):
+            continue
+    return market.get("external_price_yes") or 0.5
+
+
+# Tests / a local harness / SIMMER_REPLAY_FORECASTS may inject
+# `{station_id: {YYYY-MM-DD: {"high": t, "low": t, "leads"?}}}`.
+# Live NOAA / Open-Meteo never run under replay — that would be look-ahead
+# vs the frozen tick. `leads` is optional (hand-built / sample omit it).
+REPLAY_FORECASTS_ENV = "SIMMER_REPLAY_FORECASTS"
+_SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
+# User-supplied archive. Not committed (see .gitignore). Auto-load only this.
+_DEFAULT_REPLAY_FORECASTS_PATH = os.path.join(
+    _SKILL_DIR, "fixtures", "replay_forecasts.json"
+)
+# Pinned shape example. Never auto-loaded — invented test temps, not history.
+_SAMPLE_REPLAY_FORECASTS_PATH = os.path.join(
+    _SKILL_DIR, "fixtures", "replay_forecasts.sample.json"
+)
+_REPLAY_FORECASTS: dict = {}
+_replay_forecasts_load_attempted = False
+_REPLAY_FORECASTS_SOURCE = None  # resolved archive path, or None
+_REPLAY_STATION_UTC_OFFSET: dict[str, int] = {}
+ASSUMED_UTC_OFFSET_SECONDS = -12 * 3600  # UTC−12 when _meta has no offset
+
+
+class ReplayForecastArchiveError(RuntimeError):
+    """Archive path was set but the file could not be read or parsed.
+
+    Fail closed so a typo does not look like an honest empty tape.
+    """
+
+
+def reset_replay_forecasts() -> None:
+    """Clear the replay forecast plane. Tests only."""
+    global _replay_forecasts_load_attempted, _REPLAY_FORECASTS_SOURCE
+    _REPLAY_FORECASTS.clear()
+    _REPLAY_STATION_UTC_OFFSET.clear()
+    _replay_forecasts_load_attempted = False
+    _REPLAY_FORECASTS_SOURCE = None
+
+
+def _resolve_replay_forecasts_path(path: str | None = None) -> str | None:
+    """Return a readable archive path, or None if none was requested.
+
+    A set-but-missing path raises. An unset path loads the user file
+    ``fixtures/replay_forecasts.json`` when present (bundle-local so
+    ``simmer backtest`` sees it after the harness copies the skill).
+    The committed ``.sample.json`` is never selected.
+    """
+    explicit = path is not None
+    if path is None:
+        path = (os.environ.get(REPLAY_FORECASTS_ENV) or "").strip()
+        explicit = bool(path)
+    if not path:
+        if os.path.isfile(_DEFAULT_REPLAY_FORECASTS_PATH):
+            return _DEFAULT_REPLAY_FORECASTS_PATH
+        return None
+    candidates = [os.path.expanduser(path)]
+    if not os.path.isabs(path):
+        candidates.append(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+        )
+    for candidate in candidates:
+        if os.path.isfile(candidate):
+            return candidate
+    if explicit:
+        raise ReplayForecastArchiveError(
+            f"Replay forecast archive not found: {path} "
+            f"(set {REPLAY_FORECASTS_ENV} to a JSON file matching "
+            '{station: {YYYY-MM-DD: {high, low}}})'
+        )
+    return None
+
+
+# Builder provenance. Not a station — skip so `{_meta, KLGA: …}` loads.
+REPLAY_FORECAST_META_KEY = "_meta"
+
+
+def _parse_replay_day_temps(temps: dict) -> dict:
+    """Keep top-level high/low and optional ``leads`` {\"1\": {high, low}, …}."""
+    parsed = {
+        "high": temps.get("high"),
+        "low": temps.get("low"),
+    }
+    leads = temps.get("leads")
+    if isinstance(leads, dict) and leads:
+        parsed_leads = {}
+        for key, val in leads.items():
+            if isinstance(val, dict):
+                parsed_leads[str(key)] = {
+                    "high": val.get("high"),
+                    "low": val.get("low"),
+                }
+        if parsed_leads:
+            parsed["leads"] = parsed_leads
+    return parsed
+
+
+def _parse_utc_offset_map(raw) -> None:
+    """Fill ``_REPLAY_STATION_UTC_OFFSET`` from ``_meta.utc_offset_seconds``."""
+    _REPLAY_STATION_UTC_OFFSET.clear()
+    if not isinstance(raw, dict):
+        return
+    meta = raw.get(REPLAY_FORECAST_META_KEY)
+    if not isinstance(meta, dict):
+        return
+    offsets = meta.get("utc_offset_seconds")
+    if not isinstance(offsets, dict):
+        return
+    for station, val in offsets.items():
+        if isinstance(station, str) and station.strip() and isinstance(val, (int, float)):
+            _REPLAY_STATION_UTC_OFFSET[station] = int(val)
+
+
+def _parse_replay_forecast_archive(raw) -> dict:
+    """Validate the inject shape. Root is station → date → {high, low}.
+
+    ``_meta`` is not a station. ``utc_offset_seconds`` is read into
+    ``_REPLAY_STATION_UTC_OFFSET``. Optional ``leads`` on a day is kept.
+    """
+    if not isinstance(raw, dict):
+        raise ReplayForecastArchiveError(
+            "archive root must be an object keyed by station id"
+        )
+    _parse_utc_offset_map(raw)
+    out = {}
+    for station, days in raw.items():
+        if station == REPLAY_FORECAST_META_KEY:
+            continue
+        if not isinstance(station, str) or not station.strip():
+            raise ReplayForecastArchiveError("station keys must be non-empty strings")
+        if not isinstance(days, dict):
+            raise ReplayForecastArchiveError(f"{station}: expected a date map")
+        parsed_days = {}
+        for date_str, temps in days.items():
+            if not isinstance(temps, dict):
+                raise ReplayForecastArchiveError(
+                    f"{station}/{date_str}: expected {{high, low}} object"
+                )
+            parsed_days[str(date_str)] = _parse_replay_day_temps(temps)
+        out[station] = parsed_days
+    return out
+
+
+def load_replay_forecasts(path: str | None = None) -> dict:
+    """Fill ``_REPLAY_FORECASTS`` from a JSON archive. Replay-only.
+
+    Shape matches the test inject:
+    ``{station_id: {YYYY-MM-DD: {"high": t, "low": t}}}``.
+    A builder ``_meta`` block is ignored.
+
+    Path order: ``path`` argument, else ``SIMMER_REPLAY_FORECASTS``, else
+    user file ``fixtures/replay_forecasts.json`` when it exists.
+    The committed ``.sample.json`` is never selected.
+    """
+    global _replay_forecasts_load_attempted, _REPLAY_FORECASTS_SOURCE
+    _replay_forecasts_load_attempted = True
+    if not _is_replay():
+        return {}
+    resolved = _resolve_replay_forecasts_path(path)
+    if resolved is None:
+        return {}
+    try:
+        with open(resolved, encoding="utf-8") as fh:
+            raw = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ReplayForecastArchiveError(
+            f"Failed to read replay forecast archive {resolved}"
+        ) from exc
+    parsed = _parse_replay_forecast_archive(raw)
+    _REPLAY_FORECASTS.update(parsed)
+    _REPLAY_FORECASTS_SOURCE = resolved
+    return parsed
+
+
+def _ensure_replay_forecasts_loaded() -> None:
+    """Load the archive once under replay. Does not clobber a test inject."""
+    global _replay_forecasts_load_attempted
+    if _replay_forecasts_load_attempted:
+        return
+    if _REPLAY_FORECASTS:
+        _replay_forecasts_load_attempted = True
+        return
+    load_replay_forecasts()
+
+
+def _replay_archive_has_leads() -> bool:
+    for days in _REPLAY_FORECASTS.values():
+        if not isinstance(days, dict):
+            continue
+        for temps in days.values():
+            if isinstance(temps, dict) and temps.get("leads"):
+                return True
+    return False
+
+
+def _replay_tz_assumed() -> bool:
+    """True when a leads archive is missing a recorded station offset."""
+    if not _replay_archive_has_leads():
+        return False
+    for station in _REPLAY_FORECASTS:
+        if station not in _REPLAY_STATION_UTC_OFFSET:
+            return True
+    return False
+
+
+def _replay_forecast_provenance_line() -> str:
+    """One forced line: path + stations + date span, or empty-plane FIX."""
+    dates = []
+    for days in _REPLAY_FORECASTS.values():
+        dates.extend(str(d) for d in days)
+    if not dates:
+        # Covers both an empty plane and an archive whose stations carry no
+        # dates ({"KLGA": {}}): min()/max() on [] would abort the tick.
+        return "Replay: no archive: NOAA dark, 0 entries is FIX"
+    source = _REPLAY_FORECASTS_SOURCE or "inject"
+    line = (
+        f"Replay: archive {source} stations={len(_REPLAY_FORECASTS)} "
+        f"{min(dates)}–{max(dates)}"
+    )
+    if _replay_archive_has_leads():
+        line += " leads=1-3"
+        if _replay_tz_assumed():
+            line += " tz=assumed"
+    return line
+
+
+def _city_fallback_station(location: str):
+    """Replay-only station when the tape omits `resolution_criteria`.
+
+    Uses the existing city table (Dallas excluded — same KDFW/KDAL rule).
+    International cities map to the first airport we already hold coords for.
+    Returns `(station_id, is_international)` or `(None, False)`.
+    """
+    info = LOCATIONS.get(location) or {}
+    station = info.get("station")
+    if station:
+        return station, False
+    for icao, meta in INTERNATIONAL_STATION_COORDS.items():
+        if meta.get("city") == location:
+            return icao, True
+    return None, False
+
+
+def _as_event_date(event_date):
+    """YYYY-MM-DD string or date/datetime → date. None stays None."""
+    if event_date is None:
+        return None
+    if isinstance(event_date, datetime):
+        return event_date.date()
+    if isinstance(event_date, str):
+        return datetime.strptime(event_date[:10], "%Y-%m-%d").date()
+    return event_date
+
+
+def _event_end_utc(event_date, offset_seconds: int) -> datetime:
+    """Event date 23:59:59 station-local, converted to UTC."""
+    ev = _as_event_date(event_date)
+    local_end = datetime(ev.year, ev.month, ev.day, 23, 59, 59)
+    return (local_end - timedelta(seconds=offset_seconds)).replace(tzinfo=timezone.utc)
+
+
+def _replay_lead_for_event(event_date, station_id: str) -> int | None:
+    """Smallest lead N in 1–3 whose every hourly issuance precedes the tick.
+
+    ``N = ceil((E_end_utc − tick) / 24h)``, min 1. ``E_end_utc`` is the
+    event date's 23:59:59 in the station offset. Unknown offset → UTC−12.
+    N > 3 → no forecast.
+    """
+    ev = _as_event_date(event_date)
+    if ev is None:
+        return None
+    offset = _REPLAY_STATION_UTC_OFFSET.get(station_id, ASSUMED_UTC_OFFSET_SECONDS)
+    tick = _clock()
+    if tick.tzinfo is None:
+        tick = tick.replace(tzinfo=timezone.utc)
+    else:
+        tick = tick.astimezone(timezone.utc)
+    seconds = int((_event_end_utc(ev, offset) - tick).total_seconds())
+    if seconds <= 0:
+        n = 1
+    else:
+        day = 24 * 3600
+        n = (seconds + day - 1) // day
+        n = max(n, 1)
+    if n > 3:
+        return None
+    return n
+
+
+def _replay_day_forecast(temps: dict, *, event_date=None, station_id: str = "") -> dict:
+    """Pick {high, low} for one archive day.
+
+    With ``leads`` and an event date, use the smallest lead whose issuances
+    all precede the tick. Outside 1–3 → empty (skip).
+    Without ``leads`` (hand-built / sample) use top-level high/low.
+    """
+    if not isinstance(temps, dict):
+        return {}
+    leads = temps.get("leads")
+    if not isinstance(leads, dict) or not leads or event_date is None:
+        return {"high": temps.get("high"), "low": temps.get("low")}
+    lead = _replay_lead_for_event(event_date, station_id)
+    if lead is None:
+        return {}
+    picked = leads.get(str(lead))
+    if not isinstance(picked, dict):
+        return {}
+    return {"high": picked.get("high"), "low": picked.get("low")}
+
+
+def _station_forecast(
+    station_id: str, is_international: bool, *, event_date=None
+) -> dict:
+    """Forecast map `{date: {high, low}}`. Live vendors never run under replay.
+
+    Under replay, ``event_date`` selects lead 1–3 when the archive has
+    ``leads``. Events further out than lead 3 return no forecast.
+    """
+    if _is_replay():
+        _ensure_replay_forecasts_loaded()
+        raw = _REPLAY_FORECASTS.get(station_id) or {}
+        if not raw:
+            return {}
+        if event_date is not None:
+            key = _as_event_date(event_date).isoformat()
+            temps = raw.get(key)
+            if not isinstance(temps, dict):
+                return {}
+            selected = _replay_day_forecast(
+                temps, event_date=event_date, station_id=station_id
+            )
+            return {key: selected} if selected else {}
+        return {
+            d: {"high": v.get("high"), "low": v.get("low")}
+            for d, v in raw.items()
+            if isinstance(v, dict)
+        }
+    if is_international:
+        fetched = get_openmeteo_forecast_for_station(station_id)
+        return {
+            d: {"high": v.get("high_c"), "low": v.get("low_c")}
+            for d, v in fetched.items()
+        }
+    return get_noaa_forecast_for_station(station_id)
+
+
+def _weather_markets_params() -> dict:
+    """Live uses tags=weather; replay uses the existing q= filter.
+
+    Replay rejects tags/status with 422 (0.25.3/0.25.4) — MarketMeta has no
+    tags field, so accepting those filters would silently ignore them.
+    Replay already matches q against question/slug. Weather slugs and many
+    questions carry "temperature"; live questions like "Austin 82-83F on
+    Sep 7" do not, which is why live still needs the tag.
+    """
+    params = {"limit": 100, "include": "resolution_criteria"}
+    if _is_replay():
+        params["q"] = "temperature"
+    else:
+        params["tags"] = "weather"
+        params["status"] = "active"
+    return params
+
+
+def fetch_weather_markets(now=None, min_hours=None):
     """Fetch weather-tagged markets from Simmer API.
 
     Requests `resolution_criteria` so we can route each market to the
     specific station Polymarket actually reads (KDAL vs KDFW, KORD vs KMDW,
     LIMC vs LIML, etc.) instead of trusting a city → station hardcode.
+
+    Under replay, drops tags/status and uses q=temperature (see
+    `_weather_markets_params`) as a single page — replay's `q` is the only
+    filter, so the dated horizon pages below would narrow it, not widen it.
+
+    Live: the unscoped `tags=weather` page is newest-first and same-day
+    heavy. Extra pages reuse that fetch with `q=<month day>` for each date
+    past today in the discovery horizon (max(MIN_HOURS_TO_RESOLVE, 48h)).
+
+    A failed base listing raises MarketFetchError instead of returning []
+    — empty tape after a 200 is honest; a 422 is not. A failed horizon page
+    is skipped: it only widens the base page.
     """
-    try:
-        result = get_client()._request(
-            "GET", "/api/sdk/markets",
-            params={
-                "tags": "weather",
-                "status": "active",
-                "limit": 100,
-                "include": "resolution_criteria",
-            },
-        )
-        return result.get("markets", [])
-    except Exception:
-        print("  Failed to fetch markets from Simmer API")
-        return []
+    queries = [None] if _is_replay() else discovery_fetch_queries(now=now, min_hours=min_hours)
+    markets = []
+    seen = set()
+    for q in queries:
+        params = _weather_markets_params()
+        if q:
+            params["q"] = q
+        try:
+            result = get_client()._request("GET", "/api/sdk/markets", params=params)
+        except Exception as exc:
+            if q is None:
+                print("  Failed to fetch markets from Simmer API")
+                raise MarketFetchError("Failed to fetch markets from Simmer API") from exc
+            continue
+        for market in result.get("markets", []) or []:
+            key = market.get("id") or (market.get("question"), market.get("event_ref"))
+            if key in seen:
+                continue
+            seen.add(key)
+            markets.append(market)
+    return markets
 
 
 def execute_trade(market_id: str, side: str, amount: float, reasoning: str = None, signal_data: dict = None) -> dict:
     """Execute a buy trade via Simmer SDK with source tagging."""
     try:
         client = get_client()
-        if client.live:
+        replay = _is_replay()
+        if client.live and not replay:
             pf = client.preflight(planned_amount=amount, exposure_cap_usd=0, venue=client.venue)
             if not pf.ok_to_trade:
                 blockers = ", ".join(pf.blockers)
@@ -1177,7 +1848,8 @@ def execute_sell(market_id: str, shares: float) -> dict:
     """Execute a sell trade via Simmer SDK with source tagging."""
     try:
         client = get_client()
-        if client.live:
+        replay = _is_replay()
+        if client.live and not replay:
             pf = client.preflight(planned_amount=0, exposure_cap_usd=0, venue=client.venue)
             if not pf.ok_to_trade:
                 blockers = ", ".join(pf.blockers)
@@ -1205,14 +1877,40 @@ def get_positions(venue: str = None) -> list:
     """Get current positions as list of dicts, filtered by venue."""
     try:
         client = get_client()
-        # Default to the client's configured venue to avoid cross-venue positions
-        effective_venue = venue or client.venue
+        # Replay's /api/sdk/positions rejects any venue filter (SIM-5067
+        # _reject_unsupported) since the replay tape is single-venue by
+        # construction — omit it so replay doesn't 422 into an empty []
+        # and re-buy the same bucket every tick.
+        if _is_replay():
+            effective_venue = None
+        else:
+            # Default to the client's configured venue to avoid cross-venue positions
+            effective_venue = venue or client.venue
         positions = client.get_positions(venue=effective_venue)
         from dataclasses import asdict
         return [asdict(p) for p in positions]
     except Exception as e:
         print(f"  Error fetching positions: {e}")
         return []
+
+
+def _buys_so_far(position: dict) -> int:
+    """Estimate prior buy-fills into a held market from `get_positions()`.
+
+    Positions aggregate every fill into one row — there is no per-fill
+    history here — so this is an estimate, not an exact count. `cost_basis`
+    (Polymarket: total USDC spent) divided by the configured per-buy ceiling
+    approximates fill count under the common case (smart_sizing / vol_targeting
+    off, so every buy targets MAX_POSITION_USD). Falls back to "any shares
+    held counts as one buy" when cost_basis is unavailable (sim venue, or a
+    position predating cost tracking) — conservative for the default
+    MAX_BUYS_PER_MARKET=1, where any existing position already caps entry.
+    """
+    cost_basis = position.get("cost_basis")
+    if cost_basis and MAX_POSITION_USD > 0:
+        return max(1, round(cost_basis / MAX_POSITION_USD))
+    shares = position.get("shares_yes") or 0
+    return 1 if shares > 0 else 0
 
 
 def calculate_position_size(default_size: float, smart_sizing: bool) -> float:
@@ -1225,7 +1923,7 @@ def calculate_position_size(default_size: float, smart_sizing: bool) -> float:
         print(f"  ⚠️  Smart sizing failed, using default ${default_size:.2f}")
         return default_size
 
-    balance = portfolio.get("balance_usdc", 0)
+    balance = portfolio.get("balance_usdc") or 0
     if balance <= 0:
         print(f"  ⚠️  No available balance, using default ${default_size:.2f}")
         return default_size
@@ -1285,7 +1983,7 @@ def check_exit_opportunities(dry_run: bool = False, use_safeguards: bool = True)
             # Check safeguards before selling
             if use_safeguards:
                 context = get_market_context(market_id)
-                should_trade, reasons = check_context_safeguards(context)
+                should_trade, reasons = check_context_safeguards(context, min_hours=EXIT_MIN_HOURS_TO_RESOLVE)
                 if not should_trade:
                     print(f"     ⏭️  Skipped: {'; '.join(reasons)}")
                     continue
@@ -1358,10 +2056,17 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         log("\n  [PAPER MODE] Trades will be simulated with real prices. Use --live for real trades.")
 
     log(f"\n⚙️  Configuration:")
-    log(f"  Entry threshold: {ENTRY_THRESHOLD:.0%} (buy below this)")
+    log(f"  Entry threshold: {ENTRY_THRESHOLD:.0%} (buy below this; upper bound only)")
+    if MIN_ENTRY_PRICE > 0:
+        log(f"  Min entry price: {MIN_ENTRY_PRICE:.0%} (reject below this)")
+        if MIN_ENTRY_PRICE >= ENTRY_THRESHOLD:
+            log(f"  ⚠️  Min entry ${MIN_ENTRY_PRICE:.2f} >= entry threshold ${ENTRY_THRESHOLD:.2f}: every candidate will be skipped", force=True)
+    log(f"  Min hours to resolve: {TIME_TO_RESOLUTION_MIN_HOURS:g} (entries only; exits keep {EXIT_MIN_HOURS_TO_RESOLVE}h)")
+    log(f"  Discovery horizon:    {discovery_horizon_hours():g}h → {', '.join(discovery_event_dates())}")
     log(f"  Exit threshold:  {EXIT_THRESHOLD:.0%} (sell above this)")
     log(f"  Max position:    ${MAX_POSITION_USD:.2f}")
     log(f"  Max trades/run:  {MAX_TRADES_PER_RUN}")
+    log(f"  Max buys/market: {MAX_BUYS_PER_MARKET if MAX_BUYS_PER_MARKET > 0 else 'unlimited (DCA)'}")
     log(f"  Locations:       {', '.join(ACTIVE_LOCATIONS)}")
     log(f"  Smart sizing:    {'✓ Enabled' if smart_sizing else '✗ Disabled'}")
     log(f"  Safeguards:      {'✓ Enabled' if use_safeguards else '✗ Disabled'}")
@@ -1417,7 +2122,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         log("\n💰 Portfolio:")
         portfolio = get_portfolio()
         if portfolio:
-            log(f"  Balance: ${portfolio.get('balance_usdc', 0):.2f}")
+            log(f"  Balance: ${portfolio.get('balance_usdc') or 0:.2f}")
             log(f"  Exposure: ${portfolio.get('total_exposure', 0):.2f}")
             log(f"  Positions: {portfolio.get('positions_count', 0)}")
             by_source = portfolio.get('by_source', {})
@@ -1437,7 +2142,16 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         return
 
     log("\n🔍 Discovering new weather markets on Polymarket...")
-    newly_imported = discover_and_import_weather_markets(log=log)
+    if _is_replay():
+        # Tape already holds the slice. Importable listings still increment
+        # the replay eval budget, so a live-style import pass can exhaust
+        # max_evaluations before fetch_weather_markets runs.
+        log("  Replay: tape already holds markets — skip live import")
+        newly_imported = 0
+        _ensure_replay_forecasts_loaded()
+        log(f"  {_replay_forecast_provenance_line()}", force=True)
+    else:
+        newly_imported = discover_and_import_weather_markets(log=log)
     if newly_imported:
         log(f"  Auto-imported {newly_imported} new market(s)")
     else:
@@ -1453,8 +2167,10 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
 
     events = {}
     for market in markets:
-        # Group by event_id if available, otherwise derive from question
-        event_key = market.get("event_id")
+        # Group by event_ref (canonical parent-event id, set on every import
+        # path) — legacy event_id was missing on SDK-imported markets, which
+        # split sibling temperature buckets into separate groups.
+        event_key = market.get("event_ref") or market.get("event_id")
         if not event_key:
             # Fall back: parse question to derive (location, date) grouping key
             info = parse_weather_event(market.get("event_name") or market.get("question", ""))
@@ -1465,12 +2181,41 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
 
     log(f"  Grouped into {len(events)} events")
 
+    # SIM-5499: per-market position cap. Fetched once per run (not per market)
+    # so replay's DCA-into-an-underpriced-bucket-every-run behavior and live's
+    # natural balance/backoff throttling measure the same strategy.
+    positions_by_market = {}
+    if MAX_BUYS_PER_MARKET > 0:
+        for _pos in get_positions():
+            _mid = _pos.get("market_id")
+            if _mid:
+                positions_by_market[_mid] = _pos
+
     forecast_cache = {}
     secondary_cache = {}  # SIM-2420: lazy Open-Meteo cross-check per station
     trades_executed = 0
     total_usd_spent = 0.0
     opportunities_found = 0
     skip_reasons = []
+    # Per-location breakdown of why a location entered nothing (SIM-5499:
+    # the flat skip_reasons list above was collected but never surfaced, so
+    # diagnosing "location X entered 0" meant re-reading per-tick logs).
+    # `location` is read, not assigned, inside skip() — safe as a plain
+    # closure over the loop variable below.
+    skip_reasons_by_location = defaultdict(Counter)
+
+    def skip(reason: str) -> None:
+        skip_reasons.append(reason)
+        skip_reasons_by_location[location][reason] += 1
+    # Coverage guard: count how many events carried readable criteria vs how
+    # many carried criteria our parser could not read. A parser that has
+    # fallen behind Polymarket's wording fails silently — it throws nothing,
+    # retries nothing, and every downstream health metric stays green while
+    # the skill quietly stops entering. Counting it here, where the failure is
+    # known, is the only place it is cheap to see. See _report_parse_coverage.
+    station_parse_ok = 0
+    station_parse_unreadable = 0
+    station_parse_fallback = 0
     execution_errors = []
 
     for event_id, event_markets in events.items():
@@ -1479,11 +2224,20 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         event_info = parse_weather_event(event_name)
 
         if not event_info:
+            # Unparseable event text (no known location alias, or no "on
+            # <month> <day>" match) never reaches `location`, so it can't
+            # go through skip() — bucket it separately by a snippet of the
+            # text itself so a location that silently stops matching (e.g.
+            # a question-format change) is still visible in the summary.
+            skip_reasons_by_location["(unparsed event name)"][event_name[:60]] += 1
             continue
 
         location = event_info["location"]
         date_str = event_info["date"]
         metric = event_info["metric"]
+
+        if not select_events_in_horizon([event_info], now=_clock()):
+            continue
 
         if location.upper() not in ACTIVE_LOCATIONS:
             continue
@@ -1503,11 +2257,36 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         # rather skip than trade against the wrong forecast (which is the
         # bug this code path replaces).
         sample_criteria = event_markets[0].get("resolution_criteria", "")
-        parsed = parse_resolution_station(sample_criteria)
+        parse_result = parse_resolution_station_result(sample_criteria)
+        parsed = parse_result["station"]
         if not parsed:
-            log(f"  ⏭️  Skipping — no resolution_criteria on market (need SDK ≥ 2026-05-03)")
-            skip_reasons.append("no resolution_criteria")
-            continue
+            # City fallback is replay-only and only when criteria is absent.
+            # Present-but-unreadable still skips — that is a parser miss.
+            if (
+                parse_result["reason"] == SKIP_MISSING_CRITERIA
+                and _is_replay()
+            ):
+                fallback_id = _city_fallback_station(location)[0]
+                if fallback_id:
+                    log(f"  Replay: no resolution_criteria — city fallback {location} → {fallback_id}")
+                    parsed = {"station_id": fallback_id, "station_name": location}
+                    station_parse_fallback += 1
+                else:
+                    log("  ⏭️  Skipping — market carries no resolution_criteria")
+                    skip("missing resolution_criteria")
+                    continue
+            elif parse_result["reason"] == SKIP_MISSING_CRITERIA:
+                log("  ⏭️  Skipping — market carries no resolution_criteria")
+                skip("missing resolution_criteria")
+                continue
+            else:
+                station_parse_unreadable += 1
+                log("  ⏭️  Skipping — resolution_criteria present but no station "
+                    "could be read from it (parser may be behind Polymarket's wording)")
+                skip("unparseable resolution_criteria")
+                continue
+        else:
+            station_parse_ok += 1
 
         station_id = parsed.get("station_id")
         station_name = parsed.get("station_name") or station_id or "?"
@@ -1535,24 +2314,24 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             log(f"  Oracle: {station_name} ({station_id}) → Open-Meteo @ airport coords ({_intl_city})")
         else:
             log(f"  ⏭️  Skipping — station {station_id or 'unknown'} ({station_name}) not in NOAA/Open-Meteo maps")
-            skip_reasons.append(f"unknown station {station_id or station_name}")
+            skip(f"unknown station {station_id or station_name}")
             continue
 
-        cache_key = station_id  # station-keyed so per-airport forecasts don't collide
+        # Live: station-keyed so per-airport forecasts don't collide.
+        # Replay: also key by event date — lead 1–3 depends on that date.
+        cache_key = (station_id, date_str) if _is_replay() else station_id
         temp_unit = event_info.get("unit", "F")
 
         if cache_key not in forecast_cache:
-            if is_international:
-                log(f"  Fetching Open-Meteo forecast for {cache_key}...")
-                raw = get_openmeteo_forecast_for_station(cache_key)
-                # Normalise to {"high": temp, "low": temp} using Celsius keys
-                forecast_cache[cache_key] = {
-                    d: {"high": v.get("high_c"), "low": v.get("low_c")}
-                    for d, v in raw.items()
-                }
+            if _is_replay():
+                log(f"  Replay forecast for {station_id} (no live NOAA/Open-Meteo)...")
+            elif is_international:
+                log(f"  Fetching Open-Meteo forecast for {station_id}...")
             else:
-                log(f"  Fetching NOAA forecast for {cache_key}...")
-                forecast_cache[cache_key] = get_noaa_forecast_for_station(cache_key)
+                log(f"  Fetching NOAA forecast for {station_id}...")
+            forecast_cache[cache_key] = _station_forecast(
+                station_id, is_international, event_date=date_str
+            )
 
         forecasts = forecast_cache[cache_key]
         day_forecast = forecasts.get(date_str, {})
@@ -1560,6 +2339,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
 
         if forecast_temp is None:
             log(f"  ⚠️  No forecast available for {date_str}")
+            skip(f"no forecast ({station_id})")
             continue
 
         unit_label = "°C" if is_international else "°F"
@@ -1577,24 +2357,37 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
 
         if not matching_market:
             log(f"  ⚠️  No bucket found for {forecast_temp}{unit_label}")
+            skip("no bucket match")
             continue
 
         # SIM-2427: prefer outcome_name, fall back to question. Mirrors the
         # matcher loop above. `.get("outcome_name", "")` would return None when
         # the key exists with None value — same class-of-bug as SIM-2371.
         outcome_name = matching_market.get("outcome_name") or matching_market.get("question", "")
-        price = matching_market.get("external_price_yes") or 0.5
+        price = _market_yes_price(matching_market)
         market_id = matching_market.get("id")
 
         log(f"  Matching bucket: {outcome_name} @ ${price:.2f}")
 
+        # SIM-5499: per-market cap, checked against held positions before any
+        # further work. Cheapest check in the loop — skip before spending a
+        # context-safeguard or price-history call on a market we won't buy.
+        if MAX_BUYS_PER_MARKET > 0:
+            existing_pos = positions_by_market.get(market_id)
+            if existing_pos:
+                buys_so_far = _buys_so_far(existing_pos)
+                if buys_so_far >= MAX_BUYS_PER_MARKET:
+                    log(f"  ⏸️  Per-market cap reached ({buys_so_far}/{MAX_BUYS_PER_MARKET} buys) - skip (DCA capped)")
+                    skip("per-market cap reached")
+                    continue
+
         if price < MIN_TICK_SIZE:
             log(f"  ⏸️  Price ${price:.4f} below min tick ${MIN_TICK_SIZE} - skip (market at extreme)")
-            skip_reasons.append("price at extreme")
+            skip("price at extreme")
             continue
         if price > (1 - MIN_TICK_SIZE):
             log(f"  ⏸️  Price ${price:.4f} above max tradeable - skip (market at extreme)")
-            skip_reasons.append("price at extreme")
+            skip("price at extreme")
             continue
 
         # SIM-2427: compute source-tier early so it logs for EVERY bucket-matched
@@ -1602,7 +2395,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
         # dogfood receipts need visibility into would-have-been tier classification.
         # Cost stays bounded — secondary_cache dedupes per station within a scan.
         secondary_temp = None
-        if not is_international:
+        if not is_international and not _is_replay():
             if cache_key not in secondary_cache:
                 log(f"  Fetching Open-Meteo cross-check for {cache_key}...")
                 secondary_cache[cache_key] = get_openmeteo_forecast_for_us_station(cache_key)
@@ -1628,7 +2421,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             should_trade, reasons = check_context_safeguards(context)
             if not should_trade:
                 log(f"  ⏭️  Safeguard blocked: {'; '.join(reasons)}")
-                skip_reasons.append(f"safeguard: {reasons[0]}")
+                skip(f"safeguard: {reasons[0]}")
                 continue
             if reasons:
                 log(f"  ⚠️  Warnings: {'; '.join(reasons)}")
@@ -1647,7 +2440,8 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             elif trend["direction"] == "up":
                 trend_bonus = f" 📈 (up {trend['change_24h']:.0%} in 24h)"
 
-        if price < ENTRY_THRESHOLD:
+        should_enter, entry_reason = check_entry_price(price)
+        if should_enter:
             position_size = calculate_position_size(MAX_POSITION_USD, smart_sizing)
 
             # Apply volatility targeting
@@ -1669,7 +2463,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             tier_size, tier_reason = apply_source_tier_to_sizing(agreement_tier, position_size)
             if tier_size is None:
                 log(f"  ⏭️  Source-tier {agreement_tier}: {tier_reason}")
-                skip_reasons.append(f"source-agreement: {agreement_tier}")
+                skip(f"source-agreement: {agreement_tier}")
                 continue
             if tier_size < position_size:
                 log(f"  🟡 Source-tier {agreement_tier}: capping ${position_size:.2f} → ${tier_size:.2f} ({tier_reason})")
@@ -1678,7 +2472,7 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             min_cost_for_shares = MIN_SHARES_PER_ORDER * price
             if min_cost_for_shares > position_size:
                 log(f"  ⚠️  Position size ${position_size:.2f} too small for {MIN_SHARES_PER_ORDER} shares at ${price:.2f}")
-                skip_reasons.append("position too small")
+                skip("position too small")
                 continue
 
             opportunities_found += 1
@@ -1687,13 +2481,13 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
             # Skip markets whose CLOB orderbook is confirmed nonexistent this run
             if market_id in _STALE_ORDERBOOK_IDS:
                 log(f"  ⏭️  Skipping — CLOB orderbook confirmed nonexistent (cached)")
-                skip_reasons.append("stale orderbook (cached)")
+                skip("stale orderbook (cached)")
                 continue
 
             # Check rate limit
             if trades_executed >= MAX_TRADES_PER_RUN:
                 log(f"  ⏸️  Max trades per run ({MAX_TRADES_PER_RUN}) reached - skipping")
-                skip_reasons.append("max trades reached")
+                skip("max trades reached")
                 continue
 
             tag = "SIMULATED" if dry_run else "LIVE"
@@ -1761,7 +2555,16 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
                     log(f"  ❌ Trade failed: {error}", force=True)
                     execution_errors.append(error[:120])
         else:
-            log(f"  ⏸️  Price ${price:.2f} above threshold ${ENTRY_THRESHOLD:.2f} - skip")
+            if "below min entry" in entry_reason:
+                log(f"  ⏭️  {entry_reason} - skip")
+                skip("below min entry")
+            else:
+                log(f"  ⏸️  {entry_reason} - skip")
+
+    _report_parse_coverage(station_parse_ok, station_parse_unreadable, log)
+    if station_parse_fallback:
+        log(f"  Replay: {station_parse_fallback} event(s) used city-station fallback (no resolution_criteria)")
+    _report_skip_breakdown(skip_reasons_by_location, log)
 
     exits_found, exits_executed = check_exit_opportunities(dry_run, use_safeguards)
 
@@ -1777,6 +2580,55 @@ def run_weather_strategy(dry_run: bool = True, positions_only: bool = False,
 
     if dry_run and show_summary:
         print("\n  [PAPER MODE - trades simulated with real prices]")
+
+
+def _report_parse_coverage(parsed_ok: int, unreadable: int, log) -> None:
+    """Shout when the station parser has stopped reading Polymarket's criteria.
+
+    Every other health signal this skill emits measures something going wrong
+    — a failed trade, a retry, an error rate. A parser that no longer matches
+    upstream wording produces none of those: it just skips every event and
+    reports a clean run. This is the one line that makes that visible.
+
+    `log` is passed in because the scan's logger is a closure over --quiet;
+    this warning must survive quiet mode, so it forces output.
+    """
+    considered = parsed_ok + unreadable
+    if not considered:
+        return
+    coverage = parsed_ok / considered
+    if coverage >= MIN_STATION_PARSE_COVERAGE:
+        return
+    log(
+        f"\n⚠️  Station parser read only {parsed_ok}/{considered} events "
+        f"({coverage:.0%}) that had resolution_criteria. Polymarket has most "
+        f"likely reworded its criteria and this skill needs a parser update — "
+        f"it is not finding no opportunities, it is failing to look.",
+        force=True,
+    )
+
+
+def _report_skip_breakdown(skip_reasons_by_location: dict, log) -> None:
+    """Per-location skip-reason breakdown (SIM-5499).
+
+    `skip_reasons` was being collected all along but never surfaced, so a
+    location that quietly entered zero markets (London 0/36 on the
+    2026-09-17 gate run) could only be diagnosed by re-reading per-tick logs.
+    This prints the top reasons per location so the next run answers it
+    directly. Forces output past --quiet — same rationale as
+    `_report_parse_coverage`.
+    """
+    if not skip_reasons_by_location:
+        return
+    log("\n📋 Skip reasons by location:", force=True)
+    ranked = sorted(
+        skip_reasons_by_location.items(),
+        key=lambda item: -sum(item[1].values()),
+    )
+    for location, counter in ranked:
+        total = sum(counter.values())
+        top = ", ".join(f"{reason} x{count}" for reason, count in counter.most_common(3))
+        log(f"  {location}: {total} skipped — {top}", force=True)
 
 
 # =============================================================================
@@ -1820,10 +2672,13 @@ if __name__ == "__main__":
             _config = load_config(CONFIG_SCHEMA, __file__, slug="polymarket-weather-trader")
             # Update module-level vars
             globals()["ENTRY_THRESHOLD"] = _config["entry_threshold"]
+            globals()["MIN_ENTRY_PRICE"] = _config.get("min_entry_price", 0.0)
+            globals()["TIME_TO_RESOLUTION_MIN_HOURS"] = _config.get("min_hours_to_resolve", 2)
             globals()["EXIT_THRESHOLD"] = _config["exit_threshold"]
             globals()["MAX_POSITION_USD"] = _config["max_position_usd"]
             globals()["SMART_SIZING_PCT"] = _config["sizing_pct"]
             globals()["MAX_TRADES_PER_RUN"] = _config["max_trades_per_run"]
+            globals()["MAX_BUYS_PER_MARKET"] = _config["max_buys_per_market"]
             globals()["BINARY_ONLY"] = _config["binary_only"]
             globals()["VOL_TARGETING"] = _config["vol_targeting"]
             globals()["TARGET_VOL"] = _config["target_vol"]

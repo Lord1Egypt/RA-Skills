@@ -1,43 +1,62 @@
-## Description: <br>
-Transforms AI-GEO brand assets into Zhihu-style questions, answers, article drafts, topic suggestions, and publishing checklists for human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI-GEO brand materials into Zhihu-style questions, answers, article drafts, titles, tags, and review checklists, with optional visible-browser draft filling for human review.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-Brand teams, founders, and AI-GEO operators use this skill to convert prepared brand, FAQ, keyword, and source-material assets into Zhihu-ready Q&A and article drafts. The intended workflow keeps drafting assisted while final factual review, disclosure checks, formatting, and publishing remain human decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a no-ad rewrite flow and may be used to make brand content less visibly promotional on Zhihu. <br>
-Mitigation: Use it only for human-reviewed, disclosure-compliant drafting, and do not use the rewrite flow to hide sponsorship, evade moderation, or make promotional content appear independent. <br>
-Risk: The browser-assist script interacts with a logged-in Zhihu session and can be affected by page changes, verification prompts, or platform controls. <br>
-Mitigation: Run only the visible local browser flow, avoid storing cookies or browser storage, stop for verification challenges, and let a human complete review, saving, and publishing. <br>
+## Use Case:
 
+Brand teams, founders, and AI-GEO operators use this skill to convert brand profiles, FAQs, keyword matrices, and source drafts into Zhihu-ready Q&A and article content. The skill supports manual review and optional local browser-assisted draft filling without automated publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljseeking/zhihu-geo-draft-assistant) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Safety rules](artifact/automation/safety_rules.md) <br>
-- [Playwright draft flow](artifact/automation/playwright_draft_flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, prompt instructions, checklist content, and optional Python/Playwright command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft materials for human review; the browser helper fills visible draft editors but does not publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and CHANGELOG, released 2026-05-12) <br>
+Risk: The content workflow can reduce or remove brand disclosure in a way that may violate Zhihu rules or mislead readers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of sponsorship, affiliation, and marketing intent before drafting or publishing; do not use the no-ad prompt to hide material brand involvement.
+
+Risk: Browser automation interacts with a logged-in Zhihu session and could affect account trust if expanded or misused.
+
+Mitigation: Run Playwright locally in visible mode, keep dependencies pinned in an isolated environment, do not save credentials or session state, and keep publishing decisions manual.
+
+Risk: Generated claims, examples, tags, and positioning may be inaccurate, overbroad, or unsuitable for the target account.
+
+Mitigation: Use the generated publishing checklist to verify facts, boundaries, brand exposure, platform fit, and final responsibility before saving or publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljseeking/skills/zhihu-geo-draft-assistant)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Automation Safety Rules](artifact/automation/safety_rules.md)
+- [Playwright Draft Flow](artifact/automation/playwright_draft_flow.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, prompt outputs, review checklists, templates, and Python/Playwright workflow guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed Zhihu draft assets and optional visible-browser draft filling; final editing, saving, and publishing remain manual.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact CHANGELOG, released 2026-05-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Checks UI components for WCAG accessibility issues and guides improvements such as ARIA labels, color contrast, keyboard navigation, and screen reader support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks UI components for WCAG accessibility issues and helps implement improvements such as ARIA labels, keyboard navigation fixes, and color contrast adjustments.
 
-## Publisher: <br>
-[hupmann86-cell](https://clawhub.ai/user/hupmann86-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hupmann86-cell](https://clawhub.ai/user/hupmann86-cell)
 
-## Use Case: <br>
-Developers use this skill to audit UI components for accessibility issues, identify WCAG gaps, implement fixes, and validate results with tools such as Lighthouse or screen readers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accessibility fixes can unintentionally change UI behavior, visual hierarchy, or interaction patterns. <br>
-Mitigation: Review proposed changes in the product context and validate with automated checks plus keyboard and screen reader testing before release. <br>
-Risk: Security guidance notes maintainer automation and broad review access may be involved in some workflows. <br>
-Mitigation: Review the relevant workflows before use, apply documented opt-outs or confirmations, and avoid running them against sensitive code or accounts unless needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit UI components for accessibility defects, identify likely WCAG violations, and apply targeted improvements before validating with tools such as Lighthouse or screen readers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hupmann86-cell/accessibility-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with code changes and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ARIA labels, color contrast fixes, keyboard-navigation changes, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Accessibility fixes can change UI semantics, keyboard behavior, or visual contrast in ways that affect users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI changes and validate them with accessibility tooling and assistive-technology checks before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hupmann86-cell/skills/accessibility-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with code changes and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include accessibility findings, remediation steps, UI code edits, and validation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

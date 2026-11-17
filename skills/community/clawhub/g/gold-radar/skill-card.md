@@ -1,42 +1,65 @@
-## Description: <br>
-Real-time gold price monitoring and investment decision support system for gold prices, precious-metals market trends, XAU/USD outlooks, price alerts, technical analysis, and portfolio decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gold Radar helps agents produce gold market briefings, price alerts, weekly outlooks, and gold investment analysis based on market, macroeconomic, and technical signals.
 
-## Publisher: <br>
-[quiteqiang](https://clawhub.ai/user/quiteqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quiteqiang](https://clawhub.ai/user/quiteqiang)
 
-## Use Case: <br>
-External users and agents use this skill to prepare gold market briefings, price alerts, weekly outlooks, and buy/sell signal checks for gold-related holdings. The skill supports market analysis and risk-aware discussion, but its outputs should be treated as general information rather than personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce trading signals, price ranges, stop-loss rules, allocation suggestions, and other financial guidance that may be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as general information, verify market data independently, and consult a qualified financial professional before making trades or allocation decisions. <br>
-Risk: The skill references configurable holdings, thresholds, watchlists, and user profile details that could expose sensitive financial information if entered carelessly. <br>
-Mitigation: Do not include brokerage credentials, account numbers, or private financial records in configuration or prompts. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about gold prices, XAU/USD, market trends, price alerts, and gold portfolio decisions. It supports daily briefings, weekly outlooks, technical analysis, and risk-aware trading recommendations.
 
-## Reference(s): <br>
-- [Data Sources](references/data-sources.md) <br>
-- [Investment Strategy](references/investment-strategy.md) <br>
-- [Price Levels](references/price-levels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown briefings, alert summaries, outlooks, and recommendation-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price tables, support and resistance levels, economic-calendar notes, alert levels, and risk warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can produce broad, prescriptive gold-trading guidance that may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational market analysis, require users to make their own investment decisions, and include risk context with trading recommendations.
+
+Risk: Market data, price levels, and macroeconomic signals can become stale or inaccurate.
+
+Mitigation: Verify current prices and economic events against authoritative sources before relying on any briefing, alert, or trade signal.
+
+Risk: The release carries an unnecessary npm dependency chain, including dependencies resolved through a third-party mirror.
+
+Mitigation: Review dependency metadata and lockfile provenance before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/quiteqiang/skills/gold-radar)
+- [Golden Investment Reference Materials](references/data-sources.md)
+- [Golden Investment Strategy Framework](references/investment-strategy.md)
+- [Gold Price Key Reference Table](references/price-levels.md)
+- [Shanghai Gold Exchange](https://www.sge.com.cn/)
+- [LBMA Prices and Data](https://www.lbma.org.uk/prices-and-data)
+- [World Gold Council](https://www.gold.org/)
+- [Federal Reserve](https://www.federalreserve.gov/)
+- [FRED Economic Data](https://fred.stlouisfed.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown briefings, alerts, tables, and recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-specific thresholds, watchlists, time zone, currency, holding cost, and risk level when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

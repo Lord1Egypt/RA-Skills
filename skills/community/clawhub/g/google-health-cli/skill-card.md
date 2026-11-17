@@ -1,47 +1,57 @@
-## Description: <br>
-Google Health is a read-only CLI skill that authenticates with Google Health through OAuth2, lists raw health data points and daily rollups, parses exercise sessions, and emits JSON for agents or scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Health CLI lets an agent read Google Health data through read-only OAuth and returns data points, daily roll-ups, exercise sessions, and other v4 responses as JSON.
 
-## Publisher: <br>
-[stozo04](https://clawhub.ai/user/stozo04) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stozo04](https://clawhub.ai/user/stozo04)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retrieve Google Health data through a local, read-only CLI for analysis or workflow automation. It is intended for use only with an account owner who has knowingly consented and in environments that can handle sensitive health data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill emits sensitive personal health data, and agent or CI environments may log, persist, summarize, or forward stdout. <br>
-Mitigation: Use the skill only in trusted environments, request the narrowest useful data type and date range, and avoid persisting or forwarding output beyond the immediate task. <br>
-Risk: OAuth client credentials and cached tokens are sensitive local secrets. <br>
-Mitigation: Keep config.json and token.json private, do not commit or share them, and rotate credentials or run auth logout if exposure is suspected. <br>
-Risk: Raw read-only API access can expose profile, account, and settings data beyond typed health metrics. <br>
-Mitigation: Prefer typed data, rollup, and sessions commands; use api get only when a typed command cannot answer the request. <br>
+## Use Case:
 
+Developers and agent operators use the CLI to retrieve consented Google Health metrics and exercise records as JSON for analysis. A Google Cloud OAuth client and a one-time browser authorization are required for read-only access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stozo04/google-health-cli) <br>
-- [Repository homepage](https://github.com/stozo04/google-health-cli) <br>
-- [README](README.md) <br>
-- [Agent contract](AGENTS.md) <br>
-- [OAuth setup guide](OAUTH_SETUP.md) <br>
-- [Google Health API endpoint](https://health.googleapis.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON on stdout with human-readable notices, counts, and errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Data-emitting commands return personal health data; doctor and status commands can return local configuration and account metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Health, profile, or settings data returned as JSON may be logged, persisted, or forwarded by downstream agents and pipelines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the needed data types and narrowest time window, confirm the account owner's consent, and handle the output only in trusted contexts without unnecessary retention or forwarding.
+
+Risk: Security analysis had partial coverage because some local path references could not be resolved.
+
+Mitigation: Review the documented file, network, and browser-launch access requirements and decide whether they fit the intended environment before installation.
+
+Risk: OAuth client credentials and the cached token are stored locally in plaintext.
+
+Mitigation: Restrict access to the config file and token cache, keep them out of shared folders and logs, and revoke or rotate credentials if they may have been exposed.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/stozo04/google-health-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON on stdout; operational messages on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns raw health records, daily roll-ups, and exercise session data for requested types and time windows.]
+
+## Skill Version(s):
+
+1.0.14 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

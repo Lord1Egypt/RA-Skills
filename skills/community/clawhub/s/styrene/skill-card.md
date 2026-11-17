@@ -1,41 +1,60 @@
-## Description: <br>
-Guides a Chinese-language workflow for creating and monitoring guest CAD production sheets for a styrene distillation section through the JXT mechanical parts platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a Chinese-language workflow for collecting styrene distillation section parameters, calling jixietools.com APIs, creating a guest production sheet, and monitoring CAD drawing generation.
 
-## Publisher: <br>
-[realsanyu](https://clawhub.ai/user/realsanyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realsanyu](https://clawhub.ai/user/realsanyu)
 
-## Use Case: <br>
-External users and agents use this skill to collect design parameters in Chinese, call jixietools.com endpoints, review calculated values, create a guest production sheet, and monitor drawing generation progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the advertised styrene-distillation CAD purpose does not match the mechanical parts API workflow the skill runs on an external site. <br>
-Mitigation: Install only when the intended use is guest mechanical CAD production sheet creation through jixietools.com, and verify the selected product category and examples before relying on outputs. <br>
-Risk: The skill instructs an agent to send user-provided design parameters to an external service and to create guest production sheets without authentication. <br>
-Mitigation: Get user confirmation before remote API calls, avoid sending sensitive or proprietary parameters unless approved, and review returned links and files before purchase or downstream use. <br>
+## Use Case:
 
+External users and engineering agents use this skill to collect design inputs, submit calculation requests, create unauthenticated guest production sheets, and retrieve CAD drawing job status for a styrene distillation section workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realsanyu/styrene) <br>
-- [JixieTools API base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown with tables and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser links to guest production sheet status and generated output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends user-supplied engineering parameters to jixietools.com and uses unauthenticated guest links or codes to access job status and outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review parameters before use, avoid submitting confidential or regulated data, and share generated guest links only with intended recipients.
+
+Risk: Server security evidence reports a mismatch between the stated styrene-distillation purpose and gear or mechanical ordering workflow details.
+
+Mitigation: Confirm that selected products and API category identifiers match the intended styrene distillation workflow before creating a production sheet.
+
+Risk: Shell command examples interpolate request data into curl JSON payloads.
+
+Mitigation: Construct requests with structured JSON serialization and validate user-provided values before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realsanyu/skills/styrene)
+- [Jixietools API Base](https://jixietools.com/api/v1)
+- [Jixietools Products Endpoint](https://jixietools.com/api/v1/products?category_id=8)
+- [Jixietools Guest Production Status Endpoint](https://jixietools.com/api/v1/production_sheets/guest_show?code=GUEST_CODE)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Chinese-language Markdown with tables, browser links, and inline bash curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a filename across incremental calculations and a guest_code for status polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

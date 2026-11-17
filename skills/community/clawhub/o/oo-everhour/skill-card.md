@@ -1,46 +1,52 @@
-## Description: <br>
-Everhour lets agents operate Everhour through an OOMOL-connected account for time tracking, timers, users, projects, tasks, and team time records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everhour (everhour.com). Use this skill for ANY Everhour request — reading, creating, updating, and deleting data. Whenever a task involves Everhour, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External developers and operators use this skill to manage Everhour time tracking through an OOMOL-connected Everhour account, including listing projects and tasks, creating time records, and starting or stopping timers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fallback setup path can ask the agent to run a remotely downloaded oo CLI installer script in a shell. <br>
-Mitigation: Review the official installer or install guide before running it, and only use setup steps after an action fails because the CLI, authentication, or connection is missing. <br>
-Risk: Everhour write actions can create time records or start and stop timers. <br>
-Mitigation: Confirm the exact payload and expected Everhour change with the user before allowing write actions. <br>
-Risk: The skill requires connecting Everhour through OOMOL and relies on sensitive credentials handled server-side. <br>
-Mitigation: Install only if OOMOL is trusted for the intended Everhour workspace and the connected account has appropriate access. <br>
+## Use Case:
 
+People with an OOMOL-connected Everhour account use this skill to read projects, tasks, users, time records, and timer status, and to create time records or manage timers. It guides the agent to check the live action schema before sending connector requests.
 
-## Reference(s): <br>
-- [Everhour homepage](https://everhour.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-everhour) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON responses from the oo CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed oo CLI, OOMOL sign-in, and an Everhour connection for live actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Automatic CLI setup and its remote installer payload and hosted service were not verified; CLI setup may also install or update other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release separately. Check for skill synchronization and use OO_SKILLS_SYNC_DISABLED to disable it if needed.
+
+## Reference(s):
+
+- [Everhour](https://everhour.com)
+- [Everhour API Documentation](https://everhour.docs.apiary.io/)
+- [oo CLI Command Reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [Everhour ClawHub Skill](https://clawhub.ai/oomol/skills/oo-everhour)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON connector requests and responses with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action payloads follow the live connector schema; writes and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

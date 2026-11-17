@@ -1,44 +1,61 @@
-## Description: <br>
-Gaokao Essay Guide helps agents guide Chinese Gaokao essay practice, including prompt analysis, thesis development, outline planning, material selection, language revision, example essays, and practice-oriented scoring feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全流程指导高考作文写作，覆盖审题立意、结构搭建、素材推荐、语言润色、评分预测与诊断改进。
 
-## Publisher: <br>
-[njuxumq](https://clawhub.ai/user/njuxumq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[njuxumq](https://clawhub.ai/user/njuxumq)
 
-## Use Case: <br>
-External learners, teachers, and education-focused agent users use this skill to plan, draft, diagnose, and improve Chinese Gaokao essays. It is intended for practice guidance and learning support, not authoritative grading or copied final submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated essays or score predictions may be mistaken for authoritative grading or copied directly. <br>
-Mitigation: Present outputs as practice guidance, encourage user revision, and avoid treating generated examples as final submissions. <br>
-Risk: Broad writing-related triggers may activate the skill outside Gaokao essay contexts. <br>
-Mitigation: Scope routing to Gaokao, Chinese exam essay, essay diagnosis, scoring, or explicitly related prompts before applying the skill. <br>
+## Use Case:
 
+External students, repeat test takers, and Chinese language teachers use this skill to plan Gaokao essays, refine structures and materials, generate study examples, and diagnose existing drafts against Gaokao scoring criteria.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/njuxumq/gaokao-essay-guide) <br>
-- [Server-Resolved Source Repository](https://github.com/njuxumq/gaokao-essay-guide) <br>
-- [Scoring Criteria](references/scoring-criteria.md) <br>
-- [Writing Methodology](references/writing-methodology.md) <br>
-- [Essay Materials](references/essay-materials.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON or text output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured essay outlines, scoring diagnostics, revision suggestions, reference materials, and script commands for local analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The diagnosis workflow can read an essay file supplied through --file, so an unintended sensitive file could be processed if the user points to the wrong path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --essay for pasted drafts when possible, or point --file only at the intended essay document.
+
+Risk: Broad trigger terms may activate the skill during general Chinese writing conversations.
+
+Mitigation: Confirm the user is asking for Gaokao essay coaching before applying the specialized scoring, structure, and material guidance.
+
+Risk: Generated model essays are for study; direct reuse can create plagiarism or template-writing concerns.
+
+Mitigation: Use generated examples to learn structure and technique, then revise with the student's own argument, language, and materials.
+
+## Reference(s):
+
+- [Gaokao Essay Guide on ClawHub](https://clawhub.ai/njuxumq/skills/gaokao-essay-guide)
+- [Server-Resolved GitHub Repository](https://github.com/njuxumq/gaokao-essay-guide)
+- [高考作文评分标准与阅卷细则](references/scoring-criteria.md)
+- [高考作文写作方法论](references/writing-methodology.md)
+- [高考作文素材库](references/essay-materials.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with optional JSON script output and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; local Python scripts can process essay text from --essay or an essay file from --file.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

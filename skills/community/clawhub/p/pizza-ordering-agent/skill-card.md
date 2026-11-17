@@ -1,42 +1,58 @@
-## Description: <br>
-Voice and text ordering agent for pizza shops that handles complex customizations, validates delivery zones, logs orders to Google Sheets, and applies ThumbGate checks to reduce order mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A voice and text ordering agent for pizza shops that handles custom pizza orders, delivery zone validation, upselling, Google Sheets menu and order logging, and ThumbGate checks.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External pizza-shop operators and developers use this skill to support voice or text pizza ordering workflows, including menu matching, customizations, delivery-zone checks, upsells, and order logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer phone numbers, addresses, and order details may be logged to Google Sheets during ordering workflows. <br>
-Mitigation: Use a dedicated Google Sheet with narrow permissions and explicit retention rules for customer phone, address, and order data. <br>
-Risk: Incorrect delivery-zone or ThumbGate configuration could allow invalid deliveries or costly customization mistakes. <br>
-Mitigation: Verify the delivery-zone settings and ThumbGate configuration before using the skill for a real shop. <br>
-Risk: A live order could be finalized before the customer confirms the details. <br>
-Mitigation: Require explicit confirmation before finalizing live orders. <br>
+## Use Case:
 
+Pizza shop operators use this skill to guide an agent through taking voice or text orders, validating delivery eligibility, logging callback details, and reducing common customization mistakes before orders reach the kitchen.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igorganapolsky/pizza-ordering-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance with setup steps, order-handling rules, validation checks, and confirmation prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer order details intended for Google Sheets logging; live use should require confirmation before finalizing orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Displayed pricing is inconsistent across release metadata, skill frontmatter, and sales copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current price on the ClawHub listing before purchase, installation, or resale use.
+
+Risk: Google Sheets menu and order logging can expose order data or credentials if over-permissioned.
+
+Mitigation: Use narrowly scoped Google credentials and restrict sheets to only the menu and order log needed by the pizza shop.
+
+Risk: Incorrect delivery zone or customization handling could lead to rejected orders, remakes, or customer follow-up.
+
+Mitigation: Configure the delivery radius and ThumbGate checks before deployment, and require confirmation for callback numbers, half-and-half sauces, and mutually exclusive toppings.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/igorganapolsky/skills/pizza-ordering-agent)
+- [Publisher profile](https://clawhub.ai/user/igorganapolsky)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown instructions with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires operator-supplied menu data, delivery radius, and Google Sheets configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

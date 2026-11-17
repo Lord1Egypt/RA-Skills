@@ -1,41 +1,54 @@
-## Description: <br>
-Generate GitHub Actions workflow YAML files for CI/CD. Use when setting up automated pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate GitHub Actions workflow YAML files for CI/CD. Use when setting up automated pipelines.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, list, lint, optimize, and check GitHub Actions workflow snippets while setting up CI/CD automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow YAML may be incomplete or unsuitable for a specific repository's CI/CD requirements. <br>
-Mitigation: Review and test generated workflows before committing or enabling them in production repositories. <br>
-Risk: The secrets command is a basic grep-style helper and may miss credentials or report noisy matches. <br>
-Mitigation: Use it only as a basic check alongside repository secret scanning and code review. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, template, lint, optimize, and inspect GitHub Actions workflow YAML for CI/CD setup.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/github-actions-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and YAML snippets with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces GitHub Actions workflow templates and text diagnostics for user-specified files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The secrets command can expose local lines that look like secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the secrets command on sensitive workspaces until argument handling, file validation, and output warnings are fixed.
+
+Risk: File-scanning behavior may mishandle paths or option-like filenames.
+
+Mitigation: Quote file paths, pass -- before filenames, and validate regular files before scanning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/github-actions-gen)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces GitHub Actions workflow YAML and related CI/CD review guidance.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

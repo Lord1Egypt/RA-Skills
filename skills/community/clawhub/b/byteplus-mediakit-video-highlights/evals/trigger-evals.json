@@ -1,0 +1,22 @@
+[
+  {
+    "query": "Create a one minute football highlight reel from https://example.com/match-001.mp4, prioritizing goals and key saves.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check whether task amk-tool-video-highlights-llm-000000000000 has completed.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a 90 second football highlight reel from https://example.com/match-002.mp4, prioritizing goals, saves, and penalty-box pressure.",
+    "should_trigger": true
+  },
+  {
+    "query": "Recognize the video's speech and export an SRT file.",
+    "should_trigger": false
+  },
+  {
+    "query": "Trim the intro and outro, then composite a background image.",
+    "should_trigger": false
+  }
+]

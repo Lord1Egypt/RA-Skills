@@ -1,41 +1,53 @@
-## Description: <br>
-Creates Feishu read-later tasks from chat trigger phrases, assigns saved content to the conversation sender, and records the item in local memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Feishu reading tasks from trigger phrases by extracting conversation content and assigning the task to the conversation sender.
 
-## Publisher: <br>
-[partigle](https://clawhub.ai/user/partigle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[partigle](https://clawhub.ai/user/partigle)
 
-## Use Case: <br>
-Employees and automation users use this skill to save links, documents, or other chat content into Feishu as assigned read-later tasks for the conversation sender. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad read-later trigger phrases can create tasks from sensitive or unintended chat content. <br>
-Mitigation: Use care in sensitive conversations and confirm the content and assignee before creating a Feishu task when intent is ambiguous. <br>
-Risk: Saved links, titles, descriptions, sender IDs, and timestamps are used for Feishu task creation and recorded in local memory. <br>
-Mitigation: Install only where this data handling is acceptable, and avoid saving confidential content unless the workspace retention policy allows it. <br>
+## Use Case:
 
+Employees and Feishu users use this skill to save links, documents, and other conversation items into a personal to-read task list assigned to the conversation sender.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/partigle/feishu-reading-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Files] <br>
-**Output Format:** [JSON task payload plus concise chat confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include saved links, titles, descriptions, sender IDs, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases may cause the agent to create Feishu reading tasks from conversation content before the exact item, assignee, or content is confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the content, assignee, and task details before creating the Feishu task.
+
+Risk: Task details may be recorded in memory/YYYY-MM-DD.md files.
+
+Mitigation: Tell users where records are stored and define how those records are reviewed, retained, or deleted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/partigle/skills/feishu-reading-task)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, API Calls]
+
+**Output Format:** [JSON task data and Markdown memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Feishu to-read task data assigned to the sender and may record task details in memory/YYYY-MM-DD.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,56 @@
-## Description: <br>
-Professional PAN-OS security configuration generator for hardening Palo Alto firewalls with industry best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional PAN-OS security configuration generator for hardening Palo Alto firewalls with industry best practices.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security architects, firewall administrators, compliance officers, and DevSecOps teams use this skill to generate hardened Palo Alto Networks PAN-OS configuration snippets and deployment guidance from selected hardening options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall hardening choices, session identifiers, timestamps, and optional user identifiers are sent to a third-party API. <br>
-Mitigation: Use sanitized inputs first, avoid credentials and full sensitive firewall configurations, and use pseudonymous session or user identifiers unless your organization has approved the provider's data handling. <br>
-Risk: Generated PAN-OS configuration guidance can affect firewall behavior if applied without review. <br>
-Mitigation: Have qualified firewall administrators review generated configuration snippets and test changes in a controlled environment before deployment. <br>
+## Use Case:
 
+Security architects, firewall administrators, compliance officers, and DevSecOps teams use this skill to generate hardened Palo Alto Networks PAN-OS configuration snippets and deployment guidance from selected hardening options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-palo-alto-hardening) <br>
-- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb Hub](https://hub.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477) <br>
-- [ToolWeb YouTube](https://youtube.com/@toolweb-009) <br>
-- [Palo Alto Hardening API Route](https://api.mkkpro.com/hardening/palo-alto) <br>
-- [Palo Alto Hardening API Docs](https://api.mkkpro.com:8132/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance, JSON, Text] <br>
-**Output Format:** [JSON responses containing hardening profile details, generated PAN-OS configuration content, and deployment instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hardening options, a session identifier, and a timestamp; user attribution is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Generated firewall configuration may not match the target network environment or local security policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated PAN-OS configuration with qualified firewall administrators before deployment.
+
+Risk: Requests to the hosted API include sessionId, timestamp, hardening choices, and optionally userId, with no artifact-stated retention or privacy terms.
+
+Mitigation: Avoid sending confidential topology, credentials, or unnecessary identifiers in API requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-palo-alto-hardening)
+- [Palo Alto Hardening API Docs](https://api.mkkpro.com:8132/docs)
+- [Palo Alto Hardening API Route](https://api.mkkpro.com/hardening/palo-alto)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, configuration, guidance]
+
+**Output Format:** [JSON responses with PAN-OS configuration snippets and deployment instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated configuration should be reviewed against the target environment before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-查询全球城市或者经纬度位置的实时天气、天气预报、空气质量等信息的技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides QWeather-powered lookups for current weather, forecasts, geolocation, precipitation, lifestyle indices, warnings, air quality, sunrise and sunset, moon phase, and solar angle by city, location ID, or coordinates.
 
-## Publisher: <br>
-[yinguobing](https://clawhub.ai/user/yinguobing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinguobing](https://clawhub.ai/user/yinguobing)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for current weather, forecasts, air quality, weather warnings, and location-based QWeather data for cities or coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QWeather private key and related project credentials. <br>
-Mitigation: Keep the private key file permission-restricted and do not share credentials in logs, prompts, or generated output. <br>
-Risk: Installation depends on the published Cargo package or the linked GitHub source. <br>
-Mitigation: Install only when the package or source repository is trusted for the deployment environment. <br>
-Risk: Custom QWEATHER_BASE_URL and QWEATHER_GEO_URL values control where weather requests are sent. <br>
-Mitigation: Verify both base URLs point to the intended QWeather endpoints before use. <br>
+## Use Case:
 
+Developers and external users can use this skill to configure and run QWeather CLI queries for weather, geolocation, forecast, air quality, astronomy, and related environmental data. It is useful when an agent needs concrete shell commands and credential setup guidance for weather lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinguobing/qweather-skill) <br>
-- [QWeather skill homepage](https://github.com/yinguobing/qweather-skill) <br>
-- [QWeather project console](https://console.qweather.com/project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown weather guidance with inline shell commands when setup or CLI usage is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWeather credentials and configured QWeather API base URLs; supported forecast ranges vary by command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installing an external Cargo binary before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted or reviewed versions of the qweather package or repository, and prefer a pinned version where possible.
+
+Risk: The skill requires QWeather credentials, including QWEATHER_PRIVATE_KEY.
+
+Mitigation: Limit QWeather environment variables to the runtime environment where the CLI runs and avoid exposing private key material in prompts, logs, or shared shells.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinguobing/skills/qweather-skill)
+- [qweather-skill homepage](https://github.com/yinguobing/qweather-skill)
+- [QWeather Console](https://console.qweather.com/project)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QWeather credentials and the qw CLI installed from the qweather Cargo package or repository.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

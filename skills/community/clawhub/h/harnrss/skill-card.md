@@ -1,37 +1,49 @@
-## Description: <br>
-Provides a Chinese structured planning framework for decomposing tasks, making constraints explicit, identifying risks, and ordering executable steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language framework that helps an agent structure planning tasks into goals, constraints, steps, risks, and execution order.
 
-## Publisher: <br>
-[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto)
 
-## Use Case: <br>
-Agents use this skill when a user asks for harnrss-style structured thinking or planning. It helps turn vague work into clear goals, constraints, risk checks, and ordered steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese requests for structured thinking may invoke the framework when a lighter response would be enough. <br>
-Mitigation: Use it when the user asks for harnrss or structured planning, and skip the full framework for one-step tasks as the artifact directs. <br>
+## Use Case:
 
+Developers and agent users can apply this skill when they want a Chinese-language planning pattern for decomposing ambiguous work into executable, verifiable steps with explicit constraints and risks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with numbered lists and short sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language planning structure; no code execution or external data access described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generic Chinese requests for structured planning may activate the framework when that behavior is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit /harnrss-style prompts when this planning structure is required, and avoid ambiguous trigger wording when it is not.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/8cmblue-crypto/skills/harnrss)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown structured with numbered sections and concise bullet points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language planning output; no code, tool use, persistence, or sensitive data handling is reported in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

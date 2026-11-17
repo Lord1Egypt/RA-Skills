@@ -1,43 +1,57 @@
-## Description: <br>
-Reviews PostgreSQL code for indexing strategies, JSONB operations, connection pooling, and transaction safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews PostgreSQL code for indexing strategies, JSONB operations, connection pooling, and transaction safety. Use when reviewing SQL queries, database schemas, JSONB usage, or connection management.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review PostgreSQL queries, schemas, JSONB usage, connection management, and transaction behavior before reporting evidence-based findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example SQL and Python snippets may be unsuitable if copied directly into a production schema, especially examples involving account updates, locks, timeouts, or placeholder credentials. <br>
-Mitigation: Adapt examples to the application's schema, transaction model, credential handling, and operational limits before use. <br>
-Risk: Review findings can be misleading if performance, JSONB, transaction, connection, or SQL injection claims are made without code evidence. <br>
-Mitigation: Require concrete file, line, symbol, SQL, DDL, or binding-mechanism citations before reporting conclusions. <br>
+## Use Case:
 
+Developers and engineers use this skill to review PostgreSQL-related code and schema changes for performance, connection handling, JSONB usage, transaction safety, and evidence-backed SQL injection findings.
 
-## Reference(s): <br>
-- [PostgreSQL index review reference](references/indexes.md) <br>
-- [PostgreSQL JSONB review reference](references/jsonb.md) <br>
-- [PostgreSQL connection review reference](references/connections.md) <br>
-- [PostgreSQL transaction review reference](references/transactions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown review findings with cited code locations and SQL or Python examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should cite reviewed paths or statements before making performance, JSONB, transaction, connection, or SQL injection claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The PgBouncer example uses permissive listener and authentication settings that may be unsafe if copied directly into an environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind PgBouncer only to localhost or a trusted interface, restrict exposed ports, and prefer SCRAM and TLS where applicable before using the example.
+
+Risk: Review guidance can produce incorrect or overconfident findings if the agent does not cite the actual SQL, DDL, or binding mechanism under review.
+
+Mitigation: Require file and line citations for performance and injection findings, and verify how SQL values are bound before reporting SQL injection risk.
+
+## Reference(s):
+
+- [Postgres Code Review Skill Page](https://clawhub.ai/anderskev/skills/postgres-code-review)
+- [Indexes](references/indexes.md)
+- [JSONB](references/jsonb.md)
+- [Connections](references/connections.md)
+- [Transactions](references/transactions.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review findings with cited code locations and optional SQL, code, shell command, or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; the skill does not execute code automatically.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

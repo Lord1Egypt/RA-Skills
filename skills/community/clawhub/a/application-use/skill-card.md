@@ -1,42 +1,57 @@
-## Description: <br>
-Automate macOS desktop tasks by opening apps, clicking elements, filling forms, typing, scrolling, taking screenshots, and controlling applications through CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate macOS tasks by opening apps, clicking elements, filling forms, typing, scrolling, and controlling the desktop through CLI commands.
 
-## Publisher: <br>
-[qdore](https://clawhub.ai/user/qdore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qdore](https://clawhub.ai/user/qdore)
 
-## Use Case: <br>
-Developers and agents use this skill to automate macOS desktop workflows such as opening applications, clicking hinted UI elements, filling forms, scrolling, taking screenshots, and controlling Finder or browser sessions through CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over macOS applications, forms, browser sessions, and Finder. <br>
-Mitigation: Use it only with active supervision and require explicit confirmation before submissions, file changes, messages, purchases, or account actions. <br>
-Risk: Desktop automation may expose or type sensitive information through open windows or focused fields. <br>
-Mitigation: Close sensitive windows before use and avoid delegating secrets, credentials, payment data, or private account actions to the agent. <br>
-Risk: The workflow depends on installing and running an external npm package. <br>
-Mitigation: Install only when the publisher and package source are trusted in the target environment. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to automate macOS desktop workflows such as app launching, form filling, browser navigation, screenshots, and Finder interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qdore/application-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands produce snapshot-based desktop feedback after supported actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad control over macOS applications, visible screen contents, focused text fields, browser sessions, and Finder actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, run it in a controlled desktop session, and require explicit confirmation before submissions, file changes, screenshots, or interactions with sensitive apps.
+
+Risk: Desktop automation can expose or enter sensitive data such as passwords, account details, or private screen contents.
+
+Mitigation: Avoid using the skill for passwords, financial actions, account approvals, or workflows involving sensitive applications unless additional human review is in place.
+
+Risk: The documented install command uses an unpinned global npm package installation.
+
+Mitigation: Prefer a pinned and reviewed package version before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qdore/skills/application-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce screen snapshots or screenshots as visual feedback after desktop actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

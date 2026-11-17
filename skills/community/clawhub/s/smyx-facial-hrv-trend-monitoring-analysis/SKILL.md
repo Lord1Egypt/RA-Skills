@@ -1,7 +1,7 @@
 ---
 name: "smyx-facial-hrv-trend-monitoring-analysis"
 description: "Using everyday cameras (laptop camera, smartphone front camera, smart mirror), the system records 30-60 seconds of facial video and uses remote photoplethysmography (rPPG) to extract subtle color variations from facial skin micro-circulation, from which it computes heart-rate-variability (HRV) metrics including SDNN (standard deviation of all normal sinus RR intervals) and RMSSD (root mean square of successive RR-interval. | 通过日常摄像头（如电脑摄像头、手机前置摄像头）拍摄面部视频（30-60秒），利用光电容积描记技术（远程光电容积描记术，rPPG）提取面部皮肤微循环的微弱色度变化，从中计算心率变异性（HRV）指标，包括SDNN（全部正常窦性心搏间期的标准差）、RMSSD（相邻心搏间期差值的均方根）等。该技能可用于压力评估、心血管健康监测及疲劳管理。"
-version: "1.0.2"
+version: "1.0.19"
 license: "MIT-0"
 ---
 
@@ -160,7 +160,7 @@ python -m scripts.smyx_facial_hrv_trend_monitoring_analysis --list
 | 🔏 隐私合规 | 隐私合规：面部视频涉及生物特征隐私，使用前需取得本人同意，并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

@@ -195,7 +195,7 @@ ALERT_IMSG_TO="you@icloud.com"   # or phone number
 Posts `{"text": "..."}` to any URL.
 ```bash
 ALERT_HOOK="webhook"
-ALERT_WEBHOOK_URL="https://hooks.slack.com/services/T.../B.../xxx"
+ALERT_WEBHOOK_URL="REDACTED-SECRET.../B.../xxx"
 ```
 
 ### `command` — Anything

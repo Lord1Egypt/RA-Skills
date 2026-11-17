@@ -1,42 +1,57 @@
-## Description: <br>
-Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages to other people or search and sync WhatsApp history via the wacli CLI.
 
-## Publisher: <br>
-[engahmedsalah358-lgtm](https://clawhub.ai/user/engahmedsalah358-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[engahmedsalah358-lgtm](https://clawhub.ai/user/engahmedsalah358-lgtm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send user-approved WhatsApp messages to third parties and to sync or search WhatsApp chat history through the wacli CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a real WhatsApp account through QR login and the external wacli CLI. <br>
-Mitigation: Install only when the user trusts wacli and is comfortable linking the account. <br>
-Risk: A message or attachment could be sent to the wrong recipient if the request is ambiguous. <br>
-Mitigation: Verify the exact recipient, message text, and attachment path before any send action. <br>
-Risk: Synced or searched chat history may persist locally in the default wacli store or a selected store directory. <br>
-Mitigation: Limit chat and date scope where possible and account for local persistence in ~/.wacli or the chosen --store directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [wacli homepage](https://wacli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/engahmedsalah358-lgtm/whats) <br>
+## Use Case:
 
+Developers and agent users use this skill when they explicitly want an agent to contact someone on WhatsApp, send a file, or search, sync, and backfill WhatsApp history through wacli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the external wacli CLI after recipient, message, and attachment details are explicit and confirmed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The underlying WhatsApp CLI can access WhatsApp session data and message history.
+
+Mitigation: Install only from a trusted wacli source and use an account and environment appropriate for the data exposure.
+
+Risk: An agent could send a message to the wrong recipient or with unintended content if the request is ambiguous.
+
+Mitigation: Require an explicit recipient and message text, then confirm both before sending.
+
+Risk: History backfill depends on the user's phone being online and returns best-effort results.
+
+Mitigation: Treat backfill output as incomplete unless the user verifies that the expected history was synced.
+
+## Reference(s):
+
+- [wacli homepage](https://wacli.sh)
+- [ClawHub skill page](https://clawhub.ai/engahmedsalah358-lgtm/skills/whats)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agent use of the wacli CLI and may produce WhatsApp send, sync, search, backfill, authentication, and diagnostic commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

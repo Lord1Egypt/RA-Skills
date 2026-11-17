@@ -1,5 +1,5 @@
 ---
-name: dash-cog
+name: dashboard-web-app-cellcog
 description: "AI dashboard and web app generation powered by CellCog. Interactive dashboards, KPI trackers, data visualization, charts, analytics apps, data explorers, calculators, games. Responsive HTML apps with real-time filters."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Dash Cog - Interactive Dashboards & Apps Powered by CellCog
+# Dashboard & Web App - Interactive Dashboards & Apps Powered by CellCog
 
 Build interactive dashboards, data visualizations, and web apps with AI.
 
@@ -26,7 +26,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 ```
 
@@ -37,7 +37,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 print(result["message"])
 ```
@@ -128,18 +128,17 @@ You can provide data via:
 
 ---
 
-## Chat Mode for Dashboards
+## Choosing Mode & Tier
 
-Choose based on complexity:
+**Use `chat_mode="creative"` for dashboards and web apps** — the craft-first mode tuned for design taste, visual polish, and voice.
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Standard dashboards, KPI trackers, data visualizations, charts | `"agent"` |
-| Complex interactive apps, games, novel data explorers | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Dashboards, KPI trackers, interactive apps | `chat_mode="creative"` (default tier `"core"`) |
+| Maximum craft on high-stakes pieces | `chat_mode="creative", chat_tier="max"` |
+| Quick disposable drafts | `chat_mode="agent", chat_tier="flash"` |
 
-**Default to `"agent"`** for most dashboard requests. CellCog's agent mode handles charts, tables, filters, and interactivity efficiently.
-
-Reserve `"agent team"` for truly complex applications requiring significant design thinking—like building a novel game mechanic or a highly customized analytical tool with multiple interconnected features.
+Note: Agent Team (`chat_mode="team"`) is reserved for deep research.
 
 ---
 
@@ -198,6 +197,7 @@ Reserve `"agent team"` for truly complex applications requiring significant desi
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

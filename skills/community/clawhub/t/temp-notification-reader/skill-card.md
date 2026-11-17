@@ -1,43 +1,58 @@
-## Description: <br>
-Reads macOS Notification Center content and exports notification records or work summaries into OpenClaw memory so an agent can understand recent work activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads macOS Notification Center titles and bodies and writes notification exports and work summaries into OpenClaw memory.
 
-## Publisher: <br>
-[gift-is-coding](https://clawhub.ai/user/gift-is-coding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gift-is-coding](https://clawhub.ai/user/gift-is-coding)
 
-## Use Case: <br>
-OpenClaw users on macOS use this skill to collect recent notification titles and message bodies into local memory files, including filtered work summaries for tools such as Teams, Outlook, and WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads notification titles and message bodies, which may include sensitive personal or business information. <br>
-Mitigation: Install only when local notification access is acceptable, prefer narrowly scoped work-summary runs, and review generated memory files. <br>
-Risk: Granting broad macOS privacy access to python3 can expose more local data than this skill needs for a single run. <br>
-Mitigation: Avoid granting Full Disk Access to /usr/bin/python3 unless the system-wide effect is understood and required. <br>
-Risk: Scheduled exports can continuously store notification text in local OpenClaw memory. <br>
-Mitigation: Prefer manual execution or conservative schedules, and use cleanup commands carefully because they permanently delete matching exports. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture recent macOS notifications, store them as local memory, and generate work-focused summaries and action items for an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gift-is-coding/temp-notification-reader) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files containing notification exports or work summaries, plus shell-command and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files under OpenClaw memory or a configured output directory; lookback windows can be adjusted with environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Notification titles and bodies may contain sensitive messages, calendar details, approvals, or codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this local collection is acceptable, review generated memory regularly, and delete stored notification memory when it is no longer needed.
+
+Risk: Recurring collection can retain sensitive notification content more broadly than a one-time run.
+
+Mitigation: Prefer manual or narrowly filtered runs unless scheduled capture is necessary, and review any 30-minute cron setup before enabling it.
+
+Risk: The skill requires macOS notification database access and may ask users to grant broad disk access to Python.
+
+Mitigation: Grant the narrowest practical macOS permissions and avoid giving Full Disk Access to a general Python interpreter where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gift-is-coding/skills/temp-notification-reader)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text files with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include notification titles and bodies stored in local OpenClaw memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

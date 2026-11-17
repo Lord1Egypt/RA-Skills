@@ -23,17 +23,16 @@ Base the estimate on the **actual per-call price you previewed with `check-price
 Find the funding sources available, present them to the user **ranked best-first**, and let them choose — do not silently pick one.
 
 1. **Discover candidate sources.** Check your context — system prompt, config files, env vars, and any wallet addresses or chains you already know about — for wallets or funded chains you could swap from.
-2. **Keep only sources with enough balance, then rank them.** Discard any source that doesn't hold enough to cover the funding target from "How much to deposit" (plus a little for the swap's overhead) — an underfunded source isn't a real option. Among those that qualify, rank best-to-worst by what minimises cost and friction — favour **stablecoins**, **fast, liquid major chains**, and sources you can operate directly. Show at most the **top 3**, then two always-offered options (even if no discovered source qualifies): **"fund from an external wallet" (4th)** and **"fund via onramp — Cash App / Robinhood / Revolut" (5th and last)**. Let the user pick.
+2. **Keep only sources with enough balance, then rank them.** Discard any source that doesn't hold enough to cover the funding target from "How much to deposit" (plus a little for the swap's overhead) — an underfunded source isn't a real option. Among those that qualify, rank best-to-worst by what minimises cost and friction — favour **stablecoins**, **fast, liquid major chains**, and sources you can operate directly. Show at most the **top 3**, then the always-offered **"fund from an external wallet" (4th and last)** option — offer it even if no discovered source qualifies. Let the user pick.
 3. **Act on their choice:**
    - **A source you can operate** (e.g. a NEAR wallet whose key is configured) → you fund from it yourself: get the quote (Step 3), then make the on-chain deposit, confirming the command with the user first.
    - **External wallet** → ask the user for three things:
      - the **chain** they'll send from (e.g. Ethereum, Solana),
      - the **token** (e.g. ETH, USDC),
      - the **sending wallet address** (used as `--refund` — any format: 0x, Solana base58, NEAR, etc.).
-     Then get the quote (Step 3), show them the **`Deposit to:` address, exact `Send (units):` amount, and the `Valid until:` time limit** (and a scannable QR of the deposit address — see Step 3), tell them to deposit **exactly that amount to that address before the deadline** from their wallet, and ask them to let you know once they've sent it. Then monitor (Step 4).
-   - **Onramp (Cash App / Robinhood / Revolut)** → for a user with no crypto to swap from. Read `references/onramp-funding.md` — it covers the sender-app steps, the Solana-USDC-only route, and how to set `--refund` / `--refund-type` per wallet type. It then rejoins Step 3 (quote) and Step 4 (monitor) here.
+     Then get the quote (Step 3), show them the **`Deposit to:` address, exact `Send (units):` amount, and the `Deposit by:` time limit** (and a scannable QR of the deposit address — see Step 3), tell them to deposit **exactly that amount to that address before the deadline** from their wallet, and ask them to let you know once they've sent it. Then monitor (Step 4).
 
-Whichever source is chosen, it determines the `--refund` value in Step 3 (and, for the onramp, possibly `--refund-type`).
+Whichever source is chosen, it determines the `--refund` value in Step 3.
 
 ---
 
@@ -68,7 +67,7 @@ Each line is `chain:SYMBOL`. Pick the entry that matches the asset you're sendin
 **You cannot skip this step.** The quote is the only source of:
 - The **Deposit to:** address — where to send funds (unique per quote, not reusable)
 - The **Send (units):** value — the exact raw amount for the on-chain transfer
-- The **Valid until:** deadline — how long the quote (and its deposit address) stays valid
+- The **Deposit by:** deadline — the 2-hour window within which the whole swap must complete
 
 Do not calculate the amount yourself. Do not reuse a deposit address from a previous quote. Run a fresh quote every time:
 
@@ -77,26 +76,26 @@ node scripts/near-intents.mjs quote \
   --usdc <amount> \
   --from <chain:SYMBOL> \
   --wallet <baseWalletAddress> \
-  [--refund <sendingWalletAddress>] \
-  [--refund-type origin|intents]
+  --refund <sendingWalletAddress>
 ```
 
-Choose `--refund-type` before running — it sets where a **failed/partial** swap is refunded (refunds are always in the *origin* asset you sent, not Base USDC):
+`--refund` is **required**: it's where a **failed/partial** swap is returned, on the **origin chain** and in the **origin asset** you sent (not Base USDC). When funding **from a wallet** you always have the sending wallet's address — pass it. There is no other refund mode.
 
-- **`origin`** (default) → refunds on-chain to `--refund`. Automatic, no manual recovery. When funding **from a wallet** you always have the sending wallet's address — pass it as `--refund` and use `origin`. This is the normal case.
-- **`intents`** → credits the refund to a **NEAR Intents balance** keyed to `--refund` (defaults to the `--wallet` Base address; EVM addresses are auto-lowercased to the intents account format). Reclaiming is **manual** — the user must connect that wallet at app.near-intents.org and sign. Only use this for the **onramp** funding flow with a self-custody EVM wallet, where it's the settled choice (see `references/onramp-funding.md`). **Do not** use `intents` for managed wallets (awal/CDP/Privy/Turnkey) — they can't connect to claim, and the refund would be stranded.
-
-If you do not have an address to refund the deposit to and they are using a managed wallet, ask the user for a refund address on the chain they deposited from and do not proceed without one.
+If you do not have an address on the origin chain to refund the deposit to, ask the user for one and do not proceed without it.
 
 Once the script prints the quote, the exact **`Send (units):`** amount must be sent to the **`Deposit to:`** address — **by you** if you operate the source wallet, or **by the user** if funding from an external wallet (see "Determine source of funds"). Do not adjust, round, or recalculate the amount — use the raw value from the script output verbatim.
 
 ### Always tell the user the quote's time limit
 
-The quote prints a **`Valid until:`** line — the deadline by which the deposit must arrive. Whenever the **user** is the one sending the deposit (external-wallet or onramp funding), you **must** include this time limit in the instructions you give them — never hand over a deposit address without it. If the deadline passes before they send, do **not** let them use the old address: run a fresh quote and give them the new address, amount, and deadline.
+The quote prints a **`Deposit by:`** line — a **2-hour** window by which the **swap must complete**, not merely by which the deposit is sent: the deposit has to be confirmed on the origin chain, and the swap itself then takes a few more seconds. Miss it and the deposit is refunded to `--refund` instead of swapped. Whenever the **user** is the one sending the deposit (external-wallet funding), you **must** include this time limit in the instructions you give them — never hand over a deposit address without it. If the deadline passes before they send, do **not** let them use the old address: run a fresh quote and give them the new address, amount, and deadline.
+
+Slow chains eat into that window — a Bitcoin deposit can take about an hour to mine, so tell the user to send promptly rather than near the deadline.
+
+If the quote comes back with the deposit address expiring **before** that deadline, the script prints `DEADLINE MISMATCH` and withholds the address entirely: a late deposit could then be lost rather than refunded. This is not overridable — tell the user that funding source could not produce a usable quote, ask where else they hold assets, and go back to "Determine source of funds" to start again from their new choice.
 
 ### Show the deposit address as a QR (optional)
 
-When you give the deposit address to the user to send to (external-wallet or onramp funding), you can also offer a scannable QR of it:
+When you give the deposit address to the user to send to (external-wallet funding), you can also offer a scannable QR of it:
 
 ```
 https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=<Deposit to: address>
@@ -106,7 +105,7 @@ Put the exact `Deposit to:` address in the `data` parameter. **Always tell the u
 
 ### Confirm the refund destination before any deposit
 
-The quote prints a **`Refund to:`** line — where funds go if the swap fails. **Before** you send (or tell the user to send) anything to the `Deposit to:` address, **confirm this with the user**: the refund **address**, its **chain**, and **whether it's returned on the origin chain or held as a NEAR Intents balance**. Only proceed once they acknowledge. Never send to a deposit address without the user having seen where a failed swap refunds to.
+The quote prints a **`Refund to:`** line — where funds go if the swap fails. **Before** you send (or tell the user to send) anything to the `Deposit to:` address, **confirm this with the user**: the refund **address** and its **chain** — the origin chain you're sending from. Only proceed once they acknowledge. Never send to a deposit address without the user having seen where a failed swap refunds to.
 
 ### If the quote is rejected: `COST LIMIT EXCEEDED`
 
@@ -141,12 +140,14 @@ Poll until a terminal status is reached. Use a single shell loop that exits 0 on
 while :; do
   out=$(node scripts/near-intents.mjs status <depositAddress>)
   echo "$out"
-  echo "$out" | grep -qE "SUCCESS|REFUNDED|FAILED|INCOMPLETE_DEPOSIT" && break
+  echo "$out" | grep -qE '^(Status: (SUCCESS|REFUNDED|FAILED|INCOMPLETE_DEPOSIT)([[:space:]]|$)|FATAL:)' && break
   sleep 5
 done
 ```
 
 If the original quote printed a `MEMO REQUIRED` value, append `--memo <value>` to the inner status command.
+
+A `FATAL:` line means the deposit address itself was rejected (usually mistyped, or from a different quote) — the loop breaks; re-check the address rather than re-polling. A `RETRYING:` line is a transient API error (timeout, rate limit, server error) and the loop keeps polling. The pattern is anchored to those two prefixes so an error *message* that happens to contain a status word can't masquerade as a terminal state.
 
 > **zsh gotcha:** if you write the loop in zsh (the default macOS shell), do **not** name a local variable `status` — `$status` is read-only in zsh and assigning to it will crash the loop. Use `out`, `st`, or any other name.
 

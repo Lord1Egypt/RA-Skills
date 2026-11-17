@@ -1,44 +1,56 @@
-## Description: <br>
-Helps agents remember repeated ways of working as reusable local SOPs, workflows, and queues, then ask before reusing or saving them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WorkflowHub helps Codex, OpenClaw, or similar agents remember repeated multi-step work as reusable local workflows, ask before reusing a matching SOP, and offer to save or update workflows after a task.
 
-## Publisher: <br>
-[zhangyuqi98](https://clawhub.ai/user/zhangyuqi98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyuqi98](https://clawhub.ai/user/zhangyuqi98)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture repeated multi-step work as editable local JSON workflows, match future requests against saved SOPs, and generate concise execution briefs. It is intended for local workflow management with explicit confirmation before reuse or save actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and edits user-chosen local JSON workflow files, so unintended directories or stale workflow content could affect future agent behavior. <br>
-Mitigation: Use a dedicated workflow directory such as ./.openclaw/workflows, review saved workflows before reuse, and keep workflows concise and auditable. <br>
-Risk: The bundled local UI is intended for local workflow editing and could expose workflow data if bound beyond localhost. <br>
-Mitigation: Keep the UI bound to localhost unless network access is intentional and controlled. <br>
+## Use Case:
 
+Developers and power users use this skill to turn recurring agent tasks into local JSON workflows that can be matched, confirmed, compiled into execution briefs, and saved or updated after use. It is intended for repeated multi-step work where explicit confirmation is needed before reusing an existing SOP.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zhangyuqi98/workflow-memory-skills) <br>
-- [instruction.md](instruction.md) <br>
-- [workflow-schema.md](references/workflow-schema.md) <br>
-- [runtime-behavior.md](references/runtime-behavior.md) <br>
-- [local-ui-spec.md](references/local-ui-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, and JSON workflow files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow memories and execution briefs; workflow files are editable JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The local web editor can save or delete persistent workflow instructions without authentication or origin checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the UI bound to 127.0.0.1, close it when not actively editing workflows, and add authentication or origin checks before using it for sensitive workflows.
+
+Risk: Saved workflows can influence future agent behavior if a user approves reuse.
+
+Mitigation: Inspect workflow JSON before approving reuse, require explicit confirmation before applying a matched SOP, and keep recoverable backups of important workflow files.
+
+## Reference(s):
+
+- [WorkflowHub ClawHub skill page](https://clawhub.ai/zhangyuqi98/skills/workflow-memory-skills)
+- [runtime-behavior.md](references/runtime-behavior.md)
+- [workflow-schema.md](references/workflow-schema.md)
+- [local-ui-spec.md](references/local-ui-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, JSON workflow files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, render, match, or delete local workflow JSON files when the user confirms the action.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

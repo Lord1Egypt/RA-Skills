@@ -1,44 +1,60 @@
-## Description: <br>
-Fetches, searches, summarizes, and exports Knowledge Planet posts that the user's authenticated account is authorized to access, using the official zsxq-cli path by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识星球帖子抓取助手 — 默认通过官方 zsxq-cli OAuth/Keychain 登录态抓取用户已授权账号可访问的帖子，支持全部/精华筛选、关键词搜索、单帖详情、日期范围导出、多星球配置、Markdown 和附件整理。
 
-## Publisher: <br>
-[wufulin](https://clawhub.ai/user/wufulin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufulin](https://clawhub.ai/user/wufulin)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve, inspect, summarize, search, and export Knowledge Planet content available to their own authenticated accounts. It supports configured groups, date ranges, digest filtering, Markdown export, and optional attachment handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and export private Knowledge Planet account content. <br>
-Mitigation: Use explicit group IDs, date ranges, counts, and scopes; treat generated Markdown and attachments as private data. <br>
-Risk: Legacy HTTP fallback requires the sensitive ZSXQ_TOKEN credential. <br>
-Mitigation: Prefer the official zsxq-cli login path, leave ZSXQ_BACKEND unset, and set ZSXQ_TOKEN only when legacy fallback is specifically required. <br>
-Risk: Automatic attachment downloads may save private files locally. <br>
-Mitigation: Disable download_attachments in config.json when downloads are not needed and review local output paths before sharing files. <br>
+## Use Case:
 
+External users and agent operators use this skill to fetch, search, summarize, and export Knowledge Planet content that their authorized account can access. It supports group lists, topic lists, digest filtering, single-topic detail, date ranges, Markdown export, and optional attachment organization.
 
-## Reference(s): <br>
-- [Architecture](docs/architecture.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Official zsxq-cli](https://github.com/unnoo/zsxq-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Chinese natural-language responses, JSON command output, Markdown exports, local attachment files, and shell/configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Markdown and downloaded attachments under the configured attachment directory; exported content should be treated as private account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and package.json) <br>
+Risk: Credential handling risks exist when the legacy ZSXQ_TOKEN fallback is enabled or left in the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default zsxq-cli OAuth login flow for normal use, and unset ZSXQ_TOKEN unless the user deliberately chooses the legacy HTTP fallback.
+
+Risk: Automatic attachment downloads may expose credential material if auth headers are sent to non-ZSXQ hosts or redirects.
+
+Mitigation: Consider disabling automatic attachment downloads in config.json until the downloader strips auth headers from non-ZSXQ hosts and redirects.
+
+Risk: The installer may install the current global zsxq-cli npm package without a pinned version.
+
+Mitigation: Install only when the publisher and npm package are trusted, and avoid running the installer with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wufulin/skills/zsxq-post-fetch)
+- [API Reference](references/api-reference.md)
+- [Architecture](docs/architecture.md)
+- [Official zsxq-cli dependency](https://github.com/unnoo/zsxq-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance]
+
+**Output Format:** [Chinese natural-language summaries, JSON command output, Markdown exports, local attachment files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown and attachments are saved under the configured attachment directory by group and date when export or download options are enabled.]
+
+## Skill Version(s):
+
+1.2.0 (source: evidence.json release.version and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-A comprehensive skill for using the Cursor CLI agent for various software engineering tasks, updated for 2026 features and tmux-based automation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill for using the Cursor CLI agent for various software engineering tasks, updated for 2026 features and tmux-based automation guidance.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on installing, authenticating, configuring, and running Cursor CLI workflows for code review, refactoring, debugging, git assistance, and CI-style automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cursor CLI automation can trust workspaces or apply code changes with insufficient user control. <br>
-Mitigation: Use the skill only in trusted repositories, review project rules and MCP configuration first, keep changes version-controlled, and avoid --force unless the results will be reviewed. <br>
-Risk: The skill requires SKILLBOSS_API_KEY, which is a sensitive credential. <br>
-Mitigation: Provide the key through a secrets manager or scoped environment variable, avoid committing it, and confirm why the key is needed before use. <br>
-Risk: The artifact describes tmux-based automation and first-run workspace trust handling. <br>
-Mitigation: Do not automate workspace trust; supervise first-run prompts and run automation only after the repository and requested task have been reviewed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to install, authenticate, configure, and operate Cursor CLI for terminal-based AI coding workflows such as code review, refactoring, debugging, Git assistance, and CI-style batch analysis.
 
-## Reference(s): <br>
-- [Cursor CLI install](https://cursor.com/install) <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/abe-cursor-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes interactive and non-interactive Cursor CLI workflows, authentication setup, MCP guidance, and tmux automation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 2.1.0) <br>
+Risk: The skill includes a curl-to-shell installer path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a package-managed or verified Cursor CLI installation path and review installer contents before execution.
+
+Risk: The automation workflow can auto-trust workspaces or apply changes with force mode.
+
+Mitigation: Do not auto-trust unknown workspaces and avoid `--force` except in isolated repositories with version control and reviewed scope.
+
+Risk: Cursor CLI automation can hang when run without a real TTY.
+
+Mitigation: Use a reviewed tmux-based workflow or another real TTY approach when running from agents, scripts, or CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/abe-cursor-agent)
+- [Cursor CLI installer](https://cursor.com/install)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes interactive and non-interactive Cursor CLI workflows; command execution depends on local CLI setup and credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter states 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-储罐CAD图纸生成。当用户说"储罐"、"生成储罐图纸"、"做一个储罐"、"tank"时使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+储罐CAD图纸生成。当用户说"储罐"、"生成储罐图纸"、"做一个储罐"、"tank"时使用此 skill。
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and developers use this skill to guide Chinese-language tank CAD drawing workflows for horizontal or vertical storage tanks. It collects tank design parameters, calls the JXT/Jixietools API for calculation and production sheet creation, and helps monitor guest-accessible production status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends user-provided tank design parameters to jixietools.com. <br>
-Mitigation: Confirm that users are comfortable sharing the design inputs with JXT/Jixietools before running API calls. <br>
-Risk: Guest codes and viewing links may allow anyone with the link to view production sheet details or status. <br>
-Mitigation: Treat guest codes and viewing links like passwords and avoid posting them in public or shared channels. <br>
+## Use Case:
 
+Engineers and external users use this skill to collect tank design parameters in Chinese, calculate tank dimensions through the JXT workflow, and create a guest production sheet for horizontal or vertical tank CAD drawing generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liv09370/tank) <br>
-- [Jixietools API Base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Chinese Markdown guidance with inline curl commands and tabular parameter summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains the returned filename across incremental calculations and treats generated guest links as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Tank design parameters and generated production sheet links are sent to jixietools.com rather than remaining local.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with engineering data approved for that external service; avoid proprietary or confidential inputs unless the service is approved for the user's organization.
+
+Risk: The workflow creates unauthenticated guest production sheet links.
+
+Mitigation: Treat generated guest links as sensitive and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub Tank Skill](https://clawhub.ai/liv09370/skills/tank)
+- [Jixietools API Base URL](https://jixietools.com/api/v1)
+- [Jixietools Tank Products Endpoint](https://jixietools.com/api/v1/products?category_id=9)
+- [Jixietools Guest Production Sheet Endpoint](https://jixietools.com/api/v1/production_sheets/guest_create)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown]
+
+**Output Format:** [Chinese conversational guidance with tables and inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing tank parameter summaries, calculated values, guest production sheet links, and progress updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

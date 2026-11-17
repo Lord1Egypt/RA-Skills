@@ -1,36 +1,51 @@
-## Description: <br>
-Safely write or update large files over 5000 bytes by reading the current state, editing incrementally, verifying after each step, and using backups for recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely write or update large files over 5000 bytes by reading, incrementally editing small sections, verifying after each step, and using backups for recovery.
 
-## Publisher: <br>
-[YKaiXu](https://clawhub.ai/user/YKaiXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ykaixu](https://clawhub.ai/user/ykaixu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to plan safer file writes and updates for large files, especially when avoiding truncation through incremental edits, verification, and backups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: File mutation guidance could lead to unintended overwrites, corruption, or truncation if used in the wrong workspace or without reviewing changes. <br>
-Mitigation: Use the skill only where file modification is allowed, keep version-control or backup practices in place, and verify file contents after each incremental edit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agents use this skill when creating or modifying large files that may exceed single-operation write limits. It guides incremental edits, verification, fallback strategies, and recovery steps for safer file changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: File modification guidance can still lead an agent to apply incorrect or destructive edits if proposed changes are not reviewed.
+
+Mitigation: Review proposed file edits, verify changed sections after each operation, and use backups for important files.
+
+Risk: Large write operations may be truncated or leave files incomplete.
+
+Mitigation: Prefer incremental edits, keep changes small, and verify file size and ending content after each operation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides step-by-step writing strategies, verification checks, fallback approaches, and error recovery guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [guidance, markdown, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No generated files by default; the skill provides workflow guidance for file edits and verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

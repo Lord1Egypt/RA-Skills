@@ -1,42 +1,50 @@
-## Description: <br>
-Fetches the latest Bloomberg headlines when a user asks for Bloomberg news, financial headlines, or current market updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest Bloomberg top headlines and helps an agent present the news in Chinese with links and localized publish times.
 
-## Publisher: <br>
-[8treenet](https://clawhub.ai/user/8treenet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[8treenet](https://clawhub.ai/user/8treenet)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve recent Bloomberg headline data and present each item with a title, link, and localized publication time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external bbgwire Go CLI for headline retrieval. <br>
-Mitigation: Review the bbgwire package before deployment and pin a reviewed module version in controlled environments. <br>
-Risk: Headline output is time-sensitive and may be incomplete or unavailable if the external source or CLI fails. <br>
-Mitigation: Treat headline summaries as informational and verify important items through linked source pages before acting. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve recent Bloomberg market and financial headlines, then present each item with a title, source link, and localized publish time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8treenet/bloomberg-headlines) <br>
-- [Publisher profile](https://clawhub.ai/user/8treenet) <br>
-- [bbgwire Go module](https://github.com/8treenet/bbgwire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Markdown] <br>
-**Output Format:** [Markdown summary of JSON headline results with titles, links, and localized publication times] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 50 recent headlines and requires macOS with the bbgwire CLI available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs and runs the mutable third-party Go executable bbgwire@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream bbgwire module before installation, prefer a pinned reviewed version, and run it with limited local file and credential exposure.
+
+## Reference(s):
+
+- [Bloomberg Headlines on ClawHub](https://clawhub.ai/8treenet/skills/bloomberg-headlines)
+- [bbgwire Go module](https://github.com/8treenet/bbgwire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary of headline records with title, URL, and localized publish time; the underlying command returns JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displays up to 50 recent Bloomberg headlines in Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,69 @@
-## Description: <br>
-Diagnoses Huawei Cloud DWS cluster I/O overload by collecting KooCLI or DWS Autopilot MCP metrics, analyzing root causes with a three-stage decision tree, and producing a standardized report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Huawei Cloud DWS cluster I/O overload by collecting metrics, analyzing root causes, and producing a standardized report.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate Huawei Cloud DWS high-I/O alarms and disk I/O anomalies, collect read-only cluster metrics, and generate a diagnosis report for follow-up review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huaweiclouddev/skills/huawei-cloud-dws-io-diag) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [DWS Autopilot MCP Server Installation Guide](references/dws-mcp-installation-guide.md) <br>
-- [IAM Policies](references/iam-policies.md) <br>
-- [Metric Reference](references/metric-reference.md) <br>
-- [I/O Background Knowledge](references/io-background.md) <br>
-- [Output Format](references/output-format.md) <br>
-- [diagnosis_json Output Format Reference](references/diagnosis-json-format.md) <br>
-- [I/O Diagnosis Reference](references/IO_DIAGNOSIS_REF.md) <br>
+Huawei Cloud DWS operators and database engineers use this read-only skill to investigate cluster I/O alarms and disk I/O anomalies. It gathers available metrics and reports likely causes for review.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML diagnosis report plus diagnosis_json data and inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only DWS diagnostics credentials; generated reports may include SQL text, usernames, query IDs, host/IP data, and workload patterns that should be handled as sensitive operational data.] <br>
+Global
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Diagnosis reports may contain SQL literals and usernames.
+
+Mitigation: Keep reports in a private workspace, redact them before sharing, and delete them when no longer needed.
+
+Risk: Cloud credentials could be exposed through chat or command history.
+
+Mitigation: Use a dedicated read-only cloud identity and keep keys out of chat and command lines.
+
+Risk: The bundled security review does not establish the runtime safety of external dependencies.
+
+Mitigation: Verify KooCLI and MCP dependencies separately and follow Huawei's current installation instructions.
+
+Risk: Suggestions involving audit settings or index removal could have operational impact.
+
+Mitigation: Require separate operational review before acting on such suggestions.
+
+## Reference(s):
+
+- [I/O Diagnosis Reference](references/IO_DIAGNOSIS_REF.md)
+- [I/O Background Knowledge](references/io-background.md)
+- [Metric Reference](references/metric-reference.md)
+- [Diagnosis JSON Format](references/diagnosis-json-format.md)
+- [Report Output Format](references/output-format.md)
+- [KooCLI Installation Guide](references/cli-installation-guide.md)
+- [DWS Autopilot MCP Installation Guide](references/dws-mcp-installation-guide.md)
+- [IAM Policy Requirements](references/iam-policies.md)
+- [Huawei Cloud KooCLI installation instructions](https://support.huaweicloud.com/intl/en-us/qs-hcli/hcli_02_003_02.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, HTML]
+
+**Output Format:** [Diagnosis summary and complete HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

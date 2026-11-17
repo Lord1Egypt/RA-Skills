@@ -1,41 +1,57 @@
-## Description: <br>
-Wechat Assistant helps agents capture WeChat desktop chat records on Windows, analyze conversations, manage a reply knowledge base, generate reviewed replies, and create charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wechat Assistant captures visible Windows WeChat chat records, analyzes message patterns and requirements, manages a local reply knowledge base, generates draft replies for human review, and creates chat visualizations.
 
-## Publisher: <br>
-[luemery](https://clawhub.ai/user/luemery) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luemery](https://clawhub.ai/user/luemery)
 
-## Use Case: <br>
-Developers and end users use this skill to analyze authorized WeChat desktop conversations, extract needs and relationship signals, build a local reply knowledge base, and draft replies that require review before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private WeChat chat content and stores exported messages, reply history, and knowledge-base data locally. <br>
-Mitigation: Use it only on chats you are authorized to process, choose narrow contact and message-count scopes, store exports in protected folders, and delete reply_history.json and kb_data.json when no longer needed. <br>
-Risk: Local UI automation can act against an already logged-in WeChat desktop session. <br>
-Mitigation: Install and run the skill only when local automation access is acceptable, keep the intended chat window visible, and review each generated reply before any send action. <br>
+## Use Case:
 
+External users and developers use this skill on Windows to capture and analyze WeChat Desktop conversations, generate reviewed reply drafts, maintain a local communication-style knowledge base, and produce relationship or timeline charts.
 
-## Reference(s): <br>
-- [Format specification](references/format_spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/luemery/wechat-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or PNG file outputs from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on Windows with WeChat desktop visible and logged in; reply generation creates review records before any send step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read visible WeChat chats and save private message content and derived analysis in plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated working folder, limit exports to the chats needed for the task, avoid sharing generated files without review, and delete or segregate files that contain sensitive conversations.
+
+Risk: Reply-history and knowledge-base files may retain sensitive message text and personal communication patterns.
+
+Mitigation: Review generated reply history and knowledge-base content regularly, remove sensitive entries, and keep those files outside shared or synchronized folders unless explicitly intended.
+
+Risk: Generated replies may not match the user's intent or may be inappropriate for the conversation.
+
+Mitigation: Keep human review enabled for approve, modify, or reject decisions before using any suggested reply.
+
+## Reference(s):
+
+- [Wechat Assistant Data Format Specification](references/format_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON and PNG files produced by the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on Windows with WeChat Desktop visible; generated chat records, analyses, knowledge-base data, and reply history may be stored as local plaintext files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

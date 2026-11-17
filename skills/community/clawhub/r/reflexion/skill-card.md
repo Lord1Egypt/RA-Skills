@@ -1,42 +1,58 @@
-## Description: <br>
-Closed-loop learning for AI coding agents that captures errors and corrections, recalls relevant past solutions, and promotes recurring patterns to project memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Closed-loop learning for AI coding agents that captures errors and corrections, recalls relevant past solutions, and promotes recurring patterns to project memory.
 
-## Publisher: <br>
-[sharoonsharif](https://clawhub.ai/user/sharoonsharif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharoonsharif](https://clawhub.ai/user/sharoonsharif)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to capture command failures, user corrections, and recurring fixes, then recall or promote them as project memory for future coding tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic local capture and recall can store command output, user corrections, and project-specific context where local memory is not appropriate. <br>
-Mitigation: Install only in projects where automatic local memory is acceptable, prefer project-level hooks, add .reflexion/ to .gitignore for private work, and narrow or disable hooks around sensitive output. <br>
-Risk: Recalled or promoted learnings can become stale, overbroad, or misleading if they are not reviewed. <br>
-Mitigation: Review captured entries and promoted rules periodically, and verify a recalled solution before treating it as current project guidance. <br>
+## Use Case:
 
+Developers and coding agents use Reflexion to preserve lessons from command errors, user corrections, and non-obvious fixes so similar future tasks can recall known resolutions and promote recurring project rules.
 
-## Reference(s): <br>
-- [Integration Guide](references/integration.md) <br>
-- [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) <br>
-- [ClawHub reflexion release](https://clawhub.ai/sharoonsharif/reflexion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .reflexion JSON entries, keyword indexes, and promoted project-memory rules when hooks are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill stores coding-session data in local .reflexion entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted projects, keep .reflexion out of sensitive repositories, and do not commit .reflexion data unless the contents have been reviewed.
+
+Risk: Recall and promotion can inject stored learnings into future agent context or CLAUDE.md.
+
+Mitigation: Disable or gate automatic recall and promotion until the security guidance is addressed, and review promoted rules before relying on them.
+
+Risk: The authoritative security verdict is suspicious because shell-hook behavior and implementation details require review before use.
+
+Mitigation: Review the shell scripts before installation and avoid global hooks until raw entry injection, promotion behavior, eval usage, and path interpolation are fixed.
+
+## Reference(s):
+
+- [Integration Guide](artifact/references/integration.md)
+- [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, XML-like recall blocks, JSON entries, and shell hook output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .reflexion entries and may append learned rules to CLAUDE.md when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Assists users with creating, monitoring, reviewing, and negotiating service level agreements across vendor, internal team, and client relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists users in creating, monitoring, and enforcing service level agreements with metrics, escalation paths, penalties, review schedules, and vendor negotiation guidance.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Operations leaders, founders, account managers, and IT managers use this skill to draft SLA documents, choose service metrics, set escalation paths, define credits or penalties, review gaps, and prepare vendor negotiation points. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SLA drafts may be mistaken for legal advice or final contract language. <br>
-Mitigation: Use the skill as a drafting and review aid, then route contract terms through qualified legal and business review before signing. <br>
-Risk: Users may paste confidential contracts, customer data, or commercial terms into the assistant. <br>
-Mitigation: Share only information intended for analysis by the assistant and redact sensitive or regulated details where possible. <br>
-Risk: The skill includes optional external purchase and calculator links. <br>
-Mitigation: Review external links before use and avoid treating linked commercial material as required for the SLA workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SLA Manager ClawHub release page](https://clawhub.ai/1kalin/afrexai-sla-manager) <br>
+## Use Case:
+
+Operations leaders, founders, account managers, and IT managers use this skill to draft and review vendor, internal team, and client SLAs, including metrics, escalation paths, credit structures, and review cadences.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: SLA benchmark values or contract language may be stale or unsuitable for a specific business, legal, or vendor context.
+
+Mitigation: Review outputs against current vendor data, business requirements, and legal or commercial advice before relying on them.
+
+Risk: The skill includes optional AfrexAI promotional links.
+
+Mitigation: Confirm link destination and relevance before following or sharing those resources.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SLA documents, metrics summaries, escalation matrices, review schedules, and gap analysis.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with tables, matrices, review calendars, and gap analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SLA documents, metrics summaries, escalation matrices, review schedules, credit or penalty tables, and identified red flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

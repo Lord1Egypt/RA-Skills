@@ -1,41 +1,56 @@
-## Description: <br>
-Provides a bilingual AI video cinematography methodology for camera movement, emotion mapping, skin realism prompts, negative prompts, and practical prompt examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language AI video cinematography and prompt-writing guide for mapping emotions to camera movement, realistic human-character details, and negative prompts.
 
-## Publisher: <br>
-[JOEL4-5](https://clawhub.ai/user/JOEL4-5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joel4-5](https://clawhub.ai/user/joel4-5)
 
-## Use Case: <br>
-External creators, prompt writers, and developers use this skill to turn desired video emotions into camera-language prompts for tools such as Kling, Runway, Luma, Sora, Veo, 即梦, and 海螺. It also helps users write realistic human-character prompts with skin texture guidance and negative prompt terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes techniques for making AI-generated people look realistic, which could be misused to present synthetic media as real or impersonate people. <br>
-Mitigation: Use realistic-person guidance only with appropriate consent, disclosure, and review; do not present synthetic media as authentic footage. <br>
+## Use Case:
 
+External creators, prompt writers, and agents use this skill to build AI video and image prompts with cinematic camera movement, emotion-to-shot mappings, and realistic human skin-detail guidance.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/JOEL4-5/ai-video-cinematography) <br>
-- [Emotion and camera movement table](references/emotion-table.md) <br>
-- [Full AI video guide](references/full-guide.md) <br>
-- [Skin realism prompts](references/skin-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt-writing guidance with tables, checklists, and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, tools, API calls, or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can be invoked for broad AI video or image prompt requests where its Chinese-language guidance or camera terminology may not match the user's intended tool or language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the target tool, output language, and desired prompt format before adapting the guidance.
+
+Risk: Camera-movement and realism prompt terms are tool-dependent and may not be honored consistently by every video generation system.
+
+Mitigation: Check the selected tool's supported camera controls and treat generated prompts as drafts to test and revise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joel4-5/skills/ai-video-cinematography)
+- [Emotion-to-camera movement table](references/emotion-table.md)
+- [Full AI video creation guide](references/full-guide.md)
+- [Skin realism prompt guide](references/skin-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with prompt examples and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no code execution, credential access, persistence, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

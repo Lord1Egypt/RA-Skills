@@ -1,41 +1,55 @@
-## Description: <br>
-Provides ADHD-friendly daily planning with realistic time estimates, dopamine-aware task design, transition buffers, and executive function support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ADHD-friendly daily planning with realistic time estimates, dopamine-aware task design, transition buffers, and executive function support.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-People seeking ADHD-friendly planning support use this skill to create daily plans, time estimates, transition buffers, dopamine-aware task structures, and executive function checklists. It is intended for planning and self-organization support, not diagnosis, crisis support, or medication decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat ADHD planning guidance or medication-related notes as medical advice. <br>
-Mitigation: Use the skill for planning, routines, and observation notes only; discuss diagnosis, crisis support, medication changes, or worsening symptoms with a licensed clinician. <br>
+## Use Case:
 
+External users and agents use this skill to create ADHD-centered daily plans, prioritize a small number of tasks, estimate time realistically, and choose executive-function supports such as buffers, body doubling, and task initiation strategies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/godferylindsay/godfery-adhd-daily-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/godferylindsay) <br>
-- [Dopamine menu reference](artifact/references/dopamine-menu.md) <br>
-- [Executive function toolkit reference](artifact/references/executive-function-toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only planning support; may include daily plan templates, task breakdowns, routines, and notes to discuss with a licensed clinician.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat ADHD planning or medication-related prompts as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as planning notes or discussion aids only; do not change medication dose, timing, regimen, diagnosis, or treatment without a qualified clinician.
+
+Risk: Planning templates can become counterproductive if followed rigidly during severe distress or low executive-function periods.
+
+Mitigation: Use the skill's smallest-action and flexible-planning approach, and escalate severe distress or treatment questions to appropriate professional support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-adhd-daily-planner)
+- [Dopamine Menu](artifact/references/dopamine-menu.md)
+- [Executive Function Toolkit](artifact/references/executive-function-toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown planning templates and concise coaching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs should be personalized and reviewed before acting on health-related decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

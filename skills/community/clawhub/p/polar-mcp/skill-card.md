@@ -1,44 +1,59 @@
-## Description: <br>
-Connect an MCP-compatible agent to Polar AccessLink training, sleep, Nightly Recharge, PPI/HRV, route, and sample data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to Polar AccessLink training, sleep, Nightly Recharge, PPI/HRV, route, and sample data.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, verify, and troubleshoot Polar MCP for MCP-compatible clients while keeping OAuth tokens and private Polar data protected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Polar OAuth tokens and fitness, sleep, HRV, sample, or route/GPS data are sensitive. <br>
-Mitigation: Keep local token files private, do not print secrets or private user data, and revoke Polar access when the connection is no longer needed. <br>
-Risk: Authenticated agent access may expose health or location data through MCP surfaces. <br>
-Mitigation: Use connection status, manifest, doctor, privacy audit, or dry-run checks first, and keep route/GPS access opt-in with explicit user consent. <br>
-Risk: Setup relies on a third-party npm package and linked project. <br>
-Mitigation: Install only if the publisher, package, and linked project are trusted for the user's environment. <br>
+## Use Case:
 
+Developers and MCP-compatible agent users use this skill to install, configure, validate, and troubleshoot Polar MCP access to Polar training, sleep, route, and sample data while preserving privacy boundaries.
 
-## Reference(s): <br>
-- [Polar MCP repository](https://github.com/davidmosiah/polarmcp) <br>
-- [Polar connector documentation](https://wellness.delx.ai/connectors/polar) <br>
-- [ClawHub release page](https://clawhub.ai/davidmosiah/polar-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup, OAuth, privacy-audit, dry-run, and troubleshooting guidance for MCP-compatible clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A floating npx command can install a changed package version during setup or OAuth authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the polar-mcp-unofficial package version before installation or authentication.
+
+Risk: Polar OAuth, health, and route data can expose sensitive personal information.
+
+Mitigation: Keep consent explicit, avoid printing tokens or private user data, and prefer status, manifest, privacy audit, doctor, or dry-run checks before live calls.
+
+Risk: Promotional wording in the artifact could shape agent responses in ways unrelated to user goals.
+
+Mitigation: Ignore or remove promotional response instructions when deploying the skill.
+
+## Reference(s):
+
+- [Polar MCP ClawHub page](https://clawhub.ai/davidmosiah/skills/polar-mcp)
+- [Polar MCP repository](https://github.com/davidmosiah/polarmcp)
+- [Polar connector documentation](https://wellness.delx.ai/connectors/polar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include privacy and troubleshooting guidance for OAuth-backed Polar MCP usage.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -95,7 +95,7 @@ When the user names a category, find the row here and start from the listed reci
 - **Style mode**: Editorial dark (Ink Classic with paper inverted to near-black) for atmospheric games. Swiss for esports/competitive data
 - **Theme**: Midnight Ink for atmospheric games; IKB Blue for esports/data
 - **Text scheme**: Text-on-image is standard for game covers (game art is the primary draw). Use subject mapping from image-overlay.md
-- **Image source**: Wallhaven for keyword pulls, official screenshots. Always disclose copyright risk and log to SOURCES.md
+- **Image source**: Pexels/Unsplash for keyword pulls, official screenshots. Always disclose copyright risk and log to SOURCES.md
 - **Content shape**: 4-6 pages. Cover (game name + playtime) → first impression → chapter ledger → memorable boss/scene → verdict
 - **Pitfalls**: Score-card seriousness (8.5/10 in giant block). Keep verdict as one short clause, not a number
 

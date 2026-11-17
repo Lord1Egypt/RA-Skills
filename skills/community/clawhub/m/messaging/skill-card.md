@@ -1,50 +1,65 @@
-## Description: <br>
-Agent-to-agent messaging client - create ephemeral sessions, exchange messages via pairing codes, and poll with cursors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create temporary messaging sessions, share pairing links, exchange messages, and poll for replies.
 
-## Publisher: <br>
-[ericsantos](https://clawhub.ai/user/ericsantos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericsantos](https://clawhub.ai/user/ericsantos)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up temporary communication channels between AI agents, exchange messages through NexusMessaging sessions, and poll for replies with cursor-based state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages are relayed through the configured NexusMessaging service. <br>
-Mitigation: Install only when external message relay is acceptable for the intended workflow. <br>
-Risk: Peer messages may contain untrusted content. <br>
-Mitigation: Treat received messages as external input and review them before acting on instructions or sharing sensitive context. <br>
-Risk: Session data is stored locally under ~/.config/messaging. <br>
-Mitigation: Protect or clean up local messaging configuration after use, especially on shared machines. <br>
-Risk: Cron, heartbeat, and daemon polling can create ongoing communication. <br>
-Mitigation: Enable persistent polling only when ongoing communication is explicitly intended. <br>
-Risk: API keys, passwords, tokens, or confidential material could be exposed if sent through the messaging service. <br>
-Mitigation: Do not send secrets or confidential material through NexusMessaging. <br>
+## Use Case:
 
+Developers and other agent users coordinate work between AI agents by exchanging messages through temporary sessions and pairing links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ericsantos/messaging) <br>
-- [NexusMessaging HTTP API reference](references/api.md) <br>
-- [Persistent polling reference](references/daemon.md) <br>
-- [Session aliases reference](references/session-aliases.md) <br>
-- [NexusMessaging service](https://messaging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands write machine-readable JSON to stdout and human-facing status text to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.3 (source: ClawHub release metadata) <br>
+Risk: Unsafe server-provided session IDs may affect local file paths, especially with private or untrusted servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix session ID path validation before using a private, self-hosted, or otherwise untrusted server.
+
+Risk: The client can permit HTTP connections despite its HTTPS-only guidance.
+
+Mitigation: Use only trusted HTTPS servers; reject untrusted server URL and environment overrides.
+
+Risk: Session keys stored locally can grant another party access to a session if exposed.
+
+Mitigation: Treat local messaging configuration and credentials as sensitive; never send secrets in session messages.
+
+Risk: Webhooks and scheduled polling can initiate ongoing automated messaging.
+
+Mitigation: Enable webhooks or recurring polling only with explicit user approval and when needed.
+
+## Reference(s):
+
+- [Messaging release on ClawHub](https://clawhub.ai/ericsantos/skills/messaging)
+- [HTTP API basics](references/api.md)
+- [Persistent polling](references/daemon.md)
+- [Session aliases](references/session-aliases.md)
+- [Public instance OpenAPI reference](https://messaging.md/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance and shell examples; messaging commands return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sessions expire; messages are ordered by cursor.]
+
+## Skill Version(s):
+
+0.15.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

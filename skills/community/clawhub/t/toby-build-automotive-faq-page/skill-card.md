@@ -1,38 +1,50 @@
-## Description: <br>
-Generate customer-facing answers for common automotive questions. Use when working on FAQ content for dealership operators, service teams, auto marketers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customer-facing answers for common automotive questions. Use when working on FAQ content for dealership operators, service teams, auto marketers.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Dealership operators, service teams, and automotive marketers use this skill to draft customer-facing FAQ answers for common automotive questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated automotive FAQ answers may include inaccurate warranty, recall, legal, or safety-related claims if published without review. <br>
-Mitigation: Review customer-facing content against authoritative dealership, manufacturer, recall, warranty, legal, and safety sources before publication. <br>
+## Use Case:
 
+Dealership operators, service teams, and auto marketers use this skill to draft customer-facing FAQ answers for automotive sales, service, and marketing contexts.
 
-## Reference(s): <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/build-automotive-faq-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text FAQ draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated automotive FAQ answers may contain incorrect or misleading pricing, warranty, legal, safety, or dealership-specific claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated answers before publishing or using them in customer-facing channels.
+
+## Reference(s):
+
+- [SkillBoss Build Automotive FAQ Page](https://www.skillboss.co/skills/build-automotive-faq-page)
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-build-automotive-faq-page)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text FAQ draft with customer-facing answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before publication, especially for pricing, warranty, legal, safety, or dealership-specific claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

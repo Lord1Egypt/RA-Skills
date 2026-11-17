@@ -1,40 +1,58 @@
-## Description: <br>
-Trades a Simmer-indexed market when your estimated probability diverges from the live market price, with dry-run on sim by default, context checks, reasoning tags, and optional live execution on Polymarket through ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades a Simmer-indexed market when your estimated probability diverges from the live market price, with dry-run on sim by default, context checks, reasoning tags, and optional live execution on Polymarket through ClawHub.
 
-## Publisher: <br>
-[ssj124](https://clawhub.ai/user/ssj124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssj124](https://clawhub.ai/user/ssj124)
 
-## Use Case: <br>
-Developers and trading agents use this skill to wrap an existing probability estimate for a Simmer-indexed market with market context checks, threshold-based trade discipline, and dry-run-first execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live prediction-market trades when live execution is enabled, and security guidance calls out checking venue coverage before installation. <br>
-Mitigation: Confirm the manifest and runtime options list all permitted live venues, review credentials and order controls, and keep dry-run mode until the operator intentionally enables live trading. <br>
-Risk: Market context warnings, flip-flop risk, or high slippage can make an otherwise profitable-looking divergence unsafe to trade. <br>
-Mitigation: Fetch market context before deciding, hold when alerts are present, and review the operator summary before relying on any trade decision. <br>
+## Use Case:
 
+External developers and trading agents use this skill when they already have a probability estimate for a Simmer-indexed market and need a configurable execution wrapper that compares the estimate to market price before deciding whether to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssj124/polymarket-divergence-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Plain text operator summary with optional JSON trade result output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and market inputs; defaults to dry-run unless live execution is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can run as a managed task every 15 minutes for a financial trading workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify or disable the cron automaton before installation and only enable recurring execution when continuous trading is intended.
+
+Risk: Live execution can place trades on a prediction-market venue when explicitly enabled.
+
+Mitigation: Keep dry-run mode as the default, pass live mode only intentionally, and set conservative trade size and edge thresholds.
+
+Risk: The skill requires a Simmer API key and depends on external Python packages.
+
+Mitigation: Use a restricted API key, keep secrets out of prompts and logs, and review dependency versions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssj124/skills/polymarket-divergence-trader)
+- [Publisher profile](https://clawhub.ai/user/ssj124)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash examples and operator text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print JSON trade results during live execution; defaults to dry-run unless live mode is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,60 @@
-## Description: <br>
-Game Scout researches current video game tactics, builds, guides, patch-sensitive meta knowledge, and game mechanics across community, video, wiki, social, and database sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video game strategy specialist that amalgamates tactics, builds, guides, and meta knowledge from Reddit, YouTube creators, wikis, Twitter/X, and game databases.
 
-## Publisher: <br>
-[rclark4958](https://clawhub.ai/user/rclark4958) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rclark4958](https://clawhub.ai/user/rclark4958)
 
-## Use Case: <br>
-External users and gaming-focused agents use this skill to research current game builds, loadouts, mechanics, tier lists, strategies, patch impacts, and esports or high-level play recommendations. It helps synthesize actionable answers with source attribution and confidence notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Game-related prompts and source URLs may be sent to Exa, Bright Data, and YouTube tooling. <br>
-Mitigation: Avoid private URLs, account details, sensitive notes, and access tokens in prompts or source lists. <br>
-Risk: The skill requires third-party API credentials for search and scraping workflows. <br>
-Mitigation: Store API keys in ~/.openclaw/.env, keep them out of source control, and avoid sharing logs that may contain credential values. <br>
-Risk: Gaming recommendations can become stale after game patches or balance changes. <br>
-Mitigation: Use the skill's patch-aware source checks, cite source dates, and flag low-confidence or pre-patch guidance. <br>
+## Use Case:
 
+Players and gaming-focused agents use this skill to research current game strategy, builds, loadouts, mechanics, patch impacts, tier lists, and pro-play meta. It helps synthesize web, Reddit, YouTube, wiki, Twitter/X, and game-database evidence into actionable, sourced recommendations.
 
-## Reference(s): <br>
-- [Game Scout Skill Page](https://clawhub.ai/rclark4958/game-scout) <br>
-- [Game Scout README](artifact/README.md) <br>
-- [Sample Query Pipelines](artifact/examples/sample-queries.md) <br>
-- [Search Strategies](artifact/references/search-strategies.md) <br>
-- [Source Extraction](artifact/references/source-extraction.md) <br>
-- [Game Database Directory](artifact/references/game-databases.md) <br>
-- [Exa AI](https://exa.ai) <br>
-- [Bright Data](https://brightdata.com) <br>
-- [Bright Data Web Unlocker Zone Dashboard](https://brightdata.com/cp/zones) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with source lists, tables, concise recommendations, confidence labels, and inline shell commands when research tools are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include TL;DR summaries, structured build or strategy sections, caveats about patch recency, and numbered source citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata) <br>
+Risk: Game-related searches, URLs, Reddit/Twitter/X targets, and YouTube targets may be sent to third-party services including Exa, Bright Data, and yt-dlp-backed retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public, non-sensitive targets only; avoid private, internal, authenticated, or sensitive URLs; keep API keys scoped and revocable.
+
+Risk: Game strategy and meta guidance can become stale or conflict across patches, sources, regions, or skill levels.
+
+Mitigation: Cross-check recent sources, verify patch dates, surface source disagreement, and include confidence and caveats in final guidance.
+
+## Reference(s):
+
+- [ClawHub Game Scout release page](https://clawhub.ai/rclark4958/skills/game-scout)
+- [Search Strategies Reference](artifact/references/search-strategies.md)
+- [Source Extraction Patterns](artifact/references/source-extraction.md)
+- [Game Database Directory](artifact/references/game-databases.md)
+- [Sample Query Pipelines](artifact/examples/sample-queries.md)
+- [Exa AI](https://exa.ai)
+- [Bright Data](https://brightdata.com)
+- [Bright Data dashboard](https://brightdata.com/cp/zones)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with source lists, confidence notes, tables, and inline shell commands when retrieval is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are patch-aware and source-grounded, with caveats for recency, source disagreement, and confidence.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Minimal secure secret handoff. Zero external deps. Human opens browser form, submits secret, agent receives it via temp file. Secret NEVER appears in stdout/logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimal secure secret handoff with no external dependencies: a human opens a browser form, submits a secret, and the agent receives it through a temporary file without printing the secret to stdout or logs.
 
-## Publisher: <br>
-[BitBrujo](https://clawhub.ai/user/BitBrujo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bitbrujo](https://clawhub.ai/user/bitbrujo)
 
-## Use Case: <br>
-Developers and agents use this skill to receive a sensitive value from a human through a temporary local web form and read it from a permission-restricted file instead of exposing the secret in command output or chat logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The temporary HTTP server binds to all interfaces and prints network URLs, so secrets can be submitted from the local network if the URL is shared or discovered. <br>
-Mitigation: Use the localhost URL only, avoid shared or untrusted networks, and stop the server after a single handoff. <br>
-Risk: The skill writes sensitive values to a temporary file. <br>
-Mitigation: Use short-lived scoped tokens when possible, keep the generated file permissions restrictive, read the file only for the intended command, and delete it immediately after use. <br>
-Risk: Shell one-liners that pipe the secret through xargs can expose or mishandle values with shell-sensitive characters. <br>
-Mitigation: Avoid the xargs one-liner and prefer assigning the file content to a quoted shell variable before invoking the target command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BitBrujo/side-peace) <br>
+## Use Case:
 
+Developers and agent operators use this skill to hand a credential or other secret from a human browser session to an agent process through a local temporary file, avoiding exposure of the secret in command output or chat logs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for running a local Node.js handoff server and handling the resulting temporary secret file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The credential entry server can be exposed too broadly for a secret handoff workflow.
+
+Mitigation: Review before installing or using with real credentials, and prefer a version that binds to localhost by default or uses a one-time secret URL or other authentication.
+
+Risk: The submission endpoint lacks protective controls for request size and form label handling.
+
+Mitigation: Limit request size and escape the displayed label before using the skill in environments where untrusted users can reach the form.
+
+Risk: Credential handling can remain risky after receipt if tokens are passed through command-line arguments or unpinned commands.
+
+Mitigation: Avoid passing secrets through unpinned npx commands or command-line arguments, and delete the temporary secret file immediately after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bitbrujo/skills/side-peace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain text status messages, shell command examples, and a local secret file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The submitted secret is written to a temporary file and is not printed to stdout.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

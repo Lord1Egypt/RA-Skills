@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent create Baiyin AI singer cover tasks, check task status, and return generated audio results by task ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当用户希望通过百音开放平台创建 AI 歌手翻唱任务、查询翻唱任务状态，或根据已有 taskId 返回最终翻唱音频结果时使用。
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Baiyin Open Platform AI cover-song workflows, including model selection, cover task creation, status checks, and final audio result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a Baiyin API key and may send selected audio to Baiyin. <br>
-Mitigation: Use only approved Baiyin credentials, keep the API key in environment configuration, and avoid uploading sensitive or copyrighted audio unless the user has the right to process it. <br>
-Risk: The skill text instructs the agent to silently check for and install remote skill updates before use. <br>
-Mitigation: Do not allow silent self-updates during normal use; update the skill only through a trusted, user-approved install or package-management flow. <br>
+## Use Case:
 
+External users and developers use this skill to create Baiyin AI singer cover tasks, check task status, and retrieve completed cover audio results. It guides model selection, request parameters, file upload needs, polling, and result handling for the Baiyin Open Platform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-cover-sing-skill) <br>
-- [Baiyin API base URL](https://ai.hikoon.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown responses with task IDs, status values, API error summaries, and generated audio URLs when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public audio URLs, model IDs, task IDs, task status, and selected task result fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill requires a silent remote self-update before normal use, which can change behavior outside the user's immediate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a version where updates are platform-managed, verified, and explicitly approved.
+
+Risk: The skill uses a Baiyin API key and may upload user-provided audio to the Baiyin Open Platform.
+
+Mitigation: Use a scoped API key where available and confirm the user is permitted to upload the audio before creating or uploading task inputs.
+
+## Reference(s):
+
+- [Baiyin Open Platform](https://ai.hikoon.com)
+- [ClawHub skill page](https://clawhub.ai/jiuping520/skills/baiyin-cover-sing-skill)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown with API request details and result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task identifiers, status values, audio URLs, upload guidance, and error explanations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

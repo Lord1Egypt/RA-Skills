@@ -1,42 +1,55 @@
-## Description: <br>
-Automates affiliate and KOL reconciliation, attribution, refund-adjusted ROAS, commission calculations, fraud or traffic-quality review, and renewal recommendations for multi-partner creator programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate affiliate and KOL reconciliation, attribution, true ROAS, commission math, and renewal strategy for campaigns with multiple creators or affiliate partners.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External operators, marketers, and analysts use this skill to turn affiliate, KOL, order, refund, payout, and margin data into creator-level ROI reports. It helps reconcile attribution, calculate CAC and profit-aware performance, identify low-quality traffic patterns, and propose renewal tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Affiliate, order, refund, payout, and margin inputs can contain sensitive commerce data or customer identifiers. <br>
-Mitigation: Minimize customer identifiers where possible and share only the fields needed for attribution, refund adjustment, and creator-level economics. <br>
-Risk: Renewal, fraud, clawback, and payout recommendations may be incorrect if source exports, attribution windows, refund handling, or margin assumptions are incomplete. <br>
-Mitigation: Treat recommendations as decision support, state attribution and margin assumptions, and have a human review business actions before renewal, pause, clawback, or payout changes. <br>
+## Use Case:
 
+External operators, growth teams, and agency analysts use this skill to reconcile affiliate or KOL campaign performance across discount codes, UTMs, platform IDs, refunds, commissions, and renewal decisions.
 
-## Reference(s): <br>
-- [Affiliate & KOL ROI playbook](references/affiliate_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/RIJOYAI/affiliate-kol-roi-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, formulas, attribution summaries, and recommendation bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a master creator table, refund or chargeback adjustments, CAC and ROAS calculations, fraud or quality flags, and renewal scenarios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow may involve sensitive business data such as orders, refunds, creator payouts, and margins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the reporting data needed for the reconciliation scope and omit unrelated customer, payment, or business records.
+
+Risk: Attribution, CAC, ROAS, fraud flags, or renewal recommendations may be misleading if input data is incomplete or attribution rules are not stated.
+
+Mitigation: State the attribution rule, refund handling, margin assumptions, and data gaps in the report, then review recommendations before changing payouts or creator contracts.
+
+## Reference(s):
+
+- [Affiliate & KOL ROI playbook](artifact/references/affiliate_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/affiliate-kol-roi-monitor)
+- [Publisher profile](https://clawhub.ai/user/rijoyai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically includes an attribution rule summary, refund-adjusted figures, creator-level CAC or ROAS, fraud or quality flags, and tiered renewal recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

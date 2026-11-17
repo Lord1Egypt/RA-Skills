@@ -1,42 +1,54 @@
-## Description: <br>
-Framework-only skill trigger reference. Runtime matching implementation has been removed from the published artifact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework-only skill trigger reference. Runtime matching implementation has been removed from the published artifact.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and agent operators use Skill Trigger V2 as a framework reference for declaring how user intent maps to skill routing, dependencies, and first-line routing declarations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is presented as documentation-only, but the artifact still ships Python code that can influence skill routing and setup behavior. <br>
-Mitigation: Install only when an active routing component is intended, review Python files before running setup commands, and require user confirmation or an allowlist before wiring automatic skill execution. <br>
-Risk: Routing decisions depend on local skill index and router state that may be incorrect or untrusted. <br>
-Mitigation: Keep the local skill index and semantic router configuration reviewable, versioned, and limited to trusted skills before enabling dispatch behavior. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill as a reference for skill-trigger declarations, dependency expectations, and OpenClaw-style intent routing workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/halfmoon82/skill-trigger-v2) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce routing declarations and configuration guidance; the artifact also includes runnable Python routing and setup code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server release evidence) <br>
+Risk: The release describes the package as documentation-only, but server security evidence reports active routing code, setup scripts, workspace writes, and agent-routing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan the package before deployment; run it only in controlled environments and require explicit approval before routing decisions affect agent behavior.
+
+Risk: The included code can read OpenClaw workspace routing data and write workspace configuration or state files.
+
+Mitigation: Audit the skill index and workspace paths, pin dependencies, back up configuration, and limit filesystem permissions during evaluation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/skill-trigger-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/halfmoon82)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include routing declarations and configuration guidance; executable use requires review due to the suspicious security verdict.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

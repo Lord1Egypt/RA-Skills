@@ -1,42 +1,58 @@
-## Description: <br>
-Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity.
 
-## Publisher: <br>
-[conorkenn](https://clawhub.ai/user/conorkenn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[conorkenn](https://clawhub.ai/user/conorkenn)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect GitHub repositories, check CI activity, search their repositories, and create issues, repositories, or pull requests from an assistant workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Live GitHub write actions can create issues, repositories, or pull requests without a built-in confirmation guard. <br>
-Mitigation: Require the agent to show the exact repository, title, body, branches, visibility, and extra issue fields before taking write actions. <br>
-Risk: A broad GitHub token can expose more repository access than the workflow needs. <br>
-Mitigation: Use a fine-grained GitHub token limited to the repositories and permissions required for the intended tasks. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect GitHub repositories, check CI status, search repositories, review recent activity, and create issues, repositories, or pull requests from an assistant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/conorkenn/openclaw-github-assistant) <br>
-- [GitHub REST API endpoint](https://api.github.com) <br>
-- [GitHub personal access tokens](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or structured JSON-like results returned by OpenClaw action handlers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live GitHub read and write actions when configured with a GitHub token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and index.js) <br>
+Risk: The skill can create GitHub issues, repositories, and pull requests using the user's token without clear built-in confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and enable it only where assistant-created GitHub changes are acceptable.
+
+Risk: A broad GitHub token can grant access beyond the repositories needed for the intended workflow.
+
+Mitigation: Use the narrowest token scope possible, preferring public_repo when private repository access is not required.
+
+Risk: Pull-request creation is available even though the main documentation does not fully disclose it.
+
+Mitigation: Treat pull-request creation as an enabled capability during review, policy approval, and runtime monitoring.
+
+## Reference(s):
+
+- [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+- [GitHub REST API](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured GitHub API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub credentials via GITHUB_TOKEN and GITHUB_USERNAME or matching OpenClaw configuration.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and skill implementation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

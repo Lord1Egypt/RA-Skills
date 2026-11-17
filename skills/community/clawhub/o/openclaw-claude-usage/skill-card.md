@@ -1,40 +1,53 @@
-## Description: <br>
-Checks Claude Max plan usage by launching Claude Code, running `/usage`, and reporting session and weekly usage metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Claude Max plan usage limits by launching Claude Code and running /usage.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Claude Code users with Claude Max subscriptions use this skill to check current session and weekly usage limits from inside an agent workflow. It returns readable usage metrics and does not modify billing, subscription, or account settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches the local Claude CLI under the user's logged-in Claude account and exposes usage metrics to the agent session. <br>
-Mitigation: Install only when that account context and usage visibility are acceptable, and review the generated command before execution. <br>
-Risk: The skill is deprecated and depends on interactive terminal automation that may be brittle. <br>
-Mitigation: Prefer the native Claude `/usage` command, ccusage CLI, or CC Usage MCP server when available. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to check authenticated Claude Max plan usage, parse Claude Code /usage output, and return current session and weekly quota metrics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/openclaw-claude-usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text summary with usage metrics and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Claude Code CLI authentication and an expect-capable terminal session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill opens an authenticated Claude Code CLI and can reveal Claude usage information, including limited local cached token counts during fallback handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted agent sessions and avoid sharing returned quota or cached usage details beyond the intended user context.
+
+Risk: The expect-based flow depends on Claude Code's interactive usage screen and may fail or misparse output if the TUI changes.
+
+Mitigation: Review returned metrics for plausibility and treat fallback data from claude auth status or local cache files as limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chunhualiao/skills/openclaw-claude-usage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with usage metrics and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports Claude usage metrics after stripping ANSI output; fallback data is limited when the expect-based flow is unavailable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact skill.yml and CHANGELOG show 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

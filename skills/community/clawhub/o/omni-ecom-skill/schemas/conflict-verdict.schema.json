@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/conflict-verdict-2.0.json",
+  "title": "Omni E-commerce Conflict Verdict Ledger",
+  "description": "团长对扫描出的每一条冲突给出的裁决记录。核心归因冲突必须由团长亲自复算裁决，不得投票或各打五十大板。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "report_revision", "conflicts_sha256", "verdicts"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "conflict_verdict_ledger" },
+    "contract_name": { "const": "omni-ecom.conflict-verdict" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z-]+)*)?$" },
+    "legacy_compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["read_only_import", "current_analysis_authority"],
+      "properties": {
+        "read_only_import": { "const": ["omni-ecom.conflict-verdict@1.0"] },
+        "current_analysis_authority": { "const": false }
+      }
+    },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z-]+)*)?$" },
+    "report_revision": { "type": "string", "minLength": 1 },
+    "conflicts_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "conflict_scan_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "verdicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "conflict_id",
+          "proposition",
+          "decision",
+          "decision_basis",
+          "adopted",
+          "not_adopted_disposition",
+          "residual_risk"
+        ],
+        "properties": {
+          "conflict_id": { "type": "string", "pattern": "^X-[A-Za-z0-9_-]+$" },
+          "proposition": { "type": "string", "minLength": 1, "description": "争议的具体命题，必须可判断真假。" },
+          "decision": { "type": "string", "minLength": 1 },
+          "decision_basis": {
+            "type": "object",
+            "required": ["method"],
+            "properties": {
+              "method": { "enum": ["lead_recomputation", "authority_source", "scope_degradation", "pending_verification"] },
+              "formula": { "type": "string" },
+              "inputs": { "type": "array", "items": { "type": "string" } },
+              "result": { "type": "string" },
+              "evidence_ids": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "adopted": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["agent_id", "adopted_point"],
+              "properties": {
+                "agent_id": { "type": "string", "minLength": 1 },
+                "adopted_point": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "not_adopted_disposition": {
+            "type": "array",
+            "description": "未被采纳的观点不能丢弃，必须说明重新挂载到哪个问题下或降级为假设。",
+            "items": {
+              "type": "object",
+              "required": ["agent_id", "point", "disposition"],
+              "properties": {
+                "agent_id": { "type": "string", "minLength": 1 },
+                "point": { "type": "string", "minLength": 1 },
+                "disposition": { "enum": ["reassigned_to_other_issue", "downgraded_to_hypothesis", "pending_data", "refuted"] },
+                "reassigned_to": { "type": "string" },
+                "note": { "type": "string" }
+              }
+            }
+          },
+          "residual_risk": { "type": "string", "minLength": 1 },
+          "challenge_round_used": { "type": "boolean" }
+        }
+      }
+    },
+    "status": { "enum": ["verdict_complete", "verdict_incomplete"] },
+    "decided_at": { "type": "string", "minLength": 1 }
+  }
+}

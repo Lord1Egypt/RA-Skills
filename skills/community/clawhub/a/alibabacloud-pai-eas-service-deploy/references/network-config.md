@@ -53,10 +53,10 @@ When deploying with ALB/NLB:
 
 ```bash
 # List gateways
-aliyun eas list-gateway --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-gateway --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
 # Get gateway details (includes VPC and VSwitch info)
-aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
 # Key fields in response:
 # .LoadBalancerList[0].VpcId        → VPC ID
@@ -66,7 +66,7 @@ aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-
 **Correct jq command to get VPC and comma-separated VSwitch ID**:
 
 ```bash
-aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '{
     vpc_id: .LoadBalancerList[0].VpcId,
     vswitch_id: (.LoadBalancerList[0].VSwitchIds | join(","))
@@ -85,7 +85,7 @@ aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-
 **Query security groups** (after getting VPC):
 
 ```bash
-aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id {gateway_vpc} --user-agent AlibabaCloud-Agent-Skills | \
+aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id {gateway_vpc} --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '.SecurityGroups[] | "\(.SecurityGroupId)\t\(.SecurityGroupName)"'
 ```
 
@@ -195,10 +195,10 @@ Associate with user's existing NLB instance.
 
 ```bash
 # Query existing NLBs
-aliyun nlb list-load-balancers --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills
+aliyun nlb list-load-balancers --biz-region-id cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
 # Get NLB details (includes VPC and VSwitch info)
-aliyun nlb get-load-balancer-attribute --load-balancer-id nlb-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun nlb get-load-balancer-attribute --load-balancer-id nlb-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '{vpc_id: .VpcId, vswitch_id: ([.ZoneMappings[].VswitchId] | join(","))}'
 ```
 
@@ -214,7 +214,7 @@ aliyun nlb get-load-balancer-attribute --load-balancer-id nlb-xxx --user-agent A
 **Query security groups** (after getting NLB VPC):
 
 ```bash
-aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id {nlb_vpc} --user-agent AlibabaCloud-Agent-Skills | \
+aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id {nlb_vpc} --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '.SecurityGroups[] | "\(.SecurityGroupId)\t\(.SecurityGroupName)"'
 ```
 

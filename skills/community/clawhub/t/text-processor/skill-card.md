@@ -1,40 +1,53 @@
-## Description: <br>
-Batch Chinese text processing for cleaning, normalization, keyword extraction, and repeated text operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch Chinese and Chinese/English text processing for cleaning, normalization, batch operations, and keyword extraction.
 
-## Publisher: <br>
-[huizong-cpu](https://clawhub.ai/user/huizong-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huizong-cpu](https://clawhub.ai/user/huizong-cpu)
 
-## Use Case: <br>
-Content creators, editors, developers, and automation pipelines use this skill to clean mixed Chinese and English text, normalize punctuation and character width, extract simple Chinese keyword candidates, and batch-process repeated text items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect advertised translation or richer format-conversion behavior that is not present in the inspected code. <br>
-Mitigation: Treat the release as local cleaning, normalization, keyword extraction, and batch text processing unless unsupported features are separately verified. <br>
-Risk: Frequency-based Chinese keyword extraction can return approximate or noisy keyword candidates. <br>
-Mitigation: Review extracted keywords before using them in publishing, search, tagging, or downstream automation. <br>
+## Use Case:
 
+Content creators, editors, developers, and automation pipelines can use this skill for local Chinese or Chinese/English text cleanup, normalization, batch processing, and keyword extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huizong-cpu/text-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code] <br>
-**Output Format:** [Strings and JavaScript arrays returned by local module functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local processing only; batch mode maps one operation across one or more input text items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may rely on translation, Markdown/table conversion, or simplified/traditional Chinese conversion claims that are not supported by the security guidance for this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for cleanup, normalization, batch processing, and keyword extraction unless those additional capabilities are added or the description is corrected.
+
+Risk: Frequency-based keyword extraction can return candidate character sequences that are not validated as publication-ready terms.
+
+Mitigation: Review extracted keywords before publishing or using them in downstream content workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huizong-cpu/skills/text-processor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code]
+
+**Output Format:** [Plain text strings and JSON-compatible arrays returned by a JavaScript module]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes individual strings or arrays of strings; no network, credential, persistence, or destructive behavior was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

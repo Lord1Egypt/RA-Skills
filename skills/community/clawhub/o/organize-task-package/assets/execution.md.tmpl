@@ -1,0 +1,62 @@
+# {{TASK_TITLE}}: Worker Execution Record ({{WORKER_ID}})
+
+## 1. Worker and execution boundaries
+
+- Worker: `{{WORKER_ID}}`
+- Requested model/reasoning: `gpt-5.6-sol/high`
+- Enforcement method/status: creation, handshake plus explicit dispatch, current actual, or explicit subagent spawn; `planned / confirmed / enforced / mismatch`.
+- Configuration receipt and actual model/reasoning when observable: To fill.
+- GOAL: {{GOAL_PATH}}
+- Write scope: To fill.
+- No-touch scope: To fill.
+- Session mode: `current_task / fork_current / reuse_fixed / fresh`.
+- Human-readable Worker label: resolve from sidebar title or derive.
+- Internal task ID / fork source / pre-execution fork point: To fill in the technical receipt.
+- Review mode: `inherited_subagent` by default; explicit alternative `self_review`.
+- Reviewer label: `<Worker label> / Pre-execution Reviewer`; inherited full-history boundary, internal ID, owner, and `READY_REVIEW`, or `SELF_REVIEW_READY`: To fill before active Goal or implementation.
+- Launch-configuration receipt / actual deviation: To fill; execution may not start before confirmation and model enforcement.
+
+## 2. Launch baseline
+
+| Item | Value |
+| --- | --- |
+| Start time | To fill |
+| Git commit/branch/worktree | To fill |
+| Working-tree state | To fill |
+| Data/schema/config/provider | To fill |
+| Coordination state | To fill |
+
+## 3. Per-item execution receipts
+
+### {{FIRST_POINT_ID}} / Attempt 1
+
+- State: `pending`
+- Actual changes or actions: To fill.
+- Implementation details selected: To fill.
+- Deviation from frozen design: None / To fill.
+- Added or changed validation: To fill.
+
+| Command or observation | Exit state | Count or summary | Duration | Evidence path |
+| --- | --- | --- | --- | --- |
+| To fill | To fill | To fill | To fill | To fill |
+
+- Failure / interruption / retry: To fill.
+- Commit / artifact / checkpoint: To fill.
+- Residual risk: To fill.
+- Self-review verdict: `pending / ready_for_review`.
+- Review invocation: To fill exact snapshot, mode, receipt target, and notification time.
+
+> Append later work items or repair attempts in the same format. Never overwrite historical failure evidence.
+
+## 4. Part-level self-check
+
+| Part | Call chain or workflow | Persistence/auth/API | Negative cases | Docs/stale symbols | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| To fill | To fill | To fill | To fill | To fill | `pending` |
+
+## 5. Final delivery
+
+- Commits or artifacts: To fill.
+- Final validation: To fill.
+- Unrun scope: To fill.
+- Cleanup and notifications: To fill.

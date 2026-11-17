@@ -79,6 +79,23 @@ function getLastSentence(text) {
   return text.trim().replace(/\r\n/g, '\n').match(/[^.!?\n][^.!?]*(?:[.!?])?\s*$/)?.[0]?.trim() || '';
 }
 
+function findWebsiteReferences(text) {
+  const patterns = [
+    /\bhttps?:\/\/[^\s<>"')]+/giu,
+    /\bwww\.[^\s<>"')]+/giu,
+    /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu,
+    /\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:com|nl|eu|org|net|de|be|io|co|uk|fr|info|biz|shop|online|me|app|dev|ai|cloud|tv|se|dk|es|it)\b/giu,
+  ];
+  const matches = [];
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const value = match[0].replace(/[.,;:!?]+$/u, '');
+      if (value && !matches.includes(value)) matches.push(value);
+    }
+  }
+  return matches;
+}
+
 function resolveMaybeRelative(baseDir, value) {
   if (!value) return null;
   return path.isAbsolute(value) ? value : path.resolve(baseDir, value);
@@ -171,12 +188,19 @@ function evaluate(ad, adJsonPath, options) {
   let descriptionSha256 = null;
   let lastSentence = '';
   let chars = 0;
+  let websiteReferences = [];
   if (descriptionPath && fs.existsSync(descriptionPath)) {
     description = fs.readFileSync(descriptionPath, 'utf8').replace(/\r\n/g, '\n');
     descriptionSha256 = sha256(description);
     lastSentence = getLastSentence(description);
     chars = countChars(description);
     if (hasKeywordDump(description)) failures.push('description contains keyword dump');
+  }
+
+  const publicText = [ad.title, ad.deliveryNote, description].filter(Boolean).join('\n');
+  websiteReferences = findWebsiteReferences(publicText);
+  if (websiteReferences.length) {
+    failures.push(`public ad text contains forbidden website/domain reference(s): ${websiteReferences.join(', ')}`);
   }
 
   if (photoFiles.length < options.minPhotos) {
@@ -189,6 +213,10 @@ function evaluate(ad, adJsonPath, options) {
   } else {
     if (copyQuality.passed !== true) failures.push('ad.copyQuality.passed is not true');
     if (copyQuality.hasKeywordDump === true) failures.push('ad.copyQuality.hasKeywordDump is true');
+    if (copyQuality.hasWebsiteReferences === true) failures.push('ad.copyQuality.hasWebsiteReferences is true');
+    if (Array.isArray(copyQuality.websiteReferences) && copyQuality.websiteReferences.length) {
+      failures.push(`copyQuality website/domain references: ${copyQuality.websiteReferences.join(', ')}`);
+    }
     if (Array.isArray(copyQuality.requiredMissing) && copyQuality.requiredMissing.length) {
       failures.push(`copyQuality required terms missing: ${copyQuality.requiredMissing.join(', ')}`);
     }
@@ -218,6 +246,7 @@ function evaluate(ad, adJsonPath, options) {
     lastSentence,
     photoCount: photoFiles.length,
     photoFiles,
+    websiteReferences,
     requireBiddingAllowed: options.requireBiddingAllowed,
     failures,
     warnings,
@@ -231,6 +260,7 @@ function printResult(result, json) {
   }
   console.log(`Ad preflight: ${result.passed ? 'PASS' : 'FAIL'}`);
   console.log(`chars=${result.chars} photos=${result.photoCount} biddingRequired=${result.requireBiddingAllowed}`);
+  if (result.websiteReferences.length) console.log(`websiteReferences=${result.websiteReferences.join(', ')}`);
   if (result.warnings.length) console.log(`warnings:\n- ${result.warnings.join('\n- ')}`);
   if (result.failures.length) console.log(`failures:\n- ${result.failures.join('\n- ')}`);
 }
@@ -273,6 +303,8 @@ function runSelfTest() {
       passed: true,
       hasKeywordDump: false,
       hasIntentionalVariant: true,
+      hasWebsiteReferences: false,
+      websiteReferences: [],
       requiredMissing: [],
       chars: countChars(description),
       descriptionSha256,
@@ -282,6 +314,10 @@ function runSelfTest() {
   fs.writeFileSync(adJson, `${JSON.stringify(ad, null, 2)}\n`);
   const ok = evaluate(ad, adJson, { minPhotos: 1, requireBiddingAllowed: true });
   if (!ok.passed) throw new Error(`self-test expected PASS: ${ok.failures.join('; ')}`);
+  const adWithDomain = JSON.parse(JSON.stringify(ad));
+  adWithDomain.title = 'StarTech.com Model X buitenantenne';
+  const badDomain = evaluate(adWithDomain, adJson, { minPhotos: 1, requireBiddingAllowed: true });
+  if (badDomain.passed) throw new Error('self-test expected FAIL for domain-like public text');
   ad.biddingAllowed = false;
   const bad = evaluate(ad, adJson, { minPhotos: 1, requireBiddingAllowed: true });
   if (bad.passed) throw new Error('self-test expected FAIL for biddingAllowed=false');

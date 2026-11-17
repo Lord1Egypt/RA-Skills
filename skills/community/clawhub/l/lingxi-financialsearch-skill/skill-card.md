@@ -1,42 +1,59 @@
-## Description: <br>
-国泰海通证券-灵犀金融数据查询skill，通过自然语言查询A股实时行情、公司基本信息、F10财务数据、个股技术指标等金融数据，只能查询A股基础行情，遵循沪深交易所行情转发规则，不提供研报数据，仅提供授权范围内基础行情数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过自然语言查询 A 股实时行情、公司基本信息、F10 财务数据和个股技术指标等授权范围内的基础金融数据。
 
-## Publisher: <br>
-[gtht-tech](https://clawhub.ai/user/gtht-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gtht-tech](https://clawhub.ai/user/gtht-tech)
 
-## Use Case: <br>
-External users and agents use this skill to query authorized A-share market data, company information, F10 financial metrics, technical indicators, and related objective financial data through natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles API keys and device-identifying data, and the key may remain in a shared local JSON file until cleared. <br>
-Mitigation: Install only if the publisher and GTHT/GTJA service endpoints are trusted, prefer QR authorization over sending an API key in chat, use the least-privileged key available, and clear credentials with the documented clear command when no longer needed. <br>
-Risk: The skill returns financial data that users could mistake for investment advice. <br>
-Mitigation: Keep responses limited to objective data, preserve the required disclaimer, and direct users outside the skill when requested information is beyond its documented scope. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve authorized A-share market, company, F10 financial, technical-indicator, and capital-flow data from the Lingxi financial data service. It is intended for objective financial data lookup, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gtht-tech/lingxi-financialsearch-skill) <br>
-- [GTHT Lingxi authorization and API key page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1) <br>
-- [GTHT Junhong authorization and API key page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=junhong&webEnv=web2&isyyzshare=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline Node.js commands and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial responses must remain objective, include the skill's required financial-data disclaimer, and avoid investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.3 (source: evidence release version and SKILL.md frontmatter) <br>
+Risk: The skill handles a reusable financial-data API key in gtht-entry.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer QR authorization, protect the stored credential file, and delete it when access is no longer needed.
+
+Risk: The skill depends on remote gateway calls to a financial-data service.
+
+Mitigation: Install only if the publisher is trusted and review or lock down gateway-config.json and GTHT_GATEWAY_CONFIG before use.
+
+Risk: Financial lookup results could be mistaken for investment advice.
+
+Mitigation: Present outputs as objective reference data and preserve the required disclaimer that results do not constitute investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtht-tech/skills/lingxi-financialsearch-skill)
+- [Lingxi app API key activity page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1)
+- [Junhong app API key activity page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=junhong&webEnv=web2&isyyzshare=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown text with command snippets and JSON-backed financial data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authorization links, query conditions, data dates, and the required financial-data disclaimer.]
+
+## Skill Version(s):
+
+1.11.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

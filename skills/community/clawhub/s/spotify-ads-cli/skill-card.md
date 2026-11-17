@@ -1,42 +1,58 @@
-## Description: <br>
-Spotify Ads CLI helps agents analyze Spotify Ads performance, reports, targeting, audiences, assets, pixels, and datasets through spotify-ads-cli commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotify Ads data analysis and reporting via spotify-ads-cli.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Developers, analysts, and advertising operators use this skill to inspect Spotify Ads accounts, pull aggregate or insight reports, explore targeting and audiences, and prepare CSV reporting workflows through the Spotify Ads CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes the CLI as read-only while documenting commands that create remote CSV report jobs and suggesting audience or asset management workflows. <br>
-Mitigation: Require explicit user confirmation before creating CSV reports or running commands that may affect audiences or assets. <br>
-Risk: The skill requires Spotify Ads OAuth access and may expose account reporting data if used with overly broad credentials. <br>
-Mitigation: Use only Spotify Ads accounts where reporting access is approved, and verify the selected business, account, date range, and credential source before running commands. <br>
+## Use Case:
 
+Developers, analysts, and marketing operations teams use this skill to query Spotify Ads accounts, retrieve performance reports, inspect campaign hierarchy, explore targeting and audiences, and plan bids through the spotify-ads-cli.
 
-## Reference(s): <br>
-- [spotify-ads-cli documentation](https://github.com/Bin-Huang/spotify-ads-cli) <br>
-- [Spotify Ads API documentation](https://developer.spotify.com/documentation/ads-api) <br>
-- [ClawHub skill page](https://clawhub.ai/bin-huang/spotify-ads-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Spotify OAuth access token with Ads API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Spotify Ads OAuth tokens can expose advertising account data if overscoped, pasted into chat, or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Spotify Ads token, keep token values out of chat, and prefer the documented environment variable or credentials file path.
+
+Risk: The CSV report workflow creates an asynchronous report job, which is state-changing despite the skill describing the CLI as read-only.
+
+Mitigation: Require explicit user confirmation before creating CSV report jobs or downloading generated report files.
+
+Risk: Installing an unpinned global CLI package can change behavior over time.
+
+Mitigation: Use a controlled or pinned installation of spotify-ads-cli before relying on command output for reporting.
+
+## Reference(s):
+
+- [spotify-ads-cli documentation](https://github.com/Bin-Huang/spotify-ads-cli)
+- [Spotify Ads API documentation](https://developer.spotify.com/documentation/ads-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run spotify-ads-cli commands that return pretty-printed or compact JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

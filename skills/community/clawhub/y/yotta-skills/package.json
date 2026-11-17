@@ -1,0 +1,49 @@
+{
+  "name": "@yottameta/yotta-skills",
+  "version": "0.30.14",
+  "description": "YuanGe (元阁) - orchestration routing, inventory, and one-command installer for the YottaMeta skill family (zero dependencies, Node.js only).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-skills",
+    "yottaskills",
+    "installer",
+    "bundle",
+    "skill-family"
+  ],
+  "files": [
+    "SKILL.md",
+    "skill-manifest.json",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "assets",
+    "bin",
+    "lib",
+    "scripts",
+    "skills.json",
+    "scan-policy.json",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-skills.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-skills": "bin/yotta-skills.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --require ./test/setup-env.js --test \"**/*.test.js\""
+  }
+}

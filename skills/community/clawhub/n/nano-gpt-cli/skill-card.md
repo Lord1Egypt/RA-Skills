@@ -1,43 +1,56 @@
-## Description: <br>
-Use when tasks need the NanoGPT API for text, image, or video generation through the local `nano-gpt` CLI and bundled wrapper scripts for OpenClaw or ClawHub workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when tasks need the NanoGPT API for text, image, or video generation through the local `nano-gpt` CLI and bundled wrapper scripts for OpenClaw or ClawHub workflows.
 
-## Publisher: <br>
-[icework](https://clawhub.ai/user/icework) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icework](https://clawhub.ai/user/icework)
 
-## Use Case: <br>
-Developers and agents use this skill to call NanoGPT from a local terminal for text prompts, interactive chat, model discovery, image generation, and video generation. It is intended for workflows where the user has a NanoGPT API token and wants wrapper scripts or the `nano-gpt` CLI to manage the API interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens may be stored in local user configuration when `nano-gpt config set api-key` is used. <br>
-Mitigation: Prefer setting `NANO_GPT_API_KEY` in the environment and keep secrets out of prompts and logs. <br>
-Risk: Prompts and explicitly provided image or video files are sent to the configured NanoGPT endpoint. <br>
-Mitigation: Only pass local media paths when the user intends those files to be uploaded, and avoid sensitive files unless upload is explicitly requested. <br>
+## Use Case:
 
+Developers and agents use this skill to call NanoGPT from a local terminal for text prompts, chat, model discovery, image generation, and video generation. It is useful when OpenClaw or ClawHub workflows need a thin CLI wrapper around NanoGPT API calls.
 
-## Reference(s): <br>
-- [NanoGPT Documentation](https://docs.nano-gpt.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/icework/nano-gpt-cli) <br>
-- [NanoGPT CLI Reference](references/cli.md) <br>
-- [NanoGPT Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [CLI text or JSON output, with optional generated image or video files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected NanoGPT model and may include locally written media files when --output is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release metadata) <br>
+Risk: The CLI can store and reveal a NanoGPT API token in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer NANO_GPT_API_KEY for authentication and avoid running commands that print the API key in logged or shared environments.
+
+Risk: Prompts, API tokens, and explicitly provided media are sent to the configured NanoGPT endpoint.
+
+Mitigation: Keep NANO_GPT_BASE_URL set only to trusted HTTPS endpoints and provide only prompts or media intended for that service.
+
+## Reference(s):
+
+- [NanoGPT Documentation](https://docs.nano-gpt.com/)
+- [NanoGPT CLI Reference](references/cli.md)
+- [NanoGPT Workflows](references/workflows.md)
+- [ClawHub Skill Page](https://clawhub.ai/icework/skills/nano-gpt-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Terminal text or JSON, with optional image and video files written to local paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NANO_GPT_API_KEY; prompts and explicitly provided media are sent to the configured NanoGPT endpoint.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

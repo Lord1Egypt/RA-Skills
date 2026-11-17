@@ -1,47 +1,70 @@
-## Description: <br>
-Guides agents in designing, reviewing, optimizing, and generating MySQL 8 database schemas for CRM systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MySQL 8 database schema design guidance for designing, reviewing, optimizing, and generating Customer Relationship Management schemas.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and database engineers use this skill to design and review CRM data models, migration SQL, indexes, audit trails, custom fields, and tenant isolation patterns for MySQL 8 systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL or schema recommendations could weaken tenant isolation, role permissions, indexing, soft-delete behavior, or handling of sensitive customer data if applied without review. <br>
-Mitigation: Review any generated SQL before execution, especially tenant isolation, role permissions, indexes, soft-delete behavior, and sensitive customer data handling. <br>
+## Use Case:
 
+Developers and database engineers use this skill to design CRM data models, generate MySQL 8 schema and migration examples, review relationships and indexes, and choose patterns for custom fields, audit trails, activities, and multi-tenant isolation.
 
-## Reference(s): <br>
-- [Core CRM Entities](references/core-entities.md) <br>
-- [Relationships and Normalization](references/relationships-and-normalization.md) <br>
-- [Indexing and Performance](references/indexing-and-performance.md) <br>
-- [Custom Fields and Flexibility](references/custom-fields-and-flexibility.md) <br>
-- [Audit Trails and Soft Deletes](references/audit-and-soft-deletes.md) <br>
-- [Activities and Timeline](references/activities-and-timeline.md) <br>
-- [Security and Multi-Tenancy](references/security-and-multitenancy.md) <br>
-- [Migrations and Seeding](references/migrations-and-seeding.md) <br>
-- [Reference Schemas](references/reference-schemas.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/encryptshawn/mysql8-crm-schema-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include schema diagrams in text form, migration plans, indexing recommendations, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Schema examples could be adopted before CRM privacy, retention, and compliance requirements are fully defined.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL against the deployment's privacy and retention obligations before production use, and add required erasure, audit, and data-retention controls.
+
+Risk: CRM activity and integration schemas can expose sensitive meeting URLs, recording links, message identifiers, or customer data.
+
+Mitigation: Treat those fields as sensitive, apply access controls and encryption where appropriate, and avoid storing unnecessary identifiers or URLs.
+
+Risk: Shared multi-tenant schemas can leak data if tenant consistency is enforced only informally.
+
+Mitigation: Use tenant-scoped indexes and uniqueness rules, require tenant filters in access paths, and add database or application checks that prevent cross-tenant references.
+
+Risk: Seed data scripts and examples may be inappropriate for production databases.
+
+Mitigation: Run seed procedures only in isolated development or test environments, and block seeding workflows from production deployment paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/encryptshawn/skills/mysql8-crm-schema-expert)
+- [Core CRM Entities](references/core-entities.md)
+- [Relationships and Normalization](references/relationships-and-normalization.md)
+- [Indexing and Performance](references/indexing-and-performance.md)
+- [Custom Fields and Flexibility](references/custom-fields-and-flexibility.md)
+- [Audit Trails and Soft Deletes](references/audit-and-soft-deletes.md)
+- [Activities and Timeline](references/activities-and-timeline.md)
+- [Security and Multi-Tenancy](references/security-and-multitenancy.md)
+- [Migrations and Seeding](references/migrations-and-seeding.md)
+- [Reference Schemas](references/reference-schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with SQL and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MySQL 8 schema definitions, indexes, migrations, seed data, and review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

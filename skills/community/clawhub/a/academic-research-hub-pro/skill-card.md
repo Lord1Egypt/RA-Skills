@@ -1,39 +1,52 @@
-## Description: <br>
-Central hub for academic research: search papers, download documents, extract citations, and gather research materials across multiple databases including arXiv, Google Scholar, and Semantic Scholar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Central hub for academic research that helps agents search papers, retrieve lawful document access options, extract citations, and gather research materials across academic databases.
 
-## Publisher: <br>
-[nancliu](https://clawhub.ai/user/nancliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nancliu](https://clawhub.ai/user/nancliu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Researchers, students, and research-support agents use this skill to search academic literature, rank papers, collect metadata, identify lawful full-text access paths, and prepare citations for literature reviews or bibliography workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill could be misused to seek unauthorized access to paywalled or restricted academic content.
+
+Mitigation: Use it only for lawful academic research workflows, including open-access papers, DOIs, preprints, institutional access paths, and citation data; do not use it to evade paywalls, bypass access controls, or violate publisher terms.
+
+Risk: Search results, citation metadata, or related-paper suggestions may be incomplete, stale, or misleading.
+
+Mitigation: Review source records, DOI pages, publication venues, and citation exports before relying on results in scholarly work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External researchers, students, librarians, and developers use this skill to find academic papers, gather structured literature review results, extract citation metadata, discover related work, and prepare bibliography exports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be asked to help access paywalled or copyrighted papers. <br>
-Mitigation: Use open-access papers, DOI or publisher pages, author-hosted copies, authorized institutional access, library services, or interlibrary loan; do not use the skill to bypass paywalls or obtain copyrighted material without permission. <br>
+**Output Format:** [Markdown or structured text with paper metadata, DOI links, available PDF links, and citation exports when requested.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Academic Research Hub Pro on ClawHub](https://clawhub.ai/nancliu/academic-research-hub-pro) <br>
-- [Publisher profile: nancliu](https://clawhub.ai/user/nancliu) <br>
+**Other Properties Related to Output:** [May include BibTeX or RIS citation data and ranked literature search results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured research results, citation metadata, DOI links, and bibliography export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BibTeX or RIS citation snippets when requested.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

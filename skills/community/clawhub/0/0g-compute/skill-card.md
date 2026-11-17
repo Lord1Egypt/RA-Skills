@@ -1,46 +1,64 @@
-## Description: <br>
-Use cheap, TEE-verified AI models from the 0G Compute Network as OpenClaw providers while discovering available models, comparing pricing vs OpenRouter, verifying provider integrity via hardware attestation (Intel TDX), managing your 0G wallet and sub-accounts, and configuring models in OpenClaw with one workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use cheap, TEE-verified AI models from the 0G Compute Network as OpenClaw providers.
 
-## Publisher: <br>
-[in-liberty420](https://clawhub.ai/user/in-liberty420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[in-liberty420](https://clawhub.ai/user/in-liberty420)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover, verify, fund, and configure 0G Compute Network inference providers for OpenClaw workflows. It also helps compare 0G provider pricing against OpenRouter for overlapping models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses an external 0G CLI package that handles wallet keys, on-chain funds, and provider API secrets. <br>
-Mitigation: Install only if you trust the external package, use a dedicated low-balance wallet, protect ~/.0g-compute-cli/config.json and openclaw.json, and avoid exposing private keys in shell history or process lists. <br>
-Risk: Deposits, transfers, retrieves, and refunds can move on-chain funds. <br>
-Mitigation: Manually confirm fund-moving commands and monitor main-account and provider sub-account balances before running inference. <br>
-Risk: Using an unverified or unhealthy provider can expose requests to unreliable or untrusted inference infrastructure. <br>
-Mitigation: Run provider TEE verification, check provider health and uptime, and protect provider API secrets before adding a provider to OpenClaw. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [0G Compute Skill Page](https://clawhub.ai/in-liberty420/0g-compute) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [OpenClaw Config](references/openclaw-config.md) <br>
-- [0G Serving Broker npm Package](https://www.npmjs.com/package/@0glabs/0g-serving-broker) <br>
-- [CoinGecko 0G Token Price Endpoint](https://api.coingecko.com/api/v3/simple/price?ids=zero-gravity&vs_currencies=usd) <br>
-- [OpenRouter Models API](https://openrouter.ai/api/v1/models) <br>
+## Use Case:
 
+Developers and engineers use this skill to discover 0G Compute Network model providers, verify provider integrity, manage wallet and sub-account funding, compare provider pricing, and configure verified providers for OpenClaw.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash commands, JSON configuration examples, and a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the 0g-compute-cli binary from @0glabs/0g-serving-broker; the price comparison helper uses public CoinGecko and OpenRouter endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires wallet private keys and provider API secrets.
+
+Mitigation: Use a dedicated low-balance wallet, avoid passing private keys directly in shell commands, restrict permissions on 0G and OpenClaw config files, and keep secrets out of source control and logs.
+
+Risk: The workflow includes fund-moving commands such as deposits, transfers, retrievals, and refunds.
+
+Mitigation: Confirm every fund-moving command manually, verify provider addresses before transferring funds, and monitor sub-account balances.
+
+Risk: The installation path uses a global npm package install that may be unpinned.
+
+Mitigation: Pin and verify the CLI package where possible, review the package before installation, and avoid running npm as root.
+
+Risk: Model providers may be unhealthy, misconfigured, or fail TEE verification.
+
+Mitigation: Run provider verification before use, check provider health and uptime, and avoid providers that fail attestation.
+
+## Reference(s):
+
+- [0G Compute CLI Reference](references/cli-reference.md)
+- [Configuring OpenClaw for 0G Compute Network](references/openclaw-config.md)
+- [0G Serving Broker npm Package](https://www.npmjs.com/package/@0glabs/0g-serving-broker)
+- [OpenRouter Models API](https://openrouter.ai/api/v1/models)
+- [CoinGecko 0G Token Price API](https://api.coingecko.com/api/v3/simple/price?ids=zero-gravity&vs_currencies=usd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, OpenClaw provider configuration snippets, pricing comparisons, and provider verification guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

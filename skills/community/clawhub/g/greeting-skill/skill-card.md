@@ -1,37 +1,54 @@
-## Description: <br>
-A friendly greeting skill that provides personalized and time-based greetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A friendly greeting skill that provides personalized and time-based greetings.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and agents use this skill to generate personalized greetings, including random friendly greetings and greetings based on the current time of day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may respond to broad casual greeting triggers such as "hi" or "hello". <br>
-Mitigation: Install it only where those greeting triggers are acceptable, and review trigger behavior before enabling it in shared or sensitive agent contexts. <br>
+## Use Case:
 
+External users and assistant developers use this skill to generate personalized generic or time-aware greetings in a Clawd/OpenClaw assistant.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [String] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a single greeting string for a supplied name, or an error string when the name parameter is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: Generic greeting triggers may activate the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger configuration and invoke the skill only when a greeting response is intended.
+
+Risk: Installable Node/TypeScript dependencies can change over time.
+
+Mitigation: Use pinned, reproducible installs and review dependency updates before deployment.
+
+## Reference(s):
+
+- [Greeting Skill README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/greeting-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text greeting string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a name parameter; time-based greetings use the local current hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

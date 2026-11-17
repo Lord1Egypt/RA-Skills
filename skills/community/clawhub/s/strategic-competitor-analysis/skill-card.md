@@ -1,39 +1,54 @@
-## Description: <br>
-Conduct systematic competitor analysis to understand competitive positioning. Use for market entry, competitive strategy, and strategic planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct systematic competitor analysis to understand competitive positioning.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business strategists, market researchers, product teams, and founders use this skill to profile competitors, compare market positions, and identify strategic opportunities and threats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill on ordinary mentions of competitors or rivals. <br>
-Mitigation: Review the trigger wording and disable or narrow the skill if accidental activation would disrupt workflows. <br>
-Risk: Competitor profiles and strategic implications can be misleading when based on incomplete or stale market information. <br>
-Mitigation: Triangulate public sources, update findings regularly, and review outputs before using them for strategic decisions. <br>
+## Use Case:
 
+Business strategists, product leaders, and market analysts use this skill to profile competitors, compare market positions, and identify strategic opportunities and threats.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown competitor analysis with profiles, comparison matrices, findings, and strategic implications.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to provide the market, segment, company, or competitive set to analyze.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive business strategy details supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate data-handling controls and avoid providing confidential strategy details unless the deployment environment is approved for that information.
+
+Risk: Competitor assessments can be incomplete or misleading if based on stale or single-source intelligence.
+
+Mitigation: Triangulate findings across multiple public sources, industry reports, and customer feedback before using the analysis for strategic decisions.
+
+## Reference(s):
+
+- [Strategic Competitor Analysis on ClawHub](https://clawhub.ai/linuszz/skills/strategic-competitor-analysis)
+- [Publisher Profile: linuszz](https://clawhub.ai/user/linuszz)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown competitor profiles, comparison matrices, strategic groupings, key findings, and strategic implications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided market or segment context and public-source competitive intelligence prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

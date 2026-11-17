@@ -1,44 +1,55 @@
-## Description: <br>
-Trades commodity markets based on extreme weather signals. When temperature markets show unusual readings (extreme heat or cold), it signals potential energy demand spikes or crop disruption that commodity markets have not yet priced in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades commodity markets based on extreme weather signals by using temperature markets to identify potential energy demand spikes or crop disruption that commodity markets may not have priced in.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading agents use this skill to scan weather prediction markets for extreme temperature signals, compare them with commodity prediction markets, and place simulated or explicitly enabled live Polymarket trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required SIMMER_API_KEY grants trading authority and should be treated as a high-value credential. <br>
-Mitigation: Use revocable or least-privilege credentials where available and keep the key out of shared logs, prompts, and source control. <br>
-Risk: Running with --live can place real Polymarket trades using USDC. <br>
-Mitigation: Keep the default paper mode unless live trading is intentional, and set conservative max position, max open positions, spread, and minimum volume limits before live use. <br>
-Risk: Weather-to-commodity signals can be indirect and may produce incorrect or stale trading assumptions. <br>
-Mitigation: Review the strategy assumptions, market context, slippage warnings, and generated reasoning before allowing live execution. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Polymarket weather and commodity markets, compute weather stress signals, and place simulated or live commodity trades when configured. It is intended for users who understand prediction-market trading risk and can review live-trading controls before deployment.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/diagnostikon/polymarket-macro-weather-commodity-trader) <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Text logs and configured trading actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires the explicit --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live-trading safeguards are weaker than documented and could expose real funds to unintended risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless the SDK dependency is pinned and volume, slippage, context, and account-position limits are enforced against real account state.
+
+Risk: The skill requires a trading API key with authority to place orders.
+
+Mitigation: Use a restricted API key and small limits for any live testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-macro-weather-commodity-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The trading script defaults to paper mode and requires an explicit live flag for Polymarket execution.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

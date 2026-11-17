@@ -1,41 +1,53 @@
-## Description: <br>
-Omni Tool is a Bash command-line utility for logging, searching, summarizing, and exporting local task and activity entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omni Tool is a Bash command-line utility for recording task activity, searching recent entries, checking status, and exporting local logs.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and command-line users use this skill to record operational notes, task results, analysis entries, configuration changes, and reports in local logs, then search, summarize, or export those entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Typed activity entries are stored locally in plaintext. <br>
-Mitigation: Do not enter passwords, tokens, private customer data, or sensitive operational details; review local logs and exports before sharing. <br>
-Risk: The marketplace summary includes bookmark and Chrome wording that is not supported by the reviewed artifacts. <br>
-Mitigation: Evaluate and present this release as an offline terminal activity logger, not as a browser or bookmark-management tool. <br>
+## Use Case:
 
+Developers and command-line users use Omni Tool to keep local task logs for runs, checks, analysis, configuration changes, batch work, and reports, then search or export those records.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bytesagain3/omni-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, and text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plaintext logs and export files under ~/.local/share/omni-tool/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill metadata advertises bookmark or Chrome functionality, while the artifact behaves as a local logging tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing if bookmark or Chrome behavior was expected; evaluate it as a terminal logging utility.
+
+Risk: Command inputs may be persisted in plaintext local logs and later exposed by recent, search, status, or export commands.
+
+Mitigation: Use only for non-sensitive notes or task logs, and avoid entering secrets, credentials, private customer data, or regulated data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/omni-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text command output with local log and export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores command inputs and history in plaintext under ~/.local/share/omni-tool.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Evaluate basic shell-style conditions for local file existence and type checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate basic filesystem conditions such as path existence, regular files, and directories for shell-style conditionals.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to check shell-style file conditions when validating paths in scripts or command workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented string comparison and arithmetic checks may not be implemented, causing incorrect failures for those condition types.
+
+Mitigation: Use the skill for basic filesystem predicates or verify behavior before relying on string or numeric comparisons.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to run simple local file existence and type checks while composing shell-script conditionals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation includes string and numeric examples that are not supported by the current script. <br>
-Mitigation: Use the skill only for -e, -f, and -d local path checks unless the implementation is updated and independently verified. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Exit-status-oriented guidance; no structured output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Shell exit status with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns 0 for true and 1 for false; current implementation supports -e, -f, and -d path checks.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

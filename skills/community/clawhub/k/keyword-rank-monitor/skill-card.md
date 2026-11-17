@@ -1,43 +1,61 @@
-## Description: <br>
-Tracks keyword rankings, SEO performance, search trends, and competitor keyword comparisons for ecommerce sellers, SEO practitioners, and content operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keyword Rank Monitor helps track keyword rankings, SEO performance, search trends, and competitor keyword positions for ecommerce sellers, SEO practitioners, and content operators.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External ecommerce, SEO, and content teams use this skill to monitor keyword rank changes, compare competitor positions, find long-tail keyword opportunities, and receive optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored keywords, competitor terms, ranking history, alerts, and paid/API feature data may be stored or transmitted by monitoring workflows. <br>
-Mitigation: Confirm data retention and transmission behavior before entering sensitive product strategy terms. <br>
-Risk: Ranking reports are estimates and can be affected by personalization or platform-specific ranking behavior. <br>
-Mitigation: Treat reports as directional inputs and validate important decisions against platform analytics or direct checks. <br>
-Risk: The skill advertises Python dependency installation for requests and pandas. <br>
-Mitigation: Review dependency installation steps and run the skill in a managed environment before operational use. <br>
+## Use Case:
 
+External ecommerce, SEO, and content operations users can use this skill to monitor keyword rank changes, compare competitor keyword positions, identify long-tail keyword opportunities, and receive SEO optimization guidance.
 
-## Reference(s): <br>
-- [Keyword Rank Monitor on ClawHub](https://clawhub.ai/275254cl-hash/keyword-rank-monitor) <br>
-- [OpenClaw skills homepage](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, trend summaries, competitor comparisons, alerts, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference estimated ranking data, monitored keywords, competitor terms, ranking history, alerts, and paid or API features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may process keyword, ranking, and competitor data that is business-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ranking and competitor inputs as confidential business data and avoid sharing unnecessary proprietary details.
+
+Risk: Platform querying or monitoring may conflict with marketplace or search platform terms.
+
+Mitigation: Confirm that planned Taobao, JD, Baidu, Douyin, or other platform monitoring complies with the relevant platform terms before use.
+
+Risk: Python dependencies are declared without pinned versions.
+
+Mitigation: Install the skill in an isolated Python environment and pin dependency versions before operational deployment.
+
+Risk: Keyword ranking results are estimates and may vary due to personalized search behavior.
+
+Mitigation: Use rank outputs as decision-support signals and verify important conclusions with platform analytics or controlled checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/275254cl-hash/skills/keyword-rank-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with tables, bullet lists, ranking summaries, trend analysis, competitor comparisons, and alert guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranking data is described as estimated and may be affected by personalization.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

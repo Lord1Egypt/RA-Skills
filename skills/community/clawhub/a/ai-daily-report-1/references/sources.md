@@ -241,7 +241,7 @@
   - 用途：欧盟AI监管政策
   - 重点关注：法规更新、实施细则
 
-- 美国NIST AI框架：https://www.nist.gov/itl/ai-risk-management-framework
+- 美国NIST AI框架：https://www.nist.gov/itl/ai-riREDACTED-SECRET
   - 用途：美国AI风险管理框架
   - 重点关注：标准制定、政策指导
 

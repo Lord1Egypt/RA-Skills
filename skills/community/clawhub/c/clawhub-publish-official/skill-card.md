@@ -1,43 +1,58 @@
-## Description: <br>
-Publish agent skills to ClawHub marketplace. Search, install, update, and publish skills from clawhub.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish agent skills to ClawHub marketplace. Search, install, update, and publish skills from clawhub.com.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to operate the ClawHub CLI for searching, installing, updating, and publishing agent skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the CLI from npm introduces package provenance risk. <br>
-Mitigation: Verify the npm package provenance before installation. <br>
-Risk: Forced bulk updates can change installed skills broadly. <br>
-Mitigation: Avoid forced bulk updates unless the operator understands the impact. <br>
-Risk: Publishing a skill directory can expose secrets or private files. <br>
-Mitigation: Review skill directories for secrets and private files before publishing. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to work with the ClawHub CLI for marketplace search, installation, updates, authentication, and publishing.
 
-## Reference(s): <br>
-- [ClawHub marketplace](https://clawhub.com) <br>
-- [ClawHub Publish Official release page](https://clawhub.ai/terrycarter1985/clawhub-publish-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume the ClawHub CLI is installed and authenticated when publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The global CLI install command does not pin a package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted npm package source and prefer pinning the ClawHub CLI version for repeatable releases.
+
+Risk: Bulk forced updates can change installed skills without interactive review.
+
+Mitigation: Avoid unattended forced updates unless operating in a controlled environment; review changelogs and pin skill versions when stability matters.
+
+Risk: Publishing a local skill directory could expose secrets or private files.
+
+Mitigation: Review and scan skill directories for secrets before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/clawhub-publish-official)
+- [ClawHub Registry](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ClawHub CLI binary.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Vendor Compliance 1099 helps accounting firms run year-end 1099 compliance by aggregating QBO general ledger vendor payments, applying IRS thresholds and classifications, tracking W-9 and TIN status, and producing an 8-tab Excel workbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vendor Compliance 1099 helps accounting firms pull full-year QBO General Ledger data, aggregate vendor payments, apply IRS 1099 thresholds and classifications, track W-9/TIN status, and produce an 8-tab Excel workbook.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting firms and tax staff use this skill for year-end 1099 vendor compliance runs, W-9 tracking, IRS threshold checks, and review of vendor payment classifications before filing. It is not intended for payroll W-2, 1042-S foreign withholding, 1099-K reconciliation, state-level 1099 filing, or non-US entities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles sensitive client accounting and tax records in generated workbooks and cache files. <br>
-Mitigation: Restrict access to outputs, store them according to client tax-record handling policies, and avoid sharing generated files outside approved accounting workflows. <br>
-Risk: The reviewed artifact references a local Python pipeline that is not included in the artifact. <br>
-Mitigation: Inspect and trust the referenced pipeline before running it, confirm dependencies are expected, and use a read-only QBO token scoped to the intended client. <br>
-Risk: 1099 classifications, corporate exemptions, W-9 status, TIN status, and filing obligations can require professional review before tax filing. <br>
-Mitigation: Review workbook tabs before relying on the results, verify entity types and vendor documentation, and confirm filing decisions with the responsible tax professional. <br>
+## Use Case:
 
+External accounting and tax preparer users use this skill for year-end 1099 compliance runs, W-9 tracking, IRS threshold checks, and vendor payment review for U.S. entities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/vendor-compliance-1099) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated pipeline output is an XLSX workbook and JSON cache files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces VendorCompliance_1099_{slug}_{year}.xlsx and local .cache/vendor-compliance-1099 state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The workflow handles sensitive accounting and tax records in generated workbooks and local cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .cache/vendor-compliance-1099/ and generated workbooks out of source control and shared folders, and handle them as sensitive client tax records.
+
+Risk: The workflow reads full-year QBO General Ledger data for a client.
+
+Mitigation: Install and run it only where QBO access is appropriate for the client and configured as read-only.
+
+Risk: Dependency setup can affect repeatability of financial compliance runs.
+
+Mitigation: Use a pinned dependency set in a virtual environment before running the pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/vendor-compliance-1099)
+- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and generated Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces VendorCompliance_1099_{slug}_{year}.xlsx and local JSON cache files; requires QBO General Ledger access and openpyxl.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

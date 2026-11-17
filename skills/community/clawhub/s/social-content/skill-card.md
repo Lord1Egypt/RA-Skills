@@ -1,39 +1,53 @@
-## Description: <br>
-Helps create, schedule, repurpose, and optimize social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, and other platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, repurpose, schedule, and optimize social media content for LinkedIn, X, Instagram, TikTok, Facebook, and other platforms.
 
-## Publisher: <br>
-[CarlosFMTZ](https://clawhub.ai/user/CarlosFMTZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[carlosfmtz](https://clawhub.ai/user/carlosfmtz)
 
-## Use Case: <br>
-External users, marketers, founders, and content teams use this skill to plan platform-specific social posts, content calendars, engagement workflows, and repurposing strategies across major social networks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide public posting or scheduling workflows that could publish inaccurate, off-brand, or non-compliant content. <br>
-Mitigation: Keep outputs draft-first and manually approve every post or scheduled item before it reaches a public account. <br>
-Risk: The skill recommends large-scale social-content research and scraping without clear consent, scope, or compliance safeguards. <br>
-Mitigation: Use only platform-approved exports, lawful data sources, and documented permissions for competitor or content analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CarlosFMTZ/social-content) <br>
+## Use Case:
 
+External users and marketing teams use this skill to plan social content strategy, draft platform-specific posts, build content calendars, repurpose existing material, and review engagement tactics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text social content plans, post drafts, templates, checklists, and optimization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-first content and scheduling recommendations should be reviewed before public posting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes direct access to scheduling and publishing workflows, which could lead to social posts being published without adequate review.
+
+Mitigation: Require explicit human approval before scheduling or publishing any content and confirm the target account, platform, timing, and final copy.
+
+Risk: The skill recommends collecting large volumes of third-party social posts for analysis.
+
+Mitigation: Limit collection to compliant sources such as official exports, approved APIs, licensed tools, or user-provided examples, and avoid collecting private or prohibited content.
+
+## Reference(s):
+
+- [ClawHub social-content skill page](https://clawhub.ai/carlosfmtz/skills/social-content)
+- [ClawHub publisher profile for carlosfmtz](https://clawhub.ai/user/carlosfmtz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown social post drafts, content calendars, templates, and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific hooks, CTAs, schedules, repurposing plans, and analytics recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

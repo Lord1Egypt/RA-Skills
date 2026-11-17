@@ -1,41 +1,54 @@
-## Description: <br>
-Automates sunset glow forecast queries on sunsetbot.top for a requested city and optional date, extracting vividness and aerosol (AOD) values and returning a formatted assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates sunsetbot.top lookups with agent-browser to return a requested city and date's sunset vividness, aerosol (AOD), and a short sunset probability assessment.
 
-## Publisher: <br>
-[weiwei106](https://clawhub.ai/user/weiwei106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiwei106](https://clawhub.ai/user/weiwei106)
 
-## Use Case: <br>
-External users and agents use this skill to check sunset glow potential for a specified city and date, with vividness and aerosol readings interpreted into a short forecast-style result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation sends the requested city and date to sunsetbot.top. <br>
-Mitigation: Avoid entering sensitive locations or dates, and review the external site interaction before use in restricted environments. <br>
-Risk: Forecast values and derived conclusions may be incomplete, unavailable, or misleading if the external page changes or returns stale data. <br>
-Mitigation: Review the extracted vividness and aerosol values and treat the conclusion as forecast guidance rather than a guaranteed outcome. <br>
+## Use Case:
 
+External users can ask an agent to check sunset or sunset-glow conditions for a city and optional date, then receive the vividness, aerosol level, and a plain-language probability assessment.
 
-## Reference(s): <br>
-- [Sunsetbot detailed forecast page](https://sunsetbot.top/detailed/) <br>
-- [ClawHub skill page](https://clawhub.ai/weiwei106/sunsetbot-watch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with date, vividness, aerosol, and conclusion fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser access to sunsetbot.top and sends the requested city and date to that site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: City and date inputs are submitted to sunsetbot.top through browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for sensitive location queries when disclosure of that city/date would be a concern.
+
+Risk: Sunset vividness and aerosol values are forecasts from an external website and may be unavailable, delayed, or inaccurate.
+
+Mitigation: Treat results as planning guidance and verify important decisions with the source site or another forecast service.
+
+## Reference(s):
+
+- [sunsetbot detailed forecast page](https://sunsetbot.top/detailed/)
+- [ClawHub skill page](https://clawhub.ai/weiwei106/skills/sunsetbot-watch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text with date, vividness, aerosol, and conclusion fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser automation to query sunsetbot.top; no local files, scripts, credentials, or persistence are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

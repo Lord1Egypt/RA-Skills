@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn74rtzgppe3cks2zefqymy4cx80cxsd",
   "slug": "best-skill-recommendations",
   "version": "0.2.2",
-  "publishedAt": 1773297150283
+  "description": "技能综合评估与推荐，通过 ClawHub / SkillHub 获取候选，冲突检测，替换/共存决策，安全安装确认 | Evaluate and recommend skills from ClawHub / SkillHub, with conflict detection, replace-or-coexist decisions, and safe install confirmation.",
+  "author": "VinceZ.辉",
+  "author_url": "https://x.com/zhaowh3613",
+  "requires": {
+    "binaries": ["clawhub"],
+    "auth": "Run 'clawhub login' before use. Credentials are stored by the clawhub CLI in its default config path. No environment variables are required by this skill.",
+    "permissions": ["read installed skill list via 'clawhub list'", "install/uninstall skills via 'clawhub install/uninstall' (only with explicit user confirmation)"]
+  },
+  "tags": [
+    "skill-store",
+    "recommendations",
+    "install",
+    "conflict-analysis",
+    "skillhub",
+    "clawhub",
+    "skill-management",
+    "discovery",
+    "技能推荐",
+    "技能安装",
+    "冲突分析",
+    "技能评估",
+    "技能管理",
+    "技能发现",
+    "替换策略"
+  ]
 }

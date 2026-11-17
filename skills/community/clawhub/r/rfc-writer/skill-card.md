@@ -1,41 +1,53 @@
-## Description: <br>
-Drafts a technical RFC or proposal document from a rough idea or scattered requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft a technical Request for Comments (RFC) or technical proposal document based on a rough idea or scattered requirements.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn early technical ideas, migration plans, or architecture changes into structured RFC or proposal drafts in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated RFCs may include assumptions, alternatives, or technical recommendations that are incomplete or inaccurate for the user's actual system. <br>
-Mitigation: Review the draft with domain owners before sharing it as a decision document or using it to guide implementation. <br>
-Risk: Prompts for architecture proposals may contain sensitive system details, secrets, or private operational context. <br>
-Mitigation: Remove secrets and unnecessary sensitive details before using the skill, and keep generated drafts within the appropriate review channel. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn rough technical ideas, feature requests, or architecture changes into structured RFC or proposal drafts for team review or open-source feature discussion.
 
-## Reference(s): <br>
-- [RFC Writer on ClawHub](https://clawhub.ai/sunny0826/rfc-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/sunny0826) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown RFC or technical proposal document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include TODO placeholders, inferred assumptions, pros and cons, alternatives, and unresolved questions when source details are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated RFCs may include educated guesses or TODO placeholders when the user omits details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the draft for factual accuracy, missing requirements, and project-specific constraints before using it for technical decisions.
+
+Risk: The skill may default to a formal RFC structure even when the user expected a lighter response.
+
+Mitigation: Ask explicitly for a lighter response style when a full RFC document is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/rfc-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown RFC or technical proposal draft in English or Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes standard RFC sections, alternatives, pros and cons, risks, unresolved questions, and TODO placeholders when information is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

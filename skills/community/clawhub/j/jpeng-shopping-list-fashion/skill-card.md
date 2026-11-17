@@ -1,41 +1,54 @@
-## Description: <br>
-Create shopping lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create shopping lists.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-External users and agents use this skill to create fashion-related shopping lists and automate list tasks from provided input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references a shopping_list_fashion.py script and LIST_API_KEY, but no executable script is included in the artifact. <br>
-Mitigation: Verify that any script used with this skill comes from a trusted source and confirm what service the API key belongs to before installation or execution. <br>
-Risk: API credentials may be exposed or over-scoped if LIST_API_KEY is configured carelessly. <br>
-Mitigation: Use a limited-scope API key where possible and avoid placing credentials in shared logs, shell history, or committed files. <br>
+## Use Case:
 
+External users can use this skill to create and automate fashion-related shopping lists. It is intended for shopping-list tasks that may require an API key for an unspecified list service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-shopping-list-fashion) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses LIST_API_KEY when invoking the referenced shopping-list script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires an API key for an unspecified list service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the API key only for explicit fashion shopping-list tasks and review provider details before sending personal shopping preferences or sensitive information.
+
+Risk: The artifact is sparse and does not bundle the referenced executable script.
+
+Mitigation: Review the implementation and provider behavior before deployment or automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-shopping-list-fashion)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require LIST_API_KEY configuration before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

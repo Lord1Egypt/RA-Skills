@@ -1,45 +1,62 @@
-## Description: <br>
-A specification-driven coding workflow that helps agents draft feature, API, and component specifications from user requirements or existing code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec Coding guides agents through spec-driven programming by generating feature, API, or component specifications from requirements, or by reverse-engineering specifications from existing code.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create structured software specification drafts before implementation, during requirements review, or when reverse-engineering specs for legacy code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated specifications may omit relevant code paths or requirements when reverse-engineering an existing project. <br>
-Mitigation: Point the skill only at the files or modules that should be analyzed and review the resulting draft before using it for implementation. <br>
-Risk: The skill describes collaboration with sub-agents, which could broaden the work beyond drafting if delegated without review. <br>
-Mitigation: Confirm before allowing any sub-agent handoff or implementation work. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to draft structured specifications before implementation, fill in specs for legacy code, and review code against agreed feature, API, or component requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pupuking723/spec-coding) <br>
-- [Template guide](artifact/assets/templates/README.md) <br>
-- [Feature specification template](artifact/assets/templates/feature-spec.md) <br>
-- [API specification template](artifact/assets/templates/api-spec.md) <br>
-- [Component specification template](artifact/assets/templates/component-spec.md) <br>
-- [Feature specification example](artifact/assets/examples/feature-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown specification documents with tables, checklists, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft, review, approved, in-progress, and done status labels are used to track specification state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Reverse-engineering specifications may require the agent session to inspect source code or business requirements that contain sensitive project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide code and requirements that are appropriate to share in the active agent session.
+
+Risk: Generated specifications may omit requirements, misread existing behavior, or produce acceptance criteria that do not match product intent.
+
+Mitigation: Review generated specs with the relevant stakeholders before treating them as approved implementation or validation criteria.
+
+Risk: The provided export example includes privacy-sensitive concepts such as user data exports and temporary download links.
+
+Mitigation: Add project-specific privacy, access-control, and retention requirements before adopting similar examples in production specs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pupuking723/skills/spec-coding)
+- [Template Guide](assets/templates/README.md)
+- [Feature Spec Template](assets/templates/feature-spec.md)
+- [API Spec Template](assets/templates/api-spec.md)
+- [Component Spec Template](assets/templates/component-spec.md)
+- [Feature Spec Example](assets/examples/feature-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, guidance]
+
+**Output Format:** [Markdown documents with tables, checklists, and fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes draft, review, approved, in-progress, and done status markers for specification lifecycle tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

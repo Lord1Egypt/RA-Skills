@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-cookbook-query",
   "version": "1.0.0",
-  "publishedAt": 1777445469415
+  "title": "菜谱查询 - 即刻数据",
+  "description": "支持食材列表查询、菜谱搜索、菜谱详情和随机菜谱，返回菜名、分类、耗时、口味、主料辅料和做法步骤。",
+  "env": "JIKE_COOKBOOK_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/cookbook/search",
+  "homepage": "https://www.jikeapi.cn/"
 }

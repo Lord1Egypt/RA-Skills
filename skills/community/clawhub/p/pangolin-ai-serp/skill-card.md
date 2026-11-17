@@ -1,45 +1,63 @@
-## Description: <br>
-Search Google and get AI Overviews using Pangolin APIs for AI answers, search engine results, multi-turn AI search conversations, and optional search screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google and retrieve AI Overviews, organic search results, multi-turn AI search responses, and optional screenshots using Pangolin APIs.
 
-## Publisher: <br>
-[liuyu020923](https://clawhub.ai/user/liuyu020923) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyu020923](https://clawhub.ai/user/liuyu020923)
 
-## Use Case: <br>
-External users and developers use this skill to run Pangolin-backed Google AI Mode or SERP searches, summarize results, retrieve source URLs, and optionally capture result-page screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches, follow-up prompts, and optional screenshot requests are sent to Pangolin. <br>
-Mitigation: Avoid confidential or regulated queries and use the skill only when Pangolin receiving the search content is acceptable. <br>
-Risk: The skill can cache a Pangolin API key on disk for future use. <br>
-Mitigation: Prefer API keys over passwords, protect the cache file, and delete or rotate ~/.pangolin_api_key when access should no longer persist. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to run Google searches through Pangolin, summarize AI Overview content, return organic result links, support follow-up search turns, or provide a search results screenshot URL.
 
-## Reference(s): <br>
-- [Pangolin account and dashboard](https://www.pangolinfo.com) <br>
-- [AI Mode API Reference](references/ai-mode-api.md) <br>
-- [AI Overview SERP API Reference](references/ai-overview-serp-api.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Error Codes](references/error-codes.md) <br>
-- [ClawHub release page](https://clawhub.ai/liuyu020923/pangolin-ai-serp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance derived from structured JSON search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AI overview text, source URLs, organic results, error guidance, and screenshot URLs when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill handles Pangolin credentials and may store a reusable API key in plaintext at ~/.pangolin_api_key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted Pangolin API key where possible, keep the cache file permissions limited to the current user, remove the cache file when finished, and rotate the key if it may have appeared in logs.
+
+Risk: Search queries and follow-up questions are sent to Pangolin APIs.
+
+Mitigation: Avoid sending sensitive, confidential, or regulated data in search terms unless the deployment has approved Pangolin for that data.
+
+Risk: Collecting account email and password through an agent session can expose credentials in chat or logs.
+
+Mitigation: Prefer an API key over email and password, avoid pasting raw passwords into agent chat, and clear temporary credentials after authentication.
+
+## Reference(s):
+
+- [AI Mode API Reference](references/ai-mode-api.md)
+- [AI Overview SERP API Reference](references/ai-overview-serp-api.md)
+- [Error Codes and Troubleshooting](references/error-codes.md)
+- [Output Schema Reference](references/output-schema.md)
+- [AI Mode Example Output](references/examples/ai-mode-example.json)
+- [SERP Example Output](references/examples/serp-example.json)
+- [Pangolin](https://www.pangolinfo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Natural-language search summaries with source URLs, backed by structured JSON from the Pangolin CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI overview content, organic result links, structured error hints, and screenshot URLs when requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

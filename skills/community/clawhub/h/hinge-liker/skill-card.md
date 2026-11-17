@@ -1,42 +1,57 @@
-## Description: <br>
-Automates Hinge profile review on an Android emulator with Gemini vision AI, sending selected likes or comments, skipping other profiles, and producing a detailed session report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated Hinge dating profile liker using Android emulator + Gemini vision AI.
 
-## Publisher: <br>
-[MattttMan](https://clawhub.ai/user/MattttMan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattttman](https://clawhub.ai/user/mattttman)
 
-## Use Case: <br>
-External users use this skill to configure and run an Android-emulator workflow that operates their logged-in Hinge account, evaluates profiles with Gemini vision, sends likes or comments, and reports session outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can take live actions on a dating account by sending likes and comments. <br>
-Mitigation: Run only with explicit user intent, keep like limits low, and review session reports for unintended actions. <br>
-Risk: Profile screenshots may be uploaded to Gemini and stored locally with detailed logs or recordings. <br>
-Mitigation: Use protected secret storage for API keys, restrict the work directory, and regularly delete screenshots, recordings, and logs. <br>
-Risk: Unattended scheduling can repeatedly operate the account and expose secrets if API keys are embedded in cron payloads. <br>
-Mitigation: Avoid unattended daily runs unless explicitly desired and provide secrets through protected environment or secret-management mechanisms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MattttMan/hinge-liker) <br>
-- [Gemini Generative Language API endpoint used by the skill](https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent) <br>
+## Use Case:
 
+External users use this skill to configure and run Hinge automation on an Android emulator, review dating profiles with Gemini vision, send selected likes or comments, and receive a session report.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON logs, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, stdout session reports, and JSON log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local screenshots, optional screen recordings, and detailed session logs when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automates dating-app likes and comments, which can create unintended interactions if run without supervision.
+
+Mitigation: Require explicit user confirmation before any run that sends likes or comments, use a dedicated emulator account, and keep conservative per-session limits.
+
+Risk: Profile screenshots, generated summaries, logs, and optional recordings may contain sensitive personal data and may be sent to Google Gemini.
+
+Mitigation: Tell the user what data is processed, avoid saving recordings unless needed, minimize log retention, and delete screenshots and session artifacts after review.
+
+Risk: The artifact documentation suggests hardcoding a Gemini API key for scheduled runs.
+
+Mitigation: Use environment injection or a secret manager for scheduled execution and do not hardcode API keys in cron payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattttman/skills/hinge-liker)
+- [Google Gemini API endpoint used by the skill](https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console session report, JSON logs, and Markdown setup instructions with bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local screenshots, logs, and optional video recordings during a run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "tag": "v1.2.3",
+  "requiredAssets": [
+    "Demo-v1.2.3-setup.exe",
+    "Demo-v1.2.3-win-x64.zip",
+    "Demo-v1.2.3-win-arm64.zip",
+    "Demo-v1.2.3-win-x64-needs-dotnet10.zip",
+    "Demo-v1.2.3-win-arm64-needs-dotnet10.zip",
+    "SHA256SUMS.txt"
+  ]
+}

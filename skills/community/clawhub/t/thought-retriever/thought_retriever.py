@@ -32,7 +32,7 @@ from ontology import load_graph, append_op, create_entity, update_entity, list_e
 import requests
 
 SF_API = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
-SF_KEY = "sk-b841f4b7c91d40ddb12502462708f361"
+SF_KEY = "REDACTED-SECRET"
 
 def make_sf_session():
     """创建不走代理的 requests session"""

@@ -1,40 +1,50 @@
-## Description: <br>
-Help writers construct compelling story frameworks with character arcs and plot development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help writers construct compelling story frameworks with character arcs and plot development
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Authors, screenwriters, and content creators use this skill to turn a story concept into structured plot outlines, character arcs, scene plans, themes, and subplots across established narrative frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive unpublished story material may be included in prompts while using the skill. <br>
-Mitigation: Avoid sharing confidential drafts, proprietary story ideas, or sensitive personal material unless the user is comfortable using that content in prompts. <br>
+## Use Case:
 
+External writers, screenwriters, and content creators use this skill to plan narrative frameworks, character arcs, plot points, scene purpose, themes, and subplots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/story-structure-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown story frameworks, outlines, tables, checklists, and prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential handling; output is prompt-guided creative writing assistance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and SKILL.md frontmatter) <br>
+Risk: Generated story plans may include unpolished mixed-language text or narrative details that need editorial review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit outputs before publication or production writing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/story-structure-builder)
+- [Publisher profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown outlines, tables, checklists, and narrative planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only writing aid; no code execution, data access, persistence, or privileged behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

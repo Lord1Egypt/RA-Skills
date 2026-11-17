@@ -1,41 +1,53 @@
-## Description: <br>
-Generates controllable, editable avatars, app icons, favicons, and basic brand graphics using code-first SVG, HTML, CSS, or Canvas approaches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates controllable, editable code-based avatars, app icons, favicons, and basic brand graphics with an emphasis on iteration and exportability.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, developers, and designers use this skill to create small-format visual assets such as personal avatars, product icons, app icons, favicons, and minimal logo marks as editable code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated visual code could be incorrect, unclear at small sizes, or unsuitable for publication without review. <br>
-Mitigation: Review generated SVG, HTML, CSS, or Canvas output before publishing and test it at target avatar, icon, and favicon sizes. <br>
-Risk: Icon or logo requests could imitate protected brands or trademarks. <br>
-Mitigation: Avoid using the skill to copy existing protected logos or trademarks; redirect requests toward original, minimal visual marks. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to create SVG, HTML/CSS, or Canvas-based avatar and icon concepts that remain readable at small sizes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ToBeWin/code-avatar-icon-generator) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with editable SVG, HTML, CSS, or Canvas code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include design rationale, export size guidance, and iteration suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and metadata.json) <br>
+Risk: Generated icon or logo concepts could resemble protected trademarks or create brand-confusion risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed designs for trademark and brand-confusion issues before use, and avoid requests to copy protected logos.
+
+Risk: The skill is a markdown-only design helper and does not independently validate whether a generated mark is legally registrable.
+
+Mitigation: Treat generated assets as design drafts and obtain appropriate legal or brand review before public release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/code-avatar-icon-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with SVG, HTML/CSS, or Canvas code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include design rationale, export size recommendations, and iteration options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

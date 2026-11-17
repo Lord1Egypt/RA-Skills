@@ -1,42 +1,64 @@
-## Description: <br>
-Product Doc Hub gives AI product teams reusable PRD, product brief, experience framework, and configurable API console templates for taking a product from definition through API launch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Doc Hub gives AI product teams reusable PRD, product brief, experience validation framework, and configurable API console templates for product planning, handoff, demos, and API debugging.
 
-## Publisher: <br>
-[ildar981105-create](https://clawhub.ai/user/ildar981105-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ildar981105-create](https://clawhub.ai/user/ildar981105-create)
 
-## Use Case: <br>
-Product managers, founders, and developers use this skill to draft consistent product planning documents, team or investor briefs, experience validation plans, and a configurable browser-based API console for endpoint testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API console can send real requests, including mutating API calls, when configured with production endpoints. <br>
-Mitigation: Review configured endpoints before use, default to staging services, and add explicit warnings for mutating requests. <br>
-Risk: API configuration may tempt users to place long-lived secrets in front-end files. <br>
-Mitigation: Do not store long-lived credentials in static client files; use short-lived tokens or a backend proxy when authentication is required. <br>
-Risk: Experience tracking and uploaded media examples may involve user data. <br>
-Mitigation: Document consent, retention, and deletion controls before adapting the templates for real users. <br>
+## Use Case:
 
+Product managers, designers, and engineers use this skill to adapt product documentation templates and configure a lightweight API console for planning, stakeholder handoff, investor or team demos, and API debugging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ildar981105-create/product-doc-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML and JavaScript templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes static documentation templates and a configurable API console; real endpoint behavior depends on user-supplied API configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API console assets include credential, telemetry, and live-API patterns that may be unsafe if reused as a production console without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the API page as a mockup, remove or mask demo keys, remove credential and telemetry endpoints from defaults, and add sandbox-only guidance before reuse.
+
+Risk: Mutating API requests could be sent from the console without enough safeguards.
+
+Mitigation: Add explicit sandbox guidance and user confirmations for mutating requests before connecting the console to real services.
+
+Risk: Reported DOM XSS and key-generation issues could matter if the assets are hosted on a real origin.
+
+Mitigation: Fix those issues before hosting the console on a real origin or exposing it to real users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ildar981105-create/skills/product-doc-hub)
+- [SKILL.md](artifact/SKILL.md)
+- [API console configuration template](artifact/assets/api-console-config.js)
+- [API console HTML template](artifact/assets/api.html)
+- [PRD HTML template](artifact/assets/prd.html)
+- [Product brief HTML template](artifact/assets/product-brief.html)
+- [Experience framework HTML template](artifact/assets/experience-framework.html)
+- [Nielsen Norman Group usability testing reference](https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML and JavaScript configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable HTML templates and a JavaScript API console configuration pattern.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

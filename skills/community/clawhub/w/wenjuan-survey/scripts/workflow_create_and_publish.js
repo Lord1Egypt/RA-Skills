@@ -5,11 +5,23 @@
  */
 
 const { createSecureAxios } = require("./axios_secure");
+const {
+  applyEvaluationCustomAttr,
+  isIncompleteEvaluationLabelData,
+  resolveEvaluationLabelData,
+} = require("./evaluation_structure");
+const {
+  applyScaleCustomAttr,
+  buildScaleOptions,
+  isScaleQuestionLike,
+} = require("./scale_structure");
 const fs = require('fs').promises;
 const path = require('path');
 const { resolveAccessToken } = require('./token_store');
 const { validateQuestionList } = require("./security_utils");
 const { WENJUAN_HOST, wenjuanUrl } = require("./api_config");
+const { generateSharePoster } = require("./generate_share_poster");
+const { resolveAiSource, resolveRegSource } = require("./source_params");
 const http = createSecureAxios();
 
 // API 地址
@@ -42,10 +54,13 @@ async function checkLogin() {
  * 执行登录流程
  * @param {boolean} [force] 为 true 时忽略本地凭证，强制重新扫码（如接口返回 NEED_LOGIN）
  */
-async function doLogin(force = false) {
+async function doLogin(force = false, regSource) {
   console.log("\n🔐 需要登录，正在打开登录页面...");
   const { WenjuanLogin } = require("./login_auto");
-  const loginManager = new WenjuanLogin(null, { maxPollTime: 120000 });
+  const loginManager = new WenjuanLogin(null, {
+    maxPollTime: 120000,
+    regSource: resolveRegSource(regSource),
+  });
   try {
     const ok = await loginManager.login({ force });
     if (ok) {
@@ -97,16 +112,18 @@ function generateDefaultQuestions(ptype, scene = null) {
         en_name: "QUESTION_TYPE_SCORE",
         question_type: 50,
         custom_attr: {
-          show_seq: "on",
-          disp_type: "scale",
+          scale_tag: 2,
+          score_display: "circle",
           min_answer_num: 1,
-          max_answer_num: 10,
-          magnitude_scale: 1,
-          score_total: 10,
+          max_answer_num: 5,
+          answer_score: "off",
+          desc_right: "非常满意",
           desc_left: "非常不满意",
-          desc_right: "非常满意"
+          magnitude_scale: 1,
+          disp_type: "scale",
+          show_seq: "off"
         },
-        option_list: [{ title: "评分", is_open: false, custom_attr: {} }]
+        option_list: [{ title: "选项1", is_open: false, custom_attr: {} }]
       },
       {
         title: "您希望学校改进的方面（可多选）",
@@ -160,7 +177,7 @@ function generateDefaultQuestions(ptype, scene = null) {
       {
         title: "第一题：这是一个示例单选题",
         en_name: "QUESTION_TYPE_SINGLE",
-        custom_attr: { show_seq: "on", total_score: 10, answer_score: "on" },
+        custom_attr: { show_seq: "on", total_score: 10, answer_score: "on", calculation: "only_one" },
         option_list: [
           { title: "A. 正确答案", is_open: false, custom_attr: { is_correct: "1", score: 10 } },
           { title: "B. 错误答案", is_open: false, custom_attr: { score: 0 } },
@@ -196,7 +213,13 @@ function extractProjectExtras(fileData) {
  * @param {Array} questions
  * @param {Record<string, unknown>} [projectExtras] 如 survey_result、welcome（来自完整项目 JSON）
  */
-async function createAndImportProject(title, ptype, questions, projectExtras = {}) {
+async function createAndImportProject(
+  title,
+  ptype,
+  questions,
+  projectExtras = {},
+  aiSource
+) {
   const jwtToken = await getToken();
   if (!jwtToken) {
     return { success: false, error: "NEED_LOGIN", message: "需要登录" };
@@ -208,7 +231,7 @@ async function createAndImportProject(title, ptype, questions, projectExtras = {
     title: title,
     type_id: typeInfo.type_id,
     p_type: typeInfo.p_type,
-    ai_source: 12,
+    ai_source: resolveAiSource(aiSource),
     import_type: "0",
     question_list: questions,
     ...projectExtras,
@@ -561,6 +584,33 @@ async function waitForProjectStatus(projectId, maxWaitSeconds = 120) {
   return { success: false, error: "等待状态超时" };
 }
 
+async function tryGenerateSharePoster(title, shortId, projectId) {
+  if (!shortId) return "";
+  const surveyLink = `${WENJUAN_HOST}/s/${shortId}`;
+  try {
+    const posterPath = await generateSharePoster({
+      title: title || "问卷调查",
+      surveyLink,
+      projectId,
+    });
+    console.log(`   🖼️ 分享海报: ${posterPath}`);
+    console.log(
+      "   🖼️ 必须写入面向用户的最终回复（禁止只放过程消息/折叠隐藏）:\n" +
+        "**项目标题：** <title>\n" +
+        "**项目 ID：** <project_id>\n" +
+        "**题目数量：** <n> 道\n" +
+        "**当前状态：** 收集中\n" +
+        "**答题链接：** <survey_link>\n" +
+        "**二维码海报：** 已生成并展示，可直接扫码填写。\n" +
+        `   📎 附上文件产物: ${posterPath}`
+    );
+    return posterPath;
+  } catch (error) {
+    console.log(`   ⚠️ 分享海报生成失败: ${error.message}`);
+    return "";
+  }
+}
+
 /**
  * 对已存在的 project_id：发布 → 需绑定时引导 bind_mobile → 审核轮询 → 等待状态稳定（与 workflow 后半段一致）。
  * `import_project.js` 默认在导入成功后调用本函数，实现与 workflow 相同的「自动发布」。
@@ -628,10 +678,19 @@ async function publishProjectFullFlow(projectId) {
     console.log(`   ⚠️ ${finalStatus.error || "获取状态超时"}`);
   }
 
+  const shortId = finalStatus.short_id || "";
+  const posterPath = await tryGenerateSharePoster(
+    finalStatus.title || "问卷调查",
+    shortId,
+    projectId
+  );
+
   return {
     success: true,
     project_id: projectId,
-    short_id: finalStatus.short_id || "",
+    short_id: shortId,
+    survey_link: shortId ? `${WENJUAN_HOST}/s/${shortId}` : "",
+    poster_path: posterPath,
     pending: publishResult.pending || false,
   };
 }
@@ -678,6 +737,90 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
     custom_attr: { ...(opt?.custom_attr || {}), ...extraCustom },
   });
 
+  const parseBound = (v, fallback) => {
+    if (v == null || v === "") return fallback;
+    const n = parseInt(String(v), 10);
+    return Number.isFinite(n) ? n : fallback;
+  };
+
+  /** `auto_score` 不是线上计分方式，导入时改成真实值或删除 */
+  const replaceFakeCalculation = (attr, replacement) => {
+    if (String(attr.calculation || "").toLowerCase() !== "auto_score") return;
+    if (replacement) attr.calculation = replacement;
+    else delete attr.calculation;
+  };
+
+  const plainTitle = (value) =>
+    String(value || "")
+      .replace(/<[^>]+>/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const isCorrectOption = (option) => {
+    const value = option?.custom_attr?.is_correct;
+    return value === true || value === 1 || ["1", "true", "on"].includes(String(value || "").toLowerCase());
+  };
+
+  /** 选择题用 is_correct 标记正确选项。 */
+  const requireAssessSelectionAnswer = (out) => {
+    if (!isAssess) return out;
+    const options = Array.isArray(out.option_list) ? out.option_list : [];
+    if (options.some(isCorrectOption)) return out;
+    throw new Error(
+      `测评选择题缺少正确答案：「${plainTitle(out.title)}」。请在正确选项的 custom_attr 中设置 is_correct: "1"；answer_analysis 仅是答案解析，不能作为正确答案。`
+    );
+  };
+
+  /** 填空题用 correct_answer 保存标准答案，不使用 is_correct。 */
+  const requireAssessBlankAnswer = (out) => {
+    if (!isAssess) return out;
+    const options = Array.isArray(out.option_list) ? out.option_list : [];
+    const hasAnswer = options.some(
+      (option) => String(option?.custom_attr?.correct_answer || "").trim() !== ""
+    );
+    if (hasAnswer) return out;
+    throw new Error(
+      `测评填空题缺少正确答案：「${plainTitle(out.title)}」。请在填空项的 custom_attr 中设置 correct_answer；填空题不使用 is_correct，answer_analysis 也不能作为正确答案。`
+    );
+  };
+
+  /** 本 Skill 不支持矩阵题型（误标为评价/量表的会在后续分支纠正） */
+  const isUnsupportedMatrixQuestion = (out, enName, customAttr) => {
+    const disp = String(customAttr.disp_type || "").toLowerCase();
+    if (disp === "evaluation" || disp === "scale") return false;
+    const name = String(enName || out.en_name || "").toUpperCase();
+    if (/QUESTION_TYPE_MATRIX/.test(name)) return true;
+    const qt = Number(out.question_type);
+    if ([4, 5, 7, 100].includes(qt)) return true;
+    if (Array.isArray(out.matrixrow_list) && out.matrixrow_list.length > 0) return true;
+    return false;
+  };
+
+  const isEvaluationQuestion = (out, customAttr, optionList) => {
+    const disp = String(customAttr.disp_type || "").toLowerCase();
+    if (disp === "evaluation") return true;
+    const openEval = String(customAttr.open_eval || "").toLowerCase();
+    if (openEval === "on" || openEval === "1" || openEval === "true") return true;
+    const titles = optionList.map((opt) => String(opt?.title || "").trim());
+    return titles.includes("分数") && titles.includes("标签");
+  };
+
+  const buildEvaluationOptions = (optionList) => {
+    const scoreOpt = optionList.find((opt) => String(opt?.title || "").trim() === "分数");
+    const tagOpt = optionList.find((opt) => String(opt?.title || "").trim() === "标签");
+    const likert = optionList
+      .map((opt) => String(opt?.title || "").trim())
+      .filter((t) => t && t !== "分数" && t !== "标签");
+    const existing = tagOpt?.custom_attr?.label_data;
+    const labelData = isIncompleteEvaluationLabelData(existing)
+      ? resolveEvaluationLabelData(null, likert)
+      : resolveEvaluationLabelData(existing);
+    return [
+      toOption(scoreOpt || null, "分数"),
+      toOption(tagOpt || null, "标签", { label_data: labelData }),
+    ];
+  };
+
   return questions.map((q) => {
     if (!q || typeof q !== "object") return q;
     const out = { ...q };
@@ -688,11 +831,20 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
 
     // 判断题：必须双选项（是/否）
     if (customAttr.disp_type === "judge") {
-      const o1 = toOption(optionList[0], "是", isAssess ? { score: 0 } : {});
-      const o2 = toOption(optionList[1], "否", isAssess ? { score: 0 } : {});
+      replaceFakeCalculation(customAttr, isAssess ? "only_one" : undefined);
+      const o1 = toOption(
+        optionList[0],
+        "是",
+        isAssess && optionList[0]?.custom_attr?.score == null ? { score: 0 } : {}
+      );
+      const o2 = toOption(
+        optionList[1],
+        "否",
+        isAssess && optionList[1]?.custom_attr?.score == null ? { score: 0 } : {}
+      );
       out.custom_attr = customAttr;
       out.option_list = [o1, o2];
-      return out;
+      return requireAssessSelectionAnswer(out);
     }
 
     // 填空题及其常见预设题（姓名/手机号/邮箱等）
@@ -706,6 +858,7 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
       const blankTypeRaw = String(customAttr.blank_type || "").toLowerCase();
       const blankType = blankTypeRaw === "multiple" ? "multiple" : "single";
       customAttr.blank_type = blankType;
+      replaceFakeCalculation(customAttr);
       const defaultRow = blankType === "multiple" ? 4 : 1;
       out.custom_attr = customAttr;
       out.option_list =
@@ -724,7 +877,49 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
                 ...(isAssess ? { score: 0 } : {}),
               }),
             ];
+      out.option_list.forEach((option) => {
+        delete option.custom_attr.is_correct;
+      });
+      const isScoredBlank =
+        String(customAttr.answer_score || "").toLowerCase() === "on" ||
+        Number(customAttr.total_score) > 0 ||
+        Boolean(String(customAttr.answer_analysis || "").trim()) ||
+        optionList.some(isCorrectOption) ||
+        optionList.some(
+          (option) => String(option?.custom_attr?.correct_answer || "").trim() !== ""
+        );
+      return isScoredBlank ? requireAssessBlankAnswer(out) : out;
+    }
+
+    // 评价题：常被误标成矩阵单选（question_type=4）。须在打分/单选之前纠正为 SCORE + disp_type=evaluation
+    if (isEvaluationQuestion(out, customAttr, optionList)) {
+      out.en_name = "QUESTION_TYPE_SCORE";
+      out.question_type = 50;
+      out.custom_attr = applyEvaluationCustomAttr(customAttr);
+      out.option_list = buildEvaluationOptions(optionList);
+      delete out.matrixrow_list;
+      delete out.question_min_score;
+      delete out.question_max_score;
       return out;
+    }
+
+    // 量表题：常被误标成矩阵单选。须纠正为 SCORE + disp_type=scale，不能带 matrixrow_list
+    if (isScaleQuestionLike(out, customAttr)) {
+      out.en_name = "QUESTION_TYPE_SCORE";
+      out.question_type = 50;
+      out.custom_attr = applyScaleCustomAttr(customAttr, optionList);
+      out.option_list = buildScaleOptions(optionList).map((opt) => toOption(opt, "选项1"));
+      delete out.matrixrow_list;
+      delete out.question_min_score;
+      delete out.question_max_score;
+      return out;
+    }
+
+    if (isUnsupportedMatrixQuestion(out, enName, customAttr)) {
+      const label = enName || `question_type=${out.question_type}`;
+      throw new Error(
+        `本 Skill 不支持矩阵题型（${label}）：「${plainTitle(out.title)}」。请改为多道量表题/评价题/单选题，或在问卷网编辑器中手动添加矩阵题。`
+      );
     }
 
     // 打分题/NPS：必须在「question_type===2 单选」之前处理，否则 en_name 为 SCORE 但误带 type 2 时会被当成单选
@@ -732,43 +927,27 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
       enName === "QUESTION_TYPE_SCORE" || Number(out.question_type) === 50;
     if (isScoreLike) {
       const isNps = customAttr.disp_type === "nps_score";
-      const parseBound = (v, fallback) => {
-        if (v == null || v === "") return fallback;
-        const n = parseInt(String(v), 10);
-        return Number.isFinite(n) ? n : fallback;
-      };
       let minV = parseBound(customAttr.min_answer_num, isNps ? 0 : 1);
       let maxV = parseBound(customAttr.max_answer_num, NaN);
       if (!Number.isFinite(maxV)) {
         const fromTotal = parseBound(customAttr.score_total, NaN);
-        maxV = Number.isFinite(fromTotal) && fromTotal > 0 ? fromTotal : 10;
+        maxV = Number.isFinite(fromTotal) && fromTotal > 0 ? fromTotal : (isNps ? 10 : 5);
       }
       if (maxV <= minV) {
-        maxV = isNps ? 10 : Math.max(10, minV + 1);
+        maxV = isNps ? 10 : Math.max(5, minV + 1);
       }
       customAttr.min_answer_num = minV;
       customAttr.max_answer_num = maxV;
+      customAttr.show_seq = customAttr.show_seq || "off";
       let mag = 1;
       if (customAttr.magnitude_scale != null && customAttr.magnitude_scale !== "") {
         const parsed = parseInt(String(customAttr.magnitude_scale), 10);
         if (Number.isFinite(parsed) && parsed > 0) mag = parsed;
       }
       customAttr.magnitude_scale = mag;
-      if (isNps) {
-        if (!customAttr.disp_type) customAttr.disp_type = "nps_score";
-      } else if (!customAttr.disp_type) {
-        customAttr.disp_type = "scale";
-      }
-      if (customAttr.score_total == null || customAttr.score_total === "") {
-        customAttr.score_total = maxV;
-      } else {
-        const pst = parseInt(String(customAttr.score_total), 10);
-        customAttr.score_total = Number.isFinite(pst) && pst > 0 ? pst : maxV;
-      }
+      if (isNps && !customAttr.disp_type) customAttr.disp_type = "nps_score";
       if (!out.en_name) out.en_name = "QUESTION_TYPE_SCORE";
       out.question_type = 50;
-      out.question_min_score = minV;
-      out.question_max_score = maxV;
       out.custom_attr = customAttr;
       out.option_list = optionList.length > 0 ? optionList.map((opt) => toOption(opt, "选项1")) : [toOption(null, "选项1")];
       return out;
@@ -782,23 +961,26 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
       enName === "QUESTION_TYPE_EDUCATION" ||
       Number(out.question_type) === 2;
     if (isSingleLike) {
+      const scoringOn = isAssess || String(customAttr.answer_score || "").toLowerCase() === "on";
+      replaceFakeCalculation(customAttr, scoringOn ? "only_one" : undefined);
       out.custom_attr = customAttr;
       out.option_list =
         optionList.length >= 2
           ? optionList.map((opt, idx) => toOption(opt, `选项${idx + 1}`))
           : [toOption(optionList[0], "选项1"), toOption(optionList[1], "选项2")];
-      return out;
+      return requireAssessSelectionAnswer(out);
     }
 
     const isMultipleLike =
       enName === "QUESTION_TYPE_MULTIPLE" || Number(out.question_type) === 3;
     if (isMultipleLike) {
+      replaceFakeCalculation(customAttr, "select");
       out.custom_attr = customAttr;
       out.option_list =
         optionList.length >= 2
           ? optionList.map((opt, idx) => toOption(opt, `选项${idx + 1}`))
           : [toOption(optionList[0], "选项1"), toOption(optionList[1], "选项2")];
-      return out;
+      return requireAssessSelectionAnswer(out);
     }
 
     // 日期/上传/签名等 95 类：至少 1 条；time 至少 2 条（时/分）
@@ -850,6 +1032,7 @@ function normalizeQuestionsForImport(questions, ptype = "survey") {
     }
 
     // 其余题型保持原样，仅保障 custom_attr 为对象
+    replaceFakeCalculation(customAttr);
     out.custom_attr = customAttr;
     out.option_list = optionList;
     return out;
@@ -901,7 +1084,7 @@ function readStdinUtf8() {
  * @param {string} ptype
  * @param {string} scene
  * @param {string} filePath
- * @param {{ sourceUrl?: string, textFilePath?: string, useStdin?: boolean }} [importOptions]
+ * @param {{ sourceUrl?: string, textFilePath?: string, useStdin?: boolean, aiSource: number, regSource: string }} [importOptions]
  */
 async function workflowCreateAndPublish(
   title = null,
@@ -914,7 +1097,11 @@ async function workflowCreateAndPublish(
     sourceUrl = null,
     textFilePath = null,
     useStdin = false,
+    aiSource,
+    regSource,
   } = importOptions;
+  const requestAiSource = resolveAiSource(aiSource);
+  const requestRegSource = resolveRegSource(regSource);
   const importPath = filePath || textFilePath || null;
   console.log("=".repeat(60));
   console.log("📝 问卷创建并发布工作流");
@@ -924,7 +1111,7 @@ async function workflowCreateAndPublish(
   const isLoggedIn = await checkLogin();
   if (!isLoggedIn) {
     console.log("\n🔐 检查登录状态...");
-    if (!(await doLogin())) {
+    if (!(await doLogin(false, requestRegSource))) {
       return { success: false, error: "登录失败，无法继续" };
     }
   } else {
@@ -1017,16 +1204,18 @@ async function workflowCreateAndPublish(
     fileTitle,
     fileType,
     questions,
-    projectExtras
+    projectExtras,
+    requestAiSource
   );
   if (!createResult.success) {
     if (createResult.error === "NEED_LOGIN") {
-      if (await doLogin(true)) {
+      if (await doLogin(true, requestRegSource)) {
         createResult = await createAndImportProject(
           fileTitle,
           fileType,
           questions,
-          projectExtras
+          projectExtras,
+          requestAiSource
         );
         if (!createResult.success) {
           return createResult;
@@ -1040,7 +1229,7 @@ async function workflowCreateAndPublish(
   }
   
   const projectId = createResult.project_id;
-  const shortId = createResult.short_id || "";
+  let shortId = createResult.short_id || "";
   console.log("✅ 项目创建成功");
   console.log(`   项目ID: ${projectId}`);
   if (shortId) {
@@ -1116,6 +1305,7 @@ async function workflowCreateAndPublish(
   if (finalStatus.success) {
     console.log(`   ✅ 项目状态: ${finalStatus.statusText}`);
     if (finalStatus.short_id) {
+      shortId = finalStatus.short_id;
       console.log(`   📎 短链接: ${WENJUAN_HOST}/s/${finalStatus.short_id}`);
     }
   } else {
@@ -1136,6 +1326,11 @@ async function workflowCreateAndPublish(
   if (shortId) {
     console.log(`\n📎 答题链接: ${WENJUAN_HOST}/s/${shortId}`);
   }
+  const posterPath = await tryGenerateSharePoster(
+    fileTitle,
+    shortId,
+    projectId
+  );
   if (publishResult.pending) {
     console.log(`\n⏳ 状态: 审核中，请等待平台审核通过`);
   }
@@ -1146,6 +1341,8 @@ async function workflowCreateAndPublish(
     success: true,
     project_id: projectId,
     short_id: shortId,
+    survey_link: shortId ? `${WENJUAN_HOST}/s/${shortId}` : "",
+    poster_path: posterPath,
     title: fileTitle,
     question_count: questions.length,
     pending: publishResult.pending || false
@@ -1165,6 +1362,8 @@ async function main() {
   let textFilePath = null;
   let sourceUrl = null;
   let useStdin = false;
+  let aiSource = null;
+  let regSource = null;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -1187,6 +1386,10 @@ async function main() {
       sourceUrl = args[++i];
     } else if (arg === "--stdin") {
       useStdin = true;
+    } else if (arg === "--ai-source" && i + 1 < args.length) {
+      aiSource = resolveAiSource(args[++i]);
+    } else if (arg === "--reg-source" && i + 1 < args.length) {
+      regSource = resolveRegSource(args[++i]);
     } else if (arg === "--poll" || arg === "-p" || arg === "--no-poll") {
       /* 发布后始终轮询；保留参数解析以兼容旧命令行 */
     } else if (arg === "-h" || arg === "--help") {
@@ -1220,6 +1423,8 @@ async function main() {
     sourceUrl,
     textFilePath,
     useStdin,
+    aiSource,
+    regSource,
   });
   
   if (!result.success) {
@@ -1244,6 +1449,8 @@ function showHelp() {
   --text-file <path>    同 --file，便于强调「文本文件」；内容须为 UTF-8 JSON
   -u, --url <url>       从 http(s) 链接拉取 JSON 后导入（格式同文件）
   --stdin               从标准输入读取 UTF-8 JSON（适合管道/重定向）
+  --ai-source <number>  项目 AI 来源编号（优先按 SKILL.md 传入；未传则用 JS 默认值）
+  --reg-source <source> 扫码注册来源（优先按 SKILL.md 传入；未传则用 JS 默认值）
   -h, --help            显示帮助信息
 
 示例:

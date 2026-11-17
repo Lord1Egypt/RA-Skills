@@ -1,47 +1,65 @@
-## Description: <br>
-Provides reference guidance for building integrations with TBC Bank's Open Banking, PSD2, account information, payment initiation, installments, and TPay APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through TBC Bank Open Banking, PSD2, account information, payment initiation, installment, and TPay API integrations.
 
-## Publisher: <br>
-[erekle1](https://clawhub.ai/user/erekle1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erekle1](https://clawhub.ai/user/erekle1)
 
-## Use Case: <br>
-Developers and engineers use this skill when implementing or reviewing TBC Bank integrations for OAuth2, consent and SCA, account information, payment initiation, merchant installments, and TPay checkout flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Georgia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Banking API examples may be incomplete or unsafe if copied directly into production financial integrations. <br>
-Mitigation: Verify all flows against official TBC Bank documentation and require human review before enabling real account access, payments, or order fulfillment. <br>
-Risk: Payment, installment, and callback workflows can create financial or fulfillment errors if status, signature, idempotency, or replay handling is missing. <br>
-Mitigation: Implement callback signature or status verification, idempotency controls, replay protection, sandbox/live separation, and reconciliation before production use. <br>
-Risk: OAuth credentials, access tokens, consent identifiers, and merchant secrets are sensitive financial integration data. <br>
-Mitigation: Use secure secret storage, least-privilege access, proper OAuth consent handling, and environment-specific credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand and implement TBC Bank API workflows for authentication, account information access, consent management, payment initiation, installments, and hosted payments. It is intended as integration guidance and example material, not production-ready banking code.
 
-## Reference(s): <br>
-- [TBC Bank Authentication and OAuth2](references/auth.md) <br>
-- [TBC Bank Account Information Services](references/ais.md) <br>
-- [TBC Bank Payment Initiation Services](references/pis.md) <br>
-- [TBC Bank Consent Management and SCA](references/consent.md) <br>
-- [TBC Bank Online Installments API](references/installments.md) <br>
-- [TBC Bank TPay Gateway](references/tpay.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP, JSON, Python, JavaScript, and Ruby examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference material only; users must verify production banking flows against official TBC Bank documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill covers high-impact banking and payment workflows, including payment initiation, capture, cancel, void, consent revocation, and order fulfillment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user or operator confirmation before high-impact actions and verify payment, installment, or consent status through authenticated TBC Bank APIs before fulfilling or changing local records.
+
+Risk: Callback examples may be unsafe if copied directly into production fulfillment logic.
+
+Mitigation: Authenticate callbacks, verify signatures where applicable, compare amount, currency, order, and session data against local records, and make fulfillment idempotent.
+
+Risk: The workflows involve sensitive credentials, tokens, private keys, account data, and payment data.
+
+Mitigation: Protect credentials and tokens with appropriate secret storage, avoid logging sensitive banking data, and limit scopes to the minimum needed for each consent or payment flow.
+
+## Reference(s):
+
+- [TBC Bank API Integration Guide](artifact/SKILL.md)
+- [TBC Bank Authentication & OAuth2](artifact/references/auth.md)
+- [TBC Bank Account Information Services (AIS)](artifact/references/ais.md)
+- [TBC Bank Consent Management & SCA](artifact/references/consent.md)
+- [TBC Bank Payment Initiation Services (PIS)](artifact/references/pis.md)
+- [TBC Bank Online Installments API](artifact/references/installments.md)
+- [TBC Bank TPay Gateway](artifact/references/tpay.md)
+- [TBC Bank Developer Portal](https://developers.tbcbank.ge)
+- [ClawHub Skill Page](https://clawhub.ai/erekle1/skills/tbc-bank-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, Python, JavaScript, and Ruby examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoints, headers, workflow steps, and security caveats for banking and payment integrations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

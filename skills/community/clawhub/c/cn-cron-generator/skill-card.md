@@ -1,38 +1,49 @@
-## Description: <br>
-Basic local Python helper for inspecting five-field cron expressions, packaged with Chinese-language cron generation documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Cron Generator is a Chinese-language cron helper that describes or validates five-field cron expressions and returns concise schedule text.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect cron expressions for scheduled jobs and follow Chinese-language cron generation examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cron expressions may be inaccurate or too limited for production scheduling needs. <br>
-Mitigation: Review and test generated cron expressions against the intended scheduler before using them for production jobs. <br>
+## Use Case:
 
+Developers and automation engineers can use this skill to get quick Chinese-language cron expression help when configuring scheduled jobs or reviewing cron syntax.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-cron-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON from the helper script and Markdown guidance from the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated cron expressions should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server-resolved release metadata) <br>
+Risk: The security evidence says the implementation appears narrower than the documentation claims, including natural-language parsing, graphical configuration, templates, and future-run previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a simple local cron helper, manually verify generated cron expressions before use, and do not rely on undocumented scheduler workflow features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-cron-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON and concise text, with shell command examples in documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; no external runtime dependencies are documented.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

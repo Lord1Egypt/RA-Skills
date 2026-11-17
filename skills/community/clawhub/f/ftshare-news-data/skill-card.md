@@ -1,42 +1,55 @@
-## Description: <br>
-Searches market.ft.tech news semantically by query and returns related recent news results with source sites and article links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches recent A-share market news from market.ft.tech by semantic query and returns related news results.
 
-## Publisher: <br>
-[shawn92](https://clawhub.ai/user/shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and agents use this skill to search A-share and market news by semantic query or keyword and present recent results with source and link information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News search terms and optional time filters are sent to market.ft.tech. <br>
-Mitigation: Use the skill only for prompts that explicitly require FT or market.ft.tech news search, and avoid sending sensitive query text. <br>
-Risk: The upstream data range is limited to current-year news and roughly the most recent half month. <br>
-Mitigation: Tell users about the time-range limit when presenting results and avoid using this skill for historical news research. <br>
+## Use Case:
 
+Developers and market analysts use this skill to route semantic news-search requests to market.ft.tech and present recent A-share related news with source sites and article links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawn92/ftshare-news-data) <br>
-- [Publisher profile](https://clawhub.ai/user/shawn92) <br>
-- [market.ft.tech news search endpoint](https://market.ft.tech/data/api/v1/market/data/semantic-search-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON from the handler, typically summarized for users in Markdown with source and article links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are limited by the upstream service to current-year news and roughly the most recent half month; optional time filters are normalized to UTC+8.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Search terms and time filters are sent to market.ft.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only where sharing those news-search inputs with market.ft.tech is acceptable.
+
+Risk: Instructions and expected output are Chinese-language, and date filters use Beijing-time handling.
+
+Mitigation: Confirm users can interpret the Chinese result fields and normalize requested time windows to UTC+8 when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shawn92/skills/ftshare-news-data)
+- [market.ft.tech](https://market.ft.tech)
+- [Semantic Search News Endpoint](https://market.ft.tech/data/api/v1/market/data/semantic-search-news)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON from the helper script, typically summarized as Markdown or text with article sources and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a query; optional limit, year, start_time, and end_time filters narrow the returned news results.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

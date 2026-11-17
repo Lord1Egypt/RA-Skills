@@ -1,41 +1,54 @@
-## Description: <br>
-README template generator for standard, awesome-list, minimal, detailed, library, app, and API project README files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+README template generator. Standard, awesome-list, minimal, detailed, library, app, API project.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to generate Markdown README templates for common project types and to apply concise README-writing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a local data-management script that can persist entries and command history under user data directories, which is broader than README generation. <br>
-Mitigation: Review script behavior before installing or running it, test with a disposable README_TEMPLATE_DIR, and avoid entering secrets or sensitive text. <br>
-Risk: Generated README templates contain placeholders, sample commands, example links, and default license text that may not match the user's project. <br>
-Mitigation: Review generated Markdown before publishing and replace placeholders, links, commands, and license sections with project-specific content. <br>
+## Use Case:
 
+Developers and technical writers use this skill to generate starter README Markdown for common project types, including standard projects, libraries, apps, APIs, awesome lists, and badge sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/readme-template) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown templates and concise command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated README templates include placeholders that users should review and replace before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: An undocumented utility script can persist command arguments under the user's data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid invoking scripts/script.sh unless local logging is acceptable; inspect script behavior before execution.
+
+Risk: Generated README content includes automatic BytesAgain attribution and placeholder sections.
+
+Mitigation: Review and edit generated Markdown before publishing it as project documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/readme-template)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown README templates with inline shell commands, code blocks, tables, and badge snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated README content includes placeholders that should be edited before publishing.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

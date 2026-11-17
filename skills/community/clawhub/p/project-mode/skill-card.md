@@ -1,39 +1,57 @@
-## Description: <br>
-激活项目制多智能体开发协议。用于处理复杂的代码开发、系统搭建等需求。该工具将在后台自动拆解任务、调度程序员和测试员、更新 dev_project.md 并处理错误重试。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+激活项目制多智能体开发协议，用于处理复杂的代码开发和系统搭建需求，并在后台拆解任务、调度程序员和测试员、更新 dev_project.md、处理错误重试。
 
-## Publisher: <br>
-[tincomking](https://clawhub.ai/user/tincomking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tincomking](https://clawhub.ai/user/tincomking)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to manage complex code development or system-building work as a staged project workflow with task decomposition, implementation, testing, integration, and delivery reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow persists project tracking state in local files, which may expose sensitive project details if secrets are stored there. <br>
-Mitigation: Review dev_Project.md and system_protocol_project_mode.md before use and avoid placing secrets or credentials in project tracking files. <br>
-Risk: The documented memory viewer command runs a local script outside the skill artifact. <br>
-Mitigation: Run the optional memory_viewer.py command only after confirming that the local script is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tincomking/project-mode) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage complex software projects through a project-mode workflow that decomposes requirements, coordinates implementation and testing roles, tracks progress in dev_Project.md, and reports status to the user.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status reports, task lists, code snippets, shell commands, and local project tracking file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local project tracking files under ~/.openclaw/workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may overwrite persistent project state in dev_Project.md with weak scoping.
+
+Mitigation: Review the target dev_Project.md before use, keep backups, and run the workflow only in the intended OpenClaw workspace.
+
+Risk: The skill enables broad background development automation that can change code or project-tracking files.
+
+Mitigation: Review generated task plans and changes before continuing to implementation or final delivery.
+
+Risk: The documented memory-viewer command may expose local workspace data.
+
+Mitigation: Avoid running the memory-viewer command unless you understand what local data it displays and who can access it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tincomking/skills/project-mode)
+- [Publisher profile](https://clawhub.ai/user/tincomking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status reports with generated task descriptions, code-oriented guidance, shell commands, and project tracking updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update persistent OpenClaw project tracking files such as dev_Project.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

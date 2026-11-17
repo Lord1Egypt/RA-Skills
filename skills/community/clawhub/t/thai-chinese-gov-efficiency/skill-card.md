@@ -1,42 +1,50 @@
-## Description: <br>
-Academic research agent for comparative analysis of governance structures in Thai and Chinese public business schools and their impact on educational efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic research agent for comparative analysis of governance structures in Thai and Chinese public business schools and their impact on educational efficiency.
 
-## Publisher: <br>
-[1829162846lw](https://clawhub.ai/user/1829162846lw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1829162846lw](https://clawhub.ai/user/1829162846lw)
 
-## Use Case: <br>
-External researchers and academic teams use this skill to build theoretical frameworks, design mixed-methods comparative studies, coordinate literature review and data collection, and manage longitudinal research workflows for Thai and Chinese public business schools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to run local Python or R commands and fetch web content during data collection. <br>
-Mitigation: Review proposed commands, paths, data sources, and outputs before execution; run only in an isolated workspace with appropriate permissions. <br>
-Risk: The skill describes spawning subagents for literature review and data analysis. <br>
-Mitigation: Approve subagent delegation, tool access, and scope before use, especially when delegated work may execute commands. <br>
-Risk: The quality protocol requests recurring updates to another skill without version pinning. <br>
-Mitigation: Do not allow recurring skill updates unless intentionally approving a pinned, reviewed version. <br>
+## Use Case:
 
+Researchers, graduate students, and academic project teams use this skill to build theoretical frameworks, design mixed-methods comparative studies, manage longitudinal workflows, and coordinate literature review, data collection, and statistical analysis for Thai and Chinese public business school governance research.
 
-## Reference(s): <br>
-- [Chinese Ministry of Education public notice](https://public.moe.gov.cn/jytb_ghfz/ghfw/202312/t20231201_1093012.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, tool, JSON, and Mermaid snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Python or R commands and subagent delegation for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Weekly unpinned updates to another skill can change future agent behavior without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit approval gates for updates, prefer pinned or reviewed versions, and check any local scripts before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1829162846lw/skills/thai-chinese-gov-efficiency)
+- [Chinese Ministry of Education source referenced by the skill](https://public.moe.gov.cn/jytb_ghfz/ghfw/202312/t20231201_1093012.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code, shell command, JSON, tool-call, and Mermaid examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose research workflows, data collection steps, statistical analysis commands, quality checks, and sub-agent coordination patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

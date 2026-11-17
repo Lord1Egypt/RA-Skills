@@ -1,42 +1,57 @@
-## Description: <br>
-Collects important global financial news from the past 24 hours and generates a Chinese briefing as Markdown and a formal PDF with a cover page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese Markdown and PDF financial news briefs from important global market news from the past 24 hours.
 
-## Publisher: <br>
-[jihefanlan-art](https://clawhub.ai/user/jihefanlan-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jihefanlan-art](https://clawhub.ai/user/jihefanlan-art)
 
-## Use Case: <br>
-External users and developers use this skill to gather timely market news across macro policy, commodities, U.S. equities, Hong Kong equities, and A-shares, then produce a structured Chinese finance report. It is intended for briefing generation and includes a non-investment-advice risk notice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local code, install Python packages, and launch unsandboxed Chrome while generating reports. <br>
-Mitigation: Run it in an isolated virtual environment or container and review dependency installation before allowing execution. <br>
-Risk: Broad market-news prompts can trigger web searches, file writes, and PDF generation when the user may only want a short answer. <br>
-Mitigation: Ask explicitly for a short answer when report files, web searches, or PDF output are not desired. <br>
-Risk: Financial briefings may contain time-sensitive or incomplete market information. <br>
-Mitigation: Review cited sources and keep the included non-investment-advice risk notice in user-facing reports. <br>
+## Use Case:
 
+External users and finance-news readers use this skill to gather recent macro, equity, foreign exchange, and commodity news into a structured Chinese daily brief with cited sources and PDF output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jihefanlan-art/finance-news-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown report and PDF file, with source links and generated file paths reported to the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create finance_brief_YYYYMMDD.md, finance_brief_YYYYMMDD.pdf, and an intermediate HTML file in the current or user-specified directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill performs web research for time-sensitive financial reporting, which can produce incomplete, stale, or misleading summaries if sources are weak or market conditions change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cited source links and treat the report as informational rather than investment advice.
+
+Risk: The PDF generation script may install Python packages automatically.
+
+Mitigation: Preinstall reviewed, pinned dependencies in an isolated environment before running the skill.
+
+Risk: The skill writes report files and uses headless Chrome with reduced sandboxing for PDF generation.
+
+Mitigation: Review the script first, confirm output paths, and run it only in a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jihefanlan-art/skills/finance-news-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands]
+
+**Output Format:** [Markdown report and PDF file, with final file paths reported in text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes finance_brief_YYYYMMDD.md and finance_brief_YYYYMMDD.pdf to the current or user-specified directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

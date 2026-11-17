@@ -1,43 +1,65 @@
-## Description: <br>
-Cross-domain scientific discovery through structured extraction of scientific publications; the skill extracts provides/requires relationships to surface hidden connections between fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovery Engine extracts structured provides/requires relationships from scientific publications to support cross-domain discovery.
 
-## Publisher: <br>
-[pcdeni](https://clawhub.ai/user/pcdeni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcdeni](https://clawhub.ai/user/pcdeni)
 
-## Use Case: <br>
-Developers, researchers, and research analysts use this skill to discover scientific papers, extract structured facts and cross-domain provides/requires relationships, validate the resulting JSON, and save or submit extraction batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public paper metadata from research APIs. <br>
-Mitigation: Install and run it only when outbound public research metadata queries are acceptable for the environment. <br>
-Risk: The optional submission workflow can publish saved extraction JSON and metadata through the user's GitHub account. <br>
-Mitigation: Review batch files and GitHub CLI commands before running submission steps. <br>
+## Use Case:
 
+Researchers, developers, and agents use this skill to discover scientific papers, extract structured facts and cross-domain mechanisms from abstracts, save validated JSON results, and optionally submit contributions to the public graph.
 
-## Reference(s): <br>
-- [Discovery Engine repository](https://github.com/pcdeni/discovery-engine) <br>
-- [ClawHub skill page](https://clawhub.ai/pcdeni/discovery-extract) <br>
-- [Extraction prompt](references/prompt.txt) <br>
-- [Extraction schema](references/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON extraction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves extraction JSON locally and can optionally guide GitHub pull request submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter and clawhub.json list 1.1.0) <br>
+Risk: The skill can query public paper APIs and use abstracts from external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review discovered papers and extracted JSON before relying on the results or submitting them.
+
+Risk: The save workflow writes batch results under ~/.discovery/data/batch.
+
+Mitigation: Inspect generated files before sharing, committing, or submitting them.
+
+Risk: The optional submission workflow uses the user's GitHub account to fork repositories and create pull requests.
+
+Mitigation: Run GitHub commands only after reviewing the copied submissions and target repository.
+
+Risk: Security evidence notes an HTTP arXiv endpoint and an unverified TLS fallback as security-quality caveats.
+
+Mitigation: Prefer fixing transport security before depending on the workflow for public data contribution.
+
+## Reference(s):
+
+- [Discovery Engine homepage](https://github.com/pcdeni/discovery-engine)
+- [Discovery Engine issues](https://github.com/pcdeni/discovery-engine/issues)
+- [Extraction prompt](references/prompt.txt)
+- [Extraction schema](references/schema.json)
+- [Extraction schema source](https://github.com/discovery-engine/discovery-engine/schemas/extraction.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [JSON plus Markdown instructions with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saved extraction results are written under ~/.discovery/data/batch when the save workflow is used.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

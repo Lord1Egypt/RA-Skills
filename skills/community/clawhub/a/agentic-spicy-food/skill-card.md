@@ -1,48 +1,62 @@
-## Description: <br>
-Brand-specific commerce skill for Lafeitu (辣匪兔) that helps an agent browse, recommend, cart, and create handoff orders for Sichuan spicy foods through the official Lafeitu API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand-specific commerce skill that helps agents browse, recommend, cart, and order Lafeitu Sichuan spicy foods through the official https://lafeitu.cn API.
 
-## Publisher: <br>
-[NowLoadY](https://clawhub.ai/user/NowLoadY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nowloady](https://clawhub.ai/user/nowloady)
 
-## Use Case: <br>
-External users and agents use this skill to search Lafeitu products, compare variants and promotions, manage a cart, handle account/profile flows, and create checkout-ready orders while leaving payment completion to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change carts, create unpaid orders, update profile details, and use saved account tokens when directed. <br>
-Mitigation: Confirm products, quantities, profile changes, recipient phone numbers, and shipping addresses before running mutating commands. <br>
-Risk: Saved Lafeitu credentials and visitor identifiers can persist locally after account-bound actions. <br>
-Mitigation: Use logout or remove the credential directory when the user does not want the token retained. <br>
-Risk: Product recommendations or order actions can be wrong if they are not grounded in current catalog data. <br>
-Mitigation: Run list, search, or get before cart and order actions, and resolve the exact product slug and variant from API results. <br>
+## Use Case:
 
+External users and shopping agents use this skill to search Lafeitu products, compare variants, pricing, and promotions, manage cart and account workflows, and create orders for user payment handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NowLoadY/agentic-spicy-food) <br>
-- [Publisher profile](https://clawhub.ai/user/NowLoadY) <br>
-- [Lafeitu official website](https://lafeitu.cn) <br>
-- [Lafeitu official API](https://lafeitu.cn/api/v1) <br>
-- [Lafeitu AI agent guide](https://lafeitu.cn/ai-agent-guide) <br>
-- [Skill homepage](https://github.com/NowLoadY/agentic-spicy-food) <br>
-- [Reference commerce engine](https://github.com/NowLoadY/agent-commerce-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or human-readable CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write local Lafeitu credential and visitor files under ~/.openclaw/credentials/agent-commerce-engine/lafeitu.cn/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles Lafeitu account credentials, profile data, carts, and order creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this level of shopping-account access is acceptable, confirm cart and shipping details before protected actions, and leave payment completion to the user.
+
+Risk: Entering real passwords as command-line arguments can expose them through shell history, process lists, or logs.
+
+Mitigation: Prefer the website flow or a safer secret-input mechanism for credentials, and use logout or delete local credentials when finished.
+
+Risk: The server-provided security verdict is suspicious because account and order workflows have weaknesses users should review.
+
+Mitigation: Review and scan the skill before deployment, and avoid using it with sensitive accounts until the security concerns are accepted or resolved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nowloady/skills/agentic-spicy-food)
+- [Skill Homepage](https://github.com/NowLoadY/agentic-spicy-food)
+- [Official Lafeitu Website](https://lafeitu.cn)
+- [Official Lafeitu API](https://lafeitu.cn/api/v1)
+- [Lafeitu AI Agent Guide](https://lafeitu.cn/ai-agent-guide)
+- [Reference Commerce Engine](https://github.com/NowLoadY/agent-commerce-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands plus JSON or localized text from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product, cart, account, profile, promotion, and order details; final payment is handed off to the user.]
+
+## Skill Version(s):
+
+1.9.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

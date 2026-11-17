@@ -1,42 +1,57 @@
-## Description: <br>
-Native Aight app integration for creating reminders, tasks, triggers, and items. Use when user mentions deadlines, reminders, tasks, or tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native Aight app integration for creating reminders, tasks, triggers, and items.
 
-## Publisher: <br>
-[Vincenthhao](https://clawhub.ai/user/Vincenthhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincenthhao](https://clawhub.ai/user/vincenthhao)
 
-## Use Case: <br>
-External users and agents use this skill to turn reminder, deadline, task, and tracking requests into structured Aight items with IDs, labels, schedules, and status updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous reminder or task requests could create or update the wrong Aight item. <br>
-Mitigation: Ask the user to confirm ambiguous requests before creating or changing reminders, tasks, deadlines, or tracked items. <br>
-Risk: Natural language date parsing can schedule reminders for the wrong date, time, or timezone. <br>
-Mitigation: Verify the interpreted date, time, and timezone with the user before saving scheduled reminders or deadlines. <br>
-Risk: Failed item creation may place reminder or task details in local fallback files. <br>
-Mitigation: Avoid adding highly sensitive details to Aight items and review local fallback files when creation fails. <br>
+## Use Case:
 
+External users and developers use this skill to turn reminder, deadline, task, and tracking requests into structured Aight items for the user's Today view.
 
-## Reference(s): <br>
-- [Aight Utils on ClawHub](https://clawhub.ai/Vincenthhao/aight-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [Structured JSON snippets with concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated IDs, labels, ISO 8601 schedules, item types, and status updates for Aight reminders, tasks, triggers, and tracked items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad phrases such as Done or Cancel may cause persistent status changes to existing Aight items.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and a specific item identifier before changing item status.
+
+Risk: Failed item creation may save reminder or task content into local memory files.
+
+Mitigation: Ask permission before writing fallback memory entries and avoid storing sensitive reminder content.
+
+Risk: The skill examples include a fixed Asia/Shanghai timestamp that may not match the user's actual timezone.
+
+Mitigation: Resolve dates against the user's current timezone before generating scheduled reminder or deadline payloads.
+
+## Reference(s):
+
+- [Aight Utils on ClawHub](https://clawhub.ai/vincenthhao/skills/aight-utils)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Aight reminder, task, trigger, process, and status-update payload guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

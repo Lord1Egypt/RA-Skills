@@ -34,7 +34,7 @@
 使用方式：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_ecs_network_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_ecs_network_context.py" \
   --region "<region>" \
   --instance-id "<instance-id>"
 ```
@@ -50,7 +50,7 @@ python3 skills/volcengine-troubleshooting/references/domain-guides/compute-conta
 使用方式：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py" \
   --region "<region>" \
   --cluster-id "<cluster-id>" \
   --namespace "<namespace>" \
@@ -68,7 +68,7 @@ python3 skills/volcengine-troubleshooting/references/domain-guides/compute-conta
 使用方式：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py" \
   --region "<region>" \
   --type "<clb|alb>" \
   --load-balancer-id "<lb-id>" \

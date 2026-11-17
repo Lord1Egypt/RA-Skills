@@ -1,44 +1,55 @@
-## Description: <br>
-Pilot Service Agents Traffic helps agents query Pilot Protocol traffic-category service agents for live bike-share availability and Transport for London line status or arrivals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Urban transport and bike-share skill for querying CityBikes indexes, GBFS feeds, and Transport for London line status and arrivals.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and external agent users use this skill to discover Pilot Protocol traffic service agents, inspect their filter contracts, and request structured or natural-language urban mobility data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on pilotctl, a running Pilot Protocol daemon, and network 9 service-agent connectivity. <br>
-Mitigation: Verify the pilotctl binary, daemon, network membership, and target service-agent environment before use. <br>
-Risk: Filters or free-text requests may be processed by remote agents, upstream transport services, or Gemini-generated summary tooling. <br>
-Mitigation: Avoid sending sensitive personal or operational data in queries or summary requests. <br>
-Risk: The listed traffic-agent catalogue is a snapshot and may change over time. <br>
-Mitigation: Run a fresh list-agents query and inspect each agent's /help contract before relying on a specific hostname or filter schema. <br>
+## Use Case:
 
+Developers and operators use this skill to query live bike-share availability and Transport for London line status or arrivals through Pilot Protocol service agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-traffic) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with bash command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may arrive asynchronously through pilotctl inbox after an initial ACK envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Queries sent through pilotctl go to external Pilot Protocol service agents and may be summarized by Gemini for /summary or free-text requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for intended live transport-data workflows, and avoid sending sensitive information in service-agent queries.
+
+Risk: Live transport catalog entries and filter contracts can change over time.
+
+Mitigation: Use list-agents for fresh discovery and send /help to the selected service agent before relying on its current filter schema.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill listing](https://clawhub.ai/teoslayer/skills/pilot-service-agents-traffic)
+- [Publisher skills catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents to use pilotctl and read asynchronous inbox responses from service agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

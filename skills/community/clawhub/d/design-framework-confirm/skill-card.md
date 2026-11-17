@@ -1,42 +1,49 @@
-## Description: <br>
-设计框架自动生成套件（确认处理器）：处理用户对设计框架预览的回复，支持确认/取消/重新生成 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Framework Auto-Generation Suite confirmation handler that processes replies to design framework previews and supports confirm, cancel, and regenerate actions.
 
-## Publisher: <br>
-[807209066](https://clawhub.ai/user/807209066) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[807209066](https://clawhub.ai/user/807209066)
 
-## Use Case: <br>
-Design automation users use this suite helper to handle confirmation, cancellation, regeneration, timeout, and duplicate-trigger replies after a design framework preview is sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic chat replies could accidentally confirm or regenerate a pending design workflow. <br>
-Mitigation: Prefer explicit commands or structured replies and bind replies to the originating user or session. <br>
-Risk: Cancellation cleanup could affect unrelated temporary files if the suite scope is not respected. <br>
-Mitigation: Keep cleanup limited to the design-framework suite's own /tmp files. <br>
-Risk: This helper depends on the surrounding design-framework suite behavior. <br>
-Mitigation: Install it only with the intended suite and review the referenced sender skill and external scripts under $SK. <br>
+## Use Case:
 
+Developers and operators using the related design-framework suite use this skill to handle user replies after a design framework preview is sent, including confirmation, cancellation, regeneration, duplicate mentions, and timeout handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/807209066/design-framework-confirm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only helper for reply handling in a larger design-framework suite.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and artifact _meta.json) <br>
+Risk: Broad confirmation phrases in group chats could accidentally confirm a pending preview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with the related design-framework suite and narrow confirmation phrases for group-chat deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/807209066/skills/design-framework-confirm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation, cancellation, regeneration, duplicate-trigger, and timeout handling behavior.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

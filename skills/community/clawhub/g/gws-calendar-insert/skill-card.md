@@ -1,38 +1,50 @@
-## Description: <br>
-Google Calendar: Create a new event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar: Create a new event.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare Google Calendar event creation commands with a title, time range, calendar, location, description, attendees, and optional Google Meet link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent create Google Calendar events, which writes to the user's calendar. <br>
-Mitigation: Confirm the Google account, calendar, event title, start and end times, attendees, and Meet-link choice before executing the command. <br>
+## Use Case:
 
+Users and agents use this skill to create Google Calendar events through the Google Workspace CLI with a required title and time range plus optional attendees, location, description, and Google Meet conferencing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-calendar-insert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and user confirmation before writing to Google Calendar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: The skill can create Google Calendar events using the user's configured Google Workspace access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the calendar, title, start and end times, attendees, description, location, and Meet option before allowing execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-calendar-insert)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured gws Google Workspace access and user confirmation before write execution.]
+
+## Skill Version(s):
+
+1.0.13 (source: release evidence; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

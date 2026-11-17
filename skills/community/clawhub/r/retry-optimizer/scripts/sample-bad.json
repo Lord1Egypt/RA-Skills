@@ -1,0 +1,1 @@
+{"retries":5,"initialDelayMs":30000,"maxDelayMs":30000,"backoffFactor":1,"jitterMs":0,"timeoutMs":1000,"retryOn":["*"],"abortOn":[]}

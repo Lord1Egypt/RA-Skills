@@ -66,6 +66,40 @@ _SESSION_NAMES = [
     "telethon-reader.session",
 ]
 
+# SOCKS5 proxy for MTProto, populated by get_config() from ~/.tg-reader.json
+# ("socks_proxy") or the TG_PROXY env var. Some hosts filter direct MTProto,
+# so a client may need to route through it. Telethon's native python-socks
+# dict form, so no PySocks dependency is required.
+_PROXY: dict | None = None
+
+
+def _parse_proxy(spec):
+    """Parse "host:port" or "socks5://[user:pass@]host:port" into a Telethon
+    python-socks proxy dict, or return None for an empty/invalid spec."""
+    if not spec:
+        return None
+    spec = spec.strip()
+    scheme = "socks5"
+    if "://" in spec:
+        scheme, spec = spec.split("://", 1)
+    username = password = None
+    if "@" in spec:
+        creds, spec = spec.rsplit("@", 1)
+        if ":" in creds:
+            username, password = creds.split(":", 1)
+    if ":" not in spec:
+        return None
+    host, port = spec.rsplit(":", 1)
+    try:
+        port = int(port)
+    except ValueError:
+        return None
+    proxy = {"proxy_type": scheme, "addr": host, "port": port}
+    if username:
+        proxy["username"] = username
+        proxy["password"] = password
+    return proxy
+
 
 def _find_session_files() -> list:
     """Find tg-reader session files in home directory and current working directory.
@@ -147,18 +181,25 @@ def get_config(config_file=None, session_file=None):
         config_file: Explicit path to config JSON (overrides ~/.tg-reader.json)
         session_file: Explicit path to session file (overrides default and config value)
     """
+    global _PROXY
+
     api_id = os.environ.get("TG_API_ID")
     api_hash = os.environ.get("TG_API_HASH")
     session_name = os.environ.get("TG_SESSION", str(Path.home() / ".telethon-reader"))
+    proxy_spec = os.environ.get("TG_PROXY")
 
-    if not api_id or not api_hash:
-        config_path = Path(config_file) if config_file else Path.home() / ".tg-reader.json"
-        if config_path.exists():
-            with open(config_path) as f:
-                cfg = json.load(f)
-                api_id = api_id or cfg.get("api_id")
-                api_hash = api_hash or cfg.get("api_hash")
-                session_name = cfg.get("session", session_name)
+    # Read the config file whenever it exists — the proxy lives there even when
+    # credentials come from the environment.
+    config_path = Path(config_file) if config_file else Path.home() / ".tg-reader.json"
+    if config_path.exists():
+        with open(config_path) as f:
+            cfg = json.load(f)
+            api_id = api_id or cfg.get("api_id")
+            api_hash = api_hash or cfg.get("api_hash")
+            session_name = cfg.get("session", session_name)
+            proxy_spec = proxy_spec or cfg.get("socks_proxy")
+
+    _PROXY = _parse_proxy(proxy_spec)
 
     # Explicit --session-file overrides everything
     if session_file:
@@ -199,7 +240,7 @@ async def _authorized_client(session_name: str, api_id: int, api_hash: str):
     channel-error returns, where the session itself is fine.
     """
     try:
-        client = TelegramClient(session_name, api_id, api_hash)
+        client = TelegramClient(session_name, api_id, api_hash, proxy=_PROXY)
         await client.connect()
     except sqlite3.Error as e:
         raise NotAuthorizedError(f"Session file could not be opened (corrupted?): {e}")
@@ -569,7 +610,7 @@ async def setup_auth(config_file=None, session_file=None):
     print(f"Starting auth for session: {session_name}.session")
     print("You will receive a code in Telegram. Enter it when prompted.\n")
 
-    client = TelegramClient(session_name, api_id, api_hash)
+    client = TelegramClient(session_name, api_id, api_hash, proxy=_PROXY)
 
     # Use lambda to make phone input interactive
     await client.start(phone=lambda: input("Enter phone number (with country code, e.g. +79991234567): "))

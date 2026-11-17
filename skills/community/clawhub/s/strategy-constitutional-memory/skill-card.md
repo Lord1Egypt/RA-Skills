@@ -1,40 +1,53 @@
-## Description: <br>
-A living knowledge base of hard-earned strategy lessons and banned code patterns that helps agents avoid repeating past strategy mistakes by scanning code and generating decision context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A living knowledge base of strategy lessons and banned code patterns that helps agents avoid repeating past strategy mistakes by scanning code and generating decision context.
 
-## Publisher: <br>
-[tltby12341](https://clawhub.ai/user/tltby12341) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tltby12341](https://clawhub.ai/user/tltby12341)
 
-## Use Case: <br>
-Developers and agents use this skill during iterative strategy development to record lessons, maintain banned code patterns, scan strategy code for known violations, and produce prompt-ready decision context before generating new strategy code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent lesson and ban files can influence future coding decisions with stale, incorrect, sensitive, or prompt-like content. <br>
-Mitigation: Review lessons.json and bans.json periodically, avoid storing secrets or untrusted prompt-like text, and remove or correct entries that were recorded in error. <br>
-Risk: Using an entry point that is not present in the artifact can lead to failed execution or inconsistent behavior. <br>
-Mitigation: Use the included cli.py entry point unless a separate orchestrator module has been verified. <br>
+## Use Case:
 
+Developers and strategy researchers use this skill to record lessons from strategy iterations, maintain banned code patterns, scan new strategy code for known violations, and produce concise LLM decision context before generating new strategy code.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/tltby12341/strategy-constitutional-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON memory files for lessons and banned patterns when used through its Python API or CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Arbitrary lesson text can become persistent prompt influence when reused as LLM decision context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored lessons before use, avoid importing unreviewed text directly into system prompts, and inspect lessons.json regularly.
+
+Risk: Automation or users with write access to the memory directory can add misleading lessons or bans.
+
+Mitigation: Limit write access to trusted users and automation, keep the memory directory scoped to the project, and audit bans.json before relying on scan results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tltby12341/skills/strategy-constitutional-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text guidance with Python snippets, shell commands, scan results, and JSON-backed memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates human-readable lessons.json and bans.json files in the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

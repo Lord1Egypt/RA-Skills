@@ -1,42 +1,54 @@
-## Description: <br>
-Provides structured information from Anjuke public pages, including property listings, agent rules, services, and help documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured information from Anjuke public pages, including property listings, agent rules, services, and help documentation.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Anjuke real estate pages, service entry points, agent rules, consultation flows, and help-center information while preserving city, listing, and timing context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anjuke listing, pricing, city, service, or policy details may be time-sensitive or location-specific. <br>
-Mitigation: Verify important details against the original Anjuke page before relying on or publishing the summary. <br>
-Risk: The skill could be asked to process private, account-only, owner, broker-backend, or unpublished listing information outside its stated boundary. <br>
-Mitigation: Use the skill only with public Anjuke pages and exclude account data, non-public listings, private owner data, and broker-backend content. <br>
-Risk: Real estate summaries can become misleading if source context is dropped or if users request false listings, audit evasion, or off-platform transaction guidance. <br>
-Mitigation: Preserve city, listing, service-entry, and timing context, and decline false listing, review-evasion, or noncompliant transaction guidance. <br>
+## Use Case:
 
+External users and agents use this skill to organize public Anjuke real-estate pages, listing services, broker rules, consultation flows, city entries, and help information while preserving source context.
 
-## Reference(s): <br>
-- [Anjuke public homepage](https://www.anjuke.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured public-information guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should retain source context such as city, listing, service entry point, date-sensitive details, and relevant public links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Public real-estate listing details can vary by city, time, and property, leading to stale or misleading summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve the source page, city, time, property, and listing context, and verify current public Anjuke pages before acting on the summary.
+
+Risk: Requests may seek account-only data, private records, unpublished listings, false-listing packaging, or platform-rule evasion.
+
+Mitigation: Limit use to public pages and refuse private records, backend data, false-listing packaging, account actions, or audit-bypass guidance.
+
+## Reference(s):
+
+- [Anjuke homepage](https://www.anjuke.com/)
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/anjuke)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserve source city, time, property, and page context for real-estate information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

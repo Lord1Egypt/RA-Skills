@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7bj0db1ydm0bam8j7c2fcbrx83ttp5",
-  "slug": "lead-enrichment-skill",
+  "name": "lead-enrichment",
+  "displayName": "Lead Enrichment",
   "version": "1.0.0",
-  "publishedAt": 1778619833672
+  "description": "Enrich a company or person lead from public-web signals using Prismfy-powered search.",
+  "author": "Prismfy",
+  "entry": "SKILL.md",
+  "tags": [
+    "leadgen",
+    "sales",
+    "research",
+    "enrichment",
+    "prismfy"
+  ],
+  "runtime": {
+    "requiresEnv": ["PRISMFY_API_KEY"],
+    "requiresBins": ["curl", "jq"]
+  }
 }

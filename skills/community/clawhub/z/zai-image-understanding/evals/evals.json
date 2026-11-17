@@ -1,0 +1,30 @@
+{
+  "skill_name": "zai-image-understanding",
+  "evals": [
+    {
+      "id": "basic-description",
+      "prompt": "分析这张图片的内容，描述主要物体、场景、颜色、构图等关键信息",
+      "image_url": "https://picsum.photos/800/600.jpg",
+      "expected_output": "包含主要物体、场景描述、颜色、构图等关键信息的结构化描述"
+    },
+    {
+      "id": "scene-understanding",
+      "prompt": "这张图片是在什么场景？画面中有什么人或物体在做什么？请详细描述",
+      "image_url": "https://picsum.photos/800/600.jpg?scene=1",
+      "expected_output": "场景分类、人物/物体活动描述、氛围判断"
+    },
+    {
+      "id": "color-composition-analysis",
+      "prompt": "分析这张图片的色彩搭配和构图特点，包括主色调、对比度、构图方式（如三分法、对称、引导线等）",
+      "image_url": "https://picsum.photos/800/600.jpg?scene=2",
+      "expected_output": "色彩分析（主色调、配色方案）、构图分析（构图类型、视觉焦点、空间层次）"
+    },
+    {
+      "id": "local-file-test",
+      "prompt": "识别这张图片中的主要人物并描述其特征",
+      "image_path": "test-images/sample.jpg",
+      "expected_output": "识别出的人物身份、外观特征、服装、动作等详细描述",
+      "note": "使用 --image-path 参数测试本地文件上传功能（需配合实际测试图片）"
+    }
+  ]
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-QQBot 消息主动推送技能。当需要向 QQ 用户或群发送消息时使用此技能。支持：(1) 主动发送消息到 QQ 对话框 (2) 发送图片/语音/文件等富媒体 (3) 群发消息。触发词：发送 QQ、推送 QQ、QQ 消息、发送到 QQ、QQ 发送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QQ-Bot-connect helps an agent send QQ Bot messages to configured private or group recipients, including text and media files.
 
-## Publisher: <br>
-[jcduann](https://clawhub.ai/user/jcduann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcduann](https://clawhub.ai/user/jcduann)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent send QQ private or group messages, including text and media/file attachments, through the qqbot message channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill allows an agent to send real QQ messages and files when invoked. <br>
-Mitigation: Configure the openid carefully, test with your own account first, and require explicit confirmation before sending messages. <br>
-Risk: Group messages, bulk messages, or media/file attachments can reach unintended recipients or expose unintended content. <br>
-Mitigation: Require explicit user confirmation for group messages, bulk sends, and any media or file attachment before using the qqbot message channel. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent send text or media to QQ private chats or groups through a configured QQ Bot recipient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcduann/qq-bot-connect) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jcduann) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance] <br>
-**Output Format:** [JSON message-tool payloads and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qqbot target strings and qqmedia attachment references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send user content and files to external QQ recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the resolved recipient and message content before every send.
+
+Risk: A configured or user-supplied recipient ID can route messages to the wrong QQ private chat or group.
+
+Mitigation: Replace placeholder configuration with validated recipient IDs and confirm the target before sending.
+
+## Reference(s):
+
+- [QQ-Bot-connect ClawHub release](https://clawhub.ai/jcduann/skills/qq-bot-connect)
+- [jcduann ClawHub publisher profile](https://clawhub.ai/user/jcduann)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown with JSON-style message payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recipient targeting guidance for QQ private chats and groups; supports media paths wrapped in qqmedia tags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

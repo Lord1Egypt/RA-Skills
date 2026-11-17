@@ -1,0 +1,51 @@
+{
+  "_scene": "诊断试验 ROC",
+  "_description": "诊断试验 ROC（roc）。用模板自带 _command 一键渲染示例。",
+  "_chart_type": "roc",
+  "_command": "python3 scripts/gen_figure.py -t roc -d templates/04-diagnostic-roc.json -o roc.png --theme okabe-ito",
+  "_caption_template": "图X | ROC 曲线。联合标志物 A+B 的 AUC（0.942）高于单一标志物 A（0.897）。",
+  "_note": "示例数字仅示意，请替换为你的真实数据（--stats auto 可用于 box/violin 原始数据）",
+  "curves": [
+    {
+      "name": "Marker A",
+      "fpr": [
+        0,
+        0.04,
+        0.1,
+        0.22,
+        0.45,
+        1.0
+      ],
+      "tpr": [
+        0,
+        0.52,
+        0.76,
+        0.89,
+        0.96,
+        1.0
+      ],
+      "auc": 0.897
+    },
+    {
+      "name": "Marker A+B",
+      "fpr": [
+        0,
+        0.03,
+        0.08,
+        0.18,
+        0.42,
+        1.0
+      ],
+      "tpr": [
+        0,
+        0.61,
+        0.84,
+        0.93,
+        0.97,
+        1.0
+      ],
+      "auc": 0.942
+    }
+  ],
+  "diagonal": true
+}

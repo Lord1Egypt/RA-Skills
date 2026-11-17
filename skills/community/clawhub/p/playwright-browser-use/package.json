@@ -1,0 +1,30 @@
+{
+  "name": "pw-browser",
+  "version": "1.3.11",
+  "description": "Playwright-based browser automation CLI (daemon + client) driving your system Chrome/Edge. INCLUDES HIGH-RISK PRIMITIVES: direct cookie/localStorage credential extraction & injection (session tokens), arbitrary in-page JavaScript (eval), and daemon-context code execution (run-code) — plus a persistent credentialed session. Gated by a random daemon token; set PW_BROWSER_SAFE_MODE=1 to disable all code-exec and credential primitives. Authorize only in trusted, user-visible local environments.",
+  "license": "MIT",
+  "author": "Yicko",
+  "keywords": [
+    "playwright",
+    "browser-automation",
+    "cli",
+    "web-scraping",
+    "browser",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node tests/smoke.js && node tests/features.js && node tests/a-group.js && node tests/b-negative.js && node tests/c-snapcap.js && node tests/d-download.js",
+    "sync": "bash sync.sh"
+  },
+  "dependencies": {
+    "playwright-core": "1.61.1"
+  }
+}

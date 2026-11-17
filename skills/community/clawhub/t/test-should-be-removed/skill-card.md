@@ -1,46 +1,61 @@
-## Description: <br>
-Bria AI helps agents generate, edit, enhance, and remove backgrounds from images through Bria.ai APIs using local Bria credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bria AI helps agents generate and edit images through Bria.ai APIs, including background removal, product imagery, upscaling, restyling, restoration, and batch visual-asset workflows.
 
-## Publisher: <br>
-[galbria](https://clawhub.ai/user/galbria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galbria](https://clawhub.ai/user/galbria)
 
-## Use Case: <br>
-External users, developers, and marketing or design teams use this skill to create image assets, edit photos, remove or replace backgrounds, upscale images, and automate visual asset pipelines with Bria.ai. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Bria credentials in ~/.bria/credentials. <br>
-Mitigation: Use only a Bria key appropriate for local storage and keep the credentials file private. <br>
-Risk: Selected images are uploaded to Bria.ai for processing. <br>
-Mitigation: Avoid processing sensitive images unless the user is comfortable uploading them to Bria.ai. <br>
-Risk: API calls can consume Bria account quota or credits. <br>
-Mitigation: Confirm intended use before batch or high-volume operations. <br>
+## Use Case:
 
+Developers and creative operations teams use this skill to generate, transform, and automate image assets through Bria.ai, including transparent cutouts, marketing visuals, e-commerce product photography, and photo restoration.
 
-## Reference(s): <br>
-- [Bria.ai](https://bria.ai) <br>
-- [Bria API reference for agents](https://docs.bria.ai/llms.txt) <br>
-- [API Endpoints Reference](references/api-endpoints.md) <br>
-- [Shell Client](references/code-examples/bria_client.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/galbria/test-should-be-removed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with bash snippets and API result URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bria credentials and may upload selected images to Bria.ai for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata; artifact metadata version 1.2.7) <br>
+Risk: Prompts and images may be sent to Bria.ai as a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved images and prompts, and avoid sensitive personal or proprietary content unless the user has authorization.
+
+Risk: Persistent Bria credentials are stored in ~/.bria/credentials.
+
+Mitigation: Use the skill in a trusted single-user environment, protect the credentials file, and remove cached credentials when they are no longer needed.
+
+Risk: The shell helper supports configurable API base and asynchronous status URL behavior.
+
+Mitigation: Review the shell helper before use and keep the default Bria API endpoint unless a trusted deployment requires otherwise.
+
+## Reference(s):
+
+- [Bria Homepage](https://bria.ai)
+- [ClawHub Skill Page](https://clawhub.ai/galbria/skills/test-should-be-removed)
+- [Bria API Reference for Agents](https://docs.bria.ai/llms.txt)
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Shell Client](references/code-examples/bria_client.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash snippets and API call examples; API calls return image URLs or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and BRIA_API_KEY; may use ~/.bria/credentials for cached Bria credentials.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata; artifact metadata version 1.2.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

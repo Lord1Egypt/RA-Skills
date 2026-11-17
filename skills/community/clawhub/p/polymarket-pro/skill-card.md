@@ -1,43 +1,58 @@
-## Description: <br>
-Use the official Polymarket CLI to browse markets, trade on CLOB, manage positions, and analyze on-chain data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the official Polymarket CLI to browse markets, trade on CLOB, manage positions, and analyze on-chain data.
 
-## Publisher: <br>
-[liwagu](https://clawhub.ai/user/liwagu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liwagu](https://clawhub.ai/user/liwagu)
 
-## Use Case: <br>
-External users and developers use this skill to research Polymarket prediction markets, manage wallet and portfolio workflows, and prepare or execute direct CLOB and CTF trading operations through the official CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can support live trading and order cancellation workflows involving real funds. <br>
-Mitigation: Use a dedicated low-balance wallet and manually confirm token, side, price, size, approvals, and cancellation scope before each transaction. <br>
-Risk: Wallet private keys may be supplied through CLI flags, environment variables, or config files. <br>
-Mitigation: Avoid passing private keys on the command line, restrict config file permissions, and keep trading credentials separate from primary wallets. <br>
-Risk: The documented shell-script installation path executes a remote installer. <br>
-Mitigation: Prefer Homebrew or a verified pinned release, and review installer contents before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liwagu/polymarket-pro) <br>
-- [Polymarket CLI repository](https://github.com/Polymarket/polymarket-cli) <br>
-- [Polymarket CLI install script](https://raw.githubusercontent.com/Polymarket/polymarket-cli/main/install.sh) <br>
+## Use Case:
 
+Developers, analysts, and trading operators use this skill to issue Polymarket CLI commands for market research, order-book analysis, wallet checks, order management, portfolio review, and CTF operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-output CLI examples intended for jq or automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Commands can place orders, set approvals, perform CTF operations, and otherwise affect real funds or account authority.
+
+Mitigation: Use a dedicated low-balance trading wallet, confirm each transaction before execution, and avoid unattended use for live trading.
+
+Risk: Wallet private keys may be exposed through chat, shell history, scripts, environment variables, or configuration files.
+
+Mitigation: Do not paste real private keys into chats or command history; use safer wallet storage practices and rotate any credential that may have been exposed.
+
+Risk: The shell-script installer fetches and executes remote code.
+
+Mitigation: Prefer the package-manager install path or a pinned, verified release, and review installer contents before running them.
+
+## Reference(s):
+
+- [Polymarket CLI repository](https://github.com/Polymarket/polymarket-cli)
+- [ClawHub skill page](https://clawhub.ai/liwagu/skills/polymarket-pro)
+- [Publisher profile](https://clawhub.ai/user/liwagu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI command examples for table and JSON output modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Design succession plans with role mapping and transition roadmaps. Use when adding positions, listing candidates, prioritizing paths, planning transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design succession plans with role mapping and transition roadmaps. Use when adding positions, listing candidates, prioritizing paths, planning transfers.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Managers, HR teams, and operations leads use this skill to track succession-planning tasks, candidate readiness, handoff checkpoints, reminders, and simple transition-plan templates from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Succession-planning entries are stored locally in plaintext, which can expose sensitive role, candidate, or transition information if the data directory or backups are not protected. <br>
-Mitigation: Use this skill only when plaintext local storage is acceptable, protect the selected data directory and backups, and avoid entering confidential employee assessments unless those controls are in place. <br>
-Risk: Running an unexpected installed command could execute behavior outside the reviewed artifact. <br>
-Mitigation: Verify that the installed command maps to the reviewed local scripts before using it with sensitive planning data. <br>
+## Use Case:
 
+Employees, managers, and operations teams use this skill to maintain plain-text succession planning tasks, candidate follow-ups, priorities, reminders, and transition roadmap items from the command line.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command output may include succession-planning entries, reminders, summaries, exports, and templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Succession planning notes may contain sensitive personnel information and are stored in local plain-text logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local plain-text storage is acceptable, avoid confidential personnel assessments on shared machines, and review the data directory periodically.
+
+Risk: Wildcard input to one auxiliary script may print local filenames.
+
+Mitigation: Quote user-provided input that contains shell wildcards and review command output before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/succession-plan)
+- [Publisher profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores succession planning notes in local plain-text log files.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

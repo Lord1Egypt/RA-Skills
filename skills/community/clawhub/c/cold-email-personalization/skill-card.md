@@ -1,45 +1,66 @@
-## Description: <br>
-Complete cold email system teaching research-driven personalization, "poke the bear" openers, custom signal hunting, and strict QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete cold email system teaching research-driven personalization, "poke the bear" openers, custom signal hunting, and strict QA.
 
-## Publisher: <br>
-[xeroc](https://clawhub.ai/user/xeroc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xeroc](https://clawhub.ai/user/xeroc)
 
-## Use Case: <br>
-Sales, marketing, and growth teams use this skill to research prospects, draft personalized cold emails and follow-up sequences, and review outreach against a quality rubric before sending. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cold outreach may rely on personal or company data that is inaccurate, unnecessary, restricted by site terms, or regulated by privacy and anti-spam laws. <br>
-Mitigation: Use approved public data sources, respect site terms and privacy laws, comply with anti-spam requirements, and collect only the data needed for the campaign. <br>
-Risk: Generated emails may contain unverified personalization, misleading claims, or outreach copy that should not be sent as-is. <br>
-Mitigation: Review every generated email before sending and omit any fact that cannot be verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cold Email Personalization Skill](artifact/SKILL.md) <br>
-- [Research Playbook](artifact/assets/research-playbook.md) <br>
-- [Email Structure & Strategy](artifact/assets/email-structure.md) <br>
-- [Follow-Up Email Sequences](artifact/assets/follow-up-strategy.md) <br>
-- [QA Checklist](artifact/assets/qa-checklist.md) <br>
-- [Scoring Rubric](artifact/assets/scoring-rubric.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xeroc/cold-email-personalization) <br>
+## Use Case:
 
+Sales, marketing, and growth teams use this skill to draft, personalize, sequence, and review cold outbound emails using recent prospect signals, concise copy, and a strict quality rubric.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown drafts, subject lines, follow-up sequences, research variables, scoring notes, and QA guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before outreach is sent] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cold outreach can create privacy, consent, or anti-spam compliance concerns when prospect information is collected or used without appropriate controls.
+
+Mitigation: Use only appropriate, verified business information, respect recipient expectations and applicable anti-spam laws, and avoid personal data uses that violate platform terms.
+
+Risk: Personalized email drafts can include incorrect or unsupported prospect claims if research signals are stale or unverified.
+
+Mitigation: Verify every factual claim before sending, prefer recent signals, and omit any detail that cannot be confirmed.
+
+Risk: Generated campaign ideas may overstate capabilities or offer services the sender cannot provide.
+
+Mitigation: Constrain generated ideas to documented, actual features or services and review drafts against the QA checklist before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xeroc/skills/cold-email-personalization)
+- [Research Playbook](artifact/assets/research-playbook.md)
+- [Variable Schema](artifact/assets/variable-schema.md)
+- [Email Structure & Strategy](artifact/assets/email-structure.md)
+- [Campaign Types](artifact/assets/campaign-types.md)
+- [Creative Ideas Campaign Generation](artifact/assets/creative-ideas.md)
+- [Follow-Up Email Sequences](artifact/assets/follow-up-strategy.md)
+- [ICP & Objection Mapping](artifact/assets/icp-objection-mapping.md)
+- [QA Checklist](artifact/assets/qa-checklist.md)
+- [Scoring Rubric](artifact/assets/scoring-rubric.md)
+- [Real Campaign Examples](artifact/assets/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with email templates, variables, checklists, and scoring rubrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces outbound email drafts, subject lines, follow-up sequence guidance, personalization variables, QA feedback, and quality scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

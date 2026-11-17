@@ -1,46 +1,62 @@
-## Description: <br>
-Generate CIOMS-compliant adverse event narratives for Individual Case Safety Reports (ICSR) from case data for regulatory submission to health authorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CIOMS-compliant adverse event narratives for Individual Case Safety Reports (ICSR), creating structured pharmacovigilance documents that follow CIOMS I and ICH E2B standards from case data for regulatory submission to health authorities.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Pharmacovigilance and drug-safety teams use this skill to draft standardized adverse event narratives from structured case data. The outputs are drafting aids for ICSR preparation and require qualified medical or pharmacovigilance review before regulatory use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated adverse-event narratives or causality language could be incomplete, medically inaccurate, or unsuitable for regulatory submission without expert review. <br>
-Mitigation: Require qualified pharmacovigilance or medical review before using any generated narrative or causality language for submission. <br>
-Risk: Case data can contain sensitive patient information. <br>
-Mitigation: Use de-identified case data where possible and verify that generated narratives do not include patient identifiers. <br>
-Risk: Incorrect input or output file paths could process or overwrite unintended local files. <br>
-Mitigation: Keep file paths scoped to the intended case files and review CLI arguments before running the skill. <br>
+## Use Case:
 
+Drug safety, pharmacovigilance, clinical operations, and regulatory teams use this skill to draft standardized adverse event narratives from structured case data for ICSR workflows. Outputs are drafts for qualified medical and safety review before regulatory submission.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIPOCH-AI/adverse-event-narrative) <br>
-- [CIOMS I Guidelines](references/CIOMS_I_Guidelines.md) <br>
-- [ICSR Narrative Template](references/ICSR_Template.md) <br>
-- [MedDRA Coding Reference](references/MedDRA_Reference.md) <br>
-- [Quick Reference Guide](references/Quick_Reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown narrative sections generated from JSON case data, with CLI guidance and validation messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the generated narrative to a user-specified local output file or print it to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Draft narratives may be incomplete, medically inaccurate, or unsuitable for direct regulatory submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated narratives under qualified drug-safety or physician review, and verify causality, MedDRA terminology, dates, outcomes, and required ICSR fields before use.
+
+Risk: Case data can contain patient identifiers or sensitive health information.
+
+Mitigation: Use de-identified case data and review outputs for privacy-sensitive details before sharing or submitting them.
+
+Risk: English-focused examples and terminology may not satisfy every regional or language-specific reporting workflow.
+
+Mitigation: Apply local regulatory, translation, and medical review processes for non-English or region-specific submissions.
+
+## Reference(s):
+
+- [CIOMS I Guidelines](references/CIOMS_I_Guidelines.md)
+- [ICSR Narrative Template](references/ICSR_Template.md)
+- [MedDRA Coding Reference](references/MedDRA_Reference.md)
+- [Quick Reference Guide](references/Quick_Reference.md)
+- [Sample Case 001](references/sample_case_001.json)
+- [Minimal Sample Case](references/sample_case_minimal.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated plain-text adverse event narratives.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated narratives are drafts and require qualified drug-safety or physician review before regulatory submission.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

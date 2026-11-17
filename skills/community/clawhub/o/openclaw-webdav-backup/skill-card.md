@@ -1,49 +1,62 @@
-## Description: <br>
-Backup and restore an OpenClaw workspace with incremental backups, integrity verification, health checks, optional config encryption and optional WebDAV upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up and restores an OpenClaw workspace with incremental archives, integrity checks, health diagnostics, optional configuration encryption, and optional WebDAV upload.
 
-## Publisher: <br>
-[ifox2046](https://clawhub.ai/user/ifox2046) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ifox2046](https://clawhub.ai/user/ifox2046)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create local or WebDAV-backed backups, restore a workspace, migrate a single-machine OpenClaw setup, verify backup integrity, and manage backup retention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads OpenClaw workspace, extension, and configuration data that may include credentials or other sensitive content. <br>
-Mitigation: Review what will be backed up, keep generated archives private, and use --encrypt-config before any WebDAV upload. <br>
-Risk: Local backup and migration environment files are treated as trusted shell inputs. <br>
-Mitigation: Use only config files from trusted locations, review .env.backup, .env.backup.secret, .env.backup.notify, and generated migrate .env files before running scripts, and do not commit or share files containing credentials. <br>
-Risk: Restore and deletion workflows can overwrite workspace data or remove backup versions. <br>
-Mitigation: Run dry-run or verification modes first, confirm the backup path and target workspace, and keep a current fallback backup before restore or deletion. <br>
-Risk: A restore check may contact Telegram unexpectedly when notification settings are present. <br>
-Mitigation: Review or disable notification configuration before restore checks if outbound messages are not intended. <br>
+## Use Case:
 
+Developers and operators use this skill to create local or WebDAV-backed OpenClaw backups, restore a workspace after migration or failure, verify backup integrity, and set up lightweight scheduled backup workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ifox2046/openclaw-webdav-backup) <br>
-- [Backup Notes](references/backup.md) <br>
-- [Restore Notes](references/restore.md) <br>
-- [Scheduled Backups](references/scheduling.md) <br>
-- [Migration Plan](references/migration-plan.md) <br>
-- [FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify backup archives, encrypted configuration copies, logs, manifests, checksums, portable export packages, and WebDAV uploads when the user runs the provided shell scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and version.txt) <br>
+Risk: The skill handles sensitive OpenClaw backups and WebDAV credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the shell scripts before installation; use encrypted configuration backups for any remote upload and keep backup passwords in a password manager.
+
+Risk: Restore and delete operations can overwrite workspace files or remove backup data.
+
+Mitigation: Use dry-run or verification modes first, confirm paths and selected backup versions, and keep a current rollback backup before destructive operations.
+
+Risk: Portable exports or uploaded backup sets may expose configuration data if redaction or encryption is incomplete.
+
+Mitigation: Do not share exported packages until configuration redaction is verified, and avoid uploading unencrypted OpenClaw configuration files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ifox2046/skills/openclaw-webdav-backup)
+- [Backup notes](references/backup.md)
+- [Restore notes](references/restore.md)
+- [Scheduled backups](references/scheduling.md)
+- [OpenClaw + WebDAV backup and migration plan](references/migration-plan.md)
+- [FAQ](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose remote upload, restore, delete, encryption, and scheduling steps that require review before execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and version.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Plan, execute and validate zero-downtime system migrations across databases, services, infrastructure, and hybrid migration scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan and validate zero-downtime database, service, infrastructure, and hybrid migrations with phased plans, compatibility analysis, rollback procedures, runbooks, stakeholder communication templates, and success metrics.
 
-## Publisher: <br>
-[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl)
 
-## Use Case: <br>
-Developers, platform engineers, database engineers, and migration leads use this skill to turn migration requests into phased zero-downtime plans, compatibility analyses, rollback procedures, runbooks, stakeholder communication templates, and success metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL, cloud, Kubernetes, Terraform, reconciliation, and rollback commands could affect production systems if applied directly. <br>
-Mitigation: Review commands as drafts, test them in staging, keep backups, and require explicit approval before production use. <br>
-Risk: Generated plans, reports, or runbooks may include schema details, infrastructure details, or contact information. <br>
-Mitigation: Avoid committing generated materials until sensitive operational details have been reviewed and redacted. <br>
+## Use Case:
 
+Developers, platform engineers, and migration leads use this skill to turn database, service, infrastructure, or hybrid migration requests into phased zero-downtime plans with compatibility checks, rollback triggers, validation checkpoints, and stakeholder communication artifacts.
 
-## Reference(s): <br>
-- [Migration Patterns Catalog](artifact/references/migration_patterns_catalog.md) <br>
-- [Zero Downtime Techniques](artifact/references/zero_downtime_techniques.md) <br>
-- [Data Reconciliation Strategies](artifact/references/data_reconciliation_strategies.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/felix-antonio-sl/kv-migration-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans and runbooks with JSON reports, code snippets, configuration examples, and shell command drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated operational commands are review drafts and should be tested before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can generate ready-to-run destructive SQL, rollback, infrastructure, and service commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL, rollback runbooks, Terraform, Kubernetes, AWS, systemctl, and curl commands manually before execution.
+
+Risk: Automatic rollback guidance can cause service or data disruption if executed without preparation.
+
+Mitigation: Require explicit human approval, tested backups, staging validation, scoped credentials, and rollback drills before enabling automatic rollback actions.
+
+Risk: Migration plans may involve irreversible data loss or target systems that cannot preserve all source constraints.
+
+Mitigation: Require the plan to declare irreversible data loss risk, include phase-specific rollback procedures, and validate checkpoints between phases before continuing.
+
+## Reference(s):
+
+- [Migration Patterns Catalog](artifact/references/migration_patterns_catalog.md)
+- [Data Reconciliation Strategies](artifact/references/data_reconciliation_strategies.md)
+- [Zero-Downtime Migration Techniques](artifact/references/zero_downtime_techniques.md)
+- [ClawHub skill page](https://clawhub.ai/felix-antonio-sl/skills/kv-migration-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and optional JSON files from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include phased plans, runbook checklists, rollback procedures, validation checkpoints, success metrics, and stakeholder communication templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

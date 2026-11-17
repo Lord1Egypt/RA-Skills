@@ -1,47 +1,68 @@
-## Description: <br>
-多平台内容自动分发工具，在小红书发布后将内容同步到抖音、视频号、快手，并支持图片尺寸处理、标题标签填写和验证码处理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多平台内容自动分发工具。在小红书发布后，自动将内容同步到抖音、视频号、快手。支持自动处理图片尺寸、填写标题标签、处理验证码。
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-Creators, operators, and developers use this skill to synchronize owned social-media content from Xiaohongshu to Douyin, WeChat Channels, and Kuaishou with platform-specific formatting and scheduling controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use account sessions and cookie files to publish publicly on social platforms. <br>
-Mitigation: Use only accounts you control, protect cookie files as credentials, and require manual review before public posting. <br>
-Risk: CAPTCHA and risk-control automation can create platform-rule and data-sharing risks, especially with third-party solving services. <br>
-Mitigation: Keep third-party CAPTCHA solving disabled unless those risks are explicitly accepted, and prefer manual handling for sensitive account workflows. <br>
-Risk: Batch and scheduled posting can publish content repeatedly or at scale without clear approval safeguards. <br>
-Mitigation: Test behavior interactively first, keep scheduled mode disabled until reviewed, and set conservative rate limits and posting windows. <br>
+## Use Case:
 
+Content creators, operators, and developers use this skill to configure Python-based workflows for adapting Xiaohongshu content, images, tags, and posting schedules for distribution to Douyin, WeChat Channels, and Kuaishou. Review in a sandbox or dry-run workflow before using real social accounts because the security evidence flags incomplete publishing behavior and account-safety risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hwl1413520/skill-distribute) <br>
-- [Publisher profile](https://clawhub.ai/user/hwl1413520) <br>
-- [Platform adaptation guide](references/PLATFORM_GUIDE.md) <br>
-- [Selector configuration](references/SELECTORS.md) <br>
-- [API documentation](references/API.md) <br>
-- [Changelog](references/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operating guidance for browser automation, content adaptation, batch distribution, and scheduled posting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: The package may report successful publishing even when real platform publishing is not implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require code review and a dry-run or sandbox validation before treating logs or status summaries as evidence of a completed post.
+
+Risk: Real social account sessions, cookies, phone numbers, and CAPTCHA flows may be exposed or mishandled during browser automation.
+
+Mitigation: Use test accounts first, restrict file permissions for account and cookie files, avoid storing credentials in shared environments, and clear session artifacts after testing.
+
+Risk: Batch and scheduled workflows can repeatedly invoke posting logic without a final human review step.
+
+Mitigation: Keep scheduled tasks disabled until publishing behavior is verified, and add explicit confirmation or dry-run review before any live batch execution.
+
+Risk: CAPTCHA automation and high-frequency cross-posting can create account, compliance, and platform-policy risk.
+
+Mitigation: Use manual CAPTCHA handling where appropriate, respect platform rules, lower posting frequency, and monitor accounts for rate-limit or verification challenges.
+
+Risk: Dependencies are range-pinned and browser automation launches Chromium with reduced sandboxing.
+
+Mitigation: Pin and review dependency versions, run in an isolated environment, and restore browser sandboxing unless the deployment environment explicitly requires otherwise.
+
+## Reference(s):
+
+- [API 文档](artifact/references/API.md)
+- [平台适配指南](artifact/references/PLATFORM_GUIDE.md)
+- [选择器配置](artifact/references/SELECTORS.md)
+- [更新日志](artifact/references/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python commands, code snippets, YAML configuration, and operational warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces single-stream agent guidance for configuring and running local browser-automation scripts, batch distribution, and scheduled posting workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog; artifact frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

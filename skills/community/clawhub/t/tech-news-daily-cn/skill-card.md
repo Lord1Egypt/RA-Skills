@@ -1,41 +1,54 @@
-## Description: <br>
-Generates a daily technology news report from recent AI and tech sources, with deduplication, scoring, local Markdown output, Feishu document creation, and Feishu group delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily Chinese technology news report by searching recent technology and AI news, deduplicating and scoring items, saving a Markdown report locally, and publishing the report to Feishu.
 
-## Publisher: <br>
-[binhuatochina](https://clawhub.ai/user/binhuatochina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binhuatochina](https://clawhub.ai/user/binhuatochina)
 
-## Use Case: <br>
-External users and teams use this skill to collect recent technology and AI news, deduplicate and score items, and publish a daily report to local Markdown and Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically create Feishu documents and send full reports to a fixed Feishu group. <br>
-Mitigation: Before each run, verify the intended chat ID and require manual confirmation before posting externally. <br>
-Risk: The skill writes into a Feishu document workspace using configured folder, space, and owner settings. <br>
-Mitigation: Verify folder or space tokens and owner settings before enabling document creation. <br>
+## Use Case:
 
+Readers, operators, and knowledge workers use this skill to compile recent technology and AI news into a ranked Chinese daily report with source links, relevance ratings, and recommendation scores. The report can be stored as a local Markdown file, copied into a Feishu document, and sent to a Feishu group.
 
-## Reference(s): <br>
-- [Feishu document operation reference](references/feishu-doc.md) <br>
-- [ClawHub release page](https://clawhub.ai/binhuatochina/tech-news-daily-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report, local Markdown file, Feishu document content, and Feishu message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source links, relevance scores, recommendation scores, summary sections, and synchronization records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill sends the full generated report to a fixed Feishu group and uses fixed Feishu knowledge-base identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those Feishu destinations are intentionally yours, or modify the skill to ask for and confirm destinations before writing or sending.
+
+Risk: The skill can create local files and create or write Feishu documents.
+
+Mitigation: Review destination settings, generated content, and source links before allowing the skill to publish or persist reports.
+
+## Reference(s):
+
+- [Feishu document operation reference](artifact/references/feishu-doc.md)
+- [ClawHub skill release page](https://clawhub.ai/binhuatochina/skills/tech-news-daily-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, API Calls, Configuration]
+
+**Output Format:** [Markdown report with source links, scoring metadata, Feishu document content, Feishu message text, and checkpoint JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates dated local report files under memory/, writes progress checkpoint JSON, and uses Feishu-specific document and message destinations.]
+
+## Skill Version(s):
+
+0.2.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

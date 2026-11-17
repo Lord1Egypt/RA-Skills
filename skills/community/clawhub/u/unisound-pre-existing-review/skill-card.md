@@ -1,43 +1,58 @@
-## Description: <br>
-理赔既往症审核。由调用方传入完整题干（病历/材料 + 关系类型与报销结论格式），经内部医疗大模型判断其他诊断与主诊断关系及是否报销；仅含 scripts/run.py，无 _shared 依赖。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews medical claim materials to classify the relationship between other diagnoses and the primary diagnosis, then returns a reimbursement recommendation in the requested fixed-line format.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Claims reviewers and insurance workflow developers use this skill to review medical claim text or OCR excerpts for the relationship between other diagnoses and the primary diagnosis, then produce an auxiliary reimbursement judgment in the requested format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided medical claim text is sent to a configured medical LLM endpoint. <br>
-Mitigation: Use only with organizational approval for the endpoint and app key, and redact names, IDs, account numbers, and unnecessary patient details before processing. <br>
-Risk: The optional --output flag can write claim review results to disk. <br>
-Mitigation: Use --dry-run to inspect parsed input first, and use --output only when stored UTF-8 JSON or NDJSON results are intended and protected. <br>
-Risk: The model output is an auxiliary claims review judgment, not a legal or final reimbursement decision. <br>
-Mitigation: Route outputs through the applicable policy, claims, and human review process before making final reimbursement decisions. <br>
+## Use Case:
 
+Claims reviewers and developers use this skill to send de-identified medical claim text to an internal medical model and receive an auxiliary pre-existing-condition relationship assessment and reimbursement recommendation. The output does not replace policy terms or final human claims decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-pre-existing-review) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object by default, plain text with --text-only, or NDJSON for batch output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the original question, model name, input metadata, record index, and model answer; --output writes UTF-8 JSON or NDJSON to disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Sensitive claim text and a bearer API key can be sent to a user-configurable network endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented internal HTTPS API endpoint, avoid overriding the API URL in production, provide a narrowly scoped key, and de-identify claim materials before submission.
+
+Risk: Outputs may contain sensitive medical or claims information.
+
+Mitigation: Treat stdout and output files as sensitive claims data and apply the same storage, access-control, and retention rules used for source claim materials.
+
+Risk: The model response is an auxiliary review opinion rather than a final benefits determination.
+
+Mitigation: Require human claims review against policy terms before making legal, coverage, or payment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-pre-existing-review)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON by default, or plain text when text-only output is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the model answer, original question, model name, input mode, record index, and optional metadata; batch input can produce NDJSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

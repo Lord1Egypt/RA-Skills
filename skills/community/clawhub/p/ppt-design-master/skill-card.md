@@ -1,44 +1,60 @@
-## Description: <br>
-基于麦肯锡/BCG/贝恩三大咨询公司及 Apple/Google/Fortune 500 公司PPT设计规范，融合顶级设计系统（Apple HIG / Material 3 / Fluent / Carbon）的视觉原则，收录锐普PPT十八年专业设计体系精华，并支持企业级PPT页面的专业化编辑与生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ppt Design Master provides Chinese-language guidance for creating and improving enterprise PowerPoint presentations using consulting-style structure, page layouts, typography, color systems, and chart design practices.
 
-## Publisher: <br>
-[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb)
 
-## Use Case: <br>
-Employees, external creators, and presentation designers use this skill to evaluate, improve, and generate enterprise PowerPoint decks using consulting-style layout, typography, color, chart, and page-structure guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External template and tool links may have licensing, availability, or suitability constraints for a specific commercial presentation. <br>
-Mitigation: Review each linked resource's current terms and suitability before using it in commercial work. <br>
-Risk: Presentation design guidance can be misapplied to business-critical slides if source data, brand rules, or compliance requirements are not checked. <br>
-Mitigation: Have a human reviewer validate facts, brand alignment, accessibility, and compliance before publishing a deck. <br>
+## Use Case:
 
+Employees, external creators, and presentation-focused agents use this skill to diagnose, structure, style, and generate professional enterprise PPT content for business reports, proposals, data presentations, training, and executive communication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mxp0125-rgb/ppt-design-master) <br>
-- [PPT Design Quick Reference](references/quick-ref.md) <br>
-- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) <br>
-- [Material Design 3](https://m3.material.io/) <br>
-- [PptxGenJS Documentation](https://gitbrent.github.io/PptxGenJS/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with structured recommendations, checklists, tables, and presentation parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; users should verify external template and tool links before commercial reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Locale-specific Chinese typography and presentation conventions may not fit non-Chinese presentations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat font, language, and locale-specific recommendations as defaults to adapt for the target language, brand, and audience.
+
+Risk: Presentation recommendations, chart code, or generated conclusions can introduce inaccurate data interpretation, unsupported claims, or brand-compliance issues.
+
+Mitigation: Have a human verify source data, claims, strategic conclusions, brand requirements, and rendered chart readability before using the output.
+
+## Reference(s):
+
+- [PPT Design Quick Reference](references/quick-ref.md)
+- [RapideDesign](https://www.rapidesign.cn/)
+- [RapideDesign Template Store](https://www.rapidesign.cn/learn-store.html)
+- [McKinsey](https://www.mckinsey.com/)
+- [BCG](https://www.bcg.com/)
+- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
+- [Material Design 3](https://m3.material.io/)
+- [PptxGenJS Documentation](https://gitbrent.github.io/PptxGenJS/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with structured recommendations, tables, checklists, and optional chart or presentation-generation code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language defaults with presentation-specific measurements, color values, typography guidance, and human review checkpoints]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

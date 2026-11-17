@@ -1,43 +1,55 @@
-## Description: <br>
-Security scanner for OpenClaw skills and plugins. Scans for hardcoded secrets, dangerous exec patterns, dependency vulnerabilities, and network egress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills and plugins. Scans for hardcoded secrets, dangerous exec patterns, dependency vulnerabilities, and network egress.
 
-## Publisher: <br>
-[rhombusmaximus](https://clawhub.ai/user/rhombusmaximus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rhombusmaximus](https://clawhub.ai/user/rhombusmaximus)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit OpenClaw skills and plugins before installation, publication, or periodic maintenance. It produces local scan reports for hardcoded secrets, risky execution patterns, dependency audit findings, shell injection surfaces, and network egress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Notion export can send discovered secret findings to a third-party store. <br>
-Mitigation: Use normal scans without --encrypt-found by default, and enable Notion export only after reviewing the scripts, the separate notion-secrets.js helper, the Notion workspace, and NOTION_MASTER_PASSWORD handling. <br>
-Risk: Security scan findings may contain sensitive retained security data. <br>
-Mitigation: Treat generated reports and exported findings as sensitive artifacts; restrict access and review them before sharing or publishing. <br>
-Risk: The skill is shell-based and executes local scan scripts over user-selected directories. <br>
-Mitigation: Review the scripts before installation and run them only against directories you intend to audit. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit OpenClaw skills and plugins before installation, publishing, or security review. It helps identify hardcoded secrets, unsafe execution patterns, dependency vulnerabilities, shell injection surfaces, and unexpected network egress.
 
-## Reference(s): <br>
-- [Notion Encryption System](references/notion-encryption.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rhombusmaximus/security-sweep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with shell command examples and scan report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report files are written to user-selected local paths; optional Notion export stores encrypted findings outside the local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; SKILL.md frontmatter lists 1.1.1) <br>
+Risk: The optional --encrypt-found path can pass discovered secrets through a local Notion helper and external storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use normal scan/report mode by default. Enable --encrypt-found only after reviewing the local Notion helper, setting NOTION_MASTER_PASSWORD securely, and confirming the Notion storage model is acceptable.
+
+Risk: Scan reports may contain sensitive paths or source lines related to credentials.
+
+Mitigation: Treat generated reports as sensitive, review findings before sharing, and rotate any credential confirmed to have been exposed.
+
+## Reference(s):
+
+- [Notion Encryption System](artifact/references/notion-encryption.md)
+- [Notion API integrations](https://www.notion.so/my-integrations)
+- [ClawHub security-sweep listing](https://clawhub.ai/rhombusmaximus/skills/security-sweep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and plain-text scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include finding categories, affected paths, severity counts, and recommended actions.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter says 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

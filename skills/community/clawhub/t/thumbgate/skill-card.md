@@ -1,45 +1,57 @@
-## Description: <br>
-Stop your AI from making the same mistake twice with pre-action gates that block repeat hallucinations, retry loops, and known-bad tool calls before they reach the model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop your AI from making the same mistake twice with Pre-Action Gates that block repeat hallucinations, retry loops, and known-bad tool calls before they reach the model.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-Developers and engineering teams use ThumbGate to create persistent tool-call gates that block repeated agent mistakes, destructive commands, incorrect paths, and other known-bad actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent tool-call gates can block intended agent actions if configured too broadly or installed in projects where this behavior is not expected. <br>
-Mitigation: Install ThumbGate only in projects where persistent agent tool-call blocking is desired, and review generated .thumbgate/ files and hooks after initialization. <br>
-Risk: Feedback, lessons, shared databases, or exports may include secrets or private business details if users enter sensitive information. <br>
-Mitigation: Avoid putting secrets or private business details into feedback, lessons, shared databases, or exports. <br>
-Risk: The skill depends on the external thumbgate CLI and generated project hooks to enforce behavior. <br>
-Mitigation: Review the thumbgate npm package or repository before use and verify generated hook behavior in a controlled project. <br>
+## Use Case:
 
+Developers and teams use ThumbGate to capture repeated agent mistakes as prevention rules, block known-bad tool calls before execution, and keep an audit trail of prevented actions across supported AI coding agents.
 
-## Reference(s): <br>
-- [ClawHub ThumbGate page](https://clawhub.ai/igorganapolsky/thumbgate) <br>
-- [ThumbGate homepage](https://thumbgate-production.up.railway.app) <br>
-- [ThumbGate dashboard](https://thumbgate-production.up.railway.app/dashboard) <br>
-- [Skill-provided ThumbGate repository link](https://github.com/IgorGanapolsky/ThumbGate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for installing and using the thumbgate CLI, configuring agent PreToolUse hooks, managing gates and feedback, and opening the dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The npm initializer can install persistent pre-tool hooks across agent configurations without enough scoping or rollback detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and hook changes before installation, use a pinned and audited version, run with least privilege, and confirm disable or uninstall steps.
+
+Risk: Hook-based blocking can interrupt legitimate agent tool calls if prevention rules are too broad or stale.
+
+Mitigation: Review captured rules before enabling them broadly and keep a documented process for updating or disabling rules that block intended work.
+
+## Reference(s):
+
+- [ThumbGate ClawHub listing](https://clawhub.ai/igorganapolsky/skills/thumbgate)
+- [ThumbGate homepage](https://thumbgate-production.up.railway.app)
+- [ThumbGate dashboard](https://thumbgate-production.up.railway.app/dashboard)
+- [npm package: thumbgate](https://www.npmjs.com/package/thumbgate)
+- [Skill-disclosed repository](https://github.com/IgorGanapolsky/ThumbGate)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the thumbgate CLI binary; outputs guidance for installing, configuring, and using pre-action gates.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

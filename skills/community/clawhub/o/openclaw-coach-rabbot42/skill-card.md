@@ -1,43 +1,58 @@
-## Description: <br>
-OpenClaw Coach syncs OpenClaw documentation into an Obsidian knowledge base, schedules daily OpenClaw usage tips, prompts the user to choose future tip topics, and reports version updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Coach automates OpenClaw documentation sync, daily tip selection, scheduled tip delivery, and version update reminders for a local Obsidian knowledge base.
 
-## Publisher: <br>
-[rabbot42](https://clawhub.ai/user/rabbot42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rabbot42](https://clawhub.ai/user/rabbot42)
 
-## Use Case: <br>
-OpenClaw users use this skill to keep a local Obsidian OpenClaw knowledge base current and receive scheduled learning prompts, daily tips, and version update notices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled scripts can overwrite files in the user's Obsidian OpenClaw folder. <br>
-Mitigation: Back up the Obsidian folder and review the sync path and document list before enabling automatic sync. <br>
-Risk: The messaging scripts send recurring OpenClaw messages to a fixed recipient identifier. <br>
-Mitigation: Confirm the target identifier belongs to the intended user or replace it with user-controlled configuration before running the scripts. <br>
-Risk: The skill fetches documentation and release data from GitHub during scheduled runs. <br>
-Mitigation: Only enable scheduled sync if network access to the referenced OpenClaw GitHub endpoints and automatic updates are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw docs source](https://raw.githubusercontent.com/openclaw/openclaw/main/docs) <br>
-- [OpenClaw latest release API](https://api.github.com/repos/openclaw/openclaw/releases/latest) <br>
-- [ClawHub skill page](https://clawhub.ai/rabbot42/openclaw-coach-rabbot42) <br>
+## Use Case:
 
+OpenClaw users can use this skill to keep local OpenClaw reference material current in Obsidian and receive scheduled coaching messages with selected daily tips and version reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown notes, JSON state, shell command output, and OpenClaw messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes OpenClaw docs and tip state under the user's Obsidian OpenClaw folder and sends recurring OpenClaw messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends local tip content to a fixed OpenClaw recipient without enough user control.
+
+Mitigation: Configure or remove the hard-coded recipient and require confirmation before scheduled sends are enabled.
+
+Risk: Document sync writes fetched content into the local Obsidian OpenClaw directory.
+
+Mitigation: Make document sync opt-in, document the overwrite behavior, and review the destination path before running sync.
+
+Risk: Tip filenames are read from local state and used to load markdown content for outgoing messages.
+
+Mitigation: Validate selected tip filenames against an allowlist before reading or sending tip content.
+
+## Reference(s):
+
+- [OpenClaw documentation source](https://raw.githubusercontent.com/openclaw/openclaw/main/docs)
+- [OpenClaw releases API](https://api.github.com/repos/openclaw/openclaw/releases/latest)
+- [OpenClaw Coach on ClawHub](https://clawhub.ai/rabbot42/skills/openclaw-coach-rabbot42)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown and shell-script driven OpenClaw messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled messages, local markdown files, a daily tip JSON file, and a latest-version text file.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

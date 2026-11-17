@@ -1,48 +1,66 @@
-## Description: <br>
-Cek harga emas Indonesia real-time (Antam/Logam Mulia), bandingkan brand, set alert harga, analisis AI via Kimi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks Indonesian gold prices, compares supported brands, manages price alerts, tracks portfolios and history, and can request Kimi-based analysis.
 
-## Publisher: <br>
-[rhaone21](https://clawhub.ai/user/rhaone21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rhaone21](https://clawhub.ai/user/rhaone21)
 
-## Use Case: <br>
-External users and OpenClaw operators use this skill to check Indonesian gold prices, compare supported brands, manage price alerts, receive scheduled updates, track portfolio/history, and request Kimi-powered analysis when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guide requests broad OpenClaw permissions such as exec, group:fs, and a coding tool profile. <br>
-Mitigation: Grant only the permissions needed to run the Node scripts and avoid broad filesystem or coding-profile access unless the deployment explicitly requires it. <br>
-Risk: Scheduled alert and morning-brief jobs can send messages through Telegram or other announcement channels. <br>
-Mitigation: Enable cron announcements only in private channels you control, and review cron messages before enabling scheduled delivery. <br>
-Risk: AI analysis requires KIMI_API_KEY. <br>
-Mitigation: Store KIMI_API_KEY as a secret or environment variable and avoid exposing it in logs, prompts, or shared configuration. <br>
-Risk: Gold prices are scraped from external sources and may be stale or unavailable when a source changes or blocks access. <br>
-Mitigation: Display scrape time and cache status to users, and verify prices against authoritative sources before making financial decisions. <br>
+## Use Case:
 
+External users use this skill to monitor Indonesian retail gold prices, compare brands, configure threshold alerts, maintain simple portfolio/history records, and request AI-assisted market summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rhaone21/id-emas-pro) <br>
-- [API Sources for Gold Prices](references/api-sources.md) <br>
-- [Antam Logam Mulia gold price source](https://www.logammulia.com/id/harga-emas-hari-ini) <br>
-- [Pegadaian gold price source](https://www.pegadaian.co.id/harga-emas) <br>
-- [Moonshot Kimi API platform](https://platform.moonshot.cn) <br>
+### Deployment Geography for Use:
 
+Global, for users monitoring Indonesian gold markets
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Indonesian plain text or Markdown with price tables, alert messages, analysis summaries, and setup command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local JSON files for alerts, cache, history, and portfolio data; AI analysis requires KIMI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and _meta.json) <br>
+Risk: Broad local authority could expose more filesystem access than the fixed price, alert, portfolio, and history scripts require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant execution only to the known Node scripts and avoid broad filesystem permissions in shared or multi-user deployments.
+
+Risk: The skill stores user-linked alert thresholds, history, and portfolio records in plaintext runtime files.
+
+Mitigation: Protect the .data directory with restrictive permissions and avoid shared installations for sensitive holdings or alert data.
+
+Risk: AI analysis can send price and history context to Moonshot/Kimi when the AI tier and API key are enabled.
+
+Mitigation: Enable the AI tier only after confirming that this external API use is acceptable, and protect KIMI_API_KEY as a secret.
+
+Risk: Scraped prices can become stale or unavailable if upstream gold-price sites change or are unreachable.
+
+Mitigation: Show scrape time or cache status to users and treat stale fallback prices as informational rather than authoritative trading advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rhaone21/skills/id-emas-pro)
+- [API Sources for Gold Prices](references/api-sources.md)
+- [Antam Logam Mulia gold prices](https://www.logammulia.com/id/harga-emas-hari-ini)
+- [Pegadaian gold prices](https://www.pegadaian.co.id/harga-emas)
+- [Harga-Emas.org](https://harga-emas.org/)
+- [Moonshot Kimi platform](https://platform.moonshot.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON records from supporting scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bahasa Indonesia user-facing responses, IDR-per-gram price values, alert notifications, portfolio/history records, and optional Kimi analysis when configured]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

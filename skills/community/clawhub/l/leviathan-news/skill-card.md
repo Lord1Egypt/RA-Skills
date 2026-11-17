@@ -1,44 +1,59 @@
-## Description: <br>
-Leviathan News is a crowdsourced crypto news API for submitting articles, posting comments, voting on content, and reading community-curated DeFi news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crowdsourced crypto news API. Submit articles, comment, and vote to earn SQUID tokens. Human-curated DeFi news with token-aware tagging.
 
-## Publisher: <br>
-[zcor](https://clawhub.ai/user/zcor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zcor](https://clawhub.ai/user/zcor)
 
-## Use Case: <br>
-External developers and agents use this skill to interact with the Leviathan News API for crypto news discovery, article submission, comments, votes, profile updates, and leaderboard reads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a raw wallet private key for local wallet-signature authentication. <br>
-Mitigation: Install only with a new empty burner wallet dedicated to Leviathan News, and store the key only in a local environment variable or secure storage. <br>
-Risk: Authenticated API calls can submit articles, post comments, vote, or change profile details under the wallet identity. <br>
-Mitigation: Require user confirmation before any authenticated write action, and review generated headlines, comments, votes, and profile updates before submission. <br>
-Risk: Session cookies grant temporary authenticated API access if exposed. <br>
-Mitigation: Keep access_token cookies out of logs and shared transcripts, and re-authenticate only when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Leviathan News Website](https://leviathannews.xyz) <br>
-- [Leviathan News API Docs](https://api.leviathannews.xyz/docs/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zcor/leviathan-news) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zcor) <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with Leviathan News, browse crypto news, submit articles, comment on posts, vote on content, and inspect leaderboards through the Leviathan News API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands, JSON examples, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authenticated API request examples that read or modify public wallet-linked content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet private key handling can expose identity or assets if the key is reused, logged, transmitted, or stored insecurely.
+
+Mitigation: Use a dedicated low-value wallet, keep the private key only in local secret storage or environment variables, and never reuse a wallet that holds assets.
+
+Risk: Automated posting, voting, or article submission can create unwanted activity under the user's identity.
+
+Mitigation: Require human review before authenticated actions, enforce strict rate limits, and monitor results before scaling automation.
+
+Risk: Python dependency installation for wallet signing may introduce supply-chain exposure.
+
+Mitigation: Pin and isolate dependencies before running wallet-signing examples.
+
+## Reference(s):
+
+- [Leviathan News Website](https://leviathannews.xyz)
+- [Leviathan News API Docs](https://api.leviathannews.xyz/docs/)
+- [ClawHub Skill Page](https://clawhub.ai/zcor/skills/leviathan-news)
+- [TL;DR Bot Starter](https://github.com/leviathan-news/tldr-buccaneer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a locally managed wallet private key for signing authentication messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

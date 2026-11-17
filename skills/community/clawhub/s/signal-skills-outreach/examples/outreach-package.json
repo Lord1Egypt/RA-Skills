@@ -1,0 +1,212 @@
+{
+  "product": "SpokeSlot (fictional)",
+  "generated_at": "2026-07-14",
+  "channel_breakdown": {
+    "community": 2,
+    "youtube": 1,
+    "email": 1,
+    "partnerships page": 1
+  },
+  "sequences": [
+    {
+      "prospect_name": "Example bike-commuting YouTube channel (fictional)",
+      "prospect_score": 97,
+      "primary_channel": "YouTube reply",
+      "backup_channel": "Email",
+      "variant_recommended": "A",
+      "touches": [
+        {
+          "step": 1,
+          "day": 0,
+          "channel": "YouTube comment",
+          "subject": null,
+          "body": "Saw your video on waiting two weeks for a simple brake job — the call-every-shop-in-town routine is painfully familiar. We built a tool that shows open repair slots at nearby independent shops and books one in a few taps. Would it be useful to try it on your next tune-up?",
+          "variant": "A",
+          "personalization_notes": "References the specific video title and the phone-around routine they showed on camera."
+        },
+        {
+          "step": 2,
+          "day": 3,
+          "channel": "YouTube comment (reply to own)",
+          "subject": null,
+          "body": "Quick follow-up — a few people in your comments mentioned phoning shops one by one to find an opening. Ours shows live slots across shops on one map, which might save that afternoon. Happy to walk you through it in 5 minutes.",
+          "variant": null,
+          "personalization_notes": "Builds on the comments section discussion. Positions live slots vs calling each shop."
+        },
+        {
+          "step": 3,
+          "day": 7,
+          "channel": "YouTube comment (reply to own)",
+          "subject": null,
+          "body": "Found this write-up comparing walk-in queues and booked repair slots at small bike shops. Thought you'd find the comparison interesting: [link]. No pitch.",
+          "variant": null,
+          "personalization_notes": "Pure value-add. Social proof from a similar creator. No ask."
+        },
+        {
+          "step": 4,
+          "day": 14,
+          "channel": "YouTube comment (reply to own)",
+          "subject": null,
+          "body": "Appreciate you reading this far. If the timing isn't right, no worries at all. Just know the offer stands whenever it makes sense. Ride safe.",
+          "variant": null,
+          "personalization_notes": "Graceful close. No guilt, no pressure."
+        }
+      ],
+      "response_handling": {
+        "positive_reply": "Thank them. Send a booking link with a code that waives the booking fee on their first two repairs. Ask which shop they use now so you can check it is listed.",
+        "question_reply": "If 'what is it?': One sentence + link to the site. If 'does it cost riders anything?': Booking is free for riders; shops pay per completed booking. If 'is my shop on it?': Check the map and answer honestly.",
+        "no_reply_after_sequence": "Do not re-engage for 90 days. During the wait, comment genuinely on 1-2 of their videos. After 90 days, one final touch — share a new feature or case study. If no reply, move on."
+      }
+    },
+    {
+      "prospect_name": "Example Reddit poster (fictional)",
+      "prospect_score": 95,
+      "primary_channel": "Reddit reply",
+      "backup_channel": "Email",
+      "variant_recommended": "B",
+      "touches": [
+        {
+          "step": 1,
+          "day": 0,
+          "channel": "Reddit comment",
+          "subject": null,
+          "body": "Ten days without your commuter bike for a wheel true is rough — and unfortunately common. We built SpokeSlot for this: it shows which independent shops near you have an open repair slot this week and books it. Would love your take on whether it fits how you get repairs done.",
+          "variant": "B",
+          "personalization_notes": "References the ten-day wait from their post. Asks for their opinion, not a purchase."
+        },
+        {
+          "step": 2,
+          "day": 3,
+          "channel": "Reddit comment (reply to own)",
+          "subject": null,
+          "body": "Saw some people in the thread suggesting you learn to true the wheel yourself — that works until it's a hub or a bent derailleur hanger. SpokeSlot lists slots by repair type so you know the shop can take the job before you ride over. Happy to send a link.",
+          "variant": null,
+          "personalization_notes": "Addresses the do-it-yourself suggestion others made. Positions repair-type filtering as the fix."
+        },
+        {
+          "step": 3,
+          "day": 7,
+          "channel": "Reddit comment (reply to own)",
+          "subject": null,
+          "body": "Quick update — we just added a same-day flag that shows shops able to finish a repair before closing. Thought that maps to exactly what you described. No strings, just try it.",
+          "variant": null,
+          "personalization_notes": "New feature directly relevant to their described pain. Zero-pressure CTA."
+        },
+        {
+          "step": 4,
+          "day": 14,
+          "channel": "Reddit comment (reply to own)",
+          "subject": null,
+          "body": "If you end up trying it, would genuinely love to hear what works and what doesn't. Either way, hope the commuter is back on the road soon.",
+          "variant": null,
+          "personalization_notes": "Asks for feedback, not a commitment. Respects the community norm."
+        }
+      ],
+      "response_handling": {
+        "positive_reply": "DM them only after they reply, with a booking link. Ask one question: 'What repair do you need first?' to start a conversation.",
+        "question_reply": "If 'is this an ad?': Be transparent — 'We built this tool and I saw your post and thought it might help. No pressure.' If 'does it cost money?': 'Booking is free for riders. Shops pay $3 per completed booking, and their first 25 bookings are free.'",
+        "no_reply_after_sequence": "Respect the Reddit norm. Do not DM unprompted. Move on."
+      }
+    },
+    {
+      "prospect_name": "Example urban-cycling blog (fictional)",
+      "prospect_score": 79,
+      "primary_channel": "Email",
+      "backup_channel": "Blog comment",
+      "variant_recommended": "B",
+      "touches": [
+        {
+          "step": 1,
+          "day": 0,
+          "channel": "Email",
+          "subject": "Your post on bike shop wait times resonated",
+          "body": "Read your post on giving up on booking repairs by phone — the voicemail-and-wait frustration is exactly why we built SpokeSlot to show open slots instead. No calls, just pick a time at a shop near you. Would love your honest take on whether it solves the gaps you outlined.",
+          "variant": "B",
+          "personalization_notes": "References the specific blog post. Positions as seeking honest feedback, not endorsement."
+        },
+        {
+          "step": 2,
+          "day": 5,
+          "channel": "Email",
+          "subject": "Re: Your post on bike shop wait times resonated",
+          "body": "Quick follow-up — we read your critique of shop booking widgets that only show one shop at a time. SpokeSlot puts every listed shop's open slots on one map, filtered by repair type. Different approach entirely. Happy to demo.",
+          "variant": null,
+          "personalization_notes": "Addresses a specific critique from the blog post. Shows we actually read it."
+        },
+        {
+          "step": 3,
+          "day": 10,
+          "channel": "Email",
+          "subject": "This made me think of your post",
+          "body": "Found this interesting — a cycling writer with a similar critique tried booking repairs online for a month and wrote about the difference. Thought it'd resonate: [link].",
+          "variant": null,
+          "personalization_notes": "Pure value-add. Relevant external content. No ask."
+        },
+        {
+          "step": 4,
+          "day": 14,
+          "channel": "Email",
+          "subject": "Standing by",
+          "body": "If you ever want to try it or tear it apart publicly, I'm here for either. Thanks for writing honestly about what's broken in this space.",
+          "variant": null,
+          "personalization_notes": "Acknowledges their public voice. Invites critique, not just praise."
+        }
+      ],
+      "response_handling": {
+        "positive_reply": "Send a booking link with the fee waived. Ask: 'What would you need to see to write an honest review?' Give them full control of the narrative.",
+        "question_reply": "If 'is this another booking site shops ignore?': 'Fair concern. Here's a 60-second video of a shop confirming a slot — no marketing, just the product. Judge for yourself.' If 'how is this different?': 'Open slots across shops on one map, filtered by repair type, not one shop's calendar at a time.'",
+        "no_reply_after_sequence": "Respect their time. If they publish about SpokeSlot (positive or negative), engage genuinely. Do not ask for removal of negative coverage."
+      }
+    }
+  ],
+  "segment_briefs": [
+    {
+      "segment_name": "Daily bike commuters whose bike breaks midweek",
+      "segment_score": 77,
+      "angle_type": "Searchable",
+      "content_plan": [
+        {
+          "piece": "Use-case landing page: 'Book a bike repair this week, not in two weeks'",
+          "buyer_stage": "Consideration",
+          "format": "Use-case page"
+        },
+        {
+          "piece": "Blog post: 'Why bike shops are booked out (and how to get a slot anyway)'",
+          "buyer_stage": "Awareness",
+          "format": "Blog post"
+        },
+        {
+          "piece": "Recurring, disclosed reply in the weekly r/bikecommuting help thread pointing to the landing page",
+          "buyer_stage": "Decision",
+          "format": "Community reply"
+        }
+      ],
+      "keywords": [
+        "bike repair near me this week",
+        "book bike tune-up online",
+        "bike shop wait time"
+      ],
+      "channel_plan": [
+        "SEO/blog",
+        "r/bikecommuting help thread (disclosed affiliation)",
+        "Local search listing update highlighting same-day slots"
+      ],
+      "proof_points": [
+        "150+ comments in a single help thread describing week-long waits for basic repairs",
+        "At least 10 distinct users explicitly asking how to find a shop with an opening in one thread"
+      ]
+    }
+  ],
+  "company_pitches": [
+    {
+      "company_name": "Example bike-share operator (fictional)",
+      "company_score": 84,
+      "role": "Potential customer account",
+      "pitch": "Saw the Fleet Maintenance Lead role — the target of cutting bikes out of service by 30% is the outcome our booking layer (open slots, repair-type matching, shop confirmation) could help with. It is built for individual riders; the same layer could route overflow repairs to local shops across your 3 depots. Open to a scoped 30-day pilot at one depot, measured against that target?",
+      "execution_path": "Warm BD through the company's public partnerships page.",
+      "contact_path": "Public partnerships or contact form on the company website",
+      "fallback_ask": "If a pilot isn't the right first step, offer a 20-minute walkthrough of the booking flow as a lower-commitment follow-up."
+    }
+  ],
+  "general_notes": "Hand-written example, not produced by a run: the product, prospects and numbers are fictional. These are drafts. Every message must be reviewed and personalized further before sending. The signal-outreach skill should be re-run against any new signals discovered during research. Never send any message without explicit human approval."
+}

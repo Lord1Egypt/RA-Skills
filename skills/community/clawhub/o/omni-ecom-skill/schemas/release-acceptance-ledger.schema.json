@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omni-ecom.local/schemas/release-acceptance-ledger.schema.json",
+  "title": "Omni Ecom v2 release acceptance ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact_type", "target_version", "environment", "evidence"],
+  "properties": {
+    "artifact_type": {"const": "omni-ecom.release-acceptance-ledger@2.0"},
+    "target_version": {"const": "2.0.3"},
+    "environment": {"const": "real_external_acceptance"},
+    "evidence": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["domain", "status", "environment", "evidence_kind", "source_file", "sha256"],
+        "properties": {
+          "domain": {"enum": ["workbuddy_native_multi_agent_pdf", "codex_native_multi_agent_pdf", "platform_api_read", "controlled_action_readback", "live_model_route_baseline"]},
+          "host": {"enum": ["workbuddy", "codex"]},
+          "status": {"const": "PASS"},
+          "environment": {"const": "live"},
+          "evidence_kind": {"type": "string", "minLength": 1},
+          "source_file": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

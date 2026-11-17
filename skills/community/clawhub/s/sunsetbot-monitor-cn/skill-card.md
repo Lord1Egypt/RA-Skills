@@ -1,43 +1,58 @@
-## Description: <br>
-查询中国国内火烧云、晚霞和朝霞预报，并在达到阈值时通过飞书通知用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China-focused sunset, sunrise, and colorful-cloud forecasts from sunsetbot.top and guides agents through threshold-based notification and logging workflows.
 
-## Publisher: <br>
-[neverland83](https://clawhub.ai/user/neverland83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverland83](https://clawhub.ai/user/neverland83)
 
-## Use Case: <br>
-External users and weather-monitoring agents use this skill to query China-focused sunsetbot.top sunrise and sunset forecast data, compare vividness scores against notification thresholds, and keep local forecast logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City queries and forecast parameters are sent to sunsetbot.top. <br>
-Mitigation: Use the skill only for cities and forecast lookups you are comfortable sharing with that service. <br>
-Risk: Local forecast logs under data/ can reveal location-interest history. <br>
-Mitigation: Limit retention, clear logs, or avoid shared machines when that history is sensitive. <br>
-Risk: Feishu notifications require a user Open ID in local configuration. <br>
-Mitigation: Store the Open ID only in config/config.json and avoid embedding it in skill text, payloads, or logs. <br>
+## Use Case:
 
+External users and agent operators use this skill to check China domestic sunrise and sunset forecast conditions, decide whether the forecast crosses a notification threshold, optionally send a Feishu alert, and keep local JSONL and Markdown monitoring logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neverland83/sunsetbot-monitor-cn) <br>
-- [SunsetBot forecast service](https://sunsetbot.top/) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown notifications and JSONL plus Markdown log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call sunsetbot.top with queried city and forecast parameters, may send Feishu notifications, and writes local forecast history under data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can use a Feishu Open ID to send notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the Open ID in config/config.json and review the notification target before enabling alerts.
+
+Risk: Cron setup can run recurring forecast checks and append local weather logs.
+
+Mitigation: Review the cron schedule, timezone, payload, and log location before enabling recurring monitoring.
+
+Risk: Forecast quality depends on the external sunsetbot.top service response.
+
+Mitigation: Treat results as forecast guidance and inspect returned fields before acting on unusual or high-impact alerts.
+
+## Reference(s):
+
+- [SunsetBot forecast service](https://sunsetbot.top/)
+- [ClawHub skill page](https://clawhub.ai/neverland83/skills/sunsetbot-monitor-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JSONL, API-call, notification, and cron configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append local JSONL and Markdown logs and optionally send a Feishu notification when the forecast threshold is met.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

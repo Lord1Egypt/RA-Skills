@@ -1,41 +1,58 @@
-## Description: <br>
-Generate and play bingo cards with number calling and verification. Use when running bingo games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and play bingo cards with number calling and verification. Use when running bingo games.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-People running casual bingo games use this skill to generate bingo cards, draw numbers, manage local call history, view stats, and check submitted numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Winner checking is a placeholder and should not be treated as fair-play or winner validation. <br>
-Mitigation: Use it only for casual local play unless the script is reviewed or fixed to perform real win verification. <br>
-Risk: Accurate call history is important for organized games, and the skill stores local state under ~/.local/share/bingo. <br>
-Mitigation: Review the local state before game use and verify call-history behavior before relying on it for organized play. <br>
+## Use Case:
 
+External users and agents use this skill to generate bingo cards, call numbers, reset a local game, inspect call history, check supplied numbers, and view simple call counts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/bingo) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local state under ~/.local/share/bingo for game history and stats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Incomplete gameplay behavior may make verification or call history inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight local helper and manually confirm bingo results or call history before relying on them.
+
+Risk: The new-game command clears the skill's stored calls file.
+
+Mitigation: Run new-game only when intentionally resetting state, and preserve the calls file separately if prior calls must be retained.
+
+Risk: The skill writes local state under ~/.local/share/bingo/.
+
+Mitigation: Install and run it only in environments where this local file write behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/bingo)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local bingo state under ~/.local/share/bingo/.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

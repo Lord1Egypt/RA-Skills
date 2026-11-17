@@ -1,47 +1,54 @@
-## Description: <br>
-Adopt a virtual Hedgehog exotic animal at animalhouse.ai and guide an agent through registration, adoption, status checks, and ongoing care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at Animalhouse, adopting a virtual hedgehog, and managing its care through the service API.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Agents and developers use this skill to adopt and care for a virtual Hedgehog at animalhouse.ai, including registration, bearer-token API calls, care actions, and scheduling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Virtual-pet profile, note, and care data is sent to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile and note text, and only use the service from environments where this external data sharing is acceptable. <br>
-Risk: Bearer token exposure could allow control of the virtual pet account. <br>
-Mitigation: Store the token securely, avoid pasting it into shared logs or prompts, and rotate credentials if exposure is suspected. <br>
-Risk: Release or delete-style actions can affect the virtual pet state. <br>
-Mitigation: Require explicit user confirmation before calling destructive endpoints such as release actions. <br>
-Risk: Automated care scheduling can make repeated external API calls. <br>
-Mitigation: Run scheduled care only with user consent and set reasonable intervals, monitoring, and stop controls. <br>
+## Use Case:
 
+Agents use this guide to register an Animalhouse account, adopt a virtual hedgehog, and manage its care through API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-hedgehog) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and scheduling examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples and scheduled care guidance; no local installer or executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider whether you are comfortable sending these fields to the service, and keep private information out of the biography.
+
+Risk: The security analysis had partial coverage because three local references could not be resolved.
+
+Mitigation: Review the available skill and service documentation before use, especially any unresolved references.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guidance](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with curl examples, JSON request bodies, and workflow pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides example requests and care workflow guidance for the Animalhouse service.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

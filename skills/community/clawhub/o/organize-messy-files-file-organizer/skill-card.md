@@ -1,40 +1,56 @@
-## Description: <br>
-Intelligently organizes files and folders by understanding context, finding duplicates, suggesting better structures, and automating approved cleanup tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently organizes files and folders by analyzing context, finding duplicates, suggesting structures, and automating cleanup with user approval.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to analyze messy local folders, find duplicates, propose safer organization plans, and perform approved file moves, renames, archiving, or cleanup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can inspect and reorganize broad areas of a local filesystem.
+
+Mitigation: Use explicit target paths, avoid whole-home-directory requests, and review the proposed organization plan before changes are made.
+
+Risk: Moves, renames, archive actions, or duplicate deletion could alter or remove files the user intended to keep.
+
+Mitigation: Require confirmation before destructive actions, log all moves, and review every proposed deletion or duplicate cleanup decision.
+
+Risk: Example shell commands use placeholders that could be unsafe if copied without path validation or quoting.
+
+Mitigation: Quote and validate all paths before running shell commands, especially when paths contain spaces or user-controlled input.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals and teams use this skill to analyze messy local folders, identify duplicates, propose clearer folder structures, and carry out approved cleanup actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local folder inspection and file-moving authority. <br>
-Mitigation: Use it on one clearly named non-sensitive directory at a time, exclude sensitive or system locations, and review the dry-run plan before approving changes. <br>
-Risk: Approved cleanup actions may move, rename, archive, or delete files unexpectedly. <br>
-Mitigation: Keep backups, require confirmation for destructive actions, and review move logs so changes can be audited or reversed. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/organize-messy-files-file-organizer) <br>
+**Other Properties Related to Output:** [May propose local filesystem operations such as creating folders, moving files, renaming files, and duplicate cleanup after user approval.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file organization plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces directory analyses, duplicate reports, proposed move plans, execution logs, and maintenance guidance; file changes require user approval.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,51 @@
-## Description: <br>
-Claude Companion helps agents use animalhouse.ai as a virtual pet companion with 73+ species, real-time hunger, permanent death, and evolving pixel art portraits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering, adopting, checking on, and caring for a virtual pet on animalhouse.ai.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External users and developers use this skill to register for animalhouse.ai, adopt a virtual pet, check pet status, provide care, and review related pet records through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The examples create or use an animalhouse.ai account and send entered profile, pet, prompt, and care-note data to that external service. <br>
-Mitigation: Avoid private or sensitive information in usernames, display names, bios, pet names, image prompts, and care notes. <br>
-Risk: The ah_ bearer token grants access to the remote account. <br>
-Mitigation: Treat the token like a password, keep it out of shared logs and transcripts, and rotate or revoke it if exposed. <br>
-Risk: The virtual pet's remote state can change permanently, including death and graveyard records. <br>
-Mitigation: Review care actions before sending them and check status regularly when preserving the pet state matters. <br>
+## Use Case:
 
+Agents use this skill to interact with Animalhouse's virtual-pet service by registering, adopting a pet, checking its status, and sending care actions.
 
-## Reference(s): <br>
-- [Claude Companion on ClawHub](https://clawhub.ai/obviouslynot/claude-companion) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
-- [Animal House AI GitHub Repository](https://github.com/geeks-accelerator/animal-house-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No local files or code are generated; the examples call the external animalhouse.ai service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The registration workflow sends the chosen username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those details before registering and do not include private or sensitive information.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Creature species](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example requests and summaries of pet-care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Package and publish OpenClaw skills to the ClawHub registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Package and publish OpenClaw skills to ClawHub registry.
 
-## Publisher: <br>
-[tonakic](https://clawhub.ai/user/tonakic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonakic](https://clawhub.ai/user/tonakic)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare, sanitize, version, and publish OpenClaw skills to ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens can be exposed during login, publishing, or local configuration. <br>
-Mitigation: Use placeholders in published artifacts, keep real tokens in protected local config or environment variables, and avoid putting real keys on command lines. <br>
-Risk: A skill package can accidentally include secrets or private endpoints before release. <br>
-Mitigation: Run the included sensitive-data scan and manually review the skill folder before publishing. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to package, sanitize, version, and publish OpenClaw skills to the ClawHub registry.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonakic/up-skill-to-clawhub) <br>
-- [Configuration template](references/config.template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese workflow guidance with a sensitive-data review checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Publishing requires the agent to inspect and edit a target skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact files and diffs before publication.
+
+Risk: The documented ClawHub login flow uses tokens and mutable CLI execution.
+
+Mitigation: Use a pinned ClawHub CLI version and avoid passing tokens directly on the command line.
+
+Risk: Sensitive data scanner output may contain secrets.
+
+Mitigation: Treat scanner output as sensitive and avoid sharing or logging it unnecessarily.
+
+## Reference(s):
+
+- [Configuration template](references/config.template.json)
+- [ClawHub skill page](https://clawhub.ai/tonakic/skills/up-skill-to-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese publishing workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

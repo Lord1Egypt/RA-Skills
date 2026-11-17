@@ -1,43 +1,58 @@
-## Description: <br>
-Industry Learning Sprint guides an agent through financial report review, expert dialogue, and view formation to build a working industry mental model in about one week. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through a one-week process for mapping an unfamiliar industry's financial structure, testing hypotheses with experts, and forming a falsifiable view.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Investors, founders, executives, advisors, and analysts use this skill when entering an unfamiliar industry and needing a structured mental model before a meeting, acquisition review, investment thesis, or market entry recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used as decision support for high-stakes investment, acquisition, legal, or regulatory decisions. <br>
-Mitigation: Treat outputs as research guidance only, verify company filings and expert claims independently, and engage qualified financial, legal, or regulatory counsel where precision is required. <br>
-Risk: The sprint can produce overconfident conclusions if primary filings, expert categories, or known gaps are skipped. <br>
-Mitigation: Require the stated verification checklist: read multi-year annual reports, consult multiple expert categories, state falsifiers, and document gaps before relying on the view. <br>
+## Use Case:
 
+Investors, founders, executives, and advisors use the skill to quickly understand an unfamiliar industry before an expert conversation, acquisition evaluation, or market-entry decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/industry-learning-sprint) <br>
-- [Primary sources](references/sources.md) <br>
-- [Graham's Analysis of Northern Pipeline (1926)](examples/grahams-analysis-of-northern-pipeline-1926.md) <br>
-- [Security Analysis](https://www.amazon.com/Security-Analysis-Foreword-Buffett-Editions/dp/0071592539) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and structured research prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a financial structure map, expert-dialogue corrections, a falsifiable unique view, and known gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial claims or industry conclusions may be inaccurate or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a research framework and verify financial claims independently against primary sources.
+
+Risk: Expert outreach may lack clear direction or context.
+
+Mitigation: Explicitly direct and review any expert outreach before it is sent.
+
+## Reference(s):
+
+- [Sources](artifact/references/sources.md)
+- [Graham's Analysis of Northern Pipeline (1926)](artifact/examples/grahams-analysis-of-northern-pipeline-1926.md)
+- [Security Analysis](https://www.amazon.com/Security-Analysis-Foreword-Buffett-Editions/dp/0071592539)
+- [Industry Learning Sprint guide](https://www.deciqai.com/c/industry-learning-sprint)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/industry-learning-sprint.json)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/industry-learning-sprint)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with a financial structure map, expert dialogue corrections, a falsifiable view, and known gaps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organized as a concise industry research memo.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

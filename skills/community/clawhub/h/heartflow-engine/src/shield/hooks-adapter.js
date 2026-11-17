@@ -39,12 +39,30 @@ const HOOK_EVENTS = {
   STOP:              'Stop',
 };
 
+// === 处理器 Map 最大容量 ===
+const MAX_MAP_SIZE = 200;
+
+/**
+ * 带容量保护的 Map.set — 超出容量时淘汰最早插入的条目（LRU）
+ * @param {Map} map - 目标 Map
+ * @param {*} key - 键
+ * @param {*} value - 值
+ * @param {number} maxSize - 最大容量
+ */
+function _boundedSet(map, key, value, maxSize) {
+  if (map.size >= maxSize && !map.has(key)) {
+    const firstKey = map.keys().next().value;
+    map.delete(firstKey);
+  }
+  map.set(key, value);
+}
+
 // ─── 处理器注册表 ────────────────────────────────────────────────────────────
 
 /** @type {Map<string, Function[]>} 事件名 → 处理器列表 */
 const _handlers = new Map();
 for (const ev of Object.values(HOOK_EVENTS)) {
-  _handlers.set(ev, []);
+  _boundedSet(_handlers, ev, [], MAX_MAP_SIZE);
 }
 
 // ─── 默认处理器（当用户未注册自定义处理器时使用）────────────────────────────────
@@ -288,7 +306,7 @@ const Hooks = {
    */
   off(event) {
     if (_handlers.has(event)) {
-      _handlers.set(event, []);
+      _boundedSet(_handlers, event, [], MAX_MAP_SIZE);
     }
   },
 
@@ -341,7 +359,7 @@ const Hooks = {
    */
   reset() {
     for (const ev of Object.values(HOOK_EVENTS)) {
-      _handlers.set(ev, []);
+      _boundedSet(_handlers, ev, [], MAX_MAP_SIZE);
     }
   },
 
@@ -380,7 +398,13 @@ function _runHandlers(event, params) {
     try {
       const result = handler(params);
       if (result) {
-        if (result.context) Object.assign(merged.context, result.context);
+        // [V-002] Proto-filtered merge: skip __proto__ / constructor / prototype keys
+        if (result.context) {
+          for (const key of Object.keys(result.context)) {
+            if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
+            merged.context[key] = result.context[key];
+          }
+        }
         if (Array.isArray(result.actions)) merged.actions.push(...result.actions);
         if (result.metrics) Object.assign(merged.metrics, result.metrics);
       }

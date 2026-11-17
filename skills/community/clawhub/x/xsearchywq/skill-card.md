@@ -1,43 +1,55 @@
-## Description: <br>
-Search X (Twitter) posts using the xAI API when a user wants to find tweets, look up what people are saying on X, or find social media posts about a topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches X (Twitter) posts through the xAI API for tweets, social discussion, handle-filtered results, date ranges, and media-aware searches.
 
-## Publisher: <br>
-[ywqsimmon](https://clawhub.ai/user/ywqsimmon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ywqsimmon](https://clawhub.ai/user/ywqsimmon)
 
-## Use Case: <br>
-Developers and agent users use this skill to search recent X/Twitter posts through xAI, optionally filtering by handle, excluding handles, setting date ranges, and enabling media understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an xAI API key and sends user search queries to xAI. <br>
-Mitigation: Install only if the user is comfortable providing XAI_API_KEY and sending search queries to xAI; review xAI account billing and data handling expectations before use. <br>
-Risk: Search results and citations depend on xAI's X search behavior and may reflect incomplete, changing, or summarized social media content. <br>
-Mitigation: Review cited original X posts before relying on results for important decisions or publication. <br>
+## Use Case:
 
+Developers and agent users use this skill to search X/Twitter content through xAI, including real-time topical searches, account filters, exclusion filters, date ranges, and optional image or video understanding.
 
-## Reference(s): <br>
-- [xAI x-search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI console](https://console.x.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/ywqsimmon/xsearchywq) <br>
-- [Publisher profile](https://clawhub.ai/user/ywqsimmon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-line output with citations to original X posts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and XAI_API_KEY; supports handle filters, excluded handles, date ranges, image understanding, and video understanding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Search queries, handles, date filters, and optional media-analysis requests are sent to xAI using the user's XAI_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external xAI processing is acceptable, and avoid confidential investigations or sensitive personal data unless that processing has been approved.
+
+Risk: The skill returns social-media search summaries and citations that may be incomplete, stale, or influenced by source-platform availability.
+
+Mitigation: Review cited original posts before relying on results for decisions, publication, or escalation.
+
+## Reference(s):
+
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI Console](https://console.x.ai)
+- [ClawHub skill page](https://clawhub.ai/ywqsimmon/skills/xsearchywq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results with text summaries, citations, search count, and token usage; agent-facing guidance may be rendered as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and XAI_API_KEY; supports handle filters, excluded handles, date ranges, image understanding, and video understanding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

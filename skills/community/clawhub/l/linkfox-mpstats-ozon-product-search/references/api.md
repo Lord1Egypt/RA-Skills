@@ -2,26 +2,24 @@
 
 ## 调用规范
 
-- **请求地址**：`https://tool-gateway.linkfox.com/mpstats/ozon/productSearch`
+- **请求地址**：`${LINKFOX_TOOL_GATEWAY}/mpstats/ozon/productSearch`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://yxgb3sicy7.feishu.cn/wiki/GIkkweGghiyzkqkRXQKc2n0Tnre 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和算力问题** 处理）
 
 ## 请求参数
 
-POST Body（JSON）。以下字段与后端 `OzonItemSearchRequest` DTO 一致（同步日期 2026-05-11）。
+POST Body（JSON）。以下字段与后端 `OzonItemSearchRequest` DTO 一致（同步日期 2026-05-27）。
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| keyword | string | 四选一 | 俄语搜索关键词，例如 `кроссовки`（跑鞋） |
-| productIds | array | 四选一 | Ozon 商品 SKU 列表（整数或字符串） |
-| brandNames | array<string> | 四选一 | 品牌名列表（俄语或拉丁拼写） |
-| sellerNames | array<string> | 四选一 | 卖家名列表（俄语） |
+| keyword | string | 二选一 | 俄语搜索关键词，例如 `кроссовки`（跑鞋） |
+| productIds | array | 二选一 | Ozon 商品 SKU 列表（整数或字符串） |
 | startDate | string | 否 | 统计起始日，格式 `YYYY-MM-DD`；留空时按一年前；最晚可选昨日 |
 | endDate | string | 否 | 统计结束日，格式 `YYYY-MM-DD`；留空时按昨天；最晚可选昨日 |
-| page | integer | 否 | 页码，从 1 开始 |
-| pageSize | integer | 否 | 每页条数，1-100，默认 100 |
 
-> **四选一约束**：`keyword` / `productIds` / `brandNames` / `sellerNames` 至少传一个，全部为空时请求会被拒绝。
+> **二选一约束**：`keyword` / `productIds` 至少传一个，全部为空时请求会被拒绝。
+>
+> **无分页/排序/筛选**：上游单次最多返回约 36 条记录（官方上限）。底层固定按 startRow=0、endRow=100、空 sortModel/filterModel 调用，不再暴露 `page` / `pageSize` / `sortField` / `sortDirection` / `filters` 入参；如需更精确结果请收窄 keyword/SKU 或日期窗口。
 
 ## 响应结构
 
@@ -63,8 +61,9 @@ POST Body（JSON）。以下字段与后端 `OzonItemSearchRequest` DTO 一致�
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析 `products` 字段 |
-| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key |
-| 其他非 200 值 | 业务异常 | 查看 `errmsg` / `msg` 获取具体原因；常见为四选一参数缺失、日期超过昨日、非俄语关键词等 |
+| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 402 | 算力或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 其他非 200 值 | 业务异常 | 查看 `errmsg` / `msg` 获取具体原因；常见为 keyword/productIds 均缺失、日期超过昨日、非俄语关键词等 |
 
 ## curl 示例
 
@@ -73,8 +72,7 @@ curl -X POST https://tool-gateway.linkfox.com/mpstats/ozon/productSearch \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "keyword": "кроссовки",
-    "pageSize": 50
+    "keyword": "кроссовки"
   }'
 ```
 

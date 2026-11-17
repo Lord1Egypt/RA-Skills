@@ -1,43 +1,58 @@
-## Description: <br>
-Fast, accurate automatic speech-to-text transcription supporting 100 languages from URLs or local files via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast, accurate automatic speech-to-text transcription supporting 100 languages from URLs or local files via SkillBoss API Hub.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and automation agents use this skill to transcribe audio from URLs or local files into machine-readable text through the SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files or URL-fetched media are sent to SkillBoss for transcription. <br>
-Mitigation: Use only recordings that are permitted by SkillBoss terms, retention practices, and organizational policy; avoid confidential, regulated, or internal recordings unless explicitly approved. <br>
-Risk: The skill requires a SkillBoss API key. <br>
-Mitigation: Store SKILLBOSS_API_KEY in a secret manager or protected environment configuration and avoid committing or logging it. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe audio from a trusted URL or local media file through SkillBoss API Hub and receive transcription text for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-asr) <br>
-- [SkillBoss API Hub](https://skillboss.co) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [JSON response with transcription text at .result.text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; accepts URL or local file input and an optional language code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and target metadata) <br>
+Risk: Selected audio, filenames, and downloaded URL contents are sent to SkillBoss API Hub for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, and avoid sensitive recordings or private files unless data-handling terms have been reviewed.
+
+Risk: Broad URL handling could upload data from private, internal, localhost, cloud metadata, or very large URLs.
+
+Mitigation: Restrict use to trusted public media URLs and add URL validation, media-type checks, and size limits before broader deployment.
+
+Risk: Request construction may be affected by untrusted filenames or option values.
+
+Mitigation: Use JSON-safe request construction and sanitize filenames and language values before invoking the transcription request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-asr)
+- [SkillBoss API Hub](https://skillboss.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON response with transcription text at .result.text, plus shell command usage and environment-variable configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends selected audio content, filenames, and downloaded URL contents to SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, created 2026-04-15T05:17:39Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Kayak for agents - search across ClawHub, SkillsMP, LobeHub, and more to find the right skill for your task, compare results across registries, get recommendations for your problem, and discover agents with specific capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentfinder helps agents search and compare skill candidates across named registries, request recommendations for a problem, and list available registries through a local API.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agents use Agentfinder to locate, compare, and recommend agent skills across supported registries from a local FastAPI search service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registry results may be stale or sample-like because the package uses bundled registry data. <br>
-Mitigation: Verify any recommended skill on its actual registry page before installing or relying on it. <br>
-Risk: Search and recommendation prompts could contain sensitive task details. <br>
-Mitigation: Do not include secrets, private data, or confidential project context in prompts sent to the local API. <br>
+## Use Case:
 
+Developers and agent builders use Agentfinder to query a local skill-discovery API for search results, registry comparisons, and task-oriented recommendations. Results should be reviewed because the packaged implementation uses a small local index rather than a complete live registry search.
 
-## Reference(s): <br>
-- [Agentfinder on ClawHub](https://clawhub.ai/mirni/gh-agentfinder) <br>
-- [Publisher profile](https://clawhub.ai/user/mirni) <br>
-- [ClawHub registry](https://clawhub.ai) <br>
-- [SkillsMP registry](https://skillsmp.com) <br>
-- [LobeHub skills](https://lobehub.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search, comparison, recommendation, and registry-listing responses are produced by local REST endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Search and recommendation results may be incomplete or stale because the implementation uses a small packaged index.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as candidates for human review and verify important skill choices against the source registry before adoption.
+
+Risk: Problem descriptions submitted to the local recommendation endpoint may contain sensitive task details.
+
+Mitigation: Run the service in an isolated Python environment and avoid submitting sensitive descriptions unless local processing is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/gh-agentfinder)
+- [Publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON API responses from local FastAPI endpoints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and recommendation responses are bounded by request limits and draw from the packaged local index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

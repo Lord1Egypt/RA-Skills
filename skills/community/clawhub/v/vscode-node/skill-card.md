@@ -1,41 +1,55 @@
-## Description: <br>
-Operate on code through a VS Code/Cursor IDE connected as an OpenClaw Node, with commands for file operations, language intelligence, git, testing, debugging, and Cursor Agent CLI integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate on code through a VS Code/Cursor IDE connected as an OpenClaw Node.
 
-## Publisher: <br>
-[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201)
 
-## Use Case: <br>
-Developers and coding agents use this skill to operate a connected VS Code/Cursor workspace through OpenClaw Node for reading, editing, navigating, testing, debugging, git operations, and delegating supported tasks to Cursor Agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable powerful IDE workspace actions, including file writes, git operations, testing, debugging, and optional terminal execution. <br>
-Mitigation: Install only with a trusted VS Code/Cursor extension and Gateway setup, keep the command allowlist narrow, and leave terminal execution disabled by default. <br>
-Risk: Write, commit, or destructive file operations could affect the user's workspace if enabled without review. <br>
-Mitigation: Keep write confirmation and read-only protections enabled unless needed, and review diffs before allowing commits or destructive operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Node for VS Code Extension](https://marketplace.visualstudio.com/items?itemName=xiaoyaner.openclaw-node-vscode) <br>
-- [cursor-ide-agent Skill](https://clawhub.ai/xiaoyaner0201/cursor-ide-agent) <br>
-- [OpenClaw VS Code Project](https://github.com/xiaoyaner-home/openclaw-vscode) <br>
+## Use Case:
 
+Developers and coding agents use this skill to operate a connected VS Code or Cursor workspace through OpenClaw Node commands for file work, language navigation, git, tests, debugging, terminal actions, and Cursor Agent delegation.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with nodes invoke shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw Node connection, Gateway command allowlist, and paired invokeTimeoutMs/timeoutMs values for longer operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to control a connected VS Code or Cursor workspace, including file writes and other high-impact IDE actions.
+
+Mitigation: Install it only for trusted workspaces, keep write confirmations enabled for untrusted projects, and keep Gateway command allowlists narrow.
+
+Risk: Terminal commands are powerful when enabled through the connected IDE.
+
+Mitigation: Leave terminal actions disabled unless they are specifically needed, and whitelist only the commands required for the task.
+
+## Reference(s):
+
+- [VS Code Node skill page](https://clawhub.ai/xiaoyaner0201/skills/vscode-node)
+- [Publisher profile](https://clawhub.ai/user/xiaoyaner0201)
+- [OpenClaw Node for VS Code extension](https://marketplace.visualstudio.com/items?itemName=xiaoyaner.openclaw-node-vscode)
+- [cursor-ide-agent related skill](https://clawhub.ai/xiaoyaner0201/cursor-ide-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include OpenClaw node invocations, timeout settings, allowlist guidance, and workspace-relative file paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

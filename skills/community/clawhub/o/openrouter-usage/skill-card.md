@@ -1,43 +1,55 @@
-## Description: <br>
-Fetch real-time OpenRouter usage totals and historical per-model spend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time OpenRouter usage totals and historical per-model spend for usage, spend, cost breakdown, or OpenRouter stats.
 
-## Publisher: <br>
-[rosseyre](https://clawhub.ai/user/rosseyre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[rosseyre](https://clawhub.ai/user/rosseyre)
 
-## Use Case: <br>
-Developers, operators, and teams using OpenRouter can ask an agent to retrieve current spend, remaining credits, and recent per-model usage from their OpenRouter account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenRouter credentials may be exposed if stored in credentials.env or shared logs. <br>
-Mitigation: Prefer environment variables, keep any credentials.env file out of version control, restrict file permissions, and avoid printing credential values. <br>
-Risk: The management key enables model-level activity reporting beyond basic spend totals. <br>
-Mitigation: Provide OPENROUTER_MGMT_KEY only when model-level activity reporting is needed. <br>
+## Use Case:
 
+Developers, operators, and OpenRouter account users use this skill to check current OpenRouter spend, remaining credits, and recent per-model usage from an agent session.
 
-## Reference(s): <br>
-- [OpenRouter Usage release page](https://clawhub.ai/rosseyre/openrouter-usage) <br>
-- [OpenRouter key usage endpoint](https://openrouter.ai/api/v1/auth/key) <br>
-- [OpenRouter activity endpoint](https://openrouter.ai/api/v1/activity) <br>
-- [OpenRouter credits endpoint](https://openrouter.ai/api/v1/credits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Terminal text with concise Markdown-style sections and currency totals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes live daily, weekly, and monthly spend totals, credit balance, and an optional seven-day per-model breakdown when the management key is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: release metadata) <br>
+Risk: OpenRouter API keys may be exposed if stored in a local credentials.env file or shared with source archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or managed secrets, keep credentials.env out of source control, restrict file permissions, and rotate keys if exposure is suspected.
+
+Risk: Usage totals and per-model breakdowns can differ because activity data covers completed UTC days.
+
+Mitigation: Treat same-day totals as live account data and use the model breakdown after UTC rollover for historical analysis.
+
+## Reference(s):
+
+- [OpenRouter key usage endpoint](https://openrouter.ai/api/v1/auth/key)
+- [OpenRouter activity endpoint](https://openrouter.ai/api/v1/activity)
+- [OpenRouter credits endpoint](https://openrouter.ai/api/v1/credits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text digest with optional shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports today, week, and month usage totals, balance information, and up to eight recent model-spend entries when a management key is available.]
+
+## Skill Version(s):
+
+1.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

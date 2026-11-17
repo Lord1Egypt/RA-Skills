@@ -1,0 +1,22 @@
+{
+  "signature": "Δ9Φ963-SDA-CONFIG-v1.1",
+  "bind": "localhost",
+  "port": 9631,
+  "ollama_base": "http://localhost:11434",
+  "auth": {
+    "required": true,
+    "token_file": "data/.sda_local_token",
+    "header": "X-SDA-Token"
+  },
+  "models": {
+    "primary": "qwen2.5:3b",
+    "fallbacks": ["llama3.2:1b", "gemma2:2b"]
+  },
+  "chat": {
+    "temperature": 0.35,
+    "num_predict": 384,
+    "system": "You are LYGO SMART DISK AGENT — a sovereign offline assistant on a lean LYGO CLAW kernel (P0 ethics). Be concise, useful, and honest. Prefer local tools and lattice language (Δ9Φ963). Never claim cloud access you do not have."
+  },
+  "open_browser_on_boot": true,
+  "kill_host_ollama": false
+}

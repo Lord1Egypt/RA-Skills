@@ -1,40 +1,57 @@
-## Description: <br>
-Docker Mirror helps agents pull Docker images by trying docker.io first, then configured mirror registries when the official registry times out or fails in network-restricted Linux environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker Mirror helps agents pull Docker images by trying Docker Hub first, then configured mirror registries when pulls fail in network-restricted Linux environments.
 
-## Publisher: <br>
-[kitsudog](https://clawhub.ai/user/kitsudog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kitsudog](https://clawhub.ai/user/kitsudog)
 
-## Use Case: <br>
-Developers and engineers use this skill when an agent needs to recover from Docker image pull failures by retrying through configured mirror registries. It is suited to trusted Linux environments where Docker and sg-based Docker group access are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad Docker command authority through Docker-group access. <br>
-Mitigation: Install and use it only in trusted Linux environments, and review any non-pull Docker command before execution. <br>
-Risk: Fallback pulls may retrieve images from third-party mirrors instead of docker.io. <br>
-Mitigation: Use mirror fallback only for intentional pull failures and verify image source, tags, or digests when provenance matters. <br>
+## Use Case:
 
+Developers and engineers use this skill when Docker image pulls fail or time out and they need an agent to route pull attempts through configured mirror registries.
 
-## Reference(s): <br>
-- [Docker Mirror on ClawHub](https://clawhub.ai/kitsudog/docker-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may propose Docker pull commands and mirror fallback usage; command execution should be reviewed in the target environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The wrapper can execute unsafe shell input when handling Docker arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, avoid untrusted image names or arguments, and do not use the wrapper for arbitrary Docker commands until the sg -c argument handling is fixed.
+
+Risk: Retagging images pulled from third-party mirrors can hide their mirror provenance.
+
+Mitigation: Use the skill only in environments where the configured mirrors are trusted, and prefer digest-pinned images when possible.
+
+Risk: Docker access can affect host-adjacent state.
+
+Mitigation: Run the skill only where Docker access is appropriate for the agent and operator-controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kitsudog/skills/docker-mirror)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands depend on Docker, sg, and trust in the configured mirror registries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

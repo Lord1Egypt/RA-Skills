@@ -1,47 +1,60 @@
-## Description: <br>
-Creates an eight-stage AI science explainer video workflow for Mandarin educational videos using digital-human segments, voice cloning, Pillow-rendered slides, karaoke subtitles, FFmpeg compositing, and audio/video QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI科普视频全流程自动化制作技能，帮助代理规划脚本、生成数字人片段、克隆语音、渲染内容幻灯片和逐字字幕、修复音频、合成视频并执行专业QA审查。
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-External creators, educators, and developers use this skill to plan and assemble Mandarin AI science explainer videos that combine a presenter avatar, narrated slides, subtitles, transitions, and QA checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may operate through an authenticated Google browser profile. <br>
-Mitigation: Use a dedicated browser profile for video generation and avoid exposing unrelated signed-in accounts or sensitive sessions. <br>
-Risk: The workflow uses personal voice references and portrait images for cloning or digital-human generation. <br>
-Mitigation: Use only voices and portraits that the user owns or has permission to use, and keep consent records with the project assets. <br>
-Risk: The scripts can process local media files, overwrite outputs, and invoke FFmpeg on supplied paths. <br>
-Mitigation: Run the workflow in a dedicated project directory, review input and output paths before execution, and avoid untrusted media files. <br>
-Risk: The subtitle workflow may install Python packages at runtime. <br>
-Mitigation: Review runtime package installation before proceeding and prefer a pinned, isolated Python environment. <br>
+## Use Case:
 
+Developers and video creators use this skill to produce Mandarin AI science explainer videos with a talking avatar, narrated slides, karaoke-style subtitles, FFmpeg compositing, and delivery QA. It is tuned for Apple Silicon Mac mini systems with 16GB memory while keeping rendering parameters adjustable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/ai-science-video-studio) <br>
-- [Script format reference](references/script_format.md) <br>
-- [Professional QA review checklist](references/qa_checklist.md) <br>
-- [Known pitfalls and solutions](references/pitfalls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON snippets, Python and shell commands, and generated media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local media assets, subtitle frame directories, analysis reports, and final MP4 outputs when the user runs the workflow scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The workflow can involve sensitive portrait images, cloned voices, and a Google Flow account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only voice and image inputs the operator has rights to process, and run Google Flow with a dedicated Chrome profile or separate Google account.
+
+Risk: The subtitle script can install an unpinned Python package at runtime if Whisper is missing.
+
+Mitigation: Run the scripts in an isolated environment and preinstall reviewed, pinned dependencies before execution.
+
+Risk: Generated narration, subtitles, and educational claims may be inaccurate or misaligned with the source script.
+
+Mitigation: Complete the bundled QA checklist, including Whisper cross-checks, subtitle timing review, pronunciation checks, and manual content review before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/ai-science-video-studio)
+- [Script Format Specification](artifact/references/script_format.md)
+- [Professional QA Review Checklist](artifact/references/qa_checklist.md)
+- [Known Pitfalls & Solutions](artifact/references/pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON examples, Python snippets, shell commands, and generated media-file workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce script.json plans, subtitle frame directories, rendered segment videos, audio QA reports, and final MP4 outputs when the agent executes the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

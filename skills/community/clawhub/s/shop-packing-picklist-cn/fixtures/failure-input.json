@@ -1,0 +1,6 @@
+{
+  "orders": [{"id": "D-2001", "items": [{"sku": "GIFT-BOX", "quantity": 1, "unit": "盒"}]}],
+  "kits": {"GIFT-BOX": []},
+  "gifts": [],
+  "packaging_rules": []
+}

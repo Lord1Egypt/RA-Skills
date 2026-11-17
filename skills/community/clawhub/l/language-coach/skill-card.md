@@ -1,41 +1,54 @@
-## Description: <br>
-Language Coach provides brief, practical corrections for grammar, word choice, collocations, idioms, and language-specific errors in English, Chinese, Spanish, French, and Japanese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Language Coach provides multi-language writing corrections for grammar, word choice, collocations, and idiom errors in English, Chinese, Spanish, French, and Japanese.
 
-## Publisher: <br>
-[kaigegao1110](https://clawhub.ai/user/kaigegao1110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaigegao1110](https://clawhub.ai/user/kaigegao1110)
 
-## Use Case: <br>
-External users and developers use this skill to request concise writing corrections and explanations for text in English, Chinese, Spanish, French, or Japanese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad wording such as asking to check or review language. <br>
-Mitigation: Use explicit slash commands or narrow trigger phrases when installing the skill in contexts where unsolicited language review would be disruptive. <br>
-Risk: Language corrections can be imperfect or overly broad for regional usage, register, or specialized writing. <br>
-Mitigation: Review suggested corrections before applying them in formal, legal, academic, or customer-facing text. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to get brief, educational corrections for user-provided English, Chinese, Spanish, French, and Japanese text. It is intended for grammar, word choice, collocation, idiom, register, and language-specific usage issues, activated by explicit language commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaigegao1110/language-coach) <br>
-- [Project Homepage](https://github.com/KaigeGao1110/language-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with original text, corrected text, and a short explanation when a correction is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns one meaningful correction per response and does not require external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: Installing from an unreviewed GitHub source may use content different from the server-reviewed ClawHub release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from the ClawHub/OpenClaw package path when possible, or use a reviewed tag or commit and verify the source first.
+
+Risk: Correction behavior could be invoked when the user does not intend language review.
+
+Mitigation: Use explicit //en, //cn, //es, //fr, or //ja commands when correction behavior is desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaigegao1110/skills/language-coach)
+- [Language Coach Homepage](https://github.com/KaigeGao1110/language-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with original text, corrected text, and a brief explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces at most one meaningful correction per message and returns no output when no correction is needed beyond confirming the original text is acceptable.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Download an image from a user-supplied HTTP(S) URL and upload it to Qiniu cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download an image from a user-supplied HTTP(S) URL and upload it to Qiniu cloud.
 
-## Publisher: <br>
-[lubin1127](https://clawhub.ai/user/lubin1127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lubin1127](https://clawhub.ai/user/lubin1127)
 
-## Use Case: <br>
-Developers and operators use this skill to mirror a user-provided public image URL into a configured Qiniu bucket and return a stable public media URL for delivery, CDN use, or backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime needs Qiniu upload credentials. <br>
-Mitigation: Use a dedicated bucket or restricted key and prefix, and keep credentials out of chat, logs, and user profile data. <br>
-Risk: Uploaded objects are served through a public-read bucket or public base URL. <br>
-Mitigation: Only mirror images the user is authorized to use and confirm that public-read delivery is intentional for the deployment. <br>
-Risk: The optional --no-verify-ssl flag disables TLS certificate verification for downloads. <br>
-Mitigation: Avoid --no-verify-ssl except for a clearly understood debugging case. <br>
+## Use Case:
 
+Developers and operators use this skill to mirror a user-provided public image URL into Qiniu object storage and return a stable public media URL for backup, CDN delivery, or sharing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lubin1127/image-url-qiniu) <br>
-- [Qiniu homepage](https://www.qiniu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text MEDIA_URL line with optional troubleshooting guidance on failure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Qiniu credentials and bucket configuration in environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch arbitrary user-supplied URLs and publish the fetched image to Qiniu without blocking internal network targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where egress is restricted to public internet destinations and block localhost, private-network, link-local, and cloud metadata addresses before execution.
+
+Risk: Qiniu credentials could allow uploads outside the intended operational scope if broadly provisioned.
+
+Mitigation: Use narrowly scoped credentials limited to the intended bucket or prefix and rotate them according to local policy.
+
+Risk: Disabling SSL verification weakens transport authenticity checks.
+
+Mitigation: Avoid the SSL bypass except under controlled administrative conditions.
+
+## Reference(s):
+
+- [Qiniu Cloud](https://www.qiniu.com/)
+- [ClawHub skill page: image-url-qiniu](https://clawhub.ai/lubin1127/skills/image-url-qiniu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text MEDIA_URL line with setup guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Qiniu credentials, a public-read bucket, uv, and a user-supplied HTTP(S) image URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

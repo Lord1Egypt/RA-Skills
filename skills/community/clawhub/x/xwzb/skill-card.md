@@ -1,43 +1,59 @@
-## Description: <br>
-新闻早报 fetches the latest hotspot/news items from hotspot.api4claw.com, ranks top items by model-estimated reader interest, summarizes them, and groups titles by source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+新闻早报 fetches Chinese-language hotspot and news items from hotspot.api4claw.com, summarizes top items, groups titles by source, reports service status, and can provide a user-approved cron setup command.
 
-## Publisher: <br>
-[xltang](https://clawhub.ai/user/xltang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xltang](https://clawhub.ai/user/xltang)
 
-## Use Case: <br>
-Readers and agents use this skill to produce a current Chinese hotspot briefing, view a ranked Top list with brief summaries, check service status, or group titles by source_name. Optional scheduled delivery is offered only after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to hotspot.api4claw.com when invoked. <br>
-Mitigation: Install only if that external request is acceptable; the skill should use only the latest-hotspots endpoint disclosed in the release. <br>
-Risk: Optional scheduling can create recurring messages to a selected channel or user. <br>
-Mitigation: Review the generated cron command before running it, including recipient, channel, and Asia/Shanghai timezone; scheduling requires explicit user approval. <br>
-Risk: Live API failures or malformed responses can produce missing or partial briefings. <br>
-Mitigation: Report the explicit failure or degraded status, skip malformed items safely, and do not use cached or fabricated content. <br>
+## Use Case:
 
+External users use this skill to request the latest Chinese-language hotspot items, service status, source-grouped titles, or a source-filtered view. It is read-only by default, with scheduled delivery only after user approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xltang/xwzb) <br>
-- [Hotspot API Endpoint](https://hotspot.api4claw.com/hotspots/latest?timestamp=$TIME_STEMP) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing with optional bash cron command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches live JSON, ranks up to 10 items, omits raw hotness and stored date metadata, and reports failures without fabricating content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill contacts hotspot.api4claw.com to retrieve latest hotspot data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when outbound contact to that service is acceptable; leave the skill in its default read-only mode unless scheduled delivery is needed.
+
+Risk: Optional scheduled delivery depends on a user-reviewed cron command.
+
+Mitigation: Inspect the generated command before execution and ensure destination values such as channel and recipient are trusted and free of unexpected characters.
+
+Risk: External news data may be unavailable, malformed, or incomplete.
+
+Mitigation: Report API, timeout, HTTP, and JSON format failures clearly, skip malformed items safely, and do not fabricate content when the service is unreachable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xltang/skills/xwzb)
+- [Hotspot API base URL](https://hotspot.api4claw.com)
+- [Hotspot latest endpoint](https://hotspot.api4claw.com/hotspots/latest?timestamp=$TIME_STEMP)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with optional bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top items are capped at 10; scheduled setup is optional and user-approved.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

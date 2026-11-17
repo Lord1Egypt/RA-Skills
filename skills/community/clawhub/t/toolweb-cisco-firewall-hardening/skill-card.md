@@ -1,42 +1,56 @@
-## Description: <br>
-Generate CIS-compliant hardened Cisco ASA and FTD firewall configurations with customizable security options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CIS-compliant hardened Cisco ASA and FTD firewall configurations with customizable security options.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, managed security service providers, and DevSecOps engineers use this skill to request CIS-aligned Cisco ASA and FTD hardening configurations and review the generated settings before applying them to firewall environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests include session identifiers and may include a user identifier. <br>
-Mitigation: Use pseudonymous session IDs and leave userId null where possible. <br>
-Risk: Generated firewall configurations may be unsuitable for a specific production network without review. <br>
-Mitigation: Review and test generated configurations before applying them to production Cisco ASA or FTD devices. <br>
+## Use Case:
 
+Security engineers, network engineers, MSSPs, and DevSecOps teams use this skill to request draft Cisco ASA or FTD hardening configurations aligned with CIS-style controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cisco-firewall-hardening) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [Cisco Firewall Hardening API Docs](https://api.mkkpro.com:8140/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples; API responses contain generated firewall configuration data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated firewall configurations should be manually reviewed and tested before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI metadata) <br>
+Risk: The skill sends security-related request data to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, real internal user identifiers, production firewall details, or environment-identifying metadata unless the external service and its data handling are trusted.
+
+Risk: Generated firewall configuration output may be high impact if applied directly.
+
+Mitigation: Have a qualified network or security engineer review the output, test it in staging, and prepare a rollback plan before applying it to a firewall.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cisco-firewall-hardening)
+- [ToolWeb](https://toolweb.in)
+- [API Docs](https://api.mkkpro.com:8140/docs)
+- [Cisco Firewall Hardening API Route](https://api.mkkpro.com/hardening/cisco-firewall)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-style configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated firewall configurations should be treated as drafts for expert review before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

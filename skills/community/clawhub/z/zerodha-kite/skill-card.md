@@ -1,43 +1,58 @@
-## Description: <br>
-Route natural-language trading and account queries to the correct `zerodha` CLI command with exact flags, validation constraints, and synonym mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes natural-language trading and account requests to exact `zerodha` CLI commands with validation for orders, quotes, positions, holdings, margins, authentication, configuration, GTT, and mutual fund flows.
 
-## Publisher: <br>
-[jatinbansal1998](https://clawhub.ai/user/jatinbansal1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jatinbansal1998](https://clawhub.ai/user/jatinbansal1998)
 
-## Use Case: <br>
-Developers and trading workflow users use this skill to translate plain-English Zerodha Kite account, market data, portfolio, authentication, and order-management requests into validated CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated commands can place, modify, cancel, or exit brokerage orders. <br>
-Mitigation: Review every generated order command before execution, especially side, symbol, quantity, price, product, and order type. <br>
-Risk: Authentication and profile commands can expose API keys, API secrets, request tokens, or refresh tokens. <br>
-Mitigation: Treat credentials and tokens as sensitive, avoid logging or sharing them, and verify the target profile before running credential commands. <br>
-Risk: Bootstrap commands pipe installer scripts from an unpinned GitHub branch directly to shell or PowerShell. <br>
-Mitigation: Install only from a trusted Zerodha CLI source, and prefer reviewing or pinning the installer before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jatinbansal1998/zerodha-kite) <br>
-- [Linux/macOS installer script referenced by the skill](https://raw.githubusercontent.com/jatinbansal1998/zerodha-kite-cli/main/scripts/install.sh) <br>
-- [Windows installer script referenced by the skill](https://raw.githubusercontent.com/jatinbansal1998/zerodha-kite-cli/main/scripts/install.ps1) <br>
+## Use Case:
 
+External users and developers use this skill to convert plain-English Zerodha trading and account requests into exact CLI commands. It helps route market data, portfolio, authentication, configuration, order, GTT, margin, and mutual fund tasks while asking for missing required inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Structured text with command, why, and missing fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs the next runnable command or the required missing inputs; may include installer commands for bootstrap flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-v1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer commands pipe remote GitHub content directly into a shell.
+
+Mitigation: Review the installer source first and prefer a pinned release with checksum or signature verification.
+
+Risk: Authentication flows may expose Zerodha API keys, API secrets, request tokens, or refresh tokens in chat or shell history.
+
+Mitigation: Use safer credential prompts or environment-specific secret storage, and rotate credentials if they were exposed.
+
+Risk: Generated order, cancel, exit, revoke, delete, and SIP/MF commands can trigger live financial actions.
+
+Mitigation: Manually verify every generated command and all order parameters before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jatinbansal1998/skills/zerodha-kite)
+- [Linux/macOS installer script referenced by skill](https://raw.githubusercontent.com/jatinbansal1998/zerodha-kite-cli/main/scripts/install.sh)
+- [Windows installer script referenced by skill](https://raw.githubusercontent.com/jatinbansal1998/zerodha-kite-cli/main/scripts/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown with command, why, and missing fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs one routed command or asks for missing required inputs; installer commands may be returned for setup requests.]
+
+## Skill Version(s):
+
+v1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Build, check, and submit R packages to CRAN or Bioconductor, including new-package setup, R CMD check fixes, CI, S4/Bioconductor design, roxygen2 documentation, visualization guidance, and submission troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, check, and submit R packages to CRAN or Bioconductor, including package skeletons, documentation, checks, CI, S4/Bioconductor patterns, visualization guidance, and submission troubleshooting.
 
-## Publisher: <br>
-[cuiweig](https://clawhub.ai/user/cuiweig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuiweig](https://clawhub.ai/user/cuiweig)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, harden, check, document, and submit R packages for CRAN or Bioconductor. It is especially relevant for package authors handling R CMD check, BiocCheck, GitHub Actions CI, S4 infrastructure, roxygen2 documentation, and publication-grade visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git history rewrite and force-push commands can rewrite shared repository history or overwrite collaborator work if run on the wrong branch or remote. <br>
-Mitigation: Treat those commands as expert-only guidance: verify the target branch and remote, create a backup branch or tag, coordinate with collaborators, and prefer guarded commands such as force-with-lease where appropriate. <br>
+## Use Case:
 
+Developers and R package maintainers use this skill to create R packages from scratch, resolve R CMD check and BiocCheck issues, configure CI, and prepare CRAN or Bioconductor submissions.
 
-## Reference(s): <br>
-- [Bioconductor Submission Guide](references/bioconductor.md) <br>
-- [CRAN Submission](references/cran.md) <br>
-- [GitHub Actions CI for R Packages](references/github-actions.md) <br>
-- [R Package Troubleshooting](references/troubleshooting.md) <br>
-- [Publication-Grade R Visualization](references/visualization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with R, YAML, bash, and checklist examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Git history rewrite examples can damage collaboration history or overwrite remote branches if copied without preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only rewrite history with backups, a clean current branch, collaborator agreement, and a clear recovery plan; avoid force pushes unless necessary.
+
+Risk: Unpinned CI actions and dependency installation examples can reduce reproducibility or supply-chain control.
+
+Mitigation: Pin GitHub Actions versions and dependency snapshots when reproducible or controlled builds are required.
+
+## Reference(s):
+
+- [Bioconductor Submission Guide](references/bioconductor.md)
+- [CRAN Submission](references/cran.md)
+- [GitHub Actions CI for R Packages](references/github-actions.md)
+- [R Package Troubleshooting](references/troubleshooting.md)
+- [Publication-Grade R Visualization](references/visualization.md)
+- [Bioconductor Package Guidelines](https://contributions.bioconductor.org/develop-overview.html)
+- [Bioconductor Package Submission](https://contributions.bioconductor.org/submission-overview.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline R, YAML, shell, and checklist examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory package-development instructions and templates; users should review commands before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75fnhywt838454ghhcmf0ww182239b",
-  "slug": "wyckoff-stock",
+  "name": "wyckoff-stock",
   "version": "1.0.0",
-  "publishedAt": 1775627445985
+  "description": "A股诊股工具，基于Wyckoff 2.0方法论",
+  "author": "小皮蛋",
+  "language": "zh"
 }

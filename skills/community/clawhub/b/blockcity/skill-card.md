@@ -1,44 +1,55 @@
-## Description: <br>
-区块城市 retrieves BlockCity city ranking and detail data from blockcity.vip, including rank, population, opened blocks, fund balance, remaining popularity, and city officials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BlockCity区块城市数据获取Skill，支持从排名页获取城市排名、居民人数、开启区块数，从城市详情页获取基金余额、剩余人气值等信息.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch, filter, and serialize public BlockCity city ranking and city-detail data for analysis, reporting, or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to blockcity.vip and may use scraper dependencies including Playwright. <br>
-Mitigation: Run it only in environments where outbound access to blockcity.vip is approved, and review site terms and request volume before scheduled or high-volume use. <br>
-Risk: City-detail fields such as fund balance, remaining popularity, mayor, and block counts may be incomplete, defaulted, or stale. <br>
-Mitigation: Validate important results against the live BlockCity page or another trusted source before using them for decisions. <br>
-Risk: Fallback mock data can be returned when live data fetching fails. <br>
-Mitigation: Disable fallback mock data for workflows that require live-only results, or label fallback results clearly in downstream output. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve BlockCity city ranking data, look up cities by name or rank, filter returned city records, and serialize results for downstream use. Detail-page outputs should be treated cautiously because server security evidence notes that some detail fields may be placeholders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/blockcity) <br>
-- [BlockCity ranking page](https://www.blockcity.vip/pages/block/area) <br>
-- [BlockCity website](https://www.blockcity.vip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionaries and JSON strings, with usage guidance in Markdown and Python examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports in-memory caching, configurable cache TTL, city filtering, and optional fallback mock data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Detail-page fields such as fund balance and remaining popularity may be zero, mock, or placeholder values while appearing in normal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat detail-page results as unverified, validate them against BlockCity directly before use, and prefer ranking-page fields for workflows that require live data.
+
+Risk: The skill performs network requests to a public website and depends on that site's response format.
+
+Mitigation: Install in an isolated Python environment, pin dependencies, use reasonable request rates, and review outputs when the BlockCity site changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hgta23/skills/blockcity)
+- [BlockCity Ranking Page](https://www.blockcity.vip/pages/block/area)
+- [BlockCity Site](https://www.blockcity.vip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-shaped data outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch public BlockCity data over HTTP and may fall back to cached or mock values when live data is unavailable.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, setup.py, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import difflib
 import json
+import re
 import sys
 import urllib.parse
 from typing import Any
@@ -44,6 +45,14 @@ def list_articles(
     sort_name: str | None = None,
     label_id: int | None = None,
     label_name: str | None = None,
+    orphan_only: bool = False,
+    recommend_only: bool = False,
+    article_search: str | None = None,
+    create_time_ranges: list[str] | None = None,
+    update_time_ranges: list[str] | None = None,
+    publish_time_ranges: list[str] | None = None,
+    order: str | None = None,
+    asc: bool = False,
 ) -> dict[str, Any]:
     resolved_sort_id = resolve_sort_id(args, sort_id, sort_name)
     resolved_label_id = resolve_label_id(args, label_id, label_name, resolved_sort_id)
@@ -54,7 +63,54 @@ def list_articles(
         params["sortId"] = resolved_sort_id
     if resolved_label_id is not None:
         params["labelId"] = resolved_label_id
+    if orphan_only:
+        # Only return articles whose sort/label is missing or references a
+        # deleted sort/label, so agents can spot broken data. Older backends
+        # without this filter ignore the param and return the regular list.
+        params["orphanOnly"] = "true"
+    if recommend_only:
+        # Backend semantics: recommendStatus=true filters to recommended
+        # articles only; false/absent returns all articles.
+        params["recommendStatus"] = "true"
+    if article_search:
+        # Full-text search over title + content; /pattern/ syntax is regex.
+        params["articleSearch"] = article_search
+    # Time-range filters (backend v5.2.0+; older backends silently ignore
+    # them, so callers should verify backend version when results matter).
+    # Each value is start~end; repeated values OR-combine within one field.
+    if create_time_ranges:
+        params["createTimeRange"] = create_time_ranges
+    if update_time_ranges:
+        params["updateTimeRange"] = update_time_ranges
+    if publish_time_ranges:
+        params["publishTimeRange"] = publish_time_ranges
+    if order:
+        params["order"] = order
+    if asc:
+        params["desc"] = "false"
     return request_json("GET", build_url(args.base_url, "/api/api/article/list", params), args.api_key)
+
+
+# Matches yyyy-MM-dd with optional HH:mm or HH:mm:ss (space or 'T' separator),
+# mirroring the backend TimeRangeUtil accepted formats.
+TIME_POINT_RE = re.compile(r"^\d{4}-\d{2}-\d{2}([ T]\d{2}:\d{2}(:\d{2})?)?$")
+
+
+def validate_time_ranges(ranges: list[str] | None, flag: str) -> list[str] | None:
+    """Fail fast on malformed START~END range expressions before hitting the API."""
+    if not ranges:
+        return None
+    for expression in ranges:
+        parts = expression.split("~")
+        if len(parts) != 2:
+            die(f"{flag} must look like START~END, either side omittable (e.g. 2024-01-01~2024-03-31): {expression}")
+        start, end = (part.strip() for part in parts)
+        if not start and not end:
+            die(f"{flag} cannot omit both sides of the range: {expression}")
+        for point in (start, end):
+            if point and not TIME_POINT_RE.match(point):
+                die(f"{flag} accepts yyyy-MM-dd, yyyy-MM-dd HH:mm, or yyyy-MM-dd HH:mm:ss time points: {expression}")
+    return ranges
 
 
 def build_url(base_url: str, path: str, params: dict[str, Any] | None = None) -> str:
@@ -62,9 +118,10 @@ def build_url(base_url: str, path: str, params: dict[str, Any] | None = None) ->
         return f"{base_url.rstrip('/')}{path}"
     filtered_params = {
         key: value for key, value in params.items()
-        if value is not None and value != ""
+        if value is not None and value != "" and value != []
     }
-    suffix = f"?{urllib.parse.urlencode(filtered_params)}" if filtered_params else ""
+    # doseq expands list values into repeated query params (multi time ranges)
+    suffix = f"?{urllib.parse.urlencode(filtered_params, doseq=True)}" if filtered_params else ""
     return f"{base_url.rstrip('/')}{path}{suffix}"
 
 
@@ -272,7 +329,7 @@ def resolve_article_id(args: argparse.Namespace) -> int:
 def post_async_update(
     args: argparse.Namespace,
     payload: dict[str, Any],
-) -> None:
+) -> dict[str, Any]:
     response = request_json(
         "POST",
         f"{args.base_url.rstrip('/')}/api/api/article/updateAsync",
@@ -283,15 +340,14 @@ def post_async_update(
         die(json.dumps(response, ensure_ascii=False, indent=2))
 
     if not getattr(args, "wait", False):
-        print(json.dumps(response, ensure_ascii=False, indent=2))
-        return
+        return {"ok": True, **response}
 
     task_id = extract_task_id(response)
     if not task_id:
         die("Async update did not return taskId.")
 
     final_response = poll_task(args.base_url, args.api_key, task_id, args.poll_interval, args.timeout)
-    print(json.dumps(final_response, ensure_ascii=False, indent=2))
+    return {"ok": True, **final_response}
 
 
 if __name__ == "__main__":

@@ -1,40 +1,54 @@
-## Description: <br>
-Genai Toolkit provides command-line logging guidance and a shell tool for tracking GenAI configurations, benchmarks, prompts, evaluations, costs, and related notes in local plaintext files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Genai Toolkit helps agents use a local Bash CLI to log, view, search, and export generative AI workflow notes.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers can use this skill to log and review local notes about GenAI experiments, prompts, evaluations, costs, and optimization work. It is useful as a lightweight offline logbook, not as an MCP or database integration bridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing advertises an MCP/database bridge, but the reviewed artifact behaves as a local plaintext GenAI logbook. <br>
-Mitigation: Treat the skill as an offline logging utility only and do not rely on it for MCP setup, database connectivity, or automated evaluation workflows. <br>
-Risk: Logged prompts, API keys, database credentials, proprietary notes, or evaluation data can remain in plaintext under ~/.local/share/genai-toolkit and may be exported or searched later. <br>
-Mitigation: Do not enter secrets or sensitive data; review and remove local log and export files before sharing, backing up, or decommissioning the environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to track AI model configurations, benchmarks, prompts, evaluations, costs, usage, fine-tuning runs, and optimization notes in local logs. It is best treated as a plaintext logging utility rather than a database or MCP bridge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/genai-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plaintext command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local plaintext log files and JSON, CSV, or text exports under ~/.local/share/genai-toolkit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The release security summary says the manifest advertises a database/MCP bridge, while the artifact behaves as a local plaintext logging utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and rely on the local logging behavior shown by the artifact; do not assume database or MCP integration without separate verification.
+
+Risk: Logged configurations, prompts, schemas, evaluations, exports, or cost records may contain sensitive information because data is stored in plaintext local files.
+
+Mitigation: Do not record API keys, tokens, passwords, private keys, confidential datasets, private schemas, or production prompts; review exported JSON, CSV, or text files before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/genai-toolkit)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact can write local log and export files under ~/.local/share/genai-toolkit/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

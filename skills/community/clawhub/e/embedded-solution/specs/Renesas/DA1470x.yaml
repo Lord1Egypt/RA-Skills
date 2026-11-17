@@ -1,0 +1,75 @@
+part: DA1470x
+aliases:
+- DA1470x-family
+source_pdf: ../../embedded_dev/renesas/datasheet/DA1470x_datasheet.pdf
+datasheet_revision: 3.2 (10-Nov-2022) — Rev line on page 61/63
+datasheet_doc_id: CFR0011-120-00
+extracted_at: '2026-06-25T21:13:11+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description
+verified_by_human: true
+human_verified_at: '2026-06-25T21:30:00+08:00'
+human_verified_by: assistant
+specs:
+  family: Multi-Core Wireless SoC Family with PMU and GPU
+  ble_version: '5.2'
+  rf_compliance: Bluetooth Low Energy 5.2
+  wireless: BLE 5.2 (configurable protocol engine, controller stack up to HCI)
+  cores:
+  - Arm Cortex-M33 application processor, 32 kHz to 160 MHz, 8 kB 4-way associative cache, FPU, 8-segment MPU, DSP extensions, up to 240 dMIPS
+  - Arm Cortex-M0+ sensor node controller (low-power sensor acquisition without CPU intervention)
+  ram: 1.5 MB Data SRAM with retention (plus 8 kB ICache + 8 kB DCache)
+  rom: 32 kB ROM (boot, PKI routines)
+  flash: external Octa/Quad SPI flash (on-the-fly decrypting engine) — no internal flash
+  gpu: 2D GPU + integrated 2-layer display controller (Parallel DPI/DBI/JDI, Single/Dual/Quad SPI)
+  tx_power_dbm: Configurable -18 to +6 dBm
+  rx_sensitivity_dbm: -97
+  active_tx_current_ma: 3.0
+  active_rx_current_ma: 1.85
+  active_current_conditions: VBAT = 3 V, ideal DC-DC
+  ibat_idle_ma: 1.55
+  ibat_run_32mhz_ma: 2.7
+  ibat_run_96mhz_ma: 8.87
+  ibat_run_160mhz_ma: 13.77
+  active_current_conditions_table5: VBAT = 3 V, DC-DC on, FLASH off, peripherals off
+  hibernation_current_ua: 0.4
+  hibernation_conditions: no RAM retained, all clocks off, DCDC off, Vclamp default, FLASH off, VBAT = 3 V
+  deep_sleep_current_ua: 16.9
+  deep_sleep_conditions: No RAM retained, RCX on, RTC on, RCLP = 32 kHz, DC-DC on, VDD = 0.9 V, LDO_V30_RET on, VBAT = 3 V
+  vad_sleep_current_ua: 25.9
+  vad_sleep_conditions: 8 kB iCache + 256 kB data RAM retained, VAD active
+  extended_sleep_current_ua_8k: 19.7
+  extended_sleep_current_ua_256k: 22.5
+  extended_sleep_current_ua_512k: 27.9
+  extended_sleep_conditions: RCX on, RTC on, DC-DC on, VDD = 0.9 V
+  vbat_min_v: 2.9
+  vbat_max_v: 4.75
+  vbat_typical_conditions: Recommended operating range, OTP programming at -20 to 85 °C
+  vbus_min_v: 4.2
+  vbus_max_v: 5.75
+  vbat_absolute_max_v: 6.0
+  vbus_absolute_max_v: 6.5
+  storage_temp_min_c: -50
+  storage_temp_max_c: 150
+  operating_temp_min_c: -40
+  operating_temp_max_c: 85
+  package: VFBGA142, 6.2 x 6 mm, 0.45 mm pitch
+notes:
+- 'Datasheet Rev 3.2 dated 10-Nov-2022. Page count: 1019 (Datasheet Revision footer on p.61/63).'
+- DA1470x uniquely includes a 2D GPU + display controller — only BLE SoC in this family with integrated graphics. Differentiator vs DA1469x/DA1459x.
+- All 16 fields from the original unverified list have been populated. Verified by manual read of pages 1-3 (features), 61 (operating conditions), 62-63 (DC characteristics).
+- No internal flash — runs from external Octa/Quad SPI via on-the-fly decrypting engine. This is unusual for BLE SoCs and affects boot design (must include serial flash in BOM).
+- Hibernation current 0.4 µA is exceptionally low; deep sleep 16.9 µA is high vs DA14706 because DA1470x has no RAM retention in deep sleep by default (DA14706 / DA1469x have lower deep-sleep with retention).
+unverified: []

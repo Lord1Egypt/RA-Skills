@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Price Intelligence"
+  short_description: "Compare prices and produce normalized pricing findings"
+  default_prompt: "Use $dataify-price-intelligence to collect comparable current offers, normalize pricing, and return an evidence-backed pricing decision."
+
+policy:
+  allow_implicit_invocation: true

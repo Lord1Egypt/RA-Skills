@@ -1,42 +1,54 @@
-## Description: <br>
-Subscribe to change notifications on a Google Drive file or folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribe to change notifications on a Google Drive file or folder.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and engineers use this recipe to create, list, and renew Google Workspace Events subscriptions for Google Drive file or folder changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A subscription can be created against the wrong Google account, Drive resource, Google Cloud project, or Pub/Sub topic. <br>
-Mitigation: Confirm the intended Google identity, Drive resource, project, and topic before running the subscription command. <br>
-Risk: Pub/Sub notifications or included resource payloads can expose Drive change data to unintended recipients. <br>
-Mitigation: Restrict Pub/Sub IAM access and only enable includeResource payloads when the workflow requires them. <br>
-Risk: Unneeded subscriptions can continue sending Drive change notifications. <br>
-Mitigation: Delete or stop renewing subscriptions when monitoring is no longer required. <br>
+## Use Case:
 
+Developers and engineers use this recipe to create, list, and renew Google Workspace Drive change notification subscriptions for a target Drive file or folder.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-watch-drive-changes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-events skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The recipe creates Google Drive event subscriptions against a specified Drive resource and Pub/Sub topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Drive ID, Google Cloud project, Pub/Sub topic permissions, event types, and resource payload setting before running the create command.
+
+Risk: Unneeded or expired subscriptions can continue to affect notification handling if not managed.
+
+Mitigation: List active subscriptions regularly and renew, clean up, or let expire subscriptions according to operational needs.
+
+## Reference(s):
+
+- [Recipe Watch Drive Changes on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/recipe-watch-drive-changes)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-events skill.]
+
+## Skill Version(s):
+
+0.22.5 (source: frontmatter); ClawHub release 1.0.12
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

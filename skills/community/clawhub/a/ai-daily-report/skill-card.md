@@ -1,43 +1,62 @@
-## Description: <br>
-Automatically generates and sends a daily AI news report with recent articles, highlighted open-source AI projects, and visual Markdown/SVG/PNG outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates and sends a daily AI report from recent AI news and popular open-source AI projects.
 
-## Publisher: <br>
-[fireflywwj](https://clawhub.ai/user/fireflywwj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fireflywwj](https://clawhub.ai/user/fireflywwj)
 
-## Use Case: <br>
-External users and developers use this skill to generate a daily AI information report on demand or through scheduling, then deliver the generated report image to a Feishu chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload generated reports to Feishu when delivery is enabled. <br>
-Mitigation: Verify FEISHU_CHAT_ID and Feishu permissions before enabling scheduled delivery. <br>
-Risk: GitHub access may use an environment token for higher-rate searches. <br>
-Mitigation: Use a limited-scope GitHub token and rotate it according to local credential policy. <br>
-Risk: Project descriptions may be sent to a third-party translation service when translation is available. <br>
-Mitigation: Avoid including private project descriptions unless that translation path is acceptable. <br>
+## Use Case:
 
+Developers and external users use this skill to generate a daily AI briefing with news summaries and selected open-source AI projects, then receive it as a rendered report image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fireflywwj/ai-daily-report) <br>
-- [SVG report template](artifact/references/report_template.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report plus SVG and PNG report files, with setup and execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu chat configuration for delivery and may use GitHub and RSS sources while generating reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically send generated report images to a Feishu chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure FEISHU_CHAT_ID only for the intended destination and review that destination before enabling scheduled runs.
+
+Risk: The skill processes internet-sourced news and project content before upload.
+
+Mitigation: Review generated reports before distribution and fix SVG escaping before relying on unattended execution.
+
+Risk: The GitHub project fetch can use GITHUB_TOKEN.
+
+Mitigation: Provide a least-privilege token and avoid sharing broader credentials with the skill runtime.
+
+Risk: Project descriptions may be sent through googletrans when that optional dependency is available.
+
+Mitigation: Disable or document googletrans use if external translation is not acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fireflywwj/skills/ai-daily-report)
+- [SVG report template](references/report_template.svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown reports, SVG/PNG report files, JSON data files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send the rendered PNG to Feishu when FEISHU_CHAT_ID and required tooling are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

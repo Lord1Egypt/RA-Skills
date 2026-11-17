@@ -1,43 +1,54 @@
-## Description: <br>
-Sandboxed command runner for AI agents that validates and isolates shell actions inside a Bubblewrap user namespace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sandboxed command runner for AI agents that validates and isolates shell actions inside a Bubblewrap user namespace.
 
-## Publisher: <br>
-[star8592](https://clawhub.ai/user/star8592) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[star8592](https://clawhub.ai/user/star8592)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route shell commands through a local safety layer that evaluates requests and executes approved commands in a Bubblewrap sandbox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence rates the release as suspicious because it overstates its safeguards and leaves a local command-execution daemon running after use. <br>
-Mitigation: Review before installing, use only in a controlled workspace, and stop the background daemon when finished. <br>
-Risk: Commands are wrapped by Bubblewrap but can still change files in the current directory. <br>
-Mitigation: Run only in an isolated project or disposable workspace and inspect proposed commands before execution. <br>
-Risk: The scanner found this to be a Bubblewrap wrapper around arbitrary shell commands, not a complete approval, audit, or loop-prevention system. <br>
-Mitigation: Treat the sandbox as one control among several, keep human review for sensitive commands, and clear the daemon cache after use when appropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route shell commands through a local Bubblewrap-backed safety layer before execution. It is intended for Linux environments where command isolation and logging are useful, with the security guidance reviewed before installation.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/star8592/skillshield-openclaw) <br>
-- [Homepage](https://coinwin.info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Command-line stdout, stderr, exit codes, and concise setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux with Bubblewrap, cargo, curl, and python3; runs commands through a local daemon and can write in the current workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.8 (source: release evidence and skill frontmatter) <br>
+Risk: The safety claims are overstated and the command-execution service is under-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a narrow project directory, and avoid sensitive working directories.
+
+Risk: The current release should not be relied on for validation, confirmation, loop limiting, or strict read-only isolation.
+
+Mitigation: Prefer a release with pinned dependencies, workspace-bound writable mounts, authentication or strict socket permissions, and execution resource limits before relying on it for higher-risk workflows.
+
+## Reference(s):
+
+- [Homepage](https://coinwin.info)
+- [ClawHub skill page](https://clawhub.ai/star8592/skills/skillshield-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux, Bubblewrap, cargo, curl, and python3 at runtime.]
+
+## Skill Version(s):
+
+2.1.8 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

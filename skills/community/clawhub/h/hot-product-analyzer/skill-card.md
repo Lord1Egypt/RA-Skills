@@ -1,41 +1,58 @@
-## Description: <br>
-Analyzes hot products across major Chinese e-commerce platforms and generates an interactive HTML report covering pricing, sales signals, keywords, selling points, visual style, and product-selection guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入商品名称或类目，搜索淘宝/天猫、京东、拼多多、抖音电商等平台的爆款商品，拆解标题关键词、价格区间、销量评分、核心卖点和视觉风格，并生成交互式 HTML 可视化分析报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-E-commerce operators, product researchers, and sellers use this skill to research public marketplace signals for a product category and turn the findings into a concise hot-product analysis report. It is intended for market research and product-selection planning, not as a substitute for direct platform analytics or business due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace prices, sales counts, ratings, and rankings are point-in-time public search signals and may be incomplete or inaccurate. <br>
-Mitigation: Label generated figures as estimates, cite data sources in the report where available, and validate key conclusions against first-party platform analytics before business decisions. <br>
-Risk: Generated reports load Chart.js from jsDelivr by default, which introduces an external network dependency when the HTML file is opened. <br>
-Mitigation: Use the report in environments where that CDN dependency is acceptable, or replace it with a locally reviewed Chart.js asset before distributing the report. <br>
+## Use Case:
 
+External e-commerce operators, product researchers, and market analysts use this skill to compare hot products across major Chinese commerce platforms, identify category patterns, and prepare product-selection guidance. It is intended for point-in-time marketplace research and report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/hot-product-analyzer) <br>
-- [Report template](artifact/assets/report_template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Guidance, Files] <br>
-**Output Format:** [Interactive single-file HTML report with textual analysis and Chart.js visualizations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is generated from public search results and should label price, sales, and ranking data as point-in-time estimates; the bundled template loads Chart.js from jsDelivr unless modified to be fully self-contained.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requests Bash and broad file/write authority beyond what the report workflow usually requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with the smallest practical tool set; restrict or remove Bash and limit write access unless explicitly needed to create the requested report.
+
+Risk: Generated HTML is active browser content that can load third-party JavaScript and may include marketplace text gathered from web results.
+
+Mitigation: Review generated reports before opening or sharing them, use a trusted browser context, and avoid carrying untrusted snippets into HTML without appropriate escaping or sanitization.
+
+Risk: Prices, sales counts, ratings, and rankings are time-sensitive marketplace snapshots and may be estimated from search snippets.
+
+Mitigation: Label report data as point-in-time and verify important business decisions against primary platform data before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/hot-product-analyzer)
+- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Files, Guidance]
+
+**Output Format:** [Interactive single-file HTML report with narrative analysis and Chart.js charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses web-sourced marketplace snapshots; generated HTML can load third-party JavaScript from the Chart.js CDN.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

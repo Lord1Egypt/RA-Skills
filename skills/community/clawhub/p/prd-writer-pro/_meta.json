@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn748e4sw9wpb0w3q2r6kghstd839tan",
-  "slug": "prd-writer-pro",
+  "name": "prd-writer",
   "version": "1.0.0",
-  "publishedAt": 1774066526418
+  "description": "产品需求文档（PRD）撰写助手",
+  "author": "Ryan",
+  "tags": ["product", "prd", "documentation"]
 }

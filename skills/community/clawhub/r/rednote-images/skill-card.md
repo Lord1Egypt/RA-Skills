@@ -1,47 +1,63 @@
-## Description: <br>
-Generate RedNote image series with structured style and layout choices and bundled generation tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate RedNote image series with structured style and layout choices and bundled generation tooling.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to plan and generate connected RedNote card series, cover cards, and social infographic sequences from a topic or outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reference-image paths may be read from disk and uploaded to WeryAI even though the skill text says local paths are rejected. <br>
-Mitigation: Before generation, review prompt and batch files for local paths and use only intended image files or public reference URLs. <br>
-Risk: The image generation API key may be persisted in a local .image-skills/rednote-images/.env file. <br>
-Mitigation: Keep the local .env file out of version control and treat IMAGE_GEN_API_KEY as a runtime secret. <br>
-Risk: The skill sends prompts and image references to the WeryAI gateway. <br>
-Mitigation: Avoid using sensitive prompts or reference images unless the workspace and WeryAI use are approved for that data. <br>
+## Use Case:
 
+Developers and content creators use this skill to plan and generate RedNote card series, cover cards, and social infographic sequences from a topic or outline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/632657122/rednote-images) <br>
-- [RedNote dimensions reference](references/dimensions.md) <br>
-- [RedNote prompt template](references/prompt-template.md) <br>
-- [RedNote presets](references/presets.md) <br>
-- [WeryAI text-to-image API documentation](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task) <br>
-- [WeryAI image-to-image API documentation](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files, API calls] <br>
-**Output Format:** [Markdown instructions with bash commands, generated prompt files, batch JSON, and image outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY and Node.js/npm; uses bun or npx for TypeScript helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill uses IMAGE_GEN_API_KEY and can persist it in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited WeryAI key, avoid persisting it unless plaintext local storage is acceptable, and never commit generated configuration containing secrets.
+
+Risk: Generated batch references and broad local-reference handling can expose files or unintended inputs.
+
+Mitigation: Inspect generated batch ref paths before running generation and use public HTTPS reference images when image references are needed.
+
+Risk: Some commands rely on unpinned npx execution.
+
+Mitigation: Run the skill in a controlled environment and review the generated commands before execution.
+
+## Reference(s):
+
+- [RedNote Dimensions Reference](references/dimensions.md)
+- [RedNote Outline Template](references/outline-template.md)
+- [RedNote Presets](references/presets.md)
+- [RedNote Prompt Template](references/prompt-template.md)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task)
+- [Rednote Images on ClawHub](https://clawhub.ai/632657122/skills/rednote-images)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Image files]
+
+**Output Format:** [Markdown outlines and prompts, JSON batch files, shell commands, local configuration, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY, Node.js, npm, and either bun or npx; may write output images and optional local .image-skills configuration.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

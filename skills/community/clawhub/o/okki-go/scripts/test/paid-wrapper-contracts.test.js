@@ -103,43 +103,65 @@ function createEmailServer(t) {
   });
 }
 
-test('search-contacts honors requested size up to 100 and keeps compact charge semantics explicit', async (t) => {
+function createEmailStatusServer(t) {
+  const requests = [];
+  const server = http.createServer((req, res) => {
+    requests.push(req.url);
+    if (req.method !== 'GET' || !req.url.startsWith('/api/v1/emails/tasks')) {
+      res.writeHead(404, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: 'not found' }));
+      return;
+    }
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({
+      data: [
+        {
+          taskId: 1001,
+          taskSubject: 'Germany Expo follow-up',
+          status: 'completed',
+          totalCount: 2,
+          sentCount: 2,
+          failedCount: 0,
+          createdAt: '2026-07-08T00:00:00.000Z',
+          completedAt: '2026-07-08T00:01:00.000Z'
+        }
+      ],
+      total: 1,
+      page: 1,
+      page_size: 20
+    }));
+  });
+  return new Promise((resolve, reject) => {
+    server.on('error', reject);
+    server.listen(0, '127.0.0.1', () => {
+      t.after(() => new Promise((done) => server.close(done)));
+      resolve({ baseUrl: `http://127.0.0.1:${server.address().port}`, requests });
+    });
+  });
+}
+
+test('search-contacts returns retired response without calling the API', async (t) => {
   const { baseUrl, requests } = await createContactServer(t);
-  const tempDir = makeTempDir(t);
-  const batchPath = path.join(tempDir, 'contacts.json');
   const result = await runScript('search-contacts.js', [
     '--json', JSON.stringify({ title: 'Procurement Manager', country_codes: 'DE', has_email: 1, size: 50 }),
-    '--save-batch', batchPath,
     '--compact'
   ], { OKKIGO_BASE_URL: baseUrl });
 
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-  assert.equal(requests[0].size, 50);
+  assert.equal(result.status, 2);
+  assert.equal(requests.length, 0);
   const output = JSON.parse(result.stdout);
-  assert.equal(output.contacts.length, 50);
-  assert.equal(output.charged, true);
-  assert.equal(output.charge_type, 'credit_per_query');
-  assert.equal(output.balance_available, false);
-  assert.equal(fs.existsSync(batchPath), true);
+  assert.equal(output.deprecated, true);
+  assert.equal(output.error_code, 'contact_search_retired');
+  assert.equal(output.replacement, 'GET /api/v1/companies/:companyHashId/profileEmails');
+  assert.equal(output.charged, false);
 });
 
-test('search-contacts accepts size 100 and rejects size above 100', async (t) => {
-  const { baseUrl, requests } = await createContactServer(t);
-  const ok = await runScript('search-contacts.js', [
-    '--json', JSON.stringify({ title: 'Procurement Manager', size: 100 }),
-    '--compact'
-  ], { OKKIGO_BASE_URL: baseUrl });
+test('search-contacts help documents retirement', async () => {
+  const help = await runScript('search-contacts.js', ['--help']);
 
-  assert.equal(ok.status, 0, ok.stderr || ok.stdout);
-  assert.equal(requests[0].size, 100);
-
-  const tooLarge = await runScript('search-contacts.js', [
-    '--json', JSON.stringify({ title: 'Procurement Manager', size: 101 }),
-    '--compact'
-  ], { OKKIGO_BASE_URL: baseUrl });
-
-  assert.equal(tooLarge.status, 2);
-  assert.match(tooLarge.stderr, /size must be an integer between 1 and 100/);
+  assert.equal(help.status, 0);
+  assert.match(help.stderr, /retired/);
+  assert.match(help.stderr, /profileEmails/);
 });
 
 test('send-email validates batch recipients and personalized emails by mode', async (t) => {
@@ -151,6 +173,7 @@ test('send-email validates batch recipients and personalized emails by mode', as
     '--json', JSON.stringify({
       content: 'Hello company_name',
       body_format: 'text',
+      task_subject: 'Germany Expo follow-up',
       recipients: [{ email: 'buyer@example.com', subject: 'Hello' }]
     }),
     '--mapping-file', path.join(tempDir, 'batch.json'),
@@ -161,6 +184,7 @@ test('send-email validates batch recipients and personalized emails by mode', as
   const personalized = await runScript('send-email.js', [
     'personalized',
     '--json', JSON.stringify({
+      task_subject: 'Personalized July campaign',
       emails: [{ email: 'buyer2@example.com', subject: 'Hello', content: 'Hi', body_format: 'text' }]
     }),
     '--mapping-file', path.join(tempDir, 'personalized.json'),
@@ -170,6 +194,8 @@ test('send-email validates batch recipients and personalized emails by mode', as
 
   assert.equal(requests[0].url, '/api/v1/emails/send/batch');
   assert.equal(requests[1].url, '/api/v1/emails/send/personalized');
+  assert.equal(requests[0].body.task_subject, 'Germany Expo follow-up');
+  assert.equal(requests[1].body.task_subject, 'Personalized July campaign');
   const output = JSON.parse(personalized.stdout);
   assert.equal(output.submitted, true);
   assert.equal(output.status, 'pending');
@@ -190,4 +216,18 @@ test('send-email rejects payload list shape that does not match mode', async (t)
 
   assert.equal(result.status, 2);
   assert.match(result.stderr, /personalized mode must include emails\[\]/);
+});
+
+test('email-status tasks preserves task_subject query and compact output field', async (t) => {
+  const { baseUrl, requests } = await createEmailStatusServer(t);
+  const result = await runScript('email-status.js', [
+    'tasks',
+    '--json', JSON.stringify({ task_subject: 'Germany Expo', page: 1, page_size: 20 }),
+    '--compact'
+  ], { OKKIGO_BASE_URL: baseUrl });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.match(requests[0], /task_subject=Germany\+Expo/);
+  const output = JSON.parse(result.stdout);
+  assert.equal(output.tasks[0].task_subject, 'Germany Expo follow-up');
 });

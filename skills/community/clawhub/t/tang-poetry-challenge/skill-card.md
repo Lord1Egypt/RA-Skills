@@ -1,37 +1,55 @@
-## Description: <br>
-Provides a Tang poetry matching challenge where users see an upper line and answer with the lower line, with scoring and incorrect-answer analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tang Poetry Challenge is a Chinese-language Tang poetry quiz that prompts users with an upper line and asks them to provide the matching lower line, then reports scoring and missed-question analysis.
 
-## Publisher: <br>
-[rikhou](https://clawhub.ai/user/rikhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rikhou](https://clawhub.ai/user/rikhou)
 
-## Use Case: <br>
-External learners and poetry-practice agents use this skill to run an interactive Tang poetry recitation quiz, score responses, and review missed answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Tang poetry data](references/tang_poetry.json) <br>
+External learners and Chinese-language users can use this skill to practice recalling lines from Tang poems through a timed quiz with answer checking, scoring, hints, and missed-question review.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown challenge prompts, scores, hints, and incorrect-answer analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Tang poetry data; challenge length defaults to 10 questions and can be customized.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill is Chinese-only and may not fit users who cannot read Chinese poetry prompts and feedback.
+
+Mitigation: Use it for Chinese-language learning or poetry practice contexts, and provide translation or localization support when serving non-Chinese readers.
+
+Risk: Quiz behavior depends on bundled poetry data and local Python scripts.
+
+Mitigation: Review the bundled poem dataset and run the local scripts in the intended agent environment before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rikhou/skills/tang-poetry-challenge)
+- [Publisher profile](https://clawhub.ai/user/rikhou)
+- [Bundled Tang poetry data](artifact/references/tang_poetry.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language quiz prompts, answer feedback, scoring summaries, hints, and missed-question analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

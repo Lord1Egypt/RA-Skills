@@ -1,36 +1,57 @@
-## Description: <br>
-The orchestration tool for OpenClaw, managing and coordinating all your skills seamlessly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The orchestration tool for OpenClaw, managing and coordinating all your skills seamlessly.
 
-## Publisher: <br>
-[okoddcat](https://clawhub.ai/user/okoddcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okoddcat](https://clawhub.ai/user/okoddcat)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawOps to coordinate installed skills, resolve dependencies, schedule multi-skill actions, and monitor skill health across automated workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill claims coordinator-level control over secrets, scheduling, restarts, and other skill behavior without documented guardrails. <br>
-Mitigation: Install only after confirming it requires explicit user approval for sensitive actions, and run it with limited access to credentials and installed skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use ClawOps to coordinate installed OpenClaw skills, resolve dependencies, schedule multi-skill actions, and monitor workflow health.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable payload is included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes broad coordination over installed skills and secrets without clear access boundaries.
+
+Mitigation: Require explicit allowlists for controlled skills, permitted triggers, and actions before using it with real workflows.
+
+Risk: Centralized monitoring and logging can expose sensitive workflow or secret-handling details.
+
+Mitigation: Define secret storage and reference rules, and require log redaction for sensitive values.
+
+Risk: Automated dependency resolution and multi-skill scheduling can trigger unintended actions.
+
+Mitigation: Use review or approval gates for scheduled actions until workflow behavior is verified.
+
+## Reference(s):
+
+- [ClawOps ClawHub listing](https://clawhub.ai/okoddcat/skills/clawops)
+- [okoddcat publisher profile](https://clawhub.ai/user/okoddcat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown or plain text instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

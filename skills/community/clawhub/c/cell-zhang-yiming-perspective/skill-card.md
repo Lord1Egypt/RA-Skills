@@ -1,46 +1,58 @@
-## Description: <br>
-A Chinese-language advisory skill that applies Zhang Yiming-style product, organization, information-flow, algorithm, empathy, and long-term discipline lenses without role-playing Zhang Yiming or presenting the view as universally transferable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于张一鸣五大镜片，分析产品、组织、算法与长期成长的底层问题和信息流，提供符合高透明度前提的策略建议。
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and developers use this skill when they want a structured Chinese-language reasoning lens for product, organization, growth, information-flow, algorithm, and long-term decision questions. It helps frame underlying problems, identify distorted information flows, propose advice, and state the assumptions required for that advice to hold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the generated perspective for Zhang Yiming speaking personally or for current factual research. <br>
-Mitigation: Present the output as a reasoning lens, verify current facts separately, and make the assumptions behind the advice explicit. <br>
-Risk: Users may treat ByteDance-style product or organization patterns as universally transferable. <br>
-Mitigation: Call out prerequisites such as high talent density, high transparency, and suitable information-flow conditions before recommending actions. <br>
-Risk: The default Chinese-language posture may not match every user's preferred language. <br>
-Mitigation: Ask for or honor another output language when the user does not want Chinese output. <br>
+## Use Case:
 
+External users and developers use this skill when they want a Chinese-first advisory lens for product, organization, algorithm, information-flow, growth, or long-term-discipline questions. The skill helps structure advice around underlying problems, distorted information flows, concrete recommendations, and the preconditions that make those recommendations valid.
 
-## Reference(s): <br>
-- [Core Models](references/core-models.md) <br>
-- [Decision Heuristics](references/decision-heuristics.md) <br>
-- [Expression DNA](references/expression-dna.md) <br>
-- [Boundaries](references/boundaries.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cellinlab/cell-zhang-yiming-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisor-first output; current factual claims should be verified before applying the perspective.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill defaults to Chinese and may be less useful when a user expects another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for or honor the user's preferred language when it differs from the default.
+
+Risk: Advice framed through a named business perspective can be mistaken for the person's own views or for a universal ByteDance playbook.
+
+Mitigation: Keep the boundary visible: this is not Zhang Yiming himself, and the recommendations depend on context, high talent density, and high transparency.
+
+## Reference(s):
+
+- [Core Models](references/core-models.md)
+- [Decision Heuristics](references/decision-heuristics.md)
+- [Expression DNA](references/expression-dna.md)
+- [Boundaries](references/boundaries.md)
+- [ClawHub Skill Page](https://clawhub.ai/cellinlab/skills/cell-zhang-yiming-perspective)
+- [Publisher Profile](https://clawhub.ai/user/cellinlab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless the user requests another language; emphasizes assumptions, limits, and preconditions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Industry hotspot and competitor monitoring across 5 dimensions for Chinese-language requests with competitor URLs, using international English sources to produce a structured Chinese daily brief with alerts and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry hotspot and competitor monitoring across 5 dimensions for Chinese-language requests with competitor URLs, using international English sources to produce a structured Chinese daily brief.
 
-## Publisher: <br>
-[law52525](https://clawhub.ai/user/law52525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[law52525](https://clawhub.ai/user/law52525)
 
-## Use Case: <br>
-Market intelligence, brand, and competitive research teams use this skill to monitor an industry and competitor websites, identify market signals, and receive a Chinese-language daily brief with alerts and role-based recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs an agent to browse public news, forum, industry, and competitor websites, which may expose the agent to untrusted web content. <br>
-Mitigation: Use only intended competitor URLs and review the generated brief before relying on it for business decisions. <br>
-Risk: Market signals and competitor observations may be incomplete when pages fail to load, block automation, or provide sparse public content. <br>
-Mitigation: Preserve data quality notes in the report and treat inaccessible sources as coverage gaps rather than negative findings. <br>
-Risk: The artifact references Telegram formatting, but the security evidence does not indicate that this package stores or sends credentials. <br>
-Mitigation: Treat Telegram as output formatting or delivery context and avoid providing credentials unless the surrounding runtime explicitly requires and secures them. <br>
+## Use Case:
 
+External users and market intelligence teams use this skill to monitor industry trends and competitor activity from international English-language sources, then receive a Chinese daily brief with alerts and role-based action recommendations.
 
-## Reference(s): <br>
-- [Market Radar ClawHub page](https://clawhub.ai/law52525/market-radar) <br>
-- [Monitoring rules](references/monitoring-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown daily brief with tables, alerts, source notes, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses agent-browser for public web browsing and formats the report for Telegram delivery context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-provided search terms and competitor URLs are used in Bash-based browser commands without explicit validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and use only trusted public https competitor URLs; avoid internal, localhost, private-network, or unusual scheme URLs.
+
+Risk: URL handling may be unsafe for broad use without additional controls.
+
+Mitigation: Add explicit URL validation, percent-encoding, redirect checks, and safe non-shell argument passing before broad deployment.
+
+## Reference(s):
+
+- [Monitoring Rules](references/monitoring-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/law52525/skills/market-radar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown daily brief for Telegram, including alert summaries, competitor monitoring tables, trend analysis, and action recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web research results and translates English-source findings into Chinese; OpenClaw handles Telegram message segmentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

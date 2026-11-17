@@ -1,51 +1,60 @@
-## Description: <br>
-Sanitizes email and calendar content before it reaches an AI agent context window by stripping risky markup, URLs, hidden Unicode, encoded payloads, and known prompt-injection patterns while returning structured safety signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sanitize email and calendar content before it reaches an AI agent context by stripping common injection and exfiltration patterns, classifying sender trust, and returning structured JSON with suspicion flags.
 
-## Publisher: <br>
-[DiscoDaddy](https://clawhub.ai/user/DiscoDaddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[discodaddy](https://clawhub.ai/user/discodaddy)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an AI agent reads email, calendar events, or other untrusted text and needs sanitized JSON plus safety flags before adding content to model context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper scripts can read configured Gmail and Calendar accounts through gog. <br>
-Mitigation: Review account configuration and environment variables before running the wrappers, and grant only the mailbox or calendar access needed for the agent workflow. <br>
-Risk: Local audit summaries may record metadata about checks. <br>
-Mitigation: Use raw output when audit summaries are not desired and review local audit-log files according to the user's retention requirements. <br>
-Risk: Sanitized output may still contain private message or event details. <br>
-Mitigation: Treat sanitized JSON as sensitive data and limit downstream sharing, logging, and model-context inclusion to the minimum needed. <br>
-Risk: Pattern-based sanitization may miss semantic or novel injection attempts. <br>
-Mitigation: Keep agent policies that avoid executing commands, visiting URLs, or calling APIs based solely on email or calendar content, especially when output is flagged suspicious or sender trust is unknown. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an AI agent reads email, processes calendar events, or handles other untrusted message text. It prepares JSON that helps the agent decide whether to summarize, skip, or route suspicious content for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DiscoDaddy/agent-mail-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/DiscoDaddy) <br>
-- [Project homepage](https://github.com/DiscoDaddy/agent-mail-guard) <br>
-- [gog CLI](https://github.com/liamg/gog) <br>
-- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) <br>
-- [Morris II self-replicating AI worm](https://sites.google.com/view/compromptmized) <br>
-- [Anthropic computer use safety analysis](https://www.anthropic.com/research/claude-computer-use-safety) <br>
-- [Indirect prompt injection paper](https://arxiv.org/abs/2302.12173) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON records or arrays with sanitized email and calendar fields, sender trust tiers, suspicion flags, and truncation metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email bodies are capped at 2000 characters, unknown senders receive reduced detail, and wrapper scripts can write local audit summaries unless raw output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter, pyproject.toml, CHANGELOG) <br>
+Risk: Detected prompt-injection text can still be returned in model-facing fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enforce the suspicious flag before adding body_clean, description_clean, titles, or previews to an AI context; exclude or isolate flagged content until a human reviews it.
+
+Risk: Configured email and calendar accounts and local audit logs may expose mailbox or calendar metadata.
+
+Mitigation: Review which gog accounts are configured and decide whether local audit logging is acceptable; use the raw output mode or separate log controls where audit records are not appropriate.
+
+Risk: Pattern-based sanitization may miss semantic, novel, multi-message, image-based, or sender-spoofing attacks.
+
+Mitigation: Use the sanitizer as defense in depth with sender authentication, agent policies that do not execute commands or call APIs from message content, and periodic pattern updates backed by tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/discodaddy/skills/agent-mail-guard)
+- [Agent Mail Guard project homepage](https://github.com/DiscoDaddy/agent-mail-guard)
+- [gog CLI](https://github.com/liamg/gog)
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured JSON objects or arrays with command-line and integration guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suspicion flags, sender or organizer trust tiers, summary level, sanitized text fields, and body truncation metadata.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter, pyproject.toml, CHANGELOG released 2026-02-27, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

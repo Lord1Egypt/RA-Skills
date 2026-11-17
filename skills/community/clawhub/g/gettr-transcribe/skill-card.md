@@ -1,46 +1,59 @@
-## Description: <br>
-Downloads audio from a GETTR post or streaming page and transcribes it locally with MLX Whisper on Apple Silicon, producing timestamped VTT transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download audio from a GETTR post or streaming page and transcribe it locally with MLX Whisper on Apple Silicon, producing timestamped VTT output for caller-managed summarization.
 
-## Publisher: <br>
-[Kevin37Li](https://clawhub.ai/user/Kevin37Li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevin37li](https://clawhub.ai/user/kevin37li)
 
-## Use Case: <br>
-Developers and operators use this skill to turn public or user-provided GETTR media into local timestamped transcripts for downstream review or summarization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and processes media URLs supplied by the user or extracted from GETTR. <br>
-Mitigation: Use only intended public or authorized media URLs, and review the URL before running the pipeline. <br>
-Risk: The pipeline depends on local ffmpeg and mlx-whisper installations. <br>
-Mitigation: Install dependencies from trusted package sources and run the skill only in an environment where local media processing is acceptable. <br>
-Risk: Private or authentication-gated GETTR content is not handled by the skill. <br>
-Mitigation: Avoid private or gated content unless the user is authorized and intentionally provides a direct media URL. <br>
-Risk: The skill writes audio and transcript outputs to a local out/gettr-transcribe directory. <br>
-Mitigation: Review and manage generated audio.wav and audio.vtt files according to the sensitivity of the source media. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Gettr Transcribe](https://clawhub.ai/Kevin37Li/gettr-transcribe) <br>
-- [GETTR](https://gettr.com) <br>
-- [URL Patterns & Reference](references/api_reference.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and analysts use this skill to extract media URLs from GETTR posts or streams, download the audio locally, and create timestamped transcripts. It is intended for public or otherwise accessible GETTR media and does not handle authentication-gated posts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local VTT transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes audio.wav and audio.vtt under ./out/gettr-transcribe/<slug>/; transcription stays in the source language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A supplied media URL could point outside GETTR or to untrusted content.
+
+Mitigation: Use only trusted media URLs derived from GETTR pages and confirm the URL before running the pipeline.
+
+Risk: A loose slug or output base path could write files outside the intended transcript folder.
+
+Mitigation: Keep slugs to letters, numbers, dashes, and underscores, and use the default output location unless a reviewed path is required.
+
+Risk: The skill runs local shell scripts and depends on ffmpeg, pip-installed MLX Whisper, Homebrew, and a local model.
+
+Mitigation: Run without elevated privileges and pin dependency and model versions before use in managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevin37li/skills/gettr-transcribe)
+- [GETTR](https://gettr.com)
+- [URL Patterns & Reference](references/api_reference.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local WAV and VTT files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ffmpeg and mlx_whisper; produces audio.wav and audio.vtt under ./out/gettr-transcribe/<slug>/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

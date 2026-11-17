@@ -1,41 +1,58 @@
-## Description: <br>
-Interact with Azure DevOps via direct REST API calls to list projects, teams, repos, work items, sprints and iterations, pipelines, builds, test plans, and wikis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Azure DevOps through direct REST API calls to list projects, teams, repos, work items, sprints and iterations, pipelines, builds, test plans, and wikis.
 
-## Publisher: <br>
-[ahmedyehya92](https://clawhub.ai/user/ahmedyehya92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmedyehya92](https://clawhub.ai/user/ahmedyehya92)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to query and manage Azure DevOps projects, teams, repos, work items, sprints, pipelines, builds, test plans, and wikis from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live Azure DevOps work items and wiki pages using a personal access token. <br>
-Mitigation: Use a read-only or least-privilege PAT unless write actions are required, and manually review create, update, and wiki write requests before execution. <br>
-Risk: Personal access tokens or team details may be exposed if stored in shared or committed configuration. <br>
-Mitigation: Avoid storing PATs in shared or committed config files and treat team-config.json as sensitive. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to query Azure DevOps organization data, inspect agile delivery state, and perform selected work item or wiki updates from an agent workflow.
 
-## Reference(s): <br>
-- [Azure DevOps MCP homepage](https://github.com/microsoft/azure-devops-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/ahmedyehya92/azure-devops-mcp-replacement-for-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and AZURE_DEVOPS_ORG/AZURE_DEVOPS_PAT; write operations should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.2.0 and package.json says 1.0.0) <br>
+Risk: The skill requires an Azure DevOps PAT that can expose broad organization data and may permit modifications depending on token scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest PAT scopes that support the intended workflow and avoid automatic use on vague Azure DevOps requests.
+
+Risk: The skill includes create or update actions for work items and wiki pages.
+
+Mitigation: Review proposed create, update, and wiki write actions before execution, especially when the request is ambiguous.
+
+Risk: Team tracking can involve employee emails, sprint assignments, estimates, and capacity data stored in team-config.json.
+
+Mitigation: Protect team-config.json and avoid sharing generated standup or capacity output beyond the intended team context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmedyehya92/skills/azure-devops-mcp-replacement-for-openclaw)
+- [Azure DevOps MCP homepage from ClawHub metadata](https://github.com/microsoft/azure-devops-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Azure DevOps organization and PAT environment configuration; output can include organization, project, work item, sprint, repository, pipeline, build, wiki, test plan, and team workload data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.2.0 and package.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

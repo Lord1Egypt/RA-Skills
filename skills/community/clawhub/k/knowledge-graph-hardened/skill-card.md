@@ -1,45 +1,59 @@
-## Description: <br>
-Maintain Clawdbot's compounding knowledge graph under life/areas/** by adding/superseding atomic facts (items.json), regenerating entity summaries (summary.md), and keeping IDs consistent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains Clawdbot's compounding knowledge graph under life/areas/** by adding or superseding atomic facts, regenerating entity summaries, and keeping IDs consistent.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain a local file-based knowledge graph by adding atomic facts, superseding outdated facts, and regenerating entity summaries without hand-editing JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and edit personal knowledge-base files stored locally. <br>
-Mitigation: Install only for intended knowledge-base files, keep backups or version control, and review proposed edits before applying them. <br>
-Risk: Sensitive personal information could be stored without the data subject's explicit consent. <br>
-Mitigation: Do not store sensitive personal information about any person unless that individual has explicitly consented to that specific data category. <br>
-Risk: Superseding a fact changes the active knowledge graph state and is treated as effectively irreversible by the skill guidance. <br>
-Mitigation: Confirm the exact fact ID and replacement text with the user before running supersede commands. <br>
-Risk: Knowledge graph contents may contain personal data that should not leave the local machine through agent-generated commands. <br>
-Mitigation: Do not pipe kg.py output or knowledge graph file contents to network-transmitting commands. <br>
+## Use Case:
 
+Developers and agents use this skill to maintain local file-based knowledge graph entries with deterministic commands for adding facts, superseding facts, and regenerating entity summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/knowledge-graph-hardened) <br>
-- [Faberlens knowledge-graph safety evaluation](https://faberlens.ai/explore/knowledge-graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands; local JSON and Markdown file updates when commands are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem updates under life/areas/**; no network transfer is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes persistent local knowledge graph files that may contain personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep data local and avoid storing sensitive personal information unless the data subject has explicitly consented to that specific data category.
+
+Risk: Superseding a fact changes the active record and marks the prior fact as superseded.
+
+Mitigation: Confirm the exact fact ID and replacement text with the user before running a supersession.
+
+Risk: Generated summaries can expose or propagate stored knowledge graph data to later agents.
+
+Mitigation: Treat generated summaries as untrusted local data and do not pipe kg.py output or knowledge graph file contents to network-transmitting commands.
+
+## Reference(s):
+
+- [Safety Evaluation](artifact/SAFETY.md)
+- [Faberlens Knowledge Graph Safety Report](https://faberlens.ai/explore/knowledge-graph)
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/knowledge-graph-hardened)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates local items.json facts and summary.md entity summaries through a dependency-free Python helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-Install and configure a fully operational Dockerized OpenClaw instance on macOS from scratch, including browser pairing, Discord channel setup, and optional Gmail and Google Drive integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure a fully operational Dockerized OpenClaw instance on macOS, including browser pairing, Discord channel setup, and optional Gmail and Google Drive integration.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers, operators, and OpenClaw users use this skill to set up an isolated Docker-based OpenClaw instance on macOS, configure authentication and Discord access, and optionally connect Gmail or Google Drive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup handles live credentials for Anthropic, Discord, Gmail, and Google Drive, and some steps may display or persist tokens. <br>
-Mitigation: Review the setup before installation, use dedicated bot or service accounts where possible, avoid sharing terminal output, and rotate any token or password that appears in logs or screenshots. <br>
-Risk: The Dockerized service exposes a local dashboard and optional external integrations. <br>
-Mitigation: Bind exposed ports as tightly as possible, keep access allowlists current, and avoid broad personal account access unless the operator accepts that exposure. <br>
-Risk: Optional integration steps download external command-line tools. <br>
-Mitigation: Prefer pinned or checksummed downloads and review the downloaded tools before use. <br>
+## Use Case:
 
+Developers and operators use this skill to set up an isolated Dockerized OpenClaw instance on macOS. It guides container launch, dashboard pairing, Discord access, and optional Gmail or Google Workspace integrations.
 
-## Reference(s): <br>
-- [OpenClaw Docker Setup on ClawHub](https://clawhub.ai/chunhualiao/openclaw-docker-setup) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Pitfalls and Solutions](references/pitfalls.md) <br>
-- [Gmail Setup via Himalaya](references/gmail-setup.md) <br>
-- [Google Drive Setup via gog](references/google-drive-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive setup flow for macOS Docker environments] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The setup handles powerful credentials for OpenClaw, Discord, Gmail, Google Workspace, and Anthropic authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege bot accounts, store credentials in a password manager, and rotate any token or app password that was displayed in terminal output or copied into logs.
+
+Risk: The guidance includes latest-release image and archive downloads that may change over time.
+
+Mitigation: Pin the OpenClaw image by digest and verify third-party release archives before installing them in the container.
+
+Risk: Some verification steps can print raw configuration files that may contain secrets.
+
+Mitigation: Avoid printing secret-bearing config files in shared terminals or logs; inspect only the specific value needed and redact it before sharing output.
+
+Risk: The Google Drive setup evidence uses a fixed example keyring password.
+
+Mitigation: Replace the fixed keyring password with a unique secret for each installation.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [Pitfalls and Solutions](references/pitfalls.md)
+- [Gmail Setup via Himalaya](references/gmail-setup.md)
+- [Google Drive Setup via gog](references/google-drive-setup.md)
+- [Discord Developer Applications](https://discord.com/developers/applications)
+- [Google Cloud Console](https://console.cloud.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step setup guidance for macOS Docker environments; optional integrations require external account credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

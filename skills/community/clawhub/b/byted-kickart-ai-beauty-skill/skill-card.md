@@ -1,44 +1,61 @@
-## Description: <br>
-Analyzes JPG or PNG portrait images from local files, image URLs, multiple URLs, or archives and returns AI-beautified image links or batch result archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes user-provided JPG or PNG images, applies AI beauty enhancement to detected people, and returns enhanced image links or batch ZIP output.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-External users and agents use this skill to apply Volcengine Kickart AI beauty processing to portrait images supplied as local files, URLs, comma-separated URL batches, or compressed archives. It returns processed image URLs for single images and JSON plus ZIP paths for batch processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for cloud access keys or API tokens and security evidence notes that authorization data may be written to local logs. <br>
-Mitigation: Use scoped, revocable credentials from a secure secret store, avoid pasting secrets into chat, and review or clear local logs after use. <br>
-Risk: Images, image URLs, and archive contents are sent to a remote service for processing. <br>
-Mitigation: Do not process sensitive or regulated images unless the remote service terms and data handling are acceptable for the use case. <br>
-Risk: Security evidence notes an account or package registration step without clear user consent. <br>
-Mitigation: Require explicit user approval before package checks or registration and use an account with the minimum required permissions. <br>
+## Use Case:
 
+External users and agents use this skill to apply automated portrait beautification to a single image, multiple image URLs, or an archive of images through the Volcengine/Kickart service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-kickart-ai-beauty-skill) <br>
-- [Volcengine Kickart package page](https://console.volcengine.com/kickart/fusion/setting/combobuy?tab=combo) <br>
-- [Volcengine IAM access key management](https://console.volcengine.com/iam/keymanage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [JSON file plus concise text containing signed image URLs or local ZIP paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-image runs return an image result URL; batch URL or archive runs return per-image results and a ZIP path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter declares 1.2.1) <br>
+Risk: Images are sent to the remote Volcengine/Kickart service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images approved for that service and avoid sensitive or regulated images unless the deployment has appropriate data-handling controls.
+
+Risk: Credential handling guidance in the artifact asks users to expose AK/SK values and echo credential-related environment variables.
+
+Mitigation: Provide tightly scoped, disposable credentials through a safe secret mechanism; do not paste long-lived AK/SK secrets into chat or run the credential-echo preflight as written.
+
+Risk: The skill accepts remote image URLs and image archives, which can increase input-handling risk.
+
+Mitigation: Avoid untrusted URLs or archives until URL allowlisting, size limits, log redaction, and safe archive extraction controls are in place.
+
+Risk: The authoritative security verdict is suspicious.
+
+Mitigation: Review the skill, its credential flow, and its input-processing behavior before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-kickart-ai-beauty-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown text with image URLs or local ZIP paths; the helper scripts write JSON result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-image processing returns a signed image URL; batch URL and archive processing can return per-image results and a ZIP path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

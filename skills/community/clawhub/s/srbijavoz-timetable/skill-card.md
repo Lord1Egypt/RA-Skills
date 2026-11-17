@@ -1,47 +1,62 @@
-## Description: <br>
-Check official Srbija Voz notices, station matches, and timetable metadata for live train delays, cancellations, stoppages, operational changes, and replacement bus service in Serbia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check official Srbija Voz notices, station matches, and timetable metadata when verifying live train delays, cancellations, stoppages, or replacement bus service in Serbia.
 
-## Publisher: <br>
-[atomashevic](https://clawhub.ai/user/atomashevic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomashevic](https://clawhub.ai/user/atomashevic)
 
-## Use Case: <br>
-External users and developers use this skill to check public Srbija Voz passenger notices, resolve station names, and distinguish live disruptions from recurring timetable information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts official Srbija Voz public websites, so lookup results depend on those services being reachable and current. <br>
-Mitigation: Report endpoint failures clearly, use the documented fallback only for passive timetable metadata, and include notice dates or source links when relevant. <br>
-Risk: The bundled lookup script saves results to a JSON file in the current working directory by default. <br>
-Mitigation: Run it in an appropriate working directory or provide an explicit output path with --out. <br>
-Risk: Transit notices can be incomplete, delayed, or represent recurring timetable information rather than a fresh disruption. <br>
-Mitigation: Separate live notices from recurring timetable notices and avoid claiming a current disruption unless the official notice supports it. <br>
+## Use Case:
 
+External users and agent operators use this skill to check public Srbija Voz passenger notices, resolve station names, and distinguish live disruptions from recurring timetable information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atomashevic/srbijavoz-timetable) <br>
-- [Srbija Voz public notices API](https://www.srbvoz.rs/wp-json/wp/v2/info_post?per_page=100) <br>
-- [Srbija Voz station autocomplete API](https://w3.srbvoz.rs/redvoznje/api/stanica/) <br>
-- [Srbija Voz timetable metadata page](https://w3.srbvoz.rs/redvoznje/info/sr) <br>
-- [Srbija Voz timetable page](https://www.srbvoz.rs/redvoznje) <br>
-- [Srbija Voz keyword cues](references/keyword-cues.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown passenger summaries with optional shell commands and JSON lookup output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script writes srbvoz_notices.json by default unless a different output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled lookup script contacts public Srbija Voz websites and may fail or return incomplete information if those public endpoints are unavailable or change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat answers as public transit-status summaries, preserve source notice details where relevant, and state when the official public endpoints were unavailable.
+
+Risk: The skill saves lookup results to a local JSON file when the bundled script is run.
+
+Mitigation: Use the default output only for public transit information and choose an appropriate output path when local files need to be managed.
+
+Risk: A recurring Petrovaradin corridor bus notice can be mistaken for a fresh disruption.
+
+Mitigation: Classify that notice as timetable information unless the source notice explicitly says the bus service changed, stopped, or was canceled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atomashevic/skills/srbijavoz-timetable)
+- [Srbija Voz public notices API](https://www.srbvoz.rs/wp-json/wp/v2/info_post?per_page=100)
+- [Srbija Voz station autocomplete API](https://w3.srbvoz.rs/redvoznje/api/stanica/)
+- [Srbija Voz timetable metadata page](https://w3.srbvoz.rs/redvoznje/info/sr)
+- [Srbija Voz timetable page](https://www.srbvoz.rs/redvoznje)
+- [Srbija Voz keyword cues](references/keyword-cues.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise Markdown or plain text summaries, with JSON produced by the bundled lookup script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save public notice lookup results to a local JSON file when the bundled script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

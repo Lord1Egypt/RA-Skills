@@ -16,6 +16,7 @@
 #      recently and no background service is running
 #   2  binary missing: clipmem is not on PATH
 #   3  doctor/service status failed or status JSON could not be parsed
+#   4  capture is paused
 #   64 invalid command-line usage
 
 set -u
@@ -38,6 +39,7 @@ Exit codes:
   1  watcher stale (no recent captures and no running background service)
   2  clipmem missing from PATH
   3  doctor/service status failed or status JSON could not be parsed
+  4  capture is paused
   64 invalid command-line usage
 EOF
 }
@@ -78,6 +80,7 @@ HOMEBREW_LOADED=""
 LAUNCHAGENT_RUNNING=""
 LAUNCHAGENT_LOADED=""
 STALE=""
+PAUSED=""
 RECENT_CAPTURE_WITHIN_LAST_HOUR=""
 CONFLICT=""
 OPENCLAW_DOCTOR_OK=""
@@ -91,7 +94,7 @@ emit_json_and_exit() {
   export JSON_EXIT_CODE SUMMARY
   export CLIPMEM_PRESENT DOCTOR_OK FTS5_AVAILABLE HOMEBREW_RUNNING HOMEBREW_LOADED
   export LAUNCHAGENT_RUNNING LAUNCHAGENT_LOADED STALE RECENT_CAPTURE_WITHIN_LAST_HOUR
-  export CONFLICT OPENCLAW_DOCTOR_OK VERSION DETAILS
+  export CONFLICT OPENCLAW_DOCTOR_OK VERSION DETAILS PAUSED
 
   python3 - <<'PYJSON'
 import json
@@ -114,6 +117,7 @@ data = {
     'homebrew_loaded': parse_boolish(os.environ.get('HOMEBREW_LOADED')),
     'launchagent_running': parse_boolish(os.environ.get('LAUNCHAGENT_RUNNING')),
     'launchagent_loaded': parse_boolish(os.environ.get('LAUNCHAGENT_LOADED')),
+    'paused': parse_boolish(os.environ.get('PAUSED')),
     'stale': parse_boolish(os.environ.get('STALE')),
     'recent_capture_within_last_hour': parse_boolish(os.environ.get('RECENT_CAPTURE_WITHIN_LAST_HOUR')),
     'conflict': parse_boolish(os.environ.get('CONFLICT')),
@@ -187,7 +191,7 @@ if [ "$STATUS_CODE" -ne 0 ]; then
 fi
 
 STATUS_VARS=$(
-  printf '%s' "$STATUS_OUT" | python3 -c "import json,sys; data=json.load(sys.stdin); print('homebrew_running=%d' % (1 if data['homebrew']['running'] else 0)); print('homebrew_loaded=%d' % (1 if data['homebrew']['loaded'] else 0)); print('launchagent_running=%d' % (1 if data['launchagent']['running'] else 0)); print('launchagent_loaded=%d' % (1 if data['launchagent']['loaded'] else 0)); print('stale=%d' % (1 if data['stale'] else 0)); fresh=data.get('recent_capture_within_last_hour'); print('recent_capture_within_last_hour=%s' % ('-1' if fresh is None else ('1' if fresh else '0'))); print('conflict=%d' % (1 if data.get('conflict') else 0))"
+  printf '%s' "$STATUS_OUT" | python3 -c "import json,sys; data=json.load(sys.stdin); print('homebrew_running=%d' % (1 if data['homebrew']['running'] else 0)); print('homebrew_loaded=%d' % (1 if data['homebrew']['loaded'] else 0)); print('launchagent_running=%d' % (1 if data['launchagent']['running'] else 0)); print('launchagent_loaded=%d' % (1 if data['launchagent']['loaded'] else 0)); print('stale=%d' % (1 if data['stale'] else 0)); paused=data.get('paused'); print('paused=%s' % ('-1' if not isinstance(paused, bool) else ('1' if paused else '0'))); fresh=data.get('recent_capture_within_last_hour'); print('recent_capture_within_last_hour=%s' % ('-1' if fresh is None else ('1' if fresh else '0'))); print('conflict=%d' % (1 if data.get('conflict') else 0))"
 ) || {
   DETAILS="$STATUS_OUT"
   if [ "$JSON_MODE" -eq 1 ]; then
@@ -204,6 +208,7 @@ HOMEBREW_LOADED="$homebrew_loaded"
 LAUNCHAGENT_RUNNING="$launchagent_running"
 LAUNCHAGENT_LOADED="$launchagent_loaded"
 STALE="$stale"
+PAUSED="$paused"
 RECENT_CAPTURE_WITHIN_LAST_HOUR="$recent_capture_within_last_hour"
 CONFLICT="$conflict"
 
@@ -224,7 +229,7 @@ if [ "$JSON_MODE" -eq 0 ]; then
      && [ "${launchagent_running}" -eq 0 ] && [ "${launchagent_loaded}" -eq 0 ]; then
     yellow "WARN: no clipmem background service is loaded"
     yellow "      Run: clipmem setup"
-    yellow "      Or:  brew services start clipmem"
+    yellow "      Or:  clipmem service start"
   fi
 
   if [ "${recent_capture_within_last_hour}" -eq 1 ]; then
@@ -235,8 +240,8 @@ if [ "$JSON_MODE" -eq 0 ]; then
 
   if [ "${conflict}" -eq 1 ]; then
     yellow "WARN: both Homebrew and direct LaunchAgent services are installed"
-    yellow "      Remove one with: brew services stop clipmem"
-    yellow "      Or:              clipmem service uninstall"
+    yellow "      Stop both with:   clipmem service stop"
+    yellow "      Remove both with: clipmem service uninstall"
   fi
 fi
 
@@ -254,8 +259,23 @@ if clipmem agents openclaw --help >/dev/null 2>&1; then
   fi
 fi
 
+if [ "${PAUSED}" -ne 0 ]; then
+  if [ "${PAUSED}" -eq 1 ]; then
+    CODE=4
+    SUMMARY="Capture is paused. Resume deliberately with 'clipmem settings pause off' when ready."
+  else
+    CODE=3
+    SUMMARY="Capture pause state is unknown; update clipmem and retry the setup check."
+  fi
+  if [ "$JSON_MODE" -eq 1 ]; then
+    emit_json_and_exit "$CODE" "$SUMMARY"
+  fi
+  yellow "$SUMMARY"
+  exit "$CODE"
+fi
+
 if [ "${STALE}" -eq 1 ]; then
-  SUMMARY="STALE: no recent captures and no background watcher is running. Run 'clipmem setup' or 'brew services start clipmem' and retry."
+  SUMMARY="STALE: no recent captures and no background watcher is running. Run 'clipmem setup' or 'clipmem service start' and retry."
   if [ "$JSON_MODE" -eq 1 ]; then
     emit_json_and_exit 1 "$SUMMARY"
   fi

@@ -1,0 +1,58 @@
+{
+  "version": "2.0",
+  "entity_types": {
+    "Device": {
+      "description": "物理或逻辑设备",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "model": {"type": "string", "required": true},
+        "manufacturer": {"type": "string", "required": false},
+        "specs": {"type": "object", "required": false},
+        "capabilities": {"type": "array", "items": "string", "required": false}
+      }
+    },
+    "CodeTemplate": {
+      "description": "可复用的代码模板",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "language": {"type": "string", "enum": ["ST", "LD", "FBD", "IL", "SFC", "Python", "C++"], "required": true},
+        "content": {"type": "string", "required": true},
+        "parameters": {"type": "array", "items": "string", "required": false},
+        "description": {"type": "string", "required": false}
+      }
+    },
+    "Constraint": {
+      "description": "约束规则（编码规范/设备限制）",
+      "fields": {
+        "rule": {"type": "string", "required": true},
+        "scope": {"type": "string", "required": false},
+        "severity": {"type": "string", "enum": ["info", "warning", "critical"], "required": true},
+        "rationale": {"type": "string", "required": false}
+      }
+    },
+    "Protocol": {
+      "description": "通信协议定义",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "version": {"type": "string", "required": false},
+        "message_format": {"type": "string", "required": false},
+        "endpoints": {"type": "array", "items": "string", "required": false}
+      }
+    },
+    "BestPractice": {
+      "description": "历史最佳实践",
+      "fields": {
+        "title": {"type": "string", "required": true},
+        "content": {"type": "string", "required": true},
+        "tags": {"type": "array", "items": "string", "required": false},
+        "examples": {"type": "array", "items": "string", "required": false}
+      }
+    }
+  },
+  "relation_types": {
+    "applies_to": {"from": "Constraint", "to": "Device", "description": "约束适用于某设备"},
+    "generates": {"from": "Scenario", "to": "CodeTemplate", "description": "场景生成代码模板"},
+    "depends_on": {"from": "CodeTemplate", "to": "Device", "description": "代码模板依赖某设备"},
+    "compatible_with": {"from": "Device", "to": "Protocol", "description": "设备兼容某协议"}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "code": 200,
+  "msg": "",
+  "success": true,
+  "data": {
+    "balancePoints": 1500,
+    "frozenPoints": 2,
+    "availablePoints": 1498,
+    "sourceUrlUsage": {
+      "used": 3,
+      "limit": 30,
+      "remaining": 27,
+      "resetAt": "2026-10-01 00:00:00"
+    }
+  }
+}

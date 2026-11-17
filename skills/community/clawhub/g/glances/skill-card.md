@@ -1,46 +1,61 @@
-## Description: <br>
-Glances is a cross-platform system monitoring skill that helps agents install, run, interpret, and configure Glances for terminal, Web, API, export, and remote monitoring workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Glances - cross-platform system monitoring guidance for installing, running, configuring, and troubleshooting Glances.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers, operators, and system administrators use this skill to monitor local or remote machines with Glances, inspect resource bottlenecks, configure Web/API modes, and export metrics for analysis or observability workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network-exposed Glances Web/API or server modes can reveal host monitoring data to untrusted networks. <br>
-Mitigation: Prefer localhost binding or SSH tunnels, require authentication where supported, and review any firewall or bind-address changes before execution. <br>
-Risk: Docker socket mounts, host networking, docker group changes, and persistent services can broaden host access. <br>
-Mitigation: Avoid docker.sock mounts, host networking, docker group membership changes, systemd units, or cron jobs unless they are necessary and manually approved. <br>
-Risk: Commands that forcefully terminate processes or handle tokens and SMTP passwords can disrupt workloads or expose secrets. <br>
-Mitigation: Manually approve process-kill commands and keep tokens, passwords, and export credentials out of shared logs or generated files. <br>
+## Use Case:
 
+Developers, operators, and administrators use this skill to monitor local or remote systems with Glances, interpret resource metrics, configure alerts, expose Web/API modes, and export monitoring data.
 
-## Reference(s): <br>
-- [ClawHub Glances listing](https://clawhub.ai/cn-big-cabbage/glances) <br>
-- [Glances homepage](https://nicolargo.github.io/glances/) <br>
-- [Glances documentation](https://glances.readthedocs.io/) <br>
-- [Glances GitHub repository](https://github.com/nicolargo/glances) <br>
-- [Glances Docker Hub image](https://hub.docker.com/r/nicolargo/glances) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and monitoring interpretations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that install packages, start local services, expose monitoring ports, query APIs, or write Glances configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Privileged Docker examples and Docker socket mounts can expose host-level control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those examples only in trusted administrative environments after reviewing Docker socket access, host PID/network settings, and least-privilege alternatives.
+
+Risk: Web, API, and server modes can expose system monitoring data if bound to public interfaces.
+
+Mitigation: Bind services to localhost by default and add authentication, firewall rules, SSH tunneling, or other network controls before enabling remote access.
+
+Risk: Persistent service, cron, sudo, sudo pip, and mutable latest-image examples can create durable or hard-to-audit system changes.
+
+Mitigation: Manually review persistence setup, prefer isolated package installation, avoid mutable latest tags for controlled deployments, and confirm commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-big-cabbage/skills/glances)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/cn-big-cabbage)
+- [Glances Homepage](https://nicolargo.github.io/glances/)
+- [Glances Documentation](https://glances.readthedocs.io/)
+- [Glances Docker Hub](https://hub.docker.com/r/nicolargo/glances)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands for local monitoring, Web/API modes, Docker runs, service setup, data export, and troubleshooting.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

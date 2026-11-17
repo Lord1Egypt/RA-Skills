@@ -1,0 +1,14 @@
+{
+  "schema": "lgd-skill-manifest/v1",
+  "name": "lgd-certify",
+  "slug": "lgd-certify",
+  "version": "1.0.0",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "license": "MIT",
+  "category": "AI 治理",
+  "origin": "https://github.com/zhaoxinghua09-cell/agent-skills/tree/main/skills/lgd-certify",
+  "homepage": "https://zhaoxinghua09-cell.github.io/lgd-hub/",
+  "agent_created": true,
+  "packaged_at": "2026-09-08"
+}

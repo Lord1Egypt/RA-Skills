@@ -1,45 +1,58 @@
-## Description: <br>
-Helps agents read, edit, export, comment on, and manage Google Docs through the gogcli Docs MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to read, write, edit, export, or comment on Google Docs.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and agent users use this skill to let Codex work with Google Docs for a configured Google account, including document reading, editing, exporting, tab management, and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, edit, export, comment on, and trash Google Docs for the configured account. <br>
-Mitigation: Install it only for intended Google Docs workflows, use explicit document IDs, and ask for previews or copies before bulk replace, delete, export, or trash actions. <br>
-Risk: Markdown table conversion has documented formatting limitations for multiple tables, inline formatting inside table cells, and empty-header tables. <br>
-Mitigation: Split large table appends into smaller calls, insert plain table-cell text before applying formatting, and supply non-empty header rows. <br>
+## Use Case:
 
+Developers and external users can use this skill to connect an agent to Google Docs for reading, editing, exporting, tab management, and comment workflows through the gogcli MCP server.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chrischall/gogcli-mcp-docs) <br>
-- [gogcli Project](https://github.com/openclaw/gogcli) <br>
-- [gogcli-mcp Project Link](https://github.com/chrischall/gogcli-mcp) <br>
-- [gogcli Issue 607](https://github.com/openclaw/gogcli/issues/607) <br>
-- [gogcli Issue 608](https://github.com/openclaw/gogcli/issues/608) <br>
-- [gogcli Issue 609](https://github.com/openclaw/gogcli/issues/609) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text responses with Google Docs MCP tool usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include document export formats such as PDF, TXT, HTML, DOCX, RTF, ODT, or EPUB when the underlying tool is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release evidence) <br>
+Risk: The skill can change, remove, trash, replace, or delete content in Google Docs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Google account, review Docs version history or backups before large edits, and require explicit confirmation before destructive document or comment operations.
+
+Risk: The setup installs the MCP package through an unpinned npm invocation.
+
+Mitigation: Install only from a trusted package source and prefer pinning the npm package version before deployment.
+
+## Reference(s):
+
+- [gogcli](https://github.com/openclaw/gogcli)
+- [gogcli-mcp source](https://github.com/chrischall/gogcli-mcp)
+- [gogcli issue 607](https://github.com/openclaw/gogcli/issues/607)
+- [gogcli issue 608](https://github.com/openclaw/gogcli/issues/608)
+- [gogcli issue 609](https://github.com/openclaw/gogcli/issues/609)
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/gogcli-mcp-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON configuration and inline tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Google Docs read, edit, export, formatting, tab, and comment operations through the configured MCP server.]
+
+## Skill Version(s):
+
+2.8.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

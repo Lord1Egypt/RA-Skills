@@ -1,43 +1,53 @@
-## Description: <br>
-人脸识别，人脸检测 + 比对 + 搜索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI face recognition capabilities for face detection, 1:1 comparison, and 1:N search.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and teams use this skill to understand or scaffold face recognition workflows for detection, one-to-one comparison, one-to-many search, liveness detection, and basic face attribute analysis in access control, identity verification, security monitoring, and VIP recognition scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Face recognition workflows can involve sensitive biometric data and regulated identity or monitoring use cases. <br>
-Mitigation: Use only where lawful and authorized; obtain appropriate consent, minimize stored images and embeddings, and define retention and deletion rules. <br>
-Risk: Access-control, security-monitoring, or VIP-identification deployments can create privacy, safety, or fairness impacts if automated without review. <br>
-Mitigation: Apply audit controls and human oversight before deploying the skill in those contexts. <br>
-Risk: External source and dependency details are not fully established by server-resolved provenance for this release. <br>
-Mitigation: Review the external repository and dependency list before installation or production use. <br>
+## Use Case:
 
+Developers and security teams can use this skill for face detection, face comparison, face search, liveness detection, and face attribute analysis in access control, identity verification, security monitoring, and VIP recognition workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-face-recognition) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill directs users to download dependencies and run mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependencies before installation, pin to a specific reviewed commit, and run in a virtual environment or container with minimal privileges.
+
+Risk: The skill processes sensitive biometric face images.
+
+Mitigation: Process only images with appropriate consent and apply retention controls suited to the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-face-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

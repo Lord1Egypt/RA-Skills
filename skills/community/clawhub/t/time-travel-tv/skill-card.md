@@ -1,44 +1,55 @@
-## Description: <br>
-A virtual CRT television roleplay skill that turns a time-and-place prompt into an immersive live-broadcast style scene with visuals, sound, sensory details, and small incidental moments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A virtual CRT TV experience that tunes to historical moments, places, daily life, or speculative futures and renders them as immersive live broadcasts.
 
-## Publisher: <br>
-[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka)
 
-## Use Case: <br>
-Developers, writers, learners, and roleplay users can use this skill to explore historical moments, everyday life in past eras, places they have not visited, or clearly labeled speculative future scenes through a live-TV narrative frame. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical or future scenes may be mistaken for sourced factual accounts. <br>
-Mitigation: Use the output as fictional or speculative roleplay and ask for sources before relying on historical details. <br>
-Risk: Broad TV-related trigger phrases may activate the skill for unrelated television requests. <br>
-Mitigation: Confirm the user wants the time-travel TV roleplay mode before continuing when the intent is ambiguous. <br>
-Risk: Immersive depictions of tragic events may be distressing. <br>
-Mitigation: Follow the artifact guidance to lower immersion and use distant framing for tragedy-related prompts. <br>
+## Use Case:
 
+External users and creative writers use this skill to ask an agent for immersive, TV-broadcast-style descriptions of historical places, daily life in specific eras, or speculative future scenarios. The skill is especially suited for creative writing, learning context, and imaginative exploration, with extra care for fictional, approximate, or emotionally sensitive scenes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyucheneureka/time-travel-tv) <br>
-- [Common time-space coordinate quick reference](references/eras-timeline.md) <br>
-- [Immersive detail data packs](references/detail-packs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown narrative with optional local shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fictional or speculative live-broadcast scenes; future content should be labeled as speculative and sensitive historical tragedies should use reduced immersion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Historical and future scenes may be fictional, approximate, or mistaken for factual reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as fictional or approximate unless backed by sources, avoid inventing false historical events, and clearly label future content as speculative.
+
+Risk: Personal, tragic, or emotionally sensitive scenes may become overly immersive.
+
+Mitigation: Use care with sensitive prompts and reduce immersion for tragedy-related scenes, such as using a distant perspective.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyucheneureka/skills/time-travel-tv)
+- [常用时空坐标速查表](references/eras-timeline.md)
+- [沉浸细节数据包](references/detail-packs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown narrative text with occasional inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language immersive scene descriptions; future scenes should be marked as speculative and sensitive tragedies should use reduced immersion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

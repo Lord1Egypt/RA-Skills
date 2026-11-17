@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="cntBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5B9BD5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E75B6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#F2F2F2" />
+  <rect x="0" y="0" width="1280" height="6" fill="url(#cntBarGrad)" />
+  <rect x="60" y="25" width="50" height="50" rx="6" fill="#5B9BD5" />
+  <text x="85" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF">{{CHAPTER_NUM}}</text>
+  <text x="130" y="58" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="28" font-weight="bold" fill="#333333">{{PAGE_TITLE}}</text>
+  <line x1="60" y1="95" x2="1220" y2="95" stroke="#D0D0D0" stroke-width="1" />
+  <rect x="60" y="110" width="1160" height="550" fill="#FFFFFF" rx="8" />
+  <text x="640" y="375" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#CCCCCC">{{CONTENT_AREA}}</text>
+  <text x="1220" y="700" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#999999">{{PAGE_NUM}}</text>
+</svg>

@@ -1,42 +1,54 @@
-## Description: <br>
-Deep Token Saver guides agents to reduce token usage through concise replies, layered notes, memory deduplication, context compression, persistent memory workflows, and token-saving audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A token-saving skill that guides agents to reduce input, output, memory, context, and audit overhead through compressed responses, layered notes, persistent memory, deduplication, AGENTS compression, and token-use reporting.
 
-## Publisher: <br>
-[realpda](https://clawhub.ai/user/realpda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realpda](https://clawhub.ai/user/realpda)
 
-## Use Case: <br>
-Developers and agent users use this skill to make an agent answer more tersely, compress recurring context, manage persistent memory stores, and audit estimated token savings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward persistent memory consolidation, deletion, and local memory maintenance without enough user-control detail. <br>
-Mitigation: Back up memory stores first and require explicit approval before any consolidation, deletion, or memory mutation. <br>
-Risk: The skill includes local authenticated maintenance commands and depends on referenced Remnic and Python helper components. <br>
-Mitigation: Keep the bearer token private and verify the Remnic and Python helper components before running maintenance commands. <br>
-Risk: The skill references a startup task for the memory service without clear stop or rollback instructions. <br>
-Mitigation: Confirm how to stop or disable the startup task before enabling the workflow. <br>
+## Use Case:
 
+Developers and agent users can use this skill to make an agent produce more compact answers, manage memory growth, structure notes by summary depth, and audit estimated token savings during normal workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realpda/deep-token-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include terse response guidance, memory maintenance commands, and estimated token-saving summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent local memory services may retain or expose sensitive information if installed or configured without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Remnic server command, service account, network binding, token storage, and removal steps before installation or use.
+
+Risk: Automatic memory consolidation or AGENTS.md rewriting may delete, merge, or alter important instructions without enough safeguards.
+
+Mitigation: Require backups, a previewable diff, explicit confirmation, and a rollback path before allowing memory rewrites, AGENTS.md compression, deletion, or merging.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realpda/skills/deep-token-saver)
+- [Publisher Profile](https://clawhub.ai/user/realpda)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the agent to use compact response style and report estimated token savings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

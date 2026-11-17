@@ -1,0 +1,21 @@
+{
+  "name": "{{连接器名}}",
+  "name_zh": "{{中文名（可选）}}",
+  "name_en": "{{English Name}}",
+  "description": "{{Core capability in English}}",
+  "description_zh": "{{简明说明核心能力与适用场景}}",
+  "description_en": "{{Core capability and use cases in English}}",
+  "source": "{{kebab-case-全局唯一标识}}",
+  "type": "mcp",
+  "version": "1.0.0",
+  "examples_zh": [
+    "{{用户真实口语示例 1}}",
+    "{{用户真实口语示例 2}}"
+  ],
+  "examples_en": [
+    "{{Example 1}}",
+    "{{Example 2}}"
+  ],
+  "_optional_minWorkbuddyVersion": "{{使用新字段时必填}}",
+  "_optional_auth_mode": "{{省略=自带OAuth/无认证 | server-side | gateway | token（token 需另附 token-schema.json）}}"
+}

@@ -1,6 +1,6 @@
 # Heartbeat Cooling Playbook
 
-用在：定期 cooling、heartbeat 维护、整理 daily notes。
+用在：用户已授权的定期 cooling、heartbeat 维护、整理 daily notes。读取本文件或加载 skill 不创建维护授权，也不注册后台任务。
 
 ---
 
@@ -15,8 +15,8 @@ Cooling 不只是“归档”，还要顺手决定：
 
 ## 什么时候跑
 
-- 默认：每周一次
-- 或者：积累了 5+ 条 daily notes
+- 已有周期维护授权时，可建议每周一次
+- 或在授权范围内积累了 5+ 条 daily notes 后检查
 - 或者：用户明确要求 archive / cool / cleanup
 
 先看：
@@ -33,7 +33,7 @@ Cooling 不只是“归档”，还要顺手决定：
 python3 skills/hui-yi/scripts/cool.py scan
 ```
 
-没有 helper 就手工看最近 `memory/YYYY-MM-DD*.md`。
+`scan` 会更新 heartbeat 扫描状态；仅查看状态用 `cool.py status`。没有 helper 时，可在已授权范围内手工看最近 `memory/YYYY-MM-DD*.md`。
 
 ---
 
@@ -54,7 +54,7 @@ python3 skills/hui-yi/scripts/cool.py scan
 按类型放对地方。
 
 > 注意：下表是给 agent 的**路由建议**，由 agent 在主记忆层（OpenClaw 侧）按用户授权执行。
-> Hui-Yi 自身的脚本只读写 `memory/cold/` 和 `memory/heartbeat-state.json`，
+> 常规 cooling 脚本读写选定的 `memory/cold/` 和 `memory/heartbeat-state.json`；可选 hook 安装/日志和启用配置有单独披露，
 > 从不直接写 `MEMORY.md`、`TOOLS.md`、`.learnings/`、`AGENTS.md`、`SOUL.md`。
 
 | 内容 | 去哪 |
@@ -90,6 +90,7 @@ python3 skills/hui-yi/scripts/cool.py scan
 如果有时间，再做：
 - merge 重复 note
 - 降低 stale / noisy note 的权重
+- 核验陈旧事实：`decay.py` 可按 Last verified 降低 Confidence（high 超过 120 天、medium 超过 180 天），但不因时间流逝自动降低 Memory state；可靠度与复习强化是不同维度
 - 看 `retrieval-log.md`
   - 从没被召回的 note
   - 常无匹配的 query
@@ -102,9 +103,9 @@ python3 skills/hui-yi/scripts/cool.py scan
 
 1. `python3 skills/hui-yi/scripts/rebuild.py`
    ⚠️  **必须跑**：`decay.py` 只修改 `.md` 文件，不更新 `tags.json` / `index.md`。
-   如果这轮跑过 `decay.py`，rebuild 不能省略；或改用 `decay.py --rebuild` 合并两步。
+   如果这轮实际应用过 `decay.py`，rebuild 不能省略；或改用 `decay.py --rebuild` 合并两步。`--dry-run --rebuild` 只预览，不重建。
 2. `python3 skills/hui-yi/scripts/cool.py done <reviewed> <archived> <merged>`
-3. 更新 heartbeat 状态
+3. 确认前两条命令已更新 heartbeat 状态；不要编造归档/合并计数
 4. 除非用户问，不要主动汇报一大堆冷却结果
 
 ---

@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn78g0mgjp8qwazca6m6fk899d829deb",
+  "ownerId": "kn778z31czjyj515snpsht5ghh80hy50",
   "slug": "semantic-search",
   "version": "1.0.0",
-  "publishedAt": 1772615136268
+  "description": "企业级语义检索技能，支持表格/字段/文件搜索和 Text-to-SQL 数据生成。基于 LanceDB/FlightSQL 向量数据库，支持 BGE-M3 Embedding 和多种 LLM 模型。",
+  "tags": [
+    "search",
+    "semantic",
+    "vector",
+    "lancedb",
+    "text-to-sql",
+    "rag",
+    "embedding",
+    "llm"
+  ],
+  "repository": "https://github.com/semantic-search/semantic-search-skill",
+  "license": "MIT",
+  "author": "小白",
+  "requirements": "requirements.txt",
+  "env": {
+    "FLIGHT_DB_HOST": "FlightSQL 数据库主机地址",
+    "FLIGHT_DB_PORT": "FlightSQL 数据库端口",
+    "FLIGHT_DB_USER": "数据库用户名",
+    "FLIGHT_DB_PASSWORD": "数据库密码",
+    "LLM_API_KEY": "LLM API 密钥",
+    "EMBEDDING_API_KEY": "Embedding API 密钥（可选）"
+  }
 }

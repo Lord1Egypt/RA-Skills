@@ -1,0 +1,381 @@
+{
+  "proof_mode": "fixture",
+  "results": [
+    {
+      "coverage": {
+        "complete_track": true,
+        "limit": 20,
+        "returned": 2
+      },
+      "diagnostics": [],
+      "evidence": [
+        {
+          "bytes": 528,
+          "input": {
+            "fixture_notice": "Synthetic input for the adapter. This video identity and captions are not live YouTube observations.",
+            "is_generated": false,
+            "language": "English",
+            "language_code": "en",
+            "segments": [
+              {
+                "duration": 3.5,
+                "start": 0.0,
+                "text": "Synthetic fixture: preserve timing for verifiable retrieval."
+              },
+              {
+                "duration": 4.0,
+                "start": 3.5,
+                "text": "Synthetic fixture: missing captions require an explicit no_data outcome."
+              }
+            ],
+            "video_id": "fixture0001"
+          },
+          "name": "youtube-transcript",
+          "redacted": true,
+          "sha256": "d8f7bc044ca0ee05132f13ab60ae4a65258a9e7a7be54d787adfa31cee196b87"
+        }
+      ],
+      "mode": "youtube-transcript",
+      "observations": [
+        {
+          "duration_seconds": 3.5,
+          "is_generated": false,
+          "language": "en",
+          "segment_id": "fixture0001:0.0:9b64cae12bae",
+          "source_url": "https://www.youtube.com/watch?v=fixture0001&t=0",
+          "start_seconds": 0.0,
+          "text": "Synthetic fixture: preserve timing for verifiable retrieval.",
+          "video_id": "fixture0001"
+        },
+        {
+          "duration_seconds": 4.0,
+          "is_generated": false,
+          "language": "en",
+          "segment_id": "fixture0001:3.5:30aabd651d3b",
+          "source_url": "https://www.youtube.com/watch?v=fixture0001&t=3",
+          "start_seconds": 3.5,
+          "text": "Synthetic fixture: missing captions require an explicit no_data outcome.",
+          "video_id": "fixture0001"
+        }
+      ],
+      "observed_at": "2026-10-07T00:00:00Z",
+      "proof_mode": "fixture",
+      "proxy": {
+        "configured": false,
+        "exit_ip_verified": false,
+        "provenance_verified": false,
+        "provider": "user-supplied ProxyLane connection"
+      },
+      "schema_version": "1.0",
+      "status": "ok"
+    },
+    {
+      "coverage": {
+        "complete": false,
+        "limit": 20,
+        "returned": 2,
+        "sort": "top"
+      },
+      "diagnostics": [
+        {
+          "code": "bounded_sample",
+          "message": "A ranked bounded sample, not all comments and not a representative VOC survey"
+        }
+      ],
+      "evidence": [
+        {
+          "bytes": 561,
+          "input": {
+            "comment_count": 9,
+            "comments": [
+              {
+                "id": "fixture-comment-1",
+                "like_count": 2,
+                "parent": "root",
+                "text": "Synthetic fixture: I need timestamps with every quotation.",
+                "timestamp": null
+              },
+              {
+                "id": "fixture-comment-2",
+                "like_count": 1,
+                "parent": "root",
+                "text": "Synthetic fixture: which shipping region does this price cover?",
+                "timestamp": null
+              }
+            ],
+            "id": "fixture0001",
+            "title": "Synthetic parser fixture",
+            "webpage_url": "https://www.youtube.com/watch?v=fixture0001"
+          },
+          "name": "youtube-comments",
+          "redacted": true,
+          "sha256": "c809670f5bd9ad262d42905817ba3769bf2f0e2295ac9c07f3febf6f775185eb"
+        }
+      ],
+      "mode": "youtube-comments",
+      "observations": [
+        {
+          "comment_id": "fixture-comment-1",
+          "likes": 2,
+          "parent": "root",
+          "source_url": "https://www.youtube.com/watch?v=fixture0001&lc=fixture-comment-1",
+          "text": "Synthetic fixture: I need timestamps with every quotation.",
+          "timestamp": null,
+          "video_id": "fixture0001"
+        },
+        {
+          "comment_id": "fixture-comment-2",
+          "likes": 1,
+          "parent": "root",
+          "source_url": "https://www.youtube.com/watch?v=fixture0001&lc=fixture-comment-2",
+          "text": "Synthetic fixture: which shipping region does this price cover?",
+          "timestamp": null,
+          "video_id": "fixture0001"
+        }
+      ],
+      "observed_at": "2026-10-07T00:00:00Z",
+      "proof_mode": "fixture",
+      "proxy": {
+        "configured": false,
+        "exit_ip_verified": false,
+        "provenance_verified": false,
+        "provider": "user-supplied ProxyLane connection"
+      },
+      "schema_version": "1.0",
+      "status": "partial"
+    },
+    {
+      "coverage": {
+        "citations_returned": 2,
+        "expanded_sources": false,
+        "limit": 20
+      },
+      "diagnostics": [
+        {
+          "code": "region_unverified",
+          "message": "gl/hl, proxy configuration and location footer are evidence inputs, not proof of regional causality or a regional ranking"
+        }
+      ],
+      "evidence": [
+        {
+          "bytes": 798,
+          "input": {
+            "answer_text": "Synthetic fixture: a captured AI answer needs source citations and a declared observation context.",
+            "citations": [
+              {
+                "title": "Synthetic citation A",
+                "url": "https://example.org/fixture-source-a"
+              },
+              {
+                "title": "Synthetic citation B",
+                "url": "https://www.google.com/url?q=https%3A%2F%2Fexample.org%2Ffixture-source-b"
+              }
+            ],
+            "fixture_notice": "Synthetic selected-DOM input. It is not a Google response or evidence of regional visibility.",
+            "location_text": "Synthetic location footer: not verified",
+            "marker": "AI Overview",
+            "query": "synthetic fixture query",
+            "requested_country": "us",
+            "requested_language": "en",
+            "surface": "ai-overview",
+            "url": "https://www.google.com/search?q=synthetic+fixture+query&hl=en&gl=us"
+          },
+          "name": "google-citations",
+          "redacted": true,
+          "sha256": "6cf9692c4b707cc19e28e4cd39d6ae0fc26a10b55ef894f775c7200f159bc173"
+        }
+      ],
+      "mode": "google-citations",
+      "observations": [
+        {
+          "answer_text": "Synthetic fixture: a captured AI answer needs source citations and a declared observation context.",
+          "citations": [
+            {
+              "title": "Synthetic citation A",
+              "url": "https://example.org/fixture-source-a"
+            },
+            {
+              "title": "Synthetic citation B",
+              "url": "https://example.org/fixture-source-b"
+            }
+          ],
+          "observed_location_text": "Synthetic location footer: not verified",
+          "query": "synthetic fixture query",
+          "regional_validation": "unverified",
+          "requested_country": "us",
+          "requested_language": "en",
+          "source_url": "https://www.google.com/search?q=synthetic+fixture+query&hl=en&gl=us",
+          "surface": "ai-overview"
+        }
+      ],
+      "observed_at": "2026-10-07T00:00:00Z",
+      "proof_mode": "fixture",
+      "proxy": {
+        "configured": false,
+        "exit_ip_verified": false,
+        "provenance_verified": false,
+        "provider": "user-supplied ProxyLane connection"
+      },
+      "schema_version": "1.0",
+      "status": "partial"
+    },
+    {
+      "coverage": {
+        "comment_limit": 20,
+        "comments_returned": 1,
+        "complete": false,
+        "notes": 1,
+        "upstream_has_more": true
+      },
+      "diagnostics": [
+        {
+          "code": "bounded_note",
+          "message": "One note, bounded top-level comments, no replies/OCR. Server proxy declaration is not independently verified"
+        }
+      ],
+      "evidence": [
+        {
+          "bytes": 704,
+          "input": {
+            "data": {
+              "comments": {
+                "cursor": "fixture-cursor",
+                "hasMore": true,
+                "list": [
+                  {
+                    "content": "Synthetic fixture comment.",
+                    "id": "fixture-xhs-comment-1",
+                    "likeCount": "1"
+                  }
+                ]
+              },
+              "note": {
+                "desc": "Synthetic fixture: the description is not the text contained in images.",
+                "imageList": [],
+                "interactInfo": {
+                  "commentCount": "8",
+                  "likedCount": "3"
+                },
+                "noteId": "fixture-note-1",
+                "title": "Synthetic note fixture"
+              }
+            },
+            "feed_id": "fixture-note-1",
+            "fixture_notice": "Synthetic upstream get_feed_detail JSON. No real note, session, proxy or user was accessed."
+          },
+          "name": "xiaohongshu",
+          "redacted": true,
+          "sha256": "2132da4566b734d69358cf96768d73d67bba169e30238fb0d98cc7809a64f0c5"
+        }
+      ],
+      "mode": "xiaohongshu",
+      "observations": [
+        {
+          "comments": [
+            {
+              "comment_id": "fixture-xhs-comment-1",
+              "likes_text": "1",
+              "source_url": "https://www.xiaohongshu.com/explore/fixture-note-1",
+              "text": "Synthetic fixture comment."
+            }
+          ],
+          "image_content_read": false,
+          "interaction_counts_raw": {
+            "commentCount": "8",
+            "likedCount": "3"
+          },
+          "note_id": "fixture-note-1",
+          "source_url": "https://www.xiaohongshu.com/explore/fixture-note-1",
+          "text": "Synthetic fixture: the description is not the text contained in images.",
+          "title": "Synthetic note fixture"
+        }
+      ],
+      "observed_at": "2026-10-07T00:00:00Z",
+      "proof_mode": "fixture",
+      "proxy": {
+        "configured": false,
+        "exit_ip_verified": false,
+        "provenance_verified": false,
+        "scope": "existing MCP server declaration"
+      },
+      "schema_version": "1.0",
+      "status": "partial"
+    },
+    {
+      "coverage": {
+        "checkout_verified": false,
+        "delivery_location_verified": false,
+        "pages": 1,
+        "pagination": false
+      },
+      "diagnostics": [
+        {
+          "code": "currency_not_inferred",
+          "message": "Rendered price text is preserved; ambiguous currency symbols are not converted to a typed price"
+        }
+      ],
+      "evidence": [
+        {
+          "bytes": 1205,
+          "input": {
+            "expected_id": "FIXTURE001",
+            "extracted": {
+              "availability_text": "Synthetic fixture: In Stock",
+              "identifier": "FIXTURE001",
+              "jsonld_products": [],
+              "price_text": "$19.99",
+              "selectors": {
+                "availability": "#availability",
+                "identity": "input#ASIN",
+                "price": "#corePriceDisplay_desktop_feature_div .a-price .a-offscreen, #corePrice_feature_div .a-price .a-offscreen",
+                "title": "#productTitle",
+                "variant": "[id^=\"variation_\"] .selection"
+              },
+              "title": "Synthetic parser fixture, Blue",
+              "variant_text": [
+                "Blue"
+              ]
+            },
+            "fixture_notice": "Synthetic HTML using documented collector selectors. No Amazon offer or price was observed live.",
+            "html": "<!doctype html><html><body><span id='productTitle'>Synthetic parser fixture, Blue</span><input id='ASIN' value='FIXTURE001'><div id='corePriceDisplay_desktop_feature_div'><span class='a-price'><span class='a-offscreen'>$19.99</span></span></div><div id='availability'>Synthetic fixture: In Stock</div><div id='variation_color_name'><span class='selection'>Blue</span></div></body></html>",
+            "platform": "amazon",
+            "url": "https://www.amazon.com/dp/FIXTURE001",
+            "variant": "Blue"
+          },
+          "name": "price",
+          "redacted": true,
+          "sha256": "b66c6ece7e9f1cf8c2c5a52353811bbb3188ac62150bb76c3af92aadc8aa1412"
+        }
+      ],
+      "mode": "price",
+      "observations": [
+        {
+          "availability_text": "Synthetic fixture: In Stock",
+          "currency": null,
+          "offer_identity": "visible desktop offer",
+          "price": null,
+          "price_text": "$19.99",
+          "product_id": "FIXTURE001",
+          "shipping_tax_included": "unknown",
+          "source_url": "https://www.amazon.com/dp/FIXTURE001",
+          "title": "Synthetic parser fixture, Blue",
+          "variant_text": [
+            "Blue"
+          ]
+        }
+      ],
+      "observed_at": "2026-10-07T00:00:00Z",
+      "proof_mode": "fixture",
+      "proxy": {
+        "configured": false,
+        "exit_ip_verified": false,
+        "provenance_verified": false,
+        "provider": "user-supplied ProxyLane connection"
+      },
+      "schema_version": "1.0",
+      "status": "partial"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "fixture_demo"
+}

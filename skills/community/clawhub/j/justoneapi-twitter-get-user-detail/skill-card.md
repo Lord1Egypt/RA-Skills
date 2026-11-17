@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/twitter/get-user-detail/v1 for Twitter User Profile through JustOneAPI with restId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/twitter/get-user-detail/v1 for Twitter User Profile through JustOneAPI with restId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Twitter user profile endpoint for a supplied X/Twitter restId and summarize profile metadata, audience metrics, and verification-related fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed as a command argument and then added to the request URL, which can expose it through shell history, process listings, logs, or URL capture. <br>
-Mitigation: Run only in a trusted local environment, avoid command logging, rotate any exposed token, and prefer a version that reads the token from the environment internally without placing it in command arguments or URLs. <br>
-Risk: The skill sends a Twitter/X user restId to an external JustOneAPI endpoint. <br>
-Mitigation: Use only identifiers the user intends to look up and review the returned data before relying on or sharing it. <br>
+## Use Case:
 
+Developers and external agents use this skill to look up Twitter/X user profile metadata by restId through the JustOneAPI Twitter User Profile endpoint. It supports summaries of account metadata, audience counts, verification fields, and raw JSON responses from the API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-twitter-get-user-detail) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_detail&utm_content=project_link) <br>
-- [Generated Operation Reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; non-token input is restId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API token can be exposed through command lines or full request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, short-lived JustOneAPI token where possible, avoid shared or heavily logged environments, and rotate the token if logs may capture command lines or URLs.
+
+Risk: The skill can retrieve Twitter/X profile data for a supplied restId.
+
+Mitigation: Use it only for user-requested profile lookups and preserve the provided restId without expanding the lookup scope.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_detail&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_detail&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-twitter-get-user-detail)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; uses restId as the required lookup parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

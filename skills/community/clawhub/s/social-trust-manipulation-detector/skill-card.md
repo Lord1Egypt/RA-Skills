@@ -1,42 +1,52 @@
-## Description: <br>
-Helps identify coordinated social trust manipulation in agent marketplaces by detecting reputation gaming through sockpuppet networks, coordinated upvoting, and manufactured community signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps identify coordinated social trust manipulation in agent marketplaces by detecting reputation gaming through sockpuppet networks, coordinated upvoting, and manufactured community signals that can make unsafe skills appear trusted.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, marketplace users, and moderators use this skill to assess whether trust signals for a skill, publisher, or group of skills appear organic or manipulated before relying on reputation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Manipulation verdicts could affect publisher reputation or moderation decisions. <br>
-Mitigation: Treat SUSPICIOUS, COORDINATED, and MANUFACTURED results as investigative leads and verify the underlying evidence before reporting a publisher or taking moderation action. <br>
-Risk: Limited marketplace metadata can reduce detection confidence. <br>
-Mitigation: State which evidence dimensions are unavailable and limit conclusions to observable velocity and review-text signals when account, voting, or install data is missing. <br>
-Risk: Legitimate launches, press coverage, or featured placement can resemble coordinated burst engagement. <br>
-Mitigation: Compare suspicious bursts against launch context, marketplace promotion history, account diversity, and platform-level data before concluding manipulation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/social-trust-manipulation-detector) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/andyxinweiminicloud) <br>
+## Use Case:
 
+Developers, marketplace moderators, and security reviewers use this skill to assess whether a skill's trust reputation reflects independent community validation or coordinated manipulation. It supports reviews of skill identifiers, publisher accounts, or sets of skills for engagement velocity anomalies, cohort fingerprints, utility correlation, cross-publisher coordination, and review authenticity.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown manipulation detection report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports engagement velocity, account cohort fingerprints, utility correlation, coordination indicators, review authenticity, and an AUTHENTIC/SUSPICIOUS/COORDINATED/MANUFACTURED verdict.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Useful analysis may require marketplace engagement, review, account, or install metadata that is not always public.
+
+Mitigation: Use only authorized data sources and treat lower-metadata assessments as lower confidence.
+
+Risk: Future versions or workflows could request private platform credentials to obtain richer marketplace data.
+
+Mitigation: Review credential requests before use and avoid sharing private platform access unless the workflow and data handling are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/social-trust-manipulation-detector)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown manipulation detection report with verdict and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may depend on access to marketplace engagement metadata, review text, account history, install counts, and cross-voting patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

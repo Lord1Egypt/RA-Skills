@@ -1,44 +1,61 @@
-## Description: <br>
-cleanMyMacSkill helps agents scan disk usage on macOS, Windows, and Linux, classify cleanup candidates, and produce an interactive HTML report with optional local cleanup actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cleanMyMacSkill helps agents analyze disk usage across macOS, Windows, and Linux, classify cleanup candidates, generate shell cleanup guidance, and build an interactive HTML storage report with optional local cleanup actions.
 
-## Publisher: <br>
-[peizhou](https://clawhub.ai/user/peizhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peizhou](https://clawhub.ai/user/peizhou)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to understand what is consuming local disk space, prioritize cleanup candidates, and generate a reviewable report before taking cleanup actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The interactive cleanup mode can remove local files, and permanent delete is intentionally destructive. <br>
-Mitigation: Use the static report or trash mode for safer review, and use permanent delete only after checking every listed path. <br>
-Risk: Disk cleanup recommendations can include user data or application state that needs manual review. <br>
-Mitigation: Review the report classifications and inspect paths before approving cleanup actions, especially items marked for review. <br>
+## Use Case:
 
+External users, developers, and support engineers use this skill to inspect local disk usage, identify large files and directories, and produce prioritized cleanup guidance. It can generate a static report for analysis-only use or launch a local web dashboard for reviewed trash/delete actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/peizhou/clean-my-mac) <br>
-- [README (English)](README.en.md) <br>
-- [macOS Storage Layout & Classification Reference Guide](references/macos.md) <br>
-- [Windows Storage Layout & Classification Reference Guide](references/windows.md) <br>
-- [Linux Storage Layout & Classification Reference Guide](references/linux.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown summary, shell commands, JSON scan data, and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static report mode is safer for review; local server mode can move files to trash or permanently delete allowlisted paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill includes optional local server actions that can move files to trash or permanently delete allowlisted paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use static report mode for analysis-only workflows; only launch server mode after reviewing the generated cleanup targets.
+
+Risk: Permanent deletion is irreversible and the security evidence flags hard-delete path validation as too broad for a low-risk cleanup tool.
+
+Mitigation: Prefer trash actions, keep backups, and manually verify every target path before using permanent delete.
+
+Risk: Documentation describes the scanner as read-only, but the full skill also supports interactive cleanup actions.
+
+Mitigation: Communicate the distinction between scan/report generation and server cleanup mode before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peizhou/skills/clean-my-mac)
+- [English README](artifact/README.en.md)
+- [macOS Storage Layout & Classification Reference Guide](artifact/references/macos.md)
+- [Windows Storage Layout & Classification Reference Guide](artifact/references/windows.md)
+- [Linux Storage Layout & Classification Reference Guide](artifact/references/linux.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, shell command snippets, JSON scan data, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python standard library scripts to produce scan JSON and either a static HTML dashboard or a local interactive dashboard.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence, released 2026-06-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

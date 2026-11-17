@@ -1,0 +1,4 @@
+interface:
+  display_name: "NMI Literature Explorer"
+  short_description: "Find and connect NMI papers with official sources"
+  default_prompt: "Use $nmi-literature-explorer to find NMI papers on a topic and explain their contributions with source links."

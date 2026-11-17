@@ -1,43 +1,59 @@
-## Description: <br>
-Perform cloud-based OCR on PNG, JPG, JPEG, and WEBP images using SiliconFlow's DeepSeek-OCR with automatic image preprocessing for enhanced recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs cloud-based OCR on PNG, JPG, JPEG, and WEBP images using SiliconFlow's DeepSeek-OCR with automatic image preprocessing for improved recognition.
 
-## Publisher: <br>
-[qwq2023qwq](https://clawhub.ai/user/qwq2023qwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwq2023qwq](https://clawhub.ai/user/qwq2023qwq)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from user-chosen local images or image URLs through a SiliconFlow-compatible DeepSeek-OCR endpoint. It supports preprocessed image input and can return either readable OCR text or structured JSON with usage metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected screenshots, document photos, or image URLs are sent to the configured SiliconFlow-compatible OCR endpoint. <br>
-Mitigation: Use the skill only with data approved for that external service, and avoid sending sensitive or regulated images unless the endpoint is approved for that use. <br>
-Risk: The OCR API key is stored in config.json and could be exposed if the file is shared or committed. <br>
-Mitigation: Use a dedicated limited API key, keep config.json private, and rotate the key if exposure is suspected. <br>
-Risk: Python dependencies are specified with minimum versions rather than exact pins. <br>
-Mitigation: Install in an isolated environment and pin reviewed dependency versions for production deployments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to extract text from local image files or image URLs through a cloud OCR API. It is suited for OCR workflows where third-party processing of the submitted image is approved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qwq2023qwq/online-deepseek-ocr) <br>
-- [SiliconFlow](https://siliconflow.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text OCR output or JSON result object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes success status, extracted text, engine, model, and API usage metadata when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Submitted images and the API key are sent to SiliconFlow or the configured API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images approved for third-party cloud processing, keep the API key protected, and verify config.json before each use.
+
+Risk: The configurable API host can receive sensitive image content if changed to an untrusted endpoint.
+
+Mitigation: Review the baseUrl setting before deployment and prefer a version that validates the API host.
+
+Risk: Unpinned Python dependencies may resolve to different package versions over time.
+
+Mitigation: Pin and review dependency versions before use in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qwq2023qwq/skills/online-deepseek-ocr)
+- [Publisher profile](https://clawhub.ai/user/qwq2023qwq)
+- [SiliconFlow](https://siliconflow.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text or JSON OCR results, with setup guidance that may include shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and an API key; local images may be preprocessed and uploaded as base64 to the configured API host.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Calculate tips and split bills with custom tip percentages, bill splitting, and currency-formatted local Python output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate tips and split bills with custom tip percentages and optional bill splitting using a local Python script.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to calculate restaurant tip amounts, total bills, common tip alternatives, and per-person shares for split bills.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documentation claims currency formatting, but the artifact behavior returns numeric JSON amounts without locale or currency-symbol formatting.
+
+Mitigation: Confirm presentation requirements before relying on currency-specific formatting, or document the output as numeric JSON amounts.
+
+Risk: The artifact documentation includes an unrelated offsite promotional link.
+
+Mitigation: Review external links before distribution and remove links that are not needed to understand or operate the calculator.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to calculate restaurant gratuity, total bill amount, and per-person split amounts from local command-line inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation contains promotional external links unrelated to tip calculation. <br>
-Mitigation: Review external links before opening them and rely on the local calculator behavior for the skill's core function. <br>
-Risk: Marketplace metadata includes a credential-related capability tag that appears inaccurate for this local calculator. <br>
-Mitigation: Do not provide credentials; the calculator script does not require API keys or sensitive secrets. <br>
+**Output Format:** [JSON output from a Python command-line script, with concise usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-tip-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+**Other Properties Related to Output:** [Pure Python standard library; no API keys or external dependencies required]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text] <br>
-**Output Format:** [JSON calculation results from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bill amount, tip percentage, tip amount, total, optional split amounts, and common tip examples.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

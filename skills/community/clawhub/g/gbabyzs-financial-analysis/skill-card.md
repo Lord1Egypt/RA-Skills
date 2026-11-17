@@ -1,41 +1,58 @@
-## Description: <br>
-Provides financial analysis of listed companies, including valuation ratios, profitability metrics, financial health indicators, and DCF-based valuation models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides financial analysis of listed companies, including valuation ratios, profitability metrics, financial health indicators, and DCF-based valuation models.
 
-## Publisher: <br>
-[GBABYZS](https://clawhub.ai/user/GBABYZS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbabyzs](https://clawhub.ai/user/gbabyzs)
 
-## Use Case: <br>
-Agents and users use this skill to inspect public company fundamentals, valuation ratios, financial health indicators, and DCF valuation scenarios. It supports analytical review and comparison, not automated investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial outputs may be mistaken for investment advice. <br>
-Mitigation: Treat results as analytical aids and review them with appropriate financial judgment before relying on them. <br>
-Risk: Results depend on third-party market data and user-supplied valuation assumptions. <br>
-Mitigation: Validate the data source, review assumptions such as growth and discount rates, and compare results against other analysis before use. <br>
-Risk: Dependencies are installed from external Python package sources. <br>
-Mitigation: Install dependencies from trusted package sources in a controlled Python environment. <br>
+## Use Case:
 
+Developers and agents use this skill to calculate valuation ratios, profitability metrics, financial health scores, and DCF estimates for listed companies from public market data. Results should be treated as informational analysis rather than professional financial advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python dictionaries and human-readable financial analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on public market data availability and valuation assumptions supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill produces valuation outputs and buy, hold, or sell labels that may be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational calculations and review assumptions, data freshness, and context before using them in investment decisions.
+
+Risk: The skill fetches public market data through Python dependencies, and unpinned dependencies can change behavior over time.
+
+Mitigation: Install the skill in an isolated Python environment and pin dependency versions before operational use.
+
+Risk: Some documentation and output labels are in Chinese, which may cause misunderstandings for non-Chinese readers.
+
+Mitigation: Review or translate the documentation and labels before deployment in workflows where readers may not understand Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbabyzs/skills/gbabyzs-financial-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/gbabyzs)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python functions returning dictionaries, plus Markdown and inline shell commands for setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial outputs include timestamps, ratios, scores, valuation assumptions, and informational recommendation labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

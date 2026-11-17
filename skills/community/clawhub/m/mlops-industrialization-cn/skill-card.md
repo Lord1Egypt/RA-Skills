@@ -1,39 +1,53 @@
-## Description: <br>
-Transform prototypes into distributable Python packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform prototypes into distributable Python packages.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to convert notebook-style prototypes into Python package scaffolds with a src layout, separated domain, I/O, and application layers, and starter training code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package scaffold script writes files under src and tests in the current directory. <br>
-Mitigation: Run it from the intended project directory and avoid directories with important existing src or tests files unless they are backed up. <br>
-Risk: Unexpected package names can produce confusing paths or invalid Python package names. <br>
-Mitigation: Use a simple Python package name containing only letters, numbers, and underscores. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn notebook-style machine learning prototypes into Python packages with a src layout, layered modules, and starter training code.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated Python package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local src and tests package scaffolding when the bundled shell script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The package generator can write or overwrite files outside the intended package directory if given a crafted package name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the generator only with a simple trusted package name and avoid slashes or dot-dot path components.
+
+Risk: The generator writes predictable files such as features.py, data.py, train.py, and test package initializers.
+
+Mitigation: Run it in a clean project or review existing files before execution to avoid unintended overwrites.
+
+## Reference(s):
+
+- [MLOps Coding Course](https://github.com/MLOps-Courses/mlops-coding-skills)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Python package files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Package names should be simple trusted identifiers when using the generator script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

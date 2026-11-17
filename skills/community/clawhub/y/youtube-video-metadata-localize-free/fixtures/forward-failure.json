@@ -1,0 +1,33 @@
+{
+  "kind": "youtube-video-metadata-localization-draft",
+  "translation_method": "agent-authored; script validates and assembles only",
+  "collection_scope": "独立新离线可见文字材料，不是在线访问结果；未使用既有示例词汇。",
+  "chinese_audience": "第一次参加骑行露营的中文读者",
+  "audience_adaptation": "保留未确认产品名TrailPack X；不可见简介不推断配置内容。",
+  "original": {
+    "title": "TrailPack X: Weekend Setup",
+    "description_points": []
+  },
+  "chinese_draft": {
+    "title": "TrailPack X：周末配置",
+    "description": "",
+    "title_source": {
+      "original": "TrailPack X: Weekend Setup",
+      "url": "https://www.youtube.com/watch?v=offline-bike-hidden",
+      "field": "title"
+    },
+    "description_points": []
+  },
+  "sources": [
+    {
+      "url": "https://www.youtube.com/watch?v=offline-bike-hidden",
+      "field": "title",
+      "original": "TrailPack X: Weekend Setup"
+    }
+  ],
+  "missing_items": [
+    "简介不可见：未推断或补写简介内容。",
+    "待确认术语/主张：TrailPack X（来源：title）；保留原词，不升级为已核实事实。"
+  ],
+  "no_backend_changes": true
+}

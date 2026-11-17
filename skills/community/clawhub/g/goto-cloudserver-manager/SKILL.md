@@ -1,6 +1,6 @@
 ---
 name: goto-cloudserver-manager
-version: 1.0.4
+version: 1.0.6
 description: 多云服务器自动化运维 Skill，支持阿里云/腾讯云/华为云服务器的数据库安装、表结构创建、监控巡检和健康报告
 author: GotoPlan Team
 license: MIT
@@ -56,15 +56,34 @@ supported_providers:
   - huawei              # 华为云 ECS + SSH
 
 supported_os:
+  - windows-server-2012-r2
+  - windows-server-2016
   - windows-server-2019
   - windows-server-2022
+  - windows-server-2025
+  - ubuntu-18.04
   - ubuntu-20.04
   - ubuntu-22.04
+  - ubuntu-24.04
+  - debian-10
   - debian-11
   - debian-12
   - centos-7
+  - centos-stream-9
+  - rhel-8
+  - rhel-9
+  - rocky-linux-8
   - rocky-linux-9
+  - almalinux-8
+  - almalinux-9
+  - openeuler-20.03
   - openeuler-22.03
+  - openeuler-24.03
+  - alibaba-cloud-linux-2   # 阿里云 ECS 默认镜像之一
+  - alibaba-cloud-linux-3
+  - tencentos-server-3.1    # 腾讯云 CVM/轻量应用服务器默认镜像之一
+  - tencentos-server-3.2
+  - huaweicloud-euleros-2.9 # 华为云 ECS 默认镜像之一
 
 supported_databases:
   - sqlserver   # SQL Server 2019/2022（主要用于 Windows）

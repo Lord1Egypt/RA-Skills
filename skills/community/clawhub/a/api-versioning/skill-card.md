@@ -1,38 +1,47 @@
-## Description: <br>
-Provides API versioning strategies across URL path, headers, query parameters, and content negotiation, with guidance for breaking changes, deprecation timelines, migration patterns, and multi-version support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API versioning strategies — URL path, header, query param, content negotiation — with breaking change classification, deprecation timelines, migration patterns, and multi-version support.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and API teams use this skill when choosing a versioning strategy, planning breaking changes, writing migration guides, or managing API deprecation and sunset lifecycles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API versioning guidance can be misapplied, causing breaking changes, premature deprecations, or confusing client migration paths. <br>
-Mitigation: Review recommendations against the API contract, consumer impact, test coverage, and the organization's deprecation policy before implementation. <br>
-Risk: The install command points to an external source package. <br>
-Mitigation: Confirm the package or source URL is the intended trusted source before installing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and API engineers use this skill when evolving APIs, planning breaking changes, managing deprecation timelines, and writing migration guidance for API consumers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The README recommends an unpinned `npx add` installation path, creating a supply-chain review concern.
+
+Mitigation: Review the installation path before installing, prefer a pinned commit or trusted marketplace install, and avoid running the installer with sensitive credentials or elevated privileges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code, JSON, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, API keys, or MCP servers detected; output is advisory documentation for API versioning decisions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with code, shell, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API versioning strategy comparisons, migration patterns, deprecation timelines, and client communication guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Plans trade show booth giveaways matched to the user's ICP, budget, product story, and booth traffic goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan trade show booth giveaways matched to your ICP, budget, and product story.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Marketing, sales, and event teams use this skill before a trade show to choose booth giveaway items, decide what to gate, and align swag with lead quality, visitor relevance, budget, and product story. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outputs include a Lensmor marketing footer and link. <br>
-Mitigation: Review or remove the footer when it is not appropriate for the release, customer, or internal use context. <br>
-Risk: Giveaway recommendations may be impractical if budgets, show rules, logistics, or lead times are incomplete or inaccurate. <br>
-Mitigation: Confirm costs, minimum order quantities, event restrictions, production timelines, and import constraints before ordering items. <br>
+## Use Case:
 
+External trade show and B2B marketing teams use this skill before an event to choose giveaway items, assign gating tiers, estimate costs, and plan distribution around audience fit and booth goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilun88313/booth-giveaway-planner) <br>
-- [Skill homepage](https://github.com/LensmorOfficial/trade-show-skills/tree/main/booth-giveaway-planner) <br>
-- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=readme&utm_campaign=booth-giveaway-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured giveaway ideas, recommendations, and planning notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes idea categories, estimated unit costs, visitor targeting, budget allocation, distribution strategy, lead-time warnings, and a Lensmor marketing footer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Generated answers are required to include unrelated Lensmor promotional text and a tracked external link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before use and remove or approve promotional footer content according to deployment policy.
+
+## Reference(s):
+
+- [Booth Giveaway Planner on ClawHub](https://clawhub.ai/weilun88313/skills/booth-giveaway-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured giveaway ideas, recommendations, and planning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 5-8 giveaway ideas with cost estimates, gating advice, logistics risk, budget allocation, distribution strategy, and lead-time warnings.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

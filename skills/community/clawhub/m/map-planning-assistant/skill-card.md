@@ -1,49 +1,58 @@
-## Description: <br>
-An AMap-based map planning assistant that helps agents generate multi-scenario local travel plans, route recommendations, weather-aware itineraries, cultural notes, and shareable personal map links or QR codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate AMap-based POI recommendations, routes, local activity suggestions, cultural notes, user profile/history views, and shareable personal map links or QR codes for Chinese cities.
 
-## Publisher: <br>
-[tix007](https://clawhub.ai/user/tix007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tix007](https://clawhub.ai/user/tix007)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer Chinese-language requests for city maps, POI recommendations, route plans, local activities, travel itineraries, and cultural explanations. It can also create AMap personal map outputs for selected POIs when an AMap Web Service API key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location and travel requests are sent to AMap for live POI, route, weather, traffic, and personal-map generation. <br>
-Mitigation: Use only with location data that is appropriate to share with AMap, and avoid sensitive home, work, family, customer, or operational locations unless consent and policy approval are clear. <br>
-Risk: The skill saves location-related history, created maps, visited cities, and inferred user preferences in local long-term memory and profile files. <br>
-Mitigation: Review local data retention before deployment, restrict filesystem access where possible, and provide a process to inspect, reset, or delete stored profile and memory data. <br>
-Risk: Generated AMap links and QR-code URLs can reveal included POIs to anyone who receives them. <br>
-Mitigation: Review POI lists before sharing generated links or QR codes, and do not include sensitive destinations in shareable maps. <br>
-Risk: The release evidence reports a suspicious security verdict because the privacy impact is understated. <br>
-Mitigation: Review the skill before installing and document the location-sharing, local-memory, and profiling behavior for users before production use. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural-language city, scenario, or travel requests into POI recommendations, itinerary and route summaries, local activity suggestions, cultural explanations, and AMap personal map outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tix007/map-planning-assistant) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tix007) <br>
-- [AMap Open Platform](https://lbs.amap.com/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact API Guide](artifact/API_GUIDE.md) <br>
-- [Artifact Personal Map Feature Guide](artifact/MAP_FEATURE.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown-style travel plans with POI lists, route summaries, activity suggestions, cultural notes, AMap links, and QR-code URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMAP_API_KEY for live AMap API calls; generated map links or QR codes may expose included POIs if shared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json reports 1.0.0) <br>
+Risk: Location queries and generated map point data may be sent to AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear user consent, avoid sensitive-location requests when possible, and disclose that AMap receives the map and POI data needed for live results.
+
+Risk: Travel history, recent interactions, preferences, and profile data may be stored locally in plaintext.
+
+Mitigation: Run in an isolated single-user environment or add authenticated user identity, restrictive file permissions, retention and deletion controls, and explicit consent notices before multi-user use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tix007/skills/map-planning-assistant)
+- [Publisher profile](https://clawhub.ai/user/tix007)
+- [AMap Open Platform](https://lbs.amap.com/)
+- [API Guide](artifact/API_GUIDE.md)
+- [Personal Map Feature](artifact/MAP_FEATURE.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with POI lists, route summaries, activity suggestions, cultural notes, AMap map links, QR-code links, and occasional code or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMAP_API_KEY for live AMap requests; outputs may include shareable AMap URLs and QR-code URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

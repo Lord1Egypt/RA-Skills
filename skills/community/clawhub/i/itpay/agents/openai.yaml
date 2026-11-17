@@ -1,0 +1,4 @@
+interface:
+  display_name: "ItPay"
+  short_description: "Use bundled ItPay services in OpenClaw"
+  default_prompt: "Use $itpay to find an ItPay service and show the price before Checkout."

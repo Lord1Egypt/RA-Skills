@@ -1,38 +1,57 @@
-## Description: <br>
-Transcribes call recordings into structured transcripts, concise meeting notes, extracted action items, and either a Feishu document or a local Markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call-Transcript-Todo transcribes call audio into structured Chinese-oriented notes with a transcript, summary, and extracted follow-up tasks.
 
-## Publisher: <br>
-[daaishu](https://clawhub.ai/user/daaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaishu](https://clawhub.ai/user/daaishu)
 
-## Use Case: <br>
-Employees and external users use this skill to turn audio call recordings into readable transcripts, meeting summaries, and follow-up tasks. It is useful when a user explicitly asks to transcribe or organize a recording and wants the result saved to Feishu or Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Call recordings and derived transcripts may contain sensitive information and may be sent to Feishu automatically when credentials are configured. <br>
-Mitigation: Before use, decide whether output should remain local or go to Feishu, confirm access controls for the destination, and avoid regulated or highly confidential calls unless an explicit confirmation or redaction step is added. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to process call recordings when the user explicitly asks for transcription or meeting-note cleanup. It converts supported audio files into a readable transcript, a concise summary, follow-up tasks, and either a Feishu document or a local Markdown file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daaishu/call-transcript-todo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown transcript and summary with action items; optionally a Feishu document link or local Markdown file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append confirmed action items to memory/todo.md after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Dependency installation may modify the active Python environment broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated environment or virtualenv, and pin and verify dependencies before use.
+
+Risk: Feishu credentials enable document creation in the configured workspace.
+
+Mitigation: Provide FEISHU_APP_ID and FEISHU_APP_SECRET only when Feishu output is intended, and use the least-privileged app credentials available.
+
+Risk: The default transcription and output flow is Chinese-oriented and may not fit all audio languages or note formats.
+
+Mitigation: Confirm that Chinese transcription and the generated note structure match the intended workflow before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daaishu/skills/call-transcript-todo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes, Feishu document content, local Markdown files, and concise user guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown output and append confirmed tasks to memory/todo.md; may create a Feishu document when credentials are configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

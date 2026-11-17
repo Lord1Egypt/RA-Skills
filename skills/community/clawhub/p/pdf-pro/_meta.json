@@ -1,6 +1,78 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "pdf-pro",
-  "version": "1.0.1",
-  "publishedAt": 1773658749029
+  "name": "pdf-tools",
+  "version": "1.0.0",
+  "display_name": "PDF处理工具",
+  "description": "PDF文档的编辑、合并、拆分、格式转换等操作",
+  "author": "OpenClaw",
+  "tags": ["pdf", "document", "converter", "utility"],
+  "homepage": "",
+  "platform": ["linux", "macos", "windows"],
+  "dependencies": {
+    "python": ">=3.8",
+    "PyPDF2": ">=3.0.0",
+    "pdfplumber": ">=0.10.0",
+    "Pillow": ">=10.0.0",
+    "pypdfium2": ">=4.0.0"
+  },
+  "commands": [
+    {
+      "name": "info",
+      "description": "查看PDF文件信息"
+    },
+    {
+      "name": "merge",
+      "description": "合并多个PDF文件"
+    },
+    {
+      "name": "split",
+      "description": "按页面范围拆分PDF"
+    },
+    {
+      "name": "extract",
+      "description": "提取指定页面"
+    },
+    {
+      "name": "rotate",
+      "description": "旋转PDF页面"
+    },
+    {
+      "name": "compress",
+      "description": "压缩PDF文件"
+    },
+    {
+      "name": "to-images",
+      "description": "PDF转图片"
+    },
+    {
+      "name": "from-images",
+      "description": "图片转PDF"
+    },
+    {
+      "name": "encrypt",
+      "description": "加密PDF"
+    },
+    {
+      "name": "decrypt",
+      "description": "解密PDF"
+    }
+  ],
+  "triggers": [
+    "合并PDF",
+    "拆分PDF",
+    "PDF合并",
+    "PDF拆分",
+    "提取PDF页面",
+    "PDF页面提取",
+    "PDF旋转",
+    "旋转PDF页面",
+    "PDF压缩",
+    "压缩PDF",
+    "PDF转图片",
+    "图片转PDF",
+    "PDF信息",
+    "查看PDF",
+    "PDF解密",
+    "PDF加密",
+    "PDF密码"
+  ]
 }

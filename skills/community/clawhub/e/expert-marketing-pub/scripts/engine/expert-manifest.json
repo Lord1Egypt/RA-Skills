@@ -1,0 +1,38 @@
+{
+ "category": "marketing",
+ "zh": "广告与营销合规专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "viral-script",
+   "name": "爆款视频脚本拆解官",
+   "layer": "local",
+   "entry": "deconstruct.js",
+   "kw": [
+    "二创",
+    "免费",
+    "口播脚本",
+    "完播率",
+    "小红书",
+    "抖音",
+    "文案诊断",
+    "爆款视频脚本拆解官",
+    "短视频脚本",
+    "脚本拆解",
+    "视频号",
+    "钩子"
+   ],
+   "cols": [
+    "00:00 大家好"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 1,
+  "total": 3,
+  "note": "本公开包内可本地运行 1 个子技能；本类共 3 个，其余 2 个只在订阅版里提供"
+ }
+}

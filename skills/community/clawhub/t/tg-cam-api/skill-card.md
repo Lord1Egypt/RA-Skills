@@ -1,41 +1,59 @@
-## Description: <br>
-Enables an agent to query bound Tange camera devices, capture current snapshots, retrieve event summaries and images, and check device online status and battery state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TG Cam Skill helps agents list bound cameras, capture current snapshots, review events and event images, and check online status and battery level.
 
-## Publisher: <br>
-[flyfinec](https://clawhub.ai/user/flyfinec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyfinec](https://clawhub.ai/user/flyfinec)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a credentialed camera service: list bound devices, request snapshots, review camera events and event images, and report online status or battery information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private camera data and trigger snapshots through the configured service. <br>
-Mitigation: Install only when the user intends to grant this camera access, and use explicit camera and device wording before requesting snapshots or event images. <br>
-Risk: The skill relies on persistent TIVS_CLI_ID and TIVS_API_KEY credentials. <br>
-Mitigation: Confirm where credentials are stored, avoid exposing the API key in chat output, and protect or rotate credentials as needed. <br>
+## Use Case:
 
+External users with configured TG camera credentials use this skill to inspect available cameras, request snapshots, review camera events and images, and check device status or battery level.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flyfinec/tg-cam-api) <br>
-- [Camera Skill API Base](https://skill.webcamapp.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown with concise answers, API-derived summaries, images when available, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TIVS_CLI_ID and TIVS_API_KEY credentials; avoids exposing raw API keys and long raw JSON responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill persists sensitive camera API credentials for later use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep openclaw.json private, avoid sharing or committing it, and rotate the camera API key if exposure is suspected.
+
+Risk: The skill can expose home surveillance snapshots, event images, event history, and device status.
+
+Mitigation: Install only if the user trusts the camera service and is comfortable granting access to camera images, events, and status.
+
+Risk: Ambiguous device requests could retrieve information from the wrong camera.
+
+Mitigation: Confirm the target device from the device list before making snapshot, event, online-status, or battery requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyfinec/skills/tg-cam-api)
+- [Publisher profile](https://clawhub.ai/user/flyfinec)
+- [Camera service API base](https://skill.webcamapp.cc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries with image references and concise status details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include camera snapshot or event image content when the service returns an image URL.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

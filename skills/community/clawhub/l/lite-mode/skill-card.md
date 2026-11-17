@@ -1,43 +1,54 @@
-## Description: <br>
-Runs OpenClaw on low-RAM machines (2-4 GB) by trimming context, throttling skills, and checking memory before heavy operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs OpenClaw on low-RAM machines (2-4 GB) by trimming context, throttling skills, and checking memory before heavy operations.
 
-## Publisher: <br>
-[mirajmahmudul](https://clawhub.ai/user/mirajmahmudul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirajmahmudul](https://clawhub.ai/user/mirajmahmudul)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep agent sessions usable on low-RAM machines by checking free memory, limiting context growth, and throttling heavier capabilities when memory is tight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce shorter responses or skip browser and image tools when memory is low. <br>
-Mitigation: Use it when reduced memory use is more important than full capability, and re-run work after memory recovers if skipped tools are needed. <br>
-Risk: Long sessions may be summarized to control context size, which can omit older details from the active working context. <br>
-Mitigation: Keep critical requirements in recent turns or restate them after context trimming. <br>
-Risk: The optional configuration snippet disables heavier tools if copied into a local OpenClaw configuration. <br>
-Mitigation: Copy only the needed fields and restore tool settings when low-memory operation is no longer required. <br>
+## Use Case:
 
+Developers and OpenClaw users enable this skill on low-RAM machines to reduce memory pressure before heavy operations, keep responses compact, and throttle browser or image workflows when available RAM is low.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirajmahmudul/skills/lite-mode) <br>
-- [Project homepage](https://github.com/mirajmahmudul/openclaw-lite-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise responses, memory status reporting, context trimming guidance, and optional low-memory configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically stop tasks, trim conversation context, or disable browser and image workflows when memory is low.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for low-memory sessions and review user-facing notices so affected users understand when capabilities were skipped or context was trimmed.
+
+Risk: Short responses and context trimming may omit details from long-running work.
+
+Mitigation: Ask the agent to preserve critical decisions before trimming and re-send important context after gateway restarts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirajmahmudul/skills/lite-mode)
+- [Project Homepage](https://github.com/mirajmahmudul/openclaw-lite-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps default replies short, emits memory status when requested, and may recommend temporary tool throttling or gateway restart steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

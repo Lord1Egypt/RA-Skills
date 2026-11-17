@@ -1,0 +1,58 @@
+{
+ "version": "1.0",
+ "calibrated": "2026-08-15",
+ "overall_auroc": 0.9787,
+ "bands": {
+  "short": {
+   "weights": {
+    "para": 0.4,
+    "spectrum": 0.54,
+    "surface": 0.0,
+    "cot": 0.0,
+    "surprisal": 0.06
+   },
+   "band_auroc": 0.9684,
+   "n": 1362
+  },
+  "mid": {
+   "weights": {
+    "para": 0.4,
+    "spectrum": 0.54,
+    "surface": 0.0,
+    "cot": 0.0,
+    "surprisal": 0.06
+   },
+   "band_auroc": 0.982,
+   "n": 2660
+  },
+  "long": {
+   "weights": {
+    "para": 0.4,
+    "spectrum": 0.54,
+    "surface": 0.0,
+    "cot": 0.0,
+    "surprisal": 0.06
+   },
+   "band_auroc": 0.9894,
+   "n": 733
+  }
+ },
+ "thresholds": {
+  "medium": 0.6368,
+  "high": 0.7486
+ },
+ "v2": {
+  "w_supervised": 0.9,
+  "thresholds": {
+   "medium": 0.3444,
+   "high": 0.5383
+  },
+  "calibrated": "2026-08-16",
+  "model": "qwen3-0.6b-lora-v34-4dim-fp16-onnx",
+  "calib_sample": {
+   "human": 260,
+   "ai_recall_at_high": 1.0
+  },
+  "note": "fusion_v2 = v3.0_fused*(1-w)+supervised*w; 阈值=calib半人类blended分布p95/p99; v3.2模型分布较s43整体上移, 旧阈值(0.064/0.0814)已废弃"
+ }
+}

@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill when the user wants to extract a webpage's design language into a reusable HTML style reference file, including typography, colors, spacing, surfaces, components, states, themes, motion, code-block styles, background atmosphere, decorative motifs, and art direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to extract a webpage's design language into a reusable HTML style reference file, including typography, colors, spacing, surfaces, components, states, themes, motion, code-block styles, background atmosphere, decorative motifs, and art direction.
 
-## Publisher: <br>
-[VintLin](https://clawhub.ai/user/VintLin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vintlin](https://clawhub.ai/user/vintlin)
 
-## Use Case: <br>
-Developers and designers use this skill to analyze a target webpage and turn its visual language into reusable style references for future AI-generated pages. It is intended for style-system extraction rather than page cloning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads target webpages through browser automation, which can expose browsing context or page content during extraction. <br>
-Mitigation: Run it only against trusted or intended pages, and avoid private authenticated pages unless that exposure is acceptable. <br>
-Risk: Generated HTML style specimens may contain remote font imports or reusable page styling that should be reviewed before reuse. <br>
-Mitigation: Review generated specimen files before publishing or incorporating them, and localize or remove remote font imports for offline or privacy-sensitive use. <br>
-Risk: The skill writes extraction outputs to files, so incorrect paths could create unwanted artifacts. <br>
-Mitigation: Keep output paths constrained to the skill's assets/theme directory as directed by the artifact workflow. <br>
+## Use Case:
 
+Developers and designers use this skill to extract a webpage's visual system into reusable design tokens, component archetypes, JSON manifests, and style specimen HTML that can guide future AI-generated pages without cloning the original page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/VintLin/extract-design) <br>
-- [Extraction checklist](references/extraction-checklist.md) <br>
-- [Style specimen template](references/style-specimen.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown extraction summary plus JSON style manifests and HTML style specimen files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are saved as named style manifest and style specimen files under the skill's assets/theme directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses browser-based webpage access, which can expose an agent environment to untrusted, private-network, localhost, or cloud metadata URLs if pointed at them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated project or virtual environment, prefer public and trusted target URLs, and avoid localhost, private network, cloud metadata, or sensitive internal pages.
+
+Risk: Generated output paths can place intermediate or extracted design files outside the intended skill asset area if the operator intentionally overrides them.
+
+Mitigation: Keep output under the skill's assets/theme directory unless a separate intermediate file location is intentionally reviewed.
+
+Risk: The workflow depends on Playwright and some sample HTML specimens may load external fonts when opened.
+
+Mitigation: Pin Playwright in controlled environments and review whether external font loading is acceptable before opening or distributing specimens.
+
+## Reference(s):
+
+- [Extract Design ClawHub release](https://clawhub.ai/vintlin/skills/extract-design)
+- [Extraction checklist](references/extraction-checklist.md)
+- [Style specimen template](references/style-specimen.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, HTML]
+
+**Output Format:** [Concise extraction summary plus generated JSON style manifest and self-contained HTML style specimen files; may include shell commands for Playwright-based extraction.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are normally saved under the skill's assets/theme directory with source-specific filenames.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

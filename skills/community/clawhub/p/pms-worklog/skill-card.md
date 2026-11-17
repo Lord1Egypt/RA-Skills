@@ -1,40 +1,64 @@
-## Description: <br>
-自动填写 PingCode/PMS 系统工时记录，支持批量填写多天的工时，自动登录、选择事项类型、填写事项、工时、日期和说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动填写 PingCode/PMS 系统工时记录。支持批量填写多天的工时，自动登录、选择事项类型、填写事项、工时、日期和说明。
 
-## Publisher: <br>
-[ww12355](https://clawhub.ai/user/ww12355) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ww12355](https://clawhub.ai/user/ww12355)
 
-## Use Case: <br>
-Employees who use PingCode/PMS can use this skill to automate routine worklog entry for one or more dates. It is intended for cases where the user has reviewed the target work item, hours, dates, and description before running the automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can log into PMS and submit business work records automatically without a final confirmation step. <br>
-Mitigation: Run it only when you intend to submit records, and review the configured dates, work item, hours, description, selectors, and submit behavior before execution. <br>
-Risk: The skill uses PMS account credentials and may save screenshots containing PMS information. <br>
-Mitigation: Use environment variables for credentials, avoid hardcoding secrets, and delete saved PMS screenshots after troubleshooting. <br>
+## Use Case:
 
+Employees and workflow automation users use this skill to run a Playwright script that logs into PingCode/PMS and enters worklog records for one or more dates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ww12355/pms-worklog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with shell and JavaScript configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The automation can submit PMS worklog records and save troubleshooting screenshots when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The automation can log into a company PMS account and submit worklog entries automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured dates, work item, hours, and description before every run, and run it only when automatic submission is intended.
+
+Risk: Screenshots saved during login, success, and error flows may contain company or account data.
+
+Mitigation: Delete or disable screenshots when they are not needed, and store any retained screenshots in an approved location.
+
+Risk: The script launches Chromium with --no-sandbox.
+
+Mitigation: Remove --no-sandbox where the local environment supports normal browser sandboxing, and avoid running the script with privileged OS permissions.
+
+Risk: Using broad or global Playwright dependencies can make runtime behavior harder to reproduce.
+
+Mitigation: Prefer a pinned local Playwright dependency for repeatable execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ww12355/skills/pms-worklog)
+- [Publisher profile](https://clawhub.ai/user/ww12355)
+- [PingCode/PMS login](https://pms.aispeech.com.cn)
+- [PingCode/PMS worklog page](https://pms.aispeech.com.cn/workspace/workload/insight)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown instructions with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs an agent to run a Playwright automation script that prints progress and saves screenshots.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

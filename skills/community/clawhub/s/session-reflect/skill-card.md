@@ -1,46 +1,60 @@
-## Description: <br>
-Analyze Claude Code session history to generate self-observation journals, detect goal drift, and surface hidden behavioral patterns. Outputs to Obsidian Vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Claude Code session history to generate self-observation journals, detect goal drift, and surface hidden behavioral patterns. Outputs to Obsidian Vault.
 
-## Publisher: <br>
-[yuiooo1102-droid](https://clawhub.ai/user/yuiooo1102-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuiooo1102-droid](https://clawhub.ai/user/yuiooo1102-droid)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to sync local session history into an Obsidian Vault and generate concise reflection, goal-drift, and pattern-discovery reports from their own notes and conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes local Claude Code history and Obsidian notes, which may contain sensitive personal, client, health, credential, or business information. <br>
-Mitigation: Use it only on vaults whose contents are appropriate for reflection reports; review generated files and delete unwanted digests or profiles. <br>
-Risk: Reflection outputs can consolidate personal observations and behavioral patterns into durable Markdown files. <br>
-Mitigation: Avoid shared or synced vaults for sensitive material, and keep memory updates subject to explicit user consent. <br>
-Risk: Credential redaction is pattern based and may not catch every secret or sensitive detail. <br>
-Mitigation: Review synced session digests and generated reports before sharing or retaining them. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to sync local session history into an Obsidian vault and generate short reflection, goal-drift, hidden-pattern, and monthly portrait reports. It is intended for personal analysis of recent conversation history and user-authored notes.
 
-## Reference(s): <br>
-- [Session Reflect on ClawHub](https://clawhub.ai/yuiooo1102-droid/session-reflect) <br>
-- [Daily Reflection Command](commands/reflect/default.md) <br>
-- [Goal Drift Command](commands/reflect/drift.md) <br>
-- [Hidden Patterns Command](commands/reflect/emerge.md) <br>
-- [Obsidian + Claude Code Codebook](https://www.youtube.com/watch?v=6MBq1paspVU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and local configuration files with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local Obsidian Vault reports and session digests; generated reports are concise and intended for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill reads local Claude session history and recent Obsidian notes, which may contain sensitive personal or work information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated vault or limited folder when possible, and run the skill only when that local data scope is acceptable.
+
+Risk: Session digests and reflection reports are copied into long-lived vault files where sensitive content may persist.
+
+Mitigation: Review generated Markdown files for secrets or private details, and avoid broad backfills until the stored output scope is understood.
+
+Risk: Installed slash commands can continue syncing and analyzing local history after the initial setup.
+
+Mitigation: Remove the ~/.claude/commands/reflect commands if this behavior is no longer wanted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuiooo1102-droid/skills/session-reflect)
+- [Obsidian + Claude Code Codebook](https://www.youtube.com/watch?v=6MBq1paspVU)
+- [session-retro](https://github.com/pwarnock/session-retro)
+- [continuity](https://clawskills.sh/skills/riley-coyote-continuity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files in an Obsidian vault, with supporting shell commands and concise guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session digests and reflection reports; session messages are sanitized, code blocks are replaced, and long messages are capped at 2000 characters.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata; artifact frontmatter lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

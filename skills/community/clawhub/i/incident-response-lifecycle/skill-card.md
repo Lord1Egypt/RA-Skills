@@ -1,43 +1,55 @@
-## Description: <br>
-Incident response process management following the NIST 800-61 lifecycle, covering severity classification, escalation matrices, role assignment, communication management, phased recovery coordination, blameless post-mortem facilitation, and 5-whys root cause analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Incident response process management following the NIST 800-61 lifecycle, covering severity classification, escalation matrices, role assignment, communication management, phased recovery coordination, blameless post-mortem facilitation, and 5-whys root cause analysis.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Incident commanders, security teams, SREs, and operations teams use this skill to coordinate service-affecting incidents from detection through post-incident review. It supports severity assignment, escalation, stakeholder communication, recovery coordination, incident metrics, and root cause analysis without performing technical forensics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags this release as suspicious because an autoreview helper may grant nested reviewers full local access. <br>
-Mitigation: Install only for trusted ClawHub maintainer workflows, review the helper before use, prefer --no-yolo or AUTOREVIEW_YOLO=0, scope credentials tightly, and confirm public or account-affecting actions before execution. <br>
-Risk: Incident coordination guidance can produce incorrect severity, escalation, or notification recommendations if the responder supplies incomplete or stale incident facts. <br>
-Mitigation: Require the incident commander to validate severity, impact, notification obligations, and recovery decisions against current organizational policy before acting. <br>
-Risk: The skill is scoped to process coordination and may be misapplied as a forensic or containment procedure. <br>
-Mitigation: Use dedicated technical incident response procedures for evidence collection, device forensics, and containment execution. <br>
+## Use Case:
 
+Incident responders, security operations teams, SREs, and engineering managers use this skill to coordinate incidents from declaration through recovery and post-incident review. It supports severity assignment, escalation, role allocation, stakeholder communications, incident metrics, and root cause analysis.
 
-## Reference(s): <br>
-- [Communication Templates](references/communication-templates.md) <br>
-- [RCA Framework](references/rca-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with incident templates, checklists, matrices, and report structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only process guidance; does not perform evidence collection, containment execution, or forensic analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The declared SSH binary prerequisite does not match the read-only coordination behavior described by the release security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the unused SSH prerequisite before installation or document why it is required in the deployment environment.
+
+Risk: Incident coordination guidance may be incomplete if the organization lacks current authority, contact, communication, or tracking prerequisites.
+
+Mitigation: Confirm incident authority, contact directories, communication channels, tracking systems, and severity criteria before relying on the workflow during an incident.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/incident-response-lifecycle)
+- [Communication Templates](references/communication-templates.md)
+- [RCA Framework](references/rca-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with incident templates, decision matrices, checklists, and structured report formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only coordination guidance; no command execution or credential access is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Business Model Canvas analysis tool for analyzing company business models, modeling business model canvases, deconstructing business logic, evaluating profit models, and writing business analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Model Canvas analysis tool. Use when users need to analyze company business models, perform business model canvas modeling, deconstruct business logic, evaluate profit models, or write business analysis reports.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and business analysts use this skill to collect public company information and produce a structured Business Model Canvas analysis across the standard nine building blocks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The analysis may include incorrect or outdated business facts from public sources.
+
+Mitigation: Verify important facts against reliable current sources before using the generated business model analysis.
+
+Risk: The user may include confidential company information in the analysis request.
+
+Mitigation: Avoid providing confidential information unless it is intended for analysis in the execution environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business analysts, strategists, founders, and consultants use this skill to structure public company research into the nine Business Model Canvas building blocks. It is intended for business model analysis reports based on real business information rather than fabricated details. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Business model analysis may include incorrect or outdated claims if public information is incomplete or stale. <br>
-Mitigation: Verify important claims against current public sources before relying on the analysis. <br>
-Risk: Users may include private or confidential business data in prompts or generated reports. <br>
-Mitigation: Use clearly named public companies or intended public business models, and avoid confidential inputs unless they are intentionally in scope. <br>
+**Output Format:** [Markdown structured as a nine-section Business Model Canvas report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/business-model-canvas-analysis) <br>
+**Other Properties Related to Output:** [Requires real business information and prohibits fabricated content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a fixed nine-section Business Model Canvas structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a named company or target business model; important claims should be checked against public sources.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

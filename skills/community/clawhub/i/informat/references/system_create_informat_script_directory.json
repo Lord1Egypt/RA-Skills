@@ -8,7 +8,8 @@
 			"properties": {
 				"name": {
 					"description": "Folder name, such as tools, folder names cannot be duplicated",
-					"type": "string"
+					"type": "string",
+					"minLength": 1
 				},
 				"parentId": {
 					"description": "Parent directory id, can be omitted if none",

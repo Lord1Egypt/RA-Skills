@@ -1,41 +1,55 @@
-## Description: <br>
-Reference tool for devtools \u2014 covers intro, quickstart, patterns and more. Quick lookup for Gymlog concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Gymlog.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use Gymlog as a compact reference tool for Gymlog concepts, quickstart guidance, implementation patterns, debugging, performance, security, migration, and cheat-sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review could not fully verify the target artifact. <br>
-Mitigation: Review the actual installed skill files before enabling the skill, with attention to unexpected install commands, credential requests, background services, and broad file or network access. <br>
-Risk: Static reference guidance can become inaccurate or incomplete for a user's environment. <br>
-Mitigation: Treat the output as reference guidance and validate operational or security-sensitive steps against project-specific requirements before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Gymlog concepts, setup patterns, troubleshooting, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [Gymlog on ClawHub](https://clawhub.ai/ckchzh/gymlog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings, lists, and tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs static reference material from local shell command handlers; no API keys, credentials, or network access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: SKILL.md frontmatter and ClawHub release evidence; script VERSION reports 2.0.2) <br>
+Risk: Static reference guidance may become stale or may not match a user's exact Gymlog environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the returned guidance against current project documentation before applying configuration, migration, security, or performance changes.
+
+Risk: The release and SKILL.md version are 2.0.3, while the bundled shell script reports 2.0.2.
+
+Mitigation: Use the server release and SKILL.md version for this card, and reconcile the script VERSION before relying on runtime version output.
+
+## Reference(s):
+
+- [Gymlog ClawHub skill page](https://clawhub.ai/ckchzh/skills/gymlog)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API keys, credentials, network access, or external service calls required.]
+
+## Skill Version(s):
+
+2.0.3 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

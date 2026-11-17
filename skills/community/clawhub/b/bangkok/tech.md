@@ -127,9 +127,9 @@ Smaller offices, often regional support roles.
 - Degree must be apostilled
 
 ### Alternatives
-- **LTR Visa**: If earning $80K+ remotely, work legally
-- **Smart Visa**: For highly-skilled, specific sectors
-- **Thailand Elite + remote work**: Gray area but common
+- **DTV**: 5-year multi-entry for remote workers with foreign employers (see `visas.md`)
+- **LTR Visa**: If earning ~$80K+ remotely, work legally with digital work permit
+- **Smart Visa**: For highly-skilled, specific BOI sectors
 
 ---
 
@@ -249,20 +249,6 @@ Most remote workers report ฿50,000-100,000 monthly spending.
 
 ## Career Advice
 
-### If Working Locally
-1. Target Agoda or regional companies (best pay)
-2. Build network at meetups
-3. Consider startup equity as compensation
-4. Learn some Thai for local companies
-
-### If Working Remotely
-1. Get LTR visa if income qualifies
-2. Use coworking for stability/networking
-3. Join remote communities
-4. Build local relationships anyway
-
-### If Entrepreneur
-1. Check BOI incentives
-2. Consider True Digital Park resources
-3. Thai co-founder helps but not required
-4. SMART visa for founders possible
+- **Working locally**: Agoda and the regional offices (LINE, Lazada, bank digital units) pay best and actually sponsor; some Thai for local-company roles widens options.
+- **Working remotely**: get the LTR visa if income qualifies — it's the only route that makes remote work legal (`visas.md`).
+- **Founding**: check BOI incentives and True Digital Park resources; the SMART visa covers founders, and a Thai co-founder helps but isn't required.

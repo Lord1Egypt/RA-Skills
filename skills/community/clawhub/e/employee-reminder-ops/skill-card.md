@@ -1,49 +1,65 @@
-## Description: <br>
-Google Sheets-driven employee reminder and special-event reporting workflow for internal operations. Use when setting up or migrating birthday reminders, daily management reports, Telegram/Discord reminder routing, Google Sheets staff/event schemas, or scheduled reporting jobs that read Sheets and send summaries into team chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Employee Reminder Ops helps internal operations teams set up Google Sheets-driven birthday reminders, special-event reports, chat routing, and scheduled daily reporting jobs.
 
-## Publisher: <br>
-[Vt-mmm](https://clawhub.ai/user/Vt-mmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vt-mmm](https://clawhub.ai/user/vt-mmm)
 
-## Use Case: <br>
-Internal operations staff and developers use this skill to configure, test, migrate, and run a Google Sheets-based employee birthday and special-event reminder workflow that posts daily summaries to Telegram or Discord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live-looking default Google Sheet, Google account, and Discord channel settings could send employee data to the wrong destination if reused without review. <br>
-Mitigation: Set PLAN_A_SHEET_ID, GOG_ACCOUNT, DISCORD_CHANNEL_ID, and DISCORD_BOT_TOKEN for the target environment; run preview/json first; use a test channel and non-production data before prod-send or scheduler use. <br>
-Risk: Employee birthdays, department data, and special-event details may be sent to the selected chat service. <br>
-Mitigation: Confirm organizational approval for the chosen chat destination and disable PLAN_A_INCLUDE_INVALID_DETAILS unless detailed invalid-row reporting is required. <br>
+## Use Case:
 
+Internal operations teams use this skill to configure and run Google Sheets based birthday and special-event reminders, then preview or send daily reports to approved Telegram or Discord destinations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vt-mmm/employee-reminder-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/Vt-mmm) <br>
-- [Plan A architecture](references/architecture.md) <br>
-- [Deployment guide](references/deployment.md) <br>
-- [Google Sheet schema](references/google-sheet-schema.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Windows deployment notes](references/windows.md) <br>
-- [macOS deployment notes](references/macos.md) <br>
-- [Plan A demo usage](references/PLAN_A_DEMO_USAGE.md) <br>
-- [Plan A test plan](references/PLAN_A_TEST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, and JavaScript workflow scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce preview text, JSON report details, Discord sends, scheduler guidance, and local state files when run by an agent with the required tools and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Bundled scripts can post employee reminder data to a default Discord channel when send or prod-send modes are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace bundled spreadsheet, account, and Discord channel defaults with explicit local configuration and use a test channel before enabling production sends.
+
+Risk: Scheduled production sends can disclose employee birthday and event data to an unapproved destination.
+
+Mitigation: Enable scheduled prod-send only after confirming the destination audience is approved for employee birthday and event data.
+
+Risk: Broad local environment sourcing or unnecessary Drive authorization can increase credential exposure.
+
+Mitigation: Keep tokens outside the skill package, avoid broad .env sourcing where possible, and remove unnecessary Drive authorization.
+
+## Reference(s):
+
+- [Employee Reminder Ops](artifact/SKILL.md)
+- [Plan A Architecture](artifact/references/architecture.md)
+- [Employee Reminder Ops Deployment](artifact/references/deployment.md)
+- [Google Sheet Schema for Employee Reminder Ops](artifact/references/google-sheet-schema.md)
+- [Employee Reminder Ops Troubleshooting](artifact/references/troubleshooting.md)
+- [Plan A Deep Test Plan](artifact/references/PLAN_A_TEST.md)
+- [Plan A Demo Usage](artifact/references/PLAN_A_DEMO_USAGE.md)
+- [Employee Reminder Ops on macOS](artifact/references/macos.md)
+- [Employee Reminder Ops on Windows](artifact/references/windows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JavaScript workflow scripts, text reports, and JSON previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime execution depends on local Google Sheets access, chat destination configuration, and scheduler setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

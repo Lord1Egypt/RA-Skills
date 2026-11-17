@@ -1,43 +1,59 @@
-## Description: <br>
-Generate images with DrawThings (Stable Diffusion) via a local Automatic1111-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with DrawThings through an Automatic1111-compatible Stable Diffusion API for text prompts, image workflows, and batch generation on Mac with MLX/CoreML acceleration.
 
-## Publisher: <br>
-[dustinparsons](https://clawhub.ai/user/dustinparsons) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dustinparsons](https://clawhub.ai/user/dustinparsons)
 
-## Use Case: <br>
-Developers, designers, and other external users use this skill to generate single or batched images from text prompts through a local DrawThings service, tune generation parameters, and save image outputs with metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters may be stored in generated PNG or JSON metadata and later shared unintentionally. <br>
-Mitigation: Avoid using secrets, private client data, or regulated information in prompts, and review output metadata before sharing generated files. <br>
-Risk: The skill sends prompts to the configured DrawThings service and writes generated files locally. <br>
-Mitigation: Install it only when you intend to use a trusted local DrawThings service, verify DRAWTHINGS_URL, and choose output paths deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DrawThings API Reference](references/api-reference.md) <br>
-- [Recommended Models for DrawThings](references/models.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dustinparsons/drawthings) <br>
-- [CivitAI](https://civitai.com) <br>
-- [Hugging Face Models](https://huggingface.co/models) <br>
+## Use Case:
 
+Developers and creative users use this skill to generate PNG images from text prompts through a configured DrawThings API, including variations, batch generation, presets, and reproducible seeded outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Images, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG image files with optional JSON metadata and terminal status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a reachable local DrawThings API via DRAWTHINGS_URL; generated prompts and parameters may be embedded in PNG or JSON metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to the configured DrawThings endpoint, which may be remote if DRAWTHINGS_URL is changed.
+
+Mitigation: Keep DRAWTHINGS_URL on localhost unless the remote server is intentionally trusted, and avoid private or secret data in prompts.
+
+Risk: Generated PNG files and sidecar JSON can include prompt and generation metadata.
+
+Mitigation: Strip metadata before sharing generated files when privacy matters.
+
+Risk: Community model files can create supply-chain risk.
+
+Mitigation: Prefer verified .safetensors models from trusted sources over untrusted checkpoint files.
+
+## Reference(s):
+
+- [DrawThings API Reference](references/api-reference.md)
+- [Recommended Models for DrawThings](references/models.md)
+- [CivitAI model repository](https://civitai.com)
+- [Hugging Face model hub](https://huggingface.co/models)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; the script writes PNG files and optional JSON metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DRAWTHINGS_URL or defaults to localhost; generated files may include prompt and generation metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

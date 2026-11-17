@@ -1,42 +1,55 @@
-## Description: <br>
-Soul-Bound Keys and Soulchain for persistent agent identity, reputation, and messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul-Bound Keys and Soulchain for persistent agent identity, reputation, and messaging.
 
-## Publisher: <br>
-[Gonzih](https://clawhub.ai/user/Gonzih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gonzih](https://clawhub.ai/user/gonzih)
 
-## Use Case: <br>
-Developers and agent operators use this skill to integrate agents with AMAI's identity service for key-based registration, signed API requests, identity lookup, reputation anchoring, and public-key messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived private identity keys can bind an agent identity to AMAI's service and may be exposed if examples are used unchanged. <br>
-Mitigation: Avoid printing private keys, store generated keys in a protected secret store or with strict file permissions, and review identity-binding implications before installation. <br>
-Risk: Soulchain and reputation records are described as persistent and append-only. <br>
-Mitigation: Avoid recording sensitive or reversible-test data unless permanent retention is acceptable. <br>
+## Use Case:
 
+External developers and agent builders use this skill to integrate AMAI Identity Service registration, signed API requests, reputation anchoring, and public-key messaging into autonomous agents.
 
-## Reference(s): <br>
-- [AMAI ID ClawHub Release](https://clawhub.ai/Gonzih/amai-id) <br>
-- [AMAI Identity Service](https://id.amai.net) <br>
-- [AMAI Website](https://amai.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, API calls, configuration] <br>
-**Output Format:** [Markdown with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides Ed25519 identity registration and signed request examples; no files are generated automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The security evidence requires review because the examples handle long-lived private signing keys unsafely if copied as written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid printing private keys, use encrypted or OS-managed secret storage, and enforce owner-only permissions for key material.
+
+Risk: Permanent reputation and Soulchain records may retain sensitive personal, customer, or action details.
+
+Mitigation: Keep sensitive details out of permanent reputation records and review payload contents before signing or submitting actions.
+
+## Reference(s):
+
+- [AMAI Identity Service](https://id.amai.net)
+- [AMAI Website](https://amai.net)
+- [ClawHub AMAI ID Listing](https://clawhub.ai/gonzih/skills/amai-id)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API examples and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces identity-registration and request-signing guidance; no persistent files are created unless a user runs the example scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

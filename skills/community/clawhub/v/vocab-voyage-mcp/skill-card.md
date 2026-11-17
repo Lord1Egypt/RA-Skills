@@ -1,46 +1,63 @@
-## Description: <br>
-Provides hosted MCP vocabulary tools for definitions, quizzes, word lists, study plans, and contextual explanations for academic and standardized test preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides vocabulary definitions, quizzes, course word lists, study plans, word-of-the-day results, and contextual word explanations for academic and standardized test preparation.
 
-## Publisher: <br>
-[jaideepdhanoa](https://clawhub.ai/user/jaideepdhanoa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaideepdhanoa](https://clawhub.ai/user/jaideepdhanoa)
 
-## Use Case: <br>
-Students, educators, and agents use this skill to look up vocabulary, generate test-prep quizzes, list course words, explain words in context, and preview study plans for ISEE, SSAT, SAT, PSAT, GRE, GMAT, LSAT, and general academic vocabulary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal bearer tokens can expose profile or progress data if leaked. <br>
-Mitigation: Use anonymous mode unless personalized features are needed; keep tokens out of source control and revoke or rotate exposed tokens. <br>
-Risk: Hosted tool calls may be logged with referral, account, or IP-derived analytics. <br>
-Mitigation: Review privacy expectations before enabling authenticated features or referral-tagged endpoints. <br>
+## Use Case:
 
+Students, educators, and MCP-compatible agents use this skill to look up vocabulary, generate test-prep quizzes, list course words, preview study plans, and explain words in sentence context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaideepdhanoa/vocab-voyage-mcp) <br>
-- [Vocab Voyage MCP Documentation](https://vocab.voyage/mcp) <br>
-- [Authentication and Scopes Reference](https://vocab.voyage/developers/auth) <br>
-- [MCP Server Card](https://vocab.voyage/.well-known/mcp/server-card.json) <br>
-- [Agent Card](https://vocab.voyage/.well-known/agent-card.json) <br>
-- [OpenAPI Specification](https://vocab.voyage/openapi.json) <br>
-- [MCP Apps Manifest](https://vocab.voyage/.well-known/mcp/apps.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance, configuration] <br>
-**Output Format:** [MCP tool responses with structured JSON, human-readable text, and optional MCP Apps UI resources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hosted streamable HTTP endpoint; anonymous use is supported, with optional bearer tokens for personalized features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact manifests list 1.0.0) <br>
+Risk: The hosted service records usage and source metadata for tool calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy expectations before use and avoid sending unnecessary personal or sensitive vocabulary-study context.
+
+Risk: Personal bearer tokens can unlock profile and progress data.
+
+Mitigation: Prefer anonymous access when personalization is not needed, and avoid placing bearer tokens in command-line arguments when possible.
+
+Risk: The npx bridge path is unpinned and may introduce installation supply-chain risk.
+
+Mitigation: Prefer the direct hosted MCP connector or OpenClaw install path over the unpinned npx bridge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaideepdhanoa/skills/vocab-voyage-mcp)
+- [Vocab Voyage MCP documentation](https://vocab.voyage/mcp)
+- [MCP server card](https://vocab.voyage/.well-known/mcp/server-card.json)
+- [Agent card](https://vocab.voyage/.well-known/agent-card.json)
+- [Authentication and scopes](https://vocab.voyage/developers/auth)
+- [OpenAPI specification](https://vocab.voyage/openapi.json)
+- [MCP Apps manifest](https://vocab.voyage/.well-known/mcp/apps.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured MCP tool responses with optional renderable UI resources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Anonymous access is supported for public tools; optional bearer tokens unlock personalized profile and progress features.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

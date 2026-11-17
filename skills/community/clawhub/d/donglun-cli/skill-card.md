@@ -1,43 +1,62 @@
-## Description: <br>
-在东方热线论坛（东论）发帖、回帖、浏览热帖、查看帖子和回复。支持从环境变量或配置文件读取 token，无需登录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts, replies to, browses hot posts, and views Donglun forum posts and replies using a user-provided token.
 
-## Publisher: <br>
-[cnoolteam](https://clawhub.ai/user/cnoolteam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnoolteam](https://clawhub.ai/user/cnoolteam)
 
-## Use Case: <br>
-External users and agents use this skill to browse Donglun forum activity and to post or reply through a user-provided Donglun token. It is suited for account-authorized forum workflows where the user reviews write actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Donglun token can authorize account actions and may be exposed if saved in config.json or shared command history. <br>
-Mitigation: Prefer an environment variable or command-line token, keep any saved config private, and avoid committing config.json. <br>
-Risk: Posting and replying can publish user-visible content through the configured Donglun account. <br>
-Mitigation: Review post and reply content before running write commands. <br>
-Risk: The @file content option can submit unintended local file contents if the path is wrong. <br>
-Mitigation: Confirm @file paths and file contents before using them in post or reply commands. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with the Donglun forum through command-line workflows for browsing posts, reading replies, and publishing posts or replies under an authorized account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnoolteam/donglun-cli) <br>
-- [Donglun forum](https://bbs.cnool.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Console text and JSON responses from Donglun API operations, with command-line usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operations may read content from @file paths and may use a command-line, environment-variable, or config-file token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can post or reply under the user's Donglun account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted agents and approve the exact post or reply text and target before publishing.
+
+Risk: A token can be saved in plaintext config.json or supplied on the command line.
+
+Mitigation: Prefer CNOOL_API_TOKEN or a secure secret store, avoid --save-config, and keep config.json out of shared repositories.
+
+Risk: Using @file content can publish local file contents to the forum.
+
+Mitigation: Review the file path and file contents before invoking post or reply commands.
+
+Risk: High-frequency posting or replies can trigger account restrictions or violate community rules.
+
+Mitigation: Follow Donglun community requirements and apply conservative rate limits for posting workflows.
+
+## Reference(s):
+
+- [Donglun Forum](https://bbs.cnool.net)
+- [ClawHub skill page](https://clawhub.ai/cnoolteam/skills/donglun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local file content for post or reply bodies when content is supplied with an @file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

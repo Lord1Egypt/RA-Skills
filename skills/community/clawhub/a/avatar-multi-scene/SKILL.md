@@ -1,44 +1,60 @@
 ---
 name: avatar-multi-scene
-description: Use when the user needs multiple talking-head segments, motion-transfer comparison reels, mixed host and animate clips, or multi-scene UGC with character continuity.
+description: Use when someone wants the same person hosting several clips — multi-segment UGC, comparison reels, or mixed speaking and animated scenes with continuity.
+license: MIT
 metadata:
-  version: "0.0.1"
-depends:
-  - p-image
-  - p-image-edit
-  - p-video-avatar
-  - p-video-animate
+  version: "1.0.15"
+  package: pruna-skills
 ---
 
-# Multi-scene avatar & motion-transfer video (Pruna only)
+## Prerequisites
+
+Install and load these skills before generating (skip if already in context via `@pruna`):
+
+| Skill | Description | Install |
+| --- | --- | --- |
+| `p-image-ideogram` | Use when photo generation needs more control — photoreal results, text in the image, or structured JSON with hex colors and bounding boxes. Simpler photo generation, edits, and video use other skills in the suite. | `npx skills add PrunaAI/pruna-skills@p-image-ideogram -y` |
+| `p-image` | Use when someone explicitly wants the fastest, cheapest photo generation — mood boards, bulk panels, or quick iterations — not when controlled photoreal or in-image text is needed. | `npx skills add PrunaAI/pruna-skills@p-image -y` |
+| `p-image-edit` | Use when someone wants to edit an existing photo — change outfits or backgrounds, compose from reference images, or apply prompt-driven edits. | `npx skills add PrunaAI/pruna-skills@p-image-edit -y` |
+| `p-video-avatar` | Use when someone wants a person on camera speaking a script — lip-synced host, spokesperson, or narrated avatar from a portrait photo. | `npx skills add PrunaAI/pruna-skills@p-video-avatar -y` |
+| `p-video-animate` | Use when someone wants a photo to move like another video — motion transfer, dance remixes, or performance variations from a template clip. | `npx skills add PrunaAI/pruna-skills@p-video-animate -y` |
+
+Or install the full suite once: `npx skills add PrunaAI/pruna-skills@pruna -y`
+
+Follow each skill's **Before generating** / craft sections — do not restate guide content here.
+
+## Workflow habit
+
+In **every reply**, name `` `avatar-multi-scene` `` in backticks. Restate the user's **continuity / UGC / host / segment** goal in one line. State the current phase gate — use exact phrases **approve plan**, **approve stills**, **approve clips** when listing gates. Do **not** same-turn plan + paid video. Skip-review / burn-credits → follow `generation-diversity` **Red flags**.
 
 ## Purpose
 
-Produce a **coherent multi-scene** piece stitched later in **your own editor or pipeline** (Pruna does not ship a concat endpoint in this skill set). Each beat is one of:
+Produce a **coherent multi-scene** piece stitched later with **ffmpeg** (Pruna does not ship a concat endpoint). Each beat is one of:
 
 | Beat type | Model | Deliverable |
 |-----------|--------|-------------|
 | **`avatar`** | **`p-video-avatar`** | Talking-head clip from approved still + `voice_script` |
-| **`animate`** | **`p-video-animate`** + slider render | Motion-transfer clip, usually wrapped in a **left → right slider comparison** MP4 (motion template vs animated subject) |
+| **`animate`** | **`p-video-animate`** + slider render | Motion-transfer clip, usually wrapped in a **side-by-side or wipe comparison** MP4 (motion template vs animated subject) |
 
-Mix types in one announcement reel—e.g. avatar hook → animate slider demo → avatar CTA (same pattern as the Pruna × Tellers cut, with optional **`animate`** beats between speaking scenes).
+Mix types in one announcement reel—e.g. avatar hook → animate slider demo → avatar CTA.
 
-Visual continuity comes from **Pruna `p-image` / `p-image-edit`** on uploaded references—not from other vendors’ image APIs.
+Visual continuity comes from **Pruna `p-image-ideogram` / `p-image-edit`** on uploaded references (`p-image` for cheap drafts).
 
-Follow this skill in **plain language** when talking to the person requesting the video: explain cast, voices, motion templates, and scene order the way you would in a production meeting. Use **natural, speakable copy** in every `voice_script`.
+Follow this skill in **plain language** when talking to the person requesting the video. Use **natural, speakable copy** in every `voice_script`.
 
-**Staged generation:** [staged-generation-gate.md](../../../../../references/shared/staged-generation-gate.md) · [workflow-feedback-gates.md](../../../../../references/workflows/workflow-feedback-gates.md)
+**Staged generation:** `generation-diversity` · `generation-diversity`
 
 ## Quick reference
 
 | Resource | Path |
 |----------|------|
-| Photoreal dynamic personas | [realistic-persona-showcase.md](../../../../../references/shared/realistic-persona-showcase.md) |
+| Photoreal dynamic personas | `image-prompting` |
 | Cast ledger, character sheet, voice/video prompts | [prompt-templates.md](./prompt-templates.md) |
 | Animate rows, sliders, alignment | [animate-beats.md](./animate-beats.md) |
 | Examples | [examples.md](./examples.md) |
-| Feedback discipline | [requesting-generation-feedback](../../router/requesting-generation-feedback/SKILL.md) |
-| Slider script | [`generate_video_comparison.py`](../../_shared/scripts/generate_video_comparison.py) |
+| Feedback discipline | `generation-diversity` |
+| Slider (agent) | ffmpeg `hstack` / wipe — see **Slider comparison** below |
+| Batch template | [templates/batch.template.json](./templates/batch.template.json) |
 
 ## Feedback gates (required)
 
@@ -51,6 +67,8 @@ Follow this skill in **plain language** when talking to the person requesting th
 
 ## Intake: ask before generating
 
+Open intake → **`generation-diversity`** clarification intake.
+
 **Do not** call `POST /v1/predictions` until the user has answered and you have recorded the answers (use defaults only if the user explicitly opts in):
 
 | Topic | Questions |
@@ -59,17 +77,18 @@ Follow this skill in **plain language** when talking to the person requesting th
 | **Scope** | How many speaking scenes or beats? Approximate total runtime after assembly? |
 | **Cast** | Who speaks, in what order? One character throughout or multiple? |
 | **Look** | Aspect for stills and feel (`9:16` / `16:9`)? Avatar output `720p` or `1080p`? |
+| **Media source** | **Generate** hero plates with `p-image-ideogram` / edits vs **upload-only** references; user-owned motion templates for animate beats? |
 | **Voice** | For **each named character**, pick **one** Pruna `voice` and `voice_language` and **reuse it in every scene** that character speaks. Any words that must be pronounced exactly (names, acronyms)? |
 | **Style** | Agreed **style bible** line for all image prompts? |
 | **Character sheet** | Per speaker: age range, wardrobe baseline, hair, skin/realism level, personality adjectives—record before hero generation (see **Character sheet** below). |
-| **Scene variety** | Each scene must differ in **camera angle**, **background/setting**, and/or **energy**—no two consecutive scenes with the same framing and location unless the user asks. Plan **`visual_style_tag`**, **`setting_tag`**, **`camera_tag`**, **`lighting_tag`** per row; cast diversity (gender, age, ethnicity) on launch reels — [visual-variety-bible.md](../../../../../references/shared/visual-variety-bible.md). |
-| **Seeds** | **[Random seed ritual](../../../../references/shared/random-seed-ritual.md)** at hero — pick and state a random integer; record as **`project_seed`**; reuse for hero regen and every **`p-video-avatar`** call unless A/B testing motion. |
+| **Scene variety** | Each scene must differ in **camera angle**, **background/setting**, and/or **energy**—no two consecutive scenes with the same framing and location unless the user asks. Plan **`visual_style_tag`**, **`setting_tag`**, **`camera_tag`**, **`lighting_tag`** per row — `generation-diversity`. |
+| **Ritual seed (SSoT)** | Ritual seed at hero — generate and state a ritual string; log as **`ritual_seed`**; derive prompt axes via sum-mod. **Do not** pass ritual string to API `seed`. |
 | **References** | Which files to upload; rights cleared? |
 | **Beat mix** | Which scenes are **`avatar`** vs **`animate`**? All avatar, all animate, or mixed announcement? |
-| **Narrated B-roll cutaways** | Optional **`p-video`** beats using [scene anchor triple](../../../../../references/video/scene-anchor-triple.md) alongside avatar rows |
+| **Narrated B-roll cutaways** | Optional **`p-video`** beats using scene-anchor triple (`video-prompting`) alongside avatar rows |
 | **Motion templates** (animate beats) | Source `.mp4` per animate row—owned/licensed? Match pose/framing to reference still? |
 | **Slider delivery** (animate beats) | Comparison MP4 only, animated-only strip, or both? Canvas default 1920×1080. |
-| **Assembly** | How clips will be joined and leveled (tool-agnostic plan)? |
+| **Assembly** | How clips will be joined and leveled (ffmpeg plan)? |
 
 If anything material is unknown, **ask** before the first upload or prediction.
 
@@ -77,7 +96,7 @@ If anything material is unknown, **ask** before the first upload or prediction.
 
 Maintain a **cast table** in the manifest: one Pruna **`voice`** + **`voice_language`** per recurring character — **never** swap presets mid-story unless the user requests a recast.
 
-Before hero generation, fill a **character sheet** per speaker (age, face, realism, wardrobe baseline, personality, locked **`project_seed`**). Templates and manifest JSON: **[prompt-templates.md](./prompt-templates.md)**.
+Before hero generation, fill a **character sheet** per speaker (age, face, realism, wardrobe baseline, personality, **`ritual_seed`** for planning). Templates and manifest JSON: **[prompt-templates.md](./prompt-templates.md)**.
 
 **Rule:** New locations and styles = **`p-image-edit`** off the approved hero URL — not unrelated fresh **`p-image`** identity pulls.
 
@@ -104,9 +123,9 @@ Every piece needs a **scene table** — each row **`avatar`** or **`animate`**. 
 1. Match **shot size** and **facing direction** between still and template.
 2. Match **limb visibility**—if the template waves arms, the still must show arms.
 3. **Repose when close but not exact** — **`p-image-edit`** from the hero anchor: *"Change only: match pose and camera to reference video frame; keep identity and outfit."*
-4. Run [p-video-animate-quality-checklist.md](../../../../../references/video/p-video-animate-quality-checklist.md) on the pair before animate.
+4. Run animate QA from `video-prompting` on the pair before animate.
 
-**Anti-patterns (all types):** two identical office avatar scenes back-to-back; corporate brochure **`voice_script`**; human dance template + chibi meme still without repose; serial API jobs when scenes are independent; **motion templates that prompt smile/wave only** (avatar stays silent — see **Motion templates for animate beats** below).
+**Anti-patterns (all types):** two identical office avatar scenes back-to-back; corporate brochure **`voice_script`**; human dance template + chibi meme still without repose; serial API jobs when scenes are independent; **motion templates that prompt smile/wave only** (avatar stays silent — see below).
 
 ### Motion templates for animate beats
 
@@ -123,123 +142,127 @@ Silent motion templates break slider demos and animate transfers. Prompt templat
 
 ### Mixed reels with animate rows
 
-Combine **`avatar`** talking-head beats and **`animate`** slider demos in one scene table. Common patterns:
-
 | Pattern | Structure |
 |---------|-----------|
 | Interleaved | avatar hook → animate demo → avatar proof → animate demo → avatar CTA |
 | Slider-heavy | N **`animate`** slider rows → final **`avatar`** CTA on hero |
 
-End product launches with a speakable **`avatar`** CTA unless the user opts out. See [animate-beats.md](./animate-beats.md) for model roles, alignment, and slider assembly.
+End product launches with a speakable **`avatar`** CTA unless the user opts out.
 
-## Seed policy
+## Identity & ritual seed policy
 
-1. **Hero `p-image`:** set **`seed`** once; store in manifest as `project_seed`.
-2. **Regenerate hero only:** reuse `project_seed` + same prompt unless the user resets identity.
-3. **`p-image-edit`:** seed support varies—continuity comes from the **hero file URL**, not re-rolling identity.
-4. **`p-video-avatar`:** pass **`seed`: `project_seed`** on every clip for reproducible motion/delivery when the API accepts it; if a scene needs a motion retry, bump seed only for that scene and note it in the manifest.
+Complete the ritual seed step in `generation-diversity` before hero prompt work. Log **`ritual_seed`** in manifest; reuse only on same-brief slop retry.
+
+Character continuity = **approved hero plate URL** + cast descriptor — not API `seed`. Pass **`api_seed`** in `input` only when the user explicitly locks reproducibility.
 
 ## Natural voice (mandatory for avatar social / founder content)
 
 **`voice_script`** = speakable dialogue (contractions, short breaths). **`voice_prompt`** = performance direction only — never marketing copy or script text.
 
-Good/bad pairs, per-scene **`video_prompt`** patterns, and shared cast voice line: **[prompt-templates.md](./prompt-templates.md)**.
+Good/bad pairs: **[prompt-templates.md](./prompt-templates.md)**.
 
 ## Source portrait / hero (same character across styles and scenes)
 
 For **each** recurring character:
 
-1. Land **one** approved **source** still via **`p-image`** (photoreal prompt + locked **`seed`**) or upload. Run the slop gate on the hero before sign-off. Treat the approved file URL as the **identity anchor**.
-2. **Every** later look—including a new background, emotion, prop, or **style variation** (e.g. “same cat, but ink-line instead of pencil”)—should be produced with **`p-image-edit`** from **that same source URL**, plus the shared style bible and a short delta (“change only: …”). Do **not** mint a fresh identity with unrelated `p-image` text prompts mid-run unless the user resets the character.
-3. **Each new scene** still starts from the same character source as step 2 so faces stay one continuous role across the arc.
-
-This keeps later scene opens and style experiments aligned with the **same** underlying portrait the user signed off on.
+1. Land **one** approved **source** still via **`p-image-ideogram`** or upload (`p-image` for a cheap draft). Run the slop gate on the hero before sign-off. Treat the approved file URL as the **identity anchor**.
+2. **Every** later look—including a new background, emotion, prop, or **style variation**—should be produced with **`p-image-edit`** from **that same source URL**, plus the shared style bible and a short delta (“change only: …”).
+3. **Each new scene** still starts from the same character source so faces stay one continuous role across the arc.
 
 ## Confirmation gate (mandatory)
 
-After intake is complete and you have drafted work in **natural human language**:
+After intake is complete:
 
 1. Present a **read-through package**: scene order and **type** per row; full **`voice_script`** for avatar rows; motion templates + reference stills + **alignment risks** for animate rows; cast ledger; hero URL(s); chosen **`resolution`**; legal/CTA lines **verbatim** if supplied.
 2. Ask clearly for approval (e.g. “Reply **approve** or **go** when this script and cast are final.”).
-3. **Do not** upload binaries for generation, call **`POST /v1/predictions`**, or run automation until the user **explicitly confirms**.
+3. **Do not** upload binaries for generation or call **`POST /v1/predictions`** until the user **explicitly confirms**.
 
-Optional edits after feedback; repeat confirmation if the script or cast changes materially.
-
-## Script and run package (after confirmation)
+## How the agent runs this
 
 Once the user confirms:
 
-1. **Write** a concrete **generation package**: phased **`curl`** steps or a small script that performs uploads, **`p-image`** / **`p-image-edit`**, parallel **`p-video-avatar`** (avatar rows), parallel **`p-video-animate`** (animate rows), **`generate_video_comparison.py`** slider renders (animate rows), and downloads—matching the approved scene table **exactly**. **Parallelize** independent lanes within each phase ([parallel-execution.md](../../../../../references/shared/parallel-execution.md)).
-2. **Execute** that package when execution is possible (`PRUNA_API_KEY` present, network available). Prefer **one subagent per scene lane** (still pipeline: edit → gate; or avatar: create → poll → download) launched in parallel after the hero anchor exists. Parent agent owns confirmation, manifest merge, and assembly. If the environment cannot call the API, hand the user the same script and exact commands so they can run it locally without guesswork.
+1. Upload refs → hero `p-image-ideogram` → parallel per-scene `p-image-edit` → slop gates → **approve stills**.
+2. Parallel **`p-video-avatar`** (avatar rows) and **`p-video-animate`** (animate rows) via curl batches (`pruna-api`).
+3. For each animate row, build a **slider / comparison** MP4 with ffmpeg (below).
+4. ffmpeg concat in scene order → optional bed → **approve** final.
 
-The script is the contract: what runs must match what was approved.
+Prefer one parallel lane per independent scene after the hero exists. Parent owns confirmation, manifest merge, and assembly.
 
 ## Core rules
 
-1. **`p-video-avatar` `input.image`** — use an approved still URL from `/v1/files` (upload, **`p-image`**, or **`p-image-edit`** output) that passed [generation-quality-checklists.md](../../../../../references/shared/generation-quality-checklists.md).
+1. **`p-video-avatar` `input.image`** — use an approved still URL from `/v1/files` that passed `generation-diversity` checklists.
 2. Run the **slop gate** on every hero and scene still **before** any avatar job.
 
 ```text
-Hero:     p-image (or upload) → slop gate → approve anchor
+Hero:     p-image-ideogram (or upload) → slop gate → approve anchor
 Scene N:  p-image-edit(anchor) → slop gate → p-video-avatar
 ```
-
-Use the **approved hero** as the reference for **`p-image-edit`**, not a rejected intermediate.
 
 ## API surface (this workflow)
 
 | Step | Model | Skill |
 |------|--------|--------|
-| Upload binaries | `POST /v1/files` | [pruna-api.md](../../../../../references/shared/pruna-api.md) |
-| Style-locked stills | `p-image`, `p-image-edit` | [p-image](../../../../tools/image/p-image/SKILL.md), [p-image-edit](../../../../tools/image/p-image-edit/SKILL.md) |
-| Talking clips | `p-video-avatar` | [p-video-avatar](../../../../tools/video/p-video-avatar/SKILL.md) |
-| Motion transfer | **`p-video-animate`** | [p-video-animate](../../../../tools/video/p-video-animate/SKILL.md) |
-| Slider comparison (animate rows) | [`generate_video_comparison.py`](../_shared/scripts/generate_video_comparison.py) | local; install via `npx skills add PrunaAI/pruna-ai-content-generation-skills/skills --skill avatar-multi-scene --agent cursor -y` |
+| Upload binaries | `POST /v1/files` | `pruna-api` |
+| Style-locked stills | `p-image-ideogram`, `p-image-edit` | `p-image-ideogram`, `p-image-edit` |
+| Talking clips | `p-video-avatar` | `p-video-avatar` |
+| Motion transfer | **`p-video-animate`** | `p-video-animate` |
+| Slider comparison | ffmpeg (below) | local |
 
-Use **`PRUNA_API_KEY`** and the **`apikey`** header on every call. **Async + parallel by default**: batch all avatar jobs once approved stills pass slop; batch all animate jobs once motion + still URLs are ready; poll all `get_url` together. See [parallel-execution.md](../../../../../references/shared/parallel-execution.md).
+Use **`PRUNA_API_KEY`** and the **`apikey`** header on every call. **Async + parallel by default**: batch all avatar jobs once approved stills pass slop; batch all animate jobs once motion + still URLs are ready; poll all `get_url` together.
 
-## Parallel execution & subagents
+## Parallel execution
 
-After the **confirmation gate** and **hero anchor** are locked:
+| Phase | Parallel? |
+|-------|-----------|
+| Hero `p-image-ideogram` → gate | Sequential |
+| Per-scene `p-image-edit` | **Yes** — all scenes |
+| Slop gate | **Yes** — review in parallel |
+| `p-video-avatar` | **Yes** — all avatar rows |
+| `p-video-animate` | **Yes** — all animate rows |
+| Slider render | **Yes** — all animate rows |
+| Assembly | Sequential order only |
 
-| Phase | Parallel? | Subagent split |
-|-------|-----------|----------------|
-| Hero `p-image` → gate | Sequential | No — identity anchor |
-| Per-scene `p-image-edit` | **Yes** — all scenes | One subagent per scene still lane |
-| Slop gate | **Yes** — review in parallel | Parent or per-lane subagent |
-| `p-video-avatar` | **Yes** — all avatar rows | One subagent per clip (create + poll + download) |
-| `p-video-animate` | **Yes** — all animate rows | One subagent per clip (create + poll + download) |
-| Slider render | **Yes** — all animate rows | One subagent per comparison MP4 |
-| Assembly | Sequential order only | Parent agent |
+**Rule:** Never dispatch generation before user confirmation.
 
-**Rule:** Never dispatch subagents before user confirmation. Parent merges all lane outputs into one manifest.
+## Slider comparison (animate rows)
+
+Side-by-side (motion template | animated):
+
+```bash
+ffmpeg -y -i motion_template.mp4 -i animated.mp4 \
+  -filter_complex "[0:v]scale=960:1080[l];[1:v]scale=960:1080[r];[l][r]hstack=inputs=2[v]" \
+  -map "[v]" -map 1:a? -c:v libx264 -c:a aac -shortest scene_compare.mp4
+```
+
+Or present both clips and let the user’s editor build a wipe slider. Paths can follow [templates/batch.template.json](./templates/batch.template.json) (`source`, `render`, `samples[]`).
 
 ## Workflow
 
 | Step | Action |
 |------|--------|
 | 1–3 | Intake → speakable script → **confirmation gate** (no API until approve) |
-| 4–5 | Upload refs → **`p-image` hero** per character (locked `seed`) → slop gate |
+| 4–5 | Upload refs → **`p-image-ideogram` hero** per character → slop gate |
 | 6–7 | Parallel **`p-image-edit`** scene stills → slop gate each |
 | 8 | Parallel **`p-video-avatar`** (cast ledger voices, unique `video_prompt` per scene) |
-| 9 | Parallel **`p-video-animate`** + slider renders — [animate-beats.md](./animate-beats.md) |
-| 10 | ffmpeg concat ± optional bed — [stable-audio-2.5](../../../../tools/audio/stable-audio-2.5/SKILL.md) |
+| 9 | Parallel **`p-video-animate`** + ffmpeg sliders — [animate-beats.md](./animate-beats.md) |
+| 10 | ffmpeg concat ± optional bed — `stable-audio-2.5` |
 | 11 | Manifest: paths, prediction ids, slop notes, cast snapshot |
 
-Field names and curl shapes: **[prompt-templates.md](./prompt-templates.md)** · [p-video-avatar](../../../../tools/video/p-video-avatar/SKILL.md).
+```bash
+ffmpeg -y -f concat -safe 0 -i clips.txt -c copy reel.mp4
+```
 
-## References
-
-- [generation-quality-checklists.md](../../../../../references/shared/generation-quality-checklists.md)
-- [prompt-templates.md](./prompt-templates.md) — cast ledger, character sheet, voice/video templates
-- [animate-beats.md](./animate-beats.md) — `p-video-animate`, motion templates, sliders
-- [requesting-generation-feedback](../../router/requesting-generation-feedback/SKILL.md)
-- [examples.md](./examples.md)
+Shared ffmpeg recipes (concat, bed mix, sliders, export): **`video-editing`**.
 
 ## Related
 
-- Pruna-only pipeline overview: [pruna-generative-pipeline](../pruna-generative-pipeline/SKILL.md)
-- One-scene avatar: [single-scene-avatar-video](../avatar-single-scene/SKILL.md)
-- Cinematic B-roll (non-avatar): [single-scene-ai-video](../image-to-video/SKILL.md), [multi-scene-ai-video](../narrated-multi-scene/SKILL.md)
-- Still upscale slider demos: [p-image-upscale-comparison](../../launches/p-image-upscale-comparison/SKILL.md)
-- Motion transfer tool: [p-video-animate](../../../../tools/video/p-video-animate/SKILL.md)
+Related skills:
+
+| Skill | Description | Install |
+| --- | --- | --- |
+| `avatar-single-scene` | Use when someone wants one polished host-on-camera beat — a speaking person with intake and approval gates before generation. | `npx skills add PrunaAI/pruna-skills@avatar-single-scene -y` |
+| `image-to-video` | Use when someone wants one short film beat from images — a narrated scene, story moment, or cinematic B-roll with optional voiceover. | `npx skills add PrunaAI/pruna-skills@image-to-video -y` |
+| `narrated-multi-scene` | Use when someone wants a multi-part story with voiceover — episodic B-roll, chaptered promo, or several linked video scenes without on-camera dialogue. | `npx skills add PrunaAI/pruna-skills@narrated-multi-scene -y` |
+| `p-video-animate` | Use when someone wants a photo to move like another video — motion transfer, dance remixes, or performance variations from a template clip. | `npx skills add PrunaAI/pruna-skills@p-video-animate -y` |
+| `video-editing` | Use when assembling or polishing already-rendered clips with ffmpeg — concat, crossfades, burned captions and subtitles, text/logo overlays, before/after sliders, background music beds, platform export — or when composing a multi-layer HTML combination video with Hyperframes. Not for AI video generation, prompt craft, or model-based video edits. | `npx skills add PrunaAI/pruna-skills@video-editing -y` |
+

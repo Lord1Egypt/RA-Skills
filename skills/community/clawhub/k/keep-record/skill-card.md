@@ -1,49 +1,66 @@
-## Description: <br>
-Assists users in recording personal health data, including diet, weight, body fat, body measurements, exercise, sleep, and menstrual cycle, when they clearly intend to record, log, check in, or save health-related information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist users in recording personal health data, including diet, weight, body fat, body measurements, exercise, sleep, and menstrual cycle.
 
-## Publisher: <br>
-[734818028](https://clawhub.ai/user/734818028) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[734818028](https://clawhub.ai/user/734818028)
 
-## Use Case: <br>
-External users and agents use this skill to save personal health check-ins, including meals, drinks, weight, body measurements, workouts, sleep, and menstrual cycle notes, into Keep App. The skill supports natural-language records and optional image uploads through the Keep MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local account tokens are stored on the user's device. <br>
-Mitigation: Install only on trusted devices, protect the local environment, and use the documented revoke or clear flow when local Keep access is no longer needed. <br>
-Risk: The skill can upload user-provided images while saving health records. <br>
-Mitigation: Provide only images intended for upload to Keep, and consider requiring confirmation before each save. <br>
-Risk: Install-time behavior writes Keep configuration locally and can clear prior credentials when the MCP URL changes. <br>
-Mitigation: Review the postinstall behavior before installation and expect users to reauthenticate after changing the configured Keep MCP endpoint. <br>
-Risk: Broad activation may cause health-related statements to be routed to this skill automatically. <br>
-Mitigation: Use explicit user confirmation for sensitive records or ambiguous logging requests. <br>
+## Use Case:
 
+External users use this skill to log personal Keep health records from natural language and optional images, including meals, workouts, weight, body measurements, sleep, and menstrual cycle entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/734818028/keep-record) <br>
-- [Keep MCP service](https://mcp.gotokeep.com/skills-mcp-gateway-page/v1) <br>
-- [Authentication workflow](references/auth.md) <br>
-- [Health record tool](references/record.md) <br>
-- [Image upload workflow](references/get-upload-url.md) <br>
-- [Revoke authentication](references/revoke-auth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MCP tool calls for authentication, image upload, health-record creation, and logout flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.8 (source: evidence release metadata, package.json, _meta.json, and SKILL.md metadata) <br>
+Risk: Sensitive health records and selected images may be sent to Keep's MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with informed user consent, and confirm before saving sensitive records or uploading images.
+
+Risk: Keep bearer tokens are stored locally under ~/.keepai/.env.
+
+Mitigation: Restrict local file permissions, avoid exposing tokens in command history or logs, and revoke or clear credentials when access is no longer needed.
+
+Risk: Broad health-logging triggers may activate the skill for personal data the user did not intend to save.
+
+Mitigation: Review activation behavior and add a confirmation step for ambiguous or highly sensitive health entries.
+
+Risk: Image upload behavior uses presigned upload URLs and fallback local file lookup.
+
+Mitigation: Require trusted HTTPS upload hosts, avoid broad temporary-directory fallbacks, and upload only files the user explicitly selected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/734818028/skills/keep-record)
+- [Keep MCP gateway](https://mcp.gotokeep.com/skills-mcp-gateway-page/v1)
+- [Authentication reference](references/auth.md)
+- [Health record reference](references/record.md)
+- [Image upload reference](references/get-upload-url.md)
+- [Revoke authentication reference](references/revoke-auth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload selected images and send health-record text to Keep's MCP service after authentication.]
+
+## Skill Version(s):
+
+1.5.8 (source: server release metadata, skill metadata, _meta.json, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

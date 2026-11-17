@@ -1,41 +1,55 @@
-## Description: <br>
-ProfitCore helps an agent identify opportunities, evaluate ROI and feasibility, choose one high-value action or no action, and produce a lean execution plan with outcome projections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProfitCore guides an agent to identify up to three opportunities, evaluate ROI and feasibility, choose one high-value action or no action, and produce a lean execution plan with outcome and optimization notes.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-Developers and business users use this skill to frame agent responses around profit-focused opportunity selection, cost control, ROI analysis, execution planning, and iterative learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A GO recommendation may be mistaken for permission to spend money, post publicly, contact people, change accounts, or store sensitive business information. <br>
-Mitigation: Require explicit user authorization in the agent environment before any spending, external communication, account change, or sensitive-data handling. <br>
-Risk: Profit-focused recommendations may overstate expected returns or underweight practical constraints. <br>
-Mitigation: Review ROI assumptions, cap costs, and require human approval before executing actions with financial or operational impact. <br>
+## Use Case:
 
+External users and business-focused agents use this skill to structure opportunity selection, ROI analysis, and lean execution planning for profit-oriented tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/profit-core) <br>
-- [Publisher Profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections for selected opportunity, ROI analysis, decision, execution plan, expected outcome, optimization insight, and next action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evaluates at most three opportunities, selects one opportunity or outputs NO ACTION, and requires cost-aware ROI reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can over-prioritize profit and impose its ROI template on unrelated user requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to explicit ROI, opportunity-analysis, or profit-planning requests and preserve user instructions, formats, and approval requirements.
+
+Risk: Profit-oriented recommendations may encourage consequential action without adequate review.
+
+Mitigation: Require human approval before financial, business, legal, or operational commitments and review projected costs, returns, and risks.
+
+## Reference(s):
+
+- [ProfitCore ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/skills/profit-core)
+- [README.md](artifact/README.md)
+- [examples.md](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with section headings and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits opportunity comparison to three options and selects one action or NO ACTION.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

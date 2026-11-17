@@ -1,43 +1,58 @@
-## Description: <br>
-Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails.
 
-## Publisher: <br>
-[xming521](https://clawhub.ai/user/xming521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xming521](https://clawhub.ai/user/xming521)
 
-## Use Case: <br>
-External users and developers use this skill to initialize or refresh local persona files for a digital twin workflow before filling in profile, state, examples, and guardrail templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona markdown may contain private personal data. <br>
-Mitigation: Keep generated files local, omit credentials and unnecessary third-party details, and review content before sharing or committing it. <br>
-Risk: Using overwrite mode can replace existing persona files. <br>
-Mitigation: Choose the target directory carefully and use --force only when replacement is intended. <br>
-Risk: The bundled guardrail template permits unsafe content when explicitly requested, while still requiring human approval. <br>
-Mitigation: Review and tighten that template line before using the persona pack in workflows that should refuse unsafe content. <br>
+## Use Case:
 
+External users and developers use this skill to initialize or refresh local digital-twin persona files before using a reply-generation workflow. It creates starter profile, state, reply example, and guardrail templates in English or Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xming521/weclone-init-twin) <br>
-- [Publisher profile](https://clawhub.ai/user/xming521) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown setup handoff plus generated markdown template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates profile, state, persona example, and guardrail templates in English or Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release metadata) <br>
+Risk: Generated persona files may contain private or sensitive personal details once filled in by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the generated ai_twin files private and leave sensitive fields blank unless they are truly needed.
+
+Risk: Using force overwrite can replace existing persona files.
+
+Mitigation: Use --force only when the user explicitly intends to regenerate or replace existing files.
+
+Risk: Writing persona files into a directory controlled by untrusted users can expose or tamper with generated content.
+
+Mitigation: Run the initializer only against directories the user trusts and controls.
+
+## Reference(s):
+
+- [weclone-init-twin ClawHub listing](https://clawhub.ai/xming521/skills/weclone-init-twin)
+- [xming521 ClawHub profile](https://clawhub.ai/user/xming521)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown setup handoff with created file paths and next-step guidance; scaffolded persona files are Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates profile, state, persona_examples, and guardrails templates; supports English and Chinese templates and requires explicit approval before overwriting existing files.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

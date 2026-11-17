@@ -1,40 +1,49 @@
-## Description: <br>
-Cmd Helper displays a user-triggered command menu for starting or resetting sessions, switching models, checking status, and showing help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cmd Helper displays a Chinese-language shortcut menu when the user enters /c or /cmd, helping them start or reset sessions, switch models, view status, or open help.
 
-## Publisher: <br>
-[coolercat](https://clawhub.ai/user/coolercat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolercat](https://clawhub.ai/user/coolercat)
 
-## Use Case: <br>
-Developers and agent users use this skill to open a concise command menu when they type /c or /cmd, then choose common session and model actions with explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model-switch selections can affect future interactions. <br>
-Mitigation: Review the selected model before confirming a change. <br>
-Risk: Session start or reset actions can interrupt current work. <br>
-Mitigation: Keep session actions user-triggered and confirm intent before proceeding. <br>
+## Use Case:
 
+External users and developers use this skill to access a numbered Chinese command menu for common OpenClaw session and model operations after explicitly invoking /c or /cmd.
 
-## Reference(s): <br>
-- [Cmd Helper on ClawHub](https://clawhub.ai/coolercat/cmd-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown text with menu blocks and numbered choices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-triggered by /c or /cmd; session and model actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Changing sessions or the default model can affect later work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested session or model action with the user before allowing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolercat/skills/cmd-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown command menu with numbered options and concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-triggered by /c or /cmd; session and model actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

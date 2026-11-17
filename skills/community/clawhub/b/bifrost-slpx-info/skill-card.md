@@ -1,43 +1,56 @@
-## Description: <br>
-Query Bifrost SLPx liquid staking protocol data on Ethereum, Base, Optimism, and Arbitrum, including vETH/ETH exchange rates, APY, TVL, user balances, redemption queue status, and protocol stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Bifrost SLPx liquid staking protocol data on Ethereum, Base, Optimism, and Arbitrum, including vETH/ETH exchange rates, APY, TVL, user balances, redemption queue status, and protocol stats via read-only on-chain ERC-4626 calls and the Bifrost REST API.
 
-## Publisher: <br>
-[ark930](https://clawhub.ai/user/ark930) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ark930](https://clawhub.ai/user/ark930)
 
-## Use Case: <br>
-External users, developers, and DeFi analysts use this skill to query Bifrost vETH rates, yields, protocol statistics, balances, and withdrawal status from read-only on-chain calls and the Bifrost REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial decisions may be affected by stale or incorrect protocol data, RPC responses, or contract endpoint assumptions. <br>
-Mitigation: Verify the Bifrost contract address and API endpoint against official sources before relying on results for financial decisions. <br>
-Risk: Wallet-address lookups can expose address interest or usage patterns to an RPC provider. <br>
-Mitigation: Use a trusted RPC provider when wallet-address privacy matters. <br>
+## Use Case:
 
+External users, developers, and DeFi analysts use this skill to retrieve Bifrost vETH staking rates, yield, protocol statistics, wallet balances, and withdrawal queue status without signing transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ark930/bifrost-slpx-info) <br>
-- [Bifrost vETH page](https://www.bifrost.io/vtoken/veth) <br>
-- [Bifrost vETH app](https://app.bifrost.io/vstaking/vETH) <br>
-- [Bifrost site API](https://api.bifrost.app/api/site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON-RPC examples, decoded numeric results, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only responses should use fresh RPC or API data and convert wei values to human-readable ETH or vETH amounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Wallet addresses may be sent to Bifrost or public RPC endpoints during balance and withdrawal lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Query only addresses the user is comfortable exposing to those endpoints.
+
+Risk: Claimable-ETH results are informational and do not authorize or execute redemptions.
+
+Mitigation: Use a trusted wallet or the official Bifrost app for any transaction and never provide private keys, seed phrases, or signing permissions to the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ark930/skills/bifrost-slpx-info)
+- [Bifrost vETH page](https://www.bifrost.io/vtoken/veth)
+- [Bifrost vETH app](https://app.bifrost.io/vstaking/vETH)
+- [Bifrost site API](https://api.bifrost.app/api/site)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional shell command examples and decoded numeric results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fresh read-only API and RPC query results; no transaction signing or persistence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

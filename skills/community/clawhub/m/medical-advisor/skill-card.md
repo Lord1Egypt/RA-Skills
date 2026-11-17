@@ -1,39 +1,57 @@
-## Description: <br>
-A professional medical advisor assistant that provides health consultations, disease education, medical guidance, and preventive health recommendations to help users understand health issues and establish healthy lifestyles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional medical advisor assistant that provides health consultations, disease education, medical guidance, and preventive health recommendations to help users understand health issues and establish healthy lifestyles.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users can use this skill for health education, symptom-context organization, medical terminology explanation, report interpretation, lifestyle guidance, and preparation for appropriate clinical consultation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational medical guidance for a diagnosis, prescription, or emergency-care decision. <br>
-Mitigation: Use the skill for education and care preparation only; seek a licensed clinician for diagnosis or treatment and emergency services for serious symptoms. <br>
-Risk: Health conversations may include sensitive personal or medical details. <br>
-Mitigation: Share only information needed for the conversation and handle generated content according to applicable privacy and data-handling requirements. <br>
+## Use Case:
 
+External users use this skill for health education, symptom discussion, disease education, medical report interpretation, visit preparation, and healthy lifestyle guidance. It is intended to provide educational consultation guidance, not diagnosis, prescriptions, emergency care, or a replacement for licensed clinicians.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured health-education sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes situation summary, medical education, consultation advice, lifestyle recommendations, emergency-care warnings, and a disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake educational health guidance for clinical diagnosis, prescriptions, or individualized medical treatment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that outputs are for health education and medical guidance only, avoid diagnosing or prescribing, and direct users to a licensed clinician for care decisions.
+
+Risk: Users with urgent, severe, or worsening symptoms may delay emergency care.
+
+Mitigation: Include emergency warning signs and instruct users to contact emergency services or seek immediate medical attention for urgent symptoms.
+
+Risk: Users may share unnecessary identifying health details while seeking advice.
+
+Mitigation: Encourage users to provide only information needed for general guidance and avoid unnecessary personally identifying health details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/medical-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with structured health education sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes situation summary, medical education, consultation advice, lifestyle recommendations, emergency warning signs, and a disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

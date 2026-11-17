@@ -1,0 +1,205 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  skin-analysis:
+    api_name: AI Skin Analysis
+    version: v2.1
+    task_path: /s2s/v2.1/task/skin-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_skin_analysis.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      description: This object represents a run Skin Analysis task.
+      type: object
+      required:
+      - dst_actions
+      properties:
+        dst_actions:
+          type: array
+          description: "The actions for Skin Analysis.\nThere are 2 types of features: HD and SD.\nYou can choose one or more features, either all in SD or all in HD.\nNote: HD and SD features cannot be mixed.\nHD features:\n  - hd_redness: Measures skin redness severity.\n  - hd_oiliness: Determines skin oiliness level.\n  - hd_age_spot: Detects age spots and pigmentation.\n  - hd_radiance: Evaluates skin radiance.\n  - hd_moisture: Assesses skin hydration levels.\n  - hd_dark_circle: Analyzes the presence of dark circles under the eyes.\n  - hd_eye_bag: Detects eye bags.\n  - hd_droopy_upper_eyelid: Measures upper eyelid drooping severity.\n  - hd_droopy_lower_eyelid: Measures lower eyelid drooping severity.\n  - hd_firmness: Evaluates skin firmness and elasticity.\n  - hd_texture: Analyzes overall skin texture.\n  - hd_acne: Detects acne presence.\n  - hd_pore: Detects and evaluates pores in different facial regions (forehead, nose, cheek, whole).\n  - hd_wrinkle: Measures the severity\
+            \ of wrinkles in various facial areas (forehead, glabellar, crowfeet, periocular, nasolabial, marionette, whole).\n  - hd_tear_trough: Detects tear trough.\n  - hd_skin_type: Evalutate skin type.\n\nSD features:\n  - wrinkle: General wrinkle analysis.\n  - droopy_upper_eyelid: Measures upper eyelid drooping severity.\n  - droopy_lower_eyelid: Measures lower eyelid drooping severity.\n  - firmness: Evaluates skin firmness and elasticity.\n  - acne: Evaluates acne presence.\n  - moisture: Measures skin hydration.\n  - eye_bag: Detects eye bags.\n  - dark_circle_v2: Analyzes dark circles.\n  - age_spot: Detects age spots.\n  - radiance: Evaluates skin brightness.\n  - redness: Measures skin redness.\n  - oiliness: Determines skin oiliness.\n  - pore: Measures pore visibility.\n  - texture: Analyzes overall skin texture.\n  - tear_trough: Detects tear trough.\n  - skin_type: Evalutate skin type.\n"
+          example:
+          - hd_wrinkle
+          - hd_pore
+          - hd_texture
+          - hd_acne
+          items:
+            type: string
+            enum:
+            - hd_wrinkle
+            - hd_pore
+            - hd_texture
+            - hd_acne
+            - hd_oiliness
+            - hd_radiance
+            - hd_eye_bag
+            - hd_age_spot
+            - hd_dark_circle
+            - hd_droopy_upper_eyelid
+            - hd_droopy_lower_eyelid
+            - hd_firmness
+            - hd_moisture
+            - hd_redness
+            - hd_tear_trough
+            - hd_skin_type
+            - wrinkle
+            - pore
+            - texture
+            - acne
+            - oiliness
+            - radiance
+            - eye_bag
+            - age_spot
+            - dark_circle_v2
+            - droopy_upper_eyelid
+            - droopy_lower_eyelid
+            - firmness
+            - moisture
+            - redness
+            - tear_trough
+            - skin_type
+        miniserver_args:
+          type: object
+          properties:
+            enable_mask_overlay:
+              type: boolean
+              description: Controls whether the mask is blended onto the image. True returns the overlaid image as a .jpg. False returns the raw mask as a .png. Default is false.
+            enable_dark_background_hd_pore:
+              type: boolean
+              description: Enable dark background for HD pore visualization
+            color_dark_background_hd_pore:
+              type: string
+              description: Color for HD pore dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_pore:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD pore dark background visualization
+              example: 0.4
+            enable_dark_background_hd_wrinkle:
+              type: boolean
+              description: Enable dark background for HD wrinkle visualization
+            color_dark_background_hd_wrinkle:
+              type: string
+              description: Color for HD wrinkle dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_wrinkle:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD wrinkle dark background visualization
+              example: 0.4
+            enable_dark_background_hd_acne:
+              type: boolean
+              description: Enable dark background for HD acne visualization
+            color_dark_background_hd_acne:
+              type: string
+              description: Color for HD acne dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_acne:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD acne dark background visualization
+              example: 0.4
+            enable_dark_background_hd_texture:
+              type: boolean
+              description: Enable dark background for HD texture visualization
+            color_dark_background_hd_texture:
+              type: string
+              description: Color for HD texture dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_texture:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD texture dark background visualization
+              example: 0.4
+            enable_dark_background_hd_oiliness:
+              type: boolean
+              description: Enable dark background for HD oiliness visualization
+            color_dark_background_hd_oiliness:
+              type: string
+              description: Color for HD oiliness dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_oiliness:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD oiliness dark background visualization
+              example: 0.2
+            enable_dark_background_hd_age_spot:
+              type: boolean
+              description: Enable dark background for HD age spot visualization
+            color_dark_background_hd_age_spot:
+              type: string
+              description: Color for HD age spot dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_age_spot:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD age spot dark background visualization
+              example: 0.2
+            enable_dark_background_hd_redness:
+              type: boolean
+              description: Enable dark background for HD redness visualization
+            color_dark_background_hd_redness:
+              type: string
+              description: Color for HD redness dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_redness:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD redness dark background visualization
+              example: 0.2
+            enable_dark_background_hd_firmness:
+              type: boolean
+              description: Enable dark background for HD firmness visualization
+            color_dark_background_hd_firmness:
+              type: string
+              description: Color for HD firmness dark background visualization (hex format)
+              example: 3D3D3D
+            opacity_dark_background_hd_firmness:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Opacity for HD firmness dark background visualization
+              example: 0.1
+        format:
+          type: string
+          enum:
+          - json
+          - zip
+          description: 'Response format of the analysis results. Default is ''zip''. - `zip`: Results will be packaged as a downloadable ZIP file containing a skinanalysisResult folder with score_info.json and all detection result images. The response will include a URL to download the ZIP file. - `json`: Results will be returned directly in the response body as JSON format. Note: The response schema differs between format=json and format=zip.
+
+            '
+          example: zip
+        pf_camera_kit:
+          type: boolean
+          example: true

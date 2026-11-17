@@ -1,39 +1,53 @@
-## Description: <br>
-Audits whether the Task Execution Signal Protocol is still being followed through low-token, exception-first checks for version drift, queue hygiene, numeric stage format, and core execution anchors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit whether the Task Execution Signal Protocol is still being followed, with low-token, exception-first checks for version drift, queue hygiene, numeric stage format, and core execution anchors.
 
-## Publisher: <br>
-[wewehg](https://clawhub.ai/user/wewehg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wewehg](https://clawhub.ai/user/wewehg)
 
-## Use Case: <br>
-Developers, engineering leads, and governance reviewers use this skill to check whether a workspace still follows the current TESP baseline, including file anchors, visible versions, numeric progress notation, active-board hygiene, and archive handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may audit the wrong workspace or write a local report somewhere unexpected. <br>
-Mitigation: Confirm the workspace scope and report destination before installation or use. <br>
+## Use Case:
 
+Developers and governance reviewers use this skill to check whether TESP execution standards remain intact across protocol files, registry anchors, version markers, queue hygiene, archive separation, and numeric progress notation.
 
-## Reference(s): <br>
-- [TESP Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wewehg/tesp-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown or plain-text exception report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exception-first output; normal audits may write a short local report and avoid proactive chat messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad trigger wording could invoke the skill for adjacent governance requests where TESP review is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger wording if invocation should require explicit TESP requests.
+
+Risk: A lightweight audit may miss issues that require deeper semantic review.
+
+Mitigation: Use exception-first checks for routine governance and escalate when semantic conflicts or redesign decisions appear.
+
+## Reference(s):
+
+- [TESP Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Short exception-first report, usually Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stay silent in the normal case and point to a local report path when drift is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

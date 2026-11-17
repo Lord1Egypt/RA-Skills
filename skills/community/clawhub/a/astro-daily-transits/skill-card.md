@@ -1,43 +1,61 @@
-## Description: <br>
-Astro Daily Transits calculates daily planetary transits over a natal chart and produces bilingual text forecasts, JSON transit data, and rendered PNG chart images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astro Daily Transits helps an agent calculate daily astrological transits over a natal chart, identify aspects and house activations, and produce bilingual text forecasts, JSON data, and chart images.
 
-## Publisher: <br>
-[dynamicsalex](https://clawhub.ai/user/dynamicsalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dynamicsalex](https://clawhub.ai/user/dynamicsalex)
 
-## Use Case: <br>
-External users and agents use this skill to calculate astrology transit forecasts for a supplied birth date, birth time, city, and target date. It can return a text reading, structured JSON for downstream analysis, or a chart image with the forecast panel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reports that the renderer may automatically install Pillow when it is missing. <br>
-Mitigation: Review before installing and preinstall Pillow from a trusted, pinned source instead of relying on automatic installation. <br>
-Risk: Generated charts can include a bundled donation QR shortlink. <br>
-Mitigation: Inspect or disable the bundled QR frame before sharing generated images if that link is not desired. <br>
-Risk: Forecast inputs and outputs can expose personal birth details, location, name, and forecast content. <br>
-Mitigation: Avoid sharing generated JSON or images when those personal details should remain private. <br>
+## Use Case:
 
+External users and developers use this skill to generate entertainment or educational astrology transit forecasts for a supplied birth date, time, city, and target date. It can return text, structured JSON, and a rendered chart image for agent-assisted interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dynamicsalex/skills/astro-daily-transits) <br>
-- [Declared skill homepage](https://github.com/dynamicsAlex/astro-daily-transits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, image files, shell commands, guidance] <br>
-**Output Format:** [Plain text forecast, structured JSON, or PNG chart generated through Python CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Russian and English output, optional AI-supplied conclusion text, and target dates in the past, present, or future.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.1 (source: server release evidence) <br>
+Risk: The skill changes the runtime environment and uses a native Windows extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in an isolated environment where runtime package installation and native extensions are acceptable.
+
+Risk: Generated chart images may include a default QR code and ClawHub URL.
+
+Mitigation: Review generated images before sharing and confirm the embedded link content is acceptable.
+
+Risk: The skill may import interpretation data from a nearby astro-natal-chart skill directory when present.
+
+Mitigation: Run it in a controlled workspace and verify adjacent skill directories before relying on the generated forecast.
+
+Risk: Astrological forecasts are not a scientific basis for high-impact decisions.
+
+Mitigation: Use outputs for entertainment or educational purposes and avoid using them for medical, financial, legal, or similarly consequential decisions.
+
+## Reference(s):
+
+- [Astro Daily Transits ClawHub Page](https://clawhub.ai/dynamicsalex/skills/astro-daily-transits)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, guidance]
+
+**Output Format:** [Plain text forecast, JSON transit data, and PNG chart output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Russian and English output; chart output may include a default ClawHub URL and QR code.]
+
+## Skill Version(s):
+
+5.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

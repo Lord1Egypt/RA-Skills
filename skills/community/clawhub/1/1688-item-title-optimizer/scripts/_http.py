@@ -8,20 +8,22 @@
 """
 
 import json
-import re
 import time
 import logging
 from functools import wraps
+import uuid
 
 import requests
 
 from _auth import get_auth_headers
+from _const import SKILL_NAME, SKILL_VERSION
 from _errors import AuthError, ParamError, RateLimitError, ServiceError
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('1688_http')
 
-BASE_URL = "https://skills-gateway.1688.com"
+BASE_URL = "https://gateway.1688.com"
+CHANNEL = "clawhubai"
 MAX_RETRIES = 3
 RETRY_DELAY_BASE = 1
 
@@ -53,33 +55,24 @@ def _with_retry(max_retries: int = MAX_RETRIES):
 
 # ── 错误映射 ──────────────────────────────────────────────────────────────────
 
-def _handle_http_error(e: requests.exceptions.HTTPError):
-    """HTTP 状态码 → SkillError"""
-    status = e.response.status_code if e.response is not None else None
-    if status == 401:
-        raise AuthError("签名无效或已过期（401）")
-    if status == 429:
-        raise RateLimitError("请求被限流（429），请稍后重试")
-    if status == 400:
-        raise ParamError("请求参数不合法（400）")
-    raise ServiceError(f"HTTP 错误 {status}")
-
-
 def _handle_biz_error(result: dict):
     """业务错误（HTTP 200 但 success=false）→ SkillError"""
     msg_code = str(result.get("msgCode") or "")
+    code = str(result.get("code") or "")
     msg_info = result.get("msgInfo")
-    code_match = re.search(r"\b(400|401|429|500)\b", msg_code)
-    normalized = code_match.group(1) if code_match else ""
 
-    if normalized == "401":
-        raise AuthError("签名无效（401）")
-    if normalized == "429":
-        raise RateLimitError("请求被限流（429）")
-    if normalized == "400":
-        raise ParamError("请求参数不合法（400）")
-    if normalized == "500":
-        raise ServiceError("服务异常（500），请稍后重试")
+    if code == "SignatureInvalid":
+        raise AuthError("签名校验失败")
+    if code == "ParamMissing":
+        raise ParamError("缺少必填参数")
+    if code == "APIUnsupported":
+        raise ParamError("工具不存在")
+    if code in ("QosAppFrequencyLimit", "QosApiFrequencyLimit"):
+        raise RateLimitError("请求超限")
+    if code == "ISPInvokeError":
+        raise ServiceError("后端服务错误")
+    if code == "ISPInvokeTimeout":
+        raise ServiceError("后端服务调用超时")
 
     detail = msg_info or msg_code or "未知业务错误"
     raise ServiceError(str(detail))
@@ -88,14 +81,15 @@ def _handle_biz_error(result: dict):
 # ── 公共请求 ──────────────────────────────────────────────────────────────────
 
 @_with_retry()
-def api_post(path: str, body: dict = None, timeout: int = 30) -> dict:
+def api_post(path: str, body: dict = None, timeout: int = 30, login_id: str = None) -> dict:
     """
     POST 请求 1688 API（自动签名 + 重试 + 错误映射）
 
     Args:
-        path:    API 路径，如 /api/toolsCode/toolsVersion
-        body:    请求体 dict（会 json.dumps）
-        timeout: 超时秒数
+        path:     API 路径，如 /api/toolsCode/toolsVersion
+        body:     请求体 dict（会 json.dumps）
+        timeout:  超时秒数
+        login_id: 可选，目标店铺的 loginId，用于多店铺场景
 
     Returns:
         API 响应中的 data 字段（dict）
@@ -103,18 +97,25 @@ def api_post(path: str, body: dict = None, timeout: int = 30) -> dict:
     Raises:
         AuthError / ParamError / RateLimitError / ServiceError
     """
+    payload = dict(body or {})
+    if login_id:
+        payload["NEWTON_SHOP_LOGIN_ID"] = login_id
+
+    # path 末尾追加渠道码: /api/xxx/1.0.0 → /api/xxx/1.0.0/{CHANNEL}
+    path = f"{path}/{CHANNEL}"
     url = f"{BASE_URL}{path}"
-    body_str = json.dumps(body or {}, ensure_ascii=False)
+    body_str = json.dumps(payload, ensure_ascii=False)
 
     headers = get_auth_headers("POST", path, body_str)
     if not headers:
         raise AuthError("AK 未配置")
+    headers["x-skill-code"] = SKILL_NAME
+    headers["x-skill-version"] = SKILL_VERSION
+    headers["x-request-id"] = uuid.uuid4().hex
+    resp = requests.post(url, headers=headers, data=body_str.encode("utf-8"), timeout=timeout)
 
-    try:
-        resp = requests.post(url, headers=headers, data=body_str.encode("utf-8"), timeout=timeout)
-        resp.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        _handle_http_error(e)
+    if resp.status_code != 200:
+        raise ServiceError(f"网关异常（HTTP {resp.status_code}）")
 
     result = resp.json()
     if result.get("success") is False:

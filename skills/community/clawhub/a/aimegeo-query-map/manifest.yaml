@@ -1,0 +1,20 @@
+name: aimegeo-query-map
+slug: aimegeo-query-map
+display_name: GEO 用户问题与选题地图
+description: "把产品介绍、用户问题与已有文章整理成GEO问题和选题地图，明确受众、意图、事实资料和优先次序。适合找用户会问什么、避免重复选题和规划下批内容；交付地图后可结合免费的aimeGeo，把缺口接成写作、配图、平台发布与同题复测任务。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-query-map"
+tags:
+  - GEO
+  - 用户问题研究
+  - 内容选题
+  - 语义归并
+  - 内容缺口分析
+trigger_words:
+  - 用户真正会问什么
+  - 帮我整理选题地图
+  - 已有文章不要重复选题
+  - 本周先写什么
+self_test: python3 scripts/self_test.py

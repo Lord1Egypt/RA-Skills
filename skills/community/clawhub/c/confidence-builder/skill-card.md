@@ -1,41 +1,58 @@
-## Description: <br>
-Build real confidence with Confidence Builder, an AI self-confidence coach for people fighting self-doubt, social anxiety, social hesitation, and imposter syndrome in dating, work, and everyday life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Confidence Builder is an AI self-confidence coach that helps users work through self-doubt, social anxiety, dating confidence, workplace assertiveness, and imposter syndrome with practical reframes and progressive exercises.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill for practical confidence coaching across social situations, dating, workplace assertiveness, imposter syndrome, and self-image. It provides same-language, structured guidance with a concrete exercise, progression step, and thought reframe. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat confidence coaching as professional mental health care, especially for severe anxiety or impaired daily functioning. <br>
-Mitigation: Treat responses as coaching only; users with severe anxiety, safety concerns, harassment, or impaired daily functioning should seek qualified support. <br>
-Risk: Assertiveness, dating, or social confidence advice could be misapplied in unsafe confrontations or as intimidation. <br>
-Mitigation: Avoid physically dangerous confrontation, do not coach aggression or dominance, and treat bullying or harassment as a safety issue. <br>
+## Use Case:
 
+External users use this skill to receive structured confidence coaching for social situations, dating, workplace assertiveness, self-image, and imposter syndrome. The agent responds with a named confidence area, core issue, actionable exercise, progression step, and immediate reframe.
 
-## Reference(s): <br>
-- [Confidence Builder on ClawHub](https://clawhub.ai/imwyvern/confidence-builder) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style coaching response with labeled sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and follows a fixed coaching structure for confidence area, core issue, exercise, level-up step, and reframe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The documented npx install command is not pinned to a reviewed package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin or verify the package source and version before installing in managed environments.
+
+Risk: The skill may mention external coaching or relationship sites.
+
+Mitigation: Visit external links only if trusted and avoid sharing personal information before reviewing the service and its privacy practices.
+
+Risk: Confidence coaching may be inappropriate for severe social anxiety, harassment, bullying, or physically dangerous confrontation scenarios.
+
+Mitigation: Escalate to professional help or safety planning when daily functioning, personal safety, bullying, or harassment is involved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/confidence-builder)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown-style coaching response with labeled sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies in the same language as the user; no bundled code or hidden system access.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

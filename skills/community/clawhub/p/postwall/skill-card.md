@@ -1,44 +1,60 @@
-## Description: <br>
-Secure email gateway for AI agents - human-in-the-loop approval for reading and sending emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure email gateway for AI agents - human-in-the-loop approval for reading and sending emails.
 
-## Publisher: <br>
-[casperaiassist](https://clawhub.ai/user/casperaiassist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[casperaiassist](https://clawhub.ai/user/casperaiassist)
 
-## Use Case: <br>
-Developers and external users use PostWall to let agents read only human-approved emails, submit outbound email drafts for approval, and track draft status through the PostWall CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The PostWall CLI can access email content approved for agent use. <br>
-Mitigation: Install only when comfortable granting CLI access to the intended mailbox or account, and confirm which account PostWall connects to before use. <br>
-Risk: Outbound email drafts may contain incorrect recipients or content before human approval. <br>
-Mitigation: Review drafts in PostWall before approving send actions, and use the draft update flow for requested changes. <br>
-Risk: The skill requires a PostWall API key for authentication. <br>
-Mitigation: Use the expected PostWall source for installation and keep POSTWALL_API_KEY scoped to the intended environment. <br>
+## Use Case:
 
+Developers and external agent users use Postwall to let agents read only human-approved emails and submit outbound email drafts for human approval before sending.
 
-## Reference(s): <br>
-- [PostWall homepage](https://postwallapp.com) <br>
-- [PostWall repository](https://github.com/postwallapp/postwall) <br>
-- [PostWall ClawHub release](https://clawhub.ai/casperaiassist/postwall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PostWall CLI commands can return structured JSON when called with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: SKILL.md frontmatter metadata and server release evidence) <br>
+Risk: The skill relies on an unpinned external npm CLI that handles the PostWall API key and email data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned or otherwise verified PostWall CLI release, keep the API key scoped and rotatable, and review the package before use.
+
+Risk: Polling can cause the agent to check for approved email during a session more often than intended.
+
+Mitigation: Enable polling only when active email monitoring is needed and use an explicit polling cadence.
+
+Risk: Reading an email marks it as read, which can hide it from later inbox or check commands.
+
+Mitigation: Use inbox metadata and mark-read workflows deliberately, and read message bodies only when the agent is expected to consume them.
+
+## Reference(s):
+
+- [PostWall homepage](https://postwallapp.com)
+- [PostWall repository](https://github.com/postwallapp/postwall)
+- [ClawHub Postwall skill page](https://clawhub.ai/casperaiassist/skills/postwall)
+- [ClawHub publisher profile](https://clawhub.ai/user/casperaiassist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PostWall CLI commands can emit human-readable text or JSON with --json.]
+
+## Skill Version(s):
+
+1.7.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

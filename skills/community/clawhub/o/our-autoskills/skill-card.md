@@ -1,38 +1,54 @@
-## Description: <br>
-AutoSkills CLI detects project types, recommends matching AgentSkills, and can install or integrate selected skills through CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoSkills CLI detects project types such as web, Python, academic, finance, marketing, and media projects, then recommends and installs matching AgentSkills.
 
-## Publisher: <br>
-[adamwgp](https://clawhub.ai/user/adamwgp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamwgp](https://clawhub.ai/user/adamwgp)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect a workspace, identify the project category, and get recommended AgentSkills for web, Python, academic, finance, marketing, or media workflows. It can also provide commands for installing and checking those skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run an external CLI that installs and activates other agent skills with limited scoping or rollback guidance. <br>
-Mitigation: Run detection, list, or doctor commands first; inspect proposed downstream skills; avoid the default full integration flow unless those setup changes are intended; use a pinned package version or reviewed source where possible. <br>
+## Use Case:
 
+Developers use AutoSkills CLI to inspect a project, identify its likely domain or stack, and get recommended AgentSkills with commands for detection, installation, listing, and diagnostics.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/adamwgp/our-autoskills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend or trigger downstream skill installation depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead an agent to run an unpinned remote npm package that may change the user's agent setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use detection or listing modes first, prefer a pinned exact package version in an isolated environment, and allow installs or integration activation only after review.
+
+Risk: Global installation can keep the CLI available across future sessions.
+
+Mitigation: Avoid global installation unless persistent availability is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamwgp/skills/our-autoskills)
+- [Project homepage](https://github.com/adamwgp/our-autoskills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run npm and ClawHub commands that change the user's local agent skill setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

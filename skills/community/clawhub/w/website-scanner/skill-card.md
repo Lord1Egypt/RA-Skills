@@ -1,43 +1,55 @@
-## Description: <br>
-Comprehensive website analysis and scanning tool that analyzes IP addresses, DNS records, WHOIS data, website content, SEO metrics, crawler files, structured data, and third-party data, with optional deep scanning for multiple pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans website and domain infrastructure, content, SEO signals, crawler files, and third-party data, with optional deep scans and technical report generation.
 
-## Publisher: <br>
-[hugogu](https://clawhub.ai/user/hugogu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hugogu](https://clawhub.ai/user/hugogu)
 
-## Use Case: <br>
-Developers, site owners, and technical auditors use this skill to inspect a website or domain's infrastructure, crawler files, page metadata, structured data, and SEO signals. It is suited for authorized scans that produce shareable technical reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner makes outbound requests and may send target-derived domain or IP data to third-party services. <br>
-Mitigation: Run it only for sites you are authorized to scan, and avoid targets or environments where sharing target-derived network data with third parties is not acceptable. <br>
-Risk: Deep scans can follow sitemap URLs to unexpected hosts. <br>
-Mitigation: Review the target sitemap and use conservative page limits; run deep scans from an isolated environment when scanning untrusted targets. <br>
-Risk: The security review notes missing same-origin and private-address protections. <br>
-Mitigation: Avoid running scans from sensitive networks until those protections are added, and prefer a sandboxed environment for untrusted targets. <br>
+## Use Case:
 
+Developers, site owners, and analysts use this skill to inspect public or authorized domains, audit website metadata and SEO, and produce technical reports for documentation or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hugogu/website-scanner) <br>
-- [ipapi geolocation endpoint](https://ipapi.co/{ip}/json/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, PDF, shell commands] <br>
-**Output Format:** [Console report with optional JSON and PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include DNS, WHOIS, IP geolocation, content metadata, SEO findings, crawler-file excerpts, Google index checks, and optional deep-scan page results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scanned sites can influence follow-up requests through sitemap data and cause unintended outbound requests from the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only against public or authorized targets, preferably from an isolated environment with restricted egress, and review targets before deep scans.
+
+Risk: Scanning internal domains or sensitive investigations may disclose information to third-party lookup services.
+
+Mitigation: Avoid sensitive targets unless outbound disclosure to DNS, WHOIS, geolocation, and search services is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hugogu/skills/website-scanner)
+- [Publisher profile](https://clawhub.ai/user/hugogu)
+- [ipapi geolocation lookup endpoint](https://ipapi.co/{ip}/json/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, PDF, Shell commands]
+
+**Output Format:** [Console Markdown report with optional JSON or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on target availability and external DNS, WHOIS, geolocation, and search responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

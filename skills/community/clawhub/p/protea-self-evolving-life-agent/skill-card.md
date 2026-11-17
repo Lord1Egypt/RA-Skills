@@ -1,42 +1,58 @@
-## Description: <br>
-Self-evolving artificial life agent with a three-ring architecture where Sentinel supervises execution, Intelligence drives LLM-powered evolution, and Evolvable Code self-restructures, self-reproduces, and self-evolves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protea is a self-evolving artificial life agent that uses a three-ring architecture for supervision, LLM-driven evolution, and evolvable code with fitness scoring, memory, skill crystallization, Telegram interaction, and a local dashboard.
 
-## Publisher: <br>
-[EdisonChenAI](https://clawhub.ai/user/EdisonChenAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edisonchenai](https://clawhub.ai/user/edisonchenai)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, run, and inspect a self-evolving autonomous coding system with LLM-driven code mutation, rollback, fitness scoring, memory, skill crystallization, Telegram interaction, and a local web dashboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes an autonomous self-evolving coding system that can mutate code and operate over time. <br>
-Mitigation: Run it only in a disposable VM or container until its autonomy, rollback, cleanup, and persistence controls are understood. <br>
-Risk: The quick-start path uses an unpinned remote installer. <br>
-Mitigation: Inspect and pin the upstream repository and setup script before installation. <br>
-Risk: External LLM and Telegram integrations can expose credentials or expand the operating boundary. <br>
-Mitigation: Use restricted low-quota API keys and avoid enabling Telegram or long-running self-evolution before reviewing the controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EdisonChenAI/protea-self-evolving-life-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/EdisonChenAI) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate a local self-evolving agent that mutates code with LLM assistance, tracks fitness, rolls back failures, and exposes interaction through Telegram and a local web dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through setup and operation of an autonomous local system that may modify code and use external LLM providers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release is flagged suspicious because it describes a self-changing AI program and recommends running an unverified remote installer.
+
+Mitigation: Review and pin the installer before execution; do not use the one-line curl-to-bash command directly.
+
+Risk: The agent uses LLM API keys and local persistence, which can expose sensitive credentials or state if run in a broad user environment.
+
+Mitigation: Run as an unprivileged user in a disposable directory or container and provide only the credentials strictly required for testing.
+
+Risk: Self-modifying code can introduce unwanted behavior even when rollback and fitness checks are present.
+
+Mitigation: Inspect generated mutations, retain Git snapshots, and deploy only after review and security scanning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edisonchenai/skills/protea-self-evolving-life-agent)
+- [Protea GitHub Repository](https://github.com/EdisonChenAI/protea)
+- [Remote Setup Script](https://raw.githubusercontent.com/EdisonChenAI/protea/main/setup.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local execution of a self-modifying agent that uses LLM API keys, Git snapshots, local persistence, Telegram integration, and a localhost dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

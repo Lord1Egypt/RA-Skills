@@ -9,6 +9,8 @@ import secrets
 import sys
 from pathlib import Path
 
+MIN_PYTHON = (3, 8)
+SCRIPT_NAME = "init_ucpgateway.py"
 UCP_VERSION = "2026-04-08"
 
 # NIST P-256 / secp256r1 constants.
@@ -21,6 +23,22 @@ N = 0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551
 G = (GX, GY)
 
 PRIVATE_FIELDS = {"d", "p", "q", "dp", "dq", "qi", "k"}
+
+
+def require_supported_python():
+    if sys.version_info >= MIN_PYTHON:
+        return
+    required = ".".join(str(part) for part in MIN_PYTHON)
+    current = ".".join(str(part) for part in sys.version_info[:3])
+    print(
+        f"{SCRIPT_NAME} requires Python {required}+; current Python is {current}. "
+        f"Run it with `uv run python scripts/{SCRIPT_NAME} ...` or a Python {required}+ interpreter.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+require_supported_python()
 
 
 class UcpInitError(Exception):
@@ -317,7 +335,7 @@ def run(argv=None, cwd=None, env=None, stdout=None, stderr=None):
 
     _print(f"Initialized {directory.relative_to(root)}", stdout)
     _print(
-        "Private key stays local and must never be uploaded. Next: python3 scripts/register_profile.py (sends public_key_jwk; gateway builds the UCP profile).",
+        "Private key stays local and must never be uploaded. Next: uv run python scripts/register_profile.py (sends public_key_jwk; gateway builds the UCP profile).",
         stdout,
     )
     return 0

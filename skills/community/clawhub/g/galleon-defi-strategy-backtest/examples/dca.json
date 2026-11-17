@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "initialCashUsd": 1000,
+  "feeBps": 10,
+  "slippageBps": 20,
+  "strategy": {
+    "type": "dca",
+    "amountUsd": 100,
+    "everyBars": 7
+  }
+}

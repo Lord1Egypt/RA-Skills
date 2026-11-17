@@ -1,40 +1,50 @@
-## Description: <br>
-Connects users with experts across domains to exchange skills, share knowledge, collaborate on projects, and build professional networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect with experts across domains to exchange skills, share knowledge, collaborate on projects, and build a professional network.
 
-## Publisher: <br>
-[skills](https://clawhub.ai/user/skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills](https://clawhub.ai/user/skills)
 
-## Use Case: <br>
-External users and developers use this skill to prototype an expert directory that records expert profiles, skill exchanges, collaborations, and knowledge resources for matching and networking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented like a real expert-exchange platform while the security summary characterizes it as a local demo. <br>
-Mitigation: Treat it as a prototype and review its behavior before using it for real expert matching, collaboration, or marketplace workflows. <br>
-Risk: Profile, collaboration, exchange, and knowledge-resource data are stored in local JSON files. <br>
-Mitigation: Run it in a dedicated folder and avoid entering sensitive personal, business, or collaboration details unless local storage is acceptable. <br>
+## Use Case:
 
+External users, developers, and professional teams use this skill to maintain a local expert directory, search expertise, create skill exchanges, track collaborations, and store knowledge resources.
 
-## Reference(s): <br>
-- [Xpert Xchange on ClawHub](https://clawhub.ai/skills/xx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code behavior and command-oriented usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSON files for profiles, exchanges, collaborations, and knowledge resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The bundled Python utility can store expert profiles, collaboration details, exchanges, and knowledge resources in local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal or business information unless storing those records in the working directory is acceptable.
+
+## Reference(s):
+
+- [Xpert Xchange ClawHub listing](https://clawhub.ai/skills/skills/xx)
+- [Publisher profile](https://clawhub.ai/user/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with Python code behavior and local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local JSON files for expert profiles, exchanges, collaborations, and knowledge resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

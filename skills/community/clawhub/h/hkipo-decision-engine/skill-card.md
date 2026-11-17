@@ -1,51 +1,69 @@
-## Description: <br>
-Score Hong Kong IPOs, build decision cards, and batch-evaluate symbols or watchlists with explainable factors and execution guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score Hong Kong IPOs, build decision cards, and batch-evaluate symbols or watchlists with explainable factors and execution guidance.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate Hong Kong IPO participation decisions, position sizing, and batch watchlist decisions with explainable factors and execution guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores IPO preferences, watchlists, parameter versions, suggestions, and review history under ~/.hkipo-next. <br>
-Mitigation: Avoid entering unnecessary personal financial details, review stored local files, and delete local data when it is no longer needed. <br>
-Risk: Queried IPO symbols may be sent to external market-data sites. <br>
-Mitigation: Use only symbols you are comfortable disclosing to those sources and review network access expectations before running the CLI. <br>
-Risk: IPO scores and decision cards can be incomplete, stale, or unsuitable for a user's financial circumstances. <br>
-Mitigation: Independently verify market data and consult appropriate investment, broker, tax, and compliance guidance before acting. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate Hong Kong IPO participation choices, position sizing, and batch watchlist decisions with explainable scoring and execution-oriented summaries. Outputs should be treated as financial research support, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackstoic/hkipo-decision-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/hackstoic) <br>
-- [hkipo-next README](runtime/hkipo-next/README.md) <br>
-- [AiPO API reference](runtime/hkipo-next/references/aipo-api.md) <br>
-- [Analysis guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [API guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [IPO mechanism guide](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [Risk preferences guide](runtime/hkipo-next/references/risk-preferences.md) <br>
-- [AiPO data source](https://aipo.myiqdii.com) <br>
-- [AAStocks IPO market page](https://www.aastocks.com/tc/stocks/market/ipo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, text, or Markdown CLI output with shell-command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist review records, profile data, watchlists, parameters, and suggestions under ~/.hkipo-next.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The skill produces financial decision-support outputs that could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated scores, decision cards, and execution plans as research inputs and have a qualified human review them before acting.
+
+Risk: The runtime stores IPO preferences, watchlists, parameters, and decision history under ~/.hkipo-next.
+
+Mitigation: Run in an isolated environment when appropriate and avoid placing sensitive personal or account data in local configuration files.
+
+Risk: The runtime fetches public IPO data from external market sites, so outputs may reflect incomplete, delayed, or conflicting upstream data.
+
+Mitigation: Cross-check important IPO facts against authoritative market disclosures and review partial outputs before use.
+
+Risk: The package depends on Python dependencies and the uv runtime.
+
+Mitigation: Install only with reviewed or locked dependencies and keep the execution environment scoped to this workflow.
+
+## Reference(s):
+
+- [HK IPO Decision Engine skill definition](SKILL.md)
+- [hkipo-next README](runtime/hkipo-next/README.md)
+- [AiPO API documentation](runtime/hkipo-next/references/aipo-api.md)
+- [Analysis guide](runtime/hkipo-next/references/analysis-guide.md)
+- [API guide](runtime/hkipo-next/references/api-guide.md)
+- [Hong Kong IPO mechanism guide](runtime/hkipo-next/references/ipo-mechanism.md)
+- [Risk preferences guide](runtime/hkipo-next/references/risk-preferences.md)
+- [AiPO market data source](https://aipo.myiqdii.com)
+- [AAStocks IPO market page](https://www.aastocks.com/tc/stocks/market/ipo/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON, Markdown, and text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local profile, watchlist, parameter, and review records under ~/.hkipo-next.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

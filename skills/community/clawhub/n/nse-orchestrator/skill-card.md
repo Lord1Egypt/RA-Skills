@@ -1,46 +1,60 @@
-## Description: <br>
-The nervous system for sovereign AI entities — cross-pillar checks, LLM trust profiles, coherence detection, and signal routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The nervous system for sovereign AI entities: cross-pillar checks, LLM trust profiles, coherence detection, and signal routing.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to set up and operate NSE Orchestrator, which coordinates identity, wallet, calendar, relationship, and alignment pillars for cross-pillar checks, LLM trust scoring, coherence detection, and signal routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through identity, wallet, profile, calendar, memory, social, and alignment workflows that may affect sensitive accounts or real value. <br>
-Mitigation: Use a test identity and limited wallet first, and require explicit user confirmation before payments, public profile updates, calendar changes, or persistent memory writes. <br>
-Risk: Private Nostr keys, seed phrases, passphrases, wallet credentials, or API tokens may be exposed if pasted into chat or routed through the wrong tool. <br>
-Mitigation: Never paste nsec values or seed phrases into chat; keep secrets in the relevant pillar package or environment, and review agent output before execution. <br>
-Risk: The release depends on an external Python package and optional pillar packages outside the skill artifact. <br>
-Mitigation: Install only from trusted package sources, review dependency provenance before use, and start with the minimum required pillars. <br>
+## Use Case:
 
+Developers and agent operators use NSE Orchestrator to set up an agent-wide orchestration layer for identity, payments, calendar, relationships, alignment checks, model trust scoring, and signal routing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vveerrgg/nse-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/vveerrgg) <br>
-- [Project homepage](https://github.com/HumanjavaEnterprises/nse-orchestrator.app.OC-python.src) <br>
-- [PyPI package](https://pypi.org/project/nse-orchestrator/) <br>
-- [NSE project site](https://nse.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes status checks, setup flows, package installation commands, and operational guardrails for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can shape agent behavior across identity, payments, calendar, relationships, alignment, model scoring, and persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when an agent-wide orchestration layer is intended, enable each pillar explicitly, and require confirmation before sensitive actions.
+
+Risk: Optional dependency activation can expand the agent's capabilities in sensitive domains.
+
+Mitigation: Review and pin the dependency set before installing extras or enabling pillar packages.
+
+Risk: Persistent memory and profile-related workflows may record secrets or unverified claims.
+
+Mitigation: Avoid storing secrets or unverified claims, and review memory or public profile writes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vveerrgg/skills/nse-orchestrator)
+- [Project homepage](https://github.com/HumanjavaEnterprises/nse-orchestrator.app.OC-python.src)
+- [PyPI package](https://pypi.org/project/nse-orchestrator/)
+- [NSE project site](https://nse.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require explicit user confirmation before wallet, identity, public profile, calendar, relationship, or persistent-memory actions.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

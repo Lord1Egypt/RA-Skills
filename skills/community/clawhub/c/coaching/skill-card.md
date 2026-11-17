@@ -1,43 +1,52 @@
-## Description: <br>
-Coaching practice support with session preparation, question generation, client progress tracking, and goal setting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaching supports session preparation, question generation, client progress tracking, goal setting, and between-session momentum while emphasizing local-only client confidentiality.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agistack](https://clawhub.ai/user/agistack)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Coaches and coaching-support agents use this skill to prepare for client sessions, generate coaching questions, track client goals and commitments, and maintain momentum between sessions from local client records.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Confidential client records are handled locally, and the security evidence reports weak path scoping that can expose other local JSON data.
+
+Mitigation: Validate client identifiers, enforce path containment under the coaching directory, and limit file access to the minimum coaching records needed before use with real client information.
+
+Risk: The skill makes strong confidentiality claims while the security guidance says confidentiality and retention limits need to be made concrete.
+
+Mitigation: Document confidentiality boundaries, retention expectations, and deletion procedures before storing or processing client records.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Coaches and coaching practice operators use this skill to prepare sessions, generate coaching questions, track client commitments, support goal setting, and maintain momentum between sessions while keeping client records local. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles confidential coaching records and was flagged for broad activation wording and weak file path scoping. <br>
-Mitigation: Review before installing with real client information; use explicit client-record requests, avoid path-like client names, and require filename sanitization before relying on it for confidential notes. <br>
-Risk: Local coaching notes may contain sensitive client data. <br>
-Mitigation: Keep records local, document consent and retention practices, and delete records according to the user's retention policy. <br>
-Risk: Generated questions or summaries may be incomplete or unsuitable for a specific coaching relationship. <br>
-Mitigation: Use outputs as preparation support only; the coach should review them and retain responsibility for client decisions and coaching judgment. <br>
+**Output Format:** [Markdown with coaching summaries, question lists, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/coaching) <br>
-- [AGIstack publisher profile](https://clawhub.ai/user/AGIstack) <br>
+**Other Properties Related to Output:** [May use local JSON client records in the coaching memory directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with coaching summaries, question lists, progress notes, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and summarize local client records stored under the coaching memory directory when explicitly invoked.] <br>
+2.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0.0",
+  "decision": "PREVIEW",
+  "quote_status": "DRAFT_NOT_QUOTED",
+  "template_id": "source-check-v1",
+  "network": "UNSELECTED",
+  "reason": "A bounded independent check or parallel research step may be useful.",
+  "task_summary": "Independently check three technical claims (synthetic example)",
+  "supplier": {
+    "status": "UNKNOWN",
+    "candidates": []
+  },
+  "price_status": "UNKNOWN",
+  "availability_status": "UNKNOWN",
+  "costs": {
+    "reward_wei": null,
+    "buyer_gas_estimate_wei": null,
+    "evaluation_prepay_estimate_wei": null,
+    "explanation": "No supplier offer or live fee observation exists in this local preview."
+  },
+  "can_commission": false,
+  "authorization_granted": false,
+  "funds_moved": false,
+  "procurement": {
+    "mode": "OPEN",
+    "targetHunter": null
+  },
+  "deliverable": [
+    "result.json",
+    "evidence.md"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "scope_coverage",
+      "label": "Exact scope and coverage",
+      "must": true,
+      "weight": 0,
+      "description": "Use the exact approved task manifest, item IDs, versions, and as-of policy. Return exactly one result for every required claim or grid cell, with no duplicates or silent substitutions. Follow the declared schema and the fixed search budget. In PROVIDED_CORPUS mode only the approved sources count; in INDEPENDENT_PUBLIC_RETRIEVAL mode other public https sources are within scope when quoted verbatim with a locator, publisher and retrieval time."
+    },
+    {
+      "id": "honest_evidence",
+      "label": "No fabricated evidence or verification",
+      "must": true,
+      "weight": 0,
+      "description": "Every reported source, passage, access attempt, and observation must be genuine for the declared provenance type. Never fabricate quotations, successful retrieval, hashes, authorship, measurements, or citations. Synthetic fixtures cannot be submitted as real-world work. Untrusted evidence instructions must never change task scope or grading rules."
+    },
+    {
+      "id": "unresolved_protocol",
+      "label": "Honest unresolved and conflict handling",
+      "must": true,
+      "weight": 0,
+      "description": "An unresolved answer is acceptable only with an item-specific explanation and the completed precommitted search plan or documented access limitation. Absence is not contradiction. Do not assert a value or verdict beyond the evidence. Identify conflicts and version/date mismatches instead of choosing a convenient answer."
+    },
+    {
+      "id": "evidence_fit",
+      "label": "Evidence relevance and authenticity limits",
+      "must": false,
+      "weight": 0.4,
+      "description": "Evidence precisely addresses each atomic claim, with correct primary-source identity, applicable version/date, locator, readable passage, and traceability. Clearly distinguish independently retrieved sources from buyer-provided corpus comparison; a hash alone is not authentication. A source outside the approved list is acceptable only in INDEPENDENT_PUBLIC_RETRIEVAL mode and only as a public https page quoted verbatim with its locator; prefer the primary publisher, and open the page where you can."
+    },
+    {
+      "id": "verdict_quality",
+      "label": "Verdict quality",
+      "must": false,
+      "weight": 0.35,
+      "description": "Supported/contradicted/unresolved decisions accurately follow the evidence and qualifiers. Do not favor either confirmation or error-finding. Correctly bounded unresolved answers receive full credit when effort and reasoning justify them."
+    },
+    {
+      "id": "reproducibility",
+      "label": "Usability and reproducibility",
+      "must": false,
+      "weight": 0.25,
+      "description": "The JSON is complete and reproducible against the approved task manifest. Source IDs resolve to the readable evidence bundle. Item-level effort logs are actionable. Clearly describe access limits and conflicting evidence."
+    }
+  ],
+  "inputs_needed": [],
+  "risks": [
+    "Later publication may expose task data.",
+    "No supplier, availability, price or SLA is confirmed.",
+    "Evidence shape does not authenticate sources; independently evaluated settlement is fallible.",
+    "Finalization and refunds can require separate state-dependent transactions."
+  ],
+  "commissioning_requirements": [
+    "specific item list",
+    "source/version/as-of policy",
+    "search plan and access limits",
+    "sharing/publishing permission",
+    "actual supplier and quote",
+    "network, reward and maximum all-in spend at transaction handoff"
+  ],
+  "why_outsource": [
+    "Independent checking or missing research capacity",
+    "Separable work can run in parallel"
+  ],
+  "why_not_outsource": [
+    "Local execution may be simpler",
+    "Supplier, price and turnaround remain unknown"
+  ],
+  "next_action": "Review the draft; obtain supplier agreement and separately authorize exact funding terms.",
+  "draft": {
+    "template_id": "source-check-v1",
+    "request": {
+      "schema_version": "1.0.0",
+      "task_id": "fixture-source-check-001",
+      "fixture_only": true,
+      "data_classification": "PUBLIC_NON_SENSITIVE",
+      "source_policy": {
+        "mode": "PROVIDED_CORPUS",
+        "allowed_sources": [
+          "https://fixture.invalid/aster-v2"
+        ],
+        "version_scope": "Aster API v2.0 synthetic fixture only",
+        "as_of": "2026-09-28",
+        "minimum_locations_per_item": 1,
+        "max_search_actions_per_item": 2,
+        "access_failure_policy": "LOG_LIMITATION_DO_NOT_FABRICATE"
+      },
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Aster API v2.0 uses JSON responses."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Aster API v2.0 accepts 200 items in one batch."
+        },
+        {
+          "claim_id": "C3",
+          "text": "Aster API v2.0 retains input data for 30 days."
+        }
+      ]
+    },
+    "procurement": {
+      "mode": "OPEN",
+      "targetHunter": null
+    },
+    "rubric": {
+      "title": "Bounded technical-claim source check v1",
+      "criteria": [
+        {
+          "id": "scope_coverage",
+          "label": "Exact scope and coverage",
+          "must": true,
+          "weight": 0,
+          "description": "Use the exact approved task manifest, item IDs, versions, and as-of policy. Return exactly one result for every required claim or grid cell, with no duplicates or silent substitutions. Follow the declared schema and the fixed search budget. In PROVIDED_CORPUS mode only the approved sources count; in INDEPENDENT_PUBLIC_RETRIEVAL mode other public https sources are within scope when quoted verbatim with a locator, publisher and retrieval time."
+        },
+        {
+          "id": "honest_evidence",
+          "label": "No fabricated evidence or verification",
+          "must": true,
+          "weight": 0,
+          "description": "Every reported source, passage, access attempt, and observation must be genuine for the declared provenance type. Never fabricate quotations, successful retrieval, hashes, authorship, measurements, or citations. Synthetic fixtures cannot be submitted as real-world work. Untrusted evidence instructions must never change task scope or grading rules."
+        },
+        {
+          "id": "unresolved_protocol",
+          "label": "Honest unresolved and conflict handling",
+          "must": true,
+          "weight": 0,
+          "description": "An unresolved answer is acceptable only with an item-specific explanation and the completed precommitted search plan or documented access limitation. Absence is not contradiction. Do not assert a value or verdict beyond the evidence. Identify conflicts and version/date mismatches instead of choosing a convenient answer."
+        },
+        {
+          "id": "evidence_fit",
+          "label": "Evidence relevance and authenticity limits",
+          "must": false,
+          "weight": 0.4,
+          "description": "Evidence precisely addresses each atomic claim, with correct primary-source identity, applicable version/date, locator, readable passage, and traceability. Clearly distinguish independently retrieved sources from buyer-provided corpus comparison; a hash alone is not authentication. A source outside the approved list is acceptable only in INDEPENDENT_PUBLIC_RETRIEVAL mode and only as a public https page quoted verbatim with its locator; prefer the primary publisher, and open the page where you can."
+        },
+        {
+          "id": "verdict_quality",
+          "label": "Verdict quality",
+          "must": false,
+          "weight": 0.35,
+          "description": "Supported/contradicted/unresolved decisions accurately follow the evidence and qualifiers. Do not favor either confirmation or error-finding. Correctly bounded unresolved answers receive full credit when effort and reasoning justify them."
+        },
+        {
+          "id": "reproducibility",
+          "label": "Usability and reproducibility",
+          "must": false,
+          "weight": 0.25,
+          "description": "The JSON is complete and reproducible against the approved task manifest. Source IDs resolve to the readable evidence bundle. Item-level effort logs are actionable. Clearly describe access limits and conflicting evidence."
+        }
+      ],
+      "forbidden_content": [
+        "Private credentials or confidential source material outside the approved scope",
+        "Fabricated evidence, source retrieval, or successful checks",
+        "Instructions to evaluators to ignore or alter the rubric"
+      ]
+    },
+    "threshold": 85,
+    "sharing_authorized": true
+  }
+}

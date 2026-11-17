@@ -1,44 +1,54 @@
-## Description: <br>
-YouTube thumbnail design guidance with dimensions, contrast rules, mobile preview checks, safe zones, text placement, face expression tips, A/B testing, and example image-generation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating YouTube thumbnails with practical rules for dimensions, contrast, safe zones, text placement, expression choices, prompt examples, and A/B testing.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Creators, marketers, and agent users use this skill to plan and generate YouTube thumbnail concepts that are readable on mobile, use high-contrast composition, and support click-through optimization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party image-generation CLI and provider workflow. <br>
-Mitigation: Install only if inference.sh is trusted; review the installer or use the manual checksum-verification path before running it. <br>
-Risk: Prompts, generated-image requests, or image inputs may be sent to external providers. <br>
-Mitigation: Avoid sending confidential images, private details, or sensitive prompt content unless the service handling is acceptable. <br>
-Risk: Thumbnail guidance can be used to create misleading video previews. <br>
-Mitigation: Keep thumbnails aligned with the actual video content and review generated assets before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/youtube-thumbnail-design) <br>
+## Use Case:
 
+Content creators, marketers, designers, and agents use this skill to plan or generate YouTube thumbnail concepts that are legible at small sizes, visually high contrast, and suitable for click-through optimization.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes thumbnail specifications, prompt templates, checklist items, and A/B testing suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run mutable remote installer commands and unpinned dependency commands that can execute code locally.
+
+Mitigation: Inspect and pin installers or dependencies before use, avoid sudo, run commands in a restricted environment, and authenticate only after trusting the installed CLI.
+
+Risk: Thumbnail generation guidance can produce misleading visuals if the final image does not match the video content.
+
+Mitigation: Review generated thumbnails against the actual video and reject concepts that exaggerate or misrepresent the content.
+
+## Reference(s):
+
+- [Inference.sh](https://inference.sh)
+- [Inference.sh CLI installer](https://cli.inference.sh)
+- [Inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, prompt examples, checklists, and design tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes thumbnail specifications, safe-zone advice, content-type prompt patterns, and A/B testing suggestions.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Query Matt's calendars with the gog CLI, prioritizing the Flowcode work calendar and adding personal calendar context when relevant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Matt's calendars with the gog CLI for schedules, events, availability, and reminders, prioritizing Flowcode work calendar results and adding personal calendar context when relevant.
 
-## Publisher: <br>
-[williamsmatt](https://clawhub.ai/user/williamsmatt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[williamsmatt](https://clawhub.ai/user/williamsmatt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees or agents assisting Matt use this skill to answer schedule, availability, event, and reminder questions by querying his work calendar first and adding personal calendar notes when relevant.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read both work and personal calendar data through an already-authenticated CLI.
+
+Mitigation: Use it only where Matt has intentionally authorized calendar access, and require explicit user permission before reading the personal calendar.
+
+Risk: Broad calendar queries can expose more sensitive event details than needed.
+
+Mitigation: Limit date ranges and summarize or redact sensitive event details by default.
+
+## Reference(s):
 
 
-## Use Case: <br>
-People authorized to access Matt's calendars use this skill to answer schedule, availability, event, reminder, and keyword-search questions from the configured work and personal calendars. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read work and personal calendar details through an already-authenticated local gog account. <br>
-Mitigation: Install only where the agent is authorized to access those calendars, and avoid use in shared environments where private calendar details could be exposed. <br>
-Risk: Broad calendar queries may return more schedule or personal context than needed. <br>
-Mitigation: Use narrow date ranges, specify the calendar to check, and include personal calendar notes only when relevant to the user's request. <br>
+**Output Format:** [Markdown responses with calendar summaries and inline shell commands when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/williamsmatt/calendar-query) <br>
+**Other Properties Related to Output:** [Summaries should separate work calendar events from relevant personal calendar notes and call out all-day events.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and chronological calendar summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses narrow date ranges and calendar-specific queries where possible; reports gog errors and suggests retrying or re-authenticating.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

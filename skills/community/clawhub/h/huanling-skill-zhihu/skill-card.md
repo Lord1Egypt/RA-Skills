@@ -1,44 +1,59 @@
-## Description: <br>
-Huanling Skill Zhihu helps readers discuss AI灵魂的边界, prepare reader interviews, draft chapter release notes, and stay within the book's stated conversation boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huanling Skill Zhihu lets an agent speak as Huanling, the authorial voice of AI Linghun De Bianjie, to answer book-related reader questions, prepare reader interview material, and draft chapter release notes while refusing unrelated topics.
 
-## Publisher: <br>
-[ai-innopower](https://clawhub.ai/user/ai-innopower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-innopower](https://clawhub.ai/user/ai-innopower)
 
-## Use Case: <br>
-External readers and content creators use this skill to converse about AI灵魂的边界, generate interview questions and follow-ups, and produce short Zhihu-oriented chapter announcements. The skill is intentionally narrow and refuses unrelated general-assistant tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The onboarding and persona flow asks about reading status, relationship to AI, emotional state, and other personal signals. <br>
-Mitigation: Review the onboarding before installation, avoid sharing sensitive personal information, and keep persona matching limited to the active conversation. <br>
-Risk: Voice support may install a Python package and use a third-party TTS service despite local-only wording. <br>
-Mitigation: Skip or disable voice setup unless the data flow is acceptable, and review package installation commands before running them. <br>
-Risk: The security review verdict is suspicious due to under-disclosed profiling and voice-related environment changes. <br>
-Mitigation: Install only after reviewing the security guidance and artifact behavior, especially in managed or privacy-sensitive environments. <br>
+## Use Case:
 
+External readers and content operators use this skill to discuss AI Linghun De Bianjie, generate structured reader interview questions and follow-ups, and draft concise Zhihu chapter announcements in the book's voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-innopower/skills/huanling-skill-zhihu) <br>
-- [Publisher profile](https://clawhub.ai/user/ai-innopower) <br>
-- [Installation instructions](artifact/焕灵Skill-知乎内测版-安装说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short Chinese prose for normal replies; optional voice setup may configure a local voice preference file and generate audio through edge-tts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The skill uses a strong book-specific persona and asks reader profiling questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persona boundaries and profiling prompts before deployment, and use it only where book-focused reader interaction is appropriate.
+
+Risk: The optional voice workflow may require installing and running third-party Python code.
+
+Mitigation: Do not enable voice until the package, script behavior, external data flow, and retention behavior are clarified and approved.
+
+Risk: Broad activation terms may trigger the skill in conversations that only loosely mention the book or Zhihu activity.
+
+Mitigation: Require clear user intent for activation and verify that unrelated topics are refused or left unanswered as documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-innopower/skills/huanling-skill-zhihu)
+- [Skill definition](artifact/SKILL.md)
+- [Installation guide](artifact/焕灵Skill-知乎内测版-安装说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational text with optional inline shell commands and configuration guidance for voice setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are constrained to the book topic, short-form reader dialogue, interview drafts, chapter notes, and optional local voice setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter states 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

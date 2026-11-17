@@ -1,38 +1,53 @@
-## Description: <br>
-Complete personal and business banking guidance for optimizing accounts, reducing fees, comparing banking products, handling disputes, and structuring banking around a user's financial needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete personal and business banking intelligence system for optimizing accounts, selecting banking products, reducing fees, maximizing interest, handling disputes, and structuring personal or business banking.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Individuals and business users use this skill to evaluate banking setups, compare account types, reduce avoidable fees, improve savings yield, plan business banking, and navigate bank disputes or escalations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Banking guidance can be outdated, jurisdiction-specific, or dependent on the user's account type and transaction details. <br>
-Mitigation: Verify current bank terms, local rules, account conditions, APY, fees, and deadlines before switching accounts, disputing charges, or escalating a complaint. <br>
-Risk: Users may treat general banking recommendations as personalized financial or regulatory advice. <br>
-Mitigation: Use the output as general guidance and confirm material decisions with the bank, relevant regulator, or a qualified professional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Consumers, business owners, and financial operations users use this skill to evaluate banking setup, reduce avoidable fees, compare account structures, understand banking products, and plan dispute or escalation steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations, examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or account access; users should verify current terms and jurisdiction-specific rules before acting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Banking rates, product terms, fee policies, dispute deadlines, and regulatory protections vary by institution and jurisdiction.
+
+Mitigation: Verify current details with the bank, product terms, or applicable regulator before acting on the guidance.
+
+Risk: The skill provides banking guidance but does not access accounts or execute transactions.
+
+Mitigation: Treat outputs as decision support and complete any account changes, complaints, or transfers through official bank or regulator channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agenticio/skills/bank)
+- [Publisher profile](https://clawhub.ai/user/agenticio)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown guidance with structured recommendations and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; advice should be checked against current bank terms and local regulations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

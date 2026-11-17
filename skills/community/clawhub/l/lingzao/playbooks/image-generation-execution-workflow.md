@@ -3,7 +3,7 @@
 Use this playbook when Lingzao's image-generation capability is available and
 the user wants actual images, not only prompts. This workflow sits after
 `visual-generation-and-cover-workflow.md` and `visual-reference-style-library.md`.
-For domestic Agent wrappers, stable tool schemas, model-agnostic provider
+For domestic Agent wrappers, stable tool schemas, model-agnostic generation
 boundaries, known generation bugs, and A Tian example-collection homework, also
 read `image-generation-agent-integration-guide.md`.
 
@@ -16,7 +16,7 @@ The core problem it solves:
 
 ## Product Principle
 
-Do not expose raw prompt work as the main product experience.
+Do not expose prompt-only work as the main product experience.
 
 User-facing output should be:
 
@@ -24,7 +24,25 @@ User-facing output should be:
 - short explanation of what style was chosen and why
 - the caption, keywords, or next publishing action when relevant
 
-Prompt text is an internal implementation layer or fallback artifact.
+Prompt text is a supporting artifact, not the main product experience.
+
+## Queued Requests and Retry Recovery
+
+A queued response means Lingzao accepted the work; it is not a completed image.
+Creation reserves credits for the full requested count; successful images
+settle their reservations and failed images release them. `remaining_credits`
+is the live available balance. Multiple intents may queue concurrently.
+Keep each generation intent's `client_request_id` when retrying.
+
+- If `GENERATION_IN_PROGRESS` has no `poll_url` and returns
+  `retryable=true`, `billing_effect=no_charge` and
+  `agent_action=retry_after_short_delay`, the request was not accepted.
+  Wait briefly and retry the same request with the same ID; do not create
+  another intent or claim that this attempt joined the queue.
+- For compatibility with older deployments, if an error includes a `poll_url`,
+  it identifies an earlier intent.
+  Poll only to wait for capacity, then retry the current intent with its original
+  ID. Never deliver or bind that earlier batch as the current request's result.
 
 ## Execution Loop
 
@@ -39,6 +57,12 @@ Run image work in this order:
    - Confirm the image's job: click, save, teach, explain, convert, or support
      an article.
    - Finalize exact on-image text before generation.
+   - Run `xhs-platform-management-risk-baseline.md` and
+     `xhs-content-compliance-risk-gate.md` on Xiaohongshu on-image text,
+     caption, keywords, and comment guidance before generating. Do not spend
+     another image generation turning risky lines such as "加微信", "评论领取", "私信发你",
+     "扫码进群", or guaranteed outcomes into an image. For commercial visuals,
+     keep public value first, product name later, and no diversion action.
    - Keep the largest title short. If the text is too long, split it into
      subtitle, labels, and body caption instead of forcing it onto the image.
 
@@ -54,7 +78,7 @@ Run image work in this order:
    - Review the generated image before returning it.
    - If the image fails quality gates, stop at a concrete repair brief unless
      the user has already approved a counted batch that includes repair images.
-   - Ask for explicit confirmation before any extra paid repair generation.
+   - Ask for explicit confirmation before any extra repair generation.
    - Do not tell the user that an obviously ugly image is acceptable.
 
 6. Final delivery
@@ -83,7 +107,7 @@ minimum visual anchors instead of sending a weak prompt to the image model:
 If reference and color are both missing, ask at most one more practical
 question: this image is for Xiaohongshu, WeChat, product page, or course/service
 card? Do not call `generate-image` until the brief has at least topic + platform
-or format + visual direction/reference/color. This prevents spending credits on
+or format + visual direction/reference/color. This prevents making online requests on
 generic poster output.
 
 If the user provides no reference image:
@@ -152,7 +176,7 @@ and write a repair brief one layer at a time.
 
 If the user only approved one image, do not call `generate-image` again just
 because the first successful result is ugly. Stop at the repair brief, explain
-the likely extra credit cost, and ask whether to generate another paid image.
+the changed visual direction, and ask whether to generate another image.
 Only continue automatically when the user already approved a counted batch such
 as "generate 3 options and repair weak ones inside that count."
 
@@ -172,9 +196,9 @@ Common failure -> repair:
 - Reference copied -> keep only structure and hierarchy; change photo, color,
   title, and modules.
 
-User-facing repair wording before another paid generation:
+User-facing repair wording before another generation:
 
-这一版的问题不是内容不行，是视觉层级没立住：标题不够大，信息太挤，主体也不够明确。我建议把它改成「一个大标题 + 三个信息块 + 底部行动条」。如果你确认继续生成，我会按这版返修 brief 再走一次生图；这会消耗一张图的积分。
+这一版的问题不是内容不行，是视觉层级没立住：标题不够大，信息太挤，主体也不够明确。我建议把它改成「一个大标题 + 三个信息块 + 底部行动条」。如果你确认继续生成，我会按这版返修 brief 再走一次生图。
 
 ## Route-Specific Generation Standards
 
@@ -323,4 +347,4 @@ For product cards:
 - Do not treat beauty, expensive scenes, professional photography, or complex
   cinematic visuals as easy for beginners to reproduce.
 - Do not continue regenerating blindly. Diagnose, write a repair brief, and get
-  explicit confirmation before spending credits on another generation.
+  explicit confirmation before making online requests on another generation.

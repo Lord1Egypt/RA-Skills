@@ -1,40 +1,53 @@
-## Description: <br>
-A guide for downloading Bilibili videos, cropping borders, trimming clips, and compressing them for Xiaomi touchscreen alarm clock playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B站视频下载裁剪压缩工具。下载bilibili视频、裁剪去除边框、压缩到指定大小时使用。支持b23.tv短链和BV号。别名：闹钟视频下载。
 
-## Publisher: <br>
-[mimose101](https://clawhub.ai/user/mimose101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mimose101](https://clawhub.ai/user/mimose101)
 
-## Use Case: <br>
-Developers and media-focused agent users can use this skill to produce compact alarm-clock-ready videos from Bilibili sources by following download, crop, trim, and compression steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local media-processing commands and package installation may affect the user's environment. <br>
-Mitigation: Install dependencies intentionally, preferably in a Python virtual environment, and review commands before execution. <br>
-Risk: Downloaded or processed videos can be overwritten or produce an unsuitable final file. <br>
-Mitigation: Use unique BV-number-based filenames, keep originals, and confirm the cropped, trimmed, and compressed output before deleting intermediate files. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through downloading Bilibili videos, resolving b23.tv short links, cropping video borders, trimming lead-in and end segments, and compressing output for a Xiaomi touchscreen alarm clock workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mimose101/xiaomi-touchscreen-alarm-clock-video-production) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command plans and processing settings; media files are changed only if the agent or user executes the commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Dependency installation can modify the user's Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment and avoid --break-system-packages.
+
+Risk: ffmpeg commands use overwrite mode and repeated runs for the same BV ID can replace previous outputs.
+
+Mitigation: Choose output filenames and directories carefully, keep BV-based unique filenames, and check for existing files before rerunning processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mimose101/skills/xiaomi-touchscreen-alarm-clock-video-production)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, parameter tables, and bitrate formulas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include yt-dlp, bilix, ffmpeg, ffprobe, curl, and Python command examples for local media processing.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

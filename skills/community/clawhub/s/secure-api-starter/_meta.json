@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "secure-api-starter",
+  "schema_version": "1",
+  "name": "secure-api-starter",
   "version": "1.0.0",
-  "publishedAt": 1772651827638
+  "description": "Production-ready secure API with authentication, authorization, rate limiting, input validation, and logging",
+  "homepage": "",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["api", "security", "authentication", "jwt", "rate-limit"],
+  "license": "MIT"
 }

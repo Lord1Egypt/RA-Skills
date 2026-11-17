@@ -1,43 +1,49 @@
-## Description: <br>
-Get current public IP address and geolocation information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current public IP address and geolocation information. Use when users ask about IP addresses, network location, or want to check their public IP. Supports both fetching IP info and displaying it clearly.
 
-## Publisher: <br>
-[qidu](https://clawhub.ai/user/qidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qidu](https://clawhub.ai/user/qidu)
 
-## Use Case: <br>
-External users and developers use this skill to check a system's public IP address and approximate IP-based geolocation when troubleshooting network identity or answering location-related prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The lookup sends the user's public IP address to third-party IP lookup or geolocation providers. <br>
-Mitigation: Confirm ambiguous location requests before running the lookup and avoid using the skill when sharing public IP information with those providers is not acceptable. <br>
-Risk: IP-based geolocation can be approximate or provider-dependent. <br>
-Mitigation: Present results as IP-based estimates and report which service succeeded when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qidu/get-ip) <br>
-- [ipify public IP endpoint](https://api.ipify.org) <br>
-- [ipinfo.io geolocation endpoint](https://ipinfo.io/) <br>
-- [ifconfig.me public IP endpoint](https://ifconfig.me/) <br>
-- [icanhazip public IP endpoint](https://icanhazip.com) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for the current public IP address and approximate network location, with fallback commands when the primary lookup service fails.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, JSON] <br>
-**Output Format:** [Markdown or terminal text summarizing public IP address, approximate location, ISP, and organization when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses third-party IP lookup providers and may return provider-dependent location estimates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: IP and approximate location lookups contact third-party web services.
+
+Mitigation: Install only when this network behavior is acceptable, ask explicitly before IP lookup, and prefer HTTPS-only endpoints, timeouts, response validation, and an explicit consent step before geolocation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qidu/skills/get-ip)
+- [Publisher profile](https://clawhub.ai/user/qidu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and optional IP geolocation details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact public IP and geolocation providers, including ipip.net, icanhazip.com, ifconfig.me, api.ipify.org, and ipinfo.io.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Telegram Analyzer helps agents search SaaS contacts, view recent incoming Telegram messages, and update contact details such as stages, tags, or notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and manage SaaS Telegram contacts, view recent incoming messages, and update contact stages, tags, or notes.
 
-## Publisher: <br>
-[samuewalton](https://clawhub.ai/user/samuewalton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samuewalton](https://clawhub.ai/user/samuewalton)
 
-## Use Case: <br>
-Customer-facing and operations teams can use this skill through an agent to look up Telegram-linked SaaS contacts, review recent incoming messages, and maintain contact notes, tags, or stages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a hardcoded backend token. <br>
-Mitigation: Move the token to a secret store or runtime configuration, rotate any exposed token, and scope credentials to the minimum backend actions required. <br>
-Risk: The skill depends on a localhost backend service that must be trusted. <br>
-Mitigation: Install only with a verified backend, document backend setup and authentication scopes, and restrict access to authorized users. <br>
-Risk: Advertised contact actions can change stages, tags, or notes. <br>
-Mitigation: Require explicit user confirmation before mutating contact records and show the target contact, action, and new value before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to search SaaS Telegram contacts, review recent incoming messages, and manage contact records.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON responses from a local backend service, typically summarized or acted on by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return contact records, recent message data, or contact update results depending on the selected tool.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports an embedded backend token in source.
+
+Mitigation: Remove reusable tokens from source and require users to configure credentials securely before use.
+
+Risk: The security scan reports plaintext localhost HTTP transport.
+
+Mitigation: Use a safer authenticated transport for contact and message operations.
+
+Risk: The skill can change contact records without clear safeguards.
+
+Mitigation: Require explicit user confirmation before updating stages, tags, or notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samuewalton/skills/telegram-analyzer)
+- [Publisher profile](https://clawhub.ai/user/samuewalton)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text and JSON responses from contact and message tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return contact search results, recent incoming messages, or contact update outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

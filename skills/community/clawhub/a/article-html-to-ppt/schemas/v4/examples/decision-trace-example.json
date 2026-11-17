@@ -1,0 +1,77 @@
+{
+  "schema_version": "4.0.0",
+  "run": {
+    "run_id": "run-20260811-a1",
+    "engine_version": "4.0.0-dev",
+    "ir_sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+    "style_pack": { "pack_id": "editorial-knowledge", "version": "4.0.0" },
+    "profile": "standard",
+    "autonomy_tier": "L1",
+    "probe": { "result": "pass", "ir_roundtrip_valid": true, "repair_rounds_used": 1 }
+  },
+  "decisions": [
+    {
+      "decision_id": "d-001",
+      "slide_id": "s1",
+      "stage": "archetype",
+      "evidence": {
+        "structural": [
+          { "feature": "metric_count", "value": 3 },
+          { "feature": "has_table", "value": false },
+          { "feature": "risk_block_count", "value": 1 },
+          { "feature": "insight_block_count", "value": 1 }
+        ],
+        "semantic": [
+          { "feature": "relation_types", "value": "causal|contrast" },
+          { "feature": "hint_emphasis_count", "value": 2 },
+          { "feature": "hint_tone", "value": "professional" }
+        ]
+      },
+      "candidates": [
+        { "choice": "kpi_insight", "confidence": 0.86, "rule_id": "rule-kpi-with-insight" },
+        { "choice": "comparison", "confidence": 0.41, "rule_id": "rule-two-entity-compare" }
+      ],
+      "chosen": "kpi_insight",
+      "chosen_by": "llm_advisor",
+      "confidence": 0.86
+    },
+    {
+      "decision_id": "d-002",
+      "slide_id": "s2",
+      "stage": "archetype",
+      "evidence": {
+        "structural": [
+          { "feature": "has_table", "value": true },
+          { "feature": "table_cols", "value": 4 },
+          { "feature": "table_rows", "value": 8 }
+        ]
+      },
+      "candidates": [
+        { "choice": "full_table", "confidence": 0.95, "rule_id": "rule-single-table-page" }
+      ],
+      "chosen": "full_table",
+      "chosen_by": "rule",
+      "confidence": 0.95
+    },
+    {
+      "decision_id": "d-003",
+      "slide_id": "s1",
+      "stage": "text_fitting",
+      "evidence": {
+        "structural": [
+          { "feature": "insight_char_len", "value": 47 },
+          { "feature": "fit_at_normal", "value": true }
+        ]
+      },
+      "chosen": "body_normal",
+      "chosen_by": "rule",
+      "confidence": 1
+    }
+  ],
+  "outcomes": {
+    "qa_error_count": 0,
+    "repair_rounds": 0,
+    "degradations": [],
+    "user_feedback": "approved"
+  }
+}

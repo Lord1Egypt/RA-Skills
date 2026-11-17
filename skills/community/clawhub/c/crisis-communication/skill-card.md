@@ -1,40 +1,56 @@
-## Description: <br>
-Develop crisis communication scripts, media response strategies, and statement drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop crisis communication scripts, media response strategies, and statement drafting
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[findhappy7](https://clawhub.ai/user/findhappy7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Public relations and business teams use this skill to draft crisis communications, media-response strategies, statements, and implementation guidance from provided business context and stakeholder requirements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outputs may be mistaken for legal or regulatory advice during a crisis.
+
+Mitigation: Review outputs as professional communications guidance and consult qualified legal or regulatory experts where required.
+
+Risk: Sensitive crisis details may be exposed if unnecessary confidential, personal, or legally sensitive information is provided.
+
+Mitigation: Provide only the crisis context and documents needed for the communication task, and remove confidential, personal, or legally sensitive details unless they are necessary.
+
+Risk: Drafts may be inaccurate, incomplete, or too generic when the supplied business context is incomplete.
+
+Mitigation: Provide accurate context, relevant documents, objectives, target audiences, and constraints, then have domain experts review and tailor outputs before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Public relations, communications, legal, and leadership teams use this skill to draft crisis communication scripts, media responses, statements, and implementation guidance from business context and stakeholder requirements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Crisis-response work may expose confidential crisis details, customer data, legal exposure, or unreleased company information. <br>
-Mitigation: Share only necessary context and have outputs reviewed by appropriate PR, legal, or leadership stakeholders before use. <br>
-Risk: Drafted statements or recommendations may be incorrect, incomplete, or insufficiently tailored to the organization or industry. <br>
-Mitigation: Customize outputs for the specific situation and validate them against applicable business, regulatory, and industry standards before publication. <br>
+**Output Format:** [Markdown guidance with analysis, draft statements, response strategies, and implementation steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/crisis-communication) <br>
+**Other Properties Related to Output:** [Requires complete business context and domain-expert review before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style analysis, drafted statements, scripts, plans, and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided business context, stakeholder details, constraints, and review by appropriate domain experts.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

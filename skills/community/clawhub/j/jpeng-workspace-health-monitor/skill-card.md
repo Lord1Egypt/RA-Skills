@@ -1,39 +1,49 @@
-## Description: <br>
-Performs comprehensive workspace health checks including disk usage, file counts, skill health, large files, and empty directories with actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs workspace health checks across disk usage, file counts, skill health, large files, and empty directories, then returns actionable maintenance recommendations.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to inspect a local workspace for disk usage, skill health, large files, empty directories, and maintenance recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recursively inspects local workspace metadata, so file and folder names from sensitive or overly broad directories may appear in reports or agent context. <br>
-Mitigation: Run it only against the intended workspace and avoid broad home, system, or sensitive directories when names should remain private. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to diagnose repository or skill-folder health, identify oversized files and empty directories, and generate a Markdown maintenance report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-workspace-health-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JavaScript object for health metrics and a Markdown-formatted workspace health report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local file and directory metadata, health scores, status levels, and actionable recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The health report may expose local file or directory names from the scanned workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces whose path names can be shared with the intended audience, or keep generated reports private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-workspace-health-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Guidance]
+
+**Output Format:** [JavaScript object with a Markdown health report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local workspace metrics, selected relative paths, health score, status, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

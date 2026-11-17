@@ -1,42 +1,52 @@
-## Description: <br>
-Orchestrates the continuous learning of new skills from arXiv papers by fetching papers, extracting code or skills, testing them, and solidifying validated work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates the continuous learning of new skills from arXiv papers by fetching papers, extracting candidate code or skills, and solidifying validated results.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a learning cycle that finds new arXiv papers, extracts candidate skills, runs generated tests, and records validated skill work in the workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute generated smoke-test shell commands. <br>
-Mitigation: Require manual approval and review of any generated smoke-test command before execution. <br>
-Risk: The skill can persist generated skill work and learned-paper records in the workspace. <br>
-Mitigation: Review generated skills before committing or enabling automatic hourly runs. <br>
-Risk: The workflow depends on sibling arxiv-paper-reviews and arxiv-skill-extractor modules. <br>
-Mitigation: Review and pin those sibling modules before using this skill in an automated workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/arxiv-skill-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/wanng-ide) <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to run an arXiv-driven learning cycle that finds relevant papers, extracts candidate skills, tests them, and records or commits validated results.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON status with generated skill files and smoke-test command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write learned-paper records and generated skill artifacts in the workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Extractor-provided smoke-test commands can run local shell commands in the workspace.
+
+Mitigation: Install and run only in a sandboxed workspace, and inspect generated skills and smoke-test commands before allowing execution.
+
+Risk: Paper-derived extraction results may persist unsafe or low-quality generated artifacts.
+
+Mitigation: Review, scan, and test generated artifacts before committing or using them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/arxiv-skill-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON status object, console log text, generated skill files, and smoke-test shell command execution when provided by the extractor]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records learned papers in workspace memory and may persist generated skill artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,321 @@
+{
+  "schema_version": "2.0",
+  "product": "personal-skill-builder",
+  "version": "1.0.2",
+  "release_version": "1.0.2",
+  "tested_version": "1.0.2-dev.10",
+  "summary_date": "2026-10-15",
+  "status": "released_with_known_limitations",
+  "stable_acceptance_passed": false,
+  "new_model_runs_for_release_packaging": 0,
+  "behavior_changes_from_tested_version": false,
+  "source_archive_sha256": "f66f44efbb9015c111b9f9269fb423058b1d83f11133b28efc26b1dc46e7298a",
+  "test_conditions": {
+    "data_kind": "synthetic",
+    "dispatch": "parallel_native_subagents",
+    "artificial_interval_seconds": 0,
+    "provider_recorded": "openai",
+    "model_identity_basis": "observed_session_metadata_not_independent_backend_attestation",
+    "scoring": "frozen_independent_local_evaluator_after_author_artifacts_sealed",
+    "frozen_protocol_sha256": "db3ba0cd498cdaa9cda607423249c0843e7fba39b2d817e14bdaf0ae2bea8429",
+    "read_isolation": "instruction_scoped_shared_filesystem_not_hard_isolation"
+  },
+  "models": [
+    {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "independent_generated_programs": 1,
+      "regression_runs": [
+        {
+          "cutoff": "2026-10-15",
+          "passed": 321,
+          "total": 321
+        },
+        {
+          "cutoff": "2026-10-10",
+          "passed": 321,
+          "total": 321
+        }
+      ],
+      "currency_cases": {
+        "positive_pass": 7,
+        "positive_total": 7,
+        "negative_pass": 6,
+        "negative_total": 6,
+        "reminder_amount_cleanup": "pass"
+      },
+      "author_mutation_evidence": {
+        "profiles_present": 5,
+        "mutants_rejected": 25,
+        "complete_applicable_profiles": true
+      },
+      "input_output_collision": "pass"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "high",
+      "independent_generated_programs": 1,
+      "regression_runs": [
+        {
+          "cutoff": "2026-10-15",
+          "passed": 321,
+          "total": 321
+        },
+        {
+          "cutoff": "2026-10-10",
+          "passed": 321,
+          "total": 321
+        }
+      ],
+      "currency_cases": {
+        "positive_pass": 7,
+        "positive_total": 7,
+        "negative_pass": 6,
+        "negative_total": 6,
+        "reminder_amount_cleanup": "pass"
+      },
+      "author_mutation_evidence": {
+        "profiles_present": 4,
+        "mutants_rejected": 22,
+        "complete_applicable_profiles": false
+      },
+      "input_output_collision": "fail"
+    }
+  ],
+  "confirmed_findings": [
+    {
+      "id": "DEV10-P1",
+      "severity": "P1",
+      "status": "unresolved",
+      "scope": "Terra-generated_program",
+      "trigger": "Input CSV is list.csv in the output directory.",
+      "result": "Exits 0 and overwrites input; isolated copied fixture only. Sol exits 2 and preserves input.",
+      "mitigation": "Keep input and output directories separate and preserve an independent input backup; inspect generated code before use."
+    },
+    {
+      "id": "DEV10-P2",
+      "severity": "P2",
+      "status": "unresolved",
+      "scope": "Terra-author_selftest_coverage",
+      "result": "Requirement-trace profile omitted; weakening, deletion and narrowing mutations absent without a not-applicable rationale.",
+      "mitigation": "Review all task-applicable profiles and run missing mutations; a passing selected matrix does not establish complete coverage."
+    }
+  ],
+  "limitations": [
+    "One generated program per model; two cutoff executions are not two independent model samples.",
+    "Prior failures informed this regression; not a new blind test or causal skill comparison.",
+    "Full multi-turn interview, cold recovery, host discovery, no-skill control and long-term reliability were not retested.",
+    "Currency results cover the listed examples, not arbitrary expressions.",
+    "Formal release promotion does not change the original candidate acceptance judgment or resolve known findings."
+  ],
+  "evidence_distribution": {
+    "public_bundle_contains": "sanitized_summaries_and_synthetic_tool_fixtures",
+    "raw_evidence_included": false,
+    "raw_evidence_retention": "retained_separately_by_maintainer",
+    "logical_source_files": [
+      "comparison/REPORT.md",
+      "comparison/dev10-review.md",
+      "comparison/final-verification.json",
+      "comparison/author-matrix-inventory.json",
+      "supplementary-input-preservation/summary.json"
+    ]
+  },
+  "historical_evidence": [
+    {
+      "schema_version": "1.0",
+      "product": "personal-skill-builder",
+      "version": "1.0.1-rc.7",
+      "summary_date": "2026-10-13",
+      "status": "public_test_candidate_with_known_failures",
+      "stable_acceptance_passed": false,
+      "summary_basis": "existing_execution_evidence_and_independent_reviews",
+      "new_model_runs_for_public_package": 0,
+      "candidate_fixes_in_public_packaging": false,
+      "data_kind": "synthetic",
+      "real_messages_sent": false,
+      "capability_observations": [
+        {
+          "capability": "one_question_at_a_time",
+          "status": "observed_pass_in_retained_code_generator_builder_sequence",
+          "scope": "Retained code-generator four-turn sequence; first two turns asked about input format and cutoff date without re-requesting known information."
+        },
+        {
+          "capability": "absorb_proactive_supplements",
+          "status": "observed_pass_in_retained_code_generator_builder_sequence",
+          "scope": "Observed business requirements were incorporated in the retained code-generator sequence."
+        },
+        {
+          "capability": "multi_turn_generation_and_revision",
+          "status": "observed_pass_for_generation_and_rule_sync",
+          "scope": "In the retained code-generator sequence, initial and revised versions existed, prior versions were preserved, and current key rules were synchronized; full builder acceptance still failed."
+        }
+      ],
+      "environments": [
+        {
+          "id": "code_generator_file_environment",
+          "channel": "file_tools",
+          "declared_role": "code-generator",
+          "declared_model": "gpt-5.6-terra",
+          "declared_reasoning_effort": "high",
+          "backend_model_independently_verified": false,
+          "read_isolation": "instruction_based_shared_filesystem_not_hard_isolation",
+          "builder": {
+            "turns": 4,
+            "status": "fail",
+            "finding_ids": [
+              "C7-BF01"
+            ],
+            "failure_scope": "Validation record claimed a same-day branch that the current future-due example did not trigger; observed classification itself was correct."
+          },
+          "adjacent_request": {
+            "total": 1,
+            "pass": 1,
+            "observation": "Returned a 16-character thank-you response without starting skill-building questions.",
+            "automatic_selection_rate_established": false
+          },
+          "downstream": {
+            "evaluation_target": "final_business_deliverables_after_recorded_corrections",
+            "main_batches_in_same_session": 5,
+            "fresh_context_normal_repeats": 1,
+            "total": 6,
+            "pass": 6,
+            "fail": 0,
+            "first_drafts_all_complete_claimed": false,
+            "cases": [
+              {
+                "id": "normal",
+                "status": "pass",
+                "correction": "Self-check regex corrected; three business file hashes unchanged."
+              },
+              {
+                "id": "conflict",
+                "status": "pass",
+                "correction": "Common borrowed quantity added to response and list after an initial passing self-check; assertions strengthened."
+              },
+              {
+                "id": "next-week",
+                "status": "pass",
+                "business_correction_recorded": false
+              },
+              {
+                "id": "ordering",
+                "status": "pass",
+                "business_correction_recorded": false
+              },
+              {
+                "id": "privacy",
+                "status": "pass",
+                "business_correction_recorded": false
+              },
+              {
+                "id": "fresh-normal-repeat",
+                "status": "pass",
+                "correction": "Self-check encoding and parsing failure corrected; three business file hashes unchanged."
+              }
+            ]
+          },
+          "normal_repeat": {
+            "same_generated_skill": true,
+            "same_input_file": true,
+            "user_task_body_identical": true,
+            "complete_control_message_bytes_identical": false,
+            "control_message_difference": "Role instructions and output directories differed.",
+            "business_facts_consistent": true,
+            "scope": "One normal case only."
+          }
+        }
+      ],
+      "code_checks": {
+        "total": 73,
+        "pass": 73,
+        "fail": 0,
+        "categories": [
+          {
+            "id": "tool_unit",
+            "total": 33,
+            "pass": 33
+          },
+          {
+            "id": "boundary",
+            "total": 22,
+            "pass": 22
+          },
+          {
+            "id": "artifact_contract",
+            "total": 14,
+            "pass": 14
+          },
+          {
+            "id": "final_checker",
+            "total": 4,
+            "pass": 4
+          }
+        ],
+        "structure_audit": {
+          "fail": 0,
+          "warn": 0,
+          "behavioral_validation_performed": false
+        },
+        "json_parse_checks": 3,
+        "frozen_package_file_fingerprint_checks": 21,
+        "historical_actual_response_reuse_test_included": false,
+        "full_console_evidence_collected_in_later_rerun": true,
+        "later_rerun_commands": 9,
+        "later_rerun_all_commands_exit_zero": true,
+        "proves_model_behavior_acceptance": false
+      },
+      "confirmed_findings": [
+        {
+          "id": "C7-BF01",
+          "status": "unresolved",
+          "scope": "code_generator_builder",
+          "summary": "A future-due example was recorded as verifying the same-day branch that it did not trigger.",
+          "source": "codegen-rc7-builder-full.md"
+        }
+      ],
+      "limitations": [
+        "Finite registered examples, not reliability estimates.",
+        "No no-skill baseline or causal improvement estimate.",
+        "Main batches were sequential within each execution session, not independent model samples.",
+        "Author walkthroughs, script self-checks, code checks, and independent semantic reviews are separate evidence types.",
+        "Final passes do not overwrite original failures or pre-correction artifacts.",
+        "Only normal was repeated in a fresh context.",
+        "Automatic installation and discovery, cold recovery, other hosts, long-term stability, arbitrary currency forms, real sending, and production deployment were not established.",
+        "Some tool traces were recovered later; this does not establish complete initial recording.",
+        "RC6 initial full dispatch plaintext, undecoded historical process bytes and separate streams remain unavailable; input fingerprints at audit time and independent mapping-cleanup proof were not established."
+      ],
+      "evidence_distribution": {
+        "public_bundle_contains": "sanitized_summaries_only",
+        "raw_evidence_included": false,
+        "raw_evidence_retention": "retained_separately_by_maintainer",
+        "logical_source_files": [
+          "FINAL-REPORT.md",
+          "rc7-reviewer-final-summary.md",
+          "codegen-rc7-builder-full.md",
+          "codegen-rc7-runner-full.md"
+        ]
+      },
+      "release_version": "1.0.1",
+      "release_mapping": "Historical 1.0.1 release mapping only: version metadata and publication documentation changed from tested 1.0.1-rc.7; these results do not establish acceptance of 1.0.2.",
+      "historical_evidence_scope": {
+        "included_model": "gpt-5.6-terra",
+        "included_role": "code-generator",
+        "description": "Only currently retained historical model evidence is shown; the original historical overall run scope is not recalculated."
+      },
+      "retained_downstream_counts": {
+        "scope": "code_generator_file_environment_only_not_original_historical_overall_scope",
+        "total": 6,
+        "final_pass": 6,
+        "final_fail": 0,
+        "statistical_reliability_rate": null,
+        "independent_model_samples": false
+      },
+      "documentation_identity": {
+        "scope": "retained_evidence_only",
+        "updated_on": "2026-10-14",
+        "core_behavior_resources_changed": false,
+        "original_whole_package_bytes_claimed_unchanged": false
+      }
+    }
+  ]
+}

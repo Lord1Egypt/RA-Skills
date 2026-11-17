@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn72gb1rya1qex53mxs1z18tcs84ekjm",
+  "ownerId": "thatshinji",
   "slug": "trading-plan-generator",
   "version": "1.2.0",
-  "publishedAt": 1776416115556
+  "publishedAt": null,
+  "author": "Shinji",
+  "description": "基于Brent Penfold交易圣经框架的股票交易预案与计划生成器"
 }

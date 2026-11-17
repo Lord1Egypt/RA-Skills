@@ -1,0 +1,42 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_create",
+    "description": "Add an existing account as a company member. The account must already exist in the system.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Account ID, username, phone number, or email of the user to add as a company member."
+        },
+        "leaderIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of leader account IDs for this member."
+        },
+        "roleIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of role IDs to assign to this member."
+        },
+        "departmentIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of department IDs this member belongs to (optional)."
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number (optional). Lower numbers appear first."
+        }
+      },
+      "required": ["id", "leaderIdList", "roleIdList"]
+    }
+  }
+}

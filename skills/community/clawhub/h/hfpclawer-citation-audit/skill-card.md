@@ -1,42 +1,59 @@
-## Description: <br>
-Verify academic paper citations using a three-tier fallback pipeline across a local FTS5 database, Semantic Scholar, and OpenAlex, with support for single checks and batch reference-list audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify academic paper citations using local FTS5 data, Semantic Scholar, and OpenAlex, with support for single citation checks and batch reference-list audits.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Researchers, reviewers, and literature-survey authors use this skill to check whether cited papers exist, including citations from LLM-generated papers or batch reference lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Citation titles, arXiv IDs, or batch reference contents may be sent to Semantic Scholar or OpenAlex when remote lookup modes are used. <br>
-Mitigation: Use local source mode for confidential or unpublished reference lists, and use remote API lookup only when sharing those citation details is acceptable. <br>
-Risk: Optional Semantic Scholar and OpenAlex credentials or contact details may be used for higher rate limits. <br>
-Mitigation: Store S2_API_KEY and OPENALEX_POLITE_EMAIL in environment variables, and avoid placing credentials in prompts, shared files, or audit inputs. <br>
-Risk: Short titles, missing local databases, rate limits, or network errors can produce SUSPECTED, NOT_FOUND, or ERROR results. <br>
-Mitigation: Prefer full titles or arXiv IDs, review per-source status details, and retry or cross-check failed remote lookups before relying on the result. <br>
+## Use Case:
 
+Researchers, reviewers, literature-survey authors, and agents use this skill to check whether cited academic papers exist and to audit reference lists for missing, suspected, or verified citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diamond2nv/hfpclawer-citation-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and citation audit status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audit statuses include VERIFIED, SUSPECTED, NOT_FOUND, and ERROR; remote lookups may query Semantic Scholar or OpenAlex unless local-only mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: Auto mode may send citation titles, arXiv IDs, and author or year hints to Semantic Scholar or OpenAlex.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local source mode for confidential bibliographies when possible, and review citation inputs before enabling network-backed sources.
+
+Risk: Optional extras and MCP registration can broaden the runtime surface beyond basic citation checks.
+
+Mitigation: Review optional extras and MCP configuration before enabling them in an agent environment.
+
+Risk: Anonymous academic API tiers can be rate-limited, which may produce ERROR statuses or slower audits.
+
+Mitigation: Use the local FTS5 source where available, or configure the documented Semantic Scholar and OpenAlex rate-limit options for higher-volume use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diamond2nv/skills/hfpclawer-citation-audit)
+- [Project homepage](https://github.com/diamond2nv/hfpapers-crawler)
+- [PyPI package](https://pypi.org/project/hfpclawer/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples and citation-status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report VERIFIED, SUSPECTED, NOT_FOUND, or ERROR statuses and include source-specific results.]
+
+## Skill Version(s):
+
+0.19.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+requests>=2.28
+beautifulsoup4>=4.11
+anthropic>=0.34
+# openai>=1.0  # optional — install if you want to use OpenAI instead of Anthropic
+# BM25 is now pure-Python (no rank_bm25). `--demo` needs none of the above.

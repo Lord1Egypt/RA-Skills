@@ -1,51 +1,68 @@
-## Description: <br>
-Flightroutes24 AI helps agents parse international flight requests, search demo or procurement fares, verify offers, and create orders after required user confirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+flightroutes24 ai helps agents parse international flight requests, search demo or procurement fares, verify offers, and place explicitly confirmed orders through Flightroutes24.
 
-## Publisher: <br>
-[mafly](https://clawhub.ai/user/mafly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mafly](https://clawhub.ai/user/mafly)
 
-## Use Case: <br>
-External travel users and their agents use this skill to search one-way or round-trip international airfare, refine carrier and departure-time preferences, compare direct and connecting options, and proceed through verified booking when procurement credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real flight orders. <br>
-Mitigation: Require explicit confirmation of passenger information, itinerary, price, refund rules, and final order intent before running the order command. <br>
-Risk: Passenger information and procurement credentials may be stored locally. <br>
-Mitigation: Prefer environment variables or a secure secret store, avoid sharing secrets in chat, and clear local cache files after bookings. <br>
-Risk: Maintainer-only skip-auth and skip-IP-whitelist switches can bypass normal controls. <br>
-Mitigation: Use those switches only in isolated testing and confirm they are disabled before production or shared use. <br>
-Risk: The packaged local settings include Git remote add and push permissions unrelated to flight booking. <br>
-Mitigation: Remove the packaged Git publishing permission file unless it is explicitly required for the deployment environment. <br>
+## Use Case:
 
+External users and travel agents use this skill to search international flight options, refine results by airline or departure time, and proceed to booking only after required user confirmations. Developers can install it into agent environments such as Cursor or Claude Code and configure procurement credentials locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mafly/fr24-ai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mafly) <br>
-- [Flightroutes24](https://www.flightroutes24.com/) <br>
-- [README.en.md](README.en.md) <br>
-- [Booking flow](references/booking.md) <br>
-- [Output rules](references/output-rules.md) <br>
-- [User procurement key setup](references/user-appkey-config.md) <br>
-- [Search parameters](references/search_params.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON stdout for agent execution results, with concise Markdown or text summaries for user-facing guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Only userView and message are intended for user-visible output; agentOnly data, raw API payloads, local cache paths, and secrets remain internal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Sensitive booking data and credentials may be stored in local cache or configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a protected workspace, keep .cache and local credential files out of sharing and version control, and clear local secrets when no longer needed.
+
+Risk: Bundled local agent permissions allow git remote add and git push commands.
+
+Mitigation: Remove or review the bundled .claude permissions before installation unless those Git actions are explicitly required.
+
+Risk: Booking actions can create real orders.
+
+Mitigation: Require the documented passenger confirmation and final order confirmation before running verification or order commands.
+
+Risk: Internal script output can contain trace IDs, offer IDs, payloads, or local paths.
+
+Mitigation: Show users only the documented message and userView fields, and keep agentOnly and raw stdout out of user-facing exports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mafly/skills/fr24-ai)
+- [Flightroutes24](https://www.flightroutes24.com/)
+- [README.en.md](artifact/README.en.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [Booking workflow](artifact/references/booking.md)
+- [Output rules](artifact/references/output-rules.md)
+- [Search parameters](artifact/references/search_params.md)
+- [User APPKEY configuration](artifact/references/user-appkey-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON script output with user-facing message/userView fields, plus Markdown guidance and shell commands for agent operation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing internal fields such as agentOnly and local cache paths are not intended for user-visible output.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

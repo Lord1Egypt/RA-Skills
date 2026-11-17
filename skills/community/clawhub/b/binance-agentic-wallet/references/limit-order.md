@@ -141,7 +141,7 @@ baw limit-order list --status WORKING --json
     "list": [
       {
         "orderType": "limit",
-        "strategyId": 9876543210,
+        "strategyId": "9876543210",
         "chain": "56",
         "side": "SELL",
         "fromToken": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
@@ -172,6 +172,21 @@ baw limit-order list --status WORKING --json
 | `FAILED`    | On-chain execution failed                         |
 | `EXPIRED`   | Order expired before the price was reached        |
 | `CANCELED`  | Canceled by the user                              |
+
+### ⚠️ Mandatory: a `strategyId` is NOT a fill
+
+A `success: true` response with a `strategyId` from `limit-order buy` / `limit-order sell` means the order has been **placed**. It does **not** mean anything was bought or sold. Reporting a placement as a completed trade is a real failure mode.
+
+1. **Report a placement as a placement.** Say the order has been *placed* and state the trigger price. Never say the user bought or sold anything at this point.
+2. **`WORKING` is the expected resting state, not "still processing".** A limit order waits for its trigger price and can sit in `WORKING` for days. Tell the user it is resting and how to check it later (`limit-order list --strategyId <id> --json`) — **do not poll a `WORKING` order to a terminal state**, and do not imply it is about to execute.
+3. **Once the status reaches `TRIGGERED` or `PENDING`**, the order is actually executing. Only then does polling to a terminal state make sense.
+4. **Report each terminal status for what it is:**
+   - `FINISHED` → filled; include `txHash` and the actual amount.
+   - `FAILED` → on-chain execution failed; say so plainly.
+   - `EXPIRED` → the trigger price was never reached and the order is dead. **Tell the user** — do not leave it looking like it is still waiting.
+   - `CANCELED` → canceled. Same: state it explicitly.
+
+`EXPIRED` and `CANCELED` are the ones most easily misreported as "still pending". Neither will ever execute.
 
 ---
 

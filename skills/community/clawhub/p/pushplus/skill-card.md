@@ -1,48 +1,61 @@
-## Description: <br>
-PushPlus sends notifications through WeChat, email, SMS, Work WeChat, DingTalk, Feishu, and related channels for alerts, task results, exception notices, reminders, and delivery-result queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pushplus lets agents send PushPlus notifications across WeChat, email, SMS, enterprise WeChat, DingTalk, Feishu, webhooks, app, voice, and ClawBot channels, and query or manage related PushPlus resources.
 
-## Publisher: <br>
-[lei-mu](https://clawhub.ai/user/lei-mu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lei-mu](https://clawhub.ai/user/lei-mu)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to send PushPlus notifications, query delivery results, and manage notification tokens, groups, channels, ClawBot bindings, friends, settings, and preprocessing rules when the relevant credentials are provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PushPlus credentials authorize notification sending and optional account-management operations. <br>
-Mitigation: Use a message token for ordinary sending and only provide PUSHPLUS_USER_TOKEN plus PUSHPLUS_SECRET_KEY when OpenAPI administration is needed. <br>
-Risk: OpenAPI features can delete or change messages, tokens, groups, friends, webhooks, settings, preprocessing rules, and ClawBot bindings. <br>
-Mitigation: Require explicit user confirmation before destructive or account-changing operations. <br>
-Risk: Verbose execution can expose real tokens or request data in logs. <br>
-Mitigation: Avoid verbose mode with production credentials and redact tokens from any shared logs. <br>
-Risk: SMS and voice channels may consume paid PushPlus credits. <br>
-Mitigation: Do not use paid delivery channels unless the user explicitly selects them. <br>
+## Use Case:
 
+Developers and operations teams use this skill to send monitoring alerts, scheduled task results, business exception notifications, and everyday reminders through PushPlus. They can also configure notification channels, inspect delivery results, and manage PushPlus groups or message tokens when account-management credentials are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lei-mu/pushplus) <br>
-- [PushPlus API reference](artifact/references/api.md) <br>
-- [PushPlus documentation](https://www.pushplus.plus/doc/) <br>
-- [PushPlus Apifox API documentation](https://pushplus.apifox.cn/) <br>
-- [PushPlus website](https://www.pushplus.plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration guidance, Text] <br>
-**Output Format:** [Markdown or text guidance with Python and shell commands; PushPlus API calls return JSON, except message-detail retrieval can return HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PUSHPLUS_TOKEN for message sending; optional PUSHPLUS_USER_TOKEN and PUSHPLUS_SECRET_KEY enable OpenAPI account-management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can perform broad PushPlus account-management operations, including creating, changing, deleting, or redirecting tokens, groups, channel configuration, defaults, friends, and preprocessing settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before OpenAPI operations that create, change, delete, or redirect account configuration, and expose OpenAPI credentials only for workflows that need account management.
+
+Risk: Verbose mode may expose real tokens or private notification content in logs.
+
+Mitigation: Avoid verbose mode when using real credentials or sensitive message content, and redact tokens before sharing logs.
+
+Risk: Using broad user tokens for simple notifications expands the impact of credential exposure or unintended operations.
+
+Mitigation: Use least-privileged message tokens where possible, and reserve PUSHPLUS_USER_TOKEN plus PUSHPLUS_SECRET_KEY for confirmed management tasks.
+
+## Reference(s):
+
+- [PushPlus API Reference](artifact/references/api.md)
+- [PushPlus Documentation](https://www.pushplus.plus/doc/)
+- [PushPlus Apifox API Documentation](https://pushplus.apifox.cn/)
+- [PushPlus Token Management](https://www.pushplus.plus/uc-dev.html)
+- [PushPlus Website](https://www.pushplus.plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; PushPlus API calls return JSON-like dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PushPlus tokens or OpenAPI credentials for live API operations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Starton connector skill for reading, creating, updating, and deleting Starton data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Starton data through a connected Starton account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Starton IPFS pins from an agent through the OOMOL oo CLI, including listing pins, reading pin details, creating JSON pins, pinning existing CIDs, and deleting pins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates through an OOMOL-brokered Starton connection and may use sensitive account credentials without exposing raw tokens to the agent. <br>
-Mitigation: Install only when the user trusts OOMOL to broker the Starton connection and is comfortable allowing the agent to manage Starton IPFS pins through the oo CLI. <br>
-Risk: Pin deletion can remove Starton data. <br>
-Mitigation: Confirm the exact pin target and obtain explicit user approval before running destructive deletion actions. <br>
-Risk: The pin_existing_file action creates a pin even though the artifact does not tag it as a write action. <br>
-Mitigation: Ask for confirmation before running pin_existing_file, matching the security guidance for state-changing actions. <br>
+## Use Case:
 
+Developers and operators use the skill to manage Starton IPFS pins through a connected account, including listing and reading pins and creating or deleting pins.
 
-## Reference(s): <br>
-- [Starton homepage](https://starton.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payload construction and may return oo CLI JSON responses when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: CLI setup executes remote code that is outside the inspected skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and use a separately verified, pinned installation before setup.
+
+Risk: Startup may synchronize additional agent skills, changing the local skill set.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invoking oo to prevent startup skill synchronization.
+
+Risk: Starton access is mediated through OOMOL and the connected account.
+
+Mitigation: Connect only the intended Starton account and retain confirmation for every write or delete action.
+
+## Reference(s):
+
+- [Starton](https://starton.com)
+- [Starton API documentation](https://github.com/starton-io/starton-openapi)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with shell command examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use the live connector schema; state-changing actions require confirmation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

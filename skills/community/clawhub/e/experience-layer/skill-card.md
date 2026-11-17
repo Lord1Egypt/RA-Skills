@@ -1,43 +1,57 @@
-## Description: <br>
-Skill Experience Layer is a failure-driven learning mechanism for OpenClaw agents that accumulates lessons and best practices to help avoid repeated mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Experience Layer - A failure-driven learning mechanism for OpenClaw agents that automatically accumulates lessons and best practices to avoid repeating mistakes.
 
-## Publisher: <br>
-[jilanfang](https://clawhub.ai/user/jilanfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jilanfang](https://clawhub.ai/user/jilanfang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain compact JSON experience files that record tool-use failures, successful practices, and prevention patterns for future OpenClaw agent runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent experience files can steer future agent behavior for shell commands, messaging, scheduling, skill management, and external-account actions. <br>
-Mitigation: Review each JSON experience file before use and require explicit confirmation before applying stored lessons to sensitive or external actions. <br>
-Risk: Example files include project-specific local paths and a Feishu/Lark open_id that may not apply to other users. <br>
-Mitigation: Remove or replace local paths, account identifiers, and Feishu/Lark-specific values before installing the examples into an agent memory directory. <br>
-Risk: Outdated or overly broad lessons can cause an agent to follow stale guidance. <br>
-Mitigation: Keep experience entries project-specific where possible and periodically remove outdated or duplicate lessons. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain JSON experience files that record failures, best practices, and tool-specific patterns so future OpenClaw runs can check relevant lessons before acting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jilanfang/experience-layer) <br>
-- [Publisher Profile](https://clawhub.ai/user/jilanfang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON, Shell commands] <br>
-**Output Format:** [Markdown instructions with JSON experience templates and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent experience-file guidance and category templates for agent memory workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Persistent experience files can steer future tool use with stale, incorrect, or unreviewed lessons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each experience entry before installation, keep the records compact, and remove outdated or duplicate guidance during maintenance.
+
+Risk: Bundled production examples include hard-coded Feishu IDs, personal labels, and local filesystem paths.
+
+Mitigation: Edit examples before using them as live memory; remove account-specific IDs, personal labels, and environment-specific paths.
+
+Risk: Experience entries cover shell commands, messaging, cron jobs, and external APIs, where copied guidance can affect execution or communication behavior.
+
+Mitigation: Treat experience records as untrusted notes and approve relevant entries before allowing them to influence tool calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jilanfang/skills/experience-layer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON experience records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable JSON templates and example experience records for edit, exec, Feishu/Lark, messaging, and cron workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

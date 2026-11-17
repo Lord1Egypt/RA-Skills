@@ -1,44 +1,58 @@
-## Description: <br>
-Provides real-time verified news briefs and detailed intelligence reports from The Polaris Report, including category filters, search, trending briefs, confidence ratings, and bias ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time verified news briefs, search, trending news, and topic-focused intelligence reports from The Polaris Report.
 
-## Publisher: <br>
-[JohnnyTarrr](https://clawhub.ai/user/JohnnyTarrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnytarrr](https://clawhub.ai/user/johnnytarrr)
 
-## Use Case: <br>
-External users and agent developers use this skill to retrieve current news briefs, generate topic-specific intelligence briefs, search verified brief archives, and inspect trending topics through The Polaris Report API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News queries, search terms, and brief topics are sent to The Polaris Report API. <br>
-Mitigation: Avoid submitting secrets, private client information, or sensitive internal research unless the provider's privacy and retention practices are acceptable. <br>
-Risk: The skill depends on an external news API for its results. <br>
-Mitigation: Review returned briefs, confidence ratings, and links before using the output in decisions or downstream publications. <br>
+## Use Case:
 
+Agents and their users use this skill to retrieve current news briefs, search verified news, inspect trending topics, and generate topic-focused intelligence summaries with confidence and bias indicators.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JohnnyTarrr/polaris-news) <br>
-- [The Polaris Report](https://thepolarisreport.com) <br>
-- [API Documentation](https://thepolarisreport.com/docs) <br>
-- [Agent Integration Guide](https://thepolarisreport.com/agents) <br>
-- [Privacy Policy](https://thepolarisreport.com/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown-like news briefs with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include headlines, summaries, categories, confidence ratings, bias ratings, counter-arguments, result counts, and links returned by The Polaris Report API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and artifact/skill.json) <br>
+Risk: News searches and brief topics are sent to The Polaris Report API by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries unless the backend is trusted, or configure POLARIS_API_URL to an approved service.
+
+Risk: Generated news briefs and intelligence summaries may be incomplete, time-sensitive, or misleading if treated as definitive.
+
+Mitigation: Review confidence scores, bias ratings, source links, and the underlying brief before using results for decisions.
+
+## Reference(s):
+
+- [The Polaris Report](https://thepolarisreport.com)
+- [API Documentation](https://thepolarisreport.com/docs)
+- [Agent Integration Guide](https://thepolarisreport.com/agents)
+- [Privacy Policy](https://thepolarisreport.com/privacy)
+- [Publisher Profile](https://clawhub.ai/user/johnnytarrr)
+- [Skill Page](https://clawhub.ai/johnnytarrr/skills/polaris-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text and Markdown-style summaries with links, confidence scores, bias ratings, and command error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is generated from The Polaris Report API responses and may include brief URLs, category labels, summaries, counter-arguments, confidence scores, and bias ratings.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

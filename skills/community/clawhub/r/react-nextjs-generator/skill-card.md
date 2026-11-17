@@ -1,41 +1,53 @@
-## Description: <br>
-Generates complete React Next.js projects from requirements and UI designs using Ant Design, Tailwind CSS, and Zustand for state management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete React Next.js projects from requirements and UI designs using Ant Design, Tailwind CSS, and Zustand for state management.
 
-## Publisher: <br>
-[batype](https://clawhub.ai/user/batype) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[batype](https://clawhub.ai/user/batype)
 
-## Use Case: <br>
-Developers use this skill to turn requirement documents and optional UI design images into a scaffolded React and Next.js application. It creates project structure, pages, components, state management stores, styling configuration, and local run instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates files and runs local npm project-generation tooling. <br>
-Mitigation: Run it only in a fresh, isolated output directory and inspect generated files before installing dependencies or starting the app. <br>
-Risk: Server security evidence reports weak path scoping and input validation for generated file paths. <br>
-Mitigation: Avoid requirements that contain parent-directory segments, absolute-path-like names, or untrusted route and component names. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/batype/react-nextjs-generator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [OpenClaw skill description](artifact/OpenClaw-Skill.md) <br>
+## Use Case:
 
+Developers use this skill to turn requirement documents and optional UI design inputs into a starter React and Next.js application with pages, components, state management, styling, and project configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated Next.js project files with text status output and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local project files and expects npm tooling to install dependencies and run the generated app.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to run local scripts and generate files from user-provided text without enough path, dependency, or code-injection safeguards.
+
+Mitigation: Run the skill in a disposable workspace, verify the invoked script path points to the installed artifact, and review generated files before installing dependencies or running the application.
+
+Risk: Untrusted requirement documents or UI inputs could influence generated code and project configuration.
+
+Mitigation: Avoid untrusted inputs when possible and inspect generated pages, components, package scripts, and configuration before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/batype/skills/react-nextjs-generator)
+- [Publisher profile](https://clawhub.ai/user/batype)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated project files, TypeScript and TSX source code, JSON configuration, CSS, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a Next.js project structure with package configuration, app pages, reusable components, Zustand stores, Tailwind configuration, and instructions for installing dependencies and running the development server.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

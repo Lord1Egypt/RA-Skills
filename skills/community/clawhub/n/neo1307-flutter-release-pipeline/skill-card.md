@@ -1,37 +1,53 @@
-## Description: <br>
-Build and package Flutter Android release artifacts (APK/AAB), collect outputs into a single folder, and produce a short release checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and packages Flutter Android release artifacts (APK/AAB), collects outputs into a single folder, and produces a short release checklist for app release preparation.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-Developers and release engineers use this skill to build Flutter Android APK or AAB releases, collect release artifacts, and produce a concise checklist for sharing or Play Store preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a project-local PowerShell script that was not included in the reviewed artifact. <br>
-Mitigation: Inspect scripts/flutter_release.ps1 in the target project before execution and confirm it only performs the intended Flutter release build and artifact collection steps. <br>
+## Use Case:
 
+Developers and release engineers use this skill to build Flutter Android APK or AAB release outputs, gather mapping and manifest artifacts, and produce a concise checklist for Play Store or sharing workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and release checklist text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include artifact paths, file sizes, SHA256 hashes, build errors, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The workflow may run a local PowerShell release script with ExecutionPolicy Bypass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm scripts/flutter_release.ps1 is trusted before execution and review generated commands before running them.
+
+Risk: Generated APK/AAB, mapping, and symbol files can contain release-sensitive information.
+
+Mitigation: Share collected release artifacts only with intended recipients and handle mapping/symbol files as sensitive release materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neo1307/skills/neo1307-flutter-release-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell and Flutter shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include APK/AAB file paths, file sizes, SHA256 hashes, and a release checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

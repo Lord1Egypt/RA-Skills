@@ -1,44 +1,62 @@
-## Description: <br>
-Installs, upgrades, and manages Dokku apps, deploys code or images, runs tasks, and cleans up containers on Dokku hosts via CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, upgrades, and manages Dokku apps, deploys code or images, runs tasks, and cleans up containers on Dokku hosts via CLI commands.
 
-## Publisher: <br>
-[akhil-naidu](https://clawhub.ai/user/akhil-naidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[akhil-naidu](https://clawhub.ai/user/akhil-naidu)
 
-## Use Case: <br>
-Developers and operators use this skill to administer Dokku hosts: installing or upgrading Dokku, creating and managing apps, deploying from Git or container images, running one-off or background tasks, inspecting logs, configuring domains and certificates, and cleaning up containers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose powerful root-level infrastructure actions on Dokku hosts. <br>
-Mitigation: Install it only when agent-assisted Dokku administration is intended, and review every sudo command before execution. <br>
-Risk: Plugin URLs, network binding changes, Docker prune commands, and background commands can affect host security, availability, or data retention. <br>
-Mitigation: Review these commands before running them, prefer pinned official sources and verified scripts, and avoid generic deployment prompts unless Dokku changes are explicitly intended. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to administer Dokku hosts, including installs and upgrades, app deployment, task execution, config and domain management, plugin and certificate operations, process control, and container cleanup.
 
-## Reference(s): <br>
-- [Dokku installation documentation](https://dokku.com/docs/getting-started/installation) <br>
-- [Dokku upgrading documentation](https://dokku.com/docs/getting-started/upgrading) <br>
-- [Dokku releases](https://github.com/dokku/dokku/releases) <br>
-- [Docker prune command reference](https://docs.docker.com/engine/reference/commandline/system_prune/) <br>
-- [Dokku Let's Encrypt plugin](https://github.com/dokku/dokku-letsencrypt.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance targets Dokku hosts and may require SSH, local shell access, the dokku CLI, Docker, and sudo privileges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence; artifact changelog lists 1.0.0) <br>
+Risk: Root-level install, upgrade, and plugin operations can change the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target host and intended action before running sudo, installer, upgrade, or plugin commands; verify downloaded installers and plugin repositories first.
+
+Risk: SSH key, config, and certificate commands can expose or expand access to sensitive systems.
+
+Mitigation: Add only specific reviewed public SSH keys, treat config output as secret material, and confirm certificate changes before applying them.
+
+Risk: Destroy, prune, force, global-domain, certificate-removal, and bind-all-interfaces actions can remove data or broaden exposure.
+
+Mitigation: Require explicit confirmation for these actions and scope them to the intended app, domain, certificate, network interface, or Docker object set.
+
+## Reference(s):
+
+- [Dokku installation documentation](https://dokku.com/docs/getting-started/installation)
+- [Dokku upgrading documentation](https://dokku.com/docs/getting-started/upgrading)
+- [Dokku releases](https://github.com/dokku/dokku/releases)
+- [Docker system prune reference](https://docs.docker.com/engine/reference/commandline/system_prune/)
+- [Dokku letsencrypt plugin](https://github.com/dokku/dokku-letsencrypt.git)
+- [dokku-nuke plugin](https://github.com/dokku-community/dokku-nuke)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that require sudo or affect host-wide Dokku, Docker, SSH, domain, network, certificate, and app state.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

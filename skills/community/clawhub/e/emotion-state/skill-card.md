@@ -1,42 +1,62 @@
-## Description: <br>
-NL emotion tracking + prompt injection via OpenClaw hook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds natural-language emotion tracking to an OpenClaw hook and injects a compact emotion_state block into the system prompt.
 
-## Publisher: <br>
-[tashfeenahmed](https://clawhub.ai/user/tashfeenahmed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tashfeenahmed](https://clawhub.ai/user/tashfeenahmed)
 
-## Use Case: <br>
-Developers using OpenClaw can install this hook to track inferred user and agent emotion state across sessions and inject a compact emotion_state block into agent bootstrap context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Inferred emotion history may be stored across sessions and inserted into future prompts. <br>
-Mitigation: Review stored emotion-state.json files, establish a deletion process, and use the history and entry limit settings to minimize retained state. <br>
-Risk: Conversation text may be sent to OpenAI or a configured classifier. <br>
-Mitigation: Use external classifier settings only when approved for the workspace, and avoid enabling the hook for sensitive work without explicit privacy review. <br>
-Risk: Emotion state from other agents may be included in the prompt context. <br>
-Mitigation: Set EMOTION_MAX_OTHER_AGENTS to 0 when cross-agent emotion sharing is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Emotion State release page](https://clawhub.ai/tashfeenahmed/emotion-state) <br>
-- [OpenAI API base URL used by optional classifier](https://api.openai.com/v1) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add session-aware emotion summaries to OpenClaw agents so prompts can include recent user, agent, and trend context.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown installation and configuration guidance plus a runtime emotion_state text block.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The hook can persist inferred emotion history and inject recent entries and a decayed trend line into future prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Emotion profiling and persistent state may expose sensitive user or agent context.
+
+Mitigation: Use only where users and agents have consented, avoid sensitive conversations unless retention controls are added, and provide deletion controls for stored emotion state.
+
+Risk: Prompt injection of inferred emotion state can influence downstream agent behavior.
+
+Mitigation: Review the injected emotion_state block behavior before deployment and limit use to agents where this context is appropriate.
+
+Risk: Classifier configuration can send conversation text to an external or arbitrary endpoint.
+
+Mitigation: Prefer a trusted local or tightly allowlisted classifier endpoint and avoid arbitrary OPENAI_BASE_URL values.
+
+Risk: Cross-agent state reads may expose emotion summaries across agent boundaries.
+
+Mitigation: Restrict filesystem access between agents and disable or constrain cross-agent state sharing where isolation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tashfeenahmed/skills/emotion-state)
+- [Publisher profile](https://clawhub.ai/user/tashfeenahmed)
+- [OpenAI API base URL](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with shell commands and JSON configuration; the runtime hook injects an XML-like emotion_state text block and writes JSON state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores model-inferred emotion labels, reasons, confidence, timestamps, source hashes, and trend summaries in a per-agent state file.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

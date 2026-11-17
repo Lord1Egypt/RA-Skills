@@ -1,42 +1,55 @@
-## Description: <br>
-Extract design primitives from a public website and generate starter token files for your project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract design primitives from a public website and generate starter token files for your project.
 
-## Publisher: <br>
-[arvindrk](https://clawhub.ai/user/arvindrk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arvindrk](https://clawhub.ai/user/arvindrk)
 
-## Use Case: <br>
-Developers and designers use this skill to inspect a public website's visual primitives and initialize local design-token files for a project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run npx tooling and install Chromium before extracting design data from a public website. <br>
-Mitigation: Use it only with public websites and review the command intent before execution. <br>
-Risk: Extracted website data and generated token files may be incomplete or unsuitable for direct use. <br>
-Mitigation: Review .extract-design-system and design-system outputs before applying them, and explicitly approve changes to existing app code or styling. <br>
+## Use Case:
 
+Developers and designers use this skill to inspect a public website's visual primitives and generate starter token files for initializing a project-local design system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arvindrk/extract-design-system) <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [Outputs](artifact/references/outputs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated JSON and CSS token files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are starter design-token artifacts for review before integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: Unpinned npm commands can execute changing external code on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned, lockfile-managed versions of extract-design-system and Playwright, or run extraction in a sandbox or container with minimal filesystem and credential access.
+
+Risk: Extracted third-party website output can be incomplete or misleading if treated as an authoritative design system.
+
+Mitigation: Review normalized extraction output before using generated token files, and do not modify existing app code or styles without explicit confirmation.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/arvindrk/skills/extract-design-system)
+- [Workflow](references/workflow.md)
+- [Outputs](references/outputs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON/CSS token files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files may include .extract-design-system/raw.json, .extract-design-system/normalized.json, design-system/tokens.json, and design-system/tokens.css.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

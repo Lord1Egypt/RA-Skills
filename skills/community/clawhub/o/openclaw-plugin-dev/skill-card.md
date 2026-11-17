@@ -1,41 +1,54 @@
-## Description: <br>
-Guides developers through creating OpenClaw plugins with lifecycle hooks, request-response correlation, logging, configuration, and debugging patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating OpenClaw plugins using hooks like llm_input and llm_output, with logging, request tracking, and configuration management.
 
-## Publisher: <br>
-[cicadafang](https://clawhub.ai/user/cicadafang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cicadafang](https://clawhub.ai/user/cicadafang)
 
-## Use Case: <br>
-Developers use this skill to draft and reason about OpenClaw plugin structure, hook registration, logging, configuration, and debugging workflows. It is most useful when building plugins that inspect LLM input/output events or manage per-session plugin state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logging examples can expose prompts, system prompts, chat history, or model outputs if copied without safeguards. <br>
-Mitigation: Make conversation logging opt-in, redact sensitive fields, restrict log file permissions, and define retention or deletion behavior before deployment. <br>
-Risk: Plugins that depend on normal session termination can miss llm_output events during interruptions, leaving incomplete request-response correlation or cleanup. <br>
-Mitigation: Design handlers to tolerate missing output events, expire in-flight state, and clean up resources on agent_end or equivalent lifecycle boundaries. <br>
+## Use Case:
 
+Developers and engineers use this skill to create OpenClaw plugins, register lifecycle and LLM hooks, manage plugin configuration, and build logging or request-response correlation patterns.
 
-## Reference(s): <br>
-- [Openclaw Plugin Dev on ClawHub](https://clawhub.ai/cicadafang/openclaw-plugin-dev) <br>
-- [Example LLM API Logger Plugin](https://github.com/cicadaFang/openclaw-llm-api-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools or external services are invoked by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Logger examples can capture raw prompts, system prompts, conversation history, tool data, or complete responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer metadata-only logs with redaction, restrictive file permissions, encryption where needed, and retention limits unless full-content logging is explicitly required and approved.
+
+Risk: Generated plugin code or configuration may be used without enough review despite the suspicious security verdict.
+
+Mitigation: Review the generated plugin behavior before installation, especially hook registration, file writes, and any data captured by logging paths.
+
+## Reference(s):
+
+- [Openclaw Plugin Dev on ClawHub](https://clawhub.ai/cicadafang/skills/openclaw-plugin-dev)
+- [OpenClaw LLM API Logger example](https://github.com/cicadaFang/openclaw-llm-api-logger)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce plugin templates, configuration examples, debugging commands, and logging patterns for review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

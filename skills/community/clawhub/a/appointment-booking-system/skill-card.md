@@ -1,42 +1,61 @@
-## Description: <br>
-Generic appointment booking and management system for service businesses, including booking intake, confirmation, automated reminders, no-show follow-up, and daily schedule reports using n8n workflows with a Google Sheets backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic appointment booking and management system for service businesses with booking intake, confirmation, automated reminders, no-show followup, and daily schedule reports using n8n workflows with a Google Sheets backend.
 
-## Publisher: <br>
-[mhmalvi](https://clawhub.ai/user/mhmalvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[mhmalvi](https://clawhub.ai/user/mhmalvi)
 
-## Use Case: <br>
-Service-business operators and developers use this skill to deploy self-hosted appointment booking workflows for intake, client confirmations, reminders, no-show follow-up, and staff schedule reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Public booking and confirmation webhooks can create or change appointments if exposed without controls. <br>
-Mitigation: Secure n8n webhooks with authentication or signed expiring per-booking tokens before production use. <br>
-Risk: The workflows process customer contact details and appointment records in Google Sheets and email. <br>
-Mitigation: Use dedicated Google Sheets and SMTP credentials, restrict sheet and inbox access, and define retention and privacy rules. <br>
-Risk: Free-form booking notes may be inserted into email HTML. <br>
-Mitigation: Sanitize customer-provided notes before including them in outbound email content. <br>
+## Use Case:
 
+Service-business operators and workflow developers use this skill to deploy appointment booking, confirmation, reminder, no-show followup, and daily schedule-report automation. The workflows support salons, clinics, consultants, studios, repair shops, and similar appointment-based businesses.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mhmalvi/appointment-booking-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance and n8n workflow JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires n8n, Google Sheets OAuth2 credentials, SMTP credentials, and BUSINESS_NAME, BUSINESS_PHONE, and STAFF_EMAIL environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Public webhook endpoints can create, confirm, cancel, or otherwise alter appointment records and send email without enough authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication or signed expiring tokens for status-changing links and webhook calls before production use.
+
+Risk: Public booking intake can be abused for spam, unwanted email, or excessive workflow execution.
+
+Mitigation: Add rate limiting, anti-abuse controls, and monitoring at the n8n ingress layer.
+
+Risk: Customer-supplied fields are written to email and spreadsheet outputs, which can create injection or malformed-content risks.
+
+Mitigation: Apply strict field validation, length limits, HTML escaping, and spreadsheet-formula escaping before storing or sending user input.
+
+Risk: Appointment records include personal contact and scheduling data.
+
+Mitigation: Define a privacy and retention policy, use least-privilege Google Sheets and SMTP credentials, and test first with non-production data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhmalvi/skills/appointment-booking-system)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, code, shell commands]
+
+**Output Format:** [Markdown with JSON workflow references and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses n8n workflow JSON artifacts and requires Google Sheets OAuth2, SMTP, BUSINESS_NAME, BUSINESS_PHONE, and STAFF_EMAIL configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+scipy>=1.10
+numpy>=1.24
+python-dotenv>=1.0
+plotly>=5.0
+certifi>=2024.0
+websocket-client>=1.6

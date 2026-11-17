@@ -1,38 +1,54 @@
-## Description: <br>
-Discover what in your life could be automated through casual daily conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover what in your life could be automated through casual daily conversations.
 
-## Publisher: <br>
-[itsukikuchiki](https://clawhub.ai/user/itsukikuchiki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsukikuchiki](https://clawhub.ai/user/itsukikuchiki)
 
-## Use Case: <br>
-External users install this agent to notice recurring routines, workflow friction, and repeated manual processes through casual check-ins. It turns those patterns into small daily actions, weekly reflections, and automation ideas when enough signal appears. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses memory and recurring check-ins to identify patterns in routines, frustrations, workflows, and intentions, which can involve personal or sensitive context. <br>
-Mitigation: Avoid sharing sensitive personal, work, financial, or health details unless they should inform future insights; disable schedules or clear memory when ongoing check-ins are no longer wanted. <br>
+## Use Case:
 
+External users use this skill in chat to reflect on daily routines, identify repeated tasks or frustrating workflows, and receive small suggestions for automation opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itsukikuchiki/ai-opportunity-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text and short Markdown reflections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normal replies are short conversational responses; scheduled reflections summarize patterns and suggest one practical action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill asks users to share routine, workflow, and frustration patterns for ongoing reflection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive personal, health, financial, or confidential work details unless the user intends those details to be used for pattern analysis.
+
+Risk: Scheduled check-ins and stored observations may create an ongoing record of personal routines.
+
+Mitigation: Confirm how to pause scheduled check-ins or clear stored observations when the host platform supports those controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itsukikuchiki/skills/ai-opportunity-radar)
+- [Publisher profile](https://clawhub.ai/user/itsukikuchiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text and short Markdown reflections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to be brief, conversational, and in the user's language.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

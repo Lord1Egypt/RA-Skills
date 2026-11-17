@@ -1,42 +1,54 @@
-## Description: <br>
-DeFi liquidity analysis reference covering AMM mechanics, Uniswap V2/V3 math, Curve StableSwap, impermanent loss calculation, and MEV protection strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi liquidity analysis reference — AMM mechanics, Uniswap V2/V3 math, Curve StableSwap, impermanent loss calculation, and MEV protection strategies
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, DeFi analysts, and external users use this skill as an offline reference for liquidity pool mechanics, LP risk, swap troubleshooting, and DeFi security checks. It provides static guidance and does not connect to wallets, call APIs, or execute transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeFi liquidity, fee, APY, bridge, and contract-address information can become stale or misleading. <br>
-Mitigation: Verify current protocol documentation, contract addresses, TVL, fees, APYs, and bridge risks before acting on the reference material. <br>
-Risk: Users may mistake static educational guidance for transaction-specific financial advice. <br>
-Mitigation: Use the skill as a reference only and independently review wallet, protocol, and market conditions before any DeFi transaction. <br>
+## Use Case:
 
+Developers, analysts, and DeFi operators use this skill to retrieve concise reference guidance for liquidity pools, AMM mechanics, impermanent loss, MEV protection, migrations, and related security checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/loutai0307-prog/bytesagain-liquidity-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline static documentation; no credentials, network calls, wallet handling, or transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 4.0.0) <br>
+Risk: Static DeFi reference data may become stale, including protocol addresses, TVL, fees, routing assumptions, and bridge risk details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current protocol addresses, TVL, fees, and bridge risks against official or trusted live sources before using the guidance for transactions.
+
+Risk: Reference guidance about liquidity provision, impermanent loss, MEV, and bridges can be misapplied to real financial decisions.
+
+Mitigation: Treat the output as educational guidance and perform independent due diligence before committing funds or granting token approvals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-liquidity-monitor)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, file access, or network access; DeFi figures and protocol details may become outdated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and script report 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Create premium frontend interfaces with modern design systems. Forces generation of design.md for consistency, follows 2026 trends, ensures accessibility, and provides quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create premium frontend interfaces with modern design systems. Forces generation of design.md for consistency, follows 2026 trends, ensures accessibility, and provides quality checks.
 
-## Publisher: <br>
-[kxrbx](https://clawhub.ai/user/kxrbx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kxrbx](https://clawhub.ai/user/kxrbx)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to guide interface generation through a design-system-first workflow, accessibility checks, performance expectations, and quality review artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated design-system and quality-check documents may conflict with an existing project design process. <br>
-Mitigation: Review generated or updated design.md and quality-check-style documentation before adopting them in the project. <br>
+## Use Case:
 
+Developers and frontend-focused agents use this skill to create a design.md system, generate polished UI code, and check accessibility, performance, and design consistency.
 
-## Reference(s): <br>
-- [Design Tokens Reference](references/design-tokens.md) <br>
-- [Quality Check Reference](references/quality-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, configuration, and checklist-style file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update design.md and quality-check-style documentation for frontend projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is opinionated and may create design/checklist files or apply broad frontend conventions when only a small UI change was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For narrow UI work, instruct the agent to skip or limit the full design-system workflow and review generated files before accepting changes.
+
+## Reference(s):
+
+- [Design Tokens Reference](references/design-tokens.md)
+- [Quality Check Reference](references/quality-check.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated frontend files and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce design.md and quality-check.md artifacts when the frontend workflow is applied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

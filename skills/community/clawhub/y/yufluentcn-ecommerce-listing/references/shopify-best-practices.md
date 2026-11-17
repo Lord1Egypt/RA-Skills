@@ -16,7 +16,7 @@
 
 ### Google / 站外 SEO
 
-- **SEO title（meta_title）**：建议 ≤60 字符（含空格），含 1 个核心词 + 品牌；勿与 H1 标题逐字相同。
+- **SEO title（meta_title）**：建议以核心关键词开头，品牌名结尾；融入利益点和软性行动呼吁（如“Free shipping over $50”），但避免虚假截止日。注意：meta_title不是直接排名因素，但显著影响点击率。
 - **Meta description**：建议 ≤160 字符，含利益点 + 弱 CTA（Shop now / Learn more），禁止虚假促销截止日。
 - **URL handle**：短、含关键词、仅小写与连字符；改名会产生 301，旧链接需运营确认。
 - **结构化数据**：Shopify 自动输出 Product schema；文案中的价格、库存、SKU 须与后台 Offer 一致，否则富摘要异常。
@@ -255,3 +255,14 @@
 ---
 
 *本文件为 TokenApi Harness Layer 2 权威规则源；`skills/*/references/` 仅为副本。*
+
+## 政策与平台动态
+- - **Partner Program Agreement (2026-02-27)**：Shopify 更新了 Partner Program Agreement 和 API License，涉及额外合作伙伴义务、数据保护要求及对 Agentic Commerce 功能的支持。所有合作伙伴需在 2026-02-27 前接受新条款。参考：https://help.shopify.com/en/partners/help-support/faq/ppa
+
+- - **SEO title（meta_title）**：建议以核心关键词开头，品牌名结尾；融入利益点和软性行动呼吁（如“Free shipping over $50”），但避免虚假截止日。注意：meta_title不是直接排名因素，但显著影响点击率。
+
+<!-- EVOLUTION CHANGELOG -->
+
+- 2026-06-20 12:56 | ADD: Google / 站外SEO | source: https://community.shopify.com/t/seeking-guidance-on-completing-the-search-engine-listing/631926
+- 2026-06-24 03:13 | REPLACE: Google / 站外 SEO | source: https://community.shopify.com/t/seeking-guidance-on-completing-the-search-engine-listing/631926
+- 2026-06-26 08:36 | ADD: 政策与平台动态 | source: https://help.shopify.com/en/partners/help-support/faq/ppa

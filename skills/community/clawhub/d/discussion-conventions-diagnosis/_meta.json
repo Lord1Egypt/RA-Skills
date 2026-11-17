@@ -1,0 +1,27 @@
+{
+  "name": "discussion-conventions-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose academic-writing conventions in the Discussion of an English psychology research paper. Checks the Achievement/Contribution statement (placement, type among 4 — method / results / impact / application), limitations writing, future-work conventions, citation density and function, and the use of 'happy words' / appropriate hedging.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "conventions",
+    "contribution",
+    "limitations",
+    "happy-words"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "📐",
+      "triggers": [
+        "check conventions",
+        "contribution statement",
+        "happy words",
+        "limitation check",
+        "future work check"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4 (contribution types + limitations conventions)"
+    }
+  }
+}

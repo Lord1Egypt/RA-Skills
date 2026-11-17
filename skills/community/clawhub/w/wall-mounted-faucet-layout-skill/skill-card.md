@@ -1,43 +1,57 @@
-## Description: <br>
-Calculate, validate, and visualize wall-mounted faucet installation geometry, especially faucet reach L and outlet height H1 for product selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates, validates, and visualizes wall-mounted faucet installation geometry, especially faucet reach L and outlet height H1 for product selection.
 
-## Publisher: <br>
-[starsy](https://clawhub.ai/user/starsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starsy](https://clawhub.ai/user/starsy)
 
-## Use Case: <br>
-Developers, designers, installers, and other external users use this skill to calculate wall-mounted faucet reach, outlet height, drain position, stream angle, and related basin geometry, then validate the result before installation. When a visual handoff is useful, the skill can produce an annotated SVG diagram for the same geometry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated faucet geometry may be treated as final installation guidance even though it is a straight-line estimate. <br>
-Mitigation: Confirm dimensions and water behavior with an on-site mock-up or water-flow test before concealed installation work. <br>
-Risk: The skill can run local Python scripts and write SVG diagrams to disk. <br>
-Mitigation: Use a deliberate project output path for generated diagrams and inspect SVG output before sharing it or using it for installation handoff. <br>
+## Use Case:
 
+External users, designers, installers, and developers use this skill to calculate wall-mounted faucet reach, outlet height, drain position, basin setback, and stream angle. It also supports annotated SVG diagrams for client or installer handoff before on-site verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/starsy/wall-mounted-faucet-layout-skill) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Geometry diagram](artifact/assets/wall_mounted_faucet_geometry_v2.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with formulas, numeric results, validation notes, command examples, and optional SVG file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculations use supplied dimensions and a straight-line water path model; optional diagram generation writes an SVG file to a user-selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The faucet layout result is a straight-line geometric estimate and may not reflect final water behavior, pressure, aerator design, or field conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm final placement with a full-scale mock-up or on-site water-flow test before concealed installation.
+
+Risk: Generated diagrams can be confused across projects if saved with generic filenames.
+
+Mitigation: Use clear project-specific output filenames for SVG diagrams and review the annotated dimensions before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/starsy/skills/wall-mounted-faucet-layout-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/starsy)
+- [Skill instructions](artifact/SKILL.md)
+- [English geometry diagram](artifact/assets/wall_mounted_faucet_geometry_v2.svg)
+- [Chinese geometry diagram](artifact/assets/wall_mounted_faucet_geometry_v2_zh.svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown/text responses with optional bash commands and generated SVG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses one consistent length unit for calculations; generated diagrams should use clear project-specific filenames.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

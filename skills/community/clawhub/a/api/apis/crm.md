@@ -2,14 +2,14 @@
 
 | API | Line |
 |-----|------|
-| Salesforce | 2 |
-| HubSpot | 102 |
-| Pipedrive | 212 |
-| Attio | 290 |
-| Close | 372 |
-| Apollo | 459 |
-| Outreach | 550 |
-| Gong | 656 |
+| Salesforce | 16 |
+| HubSpot | 116 |
+| Pipedrive | 226 |
+| Attio | 304 |
+| Close | 386 |
+| Apollo | 473 |
+| Outreach | 564 |
+| Gong | 670 |
 
 ---
 

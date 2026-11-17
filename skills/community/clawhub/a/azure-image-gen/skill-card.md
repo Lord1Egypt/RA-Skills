@@ -1,43 +1,56 @@
-## Description: <br>
-Generate images using Azure OpenAI DALL-E. Supports batch generation, custom prompts, and outputs a gallery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using Azure OpenAI DALL-E. Supports batch generation, custom prompts, and outputs a gallery.
 
-## Publisher: <br>
-[abhibavishi](https://clawhub.ai/user/abhibavishi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abhibavishi](https://clawhub.ai/user/abhibavishi)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate Azure OpenAI DALL-E images from prompts, tune size, quality, and style, and save local PNG outputs with a manifest and HTML gallery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Azure OpenAI credentials could be over-privileged or exposed through local configuration. <br>
-Mitigation: Use a least-privileged Azure OpenAI key, protect local environment files, and confirm the endpoint and deployment belong to the intended account before running the skill. <br>
-Risk: Batch image generation can create unintended Azure usage or cost. <br>
-Mitigation: Keep image counts small unless larger batches are intentional and reviewed. <br>
-Risk: The generated HTML gallery includes prompt-derived values, which may be unsafe when prompts contain untrusted HTML or script-like text. <br>
-Mitigation: Avoid opening galleries generated from untrusted prompt text unless the gallery generation is updated to HTML-escape prompt values. <br>
-Risk: Generated files may be written to an unexpected local location. <br>
-Mitigation: Choose an output directory controlled by the user before generating images. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhibavishi/azure-image-gen) <br>
+## Use Case:
 
+Developers and content creators use this skill to generate Azure OpenAI DALL-E images from prompts, including batch image generation, custom size and quality settings, and local gallery output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PNG files, manifest.json, and index.html gallery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Azure OpenAI endpoint, API key, and DALL-E deployment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Azure API key can be sent to an unvalidated endpoint if AZURE_OPENAI_ENDPOINT is set incorrectly or maliciously.
+
+Mitigation: Install only from a trusted skill directory and verify AZURE_OPENAI_ENDPOINT is the intended Azure HTTPS endpoint before running the generator.
+
+Risk: Generated gallery HTML may include unescaped prompt text.
+
+Mitigation: Avoid sharing generated galleries from untrusted prompts until HTML escaping is fixed or independently sanitize prompt text before publishing.
+
+Risk: Manifest and gallery files can retain prompt history.
+
+Mitigation: Treat generated manifest and gallery files as sensitive when prompts may contain confidential or private information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhibavishi/skills/azure-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated PNG files, manifest JSON, and an HTML gallery when run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Azure OpenAI endpoint, API key, and DALL-E deployment environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

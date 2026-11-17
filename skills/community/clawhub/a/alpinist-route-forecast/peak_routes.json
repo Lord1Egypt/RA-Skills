@@ -1,0 +1,1437 @@
+{
+  "rainier-dc": {
+    "name": "Mount Rainier - Disappointment Cleaver",
+    "peak": "rainier",
+    "trailhead": {
+      "lat": 46.7862,
+      "lng": -121.7315,
+      "ele_ft": 5400
+    },
+    "summit": {
+      "lat": 46.8529,
+      "lng": -121.7604,
+      "ele_ft": 14411
+    },
+    "distance_mi": 9.0,
+    "gain_ft": 9011,
+    "segments": [
+      {
+        "name": "Paradise to Camp Muir",
+        "miles": 4.5,
+        "terrain": "trail",
+        "ele_ft": [
+          5400,
+          10080
+        ]
+      },
+      {
+        "name": "Muir to Ingraham Flats",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          10080,
+          11200
+        ]
+      },
+      {
+        "name": "Disappointment Cleaver",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          11200,
+          12300
+        ]
+      },
+      {
+        "name": "Upper Mountain to Summit",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          12300,
+          14411
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Camp Muir",
+        "ele_ft": 10080,
+        "lat": 46.835,
+        "lng": -121.733,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Camp Muir"
+  },
+  "rainier-emmons": {
+    "name": "Mount Rainier - Emmons Glacier",
+    "peak": "rainier",
+    "trailhead": {
+      "lat": 46.9148,
+      "lng": -121.6425,
+      "ele_ft": 3500
+    },
+    "summit": {
+      "lat": 46.8529,
+      "lng": -121.7604,
+      "ele_ft": 14411
+    },
+    "distance_mi": 10.5,
+    "gain_ft": 10911,
+    "segments": [
+      {
+        "name": "White River to Glacier Basin",
+        "miles": 3.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3500,
+          6000
+        ]
+      },
+      {
+        "name": "Glacier Basin to Camp Schurman",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          6000,
+          9500
+        ]
+      },
+      {
+        "name": "Schurman to Emmons Flat",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          9500,
+          12500
+        ]
+      },
+      {
+        "name": "Upper Emmons to Summit",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          12500,
+          14411
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Glacier Basin",
+        "ele_ft": 6000,
+        "lat": 46.887,
+        "lng": -121.68,
+        "day": 1,
+        "optional": true
+      },
+      {
+        "name": "Camp Schurman",
+        "ele_ft": 9500,
+        "lat": 46.867,
+        "lng": -121.715,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Camp Schurman"
+  },
+  "baker-cd": {
+    "name": "Mount Baker - Coleman-Deming",
+    "peak": "baker",
+    "trailhead": {
+      "lat": 48.8256,
+      "lng": -121.8166,
+      "ele_ft": 3700
+    },
+    "summit": {
+      "lat": 48.7768,
+      "lng": -121.8144,
+      "ele_ft": 10781
+    },
+    "distance_mi": 7.0,
+    "gain_ft": 7081,
+    "segments": [
+      {
+        "name": "Trailhead to Hogsback Camp",
+        "miles": 3.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3700,
+          5800
+        ]
+      },
+      {
+        "name": "Coleman Glacier",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          5800,
+          9000
+        ]
+      },
+      {
+        "name": "Pumice Ridge to Summit",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          9000,
+          10781
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Hogsback Camp",
+        "ele_ft": 5800,
+        "lat": 48.81,
+        "lng": -121.815,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Hogsback Camp"
+  },
+  "baker-np": {
+    "name": "Mount Baker - North Ridge",
+    "peak": "baker",
+    "trailhead": {
+      "lat": 48.855,
+      "lng": -121.807,
+      "ele_ft": 3400
+    },
+    "summit": {
+      "lat": 48.7768,
+      "lng": -121.8144,
+      "ele_ft": 10781
+    },
+    "distance_mi": 8.0,
+    "gain_ft": 7381,
+    "segments": [
+      {
+        "name": "Approach to Base Camp",
+        "miles": 4.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3400,
+          5500
+        ]
+      },
+      {
+        "name": "Coleman Glacier to North Ridge",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          5500,
+          8500
+        ]
+      },
+      {
+        "name": "North Ridge to Summit",
+        "miles": 2.0,
+        "terrain": "technical",
+        "ele_ft": [
+          8500,
+          10781
+        ]
+      }
+    ],
+    "days": 3,
+    "camps": [
+      {
+        "name": "Base Camp (Coleman Glacier)",
+        "ele_ft": 5500,
+        "lat": 48.84,
+        "lng": -121.81,
+        "day": 1
+      },
+      {
+        "name": "High Camp (North Ridge)",
+        "ele_ft": 8500,
+        "lat": 48.81,
+        "lng": -121.81,
+        "day": 2
+      }
+    ],
+    "summit_day_start_camp": "High Camp (North Ridge)"
+  },
+  "shuksan-fisher": {
+    "name": "Mount Shuksan - Fisher Chimneys",
+    "peak": "shuksan",
+    "trailhead": {
+      "lat": 48.8468,
+      "lng": -121.605,
+      "ele_ft": 4200
+    },
+    "summit": {
+      "lat": 48.8297,
+      "lng": -121.5869,
+      "ele_ft": 9131
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4931,
+    "segments": [
+      {
+        "name": "Lake Ann Trail",
+        "miles": 2.0,
+        "terrain": "trail",
+        "ele_ft": [
+          4200,
+          4800
+        ]
+      },
+      {
+        "name": "Fisher Chimneys",
+        "miles": 2.0,
+        "terrain": "technical",
+        "ele_ft": [
+          4800,
+          7000
+        ]
+      },
+      {
+        "name": "Winnie's Slide",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          7000,
+          8200
+        ]
+      },
+      {
+        "name": "Summit Pyramid",
+        "miles": 2.0,
+        "terrain": "technical",
+        "ele_ft": [
+          8200,
+          9131
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Lake Ann / Fisher Chimneys Base",
+        "ele_ft": 4800,
+        "lat": 48.84,
+        "lng": -121.6,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Lake Ann / Fisher Chimneys Base"
+  },
+  "shuksan-sc": {
+    "name": "Mount Shuksan - Sulphide Glacier",
+    "peak": "shuksan",
+    "trailhead": {
+      "lat": 48.808,
+      "lng": -121.634,
+      "ele_ft": 3100
+    },
+    "summit": {
+      "lat": 48.8297,
+      "lng": -121.5869,
+      "ele_ft": 9131
+    },
+    "distance_mi": 7.0,
+    "gain_ft": 6031,
+    "segments": [
+      {
+        "name": "Shannon Ridge Trail",
+        "miles": 3.5,
+        "terrain": "trail",
+        "ele_ft": [
+          3100,
+          6000
+        ]
+      },
+      {
+        "name": "Sulphide Glacier",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          6000,
+          8500
+        ]
+      },
+      {
+        "name": "Summit Pyramid",
+        "miles": 1.0,
+        "terrain": "technical",
+        "ele_ft": [
+          8500,
+          9131
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Sulphide Camp",
+        "ele_ft": 6000,
+        "lat": 48.82,
+        "lng": -121.62,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Sulphide Camp"
+  },
+  "forbidden-wr": {
+    "name": "Forbidden Peak - West Ridge",
+    "peak": "forbidden",
+    "trailhead": {
+      "lat": 48.4806,
+      "lng": -121.0798,
+      "ele_ft": 3192
+    },
+    "summit": {
+      "lat": 48.5116,
+      "lng": -121.058,
+      "ele_ft": 8815
+    },
+    "distance_mi": 5.5,
+    "gain_ft": 5623,
+    "segments": [
+      {
+        "name": "Cascade River Road to Boston Basin",
+        "miles": 2.5,
+        "terrain": "trail",
+        "ele_ft": [
+          3192,
+          6200
+        ]
+      },
+      {
+        "name": "Boston Basin to Snowfield/Glacier",
+        "miles": 1.0,
+        "terrain": "steep",
+        "ele_ft": [
+          6200,
+          7400
+        ]
+      },
+      {
+        "name": "Cat Scratch Gully to West Ridge",
+        "miles": 0.3,
+        "terrain": "technical",
+        "ele_ft": [
+          7400,
+          8000
+        ],
+        "crux": {
+          "description": "3 pitches up loose gully (low 5th class). Route-finding critical — take rightmost of three gullies. Late season: dry & chossy. Early season: snow gully direct.",
+          "fixed_time_min": {
+            "elite": 30,
+            "moderate": 60,
+            "amateur": 120
+          },
+          "queue_risk_min": 30,
+          "bail_rate": 0.25,
+          "notes": "Most parties bail here. Look for 3-piton anchor after first steep pitch. Rightmost gully, NOT the deep couloir on the left."
+        }
+      },
+      {
+        "name": "West Ridge Scramble",
+        "miles": 0.7,
+        "terrain": "technical",
+        "ele_ft": [
+          8000,
+          8600
+        ],
+        "crux": {
+          "description": "Exposed Class 4 ridge traverse with one 5.0 tower move. Significant exposure both sides.",
+          "fixed_time_min": {
+            "elite": 25,
+            "moderate": 50,
+            "amateur": 90
+          },
+          "queue_risk_min": 20,
+          "bail_rate": 0.10,
+          "notes": "Tower crux can be rappelled on descent (slings in place). Simul-climb the easy sections to save time."
+        }
+      },
+      {
+        "name": "Final Ridge to Summit",
+        "miles": 0.2,
+        "terrain": "technical",
+        "ele_ft": [
+          8600,
+          8815
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Boston Basin Camp",
+        "ele_ft": 6200,
+        "lat": 48.497,
+        "lng": -121.067,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Boston Basin Camp"
+  },
+  "stuart-nc": {
+    "name": "Mount Stuart - North Ridge (Sherpa Glacier approach)",
+    "peak": "stuart",
+    "trailhead": {
+      "lat": 47.51,
+      "lng": -120.849,
+      "ele_ft": 3400
+    },
+    "summit": {
+      "lat": 47.475,
+      "lng": -120.9023,
+      "ele_ft": 9415
+    },
+    "distance_mi": 9.0,
+    "gain_ft": 6015,
+    "segments": [
+      {
+        "name": "Mountaineer Creek Trail",
+        "miles": 3.5,
+        "terrain": "trail",
+        "ele_ft": [
+          3400,
+          5200
+        ]
+      },
+      {
+        "name": "Sherpa Glacier approach",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          5200,
+          7500
+        ]
+      },
+      {
+        "name": "North Ridge",
+        "miles": 2.0,
+        "terrain": "technical",
+        "ele_ft": [
+          7500,
+          9000
+        ]
+      },
+      {
+        "name": "False Summit to Summit",
+        "miles": 1.5,
+        "terrain": "technical",
+        "ele_ft": [
+          9000,
+          9415
+        ]
+      }
+    ],
+    "days": 3,
+    "camps": [
+      {
+        "name": "Ingalls Creek / Goat Pass",
+        "ele_ft": 5200,
+        "lat": 47.5,
+        "lng": -120.86,
+        "day": 1
+      },
+      {
+        "name": "Sherpa Glacier Bivy",
+        "ele_ft": 7500,
+        "lat": 47.485,
+        "lng": -120.88,
+        "day": 2
+      }
+    ],
+    "summit_day_start_camp": "Sherpa Glacier Bivy"
+  },
+  "stuart-cc": {
+    "name": "Mount Stuart - Cascadian Couloir",
+    "peak": "stuart",
+    "trailhead": {
+      "lat": 47.449,
+      "lng": -120.875,
+      "ele_ft": 4400
+    },
+    "summit": {
+      "lat": 47.475,
+      "lng": -120.9023,
+      "ele_ft": 9415
+    },
+    "distance_mi": 6.5,
+    "gain_ft": 5015,
+    "segments": [
+      {
+        "name": "Longs Pass Trail",
+        "miles": 2.5,
+        "terrain": "trail",
+        "ele_ft": [
+          4400,
+          6200
+        ]
+      },
+      {
+        "name": "Cascadian Couloir",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          6200,
+          8800
+        ]
+      },
+      {
+        "name": "False Summit to Summit",
+        "miles": 1.5,
+        "terrain": "technical",
+        "ele_ft": [
+          8800,
+          9415
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Longs Pass / Ingalls Lake",
+        "ele_ft": 6200,
+        "lat": 47.455,
+        "lng": -120.87,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Longs Pass / Ingalls Lake"
+  },
+  "adams-south": {
+    "name": "Mount Adams - South Spur",
+    "peak": "adams",
+    "trailhead": {
+      "lat": 46.159,
+      "lng": -121.49,
+      "ele_ft": 5600
+    },
+    "summit": {
+      "lat": 46.2024,
+      "lng": -121.4909,
+      "ele_ft": 12281
+    },
+    "distance_mi": 6.5,
+    "gain_ft": 6681,
+    "segments": [
+      {
+        "name": "Cold Springs to Lunch Counter",
+        "miles": 2.5,
+        "terrain": "trail",
+        "ele_ft": [
+          5600,
+          9400
+        ]
+      },
+      {
+        "name": "Lunch Counter to Pikers Peak",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          9400,
+          11600
+        ]
+      },
+      {
+        "name": "Pikers Peak to Summit",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          11600,
+          12281
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Lunch Counter",
+        "ele_ft": 9400,
+        "lat": 46.178,
+        "lng": -121.49,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Lunch Counter"
+  },
+  "hood-south": {
+    "name": "Mount Hood - South Side (Pearly Gates)",
+    "peak": "hood",
+    "trailhead": {
+      "lat": 45.3311,
+      "lng": -121.7113,
+      "ele_ft": 5900
+    },
+    "summit": {
+      "lat": 45.3735,
+      "lng": -121.6959,
+      "ele_ft": 11249
+    },
+    "distance_mi": 5.0,
+    "gain_ft": 5349,
+    "segments": [
+      {
+        "name": "Timberline to Silcox Hut",
+        "miles": 0.5,
+        "terrain": "trail",
+        "ele_ft": [
+          5900,
+          7000
+        ]
+      },
+      {
+        "name": "Palmer Snowfield",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          7000,
+          9000
+        ]
+      },
+      {
+        "name": "Hogsback to Pearly Gates",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          9000,
+          10800
+        ]
+      },
+      {
+        "name": "Pearly Gates to Summit",
+        "miles": 1.5,
+        "terrain": "technical",
+        "ele_ft": [
+          10800,
+          11249
+        ]
+      }
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Typically done car-to-car in one day, starting from Timberline Lodge at midnight"
+  },
+  "glacier-peak-dc": {
+    "name": "Glacier Peak - Disappointment Peak Cleaver",
+    "peak": "glacier peak",
+    "trailhead": {
+      "lat": 48.109,
+      "lng": -121.095,
+      "ele_ft": 3200
+    },
+    "summit": {
+      "lat": 48.1118,
+      "lng": -121.1139,
+      "ele_ft": 10541
+    },
+    "distance_mi": 11.0,
+    "gain_ft": 7341,
+    "segments": [
+      {
+        "name": "White Chuck Trail to Kennedy Hot Springs",
+        "miles": 5.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3200,
+          3300
+        ]
+      },
+      {
+        "name": "Sitkum Glacier approach",
+        "miles": 3.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3300,
+          6500
+        ]
+      },
+      {
+        "name": "Sitkum Glacier",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          6500,
+          9500
+        ]
+      },
+      {
+        "name": "Upper Mountain to Summit",
+        "miles": 1.0,
+        "terrain": "steep",
+        "ele_ft": [
+          9500,
+          10541
+        ]
+      }
+    ],
+    "days": 3,
+    "camps": [
+      {
+        "name": "Kennedy Hot Springs area",
+        "ele_ft": 3300,
+        "lat": 48.1,
+        "lng": -121.09,
+        "day": 1
+      },
+      {
+        "name": "Sitkum Glacier Camp",
+        "ele_ft": 6500,
+        "lat": 48.108,
+        "lng": -121.105,
+        "day": 2
+      }
+    ],
+    "summit_day_start_camp": "Sitkum Glacier Camp"
+  },
+  "eldorado": {
+    "name": "Eldorado Peak - Eldorado Glacier",
+    "peak": "eldorado",
+    "trailhead": {
+      "lat": 48.535,
+      "lng": -121.115,
+      "ele_ft": 1200
+    },
+    "summit": {
+      "lat": 48.525,
+      "lng": -121.157,
+      "ele_ft": 8868
+    },
+    "distance_mi": 7.0,
+    "gain_ft": 7668,
+    "segments": [
+      {
+        "name": "Cascade River Road to Boulder Ridge",
+        "miles": 3.5,
+        "terrain": "trail",
+        "ele_ft": [
+          1200,
+          5500
+        ]
+      },
+      {
+        "name": "Boulder Ridge to Inspiration Glacier",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          5500,
+          7500
+        ]
+      },
+      {
+        "name": "Eldorado Glacier to Summit",
+        "miles": 1.5,
+        "terrain": "steep",
+        "ele_ft": [
+          7500,
+          8868
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Eldorado Basin Camp",
+        "ele_ft": 6500,
+        "lat": 48.53,
+        "lng": -121.14,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Eldorado Basin Camp"
+  },
+  "sahale": {
+    "name": "Sahale Peak - Quien Sabe Glacier",
+    "peak": "sahale",
+    "trailhead": {
+      "lat": 48.4806,
+      "lng": -121.0798,
+      "ele_ft": 3200
+    },
+    "summit": {
+      "lat": 48.506,
+      "lng": -121.048,
+      "ele_ft": 8680
+    },
+    "distance_mi": 5.5,
+    "gain_ft": 5480,
+    "segments": [
+      {
+        "name": "Cascade Pass Trail",
+        "miles": 3.5,
+        "terrain": "trail",
+        "ele_ft": [
+          3200,
+          5400
+        ]
+      },
+      {
+        "name": "Sahale Arm",
+        "miles": 1.0,
+        "terrain": "trail",
+        "ele_ft": [
+          5400,
+          7600
+        ]
+      },
+      {
+        "name": "Quien Sabe Glacier to Summit",
+        "miles": 1.0,
+        "terrain": "steep",
+        "ele_ft": [
+          7600,
+          8680
+        ]
+      }
+    ],
+    "days": 2,
+    "camps": [
+      {
+        "name": "Sahale Glacier Camp",
+        "ele_ft": 7600,
+        "lat": 48.502,
+        "lng": -121.05,
+        "day": 1
+      }
+    ],
+    "summit_day_start_camp": "Sahale Glacier Camp"
+  },
+  "olympus-blue": {
+    "name": "Mount Olympus - Blue Glacier",
+    "peak": "olympus",
+    "trailhead": {
+      "lat": 47.809,
+      "lng": -123.687,
+      "ele_ft": 600
+    },
+    "summit": {
+      "lat": 47.7984,
+      "lng": -123.7087,
+      "ele_ft": 7980
+    },
+    "distance_mi": 18.0,
+    "gain_ft": 7380,
+    "segments": [
+      {
+        "name": "Hoh River Trail",
+        "miles": 12.0,
+        "terrain": "trail",
+        "ele_ft": [
+          600,
+          3500
+        ]
+      },
+      {
+        "name": "Glacier Meadows to Lateral Moraine",
+        "miles": 2.5,
+        "terrain": "trail",
+        "ele_ft": [
+          3500,
+          5000
+        ]
+      },
+      {
+        "name": "Blue Glacier",
+        "miles": 2.5,
+        "terrain": "steep",
+        "ele_ft": [
+          5000,
+          7200
+        ]
+      },
+      {
+        "name": "Snow Dome to Summit",
+        "miles": 1.0,
+        "terrain": "technical",
+        "ele_ft": [
+          7200,
+          7980
+        ]
+      }
+    ],
+    "days": 3,
+    "camps": [
+      {
+        "name": "Elk Lake / Lewis Meadow",
+        "ele_ft": 2500,
+        "lat": 47.815,
+        "lng": -123.72,
+        "day": 1
+      },
+      {
+        "name": "Glacier Meadows",
+        "ele_ft": 4200,
+        "lat": 47.805,
+        "lng": -123.7,
+        "day": 2
+      }
+    ],
+    "summit_day_start_camp": "Glacier Meadows"
+  },
+  "st-helens-monitor": {
+    "name": "Mount St Helens - Monitor Ridge",
+    "peak": "st helens",
+    "trailhead": {
+      "lat": 46.1468,
+      "lng": -122.1823,
+      "ele_ft": 3740
+    },
+    "summit": {
+      "lat": 46.1912,
+      "lng": -122.1956,
+      "ele_ft": 8366
+    },
+    "distance_mi": 5.0,
+    "gain_ft": 4626,
+    "segments": [
+      {
+        "name": "Climbers Bivouac to Treeline",
+        "miles": 2.0,
+        "terrain": "trail",
+        "ele_ft": [
+          3740,
+          5000
+        ]
+      },
+      {
+        "name": "Monitor Ridge",
+        "miles": 2.0,
+        "terrain": "steep",
+        "ele_ft": [
+          5000,
+          7500
+        ]
+      },
+      {
+        "name": "Ash Field to Rim",
+        "miles": 1.0,
+        "terrain": "trail",
+        "ele_ft": [
+          7500,
+          8366
+        ]
+      }
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Day climb from Climbers Bivouac"
+  },
+  "whitney-mt": {
+    "name": "Mount Whitney - Mount Whitney Trail",
+    "peak": "whitney",
+    "trailhead": {
+      "lat": 36.5871,
+      "lng": -118.2388,
+      "ele_ft": 8360
+    },
+    "summit": {
+      "lat": 36.5786,
+      "lng": -118.2920,
+      "ele_ft": 14505
+    },
+    "distance_mi": 11.0,
+    "gain_ft": 6145,
+    "segments": [
+      {"name": "Whitney Portal to Trail Camp", "miles": 6.0, "terrain": "trail", "ele_ft": [8360, 12000]},
+      {"name": "99 Switchbacks", "miles": 2.5, "terrain": "trail", "ele_ft": [12000, 13480]},
+      {"name": "Trail Crest to Summit", "miles": 2.5, "terrain": "trail", "ele_ft": [13480, 14505]}
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Often done car-to-car. Permit required. Can also be 2-day with Trail Camp bivy."
+  },
+  "williamson-west": {
+    "name": "Mount Williamson - West Side Route",
+    "peak": "williamson",
+    "trailhead": {
+      "lat": 36.6556,
+      "lng": -118.2680,
+      "ele_ft": 6100
+    },
+    "summit": {
+      "lat": 36.6561,
+      "lng": -118.3103,
+      "ele_ft": 14375
+    },
+    "distance_mi": 8.0,
+    "gain_ft": 8275,
+    "segments": [
+      {"name": "Shepherd Pass Trail to George Creek", "miles": 3.5, "terrain": "trail", "ele_ft": [6100, 10000]},
+      {"name": "Talus and Boulderfield", "miles": 3.0, "terrain": "steep", "ele_ft": [10000, 13000]},
+      {"name": "Class 3 to Summit", "miles": 1.5, "terrain": "technical", "ele_ft": [13000, 14375]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "George Creek Camp", "ele_ft": 10000, "lat": 36.655, "lng": -118.285, "day": 1}
+    ],
+    "summit_day_start_camp": "George Creek Camp"
+  },
+  "north-palisade-unotch": {
+    "name": "North Palisade - U-Notch Couloir",
+    "peak": "north palisade",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0942,
+      "lng": -118.5153,
+      "ele_ft": 14242
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4442,
+    "segments": [
+      {"name": "Big Pine Creek Trail to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Palisade Glacier approach", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 12800]},
+      {"name": "U-Notch Couloir to Summit", "miles": 1.5, "terrain": "technical", "ele_ft": [12800, 14242]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow"
+  },
+  "white-mountain": {
+    "name": "White Mountain Peak - Road/Trail",
+    "peak": "white mountain",
+    "trailhead": {
+      "lat": 37.5525,
+      "lng": -118.2364,
+      "ele_ft": 11680
+    },
+    "summit": {
+      "lat": 37.6342,
+      "lng": -118.2558,
+      "ele_ft": 14252
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 2572,
+    "segments": [
+      {"name": "Barcroft Gate to Research Station", "miles": 4.0, "terrain": "trail", "ele_ft": [11680, 12500]},
+      {"name": "Road walk to Summit", "miles": 3.5, "terrain": "trail", "ele_ft": [12500, 14252]}
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Gravel road walk. Easiest CA 14er. Altitude is the main challenge."
+  },
+  "shasta-avalanche": {
+    "name": "Mount Shasta - Avalanche Gulch",
+    "peak": "shasta",
+    "trailhead": {
+      "lat": 41.3545,
+      "lng": -122.2289,
+      "ele_ft": 6950
+    },
+    "summit": {
+      "lat": 41.4092,
+      "lng": -122.1949,
+      "ele_ft": 14179
+    },
+    "distance_mi": 6.5,
+    "gain_ft": 7229,
+    "segments": [
+      {"name": "Bunny Flat to Horse Camp", "miles": 1.5, "terrain": "trail", "ele_ft": [6950, 7900]},
+      {"name": "Horse Camp to Helen Lake", "miles": 2.0, "terrain": "steep", "ele_ft": [7900, 10400]},
+      {"name": "Avalanche Gulch", "miles": 2.0, "terrain": "steep", "ele_ft": [10400, 13000]},
+      {"name": "Misery Hill to Summit", "miles": 1.0, "terrain": "steep", "ele_ft": [13000, 14179]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Helen Lake", "ele_ft": 10400, "lat": 41.38, "lng": -122.21, "day": 1}
+    ],
+    "summit_day_start_camp": "Helen Lake"
+  },
+  "split-mountain": {
+    "name": "Split Mountain - North Slope",
+    "peak": "split mountain",
+    "trailhead": {
+      "lat": 37.0300,
+      "lng": -118.4200,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0397,
+      "lng": -118.4214,
+      "ele_ft": 14058
+    },
+    "distance_mi": 6.0,
+    "gain_ft": 4258,
+    "segments": [
+      {"name": "Red Lake Trail to Red Lake", "miles": 3.5, "terrain": "trail", "ele_ft": [9800, 11800]},
+      {"name": "North Slope to Summit", "miles": 2.5, "terrain": "steep", "ele_ft": [11800, 14058]}
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Long day trip or overnight at Red Lake."
+  },
+  "middle-palisade": {
+    "name": "Middle Palisade - Southeast Slope",
+    "peak": "middle palisade",
+    "trailhead": {
+      "lat": 37.0550,
+      "lng": -118.4700,
+      "ele_ft": 9000
+    },
+    "summit": {
+      "lat": 37.0703,
+      "lng": -118.4689,
+      "ele_ft": 14012
+    },
+    "distance_mi": 8.0,
+    "gain_ft": 5012,
+    "segments": [
+      {"name": "Taboose Pass Trail approach", "miles": 5.0, "terrain": "trail", "ele_ft": [9000, 11500]},
+      {"name": "Glacier/Snowfield to Southeast Ridge", "miles": 2.0, "terrain": "steep", "ele_ft": [11500, 13200]},
+      {"name": "Class 3 scramble to Summit", "miles": 1.0, "terrain": "technical", "ele_ft": [13200, 14012]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Finger Lake", "ele_ft": 11400, "lat": 37.065, "lng": -118.47, "day": 1}
+    ],
+    "summit_day_start_camp": "Finger Lake"
+  },
+  "mount-russell": {
+    "name": "Mount Russell - East Ridge",
+    "peak": "russell",
+    "trailhead": {
+      "lat": 36.5871,
+      "lng": -118.2388,
+      "ele_ft": 8360
+    },
+    "summit": {
+      "lat": 36.5892,
+      "lng": -118.2867,
+      "ele_ft": 14088
+    },
+    "distance_mi": 9.0,
+    "gain_ft": 5728,
+    "segments": [
+      {"name": "Whitney Portal to Iceberg Lake junction", "miles": 5.5, "terrain": "trail", "ele_ft": [8360, 12200]},
+      {"name": "Arctic Lakes approach", "miles": 1.5, "terrain": "steep", "ele_ft": [12200, 13200]},
+      {"name": "East Ridge Class 3", "miles": 2.0, "terrain": "technical", "ele_ft": [13200, 14088]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Upper Boy Scout Lake", "ele_ft": 11300, "lat": 36.585, "lng": -118.27, "day": 1}
+    ],
+    "summit_day_start_camp": "Upper Boy Scout Lake"
+  },
+  "mount-langley": {
+    "name": "Mount Langley - New Army Pass",
+    "peak": "langley",
+    "trailhead": {
+      "lat": 36.4800,
+      "lng": -118.1700,
+      "ele_ft": 9900
+    },
+    "summit": {
+      "lat": 36.5228,
+      "lng": -118.2714,
+      "ele_ft": 14026
+    },
+    "distance_mi": 10.0,
+    "gain_ft": 4126,
+    "segments": [
+      {"name": "Horseshoe Meadow to Cottonwood Lakes", "miles": 5.0, "terrain": "trail", "ele_ft": [9900, 11100]},
+      {"name": "New Army Pass", "miles": 2.5, "terrain": "steep", "ele_ft": [11100, 12300]},
+      {"name": "Plateau walk to Summit", "miles": 2.5, "terrain": "trail", "ele_ft": [12300, 14026]}
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Long day trip or overnight at Cottonwood Lakes. Easiest Sierra 14er."
+  },
+  "mount-tyndall": {
+    "name": "Mount Tyndall - North Rib",
+    "peak": "tyndall",
+    "trailhead": {
+      "lat": 36.6556,
+      "lng": -118.2680,
+      "ele_ft": 6100
+    },
+    "summit": {
+      "lat": 36.6314,
+      "lng": -118.3214,
+      "ele_ft": 14018
+    },
+    "distance_mi": 12.0,
+    "gain_ft": 7918,
+    "segments": [
+      {"name": "Shepherd Pass Trail", "miles": 7.0, "terrain": "trail", "ele_ft": [6100, 12000]},
+      {"name": "Shepherd Pass to Tyndall approach", "miles": 3.0, "terrain": "trail", "ele_ft": [12000, 12500]},
+      {"name": "North Rib to Summit", "miles": 2.0, "terrain": "steep", "ele_ft": [12500, 14018]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Shepherd Pass Camp", "ele_ft": 12000, "lat": 36.64, "lng": -118.31, "day": 1}
+    ],
+    "summit_day_start_camp": "Shepherd Pass Camp"
+  },
+  "mount-muir": {
+    "name": "Mount Muir - South Face",
+    "peak": "muir",
+    "trailhead": {
+      "lat": 36.5871,
+      "lng": -118.2388,
+      "ele_ft": 8360
+    },
+    "summit": {
+      "lat": 36.5733,
+      "lng": -118.2886,
+      "ele_ft": 14015
+    },
+    "distance_mi": 10.5,
+    "gain_ft": 5655,
+    "segments": [
+      {"name": "Whitney Trail to Trail Crest", "miles": 8.5, "terrain": "trail", "ele_ft": [8360, 13480]},
+      {"name": "Class 3 South Face", "miles": 2.0, "terrain": "technical", "ele_ft": [13480, 14015]}
+    ],
+    "days": 1,
+    "camps": [],
+    "summit_day_start_camp": null,
+    "notes": "Usually combined with Whitney. Class 3 scramble from Trail Crest."
+  },
+  "thunderbolt-peak": {
+    "name": "Thunderbolt Peak - Southwest Chute",
+    "peak": "thunderbolt",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0975,
+      "lng": -118.5178,
+      "ele_ft": 14003
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4203,
+    "segments": [
+      {"name": "Big Pine Creek to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Palisade Glacier", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 13000]},
+      {"name": "Southwest Chute Class 4", "miles": 1.5, "terrain": "technical", "ele_ft": [13000, 14003]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow",
+    "notes": "Hardest CA 14er. Class 4 summit block requires 5.3 move or bolt ladder."
+  },
+  "starlight-peak": {
+    "name": "Starlight Peak - Milk Bottle Route",
+    "peak": "starlight",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0956,
+      "lng": -118.5161,
+      "ele_ft": 14200
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4400,
+    "segments": [
+      {"name": "Big Pine Creek to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Palisade Glacier to L-Shaped Couloir", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 13200]},
+      {"name": "Milk Bottle Class 4", "miles": 1.5, "terrain": "technical", "ele_ft": [13200, 14200]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow",
+    "notes": "Sub-peak of North Palisade. Often combined with Thunderbolt and North Pal."
+  },
+  "polemonium-peak": {
+    "name": "Polemonium Peak - V-Notch Couloir",
+    "peak": "polemonium",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0931,
+      "lng": -118.5147,
+      "ele_ft": 14080
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4280,
+    "segments": [
+      {"name": "Big Pine Creek to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Palisade Glacier to V-Notch", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 13400]},
+      {"name": "V-Notch Couloir Class 4", "miles": 1.5, "terrain": "technical", "ele_ft": [13400, 14080]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow",
+    "notes": "Sub-peak of North Palisade. V-Notch is steep snow/ice early season, Class 4 rock late."
+  },
+  "sill-north": {
+    "name": "Mount Sill - North Couloir (L-Shaped)",
+    "peak": "sill",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.0942,
+      "lng": -118.5100,
+      "ele_ft": 14153
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 4353,
+    "segments": [
+      {"name": "Big Pine Creek to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Palisade Glacier to L-Shaped Couloir", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 13200]},
+      {"name": "North Couloir Class 3 to Summit", "miles": 1.5, "terrain": "technical", "ele_ft": [13200, 14153]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow",
+    "notes": "Often combined with North Palisade. Class 3 via L-Shaped Couloir or Swiss Arete (Class 4)."
+  },
+  "winchell-east": {
+    "name": "Mount Winchell - East Couloir",
+    "peak": "winchell",
+    "trailhead": {
+      "lat": 37.0937,
+      "lng": -118.5130,
+      "ele_ft": 9800
+    },
+    "summit": {
+      "lat": 37.1078,
+      "lng": -118.5186,
+      "ele_ft": 13768
+    },
+    "distance_mi": 7.5,
+    "gain_ft": 3968,
+    "segments": [
+      {"name": "Big Pine Creek to Sam Mack Meadow", "miles": 4.5, "terrain": "trail", "ele_ft": [9800, 11400]},
+      {"name": "Approach to East Couloir", "miles": 1.5, "terrain": "steep", "ele_ft": [11400, 12800]},
+      {"name": "East Couloir Class 3", "miles": 1.5, "terrain": "technical", "ele_ft": [12800, 13768]}
+    ],
+    "days": 2,
+    "camps": [
+      {"name": "Sam Mack Meadow", "ele_ft": 11400, "lat": 37.1, "lng": -118.52, "day": 1}
+    ],
+    "summit_day_start_camp": "Sam Mack Meadow",
+    "notes": "Not a 14er (13,768 ft) but often grouped with Palisade traverses."
+  }
+}

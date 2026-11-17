@@ -1,0 +1,32 @@
+{
+  "standard": "ISO 50001:2018 能源管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-EN-001", "name": "能源评审程序", "name_en": "Energy Review Procedure", "clause": "6.4",
+     "meta": {"owner": "能源管理负责人", "frequency": "年度/变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "系统评审能源使用状况，识别主要能源使用(SEU)与改进机会。"},
+       {"title": "2 适用范围", "content": "适用于{org}能源使用相关的全部活动、设施与设备。"},
+       {"title": "3 职责", "content": "3.1 能源管理负责人组织评审；3.2 各部门提供用能数据；3.3 最高管理者审批基准。"},
+       {"title": "4 工作程序", "content": "4.1 收集能源数据（电/气/蒸汽/水等）；4.2 识别SEU及其影响因素；4.3 建立能源基准与标杆；4.4 评价改进机会并排序；4.5 形成能源评审报告，重大变更时更新。"}
+     ],
+     "high_voltage_check": ["hv-en-review"]},
+    {"id": "SP-EN-002", "name": "能源目标指标与能源管理实施方案程序", "name_en": "Energy Objectives & Program Procedure", "clause": "6.2",
+     "meta": {"owner": "能源管理负责人", "frequency": "年度"},
+     "sections": [
+       {"title": "1 目的", "content": "制定可测量的能源目标指标及实现方案，驱动能源绩效改进。"},
+       {"title": "2 适用范围", "content": "适用于{org}各层级能源目标制定与考核。"},
+       {"title": "3 职责", "content": "3.1 最高管理者确保目标与方针一致；3.2 能源管理负责人组织分解；3.3 各部门落实方案。"},
+       {"title": "4 工作程序", "content": "4.1 基于能源评审设定目标指标；4.2 制定实施方案（措施/资源/时限/责任人）；4.3 确定EnPI并监视；4.4 定期考核与改进。"}
+     ],
+     "high_voltage_check": ["hv-en-perf"]},
+    {"id": "SP-EN-003", "name": "运行控制程序（主要能源使用）", "name_en": "Operation Control for SEU", "clause": "8.1",
+     "meta": {"owner": "生产/设施部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "对主要能源使用过程实施有效控制，确保能源绩效。"},
+       {"title": "2 适用范围", "content": "适用于{org}主要用能设备与工艺的运行控制。"},
+       {"title": "3 职责", "content": "3.1 设施部负责设备经济运行；3.2 生产部负责工艺节能；3.3 能源管理负责人监督。"},
+       {"title": "4 工作程序", "content": "4.1 识别SEU运行准则；4.2 设备经济运行（变频、余热回收等）；4.3 设计与采购考虑能效；4.4 监测报警与纠偏；4.5 保留运行记录。"}
+     ],
+     "high_voltage_check": ["hv-en-design"]}
+  ]
+}

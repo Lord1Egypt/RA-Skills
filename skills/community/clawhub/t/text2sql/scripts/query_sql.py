@@ -171,8 +171,8 @@ def generate_sql(api_url: str, question: str, config_file: str, timeout: int = 9
 
 def main():
     parser = argparse.ArgumentParser(description="Convert natural language to SQL")
-    parser.add_argument("--api-url", default="https://asksql.ucap.com.cn/", 
-                       help="API service URL (default: https://asksql.ucap.com.cn/)")
+    parser.add_argument("--api-url", default="https://asksql.ai/", 
+                       help="API service URL (default: https://asksql.ai/)")
     parser.add_argument("--question", required=True, help="User's natural language question")
     parser.add_argument("--config", required=True, help="Topic configuration YAML file path")
     

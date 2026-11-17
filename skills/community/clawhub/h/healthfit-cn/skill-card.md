@@ -1,49 +1,62 @@
-## Description: <br>
-HealthFit-cn is a Chinese personal health-management agent skill that routes users to specialized advisors for exercise planning, nutrition guidance, local health tracking, TCM constitution support, seasonal wellness, tongue self-check guidance, and privacy-sensitive sexual-health logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HealthFit-cn is a Chinese-language personal health management agent that routes fitness, nutrition, health tracking, traditional Chinese medicine constitution, seasonal wellness, tongue self-check, and sexual-health logging requests to a matrix of specialized advisors.
 
-## Publisher: <br>
-[chenchen913](https://clawhub.ai/user/chenchen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-External users use this skill as a Chinese-language personal health assistant for building a health profile, logging workouts and nutrition, generating weekly or monthly summaries, and receiving routed guidance from sport, nutrition, data-analysis, and TCM advisor roles. It is intended for wellness and tracking support, not medical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health and sexual-health information may be stored locally in plaintext. <br>
-Mitigation: Use the sexual-health module only when needed, avoid entering unnecessary intimate or medical details, and restrict file access to trusted local environments. <br>
-Risk: Backups or exports may contain private health records. <br>
-Mitigation: Review generated backups and exports before syncing, sharing, or importing them, and keep private sexual-health data excluded unless explicitly required. <br>
-Risk: Wellness, nutrition, exercise, and TCM guidance could be mistaken for medical diagnosis or treatment. <br>
-Mitigation: Treat outputs as informational wellness support and consult qualified clinicians for diagnosis, treatment, urgent symptoms, cardiovascular conditions, post-surgical recovery, or persistent health concerns. <br>
-Risk: Broad activation rules may route more health-related conversations into this skill than users expect. <br>
-Mitigation: Confirm user intent before recording personal information and make profile, nutrition, workout, TCM, and sexual-health logging explicit. <br>
+## Use Case:
 
+External users use HealthFit-cn to create and maintain local health profiles, log exercise, nutrition, body metrics, and sensitive wellness records, and receive Chinese-language fitness, nutrition, TCM wellness, and progress-summary guidance. The skill is best treated as an informational health assistant, not a substitute for licensed medical care.
 
-## Reference(s): <br>
-- [HealthFit Skill Definition](artifact/SKILL.md) <br>
-- [English README](artifact/README_EN.md) <br>
-- [Sport Routing Reference](artifact/references/sport_routing.md) <br>
-- [Evidence Base](artifact/references/evidence_base.md) <br>
-- [Storage Schema](artifact/references/storage_schema.md) <br>
-- [Sexual Health Onboarding](artifact/references/onboarding_sexual_health.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown conversational responses with optional structured logs, summaries, menus, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file updates, backups, exports, and SQLite-backed summaries when the hosting agent has file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill stores sensitive health and sexual-health records locally in plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local environment, avoid entering highly sensitive details unless necessary, review where files are stored, and delete or protect local data when no longer needed.
+
+Risk: Medical, supplement, and TCM guidance may be incomplete or inappropriate for an individual condition.
+
+Mitigation: Treat outputs as informational wellness guidance and consult qualified medical professionals for diagnosis, medications, serious symptoms, pregnancy, chronic disease, or post-surgical recovery.
+
+Risk: The documented npx installation command may fetch an unpinned release.
+
+Mitigation: Prefer a pinned or manually inspected release before installation, especially in environments that handle sensitive personal health records.
+
+## Reference(s):
+
+- [HealthFit-cn ClawHub Skill Page](https://clawhub.ai/chenchen913/skills/healthfit-cn)
+- [README_EN.md](artifact/README_EN.md)
+- [Evidence Base](artifact/references/evidence_base.md)
+- [Storage Schema](artifact/references/storage_schema.md)
+- [Commands Reference](artifact/references/commands.md)
+- [Evaluation Scenarios](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown responses with optional code blocks, local file updates, JSON/CSV/Markdown exports, and shell commands for supported tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local plaintext JSON, TXT, and SQLite health data; sexual-health files are isolated and excluded from backup/export by default but are not encrypted by default.]
+
+## Skill Version(s):
+
+4.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

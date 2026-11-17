@@ -1,20 +1,15 @@
 {
   "keyword": "mdls",
   "models": [
-    "opus4",
     "pro",
     "sonnet",
     "deepseek",
     "gpt4",
     "grok",
-    "kimi",
-    "sonnet46",
-    "gpt5pro",
-    "qwenmax",
-    "mistral"
+    "kimi"
   ],
-  "judgeModel": "gemini31or",
-  "outputDir": "~/.openclaw/workspace/modelshow-private",
+  "judgeModel": "sonnet",
+  "outputDir": "~/.openclaw/workspace/modelshow-results",
   "parallel": true,
   "timeoutSeconds": 360,
   "minSuccessful": 2,

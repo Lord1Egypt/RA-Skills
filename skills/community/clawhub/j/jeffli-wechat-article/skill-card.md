@@ -1,44 +1,58 @@
-## Description: <br>
-微信公众号文章抓取工具，可将微信公众号文章转换为 Markdown，并支持图片本地下载。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章抓取工具。将微信公众号文章转换为 Markdown 格式，支持图片本地下载。
 
-## Publisher: <br>
-[jeffli2002](https://clawhub.ai/user/jeffli2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffli2002](https://clawhub.ai/user/jeffli2002)
 
-## Use Case: <br>
-Developers, engineers, and AI-agent users can use this skill to archive WeChat Official Account articles as local Markdown files with optional downloaded images. It supports direct CLI use and MCP tool integration for converting single articles or batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs browser automation and scraper code against WeChat pages. <br>
-Mitigation: Install only if comfortable running a Python scraper with browser automation, and use it only for WeChat articles you are allowed to archive. <br>
-Risk: The skill saves article content, debug HTML, and optional image files locally. <br>
-Mitigation: Keep output in a dedicated directory and delete output or debug folders when they may contain content you do not want retained. <br>
-Risk: Dependencies in the artifact are not pinned to exact versions. <br>
-Mitigation: Review dependency versions before deployment and pin approved versions in controlled environments. <br>
+## Use Case:
 
+Developers and agents use this skill to convert WeChat Official Account articles into Markdown, including article metadata, preserved code blocks, media references, and optional local image copies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffli2002/jeffli-wechat-article) <br>
-- [scripts/README.md](scripts/README.md) <br>
-- [Camoufox](https://github.com/nichochar/camoufox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown files with YAML frontmatter and local image assets; MCP tools return text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under an article-title directory; images may remain remote when downloads fail or image download is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Article content can steer the default image downloader to fetch arbitrary URLs and save unbounded responses locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a low-privilege container or virtual environment, use a dedicated output directory, and prefer --no-images for untrusted articles until URL allowlisting and size limits are added.
+
+Risk: The release depends on unpinned Python packages and a browser automation dependency.
+
+Mitigation: Pin and review dependencies before deployment, then scan the environment after installation.
+
+Risk: WeChat may present CAPTCHA, verification pages, or rate limits instead of article content.
+
+Mitigation: Use --no-headless only when manual verification is required, space out batch requests, and review debug HTML before trusting failed conversions.
+
+## Reference(s):
+
+- [Camoufox project](https://github.com/nichochar/camoufox)
+- [ClawHub skill page](https://clawhub.ai/jeffli2002/skills/jeffli-wechat-article)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown files with YAML frontmatter, local image files, and text status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-article and batch conversion; image downloading can be disabled for untrusted articles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

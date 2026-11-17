@@ -1,44 +1,64 @@
-## Description: <br>
-Generate TikTok-style talking videos from a script and image using the LovelyBots API, then poll for completion and return the final video URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate TikTok-style talking videos from a script and image using the LovelyBots API, then poll for completion and return the video URL.
 
-## Publisher: <br>
-[georgegally](https://clawhub.ai/user/georgegally) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgegally](https://clawhub.ai/user/georgegally)
 
-## Use Case: <br>
-Marketing teams, ecommerce brands, developers, and agent pipeline builders use this skill to queue, monitor, and retrieve LovelyBots talking-video generations from a script and source image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted scripts, images, likenesses, and generated share URLs may be sensitive. <br>
-Mitigation: Install only if the user trusts LovelyBots to process provided media, avoid confidential or non-consensual likeness data unless vendor terms permit it, and treat share URLs as public or bearer-style links. <br>
-Risk: The LovelyBots API key can authorize paid video generation and expose account usage. <br>
-Mitigation: Store LOVELYBOTS_API_KEY as a secret, never commit it, rotate it if exposed, and monitor remaining credits and account usage. <br>
-Risk: Aggressive polling or high concurrency can increase API load or trigger rate limits. <br>
-Mitigation: Use timeout, retry, jitter, and backoff controls; stop on terminal job states or non-retryable API errors. <br>
+## Use Case:
 
+Marketing teams, ecommerce brands, developers, and agent pipelines use this skill to create talking video assets from a script and image through the LovelyBots API.
 
-## Reference(s): <br>
-- [LovelyBots OpenClaw Documentation](https://lovelybots.com/openclaw) <br>
-- [LovelyBots Developer API Key Page](https://lovelybots.com/developer) <br>
-- [ClawHub Skill Page](https://clawhub.ai/georgegally/lovelybots-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request guidance, polling status text, share URLs, and final video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Scripts, images, prompts, and related metadata are sent to LovelyBots for external video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content appropriate for external processing and avoid submitting confidential or sensitive material unless the user has approved that use.
+
+Risk: The LovelyBots API key is required for use and could authorize video generation if exposed.
+
+Mitigation: Store the key as a secret environment variable, avoid committing it to source control, and rotate or revoke it if exposure is suspected.
+
+Risk: Share URLs may grant access to generated media.
+
+Mitigation: Prefer private video settings when appropriate and treat share URLs as access-bearing links.
+
+Risk: Polling too aggressively or without a timeout can increase API load and delay useful user feedback.
+
+Mitigation: Use bounded polling with retry guards, respect rate-limit responses, and report queued or processing status with the job ID and share URL.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georgegally/skills/lovelybots-video)
+- [LovelyBots OpenClaw Documentation](https://lovelybots.com/openclaw)
+- [LovelyBots Developer API Key](https://lovelybots.com/developer)
+- [LovelyBots API Base URL](https://api.lovelybots.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include queued job status, credits remaining, share URLs, and completed video URLs when returned by the LovelyBots API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

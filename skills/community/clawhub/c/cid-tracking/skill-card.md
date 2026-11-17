@@ -1,48 +1,64 @@
-## Description: <br>
-Generates CID tracking links, posts conversion events, fetches ad data, analyzes ROI, detects campaign anomalies, and produces Excel reports for OceanEngine, Kuaishou, and Tencent advertising workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cid Tracking helps agents manage CID-based advertising workflows for OceanEngine, Kuaishou Magnetic Engine, and Tencent Guangdiantong, including tracking link generation, conversion postbacks, ROI analysis, anomaly monitoring, and Excel reporting.
 
-## Publisher: <br>
-[zhaohang497-tech](https://clawhub.ai/user/zhaohang497-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaohang497-tech](https://clawhub.ai/user/zhaohang497-tech)
 
-## Use Case: <br>
-Developers and advertising operations teams use this skill to create platform-specific CID links, collect campaign data, post conversion events, analyze ROI, detect anomalies, and generate Excel reports for domestic e-commerce ad campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ad platform credentials and access tokens may be exposed if config.json is committed or shared. <br>
-Mitigation: Keep config.json out of source control, rotate credentials, and grant only the minimum platform permissions needed. <br>
-Risk: Tracking URLs or conversion payloads may include persistent identifiers or sensitive order fields. <br>
-Mitigation: Avoid putting IMEI or other persistent identifiers in URLs and review each conversion or order field before sending it to an ad platform. <br>
-Risk: Automated cron jobs and alert forwarding may distribute campaign or conversion data beyond the intended audience. <br>
-Mitigation: Approve scheduled jobs and WeChat/DingTalk-style alert forwarding before enabling them, and restrict notification recipients. <br>
+## Use Case:
 
+Marketing operations teams, e-commerce ad buyers, and developers use this skill to generate CID tracking links, fetch multi-platform ad data, post conversion events, analyze ROI, detect account anomalies, and produce daily or weekly performance reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaohang497-tech/cid-tracking) <br>
-- [OceanEngine API reference](references/oceanengine_api.md) <br>
-- [Kuaishou API reference](references/kuaishou_api.md) <br>
-- [Tencent API reference](references/tencent_api.md) <br>
-- [CID tracking best practices](references/cid_best_practices.md) <br>
-- [OceanEngine open platform](https://oceanengine.github.io/open-platform/) <br>
-- [Tencent advertising developer platform](https://e.qq.com/dev/) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON, Excel reports, Text alerts, Tracking URLs] <br>
-**Output Format:** [Markdown guidance with inline shell commands; bundled scripts generate JSON files, tracking URLs, alert text, and .xlsx reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python dependencies and user-supplied ad platform credentials; generated files depend on selected script options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: Ad-platform credentials and conversion data may be exposed or used with excessive account privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API tokens, keep config.json out of source control, restrict local file permissions, and avoid sending personal identifiers unless legally authorized.
+
+Risk: Generated Excel reports may be vulnerable to formula injection when report fields contain spreadsheet formulas.
+
+Mitigation: Treat generated .xlsx files as untrusted until formula escaping is added, and review files before opening or sharing them.
+
+Risk: Conversion postbacks and data-fetching scripts may affect production advertising accounts.
+
+Mitigation: Review configuration and test against a non-production or limited-scope account before enabling production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaohang497-tech/skills/cid-tracking)
+- [OceanEngine open platform](https://oceanengine.github.io/open-platform/)
+- [Kuaishou Magnetic Engine platform](https://mp.kuaishou.com/)
+- [Tencent Guangdiantong developer platform](https://e.qq.com/dev/)
+- [CID tracking best practices](references/cid_best_practices.md)
+- [OceanEngine API reference](references/oceanengine_api.md)
+- [Kuaishou API reference](references/kuaishou_api.md)
+- [Tencent API reference](references/tencent_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, JSON data files, and Excel workbook outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files may include CID link lists, platform ad data, ROI analysis JSON, anomaly alerts, and .xlsx reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

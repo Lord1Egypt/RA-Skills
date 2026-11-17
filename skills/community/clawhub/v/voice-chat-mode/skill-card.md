@@ -1,40 +1,48 @@
-## Description: <br>
-Activates when a user explicitly asks for Chinese voice chat or Chinese voice mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在用户明确要求中文语音聊天或中文语音模式时激活。
 
-## Publisher: <br>
-[liang9886703](https://clawhub.ai/user/liang9886703) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liang9886703](https://clawhub.ai/user/liang9886703)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users enable this skill when they want the agent to reply in natural spoken Chinese for voice chat, TTS, or voice-model handoff. It rewrites responses into concise conversational speech with optional local emotion tags.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: While enabled, the skill continues formatting replies as spoken Chinese, which may be unexpected when the user wants normal written responses.
+
+Mitigation: Use the documented disable phrases, such as "文字回答" or "别语音了", when normal written replies are desired.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users enable this skill when they want assistant replies rewritten into natural spoken Chinese suitable for TTS or voice-model output. It focuses on short, conversational phrasing, optional local emotion tags, and mode persistence until the user disables voice mode. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent voice mode may continue rewriting replies after activation. <br>
-Mitigation: Enable it only when the user explicitly asks for Chinese voice output, and disable it when the user asks for text replies or says to stop voice mode. <br>
-Risk: A spoken style rewrite could obscure required safety refusals, warnings, or policy-sensitive guidance. <br>
-Mitigation: Keep host-level safety rules authoritative; refusal and warning requirements should take priority over the voice style. <br>
+**Output Format:** [Plain text with optional inline emotion tags]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liang9886703/voice-chat-mode) <br>
+**Other Properties Related to Output:** [No code execution, data access, or shell commands; the mode persists until disabled by a user phrase.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text with optional short emotion tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contains only spoken body text and local emotion tags; no explanations, stage directions, style commentary, or analysis process.] <br>
+0.1.6 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

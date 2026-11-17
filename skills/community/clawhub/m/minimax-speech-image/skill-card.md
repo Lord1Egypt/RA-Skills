@@ -1,44 +1,62 @@
-## Description: <br>
-Provides MiniMax Token Plan speech and image workflows, including text-to-speech, asynchronous speech generation, voice cloning, voice design, voice management, text-to-image generation, and image-to-image editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to MiniMax Token Plan APIs for text-to-speech, asynchronous speech tasks, voice cloning, voice design, voice management, text-to-image generation, and image-to-image editing.
 
-## Publisher: <br>
-[percivalee](https://clawhub.ai/user/percivalee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[percivalee](https://clawhub.ai/user/percivalee)
 
-## Use Case: <br>
-Developers and external users use this skill to call MiniMax speech and image APIs from an agent workflow, producing audio files, generated images, edited images, voice IDs, task IDs, and voice-management responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected prompts, audio, and images to MiniMax APIs. <br>
-Mitigation: Use only prompts, audio, and images that are approved for processing by MiniMax and set MINIMAX_REGION deliberately before execution. <br>
-Risk: Voice cloning and voice deletion can affect sensitive or account-bound voice assets. <br>
-Mitigation: Clone only voices the user is authorized to process and double-check voice IDs before running delete operations. <br>
-Risk: API calls consume MiniMax Token Plan quota. <br>
-Mitigation: Confirm quota expectations before running generation, cloning, or editing workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to generate speech and images through MiniMax using a configured API key. It supports TTS, voice cloning and design, voice listing/deletion, text-to-image generation, and image-based editing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/percivalee/minimax-speech-image) <br>
-- [MiniMax China API endpoint](https://api.minimaxi.com/v1) <br>
-- [MiniMax International API endpoint](https://api.minimax.io/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Files, API responses] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON responses, MP3 audio files, PNG image files, voice IDs, and task IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and consumes MiniMax Token Plan quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Prompts, audio samples, local images, and generated media requests may be sent to MiniMax using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved inputs, avoid sensitive local media, and confirm that the workflow is allowed to transmit data to MiniMax before execution.
+
+Risk: Voice cloning can create or store a cloned voice from an uploaded audio sample.
+
+Mitigation: Use voice cloning only with rights and consent for the source voice sample.
+
+Risk: Voice deletion is treated as irreversible and the command has no confirmation prompt.
+
+Mitigation: Confirm the target voice ID outside the skill before running the delete command.
+
+Risk: The image downloader accepts unrestricted URLs and should not be used as-is in untrusted workflows.
+
+Mitigation: Restrict download sources or add URL validation before use with untrusted inputs.
+
+## Reference(s):
+
+- [MiniMax API endpoint (China)](https://api.minimaxi.com/v1)
+- [MiniMax API endpoint (International)](https://api.minimax.io/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, JSON task responses, and generated audio or image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and can use MINIMAX_REGION to select the China or international API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

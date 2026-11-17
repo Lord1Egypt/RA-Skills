@@ -1,40 +1,58 @@
-## Description: <br>
-监控 1688 批发商品价格，支持一件代发价格查询、厂家信息、同款比价。适合电商卖家、代购、副业创业者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors 1688 wholesale product prices and helps users query dropshipping prices, supplier information, comparable listings, minimum order quantities, and profit estimates.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External ecommerce sellers, sourcing agents, and developers use this skill to query 1688 product prices, supplier information, dropshipping options, comparable listings, minimum order quantities, and simple profit estimates before making sourcing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: 1688 product URLs, item IDs, and search keywords are sent to 1688 during lookup operations, and returned prices or supplier details may be incomplete or stale. <br>
-Mitigation: Use a trusted Python environment for dependencies, avoid submitting sensitive sourcing data when inappropriate, and verify returned prices and supplier details before business decisions. <br>
+## Use Case:
 
+External sellers, purchasing operators, and agents use this skill to look up 1688 wholesale prices, supplier details, dropshipping options, and simple profit calculations before making sourcing decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/275254cl-hash/1688-price-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
-- [1688 search endpoint](https://s.1688.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and JSON-formatted price, supplier, search, and profit data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network requests may send 1688 product URLs, item IDs, and search keywords to 1688; returned prices and supplier details should be treated as reference data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Network and dependency risk from using a Python helper that calls 1688 pages with the requests package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, review and pin dependencies before installation, and run the helper only in an environment allowed to access the target network.
+
+Risk: Price, supplier, and product data may be incomplete, stale, or unavailable.
+
+Mitigation: Verify prices, suppliers, and transaction terms directly on 1688 before purchasing or making business decisions.
+
+Risk: The inspected release is a simple lookup helper rather than a full monitoring system.
+
+Mitigation: Treat outputs as point-in-time lookup guidance and add separate scheduling, alerting, and validation controls if continuous monitoring is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/1688-price-monitor)
+- [Publisher profile](https://clawhub.ai/user/275254cl-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown summaries with optional JSON output from the Python price lookup helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product identifiers, price ranges, supplier details, shipping values, minimum order quantities, and profit calculations when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

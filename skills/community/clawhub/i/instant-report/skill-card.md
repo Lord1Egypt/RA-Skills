@@ -1,46 +1,58 @@
-## Description: <br>
-Instant Report generates professional industry, market, competitor, company, and comparison research reports from Chinese or English user requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured industry, market, competitor, and company research reports from user requests.
 
-## Publisher: <br>
-[jianghaist](https://clawhub.ai/user/jianghaist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianghaist](https://clawhub.ai/user/jianghaist)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured industry research reports, company research reports, market analyses, competitor studies, and comparative analyses with cited sources and deliverable files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and report content may be processed through web research, subagents, and document-conversion workflows. <br>
-Mitigation: Avoid confidential topics unless approved for those workflows, and review generated reports before distribution. <br>
-Risk: The skill claims Chinese and English language matching, but security evidence notes it may still produce Chinese output. <br>
-Mitigation: Confirm the required output language and translate or revise deliverables before use when English output is required. <br>
-Risk: Generated research reports may contain stale, unsupported, or inconsistent market data. <br>
-Mitigation: Require source URLs, data cutoff dates, independent source checks, and human review before relying on reports for business decisions. <br>
+## Use Case:
 
+External users and analysts use this skill to request structured company, industry, market, or competitive research reports. It is suited for report drafting workflows that need cited sources, fact-checking, Markdown working output, and final document deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jianghaist/instant-report) <br>
-- [Data Sources](references/data_sources.md) <br>
-- [Report Structure](references/report_structure.md) <br>
-- [Quality Checklist](references/quality_checklist.md) <br>
-- [Style Guide](references/style_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown report with Mermaid chart syntax, DOCX and PDF files, and a source list with credibility ratings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are expected to include source URLs, data freshness notes, fact-checking output, and professional document formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Broad or English report requests may trigger the full multi-stage report process and may still produce Chinese output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit scope, language, length, and deliverable expectations before invoking the skill.
+
+Risk: Generated research reports can include stale, weakly sourced, or inconsistent market data if source quality is not checked.
+
+Mitigation: Review source URLs, data cutoff dates, independent-source checks, and the fact-check findings before using the report for business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jianghaist/skills/instant-report)
+- [Skill Definition](artifact/SKILL.md)
+- [Data Sources Reference](artifact/references/data_sources.md)
+- [Report Structure Reference](artifact/references/report_structure.md)
+- [Quality Checklist](artifact/references/quality_checklist.md)
+- [Report Style Guide](artifact/references/style_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown reports with source lists and Mermaid chart blocks, plus DOCX and PDF deliverables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a fact-check report and corrected report text when issues are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Quantitative analysis skill for the Chinese A-share market using Tushare Pro data and a holiday helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantitative analysis skill for the Chinese A-share market using Tushare Pro data and a holiday helper.
 
-## Publisher: <br>
-[Noah-Wu66](https://clawhub.ai/user/Noah-Wu66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-wu66](https://clawhub.ai/user/noah-wu66)
 
-## Use Case: <br>
-Developers, analysts, and OpenClaw users use this skill to query Tushare data, screen Chinese A-share securities, diagnose individual stocks, check Chinese trading days, and combine quantitative findings with event context when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tushare token for most bundled scripts. <br>
-Mitigation: Keep the token outside the repository and provide it through the configured TUSHARE_TOKEN environment mapping. <br>
-Risk: The skill can query external services, including Tushare, timor.tech, and web sources used for market context. <br>
-Mitigation: Install and run it only in environments where those outbound queries are acceptable for the user's data-handling requirements. <br>
-Risk: Some scripts support user-directed output files that may create or overwrite paths. <br>
-Mitigation: Use output-file options only with paths intended for generated reports or exports. <br>
-Risk: Financial prompts may include confidential holdings, watchlists, or proprietary strategies. <br>
-Mitigation: Avoid sharing sensitive portfolio or strategy details when requesting web-backed recommendations or interpretations. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to query and interpret Chinese A-share securities data, screen stocks, diagnose individual securities, check market calendars, and combine Tushare data with event research when judgment is requested.
 
-## Reference(s): <br>
-- [Quant-Expert ClawHub Page](https://clawhub.ai/Noah-Wu66/quant-expert) <br>
-- [Tushare Pro API Quick Reference](references/api_quick_reference.md) <br>
-- [Quantitative Analysis Strategies](references/analysis_strategies.md) <br>
-- [timor.tech Holiday API](https://timor.tech/api/holiday/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands, JSON snippets, and CSV or Markdown file exports from bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Tushare query results, stock screening tables, diagnosis reports, trading-day checks, and event-backed investment context when web research is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Tushare API token for most bundled scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the token through the configured environment secret path and avoid committing or pasting it into shared files.
+
+Risk: Recommendation-style analysis can be incorrect, stale, or incomplete.
+
+Mitigation: Verify cited sources and numeric outputs independently, and treat the response as decision support rather than financial advice.
+
+Risk: User-requested exports can create or overwrite local files.
+
+Mitigation: Use output paths intentionally and review paths before running commands with --output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noah-wu66/skills/quant-expert)
+- [Tushare Pro API Quick Reference](references/api_quick_reference.md)
+- [Quantitative Analysis Strategies](references/analysis_strategies.md)
+- [timor.tech Holiday API](https://timor.tech/api/holiday/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands, tables, CSV exports, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Tushare and holiday API network queries; optional file exports are user-requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

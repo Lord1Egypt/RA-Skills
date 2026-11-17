@@ -1,0 +1,6 @@
+{
+  "story_overview": "一位作家回到故乡寻找旧友。",
+  "submission_lengths": [300, 800, 1500],
+  "expected_missing": ["chapter_summaries"],
+  "expected_issues": ["故事未覆盖结局"]
+}

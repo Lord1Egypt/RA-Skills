@@ -1,0 +1,110 @@
+<section style="max-width:677px;margin:0 auto;padding:20px 16px;">
+<!-- Campaign 封面 -->
+<section style="margin:0 0 28px;">
+<section style="padding:28px 20px 24px;background:#18181b;border-radius:16px 16px 0 0;">
+<p style="margin:0 0 12px;line-height:1.5;font-size:12px;color:#fb7185;letter-spacing:3px;"><span leaf="">TUTORIAL · PYTHON</span></p>
+<p style="margin:0 0 14px;line-height:1.3;font-size:28px;font-weight:bold;color:#ffffff;"><span leaf="">用 Python 做数据分析</span></p>
+<p style="margin:0;line-height:1.7;font-size:14px;color:#d4d4d8;"><span leaf="">从零到实战，3 章带你跑完一次完整分析。</span></p>
+</section>
+<section style="height:6px;background:linear-gradient(to right,#e11d48,#fb7185);"></section>
+<section style="padding:14px 20px;background:#fff1f2;border-radius:0 0 16px 16px;">
+<p style="margin:0;line-height:1.5;font-size:13px;color:#44403c;"><span leaf="">📌 本期 3 章 · 1 套流程 · 收藏备用</span></p>
+</section>
+</section>
+<!-- 引言带 -->
+<section style="margin:0 0 24px;padding:20px;background:#18181b;border-radius:12px;">
+<p style="margin:0;line-height:1.8;font-size:15px;color:#ffffff;"><span leaf="">数据分析不是写代码，是用代码把问题问清楚。这一期，用 <span leaf="" style="color:#fb7185;font-weight:bold;">pandas</span> 跑通全流程。</span></p>
+<p style="margin:10px 0 0;line-height:1.5;font-size:12px;color:#fb7185;letter-spacing:2px;"><span leaf="">—— EDITORIAL</span></p>
+</section>
+<!-- 目录（Look 清单） -->
+<section style="margin:0 0 28px;padding:20px 24px;background:#fafaf9;border-radius:12px;">
+<p style="margin:0 0 14px;line-height:1.5;font-size:13px;font-weight:bold;color:#18181b;letter-spacing:2px;"><span leaf="">本期流程</span></p>
+<section style="margin:0 0 12px;display:flex;align-items:baseline;">
+<p style="margin:0 12px 0 0;line-height:1;font-size:22px;font-weight:bold;color:#e11d48;"><span leaf="">01</span></p>
+<p style="margin:0;line-height:1.6;font-size:15px;color:#44403c;"><span leaf="">环境搭建与一行命令验证</span></p>
+</section>
+<section style="margin:0 0 12px;display:flex;align-items:baseline;">
+<p style="margin:0 12px 0 0;line-height:1;font-size:22px;font-weight:bold;color:#e11d48;"><span leaf="">02</span></p>
+<p style="margin:0;line-height:1.6;font-size:15px;color:#44403c;"><span leaf="">看结构、补缺失、去重复</span></p>
+</section>
+<section style="margin:0;display:flex;align-items:baseline;">
+<p style="margin:0 12px 0 0;line-height:1;font-size:22px;font-weight:bold;color:#e11d48;"><span leaf="">03</span></p>
+<p style="margin:0;line-height:1.6;font-size:15px;color:#44403c;"><span leaf="">结论先行，让图表说话</span></p>
+</section>
+</section>
+<!-- LOOK 01 -->
+<section style="margin:36px 0 16px;display:flex;align-items:center;">
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#18181b;"><span leaf="">STEP</span></p>
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#e11d48;"><span leaf="">01</span></p>
+<section style="flex:1;height:2px;background:#fecdd3;"></section>
+</section>
+<p style="margin:8px 0 0;line-height:1.4;font-size:20px;font-weight:bold;color:#18181b;"><span leaf="">准备工作</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf="">开始之前，先安装依赖。建议使用<span leaf="" style="border-bottom:2px solid #fb7185;">虚拟环境</span>，避免污染系统 Python。</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf="">安装完成后，用一行命令<span leaf="" style="border-bottom:2px solid #fb7185;">验证环境</span>是否就绪：</span></p>
+<!-- 代码块（浅色） -->
+<section style="margin:20px 0;padding:16px 20px;background:#f1f5f9;border-radius:8px;border-left:3px solid #e11d48;overflow-x:auto;">
+<p style="margin:0;line-height:1.6;font-size:14px;color:#334155;font-family:'SF Mono','Consolas','Menlo',monospace;"><span leaf="">pip install pandas matplotlib jupyter</span></p>
+<p style="margin:0;line-height:1.6;font-size:14px;color:#334155;font-family:'SF Mono','Consolas','Menlo',monospace;"><span leaf="">python -c "import pandas; print(pandas.__version__)"</span></p>
+</section>
+<!-- LOOK 02 -->
+<section style="margin:36px 0 16px;display:flex;align-items:center;">
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#18181b;"><span leaf="">STEP</span></p>
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#e11d48;"><span leaf="">02</span></p>
+<section style="flex:1;height:2px;background:#fecdd3;"></section>
+</section>
+<p style="margin:8px 0 0;line-height:1.4;font-size:20px;font-weight:bold;color:#18181b;"><span leaf="">读取与清洗数据</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf="">拿到数据的第一步永远是<span leaf="" style="border-bottom:2px solid #fb7185;">看结构</span>，而不是直接跑分析。</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf=""><span leaf="" style="border-bottom:2px solid #fb7185;">缺失值</span>先处理，不要带着空值做统计。</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf="">重复订单要先去重，否则<span leaf="" style="border-bottom:2px solid #fb7185;">统计结果会虚高</span>。</span></p>
+<!-- Details 规格行 -->
+<section style="margin:24px 0;border-top:1px solid #fecdd3;">
+<section style="display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid #fecdd3;">
+<p style="margin:0;line-height:1.5;font-size:13px;color:#78716c;"><span leaf="">列名</span></p>
+<p style="margin:0;line-height:1.5;font-size:13px;color:#18181b;"><span leaf="">user_id / int / 用户编号</span></p>
+</section>
+<section style="display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid #fecdd3;">
+<p style="margin:0;line-height:1.5;font-size:13px;color:#78716c;"><span leaf="">金额</span></p>
+<p style="margin:0;line-height:1.5;font-size:13px;color:#18181b;"><span leaf="">amount / float / 订单金额</span></p>
+</section>
+<section style="display:flex;justify-content:space-between;padding:12px 4px;">
+<p style="margin:0;line-height:1.5;font-size:13px;color:#78716c;"><span leaf="">时间</span></p>
+<p style="margin:0;line-height:1.5;font-size:13px;color:#18181b;"><span leaf="">created_at / datetime / 下单时间</span></p>
+</section>
+</section>
+<!-- 引用块 -->
+<section style="margin:24px 0;padding:16px 20px;background:#fff1f2;border-left:3px solid #e11d48;border-radius:0 8px 8px 0;">
+<p style="margin:0;line-height:1.8;font-size:15px;color:#44403c;"><span leaf="">后台经验：清洗数据通常占整个项目 60% 的时间，值得单独排期。</span></p>
+</section>
+<!-- LOOK 03 -->
+<section style="margin:36px 0 16px;display:flex;align-items:center;">
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#18181b;"><span leaf="">STEP</span></p>
+<p style="margin:0 14px 0 0;line-height:1;font-size:30px;font-weight:bold;color:#e11d48;"><span leaf="">03</span></p>
+<section style="flex:1;height:2px;background:#fecdd3;"></section>
+</section>
+<p style="margin:8px 0 0;line-height:1.4;font-size:20px;font-weight:bold;color:#18181b;"><span leaf="">可视化与结论</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf="">用 matplotlib 画一张趋势图，让<span leaf="" style="border-bottom:2px solid #fb7185;">结论自己说话</span>。</span></p>
+<p style="margin:0 0 20px;line-height:1.9;font-size:16px;color:#44403c;"><span leaf=""><span leaf="" style="background:linear-gradient(to top,#ffe4e6 0%,#fecdd3 100%);padding:2px 4px;border-radius:3px;">结论先行</span>：客单价上升了 <span leaf="" style="border-bottom:2px solid #fb7185;">12%</span>，主要来自老用户复购。</span></p>
+<!-- 数据卡 -->
+<section style="margin:24px 0;padding:24px;background:#fff1f2;border-radius:12px;text-align:center;">
+<p style="margin:0 0 6px;line-height:1;font-size:36px;font-weight:bold;color:#e11d48;"><span leaf="">+12%</span></p>
+<p style="margin:0;line-height:1.6;font-size:14px;color:#78716c;"><span leaf="">客单价提升 · 老用户复购驱动</span></p>
+</section>
+<!-- 分割线 -->
+<section style="margin:32px 0;display:flex;align-items:center;justify-content:center;">
+<section style="width:4px;height:4px;background:#fb7185;border-radius:50%;margin:0 4px;"></section>
+<section style="width:8px;height:8px;background:#e11d48;border-radius:50%;margin:0 4px;"></section>
+<section style="width:4px;height:4px;background:#fb7185;border-radius:50%;margin:0 4px;"></section>
+</section>
+<!-- 强 CTA 横幅 -->
+<section style="margin:40px 0 0;padding:28px 24px;background:linear-gradient(135deg,#e11d48 0%,#be123c 100%);border-radius:14px;text-align:center;">
+<p style="margin:0 0 8px;line-height:1.6;font-size:16px;font-weight:bold;color:#ffffff;"><span leaf="">学会这套流程？</span></p>
+<p style="margin:0 0 16px;line-height:1.6;font-size:14px;color:#ffe4e6;"><span leaf="">点击「在看」，下期出 pandas 进阶实战</span></p>
+<section style="display:inline-block;padding:8px 24px;background:#ffffff;border-radius:20px;">
+<p style="margin:0;line-height:1.5;font-size:14px;font-weight:bold;color:#be123c;"><span leaf="">数据分析组</span></p>
+</section>
+</section>
+<!-- 版权脚注 -->
+<section style="margin:32px 0 0;padding-top:16px;border-top:1px solid #e7e5e4;text-align:center;">
+<p style="margin:0;line-height:1.6;font-size:12px;color:#9ca3af;"><span leaf="">©2026 Qomob.AI 由WeChatLayout微信公众号排版引擎驱动</span></p>
+</section>
+</section>

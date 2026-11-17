@@ -1,44 +1,55 @@
-## Description: <br>
-OpenClaw Skill Marketplace helps users discover, search, rank, recommend, sync, and install OpenClaw skills from ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Skill Marketplace helps agents browse, search, recommend, synchronize, and install OpenClaw skills from ClawHub.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to browse ClawHub skills, search in English or Chinese, get recommendations by scenario, industry, or role, and install selected skills into their local OpenClaw skills directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact ClawHub, run npx clawhub commands, write synced metadata, and install additional skills into the OpenClaw skills directory. <br>
-Mitigation: Review skill names before installing, run commands only in a trusted OpenClaw workspace, and treat installed third-party skills as separate code that must be reviewed and trusted. <br>
-Risk: The security summary says the artifact's documentation understates network use and local changes. <br>
-Mitigation: Validate expected network access and file writes before deployment instead of relying only on the artifact's security notes. <br>
+## Use Case:
 
+OpenClaw users and skill maintainers use this skill to discover marketplace skills, compare recommendations by scenario, industry, or role, search local or synced ClawHub skill data, and install selected skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/williamwg2025/openclaw-skill-marketplace) <br>
-- [Publisher Profile](https://clawhub.ai/user/williamwg2025) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and Markdown documentation with shell command examples and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local OpenClaw skill metadata, write synced marketplace metadata, and invoke ClawHub CLI commands when the user runs the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.3.0) <br>
+Risk: Install and sync flows run an unpinned npx clawhub command that can download or install third-party skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted ClawHub CLI, inspect any skill before installation, and avoid running install or sync flows in sensitive workspaces without approval.
+
+Risk: Marketplace operations can write synced skill data or installed skills under the user's OpenClaw skills directory.
+
+Mitigation: Run the skill only where changes to the OpenClaw skills directory are expected, and keep backups or version control for local skill state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamwg2025/skills/openclaw-skill-marketplace)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, JSON configuration files, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Install and sync workflows can update the user's OpenClaw skills directory when explicitly run.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

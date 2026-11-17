@@ -1,42 +1,58 @@
-## Description: <br>
-Automatically detects and removes watermarks from images using AI-powered inpainting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically detects and removes watermarks from images using AI-powered inpainting.
 
-## Publisher: <br>
-[fusae](https://clawhub.ai/user/fusae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fusae](https://clawhub.ai/user/fusae)
 
-## Use Case: <br>
-Developers and image-processing users use this skill to process image files or directories when they need to detect corner watermarks, preview masks, and produce cleaned image copies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external watermark-remover package and a model that may be downloaded at runtime. <br>
-Mitigation: Install only from trusted sources and verify the package and model source before use. <br>
-Risk: Removing watermarks can modify images in ways that may be inappropriate without permission. <br>
-Mitigation: Use the skill only on images you have the right to modify. <br>
-Risk: Directory processing can affect many images in one run. <br>
-Mitigation: Run preview mode or test on copies before processing directories. <br>
+## Use Case:
 
+External users and developers use this skill to run a command-line image cleanup workflow for images they own or are authorized to modify.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fusae/fusae-watermark-remover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Image files and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-image and directory processing, mask preview output, detection sensitivity options, and OpenCV fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, SKILL.md frontmatter) <br>
+Risk: Watermark removal can be legally sensitive when applied to images the user does not own or is not authorized to modify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on owned or authorized images and confirm rights before processing.
+
+Risk: The workflow depends on an unverified external watermark-removal package.
+
+Mitigation: Verify the package publisher, source repository, version, and dependency lockfile before installation.
+
+Risk: Automated detection and inpainting can alter image content unexpectedly.
+
+Mitigation: Run preview mode first and keep backups of original images before writing cleaned outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fusae/skills/fusae-watermark-remover)
+- [Publisher profile](https://clawhub.ai/user/fusae)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash commands and generated image files from the CLI workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-image and directory inputs, preview mode, detection sensitivity options, mask padding, and OpenCV fallback.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

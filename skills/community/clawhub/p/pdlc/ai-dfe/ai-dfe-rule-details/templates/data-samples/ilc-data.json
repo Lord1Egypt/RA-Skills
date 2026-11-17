@@ -1,0 +1,50 @@
+{
+  "$schema": ".kiro/pdlc/ai-ilc-rule-details/data-schema/ilc-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-ilc",
+  "data": {
+    "currentIdea": {
+      "name": "Sample Idea",
+      "id": "001",
+      "status": "Routed",
+      "stage": 6,
+      "domain": "general",
+      "route": "new-project",
+      "briefFile": "001-sample-idea/approved-idea-brief.md",
+      "created": "2026-06-22T12:00:00Z",
+      "lastUpdated": "2026-06-22T12:00:00Z",
+      "score": {
+        "total": "28/35"
+      }
+    },
+    "ideas": [
+      {
+        "id": "001",
+        "name": "Sample Idea",
+        "stage": "routed",
+        "status": "Routed",
+        "score": 28,
+        "scoreMax": 35,
+        "decision": "Approved",
+        "domain": "general",
+        "depth": "Standard",
+        "route": "new-project",
+        "routeTarget": "PRJ-SMP-2026-001",
+        "brief": "A sample idea that demonstrates the Ideas funnel.",
+        "created": "2026-06-22T12:00:00Z",
+        "lastUpdated": "2026-06-22T12:00:00Z",
+        "files": [
+          { "name": "Approved Idea Brief", "path": "ideas/001-sample-idea/approved-idea-brief.md", "status": "produced" }
+        ]
+      }
+    ],
+    "counts": {
+      "total": 1,
+      "approved": 1,
+      "rejected": 0
+    }
+  }
+}

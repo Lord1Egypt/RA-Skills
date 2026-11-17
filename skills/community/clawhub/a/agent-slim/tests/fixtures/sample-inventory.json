@@ -1,0 +1,49 @@
+{
+  "runId": "fixture-s1-001",
+  "host": "codex",
+  "scope": "fixture-only",
+  "items": [
+    {
+      "id": "hot-description",
+      "layer": "hot",
+      "source": "skill-metadata",
+      "loadedWhen": "every-turn",
+      "tokenEvidence": {
+        "kind": "estimated",
+        "tokens": 48
+      },
+      "diskBytes": 192,
+      "references": [],
+      "riskHints": ["R1"]
+    },
+    {
+      "id": "warm-reference",
+      "layer": "warm",
+      "source": "skill-reference",
+      "loadedWhen": "trigger-only",
+      "tokenEvidence": {
+        "kind": "estimated",
+        "tokens": 320,
+        "loadFrequency": null
+      },
+      "diskBytes": 2048,
+      "references": ["docs/architecture.md"],
+      "riskHints": ["R1"]
+    },
+    {
+      "id": "cold-archive",
+      "layer": "cold",
+      "source": "session-archive",
+      "loadedWhen": "never",
+      "tokenEvidence": {
+        "kind": "measured",
+        "tokens": 0
+      },
+      "diskBytes": 1048576,
+      "references": [],
+      "riskHints": ["R2"]
+    }
+  ],
+  "unknowns": ["loadFrequency"],
+  "createdAt": "2026-11-05T00:00:00+08:00"
+}

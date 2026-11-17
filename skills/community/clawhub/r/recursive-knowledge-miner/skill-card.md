@@ -1,40 +1,53 @@
-## Description: <br>
-Professional multi-layered knowledge extraction and recursive knowledge graph construction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional multi-layered knowledge extraction and recursive knowledge graph construction.
 
-## Publisher: <br>
-[askxiaozhang](https://clawhub.ai/user/askxiaozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[askxiaozhang](https://clawhub.ai/user/askxiaozhang)
 
-## Use Case: <br>
-Developers, analysts, educators, and knowledge-management teams use this skill to convert complex professional text into a structured, graph-ready hierarchy of concepts, entities, and relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated entities or relationships may be incomplete, misleading, or too broad for the source material. <br>
-Mitigation: Use bounded source material and review the generated graph before treating it as authoritative. <br>
-Risk: Recursive expansion can duplicate concepts if existing terms are not supplied or checked carefully. <br>
-Mitigation: Provide known entity IDs through existing_terms when available and verify reused IDs during review. <br>
+## Use Case:
 
+External users and developers use this skill to convert professional text or inquiries into structured JSON knowledge graphs with core, primary, and detail entities. It is suited for interactive learning, concept mapping, and graph-ready knowledge organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/askxiaozhang/recursive-knowledge-miner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object containing a natural-language reply plus entities and relations for a knowledge graph.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entity groups use core, primary, and detail layers; relationship labels are concise active-verb descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate broadly for professional analysis tasks if its trigger description is not narrowed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when structured JSON knowledge-graph responses are desired, or narrow the trigger before deployment.
+
+Risk: Generated graph entities and relationships may be incomplete, overly broad, or unsuitable for downstream use without review.
+
+Mitigation: Review the JSON graph before using it in learning tools, data pipelines, or persistent knowledge stores.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/askxiaozhang/skills/recursive-knowledge-miner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object with a natural-language reply, entities, and relations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses core, primary, and detail entity groups with labeled relationships and reused entity IDs when existing terms are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

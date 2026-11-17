@@ -1,43 +1,56 @@
-## Description: <br>
-ZM 经典表达与写作质量用于提升文章认可感、传播性、选题锋利度、表达密度和真人现场感，避免流水账、长而散、正确但无聊。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZM 经典表达与写作质量。用于提升文章认可感、传播性、选题锋利度、表达密度和真人现场感，避免流水账、长而散、正确但无聊。
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Content creators, editors, and writing agents use this skill to review Chinese-language article ideas, drafts, titles, and paragraphs for audience recognition, sharper topic framing, expression density, memorable lines, and publication readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts and unpublished article material provided to the agent may contain sensitive or pre-release content. <br>
-Mitigation: Use the skill only in an environment approved for the draft content and keep normal publication review in place. <br>
-Risk: Editorial optimization for recognition, emotion, and shareability can overemphasize viral style or weaken factual nuance. <br>
-Mitigation: Have a human editor confirm factual accuracy, brand fit, and publication tone before releasing revised content. <br>
+## Use Case:
 
+Content creators, marketers, and writing-focused agents use this skill to critique and improve Chinese-language articles, titles, and drafts for audience resonance, sharper positioning, denser expression, and less generic AI-style writing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-classic-writing-quality) <br>
-- [AI 可执行性审核表｜写作质量](artifact/checklists/ai_readiness_checklist.md) <br>
-- [最小必填字段｜写作质量](artifact/templates/minimum_required_fields.md) <br>
-- [SubAgent execution prompt](artifact/templates/subagent_execution_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown prose with scoring, revision guidance, rewrite suggestions, and PASS / NEEDS_REVISION / BLOCKED conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language editorial guidance; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact/_meta.json; artifact/SKILL.md frontmatter lists 1.0.0) <br>
+Risk: The skill is tailored to Chinese-language article critique and does not document language selection or multilingual alternatives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese-language writing review, and choose or add a separate workflow when multilingual output is required.
+
+Risk: The skill provides style and quality guidance that may not match every publication's voice or editorial policy.
+
+Mitigation: Review recommendations against the target audience, platform, and house style before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-classic-writing-quality)
+- [AI 可执行性审核表｜写作质量](artifact/checklists/ai_readiness_checklist.md)
+- [最小必填字段｜写作质量](artifact/templates/minimum_required_fields.md)
+- [可复制给 SubAgent 的执行提示词](artifact/templates/subagent_execution_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with critique, scoring, revision guidance, reusable lines, and PASS / NEEDS_REVISION / BLOCKED conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optimized for Chinese-language writing quality review and concise rewrite direction.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Read and modify Quire tasks, projects, comments, statuses, and tags via the quire CLI: list, search, get, create, update, complete or uncomplete, set dates, and comment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and modify Quire tasks, projects, comments, statuses, and tags via the quire CLI.
 
-## Publisher: <br>
-[quire](https://clawhub.ai/user/quire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quire](https://clawhub.ai/user/quire)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Quire workspaces, summarize tasks and projects, and perform limited task updates through the authenticated quire CLI. It is suited for task lookup, project status review, URL resolution, and explicitly confirmed writes such as creating tasks, setting dates, completing tasks, and adding comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the logged-in Quire account and can read workspace task, project, comment, status, and tag data. <br>
-Mitigation: Install it only for agents that should access that Quire account, and avoid using it in conversations where workspace data should not be exposed. <br>
-Risk: Approved write actions can create or update tasks, change dates or completion state, and post comments visible to other Quire users. <br>
-Mitigation: Require explicit confirmation for each write and review the proposed task, field changes, dates, completion state, and comment text before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent inspect Quire workspaces, summarize tasks and projects, and perform confirmed task updates through the local Quire CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quire/quire) <br>
-- [Quire homepage](https://quire.io) <br>
-- [Quire CLI](https://github.com/quire-io/quire-cli) <br>
-- [Quire API documentation](https://quire.io/dev/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-aware guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses quire CLI JSON output; write actions require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: frontmatter, changelog, ClawHub release evidence) <br>
+Risk: The skill can use the logged-in Quire CLI account to read and modify Quire data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before create, update, complete, uncomplete, date, or comment actions.
+
+Risk: The comment feature can send arbitrary local file contents to Quire via @/path/to/file.
+
+Mitigation: Avoid approving file-backed comments unless the full file contents and destination task are shown first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quire/skills/quire)
+- [Quire](https://quire.io)
+- [Quire CLI](https://github.com/quire-io/quire-cli)
+- [Quire API documentation](https://quire.io/dev/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require the quire CLI on PATH and an existing quire login session.]
+
+## Skill Version(s):
+
+0.3.1 (source: frontmatter, release metadata, changelog released 2026-05-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

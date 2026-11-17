@@ -1,0 +1,32 @@
+{
+  "name": "@ktvme/destine-skill",
+  "version": "0.0.1",
+  "slug": "destine-skill",
+  "displayName": "KTV包厢预订",
+  "description": "K米小诸葛是专为KTV打造的全域AI娱乐管家，依托智能语音交互，集偏好记忆、场景预订、全域控场、趣味助兴于一体，全流程智能护航，轻松解锁省心、热闹、有仪式感的沉浸式聚会体验。",
+  "author": "km-destine",
+  "homepage": "http://src.ktvme.com/KmAI/App/km-destine-skill.git",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://src.ktvme.com/KmAI/App/km-destine-skill.git"
+  },
+  "keywords": [
+    "KTV",
+    "歌唱",
+    "唱歌",
+    "预订",
+    "订包厢",
+    "订位",
+    "订房",
+    "包厢",
+    "包间",
+    "唱K",
+    "欢聚",
+    "聚会",
+    "团建",
+    "套餐",
+    "小时",
+    "包厢"
+  ]
+}

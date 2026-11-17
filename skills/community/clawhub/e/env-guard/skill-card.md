@@ -1,40 +1,58 @@
-## Description: <br>
-Scan repos and workspaces for leaked secrets. API keys in code, passwords in configs, tokens in logs. Catches them before they hit git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan repos and workspaces for leaked secrets. API keys in code, passwords in configs, tokens in logs. Catches them before they hit git.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and security-conscious teams use Env Guard to scan local repositories and workspaces for leaked credentials before committing or deploying code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A clean result may be misleading if the documented command scans the wrong path instead of the intended project. <br>
-Mitigation: Run the target path directly, for example `node src/env-guard.js ./my-project`, and confirm the findings or exit code correspond to the intended directory. <br>
-Risk: Scan output may include snippets from lines that contain secrets. <br>
-Mitigation: Keep scan results local and redact findings before sharing logs, tickets, or reports. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan local repositories and workspaces for leaked API keys, passwords, tokens, private keys, connection strings, and webhook URLs before code reaches Git or CI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/env-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Console text or JSON report data from a local scan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include file path, line number, severity, secret type, and a redacted snippet; scan results should stay local unless intentionally shared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Programmatic reports may contain plaintext secret lines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not serialize, upload, or share reports from this version; review findings locally and redact sensitive values before storage or transmission.
+
+Risk: Scanning untrusted workspaces may follow symlinks outside the intended folder.
+
+Mitigation: Use the CLI only on trusted workspaces unless symlink traversal has been blocked or the target tree has been reviewed.
+
+Risk: The security verdict is suspicious for this release.
+
+Mitigation: Review before installing or using in CI, and prefer trusted local workspaces until the raw finding field is removed or fully redacted.
+
+## Reference(s):
+
+- [Env Guard ClawHub listing](https://clawhub.ai/theshadowrose/skills/env-guard)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Text and JSON-compatible scan reports with file, line, severity, and secret-type details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output exits nonzero when potential secrets are found; programmatic reports may include findings for downstream handling.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Control and monitor Home Assistant smart devices using commands for lights, switches, covers, climate, locks, scenes, and scripts through the Home Assistant API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and monitor Home Assistant smart devices using commands for lights, switches, covers, climate, scenes, scripts, and other entities through the Home Assistant API.
 
-## Publisher: <br>
-[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue)
 
-## Use Case: <br>
-External users and developers use this skill to configure Home Assistant access and issue command-line control or status requests for supported smart-home entities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to configure a long-lived Home Assistant access token and may save configuration locally. <br>
-Mitigation: Verify exactly which ha-cli executable will run before entering a token, prefer a least-privileged Home Assistant account or token, and protect or avoid saved config.json. <br>
-Risk: Commands can affect physical smart-home devices, including locks, covers, scenes, scripts, and climate controls. <br>
-Mitigation: Require manual confirmation for high-impact actions and review requested commands before execution. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to configure and control Home Assistant entities from an agent-accessible command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris6970barbarian-hue/glitch-homeassistant) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Home Assistant API actions through the user's local ha-cli setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Home Assistant long-lived access token can control every device allowed by the configured Home Assistant account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Home Assistant account and rotate the token if it has been exposed in shell history, source control, or shared logs.
+
+Risk: Commands can affect physical devices such as locks, covers, climate systems, scripts, and scenes.
+
+Mitigation: Require explicit confirmation before running commands that unlock doors, move covers, change climate settings, or execute scripts and scenes.
+
+Risk: Saved configuration can expose durable home-control credentials if it is committed or made readable to other users.
+
+Mitigation: Keep the config file out of source control and restrict file permissions to the local user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris6970barbarian-hue/skills/glitch-homeassistant)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Home Assistant CLI setup and device-control guidance; actions depend on the configured Home Assistant account permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

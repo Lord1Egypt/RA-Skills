@@ -1,42 +1,57 @@
-## Description: <br>
-Wyckoff Screen scans China A-share market data for stocks that appear to be in late accumulation or early trend-start phases, then returns ranked candidates with scoring and workflow notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share stocks with Wyckoff phase and volume profile scoring to identify accumulation or trend-start candidates and return a ranked candidate list.
 
-## Publisher: <br>
-[dxarch1980](https://clawhub.ai/user/dxarch1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxarch1980](https://clawhub.ai/user/dxarch1980)
 
-## Use Case: <br>
-External users and developers use this skill to run post-close stock screening over China A-share data with Wyckoff phase and volume-profile scoring. It helps produce a ranked candidate list, supporting signals, and workflow notes for further human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports an embedded market-data credential. <br>
-Mitigation: Remove the embedded credential, rotate it, and require users to provide their own credential through configuration or a secret store. <br>
-Risk: The security summary reports authenticated requests to an undisclosed plain-HTTP IP endpoint. <br>
-Mitigation: Use a documented HTTPS endpoint where possible, or clearly document and justify the endpoint before installation. <br>
-Risk: The security guidance calls for confirmation and configuration around broad scans and local persistence. <br>
-Mitigation: Require explicit user confirmation for broad market scans and document the local SQLite files written by the skill. <br>
+## Use Case:
 
+External users and trading-tool developers use this skill to run post-close A-share market scans and review Wyckoff-based candidates by score, phase, VPOC position, and signal summary. It supports right-side trend confirmation and left-side accumulation screening modes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxarch1980/wyckoff-screen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; runtime output is terminal text and saved .txt screening reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs ranked candidate stocks with code, phase, VPOC, current price, signals, and score; default runtime output is limited to top 20 candidates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can influence financial decisions while relying on external stock-data services and generated screening scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review results before acting on them, validate market data independently, and treat ranked candidates as analysis support rather than investment advice.
+
+Risk: Server security evidence reports a hardcoded market-data token and an undocumented plaintext HTTP endpoint.
+
+Mitigation: Remove embedded secrets and replace the plaintext endpoint with a user-provided secret and trusted HTTPS data provider before use.
+
+Risk: The skill writes local SQLite caches and dated result files.
+
+Mitigation: Run it in a workspace where local market-data caches and screening outputs are expected, review file paths before execution, and avoid sharing generated caches if they contain sensitive usage context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxarch1980/skills/wyckoff-screen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Ranked screening summaries with stock codes, phases, scores, VPOC values, current prices, signal notes, and dated text result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local SQLite stock-data caches and dated screening result files; outputs are based on end-of-day market data rather than real-time quotes.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

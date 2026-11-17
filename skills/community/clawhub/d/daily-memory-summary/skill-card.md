@@ -1,44 +1,58 @@
-## Description: <br>
-Runs a daily task that reads clipboard and notification data from computer_io and writes a dated memory file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Memory Summary reads the current day's clipboard and notification records from a computer_io memory folder and writes a dated daily memory summary.
 
-## Publisher: <br>
-[gift-is-coding](https://clawhub.ai/user/gift-is-coding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gift-is-coding](https://clawhub.ai/user/gift-is-coding)
 
-## Use Case: <br>
-OpenClaw users use this skill to combine the latest daily clipboard and notification records into a persistent dated memory markdown file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive clipboard and notification content in OpenClaw memory. <br>
-Mitigation: Install only when this retention is intended, and add review or redaction steps for secrets, private messages, one-time codes, and work data. <br>
-Risk: The included scheduling behavior can run the summary automatically each day. <br>
-Mitigation: Review, change, or remove the scheduled cron entry before enabling the skill. <br>
-Risk: The script uses a hard-coded local workspace path. <br>
-Mitigation: Update the workspace path for the target environment before running it. <br>
-Risk: The artifact includes contact parsing behavior beyond the basic daily summary description. <br>
-Mitigation: Review or remove the contact-parsing block if collecting contact identities is not intended. <br>
+## Use Case:
 
+External users can use this skill to consolidate daily clipboard and notification logs into a dated Markdown memory file. Because the skill handles sensitive activity logs on a schedule, it should be used only in private workspaces with consent, review, redaction, and file-permission controls.
 
-## Reference(s): <br>
-- [Daily Memory Summary ClawHub page](https://clawhub.ai/gift-is-coding/daily-memory-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown file with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes memory/YYYY-MM-DD.md from the current day's latest clipboard and notification records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can archive passwords, tokens, private messages, or business notifications when those values appear in clipboard or notification logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a private workspace with explicit consent, review generated summaries, add redaction controls, and restrict file permissions on memory outputs.
+
+Risk: The skill parses contact-like information from notification data without clear disclosure in the skill description.
+
+Mitigation: Document or remove contact-extraction behavior before scheduling, and confirm that collection is appropriate for the workspace.
+
+Risk: The script previews generated memory content to stdout, which can expose sensitive clipboard or notification data in logs.
+
+Mitigation: Remove the stdout preview or run only in an environment where terminal output and task logs are access controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gift-is-coding/skills/daily-memory-summary)
+- [Publisher profile](https://clawhub.ai/user/gift-is-coding)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown file with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes memory/YYYY-MM-DD.md from the latest clipboard and notification Markdown inputs for the current day.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Search, retrieve, and chat with documents stored in Google Drive folders using semantic vector search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and chat with documents stored in Google Drive folders using semantic vector search, incremental sync, OCR, and local JSON or Qdrant-backed vector storage.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers and external users use this skill to index selected Google Drive folders, retrieve matching document snippets, answer questions over saved files, and download previously stored documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private Google Drive content, credentials, and user search queries. <br>
-Mitigation: Install only after reviewing Drive access scope, configuring secrets outside committed files, and confirming that selected document contents may be processed by Gemini or OpenAI. <br>
-Risk: Document contents and embeddings may be stored in local JSON files or Qdrant. <br>
-Mitigation: Avoid syncing highly sensitive folders until retention, deletion, and opt-in controls are clear for the deployment environment. <br>
-Risk: The security review flags under-disclosed and unsafe patterns, including a native-OCR misstatement, embedded credentials, and folder ID validation concerns. <br>
-Mitigation: Review the publisher's security guidance before deployment and verify OCR behavior, credential handling, and folder identifiers during setup. <br>
+## Use Case:
 
+Employees, external users, and developers use Filechat to sync Google Drive folders into a searchable document library, retrieve relevant snippets, answer questions over saved files, and download or upload files through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eladrave/filechat-rag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and retrieved text snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Google Drive file IDs, vector-search matches, local JSON backups, or Qdrant search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can recursively read Google Drive folders and persist raw document chunks locally or in Qdrant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive folders until data retention controls are documented, restrict folder access, and review stored vector and metadata files after sync.
+
+Risk: Document contents may be sent to embedding or OCR providers during sync and query workflows.
+
+Mitigation: Confirm provider configuration before use and avoid processing confidential folders unless the selected provider and account meet the user's data handling requirements.
+
+Risk: The artifact includes test credentials and security guidance calls for credential removal or rotation.
+
+Mitigation: Remove bundled credentials from installed copies and rotate any exposed Google Workspace or Gemini credentials before deployment.
+
+Risk: The security guidance identifies safer subprocess calls, folder ID validation, and explicit deletion confirmation as missing controls.
+
+Mitigation: Review command construction and folder inputs before execution, and require explicit user confirmation before deleting cache or vector database files.
+
+## Reference(s):
+
+- [Filechat ClawHub Skill Page](https://clawhub.ai/eladrave/skills/filechat-rag)
+- [eladrave Publisher Profile](https://clawhub.ai/user/eladrave)
+- [Google Workspace CLI package](https://www.npmjs.com/package/@googleworkspace/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text snippets from retrieved documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local vector database files, metadata cache files, Google Drive uploads or downloads, and Qdrant collection updates when configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

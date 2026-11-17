@@ -1,44 +1,59 @@
-## Description: <br>
-AlphaClaw is a SkillHub CLI guide for searching, installing, publishing, and managing Claude Code skills with AK/SK authentication, keyword search, one-command installation and publishing, favorites, and comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides AlphaClaw SkillHub CLI guidance for searching, installing, publishing, and managing Claude Code skills, including AK/SK authentication workflows.
 
-## Publisher: <br>
-[iyunya](https://clawhub.ai/user/iyunya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iyunya](https://clawhub.ai/user/iyunya)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill as a command guide for installing and operating the AlphaClaw CLI to search, install, publish, list, favorite, and comment on SkillHub skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged as suspicious because it points to an unreviewed global npm package and makes official-sounding claims that registry metadata does not corroborate. <br>
-Mitigation: Install only after independently verifying that 1688alphaclaw and the ClawHub entry are authentic and operated by the claimed 1688 or AlphaClaw publisher. <br>
-Risk: The workflow uses AK/SK credentials and stores authentication material under ~/.alphaclaw/auth.json. <br>
-Mitigation: Use least-privileged credentials where possible and protect the local credential file from unintended access. <br>
-Risk: Commands such as --force, --yes, custom API URLs, publishing directories, and workspace skill installation can change local files or publish content with reduced prompting. <br>
-Mitigation: Review commands, target directories, and API endpoints before execution, especially before publishing or overwriting installed skills. <br>
+## Use Case:
 
+Developers and skill authors use this skill to receive CLI commands and configuration guidance for discovering, installing, listing, publishing, commenting on, and favoriting SkillHub skills.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/iyunya/andrea-test-002) <br>
-- [AlphaClaw SkillHub site](https://skill.alphashop.cn/) <br>
-- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command syntax, installation steps, authentication guidance, configuration paths, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill asks users to install and trust an unpinned global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and publisher before installing, and prefer a pinned version.
+
+Risk: The CLI handles AK/SK credentials and stores authentication material in ~/.alphaclaw/auth.json.
+
+Mitigation: Protect ~/.alphaclaw/auth.json as a secret and avoid using the skill on shared machines.
+
+Risk: Authenticated install and publish commands can change local skills or upload content.
+
+Mitigation: Run authenticated install or publish commands only when you explicitly intend to change local skills or upload content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iyunya/skills/andrea-test-002)
+- [AlphaClaw SkillHub website](https://skill.alphashop.cn/)
+- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands and setup notes for npm installation, authentication, search, install, publish, comment, and favorite workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

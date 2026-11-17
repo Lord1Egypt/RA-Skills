@@ -1,50 +1,68 @@
-## Description: <br>
-Find and compare student accommodation worldwide on uhomes.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and compare student accommodation worldwide on uhomes.com.
 
-## Publisher: <br>
-[yalding8](https://clawhub.ai/user/yalding8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yalding8](https://clawhub.ai/user/yalding8)
 
-## Use Case: <br>
-External students and study-abroad users use this skill to search, compare, and shortlist student accommodation on uhomes.com by city or university. It supports live listing lookup, room-type guidance, city orientation, and direct uhomes booking or request links in English, Chinese, and Japanese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations are limited to uhomes.com and may not reflect the broader housing market. <br>
-Mitigation: Use the skill when uhomes-specific results are desired and compare with other housing sources before making a housing decision. <br>
-Risk: Output links may include visible referral and UTM tracking parameters. <br>
-Mitigation: Review destination URLs before opening them and only proceed when referral tracking is acceptable. <br>
-Risk: External demand forms, apps, messaging links, or booking pages may request personal, financial, or identity details. <br>
-Mitigation: Provide only necessary information on external uhomes channels and avoid sharing sensitive details unless the destination and purpose are clear. <br>
+## Use Case:
 
+External users, especially international students, use this skill to search uhomes.com listings, compare housing options by price, distance, room type, rating, and location, and get direct booking or search links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yalding8/uhomes-student-housing) <br>
-- [uhomes homepage](https://www.uhomes.com) <br>
-- [URL patterns](artifact/references/url-patterns.md) <br>
-- [City and university index](artifact/references/city-index.md) <br>
-- [City guides](artifact/references/city-guides.md) <br>
-- [Room types](artifact/references/room-types.md) <br>
-- [Housing decision guide](artifact/references/decision-guide.md) <br>
-- [FAQ](artifact/references/faq.md) <br>
-- [Must-Stay configuration](artifact/references/must-stay-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with property comparisons, direct links, summaries, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include uhomes.com listing links with referral and UTM parameters, and language-matched mobile or contact links when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill is uhomes-focused and does not provide neutral comparisons across competing housing platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present it as a branded uhomes accommodation helper and avoid implying market-wide coverage.
+
+Risk: Booking, search, and demand-form links include partner tracking.
+
+Mitigation: Keep tracking visible in links and use the demand form only when the user is comfortable sharing requirements with uhomes under its own policies.
+
+Risk: Live listing fetches can fail or return incomplete data.
+
+Mitigation: Use the artifact's fallback behavior: provide the direct uhomes search page and avoid presenting missing listings as an error or complete market result.
+
+Risk: Using the wrong Must-Stay city or school identifier can produce misleading recommendations.
+
+Mitigation: Use only identifiers from the bundled Must-Stay configuration and skip Must-Stay ranking when no matching identifier is available.
+
+## Reference(s):
+
+- [uhomes homepage](https://www.uhomes.com)
+- [uhomes listings](https://en.uhomes.com)
+- [URL Patterns](artifact/references/url-patterns.md)
+- [City & University Index](artifact/references/city-index.md)
+- [Must-Stay List Configuration](artifact/references/must-stay-config.md)
+- [Room Types Reference](artifact/references/room-types.md)
+- [Housing Decision Guide](artifact/references/decision-guide.md)
+- [FAQ Reference](artifact/references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with property summaries, comparisons, and direct links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses uhomes.com as the sole housing source and includes partner tracking on booking, search, and demand-form links.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

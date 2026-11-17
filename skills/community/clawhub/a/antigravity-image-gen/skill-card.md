@@ -1,43 +1,58 @@
-## Description: <br>
-Generate images using the internal Google Antigravity API (Gemini 3 Pro Image). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using the internal Google Antigravity API (Gemini 3 Pro Image). High quality, native generation without browser automation.
 
-## Publisher: <br>
-[IPedrax](https://clawhub.ai/user/IPedrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ipedrax](https://clawhub.ai/user/ipedrax)
 
-## Use Case: <br>
-Developers and agents use this skill to generate image files from text prompts through a Google Antigravity OAuth profile. It is intended for workflows that need native image generation without browser automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local Google Antigravity OAuth profile to authenticate requests. <br>
-Mitigation: Install only when this credential use is intended, and review the selected auth profile before invoking the skill. <br>
-Risk: User prompts are sent to a remote Google service without strong scoping or consent controls in the skill. <br>
-Mitigation: Require user confirmation before generic image-generation requests and avoid prompts containing sensitive data. <br>
-Risk: The remote endpoint or model response format may change, fail quota checks, or refuse a prompt. <br>
-Mitigation: Handle failed runs by reviewing the script status text and model message before retrying or changing prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IPedrax/antigravity-image-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/IPedrax) <br>
-- [Google Antigravity API endpoint used by the skill](https://daily-cloudcode-pa.sandbox.googleapis.com/v1internal:streamGenerateContent?alt=sse) <br>
+## Use Case:
 
+External users and developers use this skill to generate image files from text prompts through a local Node.js script that uses a configured Google Antigravity OAuth profile.
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, shell commands] <br>
-**Output Format:** [PNG image file with stdout status text and a MEDIA path marker] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a required prompt, optional output path, and optional aspect ratio.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads a local Google Antigravity OAuth profile and sends image prompts to an internal Google sandbox endpoint.
+
+Mitigation: Install only where this credential access and prompt sharing are acceptable, and prefer a documented API with an explicit project and least-privilege credential.
+
+Risk: The skill may consume account or project quota under spoofed client metadata.
+
+Mitigation: Use a dedicated limited project or credential, monitor quota usage, and confirm the API and client metadata are appropriate before use.
+
+Risk: The internal API or model response structure may change and cause generation failures.
+
+Mitigation: Validate generated outputs and review model or API error messages before relying on the produced image file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ipedrax/skills/antigravity-image-gen)
+- [Publisher profile](https://clawhub.ai/user/ipedrax)
+- [ClawHub registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PNG image file path with console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a configured auth.profiles entry; prints MEDIA: <path> when an image is saved.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and target metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

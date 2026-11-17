@@ -1,46 +1,63 @@
-## Description: <br>
-Lobstr scores startup ideas in about 60 seconds by scanning competitors, evaluating six business dimensions, and checking EU investor signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobstr scores startup ideas with competitor discovery, six-dimension VC-style feedback, and GRID investor signal, using runlobstr.com by default and optional BYOK integrations for local scans.
 
-## Publisher: <br>
-[rednix](https://clawhub.ai/user/rednix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rednix](https://clawhub.ai/user/rednix)
 
-## Use Case: <br>
-External users and agents use Lobstr to evaluate whether a startup idea is worth pursuing, including competitive landscape, pitch score, business-model feedback, and EU investor signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Startup idea text is sent to runlobstr.com by default for hosted scoring. <br>
-Mitigation: Avoid using the skill on confidential or trade-secret ideas unless the user accepts that external data flow. <br>
-Risk: The --public and --moltbook flags can share scorecards outside the local session. <br>
-Mitigation: Use sharing flags only when the user explicitly wants a public scorecard or Moltbook post. <br>
-Risk: Optional BYOK mode uses API keys for Anthropic, Exa, and Moltbook integrations. <br>
-Mitigation: Scope optional API keys to this use case and provide them through environment variables only. <br>
+## Use Case:
 
+Founders, product teams, and agents use Lobstr to evaluate whether a startup idea is worth building, including competitive landscape, investor signal, scoring, and a build/not-yet verdict.
 
-## Reference(s): <br>
-- [ClawHub Lobstr Skill Page](https://clawhub.ai/rednix/lobstr) <br>
-- [runlobstr.com](https://runlobstr.com) <br>
-- [GRID](https://grid.nma.vc) <br>
-- [NMA](https://nma.vc) <br>
-- [Exa Search API Reference](references/exa-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Formatted text scorecard by default, with optional JSON for agent-to-agent use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes a 0-100 LOBSTR score, six dimension scores, competitor list, GRID investor signal, and build or do-not-build verdict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Startup ideas are sent to runlobstr.com by default and may include sensitive business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential plans, trade secrets, customer data, or regulated information unless the user accepts the hosted service and its data practices.
+
+Risk: --public and --moltbook can publish or post the idea and score externally.
+
+Mitigation: Use sharing flags only when the user explicitly intends public or external sharing.
+
+Risk: RUNLOBSTR_API can redirect default hosted submissions if set in the environment.
+
+Mitigation: Check or unset RUNLOBSTR_API before use in managed environments.
+
+## Reference(s):
+
+- [ClawHub Lobstr skill page](https://clawhub.ai/rednix/skills/lobstr)
+- [runlobstr.com](https://runlobstr.com)
+- [GRID investor database](https://grid.nma.vc)
+- [NMA](https://nma.vc)
+- [Exa Search API Reference](references/exa-search.md)
+- [Exa Search API endpoint](https://api.exa.ai/search)
+- [Anthropic Messages API endpoint](https://api.anthropic.com/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Plain-text score card by default; JSON object with --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output includes a six-dimension score, competitor list, GRID investor signal, and build/not-yet verdict; --public and --moltbook can share externally.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

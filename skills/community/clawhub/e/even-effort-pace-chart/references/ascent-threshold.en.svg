@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="535" viewBox="0 0 1040 535" role="img" aria-labelledby="title description" lang="en">
+  <title id="title">How the 10 m reversal threshold works</title>
+  <desc id="description">Illustrative profile checked with ascent_profile at smoothing=0 and threshold=10. A 4 m dip is suppressed. A 10 m drop from the running 116 m peak confirms reversal. Raw ascent/descent 32/20 m; filtered 28/16 m.</desc>
+  <style>text{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-variant-numeric:tabular-nums}</style>
+  <rect x="0" y="0" width="1040" height="535" fill="#FFFFFF" rx="0" />
+  <text x="32" y="48" font-size="28" fill="#202A35" font-weight="700" text-anchor="start">How the 10 m reversal threshold works</text>
+  <text x="32" y="80" font-size="19" fill="#626D79" font-weight="400" text-anchor="start">Illustration · no window averaging; confirm peaks after a cumulative 10 m drop.</text>
+  <line x1="36" y1="112" x2="70" y2="112" stroke="#9BA4AF" stroke-width="3" stroke-dasharray="5 5" />
+  <text x="82" y="118" font-size="18" fill="#626D79" font-weight="400" text-anchor="start">Source elevation</text>
+  <line x1="320" y1="112" x2="354" y2="112" stroke="#5470C6" stroke-width="4" />
+  <text x="366" y="118" font-size="18" fill="#626D79" font-weight="400" text-anchor="start">10 m envelope</text>
+  <line x1="88" y1="387" x2="690" y2="387" stroke="#E4E8ED" stroke-width="1" />
+  <text x="74" y="393" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">100</text>
+  <line x1="88" y1="277" x2="690" y2="277" stroke="#E4E8ED" stroke-width="1" />
+  <text x="74" y="283" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">110</text>
+  <line x1="88" y1="167" x2="690" y2="167" stroke="#E4E8ED" stroke-width="1" />
+  <text x="74" y="173" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">120</text>
+  <text x="35" y="147" font-size="17" fill="#626D79" font-weight="400" text-anchor="start">m</text>
+  <polyline points="88,387 152,321 216,255 280,299 344,211 408,255 472,321 536,387 600,343 664,255" fill="none" stroke="#9BA4AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5" />
+  <polyline points="88,387 152,321 216,255 280,255 344,211 408,255 472,321 536,387 600,343 664,255" fill="none" stroke="#5470C6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="88" cy="387" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="152" cy="321" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="216" cy="255" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="280" cy="299" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="344" cy="211" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="408" cy="255" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="472" cy="321" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="536" cy="387" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="600" cy="343" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="664" cy="255" r="4" fill="#9BA4AF" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="88" cy="387" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="216" cy="255" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="344" cy="211" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="472" cy="321" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="536" cy="387" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="664" cy="255" r="5" fill="#5470C6" stroke="#FFFFFF" stroke-width="2" />
+  <text x="216" y="240" font-size="19" fill="#5470C6" font-weight="650" text-anchor="middle">112</text>
+  <text x="280" y="327" font-size="19" fill="#626D79" font-weight="650" text-anchor="middle">108</text>
+  <text x="344" y="195" font-size="19" fill="#5470C6" font-weight="650" text-anchor="middle">116</text>
+  <text x="472" y="349" font-size="19" fill="#5470C6" font-weight="650" text-anchor="middle">106</text>
+  <text x="88" y="418" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">0</text>
+  <text x="280" y="418" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">30</text>
+  <text x="472" y="418" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">60</text>
+  <text x="664" y="418" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">90</text>
+  <text x="690" y="445" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">Distance / m</text>
+  <rect x="732" y="148" width="284" height="277" fill="#F7F8FA" rx="12" />
+  <text x="754" y="185" font-size="18" fill="#202A35" font-weight="650" text-anchor="start">Totals · source → filtered</text>
+  <text x="754" y="232" font-size="19" fill="#626D79" font-weight="400" text-anchor="start">Ascent</text>
+  <text x="754" y="267" font-size="29" fill="#5470C6" font-weight="700" text-anchor="start">32 → 28 m</text>
+  <text x="754" y="323" font-size="19" fill="#626D79" font-weight="400" text-anchor="start">Descent</text>
+  <text x="754" y="358" font-size="29" fill="#5470C6" font-weight="700" text-anchor="start">20 → 16 m</text>
+  <text x="754" y="401" font-size="16" fill="#626D79" font-weight="400" text-anchor="start">ascent_smoothing_m: 0</text>
+  <text x="32" y="483" font-size="20" fill="#202A35" font-weight="400" text-anchor="start">112 → 108: a 4 m dip does not confirm a turn.</text>
+  <text x="32" y="516" font-size="20" fill="#5470C6" font-weight="600" text-anchor="start">116 → 106: a 10 m drop confirms the 116 m peak.</text>
+</svg>

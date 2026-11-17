@@ -1,0 +1,494 @@
+{
+  "version": "1.0.0",
+  "note": "七轴权重 0-3。所有轴方向统一：分值越高 = 越像 NPC。voice 高=说不出自己的话，echo 高=说了没人接。",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "系统抓取了你今天在公共频道说得最多的一句，它是：",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "「好的收到」——今天第 14 次",
+          "weights": {
+            "script": 3,
+            "serve": 2,
+            "reset": 1,
+            "route": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "「这个我拉个群对齐一下」",
+          "weights": {
+            "script": 3,
+            "serve": 3
+          }
+        },
+        {
+          "id": "C",
+          "text": "「行，我看看什么时候能排上」",
+          "weights": {
+            "script": 3,
+            "route": 2,
+            "serve": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "「等等，这个是什么时候定的？」",
+          "weights": {
+            "voice": 1,
+            "echo": 1,
+            "goal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "你的任务面板上挂着七条任务。你随手点开一条，看它的「来源」字段：",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "来源：上级节点下发",
+          "weights": {
+            "goal": 3,
+            "script": 2
+          }
+        },
+        {
+          "id": "B",
+          "text": "来源：其他节点指派",
+          "weights": {
+            "goal": 3,
+            "serve": 2
+          }
+        },
+        {
+          "id": "C",
+          "text": "来源：自己创建",
+          "weights": {
+            "goal": 0,
+            "voice": 1,
+            "serve": 0
+          }
+        },
+        {
+          "id": "D",
+          "text": "来源：系统自动生成（你不记得什么时候接的）",
+          "weights": {
+            "goal": 3,
+            "reset": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "系统调出你最近一个月的移动轨迹，画在地图上，它是一个：",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "点。我基本没离开过那个位置",
+          "weights": {
+            "route": 3,
+            "script": 2,
+            "voice": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "直线。来回两趟，每天误差不超过八分钟",
+          "weights": {
+            "route": 3,
+            "reset": 2
+          }
+        },
+        {
+          "id": "C",
+          "text": "星形。以我为圆心，别人来回找我",
+          "weights": {
+            "serve": 3,
+            "route": 1
+          }
+        },
+        {
+          "id": "D",
+          "text": "折线。到处跑，哪炸了去哪",
+          "weights": {
+            "route": 0,
+            "serve": 2,
+            "reset": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "有人在公共频道 @ 了你：「这块你怎么看？」",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "说了一段没准备过的话。说完自己都有点意外",
+          "weights": {
+            "voice": 0,
+            "goal": 0
+          }
+        },
+        {
+          "id": "B",
+          "text": "「我整理一下，一会儿发个文档」",
+          "weights": {
+            "script": 3,
+            "voice": 1,
+            "route": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "「听大家的。」「我都行。」",
+          "weights": {
+            "voice": 3,
+            "script": 2,
+            "serve": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "等两分钟，看有没有别人先答",
+          "weights": {
+            "voice": 2,
+            "echo": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "你上次在正式场合提了一个想法。它后来怎么了？",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "被拿去用了，而且改得比我的版本好",
+          "weights": {
+            "echo": 0,
+            "voice": 0
+          }
+        },
+        {
+          "id": "B",
+          "text": "有人说了句「有道理」，然后按原来的继续",
+          "weights": {
+            "echo": 2,
+            "script": 2
+          }
+        },
+        {
+          "id": "C",
+          "text": "没有反应。直接进入了下一项",
+          "weights": {
+            "echo": 3,
+            "voice": 1
+          }
+        },
+        {
+          "id": "D",
+          "text": "我没在正式场合提过",
+          "weights": {
+            "echo": 2,
+            "voice": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "你关掉界面的那一刻，脑子里那条进度条：",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "归零。明天从同一个点重新开始",
+          "weights": {
+            "reset": 3,
+            "serve": 2,
+            "route": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "归零。而且我知道明天还是这些",
+          "weights": {
+            "reset": 3,
+            "script": 2,
+            "goal": 2,
+            "route": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "有进度，但进度条上写着别人的名字",
+          "weights": {
+            "serve": 3,
+            "goal": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "有进度，是我自己的",
+          "weights": {
+            "serve": 0,
+            "goal": 0,
+            "voice": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "你今年交付的所有东西里，有多少件「上面写着你的名字」？",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "全部",
+          "weights": {
+            "serve": 0,
+            "goal": 0
+          }
+        },
+        {
+          "id": "B",
+          "text": "一部分，得解释一下才说得清哪块是我的",
+          "weights": {
+            "serve": 2,
+            "script": 2
+          }
+        },
+        {
+          "id": "C",
+          "text": "基本没有",
+          "weights": {
+            "serve": 3,
+            "echo": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "没想过这个问题",
+          "weights": {
+            "goal": 2,
+            "voice": 2,
+            "script": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "系统又给你推了一条新任务，你手上还有三件没结的。",
+      "default": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "接。然后把某件旧的悄悄往后挪——我不说，也没人会发现",
+          "weights": {
+            "script": 3,
+            "serve": 2,
+            "reset": 2
+          }
+        },
+        {
+          "id": "B",
+          "text": "接。顺便说一句「可以，那我把 X 往后排，你选一个」",
+          "weights": {
+            "serve": 1,
+            "voice": 0,
+            "echo": 0
+          }
+        },
+        {
+          "id": "C",
+          "text": "接，晚上加个班",
+          "weights": {
+            "serve": 3,
+            "reset": 2,
+            "goal": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "先问一句「这个为什么要做」",
+          "weights": {
+            "goal": 0,
+            "voice": 0,
+            "echo": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "text": "有人提了一个方案，你隐约记得这个东西很早以前搞过。",
+      "default": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "当场说出来，并且说清上次为什么没成",
+          "weights": {
+            "voice": 0,
+            "echo": 0,
+            "script": 0
+          }
+        },
+        {
+          "id": "B",
+          "text": "等会后再私下跟相关的人说",
+          "weights": {
+            "voice": 1,
+            "echo": 2
+          }
+        },
+        {
+          "id": "C",
+          "text": "不说。反正说了也没用",
+          "weights": {
+            "echo": 3,
+            "voice": 2
+          }
+        },
+        {
+          "id": "D",
+          "text": "确实不记得了",
+          "weights": {
+            "reset": 3,
+            "script": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "text": "系统弹出一条提示：「检测到你已经 3 天没有说过一句没被要求的话。」",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "有吗？我不记得有这回事",
+          "weights": {
+            "voice": 3,
+            "script": 2
+          }
+        },
+        {
+          "id": "B",
+          "text": "我天天都在说",
+          "weights": {
+            "voice": 0
+          }
+        },
+        {
+          "id": "C",
+          "text": "说了。只是没人在听",
+          "weights": {
+            "voice": 0,
+            "echo": 3
+          }
+        },
+        {
+          "id": "D",
+          "text": "这条提示是发错了吧",
+          "weights": {
+            "voice": 2,
+            "script": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "text": "你有一个想法，放了有一阵了。它现在是什么状态？",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "已经死了。我自己都记不清细节",
+          "weights": {
+            "reset": 3,
+            "goal": 2
+          }
+        },
+        {
+          "id": "B",
+          "text": "还在。我在等一个合适的场合",
+          "weights": {
+            "voice": 2,
+            "echo": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "说过了。当时没人接，现在我偶尔还会说一遍",
+          "weights": {
+            "echo": 3,
+            "voice": 0
+          }
+        },
+        {
+          "id": "D",
+          "text": "说过了，而且已经做出来了",
+          "weights": {
+            "echo": 0,
+            "voice": 0,
+            "goal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "text": "系统提示：「明天本场景不需要你在场。」",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "太好了，终于歇一天",
+          "weights": {
+            "reset": 3,
+            "serve": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "那我手上的事怎么办",
+          "weights": {
+            "serve": 3,
+            "reset": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "会有点不知道干什么",
+          "weights": {
+            "goal": 3,
+            "voice": 1
+          }
+        },
+        {
+          "id": "D",
+          "text": "正好，我有自己的事要做",
+          "weights": {
+            "goal": 0,
+            "voice": 0,
+            "serve": 0
+          }
+        }
+      ]
+    }
+  ]
+}

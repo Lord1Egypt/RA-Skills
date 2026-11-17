@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brief-yourself.local/schemas/personal-context-store-v1.0.1.schema.json",
+  "title": "Brief Yourself Personal Context Store v1.0.1",
+  "description": "Canonical Personal Context Store. Core is a derived summary and domains are claim labels.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "context_id",
+    "subject",
+    "policy",
+    "coverage",
+    "claims",
+    "tensions",
+    "unknowns",
+    "sources",
+    "revision"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.1"},
+    "context_id": {"$ref": "#/$defs/id"},
+    "subject": {"$ref": "#/$defs/subject"},
+    "policy": {"$ref": "#/$defs/policy"},
+    "coverage": {"$ref": "#/$defs/coverage"},
+    "claims": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "tensions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/tension"}
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/unknown"}
+    },
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "revision": {"$ref": "#/$defs/revision"}
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dateOrDateTime": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?:T[^\\s]+)?$"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id", "display_name", "preferred_languages"],
+      "properties": {
+        "type": {"const": "person"},
+        "id": {"$ref": "#/$defs/id"},
+        "display_name": {"type": "string"},
+        "preferred_languages": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["patch_approval_required", "default_view_ttl_days", "auto_import_harness_memory"],
+      "properties": {
+        "patch_approval_required": {"type": "boolean"},
+        "default_view_ttl_days": {"type": "integer", "minimum": 1},
+        "auto_import_harness_memory": {"const": false}
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["depth", "included_domains", "missing_domains"],
+      "properties": {
+        "depth": {"enum": ["quick", "standard", "deep"]},
+        "included_domains": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "missing_domains": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audiences", "purposes", "allow_downstream_persistence"],
+      "properties": {
+        "audiences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "purposes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "allow_downstream_persistence": {"type": "boolean"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement",
+        "domains",
+        "kind",
+        "scope",
+        "durability",
+        "confidence",
+        "user_status",
+        "status",
+        "sensitivity",
+        "disclosure",
+        "evidence_refs",
+        "counterevidence_refs",
+        "observed_at",
+        "valid_from",
+        "last_confirmed_at",
+        "review_after",
+        "expires_at",
+        "supersedes",
+        "notes"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "statement": {"$ref": "#/$defs/nonEmptyString"},
+        "domains": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "kind": {"enum": ["fact", "self_report", "observation", "inference"]},
+        "scope": {"enum": ["cross-context", "domain", "situation"]},
+        "durability": {"enum": ["stable", "evolving", "situational"]},
+        "confidence": {"enum": ["high", "medium", "low"]},
+        "user_status": {"enum": ["confirmed", "corrected", "rejected", "unreviewed", "unresolved"]},
+        "status": {"enum": ["active", "challenged", "retired"]},
+        "sensitivity": {"enum": ["public", "private", "restricted"]},
+        "disclosure": {"$ref": "#/$defs/disclosure"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "counterevidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "observed_at": {"$ref": "#/$defs/dateOrDateTime"},
+        "valid_from": {"$ref": "#/$defs/dateOrDateTime"},
+        "last_confirmed_at": {"$ref": "#/$defs/dateOrDateTime"},
+        "review_after": {"$ref": "#/$defs/dateOrDateTime"},
+        "expires_at": {"$ref": "#/$defs/dateOrDateTime"},
+        "supersedes": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/id"},
+          "uniqueItems": true
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "tension": {
+      "type": "object",
+      "required": ["id", "domains", "statement_a", "statement_b", "user_status", "status", "sensitivity", "evidence_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "domains": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "statement_a": {"$ref": "#/$defs/nonEmptyString"},
+        "statement_b": {"$ref": "#/$defs/nonEmptyString"},
+        "interpretation": {"type": ["string", "null"]},
+        "user_status": {"enum": ["confirmed", "corrected", "rejected", "unreviewed", "unresolved"]},
+        "status": {"enum": ["active", "challenged", "retired"]},
+        "sensitivity": {"enum": ["public", "private", "restricted"]},
+        "disclosure": {"$ref": "#/$defs/disclosure"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "unknown": {
+      "type": "object",
+      "required": ["id", "domains", "question", "user_status", "status", "sensitivity", "evidence_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "domains": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "question": {"$ref": "#/$defs/nonEmptyString"},
+        "reason": {"type": "string"},
+        "priority": {"type": "string"},
+        "revisit": {"type": "string"},
+        "user_status": {"enum": ["confirmed", "corrected", "rejected", "unreviewed", "unresolved"]},
+        "status": {"enum": ["active", "challenged", "retired"]},
+        "sensitivity": {"enum": ["public", "private", "restricted"]},
+        "disclosure": {"$ref": "#/$defs/disclosure"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["id", "type", "title", "locator", "access_scope", "collected_at", "consent", "retention", "sensitivity"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "type": {"$ref": "#/$defs/nonEmptyString"},
+        "title": {"$ref": "#/$defs/nonEmptyString"},
+        "locator": {"type": ["string", "null"]},
+        "access_scope": {"$ref": "#/$defs/nonEmptyString"},
+        "collected_at": {"type": "string", "format": "date-time"},
+        "consent": {"const": "explicit"},
+        "retention": {"$ref": "#/$defs/nonEmptyString"},
+        "sensitivity": {"enum": ["public", "private", "restricted"]}
+      },
+      "additionalProperties": true
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "created_at", "updated_at", "last_reviewed_at"],
+      "properties": {
+        "version": {"type": "integer", "minimum": 1},
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"},
+        "last_reviewed_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}

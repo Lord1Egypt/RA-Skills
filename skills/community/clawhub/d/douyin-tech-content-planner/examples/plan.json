@@ -1,0 +1,16 @@
+{
+  "audience": "想快速整理长文本的内容创作者",
+  "keyword": "长文本摘要工具",
+  "promise": "用一个短演示展示文字怎样变成三条摘要",
+  "hook": "一段文字，能不能压成三条可读摘要？看这个虚构演示。",
+  "opening_evidence": {"seconds": 5, "fact_ids": ["F1", "F2"], "beat": "展示测试文本和输出摘要"},
+  "beats": [
+    {"order": 1, "text": "展示约 120 字的测试输入", "fact_ids": ["F2"]},
+    {"order": 2, "text": "展示整理出的三条摘要", "fact_ids": ["F1"]},
+    {"order": 3, "text": "提醒观众这只是结构演示，不代表真实产品表现", "fact_ids": []}
+  ],
+  "title_direction": "围绕“长文本如何快速整理”提出演示型标题",
+  "share_motivation": "可能适合需要处理长材料的同事；是否分享由受众决定",
+  "cta": null,
+  "unknowns": ["F3 的增长数字没有来源，未在文案中使用"]
+}

@@ -1,0 +1,3401 @@
+collection: GBC
+sort-by: 10
+shortname: gbc
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mgba_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: ESPN曲棍球联赛
+file: ESPN曲棍球联赛.gbc
+assets.box_front: Imgs/ESPN曲棍球联赛.png
+description: 《ESPN曲棍球联赛》，由 Konami 出品，体育类游戏，Game Boy Color 平台。
+publisher: Konami
+genre: Sports
+game: ET外星人–异星同伴
+file: ET外星人–异星同伴.gbc
+assets.box_front: Imgs/ET外星人–异星同伴.png
+description: 《ET外星人–异星同伴》，由 NewKidCo 出品，Various类游戏，Game Boy Color 平台。
+publisher: NewKidCo
+genre: Various
+game: ET外星人–逃离地球
+file: ET外星人–逃离地球.gbc
+assets.box_front: Imgs/ET外星人–逃离地球.png
+description: 《ET外星人–逃离地球》，由 NewKidCo 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: NewKidCo
+release: 2001
+genre: Adventure
+players: 1
+game: F18闪电特攻
+file: F18闪电特攻.gbc
+assets.box_front: Imgs/F18闪电特攻.png
+description: 《F18闪电特攻》，由 Majesco 出品，模拟类游戏，Game Boy Color 平台。
+publisher: Majesco
+genre: Simulation
+game: F1世界杯2
+file: F1世界杯2.gbc
+assets.box_front: Imgs/F1世界杯2.png
+description: 《F1世界杯2》，由 Konami 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Racing
+players: 2
+game: F1冠军赛2000
+file: F1冠军赛2000.gbc
+assets.box_front: Imgs/F1冠军赛2000.png
+description: 《F1冠军赛2000》，由 EA Sports 出品，竞速类游戏，Game Boy Color 平台。
+publisher: EA Sports
+genre: Racing
+game: F1大赛车
+file: F1大赛车.gbc
+assets.box_front: Imgs/F1大赛车.png
+description: 《F1大赛车》，由 Ubisoft 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Racing
+players: 1
+game: FIFA足球2000
+file: FIFA足球2000.gbc
+assets.box_front: Imgs/FIFA足球2000.png
+description: 《FIFA足球2000》，由 THQ 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Sports
+players: 1
+game: GTA1代
+file: GTA1代.gbc
+assets.box_front: Imgs/GTA1代.png
+description: 《GTA1代》，由 Take 2 Interactive 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Take 2 Interactive
+release: 1999
+genre: Racing
+players: 1
+game: GTA2代
+file: GTA2代.gbc
+assets.box_front: Imgs/GTA2代.png
+description: 《GTA2代》，由 Rockstar Games 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Rockstar Games
+release: 2000
+genre: Racing
+players: 1
+game: HunterXHunter–猎人的系谱
+file: HunterXHunter–猎人的系谱.gbc
+assets.box_front: Imgs/HunterXHunter–猎人的系谱.png
+description: 《HunterXHunter–猎人的系谱》，由 Konami 出品，2000 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Strategy
+game: HunterXHunter–禁断的秘宝
+file: HunterXHunter–禁断的秘宝.gbc
+assets.box_front: Imgs/HunterXHunter–禁断的秘宝.png
+description: 《HunterXHunter–禁断的秘宝》，由 Konami 出品，2001 年发行，动作类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2001
+genre: Action
+game: Hype–时间之谜
+file: Hype–时间之谜.gbc
+assets.box_front: Imgs/Hype–时间之谜.png
+description: 《Hype–时间之谜》，由 Ubisoft 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Adventure
+players: 2
+game: J联盟足球
+file: J联盟足球.gbc
+assets.box_front: Imgs/J联盟足球.png
+description: 《J联盟足球》，由 Epoch 出品，1999 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Epoch
+release: 1999
+genre: Sports
+game: J联盟足球经理
+file: J联盟足球经理.gbc
+assets.box_front: Imgs/J联盟足球经理.png
+description: 《J联盟足球经理》，由 Epoch 出品，2001 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Epoch
+release: 2001
+genre: Sports
+game: MIB星际战警1代黑衣人1代
+file: MIB星际战警1代黑衣人1代.gbc
+assets.box_front: Imgs/MIB星际战警1代黑衣人1代.png
+description: 《MIB星际战警1代黑衣人1代》，由 Interplay 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Interplay
+genre: Platform
+players: 1
+game: MIB星际战警2代黑衣人2代
+file: MIB星际战警2代黑衣人2代.gbc
+assets.box_front: Imgs/MIB星际战警2代黑衣人2代.png
+description: 《MIB星际战警2代黑衣人2代》，由 Crave Entertainment 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Crave Entertainment
+release: 2000
+genre: Platform
+players: 1
+game: MTV运动员–滑板
+file: MTV运动员–滑板.gbc
+assets.box_front: Imgs/MTV运动员–滑板.png
+description: 《MTV运动员–滑板》，由 THQ 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Sports
+players: 1
+game: MTV运动员–滑雪
+file: MTV运动员–滑雪.gbc
+assets.box_front: Imgs/MTV运动员–滑雪.png
+description: 《MTV运动员–滑雪》，由 THQ 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Racing
+players: 1
+game: NBA3对3篮球
+file: NBA3对3篮球.gbc
+assets.box_front: Imgs/NBA3对3篮球.png
+description: 《NBA3对3篮球》，由 Nintendo 出品，1999 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 1999
+genre: Sports
+players: 2
+game: NBA地带
+file: NBA地带.gbc
+assets.box_front: Imgs/NBA地带.png
+description: 《NBA地带》，由 Konami 出品，1999 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1999
+genre: Sports
+players: 2
+game: NBA地带2000
+file: NBA地带2000.gbc
+assets.box_front: Imgs/NBA地带2000.png
+description: 《NBA地带2000》，由 Konami 出品，2000 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Sports
+players: 1
+game: NBA职蓝99
+file: NBA职蓝99.gbc
+assets.box_front: Imgs/NBA职蓝99.png
+description: 《NBA职蓝99》，由 Konami 出品，体育类游戏，Game Boy Color 平台。
+publisher: Konami
+genre: Sports
+game: NBA表演赛
+file: NBA表演赛.gbc
+assets.box_front: Imgs/NBA表演赛.png
+description: 《NBA表演赛》，由 Midway 出品，2000 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+release: 2000
+genre: Sports
+players: 1
+game: Q伯特
+file: Q伯特.gbc
+assets.box_front: Imgs/Q伯特.png
+description: 《Q伯特》，由 Hasbro Interactive 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Hasbro Interactive
+release: 2000
+genre: Platform
+players: 2
+game: RPG制作
+file: RPG制作.gbc
+assets.box_front: Imgs/RPG制作.png
+description: 《RPG制作》，由 ASCII Corporation 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: ASCII Corporation
+release: 2000
+genre: Role-playing (RPG)
+game: SD飞龙之拳EX
+file: SD飞龙之拳EX.gbc
+assets.box_front: Imgs/SD飞龙之拳EX.png
+description: 《SD飞龙之拳EX》，由 Culture Brain 出品，1999 年发行，Game Boy Color 平台。
+publisher: Culture Brain
+release: 1999
+game: WCW摔跤
+file: WCW摔跤.gbc
+assets.box_front: Imgs/WCW摔跤.png
+description: 《WCW摔跤》，由 Electronic Arts 出品，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+genre: Sports
+players: 2
+game: WWF疯狂摔角2000
+file: WWF疯狂摔角2000.gbc
+assets.box_front: Imgs/WWF疯狂摔角2000.png
+description: 《WWF疯狂摔角2000》，由 THQ 出品，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: THQ
+genre: Sports
+players: 2
+game: X战警-狼獾
+file: X战警-狼獾.gbc
+assets.box_front: Imgs/X战警-狼獾.png
+description: 《X战警-狼獾》，由 Activision 出品，2001 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+release: 2001
+genre: Action
+players: 1
+game: X战警
+file: X战警.gbc
+assets.box_front: Imgs/X战警.png
+description: 《X战警》，由 Activision 出品，2001 年发行，格斗类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 2001
+genre: Fighting
+players: 2
+game: X战警–变种人之战
+file: X战警–变种人之战.gbc
+assets.box_front: Imgs/X战警–变种人之战.png
+description: 《X战警–变种人之战》，由 Activision 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Action
+players: 1
+game: 一级方程式赛车2000
+file: 一级方程式赛车2000.gbc
+assets.box_front: Imgs/一级方程式赛车2000.png
+description: 《一级方程式赛车2000》，由 Take 2 Interactive 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Take 2 Interactive
+release: 2000
+genre: Racing
+players: 1
+game: 三狮足球
+file: 三狮足球.gbc
+assets.box_front: Imgs/三狮足球.png
+description: 《三狮足球》，由 Take 2 Interactive 出品，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Take 2 Interactive
+genre: Sports
+players: 2
+game: 下坡山地车
+file: 下坡山地车.gbc
+assets.box_front: Imgs/下坡山地车.png
+description: 《下坡山地车》，由 THQ 出品，2001 年发行，体育类游戏，Game Boy Color 平台。
+publisher: THQ
+release: 2001
+genre: Sports
+game: 不可能的任务碟中谍
+file: 不可能的任务碟中谍.gbc
+assets.box_front: Imgs/不可能的任务碟中谍.png
+description: 《不可能的任务碟中谍》，由 Infogrames 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+genre: Platform
+players: 1
+game: 丹尼宝贝的甜蜜旅行
+file: 丹尼宝贝的甜蜜旅行.gbc
+assets.box_front: Imgs/丹尼宝贝的甜蜜旅行.png
+description: 《丹尼宝贝的甜蜜旅行》，由 Imagineer 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Imagineer
+release: 2000
+genre: Adventure
+players: 2
+game: 乒乓球
+file: 乒乓球.gbc
+assets.box_front: Imgs/乒乓球.png
+description: 《乒乓球》，由 Hasbro Interactive 出品，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Hasbro Interactive
+genre: Puzzle
+players: 2
+game: 云斯顿热赛篇
+file: 云斯顿热赛篇.gbc
+assets.box_front: Imgs/云斯顿热赛篇.png
+description: 《云斯顿热赛篇》，由 Majesco 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Majesco
+release: 2000
+genre: Racing
+game: 云斯顿赛车
+file: 云斯顿赛车.gbc
+assets.box_front: Imgs/云斯顿赛车.png
+description: 《云斯顿赛车》，由 Majesco 出品，1999 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Majesco
+release: 1999
+genre: Racing
+game: 亚尔斯复仇记
+file: 亚尔斯复仇记.gbc
+assets.box_front: Imgs/亚尔斯复仇记.png
+description: 《亚尔斯复仇记》，由 Telegames 出品，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Telegames
+genre: Shoot'em Up
+players: 1
+game: 亚尔斯复仇记;
+file: 亚尔斯复仇记;.gbc
+assets.box_front: Imgs/亚尔斯复仇记;.png
+description: 《亚尔斯复仇记;》，由 Telegames 出品，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Telegames
+genre: Shoot'em Up
+players: 1
+game: 亚曼达车手
+file: 亚曼达车手.gbc
+assets.box_front: Imgs/亚曼达车手.png
+description: 《亚曼达车手》，由 Metro3D 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Metro3D
+release: 2000
+genre: Racing
+players: 1
+game: 亚特兰蒂斯–失落的帝国
+file: 亚特兰蒂斯–失落的帝国.gbc
+assets.box_front: Imgs/亚特兰蒂斯–失落的帝国.png
+description: 《亚特兰蒂斯–失落的帝国》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 人生剧场
+file: 人生剧场.gbc
+assets.box_front: Imgs/人生剧场.png
+description: 《人生剧场》，由 Takara 出品，1999 年发行，Board类游戏，Game Boy Color 平台，单人游玩。
+publisher: Takara
+release: 1999
+genre: Board
+players: 1
+game: 人生游戏DX
+file: 人生游戏DX.gbc
+assets.box_front: Imgs/人生游戏DX.png
+description: 《人生游戏DX》，由 Takara 出品，2001 年发行，Board类游戏，Game Boy Color 平台。
+publisher: Takara
+release: 2001
+genre: Board
+game: 仙剑奇侠传
+file: 仙剑奇侠传.gbc
+assets.box_front: Imgs/仙剑奇侠传.png
+description: 《仙剑奇侠传》，Game Boy Color 平台。
+game: 仙界异闻录–准提大战
+file: 仙界异闻录–准提大战.gbc
+assets.box_front: Imgs/仙界异闻录–准提大战.png
+description: 《仙界异闻录–准提大战》，由 Banpresto 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Banpresto
+release: 2000
+genre: Role-playing (RPG)
+game: 仙魔大战2000
+file: 仙魔大战2000.gbc
+assets.box_front: Imgs/仙魔大战2000.png
+description: 《仙魔大战2000》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+game: 任天堂系统选单
+file: 任天堂系统选单.gbc
+assets.box_front: Imgs/任天堂系统选单.png
+description: 《任天堂系统选单》，Game Boy Color 平台。
+game: 俄罗斯方块DX
+file: 俄罗斯方块DX.gbc
+assets.box_front: Imgs/俄罗斯方块DX.png
+description: 《俄罗斯方块DX》，由 Nintendo 出品，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Puzzle
+players: 2
+game: 信长的野望GB2
+file: 信长的野望GB2.gbc
+assets.box_front: Imgs/信长的野望GB2.png
+description: 《信长的野望GB2》，由 Koei 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Koei
+release: 1999
+genre: Strategy
+game: 光荣之翼
+file: 光荣之翼.gbc
+assets.box_front: Imgs/光荣之翼.png
+description: 《光荣之翼》，由 Mindscape 出品，1999 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Mindscape
+release: 1999
+genre: Action
+players: 1
+game: 克鲁镇
+file: 克鲁镇.gbc
+assets.box_front: Imgs/克鲁镇.png
+description: 《克鲁镇》，由 J-Wing 出品，2001 年发行，Game Boy Color 平台。
+publisher: J-Wing
+release: 2001
+game: 全民将棋–初级篇
+file: 全民将棋–初级篇.gbc
+assets.box_front: Imgs/全民将棋–初级篇.png
+description: 《全民将棋–初级篇》，由 MTO Co 出品，1999 年发行，Board类游戏，Game Boy Color 平台。
+publisher: MTO Co
+release: 1999
+genre: Board
+game: 六角方块
+file: 六角方块.gbc
+assets.box_front: Imgs/六角方块.png
+description: 《六角方块》，由 Ubisoft 出品，1998 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Ubisoft
+release: 1998
+genre: Puzzle
+players: 2
+game: 六门天外
+file: 六门天外.gbc
+assets.box_front: Imgs/六门天外.png
+description: 《六门天外》，由 Kadokawa Shoten 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Kadokawa Shoten
+release: 2000
+genre: Role-playing (RPG)
+game: 冰上曲棍球2000
+file: 冰上曲棍球2000.gbc
+assets.box_front: Imgs/冰上曲棍球2000.png
+description: 《冰上曲棍球2000》，由 THQ 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Sports
+players: 1
+game: 冰上滑雪车
+file: 冰上滑雪车.gbc
+assets.box_front: Imgs/冰上滑雪车.png
+description: 《冰上滑雪车》，由 Vatical Entertainment 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Vatical Entertainment
+genre: Racing
+players: 1
+game: 冰河世纪
+file: 冰河世纪.gbc
+assets.box_front: Imgs/冰河世纪.png
+description: 《冰河世纪》，Game Boy Color 平台。
+game: 冰河世纪II
+file: 冰河世纪II.gbc
+assets.box_front: Imgs/冰河世纪II.png
+description: 《冰河世纪II》，Game Boy Color 平台。
+game: 决战西洋棋
+file: 决战西洋棋.gbc
+assets.box_front: Imgs/决战西洋棋.png
+description: 《决战西洋棋》，由 Mindscape 出品，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Mindscape
+genre: Strategy
+players: 2
+game: 刀锋战士
+file: 刀锋战士.gbc
+assets.box_front: Imgs/刀锋战士.png
+description: 《刀锋战士》，由 Activision 出品，清版动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Beat'em Up
+players: 1
+game: 努迪的生日派对
+file: 努迪的生日派对.gbc
+assets.box_front: Imgs/努迪的生日派对.png
+description: 《努迪的生日派对》，由 BBC Multimedia 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台。
+publisher: BBC Multimedia
+release: 2000
+genre: Platform
+game: 勇者斗恶龙1+2
+file: 勇者斗恶龙1+2.gbc
+assets.box_front: Imgs/勇者斗恶龙1+2.png
+description: 《勇者斗恶龙1+2》，由 Enix 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Enix
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 勇者斗恶龙3
+file: 勇者斗恶龙3.gbc
+assets.box_front: Imgs/勇者斗恶龙3.png
+description: 《勇者斗恶龙3》，由 Enix 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Enix
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 勇者斗恶龙怪兽篇1代
+file: 勇者斗恶龙怪兽篇1代.gbc
+assets.box_front: Imgs/勇者斗恶龙怪兽篇1代.png
+description: 《勇者斗恶龙怪兽篇1代》，由 Eidos Interactive 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Eidos Interactive
+genre: Role-playing (RPG)
+players: 1
+game: 勇者斗恶龙怪兽篇2代–伊鲁的冒险
+file: 勇者斗恶龙怪兽篇2代–伊鲁的冒险.gbc
+assets.box_front: Imgs/勇者斗恶龙怪兽篇2代–伊鲁的冒险.png
+description: 《勇者斗恶龙怪兽篇2代–伊鲁的冒险》，由 Enix 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Enix
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 勇者斗恶龙怪兽篇2代–塔拉的冒险
+file: 勇者斗恶龙怪兽篇2代–塔拉的冒险.gbc
+assets.box_front: Imgs/勇者斗恶龙怪兽篇2代–塔拉的冒险.png
+description: 《勇者斗恶龙怪兽篇2代–塔拉的冒险》，由 Enix 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Enix
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 勇者斗恶龙怪兽篇2代–科比的冒险
+file: 勇者斗恶龙怪兽篇2代–科比的冒险.gbc
+assets.box_front: Imgs/勇者斗恶龙怪兽篇2代–科比的冒险.png
+description: 《勇者斗恶龙怪兽篇2代–科比的冒险》，由 Enix 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Enix
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 勇者斗恶龙怪兽篇2代–鲁卡的冒险
+file: 勇者斗恶龙怪兽篇2代–鲁卡的冒险.gbc
+assets.box_front: Imgs/勇者斗恶龙怪兽篇2代–鲁卡的冒险.png
+description: 《勇者斗恶龙怪兽篇2代–鲁卡的冒险》，由 Enix 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Enix
+release: 2001
+genre: Role-playing (RPG)
+players: 2
+game: 卡麦勒传说
+file: 卡麦勒传说.gbc
+assets.box_front: Imgs/卡麦勒传说.png
+description: 《卡麦勒传说》，由 Nintendo 出品，1999 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 1999
+genre: Adventure
+players: 1
+game: 印第安纳琼斯
+file: 印第安纳琼斯.gbc
+assets.box_front: Imgs/印第安纳琼斯.png
+description: 《印第安纳琼斯》，由 THQ 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Action
+players: 1
+game: 原始大陆
+file: 原始大陆.gbc
+assets.box_front: Imgs/原始大陆.png
+description: 《原始大陆》，Game Boy Color 平台。
+game: 口袋GI赛马
+file: 口袋GI赛马.gbc
+assets.box_front: Imgs/口袋GI赛马.png
+description: 《口袋GI赛马》，由 Konami 出品，1999 年发行，Sports with Animals类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Sports with Animals
+game: 口袋GT赛车
+file: 口袋GT赛车.gbc
+assets.box_front: Imgs/口袋GT赛车.png
+description: 《口袋GT赛车》，由 Interplay 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Interplay
+release: 1999
+genre: Racing
+players: 2
+game: 口袋上海
+file: 口袋上海.gbc
+assets.box_front: Imgs/口袋上海.png
+description: 《口袋上海》，由 Activision 出品，Board类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Board
+players: 2
+game: 口袋保龄球
+file: 口袋保龄球.gbc
+assets.box_front: Imgs/口袋保龄球.png
+description: 《口袋保龄球》，由 Jaleco 出品，1998 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Jaleco
+release: 1998
+genre: Sports
+players: 2
+game: 口袋天蚕变
+file: 口袋天蚕变.gbc
+assets.box_front: Imgs/口袋天蚕变.png
+description: 《口袋天蚕变》，由 Nintendo 出品，1999 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 1999
+genre: Puzzle
+players: 1
+game: 口袋妖怪-水晶
+file: 口袋妖怪-水晶.gbc
+assets.box_front: Imgs/口袋妖怪-水晶.png
+description: 《口袋妖怪-水晶》，Game Boy Color 平台。
+game: 口袋妖怪GO!GO!GO!
+file: 口袋妖怪GO!GO!GO!.gbc
+assets.box_front: Imgs/口袋妖怪GO!GO!GO!.png
+description: 《口袋妖怪GO!GO!GO!》，Game Boy Color 平台。
+game: 口袋妖怪_冒险之旅
+file: 口袋妖怪_冒险之旅.gbc
+assets.box_front: Imgs/口袋妖怪_冒险之旅.png
+description: 《口袋妖怪_冒险之旅》，2000 年发行，Game Boy Color 平台。
+release: 2000
+game: 口袋妖怪_白金版
+file: 口袋妖怪_白金版.gbc
+assets.box_front: Imgs/口袋妖怪_白金版.png
+description: 《口袋妖怪_白金版》，2005 年发行，Game Boy Color 平台。
+release: 2005
+game: 口袋妖怪_蓝宝石
+file: 口袋妖怪_蓝宝石.gbc
+assets.box_front: Imgs/口袋妖怪_蓝宝石.png
+description: 《口袋妖怪_蓝宝石》，2003 年发行，Game Boy Color 平台。
+release: 2003
+game: 口袋妖怪_金
+file: 口袋妖怪_金.gbc
+assets.box_front: Imgs/口袋妖怪_金.png
+description: 《口袋妖怪_金》，Game Boy Color 平台。
+game: 口袋妖怪_银
+file: 口袋妖怪_银.gbc
+assets.box_front: Imgs/口袋妖怪_银.png
+description: 《口袋妖怪_银》，Game Boy Color 平台。
+game: 口袋妖怪_黄
+file: 口袋妖怪_黄.gbc
+assets.box_front: Imgs/口袋妖怪_黄.png
+description: 《口袋妖怪_黄》，Game Boy Color 平台。
+game: 口袋妖怪宠物小精灵–金
+file: 口袋妖怪宠物小精灵–金.gbc
+assets.box_front: Imgs/口袋妖怪宠物小精灵–金.png
+description: 《口袋妖怪宠物小精灵–金》，由 Nintendo 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+genre: Role-playing (RPG)
+players: 1
+game: 口袋妖怪宠物小精灵–黄
+file: 口袋妖怪宠物小精灵–黄.gbc
+assets.box_front: Imgs/口袋妖怪宠物小精灵–黄.png
+description: 《口袋妖怪宠物小精灵–黄》，由 Game Freak 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Game Freak
+genre: Role-playing (RPG)
+players: 2
+game: 口袋妖怪银251 文字修正
+file: 口袋妖怪银251 文字修正.gbc
+assets.box_front: Imgs/口袋妖怪银251 文字修正.png
+description: 《口袋妖怪银251 文字修正》，Game Boy Color 平台。
+game: 口袋撞球彩色版
+file: 口袋撞球彩色版.gbc
+assets.box_front: Imgs/口袋撞球彩色版.png
+description: 《口袋撞球彩色版》，由 Bottom Up Interactive 出品，1999 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Bottom Up Interactive
+release: 1999
+genre: Sports
+game: 口袋方块彩色版
+file: 口袋方块彩色版.gbc
+assets.box_front: Imgs/口袋方块彩色版.png
+description: 《口袋方块彩色版》，由 Crave Entertainment 出品，1999 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Crave Entertainment
+release: 1999
+genre: Action
+players: 2
+game: 口袋炸弹人
+file: 口袋炸弹人.gbc
+assets.box_front: Imgs/口袋炸弹人.png
+description: 《口袋炸弹人》，由 Nintendo 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+genre: Action
+players: 1
+game: 口袋王国
+file: 口袋王国.gbc
+assets.box_front: Imgs/口袋王国.png
+description: 《口袋王国》，由 Namco 出品，2001 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Namco
+release: 2001
+genre: Strategy
+game: 口袋电车2代
+file: 口袋电车2代.gbc
+assets.box_front: Imgs/口袋电车2代.png
+description: 《口袋电车2代》，由 Coconuts Japan 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Coconuts Japan
+release: 1999
+genre: Strategy
+game: 口袋纸牌彩色版
+file: 口袋纸牌彩色版.gbc
+assets.box_front: Imgs/口袋纸牌彩色版.png
+description: 《口袋纸牌彩色版》，由 Bottom Up Interactive 出品，1999 年发行，Game Boy Color 平台。
+publisher: Bottom Up Interactive
+release: 1999
+game: 口袋职业摔跤
+file: 口袋职业摔跤.gbc
+assets.box_front: Imgs/口袋职业摔跤.png
+description: 《口袋职业摔跤》，由 J-Wing 出品，2000 年发行，体育类游戏，Game Boy Color 平台。
+publisher: J-Wing
+release: 2000
+genre: Sports
+game: 口袋花牌
+file: 口袋花牌.gbc
+assets.box_front: Imgs/口袋花牌.png
+description: 《口袋花牌》，由 Bottom Up Interactive 出品，1999 年发行，Board类游戏，Game Boy Color 平台。
+publisher: Bottom Up Interactive
+release: 1999
+genre: Board
+game: 口袋赛车1代
+file: 口袋赛车1代.gbc
+assets.box_front: Imgs/口袋赛车1代.png
+description: 《口袋赛车1代》，由 Kemco 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Kemco
+release: 1999
+genre: Racing
+players: 2
+game: 口袋赛车2代
+file: 口袋赛车2代.gbc
+assets.box_front: Imgs/口袋赛车2代.png
+description: 《口袋赛车2代》，由 Kemco 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Kemco
+release: 1999
+genre: Racing
+players: 2
+game: 口袋足球
+file: 口袋足球.gbc
+assets.box_front: Imgs/口袋足球.png
+description: 《口袋足球》，由 Nintendo 出品，体育类游戏，Game Boy Color 平台。
+publisher: Nintendo
+genre: Sports
+game: 口袋迷你赛车
+file: 口袋迷你赛车.gbc
+assets.box_front: Imgs/口袋迷你赛车.png
+description: 《口袋迷你赛车》，由 Interplay 出品，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Interplay
+genre: Racing
+players: 2
+game: 口袋音乐
+file: 口袋音乐.gbc
+assets.box_front: Imgs/口袋音乐.png
+description: 《口袋音乐》，由 Rage Software 出品，2002 年发行，Music / Dancing类游戏，Game Boy Color 平台。
+publisher: Rage Software
+release: 2002
+genre: Music / Dancing
+game: 口袋魔法汽泡–太阳版
+file: 口袋魔法汽泡–太阳版.gbc
+assets.box_front: Imgs/口袋魔法汽泡–太阳版.png
+description: 《口袋魔法汽泡–太阳版》，由 Compile 出品，1998 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Compile
+release: 1998
+genre: Puzzle
+players: 2
+game: 古墓丽影 - 诅咒之剑
+file: 古墓丽影 - 诅咒之剑.gbc
+assets.box_front: Imgs/古墓丽影 - 诅咒之剑.png
+description: 《古墓丽影 - 诅咒之剑》，Game Boy Color 平台。
+game: 古墓丽影
+file: 古墓丽影.gbc
+assets.box_front: Imgs/古墓丽影.png
+description: 《古墓丽影》，由 Eidos Interactive 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Eidos Interactive
+genre: Action
+players: 1
+game: 古墓丽影–诅咒的匕首
+file: 古墓丽影–诅咒的匕首.gbc
+assets.box_front: Imgs/古墓丽影–诅咒的匕首.png
+description: 《古墓丽影–诅咒的匕首》，由 Activision 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 古惑狼–疯狂城堡
+file: 古惑狼–疯狂城堡.gbc
+assets.box_front: Imgs/古惑狼–疯狂城堡.png
+description: 《古惑狼–疯狂城堡》，由 Swing! Entertainment 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Swing! Entertainment
+release: 2001
+genre: Adventure
+players: 1
+game: 古惑狼大冒险
+file: 古惑狼大冒险.gbc
+assets.box_front: Imgs/古惑狼大冒险.png
+description: 《古惑狼大冒险》，由 Sunsoft 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunsoft
+release: 1999
+genre: Platform
+players: 1
+game: 合金装备–幽灵通天塔
+file: 合金装备–幽灵通天塔.gbc
+assets.box_front: Imgs/合金装备–幽灵通天塔.png
+description: 《合金装备–幽灵通天塔》，由 Konami 出品，2000 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Action
+players: 2
+game: 合金装备索利得
+file: 合金装备索利得.gbc
+assets.box_front: Imgs/合金装备索利得.png
+description: 《合金装备索利得》，由 Konami 出品，2000 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Action
+players: 2
+game: 吸血蝙蝠杀人魔
+file: 吸血蝙蝠杀人魔.gbc
+assets.box_front: Imgs/吸血蝙蝠杀人魔.png
+description: 《吸血蝙蝠杀人魔》，由 THQ 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Action
+players: 1
+game: 吸血鬼德拉克拉
+file: 吸血鬼德拉克拉.gbc
+assets.box_front: Imgs/吸血鬼德拉克拉.png
+description: 《吸血鬼德拉克拉》，由 Dreamcatcher 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Dreamcatcher
+release: 2001
+genre: Adventure
+players: 1
+game: 哈乐德–机械赛场
+file: 哈乐德–机械赛场.gbc
+assets.box_front: Imgs/哈乐德–机械赛场.png
+description: 《哈乐德–机械赛场》，由 The 3DO Company 出品，2001 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: The 3DO Company
+release: 2001
+genre: Racing
+game: 哈兹达赛车
+file: 哈兹达赛车.gbc
+assets.box_front: Imgs/哈兹达赛车.png
+description: 《哈兹达赛车》，由 SouthPeak Games 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: SouthPeak Games
+release: 2000
+genre: Racing
+players: 1
+game: 哈利波特
+file: 哈利波特.gbc
+assets.box_front: Imgs/哈利波特.png
+description: 《哈利波特》，由 Electronic Arts 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+genre: Role-playing (RPG)
+players: 2
+game: 哈利波特3
+file: 哈利波特3.gbc
+assets.box_front: Imgs/哈利波特3.png
+description: 《哈利波特3》，Game Boy Color 平台。
+game: 哈利波特与密室美
+file: 哈利波特与密室美.gbc
+assets.box_front: Imgs/哈利波特与密室美.png
+description: 《哈利波特与密室美》，由 Electronic Arts 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+genre: Role-playing (RPG)
+players: 2
+game: 哈利波特与魔法石美
+file: 哈利波特与魔法石美.gbc
+assets.box_front: Imgs/哈利波特与魔法石美.png
+description: 《哈利波特与魔法石美》，由 Electronic Arts 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Electronic Arts
+genre: Role-playing (RPG)
+players: 1
+game: 哈姆太郎1代
+file: 哈姆太郎1代.gbc
+assets.box_front: Imgs/哈姆太郎1代.png
+description: 《哈姆太郎1代》，由 Nintendo 出品，2000 年发行，动作类游戏，Game Boy Color 平台。
+publisher: Nintendo
+release: 2000
+genre: Action
+game: 哈姆太郎2代
+file: 哈姆太郎2代.gbc
+assets.box_front: Imgs/哈姆太郎2代.png
+description: 《哈姆太郎2代》，由 Nintendo 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 哈姆太郎–哈姆哈姆大联合
+file: 哈姆太郎–哈姆哈姆大联合.gbc
+assets.box_front: Imgs/哈姆太郎–哈姆哈姆大联合.png
+description: 《哈姆太郎–哈姆哈姆大联合》，由 Nintendo 出品，2003 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 2003
+genre: Role-playing (RPG)
+players: 1
+game: 哈罗机器人
+file: 哈罗机器人.gbc
+assets.box_front: Imgs/哈罗机器人.png
+description: 《哈罗机器人》，由 Sunrise Interactive 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunrise Interactive
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 哈雷摩托拉力赛
+file: 哈雷摩托拉力赛.gbc
+assets.box_front: Imgs/哈雷摩托拉力赛.png
+description: 《哈雷摩托拉力赛》，由 WizardWorks 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: WizardWorks
+release: 2000
+genre: Racing
+game: 国际田径赛
+file: 国际田径赛.gbc
+assets.box_front: Imgs/国际田径赛.png
+description: 《国际田径赛》，由 Konami 出品，1999 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1999
+genre: Sports
+players: 2
+game: 国际田径赛–夏季赛
+file: 国际田径赛–夏季赛.gbc
+assets.box_front: Imgs/国际田径赛–夏季赛.png
+description: 《国际田径赛–夏季赛》，由 Konami 出品，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+genre: Sports
+players: 2
+game: 国际空手道
+file: 国际空手道.gbc
+assets.box_front: Imgs/国际空手道.png
+description: 《国际空手道》，由 Studio 3 出品，2000 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Studio 3
+release: 2000
+genre: Action
+players: 1
+game: 国际象棋
+file: 国际象棋.gbc
+assets.box_front: Imgs/国际象棋.png
+description: 《国际象棋》，由 Mindscape 出品，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Mindscape
+genre: Strategy
+players: 2
+game: 国际超级明星足球2000
+file: 国际超级明星足球2000.gbc
+assets.box_front: Imgs/国际超级明星足球2000.png
+description: 《国际超级明星足球2000》，由 Konami 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+genre: Sports
+players: 1
+game: 国际超级明星足球99
+file: 国际超级明星足球99.gbc
+assets.box_front: Imgs/国际超级明星足球99.png
+description: 《国际超级明星足球99》，由 Konami 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+genre: Sports
+players: 1
+game: 地牢拯救者
+file: 地牢拯救者.gbc
+assets.box_front: Imgs/地牢拯救者.png
+description: 《地牢拯救者》，由 J-Wing 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: J-Wing
+release: 2000
+genre: Role-playing (RPG)
+game: 塔巴鲁加隆宝
+file: 塔巴鲁加隆宝.gbc
+assets.box_front: Imgs/塔巴鲁加隆宝.png
+description: 《塔巴鲁加隆宝》，由 Infogrames 出品，1999 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 1999
+genre: Adventure
+players: 1
+game: 塞尔达传说 - 梦见岛
+file: 塞尔达传说 - 梦见岛.gbc
+assets.box_front: Imgs/塞尔达传说 - 梦见岛.png
+description: 《塞尔达传说 - 梦见岛》，Game Boy Color 平台。
+game: 塞尔达传说–梦见岛DX
+file: 塞尔达传说–梦见岛DX.gbc
+assets.box_front: Imgs/塞尔达传说–梦见岛DX.png
+description: 《塞尔达传说–梦见岛DX》，由 Nintendo 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 1998
+genre: Role-playing (RPG)
+players: 1
+game: 塞布丽娜1代
+file: 塞布丽娜1代.gbc
+assets.box_front: Imgs/塞布丽娜1代.png
+description: 《塞布丽娜1代》，由 Havas Interactive 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Havas Interactive
+genre: Platform
+players: 1
+game: 塞布丽娜2代
+file: 塞布丽娜2代.gbc
+assets.box_front: Imgs/塞布丽娜2代.png
+description: 《塞布丽娜2代》，由 Simon & Schuster Interactive 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Simon & Schuster Interactive
+genre: Platform
+players: 1
+game: 夏季奥运
+file: 夏季奥运.gbc
+assets.box_front: Imgs/夏季奥运.png
+description: 《夏季奥运》，由 Konami 出品，体育类游戏，Game Boy Color 平台。
+publisher: Konami
+genre: Sports
+game: 外星宝宝撞地球
+file: 外星宝宝撞地球.gbc
+assets.box_front: Imgs/外星宝宝撞地球.png
+description: 《外星宝宝撞地球》，由 Video System 出品，2000 年发行，Game Boy Color 平台，单人游玩。
+publisher: Video System
+release: 2000
+players: 1
+game: 夜光虫
+file: 夜光虫.gbc
+assets.box_front: Imgs/夜光虫.png
+description: 《夜光虫》，Game Boy Color 平台。
+game: 大力工头
+file: 大力工头.gbc
+assets.box_front: Imgs/大力工头.png
+description: 《大力工头》，由 Gaps 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Gaps
+release: 2000
+genre: Platform
+players: 1
+game: 大力神–传奇旅程
+file: 大力神–传奇旅程.gbc
+assets.box_front: Imgs/大力神–传奇旅程.png
+description: 《大力神–传奇旅程》，由 Titus 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Titus
+release: 2001
+genre: Adventure
+players: 1
+game: 大富翁
+file: 大富翁.gbc
+assets.box_front: Imgs/大富翁.png
+description: 《大富翁》，由 Majesco 出品，1998 年发行，Board类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Majesco
+release: 1998
+genre: Board
+players: 4
+game: 大富翁DX
+file: 大富翁DX.gbc
+assets.box_front: Imgs/大富翁DX.png
+description: 《大富翁DX》，由 Takara 出品，2000 年发行，Board类游戏，Game Boy Color 平台。
+publisher: Takara
+release: 2000
+genre: Board
+game: 大战略2代
+file: 大战略2代.gbc
+assets.box_front: Imgs/大战略2代.png
+description: 《大战略2代》，Game Boy Color 平台。
+game: 大战略3代
+file: 大战略3代.gbc
+assets.box_front: Imgs/大战略3代.png
+description: 《大战略3代》，由 Hudson 出品，2001 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Hudson
+release: 2001
+genre: Strategy
+game: 大摔跤
+file: 大摔跤.gbc
+assets.box_front: Imgs/大摔跤.png
+description: 《大摔跤》，由 THQ 出品，清版动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: THQ
+genre: Beat'em Up
+players: 2
+game: 大海战
+file: 大海战.gbc
+assets.box_front: Imgs/大海战.png
+description: 《大海战》，由 Majesco 出品，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+genre: Strategy
+players: 1
+game: 大盗五右卫门1代–天狗党的逆袭
+file: 大盗五右卫门1代–天狗党的逆袭.gbc
+assets.box_front: Imgs/大盗五右卫门1代–天狗党的逆袭.png
+description: 《大盗五右卫门1代–天狗党的逆袭》，由 Konami 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Role-playing (RPG)
+game: 大盗五右卫门2代
+file: 大盗五右卫门2代.gbc
+assets.box_front: Imgs/大盗五右卫门2代.png
+description: 《大盗五右卫门2代》，由 Konami 出品，1999 年发行，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+game: 大盗五右卫门3代
+file: 大盗五右卫门3代.gbc
+assets.box_front: Imgs/大盗五右卫门3代.png
+description: 《大盗五右卫门3代》，由 Konami 出品，2000 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Action
+players: 2
+game: 大脚车赛车
+file: 大脚车赛车.gbc
+assets.box_front: Imgs/大脚车赛车.png
+description: 《大脚车赛车》，由 Hasbro Interactive 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Hasbro Interactive
+release: 1999
+genre: Racing
+players: 2
+game: 大蓝屋里的熊
+file: 大蓝屋里的熊.gbc
+assets.box_front: Imgs/大蓝屋里的熊.png
+description: 《大蓝屋里的熊》，Game Boy Color 平台。
+game: 大野猫与金丝雀
+file: 大野猫与金丝雀.gbc
+assets.box_front: Imgs/大野猫与金丝雀.png
+description: 《大野猫与金丝雀》，由 Infogrames 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+genre: Platform
+players: 1
+game: 大陆传说
+file: 大陆传说.gbc
+assets.box_front: Imgs/大陆传说.png
+description: 《大陆传说》，由 JoWood Produtions 出品，2002 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: JoWood Produtions
+release: 2002
+genre: Adventure
+players: 1
+game: 太空任务
+file: 太空任务.gbc
+assets.box_front: Imgs/太空任务.png
+description: 《太空任务》，由 Activision 出品，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Action
+players: 2
+game: 太空侵略者
+file: 太空侵略者.gbc
+assets.box_front: Imgs/太空侵略者.png
+description: 《太空侵略者》，由 Activision 出品，射击类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Activision
+genre: Shooter
+players: 2
+game: 太空侵略者X
+file: 太空侵略者X.gbc
+assets.box_front: Imgs/太空侵略者X.png
+description: 《太空侵略者X》，由 Activision 出品，2000 年发行，射击类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Activision
+release: 2000
+genre: Shooter
+players: 2
+game: 太空小蜜蜂
+file: 太空小蜜蜂.gbc
+assets.box_front: Imgs/太空小蜜蜂.png
+description: 《太空小蜜蜂》，由 Majesco 出品，2000 年发行，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+release: 2000
+genre: Shoot'em Up
+players: 1
+game: 太空战士X
+file: 太空战士X.gbc
+assets.box_front: Imgs/太空战士X.png
+description: 《太空战士X》，Game Boy Color 平台。
+game: 女明星–疯狂购物
+file: 女明星–疯狂购物.gbc
+assets.box_front: Imgs/女明星–疯狂购物.png
+description: 《女明星–疯狂购物》，由 Universal 出品，2001 年发行，教育类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Universal
+release: 2001
+genre: Educational
+players: 4
+game: 娱乐单词
+file: 娱乐单词.gbc
+assets.box_front: Imgs/娱乐单词.png
+description: 《娱乐单词》，由 J-Wing 出品，2000 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: J-Wing
+release: 2000
+genre: Puzzle
+players: 1
+game: 学级王山崎
+file: 学级王山崎.gbc
+assets.box_front: Imgs/学级王山崎.png
+description: 《学级王山崎》，由 Koei 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Koei
+release: 1999
+genre: Role-playing (RPG)
+game: 宇宙人田中太郎的RPG制作
+file: 宇宙人田中太郎的RPG制作.gbc
+assets.box_front: Imgs/宇宙人田中太郎的RPG制作.png
+description: 《宇宙人田中太郎的RPG制作》，由 Enterbrain 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Enterbrain
+release: 2001
+genre: Role-playing (RPG)
+game: 完美竞赛Q
+file: 完美竞赛Q.gbc
+assets.box_front: Imgs/完美竞赛Q.png
+description: 《完美竞赛Q》，由 Takara 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Takara
+release: 2000
+genre: Racing
+game: 完美黑暗
+file: 完美黑暗.gbc
+assets.box_front: Imgs/完美黑暗.png
+description: 《完美黑暗》，由 Rareware 出品，冒险类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Rareware
+genre: Adventure
+players: 2
+game: 小军人1代
+file: 小军人1代.gbc
+assets.box_front: Imgs/小军人1代.png
+description: 《小军人1代》，由 The 3DO Company 出品，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+genre: Strategy
+players: 1
+game: 小军人2代
+file: 小军人2代.gbc
+assets.box_front: Imgs/小军人2代.png
+description: 《小军人2代》，由 The 3DO Company 出品，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: The 3DO Company
+genre: Strategy
+players: 2
+game: 小军人–空中大战
+file: 小军人–空中大战.gbc
+assets.box_front: Imgs/小军人–空中大战.png
+description: 《小军人–空中大战》，由 The 3DO Company 出品，射击类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+genre: Shooter
+players: 1
+game: 小军人–英雄无敌2
+file: 小军人–英雄无敌2.gbc
+assets.box_front: Imgs/小军人–英雄无敌2.png
+description: 《小军人–英雄无敌2》，由 The 3DO Company 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+genre: Action
+players: 1
+game: 小可爱宠物培训师
+file: 小可爱宠物培训师.gbc
+assets.box_front: Imgs/小可爱宠物培训师.png
+description: 《小可爱宠物培训师》，由 Magical Company 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Magical Company
+release: 1999
+genre: Strategy
+game: 小奈奇
+file: 小奈奇.gbc
+assets.box_front: Imgs/小奈奇.png
+description: 《小奈奇》，由 Ubisoft 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Platform
+players: 1
+game: 小小魔法使
+file: 小小魔法使.gbc
+assets.box_front: Imgs/小小魔法使.png
+description: 《小小魔法使》，由 Altron 出品，1999 年发行，益智类游戏，Game Boy Color 平台。
+publisher: Altron
+release: 1999
+genre: Puzzle
+game: 小恶魔
+file: 小恶魔.gbc
+assets.box_front: Imgs/小恶魔.png
+description: 《小恶魔》，Game Boy Color 平台。
+game: 小泰山
+file: 小泰山.gbc
+assets.box_front: Imgs/小泰山.png
+description: 《小泰山》，由 Activision 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 小熊维尼
+file: 小熊维尼.gbc
+assets.box_front: Imgs/小熊维尼.png
+description: 《小熊维尼》，由 Disney Interactive 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Disney Interactive
+release: 2000
+genre: Adventure
+players: 1
+game: 小熊维尼冒险记
+file: 小熊维尼冒险记.gbc
+assets.box_front: Imgs/小熊维尼冒险记.png
+description: 《小熊维尼冒险记》，由 Disney Interactive 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Disney Interactive
+release: 2000
+genre: Adventure
+players: 1
+game: 小熊维尼大冒险
+file: 小熊维尼大冒险.gbc
+assets.box_front: Imgs/小熊维尼大冒险.png
+description: 《小熊维尼大冒险》，由 Disney Interactive 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Disney Interactive
+genre: Adventure
+players: 1
+game: 小狮子杰克
+file: 小狮子杰克.gbc
+assets.box_front: Imgs/小狮子杰克.png
+description: 《小狮子杰克》，Game Boy Color 平台。
+game: 小蚁雄兵
+file: 小蚁雄兵.gbc
+assets.box_front: Imgs/小蚁雄兵.png
+description: 《小蚁雄兵》，由 Infogrames 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+genre: Platform
+players: 1
+game: 小蜜蜂玛雅和她的伙伴们
+file: 小蜜蜂玛雅和她的伙伴们.gbc
+assets.box_front: Imgs/小蜜蜂玛雅和她的伙伴们.png
+description: 《小蜜蜂玛雅和她的伙伴们》，由 Acclaim 出品，2000 年发行，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+release: 2000
+genre: Strategy
+players: 1
+game: 小鬼闯巴黎
+file: 小鬼闯巴黎.gbc
+assets.box_front: Imgs/小鬼闯巴黎.png
+description: 《小鬼闯巴黎》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 小魔怪
+file: 小魔怪.gbc
+assets.box_front: Imgs/小魔怪.png
+description: 《小魔怪》，由 Light & Shadow Productions (LSP) 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Light & Shadow Productions (LSP)
+release: 2001
+genre: Platform
+players: 1
+game: 小鸡快跑
+file: 小鸡快跑.gbc
+assets.box_front: Imgs/小鸡快跑.png
+description: 《小鸡快跑》，由 THQ 出品，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: THQ
+genre: Strategy
+players: 2
+game: 尤诺纸牌
+file: 尤诺纸牌.gbc
+assets.box_front: Imgs/尤诺纸牌.png
+description: 《尤诺纸牌》，由 Mattel Electronics 出品，1999 年发行，Card类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Mattel Electronics
+release: 1999
+genre: Card
+players: 2
+game: 山姆士历险
+file: 山姆士历险.gbc
+assets.box_front: Imgs/山姆士历险.png
+description: 《山姆士历险》，由 Telegames 出品，射击类游戏，Game Boy Color 平台，单人游玩。
+publisher: Telegames
+genre: Shooter
+players: 1
+game: 布鲁熊智能湖
+file: 布鲁熊智能湖.gbc
+assets.box_front: Imgs/布鲁熊智能湖.png
+description: 《布鲁熊智能湖》，Game Boy Color 平台。
+game: 幸运牛仔
+file: 幸运牛仔.gbc
+assets.box_front: Imgs/幸运牛仔.png
+description: 《幸运牛仔》，由 Infogrames 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 1999
+genre: Platform
+players: 1
+game: 幸运牛仔–亡命列车
+file: 幸运牛仔–亡命列车.gbc
+assets.box_front: Imgs/幸运牛仔–亡命列车.png
+description: 《幸运牛仔–亡命列车》，由 Infogrames 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 2000
+genre: Adventure
+players: 1
+game: 幸运的卢克
+file: 幸运的卢克.gbc
+assets.box_front: Imgs/幸运的卢克.png
+description: 《幸运的卢克》，由 Infogrames 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 1999
+genre: Platform
+players: 1
+game: 异域赛车
+file: 异域赛车.gbc
+assets.box_front: Imgs/异域赛车.png
+description: 《异域赛车》，由 Midway 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+release: 2000
+genre: Racing
+players: 1
+game: 异形战机DX
+file: 异形战机DX.gbc
+assets.box_front: Imgs/异形战机DX.png
+description: 《异形战机DX》，由 Nintendo 出品，1999 年发行，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 1999
+genre: Shoot'em Up
+players: 1
+game: 异形遭遇战
+file: 异形遭遇战.gbc
+assets.box_front: Imgs/异形遭遇战.png
+description: 《异形遭遇战》，由 THQ 出品，射击类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Shooter
+players: 1
+game: 彩虹岛
+file: 彩虹岛.gbc
+assets.box_front: Imgs/彩虹岛.png
+description: 《彩虹岛》，由 TDK 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: TDK
+release: 2001
+genre: Platform
+players: 1
+game: 心跳回忆–体育版
+file: 心跳回忆–体育版.gbc
+assets.box_front: Imgs/心跳回忆–体育版.png
+description: 《心跳回忆–体育版》，由 Konami 出品，1999 年发行，模拟类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Simulation
+game: 心跳回忆–文化版
+file: 心跳回忆–文化版.gbc
+assets.box_front: Imgs/心跳回忆–文化版.png
+description: 《心跳回忆–文化版》，由 Konami 出品，1999 年发行，模拟类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Simulation
+game: 忍者乱太郎
+file: 忍者乱太郎.gbc
+assets.box_front: Imgs/忍者乱太郎.png
+description: 《忍者乱太郎》，由 ASK 出品，2001 年发行，Game Boy Color 平台。
+publisher: ASK
+release: 2001
+game: 忍者归来
+file: 忍者归来.gbc
+assets.box_front: Imgs/忍者归来.png
+description: 《忍者归来》，由 Natsume 出品，2001 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Natsume
+release: 2001
+genre: Action
+players: 1
+game: 怪人佐娜
+file: 怪人佐娜.gbc
+assets.box_front: Imgs/怪人佐娜.png
+description: 《怪人佐娜》，由 Nintendo 出品，2000 年发行，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 2000
+genre: Strategy
+players: 1
+game: 怪兽卡片战
+file: 怪兽卡片战.gbc
+assets.box_front: Imgs/怪兽卡片战.png
+description: 《怪兽卡片战》，由 Tecmo 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Tecmo
+release: 1999
+genre: Role-playing (RPG)
+players: 2
+game: 怪兽战斗卡片
+file: 怪兽战斗卡片.gbc
+assets.box_front: Imgs/怪兽战斗卡片.png
+description: 《怪兽战斗卡片》，由 Tecmo 出品，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Tecmo
+genre: Role-playing (RPG)
+players: 2
+game: 怪兽拆楼1代–世界之旅
+file: 怪兽拆楼1代–世界之旅.gbc
+assets.box_front: Imgs/怪兽拆楼1代–世界之旅.png
+description: 《怪兽拆楼1代–世界之旅》，由 Midway 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+genre: Action
+players: 1
+game: 怪兽拆楼2代–宇宙之旅
+file: 怪兽拆楼2代–宇宙之旅.gbc
+assets.box_front: Imgs/怪兽拆楼2代–宇宙之旅.png
+description: 《怪兽拆楼2代–宇宙之旅》，由 Midway 出品，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Midway
+genre: Action
+players: 2
+game: 怪兽竞走
+file: 怪兽竞走.gbc
+assets.box_front: Imgs/怪兽竞走.png
+description: 《怪兽竞走》，由 Koei 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Koei
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 怪兽车大赛
+file: 怪兽车大赛.gbc
+assets.box_front: Imgs/怪兽车大赛.png
+description: 《怪兽车大赛》，由 Infogrames 出品，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Infogrames
+genre: Racing
+players: 2
+game: 怪物公司
+file: 怪物公司.gbc
+assets.box_front: Imgs/怪物公司.png
+description: 《怪物公司》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 怪谈传说
+file: 怪谈传说.gbc
+assets.box_front: Imgs/怪谈传说.png
+description: 《怪谈传说》，由 Dazz 出品，2000 年发行，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Dazz
+release: 2000
+genre: Strategy
+players: 1
+game: 恐龙猎人-愤怒之战
+file: 恐龙猎人-愤怒之战.gbc
+assets.box_front: Imgs/恐龙猎人-愤怒之战.png
+description: 《恐龙猎人-愤怒之战》，由 Acclaim 出品，射击类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Acclaim
+genre: Shooter
+players: 4
+game: 恐龙猎人
+file: 恐龙猎人.gbc
+assets.box_front: Imgs/恐龙猎人.png
+description: 《恐龙猎人》，由 Acclaim 出品，射击类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Acclaim
+genre: Shooter
+players: 4
+game: 恐龙猎人2
+file: 恐龙猎人2.gbc
+assets.box_front: Imgs/恐龙猎人2.png
+description: 《恐龙猎人2》，由 Acclaim 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Action
+players: 1
+game: 恐龙猎人2代
+file: 恐龙猎人2代.gbc
+assets.box_front: Imgs/恐龙猎人2代.png
+description: 《恐龙猎人2代》，由 Acclaim 出品，1999 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+release: 1999
+genre: Action
+players: 1
+game: 恐龙猎人3代
+file: 恐龙猎人3代.gbc
+assets.box_front: Imgs/恐龙猎人3代.png
+description: 《恐龙猎人3代》，由 Acclaim 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Action
+players: 1
+game: 战斗人–寻找X基地
+file: 战斗人–寻找X基地.gbc
+assets.box_front: Imgs/战斗人–寻找X基地.png
+description: 《战斗人–寻找X基地》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 战锁
+file: 战锁.gbc
+assets.box_front: Imgs/战锁.png
+description: 《战锁》，由 Nintendo 出品，2000 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Nintendo
+release: 2000
+genre: Strategy
+players: 2
+game: 房车大赛
+file: 房车大赛.gbc
+assets.box_front: Imgs/房车大赛.png
+description: 《房车大赛》，由 THQ 出品，竞速类游戏，Game Boy Color 平台。
+publisher: THQ
+genre: Racing
+game: 拟真野球中央联盟
+file: 拟真野球中央联盟.gbc
+assets.box_front: Imgs/拟真野球中央联盟.png
+description: 《拟真野球中央联盟》，由 Natsume 出品，1999 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Natsume
+release: 1999
+genre: Sports
+game: 拟真野球太平洋联盟
+file: 拟真野球太平洋联盟.gbc
+assets.box_front: Imgs/拟真野球太平洋联盟.png
+description: 《拟真野球太平洋联盟》，由 Natsume 出品，1999 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Natsume
+release: 1999
+genre: Sports
+game: 拳击王子
+file: 拳击王子.gbc
+assets.box_front: Imgs/拳击王子.png
+description: 《拳击王子》，由 THQ 出品，2001 年发行，体育类游戏，Game Boy Color 平台。
+publisher: THQ
+release: 2001
+genre: Sports
+game: 拳击王美
+file: 拳击王美.gbc
+assets.box_front: Imgs/拳击王美.png
+description: 《拳击王美》，由 Electronic Arts 出品，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+genre: Sports
+players: 2
+game: 捕鱼计划
+file: 捕鱼计划.gbc
+assets.box_front: Imgs/捕鱼计划.png
+description: 《捕鱼计划》，由 Microïds 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Microïds
+release: 2001
+genre: Adventure
+players: 1
+game: 摇摆球
+file: 摇摆球.gbc
+assets.box_front: Imgs/摇摆球.png
+description: 《摇摆球》，Game Boy Color 平台。
+game: 摇滚撞球
+file: 摇滚撞球.gbc
+assets.box_front: Imgs/摇滚撞球.png
+description: 《摇滚撞球》，由 Tamsoft 出品，2000 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Tamsoft
+release: 2000
+genre: Sports
+players: 1
+game: 摩登原始人–汉堡时间
+file: 摩登原始人–汉堡时间.gbc
+assets.box_front: Imgs/摩登原始人–汉堡时间.png
+description: 《摩登原始人–汉堡时间》，由 Classified Games 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Classified Games
+release: 2000
+genre: Platform
+players: 2
+game: 放课后冒险
+file: 放课后冒险.gbc
+assets.box_front: Imgs/放课后冒险.png
+description: 《放课后冒险》，由 Micro Cabin 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Micro Cabin
+release: 2000
+genre: Role-playing (RPG)
+game: 救火英雄
+file: 救火英雄.gbc
+assets.box_front: Imgs/救火英雄.png
+description: 《救火英雄》，由 Mattel 出品，2001 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Mattel
+release: 2001
+genre: Action
+players: 1
+game: 救生圈滑水赛
+file: 救生圈滑水赛.gbc
+assets.box_front: Imgs/救生圈滑水赛.png
+description: 《救生圈滑水赛》，由 Midway 出品，2000 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+release: 2000
+genre: Sports
+players: 1
+game: 新世代机器人战记
+file: 新世代机器人战记.gbc
+assets.box_front: Imgs/新世代机器人战记.png
+description: 《新世代机器人战记》，由 Takara 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Takara
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 新云斯顿赛车
+file: 新云斯顿赛车.gbc
+assets.box_front: Imgs/新云斯顿赛车.png
+description: 《新云斯顿赛车》，由 Majesco 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+release: 2000
+genre: Racing
+players: 1
+game: 新手上路
+file: 新手上路.gbc
+assets.box_front: Imgs/新手上路.png
+description: 《新手上路》，由 Infogrames 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Infogrames
+release: 2000
+genre: Racing
+game: 新手上路2001
+file: 新手上路2001.gbc
+assets.box_front: Imgs/新手上路2001.png
+description: 《新手上路2001》，由 Infogrames 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 2000
+genre: Racing
+players: 1
+game: 新手上路6
+file: 新手上路6.gbc
+assets.box_front: Imgs/新手上路6.png
+description: 《新手上路6》，由 Infogrames 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 1999
+genre: Racing
+players: 1
+game: 新手上路机车赛
+file: 新手上路机车赛.gbc
+assets.box_front: Imgs/新手上路机车赛.png
+description: 《新手上路机车赛》，由 Infogrames 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Infogrames
+release: 2000
+genre: Racing
+game: 新玛莉与阿雪的冒险
+file: 新玛莉与阿雪的冒险.gbc
+assets.box_front: Imgs/新玛莉与阿雪的冒险.png
+description: 《新玛莉与阿雪的冒险》，由 Acclaim 出品，平台跳跃类游戏，Game Boy Color 平台。
+publisher: Acclaim
+genre: Platform
+game: 新蝙蝠侠
+file: 新蝙蝠侠.gbc
+assets.box_front: Imgs/新蝙蝠侠.png
+description: 《新蝙蝠侠》，由 Ubisoft 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2001
+genre: Platform
+players: 1
+game: 新阿达家族
+file: 新阿达家族.gbc
+assets.box_front: Imgs/新阿达家族.png
+description: 《新阿达家族》，由 Microïds 出品，2002 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Microïds
+release: 2002
+genre: Adventure
+players: 1
+game: 旋转方块
+file: 旋转方块.gbc
+assets.box_front: Imgs/旋转方块.png
+description: 《旋转方块》，由 Infogrames 出品，1999 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Infogrames
+release: 1999
+genre: Puzzle
+players: 2
+game: 旋转球
+file: 旋转球.gbc
+assets.box_front: Imgs/旋转球.png
+description: 《旋转球》，由 Capcom 出品，2001 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Capcom
+release: 2001
+genre: Puzzle
+players: 1
+game: 无敌王
+file: 无敌王.gbc
+assets.box_front: Imgs/无敌王.png
+description: 《无敌王》，由 Marvelous Entertainment 出品，2001 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: Marvelous Entertainment
+release: 2001
+genre: Adventure
+game: 无赖战士
+file: 无赖战士.gbc
+assets.box_front: Imgs/无赖战士.png
+description: 《无赖战士》，由 Agetec 出品，1999 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Agetec
+release: 1999
+genre: Action
+players: 1
+game: 无限地带
+file: 无限地带.gbc
+assets.box_front: Imgs/无限地带.png
+description: 《无限地带》，由 Acclaim 出品，1999 年发行，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+release: 1999
+genre: Shoot'em Up
+players: 1
+game: 日本花式滑雪
+file: 日本花式滑雪.gbc
+assets.box_front: Imgs/日本花式滑雪.png
+description: 《日本花式滑雪》，由 Bottom Up 出品，2000 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Bottom Up
+release: 2000
+genre: Sports
+game: 星之卡比
+file: 星之卡比.gbc
+assets.box_front: Imgs/星之卡比.png
+description: 《星之卡比》，由 Nintendo 出品，2000 年发行，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 2000
+genre: Action
+players: 1
+game: 星光灿烂
+file: 星光灿烂.gbc
+assets.box_front: Imgs/星光灿烂.png
+description: 《星光灿烂》，由 Infogrames 出品，2001 年发行，Casual Game类游戏，Game Boy Color 平台。
+publisher: Infogrames
+release: 2001
+genre: Casual Game
+game: 星海传说–蓝色星球
+file: 星海传说–蓝色星球.gbc
+assets.box_front: Imgs/星海传说–蓝色星球.png
+description: 《星海传说–蓝色星球》，由 Enix 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Enix
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 星球大战–尤达篇
+file: 星球大战–尤达篇.gbc
+assets.box_front: Imgs/星球大战–尤达篇.png
+description: 《星球大战–尤达篇》，由 THQ 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Adventure
+players: 1
+game: 星球大战前传–急速飞梭美
+file: 星球大战前传–急速飞梭美.gbc
+assets.box_front: Imgs/星球大战前传–急速飞梭美.png
+description: 《星球大战前传–急速飞梭美》，由 Nintendo 出品，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Racing
+players: 2
+game: 星球大战前传–欧比旺的冒险
+file: 星球大战前传–欧比旺的冒险.gbc
+assets.box_front: Imgs/星球大战前传–欧比旺的冒险.png
+description: 《星球大战前传–欧比旺的冒险》，由 THQ 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+release: 2000
+genre: Adventure
+players: 1
+game: 曲棍球铁人之战
+file: 曲棍球铁人之战.gbc
+assets.box_front: Imgs/曲棍球铁人之战.png
+description: 《曲棍球铁人之战》，由 Konami 出品，1999 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1999
+genre: Sports
+players: 2
+game: 曾村氏的柏青哥攻略
+file: 曾村氏的柏青哥攻略.gbc
+assets.box_front: Imgs/曾村氏的柏青哥攻略.png
+description: 《曾村氏的柏青哥攻略》，由 Atlus 出品，2000 年发行，Gambling类游戏，Game Boy Color 平台。
+publisher: Atlus
+release: 2000
+genre: Gambling
+game: 木乃伊神鬼传奇
+file: 木乃伊神鬼传奇.gbc
+assets.box_front: Imgs/木乃伊神鬼传奇.png
+description: 《木乃伊神鬼传奇》，由 Konami 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Platform
+players: 1
+game: 杀虫战记
+file: 杀虫战记.gbc
+assets.box_front: Imgs/杀虫战记.png
+description: 《杀虫战记》，由 Majesco 出品，1998 年发行，射击类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Majesco
+release: 1998
+genre: Shooter
+players: 2
+game: 杰克大冒险–大魔王的逆袭
+file: 杰克大冒险–大魔王的逆袭.gbc
+assets.box_front: Imgs/杰克大冒险–大魔王的逆袭.png
+description: 《杰克大冒险–大魔王的逆袭》，由 Sunsoft 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunsoft
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 杰克龙1代
+file: 杰克龙1代.gbc
+assets.box_front: Imgs/杰克龙1代.png
+description: 《杰克龙1代》，由 Crave Entertainment 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Crave Entertainment
+genre: Adventure
+players: 1
+game: 杰克龙3代
+file: 杰克龙3代.gbc
+assets.box_front: Imgs/杰克龙3代.png
+description: 《杰克龙3代》，由 Eidos Interactive 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Eidos Interactive
+genre: Platform
+players: 1
+game: 杰夫乔登赛车
+file: 杰夫乔登赛车.gbc
+assets.box_front: Imgs/杰夫乔登赛车.png
+description: 《杰夫乔登赛车》，由 ASC Games 出品，1999 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: ASC Games
+release: 1999
+genre: Racing
+game: 桑塔
+file: 桑塔.gbc
+assets.box_front: Imgs/桑塔.png
+description: 《桑塔》，由 Capcom 出品，2002 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Capcom
+release: 2002
+genre: Platform
+players: 1
+game: 森林寻宝历险记
+file: 森林寻宝历险记.gbc
+assets.box_front: Imgs/森林寻宝历险记.png
+description: 《森林寻宝历险记》，由 Crave Entertainment 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Crave Entertainment
+release: 1999
+genre: Platform
+players: 1
+game: 森林小泰山
+file: 森林小泰山.gbc
+assets.box_front: Imgs/森林小泰山.png
+description: 《森林小泰山》，由 Ubisoft 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Racing
+players: 1
+game: 樱桃小丸子
+file: 樱桃小丸子.gbc
+assets.box_front: Imgs/樱桃小丸子.png
+description: 《樱桃小丸子》，由 Epoch 出品，2001 年发行，Game Boy Color 平台。
+publisher: Epoch
+release: 2001
+game: 樱花大战GB1代
+file: 樱花大战GB1代.gbc
+assets.box_front: Imgs/樱花大战GB1代.png
+description: 《樱花大战GB1代》，由 Media Factory 出品，2000 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: Media Factory
+release: 2000
+genre: Adventure
+game: 樱花大战GB2代
+file: 樱花大战GB2代.gbc
+assets.box_front: Imgs/樱花大战GB2代.png
+description: 《樱花大战GB2代》，由 SEGA 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: SEGA
+release: 2001
+genre: Role-playing (RPG)
+game: 欧洲足球联赛
+file: 欧洲足球联赛.gbc
+assets.box_front: Imgs/欧洲足球联赛.png
+description: 《欧洲足球联赛》，由 Virgin 出品，2001 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Virgin
+release: 2001
+genre: Sports
+players: 1
+game: 毁灭世界
+file: 毁灭世界.gbc
+assets.box_front: Imgs/毁灭世界.png
+description: 《毁灭世界》，由 The 3DO Company 出品，2000 年发行，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+release: 2000
+genre: Strategy
+players: 1
+game: 毁灭公爵
+file: 毁灭公爵.gbc
+assets.box_front: Imgs/毁灭公爵.png
+description: 《毁灭公爵》，由 GT Interactive 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: GT Interactive
+release: 1999
+genre: Platform
+players: 1
+game: 沙滩排球
+file: 沙滩排球.gbc
+assets.box_front: Imgs/沙滩排球.png
+description: 《沙滩排球》，由 Infogrames 出品，2000 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Infogrames
+release: 2000
+genre: Sports
+game: 泡泡龙
+file: 泡泡龙.gbc
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，由 Metro 3D 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Metro 3D
+release: 2000
+genre: Platform
+players: 1
+game: 泡泡龙方块4
+file: 泡泡龙方块4.gbc
+assets.box_front: Imgs/泡泡龙方块4.png
+description: 《泡泡龙方块4》，由 Taito 出品，2000 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Taito
+release: 2000
+genre: Puzzle
+players: 2
+game: 泡泡龙方块千禧版
+file: 泡泡龙方块千禧版.gbc
+assets.box_front: Imgs/泡泡龙方块千禧版.png
+description: 《泡泡龙方块千禧版》，由 Acclaim 出品，2000 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Acclaim
+release: 2000
+genre: Puzzle
+players: 2
+game: 波斯王子
+file: 波斯王子.gbc
+assets.box_front: Imgs/波斯王子.png
+description: 《波斯王子》，由 Red Orb Entertainment 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Red Orb Entertainment
+genre: Platform
+players: 1
+game: 洛派智力杂志–思考解谜创刊号
+file: 洛派智力杂志–思考解谜创刊号.gbc
+assets.box_front: Imgs/洛派智力杂志–思考解谜创刊号.png
+description: 《洛派智力杂志–思考解谜创刊号》，Game Boy Color 平台。
+game: 洛派智力杂志–思考解谜第2期
+file: 洛派智力杂志–思考解谜第2期.gbc
+assets.box_front: Imgs/洛派智力杂志–思考解谜第2期.png
+description: 《洛派智力杂志–思考解谜第2期》，Game Boy Color 平台。
+game: 洛派智力杂志–思考解谜第3期
+file: 洛派智力杂志–思考解谜第3期.gbc
+assets.box_front: Imgs/洛派智力杂志–思考解谜第3期.png
+description: 《洛派智力杂志–思考解谜第3期》，Game Boy Color 平台。
+game: 洛派智力杂志–灵感解谜创刊号
+file: 洛派智力杂志–灵感解谜创刊号.gbc
+assets.box_front: Imgs/洛派智力杂志–灵感解谜创刊号.png
+description: 《洛派智力杂志–灵感解谜创刊号》，Game Boy Color 平台。
+game: 洛派智力杂志–灵感解谜第2期
+file: 洛派智力杂志–灵感解谜第2期.gbc
+assets.box_front: Imgs/洛派智力杂志–灵感解谜第2期.png
+description: 《洛派智力杂志–灵感解谜第2期》，Game Boy Color 平台。
+game: 洛派智力杂志–灵感解谜第3期
+file: 洛派智力杂志–灵感解谜第3期.gbc
+assets.box_front: Imgs/洛派智力杂志–灵感解谜第3期.png
+description: 《洛派智力杂志–灵感解谜第3期》，Game Boy Color 平台。
+game: 流行音乐
+file: 流行音乐.gbc
+assets.box_front: Imgs/流行音乐.png
+description: 《流行音乐》，由 Konami 出品，2000 年发行，Music / Dancing类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Music / Dancing
+game: 流行音乐–动画旋律
+file: 流行音乐–动画旋律.gbc
+assets.box_front: Imgs/流行音乐–动画旋律.png
+description: 《流行音乐–动画旋律》，由 Konami 出品，2000 年发行，Music / Dancing类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Music / Dancing
+game: 流行音乐–迪斯尼和声
+file: 流行音乐–迪斯尼和声.gbc
+assets.box_front: Imgs/流行音乐–迪斯尼和声.png
+description: 《流行音乐–迪斯尼和声》，由 Konami 出品，2000 年发行，Music / Dancing类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Music / Dancing
+game: 海底小飞龙
+file: 海底小飞龙.gbc
+assets.box_front: Imgs/海底小飞龙.png
+description: 《海底小飞龙》，由 Ubisoft 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2001
+genre: Platform
+players: 1
+game: 海豚大冒险
+file: 海豚大冒险.gbc
+assets.box_front: Imgs/海豚大冒险.png
+description: 《海豚大冒险》，由 Human 出品，1999 年发行，益智类游戏，Game Boy Color 平台。
+publisher: Human
+release: 1999
+genre: Puzzle
+game: 游戏21合1
+file: 游戏21合1.gbc
+assets.box_front: Imgs/游戏21合1.png
+description: 《游戏21合1》，由 Starfish 出品，2000 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Starfish
+release: 2000
+genre: Strategy
+game: 游戏王2代
+file: 游戏王2代.gbc
+assets.box_front: Imgs/游戏王2代.png
+description: 《游戏王2代》，由 Konami 出品，1999 年发行，Card类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Card
+game: 游戏王3代
+file: 游戏王3代.gbc
+assets.box_front: Imgs/游戏王3代.png
+description: 《游戏王3代》，由 Konami 出品，2000 年发行，Card类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Card
+players: 2
+game: 游戏王4代–城之内篇
+file: 游戏王4代–城之内篇.gbc
+assets.box_front: Imgs/游戏王4代–城之内篇.png
+description: 《游戏王4代–城之内篇》，由 Konami 出品，2000 年发行，Card类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Card
+players: 1
+game: 游戏王4代–海马篇
+file: 游戏王4代–海马篇.gbc
+assets.box_front: Imgs/游戏王4代–海马篇.png
+description: 《游戏王4代–海马篇》，由 Konami 出品，2000 年发行，Card类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Card
+players: 1
+game: 游戏王4代–游戏篇
+file: 游戏王4代–游戏篇.gbc
+assets.box_front: Imgs/游戏王4代–游戏篇.png
+description: 《游戏王4代–游戏篇》，由 Konami 出品，2000 年发行，Card类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Card
+players: 1
+game: 游戏王–怪兽胶囊
+file: 游戏王–怪兽胶囊.gbc
+assets.box_front: Imgs/游戏王–怪兽胶囊.png
+description: 《游戏王–怪兽胶囊》，由 Konami 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 游戏王–暗黑决斗记
+file: 游戏王–暗黑决斗记.gbc
+assets.box_front: Imgs/游戏王–暗黑决斗记.png
+description: 《游戏王–暗黑决斗记》，由 Konami 出品，2002 年发行，Card类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2002
+genre: Card
+players: 2
+game: 游戏集锦3
+file: 游戏集锦3.gbc
+assets.box_front: Imgs/游戏集锦3.png
+description: 《游戏集锦3》，由 Nintendo 出品，1999 年发行，合集类游戏，Game Boy Color 平台，单人游玩。
+publisher: Nintendo
+release: 1999
+genre: Compilation
+players: 1
+game: 火箭力量
+file: 火箭力量.gbc
+assets.box_front: Imgs/火箭力量.png
+description: 《火箭力量》，由 THQ 出品，体育类游戏，Game Boy Color 平台。
+publisher: THQ
+genre: Sports
+game: 火箭机车
+file: 火箭机车.gbc
+assets.box_front: Imgs/火箭机车.png
+description: 《火箭机车》，由 Rockstar Games 出品，1999 年发行，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Rockstar Games
+release: 1999
+genre: Racing
+players: 1
+game: 炮灰
+file: 炮灰.gbc
+assets.box_front: Imgs/炮灰.png
+description: 《炮灰》，由 Codemasters 出品，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Codemasters
+genre: Strategy
+players: 1
+game: 炸弹人Max–光之勇者
+file: 炸弹人Max–光之勇者.gbc
+assets.box_front: Imgs/炸弹人Max–光之勇者.png
+description: 《炸弹人Max–光之勇者》，由 Vatical Entertainment 出品，1999 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Vatical Entertainment
+release: 1999
+genre: Action
+players: 2
+game: 炸弹人Max–暗之战士
+file: 炸弹人Max–暗之战士.gbc
+assets.box_front: Imgs/炸弹人Max–暗之战士.png
+description: 《炸弹人Max–暗之战士》，由 Vatical Entertainment 出品，1999 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Vatical Entertainment
+release: 1999
+genre: Action
+players: 2
+game: 炸弹人Max–红色挑战者
+file: 炸弹人Max–红色挑战者.gbc
+assets.box_front: Imgs/炸弹人Max–红色挑战者.png
+description: 《炸弹人Max–红色挑战者》，由 Vatical Entertainment 出品，2000 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Vatical Entertainment
+release: 2000
+genre: Action
+players: 2
+game: 炸弹人Max–艾因版
+file: 炸弹人Max–艾因版.gbc
+assets.box_front: Imgs/炸弹人Max–艾因版.png
+description: 《炸弹人Max–艾因版》，由 Hudson 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1999
+genre: Role-playing (RPG)
+players: 2
+game: 炸弹人Max–蓝色冠军
+file: 炸弹人Max–蓝色冠军.gbc
+assets.box_front: Imgs/炸弹人Max–蓝色冠军.png
+description: 《炸弹人Max–蓝色冠军》，由 Vatical Entertainment 出品，2000 年发行，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Vatical Entertainment
+release: 2000
+genre: Action
+players: 2
+game: 炸弹人传说
+file: 炸弹人传说.gbc
+assets.box_front: Imgs/炸弹人传说.png
+description: 《炸弹人传说》，由 Electro Brain Corp. 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Electro Brain Corp.
+release: 1998
+genre: Role-playing (RPG)
+players: 2
+game: 炸弹超人爆外传
+file: 炸弹超人爆外传.gbc
+assets.box_front: Imgs/炸弹超人爆外传.png
+description: 《炸弹超人爆外传》，由 Media Factory 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Media Factory
+release: 1999
+genre: Role-playing (RPG)
+players: 2
+game: 炸弹超人爆外传5
+file: 炸弹超人爆外传5.gbc
+assets.box_front: Imgs/炸弹超人爆外传5.png
+description: 《炸弹超人爆外传5》，由 Media Factory 出品，2000 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Media Factory
+release: 2000
+genre: Strategy
+players: 2
+game: 炼金术士–玛莉篇
+file: 炼金术士–玛莉篇.gbc
+assets.box_front: Imgs/炼金术士–玛莉篇.png
+description: 《炼金术士–玛莉篇》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+game: 炼金术士–艾莉篇
+file: 炼金术士–艾莉篇.gbc
+assets.box_front: Imgs/炼金术士–艾莉篇.png
+description: 《炼金术士–艾莉篇》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 烈战滑雪
+file: 烈战滑雪.gbc
+assets.box_front: Imgs/烈战滑雪.png
+description: 《烈战滑雪》，由 Natsume 出品，2000 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Natsume
+release: 2000
+genre: Sports
+players: 2
+game: 热战曲棍球2000
+file: 热战曲棍球2000.gbc
+assets.box_front: Imgs/热战曲棍球2000.png
+description: 《热战曲棍球2000》，由 Konami 出品，2000 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Sports
+game: 燃烧滑雪板
+file: 燃烧滑雪板.gbc
+assets.box_front: Imgs/燃烧滑雪板.png
+description: 《燃烧滑雪板》，由 Natsume 出品，2000 年发行，体育类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Natsume
+release: 2000
+genre: Sports
+players: 2
+game: 燃烧美国职篮
+file: 燃烧美国职篮.gbc
+assets.box_front: Imgs/燃烧美国职篮.png
+description: 《燃烧美国职篮》，由 Midway 出品，2001 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+release: 2001
+genre: Sports
+players: 1
+game: 爱丽丝梦游仙境
+file: 爱丽丝梦游仙境.gbc
+assets.box_front: Imgs/爱丽丝梦游仙境.png
+description: 《爱丽丝梦游仙境》，由 Nintendo 出品，平台跳跃类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Nintendo
+genre: Platform
+players: 2
+game: 牧场物语1代
+file: 牧场物语1代.gbc
+assets.box_front: Imgs/牧场物语1代.png
+description: 《牧场物语1代》，由 Natsume 出品，模拟类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Natsume
+genre: Simulation
+players: 2
+game: 牧场物语2
+file: 牧场物语2.gbc
+assets.box_front: Imgs/牧场物语2.png
+description: 《牧场物语2》，Game Boy Color 平台。
+game: 牧场物语2代
+file: 牧场物语2代.gbc
+assets.box_front: Imgs/牧场物语2代.png
+description: 《牧场物语2代》，由 Natsume 出品，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Natsume
+genre: Strategy
+players: 1
+game: 牧场物语3代
+file: 牧场物语3代.gbc
+assets.box_front: Imgs/牧场物语3代.png
+description: 《牧场物语3代》，由 Natsume 出品，2000 年发行，模拟类游戏，Game Boy Color 平台，单人游玩。
+publisher: Natsume
+release: 2000
+genre: Simulation
+players: 1
+game: 猎鹿人
+file: 猎鹿人.gbc
+assets.box_front: Imgs/猎鹿人.png
+description: 《猎鹿人》，由 Vatical Entertainment 出品，Hunting and Fishing类游戏，Game Boy Color 平台。
+publisher: Vatical Entertainment
+genre: Hunting and Fishing
+game: 玛莉与阿雪–冬季赛马
+file: 玛莉与阿雪–冬季赛马.gbc
+assets.box_front: Imgs/玛莉与阿雪–冬季赛马.png
+description: 《玛莉与阿雪–冬季赛马》，由 Acclaim 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Racing
+players: 1
+game: 玛莉与阿雪–口袋行事历
+file: 玛莉与阿雪–口袋行事历.gbc
+assets.box_front: Imgs/玛莉与阿雪–口袋行事历.png
+description: 《玛莉与阿雪–口袋行事历》，由 Acclaim 出品，Various类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Various
+players: 1
+game: 玛莉与阿雪–桌面游戏
+file: 玛莉与阿雪–桌面游戏.gbc
+assets.box_front: Imgs/玛莉与阿雪–桌面游戏.png
+description: 《玛莉与阿雪–桌面游戏》，由 Acclaim 出品，平台跳跃类游戏，Game Boy Color 平台。
+publisher: Acclaim
+genre: Platform
+game: 玛莉与阿雪–解谜篇
+file: 玛莉与阿雪–解谜篇.gbc
+assets.box_front: Imgs/玛莉与阿雪–解谜篇.png
+description: 《玛莉与阿雪–解谜篇》，由 Acclaim 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Adventure
+players: 1
+game: 玩具总动员2
+file: 玩具总动员2.gbc
+assets.box_front: Imgs/玩具总动员2.png
+description: 《玩具总动员2》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 玩具总动员大赛车
+file: 玩具总动员大赛车.gbc
+assets.box_front: Imgs/玩具总动员大赛车.png
+description: 《玩具总动员大赛车》，由 Activision 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Racing
+players: 1
+game: 玩具总动员赛车
+file: 玩具总动员赛车.gbc
+assets.box_front: Imgs/玩具总动员赛车.png
+description: 《玩具总动员赛车》，由 Activision 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Racing
+players: 1
+game: 瑜伽气球
+file: 瑜伽气球.gbc
+assets.box_front: Imgs/瑜伽气球.png
+description: 《瑜伽气球》，由 Bam Entertainment 出品，2000 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Bam Entertainment
+release: 2000
+genre: Puzzle
+players: 2
+game: 瑜伽熊-气球大爆炸
+file: 瑜伽熊-气球大爆炸.gbc
+assets.box_front: Imgs/瑜伽熊-气球大爆炸.png
+description: 《瑜伽熊-气球大爆炸》，由 Bam Entertainment 出品，2000 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Bam Entertainment
+release: 2000
+genre: Puzzle
+players: 2
+game: 瓜瓜龙1代美
+file: 瓜瓜龙1代美.gbc
+assets.box_front: Imgs/瓜瓜龙1代美.png
+description: 《瓜瓜龙1代美》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 瓜瓜龙2代
+file: 瓜瓜龙2代.gbc
+assets.box_front: Imgs/瓜瓜龙2代.png
+description: 《瓜瓜龙2代》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 电车Go!
+file: 电车Go!.gbc
+assets.box_front: Imgs/电车Go!.png
+description: 《电车Go!》，Game Boy Color 平台。
+game: 疯狂巧克
+file: 疯狂巧克.gbc
+assets.box_front: Imgs/疯狂巧克.png
+description: 《疯狂巧克》，由 Majesco 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+genre: Platform
+players: 1
+game: 疯狂巧克力
+file: 疯狂巧克力.gbc
+assets.box_front: Imgs/疯狂巧克力.png
+description: 《疯狂巧克力》，由 Majesco 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+release: 2000
+genre: Platform
+players: 1
+game: 疯狂赛场
+file: 疯狂赛场.gbc
+assets.box_front: Imgs/疯狂赛场.png
+description: 《疯狂赛场》，由 THQ 出品，2001 年发行，竞速类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: THQ
+release: 2001
+genre: Racing
+players: 4
+game: 白雪公主与七个小矮人
+file: 白雪公主与七个小矮人.gbc
+assets.box_front: Imgs/白雪公主与七个小矮人.png
+description: 《白雪公主与七个小矮人》，由 Ubisoft 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2001
+genre: Platform
+players: 1
+game: 百万大富翁
+file: 百万大富翁.gbc
+assets.box_front: Imgs/百万大富翁.png
+description: 《百万大富翁》，由 THQ 出品，2000 年发行，Quiz类游戏，Game Boy Color 平台。
+publisher: THQ
+release: 2000
+genre: Quiz
+game: 百战天虫
+file: 百战天虫.gbc
+assets.box_front: Imgs/百战天虫.png
+description: 《百战天虫》，由 Infogrames 出品，1999 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Infogrames
+release: 1999
+genre: Strategy
+players: 2
+game: 百战天虫–末日浩劫
+file: 百战天虫–末日浩劫.gbc
+assets.box_front: Imgs/百战天虫–末日浩劫.png
+description: 《百战天虫–末日浩劫》，由 Infogrames 出品，1999 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Infogrames
+release: 1999
+genre: Strategy
+players: 2
+game: 百战小旅鼠
+file: 百战小旅鼠.gbc
+assets.box_front: Imgs/百战小旅鼠.png
+description: 《百战小旅鼠》，由 Psygnosis 出品，2000 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Psygnosis
+release: 2000
+genre: Puzzle
+players: 1
+game: 皇家杯足球赛2000
+file: 皇家杯足球赛2000.gbc
+assets.box_front: Imgs/皇家杯足球赛2000.png
+description: 《皇家杯足球赛2000》，由 Infogrames 出品，体育类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Infogrames
+genre: Sports
+players: 4
+game: 益智王
+file: 益智王.gbc
+assets.box_front: Imgs/益智王.png
+description: 《益智王》，由 Metro 3D 出品，1999 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Metro 3D
+release: 1999
+genre: Puzzle
+players: 1
+game: 益智软糖大冒险–Porinkiis和冈岛伙伴们
+file: 益智软糖大冒险–Porinkiis和冈岛伙伴们.gbc
+assets.box_front: Imgs/益智软糖大冒险–Porinkiis和冈岛伙伴们.png
+description: 《益智软糖大冒险–Porinkiis和冈岛伙伴们》，由 Starfish 出品，1998 年发行，Game Boy Color 平台。
+publisher: Starfish
+release: 1998
+game: 益智软糖大冒险–再来一碗
+file: 益智软糖大冒险–再来一碗.gbc
+assets.box_front: Imgs/益智软糖大冒险–再来一碗.png
+description: 《益智软糖大冒险–再来一碗》，由 Starfish 出品，2000 年发行，益智类游戏，Game Boy Color 平台。
+publisher: Starfish
+release: 2000
+genre: Puzzle
+game: 真人快打4
+file: 真人快打4.gbc
+assets.box_front: Imgs/真人快打4.png
+description: 《真人快打4》，由 Midway 出品，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Midway
+genre: Action
+players: 2
+game: 真女神转生–卡片召唤使
+file: 真女神转生–卡片召唤使.gbc
+assets.box_front: Imgs/真女神转生–卡片召唤使.png
+description: 《真女神转生–卡片召唤使》，由 Enterbrain 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Enterbrain
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 真女神转生外传
+file: 真女神转生外传.gbc
+assets.box_front: Imgs/真女神转生外传.png
+description: 《真女神转生外传》，由 Atlus 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Atlus
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 真女神转生外传–最后的圣经1代
+file: 真女神转生外传–最后的圣经1代.gbc
+assets.box_front: Imgs/真女神转生外传–最后的圣经1代.png
+description: 《真女神转生外传–最后的圣经1代》，由 Atlus 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Atlus
+release: 1999
+genre: Role-playing (RPG)
+game: 真女神转生外传–最后的圣经2代
+file: 真女神转生外传–最后的圣经2代.gbc
+assets.box_front: Imgs/真女神转生外传–最后的圣经2代.png
+description: 《真女神转生外传–最后的圣经2代》，由 Atlus 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Atlus
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 真女神转生恶魔之子–白之书
+file: 真女神转生恶魔之子–白之书.gbc
+assets.box_front: Imgs/真女神转生恶魔之子–白之书.png
+description: 《真女神转生恶魔之子–白之书》，由 Atlus 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Atlus
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 真女神转生恶魔之子–红之书
+file: 真女神转生恶魔之子–红之书.gbc
+assets.box_front: Imgs/真女神转生恶魔之子–红之书.png
+description: 《真女神转生恶魔之子–红之书》，由 Atlus 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Atlus
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 真女神转生恶魔之子–黑之书
+file: 真女神转生恶魔之子–黑之书.gbc
+assets.box_front: Imgs/真女神转生恶魔之子–黑之书.png
+description: 《真女神转生恶魔之子–黑之书》，由 Atlus 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Atlus
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 碰碰气球
+file: 碰碰气球.gbc
+assets.box_front: Imgs/碰碰气球.png
+description: 《碰碰气球》，由 Jorudan 出品，2001 年发行，益智类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Jorudan
+release: 2001
+genre: Puzzle
+players: 2
+game: 空军Delta
+file: 空军Delta.gbc
+assets.box_front: Imgs/空军Delta.png
+description: 《空军Delta》，由 Konami 出品，2000 年发行，模拟类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 2000
+genre: Simulation
+players: 2
+game: 笑犬冒险
+file: 笑犬冒险.gbc
+assets.box_front: Imgs/笑犬冒险.png
+description: 《笑犬冒险》，由 Capcom 出品，2001 年发行，Game Boy Color 平台。
+publisher: Capcom
+release: 2001
+game: 第一列赛车
+file: 第一列赛车.gbc
+assets.box_front: Imgs/第一列赛车.png
+description: 《第一列赛车》，由 Kindle Imagine Develop 出品，1999 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Kindle Imagine Develop
+release: 1999
+genre: Racing
+game: 纳斯卡赛车2000
+file: 纳斯卡赛车2000.gbc
+assets.box_front: Imgs/纳斯卡赛车2000.png
+description: 《纳斯卡赛车2000》，由 THQ 出品，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: THQ
+genre: Racing
+players: 2
+game: 纽约赛车
+file: 纽约赛车.gbc
+assets.box_front: Imgs/纽约赛车.png
+description: 《纽约赛车》，由 Wanadoo Edition 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Wanadoo Edition
+genre: Racing
+players: 1
+game: 绯色茶餐厅
+file: 绯色茶餐厅.gbc
+assets.box_front: Imgs/绯色茶餐厅.png
+description: 《绯色茶餐厅》，由 NEC Interchannel 出品，2000 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: NEC Interchannel
+release: 2000
+genre: Adventure
+game: 罐头怪兽
+file: 罐头怪兽.gbc
+assets.box_front: Imgs/罐头怪兽.png
+description: 《罐头怪兽》，由 Starfish 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Starfish
+release: 1999
+genre: Strategy
+game: 罗宾汉
+file: 罗宾汉.gbc
+assets.box_front: Imgs/罗宾汉.png
+description: 《罗宾汉》，由 Electronic Arts 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Electronic Arts
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 罗德岛战记–英雄骑士传
+file: 罗德岛战记–英雄骑士传.gbc
+assets.box_front: Imgs/罗德岛战记–英雄骑士传.png
+description: 《罗德岛战记–英雄骑士传》，由 Tomy 出品，1998 年发行，Game Boy Color 平台。
+publisher: Tomy
+release: 1998
+game: 罗拉
+file: 罗拉.gbc
+assets.box_front: Imgs/罗拉.png
+description: 《罗拉》，由 Ubisoft 出品，2000 年发行，Casual Game类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Casual Game
+players: 1
+game: 罗斯威尔的阴谋
+file: 罗斯威尔的阴谋.gbc
+assets.box_front: Imgs/罗斯威尔的阴谋.png
+description: 《罗斯威尔的阴谋》，由 Red Storm Entertainment, Inc. 出品，2001 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Red Storm Entertainment, Inc.
+release: 2001
+genre: Adventure
+players: 1
+game: 罗纳尔多足球
+file: 罗纳尔多足球.gbc
+assets.box_front: Imgs/罗纳尔多足球.png
+description: 《罗纳尔多足球》，由 GT Interactive 出品，体育类游戏，Game Boy Color 平台。
+publisher: GT Interactive
+genre: Sports
+game: 翻转方块
+file: 翻转方块.gbc
+assets.box_front: Imgs/翻转方块.png
+description: 《翻转方块》，由 Midway 出品，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+genre: Strategy
+players: 1
+game: 耽美传说
+file: 耽美传说.gbc
+assets.box_front: Imgs/耽美传说.png
+description: 《耽美传说》，由 TDK Core 出品，2001 年发行，Game Boy Color 平台。
+publisher: TDK Core
+release: 2001
+game: 能量冲激
+file: 能量冲激.gbc
+assets.box_front: Imgs/能量冲激.png
+description: 《能量冲激》，由 Sunsoft 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunsoft
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 芝麻街历险记
+file: 芝麻街历险记.gbc
+assets.box_front: Imgs/芝麻街历险记.png
+description: 《芝麻街历险记》，由 Take 2 Interactive 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Take 2 Interactive
+release: 2000
+genre: Platform
+players: 1
+game: 芝麻街运动会
+file: 芝麻街运动会.gbc
+assets.box_front: Imgs/芝麻街运动会.png
+description: 《芝麻街运动会》，由 SesameWorkshop 出品，2001 年发行，体育类游戏，Game Boy Color 平台。
+publisher: SesameWorkshop
+release: 2001
+genre: Sports
+game: 英雄英雄KUN
+file: 英雄英雄KUN.gbc
+assets.box_front: Imgs/英雄英雄KUN.png
+description: 《英雄英雄KUN》，由 Imagineer 出品，2001 年发行，动作类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2001
+genre: Action
+game: 荒岛冒险
+file: 荒岛冒险.gbc
+assets.box_front: Imgs/荒岛冒险.png
+description: 《荒岛冒险》，由 Konami 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 荒岛冒险1代
+file: 荒岛冒险1代.gbc
+assets.box_front: Imgs/荒岛冒险1代.png
+description: 《荒岛冒险1代》，Game Boy Color 平台。
+game: 荒岛冒险2代
+file: 荒岛冒险2代.gbc
+assets.box_front: Imgs/荒岛冒险2代.png
+description: 《荒岛冒险2代》，由 Konami 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2000
+genre: Role-playing (RPG)
+game: 荒野鲔鱼漫谈
+file: 荒野鲔鱼漫谈.gbc
+assets.box_front: Imgs/荒野鲔鱼漫谈.png
+description: 《荒野鲔鱼漫谈》，由 Mattel 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Mattel
+release: 2000
+genre: Platform
+players: 2
+game: 莫汉翡翠
+file: 莫汉翡翠.gbc
+assets.box_front: Imgs/莫汉翡翠.png
+description: 《莫汉翡翠》，由 Ravensburger Interactive Media 出品，射击类游戏，Game Boy Color 平台。
+publisher: Ravensburger Interactive Media
+genre: Shooter
+game: 蚯蚓战士2代
+file: 蚯蚓战士2代.gbc
+assets.box_front: Imgs/蚯蚓战士2代.png
+description: 《蚯蚓战士2代》，由 Crave Entertainment 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Crave Entertainment
+genre: Adventure
+players: 1
+game: 蜘蛛人1代
+file: 蜘蛛人1代.gbc
+assets.box_front: Imgs/蜘蛛人1代.png
+description: 《蜘蛛人1代》，由 Activision 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+release: 2001
+genre: Platform
+players: 1
+game: 蜘蛛人2代
+file: 蜘蛛人2代.gbc
+assets.box_front: Imgs/蜘蛛人2代.png
+description: 《蜘蛛人2代》，由 Activision 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Platform
+players: 1
+game: 蜘蛛侠
+file: 蜘蛛侠.gbc
+assets.box_front: Imgs/蜘蛛侠.png
+description: 《蜘蛛侠》，Game Boy Color 平台。
+game: 袖珍家庭2代
+file: 袖珍家庭2代.gbc
+assets.box_front: Imgs/袖珍家庭2代.png
+description: 《袖珍家庭2代》，由 Hudson 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Hudson
+release: 1999
+genre: Strategy
+game: 袖珍小钓手
+file: 袖珍小钓手.gbc
+assets.box_front: Imgs/袖珍小钓手.png
+description: 《袖珍小钓手》，由 King Records 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: King Records
+release: 1999
+genre: Role-playing (RPG)
+game: 西洋双六棋
+file: 西洋双六棋.gbc
+assets.box_front: Imgs/西洋双六棋.png
+description: 《西洋双六棋》，由 JVC 出品，Board类游戏，Game Boy Color 平台，单人游玩。
+publisher: JVC
+genre: Board
+players: 1
+game: 西洋棋王
+file: 西洋棋王.gbc
+assets.box_front: Imgs/西洋棋王.png
+description: 《西洋棋王》，由 Altron 出品，Board类游戏，Game Boy Color 平台，单人游玩。
+publisher: Altron
+genre: Board
+players: 1
+game: 解谜胜负
+file: 解谜胜负.gbc
+assets.box_front: Imgs/解谜胜负.png
+description: 《解谜胜负》，由 Naxat Soft 出品，2000 年发行，益智类游戏，Game Boy Color 平台。
+publisher: Naxat Soft
+release: 2000
+genre: Puzzle
+game: 费列特物语
+file: 费列特物语.gbc
+assets.box_front: Imgs/费列特物语.png
+description: 《费列特物语》，由 Culture Brain 出品，2000 年发行，模拟类游戏，Game Boy Color 平台。
+publisher: Culture Brain
+release: 2000
+genre: Simulation
+game: 费利克斯猫–万圣节
+file: 费利克斯猫–万圣节.gbc
+assets.box_front: Imgs/费利克斯猫–万圣节.png
+description: 《费利克斯猫–万圣节》，由 Light & Shadow Productions (LSP) 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Light & Shadow Productions (LSP)
+release: 2001
+genre: Platform
+players: 1
+game: 超GALS!寿兰
+file: 超GALS!寿兰.gbc
+assets.box_front: Imgs/超GALS!寿兰.png
+description: 《超GALS!寿兰》，由 Konami 出品，2001 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 2001
+genre: Adventure
+game: 超惑星战记
+file: 超惑星战记.gbc
+assets.box_front: Imgs/超惑星战记.png
+description: 《超惑星战记》，由 Sunsoft 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunsoft
+release: 2000
+genre: Platform
+players: 1
+game: 超拟真钓鱼
+file: 超拟真钓鱼.gbc
+assets.box_front: Imgs/超拟真钓鱼.png
+description: 《超拟真钓鱼》，由 Bottom Up Interactive 出品，1999 年发行，Hunting and Fishing类游戏，Game Boy Color 平台。
+publisher: Bottom Up Interactive
+release: 1999
+genre: Hunting and Fishing
+game: 超时空要塞7
+file: 超时空要塞7.gbc
+assets.box_front: Imgs/超时空要塞7.png
+description: 《超时空要塞7》，由 Epoch 出品，2000 年发行，Shoot'em Up类游戏，Game Boy Color 平台，单人游玩。
+publisher: Epoch
+release: 2000
+genre: Shoot'em Up
+players: 1
+game: 超级中国人EX
+file: 超级中国人EX.gbc
+assets.box_front: Imgs/超级中国人EX.png
+description: 《超级中国人EX》，由 Culture Brain 出品，1999 年发行，格斗类游戏，Game Boy Color 平台。
+publisher: Culture Brain
+release: 1999
+genre: Fighting
+game: 超级冬季奥运会2000
+file: 超级冬季奥运会2000.gbc
+assets.box_front: Imgs/超级冬季奥运会2000.png
+description: 《超级冬季奥运会2000》，由 Konami 出品，2000 年发行，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+genre: Sports
+players: 1
+game: 超级奥运会系列–田径赛
+file: 超级奥运会系列–田径赛.gbc
+assets.box_front: Imgs/超级奥运会系列–田径赛.png
+description: 《超级奥运会系列–田径赛》，由 Konami 出品，1999 年发行，体育类游戏，Game Boy Color 平台。
+publisher: Konami
+release: 1999
+genre: Sports
+game: 超级娃娃莉卡
+file: 超级娃娃莉卡.gbc
+assets.box_front: Imgs/超级娃娃莉卡.png
+description: 《超级娃娃莉卡》，由 Vial One 出品，2000 年发行，Game Boy Color 平台。
+publisher: Vial One
+release: 2000
+game: 超级打砖块
+file: 超级打砖块.gbc
+assets.box_front: Imgs/超级打砖块.png
+description: 《超级打砖块》，由 Majesco 出品，动作类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Majesco
+genre: Action
+players: 2
+game: 超级机器人大战X
+file: 超级机器人大战X.gbc
+assets.box_front: Imgs/超级机器人大战X.png
+description: 《超级机器人大战X》，Game Boy Color 平台。
+game: 超级格斗99
+file: 超级格斗99.gbc
+assets.box_front: Imgs/超级格斗99.png
+description: 《超级格斗99》，Game Boy Color 平台。
+game: 超级马力欧乐园2 6个金币 上色版
+file: 超级马力欧乐园2 6个金币 上色版.gbc
+assets.box_front: Imgs/超级马力欧乐园2 6个金币 上色版.png
+description: 《超级马力欧乐园2 6个金币 上色版》，Game Boy Color 平台。
+game: 超级马力欧乐园DX
+file: 超级马力欧乐园DX.gbc
+assets.box_front: Imgs/超级马力欧乐园DX.png
+description: 《超级马力欧乐园DX》，Game Boy Color 平台。
+game: 超级黑巴斯3代
+file: 超级黑巴斯3代.gbc
+assets.box_front: Imgs/超级黑巴斯3代.png
+description: 《超级黑巴斯3代》，由 American Softworks 出品，1998 年发行，Hunting and Fishing类游戏，Game Boy Color 平台。
+publisher: American Softworks
+release: 1998
+genre: Hunting and Fishing
+game: 越南战役X
+file: 越南战役X.gbc
+assets.box_front: Imgs/越南战役X.png
+description: 《越南战役X》，Game Boy Color 平台。
+game: 路易士体育竞赛
+file: 路易士体育竞赛.gbc
+assets.box_front: Imgs/路易士体育竞赛.png
+description: 《路易士体育竞赛》，由 Ubisoft 出品，体育类游戏，Game Boy Color 平台。
+publisher: Ubisoft
+genre: Sports
+game: 辛普森一家
+file: 辛普森一家.gbc
+assets.box_front: Imgs/辛普森一家.png
+description: 《辛普森一家》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 运动游戏
+file: 运动游戏.gbc
+assets.box_front: Imgs/运动游戏.png
+description: 《运动游戏》，由 Nintendo 出品，2001 年发行，Game Boy Color 平台。
+publisher: Nintendo
+release: 2001
+game: 迪斯尼世界魔法竞赛
+file: 迪斯尼世界魔法竞赛.gbc
+assets.box_front: Imgs/迪斯尼世界魔法竞赛.png
+description: 《迪斯尼世界魔法竞赛》，由 Activision 出品，竞速类游戏，Game Boy Color 平台，单人游玩。
+publisher: Activision
+genre: Racing
+players: 1
+game: 迪斯尼恐龙
+file: 迪斯尼恐龙.gbc
+assets.box_front: Imgs/迪斯尼恐龙.png
+description: 《迪斯尼恐龙》，由 Digital Eclipse 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Digital Eclipse
+genre: Adventure
+players: 1
+game: 逻辑方块
+file: 逻辑方块.gbc
+assets.box_front: Imgs/逻辑方块.png
+description: 《逻辑方块》，由 Sunsoft 出品，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Sunsoft
+genre: Puzzle
+players: 1
+game: 道路追逐赛
+file: 道路追逐赛.gbc
+assets.box_front: Imgs/道路追逐赛.png
+description: 《道路追逐赛》，由 Titus 出品，竞速类游戏，Game Boy Color 平台。
+publisher: Titus
+genre: Racing
+game: 野战兵
+file: 野战兵.gbc
+assets.box_front: Imgs/野战兵.png
+description: 《野战兵》，由 Titus 出品，冒险类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Titus
+genre: Adventure
+players: 2
+game: 金丝雀大冒险
+file: 金丝雀大冒险.gbc
+assets.box_front: Imgs/金丝雀大冒险.png
+description: 《金丝雀大冒险》，由 Kemco 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Kemco
+release: 2000
+genre: Platform
+players: 2
+game: 金刚战士–时间力量
+file: 金刚战士–时间力量.gbc
+assets.box_front: Imgs/金刚战士–时间力量.png
+description: 《金刚战士–时间力量》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 金刚战士–火速营救
+file: 金刚战士–火速营救.gbc
+assets.box_front: Imgs/金刚战士–火速营救.png
+description: 《金刚战士–火速营救》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 金属小子
+file: 金属小子.gbc
+assets.box_front: Imgs/金属小子.png
+description: 《金属小子》，由 Koei 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Koei
+release: 2000
+genre: Role-playing (RPG)
+game: 金属机器人卡片对战–金
+file: 金属机器人卡片对战–金.gbc
+assets.box_front: Imgs/金属机器人卡片对战–金.png
+description: 《金属机器人卡片对战–金》，由 Imagineer 出品，2000 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Strategy
+game: 金属机器人卡片对战–银
+file: 金属机器人卡片对战–银.gbc
+assets.box_front: Imgs/金属机器人卡片对战–银.png
+description: 《金属机器人卡片对战–银》，由 Imagineer 出品，2000 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Strategy
+game: 金属机器人大战2代–收藏版
+file: 金属机器人大战2代–收藏版.gbc
+assets.box_front: Imgs/金属机器人大战2代–收藏版.png
+description: 《金属机器人大战2代–收藏版》，由 Imagineer 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 1999
+genre: Role-playing (RPG)
+game: 金属机器人大战2代–金
+file: 金属机器人大战2代–金.gbc
+assets.box_front: Imgs/金属机器人大战2代–金.png
+description: 《金属机器人大战2代–金》，由 Imagineer 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 1999
+genre: Role-playing (RPG)
+game: 金属机器人大战2代–银
+file: 金属机器人大战2代–银.gbc
+assets.box_front: Imgs/金属机器人大战2代–银.png
+description: 《金属机器人大战2代–银》，由 Imagineer 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 1999
+genre: Role-playing (RPG)
+game: 金属机器人大战3代–收藏版
+file: 金属机器人大战3代–收藏版.gbc
+assets.box_front: Imgs/金属机器人大战3代–收藏版.png
+description: 《金属机器人大战3代–收藏版》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+game: 金属机器人大战3代–金
+file: 金属机器人大战3代–金.gbc
+assets.box_front: Imgs/金属机器人大战3代–金.png
+description: 《金属机器人大战3代–金》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+game: 金属机器人大战3代–银
+file: 金属机器人大战3代–银.gbc
+assets.box_front: Imgs/金属机器人大战3代–银.png
+description: 《金属机器人大战3代–银》，由 Imagineer 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Imagineer
+release: 2000
+genre: Role-playing (RPG)
+game: 金属机器人大战4代–金
+file: 金属机器人大战4代–金.gbc
+assets.box_front: Imgs/金属机器人大战4代–金.png
+description: 《金属机器人大战4代–金》，由 Imagineer 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Imagineer
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 金属机器人大战4代–银
+file: 金属机器人大战4代–银.gbc
+assets.box_front: Imgs/金属机器人大战4代–银.png
+description: 《金属机器人大战4代–银》，由 Imagineer 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Imagineer
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 金属机器人大战5代–金
+file: 金属机器人大战5代–金.gbc
+assets.box_front: Imgs/金属机器人大战5代–金.png
+description: 《金属机器人大战5代–金》，Game Boy Color 平台。
+game: 金属机器人大战5代–银
+file: 金属机器人大战5代–银.gbc
+assets.box_front: Imgs/金属机器人大战5代–银.png
+description: 《金属机器人大战5代–银》，Game Boy Color 平台。
+game: 金属机器人大战–月亮版
+file: 金属机器人大战–月亮版.gbc
+assets.box_front: Imgs/金属机器人大战–月亮版.png
+description: 《金属机器人大战–月亮版》，由 Hudson 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Hudson
+release: 1999
+genre: Role-playing (RPG)
+game: 金属机械人大战–太阳版
+file: 金属机械人大战–太阳版.gbc
+assets.box_front: Imgs/金属机械人大战–太阳版.png
+description: 《金属机械人大战–太阳版》，由 Hudson 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Hudson
+release: 1998
+genre: Role-playing (RPG)
+game: 金属机械人大战–星星版
+file: 金属机械人大战–星星版.gbc
+assets.box_front: Imgs/金属机械人大战–星星版.png
+description: 《金属机械人大战–星星版》，由 Hudson 出品，1998 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Hudson
+release: 1998
+genre: Role-playing (RPG)
+game: 金田一少年的事件簿–十年后的招待券
+file: 金田一少年的事件簿–十年后的招待券.gbc
+assets.box_front: Imgs/金田一少年的事件簿–十年后的招待券.png
+description: 《金田一少年的事件簿–十年后的招待券》，由 Banpresto 出品，2000 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: Banpresto
+release: 2000
+genre: Adventure
+game: 铃木机车赛
+file: 铃木机车赛.gbc
+assets.box_front: Imgs/铃木机车赛.png
+description: 《铃木机车赛》，由 Ubisoft 出品，1999 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Ubisoft
+release: 1999
+genre: Racing
+game: 铲泥车
+file: 铲泥车.gbc
+assets.box_front: Imgs/铲泥车.png
+description: 《铲泥车》，由 Mattel Electronics 出品，模拟类游戏，Game Boy Color 平台，单人游玩。
+publisher: Mattel Electronics
+genre: Simulation
+players: 1
+game: 银何侠盗–绿恶魔版
+file: 银何侠盗–绿恶魔版.gbc
+assets.box_front: Imgs/银何侠盗–绿恶魔版.png
+description: 《银何侠盗–绿恶魔版》，由 NCS Corporation 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: NCS Corporation
+release: 1999
+genre: Role-playing (RPG)
+game: 银何侠盗–黄天使版
+file: 银何侠盗–黄天使版.gbc
+assets.box_front: Imgs/银何侠盗–黄天使版.png
+description: 《银何侠盗–黄天使版》，由 NCS Corporation 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: NCS Corporation
+release: 1999
+genre: Role-playing (RPG)
+game: 银色家族1代
+file: 银色家族1代.gbc
+assets.box_front: Imgs/银色家族1代.png
+description: 《银色家族1代》，由 Epoch 出品，1999 年发行，冒险类游戏，Game Boy Color 平台。
+publisher: Epoch
+release: 1999
+genre: Adventure
+game: 银色家族2代
+file: 银色家族2代.gbc
+assets.box_front: Imgs/银色家族2代.png
+description: 《银色家族2代》，由 Epoch 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台。
+publisher: Epoch
+release: 2000
+genre: Role-playing (RPG)
+game: 银色旋律
+file: 银色旋律.gbc
+assets.box_front: Imgs/银色旋律.png
+description: 《银色旋律》，由 Epoch 出品，2000 年发行，Music / Dancing类游戏，Game Boy Color 平台。
+publisher: Epoch
+release: 2000
+genre: Music / Dancing
+game: 闪灵杀手
+file: 闪灵杀手.gbc
+assets.box_front: Imgs/闪灵杀手.png
+description: 《闪灵杀手》，由 Konami 出品，1999 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 1999
+genre: Platform
+players: 1
+game: 阿童木方块
+file: 阿童木方块.gbc
+assets.box_front: Imgs/阿童木方块.png
+description: 《阿童木方块》，由 Media Factory 出品，1999 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Media Factory
+release: 1999
+genre: Strategy
+players: 2
+game: 雨果大冒险1代
+file: 雨果大冒险1代.gbc
+assets.box_front: Imgs/雨果大冒险1代.png
+description: 《雨果大冒险1代》，由 ITE Media 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: ITE Media
+release: 2001
+genre: Platform
+players: 1
+game: 雨果大冒险2代
+file: 雨果大冒险2代.gbc
+assets.box_front: Imgs/雨果大冒险2代.png
+description: 《雨果大冒险2代》，Game Boy Color 平台。
+game: 雪地摩托车
+file: 雪地摩托车.gbc
+assets.box_front: Imgs/雪地摩托车.png
+description: 《雪地摩托车》，由 Vatical Entertainment 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Vatical Entertainment
+release: 2000
+genre: Racing
+game: 霹雳酷乐猫1代
+file: 霹雳酷乐猫1代.gbc
+assets.box_front: Imgs/霹雳酷乐猫1代.png
+description: 《霹雳酷乐猫1代》，由 Konami 出品，2000 年发行，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 2000
+players: 1
+game: 音符小精灵
+file: 音符小精灵.gbc
+assets.box_front: Imgs/音符小精灵.png
+description: 《音符小精灵》，由 Tomy 出品，Music / Dancing类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Tomy
+genre: Music / Dancing
+players: 2
+game: 音速飞鼠
+file: 音速飞鼠.gbc
+assets.box_front: Imgs/音速飞鼠.png
+description: 《音速飞鼠》，由 Mattel Interactive 出品，2000 年发行，竞速类游戏，Game Boy Color 平台。
+publisher: Mattel Interactive
+release: 2000
+genre: Racing
+game: 顽皮小女孩
+file: 顽皮小女孩.gbc
+assets.box_front: Imgs/顽皮小女孩.png
+description: 《顽皮小女孩》，由 THQ 出品，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Puzzle
+players: 1
+game: 顽皮小孩–赛车篇
+file: 顽皮小孩–赛车篇.gbc
+assets.box_front: Imgs/顽皮小孩–赛车篇.png
+description: 《顽皮小孩–赛车篇》，由 Hasbro Interactive 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，支持 4-4 人游玩。
+publisher: Hasbro Interactive
+release: 2000
+genre: Racing
+players: 4
+game: 顽皮小鬼–哦哦合唱
+file: 顽皮小鬼–哦哦合唱.gbc
+assets.box_front: Imgs/顽皮小鬼–哦哦合唱.png
+description: 《顽皮小鬼–哦哦合唱》，由 THQ 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Action
+players: 1
+game: 顽皮小鬼–时间之旅
+file: 顽皮小鬼–时间之旅.gbc
+assets.box_front: Imgs/顽皮小鬼–时间之旅.png
+description: 《顽皮小鬼–时间之旅》，由 THQ 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Action
+players: 1
+game: 顽皮小鬼–露凯特的电影
+file: 顽皮小鬼–露凯特的电影.gbc
+assets.box_front: Imgs/顽皮小鬼–露凯特的电影.png
+description: 《顽皮小鬼–露凯特的电影》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 顽皮小鬼游乐场
+file: 顽皮小鬼游乐场.gbc
+assets.box_front: Imgs/顽皮小鬼游乐场.png
+description: 《顽皮小鬼游乐场》，由 THQ 出品，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Platform
+players: 1
+game: 顽皮少女
+file: 顽皮少女.gbc
+assets.box_front: Imgs/顽皮少女.png
+description: 《顽皮少女》，由 THQ 出品，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Puzzle
+players: 1
+game: 领土之战
+file: 领土之战.gbc
+assets.box_front: Imgs/领土之战.png
+description: 《领土之战》，由 Midway 出品，1999 年发行，策略类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Midway
+release: 1999
+genre: Strategy
+players: 2
+game: 风来的西林2–沙漠之魔城
+file: 风来的西林2–沙漠之魔城.gbc
+assets.box_front: Imgs/风来的西林2–沙漠之魔城.png
+description: 《风来的西林2–沙漠之魔城》，由 Chunsoft 出品，2001 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Chunsoft
+release: 2001
+genre: Role-playing (RPG)
+players: 1
+game: 风火轮赛车
+file: 风火轮赛车.gbc
+assets.box_front: Imgs/风火轮赛车.png
+description: 《风火轮赛车》，由 Infogrames 出品，2000 年发行，竞速类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Infogrames
+release: 2000
+genre: Racing
+players: 2
+game: 飞天小女警–坏魔兽黄版
+file: 飞天小女警–坏魔兽黄版.gbc
+assets.box_front: Imgs/飞天小女警–坏魔兽黄版.png
+description: 《飞天小女警–坏魔兽黄版》，由 Bam Entertainment 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Bam Entertainment
+release: 2000
+genre: Platform
+players: 1
+game: 飞龙之拳EX
+file: 飞龙之拳EX.gbc
+assets.box_front: Imgs/飞龙之拳EX.png
+description: 《飞龙之拳EX》，由 Culture Brain 出品，1999 年发行，Game Boy Color 平台。
+publisher: Culture Brain
+release: 1999
+game: 飞龙之拳_列传
+file: 飞龙之拳_列传.gbc
+assets.box_front: Imgs/飞龙之拳_列传.png
+description: 《飞龙之拳_列传》，由 Culture Brain 出品，2000 年发行，动作类游戏，Game Boy Color 平台。
+publisher: Culture Brain
+release: 2000
+genre: Action
+game: 飞龙之拳烈传
+file: 飞龙之拳烈传.gbc
+assets.box_front: Imgs/飞龙之拳烈传.png
+description: 《飞龙之拳烈传》，由 Culture Brain 出品，2000 年发行，动作类游戏，Game Boy Color 平台。
+publisher: Culture Brain
+release: 2000
+genre: Action
+game: 饮茶和绿蒙兄
+file: 饮茶和绿蒙兄.gbc
+assets.box_front: Imgs/饮茶和绿蒙兄.png
+description: 《饮茶和绿蒙兄》，由 Epoch 出品，1999 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Epoch
+release: 1999
+genre: Puzzle
+players: 1
+game: 饿狼
+file: 饿狼.gbc
+assets.box_front: Imgs/饿狼.png
+description: 《饿狼》，Game Boy Color 平台。
+game: 饿狼2003
+file: 饿狼2003.gbc
+assets.box_front: Imgs/饿狼2003.png
+description: 《饿狼2003》，Game Boy Color 平台。
+game: 鬼屋魔影–新恶梦
+file: 鬼屋魔影–新恶梦.gbc
+assets.box_front: Imgs/鬼屋魔影–新恶梦.png
+description: 《鬼屋魔影–新恶梦》，由 Infogrames 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+genre: Action
+players: 1
+game: 鬼马小精灵
+file: 鬼马小精灵.gbc
+assets.box_front: Imgs/鬼马小精灵.png
+description: 《鬼马小精灵》，由 Interplay 出品，2000 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Interplay
+release: 2000
+genre: Adventure
+players: 1
+game: 魔卡少女樱–友枝小学校大运动会
+file: 魔卡少女樱–友枝小学校大运动会.gbc
+assets.box_front: Imgs/魔卡少女樱–友枝小学校大运动会.png
+description: 《魔卡少女樱–友枝小学校大运动会》，由 MTO Co 出品，2000 年发行，体育类游戏，Game Boy Color 平台。
+publisher: MTO Co
+release: 2000
+genre: Sports
+game: 魔卡少女樱–永远和樱酱在一起
+file: 魔卡少女樱–永远和樱酱在一起.gbc
+assets.box_front: Imgs/魔卡少女樱–永远和樱酱在一起.png
+description: 《魔卡少女樱–永远和樱酱在一起》，由 MTO Co 出品，1999 年发行，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: MTO Co
+release: 1999
+genre: Adventure
+players: 1
+game: 魔女啾啾GoGo
+file: 魔女啾啾GoGo.gbc
+assets.box_front: Imgs/魔女啾啾GoGo.png
+description: 《魔女啾啾GoGo》，由 Bam Entertainment 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Bam Entertainment
+release: 2000
+genre: Platform
+players: 1
+game: 魔术师梅林
+file: 魔术师梅林.gbc
+assets.box_front: Imgs/魔术师梅林.png
+description: 《魔术师梅林》，由 Electronic Arts 出品，2001 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Electronic Arts
+release: 2001
+genre: Platform
+players: 1
+game: 魔术球
+file: 魔术球.gbc
+assets.box_front: Imgs/魔术球.png
+description: 《魔术球》，由 Midway 出品，动作类游戏，Game Boy Color 平台，单人游玩。
+publisher: Midway
+genre: Action
+players: 1
+game: 魔法勇士
+file: 魔法勇士.gbc
+assets.box_front: Imgs/魔法勇士.png
+description: 《魔法勇士》，由 The 3DO Company 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 魔法气泡
+file: 魔法气泡.gbc
+assets.box_front: Imgs/魔法气泡.png
+description: 《魔法气泡》，由 swing interactive 出品，2000 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: swing interactive
+release: 2000
+genre: Puzzle
+players: 1
+game: 魔法气泡4
+file: 魔法气泡4.gbc
+assets.box_front: Imgs/魔法气泡4.png
+description: 《魔法气泡4》，由 Compile 出品，1991 年发行，益智类游戏，Game Boy Color 平台。
+publisher: Compile
+release: 1991
+genre: Puzzle
+game: 魔法气泡外传
+file: 魔法气泡外传.gbc
+assets.box_front: Imgs/魔法气泡外传.png
+description: 《魔法气泡外传》，由 Compile 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Compile
+release: 1999
+genre: Strategy
+game: 魔法气泡大冒险
+file: 魔法气泡大冒险.gbc
+assets.box_front: Imgs/魔法气泡大冒险.png
+description: 《魔法气泡大冒险》，由 Compile 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，支持 2-2 人游玩。
+publisher: Compile
+release: 2000
+genre: Role-playing (RPG)
+players: 2
+game: 魔法芭比
+file: 魔法芭比.gbc
+assets.box_front: Imgs/魔法芭比.png
+description: 《魔法芭比》，Game Boy Color 平台。
+game: 魔法追击
+file: 魔法追击.gbc
+assets.box_front: Imgs/魔法追击.png
+description: 《魔法追击》，由 Microcabin 出品，2000 年发行，Shoot'em Up类游戏，Game Boy Color 平台。
+publisher: Microcabin
+release: 2000
+genre: Shoot'em Up
+game: 魔法门之英雄无敌1代
+file: 魔法门之英雄无敌1代.gbc
+assets.box_front: Imgs/魔法门之英雄无敌1代.png
+description: 《魔法门之英雄无敌1代》，由 The 3DO Company 出品，2000 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+release: 2000
+genre: Role-playing (RPG)
+players: 1
+game: 魔法门之英雄无敌2代
+file: 魔法门之英雄无敌2代.gbc
+assets.box_front: Imgs/魔法门之英雄无敌2代.png
+description: 《魔法门之英雄无敌2代》，由 The 3DO Company 出品，2000 年发行，策略类游戏，Game Boy Color 平台，单人游玩。
+publisher: The 3DO Company
+release: 2000
+genre: Strategy
+players: 1
+game: 魔物之塔
+file: 魔物之塔.gbc
+assets.box_front: Imgs/魔物之塔.png
+description: 《魔物之塔》，由 Konami 出品，1999 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Konami
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 魔王摔跤
+file: 魔王摔跤.gbc
+assets.box_front: Imgs/魔王摔跤.png
+description: 《魔王摔跤》，由 Acclaim 出品，体育类游戏，Game Boy Color 平台，单人游玩。
+publisher: Acclaim
+genre: Sports
+players: 1
+game: 魔钟塔
+file: 魔钟塔.gbc
+assets.box_front: Imgs/魔钟塔.png
+description: 《魔钟塔》，由 Ubisoft 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Platform
+players: 1
+game: 鲁普大冒险菲克斯与福克西
+file: 鲁普大冒险菲克斯与福克西.gbc
+assets.box_front: Imgs/鲁普大冒险菲克斯与福克西.png
+description: 《鲁普大冒险菲克斯与福克西》，由 Classified Games 出品，平台跳跃类游戏，Game Boy Color 平台。
+publisher: Classified Games
+genre: Platform
+game: 鲈钓高手
+file: 鲈钓高手.gbc
+assets.box_front: Imgs/鲈钓高手.png
+description: 《鲈钓高手》，由 THQ 出品，Hunting and Fishing类游戏，Game Boy Color 平台，单人游玩。
+publisher: THQ
+genre: Hunting and Fishing
+players: 1
+game: 鲈钓黑巴斯
+file: 鲈钓黑巴斯.gbc
+assets.box_front: Imgs/鲈钓黑巴斯.png
+description: 《鲈钓黑巴斯》，由 Majesco 出品，Hunting and Fishing类游戏，Game Boy Color 平台，单人游玩。
+publisher: Majesco
+genre: Hunting and Fishing
+players: 1
+game: 麻烦大了
+file: 麻烦大了.gbc
+assets.box_front: Imgs/麻烦大了.png
+description: 《麻烦大了》，由 Ubisoft 出品，2000 年发行，平台跳跃类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Platform
+players: 1
+game: 黄金守门员
+file: 黄金守门员.gbc
+assets.box_front: Imgs/黄金守门员.png
+description: 《黄金守门员》，Game Boy Color 平台。
+game: 黄金鼠俱乐部1代
+file: 黄金鼠俱乐部1代.gbc
+assets.box_front: Imgs/黄金鼠俱乐部1代.png
+description: 《黄金鼠俱乐部1代》，由 Jorudan 出品，1999 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Jorudan
+release: 1999
+genre: Strategy
+game: 黄金鼠俱乐部2代
+file: 黄金鼠俱乐部2代.gbc
+assets.box_front: Imgs/黄金鼠俱乐部2代.png
+description: 《黄金鼠俱乐部2代》，由 Jorudan 出品，2000 年发行，策略类游戏，Game Boy Color 平台。
+publisher: Jorudan
+release: 2000
+genre: Strategy
+game: 黄金鼠方块
+file: 黄金鼠方块.gbc
+assets.box_front: Imgs/黄金鼠方块.png
+description: 《黄金鼠方块》，由 Jorudan 出品，2000 年发行，Game Boy Color 平台。
+publisher: Jorudan
+release: 2000
+game: 龙之传说
+file: 龙之传说.gbc
+assets.box_front: Imgs/龙之传说.png
+description: 《龙之传说》，由 Ubisoft 出品，2000 年发行，益智类游戏，Game Boy Color 平台，单人游玩。
+publisher: Ubisoft
+release: 2000
+genre: Puzzle
+players: 1
+game: 龙珠Z–传说的超战士们
+file: 龙珠Z–传说的超战士们.gbc
+assets.box_front: Imgs/龙珠Z–传说的超战士们.png
+description: 《龙珠Z–传说的超战士们》，由 Infogrames 出品，2002 年发行，Role-playing (RPG)类游戏，Game Boy Color 平台，单人游玩。
+publisher: Infogrames
+release: 2002
+genre: Role-playing (RPG)
+players: 1
+game: 龙的传说
+file: 龙的传说.gbc
+assets.box_front: Imgs/龙的传说.png
+description: 《龙的传说》，由 Capcom 出品，冒险类游戏，Game Boy Color 平台，单人游玩。
+publisher: Capcom
+genre: Adventure
+players: 1

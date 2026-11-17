@@ -1,42 +1,56 @@
-## Description: <br>
-Helps agents prepare and submit Wan 2.7 video generation and editing jobs on PoYo, including text-to-video, image-to-video, reference-to-video, edit-video, polling, and webhook follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare, submit, and follow up on PoYo Wan 2.7 video generation and editing tasks through the PoYo API.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to choose the correct PoYo Wan 2.7 workflow, prepare request payloads, submit trusted jobs with a server-side API key when requested, and guide follow-up polling or webhook handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys, private prompts, media URLs, or callback URLs could be exposed if used in unsafe environments. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment or secret manager, review payloads before execution, and avoid sharing private inputs unless the user trusts PoYo and any callback receiver. <br>
-Risk: The submit script can make live PoYo API calls and create asynchronous video generation jobs. <br>
-Mitigation: Run it only from a trusted shell with a reviewed payload and only when the user explicitly wants to submit a job. <br>
+## Use Case:
 
+Developers and agents use this skill to choose the correct Wan 2.7 workflow, assemble request payloads, submit trusted payloads, and plan polling or webhook follow-up for PoYo video jobs.
 
-## Reference(s): <br>
-- [PoYo Wan 2.7 Video API Reference](references/api.md) <br>
-- [PoYo Wan 2.7 Video Documentation](https://docs.poyo.ai/api-manual/video-series/wan-2-7-video) <br>
-- [PoYo Wan 2.7 Video Model Page](https://poyo.ai/models/wan-2-7-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a selected model id, workflow type, request payload, concise parameter summary, returned task_id, and next-step polling or webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys could be exposed through logs, chat, browser code, screenshots, or public repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing it in outputs.
+
+Risk: Private prompts, media URLs, audio, or callback URLs may be shared with PoYo when tasks are submitted.
+
+Mitigation: Submit sensitive prompts, media, audio, or callback URLs only when the user trusts PoYo and the callback receiver.
+
+## Reference(s):
+
+- [PoYo Wan 2.7 Video API Reference](references/api.md)
+- [PoYo Wan 2.7 Video Model Page](https://poyo.ai/models/wan-2-7-video)
+- [PoYo Wan 2.7 Video API Docs](https://docs.poyo.ai/api-manual/video-series/wan-2-7-video)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-wan-2-7-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payload examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, workflow type, request payload or parameter summary, task_id after submission, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

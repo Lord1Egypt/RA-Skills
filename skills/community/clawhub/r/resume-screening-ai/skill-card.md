@@ -1,42 +1,49 @@
-## Description: <br>
-帮助HR在实习生招聘中解析候选人PDF简历、对照岗位JD评估匹配度，并输出结构化筛选结论。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实习生简历筛选与岗位匹配评估。用于HR招聘场景，当用户需要筛选候选人简历、评估简历与岗位JD匹配度、分析候选人基本信息/实习经历/技能是否符合要求时使用。支持PDF简历解析，输出结构化的筛选结论。
 
-## Publisher: <br>
-[qiuxin-bit](https://clawhub.ai/user/qiuxin-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuxin-bit](https://clawhub.ai/user/qiuxin-bit)
 
-## Use Case: <br>
-HR and recruiting teams use this skill to compare intern resumes against a role JD, extract key candidate details, and produce a structured screening recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume screening can process personal candidate information. <br>
-Mitigation: Handle resumes and extracted candidate details according to applicable privacy, retention, and access-control policies. <br>
-Risk: Automated scoring can miss context, amplify biased criteria, or over-reject candidates based on incomplete resume evidence. <br>
-Mitigation: Use the report as HR decision support, keep a human reviewer accountable for final decisions, and compare conclusions against job-relevant criteria. <br>
-Risk: PDF conversion or resume parsing errors can lead to incorrect candidate facts. <br>
-Mitigation: Review extracted fields against the original resume before relying on scores or recommendations. <br>
+## Use Case:
 
+Recruiting and HR users use this skill to compare intern candidates' resumes against a job description, extract candidate facts, score fit across defined dimensions, and produce a concise screening recommendation.
 
-## Reference(s): <br>
-- [简历筛选评估标准参考](references/screening-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown screening report with candidate details, scored evaluation dimensions, key conclusion, and recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a role JD and candidate resume content; PDF conversion may be needed before assessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive candidate data for hiring decisions without built-in privacy, consent, or retention guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process resumes the user is authorized to evaluate, minimize extracted candidate data, keep reports within approved recruiting channels, and apply the organization's privacy, employment, retention, and anti-discrimination policies.
+
+## Reference(s):
+
+- [简历筛选评估标准参考](references/screening-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown screening report with candidate information, basic-condition checks, internship and skills assessments, weighted scores, a conclusion, and a recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a job description and candidate resume as inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

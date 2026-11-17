@@ -1,40 +1,53 @@
-## Description: <br>
-Full-text search across all OpenClaw session logs using SQLite FTS5. Instant keyword search, topic queries, time-range filtering, and statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-text search across all OpenClaw session logs using SQLite FTS5, with keyword search, topic queries, time-range filtering, and statistics.
 
-## Publisher: <br>
-[larios613-hub](https://clawhub.ai/user/larios613-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larios613-hub](https://clawhub.ai/user/larios613-hub)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index local session logs and retrieve past conversations by keyword, topic, time range, or session statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local search index can persist sensitive OpenClaw conversation history. <br>
-Mitigation: Set SESSIONS_ROOT and SEARCH_AGENTS narrowly, avoid indexing logs that may contain secrets, and delete or protect scripts/search.db when finished. <br>
-Risk: Search results may reveal private session content to anyone with local access to the tool output or database. <br>
-Mitigation: Treat search output and the generated SQLite database as sensitive local data. <br>
+## Use Case:
 
+Developers and engineers use this skill to build and query a local SQLite FTS5 index of OpenClaw session logs so they can retrieve prior conversations by keyword, topic, time range, or session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/larios613-hub/fts5-session-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus search result text from local SQLite queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and queries a local SQLite FTS5 index at scripts/search.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can index sensitive OpenClaw session logs into a searchable local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sessions appropriate for local indexing, restrict SEARCH_AGENTS to intended agents, and avoid indexing logs that may contain secrets, credentials, private prompts, or sensitive reasoning.
+
+Risk: The generated SQLite search.db and WAL files may expose conversation content if left on a shared or weakly protected machine.
+
+Mitigation: Protect the database files with local access controls and delete them when the search index is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/larios613-hub/skills/fts5-session-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or update local SQLite search.db and WAL files when indexing session logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

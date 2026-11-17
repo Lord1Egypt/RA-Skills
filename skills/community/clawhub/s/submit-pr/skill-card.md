@@ -1,41 +1,57 @@
-## Description: <br>
-Standardizes a pull request submission workflow by scanning changed files for sensitive information, confirming the file scope, generating a conventional commit message, pushing the current branch, and creating a GitHub PR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes pull request submission by guiding secret scanning, file scope confirmation, commit message creation, pushing, and GitHub PR creation.
 
-## Publisher: <br>
-[mykelio1001](https://clawhub.ai/user/mykelio1001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mykelio1001](https://clawhub.ai/user/mykelio1001)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare and submit a pull request from a local Git repository with explicit checks for changed-file scope, commit wording, and sensitive information before pushing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage files, create a commit, push the current branch, and open a GitHub PR using the local Git and GitHub CLI sessions. <br>
-Mitigation: Review the changed-file list, generated commit message, and PR body before approving the workflow. <br>
-Risk: Submitting unrelated or sensitive files could expose unintended repository changes. <br>
-Mitigation: Use the built-in sensitive-information scan and file-scope confirmation, and stop the workflow if any file or line looks unrelated or secret-bearing. <br>
+## Use Case:
 
+Developers use this skill when preparing a pull request from local repository changes. It guides them through scanning for sensitive information, confirming the files to include, creating a conventional commit, pushing the branch, and opening a GitHub pull request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mykelio1001/submit-pr) <br>
-- [Publisher profile](https://clawhub.ai/user/mykelio1001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with Git and GitHub CLI command execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow uses the provided PR title argument and requires user confirmation before staging confirmed files and committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill can stage, commit, push, and create GitHub pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where the user is comfortable allowing those Git and GitHub actions, and review the branch and file list before confirming.
+
+Risk: The PR title may be unsafe if it contains shell metacharacters, quotes, command substitutions, or newlines.
+
+Mitigation: Use simple PR titles until the skill validates title input before passing it to shell commands.
+
+Risk: Secret scanning may be incomplete before code is pushed.
+
+Mitigation: Manually review untracked files, staged changes, and secrets before confirming the push and PR creation steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mykelio1001/skills/submit-pr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown status report with shell commands, commit text, and pull request content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before staging files and committing changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 ---
 name: oo-alpha-vantage
-description: "Alpha Vantage (alphavantage.co). Use this skill for ANY Alpha Vantage request — searching and reading data. Whenever a task involves Alpha Vantage, use this skill instead of calling the API directly."
+description: "Alpha Vantage (alphavantage.co). Use this skill for ANY Alpha Vantage request — reading, creating, and updating data. Whenever a task involves Alpha Vantage, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Alpha Vantage"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["alpha_vantage"]
   icon: "https://static.oomol.com/logo/third-party/Alpha%20Vantage.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `call_official_function` — Call a documented Alpha Vantage query function with raw JSON-facing parameters for advanced coverage.
+- `call_official_function` — Call a documented Alpha Vantage query function with raw JSON-facing parameters for advanced coverage. [write]
 - `get_balance_sheet` — Retrieve raw annual and quarterly balance sheet data for a company.
 - `get_cash_flow` — Retrieve raw annual and quarterly cash flow data for a company.
 - `get_commodity_data` — Retrieve raw commodity time series data from an Alpha Vantage commodity endpoint.
@@ -111,11 +111,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Alpha Vantage is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=alpha_vantage
+  https://console.oomol.com/connections/alpha_vantage
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Alpha Vantage homepage: https://www.alphavantage.co
+- API documentation: https://www.alphavantage.co/documentation/

@@ -1,0 +1,61 @@
+{
+  "name": "lygo-cyborg-onramp",
+  "displayName": "LYGO Cyborg Onramp",
+  "version": "1.0.0",
+  "description": "Public map to the FULL unlocked LYGO cyborg agent stack on SkillHub. Install path, dual-channel honesty, no network/subprocess.",
+  "slug": "lygo-cyborg-onramp",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-cyborg-onramp",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-cyborg-onramp",
+  "skillhub_full": "https://chatagent.ca/lygoskillhub.html#full-lygo",
+  "signature": "Delta9Phi963-CYBORG-ONRAMP-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "cyborg",
+    "onramp",
+    "skillhub",
+    "full-lygo",
+    "openclaw",
+    "agent-stack",
+    "dual-channel",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "map": "scripts/cyborg_onramp.py map",
+    "install": "scripts/cyborg_onramp.py install",
+    "plain": "scripts/cyborg_onramp.py plain",
+    "urls": "scripts/cyborg_onramp.py urls",
+    "demo": "scripts/cyborg_onramp.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🦾",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-cyborg-onramp",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "skill only",
+      "write": false
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "public_tentacle": true,
+    "full_on_skillhub": true,
+    "version": "1.0.0"
+  }
+}

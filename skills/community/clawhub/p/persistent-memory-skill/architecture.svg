@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#21262d"/>
+      <stop offset="100%" style="stop-color:#1a1f26"/>
+    </linearGradient>
+    <linearGradient id="center" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ea043"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="45" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="600">One local memory layer for compatible agents</text>
+
+  <!-- Connection lines -->
+  <line x1="160" y1="160" x2="310" y2="200" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="160" y1="230" x2="310" y2="210" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="160" y1="300" x2="310" y2="220" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <line x1="490" y1="200" x2="610" y2="140" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="490" y1="210" x2="610" y2="210" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="490" y1="220" x2="610" y2="280" stroke="#2ea04380" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Left: AI Agents -->
+  <!-- Claude Code -->
+  <rect x="30" y="130" width="130" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="95" y="152" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Claude Code</text>
+  <text x="95" y="170" text-anchor="middle" fill="#7d8590" font-size="11">Terminal AI</text>
+
+  <!-- Cursor -->
+  <rect x="30" y="200" width="130" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="95" y="222" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Cursor</text>
+  <text x="95" y="240" text-anchor="middle" fill="#7d8590" font-size="11">Code Editor AI</text>
+
+  <!-- Codex CLI -->
+  <rect x="30" y="270" width="130" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="95" y="292" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Codex CLI</text>
+  <text x="95" y="310" text-anchor="middle" fill="#7d8590" font-size="11">OpenAI Agent</text>
+
+  <!-- Center: Memory -->
+  <rect x="310" y="135" width="180" height="140" rx="12" fill="url(#center)" stroke="#2ea043" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="400" y="178" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600">~/.persistent-memory/</text>
+  <text x="400" y="200" text-anchor="middle" fill="#ffffffcc" font-size="11">_core/  profile.md</text>
+  <text x="400" y="216" text-anchor="middle" fill="#ffffffcc" font-size="11">_index.md  projects/</text>
+  <text x="400" y="232" text-anchor="middle" fill="#ffffffcc" font-size="11">notes/  preferences.md</text>
+  <text x="400" y="248" text-anchor="middle" fill="#ffffffcc" font-size="11">_archive/  _trash/</text>
+
+  <!-- Right: What's shared -->
+  <!-- Identity -->
+  <rect x="610" y="110" width="160" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="690" y="132" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Identity</text>
+  <text x="690" y="150" text-anchor="middle" fill="#7d8590" font-size="11">Who you are</text>
+
+  <!-- Preferences -->
+  <rect x="610" y="180" width="160" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="690" y="202" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Preferences</text>
+  <text x="690" y="220" text-anchor="middle" fill="#7d8590" font-size="11">How you work</text>
+
+  <!-- Projects -->
+  <rect x="610" y="250" width="160" height="54" rx="8" fill="url(#card)" stroke="#30363d" stroke-width="1"/>
+  <text x="690" y="272" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="500">Projects &amp; Notes</text>
+  <text x="690" y="290" text-anchor="middle" fill="#7d8590" font-size="11">What you're building</text>
+
+  <!-- Labels -->
+  <text x="95" y="105" text-anchor="middle" fill="#7d8590" font-size="12" font-weight="500">AI AGENTS</text>
+  <text x="690" y="95" text-anchor="middle" fill="#7d8590" font-size="12" font-weight="500">SHARED CONTEXT</text>
+
+  <!-- Footer -->
+  <text x="400" y="370" text-anchor="middle" fill="#484f58" font-size="12">Shared only when compatible agents use the same local filesystem</text>
+</svg>

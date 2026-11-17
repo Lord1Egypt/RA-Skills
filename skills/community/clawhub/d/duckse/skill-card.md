@@ -1,38 +1,53 @@
-## Description: <br>
-Duckse helps agents run DDGS-based web, news, image, video, and book searches through the duckse CLI with pretty text or JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when users need to search the web for information, find current content, look up news articles, search for images, or find videos.
 
-## Publisher: <br>
-[dwirx](https://clawhub.ai/user/dwirx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dwirx](https://clawhub.ai/user/dwirx)
 
-## Use Case: <br>
-Developers, researchers, and external users use Duckse to run web, news, image, video, and book searches through the duckse CLI, including current-event lookup, quick research, and fact-checking workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends installing duckse through a remote GitHub script piped directly into bash. <br>
-Mitigation: Review the upstream install script or use a pinned, vetted release before installation, and do not allow an agent to run the curl-to-bash installer automatically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Duckse ClawHub page](https://clawhub.ai/dwirx/duckse) <br>
-- [Duckse installer referenced by the skill](https://raw.githubusercontent.com/dwirx/duckse/main/scripts/install.sh) <br>
+## Use Case:
 
+Developers and agents use Duckse to run web, news, image, video, and book searches through the duckse CLI for current research, fact-checking, and source discovery.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; duckse command output may be pretty text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports search type, result limit, time filter, region, safe search, backend selection, JSON output, URL expansion, proxy, timeout, and verification options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup instructions run an unverified remote installer directly in a shell.
+
+Mitigation: Audit or replace the installer path before installation; prefer a pinned release or reviewed package and verify checksums or signatures when available.
+
+Risk: Web search queries may leave the local environment and disclose sensitive terms.
+
+Mitigation: Avoid searching for secrets, credentials, regulated data, internal project names, or other sensitive terms unless that disclosure risk is accepted.
+
+## Reference(s):
+
+- [Duckse ClawHub skill page](https://clawhub.ai/dwirx/skills/duckse)
+- [duckse installer script](https://raw.githubusercontent.com/dwirx/duckse/main/scripts/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; duckse can return pretty text or JSON search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports search type, result count, time limit, region, safe search, backend selection, URL expansion, proxy, timeout, and TLS verification options.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

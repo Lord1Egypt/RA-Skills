@@ -1,42 +1,52 @@
-## Description: <br>
-Use when the user asks to grow newsletter subscribers, evaluate acquisition channels, convert social followers to email, re-engage inactive readers, analyze signup sources, design welcome surveys, or plan growth experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to grow newsletter subscribers, evaluate acquisition channels, convert social followers to email, re-engage inactive readers, analyze signup sources, design welcome surveys, or plan growth experiments.
 
-## Publisher: <br>
-[freeman14](https://clawhub.ai/user/freeman14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freeman14](https://clawhub.ai/user/freeman14)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External newsletter operators and growth teams use this skill to diagnose subscriber or revenue growth constraints and plan small experiments using available analytics, attribution, issue history, and survey notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Growth recommendations may be misleading when analytics, subscriber data, source attribution, or survey notes are incomplete or misconnected.
+
+Mitigation: Confirm connected data sources before use, review notes before saving them to a shared workspace, and avoid inventing metrics.
+
+Risk: Paid acquisition or monetization experiments can waste spend or reduce reader trust if scaled before retention, conversion, or revenue checks.
+
+Mitigation: Use small experiments with stop/continue criteria, separate subscriber growth from revenue growth, and review sponsorship, membership, or paywall recommendations for audience trust.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External newsletter operators and growth teams use this skill to diagnose subscriber or revenue growth constraints, plan small experiments, define tracking changes, and decide stop or continue criteria. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rely on connected analytics, subscriber, budget, sponsor, or revenue data. <br>
-Mitigation: Review the data provided to the agent and avoid sharing unnecessary sensitive subscriber or revenue details. <br>
-Risk: Growth recommendations could overemphasize acquisition before retention or monetization is understood. <br>
-Mitigation: Check retention or monetization before scaling paid acquisition, and use explicit stop or continue criteria for each experiment. <br>
-Risk: Saved workspace handoff notes may preserve assumptions or sensitive operational details. <br>
-Mitigation: Approve handoff notes before relying on or storing them in a connected workspace. <br>
+**Output Format:** [Markdown with a growth diagnosis, experiment table, tracking or survey changes, workspace handoff notes, and stop/continue criteria]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freeman14/newsletter-growth-ops) <br>
+**Other Properties Related to Output:** [Uses connected analytics and subscriber evidence when available; does not invent metrics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with a growth diagnosis, experiment table, tracking recommendations, handoff notes, and stop or continue criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use connected analytics, subscriber data, source attribution, issue history, and survey notes when available; metrics should not be invented.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

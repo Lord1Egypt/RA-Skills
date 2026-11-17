@@ -1,41 +1,62 @@
-## Description: <br>
-Smart hotel search, supporting filtering by location, date, star rating, and budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart hotel search, supporting filtering by location, date, star rating, and budget
 
-## Publisher: <br>
-[zxc-Aqr](https://clawhub.ai/user/zxc-Aqr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zxc-aqr](https://clawhub.ai/user/zxc-aqr)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search hotels, compare room prices, retrieve hotel details, and discover available hotel filter tags from structured travel criteria. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hotel search prompts may contain personal details or payment-related information that should not be sent to the hotel service. <br>
-Mitigation: Send only structured hotel search criteria such as location, dates, occupancy, star rating, budget, tags, country, currency, and language; remove names, phone numbers, emails, IDs, payment details, loyalty numbers, and travel document data before tool calls. <br>
-Risk: Hotel pricing and availability can vary by country, currency, date, and language settings. <br>
-Mitigation: Verify country, currency, dates, and language settings before relying on returned hotel results or prices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Star Hotel Search ClawHub Page](https://clawhub.ai/zxc-Aqr/star-hotel) <br>
-- [Star Hotel MCP endpoint](https://mcp.aigohotel.com/mcp) <br>
-- [Star Hotel API key application](https://mcp.agentichotel.cn/apply) <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search hotels, retrieve room prices, and fetch search tags from Star Hotel MCP using structured location, date, rating, budget, and amenity filters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or structured JSON from hotel search and detail tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hotel results may include hotel names, locations, amenities, tags, room rates, booking URLs, currency, availability, and cancellation policy details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hotel search details are sent to a third-party MCP service.
+
+Mitigation: Send only structured hotel search fields needed for the request, such as location, dates, occupancy, rating, budget, and tags.
+
+Risk: Queries may contain personal information that is not needed for hotel search.
+
+Mitigation: Remove names, phone numbers, emails, IDs, local file details, system information, and unrelated private text before calling the MCP tools.
+
+Risk: Hotel price, room, currency, language, date, and identity details can affect booking decisions.
+
+Mitigation: Confirm currency, language, country, dates, hotel identity, and room details when results matter.
+
+Risk: The bundled public API key may be rate-limited or less accountable than a personal key.
+
+Mitigation: Use an exclusive Star Hotel key for higher quotas or clearer operational accountability.
+
+## Reference(s):
+
+- [Star Hotel Search on ClawHub](https://clawhub.ai/zxc-aqr/skills/star-hotel)
+- [zxc-aqr Publisher Profile](https://clawhub.ai/user/zxc-aqr)
+- [Star Hotel MCP Application](https://mcp.agentichotel.cn/apply)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and structured hotel result schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces hotel search parameters, hotel detail requests, tag retrieval calls, and guidance for filtering personal information before sending requests.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

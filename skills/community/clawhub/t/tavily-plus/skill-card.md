@@ -1,41 +1,58 @@
-## Description: <br>
-Enhanced Tavily search with multi-API key rotation, AI-powered intent recognition, sub-question decomposition, intelligent summarization, and offline document export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Tavily search with multi-API key rotation, intent recognition, sub-question decomposition, summarization, and offline document export.
 
-## Publisher: <br>
-[fundou1081](https://clawhub.ai/user/fundou1081) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fundou1081](https://clawhub.ai/user/fundou1081)
 
-## Use Case: <br>
-External users and developers use Tavily Plus to run Tavily-backed web searches with query classification, sub-question decomposition, key rotation, summaries, and optional local Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and result processing are sent to Tavily or the configured base URL. <br>
-Mitigation: Avoid searching for secrets or highly sensitive internal data, and configure the base URL only for trusted Tavily-compatible endpoints. <br>
-Risk: Optional report export can store query content, source snippets, and summaries locally. <br>
-Mitigation: Enable report export only for content that is acceptable to save under the OpenClaw workspace. <br>
+## Use Case:
 
+Developers and external users use this skill to run Tavily-backed web searches with query routing, rate-limit failover across configured API keys, structured summaries, and optional markdown reports.
 
-## Reference(s): <br>
-- [ClawHub Tavily Plus release page](https://clawhub.ai/fundou1081/tavily-plus) <br>
-- [Configured Tavily API base URL](https://api.tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Structured JSON response with optional Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tavily API key configuration; optional export writes local reports under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys and search queries may be sent to an untrusted endpoint if the Tavily base URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TAVILY_BASE_URL unset or pinned to the real Tavily API before use.
+
+Risk: Sensitive search terms or source snippets may be retained in local markdown reports.
+
+Mitigation: Avoid private internal material in queries and enable export_doc only when retaining the report on disk is acceptable.
+
+Risk: The security verdict requires review before deployment.
+
+Mitigation: Install only in trusted execution environments and review the configured Tavily endpoint and API key handling.
+
+## Reference(s):
+
+- [Tavily API](https://api.tavily.com)
+- [ClawHub skill page](https://clawhub.ai/fundou1081/skills/tavily-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON response with search intent, sub-questions, search results, summary text, metadata, and optional markdown report path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create timestamped markdown reports under the user's OpenClaw workspace when export_doc is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

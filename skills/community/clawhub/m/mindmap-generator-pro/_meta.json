@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "mindmap-generator-pro",
+  "name": "mindmap-generator",
+  "displayName": "思维导图生成器",
   "version": "1.0.0",
-  "publishedAt": 1775185898531
+  "slug": "mindmap-generator-pro",
+  "description": "自动从文本/大纲生成思维导图，支持多种格式导出",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["mindmap", "diagram", "visual", "outline", "thinking", "productivity"],
+  "pricing": {
+    "type": "paid",
+    "amount": 25,
+    "currency": "CNY"
+  },
+  "requirements": ["openai"],
+  "category": "productivity"
 }

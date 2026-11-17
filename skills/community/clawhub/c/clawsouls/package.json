@@ -1,6 +1,6 @@
 {
   "name": "clawsouls-skill",
-  "version": "0.6.3",
+  "version": "0.6.8",
   "description": "OpenClaw skill for managing AI agent personas via ClawSouls",
   "keywords": [
     "openclaw",

@@ -1,40 +1,57 @@
-## Description: <br>
-Use ACE Phase 0 to pay x402-gated APIs with bounded wallet-funded session keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorize autonomous x402 API payments with bounded, wallet-funded session keys under strict policy limits in ACE Phase 0 without credit lines.
 
-## Publisher: <br>
-[SumeetChougule](https://clawhub.ai/user/SumeetChougule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sumeetchougule](https://clawhub.ai/user/sumeetchougule)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to make x402-gated API calls under explicit wallet-funded spend limits, TTL, and category policy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill authorizes bounded wallet-funded API payments, so misuse or misconfiguration can spend real funds. <br>
-Mitigation: Use a minimally funded wallet or limited session key, keep TTL short, set low per-transaction and daily caps, and verify endpoint, price, and reason before payment. <br>
-Risk: Runtime behavior depends on external SDKs and x402 endpoints that are not bundled with the skill. <br>
-Mitigation: Pin and review SDK versions and fetch endpoint schema or documentation before allowing payable requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SumeetChougule/chaoschain-ace) <br>
-- [ChaosChain ACE SDK repository](https://github.com/chaoschain-labs/chaoschain-ace-sdk) <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to call x402-gated APIs with explicit spend limits, allowed categories, and short-lived wallet-funded session keys.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and policy configuration fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment-policy setup, spend-intent reasoning, schema discovery guidance, and refusal rules for out-of-policy requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent bounded authority to make x402 API payments.
+
+Mitigation: Set conservative per-transaction and daily limits, require short TTLs, and restrict allowed categories to compute, data, and api before enabling payments.
+
+Risk: Runtime dependency changes could affect payment behavior.
+
+Mitigation: Pin the ACE SDK and ethers dependencies to exact reviewed versions before using them in runtime code.
+
+Risk: A request may fall outside the intended payment scope or configured policy.
+
+Mitigation: Use the skill only for x402-gated API calls, require schema discovery when parameters are unclear, and refuse P2P transfers, swaps, speculation, arbitrary wallet movement, or out-of-policy requests.
+
+## Reference(s):
+
+- [ChaosChain ACE SDK homepage](https://github.com/chaoschain-labs/chaoschain-ace-sdk)
+- [ClawHub skill page](https://clawhub.ai/sumeetchougule/skills/chaoschain-ace)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes policy initialization, spend-reasoning, schema-discovery, and refusal guidance; it does not execute integration code itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

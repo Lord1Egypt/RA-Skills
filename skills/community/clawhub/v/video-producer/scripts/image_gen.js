@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const CONFIG = {
-  apiKey: process.env.MINIMAX_IMAGE_API_KEY || 'sk-cp-1VnmtfYM3n73pKui2NG3-CtYaWV9F1pnC4y8FDAQjkjq6q5RMzVD-WWZ1RkqjvpU8AUCMdLjXI_hyGrjPaDTv6LQsGuz-73QhUM7PjIdfJwzLsv9Yh5LrW4',
+  apiKey: process.env.MINIMAX_IMAGE_API_KEY || 'REDACTED-SECRET',
   outputDir: path.join(__dirname, '../../../workspace/aicode/test-video/materials')
 };
 

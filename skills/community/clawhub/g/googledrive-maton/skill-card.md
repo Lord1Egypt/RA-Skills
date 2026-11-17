@@ -1,42 +1,54 @@
-## Description: <br>
-Access and manage Google Drive files, folders, metadata, uploads, downloads, and sharing through the Maton Gateway with OAuth-backed authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage Google Drive files, folders, metadata, uploads, downloads, and sharing through Maton Gateway with OAuth-backed API access.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare cURL requests for connecting to Google Drive through the Maton Gateway and managing files, folders, uploads, downloads, metadata, and permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided commands can delete, overwrite, move, upload, or share real Google Drive files. <br>
-Mitigation: Require explicit confirmation before file-changing operations and verify file IDs, folder IDs, upload paths, connection IDs, and recipient email addresses before execution. <br>
-Risk: MATON_API_KEY can authorize access through Maton to connected Google Drive accounts and files. <br>
-Mitigation: Keep MATON_API_KEY secret, avoid logging it, rotate it if exposed, and use the least-privileged Drive account or connection practical. <br>
+## Use Case:
 
+Developers and operators use this skill as a cURL reference for connecting agent workflows to Google Drive through Maton Gateway. It covers connection management, file listing and search, uploads, downloads, metadata updates, sharing permissions, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/otman-ai/googledrive-maton) <br>
-- [Maton Google Drive Gateway Base URL](https://gateway.maton.ai/google-drive/{native-api-path}) <br>
-- [Maton Connection Management Endpoint](https://ctrl.maton.ai/connections) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guide with cURL command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MATON_API_KEY and optional Maton-Connection headers; examples can operate on live Google Drive resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: High-impact Google Drive operations can delete files, upload or overwrite content, and change sharing permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Maton API key and Google Drive connection, confirm exact file or folder IDs, and test read-only operations before running write, delete, upload, or sharing commands.
+
+Risk: Printing the Maton API key can expose credentials in terminal history, logs, or shared screens.
+
+Mitigation: Check only whether MATON_API_KEY is set and avoid echoing or logging secret values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otman-ai/skills/googledrive-maton)
+- [Skill source artifact](artifact/Skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with cURL command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API-key, connection, file, upload, sharing, and troubleshooting examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

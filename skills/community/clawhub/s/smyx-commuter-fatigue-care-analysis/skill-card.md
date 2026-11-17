@@ -1,45 +1,55 @@
-## Description: <br>
-Analyzes fixed living-room camera video, with optional audio, from the first 30 minutes after a user arrives home to estimate after-work fatigue and suggest light smart-home comfort actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes living-room camera footage from a commuter’s first 30 minutes at home to estimate fatigue and trigger gentle smart-home care prompts.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External smart-home users and developers use this skill to analyze home-arrival fatigue signals and produce a structured care report with fatigue level, recommended comfort actions, and historical report lookup guidance. It is intended for light wellness support, not medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process private living-room video, optional audio, and personal identifiers through external services. <br>
-Mitigation: Use only with informed consent, trusted service operators, and clear expectations for retention, deletion, access control, and account ownership. <br>
-Risk: Cloud-accessible analysis history and local bearer-token storage may expose sensitive wellness and home-behavior data. <br>
-Mitigation: Review credential handling and history storage before installation, restrict access to the account, and confirm that users can delete stored reports and revoke tokens. <br>
-Risk: Fatigue scoring and comfort prompts could be mistaken for clinical assessment or overstep user boundaries. <br>
-Mitigation: Present outputs as non-diagnostic wellness signals, keep interventions optional and rate-limited, and preserve pause, silence, and opt-out controls. <br>
+## Use Case:
 
+Smart-home users can use this skill to analyze living-room video, optionally with audio, from the period after they arrive home and receive a fatigue report and care suggestions. It describes fatigue monitoring rather than medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/smyx-commuter-fatigue-care-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/smyx-sunjinhui) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Nested API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON fatigue-care reports with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fatigue index, fatigue level, posture, face and behavior signals, comfort actions, weekly trend summaries, and links to cloud-hosted historical reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security assessment rates this release suspicious with high confidence, citing privacy and consent gaps, behavior beyond the stated fatigue-monitoring purpose, and persistent identity and credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installation until the developer explains account and token handling, where household video is sent, and how consent and retention are handled.
+
+Risk: The security guidance says export-only behavior needs to be fixed, and the scan was partial because a referenced local item was missing.
+
+Mitigation: Confirm the export-only behavior is corrected and review a complete security scan before use.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-commuter-fatigue-care-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured fatigue analysis report and Markdown history table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include fatigue indicators, a 0–100 fatigue index, care suggestions, and report links.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

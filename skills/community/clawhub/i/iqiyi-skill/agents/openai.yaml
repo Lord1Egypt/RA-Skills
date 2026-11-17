@@ -1,0 +1,7 @@
+interface:
+  display_name: "iQiyi Video"
+  short_description: "Search, recommend, and play iQiyi videos"
+  default_prompt: "Use $iqiyi-skill to find iQiyi movies, normalize recommendation filters, and return playable results."
+
+policy:
+  allow_implicit_invocation: true

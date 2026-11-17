@@ -1,45 +1,59 @@
-## Description: <br>
-小红书自动化 helps an agent run scripted workflows for Xiaohongshu login, trending-topic discovery, AI-assisted content generation, preview, and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书自动化 skill that lets an agent run shell scripts to log in, fetch Xiaohongshu trends, generate posts and images, and publish notes through OpenClaw.
 
-## Publisher: <br>
-[pearl799](https://clawhub.ai/user/pearl799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pearl799](https://clawhub.ai/user/pearl799)
 
-## Use Case: <br>
-External users and creators use this skill with OpenClaw to prepare Xiaohongshu posts, inspect trends, generate draft content and images, and publish after login. Operators should review generated content and use preview or dry-run flows before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a Xiaohongshu session and publish content on the user's behalf. <br>
-Mitigation: Use preview or dry-run modes before publishing, check login status first, and confirm generated titles, body text, topics, and images before running a publish workflow. <br>
-Risk: Saved Xiaohongshu cookies are live login credentials. <br>
-Mitigation: Protect ~/.openclaw/credentials/xhs_cookies.json and any backups, and re-login only through the documented workflow when the session expires. <br>
-Risk: Bundled automation includes MCP server behavior that can expose publishing capabilities if network-accessible. <br>
-Mitigation: Keep the MCP server disabled or bound to localhost unless it is deliberately secured. <br>
+## Use Case:
 
+External users and developers use this skill to automate Xiaohongshu content workflows from chat, including trend discovery, content generation, login status checks, and publishing. It is intended for OpenClaw environments with uv, Chrome, a configured Xiaohongshu account, and an OpenAI-compatible image generation service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pearl799/openclaw-xhs) <br>
-- [Publisher profile](https://clawhub.ai/user/pearl799) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-producing script workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows emit local media file paths for preview or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill handles live Xiaohongshu credentials and publishing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test Xiaohongshu account first, restrict cookie and openclaw.json permissions, and rotate or remove stored cookies and API keys when uninstalling.
+
+Risk: Auto-publish mode can create public posts without an additional preview step.
+
+Mitigation: Keep auto-publish disabled unless public posting is explicitly intended, and use preview mode for generated content review.
+
+Risk: Running the bundled SSE MCP server on a network interface can expose skill capabilities beyond the local user.
+
+Mitigation: Avoid exposing the SSE MCP server on a network interface unless access controls and network restrictions are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pearl799/skills/openclaw-xhs)
+- [OpenClaw](https://openclaw.ai)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts emit JSON status fields and MEDIA lines for generated image attachments.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,38 @@
+# never-miss 配置（本文件不含密码——密码只存 macOS Keychain）
+# 数据目录：本文件所在目录即数据根目录；paths.data 须与其一致（勿改动）
+timezone: Asia/Shanghai
+
+schedule:
+  time: "09:00"          # 每天自动扫描时刻（由宿主调度触发）
+
+calendar:
+  name: "AI 提醒"        # 专用日历名：不存在则创建，已存在则复用
+  location: local        # local=本机（On My Mac）；icloud=可同步到手机
+  per_account: false     # true 时每个账户建独立日历（AI 提醒 - 工作）
+
+reminder:
+  lead_minutes: 60       # 有明确时刻的事件默认提前量（分钟）
+  all_day_at: "09:00"    # 全天事件的提醒时刻
+
+mail:
+  parse_ics_attachments: true   # .ics 附件例外解析（会议邀请，结构化、不送模型）
+  max_body_chars: 8000          # 正文送模型上限，超出截断并记日志
+  strip_signatures: true        # 剥离签名档与历史引用
+
+paths:
+  data: ~/.workbuddy/never-miss
+
+# 邮箱账户（可配置多个，无数量上限；label 缺省为邮箱地址）
+# 增删账户后运行 doctor 自检；密码经 "secret set <邮箱>" 存入 Keychain
+accounts: []
+#  - label: "工作"
+#    host: imap.example.com     # 必填：IMAP 服务器
+#    port: 993
+#    ssl: true
+#    username: me@example.com   # 必填：邮箱账号
+#    folder: INBOX
+#    max_per_run: 20            # 单次最多处理封数（超出留待下次，游标不推进）
+#    backfill_days: 0           # 首次运行回溯天数；0=不处理历史邮件
+#    sender_allowlist: []       # 为空表示不限制
+#    sender_blocklist: []       # 黑名单优先级高于白名单
+#    enabled: true

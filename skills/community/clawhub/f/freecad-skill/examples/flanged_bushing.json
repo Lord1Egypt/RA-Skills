@@ -1,0 +1,11 @@
+{
+  "doc": "bushing.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "revolve", "name": "Bushing", "comment": "half cross-section in XY, revolved about the Y axis",
+     "points": [[6, 0], [16, 0], [16, 4], [10, 4], [10, 25], [6, 25]], "axis": [0, 1, 0],
+     "expect": {"volume": 6986.902, "bbox_size": [32, 25, 32]}},
+    {"op": "chamfer", "name": "BushingChamfered", "target": "Bushing", "size": 0.5, "edges": "%CIRCLE and >Y"},
+    {"op": "export", "filename": "bushing.step"}
+  ]
+}

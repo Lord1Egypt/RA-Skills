@@ -1,42 +1,60 @@
-## Description: <br>
-Query Odoo data including salesperson performance, customer analytics, orders, invoices, CRM, accounting, VAT, inventory, and AR/AP, and generate WhatsApp cards, PDFs, and Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Odoo ERP data for salesperson performance, customer analytics, orders, invoices, CRM, accounting, VAT, inventory, and AR/AP reporting, with local report outputs such as WhatsApp cards, PDFs, Excel files, and charts.
 
-## Publisher: <br>
-[ashrf-in](https://clawhub.ai/user/ashrf-in) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ashrf-in](https://clawhub.ai/user/ashrf-in)
 
-## Use Case: <br>
-Developers, operators, and finance teams use this skill to query read-only Odoo ERP data and generate financial, sales, CRM, AR/AP, VAT, inventory, and accounting reports with local PDF, Excel, and WhatsApp-card outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses sensitive financial data and writes local report files that may contain confidential information. <br>
-Mitigation: Install it with a dedicated least-privilege read-only Odoo API key, restrict access to intended companies and models, and review or delete generated files after use. <br>
-Risk: Ad-hoc metrics or AI-assisted commands can produce misleading financial outputs if unsupported metrics are accepted without review. <br>
-Mitigation: Confirm report scope and methodology before use, reject unsupported metrics, and avoid AI commands until the missing OpenClawIntelligence helper and data handling are reviewed. <br>
+## Use Case:
 
+Employees, finance operators, and agents use this skill to query read-only Odoo ERP data and generate evidence-backed financial, sales, CRM, VAT, inventory, and AR/AP reports. It is suited for local report generation after the user provides required company, period, account, breakdown, and output preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashrf-in/odoo-openclaw-skill) <br>
-- [Autonomous CFO Engine README](artifact/assets/autonomous-cfo/README.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local report files such as PDF, Excel, and image cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Odoo connection settings and writes reports locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release evidence) <br>
+Risk: The skill handles Odoo credentials and sensitive financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a dedicated read-only Odoo API account, protect the .env file, and restrict access to locally generated report files.
+
+Risk: Plaintext Odoo URLs or disabled TLS verification can expose credentials or financial data in transit.
+
+Mitigation: Use an HTTPS Odoo URL with valid certificate verification and avoid the --insecure option except in trusted internal environments.
+
+Risk: Dependency drift can change runtime behavior or introduce vulnerabilities.
+
+Mitigation: Review and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ashrf-in/skills/odoo-openclaw-skill)
+- [Skill definition](artifact/SKILL.md)
+- [Autonomous CFO Engine README](artifact/assets/autonomous-cfo/README.md)
+- [Skill metadata](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated report artifacts may be local PDF, Excel, PNG, chart, or text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Odoo connection credentials plus user-confirmed company, period, account, breakdown, and output-format choices.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

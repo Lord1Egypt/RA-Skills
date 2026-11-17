@@ -508,10 +508,10 @@ def _score_alpha(code: str, date: str, weights: Optional[Dict[str, float]] = Non
         return None
 
     end_date = date
-    start_date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=120)).strftime('%Y-%m-%d')
+    start_date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=270)).strftime('%Y-%m-%d')
 
     all_codes = [b.ts_code for b in query_stock_basic() if b.ts_code]
-    all_codes = random.sample(all_codes, min(200, len(all_codes)))
+    all_codes = all_codes[:1000]
     if code not in all_codes:
         all_codes.insert(0, code)
 
@@ -815,12 +815,8 @@ def analyze(code: str, date: str) -> Dict[str, Any]:
     buy_thresh = weights.get('signal_thresholds', {}).get('buy', 0.65)
     sell_thresh = weights.get('signal_thresholds', {}).get('sell', 0.35)
 
-    _setup_analyze_cache(code, date)
-    try:
-        print('[MoE] Expert 1: 技术指标...')
-        tech = _score_tech(code, date, tech_w)
-    finally:
-        _teardown_analyze_cache()
+    print('[MoE] Expert 1: 技术指标...')
+    tech = _score_tech(code, date, tech_w)
 
     print('[MoE] Expert 2: Alpha因子...')
     alpha = _score_alpha(code, date, alpha_w)
@@ -878,58 +874,6 @@ def _get_trading_dates(start_date: str, end_date: str) -> List[str]:
 #   'future_ret': float,             # 5日后实际收益率（用于适应度）
 # }
 _TRAIN_CACHE: Dict[Tuple[str, str], Dict] = {}
-
-# ── analyze() 单次调用级指标内存缓存（消除 _score_tech 的 80+ 次重复 DB 查询）──────
-from sqlalchemy import text as _sa_text
-from data_fetcher import getEngine as _getEngine
-
-_TECH_MEM_CACHE: Dict[Tuple, Optional[str]] = {}
-_orig_get_cached_fn = None
-_orig_save_indicator_fn = None
-
-
-def _setup_analyze_cache(code: str, date: str) -> None:
-    """在 analyze() 开始时调用：一次 SQL 批量读取该 code+date 的所有缓存指标到内存，
-    并 monkey-patch ind 模块的缓存函数，让 _score_tech 的 80+ 次查询走内存 dict 而非 DB。"""
-    global _TECH_MEM_CACHE, _orig_get_cached_fn, _orig_save_indicator_fn
-    _TECH_MEM_CACHE = {}
-    try:
-        with _getEngine().connect() as conn:
-            rows = conn.execute(_sa_text(
-                "SELECT indicator_type, period, use_adjusted, value "
-                "FROM cached_indicators WHERE code=:code AND date=:date"
-            ), {"code": code, "date": date}).fetchall()
-        for r in rows:
-            _TECH_MEM_CACHE[(code, r[0], r[1], r[2], date)] = r[3]
-    except Exception:
-        pass  # 失败时退化到原始 DB 查询，无副作用
-
-    _orig_get_cached_fn = ind._get_cached_indicator
-    _orig_save_indicator_fn = ind._save_indicator
-
-    def _patched_get(c, itype, period, idate, use_adj=True):
-        k = (c, itype, period, 1 if use_adj else 0, idate)
-        if k in _TECH_MEM_CACHE:
-            return _TECH_MEM_CACHE[k]
-        return _orig_get_cached_fn(c, itype, period, idate, use_adj)
-
-    def _patched_save(c, itype, period, idate, value, use_adj=True):
-        k = (c, itype, period, 1 if use_adj else 0, idate)
-        _TECH_MEM_CACHE[k] = value
-        _orig_save_indicator_fn(c, itype, period, idate, value, use_adj)
-
-    ind._get_cached_indicator = _patched_get
-    ind._save_indicator = _patched_save
-
-
-def _teardown_analyze_cache() -> None:
-    """在 analyze() 结束时调用：恢复 ind 模块原始缓存函数，清空内存缓存。"""
-    global _TECH_MEM_CACHE
-    if _orig_get_cached_fn is not None:
-        ind._get_cached_indicator = _orig_get_cached_fn
-    if _orig_save_indicator_fn is not None:
-        ind._save_indicator = _orig_save_indicator_fn
-    _TECH_MEM_CACHE = {}
 
 
 def _precompute_cache(train_codes: List[str], train_dates: List[str], hold_days: int = 5) -> None:

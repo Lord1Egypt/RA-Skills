@@ -1,0 +1,47 @@
+{
+  "mode": "workflow_blueprints",
+  "sample": {
+    "steps": [
+      {
+        "id": "collect"
+      },
+      {
+        "id": "summarize",
+        "needs": [
+          "collect"
+        ]
+      },
+      {
+        "id": "send",
+        "needs": [
+          "summarize"
+        ],
+        "mutates": true
+      }
+    ]
+  },
+  "expected": {
+    "executionOrder": [
+      "collect",
+      "summarize",
+      "send"
+    ],
+    "scheduled": false
+  },
+  "invalid": {
+    "steps": [
+      {
+        "id": "a",
+        "needs": [
+          "b"
+        ]
+      },
+      {
+        "id": "b",
+        "needs": [
+          "a"
+        ]
+      }
+    ]
+  }
+}

@@ -1,38 +1,49 @@
-## Description: <br>
-Guides Chinese-speaking users through a minimalist MVP planning workflow: start manually, systematize the work, then productize only what has been validated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through a minimalist MVP approach: start manually, systematize the process, and productize only after validation.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-External founders, product builders, and agents supporting early-stage planning use this skill to narrow an MVP to one weekend-sized launch, select a simple manual or no-code implementation path, set initial pricing, and plan feedback collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ethan-china/min-mvp) <br>
-- [Publisher Profile](https://clawhub.ai/user/ethan-china) <br>
+External founders, product builders, and operators use this skill to scope a first product down to one useful, paid MVP that can launch quickly and improve from feedback.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and planning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language MVP planning advice; no code execution, data access, persistence, or hidden behavior reported by security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill is opinionated toward very small, fast-launch MVP decisions, including charging early and using existing tools, which may not fit every product context.
+
+Mitigation: Review the user's market, obligations, and readiness before applying the framework, and adapt the guidance when a more rigorous discovery, compliance, or product process is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/min-mvp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helps define the MVP's single job, simplest implementation path, weekend launch scope, initial pricing, and feedback loop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,42 @@
+# CI 覆盖率门禁（GitHub Actions 风格，可平移到 GitLab CI / 其他平台）
+# 作为 merge gate：单测 + 覆盖率门槛 + 关键 E2E。
+name: test-and-coverage
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest pytest-cov
+      # 覆盖率门槛：低于阈值则非零退出，阻断合并
+      - name: Coverage gate (core modules >= 90%)
+        run: |
+          pytest --cov=src/core --cov-fail-under=90 \
+                 --cov-report=term-missing
+      # （Node 项目改用）npx vitest run --coverage --coverage.thresholds.lines=90
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      # 关键 E2E 作为门禁；失败重试 1 次
+      - run: npx playwright test --retries=1
+
+  # 可选：性能门禁（见 references/performance-testing.md）
+  # perf:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: k6 run scripts/load.js   # 脚本内含 thresholds，失败即非零退出

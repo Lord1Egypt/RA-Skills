@@ -1,0 +1,32 @@
+{
+  "id": "cuttips-kb",
+  "name": "口播剪辑方法论 · 198 份来源知识包",
+  "version": "1.0.0",
+  "mode": "bundled",
+  "sourceRepository": "https://github.com/maojiebc/majia-zimeiti",
+  "sourceRevision": "c7b73a90fecd0bb97e103466e3b7ddd8a7c89672",
+  "sourceSite": "https://www.majia.ai/cuttips/",
+  "license": "Repository terms apply; public metadata snapshot only",
+  "generatedAt": "2026-07-25T06:49:17.612Z",
+  "content": {
+    "categories": 12,
+    "knowledgeItems": 48,
+    "rules": 14,
+    "sources": 198,
+    "reviewedSources": 191,
+    "secondaryReviewPending": 7
+  },
+  "files": {
+    "categories.json": "sha256:a475203568a4d4739b68ea113c8cc80ac58169e5b648f38318abe2e6a38703d5",
+    "knowledge-items.json": "sha256:0d0080d46e24e34645a88bc615aef02a5fc21e3932dc63c853eb9da4a47c8d68",
+    "rules.json": "sha256:c4f2897374aaff2d5fee7cac1e1104120d92d247c3c2af187f64c9fe4ca44371",
+    "sources.json": "sha256:ab1c7aaf389c8915288c04580c6f5f9f248174393196c6d925f8ad13355fe83f",
+    "stats.json": "sha256:e32ea90ff822450042636bcde8b9b515ef8bc7ccdcbac607f311a90d0bd1d504"
+  },
+  "authority": "advisory",
+  "constraints": [
+    "不得覆盖 rules/policy.json、内容真相、隐私、字幕、证据或发布门禁",
+    "B 级来源只能产生待人工复核的候选",
+    "知识卡只提供方法候选，不代表真实 ChatCut runtime 能力"
+  ]
+}

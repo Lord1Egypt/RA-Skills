@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "purpose": "信用风险抽取固定章节集：宿主应按节纳入，不得再按关键词临时抽约12页。",
+  "task": "credit_risk_annual_report",
+  "sections": [
+    {
+      "id": "audit_opinion",
+      "name_zh": "审计意见",
+      "aliases_zh": ["审计报告", "关键审计事项", "非标意见", "保留意见", "无法表示意见", "否定意见"],
+      "sec_labels": ["AUDIT"],
+      "required": true
+    },
+    {
+      "id": "mda",
+      "name_zh": "管理层讨论与分析",
+      "aliases_zh": ["经营情况讨论与分析", "董事会报告", "风险因素"],
+      "sec_labels": ["MDA"],
+      "required": true
+    },
+    {
+      "id": "guarantees",
+      "name_zh": "担保",
+      "aliases_zh": ["对外担保", "担保事项", "承诺及或有事项"],
+      "sec_labels": ["NOTE_CONTINGENT", "MAJOR"],
+      "required": true
+    },
+    {
+      "id": "borrowings",
+      "name_zh": "借款",
+      "aliases_zh": ["短期借款", "长期借款", "一年内到期的非流动负债", "应付债券", "借款费用"],
+      "sec_labels": ["NOTE_DEBT"],
+      "required": true
+    },
+    {
+      "id": "related_party",
+      "name_zh": "关联方",
+      "aliases_zh": ["关联方及关联交易", "关联交易", "资金占用"],
+      "sec_labels": ["NOTE_RP", "MAJOR"],
+      "required": true
+    },
+    {
+      "id": "litigation",
+      "name_zh": "诉讼",
+      "aliases_zh": ["重大诉讼", "仲裁", "或有负债"],
+      "sec_labels": ["MAJOR", "NOTE_CONTINGENT"],
+      "required": true
+    },
+    {
+      "id": "impairment",
+      "name_zh": "减值",
+      "aliases_zh": ["资产减值", "信用减值", "商誉减值", "存货跌价", "坏账准备"],
+      "sec_labels": ["NOTE_AR", "NOTE_INV", "NOTE_OAR", "MDA", "KEYFIN"],
+      "required": true
+    },
+    {
+      "id": "going_concern",
+      "name_zh": "持续经营",
+      "aliases_zh": ["持续经营能力", "财务报表编制基础", "流动性风险"],
+      "sec_labels": ["NOTE_GOING", "AUDIT", "MDA"],
+      "required": true
+    }
+  ],
+  "host_rules": [
+    "信用风险任务必须按本清单整节纳入抽取范围（允许节内过长时截断并在 extraction-notes 说明）。",
+    "禁止仅用关键词 TOPK 临时挑约12页替代本清单。",
+    "节缺失时在覆盖说明中显式记录，不得静默跳过。"
+  ]
+}

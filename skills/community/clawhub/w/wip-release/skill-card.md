@@ -1,46 +1,58 @@
-## Description: <br>
-One-command release pipeline. Bumps version, updates changelog + SKILL.md, publishes to npm + GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-command release pipeline. Bumps version, updates changelog + SKILL.md, publishes to npm + GitHub.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and release engineers use this skill to automate package releases from a repository, including version bumps, changelog and SKILL.md updates, tagging, npm and GitHub publishing, and ClawHub publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish packages, create GitHub releases, deploy public mirrors, merge or delete branches, close issues, and use local npm, GitHub, 1Password, and ClawHub credentials. <br>
-Mitigation: Install and run it only in trusted repositories with scoped credentials; use --dry-run first and use --no-publish or --no-deploy-public when publishing or public sync is not intended. <br>
-Risk: A configured websiteRepo or deploy.sh target can cause website publication during the release flow. <br>
-Mitigation: Review .publish-skill.json, WIP_WEBSITE_REPO, and deploy.sh before release execution. <br>
+## Use Case:
 
+Developers and release engineers use Wip Release to automate package releases, including version bumps, changelog and SKILL.md synchronization, git tagging, npm publishing, GitHub releases, and ClawHub publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/wip-release) <br>
-- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [npm package](https://www.npmjs.com/package/@wipcomputer/wip-release) <br>
-- [Project homepage](https://github.com/wipcomputer/wip-release) <br>
-- [Universal Interface Spec](https://github.com/wipcomputer/wip-universal-installer/blob/main/SPEC.md) <br>
-- [README](artifact/README.md) <br>
-- [Reference](artifact/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with CLI commands, module API examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute release automation that mutates repository state and publishes packages when invoked with credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release metadata) <br>
+Risk: The skill can publish packages and releases, run repository deployment scripts, and use authenticated publishing accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted repositories, start with dry-run, review configured deploy scripts and website paths, and limit npm and GitHub credentials before non-dry-run releases.
+
+Risk: Release cleanup actions can affect branches, worktrees, and repository state.
+
+Mitigation: Run from clean, backed-up working trees and review repository status before allowing cleanup or publication steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/wip-release)
+- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks)
+- [Project homepage](https://github.com/wipcomputer/wip-release)
+- [npm package](https://www.npmjs.com/package/@wipcomputer/wip-release)
+- [README](artifact/README.md)
+- [Reference](artifact/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated or updated repository files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can change package metadata, changelogs, tags, releases, npm packages, and ClawHub publication state when run without dry-run.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

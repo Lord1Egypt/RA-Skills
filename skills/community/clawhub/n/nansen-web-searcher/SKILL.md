@@ -4,8 +4,6 @@ description: Search the web for one or more queries in parallel. Use when you ne
 metadata:
   openclaw:
     requires:
-      env:
-        - NANSEN_API_KEY
       bins:
         - nansen
     primaryEnv: NANSEN_API_KEY
@@ -15,6 +13,11 @@ metadata:
         bins: [nansen]
 allowed-tools: Bash(nansen:*)
 ---
+## Authentication
+
+Nansen account API calls accept a selected `nansen:api` browser session or conventional API key with the same permissions. `NANSEN_API_KEY` takes precedence; optional `primaryEnv` preserves configured-key injection. Run `nansen auth status` for offline selection. Cached access expiry alone permits automatic renewal during an authorized task. Stop on anonymous selection, invalid state, blocked/uncertain renewal or actual auth failure; never drop a credential or fall back to anonymous x402 payment. Browser login does not grant wallet signing, privileged service identity or a persistent MCP integration key. Preserve all confirmation, signing, sanctions and geographic checks below. Browser login is enabled in production within the [documented platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope).
+
+
 
 # Web Search
 
@@ -36,4 +39,4 @@ Positional args and `--query` flags can be combined — all become queries.
 
 Returns `results[]` — one entry per query, each with `organic[]` (title, link, snippet, date) and optional `knowledge_graph`.
 
-**Note:** Some domains are excluded from results (paywalled/unfetchable sites like bloomberg.com, twitter.com). Use `nansen web fetch` to retrieve content from specific URLs.
+**Note:** Some domains are excluded from results (paywalled/unfetchable sites like bloomberg.com, twitter.com).

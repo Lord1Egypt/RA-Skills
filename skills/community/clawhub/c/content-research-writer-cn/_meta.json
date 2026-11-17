@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "content-research-writer-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771605092479
+  "metadata": {
+    "openclaw": {
+      "name": "content-research-writer-cn",
+      "title": "内容研究写作助手",
+      "description": "自动研究、分析和创作高质量内容，支持多平台发布和 SEO 优化",
+      "version": "1.0.0",
+      "category": "内容创作",
+      "tags": ["写作", "内容研究", "seo", "文章创作", "内容营销"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/content-research-writer-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

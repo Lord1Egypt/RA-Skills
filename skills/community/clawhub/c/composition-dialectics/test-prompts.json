@@ -1,0 +1,52 @@
+{
+  "skill": "composition-dialectics",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "构图法则到底要不要遵守？",
+      "expected_behavior": "调用 composition-dialectics，讲解先掌握再突破的辩证观",
+      "notes": "正面场景：构图法则态度"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "composition rules important? should I break them?",
+      "expected_behavior": "调用 composition-dialectics，讲解法则与自由的关系",
+      "notes": "正面场景：构图法则哲学"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "看到别人不按三分法也拍出了好照片，为什么？",
+      "expected_behavior": "调用 composition-dialectics，解释法则不是成功的保证",
+      "notes": "正面场景：打破法则的困惑"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "三分法具体怎么操作？",
+      "expected_behavior": "不应调用 composition-dialectics，应调用 composition-eight-questions",
+      "notes": "跨 skill 混淆诱饵：具体构图技术问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这张照片好不好？",
+      "expected_behavior": "不应调用 composition-dialectics，应调用 photo-three-principles",
+      "notes": "跨 skill 混淆诱饵：照片评价问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我是初学者，需要学构图法则吗？",
+      "expected_behavior": "边界模糊——涉及学习路径建议，可调用但重点在建议而非哲学讨论",
+      "notes": "边界：学习建议"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

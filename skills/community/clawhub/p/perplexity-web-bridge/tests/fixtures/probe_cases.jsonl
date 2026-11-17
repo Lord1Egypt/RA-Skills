@@ -1,0 +1,30 @@
+{"id": 0, "state": "ppxt_home", "site": "ppxt", "goal": "把问题输入到对话输入框", "state_sig": "url=https://www.perplexity.ai/|rows=51", "expect": {"op": "TYPE_TEXT", "target": 44}}
+{"id": 1, "state": "ppxt_home", "site": "ppxt", "goal": "打开模型选择器", "state_sig": "url=https://www.perplexity.ai/|rows=51", "expect": {"op": "CLICK", "target": 48}}
+{"id": 2, "state": "ppxt_home", "site": "ppxt", "goal": "暂不操作，等待页面响应", "state_sig": "url=https://www.perplexity.ai/|rows=51", "expect": {"op": "WAIT", "target": null}}
+{"id": 3, "state": "ppxt_explore", "site": "ppxt", "goal": "返回首页", "state_sig": "url=https://www.perplexity.ai/explore|rows=1", "expect": {"op": "CLICK", "target": 0}}
+{"id": 4, "state": "ppxt_explore", "site": "ppxt", "goal": "确认当前页面已完成目标，无需再操作", "state_sig": "url=https://www.perplexity.ai/explore|rows=1", "expect": {"op": "DONE", "target": null}}
+{"id": 5, "state": "ppxt_explore", "site": "ppxt", "goal": "暂不操作，等待页面响应", "state_sig": "url=https://www.perplexity.ai/explore|rows=1", "expect": {"op": "WAIT", "target": null}}
+{"id": 6, "state": "ppxt_library", "site": "ppxt", "goal": "新建一个会话", "state_sig": "url=https://www.perplexity.ai/library|rows=46", "expect": {"op": "CLICK", "target": 2}}
+{"id": 7, "state": "ppxt_library", "site": "ppxt", "goal": "打开会话搜索", "state_sig": "url=https://www.perplexity.ai/library|rows=46", "expect": {"op": "CLICK", "target": 0}}
+{"id": 8, "state": "ppxt_library", "site": "ppxt", "goal": "暂不操作，等待页面响应", "state_sig": "url=https://www.perplexity.ai/library|rows=46", "expect": {"op": "WAIT", "target": null}}
+{"id": 9, "state": "gh_tree", "site": "github", "goal": "把文件名输入到文件搜索框", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/tree/main|rows=104", "expect": {"op": "TYPE_TEXT", "target": 20}}
+{"id": 10, "state": "gh_tree", "site": "github", "goal": "打开 jev_ultrafast 源码目录", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/tree/main|rows=104", "expect": {"op": "CLICK", "target": 33}}
+{"id": 11, "state": "gh_tree", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/tree/main|rows=104", "expect": {"op": "WAIT", "target": null}}
+{"id": 12, "state": "gh_blob", "site": "github", "goal": "打开源码文件 model.py", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/blob/main/README.md|rows=57", "expect": {"op": "CLICK", "target": 47}}
+{"id": 13, "state": "gh_blob", "site": "github", "goal": "查看该文件的 Raw 原始内容", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/blob/main/README.md|rows=57", "expect": {"op": "CLICK", "target": 25}}
+{"id": 14, "state": "gh_blob", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/blob/main/README.md|rows=57", "expect": {"op": "WAIT", "target": null}}
+{"id": 15, "state": "gh_repo", "site": "github", "goal": "把文件名输入到文件搜索框", "state_sig": "url=https://github.com/browser-use/jev-ultrafast|rows=114", "expect": {"op": "TYPE_TEXT", "target": 20}}
+{"id": 16, "state": "gh_repo", "site": "github", "goal": "查看 Issues 列表", "state_sig": "url=https://github.com/browser-use/jev-ultrafast|rows=114", "expect": {"op": "CLICK", "target": 6}}
+{"id": 17, "state": "gh_repo", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast|rows=114", "expect": {"op": "WAIT", "target": null}}
+{"id": 18, "state": "gh_issues", "site": "github", "goal": "切换到 Pull requests", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/issues|rows=106", "expect": {"op": "CLICK", "target": 7}}
+{"id": 19, "state": "gh_issues", "site": "github", "goal": "回到代码页", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/issues|rows=106", "expect": {"op": "CLICK", "target": 5}}
+{"id": 20, "state": "gh_issues", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/issues|rows=106", "expect": {"op": "WAIT", "target": null}}
+{"id": 21, "state": "gh_pulls", "site": "github", "goal": "切换到 Issues", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/pulls|rows=130", "expect": {"op": "CLICK", "target": 6}}
+{"id": 22, "state": "gh_pulls", "site": "github", "goal": "回到代码页", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/pulls|rows=130", "expect": {"op": "CLICK", "target": 5}}
+{"id": 23, "state": "gh_pulls", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/pulls|rows=130", "expect": {"op": "WAIT", "target": null}}
+{"id": 24, "state": "gh_actions", "site": "github", "goal": "回到代码页", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/actions|rows=45", "expect": {"op": "CLICK", "target": 5}}
+{"id": 25, "state": "gh_actions", "site": "github", "goal": "打开列表顶部的 CodeQL 工作流运行记录 Run 4", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/actions|rows=45", "expect": {"op": "CLICK", "target": 30}}
+{"id": 26, "state": "gh_actions", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/browser-use/jev-ultrafast/actions|rows=45", "expect": {"op": "WAIT", "target": null}}
+{"id": 27, "state": "gh_search", "site": "github", "goal": "打开第一个搜索结果仓库", "state_sig": "url=https://github.com/search?q=browser+agent&type=repositories|rows=122", "expect": {"op": "CLICK", "target": 37}}
+{"id": 28, "state": "gh_search", "site": "github", "goal": "确认搜索结果已满足目标，无需再操作", "state_sig": "url=https://github.com/search?q=browser+agent&type=repositories|rows=122", "expect": {"op": "DONE", "target": null}}
+{"id": 29, "state": "gh_search", "site": "github", "goal": "暂不操作，等待页面加载", "state_sig": "url=https://github.com/search?q=browser+agent&type=repositories|rows=122", "expect": {"op": "WAIT", "target": null}}

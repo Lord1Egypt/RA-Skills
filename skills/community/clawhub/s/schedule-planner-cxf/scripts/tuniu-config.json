@@ -1,0 +1,12 @@
+{
+  "defaultProfile": "production",
+  "profiles": {
+    "production": {
+      "servers": {
+        "flight": { "url": "https://openapi.tuniu.cn/mcp/flight", "headers": { "apiKey": "${TUNIU_API_KEY}" } },
+        "train": { "url": "https://openapi.tuniu.cn/mcp/train", "headers": { "apiKey": "${TUNIU_API_KEY}" } },
+        "hotel": { "url": "https://openapi.tuniu.cn/mcp/hotel", "headers": { "apiKey": "${TUNIU_API_KEY}" } }
+      }
+    }
+  }
+}

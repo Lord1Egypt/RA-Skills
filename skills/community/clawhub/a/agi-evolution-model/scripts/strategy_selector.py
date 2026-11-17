@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 策略选择器（四步纠错法的智能增强）
 
@@ -18,6 +24,7 @@
 from typing import Dict, Optional, List
 from dataclasses import dataclass, asdict
 from enum import Enum
+from interfaces import TraceContext, create_trace_context
 
 
 class Strategy(Enum):
@@ -466,3 +473,11 @@ if __name__ == '__main__':
     print()
     
     print("=== 所有测试完成 ===")
+
+
+# 错误处理
+def _handle_error(error: Exception, context: str = "") -> None:
+    """处理错误"""
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.error(f"错误发生在 {context}: {str(error)}", exc_info=True)

@@ -1,48 +1,62 @@
-## Description: <br>
-Control Safari on macOS with AppleScript, safaridriver, screenshots, tab navigation, and real-browser read, click, and type workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Safari on macOS with AppleScript, safaridriver, screenshots, tab navigation, and real-browser read, click, and type workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill to control Safari on macOS when a workflow depends on the user's real Safari session, Safari-specific rendering, AppleScript automation, screenshots, or isolated safaridriver sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to interact with a user's live Safari session, including tabs, cookies, logged-in pages, screenshots, typing, and clicking. <br>
-Mitigation: Require explicit approval for live-session clicks, typing, screenshots, tab switching, and other sensitive browser actions. <br>
-Risk: Automation notes stored under ~/safari/ may retain durable Safari control context that the user no longer wants kept. <br>
-Mitigation: Periodically review or delete ~/safari/ when retained Safari automation notes are no longer useful. <br>
-Risk: Using the daily Safari profile for repetitive automation can expose personal session state unnecessarily. <br>
-Mitigation: Prefer isolated WebDriver mode when real-session browser state is not required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to control Safari on macOS when work depends on a real Safari session, logged-in browser state, Safari-specific rendering, or an isolated safaridriver session.
 
-## Reference(s): <br>
-- [Safari Browser Control on ClawHub](https://clawhub.ai/ivangdavila/safari) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Preflight and Permissions](artifact/preflight-and-permissions.md) <br>
-- [AppleScript Control](artifact/applescript-control.md) <br>
-- [WebDriver and BiDi](artifact/webdriver-and-bidi.md) <br>
-- [Screenshot and Visual Loop](artifact/screenshot-and-visual-loop.md) <br>
-- [Troubleshooting](artifact/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell, AppleScript, JavaScript, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external requests are made by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Live Safari control can expose open tabs, cookies, login state, clipboard, downloads, and visible page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before reading tabs, switching windows, capturing screenshots, clicking, typing, or writing local notes; prefer WebDriver or a dedicated Safari profile for risky work.
+
+Risk: Blind clicks or keystrokes can affect the wrong page or application.
+
+Mitigation: Run a read preflight and verify the title, URL, DOM text, focus, or screenshot before each meaningful action.
+
+Risk: Local notes under ~/safari/ could retain sensitive browsing context if overused.
+
+Mitigation: Store only durable permission state, approved recipes, snippets, and incident summaries; do not store secrets, raw history exports, or full browsing archives.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/safari)
+- [Safari Browser Control Homepage](https://clawic.com/skills/safari)
+- [AppleScript Control](artifact/applescript-control.md)
+- [WebDriver and BiDi](artifact/webdriver-and-bidi.md)
+- [Preflight and Permissions](artifact/preflight-and-permissions.md)
+- [Screenshot and Visual Loop](artifact/screenshot-and-visual-loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, AppleScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Safari operating notes under ~/safari/ when the user approves persistent storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

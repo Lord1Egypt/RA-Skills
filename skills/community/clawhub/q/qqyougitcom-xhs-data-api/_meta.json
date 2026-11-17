@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7ejmzgqbk9x16s0ck40cbnsx87wqm8",
-  "slug": "qqyougitcom-xhs-data-api",
-  "version": "1.3.1",
-  "publishedAt": 1781580486351
+  "owner": "sxcvicky",
+  "slug": "xhs-data-api",
+  "displayName": "小红书数据分析",
+  "latest": {
+    "version": "0.3.0",
+    "publishedAt": 1776137434524,
+    "commit": "https://github.com/openclaw/skills/commit/e1516cb0e6e745b8bd19f8800c5a15500707ea97"
+  },
+  "history": []
 }

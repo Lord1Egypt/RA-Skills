@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 供应商反馈清单"
+  short_description: "把评论质量问题整理成供应商沟通要点"
+  default_prompt: "使用 $amazon-supplier-feedback 把 Amazon 评论中的产品问题整理成供应商反馈清单。"

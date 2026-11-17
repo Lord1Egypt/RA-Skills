@@ -1,0 +1,23 @@
+{
+  "project": {
+    "project_name": "q-ray",
+    "total_files": 8,
+    "total_directories": 3,
+    "languages": {
+      "Python": 6
+    },
+    "files": [
+      "SKILL.md",
+      "scripts/run_qray.py",
+      "scripts/find_key_files.py",
+      "scripts/scan_repo.py",
+      "scripts/complexity.py",
+      "scripts/detect_stack.py",
+      "scripts/render_report.py",
+      "assets/report-template.html"
+    ]
+  },
+  "stack": {
+    "technology_stack": []
+  }
+}

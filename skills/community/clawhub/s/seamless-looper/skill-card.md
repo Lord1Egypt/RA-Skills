@@ -1,41 +1,49 @@
-## Description: <br>
-Create seamless looping MP4 videos with smooth crossfade transitions, doubling video length for ambient or background loops without audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates seamless looping MP4 videos with smooth crossfade transitions for ambient or background footage, producing visual-only outputs without audio.
 
-## Publisher: <br>
-[gullish42069](https://clawhub.ai/user/gullish42069) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gullish42069](https://clawhub.ai/user/gullish42069)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to batch-create seamless visual-only MP4 loops for ambient backgrounds, social clips, projection content, website hero videos, and intro or outro bumpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Existing files named like original_looped.mp4 in the output directory can be overwritten. <br>
-Mitigation: Use a dedicated or empty output directory before running the loop script. <br>
-Risk: Generated looped videos do not preserve audio. <br>
-Mitigation: Use the skill only for visual-only loop outputs, or handle audio separately outside this workflow. <br>
+## Use Case:
 
+Creators, video editors, and developers use this skill to batch-process MP4 clips into ambient or background loops for streams, social media, projection, websites, and intro or outro bumpers.
 
-## Reference(s): <br>
-- [Seamless Looper Tips & Use Cases](references/tips.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gullish42069/seamless-looper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs visual-only files named <filename>_looped.mp4 in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The crossfade argument is unvalidated and can execute unintended local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the script before installing, and pass only a simple trusted numeric crossfade value.
+
+## Reference(s):
+
+- [Seamless Looper Tips and Use Cases](references/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown guidance with bash command examples; generated files are visual-only MP4 videos.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are named <filename>_looped.mp4, omit audio, and are documented as twice the input duration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

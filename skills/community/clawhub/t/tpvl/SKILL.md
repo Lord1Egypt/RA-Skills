@@ -10,98 +10,99 @@ metadata:
 
 # TPVL Skill - 台灣職業排球聯盟資訊查詢 🏐
 
-Query TPVL game results, schedules, and standings for the Taiwan Professional Volleyball League.
+Query TPVL game results, schedules, standings, and player leaderboards.
 
 ## Data Sources
 
-| Source | Description |
-|--------|-------------|
-| TPVL official website | Game results, schedule, standings via `__NEXT_DATA__` SSR JSON |
+| Source | URL | Description |
+|--------|-----|-------------|
+| 賽程 / 比分 | `https://tpvl.tw/matches` | 已完賽比分 + 未來賽程 |
+| 戰績 | `https://tpvl.tw/standings` | 例行賽排名（官網已依規程排序） |
+| 球員榜 | `https://tpvl.tw/stats/players` | 得分 / 攻擊 / 攔網 / 發球 / 接發 / 防守 / 舉球 |
 
-**Note:** TPVL's `/api/*` endpoints require authentication (401). All data is extracted from server-side rendered `__NEXT_DATA__` JSON embedded in page HTML.
+**⚠️ 2026 官網改版（重要）：** 網站已從 Next.js Pages Router 改成 **App Router**，
+`__NEXT_DATA__` 已消失，舊的 `/schedule/schedule`、`/record` 也改成 `/matches`、`/standings`。
+資料現在藏在 **RSC flight payload**（`self.__next_f.push([...])`），
+`_tpvl_api.py` 會自動抽出 payload、展開 `"$L<id>"` lazy 參照後解析。
 
-- Homepage (`/`): Recent 5 completed + 5 upcoming matches + rankings
-- Schedule page (`/schedule/schedule`): All completed match data (82+ games)
-- Record page (`/record`): Full team standings with detailed stats
+## Teams (2026-27 Season, 5 隊)
 
-## Teams (2025-26 Season)
+| Team | English | Slug |
+|------|---------|------|
+| 臺中連莊 | Taichung Winstreak | `taichung-winstreak` |
+| 台鋼天鷹 | TSG SkyHawks | `tsg-skyhawks` |
+| 臺北伊斯特 | Taipei East Power | `taipei-east-power` |
+| 桃園雲豹飛將 | Taoyuan Leopards | `taoyuan-leopards` |
+| 新竹可利工程師 | Hsinchu Collie | `hsinchu-collie-engineers` |
 
-| Team | English |
-|------|---------|
-| 臺中連莊 | Taichung Winstreak |
-| 台鋼天鷹 | TSG SkyHawks |
-| 臺北伊斯特 | Taipei East Power |
-| 桃園雲豹飛將 | Taoyuan Leopards |
+2026-27 新增第 5 隊：**新竹可利工程師**（Hsinchu Collie）。
 
 ## Features
 
 | Feature | Script | Source | Status |
 |---------|--------|--------|--------|
-| Game results | `tpvl_games.py` | TPVL `/schedule/schedule` page | ✅ |
-| Schedule | `tpvl_schedule.py` | TPVL homepage + schedule page | ✅ |
-| Standings | `tpvl_standings.py` | TPVL `/record` page | ✅ |
-| Player stats | `tpvl_stats.py` | Auto-detects TPVL pages | 🔄 Auto-detect |
-
-## Game Type Codes
-
-目前 TPVL 官網僅有單一賽事類型（例行賽），資料結構中只有一組 `seasonId`/`divisionId`/`poolId`：
-- **seasonId**: 171
-- **divisionId**: 272
-- **poolId**: 443
-- **round**: 3 ~ 5（巡迴賽輪次）
-
-沒有明確的例行賽/季後賽/總冠軍賽區分。官網也沒有對應的篩選 UI。若未來球季加入季後賽，將新增 `--kind` 參數支援。
-
-## Player Stats
-
-`tpvl_stats.py` 會自動偵測 TPVL 官網球員數據頁面是否可用（路由 `/results/player-introduction`、`/results/competition-data`）。若頁面已開放，將自動取得實際數據；若仍為 404 則回傳空資料。
+| Game results | `tpvl_games.py` | `/matches` | ✅ |
+| Schedule | `tpvl_schedule.py` | `/matches` | ✅ |
+| Standings | `tpvl_standings.py` | `/standings` | ✅ |
+| Player stats | `tpvl_stats.py` | `/stats/players` | ✅ |
 
 ## Quick Start
 
-All scripts use `uv run` for dependency management.
+All scripts use `uv run`（依賴會自動安裝）。
 
-### Game Results
+### Game Results（已完賽）
 
 ```bash
 uv run scripts/tpvl_games.py --limit 10
-uv run scripts/tpvl_games.py --date 2026-03-22
+uv run scripts/tpvl_games.py --output text
+uv run scripts/tpvl_games.py --date 2026-10-18
 uv run scripts/tpvl_games.py --team 台鋼 --limit 5
-uv run scripts/tpvl_games.py --year 2025
+uv run scripts/tpvl_games.py --season 2025-26 --limit 20
 ```
 
-### Schedule
+### Schedule（未開打）
 
 ```bash
-uv run scripts/tpvl_schedule.py
-uv run scripts/tpvl_schedule.py --date 2026-03-28
-uv run scripts/tpvl_schedule.py --team 連莊
-uv run scripts/tpvl_schedule.py --all --limit 20
+uv run scripts/tpvl_schedule.py --output text
+uv run scripts/tpvl_schedule.py --date 2026-11-01
+uv run scripts/tpvl_schedule.py --team 新竹 --output text
+uv run scripts/tpvl_schedule.py --all --limit 20   # 含已完賽/延賽
 ```
 
 ### Standings
 
 ```bash
-uv run scripts/tpvl_standings.py
 uv run scripts/tpvl_standings.py --output text
+uv run scripts/tpvl_standings.py --season 2025-26
 ```
 
-### Player Stats (⚠️ Coming Soon)
+### Player Stats
 
 ```bash
-uv run scripts/tpvl_stats.py --category 得分 --top 20 --output text
-uv run scripts/tpvl_stats.py --team 台鋼 --category 攔網
+uv run scripts/tpvl_stats.py --output text --top 10
+uv run scripts/tpvl_stats.py --category 攔網 --output text
+uv run scripts/tpvl_stats.py --category 發球 --team 台鋼 --output text
+uv run scripts/tpvl_stats.py --category 攻擊 --season 2026-27
 ```
 
-## Dependencies
+可用類別：`得分`、`攻擊`、`攔網`、`發球`、`接發`、`防守`、`舉球`
+（也接受英文 key：`points`、`attack_points`、`block_points`、`serve_points`、`reception`、`dig`、`setting`）
 
-Auto-installed via `uv`:
-- `requests` — HTTP requests
-- `beautifulsoup4` — HTML parsing (reserved for future scraping needs)
-- `lxml` — Fast parser
+## Output Format
 
-## Notes
+- 預設 `--output json`（給程式用）
+- `--output text` 給人看的排版
 
-- Data source: TPVL official website (tpvl.tw)
-- Data cached for 30 minutes in `/tmp/tpvl_cache/`
-- Team name filtering supports aliases (e.g., `台鋼`, `連莊`, `伊斯特`, `桃園`)
+## Team Filtering
+
+支援中文別名：`台中`/`連莊`、`台鋼`/`天鷹`、`台北`/`伊斯特`、`桃園`/`雲豹`/`飛將`、`新竹`/`可利`/`工程師`，
+以及英文（`skyhawks`、`collie`…）。
+
+## Data Notes
+
+- 快取 30 分鐘於 `/tmp/tpvl_cache/`
+- 賽季參數：`--season 2026-27`（預設）或 `--season 2025-26`
+- 狀態值：`COMPLETED`（已結束）、`SCHEDULED`（即將開打）、`POSTPONED`（延賽）
+- 戰績排序依聯盟規程：勝場 → 積分 → 局數比 → 得失分率（官網已排好，脚本照抄順序）
+- 官網 `/api/*` 需登入（401），所以一律從 SSR payload 取資料
 - For learning and personal use only. Please follow TPVL terms of service.

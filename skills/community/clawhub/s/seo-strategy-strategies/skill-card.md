@@ -1,41 +1,50 @@
-## Description: <br>
-Helps an agent plan SEO strategy, prioritize SEO work, and map SEO tasks to related specialist skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides SEO strategy planning, prioritization, workflow order, Product-Led SEO, and related skill selection.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users and developers use this skill to create SEO roadmaps, decide what to fix first, and choose companion skills for technical SEO, keyword research, content, paid-organic alignment, and AI search visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations are planning guidance and may not fit every site, market, or search policy change. <br>
-Mitigation: Review the roadmap against current business goals, analytics, and applicable search engine guidance before acting. <br>
-Risk: The skill can recommend companion skills that may have different permissions or account access requirements. <br>
-Mitigation: Review each companion skill's card, permissions, and security findings separately before installation or use. <br>
+## Use Case:
 
+External users, marketers, founders, and developers use this skill to decide where to start with SEO, order technical, on-page, content, and off-page work, and map priorities to specialized SEO skills.
 
-## Reference(s): <br>
-- [Alignify - SEO Core Value and Challenges in AI Search Era](https://alignify.co/zh/insights/reasons-you-need-seo) <br>
-- [Backlinko - SEO and PPC: 8 Smart Ways to Align](https://backlinko.com/seo-and-ppc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured priority lists and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow phase, P0-P3 priorities, skill mapping, and a recommended next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server evidence) <br>
+Risk: SEO recommendations are Google-focused and may be less suitable for markets or audiences where Google is not dominant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the target market and preferred search engines before using the guidance, and validate business metrics before budget or roadmap decisions.
+
+## Reference(s):
+
+- [Alignify - SEO Core Value and Challenges in AI Search Era](https://alignify.co/zh/insights/reasons-you-need-seo)
+- [Backlinko - SEO and PPC: 8 Smart Ways to Align](https://backlinko.com/seo-and-ppc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown with prioritized workflow recommendations and skill mapping]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow phase, P0-P3 priority list, related skill mapping, and recommendation text.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

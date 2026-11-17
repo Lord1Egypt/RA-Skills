@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-demo-clip-maker",
-  "version": "0.1.4",
-  "publishedAt": 1771221246719
+  "name": "aoi-demo-clip-maker",
+  "version": "0.1.3",
+  "description": "macOS demo clip maker for hackathons: record screen, crop, trim, presets (terminal-only).",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["video", "ffmpeg", "hackathon", "demo", "macos"],
+  "sdna": "AOI-2026-0215-SDNA-CLIP01"
 }

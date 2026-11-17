@@ -1,39 +1,52 @@
-## Description: <br>
-Builds automation workflows from repetitive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds automation workflows from repetitive tasks.
 
-## Publisher: <br>
-[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operations teams, and other agent users can use this skill to identify repetitive manual tasks and turn them into repeatable workflows, scripts, configuration, reports, or scheduled automation proposals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may move from advice into executable automation without explicit user approval.
+
+Mitigation: Require a clear plan and an affected-files-or-systems list before implementation begins.
+
+Risk: Automation proposals may include scripts, scheduled jobs, recurring runs, generated reports, or outbound messages.
+
+Mitigation: Require separate confirmation before running scripts, creating schedules, enabling recurring execution, sending email, making API calls, or distributing reports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to identify repeated manual work, abstract it into a repeatable workflow, and draft scripts or configuration for automation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages proactive automation drafting, which can lead to scripts, scheduled jobs, email senders, file changes, or external-service actions with unintended side effects. <br>
-Mitigation: Require explicit confirmation of scope and side effects before execution, review generated code or configuration, test on a small non-production target, and keep a clear stop or rollback path. <br>
+**Output Format:** [Markdown with workflow steps and optional code, shell commands, or configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/auto-workflow-1-0-0-1) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangyingzhuangk) <br>
+**Other Properties Related to Output:** [May propose executable scripts, recurring workflows, scheduled jobs, generated reports, or outbound messages when automating repetitive work.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with scripts, commands, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed automation workflows, executable scripts, scheduled-job configuration, and test steps.] <br>
+1.0.0 (source: server release evidence, skill.json, _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata, artifact skill.json and _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

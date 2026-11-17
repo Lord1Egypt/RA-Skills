@@ -1,46 +1,57 @@
-## Description: <br>
-Compare payment processors on fees, conversion rates, and regional coverage to optimize checkout success rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare payment processors on fees, conversion rates, and regional coverage to optimize checkout success rates.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators, product teams, and developers use this skill to compare gateway fees, payment method coverage, conversion performance, and multi-gateway routing options before changing checkout infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway recommendations may rely on sensitive business inputs such as transaction volume, revenue mix, target markets, and checkout pain points. <br>
-Mitigation: Avoid sharing production API keys, secrets, or unnecessarily precise confidential revenue data with the agent; use rounded or sanitized planning data where possible. <br>
-Risk: Fee schedules, regional payment method coverage, and gateway capabilities can change after the skill reference material is published. <br>
-Mitigation: Verify current gateway pricing, local payment method availability, and compliance requirements before making routing, contract, or checkout infrastructure changes. <br>
-Risk: Payment-routing changes can affect checkout conversion, authorization rates, dispute handling, and business continuity. <br>
-Mitigation: Use staged rollout, sandbox testing, monitoring, fallback routing, and rollback planning before applying recommendations to production payment flows. <br>
+## Use Case:
 
+External ecommerce operators, payments teams, and developers use this skill to compare gateways, model fees and conversion impacts, plan routing rules, and prepare implementation roadmaps for checkout optimization.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Fee Calculation Reference](references/fee-calculation-reference.md) <br>
-- [Regional Payment Methods Guide](references/regional-payment-methods.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/payment-gateway-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with comparison tables, routing rules, cost models, implementation roadmap, and review checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users should verify current gateway fees and regional payment method data before making business or payment-routing changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Processor pricing, market-share figures, and gateway capabilities may become outdated or differ from a merchant's negotiated agreement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify fee tables and market assumptions against current official processor pricing pages and the merchant's own contracts before relying on recommendations.
+
+Risk: Payment routing or gateway migration advice can affect checkout conversion, revenue, and operational reliability.
+
+Mitigation: Review the proposed routing rules, rollout plan, and monitoring metrics with payments, engineering, and finance stakeholders before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/payment-gateway-optimizer)
+- [Output Template](references/output-template.md)
+- [Fee Calculation Reference](references/fee-calculation-reference.md)
+- [Regional Payment Methods Guide](references/regional-payment-methods.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with tables, checklists, and implementation roadmap sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only advisory output; no code execution, persistence, or hidden access behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

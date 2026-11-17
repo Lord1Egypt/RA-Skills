@@ -1,48 +1,67 @@
-## Description: <br>
-Create CompleteTech LLC security, safety, permissions, and production-readiness review artifacts for agentic development workflows, including risk intake, tool permissions, secrets handling, data exposure, prompt-injection testing, retrieval trust, approval gates, external actions, audit logging, model/provider configuration, retention, dependency risk, least privilege, launch blockers, rollback, incident response, escalation, red-team results, and security signoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates CompleteTech LLC security, safety, permissions, and production-readiness review artifacts for agentic development workflows before launch or when tools, data, credentials, integrations, retrieval sources, or external actions change.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-Developers, security reviewers, and delivery teams use this skill to select and draft practical security review artifacts for agentic workflows before launch, access expansion, configuration changes, or incident follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python rendering packages and create local Markdown, PDF, or PNG files. <br>
-Mitigation: Review the declared packages before installation and write generated files only to approved local paths. <br>
-Risk: Generated security-review artifacts are drafts and may contain placeholders or unverified project facts. <br>
-Mitigation: Replace placeholders with verified workflow, data, tool, approval, logging, rollback, and incident-response details before relying on the output. <br>
-Risk: Security-review outputs may include sensitive workflow, credential, or incident details. <br>
-Mitigation: Store generated documents in access-controlled locations and review sharing permissions before distribution. <br>
+## Use Case:
 
+Developers, security reviewers, and teams preparing agentic workflows use this skill to choose and draft security-review artifacts for permissions, data exposure, credentials, retrieval, external actions, launch readiness, rollback, incidents, and signoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/completetech/agentic-security-review-skill) <br>
-- [Project homepage](https://github.com/CompleteTech-LLC/agentic-security-review-skill) <br>
-- [Security catalog](references/security-catalog.md) <br>
-- [Security lifecycle](references/security-lifecycle.md) <br>
-- [Security positioning](references/security-positioning.md) <br>
-- [Use-case decision table](references/use-case-decision-table.md) <br>
-- [Template index](references/template-index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown drafts, branded PDF files, optional PNG previews, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts are drafts that require verified project facts before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, release metadata) <br>
+Risk: Generated security-review artifacts are drafts and may contain placeholders or unverified project facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace placeholders and verify workflow, data, tool, permission, credential, approval, logging, rollback, and incident-response facts before sharing or relying on an artifact.
+
+Risk: The PDF workflow is CompleteTech-branded and may be inappropriate for neutral or differently branded reports.
+
+Mitigation: Use the skill only when CompleteTech-branded reports are appropriate, or use Markdown-only output or edited branding defaults for neutral reporting.
+
+Risk: Python package installation and optional PDF or PNG rendering introduce dependency and runtime-environment risk.
+
+Mitigation: Pin dependencies and run installs, validation, and rendering in a restricted environment for higher-assurance use.
+
+Risk: The skill helps document security review but does not establish compliance, legal approval, penetration-test completion, or guaranteed production readiness.
+
+Mitigation: Require appropriate human, client, legal, compliance, or technical review before making those claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/completetech/skills/agentic-security-review-skill)
+- [Homepage](https://github.com/CompleteTech-LLC/agentic-security-review-skill)
+- [Security Review Catalog](references/security-catalog.md)
+- [Use-Case Decision Table](references/use-case-decision-table.md)
+- [Security Review Lifecycle](references/security-lifecycle.md)
+- [Security Positioning](references/security-positioning.md)
+- [Template Index](references/template-index.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown drafts and optional branded PDF files, with inline shell commands for rendering.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft artifacts require verified project facts before sharing, storing, or relying on them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

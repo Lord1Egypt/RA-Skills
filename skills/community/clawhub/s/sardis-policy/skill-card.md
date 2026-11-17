@@ -1,42 +1,60 @@
-## Description: <br>
-Natural language spending policy creation and management for Sardis agent wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language spending policy creation and management for Sardis agent wallets.
 
-## Publisher: <br>
-[EfeDurmaz16](https://clawhub.ai/user/EfeDurmaz16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[efedurmaz16](https://clawhub.ai/user/efedurmaz16)
 
-## Use Case: <br>
-Developers and operators use this skill to define, create, list, and test Sardis wallet spending policies for agent payments, including limits, vendor controls, time restrictions, and approval thresholds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent create or replace real Sardis wallet spending policies when a Sardis API key is available. <br>
-Mitigation: Use a least-privilege Sardis API key and require review of the exact wallet ID, parsed rules, limits, vendors, approval thresholds, and replacement target before any POST request. <br>
-Risk: High-limit, auto-approve, or unrestricted policy templates could permit unintended spending if used unattended. <br>
-Mitigation: Avoid unattended use of high-limit, auto-approve, or unrestricted templates, and use dry-run policy checks before relying on a policy for payments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EfeDurmaz16/sardis-policy) <br>
-- [Sardis Website](https://sardis.sh) <br>
-- [Sardis Policy Documentation](https://sardis.sh/docs/policies) <br>
-- [Sardis API Reference](https://api.sardis.sh/v2/docs) <br>
+## Use Case:
 
+Developers and operators use this skill to create, inspect, test, and version Sardis spending policies for agent wallets, including limits, vendor restrictions, category controls, and approval thresholds.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SARDIS_API_KEY, curl, and jq; examples target the Sardis API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make durable spending-policy changes when used with a Sardis API key.
+
+Mitigation: Use a least-privileged SARDIS_API_KEY and review every policy before creation or replacement.
+
+Risk: Permissive policy templates or natural-language descriptions may allow broader spending than intended.
+
+Mitigation: Prefer explicit limits, vendor allowlists, approval thresholds, and dry-run policy checks before relying on a policy.
+
+Risk: The shell examples include JSON bodies assembled in shell commands.
+
+Mitigation: Use pinned dependencies and safer jq-built JSON request bodies before copying examples into automation.
+
+## Reference(s):
+
+- [Sardis Website](https://sardis.sh)
+- [Sardis Policy Documentation](https://sardis.sh/docs/policies)
+- [Sardis API Reference](https://api.sardis.sh/v2/docs)
+- [ClawHub Skill Page](https://clawhub.ai/efedurmaz16/skills/sardis-policy)
+- [Publisher Profile](https://clawhub.ai/user/efedurmaz16)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Sardis API key plus curl and jq for the documented command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

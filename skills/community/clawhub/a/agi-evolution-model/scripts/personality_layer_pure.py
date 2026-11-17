@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 映射层数据支持模块（混合实现）
 
@@ -17,51 +23,43 @@ import time
 from typing import Dict, Optional, List
 from dataclasses import dataclass, asdict
 from enum import Enum
+from interfaces import TraceContext, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+from validation_framework import ValidationError, validate_params, validate_params
 
 # 尝试加载 C 扩展，失败则使用纯 Python 实现
+# 使用集中加载器（c_ext_loader）按显式文件路径加载 .so/.pyd，并按必需符号校验，
+# 彻底规避「命名空间包遮蔽 / 路径分叉 / 平台格式」类历史问题（BUG-2 / BUG-3）。
 try:
-    # 导入sys模块
     import sys
-    
-    # 获取当前脚本所在目录的父目录（scripts 目录）
+    import os
     scripts_dir = os.path.dirname(os.path.abspath(__file__))
-    core_dir = os.path.join(scripts_dir, 'personality_core')
+    if scripts_dir not in sys.path:
+        sys.path.insert(0, scripts_dir)
+    from c_ext_loader import load_c_extension, PERSONALITY_CORE_SYMBOLS
 
-    if core_dir not in sys.path:
-        sys.path.insert(0, core_dir)
+    _pc_mod, USE_C_EXT, _pc_detail = load_c_extension(
+        "personality_core", required_symbols=PERSONALITY_CORE_SYMBOLS,
+        runtime_probe=("calculate_similarity", ([0.5] * 5, [0.5] * 5), {}))
 
-    import personality_core
-
-    # 新增：显式验证是否真的加载了 C 扩展
-    module_path = personality_core.__file__
-    is_c_extension = module_path.endswith('.so') or module_path.endswith('.pyd')
-
-    if is_c_extension:
-        USE_C_EXT = True
-        print(f"✅ C 扩展已启用: {module_path}")
+    if USE_C_EXT:
+        print(f"✅ {_pc_detail}")
+        personality_core = _pc_mod
     else:
-        # 如果加载的是 Python 模块而不是 C 扩展，降级
-        USE_C_EXT = False
-        print(f"⚠️ personality_core 加载成功但不是 C 扩展，降级到纯 Python: {module_path}")
-        
-        # 导入纯 Python 实现
-        from personality_core_pure import (
-            normalize_weights as core_normalize_weights,
-            calculate_similarity as core_calculate_similarity,
-            compute_maslow_priority as core_compute_maslow_priority,
-            compute_all_scores as core_compute_all_scores
-        )
+        print(f"⚠️ {_pc_detail}")
+        import personality_core_pure as personality_core
 
-except ImportError as e:
+except Exception as e:
     USE_C_EXT = False
     print(f"ℹ️ C 扩展加载失败，使用纯 Python 实现: {e}")
-    
-    from personality_core_pure import (
-        normalize_weights as core_normalize_weights,
-        calculate_similarity as core_calculate_similarity,
-        compute_maslow_priority as core_compute_maslow_priority,
-        compute_all_scores as core_compute_all_scores
-    )
+    import personality_core_pure as personality_core
+
+# 统一别名（C 扩展 与 纯 Python 实现共用，后续代码无需感知差异）
+core_normalize_weights = personality_core.normalize_weights
+core_calculate_similarity = personality_core.calculate_similarity
+core_compute_maslow_priority = personality_core.compute_maslow_priority
+core_compute_all_scores = personality_core.compute_all_scores
 
 
 class PersonalityType(Enum):

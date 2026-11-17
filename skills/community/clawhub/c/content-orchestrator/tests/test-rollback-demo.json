@@ -1,0 +1,18 @@
+{
+  "pipeline_type": "test-rollback-demo",
+  "version": "1.0.0",
+  "display_name": "回滚测试插件",
+  "description": "R69回滚恢复验证用临时插件",
+  "steps": [
+    {
+      "id": "step1",
+      "name": "测试步骤1",
+      "action": "noop"
+    },
+    {
+      "id": "step2",
+      "name": "测试步骤2",
+      "action": "noop"
+    }
+  ]
+}

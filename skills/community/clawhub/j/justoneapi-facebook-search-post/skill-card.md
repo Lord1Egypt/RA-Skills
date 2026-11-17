@@ -1,41 +1,51 @@
-## Description: <br>
-Call GET /api/facebook/search-post/v1 for Facebook Post Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/facebook/search-post/v1 for Facebook Post Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external agents use this skill to call JustOneAPI's Facebook post search endpoint by keyword, optionally with date range and pagination filters, then summarize and return the response JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent to the service as a URL query parameter. <br>
-Mitigation: Use a scoped token if available, avoid sharing request URLs or logs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External developers and agents use this skill to search public Facebook posts by keyword through JustOneAPI and summarize matched results, metadata, ranking signals, engagement, and reach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-facebook-search-post) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook_search_post&utm_content=project_link) <br>
-- [Just One API dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook_search_post&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the API helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN; keyword is required, while startDate, endDate, and cursor are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a JustOneAPI token through command-line arguments and request URLs, which may expose the token in local process telemetry or service-side URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived or narrowly scoped tokens, rotate tokens after testing, avoid sensitive search keywords, and review before installing with a real token.
+
+## Reference(s):
+
+- [JustOneAPI API homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook_search_post&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook_search_post&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown summary with shell command examples and optional raw JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN environment token; required lookup input is keyword, with optional startDate, endDate, and cursor query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

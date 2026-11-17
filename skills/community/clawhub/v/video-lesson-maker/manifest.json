@@ -1,0 +1,18 @@
+{
+  "name": "video-lesson-maker",
+  "displayName": "视频主题凝练及制作",
+  "version": "1.0.0",
+  "author": "lengzheng2026",
+  "description": "基于一篇文档（教材/课件/科普文章）凝练教学视频主题，并用白板手绘动画 + 云希配音 + 同步字幕批量制作科普/教学视频。自包含脚本（渲染/合并/配音/字幕）与手部素材，已在本机 10 部教学视频上跑通。",
+  "keywords": ["video", "education", "whiteboard-animation", "tts", "subtitle", "courseware", "科普视频", "教学视频"],
+  "entry": "SKILL.md",
+  "category": "教育 / 视频制作",
+  "tags": ["视频制作", "教学", "科普", "字幕", "配音"],
+  "dependencies": {
+    "python": ">=3.10",
+    "system": ["ffmpeg (推荐，或由 FFMPEG_PATH 指定)"],
+    "pip": ["opencv-python", "numpy", "av", "Pillow", "soundfile", "edge-tts"]
+  },
+  "license": "MIT",
+  "icon": "assets/icon.png"
+}

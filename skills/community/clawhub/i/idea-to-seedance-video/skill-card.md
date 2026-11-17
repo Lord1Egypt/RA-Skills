@@ -1,40 +1,58 @@
-## Description: <br>
-Converts raw creative ideas, synopses, brand stories, short-video concepts, or Chinese-language briefs into polished treatments, scripts, shot breakdowns, and Seedance 2.0-ready video prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a user's raw creative idea, synopsis, scene concept, brand story, short-video idea, or Chinese-language creative brief into a polished director/screenwriter treatment, complete script, shot breakdown, and Seedance 2.0-ready AI video prompts.
 
-## Publisher: <br>
-[berniecheung](https://clawhub.ai/user/berniecheung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[berniecheung](https://clawhub.ai/user/berniecheung)
 
-## Use Case: <br>
-Creators, marketers, filmmakers, and agents use this skill to turn a raw video idea or brief into a production-ready treatment, complete script, shot plan, and Seedance 2.0 prompt set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Seedance or Volcengine workflows may require uploading images, video, or audio to a third-party video generation provider. <br>
-Mitigation: Use non-sensitive media unless the user accepts provider handling, and avoid realistic identifiable face uploads because the referenced Seedance guide says they may be blocked. <br>
-Risk: Video generation can incur provider costs or involve API keys and callback commands. <br>
-Mitigation: Confirm before paid generation, protect ARK_API_KEY, and review any callback commands or generation settings before use. <br>
+## Use Case:
 
+Creative professionals, marketers, video producers, and agents use this skill to turn rough creative ideas into polished treatments, scripts, shot plans, image-generation prompts, and Seedance 2.0-ready video prompts.
 
-## Reference(s): <br>
-- [Seedance 2.0 Official Notes](references/seedance-2-official-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured treatments, scripts, shot tables, image prompts, and Seedance 2.0 video prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and defaults to Chinese for Chinese creative briefs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompts may cause users to upload identifiable people, brand materials, or copyrighted references to a video platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and assets before upload, confirm rights and consent, and avoid identifiable human-face references when a safer stylized or non-face reference can serve the task.
+
+Risk: Seedance may block realistic human-face reference materials or reject clear faces in image and video references.
+
+Mitigation: Use stylized characters, silhouettes, obscured faces, product-only shots, or reference videos without clear faces for motion and camera guidance.
+
+Risk: Complex multimodal prompts can confuse reference roles, continuity, product details, logos, or text.
+
+Mitigation: Use a concise asset list with explicit @ references, split complex scenes into short shots, lock important visuals with reference images, and manually verify outputs.
+
+## Reference(s):
+
+- [Seedance 2.0 Official Notes](artifact/references/seedance-2-official-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/berniecheung/skills/idea-to-seedance-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with treatments, scripts, shot breakdown tables, image prompts, and Seedance 2.0 video prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language output, Seedance entry recommendations, reference-asset labels, continuity notes, aspect ratio and duration suggestions, and production cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

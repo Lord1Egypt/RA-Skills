@@ -1,40 +1,57 @@
-## Description: <br>
-Manage Ronnie's Facebook Page by posting text or photos, testing comment permissions, diagnosing token issues, and using browser fallback when APIs are blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook Page publishing and engagement skill for Ronnie's Page operations, including text and photo posting, permission testing, token diagnostics, and browser fallback when comment or reply APIs are blocked.
 
-## Publisher: <br>
-[ronnine6527](https://clawhub.ai/user/ronnine6527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ronnine6527](https://clawhub.ai/user/ronnine6527)
 
-## Use Case: <br>
-Page operators and supporting agents use this skill to publish Facebook Page posts, verify comment or reply permissions, troubleshoot Page token and app mode issues, and choose a browser fallback when Graph API engagement actions are blocked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses powerful Facebook Page access tokens and app secrets that could allow unauthorized Page actions if exposed. <br>
-Mitigation: Store credentials in protected environment variables or a secret manager, avoid pasting secrets into chat or logs, and rotate any exposed tokens. <br>
-Risk: The skill can publish posts, comments, replies, or browser-based actions on a Facebook Page. <br>
-Mitigation: Require explicit confirmation before any post, comment, reply, or browser action that changes Page content. <br>
+## Use Case:
 
+External operators and developers use this skill to manage a Facebook Page through Graph API workflows, including publishing posts, checking Page token configuration, diagnosing permission failures, and falling back to browser automation for blocked engagement actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ronnine6527/facebook-page-ronnie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Facebook Page ID and Page access token environment variables for API workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles powerful Facebook Page access tokens that can publish content publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege tokens, avoid logged or shared token-generation environments, and redact API output that may contain credentials or sensitive Page data.
+
+Risk: Live post, comment, reply, or browser-driven actions can affect a business-critical Facebook Page.
+
+Mitigation: Review the skill before installation for business-critical Pages and require manual confirmation before any live publishing or engagement action.
+
+Risk: Comment and reply workflows may fail when Page engagement permissions are missing, stale, or not approved.
+
+Mitigation: Verify the required Page permissions and regenerate tokens after permission or app-mode changes before attempting engagement actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ronnine6527/skills/facebook-page-ronnie)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Graph API request examples, environment checks, token lifecycle guidance, permission diagnostics, and operational recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

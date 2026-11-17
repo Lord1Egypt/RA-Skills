@@ -120,12 +120,14 @@ def load_ablation(paths: list[Path]) -> dict[str, dict[str, float]]:
             else:
                 worse_count += 1
 
-        total = len(items)
+        total = same_count + better_count + worse_count
+        if total == 0:
+            continue
         summary[name] = {
             "cases": float(total),
-            "consistency_rate": same_count / total if total else 0.0,
-            "better_rate": better_count / total if total else 0.0,
-            "worse_rate": worse_count / total if total else 0.0,
+            "consistency_rate": same_count / total,
+            "better_rate": better_count / total,
+            "worse_rate": worse_count / total,
             "avg_delta": sum(deltas) / len(deltas) if deltas else 0.0,
         }
     return summary

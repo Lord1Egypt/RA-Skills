@@ -1,40 +1,53 @@
-## Description: <br>
-Techwrite guides agents through a structured workflow for planning, drafting, reviewing, and maintaining technical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep workflow for technical prose: audience, purpose, structure, precision, examples, diagrams, review, and iteration.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use Techwrite to create and improve developer docs, design notes, internal guides, RFCs, runbooks, migration guides, and public technical articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation guidance may include inaccurate examples, unclear assumptions, or unsupported technical claims. <br>
-Mitigation: Review procedures, examples, diagrams, links, and claims with an appropriate subject-matter reviewer before publishing or relying on the content. <br>
-Risk: Legal-sensitive, high-stakes, or public-facing documentation can create compliance or claims risk if treated as final advice. <br>
-Mitigation: Use the skill output as editorial guidance and route legal-sensitive, high-stakes, or external-release content through qualified expert review. <br>
+## Use Case:
 
+Developers, engineers, and technical contributors use this skill to draft, revise, and maintain developer docs, design notes, internal guides, RFCs, runbooks, migration guides, API references, and public technical articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/techwrite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, outlines, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, network behavior, or persistence is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated or edited documentation may contain factual inaccuracies or unclear technical guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review final text for technical accuracy and clarity before publishing.
+
+Risk: Documentation for legal-sensitive or organization-specific topics may need specialized review.
+
+Mitigation: Route legal-sensitive claims and organization-specific style requirements to the appropriate reviewer before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/techwrite)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or prose guidance with checklists, outlines, examples, review notes, and edited text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured writing stages, final review checklists, and publication-maintenance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

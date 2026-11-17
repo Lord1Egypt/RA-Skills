@@ -1,42 +1,60 @@
-## Description: <br>
-Submits a daily PENS MIS Kerja Praktek logbook entry after approval by gathering same-day work evidence, drafting concise Indonesian activity text, signing in with local secrets, saving the entry, and verifying the saved row. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit a daily PENS MIS Kerja Praktek logbook entry at online.mis.pens.ac.id after an approval-first workflow that gathers same-day work evidence, drafts Indonesian activity text, logs in with local secrets, saves the entry, and verifies the saved row.
 
-## Publisher: <br>
-[mozaldy](https://clawhub.ai/user/mozaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozaldy](https://clawhub.ai/user/mozaldy)
 
-## Use Case: <br>
-Students or agents assisting a PENS Kerja Praktek participant use this skill to prepare, review, and submit a daily MIS logbook entry from same-day work evidence after explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit real PENS MIS logbook entries using locally stored credentials. <br>
-Mitigation: Keep the secrets file private and run the submission helper only after reviewing the date, hours, and generated Indonesian activity text. <br>
-Risk: An unreviewed or unsupported activity summary could create an inaccurate logbook entry. <br>
-Mitigation: Use the approval-first workflow and require same-day commit or other strong evidence before submission. <br>
+## Use Case:
 
+External users with authorized PENS MIS access use this skill to prepare an evidence-grounded Indonesian activity summary and submit an approved daily Kerja Praktek logbook entry.
 
-## Reference(s): <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mozaldy/mis-logbook-submit) <br>
-- [PENS MIS Portal](https://online.mis.pens.ac.id) <br>
+### Deployment Geography for Use:
 
+Global, for authorized PENS MIS users.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise chat guidance and, when executed, JSON status from the submission helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local MIS credentials and requires explicit user approval before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses stored MIS credentials to access a live account and submit live logbook data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this credential use is acceptable, keep secrets outside the skill folder, and never echo credentials in chat or workspace files.
+
+Risk: The security scan calls out incomplete validation of the exact login.pens.ac.id HTTPS origin before credential entry.
+
+Mitigation: Harden the login flow to require the expected HTTPS origin before entering credentials.
+
+Risk: The submission script can modify live MIS records.
+
+Mitigation: Require explicit runtime confirmation before reading credentials or submitting, and keep the approval-first and duplicate-entry checks in place.
+
+## Reference(s):
+
+- [Daily MIS logbook workflow](references/workflow.md)
+- [PENS MIS](https://online.mis.pens.ac.id)
+- [PENS CAS login](https://login.pens.ac.id/cas/login)
+- [ClawHub skill page](https://clawhub.ai/mozaldy/skills/mis-logbook-submit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance, stdin activity text, and JSON status from the submission script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local MIS credentials and explicit user approval before live submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

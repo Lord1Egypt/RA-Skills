@@ -1,47 +1,47 @@
-# Alchemy 吸收计划
+#Alchemy Absorption Plan
 
-## 目标
+## Target
 
-描述需要交付的目标项目原生化改进。
+Describe the target project native improvements that need to be delivered.
 
-## 参考项目优势
+## Reference project advantages
 
-| 候选项 | 参考洞察 | 目标项目缺口 | 策略 | 优先级 |
+| Candidates | Reference Insights | Target Project Gaps | Strategy | Prioritization |
 |---|---|---|---|---|
-|  |  |  | 增强 / 新增 / 拆分 / 合并 / 替换 / 文档化 / 拒绝 |  |
+| | | | Enhance / Add / Split / Merge / Replace / Document / Reject | |
 
-## 目标设计
+## Target design
 
-- 目标架构落点：
-- 用户可见能力：
-- 公开 API / CLI / 配置 / UI 入口：
-- UI / API / 数据 / 运行时 / 工具链 / 文档影响：
-- 公开 API 或用户可见行为：
-- 内部数据流：
-- 命名和约定：
-- 依赖影响：
-- 向后兼容性：
+- Target architecture placement:
+- User visible capabilities:
+- Public API/CLI/Configuration/UI entrance:
+- UI/API/Data/Runtime/Toolchain/Documentation Impact:
+- Public API or user-visible behavior:
+- Internal data flow:
+- Naming and conventions:
+- Dependency impact:
+- Backward compatibility:
 
-## 实现步骤
+## Implementation steps
 
 1.
 2.
 3.
 
-## 验证
+## Verify
 
-- 类型检查：
+- Type checking:
 - Lint：
-- 单元测试：
-- 集成测试：
-- 构建：
-- 人工评审：
+- Unit tests:
+- Integration testing:
+- Build:
+- Human review:
 
-## 风险
+## Risk
 
-- 许可证 / 来源：
-- 范围膨胀：
-- 架构重叠：
-- 性能：
-- 安全：
-- 维护：
+- License/Source:
+- Range expansion:
+- Architecture overlap:
+- Performance:
+- Security:
+- Maintenance:

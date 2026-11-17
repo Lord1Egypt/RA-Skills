@@ -1,40 +1,53 @@
-## Description: <br>
-Life Sim is a Chinese-language interactive life-simulation skill that starts from a user's counterfactual prompt and narrates an alternate path with period-specific details, choice points, and an ending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Life Sim is a Chinese-language prompt skill that turns a user's counterfactual life-choice prompt into an interactive, era-grounded alternate-life narrative with choice points and an ending.
 
-## Publisher: <br>
-[chen-meng-xin](https://clawhub.ai/user/chen-meng-xin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-meng-xin](https://clawhub.ai/user/chen-meng-xin)
 
-## Use Case: <br>
-External users use this skill to explore counterfactual life choices through a Chinese-language interactive narrative. The skill helps an agent infer the user's core question, build a historically grounded alternate life path, offer 3-5 meaningful choice points, and close with a concise ending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad common phrases such as "假如" or "如果当初," which may be disruptive if the user did not intend to start the simulation. <br>
-Mitigation: Narrow activation wording or require an explicit start phrase before deploying in contexts where accidental activation would interrupt normal conversation. <br>
-Risk: The skill uses personalization and cultural assumptions to infer a user's likely behavior, which may not fit every user. <br>
-Mitigation: Keep inferences tentative, accept user corrections immediately, and avoid treating the narrative as factual prediction or psychological assessment. <br>
+## Use Case:
 
+External users use this skill to explore Chinese-language counterfactual life stories from a short prompt such as "if back then" or "what if." The agent uses the user's described choice, likely time period, and contextual clues to produce realistic second-person narrative branches.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chen-meng-xin/life-sim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown narrative with interactive choice prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Second-person narrative output, typically with 3-5 choice points and a final recap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may infer personality, background, culture, age, location, or past choices from very short user prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should avoid sharing unnecessary personal details and should correct the agent when assumptions are wrong.
+
+Risk: Counterfactual life stories can produce misleading or emotionally sensitive narratives if treated as factual analysis.
+
+Mitigation: Use the output as fictional narrative and review sensitive responses before relying on them for personal decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chen-meng-xin/skills/life-sim)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative text with interactive choice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no code, external access, persistence, or hidden execution behavior is indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

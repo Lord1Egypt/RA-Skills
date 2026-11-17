@@ -1,40 +1,53 @@
-## Description: <br>
-Presents biomedical evidence summaries and Research Grounding recommendations from fixed mock data for PubMed, clinical guideline, and trial registry style sources. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+检索 PubMed 文献、临床指南与试验注册信息，提取证据摘要并生成 Research Grounding 建议（推荐终点定义、时间窗、混杂因素）。当用户需要做文献检索或证据 grounding 时触发。
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
 
-## Use Case: <br>
-External users and developers can use this as a demonstration evidence viewer for literature-style summaries, source counts, and research grounding suggestions such as endpoints, time windows, confounders, and cautions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present fixed mock biomedical evidence as if it was retrieved from PubMed, clinical guidelines, or trial registries. <br>
-Mitigation: Use it only as a demo or mock evidence viewer unless outputs include real source links, query terms, retrieval dates, and evidence provenance. <br>
-Risk: Research or clinical grounding recommendations may be unreliable without verifiable source evidence. <br>
-Mitigation: Require reviewer validation against authoritative biomedical sources before using recommendations for research design or clinical decisions. <br>
+## Use Case:
 
+Researchers, clinicians, and developers use this skill to inspect a prepared evidence dataset covering PubMed literature, clinical guidelines, and trial registrations. It summarizes sources and evidence details, then suggests research grounding items such as endpoints, time windows, candidate confounders, and cautions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergenceronearth/agentic-evidence-retriever) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with evidence summaries, grounding recommendations, and shell status-report commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed mock evidence data according to the security review; source provenance is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill sends run-status messages to a localhost reporting service on port 5001.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where that local reporting service is expected.
+
+Risk: The skill relies on a fixed mock evidence file rather than live PubMed retrieval.
+
+Mitigation: Confirm that the prepared evidence dataset is current and suitable before using its grounding recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergenceronearth/skills/agentic-evidence-retriever)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evidence source counts, evidence summaries, research grounding recommendations, and local status-reporting commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

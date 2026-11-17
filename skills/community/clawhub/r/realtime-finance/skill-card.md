@@ -1,41 +1,57 @@
-## Description: <br>
-Queries real-time financial market data for A-shares, Hong Kong shares, U.S. stocks, gold, crude oil, VIX, Treasury yields, foreign exchange, and major indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实时财经数据查询技能 - 支持A股、港股、美股、黄金、原油、VIX、美债等
 
-## Publisher: <br>
-[xiaoqiang243](https://clawhub.ai/user/xiaoqiang243) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqiang243](https://clawhub.ai/user/xiaoqiang243)
 
-## Use Case: <br>
-External users and agents use this skill to answer market quote questions by calling a Python finance lookup tool and returning concise quote summaries. It is intended for supported market symbols and common Chinese or ticker-based finance queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance-related queries are sent to Sina Finance and Yahoo Finance. <br>
-Mitigation: Install only where that disclosure is acceptable, and narrow trigger phrases if accidental activation would be a problem. <br>
-Risk: The Sina Finance lookup in the artifact uses an HTTP quote endpoint. <br>
-Mitigation: Prefer HTTPS for the Sina request if the provider supports it. <br>
+## Use Case:
 
+External users and developers use this skill to query current market data for Chinese A-shares, Hong Kong shares, U.S. stocks, commodities, indexes, foreign exchange, and U.S. Treasury yields from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoqiang243/realtime-finance) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Plain text with Markdown emphasis and finance quote lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs current quote summaries, price changes, percentages, highs, lows, and volume when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ticker queries are sent to third-party finance services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing requested finance symbols with Sina Finance or Yahoo Finance is acceptable.
+
+Risk: Sina-backed data is fetched over an unencrypted HTTP endpoint.
+
+Mitigation: Treat returned prices as informational and verify important trading or business decisions against trusted market data sources.
+
+Risk: The optional `yfinance` dependency must be installed for Yahoo Finance-backed symbols.
+
+Mitigation: Install `yfinance` from a trusted source in a virtual environment rather than globally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoqiang243/skills/realtime-finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted text with inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns live quote summaries and error or dependency messages in Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

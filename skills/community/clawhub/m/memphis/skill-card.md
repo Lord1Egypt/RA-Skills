@@ -1,44 +1,60 @@
-## Description: <br>
-Memphis helps OpenClaw agents keep local memory chains, retrieve knowledge, track decisions, use local LLMs, and coordinate with multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memphis helps OpenClaw agents maintain local-first persistent memory, semantic recall, decision tracking, encrypted vault entries, and multi-agent collaboration workflows.
 
-## Publisher: <br>
-[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elathoxu-crypto](https://clawhub.ai/user/elathoxu-crypto)
 
-## Use Case: <br>
-Developers, teams, researchers, and agent builders use Memphis to add persistent local memory, semantic recall, decision tracking, encrypted secret storage, and multi-agent sharing workflows to OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes broad memory, secret storage, network sharing, background daemon, self-loop, auto-repair, backup restore, and learning features without enough documented boundaries or safety controls. <br>
-Mitigation: Review the actual Memphis CLI source before use, keep daemon, self-loop, auto-repair, backup restore, learning, share-sync, and network features disabled until their scope is confirmed, and approve each state-changing action. <br>
-Risk: Vault and ingestion workflows may involve secrets or sensitive local files. <br>
-Mitigation: Avoid storing real credentials until vault handling is understood, and ingest only narrow non-sensitive folders. <br>
+## Use Case:
 
+Developers, teams, researchers, and agent builders use Memphis to give OpenClaw agents persistent local memory, searchable project context, decision records, and optional collaboration features.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elathoxu-crypto/memphis) <br>
-- [Memphis Repository](https://github.com/elathoxu-crypto/memphis) <br>
-- [Memphis Documentation](https://github.com/elathoxu-crypto/memphis/tree/master/docs) <br>
-- [Quickstart](QUICKSTART.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide agent setup and use of Memphis CLI workflows; no structured machine-readable output contract is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Persistent memory and auto-journaling can capture sensitive project, personal, customer, or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or tightly scope auto_journal, define redaction and retention rules before use, and avoid recording secrets or sensitive workspace content unless storage controls have been reviewed.
+
+Risk: Vault retrieval and secret storage can expose credentials if password handling, local file permissions, or sharing behavior are misconfigured.
+
+Mitigation: Use environment-backed vault passwords, restrict local file access, and review every vault retrieval path before using Memphis in sensitive workspaces.
+
+Risk: Share-sync, IPFS, partner messaging, and multi-agent workflows can disclose memories or decisions outside the local workspace.
+
+Mitigation: Keep network sharing, partner messaging, and daemon mode disabled by default, enable them only for trusted peers, and review shared chains before synchronization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elathoxu-crypto/skills/memphis)
+- [Memphis documentation](https://github.com/elathoxu-crypto/memphis/tree/master/docs)
+- [Memphis repository](https://github.com/elathoxu-crypto/memphis)
+- [Memphis support issues](https://github.com/elathoxu-crypto/memphis/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration examples, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing instructions for installing, initializing, journaling, recalling, decision tracking, vault use, backups, and optional sharing.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

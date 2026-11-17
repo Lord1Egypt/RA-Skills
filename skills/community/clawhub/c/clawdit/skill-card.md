@@ -1,42 +1,54 @@
-## Description: <br>
-Belief systems auditor for OpenClaw agents. Systematically evaluates an agent's loaded context files (SOUL.md, AGENTS.md, USER.md, skills) against the user's stated goals to identify misaligned, stale, conflicting, vague, or redundant beliefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdit audits OpenClaw agent context files against the user's stated goals to identify misaligned, stale, conflicting, vague, or redundant beliefs.
 
-## Publisher: <br>
-[mcroebuck](https://clawhub.ai/user/mcroebuck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcroebuck](https://clawhub.ai/user/mcroebuck)
 
-## Use Case: <br>
-Developers and agent owners use Clawdit to audit OpenClaw agent context files, skills, and stored user goals against the user's intended agent behavior. The skill produces structured findings about alignment, conflicts, stale instructions, vague beliefs, redundancy, and token efficiency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect selected agent context and skill files that contain private preferences or operational instructions. <br>
-Mitigation: Confirm the target workspace before use and install only when that level of context-file inspection is acceptable. <br>
-Risk: The skill may update USER.md goal information or generate revised files and changelogs that could affect future agent behavior. <br>
-Mitigation: Review USER.md goal updates, generated revisions, and changelogs before approving or applying changes to the target agent. <br>
+## Use Case:
 
+Developers and OpenClaw users use Clawdit to review an agent's loaded context, compare its beliefs with stated goals, and produce a structured audit with recommendations for alignment, conflict resolution, and token efficiency.
 
-## Reference(s): <br>
-- [Clawdit on ClawHub](https://clawhub.ai/mcroebuck/clawdit) <br>
-- [Publisher profile](https://clawhub.ai/user/mcroebuck) <br>
-- [Audit framework](artifact/audit-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown audit reports, summaries, proposed revisions, changelogs, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate review artifacts in the Clawdit workspace after user approval; proposed changes require user review before applying to a target agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill requests access to private agent context and may include sensitive workspace details in audit output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on workspaces the user is comfortable exposing to an audit report, and redact secrets or private profile details before saving or sharing reports.
+
+Risk: The skill can persist goal updates or audit reports, which could retain private information or alter agent context without sufficiently specific control.
+
+Mitigation: Require exact file paths before reads or writes, review precise patches before USER.md updates, and confirm report contents and destination before saving.
+
+## Reference(s):
+
+- [Clawdit on ClawHub](https://clawhub.ai/mcroebuck/skills/clawdit)
+- [Clawdit Audit Framework](artifact/audit-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown audit reports with structured findings, recommendations, and proposed configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dated audit reports and proposed revised context files when the user approves.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

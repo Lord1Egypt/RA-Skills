@@ -1,40 +1,58 @@
-## Description: <br>
-Use when improving an agent's own memory, skills, prompts, runtime rules, tool policies, AGENTS.md/agent.md files, or when adapting ideas from other agent projects into the current agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when improving an agent's own memory, skills, prompts, runtime rules, tool policies, AGENTS.md/agent.md files, or when adapting ideas from other agent projects into the current agent.
 
-## Publisher: <br>
-[huangrichao2020](https://clawhub.ai/user/huangrichao2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangrichao2020](https://clawhub.ai/user/huangrichao2020)
 
-## Use Case: <br>
-External developers and agent maintainers use this skill to plan, review, and document controlled changes to an agent's own memory, prompts, skills, runtime rules, and related instruction files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed self-modifications could change prompts, permission policies, memory stores, skills, or runtime behavior. <br>
-Mitigation: Require explicit user approval after listing exact files or surfaces, reason, risk, and rollback plan; review exact changes before applying them. <br>
-Risk: Agent self-improvement work can expand into unrelated adjacent systems during a migration. <br>
-Mitigation: Use progressive rollout, freeze adjacent systems during migration, and land one small verified step at a time. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to plan and review agent self-improvement work across memory, prompts, skills, runtime rules, and related documentation. It emphasizes consent, architecture notes, progressive rollout, rollback planning, verification, and handoff manuals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangrichao2020/how-to-use-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with structured checklists and optional command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before modifying agent-owned data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Agent self-improvement can introduce incorrect or misleading guidance into prompts, memory, skills, policies, or runtime documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed change before deployment and require the approval prompt to identify affected files, rationale, risks, and rollback.
+
+Risk: Broad memory or prompt rewrites can remove important operating constraints or make rollback difficult.
+
+Mitigation: Do not approve broad rewrites unless the impact is understood; prefer small phases, preserved data, progressive rollout, verification, and clear rollback paths.
+
+Risk: Patterns adapted from external agent projects may be incompatible with the current agent environment.
+
+Mitigation: Use source-level research to produce an adaptation memo, then land the smallest safe local experiment instead of copying external code directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangrichao2020/skills/how-to-use-agent)
+- [Publisher profile](https://clawhub.ai/user/huangrichao2020)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command blocks, architecture notes, rollout plans, consent prompts, verification notes, and work manuals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before modifying agent-owned instruction, memory, skill, prompt, policy, or runtime surfaces.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

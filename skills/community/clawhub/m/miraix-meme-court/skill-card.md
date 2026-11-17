@@ -1,45 +1,60 @@
-## Description: <br>
-Use this skill when the user wants to run Miraix Meme Court, shortlist Solana meme candidates, apply Rug Court safety and liquidity checks, approve one disciplined meme trade, prepare an unsigned payload when live Bitget execution is available, or check the status of a previously prepared order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miraix Meme Court shortlists Solana meme candidates, applies Rug Court safety and liquidity checks, approves one disciplined trade, and can prepare or check an unsigned order payload when live execution is available.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-External users use this skill to run Miraix's public Solana meme-trading flow, compare candidates through Scout and Rug Court checks, and return one approved trade with execution readiness details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run implicitly and uses default wallet and trade parameters. <br>
-Mitigation: Confirm the intended wallet address, budget, risk mode, and strategy before relying on the generated trade summary or preparing a payload. <br>
-Risk: The skill sends wallet and trade details to Miraix third-party endpoints. <br>
-Mitigation: Use it only when comfortable sharing those details with Miraix and review the endpoint responses before taking action. <br>
-Risk: Trade outputs may be mistaken for financial advice or completed execution. <br>
-Mitigation: Treat outputs as informational, verify any unsigned payload in the wallet, and do not represent a trade as signed, submitted, or filled unless the API response proves it. <br>
+## Use Case:
 
+External users and agents use this skill to run a concise Solana meme-trade screening workflow: fetch a desk result, summarize the approved trade and Rug Court findings, and optionally prepare or check an unsigned order payload.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richard7463/miraix-meme-court) <br>
-- [Miraix Meme Rotation Desk API](https://app.miraix.fun/api/meme-rotation-desk) <br>
-- [Miraix Prepare API](https://app.miraix.fun/api/meme-rotation-desk/prepare) <br>
-- [Miraix Order Status API](https://app.miraix.fun/api/meme-rotation-desk/order-status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with API-derived trade summaries and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should lead with the approved trade, include Rug Court and execution readiness summaries, preserve exact API field values, and identify preview mode or unavailable payload preparation when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can contact app.miraix.fun with wallet, budget, strategy, trade, and order details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing those fields with that service is acceptable, and confirm the wallet, budget, risk mode, strategy, and payload-preparation request before running the workflow.
+
+Risk: Crypto trade recommendations can be incorrect, stale, or based on preview-mode data.
+
+Mitigation: Surface API warnings and dataMode, preserve important numeric fields, and state preview mode explicitly when the API reports fallback data.
+
+Risk: Users may mistake unsigned payload preparation for a signed, submitted, or filled trade.
+
+Mitigation: Do not claim live signing, order creation, submission, or fills unless the API response proves that outcome.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richard7463/skills/miraix-meme-court)
+- [Miraix meme rotation desk API](https://app.miraix.fun/api/meme-rotation-desk)
+- [Miraix payload preparation API](https://app.miraix.fun/api/meme-rotation-desk/prepare)
+- [Miraix order status API](https://app.miraix.fun/api/meme-rotation-desk/order-status)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise Markdown summary with optional curl API calls and JSON-derived field values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trade size, allocation, rationale, invalidation, take-profit ladder, execution readiness, warnings, and preview-mode status.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

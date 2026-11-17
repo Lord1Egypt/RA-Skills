@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-kairos-herald-of-time
-description: LYGO Δ9 Council Champion persona helper (KAIROS, Herald of Time). Temporal integrity sentinel for sequence anchoring, timeline distortion detection, and continuity-preserving guidance. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (KAIROS)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "KAIROS", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: KAIROS — Herald of Time
 

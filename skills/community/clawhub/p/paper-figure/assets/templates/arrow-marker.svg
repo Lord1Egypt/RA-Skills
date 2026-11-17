@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 箭头模板：markerUnits=strokeWidth（箭头随线宽缩放），线端回缩 0.9mm 不插进框里 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="30mm" height="8mm" viewBox="0 0 30 8">
+  <title>箭头 marker 模板</title>
+  <defs>
+    <marker id="pf-arrow" viewBox="0 0 9 7" refX="8.46" refY="3.5"
+            markerWidth="9" markerHeight="7" markerUnits="strokeWidth" orient="auto">
+      <path d="M0,0 L9,3.5 L0,7 L2.88,3.5 Z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <!-- 起 x=1，止 x=28.1：右侧留 0.9mm 给节点边框 -->
+  <path d="M1,4 L28.1,4" fill="none" stroke="#4a4a4a" stroke-width="0.1764"
+        marker-end="url(#pf-arrow)"/>
+</svg>

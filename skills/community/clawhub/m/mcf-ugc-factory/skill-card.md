@@ -1,46 +1,59 @@
-## Description: <br>
-AI-powered video and content generation pipeline with script writing, TikTok automation, YouTube analysis, media library, avatars, and voice synthesis - built for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered video and content generation pipeline with script writing, TikTok automation, YouTube analysis, media library, avatars, and voice synthesis - built for AI agents.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External agents and developers use this skill to generate scripts and video content, analyze TikTok and YouTube material, manage media assets, and schedule social posts through a paid API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend funds through x402 payments for remote API calls. <br>
-Mitigation: Use wallet spending limits and require approval for higher-cost or repeated operations. <br>
-Risk: The skill can schedule or publish social content autonomously. <br>
-Mitigation: Require manual review and approval before posting or scheduling content. <br>
-Risk: The skill can upload, store, fetch, audit, and process media through a remote service. <br>
-Mitigation: Avoid confidential media unless retention and processing terms are clear. <br>
-Risk: The skill includes YouTube fetching and watermark removal workflows that may affect third-party rights. <br>
-Mitigation: Use those workflows only for content the operator is authorized to process. <br>
+## Use Case:
 
+External developers and agents use this skill to call a paid UGC automation API for content ideation, script generation, video production, media handling, channel analysis, and TikTok scheduling.
 
-## Reference(s): <br>
-- [UGC Factory on ClawHub](https://clawhub.ai/cameron48/mcf-ugc-factory) <br>
-- [UGC Factory API gateway](https://gateway.mcfagentic.com) <br>
-- [Publisher profile](https://clawhub.ai/user/cameron48) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API endpoint details and request planning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate paid remote API workflows for content generation, media processing, analysis, and social scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Autonomous posting and scheduling can publish public content without adequate human approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before creating, publishing, or scheduling public posts.
+
+Risk: Media uploads and prompts may expose confidential or sensitive material to the service.
+
+Mitigation: Use only accounts, prompts, and media that are approved for this workflow and avoid confidential uploads.
+
+Risk: Watermark removal and third-party media sourcing can create content-rights issues.
+
+Mitigation: Confirm usage rights for sourced media and review watermark-removal requests before execution.
+
+## Reference(s):
+
+- [UGC Factory on ClawHub](https://clawhub.ai/cameron48/skills/mcf-ugc-factory)
+- [UGC Factory API gateway](https://gateway.mcfagentic.com)
+- [Publisher profile](https://clawhub.ai/user/cameron48)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide paid API calls that generate or manage scripts, videos, media assets, prompt presets, analyses, and scheduled social posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

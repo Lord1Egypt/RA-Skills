@@ -1,51 +1,68 @@
-## Description: <br>
-Flutter cross-platform development guide covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimization, and platform-specific implementations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flutter Dev provides guidance for cross-platform Flutter development, including widget patterns, Riverpod and Bloc state management, GoRouter navigation, performance optimization, platform integration, testing, networking, forms, animations, and localization.
 
-## Publisher: <br>
-[smasherlxd](https://clawhub.ai/user/smasherlxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smasherlxd](https://clawhub.ai/user/smasherlxd)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical Flutter app guidance, including widget patterns, Riverpod or Bloc state management, GoRouter navigation, forms, networking, testing, localization, performance profiling, and platform-specific implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied Flutter snippets may cache, log, or retain sensitive data if used unchanged in a production app. <br>
-Mitigation: Review disk-cache, request logging, auth-token, and password-form examples before use; avoid sensitive caching or logging and clear cached data on logout. <br>
-Risk: Platform-permission examples may request broader mobile permissions than an app actually needs. <br>
-Mitigation: Request only necessary platform permissions and validate permission prompts against the app's privacy and compliance requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to get practical Flutter implementation guidance, code patterns, checklists, and testing or performance advice while building cross-platform mobile, web, and desktop applications.
 
-## Reference(s): <br>
-- [Widget Patterns](references/widget-patterns.md) <br>
-- [Riverpod State Management](references/riverpod-state.md) <br>
-- [Bloc State Management](references/bloc-state.md) <br>
-- [GoRouter Navigation](references/gorouter-navigation.md) <br>
-- [Project Structure](references/project-structure.md) <br>
-- [Performance Optimization](references/performance.md) <br>
-- [Testing Strategies](references/testing.md) <br>
-- [Platform Integration](references/platform-specific.md) <br>
-- [Animations](references/animations.md) <br>
-- [Networking](references/networking.md) <br>
-- [Forms](references/forms.md) <br>
-- [Localization](references/localization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Dart, Flutter, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable install code or hidden agent behavior was reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Networking examples may log request bodies, response details, errors, or tokens if copied directly into a production Flutter app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact logs and disable request or body logging in production builds.
+
+Risk: Caching examples may store sensitive or user-specific API responses without enough production hardening.
+
+Mitigation: Allowlist cacheable endpoints, avoid or encrypt sensitive caches, and clear user-specific caches on logout.
+
+Risk: Platform examples include broad mobile permissions that could be unnecessary for a specific app feature.
+
+Mitigation: Request only the mobile permissions required for implemented features and review platform permission prompts before release.
+
+## Reference(s):
+
+- [Widget Patterns](references/widget-patterns.md)
+- [Riverpod State Management](references/riverpod-state.md)
+- [Bloc State Management](references/bloc-state.md)
+- [GoRouter Navigation](references/gorouter-navigation.md)
+- [Project Structure](references/project-structure.md)
+- [Performance Optimization](references/performance.md)
+- [Testing Strategies](references/testing.md)
+- [Platform Integration](references/platform-specific.md)
+- [Animations](references/animations.md)
+- [Networking](references/networking.md)
+- [Forms](references/forms.md)
+- [Localization](references/localization.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline Dart, YAML, shell, Swift, Kotlin, XML, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include copy-pasteable implementation snippets, checklists, and recommendations that should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-The Agent SaaS Factory guides agents through building, deploying, and monetizing micro-SaaS products with GitHub, Stripe, Postgres, and dispute-handling examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Agent SaaS Factory is a guide for using AI agents to build, deploy, and monetize micro-SaaS products with GitHub, Stripe, Postgres, and automated dispute workflows.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use this guide to prototype autonomous micro-SaaS workflows that create repositories, manage data, configure billing, and handle disputes. The examples are non-installing guidance, but they describe workflows that can affect live code, databases, billing, and customer disputes if copied into an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can make real changes to repositories, databases, billing, and dispute workflows if reused with live credentials. <br>
-Mitigation: Review and rewrite examples before use; require human approval before repository writes, SQL mutations, billing actions, or dispute resolution. <br>
-Risk: The skill requires sensitive credentials and includes payment-related examples. <br>
-Mitigation: Use sandbox or test accounts, least-privilege API keys, Stripe test mode, non-production databases, explicit spending limits, and feature branches. <br>
-Risk: Scanner evidence reports inconsistent safety claims and defaults. <br>
-Mitigation: Treat the guide as suspicious until reviewed against the authoritative security guidance and operational policies for the deployment environment. <br>
+## Use Case:
 
+Developers and agent builders use this guide to plan agent-operated micro-SaaS workflows covering repository setup, database management, billing, and dispute handling. It is best suited for readers evaluating or prototyping agent-assisted SaaS operations with explicit human review and credential controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-saas-factory) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint referenced by examples](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown guide with Python code examples and environment variable references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GREENHELIX_API_KEY and STRIPE_API_KEY for workflows adapted from the examples; artifact is non-installing and executable=false.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The guide describes broad agent actions across code repositories, databases, billing, and disputes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or test accounts by default, and require human approval before repository merges, database migrations, payment changes, or dispute decisions.
+
+Risk: Examples rely on credentials for GreenHelix and Stripe integrations.
+
+Mitigation: Use separate least-privilege credentials, avoid production secrets during evaluation, and redact credentials from logs, issues, and generated artifacts.
+
+Risk: Operational examples may interact with external endpoints and paid services if adapted for execution.
+
+Mitigation: Add endpoint allowlisting, cost controls, audit logging, and production review gates before adapting the guide into an executing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-saas-factory)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python examples and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples reference GREENHELIX_API_KEY and STRIPE_API_KEY.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

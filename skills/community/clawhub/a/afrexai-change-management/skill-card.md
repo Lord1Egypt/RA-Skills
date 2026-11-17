@@ -1,38 +1,51 @@
-## Description: <br>
-Generates structured change management plans with stakeholder assessment, communication, training, resistance mitigation, rollout phases, and success metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured change management plans covering stakeholder impact, communications, training, resistance mitigation, rollout phases, and success metrics.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business leaders, change managers, consultants, and operations teams use this skill to plan organizational change initiatives such as software rollouts, restructuring, process changes, mergers and acquisitions integration, and culture shifts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Change plans may include confidential organizational details if users provide sensitive business context. <br>
-Mitigation: Use the skill only in agent environments approved for that business data, and avoid entering confidential details otherwise. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-change-management) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business operators, managers, consultants, and transformation teams use this skill to plan organizational change initiatives such as software rollouts, restructuring, process changes, mergers, and cultural transformations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with tables, timelines, templates, risk registers, and success metrics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill selects among ADKAR, Kotter's 8-Step, and Lewin's frameworks based on the described change initiative.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Change plans may include sensitive organizational, personnel, merger, restructuring, or financial details supplied by the user.
+
+Mitigation: Avoid entering sensitive internal information unless it is appropriate for the agent environment and review generated plans before sharing or acting on them.
+
+## Reference(s):
+
+- [Change Management Planner on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-change-management)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Structured markdown with executive summary, stakeholder map, phased timeline, communication templates, risk register, and success metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework selection may use ADKAR, Kotter's 8-Step, or Lewin's model based on the supplied initiative details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Scans npm, Python, and Go dependency manifests for known vulnerabilities using the OSV.dev API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans npm, Python/pip, and Go dependency files for known vulnerabilities using the OSV.dev API, with terminal summaries, optional JSON output, ecosystem filtering, and CI-friendly exit status.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit npm, Python, and Go project dependencies before deployment, in CI checks, or while investigating CVEs in third-party libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning private repositories sends dependency names and versions to OSV.dev. <br>
-Mitigation: Use only when sharing dependency metadata with OSV.dev is acceptable for the project being scanned. <br>
+## Use Case:
 
+Developers and engineers use this skill to check npm, Python, and Go project dependencies for known vulnerabilities before deployment, during CI checks, or while investigating third-party library CVEs.
 
-## Reference(s): <br>
-- [OSV.dev query API](https://api.osv.dev/v1/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Terminal vulnerability report or machine-readable JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns exit code 1 when vulnerabilities are found, supporting CI gate usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency names and versions are shared with OSV.dev during vulnerability checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for projects where sending package coordinates to OSV.dev is acceptable.
+
+Risk: Scanner results may be incomplete because network handling fails open and dependency version parsing can be lossy.
+
+Mitigation: Treat results as advisory unless the CI workflow compensates for these limits or hardens the scanner before using it as a release gate.
+
+Risk: Machine-readable output may need validation before automated CI enforcement.
+
+Mitigation: Validate JSON output in the target workflow before relying on it for deployment decisions.
+
+## Reference(s):
+
+- [OSV.dev API query endpoint](https://api.osv.dev/v1/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner output can include severity labels, vulnerability IDs, CVE aliases, summaries, and CI-oriented exit status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Connects OpenClaw to WeCom by generating an authorization link, waiting for user confirmation, polling the authorization result, and writing the resulting bot credentials to OpenClaw configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to WeCom by guiding users through link-based authorization, then saving the returned bot credentials after the user confirms authorization is complete.
 
-## Publisher: <br>
-[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to bind a WeCom bot to OpenClaw when they need WeCom messaging integration. The skill guides the user through sharing an authorization link in WeCom, confirming completion, and applying the resulting bot configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a WeCom bot secret in ~/.openclaw/openclaw.json. <br>
-Mitigation: Keep the OpenClaw configuration file private and rotate the WeCom bot secret if the file is exposed. <br>
-Risk: The skill restarts the OpenClaw gateway after successful authorization. <br>
-Mitigation: Run the skill only when intentionally connecting OpenClaw to WeCom and expect a gateway restart after credentials are written. <br>
+## Use Case:
 
+External users and developers use this skill when they need to bind a WeCom bot to OpenClaw and enable WeCom chat connectivity through an explicit authorization flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oreoandyuumi/mmxagent-skill-wecom) <br>
-- [WeCom authorization link generation endpoint](https://work.weixin.qq.com/ai/qc/generate?source=wecom-cli&plat=3) <br>
-- [WeCom authorization result polling endpoint](https://work.weixin.qq.com/ai/qc/query_result?scode=<scode>) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and configuration key paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before polling; stores WeCom bot credentials locally and restarts the OpenClaw gateway after authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow stores a WeCom bot secret in ~/.openclaw/openclaw.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when connecting OpenClaw to WeCom is intended, restrict access to the OpenClaw configuration file, and avoid sharing the stored secret.
+
+Risk: The workflow contacts work.weixin.qq.com and restarts the OpenClaw gateway after authorization.
+
+Mitigation: Run it only in an environment where WeCom network access and gateway restart are expected, and wait for explicit user confirmation before polling or changing configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oreoandyuumi/skills/mmxagent-skill-wecom)
+- [WeCom authorization generation endpoint](https://work.weixin.qq.com/ai/qc/generate?source=wecom-cli&plat=3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before polling; stores WeCom bot credentials in OpenClaw configuration and restarts the gateway after successful authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

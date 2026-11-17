@@ -1,40 +1,55 @@
-## Description: <br>
-Links users to an adult-oriented 20-question SSTI personality quiz and related article, with brief usage notes for saving or sharing results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language reference to a 20-question adult entertainment personality quiz, including the quiz link, basic quiz details, and sharing cautions.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Adults use this skill to find and take a third-party SSTI personality quiz for entertainment, then optionally save or share the result. Agents can provide the quiz link, related article, and brief responsible-use notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to a third-party adult-oriented quiz site where entering sensitive personal information or sharing result screenshots may create privacy concerns. <br>
-Mitigation: Use the site only if comfortable with its adult-oriented content, avoid entering sensitive information or credentials, and review screenshots before saving or sharing them. <br>
+## Use Case:
 
+External users and agents use this skill to locate and summarize the SSTI adult personality quiz, including where to take it, expected length, and responsible sharing notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/ssti-test) <br>
-- [SSTI quiz site](https://ssti.faxianpindao.com/ssti.html) <br>
-- [Related article](https://post.smzdm.com/p/ad75dpdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with links and brief instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not install or run code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may open third-party websites with Chinese-language 18+ entertainment content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when comfortable with adult-oriented entertainment content and review external links before opening or sharing them.
+
+Risk: Quiz results may be mistaken for serious personality assessment.
+
+Mitigation: Present results as entertainment only and keep the skill's responsible-use disclaimer visible when summarizing or sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/skills/ssti-test)
+- [SSTI test website](https://ssti.faxianpindao.com/ssti.html)
+- [什么值得买 article](https://post.smzdm.com/p/ad75dpdk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with external links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language adult-entertainment quiz reference; no code execution or local system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

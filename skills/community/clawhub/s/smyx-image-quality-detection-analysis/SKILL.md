@@ -1,7 +1,7 @@
 ---
 name: "image-quality-detection-analysis"
 description: "Detects quality issues in camera footage such as black/white screens, color cast, stripes, noise, and blurriness. Suitable for security surveillance and camera self-check scenarios. | 图像质量检测分析工具，检测摄像头画面出现的全黑、全白、偏色、条纹、雪花、模糊等质量问题，适用于安防监控、摄像头自检等场景"
-version: "1.0.4"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

@@ -1,43 +1,58 @@
-## Description: <br>
-Backup, restore, and migrate OpenClaw installations while preserving workspace memories, credentials, custom skills, scheduled tasks, and core configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup, restore, and migrate OpenClaw installations while preserving workspace memories, credentials, custom skills, scheduled tasks, and core configuration.
 
-## Publisher: <br>
-[tacitlab](https://clawhub.ai/user/tacitlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tacitlab](https://clawhub.ai/user/tacitlab)
 
-## Use Case: <br>
-Developers and operators use this skill to back up, restore, inspect, and migrate OpenClaw state across local or remote installations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain sensitive OpenClaw state, including credentials and identity files. <br>
-Mitigation: Review backup contents when appropriate, keep archives private, and restrict access to ~/.ctm/ and copied migration archives. <br>
-Risk: Restore and migrate operations overwrite preserved OpenClaw state paths. <br>
-Mitigation: List and confirm the selected backup first, preserve the script's safety backup path, and use --force only when non-interactive overwrite is intended. <br>
-Risk: Migration copies a backup archive to a remote host and restores it over SSH. <br>
-Mitigation: Verify the target host and remote directory before migration, and use --clean-remote-archive when the copied archive should not remain on the target machine. <br>
+## Use Case:
 
+Developers and operators use this skill to create, inspect, restore, and migrate backups of important OpenClaw state during upgrades, server moves, or recovery work.
 
-## Reference(s): <br>
-- [Usage Notes](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tacitlab/claw-time-machine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates tar.gz backups under ~/.ctm/ and can restore or migrate OpenClaw state when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Backups can contain credentials and other sensitive OpenClaw state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat each archive as a secrets bundle, store it privately, and do not share or restore archives from untrusted sources.
+
+Risk: Restore and migration flows overwrite preserved OpenClaw state paths.
+
+Mitigation: Inspect the backup list first, keep the safety backup path shown by the script, and use --force only when non-interactive automation is intentional.
+
+Risk: Remote migration depends on SSH restore commands and a caller-provided remote directory.
+
+Mitigation: Use trusted target hosts and remote directories, and review remote-script quoting, archive validation, and file-permission controls before production use.
+
+## Reference(s):
+
+- [Claw Time Machine Usage Notes](references/usage.md)
+- [Claw Time Machine on ClawHub](https://clawhub.ai/tacitlab/skills/claw-time-machine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destructive restore or migration commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

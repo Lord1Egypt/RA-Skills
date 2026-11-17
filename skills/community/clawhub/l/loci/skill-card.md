@@ -1,38 +1,57 @@
-## Description: <br>
-Loci provides a structured local memory system for AI agents using domains, decay, links, recall, maintenance, pruning, and export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+loci provides a structured local memory system with domains, decay, links, recall, and maintenance commands for AI agents.
 
-## Publisher: <br>
-[bayhax](https://clawhub.ai/user/bayhax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bayhax](https://clawhub.ai/user/bayhax)
 
-## Use Case: <br>
-Developers and agent operators use Loci to store durable context, recall prior decisions or preferences, maintain memory health with heartbeat walks, and migrate away from flat memory files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-lived local memories on disk, which may retain secrets, credentials, regulated data, or sensitive personal details if users choose to store them. <br>
-Mitigation: Avoid storing sensitive data unless retention is intentional, and periodically review, export, prune, or delete the palace file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bayhax/loci) <br>
-- [loci GitHub repository](https://github.com/bayhax/loci) <br>
+## Use Case:
 
+Developers and agent operators use this skill to store durable context, decisions, preferences, lessons learned, and environment details in a structured local memory palace that can later be recalled, walked, pruned, linked, inspected, or exported.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown export, and JSON memory data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and updates a local palace JSON file by default at ~/.openclaw/workspace/loci_palace.json; supports an alternate path with --palace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved memories are stored as plaintext local files and may expose secrets or sensitive personal or business data if the palace file or parent directory is not private.
+
+Mitigation: Do not store API keys, passwords, tokens, or highly sensitive data unless the palace file and parent directory permissions are private to the account.
+
+Risk: Long-term memory can retain stale or no-longer-appropriate context after tasks change.
+
+Mitigation: Use walk, inspect, prune, and export reviews periodically, and store only context that is likely to remain useful beyond transient task work.
+
+Risk: Reinitializing with force can erase existing local memories.
+
+Mitigation: Confirm the palace path and preserve any needed export or backup before using forced initialization.
+
+## Reference(s):
+
+- [loci ClawHub skill page](https://clawhub.ai/bayhax/skills/loci)
+- [loci GitHub repository](https://github.com/bayhax/loci)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Plain text CLI output, JSON palace data, and optional Markdown or JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores memories as plaintext in a local JSON palace file and requires Node.js with no external package dependencies.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+name: aimegeo-content-optimization-workflow
+slug: aimegeo-content-optimization-workflow
+version: 0.1.1
+display_name: aimeGeo GEO Content Workflow
+description: 把经核验的主题资料整理为实体清楚、直接回答问题、来源可追溯的中文内容；不承诺模型引用、排名或流量。
+license: MIT-0
+self_test: python3 scripts/self-test.py
+platforms:
+  - github
+  - gitee
+  - skillhub

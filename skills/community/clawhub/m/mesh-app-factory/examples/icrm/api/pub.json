@@ -1,0 +1,31 @@
+{
+"roles": {
+    "admin":{
+        "name":"企业主",
+        "rights":{
+            "sku":"*",
+            "report":"*",
+            "proxy":"*"
+        }
+    },
+
+    "sales":{
+        "name":"销售",
+        "rights":{
+        }
+    },
+
+    "finance":{
+        "name":"财务",
+        "rights":{
+            "report":"*"
+        }
+    },
+
+    "support":{
+        "name":"服务",
+        "rights":{
+        }
+    }
+}
+}

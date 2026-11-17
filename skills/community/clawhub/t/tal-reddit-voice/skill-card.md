@@ -1,38 +1,49 @@
-## Description: <br>
-Draft Reddit comments and posts using tal's direct, personal, and experience-based writing style with clear, honest advice and minimal fluff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft Reddit comments and posts using Tal's direct, personal, and experience-based writing style with clear, honest advice and minimal fluff.
 
-## Publisher: <br>
-[tal3898](https://clawhub.ai/user/tal3898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tal3898](https://clawhub.ai/user/tal3898)
 
-## Use Case: <br>
-External users use this skill to draft or improve Reddit comments and posts, especially when they need to answer a thread in a first-person voice and include a brief, natural product mention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Reddit copy could be used for undisclosed promotion or astroturfing. <br>
-Mitigation: Review drafts before posting and clearly disclose affiliation or promotional intent where appropriate. <br>
+## Use Case:
 
+External users authorized to write in Tal's voice use this skill to draft Reddit comments or posts that provide direct advice and, when appropriate, include a truthful product mention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tal3898/tal-reddit-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain prose Reddit drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for the product name and a one to two sentence product description before drafting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated first-person product endorsements could mislead readers if the user is not Tal, lacks authorization, or omits the product relationship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized Tal-style promotional writing, require truthful experience and ownership claims, and include clear disclosure of the product relationship.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tal3898/skills/tal-reddit-voice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain prose Reddit draft in Markdown-compatible text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short first-person comments or posts, typically 3 to 5 brief paragraphs without bullets or headers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

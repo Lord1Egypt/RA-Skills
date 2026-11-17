@@ -1,0 +1,12 @@
+{
+  "type": "slzq-trading-tools-sharded",
+  "description": "OpenAI-style tools 数组的分片。使用时请按 mergeOrder 顺序将各文件顶层数组合并为一个数组。",
+  "mergeOrder": [
+    "parts/auth.json",
+    "parts/skill.json",
+    "parts/account.json",
+    "parts/positions-orders.json",
+    "parts/market.json",
+    "parts/catalog.json"
+  ]
+}

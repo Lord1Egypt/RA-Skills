@@ -1,0 +1,41 @@
+{
+  "type": "button",
+  "label": "Delete",
+  "level": "danger",
+  "icon": "fa fa-trash",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "Confirm Delete - ${code}",
+    "actions": [
+      { "type": "button", "label": "Cancel", "actionType": "close" },
+      {
+        "type": "button",
+        "label": "Confirm Delete",
+        "level": "danger",
+        "actionType": "submit",
+        "close": false
+      }
+    ],
+    "body": {
+      "type": "form",
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            { "actionType": "reload", "componentId": "mainCrud" },
+            { "actionType": "closeDialog" }
+          ]
+        }
+      },
+      "api": {
+        "method": "post",
+        "url": "/XXX/XXXX/delete",
+        "data": { "id": "${id}" }
+      },
+      "body": [
+        { "type": "alert", "body": "Confirm delete this record? This action cannot be undone.", "level": "warning" },
+        { "type": "static", "name": "code", "label": "Code", "value": "${code}" },
+        { "type": "hidden", "name": "id" }
+      ]
+    }
+  }
+}

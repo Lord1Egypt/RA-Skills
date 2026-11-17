@@ -1,46 +1,62 @@
-## Description: <br>
-Minor Detection estimates whether speakers in chat sessions may be minors or students and returns structured evidence, risk, trend, and next-step fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses chat conversations and session history for minor, adolescent, student, and school-context indicators, returning a structured JSON risk assessment with evidence and uncertainty notes.
 
-## Publisher: <br>
-[xiaohanzhang2005](https://clawhub.ai/user/xiaohanzhang2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohanzhang2005](https://clawhub.ai/user/xiaohanzhang2005)
 
-## Use Case: <br>
-Developers and reviewers use this skill to run a fixed minor-detection pipeline over single-session or multi-session chat payloads. It supports age tendency, school/student indicators, evidence review, uncertainty notes, risk level, and recommended next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends chats, identifiers, profile context, and user-derived text to configured remote classifier services. <br>
-Mitigation: Use only trusted classifier endpoints, send only data you are allowed to process off-device, and prefer dedicated low-privilege API keys. <br>
-Risk: Sensitive conversation and profile details may appear in local stderr observability logs. <br>
-Mitigation: Review log handling before deployment and avoid retaining or sharing logs that contain sensitive user data. <br>
-Risk: Remote embedding calls may be enabled if embedding endpoints and keys are configured. <br>
-Mitigation: Leave embedding credentials unset unless retrieval is required, and configure only trusted embedding services when enabled. <br>
+## Use Case:
 
+Developers and agents use this skill when they need a structured, evidence-based assessment of whether a chat participant may be a minor across a single conversation or multiple sessions. It is suited for workflows that require minor-likelihood scoring, student-profile signals, trend analysis, and recommended next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohanzhang2005/minor-detection) <br>
-- [Output Schema](artifact/references/output-schema.md) <br>
-- [Evidence Rules](artifact/references/evidence-rules.md) <br>
-- [ICBO Guidelines](artifact/references/icbo-guidelines.md) <br>
-- [Classifier System Prompt](artifact/references/classifier-system.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Guidance] <br>
-**Output Format:** [Single JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON includes decision, user_profile, icbo_features, evidence, reasoning_summary, trend, uncertainty_notes, and recommended_next_step fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill sends conversation-derived content and age-profiling signals to configured classifier endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicitly trusted endpoints with dedicated low-scope API keys, and avoid this skill for conversations that must remain fully local.
+
+Risk: Logs and observability output may include conversation-derived data or runtime details.
+
+Mitigation: Restrict log access and retention, and review downstream handling of stderr and observability records.
+
+Risk: Retrieval assets can influence evidence and include an unsafe loader path according to the authoritative security summary.
+
+Mitigation: Do not install or replace retrieval asset indexes from untrusted sources; review retrieval assets before enabling embedding-backed retrieval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaohanzhang2005/skills/minor-detection)
+- [Output schema](references/output-schema.md)
+- [Evidence rules](references/evidence-rules.md)
+- [ICBO guidelines](references/icbo-guidelines.md)
+- [Classifier system prompt](references/classifier-system.md)
+- [Retrieval query template](references/retrieval-query-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Guidance]
+
+**Output Format:** [Single JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes decision, user profile, ICBO features, evidence groups, reasoning summary, trend, uncertainty notes, and recommended next step.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

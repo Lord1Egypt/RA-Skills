@@ -1,44 +1,63 @@
-## Description: <br>
-AI 智能品牌营销工具：输入品牌名称，自动采集全网数据、分析当日热点、生成小红书图文内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 智能品牌营销工具：输入品牌名称，自动采集全网数据、分析当日热点、生成小红书图文内容
 
-## Publisher: <br>
-[dongxiaoke](https://clawhub.ai/user/dongxiaoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongxiaoke](https://clawhub.ai/user/dongxiaoke)
 
-## Use Case: <br>
-External marketers and content creators use this skill to turn a brand name into Xiaohongshu-style marketing content by combining brand analysis with current hot topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a billable App-Key in chat, and successful requests spend 100 credits. <br>
-Mitigation: Use a revocable, low-scope key, confirm the balance and expected charge before generation, and avoid pasting reusable secrets into retained chat transcripts. <br>
-Risk: The production content endpoint is unclear in the artifact, which shows a localhost base URL placeholder. <br>
-Mitigation: Verify the real production endpoint and service identity before sending credentials or brand data. <br>
-Risk: Generated marketing content may be inaccurate, unsuitable for the brand, or risky to publish automatically on Xiaohongshu. <br>
-Mitigation: Review and edit generated copy manually, and publish through the official Xiaohongshu app rather than automated posting unless the user explicitly accepts platform-account risk. <br>
+## Use Case:
 
+External brand marketers and content teams use this skill to validate paid access, analyze a brand against current hot topics, and generate Xiaohongshu-style post titles, body copy, image suggestions, and tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongxiaoke/vanemarketing) <br>
-- [智灵 Skill 平台](https://skills.zeelin.cn) <br>
-- [智灵 App console](https://skills.zeelin.cn/console/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with generated title, body copy, tags, image links, status messages, and balance details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful content generation spends 100 credits and may include service-returned images or links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks users to provide an App-Key and brand names for provider-side processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable, and avoid pasting long-lived credentials into ordinary chat when possible.
+
+Risk: The instructions include a real-looking example App-Key.
+
+Mitigation: Treat the example key as unsafe, replace it with placeholders in operational copies, and rotate any credential that may have been exposed.
+
+Risk: The content-generation example uses a localhost HTTP endpoint while the security guidance says to confirm the real HTTPS endpoint before use.
+
+Mitigation: Verify the production HTTPS endpoint with the publisher before sending credentials or brand data.
+
+Risk: Automated posting to Xiaohongshu can create account or content enforcement risk.
+
+Mitigation: Use the generated copy manually in the Xiaohongshu app unless the user has separately accepted the platform-policy risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongxiaoke/skills/vanemarketing)
+- [ClawHub publisher profile](https://clawhub.ai/user/dongxiaoke)
+- [Zeelin Skill platform](https://skills.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with generated marketing copy, structured result summaries, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates Xiaohongshu-style titles, post body text, image URL suggestions, tags, balance/cost status, and publishing-risk reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

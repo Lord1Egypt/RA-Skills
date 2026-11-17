@@ -1,45 +1,56 @@
-## Description: <br>
-Certifier (certifier.io) supports Certifier requests involving reading, creating, and updating data through the OOMOL CLI instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Certifier to read, create, and update credential data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent list, search, create, issue, and send Certifier credentials through an OOMOL-connected Certifier account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Certifier through an OOMOL-connected account and may use sensitive account credentials handled by OOMOL. <br>
-Mitigation: Install and use it only when the agent should access that Certifier account through OOMOL, and confirm the connected account before use. <br>
-Risk: The create_issue_send_credential action creates, issues, and sends a credential. <br>
-Mitigation: Review the exact payload, recipient, group, and custom attributes with the user before approving the write action. <br>
-Risk: First-time setup may require installing the OOMOL CLI or connecting a Certifier account. <br>
-Mitigation: Run installer or account-connection steps only after an auth or connection failure and only when the user trusts OOMOL and understands the connected account. <br>
+## Use Case:
 
+External users and developers use the skill to inspect Certifier credentials, designs, groups, and interaction history, and to create and send credentials when approved.
 
-## Reference(s): <br>
-- [Certifier homepage](https://certifier.io) <br>
-- [OOMOL CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-certifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the oo CLI to retrieve schemas and run Certifier connector actions; write actions require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup may execute remote code and make broader changes to agents without adequately explaining them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, and verify the documented OO_SKILLS_SYNC_DISABLED=1 control for the chosen release.
+
+Risk: Credential issuance sends credentials and requires trust in OOMOL's Certifier access and recipient data handling.
+
+Mitigation: Keep approval required for issuing and sending credentials, and confirm the intended account and recipient before approval.
+
+## Reference(s):
+
+- [Certifier](https://certifier.io)
+- [Certifier API documentation](https://developers.certifier.io/reference/authentication)
+- [OO CLI controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [Certifier ClawHub page](https://clawhub.ai/oomol/skills/oo-certifier)
+
+## Skill Output:
+
+**Output Type(s):** [API responses, JSON, Guidance]
+
+**Output Format:** [JSON action results with concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Certifier account and requested action.]
+
+## Skill Version(s):
+
+1.0.5 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

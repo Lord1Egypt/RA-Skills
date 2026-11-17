@@ -1,0 +1,39 @@
+﻿{
+    "name":  "feishu_ingest",
+    "version":  "0.4.0",
+    "description":  "Research KB skill: poll Feishu group messages, download message resources, read Feishu cloud documents, compile message sources, and ingest valuable materials through prepare/apply.",
+    "entry":  "SKILL.md",
+    "runtime":  {
+                    "type":  "python",
+                    "prepare":  "python3 scripts/run_task.py prepare --input \u003cpayload.json\u003e --context-output \u003ccontext.json\u003e",
+                    "apply":  "python3 scripts/run_task.py apply --input \u003cpayload.json\u003e --context \u003ccontext.json\u003e --pages \u003cpages.json\u003e"
+                },
+    "selfContained":  true,
+    "scripts":  [
+                    "scripts/run_task.py",
+                    "scripts/feishu_reader.py",
+                    "scripts/kb_writer.py",
+                    "scripts/feishu_platform.py",
+                    "scripts/text_extractors.py",
+                    "scripts/gitea_api.py",
+                    "scripts/catalog.py",
+                    "scripts/task_io.py",
+                    "scripts/utils.py"
+                ],
+    "platformClients":  [
+                            "scripts/feishu_platform.py",
+                            "scripts/gitea_api.py"
+                        ],
+    "requiredEnv":  [
+                        "FEISHU_APP_ID",
+                        "FEISHU_APP_SECRET",
+                        "GITEA_URL",
+                        "GITEA_BOT_TOKEN",
+                        "GITEA_BOT_USERNAME or GITEA_ORG",
+                        "TEAM_KB_REPO"
+                    ],
+    "optionalEnv":  [
+                        "OPENCLAW_SHARED_DIR"
+                    ],
+    "outputContract":  "Top-level JSON envelope consumed by Research KB V2 backend, including sourceItems[] status records."
+}

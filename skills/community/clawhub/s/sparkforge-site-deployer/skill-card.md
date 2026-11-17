@@ -1,39 +1,49 @@
-## Description: <br>
-Site Deployer helps agents scaffold and publish static websites to Vercel, Netlify, or GitHub Pages with deployment configuration, custom-domain guidance, Tailwind templates, and a pre-deploy checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents scaffold, check, and deploy static websites to Vercel, Netlify, or GitHub Pages, including configuration, custom-domain notes, and pre-deploy checks.
 
-## Publisher: <br>
-[Crispyangles](https://clawhub.ai/user/Crispyangles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crispyangles](https://clawhub.ai/user/crispyangles)
 
-## Use Case: <br>
-Developers, engineers, and site owners use this skill to create static site files, configure deployment settings, check common launch issues, and publish a static site through Vercel, Netlify, or GitHub Pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a production deployment command that can publish a site to a live Vercel project. <br>
-Mitigation: Review the generated files, confirm the target account and project, and consider a preview deploy or removing automatic confirmation before production deployment. <br>
-Risk: Static site files can accidentally expose API keys or other secrets in public HTML or JavaScript. <br>
-Mitigation: Run the included pre-deploy secret checks and manually review public assets before deploying. <br>
+## Use Case:
 
+Developers and site builders use this skill to create and publish simple static HTML sites quickly, with checklist-driven checks for metadata, mobile viewport support, custom domains, and accidental client-side secret exposure.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline HTML, JSON configuration, and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static-site scaffolding, deployment commands, DNS guidance, and pre-deploy checks for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server-resolved release metadata) <br>
+Risk: Production deployment commands can publish immediately to the wrong account or expose unchecked files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before running deployment, confirm the Vercel CLI is authenticated to the intended account, and run the included secret-check step before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crispyangles/skills/sparkforge-site-deployer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment commands and pre-deploy checks for static-site releases.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

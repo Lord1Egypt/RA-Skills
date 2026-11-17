@@ -1,43 +1,61 @@
-## Description: <br>
-Grafana API integration with managed authentication for reading and managing dashboards, data sources, folders, annotations, alerts, and teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Grafana to inspect and manage dashboards, folders, data sources, annotations, teams, and alert rules through a user-authorized connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers, SREs, and observability teams use this skill to inspect and manage Grafana dashboards, data sources, folders, annotations, teams, and alert rules through Maton's managed API gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Grafana API traffic through Maton and requires sensitive credentials. <br>
-Mitigation: Install only if you trust Maton, use a dedicated least-privilege Grafana service account token, avoid admin tokens unless required, and revoke the connection when finished. <br>
-Risk: Write-capable Grafana operations can create, update, or delete dashboards, data sources, folders, annotations, alerts, and teams. <br>
-Mitigation: Default to read-only inspection, review each proposed change, and require explicit approval with specific resource identifiers before any POST, PUT, PATCH, or DELETE request. <br>
-Risk: High-impact changes can affect monitoring and observability workflows. <br>
-Mitigation: Verify the target resource and summarize consequences before deleting dashboards, modifying alert rules, changing data sources, or reorganizing folders. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Grafana monitoring resources and, with explicit approval, create or change dashboards, folders, data sources, annotations, and teams. It also documents optional event-driven and scheduled automation.
 
-## Reference(s): <br>
-- [Grafana skill listing on ClawHub](https://clawhub.ai/byungkyu/grafana-api) <br>
-- [Maton](https://maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and explicit user approval before write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Grafana writes can change monitoring resources or team access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to reads; confirm the exact resource and effect with the user before each write.
+
+Risk: A connected account may grant broader Grafana access than the task needs.
+
+Mitigation: Use least-privilege credentials and authorize only the required connection.
+
+Risk: Optional functions, triggers, destinations, and watchers can run persistently or forward event data.
+
+Mitigation: Approve each automation and destination separately; scope it narrowly and remove it when no longer needed.
+
+## Reference(s):
+
+- [Grafana skill on ClawHub](https://clawhub.ai/byungkyu/skills/grafana-api)
+- [Publisher profile](https://clawhub.ai/user/byungkyu)
+- [Maton homepage](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Grafana HTTP API documentation](https://grafana.com/docs/grafana/latest/developers/http_api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown guidance, command and code examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-authorized connection; resource changes require explicit confirmation.]
+
+## Skill Version(s):
+
+1.2.10 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

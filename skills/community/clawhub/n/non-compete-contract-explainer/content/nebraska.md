@@ -2,20 +2,22 @@
 jurisdiction: "Nebraska"
 slug: nebraska
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-02"
-canonicalUrl: https://openagreements.org/legal/non-compete/nebraska
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-02"
+human_reviewed_at: null
+next_review_due: "2026-11-29"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/nebraska
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/nebraska · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/nebraska · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Nebraska[^about]
 
@@ -35,7 +37,7 @@ Nebraska enforces only narrowly tailored, customer-specific covenants under a co
 | **Restriction extended during a breach?** | Silent |
 | **Maximum length set by law** | No statutory limit |
 
-## Are employee non-compete agreements enforceable in Nebraska? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Nebraska? {#employee-non-compete-enforceability}
 
 **Short answer.** Sometimes, but only if the covenant is narrow and reasonable. Nebraska has no general statutory ban as of June 2026, but Nebraska courts enforce employee restraints only when they protect a legitimate interest and do not go beyond what is reasonably necessary [^q1-brown-three-part-test].
 
@@ -51,6 +53,11 @@ That test is applied to the covenant as written. The employer's legitimate inter
 
 *Aon* shows the enforceable side of the line. The covenant there reached only customers with whom the employee had personal business dealings during the last two years, so the court treated it as focused on goodwill rather than ordinary competition [^q2-aon-focused-goodwill].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> Every covenant in a Nebraska agreement is measured as written against the three-part reasonableness test — not injurious to the public, no greater than reasonably necessary to protect a legitimate interest, and not unduly harsh and oppressive on the employee — and a covenant that fails any one part is unenforceable [^q2-aon-reasonableness-test]. Adequate consideration and an acknowledgment that the restraint is reasonable establish only that a covenant is supported, not that it is reasonable, so each covenant carries the test on its own. Terms that pile onto the employee bear on the harshness inquiry: a one-sided fee-shifting clause running only to the employer, or an injunction sought on a covenant that is not itself enforceable, adds weight to the side the third part already weighs. An amendment that widens a covenant — a larger customer class, a longer period — is measured anew on its widened terms, because the covenant is judged as written with no court trimming it afterward.
+
 ## What customer restrictions work in Nebraska? {#customer-specific-rule}
 
 **Short answer.** The safest Nebraska customer covenant is limited to clients or accounts the employee actually served and had personal contact with. Limiting no-solicit or no-deal language to that customer set is a necessary condition under *Polly*, not a complete safe harbor — the covenant still must satisfy the general reasonableness test [^q3-polly-customer-rule].
@@ -62,7 +69,7 @@ The key case is *Polly*. The employer had many accounts the employee never handl
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not include prospective customers in an ordinary Nebraska employee customer restriction. Even if the employee had personal contact, a covenant that reaches beyond customers the employee actually did business with risks being void in full [^q3-sisk-prospective-clients].
+> A Nebraska employee customer restriction that reaches prospective customers, or clients the employee never personally served, is exposed even where the employee had some contact: a covenant extending beyond the customers the employee actually did business with can be void in full [^q3-sisk-prospective-clients]. The protectable interest is the goodwill in the relationships the employee personally handled, so a covenant — and any notice to a future employer asserting one — confined to that customer class states a position the employer can defend, while one reaching the company's whole customer base or its prospects overstates it [^q3-polly-customer-rule].
 
 ## Are geographic employee non-competes valid in Nebraska? {#geographic-noncompetes}
 
@@ -77,16 +84,21 @@ Older cases sometimes enforced geographic language, and sale-of-business covenan
 >
 > A short radius is not a Nebraska safe harbor. If the practical effect is to stop the employee from using general skill in the market, the restraint still risks failing as ordinary competition [^q4-gaver-ordinary-competition].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> A Nebraska covenant framed around a market, territory, or line of business rather than the customers the employee personally served reads as an attempt to prevent ordinary competition, not the improper competition Nebraska law guards against, and a covenant aimed at ordinary competition is unenforceable [^q4-gaver-ordinary-competition]. A restraint tied to a recognized protectable interest — the customers the employee actually served, confidential information, or trade secrets — and kept no broader than that interest stays on the enforceable side of the line; a radius or activity ban that sweeps in ordinary competition does not, and Nebraska does not narrow it to whatever would have been reasonable.
+
 ## Will Nebraska courts rewrite an overbroad non-compete? {#court-narrowing}
 
 **Short answer.** No, not for ordinary employment covenants. Nebraska rejects blue-pencil rewriting and generally enforces the covenant as written or not at all [^q5-waadah-blue-pencil].
 
-This is one of Nebraska's most important drafting rules. If the covenant reaches too far, the court does not trim the term, delete the bad customer category, or rewrite the geography to something reasonable. *Waadah* also confirms that when integrated restraints are not severable, one invalid part can make the whole non-compete agreement unenforceable [^q5-waadah-entire-covenant].
+This is one of Nebraska's most important drafting rules. If the covenant reaches too far, the court does not trim the term, delete the bad customer category, or rewrite the geography to something reasonable. *Waadah* also confirms that when integrated restraints are not severable, one invalid part can make the whole non-compete agreement unenforceable [^q5-waadah-entire-covenant]. For a clause-by-clause pass over a specific agreement against these drafting rules, the [Nebraska non-compete reviewer checklist](/checklists/non-compete/us/nebraska) walks the full covenant suite item by item with each requirement's force level.
 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Draft as if there is no rescue. Nebraska's franchise statute creates a separate exception, but that exception should not be carried into ordinary employment agreements [^q5-waadah-blue-pencil][^q5-waadah-entire-covenant].
+> An ordinary Nebraska employment covenant gets no rescue from the franchise reformation statute: that statute is a separate exception, and an employment covenant that relies on it as a general savings mechanism stands on nothing, because Nebraska courts do not reform an overbroad employment covenant and a nonseverable overbreadth can take the whole clause down with it [^q5-waadah-blue-pencil][^q5-waadah-entire-covenant].
 
 ## How are sale-of-business non-competes treated in Nebraska? {#sale-of-business}
 
@@ -96,11 +108,22 @@ This is one of Nebraska's most important drafting rules. If the covenant reaches
 
 That distinction matters. A sale covenant can protect purchased goodwill; an employment covenant cannot be a disguised market ban merely because the employee knows the business.
 
+## How does Nebraska treat employee non-solicitation covenants? {#employee-non-solicitation}
+
+**Short answer.** Little Nebraska law in our review squarely addresses employee raiding, so the covenant is judged under the same three-part *Securities Acceptance Corp. v. Brown* reasonableness test as a non-compete — not injurious to the public, no greater than necessary to protect a legitimate interest, and not unduly harsh on the employee [^ne-ens-brown].
+
+Overbreadth is fatal, because Nebraska courts will not reform a covenant not to compete to make it enforceable [^ne-ens-waadah].
+
 ## Can a successor enforce a Nebraska non-compete after a merger? {#successor-merger}
 
 **Short answer.** Yes, when the merger statute governing the transaction transfers the covenant by operation of law. In *Aon*, applying a merger statute like Maryland's, the Nebraska Supreme Court held a successor could enforce a predecessor's covenant even without a separate assignment clause [^q7-aon-merger-successor].
 
 This rule is about merger law, not automatic enforcement of every assigned employee covenant. The surviving company still must prove the covenant is valid under Nebraska reasonableness rules. In *Aon*, that worked because the restriction was tied to customers the employee personally dealt with during the last two years [^q7-aon-valid-and-passed].
+
+> [!CAUTION]
+> **Drafting note.**
+>
+> A covenant can move to a successor two ways in Nebraska — by an express assignment and successor clause, and by operation of law when the governing merger statute transfers it, even without a separate assignment [^q7-aon-merger-successor]. Neither path improves the covenant: a successor's right to enforce is no greater than the original employer's, and the surviving company still must prove each covenant valid under the reasonableness test, which held in the leading case only because the restraint was confined to customers the employee personally dealt with [^q7-aon-valid-and-passed]. A covenant reaching beyond the personally served customer class is no more enforceable in a successor's hands than in the original employer's.
 
 ## What is Nebraska's franchise non-compete exception? {#franchise-reformation}
 
@@ -111,7 +134,7 @@ This is the lone statutory exception to the ordinary no-reformation rule covered
 > [!NOTE]
 > **Practice note.**
 >
-> Do not cite the franchise statute as a general Nebraska blue-pencil rule. It says what happens in franchise non-compete agreements; employment covenants remain governed by Nebraska's common-law all-or-nothing approach [^q8-franchise-reformation][^q8-waadah-no-general-reform].
+> The franchise statute is not a general Nebraska blue-pencil rule. It states what happens in franchise non-compete agreements; ordinary employment covenants remain governed by Nebraska's common-law all-or-nothing approach [^q8-franchise-reformation][^q8-waadah-no-general-reform].
 
 ## Can another state's law save a Nebraska non-compete? {#choice-of-law}
 
@@ -121,6 +144,11 @@ This is the lone statutory exception to the ordinary no-reformation rule covered
 
 For a Nebraska worker, a foreign-law clause is therefore a risk variable, not a cure. The covenant should be drafted to satisfy Nebraska law if Nebraska is the likely place of work, customers, and enforcement.
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> Where the employee's services, customers, and competition are centered in Nebraska, Nebraska law is likely to govern the covenant's enforceability whatever law the agreement names, because Nebraska courts have applied Nebraska law to an out-of-state employer's covenant on that basis [^q9-mertz-nebraska-law-controls]. A foreign-law selection is therefore a risk variable rather than an enforceability strategy: an overbroad postemployment restraint that another state's law might tolerate remains against Nebraska public policy and void, so a covenant drafted to satisfy the more permissive law is exposed where Nebraska is the place of work and enforcement [^q9-mertz-public-policy].
+
 ## Do trade secrets make a Nebraska non-compete enforceable? {#trade-secrets}
 
 **Short answer.** No. Nebraska's Trade Secrets Act gives a separate statutory claim for misappropriation and a narrow definition of what counts as a trade secret, but it does not state a non-compete safe harbor. A covenant still must satisfy Nebraska's reasonableness limits [^q10-trade-secrets-act][^q10-trade-secret-definition][^q10-brown-reasonableness].
@@ -129,7 +157,7 @@ Trade-secret and confidentiality tools are often better targeted than a broad no
 
 Use trade-secret provisions for information risk, and use customer covenants only for the customer relationships Nebraska recognizes as protectable.
 
-## Does a Nebraska non-compete period toll during breach or litigation? {#tolling-extension}
+## Does a Nebraska non-compete period toll during breach or litigation? {#extended-for-breach}
 
 **Short answer.** Nebraska appellate case law is silent. No staged Nebraska appellate decision squarely addresses whether a court may toll a non-compete period during breach or litigation, or whether a contractual extension-on-breach clause is enforceable [^q11-brown-reasonableness].
 
@@ -138,7 +166,7 @@ The conservative read is to treat tolling as another restraint that must be reas
 > [!NOTE]
 > **Practice note.**
 >
-> Do not describe Nebraska as having a tolling holding. An aggressive extension clause that lengthens the restraint during alleged breach or litigation could face the same all-or-nothing overbreadth problem as any other Nebraska covenant term [^q11-brown-reasonableness][^q11-waadah-no-reform].
+> No Nebraska decision holds that a covenant period tolls during breach or litigation. An aggressive extension clause that lengthens the restraint during alleged breach or litigation faces the same all-or-nothing overbreadth problem as any other Nebraska covenant term, since a restraint with no effective time limit is void and Nebraska does not reform an overbroad one [^q11-brown-reasonableness][^q11-waadah-no-reform].
 
 ## What should a Nebraska non-compete drafting checklist include? {#drafting-checklist}
 
@@ -151,9 +179,9 @@ For modern media, technology, and sales roles, *Sisk* is the practical warning. 
 > [!CAUTION]
 > **Drafting note.**
 >
-> One overbroad term can be fatal. Nebraska drafting should be conservative at the front end because a court may not trim the covenant after the dispute starts [^q12-gaver-no-reform-check][^q12-sisk-modern-warning].
+> One overbroad term can be fatal to the whole covenant. Because a Nebraska court will not trim the covenant after a dispute starts, the restraint that holds is the one drawn narrowly at the front end — confined to personally served customers, severable, and independently readable — so that a single failed term does not carry the others down with it [^q12-gaver-no-reform-check][^q12-sisk-modern-warning].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Nebraska. This article synthesizes Nebraska primary law and is not legal advice from a Nebraska-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Nebraska. This article synthesizes Nebraska primary law and is not legal advice from a Nebraska-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Nebraska*, OpenAgreements (last updated June 2, 2026), https://openagreements.org/practice-guides/non-compete/us/nebraska.
 
 [^q1-brown-three-part-test]: **Securities Acceptance Corp. v. Brown** — "There are three general requirements relating to partial restraints of trade: First, is the restriction reasonable in the sense that it is not injurious to the public; second, is the restriction reasonable in the sense that it is no greater than is reasonably necessary to protect the employer in some legitimate interest; and, third, is the restriction reasonable in the sense that it is not unduly harsh and oppressive on the employee." *Securities Acceptance Corp. v. Brown, 171 Neb. 406, 417, 106 N.W.2d 456 (1960).* <https://www.courtlistener.com/opinion/1948918/securities-acceptance-corporation-v-brown/#:~:text=There%20are%20three%20general%20requirements,and%20oppressive%20on%20the%20employee.>
 
@@ -176,6 +204,10 @@ For modern media, technology, and sales roles, *Sisk* is the practical warning. 
 [^q5-waadah-entire-covenant]: **Unlimited Opportunity, Inc. v. Waadah** — "The district court was correct to consider the two covenants together and find the entire clause invalid if one portion is invalid." *Unlimited Opportunity, Inc. v. Waadah, 290 Neb. 629, 637, 861 N.W.2d 437 (2015).* <https://www.courtlistener.com/opinion/2792825/unlimited-opportunity-v-waadah/#:~:text=The%20district%20court%20was%20correct,if%20one%20portion%20is%20invalid.>
 
 [^q6-chambers-goodwill-sale]: **Chambers-Dobson, Inc. v. Squier** — "Thus, a covenant not to compete which is contained in a contract for sale of a business is a seller’s self-imposed restraint from trade and is frequently necessary to make goodwill in the seller’s business a transferable asset and ensure that the buyer receives the full value of acquired goodwill." *Chambers-Dobson, Inc. v. Squier, 238 Neb. 748, 756, 472 N.W.2d 391 (1991).* <https://www.courtlistener.com/opinion/2189174/chambers-dobson-inc-v-squier/#:~:text=Thus%2C%20a%20covenant%20not%20to,full%20value%20of%20acquired%20goodwill.>
+
+[^ne-ens-brown]: **Securities Acceptance Corp. v. Brown** — "There are three general requirements relating to partial restraints of trade: First, is the restriction reasonable in the sense that it is not injurious to the public; second, is the restriction reasonable in the sense that it is no greater than is reasonably necessary to protect the employer in some legitimate interest; and, third, is the restriction reasonable in the sense that it is not unduly harsh and oppressive on the employee." *Securities Acceptance Corp. v. Brown, 171 Neb. 406, 417, 106 N.W.2d 456 (1960).* <https://www.courtlistener.com/opinion/1948918/securities-acceptance-corporation-v-brown/#:~:text=There%20are%20three%20general%20requirements,and%20oppressive%20on%20the%20employee.>
+
+[^ne-ens-waadah]: **Unlimited Opportunity, Inc. v. Waadah** — "It is not the function of the courts to reform a covenant not to compete in order to make it enforceable." *Unlimited Opportunity, Inc. v. Waadah, 290 Neb. 629, 630, 861 N.W.2d 437 (2015).* <https://www.courtlistener.com/opinion/2792825/unlimited-opportunity-v-waadah/#:~:text=It%20is%20not%20the%20function,order%20to%20make%20it%20enforceable.>
 
 [^q7-aon-merger-successor]: **Aon Consulting, Inc. v. Midlands Financial Benefits, Inc.** — "We agree with those cases which hold, under statutes similar to Maryland's, that a covenant not to compete is an asset of a corporation which passes by operation of law to a successor corporation as the result of a merger, regardless of whether the agreement would otherwise be assignable." *Aon Consulting, Inc. v. Midlands Fin. Benefits, Inc., 275 Neb. 642, 748 N.W.2d 626 (2008).* <https://www.courtlistener.com/opinion/2139960/aon-consulting-v-midlands-financial/#:~:text=We%20agree%20with%20those%20cases,agreement%20would%20otherwise%20be%20assignable.>
 

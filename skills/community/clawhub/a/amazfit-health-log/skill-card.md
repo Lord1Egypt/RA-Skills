@@ -1,42 +1,60 @@
-## Description: <br>
-Fetches Amazfit GTR3 health data from HCGateway and writes a daily Obsidian log note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Amazfit GTR3 health data from HCGateway and writes a daily Obsidian log note.
 
-## Publisher: <br>
-[sanwebgit](https://clawhub.ai/user/sanwebgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sanwebgit](https://clawhub.ai/user/sanwebgit)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to fetch Amazfit GTR3 steps, sleep, heart rate, resting heart rate, SpO2, and distance data from HCGateway and record it as a daily Obsidian health note.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles HCGateway credentials and personal health metrics.
+
+Mitigation: Store the runtime config securely, limit file access, and install only where handling these health metrics is acceptable.
+
+Risk: The example configuration can use plaintext HTTP for a remote HCGateway server.
+
+Mitigation: Keep HCGateway on localhost or use HTTPS for remote access before sending credentials or health data.
+
+Risk: The documented recovery path includes sudo Docker commands.
+
+Mitigation: Review Docker commands manually before execution and only run elevated commands in an environment you administer.
+
+Risk: The optional cron entry creates persistent daily health notes in an Obsidian vault.
+
+Mitigation: Enable the cron job only when ongoing local retention of daily health data is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to fetch Amazfit GTR3 health metrics from HCGateway and generate daily Obsidian health log notes, either on demand or through a scheduled cron job. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and uses HCGateway credentials from a local config file. <br>
-Mitigation: Keep config.json private and install only when the publisher and local HCGateway endpoint are trusted. <br>
-Risk: The skill writes generated health metrics into a configured Obsidian vault path. <br>
-Mitigation: Review vault_path and log_dir before running so personal health data is written only to the intended location. <br>
-Risk: The artifact includes optional Docker and cron commands for unattended data collection. <br>
-Mitigation: Run Docker commands only for a controlled HCGateway deployment and add the cron entry only when daily unattended logging is desired. <br>
+**Output Format:** [Markdown note file with terminal summary text and setup commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Amazfit Health Log on ClawHub](https://clawhub.ai/sanwebgit/amazfit-health-log) <br>
+**Other Properties Related to Output:** [Writes one daily Markdown health log for the requested date to the configured Obsidian vault.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown health log note and terminal status summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes one dated Obsidian note per run using configured HCGateway credentials, locale, timezone, vault path, and log directory.] <br>
+1.0.1 (source: ClawHub release evidence; artifact frontmatter states 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter states 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Automate TikTok and Instagram account creation, video distribution, content uploads, and analytics through TokPortal's API and MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokPortal helps agents create TikTok and Instagram accounts, distribute videos, upload content, and track analytics through TokPortal tools.
 
-## Publisher: <br>
-[naybu256](https://clawhub.ai/user/naybu256) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[naybu256](https://clawhub.ai/user/naybu256)
 
-## Use Case: <br>
-External operators and developers use TokPortal to configure, publish, upload, and monitor TikTok and Instagram account bundles through the TokPortal API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent operate TokPortal at scale, including account creation, publishing, uploads, and paid credit-consuming actions. <br>
-Mitigation: Require explicit approval before account creation, publishing, uploads, credential retrieval, verification-code retrieval, or paid actions. <br>
-Risk: The skill depends on a TokPortal API key and may return account credentials or verification codes. <br>
-Mitigation: Use a restricted or low-credit API key where possible, keep returned credentials out of shared logs, and avoid exposing verification codes. <br>
-Risk: The MCP package and upload tools can affect local execution and private file handling. <br>
-Mitigation: Pin and review the tokportal-mcp package before running it, and do not upload private local files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TokPortal developer documentation](https://developers.tokportal.com) <br>
-- [TokPortal npm MCP package](https://www.npmjs.com/package/tokportal-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/naybu256/tokportal) <br>
+## Use Case:
 
+External teams and developers use TokPortal to manage TikTok and Instagram account bundles, scheduled video distribution, uploads, and analytics from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and TokPortal API/tool results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKPORTAL_API_KEY for authenticated TokPortal operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, changelog released 2026-02-14) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger bulk account creation, uploads, publishing, and other credit-spending TokPortal actions.
+
+Mitigation: Require explicit user approval for bulk creation, publishing, uploads, and credit-spending actions, and use account-level spending limits where available.
+
+Risk: The skill requires a TokPortal API key and can retrieve delivered account credentials and verification codes.
+
+Mitigation: Use a key with the minimum needed permissions, store it outside shared configuration files, and restrict credential or verification-code retrieval to approved workflows.
+
+Risk: The recommended MCP server is installed from an external npm package.
+
+Mitigation: Pin and review the tokportal-mcp package before running it, and update only after reviewing release changes.
+
+## Reference(s):
+
+- [TokPortal developer documentation](https://developers.tokportal.com)
+- [TokPortal ClawHub skill listing](https://clawhub.ai/naybu256/skills/tokportal)
+- [tokportal-mcp npm package](https://www.npmjs.com/package/tokportal-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated actions may spend TokPortal credits, publish social content, upload media, and retrieve delivered account credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

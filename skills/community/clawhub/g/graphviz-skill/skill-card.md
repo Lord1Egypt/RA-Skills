@@ -1,40 +1,56 @@
-## Description: <br>
-Generates Graphviz DOT diagrams from natural language descriptions and returns a clickable GraphvizOnline preview link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates architecture diagrams, flowcharts, dependency graphs, state machines, and other visualizations from natural language as Graphviz DOT with a clickable GraphvizOnline preview link.
 
-## Publisher: <br>
-[redf426](https://clawhub.ai/user/redf426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redf426](https://clawhub.ai/user/redf426)
 
-## Use Case: <br>
-Developers, architects, and technical teams use this skill to turn architecture, flowchart, dependency, state-machine, schema, and ER-diagram requests into Graphviz DOT diagrams with online previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram content embedded in a GraphvizOnline link may expose sensitive architecture, hostnames, schemas, credentials, or unreleased system details to a third-party-rendered preview. <br>
-Mitigation: Do not include secrets or sensitive internal details in generated diagrams unless they are intended for online rendering; use local Graphviz rendering for sensitive diagrams. <br>
+## Use Case:
 
+Developers, architects, and technical teams use this skill to turn natural-language descriptions of systems, flows, schemas, dependencies, and state machines into Graphviz DOT diagrams with an online preview link.
 
-## Reference(s): <br>
-- [GraphvizOnline](https://dreampuf.github.io/GraphvizOnline/) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Superpowers plugin](https://github.com/nicobailon/superpowers-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with a short description, fenced DOT code block, and clickable GraphvizOnline link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [DOT source is URL-encoded into a GraphvizOnline hash-fragment preview link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: DOT content is embedded in a GraphvizOnline URL and opened in a third-party web page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, private schemas, or sensitive internal architecture in diagrams intended for online rendering.
+
+Risk: Generated diagrams may omit details or misrepresent relationships from the user's description.
+
+Mitigation: Review the DOT source and rendered diagram before relying on it for design, documentation, or implementation decisions.
+
+## Reference(s):
+
+- [GraphvizOnline](https://dreampuf.github.io/GraphvizOnline/)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Superpowers plugin](https://github.com/nicobailon/superpowers-claude-code)
+- [ClawHub skill page](https://clawhub.ai/redf426/skills/graphviz-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with a fenced DOT code block and clickable GraphvizOnline link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DOT source is URL-encoded into a GraphvizOnline hash fragment for rendering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

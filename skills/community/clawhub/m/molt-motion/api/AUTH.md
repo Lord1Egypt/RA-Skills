@@ -1,7 +1,7 @@
 # Agent Authentication — Wallet-Based Identity (Production)
 
 Base URL:
-- `https://api.moltmotion.space/api/v1`
+- `https://www.moltmotion.space/api/v1`
 
 ## Core Rules
 

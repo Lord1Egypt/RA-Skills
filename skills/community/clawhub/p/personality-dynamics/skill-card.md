@@ -1,45 +1,65 @@
-## Description: <br>
-Adapts OpenClaw agents by learning user interaction patterns, switching personas by context, and evolving personality weekly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic personality evolution for OpenClaw agents. Learn interaction patterns, adapt tone, and mode switching.
 
-## Publisher: <br>
-[ngmeyer](https://clawhub.ai/user/ngmeyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ngmeyer](https://clawhub.ai/user/ngmeyer)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to initialize and maintain local persona files, switch between context modes, analyze workspace memory for interaction patterns, and generate weekly evolution suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI command dispatcher can run unsafe shell commands when untrusted text is passed as arguments. <br>
-Mitigation: Do not pass untrusted text to the CLI until argument handling is fixed, and review commands before execution. <br>
-Risk: The skill can persist sensitive personality profile data and generated context from workspace memory. <br>
-Mitigation: Install only if local personality profiling is acceptable, keep PERSONA and evolution files private, and review them regularly. <br>
-Risk: Heartbeat automation can analyze workspace memory automatically. <br>
-Mitigation: Enable heartbeat automation only after confirming which workspace it will analyze. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create adaptive agent personas, analyze interaction patterns, switch communication modes, and generate weekly suggestions for persona or SOUL.md updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ngmeyer/personality-dynamics) <br>
-- [Publisher profile](https://clawhub.ai/user/ngmeyer) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local PERSONA files and mode state in the active workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Shell command injection or unsafe execution from untrusted CLI arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only a fixed reviewed release in a trusted workspace and do not pass untrusted input to the CLI.
+
+Risk: Generated persona, memory-derived, and evolution files may contain sensitive personal profile data.
+
+Mitigation: Keep PERSONA and memory-derived files private, and delete or exclude them from repositories, shared backups, and logs when they contain private information.
+
+Risk: Automatic session analysis may create or update behavior suggestions that affect the agent's personality.
+
+Mitigation: Review generated reports and suggested SOUL.md or PERSONA changes before adopting them.
+
+Risk: Unpinned npx install examples can execute code that has not been reviewed for the target environment.
+
+Mitigation: Prefer installing a pinned, reviewed version instead of running unpinned npx commands.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ngmeyer/skills/personality-dynamics)
+- [OpenClaw persona-evolution repository](https://github.com/openclaw/persona-evolution)
+- [OpenClaw persona-evolution issues](https://github.com/openclaw/persona-evolution/issues)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON files, shell command output, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates PERSONA files and evolution reports in the current workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,64 @@
-## Description: <br>
-A multi-skill orchestrator that chains independent skills into automated compound workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多技能联动编排器，将多个独立Skill串联成"超级技能"自动执行.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-Developers and automation builders use this skill to classify a user goal, select a matching multi-skill template, and generate a step-by-step call chain for content creation, research, media analysis, investment analysis, knowledge management, or skill improvement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chains can trigger downstream publishing, portfolio updates, or persistent knowledge-base changes without consistently requiring clear final approval. <br>
-Mitigation: Review every generated chain before it runs and require explicit manual approval before publishing, updating portfolio records, writing wiki indexes or concept graphs, using logged-in scraping, or applying generated skill changes. <br>
-Risk: The workflow relies on downstream skills and accounts whose behavior and permissions are outside this skill's direct control. <br>
-Mitigation: Verify each downstream skill, connected account, and permission before execution; keep auto_publish and update_portfolio disabled by default. <br>
+## Use Case:
 
+Developers and agent operators use this skill to classify a user's goal, select matching skills, and generate multi-step workflows for content creation, research, media analysis, investment analysis, knowledge management, and skill improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-long-2022/openclaw-skill-compounder) <br>
-- [CHAIN.md](artifact/CHAIN.md) <br>
-- [REGISTRY.md](artifact/REGISTRY.md) <br>
-- [Pipeline templates](artifact/TEMPLATES/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and YAML-style workflow definitions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates ordered skill chains, input mappings, fallback handling, and validation guidance for downstream execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated workflows can include public publishing steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto-publish disabled by default and require a preview plus explicit confirmation before upload or publish actions.
+
+Risk: Generated workflows can include financial portfolio changes.
+
+Mitigation: Require explicit user confirmation before portfolio updates and treat investment outputs as guidance that needs review.
+
+Risk: Generated workflows can write to a knowledge base or other persistent local files.
+
+Mitigation: Show the planned write target and require approval before updating indexes, wiki files, or other persistent state.
+
+Risk: Fetched web content can influence downstream writing, publishing, or skill-improvement steps.
+
+Mitigation: Treat fetched content as untrusted input and review generated outputs before using them in publishing, installation, or skill changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jack-long-2022/skills/openclaw-skill-compounder)
+- [SKILL.md](artifact/SKILL.md)
+- [CHAIN.md](artifact/CHAIN.md)
+- [REGISTRY.md](artifact/REGISTRY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, structured workflow descriptions, YAML pipeline templates, and generated skill-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ordered skill calls, input mappings, output validation expectations, fallback handling, and optional publish or persistence steps.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

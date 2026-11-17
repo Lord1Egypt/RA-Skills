@@ -1,42 +1,53 @@
-## Description: <br>
-Track persistent topics such as stocks, companies, AI, and policy events, and monitor them continuously for recurring updates, trend tracking, structured summaries, and recent news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+signal-track helps agents track persistent topics such as stocks, companies, AI, and policy events for recurring updates, trend monitoring, structured summaries, and recent-news lookups.
 
-## Publisher: <br>
-[lucas-acc](https://clawhub.ai/user/lucas-acc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-acc](https://clawhub.ai/user/lucas-acc)
 
-## Use Case: <br>
-External users and agents use this skill to define and follow long-running information topics, retrieve feeds and news-card details, search tracked signals, fetch article content, and manage topic subscriptions through the signal-track CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses a YouNews API key in local OpenClaw or legacy signal-track configuration files. <br>
-Mitigation: Use a dedicated YouNews API key, avoid storing unrelated credentials in a top-level OpenClaw apiKey, restrict access to the config files, and delete them when the skill is no longer needed. <br>
-Risk: Tracked topics, searches, feed requests, article IDs, and follow or unfollow actions are sent to the YouNews/Sohu backend. <br>
-Mitigation: Install only when this data sharing is acceptable, avoid sensitive topics where possible, and review follow or unfollow actions before running them. <br>
+## Use Case:
 
+Developers and agents use signal-track to create and manage persistent topic monitoring, retrieve followed topic feeds, search news cards, fetch article content, and produce decision-relevant summaries for fast-moving domains.
 
-## Reference(s): <br>
-- [ClawHub signal-track Skill](https://clawhub.ai/lucas-acc/signal-track) <br>
-- [signal-track Publisher Profile](https://clawhub.ai/user/lucas-acc) <br>
-- [YouNews API Base](https://younews.k.sohu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-style CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 22+, a valid YouNews API key, local configuration, and network access to the YouNews/Sohu backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill handles a YouNews API key on the command line and stores it in plaintext local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or low-privilege API key where possible, avoid pasting secrets into shell history, restrict permissions on the OpenClaw or legacy config file, and revoke or rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [signal-track ClawHub Skill Page](https://clawhub.ai/lucas-acc/skills/signal-track)
+- [YouNews](https://younews.cn/)
+- [YouNews API Base URL](https://younews.k.sohu.com/)
+- [CLI Test Instructions](docs/testing/cli-test-instructions.md)
+- [Security Checklist](docs/testing/security-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-style text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a YouNews API key and local configuration before authenticated CLI commands can return topic, news card, or article data.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

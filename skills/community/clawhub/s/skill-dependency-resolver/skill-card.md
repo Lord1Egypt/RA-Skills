@@ -1,40 +1,56 @@
-## Description: <br>
-Skill Dependency Resolver scans OpenClaw skill requirements files, detects Python package version conflicts, and generates a merged requirements file with a conflict report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Dependency Resolver scans skills for Python requirements.txt files, detects version conflicts, and generates a merged requirements file with an analysis report.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers, skill authors, and system administrators use this skill to inspect multiple installed skills for requirements.txt conflicts and produce a single requirements file for installation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured output file can be overwritten. <br>
-Mitigation: Choose the output path deliberately and review or back up any existing requirements file before running the skill. <br>
-Risk: A merged requirements file can select package versions that are unsuitable for a specific environment. <br>
-Mitigation: Review the generated requirements file and test installation in an isolated environment before using it with pip in a shared or production setup. <br>
+## Use Case:
 
+Developers, skill authors, and system administrators use this skill to inspect Python dependency requirements across multiple installed skills, identify conflicts, and produce a consolidated requirements file for review before installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/skill-dependency-resolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands] <br>
-**Output Format:** [CLI output plus generated requirements.txt content and a structured conflict report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a merged requirements file to the configured output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill.json) <br>
+Risk: The generated merged requirements file may change package versions used by other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated package version changes before installing them, especially for production or security-sensitive skills.
+
+Risk: Installation creates a CLI symlink in ~/.local/bin.
+
+Mitigation: Install only in environments where adding this local command is acceptable, and remove the symlink when uninstalling.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/utopiabenben/skills/skill-dependency-resolver)
+- [Publisher profile](https://clawhub.ai/user/utopiabenben)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain-text requirements file plus CLI summary and dependency analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated requirements-merged.txt should be reviewed before package installation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

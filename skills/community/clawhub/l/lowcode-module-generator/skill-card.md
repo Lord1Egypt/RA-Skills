@@ -1,41 +1,65 @@
-## Description: <br>
-Generates low-code module scaffolding for backend Java services, React frontend pages, SQL initialization, and related module configuration from a Chinese module name and field definition table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates low-code module scaffolding for ACM-style systems, including Java backend classes, React frontend pages, and database initialization SQL from a Chinese module name and field specification.
 
-## Publisher: <br>
-[hjfeilg](https://clawhub.ai/user/hjfeilg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjfeilg](https://clawhub.ai/user/hjfeilg)
 
-## Use Case: <br>
-Developers and engineers use this skill to create consistent backend, frontend, and database scaffolding for new low-code platform modules. It is intended for module generation workflows where the user supplies a Simplified Chinese module name, field definitions, and optional layout or relation details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated backend, frontend, and SQL files may be written to unintended project paths if output locations are wrong or omitted. <br>
-Mitigation: Confirm the backend, frontend, and SQL output paths in src/config.json or provide explicit paths before using the generated artifacts. <br>
-Risk: Generated code or init.sql may not match the intended module structure when layout keywords, relation settings, or Chinese text conversion are ambiguous. <br>
-Mitigation: Review generated code and init.sql before committing or applying them, especially for layout choices and relation fields. <br>
+## Use Case:
 
+Developers use this skill to generate an initial full-stack module codebase for low-code ACM-style applications from simplified Chinese module and field descriptions. The generated Java, React, mapper, service, controller, and SQL outputs should be reviewed and adapted before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjfeilg/lowcode-module-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/hjfeilg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and generated source-code snippets or files for Java, React, mapper XML, SQL, and module configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated output depends on the target backend, frontend, and SQL paths plus the module fields and layout choices supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can direct an agent to write generated source code and SQL into broad user-selected project paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is limited to intended project directories and review generated file lists and resolved paths before allowing writes.
+
+Risk: Absolute paths, traversal paths, or unintended path overrides could route generated files outside the expected project directories.
+
+Mitigation: Reject unexpected absolute or traversal path overrides before executing file writes.
+
+Risk: Generated SQL may be unsuitable for the target database schema or operational environment.
+
+Mitigation: Inspect generated SQL manually before running it against any database.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjfeilg/skills/lowcode-module-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/hjfeilg)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [SQL generator documentation](src/documents/sql-generator.md)
+- [Velocity template variables](src/documents/template/velocity-variables.md)
+- [Template constraints](src/documents/template/template-constraints.md)
+- [Form controls](src/documents/form-controls/form-controls.md)
+- [Layout documentation](src/documents/layout-types/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated code snippets, SQL, configuration values, and file path recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can direct agents to write generated source code and SQL under user-selected backend and frontend project paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

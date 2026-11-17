@@ -1,45 +1,60 @@
-## Description: <br>
-Knowledge Curator saves explicitly requested web links into a local Markdown knowledge base, summarizes and categorizes entries, and supports search, listing, deletion, statistics, and export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Curator fetches user-approved links, summarizes and categorizes the content, stores it as a local Markdown knowledge base, and supports search and management commands.
 
-## Publisher: <br>
-[Mayuyang-study](https://clawhub.ai/user/Mayuyang-study) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayuyang-study](https://clawhub.ai/user/mayuyang-study)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn saved links from supported platforms into searchable local Markdown knowledge-base entries for later retrieval and export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted links may be fetched and saved into a local knowledge base, including content the user did not intend to persist if save intent is ambiguous. <br>
-Mitigation: Use explicit save commands, avoid private or authenticated URLs, and review saved entries before sharing or exporting. <br>
-Risk: The skill can delete or export stored knowledge-base entries. <br>
-Mitigation: Review target IDs and exported content before running delete or export commands, and keep backups of the knowledge-base folder. <br>
-Risk: Fetched content and generated summaries may be incomplete, inaccurate, or affected by platform access limits. <br>
-Mitigation: Check source links and stored Markdown entries before relying on them for decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to save web and platform links into a structured local knowledge base, then search, list, view, delete, export, and review the stored entries.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/Mayuyang-study/knowledge-curator) <br>
-- [README.md](artifact/README.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
-- [examples.md](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown knowledge-base entries with text command responses; exports may be Markdown, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries in a local knowledge-base folder and maintains an index file; fetches user-submitted links when save intent is explicit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, _meta.json) <br>
+Risk: The skill fetches arbitrary user-provided URLs, which can expose private or internal network destinations if URL handling is not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate destination URLs, block private and internal address ranges, cap response sizes, and run the skill in an isolated environment without internal network access.
+
+Risk: The skill writes and deletes persisted knowledge-base files, and weak validation could affect unintended paths or remove important entries.
+
+Mitigation: Allowlist knowledge-base category paths, normalize paths before file operations, and require clear user confirmation before deleting entries.
+
+Risk: Saved links and fetched page content may contain sensitive URL parameters or private information.
+
+Mitigation: Redact sensitive URL parameters, ask for confirmation before saving sensitive links, and avoid granting the skill access to sensitive local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mayuyang-study/skills/knowledge-curator)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, text command responses, JSON indexes, and optional Markdown, JSON, or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores fetched content under a local knowledge-base directory and maintains an index.json file for search and management operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

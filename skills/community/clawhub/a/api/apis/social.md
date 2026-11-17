@@ -2,12 +2,13 @@
 
 | API | Line |
 |-----|------|
-| LinkedIn | 91 |
-| Instagram Graph API | 154 |
-| TikTok | 217 |
-| Pinterest | 296 |
-| Reddit | 372 |
-| Twitch | 452 |
+| Twitter / X | 15 |
+| LinkedIn | 104 |
+| Instagram Graph API | 167 |
+| TikTok | 230 |
+| Pinterest | 309 |
+| Reddit | 385 |
+| Twitch | 465 |
 
 ---
 

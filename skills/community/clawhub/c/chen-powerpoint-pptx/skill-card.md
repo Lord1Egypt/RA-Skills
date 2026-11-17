@@ -1,43 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft PowerPoint presentations and PPTX decks with reliable layouts, templates, placeholders, notes, charts, and visual QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft PowerPoint presentations and PPTX decks with reliable layouts, templates, placeholders, notes, charts, and visual QA.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers, analysts, and presentation authors use this skill to inspect, create, and modify PowerPoint decks while preserving template fidelity, placeholders, charts, speaker notes, comments, and visual quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint edits can place content in the wrong placeholder, layer, notes area, or chart when the deck structure is assumed instead of inspected. <br>
-Mitigation: Inventory layouts, placeholders, notes, comments, media, and chart structures before making edits, then verify affected slides after each change. <br>
-Risk: A deck can pass text inspection while still containing visual defects such as overflow, clipping, weak contrast, leftover template content, or inconsistent themes. <br>
-Mitigation: Run separate content and visual QA, including rendered-slide or thumbnail inspection, before delivering the final deck. <br>
-Risk: The skill may cause an agent to read or modify user-provided PPTX files even though the package itself has no scripts or hidden high-privilege behavior. <br>
-Mitigation: Use it only on intended presentation files and review proposed file changes before accepting them. <br>
+## Use Case:
 
+Developers and presentation authors use this skill when an agent needs to inspect, create, or edit PowerPoint decks while preserving template fidelity, placeholders, charts, speaker notes, and final visual quality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/chen-powerpoint-pptx) <br>
-- [Skill homepage](https://clawic.com/skills/powerpoint-pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and file-editing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to read, inspect, render, or modify user-provided PPTX files; the package itself is documentation-only and declares no required binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved ClawHub release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: Presentation edits can unintentionally affect slide layout, notes, charts, templates, or other PPTX parts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final slides visually and inspect affected notes, comments, charts, and templates before delivery.
+
+Risk: Template, placeholder, and master-slide assumptions can place content in the wrong area or create visual defects.
+
+Mitigation: Inventory the deck structure before editing and run at least one render-and-review pass after changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cs995279497-byte/skills/chen-powerpoint-pptx)
+- [Skill Homepage](https://clawic.com/skills/powerpoint-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide inspection, editing, rendering, and review of PPTX files; final deck artifacts depend on the user's task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

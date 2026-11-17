@@ -1,40 +1,57 @@
-## Description: <br>
-Enable managers to self-diagnose, identify defects, track improvements, and maintain skill health without relying on external prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables a manager agent to self-diagnose, identify defects, track improvements, audit skill health, and record diagnostic findings.
 
-## Publisher: <br>
-[wjl1004](https://clawhub.ai/user/wjl1004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjl1004](https://clawhub.ai/user/wjl1004)
 
-## Use Case: <br>
-Managers and agent operators use this skill to run local self-diagnostics, identify recurring behavior issues, and track follow-up improvements in an evolution log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local OpenClaw memory, context, and daily memory files during diagnostics. <br>
-Mitigation: Use it only in workspaces where that local context may be reviewed by the agent, and avoid storing highly sensitive material in those files. <br>
-Risk: Diagnostic observations can persist in a local evolution-log.md file. <br>
-Mitigation: Review the generated log periodically and remove entries that should not be retained. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add Chinese-language self-diagnostic routines that review recent behavior, memory discipline, skill integrity, and health signals for a manager agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjl1004/manager-self-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown log entries, with usage guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or appends a local evolution-log.md when diagnostics find issues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks for automatic heartbeat, daily, and every-task behavior that can run without direct user invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit invocation or host-level limits before enabling automatic triggers.
+
+Risk: The skill can read agent memory, behavioral files, and installed skill information during diagnostics.
+
+Mitigation: Run it with least-privilege file access and review the permitted diagnostic scope before installation.
+
+Risk: The skill can write persistent diagnostic notes to an evolution log.
+
+Mitigation: Review the log path and require confirmation for persistent writes in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjl1004/skills/manager-self-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Text and Markdown diagnostic summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent diagnostic notes to an evolution log when checks find issues.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

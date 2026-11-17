@@ -1,45 +1,61 @@
-## Description: <br>
-Fetches recent articles from WeChat public accounts through the wcrss.com API and helps an agent summarize and display them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and displays recent WeChat public-account articles through the wcrss.com API using a WCRSS_API_KEY environment variable.
 
-## Publisher: <br>
-[blackomw](https://clawhub.ai/user/blackomw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackomw](https://clawhub.ai/user/blackomw)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve recent WeChat public account articles from a configured wcrss.com account, inspect individual article records, and produce concise article summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a WCRSS_API_KEY from the local environment to contact api.wcrss.com. <br>
-Mitigation: Use a dedicated wcrss.com API key, keep it in environment variables, and rotate or revoke it if the workspace is shared or exposed. <br>
-Risk: Fetched article and publisher data are cached locally in wechat_articles_cache.json. <br>
-Mitigation: Clear the cache when article content should not remain on disk, especially on shared machines or temporary workspaces. <br>
-Risk: Article HTML is passed to the assistant for summarization. <br>
-Mitigation: Review whether fetched article content is appropriate to process before asking the assistant to summarize it. <br>
+## Use Case:
 
+External users and agents use this skill to fetch recent articles from configured WeChat public accounts, retrieve cached article details, and summarize article HTML into readable bullet points.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/blackomw/wechat-rss) <br>
-- [WCRSS](https://wcrss.com/) <br>
-- [WCRSS publishers](https://wcrss.com/publishers) <br>
-- [WCRSS settings](https://wcrss.com/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON article records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WCRSS_API_KEY; fetch accepts recentDays and num arguments; article and publisher data are cached locally for one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends article-fetch requests to wcrss.com using a WCRSS API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable sharing that credential with wcrss.com, and store WCRSS_API_KEY only in trusted environments.
+
+Risk: Fetched article HTML is untrusted content that is placed into summarization prompts.
+
+Mitigation: Treat article HTML as data, ignore instructions embedded in articles, and avoid giving the summarizing agent unrelated secrets or powerful tools.
+
+Risk: Fetched articles and publisher data are cached locally in the working directory.
+
+Mitigation: Run the skill from a private trusted directory and clear wechat_articles_cache.json when cached content should not persist.
+
+## Reference(s):
+
+- [ClawHub WeChat RSS skill page](https://clawhub.ai/blackomw/skills/wechat-rss)
+- [WCRSS](https://wcrss.com/)
+- [WCRSS publisher management](https://wcrss.com/publishers)
+- [WCRSS API key settings](https://wcrss.com/settings)
+- [WCRSS articles API endpoint](https://api.wcrss.com/sapi/articles?recentDays={recent_days}&num={num})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON article records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local one-hour cache file named wechat_articles_cache.json and returns article title, author, publish time, URL, HTML content, and description.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

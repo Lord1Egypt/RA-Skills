@@ -1,42 +1,55 @@
-## Description: <br>
-Virtual card deck — shuffle, draw, and manage playing cards via the Deck of Cards API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual card deck - shuffle, draw, and manage playing cards via the Deck of Cards API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and external users use this skill to create shuffled virtual decks, draw cards, and reshuffle decks for card games, decision tools, probability teaching, and shared party games. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to a Pipeworx remote gateway. <br>
-Mitigation: Use it only when remote gateway use is acceptable for the deck activity, and avoid sending sensitive local data because the skill does not require it. <br>
-Risk: The MCP configuration fetches mcp-remote from npm through npx. <br>
-Mitigation: Prefer the direct curl workflow when a narrower execution path is needed, or pin and review the MCP client dependency before use. <br>
+## Use Case:
 
+Developers and external users can use this skill to create, shuffle, draw from, and reshuffle virtual playing-card decks for games, probability exercises, decision tools, and shared activities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-deckofcards) <br>
-- [Pipeworx Deck of Cards pack](https://pipeworx.io/packs/deckofcards) <br>
-- [Pipeworx Deck of Cards MCP gateway](https://gateway.pipeworx.io/deckofcards/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and remote tool calls for deck creation, card drawing, and deck shuffling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup uses a mutable npm package version for the MCP bridge, which can introduce local supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed version of mcp-remote before installation.
+
+Risk: The MCP process may receive more local access than it needs.
+
+Mitigation: Run it with minimal environment access and avoid exposing secrets or broad filesystem permissions.
+
+## Reference(s):
+
+- [Pipeworx Deck of Cards homepage](https://pipeworx.io/packs/deckofcards)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-deckofcards)
+- [Deck of Cards MCP endpoint](https://gateway.pipeworx.io/deckofcards/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with JSON configuration and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls return deck identifiers, card codes, suits, values, and card image URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

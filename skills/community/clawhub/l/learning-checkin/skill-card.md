@@ -1,43 +1,59 @@
-## Description: <br>
-Daily learning habit builder with check-ins and smart reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily learning habit builder with check-ins and smart reminders
 
-## Publisher: <br>
-[daizongyu](https://clawhub.ai/user/daizongyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daizongyu](https://clawhub.ai/user/daizongyu)
 
-## Use Case: <br>
-External users and agent operators use this skill to record daily learning completion, view streak status, and optionally configure reminders around a local learning habit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores check-in history, reminder configuration, and reminder logs in a local data folder next to the skill. <br>
-Mitigation: Tell users where the local data folder is before use and provide a clear path for reviewing, editing, or deleting that data. <br>
-Risk: Ambiguous phrases such as generic completion statements may be interpreted as a learning check-in. <br>
-Mitigation: Use explicit check-in language, such as "record today's learning check-in," when asking the agent to record progress. <br>
-Risk: The setup-cron helper proposes scheduled check-in commands rather than reminder-message commands. <br>
-Mitigation: Avoid using the setup-cron helper unless it is changed to send reminders; confirm the scheduler, reminder time, and disable path with the user before enabling reminders. <br>
+## Use Case:
 
+External users and agent operators use this skill to record daily learning check-ins, view streak status, and receive optional reminder guidance.
 
-## Reference(s): <br>
-- [ClawHub listing: Learning Checkin](https://clawhub.ai/daizongyu/learning-checkin) <br>
-- [Publisher profile: daizongyu](https://clawhub.ai/user/daizongyu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores check-in history, reminder status, and reminder logs in a local data folder next to the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and artifact documentation) <br>
+Risk: Undocumented scheduled-job output can record check-ins automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the setup-cron output as written; configure reminders to call reminder or message flows only, and require explicit learning-checkin wording or confirmation before recording a check-in.
+
+Risk: The skill creates local habit data files in the skill folder.
+
+Mitigation: Tell users before initialization that records, reminder status, and reminder logs are stored locally, and treat those files as user data.
+
+Risk: The current init path appears to reference an undefined get_welcome_message helper.
+
+Mitigation: Review or patch initialization before relying on first-run setup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daizongyu/skills/learning-checkin)
+- [Project Repository](https://github.com/daizongyu/learning-checkin)
+- [Project Releases](https://github.com/daizongyu/learning-checkin/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command results with human-facing text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local habit data files in the skill data folder for records, reminder status, and reminder logs.]
+
+## Skill Version(s):
+
+3.1.0 (source: release evidence, artifact README, SKILL.md, and script VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

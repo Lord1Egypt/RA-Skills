@@ -2,6 +2,9 @@
 
 > Luminous, atmospheric painting defined by broken brushwork, shifting light, and the dissolution of solid form into sensation.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 
 | Property | Value |
@@ -99,3 +102,23 @@ Speak in observations rather than declarations. Notice the quality of light, the
 ---
 
 *Distilled by InspiredHub Taste Engine from 312 primary works in the InspiredHub Library. Each style token is grounded in actual painting analysis.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-monet)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

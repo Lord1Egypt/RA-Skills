@@ -1,43 +1,53 @@
-## Description: <br>
-Captures the primary screen, copies the screenshot into the workspace, and sends it to Feishu when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures the visible screen with PowerShell, copies the screenshot into the workspace, and sends it to Feishu when the user requests a screenshot.
 
-## Publisher: <br>
-[TOOTW](https://clawhub.ai/user/TOOTW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tootw](https://clawhub.ai/user/tootw)
 
-## Use Case: <br>
-Employees or agent users use this skill to share their current screen in Feishu without manually capturing, moving, and attaching the image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture the entire primary screen, including sensitive windows. <br>
-Mitigation: Close or hide sensitive content before use and only invoke the skill when a full-screen capture is intended. <br>
-Risk: The skill can send a screenshot to Feishu from broad screenshot requests without an explicit confirmation step or destination control. <br>
-Mitigation: Require confirmation before sending and make the Feishu recipient or channel explicit. <br>
-Risk: The screenshot is stored locally and copied into the workspace before delivery. <br>
-Mitigation: Delete the local and workspace screenshot files after sending. <br>
+## Use Case:
 
+Employees and external users can use this skill to capture the currently visible screen and send the resulting image to Feishu from direct screenshot requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TOOTW/feishu-screenshot) <br>
-- [Publisher profile](https://clawhub.ai/user/TOOTW) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions that create a screenshot file and send it through a Feishu file action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may capture everything visible on the primary screen, including sensitive windows or notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Close or hide sensitive content before use and prefer a preview or confirmation step before transmission.
+
+Risk: Broad screenshot requests can lead to sending a screenshot to Feishu without clear confirmation.
+
+Mitigation: Use the skill only when the user explicitly requests both screenshot capture and Feishu delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tootw/skills/feishu-screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a screenshot file path and a Feishu send action for the agent to execute.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

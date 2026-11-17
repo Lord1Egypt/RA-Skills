@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[ruimin922](https://clawhub.ai/user/ruimin922) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruimin922](https://clawhub.ai/user/ruimin922)
 
-## Use Case: <br>
-Developers and agent users use this skill to find installable skills for specialized tasks, compare relevant options, and optionally install a selected skill through the Skills CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest global installation of third-party skills while suppressing confirmation prompts. <br>
-Mitigation: Require explicit user approval before running install commands, review the target skill source, publisher, permissions, and dependencies, and avoid `-g -y` unless persistent user-wide installation without prompts is intentional. <br>
+## Use Case:
 
+Developers and agent users use this skill to identify installable skills for specialized tasks, present relevant options, and guide skill installation with the Skills CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ruimin922/find-skills-3) <br>
-- [Skills catalog](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include third-party skill links and install commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may recommend broad, global, confirmation-skipping installs from mutable third-party sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid global or confirmation-skipping installs by default; verify the exact source and revision of each skill and prefer pinned or sandboxed tooling.
+
+Risk: Installing discovered skills can add unreviewed agent capabilities.
+
+Mitigation: Review and scan each skill before deployment.
+
+## Reference(s):
+
+- [Skills ecosystem browser](https://skills.sh/)
+- [ClawHub skill page](https://clawhub.ai/ruimin922/skills/find-skills-3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest Skills CLI commands and links to relevant skill pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Professional WhatsApp messaging via the wacli CLI. Use when the user wants the agent to message another person from their personal WhatsApp account, search chat history before replying, draft more human-sounding messages, manage follow-ups, or send files with concise professional tone instead of robotic AI phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional WhatsApp messaging via the wacli CLI for searching chat history, drafting natural messages, managing follow-ups, and sending messages or files from a user's personal WhatsApp account.
 
-## Publisher: <br>
-[prantikmedhi](https://clawhub.ai/user/prantikmedhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prantikmedhi](https://clawhub.ai/user/prantikmedhi)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to draft, review, and send WhatsApp messages or files through the user's personal WhatsApp account with context-aware tone and recipient confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read relevant WhatsApp chat history and send messages or files through the user's account. <br>
-Mitigation: Keep recipient lookup and history review scoped to the task, minimize personal data exposure, and require the user to verify the exact recipient, message text, and attachment before approving sends. <br>
-Risk: The skill depends on a separate wacli CLI authenticated to the user's WhatsApp identity. <br>
-Mitigation: Install only a trusted wacli setup, run wacli doctor when troubleshooting, and avoid using wacli for the user's direct chat with OpenClaw. <br>
+## Use Case:
 
+External users and agents use this skill to draft, review, and send context-aware WhatsApp messages through a configured wacli session. It is intended for personal, professional, and follow-up messaging where recent chat history, recipient identity, tone, and explicit send confirmation matter.
 
-## Reference(s): <br>
-- [Message patterns](references/message-patterns.md) <br>
-- [History workflow](references/history-workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/prantikmedhi/wacli-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and drafted message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation for recipient, final message text, and attachment before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent can inspect relevant WhatsApp chat history through the user's configured wacli session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit history lookup to the minimum context needed for the requested message and avoid unnecessary personal data exposure.
+
+Risk: The agent can send WhatsApp messages or files on the user's behalf.
+
+Mitigation: Review the recipient, message text, and attachment before confirming, especially for sensitive personal, financial, or professional conversations.
+
+Risk: Recipient ambiguity could cause a message to be sent to the wrong chat.
+
+Mitigation: Ask the user to choose when multiple chats match and do not guess recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prantikmedhi/skills/wacli-pro)
+- [History workflow](references/history-workflow.md)
+- [Message patterns](references/message-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline wacli shell commands and drafted message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipient lookup steps, concise message drafts, confirmation prompts, send commands, and a post-send summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

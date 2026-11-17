@@ -1,43 +1,58 @@
-## Description: <br>
-Automates ClawHub skill publishing with version management, changelog generation, asset bundling, metadata validation, and acceptLicenseTerms support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated skill publishing to ClawHub with version management, changelog generation, asset bundling, and one-command deployment.
 
-## Publisher: <br>
-[bg1avd](https://clawhub.ai/user/bg1avd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bg1avd](https://clawhub.ai/user/bg1avd)
 
-## Use Case: <br>
-Developers and teams use this skill to publish ClawHub skills, manage versions and changelogs, bundle assets, validate metadata, and support CI/CD release workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to install external npm or PyPI packages before publishing. <br>
-Mitigation: Verify the package and repository provenance, pin exact versions, and run validation or dry-run steps before using the package in a release workflow. <br>
-Risk: Broad ClawHub publishing credentials may allow public releases, rollbacks, or account and team changes. <br>
-Mitigation: Use a revocable least-privilege ClawHub token, avoid logging credentials, and require manual approval for publish, batch publish, rollback, and team-member changes. <br>
-Risk: Automated changelog, README, and Gumroad link changes can alter public release content. <br>
-Mitigation: Review generated diffs and approve content changes manually before publishing. <br>
+## Use Case:
 
+Developers and release engineers use this skill to publish ClawHub skills, manage versions, generate changelogs, bundle assets, validate metadata, and integrate publishing into CI/CD workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bg1avd/clawhub-publisher-auto) <br>
-- [Midas Skills ClawHub Publisher docs](https://docs.midas-skills.com/clawhub-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include publish, batch publish, rollback, Gumroad link injection, analytics, team workflow, and CI/CD guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Unreviewed or unpinned publisher packages could execute code that handles local skill files and release changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the official package source before installation and pin exact package versions in local and CI environments.
+
+Risk: Publishing workflows require ClawHub credentials that could be exposed or over-scoped.
+
+Mitigation: Use scoped, short-lived ClawHub tokens and avoid running the workflow in workspaces that contain unrelated secrets.
+
+Risk: Automated publishing, changelog generation, README edits, or rollback actions could publish unintended content.
+
+Mitigation: Run validation or dry-run steps first, then inspect local diffs and generated release metadata before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/bg1avd/skills/clawhub-publisher-auto)
+- [Midas Skills ClawHub Publisher Docs](https://docs.midas-skills.com/clawhub-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JavaScript examples, YAML workflow snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe publishing commands, versioning choices, changelog text, validation steps, and CI/CD setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

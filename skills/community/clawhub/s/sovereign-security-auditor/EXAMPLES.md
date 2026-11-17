@@ -232,11 +232,11 @@ module.exports = {
     ssl: true
   },
   stripe: {
-    secretKey: 'sk_live_51H7bVnKj8eMwqPzR4x9cT2fG6yN8mAqW3dL5vBk7jX',
+    secretKey: 'REDACTED-SECRET',
     webhookSecret: 'whsec_8Kx4mNpQ2rT7vYzA1bC3dE5fG6hJ8kL9'
   },
   aws: {
-    accessKeyId: 'AKIAIOSFODNN7EXAMPLE',
+    accessKeyId: 'REDACTED-SECRET',
     secretAccessKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
     region: 'us-east-1'
   },
@@ -283,7 +283,7 @@ the repo is ever leaked, forked, or accessed by a compromised account.
 1. Database password: `Sup3rS3cret!Pr0d@2024` (database.js:7, docker-compose.yml:8)
 2. Stripe live secret key: `sk_live_51H7b...` (database.js:11)
 3. Stripe webhook secret: `whsec_8Kx4m...` (database.js:12)
-4. AWS access key ID: `AKIAIOSFODNN7EXAMPLE` (database.js:15)
+4. AWS access key ID: `REDACTED-SECRET` (database.js:15)
 5. AWS secret access key: `wJalrXUtn...` (database.js:16)
 6. JWT signing secret: `my-jwt-secret-do-not-share` (database.js:20)
 

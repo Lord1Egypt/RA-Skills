@@ -1,0 +1,13 @@
+# 镜像域映射表（P2-2 G4 落地，策略①A 配置级）
+# 用途：受限网络（如沙箱：github.com / zh.wikipedia.org 不可达）下，
+#       把不可达域名重写到可达镜像，fetch 层自动生效。
+# ⚠️ 默认空表：resolve_url 恒返回原样（零行为变化）。
+#   启用方式：把 mappings 下按目标网络**实测可达**的镜像填入后即生效；
+#   未验证的镜像请勿启用（重写后抓取失败会静默降级，但不伪造结果）。
+version: 1
+updated: "2026-09-10"
+enabled: true
+mappings:
+  # 示例（均未启用，按需实测后填入）：
+  # github.com: "github.moeyy.xyz"
+  # raw.githubusercontent.com: "raw.gitmirror.com"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pixmind Video to Prompt"
+  short_description: "Extract a storyboard table with local video frames"
+  default_prompt: "Use $pixmind-video-to-prompt to analyze this video and return the SaaS-style storyboard table with local reference screenshots."

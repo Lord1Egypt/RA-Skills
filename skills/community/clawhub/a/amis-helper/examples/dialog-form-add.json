@@ -1,0 +1,56 @@
+{
+  "type": "button",
+  "label": "Add",
+  "level": "success",
+  "icon": "fa fa-plus",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "Add Record",
+    "actions": [
+      { "type": "button", "label": "Cancel", "actionType": "close" },
+      {
+        "type": "button",
+        "label": "Submit",
+        "level": "primary",
+        "actionType": "submit",
+        "close": false
+      }
+    ],
+    "body": {
+      "type": "form",
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            { "actionType": "reload", "componentId": "mainCrud" },
+            { "actionType": "closeDialog" }
+          ]
+        }
+      },
+      "api": {
+        "method": "post",
+        "url": "/XXX/XXXX/add"
+      },
+      "body": [
+        {
+          "type": "select",
+          "name": "code",
+          "label": "Item",
+          "clearable": true,
+          "required": true,
+          "overlayStyle": { "width": "450px" },
+          "autoComplete": {
+            "method": "get",
+            "url": "/XXX/XXXX/search?keyword=${term}",
+            "sendOn": "${term != null && term.length >= 3}"
+          }
+        },
+        {
+          "type": "textarea",
+          "name": "remark",
+          "label": "Remark",
+          "maxLength": 200
+        }
+      ]
+    }
+  }
+}

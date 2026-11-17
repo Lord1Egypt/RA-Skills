@@ -1,0 +1,95 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/distribution-pack.schema.json",
+  "schemaVersion": "1.0.0",
+  "packId": "distribution_pack_001",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "master": {
+    "artifactId": "artifact_master_001",
+    "artifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "timelineRevision": "rev_host_2",
+    "contentTruthHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "platformProfiles": [
+    {
+      "profileId": "profile_douyin",
+      "platformId": "douyin",
+      "sourceType": "repository-observation",
+      "sourceRef": "04-项目设计与路线图/公开路线图.md",
+      "observedAt": "2026-07-01",
+      "expiresAt": "2026-08-01",
+      "confidence": 0.5,
+      "rules": [
+        {
+          "ruleId": "rule_portrait",
+          "intendedLevel": "advisory",
+          "value": "portrait"
+        }
+      ]
+    },
+    {
+      "profileId": "profile_xiaohongshu",
+      "platformId": "xiaohongshu",
+      "sourceType": "repository-observation",
+      "sourceRef": "04-项目设计与路线图/公开路线图.md",
+      "observedAt": "2026-06-01",
+      "expiresAt": "2026-07-23",
+      "confidence": 0.4,
+      "rules": [
+        {
+          "ruleId": "rule_cover",
+          "intendedLevel": "hard",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "deliverables": [
+    {
+      "deliverableId": "deliverable_douyin_video",
+      "platformId": "douyin",
+      "kind": "video",
+      "path": "distribution/douyin/video.mp4",
+      "sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "parentArtifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "masterTimelineRevision": "rev_host_2",
+      "contentTruthHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "adaptation": "safe-crop"
+    },
+    {
+      "deliverableId": "deliverable_douyin_caption",
+      "platformId": "douyin",
+      "kind": "captions",
+      "path": "distribution/douyin/captions.srt",
+      "sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "parentArtifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "masterTimelineRevision": "rev_host_2",
+      "contentTruthHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "adaptation": "none"
+    },
+    {
+      "deliverableId": "deliverable_xiaohongshu_video",
+      "platformId": "xiaohongshu",
+      "kind": "video",
+      "path": "distribution/xiaohongshu/video.mp4",
+      "sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "parentArtifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "masterTimelineRevision": "rev_host_2",
+      "contentTruthHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "adaptation": "safe-crop"
+    },
+    {
+      "deliverableId": "deliverable_xiaohongshu_cover",
+      "platformId": "xiaohongshu",
+      "kind": "cover",
+      "path": "distribution/xiaohongshu/cover.png",
+      "sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "parentArtifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "masterTimelineRevision": "rev_host_2",
+      "contentTruthHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "adaptation": "repackage"
+    }
+  ],
+  "releaseReportRef": "fixtures/media-qa/valid/release-report.json",
+  "publishAction": "none"
+}

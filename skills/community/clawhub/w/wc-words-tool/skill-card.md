@@ -1,40 +1,49 @@
-## Description: <br>
-Helps agents count words in text and reason about word-counting workflows for content and document analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count words in text, including documented support for totals, unique words, per-line counts, and frequency analysis.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, writers, and content teams can use this skill to count words in supplied text or documents for writing analytics, translation estimation, SEO checks, and document summarization planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises options that the included script does not implement. <br>
-Mitigation: Verify the actual command behavior before relying on file input, unique counts, frequency output, stopword filtering, per-line counts, or JSON output. <br>
-Risk: Input text may contain content the user did not intend to analyze. <br>
-Mitigation: Only pass text or files that are appropriate for local word counting in the user's environment. <br>
+## Use Case:
 
+Developers and content teams can use this skill to ask an agent for word-counting help, text-analysis guidance, and simple command examples for documents or pipeline inputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/wc-words-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script emits a numeric word count for stdin input; documented advanced options should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The public documentation describes options such as unique counts, frequency analysis, per-line output, file input, stopword filtering, and JSON output, while the script evidence only reads stdin and prints a whitespace-split word count.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a basic stdin word counter unless the implementation is updated and retested for the documented advanced options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/wc-words-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and optional JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script evidence only supports a basic stdin word count, despite broader documented options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

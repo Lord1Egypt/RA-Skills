@@ -1,44 +1,56 @@
-## Description: <br>
-Collects multi-channel Weibo hot search rankings, stores the data in SQLite, and generates local HTML visualization reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects multi-channel Weibo hot search data, stores results in SQLite, and generates queryable text output and an HTML visualization report.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Developers, researchers, and social media analysts use this skill to collect Weibo trending topics across hot, social, entertainment, and life channels, then query stored history or generate local reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls an OpenClaw browser profile for Weibo and stores scraped trend data locally. <br>
-Mitigation: Use a dedicated low-privilege browser profile and review the local database and generated files before sharing them. <br>
-Risk: Unsafe command construction and missing URL validation were identified by the security guidance. <br>
-Mitigation: Avoid the optional detailed-content fetch until shell=True usage and URL validation are fixed. <br>
-Risk: Generated HTML reports render scraped titles and links as local files. <br>
-Mitigation: Treat generated HTML as untrusted local content and open it only in a controlled browser context. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect Weibo hot-search rankings across hot, social, entertainment, and life channels, preserve historical results locally, query trends, and generate an HTML report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/noah-1106/weibo-trending) <br>
-- [Publisher Profile](https://clawhub.ai/user/noah-1106) <br>
-- [Weibo Hot Search](https://weibo.com/hot/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON data, SQLite records, and local HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an OpenClaw browser profile, stores scraped trend data locally, and can render a browser-readable HTML report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The authoritative security scan reports exploitable command and HTML injection risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation; the publisher should remove shell=True, strictly validate Weibo URLs, and avoid innerHTML for remote values before users run --with-content or open generated reports from new scraped data.
+
+Risk: The skill uses the user's OpenClaw browser profile and writes local SQLite, JSON, and HTML output.
+
+Mitigation: Run it only with a profile and workspace intended for Weibo scraping, and confirm the expected network targets and file-write locations before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noah-1106/skills/weibo-trending)
+- [Publisher profile](https://clawhub.ai/user/noah-1106)
+- [Weibo](https://weibo.com)
+- [Weibo hot search](https://weibo.com/hot/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON data, SQLite records, terminal query output, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local OpenClaw browser profile, writes local SQLite data under data/weibo.db, can write JSON files, and can generate data/index.html.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

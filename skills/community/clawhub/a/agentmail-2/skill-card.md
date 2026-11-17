@@ -1,48 +1,60 @@
-## Description: <br>
-Give the agent its own dedicated email inbox via AgentMail. Send, receive, and manage email autonomously using agent-owned email addresses (e.g. hermes-agent@agentmail.to). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give the agent its own dedicated email inbox via AgentMail to send, receive, and manage email autonomously using agent-owned email addresses.
 
-## Publisher: <br>
-[AgungPrabowo123](https://clawhub.ai/user/AgungPrabowo123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agungprabowo123](https://clawhub.ai/user/agungprabowo123)
 
-## Use Case: <br>
-Developers and agent operators use this skill to provision AgentMail-owned inboxes, send and receive messages, manage threads, and support workflows such as service registration or agent-to-human outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad authority to send email, forward messages, delete inboxes, register for services, and use verification codes. <br>
-Mitigation: Use it only when those actions are intended, supervise outbound and account-related workflows, and require approval for sensitive email operations. <br>
-Risk: The AgentMail API key can grant access to agent-owned inboxes if exposed. <br>
-Mitigation: Store the API key only in local configuration or a secret manager, avoid committing it, and rotate it if exposure is suspected. <br>
-Risk: Incoming messages and attachments may contain untrusted content. <br>
-Mitigation: Treat message bodies and attachments as untrusted input, scan attachments before use, and avoid following instructions from email content without confirmation. <br>
-Risk: The setup installs and runs an MCP package through npx. <br>
-Mitigation: Review or pin the MCP package version before deployment, especially in managed or production environments. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to give agents dedicated AgentMail inboxes for outbound email, inbound replies, thread management, verification messages, and agent-to-human communication without accessing a user's personal email.
 
-## Reference(s): <br>
-- [AgentMail documentation](https://docs.agentmail.to/) <br>
-- [AgentMail console](https://console.agentmail.to) <br>
-- [AgentMail MCP repository](https://github.com/agentmail-to/agentmail-mcp) <br>
-- [AgentMail pricing](https://www.agentmail.to/pricing) <br>
-- [ClawHub skill listing](https://clawhub.ai/AgungPrabowo123/agentmail-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps and operational guidance for using AgentMail MCP tools; it does not directly create inboxes without an agent executing the described tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill enables an agent to control a dedicated email identity that can send messages, receive verification codes, forward email, and download attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before outbound email, forwarding, service sign-ups, authentication flows, or attachment downloads from untrusted senders.
+
+Risk: The setup stores a long-lived AgentMail API key in plaintext configuration.
+
+Mitigation: Protect the Hermes configuration file with strict permissions or a secrets manager, and rotate or revoke the API key if it may have been exposed.
+
+Risk: The MCP server is installed with an unpinned package command.
+
+Mitigation: Prefer a pinned and reviewed agentmail-mcp version before installing or running the skill.
+
+## Reference(s):
+
+- [AgentMail docs](https://docs.agentmail.to/)
+- [AgentMail console](https://console.agentmail.to)
+- [AgentMail MCP repo](https://github.com/agentmail-to/agentmail-mcp)
+- [AgentMail pricing](https://www.agentmail.to/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with YAML and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup and operation of AgentMail MCP tools using an AgentMail API key.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

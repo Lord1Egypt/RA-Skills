@@ -1,43 +1,59 @@
-## Description: <br>
-Vet ClawHub skills for security and utility before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vet ClawHub skills for security and utility before installation.
 
-## Publisher: <br>
-[phenixstar](https://clawhub.ai/user/phenixstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phenixstar](https://clawhub.ai/user/phenixstar)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate ClawHub skills before installation by combining a lightweight local security scan with manual utility and behavior review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner is heuristic and may miss issues or report false positives, including on example security patterns. <br>
-Mitigation: Use scanner output as a review prompt, then manually inspect the skill description, scripts, network behavior, and file operations before installation. <br>
-Risk: The skill inspects files in directories selected by the user, which may include sensitive local content. <br>
-Mitigation: Run reviews on isolated copies in temporary directories and avoid pointing the scanner at unrelated workspaces or credential stores. <br>
+## Use Case:
 
+Developers and engineers use this skill to review ClawHub skills before installation, combining automated pattern checks with manual review guidance for security and utility decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phenixstar/phenixstar-skill-vetting) <br>
-- [Publisher Profile](https://clawhub.ai/user/phenixstar) <br>
-- [Project Homepage](https://github.com/PhenixStar/openclaw-skills-collection) <br>
-- [Malicious Code Patterns Database](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with terminal commands and scanner findings; JSON is available from the scanner when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local scanner reports file and line references for potential findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata; artifact _meta.json reports 1.0.1) <br>
+Risk: The server security verdict is suspicious because the scan workflow is under-contained for hostile skill archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run reviews in an isolated private temp directory or disposable container, and avoid scanning untrusted packages from an environment with sensitive files or credentials.
+
+Risk: The workflow handles downloaded skill archives before the user decides whether to install them.
+
+Mitigation: Inspect archive entries before extraction, avoid preserving archive symlinks, and keep extracted contents outside normal workspaces.
+
+Risk: Automated scanner output can miss issues that require judgment.
+
+Mitigation: Perform the documented manual review even when scanner output is clean, including checks for behavior mismatch, undocumented network calls, broad file operations, and hidden instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phenixstar/skills/phenixstar-skill-vetting)
+- [Project homepage](https://github.com/PhenixStar/openclaw-skills-collection)
+- [Malicious Code Patterns Database](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scanner findings with file and line references when the included Python scanner is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, target metadata, and skill frontmatter; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

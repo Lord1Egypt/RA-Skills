@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "channel": "competitor-weekly",
+  "workflow": "weekly",
+  "focus": "competitor",
+  "outputTemplate": "ops_weekly",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "product-snapshots",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ]
+}

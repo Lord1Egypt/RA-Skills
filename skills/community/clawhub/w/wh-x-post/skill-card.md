@@ -1,39 +1,56 @@
-## Description: <br>
-Helps an agent post tweets, reply to tweets, quote tweets, and check Twitter/X login status through twitter-cli after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists agents with posting tweets, replies, and quote reposts on Twitter/X using twitter-cli, with content confirmation and login-status support.
 
-## Publisher: <br>
-[baiyea](https://clawhub.ai/user/baiyea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[baiyea](https://clawhub.ai/user/baiyea)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to prepare and publish Twitter/X posts, replies, or quote reposts from an agent workflow. It is also useful when an agent needs structured JSON results after checking Twitter/X login status or publishing content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can publish posts, replies, or quote reposts from the user's Twitter/X account.
+
+Mitigation: Review the exact content, target tweet, account, and images before approving any posting action.
+
+Risk: The skill depends on an unpinned third-party twitter-cli package.
+
+Mitigation: Use a pinned reviewed version of twitter-cli in an isolated environment when deploying the skill.
+
+Risk: Broad activation phrasing may increase the chance of unintended social posting.
+
+Mitigation: Require explicit user confirmation before running post, reply, or quote scripts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and users can use this skill to prepare and publish Twitter/X posts, replies, and quote tweets with optional images. It is suited for workflows where the user reviews the text, target tweet ID, and attachments before the agent runs the posting command. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public Twitter/X content from the user's account through explicit script actions. <br>
-Mitigation: Review the exact post, reply, quote target, tweet ID, and image paths before confirming any command. <br>
-Risk: The commands rely on the user's logged-in browser session and twitter-cli installation. <br>
-Mitigation: Check login status first when needed and install or configure twitter-cli only in an environment where using that account is intended. <br>
+**Output Format:** [Markdown guidance with shell commands and structured JSON command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Post, reply, quote, and login-status scripts support --json; posting actions use twitter-cli through the user's logged-in Twitter/X browser session.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may return tweet IDs, tweet URLs, login status, or structured error details.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

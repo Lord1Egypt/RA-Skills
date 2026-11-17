@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Lead Intelligence"
+  short_description: "Discover and qualify target companies from public evidence"
+  default_prompt: "Use $dataify-lead-intelligence to discover companies matching my ICP, rank them using public evidence, and return a verification-ready prospect list."
+
+policy:
+  allow_implicit_invocation: true

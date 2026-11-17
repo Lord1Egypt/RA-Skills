@@ -1,43 +1,59 @@
-## Description: <br>
-This skill helps agents read, extract, transform, create, fill, secure, and OCR PDF files using Python libraries and command-line tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants to do anything with PDF files, including reading or extracting text and tables, merging, splitting, rotating, watermarking, creating, filling, encrypting or decrypting PDFs, extracting images, and OCR on scanned PDFs.
 
-## Publisher: <br>
-[gitasura](https://clawhub.ai/user/gitasura) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitasura](https://clawhub.ai/user/gitasura)
 
-## Use Case: <br>
-Developers and agents use this skill to perform common PDF workflows such as text and table extraction, page manipulation, PDF creation, form filling, OCR, and password handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local PDF-derived files that may contain sensitive content. <br>
-Mitigation: Use copies for important documents, process sensitive PDFs only when necessary, and delete generated images, JSON, or derived files when they contain private content. <br>
-Risk: The skill includes workflows for decrypting or removing PDF passwords. <br>
-Mitigation: Only decrypt or remove passwords when authorized, and avoid putting real passwords in shared logs or shell history. <br>
+## Use Case:
 
+Developers and agents use this skill to operate on local PDF files, including extracting content, modifying documents, filling forms, converting pages to images, and producing validation artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitasura/pdf-test) <br>
-- [PDF Processing Guide](artifact/SKILL.md) <br>
-- [PDF Form Filling Guide](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, and generated local PDF, image, text, JSON, or spreadsheet files when the agent runs the referenced tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local derivative files from source PDFs, including filled PDFs, page images, extracted text, form-field JSON, and validation images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF operations can overwrite originals or create sensitive decrypted output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input and output paths, avoid writing over source documents, and handle decrypted PDFs as sensitive files.
+
+Risk: Optional OCR and PDF conversion dependencies can add supply-chain and environment risk.
+
+Mitigation: Install optional dependencies only when needed, use an isolated environment, and pin dependency versions where possible.
+
+Risk: Manually estimated PDF form coordinates can place annotations incorrectly.
+
+Mitigation: Validate bounding boxes before filling forms and convert completed PDFs to images for placement review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitasura/skills/pdf-test)
+- [PDF form guidance](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, shell command, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify local PDF, PNG, JSON, text, spreadsheet, and image files when the referenced scripts or examples are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

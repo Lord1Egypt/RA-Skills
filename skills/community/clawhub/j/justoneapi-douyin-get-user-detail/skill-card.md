@@ -1,44 +1,56 @@
-## Description: <br>
-Call GET /api/douyin/get-user-detail/v3 for Douyin (TikTok China) User Profile through JustOneAPI with secUid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin/get-user-detail/v3 for Douyin (TikTok China) User Profile through JustOneAPI with secUid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external users use this skill to query JustOneAPI for Douyin user profile details by secUid, including follower counts, verification status, and bio details for creator research and account analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is required and is sent as a URL query parameter for this endpoint. <br>
-Mitigation: Use a scoped or easily rotated token, avoid sharing request URLs or command output that may expose credentials, and rotate the token if it may have appeared in logs. <br>
-Risk: The skill queries Douyin profile data for user-provided secUid values. <br>
-Mitigation: Keep user-provided secUid values unchanged for correctness, but avoid sharing queried identifiers or returned profile data outside the intended workflow. <br>
+## Use Case:
 
+Developers and external users use this skill to call JustOneAPI's Douyin user profile endpoint for creator research and account analysis using a Douyin secUid.
 
-## Reference(s): <br>
-- [Generated operation reference](generated/operations.md) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_detail&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_detail&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-get-user-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operation getUserDetailV3 with required secUid and JUST_ONE_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is passed through command-line arguments and as a URL query parameter, which can expose credentials in process listings, shell history, command logs, or URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or low-scope token, avoid shared shells and logged automation, do not paste token values into chat or logs, and rotate the token if it may have been exposed.
+
+Risk: Using the endpoint sends Douyin secUid lookup values and the JustOneAPI token to JustOneAPI.
+
+Mitigation: Use the skill only when that data sharing is acceptable for the user's workflow and policy requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-get-user-detail)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_detail&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_user_detail&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Endpoint-specific summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, JUST_ONE_API_TOKEN, and secUid.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

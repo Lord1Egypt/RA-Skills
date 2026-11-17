@@ -185,7 +185,7 @@ export OUTPUT_LANGUAGE_CODES="es,de,fr,ja,pt,zh"
 export DEFAULT_ENGINE="deepl"  # or "google"
 export QA_BACK_TRANSLATION="true"
 export CONFIDENCE_THRESHOLD="0.85"
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export RATE_LIMIT_REQUESTS_PER_MINUTE="100"
 ```
 

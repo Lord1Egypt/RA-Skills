@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:SendPOResponse xmlns:ns="http://www.promostandards.org/WSDL/PO/1.0.0/">
+      <ns:transactionId>SO-99812</ns:transactionId>
+    </ns:SendPOResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

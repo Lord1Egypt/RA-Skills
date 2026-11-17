@@ -1,0 +1,94 @@
+{
+  "version": 4,
+  "updated_at": "2026-07-29",
+  "instances": [
+    {
+      "elf": "绿灵",
+      "user": "示例用户",
+      "remind_time": "10:00",
+      "city": "武汉",
+      "climate": "亚热带季风气候",
+      "env": "室内",
+      "location": "家里",
+      "pets": {
+        "cats": false,
+        "dogs": false,
+        "birds": [
+          "牡丹鹦鹉"
+        ]
+      },
+      "plants": [
+        {
+          "key": "绿萝-1",
+          "name": "绿萝",
+          "category": "吸水盆",
+          "last_water": "2026-07-29",
+          "next_water": "2026-08-02",
+          "water_interval_max": 4,
+          "light": "散射光",
+          "pet_toxic": "⚠️对猫狗有毒",
+          "pet_toxic_bird": "🐦对鸟有毒",
+          "note": "示例数据",
+          "status": "正常"
+        },
+        {
+          "key": "绿萝-2",
+          "name": "水培竹柏",
+          "category": "水培",
+          "last_water": "2026-07-29",
+          "next_water": "2026-08-05",
+          "water_interval_max": 7,
+          "light": "散射光",
+          "note": "水养→提交时应归一为水培",
+          "status": "正常"
+        },
+        {
+          "key": "杜鹃-1",
+          "name": "杜鹃",
+          "category": "土培",
+          "status": "停水观察",
+          "last_water": "2026-07-08",
+          "next_water": "2026-08-15",
+          "water_interval_max": 30,
+          "light": "散射光",
+          "note": "夏季休眠停水观察"
+        },
+        {
+          "key": "鲜切花-1",
+          "name": "石竹梅",
+          "category": "鲜切花",
+          "status": "已弃",
+          "last_water": "2026-06-13",
+          "next_water": "2026-07-06",
+          "water_interval_max": 2,
+          "bought_at": "2026-06-13",
+          "survive_days": 23,
+          "water_level": "浅水",
+          "note": "7/6 已丢弃"
+        }
+      ]
+    },
+    {
+      "elf": "花灵",
+      "user": "示例用户",
+      "remind_time": "20:00",
+      "city": "西安",
+      "climate": "温带季风气候",
+      "env": "室内",
+      "location": "公司",
+      "plants": [
+        {
+          "key": "绣球-1",
+          "name": "绣球花",
+          "category": "土培",
+          "last_water": "2026-07-29",
+          "next_water": "2026-07-31",
+          "water_interval_max": 2,
+          "light": "散射光",
+          "note": "示例数据",
+          "status": "正常"
+        }
+      ]
+    }
+  ]
+}

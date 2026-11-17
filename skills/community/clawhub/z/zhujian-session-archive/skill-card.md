@@ -1,39 +1,56 @@
-## Description: <br>
-Automatically archives OpenClaw conversation messages, operation records, and token usage metadata to a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically saves OpenClaw conversation messages, operation records, and token usage to a local SQLite database for later querying and statistics.
 
-## Publisher: <br>
-[18940111404](https://clawhub.ai/user/18940111404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18940111404](https://clawhub.ai/user/18940111404)
 
-## Use Case: <br>
-OpenClaw users and plugin developers use this skill to retain searchable local records of chat messages, operations, and usage statistics for later review or integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin saves full conversation content and usage metadata in a local SQLite database. <br>
-Mitigation: Treat the database as sensitive, restrict local file access, consider backup retention, and avoid using it for chats containing secrets unless long-term local storage is acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users install this plugin when they need a persistent local archive of chat messages, operation records, and model usage statistics. It is useful for auditing, querying prior sessions, and analyzing usage over time.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18940111404/zhujian-session-archive) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration, Usage metadata] <br>
-**Output Format:** [SQLite database records with optional JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores conversation content, operation records, token usage, timestamps, channels, message types, and related metadata locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata and package.json) <br>
+Risk: Full conversation history can be retained on disk in the local SQLite archive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the database file from other users and backups, avoid entering secrets in archived sessions, and define a deletion or retention process before deployment.
+
+Risk: The archive may grow over time as messages, operations, and token usage are recorded.
+
+Mitigation: Choose an appropriate database path, monitor storage use, and rotate or purge old records according to local policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18940111404/skills/zhujian-session-archive)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [openclaw.plugin.json](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Configuration]
+
+**Output Format:** [SQLite database records and configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a local SQLite archive at the configured database path.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

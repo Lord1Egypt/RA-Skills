@@ -1,40 +1,54 @@
-## Description: <br>
-Audit tool usage patterns and permissions to identify security risks and excessive access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit tool usage patterns and permissions to identify security risks and excessive access.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit agent tool logs, compare required and granted permissions, and generate security reports with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool logs and permission lists can contain sensitive operational details. <br>
-Mitigation: Use logs you are comfortable processing locally and redact secrets or sensitive identifiers before audit. <br>
-Risk: Static tool-risk mappings may not fully cover custom or newly introduced tools. <br>
-Mitigation: Manually review unknown tool names and update the risk mapping before relying on the report for access decisions. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to analyze agent tool logs, compare required and granted permissions, and produce concise security audit reports with recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/jpeng-permission-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Guidance] <br>
-**Output Format:** [JavaScript objects and plain-text CLI reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local tool logs and permission lists; server security evidence found no hidden access, network activity, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Rule-based scoring can miss context or overstate risk for unfamiliar tool logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as advisory and confirm findings against actual authorization records, logs, and deployment policy.
+
+Risk: Example paths may not match a different skills directory layout.
+
+Mitigation: Check import and CLI paths before integrating the helper into another repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-permission-auditor)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [JavaScript objects and formatted text reports, with Markdown and shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include risk distribution, detected patterns, anomalies, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

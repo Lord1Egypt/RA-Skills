@@ -1,41 +1,60 @@
-## Description: <br>
-Skill Quality Assurance evaluates agent skills with a six-dimension quality model covering technical depth, cognitive support, orchestration, evolution, market validation, and user experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates agent skills with a six-dimension T/C/O/E/M/U quality model and produces structured quality reports with prioritized improvement guidance.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to score, review, and improve agent skills before release, version upgrades, listing checks, or periodic health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evaluator reads local skill folders and writes Markdown reports, so broad input paths or shared output locations can expose files or replace an existing report. <br>
-Mitigation: Run it only on specific skill folders you intend to assess and choose a dedicated output directory where report replacement is acceptable. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to assess new or existing ClawHub skills before release, version upgrades, or periodic health checks. It applies six-dimensional scoring, summarizes quality signals, and generates prioritized recommendations for improvement.
 
-## Reference(s): <br>
-- [Six Dimensions Criteria](artifact/references/six-dimensions-criteria.md) <br>
-- [Evaluation Report Template](artifact/assets/evaluation-template.md) <br>
-- [Skill Quality Assurance Evaluation Report](artifact/skill-quality-assurance-evaluation-report.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/skill-quality-assurance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with scored tables, summaries, and prioritized improvement guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local evaluation report for a specified skill path and optional output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill reads the local skill directory it is pointed at.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended local skill directories and review the files being assessed.
+
+Risk: The generated scores are heuristic and may not represent definitive security or marketplace approval.
+
+Mitigation: Treat the report as advisory and pair it with human review and any required release checks.
+
+Risk: A generated Markdown report could overwrite an existing report at the selected output path.
+
+Mitigation: Choose the output path deliberately and preserve any existing reports before generating a new one.
+
+## Reference(s):
+
+- [Six Dimensions Criteria](references/six-dimensions-criteria.md)
+- [Evaluation Report](skill-quality-assurance-evaluation-report.md)
+- [Evaluation Template](assets/evaluation-template.md)
+- [ClawHub Skill Listing](https://clawhub.ai/pagoda111king/skills/skill-quality-assurance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with scoring tables, concise findings, prioritized recommendations, and optional command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores are heuristic quality indicators and should be reviewed before being used for release decisions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

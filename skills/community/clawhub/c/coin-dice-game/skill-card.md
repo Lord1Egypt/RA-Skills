@@ -1,40 +1,54 @@
-## Description: <br>
-抛硬币（正/反）和猜骰子大小（大/小）游戏。随机生成结果后发送对应图片。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抛硬币（正/反）和猜骰子大小（大/小）游戏。随机生成结果后发送对应图片。
 
-## Publisher: <br>
-[zx0018](https://clawhub.ai/user/zx0018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx0018](https://clawhub.ai/user/zx0018)
 
-## Use Case: <br>
-External users can ask an agent to play a simple coin flip or dice-size guessing game and receive a random text result with a matching image path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad trigger phrase such as "玩游戏" could activate the skill when the user did not intend to start this game. <br>
-Mitigation: Use explicit phrases such as "抛硬币" or "猜骰子" when invoking the skill. <br>
-Risk: Image output may fail or be incomplete if the expected files are not present under assets/. <br>
-Mitigation: Install the referenced coin and dice images with the filenames documented by the skill before relying on image responses. <br>
+## Use Case:
 
+External users can ask an agent to play a simple Chinese-language coin flip or dice-size guessing game. The skill returns a random text result and points the agent to the corresponding local image asset.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zx0018/coin-dice-game) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text with MEDIA path lines for matching image assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local random generation and expects referenced image files to exist under assets/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad Chinese trigger "玩游戏" may route general game requests to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for explicit coin-flip or dice-size game requests, or narrow routing rules before deployment.
+
+Risk: The referenced image assets were not included in the inspected artifact files.
+
+Mitigation: Confirm that the expected coin and dice image files exist in the assets directory before enabling image responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zx0018/skills/coin-dice-game)
+- [Publisher profile](https://clawhub.ai/user/zx0018)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with image filename or MEDIA path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local random generation and expects matching image assets in an assets directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

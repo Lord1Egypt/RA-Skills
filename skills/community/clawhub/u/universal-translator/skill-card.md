@@ -1,40 +1,57 @@
-## Description: <br>
-Universal Translator helps agents handle translation requests for Word, PDF, Excel, PowerPoint, HTML, Markdown, and text files, including batch workflows and format-preservation goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework for translating Word, PDF, Excel, PowerPoint, HTML, Markdown, TXT documents. Provides document parsing code; the AI agent's own LLM performs the actual translation.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to translate supported document files or batches of files while preserving common document structure where possible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review reports that the skill's shown translation behavior may label original text instead of actually translating it. <br>
-Mitigation: Test translated outputs on non-sensitive sample files and verify the implementation before using it for business, legal, compliance, or confidential documents. <br>
-Risk: Translation quality and data handling depend on the configured OpenClaw model environment. <br>
-Mitigation: Confirm the OpenClaw model configuration and data path before processing confidential or regulated documents. <br>
+## Use Case:
 
+Developers and external agent users use this skill to translate supported document files or folders while preserving document structure, with translation performed by the agent's configured LLM.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/universal-translator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance, Python code snippets, and translated document or text outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; optional document libraries are listed for DOCX, XLSX, PPTX, PDF, and HTML handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter says 1.0.3) <br>
+Risk: Document contents may be processed by the LLM configured in OpenClaw, which may be local or remote.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents appropriate for the configured LLM environment, and avoid sensitive files unless the data-handling path is approved.
+
+Risk: PDF and HTML support are documented but incomplete in the provided parsing code.
+
+Mitigation: Treat PDF and HTML workflows as incomplete until verified or updated by the publisher.
+
+Risk: Python document-processing dependencies are installed on demand.
+
+Mitigation: Install required packages in an isolated environment with pinned versions before processing documents.
+
+## Reference(s):
+
+- [Universal Translator ClawHub page](https://clawhub.ai/tobewin/skills/universal-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces document parsing and translation workflow guidance; translated files are created by the agent using local Python libraries and the configured LLM.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

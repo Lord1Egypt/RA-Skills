@@ -1,44 +1,55 @@
-## Description: <br>
-悟道 · A股涨停板 helps agents query A-share limit-up market data, including ladders, continuation boards, broken limit-up pools, limit-down pools, approaching limit-up stocks, statistics, hot sectors, event streams, filters, and premium analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for querying A-share limit-up market-data endpoints covering limit-up ladders, filters, premiums, broken boards, limit-down pools, approaching limit-up stocks, statistics, hot sectors, and seal/break event streams.
 
-## Publisher: <br>
-[jcdreamjc](https://clawhub.ai/user/jcdreamjc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcdreamjc](https://clawhub.ai/user/jcdreamjc)
 
-## Use Case: <br>
-External users and developers use this skill to answer A-share limit-up and short-term board-trading data questions through documented stock.quicktiny.cn OpenClaw endpoints. The returned market analysis should be treated as informational rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key for the stock.quicktiny.cn market-data API. <br>
-Mitigation: Use a dedicated API key and keep LB_API_KEY out of prompts, logs, and shared transcripts. <br>
-Risk: Changing LB_API_BASE could send requests to an unexpected provider. <br>
-Mitigation: Keep LB_API_BASE pointed at https://stock.quicktiny.cn/api/openclaw unless the user has explicitly approved a trusted replacement. <br>
-Risk: Market analysis returned by the API may be mistaken for financial advice. <br>
-Mitigation: Present outputs as informational market data and avoid treating them as recommendations to buy, sell, or hold securities. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to call a third-party A-share market-data API and summarize limit-up board activity. It is intended for informational market-data workflows, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcdreamjc/wudao-limitup) <br>
-- [stock.quicktiny.cn market-data service](https://stock.quicktiny.cn) <br>
-- [OpenClaw market-data API base](https://stock.quicktiny.cn/api/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LB_API_KEY and LB_API_BASE; uses documented read-only market-data endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill depends on a third-party financial market-data service and bearer API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key in environment variables, avoid exposing it in logs or shared prompts, and rotate it if disclosure is suspected.
+
+Risk: Returned stock analysis or market-data summaries could be mistaken for financial advice.
+
+Mitigation: Present outputs as informational market data and require users to make independent investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcdreamjc/skills/wudao-limitup)
+- [Publisher profile](https://clawhub.ai/user/jcdreamjc)
+- [QuickTiny stock API](https://stock.quicktiny.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown with curl examples and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LB_API_KEY and LB_API_BASE environment variables; outputs are informational market-data guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

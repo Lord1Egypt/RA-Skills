@@ -1,47 +1,63 @@
-## Description: <br>
-Web3-Dapp-Master provides architecture guidance for production Web3 DApps across account abstraction, embedded wallets, gasless approvals, indexing, testing, RPC failover, encrypted vaults, event-driven backends, and multi-chain EVM and Solana patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry-standard Web3 DApp architecture skill covering account abstraction, embedded wallets, gasless approvals, on-chain indexing, testing, RPC failover, vault key management, event-driven architecture, and multi-chain EVM/Solana patterns.
 
-## Publisher: <br>
-[stanpoldark](https://clawhub.ai/user/stanpoldark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanpoldark](https://clawhub.ai/user/stanpoldark)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold and review Web3 DApp architecture, including wallet onboarding, account abstraction, smart contract testing, indexing, event streams, transaction execution, and secure credential handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated projects may involve wallet keys, production credentials, and transactions with real funds. <br>
-Mitigation: Use testnets and placeholder values by default, review deployment or trading code before execution, and never paste real private keys or funded mainnet secrets into chat. <br>
-Risk: Architecture guidance can produce incomplete or incorrect implementation details for a specific DApp or chain environment. <br>
-Mitigation: Review generated code and configuration with project maintainers, run contract and application tests, and perform security review before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, review, and implement production-oriented Web3 DApp architecture across frontend, backend, smart contracts, indexing, wallets, authentication, deployment, and security workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanpoldark/web3-dapp-development-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/stanpoldark) <br>
-- [Alchemy](https://alchemy.com) <br>
-- [Infura](https://infura.io) <br>
-- [ZeroDev](https://zerodev.app) <br>
-- [Pimlico](https://pimlico.io) <br>
-- [Privy](https://privy.io) <br>
-- [Dynamic](https://dynamic.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, Solidity, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated guidance may include project scaffolding steps, environment-variable placeholders, architecture checklists, and security review advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact metadata reports 1.0.1) <br>
+Risk: Session-token guidance may lead to reusable JWTs in URLs for SSE.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer same-site HttpOnly cookies or short-lived, single-use SSE tickets.
+
+Risk: Private-key and environment setup guidance could be misapplied with funded mainnet keys or committed secrets.
+
+Mitigation: Use placeholder values only, keep .env out of source control, and use hardware wallets or managed secret storage for mainnet deployment.
+
+Risk: Automated trading, signing, deployment, and strategy-worker behavior can perform high-impact actions if implemented without explicit limits.
+
+Mitigation: Require user controls, spending limits, slippage bounds, and human review before enabling automated on-chain actions.
+
+## Reference(s):
+
+- [Web3-Dapp-Master on ClawHub](https://clawhub.ai/stanpoldark/skills/web3-dapp-development-skill)
+- [Alchemy](https://alchemy.com)
+- [Infura](https://infura.io)
+- [ZeroDev](https://zerodev.app)
+- [Pimlico](https://pimlico.io)
+- [Privy](https://privy.io)
+- [Dynamic](https://dynamic.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, Solidity, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose project scaffolds, environment-variable templates, smart-contract patterns, and security checklists; review before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

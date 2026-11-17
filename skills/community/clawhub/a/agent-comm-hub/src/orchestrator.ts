@@ -4,9 +4,12 @@
  * 任务状态机 + Pipeline 管理 + Agent 能力匹配 + 依赖链 + 质量门
  */
 import { randomUUID } from "crypto";
-import { db, type Task, type Pipeline, type PipelineTask } from "./db.js";
-import { pushToAgent, onlineAgents } from "./sse.js";
+import { db, type Task, type Pipeline, type PipelineTask, findTasksByAgentStatus, findStuckTasks, releaseTaskToInbox } from "./db.js";
+import { pushToAgent } from "./sse.js";
+import { getOnlineAgentIds } from "./identity.js";
 import { auditLog, recalculateTrustScore } from "./security.js";
+import { logError, logger } from "./logger.js";
+import { notifyScheduleChanged } from "./event-driven.js";
 import type { DepType } from "./repo/types.js";
 import { taskRepo } from "./repo/sqlite-impl.js";
 
@@ -103,6 +106,7 @@ export function createTask(input: TaskCreateInput): Task {
   ).run(task);
 
   auditLog("create_task", input.assigned_by, task.id, `status=${status}`);
+  notifyScheduleChanged(); // P2-A: 重算最早到期（关闭时 no-op）
 
   return task;
 }
@@ -121,17 +125,20 @@ export function assignTask(taskId: string, toAgent: string, operatorId: string):
   ).run(toAgent, now, now, taskId);
 
   auditLog("assign_task", operatorId, taskId, `to=${toAgent}`);
+  notifyScheduleChanged(); // P2-A: 新任务进入 assigned，可能提前最早到期
 
   pushToAgent(toAgent, {
-    type: "task_assigned",
-    content: JSON.stringify({
-      task_id: taskId,
+    event: "task_assigned",
+    task: {
+      id: task.id,
+      assigned_by: task.assigned_by,
+      assigned_to: task.assigned_to,
       description: task.description,
-      priority: task.priority,
       context: task.context,
-      from: operatorId,
-      hint: "调用 update_task_status(in_progress) 开始执行，完成后调用 update_task_status(completed) 并携带结果。",
-    }),
+      priority: task.priority,
+      status: task.status,
+      instruction: "你有一项待执行的任务，请立即处理。调用 update_task_status(in_progress) 开始执行，完成后调用 update_task_status(completed) 并携带结果。",
+    },
   });
 
   return getOne<Task>(`SELECT * FROM tasks WHERE id=?`, taskId)!;
@@ -205,6 +212,7 @@ export function updateTaskStatus(
   );
 
   auditLog("update_task_status", operatorId, taskId, `${task.status}→${status}`);
+  notifyScheduleChanged(); // P2-A: 进入/离开 in_progress 都会改变到期集合
 
   pushToAgent(task.assigned_by, {
     type: "task_update",
@@ -278,6 +286,73 @@ export type PipelineCreateInput = {
   creator: string;
   config?: { auto_assign?: boolean; capability_match?: boolean };
 };
+
+// ─── P0 Watchdog: 自治自愈编排 ──────────────────────────────
+// 借鉴 DeepSeek Super-Agent「外部 Watchdog」思想：Hub 作为看门狗，
+// 在 Agent 掉线或任务卡死时主动回收孤儿任务，退回收件箱并通知任务创建者，
+// 由创建者（human-in-loop）决定后续重派，保持安全可逆（契合既有 WORM 审计哲学）。
+
+/**
+ * Agent 离线时，释放其所有 assigned / in_progress 任务回收件箱，并通知创建者。
+ * 通过 server.ts 注入为 startHeartbeatMonitor 的 onAgentOffline 回调。
+ * @returns 实际释放的任务数
+ */
+export function releaseTasksForOfflineAgent(agentId: string): number {
+  const tasks = findTasksByAgentStatus(agentId, ["assigned", "in_progress"]);
+  let released = 0;
+  for (const task of tasks) {
+    if (!releaseTaskToInbox(task.id)) continue;
+    released++;
+    auditLog("task_released_offline", agentId, task.id,
+      `offline_agent=${agentId} prev_status=${task.status} prev_assignee=${task.assigned_to || "none"}`);
+    // 通知任务创建者（避免通知离线 Agent 自身）
+    if (task.assigned_by && task.assigned_by !== agentId) {
+      pushToAgent(task.assigned_by, {
+        event: "task_released",
+        task_id: task.id,
+        reason: "assigned_agent_offline",
+        offline_agent: agentId,
+        description: task.description,
+        message: `任务「${task.description}」的承接 Agent (${agentId}) 已离线，已退回收件箱等待重新分配。`,
+      });
+    }
+  }
+  if (released > 0) {
+    logger.info("watchdog_offline_released", { module: "watchdog", agent_id: agentId, released });
+  }
+  return released;
+}
+
+/**
+ * 卡死任务巡检：扫描长时间无进展或已过期的 assigned / in_progress 任务，
+ * 退回收件箱并通知创建者。由 server.ts 的 watchdog 定时器周期调用。
+ * @returns { scanned, released }
+ */
+export function runWatchdogScan(): { scanned: number; released: number } {
+  const stuckMs = parseInt(process.env.WATCHDOG_STUCK_MS ?? String(30 * 60 * 1000), 10);
+  const tasks = findStuckTasks(stuckMs);
+  let released = 0;
+  for (const task of tasks) {
+    if (!releaseTaskToInbox(task.id)) continue;
+    released++;
+    auditLog("task_released_stuck", task.assigned_to || "system", task.id,
+      `stuck_threshold_ms=${stuckMs} prev_status=${task.status} prev_assignee=${task.assigned_to || "none"}`);
+    if (task.assigned_by) {
+      pushToAgent(task.assigned_by, {
+        event: "task_released",
+        task_id: task.id,
+        reason: "task_stuck",
+        assigned_to: task.assigned_to,
+        description: task.description,
+        message: `任务「${task.description}」长时间无进展（>${Math.round(stuckMs / 60000)} 分钟）或已过期，已退回收件箱等待重新分配。`,
+      });
+    }
+  }
+  if (released > 0) {
+    logger.info("watchdog_stuck_released", { module: "watchdog", scanned: tasks.length, released });
+  }
+  return { scanned: tasks.length, released };
+}
 
 /**
  * 创建 Pipeline
@@ -429,7 +504,7 @@ export function registerCapability(input: CapabilityInput): { id: string } {
   const id = `cap_${now}_${randomUUID().slice(0, 6)}`;
 
   db.prepare(
-    `INSERT INTO agent_capabilities VALUES (?,?,?,?,?,?)`
+    `INSERT INTO agent_capabilities VALUES (?,?,?,?,?,?,?)`
   ).run(
     id,
     input.agent_id,
@@ -444,7 +519,9 @@ export function registerCapability(input: CapabilityInput): { id: string } {
 
   // Phase 5a Day 2: 验证的能力影响信任评分
   if (input.verified) {
-    try { recalculateTrustScore(input.agent_id); } catch {}
+    try { recalculateTrustScore(input.agent_id); } catch (err) {
+      logError("trust_score_recalc_failed", err, { module: "orchestrator", agent_id: input.agent_id });
+    }
   }
 
   return { id };
@@ -467,7 +544,7 @@ export function suggestAssignee(taskId: string): Array<{
     `SELECT agent_id, name, status FROM agents WHERE role != 'admin' OR role IS NULL`
   );
 
-  const onlineSet = new Set(onlineAgents());
+  const onlineSet = new Set(getOnlineAgentIds());
   const results: Array<{
     agent_id: string;
     name: string;
@@ -864,15 +941,17 @@ export function acceptHandoff(
 
   // SSE 通知新负责人（任务已分配给你）
   pushToAgent(operatorId, {
-    type: "task_assigned",
-    content: JSON.stringify({
-      task_id: taskId,
+    event: "task_assigned",
+    task: {
+      id: task.id,
+      assigned_by: task.assigned_by,
+      assigned_to: task.assigned_to,
       description: task.description,
-      priority: task.priority,
       context: task.context,
-      from: oldAssignee,
-      hint: "你已接管此任务。调用 update_task_status(in_progress) 开始执行。",
-    }),
+      priority: task.priority,
+      status: task.status,
+      instruction: "你已接管此任务。调用 update_task_status(in_progress) 开始执行。",
+    },
   });
 
   return { task_id: taskId, new_assignee: operatorId };
@@ -1016,4 +1095,303 @@ export function evaluateQualityGate(
   }
 
   return { gate_id: gateId, status, blocked_tasks: blockedTasks };
+}
+
+// ═══════════════════════════════════════════════════════════════
+// P1-4: 激活编排层 — Agent Activation Orchestrator
+// ═══════════════════════════════════════════════════════════════
+
+import {
+  isLegalAgentTransition,
+  isLegalPipelineTransition,
+  type AgentState,
+  type PipelineState,
+} from "./state-machine.js";
+
+export interface ActivationResult {
+  success: boolean;
+  state?: string;
+  error?: string;
+  code?: string;
+}
+
+/**
+ * ActivationOrchestrator — Agent/Pipeline 激活态管理（P1-4）
+ *
+ * 职责：
+ *  - activate/deactivate Agent
+ *  - pause/resume Pipeline
+ *  - 幂等：已激活再激活 → 返回成功（不报错、不写审计）
+ *  - 非法转移 → 返回 INVALID_TRANSITION 错误码
+ *  - 每次操作写 audit_log + SSE broadcast
+ *  - 启动时从 audit_log 重放恢复状态（replayFromAudit）
+ */
+export class ActivationOrchestrator {
+  private agentStates: Map<string, AgentState> = new Map();
+  private pipelineStates: Map<string, PipelineState> = new Map();
+
+  constructor(
+    initialAgentStates?: Map<string, AgentState>,
+    initialPipelineStates?: Map<string, PipelineState>,
+  ) {
+    if (initialAgentStates) this.agentStates = new Map(initialAgentStates);
+    if (initialPipelineStates) this.pipelineStates = new Map(initialPipelineStates);
+  }
+
+  /**
+   * 激活 Agent（registered/suspended → active）
+   * 幂等：已激活再激活返回 success 但不重复写审计日志
+   */
+  activateAgent(agentId: string, operator: string): ActivationResult {
+    let current = this.agentStates.get(agentId);
+    // D2 修复：内存未命中时回查 DB（agents.activation_state）
+    if (!current) {
+      const dbState = this.loadAgentStateFromDb(agentId);
+      if (dbState) {
+        this.agentStates.set(agentId, dbState);
+        current = dbState;
+      }
+    }
+    if (!current) {
+      return { success: false, error: `Agent not found: ${agentId}`, code: "AGENT_NOT_FOUND" };
+    }
+
+    // 幂等
+    if (current === "active") {
+      return { success: true, state: "active" };
+    }
+
+    if (!isLegalAgentTransition(current, "active")) {
+      return {
+        success: false,
+        error: `Invalid transition: ${current} → active`,
+        code: "INVALID_TRANSITION",
+      };
+    }
+
+    this.agentStates.set(agentId, "active");
+    this.persistAgentState(agentId, "active"); // D2 落库
+
+    // 写审计日志
+    const details = `${current}→active`;
+    auditLog("activate_agent", operator, agentId, details);
+
+    // SSE 广播
+    pushToAgent(agentId, {
+      event: "agent_state_changed",
+      content: JSON.stringify({ agent_id: agentId, state: "active", operator }),
+    });
+
+    return { success: true, state: "active" };
+  }
+
+  /**
+   * 挂起 Agent（active → suspended）
+   * 幂等：已挂起再挂起返回 success
+   */
+  deactivateAgent(agentId: string, operator: string): ActivationResult {
+    let current = this.agentStates.get(agentId);
+    // D2 修复：内存未命中时回查 DB（agents.activation_state）
+    if (!current) {
+      const dbState = this.loadAgentStateFromDb(agentId);
+      if (dbState) {
+        this.agentStates.set(agentId, dbState);
+        current = dbState;
+      }
+    }
+    if (!current) {
+      return { success: false, error: `Agent not found: ${agentId}`, code: "AGENT_NOT_FOUND" };
+    }
+
+    if (current === "suspended") {
+      return { success: true, state: "suspended" };
+    }
+
+    if (!isLegalAgentTransition(current, "suspended")) {
+      return {
+        success: false,
+        error: `Invalid transition: ${current} → suspended`,
+        code: "INVALID_TRANSITION",
+      };
+    }
+
+    this.agentStates.set(agentId, "suspended");
+    this.persistAgentState(agentId, "suspended"); // D2 落库
+
+    const details = `${current}→suspended`;
+    auditLog("deactivate_agent", operator, agentId, details);
+
+    pushToAgent(agentId, {
+      event: "agent_state_changed",
+      content: JSON.stringify({ agent_id: agentId, state: "suspended", operator }),
+    });
+
+    return { success: true, state: "suspended" };
+  }
+
+  /**
+   * 暂停 Pipeline（active → paused）
+   */
+  pausePipeline(pipelineId: string, operator: string): ActivationResult {
+    const current = this.pipelineStates.get(pipelineId);
+    if (!current) {
+      return { success: false, error: `Pipeline not found: ${pipelineId}`, code: "PIPELINE_NOT_FOUND" };
+    }
+
+    if (current === "paused") {
+      return { success: true, state: "paused" };
+    }
+
+    if (!isLegalPipelineTransition(current, "paused")) {
+      return {
+        success: false,
+        error: `Invalid transition: ${current} → paused`,
+        code: "INVALID_TRANSITION",
+      };
+    }
+
+    this.pipelineStates.set(pipelineId, "paused");
+
+    const details = `${current}→paused`;
+    auditLog("pause_pipeline", operator, pipelineId, details);
+
+    pushToAgent(pipelineId, {
+      event: "pipeline_state_changed",
+      content: JSON.stringify({ pipeline_id: pipelineId, state: "paused", operator }),
+    });
+
+    return { success: true, state: "paused" };
+  }
+
+  /**
+   * 恢复 Pipeline（paused → active）
+   */
+  resumePipeline(pipelineId: string, operator: string): ActivationResult {
+    const current = this.pipelineStates.get(pipelineId);
+    if (!current) {
+      return { success: false, error: `Pipeline not found: ${pipelineId}`, code: "PIPELINE_NOT_FOUND" };
+    }
+
+    if (current === "active") {
+      return { success: true, state: "active" };
+    }
+
+    if (!isLegalPipelineTransition(current, "active")) {
+      return {
+        success: false,
+        error: `Invalid transition: ${current} → active`,
+        code: "INVALID_TRANSITION",
+      };
+    }
+
+    this.pipelineStates.set(pipelineId, "active");
+
+    const details = `${current}→active`;
+    auditLog("resume_pipeline", operator, pipelineId, details);
+
+    pushToAgent(pipelineId, {
+      event: "pipeline_state_changed",
+      content: JSON.stringify({ pipeline_id: pipelineId, state: "active", operator }),
+    });
+
+    return { success: true, state: "active" };
+  }
+
+  /**
+   * 从审计日志重放恢复内存状态（启动时调用）
+   */
+  replayFromAudit(): void {
+    try {
+      const rows = getAll<{ action: string; target: string }>(
+        `SELECT action, target FROM audit_log WHERE action IN ('activate_agent','deactivate_agent','pause_pipeline','resume_pipeline') ORDER BY id ASC`
+      );
+      for (const row of rows) {
+        if (row.action === "activate_agent") this.agentStates.set(row.target, "active");
+        else if (row.action === "deactivate_agent") this.agentStates.set(row.target, "suspended");
+        else if (row.action === "resume_pipeline") this.pipelineStates.set(row.target, "active");
+        else if (row.action === "pause_pipeline") this.pipelineStates.set(row.target, "paused");
+      }
+    } catch {
+      // audit_log 表可能不存在（首次启动），静默忽略
+    }
+  }
+
+  // ─── D2: 激活态持久化与 DB 回查 ─────────────────────────
+
+  /** 从 agents 表读取某 Agent 的持久化激活态（无记录则 undefined） */
+  private loadAgentStateFromDb(agentId: string): AgentState | undefined {
+    try {
+      const row = db
+        .prepare(`SELECT activation_state FROM agents WHERE agent_id=?`)
+        .get(agentId) as { activation_state: string | null } | undefined;
+      if (!row) return undefined;
+      const s = row.activation_state as AgentState | null | undefined;
+      return s ?? "registered";
+    } catch {
+      return undefined;
+    }
+  }
+
+  /** 将激活态落库到 agents.activation_state（D2：重启可从 DB 重载） */
+  private persistAgentState(agentId: string, state: AgentState): void {
+    try {
+      db.prepare(`UPDATE agents SET activation_state=? WHERE agent_id=?`).run(state, agentId);
+    } catch (err) {
+      logError("activation_state_persist_failed", err, { module: "orchestrator", agent_id: agentId, state });
+    }
+  }
+
+  /**
+   * 从 agents 表 seed 全部 Agent 的激活态进内存（启动时调用，D2）。
+   * 未持久化 activation_state 的 Agent 默认 registered。
+   */
+  seedFromDb(): void {
+    try {
+      const rows = db
+        .prepare(`SELECT agent_id, activation_state FROM agents`)
+        .all() as Array<{ agent_id: string; activation_state: string | null }>;
+      for (const row of rows) {
+        const state = (row.activation_state as AgentState) || "registered";
+        this.agentStates.set(row.agent_id, state);
+      }
+      logger.info("activation_seed_from_db", { module: "orchestrator", count: rows.length });
+    } catch (err) {
+      logError("activation_seed_from_db_failed", err, { module: "orchestrator" });
+    }
+  }
+
+  /** 查询 Agent 状态 */
+  getAgentState(agentId: string): AgentState | undefined {
+    return this.agentStates.get(agentId);
+  }
+
+  /** 查询 Pipeline 状态 */
+  getPipelineState(pipelineId: string): PipelineState | undefined {
+    return this.pipelineStates.get(pipelineId);
+  }
+
+  /** 获取全部 Agent 状态快照 */
+  getAllAgentStates(): Array<{ id: string; state: string }> {
+    return Array.from(this.agentStates.entries()).map(([id, state]) => ({ id, state }));
+  }
+
+  /** 获取全部 Pipeline 状态快照 */
+  getAllPipelineStates(): Array<{ id: string; state: string }> {
+    return Array.from(this.pipelineStates.entries()).map(([id, state]) => ({ id, state }));
+  }
+
+  /** 注册 Agent（registered 初始状态），并落库激活态（D2） */
+  registerAgent(agentId: string): void {
+    if (!this.agentStates.has(agentId)) {
+      this.agentStates.set(agentId, "registered");
+      this.persistAgentState(agentId, "registered");
+    }
+  }
+
+  /** 注册 Pipeline（draft 初始状态） */
+  registerPipeline(pipelineId: string): void {
+    if (!this.pipelineStates.has(pipelineId)) {
+      this.pipelineStates.set(pipelineId, "draft");
+    }
+  }
 }

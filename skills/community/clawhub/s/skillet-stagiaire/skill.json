@@ -1,0 +1,8 @@
+{
+  "id": "stagiaire",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh stagiaire"
+  ],
+  "trust_level": "workspace"
+}

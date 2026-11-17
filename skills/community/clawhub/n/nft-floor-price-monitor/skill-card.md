@@ -1,40 +1,61 @@
-## Description: <br>
-Monitor NFT collection floor prices, compare collections, set target alerts, and optionally send Discord webhook notifications when floors cross thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor NFT collection floor prices across platforms, set target alerts, compare multiple collections, track history, and receive Discord DM notifications.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External users and developers use this skill to check NFT collection floor prices, compare collections, and configure threshold alerts. It is suited for monitoring and reporting workflows, not as a substitute for independent trading or valuation review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenSea API keys and Discord webhook URLs can expose sensitive access if shared in prompts, command history, or logs. <br>
-Mitigation: Use environment variables for secrets, avoid passing webhook URLs in shared commands, restrict secret access, and rotate exposed values. <br>
-Risk: NFT floor price data depends on external APIs and may be unavailable, delayed, rate-limited, or unsuitable for trading decisions on its own. <br>
-Mitigation: Confirm prices against trusted sources before acting, handle failed fetches, and respect API rate limits. <br>
+## Use Case:
 
+External developers and NFT market participants use this skill to check collection floor prices, compare collections, configure threshold alerts, and optionally send Discord webhook notifications when a floor crosses a target.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/nft-floor-price-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text floor reports or JSON records; skill guidance uses Markdown with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call OpenSea, CoinGecko, and Discord webhook endpoints when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Discord webhook URLs and alert details can expose sensitive notification configuration or trading intent if placed in shared command logs or error output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer DISCORD_WEBHOOK_URL from an environment variable or secret manager, avoid passing webhook URLs in shared commands, and treat failed alert logs as sensitive.
+
+Risk: Configured Discord alerts send collection names, thresholds, floor prices, and timestamps to the webhook destination.
+
+Mitigation: Enable Discord delivery only for NFT collections and alert thresholds that are acceptable to share with the configured Discord endpoint.
+
+Risk: Floor-price results depend on external API availability and may be missing, delayed, or inconsistent across sources.
+
+Mitigation: Review the reported source and null or missing floor-price values before relying on alert results for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fuzzyb33s/skills/nft-floor-price-monitor)
+- [Publisher profile](https://clawhub.ai/user/fuzzyb33s)
+- [OpenSea Collection API v2 endpoint](https://api.opensea.io/api/v2/collections/{slug})
+- [OpenSea Collection API v1 endpoint](https://api.opensea.io/api/v1/collection/{slug})
+- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI examples; script output as plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch NFT and ETH pricing from external APIs and optionally post alert payloads to a user-configured Discord webhook.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

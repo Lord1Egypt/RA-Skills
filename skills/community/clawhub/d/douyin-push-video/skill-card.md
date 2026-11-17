@@ -1,43 +1,56 @@
-## Description: <br>
-Assists users with publishing local or user-provided videos to a Douyin account, including OAuth credential setup, upload guidance, API-based posting, and pre-publication checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide and perform Douyin video publishing using local video files, OAuth credentials, and Douyin Open Platform upload and create APIs.
 
-## Publisher: <br>
-[15027302155](https://clawhub.ai/user/15027302155) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15027302155](https://clawhub.ai/user/15027302155)
 
-## Use Case: <br>
-Developers and external users use this skill to prepare Douyin OAuth credentials, upload a video, and publish it through manual steps or Douyin Open Platform API workflows. It is intended for account-authorized posting where the user can confirm the account, video, caption, and visibility before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Douyin account tokens may be stored in plaintext in a local .env file. <br>
-Mitigation: Use short-lived environment variables or a secret manager where possible, keep .env out of source control, and rotate or revoke tokens after use. <br>
-Risk: The skill can publish to a real Douyin account with limited safeguards. <br>
-Mitigation: Confirm the exact account, video file, caption, tags, and visibility before running any posting script or API workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare local videos, obtain or configure Douyin OAuth credentials, and publish videos to an authorized Douyin account through manual guidance or the provided Node.js scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/15027302155/douyin-push-video) <br>
-- [Douyin Open Platform](https://partner.open-douyin.com/) <br>
-- [Douyin Authorization Code Documentation](https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/douyin-get-permission-code) <br>
-- [Douyin Access Token Documentation](https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/get-access-token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or update of a local .env file containing Douyin OAuth credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles powerful Douyin account tokens in plaintext with weak safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing with real credentials, use throwaway or narrowly scoped tokens where possible, restrict .env file permissions, and rotate or revoke tokens after use.
+
+Risk: Credential helpers can expose tokens in terminal logs or CI output.
+
+Mitigation: Avoid running token exchange helpers in logged terminals or CI and do not commit .env files.
+
+## Reference(s):
+
+- [Douyin Open Platform](https://partner.open-douyin.com/)
+- [Douyin Authorization Code Documentation](https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/douyin-get-permission-code)
+- [Douyin Access Token Documentation](https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/get-access-token)
+- [ClawHub Skill Page](https://clawhub.ai/15027302155/skills/douyin-push-video)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local .env file when the user asks to store Douyin credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

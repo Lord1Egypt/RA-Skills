@@ -1,38 +1,58 @@
-## Description: <br>
-MemoBridge helps agents export, import, back up, migrate, and transfer AI memory or context between supported AI tools, including CodeBuddy, OpenClaw, Hermes Agent, Claude Code, Cursor, ChatGPT, Doubao, and Kimi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemoBridge helps agents export, import, back up, migrate, and transfer AI memory or context between supported AI tools, including CodeBuddy, OpenClaw, Hermes Agent, Claude Code, Cursor, ChatGPT, Doubao, and Kimi.
 
-## Publisher: <br>
-[gonelake](https://clawhub.ai/user/gonelake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gonelake](https://clawhub.ai/user/gonelake)
 
-## Use Case: <br>
-Developers and AI assistant users use this skill to move persistent memory, preferences, project context, and assistant history between supported local and prompt-guided AI tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use a local MemoBridge CLI that can read, export, and rewrite persistent AI memory files. <br>
-Mitigation: Install only a trusted and reviewed MemoBridge CLI, use explicit workspace paths, run dry-run first, inspect and redact memo-bridge.md before import or sharing, and back up existing memory files before write or overwrite operations. <br>
+## Use Case:
 
+Developers and AI tool users use this skill to preserve and move assistant memory, preferences, project context, and workspace notes when switching tools, sharing context, or setting up a new environment.
 
-## Reference(s): <br>
-- [ClawHub memo-bridge release page](https://clawhub.ai/gonelake/memo-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or instruct creation of memo-bridge.md interchange files and paste-ready prompts for cloud AI tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles broad private AI context and may expose sensitive memories if exported content is shared without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated memo-bridge.md before sharing it and keep exported memory files in trusted storage.
+
+Risk: Imported content can be written into persistent agent memory files.
+
+Mitigation: Use --dry-run and explicit --workspace paths before importing, and manually inspect untrusted input for sensitive or instruction-like content.
+
+Risk: Broad directory scanning may collect more context than intended.
+
+Mitigation: Prefer explicit workspace paths and avoid auto-scanning broad directories unless the scope has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gonelake/skills/memo-bridge)
+- [Publisher profile](https://clawhub.ai/user/gonelake)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated memory migration content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or consumes a memo-bridge.md interchange file and may generate paste-ready import or export instructions for prompt-guided tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

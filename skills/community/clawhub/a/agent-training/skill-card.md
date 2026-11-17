@@ -1,41 +1,49 @@
-## Description: <br>
-Agent training system for training multi-agent teams, maintaining training manuals, aligning goals and capabilities across sub-agents, and reviewing agent team configuration and evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Training System helps a main agent train and supervise multi-agent teams by maintaining training manuals, onboarding sub-agents, aligning responsibilities, and checking agent status and evolution.
 
-## Publisher: <br>
-[zLiM5](https://clawhub.ai/user/zLiM5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zlim5](https://clawhub.ai/user/zlim5)
 
-## Use Case: <br>
-Agent builders and operators use this skill to train new sub-agents, maintain a shared training manual, check agent configuration files, and coordinate ongoing team review and evolution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent agent memory and shared team notes may include sensitive personal details if users place them in USER.md, MEMORY.md, HEARTBEAT.md, EvoMap, or Capsule notes. <br>
-Mitigation: Review shared memory and profile files before use, and avoid storing secrets or sensitive personal details unless broader agent reuse is intended. <br>
-Risk: Team training guidance can propagate outdated or incorrect instructions across multiple agents. <br>
-Mitigation: Use the skill's review and evolution checks to audit agent configuration files and update the training manual when behavior or requirements change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Training Manual Template](references/training-manual-template.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/zLiM5/agent-training) <br>
-- [Publisher Profile](https://clawhub.ai/user/zLiM5) <br>
+## Use Case:
 
+Developers and operators managing multiple agent roles use this skill to create training manuals, onboard sub-agents, and review whether the agent team remains consistent and up to date.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown training templates, checklists, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external tool or MCP integration detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent user profile and memory files may expose sensitive personal context across agents.
+
+Mitigation: Review every USER.md and MEMORY.md copy or update, keep sensitive facts out of shared agent memory, and provide a process to inspect, edit, expire, or delete stored memories.
+
+## Reference(s):
+
+- [Agent training manual template](references/training-manual-template.md)
+- [ClawHub skill page](https://clawhub.ai/zlim5/skills/agent-training)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown templates, checklists, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update persistent per-agent profile and memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

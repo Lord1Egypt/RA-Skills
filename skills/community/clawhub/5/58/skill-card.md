@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes public 58 Tongcheng pages, merchant rules, service descriptions, activity information, and after-sales policy details into concise summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public 58.com information about merchant cooperation, service scope, platform rules, help content, promotions, and after-sales policies.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to summarize publicly visible 58 Tongcheng merchant cooperation, service scope, activity, help, refund, and customer support information. Outputs should identify the applicable city or service area and cite current official pages when rules may change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fees, service areas, refund timing, and promotional rules can change by location or over time. <br>
-Mitigation: Verify the latest applicable details against official 58 Tongcheng pages before relying on the summary. <br>
-Risk: The skill is intended for public information only and should not be used for account access, order handling, merchant backend operations, or private data processing. <br>
-Mitigation: Limit use to publicly visible pages and avoid collecting credentials, order details, private customer data, or non-public merchant information. <br>
+## Use Case:
 
+External users and agents use this skill to gather and summarize public 58.com pages for merchant onboarding, service-area rules, promotions, customer support, refund timing, and FAQs. Outputs should call out the applicable city, region, or service area when the source content is location-specific.
 
-## Reference(s): <br>
-- [58.com official homepage](https://www.58.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/58) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global, with outputs scoped to the relevant 58.com city or service area.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, applicable location, extracted policy fields, and current-rule verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill could be misapplied to private account pages, merchant dashboards, order details, or user personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with publicly visible 58.com pages and do not provide credentials, private account content, order records, or personal data.
+
+Risk: 58.com rules, fees, promotions, refund timing, and service-area details may change frequently or vary by city.
+
+Mitigation: Verify time-sensitive or location-specific claims against the relevant official 58.com page before relying on them.
+
+## Reference(s):
+
+- [58.com Official Homepage](https://www.58.com/)
+- [ClawHub Skill Release](https://clawhub.ai/codekungfu/skills/58)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, checklists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Location-sensitive outputs should state the applicable city, region, or service area when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

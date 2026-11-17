@@ -1,45 +1,61 @@
-## Description: <br>
-Sense Audio guides developers through SenseAudio Open Platform API integration for TTS, ASR, realtime agents, video generation, storyboard workflows, and voice clone usage constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration guide for SenseAudio Open Platform APIs, including TTS, ASR, realtime Agents, video generation and storyboard APIs, and voice clone usage constraints.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, debug, and harden SenseAudio API integrations, including request construction, protocol selection, response parsing, and production error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples can send text, prompts, audio, images, or video to SenseAudio services. <br>
-Mitigation: Only submit content the user is allowed and comfortable to send to SenseAudio, and disclose external processing expectations when adding integration guidance. <br>
-Risk: API keys or realtime tokens could be exposed if examples hardcode credentials or log full authorization values. <br>
-Mitigation: Use environment variables or a secret manager for API keys, avoid logging bearer tokens, and redact short-lived realtime credentials in diagnostic output. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, and harden SenseAudio Open Platform integrations for text-to-speech, speech recognition, realtime agents, video generation, storyboard workflows, and voice clone usage.
 
-## Reference(s): <br>
-- [Sense Audio ClawHub release](https://clawhub.ai/scikkk/senseaudio) <br>
-- [Realtime Agent Reference](references/agent.md) <br>
-- [ASR Reference](references/asr.md) <br>
-- [TTS Reference](references/tts.md) <br>
-- [Video and Storyboard Reference](references/video.md) <br>
-- [Voice and Cloning Reference](references/voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline request examples, code blocks, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint choices, minimal requests, production-ready examples, error handling notes, and model-specific constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated examples may send text, audio, video, prompts, identifiers, or API credentials to SenseAudio services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear user consent and privacy notices, avoid unnecessary data transfer, and apply retention controls for media and transcripts.
+
+Risk: API keys and realtime tokens can be exposed if examples are copied into source code or logs.
+
+Mitigation: Store credentials in environment variables or a secret manager, never hardcode keys, and redact tokens from logs.
+
+Risk: Incorrect model, endpoint, streaming, or response-parsing choices can produce failed calls or misleading integration behavior.
+
+Mitigation: Validate model and protocol compatibility, check status fields and terminal events before using payloads, and handle transient failures with bounded retries.
+
+## Reference(s):
+
+- [Realtime Agent Reference](references/agent.md)
+- [ASR Reference](references/asr.md)
+- [TTS Reference](references/tts.md)
+- [Video and Storyboard Reference](references/video.md)
+- [Voice and Cloning Reference](references/voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with API request examples, code snippets, shell commands, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP and WebSocket request schemas, response parsing notes, and production error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

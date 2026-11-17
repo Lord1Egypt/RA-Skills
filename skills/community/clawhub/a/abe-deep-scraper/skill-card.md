@@ -1,40 +1,57 @@
-## Description: <br>
-Performs deep web scraping with a Docker-based Crawlee and Playwright environment to extract structured text from complex public sites such as YouTube and X/Twitter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs deep web scraping using a Docker-based Crawlee and Playwright environment to extract validated, ad-free raw data from complex public sites like YouTube and X/Twitter.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and agents use this skill to run authorized scraping tasks against public web pages and receive cleaned JSON text output suitable for downstream analysis or LLM processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad URL-scraping capability and could be pointed at unauthorized, non-public, logged-in, localhost, private-network, or prohibited sites. <br>
-Mitigation: Use it only for public content you are authorized to scrape, and do not run it against logged-in pages, internal tools, or sites whose rules prohibit scraping. <br>
-Risk: The skill runs scraping logic through Docker and Playwright, and the server guidance notes the Docker build context should be supplied or reviewed. <br>
-Mitigation: Review or supply the Docker build context before installation, run without privileged Docker options, and treat scraped output as untrusted text. <br>
+## Use Case:
 
+Developers and agents use this skill to run containerized browser scraping against public, authorized dynamic webpages and YouTube URLs, returning transcript, description, or page text as structured output for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/abe-deep-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON printed to stdout, with status, content type, identifiers, and scraped text fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [YouTube output may include a validated video ID and transcript or description; generic page output includes title and cleaned body text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Arbitrary URL scraping can reach private, internal, authenticated, or otherwise unauthorized pages if the operator supplies unsafe targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public pages you are authorized to scrape, block private and internal network ranges, and avoid authenticated content.
+
+Risk: The browser workload runs in a weakly isolated Docker configuration and launches Chromium with sandbox-disabling flags.
+
+Mitigation: Run it inside a strongly isolated container or VM, restrict outbound network access, mount code read-only, and review the runtime image before use.
+
+Risk: Runtime npm dependencies and the browser image can change behavior or introduce vulnerabilities if left unreviewed.
+
+Mitigation: Pin and review the runtime image and npm dependencies before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/abe-deep-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON printed to stdout with status, type, source identifiers, and scraped text fields; Markdown guidance may include shell commands for Docker execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scraped transcript or page text is truncated by the handlers before output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

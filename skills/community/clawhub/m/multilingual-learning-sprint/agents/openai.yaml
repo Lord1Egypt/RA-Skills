@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multilingual Learning Sprint"
+  short_description: "Plan language sprints with Alipay and ClawTip pay"
+  default_prompt: "Use $multilingual-learning-sprint to test my language level, build a sprint plan, and expose it through Alipay AI Pay or JD ClawTip A2A payment."

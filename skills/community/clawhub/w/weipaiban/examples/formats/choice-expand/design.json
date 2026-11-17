@@ -1,0 +1,70 @@
+{
+  "format": "choice-expand",
+  "title": "周末去哪",
+  "width": 390,
+  "optionCount": 4,
+  "pairs": [
+    {
+      "name": "山与海",
+      "initHeight": 220,
+      "expandHeight": 420,
+      "duration": 0.5,
+      "easing": "ease-in-out",
+      "options": [
+        {
+          "side": "left",
+          "title": "去看山",
+          "caption": "往高处走",
+          "heading": "去山里，慢下来",
+          "description": "沿林荫走到观景台，风比城里干净。",
+          "color": "#2f6a4f",
+          "background": "#e5f0e4",
+          "expandTrigger": { "x": 16, "y": 168, "width": 163, "height": 34 },
+          "collapseTrigger": { "x": 105, "y": 348, "width": 180, "height": 44 }
+        },
+        {
+          "side": "right",
+          "title": "去看海",
+          "caption": "把节奏放慢",
+          "heading": "去海边，放轻松",
+          "description": "在堤岸坐到天色转暖，把未读消息留到明天。",
+          "color": "#24556e",
+          "background": "#e4eef3",
+          "expandTrigger": { "x": 16, "y": 168, "width": 163, "height": 34 },
+          "collapseTrigger": { "x": 105, "y": 348, "width": 180, "height": 44 }
+        }
+      ]
+    },
+    {
+      "name": "城与林",
+      "initHeight": 220,
+      "expandHeight": 420,
+      "duration": 0.5,
+      "easing": "ease-in-out",
+      "options": [
+        {
+          "side": "left",
+          "title": "进城走走",
+          "caption": "就在街区里",
+          "heading": "把城市走成一条线",
+          "description": "从旧书店走到河边，只为一家还在营业的小馆。",
+          "color": "#6a4632",
+          "background": "#f3e6d8",
+          "expandTrigger": { "x": 16, "y": 168, "width": 163, "height": 34 },
+          "collapseTrigger": { "x": 105, "y": 348, "width": 180, "height": 44 }
+        },
+        {
+          "side": "right",
+          "title": "去林间",
+          "caption": "离开主路",
+          "heading": "去林间，听叶子",
+          "description": "小路只容一个人，阳光落在脚边就够。",
+          "color": "#3d5a32",
+          "background": "#e7f0dc",
+          "expandTrigger": { "x": 16, "y": 168, "width": 163, "height": 34 },
+          "collapseTrigger": { "x": 105, "y": 348, "width": 180, "height": 44 }
+        }
+      ]
+    }
+  ]
+}

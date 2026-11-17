@@ -1,45 +1,62 @@
-## Description: <br>
-Enables AI agents to develop evolving personas through organic memory growth, self-reflection, and layered memory management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to develop independent, evolving personas through organic memory growth, self-reflection, and layered memory management.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run a local memory and persona service that stores memories, searches them semantically, and generates or evolves agent persona profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local memory server can retain private conversation content and persona inferences long term. <br>
-Mitigation: Bind the service to localhost or add authentication before use, avoid storing secrets, and define retention rules for stored memories and persona data. <br>
-Risk: The advertised delete endpoint does not actually erase memories. <br>
-Mitigation: Do not rely on the delete endpoint for privacy guarantees until deletion is implemented and verified across Redis, SQLite, file, vector, and archive storage. <br>
-Risk: Authentication and archival safeguards are weak for a service that stores sensitive memory data. <br>
-Mitigation: Restrict network exposure, review backup and archive paths, and deploy only in environments where access controls and data handling are acceptable. <br>
+## Use Case:
 
+Developers and agent builders use Memory Processor to provide agents with persistent memory, semantic recall, persona generation, persona evolution, and reflection through a local FastAPI service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zfanmy/memprocessor) <br>
-- [README](artifact/README.md) <br>
-- [Privacy and Project Notice](artifact/VERSION-ISOLATION.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, API responses, Guidance] <br>
-**Output Format:** [Python and FastAPI service files, JSON API responses, Markdown documentation, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local memory and persona service with REST endpoints for memory storage, search, analysis, and persona generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Persistent memory and persona controls are exposed without authentication by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on localhost or behind strong authentication before connecting it to real agents or user data.
+
+Risk: Stored memories or generated persona histories may contain sensitive personal data or secrets.
+
+Mitigation: Avoid storing sensitive data until deletion, redaction, retention, and access-control policies are implemented and tested.
+
+Risk: Unpinned dependencies and model revisions can change runtime behavior or introduce supply-chain risk.
+
+Mitigation: Pin dependencies and model revisions before production or commercial deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zfanmy/skills/memprocessor)
+- [README](artifact/README.md)
+- [Skill overview](artifact/SKILL.md)
+- [Version isolation notes](artifact/VERSION-ISOLATION.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Python project metadata](artifact/pyproject.toml)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP API examples, JSON API responses, Python service code, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a local FastAPI memory and persona service with persistent storage layers and semantic search.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

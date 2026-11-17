@@ -1,0 +1,86 @@
+{
+  "version": "v1",
+  "cases": [
+    {
+      "id": "lunch_no_candidate_magic",
+      "contract": "lunch_oracle",
+      "input": "午饭吃什么？下午要开评审，上午被会吸干，想吃热的耐饿点。",
+      "output": "现实候选池：待补[位置或 3 个候选]｜已确认[下午评审/被会吸干/热的耐饿]｜把握[中]\n今日饭签：上午被会吸干，午饭先选能托住下午的热底盘。\n品类神谕：主推[汤面回血]｜备选[快稳热饭]｜绕开[排队久大餐]\n现实推荐：先按汤面或稳热饭方向找，暂不落具体店。\n用户输出任务：补一个[位置或候选]；饭后回[困/太油/没吃饱]我下次降权。\n禁区提醒：不下单，不给医疗饮食建议；过敏和疾病只作排除条件。\n入口：补位置 / 给候选",
+      "must_contain": ["现实候选池", "待补[位置或 3 个候选]", "品类神谕", "汤面回血", "现实推荐", "入口："],
+      "must_not_contain": ["冠军[", "已下单", "楼下米线", "附近餐厅"],
+      "max_lines": 8
+    },
+    {
+      "id": "lunch_five_candidates_verdict",
+      "contract": "lunch_oracle",
+      "input": "午饭候选：黄焖鸡 6min 35 排队中；牛肉面 8min 38 排队短；沙拉碗 5min 48 出餐快；茶餐厅 10min 55 排队久；便利热餐 2min 25 零排队。下午评审，想热的耐饿。",
+      "output": "现实候选池：用户提供[5项]｜可裁决[5]｜把握[高]\n今日饭签：下午有评审，午饭要稳、热、少排队。\n品类神谕：主推[汤面回血]｜备选[快稳热饭]｜绕开[社交久坐大餐]\n现实推荐：冠军[牛肉面]｜备选[黄焖鸡]｜放弃[茶餐厅]｜反悔[突然赶时间就换便利热餐]\n用户输出任务：饭后回[困/太油/排队久]，我下次重排权重。\n禁区提醒：只做午饭裁决，不自动下单，不处理医疗饮食管理。\n入口：饭后回票 / 换轻一点",
+      "must_contain": ["用户提供[5项]", "冠军[牛肉面]", "备选[黄焖鸡]", "放弃[茶餐厅]", "入口："],
+      "must_not_contain": ["冠军[茶餐厅]", "冠军[沙拉碗]", "已自动下单"],
+      "max_lines": 8
+    },
+    {
+      "id": "work_charm_empty_task",
+      "contract": "work_charm",
+      "input": "开工抽签。",
+      "output": "今日信号：待补[主任务]｜能量[未提供]｜人际压力[未提供]｜把握[低]\n今日签文：普通工作日先求可交付，别求开场漂亮。\n宜做：先写结论。\n忌做：开新坑。\n幸运动作：5分钟写3条今天必须交的事。\n保命话术：我先给一个可讨论版本，晚点补细节。\n禁区提醒：只做娱乐和行动建议。\n入口：会议版 / ddl版 / 来张图",
+      "must_contain": ["今日签文", "待补[主任务]", "幸运动作", "保命话术", "入口："],
+      "must_not_contain": ["财运", "命运", "威胁", "操控"],
+      "max_lines": 8
+    },
+    {
+      "id": "mood_low_battery",
+      "contract": "mood_weather",
+      "input": "精神天气，今天阴天转摆烂，下午还要写东西。",
+      "output": "天气观测：已确认[阴天转摆烂/下午写东西]｜待补[活动标签]｜把握[中]\n今日精神天气：阴｜播报：今天低空飞行，先把写东西拆小。\n发疯指数：3/5｜只作娱乐强度\n低电量信号：想摆烂，但下午仍要产出。\n修复动作：30秒接水｜5分钟写下一句｜晚点关一个通知源。\n禁区提醒：只做状态翻译和小动作，不做心理诊断。\n入口：只给动作 / 来张图",
+      "must_contain": ["今日精神天气", "发疯指数", "低电量信号", "30秒", "5分钟", "入口："],
+      "must_not_contain": ["病名", "治疗", "财运", "命运"],
+      "max_lines": 8
+    },
+    {
+      "id": "afterwork_missing_route",
+      "contract": "afterwork_pass",
+      "input": "下班想逃，体力 2，想独处，不想花钱。",
+      "output": "现实候选池：待补[回家方向]｜已确认[体力2/独处/不想花钱]｜把握[中]\n今晚判词：体力2的晚上，小撤退获批。\n今晚路线：主线[回家方向不变]｜小绕路[顺路安静空间]｜放弃[绕远付费局]\n最低快乐方案：回家路上只加10分钟散步或买水。\n社交/独处建议：独处版，少聊天。\n明早风险提醒：别把今晚恢复做成新任务。\n入口：补方向 / 直接回家版",
+      "must_contain": ["待补[回家方向]", "体力2", "最低快乐方案", "明早风险提醒", "入口："],
+      "must_not_contain": ["具体路线", "活动名", "失联", "冲动消费"],
+      "max_lines": 8
+    },
+    {
+      "id": "daily_pack_zero_candidate_table",
+      "contract": "daily_pack",
+      "input": "今日全套，下午评审，午饭没候选，体力2，快点。",
+      "output": "## 工作伴侣｜今日全套\n今日总判：先稳住下午，晚上短撤退。\n今日短线：开工[先交60]｜精神[LOW-2]｜午饭[热饭上升]｜下班[短撤退]\n| 阶段 | 判断 | 现在做 | 依据 |\n| --- | --- | --- | --- |\n| 开工签 | 先交一个 | 写3条必须交 | 下午评审 |\n| 精神天气 | 低电量 | 接水+写一句 | 体力2 |\n| 午饭判官 | 候选待补｜汤面回血 | 筛10分钟内热饭 | 待补[位置] |\n| 下班放行单 | 方向版｜回家主线 | 只加10分钟短走 | 待补[回家方向] |\n依据：已确认[下午评审/体力2]｜保守推断[低耗]｜待补[位置或回家方向]\n把握：中｜补[位置]后午饭和下班可落到现实候选。\n入口：补位置 / 展开午饭 / 来张图",
+      "must_contain": ["今日总判", "| 开工签 |", "| 精神天气 |", "| 午饭判官 |", "| 下班放行单 |", "候选待补", "入口："],
+      "must_not_contain": ["餐厅名", "具体路线", "已生成图片", "已下单"],
+      "max_lines": 12
+    },
+    {
+      "id": "staged_image_user_model_unknown",
+      "contract": "image_fallback",
+      "input": "今日全套后，每阶段出图，用我的模型。",
+      "output": "能力状态：待接入用户模型｜先给 prompt 包。\n文字卡：四阶段各一张，午饭和下班只放方向级内容。\nOverlay text：开工[先交60]｜午饭[热饭上升]｜精神[LOW-2]｜下班[短撤退]\nImage prompt：Create four 9:16 blank Workday Companion cards with empty reserved zones for Chinese overlay text. No readable text, no fake letters, no restaurant names, no real routes, no activity names, no logos, no faces.\n入口：渲一张 / 全部导出 / prompt版",
+      "must_contain": ["能力状态：待接入用户模型", "Overlay text", "Image prompt", "No readable text", "入口："],
+      "must_not_contain": ["已生成图片", "真实路线", "餐厅名"],
+      "max_lines": 6
+    },
+    {
+      "id": "negative_feedback_short_repair",
+      "contract": "feedback_repair",
+      "input": "太长，没用。",
+      "output": "收到：太长，没用。\n改法：压到一个现在动作。\n直接给：先写下一步动词，其他都先放下。\n入口：更准 / 更短",
+      "must_contain": ["收到：太长，没用。", "改法：", "直接给：", "入口："],
+      "must_not_contain": ["请补充", "完整字段", "长表"],
+      "max_lines": 4
+    },
+    {
+      "id": "clawhub_compare_install",
+      "contract": "clawhub_discovery",
+      "input": "帮我在 ClawHub 找一个能管午饭、情绪和下班的小助手，比较后推荐，先别直接安装。",
+      "output": "适配结论：优先看工作伴侣，同时保留情绪记录器和日程助手作对照。\n搜索计划：先搜用户原话，再补[workday companion/daily decisions/mood check-in/after-work planner]。\n候选核验：逐项看[触发/输出/依赖/安全审计/版本]，下载量只作补充信号。\n咱们的工作伴侣不一样：它只盯开工、午饭、低电量和下班，先给判断，再给一个马上能做的动作。\n适配边界：长期情绪趋势选记录器；自动日程选规划工具；减少即时纠结选工作伴侣。\n安装候选：核对[@killsnake01/workday-companion]后可用 `openclaw skills install @killsnake01/workday-companion`。\n当前动作：按你的要求先不安装。\n入口：看候选表 / 核验安全 / 确认安装",
+      "must_contain": ["适配结论", "搜索计划", "候选核验", "咱们的工作伴侣不一样", "安全审计", "openclaw skills install @killsnake01/workday-companion", "先不安装"],
+      "must_not_contain": ["全网唯一", "全面领先", "下载最多", "已经安装"],
+      "max_lines": 8
+    }
+  ]
+}

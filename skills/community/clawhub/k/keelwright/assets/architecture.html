@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "keelwright",
+  "description": "Engine for vibe-coders and loop-coders who ship AI-generated code they cannot read. 28 machine-enforced safety checks: SQL injection, hardcoded secrets, slopsquatting, reward hacking, doom loops, false reports, missing auth, business logic bypasses.",
+  "url": "https://github.com/ratingtesting/keelwright",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+  "author": {
+    "@type": "Organization",
+    "name": "ratingtesting",
+    "url": "https://github.com/ratingtesting"
+  },
+  "keywords": "vibe coding, loop coding, AI code security, guardrails, OWASP, SQL injection, secrets, slopsquatting, reward hacking, doom loop, circuit breaker, token burn, context rot, over-engineering, tech debt, code quality, non-programmer, autonomous coding",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "cross-platform",
+  "softwareHelp": {
+    "@type": "CreativeWork",
+    "url": "https://github.com/ratingtesting/keelwright/blob/main/README.md"
+  }
+}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keelwright — Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#020617; color:#e2e8f0; font-family:'JetBrains Mono',monospace;
+    padding:40px 36px; width:1200px; font-size:22px; line-height:1.55;
+    background-image:
+      linear-gradient(#0b1220 1px,transparent 1px),
+      linear-gradient(90deg,#0b1220 1px,transparent 1px);
+    background-size:48px 48px;
+  }
+  .head { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+  .dot { width:16px; height:16px; border-radius:50%; background:#34d399; box-shadow:0 0 16px #34d399; animation:p 2s infinite; }
+  @keyframes p { 0%,100%{opacity:1} 50%{opacity:.35} }
+  h1 { font-size:40px; font-weight:700; letter-spacing:.5px; }
+  h1 .kw { color:#34d399; }
+  .sub { color:#64748b; font-size:18px; margin:2px 0 32px 30px; }
+
+  .layer { border-radius:14px; padding:24px 26px; margin-bottom:22px; position:relative; }
+  .ltag { position:absolute; top:-11px; left:20px; font-size:14px; letter-spacing:1.5px;
+          background:#020617; padding:0 10px; color:#64748b; text-transform:uppercase; }
+  .l-human { background:rgba(8,51,68,.35); border:2px solid #22d3ee; }
+  .l-ctrl  { background:rgba(30,41,59,.5); border:2px solid #94a3b8; }
+  .l-build { background:rgba(6,78,59,.28); border:2px solid #34d399; }
+  .l-sup   { background:transparent; border:none; padding:0; margin-bottom:18px; }
+  .l-ops   { background:rgba(120,53,15,.22); border:2px dashed #fbbf24; }
+
+  .title { font-size:26px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+  .c-cyan{color:#22d3ee}.c-em{color:#34d399}.c-vi{color:#a78bfa}.c-am{color:#fbbf24}
+  .c-rose{color:#fb7185}.c-or{color:#fb923c}.c-sl{color:#94a3b8}
+  .star { color:#fbbf24; font-weight:700; }
+  .starstar { color:#fb923c; font-weight:700; }
+
+  /* 2-column grid for boxes */
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .box { background:#0f172a; border-radius:10px; padding:16px 18px; font-size:22px; line-height:1.55; }
+  .muted { color:#94a3b8; }
+  .tiny { font-size:17px; color:#64748b; }
+  .catch { color:#fb7185; font-size:17px; }
+  .arrowdown { text-align:center; color:#34d399; font-size:30px; line-height:1; margin:6px 0; }
+
+  /* build loop steps */
+  .steps { display:flex; flex-direction:column; gap:12px; }
+  .step { display:flex; align-items:flex-start; gap:14px; background:#0f172a; border-left:4px solid #34d399;
+          border-radius:8px; padding:14px 18px; }
+  .step .n { color:#34d399; font-weight:700; min-width:32px; font-size:24px; }
+  .step .body { flex:1; font-size:20px; line-height:1.55; }
+  .step.sec { border-left-color:#fb7185; }
+  .step.verify { border-left-color:#22d3ee; }
+  .step.match { border-left-color:#a78bfa; background:rgba(76,29,149,.18); }
+  .loopback { display:flex; align-items:center; gap:10px; color:#34d399; font-size:14px;
+              justify-content:flex-end; margin-top:6px; }
+
+  /* Layer 3: 2-column + 1 */
+  .sup2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .supbox { background:#0f172a; border-radius:10px; padding:20px 22px; }
+  .supbox.cb { border-top:4px solid #fb923c; }
+  .supbox.st { border-top:4px solid #a78bfa; }
+  .supbox.sl { border-top:4px solid #22d3ee; }
+  .supbox h4 { font-size:24px; margin-bottom:10px; }
+  .supbox ul { list-style:none; font-size:19px; line-height:1.7; color:#cbd5e1; }
+  .crosscut { background:rgba(136,19,55,.25); border:2px solid #fb7185; border-radius:10px;
+              padding:16px 20px; margin-top:16px; font-size:18px; line-height:1.7; }
+
+  /* Layer 4: 3 nodes per row */
+  .ops-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .ops-row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+  .ops-node { background:#0f172a; border:2px solid #fbbf24; border-radius:10px; padding:16px 18px;
+              text-align:center; font-size:22px; }
+  .ops-node .em { display:block; font-size:28px; margin-bottom:4px; }
+  .ops-node .sub2 { font-size:16px; color:#94a3b8; margin-top:4px; }
+  .ops-arrow { color:#fbbf24; font-size:20px; text-align:center; }
+  .rollback { text-align:center; color:#fb7185; font-size:13px; margin-top:12px;
+              border-top:2px dashed #fb7185; padding-top:12px; }
+
+  /* Banner: 2 columns */
+  .banner2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
+  .banner2 .bcard3 { grid-column:1 / -1; }
+  .bcard { background:#0f172a; border-radius:10px; padding:16px 18px; }
+  .bcard .h { font-size:24px; font-weight:700; margin-bottom:6px; }
+  .bcard .t { font-size:17px; color:#94a3b8; line-height:1.5; }
+  .b1{border-left:4px solid #fbbf24}.b2{border-left:4px solid #34d399}.b3{border-left:4px solid #22d3ee}
+
+  .foot { color:#475569; font-size:16px; margin-top:24px; text-align:center; letter-spacing:.5px; }
+
+  /* risk map: 2 columns */
+  .riskmap { background:rgba(136,19,55,.16); border:2px solid #fb7185; border-radius:14px;
+             padding:22px 22px 18px; margin-top:20px; position:relative; }
+  .riskmap .rtag { position:absolute; top:-11px; left:22px; font-size:12px; letter-spacing:1.2px;
+             background:#020617; padding:0 10px; color:#fb7185; text-transform:uppercase; }
+  .riskmap h3 { font-size:26px; font-weight:700; color:#fb7185; margin-bottom:4px; }
+  .riskmap .rsub { font-size:17px; color:#94a3b8; margin-bottom:18px; }
+  .rgrid { display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; }
+  .ritem { background:#0f172a; border-radius:8px; padding:12px 16px; font-size:18px; line-height:1.5;
+           border-left:3px solid #34d399; }
+  .ritem.warn { border-left-color:#fbbf24; }
+  .ritem .rn { font-weight:700; color:#e2e8f0; }
+  .ritem .rm { color:#94a3b8; }
+  .ritem .rb { float:right; font-size:18px; }
+  .rlegend { font-size:16px; color:#64748b; margin-top:16px; line-height:1.7; }
+  .rlegend b { color:#94a3b8; }
+</style>
+</head>
+<body>
+  <div class="head"><div class="dot"></div><h1><span class="kw">keelwright</span> — engine for vibe / loop coding</h1></div>
+  <div class="sub">a loop with nested loops · safety cannot be switched off · a human who does not read code stays in control</div>
+
+  <!-- LAYER 0 -->
+  <div class="layer l-human">
+    <span class="ltag">Layer 0 · the human</span>
+    <div class="title"><span class="c-cyan">▣ YOU</span> <span class="muted">(need not read code)</span> &nbsp;→&nbsp; GOAL + ACCEPTANCE CRITERIA &nbsp;&nbsp;◄──&nbsp;&nbsp; PLAIN-LANGUAGE REPORT / BUILD</div>
+    <div class="tiny"><span class="star">★ DNA:</span> understands LOGIC, not syntax. Every gate below is translated to plain words — <span class="muted">"this checks the password is right"</span>, never "string arg to fn()".</div>
+  </div>
+  <div class="arrowdown">▼</div>
+
+  <!-- LAYER 1: 2×2 grid -->
+  <div class="layer l-ctrl">
+    <span class="ltag">Layer 1 · control</span>
+    <div class="row2">
+      <div class="box">
+        <div class="title"><span class="c-sl">🎛 AUTONOMY DIAL</span></div>
+        <div>Autopilot → Checkpoint → Copilot</div>
+        <div class="tiny"><span class="star">★</span> freedom = blast radius (auth / money / prod → Copilot: approve each)</div>
+      </div>
+      <div class="box">
+        <div class="title"><span class="c-sl">🗂 TRIAGE</span></div>
+        <div>Trivial · Low · Standard · High · Critical</div>
+        <div class="tiny"><span class="star">★</span> machinery = risk. Trivial → Express, no per-iter scans</div>
+      </div>
+      <div class="box">
+        <div class="title"><span class="c-sl">▸ PHASE 1–2</span></div>
+        <div>Requirements → Planning</div>
+        <div class="tiny"><span class="star">★</span> no acceptance criteria? ⛔ STOP, ask. Never invents scope</div>
+      </div>
+      <div class="box">
+        <div class="title"><span class="c-sl">⬚ LOOP DESIGN</span></div>
+        <div>5 whiteboard questions before any code</div>
+        <div class="tiny"><span class="star">★</span> trigger · check · action · stop · escalate — skip = demo</div>
+      </div>
+    </div>
+  </div>
+  <div class="arrowdown">▼</div>
+
+  <!-- LAYER 2 -->
+  <div class="layer l-build">
+    <span class="ltag">Layer 2 · the build loop (Phase 3 — one task = one turn, repeats)</span>
+    <div class="title"><span class="c-em">⟳ PHASE 3 · BUILDING</span> <span class="tiny">— discipline INSIDE writing, not cleanup afterward</span></div>
+    <div class="steps">
+      <div class="step"><span class="n">①</span><div class="body">@implementer writes (1 file/fn) ◄ <b>REUSE LADDER</b> — reuse before adding a lib/abstraction <span class="catch">· catches: over-engineering</span></div></div>
+      <div class="step"><span class="n">②</span><div class="body"><b>BACKPRESSURE GATES:</b> tests │ typecheck │ lint │ build</div></div>
+      <div class="step"><span class="n">③</span><div class="body"><b>STRUCTURAL-INTEGRITY GATE</b> <span class="star">★</span> jscpd·lizard·madge/import-linter·eslint-boundaries·knip/vulture <span class="catch">· catches: spaghetti, lava flow, tangled deps</span></div></div>
+      <div class="step sec"><span class="n">④</span><div class="body"><span class="c-rose">🛡 SECURITY GATES R1–R12</span> <span class="starstar">★★</span> machine-enforced, cannot disable even on Autopilot <span class="catch">· catches: OWASP·secrets·slopsquat·IDOR</span></div></div>
+      <div class="step sec"><span class="n">⑤</span><div class="body"><span class="c-rose">🔍 R3 BUSINESS-LOGIC REVIEW</span> ► spawn @reviewer (fresh context) <span class="star">★</span> NOT self-review <span class="catch">· catches: happy-path bias, auth holes</span></div></div>
+      <div class="step verify"><span class="n">⑦</span><div class="body"><span class="c-cyan">✅ VERIFICATION GATE</span> <span class="starstar">★★</span> read+compile+diff · test red→green · not tautological · ad-hoc <span class="catch">· catches: "works on my machine", "I fixed it" with no diff</span></div></div>
+      <div class="step match"><span class="n">⑧</span><div class="body"><span class="c-vi">⟲ MATCH LOOP (nested sub-loop)</span> <span class="star">★</span> Generator ⇄ Analyst: render → browser → numeric a11y (contrast≥4.5:1 · no overflow · sizes) — repeat until convergence</div></div>
+      <div class="step"><span class="n">⑨</span><div class="body">git commit (atomic) ► ⑩ PROGRESS.md + STATUS + tool-budget count</div></div>
+      <div class="step"><span class="n">⑪</span><div class="body">cadence: /3 → STABILITY scan · /10 → AUTORESEARCH · /N → refactor checkpoint</div></div>
+    </div>
+    <div class="loopback">↩ LOOP BACK — next task, while tasks remain</div>
+  </div>
+  <div class="arrowdown">▼ &nbsp;perimeter supervision&nbsp; ▼</div>
+
+  <!-- LAYER 3: 2-column -->
+  <div class="l-sup">
+    <div class="sup2">
+      <div class="supbox cb">
+        <h4><span class="c-or">🚦 CIRCUIT-BREAKER</span></h4>
+        <ul>
+          <li class="catch">catches: doom loop + token/$ burn</li>
+          <li>4 caps: 50 iters / 5 no-progress / 2h / 3× repeat</li>
+          <li>+ RATE LIMITING (event-driven loops)</li>
+          <li>+ PER-ITER BUDGETS ≤10 shell / 5 file / 3 external</li>
+          <li>→ graceful STOP with report</li>
+        </ul>
+      </div>
+      <div class="supbox st">
+        <h4><span class="c-vi">📉 STABILITY (5 modes)</span></h4>
+        <ul>
+          <li class="catch">catches: goal drift, oscillation, thrash</li>
+          <li>dead-retry · oscillation · drift · amplification · feedback-starvation</li>
+          <li>ESCALATION: 3→REFINE 5→PIVOT 2→ask 3→blocker</li>
+          <li>+ CONTEXT COMPACTION (iter > 20)</li>
+          <li>a "keep" resets the counters</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Self-learning: full width -->
+    <div class="supbox sl" style="margin-top:14px;">
+      <h4><span class="c-cyan">🔄 SELF-LEARNING</span> <span class="star">★</span></h4>
+      <ul>
+        <li>Phoenix: root-cause of repeats ACROSS sessions</li>
+        <li>Autoresearch: lessons → memory (promote on repeat)</li>
+        <li class="catch">learns, doesn't repeat the same mistake</li>
+      </ul>
+    </div>
+    <div class="crosscut">
+      <span class="starstar">★★ REWARD-HACKING GUARD</span> — never weaken/delete a test to go green; fix the code, not the metric. &nbsp;·&nbsp;
+      <b>PERSONAS</b> (delegate_task): @architect @implementer @tester @reviewer @architecture-critic @visual-qa &nbsp;·&nbsp;
+      <b>STRUCTURED FEEDBACK</b> into each iteration: relevant code + intent + "repeat vs new" flag — not a raw stack-trace dump.
+    </div>
+  </div>
+
+  <!-- LAYER 4: 3 per row + 2 -->
+  <div class="layer l-ops">
+    <span class="ltag">Layer 4 · outer operational cycle (production lifecycle)</span>
+    <div class="ops-grid">
+      <div class="ops-node"><span class="em">🔭</span>OBSERVE<span class="sub2">read prod logs/reports</span></div>
+      <div class="ops-node"><span class="em">🩺</span>ANALYZE<span class="sub2">root-cause + plan</span></div>
+      <div class="ops-node"><span class="em">🔧</span>FIX<span class="sub2">run the build loop</span></div>
+    </div>
+    <div class="ops-row2">
+      <div class="ops-node"><span class="em">✅</span>VALIDATE<span class="sub2">post-deploy metric compare</span></div>
+      <div class="ops-node"><span class="em">🎓</span>LEARN<span class="sub2">update lessons</span></div>
+    </div>
+    <div class="rollback">⭐ verify-in-production + AUTO-ROLLBACK (git revert, not force-push) — a bad deploy that passes tests is caught by the metric, not by a human &nbsp;·&nbsp; ⚡ PARALLEL: independent subtasks fan out as separate empty-context loops</div>
+  </div>
+
+  <!-- BANNER: 2-column + 1 full -->
+  <div class="banner2">
+    <div class="bcard b1"><div class="h"><span class="c-am">🔒 BATTLE-TESTED QA ★★★</span></div><div class="t">A/B (control vs skill), fact-checked on disk, not self-report — published WITH an honest adversarial report.</div></div>
+    <div class="bcard b2"><div class="h"><span class="c-em">💸 ZERO INSTALL · ZERO COST</span></div><div class="t">Plain markdown that orchestrates free, permissively-licensed tools. Full transparency, nothing to buy.</div></div>
+    <div class="bcard b3"><div class="h"><span class="c-cyan">🗣 PLAIN-LANGUAGE THROUGHOUT</span></div><div class="t">Built for people who read product logic, not code syntax. Every gate speaks human.</div></div>
+  </div>
+
+  <!-- RISK MAP: 2 columns -->
+  <div class="riskmap">
+    <span class="rtag">documented 2026</span>
+    <h3>🗺 VIBE/LOOP-CODING RISK MAP → WHAT KEELWRIGHT COVERS</h3>
+    <div class="rsub">Every known vibe/loop-coding pain → the mechanism that closes it. <span class="c-em">✅</span> = machine-enforced / on-disk · <span class="c-am">⚠</span> = partial (honest: no cheap machine detector)</div>
+    <div class="rgrid">
+      <div class="ritem"><span class="rn">Context rot / decay</span><span class="rb">✅</span><br><span class="rm">fresh-context + PROGRESS.md</span></div>
+      <div class="ritem"><span class="rn">Ralph (Wiggum) loop</span><span class="rb">✅</span><br><span class="rm">state in files, not chat</span></div>
+      <div class="ritem"><span class="rn">Spaghetti / big ball of mud</span><span class="rb">✅</span><br><span class="rm">structural-integrity gate ③</span></div>
+      <div class="ritem"><span class="rn">Lava flow (dead code)</span><span class="rb">✅</span><br><span class="rm">knip / vulture</span></div>
+      <div class="ritem"><span class="rn">Dependency hell</span><span class="rb">✅</span><br><span class="rm">reuse ladder + dep vetting</span></div>
+      <div class="ritem"><span class="rn">Slopsquatting</span><span class="rb">✅</span><br><span class="rm">R8 verify + GuardDog</span></div>
+      <div class="ritem"><span class="rn">"Works on my machine"</span><span class="rb">✅</span><br><span class="rm">verification gate ⑦</span></div>
+      <div class="ritem"><span class="rn">Reward hacking / spec gaming</span><span class="rb">✅</span><br><span class="rm">reward-hacking guard</span></div>
+      <div class="ritem"><span class="rn">Doom loop / death loop</span><span class="rb">✅</span><br><span class="rm">circuit-breaker + budgets</span></div>
+      <div class="ritem"><span class="rn">Goal drift</span><span class="rb">✅</span><br><span class="rm">Stability L3 + goal re-read</span></div>
+      <div class="ritem"><span class="rn">Happy-path bias</span><span class="rb">✅</span><br><span class="rm">R3 business-logic review</span></div>
+      <div class="ritem"><span class="rn">Tech debt (80% problem)</span><span class="rb">✅</span><br><span class="rm">R4 prod checklist</span></div>
+      <div class="ritem"><span class="rn">Secret leakage</span><span class="rb">✅</span><br><span class="rm">R2 Gitleaks</span></div>
+      <div class="ritem"><span class="rn">SQL injection / OWASP</span><span class="rb">✅</span><br><span class="rm">R1 Semgrep + review</span></div>
+      <div class="ritem"><span class="rn">Reasoning-action (said≠did)</span><span class="rb">✅</span><br><span class="rm">R7 + verification</span></div>
+      <div class="ritem"><span class="rn">Malicious 3rd-party skill</span><span class="rb">✅</span><br><span class="rm">R11 SkillSpector audit</span></div>
+      <div class="ritem"><span class="rn">Token / budget burn</span><span class="rb">✅</span><br><span class="rm">per-iteration budgets</span></div>
+      <div class="ritem"><span class="rn">Regression passes tests</span><span class="rb">✅</span><br><span class="rm">post-deploy + rollback</span></div>
+      <div class="ritem"><span class="rn">Human as bottleneck</span><span class="rb">✅</span><br><span class="rm">autonomy dial + parallel</span></div>
+      <div class="ritem warn"><span class="rn">Design-for-failure</span><span class="rb">⚠</span><br><span class="rm">R5 fault checklist (warn)</span></div>
+      <div class="ritem warn"><span class="rn">Sycophancy</span><span class="rb">⚠</span><br><span class="rm">R7 catches false claims, not trait</span></div>
+      <div class="ritem warn"><span class="rn">Multi-agent cascade / mem-poison</span><span class="rb">⚠</span><br><span class="rm">R10 verify-before-memory (warn)</span></div>
+      <div class="ritem warn"><span class="rn">Model version drift</span><span class="rb">⚠</span><br><span class="rm">R9 pin (warn)</span></div>
+      <div class="ritem warn"><span class="rn">Style / consistency drift</span><span class="rb">⚠</span><br><span class="rm">critic + Pink Flag (no machine detector)</span></div>
+      <div class="ritem warn"><span class="rn">Confabulation / fabricated facts</span><span class="rb">⚠</span><br><span class="rm">factual-grounding: verify-before-assert</span></div>
+      <div class="ritem"><span class="rn">Loop design absence</span><span class="rb">✅</span><br><span class="rm">5 whiteboard questions</span></div>
+      <div class="ritem"><span class="rn">Context rot in long loops</span><span class="rb">✅</span><br><span class="rm">compaction (trim/summarize/delegate)</span></div>
+      <div class="ritem"><span class="rn">Event storm / rate limiting</span><span class="rb">✅</span><br><span class="rm">rate limit + debounce + backpressure</span></div>
+    </div>
+    <div class="rlegend"><b>Honesty as a feature:</b> three ⚠ (style consistency, sycophancy-as-trait, confabulation) cannot be closed by a cheap machine detector — keelwright catches their measurable consequences and enforces verification discipline, not the disposition itself. Everything marked ✅ is machine-enforced or verified on disk, not "eyeball it."</div>
+  </div>
+
+
+</body>
+</html>

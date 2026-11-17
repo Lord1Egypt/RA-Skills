@@ -1,43 +1,58 @@
-## Description: <br>
-Generates a 12-month Amazon brand acceleration plan from white-label selling to registered brand growth, covering positioning, trademark readiness, content, traffic, data insights, and KPI tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Brand Accelerator helps Amazon sellers generate a 12-month plan for moving from white-label products to a registered, premium brand.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon sellers and brand operators use this skill to assess current brand maturity and generate practical roadmaps, budget guidance, content plans, and registry checklists for building a defensible Amazon brand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a suspicious verdict and says one review helper defaults to launching a nested Codex reviewer with approval bypass and full sandbox access. <br>
-Mitigation: Install only if you trust the publisher; keep confirmations and dry-run steps, and run autoreview with --no-yolo or AUTOREVIEW_YOLO=0 if that workflow is used. <br>
-Risk: The skill provides strategic, trademark, advertising, and budget guidance that can affect commercial decisions. <br>
-Mitigation: Treat outputs as planning support; have qualified legal, compliance, and marketplace specialists review trademark, advertising, and budget decisions before execution. <br>
+## Use Case:
 
+Amazon sellers and brand operators use this skill to plan brand positioning, Brand Registry readiness, content, traffic, analytics, and a quarter-by-quarter 12-month acceleration roadmap.
 
-## Reference(s): <br>
-- [Amazon Brand Accelerator on ClawHub](https://clawhub.ai/wangm-a3/amazon-brand-accelerator) <br>
-- [Brand Registry Checklist](references/brand-registry-checklist.md) <br>
-- [Brand Content Templates](references/brand-content-templates.md) <br>
-- [Brand KPI Framework](references/brand-kpi-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and CLI text reports; helper script can emit scored roadmap and budget summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided product category and current brand stage for tailored planning; script examples use built-in sample feature data unless adapted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact clawhub.yaml reports 1.0.2) <br>
+Risk: Trademark, advertising, and Amazon policy requirements can change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current official requirements or consult a qualified professional before acting on policy, advertising, or trademark advice.
+
+Risk: Brand scores, roadmaps, and budget suggestions may not match a seller's actual account data or market conditions.
+
+Mitigation: Treat generated plans as planning guidance and adjust them against current Brand Analytics, advertising, order, review, and budget data.
+
+## Reference(s):
+
+- [Amazon Brand Accelerator README](README.md)
+- [Brand Registry Checklist](references/brand-registry-checklist.md)
+- [Brand Content Templates](references/brand-content-templates.md)
+- [Brand KPI Framework](references/brand-kpi-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/amazon-brand-accelerator)
+- [Publisher Profile](https://clawhub.ai/user/wangm-a3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with optional terminal reports from the local scoring script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers brand maturity scoring, roadmaps, budget suggestions, content templates, registry checklists, and KPI review guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact clawhub.yaml lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

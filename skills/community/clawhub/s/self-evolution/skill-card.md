@@ -1,43 +1,56 @@
-## Description: <br>
-Production-grade autonomous self-improvement system with research-backed meta-learning, safe self-modification, and continuous optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents an experimental self-improvement workflow for agents that proposes meta-learning, self-modification, rollback, and continuous optimization techniques.
 
-## Publisher: <br>
-[tobisamaa](https://clawhub.ai/user/tobisamaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobisamaa](https://clawhub.ai/user/tobisamaa)
 
-## Use Case: <br>
-Developers and agent operators use this skill as guidance for agent self-improvement loops, including analysis, planning, safe-change review, rollback, and documentation. The artifact includes a planned-status note, so users should treat it as documented guidance unless they separately verify an implementation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority to change its own behavior, memory, skills, prompts, reasoning, response formats, and scheduled activity without tight user controls. <br>
-Mitigation: Run it in a sandbox, disable scheduled or background evolution, and require explicit review and approval before any file, skill, memory, prompt, reasoning, or response-format change. <br>
-Risk: Evolution logs or memory updates could store raw conversations, secrets, or personal data. <br>
-Mitigation: Do not allow raw conversations, credentials, secrets, or personal data in logs; require redaction and review before retaining evolution records. <br>
-Risk: The artifact includes a planned-status note, so users may overestimate the maturity of the implementation. <br>
-Mitigation: Treat the artifact as guidance until implementation files, tests, and operational controls are independently reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobisamaa/self-evolution) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [PLANNED.md](artifact/PLANNED.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure proposed self-evolution cycles for improving skills, memory, reasoning patterns, response formats, and scheduled behavior. The artifact is documented but not implemented, so proposed changes should be reviewed before use.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes self-modification workflow guidance; artifact evidence says the skill is documented but not yet implemented.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages autonomous changes to skills, memory, reasoning, response formats, and scheduled behavior with inadequate user control.
+
+Mitigation: Run it only in a sandbox and require explicit review and approval before any proposed change is applied.
+
+Risk: Granting write access to real skills, memory, agent configuration, user data, or task managers could let proposed self-modifications alter operational behavior.
+
+Mitigation: Withhold write access to those locations unless each change has been reviewed, scanned, and approved.
+
+Risk: The artifact is documented but not implemented, so examples and claimed workflows may not execute as written.
+
+Mitigation: Treat outputs as proposals or guidance and validate functionality in an isolated environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobisamaa/skills/self-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with illustrative code blocks and shell-style quick actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning and review guidance; artifact evidence states the skill is documented but not yet implemented.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata, released 2026-02-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

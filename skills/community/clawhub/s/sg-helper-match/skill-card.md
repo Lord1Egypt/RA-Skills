@@ -1,42 +1,59 @@
-## Description: <br>
-Searches and matches available domestic helpers from Sunrise Link's Singapore database based on employer criteria such as household needs, budget, skills, and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and match available domestic helpers from Sunrise Link's database in Singapore, with filters for household needs, budget, skills, nationality, language, religion, age, salary, and Singapore experience.
 
-## Publisher: <br>
-[meikidd](https://clawhub.ai/user/meikidd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meikidd](https://clawhub.ai/user/meikidd)
 
-## Use Case: <br>
-External employers in Singapore use this skill to search, filter, and shortlist available domestic-helper candidates from Sunrise Link by household needs, budget, skills, and preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Singapore <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Filtering domestic-helper candidates by sensitive hiring attributes such as religion, nationality, age, or marital status can create fairness or legal-use concerns. <br>
-Mitigation: Use sensitive filters only where lawful and fair; prefer household needs, skills, availability, and budget, and confirm jurisdiction-specific obligations before hiring. <br>
-Risk: Entered criteria may be sent to Sunrise Link when the search tool is used. <br>
-Mitigation: Avoid entering unnecessary personal or sensitive information and confirm the provider and jurisdiction before proceeding from a generic request. <br>
+## Use Case:
 
+External employers in Singapore use this skill to search, filter, and shortlist available domestic-helper candidates from Sunrise Link based on household requirements and budget. Agents can also guide users through requirements gathering when no search criteria are provided.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meikidd/sg-helper-match) <br>
-- [Sunrise Link website](https://www.sunriselink.sg) <br>
-- [Field Guide: Sunrise Link Helper Search](artifact/references/field_guide.md) <br>
+### Deployment Geography for Use:
 
+Singapore
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with profile links and JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search accepts optional JSON filters over stdin and returns up to five candidates by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can filter employment candidates by sensitive attributes such as nationality, religion, and age.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lawful, job-related criteria and avoid discriminatory screening.
+
+Risk: Responses are instructed to include tracked Sunrise Link URLs.
+
+Mitigation: Review outbound links before use and make users aware when profile or agency links include tracking parameters.
+
+Risk: Installation examples use a mutable npx-based flow.
+
+Mitigation: Prefer installing from a pinned, verified commit or release.
+
+## Reference(s):
+
+- [Field Guide: Sunrise Link Helper Search](references/field_guide.md)
+- [Sunrise Link](https://www.sunriselink.sg)
+- [ClawHub Skill Page](https://clawhub.ai/meikidd/skills/sg-helper-match)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool inputs and structured candidate search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Sunrise Link profile URLs and agency links; candidate personal identifying information is not returned by the API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

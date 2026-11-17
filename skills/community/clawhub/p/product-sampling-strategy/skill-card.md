@@ -1,44 +1,56 @@
-## Description: <br>
-Design data-driven product sampling campaigns including target audience selection, distribution channel optimization, sample size calculation, feedback collection, and ROI measurement for e-commerce brands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design data-driven product sampling campaigns including target audience selection, distribution channel optimization, sample size calculation, feedback collection, and ROI measurement for e-commerce brands.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing and e-commerce teams use this skill to plan product sampling campaigns, choose target audiences and distribution channels, calculate sample sizes, design feedback loops, and measure ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend use of customer or prospect data for targeting, direct mail, feedback collection, and follow-up communications. <br>
-Mitigation: Confirm privacy notice coverage, consent, and applicable legal requirements before using customer or prospect data in connected systems. <br>
-Risk: The skill can propose CRM tags, tracking pixels, discount codes, landing pages, analytics changes, or direct-mail lists that affect live marketing operations. <br>
-Mitigation: Require explicit human approval before an agent applies those changes in external tools or accounts. <br>
+## Use Case:
 
+Marketing, growth, and e-commerce teams use this skill to plan product sampling campaigns, choose target audiences and channels, calculate sample sizes, design feedback loops, and measure ROI.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/leooooooow/product-sampling-strategy) <br>
-- [Output Template](references/output-template.md) <br>
-- [Channel Selection Guide](references/channel-selection-guide.md) <br>
-- [ROI Calculator Guide](references/roi-calculator-guide.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown campaign plans, checklists, calculations, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sample-size formulas, ROI calculations, channel matrices, tracking plans, CRM tags, discount code plans, and analytics setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Product sampling campaigns may rely on audience data, profiling, follow-up messaging, pixels, purchased lists, or data-provider records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as strategic guidance; use lawfully obtained audience data, disclose tracking and profiling, collect required opt-ins, honor opt-outs and deletion requests, and validate data-provider terms before launch.
+
+Risk: Campaign plans may include product claims, incentives, international distribution, or regulated-category considerations.
+
+Mitigation: Run legal, privacy, and regulatory review before execution, including product claims, contest or incentive rules, country-specific requirements, and customs or import constraints.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Channel Selection Guide](references/channel-selection-guide.md)
+- [ROI Calculator Guide](references/roi-calculator-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown campaign plans, checklists, tables, calculations, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include audience scoring matrices, channel mixes, sample size calculations, feedback plans, attribution setup, budget breakdowns, and ROI projections.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

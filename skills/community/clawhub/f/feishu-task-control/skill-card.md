@@ -1,41 +1,54 @@
-## Description: <br>
-Control spawned Feishu background tasks with concise natural-language or slash-command workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control spawned Feishu background tasks with concise natural-language or slash-command workflows.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Feishu chat users use this skill to inspect active background tasks in the current chat, resolve ambiguous task targets, and stop one task, all tasks, or the current run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad stop or kill request could cancel active background work in the current Feishu chat. <br>
-Mitigation: Use specific task numbers or labels when multiple tasks are running, and ask the user to disambiguate when the requested task target is unclear. <br>
-Risk: Task-control replies could expose internal session details if raw tool output is repeated to the user. <br>
-Mitigation: Return only concise, human-readable task status or stop results, and do not expose raw JSON, session ids, or command payloads. <br>
+## Use Case:
 
+Feishu chat users and agents use this skill to inspect running child tasks, stop a specific background task, or clean up all active background tasks in the current chat.
 
-## Reference(s): <br>
-- [Feishu Task Control on ClawHub](https://clawhub.ai/wd041216-bit/feishu-task-control) <br>
-- [OpenClaw Commands](https://docs.openclaw.ai/commands) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with concise user-facing status or task-control command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese or English task status replies depending on the Feishu chat context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill.json) <br>
+Risk: A broad stop-all or /stop request can cancel useful in-progress work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer stopping a specific task by id, label, or summary when the user intent is narrower than ending all active work.
+
+Risk: An ambiguous natural-language target can stop the wrong background task.
+
+Mitigation: List matching active tasks and ask the user to choose before stopping a task when the target cannot be resolved confidently.
+
+## Reference(s):
+
+- [OpenClaw command documentation](https://docs.openclaw.ai/commands)
+- [ClawHub skill page](https://clawhub.ai/wd041216-bit/skills/feishu-task-control)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Slash commands, Text]
+
+**Output Format:** [Concise natural-language replies with slash-command guidance when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files or persistent outputs are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

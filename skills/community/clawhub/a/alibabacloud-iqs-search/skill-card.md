@@ -1,44 +1,59 @@
-## Description: <br>
-Real-time web search and page reading using Aliyun IQS APIs for current information, fact verification, URL content extraction, and web research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time web search and page reading through Aliyun IQS APIs for current information, fact verification, URL content extraction, and web research.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current search results and read web pages through Alibaba Cloud IQS when a task needs recent information, source links, fact verification, or URL content extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and page URLs are sent to Alibaba Cloud IQS. <br>
-Mitigation: Do not submit secrets, private documents, authenticated links, internal URLs, or regulated data unless approved. <br>
-Risk: The skill requires an Alibaba Cloud IQS API key. <br>
-Mitigation: Use approved credential storage and avoid exposing the API key in prompts, logs, or shared outputs. <br>
-Risk: Stealth page-reading mode may have policy or site-compliance implications. <br>
-Mitigation: Use stealth mode only when it is appropriate for the target site and local policy. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web, verify current facts, retrieve news or research sources, and extract readable content from URLs through Alibaba Cloud IQS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-iqs-search) <br>
-- [Alibaba Cloud IQS Search Endpoint](https://cloud-iqs.aliyuncs.com/search/unified) <br>
-- [Alibaba Cloud IQS ReadPage Endpoint](https://cloud-iqs.aliyuncs.com/readpage/scrape) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return JSON search results or JSON page content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALIYUN_IQS_API_KEY; search queries and page URLs are sent to Alibaba Cloud IQS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Search queries and requested URLs are sent to Alibaba Cloud IQS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, private URLs, or proprietary research terms unless they may be shared with Alibaba Cloud.
+
+Risk: The skill requires an Alibaba Cloud IQS API key that may be provided through an environment variable or local config file.
+
+Mitigation: Prefer a session environment variable; if a config file is used, restrict file permissions.
+
+Risk: Deep search mode has materially higher latency and cost than the default engine.
+
+Mitigation: Use the lower-cost Generic or LiteAdvanced engines for normal lookups and reserve Deep mode for complex research needing long page text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-iqs-search)
+- [Alibaba Cloud IQS search endpoint](https://cloud-iqs.aliyuncs.com/search/unified)
+- [Alibaba Cloud IQS readpage endpoint](https://cloud-iqs.aliyuncs.com/readpage/scrape)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command output from search and page-reading scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include source links and may include snippets, summaries, main text, publication time, hostnames, and relevance scores; page-reading output includes title, URL, content, and status code.]
+
+## Skill Version(s):
+
+0.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Author, load, and troubleshoot Reality Composer Pro Shader Graph materials for RealityKit on visionOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Author, load, and troubleshoot Reality Composer Pro Shader Graph materials for RealityKit on visionOS.
 
-## Publisher: <br>
-[tomkrikorian](https://clawhub.ai/user/tomkrikorian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomkrikorian](https://clawhub.ai/user/tomkrikorian)
 
-## Use Case: <br>
-Developers and engineers use this skill to author RealityKit Shader Graph materials in Reality Composer Pro, expose promoted inputs for runtime control, and troubleshoot exported USD or MaterialX when debugging is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-proposed edits to USDA, USD, MaterialX, or app source files could introduce rendering defects or incorrect material behavior. <br>
-Mitigation: Review proposed file changes before applying them, especially in production projects. <br>
-Risk: Undocumented exported Shader Graph identifiers or USD graph structure may not be stable API. <br>
-Mitigation: Use Reality Composer Pro and Apple-documented Shader Graph nodes as the primary authoring source; inspect exported files only for debugging or interoperability. <br>
+## Use Case:
 
+Developers and engineers use this skill to author RealityKit Shader Graph materials, load them with ShaderGraphMaterial, expose promoted inputs for runtime control, and troubleshoot exported USD or MaterialX only when debugging or interoperability requires it.
 
-## Reference(s): <br>
-- [ShaderGraph Nodes for Apple RealityKit](references/REFERENCE.MD) <br>
-- [Apple ShaderGraph Documentation](https://developer.apple.com/documentation/shadergraph/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomkrikorian/shadergraph-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, network behavior, or persistence shown in the artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated Shader Graph, USD, or MaterialX changes may alter project material assets or produce incorrect rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed asset changes in source control and validate them in Reality Composer Pro or the target RealityKit app before release.
+
+Risk: The skill references sample Shader Graph assets that are not included in this package.
+
+Mitigation: Confirm any referenced sample file exists in the local project before using it, or adapt the guidance manually.
+
+Risk: Undocumented exported USD or MaterialX details may not remain stable across Apple tooling versions.
+
+Mitigation: Prefer Reality Composer Pro authoring and promoted inputs for runtime control; inspect exported USD or MaterialX only for debugging, interoperability, or asset review.
+
+## Reference(s):
+
+- [ShaderGraph Nodes for Apple RealityKit](references/REFERENCE.MD)
+- [Apple Shader Graph documentation](https://developer.apple.com/documentation/shadergraph/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Shader Graph, USD, or MaterialX asset changes for human review; no executable payloads are included.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

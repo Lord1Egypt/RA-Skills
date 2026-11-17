@@ -1,43 +1,59 @@
-## Description: <br>
-A World Cup moment-marketing engine for businesses that turns real match talking points into on-brand posts, articles, captions, or short-video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A World Cup moment-marketing engine for businesses that turns real 2026 World Cup match moments into on-brand posts, articles, captions, or short-video scripts.
 
-## Publisher: <br>
-[stephenaiprofit](https://clawhub.ai/user/stephenaiprofit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenaiprofit](https://clawhub.ai/user/stephenaiprofit)
 
-## Use Case: <br>
-External business users and marketing teams use this skill to turn user-provided World Cup match moments into platform-ready marketing copy while keeping facts, offers, and sponsorship claims reviewable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing content could include incorrect match facts if the user-provided moment is incomplete or outdated. <br>
-Mitigation: Verify scores, players, events, and match context before publishing. <br>
-Risk: Generated copy could imply official FIFA or World Cup sponsorship for a non-sponsor. <br>
-Mitigation: Avoid protected marks, logos, and affiliation claims unless the brand is an official sponsor. <br>
-Risk: Generated advertising claims could be unsupported or omit required disclosure. <br>
-Mitigation: Review offers, prices, performance claims, and partnership disclosures before publishing. <br>
+## Use Case:
 
+External business users and marketers use this skill to connect real World Cup match moments to their own industry and produce ready-to-review marketing content for social, blog, newsletter, or short-video channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephenaiprofit/skills/world-cup-marketing-for-small-biz) <br>
-- [How to Use](artifact/HOW-TO-USE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with optional short-video script structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces marketing copy from user-provided business details, goals, platform choice, and real match moments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can produce misleading marketing if match details, offers, prices, or claims are inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify match facts and review all claims, offers, prices, and advertising disclosures before publishing.
+
+Risk: World Cup themed marketing can imply official tournament or FIFA affiliation for brands that do not have those rights.
+
+Mitigation: Avoid protected marks, logos, and sponsorship language unless the brand has confirmed rights.
+
+Risk: Reactive marketing around injuries, tragedies, political controversy, or gambling can create reputational or compliance risk.
+
+Mitigation: Do not use sensitive events or betting angles as hooks; keep controversy neutral and brand-appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stephenaiprofit/skills/world-cup-marketing-for-small-biz)
+- [HOW-TO-USE.md](artifact/HOW-TO-USE.md)
+- [Creator LinkedIn profile](https://www.linkedin.com/in/stephenzhaoyi/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style marketing copy, angle options, captions, article drafts, and short-video scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided brand details, goals, and real match facts; does not automatically publish content.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

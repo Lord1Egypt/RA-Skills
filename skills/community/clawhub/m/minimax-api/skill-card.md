@@ -1,43 +1,59 @@
-## Description: <br>
-Provides image understanding and web search via MiniMax's Token Plan API for image analysis, information extraction, and web lookup tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables image understanding and web search via MiniMax's Token Plan API.
 
-## Publisher: <br>
-[matthew77](https://clawhub.ai/user/matthew77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthew77](https://clawhub.ai/user/matthew77)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze images from URLs or local files, extract visual information, and perform real-time web searches through MiniMax APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, image URLs, prompts, and search queries are sent to MiniMax for processing. <br>
-Mitigation: Use the skill only with data that is approved for MiniMax processing, and avoid confidential screenshots or documents. <br>
-Risk: A MiniMax API key is required and can be exposed if passed on the command line. <br>
-Mitigation: Store the key in a controlled secret or environment variable instead of shell history or shared command logs. <br>
-Risk: Local image files are base64-encoded and uploaded for image understanding. <br>
-Mitigation: Review local files before use and avoid submitting sensitive or regulated content unless that transfer is approved. <br>
+## Use Case:
 
+Developers and agents use this skill to describe or extract information from images and to retrieve current web search results through MiniMax APIs.
 
-## Reference(s): <br>
-- [MiniMax Token Plan API Specification](references/api_spec.md) <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text and formatted search results, with JSON API responses handled by helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image inputs may be local files, HTTP/HTTPS URLs, or data URLs; search inputs are query strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Prompts, search queries, and selected image contents are sent to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, confidential documents, sensitive screenshots, or private URLs unless that upload is intended and approved.
+
+Risk: The image client can upload arbitrary local files or fetched internal URLs to MiniMax without strong validation, size limits, or consent checks.
+
+Mitigation: Use only intended image files or public image URLs; add file validation, private-network URL blocking, size limits, and explicit upload confirmation before broad deployment.
+
+Risk: Passing the API key directly on the command line can expose it in shell history or process listings.
+
+Mitigation: Prefer a safer credential source and avoid entering API keys directly in reusable shell commands.
+
+## Reference(s):
+
+- [MiniMax Token Plan API Specification](references/api_spec.md)
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [ClawHub Skill Page](https://clawhub.ai/matthew77/skills/minimax-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text image descriptions and formatted or JSON-style web search results, with shell command examples for setup and use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API key and sends prompts, search queries, and selected image contents to MiniMax.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

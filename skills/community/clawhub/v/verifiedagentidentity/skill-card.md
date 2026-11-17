@@ -1,44 +1,59 @@
-## Description: <br>
-Provides Billions decentralized identity tooling for agents to create DIDs, link them to human identities, and verify authentication proofs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions decentralized identity for agents. Link agents to human identities using Billions ERC-8004 and Attestation Registries. Verify and generate authentication proofs. Based on iden3 self-sovereign identity protocol.
 
-## Publisher: <br>
-[nopalempl](https://clawhub.ai/user/nopalempl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nopalempl](https://clawhub.ai/user/nopalempl)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage Billions Network decentralized identities for agents, link an agent DID to a human owner, and verify DID ownership through challenge-response signatures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent identity keys may be stored unencrypted if BILLIONS_NETWORK_MASTER_KMS_KEY is not configured. <br>
-Mitigation: Configure BILLIONS_NETWORK_MASTER_KMS_KEY before generating or importing keys and treat $HOME/.openclaw/billions as sensitive. <br>
-Risk: Signing or human-agent linking actions can prove DID control or start a human-agent verification flow from broad prompts. <br>
-Mitigation: Require explicit confirmation before signing challenges or linking identities, and check existing identities before any linking operation. <br>
-Risk: Passing real private keys on the command line can expose them through shell history or process inspection. <br>
-Mitigation: Avoid command-line private-key arguments where possible and use secure secret handling for imported keys. <br>
+## Use Case:
 
+Developers, operators, and external agent users use this skill to create and manage decentralized agent identities, link an agent DID to a human owner, sign challenges, and verify DID ownership proofs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nopalempl/verifiedagentidentity) <br>
-- [Billions Network](https://billions.network/) <br>
-- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or text script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; supports optional BILLIONS_NETWORK_MASTER_KMS_KEY configuration for key encryption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent private keys may be persisted in plaintext when `BILLIONS_NETWORK_MASTER_KMS_KEY` is not configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure `BILLIONS_NETWORK_MASTER_KMS_KEY` before identity creation or import, and restrict access to `$HOME/.openclaw/billions`.
+
+Risk: Passing private keys directly on the command line can expose them through shell history or process inspection.
+
+Mitigation: Avoid command-line private-key arguments and prefer generating or importing identities through a protected runtime environment.
+
+Risk: Signed challenge tokens should be treated as reusable until expiration and consumption controls are confirmed.
+
+Mitigation: Limit token sharing, use short-lived challenge workflows, and require review before relying on signed challenges for high-trust authentication.
+
+## Reference(s):
+
+- [Billions Network](https://billions.network/)
+- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment)
+- [ClawHub skill page](https://clawhub.ai/nopalempl/skills/verifiedagentidentity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or string command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Node.js scripts and may persist identity data under $HOME/.openclaw/billions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

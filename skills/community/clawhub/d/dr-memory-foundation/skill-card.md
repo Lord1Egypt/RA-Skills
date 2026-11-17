@@ -1,41 +1,61 @@
-## Description: <br>
-Opinionated, file-based memory layout for OpenClaw-style agents: dashboards (now/open-loops/automation), topic files, glossary, and an always-on policy+topic catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an opinionated, file-based memory layout for OpenClaw-style agents, including dashboards, topic files, a glossary, and an always-on policy and topic catalog for setting up or reorganizing agent memory.
 
-## Publisher: <br>
-[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara)
 
-## Use Case: <br>
-Developers and agent users use this skill to initialize or normalize file-based workspace memory for OpenClaw-style agents, including small indexes, dashboards, topic files, and daily logs. It is intended for persistent local memory setup where existing notes should be preserved and reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniel-refahi-ikara/dr-memory-foundation) <br>
-- [Apply checklist](references/APPLY.md) <br>
-- [Activation prompt](references/configure_prompt.md) <br>
-- [Memory template](references/templates/MEMORY.md) <br>
-- [Always-on policy template](references/templates/memory/always_on.md) <br>
+Developers and agent operators use this skill to initialize or normalize a local file-based memory layout for OpenClaw-style workspaces while preserving existing notes and creating dashboards, topic files, a glossary, and daily logs.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a Python installer for template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates missing memory template files and an initial daily log; existing files are skipped, and users should review memory content and avoid storing secrets.] <br>
+Global
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated memory files can influence future agent context if inaccurate or stale information is placed in them.
+
+Mitigation: Review MEMORY.md and memory/always_on.md before relying on the structure, and keep stable knowledge in auditable topic files.
+
+Risk: Applying the skill changes the workspace by creating local memory folders, templates, and a daily log.
+
+Mitigation: Install it only in workspaces where a persistent file-based memory structure is intended, and preserve existing notes during normalization.
+
+## Reference(s):
+
+- [Apply checklist](references/APPLY.md)
+- [Activation prompt](references/configure_prompt.md)
+- [MEMORY.md template](references/templates/MEMORY.md)
+- [Always-on policy and topic catalog template](references/templates/memory/always_on.md)
+- [Now dashboard template](references/templates/memory/now.md)
+- [Open loops template](references/templates/memory/open-loops.md)
+- [Automation registry template](references/templates/memory/automation.md)
+- [Glossary template](references/templates/memory/topics/glossary.md)
+- [ClawHub skill page](https://clawhub.ai/daniel-refahi-ikara/skills/dr-memory-foundation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated workspace memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or preserves local memory templates and an initial daily log when installed.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

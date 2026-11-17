@@ -1,44 +1,59 @@
-## Description: <br>
-发票 OCR 识别技能，可扫描文件夹中的发票文件（PDF/图片），调用翔云 OCR API 识别发票信息，并支持 40+ 种发票类型。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans PDF, OFD, and image invoice files, sends them to the Xianyun NetOCR invoice OCR API, and returns structured invoice recognition results.
 
-## Publisher: <br>
-[liudengkui](https://clawhub.ai/user/liudengkui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liudengkui](https://clawhub.ai/user/liudengkui)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to batch process invoice PDFs, OFD files, and images through NetOCR and extract structured invoice details for review or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice files may contain sensitive financial, tax, or personal data and are sent to the NetOCR service for recognition. <br>
-Mitigation: Use the skill only with invoices approved for third-party OCR processing and review applicable data-handling requirements before use. <br>
-Risk: NetOCR API credentials are required and may be stored in the skill configuration file. <br>
-Mitigation: Configure credentials locally with the --config command, use quota-controlled keys, and protect or remove config.json after use. <br>
-Risk: Excel export may trigger dependency installation for openpyxl if it is missing. <br>
-Mitigation: Preinstall openpyxl through normal package-management controls before running exports. <br>
+## Use Case:
 
+External users and developers use this skill to batch-recognize invoices for reimbursement, accounting, or document-processing workflows after configuring Xianyun NetOCR credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liudengkui/invoice-ocr-xy) <br>
-- [NetOCR](https://netocr.com) <br>
-- [NetOCR Invoice OCR API Reference](https://www.netocr.com/invoiceFor2.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Console text with optional JSON or XLSX export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided NetOCR credentials and sends invoice content to the NetOCR service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Invoice files can contain sensitive personal, tax, travel, medical, or payment information and are sent to netocr.com for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data transfer is acceptable for the user's policy and redact or exclude sensitive files when possible.
+
+Risk: NetOCR credentials are required and may be exposed if pasted into chat or reused from a privileged account.
+
+Mitigation: Use a dedicated low-privilege NetOCR credential and avoid sharing OCR secrets in conversation logs.
+
+Risk: Runtime setup may install dependencies while exporting Excel results.
+
+Mitigation: Run the skill in an isolated environment and install dependencies deliberately before processing invoices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liudengkui/skills/invoice-ocr-xy)
+- [Xianyun NetOCR website](https://netocr.com)
+- [Xianyun OCR API reference](https://www.netocr.com/invoiceFor2.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands; invoice results as console text, JSON, or Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Xianyun NetOCR credentials and sends invoice file contents to netocr.com for OCR processing.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

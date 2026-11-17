@@ -1,0 +1,7 @@
+interface:
+  display_name: "Local LLM Setup Advisor"
+  short_description: "Helps with Builders need guidance for running useful AI and L..."
+  default_prompt: "Use $local-llm-setup-advisor to help me Builders need guidance for running useful AI and LLM workflows locally on consumer CPU or family GPU hardware without de."
+
+policy:
+  allow_implicit_invocation: true

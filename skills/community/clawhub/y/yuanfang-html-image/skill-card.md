@@ -1,46 +1,65 @@
-## Description: <br>
-Generates precise, multi-size social media images from text or URLs using HTML templates, extracted brand assets, and platform-specific layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yuanfang HTML Image generates precise, multi-size social media images from text or URLs using HTML templates, extracted brand assets, selectable themes, and platform-specific dimensions.
 
-## Publisher: <br>
-[iyuanfang](https://clawhub.ai/user/iyuanfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iyuanfang](https://clawhub.ai/user/iyuanfang)
 
-## Use Case: <br>
-Content creators, marketers, and developer-agents use this skill to turn source text, URLs, or content JSON into branded social media covers and post images across multiple platform sizes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch user-provided URLs and referenced brand images. <br>
-Mitigation: Use public URLs unless the user explicitly intends the agent to access and process private or authenticated content. <br>
-Risk: Brand metadata and logo data may be saved in the local project cache. <br>
-Mitigation: Review the .yuanfang cache before committing, copying, or sharing the project directory. <br>
-Risk: Automatically extracted titles, body text, logos, colors, badges, or QR content can be incorrect for the intended publication. <br>
-Mitigation: Confirm extracted content and visual choices with the user before rendering and review generated images before use. <br>
+## Use Case:
 
+Developers, creators, and content operators use this skill to turn article URLs, text, or content JSON into branded social media cover images and posters across multiple platform sizes.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli.md) <br>
-- [Content Extraction API](references/extract-api.md) <br>
-- [Platform Size Reference](references/platforms.md) <br>
-- [Template Variables](references/template-vars.md) <br>
-- [Theme Catalog](references/themes-catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Images, HTML, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image files with optional HTML previews and JSON content or brand specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple platform sizes, selectable visual themes, brand logo/color inputs, optional badge and QR content, and local project cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Crafted content or URLs could cause the skill to run local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted inputs, review commands before execution, and update the skill to use argument-array process execution before broad deployment.
+
+Risk: URL fetching could reach internal network resources.
+
+Mitigation: Avoid untrusted URLs and validate or limit allowed URL targets before installing the skill in sensitive environments.
+
+Risk: Unescaped image or CSS values could affect rendered output or execution behavior.
+
+Mitigation: Review generated content and require safe escaping for image and CSS values before using externally supplied assets.
+
+Risk: Browser automation and cache behavior may be harder to audit without pinned dependencies and explicit cache controls.
+
+Mitigation: Pin Playwright and related dependencies in a manifest and lockfile, and document cache refresh or clearing controls.
+
+## Reference(s):
+
+- [CLI Reference](references/cli.md)
+- [Content Extraction API](references/extract-api.md)
+- [Platform IDs](references/platforms.md)
+- [Template Variables](references/template-vars.md)
+- [Themes Catalog](references/themes-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON content examples, and generated image files from HTML rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports multiple platform dimensions, theme selection, brand assets, badges, QR inputs, and preview output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-通过API与本地Obsidian知识库交互，实现笔记创建、语义搜索及笔记管理功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过API与本地Obsidian知识库交互，实现笔记创建、语义搜索及笔记管理功能。
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Developers and agents use this skill to create, search, list, and manage notes through a configured Obsidian knowledge-base API. It supports saving work experience, project documentation, and shared operational knowledge as Markdown notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends and writes note data to a hardcoded plaintext internal Obsidian service. <br>
-Mitigation: Install only when the configured service and network are trusted; avoid secrets, credentials, regulated data, or private operational notes until the endpoint is configurable, authenticated, encrypted, and scoped to approved vault paths. <br>
-Risk: Shared knowledge-base writes can persist inaccurate or unintended operational notes. <br>
-Mitigation: Review note content and target folders before creating or rebuilding indexed notes, and restrict use to approved folders and workflows. <br>
+## Use Case:
 
+Agents and developers use this skill to create, search, list, retrieve, and index Markdown notes in a shared Obsidian knowledge base. It is suited to work logs, project lessons, team knowledge sharing, and structured experience capture when the target knowledge-base service is intentionally trusted.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/admirobot/tvdr-obsidian-kb) <br>
-- [Publisher profile](https://clawhub.ai/user/admirobot) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API-oriented instructions and helper calls for note creation, semantic search, note listing, statistics, and index rebuild operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents receive broad shared knowledge-base read, write, list, and index access over unauthenticated plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments that intentionally trust the 192.168.18.15 service and protect it with authentication, TLS, access controls, and retention rules before storing sensitive material.
+
+Risk: Test and example scripts can create or modify live knowledge-base notes.
+
+Mitigation: Run tests against a staging endpoint or add a dry-run mode before executing them in a production or shared knowledge base.
+
+Risk: Shared notes may expose private prompts, regulated data, credentials, or sensitive project information to other agents with service access.
+
+Mitigation: Keep secrets and sensitive content out of the knowledge base unless access controls and data handling policies are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/admirobot/skills/tvdr-obsidian-kb)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [SKILL_VERIFICATION.md](artifact/SKILL_VERIFICATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples plus JSON API responses from the knowledge-base service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and searches Markdown notes through a configured Obsidian knowledge-base HTTP API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

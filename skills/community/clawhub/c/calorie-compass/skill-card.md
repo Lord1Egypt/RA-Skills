@@ -1,41 +1,53 @@
-## Description: <br>
-Estimate calorie content from food names, portion sizes, or food images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate calorie content from food names, portion sizes, or food images.
 
-## Publisher: <br>
-[rajib76](https://clawhub.ai/user/rajib76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rajib76](https://clawhub.ai/user/rajib76)
 
-## Use Case: <br>
-External users use this skill to estimate calories for individual foods or full meals from text descriptions, portion sizes, or uploaded food images. It provides approximate per-item and total calorie estimates, with optional macronutrient estimates when enough detail is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calorie and macronutrient outputs may be inaccurate for homemade meals, mixed dishes, unclear portions, or image-based estimates. <br>
-Mitigation: Present estimates as approximate, state assumptions, use ranges when appropriate, and call out preparation variations such as fried versus grilled foods. <br>
-Risk: Uploaded food photos may reveal private details beyond the meal itself. <br>
-Mitigation: Encourage users to avoid uploading images that expose people, locations, documents, or other sensitive background information. <br>
+## Use Case:
 
+External users can ask an agent to estimate calories for individual foods, full meals, or uploaded food images. The skill is intended to provide approximate per-item and total calories, with assumptions stated when portions or preparation details are unclear.
 
-## Reference(s): <br>
-- [Calorie Compass on ClawHub](https://clawhub.ai/rajib76/calorie-compass) <br>
-- [rajib76 ClawHub publisher profile](https://clawhub.ai/user/rajib76) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Approximate nutrition estimates with stated assumptions, confidence notes, per-item calories, total meal calories, and optional macronutrient estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Calorie and macronutrient estimates can be inaccurate for homemade meals, mixed dishes, unclear portion sizes, or visually ambiguous food images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State assumptions clearly, present estimates or ranges rather than exact values, and call out low confidence when image or portion evidence is weak.
+
+Risk: Uploaded food images may reveal personal context beyond the meal itself.
+
+Mitigation: Ask users to share only images they are comfortable having analyzed in the agent environment.
+
+## Reference(s):
+
+- [Calorie Compass on ClawHub](https://clawhub.ai/rajib76/skills/calorie-compass)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise natural-language calorie estimates, often as Markdown lists or short paragraphs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stated assumptions, possible calorie ranges, per-item and total calories, confidence notes for image-based estimates, and optional macronutrient estimates when enough detail is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

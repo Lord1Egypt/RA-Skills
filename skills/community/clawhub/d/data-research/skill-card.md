@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent turn an ambiguous analysis request into a confirmed research outline before analysis or report writing begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to clarify research goals, scope, audience, and key questions through structured dialogue before producing a confirmed research outline.
 
-## Publisher: <br>
-[mingginwan](https://clawhub.ai/user/mingginwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingginwan](https://clawhub.ai/user/mingginwan)
 
-## Use Case: <br>
-External users and developers use this skill to clarify research goals, scope, audience, key questions, data sources, and analysis paths before producing a report. It is intended to create and save a user-approved Markdown research outline, then hand off to a report-outline step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output could be mistaken for final analysis or conclusions. <br>
-Mitigation: Treat the outline as planning guidance only and require explicit user confirmation before analysis or report writing. <br>
-Risk: The resulting outline may omit important context if the provided materials or scope are incomplete. <br>
-Mitigation: Ask targeted clarification questions, confirm audience and success criteria, and review the saved outline before proceeding. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn a vague analysis request into a reviewed research plan before drafting a report. It is intended as a planning gate for data or market research workflows where scope, audience, success criteria, and method need explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingginwan/data-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and Markdown research outline] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a dated Markdown research outline after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may delay analysis because it requires a confirmed outline before report drafting or conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a planning gate is desired, and keep the outline short for simple research tasks.
+
+Risk: Non-Chinese users may have difficulty inspecting the artifact because the skill instructions are written in Chinese.
+
+Mitigation: Review the translated behavior summary and inspect the original artifact before deployment in non-Chinese environments.
+
+Risk: A poorly scoped outline can still lead to incomplete or misleading research even when the process is followed.
+
+Mitigation: Review the saved outline for assumptions, unresolved placeholders, contradictions, and scope fit before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingginwan/skills/data-research)
+- [Publisher profile](https://clawhub.ai/user/mingginwan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research outline and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks one clarifying question at a time, presents 2-3 research paths, saves a confirmed outline, and requires user review before report work continues.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

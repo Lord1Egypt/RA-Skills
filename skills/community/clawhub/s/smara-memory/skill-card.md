@@ -1,43 +1,59 @@
-## Description: <br>
-Persistent memory for AI agents - store, search, and recall user context via the Smara Memory API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for AI agents to store, search, and recall user context via the Smara Memory API.
 
-## Publisher: <br>
-[parallelromb](https://clawhub.ai/user/parallelromb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parallelromb](https://clawhub.ai/user/parallelromb)
 
-## Use Case: <br>
-External users and developers use this skill to give agents persistent user memory, including storing user facts, searching memories by meaning, retrieving user context, and deleting stored memories through the Smara API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and retrieve user facts with an external memory service without clear consent or sensitivity boundaries. <br>
-Mitigation: Require explicit user consent for persistent memory, define what categories may be saved, and give users a way to review and delete stored memories. <br>
-Risk: Sensitive personal data or secrets could be persisted unintentionally. <br>
-Mitigation: Avoid storing secrets, credentials, health, financial, or other sensitive personal data by default, and use a scoped or revocable API key. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give agents persistent user memory through Smara, including storing facts, semantic search, full-context retrieval, and memory deletion.
 
-## Reference(s): <br>
-- [Smara](https://smara.io) <br>
-- [Smara API documentation](https://api.smara.io/docs/) <br>
-- [ClawHub skill page](https://clawhub.ai/parallelromb/smara-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/parallelromb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMARA_API_KEY and sends memory data to the Smara API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Selected conversation facts and lookup queries may be sent to Smara and stored across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure clear user opt-in and avoid storing secrets or sensitive personal information.
+
+Risk: Full-context retrieval can expose more stored user information than the task needs.
+
+Mitigation: Prefer narrow memory searches before retrieving full user context.
+
+Risk: Memory deletion changes persisted user context.
+
+Mitigation: Confirm destructive deletes before calling the delete endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parallelromb/skills/smara-memory)
+- [Smara website](https://smara.io)
+- [Smara API documentation](https://api.smara.io/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMARA_API_KEY; API calls may store or retrieve user context in Smara.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

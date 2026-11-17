@@ -1,15 +1,15 @@
 <div align="center">
 
-# Готовка.skill
+# BrainHarness · Готовка
 
 > Если не знаешь, что готовить, сначала честно скажи, чего хочется и что есть в холодильнике.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`cooking.skill` — это кулинарный skill, который задает минимум полезных вопросов, а потом выдает рецепт, который реально можно приготовить.
+`brainharness-cooking` — это кулинарный skill, который задает минимум полезных вопросов, а потом выдает рецепт, который реально можно приготовить.
 
 </div>
 
@@ -54,22 +54,22 @@
 Универсальная установка:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 Глобальная установка:
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```

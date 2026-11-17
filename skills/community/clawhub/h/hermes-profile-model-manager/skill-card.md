@@ -1,44 +1,56 @@
-## Description: <br>
-Profile Model Manager helps agents inspect, switch, and batch-manage Hermes profile model settings for primary, auxiliary, and delegation models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents view, switch, and manage Hermes profile model configuration for main, auxiliary, and delegation models across single or multiple profiles.
 
-## Publisher: <br>
-[youbuwei](https://clawhub.ai/user/youbuwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youbuwei](https://clawhub.ai/user/youbuwei)
 
-## Use Case: <br>
-Developers and Hermes users use this skill to review current model and provider settings, plan or apply single-profile and batch model changes, and verify gateway restarts after configuration updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide persistent Hermes profile changes, including bulk provider and model updates. <br>
-Mitigation: Review commands before running apply actions, preview changes when possible, and back up profile configuration before bulk changes. <br>
-Risk: Troubleshooting may involve API key environment files, which can expose secrets if real values are printed into chat or logs. <br>
-Mitigation: Avoid sharing real .env contents, redact key values during troubleshooting, and add API keys through a safer secret-management path. <br>
-Risk: Model switches may not take effect until the affected Hermes gateway is restarted. <br>
-Mitigation: Restart the relevant gateway and run the documented configuration, chat, and gateway-status verification checks after changes. <br>
+## Use Case:
 
+Developers and Hermes administrators use this skill to inspect current model settings, switch providers or models, batch-update profiles, and verify that gateway restarts made configuration changes effective.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youbuwei/hermes-profile-model-manager) <br>
-- [Server-resolved source repository](https://github.com/youbuwei/hermes-profile-model-manager) <br>
-- [BigModel model overview](https://docs.bigmodel.cn/cn/guide/start/model-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preview, apply, restart, troubleshooting, and verification workflows for Hermes profile model configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter version 2.1.2) <br>
+Risk: The skill can guide agents to change live Hermes profile settings and restart gateways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intentional Hermes model administration and require confirmation before applying configuration changes or restarting gateways.
+
+Risk: Credential-check examples can print API key values from profile .env files into terminal or agent logs.
+
+Mitigation: Use quiet presence checks instead of commands that echo secrets, and do not ask agents to collect or display API key values.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/youbuwei/hermes-profile-model-manager)
+- [ClawHub skill page](https://clawhub.ai/youbuwei/skills/hermes-profile-model-manager)
+- [Publisher profile](https://clawhub.ai/user/youbuwei)
+- [BigModel model overview](https://docs.bigmodel.cn/cn/guide/start/model-overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Hermes configuration changes, profile-wide batch operations, provider switches, and gateway restart commands.]
+
+## Skill Version(s):
+
+2.1.2 (source: artifact/SKILL.md frontmatter and server release changelog; ClawHub release metadata version: 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

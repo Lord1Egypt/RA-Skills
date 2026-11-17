@@ -1,43 +1,53 @@
-## Description: <br>
-Create music with MiniMax music models, including songs or instrumental tracks from lyrics and style prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create music with MiniMax music models (e.g., music-2.5). Use when generating songs or instrumental tracks from lyrics and style prompts, or when integrating MiniMax Music Generation API into scripts.
 
-## Publisher: <br>
-[BLUE-coconut](https://clawhub.ai/user/BLUE-coconut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blue-coconut](https://clawhub.ai/user/blue-coconut)
 
-## Use Case: <br>
-Developers and creators use this skill to generate songs, instrumental music, or melodic chanting through the MiniMax Music Generation API and save the resulting audio locally or retrieve a temporary download URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lyrics, prompts, and style details are sent to MiniMax for processing. <br>
-Mitigation: Avoid submitting confidential, unpublished, or sensitive material unless third-party processing is acceptable. <br>
-Risk: The skill requires a MiniMax API key. <br>
-Mitigation: Provide the key through the MINIMAX_MUSIC_API_KEY environment variable and do not place credentials in prompts, logs, or committed files. <br>
-Risk: Generated audio is written to a user-selected output path. <br>
-Mitigation: Use ordinary workspace output paths and review generated files before sharing or relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BLUE-coconut/mm-music-maker) <br>
-- [MiniMax Music Generation API](https://platform.minimaxi.com/docs/api-reference/music-generation) <br>
-- [MiniMax API reference file](references/minimax_music_api.md) <br>
+## Use Case:
 
+Developers and creators use this skill to generate songs, instrumental tracks, or melodic chanting with MiniMax music models, and to integrate MiniMax Music Generation API calls into scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands; generated audio is saved as a local file or returned as a temporary URL when the script is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_MUSIC_API_KEY. The MiniMax URL output option expires after 24 hours.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lyrics, prompts, style references, and API authentication requests are sent to MiniMax.
+
+Mitigation: Use the skill only when sharing that content with MiniMax is acceptable under the applicable MiniMax terms, and avoid submitting confidential unreleased material unless those terms permit it.
+
+Risk: The optional URL download path uses a returned URL that is not validated or size-limited by the skill.
+
+Mitigation: Prefer the default hex output path when possible, and treat --output-format url --download as a higher-caution path.
+
+## Reference(s):
+
+- [MiniMax Music API Reference](references/minimax_music_api.md)
+- [MiniMax Music Generation API Documentation](https://platform.minimaxi.com/docs/api-reference/music-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with bash commands and Python script usage; generated output is an audio file path or a temporary download URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MINIMAX_MUSIC_API_KEY for authentication; URL outputs expire after 24 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Amortize concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and Amortize implementation guidance.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Amortize reference material for devtools workflows, including quickstart, debugging, performance, security, migration, and cheatsheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an executable shell script. <br>
-Mitigation: Review the script before installation or execution; the security evidence reports that the reviewed script only prints reference text and shows no sensitive or system-changing behavior. <br>
-Risk: Reference output may be incomplete or too generic for a production decision. <br>
-Mitigation: Use the skill as quick reference material and validate important Amortize guidance against project-specific requirements before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for Amortize concepts, setup, implementation patterns, debugging, performance, security, migration, and command cheat sheets.
 
-## Reference(s): <br>
-- [Amortize on ClawHub](https://clawhub.ai/xueyetianya/amortize) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: One cheat-sheet command name is inaccurate and may direct users to a non-existent troubleshooting command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented debugging command instead of troubleshooting when following the cheat sheet.
+
+Risk: The static reference content is generic and may not match a user's current Amortize environment or operational constraints.
+
+Mitigation: Review the generated guidance against the target environment before applying security, migration, or performance recommendations.
+
+Risk: Release metadata and artifact-local version strings differ, which can confuse release review or downstream packaging.
+
+Mitigation: Treat 2.0.2 as the release version from server evidence and reconcile artifact frontmatter or script version strings before republishing.
+
+## Reference(s):
+
+- [Amortize ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/amortize)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-specific reference output; no API calls, credentials, or network access are indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

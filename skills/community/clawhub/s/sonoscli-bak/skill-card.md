@@ -1,44 +1,56 @@
-## Description: <br>
-Control Sonos speakers (discover/status/play/volume/group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sonos speakers with CLI commands for discovery, status, playback, volume, grouping, favorites, queues, and optional Spotify search.
 
-## Publisher: <br>
-[ahmadshouly](https://clawhub.ai/user/ahmadshouly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmadshouly](https://clawhub.ai/user/ahmadshouly)
 
-## Use Case: <br>
-Developers and Sonos users use this skill to generate command-line guidance for discovering, checking, and controlling Sonos speakers on a local network. It also covers grouping, favorites, queues, optional Spotify search, and manual IP fallback when discovery fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install flow fetches an upstream Go module at install time. <br>
-Mitigation: Install only after reviewing and trusting the upstream module; use controlled dependency review or pinning where required. <br>
-Risk: The generated commands can control playback, volume, speaker grouping, and queues on reachable Sonos speakers. <br>
-Mitigation: Run commands only on trusted local networks and confirm target speaker names or IP addresses before execution. <br>
-Risk: Spotify search requires optional Spotify API credentials. <br>
-Mitigation: Provide Spotify credentials only when Spotify search is needed and manage them through the agent environment's normal secret handling. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Sonos CLI guidance and commands that control Sonos speakers on a local network.
 
-## Reference(s): <br>
-- [Sonos CLI homepage](https://sonoscli.sh) <br>
-- [Sonos CLI Go install module](https://pkg.go.dev/github.com/steipete/sonoscli/cmd/sonos) <br>
-- [ClawHub release page](https://clawhub.ai/ahmadshouly/sonoscli-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate against Sonos speakers reachable on the local network; Spotify search requires optional Spotify credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The install metadata downloads a third-party Sonos CLI at install time from a mutable Go dependency version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned sonoscli release where available, and review the dependency before installing in controlled environments.
+
+Risk: Spotify-related commands may require Spotify client credentials.
+
+Mitigation: Provide Spotify credentials only for Spotify workflows and manage them through the local secret handling expected by the agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmadshouly/skills/sonoscli-bak)
+- [Publisher profile](https://clawhub.ai/user/ahmadshouly)
+- [Sonos CLI homepage](https://sonoscli.sh)
+- [sonoscli Go install module](https://pkg.go.dev/github.com/steipete/sonoscli/cmd/sonos)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require the sonos binary; Spotify-related commands may require Spotify client credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

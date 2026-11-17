@@ -1,39 +1,54 @@
-## Description: <br>
-Deep SQL performance workflow—symptom framing, execution plans, indexing strategy, query rewrite, locking/transaction behavior, statistics, partitioning, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep SQL performance workflow for symptom framing, execution-plan analysis, indexing strategy, query rewrites, locking and transaction behavior, statistics, partitioning, and verification.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and database engineers use this skill to diagnose slow SQL queries, execution plan regressions, lock waits, indexing trade-offs, and production-like verification paths before changing database behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DDL, index, timeout, or transaction advice can affect correctness, availability, write load, or lock behavior if applied directly to production. <br>
-Mitigation: Review proposed changes with a database owner, test against production-like data, and apply them in staging or during a planned production change window with a rollback path. <br>
-Risk: Prompts may include sensitive SQL parameters, credentials, or customer data while diagnosing database performance. <br>
-Mitigation: Redact credentials, tokens, and sensitive customer values before sharing query text, logs, plans, or schema details with an agent. <br>
+## Use Case:
 
+Developers and database engineers use this skill to diagnose and improve SQL performance by framing symptoms, measuring baselines, reading execution plans, tuning indexes and queries, and verifying changes on realistic data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with SQL, DDL, configuration, and verification recommendations when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include engine-specific caveats, measurement checklists, indexing rationale, rollback notes, and staging or production-change-window guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SQL parameters, execution plans, and production diagnostics may contain secrets or unnecessary production values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and minimize production-specific values before sharing SQL, parameters, plans, or logs with the agent.
+
+Risk: Index or DDL recommendations can affect write performance, locking, storage usage, or availability if applied directly to production.
+
+Mitigation: Test proposed changes in staging or another production-like environment, measure impact, and prepare a rollback path before production rollout.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/sql-optimization)
+- [Publisher Profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with SQL, DDL, and command examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory optimization plans and verification checklists; does not execute database changes itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Multi-capability dev skill for chained workflows involving Python execution, package management, git, HTTP requests, file operations, process management, sub-agents, or webhook notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw+ supports chained developer workflows involving Python execution, package management, git, HTTP requests, file operations, process management, sub-agents, and webhook notifications.
 
-## Publisher: <br>
-[shindo957-official](https://clawhub.ai/user/shindo957-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shindo957-official](https://clawhub.ai/user/shindo957-official)
 
-## Use Case: <br>
-Developers and automation engineers use OpenClaw+ to compose multi-step development workflows such as running Python, installing packages, managing git changes, making HTTP/API requests, editing files, managing processes, delegating sub-tasks, and sending webhook notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad development-agent authority, including code execution, package installation, file operations, commits, process management, sub-agent delegation, and webhooks. <br>
-Mitigation: Use it in a disposable or tightly controlled workspace, review generated commands and diffs before commit, and require explicit confirmation before high-impact actions. <br>
-Risk: The skill may handle sensitive credentials for authenticated API calls or webhook notifications. <br>
-Mitigation: Store credentials in environment variables, avoid sending secrets or private data to unapproved URLs, and validate authenticated endpoints before use. <br>
-Risk: Package installation and process execution can alter the runtime environment or leave long-running processes active. <br>
-Mitigation: Avoid global or system package installs unless approved, prefer isolated environments, set timeouts, and stop background processes when workflows finish. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate multi-step development tasks such as running code, installing packages, retrieving web or API data, editing files, managing processes, coordinating sub-agents, sending notifications, and committing results.
 
-## Reference(s): <br>
-- [OpenClaw+ ClawHub Page](https://clawhub.ai/shindo957-official/openclaw-plus) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
-- [REFERENCE.md](REFERENCE.md) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file changes, API request plans, process-management steps, git commands, and webhook notification guidance depending on the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata and manifest.json) <br>
+Risk: The skill combines broad code execution, package installation, git, filesystem, process, network, sub-agent, and webhook capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed action before execution and run the skill only in a disposable workspace, container, or virtual environment.
+
+Risk: Package installation, system package installation, file deletion, commits, and background processes can alter the host environment or repository state.
+
+Mitigation: Require explicit approval for installs, deletes, commits, and long-running processes; prefer pinned packages and isolated environments.
+
+Risk: HTTP requests, API calls, sub-agent prompts, and webhooks can expose sensitive information if secrets are included.
+
+Mitigation: Keep secrets in environment variables or a secret manager, redact them from prompts and logs, and restrict outbound destinations to reviewed HTTPS endpoints.
+
+## Reference(s):
+
+- [OpenClaw+ README](README.md)
+- [OpenClaw+ Quick Start Guide](QUICKSTART.md)
+- [OpenClaw+ Capability Reference](REFERENCE.md)
+- [OpenClaw+ Evaluation Examples](evals/evals.json)
+- [ClawHub Skill Page](https://clawhub.ai/shindo957-official/skills/openclaw-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with code blocks, command output summaries, JSON snippets, and file change descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in local file, git, package, process, network, sub-agent, or webhook actions depending on the host agent's execution policy.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

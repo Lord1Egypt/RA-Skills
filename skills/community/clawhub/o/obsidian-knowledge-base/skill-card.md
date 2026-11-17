@@ -1,42 +1,53 @@
-## Description: <br>
-Transforms an Obsidian vault into a dual-layer knowledge base with raw input, structured wiki cards, daily summaries, and retrieval guidance for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns Obsidian into a dual-layer knowledge base for AI agents with daily incremental ingestion, structured indexing, and context injection.
 
-## Publisher: <br>
-[warren2008-2020-spec](https://clawhub.ai/user/warren2008-2020-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[warren2008-2020-spec](https://clawhub.ai/user/warren2008-2020-spec)
 
-## Use Case: <br>
-Knowledge workers and teams use this skill to organize Obsidian notes into raw INBOX material and structured WIKI cards, then expose concise summaries and search paths to an AI agent for report writing, analysis, and recurring knowledge work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may expose private Obsidian notes or sensitive vault content to an AI agent. <br>
-Mitigation: Use the skill only with vaults and folders approved for AI access, and define tags or folder allowlists before enabling ingestion or search. <br>
-Risk: Automatic startup injection could place private, stale, or overbroad summaries into future sessions. <br>
-Mitigation: Disable or gate startup injection until summary size limits, approved folders, review steps, and refresh rules are configured. <br>
-Risk: Summary pushing may send derived knowledge-base content to unintended recipients. <br>
-Mitigation: Do not enable summary pushing until recipients, approval steps, logging, and privacy rules are explicitly configured. <br>
+## Use Case:
 
+Knowledge workers and teams use this skill to organize Obsidian notes into INBOX and WIKI layers so an agent can reuse summaries, Q&A cards, and concept cards during reports, analysis, and writing tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/warren2008-2020-spec/obsidian-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with directory layouts, card templates, retrieval flow, scheduling notes, and example Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes suggested Obsidian folder conventions, daily summary structure, context-size limits, and startup/retrieval workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Persistent indexing and automatic context injection can expose sensitive Obsidian vault content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit readable vault folders, exclude confidential notes, and define how generated memory summaries can be reviewed, deleted, or disabled.
+
+Risk: Installer and scheduled workflow setup may run unverified commands or configuration.
+
+Mitigation: Use a pinned or verified installer and review scheduled commands before enabling the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/warren2008-2020-spec/skills/obsidian-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with templates, directory conventions, Python example code, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces daily summary and retrieval workflow guidance for selected Obsidian vault content]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

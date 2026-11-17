@@ -1,47 +1,64 @@
-## Description: <br>
-Imou Open Device Config helps agents configure Imou and Lechange device security settings, including motion detection schedules, sensitivity, privacy mode, and IoT thing-model property or service actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Imou device channel security configuration for motion detection schedules, motion detection sensitivity, privacy mode, and IoT thing-model property or service operations.
 
-## Publisher: <br>
-[imou-openplatform](https://clawhub.ai/user/imou-openplatform) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imou-openplatform](https://clawhub.ai/user/imou-openplatform)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and change Imou camera channel security configuration through the Imou Open API. It supports PaaS device motion plan, sensitivity, and privacy-mode actions, plus thing-model property and service actions for IoT devices after reading the product model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real configuration changes to devices reachable by the supplied Imou developer credentials. <br>
-Mitigation: Review each set, property-set, and service command before execution and limit the credentials to the devices and actions intended for the task. <br>
-Risk: Using an incorrect IMOU_BASE_URL can send credentials and device commands to the wrong regional endpoint. <br>
-Mitigation: Set IMOU_BASE_URL explicitly to the official endpoint for the account's region before running commands. <br>
-Risk: IMOU_APP_SECRET is used to obtain access tokens for device control. <br>
-Mitigation: Keep IMOU_APP_SECRET out of prompts, logs, and shared files, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Imou cameras through the Imou Open API, including PaaS channel settings and IoT thing-model properties or services. It is intended for users with an Imou developer account and device authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imou-openplatform/imou-device-config) <br>
-- [Imou Open API Reference - Device Config](references/imou-config-api.md) <br>
-- [Imou development specification](https://open.imou.com/document/pages/c20750/) <br>
-- [Imou accessToken API](https://open.imou.com/document/pages/fef620/) <br>
-- [Imou enable definition](https://open.imou.com/document/pages/389c19/) <br>
-- [Imou IoT thing model overview](https://open.imou.com/document/pages/1acdf4/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON output from the bundled CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMOU_APP_ID, IMOU_APP_SECRET, IMOU_BASE_URL, and the requests Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can broadly change Imou device settings, including privacy mode, motion detection plans, sensitivity, IoT properties, and service commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed command before execution, resolve thing-model refs from the product model, and use a dedicated least-privilege Imou developer app when possible.
+
+Risk: Credential-bearing requests are sent to the user-configured IMOU_BASE_URL, which evidence says is not validated.
+
+Mitigation: Set IMOU_BASE_URL only to documented HTTPS Imou endpoints and keep IMOU_APP_SECRET out of shared shells, logs, and transcripts.
+
+Risk: The release depends on an unpinned requests package.
+
+Mitigation: Pin dependencies in a controlled environment before using the skill with real cameras.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imou-openplatform/skills/imou-device-config)
+- [Imou Open API Reference - Device Config](artifact/references/imou-config-api.md)
+- [Imou Open developer portal](https://open.imou.com)
+- [Imou overseas developer portal](https://open.imoulife.com)
+- [Imou development specification](https://open.imoulife.com/book/http/develop.html)
+- [Get accessToken API](https://open.imou.com/document/pages/fef620/)
+- [Get product thing model API](https://open.imou.com/document/pages/2a238c/)
+- [IoT service API](https://open.imou.com/document/pages/fa0726/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and optional text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMOU_APP_ID, IMOU_APP_SECRET, IMOU_BASE_URL, and the requests Python package.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

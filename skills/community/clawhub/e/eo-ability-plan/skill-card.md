@@ -1,40 +1,52 @@
-## Description: <br>
-Plans projects by generating WBS task breakdowns, milestone plans, team composition suggestions, and time estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+项目规划能力，调用Planner专家生成WBS任务分解、里程碑计划、团队组成
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[467718584](https://clawhub.ai/user/467718584)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and project teams use this skill to create project plans, including WBS task breakdowns, milestone plans, recommended team composition, and time estimates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users who cannot review Chinese-language documentation may misunderstand the skill's planning scope or outputs.
+
+Mitigation: Review the documentation with Chinese-language competence before installation and invoke the skill explicitly for project-planning tasks.
+
+Risk: Planning outputs such as WBS tasks, milestones, team composition, and time estimates may be incomplete or unsuitable for a specific project.
+
+Mitigation: Treat generated plans as drafts and have a qualified reviewer validate scope, dependencies, staffing, and estimates before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, project leads, and workflow agents use this skill to turn a project request into a structured work breakdown, milestone plan, suggested expert team, and time estimate. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output may be incomplete or inaccurate if treated as final project guidance without review. <br>
-Mitigation: Review the generated WBS, milestones, team suggestions, and time estimates before using them for project commitments. <br>
-Risk: Richer expert-library behavior depends on the EO plugin, while the base skill falls back to generic LLM planning. <br>
-Mitigation: Confirm whether the EO plugin is available and calibrate expectations for the planning depth before deployment. <br>
+**Output Format:** [Markdown project planning report with structured WBS, milestones, team composition, and time estimates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/467718584/eo-ability-plan) <br>
+**Other Properties Related to Output:** [No installation steps or required binaries are declared.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown project planning report with structured WBS, milestones, team composition, and time estimate sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May provide richer expert-library planning when used with the EO plugin; otherwise relies on generic LLM planning templates.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

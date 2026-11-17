@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a practical advertising creation workflow that combines Ogilvy, BBDO, Saatchi & Saatchi, and Y&R methods for brand DNA, consumer insight, creative screening, copywriting, headlines, channel adaptation, and final review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ad Creator helps agents produce Chinese advertising strategy and copy through a structured workflow for product DNA, consumer insight, big ideas, AIDA copywriting, headlines, body text, channel adaptation, and self-review.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Marketing practitioners, founders, and agents use this skill to turn product details into differentiated advertising concepts, structured copy, headlines, channel-specific variants, and a final quality checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may activate the skill during unrelated brand or optimization discussions. <br>
-Mitigation: Confirm the user is asking for advertising or brand-copy help before applying the workflow. <br>
-Risk: Generated advertising may contain factual inaccuracies, exaggerated claims, or content that does not comply with applicable law or platform policies. <br>
-Mitigation: Review all generated claims, offers, comparisons, and channel-specific copy for accuracy, substantiation, and compliance before publication. <br>
+## Use Case:
 
+Marketing teams, founders, and brand copywriters use this skill to turn product details into Chinese advertising concepts and copy. It guides an agent through product differentiation, audience insight, creative screening, headline and body copy creation, channel adaptation, and final quality checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/horizoncove/ad-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured copywriting frameworks, checklists, tables, and channel recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include advertising claims, creative options, channel adaptations, and review checklist items that require human review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be invoked too broadly because it uses generic trigger words around skill use, optimization, and brand work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it for users who frequently request Chinese advertising or brand-copy work, and confirm advertising intent before applying the workflow to unrelated requests.
+
+Risk: Generated advertising claims, comparisons, or urgency language can be unsupported or unsuitable for the target channel.
+
+Mitigation: Review copy against product evidence, brand standards, platform rules, and applicable advertising requirements before publication.
+
+## Reference(s):
+
+- [ClawHub Ad Creator skill page](https://clawhub.ai/horizoncove/skills/ad-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text advertising strategy and copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product DNA analysis, consumer insights, headline options, body copy, channel adaptations, and a self-checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

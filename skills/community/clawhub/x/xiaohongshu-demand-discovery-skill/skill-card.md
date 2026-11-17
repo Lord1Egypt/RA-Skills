@@ -1,43 +1,58 @@
-## Description: <br>
-Collect recent high-interaction Xiaohongshu/Rednote public notes and cleaned comments using demand-style keywords for small-scale user need discovery and downstream analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect recent high-interaction Xiaohongshu/Rednote notes and cleaned comments using demand-style keywords for small-scale user need discovery and downstream analysis.
 
-## Publisher: <br>
-[zev55555](https://clawhub.ai/user/zev55555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zev55555](https://clawhub.ai/user/zev55555)
 
-## Use Case: <br>
-Developers, product researchers, and product teams use this skill to collect small batches of recent Xiaohongshu/Rednote notes and comments around demand-oriented keywords, then prepare cleaned structured data for later LLM or product analysis. It is suited to research, internal product validation, competitive review, and content opportunity exploration where a logged-in Xiaohongshu session is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a logged-in Xiaohongshu session and the package also exposes commands for commenting, liking, collecting, and publishing. <br>
-Mitigation: Prefer read-only demand-discovery, search, and feed commands; use account-interaction or publishing commands only when the user explicitly intends to mutate the account. <br>
-Risk: Collected datasets may contain public content and hashed author identifiers that should be reviewed before reuse or sharing. <br>
-Mitigation: Review generated files before sharing, keep batch sizes conservative, and delete local cookies or output files when the collection task is finished. <br>
-Risk: Xiaohongshu login, captcha, rate limits, and platform risk controls can interrupt collection. <br>
-Mitigation: Do not bypass platform controls; stop on captcha or expired login and ask the user to handle verification or QR-code login manually. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent Xiaohongshu public notes and cleaned comment data for demand discovery, product validation, content research, and later LLM analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zev55555/xiaohongshu-demand-discovery-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zev55555) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal JSON plus JSONL, JSON, and Markdown files such as notes_clean.jsonl, comments_clean.jsonl, collection_summary.json, and collector_report.md.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs through Python and Playwright, uses a logged-in Xiaohongshu browser session, and writes timestamped local collection outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores authenticated Xiaohongshu cookies locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk account, restrict permissions on the cookie file, and do not share or commit the cookie directory.
+
+Risk: Authenticated publishing and commenting commands can post under the user's account if explicitly invoked.
+
+Mitigation: Use publishing and comment commands only when posting is intended, and review local content before reuse or publication.
+
+Risk: The security scan verdict is suspicious because authenticated session handling and posting paths require review.
+
+Mitigation: Review the skill before deployment, keep collection runs small, and stop when login, captcha, or platform risk controls appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zev55555/skills/xiaohongshu-demand-discovery-skill)
+- [Publisher profile](https://clawhub.ai/user/zev55555)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated collection artifacts are JSONL, JSON, and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Demand discovery writes notes_clean.jsonl, comments_clean.jsonl, collection_summary.json, and collector_report.md under data/demand_discovery/<timestamp>/ by default.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

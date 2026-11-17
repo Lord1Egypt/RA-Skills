@@ -1,39 +1,54 @@
-## Description: <br>
-Extracts and summarizes the most relevant webpage passages for focused, low-token research without loading or summarizing the full page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and summarizes the most relevant webpage passages for focused, low-token research without loading or summarizing the full page.
 
-## Publisher: <br>
-[agitalent](https://clawhub.ai/user/agitalent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agitalent](https://clawhub.ai/user/agitalent)
 
-## Use Case: <br>
-Agents and developers use LiteBrowse to answer focused questions from specific webpages or local HTML files while keeping context size small and citing the extracted supporting blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extractor can fetch URLs or read local HTML files supplied to the agent, which may expose private, authenticated, or internal content if those sources are used unintentionally. <br>
-Mitigation: Use it only with URLs or local HTML files the user intends to inspect, and avoid private files, authenticated pages, or internal network addresses unless that access is deliberate. <br>
+## Use Case:
 
+Developers and research agents use LiteBrowse to inspect long or cluttered webpages by extracting query-relevant passages first, reducing token use before answering from cited blocks.
 
-## Reference(s): <br>
-- [LiteBrowse on ClawHub](https://clawhub.ai/agitalent/litebrowse) <br>
-- [LiteBrowse documentation](https://agitalent.github.io/LiteBrowse.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and extracted text or JSON block references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bounded extraction settings such as top-k and maximum character limits to keep returned context compact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: The helper can fetch arbitrary HTTP(S) URLs from the agent host, including destinations the user may not intend to expose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted public pages or local HTML copies, avoid internal and private URLs, and run with network egress controls where possible.
+
+Risk: The helper reads response bodies without an evidence-stated download-size cap.
+
+Mitigation: Prefer fixed or reviewed versions that cap download size, validate redirects, and block private destinations before broad deployment.
+
+## Reference(s):
+
+- [LiteBrowse ClawHub Skill Page](https://clawhub.ai/agitalent/skills/litebrowse)
+- [LiteBrowse Direct Access Document](https://agitalent.github.io/LiteBrowse.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and cited extracted blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a query, source URL or HTML file, top-k limit, character budget, per-block character budget, timeout, and JSON or text output format.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

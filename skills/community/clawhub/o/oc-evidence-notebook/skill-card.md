@@ -1,43 +1,54 @@
-## Description: <br>
-Turn scattered local sources into a source-constrained evidence notebook for incident, release, and maintainer decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn scattered local sources into a source-constrained evidence notebook for incident, release, and maintainer decisions.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiepu110](https://clawhub.ai/user/jiepu110)
 
-## Use Case: <br>
-Developers, maintainers, and incident responders use this skill to turn approved local sources into a decision packet that separates facts, conflicts, assumptions, and conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive data could be included in source material and then summarized into the notebook. <br>
-Mitigation: Use only approved sources and redact secrets, credentials, and irrelevant personal data before using the skill. <br>
-Risk: The agent could present unsupported conclusions as facts. <br>
-Mitigation: Keep answers source-constrained, cite source anchors, and label unsupported claims as inferences or questions. <br>
-Risk: Broad web research or external indexing could expand the evidence set beyond what was approved. <br>
-Mitigation: Avoid broad web research unless explicitly requested and do not upload or index evidence externally by default. <br>
+## Use Case:
 
+Developers, maintainers, and incident reviewers use this skill to turn approved local sources into a concise evidence notebook that separates facts, conflicts, assumptions, and decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiepu110/oc-evidence-notebook) <br>
-- [GitHub repository mentioned by skill](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision packet with source lists, evidence cards, conflict lists, and source-constrained answers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should keep claims tied to approved sources and label unsupported claims as inferences or questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Approved local source sets may still contain secrets, credential-bearing logs, or irrelevant personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Screen source materials before use, exclude secrets and unnecessary personal data, and review notebook outputs before sharing.
+
+Risk: Unsupported claims or ambiguous evidence could be mistaken for established facts.
+
+Mitigation: Keep answers source-constrained, mark inferences and missing information explicitly, and preserve citations or anchors for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiepu110/skills/oc-evidence-notebook)
+- [OpenClaw Gateway Guardian GitHub repository](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown evidence notebook with source lists, evidence cards, conflict lists, source-constrained answers, and a decision packet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep claims tied to supplied sources and label inferences or missing information.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Design and optimize AI agent action spaces, tool definitions, and observation formatting for higher completion rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and optimize AI agent action spaces, tool definitions, and observation formatting for higher completion rates.
 
-## Publisher: <br>
-[2072932870wh-ui](https://clawhub.ai/user/2072932870wh-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2072932870wh-ui](https://clawhub.ai/user/2072932870wh-ui)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design clearer action spaces, structured tool outputs, recovery contracts, context budgets, and benchmarking practices for AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying the guidance to high-impact tools or workflows could introduce unsafe deploy, migration, permission, or recovery behavior if not reviewed. <br>
-Mitigation: Review and test any tools or workflows created from this guidance before deployment, especially operations involving deploys, migrations, permissions, or other high-impact actions. <br>
+## Use Case:
 
+Developers and engineers use this documentation-only skill to improve agent planning, tool design, observation formats, recovery behavior, and benchmarking for agent harnesses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2072932870wh-ui/agent-harness-construction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructional guidance only; it does not install code, call tools, or request sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: General agent-design advice may lead to incorrect or misleading changes if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed tool definitions, observation contracts, and recovery patterns before deployment; security evidence found no artifact-backed malicious or high-impact behavior.
+
+Risk: Broad activation guidance may cause the skill to be used when tighter trigger examples would be preferable.
+
+Mitigation: Ask the publisher to add clearer trigger examples and non-use examples if tighter activation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2072932870wh-ui/skills/agent-harness-construction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable behavior or hidden data access was identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

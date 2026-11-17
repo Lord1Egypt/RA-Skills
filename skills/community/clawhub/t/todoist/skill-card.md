@@ -1,40 +1,58 @@
-## Description: <br>
-Manage tasks and projects in Todoist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-External users and agents use this skill to inspect, create, search, update, complete, reopen, move, and delete Todoist tasks, projects, labels, and comments through the Todoist CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change tasks and projects in a connected Todoist account. <br>
-Mitigation: Use a revocable Todoist API token and confirm ambiguous or destructive actions such as delete, move, complete, or reopen before allowing execution. <br>
-Risk: The skill depends on the globally installed todoist-ts-cli package. <br>
-Mitigation: Trust the package source and installed version before granting it Todoist account access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Todoist](https://todoist.com) <br>
-- [Todoist developer integrations settings](https://todoist.com/app/settings/integrations/developer) <br>
+## Use Case:
 
+External users and agents use this skill to inspect, create, update, search, and complete Todoist tasks, projects, labels, and comments through the Todoist CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the todoist CLI and a Todoist API token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires CLI access to a Todoist account through TODOIST_API_TOKEN.
+
+Mitigation: Use a token only in trusted environments, avoid placing it directly in shell history, and rotate or revoke it if exposure is suspected.
+
+Risk: The installation instructions use a global npm package with a semver range.
+
+Mitigation: Prefer a pinned, reviewed CLI version and avoid running npm install with elevated privileges.
+
+Risk: Commands can complete, move, reopen, or delete Todoist tasks.
+
+Mitigation: Verify task IDs and command intent before running state-changing actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mjrussell/skills/todoist)
+- [Todoist](https://todoist.com)
+- [Todoist API Token Settings](https://todoist.com/app/settings/integrations/developer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Todoist CLI command examples and short task-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the todoist CLI and a Todoist API token.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,55 @@
-## Description: <br>
-Produces full, readable pastoral prayers for specific scenarios such as illness, thanksgiving, worship, funeral, wedding, baptism, crisis, or grief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces full, readable pastoral prayers for specific scenarios such as illness, thanksgiving, worship, funeral, wedding, and baptism, with a dignified and gentle tone suitable for reading aloud or adapting.
 
-## Publisher: <br>
-[cheniOS](https://clawhub.ai/user/cheniOS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenios](https://clawhub.ai/user/chenios)
 
-## Use Case: <br>
-Pastors, chaplains, and ministry workers use this skill to draft complete prayers for church services, hospital visits, funerals, weddings, baptisms, meetings, and grief or crisis situations. The generated prayer is intended as a readable draft that can be adapted for the specific congregation, family, culture, and occasion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prayers may not fit the theology, denomination, culture, names, relationships, or sensitivity needs of a personal occasion. <br>
-Mitigation: Review and adapt each prayer before use, especially for funerals, weddings, baptisms, hospital visits, and other personal or pastoral settings. <br>
+## Use Case:
 
+Pastors, chaplains, and ministry workers use this skill to draft complete pastoral prayers for church services, hospital visits, funerals, weddings, baptisms, thanksgiving, crisis, or grief. The generated text is intended as a readable draft that can be adapted for the congregation, occasion, tradition, and personal details.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text by default, with Markdown or DOCX guidance only when requested by the user.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English-only prayer drafts, typically suitable to read aloud in 1-2 minutes unless the user asks for a different length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Generated prayers may not fit sensitive personal occasions, family context, denominational expectations, or local custom without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt names, relationships, congregation details, tradition-specific language, and cultural context before use in funerals, weddings, baptisms, or other pastoral settings.
+
+Risk: The skill defaults to orthodox Christian pastoral prayer with Evangelical framing and English output.
+
+Mitigation: Specify the desired tradition, tone, length, and constraints when prompting, and review the generated text for fit before reading it aloud.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenios/skills/pastoral-prayer)
+- [Project Homepage](https://github.com/cheniOS/bible-church-ministry-skills)
+- [Publisher Profile](https://clawhub.ai/user/chenios)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text by default; Markdown or DOCX only when requested by the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English output; typically one complete prayer suitable for reading aloud in 1-2 minutes unless the user requests a different length.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

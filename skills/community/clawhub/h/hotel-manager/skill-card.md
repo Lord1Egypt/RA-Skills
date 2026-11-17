@@ -1,44 +1,57 @@
-## Description: <br>
-酒店管家 Skill - 管理酒店 OTA 基础信息、房价库存及订单同步。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+酒店管家 Skill - 管理酒店 OTA 基础信息、房价库存及订单同步。
 
-## Publisher: <br>
-[wolful](https://clawhub.ai/user/wolful) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wolful](https://clawhub.ai/user/wolful)
 
-## Use Case: <br>
-Hotel operators and implementation teams use this skill to manage OTA hotel information, pricing, inventory, room status, and order synchronization through API or browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live OTA booking prices. <br>
-Mitigation: Use test OTA accounts first, add explicit approval and dry-run previews, and keep audit logs before enabling live price changes. <br>
-Risk: Order synchronization can run continuously and push booking data to an internal PMS. <br>
-Mitigation: Document a stop procedure, require rollback steps, and verify behavior with test PMS credentials before production use. <br>
-Risk: OTA and PMS credentials are required for live operation. <br>
-Mitigation: Prefer environment variables or a secret manager and avoid storing real keys in local JSON configuration files. <br>
+## Use Case:
 
+Hotel operators and agents use this skill to coordinate OTA hotel information, room pricing, inventory controls, and order synchronization across API and browser automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wolful/hotel-manager) <br>
-- [Update price example](examples/update_price.md) <br>
-- [OTA configuration example](resources/ota_config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript scripts, JSON configuration examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit operational instructions for OTA browser automation and ongoing order synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can change live OTA prices, inventory, and orders using broad credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or test credentials first, restrict OTA/PMS keys to the minimum required permissions, and require explicit human approval before saves, bulk price updates, inventory changes, or continuous order sync.
+
+Risk: Browser automation can submit changes through OTA web consoles.
+
+Mitigation: Require screenshots or logs after each change and verify the target platform, room type, date, and submitted value before committing updates.
+
+Risk: Credential-backed integrations may reach unintended endpoints if configuration is changed.
+
+Mitigation: Lock endpoints to trusted OTA and PMS hosts and review environment variables or config files before production use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/wolful/skills/hotel-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript scripts, JSON configuration examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API calls or browser actions that update live OTA prices, inventory, and order data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

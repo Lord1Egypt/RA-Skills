@@ -1,38 +1,51 @@
-## Description: <br>
-Generate QR code for Wi-Fi credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR code for Wi-Fi credentials.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-External users and developers use this skill to generate a QR code for Wi-Fi credentials so a phone can join a network without manually typing the password. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated QR code and any command-line password reveal Wi-Fi credentials to anyone who can see them. <br>
-Mitigation: Treat the QR code and password as sensitive, share them only with intended users, and avoid exposing them in logs, screenshots, or public terminals. <br>
-Risk: The skill depends on the local qrencode command. <br>
-Mitigation: Install qrencode from a trusted package manager and confirm the wifi-qr command behavior on the target system before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and other users use this skill to generate a QR code that lets phones join a Wi-Fi network without manually typing the password.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Wi-Fi passwords and generated QR codes can expose network access if logged, shared, or displayed publicly.
+
+Mitigation: Avoid using real passwords in logged commands, avoid screen sharing generated QR codes, and rotate the Wi-Fi password if exposure is suspected.
+
+Risk: The skill depends on the external qrencode binary installed through the system package manager.
+
+Mitigation: Install qrencode only from a trusted package source and confirm the binary is available before using the skill.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local qrencode binary; generated QR content encodes supplied Wi-Fi credentials.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires qrencode and handles Wi-Fi credentials that should be treated as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

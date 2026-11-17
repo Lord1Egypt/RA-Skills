@@ -1,0 +1,1 @@
+const crypto=require("crypto");function foldProviderId(r){if("string"!=typeof r)return r;const e=r.indexOf("#");return e>0?r.slice(0,e):r}function isReplicaId(r){return"string"==typeof r&&r.indexOf("#")>0}function replicaFingerprint(r){return crypto.createHash("sha256").update(String(r)).digest("hex").slice(0,8)}module.exports={foldProviderId,isReplicaId,replicaFingerprint};

@@ -1,41 +1,54 @@
-## Description: <br>
-Manage family member profiles in CareMax Health for listing members, switching profiles, and scoping health data queries to a selected family member. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage family member profiles in CareMax Health for listing members, switching profiles, and scoping health queries to a selected member.
 
-## Publisher: <br>
-[kittenyang](https://clawhub.ai/user/kittenyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittenyang](https://clawhub.ai/user/kittenyang)
 
-## Use Case: <br>
-CareMax Health users and their agents use this skill to list family members and select a member profile before retrieving or showing member-specific health data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve or display sensitive family health records for non-default members. <br>
-Mitigation: Use it only when authorized for the relevant family member and confirm the intended member before showing member-specific medical data. <br>
-Risk: The skill depends on the separate caremax-auth package and may start an authentication flow when credentials are missing. <br>
-Mitigation: Install and trust caremax-auth before use, review how it stores credentials, and confirm authentication behavior before running the skill. <br>
+## Use Case:
 
+CareMax users and their agents use this skill to list family member profiles and run member-scoped CareMax health queries for spouses, children, parents, or other linked profiles.
 
-## Reference(s): <br>
-- [CareMax Members on ClawHub](https://clawhub.ai/kittenyang/caremax-members) <br>
-- [Publisher profile: kittenyang](https://clawhub.ai/user/kittenyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the sibling caremax-auth skill for authenticated CareMax API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on an external caremax-auth sibling skill and can initiate authentication for sensitive health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted and reviewed caremax-auth dependency, and confirm the CareMax account and server URL before authentication begins.
+
+Risk: Member-scoped queries can expose health data for spouses, children, parents, or other linked profiles.
+
+Mitigation: Confirm the intended family member before running memberId-scoped indicator, record, or search queries.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kittenyang/skills/caremax-members)
+- [ClawHub publisher profile](https://clawhub.ai/user/kittenyang)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a sibling caremax-auth skill and authenticated CareMax access before member data can be queried.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata, created 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: disruptive-innovation
 description: "Activate when: a founder asks 'can we avoid competing head-on with big players?', someone asks 'is this disruption or just a price war?', an investor wonders if a startup's entry angle creates durable structural advantage, an incumbent spots a cheap new entrant and needs to know if it's a real threat, a product team wants to know which features to deliberately leave out of an MVP.
-  Do NOT activate when: the market requires absolute performance with no 'good enough' threshold (aircraft engines, Class III medical devices), or the competitive situation is a pure price war with no cost-structure asymmetry."
+  Do NOT activate when: the market requires absolute performance with no 'good enough' threshold (aircraft engines, Class III medical devices), or the competitive situation is a pure price war with no cost-structure asymmetry. More: deciqai.com/c/disruptive-innovation"
 ---
 
 # Disruptive Innovation
@@ -12,11 +12,11 @@ Most incumbents fail not because they make bad decisions, but because they make 
 
 Two paths exist: **low-end disruption** targets price-sensitive existing customers who are over-served; **new-market disruption** creates consumption among people who couldn't previously participate at all.
 
-Compose with neighbors: [s-curve-technology-adoption](../s-curve-technology-adoption/SKILL.md) to assess incumbent vulnerability; [pmf-crossing-the-chasm](../pmf-crossing-the-chasm/SKILL.md) after identifying the entry point; [blue-ocean-strategy](../blue-ocean-strategy/SKILL.md) when the attacker wants to reshape value dimensions; [second-curve](../second-curve/SKILL.md) for the incumbent's response problem.
+Compose with neighbors: s-curve-technology-adoption to assess incumbent vulnerability; pmf-crossing-the-chasm after identifying the entry point; blue-ocean-strategy when the attacker wants to reshape value dimensions; second-curve for the incumbent's response problem.
 
 ## When to Use
 
-Apply when: founder choosing market entry to avoid head-to-head; incumbent assessing low-price entrant threat; investor evaluating startup structural advantage; product team defining what to deliberately exclude from MVP.
+Apply when: founder choosing market entry to avoid head-to-head; incumbent assessing low-price entrant threat; investor evaluating startup structural advantage; product team defining what to deliberately exclude from MVP; someone asks whether AI agents / usage-based (per-outcome) pricing are disrupting seat-based SaaS incumbents or just a feature they'll absorb.
 
 **When NOT to use:** market requires absolute performance / no "good enough" threshold (aircraft engines, Class III devices); purely a price war with no cost-structure asymmetry; someone labeling every new entrant "disruptive" (Uber is sustaining innovation); insufficient data to assess overshooting.
 
@@ -58,7 +58,8 @@ Upward Migration Path: Stage 1 → Stage 2 → Stage 3+ (customer tier + require
 Disruption Verdict: genuine / partial / no — if no, label accurately / primary invalidation risk
 ```
 
-*→ Method in Action: [Netflix vs. Blockbuster (1997–2010)](examples/netflix-vs-blockbuster-1997-2010.md)*
+*→ Method in Action: [Netflix vs. Blockbuster (1997–2010)](examples/netflix-vs-blockbuster-1997-2010.md) · [Steel Minimills vs. Integrated Mills (1965–2001)](examples/steel-minimills-vs-integrated-mills-1965-2001.md)*
+*→ 2026 lens: [AI agents vs. seat-based SaaS (2023–2026)](examples/ai-agents-vs-seat-based-saas-2023-2026.md) — is agentic AI disrupting incumbents, or just a seat add-on they'll absorb?*
 
 ## Disruption Packs
 
@@ -113,4 +114,6 @@ Domain-specific stop-rules (the Assessment runs identically everywhere):
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/disruptive-innovation** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/disruptive-innovation.json*

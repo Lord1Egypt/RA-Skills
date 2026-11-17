@@ -1,39 +1,52 @@
-## Description: <br>
-Generates meme-optimized Solana token concepts, launch strategies, and viral X threads tailored for Bags.fm launches and degen culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates meme-optimized Solana token concepts, launch strategies, and viral X threads tailored for Bags.fm launches and degen culture.
 
-## Publisher: <br>
-[agrabio134](https://clawhub.ai/user/agrabio134) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agrabio134](https://clawhub.ai/user/agrabio134)
 
-## Use Case: <br>
-External users creating Solana meme-token launches use this skill to turn a short token idea into structured token identity, Bags.fm launch positioning, and X marketing copy. Generated launch content and buy suggestions should be reviewed before publication or use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may overstate a meme token's appeal or omit context needed for responsible publication. <br>
-Mitigation: Review generated posts manually before publishing and add crypto risk disclosures where appropriate. <br>
-Risk: Suggested SOL buy amounts may be mistaken for financial advice. <br>
-Mitigation: Treat buy amounts as drafting placeholders only and do not rely on them as investment guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agrabio134/nerra-token-strategist) <br>
+## Use Case:
 
+Developers and token launch operators use this skill to turn a short Solana meme-token idea into structured launch copy, positioning, X profile content, launch-thread posts, reply shills, and virality and risk scores.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token identity, launch positioning, X profile bio, launch thread, reply shills, marketing line, initial buy suggestion, virality score, and risk score.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated token launch and X promotional content can create financial, platform-policy, or market-manipulation risk if published without review.
+
+Mitigation: Review generated buy amounts and marketing copy before public use, and align public posts with applicable financial promotion, social platform, and token launch rules.
+
+Risk: The skill suggests initial buy amounts as part of launch content.
+
+Mitigation: Treat buy amounts as draft content requiring human approval, not investment advice or automated execution guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agrabio134/skills/nerra-token-strategist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object with token branding, launch strategy, X marketing copy, and score fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns only valid JSON matching the declared output schema.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

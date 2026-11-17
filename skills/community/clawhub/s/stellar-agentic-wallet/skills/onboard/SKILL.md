@@ -59,19 +59,19 @@ Run in order; the first failure is the one the user should fix first.
 
 ```bash
 # Diagnose only — never spends, never writes.
-npx tsx skills/onboard/run.ts
+./node_modules/.bin/tsx skills/onboard/run.ts
 
 # Interactive: also offer to add the USDC trustline.
-npx tsx skills/onboard/run.ts --setup
+./node_modules/.bin/tsx skills/onboard/run.ts --setup
 
 # Setup + swap 10 XLM for USDC.
-npx tsx skills/onboard/run.ts --setup --swap 10
+./node_modules/.bin/tsx skills/onboard/run.ts --setup --swap 10
 
 # Machine-readable report.
-npx tsx skills/onboard/run.ts --json
+./node_modules/.bin/tsx skills/onboard/run.ts --json
 
 # Ack the gitignore warning when you really do want to proceed.
-npx tsx skills/onboard/run.ts --setup --i-know
+./node_modules/.bin/tsx skills/onboard/run.ts --setup --i-know
 ```
 
 Base flags (`--identity`, `--secret-file`, `--network`, `--horizon-url`, `--rpc-url`,
@@ -103,12 +103,12 @@ Secret:  /home/me/wallet/.stellar-secret (file)
   ✅ [secret] Secret loaded from /home/me/wallet/.stellar-secret (file)
   ✅ [xlm] XLM balance 3.0000000 (spendable 1.5000000)
   ❌ [trustline] USDC Classic trustline not set
-       Run: npx tsx skills/check-balance/add-trustline.ts --network pubnet
+       Run: ./node_modules/.bin/tsx skills/check-balance/add-trustline.ts --network pubnet
        (costs 0.5 XLM reserve + a few stroops for the tx fee)
   ❌ [usdc] USDC balance is zero — can't pay for anything yet
        You can get USDC by:
          (a) receiving a transfer to this address from another wallet or exchange, OR
-         (b) swapping XLM → USDC: npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc <amount>
+         (b) swapping XLM → USDC: ./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc <amount>
 
 🔐 Never commit .stellar-secret, .env, .env.prod, or .secrets/*.
    This wallet's secret key controls real USDC. Treat it like a password.

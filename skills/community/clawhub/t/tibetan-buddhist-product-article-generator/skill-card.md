@@ -1,40 +1,58 @@
-## Description: <br>
-Reads draft Markdown from ~/.openclaw/workspace/tibetanDraft/, identifies a Tibetan Buddhist product theme, and generates a Simplified Chinese article with Tibetan-style PNG images in ~/.openclaw/workspace/tibetanProc/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Simplified Chinese Tibetan Buddhist product articles from local Markdown drafts, with web-verified product research and matching Tibetan-style PNG images.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External users and content creators use this skill to turn Tibetan Buddhist product drafts into Simplified Chinese articles with factual research notes and matching Tibetan-style images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Markdown drafts from ~/.openclaw/workspace/tibetanDraft/, so unrelated or sensitive local drafts could be processed if placed there. <br>
-Mitigation: Keep unrelated or sensitive Markdown out of the draft folder and review the selected input before running the skill. <br>
-Risk: Generated articles, images, source logs, and fallback content may contain inaccuracies or claims that need review before publication. <br>
-Mitigation: Review the generated article, images, logs, and research sources, and fact-check marked or uncertain claims before publishing. <br>
+## Use Case:
 
+External users and content creators use this skill to turn Tibetan Buddhist product drafts into concise Simplified Chinese articles with researched background, product details, cultural usage, and supporting images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/tibetan-buddhist-product-article-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Images, JSON, Text] <br>
-**Output Format:** [Timestamped Markdown article files, PNG image files, JSON run metadata, and optional text logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under ~/.openclaw/workspace/tibetanProc/ using timestamp-based filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: artifact/SKILL.md frontmatter; server release metadata: 1.0.0) <br>
+Risk: Drafts and product details may be used during web verification or image prompting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unpublished or sensitive drafts unless network and tool use are controlled.
+
+Risk: The --output-dir option can place generated files outside the default processing folder.
+
+Mitigation: Review custom output paths before running and keep generated files in a scoped workspace.
+
+Risk: Generated religious, cultural, or product claims may remain incomplete when research or image generation fails.
+
+Mitigation: Review the article, warnings, logs, and cited research before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/tibetan-buddhist-product-article-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, images, json, text]
+
+**Output Format:** [Markdown article with PNG image files, optional JSON run metadata, and text warning or log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs use timestamp-based filenames and are written to the default Tibetan processing workspace or a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter declares 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,94 +1,94 @@
-# 项目吸收方法论
+# Project absorption methodology
 
-## 目标
+## Target
 
-本文档用于扩展 `SKILL.md` 中的核心流程，适合更大型的“参考系统到目标项目”能力吸收任务。参考系统可以是代码库、产品、服务、框架、库、CLI、插件、文档体系或 AI/Agent 工具链。
+This document is used to extend the core process in `SKILL.md`, suitable for larger "reference system to target project" capability absorption tasks. A reference system can be a code base, product, service, framework, library, CLI, plug-in, documentation system, or AI/Agent toolchain.
 
-## 阶段 1：建立目标项目基线
+## Phase 1: Establish Target Project Baseline
 
-在深入研究参考项目之前，先为目标项目建立简短基线：
+Before diving into the reference project, establish a brief baseline for the target project:
 
-- 目标项目声明的用途是什么？
-- 当前已有的顶层能力有哪些？
-- 已存在的入口、扩展点和用户工作流有哪些？
-- 哪些区域仍在活跃维护？
-- 哪些区域脆弱、复杂或过度设计？
-- 已有哪些测试和验证命令？
+- What is the purpose of the target project statement?
+- What are the current top-level capabilities?
+- What entry points, extension points and user workflows already exist?
+- Which areas are still under active maintenance?
+- Which areas are fragile, complex or over-engineered?
+- What testing and verification commands are in place?
 
-在理解目标项目基线之前，不要过早形成改造建议。
+Don’t prematurely formulate renovation recommendations before understanding the target project baseline.
 
-## 阶段 2：扫描参考项目
+## Phase 2: Scan Reference Projects
 
-扫描参考系统中的高信号材料：
+Scan high-signal materials in reference systems:
 
-- README 和文档：项目定位、使用模型、安装、配置。
-- 包或构建元数据：技术选型、依赖范围、脚本命令。
-- 源码布局：架构、模块边界、命名约定。
-- 能力域：产品能力、架构模式、领域模型、接口协议、数据流、运行时行为、开发体验、质量体系、交付流程、文档知识、生态扩展。
-- 项目形态探针：按参考系统类型选择相关目录和行为入口，不假设所有项目都有相同结构。
-- 测试：预期行为和边界场景。
-- 示例：面向用户的工作流和上手体验质量。
+- README and documentation: project location, usage model, installation, configuration.
+- Package or build metadata: technology selection, dependency scope, script commands.
+- Source code layout: architecture, module boundaries, naming conventions.
+- Capability domain: product capabilities, architectural patterns, domain models, interface protocols, data flow, runtime behavior, development experience, quality system, delivery process, document knowledge, and ecological expansion.
+- Project shape probe: select relevant directories and behavior entries according to the reference system type, without assuming that all projects have the same structure.
+- Testing: expected behavior and edge scenarios.
+- Example: User-facing workflow and quality of onboarding experience.
 
-记录观察时，应记录为“能力”，而不是“文件”。例如写“具备带环境检查的引导式配置向导”，而不是写“复制 setup.ts”。
+When recording observations, they should be recorded as “competencies,” not “documents.” For example, write "Has guided configuration wizard with environment checks" instead of "Copy setup.ts".
 
-### 项目形态探针
+### Project shape probe
 
-按目标和参考系统的实际形态选择扫描视角：
+Select the scan angle according to the actual shape of the target and reference system:
 
-- 前端项目：页面、组件、路由、状态、数据请求、表单、设计系统、可访问性、性能、构建。
-- 后端项目：API、服务边界、数据库、队列、缓存、认证授权、任务调度、可观测性、部署。
-- 工具或 CLI 项目：命令模型、配置、插件机制、错误输出、安装分发、模板。
-- AI/Agent 项目：skills、commands、hooks、rules、agents、MCP、prompt、workflow。
-- 库项目：公开 API、类型、兼容性、构建产物、示例、版本策略。
-- 文档或知识库项目：信息架构、导航、示例、搜索、版本化、贡献流程、发布节奏。
+- Front-end projects: pages, components, routing, state, data requests, forms, design systems, accessibility, performance, build.
+- Backend projects: API, service boundary, database, queue, cache, authentication and authorization, task scheduling, observability, deployment.
+- Tool or CLI project: command model, configuration, plugin mechanism, error output, installation distribution, templates.
+- AI/Agent projects: skills, commands, hooks, rules, agents, MCP, prompts, workflow.
+- Library project: public API, types, compatibility, build artifacts, examples, version policy.
+- Documentation or knowledge base project: information architecture, navigation, examples, search, versioning, contribution process, release cadence.
 
-如果项目横跨多种形态，优先选择与用户目标直接相关的 1 到 3 个视角，避免把吸收任务扩大成全仓库审计。
+If the project spans multiple modalities, prioritize 1 to 3 perspectives that are directly related to user goals to avoid expanding the absorption task into a full warehouse audit.
 
-## 阶段 3：候选能力评分
+## Phase 3: Candidate Ability Scoring
 
-对每个候选项按 1 到 5 分评分。
+Rate each candidate on a scale of 1 to 5.
 
-| 维度 | 问题 |
+| Dimensions | Questions |
 |---|---|
-| 用户价值 | 是否能实质改善目标用户的工作流？ |
-| 适配度 | 是否符合目标项目的架构和路线图？ |
-| 原创化可行性 | 是否可以在不复制受保护表达的情况下重新创建？ |
-| 复杂度 | 是否可以安全交付并长期维护？ |
-| 可验证性 | 正确性是否可以通过测试或评审验证？ |
+| User value | Can it substantially improve the workflow of target users? |
+| Fit | Is it consistent with the target project's architecture and roadmap? |
+| Feasibility of originalization | Is it possible to recreate a protected expression without copying it? |
+| Complexity | Can it be delivered safely and maintained over the long term? |
+| Verifiability | Can correctness be verified through testing or review? |
 
-优先处理高价值、高适配、低风险的候选项。
+Prioritize high-value, high-fit, low-risk candidates.
 
-## 阶段 4：吸收策略
+## Phase 4: Absorption Strategy
 
-为每个候选项选择一种策略：
+Choose a strategy for each candidate:
 
-- **增强**：改进目标项目已有能力。
-- **新增**：引入新的目标项目原生能力。
-- **拆分**：拆解过载的目标概念或参考概念。
-- **合并**：合并目标项目中重叠的概念。
-- **替换**：在更安全设计准备好后，移除较弱的目标实现。
-- **文档化**：只补充知识，不改代码。
-- **拒绝**：明确延后或放弃，并说明原因。
+- **Enhancement**: Improve the existing abilities of the target item.
+- **New**: Introducing new target project native capabilities.
+- **Split**: Split an overloaded target concept or reference concept.
+- **Merge**: Merge overlapping concepts in the target project.
+- **Replace**: Remove weaker goal implementations once a more secure design is ready.
+- **Documentation**: Only add knowledge, do not change the code.
+- **Rejection**: Defer or give up clearly and explain the reasons.
 
-## 阶段 5：实现顺序
+## Phase 5: Implementation Sequence
 
-推荐按以下顺序推进：
+It is recommended to proceed in the following order:
 
-1. 文档和边界澄清。
-2. 测试或验证脚手架。
-3. 最小化的目标项目原生实现。
-4. 与现有工作流集成。
-5. 清理重复逻辑和废弃路径。
-6. 面向用户的文档和示例。
+1. Documentation and boundary clarification.
+2. Test or validate scaffolding.
+3. Minimized target project native implementation.
+4. Integrate with existing workflows.
+5. Clean up duplicate logic and abandoned paths.
+6. User-oriented documentation and examples.
 
-## 阶段 6：评审问题
+## Stage 6: Review Questions
 
-最终完成前，回答以下问题：
+Before finalizing, answer the following questions:
 
-- 吸收后目标项目是否仍保持一致性？
-- 模块边界是否被保留或改善？
-- 每个新增能力是否可被发现？
-- 是否存在重叠的能力、入口、抽象、配置、运行时流程、工具函数、文档承诺或用户工作流？
-- 新增依赖是否有充分理由？
-- 验证命令是否已记录？
-- 是否透明说明了灵感来源，同时又没有暗示复制代码？
+- Will the target items remain consistent after assimilation?
+- Are module boundaries preserved or improved?
+- Is each new ability discoverable?
+- Are there overlapping capabilities, portals, abstractions, configurations, runtime processes, tool functions, document commitments, or user workflows?
+- Is there a good reason for adding new dependencies?
+- Verify that the command was logged?
+- Is the source of inspiration transparently stated without implying duplication of code?

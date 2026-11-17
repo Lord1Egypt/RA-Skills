@@ -1,44 +1,58 @@
-## Description: <br>
-Nodeize complex agent work into a 6-layer, 14-node SOP system with Radar, Normalize, Test, Score, Check, Handoff, and Sediment loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nodeize complex AI work for the node era: a 6-layer, 14-node SOP system with Radar, Normalize, Test, Score, Check, Handoff, and Sediment loops.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers, teams, and agent operators use this skill to turn complex research, implementation, learning, and enterprise work into structured node chains with explicit evidence, checks, handoffs, and reusable artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured node outputs may be mistaken for validated decisions before evidence and checks are complete. <br>
-Mitigation: Review the evidence, node checks, and handoff artifacts before using outputs in operational or commercial workflows. <br>
-Risk: The helper script creates local markdown run folders. <br>
-Mitigation: Run it only in an intended workspace and choose the run root deliberately. <br>
+## Use Case:
 
+Developers, researchers, and project teams use this skill to break complex AI work into composable node chains, produce durable run artifacts, and gate outputs through evidence, test, score, check, handoff, and sediment loops.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/super-sop-node-os) <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Node Protocol Reference](references/node-protocol.md) <br>
-- [Company Pattern Radar](references/company-patterns.md) <br>
-- [Node System Audit Summary](references/node-system-audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell commands and generated local run-folder files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script can create markdown node-run folders under a user-selected run root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Running the helper script may create local markdown workflow folders outside the intended project location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the script's --root option to place generated run artifacts in a specific project directory.
+
+Risk: Applying the workflow too broadly may add unnecessary process or route incomplete work into review.
+
+Mitigation: Use the smallest useful node chain and complete the quality gate before finalizing complex work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagoda111king/skills/super-sop-node-os)
+- [Architecture Reference](references/architecture.md)
+- [Company Pattern Radar](references/company-patterns.md)
+- [Memory Symbols Reference](references/memory-symbols.md)
+- [Node Protocol Reference](references/node-protocol.md)
+- [Node System Audit Summary](references/node-system-audit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command snippets and generated markdown run files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script can create local markdown run folders under the run root chosen by the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

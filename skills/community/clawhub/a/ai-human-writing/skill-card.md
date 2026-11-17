@@ -1,40 +1,53 @@
-## Description: <br>
-AI人味写作技 helps agents diagnose, rewrite, score, and explain revisions to Chinese creative writing so the text reads less formulaic and more human-authored. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI人味写作技 is a Chinese writing-revision skill that scans AI-like prose patterns, rewrites creative text with varied rhythm and concrete sensory detail, and returns a score with change notes.
 
-## Publisher: <br>
-[teddy-0313](https://clawhub.ai/user/teddy-0313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teddy-0313](https://clawhub.ai/user/teddy-0313)
 
-## Use Case: <br>
-External users, writers, and editors use this skill to transform Chinese creative writing, including stories, scripts, fantasy prose, and emotional texts, through a detect, purify, and rebuild workflow. The skill returns a rewritten text, quality score, and concise edit rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is explicitly designed to make AI-generated text harder to detect as AI-written. <br>
-Mitigation: Use it only for text the user is authorized to edit, and do not use it to misrepresent authorship or evade school, workplace, or platform disclosure rules. <br>
-Risk: Automated rewrites can alter meaning, voice, or factual claims in the source text. <br>
-Mitigation: Review the rewritten text and edit rationale before publishing or saving over originals. <br>
+## Use Case:
 
+Writers, editors, and creative teams use this skill to revise Chinese fiction, scripts, emotional prose, and related drafts so they read less formulaic and more specific while preserving the intended meaning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teddy-0313/ai-human-writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a score, main changes, rewritten text, and optional revision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a 100-point writing quality assessment across de-AI, purification, elevation, rhythm, sensory detail, and ambiguity dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can revise text toward an anti-AI-detection style, which may create misleading authorship or disclosure expectations in some settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for editing quality and style improvement where authorship and disclosure requirements are already clear.
+
+Risk: Broad edit permissions and style guidance may affect files or text outside the intended Chinese creative-writing scope.
+
+Mitigation: State the target language, input text, and editing boundaries before invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teddy-0313/skills/ai-human-writing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown containing a rewritten text, a 100-point score, major changes, and optional revision notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Intended primarily for Chinese creative writing and style revision.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

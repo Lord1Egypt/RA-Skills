@@ -1,48 +1,63 @@
-## Description: <br>
-Family medication management skill that helps agents create file-based medication and member records from photos, text, or voice; track inventory, batches, expiry, intake logs, and reminders; and consult bundled references for interactions and pediatric dosing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medication Manager helps agents record family medications from photos, text, or voice, maintain local Markdown inventory and member profiles, check expiry dates and interactions, log intake, and set configurable reminders.
 
-## Publisher: <br>
-[liucunguang](https://clawhub.ai/user/liucunguang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liucunguang](https://clawhub.ai/user/liucunguang)
 
-## Use Case: <br>
-External users and their agents use this skill to manage family medication records, create member profiles, log intake, track expiration dates, and configure medication reminders using local Markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive family health records may be stored in plain local Markdown files and media folders. <br>
-Mitigation: Store the data directory in a private encrypted location with restrictive permissions, protect backups, and remove old photos or logs when no longer needed. <br>
-Risk: Medication reminders may disclose personal health details through third-party notification services. <br>
-Mitigation: Use generic or redacted reminder text and verify every webhook, email, chat, and channel recipient before enabling reminders. <br>
-Risk: Medication details, pediatric doses, and interaction checks can be safety-sensitive if copied from photos or reference tables without review. <br>
-Mitigation: Confirm extracted medication details, allergies, age, weight, dosage, and interaction guidance with the user and qualified medical sources before relying on them. <br>
+## Use Case:
 
+External users and their agents use this skill to maintain local family medication records, track inventory and expiry dates, review common interaction and pediatric dosing references, and configure reminder delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liucunguang/medication-manager) <br>
-- [Member Profile Reference](references/member-profile.md) <br>
-- [Notification Configuration](references/notifications.md) <br>
-- [Storage Layout](references/storage-layout.md) <br>
-- [Drug Interactions Reference](references/drug-interactions.md) <br>
-- [Pediatric Dosage Reference](references/pediatric-dosage.md) <br>
-- [Setup Guide](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file templates, command examples, and plain-text expiry reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Markdown records and optional reminder configuration; expiry scanning reports are printed as text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Family medical data is stored in local plaintext Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the data directory out of shared folders and repositories, restrict filesystem permissions, and avoid recording unnecessary sensitive details.
+
+Risk: Reminder delivery can expose medication details through cron messages or webhook providers.
+
+Mitigation: Use minimal reminder content, avoid webhooks for sensitive details, and confirm the notification channel before sending tests or recurring reminders.
+
+Risk: Generated filenames, command arguments, and reminder schedules may be derived from user-provided medical records.
+
+Mitigation: Sanitize filenames and command arguments before creating records or cron jobs, and have the user confirm medication details and schedules before writing files or creating reminders.
+
+## Reference(s):
+
+- [Medication Manager on ClawHub](https://clawhub.ai/liucunguang/skills/medication-manager)
+- [Member Profile](references/member-profile.md)
+- [Notification Configuration](references/notifications.md)
+- [Storage Layout](references/storage-layout.md)
+- [Drug Interactions Reference](references/drug-interactions.md)
+- [Pediatric Dosage Reference](references/pediatric-dosage.md)
+- [Setup Guide](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown records and text guidance with optional shell commands and webhook request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown files for medication, member, prescription, log, and configuration records when the user confirms details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

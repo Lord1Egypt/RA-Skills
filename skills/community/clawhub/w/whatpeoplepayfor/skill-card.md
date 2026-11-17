@@ -1,42 +1,55 @@
-## Description: <br>
-Query gig economy market data across freelance categories and monthly gig snapshots to identify growth opportunities, top orders, pain points, and category trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query gig economy market data (274 categories, 17k+ monthly snapshots) to find growth opportunities, top orders, pain points, and category trends.
 
-## Publisher: <br>
-[arkyu2077](https://clawhub.ai/user/arkyu2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arkyu2077](https://clawhub.ai/user/arkyu2077)
 
-## Use Case: <br>
-External users and agents use this skill to query WhatPeoplePayFor market data, compare freelance category demand, inspect revenue and order signals, and save analyses for later reruns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market-analysis questions and API usage to whatpeoplepayfor.com, and saved Focuses may store analysis content with the provider. <br>
-Mitigation: Install only if you trust the provider with those questions and avoid saving secrets, customer data, or confidential strategy in Focuses. <br>
-Risk: WPP_API_KEY grants access to the paid API and should be treated as a secret. <br>
-Mitigation: Store the API key in the environment, avoid committing or logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and agents use this skill to ask natural-language and structured questions about gig economy demand, category growth, revenue patterns, customer pain points, and repeatable market analyses.
 
-## Reference(s): <br>
-- [WhatPeoplePayFor website](https://whatpeoplepayfor.com) <br>
-- [ClawHub skill page](https://clawhub.ai/arkyu2077/whatpeoplepayfor) <br>
-- [Publisher profile](https://clawhub.ai/user/arkyu2077) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and API response interpretation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and WPP_API_KEY; sends authenticated HTTPS requests to whatpeoplepayfor.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Market-analysis questions and API requests are sent to whatpeoplepayfor.com using WPP_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including unrelated secrets or private business data in prompts unless the user is comfortable sending that information to the provider.
+
+Risk: Saved analyses may persist through the provider-side Focus feature.
+
+Mitigation: Review the provider-side Focus behavior before saving analyses that contain sensitive market research or business context.
+
+## Reference(s):
+
+- [WhatPeoplePayFor website](https://whatpeoplepayfor.com)
+- [ClawHub skill page](https://clawhub.ai/arkyu2077/skills/whatpeoplepayfor)
+- [ClawHub publisher profile](https://clawhub.ai/user/arkyu2077)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with API request examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WPP_API_KEY and curl to query the remote WhatPeoplePayFor API; no local data storage is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

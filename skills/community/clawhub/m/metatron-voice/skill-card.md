@@ -1,42 +1,54 @@
-## Description: <br>
-Metatron Voice helps agents configure, operate, and troubleshoot an OpenClaw Discord meeting workflow for voice capture, transcription, summaries, Jira task approval, and Confluence handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discord standup and meeting intelligence workflow for OpenClaw that helps users configure, operate, and troubleshoot Discord voice capture, transcription, meeting summaries, Jira task approval, and Confluence handoff.
 
-## Publisher: <br>
-[toomij99](https://clawhub.ai/user/toomij99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toomij99](https://clawhub.ai/user/toomij99)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run Discord standups or voice meetings in OpenClaw, then inspect summaries and approve Jira task candidates before pushing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord meeting recordings, transcripts, and summaries may contain sensitive participant information. <br>
-Mitigation: Notify participants and obtain consent where required, restrict access to the meetings directory, and define retention and deletion practices for stored meeting artifacts. <br>
-Risk: Generated Jira task candidates may be incomplete, incorrect, or not ready for team tracking. <br>
-Mitigation: Review generated task candidates in Discord before approval and only push approved tasks to Jira. <br>
+## Use Case:
 
+Developers, operators, and team leads use this skill to run Discord standup and meeting workflows in OpenClaw, including recording, transcription, summary review, Jira task approval, and handoff guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/toomij99/metatron-voice) <br>
-- [Project Homepage](https://github.com/toomij99/discord-voice) <br>
-- [Publisher Profile](https://clawhub.ai/user/toomij99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and Discord command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local meeting artifact directories and human approval workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Discord meeting recording and transcription can capture sensitive participant communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm participant awareness and follow local laws, workplace policies, Discord rules, and retention or deletion requirements before use.
+
+Risk: Generated summaries and Jira task candidates may be incomplete or incorrect.
+
+Mitigation: Review meeting summaries and approve task candidates in Discord before pushing work items to Jira.
+
+## Reference(s):
+
+- [Metatron Voice on ClawHub](https://clawhub.ai/toomij99/skills/metatron-voice)
+- [Metatron Voice project homepage](https://github.com/toomij99/discord-voice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and Discord slash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to stored meeting artifacts under .openclaw/workspace/meetings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

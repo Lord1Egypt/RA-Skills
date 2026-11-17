@@ -15,6 +15,23 @@ function readJSON(path) {
   }
 }
 
+function detectSkillDirectories(repoPath) {
+  const skillsDir = join(repoPath, 'skills');
+  if (!existsSync(skillsDir)) return [];
+
+  try {
+    return readdirSync(skillsDir, { withFileTypes: true })
+      .filter(e => e.isDirectory() && existsSync(join(skillsDir, e.name, 'SKILL.md')))
+      .map(e => ({
+        name: e.name,
+        path: join(skillsDir, e.name),
+        skillPath: join(skillsDir, e.name, 'SKILL.md'),
+      }));
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Detect all interfaces in a repo.
  * Returns { interfaces, pkg } where interfaces is an object keyed by interface type.
@@ -48,9 +65,18 @@ export function detectInterfaces(repoPath) {
     interfaces.openclaw = { config: readJSON(ocPlugin), path: ocPlugin };
   }
 
-  // 5. Skill: SKILL.md exists
-  if (existsSync(join(repoPath, 'SKILL.md'))) {
-    interfaces.skill = { path: join(repoPath, 'SKILL.md') };
+  // 5. Skill: root SKILL.md, or a skills/<name>/SKILL.md collection.
+  const rootSkillPath = join(repoPath, 'SKILL.md');
+  if (existsSync(rootSkillPath)) {
+    interfaces.skill = { path: rootSkillPath };
+  }
+
+  const skillDirs = detectSkillDirectories(repoPath);
+  if (skillDirs.length > 0) {
+    interfaces.skill = {
+      path: join(repoPath, 'skills'),
+      skills: skillDirs,
+    };
   }
 
   // 6. Claude Code Hook: guard.mjs or claudeCode.hook(s) in package.json
@@ -103,7 +129,12 @@ export function describeInterfaces(interfaces) {
   if (interfaces.module) lines.push(`Module: ${JSON.stringify(interfaces.module.main)}`);
   if (interfaces.mcp) lines.push(`MCP Server: ${interfaces.mcp.file}`);
   if (interfaces.openclaw) lines.push(`OpenClaw Plugin: ${interfaces.openclaw.config?.name || 'detected'}`);
-  if (interfaces.skill) lines.push(`Skill: SKILL.md`);
+  if (interfaces.skill?.skills?.length) {
+    const skills = interfaces.skill.skills.map(s => `${s.name} (${s.skillPath})`);
+    lines.push(`Skill: ${skills.join(', ')}`);
+  } else if (interfaces.skill) {
+    lines.push(`Skill: SKILL.md`);
+  }
   if (interfaces.claudeCodeHook) {
     const events = interfaces.claudeCodeHook.map(h => h.event || 'PreToolUse');
     lines.push(`Claude Code Hook: ${events.join(', ')}`);

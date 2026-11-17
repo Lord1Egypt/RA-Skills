@@ -1,48 +1,61 @@
-## Description: <br>
-Deploy, secure, and operate MinIO object storage using mc workflows, policy controls, replication, and incident-safe runbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy, secure, and operate MinIO object storage using mc workflows, policy controls, replication, and incident-safe runbooks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, storage administrators, and reliability engineers use this skill to plan and operate MinIO deployments, bucket lifecycle controls, access policies, replication, hardening, and incident recovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide sensitive storage administration actions, including bucket deletion, policy replacement, retention changes, and replication updates. <br>
-Mitigation: Require explicit user approval before mutating actions and verify endpoint alias, environment, scope, expected impact, and rollback path before execution. <br>
-Risk: Stored operational context may become stale or accidentally include sensitive information. <br>
-Mitigation: Keep ~/minio/ notes free of credentials, save only reusable operational context, and review stored assumptions before relying on them. <br>
-Risk: Commands may target the wrong MinIO environment or appear successful without validating object and access behavior. <br>
-Mitigation: Use read-then-write workflows, capture pre-change state, and confirm results with independent data-path and auth-path checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/minio) <br>
-- [Skill homepage](https://clawic.com/skills/minio) <br>
-- [MinIO documentation](https://min.io/docs) <br>
-- [Setup - MinIO Operations](setup.md) <br>
-- [Deployment Patterns - MinIO](deployment-patterns.md) <br>
-- [mc Operations Playbook](mc-operations.md) <br>
-- [Hardening and Disaster Recovery](hardening-dr.md) <br>
-- [Memory Template - MinIO Operations](memory-template.md) <br>
+## Use Case:
 
+Developers, platform engineers, and storage operators use this skill to plan and execute MinIO deployment, bucket lifecycle, access policy, replication, hardening, and incident recovery workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose MinIO client commands, configuration steps, approval gates, and verification checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bucket deletion, lifecycle rewrites, policy replacement, retention changes, and replication updates can cause data loss, access lockout, or unintended exposure.
+
+Mitigation: Require explicit user approval, confirm scope and rollback path, capture pre-change state, and verify results through independent read checks.
+
+Risk: Operational notes in ~/minio/ could accidentally retain secrets or raw credentials.
+
+Mitigation: Store only reusable operational context and keep credentials, access keys, tokens, and unrelated personal data out of memory files.
+
+Risk: Commands against the wrong MinIO alias, topology, region, or TLS endpoint can produce misleading results or mutate the wrong environment.
+
+Mitigation: Classify topology first, verify aliases and endpoint trust before writes, and start with read-only mc diagnostics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/minio)
+- [Official MinIO documentation](https://min.io/docs)
+- [Setup guide](setup.md)
+- [Deployment patterns](deployment-patterns.md)
+- [mc operations playbook](mc-operations.md)
+- [Hardening and disaster recovery playbook](hardening-dr.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, operational checklists, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local notes under ~/minio/ and requires user approval before destructive or privilege-changing storage operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

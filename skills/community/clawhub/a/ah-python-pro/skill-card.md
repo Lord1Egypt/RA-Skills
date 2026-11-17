@@ -1,41 +1,52 @@
-## Description: <br>
-Python Pro provides expert guidance on advanced Python features, async and concurrent programming, performance tuning, static typing, memory management, Python internals, and ecosystem libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python Pro provides expert guidance for advanced Python features, async programming, performance tuning, static typing, memory management, Python internals, and ecosystem libraries.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to get advanced Python design, implementation, typing, testing, performance, and ecosystem guidance while building or reviewing Python code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Malformed frontmatter may affect how skill metadata is parsed by some hosts.
+
+Mitigation: Validate parsed metadata in the target host before publishing or installing the skill.
+
+Risk: Python coding guidance can be incomplete or inappropriate for a specific runtime, dependency set, or security context.
+
+Mitigation: Review generated code, run tests and static analysis, and scan dependencies before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for Python implementation, review, optimization, typing, testing, async programming, framework selection, package development, and ecosystem guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python code or recommendations could install packages, access files, call networks, scrape sites, or modify production systems if run without review. <br>
-Mitigation: Review generated code and commands before execution, especially changes that affect dependencies, files, network access, scraping, or production environments. <br>
-Risk: Instruction-only guidance can still produce incorrect or incomplete Python implementations. <br>
-Mitigation: Validate generated code with tests, type checking, profiling, and normal code review before relying on it. <br>
+**Output Format:** [Markdown with Python code, tests, optimization suggestions, and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-python-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [May include type hints, docstrings, examples, unit tests, and performance notes when relevant.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include type hints, docstrings, tests, performance suggestions, and implementation notes when relevant.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

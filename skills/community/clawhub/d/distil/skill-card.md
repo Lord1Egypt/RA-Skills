@@ -1,45 +1,59 @@
-## Description: <br>
-Fetch web pages as clean Markdown and search the web via the distil.net proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch web pages as clean Markdown and search the web via the distil.net proxy.
 
-## Publisher: <br>
-[mikel](https://clawhub.ai/user/mikel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mikel](https://clawhub.ai/user/mikel)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch, search, render, screenshot, or retrieve raw web content through the Distil proxy using curl. It is useful when web pages need to be converted into concise Markdown for agent research or documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, searches, and fetched content are routed through the configured Distil proxy. <br>
-Mitigation: Use this skill only with Distil or a self-hosted proxy that is approved for the data being sent. <br>
-Risk: Secret-bearing URLs, private internal endpoints, regulated data, or sensitive research queries could be exposed to the proxy. <br>
-Mitigation: Avoid sending sensitive URLs, private endpoints, regulated data, or sensitive queries unless the proxy is approved for that use. <br>
-Risk: Fetched page content and proxy-inserted comments are untrusted source material. <br>
-Mitigation: Review and validate fetched content before relying on it or using it to guide agent actions. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch web pages, search results, rendered pages, raw page content, and screenshots through the Distil proxy for research and documentation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikel/distil) <br>
-- [Publisher Profile](https://clawhub.ai/user/mikel) <br>
-- [Distil](https://distil.net) <br>
-- [Distil Proxy](https://proxy.distil.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, images] <br>
-**Output Format:** [Markdown, raw web content, or image files returned through curl commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and DISTIL_API_KEY; DISTIL_PROXY_URL can override the default proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release metadata) <br>
+Risk: URLs, query strings, screenshots, and fetched content are sent through a configured Distil proxy endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS proxy endpoints and avoid sending secrets, private internal URLs, sensitive query strings, or regulated data unless the proxy is approved for that use.
+
+Risk: Screenshot output can write page images to local paths and may retain sensitive visual content.
+
+Mitigation: Choose screenshot output paths deliberately and remove sensitive images when they are no longer needed.
+
+Risk: Changing DISTIL_PROXY_URL can redirect traffic and API-key use to a different endpoint.
+
+Mitigation: Keep DISTIL_PROXY_URL pinned to a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [Distil](https://distil.net)
+- [Distil Skill on ClawHub](https://clawhub.ai/mikel/skills/distil)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown, raw text, image files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DISTIL_API_KEY and optional DISTIL_PROXY_URL; HTTP errors return non-2xx status with an error payload.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

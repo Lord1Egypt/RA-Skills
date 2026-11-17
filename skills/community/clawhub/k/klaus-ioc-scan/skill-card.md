@@ -1,44 +1,54 @@
-## Description: <br>
-Scans URLs, domains, and IP addresses for reputation signals and malware or phishing detections using VirusTotal and AbuseIPDB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans URLs, domains, and IP addresses for reputation signals and malware or phishing detections using VirusTotal and AbuseIPDB.
 
-## Publisher: <br>
-[runawaydevil](https://clawhub.ai/user/runawaydevil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runawaydevil](https://clawhub.ai/user/runawaydevil)
 
-## Use Case: <br>
-Security analysts, developers, and incident responders use this skill to check submitted URLs, domains, and public IP addresses against reputation and malware/phishing intelligence before deciding whether to monitor, block, or investigate further. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted indicators may include private links, session tokens, private query parameters, internal hostnames, or confidential URLs that are sent to VirusTotal and AbuseIPDB. <br>
-Mitigation: Review and sanitize indicators before scanning; remove tokens, private query parameters, internal hostnames, and confidential URLs. <br>
-Risk: Broad trigger phrases may cause the skill to run on text that was not intended for external IOC scanning. <br>
-Mitigation: Configure the agent so this skill runs only for explicit IOC scan requests. <br>
-Risk: External reputation lookups require VirusTotal and AbuseIPDB credentials. <br>
-Mitigation: Use dedicated API keys for this skill and rotate them according to the owner's credential-management process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runawaydevil/klaus-ioc-scan) <br>
-- [VirusTotal documentation](https://docs.virustotal.com/) <br>
-- [VirusTotal API v2 endpoint](https://www.virustotal.com/vtapi/v2) <br>
-- [AbuseIPDB API v2 endpoint](https://api.abuseipdb.com/api/v2) <br>
+## Use Case:
 
+Security analysts, developers, and incident responders use this skill to triage URLs, domains, and public IP addresses by checking third-party reputation data and receiving a concise verdict with recommended actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text report with risk verdicts, reputation results, links, and action recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VIRUSTOTAL_API_KEY and ABUSEIPDB_API_KEY for full external reputation lookups.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Full URLs submitted for reputation checks may disclose sensitive paths, query strings, tokens, or internal resources to third-party services.
+
+Mitigation: Use only approved indicators, strip secrets or customer data before scanning, and add an explicit confirmation or lookup-only mode before operational use.
+
+Risk: Results depend on external API availability, API keys, rate limits, and third-party reputation data quality.
+
+Mitigation: Treat the verdict as triage support, confirm high-impact decisions with additional investigation, and monitor API errors or missing data.
+
+## Reference(s):
+
+- [VirusTotal Documentation](https://docs.virustotal.com/)
+- [AbuseIPDB API v2](https://api.abuseipdb.com/api/v2)
+- [ClawHub Skill Page](https://clawhub.ai/runawaydevil/skills/klaus-ioc-scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with summary verdicts, quick result tables, detailed IOC reports, and recommended actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIRUSTOTAL_API_KEY and ABUSEIPDB_API_KEY for full results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

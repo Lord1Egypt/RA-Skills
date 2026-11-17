@@ -1,0 +1,15 @@
+{
+  "_note": "产业基金投资画像（Investment Mandate）。首次使用由 Setup 捕获流程填写，之后每次评估自动读取。硬约束定义权在 GP，变更需人工确认。configured=false 时 Agent 必须引导完成配置，禁止静默用默认权重。",
+  "configured": false,
+  "fund_size": null,
+  "remaining_quota": null,
+  "stage": [],
+  "sector": [],
+  "region": [],
+  "ticket": null,
+  "ownership": null,
+  "capital_source": null,
+  "gov_constraints": null,
+  "return_target": null,
+  "annual_kpi": null
+}

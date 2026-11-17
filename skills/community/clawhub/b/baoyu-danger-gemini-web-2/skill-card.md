@@ -1,43 +1,58 @@
-## Description: <br>
-Generates images and text through a reverse-engineered Gemini Web API, with support for prompt-based text generation, image generation, reference-image vision input, and multi-turn conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images and text via a reverse-engineered Gemini Web API with support for prompt-based text generation, image generation, reference images for vision input, and multi-turn conversations.
 
-## Publisher: <br>
-[nengnengZ](https://clawhub.ai/user/nengnengZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nengnengz](https://clawhub.ai/user/nengnengz)
 
-## Use Case: <br>
-Developers and agent builders use this skill when they need a local CLI backend for Gemini Web text generation, image generation, reference-image vision input, or continuation of saved Gemini conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse a browser-authenticated Google/Gemini session and store live cookies on disk. <br>
-Mitigation: Use a dedicated Chrome profile or GEMINI_WEB_CHROME_PROFILE_DIR, consider a dedicated Google account, and protect or periodically delete the cookie file. <br>
-Risk: Reference images and prompt files can be sent to Gemini Web during generation. <br>
-Mitigation: Review local files before passing them as prompt or reference inputs, and avoid sensitive files unless upload is intended. <br>
-Risk: The skill relies on a reverse-engineered Gemini Web client. <br>
-Mitigation: Install and run it only when that dependency model is acceptable for the intended environment. <br>
+## Use Case:
 
+Developers and agents use this skill to call Gemini Web for text generation, image generation, vision input with reference images, and multi-turn conversation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nengnengZ/baoyu-danger-gemini-web-2) <br>
-- [Metadata homepage](https://github.com/JimLiu/baoyu-skills#baoyu-danger-gemini-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Plain text or JSON on stdout, with optional generated image files saved to disk.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can maintain saved conversation sessions and can read prompt files or reference images as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill uses a reverse-engineered Gemini Web client and depends on Google browser session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, use it only where this authentication approach is acceptable, and prefer a dedicated Chrome profile instead of a normal browsing profile.
+
+Risk: Cached Google session cookies and conversation sessions may expose account or prompt data if left in shared or insecure storage.
+
+Mitigation: Protect the configured data directory and cookie cache, delete cached credentials when no longer needed, and use `--cookie-path` or `GEMINI_WEB_COOKIE_PATH` to isolate storage.
+
+Risk: The fallback runtime command can invoke an unpinned `npx -y bun` install path.
+
+Mitigation: Install and manage a trusted Bun runtime directly in sensitive environments instead of relying on the fallback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nengnengz/skills/baoyu-danger-gemini-web-2)
+- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-danger-gemini-web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Plain text or JSON responses, with optional saved PNG image files and session JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save generated images to disk and persist multi-turn session state when requested.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence; artifact frontmatter reports 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

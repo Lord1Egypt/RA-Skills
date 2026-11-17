@@ -1,45 +1,59 @@
-## Description: <br>
-Generate images with Guishu Token gpt-image-2 through an OpenAI-compatible images endpoint and save local outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images through the Guishu Images API, including reference-image edits, masked edits, batch generation, and recovery of existing image downloads.
 
-## Publisher: <br>
-[quqi1599](https://clawhub.ai/user/quqi1599) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quqi1599](https://clawhub.ai/user/quqi1599)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create Guishu gpt-image-2 images from prompts, test prompt-to-image workflows, and produce local galleries of generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and bearer tokens are sent to the configured image-generation endpoint. <br>
-Mitigation: Use a dedicated Guishu Token API key, avoid sensitive prompts, and only set a custom endpoint when it is trusted to receive prompts and credentials. <br>
-Risk: Generated output folders include request logs that may reveal prompts or workflow details. <br>
-Mitigation: Review generated request and prompt JSON files before sharing the output directory or HTML gallery. <br>
-Risk: Long-running generation requests can time out while upstream processing may still continue and incur cost. <br>
-Mitigation: Avoid automatic retries after long timeouts and ask before resubmitting requests that may have already been processed. <br>
+## Use Case:
 
+Developers and agents who explicitly choose Guishu's image service can use this skill to generate images, edit reference images or masked regions, submit batches, and recover saved results. It is not intended for image understanding or for replacing a provider selected by the user.
 
-## Reference(s): <br>
-- [GPT Image 2 API Notes](references/gpt-image-2-api.md) <br>
-- [Guishu Token Images API Endpoint](https://api.llm-token.cn/v1/images/generations) <br>
-- [Guishu GPT Image 2 Web UI](https://image2.gpt-agent.cc/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/quqi1599/guishu-gpt-image-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated image files, request JSON, prompt JSON, and an HTML gallery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment-based API keys, supports prompt files, dry runs, image size, quality, response format, timeout, endpoint, and output directory options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requests send prompts and selected images to Guishu and may incur charges; provider retention and live billing behavior were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only if its charges and handling of submitted material are acceptable, use a dedicated Guishu key, and send only task-specific images.
+
+Risk: An interrupted generation request may already have been accepted, leaving its result and charge status uncertain.
+
+Mitigation: Check service usage before retrying and use recovery on saved responses; do not automatically resubmit an uncertain request.
+
+Risk: Recovery files can contain image data or temporary signed download URLs.
+
+Mitigation: Keep recovery files in a private location and do not upload them to public repositories.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/quqi1599/guishu-gpt-image-2)
+- [Guishu GPT Image 2 tutorial](https://llm-token.cn/tutorials/gpt-image-2)
+- [Guishu Skills support](https://llm-token.cn/tutorials/skills-support)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON, Shell commands, Guidance]
+
+**Output Format:** [PNG, JPEG, or WebP image files, with an optional JSON task summary and Markdown usage guidance]
+
+**Output Parameters:** [1D; configurable image size, quality, format, and count, with optional batches of prompts]
+
+**Other Properties Related to Output:** [Local image results and recovery state; generated results depend on the selected model and service availability.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

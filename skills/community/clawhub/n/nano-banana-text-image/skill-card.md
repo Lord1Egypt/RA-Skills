@@ -1,40 +1,58 @@
-## Description: <br>
-Generates images from text prompts using AtlasCloud's Nanobanana 2 text-to-image model and returns the generated image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts using the AtlasCloud Nanobanana 2 model.
 
-## Publisher: <br>
-[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from descriptive text prompts through AtlasCloud's Nanobanana model. It is suited for agent workflows that prepare generation parameters, call the Node.js helper, and report the returned image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AtlasCloud API token and asks for it to be retained for later use. <br>
-Mitigation: Use a disposable or scoped token, rotate it after testing, and avoid storing long-lived credentials in shared agent memory. <br>
-Risk: Prompts are sent to AtlasCloud and generation metadata or URLs are written locally. <br>
-Mitigation: Avoid sensitive prompts unless token storage and local logging are clearly controlled, and review generated files before sharing or retaining them. <br>
+## Use Case:
 
+External users and developers use this skill to generate images from text prompts through AtlasCloud's Nanobanana 2 text-to-image model. It helps an agent prepare generation parameters, run the Node.js helper, and return the current image URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guilherme-funchal/nano-banana-text-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Text response with an image URL, plus local JSON and text result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an AtlasCloud API token; writes generation metadata and the latest image URL locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The AtlasCloud API token may be stored in agent memory or appear in command logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or low-privilege token, avoid persistent memory storage, and rotate the token if it may have been exposed.
+
+Risk: Image prompts are sent to AtlasCloud and may include sensitive private content.
+
+Mitigation: Do not include secrets, personal data, or confidential material in prompts.
+
+Risk: A stale image URL from a prior run could be reported instead of the current generated image.
+
+Mitigation: Use only the IMAGE_URL line emitted by the current execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guilherme-funchal/skills/nano-banana-text-image)
+- [AtlasCloud API endpoint used by the helper](https://api.atlascloud.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JSON; generated result is an image URL plus local JSON and text result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Node.js runtime and an AtlasCloud API token.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact package metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

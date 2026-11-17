@@ -1,48 +1,70 @@
-## Description: <br>
-Vector Mind Map Fusion is a three-layer vector memory system that helps an agent extract, organize, store, and retrieve structured semantic memories across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vector Mind Map Fusion builds, organizes, and queries a layered semantic memory graph from OpenClaw sessions using L1 extraction, L2 consolidation, and L3 vector-plus-keyword recall.
 
-## Publisher: <br>
-[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain semantic memory across OpenClaw sessions, including capturing important user-provided knowledge, consolidating it into L1/L2/L3 memory layers, and recalling relevant records through vector and keyword search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw session history and stores cross-session semantic memory, which may retain sensitive user content. <br>
-Mitigation: Install only where session history processing is expected, review retention and deletion behavior, and avoid use on sessions containing secrets until redaction controls are clear. <br>
-Risk: Memory and query text may be sent to the configured embedding service. <br>
-Mitigation: Use a trusted local Ollama endpoint by default and avoid remote OLLAMA_BASE_URL values unless the endpoint is explicitly trusted. <br>
-Risk: The security summary flags under-disclosed background scanning, credential use, and outbound messaging. <br>
-Mitigation: Review credential requirements and disable or audit the Lark/Feishu notification path before installation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to extract useful session content into a structured memory layer, consolidate related memories, and recall prior knowledge through semantic, keyword, and graph-based search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxiaofeng0811-lgtm/vector-mind-map-fusion) <br>
-- [README](artifact/README.md) <br>
-- [L1 extraction flow](artifact/docs/l1_flow.md) <br>
-- [L2 consolidation flow](artifact/docs/l2_flow.md) <br>
-- [L3 retrieval flow](artifact/docs/l3_flow.md) <br>
-- [Recall API](artifact/docs/recall_api.md) <br>
-- [Ollama download](https://ollama.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, Python command examples, configuration snippets, and JSON-like recall results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local memory files, query an Ollama embedding service, and return ranked semantic-memory records with scores, tiers, and memory types.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: The skill scans OpenClaw session history and stores derived memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent local memory is intended, limit access to the generated memory directory, and avoid processing sensitive conversations unless that retention is acceptable.
+
+Risk: Conversation text can be sent to the configured Ollama endpoint for embeddings.
+
+Mitigation: Keep Ollama bound to localhost and do not set OLLAMA_BASE_URL to a remote server unless that data transfer is intended.
+
+Risk: The setup documentation includes curl pipe-to-shell and --break-system-packages installation steps.
+
+Mitigation: Use an isolated virtual environment and review installer commands before execution.
+
+Risk: Optional Feishu notification behavior can involve credentials and recipient identifiers.
+
+Mitigation: Leave Feishu notifications disabled unless the credential and recipient behavior has been reviewed.
+
+Risk: The memory index uses pickle-based HNSW files.
+
+Mitigation: Load index files only from trusted local skill state and avoid sharing or replacing them with untrusted files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxiaofeng0811-lgtm/skills/vector-mind-map-fusion)
+- [README](artifact/README.md)
+- [L1 extraction flow](artifact/docs/l1_flow.md)
+- [L2 consolidation flow](artifact/docs/l2_flow.md)
+- [L3 retrieval flow](artifact/docs/l3_flow.md)
+- [Recall API](artifact/docs/recall_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, Python API examples, and text search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local memory files containing derived session content.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

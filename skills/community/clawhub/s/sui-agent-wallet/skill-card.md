@@ -1,41 +1,58 @@
-## Description: <br>
-Gives an AI agent a Sui wallet for account management, network switching, transaction review, and transaction signing through a local server and Chrome extension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an AI agent with a local Sui wallet server and Chrome extension for managing accounts, switching networks, signing transactions, and interacting with Sui DApps.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers building or testing Sui DApps use this skill to let an agent operate a local wallet interface for accounts, networks, and signing workflows. It is especially relevant when an agent needs to inspect pending requests before approving or rejecting Sui transactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated localhost endpoints expose seed phrases and signing controls that websites or local processes could abuse. <br>
-Mitigation: Use only test wallets or throwaway funds unless the local server is hardened with authentication, strict origin checks, and explicit per-request approval. <br>
-Risk: Direct signing and sign-and-execute endpoints can authorize Sui transactions without the protections expected from a production wallet. <br>
-Mitigation: Review pending transaction details before approval and avoid using real SUI until the exposed signing APIs are secured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sui Agent Wallet on ClawHub](https://clawhub.ai/EasonC13/sui-agent-wallet) <br>
-- [Sui Testnet Faucet](https://faucet.testnet.sui.io/) <br>
-- [Sui Devnet Faucet](https://faucet.devnet.sui.io/) <br>
+## Use Case:
 
+Developers building or testing Sui DApps use this skill to give an agent a local wallet interface for account management, test transactions, signing flows, and Wallet Standard integration.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with shell commands, curl examples, and JSON API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes local HTTP and WebSocket wallet operations for Sui account, network, and signing workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Seed phrases and wallet administration are exposed through local HTTP APIs.
+
+Mitigation: Use only disposable or unfunded wallets until authentication, origin restrictions, and removal of HTTP mnemonic export are implemented.
+
+Risk: Signing and execution capabilities can affect real Sui assets, especially on mainnet.
+
+Mitigation: Require explicit per-transaction review and approval, and avoid funded mainnet wallets unless the server has been redesigned with stronger controls.
+
+Risk: The browser extension uses a broad page surface for DApp interaction.
+
+Mitigation: Scope extension permissions and allowed origins to trusted DApps before production or funded use.
+
+## Reference(s):
+
+- [Sui Agent Wallet on ClawHub](https://clawhub.ai/easonc13/skills/sui-agent-wallet)
+- [Sui Testnet Faucet](https://faucet.testnet.sui.io/)
+- [Sui Devnet Faucet](https://faucet.devnet.sui.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, curl commands, configuration steps, and local API usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for a local Bun server, Chrome extension, Sui wallet APIs, transaction approval flows, and a test DApp.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

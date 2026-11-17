@@ -1,47 +1,64 @@
-## Description: <br>
-Sih Ai Photo Editor helps agents use natural-language image editing for clothing changes, background replacement, face swaps, style transfer, and beauty retouching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sih Ai Photo Editor helps agents use natural-language prompts to edit photos, including clothing, background, face, style, and beauty edits.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-External users and agents use this skill to submit images and prompts to a Sih.Ai-compatible image editing API, then receive edited image URLs or downloaded local results. It is aimed at photo editing tasks such as background changes, outfit edits, face fusion, style transfer, and retouching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user images and prompts to Sih.Ai or api.vwu.ai and may handle private-person photos. <br>
-Mitigation: Use only with explicit user consent, avoid sensitive or private-person images unless authorized, and document where uploaded images and prompts are processed and retained. <br>
-Risk: The artifact includes a live-looking bundled API key. <br>
-Mitigation: Rotate and remove bundled credentials; require users or administrators to provide API keys through environment variables or a secret manager. <br>
-Risk: The quota workflow stores local user identifiers, usage history, prompts, credits, and top-up links under ~/.sih_ai. <br>
-Mitigation: Disclose local storage, minimize logged prompt content, provide deletion instructions, and require confirmation before credit deductions or payment-related redirects. <br>
-Risk: Face swaps, clothing edits, and impersonation-oriented prompts can be misused. <br>
-Mitigation: Add clear use restrictions for consent, minors, sexualized edits, private-person images, and deceptive impersonation before enabling those workflows. <br>
+## Use Case:
 
+External users and content creators use this skill to request AI photo edits with plain-language prompts, including portrait edits, background replacement, style transfer, face blending, and beauty retouching.
 
-## Reference(s): <br>
-- [Sih.Ai API Guide](references/api_guide.md) <br>
-- [Prompt Examples](assets/examples/prompts.txt) <br>
-- [Sih.Ai Homepage](https://sih.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/a3273283/sih-ai-photo-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets, API JSON responses, image URLs, and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save edited images under ~/Desktop/Sih_Ai_Results/ and maintain local quota and usage files under ~/.sih_ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, _meta.json, CHANGELOG) <br>
+Risk: The skill can transmit user photos or local image files to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive images that the user explicitly agrees to send to the external API.
+
+Risk: The artifact includes a bundled API key fallback.
+
+Mitigation: Rotate or remove the bundled key and require users or deployments to provide their own key through configuration.
+
+Risk: The skill can retain local quota and usage history.
+
+Mitigation: Tell users what local history is stored, keep prompts free of sensitive content, and provide a clear cleanup process for local history files.
+
+Risk: Face edits and automatic file opening can create consent and safety concerns.
+
+Mitigation: Require clear user consent before face edits or uploads and avoid automatic file opening unless the user has approved it.
+
+## Reference(s):
+
+- [Sih.Ai API Guide](references/api_guide.md)
+- [Prompt Examples](assets/examples/prompts.txt)
+- [Sih.Ai Website](https://sih.ai)
+- [ClawHub Skill Page](https://clawhub.ai/a3273283/skills/sih-ai-photo-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus generated image URLs or local result files when the helper scripts are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send image URLs or base64-encoded local images to an external image-generation API and may retain local quota or usage history.]
+
+## Skill Version(s):
+
+1.0.1 (source: changelog, metadata, and release evidence; released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

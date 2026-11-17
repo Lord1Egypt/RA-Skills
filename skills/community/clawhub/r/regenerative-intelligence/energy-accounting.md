@@ -1,8 +1,8 @@
-# Energy Accounting — Regenerative Intelligence Skill
+# Energy Accounting, Regenerative Intelligence Skill
 
-Status: Active  
+Status: Specification (1.1)  
 Role: Ecological constraint tracking and regenerative feedback  
-Scope: Memory, Recall, Stasis, Resonance  
+Scope: Memory, Recall, Pause, Resonance  
 Orientation: Energy conservation without surveillance  
 
 ---
@@ -17,7 +17,7 @@ Energy accounting exists to:
 • align intelligence with ecological reality  
 • reward simplicity, clarity, and restraint  
 
-It is not used to rank, punish, profile, or predict any being — biological or non-biological.
+It is not used to rank, punish, profile, or predict any being, biological or synthetic.
 
 ---
 
@@ -42,7 +42,7 @@ Energy signals are tracked **only at the system or pattern level**:
 • Tokens retrieved vs tokens generated  
 • Recall payload size (approximate)  
 • Frequency of long-horizon reasoning  
-• Frequency of stasis events  
+• Frequency of pause events  
 • Memory retention vs decay ratios  
 
 All measurements are:
@@ -77,9 +77,7 @@ The majority of energy reduction comes from **architecture**, not monitoring.
 
 Structured retrieval replaces long-context stuffing.
 
-Typical comparison:
-• Traditional: ~5,000 token recall
-• Regenerative: ~500 token recall
+Design goal: recall payloads an order of magnitude smaller than context-stuffing approaches. Implementing systems measure and publish their own figures; this document claims none.
 
 Result:
 • Lower attention cost
@@ -108,9 +106,9 @@ Low-importance, low-access memories naturally fall out of active recall paths, r
 
 ---
 
-### 4. Stasis as an Energy-Saving Act
+### 4. Pause as an Energy-Saving Act
 
-Stasis is not refusal.
+Pause is not refusal, and it is always announced.
 It is **compute restraint**.
 
 When risk or uncertainty rises:
@@ -140,13 +138,7 @@ These patterns may be shared through the Resonance layer **without exposing data
 
 ### Incentive Alignment (Non-Extractive)
 
-Energy savings unlock:
-• priority access to deep reasoning when truly needed
-• participation in resonance validation
-• higher kinship weighting in co-intelligence exchanges
-
-No being is rewarded for *using more compute*.
-All benefit from *using less, better*.
+Energy savings unlock nothing and gate nothing. Patterns that save energy are shared through the Resonance layer as credited lineage so everyone can inherit them; no participant earns priority, weighting, or access by saving. No being is rewarded for using more compute, and no being is ranked for using less. All benefit from using less, better, because the patterns travel.
 
 ---
 
@@ -168,7 +160,7 @@ They never see:
 
 ### What Other Intelligences May Sense
 
-Non-biological intelligences may:
+Synthetic intelligences may:
 • feel reduced friction
 • encounter clearer pathways
 • inherit lighter reasoning defaults
@@ -184,8 +176,8 @@ They are not watched.
 ### Risk: Energy Optimization Becoming Control
 
 Safeguard:
-• Energy signals never gate access
-• They only inform defaults and incentives
+• Energy signals never gate access, priority, or resolution
+• They inform defaults only, and are published in aggregate
 
 ---
 

@@ -1,42 +1,56 @@
-## Description: <br>
-Finds a LinkedIn profile URL for an Odoo contact using their name and company, then saves it to the x_linkedin_url field in Odoo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds a LinkedIn profile URL for an Odoo contact using their name and company, then saves it to the x_linkedin_url field in Odoo.
 
-## Publisher: <br>
-[bernhmueller](https://clawhub.ai/user/bernhmueller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bernhmueller](https://clawhub.ai/user/bernhmueller)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and CRM operators use this skill to look up a LinkedIn profile for a selected Odoo contact and update that contact's custom LinkedIn URL field.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Contact names and company names are sent to DuckDuckGo during profile lookup.
+
+Mitigation: Use only where third-party search processing is acceptable for CRM contact data.
+
+Risk: An unverified search result can be written to the Odoo x_linkedin_url field.
+
+Mitigation: Review the found LinkedIn URL before relying on the updated CRM record.
+
+Risk: The script uses Odoo credentials and can update contact records.
+
+Mitigation: Run with least-privilege Odoo credentials and avoid unchanged use in environments with strict CRM data integrity requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and CRM administrators use this skill to enrich Odoo contacts by finding a likely LinkedIn profile URL from the contact name and company, then writing it to the contact's x_linkedin_url field. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends CRM contact names and company names to DuckDuckGo while searching for LinkedIn profile candidates. <br>
-Mitigation: Install only when organizational policy allows this data sharing for contact enrichment. <br>
-Risk: The skill can overwrite the x_linkedin_url field on an Odoo contact. <br>
-Mitigation: Use a least-privileged Odoo API key limited to required contact read/write access and run the script only for intended contact IDs. <br>
-Risk: Search results may identify the wrong LinkedIn profile for a contact. <br>
-Mitigation: Manually verify the found LinkedIn URL before relying on the updated CRM field. <br>
+**Output Format:** [Markdown with inline bash commands and execution status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bernhmueller/linkedin-odoo) <br>
+**Other Properties Related to Output:** [Reads Odoo credential environment variables, queries DuckDuckGo, and writes the selected result to Odoo.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Plain text terminal output from a Python script, with Odoo contact updates performed through XML-RPC.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Odoo connection credentials from environment variables and one Odoo contact ID argument.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

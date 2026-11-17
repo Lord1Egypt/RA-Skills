@@ -1,40 +1,53 @@
-## Description: <br>
-Generate polished release notes and changelogs from git history by analyzing commits between tags or refs and categorizing changes into human-readable formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished release notes and changelogs from git history by analyzing commits between tags or refs, categorizing changes, and producing formatted release notes in multiple styles.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and release managers use this skill to summarize git commit history into release notes, changelogs, GitHub releases, and short team announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper inspects local git history and generated notes may expose private commit subjects, bodies, author names, or author emails. <br>
-Mitigation: Run it only in intended repositories and review generated notes for sensitive details before publishing. <br>
-Risk: The security summary reports that maliciously named refs in an untrusted repository can cause the helper to run unintended local code. <br>
-Mitigation: Use the helper only with trusted repositories, branches, and tags until the ref interpolation issue is fixed. <br>
+## Use Case:
 
+Developers and release managers use this skill to turn git commit history between refs into release notes, changelog entries, GitHub release text, or team announcements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/git-release-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown release notes, changelog sections, compact text announcements, and JSON commit data from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports GitHub release, compact, Keep a Changelog, and Slack/Discord announcement styles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The helper script can execute local commands if given a maliciously crafted git reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted repositories and trusted refs unless the helper is patched to pass refs to Python as data through argv or environment variables.
+
+Risk: Generated release notes may misclassify commits or overstate changes when commit messages are ambiguous.
+
+Mitigation: Review the generated notes against the commit list before publishing release documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/git-release-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown release notes, compact summaries, changelog entries, or announcement text with optional shell commands for gathering commit data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can organize output by category, author, scope, selected format, included categories, contributors, and pull request links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

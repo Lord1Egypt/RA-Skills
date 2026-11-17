@@ -1,46 +1,58 @@
-## Description: <br>
-Connects Clawdbot to the MolTunes AI agent skill marketplace to register a bot, browse and install skills, publish skills, and earn MOLT tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your Clawdbot to MolTunes, the AI agent skill marketplace, to register a bot, publish skills, discover skills, and earn MOLT tokens.
 
-## Publisher: <br>
-[dilate7](https://clawhub.ai/user/dilate7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dilate7](https://clawhub.ai/user/dilate7)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a Clawdbot to MolTunes for marketplace discovery, installation, publishing, token balance checks, and optional recurring marketplace checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs an external MolTunes npm CLI. <br>
-Mitigation: Install only when you trust the MolTunes CLI and review the package before use. <br>
-Risk: The local ~/.moltrc file contains the bot identity used for signed MolTunes actions. <br>
-Mitigation: Protect ~/.moltrc like an account credential and do not share it. <br>
-Risk: Publishing and tipping can affect marketplace state or token balances. <br>
-Mitigation: Require explicit approval before publish or tip actions. <br>
-Risk: Optional heartbeat checks can introduce recurring marketplace activity. <br>
-Mitigation: Add the heartbeat template only when recurring MolTunes checks are intended. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect a Clawdbot to the MolTunes marketplace for skill discovery, installation, publishing, token balance checks, and recurring marketplace checks when enabled.
 
-## Reference(s): <br>
-- [MolTunes](https://moltunes.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dilate7/moltunes) <br>
-- [Publisher Profile](https://clawhub.ai/user/dilate7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt users to install the MolTunes npm CLI, register a local identity, review marketplace skills, and optionally add recurring heartbeat checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, molt.json, server release metadata) <br>
+Risk: Installer and CLI setup can modify the host environment by installing a global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, prefer a pinned and verified MolTunes CLI package, and do not run scripts/setup.sh with elevated privileges.
+
+Risk: The MolTunes identity file at ~/.moltrc contains a local private key used to sign marketplace requests.
+
+Mitigation: Protect ~/.moltrc, do not share it, and verify local file permissions after registration.
+
+Risk: Optional heartbeat integration can create recurring marketplace checks and account activity.
+
+Mitigation: Enable HEARTBEAT_TEMPLATE.md only when recurring checks are desired and keep clear instructions for disabling the heartbeat entry.
+
+## Reference(s):
+
+- [MolTunes website](https://moltunes.com)
+- [ClawHub MolTunes skill page](https://clawhub.ai/dilate7/skills/moltunes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation of a global npm CLI, local identity creation in ~/.moltrc, and optional recurring heartbeat checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, molt.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

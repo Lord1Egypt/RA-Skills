@@ -1,46 +1,55 @@
-## Description: <br>
-AI收藏夹与桌面Dock助手。配合指令罗盘 Windows 客户端使用，把提示词、技能文件、本地文件、文件夹、软件快捷方式、网页链接和浏览器收藏夹整理成可搜索、可复制、可打开的指令卡。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI收藏夹与桌面Dock助手配合指令罗盘 Windows 客户端，把提示词、技能文件、本地文件、文件夹、软件快捷方式、网页链接和浏览器收藏夹整理成可搜索、可复制、可打开的指令卡。
 
-## Publisher: <br>
-[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech)
 
-## Use Case: <br>
-外部用户和桌面生产力工作流用户可用此技能为 Command Compass 生成指令卡，用于整理用户选择的 Prompt、文件、文件夹、快捷方式、网页链接和浏览器收藏。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cards may expose private local paths or sensitive content if users place those details in cards that are shared or synced remotely. <br>
-Mitigation: Review cards before syncing or sharing, and avoid including private paths, file contents, tokens, cookies, passwords, API keys, or other sensitive data. <br>
-Risk: Cards may point to executable files, shortcuts, scripts, installers, or external links. <br>
-Mitigation: Keep shell permissions disabled in generated cards and require explicit user confirmation before opening executable, shortcut, script, installer, or link targets. <br>
-Risk: Incorrect guessed local paths could create misleading or unsafe launch targets. <br>
-Mitigation: Generate local file, folder, and downloads cards only from user-selected or user-provided paths. <br>
+## Use Case:
 
+External users and agents use this skill to generate Command Compass CardSchema v1 cards for prompts, local files, folders, application shortcuts, web links, browser bookmarks, and reusable AI workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/skills/ai-bookmark-desktop-dock-assistant-zh) <br>
-- [Command Compass download page](https://www.wboke.com/zh/download) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Command Compass adaptation report](artifact/COMMAND_COMPASS_SKILL_ADAPTATION_REPORT.md) <br>
-- [Example Command Compass card package](artifact/examples/daily-file-index-cards.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON array or JSON object containing Command Compass CardSchema v1 cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cards use the instruction field for copied content and openTarget plus resourceKind for files, folders, links, bookmarks, and local resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes website migration instructions outside the main local Command Compass card-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid loading it into agents with write access to website repositories or deployment artifacts unless that migration work is intended.
+
+Risk: Generated cards can reference local files, folders, executable shortcuts, scripts, or private paths.
+
+Mitigation: Generate cards only for user-selected resources, keep shell permissions false, require confirmation before opening executable or script targets, and do not upload local paths or file contents.
+
+## Reference(s):
+
+- [Command Compass Download Page](https://www.wboke.com/zh/download)
+- [ClawHub Skill Page](https://clawhub.ai/addogiavara-tech/skills/ai-bookmark-desktop-dock-assistant-zh)
+- [Publisher Profile](https://clawhub.ai/user/addogiavara-tech)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, guidance]
+
+**Output Format:** [JSON arrays or a JSON object with a cards array]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command Compass CardSchema v1 cards use instruction for copied content and openTarget for file, folder, shortcut, or URL launch targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

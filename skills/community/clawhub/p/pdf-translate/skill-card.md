@@ -1,46 +1,60 @@
-## Description: <br>
-Translates PDF documents to Chinese by extracting text, guiding section-by-section Markdown translation, and generating CJK-capable PDFs with WeasyPrint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates PDF documents to Chinese with professional typography by extracting text, translating section by section into structured Markdown, and generating PDF output with full CJK support.
 
-## Publisher: <br>
-[chrislee121](https://clawhub.ai/user/chrislee121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrislee121](https://clawhub.ai/user/chrislee121)
 
-## Use Case: <br>
-Developers, researchers, and document authors use this skill to translate English PDFs into editable Chinese Markdown and polished PDF documents while preserving headings, tables, lists, code blocks, and citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs may contain sensitive local content and the workflow writes translated Markdown and PDF outputs to local paths. <br>
-Mitigation: Confirm the input document and output paths before extraction or conversion, especially for confidential files. <br>
-Risk: Legacy scripts may be confusing because the current release recommends the Markdown-to-PDF workflow instead. <br>
-Mitigation: Use scripts/md2pdf.py for normal conversion and review or modify scripts/translate_pdf.py and scripts/generate_complete_pdf.py before running them as standalone translators. <br>
-Risk: Scanned, encrypted, or unusually encoded PDFs may produce incomplete extracted text. <br>
-Mitigation: Preview extracted text before translation and use OCR or decryption steps when the source PDF requires them. <br>
+## Use Case:
 
+External users and developers use this skill to translate English PDF documents into Chinese while preserving headings, tables, lists, code blocks, and other structure. It produces editable Markdown and a polished PDF when the required local dependencies are available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chrislee121/pdf-translate) <br>
-- [Translation Standards](references/translation-standards.md) <br>
-- [Font Configuration](references/font-configuration.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Complete Workflow Example](references/complete-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Markdown and PDF files when the recommended conversion script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata, SKILL.md, CHANGELOG, target metadata) <br>
+Risk: Rendering untrusted Markdown to PDF can unexpectedly load external or local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted Markdown, or run PDF generation with network and local-file access sandboxed or disabled.
+
+Risk: A bundled legacy helper writes to a hardcoded personal output path.
+
+Mitigation: Use the recommended md2pdf.py workflow, or change the legacy helper output path before running it.
+
+Risk: The workflow processes local document contents and is designed for Chinese translation.
+
+Mitigation: Use it only with documents suitable for local processing and confirm Chinese is the intended target language before translation.
+
+## Reference(s):
+
+- [Translation Standards](references/translation-standards.md)
+- [Font Configuration](references/font-configuration.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Complete Example](references/complete-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; translated Markdown and PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese Markdown plus PDF output; PDF generation depends on local Python and system font/rendering dependencies.]
+
+## Skill Version(s):
+
+4.0.0 (source: evidence release metadata and CHANGELOG, released 2026-02-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

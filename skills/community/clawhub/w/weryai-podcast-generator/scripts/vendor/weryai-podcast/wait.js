@@ -33,7 +33,7 @@ export async function execute(input, ctx) {
 
   const textRequestBody = buildSubmitTextPayload(normalizedInput);
   const audioInput = normalizeGenerateAudioInput({
-    taskId: '<task-id-from-text-generation>',
+    taskId: '<taREDACTED-SECRET>',
     scripts: normalizedInput.scripts ?? null,
   });
   const audioValidationErrors = validateGenerateAudioInput(audioInput).filter((message) => message !== '`taskId` is required.');

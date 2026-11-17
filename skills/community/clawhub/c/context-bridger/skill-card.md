@@ -1,42 +1,61 @@
-## Description: <br>
-Maintains and transfers context across sessions, models, and time to avoid repeating information on every new interaction or model switch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Bridge maintains and transfers OpenClaw context across sessions, models, and time so users do not have to restate prior work after a new session or model switch.
 
-## Publisher: <br>
-[loudmouthedmedia](https://clawhub.ai/user/loudmouthedmedia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loudmouthedmedia](https://clawhub.ai/user/loudmouthedmedia)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to preserve working context across new sessions, model switches, and restarts. It creates local registries, discovery data, and handoff notes so future sessions can resume with less manual re-explanation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local context and registry files may contain secrets, credentials, personal data, or untrusted instructions if users add them. <br>
-Mitigation: Review handoff and registry content before reuse, and avoid storing secrets, credentials, personal data, or untrusted instructions in those files. <br>
-Risk: The setup script creates or overwrites files under ~/.openclaw. <br>
-Mitigation: Review setup.sh and the target file paths before running it, especially in an existing OpenClaw environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve session startup context, installed skill registries, cron and agent awareness, and model handoff notes across sessions. It is intended for continuity workflows where agents need a concise memory bridge after `/new` or model changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/loudmouthedmedia/context-bridger) <br>
-- [Context Bridge Homepage](https://github.com/loudmouthedmedia/context-bridge) <br>
-- [Context Bridge Support](https://github.com/loudmouthedmedia/context-bridge/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON or Markdown file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Setup creates or updates local OpenClaw registry, discovery, handoff, and helper script files under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill persistently collects and auto-loads broad OpenClaw metadata, including registries and model handoff notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize the contents of the generated ~/.openclaw registry and handoff files before relying on them in future sessions.
+
+Risk: The setup script writes multiple files under ~/.openclaw and may include cron payloads, agent workspace paths, and recent project context.
+
+Mitigation: Run setup only after reviewing the files it will create or update, then restrict file permissions for any sensitive local context.
+
+Risk: Direct archive installation commands can install code from a remote release without local inspection.
+
+Mitigation: Prefer a reviewed source checkout or verify the release source and checksum before using direct archive commands.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/loudmouthedmedia/skills/context-bridger)
+- [Artifact README](artifact/README.md)
+- [ClawHub metadata](artifact/clawhub.json)
+- [Project homepage](https://github.com/loudmouthedmedia/context-bridge)
+- [Support issues](https://github.com/loudmouthedmedia/context-bridge/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on OpenClaw registry files, model handoff notes, setup steps, and session startup configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

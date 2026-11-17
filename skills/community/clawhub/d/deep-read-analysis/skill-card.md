@@ -1,41 +1,56 @@
-## Description: <br>
-Deep Read analyzes books with a research-driven method to extract core ideas, notable quotes, practical application guidance, and related evergreen notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Read analyzes books to produce structured author context, outlines, core insights, key quotes, practical application examples, and related evergreen-note links.
 
-## Publisher: <br>
-[zhubao315](https://clawhub.ai/user/zhubao315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhubao315](https://clawhub.ai/user/zhubao315)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, students, and knowledge workers use this skill to turn a book title, optional book file, and personal notes into a structured deep-reading analysis with reusable learning and work guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The dependency list is unpinned and includes packages that may be unused by the current artifact.
+
+Mitigation: Remove unnecessary dependencies and pin any required packages to reviewed versions before installation.
+
+Risk: Book files and user notes may contain private or copyrighted material.
+
+Mitigation: Only provide content the user is authorized to analyze and scrub sensitive notes before use.
+
+Risk: The current Python artifact uses placeholder Chinese-language output until model integration is completed.
+
+Mitigation: Validate the completed model integration and review representative outputs before relying on the skill for analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to generate structured deep-reading analysis from a book title, optional book file, and user notes. It produces author context, book structure, core insights, quote analysis, application examples, and related evergreen-note suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency hygiene issues may affect installation or production use. <br>
-Mitigation: Install in an isolated environment, pin or lock dependencies, and verify the resolved markdown package version before production use. <br>
-Risk: Generated book analysis and quote selections may be incomplete or misleading. <br>
-Mitigation: Review outputs against the source book and user notes before relying on them for study, publication, or decision-making. <br>
+**Output Format:** [Structured text or Markdown sections with lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Deep Read ClawHub listing](https://clawhub.ai/zhubao315/deep-read-analysis) <br>
-- [zhubao315 publisher profile](https://clawhub.ai/user/zhubao315) <br>
+**Other Properties Related to Output:** [Includes author context, creation context, outline, content analysis, core insights, key quotes, application examples, and related evergreen-note links.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured text fields and lists, with Python dictionary output in the bundled example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include author information, creation context, outline, content analysis, core insights, key quotes, application examples, and related evergreen notes.] <br>
+1.0.0 (source: server release metadata and artifact skill.yaml/SKILL.md)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.yaml) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

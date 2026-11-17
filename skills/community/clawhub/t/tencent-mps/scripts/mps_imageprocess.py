@@ -119,20 +119,11 @@ COS 存储约定：
       --format PNG --quality 90
 
   # === 编排场景（ScheduleId，腾讯云控制台预置能力） ===
-  # AI 图片理解（30200）
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
-
-  # AI 抠图（30030）
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
-
   # AI 图片修复（30040）
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
   # AI 前景提取（30031）
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
-
-  # AI 扩图（30010，图片扩展）
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
 
   # AI 文字水印擦除（30000）
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
@@ -152,11 +143,11 @@ import base64
 import json
 import os
 import sys
-from mps_auto_upgrade import check_sdk_version
 
 # 轮询模块（同目录）
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
     _LOAD_ENV_AVAILABLE = True
@@ -231,14 +222,8 @@ RESIZE_MODES = {
 # 用户可以仅提供 InputInfo + ScheduleId 即可完成整个能力调用。
 SCHEDULE_PRESETS = {
     30000: "AI 文字水印擦除",
-    30010: "AI 扩图（图片扩展）",
-    30030: "AI 抠图",
     30031: "AI 前景提取",
     30040: "AI 图片修复",
-    30060: "图片背景融合（请改用 mps_image_bg_fusion.py）",
-    30100: "图片换装（请改用 mps_image_tryon.py）",
-    30101: "内衣换装（请改用 mps_image_tryon.py）",
-    30200: "AI 图片理解",
 }
 
 
@@ -253,11 +238,11 @@ def get_cos_region():
 
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。若缺失则尝试从系统文件自动加载后重试。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        # 尝试从系统环境变量文件自动加载
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -270,7 +255,8 @@ def get_credentials():
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 /etc/environment、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
+                    file=sys.stderr,
                 )
             sys.exit(1)
     return credential.Credential(secret_id, secret_key)
@@ -1114,12 +1100,9 @@ def main():
       --denoise weak --super-resolution --beauty Whiten:30 --format PNG
 
   # === 编排场景（ScheduleId，控制台预置能力） ===
-  # AI 图片理解 / AI 抠图 / AI 图片修复 / AI 前景提取 / AI 扩图 / AI 文字水印擦除
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
+  # AI 图片修复 / AI 前景提取 / AI 文字水印擦除
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
-  python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
   python3 mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
   # Dry Run（仅打印请求参数）
@@ -1136,12 +1119,8 @@ def main():
 
 编排场景（--schedule-id，控制台预置 AI 能力）：
   30000  AI 文字水印擦除
-  30010  AI 扩图（图片扩展）
-  30030  AI 抠图
   30031  AI 前景提取
   30040  AI 图片修复
-  30200  AI 图片理解
-  （换装请用 mps_image_tryon.py；背景融合请用 mps_image_bg_fusion.py）
 
 美颜效果类型（--beauty Type:Value）：
   Whiten=美白  BlackAlpha1=美黑  BlackAlpha2=较强美黑  FoundationAlpha2=粉白
@@ -1295,10 +1274,9 @@ def main():
                                 help="图片处理模板 ID（使用预设模板时指定）")
     advanced_group.add_argument("--schedule-id", type=int,
                                 help="编排场景 ID："
-                                     "30000=AI文字水印擦除 | 30010=AI扩图 | "
-                                     "30030=AI抠图 | 30031=AI前景提取 | "
-                                     "30040=AI图片修复 | 30200=AI图片理解。"
-                                     "换装请用 mps_image_tryon.py，背景融合请用 mps_image_bg_fusion.py")
+                                     "30000=AI文字水印擦除 | 30031=AI前景提取 | "
+                                     "30040=AI图片修复。"
+                                     "其余 AI 图片能力均有专用脚本，见 SKILL.md 路由表")
     advanced_group.add_argument("--resource-id", type=str,
                                 help="资源 ID（默认为账号主资源 ID）")
 

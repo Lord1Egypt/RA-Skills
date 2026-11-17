@@ -1,49 +1,62 @@
-## Description: <br>
-Twitter Watch Reply monitors configured X/Twitter accounts through the 6551 interface, identifies new tweets, drafts reply candidates, and supports a semi-automatic browser-based reply workflow after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors specified Twitter/X accounts through the 6551 API, filters new posts, and helps an agent draft reply candidates for user-approved browser-based replies.
 
-## Publisher: <br>
-[yugulugulu](https://clawhub.ai/user/yugulugulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yugulugulu](https://clawhub.ai/user/yugulugulu)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor selected X/Twitter accounts, prepare concise AI-assisted reply drafts, and avoid duplicate handling with local watch state. It is intended for semi-automatic social engagement where a user confirms the reply before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Twitter/X token for 6551 API access. <br>
-Mitigation: Provide the token only through the runtime environment, do not hard-code it, and avoid sharing it in chats or committed files. <br>
-Risk: Watch state and pending tweet data are stored in the workspace. <br>
-Mitigation: Use an appropriate workspace or custom data directory and review stored state before sharing the workspace. <br>
-Risk: Optional notifications can forward tweet content and reply candidates to a configured chat channel. <br>
-Mitigation: Keep notifications disabled unless intentionally configured, and verify the target channel, thread, and recipient before enabling. <br>
-Risk: Reply drafts could be posted from a logged-in browser session if the workflow is advanced without review. <br>
-Mitigation: Keep the documented semi-automatic flow and require explicit user confirmation before browser-based posting. <br>
+## Use Case:
 
+Developers and social operators use this skill to monitor selected X/Twitter accounts, generate concise reply drafts, and keep a deduplicated pending/replied state while preserving a manual approval step before posting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yugulugulu/twitter-watch-reply) <br>
-- [README](README.md) <br>
-- [Configuration example](references/config-example.json) <br>
-- [Host adapter reference](references/host-adapter.md) <br>
-- [Reply generation guide](references/reply-generation.md) <br>
-- [6551 token setup](https://6551.io/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON alert payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft replies and notification payloads for review; posting and outbound notifications require user or host confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: A helper can execute a spoofed local script when rendering alert text from an untrusted working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid or patch render_alert_text.py until it resolves render_alert.py relative to its installed skill directory, and run commands only from a trusted workspace.
+
+Risk: The workflow relies on sensitive 6551 token access and a logged-in X browser session.
+
+Mitigation: Use a scoped 6551 token, keep credentials out of skill files and chats, and enable notifications only for channels and targets you control.
+
+Risk: Generated replies could be posted publicly through the user's social account.
+
+Mitigation: Keep the documented semi-automatic confirmation step for every public reply and verify the selected reply before posting.
+
+## Reference(s):
+
+- [README](README.md)
+- [Configuration Example](references/config-example.json)
+- [Host Adapter Reference](references/host-adapter.md)
+- [Reply Generation Guide](references/reply-generation.md)
+- [6551 MCP Token Setup](https://6551.io/mcp)
+- [6551 API Base](https://ai.6551.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON alert payloads, plain-text alert summaries, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reply candidates are intended for human confirmation before browser-based posting.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

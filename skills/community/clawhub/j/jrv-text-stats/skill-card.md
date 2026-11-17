@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze text files for word count, character count, line count, sentence count, reading time, speaking time, readability scores (Flesch Reading Ease, Flesch-Kincaid Grade Level), and vocabulary statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze text files for word count, character count, line count, sentence count, reading time, speaking time, readability scores (Flesch Reading Ease, Flesch-Kincaid Grade Level), and vocabulary statistics.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, writers, editors, and other external users use this skill to analyze local text files or stdin for counts, readability metrics, vocabulary statistics, and estimated reading or speaking time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads any local file path supplied by the user and may expose derived details such as counts or the longest word. <br>
-Mitigation: Run it only on text the user is comfortable analyzing or disclosing in summarized form. <br>
-Risk: Source provenance is unavailable for this release. <br>
-Mitigation: Review the artifact files and security evidence before using it in environments that require verified source provenance. <br>
-Risk: Readability and syllable metrics are heuristic and English-optimized. <br>
-Mitigation: Treat readability scores and difficulty labels as approximate indicators rather than authoritative measurements. <br>
+## Use Case:
 
+Developers, writers, editors, and other external users use this skill to analyze local text or stdin for counts, readability, vocabulary diversity, and reading or speaking time estimates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON statistics, with Markdown guidance and shell command examples for agent use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple input files, stdin input, compact summaries, UTF-8 text with encoding-error fallback, and heuristic English-optimized syllable counting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads user-provided text files or stdin, so sensitive content may be exposed to the agent's local analysis context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on text or file paths intentionally provided, and avoid sensitive files unless local analysis of those contents is intended.
+
+Risk: Readability scores and syllable counts are heuristic and English-optimized, so results can be inaccurate for non-English text or unusual writing.
+
+Mitigation: Treat readability and syllable metrics as estimates, and review important conclusions before relying on them.
+
+## Reference(s):
+
+- [Text Stats on ClawHub](https://clawhub.ai/johnnywang2001/skills/jrv-text-stats)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Plain text metrics or JSON, with shell command examples for use by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports multiple files, stdin input, and compact summary output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

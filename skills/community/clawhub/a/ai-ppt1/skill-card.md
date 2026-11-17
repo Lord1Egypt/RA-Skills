@@ -1,40 +1,54 @@
-## Description: <br>
-Creates professional, elegant PPT presentations with modern design. Invoke when user wants to create, design, or generate a PowerPoint presentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates professional, elegant PPT presentations with modern design. Invoke when user wants to create, design, or generate a PowerPoint presentation.
 
-## Publisher: <br>
-[will1189](https://clawhub.ai/user/will1189) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[will1189](https://clawhub.ai/user/will1189)
 
-## Use Case: <br>
-Employees, external users, developers, and content creators use this skill to draft professional slide decks for business presentations, proposals, reports, portfolios, training materials, educational content, and meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated presentation content may be inaccurate, incomplete, or unsuitable for the intended audience. <br>
-Mitigation: Review and edit slide content, facts, and design choices before using the presentation. <br>
-Risk: Separate tools used to convert Markdown into a PowerPoint file may have their own permissions or data-handling risks. <br>
-Mitigation: Use trusted conversion tools and review their permissions and data handling before processing sensitive content. <br>
+## Use Case:
 
+External users and creators use this skill to draft business, portfolio, product, training, educational, report, proposal, and meeting presentations with clean slide structure and professional visual design guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/will1189/ai-ppt1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown slide outline with headings, content points, and visual element descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, file creation, network access, or external tool use is described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for many slide-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants presentation drafting or design help before applying the skill to broad slide-related prompts.
+
+Risk: Generated presentation content or visual recommendations may be incomplete, inaccurate, or unsuitable for the target audience.
+
+Mitigation: Review slide content, hierarchy, charts, and visual descriptions before sharing or presenting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/will1189/skills/ai-ppt1)
+- [Publisher profile](https://clawhub.ai/user/will1189)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown slide outlines and presentation design guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, credential use, or hidden system behavior indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

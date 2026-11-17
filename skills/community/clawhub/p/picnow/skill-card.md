@@ -1,44 +1,55 @@
-## Description: <br>
-Generate high-quality images through Picnow for text-to-image and image-to-image workflows, including product photos, posters, banners, illustrations, covers, thumbnails, style transfer, background changes, and edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images through Picnow's api.letmego.top service with 1K, 2K, and 4K quality options and square, landscape, or portrait aspect ratios.
 
-## Publisher: <br>
-[jeekchen](https://clawhub.ai/user/jeekchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeekchen](https://clawhub.ai/user/jeekchen)
 
-## Use Case: <br>
-External users and developers use this skill to generate or edit images from an agent by collecting image parameters, invoking the Picnow script, and returning generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to the external Picnow API provider. <br>
-Mitigation: Do not submit secrets, private documents, regulated data, or sensitive personal images unless the provider's terms and privacy practices are acceptable. <br>
-Risk: The skill requires a LETMEGO_API_KEY token for API access. <br>
-Mitigation: Store the token in the environment and avoid placing it in prompts, generated files, shell history, or shared logs. <br>
-Risk: Generated results are returned as public CDN URLs. <br>
-Mitigation: Review image URLs before sharing or embedding them, especially for private or customer-sensitive workflows. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to create product images, banners, posters, social visuals, thumbnails, and image-to-image edits through the Picnow API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeekchen/picnow) <br>
-- [Picnow install and usage docs](https://picnow.letmego.top/skills) <br>
-- [Picnow API provider](https://api.letmego.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generation script prints a single JSON line containing image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Reference-image generation can upload any readable local file passed through --ref to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and reference images that are appropriate to send to api.letmego.top, avoid arbitrary local paths, and confirm reference files before execution.
+
+Risk: The skill requires an API token for the third-party Picnow service.
+
+Mitigation: Store LETMEGO_API_KEY in a secret manager or temporary environment variable and avoid exposing it in command history, logs, or shared files.
+
+## Reference(s):
+
+- [Picnow install and usage documentation](https://picnow.letmego.top/skills)
+- [Picnow API service](https://api.letmego.top)
+- [ClawHub release page](https://clawhub.ai/jeekchen/skills/picnow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON URL output from the generation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generation script prints a single JSON object containing generated image URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

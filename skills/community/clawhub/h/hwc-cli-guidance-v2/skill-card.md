@@ -1,45 +1,68 @@
-## Description: <br>
-Provides guidance for installing, configuring, authenticating, and using Huawei Cloud KooCLI for cloud operations and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud CLI Guidance helps developers install, configure, authenticate, and use Huawei Cloud KooCLI for cloud service management and automation.
 
-## Publisher: <br>
-[jason7602](https://clawhub.ai/user/jason7602) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason7602](https://clawhub.ai/user/jason7602)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to learn KooCLI installation, credential configuration, common Huawei Cloud service commands, automation examples, and operational best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KooCLI examples use Huawei Cloud AK/SK credentials and may expose secrets if copied into scripts or logs. <br>
-Mitigation: Store credentials as secrets or environment variables, use least-privilege or temporary credentials where possible, and avoid hard-coding AK/SK values. <br>
-Risk: Installation examples download CLI binaries and move them into system paths. <br>
-Mitigation: Download KooCLI only from official Huawei sources and verify binaries before system-wide installation. <br>
-Risk: Delete, restart, and bulk-operation examples can affect live cloud resources. <br>
-Mitigation: Test commands in scoped non-production environments and confirm resource identifiers before running them against production. <br>
+## Use Case:
 
+Developers and cloud operators use this skill for guidance on installing Huawei Cloud KooCLI, configuring authentication, running common cloud management commands, and building simple automation workflows.
 
-## Reference(s): <br>
-- [KooCLI Official Documentation](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html) <br>
-- [KooCLI User Guide](https://support.huaweicloud.com/ug-hcli/hcli_02_0001.html) <br>
-- [KooCLI API Reference](https://support.huaweicloud.com/api-hcli/hcli_01_0001.html) <br>
-- [Huawei Cloud Service Documentation](https://support.huaweicloud.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may include cloud administration commands that users should review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: Installation guidance can involve unpinned downloads and system-wide placement of CLI binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned, verified KooCLI releases, validate checksums when available, and avoid sudo or system-wide installation unless operationally required.
+
+Risk: Cloud credentials can be exposed through long-lived AK/SK values, command histories, or logs.
+
+Mitigation: Use least-privilege credentials, prefer secure environment or secret-store injection, avoid logging secrets, and rotate credentials after suspected exposure.
+
+Risk: The guidance includes live infrastructure-changing commands, including start, stop, restart, upload, delete, and deployment examples.
+
+Mitigation: Review commands before execution, test in non-production accounts where possible, scope IAM permissions narrowly, and require operator approval for production changes.
+
+Risk: Python examples using shell=True can become unsafe if reused with dynamic or untrusted input.
+
+Mitigation: Use argument-list subprocess calls, validate inputs, and avoid shell=True in reusable automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason7602/skills/hwc-cli-guidance-v2)
+- [Artifact installation guide](artifact/reference/installation-guide.md)
+- [Artifact command reference](artifact/reference/command-reference.md)
+- [Artifact best practices](artifact/reference/best-practices.md)
+- [KooCLI installation guide](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html)
+- [KooCLI user guide](https://support.huaweicloud.com/ug-hcli/hcli_02_0001.html)
+- [KooCLI API reference](https://support.huaweicloud.com/api-hcli/hcli_01_0001.html)
+- [Huawei Cloud service documentation](https://support.huaweicloud.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash, PowerShell, Python, YAML, and Groovy code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for KooCLI installation, authentication, common commands, operational examples, and best practices.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

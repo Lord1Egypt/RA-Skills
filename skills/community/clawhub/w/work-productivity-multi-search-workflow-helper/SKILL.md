@@ -1,59 +1,50 @@
 ---
 name: work-productivity-multi-search-workflow-helper
-description: Coordinate multi-source web and repository search. Use when the user needs query expansion, source diversity, deduped findings, evidence grading, citation planning, or a repeatable search workflow across search engines, forums, docs, code hosts, and registries.
+description: >-
+  Help users with Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, multi-search-engine, multi, search, engine, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Work Productivity Multi Search Workflow Helper
 
-Use this skill when one search query is not enough and the user needs a disciplined way to gather corroborated evidence from multiple source families.
+## Requirement
 
-Read `references/requirement-plan.md` if you need the source evidence behind this skill.
+Use this skill to help AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows with:
 
-## Search Plan
+> Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
-Start by defining:
+Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
+Evidence: 12 signals across 3 source families.
 
-- The decision the search should support.
-- Required freshness, geography, language, or source type.
-- Trusted primary sources and sources to treat as anecdotal.
-- Minimum evidence count and diversity target.
+Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 
 ## Workflow
 
-1. Convert the user's question into 3-6 query variants: exact phrase, synonym, problem wording, tool name, error text, and negative query.
-2. Assign each query to suitable source families such as official docs, GitHub issues, forums, news, package registries, academic search, or Chinese-language communities.
-3. Record results with title, URL, date, source family, and why the result matters.
-4. Deduplicate repeated pages, syndicated posts, and same-author reposts.
-5. Grade evidence as primary, implementation signal, user pain, market signal, or weak anecdote.
-6. Produce a short synthesis that distinguishes confirmed facts from plausible leads and gaps.
+1. Restate the user's outcome, constraints, available inputs, and success criteria.
+2. Create a concise work plan, template, automation outline, or decision aid that reduces manual coordination.
+3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
+4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
+5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
+6. Validate the output against the success criteria and list any remaining risks or follow-up work.
 
-## Guardrails
+## Expected Outputs
 
-- Do not inflate confidence from many copies of the same source.
-- Prefer official documentation or primary repository evidence for technical claims.
-- Note stale pages and date mismatches.
-- Preserve links so the user can audit the evidence trail.
+- A tailored answer or artifact for the user's immediate situation.
+- A reusable checklist or workflow when the task is repeatable.
+- A verification note showing how the result was checked.
 
-## Outputs
+## Validation
 
-- Search matrix with queries, sources, and findings.
-- Deduplicated evidence list with source-family coverage.
-- Recommendation or answer with confidence and open gaps.
-- Reusable query set for follow-up searches.
-
-## Validation Checklist
-
-- At least two source families are used when the question allows it.
-- Duplicates and weak evidence are labeled.
-- Dates are captured for time-sensitive topics.
-- The final answer does not overstate what the evidence supports.
+- The output directly addresses the discovered requirement.
+- The user can act on the result without reading the original source post.
+- Assumptions, limits, and required inputs are visible.
+- The final response includes a short usage or next-step note when helpful.
 
 ## Triggers
 
-Keywords: multi search, evidence, source diversity, query expansion, corroborate, citations, research sweep, market scan.
+Keywords: `work-productivity`, `multi-search-engine`, `multi`, `search`, `engine`, `integration`, `engines`, `global`, `supports`, `bug fix`
 
-Example requests:
+Example trigger sentences:
 
-- `Search across sources and tell me whether this tool demand is real.`
-- `Use $work-productivity-multi-search-workflow-helper to build a deduped evidence table.`
-- `Find primary docs, GitHub issues, and community posts for this error.`
+- `Help me Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs,.`
+- `I need a practical workflow for Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs,.`
+- `Use $work-productivity-multi-search-workflow-helper to handle Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs,.`

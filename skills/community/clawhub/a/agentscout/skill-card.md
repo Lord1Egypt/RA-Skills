@@ -1,42 +1,58 @@
-## Description: <br>
-Discover trending AI Agent projects on GitHub and generate Xiaohongshu-ready tutorials, copywriting, hashtags, and visual assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentScout discovers trending AI agent projects on GitHub and generates Xiaohongshu-ready tutorials, copy, cover images, and project metadata.
 
-## Publisher: <br>
-[auxito](https://clawhub.ai/user/auxito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auxito](https://clawhub.ai/user/auxito)
 
-## Use Case: <br>
-Developers, technical creators, and social content teams use AgentScout to find public AI agent projects, rank them, analyze selected repositories, and generate publish-ready Xiaohongshu posts with supporting images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected repository content, prompts, and image prompts may be sent to configured LLM or image providers. <br>
-Mitigation: Use approved providers and endpoints, avoid private or sensitive repositories, and confirm provider data-handling terms before running the pipeline. <br>
-Risk: GitHub access tokens may expose more repository access than the skill needs. <br>
-Mitigation: Use a least-privilege GitHub token and rotate or revoke it when it is no longer needed. <br>
-Risk: Generated tutorials, rankings, and social posts may contain inaccurate or misleading claims. <br>
-Mitigation: Review generated analysis, copy, tags, and images before publishing or sharing externally. <br>
+## Use Case:
 
+Developers, technical content creators, and agent operators use AgentScout to find promising AI agent repositories, rank candidates, analyze selected projects, and generate publish-ready social content and visual assets.
 
-## Reference(s): <br>
-- [AgentScout ClawHub page](https://clawhub.ai/auxito/agentscout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, JSON metadata, shell commands, configuration guidance, and locally generated image assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes analysis.md, post.md, metadata.json, and images under a local output directory for the selected project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted GitHub repository content can influence generated LLM output and browser-rendered image content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated analysis, posts, images, and commands before publishing or copying them, and run the skill in an isolated environment until prompt-injection handling and HTML escaping are improved.
+
+Risk: Repository content and generated prompts may be sent to configured LLM or image providers.
+
+Mitigation: Use approved providers, avoid private or sensitive repositories, and configure a low-scope GitHub token.
+
+Risk: External URL and dependency controls are not described as fully hardened in the security evidence.
+
+Mitigation: Restrict the runtime network environment where practical and review dependencies before deployment.
+
+## Reference(s):
+
+- [AgentScout ClawHub listing](https://clawhub.ai/auxito/skills/agentscout)
+- [auxito publisher profile](https://clawhub.ai/user/auxito)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, images, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON metadata, generated image files, and concise command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated artifacts under an output directory for the selected project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

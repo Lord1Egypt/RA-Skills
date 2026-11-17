@@ -1,43 +1,52 @@
-## Description: <br>
-Guides users through creating, validating, and integrating custom OpenClaw plugins, tools, and commands using templates, scripts, examples, and reference material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users to create, validate, and integrate custom plugins, tools, and commands into OpenClaw using templates, scripts, examples, and references.
 
-## Publisher: <br>
-[marcusy2k](https://clawhub.ai/user/marcusy2k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcusy2k](https://clawhub.ai/user/marcusy2k)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold OpenClaw plugins, understand the expected manifest and lifecycle structure, validate plugin metadata, and prepare plugins for installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or custom plugin code can persist and run inside OpenClaw after restart. <br>
-Mitigation: Review plugin code, manifests, permissions, and behavior before installing; install only plugins whose permissions and behavior are understood. <br>
-Risk: Local scaffolding commands create files in the selected output directory. <br>
-Mitigation: Run scaffolding in an intended development directory and inspect generated files before integrating the plugin. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold OpenClaw plugins, understand required plugin structure, validate plugin manifests, and integrate plugins or commands into OpenClaw.
 
-## Reference(s): <br>
-- [OpenClaw Plugin API Reference](references/api-reference.md) <br>
-- [OpenClaw CLI Reference for Plugin Management](references/cli-reference.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash, JSON, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce local plugin scaffold files when the initialization script is run by the agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated or example plugin code may be installed into OpenClaw and extend agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install this skill only when building OpenClaw plugins, and review generated plugin code and manifests before installing them into OpenClaw.
+
+## Reference(s):
+
+- [OpenClaw Plugin API Reference](artifact/references/api-reference.md)
+- [OpenClaw CLI Reference for Plugin Management](artifact/references/cli-reference.md)
+- [Hello World Plugin Example](artifact/examples/hello-world/README.md)
+- [Custom Command Plugin Example](artifact/examples/custom-command/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose scaffold files, plugin manifests, validation commands, and integration steps for OpenClaw plugins.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

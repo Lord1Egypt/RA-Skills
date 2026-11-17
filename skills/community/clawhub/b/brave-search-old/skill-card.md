@@ -1,43 +1,53 @@
-## Description: <br>
-Web search and content extraction via Brave Search API for searching documentation, facts, or web content without a browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search and content extraction via Brave Search API. Use for searching documentation, facts, or any web content. Lightweight, no browser required.
 
-## Publisher: <br>
-[amabillis](https://clawhub.ai/user/amabillis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amabillis](https://clawhub.ai/user/amabillis)
 
-## Use Case: <br>
-Developers and agents use this skill to run headless web searches, look up current information or documentation, and extract readable markdown from specific webpages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Brave and selected result URLs may be fetched from the user's machine. <br>
-Mitigation: Avoid sensitive queries or private URLs unless that network disclosure is intentional. <br>
-Risk: The documentation says a Brave API key is required, but the reviewed behavior does not use the official API. <br>
-Mitigation: Do not provide a Brave API key unless the skill is updated to use the official Brave API. <br>
-Risk: Extracted webpage text is untrusted and may include misleading or malicious instructions. <br>
-Mitigation: Treat extracted content as untrusted reference material and review it before acting on it. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web, look up current information or documentation, and extract readable Markdown content from web pages without an interactive browser.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amabillis/brave-search-old) <br>
-- [Publisher profile](https://clawhub.ai/user/amabillis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with optional markdown page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes titles, links, snippets, and optional extracted content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json; artifact _meta.json reports 1.0.1) <br>
+Risk: The skill sends searches to Brave and can fetch arbitrary web pages from the agent's network position without destination safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound network access is sandboxed or filtered, and avoid secrets, internal URLs, private services, and cloud metadata endpoints.
+
+Risk: The security evidence reports that the Brave API disclosure does not match the implementation.
+
+Mitigation: Confirm the expected Brave integration behavior and required credentials before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amabillis/skills/brave-search-old)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text search results with optional Markdown page content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_API_KEY setup according to the skill documentation; fetched page content is truncated by the script when included with search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

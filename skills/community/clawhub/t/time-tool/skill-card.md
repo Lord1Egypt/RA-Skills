@@ -1,38 +1,49 @@
-## Description: <br>
-Measure execution time of commands. Use for performance benchmarking, script optimization, and timing analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures command execution time for performance benchmarking, script optimization, and timing analysis.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to measure command execution time while benchmarking scripts, checking performance changes, or comparing command behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run user-specified local commands for timing, which may mutate files, expose secrets, or access sensitive accounts if unsafe commands are provided. <br>
-Mitigation: Use it only in workspaces where command execution is acceptable, and time trusted commands that do not touch important files, secrets, or sensitive accounts. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a command and view elapsed timing information while benchmarking commands, optimizing scripts, or comparing performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/time-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text timing output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports elapsed time for a user-specified local command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Timed commands execute with the same practical caution required for running those commands directly, including commands that change files, use credentials, or access the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before timing it and run only commands that are appropriate for the workspace and credentials available to the agent.
+
+## Reference(s):
+
+- [Time Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/time-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text timing summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports elapsed wall-clock time for the supplied command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,7 @@
 # 2008-2026 事件知识库
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：为人生岔路模拟提供时代、行业、城市、资产、技术、家庭和全球背景。事件只用于过去复盘和情景分析，避免宏观预测、焦虑制造和投资建议。
 
 ## 使用规则

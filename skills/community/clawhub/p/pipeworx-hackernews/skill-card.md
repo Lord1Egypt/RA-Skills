@@ -1,43 +1,55 @@
-## Description: <br>
-Search and browse Hacker News, including top stories, keyword search via Algolia, and individual item lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse Hacker News, including top stories, keyword search through Algolia, and individual item lookup.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to search Hacker News, inspect current top stories, and retrieve individual stories or comments for research, monitoring, digests, and follow-up analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls external Hacker News-related services through the Pipeworx MCP gateway, so returned content may change over time or include untrusted public user-generated text. <br>
-Mitigation: Review retrieved items before using them in published summaries, decisions, or downstream automation. <br>
-Risk: The artifact declares a curl dependency and includes command examples that make network requests. <br>
-Mitigation: Run commands only in an environment where outbound requests to the documented Pipeworx endpoint are acceptable. <br>
+## Use Case:
 
+Developers and external users use this skill to search Hacker News discussions, retrieve current top stories, and look up individual stories or comments for digests, research, or linked-item review.
 
-## Reference(s): <br>
-- [Pipeworx Hacker News pack homepage](https://pipeworx.io/packs/hackernews) <br>
-- [Pipeworx Hacker News MCP endpoint](https://gateway.pipeworx.io/hackernews/mcp) <br>
-- [ClawHub skill listing](https://clawhub.ai/brucegutman/pipeworx-hackernews) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks when showing connection or API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Hacker News search results, top-story summaries, item details, and MCP connection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The connection instructions use an unpinned third-party npm package that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version and run the bridge in a restricted environment.
+
+Risk: Hacker News queries are sent through Pipeworx, which may expose sensitive search terms to a third-party service.
+
+Mitigation: Avoid confidential company, incident, or research terms unless that data sharing is approved.
+
+## Reference(s):
+
+- [Pipeworx Hacker News pack](https://pipeworx.io/packs/hackernews)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-hackernews)
+- [Pipeworx Hacker News MCP endpoint](https://gateway.pipeworx.io/hackernews/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown text with JSON configuration and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples; MCP connection instructions use npx with mcp-remote.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Detects simple Spanish or English reminder phrases with HH:MM times, schedules a one-time reminder for today or tomorrow, and sends the alert via Telegram or console. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects basic Spanish and English reminder phrases with HH:MM times and schedules a reminder through Telegram when available or the console otherwise.
 
-## Publisher: <br>
-[jul879n](https://clawhub.ai/user/jul879n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jul879n](https://clawhub.ai/user/jul879n)
 
-## Use Case: <br>
-External users and developers use Quick Reminder to turn chat or console messages into simple one-time reminders without a separate reminder service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder text may be sent back through the same Telegram chat or console channel where the skill was used. <br>
-Mitigation: Avoid entering secrets or highly sensitive information in reminder text, and install the skill only where that delivery channel is acceptable. <br>
-Risk: Scheduled reminders depend on the OpenClaw gateway process remaining alive until the reminder time. <br>
-Mitigation: Use the skill for lightweight reminders where process restarts or shutdowns will not create unacceptable impact. <br>
+## Use Case:
 
+External users and developers use this skill to turn simple natural-language reminder messages into one-time scheduled notifications in Telegram or a console session.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text scheduling confirmations and reminder messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports one-time reminders using HH:MM times; repeated reminders are not supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reminder text may contain sensitive personal information and can be sent back to the same Telegram chat or printed in a shared terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing secrets, account details, or highly sensitive content in reminders, especially in shared chats or terminals.
+
+Risk: The skill watches incoming messages for reminder phrases.
+
+Mitigation: Deploy only in contexts where users expect reminder phrase detection and understand where reminder confirmations and notifications are delivered.
+
+## Reference(s):
+
+- [Quick Reminder on ClawHub](https://clawhub.ai/jul879n/skills/quick-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text reminder and scheduling confirmation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One-time reminders only; accepts basic Spanish and English patterns with HH:MM times.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

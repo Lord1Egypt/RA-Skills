@@ -1,39 +1,52 @@
-## Description: <br>
-Validate date strings and check formats. Support YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY. Pure Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate date strings and check formats. Support YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY. Pure Python.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to validate date strings locally and return parsed date details for supported formats.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Ambiguous slash-form dates can be interpreted in multiple ways because the script accepts both day/month/year and month/day/year inputs.
+
+Mitigation: Prefer YYYY-MM-DD inputs or review slash-form dates before relying on the result.
+
+Risk: The skill documentation contains promotional links unrelated to local date validation.
+
+Mitigation: Review linked pages separately before following them; they are not required for local execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to validate date strings in command-line workflows and inspect the parsed format, date parts, and weekday. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The README includes outbound promotional links, although the tool itself does not open links or send data. <br>
-Mitigation: Review promotional links before sharing the skill in controlled environments and run only the local date-validation script when validating dates. <br>
+**Output Format:** [Markdown guidance with command examples and JSON command output from the validator script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-date-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+**Other Properties Related to Output:** [The local validator emits JSON with validity, parsed format, date parts, and weekday when a date is valid.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the bundled Python script emits JSON validation results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python standard library utility with no external dependencies, credential handling, persistence, or network access reported.] <br>
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

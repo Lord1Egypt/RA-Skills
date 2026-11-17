@@ -1,43 +1,53 @@
-## Description: <br>
-Train, evaluate, and improve Agent skill files as reusable external capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillOpt helps agents train, evaluate, and improve reusable skill files through rollout scoring, validation gates, and best_skill.md export.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and skill maintainers use SkillOpt to improve agent skill documents through train and validation task suites, command-backed rollouts, scoring, validation gates, and export of a deployable best_skill.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command-backed rollouts and command scorers can execute local shell commands. <br>
-Mitigation: Use the skill only in trusted workspaces, review --agent-command values and task scorer command fields before running them, and treat imported task suites as executable code. <br>
-Risk: Rollout files can contain prompts, model outputs, command output, stderr, task data, and scores. <br>
-Mitigation: Avoid sensitive prompts or secrets unless you control where rollout logs are written and how they are retained. <br>
-Risk: Skill edits can overfit train or validation examples or accidentally embed benchmark-specific answers. <br>
-Mitigation: Keep train and validation splits separate, use validation only as an accept/reject gate, review accepted edits, and use a fresh holdout split for fragile or high-stakes skills. <br>
+## Use Case:
 
+Developers and engineers use SkillOpt to optimize agent skill documents against train and validation task suites, compare baseline and candidate rollouts, and export the best accepted skill with a report.
 
-## Reference(s): <br>
-- [SkillOpt Evaluation Reference](references/evaluation.md) <br>
-- [ClawHub SkillOpt Release Page](https://clawhub.ai/harrylabsj/skillopt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, skill files, JSON summaries, JSONL task files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create run directories containing source_skill.md, candidate skill files, rollout logs, scoring summaries, rejected edit notes, best_skill.md, and report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Benchmark task files and agent-command templates can cause local shell commands to run with the user's privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted task suites, review command scorers and agent-command templates before running them, prefer non-command scorers, and run the harness in a restricted workspace or container.
+
+Risk: Secrets exposed in the local environment could be reachable to commands launched by the harness.
+
+Mitigation: Avoid exposing secrets in the environment when running SkillOpt and isolate runs from sensitive files or credentials.
+
+## Reference(s):
+
+- [SkillOpt Evaluation Reference](references/evaluation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces run directories containing candidate skill files, rollout records, summary JSON, reports, and best_skill.md when exported.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

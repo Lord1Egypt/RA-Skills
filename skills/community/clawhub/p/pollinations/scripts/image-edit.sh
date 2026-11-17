@@ -69,7 +69,7 @@ if [[ -z "$PROMPT" || -z "$SOURCE" ]]; then
   echo "  --negative TEXT    Negative prompt"
   echo "  --output FILE      Output filename"
   echo ""
-  echo "Note: Local files are auto-uploaded to a temp host (0x0.st). URL sources are faster."
+  echo "Note: Local files are uploaded to https://media.pollinations.ai (10MB max). URL sources are faster."
   exit 1
 fi
 
@@ -83,14 +83,17 @@ SANITIZED_PROMPT=$(echo "$PROMPT" | sed 's/%/percent/g')
 ENCODED_PROMPT=$(urlencode "$SANITIZED_PROMPT")
 
 if [[ -f "$SOURCE" ]]; then
-  # Local file: upload to temp host to get a URL, then use GET endpoint
-  # (Pollinations image API is GET-only, no POST support)
-  echo "Uploading local file to temporary host..."
-  TEMP_URL=$(curl -s -F "reqtype=fileupload" -F "time=1h" -F "fileToUpload=@$SOURCE" https://litterbox.catbox.moe/resources/internals/api.php)
+  # Local file: upload to first-party media host (returns content-addressed hash URL)
+  echo "Uploading local file to media.pollinations.ai..."
+  UPLOAD_RESP=$(curl -s --max-time 120 \
+    ${POLLINATIONS_API_KEY:+-H "Authorization: Bearer $POLLINATIONS_API_KEY"} \
+    -X POST "https://media.pollinations.ai/upload" \
+    -F "file=@$SOURCE")
+  TEMP_URL=$(echo "$UPLOAD_RESP" | jq -r '.url // empty' 2>/dev/null)
 
   if [[ -z "$TEMP_URL" || ! "$TEMP_URL" =~ ^https?:// ]]; then
-    echo "Error: Failed to upload local file. Please provide a URL instead."
-    echo "Example: image-edit.sh \"$PROMPT\" --source https://example.com/image.jpg"
+    echo "Error: Failed to upload local file."
+    echo "$UPLOAD_RESP" | jq . 2>/dev/null || echo "$UPLOAD_RESP"
     exit 1
   fi
 

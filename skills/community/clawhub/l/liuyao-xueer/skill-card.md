@@ -1,40 +1,53 @@
-## Description: <br>
-A Chinese-language Liuyao divination skill that opens a classical ink-style local webpage where users cast six lines and receive offline or optional LLM-assisted interpretations from Xueer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+liuyao-xueer opens a Chinese-style Liuyao divination page where users enter a question, cast six yao lines, and receive either an offline reading or a streamed LLM interpretation.
 
-## Publisher: <br>
-[Clara-Wang-2023](https://clawhub.ai/user/Clara-Wang-2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clara-wang-2023](https://clawhub.ai/user/clara-wang-2023)
 
-## Use Case: <br>
-External users interested in Liuyao or I Ching divination use the local page to enter a question, cast six lines, and receive a basic offline reading or an optional streamed LLM interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions, cast details, and API keys can be sent to the configured LLM endpoint. <br>
-Mitigation: Use only trusted provider URLs, prefer revocable or limited API keys, and avoid entering sensitive medical, financial, legal, or deeply personal details unless that provider processing is acceptable. <br>
-Risk: The skill provides divination-style interpretations that may be mistaken for professional advice. <br>
-Mitigation: Treat readings as entertainment or personal reflection and seek qualified professional guidance for consequential medical, financial, legal, or safety decisions. <br>
+## Use Case:
 
+External users can use this skill to run a browser-based Liuyao divination flow for personal questions, with optional API-backed model interpretation and an offline fallback reading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Clara-Wang-2023/liuyao-xueer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and browser-rendered plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional API key, provider endpoint, and model settings; basic offline interpretation is available when no API key is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send the user's question and API key to a configured model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only low-privilege disposable API keys with spending limits, avoid sensitive personal questions, and configure only trusted endpoints.
+
+Risk: The authoritative security scan reports an injection issue that could expose secrets.
+
+Mitigation: Prefer offline mode until user input is sanitized and the page adds clear consent and endpoint validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clara-wang-2023/skills/liuyao-xueer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Browser UI text with optional streamed model response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can operate offline with a basic reading; optional model configuration accepts an API key, endpoint, and model name.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

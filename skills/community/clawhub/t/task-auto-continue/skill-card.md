@@ -1,41 +1,54 @@
-## Description: <br>
-任务自动续接 checks a workspace in_progress.md file for unfinished tasks and reminds the agent to continue the relevant work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a workspace in_progress.md file for unfinished tasks and reminds the agent to continue them.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep agents aware of unfinished workspace tasks at startup, especially when work depends on continuing items tracked in in_progress.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace task notes could contain secrets or sensitive task details. <br>
-Mitigation: Keep in_progress.md limited to task-tracking notes and avoid storing secrets there. <br>
-Risk: Stale task notes could steer the agent toward old or superseded work. <br>
-Mitigation: Keep in_progress.md current and give newer instructions when priorities change. <br>
+## Use Case:
 
+Developers and agent users use this skill to detect unfinished workspace tasks and prompt continuation of work that may otherwise be interrupted.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/freedompixels/task-auto-continue) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown status reminder] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill reads workspace task-tracking notes and does not modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: The skill may prompt an agent to continue tasks from in_progress.md without clear user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review in_progress.md and confirm the intended actions before letting the agent continue work from it.
+
+Risk: The skill depends on the trustworthiness of a workspace-local task file.
+
+Mitigation: Install and use it only in workspaces where the contents of in_progress.md are expected and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/task-auto-continue)
+- [ClawHub publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text status reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports task status from workspace in_progress.md; the artifact states it does not modify files.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

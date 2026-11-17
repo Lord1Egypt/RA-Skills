@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 巡检记录分析报告</title>
+<script>window.__REPORT__ = null;</script>
+<style>
+  :root {
+    --bg: #f5f7fa; --card: #fff; --border: #e5e9f0; --text: #1f2937;
+    --text-sub: #6b7280; --primary: #2563eb; --green: #059669; --amber: #d97706;
+    --red: #dc2626; --violet: #7c3aed; --cyan: #0891b2; --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); padding: 24px 16px 48px;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+  header h1 { font-size: 24px; font-weight: 700; }
+  header .meta { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.8; }
+  header .meta span { margin-right: 18px; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .kpi { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .kpi .label { font-size: 12px; color: var(--text-sub); margin-bottom: 6px; }
+  .kpi .value { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .kpi.k-total .value { color: var(--primary); }
+  .kpi.k-pic   .value { color: var(--green); }
+  .kpi.k-dev   .value { color: var(--amber); }
+  .kpi.k-algo  .value { color: var(--violet); }
+
+  .tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 16px; }
+  .tab { padding: 9px 18px; font-size: 14px; cursor: pointer; color: var(--text-sub);
+         border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+          padding: 18px; margin-bottom: 16px; }
+  .card h3 { font-size: 15px; margin-bottom: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  table.detail { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.detail th, table.detail td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  table.detail th { background: #f9fafb; color: var(--text-sub); font-weight: 600; position: sticky; top: 0; }
+  .table-wrap { max-height: 480px; overflow: auto; border: 1px solid var(--border); border-radius: 6px; }
+
+  .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .wall-item { background: #0f172a; border-radius: 6px; overflow: hidden; position: relative; cursor: pointer; }
+  .wall-item img { display: block; width: 100%; height: 140px; object-fit: cover; background: #1e293b; }
+  .wall-item .cap { padding: 6px 8px; font-size: 11px; color: #e2e8f0; line-height: 1.4; }
+  .wall-item .cap .t { color: #94a3b8; font-size: 10px; }
+  .wall-item .cap .a { color: #fbbf24; }
+
+  .filters { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .filters select, .filters input { font-size: 12px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 5px; }
+
+  /* Lightbox */
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none;
+              align-items: center; justify-content: center; z-index: 999; }
+  .lightbox.on { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 88vh; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+  .lightbox .close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 32px; cursor: pointer; }
+
+  svg text { font-family: inherit; }
+  .empty { padding: 32px; text-align: center; color: var(--text-sub); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="title">AI 巡检记录分析报告</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi k-total"><div class="label">总巡检记录</div><div class="value" id="kTotal">-</div></div>
+    <div class="kpi k-pic"><div class="label">含抓拍图片</div><div class="value" id="kPic">-</div></div>
+    <div class="kpi k-dev"><div class="label">涉及设备</div><div class="value" id="kDev">-</div></div>
+    <div class="kpi k-algo"><div class="label">涉及算法</div><div class="value" id="kAlgo">-</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="overview">总览</button>
+    <button class="tab" data-tab="wall">抓拍图墙</button>
+    <button class="tab" data-tab="byDevice">按设备</button>
+    <button class="tab" data-tab="byAlgo">按算法</button>
+    <button class="tab" data-tab="records">记录明细</button>
+  </div>
+
+  <div class="panel active" id="panel-overview">
+    <div class="card">
+      <h3>每日巡检记录趋势</h3>
+      <div id="chartDaily"></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Top 10 设备（记录数）</h3>
+        <div id="chartDevice"></div>
+      </div>
+      <div class="card">
+        <h3>算法分布</h3>
+        <div id="chartAlgo"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-wall">
+    <div class="card">
+      <div class="filters">
+        <select id="wallDevFilter"><option value="">全部设备</option></select>
+        <select id="wallAlgoFilter"><option value="">全部算法</option></select>
+        <input type="text" id="wallSearch" placeholder="搜索记录ID/时间..." style="flex:1;min-width:180px;">
+        <span id="wallCount" style="align-self:center;font-size:12px;color:var(--text-sub);"></span>
+      </div>
+      <div class="wall" id="wall"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-byDevice">
+    <div class="card">
+      <h3>各设备巡检记录数</h3>
+      <div id="devTable"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-byAlgo">
+    <div class="card">
+      <h3>各算法分析 / 告警统计</h3>
+      <div id="algoTable"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-records">
+    <div class="card">
+      <h3>全部记录明细</h3>
+      <div class="table-wrap">
+        <table class="detail" id="recTable">
+          <thead><tr>
+            <th>ID</th><th>时间</th><th>设备</th><th>算法</th><th>抓拍图</th><th>详情</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="document.getElementById('lightbox').classList.remove('on')">×</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+(function(){
+  const R = window.__REPORT__ || {meta:{},records:[],byDevice:[],byAlgorithm:[],byDay:[]};
+  document.getElementById('title').textContent = R.meta.title || 'AI 巡检记录分析报告';
+  document.getElementById('meta').innerHTML =
+    `<span>时间范围：${R.meta.rangeBegin||'-'} ~ ${R.meta.rangeEnd||'-'}</span>` +
+    `<span>生成时间：${R.meta.generatedAt||'-'}</span>` +
+    `<span>数据源：aiPatrolRecordPageQuery</span>`;
+  document.getElementById('kTotal').textContent = R.meta.totalRecords || 0;
+  document.getElementById('kPic').textContent = R.meta.withPicture || 0;
+  document.getElementById('kDev').textContent = (R.byDevice||[]).length;
+  document.getElementById('kAlgo').textContent = (R.byAlgorithm||[]).length;
+
+  // Tabs
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-' + t.dataset.tab).classList.add('active');
+  }));
+
+  // SVG bar chart helper
+  function svgBar(el, data, opts) {
+    opts = opts || {};
+    const W = opts.width || 900, H = opts.height || 240, P = 40;
+    if (!data.length) { el.innerHTML = '<div class="empty">（无数据）</div>'; return; }
+    const max = Math.max(...data.map(d => d.value), 1);
+    const bw = (W - P*2) / data.length;
+    const color = opts.color || '#2563eb';
+    let bars = '', labels = '';
+    data.forEach((d, i) => {
+      const h = (H - P*1.5) * (d.value / max);
+      const x = P + i * bw + bw * 0.15;
+      const y = H - P - h;
+      bars += `<rect x="${x}" y="${y}" width="${bw*0.7}" height="${h}" fill="${color}" rx="2"/>`;
+      bars += `<text x="${x + bw*0.35}" y="${y - 4}" text-anchor="middle" font-size="10" fill="#374151">${d.value}</text>`;
+      const lbl = (d.label||'').length > 8 ? (d.label||'').slice(0,7)+'…' : (d.label||'');
+      labels += `<text x="${x + bw*0.35}" y="${H - P + 14}" text-anchor="middle" font-size="10" fill="#6b7280">${lbl}</text>`;
+    });
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="xMidYMid meet">
+      <line x1="${P}" y1="${H-P}" x2="${W-P}" y2="${H-P}" stroke="#e5e9f0"/>
+      ${bars}${labels}
+    </svg>`;
+  }
+
+  function svgHBar(el, data, opts) {
+    opts = opts || {};
+    const W = opts.width || 500, rowH = 26, P = 100;
+    if (!data.length) { el.innerHTML = '<div class="empty">（无数据）</div>'; return; }
+    const H = Math.max(data.length * rowH + 20, 60);
+    const max = Math.max(...data.map(d => d.value), 1);
+    const color = opts.color || '#059669';
+    let bars = '';
+    data.forEach((d, i) => {
+      const y = 10 + i * rowH;
+      const w = (W - P - 60) * (d.value / max);
+      const lbl = (d.label||'').length > 12 ? (d.label||'').slice(0,11)+'…' : (d.label||'');
+      bars += `<text x="${P-6}" y="${y+15}" text-anchor="end" font-size="11" fill="#374151">${lbl}</text>`;
+      bars += `<rect x="${P}" y="${y+4}" width="${w}" height="${rowH-10}" fill="${color}" rx="3"/>`;
+      bars += `<text x="${P+w+6}" y="${y+15}" font-size="11" fill="#374151">${d.value}</text>`;
+    });
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}">${bars}</svg>`;
+  }
+
+  svgBar(document.getElementById('chartDaily'),
+    (R.byDay||[]).map(d => ({label: d.date, value: d.count})),
+    {color: '#2563eb', height: 220});
+  svgHBar(document.getElementById('chartDevice'),
+    (R.byDevice||[]).slice(0,10).map(d => ({label: d.name, value: d.count})),
+    {color: '#d97706'});
+  svgHBar(document.getElementById('chartAlgo'),
+    (R.byAlgorithm||[]).map(d => ({label: d.name, value: d.count})),
+    {color: '#7c3aed'});
+
+  // Device / Algorithm tables
+  function tableize(el, cols, rows) {
+    if (!rows.length) { el.innerHTML = '<div class="empty">（无数据）</div>'; return; }
+    const head = cols.map(c => `<th>${c.label}</th>`).join('');
+    const body = rows.map(r => '<tr>' + cols.map(c => `<td>${r[c.key] != null ? r[c.key] : '-'}</td>`).join('') + '</tr>').join('');
+    el.innerHTML = `<div class="table-wrap"><table class="detail"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+  tableize(document.getElementById('devTable'),
+    [{key:'name',label:'设备'},{key:'count',label:'记录数'}], R.byDevice||[]);
+  const algoRows = (R.byAlgorithm||[]).map(a => {
+    const alarm = (a.alarmCount != null) ? a.alarmCount : a.count;
+    const ratio = a.count ? (100 * alarm / a.count) : null;
+    const rColor = ratio == null ? '#6b7280' : (ratio >= 80 ? '#059669' : (ratio >= 50 ? '#d97706' : '#dc2626'));
+    return { name: a.name, count: a.count, alarmCount: alarm,
+             ratio: ratio == null ? '-' : `<span style="font-weight:600;color:${rColor};">${ratio.toFixed(1)}%</span>` };
+  });
+  tableize(document.getElementById('algoTable'),
+    [{key:'name',label:'算法'},{key:'count',label:'分析次数'},{key:'alarmCount',label:'告警次数'},{key:'ratio',label:'告警成功占比'}], algoRows);
+
+  // Records table
+  const recTbody = document.querySelector('#recTable tbody');
+  (R.records||[]).forEach(r => {
+    const tr = document.createElement('tr');
+    const pic = r.cloudPictureUrl
+      ? `<a href="${r.cloudPictureUrl}" target="_blank" style="color:var(--primary);">查看</a>`
+      : '<span style="color:#9ca3af;">无</span>';
+    const detail = r.detailData ? String(r.detailData).slice(0, 60) : '';
+    tr.innerHTML = `<td>${r.id||'-'}</td><td>${r.releaseTime||'-'}</td>
+      <td>${r.deviceName||'-'}<br><span style="color:#9ca3af;font-size:10px;">${r.deviceId||''}</span></td>
+      <td>${r.algorithmName||'-'}<br><span style="color:#9ca3af;font-size:10px;">${r.algorithmId||''}</span></td>
+      <td>${pic}</td><td title="${(r.detailData||'').replace(/"/g,'&quot;')}">${detail}</td>`;
+    recTbody.appendChild(tr);
+  });
+
+  // Wall
+  const wallEl = document.getElementById('wall');
+  const wallDevFilter = document.getElementById('wallDevFilter');
+  const wallAlgoFilter = document.getElementById('wallAlgoFilter');
+  const wallSearch = document.getElementById('wallSearch');
+  const wallCount = document.getElementById('wallCount');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  const devices = [...new Set((R.records||[]).map(r => r.deviceName || r.deviceId).filter(Boolean))];
+  const algos = [...new Set((R.records||[]).map(r => r.algorithmName || r.algorithmId).filter(Boolean))];
+  devices.forEach(d => { const o = document.createElement('option'); o.value = d; o.textContent = d; wallDevFilter.appendChild(o); });
+  algos.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; wallAlgoFilter.appendChild(o); });
+
+  function renderWall() {
+    const dev = wallDevFilter.value, algo = wallAlgoFilter.value;
+    const q = (wallSearch.value || '').trim().toLowerCase();
+    const recs = (R.records||[]).filter(r => {
+      if (!r.cloudPictureUrl) return false;
+      const dv = r.deviceName || r.deviceId || '';
+      const av = r.algorithmName || r.algorithmId || '';
+      if (dev && dv !== dev) return false;
+      if (algo && av !== algo) return false;
+      if (q) {
+        const hay = (String(r.id||'') + ' ' + (r.releaseTime||'') + ' ' + dv + ' ' + av).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    wallCount.textContent = `共 ${recs.length} 张`;
+    if (!recs.length) { wallEl.innerHTML = '<div class="empty" style="grid-column:1/-1;">（无匹配抓拍图）</div>'; return; }
+    wallEl.innerHTML = recs.slice(0, 500).map((r, i) => `
+      <div class="wall-item" data-url="${r.cloudPictureUrl}">
+        <img src="${r.cloudPictureUrl}" loading="lazy" alt="" onerror="this.style.opacity=0.3;this.alt='加载失败';">
+        <div class="cap">
+          <div class="t">${r.releaseTime || ''}</div>
+          <div>${r.deviceName || r.deviceId || ''}</div>
+          <div class="a">${r.algorithmName || r.algorithmId || ''}</div>
+        </div>
+      </div>`).join('');
+    wallEl.querySelectorAll('.wall-item').forEach(el => el.addEventListener('click', () => {
+      lightboxImg.src = el.dataset.url;
+      lightbox.classList.add('on');
+    }));
+  }
+  wallDevFilter.addEventListener('change', renderWall);
+  wallAlgoFilter.addEventListener('change', renderWall);
+  wallSearch.addEventListener('input', renderWall);
+  renderWall();
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

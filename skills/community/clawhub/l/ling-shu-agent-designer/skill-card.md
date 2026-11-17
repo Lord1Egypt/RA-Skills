@@ -1,37 +1,56 @@
-## Description: <br>
-Ling Shu Agent Designer guides Chinese-language design of industry-specific OpenClaw agents, from requirements and a seven-part scenario outline to a runnable configuration and dedicated skill package without writing application code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ling Shu Agent Designer helps users turn business requirements into OpenClaw agent plans, workspace skeletons, configuration, and dedicated skill packages.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and business teams use this skill to design industry-specific agents through requirement clarification, scenario outlines, basic agent skeleton creation, and iterative skill-package updates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated agent plans and skeletons may encode incorrect business requirements, approval boundaries, or data-flow assumptions.
+
+Mitigation: Review the seven planning documents, security guardrails, and human approval rules before creating or deploying an agent.
+
+Risk: Generated API or database configuration may affect real business systems if approved without checking scopes and data access.
+
+Mitigation: Validate integrations, permissions, credentials, and data-handling rules with the system owner before connecting production services.
+
+Risk: Generated skill packages or publishing steps may include sensitive business context.
+
+Mitigation: Review and scan generated packages before publication, especially when they describe internal workflows or customer data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent designers and operators use this skill to scope industry-specific assistants, document MVP capabilities, data sources, interaction channels, scheduled tasks, skill planning, and governance boundaries before creating a basic OpenClaw workspace. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or modify local agent configuration and skill package files based on user-provided business materials. <br>
-Mitigation: Review the scenario outline, target workspace path, openclaw.json changes, and generated skill package before use; avoid providing confidential enterprise materials unless sharing is authorized. <br>
+**Output Format:** [Markdown and JSON configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce planning documents, OpenClaw configuration, workspace skeleton files, and dedicated skill package content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents with shell command snippets and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scenario outlines, delivery notes, workspace file plans, openclaw.json configuration guidance, and dedicated skill package guidance.] <br>
+2.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and artifact/_meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

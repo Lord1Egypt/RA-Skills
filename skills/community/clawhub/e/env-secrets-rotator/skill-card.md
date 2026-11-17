@@ -1,43 +1,57 @@
-## Description: <br>
-Rotate and update secrets in environment files, generate Vault commands, and manage secret rotation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rotate and update secrets in environment files, generate Vault commands, and manage secret rotation workflows.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers and engineers use this skill to rotate values in local .env files, preview changes, validate simple environment files, and produce HashiCorp Vault CLI commands for manual secret-manager updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says rotated secret values can be stored in a plaintext home-directory history file. <br>
-Mitigation: Start with --dry-run, avoid production secrets until rollout is planned, and delete or protect ~/.env-rotation-history.json after use. <br>
-Risk: Backups of .env files may retain live plaintext credentials after rotation. <br>
-Mitigation: Restrict access to generated backup files and delete them after confirming the rotation succeeded. <br>
-Risk: The tool only generates Vault CLI commands and does not update remote secret managers itself. <br>
-Mitigation: Review the generated commands, replace placeholders where needed, and run them through an approved secret-management workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to rotate values in local .env files, validate simple environment files, preview rotations, and generate HashiCorp Vault CLI commands for manual secret updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Derick001/env-secrets-rotator) <br>
-- [Publisher profile](https://clawhub.ai/user/Derick001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [JSON results, human-readable summaries, updated .env files, backups, and HashiCorp Vault CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated secrets and backup/history files may contain plaintext credential material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Newly generated secret values may be saved in plaintext rotation history in the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, avoid real credentials until reviewed, and delete or restrict access to ~/.env-rotation-history.json after any rotation involving sensitive values.
+
+Risk: Rotated values and generated Vault commands can expose secrets in terminal output, logs, or shared agent sessions.
+
+Mitigation: Run in a private local session, avoid logged CI, and redact command output before sharing.
+
+Risk: The skill edits local .env files and can create backup files containing previous secret values.
+
+Mitigation: Review the target file path, use dry-run before modification, and secure or remove backup files after validating the rotation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/env-secrets-rotator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local file updates, backup files, JSON rotation summaries, Vault CLI commands, and validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

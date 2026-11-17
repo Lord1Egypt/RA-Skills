@@ -1,39 +1,58 @@
-## Description: <br>
-Agentic RSS digest using the feed CLI to fetch, triage, and summarize RSS feeds so an agent can surface high-signal posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSS Digest helps an agent use the feed CLI to fetch, triage, and summarize RSS feeds into high-signal digests of recent posts.
 
-## Publisher: <br>
-[odysseus0](https://clawhub.ai/user/odysseus0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odysseus0](https://clawhub.ai/user/odysseus0)
 
-## Use Case: <br>
-External users and developers use this skill to catch up on RSS feeds, news, blogs, or recent unread posts and receive a concise digest grouped around high-signal items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external feed CLI and may fetch RSS or article content from network sources selected by configured feeds. <br>
-Mitigation: Install only if the user trusts the feed CLI and is comfortable with agent-assisted RSS fetching; ask before importing the starter OPML when automatic default subscriptions are not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odysseus0/rss-digest) <br>
-- [feed CLI Go package](https://github.com/odysseus0/feed) <br>
-- [Starter OPML feed list](https://github.com/odysseus0/feed/raw/main/hn-popular-blogs-2025.opml) <br>
+## Use Case:
 
+Developers, knowledge workers, and external users use this skill to catch up on RSS feeds, blogs, news, and recent posts by having an agent scan entries, select high-signal items, read sources, and synthesize a digest.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown digest with article summaries and inline shell commands when setup or feed inspection is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference URLs, feed entry identifiers, and selected RSS items; does not mark entries as read by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and relies on a third-party feed CLI.
+
+Mitigation: Install only from trusted sources, prefer a pinned reviewed CLI version, and avoid elevated privileges.
+
+Risk: The skill fetches RSS feeds and article pages from external sites.
+
+Mitigation: Use it only when external content fetching is acceptable, and review fetched content before acting on it.
+
+Risk: An empty setup may import a public starter feed list automatically.
+
+Mitigation: Confirm the starter feed list is appropriate before importing it into the user environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odysseus0/skills/rss-digest)
+- [feed CLI Go package](https://github.com/odysseus0/feed)
+- [Starter RSS OPML feed list](https://github.com/odysseus0/feed/raw/main/hn-popular-blogs-2025.opml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown digest with concise summaries and optional inline feed CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent not to mark entries as read unless the user decides to do so.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

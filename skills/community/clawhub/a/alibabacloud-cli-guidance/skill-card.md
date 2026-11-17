@@ -1,50 +1,67 @@
-## Description: <br>
-Guides users to manage Alibaba Cloud resources with the Aliyun CLI, including installation, credential configuration, plugin management, command construction, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to manage Alibaba Cloud resources using the Aliyun CLI command-line tool.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to install, configure, and run Aliyun CLI commands for Alibaba Cloud services. It helps with credentials, product plugins, parameter syntax, output filtering, pagination, waiters, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud credentials or tokens may be exposed or over-privileged when configuring Aliyun CLI access. <br>
-Mitigation: Prefer OAuth, STS, RAM roles, or least-privilege RAM users, avoid root credentials, rotate access keys, and keep credentials out of repositories and shared logs. <br>
-Risk: Installer or plugin update commands download executable CLI components. <br>
-Mitigation: Install only when Alibaba Cloud CLI access is intended, verify downloads where possible, and keep the CLI and product plugins updated from trusted Alibaba Cloud sources. <br>
-Risk: Debug output can reveal request details, resource identifiers, or sensitive configuration. <br>
-Mitigation: Use debug logging only for troubleshooting and redact secrets, account identifiers, and resource details before sharing logs. <br>
-Risk: Using insecure transport options can weaken request security. <br>
-Mitigation: Avoid `--insecure` for real workloads and use secure defaults unless a controlled diagnostic case requires otherwise. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to install and configure Aliyun CLI, construct Alibaba Cloud service commands, manage plugins, handle credentials, and troubleshoot common CLI errors.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/sdk-team/alibabacloud-cli-guidance) <br>
-- [Publisher Profile](https://clawhub.ai/user/sdk-team) <br>
-- [Aliyun CLI Installation & Configuration Guide](artifact/references/installation-guide.md) <br>
-- [Command Syntax Guide](artifact/references/command-syntax.md) <br>
-- [Global Flags Reference](artifact/references/global-flags.md) <br>
-- [RAM Policies and the Aliyun CLI](artifact/references/ram-policies.md) <br>
-- [Configure OAuth Authentication for Alibaba Cloud CLI](https://www.alibabacloud.com/help/en/doc-detail/2995960.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Aliyun CLI commands, credential setup steps, plugin guidance, RAM permission notes, and troubleshooting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Installer commands may download and execute unverified scripts or binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before running them, prefer package managers or pinned checksum-verified downloads, and avoid running curl-to-bash in shells that already contain cloud credentials.
+
+Risk: Automatic plugin installation or bulk plugin updates can change local CLI behavior unexpectedly.
+
+Mitigation: Approve exact plugin installation and update actions before an agent runs them.
+
+Risk: Cloud credentials and RAM permissions can grant broad access if handled carelessly.
+
+Mitigation: Use OAuth, RAM roles, or short-lived STS credentials where possible, and keep RAM permissions least-privilege.
+
+Risk: Debug output can expose sensitive request, credential, or environment details.
+
+Mitigation: Redact debug logs before sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-cli-guidance)
+- [Command Syntax Guide](references/command-syntax.md)
+- [Global Flags Reference](references/global-flags.md)
+- [Aliyun CLI Installation and Configuration Guide](references/installation-guide.md)
+- [RAM Policies and the Aliyun CLI](references/ram-policies.md)
+- [Configure OAuth Authentication for Alibaba Cloud CLI](https://www.alibabacloud.com/help/en/doc-detail/2995960.html)
+- [Alibaba Cloud CLI Documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cloud CLI commands that require user review before execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

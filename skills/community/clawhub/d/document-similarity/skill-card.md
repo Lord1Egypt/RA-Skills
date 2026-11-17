@@ -1,42 +1,51 @@
-## Description: <br>
-Compare two images or PDFs for visual similarity via the PDFAPIHub cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare two images or PDFs for visual similarity via the PDFAPIHub cloud API. Documents are uploaded to pdfapihub.com for comparison using feature matching, SSIM, or perceptual hashing. Requires a CLIENT-API-KEY header.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and document-workflow teams use this skill to compare images or PDFs for duplicate detection, visual regression checks, template consistency, and near-duplicate analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compared documents and the PDFAPIHub API key are sent to pdfapihub.com for processing. <br>
-Mitigation: Use the skill only with documents and credentials that are approved for that provider, and avoid confidential, regulated, or private documents unless the provider and its retention policy are trusted. <br>
-Risk: The skill requires a sensitive API key in the CLIENT-API-KEY header. <br>
-Mitigation: Store the key in an approved secret manager or environment configuration, rotate it if exposed, and avoid placing real keys in examples, logs, or shared prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to compare images or PDFs for duplicate detection, template consistency checks, QA regressions, fraud review, and document version comparisons.
 
-## Reference(s): <br>
-- [PDFAPIHub Documentation](https://pdfapihub.com/docs) <br>
-- [PDFAPIHub API](https://pdfapihub.com/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/document-similarity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a similarity score, confidence level, and selected comparison method when the hosted API call succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Compared documents, document URLs, and the PDFAPIHub API key are sent to PDFAPIHub for cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sending the documents and credential to PDFAPIHub is acceptable; review the provider's privacy and retention terms before processing confidential files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rishabhdugar/skills/document-similarity)
+- [PDFAPIHub documentation](https://pdfapihub.com/docs)
+- [PDFAPIHub API](https://pdfapihub.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response with similarity score, confidence, and selected comparison method]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PDFAPIHub CLIENT-API-KEY header and accepts public URLs, base64 document payloads, or multipart file uploads.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

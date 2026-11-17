@@ -1,0 +1,13 @@
+{
+  "action": "add",
+  "requestId": "watch-example-001",
+  "id": "example-page",
+  "title": "Example page",
+  "url": "https://example.com/",
+  "scope": {
+    "tag": "body"
+  },
+  "intervalMinutes": 60,
+  "ignoreLinesContains": [],
+  "includeKeywords": []
+}

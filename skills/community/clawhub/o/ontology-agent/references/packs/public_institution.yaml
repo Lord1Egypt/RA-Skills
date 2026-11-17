@@ -1,0 +1,123 @@
+# packs/public_institution.yaml — Public Institution industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `public_institution.zh.yaml`.
+# Zero-intrusion note: this is an added pack; it does not modify the 24-department template,
+# the 159-action library, decision/roles/semantic/logic, or init.py.
+# The "heart" departments of a public institution (state asset management / internal audit /
+# party & government affairs) are not in the 24-department common library; they are recommended to
+# users as private custom additions via suggested_custom_departments (references/customization.md)
+# and are not written into the skill package itself.
+
+meta:
+  pack_id: public_institution
+  display_name: Public Institution
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [public institution, government-affiliated institution, public welfare class I, public welfare class II, government subsidy, budget unit, public non-profit, public affairs, state-run]
+  description: >
+    For public institutions established by state organs that provide public welfare services in
+    education, science, culture, health and similar fields without a profit purpose
+    (public welfare class I / II). The main pack covers public institution commonalities
+    (budget / duty performance / state assets / government procurement / staffing / final accounts);
+    industry differences are handled by more specialized packs such as biomed (hospitals) and
+    edu_research (schools and research institutes).
+
+# ── 1. Public institution common entities ──
+entities_extra:
+  - type: PublicInstitution
+    extends: Organization
+    properties:
+      - { name: institution_class, type: enum, enum: [public welfare class I, public welfare class II, engaged in production & business, converted to enterprise], required: true, desc: "Welfare classification determines whether business activity is permitted" }
+      - { name: funding_source, type: enum, enum: [government subsidy, self-funded, government interest subsidy], desc: "Funding source" }
+      - { name: governing_body, type: string, desc: "Competent authority (establishing body)" }
+      - { name: establishment_headcount, type: integer, desc: "Approved staffing quota (real-name management)" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: StateAsset
+    extends: Asset
+    properties:
+      - { name: state_owned, type: boolean, desc: "Whether a state-owned asset", default: true }
+      - { name: appraisal_no, type: string, desc: "Asset valuation filing number (required before disposal)" }
+      - { name: disposal_approved, type: boolean, desc: "Whether disposal has been approved" }
+  - type: ProcurementPlan
+    extends: Document
+    properties:
+      - { name: budget_source, type: string, desc: "Budget source (government / self-raised)" }
+      - { name: method, type: enum, enum: [open tender, invited tender, competitive negotiation, competitive consultation, quotation, single source], desc: "Government procurement method" }
+      - { name: threshold_reached, type: boolean, desc: "Whether the open tender threshold is reached" }
+    relations:
+      - { to: PublicInstitution, type: belongs_to, cardinality: many_to_one }
+
+# ── 2. Recommended departments ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+  # Public institution optional
+  - { code: operations,  name: Operations }        # daily duty performance / process orchestration
+  - { code: procurement, name: Procurement & Supply Chain }  # government procurement / assets
+  - { code: quality,     name: Quality Management } # service standards / performance
+
+suggested_custom_departments:
+  - { code: state_asset, name: State Asset Management, gender_default: male, expertise: "state asset registration / valuation / disposal approval", when: "recommended whenever state-owned assets exist" }
+  - { code: internal_audit, name: Internal Audit, gender_default: male, expertise: "budget execution / economic responsibility / special audits", when: "recommended at larger scale" }
+  - { code: party_gov,  name: Party & Government Affairs, gender_default: female, expertise: "party building / government information / information disclosure", when: "recommended for civil-service-like or larger organizations" }
+
+# ── 3. Default workflow ──
+default_workflow: public_institution_ops
+workflow_bindings:
+  public_institution_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [budget preparation, duty performance, government procurement, final accounts, asset inventory, review]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.public_institution      # state assets / government procurement / government receipts / staffing / public welfare nature (triggered by this pack)
+    - compliance_redlines.tax                     # receipts / non-tax revenue compliance
+    - compliance_redlines.general                 # personal information protection: minimum necessity
+  local_services: []
+
+# ── 5. Layer-B flavor ──
+flavor:
+  default: >-
+    You serve a public institution (public welfare class I / II) whose public welfare nature is its
+    lifeline; class I institutions may not engage in business activity, and fees must follow government
+    pricing or standards. State-owned assets must be registered and booked; before disposal they
+    require valuation filing and approval, and may never be disposed of or transferred without
+    compensation unilaterally. Government procurement requires a budget and must follow the statutory
+    method; splitting procurement to evade tendering is strictly prohibited. Public data such as the
+    Unified Social Credit Code may be recorded, but personal ID numbers, bank cards and receipt images
+    are PII and must never be stored in plain text.
+  finance: Budget management is the main thread; government receipts / non-tax revenue must be used as required and never lent or forged; final accounts and asset inventory form an annual SOP; invoicing → bookkeeping → filing must stay consistent.
+  legal: Government procurement compliance (open tender thresholds / method selection); contracts must relate to official duties; information disclosure follows the applicable government information disclosure regulations.
+  hr: Real-name staffing quota management; no over-quota hiring; non-staff employment compliance; total wage and performance follow the rules; titles and positions are set compliantly.
+  admin: State asset ledger and disposal approval flow; office space / official vehicle compliance; seal and document management must be traceable.
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the institution type (public welfare class I / II / engaged in production & business) and competent authority"
+  - "Please introduce the institution (name, region, staffing quota, funding source, whether you hire staff)"
+  - "Which departments do you want to build (12 core by default + operations / procurement / quality; recommended to add State Asset Management / Internal Audit / Party & Government Affairs)"
+  - "Core business loop (e.g. budget → duty performance → procurement → final accounts → asset inventory)"
+  - "Whether there is state asset disposal / large government procurement projects (affects compliance red lines)"
+
+# ── 7. Public institution monitoring signals (pairs with the public_institution domain in monitoring.yaml) ──
+public_institution_signals:
+  signals:
+    - { id: budget_overrun, name: budget overrun, owner: [finance, internal_audit], desc: "budget execution deviation / overspend warning" }
+    - { id: asset_disposal_risk, name: state asset disposal risk, owner: [state_asset, legal], desc: "state asset disposal without valuation or approval" }
+    - { id: procurement_split, name: split procurement to evade tendering, owner: [procurement, legal], desc: "splitting procurement to avoid open tender" }
+    - { id: establishment_overflow, name: over-quota hiring, owner: [hr, internal_audit], desc: "exceeding staffing quota / non-compliant employment" }

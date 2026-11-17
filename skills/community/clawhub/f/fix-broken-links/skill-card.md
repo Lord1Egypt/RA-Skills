@@ -1,40 +1,53 @@
-## Description: <br>
-Scan web files for broken hyperlinks and weak SEO anchor text, then interactively replace, strip, or skip each dead URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan web files for broken hyperlinks and weak SEO anchor text, then interactively replace, strip, or skip each dead URL.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit website and documentation files for dead absolute HTTP(S) links, repair broken links interactively, and flag weak anchor text for SEO cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broken URLs may be sent to GitHub Copilot for replacement suggestions, which could expose internal links, private documentation paths, signed URLs, or tokens in query strings. <br>
-Mitigation: Use deterministic link checking without Copilot suggestions for sensitive repositories, or review and redact links before running the repair flow. <br>
-Risk: Agent-suggested replacement URLs may be inaccurate or misleading. <br>
-Mitigation: Inspect each suggested replacement URL before accepting it, and use the custom replacement or skip option when uncertain. <br>
+## Use Case:
 
+Developers and content maintainers use this skill to audit project files for dead absolute URLs, weak SEO anchor text, and interactive repair options across common web formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhauga/fix-broken-links) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline Bash and PowerShell commands plus interactive terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may update target files when the user accepts an interactive replace, custom URL, or strip-link action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill automatically checks URLs found in project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted files and avoid running it where local or cloud metadata services are reachable.
+
+Risk: Broken URLs may be sent to GitHub Copilot for replacement suggestions.
+
+Mitigation: Avoid Copilot suggestions for URLs that may contain secrets, signed query strings, customer identifiers, or internal hostnames.
+
+## Reference(s):
+
+- [Fix Broken Links ClawHub Page](https://clawhub.ai/jhauga/skills/fix-broken-links)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain-text link-check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt interactively when run against explicit file paths; can update matching source files when the user accepts a replacement, removal, or custom URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

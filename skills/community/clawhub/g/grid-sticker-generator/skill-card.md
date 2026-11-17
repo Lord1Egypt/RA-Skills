@@ -1,42 +1,55 @@
-## Description: <br>
-A universal 4x4 grid sticker generator. uses strict visual guidelines (No Text, Transparent BG) and supports loading theme templates from resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A universal 4x4 grid sticker generator that uses strict visual guidelines for no text, transparent backgrounds, and theme templates loaded from resources.
 
-## Publisher: <br>
-[guanyang](https://clawhub.ai/user/guanyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guanyang](https://clawhub.ai/user/guanyang)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent in building prompts for 4x4 transparent-background sticker sheets from a character, theme, or office-worker template. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default office-worker template may be applied when the user does not specify another theme. <br>
-Mitigation: Specify the desired theme or custom action list when invoking the skill. <br>
-Risk: Uploaded personal photos may expose visible appearance traits to the image generation workflow. <br>
-Mitigation: Avoid uploading sensitive personal photos unless that use is appropriate for the deployment context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guanyang/grid-sticker-generator) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [office_worker_template.md](artifact/resources/office_worker_template.md) <br>
+## Use Case:
 
+Creators and agents use this skill to turn a described character or theme into a 4x4 sticker sheet workflow with transparent backgrounds, visual-only expressions, and optional office-worker template actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Image generation prompts] <br>
-**Output Format:** [Markdown guidance with structured image-generation prompt details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to use an available image generation tool; the skill itself declares no required credentials or shell commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated sticker sheets may still contain unwanted text, speech bubbles, or background artifacts despite the prompt constraints.
+
+Mitigation: Review generated images before use and regenerate with stronger no-text and transparent-background constraints when artifacts appear.
+
+Risk: The default template is mainly Chinese-language and uses office-worker meme concepts that may not fit every audience.
+
+Mitigation: Use a custom theme or review selected actions for audience and workplace-context suitability before publishing outputs.
+
+## Reference(s):
+
+- [Grid Sticker Generator on ClawHub](https://clawhub.ai/guanyang/skills/grid-sticker-generator)
+- [guanyang publisher profile](https://clawhub.ai/user/guanyang)
+- [README](artifact/README.md)
+- [Office Worker Template](artifact/resources/office_worker_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown prompt guidance for image generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces visual constraints, negative prompts, and action lists for 4x4 sticker image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

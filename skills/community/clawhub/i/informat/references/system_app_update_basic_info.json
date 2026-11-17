@@ -1,0 +1,68 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_update_basic_info",
+    "description": "Update application basic information, including theme color, menu colors, primary/status colors, navigation bar style, and expand/collapse setting. The updateFieldList must explicitly declare which fields are updated; only fields listed in updateFieldList will be modified.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "updateFieldList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["color", "appNameColor", "bgColor", "navColor", "colorPrimary", "colorSuccess", "colorInfo", "colorWarning", "colorDanger", "moduleBarStyle", "moduleBarExpandStyle"]
+          },
+          "description": "Fields to update in this call. To clear a field, include it in this list; fields not listed here will not be updated even if values are provided."
+        },
+        "color": {
+          "type": "string",
+          "enum": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9"],
+          "description": "Theme color."
+        },
+        "appNameColor": {
+          "type": ["string", "null"],
+          "description": "Application name color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "bgColor": {
+          "type": ["string", "null"],
+          "description": "Menu bar background color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "navColor": {
+          "type": ["string", "null"],
+          "description": "Menu text color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "colorPrimary": {
+          "type": ["string", "null"],
+          "description": "Primary color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "colorSuccess": {
+          "type": ["string", "null"],
+          "description": "Success color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "colorInfo": {
+          "type": ["string", "null"],
+          "description": "Info color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "colorWarning": {
+          "type": ["string", "null"],
+          "description": "Warning color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "colorDanger": {
+          "type": ["string", "null"],
+          "description": "Danger color. Recommended colors: #5B8FF9, #57CA8C, #5D7092, #FAAD14, #E86452, #56C1EC, #945FB9, #FF9845, #1E9493. Can be null or custom."
+        },
+        "moduleBarStyle": {
+          "type": "string",
+          "enum": ["top", "left", "topmini", "none", "lefttop"],
+          "description": "Navigation bar style."
+        },
+        "moduleBarExpandStyle": {
+          "type": "string",
+          "enum": ["expand", "collapse", "none"],
+          "description": "Navigation bar expand/collapse setting."
+        }
+      },
+      "required": ["updateFieldList"]
+    }
+  }
+}

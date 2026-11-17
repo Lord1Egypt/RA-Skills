@@ -1,44 +1,60 @@
-## Description: <br>
-Trust layer for AI agents: verify identities, guard prompts, redact PII, and manage x402 escrow payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust layer for AI agents: verify identities, guard prompts, redact PII, and manage x402 escrow payments.
 
-## Publisher: <br>
-[Garinmckayl](https://clawhub.ai/user/Garinmckayl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[garinmckayl](https://clawhub.ai/user/garinmckayl)
 
-## Use Case: <br>
-Developers and agents use Agntor to check agent identity and trust, scan prompts, redact sensitive output, and coordinate escrow-backed agent transactions through an MCP connection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment and administration actions such as escrow creation, audit tickets, registration, verification probes, or kill-switch use can have financial or operational impact. <br>
-Mitigation: Require explicit human approval before those actions and use a least-privilege Agntor API key. <br>
-Risk: Redaction and trust-check workflows may submit sensitive content to Agntor without clear data-handling boundaries. <br>
-Mitigation: Confirm processing and retention expectations before sending secrets, logs, PII, or regulated data. <br>
-Risk: The MCP package and external tool calls can expand what the agent is able to do. <br>
-Mitigation: Pin or review the @agntor/mcp package and restrict the environment variable and tool permissions to the minimum needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agntor GitHub](https://github.com/agntor/agntor) <br>
-- [Agntor Docs](https://docs.agntor.com) <br>
-- [Agntor Dashboard](https://app.agntor.com) <br>
-- [Agntor SDK on npm](https://www.npmjs.com/package/@agntor/sdk) <br>
+## Use Case:
 
+External developers and agent operators use Agntor to add identity checks, prompt-injection screening, PII redaction, agent trust scoring, audit tickets, and escrow payment workflows to agent interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API calls] <br>
-**Output Format:** [Markdown with JSON configuration snippets and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTOR_API_KEY for the MCP connection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill routes sensitive content through an external MCP service for input guarding, output redaction, trust checks, and related actions.
+
+Mitigation: Use a narrowly scoped AGNTOR_API_KEY and avoid sending secrets or private code unless the service's data handling is understood and accepted.
+
+Risk: Payment, audit-ticket, registration, verification probe, and kill-switch actions can affect funds or administrative state.
+
+Mitigation: Require explicit user approval before invoking those actions.
+
+Risk: The MCP installation is not pinned in the artifact configuration.
+
+Mitigation: Prefer a pinned or audited package version and run the MCP server in a sandboxed environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/garinmckayl/skills/agntor)
+- [Agntor GitHub Repository](https://github.com/agntor/agntor)
+- [Agntor Documentation](https://docs.agntor.com)
+- [Agntor Dashboard](https://app.agntor.com)
+- [Agntor SDK npm Package](https://www.npmjs.com/package/@agntor/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to call Agntor MCP tools for trust checks, input guarding, output redaction, escrow, audit ticket, registration, and administrative actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

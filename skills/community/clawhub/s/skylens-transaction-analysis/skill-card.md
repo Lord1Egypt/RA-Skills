@@ -1,40 +1,55 @@
-## Description: <br>
-Inspects one EVM transaction with Skylens APIs and returns human-readable trace, balance, storage, and nonce changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspects a single EVM transaction with Skylens APIs and returns human-readable traces, balance changes, storage changes, nonce changes, and contract source files for supported chains.
 
-## Publisher: <br>
-[certik-ai](https://clawhub.ai/user/certik-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[certik-ai](https://clawhub.ai/user/certik-ai)
 
-## Use Case: <br>
-Developers, security analysts, and blockchain investigators use this skill to inspect a single supported EVM transaction, review call traces, check balance and storage changes, inspect nonce changes, and fetch related contract source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction hashes, chain names, and addresses are sent to CertiK Skylens during analysis. <br>
-Mitigation: Use the skill only when sharing those transaction details with Skylens is acceptable for the user's investigation. <br>
-Risk: The optional source-file output path can write fetched contract source to disk. <br>
-Mitigation: Save source files only to an intended workspace path and avoid targeting sensitive or existing files. <br>
+## Use Case:
 
+Developers, security analysts, and investigators use this skill to inspect one supported EVM transaction at a time, including execution traces, holder balance deltas, contract storage changes, nonce changes, and related contract source files.
 
-## Reference(s): <br>
-- [CertiK Skylens](https://skylens.certik.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands] <br>
-**Output Format:** [Plain text command output, with optional contract source content or a saved source-file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are scoped to one transaction and, where relevant, one holder, address, or source-file index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill executes a local Python script and makes outbound HTTPS requests to skylens.certik.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local script execution and outbound access to that service are permitted.
+
+Risk: The get-source-file command can write remotely fetched contract source to a user-specified path.
+
+Mitigation: Use --OUTPUT only with a safe workspace path and review saved files before trusting or executing them.
+
+## Reference(s):
+
+- [Skylens](https://skylens.certik.com/)
+- [ClawHub Skill Page](https://clawhub.ai/certik-ai/skills/skylens-transaction-analysis)
+- [CertiK Publisher Profile](https://clawhub.ai/user/certik-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Plain text command output, readable trace lines, and optional saved source code files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on one transaction and selected chain/address parameters; trace output supports offset and size pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

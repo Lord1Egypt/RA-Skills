@@ -1,50 +1,60 @@
-## Description: <br>
-Guides users through OpenClaw Diary initialization, including personality selection, optional identity setup, storage configuration, authorization collection, and configuration-file creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Diary Setup guides users through initializing an OpenClaw diary system, including personality selection, optional user profile creation, storage setup, authorization collection, and configuration generation.
 
-## Publisher: <br>
-[smorzandos](https://clawhub.ai/user/smorzandos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smorzandos](https://clawhub.ai/user/smorzandos)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to initialize a diary workspace, choose a diary assistant style, configure local or cloud-backed storage, and optionally create a user identity profile from chat or imported documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can install tools and dependent skills and create local files. <br>
-Mitigation: Review proposed shell commands and generated paths before execution, and prefer the local-only setup path when cloud sync is not required. <br>
-Risk: The skill may request service credentials such as Feishu app secrets, Notion tokens, and Flomo API tokens. <br>
-Mitigation: Use narrowly scoped tokens, avoid pasting long-lived secrets into chat, and store credentials in a dedicated secret manager or reviewed environment configuration. <br>
-Risk: Optional imports can bring personal or workspace data into the diary memory area. <br>
-Mitigation: Import only the sources needed for the diary setup, avoid all-source imports, and inspect generated identity and memory files before relying on them. <br>
-Risk: Generated configuration and shell-profile changes can affect later diary behavior or sync destinations. <br>
-Mitigation: Inspect the generated configuration file and any suggested shell-profile edits before reloading the shell or enabling cloud synchronization. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to set up a personal diary workflow, create local configuration files, and optionally connect identity import or sync services such as Feishu, Notion, and Flomo. It is intended for normal ClawHub release use rather than a demo or research-only workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smorzandos/openclaw-diary-setup) <br>
-- [OpenClaw Diary homepage](https://github.com/openclaw-community/diary-system) <br>
-- [Digital Life Import guide](importers/digital_life_import.md) <br>
-- [Feishu user profile importer guide](importers/feishu_importer.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Notion Integrations](https://www.notion.so/my-integrations) <br>
-- [Flomo](https://flomoapp.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local diary directories, configuration JSON, identity Markdown, and shell environment-variable snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The setup flow may install global packages or dependent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands before execution and prefer manual, pinned installs from trusted package sources.
+
+Risk: The skill can collect or store cloud-service credentials for Feishu, Notion, Flomo, or other import sources.
+
+Mitigation: Use short-lived or scoped credentials where possible, avoid pasting long-lived secrets into chat, and do not store secrets in shell profiles unless that matches local security policy.
+
+Risk: Diary entries, identity profiles, and imported digital-life data may be stored locally or synchronized to third-party services.
+
+Mitigation: Review each selected source and destination path before import or sync, and use local-only storage when cloud synchronization is not required.
+
+## Reference(s):
+
+- [OpenClaw Diary System Homepage](https://github.com/openclaw-community/diary-system)
+- [ClawHub Skill Page](https://clawhub.ai/smorzandos/skills/openclaw-diary-setup)
+- [Notion MCP Documentation](https://developers.notion.com/docs/mcp)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup dialogue, dependency-install commands, directory-creation commands, diary configuration JSON, and credential-handling guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

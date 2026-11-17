@@ -1,47 +1,61 @@
-## Description: <br>
-Develop a link-building plan for ecommerce stores including outreach templates, partnership ideas, and content assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop a link-building plan for ecommerce stores including outreach templates, partnership ideas, and content assets.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce marketers, SEO specialists, and store operators use this skill to audit backlink profiles, plan link-building campaigns, qualify prospects, and draft personalized outreach for partnerships, reviews, resource pages, guest posts, and digital PR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outreach drafts may contain inaccurate personalization, unsupported credibility claims, or messages that are sent too broadly. <br>
-Mitigation: Manually review and approve every outreach message before sending, verify personalization and claims against the recipient's public content, and keep follow-up cadence within the documented limits. <br>
-Risk: Link-building campaigns can create compliance or reputation risk if they ignore anti-spam rules, opt-out requests, or low-quality placement signals. <br>
-Mitigation: Follow applicable anti-spam and opt-out requirements, disqualify link farms and paid-link placements, and use the checklist to confirm relevance, anchor diversity, and natural link velocity. <br>
-Risk: Campaign planning may involve identifiable customer or sensitive business data when building data-led pitches or reports. <br>
-Mitigation: Avoid sharing identifiable customer or sensitive business data unless permission and appropriate controls are in place; anonymize or aggregate data used in outreach and PR materials. <br>
+## Use Case:
 
+External ecommerce marketers, SEO practitioners, and store operators use this skill to plan backlink campaigns, evaluate link prospects, prepare outreach templates, and structure campaign tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/backlink-strategy) <br>
-- [Backlink Strategy Skill Source](artifact/SKILL.md) <br>
-- [Backlink Strategy Output Template](artifact/output-template.md) <br>
-- [Outreach Templates Guide](artifact/outreach-templates-guide.md) <br>
-- [Link Prospect Scoring Guide](artifact/link-prospect-scoring.md) <br>
-- [Backlink Strategy Quality Checklist](artifact/backlink-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy documents with tables, checklists, campaign calendars, KPI trackers, and outreach email templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prospect scoring rubrics, link profile audit fields, tactical recommendations, follow-up sequences, and manual review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: SEO outreach templates may be used for spammy or guideline-violating link tactics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tailor outreach to the intended audience, use lawful contact sourcing, personalize messages, and avoid tactics that violate search-engine or platform guidelines.
+
+Risk: Poor prospect filtering can lead to low-quality, irrelevant, or harmful backlinks.
+
+Mitigation: Apply the included prospect scoring rubric and disqualify prospects with spam, link-selling, penalty, or relevance red flags before outreach.
+
+Risk: Aggressive anchor text or link velocity recommendations can increase SEO penalty risk.
+
+Mitigation: Review anchor text diversity, keep exact-match anchors limited, ramp campaigns gradually, and monitor toxic links and link decay.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/backlink-strategy)
+- [Backlink Strategy output template](artifact/output-template.md)
+- [Outreach templates guide](artifact/outreach-templates-guide.md)
+- [Link prospect scoring guide](artifact/link-prospect-scoring.md)
+- [Backlink strategy quality checklist](artifact/backlink-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Analysis]
+
+**Output Format:** [Markdown strategy, checklist, scoring rubric, and outreach template text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance with no executable behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

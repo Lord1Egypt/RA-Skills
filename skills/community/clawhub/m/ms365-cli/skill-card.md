@@ -1,42 +1,58 @@
-## Description: <br>
-Manage Microsoft 365 email, calendar, and contacts through the ms365 CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Microsoft 365 email, calendar, and contacts through the ms365 CLI.
 
-## Publisher: <br>
-[thecfguy](https://clawhub.ai/user/thecfguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thecfguy](https://clawhub.ai/user/thecfguy)
 
-## Use Case: <br>
-Users and their agents use this skill to inspect and manage Microsoft 365 email, calendar, and contacts from a terminal-backed workflow. It supports reading and searching account data plus account-changing actions such as sending mail, moving or deleting messages, creating folders, and creating or deleting calendar events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent live Microsoft 365 account-changing powers, including sending email, moving or deleting messages, creating folders, and changing calendar events. <br>
-Mitigation: Use the narrowest delegated Microsoft 365 permissions available and require the agent to show the exact item and command before any send, move, delete, folder, or calendar change. <br>
-Risk: Authentication and tokens are handled by the local ms365 CLI for a real user account. <br>
-Mitigation: Have the user authenticate manually only when needed, check auth status before use, and run ms365 auth logout when finished. <br>
-Risk: Incorrect IDs, broad queries, or permanent deletion can expose or remove more mailbox or calendar data than intended. <br>
-Mitigation: Verify item IDs from list or search results, keep result counts bounded, and avoid permanent deletion unless the user explicitly requests it. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent inspect and manage Microsoft 365 mail, folders, calendar events, recurring meetings, and contacts from a terminal session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thecfguy/ms365-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bounded CLI queries by default and requires user-authenticated Microsoft 365 access before account operations can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill gives an agent broad authority to send mail, delete or move messages, and create or delete calendar events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sending mail, deleting or moving messages, creating meetings with attendees, or deleting calendar events.
+
+Risk: The installation guidance recommends an unpinned global ms365 CLI install.
+
+Mitigation: Use a pinned and verified ms365 CLI version where possible before allowing the agent to execute commands.
+
+Risk: Microsoft 365 delegated permissions can expose sensitive mailbox, calendar, and contact data.
+
+Mitigation: Avoid broad delegated permissions and keep authentication revocation or logout available through ms365 auth logout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thecfguy/skills/ms365-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/thecfguy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-managed ms365 authentication and bounded command results; list operations should not request more than 100 items at once.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

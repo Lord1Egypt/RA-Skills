@@ -1,40 +1,56 @@
-## Description: <br>
-Retrieves authoritative, up-to-date technical documentation, API references, configuration details, and code examples for developer technologies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves authoritative, up-to-date technical documentation, API references, configuration details, and code examples for any developer technology.
 
-## Publisher: <br>
-[kritsanan1](https://clawhub.ai/user/kritsanan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kritsanan1](https://clawhub.ai/user/kritsanan1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to look up current documentation, API references, code examples, setup instructions, and version-specific behavior for external developer technologies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to install or run a mutable third-party CLI for many technical tasks.
+
+Mitigation: Review before installing, prefer a pinned ctx7 version in an isolated environment, and avoid global installation.
+
+Risk: Documentation queries may expose credentials, personal data, proprietary code, or sensitive internal details.
+
+Mitigation: Keep Context7 queries limited to non-sensitive technical intent and remove secrets or confidential material before lookup.
+
+Risk: Fallback answers may rely on training knowledge when Context7 quota is exhausted or the user cannot authenticate.
+
+Mitigation: Tell the user why Context7 was not used and clearly note that fallback information may be outdated.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to resolve a technology to a Context7 library ID and retrieve current documentation, API references, configuration details, and code examples before answering technical questions or writing code. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation queries are sent to the external Context7 service. <br>
-Mitigation: Use sanitized documentation-style queries only, and exclude API keys, passwords, private source code, customer data, and confidential architecture details. <br>
-Risk: The skill asks the agent to run the Context7 npm CLI. <br>
-Mitigation: Install and run it only in environments where use of the Context7 CLI is approved, and authenticate with Context7 only when higher rate limits are needed. <br>
+**Output Format:** [Markdown with inline code and shell command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing for Find Docs](https://clawhub.ai/kritsanan1/find-docs) <br>
+**Other Properties Related to Output:** [Limits Context7 lookups to three attempts per question and directs agents to avoid sensitive query content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Context7 CLI command examples and documentation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include library-selection rationale, version-specific documentation IDs, quota handling guidance, and reminders to keep sensitive information out of documentation queries.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

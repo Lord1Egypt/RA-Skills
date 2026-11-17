@@ -1,41 +1,55 @@
-## Description: <br>
-Manage Google NotebookLM notebooks, sources, chats, artifacts, and exports through the notebooklm-py CLI with safe workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google NotebookLM notebooks, sources, chats, artifacts, and exports through the notebooklm-py CLI with safe workflows.
 
-## Publisher: <br>
-[suidge](https://clawhub.ai/user/suidge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suidge](https://clawhub.ai/user/suidge)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Google NotebookLM through the local notebooklm-py CLI, including authentication checks, notebook and source management, source-grounded questions, artifact generation, downloads, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a user's NotebookLM account, including private document uploads, downloads, deletes, sharing changes, language changes, login changes, and generation jobs. <br>
-Mitigation: Confirm account-visible, destructive, long-running, file-writing, sharing, login, generation, wait, and doctor --fix actions before execution. <br>
-Risk: Shared CLI notebook context can cause actions to target the wrong notebook or profile during automation. <br>
-Mitigation: Use explicit notebook IDs for workflows and isolate account state with NOTEBOOKLM_PROFILE or NOTEBOOKLM_HOME when needed. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Google NotebookLM notebooks, sources, chats, generated artifacts, and exports through the notebooklm-py CLI. The skill is intended for safe account-backed NotebookLM workflows that require auth checks, explicit notebook selection, JSON output, and review before destructive or long-running actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/suidge/notebooklm-py-skill) <br>
-- [notebooklm-py CLI Reference](references/notebooklm-py-cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers explicit notebook IDs and --json output; requires confirmation before destructive, long-running, file-writing, sharing, login, or doctor --fix actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release metadata and artifact _meta.json) <br>
+Risk: The skill asks users to install and use a third-party CLI with their NotebookLM account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin notebooklm-py to a trusted reviewed version, install it with pipx rather than global pip, and verify authentication with notebooklm auth check --test --json before account-backed workflows.
+
+Risk: Notebook, source, artifact, sharing, generation, and download actions may expose files or NotebookLM content or perform destructive changes.
+
+Mitigation: Use only notebooks and files intended for NotebookLM, prefer explicit notebook IDs and JSON output, and require user review before delete, clean, share, generate, download, saved-note, or wait actions.
+
+## Reference(s):
+
+- [notebooklm-py CLI Reference](references/notebooklm-py-cli.md)
+- [ClawHub Skill Page](https://clawhub.ai/suidge/skills/notebooklm-py-skill)
+- [Skill Homepage](https://github.com/Suidge/notebooklm-py-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers explicit notebook IDs and --json output; asks before destructive, long-running, sharing, generation, download, and file-writing actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

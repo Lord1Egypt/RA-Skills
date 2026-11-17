@@ -1,0 +1,24 @@
+%% jev-webbridge decision loop — observe → decide → gate → act → settle → verify
+%% Source of truth for docs/assets/loop.svg (render with mmdc).
+flowchart TB
+    START([Goal + start URL]) --> OBS[Observe: one JS snapshot]
+    OBS --> TBL[Numbered element table]
+    TBL --> JEV[Jev head: op + target ~0.7 s]
+    JEV --> GQ{Structural gate<br/>op subset of row ops}
+    GQ -- reject --> ESC
+    GQ -- pass --> REC[Write receipt + flush]
+    REC --> ACT[Act on the page]
+    ACT --> LAD[Click ladder<br/>trusted - synthetic - CDP]
+    LAD --> EFF{Effect in 0.7 s?}
+    EFF -- no, fall through --> LAD
+    EFF -- yes --> SETTLE[Settle wait bounded]
+    SETTLE --> SIG{State signature}
+    SIG -- changed --> OBS
+    SIG -- unchanged x2 --> ESC[Escalation<br/>fast LLM answerer 2-3 s]
+    SIG -- cycles or wall spent --> OUT([Exhausted + receipts])
+    ESC --> DEC{Escalation answer}
+    DEC -- WAIT, free --> SETTLE
+    DEC -- action --> ACT
+    DEC -- DONE --> VER[Verify: done_verify<br/>+ goal keyword gate]
+    VER -- pass --> DONE([DONE + extracted answer])
+    VER -- fail --> OBS

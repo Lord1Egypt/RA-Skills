@@ -1,45 +1,65 @@
-## Description: <br>
-DNS reconnaissance and subdomain enumeration using rapiddns-cli and the RapidDNS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DNS reconnaissance and subdomain enumeration using rapiddns-cli and the RapidDNS API.
 
-## Publisher: <br>
-[rapiddns](https://clawhub.ai/user/rapiddns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rapiddns](https://clawhub.ai/user/rapiddns)
 
-## Use Case: <br>
-Developers and security practitioners use this skill to set up rapiddns-cli and run authorized DNS reconnaissance, including subdomain enumeration, reverse IP lookup, CIDR enumeration, advanced DNS queries, and bulk DNS data export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RapidDNS API keys can be exposed through command history, configuration files, or shared logs. <br>
-Mitigation: Treat the API key like a password, avoid sharing logs that contain credentials, and prefer protected configuration or environment-based handling. <br>
-Risk: Bulk DNS reconnaissance and exports can be misused or run against unauthorized targets. <br>
-Mitigation: Run enumeration only for authorized targets and scope large exports before execution. <br>
-Risk: Export and extraction workflows can create local result files containing reconnaissance data. <br>
-Mitigation: Store generated files in an appropriate workspace and review them before sharing or retaining them. <br>
+## Use Case:
 
+Developers, security teams, and authorized researchers use this skill to run RapidDNS searches for subdomains, DNS records, reverse IP results, CIDR enumeration, advanced queries, and exports.
 
-## Reference(s): <br>
-- [RapidDNS API Reference](references/api.md) <br>
-- [RapidDNS website](https://rapiddns.io) <br>
-- [RapidDNS CLI releases](https://github.com/rapiddns/rapiddns-cli/releases/latest) <br>
-- [ClawHub skill page](https://clawhub.ai/rapiddns/rapiddns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of RapidDNS CLI output in JSON, CSV, or text formats and local result files when export workflows are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Install commands may download an unverified remote executable and move it into a system-wide path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands before execution, prefer a user-local install, pin a reviewed version, and verify checksums or signatures when available.
+
+Risk: Using @latest can reduce reproducibility and make reviewed behavior drift over time.
+
+Mitigation: Pin a specific rapiddns-cli version that has been reviewed for the intended environment.
+
+Risk: The RapidDNS API key is a sensitive credential.
+
+Mitigation: Store and handle the API key as a secret, avoid exposing it in logs or shared command history, and rotate it if disclosure is suspected.
+
+Risk: DNS reconnaissance workflows can be misused against domains, IPs, or networks without authorization.
+
+Mitigation: Use the skill only for assets the operator is authorized to investigate.
+
+## Reference(s):
+
+- [RapidDNS API Reference](references/api.md)
+- [RapidDNS](https://rapiddns.io)
+- [RapidDNS CLI Releases](https://github.com/rapiddns/rapiddns-cli/releases/latest)
+- [ClawHub Skill Page](https://clawhub.ai/rapiddns/skills/rapiddns)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/rapiddns)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call rapiddns-cli and produce JSON, CSV, or text output through the RapidDNS service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

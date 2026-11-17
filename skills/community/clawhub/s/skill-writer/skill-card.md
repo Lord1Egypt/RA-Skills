@@ -1,42 +1,49 @@
-## Description: <br>
-Write high-quality agent skills (SKILL.md files) for ClawdHub/MoltHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes high-quality SKILL.md files for ClawdHub/MoltHub, including structure, frontmatter, descriptions, content patterns, examples, review checks, and publishing guidance.
 
-## Publisher: <br>
-[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, structure, review, and publish high-quality SKILL.md files for ClawdHub or MoltHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Publishing commands can affect the user's ClawHub or MoltHub account. <br>
-Mitigation: Run publishing commands only when intentionally creating or updating a skill release, and confirm the target slug, name, version, and changelog first. <br>
-Risk: The skill may produce incorrect or incomplete guidance for a SKILL.md file. <br>
-Mitigation: Review generated skill text before publishing and scan it for placeholders, outdated commands, and unsupported dependencies. <br>
-Risk: Installing third-party skill content requires publisher trust. <br>
-Mitigation: Confirm the publisher handle and review the skill text before installation or use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gitgoodordietrying/skill-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/gitgoodordietrying) <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, structure, review, and publish agent SKILL.md files for the ClawdHub/MoltHub registry.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with YAML, Markdown, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable authoring guidance and publishing commands for agent skill files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary says the publishing guidance runs a mutable external CLI version that should be reviewed before use.
+
+Mitigation: Prefer a pinned and reviewed molthub CLI version, publish from a constrained environment, and use narrowly scoped registry credentials.
+
+## Reference(s):
+
+- [Skill Writer ClawHub listing](https://clawhub.ai/gitgoodordietrying/skills/skill-writer)
+- [Source skill artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, Markdown, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include example SKILL.md frontmatter, quality checklists, and npx molthub publishing commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

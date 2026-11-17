@@ -6,16 +6,37 @@ Time-of-day patterns, busiest days, seasonal trends, photo vs video ratios.
 
 import sys
 from collections import defaultdict
-from typing import Any, Optional
+from typing import Any
 
-from _common import PhotosDB, coredata_to_datetime, format_size, run_script, validate_year
+from _common import (
+    PhotosDB,
+    coredata_to_local,
+    format_size,
+    has_timezone_offset,
+    local_datetime_sql,
+    run_script,
+    tz_offset_sql,
+    validate_year,
+)
+from _schema import FILE_SIZE
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZISDETECTEDSCREENSHOT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {}
 
 DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 
 def analyze_habits(
-    db_path: Optional[str] = None,
-    year: Optional[str] = None,
+    db_path: str | None = None,
+    year: str | None = None,
 ) -> dict[str, Any]:
     """
     Analyze photo-taking habits and patterns.
@@ -27,14 +48,15 @@ def analyze_habits(
     Returns:
         Habits analysis dictionary
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Photo habits") as conn:
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         year_filter = ""
         year_params: list = []
         if year:
             year = validate_year(year)
-            year_filter = "AND strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) = ?"
+            year_filter = f"AND strftime('%Y', {local_datetime_sql(tz_available)}) = ?"
             year_params = [year]
 
         # Get all non-trashed assets with timestamps
@@ -45,7 +67,8 @@ def analyze_habits(
                 a.ZKIND,
                 a.ZFAVORITE,
                 a.ZISDETECTEDSCREENSHOT,
-                aa.ZORIGINALFILESIZE
+                aa.ZORIGINALFILESIZE,
+                {tz_offset_sql(tz_available)} AS tz_offset
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE a.ZTRASHEDSTATE != 1
@@ -57,13 +80,17 @@ def analyze_habits(
         )
 
         # Accumulators
-        by_hour = defaultdict(int)
-        by_day_of_week = defaultdict(int)
-        by_month = defaultdict(int)
-        by_year_month = defaultdict(lambda: {"photos": 0, "videos": 0, "screenshots": 0, "size": 0, "favorites": 0})
-        by_year = defaultdict(lambda: {"photos": 0, "videos": 0, "total": 0, "size": 0})
-        streaks = {"current": 0, "max": 0, "max_start": None, "max_end": None}
-        daily_counts = defaultdict(int)
+        by_hour: defaultdict[int, int] = defaultdict(int)
+        by_day_of_week: defaultdict[int, int] = defaultdict(int)
+        by_month: defaultdict[int, int] = defaultdict(int)
+        by_year_month: defaultdict[str, dict[str, int]] = defaultdict(
+            lambda: {"photos": 0, "videos": 0, "screenshots": 0, "size": 0, "favorites": 0}
+        )
+        by_year: defaultdict[str, dict[str, int]] = defaultdict(
+            lambda: {"photos": 0, "videos": 0, "total": 0, "size": 0}
+        )
+        streaks: dict[str, Any] = {"current": 0, "max": 0, "max_start": None, "max_end": None}
+        daily_counts: defaultdict[str, int] = defaultdict(int)
 
         total_photos = 0
         total_videos = 0
@@ -73,14 +100,14 @@ def analyze_habits(
         first_date = None
         last_date = None
 
-        for row in cursor.fetchall():
-            dt = coredata_to_datetime(row["ZDATECREATED"])
+        for row in cursor:
+            dt = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             if dt is None:
                 continue
 
-            if first_date is None:
-                first_date = dt
-            last_date = dt
+            # Rows are in UTC order, which isn't local order across time zones
+            first_date = dt if first_date is None else min(first_date, dt)
+            last_date = dt if last_date is None else max(last_date, dt)
 
             is_video = row["ZKIND"] == 1
             is_screenshot = bool(row["ZISDETECTEDSCREENSHOT"])
@@ -357,7 +384,7 @@ def format_summary(data: dict[str, Any]) -> str:
 
 def main():
     def add_args(parser):
-        parser.add_argument("--year", help="Filter to specific year (YYYY)")
+        parser.add_argument("--year", help="Filter to specific year (YYYY, local capture time)")
 
     def invoke(db_path, args):
         return analyze_habits(

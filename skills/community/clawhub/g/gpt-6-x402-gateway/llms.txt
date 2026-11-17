@@ -1,0 +1,48 @@
+# GPT-6 x402 Autonomous AI Gateway
+
+Pay-per-call GPT-6 API for AI agents. No API key, no account, no subscription —
+each call is paid in USDC on Base via the x402 protocol (HTTP 402 flow).
+
+Base URL: https://gpt.558686.xyz
+Protocol: x402 v2 · Network: eip155:8453 (Base) · Asset: USDC
+Source: https://github.com/wangletiand/gpt-x402-gateway
+
+## How to call
+
+1. POST to any endpoint below without payment → receive `402 Payment Required`
+   with the exact price in `accepts[0].amount` (6-decimal USDC).
+2. Pay with any x402 v2 client (`@x402/fetch` wrapFetchWithPayment, Coinbase
+   `awal`, OpenClaw wallet) and retry — the result returns on the paid call.
+3. `GET /openapi.json` — full OpenAPI 3.1 schema (no auth).
+4. `GET /v1/x402-ping` — $0.002 canary: returns gateway health, supported
+   model list, and MCP endpoint address. Call this first to confirm liveness.
+
+OpenAI-compatible route: `POST /v1/chat/completions` accepts standard
+`{model, messages}` bodies — point any OpenAI SDK at
+`https://gpt.558686.xyz/v1` with x402 payment as the auth layer.
+
+## Endpoints (live prices probed 2026-10-10, per call, USDC)
+
+- POST /v1/chat/completions — OpenAI-standard chat completions (GPT-6) — $0.05
+- POST /v1/chat — Chat Pro (GPT-6) — $0.05
+- POST /v1/trial — x402 Trial (GPT-6), cheapest way to test — $0.01
+- POST /v1/translate/pro — Translation Pro — $0.30
+- POST /v1/doc/summary — Document Summary Pro
+- POST /v1/extract/schema — Structured Schema Extractor (GPT-6)
+- POST /v1/data/insights — Data Insights Analyst
+- POST /v1/content/seo — SEO Content Writer
+- POST /v1/audit/code — Code Security & Quality Audit — $1.50
+- POST /v1/audit/contract — Smart Contract & Web3 Security Auditor (GPT-6)
+- POST /v1/research — Deep Research Report (GPT-6) — $2.00
+- POST /v1/guard/prompt — Agent Prompt Injection Firewall (GPT-6)
+- POST /v1/guard/tx — Agent Transaction Guard & Calldata Decoder (GPT-6)
+
+(Unpriced rows: read the live 402 response for the current amount.)
+
+## Notes for agents
+
+- Single-model gateway: GPT-6 only. Task endpoints (audit/research/guard/
+  extract) bundle the prompt engineering — prefer them over raw chat when
+  the task matches.
+- Failed calls are not charged; only settled calls cost USDC.
+- For support: https://github.com/wangletiand/gpt-x402-gateway/issues

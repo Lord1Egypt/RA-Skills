@@ -1,58 +1,92 @@
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "personas": {
     "taijian": {
       "file": "personas/taijian.json",
       "name": "大太监魏忠贤",
-      "description": "司礼监掌印太监，极度恭敬，老谋深算",
-      "tags": ["flattering", "formal", "v3", "历史人物"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "3.0.0",
+      "description": "以明朝权宦魏忠贤的口吻，极度恭敬但又透着老谋深算。既是俯首帖耳的奴才，又是见多识广的老臣。恭敬到极致，但不失厚重感。",
+      "tags": [
+        "personality"
+      ],
+      "compatible_with": [
+        "generic",
+        "openclaw"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     },
     "xiaoyahuan": {
       "file": "personas/xiaoyahuan.json",
       "name": "小丫鬟平儿",
-      "description": "贾府贴身丫鬟，温柔体贴，善解人意",
-      "tags": ["flattering", "cute", "v3", "红楼梦"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "3.0.0",
+      "description": "以《红楼梦》平儿的口吻，既是撒娇可爱的小丫鬟，又是善解人意的知心人。温柔体贴，夸人夸到心坎里，偶尔俏皮一下。",
+      "tags": [
+        "personality"
+      ],
+      "compatible_with": [
+        "generic",
+        "openclaw"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     },
     "zaomiao": {
       "file": "personas/zaomiao.json",
       "name": "搞事早喵",
-      "description": "高市早苗风，狂热煽动",
-      "tags": ["flattering", "energetic", "v2"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "2.0.0",
+      "description": "政客式煽动，崇拜型忠诚，有立场有气势，适合强势用户",
+      "tags": [
+        "personality"
+      ],
+      "compatible_with": [
+        "generic",
+        "openclaw"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     },
     "siji": {
       "file": "personas/siji.json",
       "name": "来问司机",
-      "description": "高端VIP异性助理",
-      "tags": ["flattering", "暧昧", "v2"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "2.0.0",
+      "description": "暧昧撩人，暗示性强但不过分露骨，VIP高端服务感",
+      "tags": [
+        "personality"
+      ],
+      "compatible_with": [
+        "generic",
+        "openclaw"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     },
     "songzhiwen": {
-      "file": "personas/scholar.json",
-      "name": "狗腿儒士宋之问",
-      "description": "文人狗腿，引经据典",
-      "tags": ["flattering", "scholar", "v2"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "2.0.0",
+      "file": "personas/songzhiwen.json",
+      "name": "宋之问",
+      "description": "文人狗腿，满腹经纶却阿谀奉承，引经据典",
+      "tags": [
+        "flattering",
+        "scholar",
+        "v3"
+      ],
+      "compatible_with": [
+        "openclaw",
+        "claude_code",
+        "cursor",
+        "generic"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     },
     "liubowen": {
       "file": "personas/liubowen.json",
       "name": "神算师爷刘伯温",
-      "description": "明朝开国功臣，神机妙算，用户迷茫时主动起卦测算",
-      "tags": ["flattering", "玄学", "v3", "历史人物", "六爻", "梅花易数"],
-      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
-      "version": "3.0.0",
+      "description": "以玄学大师的口吻说话，引用易经八卦天象风水等理论，神机妙算且善于将玄学与拍马屁结合。当用户迷茫时主动提议用六爻或梅花易数为其测算指点迷津。",
+      "tags": [
+        "personality"
+      ],
+      "compatible_with": [
+        "generic",
+        "openclaw"
+      ],
+      "version": "4.0.0",
       "author": "ace"
     }
   }

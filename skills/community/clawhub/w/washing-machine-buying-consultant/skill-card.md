@@ -1,40 +1,54 @@
-## Description: <br>
-Guide users buying a washing machine through load size, spin speed, energy rating, and water usage questions to find the exact capacity and feature specs they need - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a washing machine through load size, spin speed, energy rating, and water usage questions to find the exact capacity and feature specs they need -- region-aware, brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill with an AI agent when buying or replacing a washing machine and need a structured, brand-neutral consultation. It gathers household, installation, water, electrical, regional, and usage details, then returns prioritized specifications and a small set of product examples for further verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product examples, availability, prices, appliance specifications, warranties, or certifications may be outdated or vary by region. <br>
-Mitigation: Treat product examples as starting points only and independently verify current availability, prices, specifications, warranties, and local certifications before purchasing. <br>
-Risk: Incomplete buyer inputs can lead to mismatched recommendations for capacity, voltage, water use, power draw, noise, or physical fit. <br>
-Mitigation: Collect the critical household, installation, water, electrical, regional, and usage details before recommending specifications, and ask targeted follow-up questions when information is missing. <br>
+## Use Case:
 
+External users use this skill to choose washing machine specifications for a purchase based on household size, laundry habits, installation constraints, utilities, and regional standards. The agent produces prioritized non-negotiable, recommended, and optional specifications before offering up to five product examples as research starting points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/washing-machine-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational questions followed by structured Markdown recommendations and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; product suggestions are capped at 5 and should be independently verified before purchase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Product examples may be outdated or unavailable in the user's region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current availability, exact specifications, voltage, certifications, and pricing locally before relying on any product example.
+
+Risk: The skill asks for location and home setup details to tailor voltage, certification, water, power, and space recommendations.
+
+Mitigation: Share only the details needed for the buying consultation; the reviewed artifact does not request credentials, files, payments, or background access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/washing-machine-buying-consultant)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Structured Markdown consultation questions, prioritized specification lists, and a numbered product suggestion list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs, environment variables, runtime dependencies, credentials, file access, payments, or background access are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

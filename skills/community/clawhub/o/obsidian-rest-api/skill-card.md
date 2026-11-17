@@ -1,42 +1,59 @@
-## Description: <br>
-Operate Obsidian via the Local REST API plugin from remote or WSL environments to read, write, search, and manage vault notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Obsidian via Local REST API plugin from remote/WSL environments.
 
-## Publisher: <br>
-[jieszs](https://clawhub.ai/user/jieszs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jieszs](https://clawhub.ai/user/jieszs)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to operate an Obsidian vault through the Local REST API when direct filesystem access is unavailable or when remote note automation is preferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a reusable Obsidian REST API key that can read and change vault contents. <br>
-Mitigation: Keep the API key private and grant access only when the user is comfortable allowing the agent to read and modify the vault. <br>
-Risk: The REST API may be reachable from remote or WSL environments and can perform write, delete, and command-execution operations. <br>
-Mitigation: Restrict API and firewall exposure to trusted hosts, and explicitly review write, delete, or command-execution requests before allowing them. <br>
+## Use Case:
 
+Developers and agent users use this skill to read, write, search, and manage Obsidian vault notes through the Local REST API when direct filesystem access is blocked or the vault is reachable only from WSL or a remote environment.
 
-## Reference(s): <br>
-- [Obsidian Local REST API Reference](references/api.md) <br>
-- [Official Obsidian Local REST API documentation](https://coddingtonbear.github.io/obsidian-local-rest-api/) <br>
-- [ClawHub skill page](https://clawhub.ai/jieszs/obsidian-rest-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that read, write, delete, search, or execute actions in an Obsidian vault through a configured API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can expose a powerful notes API and stores the Obsidian API key in unsafe ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected secret store or environment variable instead of TOOLS.md, and avoid sharing workspace configuration that contains the API key.
+
+Risk: The documented curl examples use -k, which skips TLS certificate verification.
+
+Mitigation: Trust or pin the Obsidian Local REST API certificate instead of disabling certificate checks.
+
+Risk: Binding the Obsidian REST API broadly and opening firewall access can expose note read, write, delete, and command operations beyond the intended client.
+
+Mitigation: Bind the API only to the needed local interface, restrict firewall access to the WSL source, and require explicit confirmation before delete or command-execution operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jieszs/skills/obsidian-rest-api)
+- [Obsidian Local REST API reference](references/api.md)
+- [Official Obsidian Local REST API documentation](https://coddingtonbear.github.io/obsidian-local-rest-api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Obsidian Local REST API endpoints, request headers, curl commands, and configuration values for the user's environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

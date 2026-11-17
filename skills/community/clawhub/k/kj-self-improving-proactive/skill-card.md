@@ -1,41 +1,54 @@
-## Description: <br>
-A unified OpenClaw skill that helps an agent learn from corrections, maintain active task state, recover context, and keep work moving within explicit boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A unified OpenClaw skill that merges self-improvement and proactivity: learn from corrections, maintain active state, recover context fast, and keep work moving with clear boundaries.
 
-## Publisher: <br>
-[tfops22](https://clawhub.ai/user/tfops22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tfops22](https://clawhub.ai/user/tfops22)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an OpenClaw agent a local operating model for durable memory, session state, context recovery, and bounded proactive follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores durable local notes about preferences, corrections, task state, and follow-ups. <br>
-Mitigation: Review the created ~/self-improving/ and ~/proactivity/ files periodically and avoid storing credentials, tokens, or secrets in them. <br>
-Risk: Workspace integration files such as AGENTS.md, SOUL.md, HEARTBEAT.md, or TOOLS.md can embed the skill's behavior into a project. <br>
-Mitigation: Approve edits to those files only when the behavior should become part of the workspace. <br>
+## Use Case:
 
+Developers and agent users use this skill to help an OpenClaw agent learn from explicit corrections, maintain local task state, recover context, and make useful proactive follow-through suggestions within stated boundaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tfops22/kj-self-improving-proactive) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tfops22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with local state and configuration file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent behavior guidance and local memory/state file conventions; it does not require external binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill encourages local cross-session notes about preferences, corrections, active work, and proactive patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review files under ~/self-improving/ and ~/proactivity/ periodically, and avoid storing credentials, secrets, or highly sensitive context in memory files.
+
+Risk: Proactive follow-through could become noisy or act beyond the user's intent if boundaries are ignored.
+
+Mitigation: Limit automatic action to internal checks, drafts, local state updates, and reversible preparation; ask before messaging, spending money, deleting data, publishing, or making commitments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/tfops22/skills/kj-self-improving-proactive)
+- [Publisher profile](https://clawhub.ai/user/tfops22)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with local file layout recommendations and operating rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces behavioral guidance and local state conventions; no API calls, binaries, or credential requirements are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

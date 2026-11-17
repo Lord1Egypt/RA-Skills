@@ -1,44 +1,59 @@
-## Description: <br>
-Corveil starts a local Corveil dev gateway and configures OpenClaw or Claude Code to route AI requests through it for logging, guardrails, spend tracking, and direct or passthrough provider access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corveil starts a local Corveil development gateway and configures OpenClaw or Claude Code to route AI requests through it for tracking, guardrails, and passthrough or direct provider access.
 
-## Publisher: <br>
-[dgershman](https://clawhub.ai/user/dgershman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dgershman](https://clawhub.ai/user/dgershman)
 
-## Use Case: <br>
-Developers and teams use this skill to set up a local Corveil development environment and connect OpenClaw or Claude Code for testing AI request capture, guardrails, spend tracking, plugins, and direct or passthrough provider routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Corveil observes and logs routed AI requests, which can include sensitive prompts, responses, or development context. <br>
-Mitigation: Install only when request logging is intended, avoid routing production secrets through dev mode, and review captured data handling before use. <br>
-Risk: Provider credentials are used for passthrough or direct routing during local setup. <br>
-Mitigation: Use dev or test provider keys, rotate them after testing when appropriate, and keep the original OpenClaw or Claude Code settings so routing can be reverted. <br>
-Risk: The workflow installs or runs Corveil binaries or installer scripts from external release locations. <br>
-Mitigation: Verify downloaded binaries or installer scripts before running them, including published checksums where available. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and run Corveil locally, create a Corveil API key, and route Claude Code or OpenClaw traffic through Corveil for logging, spend tracking, and guardrail testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dgershman/corveil) <br>
-- [Corveil documentation](https://corveil.com/docs) <br>
-- [Corveil GitHub Releases](https://github.com/radiusmethod/corveil-releases/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup commands, environment variables, OpenClaw provider configuration, and verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6-20260516 (source: server release metadata) <br>
+Risk: The skill installs mutable remote software before routing AI traffic through it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release source, verify checksums or signatures, and install only releases you intend to run locally.
+
+Risk: Corveil fully logs routed AI requests and may observe sensitive prompts, responses, and coding-session data.
+
+Mitigation: Use the skill only when local request capture is intended, avoid sensitive production data during testing, and review Corveil logs and retention settings.
+
+Risk: Provider and Corveil API credentials are used in shell commands and local configuration.
+
+Mitigation: Use dev or test keys with low limits, avoid pasting real secrets directly into shell history, rotate keys after testing, and remove temporary configuration when finished.
+
+## Reference(s):
+
+- [Corveil ClawHub Skill Page](https://clawhub.ai/dgershman/skills/corveil)
+- [Corveil Documentation](https://corveil.com/docs)
+- [Corveil GitHub Releases](https://github.com/radiusmethod/corveil-releases/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; may configure OpenClaw or Claude Code environment settings.]
+
+## Skill Version(s):
+
+1.0.6-20260516 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -34,7 +34,7 @@ Generate **3 complete, ready-to-publish Xiaohongshu notes** from a single input 
    - [CLI Mode](#cli-mode)
    - [Agent / LLM Mode](#agent--llm-mode)
 4. [Sample Prompts (5 Examples with Expected Output)](#4-sample-prompts-5-examples-with-expected-output)
-5. [Real-World Task Examples (3 Scenarios)](#5-real-world-task-examples-3-scenarios)
+5. [Real-World Task Examples (3 Scenarios)](#5-real-world-taREDACTED-SECRET)
 6. [First-Success Path (30-Second Guide)](#6-first-success-path-30-second-guide)
 7. [File Structure](#7-file-structure)
 8. [Configuration & Customization](#8-configuration--customization)

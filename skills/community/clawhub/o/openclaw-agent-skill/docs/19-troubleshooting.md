@@ -223,7 +223,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
     *   [How do I install OpenClaw on Linux?](https://docs.openclaw.ai/help/faq#how-do-i-install-openclaw-on-linux)
     *   [How do I install OpenClaw on a VPS?](https://docs.openclaw.ai/help/faq#how-do-i-install-openclaw-on-a-vps)
     *   [Where are the cloud/VPS install guides?](https://docs.openclaw.ai/help/faq#where-are-the-cloudvps-install-guides)
-    *   [Can I ask OpenClaw to update itself?](https://docs.openclaw.ai/help/faq#can-i-ask-openclaw-to-update-itself)
+    *   [Can I ask OpenClaw to update itself?](https://docs.openclaw.ai/help/faq#can-i-aREDACTED-SECRET)
     *   [What does the onboarding wizard actually do?](https://docs.openclaw.ai/help/faq#what-does-the-onboarding-wizard-actually-do)
     *   [Do I need a Claude or OpenAI subscription to run this?](https://docs.openclaw.ai/help/faq#do-i-need-a-claude-or-openai-subscription-to-run-this)
     *   [Can I use Claude Max subscription without an API key](https://docs.openclaw.ai/help/faq#can-i-use-claude-max-subscription-without-an-api-key)

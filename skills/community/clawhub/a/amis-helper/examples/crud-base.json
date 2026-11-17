@@ -1,0 +1,141 @@
+{
+  "type": "page",
+  "title": "XXX Management",
+  "body": [
+    {
+      "type": "service",
+      "id": "pageStateService",
+      "data": {
+        "exportDownloading": false,
+        "templateDownloading": false
+      },
+      "body": [
+        {
+          "type": "alert",
+          "body": "Page usage hint here.",
+          "level": "info",
+          "className": "mb-2"
+        },
+        {
+          "type": "crud",
+          "id": "mainCrud",
+          "name": "mainCrud",
+          "syncLocation": false,
+          "defaultParams": { "perPage": 50, "page": 1 },
+          "perPageAvailable": [20, 50, 100, 150],
+          "filterTogglable": true,
+          "api": {
+            "method": "post",
+            "url": "/XXX/XXXX/page",
+            "data": {
+              "code": "${code}",
+              "name": "${name}",
+              "current": "${page}",
+              "size": "${perPage}"
+            },
+            "adaptor": "return { ...payload, data: { items: payload.data.rows, total: payload.data.total } };"
+          },
+          "filter": {
+            "title": "Filter",
+            "actions": [
+              { "type": "reset", "label": "Reset" },
+              { "type": "submit", "label": "Search", "level": "primary" }
+            ],
+            "body": [
+              {
+                "type": "select",
+                "name": "code",
+                "label": "Item",
+                "placeholder": "Search by code or name",
+                "clearable": true,
+                "columnRatio": 2,
+                "overlayStyle": { "width": "450px" },
+                "autoComplete": {
+                  "method": "get",
+                  "url": "/XXX/XXXX/search?keyword=${term}",
+                  "sendOn": "${term != null && term.length >= 3}"
+                }
+              },
+              {
+                "type": "select",
+                "name": "country",
+                "label": "Country",
+                "clearable": true,
+                "multiple": true,
+                "searchable": true,
+                "labelField": "name",
+                "valueField": "name",
+                "source": {
+                  "method": "get",
+                  "url": "/XXX/XXXX/dict/list?type=Country",
+                  "adaptor": "return { status: payload.code === 200 ? 0 : payload.code, data: payload.data };"
+                }
+              }
+            ]
+          },
+          "headerToolbar": [
+            "reload",
+            "filter-toggler",
+            {
+              "type": "button",
+              "label": "Export",
+              "level": "warning",
+              "icon": "fa fa-download",
+              "loadingOn": "${exportDownloading}",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    { "actionType": "setValue", "componentId": "pageStateService", "args": { "value": { "exportDownloading": true } } },
+                    {
+                      "actionType": "download",
+                      "args": {
+                        "api": {
+                          "method": "get",
+                          "url": "/XXX/XXXX/export",
+                          "data": {
+                            "code": "${code}",
+                            "country": "${country}"
+                          }
+                        }
+                      }
+                    },
+                    { "actionType": "setValue", "componentId": "pageStateService", "args": { "value": { "exportDownloading": false } } }
+                  ]
+                }
+              }
+            }
+          ],
+          "columns": [
+            { "name": "id", "label": "ID", "width": 80, "hidden": true },
+            { "name": "code", "label": "Code", "width": 130, "copyable": true },
+            { "name": "name", "label": "Name" },
+            {
+              "name": "status",
+              "label": "Status",
+              "type": "mapping",
+              "map": {
+                "Enabled": "<span class='label label-success'>Enabled</span>",
+                "Disabled": "<span class='label label-danger'>Disabled</span>",
+                "*": "<span class='label label-default'>(blank)</span>"
+              }
+            },
+            { "name": "remark", "label": "Remark", "width": 150 },
+            { "name": "createdTime", "label": "Created Time", "type": "datetime", "width": 170 },
+            {
+              "type": "operation",
+              "label": "Action",
+              "fixed": "right",
+              "width": 220,
+              "buttons": []
+            }
+          ],
+          "footerToolbar": [
+            "switch-per-page",
+            { "type": "tpl", "tpl": "Total ${total} records, Page ${page}" },
+            "pagination"
+          ]
+        }
+      ]
+    }
+  ]
+}

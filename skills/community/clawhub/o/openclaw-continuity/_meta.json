@@ -1,6 +1,77 @@
 {
-  "ownerId": "kn77md9ahr1tc0zvhm9pvda7w9822n9k",
-  "slug": "openclaw-continuity",
+  "name": "personal-hooks",
   "version": "2.0.21",
-  "publishedAt": 1777334319524
+  "description": "OpenClaw Continuity is a time-aware continuity and follow-up skill package with /new carryover, staged memory, tracked events, natural-language setting changes, and structured writeback.",
+  "author": "OpenClaw Continuity Maintainers",
+  "license": "MIT-0",
+  "homepage": "https://github.com/redwakame/openclaw-continuity",
+  "repository": "https://github.com/redwakame/openclaw-continuity",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "continuity",
+    "follow-up",
+    "memory",
+    "agent",
+    "v2",
+    "onboarding",
+    "guided-settings",
+    "carryover"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "requires": {
+    "bins": [
+      "python3"
+    ],
+    "env": [
+      "OPENCLAW_STATE_DIR",
+      "OPENCLAW_CONFIG_PATH"
+    ]
+  },
+  "openclaw": {
+    "os": [
+      "darwin",
+      "linux"
+    ],
+    "skill_type": "continuity",
+    "entry_script": "scripts/personal_hooks.py",
+    "config_schema": "config.schema.json",
+    "requires": {
+      "python": ">=3.9",
+      "bins": [
+        "python3"
+      ],
+      "env": [
+        "OPENCLAW_STATE_DIR",
+        "OPENCLAW_CONFIG_PATH"
+      ]
+    },
+    "envVars": [
+      {
+        "name": "OPENCLAW_STATE_DIR",
+        "description": "Required path to the dedicated OpenClaw state directory used by this skill for continuity state.",
+        "required": true
+      },
+      {
+        "name": "OPENCLAW_CONFIG_PATH",
+        "description": "Required path to the OpenClaw config file used for setup validation.",
+        "required": true
+      }
+    ]
+  },
+  "envVars": [
+    {
+      "name": "OPENCLAW_STATE_DIR",
+      "description": "Required path to the dedicated OpenClaw state directory used by this skill for continuity state.",
+      "required": true
+    },
+    {
+      "name": "OPENCLAW_CONFIG_PATH",
+      "description": "Required path to the OpenClaw config file used for setup validation.",
+      "required": true
+    }
+  ]
 }

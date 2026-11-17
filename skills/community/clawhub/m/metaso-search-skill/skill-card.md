@@ -1,41 +1,51 @@
-## Description: <br>
-Search the web using Metaso AI Search API for live information, documentation, and research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Metaso AI Search API for live information, documentation, or research topics.
 
-## Publisher: <br>
-[square123](https://clawhub.ai/user/square123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[square123](https://clawhub.ai/user/square123)
 
-## Use Case: <br>
-Developers and agents use this skill to query the Metaso AI Search API for current web, news, paper, documentation, or research results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected options are sent to Metaso through the configured API key. <br>
-Mitigation: Use only approved queries and avoid submitting secrets, private internal URLs, regulated data, or confidential proprietary text. <br>
-Risk: The script depends on the local Python requests package. <br>
-Mitigation: Run the skill in a trusted Python environment and install dependencies from trusted sources. <br>
+## Use Case:
 
+Developers and agents use this skill to query Metaso AI Search for current web, news, paper, documentation, and research results through a Python command backed by a Metaso API key.
 
-## Reference(s): <br>
-- [Metaso Search API Playground](https://metaso.cn/search-api/playground) <br>
-- [ClawHub Skill Page](https://clawhub.ai/square123/metaso-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON search results printed to stdout, with Markdown usage guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires METASO_API_KEY and Python with the requests package available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, selected request options, and the Metaso API bearer token are sent to Metaso's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private secrets or sensitive personal data in queries, and use a tighter runtime permission policy when the agent environment supports one.
+
+## Reference(s):
+
+- [Metaso Search API Playground](https://metaso.cn/search-api/playground)
+- [Metaso Search API Endpoint](https://metaso.cn/api/v1/search)
+- [ClawHub Skill Page](https://clawhub.ai/square123/skills/metaso-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON response from the Metaso API, or plain-text error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires METASO_API_KEY; request options include q, scope, size, page, conciseSnippet, includeSummary, and includeRawContent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

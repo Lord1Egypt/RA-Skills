@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74qkj5344raj0tk9txa53xvh81a244",
-  "slug": "last30",
+  "name": "last30",
   "version": "1.1.1",
-  "publishedAt": 1774339073256
+  "slug": "last30",
+  "description": "Deep research across Reddit, X, HN, YouTube, Polymarket and Web from the last 30 days",
+  "author": "ralphoei",
+  "license": "MIT",
+  "homepage": "https://github.com/ralphoei/last30"
 }

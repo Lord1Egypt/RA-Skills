@@ -1,40 +1,54 @@
-## Description: <br>
-Pyramid multi-agent orchestration for OpenClaw routes objectives from a CEO agent through department, service, and employee sessions, then collects, validates, merges, and returns the final deliverable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pyramid multi-agent orchestration for OpenClaw: routes objectives from a CEO agent down through departments, services, and employees via sessions_send / sessions_spawn, collects and merges results, enforces handoff contracts, and writes the final deliverable back to the originating session.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and teams use this skill to coordinate multi-agent OpenClaw work by delegating objectives across department-style sessions and merging returned outputs into a final deliverable. It is suited for structured implementation, audit, planning, and release workflows that need parallel task execution with documented convergence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Multi-agent fan-out can propagate broad objectives or sensitive context across spawned sessions. <br>
-Mitigation: Keep objectives and constraints scoped, avoid secrets in delegated task text, and monitor spawned sessions on larger runs. <br>
-Risk: Generated commits, draft PRs, reports, or recommendations may be incomplete or unsuitable for direct production use. <br>
-Mitigation: Review all commits, draft PRs, and final deliverables before use or merge, and keep engineering PRs in review until validated. <br>
+## Use Case:
 
+Developers and teams using OpenClaw use this skill to coordinate multi-agent task execution across strategy, engineering, quality, and operations sessions, then merge delegated outputs into a final deliverable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or task deliverables according to delivery_format, including a run summary and human-validation disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate multiple OpenClaw sessions, accept partial results after a deadline, and require human review before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can coordinate and spawn other OpenClaw sessions, so broad objectives can create excess delegation or unclear accountability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested departments, delegated objectives, and spawned-session count during use; the artifact specifies a maximum of 20 spawned sessions per orchestration run.
+
+Risk: Merged outputs from multiple sessions may be incomplete when departments time out or report blockers.
+
+Mitigation: Use the documented convergence behavior: accept partial results only with explicit timeout or blocker status, then require human validation before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/romainsantoli-web/skills/firm-orchestration)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/romainsantoli-web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or task-specific deliverable assembled from child session results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include run summaries, department statuses, blockers, and a required human-validation disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

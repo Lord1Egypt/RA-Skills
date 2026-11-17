@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -105,18 +110,18 @@ def normalize_file_name(value):
 
 def normalize_group(group, mode):
     if mode == MODE_URL:
-        return {"url": normalize_url(group.get("url", DEFAULT_URL))}
+        return {"url": normalize_url(group.get("url"))}
     if mode == MODE_CID:
-        return {"CID": normalize_text(group.get("CID", DEFAULT_CID), "CID")}
+        return {"CID": normalize_text(group.get("CID"), "CID")}
     if mode == MODE_LOCATION:
         return {
-            "keyword": normalize_text(group.get("keyword", DEFAULT_KEYWORD), "keyword"),
+            "keyword": normalize_text(group.get("keyword"), "keyword"),
             "country": normalize_country(group.get("country", DEFAULT_COUNTRY)),
             "lat": normalize_number(group.get("lat", DEFAULT_LAT), "lat"),
             "long": normalize_number(group.get("long", DEFAULT_LONG), "long"),
             "zoom_level": normalize_non_negative_integer(group.get("zoom_level", DEFAULT_ZOOM_LEVEL), "zoom_level"),
         }
-    return {"place_id": normalize_text(group.get("place_id", DEFAULT_PLACE_ID), "place_id")}
+    return {"place_id": normalize_text(group.get("place_id"), "place_id")}
 
 
 def load_groups_from_json(raw, mode):
@@ -138,11 +143,11 @@ def build_groups(args, mode):
     if args.params_json:
         return load_groups_from_json(args.params_json, mode)
     if mode == MODE_URL:
-        return [normalize_group({"url": url}, mode) for url in (args.url or [DEFAULT_URL])]
+        return [normalize_group({"url": url}, mode) for url in (args.url or [])]
     if mode == MODE_CID:
-        return [normalize_group({"CID": cid}, mode) for cid in (args.cid or [DEFAULT_CID])]
+        return [normalize_group({"CID": cid}, mode) for cid in (args.cid or [])]
     if mode == MODE_LOCATION:
-        keywords = args.keyword or [DEFAULT_KEYWORD]
+        keywords = args.keyword or []
         return [
             normalize_group(
                 {
@@ -156,7 +161,7 @@ def build_groups(args, mode):
             )
             for keyword in keywords
         ]
-    return [normalize_group({"place_id": place_id}, mode) for place_id in (args.place_id or [DEFAULT_PLACE_ID])]
+    return [normalize_group({"place_id": place_id}, mode) for place_id in (args.place_id or [])]
 
 
 def submit_builder(api_token, mode, groups, file_name):
@@ -205,35 +210,47 @@ def main():
     parser.add_argument("--url", action="append", help="URL mode only. Repeat for multiple URLs.")
     parser.add_argument("--cid", action="append", help="CID mode only. Repeat for multiple CIDs.")
     parser.add_argument("--keyword", action="append", help="Location mode only. Repeat for multiple keywords.")
-    parser.add_argument("--country", default=DEFAULT_COUNTRY, help="Location mode only. Default: us.")
-    parser.add_argument("--lat", default=DEFAULT_LAT, help="Location mode only. Default: 38.")
-    parser.add_argument("--long", default=DEFAULT_LONG, help="Location mode only. Default: 77.")
-    parser.add_argument("--zoom-level", default=DEFAULT_ZOOM_LEVEL, help="Location mode only. Default: 20.")
+    parser.add_argument("--country", help="Location mode only. Default: us.")
+    parser.add_argument("--lat", help="Location mode only. Default: 38.")
+    parser.add_argument("--long", help="Location mode only. Default: 77.")
+    parser.add_argument("--zoom-level", help="Location mode only. Default: 20.")
     parser.add_argument("--place-id", action="append", help="Place ID mode only. Repeat for multiple place IDs.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts receive 50 free credits.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
     try:
         mode = normalize_mode(args.mode)
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
-    print(json.dumps({"mode": mode, "spider_id": spider_id, "task_id": task_id, "status": status, "parameters": groups, "file_name": file_name, "dashboard_url": DASHBOARD_URL, "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL)}, ensure_ascii=False, indent=2))
+    print(json.dumps({"mode": mode, "spider_id": spider_id, "task_id": task_id, "status": status, "parameters": groups, "file_name": file_name, "message": "Task submitted. Continue monitoring the returned task_id."}, ensure_ascii=False, indent=2))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

@@ -1,3 +1,8 @@
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
+
+---
 # Seedancer 配方集（Seedancer Recipe Collection）
 
 > **v2.2.0 升级说明**：本版本所有配方中的电影专业术语均采用"中文（English）"中英对照格式，新增实测有效性三级标记（✅ 实测有效 / ⚠️ 部分有效 / 💡 风格锚定）。Seedance 2.0 没有内置摄影机/镜头/光圈/色调预设，所有术语是提示词风格引导词。

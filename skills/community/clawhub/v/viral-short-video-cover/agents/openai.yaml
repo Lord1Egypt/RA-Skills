@@ -1,0 +1,7 @@
+interface:
+  display_name: "爆款短视频封面"
+  short_description: "根据封面文案生成高点击率中文竖版短视频封面"
+  default_prompt: "使用 $viral-short-video-cover 根据我提供的文案生成一张爆款短视频封面。"
+
+policy:
+  allow_implicit_invocation: true

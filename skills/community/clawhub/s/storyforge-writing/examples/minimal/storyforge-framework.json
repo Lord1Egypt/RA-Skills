@@ -1,0 +1,51 @@
+{
+  "storyforgeFramework": "0.5.0",
+  "baseline": {
+    "docs/DATA-GOVERNANCE.md": "v1.8.0",
+    "docs/products/LONGFORM-AND-NODE.md": "v1.6.0"
+  },
+  "blocks": [
+    {
+      "table": "characters",
+      "records": [
+        {"id": 101, "projectId": 1, "name": "林照", "roleWeight": "main", "moralAxis": "good", "orderAxis": "chaotic", "narrativeStatus": "active", "motivation": "找回被删除的那一夜"},
+        {"id": 102, "projectId": 1, "name": "周守", "roleWeight": "secondary", "moralAxis": "neutral", "orderAxis": "lawful", "narrativeStatus": "planned"}
+      ]
+    },
+    {
+      "table": "characterRelations",
+      "records": [
+        {"id": 201, "projectId": 1, "fromCharacterId": 101, "toCharacterId": 102}
+      ]
+    },
+    {
+      "table": "chapters",
+      "records": [
+        {
+          "id": 301, "projectId": 1, "title": "第1章 夜班", "order": 1, "status": "draft",
+          "continuityHandoff": {
+            "chapterId": 301,
+            "sourceTextHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+            "finalScene": {"activeCharacters": ["林照"], "location": "门卫室", "storyTime": "某夜 03:10"},
+            "stateChanges": ["林照第一次听见不属于自己的记忆"],
+            "knowledgeChanges": ["林照知道周守在撒谎"],
+            "commitments": ["林照答应明晚再值班"],
+            "openLoops": ["被删除的记忆属于谁"],
+            "evidenceQuotes": [{"quote": "那段声音不是我的。", "startOffset": 1200, "endOffset": 1209}]
+          },
+          "planReconciliation": {
+            "chapterId": 301,
+            "sourceTextHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+            "planSourceHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "completedGoals": [{"text": "建立主角的异能", "evidenceQuotes": [{"quote": "那段声音不是我的。", "startOffset": 1200, "endOffset": 1209}]}],
+            "unfinishedGoals": [],
+            "deviations": [],
+            "newConstraints": [],
+            "nextChapterImpacts": [],
+            "reviewStatus": "pending"
+          }
+        }
+      ]
+    }
+  ]
+}

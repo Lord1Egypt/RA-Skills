@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze YouTube videos with summary and deep-dive analysis for users who provide a YouTube URL and want both a summary and analytical insights about the content, implications, quality, and intersections with other topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze YouTube videos with summary and deep-dive analysis. Use when a user provides a YouTube URL and wants both a summary and analytical insights about the content, implications, quality, and intersections with other topics.
 
-## Publisher: <br>
-[sidonsoft](https://clawhub.ai/user/sidonsoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sidonsoft](https://clawhub.ai/user/sidonsoft)
 
-## Use Case: <br>
-External users and developers use this skill to extract YouTube transcripts when available, summarize video content, and produce deeper analysis of claims, implications, credibility, gaps, and related topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sidonsoft/youtube-analysis-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+External users and developers use this skill to extract YouTube transcripts when available, assess caption quality, and produce a grounded summary plus deeper analysis of claims, implications, credibility, and gaps.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Summary and Analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence notes when transcripts are unavailable, noisy, or based only on auto-captions.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: User-supplied YouTube URLs may be passed into a command execution path without enough validation.
+
+Mitigation: Validate HTTPS YouTube URLs and pass command arguments without shell interpolation before transcript extraction.
+
+Risk: Noisy or unavailable captions can lead to incomplete or misleading summaries.
+
+Mitigation: Treat transcripts as source material rather than verified truth, lower confidence when captions are poor, and separate speaker claims from established facts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sidonsoft/skills/youtube-analysis-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Summary and Analysis sections, supported by transcript extraction command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [States lower confidence when transcripts are missing, noisy, or based only on auto-captions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import hashlib
-import html
 import json
+import math
 import re
 import urllib.parse
 import urllib.request
@@ -11,11 +11,13 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.error import HTTPError, URLError
 
-from .shared import normalize_space, parse_float, parse_int_value, write_json_atomic
+from .html_extract import has_schema_type, iter_json_objects, parse_json_scripts
+from .shared import normalize_space, parse_float, parse_int_value, read_limited_bytes, write_json_atomic
 
 
 GOODREADS_RATING_TTL_SECONDS = 7 * 24 * 60 * 60
 GOODREADS_USER_AGENT = "OpenClaw Audible Goodreads Deal Scout/1.0"
+ALLOWED_GOODREADS_HOSTS = {"goodreads.com", "www.goodreads.com"}
 
 
 class GoodreadsRatingError(RuntimeError):
@@ -23,7 +25,32 @@ class GoodreadsRatingError(RuntimeError):
 
 
 def goodreads_book_url(book_id: str) -> str:
-    return f"https://www.goodreads.com/book/show/{urllib.parse.quote(normalize_space(book_id))}"
+    return f"https://www.goodreads.com/book/show/{urllib.parse.quote(normalize_space(book_id), safe='')}"
+
+
+def validate_goodreads_book_url(url: str) -> str:
+    parsed = urllib.parse.urlparse(normalize_space(url))
+    if (
+        parsed.scheme != "https"
+        or parsed.netloc.casefold() not in ALLOWED_GOODREADS_HOSTS
+        or not parsed.path.startswith("/book/show/")
+    ):
+        raise GoodreadsRatingError(f"Goodreads lookup redirected to an unsupported URL: {url}")
+    return url
+
+
+class SafeGoodreadsRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(
+        self,
+        req: Any,
+        fp: Any,
+        code: int,
+        msg: str,
+        headers: Any,
+        newurl: str,
+    ) -> Any:
+        validate_goodreads_book_url(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
 def fetch_goodreads_text_with_final_url(url: str) -> tuple[str, str]:
@@ -36,32 +63,34 @@ def fetch_goodreads_text_with_final_url(url: str) -> tuple[str, str]:
         },
     )
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            raw = response.read()
-            return raw.decode("utf-8", "ignore"), str(response.geturl() or url)
+        opener = urllib.request.build_opener(SafeGoodreadsRedirectHandler())
+        with opener.open(request, timeout=30) as response:
+            raw = read_limited_bytes(response)
+            final_url = validate_goodreads_book_url(str(response.geturl() or url))
+            return raw.decode("utf-8", "ignore"), final_url
     except (HTTPError, URLError) as exc:
-        raise GoodreadsRatingError(f"Goodreads rating lookup failed for {url}: {exc}") from exc
+        error_text = str(exc)
+        if isinstance(exc, HTTPError):
+            exc.close()
+        raise GoodreadsRatingError(f"Goodreads rating lookup failed for {url}: {error_text}") from exc
+    except ValueError as exc:
+        raise GoodreadsRatingError(f"Goodreads response failed safety validation for {url}: {exc}") from exc
 
 
 def parse_goodreads_rating(html_text: str) -> dict[str, Any]:
     rating: float | None = None
     ratings_count: int | None = None
-    for match in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html_text, re.I | re.S):
-        try:
-            payload = json.loads(html.unescape((match.group(1) or "").strip()))
-        except Exception:
-            continue
-        candidates = payload if isinstance(payload, list) else [payload]
-        for item in candidates:
-            if not isinstance(item, dict):
+    for payload in parse_json_scripts(html_text, "application/ld+json"):
+        for item in iter_json_objects(payload):
+            if not has_schema_type(item, "Book"):
                 continue
-            aggregate = item.get("aggregateRating") if isinstance(item.get("aggregateRating"), dict) else {}
+            aggregate_value = item.get("aggregateRating")
+            aggregate = aggregate_value if isinstance(aggregate_value, dict) else {}
             rating = rating if rating is not None else parse_float(aggregate.get("ratingValue"))
             ratings_count = ratings_count if ratings_count is not None else parse_int_value(aggregate.get("ratingCount") or aggregate.get("reviewCount"))
     if rating is None:
         for pattern in (
             r'itemprop=["\']ratingValue["\'][^>]+content=["\']([0-9.]+)["\']',
-            r'"ratingValue"\s*:\s*"?([0-9.]+)"?',
             r'"average_rating"\s*:\s*"?([0-9.]+)"?',
         ):
             match = re.search(pattern, html_text, re.I)
@@ -70,7 +99,6 @@ def parse_goodreads_rating(html_text: str) -> dict[str, Any]:
                 break
     if ratings_count is None:
         for pattern in (
-            r'"ratingCount"\s*:\s*"?([0-9,]+)"?',
             r'"ratings_count"\s*:\s*"?([0-9,]+)"?',
         ):
             match = re.search(pattern, html_text, re.I)
@@ -79,6 +107,10 @@ def parse_goodreads_rating(html_text: str) -> dict[str, Any]:
                 break
     if rating is None:
         raise GoodreadsRatingError("Goodreads page did not expose an average rating.")
+    if not math.isfinite(rating) or not 0 <= rating <= 5:
+        raise GoodreadsRatingError("Goodreads page exposed an invalid average rating.")
+    if ratings_count is not None and ratings_count < 0:
+        raise GoodreadsRatingError("Goodreads page exposed an invalid ratings count.")
     return {
         "averageRating": rating,
         "ratingsCount": ratings_count,
@@ -130,6 +162,7 @@ def lookup_goodreads_rating(
         return cached
     url = goodreads_book_url(cleaned_book_id)
     html_text, final_url = (fetcher or fetch_goodreads_text_with_final_url)(url)
+    validate_goodreads_book_url(final_url)
     parsed = parse_goodreads_rating(html_text)
     payload = {**parsed, "url": final_url, "cacheHit": False}
     _write_cache(cache_dir, cleaned_book_id, payload, no_cache=no_cache)

@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy a real estate analysis system with 4 agents for property scraping, market valuation, comparable analysis, and deal alerting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a real estate analysis system with four agents for property scraping, market valuation, comparable analysis, and deal alerting.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and real estate investment teams use this skill to configure a four-agent Pilot workflow for listing ingestion, market valuation, comparable sales analysis, and deal alerting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup installs downstream pilot-* skills and coordinates data flows across multiple agents. <br>
-Mitigation: Review the downstream skills and install only the role-specific dependencies needed for the deployment. <br>
-Risk: Incorrect peer names or trust handshakes could route property or deal data to the wrong agent. <br>
-Mitigation: Confirm each hostname and peer relationship before running handshake, subscribe, or publish commands. <br>
-Risk: Slack, email, and webhook notifications can expose property, investor, tenant, or deal data externally. <br>
-Mitigation: Verify notification destinations and payload contents before sending real data. <br>
+## Use Case:
 
+Developers and real estate operations teams use this skill to set up a four-agent deal-finding workflow that scrapes listings, evaluates market metrics, produces comparative market analysis reports, and sends investor alerts.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-real-estate-analyzer-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps, hostnames, handshakes, manifests, and example Pilot publish/subscribe commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup installs multiple skills without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency list before installing and prefer pinned versions or verified publishers.
+
+Risk: The setup establishes persistent agent trust through peer handshakes.
+
+Mitigation: Confirm each peer hostname and intended role before initiating handshakes.
+
+Risk: Deal alerts sent to Slack, email, or webhook destinations may expose sensitive property, investor, valuation, or ROI data.
+
+Mitigation: Use approved notification destinations and send only the details necessary for the alert workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-real-estate-analyzer-setup)
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, pilot-protocol, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

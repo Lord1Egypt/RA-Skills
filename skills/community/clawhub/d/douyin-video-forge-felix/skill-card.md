@@ -1,50 +1,68 @@
-## Description: <br>
-Douyin Video Forge Felix helps operators collect Douyin trend data, analyze short-video patterns, generate production scripts, optionally call Kling for video generation, and assemble finished clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin short-video planning and production workflows, including trend collection, content analysis, script generation, optional Kling API video generation, and FFmpeg assembly.
 
-## Publisher: <br>
-[felixlam10](https://clawhub.ai/user/felixlam10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felixlam10](https://clawhub.ai/user/felixlam10)
 
-## Use Case: <br>
-Marketing operators and content teams use this skill to plan Douyin campaigns, gather trend and competitor evidence, produce short-video scripts and prompts, and optionally generate and stitch vertical videos with local tools and Kling API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring jobs may continue scraping, downloading, calling APIs, and writing files after a multi-day plan is created. <br>
-Mitigation: Require explicit schedule review before enabling automation, confirm job and output locations, and document how to disable or delete created jobs. <br>
-Risk: Kling API usage may incur costs and uses credentials from the local environment. <br>
-Mitigation: Confirm API mode, expected volume, and credential configuration before video generation; use script-only mode when API generation is not intended. <br>
-Risk: Downloaded third-party Douyin videos and transcriptions may include content with unclear rights or privacy expectations. <br>
-Mitigation: Use collected material for analysis and reference only, review generated scripts for originality, and avoid copying source content verbatim. <br>
+## Use Case:
 
+Marketing operators and content teams use this agent skill to turn client briefs and current Douyin trends into content strategy, short-video scripts, AI-video prompts, and optional generated video assets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/felixlam10/douyin-video-forge-felix) <br>
-- [Douyin hot list](https://www.douyin.com/hot) <br>
-- [Kling API site](https://klingai.com) <br>
-- [Browser navigation reference](references/browser-navigation.md) <br>
-- [Douyin algorithm reference](references/douyin-algorithm.md) <br>
-- [Trend analysis reference](references/trend-analysis.md) <br>
-- [Script templates reference](references/script-templates.md) <br>
-- [Kling prompt guide](references/kling-prompt-guide.md) <br>
-- [Seedance prompt guide](references/seedance-prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown reports and scripts with inline bash commands, JSON helper-script status, and optional local media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and yt-dlp for core workflows; optional Python, Kling API environment variables, and faster-whisper enable video generation and transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create persistent scheduled jobs for multi-day content generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exact dates, task counts, workflow steps, API usage, and removal method before allowing automatic scheduling.
+
+Risk: The workflow may download Douyin media, collect comments, and create transcripts that include sensitive operational data.
+
+Mitigation: Run the skill in a dedicated environment and restrict access to downloaded media, comments, transcripts, and generated outputs.
+
+Risk: Optional automated video generation uses Kling API credentials.
+
+Mitigation: Provide credentials only through environment variables, rotate them if exposed, and avoid sharing them in prompts or logs.
+
+Risk: Broad web and video automation can produce misleading analysis or depend on changing third-party site behavior.
+
+Mitigation: Review generated trend analysis, scripts, shell commands, and video outputs before publishing or scheduling follow-up tasks.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/felixlam10/skills/douyin-video-forge-felix)
+- [Browser navigation reference](artifact/references/browser-navigation.md)
+- [Douyin algorithm reference](artifact/references/douyin-algorithm.md)
+- [Trend analysis reference](artifact/references/trend-analysis.md)
+- [Script templates](artifact/references/script-templates.md)
+- [Kling prompt guide](artifact/references/kling-prompt-guide.md)
+- [Seedance prompt guide](artifact/references/seedance-prompt-guide.md)
+- [Kling API site](https://klingai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown reports, segmented scripts, AI-video prompt blocks, shell commands, JSON helper output, and optional MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and yt-dlp for core workflows; Python, faster-whisper, and Kling API credentials are optional for transcription and automated video generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

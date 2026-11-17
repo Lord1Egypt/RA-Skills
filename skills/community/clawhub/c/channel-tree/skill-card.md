@@ -1,40 +1,57 @@
-## Description: <br>
-Manages hierarchical OpenClaw session channels for splitting work, creating sub-channels, tracking status, and saving local tree state with inheritance and health monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Channel Tree helps an agent organize OpenClaw work into a persistent Hall, Universe, World, Forest, Tree, and Channel hierarchy with inheritance, context switching, and monitoring commands.
 
-## Publisher: <br>
-[kukuxnd](https://clawhub.ai/user/kukuxnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to organize work across halls, universes, worlds, forests, trees, and task, QA, or branch channels. It supports local context switching, hierarchy review, and health monitoring for session organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hall, tree, channel, or context names are saved locally and may expose sensitive details if users include secrets, credentials, or personal information. <br>
-Mitigation: Use non-sensitive labels and avoid placing secrets, credentials, or sensitive personal details in hierarchy or context names. <br>
-Risk: Create and switch actions change local session-organization state and can make context tracking confusing if invoked against the wrong path. <br>
-Mitigation: Use explicit commands and review the intended hierarchy path before running create or switch operations. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to split work into named session hierarchies, create task, QA, and branch channels, switch context, and inspect channel status. It is useful when an agent needs lightweight local organization across multiple conversations or workstreams.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kukuxnd/channel-tree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON state files] <br>
-**Output Format:** [Markdown guidance with command examples and local JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists hierarchy state in /root/.openclaw/workspace/channel_tree/universe.json when the helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+Risk: The skill writes persistent local state under /root/.openclaw/workspace/channel_tree.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where that local path is acceptable, and review or back up the state file before relying on it for important work.
+
+Risk: Some documented commands, including sessions and ->0, are not implemented in the bundled script.
+
+Mitigation: Verify available commands against the script before building workflows around documented command names.
+
+Risk: The command-line output is primarily Chinese-language text.
+
+Mitigation: Use it with operators who can interpret the output or translate command results before acting on them.
+
+## Reference(s):
+
+- [Channel Tree on ClawHub](https://clawhub.ai/kukuxnd/skills/channel-tree)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local command guidance and status text for managing a JSON-backed channel hierarchy.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

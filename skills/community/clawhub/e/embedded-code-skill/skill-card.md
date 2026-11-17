@@ -1,43 +1,71 @@
-## Description: <br>
-Generate, rewrite, or review embedded C code for microcontrollers, peripheral drivers, and firmware using a structured production coding standard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, rewrite, or review embedded C code for microcontrollers, drivers, and firmware.
 
-## Publisher: <br>
-[leon-2050](https://clawhub.ai/user/leon-2050) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leon-2050](https://clawhub.ai/user/leon-2050)
 
-## Use Case: <br>
-Developers and embedded engineers use this skill to generate new embedded C modules, rewrite existing code without changing intended control flow, and review firmware against naming, register, error-handling, and safety-oriented coding conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation advertises a self-evolution workflow and broad natural-language triggers that can change how the skill behaves. <br>
-Mitigation: Review and approve any skill optimization or self-evolution changes before applying them, and keep normal use focused on explicit embedded-C generation, rewrite, or review requests. <br>
-Risk: Generated firmware code can be incorrect or unsafe if hardware details such as register base addresses, bit fields, interrupt behavior, or toolchain assumptions are missing or wrong. <br>
-Mitigation: Require authoritative chip or toolchain documentation for hardware-specific inputs, review generated code before use, and validate it with the target build, tests, and hardware review process. <br>
-Risk: Architecture lookups for unfamiliar targets may pull in unreliable or irrelevant information. <br>
-Mitigation: Constrain web lookups to official chip, architecture, and toolchain documentation and have the user confirm any inferred architecture details before code generation. <br>
+## Use Case:
 
+Developers and firmware engineers use this skill to generate, rewrite, or review embedded C modules, including register definitions, peripheral drivers, coding-standard checks, and platform-specific guidance for MCU and SoC targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leon-2050/embedded-code-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/leon-2050) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with embedded C code blocks, file layouts, review findings, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code may include module header/source files, register definitions, macros, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can broadly auto-trigger on common code-generation and review language, which may make it active outside intentional embedded C tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to explicit embedded C, firmware, driver, or microcontroller requests before installing it in a shared agent environment.
+
+Risk: The rewrite workflow preserves original functional behavior by default, so existing safety or security defects in firmware may be carried forward.
+
+Mitigation: Tell the agent whether to preserve behavior exactly or fix identified safety and security defects, then require human review of rewritten firmware.
+
+Risk: Generated embedded code may affect hardware control, safety functions, or regulated compliance work.
+
+Mitigation: Require domain review, hardware validation, and compliance checks before using generated code in safety-critical, industrial, automotive, aerospace, or military systems.
+
+Risk: Architecture lookup and self-optimization behavior may use external research or alter skill behavior if enabled.
+
+Mitigation: Require explicit approval before web research or self-optimization, and review any resulting guidance or skill changes before use.
+
+Risk: Incorrect or missing peripheral base addresses can produce invalid firmware register access.
+
+Mitigation: Require users to provide authoritative base addresses or chip documentation, and reject or escalate requests that would require fabricating register addresses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leon-2050/skills/embedded-code-skill)
+- [English README](artifact/README_EN.md)
+- [Primary Skill Definition](artifact/SKILL.md)
+- [Coding Standards Reference](artifact/embedded-code-skill-standards/SKILL.md)
+- [Architecture Patterns](artifact/embedded-code-skill-arch/SKILL.md)
+- [Driver Templates](artifact/embedded-code-skill-drivers/SKILL.md)
+- [Industry Domain Requirements](artifact/embedded-code-skill-domains/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, guidance]
+
+**Output Format:** [Markdown with embedded C code blocks and review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose module-level files such as module_reg.h, module.h, and module.c.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata, created 2026-04-17T14:43:09Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Install and use ClawPolicy, an explainable autonomous execution policy engine for low-touch, auditable agent execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and use ClawPolicy, an explainable autonomous execution policy engine for low-touch, auditable agent execution.
 
-## Publisher: <br>
-[DZMing](https://clawhub.ai/user/DZMing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzming](https://clawhub.ai/user/dzming)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install ClawPolicy, initialize project-local policy storage, inspect policy state, review risky or suspended policies, and call the package's Python API for confirmation and policy export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses the upstream clawpolicy package from PyPI, so users depend on the trustworthiness of that package release. <br>
-Mitigation: Install only when the upstream package is trusted; in stricter environments, pin the package version before use. <br>
-Risk: Initialization creates or updates project-local .clawpolicy files that can affect later policy-supervised agent behavior. <br>
-Mitigation: Review generated .clawpolicy contents after initialization and before relying on policy supervision. <br>
+## Use Case:
 
+Developers and engineers use this skill to install ClawPolicy, initialize local policy storage, inspect policy lifecycle status, and access its CLI and Python API for auditable agent execution.
 
-## Reference(s): <br>
-- [ClawPolicy upstream repository](https://github.com/DZMing/clawpolicy) <br>
-- [Upstream README](references/upstream-README.md) <br>
-- [Upstream README (Chinese)](references/upstream-README.zh-CN.md) <br>
-- [Upstream changelog](references/upstream-CHANGELOG.md) <br>
-- [Upstream security policy](references/upstream-SECURITY.md) <br>
-- [ClawHub skill page](https://clawhub.ai/DZMing/clawpolicy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and Python API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3, pip3, the clawpolicy CLI, and project-local .clawpolicy policy files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata) <br>
+Risk: The skill installs and runs the current unpinned PyPI clawpolicy package under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the intended package version, for example clawpolicy==3.0.1, and review the package before use.
+
+Risk: Initialization can create local .clawpolicy/ files that may later guide agent behavior.
+
+Mitigation: Review the generated .clawpolicy/ files before allowing them to influence automated execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dzming/skills/clawpolicy)
+- [Upstream English README](references/upstream-README.md)
+- [Upstream Changelog](references/upstream-CHANGELOG.md)
+- [Upstream Security Policy](references/upstream-SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .clawpolicy/ policy files when the user runs initialization commands.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

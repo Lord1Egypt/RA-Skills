@@ -1,43 +1,64 @@
-## Description: <br>
-Guide UPI payments launch from setup through sandbox testing to go-live readiness with detailed checklists, test matrix, gates, and rollback planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive a zero-to-first-test-payment UPI onboarding workflow with explicit readiness checks: provider selection, sandbox setup, credentials, webhook validation, test matrix, go-live gates, and incident rollback planning.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Developers, product, operations, finance, and compliance teams use this skill to coordinate UPI payment launch readiness from provider selection through sandbox validation, go-live gates, and incident rollback planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational guidance could be mistaken for approval to launch production payments. <br>
-Mitigation: Require current RBI, NPCI, provider, legal, compliance, and internal go-live approvals before production traffic. <br>
-Risk: Launch notes or local memory files could capture payment credentials or customer data. <br>
-Mitigation: Keep credentials only in a secret manager and avoid storing secrets or customer data in local notes. <br>
-Risk: Referenced companion skills may introduce separate behavior or risk. <br>
-Mitigation: Review companion skills before invoking them in a launch workflow. <br>
+## Use Case:
 
+Developers, product, operations, finance, and compliance teams use this skill to coordinate UPI payment launch readiness from first setup through sandbox validation, gate review, incident planning, and go/no-go approval.
 
-## Reference(s): <br>
-- [UPI Go Live Checklist on ClawHub](https://clawhub.ai/anugotta/upi-go-live-checklist) <br>
-- [RBI Digital Payment Authentication Directions](https://www.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=12898) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown checklists and structured task lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs identify current phase, completed work, missing tasks, blockers, owners, due dates, and next milestone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Payment rules, authentication requirements, and provider onboarding terms may change before production launch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current RBI, NPCI, and selected PSP or aggregator requirements before go-live approval.
+
+Risk: Local launch memory or evidence files could accidentally collect credentials, customer PII, or live payment secrets.
+
+Mitigation: Keep secrets in an approved secret manager and exclude credentials, customer PII, and live payment secrets from local memory and evidence files.
+
+Risk: A team could enable production traffic without complete gate evidence, rollback testing, or reconciliation sign-off.
+
+Mitigation: Require dated evidence and approver names for all go-live gates, including rollback readiness and finance reconciliation review.
+
+## Reference(s):
+
+- [UPI Go Live Checklist release page](https://clawhub.ai/anugotta/skills/upi-go-live-checklist)
+- [RBI Digital Payment Authentication Directions](https://www.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=12898)
+- [Setup first-use checklist](setup.md)
+- [Project memory template](memory-template.md)
+- [Provider matrix starter template](provider-matrix.md)
+- [Go-live gates](go-live-gates.md)
+- [Launch playbook](launch-playbook.md)
+- [Incident runbook](incident-runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown checklists, status summaries, templates, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include owner and due-date fields for missing launch tasks and mark blockers explicitly.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

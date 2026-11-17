@@ -1,40 +1,53 @@
-## Description: <br>
-Design dashboard layout sketches for clinical trials showing enrollment progress and adverse event rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design dashboard layout sketches for clinical trials showing enrollment progress and adverse event rates.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and trial operations teams use this skill to generate HTML dashboard sketches for clinical trial monitoring, including recruitment progress, adverse event summaries, subject distribution, data quality, and milestones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes an HTML report to a path supplied by --output, which can replace an existing file if the same path is reused. <br>
-Mitigation: Use a dedicated output folder and avoid pointing --output at existing project files unless replacement is intended. <br>
-Risk: The generated dashboard is a layout sketch based on provided parameters and generated sample values, not a validated clinical analysis. <br>
-Mitigation: Review generated content before sharing it or using it in trial operations, especially metrics related to enrollment, adverse events, and data quality. <br>
+## Use Case:
 
+Developers, clinical operations teams, and trial reporting teams use this skill to generate HTML dashboard sketches for monitoring enrollment progress, adverse event rates, data quality metrics, and study milestones.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/dashboard-design-for-trials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands] <br>
-**Output Format:** [HTML file with embedded CSS and JavaScript plus console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to the user-specified --output path; default output is dashboard.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The script can overwrite any writable output path supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a disposable workspace and choose an explicit output path that does not point to important files until output path restrictions and overwrite controls are added.
+
+Risk: User-provided study names and IDs are embedded into generated HTML without escaping.
+
+Mitigation: Use only trusted input values and review generated HTML before sharing it; add HTML escaping before using untrusted study metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/dashboard-design-for-trials)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and generated HTML file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a local HTML dashboard file from command-line study parameters; no external Python packages are required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

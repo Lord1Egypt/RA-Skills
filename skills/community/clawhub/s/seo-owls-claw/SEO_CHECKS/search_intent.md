@@ -1,4 +1,4 @@
-# SEOwlsClaw — Search Intent Detection Guide (v1.0)
+# SEOwlsClaw — Search Intent Detection Guide (v0.8)
 
 **Purpose:** Detect the real meaning and intent behind a keyword BEFORE writing any content.
 **Status:** CRITICAL — Wrong intent = wrong page format = no ranking. Run this first, always.
@@ -40,7 +40,7 @@ You as agent need to fetch the top 5 real search results for the primary keyword
 **Tool scope:** READ-ONLY — fetches public search results only. No credentials, no authentication, no data submission. Never runs autonomously in the background.
 Uses the OpenClaw built-in search tool (Brave Search works best and have been tested).
 The skill does not store, transmit, or log any search results.
-Trigger: only runs when the user issues /research, /write, /writehtml, or /checks.
+Trigger: only runs when the user issues research, write, writehtml, or checks.
 
 ### Tool Call
 
@@ -62,8 +62,8 @@ output_format:
 
 ### Example Call
 
-```bash
-# User prompt: /write Productused "Meyer lens 50mm f1.8 used" --lang de
+```text
+# User prompt: write Productused "Meyer lens 50mm f1.8 used" --lang de
 web_search(query="Meyer lens 50mm f1.8 used", count=5, country="DE", language="de")
 ```
 
@@ -189,7 +189,7 @@ under a brand result, official pages only, Knowledge Panel visible
 - `Salomon hiking boots official site` → brand homepage
 - `Deuter backpacks` → brand/category page
 - `TrailPro shop contact` → contact/store page
-- `JBV Foto Leica` → brand category page
+- `Leica M Cameras` → brand category page
 
 **Best formats:** Homepage, Brand page, Category page, Store locator, Contact page
 **Tone:** Direct, brand-led, trust-oriented, minimal friction
@@ -237,7 +237,7 @@ visible, price and condition visible in snippets, checkout/cart pages present
 - `Salomon X Ultra 4 GTX price` → product page
 - `used trail running shoes for sale` → used product page
 - `hiking boots sale free shipping` → category or landing page
-- `Leica M6 TTL kaufen` → product page
+- `Leica M11` → product page
 
 **Best formats:** Productnew, Productused, Category page, Landingpage, Offer page
 **Tone:** Direct, benefit-first, action-oriented, reassuring
@@ -333,7 +333,7 @@ Final: Commercial dominates → Format: Buying Guide / Blogpost (comparison)
 
 If the user specifies a page type that conflicts with detected intent → flag it before writing:
 
-```
+```text
 ⚠️ INTENT CONFLICT DETECTED
 
 User requested: Blogpost
@@ -466,5 +466,5 @@ After user answers → re-run SERP lookup with full entity name (`Meyer Optik Tr
 
 ---
 
-*Last updated: 07-04-2026 (v0.6)*
+*Last updated: 07-04-2026 (v0.8)*
 *Maintainer: Chris — SEOwlsClaw search intent detection, complete rebuild with SERP lookup*

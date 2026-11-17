@@ -85,7 +85,7 @@ class SavedProfilesTests(unittest.TestCase):
             payload = json.loads(create_result.stdout)
             self.assertEqual(payload["profile_id"], "semis-core")
             self.assertEqual(payload["profile_name"], "semis-core")
-            self.assertEqual(payload["brief_id"], "portfolio-risk-desk-semis-core-2026-03-25")
+            self.assertEqual(payload["brief_id"], "portfolio-riREDACTED-SECRET")
 
 
 if __name__ == "__main__":

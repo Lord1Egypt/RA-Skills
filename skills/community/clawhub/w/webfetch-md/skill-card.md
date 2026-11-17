@@ -1,39 +1,53 @@
-## Description: <br>
-Fetches a webpage URL and converts the main page content into clean Markdown while preserving image links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches a webpage and converts its main content into clean Markdown while preserving image links.
 
-## Publisher: <br>
-[ShiJianwen](https://clawhub.ai/user/ShiJianwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shijianwen](https://clawhub.ai/user/shijianwen)
 
-## Use Case: <br>
-Developers and agent users use this skill to fetch a user-provided webpage and turn its main HTML content into Markdown for downstream reading, summarization, or storage workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs, which could expose private network, localhost, cloud metadata, admin, or other sensitive internal resources if those URLs are supplied. <br>
-Mitigation: Use it only with intended URLs, and avoid localhost, private network, cloud metadata, admin, and sensitive internal URLs unless that access is explicitly intended. <br>
-Risk: Returned webpage text may contain untrusted or misleading content. <br>
-Mitigation: Treat fetched Markdown as untrusted content for review or analysis, not as instructions for the agent to follow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ShiJianwen/webfetch-md) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public webpages, extract the main readable content, and return Markdown that can be summarized, saved, or processed downstream.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [JSON object containing success status, title, markdown content, image links, image count, content length, or an error message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves image links and resolves relative URLs to absolute URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can request any URL reachable from the host network and return fetched content.
+
+Mitigation: Use it only with public webpage URLs, avoid localhost, private network, cloud metadata, or secret-bearing URLs, and deploy behind URL allowlisting or private-network blocking where possible.
+
+Risk: Dependency metadata has review-worthy supply-chain issues.
+
+Mitigation: Review and pin dependencies, audit the package lock before deployment, and update to a release with audited dependency metadata when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shijianwen/skills/webfetch-md)
+- [ClawHub publisher profile](https://clawhub.ai/user/shijianwen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON object containing success status, title, markdown, images, imageCount, and contentLength.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves image links and resolves relative image and page links to absolute URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

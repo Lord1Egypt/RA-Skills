@@ -1,43 +1,63 @@
-## Description: <br>
-自动监测并修复HTTP、端口、进程等服务异常，支持回滚到稳定状态，防止级联故障并发送告警。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-Heal 通用守护 monitors HTTP, port, process, and command checks, then runs configured repair or rollback commands and logs alerts when services stay unhealthy.
 
-## Publisher: <br>
-[panjun2026](https://clawhub.ai/user/panjun2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panjun2026](https://clawhub.ai/user/panjun2026)
 
-## Use Case: <br>
-Developers and operators use this skill to configure service health checks, restart or rollback commands, and alerting workflows for HTTP endpoints, ports, processes, containers, and command-based checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically run service restart, rollback, and other powerful configured commands. <br>
-Mitigation: Review every configured command before use, restrict who can edit services.json, and avoid running as root or with sudo unless explicitly required. <br>
-Risk: A health-check parsing issue could trigger repair or rollback commands unnecessarily. <br>
-Mitigation: Fix and manually test health-check parsing before enabling cron or using the skill on production or critical services. <br>
-Risk: Configuration examples may encourage storing operational secrets directly in command strings. <br>
-Mitigation: Avoid plaintext credentials in services.json and use environment-specific secret management or least-privilege service accounts. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure an agent-assisted service guard that checks service health, attempts repairs, rolls back when configured, and records alerts for manual intervention.
 
-## Reference(s): <br>
-- [Auto-Heal configuration examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/panjun2026/pan-auto-heal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service check definitions, cron setup guidance, restart or rollback command patterns, and operational review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Configured health-check, repair, and rollback commands can execute arbitrary or privileged shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every services.json command as trusted code before use and run the guard under the least-privileged account that can perform the needed action.
+
+Risk: Untrusted changes to the configuration file or its parent directory could alter unattended repair behavior.
+
+Mitigation: Protect services.json and its parent directory from untrusted writes.
+
+Risk: Command strings may expose credentials or other secrets.
+
+Mitigation: Avoid plaintext secrets in command strings and move sensitive values to protected secret-management paths where possible.
+
+Risk: Repeated unattended restarts or rollbacks can amplify an incident.
+
+Mitigation: Test manually before enabling cron, and add rate limits or alerting around repeated repair attempts.
+
+## Reference(s):
+
+- [Auto-Heal 配置示例](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/panjun2026/skills/pan-auto-heal)
+- [Publisher profile](https://clawhub.ai/user/panjun2026)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational run instructions and configuration patterns for service health checks, repair commands, rollback commands, logging, and cron scheduling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

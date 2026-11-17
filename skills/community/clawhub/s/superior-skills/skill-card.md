@@ -1,45 +1,60 @@
-## Description: <br>
-Backtest and deploy trading strategies on Superior Trade's managed cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtest and deploy trading strategies on Superior Trade's managed cloud.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-External users and developers use this skill to create, backtest, evaluate, and deploy crypto trading strategies through Superior Trade. It supports normal trading workflows, including live deployments and deposits, with explicit confirmation expected before real-funds actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start live trading deployments and initiate supported USDC deposits using a sensitive API key. <br>
-Mitigation: Treat SUPERIOR_TRADE_API_KEY as a financial credential, keep it in a credential manager or environment variable, and confirm every live deployment or deposit before execution. <br>
-Risk: Trading strategies can lose real funds if deployed without enough testing, conservative sizing, or clear stoploss rules. <br>
-Mitigation: Prefer dry runs and backtests first, then set conservative stake amounts, stoploss settings, and wallet exposure limits before using real funds. <br>
-Risk: The skill's authority includes financial actions that are intentional for this release but high impact. <br>
-Mitigation: Install only when the agent is expected to manage Superior Trade backtests and live trading, and review the deployment summary before approving real-funds activity. <br>
+## Use Case:
 
+External users and trading developers use this skill to design, backtest, configure, and deploy Superior Trade strategies against supported exchange workflows. It is intended for agent-assisted trading operations where users review strategy behavior and explicitly confirm live actions.
 
-## Reference(s): <br>
-- [Superior Trade account and API key setup](https://account.superior.trade) <br>
-- [Superior Trade API base endpoint](https://api.superior.trade) <br>
-- [Superior Trade skill listing](https://clawhub.ai/superior-ai/superior-skills) <br>
-- [Hyperliquid public info endpoint](https://api.hyperliquid.xyz/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON, Python strategy code, API request examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading strategy templates, backtest interpretation, deployment checklists, and explicit confirmation prompts for live trading or deposits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.5.0 (source: frontmatter and server release metadata) <br>
+Risk: The required API key can start live trading and move supported funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted Superior Trade workflows, keep the key scoped to the intended account where possible, review backtests, and require explicit user confirmation before live trading or deposits.
+
+Risk: An Aerodrome flow may lead an agent to request private keys or seed phrases.
+
+Mitigation: Never provide private keys, seed phrases, or wallet credentials in chat; stop the workflow if those secrets are requested.
+
+Risk: An Aerodrome flow may lead an agent to inspect local developer paths outside the package.
+
+Mitigation: Do not allow inspection of files outside the skill package unless the user separately authorizes the specific files.
+
+## Reference(s):
+
+- [Superior Trade ClawHub skill page](https://clawhub.ai/superior-ai/skills/superior-skills)
+- [Superior Trade account and API key page](https://account.superior.trade)
+- [Superior Trade API endpoint](https://api.superior.trade)
+- [Hyperliquid public info endpoint](https://api.hyperliquid.xyz/info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown, JSON snippets, Python strategy code, shell commands, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include trading strategy templates, backtest/deployment payloads, safety checklists, and API-call instructions for the user's configured Superior Trade account.]
+
+## Skill Version(s):
+
+4.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

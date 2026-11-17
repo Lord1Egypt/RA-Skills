@@ -1,43 +1,58 @@
-## Description: <br>
-Guide users buying a weighted blanket through weight, size, fill, and sleep-need questions to determine the exact specs they need -- no sales bias, region-aware. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a weighted blanket through weight, size, fill, and sleep-need questions to determine the exact specs they need - no sales bias, region-aware.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users can use this skill to compare weighted blanket options through a structured buying consultation. It helps identify suitable weight, dimensions, fill, cover fabric, construction, safety certifications, and product shortlists based on the user's needs and region. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weighted blanket advice can be unsafe for children or users with respiratory issues, limited mobility, claustrophobia, or inability to remove the blanket independently. <br>
-Mitigation: Follow the skill's safety screening, avoid recommendations for children under 2 or under about 50 lb without medical guidance, and direct higher-risk users to consult a healthcare professional before buying. <br>
-Risk: Suggested products may have changed in availability, specifications, price, or seller since the skill was authored. <br>
-Mitigation: Treat product suggestions as starting points and independently verify current availability, specifications, price, and seller before purchase. <br>
-Risk: The consultation asks for personal sizing and health context that may be sensitive. <br>
-Mitigation: Share only the body weight, age, region, and health details needed to determine safe blanket specifications. <br>
+## Use Case:
 
+External users use this skill to evaluate weighted blanket weight, dimensions, fill, cover fabric, construction, regional certifications, and care constraints before purchase. The skill guides an agent through a structured consultation and returns specification-focused recommendations plus limited product examples for independent verification.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/arbazex/weighted-blanket-buying-consultant) <br>
-- [Skill homepage](https://github.com/arbazex/bedroom-essentials-buying-consultants/tree/master/weighted-blanket-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown consultation questions, structured specification recommendations, and a short product shortlist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, external API calls, account access, software installation, or direct purchasing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The consultation may ask for body weight, age, country, and health-related cautions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only information needed for the recommendation, avoid unnecessary retention, and treat the output as shopping guidance rather than medical advice.
+
+Risk: Named blanket models may be outdated, unavailable, incorrectly specified, or unsuitable for the user's region.
+
+Mitigation: Present product names as examples only and tell users to verify current availability, specifications, price, safety certifications, and suitability before purchase.
+
+Risk: Weighted blanket advice can be unsafe for children, users with respiratory conditions, claustrophobia, limited mobility, or anyone unable to remove the blanket independently.
+
+Mitigation: Raise these safety flags before recommending products and direct affected users to consult a healthcare provider.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/weighted-blanket-buying-consultant)
+- [Homepage](https://github.com/arbazex/bedroom-essentials-buying-consultants/tree/master/weighted-blanket-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational questions followed by structured Markdown recommendations and up to 5 product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs, credentials, runtime dependencies, persistence, or hidden execution behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

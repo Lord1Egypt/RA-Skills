@@ -1,45 +1,71 @@
-## Description: <br>
-Create, modify, and debug agentic Squid pipelines that define multi-agent YAML workflows with spawns, gates, parallel execution, loops, branching, restart loops, sub-pipelines, and structured approvals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, modify, and debug Squid YAML pipelines for multi-agent workflows with spawn adapters, gates, parallel execution, loops, branching, restart loops, sub-pipelines, structured approvals, and tests.
 
-## Publisher: <br>
-[dominno](https://clawhub.ai/user/dominno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dominno](https://clawhub.ai/user/dominno)
 
-## Use Case: <br>
-Developers and engineers use this skill to author, modify, validate, and test Squid YAML workflows that coordinate shell commands, agent spawns, human approvals, and sub-pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Squid pipelines can execute local commands, spawn agents, mutate repositories, and trigger deployment or publishing workflows. <br>
-Mitigation: Run generated or included pipelines in a sandbox or clean branch, inspect each run command, restrict repo and output paths, and require gate approvals before side effects. <br>
-Risk: Examples and generated workflows may include high-impact repository mutation, npm scripts, pull request creation, or deployment patterns. <br>
-Mitigation: Avoid untrusted npm scripts, review diffs before approving commits or pull requests, and keep production deploy or publish steps behind explicit human approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to author, review, validate, and test Squid pipeline YAML for agentic workflows that coordinate shell commands, sub-agents, approvals, branching, loops, and sub-pipelines.
 
-## Reference(s): <br>
-- [Step Types Reference](references/step-types.md) <br>
-- [Workflow Patterns](references/patterns.md) <br>
-- [Testing Reference](references/testing.md) <br>
-- [Getting Started](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/getting-started.md) <br>
-- [Agent Adapters](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/adapters.md) <br>
-- [Squid Workflow Examples](https://github.com/dominno/squid-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, TypeScript, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include executable pipeline definitions and commands that require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Bundled examples and generated pipelines may include high-impact repository, GitHub, Docker, Kubernetes, or deployment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run bundled examples unchanged in real repositories or deployment environments; use sandbox or dry-run first and require explicit gate approval conditions before side effects.
+
+Risk: Pipeline commands may interpolate user-provided values into shell commands or deployment arguments.
+
+Mitigation: Validate or safely pass shell arguments, keep tests beside each pipeline, and run Squid validation before execution.
+
+Risk: Authenticated agent, GitHub, Docker, or Kubernetes credentials can affect production resources if exposed to generated workflows.
+
+Mitigation: Use least-privileged credentials in isolated environments and avoid production credentials unless the workflow has been reviewed and approved.
+
+Risk: The server security verdict is suspicious because approval enforcement in examples and templates is inconsistent.
+
+Mitigation: Review each workflow for gate-before-side-effect behavior, explicit approval checks after gates, retries on network calls, bounded loops, and downstream success guards.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dominno/skills/squid-pipeline)
+- [Step Types Reference](references/step-types.md)
+- [Workflow Patterns](references/patterns.md)
+- [Testing Reference](references/testing.md)
+- [Squid Getting Started](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/getting-started.md)
+- [Squid Step Types Docs](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/step-types.md)
+- [Squid Agent Adapters](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/adapters.md)
+- [Squid Workflow Patterns Docs](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/workflow-patterns.md)
+- [Squid Testing Guide](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/testing.md)
+- [Squid Migration Guide](https://raw.githubusercontent.com/dominno/squid/refs/heads/main/docs/migration.md)
+- [Squid Workflow Examples](https://github.com/dominno/squid-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML pipeline and test snippets plus inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed, validated with Squid, and tested before use against real repositories or deployment targets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

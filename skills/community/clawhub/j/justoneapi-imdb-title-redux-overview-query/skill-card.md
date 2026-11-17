@@ -1,43 +1,51 @@
-## Description: <br>
-Call GET /api/imdb/title-redux-overview-query/v1 for IMDb Redux Overview through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-redux-overview-query/v1 for IMDb Redux Overview through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's IMDb Redux Overview endpoint for a movie or TV title by IMDb ID, then summarize key title metadata and linked overview fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed to the helper and included as a query parameter in the API request. <br>
-Mitigation: Use a scoped or low-privilege token when available, avoid sharing command output, URLs, or network logs, and rotate the token if a request URL may have been exposed. <br>
-Risk: Backend errors may include payloads from the API service. <br>
-Mitigation: Review error output before sharing it and redact any sensitive request, account, or token-related details. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve concise IMDb title overview data from JustOneAPI by providing an IMDb title ID and optional language-country preference.
 
-## Reference(s): <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_redux_overview_query&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_redux_overview_query&utm_content=project_link) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/justoneapi/justoneapi-imdb-title-redux-overview-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title id; optional languageCountry controls localization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through local process arguments or URL logs because the API flow uses a query-string token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or low-privilege token when available, avoid sharing command logs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-redux-overview-query)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_redux_overview_query&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summary with shell command guidance and JSON response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title ID; languageCountry is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

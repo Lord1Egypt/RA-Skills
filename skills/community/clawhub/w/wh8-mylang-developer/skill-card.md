@@ -1,42 +1,61 @@
-## Description: <br>
-提供文华8麦语言量化交易模型编写、回测、参数优化、策略运行及头寸风险管理功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents produce WT8 Mai-language quantitative trading model code, backtesting guidance, parameter optimization advice, strategy execution notes, and position risk management guidance.
 
-## Publisher: <br>
-[kun-wang-0717](https://clawhub.ai/user/kun-wang-0717) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kun-wang-0717](https://clawhub.ai/user/kun-wang-0717)
 
-## Use Case: <br>
-Developers and traders who use Wenhua WT8 can use this skill to draft, review, and refine Mylang quantitative trading strategies, backtests, parameter settings, simulation workflows, and position or risk management examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated WT8 strategies or trading examples could be mistaken for production-ready financial advice. <br>
-Mitigation: Manually review all generated logic, backtest or paper trade it, check account and environment settings, set position and loss limits, and require explicit human approval before any real-money execution. <br>
+## Use Case:
 
+Developers and trading-system users use this skill to draft and review WT8 Mai-language strategy models, classify requests, reference supported functions, and prepare backtests, optimization workflows, simulated runs, and risk-control logic.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kun-wang-0717/wh8-mylang-developer) <br>
-- [麦语言教程](https://wt8.wenhua.com.cn/#/download/download/2) <br>
-- [文华财经基本语法说明](https://www.wenhua.com.cn/guide/views41a3.htm) <br>
-- [文华财经操作符语法](https://www.wenhua.com.cn/guide/views41a.htm) <br>
-- [文华财经信号过滤明细](https://www.wenhua.com.cn/popwin/guolvmx3.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with WT8 Mylang code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include trading strategy examples and should be manually reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Generated strategies can include order-capable WT8 trading logic that may be used in live environments without sufficient confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all generated strategies as drafts, verify simulation versus live mode, and require explicit human approval before any order-capable deployment.
+
+Risk: Backtest results may not reflect real execution conditions such as slippage, liquidity, symbol selection, position sizing, drawdowns, or stop behavior.
+
+Mitigation: Validate symbols, sizing, slippage assumptions, liquidity, drawdown limits, and stop behavior with backtesting and paper trading before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kun-wang-0717/skills/wh8-mylang-developer)
+- [WT8 Mai-language tutorial](https://wt8.wenhua.com.cn/#/download/download/2)
+- [Wenhua syntax guide](https://www.wenhua.com.cn/guide/views41a3.htm)
+- [Wenhua operator syntax guide](https://www.wenhua.com.cn/guide/views41a.htm)
+- [Wenhua signal filtering details](https://www.wenhua.com.cn/popwin/guolvmx3.htm)
+- [Artifact README](artifact/README.md)
+- [Function index](artifact/FUNCTIONS/INDEX.md)
+- [Common mistakes and edge cases](artifact/EDGE_CASES/common_mistakes.md)
+- [Model templates](artifact/TEMPLATES/model_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with WT8 Mai-language code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include trading-model drafts, backtest and optimization instructions, execution notes, and risk-management checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

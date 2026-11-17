@@ -1,41 +1,52 @@
-## Description: <br>
-Provides Chinese-language business opportunity analysis for links, product descriptions, technical tutorials, startup ideas, open-source projects, and market trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured, Chinese-language business opportunity analysis for links, product descriptions, technical tutorials, startup ideas, open source projects, market trends, and other commercially relevant information.
 
-## Publisher: <br>
-[brunch1896](https://clawhub.ai/user/brunch1896) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[brunch1896](https://clawhub.ai/user/brunch1896)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn commercially relevant information into a pragmatic business opportunity assessment. It produces startup-oriented analysis across opportunity, target users, scenarios, product features, pain points, business model, execution path, and founder intuition.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger wording may cause the skill to activate for links or ideas where the user wanted neutral summarization or translation.
+
+Mitigation: Users should state when they want a neutral task instead of commercial analysis; reviewers should confirm the trigger scope is acceptable for the deployment context.
+
+Risk: Business opportunity reports can overstate feasibility or market demand if the source information is incomplete.
+
+Mitigation: Treat the output as decision support and validate market size, customer willingness to pay, competitive landscape, and execution assumptions before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and business builders use this skill to turn potentially commercial links, product ideas, technical projects, or market observations into structured startup opportunity reports. It emphasizes target users, use scenarios, MVP features, pain points, business model, go-to-market path, feasibility, and risks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger may produce a full commercial opportunity report for loosely commercial content even when the user did not explicitly request one. <br>
-Mitigation: Confirm the user's intent before expanding casual links or ideas into a complete opportunity analysis. <br>
-Risk: The skill can generate business advice that may be incomplete, speculative, or context-dependent. <br>
-Mitigation: Review recommendations critically and validate market, legal, financial, and operational assumptions before acting on them. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brunch1896/biz-oppo) <br>
-- [Publisher profile](https://clawhub.ai/user/brunch1896) <br>
+**Other Properties Related to Output:** [Chinese-language structured report organized into eight business analysis dimensions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured report organized across eight business analysis dimensions.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

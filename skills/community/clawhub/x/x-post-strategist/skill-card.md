@@ -1,46 +1,60 @@
-## Description: <br>
-Turns ideas, notes, articles, reports, or technical material into X posts or threads with tone matching, character-limit handling, and factual-risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns ideas, notes, articles, reports, and technical material into X posts or threads with tone matching, account-aware length handling, fact checks, and optional image recommendations.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External users, developers, founders, researchers, and content teams use this skill to turn source material into X posts or threads, refine hooks and voice, and decide whether a supporting text/data graphic would help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web search on topic text the user provides, which can expose sensitive or private source material if included in the prompt. <br>
-Mitigation: Use only the minimum topic text needed for research, avoid credentials or personal data, and keep uncertain or sensitive claims clearly qualified. <br>
-Risk: Optional image rendering can install or use Puppeteer and launch local Chrome to turn self-contained HTML/CSS into PNG assets. <br>
-Mitigation: Render only trusted, self-contained HTML, keep network assets out of render files, and avoid custom Chrome flags unless they are needed for the local environment. <br>
-Risk: Opt-in draft saving can write generated X drafts to a user-selected location. <br>
-Mitigation: Save only after explicit opt-in and review the resolved absolute target path before writing. <br>
-Risk: Drafted X posts can overstate real-time, financial, legal, medical, political, scientific, or other high-stakes claims if source evidence is incomplete. <br>
-Mitigation: Verify current and high-stakes claims when tools are available, state uncertainty plainly, and avoid invented sources, numbers, quotes, screenshots, or firsthand experience. <br>
+## Use Case:
 
+Writers, founders, developers, researchers, and operators use this skill to turn rough ideas or source material into publishable X posts and threads that fit the chosen account type, format, audience, tone, and factual-risk constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/x-post-strategist) <br>
-- [README](README.md) <br>
-- [Render Image Setup](render-image-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional code blocks, shell commands, and image briefs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally propose or generate self-contained HTML/CSS graphics and save drafts only after user opt-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.14.0 (source: server release evidence and target metadata) <br>
+Risk: The optional renderer opens local HTML in Chrome without blocking scripts or network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted, self-contained HTML; avoid untrusted copied markup; and consider blocking network or JavaScript and updating dependencies before rendering cards.
+
+Risk: Optional draft saving can write generated content to a local notes vault path.
+
+Mitigation: Enable saving only with explicit user consent and review the resolved OBSIDIAN_VAULT_PATH or chosen folder before the first write.
+
+Risk: Drafts may cover real-time, financial, legal, medical, political, scientific, or otherwise high-stakes claims.
+
+Mitigation: Verify claims with available tools, mark uncertainty clearly, and avoid presenting unverified claims as fact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/x-post-strategist)
+- [README](artifact/README.md)
+- [Chinese AI / Tech X post reference](artifact/chinese-ai-tech-posts.md)
+- [Render image setup](artifact/render-image-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown/text drafts with optional image briefs, HTML/CSS snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include character-count checks, self-review scores, optional local markdown saves, and optional PNG rendering guidance for text/data graphics.]
+
+## Skill Version(s):
+
+0.14.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

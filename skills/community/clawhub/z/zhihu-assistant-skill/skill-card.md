@@ -1,47 +1,69 @@
-## Description: <br>
-Fetches Zhihu hot-list topics, generates AI answer drafts, and sends drafts to Feishu for human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知乎热榜抓取与回答草稿生成助手 - 自动抓取知乎热榜，使用 AI 生成优质回答草稿，推送到飞书审核
 
-## Publisher: <br>
-[naiveKid](https://clawhub.ai/user/naiveKid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[naivekid](https://clawhub.ai/user/naivekid)
 
-## Use Case: <br>
-External users and developers use this skill to monitor Zhihu trending questions, draft candidate answers with an AI model, deduplicate previously handled topics, and route drafts through a Feishu-based human review queue before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Zhihu session cookie and AI API keys, which are sensitive account credentials. <br>
-Mitigation: Use a low-risk account where possible, store secrets only through the expected configuration mechanism, and avoid exposing them in shell history, logs, or shared files. <br>
-Risk: Generated answer drafts and review queue data may persist in the skill workspace. <br>
-Mitigation: Review workspace storage access, remove stale drafts when no longer needed, and treat stored queue and audit files as potentially sensitive. <br>
-Risk: AI-generated drafts may be inaccurate, low quality, or unsuitable for publication. <br>
-Mitigation: Keep the documented human review step before posting content and verify that final content follows Zhihu community rules. <br>
-Risk: Installing dependencies directly into a shared Python environment can affect other tools. <br>
-Mitigation: Install and run the skill in an isolated Python environment when practical. <br>
+## Use Case:
 
+External users and developers use this skill to fetch Zhihu hot-list questions, generate AI-assisted answer drafts, track an audit queue, and prepare Feishu review notifications before any manual publishing step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naiveKid/zhihu-assistant-skill) <br>
-- [Kimi Open Platform](https://platform.moonshot.cn/) <br>
-- [Moonshot API base URL](https://api.moonshot.cn/v1) <br>
-- [Zhihu hot-list API endpoint](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, API calls, Guidance] <br>
-**Output Format:** [Markdown-style answer drafts, CLI status text, JSON queue and memory files, logs, and Feishu notification messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are intended for human review before publication; queue, memory, and audit data remain in the skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill handles Zhihu session cookies and AI provider API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the cookie and API keys as secrets, configure them only through trusted secret/config storage, avoid committing them, and rotate them if exposed.
+
+Risk: The config display path may expose sensitive configuration if redaction is not confirmed.
+
+Mitigation: Do not use the config display command until secret redaction has been verified in the target OpenClaw environment.
+
+Risk: The installer creates local commands and installs Python dependencies.
+
+Mitigation: Review the installer before use, run it without elevated privileges in a dedicated environment, and pin dependencies where operational policy requires reproducibility.
+
+Risk: Generated answers may be inaccurate, policy-violating, or unsuitable for publication.
+
+Mitigation: Keep generated answers in the review queue and require human review against Zhihu community rules before posting.
+
+Risk: The skill sends drafted content and question metadata to configured AI and notification services.
+
+Mitigation: Use only trusted AI endpoints and Feishu destinations, and avoid processing content that should not leave the operator's environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naivekid/skills/zhihu-assistant-skill)
+- [Publisher profile](https://clawhub.ai/user/naivekid)
+- [Kimi open platform](https://platform.moonshot.cn/)
+- [Zhihu hot-list API endpoint](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total)
+- [Server-resolved provenance](unavailable)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [CLI text and Markdown-formatted review messages, with JSON files for local queue and log state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates draft answer text for human review; stores pending items, status counts, and operation logs locally.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

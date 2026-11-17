@@ -1,6 +1,19 @@
-{
-  "ownerId": "kn77arswamcq79y5pzwp5047n584vayn",
-  "slug": "safe-shrink",
-  "version": "1.2.15",
-  "publishedAt": 1780648649236
+﻿{
+    "name":  "safe-shrink",
+    "version": "1.2.15",
+    "description":  "瀵嗗皬浠?路 鏂囨。鍑忚偉 / 鑴辨晱 / SSD 杞崲妗岄潰宸ュ叿銆傝Е鍙戣瘝 / Triggers: .ssd, SafeShrink, 瀵嗗皬浠? 鏂囦欢鍑忚偉, 鏂囨。鑴辨晱, token 鍘嬬缉, .xls, .json, .xml, .yaml, .csv / document slimming, sanitization, token compression, structured sanitization",
+    "author":  "JinwaTech",
+    "license":  "MIT-0",
+    "tags":  [
+                 "compression",
+                 "document",
+                 "privacy",
+                 "sanitize",
+                 "token",
+                 "i18n"
+             ],
+    "homepage":  "https://github.com/JinwaTech/safeshrink",
+    "repository":  "https://github.com/JinwaTech/safeshrink"
 }
+
+

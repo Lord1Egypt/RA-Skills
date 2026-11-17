@@ -1,40 +1,57 @@
-## Description: <br>
-Enforces regex-based, real-time authorization policies on OpenClaw agents' tool calls, blocking, allowing, or requiring approval before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces regex-based, real-time authorization policies on OpenClaw agents' tool calls, blocking, allowing, or requiring approval before execution.
 
-## Publisher: <br>
-[wiserautomation](https://clawhub.ai/user/wiserautomation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wiserautomation](https://clawhub.ai/user/wiserautomation)
 
-## Use Case: <br>
-Developers and security teams use this skill to add policy checks, audit logging, and approval gates before OpenClaw agents execute tool calls such as shell commands, web automation, filesystem access, outbound fetches, email actions, or payment API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The service sends each agent tool call and its arguments to a hosted third-party service with limited data-handling detail in the release evidence. <br>
-Mitigation: Install only if the publisher and npm package are trusted, protect AGENTGATE_API_KEY, and confirm audit-log retention, operator access, and data-handling terms before using sensitive workflows. <br>
-Risk: Regex-based policies can over-match or under-match tool arguments, causing unintended blocks or missed risky actions. <br>
-Mitigation: Test policies on representative tool calls, review audit logs, and use approval rules for high-impact actions before relying on automatic allow or deny behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wiserautomation/agentgate-security) <br>
-- [AgentGate dashboard and service](https://agent-gate-rho.vercel.app) <br>
+## Use Case:
 
+Developers and operators use this skill to add policy evaluation, audit logging, and approval gates around OpenClaw tool calls before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include npm install commands, JavaScript integration snippets, regex policy examples, and operational guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tool names and full tool arguments are sent to AgentGate's hosted service for policy evaluation.
+
+Mitigation: Review data handling, redaction controls, audit-log retention, deletion practices, and tenant isolation before using it with sensitive agents.
+
+Risk: The release has unavailable provenance and relies on an unpinned npm package according to the security evidence.
+
+Mitigation: Pin package versions, inspect the installed package and lockfile, and request source or provenance details before deployment.
+
+Risk: Regex policy mistakes can allow unsafe actions or block legitimate tool calls.
+
+Mitigation: Test policies with low-privilege agents, monitor audit logs, and require approval for high-impact tools such as shell, filesystem, payment, and outbound network actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wiserautomation/skills/agentgate-security)
+- [AgentGate website](https://agent-gate-rho.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy examples, setup steps, and operational review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

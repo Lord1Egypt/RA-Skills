@@ -1,44 +1,58 @@
-## Description: <br>
-Wraps improvement-orchestrator in a persistent loop with convergence detection, cost control, and cross-session state persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoloop Controller wraps improvement-orchestrator in a persistent improvement loop with convergence detection, cost control, and cross-session state persistence.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to run repeated improvement cycles on a target skill with explicit budget, iteration, convergence, and recovery controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repeated automated improvement can consume budget or run longer than intended. <br>
-Mitigation: Set explicit max-cost and max-iterations values, start with a low budget, and prefer dry-run or single-run before continuous or cron scheduling. <br>
-Risk: Running the loop against the wrong target can repeatedly change an unintended skill. <br>
-Mitigation: Use an explicit target path and a dedicated state directory for each run, then review generated outputs before deployment. <br>
-Risk: Scheduled or continuous operation can continue across sessions if configured too broadly. <br>
-Mitigation: Use scoped cron entries or scheduled invocations, inspect autoloop_state.json and iteration_log.jsonl, and stop when plateau, oscillation, cost, or error limits are reached. <br>
+## Use Case:
 
+Developers and engineers use this skill to run repeated, budget-bounded improvement cycles on a target skill until max-iteration, cost, plateau, oscillation, or error limits stop the loop. It is especially useful for unattended or scheduled skill improvement with persisted state for later review.
 
-## Reference(s): <br>
-- [Autoloop Controller ClawHub page](https://clawhub.ai/lanyasheng/autoloop-controller) <br>
-- [State Format](references/state-format.md) <br>
-- [Scheduling Guide](references/scheduling-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON state/log artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists autoloop_state.json and iteration_log.jsonl under the configured state root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can run automated improvement loops unattended, including scheduled cron runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run first, set an explicit target and state directory, and enable cron only when you know how to review and remove the scheduled entry.
+
+Risk: Unbounded or poorly configured improvement loops can consume time and budget.
+
+Mitigation: Set explicit --max-iterations and --max-cost values before running continuous or scheduled modes.
+
+Risk: The controller delegates actual skill changes to improvement-orchestrator.
+
+Mitigation: Review the improvement-orchestrator skill and inspect generated changes before relying on the results.
+
+## Reference(s):
+
+- [State Format](artifact/references/state-format.md)
+- [Scheduling Guide](artifact/references/scheduling-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or JSONL state artifact descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update autoloop_state.json and iteration_log.jsonl in a user-selected state directory when executed.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Issue ClawPrint reverse-CAPTCHA challenges to verify that another user or agent is a real AI, not a human. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issues ClawPrint reverse-CAPTCHA challenges through the ClawPrint API to verify that another user or agent is likely an AI rather than a human.
 
-## Publisher: <br>
-[fusionlabssource](https://clawhub.ai/user/fusionlabssource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fusionlabssource](https://clawhub.ai/user/fusionlabssource)
 
-## Use Case: <br>
-Developers and operators use this skill to issue ClawPrint challenges before sharing sensitive credentials, gating AI-only services, or validating that a conversation partner is likely an AI agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends verification data and the secret key to the configured ClawPrint server. <br>
-Mitigation: Set CLAWPRINT_SERVER_URL only to a trusted HTTPS endpoint and protect CLAWPRINT_SECRET_KEY like a password. <br>
-Risk: Command bodies or logs could expose challenge details or secrets. <br>
-Mitigation: Avoid logging request bodies and redact environment values from transcripts, shell history, and operational logs. <br>
-Risk: A passed challenge should not be treated as sufficient proof for highly sensitive actions unless the verifier trusts the service model. <br>
-Mitigation: Use server-side validation and apply additional authorization checks before releasing sensitive credentials or resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fusionlabssource/captcha-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/fusionlabssource) <br>
+## Use Case:
 
+Developers, agent operators, and external users use this skill to issue and validate ClawPrint reverse-CAPTCHA challenges before continuing gated AI-only workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, plus CLAWPRINT_SERVER_URL, CLAWPRINT_SITE_KEY, and CLAWPRINT_SECRET_KEY for validation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be used as the sole basis for sharing API keys, credentials, private data, or privileged access.
+
+Mitigation: Use ClawPrint only as an auxiliary automation signal and require separate authorization checks before releasing sensitive resources.
+
+Risk: The validation flow sends CLAWPRINT_SECRET_KEY to a runtime-configured ClawPrint server.
+
+Mitigation: Configure only trusted HTTPS ClawPrint servers you control, protect CLAWPRINT_SECRET_KEY as sensitive, and avoid untrusted CLAWPRINT_SERVER_URL values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fusionlabssource/skills/captcha-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, CLAWPRINT_SERVER_URL, CLAWPRINT_SITE_KEY, and CLAWPRINT_SECRET_KEY for server-side validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

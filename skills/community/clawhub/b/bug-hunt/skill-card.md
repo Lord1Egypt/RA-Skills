@@ -1,40 +1,57 @@
-## Description: <br>
-Use when asked to find bugs, hunt for correctness issues, sweep a codebase for defects, or verify a repo behaves as intended. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when asked to find bugs, hunt for correctness issues, sweep a codebase for defects, or verify a repo behaves as intended. Not for style or architecture review; this is defect-finding only.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and engineers use this skill to perform read-only correctness sweeps over codebases, verify potential defects, and produce a structured markdown bug-hunt report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect broad areas of a repository during a bug hunt. <br>
-Mitigation: Install and run only where broad read-only code inspection is appropriate. <br>
-Risk: Bug reports can include incorrect or unverified findings if candidate issues are not checked skeptically. <br>
-Mitigation: Require the skill's mandatory verification pass and mark any unverifiable finding as unverified or downgrade it. <br>
+## Use Case:
 
+Developers and engineers use this skill to sweep a codebase for correctness defects and verify candidate findings before reporting them.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/solomonneas/bug-hunt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with findings, scorecard, backlog, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only; may suggest safe test runs or reproduction sketches but does not ask the agent to modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Plausible but incorrect bug candidates could mislead maintainers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an adversarial verification pass and a concrete triggering scenario before reporting a finding.
+
+Risk: Reproduction tests may affect the reviewed repository or its environment.
+
+Mitigation: Run reproduction tests only when safe and keep them sandboxed.
+
+Risk: Optional companion skills and the referenced lint script are outside the reviewed bundle.
+
+Mitigation: Review and scan those components separately before relying on them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/solomonneas/skills/bug-hunt)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown]
+
+**Output Format:** [Markdown code-review report with a verdict, scorecard, verified findings, and backlog]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only review; findings require adversarial verification and concrete triggers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

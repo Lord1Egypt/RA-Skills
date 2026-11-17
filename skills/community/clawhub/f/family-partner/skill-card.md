@@ -1,46 +1,61 @@
-## Description: <br>
-Family Partner is an AI-powered OpenClaw family assistant suite for managing calendars, tasks, shopping, family memories, household labor, anniversaries, votes, milestones, challenges, and morning briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family Partner helps OpenClaw agents manage family calendars, tasks, local memories, household labor, anniversaries, milestones, voting, challenges, and morning briefings through a local SQLite database.
 
-## Publisher: <br>
-[AI-PlusPlus](https://clawhub.ai/user/AI-PlusPlus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ai-plusplus](https://clawhub.ai/user/ai-plusplus)
 
-## Use Case: <br>
-External users and families use this skill to organize household schedules, tasks, memories, family events, shopping needs, and shared decision-making through an OpenClaw assistant backed by a local SQLite database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and may resurface sensitive family details, including allergies, medical notes, school information, relationship context, and child-related household records. <br>
-Mitigation: Review before installing; avoid entering highly sensitive child, health, school, or relationship details unless needed, and prefer explicit user confirmation before saving or resurfacing personal memories. <br>
-Risk: Broad triggers such as greetings or memory requests may reveal personal briefings or stored household information unexpectedly. <br>
-Mitigation: Require clear user intent before displaying personal briefings, and confirm the audience before showing calendar, task, anniversary, or memory summaries. <br>
-Risk: All household records are kept in a local SQLite database that depends on the user's device security and backup practices. <br>
-Mitigation: Limit database file access, use local device protections, and back up or delete the database according to household privacy needs. <br>
+## Use Case:
 
+Families and OpenClaw users use this skill to organize household schedules, shared tasks, shopping items, preferences, allergies, family activities, anniversaries, milestones, votes, and challenges from conversational requests. It is intended for local-first family organization where the agent can read and update a SQLite database on the user's machine.
 
-## Reference(s): <br>
-- [ClawHub Family Partner release page](https://clawhub.ai/AI-PlusPlus/family-partner) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [ClawHub skill format specification](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md) <br>
-- [SQLite documentation](https://www.sqlite.org/docs.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with natural-language responses and inline SQLite shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses sqlite3 to read and write a local family database at ~/.openclaw/family-partner/family.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release metadata) <br>
+Risk: The skill stores sensitive household schedules, preferences, allergies, tasks, and family history in a local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only family details the user is comfortable retaining locally, restrict access to the Family Partner data directory, and protect any backups of the database.
+
+Risk: Broad chat triggers and shell-run SQLite commands can update local family data when untrusted or ambiguous messages reach the agent.
+
+Mitigation: Prefer explicit user confirmation for sensitive create, update, or delete actions, avoid untrusted free-form input, and run OpenClaw under a limited account scoped to the Family Partner data directory.
+
+Risk: The skill depends on SQLite and a correctly initialized local schema.
+
+Mitigation: Verify that sqlite3 is installed and initialize the database with the included schema before relying on calendar, task, memory, or reporting workflows.
+
+## Reference(s):
+
+- [Family Partner ClawHub listing](https://clawhub.ai/ai-plusplus/skills/family-partner)
+- [AI-PlusPlus publisher profile](https://clawhub.ai/user/ai-plusplus)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [ClawHub skill format specification](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md)
+- [SQLite documentation](https://www.sqlite.org/docs.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline SQLite shell commands and local configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include confirmations, reminders, briefings, statistics, SQL-backed query results, and setup or troubleshooting commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter, artifact/package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

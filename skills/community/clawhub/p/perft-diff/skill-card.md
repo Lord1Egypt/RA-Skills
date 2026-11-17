@@ -1,38 +1,54 @@
-## Description: <br>
-Finds an incorrect or missing move in a user's chess engine by comparing perft results with Stockfish. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds an incorrect or missing move in a user's chess engine by comparing perft results with Stockfish.
 
-## Publisher: <br>
-[ottofreund](https://clawhub.ai/user/ottofreund) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ottofreund](https://clawhub.ai/user/ottofreund)
 
-## Use Case: <br>
-Developers and chess engine authors use this skill to narrow a perft mismatch to the move sequence that exposes an illegal or missing generated move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can run local perft commands and may rely on helper scripts or chess test files supplied by the user. <br>
-Mitigation: Install Stockfish only from trusted package sources and use the skill with chess engine test files or helper scripts you trust. <br>
+## Use Case:
 
+Developers building chess engines use this skill to isolate a perft mismatch by comparing engine move counts against Stockfish until it identifies the move sequence that leads to an illegal or missed move.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ottofreund/perft-diff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command snippets and perft comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the move sequence leading to the perft anomaly; expects Stockfish to be available locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires Stockfish and may install the Stockfish package in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Stockfish package installation is acceptable before use.
+
+Risk: The workflow may make narrow test or logging changes in the user's chess-engine repository.
+
+Mitigation: Restrict changes to the specified failing test case or a temporary perft logging helper, then review changes before keeping them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ottofreund/skills/perft-diff)
+- [Example perft diff workflow](artifact/example.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown narrative with perft logs, Stockfish commands, and the final anomalous move sequence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Stockfish and a user-provided failing perft test case with FEN and depth.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

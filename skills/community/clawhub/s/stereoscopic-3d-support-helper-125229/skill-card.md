@@ -1,38 +1,50 @@
-## Description: <br>
-Helps maintainers and users turn stereoscopic 3D support requests into actionable workflows, checklists, analysis, artifacts, or implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users turn stereoscopic 3D support requests into practical workflows, checklists, analysis, implementation support, or other actionable artifacts.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Maintainers, users, and developers use this skill to clarify stereoscopic 3D support needs, produce practical planning artifacts, and validate next steps against the request criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may invoke the skill for vague stereoscopic or support-related requests. <br>
-Mitigation: Require clear stereoscopic 3D support intent before invocation, or confirm intent when the request is ambiguous. <br>
+## Use Case:
 
+Maintainers, users, developers, and support teams use this skill to clarify stereoscopic 3D feature requests, define success criteria, and produce concrete next steps such as workflows, checklists, analysis, code-change guidance, or validation notes.
 
-## Reference(s): <br>
-- [Stereoscopic 3D Support Feature Request](https://github.com/Ryubing/Issues/issues/444) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, templates, analysis, code-change support, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should surface assumptions, limits, required inputs, remaining risks, and useful follow-up work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad trigger keywords and implicit invocation could cause the helper to activate for unrelated support or overview requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger keywords or require explicit invocation when installing the skill.
+
+## Reference(s):
+
+- [Requirement plan](references/requirement-plan.md)
+- [Source feature request](https://github.com/Ryubing/Issues/issues/444)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text with optional code blocks, shell commands, checklists, templates, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained outputs should state assumptions, limits, required inputs, and remaining follow-up work when relevant.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

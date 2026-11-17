@@ -1,40 +1,48 @@
-## Description: <br>
-Reviews staged code changes for production readiness, error handling, code quality, and unit test coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs senior-level code review of staged changes with attention to error handling, production readiness, code quality, and unit tests.
 
-## Publisher: <br>
-[yaseenkadlemakki](https://clawhub.ai/user/yaseenkadlemakki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yaseenkadlemakki](https://clawhub.ai/user/yaseenkadlemakki)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to review staged changes before merging, focusing on production-readiness issues, concrete fixes, and test coverage.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can encourage broad code and test changes beyond a narrow review finding.
+
+Mitigation: Scope any proposed edits to the staged change under review, inspect generated patches before applying them, and run the relevant test suite.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to have an agent review staged code changes, identify production-readiness issues, and propose fixes or tests before committing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest or generate code fixes and tests that may change repository behavior. <br>
-Mitigation: Review generated changes, run tests, and inspect diffs before applying or committing. <br>
-Risk: The review may require sharing staged repository diffs with the agent. <br>
-Mitigation: Use only on repositories and changes you intend to expose to the agent. <br>
+**Output Format:** [Markdown with review findings, suggested fixes, and test implementation details]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yaseenkadlemakki/code-review-skill) <br>
+**Other Properties Related to Output:** [May include complete code and unit or component test suggestions for issues found during review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review comments with code snippets, suggested fixes, and test implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository changes and tests; users should review generated changes before applying or committing them.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

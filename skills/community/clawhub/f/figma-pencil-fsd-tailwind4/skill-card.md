@@ -1,51 +1,60 @@
-## Description: <br>
-Converts selected Figma or Pencil designs into production-ready frontend code using Feature-Sliced Design, Tailwind CSS v4, project tokens, and accessibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Figma or Pencil designs into production-ready frontend code using Feature-Sliced Design and Tailwind CSS v4.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to translate scoped Figma or Pencil designs into code while preserving local architecture, design tokens, component reuse, accessibility, and validation expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend changes may drift from the host repository's architecture, design tokens, component library, or accessibility expectations. <br>
-Mitigation: Check local project contracts first, reuse existing primitives and tokens, review generated code and token changes, and run the project's type-check, lint, tests, and accessibility checks when available. <br>
-Risk: The skill can guide an agent to edit frontend files and handle design assets when the user asks for implementation. <br>
-Mitigation: Review source-control diffs, asset handling, and any generated commands before accepting changes. <br>
-Risk: The Pencil workflow is documented as experimental compared with the Figma MCP workflow. <br>
-Mitigation: Prefer Figma MCP when both design sources exist, or use Pencil only when the user explicitly requests it or it is the source of truth. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to translate scoped Figma or Pencil design inputs into frontend implementation plans and code that preserve Feature-Sliced Design layering, Tailwind CSS token usage, repository contracts, and accessibility expectations.
 
-## Reference(s): <br>
-- [Project Contracts](references/project-contracts.md) <br>
-- [FSD Mapping](references/fsd-mapping.md) <br>
-- [Server / Client Boundaries](references/rsc-boundaries.md) <br>
-- [Tailwind 4 Tokens](references/tailwind-tokens.md) <br>
-- [Figma MCP Workflow](references/figma-mcp-workflow.md) <br>
-- [Pencil Workflow](references/pencil-workflow.md) <br>
-- [Accessibility Checklist](references/accessibility-checklist.md) <br>
-- [Example: Frame to FSD](references/example-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnwayneeee/figma-pencil-fsd-tailwind4) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/johnwayneeee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with implementation plans, code edits, configuration snippets, and shell commands as needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be scoped to a selected frame, screen, or component and should include explicit validation status when checks cannot be run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security summary reports an unrelated third-party promotional link in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and remove the promotional mention or treat it as optional advertising rather than task guidance.
+
+Risk: Design-to-code output can diverge from a host repository's architecture, token system, or accessibility requirements if local contracts are skipped.
+
+Mitigation: Require repository contract review, token reconciliation, accessibility checks, and project lint/type/test commands before accepting generated code.
+
+## Reference(s):
+
+- [Project Contracts](references/project-contracts.md)
+- [FSD Mapping](references/fsd-mapping.md)
+- [RSC Boundaries](references/rsc-boundaries.md)
+- [Tailwind Tokens](references/tailwind-tokens.md)
+- [Figma MCP Workflow](references/figma-mcp-workflow.md)
+- [Pencil Workflow](references/pencil-workflow.md)
+- [Accessibility Checklist](references/accessibility-checklist.md)
+- [Example: Frame to FSD](references/example-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation plans, validation checklists, and review notes]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

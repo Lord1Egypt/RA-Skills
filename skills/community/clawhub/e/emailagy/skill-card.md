@@ -1,49 +1,64 @@
-## Description: <br>
-All-in-one Gmail agent for OpenClaw that helps read, search, organize, classify, draft, schedule, report on, and cost-control mailbox workflows using gog CLI and optional Gmail API fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Asistant Mail is an OpenClaw Gmail agent skill for reading inboxes, searching messages, organizing labels, classifying priority and spam, drafting replies, scheduling checks, reporting activity, and tracking email automation costs.
 
-## Publisher: <br>
-[Coorops25](https://clawhub.ai/user/Coorops25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coorops25](https://clawhub.ai/user/coorops25)
 
-## Use Case: <br>
-Employees and operators use this agent to manage Gmail inbox workflows: reading messages, applying labels, detecting spam or phishing indicators, drafting replies, scheduling checks, and reporting usage costs. It is intended for users who are comfortable granting mailbox-management authority to an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or automate Gmail trash, archive, label, spam, draft, send, and batch-modify actions. <br>
-Mitigation: Run in dry-run or read-only mode first and require explicit confirmation before trash, archive, send, or batch mailbox changes. <br>
-Risk: Heartbeat spam cleanup, auto-archive, and learned-rule promotion can change future mailbox behavior without fresh review. <br>
-Mitigation: Review or disable automation jobs and learned-rule promotion before enabling scheduled operation. <br>
-Risk: Setup output and environment checks can reveal configured account or API-key presence. <br>
-Mitigation: Mask secrets and account identifiers in logs, shared terminals, and support transcripts. <br>
-Risk: The bootstrap hook injects budget and learning context into future agent sessions. <br>
-Mitigation: Disable the hook unless persistent session context is desired and review generated bootstrap context before operational use. <br>
-Risk: The skill depends on the external gog/gogcli command for Gmail operations. <br>
-Mitigation: Verify the installed gog/gogcli package source and permissions before granting Gmail access. <br>
+## Use Case:
 
+Employees and operators use this skill to manage Gmail workflows through an agent, including inbox review, label routing, spam triage, reply drafting, scheduled monitoring, and daily or weekly email summaries. It is intended for accounts where delegated Gmail access and supervised mailbox automation are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Coorops25/emailagy) <br>
-- [Cost optimization reference](references/cost-optimization.md) <br>
-- [Learning patterns reference](references/learning-patterns.md) <br>
-- [Email heartbeat template](assets/HEARTBEAT.email.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce proposed Gmail actions, labels, draft text, automation schedules, cost summaries, and setup guidance; destructive or batch mailbox changes should require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.0.0) <br>
+Risk: The skill requests durable Gmail mailbox access and can read, search, label, archive, trash, draft, and send email through connected tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts where delegated Gmail automation is acceptable, use the minimum viable account scope, and review all requested mailbox actions before enabling automation.
+
+Risk: Scheduled checks and automatic routing can change mailbox state without enough user control if cron jobs, heartbeat behavior, or notification targets are unclear.
+
+Mitigation: Keep automatic mode disabled until schedules, quiet hours, notification channels, deactivation steps, and review or quarantine behavior are confirmed.
+
+Risk: Persistent learned rules may archive, route, or suppress future email incorrectly.
+
+Mitigation: Require explicit approval for persistent rule changes and periodically audit learned rules, spam handling, and email action logs.
+
+Risk: Setup and diagnostics reference API keys and account identifiers that could be exposed in terminal output or logs.
+
+Mitigation: Avoid commands or setup paths that print secrets, keep environment variables out of shared logs, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/coorops25/skills/emailagy)
+- [Cost optimization reference](artifact/references/cost-optimization.md)
+- [Learning patterns reference](artifact/references/learning-patterns.md)
+- [Email heartbeat template](artifact/assets/HEARTBEAT.email.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Gmail query examples, JSON configuration snippets, and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Gmail searches, label changes, draft replies, cron schedules, budget summaries, and rule updates for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

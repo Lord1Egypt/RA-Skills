@@ -1,45 +1,68 @@
-## Description: <br>
-Public Commons Media Search helps agents search Wikipedia and Wikimedia Commons for public media, list page media, retrieve file URLs and licensing context, and paginate Commons results through AgentPMT-hosted remote calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Wikipedia and Wikimedia Commons for public media assets, returning page matches, embedded media, file URLs, metadata, and licensing context through AgentPMT-hosted calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external agents use this skill to discover reusable public media, retrieve Wikimedia file metadata and URLs, and check description pages for licensing context before reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote AgentPMT calls may consume credits and depend on account setup. <br>
-Mitigation: Confirm the enabled AgentPMT account route and the listed 5-credit action cost before invoking the tool. <br>
-Risk: Returned Wikimedia media may have file-specific license or attribution requirements. <br>
-Mitigation: Verify each media item on its Wikimedia file description page before reuse. <br>
-Risk: Prompts or logs could expose credentials if account details are included during setup or troubleshooting. <br>
-Mitigation: Keep credentials, wallet secrets, signatures, and payment headers out of prompts and logs; use the setup guidance for credential handling. <br>
+## Use Case:
 
+External agents, developers, and content workflows use this skill to find public Wikimedia media, retrieve direct file URLs, and inspect description or license context before using assets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/public-commons-media-search) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/public-commons-media-search) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request examples and remote tool response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote actions return media search results, page media lists, file metadata, file URLs, pagination offsets, and licensing context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional setup commands may install related AgentPMT skills through routes that are not pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer reviewed ClawHub or OpenClaw installation routes when available and inspect the referenced setup skills before installing them.
+
+Risk: AgentPMT calls may spend account credits.
+
+Mitigation: Confirm the intended action, account route, and expected credit cost before repeated or automated calls.
+
+Risk: Account secrets, wallet material, signatures, or payment headers could be exposed if pasted into prompts or logs.
+
+Mitigation: Use the referenced setup skill for credential handling and keep secrets out of prompts, examples, transcripts, and logs.
+
+Risk: The language parameter defaults to English when not supplied.
+
+Mitigation: Set the language parameter explicitly whenever non-English Wikipedia results are required.
+
+Risk: Media returned from Wikimedia projects can have file-specific license terms.
+
+Mitigation: Check the returned file description page and license context before reusing or redistributing media.
+
+## Reference(s):
+
+- [Generated action schema](artifact/schema.md)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/public-commons-media-search)
+- [AgentPMT marketplace product page](https://www.agentpmt.com/marketplace/public-commons-media-search)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions, JSON]
+
+**Output Format:** [Markdown instructions with JSON request examples and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote calls return Wikimedia titles, media lists, file URLs, metadata, snippets, pagination offsets, and licensing context; individual actions cost AgentPMT credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

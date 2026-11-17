@@ -1,38 +1,54 @@
-## Description: <br>
-Alias for raon-os — AI-powered startup companion for Korean founders. Install the main package for full functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alias for raon-os - AI-powered startup companion for Korean founders; install the main package for full functionality.
 
-## Publisher: <br>
-[lifeissea](https://clawhub.ai/user/lifeissea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lifeissea](https://clawhub.ai/user/lifeissea)
 
-## Use Case: <br>
-Developers and founders use this alias skill to identify and install the separate raon-os package for the full Korean startup companion workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: This alias does not provide the main functionality itself, so users may assume startup companion capabilities are present before installing raon-os. <br>
-Mitigation: Install and review the separate raon-os skill, including its permissions, code, integrations, and data handling, before relying on the full workflow. <br>
+## Use Case:
 
+External developers and startup teams use this alias to find and install raon-os, the separate skill that contains the startup-support functionality.
 
-## Reference(s): <br>
-- [raon-os on ClawHub](https://clawhub.com/skills/raon-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [This alias points the agent to install and review the separate raon-os skill for full functionality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.27 (source: package.json and server release metadata) <br>
+Risk: The alias delegates substantive behavior to raon-os, including features that may involve data or account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the raon-os package separately before installing or enabling workflows that use RAG or Kakao integration.
+
+Risk: Users may mistake this alias for the full startup-support skill.
+
+Mitigation: Confirm that raon-os is installed and reviewed before relying on the described business planning, funding matching, RAG, or Kakao features.
+
+## Reference(s):
+
+- [Startup Agent on ClawHub](https://clawhub.ai/lifeissea/skills/startup-agent)
+- [raon-os on ClawHub](https://clawhub.com/skills/raon-os)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with an inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs the agent to install and consult the separate raon-os package; the alias itself contains no executable code.]
+
+## Skill Version(s):
+
+0.7.27 (source: package.json and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

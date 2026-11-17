@@ -1,45 +1,58 @@
-## Description: <br>
-Hono web framework skill for building APIs across JS runtimes including Cloudflare Workers, Deno, Bun, and Node.js, covering routing, middleware, JSX, RPC client, Zod validation, and context extensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Hono web framework reference for building APIs across JavaScript runtimes, covering routing, middleware, JSX, RPC clients, Zod validation, and context extensions.
 
-## Publisher: <br>
-[yuexiaoliang](https://clawhub.ai/user/yuexiaoliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuexiaoliang](https://clawhub.ai/user/yuexiaoliang)
 
-## Use Case: <br>
-Developers and engineers use this skill as a compact Hono reference for creating APIs, composing routes and middleware, validating requests, using the RPC client, and testing applications across JavaScript runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security-related examples may be misleading if copied directly into production authentication, authorization, or routing code. <br>
-Mitigation: Review and test copied auth, authorization, and routing snippets against official Hono behavior and the application's threat model before production use. <br>
-Risk: Reference guidance can drift from current Hono behavior over time. <br>
-Mitigation: Verify framework-specific behavior with project tests and current Hono documentation before relying on generated implementation details. <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise Hono reference when creating, routing, validating, testing, and typing APIs across Cloudflare Workers, Deno, Bun, Node.js, and similar JavaScript runtimes.
 
-## Reference(s): <br>
-- [ClawHub Hono skill page](https://clawhub.ai/yuexiaoliang/hono) <br>
-- [Routing](references/routing.md) <br>
-- [Middleware](references/middleware.md) <br>
-- [Helpers](references/helpers.md) <br>
-- [RPC/Client](references/rpc.md) <br>
-- [Context API](references/context.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; no agent tools or external services are invoked by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Example authentication, cookie, CORS, error handling, and proxy patterns may be insecure or incomplete if copied into production unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace sample secrets, use secure cookie attributes, sanitize error responses, restrict CORS, and review proxy destinations before deploying code generated from these examples.
+
+Risk: Users may treat a quick framework reference as complete production security guidance.
+
+Mitigation: Use the skill as a concise Hono reference and perform a separate production security review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuexiaoliang/skills/hono)
+- [Hono Routing](references/routing.md)
+- [Hono Middleware](references/middleware.md)
+- [Hono Helpers](references/helpers.md)
+- [Hono RPC / Client](references/rpc.md)
+- [Hono Context API](references/context.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

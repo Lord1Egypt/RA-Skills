@@ -9,7 +9,8 @@
 3. Run `kleinanzeigen_verify` before any account-changing operation when
    practical.
 4. For publish, update, delete, download, or extend, summarize the exact
-   non-secret action and wait for explicit user confirmation.
+   non-secret action, scope, and live listing impact, then wait for explicit
+   user confirmation.
 5. If the Kleinanzeigen plugin tools are unavailable, stop and tell the user the
    `kleinclaw` OpenClaw plugin is required.
 6. Call the matching optional plugin tool only after confirmation:

@@ -1,41 +1,59 @@
-## Description: <br>
-Search, read, and update Notion pages, databases, blocks, comments, and workspace content via Notion's hosted MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, and update Notion pages, databases, blocks, comments, and workspace content via Notion's hosted MCP server.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search, read, and update Notion workspace content through the user's OAuth-granted Notion access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update Notion content using the connected user's OAuth grant. <br>
-Mitigation: Confirm the exact Notion page, database, block, comment, or workspace object before any write action. <br>
-Risk: Tool arguments and results are sent to Notion's hosted MCP server. <br>
-Mitigation: Avoid sending unrelated sensitive data through Notion tool arguments and revoke the Notion OAuth grant when access is no longer needed. <br>
+## Use Case:
 
+External Notion users and developers can use the skill to search and read workspace content, and to update pages, databases, blocks, or comments when they clearly authorize the specific change.
 
-## Reference(s): <br>
-- [Notion MCP overview](https://developers.notion.com/guides/mcp/overview) <br>
-- [mcporter config docs](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Notion MCP tools and return structured JSON when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence) <br>
+Risk: Writes can change content visible in the connected Notion workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent and the specific target before making each change.
+
+Risk: OAuth credentials persist and stale credentials supplied during setup can overwrite a rotated refresh token.
+
+Mitigation: Protect stored credentials and rerun setup only with freshly issued OAuth credentials.
+
+Risk: The integration retains access until its Notion grant is revoked.
+
+Mitigation: Revoke the integration in Notion when it is no longer needed.
+
+## Reference(s):
+
+- [Notion MCP overview](https://developers.notion.com/guides/mcp/overview)
+- [Notion MCP server](https://mcp.notion.com/mcp)
+- [mcporter configuration documentation](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls]
+
+**Output Format:** [Natural-language responses and Notion MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can modify Notion workspace content when the user clearly authorizes the specific action.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

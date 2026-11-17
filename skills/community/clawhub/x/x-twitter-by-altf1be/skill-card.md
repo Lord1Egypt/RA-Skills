@@ -1,41 +1,55 @@
-## Description: <br>
-Post tweets, threads, and media to X/Twitter via API v2 with OAuth 1.0a signing and minimal dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post tweets, threads, and media to X/Twitter via API v2 with OAuth 1.0a signing and minimal runtime dependencies.
 
-## Publisher: <br>
-[Abdelkrim](https://clawhub.ai/user/Abdelkrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdelkrim](https://clawhub.ai/user/abdelkrim)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent verify X/Twitter credentials and publish tweets, replies, threads, and media from a configured account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content from the configured X/Twitter account. <br>
-Mitigation: Review the exact tweet text, thread content, media path, and reply target before allowing posting commands to run. <br>
-Risk: OAuth tokens grant account-level posting capability if exposed or misused. <br>
-Mitigation: Store X/Twitter OAuth credentials securely, avoid sharing logs or environment files, and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+External users and developers can use this skill to let an agent verify an X/Twitter API connection and publish tweets, replies, threads, or media posts from a configured account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdelkrim/x-twitter-by-altf1be) <br>
-- [X Developer Platform](https://developer.x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text CLI output with status messages, account details, tweet IDs, and posted tweet URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X_CONSUMER_KEY, X_CONSUMER_SECRET, X_ACCESS_TOKEN, and X_ACCESS_TOKEN_SECRET environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and package.json) <br>
+Risk: The skill can publish live tweets, replies, threads, and media from the configured X/Twitter account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to preview the exact post content and receive explicit user approval before running any publish command.
+
+Risk: The skill requires OAuth credentials with authority to post from the user's account.
+
+Mitigation: Store credentials only in the configured environment, limit access to trusted agents, and rotate credentials if they may have been exposed.
+
+## Reference(s):
+
+- [X Developer Platform](https://developer.x.com)
+- [ClawHub skill page](https://clawhub.ai/abdelkrim/skills/x-twitter-by-altf1be)
+- [Publisher profile](https://clawhub.ai/user/abdelkrim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger live X/Twitter API publish actions when the user provides credentials and approves execution.]
+
+## Skill Version(s):
+
+1.1.3 (source: server evidence, package.json, CLI version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

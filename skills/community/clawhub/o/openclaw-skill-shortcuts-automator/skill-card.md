@@ -1,36 +1,55 @@
-## Description: <br>
-Manage and run macOS Shortcuts from OpenClaw: list, execute, view details, and sign shortcuts for automation via CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and manage macOS Shortcuts from OpenClaw by listing shortcuts, executing named shortcuts, viewing details, and signing shortcuts for automation.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-OpenClaw users on macOS use this skill to list, inspect, sign, and run local Shortcuts from an agent session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: macOS Shortcuts can execute shell commands, access files, and control other apps with the user's permissions. <br>
-Mitigation: Run only trusted shortcuts, inspect unfamiliar shortcuts before execution, and grant Automation, Accessibility, or Full Disk Access only when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to manage local macOS Shortcuts from an OpenClaw conversation, including listing available shortcuts, running named shortcuts, inspecting shortcut details, and enabling command-line execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad shortcut triggers and shell-style command examples could lead to unintended or unsafe shortcut execution.
+
+Mitigation: Review this skill before installation, use it only with trusted local shortcuts, and require explicit confirmation before running or signing shortcuts.
+
+Risk: Shortcut names assembled into shell command strings could execute the wrong shortcut or unsafe input.
+
+Mitigation: Validate shortcut names from `shortcuts list` and pass names as separate process arguments.
+
+Risk: macOS Shortcuts can access files, emails, calendar data, other apps, and shell commands with the user's permissions.
+
+Mitigation: Review each shortcut in the Shortcuts app and grant only the macOS Automation, Accessibility, or Full Disk Access permissions needed for the intended workflow.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target the user's local macOS Shortcuts library and may require macOS permissions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [shell commands, guidance, text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local macOS Shortcuts and may return shortcut output as text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

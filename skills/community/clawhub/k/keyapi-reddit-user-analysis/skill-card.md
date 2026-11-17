@@ -1,44 +1,59 @@
-## Description: <br>
-Discover and analyze Reddit users and subreddits, including public user profiles, active communities, public trophies, subreddit rules, settings, post channels, typeahead suggestions, dynamic search, and trending search intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and analyze Reddit users and subreddits by retrieving public profiles, active communities, public trophies, subreddit rules, settings, post channels, typeahead suggestions, dynamic search results, and trending search intelligence.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to collect and summarize Reddit user, subreddit, search, and trend intelligence through the KeyAPI Reddit MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reddit lookup queries and returned data are sent through the KeyAPI service using the configured KEYAPI_TOKEN. <br>
-Mitigation: Install only when that data flow is acceptable and use the documented --platform reddit commands. <br>
-Risk: Local .env and .keyapi-cache files can retain API tokens or Reddit lookup results on disk. <br>
-Mitigation: Keep .env private, avoid committing local cache files, and use --no-cache or delete .keyapi-cache when results should not be retained. <br>
-Risk: The reusable runner can call broader KeyAPI tools if invoked outside the Reddit workflow. <br>
-Mitigation: Review commands before execution and restrict routine use to the documented Reddit platform and tool names. <br>
+## Use Case:
 
+Developers, analysts, and external agent users can use this skill to collect public Reddit user, subreddit, search, and trend intelligence through KeyAPI MCP and synthesize the results into structured reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-reddit-user-analysis) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Reddit MCP endpoint](https://mcp.keyapi.ai/reddit/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local JSON cache files for KeyAPI responses when the runner is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The runner has broader platform and network authority than the Reddit-only description makes clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested platform and tool before use, and keep KEYAPI_SERVER_URL unset or pointed only at the intended KeyAPI host.
+
+Risk: KEYAPI_TOKEN handling can be weaker if the token is entered interactively and written to a local .env file.
+
+Mitigation: Set KEYAPI_TOKEN through a controlled environment variable and avoid entering it into the interactive prompt.
+
+Risk: Reddit results are cached locally by default.
+
+Mitigation: Use no-cache behavior for sensitive lookups or delete the local .keyapi-cache directory after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-reddit-user-analysis)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Reddit MCP Endpoint](https://mcp.keyapi.ai/reddit/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, KEYAPI_TOKEN, and network access to KeyAPI MCP; caches API responses locally unless disabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

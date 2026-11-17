@@ -1,41 +1,58 @@
-## Description: <br>
-Design public-safe onboarding prompts and weekly concierge actions that help new Skool members make first comments, share first proof, surface blockers, and create free-course trust signals without scraping or automating private outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design public-safe onboarding prompts and weekly concierge actions that help new Skool members make first comments, share first proof, surface blockers, and create free-course trust signals without scraping or automating private outreach.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Skool community operators use this skill to draft consent-first onboarding posts, polls, first-win prompts, concierge checklists, escalation rules, and activation metrics based on visible posts, explicit replies, synthetic samples, or aggregate counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive community data could be included in prompts or outputs. <br>
-Mitigation: Use only visible posts, explicit replies, synthetic samples, aggregate counts, or operator-owned artifacts; exclude member lists, DMs, credentials, payment details, private exports, and screenshots with personal information. <br>
-Risk: Crypto and purchase capability labels do not match the instruction-only onboarding behavior. <br>
-Mitigation: Do not grant purchase or crypto-related permissions unless the publisher provides a clear bounded reason. <br>
+## Use Case:
 
+Community operators and founders use this skill to plan consent-first onboarding prompts, polls, first-win prompts, concierge checklists, trust escalation rules, and activation metrics for Skool communities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/skool-member-activation-concierge) <br>
-- [Publisher profile](https://clawhub.ai/user/zack-dev-cm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text structured as prompts, poll copy, checklists, rules, and metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; outputs are drafting guidance for public or consented onboarding workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Prompts may expose real member identities, private posts, paid-course content, exports, credentials, or screenshots with personal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate data, synthetic samples, visible posts, operator-owned artifacts, or explicitly submitted information only.
+
+Risk: Activation plans could drift into scraping, automated private DMs, or off-platform outreach.
+
+Mitigation: Keep outreach consent-first and limit recommendations to visible member posts, explicit replies, and operator-reviewed public-safe actions.
+
+Risk: Onboarding copy may imply guaranteed income, growth, conversion, rank, time saved, health, financial, legal, or education outcomes.
+
+Mitigation: Review generated copy and remove outcome guarantees before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/skool-member-activation-concierge)
+- [Publisher Profile](https://clawhub.ai/user/zack-dev-cm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces onboarding copy, poll prompts, a 7-day checklist, escalation rules, and activation metrics.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

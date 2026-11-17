@@ -1,42 +1,58 @@
-## Description: <br>
-Calculate ledger financial metrics and business data. Use when tracking expenses, analyzing investments, or generating financial reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ledger provides shell commands for recording, listing, searching, removing, exporting, and summarizing local ledger entries.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and finance-minded users can use Ledger to keep a simple local file-based ledger, add, list, search, and remove entries, view status and statistics, and export records for reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ledger entries and exports can contain sensitive financial or business records stored on local disk. <br>
-Mitigation: Protect ~/.ledger or set LEDGER_DIR to a controlled location, and review exported files before sharing. <br>
-Risk: The remove command deletes the selected entry immediately. <br>
-Mitigation: List entries and confirm the target line number before removal; keep backups for records that must be retained. <br>
+## Use Case:
 
+Developers, operators, and other external users can use Ledger to maintain a simple local text ledger, review recent entries, search records, remove records by line number, export data, and view basic entry counts and storage statistics.
 
-## Reference(s): <br>
-- [Ledger on ClawHub](https://clawhub.ai/bytesagain3/ledger) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI outputs are plain text, JSONL, or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local ledger data under LEDGER_DIR or ~/.ledger and can export records to JSONL or CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may be mistaken for a financial analysis or reporting tool beyond its actual local logging and basic statistics behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a basic local text ledger and independently verify any financial calculations, reports, or decisions outside the skill.
+
+Risk: Unsafe shell handling can execute commands if configuration keys or values are attacker-controlled.
+
+Mitigation: Do not pass untrusted configuration input, review commands before execution, and restrict write access to the ledger data directory.
+
+Risk: Ledger records and CSV exports can contain sensitive financial or business information.
+
+Mitigation: Review permissions on ~/.ledger or LEDGER_DIR, avoid storing secrets, and treat exported CSV files as sensitive before opening or sharing them.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/ledger)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with optional JSONL or CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local ledger data under LEDGER_DIR or ~/.ledger and can export ledger-export.json or ledger-export.csv in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

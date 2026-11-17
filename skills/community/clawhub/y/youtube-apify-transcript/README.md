@@ -1,50 +1,64 @@
-# 📹 YouTube Transcript Fetcher (APIFY)
+# YouTube Transcript Fetcher (Apify)
 
-Fetch YouTube video transcripts from anywhere — even cloud servers where YouTube blocks direct access.
+Fetch YouTube video transcripts from anywhere, including cloud servers where YouTube blocks direct access.
 
-## ✨ Features
+## Features
 
 - Works from cloud IPs (AWS, GCP, VPS, etc.)
-- Bypasses YouTube bot detection via APIFY proxies
-- **Local caching** (v1.1.0+) — repeat requests are FREE
-- **Batch mode** (v1.1.0+) — process multiple videos at once
-- **Cache management** — `--cache-stats`, `--clear-cache`, `--no-cache`
-- Text or JSON output with timestamps
-- Language preference support
-- Simple Python script, no SDK needed
+- Runs the request through Apify proxies
+- Local caching (v1.1.0+) so repeat requests do not start an actor run
+- Batch mode (v1.1.0+) for multiple videos
+- Cache management: `--cache-stats`, `--clear-cache`, `--no-cache`
+- Text or JSON output
+- Python script, no Apify SDK
 
-## 💰 Free Tier
+`--lang` is a CLI flag only. The default actor `topaz_sharingan/youtube-transcript-scraper-1` has no language input field; the script does not send `--lang` to that actor.
 
-APIFY offers **$5/month free credits** — that's approximately **714 videos per month** at $0.007 each!
+## Default actor
 
-No credit card required. [Sign up here](https://apify.com/)
+`topaz_sharingan/youtube-transcript-scraper-1`. Store sheet: https://apify.com/topaz_sharingan/youtube-transcript-scraper-1
 
-## 🚀 Quick Start
+Checked against the Apify API on 2026-08-31: public, not deprecated, last code change 2026-07-19. Pay per event: **$0.01 per result** ($10.00 per 1,000). Older docs that said $0.007 were wrong.
+
+Input schema: `startUrls` (string[], required) and `timestamps` (boolean, default `false`). No `lang` / `language` field.
+
+## Free Tier
+
+Apify Free plan: $5 prepaid usage per month, no credit card. Unused credits do not roll over.
+
+At $0.01 per video, $5 covers **500 videos per month**, not 714 (714 was $5 / $0.007).
+
+[Sign up](https://apify.com/)
+
+## Quick Start
 
 ```bash
 # 1. Set your API token
 export APIFY_API_TOKEN="apify_api_YOUR_TOKEN"
 
-# 2. Fetch a transcript
+# 2. Install the Python dependency (OpenClaw has no pip installer kind)
+python3 -m pip install requests
+
+# 3. Fetch a transcript
 python3 scripts/fetch_transcript.py "https://youtube.com/watch?v=VIDEO_ID"
 ```
 
-## 📖 Documentation
+## Documentation
 
-See [SKILL.md](SKILL.md) for full documentation, setup instructions, and usage examples.
+See [SKILL.md](SKILL.md) for setup, input/output schema, and usage examples.
 
-## 🔗 Links
+## Links
 
-- [APIFY Free Tier](https://apify.com/pricing) - $5/month free
-- [Get API Key](https://console.apify.com/account/integrations)
-- [YouTube Transcripts Actor](https://apify.com/karamelo/youtube-transcripts)
+- [Apify Free plan](https://apify.com/pricing): $5/month prepaid usage
+- [Get API token](https://console.apify.com/account/integrations)
+- [YouTube Transcripts Actor](https://apify.com/topaz_sharingan/youtube-transcript-scraper-1)
 
-## ⚙ Requirements
+## Requirements
 
 - Python 3.6+
-- `requests` library (`pip install requests`)
-- APIFY API token (free)
+- `requests` library (`python3 -m pip install requests`)
+- Apify API token
 
-## 📄 License
+## License
 
 MIT

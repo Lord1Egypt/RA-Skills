@@ -1,40 +1,58 @@
-## Description: <br>
-Generate images using the internal Google Antigravity API (Gemini 3 Pro Image). High quality, native generation without browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using the internal Google Antigravity API (Gemini 3 Pro Image). High quality, native generation without browser automation.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and agents use this skill to create image files from text prompts through a local Node.js script that uses a configured Google Antigravity OAuth profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local Google Antigravity OAuth profile for authenticated API calls. <br>
-Mitigation: Install only when the publisher is trusted, review the auth profile path and project ID before running, and avoid broad auto-invocation. <br>
-Risk: A user-supplied output path can write generated image files to local storage. <br>
-Mitigation: Choose output paths deliberately and avoid paths that could overwrite important files. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate image files from text prompts through a local Node.js workflow authenticated with a Google Antigravity OAuth profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/sunshine-antigravity-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image file plus stdout status text including a MEDIA path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a local Google Antigravity OAuth profile; supports prompt, output path, and aspect ratio arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill uses local Google OAuth credentials with an internal Antigravity/Google API workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that workflow is intended, and review the account and project whose token will be used.
+
+Risk: Broad activation rules can let the skill run in more image-generation contexts than intended.
+
+Mitigation: Avoid broad automatic activation and review when the skill should be enabled.
+
+Risk: The output path is unrestricted.
+
+Mitigation: Use controlled output locations and do not let untrusted prompts or agents choose the path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/sunshine-antigravity-image-gen)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [PNG image file with stdout status text and a MEDIA path line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a prompt; accepts optional output path and aspect ratio.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

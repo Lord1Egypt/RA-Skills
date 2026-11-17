@@ -1,40 +1,53 @@
-## Description: <br>
-Build AI prompts that actually work for ChatGPT, Claude, Gemini, or any LLM, covering RACE, Chain-of-Thought, Constraint-Stacking, Few-Shot examples, troubleshooting, and production safety rules while excluding image-generation prompting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build effective prompts for ChatGPT, Claude, Gemini, or other LLMs using RACE, Chain-of-Thought, Constraint-Stacking, and Few-Shot patterns, with examples, troubleshooting, and production safety guidance.
 
-## Publisher: <br>
-[Crispyangles](https://clawhub.ai/user/Crispyangles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crispyangles](https://clawhub.ai/user/crispyangles)
 
-## Use Case: <br>
-Developers, writers, operators, and other LLM users use this skill to choose prompt frameworks, draft stronger text prompts, troubleshoot weak model outputs, and apply basic prompt safety practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt examples include adversarial phrases that could be mistaken for operational instructions. <br>
-Mitigation: Treat adversarial phrases in examples as hardening test inputs and preserve existing system and safety rules. <br>
-Risk: Prompt-writing guidance may produce incorrect or misleading downstream model outputs if used without review. <br>
-Mitigation: Review generated prompts and resulting model outputs before deployment or publication. <br>
+## Use Case:
 
+Developers, prompt authors, and teams use this skill to choose and apply prompt frameworks for writing, analysis, coding, creative work, and production prompt hardening.
 
-## Reference(s): <br>
-- [Prompt Frameworks - Extended Examples](references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown guidance with prompt templates and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: Example prompts may shape model style, reasoning behavior, or output constraints in ways users did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected examples before reuse and adapt role, constraints, refusal paths, output caps, and required formats to the deployment context.
+
+Risk: Prompt guidance can still produce incorrect, misleading, or overconfident model outputs if users omit uncertainty handling.
+
+Mitigation: Use the skill's production safety guidance to include refusal paths, exact output formats, adversarial tests, and prompt versioning.
+
+## Reference(s):
+
+- [Prompt Frameworks - Extended Examples](references/frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Code, Configuration]
+
+**Output Format:** [Markdown guidance with prompt examples, decision logic, troubleshooting tables, and copyable text or code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution, external service calls, credentials, or generated files are required by the skill itself.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

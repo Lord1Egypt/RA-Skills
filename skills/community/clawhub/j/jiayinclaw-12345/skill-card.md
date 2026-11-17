@@ -1,42 +1,54 @@
-## Description: <br>
-从网页 URL 中提取页面标题、元描述、正文、图片链接和外部链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从网页URL中提取标题、正文、图片链接等内容。
 
-## Publisher: <br>
-[shuishouxinboda](https://clawhub.ai/user/shuishouxinboda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuishouxinboda](https://clawhub.ai/user/shuishouxinboda)
 
-## Use Case: <br>
-Developers and agents use this skill to extract readable content and link metadata from public webpages for archiving, content review, aggregation, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to user-provided URLs, which can expose sensitive URLs or access private/internal services if misused. <br>
-Mitigation: Use it only with intended public URLs, avoid localhost, private-network services, internal dashboards, and URLs containing secrets, and run it in an isolated Python environment. <br>
-Risk: The skill depends on Python packages for HTTP fetching and HTML parsing. <br>
-Mitigation: Install dependencies in an isolated environment and prefer pinned, reviewed dependency versions before deployment. <br>
+## Use Case:
 
+Developers, content teams, and agents use this skill to fetch a web page and extract structured page content such as title, metadata, cleaned body text, image URLs, and outbound links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuishouxinboda/jiayinclaw-12345) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Installation Guide](references/installation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text] <br>
-**Output Format:** [Structured JSON by default, with optional plain-text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source URL, title, meta description, cleaned content, image URLs, external links, extraction timestamp, and summary counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can make outbound requests to arbitrary user-provided URLs, including private or internal network targets if the runtime permits them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with egress controls that block localhost, private network ranges, cloud metadata endpoints, intranet hosts, authenticated URLs, and redirects to those destinations.
+
+Risk: Dependency declarations use lower bounds only, so installs may resolve newer package versions that were not reviewed with this release.
+
+Mitigation: Pin and review dependency versions before production deployment.
+
+## Reference(s):
+
+- [API reference](references/api-reference.md)
+- [Installation guide](references/installation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON output includes the source URL, page title, meta description, cleaned content, image URLs, links, extraction timestamp, and counts; content is capped at 5000 characters, images at 20, and links at 50.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

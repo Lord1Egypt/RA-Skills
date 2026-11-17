@@ -1,45 +1,61 @@
-## Description: <br>
-Memory graph engine with caller-provided embed and LLM callbacks; core is pure, with real-time correction flow and optional OpenAI integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory graph engine with caller-provided embed and LLM callbacks; core is pure, with real-time correction flow and optional OpenAI integration.
 
-## Publisher: <br>
-[jonathangu](https://clawhub.ai/user/jonathangu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[jonathangu](https://clawhub.ai/user/jonathangu)
 
-## Use Case: <br>
-Developers and agent builders use CrabPath to build and maintain a learned memory graph over selected workspaces so agents can retrieve, suppress, inject, and update context through CLI and Python APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change agent memory and workspace-derived state. <br>
-Mitigation: Require explicit approval for learn, inject, sync, maintain, merge, prune, and compact actions in high-trust environments. <br>
-Risk: Workspace, query, journal, or fired-log data may contain sensitive information. <br>
-Mitigation: Restrict indexed workspace and session paths, prefer hash or local operation for sensitive data, and secure or rotate generated logs. <br>
-Risk: Optional OpenAI-backed adapters can send selected content to an external provider. <br>
-Mitigation: Review each OpenAI-backed example or adapter before use and enable provider-backed callbacks only where approved. <br>
+## Use Case:
 
+Developers and agent operators use CrabPath to build and maintain a local learned retrieval graph over selected workspace files, query it for focused context, and apply feedback or corrections so future retrieval routes improve.
 
-## Reference(s): <br>
-- [CrabPath site](https://jonathangu.com/crabpath/) <br>
-- [Architecture documentation](docs/architecture.md) <br>
-- [Setup guide](docs/setup-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jonathangu/crabpath) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime CLI and API output can be text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains persistent state in state.json and optional journals or fired logs when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.2.1 (source: server release metadata and pyproject.toml) <br>
+Risk: Workspace indexing and rebuild flows can expose or overwrite more local data than expected when paths are not tightly controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, non-shared workspace directories, avoid indexing untrusted repositories or symlinks, and keep path scope explicit.
+
+Risk: Optional OpenAI embedding or LLM callbacks can transmit indexed text outside the local environment.
+
+Mitigation: Use hash/offline mode for sensitive data, and enable external callbacks only for content that is acceptable to send to the selected provider.
+
+Risk: OpenClaw rebuild scripts may be unsafe to run with elevated privileges until path containment and private cache handling are fixed.
+
+Mitigation: Run rebuild workflows as an unprivileged user and defer privileged deployment until those issues are remediated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jonathangu/skills/crabpath)
+- [CrabPath Paper and Results](https://jonathangu.com/crabpath/)
+- [CrabPath Architecture](docs/architecture.md)
+- [CrabPath Operator Setup Guide](docs/setup-guide.md)
+- [REPRODUCE.md](REPRODUCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime workflows may also produce text, JSON responses, and state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >=3.10; supports offline hash embeddings and optional provider callbacks for embeddings or LLM routing.]
+
+## Skill Version(s):
+
+11.2.1 (source: pyproject.toml and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

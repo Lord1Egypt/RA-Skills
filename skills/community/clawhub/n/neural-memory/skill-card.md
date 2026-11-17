@@ -1,41 +1,58 @@
-## Description: <br>
-Associative memory with spreading activation for persistent, intelligent recall across agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Associative memory with spreading activation supports persistent recall of agent context across sessions.
 
-## Publisher: <br>
-[nhadaututtheky](https://clawhub.ai/user/nhadaututtheky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhadaututtheky](https://clawhub.ai/user/nhadaututtheky)
 
-## Use Case: <br>
-Developers and agent users use this skill to give OpenClaw or MCP agents local persistent memory for remembering decisions, facts, preferences, TODOs, and errors, then recalling related context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic conversation capture and recall may retain sensitive context in the local brain database. <br>
-Mitigation: Disable autoCapture or autoContext for sensitive work, avoid storing secrets or regulated personal data, and periodically review or delete local brain data when retained context is no longer needed. <br>
-Risk: Persistent memory can surface stale, incorrect, or no-longer-relevant context in later sessions. <br>
-Mitigation: Review recalled memories before relying on them and use the skill's health, statistics, versioning, or deletion workflows to manage retained context. <br>
+## Use Case:
 
+External users and developers use the skill to save and retrieve facts, decisions, preferences, errors, and task context across sessions through associative recall.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nhadaututtheky/skills/neural-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/nhadaututtheky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce memory tool guidance, recall results, TODO entries, health or statistics summaries, and setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.59.0 (source: release evidence) <br>
+Risk: Automatic capture can retain private conversation details across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review capture settings and use separate brains for different contexts.
+
+Risk: The documented pip and npm installation paths are inconsistent.
+
+Mitigation: Verify the intended package and installation method before installing.
+
+Risk: Optional external embedding providers change the default local data flow.
+
+Mitigation: Confirm the provider configuration and data flow before enabling embeddings.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/nhadaututtheky/skills/neural-memory)
+- [Project homepage listed in skill metadata](https://github.com/nhadaututtheky/neural-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Text and Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persistent memory and recall depend on the configured brain.]
+
+## Skill Version(s):
+
+4.63.0 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

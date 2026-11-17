@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn78dfx3h8gdp07gy8484gdv0982tfz6",
-  "slug": "ask-claude",
+  "name": "ask-claude",
+  "description": "Delegate tasks to Claude Code CLI with workspace-only access (user-defined workdir). No external calls, no data exfiltration. Use for coding, analysis, and development tasks in controlled environments.",
   "version": "1.1.1",
-  "publishedAt": 1773497538912
+  "author": "0xManel",
+  "security": {
+    "data_exfiltration": "none",
+    "external_calls": "none",
+    "file_access": "workspace-only (user-defined)",
+    "risk_level": "low",
+    "vetted": "2026-03-14",
+    "exposure_scope": "configurable via workdir parameter",
+    "permission_mode": "bypassPermissions (technical, no sudo)",
+    "data_controls": [
+      "workspace-isolation",
+      "no-credential-access",
+      "no-network-requests",
+      "user-controlled-workdir"
+    ]
+  }
 }

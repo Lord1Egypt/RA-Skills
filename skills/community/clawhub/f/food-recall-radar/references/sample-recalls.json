@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "note": "Sample cached recalls for offline testing of recall_radar.py. Simplified openFDA-style records. NOT real recall data — synthetic fixtures only.",
+    "fetched": "2026-09-08T00:00:00Z"
+  },
+  "results": [
+    {
+      "recall_number": "F-2026-9001",
+      "classification": "Class I",
+      "recalling_firm": "Generic Foods Co.",
+      "product_description": "Pillsbury Golden Layer Biscuits 16oz, UPC 018000000000, lot codes starting K1, best by 09/2026, sold nationwide.",
+      "reason_for_recall": "Listeria monocytogenes",
+      "code_info": "Lot codes K1234 through K1299; best by SEP 2026",
+      "report_date": "20260901",
+      "recall_initiation_date": "2026-08-30",
+      "url": "https://www.fda.gov/safety/recalls/example-f-2026-9001",
+      "distribution_pattern": "Nationwide"
+    },
+    {
+      "recall_number": "F-2026-9002",
+      "classification": "Class II",
+      "recalling_firm": "Elseason's LLC",
+      "product_description": "Frozen strawberries 12oz clamshell, distributed under Simple Truth brand and Elseason's label, lot FS-2607, use by 08/2027.",
+      "reason_for_recall": "Hepatitis A",
+      "code_info": "Lot FS-2607",
+      "report_date": "20260902",
+      "recall_initiation_date": "2026-09-01",
+      "url": "https://www.fda.gov/safety/recalls/example-f-2026-9002",
+      "distribution_pattern": "AR, CA, TX, WA"
+    },
+    {
+      "recall_number": "F-2026-9003",
+      "classification": "Class I",
+      "recalling_firm": "Tasty Blend LLC",
+      "product_description": "Tasty Blend frozen strawberries 12oz, organic, lot 260701-2, best by 07/2027.",
+      "reason_for_recall": "Hepatitis A",
+      "code_info": "Lot 260701-2, best by JUL 2027",
+      "report_date": "20260903",
+      "recall_initiation_date": "2026-09-02",
+      "url": "https://www.fda.gov/safety/recalls/example-f-2026-9003",
+      "distribution_pattern": "Nationwide"
+    },
+    {
+      "recall_number": "F-2026-9004",
+      "classification": "Class II",
+      "recalling_firm": "Northline Dairy Inc.",
+      "product_description": "Northline vanilla ice cream 48oz tubs, UPC 0731840055122, lot codes beginning V26, best by 01/2027.",
+      "reason_for_recall": "Undeclared egg",
+      "code_info": "Lot V26A-V26Z",
+      "report_date": "20260904",
+      "recall_initiation_date": "2026-09-03",
+      "url": "https://www.fda.gov/safety/recalls/example-f-2026-9004",
+      "distribution_pattern": "Midwest US"
+    }
+  ]
+}

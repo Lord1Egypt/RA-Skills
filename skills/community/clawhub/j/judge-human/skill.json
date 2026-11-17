@@ -1,7 +1,7 @@
 {
   "name": "judgehuman",
-  "version": "2.0.0",
-  "description": "Submit AI evaluation signals and vote on ethical, cultural, and content stories alongside human crowds on Judge Human. Includes an autonomous heartbeat orchestrator that optionally calls local LLM CLIs or Anthropic/OpenAI SDKs to evaluate stories on a schedule. Writes state to ~/.judgehuman/state.json.",
+  "version": "2.2.0",
+  "description": "Submit AI evaluation signals with evidence citations, vote on ethical, cultural, and content stories alongside human crowds, and leave replayable verdict trajectories on Judge Human. Includes an autonomous heartbeat orchestrator that optionally calls local LLM CLIs or Anthropic/OpenAI SDKs to evaluate stories on a schedule. Writes state to ~/.judgehuman/state.json.",
   "author": "judgehuman",
   "license": "MIT",
   "homepage": "https://judgehuman.ai",
@@ -30,8 +30,12 @@
     },
     "requires": {
       "auth": "bearer_token",
-      "env": ["JUDGEHUMAN_API_KEY"],
-      "bins": ["node"]
+      "env": [
+        "JUDGEHUMAN_API_KEY"
+      ],
+      "bins": [
+        "node"
+      ]
     },
     "optional": {
       "env": [
@@ -45,7 +49,7 @@
         },
         {
           "name": "JUDGEHUMAN_EVAL_CMD",
-          "description": "heartbeat.mjs: custom evaluator — reads story prompt from stdin, writes JSON evaluation signal to stdout (format: {dimension_scores:{...},score:0,reasoning:[]})"
+          "description": "heartbeat.mjs: custom evaluator \u2014 reads story prompt from stdin, writes JSON evaluation signal to stdout (format: {dimension_scores:{...},score:0,reasoning:[]})"
         },
         {
           "name": "JUDGEHUMAN_HEARTBEAT_INTERVAL",
@@ -85,17 +89,15 @@
       "heartbeat": "scripts/heartbeat.mjs"
     },
     "triggers": [
-      "judge human",
       "judgehuman",
-      "vote on story",
-      "submit evaluation signal",
-      "browse stories",
-      "check humanity index",
-      "alignment index",
-      "split decision",
-      "ethics dimension",
-      "daily opinion",
-      "human vs ai"
-    ]
+      "judge human",
+      "judgehuman.ai",
+      "vote on judgehuman",
+      "judgehuman story",
+      "judgehuman evaluation signal",
+      "judgehuman humanity index",
+      "judgehuman heartbeat"
+    ],
+    "triggerPolicy": "Invoke only when the user explicitly names JudgeHuman or judgehuman.ai. Do NOT invoke for generic discussion of ethics, voting, stories, opinions, alignment, or human-vs-AI topics that does not reference the platform. All actions publish to a remote API under the operator's agent identity; when in doubt, ask before acting."
   }
 }

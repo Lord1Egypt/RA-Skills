@@ -1,0 +1,581 @@
+{
+  "version": 2,
+  "game": "realmarsshot",
+  "language": "zh",
+  "user_id": "sample",
+  "director": "顾长川",
+  "program": "火种计划",
+  "difficulty": "realistic",
+  "created_at": "2026-10-26T06:55:02.681332+00:00",
+  "last_saved": "2026-10-26T06:55:02.745484+00:00",
+  "clock": {
+    "year": 2026,
+    "month": 8,
+    "turn": 2,
+    "abs_month": 7
+  },
+  "rng_seed": 7,
+  "outcome": null,
+  "outcome_reason": null,
+  "outcome_site": null,
+  "treasury_busd": 4.555000000000001,
+  "annual_budget_busd": 6.0,
+  "political_capital": 55,
+  "public_opinion": 52,
+  "earth_stability": 82,
+  "dissent": 12,
+  "safety_culture": 62,
+  "deficit_months": 0,
+  "suppressed": false,
+  "second_source": false,
+  "knowledge": 5,
+  "crew": {
+    "roster": [
+      {
+        "id": "crew-01",
+        "name": "周晚舟",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-02",
+        "name": "阿米拉·哈达德",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-03",
+        "name": "冈田健司",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-04",
+        "name": "伊利亚·莫罗佐夫",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-05",
+        "name": "唐小禾",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-06",
+        "name": "马特奥·伊瓦拉",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-07",
+        "name": "妮娅·门萨",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-08",
+        "name": "韩砺",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-09",
+        "name": "萨拉·林霍尔姆",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-10",
+        "name": "奥马尔·法鲁克",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-11",
+        "name": "普丽娅·拉曼",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-12",
+        "name": "乔纳斯·贝尔格",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-13",
+        "name": "crew-13",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-14",
+        "name": "crew-14",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-15",
+        "name": "crew-15",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-16",
+        "name": "crew-16",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-17",
+        "name": "crew-17",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-18",
+        "name": "crew-18",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-19",
+        "name": "crew-19",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-20",
+        "name": "crew-20",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-21",
+        "name": "crew-21",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-22",
+        "name": "crew-22",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-23",
+        "name": "crew-23",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-24",
+        "name": "crew-24",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-25",
+        "name": "crew-25",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-26",
+        "name": "crew-26",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-27",
+        "name": "crew-27",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-28",
+        "name": "crew-28",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-29",
+        "name": "crew-29",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-30",
+        "name": "crew-30",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-31",
+        "name": "crew-31",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-32",
+        "name": "crew-32",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-33",
+        "name": "crew-33",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-34",
+        "name": "crew-34",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-35",
+        "name": "crew-35",
+        "dose_mSv": 0.0,
+        "status": "available"
+      },
+      {
+        "id": "crew-36",
+        "name": "crew-36",
+        "dose_mSv": 0.0,
+        "status": "available"
+      }
+    ],
+    "in_training": [],
+    "pipeline_per_year": 8,
+    "started_this_year": 0,
+    "started_year": 2026,
+    "psych": 69,
+    "fatalities": 0
+  },
+  "eclss": {
+    "water_recovery_demonstrated": 0.0,
+    "water_recovery_duration_days": 30,
+    "o2_recovery_from_co2": 0.0,
+    "food_closure_demonstrated": 0.0,
+    "closed_habitat_days_record": 30,
+    "biosphere_lesson": false
+  },
+  "biology": {
+    "simulant_days": 0,
+    "levels": {},
+    "tardigrade_exposure": false,
+    "uncontained": false
+  },
+  "sites": {
+    "moon": {
+      "population": 0,
+      "births": 0,
+      "robots": 0,
+      "landings_success": 0,
+      "landings_fail": 0,
+      "crew_returned": 0,
+      "crew_missions": 0,
+      "cargo_landings": 0,
+      "survived_dust_season": false,
+      "trial": false,
+      "independent_months": 0,
+      "evacuated": false,
+      "extinct": false,
+      "fatalities": 0,
+      "stores": {
+        "food_kg": 0.0,
+        "water_kg": 0.0,
+        "o2_kg": 0.0
+      },
+      "farms_m2": 0.0,
+      "solar_kwe_clear": 0.0,
+      "fission_kwe": 0.0,
+      "battery_kwe": 0.0,
+      "polar": false,
+      "shielding_g_cm2": 0.0,
+      "spe_shelter": false,
+      "water_recovery": 0.0,
+      "sabatier_fraction": 0.0,
+      "electrolysis": false,
+      "industrial_closure": 0.0,
+      "knowledge_archive": false,
+      "genome_archive_donors": 0,
+      "isru_water_kg_year": 0.0,
+      "isru_o2_kg_year": 0.0,
+      "isru_ch4_kg_year": 0.0,
+      "dust_storm_months_left": 0,
+      "habitat": false,
+      "greenhouse": false,
+      "rtg": false,
+      "relay": false,
+      "ice_confirmed": false,
+      "inhabited_days": 0,
+      "biology_closed_months": 0,
+      "machine_tended_months": 0,
+      "organisms": {},
+      "life_archive_accessions": 0,
+      "biology_years": 0.0,
+      "inhabited_years": 0.0,
+      "machine_years": 0.0,
+      "tended_years": 0.0,
+      "machine_replicator_months": 0,
+      "epoch_paths": {},
+      "ore_reserve_t": 0.0,
+      "isru_metal_t_year": 0.0,
+      "heat_reject_kwe": 0.0,
+      "repair_fraction": 0.0,
+      "replication_fidelity": 0.0,
+      "replication_improvement": false
+    },
+    "mars": {
+      "population": 0,
+      "births": 0,
+      "robots": 0,
+      "landings_success": 0,
+      "landings_fail": 0,
+      "crew_returned": 0,
+      "crew_missions": 0,
+      "cargo_landings": 0,
+      "survived_dust_season": false,
+      "trial": false,
+      "independent_months": 0,
+      "evacuated": false,
+      "extinct": false,
+      "fatalities": 0,
+      "stores": {
+        "food_kg": 0.0,
+        "water_kg": 0.0,
+        "o2_kg": 0.0
+      },
+      "farms_m2": 0.0,
+      "solar_kwe_clear": 0.0,
+      "fission_kwe": 0.0,
+      "battery_kwe": 0.0,
+      "polar": false,
+      "shielding_g_cm2": 0.0,
+      "spe_shelter": false,
+      "water_recovery": 0.0,
+      "sabatier_fraction": 0.0,
+      "electrolysis": false,
+      "industrial_closure": 0.0,
+      "knowledge_archive": false,
+      "genome_archive_donors": 0,
+      "isru_water_kg_year": 0.0,
+      "isru_o2_kg_year": 0.0,
+      "isru_ch4_kg_year": 0.0,
+      "dust_storm_months_left": 0,
+      "habitat": false,
+      "greenhouse": false,
+      "rtg": false,
+      "relay": false,
+      "ice_confirmed": false,
+      "inhabited_days": 0,
+      "biology_closed_months": 0,
+      "machine_tended_months": 0,
+      "organisms": {},
+      "life_archive_accessions": 0,
+      "biology_years": 0.0,
+      "inhabited_years": 0.0,
+      "machine_years": 0.0,
+      "tended_years": 0.0,
+      "machine_replicator_months": 0,
+      "epoch_paths": {},
+      "ore_reserve_t": 0.0,
+      "isru_metal_t_year": 0.0,
+      "heat_reject_kwe": 0.0,
+      "repair_fraction": 0.0,
+      "replication_fidelity": 0.0,
+      "replication_improvement": false
+    },
+    "freespace": {
+      "population": 0,
+      "births": 0,
+      "robots": 0,
+      "landings_success": 0,
+      "landings_fail": 0,
+      "crew_returned": 0,
+      "crew_missions": 0,
+      "cargo_landings": 0,
+      "survived_dust_season": false,
+      "trial": false,
+      "independent_months": 0,
+      "evacuated": false,
+      "extinct": false,
+      "fatalities": 0,
+      "stores": {
+        "food_kg": 0.0,
+        "water_kg": 0.0,
+        "o2_kg": 0.0
+      },
+      "farms_m2": 0.0,
+      "solar_kwe_clear": 0.0,
+      "fission_kwe": 0.0,
+      "battery_kwe": 0.0,
+      "polar": false,
+      "shielding_g_cm2": 0.0,
+      "spe_shelter": false,
+      "water_recovery": 0.0,
+      "sabatier_fraction": 0.0,
+      "electrolysis": false,
+      "industrial_closure": 0.0,
+      "knowledge_archive": false,
+      "genome_archive_donors": 0,
+      "isru_water_kg_year": 0.0,
+      "isru_o2_kg_year": 0.0,
+      "isru_ch4_kg_year": 0.0,
+      "dust_storm_months_left": 0,
+      "habitat": false,
+      "greenhouse": false,
+      "rtg": false,
+      "relay": false,
+      "ice_confirmed": false,
+      "inhabited_days": 0,
+      "biology_closed_months": 0,
+      "machine_tended_months": 0,
+      "organisms": {},
+      "life_archive_accessions": 0,
+      "biology_years": 0.0,
+      "inhabited_years": 0.0,
+      "machine_years": 0.0,
+      "tended_years": 0.0,
+      "machine_replicator_months": 0,
+      "epoch_paths": {},
+      "ore_reserve_t": 0.0,
+      "isru_metal_t_year": 0.0,
+      "heat_reject_kwe": 0.0,
+      "repair_fraction": 0.0,
+      "replication_fidelity": 0.0,
+      "replication_improvement": false
+    }
+  },
+  "facilities": {
+    "analog_habitat": {
+      "year": 2026,
+      "month": 7
+    }
+  },
+  "tech": [],
+  "factions": {
+    "hearthbound": {
+      "support": 35,
+      "hostility": 25
+    },
+    "ember_covenant": {
+      "support": 60,
+      "hostility": 5
+    },
+    "concord": {
+      "support": 55,
+      "hostility": 10
+    },
+    "meridian": {
+      "support": 40,
+      "hostility": 30
+    },
+    "closed_sky": {
+      "support": 15,
+      "hostility": 45
+    },
+    "launch_guild": {
+      "support": 50,
+      "hostility": 15
+    },
+    "crew_guild": {
+      "support": 48,
+      "hostility": 12
+    }
+  },
+  "advisors": {
+    "lin_qiao": {
+      "trust": 60
+    },
+    "okonkwo": {
+      "trust": 65
+    },
+    "varga": {
+      "trust": 58
+    },
+    "sato": {
+      "trust": 57
+    },
+    "iqbal": {
+      "trust": 62
+    },
+    "hale": {
+      "trust": 54
+    },
+    "noor": {
+      "trust": 56
+    },
+    "shen_ji": {
+      "trust": 50
+    }
+  },
+  "genome_archive_donors": 0,
+  "launch": {
+    "heavy_per_year": 2,
+    "heavy_leo_t": 45.0,
+    "medium_per_year": 8,
+    "medium_leo_t": 18.0,
+    "busy_until_abs": 0,
+    "reliability_heavy": 0.96,
+    "reliability_medium": 0.97,
+    "price_factor": 1.0
+  },
+  "tts": {
+    "enabled": true,
+    "provider": "edge-tts",
+    "voices": {
+      "zh": "zh-CN-XiaoxiaoNeural",
+      "en": "en-US-AriaNeural"
+    }
+  },
+  "images": true,
+  "log": [],
+  "revelations": [],
+  "secrets": {
+    "mole": null
+  },
+  "last_event": null,
+  "flags": {
+    "pressure_crew_mars": false
+  },
+  "footholds": {
+    "human": {
+      "achieved": false,
+      "announced": false,
+      "just_announced": false,
+      "reason": "foothold_500",
+      "site": null,
+      "progress": 0
+    },
+    "biology": {
+      "achieved": false,
+      "announced": false,
+      "just_announced": false,
+      "reason": "foothold_biology",
+      "site": null,
+      "progress": 0
+    },
+    "machine": {
+      "achieved": false,
+      "announced": false,
+      "just_announced": false,
+      "reason": "foothold_machine",
+      "site": null,
+      "progress": 0
+    },
+    "human_century": {
+      "achieved": false,
+      "announced": false,
+      "just_announced": false,
+      "reason": "foothold_human_century",
+      "site": null,
+      "progress": 0
+    }
+  },
+  "earth_program_ended": false
+}

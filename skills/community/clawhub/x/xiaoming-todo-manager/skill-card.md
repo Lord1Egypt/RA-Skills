@@ -1,41 +1,53 @@
-## Description: <br>
-Todo Manager helps agents manage task lists, priorities, reminders, categories, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Todo Manager helps users manage task lists, priorities, reminders, categories, due dates, and progress tracking.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers and agent users can use this skill to organize todo items, track status, set priority and due-date metadata, and request reminders through a ClawHub todo workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact metadata lists curl, but the skill documentation does not explain why network-capable tooling is required. <br>
-Mitigation: Review the installed skill before use and only grant network-capable tools when the workflow actually requires them. <br>
-Risk: Todo status, due dates, and reminders can become stale or incomplete if the user does not maintain the task data. <br>
-Mitigation: Treat the skill output as task-management assistance and verify important deadlines or completion status before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to add, organize, prioritize, track, and receive reminders for todo tasks through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-todo-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and task-management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe list, board, or calendar views for todo data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: The README install command uses npx clawhub@latest, so installation may resolve to a newer installer than the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned clawhub installer version and avoid elevated privileges during installation.
+
+Risk: The skill text is primarily in Chinese, which may make behavior, pricing, or task-output expectations harder for non-Chinese reviewers to assess.
+
+Mitigation: Have a Chinese-fluent reviewer confirm the intended task-management behavior and deployment expectations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-todo-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and task-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can present todo items in list, board, or calendar views.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Calls Tencent Cloud OCR's ExtractDocAgent API to extract user-defined structured fields from images or single-page PDFs for documents such as contracts, invoices, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud OCR ExtractDocAgent to extract structured fields from images or PDFs using user-defined field names, field types, and prompts.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and automation agents use this skill to call Tencent Cloud OCR for structured extraction from document images or PDFs when fields, field types, and prompts are supplied by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents, document URLs, and extracted OCR results are sent to Tencent Cloud OCR. <br>
-Mitigation: Use the skill only for documents approved for Tencent Cloud processing and review data-handling requirements for sensitive contracts, invoices, or regulated content. <br>
-Risk: Tencent Cloud credentials are required for API calls. <br>
-Mitigation: Use a least-privilege Tencent Cloud key stored in environment variables and rotate it according to the deployment's credential policy. <br>
-Risk: OCR calls may create billing exposure or dependency drift in controlled environments. <br>
-Mitigation: Review Tencent Cloud billing rules before use and pin the Tencent Cloud SDK version where reproducibility is required. <br>
+## Use Case:
 
+Developers and automation users use this skill to extract structured key-value and table fields from contracts, invoices, reports, and similar document images or single-page PDFs through Tencent Cloud OCR.
 
-## Reference(s): <br>
-- [Tencent Cloud ExtractDocAgent API documentation](https://cloud.tencent.com/document/api/866/126442) <br>
-- [ClawHub release page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-extractdocagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [JSON results with optional raw Tencent Cloud OCR response and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials; accepts an image URL or Base64/file input, item definitions, optional PDF page number, region, raw output flag, and user-agent value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Document images, PDFs, or document URLs are sent to Tencent Cloud OCR for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for Tencent Cloud processing, and avoid highly sensitive contracts or invoices without organizational approval.
+
+Risk: Tencent Cloud API credentials are required in the runtime environment.
+
+Mitigation: Use narrowly scoped credentials and run the skill in an isolated environment with appropriate secret handling.
+
+Risk: The Tencent Cloud SDK dependency may change behavior across versions.
+
+Mitigation: Prefer a pinned SDK version when installing dependencies for repeatable operation.
+
+## Reference(s):
+
+- [Tencent Cloud ExtractDocAgent API Documentation](https://cloud.tencent.com/document/api/866/126442)
+- [ClawHub Skill Page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-extractdocagent)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON response from a command-line Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formatted extraction output by default, with an option to return the raw Tencent Cloud OCR API response.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

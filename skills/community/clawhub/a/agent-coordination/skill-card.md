@@ -1,46 +1,66 @@
-## Description: <br>
-Coordinates autonomous coding agents by turning user requests into VibeKanban tasks, dispatching agents, tracking progress, and monitoring pull request CI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates autonomous coding-agent teams with Chief of Staff workflows, task delegation patterns, VibeKanban task management, and CI monitoring guidance.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to coordinate multiple coding agents, create scoped task descriptions, assign work through VibeKanban, and summarize task or CI status for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent Chief of Staff mode gives the assistant broad coordination authority for the rest of a conversation. <br>
-Mitigation: Confirm the target project, task scope, and agent launch actions with the user before creating or dispatching work. <br>
-Risk: The artifact includes a hard-coded full-autonomy local path exception. <br>
-Mitigation: Remove or override that exception before deployment unless it is explicitly intended for the deployment environment. <br>
-Risk: Failed CI logs can contain sensitive data when summarized or shared. <br>
-Mitigation: Treat CI output as potentially sensitive and review failed logs before posting them into shared task updates. <br>
+## Use Case:
 
+Developers, engineering leads, DevOps engineers, and product managers use this skill to break complex coding work into scoped tasks, delegate execution to autonomous agents, track status through VibeKanban, and monitor pull request CI.
 
-## Reference(s): <br>
-- [CoS Workflow](references/cos-workflow.md) <br>
-- [Delegation Patterns](references/delegation-patterns.md) <br>
-- [VibeKanban API](references/vibekanban-api.md) <br>
-- [Task Templates](examples/task-templates.md) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task descriptions, status tables, concise guidance, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call VibeKanban MCP tools and may provide token-efficient CI summaries when the GitHub CLI is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent Chief of Staff mode can turn later user requests into task delegation until the mode is explicitly exited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm when CoS mode is active and explicitly exit the mode when coordination is complete.
+
+Risk: The skill can create VibeKanban tasks and start coding-agent workspace sessions.
+
+Mitigation: Confirm the project, repository, branch, executor, and task scope before launching agent sessions.
+
+Risk: CI monitoring may inspect pull request check status and failed logs through the GitHub CLI.
+
+Mitigation: Confirm the target pull request and repository before inspecting CI logs.
+
+Risk: The artifact includes a hard-coded local repository exception in its coordination behavior.
+
+Mitigation: Do not rely on that local exception outside its original environment; require explicit user confirmation before any direct execution.
+
+## Reference(s):
+
+- [Agent Coordination on ClawHub](https://clawhub.ai/brianrwagner/skills/agent-coordination)
+- [Task Templates](examples/task-templates.md)
+- [Chief of Staff Workflow](references/cos-workflow.md)
+- [Delegation Patterns](references/delegation-patterns.md)
+- [VibeKanban MCP API Reference](references/vibekanban-api.md)
+- [GitHub CLI](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with task templates, status tables, MCP tool calls, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include VibeKanban task descriptions, task status summaries, delegation plans, escalation notes, and CI monitoring commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

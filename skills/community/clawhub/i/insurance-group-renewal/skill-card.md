@@ -1,44 +1,57 @@
-## Description: <br>
-Insurance Group Renewal helps group insurance account managers, corporate HR benefits leads, and brokers analyze renewal decisions, loss ratios, negotiation strategy, procurement options, product pricing, and Huimin Bao renewal scenarios for China-focused employee benefits plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered group insurance renewal management skill — renewal decision analysis, loss ratio analysis by industry (2025 data), enterprise insurance procurement management, group insurance pricing, and Huimin Bao (惠民保) renewal strategy.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External insurance practitioners, brokers, and corporate HR benefits teams use this skill to structure China group insurance renewal reviews, loss-ratio analysis, renewal negotiations, and employee benefits procurement decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad insurance or employee-benefits discussions, not only group renewal workflows. <br>
-Mitigation: Use it as domain guidance and route insurance, benefits, financial, and compliance decisions through appropriate human review. <br>
-Risk: Renewal suggestions, pricing references, loss-ratio benchmarks, and regulatory summaries can be incomplete or unsuitable for a specific customer, jurisdiction, or carrier policy. <br>
-Mitigation: Validate outputs against current official rules, company risk policy, actuarial review, underwriting review, and the user's actual business data before acting. <br>
-Risk: The artifact states that it does not access, store, or process customer, policy, or claims records, so outputs depend on user-provided context rather than verified source systems. <br>
-Mitigation: Provide only approved, necessary data and confirm calculations, assumptions, and source data quality before using generated renewal materials. <br>
+## Use Case:
 
+Group insurance account managers, corporate HR benefits teams, and insurance brokers use this skill to assess renewal options, analyze loss ratios, prepare negotiation strategies, and compare enterprise insurance procurement proposals. Its outputs are reference drafts for review by qualified actuarial, underwriting, and compliance staff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/insurance-group-renewal) <br>
-- [Group insurance renewal SOP](references/group_insurance_renewal_guide.md) <br>
-- [Claim rate analysis template](references/claim_rate_analysis.md) <br>
+### Deployment Geography for Use:
 
+China (mainland)
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown or structured text with tables, formulas, checklists, and negotiation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and do not execute code, access customer data, or connect to policy, claims, actuarial, or procurement systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.2 (source: frontmatter and server release evidence) <br>
+Risk: Employee-level health, identity, or claims details could expose sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate or de-identified figures and omit employee names, identity numbers, medical records, and identifiable claim details.
+
+Risk: Draft renewal, pricing, or coverage analysis could be mistaken for formal actuarial, underwriting, or compliance decisions.
+
+Mitigation: Have qualified actuarial, underwriting, and compliance staff review the analysis against actual contract terms, current rules, and company policy before relying on it or sharing it externally.
+
+Risk: The security assessment is incomplete, and some local reference files described by the skill are unavailable in the supplied artifact.
+
+Mitigation: Review the supplied skill contents and verify the required reference materials before relying on the assessment or using the skill.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-group-renewal)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Chinese by default; prose, tables, checklists, and draft negotiation language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-support drafts only; use aggregate or de-identified inputs. No autonomous access to business systems or external data sources.]
+
+## Skill Version(s):
+
+4.1.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

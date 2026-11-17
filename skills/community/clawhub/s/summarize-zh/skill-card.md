@@ -1,40 +1,48 @@
-## Description: <br>
-Generates structured summaries that extract core points and key information from articles, documents, meeting notes, web pages, video transcripts, and mixed Chinese-English content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured summaries for articles, documents, web pages, video transcripts, meeting notes, and mixed Chinese-English content.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers can use this skill to condense long Chinese or mixed Chinese-English content into key points, meeting decisions, report summaries, opportunities, risks, and action items.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads user-provided articles, documents, transcripts, and meeting notes, which may contain sensitive information.
+
+Mitigation: Avoid providing sensitive documents unless the user is comfortable with the agent processing that content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and knowledge workers use this skill to condense long Chinese or mixed Chinese-English source material into structured summaries. It is suited for quick reading, meeting recaps, report condensation, key-point extraction, and action-oriented summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive source content may be processed into a summary. <br>
-Mitigation: Use the skill on private or sensitive material only when that content is intended to be summarized, and review the generated summary before sharing it. <br>
-Risk: Condensed summaries may omit nuance or overstate conclusions from the source material. <br>
-Mitigation: Check the summary against the original source before using it for high-stakes decisions, external reporting, or formal records. <br>
+**Output Format:** [Markdown structured summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/summarize-zh) <br>
+**Other Properties Related to Output:** [May include bullet points, key data, risks, opportunities, decisions, and action items depending on the source content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown summary with concise sections and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include core conclusions, key data, decisions, action items, opportunities, risks, and recommendations depending on the source content.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

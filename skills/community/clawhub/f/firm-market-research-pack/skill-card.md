@@ -1,41 +1,53 @@
-## Description: <br>
-Market research and competitive intelligence pack for competitive analysis, market sizing, financial benchmarking, web research, report generation, and competitive monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market research and competitive intelligence pack for competitive analysis, market sizing, financial benchmarking, web research, report generation, and competitive monitoring.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Employees and business teams use this skill to structure competitive research, market sizing, financial benchmarking, web intelligence, and market research reports for strategic decisions across executive, finance, technical, marketing, commercial, legal, and HR functions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce market research, OSINT, financial benchmarks, and competitive recommendations that may be incomplete or misleading if accepted without review. <br>
-Mitigation: Validate generated research and recommendations with human subject-matter review before using them for business decisions. <br>
-Risk: The skill depends on a third-party publisher and OpenClaw extension tooling. <br>
-Mitigation: Install only when the publisher is trusted and the required extension package is approved for the target workspace. <br>
+## Use Case:
 
+Employees across strategy, finance, marketing, sales, legal, HR, and technical teams use this skill to produce market research, competitor analysis, financial benchmarks, and Markdown reports for firm planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-market-research-pack) <br>
-- [Publisher profile](https://clawhub.ai/user/romainsantoli-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, structured analysis, and tool invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.1.0.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated market or financial analysis may be incomplete or unsuitable for business decisions without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified reviewers validate generated research, assumptions, benchmarks, and recommendations before business use.
+
+Risk: The skill depends on the required OpenClaw extension being trusted and correctly configured.
+
+Mitigation: Confirm the OpenClaw extension source and configuration before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-market-research-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and structured analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.1.0; generated market and financial analysis should be reviewed before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

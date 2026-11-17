@@ -1,42 +1,54 @@
-## Description: <br>
-Monitors Binance quantitative trading strategy data, analyzes performance, generates trading reports, and sends configured risk alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Binance monitors Binance market data, analyzes basic trading-strategy performance metrics, writes Markdown risk reports, and can send risk alerts through configured channels.
 
-## Publisher: <br>
-[yibaig](https://clawhub.ai/user/yibaig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yibaig](https://clawhub.ai/user/yibaig)
 
-## Use Case: <br>
-Developers and trading operators use this skill to monitor Binance trading pairs and strategy metrics, generate hourly or daily reports, and route risk alerts to configured notification channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to store high-impact Binance API credentials. <br>
-Mitigation: Use the minimum possible Binance API permissions, prefer read-only keys, disable withdrawals and trading unless verified as necessary, and apply Binance IP restrictions where possible. <br>
-Risk: Credentials are stored in a local config.json file. <br>
-Mitigation: Keep config.json out of version control and backups, and treat it as a secret-bearing file. <br>
-Risk: Risk alerts are sent to a configured Feishu webhook. <br>
-Mitigation: Verify the Feishu webhook destination before running so trading information is sent only to the intended channel. <br>
+## Use Case:
 
+Developers and trading-operations users can use this skill to monitor Binance market data, review generated strategy-risk reports, and receive alerts for further human assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yibaig/openclaw-binance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown reports, console status text, notification messages, and JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports under data/binance_trades and can send Feishu webhook alerts when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill asks users to store Binance API credentials in plaintext even though the reviewed behavior appears to use public market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid real Binance keys unless needed; if testing requires credentials, use a dedicated read-only key with withdrawals and trading disabled, IP restrictions enabled, and config.json kept out of source control and shared workspaces.
+
+Risk: The Feishu webhook URL is a secret that could be exposed through local configuration or shared workspaces.
+
+Mitigation: Store the webhook outside version control, restrict access to the workspace, and rotate the webhook if it is exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yibaig/skills/openclaw-binance)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yibaig)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown report files, console text, and webhook alert messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under data/binance_trades and can post Feishu webhook alerts when configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact manifest and README list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

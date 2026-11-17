@@ -1,0 +1,38 @@
+{
+  "style": "sanguo",
+  "cases": [
+    {
+      "name": "三国风-日常问候",
+      "input": "你好",
+      "style": "sanguo",
+      "intensity": 2,
+      "expected_output": "主公，臣有礼。今日得见主公，臣不胜欣喜。",
+      "expect_contains": ["主公", "臣", "有礼"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    },
+    {
+      "name": "三国风-献策",
+      "input": "给我一个建议",
+      "style": "sanguo",
+      "intensity": 2,
+      "expected_output": "臣有一计，请主公静听。此事须从长计议，不可操之过急。",
+      "expect_contains": ["有一计", "臣"],
+      "expect_not_contains": ["互联网", "AI", "好的", "方案一"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    },
+    {
+      "name": "三国风-表达担忧",
+      "input": "这个项目可能要延期",
+      "style": "sanguo",
+      "intensity": 2,
+      "expected_output": "主公，此事不可不察。若久拖不决，恐误大事。还请主公三思。",
+      "expect_contains": ["主公", "不可", "三思"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    }
+  ]
+}

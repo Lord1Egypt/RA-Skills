@@ -1,0 +1,43 @@
+interface:
+  display_name: "Content Visual Forge"
+  short_description: "Turn multi-source content into covers, cards, creative assets"
+  default_prompt: "Use $content-visual-forge to source-lock the input material, route into the appropriate output mode and execution mode, apply optional Visual Direction / Style Exploration Lab / Illustration Grammar / Design Enhancement / Creative Micro Assets / PixiJS generated visual layer stages when triggered, scan the risk-action blacklist and asset source policy before delivery, then produce faithful visual prompts, render packages, and quality gates. Follow SKILL.md and references for full rules."
+
+  triggers:
+    - "生成公众号封面"
+    - "做知识卡"
+    - "做系列卡片"
+    - "生成小红书组图"
+    - "做单字卡"
+    - "内容可视化"
+    - "生成封面图"
+    - "做视觉卡片"
+    - "批量生成卡片"
+    - "风格探索"
+
+  examples:
+    - prompt: "把这个 PDF 方法论章节做成 8 页知识卡"
+      description: "PDF → Source Lock → knowledge-carousel → 8 页分页脚本 → 工程化渲染"
+
+    - prompt: "给我的文章生成一个公众号封面，标题是《时间管理的艺术》"
+      description: "文章 → Source Lock → cover-card → production_cover → 无文字背景 + 后期排版"
+
+    - prompt: "这个产品介绍做成小红书 6 页组图，要有吸引力"
+      description: "产品介绍 → Source Lock → social-card → 平台规格声明 → 视觉导演(save_first) → 页面角色编排 → 工程化渲染"
+
+    - prompt: "生成汉字'穿'的学习卡"
+      description: "单字 → 快速 Source Lock → character-card → 结构化字段填充 → 工程化渲染"
+
+    - prompt: "用插画风格做这篇文章的配图"
+      description: "文章 → Source Lock → wechat-inline-image → 插画语法路由 → 场景化生成"
+
+  capabilities:
+    - "多源内容适配：PDF / 网页 / 文本 / 视频 / 音频 / 图片 / PPT / 多源混合 / 单字词表"
+    - "8 种输出模式：cover-card / wechat-inline-image / social-card / knowledge-carousel / character-card / vocabulary-card / grammar-card / phrase-card"
+    - "6 种执行路径：preview_image / production_cover / background_then_layout / direct_image_preview / prompt_package / engineering_rendering"
+    - "视觉导演系统：click_first / save_first / brand_first"
+    - "插画语法：scene role / subject focus / composition axis / camera distance / texture level / text load"
+    - "创意微资产：ASCII / 手绘图解 / Excalidraw / p5.js / PixiJS"
+    - "风格探索实验室：稀有视觉风格探索、视觉轴组合"
+    - "质量门禁：Source Lock / 内容忠实度 / 中文可读性 / 风险动作黑名单 / 素材来源策略 / 平台规格"
+    - "工程化渲染：HTML/CSS 模板渲染，支持 AI 无文字背景 + PixiJS canvas 叠层 + 静态截图导出的混合路线，保证文字准确、风格统一、批量生成"

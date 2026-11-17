@@ -1,42 +1,50 @@
-## Description: <br>
-When the user uses Bing Maps to search for locations or view maps, this skill is executed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Bing Maps for places or map results through the Dataify Bing Maps API.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and external users use this skill to turn natural-language Bing Maps requests into Dataify Bing Maps API parameters, review the generated parameter table, and run confirmed map or place searches through Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bing Maps search terms, coordinates, place IDs, and request parameters are sent to Dataify during confirmed live calls. <br>
-Mitigation: Use the skill only when sharing those parameters with Dataify is acceptable, and review the generated parameter table before confirming a live call. <br>
-Risk: A broad or reused Dataify API token could increase exposure if mishandled. <br>
-Mitigation: Use a dedicated Dataify token for this skill and provide it only through the supported token argument or environment variable. <br>
-Risk: Locale-sensitive requests may use an unintended language or region if `setlang` is omitted. <br>
-Mitigation: Set `setlang` explicitly when language or regional behavior matters. <br>
+## Use Case:
 
+Developers and agents use this skill to turn natural-language Bing Maps place searches into Dataify API requests and return map search results, JSON, or HTML when requested.
 
-## Reference(s): <br>
-- [Dataify Bing Maps API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown confirmation tables, JSON dry-run payloads, shell commands, and direct Dataify API response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live calls require a Dataify API token and explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: This is a read-only map search skill, but its token instructions are inconsistent and could lead users to expose a Dataify API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing. Use only if you are comfortable sending Bing Maps queries and any coordinates you provide to Dataify. Configure DATAIFY_API_TOKEN through a local environment variable or secure runtime secret, not by pasting it into chat and not with the --token command-line option; rotate the token if it was previously shared in chat or shell history.
+
+## Reference(s):
+
+- [Dataify Bing Maps API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-bing-maps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML, shell commands, guidance]
+
+**Output Format:** [Markdown summaries by default, with raw JSON or HTML when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, result counts, truncation notes, or token setup guidance when authentication is missing.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

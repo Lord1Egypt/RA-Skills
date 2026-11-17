@@ -17,30 +17,16 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from openclaw_compat import gateway_health, layout
+
 SEVERITY_ORDER = ["Critical", "High", "Medium", "Low", "Info"]
 SEVERITY_RANK = {name: idx for idx, name in enumerate(SEVERITY_ORDER)}
-NO_ISSUES_PHRASES = (
-    "no findings",
-    "no issues",
-    "all clear",
-    "passed",
-    "clean",
-    "nothing found",
-    "0 findings",
-)
 
-ACTIVE_SKILLS_ROOT = Path(
-    os.environ.get("OPENCLAW_SKILLS_DIR", "~/.openclaw/skills")
-).expanduser()
-QUARANTINE_ROOT = Path(
-    os.environ.get("OPENCLAW_QUARANTINE_DIR", "~/.openclaw/skills-quarantine")
-).expanduser()
-WORKSPACE_ROOT = Path(
-    os.environ.get("OPENCLAW_WORKSPACE_DIR", "~/.openclaw")
-).expanduser()
-STAGE_ROOT = Path(
-    os.environ.get("OPENCLAW_STAGE_DIR", str(WORKSPACE_ROOT / ".skill_stage"))
-).expanduser()
+_PATHS = layout()
+ACTIVE_SKILLS_ROOT = _PATHS["skills"]
+QUARANTINE_ROOT = _PATHS["quarantine"]
+WORKSPACE_ROOT = _PATHS["workspace"]
+STAGE_ROOT = _PATHS["stage"]
 
 
 def stamp() -> str:
@@ -74,14 +60,18 @@ def extract_skill_name(skill_dir: Path) -> str:
 def scanner_base() -> list[str]:
     custom = os.environ.get("SENTINAL_SCANNER_CMD")
     if custom:
-        return shlex.split(custom)
-    if shutil.which("uv"):
-        return ["uv", "run", "skill-scanner"]
+        command = shlex.split(custom)
+        if not command:
+            raise SystemExit("SENTINAL_SCANNER_CMD must not be empty")
+        return command
     if shutil.which("skill-scanner"):
         return ["skill-scanner"]
-    raise SystemExit(
-        "skill-scanner not found. Install it or set SENTINAL_SCANNER_CMD."
-    )
+    if shutil.which("uv"):
+        project = Path(os.environ.get("SKILL_SCANNER_DIR", str(WORKSPACE_ROOT / "skill-scanner"))).expanduser().resolve()
+        if not project.is_dir():
+            raise SystemExit("Reviewed scanner checkout missing. Set SKILL_SCANNER_DIR or SENTINAL_SCANNER_CMD.")
+        return ["uv", "run", "--project", str(project), "skill-scanner"]
+    raise SystemExit("skill-scanner not found. Install it or set SENTINAL_SCANNER_CMD.")
 
 
 def clawhub_base() -> list[str]:
@@ -99,45 +89,32 @@ def run(cmd: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess:
 
 
 def default_report_path(label: str, kind: str) -> Path:
-    label = sanitize(label)
-    return Path(tempfile.gettempdir()) / f"sentinal-{kind}-{label}-{stamp()}.md"
+    fd, filename = tempfile.mkstemp(prefix=f"sentinal-{kind}-{sanitize(label)}-", suffix=".md")
+    os.close(fd)
+    return Path(filename)
 
 
 def parse_report(text: str) -> tuple[dict[str, int], str]:
+    # Parse explicit counts, not prose such as "clean" inside a finding.
     counts = {name: 0 for name in SEVERITY_ORDER}
-    severity_seen = False
-
-    heading_re = re.compile(r"^\s*#{1,6}\s*(Critical|High|Medium|Low|Info)\b", re.I)
-    bullet_re = re.compile(r"^\s*(?:[-*]|\d+\.)\s*(Critical|High|Medium|Low|Info)\b", re.I)
-    summary_re = re.compile(r"^\s*(Critical|High|Medium|Low|Info)\s*[:\-]\s*(\d+)\b", re.I)
-
+    seen: set[str] = set()
+    summary = re.compile(r"^\s*(?:[-*]\s+)?(?:\*\*)?(Critical|High|Medium|Low|Info):(?:\*\*)?\s*([0-9]{1,9})\s*$", re.I)
     for line in text.splitlines():
-        matched = False
-        for rx in (summary_re, heading_re, bullet_re):
-            match = rx.match(line)
-            if not match:
-                continue
-            severity = match.group(1).title()
-            if rx is summary_re:
-                counts[severity] += int(match.group(2))
-            else:
-                counts[severity] += 1
-            severity_seen = True
-            matched = True
-            break
-        if matched:
+        match = summary.fullmatch(line)
+        if not match:
             continue
-
-    lowered = text.lower()
+        severity = match.group(1).title()
+        if severity in seen:
+            return counts, "unknown"
+        seen.add(severity)
+        counts[severity] = int(match.group(2))
+    if seen != set(SEVERITY_ORDER):
+        return counts, "unknown"
     if counts["Critical"] or counts["High"]:
         return counts, "blocked"
     if counts["Medium"] or counts["Low"] or counts["Info"]:
         return counts, "warning"
-    if any(phrase in lowered for phrase in NO_ISSUES_PHRASES):
-        return counts, "clean"
-    if severity_seen:
-        return counts, "clean"
-    return counts, "unknown"
+    return counts, "clean"
 
 
 def summarize(counts: dict[str, int]) -> str:
@@ -146,26 +123,25 @@ def summarize(counts: dict[str, int]) -> str:
 
 
 def read_report(report_path: Path | None) -> tuple[dict[str, int], str, str | None]:
-    if report_path is None:
+    if report_path is None or not report_path.exists():
         return {name: 0 for name in SEVERITY_ORDER}, "unknown", None
-    if not report_path.exists():
+    try:
+        text = report_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
         return {name: 0 for name in SEVERITY_ORDER}, "unknown", None
-    text = report_path.read_text(encoding="utf-8", errors="ignore")
     counts, verdict = parse_report(text)
     return counts, verdict, text
 
 
 def scan_with_scanner(target: Path, *, bulk: bool = False, report_path: Path | None = None) -> tuple[int, Path, dict[str, int], str]:
-    ensure_dir(report_path.parent if report_path else Path(tempfile.gettempdir()))
-    report_path = report_path or default_report_path(target.name, "bulk" if bulk else "single")
+    report_path = report_path.expanduser().absolute() if report_path else default_report_path(target.name, "bulk" if bulk else "single")
+    ensure_dir(report_path.parent)
+    # Never reuse a stale report when a scanner exits without writing output.
+    fd = os.open(report_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    os.close(fd)
     cmd = scanner_base() + [
-        "scan-all" if bulk else "scan",
-        str(target),
-        "--format",
-        "markdown",
-        "--detailed",
-        "--output",
-        str(report_path),
+        "scan-all" if bulk else "scan", str(target),
+        "--format", "markdown", "--detailed", "--output", str(report_path),
     ]
     result = run(cmd)
     if result.returncode != 0:
@@ -177,30 +153,33 @@ def scan_with_scanner(target: Path, *, bulk: bool = False, report_path: Path | N
 def find_installed_skill_dir(stage_skills_dir: Path, expected_slug: str | None = None) -> Path:
     if not stage_skills_dir.exists():
         raise SystemExit(f"Expected staged skill directory not found: {stage_skills_dir}")
-
-    dirs = [p for p in stage_skills_dir.iterdir() if p.is_dir()]
-    if not dirs:
-        raise SystemExit(f"No staged skill directory found under {stage_skills_dir}")
-
+    root = stage_skills_dir.resolve()
+    candidates: list[Path] = []
     if expected_slug:
-        normalized = sanitize(expected_slug)
-        for candidate in dirs:
-            if sanitize(candidate.name) == normalized:
-                return candidate
-
-    skill_md_dirs = [p for p in dirs if (p / "SKILL.md").exists()]
-    if len(skill_md_dirs) == 1:
-        return skill_md_dirs[0]
-    if len(dirs) == 1:
-        return dirs[0]
-
-    names = ", ".join(sorted(p.name for p in dirs))
-    raise SystemExit(f"Could not determine staged skill directory inside {stage_skills_dir}: {names}")
+        if not re.fullmatch(r"(?:[A-Za-z0-9][A-Za-z0-9_-]*/)?[A-Za-z0-9][A-Za-z0-9_-]*", expected_slug):
+            raise SystemExit("Invalid ClawHub skill slug")
+        candidates = [stage_skills_dir / expected_slug, stage_skills_dir / expected_slug.rsplit("/", 1)[-1]]
+    else:
+        candidates = list(stage_skills_dir.iterdir())
+    valid = []
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if candidate.is_dir() and root in resolved.parents and not candidate.is_symlink() and (candidate / "SKILL.md").is_file():
+            valid.append(candidate)
+    valid = list(dict.fromkeys(valid))
+    if len(valid) == 1:
+        return valid[0]
+    raise SystemExit(f"Expected one unambiguous staged skill under {stage_skills_dir}; found {len(valid)}")
 
 
 def copy_skill_tree(source: Path, destination_root: Path, *, force: bool = False) -> Path:
     skill_name = extract_skill_name(source)
     destination = destination_root / skill_name
+    resolved_source, resolved_destination = source.resolve(), destination.resolve()
+    if resolved_destination == resolved_source or resolved_source in resolved_destination.parents or resolved_destination in resolved_source.parents:
+        raise SystemExit("Source and installation destination must not overlap")
+    if destination.is_symlink():
+        raise SystemExit(f"Refusing to replace a symlink destination: {destination}")
     if destination.exists():
         if not force:
             raise SystemExit(f"Destination already exists: {destination}. Use --force to replace it.")
@@ -213,12 +192,12 @@ def copy_skill_tree(source: Path, destination_root: Path, *, force: bool = False
 def quarantine_skill(source: Path, *, force: bool = False) -> Path:
     resolved_source = source.resolve()
     active_root = ACTIVE_SKILLS_ROOT.resolve()
-    try:
-        resolved_source.relative_to(active_root)
-    except ValueError as exc:
-        raise SystemExit(f"Refusing to quarantine a path outside the active skill tree: {source}") from exc
-
-    quarantine_root = ensure_dir(QUARANTINE_ROOT)
+    if resolved_source == active_root or active_root not in resolved_source.parents:
+        raise SystemExit(f"Refusing to quarantine outside or at the active skill root: {source}")
+    quarantine_root = QUARANTINE_ROOT.resolve()
+    if quarantine_root == active_root or active_root in quarantine_root.parents:
+        raise SystemExit("Quarantine must be outside the active skill tree")
+    ensure_dir(quarantine_root)
     destination = quarantine_root / f"{extract_skill_name(source)}-{stamp()}"
     if destination.exists():
         if not force:
@@ -276,7 +255,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
     print_result(source, report_path, counts, verdict)
     if rc != 0:
         return rc
-    return 2 if verdict == "blocked" else 0
+    return 0 if verdict in {"clean", "warning"} else 2
 
 
 def cmd_scan_all(args: argparse.Namespace) -> int:
@@ -288,18 +267,18 @@ def cmd_scan_all(args: argparse.Namespace) -> int:
     print_result(source, report_path, counts, verdict)
     if rc != 0:
         return rc
-    return 2 if verdict == "blocked" else 0
+    return 0 if verdict in {"clean", "warning"} else 2
 
 
 def cmd_scan_install_local(args: argparse.Namespace) -> int:
     source = Path(args.path).expanduser().resolve()
-    if not source.exists():
-        raise SystemExit(f"Path does not exist: {source}")
+    if not source.is_dir() or not (source / "SKILL.md").is_file():
+        raise SystemExit(f"Skill directory with SKILL.md required: {source}")
     rc, report_path, counts, verdict = scan_with_scanner(source, bulk=False, report_path=None)
     print_result(source, report_path, counts, verdict)
     if rc != 0:
         return rc
-    if verdict == "blocked":
+    if verdict not in {"clean", "warning"}:
         return 2
     destination = copy_skill_tree(source, Path(args.dest_root).expanduser(), force=args.force)
     print(f"Installed: {destination}")
@@ -307,7 +286,9 @@ def cmd_scan_install_local(args: argparse.Namespace) -> int:
 
 
 def cmd_scan_install_clawhub(args: argparse.Namespace) -> int:
-    stage_root = ensure_dir(Path(args.stage_root).expanduser())
+    if not re.fullmatch(r"(?:[A-Za-z0-9][A-Za-z0-9_-]*/)?[A-Za-z0-9][A-Za-z0-9_-]*", args.slug):
+        raise SystemExit("Invalid ClawHub skill slug")
+    stage_root = ensure_dir(Path(args.stage_root).expanduser().resolve())
     stage_dir = Path(tempfile.mkdtemp(prefix=f"{sanitize(args.slug)}-", dir=str(stage_root)))
     clawhub = clawhub_base() + ["--workdir", str(stage_dir), "--dir", "skills", "install", args.slug]
     if args.version:
@@ -315,17 +296,14 @@ def cmd_scan_install_clawhub(args: argparse.Namespace) -> int:
     result = run(clawhub)
     if result.returncode != 0:
         return result.returncode
-
-    staged_skills_dir = stage_dir / "skills"
-    candidate = find_installed_skill_dir(staged_skills_dir, args.slug)
+    candidate = find_installed_skill_dir(stage_dir / "skills", args.slug)
     rc, report_path, counts, verdict = scan_with_scanner(candidate, bulk=False, report_path=None)
     print_result(candidate, report_path, counts, verdict)
     if rc != 0:
         return rc
-    if verdict == "blocked":
+    if verdict not in {"clean", "warning"}:
         print(f"Blocked staged ClawHub install: {candidate}")
         return 2
-
     if args.apply:
         destination = copy_skill_tree(candidate, Path(args.dest_root).expanduser(), force=args.force)
         print(f"Installed: {destination}")
@@ -342,7 +320,7 @@ def cmd_auto_scan(args: argparse.Namespace) -> int:
     print_result(root, report_path, counts, verdict)
     if rc != 0:
         return rc
-    return 2 if verdict == "blocked" else 0
+    return 0 if verdict in {"clean", "warning"} else 2
 
 
 def cmd_quarantine(args: argparse.Namespace) -> int:
@@ -355,41 +333,34 @@ def cmd_quarantine(args: argparse.Namespace) -> int:
 
 
 def cmd_openclaw_health(args: argparse.Namespace) -> int:
-    endpoint = args.endpoint or os.environ.get("OPENCLAW_CDP_URL", "http://127.0.0.1:9223")
+    # Preserve explicitly requested legacy CDP checks, never use one as default.
+    if args.endpoint:
+        print("Browser-only CDP check requested; this does not verify Gateway health.")
+        return cmd_browser_health(args)
+    return gateway_health(emit=emit_report, profile=args.profile, timeout=args.timeout)
+
+
+def cmd_browser_health(args: argparse.Namespace) -> int:
+    endpoint = args.endpoint or os.environ.get("OPENCLAW_CDP_URL")
+    if not endpoint:
+        raise SystemExit("browser-health requires --endpoint or OPENCLAW_CDP_URL")
     endpoint = endpoint.rstrip("/")
-    version_url = endpoint if endpoint.endswith("/json/version") else f"{endpoint}/json/version"
-    targets_url = endpoint if endpoint.endswith("/json/list") else f"{endpoint}/json/list"
-
+    if endpoint.endswith("/json/version") or endpoint.endswith("/json/list"):
+        endpoint = endpoint.rsplit("/json/", 1)[0]
+    version_url = f"{endpoint}/json/version"
+    targets_url = f"{endpoint}/json/list"
     version = fetch_json(version_url)
-    targets = fetch_json(targets_url) or []
-
-    if version is None:
-        emit_report(
-            verified=[],
-            suspected=[f"OpenClaw browser bridge is not reachable at {version_url}"],
-            unknown=["Whether the browser session is available or healthy"],
-            next_step="Start or reconnect the Chrome/Bridge session, then re-run the check.",
-        )
+    targets = fetch_json(targets_url)
+    if not isinstance(version, dict) or not isinstance(targets, list):
+        emit_report([], ["Browser CDP version or target list unavailable."],
+                    ["Gateway and browser session safety are not established."],
+                    "Check the explicitly configured browser endpoint; do not infer Gateway failure from CDP.")
         return 2
-
     browser_label = version.get("Browser") or version.get("Protocol-Version") or "unknown browser"
-    websocket = version.get("webSocketDebuggerUrl") or "not exposed"
-    verified = [
-        f"OpenClaw browser bridge is reachable at {version_url}",
-        f"Browser: {browser_label}",
-        f"Targets reported: {len(targets)}",
-        f"WebSocket debugger URL: {websocket}",
-    ]
-    suspected = []
-    if len(targets) == 0:
-        suspected.append("No active tabs were reported by the browser bridge")
-    unknown = ["Session poisoning and task-specific context health cannot be proven from the bridge alone"]
-    emit_report(
-        verified=verified,
-        suspected=suspected,
-        unknown=unknown,
-        next_step="If the bridge looks healthy but a task is misbehaving, start a fresh browser session and abandon the poisoned thread.",
-    )
+    verified = [f"Browser CDP endpoint responded: {version_url}", f"Browser: {browser_label}", f"Targets reported: {len(targets)}"]
+    suspected = [] if targets else ["No active targets were reported by the browser endpoint"]
+    emit_report(verified, suspected, ["CDP reachability does not verify OpenClaw Gateway health or session safety."],
+                "Use openclaw-health for the Gateway health snapshot.")
     return 1 if suspected else 0
 
 
@@ -399,43 +370,32 @@ def cmd_hermes_health(args: argparse.Namespace) -> int:
     suspected: list[str] = []
     verified: list[str] = []
     unknown: list[str] = []
-
     if hermes_home.exists():
         verified.append(f"Hermes home exists: {hermes_home}")
     else:
         critical.append(f"Hermes home is missing: {hermes_home}")
-
     for rel in ["skills", "memory"]:
         path = hermes_home / rel
         if path.exists():
             verified.append(f"Present: {path}")
         else:
             suspected.append(f"Missing expected Hermes directory: {path}")
-
     for rel in ["config.yaml", "google_token.json"]:
         path = hermes_home / rel
         if path.exists():
             verified.append(f"Present: {path}")
         else:
             suspected.append(f"Missing optional Hermes file: {path}")
-
-    tools = ["git", "gh", "python3"]
-    for tool in tools:
+    for tool in ["git", "gh", "python3"]:
         found = shutil.which(tool)
         if found:
             verified.append(f"Tool available: {tool} -> {found}")
         else:
             critical.append(f"Tool not found on PATH: {tool}")
-
     unknown.append("Cron/background job state is not inspected here; use a dedicated scheduler check if needed")
     unknown.append("MCP gateway health is not directly verified by this local file check")
-
-    emit_report(
-        verified=verified,
-        suspected=suspected + critical,
-        unknown=unknown,
-        next_step="If critical Hermes files or tools are missing, restore them before trusting the session; otherwise continue in a clean session.",
-    )
+    emit_report(verified=verified, suspected=suspected + critical, unknown=unknown,
+                next_step="If critical Hermes files or tools are missing, restore them before trusting the session; otherwise continue in a clean session.")
     return 2 if critical else (1 if suspected else 0)
 
 
@@ -443,15 +403,8 @@ def cmd_host_guard(args: argparse.Namespace) -> int:
     verified: list[str] = []
     suspected: list[str] = []
     unknown: list[str] = []
-
-    verified.extend([
-        f"Host: {platform.system()} {platform.release()} ({platform.machine()})",
-        f"User: {getpass.getuser()}",
-        f"Python: {sys.version.split()[0]}",
-    ])
-
-    ps_cmd = ["ps", "-eo", "pid,ppid,user,comm,args", "--sort=-%cpu"]
-    ps_result = run_capture(ps_cmd)
+    verified.extend([f"Host: {platform.system()} {platform.release()} ({platform.machine()})", f"User: {getpass.getuser()}", f"Python: {sys.version.split()[0]}"])
+    ps_result = run_capture(["ps", "-eo", "pid,ppid,user,comm,args", "--sort=-%cpu"])
     if ps_result.returncode == 0 and ps_result.stdout:
         lines = ps_result.stdout.splitlines()
         verified.append(f"Process snapshot captured ({max(len(lines) - 1, 0)} rows)")
@@ -459,13 +412,11 @@ def cmd_host_guard(args: argparse.Namespace) -> int:
             verified.append(f"ps: {line.strip()}")
     else:
         suspected.append("Could not capture process snapshot with ps")
-
     listener_cmd: list[str] | None = None
     if shutil.which("ss"):
         listener_cmd = ["ss", "-ltnp"]
     elif shutil.which("netstat"):
         listener_cmd = ["netstat", "-ltnp"]
-
     if listener_cmd:
         listener_result = run_capture(listener_cmd)
         if listener_result.returncode == 0 and listener_result.stdout:
@@ -477,110 +428,71 @@ def cmd_host_guard(args: argparse.Namespace) -> int:
             suspected.append("Could not capture listening sockets")
     else:
         unknown.append("No ss/netstat binary available to inspect listening sockets")
-
-    disk_cmd = ["df", "-h", "/"]
-    disk_result = run_capture(disk_cmd)
+    disk_result = run_capture(["df", "-h", "/"])
     if disk_result.returncode == 0 and disk_result.stdout:
         for line in disk_result.stdout.splitlines()[1:2]:
             verified.append(f"root disk: {line.strip()}")
     else:
         unknown.append("Could not read root filesystem usage")
-
-    emit_report(
-        verified=verified,
-        suspected=suspected,
-        unknown=unknown,
-        next_step="Review any unexpected listeners or privileged processes before changing the host.",
-    )
+    emit_report(verified=verified, suspected=suspected, unknown=unknown,
+                next_step="Review any unexpected listeners or privileged processes before changing the host.")
     return 1 if suspected else 0
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Active Defense Sentinal helper")
     sub = parser.add_subparsers(dest="command", required=True)
-
     p_scan = sub.add_parser("scan", help="Scan a single skill path")
     p_scan.add_argument("path", help="Skill directory to scan")
     p_scan.add_argument("--report", help="Optional report file path")
     p_scan.set_defaults(func=cmd_scan)
-
     p_scan_all = sub.add_parser("scan-all", help="Scan a directory of skills")
     p_scan_all.add_argument("path", help="Directory containing skills to scan")
     p_scan_all.add_argument("--report", help="Optional report file path")
     p_scan_all.set_defaults(func=cmd_scan_all)
-
-    p_install_local = sub.add_parser(
-        "scan-install-local",
-        help="Scan a local skill folder and install it into the active skill tree when safe",
-    )
+    p_install_local = sub.add_parser("scan-install-local", help="Scan a local skill folder and install it when the report permits")
     p_install_local.add_argument("path", help="Local skill directory")
-    p_install_local.add_argument(
-        "--dest-root",
-        default=str(ACTIVE_SKILLS_ROOT),
-        help="Active skills root (default: ~/.openclaw/skills)",
-    )
-    p_install_local.add_argument("--force", action="store_true", help="Replace an existing destination")
+    p_install_local.add_argument("--dest-root", default=str(ACTIVE_SKILLS_ROOT), help="Managed skills root for the active state")
+    p_install_local.add_argument("--force", action="store_true", help="Replace an existing destination, never bypass the scan gate")
     p_install_local.set_defaults(func=cmd_scan_install_local)
-
-    p_install_clawhub = sub.add_parser(
-        "scan-install-clawhub",
-        help="Stage-install a ClawHub skill, scan it, then optionally copy it into the active tree",
-    )
+    p_install_clawhub = sub.add_parser("scan-install-clawhub", help="Stage a ClawHub skill, scan it, then optionally install")
     p_install_clawhub.add_argument("slug", help="ClawHub skill slug")
     p_install_clawhub.add_argument("--version", help="Optional version override")
-    p_install_clawhub.add_argument(
-        "--stage-root",
-        default=str(STAGE_ROOT),
-        help="Stage root (default: ~/.openclaw/.skill_stage)",
-    )
-    p_install_clawhub.add_argument(
-        "--dest-root",
-        default=str(ACTIVE_SKILLS_ROOT),
-        help="Active skills root (default: ~/.openclaw/skills)",
-    )
-    p_install_clawhub.add_argument("--apply", action="store_true", help="Copy the safe staged skill into the active tree")
-    p_install_clawhub.add_argument("--force", action="store_true", help="Replace an existing destination")
+    p_install_clawhub.add_argument("--stage-root", default=str(STAGE_ROOT), help="Staging root outside loaded skill directories")
+    p_install_clawhub.add_argument("--dest-root", default=str(ACTIVE_SKILLS_ROOT), help="Managed skills root for the active state")
+    p_install_clawhub.add_argument("--apply", action="store_true", help="Copy the permitted staged skill into the active tree")
+    p_install_clawhub.add_argument("--force", action="store_true", help="Replace an existing destination, never bypass the scan gate")
     p_install_clawhub.set_defaults(func=cmd_scan_install_clawhub)
-
-    p_auto = sub.add_parser("auto-scan", help="Scan the active user skills tree")
-    p_auto.add_argument(
-        "path",
-        nargs="?",
-        default=str(ACTIVE_SKILLS_ROOT),
-        help="Skill tree to scan (default: ~/.openclaw/skills)",
-    )
+    p_auto = sub.add_parser("auto-scan", help="Scan the active managed skills tree")
+    p_auto.add_argument("path", nargs="?", default=str(ACTIVE_SKILLS_ROOT), help="Skill tree to scan")
     p_auto.set_defaults(func=cmd_auto_scan)
-
     p_quarantine = sub.add_parser("quarantine", help="Move an installed skill into quarantine")
     p_quarantine.add_argument("path", help="Installed skill directory to quarantine")
     p_quarantine.add_argument("--force", action="store_true", help="Replace an existing quarantine destination")
     p_quarantine.set_defaults(func=cmd_quarantine)
-
-    p_openclaw = sub.add_parser("openclaw-health", help="Check the OpenClaw browser bridge and active tab surface")
-    p_openclaw.add_argument(
-        "--endpoint",
-        help="Browser bridge base URL (default: OPENCLAW_CDP_URL or http://127.0.0.1:9223)",
-    )
+    p_openclaw = sub.add_parser("openclaw-health", help="Fetch the OpenClaw Gateway health snapshot")
+    p_openclaw.add_argument("--profile", help="Named OpenClaw profile")
+    p_openclaw.add_argument("--timeout", type=int, default=10000, help="Gateway timeout in milliseconds (1..120000)")
+    p_openclaw.add_argument("--endpoint", help="Legacy browser-only CDP check; prefer browser-health")
     p_openclaw.set_defaults(func=cmd_openclaw_health)
-
+    p_browser = sub.add_parser("browser-health", help="Explicit browser-only CDP check, not Gateway health")
+    p_browser.add_argument("--endpoint", help="Browser CDP URL; alternatively OPENCLAW_CDP_URL")
+    p_browser.set_defaults(func=cmd_browser_health)
     p_hermes = sub.add_parser("hermes-health", help="Check Hermes runtime directories and core tools")
-    p_hermes.add_argument(
-        "--hermes-home",
-        default=str(Path.home() / ".hermes"),
-        help="Hermes home directory (default: ~/.hermes)",
-    )
+    p_hermes.add_argument("--hermes-home", default=str(Path.home() / ".hermes"), help="Hermes home directory (default: ~/.hermes)")
     p_hermes.set_defaults(func=cmd_hermes_health)
-
     p_host = sub.add_parser("host-guard", help="Capture local host telemetry for triage")
     p_host.set_defaults(func=cmd_host_guard)
-
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
-    return int(args.func(args))
+    try:
+        return int(args.func(args))
+    except (OSError, ValueError) as exc:
+        parser.exit(2, f"Error: {exc}\n")
 
 
 if __name__ == "__main__":

@@ -1,41 +1,52 @@
-## Description: <br>
-Quick diagnosis and repair for Discord bot, Gateway, OAuth token, and legacy config issues. Checks connectivity, token expiration, and cleans up old Clawdis artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick diagnosis and repair for Discord bot, Gateway, OAuth token, and legacy config issues. Checks connectivity, token expiration, and cleans up old Clawdis artifacts.
 
-## Publisher: <br>
-[jhillock](https://clawhub.ai/user/jhillock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillock](https://clawhub.ai/user/jhillock)
 
-## Use Case: <br>
-Developers and operators who maintain Clawdbot or Discord integrations use this skill to diagnose Gateway availability, Discord connection, OAuth token, npm dependency, and legacy Clawdis configuration problems and to get repair commands or guided fix steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The `discord-doctor` command implementation is not included in the artifact, so fix behavior depends on an external command. <br>
-Mitigation: Verify and trust the installed command source before running it, and start with diagnostic mode before using `--fix`. <br>
-Risk: Fix mode can make persistent local changes such as installing npm packages, restarting the gateway, removing launchd services, and moving legacy config directories. <br>
-Mitigation: Back up relevant configuration and approve each package install, daemon restart, launchd change, and config migration deliberately. <br>
-Risk: OAuth-related repair steps can affect local authentication state. <br>
-Mitigation: Follow re-authentication steps intentionally and avoid unattended OAuth-related fixes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Discord Doctor ClawHub release page](https://clawhub.ai/jhillock/discord-doctor) <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose Discord bot, Clawdbot gateway, OAuth token, and legacy Clawdis configuration issues, and to receive repair commands or cleanup guidance when fixes are requested.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local diagnostic and repair actions; fix mode can modify gateway state, install npm packages, remove launchd services, and back up legacy configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repair actions may install npm packages, restart the gateway, remove an old launchd service, or move a legacy ~/.clawdis directory.
+
+Mitigation: Review proposed --fix actions before running them, and keep backups of legacy configuration before cleanup.
+
+Risk: OAuth reauthentication guidance may invoke npx to fetch a package.
+
+Mitigation: Use a trusted local or pinned clawdbot package for reauthentication when possible.
+
+## Reference(s):
+
+- [Discord Doctor on ClawHub](https://clawhub.ai/jhillock/skills/discord-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and diagnostic summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, gateway restart, OAuth reauthentication, and legacy Clawdis cleanup actions when run with --fix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

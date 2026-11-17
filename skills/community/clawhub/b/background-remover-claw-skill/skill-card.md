@@ -1,44 +1,56 @@
-## Description: <br>
-Generate ai background remover images with AI via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ai background remover images with AI via the Neta AI image generation API.
 
-## Publisher: <br>
-[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq)
 
-## Use Case: <br>
-Developers and external users use this skill to generate background-removal style images from text prompts, optionally with size selection or an existing picture UUID as reference input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, picture UUIDs, generated image metadata, and the API token to the Neta/TalesofAI service. <br>
-Mitigation: Use a revocable token, review the external service terms, and avoid submitting sensitive prompts or image references. <br>
-Risk: Passing the token inline can expose it through shell history or process listings on shared systems. <br>
-Mitigation: Prefer the NETA_TOKEN environment variable or another local secret-handling mechanism, and rotate the token if exposure is suspected. <br>
-Risk: The artifact includes broader character and style generation behavior in bgremove.js beyond the primary background-removal entry point. <br>
-Mitigation: Review bgremove.js before use and run only the intended command with trusted prompt and image-reference inputs. <br>
+## Use Case:
 
+External users and developers use this skill to generate background-removal-style images from text prompts through the Neta AI image generation API and receive an image URL or task result.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/barbaraledbettergq/background-remover-claw-skill) <br>
-- [Neta API token access](https://www.neta.art/open/) <br>
-- [TalesofAI API endpoint](https://api.talesofai.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line guidance and stdout text containing generated image URLs or JSON task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and may send prompts, picture UUIDs, generated image metadata, and the API token to the Neta/TalesofAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release evidence and package.json) <br>
+Risk: The skill handles a Neta API token and sends token-authenticated requests to api.talesofai.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or throwaway token, avoid putting secrets directly on the command line where shell history or process listings may expose them, and review the skill before installation.
+
+Risk: The security verdict is suspicious because the skill scope is blurry and token handling is unsafe, although no malicious behavior was identified.
+
+Mitigation: Install only from a pinned trusted revision and review the release before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barbaraledbettergq/skills/background-remover-claw-skill)
+- [Neta API token page](https://www.neta.art/open/)
+- [Neta API endpoint](https://api.talesofai.cn)
+- [Example generated output](https://oss.talesofai.cn/picture/9499b2c5-0f8a-4c48-ae9a-1400c3b15e95.webp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime scripts print an image URL or JSON task result.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and sends prompts plus token-authenticated requests to api.talesofai.cn.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

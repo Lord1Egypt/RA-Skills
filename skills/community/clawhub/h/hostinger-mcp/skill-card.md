@@ -1,44 +1,66 @@
-## Description: <br>
-Operational guide for managing Hostinger infrastructure, including VPS, hosting, domains, DNS, email marketing, and billing, through the official Hostinger MCP server across one or more Hostinger accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational guide for managing Hostinger infrastructure through the official Hostinger MCP server, including VPS, hosting, domains, DNS, Reach, and billing across one or several Hostinger accounts.
 
-## Publisher: <br>
-[benkalsky](https://clawhub.ai/user/benkalsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benkalsky](https://clawhub.ai/user/benkalsky)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate Hostinger's MCP server, select the right Hostinger tool category, and manage infrastructure tasks with explicit confirmation for account, cost, destructive, and write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Connected Hostinger MCP tools can make purchases, change billing settings, modify DNS, rebuild VPS instances, delete resources, and otherwise exercise broad account authority. <br>
-Mitigation: Use separate tokens per account, load only the needed Hostinger category binary, and require explicit account, target, impact, and cost confirmation before any write, purchase, billing change, DNS change, deletion, or VPS rebuild. <br>
-Risk: Hostinger API tokens provide full account access through the connected MCP server. <br>
-Mitigation: Treat tokens as sensitive credentials, avoid printing or committing them, and keep each account on its own MCP connection and token. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and use Hostinger MCP tools for account-scoped infrastructure operations, including read-only inventory and confirmed changes to VPS, hosting, domains, DNS, Reach, and billing resources.
 
-## Reference(s): <br>
-- [Hostinger MCP Server](https://github.com/hostinger/api-mcp-server) <br>
-- [Hostinger hPanel](https://hpanel.hostinger.com) <br>
-- [Installation - Hostinger MCP Server](references/installation.md) <br>
-- [Tools Catalog - Hostinger MCP](references/tools-catalog.md) <br>
-- [Workflows - VPS](references/workflows-vps.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, MCP tool names, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions and confirmation patterns; it does not itself execute Hostinger actions without connected MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The connected MCP server can act with full Hostinger account authority through the account token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tokens in environment variables or a keychain, never print or commit them, and revoke and regenerate any token that may have been exposed.
+
+Risk: Some tools can spend money, delete resources, wipe VPS data, or change billing settings.
+
+Mitigation: Require explicit confirmation of the account, tool, target resource, parameters, impact, and cost before write or purchase actions; double-confirm destructive operations.
+
+Risk: Installing or running the npm MCP package can execute package scripts and resolve dependencies at install time.
+
+Mitigation: Prefer the documented pinned, digest-verified install path over the unverified npx convenience route when stronger supply-chain control is needed.
+
+Risk: Multiple Hostinger accounts can expose similar resource IDs that are not interchangeable.
+
+Mitigation: Use one connection per account, identify the account before every operation, and avoid carrying confirmations across accounts.
+
+## Reference(s):
+
+- [Installation - Hostinger MCP Server](references/installation.md)
+- [Tools Catalog - Hostinger MCP](references/tools-catalog.md)
+- [Workflows - VPS](references/workflows-vps.md)
+- [Hostinger API MCP Server](https://github.com/hostinger/api-mcp-server)
+- [Hostinger hPanel](https://hpanel.hostinger.com)
+- [Hostinger API Reference](https://developers.hostinger.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only operations are preferred by default; write, destructive, and billing actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Selects and routes to the right architecture paradigm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes to the right architecture paradigm
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and software architects use this skill to compare system architecture paradigms, select appropriate patterns, and route to paradigm-specific implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate more often than intended in broad architecture or implementation conversations. <br>
-Mitigation: Review routing behavior during installation and narrow trigger wording if tighter activation is needed. <br>
+## Use Case:
 
+Developers and software architects use this skill to compare architecture trade-offs and select one or more paradigms for a system. It routes users to the corresponding paradigm skill for implementation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigms) <br>
-- [Configured Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with tables, checklists, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes users to related architecture paradigm skills when deeper implementation guidance is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: release metadata) <br>
+Risk: The scenario and team-size heuristics may not capture the constraints of a particular system, leading to a poor paradigm fit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the routing as an initial comparison, check it against the system's actual constraints and trade-offs, and consult the selected paradigm skill before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigms)
+- [Project homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Architecture recommendations, Markdown]
+
+**Output Format:** [Markdown text with tables and inline skill references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on the system context supplied by the user.]
+
+## Skill Version(s):
+
+1.10.3 (source: server-resolved release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

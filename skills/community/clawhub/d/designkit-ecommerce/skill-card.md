@@ -1,41 +1,59 @@
-## Description: <br>
-Use when users need AI design assets for ecommerce images: background removal, transparent or white background output, blurry photo restoration, or listing image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes ecommerce image requests to Designkit workflows for background removal, transparent or white backgrounds, blurry photo restoration, and listing image generation.
 
-## Publisher: <br>
-[xiaorenaishu](https://clawhub.ai/user/xiaorenaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaorenaishu](https://clawhub.ai/user/xiaorenaishu)
 
-## Use Case: <br>
-External users and ecommerce teams use this skill to turn product photos into marketplace-ready assets, including cutouts, enhanced images, and listing image sets. Agents route the request, collect required inputs, run the Designkit/OpenClaw workflow, and return result images or actionable error guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected product images, image URLs, and listing details are sent to remote Designkit/OpenClaw/Meitu services. <br>
-Mitigation: Use only non-sensitive assets, confirm each upload or download with the user, and use a dedicated revocable API key. <br>
-Risk: The security evidence flags broad shell/API controls and unsafe input handling for review. <br>
-Mitigation: Review command inputs and HTTPS endpoints before use, and avoid overriding endpoint settings unless they have been approved. <br>
+## Use Case:
 
+External users and agents use this skill to turn product or marketing images into ecommerce-ready assets, including cutouts, clearer photos, and listing image sets with guided input collection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaorenaishu/designkit-ecommerce) <br>
-- [Designkit OpenClaw](https://www.designkit.com/openClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with image links, JSON command results, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DESIGNKIT_OPENCLAW_AK and may upload selected local images or image URLs to remote Designkit/OpenClaw/Meitu services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary reports a shell runner code-injection flaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer the pinned ClawHub install path for this release.
+
+Risk: Image inputs are sent to Designkit/OpenClaw API and upload destinations are not tightly constrained.
+
+Mitigation: Use only non-sensitive images and avoid endpoint override variables unless the destination is controlled.
+
+Risk: The skill depends on DESIGNKIT_OPENCLAW_AK for API access.
+
+Mitigation: Set the access key only in a constrained environment and keep request logging disabled unless needed.
+
+## Reference(s):
+
+- [Designkit OpenClaw](https://www.designkit.com/openClaw)
+- [ClawHub skill page](https://clawhub.ai/xiaorenaishu/skills/designkit-ecommerce)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiaorenaishu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown responses with image links, user-facing guidance, runner JSON status, and downloaded image files when rendering succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DESIGNKIT_OPENCLAW_AK. Local or URL images may be uploaded to Designkit/OpenClaw to complete the requested image-processing task.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

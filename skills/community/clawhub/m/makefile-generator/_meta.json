@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "makefile-generator",
+  "schema_version": "1",
+  "name": "makefile-generator",
   "version": "1.0.0",
-  "publishedAt": 1772457256306
+  "description": "生成 Makefile",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["makefile", "make", "build", "automation"],
+  "license": "MIT"
 }

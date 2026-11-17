@@ -1,41 +1,50 @@
-## Description: <br>
-Provides psychology-informed guidance for building believable fictional characters, psychological profiles, and interpersonal dynamics using named clinical and research frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze human behavior, personality theory, motivation, and cognitive patterns to build psychologically credible characters and interactions from clinical and research frameworks.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
 
-## Use Case: <br>
-Writers, roleplay designers, and story developers use this skill to create psychologically credible fictional characters, trauma responses, relationship dynamics, and growth arcs. It should not be used as a substitute for licensed mental health advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply psychology-themed analysis to real people or sensitive personal mental health histories. <br>
-Mitigation: Avoid entering sensitive real-person mental health details unless the deployment's data handling is understood and approved. <br>
-Risk: Outputs could be mistaken for licensed clinical assessment or mental health advice. <br>
-Mitigation: Use the skill for writing, character analysis, and creative guidance; rely on licensed professionals for real-world mental health concerns. <br>
+## Use Case:
 
+External users and creative teams use this skill to build psychologically credible fictional characters, trauma-informed reactions, interpersonal dynamics, and character growth arcs. It guides agents to ground observations in named psychology frameworks while acknowledging cultural context and theoretical limits.
 
-## Reference(s): <br>
-- [ClawHub skill page: Academic Psychologist](https://clawhub.ai/lihangmissu/academic-psychologist) <br>
-- [ClawHub publisher profile: lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text psychological profiles and relationship analyses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured character profiles, relationship dynamics, diagnostic questions, and theory-backed caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may over-apply psychology framing to real people or treat agent output as professional mental-health care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for fiction and character analysis; do not use it to diagnose real people or substitute for professional mental-health care.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lihangmissu/skills/academic-psychologist)
+- [Publisher profile](https://clawhub.ai/user/lihangmissu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with psychology profiles, relationship dynamics analysis, diagnostic questions, and framework-grounded recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language skill; text-only with no code, external access, persistence mechanism, or hidden behavior according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

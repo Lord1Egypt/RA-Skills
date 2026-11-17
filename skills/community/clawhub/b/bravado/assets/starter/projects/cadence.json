@@ -1,0 +1,92 @@
+{
+  "source": {
+    "url": "https://cadencelanding.vercel.app/",
+    "checked_at": "2026-09-29",
+    "notes": "Public landing page. Illustration values match its pay stream example; this is not live product data."
+  },
+  "brand": {
+    "name": "Cadence",
+    "tagline": "Payroll with a pulse.",
+    "closing_subline": "Real-time RLUSD payroll.",
+    "eyebrow": "Real-time RLUSD payroll",
+    "footer": "Cadence on XRP",
+    "url": "cadencelanding.vercel.app",
+    "cta": "Start streaming pay",
+    "rail_label": "Wallet-to-wallet · RLUSD",
+    "mark_style": "triple_arc"
+  },
+  "palette": {
+    "forest": "#1F2D24",
+    "dark": "#162119",
+    "clay": "#D65A3A",
+    "cream": "#F6F1E6",
+    "sun": "#EAD79A",
+    "stone": "#DCCDB2",
+    "line": "#E4D8C1",
+    "muted": "#77766B"
+  },
+  "example": {
+    "period_days": 14,
+    "interval_seconds": 15,
+    "interval_unit": "seconds",
+    "weekly_total": 640,
+    "starting_amount": 428.7312,
+    "currency_symbol": "$",
+    "unit": "RLUSD",
+    "network": "ON XRPL"
+  },
+  "story": {
+    "opening": {
+      "headline": "Money should move.",
+      "subline": "At the speed of work."
+    },
+    "wait": {
+      "line1": "You work every day.",
+      "line2": "Why wait for payday?",
+      "count_label": "Days between paydays",
+      "timeline_label": "Work keeps moving",
+      "end_label": "Payday",
+      "payoff": "Your income should keep up."
+    },
+    "shift": {
+      "line1": "Turn a pay period",
+      "line2": "into a steady stream.",
+      "source_label": "Pay period",
+      "source_note": "One total",
+      "destination_label": "Your wallet",
+      "destination_state": "Receiving",
+      "status": "Stream active",
+      "payoff": "Small payments. Steady rhythm."
+    },
+    "cadence": {
+      "line1": "Set the cadence.",
+      "line2": "Let your income flow.",
+      "metric_label": "Example payment frequency",
+      "caption1": "Choose the frequency.",
+      "caption2": "Cadence calculates the packets.",
+      "card_label": "Illustrative pay stream",
+      "card_footer": "Your wallet"
+    },
+    "flow": {
+      "line1": "From your payer.",
+      "line2": "To your wallet.",
+      "subline": "Built on XRP. Designed for humans.",
+      "source": "Payer",
+      "audiences": [
+        ["Creators", "Time, talent, output"],
+        ["Freelancers", "Your work, your rhythm"],
+        ["Teams", "Steady payments"]
+      ]
+    },
+    "proof": {
+      "line1": "Every payment.",
+      "line2": "Proof you can carry.",
+      "subline1": "A visible, verifiable",
+      "subline2": "record of your income.",
+      "verbs": ["Export", "Share", "Build"],
+      "record_label": "Payment record",
+      "record_item": "Payment",
+      "payoff": "Your income. Your record."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ogzhnbygl",
+  "owner": {
+    "name": "ogzhnbygl"
+  },
+  "plugins": [
+    {
+      "name": "pdfparse",
+      "source": "./",
+      "description": "Fast, deterministic academic PDF to clean Markdown. No LLMs.",
+      "version": "2.0.0"
+    }
+  ]
+}

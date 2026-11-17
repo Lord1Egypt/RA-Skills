@@ -1,44 +1,62 @@
-## Description: <br>
-Fetch public Maoyan Show data from show.maoyan.com, including event lists, event details, ticket prices, sessions, venues, city IDs, and crawler workflows, while avoiding login, order, payment, real-name verification, ticket verification, favorites, comments, and user account data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch public Maoyan Show data from show.maoyan.com, including event lists, event details, ticket prices, sessions, venues, city IDs, and crawler workflows, while excluding login, orders, payment, real-name verification, ticket verification, favorites, comments, and user account data.
 
-## Publisher: <br>
-[onewilk](https://clawhub.ai/user/onewilk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onewilk](https://clawhub.ai/user/onewilk)
 
-## Use Case: <br>
-Developers and agents use this skill to query and document public Maoyan Show event, venue, city, session, and ticket-price data. It is intended for public display-data workflows, not private account, payment, order, identity, or ticket-verification actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misapplied to private account, order, payment, real-name, ticket-verification, favorites, comment, or user-data workflows. <br>
-Mitigation: Keep use limited to public show, city, venue, session, price, recommendation, search, and list endpoints, and decline private or transactional workflows. <br>
-Risk: List and category filters may return unstable or mismatched results, especially across city contexts. <br>
-Mitigation: Validate returned city, category, keyword, and date fields locally before presenting results or making follow-up detail calls. <br>
-Risk: Automated public API querying can create avoidable load or trigger service-side defenses. <br>
-Mitigation: Keep request volume reasonable, reuse task-scoped values where appropriate, and avoid unnecessary repeated calls. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents in querying and summarizing public Maoyan Show event, venue, price, session, city, recommendation, search, and list data. It is intended for public show-data lookup and API documentation workflows, not private account or transaction flows.
 
-## Reference(s): <br>
-- [Maoyan Show H5 API Usage Guide](references/api.md) <br>
-- [Maoyan Show public entry](https://show.maoyan.com/qqw#/) <br>
-- [ClawHub release page](https://clawhub.ai/onewilk/maoyan-show) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with normalized result fields and optional HTTP or curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public Maoyan Show results should include relevant event, price, venue, city, and API caveat fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Agent use could drift from public show-data lookup into login, order, payment, real-name, ticket-verification, or account workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documented public endpoints; refuse private-flow requests and do not provide login tokens, account cookies, order details, payment data, or identity data.
+
+Risk: City, category, keyword, and date filters on list-style endpoints may be advisory or unstable.
+
+Mitigation: Ask for city or cityId when needed, validate returned city, category, date, and keyword fields locally, and discard mismatched results.
+
+Risk: High-volume scraping can stress public services or trigger anti-abuse controls.
+
+Mitigation: Keep request volume and concurrency modest, avoid bypassing login, CAPTCHA, risk-control, order, inventory-locking, or payment flows, and reuse generated request values only within the same task.
+
+Risk: Returned detail and ticket-note fields may contain HTML.
+
+Mitigation: Clean HTML before display, storage, or downstream processing.
+
+## Reference(s):
+
+- [Maoyan Show H5 API Usage Guide](artifact/references/api.md)
+- [ClawHub Maoyan Show Skill Page](https://clawhub.ai/onewilk/skills/maoyan-show)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown or plain text with normalized fields and optional API request examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include normalized event, price, venue, and API usage fields; excludes private account, order, payment, identity, and ticket-verification data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

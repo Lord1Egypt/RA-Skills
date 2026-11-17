@@ -1,40 +1,53 @@
-## Description: <br>
-DeepThink provides a structured analyze, plan, execute, and review workflow for complex reasoning tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepThink provides a Chinese-language structured reasoning workflow for analyzing complex problems, planning execution, and reviewing results.
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to structure complex problem solving, code review, architecture design, and strategic analysis before executing a plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: As an initial-release, low-trust publisher skill, users may have limited operational history to rely on. <br>
-Mitigation: Review the skill files and security summary before installation or deployment. <br>
-Risk: The documented script examples overstate the current command-line options. <br>
-Mitigation: Use the implemented positional modes shown by the script: analyze, plan, review, or full. <br>
+## Use Case:
 
+Developers, reviewers, and analysts use this skill to structure deeper thinking for complex technical problems, code reviews, architecture design, strategy analysis, and higher-impact decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxr-666/deepthink-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown-style text templates and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local template output only; the reviewed code does not access private data or the network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated reasoning may contain unsupported assumptions or content that should not be shared externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reasoning before relying on it or sharing it outside the working context.
+
+Risk: The documented CLI examples use flags that do not exactly match the script's actual positional arguments.
+
+Mitigation: Use the script's displayed positional command format when running it, or test commands locally before documenting them for others.
+
+## Reference(s):
+
+- [DeepThink ClawHub skill page](https://clawhub.ai/lxr-666/skills/deepthink-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script emits Chinese Markdown templates for analysis, planning, review, or a combined reasoning workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

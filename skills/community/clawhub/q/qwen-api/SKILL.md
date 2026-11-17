@@ -37,7 +37,7 @@ pip install -U openai
 ```python
 from openai import OpenAI
 client = OpenAI(
-    api_key="sk-your-dashscope-api-key",
+    api_key="REDACTED-SECRET",
     base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
 )
 response = client.chat.completions.create(

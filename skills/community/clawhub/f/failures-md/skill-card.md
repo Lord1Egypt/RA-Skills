@@ -1,39 +1,54 @@
-## Description: <br>
-A Markdown framework for AI agents to record, index, and review failure events so lessons from mistakes are retained alongside successful work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A framework for AI agents to systematically record, index, and review detailed failure events to improve memory accuracy and reduce survivor bias.
 
-## Publisher: <br>
-[Sly27](https://clawhub.ai/user/Sly27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sly27](https://clawhub.ai/user/sly27)
 
-## Use Case: <br>
-AI agents, developers, and operators use this skill to maintain a structured FAILURES.md journal, preserve debugging context, and review recurring failure patterns over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Failure journals can accidentally capture secrets, account identifiers, login-session details, or private project information. <br>
-Mitigation: Redact sensitive values before recording failures, and review FAILURES.md before sharing or committing it. <br>
-Risk: Bundled sample entries may be mistaken for facts about the user's own environment. <br>
-Mitigation: Remove or replace sample entries before adopting the journal for a real workspace. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to create and maintain a structured FAILURES.md log that captures failures, lessons, indexes, and recurring patterns for later review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates and structured journaling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local failure-recording framework; no executable code or network behavior is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Failure logs may accidentally capture secrets, session details, private customer data, or unreleased business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where a long-lived local failure log is acceptable, and redact credentials and sensitive details before writing entries.
+
+Risk: Failure records can preserve incomplete or misleading postmortems if they are not reviewed.
+
+Mitigation: Review entries periodically and update lessons or status when better information becomes available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sly27/skills/failures-md)
+- [FAILURES.md reference template](artifact/FAILURES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and failure-log template content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill guides creation, indexing, and review of local failure records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

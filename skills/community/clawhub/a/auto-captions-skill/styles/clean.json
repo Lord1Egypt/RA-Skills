@@ -1,0 +1,26 @@
+{
+ "about": "Subtitle look: sentence case on a soft dark band, up to 2 lines, low in the frame. YouTube, LinkedIn, podcasts, B2B, accessibility.",
+ "font": "Inter.ttf",
+ "weight": "SemiBold",
+ "size": 50,
+ "color": "#FFFFFF",
+ "box": {
+  "color": "#000000",
+  "alpha": 0.62,
+  "radius": 10,
+  "pad": [
+   18,
+   6
+  ]
+ },
+ "stroke": 0,
+ "words": 14,
+ "chars": 42,
+ "lines": 2,
+ "pause": 0.6,
+ "position": 0.86,
+ "position_tall": 0.72,
+ "max_width": 0.86,
+ "line_gap": 1.3,
+ "min_show": 0.8
+}

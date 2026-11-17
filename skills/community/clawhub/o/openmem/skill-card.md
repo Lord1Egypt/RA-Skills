@@ -1,42 +1,63 @@
-## Description: <br>
-SQLite long-term memory compression system for extended memory life. Adds tools for agents to control their memory functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQLite long-term memory compression system for extended memory life. Adds tools for agents to control their memory functions.
 
-## Publisher: <br>
-[danavfrost](https://clawhub.ai/user/danavfrost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danavfrost](https://clawhub.ai/user/danavfrost)
 
-## Use Case: <br>
-OpenClaw users and developers use OpenMem to preserve selected long-term memories across agent sessions, search them later, and inject top memories into new sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can install recurring automation that reads private session transcripts and may overwrite older session logs after compression. <br>
-Mitigation: Install only when persistent memory is intended; consider disabling the cron job, running compression with --no-wipe, and keeping backups of session logs. <br>
-Risk: Selected memories and the cache are stored locally in plaintext. <br>
-Mitigation: Avoid storing secrets or personal data, and review, protect, export, or delete the local database and cache as needed. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to persist durable preferences, facts, corrections, and project context across agent sessions, then surface relevant memories through MCP tools and bootstrap context.
 
-## Reference(s): <br>
-- [OpenMem ClawHub listing](https://clawhub.ai/danavfrost/openmem) <br>
-- [OpenMem database schema](references/schema.md) <br>
-- [OpenAuto integration](https://clawhub.ai/halthelobster/openauto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [MCP tool responses, CLI text, and Markdown bootstrap context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores selected memory records in a local SQLite database and plaintext cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and skill heading) <br>
+Risk: Compression reads full OpenClaw session transcripts and may pass excerpts through the configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when transcript processing is acceptable; avoid entering secrets in sessions that may be compressed and review extracted memories regularly.
+
+Risk: Default automation can overwrite older session transcripts after memories are confirmed.
+
+Mitigation: Use `--no-wipe` or skip the cron setup unless transcript replacement is explicitly desired.
+
+Risk: Selected memories and the bootstrap cache are stored in plaintext and injected into future sessions.
+
+Mitigation: Keep the memory directory access-restricted and delete or edit memories that should not persist.
+
+Risk: The setup flow registers persistent MCP, hook, and scheduled compression components.
+
+Mitigation: Run the uninstall script or remove the registered OpenClaw components when ongoing memory access is no longer needed.
+
+## Reference(s):
+
+- [OpenMem Database Schema](references/schema.md)
+- [OpenMem ClawHub Release](https://clawhub.ai/danavfrost/skills/openmem)
+- [OpenAuto Integration](https://clawhub.ai/halthelobster/openauto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown bootstrap context, JSON MCP tool responses, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores selected memories locally in SQLite and writes a plaintext cache used for bootstrap injection.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact version references)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

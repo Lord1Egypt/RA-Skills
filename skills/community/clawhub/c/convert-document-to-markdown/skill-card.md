@@ -1,41 +1,58 @@
-## Description: <br>
-Convert supported local files into Markdown by running this repository's Dockerized file-only CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts supported local files into Markdown through a Docker-only CLI that selects a fixed-version prebuilt Aliyun CR image by host architecture.
 
-## Publisher: <br>
-[kadbbz](https://clawhub.ai/user/kadbbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadbbz](https://clawhub.ai/user/kadbbz)
 
-## Use Case: <br>
-Developers and agents use this skill to convert supported local documents, images, and text files into Markdown for downstream processing. It is intended for file-based conversion through a Docker wrapper that returns Markdown, logs, and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a prebuilt Aliyun Docker image against local document folders. <br>
-Mitigation: Use it only when the image source is trusted, keep the mounted input folder limited to the target file, and review scan results before deployment. <br>
-Risk: Vision modes can pass VL API credentials and document content to a configured external provider. <br>
-Mitigation: Use scoped API keys, keep .env limited to VL settings, and prefer ocr or none mode when external processing is not approved. <br>
+## Use Case:
 
+Developers and agents use this skill to convert supported local documents and images into Markdown for downstream analysis or processing while preserving logs and metadata from the Dockerized CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kadbbz/convert-document-to-markdown) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Structured JSON by default, with converted Markdown in the markdown field and optional raw Markdown output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes logs and metadata when JSON output is used; requires Docker and VL configuration for vision modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs a third-party Docker image from the configured registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the image source is trusted, and review or pin the exact container digest before use.
+
+Risk: Local VL configuration and .env values can be passed into the container.
+
+Mitigation: Keep unrelated secrets out of the skill's .env file and prefer short-lived VL credentials.
+
+Risk: IMAGE_NAME or registry overrides can redirect execution to a different container image.
+
+Mitigation: Avoid image or registry overrides unless the replacement image is fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kadbbz/skills/convert-document-to-markdown)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or structured JSON containing markdown, logs, and metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Docker-only file command; supported inputs include PDF, Office Open XML, common image, text, JSON, XML, and Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

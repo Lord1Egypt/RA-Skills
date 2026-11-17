@@ -141,6 +141,7 @@ def batch_convert(input_dir: str, input_format: str, output_format: str) -> dict
 
 
 def main():
+    print("⚠️ [deprecated] format_converter 已合并到 python scripts/wps convert，旧脚本仍可用，将于 v6.0.0 移除", file=sys.stderr)
     parser = argparse.ArgumentParser(description="格式转换 v2.0")
     sub = parser.add_subparsers(dest="command", required=True)
 

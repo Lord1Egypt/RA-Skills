@@ -1,45 +1,55 @@
-## Description: <br>
-Create and manage AI agent tasks via Manus API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages autonomous Manus tasks through the Manus API, including task creation, status polling, and retrieval of generated files.
 
-## Publisher: <br>
-[mvanhorn](https://clawhub.ai/user/mvanhorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mvanhorn](https://clawhub.ai/user/mvanhorn)
 
-## Use Case: <br>
-Developers and agent users use this skill to create, monitor, and retrieve deliverables from Manus autonomous AI tasks through the Manus API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and files sent to Manus are handled by an external service. <br>
-Mitigation: Use the skill only for data Manus is approved to process, and avoid sending secrets or regulated information unless that use has been reviewed. <br>
-Risk: Shareable links and downloaded task outputs can expose or carry untrusted content. <br>
-Mitigation: Handle share links carefully, download outputs directly when needed, and review or scan files before opening or redistributing them. <br>
-Risk: The skill requires a Manus API key. <br>
-Mitigation: Store MANUS_API_KEY securely and avoid committing or sharing it in prompts, logs, or configuration files. <br>
+## Use Case:
 
+Developers and agent users use this skill to delegate research, document creation, coding, and other multi-step work to Manus, then poll task status and collect generated deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvanhorn/manus) <br>
-- [Manus API documentation](https://open.manus.ai/docs) <br>
-- [Manus documentation](https://manus.im/docs) <br>
-- [Manus homepage](https://manus.im) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MANUS_API_KEY and may download files produced by Manus tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Shareable Manus task links may expose task context or results beyond the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid shareable links unless access scope and duration are understood, and avoid using sensitive prompts or documents unless this risk is acceptable.
+
+Risk: Remote agent-generated files are downloaded locally with weak safeguards.
+
+Mitigation: Use a dedicated empty output directory and inspect downloaded files before opening, executing, or sharing them.
+
+## Reference(s):
+
+- [Manus API Reference](https://open.manus.ai/docs)
+- [Manus Docs](https://manus.im/docs)
+- [ClawHub Skill Page](https://clawhub.ai/mvanhorn/skills/manus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Files, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MANUS_API_KEY; may download remote Manus-generated output files locally.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Use the MemOS Lite memory system to search and use the user's past conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in searching and expanding MemOS Lite long-term conversation memory when prior user context is needed.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Agents use this skill to search, expand, and apply a user's long-term conversation history when the user asks about past chats, preferences, prior work, or other personal context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to retrieve privacy-sensitive long-term conversation history. <br>
-Mitigation: Install and use it only where the user expects memory recall, and treat retrieved memories as private context. <br>
-Risk: Retrieved memories may be unrelated or mixed with sensitive conversations in shared environments. <br>
-Mitigation: Avoid enabling the skill where unrelated users or sensitive conversations may be mixed, and review memory-derived context before relying on it. <br>
+## Use Case:
 
+Developers and agent users use this skill to help an agent retrieve relevant prior conversations, expand memory hits into task context, and decide when to use MemOS Lite memory tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy27725/memos-memory-guide-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agent use of memory_search, task_summary, skill_get, skill_install, memory_timeline, and memory_viewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can encourage broad retrieval and expansion of stored conversation history, which may expose private, business, credential, or sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and use memory retrieval only when prior conversation context is expected and appropriate.
+
+Risk: The artifact describes installing learned skills for future use without explicit approval language.
+
+Mitigation: Require explicit user or administrator approval before installing persistent skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/memos-memory-guide-local)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with tool-call recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt the agent to retrieve stored conversation memories and expand relevant hits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,65 @@
-## Description: <br>
-Generate images and videos via ComfyUI on local GPU. Supports Flux text-to-image, Wan2.1 text-to-video, and image-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos via ComfyUI on local GPU. Supports Flux text-to-image, Wan2.1 text-to-video, and image-to-video.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Developers and creators use this skill to generate local GPU images and short video frame sequences through a ComfyUI server. It supports text-to-image, text-to-video, and image-to-video workflows with configurable prompts, sizes, seeds, model names, and output paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing the ComfyUI URL to a remote server can send prompts and image-to-video input images to that server. <br>
-Mitigation: Keep COMFYUI_URL on 127.0.0.1 unless the remote server is explicitly trusted. <br>
-Risk: Large model downloads, GPU workloads, and a user-level background service can consume significant local resources. <br>
-Mitigation: Install only on an intended local GPU host, review model sources, and monitor disk, GPU memory, and service configuration. <br>
+## Use Case:
 
+Developers and creative technologists use this skill to generate local Flux images and Wan2.1 text-to-video or image-to-video outputs through an existing ComfyUI GPU server.
 
-## Reference(s): <br>
-- [ComfyUI Image & Video Generation on ClawHub](https://clawhub.ai/vincentlau2046-sudo/comfyui-image-video) <br>
-- [ComfyUI + Flux model reference](references/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Generated PNG images or PNG frame sequences with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, a local ComfyUI service, local model files, and sufficient GPU memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote or malicious ComfyUI endpoints could receive prompts, input images, or workflow data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local ComfyUI server and avoid setting COMFYUI_URL or --url to remote hosts.
+
+Risk: Input image handling may copy sensitive files into the ComfyUI input directory.
+
+Mitigation: Do not process sensitive source images unless that local copy behavior is acceptable.
+
+Risk: Unsafe file path handling could expose local files or write outputs outside expected locations.
+
+Mitigation: Run under an unprivileged account, use cautious input and output paths, and add filename containment checks before broader deployment.
+
+Risk: Unpinned dependencies or model downloads can change over time.
+
+Mitigation: Prefer pinned commits and verified model checksums during installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/skills/comfyui-image-video)
+- [ComfyUI repository](https://github.com/comfyanonymous/ComfyUI.git)
+- [ComfyUI and Flux model reference](artifact/references/models.md)
+- [PyTorch CUDA wheel index](https://download.pytorch.org/whl/cu128)
+- [Hugging Face mirror endpoint](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [PNG image files or directories of PNG video frames, with terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted local ComfyUI server and installed model assets; video frame sequences may require separate MP4 post-processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

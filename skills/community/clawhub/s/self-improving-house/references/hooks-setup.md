@@ -19,7 +19,7 @@ Create `.claude/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "sensor|actuator|automation|iot|scene|device|home.?assistant",
         "hooks": [
           {
             "type": "command",

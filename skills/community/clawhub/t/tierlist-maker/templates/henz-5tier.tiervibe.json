@@ -1,0 +1,52 @@
+{
+  "title": "从夯到拉 — 示例榜单",
+  "bgBrightness": 50,
+  "layoutMode": "horizontal",
+  "tiers": [
+    {
+      "name": "夯",
+      "color": "#FF0000",
+      "fontSize": 72,
+      "cards": [
+        { "type": "text", "text": "第一名", "textColor": "#ffffff", "bgColor": "#e11d48", "detail": "毫无争议的顶级。各方面都最稳。" }
+      ]
+    },
+    {
+      "name": "顶级",
+      "color": "#FFC000",
+      "fontSize": 56,
+      "cards": [
+        { "type": "text", "text": "第二名", "textColor": "#1f1f1f", "bgColor": "#fbbf24", "detail": "很强,但比夯差一点点。" }
+      ]
+    },
+    {
+      "name": "人上人",
+      "color": "#FFFF00",
+      "fontSize": 36,
+      "cards": [
+        { "type": "text", "text": "第三名", "detail": "中上水平,日常够用。" }
+      ]
+    },
+    {
+      "name": "NPC",
+      "color": "#FFF2CC",
+      "fontSize": 48,
+      "cards": [
+        { "type": "text", "text": "第四名", "detail": "平庸,没什么亮点也没什么大错。" }
+      ]
+    },
+    {
+      "name": "拉完了",
+      "color": "#FFFFFF",
+      "fontSize": 36,
+      "cards": [
+        { "type": "text", "text": "垫底", "textColor": "#1f1f1f", "bgColor": "#9ca3af", "detail": "不推荐,问题不少。" }
+      ]
+    }
+  ],
+  "candidates": [
+    { "type": "text", "text": "待定项 A", "detail": "" },
+    { "type": "text", "text": "待定项 B", "detail": "" },
+    { "type": "text", "text": "待定项 C", "detail": "" }
+  ]
+}

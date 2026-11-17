@@ -1,42 +1,50 @@
-## Description: <br>
-MiniMax Token Plan quota query tool for checking MiniMax API usage, remaining quota, and reset timing across M2.7 text, image-01 image, Hailuo video, music-2.5 music, and speech models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries MiniMax Token Plan usage, remaining quota, and reset timing for supported text, image, video, music, and speech models.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Developers and API operators use this skill to check MiniMax Token Plan usage, remaining quota, and reset windows from a provided MiniMax API key. It is most relevant when a user asks about MiniMax quota, Token Plan balance, or model usage limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a MiniMax API key as a bearer token to the MiniMax quota endpoint. <br>
-Mitigation: Use MINIMAX_API_KEY from a trusted environment or secret store and allow the network call only for MiniMax quota requests. <br>
-Risk: Passing the API key on the command line may expose it through shell history or process listings. <br>
-Mitigation: Prefer the documented environment variable flow instead of command-line arguments. <br>
+## Use Case:
 
+Developers and MiniMax API users use this skill to query Token Plan quotas and understand remaining capacity and reset timing before running text, image, video, music, or speech workloads.
 
-## Reference(s): <br>
-- [MiniMax quota remains endpoint](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains) <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/minimax-quota) <br>
-- [Publisher profile](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided MiniMax API key, preferably from MINIMAX_API_KEY or a trusted secret store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: MiniMax API keys may be exposed if pasted directly into shell commands, logs, shared transcripts, or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MINIMAX_API_KEY from a protected environment or secret manager, avoid command-line key arguments, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [MiniMax Token Plan remains API endpoint](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains)
+- [ClawHub release page](https://clawhub.ai/hongjiahao371-pixel/skills/minimax-quota)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text quota output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a MiniMax API key supplied as an argument or through MINIMAX_API_KEY; the script prints formatted quota summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

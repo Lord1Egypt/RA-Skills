@@ -1,40 +1,52 @@
-## Description: <br>
-Query Prometheus metrics, alerts, and cluster status using PromQL with options for direct URL or Kubernetes port-forward access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Prometheus monitoring metrics, alerts, and cluster status using PromQL with options for direct URL or Kubernetes port-forward access.
 
-## Publisher: <br>
-[peintune](https://clawhub.ai/user/peintune) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[peintune](https://clawhub.ai/user/peintune)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations engineers use this skill to inspect Prometheus metrics, alerts, and service health through direct Prometheus access or a Kubernetes port-forward.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prometheus metrics and alert labels can expose infrastructure details.
+
+Mitigation: Use scoped Prometheus access and only provide endpoints the agent is authorized to inspect.
+
+Risk: Queries can target arbitrary Prometheus URLs supplied at runtime.
+
+Mitigation: Review the Prometheus endpoint and PromQL before execution, especially in shared or production environments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations engineers use this skill to query Prometheus for alerts, cluster health, nginx metrics, and custom PromQL results from a chosen Prometheus endpoint. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Metric labels and alert annotations may expose sensitive infrastructure details. <br>
-Mitigation: Only query trusted Prometheus endpoints and review outputs before sharing them outside the intended operational context. <br>
-Risk: A kubectl port-forward can connect to an unintended namespace or service if copied without checking the target. <br>
-Mitigation: Verify the namespace and service name before running the port-forward command. <br>
+**Output Format:** [Plain text with optional shell commands and PromQL snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peintune/prometheus-query) <br>
+**Other Properties Related to Output:** [Formatted Prometheus metric, range-query, or alert results; matrix responses show the first five points per series.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text metric results and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prometheus endpoint, query, time range, step, and timeout are user-selected.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

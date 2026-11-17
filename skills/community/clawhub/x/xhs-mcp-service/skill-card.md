@@ -1,45 +1,59 @@
-## Description: <br>
-Xhs Mcp Service provides a local MCP server that lets agents search Xiaohongshu content, inspect login status, manage session cookies, interact with posts, and publish image or video notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Mcp Service provides a local MCP service for automating Xiaohongshu/RED account actions such as login checks, content search, engagement, comments, and image or video publishing.
 
-## Publisher: <br>
-[jackydai-bc](https://clawhub.ai/user/jackydai-bc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackydai-bc](https://clawhub.ai/user/jackydai-bc)
 
-## Use Case: <br>
-Developers and external agent users use this skill to connect an MCP client to a local Xiaohongshu automation service for content discovery, account interaction, and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes live Xiaohongshu account actions such as posting, commenting, liking, favoriting, deleting cookies, and running examples or tests. <br>
-Mitigation: Add an explicit confirmation step before any account-changing action or example/test script execution. <br>
-Risk: The service can be bound broadly and expose account automation outside the local machine. <br>
-Mitigation: Run it only on a machine and network you control, and bind the service to localhost rather than 0.0.0.0. <br>
-Risk: The saved cookies file can provide account access if disclosed. <br>
-Mitigation: Protect data/cookies.json like a password and remove or rotate it when access is no longer needed. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to a local Xiaohongshu MCP service for account automation workflows, including search, profile lookup, engagement actions, comments, and publishing after manual review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jackydai-bc/xhs-mcp-service) <br>
-- [Publisher Profile](https://clawhub.ai/user/jackydai-bc) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [Puppeteer Documentation](https://pptr.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Xiaohongshu account actions through a separately running local MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version, package.json) <br>
+Risk: The local service can control a real Xiaohongshu account, including publishing, commenting, liking, favoriting, and uploading local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review before any account-changing action or upload, and limit use to trusted operators.
+
+Risk: Weak local-network controls could expose the MCP service beyond the intended machine.
+
+Mitigation: Bind the service to localhost and add authentication, firewall isolation, or equivalent network restrictions.
+
+Risk: Stored cookies can grant account access if exposed.
+
+Mitigation: Keep cookies.json private, restrict filesystem permissions, rotate login state when needed, and avoid running the service as admin or root.
+
+## Reference(s):
+
+- [Xhs Mcp Service on ClawHub](https://clawhub.ai/jackydai-bc/skills/xhs-mcp-service)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Puppeteer documentation](https://pptr.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and JavaScript examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands or scripts that control a real Xiaohongshu account through a local MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

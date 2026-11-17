@@ -1,38 +1,52 @@
-## Description: <br>
-A minimal but concrete diagnostic skill used to verify whether ClawHub publish and install return the same SKILL.md content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A minimal but concrete diagnostic skill used to verify whether ClawHub publish and install return the same SKILL.md content.
 
-## Publisher: <br>
-[miniade](https://clawhub.ai/user/miniade) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[miniade](https://clawhub.ai/user/miniade)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and release maintainers use this skill as a controlled diagnostic fixture to manually verify that an installed SKILL.md matches the freshly published ClawHub content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake this diagnostic fixture for a production workflow.
+
+Mitigation: Use it only to verify installed SKILL.md marker text against the published content, and do not rely on it for broader registry or install validation.
+
+Risk: Manual marker checks can miss stale or mismatched content if the expected phrases are not reviewed exactly.
+
+Mitigation: Compare the installed SKILL.md against the expected marker and phrases before treating the publish/install consistency check as successful.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release maintainers use this skill to check whether a ClawHub install or update returns the same SKILL.md content that was published. It is a diagnostic fixture for investigating publish, cache, registry, or install consistency. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a diagnostic fixture rather than a production workflow skill, so it may not be useful outside ClawHub publish and install consistency checks. <br>
-Mitigation: Install and use it only when testing ClawHub registry behavior or inspecting whether installed SKILL.md content matches the published copy. <br>
+**Output Format:** [Markdown instructions with marker text to verify manually]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miniade/clawhub-publish-debug-skill) <br>
+**Other Properties Related to Output:** [Produces manual verification guidance only; it does not execute commands or automate validation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown checklist and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool calls, or external service access are performed by the skill content.] <br>
+0.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-提供合规的国家免费教育平台资源下载方案，辅助配置开源工具，实现半自动个人学习用途下载，不涉及生成爬虫代码。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for using existing tools and AI-assisted configuration to download free education-platform resources for personal study without generating crawler code.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Learners, educators, and developers use this skill to choose and configure existing tools for personal offline access to permitted education resources from supported Chinese education platforms. It provides setup guidance, troubleshooting prompts, and compliance reminders rather than complete crawler code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used to support bulk downloading or bypass-style troubleshooting on education platforms. <br>
-Mitigation: Use it only for content you are clearly allowed to download, prefer official offline or export features, and do not use cookie handling, User-Agent changes, m3u8 extraction, or rate-limit troubleshooting to bypass platform rules or access controls. <br>
-Risk: Recommended third-party download tools may introduce their own operational or security risks. <br>
-Mitigation: Verify any external tool before running it, review its source or reputation, and avoid sharing account cookies, sessions, or credentials. <br>
+## Use Case:
 
+Learners, educators, and developers use this skill to plan personal, educational downloads from Chinese free education platforms, configure third-party download tools, and troubleshoot setup issues. The artifact limits use to personal learning, classroom education, and academic research, and warns against redistribution, commercial use, aggressive crawling, or platform disruption.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/edu-resource-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/smseow001) <br>
-- [国家中小学智慧教育平台](https://basic.smartedu.cn) <br>
-- [学堂在线](https://www.xuetangx.com) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [JDownloader](https://jdownloader.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with tables, prompt templates, and inline shell or batch script examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not include executable automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide bulk downloading, stream capture, or login-cookie workflows on education platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official download features first, keep activity within platform terms, avoid bypassing restrictions, and do not share cookies, login tokens, or downloaded materials.
+
+Risk: The skill recommends installing third-party download tools and dependencies.
+
+Mitigation: Verify each tool's source, version, license, and dependency chain before running install commands or scripts locally.
+
+Risk: Generated commands or batch scripts may cause excessive requests or account restrictions if used without rate limits.
+
+Mitigation: Keep concurrency low, respect rate limits, stop on access errors, and prefer manual or platform-provided download methods when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/edu-resource-downloader)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+- [National Smart Education Platform for Primary and Secondary Schools](https://basic.smartedu.cn)
+- [XuetangX](https://www.xuetangx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, setup steps, configuration notes, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational guidance; may include Windows batch script examples and troubleshooting prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

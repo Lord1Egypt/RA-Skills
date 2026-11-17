@@ -1,45 +1,62 @@
-## Description: <br>
-Intelligent speech-to-text using local OpenAI Whisper for transcribing audio files, voice messages, spoken content, and speech input in 99+ languages with automatic Whisper model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent speech-to-text using local OpenAI Whisper with smart model selection for transcribing audio files without an API key.
 
-## Publisher: <br>
-[08jacky04](https://clawhub.ai/user/08jacky04) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[08jacky04](https://clawhub.ai/user/08jacky04)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe local audio files into text, optionally with language hints, segment timestamps, and automatic Whisper model selection for speed or accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled installer can modify the host Python environment if virtual environment creation fails. <br>
-Mitigation: Install and run the skill only inside an isolated virtual environment, and avoid running the bundled installer against managed or system Python. <br>
-Risk: Offline and privacy claims are overstated before dependencies and Whisper model weights have been downloaded. <br>
-Mitigation: Plan for network access during installation and first model download, then verify offline behavior before processing sensitive audio. <br>
-Risk: The transcribe script adds fallback import paths under /tmp before importing dependencies. <br>
-Mitigation: Remove or review the /tmp import fallback and pin dependencies before using the skill in sensitive environments. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to transcribe local audio files, voice messages, meetings, and multilingual speech into text. It can choose a Whisper model automatically based on audio duration and complexity, or use a caller-selected model and language hint.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/08jacky04/smart-voice-recognition) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [python-soundfile](https://python-soundfile.readthedocs.io/) <br>
-- [PyTorch](https://pytorch.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript with optional timestamped segment lines or a saved transcript file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local audio file path; first use may download Whisper model weights and Python packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Security evidence marks the release suspicious because installation and runtime behavior are broader and less safely scoped than the privacy/offline wording suggests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment, use an isolated virtual environment, pin reviewed dependency versions, and avoid the bundled install fallback on sensitive or shared systems.
+
+Risk: The skill depends on external package and model downloads during setup or first use.
+
+Mitigation: Install only from reviewed package sources and prefetch or approve model artifacts before use in controlled environments.
+
+Risk: Runtime imports can use a /tmp/whisper-venv site-packages path if present.
+
+Mitigation: Remove or review the /tmp/whisper-venv sys.path behavior before use on sensitive machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/08jacky04/skills/smart-voice-recognition)
+- [Artifact README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [SoundFile Documentation](https://python-soundfile.readthedocs.io/)
+- [PyTorch](https://pytorch.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Plain text transcript, optionally saved as a text file; usage guidance is Markdown with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include segment-level timestamps on stderr when requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

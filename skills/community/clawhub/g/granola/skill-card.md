@@ -1,44 +1,58 @@
-## Description: <br>
-Access Granola meeting transcripts and notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Granola meeting transcripts and notes.
 
-## Publisher: <br>
-[scald](https://clawhub.ai/user/scald) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[scald](https://clawhub.ai/user/scald)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to sync Granola meeting history from a signed-in macOS desktop session into local files for review, search, and downstream agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sync script uses the user's signed-in Granola desktop session token to download meeting history. <br>
-Mitigation: Install only when comfortable with this access pattern, keep the Granola desktop session under the intended user account, and review the script before running it. <br>
-Risk: Synced transcripts, notes, attendee metadata, and raw document data may contain sensitive meeting information. <br>
-Mitigation: Store the output directory in a protected location and avoid syncing it to untrusted backups, shared folders, or multi-user locations. <br>
-Risk: Automated cron sync can continue downloading new meeting data in the background. <br>
-Mitigation: Enable the cron job only when ongoing background updates are intended and disable it when continuous syncing is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Granola homepage](https://granola.ai) <br>
-- [Granola API endpoint used by the sync script](https://api.granola.ai/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/scald/granola) <br>
-- [Publisher profile](https://clawhub.ai/user/scald) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to sync Granola meeting transcripts, notes, summaries, and metadata to local files for search and review.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Local Markdown and JSON meeting files plus Markdown setup and search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, macOS Granola desktop sign-in, and access to the local Granola auth file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sync uses Granola app tokens to download private meeting content in bulk.
+
+Mitigation: Run it only after review, keep the output in a protected local directory, and avoid shared or synced folders unless sharing is intended.
+
+Risk: The optional cron configuration can continue syncing meeting data in the background.
+
+Mitigation: Skip or remove the cron job if ongoing background sync is not desired.
+
+Risk: Meeting transcript and metadata files may contain sensitive attendee, calendar, and meeting information.
+
+Mitigation: Restrict local file permissions and control access to the selected output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scald/skills/granola)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/scald)
+- [Granola](https://granola.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and configuration snippets; sync output writes JSON and Markdown meeting files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a signed-in Granola desktop app on macOS; optional recurring sync writes meeting data to a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

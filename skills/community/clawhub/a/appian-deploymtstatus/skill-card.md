@@ -1,42 +1,54 @@
-## Description: <br>
-Check the status of an Appian deployment by UUID and optionally download its artifacts (log, package ZIP). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks the status of an Appian deployment by UUID and can optionally poll and download deployment log or package ZIP artifacts.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and release engineers use this skill to monitor Appian deployment progress after export or deployment workflows and to retrieve deployment logs or package ZIP artifacts when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional artifact downloads may write outside the intended exports folder if the Appian response supplies a crafted filename. <br>
-Mitigation: Avoid --download-log and --download-zip until filename handling is fixed, or use them only with a trusted Appian tenant and reviewed deployment responses. <br>
-Risk: The skill requires an Appian API key and tenant URL. <br>
-Mitigation: Use a least-privilege Appian API key and set APPIAN_BASE_URL only to a trusted Appian tenant. <br>
+## Use Case:
 
+Developers and release engineers use this skill after Appian export or deployment operations to monitor deployment status and retrieve deployment artifacts when needed.
 
-## Reference(s): <br>
-- [Appian Deployment Results API](https://docs.appian.com/suite/help/25.4/Get_Deployment_Results_API.html) <br>
-- [ClawHub skill page](https://clawhub.ai/solarspiker/appian-deploymtstatus) <br>
-- [solarspiker publisher profile](https://clawhub.ai/user/solarspiker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Console text with optional downloaded log or ZIP files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; optional wait and download flags control polling and artifact retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence and script header) <br>
+Risk: Optional artifact downloads may send the Appian API key to URLs returned by the deployment API before those URLs are origin-validated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted Appian base URL with a tightly scoped Appian API key, and avoid --download-log or --download-zip until artifact URL origin validation is added.
+
+Risk: Downloaded artifact filenames may not be safely contained under the advertised export directory.
+
+Mitigation: Avoid download flags until filenames are sanitized and writes are constrained to ~/appian-exports/.
+
+## Reference(s):
+
+- [Appian Deployment Results API](https://docs.appian.com/suite/help/25.4/Get_Deployment_Results_API.html)
+- [ClawHub skill page](https://clawhub.ai/solarspiker/skills/appian-deploymtstatus)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text deployment status output with optional downloaded log or ZIP files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; optional downloads are intended for ~/appian-exports/.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and script annotation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

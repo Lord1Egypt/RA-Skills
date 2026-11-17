@@ -1,42 +1,51 @@
-## Description: <br>
-OSPF protocol analysis with adjacency diagnosis, area design validation, LSA interpretation, and SPF convergence assessment, with multi-vendor coverage for Cisco IOS-XE, Juniper JunOS, and Arista EOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OSPF protocol analysis with adjacency diagnosis, area design validation, LSA interpretation, and SPF convergence assessment.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill to investigate OSPF adjacency failures, validate area design, interpret LSAs and LSDB health, and assess SPF convergence across Cisco IOS-XE, Juniper JunOS, and Arista EOS environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Router command output can include network topology, addressing, or operational details. <br>
-Mitigation: Use read-only credentials where possible and share only the router output needed for diagnosis. <br>
-Risk: Some recommended remediations, such as clearing OSPF, changing MTU handling, configuring virtual links, or changing redistribution filters, can disrupt routing. <br>
-Mitigation: Treat remediation commands as change-control actions that require explicit approval, an appropriate maintenance window, and a rollback plan. <br>
+## Use Case:
 
+Network engineers and operations teams use this skill to diagnose OSPF adjacency, area design, LSDB, routing, and SPF convergence issues across Cisco IOS-XE, Juniper JunOS, and Arista EOS environments.
 
-## Reference(s): <br>
-- [OSPF CLI Reference - Cisco / JunOS / EOS](references/cli-reference.md) <br>
-- [OSPF Neighbor Finite State Machine (FSM)](references/state-machine.md) <br>
-- [ClawHub release page](https://clawhub.ai/vahagn-madatyan/ospf-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with read-only network diagnostic commands and structured analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic reasoning and recommended next checks; does not execute device changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review flags a disruptive OSPF reset recommendation despite the skill being labeled read-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval and a maintenance or emergency-change context before any OSPF process reset is run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/ospf-analysis)
+- [OSPF CLI Reference](references/cli-reference.md)
+- [OSPF Neighbor Finite State Machine](references/state-machine.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with read-only network diagnostic commands and structured findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces diagnostic reasoning, prioritized recommendations, and an OSPF analysis report template.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "微信搜一搜视频搜索 - API出参",
-    "description": "微信搜一搜视频搜索实时搜索视频, API出参Schema详解",
+    "title": "微信搜一搜视频搜索 - 结果条目",
+    "description": "success 时 results 数组中的单条视频字段。完整 stdout 见 output_envelope.schema.json。当前后端未返回可打开的 url，仅有 docid/exportid 等标识。",
     "properties": {
         "docid": {
             "type": "string",
@@ -30,7 +30,11 @@
         },
         "pubtime": {
             "type": "number",
-            "description": "微信视频发布时间时间戳"
+            "description": "微信视频发布时间时间戳（秒）"
+        },
+        "pubtime_str": {
+            "type": "string",
+            "description": "发布时间北京时间字符串，如 2026/9/4 20:13:20"
         },
         "author_name": {
             "type": "string",

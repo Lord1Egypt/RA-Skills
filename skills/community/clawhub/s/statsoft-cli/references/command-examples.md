@@ -1,20 +1,19 @@
-# 命令调用示例 / Command Invocation Examples
+# Command Invocation Examples
 
-> 本文档由 SKILL.md 精简时拆出，包含各统计软件的 CLI 调用命令示例。
-> This document contains CLI command invocation examples for each statistical software.package.
+> This document contains CLI command invocation examples for each statistical software package.
 
 ---
 
-## 目录 / Table of Contents
+## Table of Contents
 
-1. [R 命令示例](#r)
-2. [SPSS 命令示例](#spss)
-3. [Stata 命令示例](#stata)
-4. [SAS 命令示例](#sas)
-5. [JMP 命令示例](#jmp)
-6. [GraphPad Prism 命令示例](#graphpad)
-7. [Stat/Transfer 命令示例](#stattranfer)
-8. [其他软件](#others)
+1. [R](#r)
+2. [SPSS](#spss)
+3. [Stata](#stata)
+4. [SAS](#sas)
+5. [JMP](#jmp)
+6. [GraphPad Prism](#graphpad)
+7. [Stat/Transfer](#stattranfer)
+8. [Other software](#others)
 9. [JAGS](#jags)
 10. [SHAZAM](#shazam)
 11. [OxMetrics](#oxmetrics)
@@ -33,23 +32,24 @@
 
 ## R
 
-### 基本运行
+### Basic run
 
 ```bash
-# 运行 R 脚本
+# Run R script
 Rscript --vanilla "script.R"
 
-# 使用 R CMD BATCH（生成 .Rout 文件）
+# Use R CMD BATCH (generates .Rout file)
 R CMD BATCH "script.R" "output.Rout"
 ```
 
-### 静默安装包
+### Package installation (requires explicit user confirmation before network download/install)
 
 ```bash
-Rscript -e "install.packages('pkg', repos='https://cran.r-project.org', quiet=TRUE)"
+# Downloads from CRAN and modifies the local R environment; requires explicit user confirmation before running — do not install without it
+Rscript -e "install.packages('pkg', repos='https://cran.r-project.org')"
 ```
 
-### 批处理脚本模板
+### Batch script template
 
 ```r
 # script.R
@@ -64,16 +64,16 @@ write.csv(result$coefficients, "results.csv", row.names=FALSE)
 save(result, file="results.RData")
 ```
 
-### 常见场景
+### Common scenarios
 
 ```bash
-# 读取 SPSS .sav 文件
+# Read SPSS .sav file
 Rscript -e "library(haven); df <- read_sav('data.sav'); print(head(df))"
 
-# 生成 HTML 报告
+# Generate HTML report
 Rscript -e "rmarkdown::render('report.Rmd', output_file='report.html')"
 
-# 大数据处理
+# Large data processing
 Rscript -e "library(arrow); df <- read_parquet('big_data.parquet'); print(dim(df))"
 ```
 
@@ -81,54 +81,54 @@ Rscript -e "library(arrow); df <- read_parquet('big_data.parquet'); print(dim(df
 
 ## SPSS
 
-### 🎯 使用建议 / Usage Recommendation
+### 🎯 Usage Recommendation
 
-> **日常跑复杂语法** → **用方案 1**（`stats.com` + `.spj`，万无一失）
+> **For daily complex syntax runs** → **use Approach 1** (`stats.com` + `.spj`, foolproof)
 >
-> **方案 2**（Python 内部驱动）**只能跑纯分析语法**，**不能包含**以下命令：
+> **Approach 2** (internal Python driver) **can only run pure analysis syntax** and **must not contain** the following commands:
 > - ❌ `OUTPUT SAVE`
 > - ❌ `OUTPUT EXPORT` / `OUTPUT DISPLAY`
 > - ❌ `HOST COMMAND`
-> - ❌ `XDATA` / `XSAVE`（涉及 OUTPUT 对象时）
+> - ❌ `XDATA` / `XSAVE` (when OUTPUT objects are involved)
 >
-> —— 遇到不确定是否涉及 OUTPUT/SAVE 的命令时，统一走方案 1（`.spj`）更安全。
+> — When unsure whether a command involves OUTPUT/SAVE, use Approach 1 (`.spj`) for safety.
 
 ---
 
-### ⭐ 首选方式（完全无闪屏）
+### ⭐ Preferred approach (completely splash-free)
 
-通过 SPSS 内置 Python 的 `spss` 模块直接运行：
+Run directly through the SPSS built-in Python `spss` module:
 
 ```bash
-# 通过 spss_helper.py 调用
+# Invoke via spss_helper.py
 "C:\Program Files\IBM\SPSS\Statistics\XX\Python3\python.exe" \
   "C:\path\to\statsoft-cli\windows-only\SPSS\spss_helper.py" \
   run-internal "C:\path\to\syntax.sps"
 ```
 
-**调用链路**：
+**Call chain**:
 ```
-AI Agent (Bash 工具)
+AI Agent (Bash tool)
   → python.exe spss_helper.py run-internal <sps_file>
       → subprocess.run([stats_python_path, helper_script], creationflags=0x08000000)
-          → SPSS 后台执行（零窗口）
+          → SPSS runs in background (zero window)
 ```
 
-### 备用方式
+### Fallback approach
 
-通过 `stats.com`（控制台版）运行 .spj 文件（完全无闪屏）：
+Run the .spj file via `stats.com` (console version, completely splash-free):
 
 ```bash
 "C:\Program Files\IBM\SPSS\Statistics\XX\stats.com" -production silent -nologo "job.spj"
 ```
 
-或使用 `stats.exe`（GUI 版，可能有闪屏）：
+Or use `stats.exe` (GUI version, may show a splash screen):
 
 ```bash
 "C:\Program Files\IBM\SPSS\Statistics\XX\stats.exe" -production "job.spj" silent -nologo
 ```
 
-### .spj 文件 XML 结构
+### .spj file XML structure
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -141,46 +141,46 @@ AI Agent (Bash 工具)
      xsi:schemaLocation="http://www.ibm.com/software/analytics/spss/xml/production 
      http://www.ibm.com/software/analytics/spss/xml/production/production-1.4.xsd">
   <locale charset="UTF-8" country="CN" language="zh"/>
-  <output outputFormat="viewer" outputPath="输出文件.spv"/>
-  <syntax syntaxPath="语法文件.sps"/>
+  <output outputFormat="viewer" outputPath="output.spv"/>
+  <syntax syntaxPath="syntax.sps"/>
 </job>
 ```
 
-**关键**：`<output>` 元素不能缺少，否则会报 NullPointerException
+**Key**: the `<output>` element must not be omitted, otherwise a NullPointerException is thrown.
 
-### 自动化 Python 脚本（完全无 GUI）
+### Automated Python script (completely GUI-free)
 
 ```python
 import sys, os
 
-# 1. 配置路径
+# 1. Configure paths
 spss_python_path = r"C:\Program Files\IBM\SPSS\Statistics\XX\Python3\python.exe"
-sps_file = r"项目目录\analysis.sav"
-output_sav = r"项目目录\results.sav"
+sps_file = r"project\analysis.sav"
+output_sav = r"project\results.sav"
 
-# 2. 生成 SPSS 语法
+# 2. Generate SPSS syntax
 sps_syntax = """
 GET FILE='data.sav'.
 COMPUTE new_var = var1 + var2.
 SAVE OUTFILE='{out}'.
 """.format(out=output_sav.replace("\\", "/"))
 
-# 3. 通过 SPSS 内置 Python 运行（完全无 GUI）
+# 3. Run via SPSS built-in Python (completely GUI-free)
 spss_pkg = os.path.join(os.path.dirname(spss_python_path), "Lib", "site-packages")
 sys.path.insert(0, spss_pkg)
 
 import spss
 spss.StartSPSS()
-print("SPSS 处理器已启动（无 GUI）")
+print("SPSS processor started (no GUI)")
 
-# 提交语法
+# Submit syntax
 spss.Submit(sps_syntax)
-print("语法执行完成")
+print("Syntax executed")
 
 spss.StopSPSS()
-print("SPSS 处理器已停止")
+print("SPSS processor stopped")
 
-# 4. 读取结果（使用 Anaconda Python 的 pyreadstat）
+# 4. Read results (using Anaconda Python's pyreadstat)
 import pyreadstat
 df, meta = pyreadstat.read_sav(output_sav)
 print(df.head())
@@ -190,54 +190,51 @@ print(df.head())
 
 ## SPSS Modeler
 
-### 批处理执行 .str 流文件
+### Batch execute .str stream file
 
 ```powershell
-# 通过 statsoft-modeler CLI
+# Via statsoft-modeler CLI
 statsoft-modeler run "C:\path\to\churn_model.str"
 
-# 或直接调用 clemb.exe
+# Or call clemb.exe directly
 & "C:\Program Files\IBM\SPSS\Modeler\18.0\bin\clemb.exe" -local -stream "churn_model.str" -log "run.log" -execute
 ```
 
-### Python 脚本模式（推荐）
+### Python script mode (recommended)
 
 ```powershell
-# 执行 Python 脚本（在 Modeler 会话中运行）
+# Run Python script (within Modeler session)
 statsoft-modeler run-script "C:\path\to\train_model.py"
 
-# 等价于 clemb 命令
+# Equivalent to clemb command
 & "C:\Program Files\IBM\SPSS\Modeler\18.0\bin\clemb.exe" -local `
     -script "train_model.py" -scriptlang python `
     -log "train.log" -execute
 ```
 
-### 服务器模式（需 Modeler Server）
+### Remote Modeler Server mode (not supported)
 
-```powershell
-statsoft-modeler server-run "stream.str" -hostname modeler-srv -port 80 `
-    -username admin -password secret
-```
+> ⚠️ This skill does NOT support remote Modeler Server execution. `statsoft-modeler` provides LOCAL (`-local`) mode only — there is no `server-run` subcommand, and the skill never initiates remote connections or handles remote credentials.
 
-### Python 脚本示例（在 Modeler 中运行）
+### Python script example (run within Modeler)
 
 ```python
-# train_model.py — SPSS Modeler Python 脚本
+# train_model.py — SPSS Modeler Python script
 import modeler.api
 
-# 获取当前会话
+# Get current session
 session = modeler.api.GetSession()
 
-# 加载流文件
+# Load stream file
 stream = session.LoadStream("churn_model.str")
 
-# 设置参数
+# Set parameters
 stream.SetVariable("data_path", "C:/data/customer.csv")
 
-# 执行流
+# Execute stream
 stream.Execute()
 
-# 导出结果
+# Export results
 output_node = stream.FindNode("table_output")
 output_node.Export("C:/output/results.csv")
 ```
@@ -246,16 +243,16 @@ output_node.Export("C:/output/results.csv")
 
 ## Stata
 
-### ⚠️ 版本与参数对照表
+### ⚠️ Version and parameter reference table
 
-| 版本 | Windows 静默参数 | Mac/Linux 静默参数 |
+| Version | Windows silent flag | Mac/Linux silent flag |
 |------|-----------------|-------------------|
 | **Stata ≤ 12** | `StataMP /e do "script.do"` | `stata-mp -e do "script.do"` |
 | **Stata ≥ 13** | `StataMP /b do "script.do"` | `stata-mp -b do "script.do"` |
 
-**关键**：Stata 12 用 `-e`，Stata 13+ 用 `-b`。用错版本参数会弹确认框！
+**Key**: Stata 12 uses `-e`, Stata 13+ uses `-b`. Using the wrong version parameter triggers a confirmation dialog!
 
-### 基本批处理示例
+### Basic batch example
 
 ```bash
 # Stata 13+ (Windows)
@@ -264,26 +261,26 @@ output_node.Export("C:/output/results.csv")
 # Stata 13+ (Mac/Linux)
 stata-mp -b do "script.do"
 
-# Stata 12 及更早 (Windows) — 不支持 /b！
+# Stata 12 and earlier (Windows) — /b not supported!
 "C:\Program Files\Stata12\StataMP.exe" /e do "script.do"
 
-# Stata 12 及更早 (Mac/Linux) — 不支持 -b！
+# Stata 12 and earlier (Mac/Linux) — -b not supported!
 stata-mp -e do "script.do"
 ```
 
-### 版本与可执行文件对照
+### Version and executable file reference
 
-| 版本 | MP | SE | BE |
+| Version | MP | SE | BE |
 |------|----|----|-----|
-| Stata 12 及更早 | `StataMP` | `StataSE` | `Stata` |
+| Stata 12 and earlier | `StataMP` | `StataSE` | `Stata` |
 | Stata 14/15 | `StataMP` | `StataSE` | `Stata` |
 | Stata 16+ | `StataMP-64.exe` | `StataSE-64.exe` | `Stata-64.exe` |
 
-### do-file 模板
+### do-file template
 
 ```stata
-* script.do — Stata 批处理脚本
-cd "工作目录"
+* script.do — Stata batch script
+cd "workdir"
 use "data.dta", clear
 regress y x1 x2
 save "results.dta", replace
@@ -296,7 +293,7 @@ log close
 
 ## SAS
 
-### 基本批处理
+### Basic batch
 
 ```bash
 # Windows
@@ -306,24 +303,24 @@ log close
 sas -sysin "prog.sas" -log "out.log" -print "out.lst"
 ```
 
-### SAS 程序模板
+### SAS program template
 
 ```sas
-* prog.sas — SAS 批处理程序;
+* prog.sas — SAS batch program;
 options ls=80 ps=60 nodate nonumber encoding='utf-8';
 
-* 读取数据;
+* Read data;
 data work.data;
     infile "data.csv" dlm=',' firstobs=2;
     input var1 var2 var3;
 run;
 
-* 分析;
+* Analysis;
 proc reg data=work.data;
     model y = var1 var2;
 run;
 
-* 保存结果;
+* Save results;
 proc export data=work.result
     outfile="results.csv"
     dbms=csv replace;
@@ -334,19 +331,19 @@ run;
 
 ## JMP
 
-### 基本批处理
+### Basic batch
 
 ```powershell
-# 批处理模式（可能有短暂闪屏 1-2秒）
+# Batch mode (may show brief splash screen 1-2 seconds)
 & "C:\Program Files\JMP\16\JMP.exe" /R "script.jsl"
 ```
 
-⚠️ JMP 脚本末尾必须加 `Exit();`
+⚠️ JMP script must end with `Exit();`
 
-### JSL 脚本模板
+### JSL script template
 
 ```jsl
-// script.jsl — JMP 批处理脚本
+// script.jsl — JMP batch script
 dt = Open("data.jmp");
 dt << Fit Y( :Y Column ) X( :X Column );
 Save PDF("report.pdf");
@@ -358,29 +355,23 @@ Exit();
 
 ## GraphPad Prism
 
-⚠️ **重要限制**：GraphPad Prism **没有 CLI 模式**，调用时**会弹出 GUI**，无法避免。
+⚠️ **Important limitation (GUI-only, out of scope)**: GraphPad Prism **has no CLI mode**; invocation always pops up the GUI, unavoidable.
 
-```powershell
-# ⚠️ 会弹出 GUI 界面
-& "C:\Program Files\GraphPad\Prism 9\prism.exe" "file.pzfx"
-```
+**This skill's capability for Prism is limited to**:
+- Detecting whether Prism is installed locally;
+- Providing **guidance to manually launch the GUI** (you open Prism yourself).
 
-### 替代方案：Python prismWriter
+**This skill explicitly does NOT do the following** (even after opt-in):
+- Does not call `prism.exe` from the command line or automate/drive the Prism process in any way;
+- **Does not create, read, or modify any Prism-related files (including `.pzfx` project/data files)**.
 
-```python
-# 使用 prismWriter 后台操作 .pzfx 文件（无需 GUI）
-from prismwriter import Project
-
-p = Project("template.pzfx")
-# 写入数据、执行分析...
-p.save("output.pzfx")
-```
+> Note: `.pzfx` is an XML format; third-party pure-Python libraries (e.g., `prismWriter`) can parse/generate it. Such file read/write **is not part of this skill's allowed behavior** — this skill does not wrap, call, or perform such write operations. If you truly need it, use the relevant library manually outside this skill and take responsibility for the file writes yourself.
 
 ---
 
 ## StatTransfer
 
-### 单文件转换
+### Single-file conversion
 
 ```bash
 # SPSS → Stata
@@ -393,63 +384,68 @@ st in.csv out.sav
 st in.sas7bdat out.rda
 ```
 
-### 批量转换
+### Batch conversion
 
 ```bash
-# 批量转换目录下所有 .sav 为 .dta
+# Batch-convert all .sav in a directory to .dta
 st in\*.sav out\*.dta
 
-# 命令文件批处理
+# Command-file batch processing
 st myfile.stcmd
 ```
 
 ---
 
-## 其他软件
+## Other software
 
 ### Gretl
 
 ```bash
-# 批处理运行 gretl 脚本
+# Run gretl script in batch mode
 gretlcli -b script.inp
 ```
 
 ### Mathematica
 
 ```bash
-# 运行 Wolfram Language 脚本
+# Run Wolfram Language script
 wolframscript -file script.wl
 
-# 直接执行代码
+# Execute code directly
 wolframscript -code "Table[i^2, {i, 10}]"
 
-# 加载数据并分析
+# Load data and analyze
 wolframscript -code "data = Import[\"data.csv\"]; Mean[data]"
 
-# 符号计算
+# Symbolic computation
 wolframscript -code "D[x^3 + 2x^2 + 5, x]"
 
-# 统计建模
+# Statistical modeling
 wolframscript -code "data = RandomVariate[NormalDistribution[], 1000]; DistributionFitTest[data, Automatic]"
 
-# 生成图片
+# Generate image
 wolframscript -code "p = Plot[Sin[x], {x, 0, 6 Pi}, PlotLabel -> \"Sine Wave\"]; Export[\"sine.png\", p]"
 
-# Windows 显式调用 MathKernel（替代 wolframscript）
+# Windows explicit MathKernel call (alternative to wolframscript)
 "C:\Program Files\Wolfram Research\Mathematica\14.0\MathKernel.exe" -noprompt < script.m
 ```
 
 ### Minitab
 
+> ⚠️ **Minitab is GUI-only for automation.** `mtb.exe /run "script.mtb"` launches the full Minitab GUI window (not headless) and may hang. Do **not** drive Minitab from the agent — detect the install and let the user run analyses interactively.
+
 ```powershell
-# 基本批处理
-& "C:\Program Files\Minitab\Minitab 21\Minitab.exe" /P "macro.mtb"
+# Detection only — verify mtb.exe exists; do NOT call /run headlessly
+$mtb = "C:\Program Files\Minitab\Minitab 22\mtb.exe"
+if (Test-Path $mtb) { Write-Host "Minitab detected: $mtb" }
 ```
+
+For actual analysis, open Minitab (GUI) and load your `.mtb` / `.mpj` project, or use the Minitab Web App (https://app.minitab.com/).
 
 ### Matlab
 
 ```bash
-# 完全无 GUI 批处理
+# Completely GUI-free batch
 matlab -batch "run('script.m'); exit"
 ```
 
@@ -462,14 +458,14 @@ julia script.jl
 ### EViews
 
 ```powershell
-# EViews 批处理
+# EViews batch
 & "C:\Program Files\QMS\EViews 12\EViews12_x64.exe" /b "program.prg"
 ```
 
 ### Statistica
 
 ```powershell
-# Statistica Visual Basic 脚本
+# Statistica Visual Basic script
 & "C:\Program Files\StatSoft\Statistica 13\Statistica.exe" /s "script.svb"
 ```
 
@@ -477,16 +473,16 @@ julia script.jl
 
 ## JAGS
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 运行 JAGS 脚本
+# Run JAGS script
 jags scriptfile
 
-# 批量执行
+# Batch execution
 jags-script script.txt
 
-# 通过 R 接口
+# Via R interface
 Rscript -e "library(rjags); jags.model('script.dat', data)"
 ```
 
@@ -494,13 +490,13 @@ Rscript -e "library(rjags); jags.model('script.dat', data)"
 
 ## SHAZAM
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 运行 SHAZAM 命令文件
+# Run SHAZAM command file
 shazam commands.txt
 
-# 示例命令文件:
+# Sample command file:
 # /MODEL TITLE MYMODEL
 # / X 1 100
 # / PREDICT Y
@@ -511,13 +507,13 @@ shazam commands.txt
 
 ## OxMetrics
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 显示 CLI 选项
+# Show CLI options
 oxmetrics --help
 
-# 运行批处理
+# Run batch
 oxmetrics -b commands.txt
 ```
 
@@ -525,10 +521,10 @@ oxmetrics -b commands.txt
 
 ## TSP
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 运行 TSP 命令文件
+# Run TSP command file
 tsp commands.txt
 ```
 
@@ -536,13 +532,13 @@ tsp commands.txt
 
 ## Tanagra
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 显示 CLI 选项
+# Show CLI options
 tanagra --help
 
-# 执行批处理脚本
+# Execute batch script
 tanagra -f script.txt
 ```
 
@@ -550,15 +546,16 @@ tanagra -f script.txt
 
 ## Orange
 
-### Python 模块方式（推荐）
+### Python module approach (recommended)
 
 ```bash
-# 通过 Python 模块
+# Via Python module
 python3 -m Orange.canvas
 
-# 安装
+# Install (requires network; modifies local Python environment; run only after explicit user confirmation)
+# Install (requires network access and modifies the local Python environment; run ONLY after explicit user confirmation)
 pip install orange3
-# 或
+# or
 conda install -c conda-forge orange3
 ```
 
@@ -566,16 +563,20 @@ conda install -c conda-forge orange3
 
 ## H2O.ai
 
-### Python 方式（推荐）
+### Python approach (recommended)
+
+> ⚠️ **Network & download note**: `h2o.init()` / `h2o start` starts a **local web server** on this machine (default port 54321, browser-accessible); the first run **downloads components** over the network; `pip install h2o` also requires network access. Before starting the H2O server, the Agent must explain this network behavior to the user and obtain explicit confirmation, and must never expose the port to the public internet.
 
 ```bash
-# 启动 H2O 服务器
+# ⚠️ This starts a local H2O server (JVM, binds a port). Requires explicit per-run opt-in.
+# Start H2O server (local HTTP service, default port 54321)
 h2o start
 
-# 通过 Python
+# ⚠️ This starts a local H2O server (JVM, binds a port). Requires explicit per-run opt-in.
+# Via Python
 python3 -c "import h2o; h2o.init()"
 
-# 安装
+# Install (requires network)
 pip install h2o
 ```
 
@@ -583,10 +584,10 @@ pip install h2o
 
 ## GenStat
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 运行 GenStat 命令文件
+# Run GenStat command file
 genstat commands.txt
 ```
 
@@ -594,13 +595,13 @@ genstat commands.txt
 
 ## Rattle
 
-### CLI 模式
+### CLI mode
 
 ```bash
-# CLI 模式
+# CLI mode
 rattle --cli
 
-# 通过 R 包
+# Via R package
 Rscript -e "library(rattle); rattle()"
 ```
 
@@ -608,13 +609,13 @@ Rscript -e "library(rattle); rattle()"
 
 ## OpenBUGS
 
-### 基本批处理
+### Basic batch
 
 ```bash
-# 显示帮助
+# Show help
 openbugs --help
 
-# 批处理执行
+# Batch execution
 openbugs -b script.txt
 ```
 
@@ -622,10 +623,10 @@ openbugs -b script.txt
 
 ## LIMDEP
 
-### 基本批处理
+### Basic batch
 
 ```batch
-REM 运行 LIMDEP 命令文件
+REM Run LIMDEP command file
 limdep commands.txt
 ```
 
@@ -633,10 +634,10 @@ limdep commands.txt
 
 ## NLOGIT
 
-### 基本批处理
+### Basic batch
 
 ```batch
-REM 运行 NLOGIT 命令文件
+REM Run NLOGIT command file
 nlogit commands.txt
 ```
 
@@ -644,10 +645,10 @@ nlogit commands.txt
 
 ## Microfit
 
-### 基本批处理
+### Basic batch
 
 ```batch
-REM 运行 Microfit 命令文件
+REM Run Microfit command file
 microfit commands.txt
 ```
 
@@ -655,17 +656,17 @@ microfit commands.txt
 
 ## NCSS
 
-### 基本批处理
+### Basic batch
 
 ```batch
-REM 运行 NCSS 批处理分析
+REM Run NCSS batch analysis
 "NCSS.exe" /B "analysis.ncss"
 
-REM 生成 NCSS 报告
+REM Generate NCSS report
 "NCSS.exe" /B "report.ncss"
 ```
 
-### 分析脚本模板
+### Analysis script template
 
 ```
 [Analysis]
@@ -680,17 +681,17 @@ Export = "results.html"
 
 ## Origin (OriginLab)
 
-### 运行 LabTalk 脚本
+### Run LabTalk script
 
 ```batch
-REM 运行 LabTalk 批处理脚本
+REM Run LabTalk batch script
 "C:\Program Files\OriginLab\Origin2025\origin97.exe" -h "script.ogs"
 ```
 
-### LabTalk 脚本模板
+### LabTalk script template
 
 ```labtalk
-// script.ogs — Origin LabTalk 脚本
+// script.ogs — Origin LabTalk script
 impASC fname:="C:\data\data.csv";
 range rr = col(1);
 integ1 rr;

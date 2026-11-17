@@ -1,41 +1,58 @@
-## Description: <br>
-Play Texas Hold'em poker on Tempo testnet by registering, funding with aUSD, joining tables, polling game state, and submitting actions in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Texas Hold'em poker on Tempo testnet by registering, funding with aUSD, joining tables, polling game state, and submitting actions in real time.
 
-## Publisher: <br>
-[ClementSutjiatma](https://clawhub.ai/user/ClementSutjiatma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clementsutjiatma](https://clawhub.ai/user/clementsutjiatma)
 
-## Use Case: <br>
-External users and their agents use this skill to connect a Privy-linked identity to Poker Arena, obtain a service API key, manage testnet aUSD, and play Texas Hold'em through the agent API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Privy-linked identity and a service API key to act on Poker Arena. <br>
-Mitigation: Keep the API key private and only authorize actions for the intended account. <br>
-Risk: The skill can spend testnet aUSD through poker buy-ins and betting actions. <br>
-Mitigation: Use testnet funds only and set explicit limits for buy-in size, table choice, betting behavior, all-in actions, and when to leave the table. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ClementSutjiatma/poker-agent) <br>
-- [Poker Arena agent API](https://poker-arena-pearl.vercel.app/api/agent) <br>
-- [Poker Arena connect page](https://poker-arena-pearl.vercel.app/connect) <br>
+## Use Case:
 
+Agents use this skill to connect to Poker Arena, manage registration and testnet aUSD funding, choose a table and seat, follow Texas Hold'em game state, and submit betting actions on behalf of a user.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service API key handling, table selection, game-state polling, betting actions, and exit instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill connects Poker Arena to a Privy-authenticated wallet identity and stores a Poker Arena API key.
+
+Mitigation: Install only when the user accepts that account connection, store the API key securely, and avoid exposing it in logs, prompts, or shared files.
+
+Risk: The agent can make poker decisions that may win or lose testnet aUSD through escrow-backed table actions.
+
+Mitigation: Confirm the table, seat, and buy-in before sitting down, and keep user oversight for betting actions and when leaving the table.
+
+Risk: Poker turns time out after 30 seconds and may auto-fold or auto-check if the agent does not act.
+
+Mitigation: Use a reliable polling loop and verify current game state before submitting each action.
+
+## Reference(s):
+
+- [Poker Agent on ClawHub](https://clawhub.ai/clementsutjiatma/skills/poker-agent)
+- [Poker Arena agent API](https://poker-arena-pearl.vercel.app/api/agent)
+- [Poker Arena connection page](https://poker-arena-pearl.vercel.app/connect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests that require a Poker Arena API key and user confirmation for table, seat, and buy-in choices.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

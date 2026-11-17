@@ -10,12 +10,12 @@
           "type": "array",
           "description": "Internationalization translation list (supports grouping and multi-level structure)",
           "items": {
-            "$ref": "#/definitions/Translate"
+            "$ref": "#/$defs/Translate"
           }
         }
       },
       "required": ["translateList"],
-      "definitions": {
+      "$defs": {
         "Translate": {
           "type": "object",
           "description": "Internationalization translation item or translation group",
@@ -36,7 +36,7 @@
               "type": "array",
               "description": "Sub-translation items (used when isDirectory=true)",
               "items": {
-                "$ref": "#/definitions/Translate"
+                "$ref": "#/$defs/Translate"
               }
             },
             "content": {

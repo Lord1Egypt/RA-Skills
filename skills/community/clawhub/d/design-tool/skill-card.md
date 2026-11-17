@@ -1,41 +1,54 @@
-## Description: <br>
-Design Tool is a local Bash utility for recording, viewing, searching, summarizing, and exporting timestamped design notes in flat files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Tool is a local Bash command-line utility for recording, searching, summarizing, and exporting timestamped design-related log entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, designers, and design workflow users can use this skill to log design activity, inspect recent entries, search notes, view basic statistics, and export local records from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect a Penpot integration, but the artifact behaves as a local Bash logging utility. <br>
-Mitigation: Confirm the desired capability before installation and use it only for local note logging, searching, summaries, and exports. <br>
-Risk: Typed entries are persistently stored under ~/.local/share/design-tool and may be visible in later searches or exports. <br>
-Mitigation: Avoid entering secrets, credentials, private project details, or sensitive design notes unless local persistent storage is acceptable. <br>
+## Use Case:
 
+Developers, designers, and workflow operators can use this skill to log design-related activities, search prior entries, view recent history, and produce simple local exports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/design-tool) <br>
-- [Publisher Profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [CLI text output with local flat-file logs and JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent data under ~/.local/share/design-tool; no external services or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The package is labeled as Penpot but the artifact behavior is a broad local logging CLI, which may confuse users about the capabilities they are installing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands and expected behavior before installation, and do not assume Penpot integration unless separate trusted evidence confirms it.
+
+Risk: User-provided text can be retained in local log files under ~/.local/share/design-tool and later displayed through history, recent, search, stats, or export commands.
+
+Mitigation: Avoid entering secrets, tokens, sensitive project details, private client information, or other confidential material into logged commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/design-tool)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and plain-text CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill stores user-provided log entries locally under ~/.local/share/design-tool and can export collected logs as JSON, CSV, or TXT.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

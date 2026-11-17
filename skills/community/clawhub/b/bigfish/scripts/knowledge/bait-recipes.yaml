@@ -1,0 +1,127 @@
+# 🪤 BigFish 饵料配方知识库
+# 野钓/台钓饵料搭配、窝料配方、季节用饵建议
+
+bait_principles:
+  - principle: "春腥夏淡秋香冬浓"
+  - principle: "深水重味，浅水轻味"
+  - principle: "流水面饵，静水颗粒"
+  - principle: "小鱼多用本味，大鱼多用素饵"
+
+season_bait:
+  spring:
+    flavor: 腥味为主
+    explanation: 鱼产卵前后需要大量蛋白质
+    base: 腥味商品饵 + 虾粉/鱼粉
+    live: 红虫 / 蚯蚓
+  summer:
+    flavor: 清淡/本味/果味
+    explanation: 水温高，鱼新陈代谢快但警惕性高
+    base: 本味/谷物饵 + 少量果味
+    live: 玉米 / 麦粒
+  autumn:
+    flavor: 香腥结合
+    explanation: 鱼贴秋膘，动物蛋白需要量大
+    base: 腥香味饵料
+    live: 蚯蚓 / 油葫芦
+  winter:
+    flavor: 浓腥/浓香
+    explanation: 低温鱼活性低，刺激性强才有用
+    base: 浓腥饵 + 虾粉
+    live: 红虫（冬季王者）
+
+common_recipes:
+  - name: 野钓综合饵
+    targets: [鲫鱼, 鲤鱼, 草鱼]
+    ingredients:
+      - 野战蓝鲫 50%
+      - 九一八 30%
+      - 速攻2号 20%
+    water: 1:1
+    tips: 最经典的"老三样"，适合大部分野钓场景
+    season: 春夏秋通用
+
+  - name: 冬季鲫鱼饵
+    targets: [鲫鱼]
+    ingredients:
+      - 浓腥鲫鱼饵 60%
+      - 虾粉 20%
+      - 拉丝粉 20%
+    water: 1:1.1
+    tips: 冬天要加虾粉提腥，拉饵钓行程
+    season: 冬季
+
+  - name: 黑坑鲤鱼饵
+    targets: [鲤鱼]
+    ingredients:
+      - 小黄面 50%
+      - 螺鲤 30%
+      - 状态粉 20%
+    water: 1:0.8
+    tips: 散炮打窝+软粘钓，黑坑经典
+    season: 春夏秋通用
+
+  - name: 草鱼发酵饵
+    targets: [草鱼]
+    ingredients:
+      - 玉米粉 40%
+      - 麦麸 30%
+      - 面粉 20%
+      - 酵母 少量
+    tips: 提前一晚发酵，有酒香味草鱼最爱
+    season: 夏季
+
+  - name: 罗非冷冻饵
+    targets: [罗非鱼]
+    ingredients:
+      - 肝味冷冻饵 50%
+      - 腥味冷冻饵 30%
+      - 赤尾青 20%
+    tips: 罗非专用冷冻饵，需要冷藏保存
+    season: 夏季
+
+bait_matrix:
+  - type: 活饵
+    items:
+      - name: 蚯蚓
+        best_for: [鲫鱼, 黄颡鱼, 鲶鱼, 鲤鱼]
+        tips: "万能饵，什么鱼都吃，适合野钓"
+      - name: 红虫
+        best_for: [鲫鱼]
+        tips: "冬季首选，效果远超其他饵"
+      - name: 玉米
+        best_for: [鲤鱼, 草鱼, 翘嘴]
+        tips: "要煮熟或发酵，避小鱼"
+      - name: 麦粒
+        best_for: [鲫鱼, 鲤鱼]
+        tips: "避小鱼佳饵，适合野钓"
+      - name: 活虾
+        best_for: [翘嘴, 鳜鱼, 鲈鱼]
+        tips: "大鱼杀手，路亚挂活虾"
+      - name: 泥鳅
+        best_for: [翘嘴, 鳡鱼, 鲶鱼]
+        tips: "禁用！泥鳅党非法"
+
+  - type: 商品饵
+    categories:
+      - 腥味: 气温低/水质清/小鱼多
+      - 香味: 气温适中/水质肥
+      - 本味: 气温高/大鱼/滑鱼
+      - 发酵味: 草鱼/热水鱼
+
+ground_bait:
+  - name: 酒米
+    purpose: 打窝留鱼
+    targets: [鲫鱼, 鲤鱼]
+    usage: 每窝1-2把
+  - name: 玉米麦粒混合
+    purpose: 守大鱼打重窝
+    targets: [草鱼, 鲤鱼]
+    usage: 提前一天打窝，每窝2-5斤
+  - name: 菜籽饼
+    purpose: 雾化诱鱼
+    targets: [鲫鱼, 鲤鱼, 草鱼]
+    usage: 掰块抛投
+  - name: 颗粒饲料
+    purpose: 快速聚鱼
+    targets: [鲤鱼, 罗非, 草鱼]
+    usage: 少量多次

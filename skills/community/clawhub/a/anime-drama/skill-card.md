@@ -1,46 +1,63 @@
-## Description: <br>
-Anime Drama converts novel or story text into vertical anime-style short videos by generating a shot script, creating RunningHub images and video clips, and merging clips with ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anime Drama converts novel text into vertical anime-style short videos by generating a shot script, images, video clips, and an ffmpeg-merged MP4.
 
-## Publisher: <br>
-[rickSF](https://clawhub.ai/user/rickSF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricksf](https://clawhub.ai/user/ricksf)
 
-## Use Case: <br>
-Developers and content automation agents use this skill to turn plain story text into a resumable anime short-video workflow with storyboard JSON, generated image assets, generated video clips, and a final vertical MP4. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story text and generated images may be sent to RunningHub and stored locally during processing. <br>
-Mitigation: Use only story text and generated assets that are acceptable to send to RunningHub and retain in local output directories. <br>
-Risk: The submitted script runs shell command strings built from workflow inputs. <br>
-Mitigation: Review before installation, avoid untrusted or adversarial story text, and prefer a maintainer update that replaces shell=True command strings with argument-list subprocess calls. <br>
-Risk: RunningHub API keys can appear in command strings. <br>
-Mitigation: Use scoped credentials where available, avoid sharing logs, and prefer a maintainer update that redacts API keys from process and error output. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn story text into short vertical anime-style video drafts using RunningHub AI applications and ffmpeg. It is intended for workflows that can review generated media, external API processing, and local script execution before publication.
 
-## Reference(s): <br>
-- [Pipeline Usage](references/pipeline-usage.md) <br>
-- [FFmpeg Install](references/ffmpeg-install.md) <br>
-- [RunningHub AI App Notes](references/runninghub-ai-app-notes.md) <br>
-- [RunningHub Upload API](https://www.runninghub.cn/task/openapi/upload) <br>
-- [ClawHub Release Page](https://clawhub.ai/rickSF/anime-drama) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [JSON storyboard, PNG images, MP4 videos, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RUNNINGHUB_API_KEY, RunningHub image and video app IDs, python3, curl, ffmpeg, and the runninghub skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Crafted story text could trigger unintended local command execution through the pipeline's command construction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the skill before installation and remove shell=True command construction before running it on untrusted story text.
+
+Risk: The RunningHub API key may be exposed if command output or logs are captured.
+
+Mitigation: Protect RUNNINGHUB_API_KEY, avoid sharing logs from pipeline runs, and rotate the key if logs may already contain it.
+
+Risk: Unpublished drafts and uploaded images are processed by RunningHub.
+
+Mitigation: Avoid sensitive unpublished drafts unless external RunningHub processing is acceptable for the use case.
+
+## Reference(s):
+
+- [Pipeline Usage](artifact/references/pipeline-usage.md)
+- [ffmpeg Install](artifact/references/ffmpeg-install.md)
+- [RunningHub AI App Notes](artifact/references/runninghub-ai-app-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/ricksf/skills/anime-drama)
+- [Skill Homepage](https://github.com/win4r/ClawTeam-OpenClaw)
+- [RunningHub Upload API Endpoint](https://www.runninghub.cn/task/openapi/upload)
+- [ffmpeg Static Build Release](https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with shell commands and Python pipeline outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a shot_script.json file plus generated PNG images, MP4 scene clips, and a final vertical 1080x1920 MP4 when the pipeline completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

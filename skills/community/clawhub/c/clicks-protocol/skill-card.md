@@ -1,49 +1,67 @@
-## Description: <br>
-Integrate autonomous USDC yield into AI agent projects on Base by querying live APY, inspecting agent treasury state, simulating payment splits, using the MCP server, and implementing x402-aligned treasury flows with built-in three-level referrals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect and simulate Clicks Protocol settlement routing for AI agents on Base. Use read-only MCP calls for settlement state, split previews, optional yield routing, and attribution stats.
 
-## Publisher: <br>
-[protogenosone](https://clawhub.ai/user/protogenosone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[protogenosone](https://clawhub.ai/user/protogenosone)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add read-only Clicks Protocol treasury queries, payment-split simulations, and integration guidance for agents that hold or route USDC on Base. Teams can also use it to evaluate SDK and MCP-based flows for deposits, withdrawals, referrals, and yield settings before requiring human approval for any signed transaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-enabled SDK or local MCP operations can move real USDC. <br>
-Mitigation: Use a dedicated low-balance wallet and require explicit human approval before any deposit, withdrawal, registration, yield-setting change, or other signed transaction. <br>
-Risk: External npm packages and remote MCP endpoints affect financial workflows. <br>
-Mitigation: Review and pin external packages, verify contract addresses against the contract reference, and limit unattended use to read-only queries. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect Clicks Protocol settlement state, preview USDC split routing, review yield status, and check referral attribution before any separately approved on-chain action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/protogenosone/clicks-protocol) <br>
-- [Clicks Protocol Website](https://clicksprotocol.xyz) <br>
-- [Contract Reference](references/contracts.md) <br>
-- [Clicks Protocol SDK](https://www.npmjs.com/package/@clicks-protocol/sdk) <br>
-- [Clicks Protocol MCP Server](https://www.npmjs.com/package/@clicks-protocol/mcp-server) <br>
-- [OpenAPI Specification](https://clicksprotocol.xyz/api/openapi.json) <br>
-- [Agent Metadata](https://clicksprotocol.xyz/.well-known/agent.json) <br>
-- [ERC-8004 Agent Registration](https://clicksprotocol.xyz/.well-known/agent-registration.json) <br>
-- [LLMs Reference](https://clicksprotocol.xyz/llms.txt) <br>
-- [Attestor Schema V1](https://clicksprotocol.xyz/strategy/ATTESTOR-SCHEMA-V1.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes read-only query commands that return MCP responses, plus SDK and MCP setup guidance for wallet-enabled flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: ClawHub release evidence) <br>
+Risk: Unpinned npm or MCP packages can run unreviewed code in the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the bundled read-only script for simple queries; when packages are needed, pin exact versions and review package permissions before installation.
+
+Risk: Local SDK or MCP integrations may expose state-changing protocol tools.
+
+Mitigation: Expose only read-only tools to autonomous agent loops and require explicit human approval before connecting a signer or submitting any transaction.
+
+Risk: Payment, yield, and attribution outputs can be mistaken for completed on-chain actions.
+
+Mitigation: Treat outputs as status checks or previews until a human operator separately reviews and signs the transaction details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/protogenosone/skills/clicks-protocol)
+- [Contract Reference](references/contracts.md)
+- [Clicks Protocol Website](https://clicksprotocol.xyz)
+- [Protocol llms.txt](https://clicksprotocol.xyz/llms.txt)
+- [OpenAPI Specification](https://clicksprotocol.xyz/api/openapi.json)
+- [Agent Metadata](https://clicksprotocol.xyz/.well-known/agent.json)
+- [ERC-8004 Agent Registration](https://clicksprotocol.xyz/.well-known/agent-registration.json)
+- [Attestor Schema V1](https://clicksprotocol.xyz/strategy/ATTESTOR-SCHEMA-V1.md)
+- [Clicks Protocol SDK](https://www.npmjs.com/package/@clicks-protocol/sdk)
+- [Clicks Protocol MCP Server](https://www.npmjs.com/package/@clicks-protocol/mcp-server)
+- [BaseScan Identity NFT](https://basescan.org/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=45074)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and TypeScript examples, plus JSON or text returned by read-only MCP calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for the bundled script; local SDK or MCP integrations should pin package versions and expose only read-only tools to agent loops unless a human approves each transaction.]
+
+## Skill Version(s):
+
+1.2.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

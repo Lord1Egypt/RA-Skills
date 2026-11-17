@@ -1,42 +1,56 @@
-## Description: <br>
-Runs Organizze personal finance API operations via Node.js CLI scripts for accounts, categories, transactions, credit cards, and transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Organizze personal finance API operations from the terminal for accounts, categories, transactions, credit cards, invoices, payments, and transfers.
 
-## Publisher: <br>
-[leaofelipe](https://clawhub.ai/user/leaofelipe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leaofelipe](https://clawhub.ai/user/leaofelipe)
 
-## Use Case: <br>
-External users and developers use this skill to query and manage their Organizze personal finance data from a terminal through CLI wrappers around the Organizze API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, transfer, or delete live Organizze financial records. <br>
-Mitigation: Before write or delete actions, list the target records first and require explicit confirmation of exact IDs and payloads. <br>
-Risk: The Organizze token grants account access and may expose sensitive personal finance data if mishandled. <br>
-Mitigation: Store the token only in approved credential configuration, do not print credential values, and revoke or rotate the token when access is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to query and manage Organizze personal finance data through CLI commands that call the Organizze REST API. It supports account, category, transaction, credit card, invoice, payment, and transfer workflows.
 
-## Reference(s): <br>
-- [Organizze API documentation](https://github.com/organizze/api-doc) <br>
-- [ClawHub release page](https://clawhub.ai/leaofelipe/organizze-skill) <br>
-- [Organizze app](https://app.organizze.com.br) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and pretty-printed JSON from CLI scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ORGANIZZE_TOKEN, ORGANIZZE_EMAIL, ORGANIZZE_USER_AGENT, node, and npm; API operations may read, create, update, transfer, or delete live financial records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill can create, update, or delete sensitive financial records in an Organizze account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify target IDs with list or get commands, ask the agent to summarize planned changes, and require explicit approval before any mutation or deletion.
+
+Risk: The skill requires Organizze account credentials and can return personal finance data.
+
+Mitigation: Install only when account access is intended, do not print or log credential values, and mask personal or financial details when summarizing results.
+
+## Reference(s):
+
+- [Organizze API documentation](https://github.com/organizze/api-doc)
+- [Organizze app](https://app.organizze.com.br)
+- [Organizze API token settings](https://app.organizze.com.br/configuracoes/api-keys)
+- [ClawHub Organizze Skill page](https://clawhub.ai/leaofelipe/skills/organizze-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON on stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, ORGANIZZE_EMAIL, ORGANIZZE_TOKEN, and ORGANIZZE_USER_AGENT.]
+
+## Skill Version(s):
+
+1.3.4 (source: frontmatter, package.json, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

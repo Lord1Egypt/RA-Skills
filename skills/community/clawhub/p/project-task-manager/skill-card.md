@@ -1,44 +1,56 @@
-## Description: <br>
-Project Task Manager helps agents generate hierarchical task trees from objectives, decompose individual tasks, track progress, and review project status through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating hierarchical project plans, breaking down tasks, and tracking progress through AgentPMT.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, engineers, and project-focused agents use this skill to turn goals into structured work plans, break tasks into subtasks, and persist progress across sessions. It is intended for AgentPMT-enabled workflows that can call the remote Project Task Manager product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project objectives, task descriptions, constraints, progress, and notes are sent to AgentPMT and generated task trees persist across sessions. <br>
-Mitigation: Send only project-planning information appropriate for AgentPMT, and avoid secrets, credentials, wallet material, payment headers, and highly confidential project details. <br>
-Risk: Each remote action may cost credits. <br>
-Mitigation: Invoke the skill deliberately for project-planning work and confirm schema, authentication, or payment issues before retrying failed calls. <br>
+## Use Case:
 
+Agents and project teams use this skill to turn objectives into task trees, decompose individual tasks, and monitor or update project progress across sessions.
 
-## Reference(s): <br>
-- [Project Task Manager on ClawHub](https://clawhub.ai/agentpmt/project-task-manager) <br>
-- [Project Task Manager marketplace page](https://www.agentpmt.com/marketplace/project-task-manager) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [Product schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples for remote AgentPMT tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated task trees, subtasks, status summaries, and progress updates may persist across sessions in AgentPMT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Risk: Project objectives, task notes, and progress are sent to AgentPMT and task trees persist across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the planning details needed; exclude proprietary or sensitive information unless remote storage is acceptable.
+
+Risk: Supporting setup skills may be installed from unverified or changing sources.
+
+Mitigation: Prefer verified or pinned installation paths for supporting setup skills.
+
+## Reference(s):
+
+- [Project Task Manager on ClawHub](https://clawhub.ai/agentpmt/skills/project-task-manager)
+- [AgentPMT marketplace listing](https://www.agentpmt.com/marketplace/project-task-manager)
+- [Project Task Manager action schema](artifact/schema.md)
+- [AgentPMT account setup skill](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Text]
+
+**Output Format:** [Markdown guidance and JSON task-plan responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task trees can persist across sessions; generation, updates, and status checks use AgentPMT credits.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

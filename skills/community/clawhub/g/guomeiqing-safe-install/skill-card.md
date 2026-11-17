@@ -1,44 +1,59 @@
-## Description: <br>
-Safely reviews and installs third-party OpenClaw Skills by downloading to a temporary directory, running a seven-point security audit, generating a human-readable report, and installing only when safe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely review and install third-party OpenClaw Skills by downloading to a temporary directory, running a 7-point security audit, generating a human-readable report, and installing only when safe.
 
-## Publisher: <br>
-[shanggqm](https://clawhub.ai/user/shanggqm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanggqm](https://clawhub.ai/user/shanggqm)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to review third-party skill sources before installation, produce a security report, and install only skills that pass the defined checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch third-party repositories or npm packages and persist reviewed content into the user's OpenClaw skills folder. <br>
-Mitigation: Use trusted sources, inspect the generated report, and proceed only when the review result and source are acceptable. <br>
-Risk: Source strings with shell-like punctuation could affect local shell commands used during review or installation. <br>
-Mitigation: Avoid shell-like punctuation in source inputs and review generated commands before execution. <br>
-Risk: Manual bypass commands for dangerous skills can override the review outcome. <br>
-Mitigation: Use manual installation only after independently reviewing the package in isolation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to review third-party skills before installation. It guides the agent through isolated download, file inventory, security checklist review, report generation, install-or-reject decisions, and cleanup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shanggqm/guomeiqing-safe-install) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [SKILL.en.md](artifact/SKILL.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks and a structured security review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; operations are proposed through the agent's tool use rather than bundled executable scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can fetch third-party repositories or npm packages and install files persistently into the user's OpenClaw skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any download or persistent install, and keep review and installation as separate decisions.
+
+Risk: Source strings and local skill names may be under-validated before shell commands or filesystem writes are proposed.
+
+Mitigation: Validate source URLs, package names, and derived directory names before running shell commands or copying files.
+
+Risk: The security scanner verdict is suspicious because the skill combines review guidance with installation behavior.
+
+Mitigation: Treat the generated review report as advisory and inspect the proposed commands and install destination before allowing execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shanggqm/skills/guomeiqing-safe-install)
+- [README.en.md](artifact/README.en.md)
+- [SKILL.en.md](artifact/SKILL.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with shell command blocks and structured security review reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose downloads, scans, file copies, and cleanup actions through the agent's shell tool; installation should depend on the generated review outcome.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

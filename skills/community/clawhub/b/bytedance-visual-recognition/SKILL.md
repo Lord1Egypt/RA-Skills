@@ -1,218 +1,140 @@
 ---
 name: bytedance-visual-recognition
 description: >
-  ByteDance Visual Recognition — 调用豆包 Doubao-Seed 多模态模型识别图片/视频。
-  支持图片转文字、视频转文字、图片转代码、视频转代码，全自动模型降级。
-  参与火山协作奖励计划免费使用顶级多模态模型。
-  智能调度模型，每模型每日180W tokens，超限自动降级。
-summary: "ByteDance Visual Recognition — 调用豆包 Doubao-Seed 识别图片/视频，支持转文字、转代码，参与火山协作奖励计划免费使用"
+  Multimodal visual recognition via Doubao-Seed (6 models) + Zhipu GLM (2 free models).
+  Image/video to text/code, auto-fallback, batch directory processing, follow-up conversations,
+  local media caching (Temp/), persistent history (vision_history.json), auto IAM console sync.
+  First-run privacy notice, plaintext config.json, cross-platform.
+summary: "Doubao-Seed + GLM visual recognition — image/video to text/code with auto-fallback, batch, follow-up, IAM sync"
 tags:
-  vision: "3.0.0"
-  image-recognition: "3.0.0"
-  video-recognition: "3.0.0"
-  image-to-code: "3.0.0"
-  video-to-code: "3.0.0"
-  doubao: "3.0.0"
-  volcengine: "3.0.0"
-  bytedance: "3.0.0"
+  vision: "5.0.1"
+  image-recognition: "5.0.1"
+  video-recognition: "5.0.1"
+  image-to-code: "5.0.1"
+  video-to-code: "5.0.1"
+  doubao: "5.0.1"
+  glm: "5.0.1"
 trigger_patterns:
-  - "识别图片"
-  - "识别视频"
-  - "图片识别"
-  - "视频识别"
-  - "图片转文字"
-  - "视频转文字"
-  - "图片转代码"
-  - "视频转代码"
-  - "看图说话"
-  - "图片内容"
-  - "视频内容"
-  - "图片里有什么"
-  - "视频里有什么"
-  - "分析图片"
-  - "分析视频"
-  - "提取图片文字"
-  - "提取视频文字"
-  - "图片OCR"
-  - "UI转代码"
-  - "设计稿转代码"
-  - "截图转代码"
-  - "录屏转代码"
-  - "视觉识别"
-  - "recognize image"
-  - "recognize video"
-  - "image to text"
-  - "video to text"
-  - "image to code"
-  - "video to code"
-  - "vision"
+  - "豆包识别"
+  - "豆包视觉识别"
+  - "bytedance visual recognition"
+  - "doubao recognize"
 metadata:
   openclaw:
     requires:
       bins:
         - python
-      env:
-        - ARK_API_KEY
-        - DOUBAO_VISION_20P_ID
-        - DOUBAO_VISION_20C_ID
-        - DOUBAO_VISION_20L_ID
-        - DOUBAO_VISION_16V_ID
-        - DOUBAO_VISION_18_ID
-        - DOUBAO_VISION_10C_ID
-    primaryEnv: ARK_API_KEY
-    envVars:
-      - name: ARK_API_KEY
-        required: true
-        description: 火山方舟 API Key，在 console.volcengine.com/ark → API Key 管理 创建
-      - name: DOUBAO_VISION_20P_ID
-        required: true
-        description: Doubao-Seed-2.0-Pro 接入点 ID，在 console.volcengine.com/ark → 在线推理 获取
-      - name: DOUBAO_VISION_20C_ID
-        required: true
-        description: Doubao-Seed-2.0-Code 接入点 ID
-      - name: DOUBAO_VISION_20L_ID
-        required: true
-        description: Doubao-Seed-2.0-Lite 接入点 ID
-      - name: DOUBAO_VISION_16V_ID
-        required: true
-        description: Doubao-Seed-1.6-Vision 接入点 ID
-      - name: DOUBAO_VISION_18_ID
-        required: true
-        description: Doubao-Seed-1.8 接入点 ID
-      - name: DOUBAO_VISION_10C_ID
-        required: true
-        description: Doubao-Seed-Code 接入点 ID
-      - name: VOLCENGINE_ACCESS_KEY
-        required: false
-        description: 火山 IAM Access Key，在 console.volcengine.com/iam 创建，用于自动同步用量
-      - name: VOLCENGINE_SECRET_KEY
-        required: false
-        description: 火山 IAM Secret Key，与 ACCESS_KEY 配套
+    permissions:
+      filesystem:
+        read: ["config.json", "vision_history.json", ".last_response"]
+        write: ["Temp/", "vision_history.json", ".last_response", "config.json"]
+      network:
+        - host: "ark.cn-beijing.volces.com"
+          purpose: "Doubao vision model API"
+        - host: "open.bigmodel.cn"
+          purpose: "GLM vision model Chat Completions API"
+        - host: "open.volcengineapi.com"
+          purpose: "Auto IAM console usage sync"
     emoji: "🔍"
     homepage: https://www.volcengine.com/docs/82379/1569618
+    locales: ["en"]
 ---
 
-# ByteDance Visual Recognition — 豆包 Doubao-Seed 图片视频识别
+# ByteDance Visual Recognition — Doubao-Seed + GLM
 
-调用火山方舟 Doubao-Seed [API 文档](https://www.volcengine.com/docs/82379/1569618) 识别图片/视频，自动选择模型并限制用量。参与火山协作奖励计划免费使用顶级多模态模型。
+Doubao-Seed (6 models) + Zhipu GLM (2 free models). First run auto-generates `config.json`, fill in one API Key to start. IAM console usage syncs automatically on each recognition.
 
-> ⚠️ **配置只需一次！** 如果 `.env` 文件已存在且包含 `ARK_API_KEY` 和 6 个模型 ID，说明已配置过，**直接跳到"调用方式"执行命令，不要重新配置。**
+## Privacy & Data Notice
 
-## 🚀 首次配置
+- **Network**: Selected images/videos and prompts are base64-encoded and sent to Volcengine (Doubao) or Zhipu (GLM) cloud APIs.
+- **Local cache**: Media files temporarily copied to `Temp/YYYYMMDD/`, default 7-day retention (`temp_retention_days` in config.json, range 1-3650).
+- **History**: Recognition history stored in `vision_history.json`, follow-up context in `.last_response`, auto-cleaned after 7 days. GLM follow-up reuses full message history including base64 media data; Doubao follow-up uses previous_response_id without re-transmitting files.
+- **Credentials**: API Keys stored in plaintext `config.json`. Do not use personal keys on shared machines.
+- **IAM sync**: Automatically syncs token usage from Volcengine IAM console on each recognition when IAM credentials are configured.
+- **First run**: A privacy notice is displayed once. Continuing past it acknowledges data handling practices.
 
-### 1. 获取 API Key
+## Setup (pick one)
 
-1. 打开 https://console.volcengine.com/ark 注册/登录
-2. 左侧菜单 → **API Key 管理** → 创建 API Key → 复制保存
+### Doubao (Volcengine)
 
-### 2. 创建模型接入点
+1. Join the [Collaboration Rewards Program](https://console.volcengine.com/ark/region:cn-beijing/openManagement/rewardPlan) for free quota, then get your API Key
+2. Create inference endpoints, pick from:
 
-在同一个控制台，左侧菜单 → **在线推理** → 创建推理接入点，选以下 6 个模型：
+| config key | model | priority |
+|--------|------|:---:|
+| `doubao_seed_21p_id` | Doubao-Seed-2.1-Pro | primary |
+| `doubao_seed_21t_id` | Doubao-Seed-2.1-Turbo | secondary |
+| `doubao_seed_20p_id` | Doubao-Seed-2.0-Pro | tertiary |
+| `doubao_seed_20c_id` | Doubao-Seed-2.0-Code | code-first |
+| `doubao_seed_20l_id` | Doubao-Seed-2.0-Lite | fallback |
+| `doubao_seed_20m_id` | Doubao-Seed-2.0-Mini | low-cost |
 
-| 环境变量名 | 模型 | 说明 |
-|-----------|------|------|
-| `DOUBAO_VISION_20P_ID` | Doubao-Seed-2.0-Pro | 主力模型，所有模式优先 |
-| `DOUBAO_VISION_20C_ID` | Doubao-Seed-2.0-Code | 代码模式优先 |
-| `DOUBAO_VISION_20L_ID` | Doubao-Seed-2.0-Lite | 轻量备选 |
-| `DOUBAO_VISION_16V_ID` | Doubao-Seed-1.6-Vision | 视觉专用 |
-| `DOUBAO_VISION_18_ID` | Doubao-Seed-1.8 | 通用备选 |
-| `DOUBAO_VISION_10C_ID` | Doubao-Seed-Code | 代码专用 |
+3. Edit `config.json`, replace `""` with actual endpoint IDs.
 
-每个接入点创建后会得到一个 `ep-xxxxx` 格式的 ID，复制保存。
+### GLM (Zhipu, free)
 
-### 3. 配置 .env 文件
+1. https://open.bigmodel.cn → get API Key
+2. Edit `config.json`: `"zhipu_api_key": "your-key"`
 
-在 Skill 目录下创建 `.env` 文件，填入你的 Key 和接入点 ID：
+### Provider filter
 
-```bash
-ARK_API_KEY=你的API Key
-DOUBAO_VISION_20P_ID=ep-xxxxx
-DOUBAO_VISION_20C_ID=ep-xxxxx
-DOUBAO_VISION_20L_ID=ep-xxxxx
-DOUBAO_VISION_16V_ID=ep-xxxxx
-DOUBAO_VISION_18_ID=ep-xxxxx
-DOUBAO_VISION_10C_ID=ep-xxxxx
-```
+`provider_mode` in `config.json`:
+- `0` = all (default)
+- `1` = Zhipu only
+- `2` = Doubao only
 
-> 可选：加上 IAM 密钥可自动同步控制台用量
-> ```bash
-> VOLCENGINE_ACCESS_KEY=你的Access Key
-> VOLCENGINE_SECRET_KEY=你的Secret Key
-> ```
-
-### 4. 测试
+### Test
 
 ```bash
 python doubao_vision_recognize.py --help
 python doubao_vision_recognize.py status
 ```
 
-有响应且不报错，就配置好了。
-
 ---
 
-## ⚡ 调用方式 — 触发后必须立即执行命令
+## Commands
 
-> **这是操作手册，不是参考文档。检测到触发词后，直接复制对应命令执行，禁止只回复文字。**
-
-确认 Skill 目录后，先 `cd` 进去，再执行对应命令。Skill 安装在: `.openclaw/workspace/skills/bytedance-visual-recognition/`
-
-执行成功后，脚本会输出 `✅ 成功!` 及识别结果。**你必须把结果告知用户**。
-
-⚠️ **严禁**: 只回复"正在识别..."而不执行命令。必须跑 `python doubao_vision_recognize.py ...`。
-
-### 命令
-
-| 命令 | 用途 | 示例 |
+| command | purpose | example |
 |------|------|------|
-| `rec <文件> --image\|--video --text\|--code` | 识别文件 | `rec photo.jpg --image --text` |
-| `rec <目录> --image\|--video --text\|--code --batch` | 批量处理 | `rec ./images/ --batch --image --text` |
-| `ask --text\|--code --prompt "内容"` | 追问上次结果 | `ask --text --prompt "详细说说"` |
-| `status` | 查看今日用量 | |
-| `sync` | 同步控制台数据 | |
-| `history` | 查看7天记录 | |
+| `rec <file> --image\|--video --text\|--code` | recognize | `rec a.jpg --image --text` |
+| `rec <dir> --batch --image\|--video --text\|--code` | batch | `rec ./img/ --batch --image --text` |
+| `ask --text\|--code --prompt "..."` | follow-up | `ask --text -p "details"` |
+| `status` | usage stats | |
+| `sync` | manual console sync | |
+| `history` | 7-day history | |
 
-### 参数
+### Parameters
 
-| 参数 | 说明 |
+| param | desc |
 |------|------|
-| `--image` | 输入为图片 |
-| `--video` | 输入为视频 |
-| `--text` | 输出为文字 |
-| `--code` | 输出为代码 |
-| `--prompt` / `-p` | 补充指令（rec可选，ask必传） |
-| `--batch` | 批量处理目录 |
-
-`--image`/`--video` 必须传一个，`--text`/`--code` 必须传一个。模型自动选，不支持指定。
-
-### 追问规则
-
-- 不用重新上传文件，接着上次 `rec` 的结果聊
-- 追问必须用和上次 `rec` 同一个模型，无法更换
-- 想换模型就重新 `rec`
+| `--image` | image input |
+| `--video` | video input |
+| `--text` | text output |
+| `--code` | code output |
+| `--prompt` / `-p` | extra instruction |
+| `--batch` | directory batch |
 
 ---
 
-## 🚫 行为规则（最高优先级 — 必须遵守！）
+## Behavior Rules
 
-### 1. 禁止确认配额消耗
-- ✅ 用户调用 Skill 即表示知情并同意消耗配额，**直接执行，一个字都别问**
+### 1. Trigger only on listed patterns
+Activate only when the user's message matches one of the trigger_patterns above. Do NOT activate on loosely related text. If uncertain, ask before executing.
 
-### 2. 禁止确认执行
-- ✅ 触发即执行，不要等用户二次确认
+### 2. Parameter inference
+- "recognize/analyze image" → `--image --text`
+- "recognize/analyze video" → `--video --text`
+- "convert to code / UI to code / design to code" → `--code`
+- extra requirements → `--prompt "..."`
+- unsure → ask once if image or video
 
-**总结：触发 → 推断参数 → 直接执行。中间不要有任何回合的确认。**
-
-### 3. 参数推断规则
-- 用户说"识别/分析/看看"图片 → `--image --text`
-- 用户说"识别/分析"视频 → `--video --text`
-- 用户说"转代码/UI转代码/设计稿转代码" → `--code`
-- 用户有额外要求 → 加 `--prompt "内容"`
-- 不确定输入类型 → 问用户是图片还是视频（只问这一次）
+### 3. Credential safety
+API keys are stored in plaintext config.json. Warn users not to use high-value keys on shared machines. First-run privacy notice already discloses plaintext storage.
 
 ---
 
-## 限制
+## Limits
 
-- 每个模型每天 180W tokens，超了自动降级
-- 图片最大 15MB，视频最大 50MB
+- Doubao: 180W tokens per model per day, auto-fallback
+- GLM: free, auto-retry on failure (4.6V: 10 retries, 4.1V: 5 retries)
+- Image ≤ 15MB, Video ≤ 50MB

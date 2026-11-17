@@ -1,43 +1,59 @@
-## Description: <br>
-Sbti Fun Test is a local entertainment personality quiz that asks 30 multiple-choice questions and returns one of 28 humorous SBTI result types with ASCII art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Chinese-language SBTI entertainment personality quiz with 30 questions, four answer choices, humorous personality results, and ASCII-art pets.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-External users and developers use this skill to run or integrate a local Python-based joke personality quiz for entertainment. It should not be used for diagnosis, hiring, relationship decisions, or other consequential assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quiz includes crude, self-deprecating, and profanity-heavy humor that some users may find uncomfortable. <br>
-Mitigation: Use it only in contexts where this humor is appropriate, and preview the content before sharing results with others. <br>
-Risk: Personality results may be mistaken for meaningful psychological or life guidance. <br>
-Mitigation: Treat results as entertainment only and avoid using them for diagnosis, hiring, relationship, or other consequential decisions. <br>
-Risk: The skill runs third-party local Python scripts. <br>
-Mitigation: Review the artifact and run it without elevated permissions in a local environment you trust. <br>
+## Use Case:
 
+External users or developers use this skill to run or embed a local entertainment-only SBTI personality quiz and produce a humorous result summary. It should not be used for diagnosis, hiring, relationship decisions, or other consequential assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laojun509/sbti-fun-test) <br>
-- [Original Bilibili author profile](https://space.bilibili.com/417038183) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python snippets; terminal text output from the interactive quiz.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally as a Python quiz, accepts A-D answers, and prints a humorous personality result with ASCII art.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: Users may mistake humorous personality results for diagnostic or decision-grade assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present and use the quiz as entertainment only, and do not rely on it for diagnosis, hiring, relationship, or other consequential decisions.
+
+Risk: Older V1/V2 scripts are bundled beside the current V3 entrypoint.
+
+Mitigation: Use the documented scripts/sbti_test.py entrypoint for the current release unless intentionally reviewing legacy behavior.
+
+Risk: Documentation may overstate the exact V3 result count.
+
+Mitigation: Treat the quiz output as the authoritative runtime result and avoid making precise governance claims from the advertised count alone.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laojun509/skills/sbti-fun-test)
+- [Publisher profile](https://clawhub.ai/user/laojun509)
+- [Original author profile](https://space.bilibili.com/417038183)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Terminal text or Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces entertainment quiz prompts, formatted personality summaries, dimension analysis, and ASCII-art result displays.]
+
+## Skill Version(s):
+
+3.0.1 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Progressive research protocol for agents: write a stub file immediately, append findings incrementally, never save the write for last. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Progressive research protocol for agents: write a stub file immediately, append findings incrementally, never save the write for last.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers, researchers, and agent operators use this skill to keep long-running research briefs durable by creating a draft file first and updating it as findings arrive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create or overwrite a research brief file before the agent has gathered all details. <br>
-Mitigation: Use an explicit output path and avoid existing filenames when accidental file creation or overwrites would matter. <br>
+## Use Case:
 
+Agents and developers use this skill when a research task should produce a persistent brief file. It directs the agent to create an initial Markdown stub before research and update the file as findings are gathered.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nissan/research-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with incremental file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a visible draft early, then updates sections as research progresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill encourages creating a file at the start of a research task, which may be undesirable when persistent output is not expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for research-to-file workflows where creating a draft brief is intended, and confirm the destination file before starting.
+
+Risk: An interrupted run can leave placeholder or partially updated sections in the brief.
+
+Mitigation: Review the generated brief for remaining placeholders, source coverage, and recommendations before relying on it.
+
+## Reference(s):
+
+- [Research Brief ClawHub Page](https://clawhub.ai/nissan/skills/research-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown research brief with incremental file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow starts with a stub file and updates sections as research findings and sources are gathered.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

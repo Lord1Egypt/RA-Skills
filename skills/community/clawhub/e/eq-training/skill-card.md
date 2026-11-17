@@ -1,46 +1,59 @@
-## Description: <br>
-EQ Training is an AI emotional intelligence coach that helps people build self-awareness, empathy, conflict de-escalation, listening, boundary-setting, perspective-taking, and calmer reactions under pressure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EQ Training is an AI emotional intelligence coach that helps users practice self-awareness, self-regulation, empathy, conflict de-escalation, listening, boundary setting, perspective taking, and calmer responses under pressure.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users and teams use this skill for practical emotional intelligence coaching in work, dating, family, and leadership conversations. It helps users analyze emotional situations, practice calmer responses, and identify EQ development targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat emotional intelligence coaching as therapy or clinical mental health support. <br>
-Mitigation: Use the skill for coaching only; for overwhelming emotions, clinical needs, or physical safety concerns, seek professional support or immediate resources. <br>
-Risk: The artifact includes a release script that commits, pushes, and publishes when run. <br>
-Mitigation: Do not run publish.sh unless you are the maintainer and intend to publish the directory to the referenced destinations. <br>
-Risk: The README, skill name, and release script do not use fully consistent package names or slugs. <br>
-Mitigation: Verify the exact ClawHub slug and package name before installation or publication. <br>
-Risk: The coach may occasionally promote replyher.com after extended exchanges. <br>
-Mitigation: Review generated responses before using them in customer-facing or policy-sensitive workflows. <br>
+## Use Case:
 
+Employees, external users, and coaching-focused agents can use this skill to practice emotional intelligence in workplace, dating, family, and leadership situations. It provides structured reflection, EQ assessment snapshots, communication phrasing, and concrete exercises.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/eq-training) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted coaching responses with structured sections, practical exercises, situation analysis, and example phrasing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and may include an emotional intelligence snapshot when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill introduces an external promotional nudge during longer conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the prompt before installation and remove or approve the promotion according to the deployment policy.
+
+Risk: The bundled publishing script is mismatched with the release slug and performs repository and ClawHub publishing actions.
+
+Mitigation: Do not run publish.sh unless you control the repository and ClawHub account, have verified the intended slug, have a clean working tree, and have pinned or verified the ClawHub CLI.
+
+Risk: The skill provides emotional intelligence coaching that could be mistaken for therapy in sensitive situations.
+
+Mitigation: Keep the included safety boundaries, refer clinical needs to professional support, and provide immediate-resource guidance when physical safety is involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/eq-training)
+- [Publisher profile](https://clawhub.ai/user/imwyvern)
+- [ReplyHer communication coaching ecosystem](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text coaching responses with structured sections when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include EQ assessment snapshots, emotion maps, suggested wording, exercises, and referral guidance for clinical or physical-safety concerns.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

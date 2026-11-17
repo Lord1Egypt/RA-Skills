@@ -1,41 +1,59 @@
-## Description: <br>
-Local shell copilot for command planning, safe execution, preview-first workflows, output summarization, privacy-aware history controls, and step-by-step terminal help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local shell copilot for command planning, safe execution, preview-first workflows, output summarization, privacy-aware history controls, and step-by-step terminal help.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Developers and technical users use this skill to plan, preview, execute, summarize, and review local shell commands while retaining local command history controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute local shell commands, including commands that change files, invoke privilege escalation, fetch remote content, or run code. <br>
-Mitigation: Preview commands first, inspect the exact command and working directory, and require explicit confirmation before high-risk execution. <br>
-Risk: Command output or command text may contain secrets or private data that could be stored in local history. <br>
-Mitigation: Use no-output storage for sensitive commands and redact sensitive-looking values from stored and displayed output. <br>
+## Use Case:
 
+Developers and operators use Terminal to plan, preview, execute, summarize, and review local shell commands during file inspection, debugging, and automation workflows.
 
-## Reference(s): <br>
-- [Terminal Philosophy](references/philosophy.md) <br>
-- [ClawHub Terminal release page](https://clawhub.ai/AGIstack/terminal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with shell commands, execution summaries, command history entries, and safety guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally, can preview commands before execution, records command history locally, supports output-free storage for sensitive commands, and can redact sensitive-looking values from stored or displayed output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill.json) <br>
+Risk: The skill can run arbitrary local shell commands, which may modify files, invoke network tools, or execute unsafe operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use preview mode and review the command, working directory, and reported risk before allowing execution; require explicit confirmation for high-risk commands.
+
+Risk: Local command and output history may contain sensitive information.
+
+Mitigation: Use output-free logging for sensitive work and redact displayed output when commands may expose secrets.
+
+Risk: Command risk detection and token redaction are not complete safety boundaries.
+
+Mitigation: Manually review destructive, credential-bearing, or privilege-escalating commands instead of relying solely on automated checks.
+
+## Reference(s):
+
+- [Terminal Philosophy](references/philosophy.md)
+- [ClawHub Terminal Skill](https://clawhub.ai/agistack/skills/terminal)
+- [AGIstack Publisher Profile](https://clawhub.ai/user/agistack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and command-result summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local command stdout and stderr; sensitive-looking values can be redacted for display and stored history.]
+
+## Skill Version(s):
+
+1.0.2 (source: skill.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

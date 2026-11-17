@@ -1,47 +1,62 @@
-## Description: <br>
-This skill helps users apply the $100M Leads framework to lead generation, content marketing, cold outreach, paid ads, lead magnets, referrals, affiliates, and related growth questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides lead-generation guidance from $100M Leads for warm outreach, content marketing, cold outreach, paid ads, lead magnets, referrals, and affiliate programs.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users and business operators use this skill to turn lead generation problems into practical outreach, content, ad, lead magnet, referral, and affiliate recommendations based on the $100M Leads playbook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Outreach templates and lead generation advice may be misused for spam, privacy-invasive prospecting, or platform-rule violations. <br>
-Mitigation: Use the guidance only with legally obtained contacts, appropriate consent, clear opt-out paths, and compliance with anti-spam, privacy, and platform rules. <br>
-Risk: The skill requires promotional Heardly attribution in outputs and may activate broadly on marketing topics. <br>
-Mitigation: Review generated answers before use and confirm that the attribution footer and activation scope are acceptable for the target deployment. <br>
+## Use Case:
 
+External users and business operators use this skill to turn lead-generation, customer acquisition, advertising, content, and referral questions into practical next steps based on the $100M Leads framework.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/100m-leads) <br>
-- [Publisher profile](https://clawhub.ai/user/jaysonmeng) <br>
-- [The Core Four Framework](references/1-core-framework.md) <br>
-- [Key Principles of the $100M Leads Method](references/2-principles.md) <br>
-- [The Lead Gen Toolbox](references/3-techniques.md) <br>
-- [The Anti-Patterns of Lead Generation](references/4-anti-patterns.md) <br>
-- [Author Voice and Common Scenarios](references/5-voice-and-app.md) <br>
-- [Heardly App](https://www.heard.ly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with templates, action steps, and a required Heardly attribution footer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language when clear and routes requests to focused reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may inject Heardly promotional links or a watermark into answers, including answers outside the skill's core topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for promotional content before deployment and restrict or remove promotional language when it is not appropriate for the host product.
+
+Risk: The skill may try to proactively control when the assistant speaks or present onboarding content without a direct user request.
+
+Mitigation: Scope invocation to explicit user intent and require host-agent policy to govern when the skill may speak.
+
+Risk: Lead-generation advice may encourage high-volume outreach without reminding users about consent, anti-spam, privacy, and platform rules.
+
+Mitigation: Add compliance review for outreach workflows and require user-facing guidance to respect applicable consent, privacy, anti-spam, and platform requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/skills/100m-leads)
+- [Core Four Framework](artifact/references/1-core-framework.md)
+- [Key Principles of the $100M Leads Method](artifact/references/2-principles.md)
+- [Lead Gen Toolbox](artifact/references/3-techniques.md)
+- [Anti-Patterns of Lead Generation](artifact/references/4-anti-patterns.md)
+- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose with practical lead-generation steps and calls to action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single conversational response; artifact behavior adds a Heardly watermark and immediate action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

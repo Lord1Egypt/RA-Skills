@@ -1,44 +1,55 @@
-## Description: <br>
-Fetches full Dcard article content and forum post listings using Camoufox browser automation, returning titles, body text, image links, and post metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches full Dcard article content and forum post lists with titles, body text, and image links, using Camoufox and patchright to handle Cloudflare-protected pages.
 
-## Publisher: <br>
-[ichendong](https://clawhub.ai/user/ichendong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichendong](https://clawhub.ai/user/ichendong)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public Dcard posts or forum listings for summarization, analysis, or content review workflows. It is best suited for low-volume access to public content where the operator accepts Dcard and Cloudflare policy considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses stealth browser automation that contacts Dcard and may conflict with Dcard or Cloudflare policies. <br>
-Mitigation: Use it only for public content, keep usage low-volume, and confirm the intended workflow is acceptable before running it. <br>
-Risk: The skill depends on Camoufox, patchright, and lxml at runtime. <br>
-Mitigation: Review and install dependencies from trusted sources in an isolated environment before use. <br>
-Risk: Short bursts of requests may trigger rate limits or access challenges. <br>
-Mitigation: Limit repeated fetches and add delays or manual review for any automated workflow. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve Dcard post content, images, and forum post lists for analysis or review workflows. Users should confirm their use complies with Dcard's terms and avoid bulk automated scraping.
 
-## Reference(s): <br>
-- [ClawHub Dcard skill page](https://clawhub.ai/ichendong/dcard) <br>
-- [Publisher profile: ichendong](https://clawhub.ai/user/ichendong) <br>
-- [Dcard public forum](https://www.dcard.tw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON from CLI commands; Markdown guidance with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact Dcard through Camoufox and patchright browser automation and can include public post URLs and image links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill automates access to Dcard content through anti-bot bypass behavior and may conflict with service terms or rate limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the intended use complies with Dcard's terms, avoid bulk or automated scraping, and stop if rate limits or access challenges appear.
+
+Risk: The skill installs and runs browser tooling with weak supply-chain and isolation controls.
+
+Mitigation: Install only in an isolated, unprivileged environment after independently checking dependency and Camoufox versions.
+
+## Reference(s):
+
+- [Dcard Skill on ClawHub](https://clawhub.ai/ichendong/skills/dcard)
+- [Dcard publisher profile](https://clawhub.ai/user/ichendong)
+- [Dcard article URL pattern](https://www.dcard.tw/f/relationship/p/261529038)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON emitted by command-line scripts, with Markdown usage examples in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include article title, URL, post ID, body text, image links, forum post lists, and popular forum listings.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

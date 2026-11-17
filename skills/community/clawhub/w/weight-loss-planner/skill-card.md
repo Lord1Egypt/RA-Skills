@@ -1,39 +1,59 @@
-## Description: <br>
-Generates personalized weight loss plans with body metrics, calorie targets, daily meal planning, and weekly exercise guidance based on user-provided profile and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized daily diet and exercise plans for weight loss using user-provided body metrics, goals, timeline, activity level, and preferences.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Individuals and wellness-focused agents use this skill to draft weight loss plans that combine BMI, BMR, TDEE, calorie deficit, meal template, and exercise template guidance. The generated plan is general wellness guidance and should be reviewed before use, especially for users with health conditions or other risk factors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated diet and exercise plans may be followed without enough medical screening or safety boundaries. <br>
-Mitigation: Confirm the skill asks about health conditions, medications, injuries, pregnancy, age, eating-disorder history, activity level, and allergies; users with risk factors should consult a clinician or qualified dietitian/trainer before following the plan. <br>
+## Use Case:
 
+External users use this skill to create a structured weight-loss plan with body-metric calculations, meal guidance, weekly exercise scheduling, safety reminders, and phase-based adjustment suggestions.
 
-## Reference(s): <br>
-- [Meal Plans Template Library](references/meal-plans.md) <br>
-- [Exercise Plans Template Library](references/exercise-plans.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown wellness plan with calculated metrics, meal sections, exercise schedule, reminders, and adjustment suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided body data, goals, preferences, activity level, dietary limits, and safety guardrails to generate a single plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Nutrition formulas and meal totals may be incorrect or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct calculations, calorie targets, macronutrient totals, and meal-template totals before use.
+
+Risk: Weight-loss and exercise guidance may be unsuitable for users with medical conditions, medications, pregnancy, lactation, injuries, or symptoms during training.
+
+Mitigation: Add explicit medical-risk screening, user confirmation, safe substitutions, stop conditions, and clinician-referral guidance before generating plans.
+
+Risk: Chinese-language instructions may be misunderstood by users or agents that cannot reliably read Chinese.
+
+Mitigation: Install only where the operating user or reviewing agent can understand the Chinese source instructions and generated guidance.
+
+## Reference(s):
+
+- [Weight Loss Planner on ClawHub](https://clawhub.ai/smallkeyboy/skills/weight-loss-planner)
+- [Meal Plan Templates](references/meal-plans.md)
+- [Exercise Plan Templates](references/exercise-plans.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown plan with BMI, BMR, TDEE, calorie targets, meal sections, weekly exercise schedule, safety reminders, and adjustment guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, non-executable health and fitness guidance based on general formulas and templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

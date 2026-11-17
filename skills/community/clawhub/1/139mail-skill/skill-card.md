@@ -1,45 +1,54 @@
-## Description: <br>
-139mail sends and reads email through IMAP and SMTP for 139, QQ, 163, Gmail, and other mailbox providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+139mail lets an OpenClaw agent send, list, receive, and read email over IMAP/SMTP for 139, QQ, 163, Gmail, and other common mailbox providers.
 
-## Publisher: <br>
-[Chang-Tong](https://clawhub.ai/user/Chang-Tong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chang-tong](https://clawhub.ai/user/chang-tong)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent send email, list mailbox messages, read message contents, and test mailbox connectivity after local IMAP/SMTP configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and private email content. <br>
-Mitigation: Use an app-specific password, restrict local configuration file permissions, and avoid connecting accounts that contain sensitive data unless the risk is acceptable. <br>
-Risk: IMAP certificate verification is disabled in the artifact behavior. <br>
-Mitigation: Avoid sensitive accounts until certificate verification is fixed and confirm mail server settings before use. <br>
-Risk: Outgoing email and attachment actions may proceed without strong confirmation. <br>
-Mitigation: Verify every recipient, message body, and attachment path before allowing the agent to send mail. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent send email, list inbox messages, inspect unread mail, and read selected message details through configured IMAP and SMTP accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Chang-Tong/139mail-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Package manifest](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read private mailbox content and may send email or attachments through the configured account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: openclaw.skill.json, package.json, release metadata) <br>
+Risk: The skill handles mailbox credentials and email content, and the authoritative security summary reports unsafe TLS behavior and weak credential-file protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only email authorization codes, restrict config/email.json to owner-only permissions, and avoid use over untrusted networks unless IMAP TLS certificate validation is fixed.
+
+Risk: Broad natural-language activation can lead an agent to send attachments or read mailbox content in sensitive contexts.
+
+Mitigation: Require user confirmation for sending email or attachments and limit mailbox reads to the smallest necessary message set.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chang-tong/skills/139mail-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/chang-tong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language agent responses with JSON command results and configuration or shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May expose mailbox metadata, message content, send results, and attachment-related paths depending on the requested email operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, openclaw.skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

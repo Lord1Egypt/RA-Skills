@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF 编辑器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f5; color: #333; overflow: hidden; height: 100vh; }
+
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .header h1 { font-size: 17px; font-weight: 600; letter-spacing: 0.5px; }
+        .header-actions { display: flex; gap: 6px; }
+        .header-actions button { padding: 6px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .header-actions button:hover { background: rgba(255,255,255,0.2); }
+
+        .toolbar { background: white; border-bottom: 1px solid #e0e0e0; padding: 6px 16px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; flex-shrink: 0; }
+        .toolbar button { padding: 5px 12px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 13px; transition: all 0.15s; display: flex; align-items: center; gap: 4px; }
+        .toolbar button:hover { background: #e8f0fe; border-color: #4285f4; color: #1a73e8; }
+        .toolbar button.active { background: #4285f4; color: white; border-color: #4285f4; }
+        .toolbar button.danger:hover { background: #fce8e6; color: #d93025; border-color: #d93025; }
+        .toolbar .sep { width: 1px; height: 22px; background: #ddd; margin: 0 4px; }
+        .toolbar input[type="number"] { width: 50px; padding: 4px 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
+        .toolbar select { padding: 4px 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
+        .toolbar .tool-hint { font-size: 11px; color: #999; margin-left: 4px; }
+
+        .main { display: flex; height: calc(100vh - 92px); }
+
+        .sidebar { width: 220px; background: white; border-right: 1px solid #e0e0e0; overflow-y: auto; padding: 10px; flex-shrink: 0; }
+        .sidebar h3 { font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .page-list { list-style: none; }
+        .page-item { padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; transition: background 0.15s; }
+        .page-item:hover { background: #f5f5f5; }
+        .page-item.active { background: #e8f0fe; color: #1a73e8; font-weight: 500; }
+        .page-item .thumb { width: 32px; height: 42px; background: #fafafa; border: 1px solid #eee; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+        .page-item .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .viewer { flex: 1; display: flex; align-items: flex-start; justify-content: center; background: #c0c0c0; overflow: auto; position: relative; padding: 20px; }
+        .viewer .page-wrap { position: relative; box-shadow: 0 4px 30px rgba(0,0,0,0.2); background: white; }
+        .viewer .page-wrap img { display: block; cursor: crosshair; }
+        
+        /* Inline editor overlay */
+        .inline-editor {
+            position: absolute;
+            z-index: 100;
+            min-width: 200px;
+            max-width: 400px;
+            background: white;
+            border: 2px solid #4285f4;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(66,133,244,0.3);
+            display: none;
+            animation: popIn 0.15s ease-out;
+        }
+        .inline-editor.show { display: block; }
+        @keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .inline-editor textarea {
+            width: 100%; min-height: 40px; max-height: 150px;
+            padding: 8px 10px; border: none; outline: none;
+            font-family: -apple-system, sans-serif; font-size: 14px;
+            resize: vertical; line-height: 1.5; border-radius: 4px;
+        }
+        .inline-editor .editor-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 4px 8px; background: #f8f9fa; border-top: 1px solid #e0e0e0;
+            border-radius: 0 0 4px 4px;
+        }
+        .inline-editor .editor-bar button {
+            padding: 3px 12px; border: none; border-radius: 4px; cursor: pointer;
+            font-size: 12px; font-weight: 500;
+        }
+        .inline-editor .btn-confirm { background: #4285f4; color: white; }
+        .inline-editor .btn-confirm:hover { background: #3367d6; }
+        .inline-editor .btn-cancel { background: transparent; color: #666; }
+        .inline-editor .btn-cancel:hover { background: #eee; }
+        .inline-editor .hint { font-size: 11px; color: #999; }
+
+        /* Text selection highlight */
+        .text-overlay { position: absolute; top: 0; left: 0; pointer-events: auto; }
+        .text-block {
+            position: absolute; cursor: pointer; pointer-events: auto;
+            border: 1px solid rgba(220, 20, 60, 0.8) !important; /* 醒目红色边框 */
+            background: rgba(220, 20, 60, 0.12) !important; /* 半透明红背景 */
+            box-sizing: border-box;
+            transition: all 0.15s;
+        }
+        .text-block:hover { background: rgba(255, 100, 100, 0.25) !important; border-color: #e63946 !important; }
+
+        .dropzone { 
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: #f5f5f5; z-index: 50;
+        }
+        .dropzone-inner { 
+            border: 3px dashed #ccc; border-radius: 20px; padding: 80px 60px; text-align: center; cursor: pointer;
+            transition: all 0.3s; background: white;
+        }
+        .dropzone-inner:hover { border-color: #4285f4; background: #e8f0fe; }
+        .dropzone-inner h2 { font-size: 26px; color: #333; margin-bottom: 8px; }
+        .dropzone-inner p { color: #888; font-size: 15px; }
+        .dropzone-inner .icon { font-size: 56px; margin-bottom: 16px; }
+        .dropzone-inner .upload-btn {
+            margin-top: 20px; padding: 12px 28px; background: #4285f4; color: white;
+            border: none; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: 500;
+        }
+        .dropzone-inner .upload-btn:hover { background: #3367d6; }
+
+        .status-bar { 
+            background: white; border-top: 1px solid #e0e0e0; padding: 4px 16px; 
+            font-size: 12px; color: #888; display: flex; justify-content: space-between; flex-shrink: 0;
+        }
+
+        .toast {
+            position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+            background: #333; color: white; padding: 10px 24px; border-radius: 10px;
+            font-size: 14px; z-index: 3000; display: none; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .toast.show { display: block; animation: toastIn 0.25s ease-out; }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+        .hidden { display: none !important; }
+
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.45); z-index: 500; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.2s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { background: white; border-radius: 14px; padding: 24px; min-width: 380px; max-width: 480px; box-shadow: 0 12px 48px rgba(0,0,0,0.2); }
+        .modal h2 { font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .modal label { display: block; font-size: 13px; color: #666; margin-bottom: 4px; margin-top: 12px; }
+        .modal input, .modal textarea, .modal select { width: 100%; padding: 9px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+        .modal input:focus, .modal textarea:focus { border-color: #4285f4; box-shadow: 0 0 0 3px rgba(66,133,244,0.1); }
+        .modal textarea { height: 70px; resize: vertical; }
+        .modal .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+        .modal .btn { padding: 8px 20px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; font-size: 14px; background: white; }
+        .modal .btn-primary { background: #4285f4; color: white; border-color: #4285f4; }
+        .modal .btn-primary:hover { background: #3367d6; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📄 PDF 编辑器</h1>
+        <div class="header-actions">
+            <button onclick="downloadPDF()">⬇️ 下载</button>
+            <button onclick="openNewPDF()" style="border-color:rgba(255,255,255,0.3)">📂 打开</button>
+        </div>
+    </div>
+
+    <div class="toolbar hidden" id="toolbar">
+        <button id="toolEdit" onclick="setTool('edit')" title="点击文字直接编辑">✏️ 编辑文字</button>
+        <button id="toolAddText" onclick="setTool('addtext')" title="在PDF上添加新文字">📝 添加文字</button>
+        <button onclick="openImageModal()">🖼️ 插入图片</button>
+        <div class="sep"></div>
+        <button onclick="openWatermarkModal()">💧 水印</button>
+        <button onclick="openHighlightModal()">🖍️ 高亮</button>
+        <button onclick="openAnnotationModal()">💬 批注</button>
+        <div class="sep"></div>
+        <button onclick="rotatePage()">🔄 旋转</button>
+        <button onclick="deleteCurrentPage()" class="danger">🗑️ 删页</button>
+        <div class="sep"></div>
+        <span style="font-size:12px;color:#999">第</span>
+        <input type="number" id="pageJump" min="1" value="1" onchange="goToPage(this.value-1)">
+        <span style="font-size:12px;color:#999">页 / ${totalPages}</span>
+        <div class="sep"></div>
+        <select id="zoomLevel" onchange="changeZoom(this.value)" style="font-size:12px">
+            <option value="0.75">75%</option><option value="1" selected>100%</option>
+            <option value="1.5">150%</option><option value="2">200%</option>
+        </select>
+        <span class="tool-hint" id="toolHint">💡 点击页面上的文字即可编辑</span>
+    </div>
+
+    <div class="main">
+        <!-- Dropzone -->
+        <div class="dropzone" id="dropzone">
+            <div class="dropzone-inner"
+                 ondragover="event.preventDefault();this.style.borderColor='#4285f4';this.style.background='#e8f0fe'"
+                 ondragleave="this.style.borderColor='#ccc';this.style.background='white'"
+                 ondrop="handleDrop(event)">
+                <div class="icon">📄</div>
+                <h2>拖拽 PDF 到此处开始编辑</h2>
+                <p>支持任意 PDF 文件，纯本地处理，隐私安全</p>
+                <input type="file" id="fileInput" accept=".pdf" style="display:none" onchange="loadFile(this.files[0])">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    选择 PDF 文件
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar hidden" id="sidebar">
+            <h3>📑 页面</h3>
+            <ul class="page-list" id="pageList"></ul>
+            <h3 style="margin-top:16px">📋 信息</h3>
+            <div id="docInfo" style="font-size:12px;color:#666;line-height:1.8"></div>
+        </div>
+
+        <!-- Viewer -->
+        <div class="viewer hidden" id="viewer">
+            <div class="page-wrap" id="pageWrap">
+                <img id="pageImage" src="" alt="PDF page" crossorigin="anonymous">
+                <div class="text-overlay" id="textOverlay"></div>
+                <!-- Inline editor -->
+                <div class="inline-editor" id="inlineEditor">
+                    <textarea id="editTextarea" placeholder="输入新的文字内容..."></textarea>
+                    <div class="editor-bar">
+                        <span class="hint">按 Enter 确认 · Esc 取消</span>
+                        <div>
+                            <button class="btn-cancel" onclick="cancelInlineEdit()">取消</button>
+                            <button class="btn-confirm" onclick="confirmInlineEdit()">✓ 确认修改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar" id="statusBar">
+        <span id="statusText">就绪 - 请打开 PDF 文件</span>
+        <span id="statusRight"></span>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="imageModal"><div class="modal"><h2>🖼️ 插入图片</h2>
+        <label>选择图片</label><input type="file" id="imageFileInput" accept="image/*">
+        <div class="modal-actions"><button class="btn" onclick="closeModal('imageModal')">取消</button><button class="btn btn-primary" onclick="doInsertImage()">插入</button></div></div></div>
+
+    <div class="modal-overlay" id="watermarkModal"><div class="modal"><h2>💧 添加水印</h2>
+        <label>水印文字</label><input type="text" id="watermarkText" placeholder="例：机密文件" value="">
+        <label>透明度 (0-1)</label><input type="number" id="wmOpacity" value="0.3" min="0" max="1" step="0.1">
+        <label>字号</label><input type="number" id="wmSize" value="50" min="10" max="200">
+        <div class="modal-actions"><button class="btn" onclick="closeModal('watermarkModal')">取消</button><button class="btn btn-primary" onclick="doAddWatermark()">添加</button></div></div></div>
+
+    <div class="modal-overlay" id="highlightModal"><div class="modal"><h2>🖍️ 高亮文字</h2>
+        <label>要高亮的文字</label><input type="text" id="highlightText" placeholder="输入要高亮的文字">
+        <div class="modal-actions"><button class="btn" onclick="closeModal('highlightModal')">取消</button><button class="btn btn-primary" onclick="doHighlight()">高亮</button></div></div></div>
+
+    <div class="modal-overlay" id="annotationModal"><div class="modal"><h2>💬 添加批注</h2>
+        <label>批注内容</label><textarea id="annotationText" placeholder="输入批注内容"></textarea>
+        <div class="modal-actions"><button class="btn" onclick="closeModal('annotationModal')">取消</button><button class="btn btn-primary" onclick="doAddAnnotation()">添加</button></div></div></div>
+
+    <div class="toast" id="toast"></div>
+    <input type="file" id="newFileInput" accept=".pdf" style="display:none">
+
+<script>
+// ===== State =====
+let currentFile = null, currentPage = 0, totalPages = 0, zoom = 1.0, docInfo = {};
+let currentTool = 'edit'; // 'edit' | 'addtext'
+let pageRenderSize = { w: 0, h: 0 }; // actual rendered pixel size
+let textBlocks = []; // extracted text positions for this page
+
+// ===== DOM refs =====
+const $ = id => document.getElementById(id);
+const dropzone = $('dropzone'), sidebar = $('sidebar'), viewer = $('viewer');
+const toolbar = $('toolbar'), pageList = $('pageList'), pageImage = $('pageImage');
+const statusText = $('statusText'), pageWrap = $('pageWrap');
+const inlineEditor = $('inlineEditor'), editTextarea = $('editTextarea');
+const textOverlay = $('textOverlay');
+
+// ===== File handling =====
+function handleDrop(e) {
+    e.preventDefault();
+    const f = e.dataTransfer.files[0];
+    if (f && f.type === 'application/pdf') loadFile(f);
+}
+dropzone.querySelector('.dropzone-inner').addEventListener('click', () => $('fileInput').click());
+
+function loadFile(file) {
+    currentFile = file;
+    const fd = new FormData(); fd.append('file', file);
+    fetch('/api/open', { method: 'POST', body: fd })
+        .then(r => r.json())
+        .then(data => {
+            docInfo = data; totalPages = data.pages; currentPage = 0;
+            showEditor(); renderPageList(); showPage(0);
+        })
+        .catch(err => showToast('❌ 加载失败: ' + err.message));
+}
+
+function openNewPDF() {
+    const inp = $('newFileInput');
+    inp.onchange = () => { if (inp.files[0]) loadFile(inp.files[0]); };
+    inp.click();
+}
+
+// ===== UI state =====
+function showEditor() {
+    dropzone.classList.add('hidden');
+    sidebar.classList.remove('hidden'); viewer.classList.remove('hidden'); toolbar.classList.remove('hidden');
+    statusText.textContent = `✅ ${currentFile?.name || 'document.pdf'} — 就绪`;
+    $('statusRight').textContent = `${totalPages} 页`;
+    $('docInfo').innerHTML = `
+        <p>📄 ${totalPages} 页</p>
+        <p>💾 ${formatSize(docInfo.filesize)}</p>
+        ${docInfo.title ? `<p>📌 ${docInfo.title}` : ''}
+        ${docInfo.author ? `<p>👤 ${docInfo.author}` : ''}`;
+}
+
+function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b/1024).toFixed(1)+' KB';
+    return (b/1048576).toFixed(1)+' MB';
+}
+
+// ===== Page rendering =====
+function renderPageList() {
+    pageList.innerHTML = '';
+    for (let i = 0; i < totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item${i===currentPage?' active':''}`;
+        li.innerHTML = `<div class="thumb"><img src="/api/page/${i}?dpi=72" alt="P${i+1}" loading="lazy"></div><span>第${i+1}页</span>`;
+        li.onclick = () => showPage(i);
+        pageList.appendChild(li);
+    }
+}
+
+function showPage(num) {
+    currentPage = num;
+    pageImage.src = `/api/page/${num}?dpi=200&t=${Date.now()}`;
+    pageImage.onload = () => {
+        pageRenderSize.w = pageImage.naturalWidth;
+        pageRenderSize.h = pageImage.naturalHeight;
+        applyZoom();
+        extractTextBlocks();
+    };
+    $('pageJump').value = num + 1;
+    document.querySelectorAll('.page-item').forEach((el,i) => el.classList.toggle('active', i===num));
+    closeInlineEdit();
+}
+
+function applyZoom() {
+    pageImage.style.width = (zoom * 100) + '%';
+    pageWrap.style.width = (pageRenderSize.w * zoom) + 'px';
+    pageWrap.style.height = (pageRenderSize.h * zoom) + 'px';
+    textOverlay.style.width = (pageRenderSize.w * zoom) + 'px';
+    textOverlay.style.height = (pageRenderSize.h * zoom) + 'px';
+}
+
+function goToPage(n) { n = Math.max(0, Math.min(totalPages-1, n)); showPage(n); }
+function changeZoom(v) { zoom = parseFloat(v); applyZoom(); }
+
+// ===== Tool switching =====
+function setTool(tool) {
+    currentTool = tool;
+    document.querySelectorAll('#toolbar button[id^=tool]').forEach(b => b.classList.remove('active'));
+    const btn = $('tool' + tool.charAt(0).toUpperCase() + tool.slice(1));
+    if (btn) btn.classList.add('active');
+    const hints = { edit: '💡 点击页面上的文字即可直接编辑', addtext: '💡 点击页面任意位置添加新文字' };
+    $('toolHint').textContent = hints[tool] || '';
+    pageImage.style.cursor = tool === 'edit' ? 'text' : 'crosshair';
+}
+
+// Initialize default tool
+setTool('edit');
+
+// ===== Text extraction & click-to-edit =====
+async function extractTextBlocks() {
+    console.log('📄 extractTextBlocks() 被调用, currentPage:', currentPage);
+    textOverlay.innerHTML = '';
+    textBlocks = [];
+    try {
+        const resp = await fetch(`/api/text-blocks/${currentPage + 1}`);
+        console.log('📡 API响应状态:', resp.status);
+        const blocks = await resp.json();
+        console.log('📦 收到文字块数量:', blocks.length);
+        if (!blocks || !blocks.length) {
+            console.log('⚠️ 没有文字块，退出');
+            return;
+        }
+
+        console.log('📦 收到文字块数量:', blocks.length);
+        if (!blocks.length) {
+            console.log('⚠️ 没有文字块，退出');
+            return;
+        }
+
+        // Wait for layout to settle before measuring
+        await new Promise(r => setTimeout(r, 50));
+
+        const pageSize = (docInfo.page_sizes?.[currentPage] || '595x842').split('x');
+        const pdfW = parseFloat(pageSize[0]);
+        const pdfH = parseFloat(pageSize[1]);
+        const wrapW = pageWrap.clientWidth;
+        const wrapH = pageWrap.clientHeight;
+        if (wrapW < 10) {
+            console.warn('⚠️ pageWrap still 0, retrying...');
+            await new Promise(r => setTimeout(r, 200));
+        }
+        const finalW = pageWrap.clientWidth;
+        const finalH = pageWrap.clientHeight;
+        const scaleX = finalW / pdfW;
+        const scaleY = finalH / pdfH;
+        console.log(`📐 PDF: ${pdfW}x${pdfH}pt | pageWrap: ${finalW}x${finalH}px | scale: ${scaleX.toFixed(4)}x / ${scaleY.toFixed(4)}y`);
+        if (finalW < 10) { console.error('❌ pageWrap still 0 — CSS not applied!'); return; }
+
+
+        blocks.forEach((blk, idx) => {
+            const div = document.createElement('div');
+            div.className = 'text-block';
+            div.dataset.index = idx;
+            div.dataset.text = blk.text;
+            div.dataset.oldText = blk.text;
+            // Store PDF coordinates for precise editing
+            div.dataset.pdfx0 = blk.x0; div.dataset.pdfy0 = blk.y0;
+            div.dataset.pdfx1 = blk.x1; div.dataset.pdfy1 = blk.y1;
+
+            // Convert PDF coords to displayed pixel coords (flip Y)
+            const x = blk.x0 * scaleX;
+            const y = (pdfH - blk.y1) * scaleY;
+            const w = (blk.x1 - blk.x0) * scaleX;
+            const h = (blk.y1 - blk.y0) * scaleY;
+
+            if (idx === 0) console.log(`  第一个文字块: "${blk.text}" → left=${x.toFixed(1)} top=${y.toFixed(1)} w=${w.toFixed(1)} h=${h.toFixed(1)}`);
+            if (idx === blocks.length - 1) console.log(`  最后一个文字块: "${blk.text}" → left=${x.toFixed(1)} top=${y.toFixed(1)} w=${w.toFixed(1)} h=${h.toFixed(1)}`);
+
+            div.style.left = (x * zoom) + 'px';
+            div.style.top = (y * zoom) + 'px';
+            div.style.width = (w * zoom) + 'px';
+            div.style.height = (h * zoom) + 'px';
+            div.title = blk.text;
+
+            div.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentTool === 'edit') {
+                    openInlineEdit(e.clientX, e.clientY, blk.text,
+                        parseFloat(div.dataset.pdfx0), parseFloat(div.dataset.pdfy0),
+                        parseFloat(div.dataset.pdfx1), parseFloat(div.dataset.pdfy1));
+                }
+            });
+
+            textOverlay.appendChild(div);
+            textBlocks.push(div);
+        });
+        console.log('✅ 文字层渲染完成, 共', blocks.length, '个文字块');
+    } catch(e) {
+        console.error('❌ extractTextBlocks() 错误:', e);
+        // No text blocks API — fallback to image click
+        console.log('No text extraction available, using image click mode', e);
+    }
+}
+
+// ===== Inline Editor (the key UX improvement!) =====
+let editingBlock = null;
+
+function openInlineEdit(clientX, clientY, originalText, pdfx0, pdfy0, pdfx1, pdfy1) {
+    editingBlock = { originalText, pdfx0, pdfy0, pdfx1, pdfy1 };
+    
+    editTextarea.value = originalText;
+    
+    // Position the editor near the clicked location
+    const viewerRect = viewer.getBoundingClientRect();
+    const wrapRect = pageWrap.getBoundingClientRect();
+    
+    let left = bx;
+    let top = by + bh + 4; // below the text
+    
+    // Keep within viewport
+    const editorW = Math.max(bw, 260);
+    if (left + editorW > wrapRect.width) left = wrapRect.width - editorW - 10;
+    if (top + 160 > wrapRect.height) top = by - 164; // above instead
+    
+    inlineEditor.style.left = left + 'px';
+    inlineEditor.style.top = top + 'px';
+    inlineEditor.style.width = editorW + 'px';
+    inlineEditor.classList.add('show');
+    
+    editTextarea.focus();
+    editTextarea.select();
+}
+
+function closeInlineEdit() {
+    inlineEditor.classList.remove('show');
+    editingBlock = null;
+}
+
+function cancelInlineEdit() { closeInlineEdit(); }
+
+async function confirmInlineEdit() {
+    if (!editingBlock) return;
+    const newText = editTextarea.value.trim();
+    const oldText = editingBlock.originalText;
+    
+    if (!newText || newText === oldText) {
+        closeInlineEdit();
+        return;
+    }
+    
+    try {
+        const data = await apiCall('/api/edit-text-at-rect', 'POST', {
+            page: currentPage + 1,
+            x0: editingBlock.pdfx0,
+            y0: editingBlock.pdfy0,
+            x1: editingBlock.pdfx1,
+            y1: editingBlock.pdfy1,
+            new_text: newText
+        });
+        showToast(`✅ 已修改 "${oldText.slice(0,15)}..." → "${newText.slice(0,15)}..."`);
+        closeInlineEdit();
+        refreshPage();
+    } catch(err) {
+        showToast('❌ 修改失败: ' + err.message);
+    }
+}
+
+// Click on image directly (fallback when no text blocks)
+pageImage.addEventListener('click', async (e) => {
+    if (currentTool === 'edit') {
+        // Get click position relative to image
+        const rect = pageImage.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * pageRenderSize.w / zoom;
+        const y = ((e.clientY - rect.top) / rect.height) * pageRenderSize.h / zoom;
+        
+        // Try to get text at this position from backend
+        try {
+            const resp = await fetch(`/api/text-at/${currentPage + 1}?x=${Math.round(x)}&y=${Math.round(y)}`);
+            const data = await resp.json();
+            if (data && data.text) {
+                openInlineEdit(
+                    e.clientX, e.clientY,
+                    data.text,
+                    (e.clientX - rect.left), (e.clientY - rect.top),
+                    data.width || 150, data.height || 24
+                );
+            } else {
+                // No text found here — open empty editor for adding text
+                openInlineEdit(
+                    e.clientX, e.clientY, '',
+                    (e.clientX - rect.left), (e.clientY - rect.top),
+                    200, 30
+                );
+                $('toolHint').textContent = '💡 此处未检测到文字，将作为新文字添加';
+            }
+        } catch(err) {
+            openInlineEdit(e.clientX, e.clientY, '', (e.clientX-rect.left), (e.clientY-rect.top), 200, 30);
+        }
+    } else if (currentTool === 'addtext') {
+        const rect = pageImage.getBoundingClientRect();
+        const px = ((e.clientX - rect.left) / rect.width) * pageRenderSize.w / zoom;
+        const py = ((e.clientY - rect.top) / rect.height) * pageRenderSize.h / zoom;
+        
+        openInlineEdit(e.clientX, e.clientY, '', (e.clientX-rect.left), (e.clientY-rect.top), 200, 30);
+        editTextarea.placeholder = '输入要添加的新文字...';
+    }
+});
+
+// Keyboard shortcuts for inline editor
+editTextarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); confirmInlineEdit(); }
+    if (e.key === 'Escape') { e.preventDefault(); cancelInlineEdit(); }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+    if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); downloadPDF(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') goToPage(currentPage-1);
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') goToPage(currentPage+1);
+});
+
+// Close editor when clicking outside
+viewer.addEventListener('click', (e) => {
+    if (inlineEditor.classList.contains('show') && 
+        !inlineEditor.contains(e.target) && 
+        !e.target.closest('.text-block')) {
+        // Don't close on viewer bg click — user might want to edit elsewhere
+    }
+});
+
+// ===== Toolbar operations =====
+function rotatePage() {
+    fetch(`/api/rotate/${currentPage + 1}`, { method:'POST' }).then(r=>r.json())
+        .then(() => { showToast('✅ 已旋转'); refreshPage(); })
+        .catch(e => showToast('❌ '+e.message));
+}
+
+function deleteCurrentPage() {
+    if(!confirm(`删除第${currentPage+1}页？`)) return;
+    fetch(`/api/delete-page/${currentPage}`, { method:'DELETE' }).then(r=>r.json())
+        .then(d => { totalPages=d.pages; if(currentPage>=totalPages) currentPage=totalPages-1; renderPageList(); showPage(currentPage); showToast('✅ 已删除'); })
+        .catch(e => showToast('❌ '+e.message));
+}
+
+function refreshPage() { 
+    showPage(currentPage); 
+    // Re-extract text blocks after page refresh
+    setTimeout(() => extractTextBlocks(), 300);
+}
+
+// ===== Modal operations =====
+function showModal(id) { $(id).classList.add('show'); }
+function closeModal(id) { $(id).classList.remove('show'); }
+function openImageModal() { showModal('imageModal'); }
+function openWatermarkModal() { showModal('watermarkModal'); }
+function openHighlightModal() { showModal('highlightModal'); }
+function openAnnotationModal() { showModal('annotationModal'); }
+
+function doInsertImage() {
+    const f = $('imageFileInput').files[0]; if(!f) return showToast('❌ 请选图');
+    const fd = new FormData(); fd.append('image', f); fd.append('page', currentPage); fd.append('x',72); fd.append('y',72);
+    fetch('/api/insert-image', { method:'POST', body:fd }).then(r=>r.json())
+        .then(() => { closeModal('imageModal'); showToast('✅ 已插入'); refreshPage(); })
+        .catch(e => showToast('❌ '+e.message));
+}
+
+function doAddWatermark() {
+    const t = $('watermarkText').value; if(!t) return showToast('❌ 输入水印文字');
+    apiCall('/api/watermark','POST',{text:t,opacity:parseFloat($('wmOpacity').value),font_size:parseInt($('wmSize').value),angle:45,pages:'all'})
+        .then(d => { closeModal('watermarkModal'); showToast(`✅ 水印已添加`); refreshPage(); });
+}
+
+function doHighlight() {
+    const t = $('highlightText').value; if(!t) return;
+    apiCall('/api/highlight','POST',{page:currentPage+1,text:t})
+        .then(() => { closeModal('highlightModal'); showToast('✅ 已高亮'); refreshPage(); });
+}
+
+function doAddAnnotation() {
+    const t = $('annotationText').value; if(!t) return;
+    apiCall('/api/annotation','POST',{page:currentPage+1,text:t,x:200,y:200})
+        .then(() => { closeModal('annotationModal'); showToast('✅ 批注已添加'); refreshPage(); });
+}
+
+// ===== Save / Download =====
+function downloadPDF() {
+    fetch('/api/download', { method:'POST' })
+        .then(r => r.blob())
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentFile ? currentFile.name.replace('.pdf','_edited.pdf') : 'edited.pdf';
+            a.click(); URL.revokeObjectURL(url);
+            showToast('✅ 已下载');
+        });
+}
+
+// ===== Utils =====
+function apiCall(url, method, data) {
+    return fetch(url, { method, headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) })
+        .then(r => { if(!r.ok) throw new Error(r.statusText); return r.json(); });
+}
+
+function showToast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

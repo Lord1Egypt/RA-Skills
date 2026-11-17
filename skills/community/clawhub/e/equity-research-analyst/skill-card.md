@@ -1,50 +1,73 @@
-## Description: <br>
-Use when the user asks for institutional-style equity research on a public company, ETF, or TradingView-resolvable ticker, including initiation reports, earnings updates or previews, catalyst calendars, morning notes, sector or peer overviews, thesis reviews, model refreshes, and stock screening or idea generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks for institutional-style equity research on a public company, ETF, or TradingView-resolvable ticker, including initiation reports, earnings updates or previews, catalyst calendars, morning notes, sector or peer overviews, thesis reviews, model refreshes, and stock screening or idea generation.
 
-## Publisher: <br>
-[hypier](https://clawhub.ai/user/hypier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hypier](https://clawhub.ai/user/hypier)
 
-## Use Case: <br>
-External users and analysts use this skill to guide agent-generated equity research workflows, including initiation reports, earnings analysis, previews, catalyst calendars, morning notes, sector reviews, thesis tracking, model updates, and idea generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ratings, price targets, and trading ideas may influence investment decisions. <br>
-Mitigation: Treat outputs as research drafts, require qualified human review before use, and preserve source citations for numeric claims. <br>
-Risk: The skill requires a RapidAPI key and makes third-party market-data calls. <br>
-Mitigation: Use a dedicated key with appropriate limits, avoid embedding secrets in skill files, and review external data-sharing implications before installation. <br>
-Risk: The skill may create or update local research files and financial models. <br>
-Mitigation: Run it in a dedicated workspace, keep backups, and require confirmation before overwrites or archive extraction. <br>
-Risk: Trading-community content and market-data feeds may be incomplete, stale, or untrusted. <br>
-Mitigation: Cross-check important claims against primary company filings, investor-relations materials, and current market data before relying on them. <br>
+## Use Case:
 
+External users and analysts use this skill to produce institutional-style equity research deliverables for public companies, ETFs, and TradingView-resolvable tickers. It routes requests into focused workflows for initiation reports, earnings work, market notes, sector overviews, thesis tracking, model refreshes, catalyst calendars, and idea generation.
 
-## Reference(s): <br>
-- [Skill Dispatcher](SKILL.md) <br>
-- [TradingView API Structured Data Reference](references/tradingviewapi.md) <br>
-- [TradingView API Docs](references/tradingviewapi-docs/README.md) <br>
-- [Initiating Coverage Workflow](references/workflows/initiating-coverage.md) <br>
-- [Earnings Analysis Workflow](references/workflows/earnings-analysis.md) <br>
-- [Idea Generation Workflow](references/workflows/idea-generation.md) <br>
-- [Initiation Report Template](assets/initiating-coverage/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, cited research prose, API request examples, and file-oriented report instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or updates of local research files, charts, financial models, and DOCX-style report deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata) <br>
+Risk: The skill may require persistent plaintext RapidAPI credential setup for live market-data access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-scoped environment variable or secret manager and avoid storing credentials in shell startup files when possible.
+
+Risk: Live third-party market-data calls can be unavailable, stale, or inconsistent with primary company disclosures.
+
+Mitigation: Validate current dates, cite fetched endpoints, and confirm material financial facts against company filings, investor-relations releases, or SEC sources.
+
+Risk: Unpinned charting dependencies and generated code can behave differently across environments.
+
+Mitigation: Run generated code in a virtual environment with pinned dependencies before relying on charts or analysis outputs.
+
+Risk: Workbook or model edits can overwrite user financial models.
+
+Mitigation: Back up Excel workbooks before allowing edits and review all model changes before use.
+
+## Reference(s):
+
+- [TradingView API Endpoint Map](references/tradingviewapi.md)
+- [TradingView API OpenAPI Specification](references/tradingviewapi-docs/openapi.json)
+- [TradingView API Docs README](references/tradingviewapi-docs/README.md)
+- [Initiating Coverage Workflow](references/workflows/initiating-coverage.md)
+- [Earnings Analysis Workflow](references/workflows/earnings-analysis.md)
+- [Earnings Preview Workflow](references/workflows/earnings-preview.md)
+- [Catalyst Calendar Workflow](references/workflows/catalyst-calendar.md)
+- [Morning Note Workflow](references/workflows/morning-note.md)
+- [Sector Overview Workflow](references/workflows/sector-overview.md)
+- [Thesis Tracker Workflow](references/workflows/thesis-tracker.md)
+- [Model Update Workflow](references/workflows/model-update.md)
+- [Idea Generation Workflow](references/workflows/idea-generation.md)
+- [Initiation Report Template](assets/initiating-coverage/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, cited analysis, generated code or shell commands, and report-oriented document instructions depending on the active workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require user-provided RapidAPI credentials, live market-data calls, web research, SEC or investor-relations source checks, chart generation, and workbook or document handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Beeper Desktop CLI for chats, messages, contacts, connect info, websocket events, search, and reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roadrunner helps agents use the rr CLI to operate Beeper Desktop chats, messages, contacts, connect info, websocket events, search, and reminders.
 
-## Publisher: <br>
-[johntheyoung](https://clawhub.ai/user/johntheyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johntheyoung](https://clawhub.ai/user/johntheyoung)
 
-## Use Case: <br>
-External users and developers use Roadrunner to let an agent operate Beeper Desktop through the local rr CLI for chat lookup, message search, contact resolution, reminders, focus workflows, and explicitly requested message actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The rr CLI can access Beeper chats, contacts, messages, and account state. <br>
-Mitigation: Install only when the user trusts Roadrunner and is comfortable granting Beeper account access; keep requests narrow and prefer readonly or agent modes for lookups. <br>
-Risk: Write-capable commands can send, edit, react to, archive, create, or otherwise change Beeper data. <br>
-Mitigation: Use mutating commands only after the user gives explicit recipient and content details, and use dry-run validation when available before write actions. <br>
-Risk: Raw command output may expose private chat lists, message contents, identifiers, or tokens. <br>
-Mitigation: Summarize only the information needed by the user, avoid pasting raw JSON dumps into messages, and never request, paste, or store raw authentication tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Roadrunner on ClawHub](https://clawhub.ai/johntheyoung/roadrunner) <br>
-- [Roadrunner homepage](https://github.com/johntheyoung/roadrunner) <br>
-- [Go install module](github.com/johntheyoung/roadrunner/cmd/rr@v0.17.0) <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect and operate local Beeper Desktop data through the rr command-line tool, including chat lookup, message search, status checks, reminders, and explicitly requested message actions.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON or JSONL output handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers readonly and agent modes for lookups; mutating commands require explicit user intent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.17.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose private Beeper chats and contacts through local CLI reads.
+
+Mitigation: Use read-only agent defaults for exploratory work and summarize only the minimum private data needed for the user's request.
+
+Risk: Explicitly requested mutations can send messages, upload files, create chats, archive chats, or set reminders.
+
+Mitigation: Require clear user intent, recipient identifiers, and message content before mutating, and prefer dry-run validation where available.
+
+Risk: Authentication tokens for Beeper Desktop are sensitive local secrets.
+
+Mitigation: Keep tokens configured locally and never paste, request, or store raw tokens in chat.
+
+## Reference(s):
+
+- [ClawHub Roadrunner Skill](https://clawhub.ai/johntheyoung/skills/roadrunner)
+- [Roadrunner Project Homepage](https://github.com/johntheyoung/roadrunner)
+- [Go install module for rr](https://pkg.go.dev/github.com/johntheyoung/roadrunner/cmd/rr)
+- [Homebrew formula path](johntheyoung/tap/roadrunner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents toward structured JSON or JSON Lines CLI output, read-only and dry-run modes, and careful summarization of private chat data.]
+
+## Skill Version(s):
+
+0.17.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

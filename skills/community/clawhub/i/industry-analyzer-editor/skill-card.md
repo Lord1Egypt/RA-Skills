@@ -1,41 +1,50 @@
-## Description: <br>
-Aggregate the 4 dimension outputs (top-enterprise, ecosystem, digital-solutions, opportunity) into one comprehensive industry analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates four industry-analysis dimension outputs into one comprehensive Markdown report with an executive summary, chapter synthesis, cross-dimension insights, and audience-specific recommendations.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers and analysts use this skill as the report-synthesis step in an industry-analysis pipeline, combining four upstream Markdown analyses and session metadata into a final Chinese industry-analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill overwrites or updates the local final report when rerun. <br>
-Mitigation: Confirm the intended output folder and review a diff or keep a backup before replacing an existing industry-analysis-report.md. <br>
-Risk: A synthesized report can carry forward missing, conflicting, or stale information from upstream analysis files. <br>
-Mitigation: Review the final Markdown report, especially noted data gaps and cross-dimension insights, before using it for decisions. <br>
+## Use Case:
 
+Developers and operators of the industry-analysis pipeline use this skill after the four upstream analysis steps complete to synthesize a final industry report. It is also used to regenerate the report when upstream Markdown files are updated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrxparley/industry-analyzer-editor) <br>
-- [synthesis-template.md](references/synthesis-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [Markdown report written to a local file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads session.json and four upstream Markdown files, writes industry-analysis-report.md, and updates session status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Rerunning the skill overwrites the generated main report and updates local pipeline state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the four upstream Markdown files and session.json are the intended versions before rerunning the synthesis step.
+
+## Reference(s):
+
+- [Synthesis template](references/synthesis-template.md)
+- [ClawHub skill page](https://clawhub.ai/zrxparley/skills/industry-analyzer-editor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown report plus session.json status update]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output/{industry-slug}/industry-analysis-report.md and marks status.report as done.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

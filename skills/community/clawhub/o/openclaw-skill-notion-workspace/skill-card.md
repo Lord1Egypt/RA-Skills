@@ -1,41 +1,54 @@
-## Description: <br>
-Manage a Notion workspace by searching pages, reading content, creating pages in databases, appending blocks, and listing databases through the Notion REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Notion workspaces by searching pages, reading content, creating database pages, appending blocks, and listing databases through the Notion REST API.
 
-## Publisher: <br>
-[mrnsmh](https://clawhub.ai/user/mrnsmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrnsmh](https://clawhub.ai/user/mrnsmh)
 
-## Use Case: <br>
-Developers and agents use this skill to operate on authorized Notion pages and databases from a CLI or importable Python module. It supports workspace search, page reads, database page creation, text appends, and database listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an embedded Notion token when NOTION_TOKEN is not set. <br>
-Mitigation: Remove the embedded token before installation, rotate any exposed token, and require NOTION_TOKEN to be set explicitly. <br>
-Risk: The Notion integration can read, create, and append content anywhere it has workspace access. <br>
-Mitigation: Grant the integration access only to the pages and databases the agent should manage. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to manage Notion pages and databases from an agent workflow, CLI, or importable Python module. It supports search, page reads, database page creation, text appends, and database listing for Notion integrations with appropriate access.
 
-## Reference(s): <br>
-- [Notion API quick reference](references/notion-api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mrnsmh/openclaw-skill-notion-workspace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON from CLI commands, plus Python function return objects when imported as a module.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Notion integration token and access to the target pages or databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The release security summary says the skill ships and uses an embedded Notion token that could expose or modify a workspace the user did not intend to use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token, rotate or revoke the exposed Notion integration token, and require users to provide their own NOTION_TOKEN before installation or use.
+
+Risk: Create and append commands perform real Notion workspace modifications.
+
+Mitigation: Use a least-privilege Notion integration shared only with intended pages or databases, and review create or append commands before execution.
+
+## Reference(s):
+
+- [Notion API Reference](references/notion-api.md)
+- [Notion REST API base endpoint](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell and Python examples; CLI execution returns text or JSON from Notion API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion integration token and workspace sharing permissions for the target pages or databases.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

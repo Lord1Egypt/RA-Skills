@@ -1719,14 +1719,14 @@ class UniversalAgent:
 PRESETS = {
     # OpenAI
     "openai_gpt4o": {
-        "api_key": "sk-your-openai-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "gpt-4o",
         "base_url": "https://api.openai.com/v1",
         "description": "OpenAI GPT-4o (最强综合能力)"
     },
     
     "openai_gpt4o_mini": {
-        "api_key": "sk-your-openai-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "gpt-4o-mini",
         "base_url": "https://api.openai.com/v1",
         "description": "OpenAI GPT-4o-mini (性价比高)"
@@ -1734,14 +1734,14 @@ PRESETS = {
     
     # DeepSeek
     "deepseek_chat": {
-        "api_key": "sk-your-deepseek-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "deepseek-chat",
         "base_url": "https://api.deepseek.com",
         "description": "DeepSeek Chat (国产优秀模型)"
     },
     
     "deepseek_reasoner": {
-        "api_key": "sk-your-deepseek-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "deepseek-reasoner",
         "base_url": "https://api.deepseek.com",
         "description": "DeepSeek Reasoner (深度推理)"
@@ -1749,14 +1749,14 @@ PRESETS = {
     
     # 阿里云通义千问
     "qwen_max": {
-        "api_key": "sk-your-dashscope-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "qwen-max",
         "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
         "description": "通义千问 Max (阿里云)"
     },
     
     "qwen_turbo": {
-        "api_key": "sk-your-dashscope-key-here",
+        "api_key": "REDACTED-SECRET",
         "model": "qwen-turbo",
         "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
         "description": "通义千问 Turbo (速度快)"

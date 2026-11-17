@@ -1,41 +1,62 @@
-## Description: <br>
-Guides agents through ElevenLabs text-to-speech workflows, including voice selection, SSML, batch audio generation, voice cloning, Telegram voice-note delivery, and API error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through ElevenLabs text-to-speech, voice selection, batch audio generation, voice cloning, Telegram voice-note delivery, multilingual synthesis, and API error handling.
 
-## Publisher: <br>
-[producedbysavant](https://clawhub.ai/user/producedbysavant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[producedbysavant](https://clawhub.ai/user/producedbysavant)
 
-## Use Case: <br>
-Developers and automation builders use this skill to generate speech with the ElevenLabs API, manage voices, create batch audio assets, and connect synthesized speech to Telegram bot workflows. It also provides guidance for multilingual synthesis, voice cloning requests, audio concatenation, retry handling, and quality tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning can misuse a person's voice or process sensitive biometric audio without enough consent guardrails. <br>
-Mitigation: Use cloning only for your own voice or speakers who have given explicit informed permission, and keep consent records for professional cloning workflows. <br>
-Risk: ElevenLabs and Telegram workflows can expose API credentials, message content, or regulated personal data. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, avoid submitting secrets or regulated personal data, and review generated Telegram delivery flows before use. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to build ElevenLabs speech workflows for generated audio, Telegram bot voice notes, batch narration, multilingual output, voice management, and controlled voice cloning.
 
-## Reference(s): <br>
-- [ElevenLabs API Documentation](https://docs.elevenlabs.io/) <br>
-- [ClawHub release page](https://clawhub.ai/producedbysavant/elevenlabs-voice-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce audio files through external ElevenLabs and Telegram API workflows when executed with user-provided credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice cloning workflows can enable impersonation or misuse of biometric voice data when consent and authorization are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only clone voices with explicit permission from the speaker and document consent before using cloning workflows.
+
+Risk: Text prompts and voice samples may be processed by external services, which can expose sensitive content or audio.
+
+Mitigation: Avoid sensitive text or audio unless external processing is acceptable for the deployment context.
+
+Risk: API keys and bot credentials can be exposed if copied into code or shared artifacts.
+
+Mitigation: Keep ElevenLabs and Telegram credentials in environment variables or a secrets manager.
+
+Risk: Unpinned dependencies and local media tooling can introduce deployment drift or supply-chain risk.
+
+Mitigation: Use a virtual environment, pin dependency versions, and review media tooling such as FFmpeg before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/producedbysavant/skills/elevenlabs-voice-pipeline)
+- [ElevenLabs API Docs](https://docs.elevenlabs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API integration snippets, audio file generation patterns, Telegram delivery guidance, retry guidance, and voice-cloning workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

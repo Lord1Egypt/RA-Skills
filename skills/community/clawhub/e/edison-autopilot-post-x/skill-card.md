@@ -1,45 +1,61 @@
-## Description: <br>
-Automatically generates and posts persona-matched tweets to X using GPT-5.1, with repetition checks, content filters, and optional Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates and posts persona-matched tweets to X using GPT-5.1, with repetition checks, content filters, character limit protection, and optional Telegram alerts.
 
-## Publisher: <br>
-[EdisonChenAI](https://clawhub.ai/user/EdisonChenAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edisonchenai](https://clawhub.ai/user/edisonchenai)
 
-## Use Case: <br>
-Developers and individual X account operators use this skill to generate, preview, schedule, and publish persona-matched posts with configurable voice, topics, banned phrases, and optional notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously publish AI-generated posts from a real X account. <br>
-Mitigation: Start with --dry-run, use a test or low-risk account, and remove the cron entry when autonomous posting is no longer wanted. <br>
-Risk: The script requires credentials for OpenAI, X, and optionally Telegram. <br>
-Mitigation: Use dedicated least-privilege API keys and keep credentials in environment variables rather than editing them into files. <br>
-Risk: Generated or error content may be shared with external services, including optional Telegram notifications. <br>
-Mitigation: Leave Telegram disabled unless needed and keep SCAN_DIR unset unless it contains non-sensitive material. <br>
+## Use Case:
 
+Developers and operators use this skill to set up an automated X posting workflow that generates short persona-matched posts, checks recent output for repetition, and can notify a Telegram chat after posts or failures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EdisonChenAI/edison-autopilot-post-x) <br>
-- [X Developer Platform](https://developer.x.com) <br>
-- [OpenAI Platform](https://platform.openai.com) <br>
-- [Tweepy](https://github.com/tweepy/tweepy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python-generated post text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode for preview or post directly to X when credentials and scheduling are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The automation can repeatedly publish generated content to a live X account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated X account, keep API keys narrowly scoped, run dry-run previews first, and do not enable cron until generated posts are acceptable.
+
+Risk: When SCAN_DIR is set, local Markdown scan content may be sent to OpenAI as generation context.
+
+Mitigation: Leave SCAN_DIR unset unless needed, and point it only at approved Markdown that contains no private or untrusted content.
+
+Risk: Telegram notifications may expose tweet text and some failure details to the configured Telegram chat.
+
+Mitigation: Enable Telegram only for an appropriate bot and chat, and assume notification contents are visible to that channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edisonchenai/skills/edison-autopilot-post-x)
+- [X Developer Platform](https://developer.x.com)
+- [OpenAI Platform](https://platform.openai.com)
+- [Tweepy](https://github.com/tweepy/tweepy)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration steps, and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for an automation script that can generate tweet text, post through the X API, log posted tweets, and send optional Telegram notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

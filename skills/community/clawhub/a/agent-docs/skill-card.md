@@ -1,37 +1,53 @@
-## Description: <br>
-Create documentation optimized for AI agent consumption across SKILL.md files, README files, API docs, and other LLM-read context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create documentation optimized for AI agent consumption.
 
-## Publisher: <br>
-[tylervovan](https://clawhub.ai/user/tylervovan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tylervovan](https://clawhub.ai/user/tylervovan)
 
-## Use Case: <br>
-Developers and technical writers use this skill to structure agent-facing project documentation for retrieval, token efficiency, security guidance, and clear operational constraints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated AGENTS.md, SKILL.md, llms.txt, or README content could introduce unclear or misleading guidance if committed without review. <br>
-Mitigation: Review generated documentation before committing it, and keep security examples clearly labeled so future agents do not treat them as live instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Advanced Documentation Patterns for AI Agents](references/advanced-patterns.md) <br>
+## Use Case:
 
+Developers and documentation authors use this skill to create agent-readable SKILL.md files, README files, API docs, AGENTS.md indexes, and llms.txt documentation. It helps structure content for retrieval, token efficiency, security constraints, and hybrid context loading.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with documentation templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewable documentation structure and examples; does not execute commands or call external services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated documentation can introduce incorrect, stale, or overly broad agent instructions into a project.
+
+Mitigation: Review generated AGENTS.md, llms.txt, CI snippets, and security rules before adopting them.
+
+Risk: External retrieval guidance can expand prompt-injection or data-exfiltration exposure if adopted without controls.
+
+Mitigation: Use domain allow-lists, human review for external retrieval, and auditing for external requests.
+
+## Reference(s):
+
+- [Advanced Documentation Patterns for AI Agents](references/advanced-patterns.md)
+- [Agent Docs on ClawHub](https://clawhub.ai/tylervovan/skills/agent-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documentation should be reviewed before adoption in a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

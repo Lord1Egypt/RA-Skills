@@ -1,44 +1,61 @@
-## Description: <br>
-Guides Chinese-language novel authors through an eight-step workflow for idea generation, worldbuilding, character design, outlining, chapter planning, drafting, consistency review, and polishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-language novel authors through an eight-step workflow for ideation, worldbuilding, character design, outlining, chapter planning, drafting, consistency review, and polishing.
 
-## Publisher: <br>
-[folhj163](https://clawhub.ai/user/folhj163) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[folhj163](https://clawhub.ai/user/folhj163)
 
-## Use Case: <br>
-External authors and writing teams use this skill to structure long-form Chinese novel projects, generate planning documents and chapter drafts, and review continuity before revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts and planning notes may contain unpublished or personal story material that the workflow expects to save as Feishu documents. <br>
-Mitigation: Confirm the target Feishu workspace and document permissions before saving outputs; keep sensitive material in chat or local files when access is uncertain. <br>
+## Use Case:
 
+Authors, writing teams, and creative workers use this skill to plan and draft long-form Chinese novels with structured prompts, reusable templates, and consistency checks. It is especially suited for users who want guided support from story concept through outline, chapter execution, review, and revision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/folhj163/novel-writing-assistant) <br>
-- [Usage example](examples/README.md) <br>
-- [Worldbuilding template](templates/世界观文档模板.md) <br>
-- [Character biography template](templates/人物小传模板.md) <br>
-- [Novel outline template](templates/小说大纲模板.md) <br>
-- [Chapter planning template](templates/章节规划模板.md) <br>
-- [Story concept template](templates/创意方案模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown documents and narrative prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed to produce Feishu-ready planning documents, chapter drafts, review reports, and revision notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated novel-planning and draft documents may be stored or shared through Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with Feishu workspace permissions and retention settings that are appropriate for the sensitivity of the material.
+
+Risk: Confidential, unpublished, or personally sensitive creative material could be exposed if entered into the workflow.
+
+Mitigation: Avoid submitting sensitive material unless the workspace and collaboration settings are acceptable.
+
+Risk: Generated story plans, drafts, and consistency reviews may still contain creative, logical, or quality issues.
+
+Mitigation: Review and edit outputs before publication or team use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/folhj163/skills/novel-writing-assistant)
+- [Skill instructions](artifact/SKILL.md)
+- [Complete usage example](artifact/examples/README.md)
+- [Novel outline template](artifact/templates/小说大纲模板.md)
+- [Chapter planning template](artifact/templates/章节规划模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown-style Feishu document content and structured writing plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces interactive questions, creative planning documents, draft chapter text, consistency review reports, and revision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

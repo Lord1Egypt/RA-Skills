@@ -1,7 +1,7 @@
 ---
 name: disposable-email-address
 description: "Disposable Email Address: Create temporary email addresses (24h expiration), check inboxes, and list active addresses. Shared across agents on same budget. Use when an agent needs disposable email address, ai agent account signups, service registration, receiving verification links, automated testing workflows, check, email, create through AgentPMT-hosted remote tool calls. Discovery terms: disposable email address, ai agent account signups, service registration, receiving verification links."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/disposable-email-address
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/disposable-email-address"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Disposable Email Address
 
 ## Freshness
-Last updated: `2026-06-10`.
+Last updated: `2026-10-07`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -134,9 +134,9 @@ Complete generated action schema: `./schema.md`.
 Supported action count: `3`.
 x402 availability: not enabled for this product.
 
-- `check` (action slug: `check`): Check the inbox of a previously created email address and retrieve all messages with full content including sender, subject, body, and received timestamp. Price: `15` credits. Parameters: `email`.
+- `check` (action slug: `check`): Check the inbox of a previously created email address and retrieve all messages with full content including sender, subject, body, and received timestamp. Price: `3` credits. Parameters: `email`.
 - `create` (action slug: `create`): Create a new temporary disposable email address with a 24-hour expiration. Returns the email address, creation time, and expiration time. Price: `15` credits. Parameters: `username`.
-- `fetch` (action slug: `fetch`): List all active (non-expired) email addresses belonging to the current user, along with creation time, expiration time, and hours remaining for each. Price: `15` credits. Parameters: none.
+- `fetch` (action slug: `fetch`): List all active (non-expired) email addresses belonging to the current user, along with creation time, expiration time, and hours remaining for each. Price: `3` credits. Parameters: none.
 
 ## Live Schema And Examples
 Use the compact schema above for ordinary calls. Before a new production integration, or whenever parameters, enum values, nested objects, outputs, or examples are unclear, fetch live details first.

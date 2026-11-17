@@ -1,29 +1,44 @@
 # SanMar SOAP Web Services API
 
-Source basis: `SanMarWebServicesIntegrationGuide-v16.10.pdf`.
+Source basis: `SanMarWebServicesIntegrationGuide-v24.1.pdf` (supersedes the
+older v16.10 the rest of this page was drafted from).
 
-This page is the operational reference for SanMar SOAP calls used by the SME.
+This page is the operational reference for SanMar SOAP calls used by the skill.
 
 ## Service families
 
-SanMar documentation lists these major SOAP surfaces:
+SanMar exposes both proprietary "Standard" ports and PromoStandards services:
 
-- Product Information
-- Pricing
-- Inventory
-- PromoStandards Inventory (v1.2.1)
-- Order acknowledgement / confirmation
-- Invoicing
-- Purchase ordering (see dedicated PO guide)
+- Product Information (Standard) + PromoStandards Product Data v2.0.0
+- Pricing (Standard `getPricing`, myPrice) + PromoStandards Pricing & Config
+- Inventory (Standard `getInventoryQtyForStyleColorSize`) + **PromoStandards
+  Inventory v2.0.0** (`getInventoryLevels` — named per-warehouse)
+- Purchase ordering — Standard `getPreSubmitInfo`/`submitPO` + PromoStandards
+  `sendPO` (see the dedicated PO guide / `purchase_orders.md`)
+- Order Shipment Notification v1.0.0 (tracking) + Order Status v2.0.0
+- **Invoicing** — Standard `InvoicePort` (see `invoicing.md`)
 
-## Core WSDL endpoints (production)
+## Core WSDL endpoints (production; host `ws.sanmar.com:8080`)
 
-- `https://ws.sanmar.com:8080/SanMarWebService/SanMarProductInfoServicePort?wsdl`
-- `https://ws.sanmar.com:8080/SanMarWebService/SanMarWebServicePort?wsdl`
-- `https://ws.sanmar.com:8080/SanMarWebService/SanMarPricingServicePort?wsdl`
-- `https://ws.sanmar.com:8080/SanMarWebService/SanMarNotificationServicePort?WSDL`
-- `https://ws.sanmar.com:8080/SanMarWebService/InvoicePort?wsdl`
-- `https://ws.sanmar.com:8080/promostandards/InventoryServiceBinding?wsdl`
+| Service | Path | Used by |
+| --- | --- | --- |
+| Product info | `/SanMarWebService/SanMarProductInfoServicePort` | `search-products` |
+| Pricing (myPrice) | `/SanMarWebService/SanMarPricingServicePort` | `get-pricing` |
+| Inventory (legacy) | `/SanMarWebService/SanMarWebServicePort` | `check-inventory` |
+| Inventory v2 | `/promostandards/InventoryServiceBinding` | `get-inventory-levels` |
+| PO submit | `/SanMarWebService/SanMarPOServicePort` | `validate-cart`, `create-purchase-order` |
+| Order shipment (tracking) | `/promostandards/OrderShipmentNotificationServiceBinding` | `get-tracking`, `check-order-status` |
+| Invoicing | `/SanMarWebService/InvoicePort` | `get-invoices` |
+
+`SANMAR_ENV=development` swaps PO submit and invoicing to the
+`test-ws.sanmar.com:8080` host; the read services are production-only.
+
+> **Auth field names differ by service.** The Standard product/pricing/
+> inventory/PO ports use `sanMarCustomerNumber` / `sanMarUserName` /
+> `sanMarUserPassword`. **InvoicePort** uses `CustomerNo` / `UserName` /
+> `Password`. PromoStandards services (inventory v2, tracking) use
+> `wsVersion` / `id` (= username) / `password` and **no customer number**.
+> The client injects the right fields per service.
 
 ## Product information operations
 

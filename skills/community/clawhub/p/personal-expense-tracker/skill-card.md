@@ -1,38 +1,53 @@
-## Description: <br>
-Personal expense tracker - record expenses, auto-categorize, monthly statistics with total and category breakdown <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal expense tracker that records expenses, auto-categorizes entries, and reports monthly totals with category breakdowns.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to record personal expenses, auto-categorize entries, list recent spending, and view monthly category statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal financial records and monthly spending summaries are stored locally, including a summary written by the stats command. <br>
-Mitigation: Install only when local storage of personal expense data is acceptable, protect the local data files, and remove or change the stats-command summary write if that extra copy is not needed. <br>
+## Use Case:
 
+External users and agents use this skill to record personal expenses, categorize spending notes, list recent entries, and summarize monthly spending totals and category shares.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/personal-expense-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Command-line text output and JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores expense records in ~/.expense-tracker/expenses.json and writes monthly summary data from the stats command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists v1.0.0) <br>
+Risk: Expense records and generated spending summaries may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with financial data acceptable for local plaintext storage, restrict permissions on the data directory, and review storage behavior before deployment.
+
+Risk: The stats behavior can create an extra local summary file without clearly disclosing that side effect to users.
+
+Mitigation: Change the stats workflow to ask before saving or exporting summaries, or remove the extra summary write before using the skill with real financial data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/personal-expense-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plaintext expense summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store expense records and generated spending summaries locally in plaintext when commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and _meta.json report v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

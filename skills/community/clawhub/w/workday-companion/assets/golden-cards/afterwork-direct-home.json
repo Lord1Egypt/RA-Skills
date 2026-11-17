@@ -1,0 +1,13 @@
+{
+  "module": "下班放行单",
+  "route": "afterwork-pass",
+  "time_label": "18:30",
+  "title": "判了：直接回家",
+  "reason": "体力低，主线别拐弯",
+  "action": "到家后离屏20分钟",
+  "tags": ["体力2", "低风险"],
+  "corner": "准行",
+  "footer": "今天先这么过。",
+  "alt_text": "下班放行单。判了：直接回家。体力低，主线别拐弯。现在做：到家后离屏20分钟。",
+  "share_safe": true
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Controls the JoyCode CLI from the shell for code generation, code review, interactive programming conversations, automated coding tasks, session management, and login workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 shell 控制 JoyCode CLI 工具进行代码生成和 AI 辅助编程。
 
-## Publisher: <br>
-[kangzhixing](https://clawhub.ai/user/kangzhixing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kangzhixing](https://clawhub.ai/user/kangzhixing)
 
-## Use Case: <br>
-Developers and engineers use this skill to invoke JoyCode CLI workflows for coding help, code review, automated task execution, interactive terminal programming, and session recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full-auto mode may edit project files without step-by-step approval. <br>
-Mitigation: Use version control, review diffs after each session, and avoid full-auto on sensitive repositories unless autonomous code changes are acceptable. <br>
-Risk: Generated code or review guidance may be incorrect or inappropriate for the project. <br>
-Mitigation: Treat JoyCode output as assistant-generated suggestions and validate changes with project tests and human review before deployment. <br>
-Risk: The skill includes login support for JoyCode account workflows. <br>
-Mitigation: Use approved account practices and avoid entering credentials in untrusted terminal sessions. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate JoyCode CLI from a shell for AI-assisted code generation, code review, interactive programming sessions, and automated coding tasks.
 
-## Reference(s): <br>
-- [Joycode ClawHub listing](https://clawhub.ai/kangzhixing/joycode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to run JoyCode CLI commands that start interactive sessions, execute automated coding tasks, inspect diffs, review code, manage sessions, or log in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can lead an agent to run a broad shell-based coding CLI with full-auto file editing and approval-policy changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a sandboxed or version-controlled project, avoid running as root, keep approvals restrictive, and review diffs before accepting changes.
+
+Risk: Installing an npm CLI globally can introduce supply-chain and environment-wide risk.
+
+Mitigation: Pin and verify the package where possible before installation, and install only when JoyCode CLI is intentionally required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kangzhixing/skills/joycode)
+- [Publisher profile](https://clawhub.ai/user/kangzhixing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and CLI workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent may produce code edits, review notes, command suggestions, and session-management guidance through JoyCode CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

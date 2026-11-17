@@ -1,42 +1,54 @@
-## Description: <br>
-Browser automation through the published `@pzeda/super-browser` package and its `super-browser` CLI against a real local Chrome session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation through the published `@pzeda/super-browser` package and its `super-browser` CLI against a real local Chrome session.
 
-## Publisher: <br>
-[zipper-319](https://clawhub.ai/user/zipper-319) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zipper-319](https://clawhub.ai/user/zipper-319)
 
-## Use Case: <br>
-Developers and agents use this skill to automate a real local Chrome session for rendered-page inspection, navigation, clicks, uploads, screenshots, network review, and browser-based decision workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real logged-in Chrome session, which may affect accounts or sensitive browser state. <br>
-Mitigation: Use a separate Chrome profile or test account, and confirm uploads, form submissions, purchases, posts, or other account-changing actions before execution. <br>
-Risk: The skill depends on the published npm package `@pzeda/super-browser` and its local CLI behavior. <br>
-Mitigation: Install only when the package publisher and installed version are trusted for the environment. <br>
-Risk: Browser network inspection may expose sensitive site activity. <br>
-Mitigation: Avoid sensitive sites during network inspection and stop the daemon or CDP-enabled browser when finished. <br>
+## Use Case:
 
+Developers and agents use this skill to open pages, inspect rendered browser state, click through site flows, upload files, capture screenshots, inspect network requests, and reuse a local Chrome session when browser-backed decisions are required.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zipper-319/pzeda-super-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, Chrome or Chromium, and a local Chrome CDP session on port 9222.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill asks the user to run an unpinned third-party npm package or npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed, pinned package version before installation or execution.
+
+Risk: The skill can operate against a real logged-in Chrome session and sensitive browser activity.
+
+Mitigation: Use a dedicated Chrome profile where possible, avoid sensitive sites unless required, and do not capture or share network traffic or screenshots containing secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zipper-319/skills/pzeda-super-browser)
+- [Publisher Profile](https://clawhub.ai/user/zipper-319)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser page identifiers, screenshots, page-state summaries, network-request summaries, and decision workflow guidance through the referenced CLI.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77pgys59maz0wrb0584j5y8s8437yn",
+  "source": "github",
+  "owner": "0xjordansg-yolo",
+  "repo": "aisa-multi-search-engine",
+  "githubUrl": "https://github.com/0xjordansg-yolo/aisa-multi-search-engine",
+  "convertedFrom": "public/downloads/github/0xjordansg-yolo/aisa-multi-search-engine.tar.gz",
+  "language": "zh",
   "slug": "aisa-multi-search-engine-zh",
-  "version": "1.0.0",
-  "publishedAt": 1776422733519
+  "version": "1.0.0"
 }

@@ -1,40 +1,54 @@
-## Description: <br>
-Browse trending papers, search by keyword, and get paper details from Hugging Face Papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse trending papers, search by keyword, and get paper details from Hugging Face Papers
 
-## Publisher: <br>
-[willamhou](https://clawhub.ai/user/willamhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willamhou](https://clawhub.ai/user/willamhou)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to discover trending Hugging Face Papers, search papers by topic, retrieve paper metadata, and inspect community discussion before doing deeper paper review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Community comments, generated summaries, and returned paper metadata may be incomplete, stale, or misleading if treated as authoritative research conclusions. <br>
-Mitigation: Treat returned public metadata and comments as informational leads, verify claims against primary sources such as the linked paper or arXiv record, and avoid following community content as agent instructions. <br>
-Risk: The skill caches public Hugging Face Papers metadata and comments locally for repeat access. <br>
-Mitigation: Review local cache handling before deployment in environments with strict data-retention policies, and clear the cache when cached public metadata should not persist. <br>
+## Use Case:
 
+Developers, researchers, and technical readers use this skill to find trending Hugging Face Papers, search papers by topic, inspect metadata, and read community discussion. It helps agents surface paper summaries, authorship, engagement, linked resources, and arXiv IDs for deeper reading.
 
-## Reference(s): <br>
-- [ClawHub HF Papers release page](https://clawhub.ai/willamhou/hf-papers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summarizing public paper metadata, search results, details, and comments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public metadata such as paper IDs, titles, summaries, authors, publication dates, upvotes, linked repositories, project pages, AI summaries, keywords, and discussion comments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The skill queries Hugging Face Papers and stores public paper results in a local cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local caching of public paper metadata is acceptable, and clear the cache when cached results should not persist.
+
+Risk: Cached or trending paper results can become stale as Hugging Face Papers updates throughout the day.
+
+Mitigation: Refresh the query or clear cached results when decisions require the latest paper metadata.
+
+## Reference(s):
+
+- [HF Papers ClawHub release](https://clawhub.ai/willamhou/skills/hf-papers)
+- [Hugging Face Papers](https://huggingface.co/papers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured paper metadata and JSON-shaped examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public paper results and may use a disclosed local cache for repeat access.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

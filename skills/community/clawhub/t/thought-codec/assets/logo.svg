@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ThoughtCodec Logo</title>
+  <desc id="desc">A flat negative-space codec aperture mark for a bilingual AI skill library.</desc>
+  <rect width="512" height="512" rx="104" fill="#0f172a"/>
+  <g fill="#67e8f9">
+    <path d="M128 112h256v72h-84l-44 40-44-40h-84z"/>
+    <path d="M128 400h256v-72h-84l-44-40-44 40h-84z"/>
+    <path d="M128 208 196 256l-68 48z"/>
+    <path d="M384 208 316 256l68 48z"/>
+  </g>
+  <path fill="#e0f2fe" d="M238 238h36v36h-36z"/>
+</svg>

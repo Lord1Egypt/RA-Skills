@@ -1,40 +1,49 @@
-## Description: <br>
-Browse and extract text content, titles, and partial HTML from webpages using a local browser service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and extract content from webpages using a local browser service.
 
-## Publisher: <br>
-[PingAGI](https://clawhub.ai/user/PingAGI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingagi](https://clawhub.ai/user/pingagi)
 
-## Use Case: <br>
-Agents and developers use this skill to retrieve webpage titles, text, partial HTML, and optional screenshots through a local browser service when web content needs to be inspected or summarized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browsing sensitive, private, or internal URLs may expose fetched text, HTML, or screenshots to the agent workflow. <br>
-Mitigation: Use the skill only for pages the agent is intentionally allowed to browse, and avoid secrets or private/internal URLs unless necessary. <br>
-Risk: Fetched webpage text, HTML, and screenshots are untrusted content and may contain misleading instructions or prompt-injection attempts. <br>
-Mitigation: Treat browser output as data rather than instructions, and review or corroborate important information before relying on it. <br>
+## Use Case:
 
+Developers and agents use this skill to open webpages and retrieve useful page content, including titles, text, partial HTML, and optional screenshot data through a local browser service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PingAGI/pingagi-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON browser response plus Markdown usage guidance with an example curl command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns page title, text, partial HTML, and an optional base64 screenshot; requires a trusted local browser service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can retrieve text, HTML, and screenshot data from requested URLs, which may expose private, internal, authenticated, or sensitive page content if used on inappropriate targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with URLs intended for agent inspection; avoid private, internal, authenticated, or sensitive URLs unless the local browser service is explicitly trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pingagi/skills/pingagi-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with an inline curl command; browser service responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned JSON can include page title, page text, partial HTML, and optional base64 screenshot data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata and artifact skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

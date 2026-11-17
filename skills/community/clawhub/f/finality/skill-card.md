@@ -1,44 +1,59 @@
-## Description: <br>
-Finality is packaged as a blockchain finality helper, while the artifact implements a local note/log CLI for adding, listing, searching, removing, exporting, and configuring entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finality is advertised as a blockchain finality analysis skill, but the reviewed artifact implements a local command-line data manager with status, add, list, search, remove, export, stats, and config commands.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and external users can use this skill to run or evaluate a local CLI that manages timestamped entries in ~/.finality. Review the mismatch between the claimed blockchain finality purpose and the implemented local note/log behavior before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as a blockchain finality analyzer, but the artifact implements a local note/log data manager. <br>
-Mitigation: Treat outputs as local notes rather than protocol security analysis, and verify any blockchain finality claims against independent trusted sources. <br>
-Risk: Entries are stored under ~/.finality and exports may be written to the current directory. <br>
-Mitigation: Avoid entering secrets, private keys, or sensitive protocol data; review ~/.finality and finality-export files after running the CLI. <br>
-Risk: The security verdict is suspicious according to ClawHub scan evidence. <br>
-Mitigation: Review the shell script before installing or executing it, and run it in a controlled environment when testing. <br>
+## Use Case:
 
+Developers and agents can use this skill to run simple local entry-management commands and inspect or export the stored records. Do not rely on it for blockchain finality analysis or protocol security decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/finality) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output and exported JSONL or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local data under FINALITY_DIR, defaulting to ~/.finality, and can export finality-export.json or finality-export.csv in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact is advertised as blockchain finality analysis, but security evidence says it is not a real finality-analysis skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it only as a local data-management utility unless a trusted reviewer confirms the intended blockchain-analysis behavior.
+
+Risk: The artifact can persist, remove, and export local data.
+
+Mitigation: Run it only in an isolated workspace with reviewed FINALITY_DIR settings and avoid storing sensitive information in its data files.
+
+Risk: The config command is reported to have a command-injection flaw.
+
+Mitigation: Do not pass untrusted input to config keys or values; review and patch the script before using that command in automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/finality)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with inline bash code blocks and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command execution may create, modify, remove, or export local JSONL/config files under FINALITY_DIR or the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-A股量化选股助手 helps agents screen short-term A-share opportunities, analyze individual stocks, review sector fund flows, and provide timing scores through the Yufeng Quant service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股智能量化选股助手（禹锋量化 · 专业版）用于在用户询问A股选股、股票推荐、短线机会、强势股、涨停股分析、个股技术分析、主力资金流向或择时建议时调用量化筛选能力。
 
-## Publisher: <br>
-[wsy0303](https://clawhub.ai/user/wsy0303) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsy0303](https://clawhub.ai/user/wsy0303)
 
-## Use Case: <br>
-External users and agents use this skill to answer A-share screening, short-term stock opportunity, technical analysis, fund flow, sector rotation, and timing questions. It is scoped to A-share workflows and is not intended for Hong Kong stocks, U.S. stocks, funds, futures, bonds, or wealth-management products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles paid API tokens and financial-query data through a third-party cloud service. <br>
-Mitigation: Install only if the provider is trusted, avoid reused or valuable credentials, and avoid storing the token in shell startup files. <br>
-Risk: The release security verdict is suspicious because the service currently needs review before installation. <br>
-Mitigation: Review provider trust, privacy expectations, billing terms, and transport security before deploying or sending queries. <br>
-Risk: The skill can produce stock screening and timing guidance that may be mistaken for investment advice. <br>
-Mitigation: Present outputs as informational only, keep the included risk reminder visible, and require human review before acting on recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to request A-share stock screening, individual stock analysis, sector fund-flow summaries, token status checks, and short-term timing scores through the publisher's quantitative stock API. The skill is focused on A-share market analysis and explicitly excludes Hong Kong stocks, U.S. stocks, funds, futures, bonds, and wealth-management products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wsy0303/yufeng-stock-screener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked stock selections, individual stock analysis, sector fund-flow summaries, timing scores, token status, and risk reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence says the skill sends paid API tokens to an external service over insecure HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; avoid sending sensitive trading or account information unless the endpoint is changed to HTTPS, and rotate any token previously sent over the HTTP endpoint.
+
+Risk: The security evidence says the installer can persist the API token in shell startup files.
+
+Mitigation: Prefer passing the token per command or using a proper secret store instead of writing it to ~/.bashrc.
+
+Risk: The skill produces short-term stock-screening and timing guidance that may affect investment decisions.
+
+Mitigation: Treat outputs as informational only, review results independently, and preserve the skill's risk reminder that results do not constitute investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wsy0303/skills/yufeng-stock-screener)
+- [Publisher profile](https://clawhub.ai/user/wsy0303)
+- [Yufeng Quant API service](http://124.220.59.85:8080)
+- [Yufeng Quant subscription page](https://api.yufeng-quant.com/subscribe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ranked A-share candidates, individual stock analysis, sector fund-flow summaries, timing scores, token status, and risk reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Local-first execution queue for OpenClaw agents that turns follow-up commitments into workspace-scoped tasks, claims work during heartbeat, and can explicitly dispatch tasks to another registered agent workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first execution queue for OpenClaw agents that turns promises into executable tasks, lets agents pick work during heartbeat, maintains a queue inside each workspace, and can dispatch work to another registered agent workspace.
 
-## Publisher: <br>
-[zoujiejun](https://clawhub.ai/user/zoujiejun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoujiejun](https://clawhub.ai/user/zoujiejun)
 
-## Use Case: <br>
-Developers and agent operators use Agent Todo to convert promised follow-up work into executable queue items, let heartbeat claim runnable tasks, and track completion or blocking status. It is most useful for local-first OpenClaw workspaces that need structured background execution and optional multi-agent dispatch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reply content and scheduled hooks may create or claim executable tasks without enough user review. <br>
-Mitigation: Enable hooks or cron only after reviewing the task-creation inputs, and require approval before dispatching or executing queued work. <br>
-Risk: Persistent queue files and multi-agent dispatch can move work across agent workspaces. <br>
-Mitigation: Keep queue files and workspaces scoped to trusted agents, and review target workspace identity before using dispatch. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn conversational follow-up commitments into workspace-local executable tasks, claim queued work during heartbeat, and explicitly dispatch tasks to other registered OpenClaw agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoujiejun/agent-todo) <br>
-- [README](README.md) <br>
-- [Specification](SPEC.md) <br>
-- [OpenClaw Hooks Integration Guide](references/openclaw-hooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown guidance with inline shell commands; runtime queue data is stored as JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace-local queue files and managed heartbeat configuration when the user enables those commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and artifact metadata) <br>
+Risk: Persistent heartbeat or hook automation can queue or trigger agent work across workspaces without much containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable heartbeat and OpenClaw hooks only in trusted workspaces, review generated HEARTBEAT.md changes before using --write, and avoid setup-heartbeat --all unless every discovered workspace should be affected.
+
+Risk: Workspace-local task files may contain source identifiers, task context, and generated report text from conversations or forum replies.
+
+Mitigation: Keep workspace access restricted, review queued tasks before dispatch or report generation, and avoid enabling automatic reply-to-task hooks where untrusted reply content is expected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zoujiejun/skills/agent-todo)
+- [README](artifact/README.md)
+- [Specification](artifact/SPEC.md)
+- [OpenClaw Hooks Integration Guide](artifact/references/openclaw-hooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text and Markdown command output with workspace-local JSON task storage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write .agent-todo/tasks.json task queues and managed HEARTBEAT.md blocks when write-oriented commands or hooks are enabled.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
-# 📋 SEOwlsClaw — Output Quality Checklist (v0.5+)
+# 📋 SEOwlsClaw — Output Quality Checklist (v0.9.2)
 
 **Purpose**: Validate generated content against comprehensive quality standards BEFORE deployment
-**Last Updated**: 2026-03-21
+**Last Updated**: 05-05-2026
 **Maintainer**: Chris
 
 ---
@@ -69,7 +69,7 @@ Technical standards every page must meet to rank well on Google.
 ### Meta Description Length Check
 | Rule | Standard Limit | Pass/Fail Logic | Example (FAIL) → Fix |
 |------|----------------|------------------|---------------------|
-| **Character Count** | 150-160 characters max | `len(meta_desc.replace('\n', '').strip()) <= 160` AND includes primary keyword + CTA phrase | "Check out our amazing products today!" (38 chars, no keyword) → Add: "Shop vintage cameras. Save up to 40%. Buy now." |
+| **Character Count** | 140-155 characters max (see `SEO_RULES/universal.md`) | `140 <= len(meta_desc.replace('\n', '').strip()) <= 155` AND includes primary keyword + CTA phrase | "Check out our amazing products today!" (38 chars, no keyword) → Add: "Shop vintage cameras. Save up to 40%. Buy now." |
 
 ### H1 Tag Uniqueness Check
 | Rule | Standard Requirement | Pass/Fail Logic | Example (FAIL) → Fix |
@@ -100,7 +100,7 @@ These mistakes can cause Google penalties or poor rankings. Catch them early!
 ### Thin Content Check
 | Rule | Standard Minimum | Pass/Fail Logic | Example (FAIL) → Fix |
 |------|------------------|------------------|---------------------|
-| **Word Count** | Blog posts ≥ 1500 words; Product pages ≥ 800 words for informational queries | `len(content.body_text.split()) >= min_words_per_page_type` AND content covers topic comprehensively | Short article → Expand with subsections, examples, FAQs. |
+| **Word Count** | Blog posts ≥ 1500 words; Productnew ≥ 400 words; Productused ≥ 500 words (see SEO_RULES/<type>.md for exact targets) | `len(content.body_text.split()) >= min_words_per_page_type` AND content covers topic comprehensively | Short article → Expand with subsections, examples, FAQs. |
 
 ### Duplicate Content Check
 | Rule | Standard Requirement | Pass/Fail Logic | Example (FAIL) → Fix |
@@ -185,6 +185,13 @@ Improves readability and engagement by ensuring conversational, accessible writi
 |------|---------------------|------------------|---------------------|
 | **Mixed Length Sentences** | Avoid repetitive structures; combine short punchy sentences with longer explanatory ones for flow rhythm | Measure average sentence length across 50-word windows in body content; flag if >80% of sentences fall within ±1 word count range from mean value | Monotonous → Add shorter transitional phrases between long explanations. |
 
+### AI Writing Pattern Check
+| Rule | Standard Requirement | Pass/Fail Logic | Example (FAIL) → Fix |
+|------|---------------------|------------------|---------------------|
+| **Em Dash Overuse** | Em dashes ("—") are a strong AI-writing tell when used as a comma/parenthetical substitute; prefer a comma, period, or colon instead | Flag if more than 1 em dash per 150 words of body content | "Ships free — no minimum required — on every order." → "Ships free on every order, no minimum required." |
+| **Stock AI Transitions** | Avoid template phrasing that reads as machine-generated filler rather than a specific claim | Flag any of: "It's important to note", "In today's [X] world", "Whether you're X or Y", "Not just X, but Y", "no code needed"/"no [X] required" used as a throwaway aside, "when it comes to X" | "The discount applies automatically — no code needed — to every item." → "The discount applies automatically at checkout." |
+| **Rule-of-Three Padding** | Three-item lists used purely for rhythm ("fast, reliable, and effective") without adding distinct information | Flag adjective/claim triplets that don't each carry a unique, checkable fact | "Durable, reliable, and built to last." → State the one concrete spec that proves it (e.g. "Rated for 10,000 fold cycles."). |
+
 ---
 
 ## 📊 Summary Validation Report Template ✅ High Priority
@@ -256,5 +263,7 @@ deploy_if_approved(html_content, user_confirmed=True/False)
 
 ---
 
-*Last updated: 2026-03-21 (v0.5+ checklist complete)*
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: AI Writing Pattern Check (em dash overuse, stock AI transitions, rule-of-three padding);
+reconciled meta description threshold to 140-155 chars*
 *Maintainer: Chris — comprehensive SEO validation ready for integration!*

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides detailed, prioritized code review feedback on security, performance, correctness, and maintainability issues for multiple major programming languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured, prioritized code review feedback on security, performance, correctness, maintainability, and style issues across common programming languages.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review pull requests, code submissions, and AI-generated code for production readiness. It helps surface prioritized security, performance, correctness, maintainability, and style findings with suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit proprietary code, secrets, or sensitive repository contents for review. <br>
-Mitigation: Redact secrets and sensitive material before review unless the user is comfortable having the assistant analyze that content. <br>
-Risk: Review findings and suggested fixes may be incomplete or incorrect. <br>
-Mitigation: Validate recommendations with human review, tests, and project-specific security checks before merging changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests, code submissions, and AI-generated code for security, performance, correctness, maintainability, and style issues before deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/371166758-qq/qf-code-review) <br>
-- [Publisher profile](https://clawhub.ai/user/371166758-qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown review report with prioritized findings and optional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by severity and category, with locations and recommended fixes when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Code submitted for review may contain sensitive or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only on repositories or snippets that are appropriate to share within the active agent environment.
+
+Risk: Review findings may be incomplete, overly severe, or miss project-specific context.
+
+Mitigation: Validate recommendations with project maintainers, tests, linters, type checkers, and security scanners before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/qf-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review report with prioritized findings and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are organized by severity and category, with locations, attack or failure scenarios where relevant, and recommended fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

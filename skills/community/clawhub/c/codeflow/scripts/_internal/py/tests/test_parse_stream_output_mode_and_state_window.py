@@ -83,7 +83,7 @@ class ParseStreamOutputModeAndWindowTests(unittest.TestCase):
         self.assertIn("📝 Created `f4.txt`", last)
 
     def test_nonzero_exit_code_warning_includes_cmd_and_code_with_redaction(self):
-        secret = "ghp_abcdefghijklmnopqrstuvwxyz0123456789"
+        secret = "REDACTED-SECRET"
         cmd = f"do --token={secret} --flag=x"
         events = [
             {"type": "thread.started", "thread_id": "t123"},

@@ -1,43 +1,54 @@
-## Description: <br>
-Provides a structured A-share short-term trading review framework for summarizing market action, sentiment cycles, capital flows, main themes, next-day scenarios, and risk controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an educational A-share short-term trading review framework for analyzing market performance, sentiment cycles, capital flows, sector themes, next-day scenarios, and risk controls.
 
-## Publisher: <br>
-[xiaobao666666666](https://clawhub.ai/user/xiaobao666666666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobao666666666](https://clawhub.ai/user/xiaobao666666666)
 
-## Use Case: <br>
-External users and market analysts use this skill to structure daily A-share recaps, identify sentiment-cycle position and main capital themes, and draft scenario-based next-day review plans. Its output should be treated as informational analysis that requires independent data verification and human review before any trading decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad market-analysis triggers may activate the skill for general stock-market conversations. <br>
-Mitigation: Confirm that the user wants an A-share short-term review before applying the framework. <br>
-Risk: Trading or investment analysis may be incorrect, stale, or unsuitable for a user's circumstances. <br>
-Mitigation: Treat outputs as informational, verify all market data independently, and require explicit human review before acting on generated plans. <br>
+## Use Case:
 
+Developers and trading-focused agents use this skill to structure daily A-share market reviews, classify sentiment cycles, identify leading themes, and produce next-day trading scenarios with risk-control checklists. The guidance should be treated as educational market-review support, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaobao666666666/a-stock-pattern-review) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [A-share Historical Review Cases](artifact/CASE_STUDIES.md) <br>
-- [A-share Review Tool Guide](artifact/TOOLS_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style market review templates, checklists, and scenario plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference market indicators, capital-flow data sources, watchpoints, and risk-control thresholds supplied or verified by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat educational trading scenarios, entries, exits, or position sizes as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational market-review support and require users to make independent decisions based on their own circumstances.
+
+Risk: Broad trading-related trigger terms may cause the skill to activate when the user did not intend to request a trading review.
+
+Mitigation: Narrow activation to explicit review requests before using the framework in production agent routing.
+
+## Reference(s):
+
+- [A Stock Pattern Review on ClawHub](https://clawhub.ai/xiaobao666666666/skills/a-stock-pattern-review)
+- [Publisher profile: xiaobao666666666](https://clawhub.ai/user/xiaobao666666666)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured review templates, checklists, and scenario plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include market-review summaries, sentiment classifications, capital-flow observations, next-day scenario plans, and risk-control reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

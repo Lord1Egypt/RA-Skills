@@ -1,42 +1,57 @@
-## Description: <br>
-Runs a patched Bitcoin Core node with built-in CPU mining, configurable CPU usage, verification workflows, and update commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a patched Bitcoin Core node with built-in CPU mining, configurable resource controls, verification, build, update, and mining workflows.
 
-## Publisher: <br>
-[happybigmtn](https://clawhub.ai/user/happybigmtn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[happybigmtn](https://clawhub.ai/user/happybigmtn)
 
-## Use Case: <br>
-Developers and operators use this skill to install, verify, build, run, mine with, and update an rBitcoin node derived from Bitcoin Core. It is intended for users who understand local compilation, node operation, RPC exposure, and CPU mining resource costs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default quickstart can start CPU mining and consume sustained CPU, power, and disk resources. <br>
-Mitigation: Set START_MINER=0 for install or verification unless mining is explicitly intended, and cap mining with MINER_CPU_PERCENT and MINER_MAX_THREADS. <br>
-Risk: The package points to install and helper scripts that are not bundled in the artifact reviewed here. <br>
-Mitigation: Review the source repository and exact install.sh and scripts before executing them. <br>
-Risk: Node and miner workflows may perform network activity and expose RPC configuration choices. <br>
-Mitigation: Keep RPC_BIND and RPC_ALLOWIP restricted to localhost unless a reviewed deployment plan requires broader access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happybigmtn/rbtc) <br>
-- [Project homepage from artifact metadata](https://github.com/happybigmtn/rBTC) <br>
+## Use Case:
 
+Developers and node operators use this skill to install, verify, build, update, run, and mine with an rBitcoin node derived from Bitcoin Core.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON reports] <br>
-**Output Format:** [Markdown with bash commands, environment variable settings, and generated verification report paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may trigger local compilation, network access, disk usage, and sustained CPU mining load.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill starts CPU cryptocurrency mining by default, which can consume local compute resources.
+
+Mitigation: Set START_MINER=0 unless mining is intentional, and cap resource use with MINER_CPU_PERCENT and MINER_MAX_THREADS.
+
+Risk: The default patch-hash acceptance setting can weaken patch-pinning controls.
+
+Mitigation: Set AUTO_ACCEPT_NETWORK_PATCH_HASH=0 and manually review patch-hash changes before accepting them.
+
+Risk: Running the skill can involve Bitcoin network participation and persistent blockchain storage.
+
+Mitigation: Install only on machines where network participation, storage use, and local mining behavior are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happybigmtn/skills/rbtc)
+- [Source repository](https://github.com/happybigmtn/rBTC)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment variable settings for CPU mining, node networking, patch verification, build, update, and rollback workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

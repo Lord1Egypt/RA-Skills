@@ -1,40 +1,57 @@
-## Description: <br>
-Extracts text from Korean HWP/HWPX and PDF or scan attachments through a local fallback pipeline using hwp-reader, pyhwp, HWPX parsing, and strings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from Korean HWP/HWPX files using hwp-reader, pyhwp, direct HWPX parsing, and fallback methods; advertised PDF/OCR support should be reviewed because the security evidence says it is overstated.
 
-## Publisher: <br>
-[heoboong](https://clawhub.ai/user/heoboong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heoboong](https://clawhub.ai/user/heoboong)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from locally stored Korean HWP/HWPX and PDF-like document attachments and return structured JSON for downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted document text is written to local JSON files using a user-provided ID. <br>
-Mitigation: Use simple IDs containing only letters, numbers, dashes, or underscores; run the skill from an intended output directory; delete generated JSON files when no longer needed. <br>
-Risk: The extraction pipeline may invoke local hwp-reader, pyhwp, virtualenv, and strings binaries. <br>
-Mitigation: Use only trusted local binaries and virtual environments, and validate the toolchain before processing sensitive documents. <br>
+## Use Case:
 
+Developers and automation agents use this skill to convert local Korean HWP/HWPX document attachments into JSON text output for downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heoboong/hwp-extract-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [JSON emitted to stdout and written to a local *_extracted.json file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local input file path and record ID; may use local hwp-reader, pyhwp, virtualenv, and strings binaries when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence says the skill overstates PDF/OCR support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review implementation and documentation before relying on PDF/OCR extraction; correct the documentation or add the missing PDF/OCR behavior.
+
+Risk: The skill can execute local programs and accepts a user-influenced --venv path.
+
+Mitigation: Run it in a constrained workspace with trusted local tools, and do not pass untrusted virtual-environment paths.
+
+Risk: Extracted document text is written to disk under an identifier-influenced filename.
+
+Mitigation: Validate the identifier as a simple filename-safe value and handle generated *_extracted.json files as retained document contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heoboong/skills/hwp-extract-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands]
+
+**Output Format:** [JSON written to stdout and to a local *_extracted.json file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Run output includes id, source path, extracted text, method, notes, and elapsed time fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

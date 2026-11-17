@@ -1,39 +1,52 @@
-## Description: <br>
-Manage TickTick tasks (add, list, complete) via the local `tickrs` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TickTick tasks (add, list, complete) via the local `tickrs` CLI.
 
-## Publisher: <br>
-[davidsmorais](https://clawhub.ai/user/davidsmorais) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidsmorais](https://clawhub.ai/user/davidsmorais)
 
-## Use Case: <br>
-Developers and Linux users use this skill to let an agent list TickTick tasks, create new tasks, complete tasks by ID, and list projects through an authenticated local tickrs CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or complete tasks in the authenticated TickTick account. <br>
-Mitigation: Confirm task creation and completion requests before allowing the agent to run mutating commands. <br>
-Risk: The TickTick client secret and local CLI session are credentials. <br>
-Mitigation: Store credentials only in the intended environment and install the skill only when the local tickrs binary is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidsmorais/ticktick-linux) <br>
+## Use Case:
 
+External users and developers use this skill to list TickTick tasks, create tasks, complete tasks by ID, and list projects through an authenticated local tickrs CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from tickrs CLI commands with Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated local tickrs CLI plus TICKTICK_CLIENT_ID and TICKTICK_CLIENT_SECRET environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided task fields in command templates may expose shell injection risk.
+
+Mitigation: Use only in controlled environments with trusted task input, or change commands to use shell-free argument arrays with robust escaping and validation.
+
+Risk: Creating or completing tasks modifies TickTick task data using configured credentials.
+
+Mitigation: Authenticate only with the intended TickTick account and review task IDs and task content before executing create or complete actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidsmorais/skills/ticktick-linux)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local tickrs authentication and TickTick API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

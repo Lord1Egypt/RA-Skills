@@ -1,42 +1,57 @@
-## Description: <br>
-Guides an agent through a browser-assisted workflow to recreate a website by capturing layout, styles, assets, interactions, and responsive behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clone, copy, rebuild, or reverse engineer any website for permitted website recreation workflows.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to rebuild authorized websites or pages into a local React/Next.js implementation with documented component specs, extracted assets, and responsive QA steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can copy third-party text, branding, images, fonts, videos, or other assets without adequate rights. <br>
-Mitigation: Use it only for sites you own or have explicit permission to reproduce, and replace copied material with rights-cleared content when needed. <br>
-Risk: A cloned page could be misused for phishing, spoofing, fraud, or brand impersonation. <br>
-Mitigation: Do not use it to clone login pages, brands, storefronts, copyrighted sites, or third-party assets without authorization. <br>
-Risk: The workflow may download assets and create or modify project files in the active workspace. <br>
-Mitigation: Run it in a dedicated project directory and review generated files, downloaded assets, and build changes before relying on them. <br>
+## Use Case:
 
+Developers and web teams use this skill to document and rebuild websites they own or have explicit permission to reproduce. It guides browser-based reconnaissance, asset extraction, component specification, implementation, and responsive QA.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/clone-website) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell, JavaScript, CSS, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to create research notes, downloaded assets, React components, and local project files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can support exact website copying, which may enable unauthorized reproduction, misleading lookalike sites, or misuse of third-party branding and media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for sites the operator owns or has explicit permission to reproduce, and avoid copying third-party branding, text, logos, media, or layouts in a way that could mislead users.
+
+Risk: The setup workflow includes unpinned npm commands and project dependencies.
+
+Mitigation: Run setup and build commands in an isolated project, review generated dependency changes, and pin dependency versions before deployment.
+
+Risk: Generated rebuilds may introduce inaccurate UI behavior, accessibility regressions, or security issues if accepted without review.
+
+Mitigation: Review specifications and generated code, scan outputs, and complete build, type-check, and responsive QA before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/clone-website)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project files, research notes, component specifications, and build or QA commands during agent execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

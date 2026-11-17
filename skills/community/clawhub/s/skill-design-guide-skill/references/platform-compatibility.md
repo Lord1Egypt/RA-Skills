@@ -1,5 +1,3 @@
-# Platform Compatibility
-
 Brain/Hands/Session separation is platform-agnostic. Adapt the file structure to your platform's conventions.
 
 | Platform | Skill Manifest | Scripts Directory | Notes |

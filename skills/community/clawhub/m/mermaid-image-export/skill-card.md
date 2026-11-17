@@ -1,47 +1,62 @@
-## Description: <br>
-Mermaid diagram image export using mermaid-cli. When Claude needs to export Mermaid diagrams as high-quality images (PNG, SVG, PDF) for documentation, presentations, print materials, or web embedding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports Mermaid diagrams as PNG, SVG, or PDF images using mermaid-cli for documentation, presentations, print materials, and web embedding.
 
-## Publisher: <br>
-[smallnest](https://clawhub.ai/user/smallnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallnest](https://clawhub.ai/user/smallnest)
 
-## Use Case: <br>
-Developers and documentation authors use this skill to convert Mermaid diagrams into PNG, SVG, or PDF assets for documentation, presentations, print materials, and web embedding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The batch helper can run arbitrary shell commands through an under-scoped command option. <br>
-Mitigation: Install only in a controlled workspace, avoid passing untrusted values to --mermaid-cmd, and prefer direct mmdc usage. <br>
-Risk: Browser/Puppeteer troubleshooting may involve no-sandbox or host security workarounds. <br>
-Mitigation: Do not follow no-sandbox or SELinux-disabling steps on a sensitive host unless exports run in an isolated test or CI environment. <br>
+## Use Case:
 
+Developers and documentation authors use this skill to convert Mermaid diagram source into publication-ready image files and to batch-export diagrams for docs, slides, web pages, and print materials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallnest/mermaid-image-export) <br>
-- [Mermaid CLI Image Export Skill](SKILL.md) <br>
-- [Mermaid Image Export Skill for Claude](README.md) <br>
-- [Mermaid-CLI Image Export Overview](references/overview.md) <br>
-- [Installation Guide](references/installation.md) <br>
-- [Usage Guide](references/usage.md) <br>
-- [Format Specifications](references/formats.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [PNG, SVG, or PDF image files plus Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Mermaid .mmd input with options for format, theme, scale, background, dimensions, custom CSS, and config files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Unsafe setup guidance can lead users to run shell-based installation commands without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands first, avoid curl or wget pipe-to-shell instructions, and prefer a local pinned mermaid-cli dependency over global npm installation.
+
+Risk: The batch export wrapper can run unintended local commands when given untrusted filenames or arguments.
+
+Mitigation: Use the Python exporter for untrusted inputs, quote and validate filenames, and avoid the shell wrapper unless arguments come from a trusted source.
+
+Risk: PDF and browser rendering depend on Puppeteer and Chrome or Chromium, increasing local execution exposure.
+
+Mitigation: Run rendering in an isolated low-privilege environment and keep the browser and mermaid-cli dependencies pinned and updated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smallnest/skills/mermaid-image-export)
+- [Overview](references/overview.md)
+- [Installation Guide](references/installation.md)
+- [Usage Guide](references/usage.md)
+- [Format Specifications](references/formats.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated image files are PNG, SVG, or PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports batch processing, Mermaid themes, custom CSS, custom configuration, dimensions, scaling, and background color settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

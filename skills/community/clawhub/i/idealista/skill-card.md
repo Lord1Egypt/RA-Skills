@@ -1,44 +1,54 @@
-## Description: <br>
-Query Idealista API via idealista-cli (OAuth2 client credentials). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Idealista API via idealista-cli (OAuth2 client credentials).
 
-## Publisher: <br>
-[quifago](https://clawhub.ai/user/quifago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[quifago](https://clawhub.ai/user/quifago)
 
-## Use Case: <br>
-External users and developers use this skill to configure Idealista API credentials, run idealista-cli commands, search real estate listings, and compute listing statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external idealista-cli repository installed from GitHub. <br>
-Mitigation: Review the repository before installing it or pin a known commit for repeatable installation. <br>
-Risk: Idealista API credentials may be exposed if stored or committed insecurely. <br>
-Mitigation: Prefer environment variables or a secret manager; keep any local config file private and rotate credentials if exposure is suspected. <br>
-Risk: Search locations and property criteria are sent to Idealista during normal API use. <br>
-Mitigation: Avoid submitting sensitive location or search criteria unless sharing that data with Idealista is acceptable for the intended use. <br>
+## Use Case:
 
+External users and developers use this skill to configure Idealista API credentials, run idealista-cli commands, search real estate listings, and compute listing statistics from an agent workflow.
 
-## Reference(s): <br>
-- [idealista-cli GitHub repository](https://github.com/quifago/idealista-cli) <br>
-- [Idealista ClawHub page](https://clawhub.ai/quifago/idealista) <br>
-- [quifago ClawHub publisher profile](https://clawhub.ai/user/quifago) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples for token management, listing search, and aggregate statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses a third-party idealista-cli repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the repository is acceptable for the deployment environment before installation.
+
+Risk: Idealista API client credentials may be stored locally if persistent CLI configuration is used.
+
+Mitigation: Prefer temporary environment variables and protect IDEALISTA_API_SECRET like any other API credential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/quifago/skills/idealista)
+- [idealista-cli GitHub Repository](https://github.com/quifago/idealista-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and natural-language examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Idealista OAuth2 client credentials supplied through IDEALISTA_API_KEY and IDEALISTA_API_SECRET.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

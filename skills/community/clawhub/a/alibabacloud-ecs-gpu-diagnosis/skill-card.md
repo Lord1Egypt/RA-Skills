@@ -1,45 +1,64 @@
-## Description: <br>
-Diagnose Alibaba Cloud ECS GPU instances to detect GPU device status, driver issues, and hardware failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses GPU device status, driver installation issues, and hardware failures on Alibaba Cloud ECS GPU instances using Console Diagnosis and Cloud Assistant diagnosis modes.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud operators, developers, and support engineers use this skill to validate Alibaba Cloud CLI readiness, create ECS GPU diagnostic reports, poll report status, and summarize detected GPU issues with recommended remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Alibaba Cloud ECS regions supported by the skill, including cn-hangzhou, cn-shanghai, cn-beijing, and cn-shenzhen. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud CLI credentials to query ECS instances and create diagnostic reports. <br>
-Mitigation: Use least-privilege RAM credentials with only the required ECS diagnostic and instance query permissions, and confirm the target instance and region before execution. <br>
-Risk: CLI installation and update steps can modify a system-wide Alibaba Cloud CLI binary. <br>
-Mitigation: Verify the CLI download source, review installation commands before running them, and prefer managed package installation where available. <br>
-Risk: AI-mode changes CLI configuration for agent execution. <br>
-Mitigation: Enable AI-mode only for the diagnostic workflow and disable it after success or failure as the skill instructs. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to diagnose single-instance, batch, or scheduled GPU health checks for Linux Alibaba Cloud ECS GPU instances and interpret Console Diagnosis and Cloud Assistant results.
 
-## Reference(s): <br>
-- [Alibaba Cloud CLI Installation Guide](references/cli-installation.md) <br>
-- [RAM Permission List](references/ram-policies.md) <br>
-- [Alibaba Cloud CLI official installation documentation](https://help.aliyun.com/zh/cli/install-cli) <br>
-- [Alibaba Cloud GPU driver installation guide](https://help.aliyun.com/document_detail/108460.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with Alibaba Cloud CLI commands, diagnostic report details, issue summaries, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ECS instance ID, region ID, configured Alibaba Cloud CLI credentials, and RAM permissions for ECS diagnostic and instance query APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill gives agents high-impact Alibaba Cloud command authority for ECS diagnostic and Cloud Assistant operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped RAM identity with only the documented permissions and review commands before execution.
+
+Risk: Untrusted instance lists, tag values, or region inputs could direct diagnosis commands at unintended resources.
+
+Mitigation: Use explicit instance lists when possible, validate region and instance IDs, and avoid untrusted tag or region inputs.
+
+Risk: CLI installation and plugin update steps depend on mutable external sources.
+
+Mitigation: Verify Alibaba Cloud CLI and plugin sources independently before installation or update.
+
+Risk: Scheduled diagnosis creates persistent cloud automation.
+
+Mitigation: Track scheduled invocations, use stop-invocation only when explicitly requested, and clean up scheduled resources manually in the console.
+
+## Reference(s):
+
+- [Alibaba Cloud CLI Installation Guide](references/cli-installation.md)
+- [RAM Permission List](references/ram-policies.md)
+- [Alibaba Cloud CLI official installation documentation](https://help.aliyun.com/zh/cli/install-cli)
+- [Alibaba Cloud GPU driver installation guide](https://help.aliyun.com/zh/egs/install-a-gpu-driver-on-a-gpu-accelerated-compute-optimized-linux-instance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and diagnosis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Streams diagnosis results as each method or instance completes; findings are grouped by diagnosis method.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

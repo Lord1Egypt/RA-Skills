@@ -1,45 +1,58 @@
-## Description: <br>
-Contract-driven multi-agent orchestration with ACP. TypeScript CLI for spawning and tracking coding agents via OpenClaw sessions_spawn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenNexum TS is a TypeScript CLI for contract-driven multi-agent orchestration with ACP, spawning and tracking coding agents through OpenClaw sessions_spawn.
 
-## Publisher: <br>
-[ayao99315](https://clawhub.ai/user/ayao99315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayao99315](https://clawhub.ai/user/ayao99315)
 
-## Use Case: <br>
-Developers and engineering teams use OpenNexum TS to coordinate contract-driven AI coding workflows, generate OpenClaw ACP spawn payloads, track sessions, run evaluator loops, and manage task completion or retry state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent project instruction files and runtime state can influence future agent behavior or task tracking. <br>
-Mitigation: Review AGENTS.md, CLAUDE.md, nexum/active-tasks.json, and generated runtime files before running the workflow in an existing project. <br>
-Risk: The artifact ships a Telegram notification target and can send workflow status to a configured chat. <br>
-Mitigation: Remove or replace the shipped nexum/config.json notification target and use a dedicated low-scope Telegram bot token only after confirming the destination chat. <br>
-Risk: Running nexum init or orchestration commands intentionally creates or updates task-state files in the project. <br>
-Mitigation: Use the skill only in repositories where Nexum is expected to manage task files and agent workflow state, and review changes before committing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to define contract-based coding tasks, spawn generator and evaluator agents, track ACP sessions, and process retry or completion outcomes. It is suited for multi-agent coding workflows where reproducibility, task boundaries, and evaluation records matter.
 
-## Reference(s): <br>
-- [OpenNexum TS ClawHub page](https://clawhub.ai/ayao99315/opennexum-ts) <br>
-- [README.md](README.md) <br>
-- [Contract Schema Reference](references/contract-schema.md) <br>
-- [Orchestrator Guide](references/orchestrator-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 20+, pnpm, and openclaw; optional Telegram notification environment variables are TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The init workflow can persistently change agent instruction and runtime files in a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the initialized files before using the workflow in a shared repository, and run initialization in a controlled workspace.
+
+Risk: Generated prompts can turn contract YAML fields into shell commands for coding agents.
+
+Mitigation: Allow only trusted users to author contract YAML, and review contracts before spawning generator or evaluator sessions.
+
+Risk: Telegram notifications can expose task metadata outside the local project environment.
+
+Mitigation: Keep Telegram bot tokens in environment variables, avoid storing them in project config, and enable notifications only when task metadata is appropriate to send to Telegram.
+
+## Reference(s):
+
+- [Contract Schema Reference](references/contract-schema.md)
+- [Orchestrator Guide](references/orchestrator-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with command examples and JSON or YAML payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >=20, pnpm, and openclaw; Telegram notifications are optional and controlled through environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

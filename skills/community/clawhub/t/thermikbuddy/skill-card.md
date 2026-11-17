@@ -1,49 +1,59 @@
-## Description: <br>
-ThermikBuddy helps an agent fetch soaring-weather forecasts and summarize thermal conditions, scores, daily timing, cloud-base estimates, alpine wind effects, and warnings for glider and paraglider pilots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ThermikBuddy helps agents fetch Central European soaring-weather forecasts and summarize thermal scores, climb rates, cloud base, alpine effects, and warnings for glider and paraglider flight planning.
 
-## Publisher: <br>
-[achimace](https://clawhub.ai/user/achimace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[achimace](https://clawhub.ai/user/achimace)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate soaring, thermal, cross-country, gliding, and paragliding weather conditions for predefined regions or custom coordinates. It runs bundled Python forecast scripts, then formats the resulting weather and scoring data into a pilot-facing assessment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled Python forecast code and makes outbound weather requests. <br>
-Mitigation: Review the selected region or coordinates before execution and install only if outbound weather requests are acceptable. <br>
-Risk: Custom coordinates can reveal precise location information. <br>
-Mitigation: Use predefined regions or coarse coordinates when exact private locations are unnecessary. <br>
-Risk: Package metadata is inconsistent across server release evidence and artifact files. <br>
-Mitigation: Confirm that version 1.0.3 is the intended release before publishing or deploying the card. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scoring Parameter Reference](artifact/references/scoring_params.md) <br>
-- [ThermikBuddy ClawHub Page](https://clawhub.ai/achimace/thermikbuddy) <br>
-- [DHV Weather](https://www.dhv.de/wetter/dhv-wetter/) <br>
-- [DWD Soaring Weather](https://www.dwd.de/DE/fachnutzer/luftfahrt/kg_segel/segel_node.html) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [SkySight](https://skysight.io) <br>
-- [TopMeteo Europe](https://europe.topmeteo.eu/de/) <br>
-- [Soaringmeteo](https://soaringmeteo.org/v2) <br>
-- [aufwin.de](https://aufwin.de) <br>
+## Use Case:
 
+External users and agents use this skill to answer glider or paraglider weather-planning questions for configured German and Alpine regions or user-supplied coordinates. It returns planning guidance and should not replace official aviation weather briefings, local regulations, or pilot judgment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summary with command-driven JSON forecast data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent may invoke local Python scripts that return JSON on stdout and logs or errors on stderr.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter says 2.0.0 and artifact metadata/origin say 1.0.2) <br>
+Germany and Central Europe
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: External weather services may be unavailable, incomplete, stale, or inconsistent with local conditions.
+
+Mitigation: Confirm conditions with official aviation weather briefings and local weather sources before flight decisions.
+
+Risk: The guidance is localized to German and Central-European soaring assumptions and may not transfer to all regions, terrain, or regulations.
+
+Mitigation: Use the output as a planning aid for matching regions or explicit coordinates, and apply local regulations and pilot judgment.
+
+## Reference(s):
+
+- [Scoring-Parameter Referenz](references/scoring_params.md)
+- [DHV Wetter](https://www.dhv.de/wetter/dhv-wetter/)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [SkySight](https://skysight.io)
+- [TopMeteo](https://europe.topmeteo.eu/de/)
+- [DWD Segelflug](https://www.dwd.de/DE/fachnutzer/luftfahrt/kg_segel/segel_node.html)
+- [Soaringmeteo](https://soaringmeteo.org/v2)
+- [aufwin.de](https://aufwin.de)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance derived from JSON forecast data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German-language daily soaring forecast with 0-10 thermal scores, timing, weather warnings, and reference links.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

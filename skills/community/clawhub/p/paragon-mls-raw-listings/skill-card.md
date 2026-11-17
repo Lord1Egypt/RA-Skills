@@ -1,40 +1,53 @@
-## Description: <br>
-Fetch raw JSON listing payloads from Paragon MLS for parser debugging, source payload inspection, and custom downstream analysis of unprocessed listing data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch raw JSON listing payloads from Paragon MLS for debugging parser behavior, inspecting source payloads, or custom downstream analysis on unprocessed listing data.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch raw Paragon MLS listing JSON when parsed MLS fields look wrong, parser behavior needs debugging, or custom analysis requires unnormalized source payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on and builds local MCP code outside the reviewed package. <br>
-Mitigation: Install only when you control and trust the configured local paragon-mls-mcp project and have reviewed its dependencies and build scripts. <br>
-Risk: Raw MLS listing payloads may contain sensitive or access-controlled listing data. <br>
-Mitigation: Use the raw listing tool only for authorized MLS records, and redact raw payloads before logging, sharing, or sending them to downstream tools. <br>
+## Use Case:
 
+Developers and analysts use this skill to call the Paragon MLS raw listings tool when they need original listing JSON instead of normalized parser output. It supports parser debugging, MLS region payload comparison, and custom downstream analysis on unprocessed listing data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earlvanze/paragon-mls-raw-listings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Raw JSON payloads with concise Markdown guidance and an example shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw payload structure may vary across MLS regions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Runtime and build behavior depend on mutable files outside the packaged skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the external Paragon MLS MCP project before installation; prefer a package that includes source, lockfile, build output, or a digest-pinned executable.
+
+Risk: Raw MLS payload structure can vary across regions and may be less stable than normalized parser output.
+
+Mitigation: Validate downstream logic against the target MLS regions and use this skill primarily for inspection, debugging, and controlled custom processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earlvanze/skills/paragon-mls-raw-listings)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with MCP command examples; the MCP tool returns raw JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Raw listing payload structure can vary across MLS regions]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

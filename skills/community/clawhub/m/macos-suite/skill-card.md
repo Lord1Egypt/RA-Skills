@@ -1,45 +1,63 @@
-## Description: <br>
-macOS system app automation for opening, reading, and creating items in Mail, Calendar, Reminders, Notes, Maps, Freeform, Photos, Weather, Stocks, and Clock. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS Suite automates opening, reading, and creating content in local macOS apps including Mail, Calendar, Reminders, Notes, Maps, Freeform, Photos, Weather, Stocks, and Clock.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to operate local Apple apps through an agent, including reading app data, creating drafts or records, opening app views, and adding Freeform content after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request macOS Automation and privacy permissions that expose local Mail, Notes, Calendar, Reminders, Photos, and related app data. <br>
-Mitigation: Install only when that local app access is acceptable, grant the narrow permissions required for the intended workflow, and review macOS permission prompts deliberately. <br>
-Risk: Mutating actions can send mail or modify Calendar, Reminders, Notes, and Freeform content. <br>
-Mitigation: Use the built-in confirm=YES requirement for mutating commands, prefer draft or read-only alternatives when possible, and have the agent present confirmation requests before execution. <br>
-Risk: Stock quote and history commands contact third-party market-data services. <br>
-Mitigation: Treat stock lookup inputs as outbound network requests and avoid submitting sensitive or confidential watchlists unless that disclosure is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill on macOS to inspect local app state, open Apple app workflows, create confirmed local records, compose Freeform boards, and retrieve stock or weather outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilei0311/macos-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/lilei0311) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw ClawHub documentation](https://docs.openclaw.ai/tools/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from command execution, with shell command examples and confirmation guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on macOS only and requires python3 and osascript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter, skill.json, server release evidence) <br>
+Risk: The skill can access local Mail, Notes, Calendar, Reminders, Photos, Freeform, Weather, and Stocks data through macOS automation permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted macOS workspaces and grant app automation, privacy, and accessibility permissions only when the requested workflow needs them.
+
+Risk: Mail draft and send flows can include local file attachments.
+
+Mitigation: Review recipient fields, message body, and attachment paths before using mail.draft or mail.send; use confirm=YES only after that review.
+
+Risk: Caller-provided Shortcut names can run local Shortcuts during Reminders and Weather fallback flows.
+
+Mitigation: Use only trusted Shortcut names and do not allow untrusted content to choose the shortcut= value or related command arguments.
+
+Risk: Freeform commands modify the active local board through UI automation.
+
+Mitigation: Prefer read-only or open-only commands until the target board and requested edits are clear, then require explicit confirm=YES for modifying actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/macos-suite)
+- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills)
+- [ClawHub documentation](https://docs.openclaw.ai/tools/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON command results with shell command examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with python3 and osascript; modifying actions require confirm=YES.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter, skill.json, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

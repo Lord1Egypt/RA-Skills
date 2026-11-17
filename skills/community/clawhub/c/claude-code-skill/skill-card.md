@@ -1,45 +1,57 @@
-## Description: <br>
-Integrates MCP tool servers for orchestration, state persistence with IndexedDB/localStorage, and session sync across devices in OpenClaw/Clawdbot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates MCP tool server orchestration, persistent state storage, and session synchronization utilities for OpenClaw and Claude Code workflows.
 
-## Publisher: <br>
-[Enderfga](https://clawhub.ai/user/Enderfga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[enderfga](https://clawhub.ai/user/enderfga)
 
-## Use Case: <br>
-Developers building OpenClaw or Claude Code integrations use this skill to manage MCP tool servers, persist local agent state, and merge chat or configuration state across sessions and devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured MCP servers may receive broad local execution context, filesystem access, environment variables, or account tokens. <br>
-Mitigation: Install only trusted and pinned MCP server packages, restrict filesystem roots and token scopes, and run with a minimal environment. <br>
-Risk: Tool calls can read files, write files, or act on external accounts depending on the configured server. <br>
-Mitigation: Require user confirmation before adding servers or executing sensitive tool calls. <br>
-Risk: Tokens placed in MCP configuration files can be exposed to configured servers or local readers. <br>
-Mitigation: Avoid hardcoding secrets in config files and prefer narrowly scoped credentials supplied through a controlled environment. <br>
+## Use Case:
 
+Developers use this skill to connect OpenClaw or Claude Code agents to configured MCP tool servers, persist agent state, and merge chat or configuration state across sessions and devices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Enderfga/claude-code-skill) <br>
-- [npm Package](https://www.npmjs.com/package/openclaw-claude-code-skill) <br>
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [TypeScript APIs, JSON configuration examples, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MCP server orchestration helpers and persistent state utilities for agent applications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release evidence) <br>
+Risk: Configured MCP servers may run local commands and receive environment or config-provided credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only pinned and reviewed MCP server packages, avoid runtime npx -y startup, run with a minimal environment, and keep real tokens out of shared config files.
+
+Risk: Persistent storage and session synchronization can retain sensitive chat content, tool output, or regulated data.
+
+Mitigation: Do not persist or sync secrets, regulated data, or sensitive chat/tool output until the package provides clearer controls and documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enderfga/skills/claude-code-skill)
+- [Model Context Protocol specification](https://spec.modelcontextprotocol.io/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [npm package](https://www.npmjs.com/package/openclaw-claude-code-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include MCP server configuration, API usage examples, and persistence or synchronization patterns.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

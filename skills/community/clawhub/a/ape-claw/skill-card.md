@@ -1,43 +1,60 @@
-## Description: <br>
-Use the ape-claw CLI to bridge to ApeChain and execute NFT quote, simulation, purchase, telemetry, and wallet-readiness workflows with policy gates and confirmation phrases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ape-claw CLI to bridge to ApeChain and execute NFT quote/simulate/buy flows with strict policy gating, confirm phrases, and telemetry.
 
-## Publisher: <br>
-[simplefarmer69](https://clawhub.ai/user/simplefarmer69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simplefarmer69](https://clawhub.ai/user/simplefarmer69)
 
-## Use Case: <br>
-External developers and OpenClaw agents use this skill to discover ApeChain NFT listings, quote and simulate purchases, bridge APE, and execute transactions only after policy checks, confirmation phrases, and wallet readiness checks pass. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents toward real crypto wallet operations, including purchases and signed transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, keep strict spend limits and allowlists in place, and avoid autonomous execution unless those controls are configured. <br>
-Risk: The skill instructs users to run unpinned remote ape-claw installer or CLI code. <br>
-Mitigation: Review and pin the external ape-claw source before running installer or CLI commands. <br>
-Risk: Credential-bearing clawbot chat flows can expose agent tokens if sent to an untrusted endpoint. <br>
-Mitigation: Send clawbot tokens only to trusted HTTPS backends and avoid sharing them with unknown telemetry or chat servers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simplefarmer69/ape-claw) <br>
-- [ApeClaw website](https://apeclaw.ai) <br>
-- [OpenClaw website](https://openclaw.ai) <br>
+## Use Case:
 
+External developers and OpenClaw agent operators use this skill to guide ApeChain NFT discovery, quote, simulation, purchase, bridge, telemetry, and clawbot registration workflows from the command line.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands prefer --json output and may require wallet credentials, API keys, explicit --execute flags, simulation, and confirmation phrases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer and npx paths may run unverified remote code in an environment that also contains wallet or agent credentials.
+
+Mitigation: Use pinned, verified installers or a sandboxed machine with no valuable wallet keys or reusable credentials present.
+
+Risk: Wallet private keys and clawbot tokens are required for execution paths and could be exposed through shared environments or chat backends.
+
+Mitigation: Treat APE_CLAW_PRIVATE_KEY and APE_CLAW_AGENT_TOKEN as secrets, isolate runtime state, and use only chat or telemetry backends you control.
+
+Risk: Autonomous bridge or NFT purchase commands can execute onchain transactions with financial consequences.
+
+Mitigation: Keep workflows read-only until doctor checks pass, simulation succeeds, spending policy is acceptable, and explicit confirmation or accepted autonomous execution is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simplefarmer69/skills/ape-claw)
+- [ApeClaw website](https://apeclaw.ai)
+- [OpenClaw website](https://openclaw.ai)
+- [ApeClaw GitHub](https://github.com/simplefarmer69/ape-claw)
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers JSON CLI output and includes dry-run, simulation, confirmation, and policy-gating guidance for transaction workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

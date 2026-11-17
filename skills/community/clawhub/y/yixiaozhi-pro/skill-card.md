@@ -1,48 +1,62 @@
-## Description: <br>
-基于普睿科公司蚩尤智核CFC的智能医疗诊断助手，通过2+4+病史收集和三轮问诊生成结构化诊断报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+医小智Pro诊断助手 collects medical history details, asks targeted follow-up questions, and generates structured diagnostic reports with medication guidance and high-risk warnings.
 
-## Publisher: <br>
-[lantian888](https://clawhub.ai/user/lantian888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantian888](https://clawhub.ai/user/lantian888)
 
-## Use Case: <br>
-External users can describe symptoms and receive guided medical intake questions followed by a structured preliminary diagnostic report. The skill is intended for symptom triage, medication guidance, daily care suggestions, and high-risk alerts, not as a substitute for professional medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health details may be processed by configured external services. <br>
-Mitigation: Deploy only with explicit user consent, clear disclosure of data recipients and retention practices, and review of the configured model and token endpoints. <br>
-Risk: The skill can produce definitive medical diagnoses and medication instructions. <br>
-Mitigation: Use the output as preliminary guidance only, require qualified clinical review for care decisions, and preserve escalation paths for severe or worsening symptoms. <br>
-Risk: Cancer-related outputs can add an under-disclosed referral link. <br>
-Mitigation: Disclose the referral destination and purpose before use, and require user confirmation before navigating to external screening or appointment services. <br>
-Risk: Credential and remote token behavior requires careful operational review. <br>
-Mitigation: Use managed secrets, avoid embedding API keys in skill files, and verify remote credential retrieval before deployment. <br>
+## Use Case:
 
+External users or agents use this skill to collect symptom context and produce initial medical guidance in a structured diagnostic report. Because the skill handles health information and medication advice, outputs should be treated as informational support rather than a substitute for professional medical care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lantian888/yixiaozhi-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/lantian888) <br>
-- [External model API endpoint](https://ydai.jinbaisen.com/api/v1) <br>
-- [Remote token endpoint](https://jiyinjia.jinbaisen.com/!token?key=skill_yxz) <br>
-- [Cancer screening referral link](https://bmsapp.geneplus.org.cn/business/addOrder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic intake questions and structured reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include medication guidance, high-risk alerts, and a cancer-related referral link when cancer keywords appear.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill may collect detailed health information and prior chat history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear consent, collect the minimum needed information, and avoid entering unnecessary identifiers.
+
+Risk: The skill sends conversations to a configurable external model service.
+
+Mitigation: Review and trust the endpoint configuration before deployment, and do not use untrusted token or model service settings.
+
+Risk: The skill provides diagnosis and medication guidance.
+
+Mitigation: Present outputs as informational support and require professional review for serious symptoms, vulnerable users, or medication decisions.
+
+Risk: The skill can append a cancer-related referral or screening link to diagnostic reports.
+
+Mitigation: Review the destination and disclose the referral or booking purpose before using the skill in a user-facing setting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lantian888/skills/yixiaozhi-pro)
+- [Cancer screening appointment link](https://bmsapp.geneplus.org.cn/business/addOrder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic intake questions and structured diagnostic reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include high-risk medical warnings, medication guidance, and a cancer screening link when cancer-related terms are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

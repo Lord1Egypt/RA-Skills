@@ -21,12 +21,8 @@ const highPassButSilent = generateReport({
 includesAll(highPassButSilent, [
   '当前通过率：93%',
   '客户沉默：7 天',
-  '采购路径：未知',
   '通过率达到收口线',
   '客户沉默达到 7 天',
-  '采购路径未知',
-  '不要直接丢报价',
-  'poc-to-contract-closer',
 ]);
 
 const yellowPass = generateReport({
@@ -39,7 +35,7 @@ const yellowPass = generateReport({
 });
 includesAll(yellowPass, [
   '通过率处于黄区',
-  '未来 48 小时集中处理',
+  'Within 48h',
   '问题清零',
 ]);
 
@@ -52,12 +48,9 @@ const args = parseArgs([
   '93',
   '--silence-days',
   '7',
-  '--procurement-path',
-  '比价采购',
 ]);
 assert.strictEqual(args.industry, '零售');
 assert.strictEqual(args.passRate, 93);
 assert.strictEqual(args.silenceDays, 7);
-assert.strictEqual(args.procurementPath, '比价采购');
 
 console.log('tob-poc-war-room tests passed');

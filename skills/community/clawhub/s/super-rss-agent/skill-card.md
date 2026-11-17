@@ -1,45 +1,63 @@
-## Description: <br>
-Super Rss Agent helps an agent manage RSS and Atom subscriptions, import and export OPML, scan and search articles, track read status, generate digests and summaries, and store feed state locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super RSS Agent helps an agent manage RSS subscriptions, import and export OPML, discover and scan feeds, track read status, search articles, create digests, and clean old items.
 
-## Publisher: <br>
-[ohyeah521](https://clawhub.ai/user/ohyeah521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohyeah521](https://clawhub.ai/user/ohyeah521)
 
-## Use Case: <br>
-External users and developers use this skill to turn an OpenClaw agent into a local RSS reader for tracking subscriptions, finding new articles, summarizing selected content, and maintaining read/unread state. It is useful for recurring news, blog, and topic monitoring workflows where feed data should remain in a local SQLite database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts RSS or website URLs that the user adds. <br>
-Mitigation: Add feeds intentionally, avoid untrusted internal or sensitive URLs, and rely on the documented SSRF checks for normal HTTP and HTTPS feed access. <br>
-Risk: Subscriptions, articles, summaries, and read state are stored in a local SQLite database. <br>
-Mitigation: Keep the database in a protected workspace path, use the documented --db option when isolation is needed, and avoid adding feeds whose stored content should not be retained locally. <br>
-Risk: Feed content is untrusted text that may be summarized or acted on by an agent. <br>
-Mitigation: Treat article titles, summaries, and scraped content as untrusted input; verify important claims before using them for decisions or follow-up actions. <br>
-Risk: Old read articles may be deleted automatically after scans. <br>
-Mitigation: Disable automatic cleanup with the documented config auto_purge false setting or adjust auto_purge_days before running recurring scans. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent maintain RSS subscriptions, scan for updates, search unread items, produce daily digests, and import or export OPML feed lists.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ohyeah521/super-rss-agent) <br>
-- [blogwatcher architecture reference](https://github.com/Hyaxia/blogwatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text CLI output with inline shell commands and optional JSON cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores subscriptions, article metadata, read state, and settings in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill makes outbound requests from the agent host to user-configured RSS, Atom, and HTML URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where this network behavior is acceptable, and avoid attacker-controlled feeds or OPML imports in sensitive networks.
+
+Risk: The skill stores subscription and article history locally.
+
+Mitigation: Use an appropriate database path and treat the database as local browsing and reading history.
+
+Risk: Fetched article text is untrusted input that may influence downstream agent summaries.
+
+Mitigation: Review generated summaries before acting on them and avoid letting fetched content trigger sensitive actions without confirmation.
+
+Risk: Automatic purging can delete older read articles after scans.
+
+Mitigation: Disable auto_purge or adjust auto_purge_days when manual retention control is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohyeah521/skills/super-rss-agent)
+- [Publisher profile](https://clawhub.ai/user/ohyeah521)
+- [blogwatcher architecture reference](https://github.com/Hyaxia/blogwatcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [CLI text, Markdown summaries, and OPML files when import or export is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite storage for subscriptions, article history, read status, and settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

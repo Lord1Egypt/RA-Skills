@@ -1,42 +1,55 @@
-## Description: <br>
-Generate polished client education handouts with visuals, FAQs, and clear next steps tailored for home remodeling companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished client education handouts with visuals, FAQs, and clear next steps tailored for home remodeling companies.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External remodeling clients and contractor marketing teams use this skill to generate client education handouts that explain renovation topics with visuals, FAQs, and clear next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated remodeling claims or visuals may be inaccurate, incomplete, or unsuitable for publication. <br>
-Mitigation: Review the generated handout, FAQs, and visuals for accuracy, audience fit, and brand requirements before sharing with clients. <br>
-Risk: The skill declares Bash and Read permissions that are broader than the described handout-generation workflow appears to require. <br>
-Mitigation: Install and run it in an environment where unnecessary tool access is restricted or reviewed. <br>
+## Use Case:
 
+External remodeling clients and renovation prospects use this skill's output to understand a remodeling company offer, common questions, visual context, and next steps before engaging with a contractor or marketer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-home-remodeling-company-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-home-remodeling-company-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handout content with FAQ sections, visual guidance, and client next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated claims and visuals should be reviewed before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad shell and file-read access for a task that primarily generates a client handout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit installation or execution to environments where broad local command and file-read capability is acceptable, or revise the skill to remove Bash and restrict file reads to explicit user-provided inputs.
+
+Risk: Generated remodeling education material may contain inaccurate or incomplete client-facing guidance.
+
+Mitigation: Review the handout for factual accuracy, company policy alignment, and suitability before external publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-home-remodeling-company-client-education-handout)
+- [SkillBoss Skill Page](https://www.skillboss.co/skills/generate-home-remodeling-company-client-education-handout)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handout content with FAQ-style guidance, visual direction, and clear next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on chat and image-generation APIs; outputs should be reviewed before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

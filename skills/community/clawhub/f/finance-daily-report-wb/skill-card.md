@@ -1,45 +1,59 @@
-## Description: <br>
-Generates an interactive HTML daily finance report for A-shares, Hong Kong stocks, major indices, sectors, capital flows, forex, commodities, news, and upcoming market events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI财经日报生成助手，自动获取A股、港股、美股相关市场数据，分析大盘指数、行业板块、资金流向、外汇商品和财经要闻，并生成交互式HTML可视化日报。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and agents use this skill to fetch public market data and generate a local, browser-viewable daily finance report. It is suited for market overview requests, daily financial summaries, and Chinese-market style visual reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python dependencies and contact public market-data providers through AKShare. <br>
-Mitigation: Use a virtual environment and run it in an environment where package installation and outbound market-data requests are permitted. <br>
-Risk: Generated reports load Chart.js from a CDN when opened. <br>
-Mitigation: Review the generated HTML or replace the CDN dependency before use in environments with strict network or dependency controls. <br>
-Risk: Market data can be incomplete or unavailable, especially for current-day real-time data and upstream provider outages. <br>
-Mitigation: Treat the report as informational, check source data when accuracy matters, and rely on the built-in graceful degradation indicators for missing modules. <br>
-Risk: Finance summaries may be mistaken for investment advice. <br>
-Mitigation: Present the report as market information only and preserve the report disclaimer that data does not constitute investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to generate daily financial market summaries and interactive HTML reports covering Chinese market indices, Hong Kong indices, sector movement, capital flow, foreign exchange, commodities, news, and upcoming financial calendar items.
 
-## Reference(s): <br>
-- [AKShare API Reference for Finance Daily Report](references/akshare_apis.md) <br>
-- [Finance Daily Report HTML Template Notes](assets/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Interactive HTML report file with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated HTML report is local and self-contained except for Chart.js, which is loaded from a CDN when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated financial reports may execute unsafe injected content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as untrusted display data, review or sanitize the HTML before sharing, and open reports only in a browser context without sensitive same-origin access.
+
+Risk: The skill relies on mutable third-party dependencies and CDN-hosted code.
+
+Mitigation: Run the skill in an isolated virtual environment, review and pin Python dependencies before installation, and replace CDN usage with reviewed or integrity-pinned assets where possible.
+
+Risk: Market data and news content may be incomplete, unavailable, stale, or unsuitable for investment decisions.
+
+Mitigation: Review generated report content against authoritative sources and keep the report's non-advisory disclaimer visible to end users.
+
+## Reference(s):
+
+- [AKShare API Reference for Finance Daily Report](artifact/references/akshare_apis.md)
+- [财经日报 ClawHub Skill Page](https://clawhub.ai/bettermen/skills/finance-daily-report-wb)
+- [bettermen ClawHub Publisher Profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, HTML file]
+
+**Output Format:** [Markdown guidance with shell commands and a generated self-contained HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report may contain incomplete or placeholder sections when upstream market data APIs fail or return no data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Diagnose DTC ads performance across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, and Shopify Ads by validating pixel attribution, account structure, creative signals, and conversion funnel opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose DTC ads performance across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, and Shopify Ads by validating pixel attribution, account structure, creative signals, and conversion funnel opportunities.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-External growth, ecommerce, and paid media operators use this skill to diagnose DTC advertising performance, explain ROAS instability, validate pixel readiness, and prioritize scale, budget, landing page, and funnel actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive advertising, store, or performance data beyond what is needed for diagnosis. <br>
-Mitigation: Share only the ads, pixel, store, and performance snapshots needed for the task, and exclude passwords, API keys, session cookies, and unnecessary account identifiers. <br>
-Risk: Advisory recommendations may be over-applied when measurement confidence is low. <br>
-Mitigation: Keep scale recommendations bounded by pixel quality, attribution confidence, COGS, contribution margin, and funnel data supplied by the user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danyangliu-sandwichlab/dtc-ads-helper) <br>
+## Use Case:
+
+External ecommerce operators and marketing teams use this skill to troubleshoot DTC store growth, diagnose ROAS instability, plan safer budget scaling, and prioritize landing page or funnel fixes for paid traffic.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Ad-account credentials or unnecessary customer data could be exposed if users provide more information than the workflow requires.
+
+Mitigation: Use aggregated account, pixel, and performance snapshots; do not provide ad-account credentials or raw customer records.
+
+Risk: Budget or funnel recommendations can be misleading when attribution, pixel quality, COGS, LTV, or other measurement assumptions are incomplete.
+
+Mitigation: Review stated attribution blind spots and required business assumptions before acting on scale or funnel recommendations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with structured diagnostic sections and example YAML or JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory recommendations only; it does not run code or access advertising accounts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or structured text with diagnostic sections, root-cause analysis, budget guidance, funnel fixes, and an execution priority queue.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should stay bounded by measurement confidence and explicitly call out attribution blind spots.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

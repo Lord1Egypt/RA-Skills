@@ -1,37 +1,52 @@
-## Description: <br>
-Task Experience Logger helps agents record task problems, solutions, lessons learned, tool validation notes, and durable memory updates in structured Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Experience Logger helps agents record task problems, solutions, lessons learned, tool validation notes, and long-term memory updates.
 
-## Publisher: <br>
-[dawai2005](https://clawhub.ai/user/dawai2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dawai2005](https://clawhub.ai/user/dawai2005)
 
-## Use Case: <br>
-Developers, operators, and other agent users use this skill to keep structured task experience records during troubleshooting, workflow improvement, and knowledge-base building. It is intended for capturing reusable lessons, common issues, verified tools, and concise updates to long-term memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist task notes to local memory, which may accidentally include secrets, customer data, private paths, credentials, or other sensitive details. <br>
-Mitigation: Review and sanitize notes before saving logs or updating MEMORY.md, and remove anything that should not be reused in future sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dawai2005/task-experience-logger) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to maintain structured task experience records while troubleshooting, optimizing workflows, and preserving reusable lessons.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown notes and structured task-log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local task-experience notes and MEMORY.md entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent task records may capture sensitive raw logs, screenshots, credentials, tokens, customer data, or private operational details.
+
+Mitigation: Require explicit approval for persistent records and save sanitized summaries instead of raw diagnostic material.
+
+Risk: Automatic long-term memory updates may preserve inaccurate or overly broad lessons without review.
+
+Mitigation: Review proposed MEMORY.md updates before writing them and keep only concise, reusable lessons.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dawai2005/skills/task-experience-logger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown templates, structured notes, and memory-update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce task reports, quick notes, lessons learned, tool validation records, common issue entries, and proposed MEMORY.md updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

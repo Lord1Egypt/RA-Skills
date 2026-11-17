@@ -1,42 +1,48 @@
-## Description: <br>
-Provides guidance for online seat selection, checked baggage rules, and obtaining delay certificates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供在线选座、行李托运规则及延误证明获取指引。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Travelers and travel-support agents use this skill for Chinese-language flight check-in guidance, including online seat selection, baggage rules, delay certificate guidance, flight status, local tips, weather alerts, and digital boarding pass support.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Travel policies, flight inventory, weather, offers, and insurance advice can change quickly or vary by airline, route, and jurisdiction.
+
+Mitigation: Verify operational details with official airline, airport, travel-policy, and weather sources before acting on the guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Travelers and agents use this skill to organize flight check-in guidance, including seat selection, baggage rules, delay documentation, flight-status context, itinerary details, and local travel advisories. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Live flight status, seat availability, digital boarding pass, itinerary, baggage, and delay-certificate details may be incomplete or outdated. <br>
-Mitigation: Treat these outputs as advisory and confirm them through the airline, airport, or booking provider before acting on them. <br>
-Risk: Check-in and delay-certificate workflows can involve booking codes, personal travel documents, or other sensitive travel information. <br>
-Mitigation: Avoid sharing booking codes or personal travel documents unless necessary and only use trusted airline, airport, or booking-provider channels for sensitive details. <br>
-Risk: Travel advisories, visa, policy, health, and local compliance requirements may change quickly. <br>
-Mitigation: Verify policy and advisory details with authoritative travel, government, airline, or local sources before relying on the guidance. <br>
+**Output Format:** [Markdown or plain text travel guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/flight-check-in) <br>
+**Other Properties Related to Output:** [Chinese-language responses; live travel policies, offers, inventory, weather, and insurance advice should be verified with official airline or travel sources.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise text or Markdown travel check-in guidance, status summaries, and advisory lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code, install steps, credentials, persistence, or automatic actions are included. Live travel, boarding pass, baggage, and delay-certificate information should be confirmed with the airline, airport, or booking provider.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

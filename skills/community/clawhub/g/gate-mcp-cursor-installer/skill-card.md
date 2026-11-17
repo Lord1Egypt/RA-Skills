@@ -1,45 +1,62 @@
-## Description: <br>
-Installs Gate MCP servers and Gate skills for Cursor, with support for selected MCP targets and preserving existing MCP configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate MCP and Gate skills installer for Cursor.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-Developers and Cursor users use this skill to configure Gate MCP servers and install Gate skills for trading or research workflows in Cursor. It helps set up local and remote Gate MCP entries, skill files, and post-install restart or authentication guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can make broad lasting changes to Cursor MCP configuration and skills directories. <br>
-Mitigation: Back up ~/.cursor/mcp.json and ~/.cursor/skills before installation, install only the MCPs needed, and verify the resulting entries after the script runs. <br>
-Risk: The installer can fetch unpinned remote Gate skills. <br>
-Mitigation: Review the installed skill files before using them in sensitive workflows, or use --no-skills when only MCP configuration is required. <br>
-Risk: Trading-enabled Gate API credentials may be stored in local Cursor configuration. <br>
-Mitigation: Avoid entering trading-enabled API keys unless needed, limit permissions on any keys used, and mask secrets in user-visible output. <br>
+## Use Case:
 
+Developers and Cursor users use this skill to install selected Gate MCP servers, optionally install the Gate skills bundle, and receive restart and authentication guidance for Gate trading or research tools.
 
-## Reference(s): <br>
-- [Gate Cursor Installer MCP Specification](artifact/references/mcp.md) <br>
-- [Gate MCP](https://github.com/gate/gate-mcp) <br>
-- [Gate Skills](https://github.com/gate/gate-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-mcp-cursor-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce installer command options, MCP configuration guidance, and restart or authentication next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter version 2026.3.25-2) <br>
+Risk: The installer makes persistent changes to Cursor MCP configuration and can install all Gate skills by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected MCP list before running the installer, choose only required MCPs, and use --no-skills when the full skills bundle is not needed.
+
+Risk: Gate API credentials may be stored in Cursor configuration for local CEX use.
+
+Mitigation: Use limited, IP-restricted keys where possible, avoid high-privilege trading keys, and remove credentials from configuration when no longer needed.
+
+Risk: The installer pulls mutable remote code or instructions during setup.
+
+Mitigation: Pin or review the exact gate-mcp version and gate-skills commit before running the installer.
+
+## Reference(s):
+
+- [Gate Cursor Installer MCP Specification](references/mcp.md)
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-mcp-cursor-installer)
+- [Gate MCP Documentation](https://github.com/gate/gate-mcp)
+- [Gate Skills Bundle](https://github.com/gate/gate-skills)
+- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage)
+- [Gate Web3](https://web3.gate.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands, JSON configuration guidance, and installation status notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update Cursor MCP configuration and install Gate skill directories when the installer is executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter version 2026.3.25-2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

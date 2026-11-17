@@ -1,44 +1,63 @@
-## Description: <br>
-可快速验证企业真实性、经营状态，适用于商务合作前的背景核查、供应链准入审核、招投标资质验证，合同主体审查等场景，确保企业信息准确可靠。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Qixin for basic enterprise registration information, including unified social credit code, legal representative, registered capital, operating status, suspected controller, taxpayer qualification, and social insurance headcount.
 
-## Publisher: <br>
-[llx-26](https://clawhub.ai/user/llx-26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llx-26](https://clawhub.ai/user/llx-26)
 
-## Use Case: <br>
-Business, compliance, procurement, and contracting users can query Qixinbao enterprise registration data to verify company identity, operating status, capital, controllers, and related basic business information before decisions or reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried company names or IDs are sent to Qixinbao with the user's API token. <br>
-Mitigation: Use the skill only when that external lookup is acceptable, store QXBENT_API_TOKEN like a password, and avoid exposing it in shared machines, logs, or screenshots. <br>
-Risk: Fuzzy company-name matching can return the wrong enterprise when names are ambiguous. <br>
-Mitigation: For important decisions, prefer enterprise ID lookup when available and verify the returned enterprise name and identifier before relying on the result. <br>
-Risk: Dependency security can change over time for the axios package used by the skill. <br>
-Mitigation: Pin or update axios according to local dependency policy before using the skill in a sensitive environment. <br>
+## Use Case:
 
+External users and business, supplier, procurement, bid, and contract-review teams use this skill to check company registration details and operating status before relying on a business counterparty.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/llx-26/qxb-gs-basic-info) <br>
-- [Qixinbao skill quota and API token page](https://www.qixin.com/app-center/home?route=skill-quota) <br>
-- [getGsBasicInfo reference](references/getGsBasicInfo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code and JSON-shaped API result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, axios, and QXBENT_API_TOKEN; calls the Qixinbao external API and returns enterprise basic information fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Company names or IDs submitted through the skill are sent to Qixin's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user or organization is allowed to send those business identifiers to Qixin before querying.
+
+Risk: The QXBENT_API_TOKEN is a credential required for API access.
+
+Mitigation: Store it only in an environment variable or managed secret store, avoid committing it to files, and rotate it if exposure is suspected.
+
+Risk: Fuzzy company-name lookup may return an unintended company record.
+
+Mitigation: Verify the returned ename and key identifiers before using the result for onboarding, bid, supplier, or contract decisions.
+
+Risk: Dependency installation relies on npm package resolution for axios without a reviewed lockfile in the artifact.
+
+Mitigation: Use a reviewed lockfile or pinned dependency versions in controlled deployments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/llx-26/skills/qxb-gs-basic-info)
+- [getGsBasicInfo reference](references/getGsBasicInfo.md)
+- [Qixin API token quota page](https://www.qixin.com/app-center/home?route=skill-quota)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, configuration]
+
+**Output Format:** [Structured enterprise records returned by API calls, with usage guidance and setup commands in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, network access to Qixin, and the QXBENT_API_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

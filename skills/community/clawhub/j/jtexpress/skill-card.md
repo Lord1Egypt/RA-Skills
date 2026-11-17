@@ -1,42 +1,53 @@
-## Description: <br>
-Use J&T Express (极兔速递) for shipment tracking, shipping guidance, service-type comparison, outlet lookup, and delivery-time or fee estimation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use J&T Express (极兔速递) for shipment tracking, shipping guidance, service-type comparison, outlet lookup, and delivery-time or fee estimation.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this skill to answer common J&T Express logistics questions, including shipment tracking, fee and delivery-time estimates, carrier comparison, outlet lookup, and parcel preparation. It can also guide users through local privacy controls when runtime storage features are used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local runtime features may persist shipment history, subscription records, saved addresses, encrypted helper files, and privacy exports under ~/.openclaw/data/jtexpress/. <br>
-Mitigation: Use persistence only when needed, disclose the local storage path when privacy is relevant, and use the documented privacy info, privacy export, and privacy clear controls. <br>
-Risk: Fee, delivery-time, or tracking guidance may be inaccurate when live carrier tools are unavailable or regional pricing varies. <br>
-Mitigation: State assumptions, provide cautious ranges, and avoid claiming confirmed fees, statuses, or shipping actions unless live tools are available. <br>
+## Use Case:
 
+External users and logistics support agents use this skill to check J&T Express shipment status, estimate shipping fees or delivery times, compare economy carriers, find outlets, and prepare parcel details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/jtexpress) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown guidance, estimates, comparisons, and privacy-control instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May provide cautious ranges and state assumptions when exact carrier fees, timing, or tracking status cannot be confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Local runtime features may store shipment history, subscriptions, and possibly address records under ~/.openclaw/data/jtexpress/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented privacy info, export, and clear commands to inspect or remove local data, and disclose local persistence before using workflows that store shipment-related data.
+
+Risk: Shipping fees and delivery times may be estimates when live carrier tools or current rate tables are unavailable.
+
+Mitigation: State assumptions, present cautious ranges, and avoid claiming confirmed prices, delivery dates, or completed shipping actions unless live tools are available and confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/jtexpress)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cautious estimates, assumptions, comparison guidance, and privacy disclosures when local runtime features are used.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

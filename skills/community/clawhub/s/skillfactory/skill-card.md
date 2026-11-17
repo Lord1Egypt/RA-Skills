@@ -1,46 +1,60 @@
-## Description: <br>
-Skill Factory turns skill ideas or upgrade requests into structured OpenClaw skill packages by guiding capture, source collection, distillation, publishing, versioning, and maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Factory helps OpenClaw agents turn ideas or source material into structured, versioned, publishable skills and upgrade existing skills through a repeatable workflow.
 
-## Publisher: <br>
-[zhelunsun](https://clawhub.ai/user/zhelunsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhelunsun](https://clawhub.ai/user/zhelunsun)
 
-## Use Case: <br>
-Developers and skill authors use Skill Factory to create or upgrade OpenClaw skills from ideas, notes, or source URLs, then package them for GitHub or ClawHub distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through broad file creation, synchronization, and publishing workflows. <br>
-Mitigation: Require explicit confirmation before file writes, force sync, git push/tag, ClawHub publish, or recurring automation. <br>
-Risk: Loose activation or unclear user intent could lead to unwanted skill creation or maintenance actions. <br>
-Mitigation: Use explicit commands and review the resolved target path and generated plan before allowing the workflow to proceed. <br>
-Risk: Source collection may involve web access and third-party material. <br>
-Mitigation: Require separate confirmation before web access and review collected sources before distillation or publication. <br>
+## Use Case:
 
+Developers and skill authors use Skill Factory to capture requirements, collect source material, draft skill files, manage versions, and prepare releases for GitHub or ClawHub. It is intended for creating new OpenClaw skills and maintaining existing ones through structured upgrade plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhelunsun/skillfactory) <br>
-- [Repository](https://github.com/zhelunSun/skill-factory) <br>
-- [README](README.md) <br>
-- [Skill SOP](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline command examples and file-structure templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow plans and proposed files that should be reviewed before execution or publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter, changelog, server release) <br>
+Risk: The skill can guide an agent to create and modify skill repositories, which can introduce incorrect instructions or unwanted file changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit plan, review exact target paths and proposed files, and inspect diffs before applying or publishing changes.
+
+Risk: Publishing and upgrade workflows can expose unintended content if repository remotes, visibility, changelog text, or generated files are not reviewed.
+
+Mitigation: Verify Git remotes and visibility, scan for secrets, confirm the publish command and changelog, and pin the ClawHub CLI version before release.
+
+Risk: Recurring sync automation can alter the active workspace without enough final review.
+
+Mitigation: Avoid enabling recurring sync automation unless the workspace is fully controlled and approvals are required for release-impacting changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhelunsun/skills/skillfactory)
+- [README](README.md)
+- [Skill SOP](SKILL-SOP.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and generated repository files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update skill files, changelog entries, release plans, and publish or sync commands when the user approves those workflows.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Search PubMed and bioRxiv for biomedical research papers with titles, abstracts, metadata, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search biomedical literature from PubMed and bioRxiv for research papers.
 
-## Publisher: <br>
-[hollyya](https://clawhub.ai/user/hollyya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollyya](https://clawhub.ai/user/hollyya)
 
-## Use Case: <br>
-Researchers, biomedical analysts, and drug discovery teams use this skill to search PubMed by keyword and fetch recent bioRxiv preprints by date or category for literature review and topic exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical search terms, dates, and category filters are sent to external PubMed/NCBI and bioRxiv APIs. <br>
-Mitigation: Avoid confidential project names, unpublished research strategy, or sensitive medical details in queries unless external disclosure is acceptable. <br>
-Risk: Returned literature metadata and abstracts may be incomplete, unavailable, or limited by source API behavior. <br>
-Mitigation: Review source links and primary records before relying on results for biomedical research decisions. <br>
+## Use Case:
 
+Researchers, clinicians, and biomedical developers use this skill to find PubMed articles and bioRxiv preprints, retrieve paper metadata, and support literature reviews or topic exploration.
 
-## Reference(s): <br>
-- [PubMed E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK25500/) <br>
-- [bioRxiv API](https://api.biorxiv.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/hollyya/biomedical-literature-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and structured paper-result fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paper metadata such as title, authors, abstract, DOI, publication date, source category, and source link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms and date or category filters may be sent to PubMed or bioRxiv.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive unpublished research queries unless this network sharing is acceptable, and document the external API scope before deployment.
+
+Risk: The example API calls do not include request timeouts or HTTP status checks.
+
+Mitigation: Add explicit timeouts, status checks, retry handling, and bounded date ranges before using the workflow in production.
+
+Risk: Biomedical literature results may be incomplete, unavailable, or dependent on upstream API behavior.
+
+Mitigation: Treat results as retrieval aids, verify important findings against source publications, and surface empty or partial results clearly.
+
+## Reference(s):
+
+- [PubMed E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25500/)
+- [bioRxiv API](https://api.biorxiv.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Text]
+
+**Output Format:** [Markdown with Python code blocks and paper metadata schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces paper metadata such as titles, abstracts, authors, DOIs, dates, IDs, categories, and links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

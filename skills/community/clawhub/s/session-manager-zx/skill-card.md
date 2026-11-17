@@ -1,44 +1,62 @@
-## Description: <br>
-Automatically manages OpenClaw sessions by cleaning inactive sessions, preserving configured sessions, reporting session status, and optionally setting up per-user Nginx reverse proxies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Manager helps OpenClaw users list, monitor, and clean inactive sessions, with optional scheduled cleanup and Nginx proxy/user setup.
 
-## Publisher: <br>
-[zx0018](https://clawhub.ai/user/zx0018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx0018](https://clawhub.ai/user/zx0018)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to keep session files manageable through manual or scheduled cleanup, status reporting, and whitelist-based retention. Teams that need multi-user web access can also use its proxy scripts to create per-user ports after reviewing the security implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proxy setup can make sudo changes to system Nginx configuration and reload Nginx. <br>
-Mitigation: Use the proxy scripts only on hosts where those changes are expected; review generated configuration and prefer the cleanup-only workflow when proxy access is not needed. <br>
-Risk: Proxy configuration can store an access token in Nginx configuration and redirect clients to a URL containing that token. <br>
-Mitigation: Avoid passing tokens on the command line, restrict access to generated Nginx files and logs, and use the proxy feature only when token exposure through redirects is acceptable. <br>
-Risk: Session cleanup deletes local session files based on age, minimum-count, and whitelist settings. <br>
-Mitigation: Run cleanup with dry-run first, confirm retention settings, and keep important session identifiers in the whitelist. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to keep OpenClaw session directories manageable through configurable retention, whitelists, dry-run cleanup, and status reporting. It can also help operators configure per-user proxy access when they have reviewed the Nginx and token-handling risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zx0018/session-manager-zx) <br>
-- [Publisher profile](https://clawhub.ai/user/zx0018) <br>
-- [OpenClaw homepage](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for local scripts that may read, delete, or summarize session files and may configure Nginx when proxy features are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Scheduled cleanup can delete older OpenClaw session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm max-age, minimum-session, and whitelist settings before enabling cron; use the dry-run mode before the first cleanup.
+
+Risk: The proxy and user-creation scripts modify Nginx configuration with sudo privileges.
+
+Mitigation: Review generated usernames, ports, and Nginx site files on a non-shared host before reloading Nginx.
+
+Risk: OpenClaw tokens may be placed into redirect URLs or Nginx configuration by the proxy setup.
+
+Mitigation: Use environment variables for token input, avoid shared or production hosts until token handling is fixed, and rotate any token previously used with the proxy setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zx0018/skills/session-manager-zx)
+- [Publisher profile](https://clawhub.ai/user/zx0018)
+- [OpenClaw project homepage](https://github.com/openclaw/openclaw)
+- [OpenClaw Cron documentation](https://docs.openclaw.ai/cron)
+- [OpenClaw Sessions documentation](https://docs.openclaw.ai/sessions)
+- [OpenClaw session management best practices](https://docs.openclaw.ai/best-practices/sessions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, cron entries, cleanup logs, and optional Nginx site configuration when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

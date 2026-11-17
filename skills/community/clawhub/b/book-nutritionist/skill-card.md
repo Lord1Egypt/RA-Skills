@@ -1,40 +1,49 @@
-## Description: <br>
-Book Nutritionist helps agents find nutritionists and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book nutritionist services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for nutritionist services, check appointment availability, and create a booking through Lokuli after confirming the provider, time slot, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking sends the user's name, email, and phone number to Lokuli. <br>
-Mitigation: Confirm the provider, appointment time, and consent to share contact details before creating the booking. <br>
-Risk: The skill relies on Lokuli as the external booking service. <br>
-Mitigation: Install and use the skill only when the user is comfortable using Lokuli for nutritionist booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Nutritionist on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-nutritionist) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for nutritionists, check appointment availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [JSON-RPC MCP tool calls and text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli search, availability, and booking tools with user-provided appointment and contact details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creating a booking requires sending customer contact details to Lokuli.
+
+Mitigation: Use the booking flow only when the user intends to book, and confirm appointment details before submitting name, email, or phone number.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-nutritionist)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sharing customer name, email, and phone number with Lokuli when creating a booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

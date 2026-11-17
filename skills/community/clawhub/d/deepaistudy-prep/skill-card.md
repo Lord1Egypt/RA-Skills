@@ -1,44 +1,58 @@
-## Description: <br>
-基于教材 PDF 或图片 OCR 识别，AI 生成对应学科年级的互动 SVG 幻灯片与预习小测验课件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates interactive SVG preview slides and quiz courseware from textbook PDFs or OCR images for selected subjects and grade levels.
 
-## Publisher: <br>
-[stoneyshum](https://clawhub.ai/user/stoneyshum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stoneyshum](https://clawhub.ai/user/stoneyshum)
 
-## Use Case: <br>
-Educators, students, and learning-support agents use this skill to turn textbook PDFs or page images into DeepAIStudy preview lessons with OCR text, interactive SVG slides, quiz questions, and knowledge-point summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account passwords are stored plainly in the local configuration file. <br>
-Mitigation: Use a dedicated or low-privilege account, restrict access to the local config file, and remove stored credentials after use. <br>
-Risk: Local PDFs and images are uploaded to a remote AI-backed service for OCR and lesson generation. <br>
-Mitigation: Verify the configured server is https://www.deepaistudy.com and avoid uploading sensitive, regulated, or confidential documents unless approved. <br>
-Risk: The security verdict is suspicious because the package needs more safety guidance around credential handling and document upload. <br>
-Mitigation: Install only from a trusted package source and review configuration, server destination, and generated outputs before classroom or production use. <br>
+## Use Case:
 
+Educators, learning-content creators, and students use this CLI to upload textbook PDFs or images, create AI-generated preview lessons, and retrieve OCR text, interactive SVG slides, rendered slide images, quizzes, and knowledge points.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stoneyshum/deepaistudy-prep) <br>
-- [Publisher profile](https://clawhub.ai/user/stoneyshum) <br>
-- [DeepAIStudy service](https://www.deepaistudy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated lesson assets such as OCR text, SVG slides, PNG slide images, quiz data, and knowledge-point lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads local PDFs or images to the configured DeepAIStudy server and may save generated SVG output when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Passwords are stored plainly by the CLI configuration flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account or unique password for this service, protect the local config file, and remove stored credentials when the skill is no longer needed.
+
+Risk: Credentials and learning materials can be sent to a loosely configured server endpoint.
+
+Mitigation: Use only https://www.deepaistudy.com or a trusted local loopback server, and avoid arbitrary HTTP or untrusted hosts.
+
+Risk: Uploaded textbook PDFs and images are processed by the configured service.
+
+Mitigation: Upload only materials the user is allowed to share and avoid sensitive student, account, or institutional data in source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stoneyshum/skills/deepaistudy-prep)
+- [DeepAIStudy service](https://www.deepaistudy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [CLI text plus generated SVG/PNG learning materials and quiz/result metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured server credentials; uploaded PDFs and images are sent to the configured DeepAIStudy service for processing.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

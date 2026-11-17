@@ -1,39 +1,51 @@
-## Description: <br>
-Urea fertilizer reference for nitrogen management, application methods, volatilization loss, soil chemistry, and crop-specific rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Urea fertilizer reference for nitrogen management, application methods, volatilization loss, soil chemistry, and crop-specific rates.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Agricultural practitioners, advisors, and agents use this skill to calculate urea fertilizer rates, compare nitrogen sources, plan application methods, and manage ammonia volatilization and other nitrogen-loss risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides fertilizer rates and management guidance that may be incomplete for a specific field, crop, product label, jurisdiction, or nutrient-management plan. <br>
-Mitigation: Validate rates, timing, buffers, inhibitor use, and legal requirements against soil or tissue tests, product labels, local extension guidance, and applicable regulations before field application. <br>
+## Use Case:
 
+External users and agents use this skill as a quick reference for urea fertilizer planning, including nitrogen rate calculations, application methods, soil chemistry, loss pathways, fertilizer comparisons, examples, and planning checklists.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/urea) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown command documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local shell script prints command-specific fertilizer reference guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Agronomic rates or fertilizer guidance may be inappropriate for a specific field, crop, regulation, soil condition, or season.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against local extension guidance, soil tests, applicable regulations, and current crop conditions before applying nitrogen.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/urea)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference output from shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference content; no network behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

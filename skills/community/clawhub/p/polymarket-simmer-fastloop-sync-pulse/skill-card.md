@@ -1,42 +1,57 @@
-## Description: <br>
-Trades Polymarket BTC, ETH, and SOL 5-minute fast markets using a Triple-Trigger strategy that combines Binance momentum, NOFX flow data, L2 wall detection, and pre-cached market IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket BTC/ETH/SOL 5-minute binary markets using a Triple-Trigger strategy based on Binance momentum, NOFX OI/netflow, L2 wall detection, and cached market IDs.
 
-## Publisher: <br>
-[AndrewBrownrd](https://clawhub.ai/user/AndrewBrownrd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrewbrownrd](https://clawhub.ai/user/andrewbrownrd)
 
-## Use Case: <br>
-External traders and agent operators use this skill to run or simulate automated Polymarket 5-minute market execution for BTC, ETH, and SOL. It supports paper-style runs without a wallet key and live trading only when a wallet private key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades when a wallet private key is configured. <br>
-Mitigation: Start without WALLET_PRIVATE_KEY, confirm live mode intentionally, and use a dedicated low-balance wallet before allowing real USDC trading. <br>
-Risk: Spend and position controls require manual review before relying on automation. <br>
-Mitigation: Verify the actual code and configuration variable names for max position and daily budget, then test with conservative limits before scheduled operation. <br>
-Risk: The managed five-minute schedule and local persistence files can affect repeated executions. <br>
-Mitigation: Account for the managed schedule and review fast_markets_cache.json, daily_spend.json, and fastloop_ledger.json during deployment and troubleshooting. <br>
+## Use Case:
 
+External traders and automation operators use this skill to run or adapt a Polymarket 5-minute market trading script that can operate in paper mode or, with a wallet key, place live trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AndrewBrownrd/polymarket-simmer-fastloop-sync-pulse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trading run logs and local JSON state files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Risk: Live mode can automate real-money Polymarket trades when a wallet private key is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and omit WALLET_PRIVATE_KEY unless live trading is intended.
+
+Risk: Dependency, secret, and embedded credential controls require review before installation.
+
+Mitigation: Pin and audit simmer-sdk, rotate or remove the embedded NOFX credential, and review credentials before running the skill.
+
+Risk: The daily budget control may not be sufficient as a sole loss-control mechanism.
+
+Mitigation: Require stronger live-trade confirmation and atomic budget enforcement before relying on the daily limit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andrewbrownrd/skills/polymarket-simmer-fastloop-sync-pulse)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration values, and console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON cache, spend, and ledger files during execution.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

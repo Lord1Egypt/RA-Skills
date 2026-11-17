@@ -1,41 +1,55 @@
-## Description: <br>
-Project Keeper helps an agent create and maintain structured workspace notes for user projects, including status, goals, architecture, locations, and plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Keeper helps agents keep structured workspace records for user projects, including status, goals, architecture, and development plans.
 
-## Publisher: <br>
-[hamzaheikal2011](https://clawhub.ai/user/hamzaheikal2011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hamzaheikal2011](https://clawhub.ai/user/hamzaheikal2011)
 
-## Use Case: <br>
-Developers and agents use this skill to preserve concise project context across conversations by creating project-specific Markdown notes in the workspace. It is useful when a user repeatedly discusses ongoing projects and wants future sessions to recover goals, architecture, locations, and plans quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create lasting workspace project notes from ordinary project discussion, which may capture sensitive project details. <br>
-Mitigation: Review and approve what is stored, and avoid saving tokens, secrets, private paths, confidential architecture, or other sensitive data unless deliberately approved. <br>
-Risk: Persistent project notes may become stale or incorrect and later steer agent work in the wrong direction. <br>
-Mitigation: Review project notes before relying on them, update obsolete details, and delete records that should no longer be retained. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve project context across sessions by creating and consulting workspace project notes for active or planned software projects.
 
-## Reference(s): <br>
-- [Project Keeper on ClawHub](https://clawhub.ai/hamzaheikal2011/project-keeper) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown project notes and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent project files in the workspace when a project is discussed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can create persistent project records from ordinary project mentions without clear opt-in, retention limits, or redaction rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; require explicit confirmation before writing project notes and define retention, review, redaction, and deletion practices.
+
+Risk: Project notes may capture sensitive details such as secrets, customer data, private paths, or instruction-like text that could guide future agents.
+
+Mitigation: Do not store secrets, tokens, private keys, customer data, sensitive internal paths, or instruction-like text in project notes; redact sensitive details and review stored notes before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hamzaheikal2011/skills/project-keeper)
+- [Publisher profile](https://clawhub.ai/user/hamzaheikal2011)
+- [Included skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown project notes and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist project details in workspace project files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

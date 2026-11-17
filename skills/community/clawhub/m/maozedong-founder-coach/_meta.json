@@ -1,6 +1,38 @@
+
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "maozedong-founder-coach",
+  "name": "maozedong-founder-coach",
   "version": "1.0.0",
-  "publishedAt": 1775646877042
+  "author": "战略思想家",
+  "description": "毛泽东创始人教练 - 用毛泽东的战略战术，指导创业者和成长期CEO的商业决策！",
+  "keywords": [
+    "毛泽东",
+    "创始人教练",
+    "CEO战略教练",
+    "创业战略",
+    "商业战略",
+    "持久战",
+    "农村包围城市",
+    "调查研究",
+    "集中优势兵力",
+    "矛盾论",
+    "实践论",
+    "军事战略",
+    "商业竞争",
+    "founder-coach",
+    "ceo-coach",
+    "startup-strategy",
+    "business-strategy",
+    "mao-zedong",
+    "protracted-war",
+    "strategic-thinking"
+  ],
+  "categories": [
+    "创业",
+    "商业战略",
+    "CEO教练",
+    "创始人",
+    "战略思维"
+  ],
+  "user-invocable": true,
+  "argument-hint": "[business-stage-or-challenge]"
 }

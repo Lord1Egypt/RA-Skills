@@ -1,0 +1,589 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "plan",
+      "patterns": [
+        "平面图",
+        "平面",
+        "PLAN",
+        "一层平面",
+        "二层平面"
+      ]
+    },
+    {
+      "type": "system",
+      "patterns": [
+        "系统图",
+        "系统",
+        "原理图",
+        "SYSTEM",
+        "SYSTEM DIAGRAM"
+      ]
+    },
+    {
+      "type": "trunk",
+      "patterns": [
+        "干线图",
+        "干线",
+        "竖向图",
+        "立管图",
+        "TRUNK",
+        "RISER DIAGRAM"
+      ]
+    },
+    {
+      "type": "detail",
+      "patterns": [
+        "详图",
+        "大样",
+        "节点图",
+        "DETAIL"
+      ]
+    },
+    {
+      "type": "schedule",
+      "patterns": [
+        "材料表",
+        "设备表",
+        "图例",
+        "明细表",
+        "SCHEDULE",
+        "LEGEND"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "fire_alarm",
+      "patterns": [
+        "火灾报警",
+        "火灾自动报警",
+        "消防报警",
+        "报警总线",
+        "探测器",
+        "手报",
+        "消防电话",
+        "FAS",
+        "FIRE ALARM"
+      ]
+    },
+    {
+      "system": "emergency_lighting",
+      "patterns": [
+        "应急照明",
+        "疏散指示",
+        "集中电源",
+        "应急电源",
+        "EMERGENCY LIGHTING"
+      ]
+    },
+    {
+      "system": "plumbing",
+      "patterns": [
+        "给排水",
+        "水专业",
+        "PLUMBING"
+      ]
+    },
+    {
+      "system": "fire_water",
+      "patterns": [
+        "消防水",
+        "消火栓",
+        "喷淋",
+        "自动喷水",
+        "报警阀",
+        "水流指示器",
+        "消防泵",
+        "稳压泵",
+        "FIRE WATER",
+        "SPRINKLER",
+        "HYDRANT"
+      ]
+    },
+    {
+      "system": "water_supply",
+      "patterns": [
+        "给水",
+        "生活给水",
+        "中水",
+        "直饮水",
+        "热水",
+        "循环水",
+        "WATER SUPPLY",
+        "PIPE-给水",
+        "PIPE-JS"
+      ]
+    },
+    {
+      "system": "drainage",
+      "patterns": [
+        "排水",
+        "污水",
+        "废水",
+        "雨水",
+        "冷凝水",
+        "通气管",
+        "DRAIN",
+        "SEWAGE",
+        "RAIN",
+        "PIPE-排水",
+        "PIPE-WS"
+      ]
+    },
+    {
+      "system": "hvac",
+      "patterns": [
+        "暖通",
+        "通风",
+        "空调",
+        "防排烟",
+        "排烟",
+        "送风",
+        "回风",
+        "新风",
+        "风管",
+        "风机",
+        "风口",
+        "风阀",
+        "HVAC",
+        "DUCT",
+        "VENT",
+        "AIR"
+      ]
+    },
+    {
+      "system": "weak_current",
+      "patterns": [
+        "弱电",
+        "智能化",
+        "综合布线",
+        "安防",
+        "监控",
+        "广播",
+        "网络",
+        "门禁",
+        "BA",
+        "CCTV",
+        "DATA",
+        "TEL"
+      ]
+    },
+    {
+      "system": "gas",
+      "patterns": [
+        "燃气",
+        "煤气",
+        "天然气",
+        "GAS"
+      ]
+    },
+    {
+      "system": "electrical",
+      "patterns": [
+        "强电",
+        "照明",
+        "插座",
+        "动力",
+        "配电",
+        "母线",
+        "桥架",
+        "电缆",
+        "电线",
+        "导管",
+        "WIRE",
+        "LGT",
+        "BUSB",
+        "CABLETRAY",
+        "POWER",
+        "LIGHTING",
+        "SOCKET"
+      ]
+    }
+  ],
+  "route_rules": [
+    {
+      "route_class": "fire_alarm_wire",
+      "system": "fire_alarm",
+      "patterns": [
+        "火灾报警",
+        "报警总线",
+        "消防报警",
+        "FAS",
+        "FIRE ALARM"
+      ]
+    },
+    {
+      "route_class": "emergency_lighting_wire",
+      "system": "emergency_lighting",
+      "patterns": [
+        "应急照明",
+        "疏散指示",
+        "应急回路",
+        "EMERGENCY"
+      ]
+    },
+    {
+      "route_class": "cable_tray",
+      "system": "electrical",
+      "patterns": [
+        "CABLETRAY",
+        "CABLE TRAY",
+        "桥架",
+        "线槽",
+        "MR",
+        "E-CABLETRAY"
+      ]
+    },
+    {
+      "route_class": "busbar",
+      "system": "electrical",
+      "patterns": [
+        "BUSB",
+        "母线",
+        "BUS BAR",
+        "BUSBAR"
+      ]
+    },
+    {
+      "route_class": "conduit",
+      "system": "electrical",
+      "patterns": [
+        "CONDUIT",
+        "导管",
+        "穿线管",
+        "PC",
+        "SC",
+        "MT",
+        "KBG",
+        "JDG",
+        "TC",
+        "E-CONDUIT"
+      ]
+    },
+    {
+      "route_class": "cable",
+      "system": "electrical",
+      "patterns": [
+        "CABLE",
+        "电缆",
+        "YJV",
+        "YJY",
+        "KVV",
+        "RVV",
+        "WDZ",
+        "NH-"
+      ]
+    },
+    {
+      "route_class": "wire",
+      "system": "electrical",
+      "patterns": [
+        "WIRE",
+        "电线",
+        "照明线",
+        "插座线",
+        "动力线",
+        "BYJ",
+        "BV",
+        "LGT"
+      ]
+    },
+    {
+      "route_class": "sprinkler_pipe",
+      "system": "fire_water",
+      "patterns": [
+        "喷淋",
+        "自动喷水",
+        "SPRINKLER"
+      ]
+    },
+    {
+      "route_class": "fire_pipe",
+      "system": "fire_water",
+      "patterns": [
+        "消火栓",
+        "消防水",
+        "消防管",
+        "FIRE PIPE",
+        "HYDRANT"
+      ]
+    },
+    {
+      "route_class": "drainage_pipe",
+      "system": "drainage",
+      "patterns": [
+        "排水",
+        "污水",
+        "废水",
+        "雨水",
+        "冷凝水",
+        "DRAIN",
+        "SEWAGE",
+        "RAIN",
+        "PIPE-排水"
+      ]
+    },
+    {
+      "route_class": "water_pipe",
+      "system": "water_supply",
+      "patterns": [
+        "给水",
+        "中水",
+        "直饮水",
+        "热水",
+        "WATER SUPPLY",
+        "PIPE-给水",
+        "PPR"
+      ]
+    },
+    {
+      "route_class": "duct",
+      "system": "hvac",
+      "patterns": [
+        "DUCT",
+        "风管",
+        "送风",
+        "回风",
+        "新风",
+        "排烟",
+        "排风",
+        "HVAC",
+        "AIR"
+      ]
+    },
+    {
+      "route_class": "gas_pipe",
+      "system": "gas",
+      "patterns": [
+        "燃气",
+        "煤气",
+        "天然气",
+        "GAS"
+      ]
+    },
+    {
+      "route_class": "generic_pipe",
+      "system": "water_supply",
+      "patterns": [
+        "PIPE",
+        "管道",
+        "管线"
+      ]
+    },
+    {
+      "route_class": "generic_mep",
+      "system": "electrical",
+      "patterns": [
+        "MEP",
+        "机电"
+      ]
+    }
+  ],
+  "equipment_rules": [
+    {
+      "category": "distribution_box",
+      "system": "electrical",
+      "patterns": [
+        "配电箱",
+        "配电柜",
+        "控制箱",
+        "电源箱",
+        "照明箱",
+        "动力箱",
+        "AL",
+        "AP",
+        "AE",
+        "AT"
+      ]
+    },
+    {
+      "category": "lighting",
+      "system": "electrical",
+      "patterns": [
+        "灯具",
+        "照明灯",
+        "灯",
+        "LIGHT",
+        "LUMINAIRE",
+        "LAMP"
+      ]
+    },
+    {
+      "category": "switch_socket",
+      "system": "electrical",
+      "patterns": [
+        "开关",
+        "插座",
+        "SOCKET",
+        "SWITCH"
+      ]
+    },
+    {
+      "category": "fan",
+      "system": "hvac",
+      "patterns": [
+        "风机",
+        "排风机",
+        "送风机",
+        "新风机",
+        "FAN"
+      ]
+    },
+    {
+      "category": "air_terminal",
+      "system": "hvac",
+      "patterns": [
+        "风口",
+        "散流器",
+        "百叶",
+        "风阀",
+        "DAMPER",
+        "DIFFUSER",
+        "GRILLE"
+      ]
+    },
+    {
+      "category": "pump",
+      "system": "water_supply",
+      "patterns": [
+        "水泵",
+        "给水泵",
+        "排水泵",
+        "消防泵",
+        "稳压泵",
+        "PUMP"
+      ]
+    },
+    {
+      "category": "valve",
+      "system": "water_supply",
+      "patterns": [
+        "阀门",
+        "闸阀",
+        "蝶阀",
+        "止回阀",
+        "减压阀",
+        "电动阀",
+        "VALVE"
+      ]
+    },
+    {
+      "category": "sprinkler_head",
+      "system": "fire_water",
+      "patterns": [
+        "喷头",
+        "喷淋头",
+        "SPRINKLER HEAD"
+      ]
+    },
+    {
+      "category": "detector",
+      "system": "fire_alarm",
+      "patterns": [
+        "探测器",
+        "感烟",
+        "感温",
+        "DETECTOR"
+      ]
+    },
+    {
+      "category": "alarm_device",
+      "system": "fire_alarm",
+      "patterns": [
+        "手报",
+        "声光",
+        "报警按钮",
+        "模块",
+        "消防电话",
+        "广播"
+      ]
+    },
+    {
+      "category": "plumbing_fixture",
+      "system": "drainage",
+      "patterns": [
+        "洗手盆",
+        "大便器",
+        "小便器",
+        "地漏",
+        "拖布池",
+        "水嘴",
+        "淋浴",
+        "浴缸",
+        "卫生器具"
+      ]
+    },
+    {
+      "category": "meter",
+      "system": "water_supply",
+      "patterns": [
+        "水表",
+        "电表",
+        "热量表",
+        "压力表",
+        "温度计"
+      ]
+    },
+    {
+      "category": "equipment",
+      "system": "hvac",
+      "patterns": [
+        "机组",
+        "空调箱",
+        "新风机组",
+        "风机盘管",
+        "设备",
+        "EQUIPMENT"
+      ]
+    }
+  ],
+  "riser_id_pattern": "(?<![A-Za-z0-9])(HYL|SPL|JL|PL|TL|FL|WL|YL|HL|RL|JFL|WFL)[-_ ]?[A-Za-z0-9]+['′]?(?![A-Za-z0-9])",
+  "vertical_route_layer_patterns": [
+    "RISER",
+    "VERTICAL",
+    "VERT",
+    "立管",
+    "竖向",
+    "竖管",
+    "管井",
+    "SHAFT"
+  ],
+  "vertical_direction_patterns": {
+    "up": [
+      "向上",
+      "UP",
+      "↑"
+    ],
+    "down": [
+      "向下",
+      "DOWN",
+      "↓"
+    ]
+  },
+  "pipe_spec_pattern": "(?<![A-Za-z0-9])(?:DN|De|D|Φ|φ)\\s*-?\\s*(\\d{2,4})(?![0-9])",
+  "duct_spec_pattern": "(?<![0-9])(\\d{3,5})\\s*[xX×]\\s*(\\d{3,5})(?![0-9])",
+  "circuit_spec_pattern": "(?<![A-Za-z0-9])((?:WDZ|WDZC|BYJ|BV|YJV|YJY|KVV|RVV|NH|ZR)[A-Z0-9+./×xX-]*(?:\\d+\\s*[xX×]\\s*\\d+(?:\\.\\d+)?(?:\\+\\d+\\s*[xX×]\\s*\\d+(?:\\.\\d+)?)*)(?:[-–][A-Z0-9/.]+)*)",
+  "equipment_tag_pattern": "(?<![A-Za-z0-9])([A-Z]{1,4}[-_]?\\d{1,4})(?![A-Za-z0-9])",
+  "floor_pattern": "^(?:B\\d{1,2}|F\\d{1,2}|[1-9]\\d?F|ROOF|RF|屋面|屋顶|首层|一层|二层|三层|四层|五层|六层|七层|八层|九层|十层)$",
+  "scale_pattern": "(?:1\\s*[:：]\\s*\\d{1,4})",
+  "unit_patterns": {
+    "mm": [
+      "毫米",
+      "MM",
+      "mm"
+    ],
+    "m": [
+      "米",
+      "M",
+      "m"
+    ]
+  }
+}

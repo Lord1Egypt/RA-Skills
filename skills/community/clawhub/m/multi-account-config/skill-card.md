@@ -1,38 +1,55 @@
-## Description: <br>
-Configure multiple messaging platform accounts for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure multiple messaging platform accounts for OpenClaw, including Telegram, WhatsApp, Discord, Slack, Signal, and other supported channels.
 
-## Publisher: <br>
-[devilsen](https://clawhub.ai/user/devilsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devilsen](https://clawhub.ai/user/devilsen)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to add, merge, and verify configuration for multiple messaging accounts across supported channels while preserving existing accounts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow collects and applies messaging platform credentials, including bot tokens and account identifiers. <br>
-Mitigation: Provide only the credentials needed for the accounts being added, require token redaction in output, and review the proposed configuration before applying it. <br>
-Risk: Open messaging policies can expose an agent to unintended direct messages or group traffic. <br>
-Mitigation: Use allowlists or closed/admin-only group policies unless broader access is intentional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and OpenClaw operators use this skill to add or update messaging channel accounts, collect credential details, merge them into gateway configuration, and verify the resulting setup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Messaging bot tokens or pairing credentials could be exposed during configuration.
+
+Mitigation: Treat all credentials as secrets, avoid logging or echoing token values, and review responses before sharing them.
+
+Risk: Gateway access settings could permit broader group access than intended.
+
+Mitigation: Confirm the full configuration before applying it and replace open group access with a restrictive policy unless unrestricted access is required.
+
+Risk: Applying configuration changes in the wrong session could affect active messaging accounts.
+
+Mitigation: Use the skill only in an admin setup session and verify the target accounts and bindings before patching the gateway configuration.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive credential placeholders; user-provided tokens should be redacted in responses and logs.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with JSON configuration snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include gateway configuration guidance involving messaging bot credentials and access policy settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Self-recovery and auto-repair system for OpenClaw agents that monitors agent health, detects failures, diagnoses root causes, and applies fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-recovery and auto-repair system for OpenClaw agents that monitors agent health, detects failures, diagnoses root causes, and applies repairs.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check OpenClaw agent health, preview repairs, run automatic recovery, and monitor repeated failures across cron, memory, configuration, sessions, skills, and network checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The heal and monitor modes can modify local OpenClaw state, including configuration, memory, session files, logs, and cron job state. <br>
-Mitigation: Start with check and heal --dry-run, back up important OpenClaw files, and enable monitor mode only when repeated automatic repairs are acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw agent health, diagnose cron, memory, config, session, skill, and network failures, and run guided or automatic recovery workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stevojarvisai-star/self-healing-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/stevojarvisai-star) <br>
-- [GetAgentIQ](https://getagentiq.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON for health checks, and Markdown health reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in check, heal, monitor, or report mode; dry-run is available for repair previews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Automatic healing can modify OpenClaw config, memory, session, and cron state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run check or heal --dry-run first, review proposed changes, and keep backups of ~/.openclaw/openclaw.json, memory, and sessions before enabling repairs.
+
+Risk: Continuous monitor mode can repeatedly apply repairs without close supervision.
+
+Mitigation: Start with a conservative interval and max-heals value, review the healing log after early cycles, and avoid monitor mode until file paths and repair behavior are understood.
+
+Risk: Cron and session repair actions may restart jobs or archive session files in ways that affect active workflows.
+
+Mitigation: Use targeted checks for cron and sessions before running heal, and confirm that active jobs or sessions can tolerate repair actions.
+
+## Reference(s):
+
+- [Self-Healing Agent ClawHub release](https://clawhub.ai/stevojarvisai-star/skills/self-healing-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, JSON diagnostics, and Markdown health reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can log healing actions to memory/self-healing-log.json]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

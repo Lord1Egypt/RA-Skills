@@ -1,43 +1,55 @@
-## Description: <br>
-Build, inspect, and extend WP-CLI command code using the documented stable internal API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, inspect, and extend WP-CLI command code using the documented stable internal API.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or review custom WP-CLI command code against the stable internal API, including command registration, hooks, output helpers, and command composition. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated PHP command skeletons may be loaded into a WordPress project before review. <br>
-Mitigation: Inspect generated PHP and adapt it to the target project before registering or executing the command. <br>
-Risk: The helper script can write generated PHP to a user-selected path. <br>
-Mitigation: Choose an intentional output path and confirm it does not overwrite important project files. <br>
-Risk: Untrusted command or class names can produce invalid or unsafe command code. <br>
-Mitigation: Use trusted command and class names when running the skeleton generator. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stable Internal API](references/stable-internal-api.md) <br>
-- [Command Patterns](references/command-patterns.md) <br>
-- [WP-CLI Internal API reference](https://make.wordpress.org/cli/handbook/references/internal-api/) <br>
+## Use Case:
 
+Developers and engineers use this skill to build or review custom WP-CLI command code that relies on documented stable internal APIs for command registration, hooks, output helpers, and internal execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with PHP and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a PHP command skeleton and optionally write it to a user-specified path via the helper script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional skeleton generator can produce PHP from user-supplied command and class names.
+
+Mitigation: Pass only trusted, simple command and class names, then review generated PHP before loading it in a WordPress or WP-CLI environment.
+
+Risk: Generated command guidance may be applied to destructive WP-CLI workflows.
+
+Mitigation: Use WP-CLI confirmation patterns, print the action scope before execution, and review command behavior before deployment.
+
+## Reference(s):
+
+- [Stable Internal API](references/stable-internal-api.md)
+- [Command Patterns](references/command-patterns.md)
+- [WP-CLI Internal API Reference](https://make.wordpress.org/cli/handbook/references/internal-api/)
+- [ClawHub Skill Page](https://clawhub.ai/matthewxmurphy/skills/wordpress-wp-cli-internal-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with PHP code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May render a local PHP command skeleton for review before use in WordPress or WP-CLI environments.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

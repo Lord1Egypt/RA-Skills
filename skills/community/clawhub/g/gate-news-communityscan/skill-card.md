@@ -1,43 +1,58 @@
-## Description: <br>
-Community sentiment via Gate-News MCP, X/Twitter-first. Use for social discussion, KOL takes, or opinion on a coin or topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides X/Twitter-first community sentiment scans for crypto coins or topics using Gate-News MCP discussion search and social sentiment tools.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to summarize crypto community sentiment, X/Twitter discussion themes, KOL views, and social sentiment metrics for a coin or topic. It is intended for read-only community insight, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sentiment queries may be sent to the configured Gate-News MCP server. <br>
-Mitigation: Install and use the skill only with a Gate-News MCP server you trust. <br>
-Risk: Prompts could include private keys, account secrets, or sensitive personal details. <br>
-Mitigation: Do not include secrets or sensitive personal information in sentiment-scan prompts. <br>
-Risk: Community sentiment can be mistaken for financial advice or a price forecast. <br>
-Mitigation: Present the output as community sentiment only and include the skill's investment-advice caveat. <br>
+## Use Case:
 
+External users and developers use this skill to summarize crypto community discussion, KOL themes, and social sentiment for a coin or topic. It helps produce neutral community insight reports without treating sentiment as investment advice.
 
-## Reference(s): <br>
-- [Gate News Community Scan Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with sentiment summaries, metrics tables, takeaways, and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [X/Twitter-only until broader UGC search is available; output should distinguish community sentiment from price prediction or investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Community sentiment summaries may be mistaken for trading or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as social-sentiment summaries, keep the tone neutral, and include the skill's investment-advice limitation.
+
+Risk: Coverage may omit Reddit, Discord, and Telegram when upstream UGC support is unavailable.
+
+Mitigation: Label reports as X/Twitter-only unless the upstream UGC API is available.
+
+Risk: Required Gate-News MCP tools may be unavailable or return partial data.
+
+Mitigation: Check MCP availability before use and degrade gracefully with clear limitations when a tool fails.
+
+## Reference(s):
+
+- [Gate News Community Scan Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with sentiment metrics, narrative summary, and risk disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only output synthesized from Gate-News MCP tool results; coverage should be labeled X/Twitter-only unless upstream UGC support is available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

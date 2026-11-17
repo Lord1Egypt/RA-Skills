@@ -1,39 +1,49 @@
-## Description: <br>
-Use when creating Unity game scenes and prototypes, building level designs, or automating Unity Editor workflows for terrain, lighting, environment setup, and player controllers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create Unity game scenes and prototypes by guiding level design workflows and Unity Editor automation for terrain, lighting, environment setup, and player controllers.
 
-## Publisher: <br>
-[CryptoRabea](https://clawhub.ai/user/CryptoRabea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptorabea](https://clawhub.ai/user/cryptorabea)
 
-## Use Case: <br>
-Developers and Unity teams use this skill to rapidly prototype game environments and automate scene setup for terrain, lighting, environment placement, and player controllers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unity Editor menu actions may delete or overwrite scene objects or project assets without confirmation or undo support. <br>
-Mitigation: Run the skill only on copied, disposable, or version-controlled Unity projects and review terrain, lighting, player setup, quick setup, and baked-lighting commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Level Design Best Practices](references/level-design-patterns.md) <br>
-- [Unity Level Design API Reference](references/unity-apis.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CryptoRabea/level-design-patterns) <br>
+## Use Case:
 
+Developers and technical artists use this skill to rapidly prototype Unity scenes and automate common level setup tasks such as terrain generation, lighting, environment placement, and player controller creation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with C# code snippets and Unity Editor script recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest Unity Editor menu actions and generated C# scripts that modify scenes or project assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unity Editor menu commands can remove or overwrite scene work such as lights, reflection probes, baked lighting, Player objects, and terrain data without a confirmation dialog or reliable Undo support.
+
+Mitigation: Review the generated Unity changes before applying them, and run the scripts first in a disposable scene or a version-controlled branch with project backups available.
+
+## Reference(s):
+
+- [Unity Level Design API Reference](artifact/references/unity-apis.md)
+- [Level Design Best Practices](artifact/references/level-design-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with C# Unity Editor script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Unity Editor workflow steps and code intended for review before use in a project.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

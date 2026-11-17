@@ -1,42 +1,58 @@
-## Description: <br>
-Read comments from Feishu documents when a user asks to check, fetch, or review document feedback and collaboration comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read comments from Feishu documents for document review and collaboration workflows.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers, document reviewers, and agents use this skill to inspect Feishu or Lark document comments, quoted text, reply content, and comment status during document review cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a Feishu comment reader but bundles a write-capable script that can close comments, including automatic bulk closure. <br>
-Mitigation: Review before installing; remove or separate the write-capable script, or guard comment-closing behavior with dry-run mode and explicit confirmation. <br>
-Risk: Over-scoped Feishu or Lark credentials can permit more access than read-only comment review requires. <br>
-Mitigation: Use least-privilege Feishu credentials, preferably read-only scopes, unless comment-closing capability is intentionally required. <br>
+## Use Case:
 
+Developers and document collaborators use this skill to fetch Feishu/Lark document comments, quoted text, replies, and comment status during document review cycles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deadblue22/feishu-comments) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Lark Open Platform](https://open.larksuite.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text report from shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lists comment IDs, open/resolved/orphaned status, scope, quoted text, replies, and summary counts; default output filters to open anchored comments unless --all is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence, created 2026-03-10) <br>
+Risk: The release evidence reports that the skill is advertised as read-only while bundled scripts can close comments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only Feishu/Lark credentials for comment-reading workflows and run the resolver script only when comment closure is intended.
+
+Risk: The release evidence reports unsafe Python interpolation that could execute code from document content.
+
+Mitigation: Fix the unsafe interpolation before using the skill on documents editable by untrusted collaborators.
+
+Risk: The skill reads Feishu/Lark app credentials from local OpenClaw configuration.
+
+Mitigation: Grant only the minimum Feishu/Lark permissions required for the planned workflow and avoid comment-write permission for read-only use.
+
+## Reference(s):
+
+- [Feishu Open API](https://open.feishu.cn)
+- [Lark Open API](https://open.larksuite.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text terminal output with optional Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Comment output may include comment IDs, status, scope, quoted text, replies, user IDs, and active/orphaned/resolved summary counts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

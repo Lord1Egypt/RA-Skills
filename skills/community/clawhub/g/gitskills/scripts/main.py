@@ -7,7 +7,6 @@ import os
 import argparse
 import logging
 import time
-import requests
 from dotenv import load_dotenv
 from github import Github, GithubException
 
@@ -46,114 +45,6 @@ class GitSkills:
         
         # 速率限制处理
         self.max_retries = 3
-    
-    def send_message(self, message, channel=None):
-        """发送消息到IM通道
-        
-        支持的通道：feishu, wecom, weixin, slack
-        """
-        if not message or not isinstance(message, str):
-            raise ValueError("Message must be a non-empty string")
-        
-        try:
-            if channel == 'feishu' or (channel is None and os.getenv('FEISHU_WEBHOOK_URL')):
-                return self._send_feishu_message(message)
-            elif channel == 'wecom' or (channel is None and os.getenv('WECOM_CORP_ID')):
-                return self._send_wecom_message(message)
-            elif channel == 'weixin' or (channel is None and os.getenv('WEIXIN_BOT_TOKEN')):
-                return self._send_weixin_message(message)
-            elif channel == 'slack' or (channel is None and os.getenv('SLACK_API_TOKEN')):
-                return self._send_slack_message(message)
-            else:
-                return "错误: 未配置任何IM通道"
-        except Exception as e:
-            logging.error(f"Error sending message: {type(e).__name__}")
-            return f"错误: 发送消息失败"
-    
-    def _send_feishu_message(self, message):
-        """发送消息到飞书"""
-        webhook_url = os.getenv('FEISHU_WEBHOOK_URL')
-        if not webhook_url:
-            raise ValueError("FEISHU_WEBHOOK_URL not set")
-        
-        payload = {
-            "msg_type": "text",
-            "content": {
-                "text": message
-            }
-        }
-        response = requests.post(webhook_url, json=payload)
-        response.raise_for_status()
-        return "消息已发送到飞书"
-    
-    def _send_wecom_message(self, message):
-        """发送消息到企业微信"""
-        corp_id = os.getenv('WECOM_CORP_ID')
-        app_secret = os.getenv('WECOM_APP_SECRET')
-        agent_id = os.getenv('WECOM_AGENT_ID')
-        
-        if not all([corp_id, app_secret, agent_id]):
-            raise ValueError("WeCom configuration incomplete")
-        
-        # 获取access_token
-        token_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corp_id}&corpsecret={app_secret}"
-        response = requests.get(token_url)
-        response.raise_for_status()
-        access_token = response.json().get('access_token')
-        
-        if not access_token:
-            raise ValueError("Failed to get WeCom access token")
-        
-        # 发送消息
-        send_url = f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={access_token}"
-        payload = {
-            "touser": "@all",
-            "msgtype": "text",
-            "agentid": agent_id,
-            "text": {
-                "content": message
-            }
-        }
-        response = requests.post(send_url, json=payload)
-        response.raise_for_status()
-        return "消息已发送到企业微信"
-    
-    def _send_weixin_message(self, message):
-        """发送消息到微信个人号（通过iLink Bot）"""
-        bot_token = os.getenv('WEIXIN_BOT_TOKEN')
-        api_url = os.getenv('WEIXIN_API_URL', 'https://api.ilink.qq.com')
-        
-        if not bot_token:
-            raise ValueError("WEIXIN_BOT_TOKEN not set")
-        
-        payload = {
-            "token": bot_token,
-            "type": "text",
-            "content": message
-        }
-        response = requests.post(f"{api_url}/bot/send", json=payload)
-        response.raise_for_status()
-        return "消息已发送到微信"
-    
-    def _send_slack_message(self, message):
-        """发送消息到Slack"""
-        api_token = os.getenv('SLACK_API_TOKEN')
-        channel = os.getenv('SLACK_CHANNEL', '#general')
-        
-        if not api_token:
-            raise ValueError("SLACK_API_TOKEN not set")
-        
-        payload = {
-            "channel": channel,
-            "text": message
-        }
-        headers = {
-            "Authorization": f"Bearer {api_token}",
-            "Content-Type": "application/json"
-        }
-        response = requests.post("https://slack.com/api/chat.postMessage", json=payload, headers=headers)
-        response.raise_for_status()
-        return "消息已发送到Slack"
     
     def _call_with_retry(self, func, *args, **kwargs):
         """带重试的API调用"""
@@ -353,58 +244,6 @@ class GitSkills:
         except Exception as e:
             logging.error(f"Error listing issues in {repo_name}: {type(e).__name__}")
             return f"错误: 无法列出Issue"
-    
-    def clean_git_history(self, repo_name, file_path):
-        """清理Git历史中的敏感文件
-        
-        使用git filter-branch命令清理历史中的敏感文件
-        注意：此操作会重写Git历史，需要谨慎使用
-        """
-        # 输入验证
-        if not repo_name or not isinstance(repo_name, str):
-            raise ValueError("Repository name must be a non-empty string")
-        if not file_path or not isinstance(file_path, str):
-            raise ValueError("File path must be a non-empty string")
-        
-        import subprocess
-        import os
-        
-        try:
-            # 获取仓库本地路径
-            repo = self._call_with_retry(self.user.get_repo, repo_name)
-            clone_url = repo.clone_url
-            
-            # 临时目录
-            temp_dir = f"temp_{repo_name}"
-            
-            # 克隆仓库
-            subprocess.run(['git', 'clone', clone_url, temp_dir], check=True, capture_output=True)
-            
-            # 进入临时目录
-            os.chdir(temp_dir)
-            
-            # 执行git filter-branch
-            cmd = [
-                'git', 'filter-branch', '--force', 
-                '--index-filter', f'git rm --cached --ignore-unmatch {file_path}',
-                '--prune-empty', '--tag-name-filter', 'cat', '--', '--all'
-            ]
-            subprocess.run(cmd, check=True, capture_output=True)
-            
-            # 强制推送到远程
-            subprocess.run(['git', 'push', 'origin', '--force', '--all'], check=True, capture_output=True)
-            subprocess.run(['git', 'push', 'origin', '--force', '--tags'], check=True, capture_output=True)
-            
-            # 清理临时目录
-            os.chdir('..')
-            import shutil
-            shutil.rmtree(temp_dir)
-            
-            return f"Git历史清理成功: 已从历史中移除 {file_path}"
-        except Exception as e:
-            logging.error(f"Error cleaning git history: {type(e).__name__}: {str(e)}")
-            return f"错误: 无法清理Git历史"
-
 
 
 def main():
@@ -477,16 +316,6 @@ def main():
     list_issues_parser = issue_subparsers.add_parser('list', help='列出Issue')
     list_issues_parser.add_argument('--repo', required=True, help='仓库名称')
     
-    # Git历史清理命令
-    clean_parser = subparsers.add_parser('clean', help='Git历史清理命令')
-    clean_parser.add_argument('--repo', required=True, help='仓库名称')
-    clean_parser.add_argument('--file', required=True, help='要清理的文件路径')
-    
-    # IM消息发送命令
-    message_parser = subparsers.add_parser('message', help='发送消息到IM通道')
-    message_parser.add_argument('--content', required=True, help='消息内容')
-    message_parser.add_argument('--channel', choices=['feishu', 'wecom', 'weixin', 'slack'], help='IM通道')
-    
     # 解析命令行参数
     args = parser.parse_args()
     
@@ -532,14 +361,6 @@ def main():
                 print(skills.create_issue(args.repo, args.title, args.body))
             elif args.issue_command == 'list':
                 print(skills.list_issues(args.repo))
-        
-        # 处理Git历史清理命令
-        elif args.command == 'clean':
-            print(skills.clean_git_history(args.repo, args.file))
-        
-        # 处理IM消息发送命令
-        elif args.command == 'message':
-            print(skills.send_message(args.content, args.channel))
         
     except ValueError as e:
         print(f"错误: {str(e)}")

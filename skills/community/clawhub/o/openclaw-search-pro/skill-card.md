@@ -1,50 +1,66 @@
-## Description: <br>
-OpenClaw Search Pro gives agents multi-engine web search and URL content extraction with free engines plus optional Tavily, Baidu, Google, and Bing API configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Search Pro helps agents run multi-engine web searches and extract web page content using free search engines with optional API-backed providers.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-External users and developers use this skill to search the web across multiple engines, retrieve recent information, and extract readable content from URLs during agent research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external search providers. <br>
-Mitigation: Do not search secrets, internal project names, customer data, or other confidential terms unless the provider and network path are approved. <br>
-Risk: The URL extractor should not be treated as a complete SSRF or private-network barrier. <br>
-Mitigation: Extract only from trusted public URLs and review network controls before use in restricted environments. <br>
-Risk: Optional API keys may be stored in local configuration. <br>
-Mitigation: Prefer environment variables, restrict config file permissions, and keep credentials out of source control. <br>
-Risk: Documentation contains conflicting claims about network behavior. <br>
-Mitigation: Treat the skill as network-enabled and review it before installing in confidential or restricted-network environments. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to gather current web results, compare sources across search engines, and extract readable page text for research workflows.
 
-## Reference(s): <br>
-- [OpenClaw Search Pro ClawHub page](https://clawhub.ai/williamwg2025/openclaw-search-pro) <br>
-- [README.md](artifact/README.md) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [Baidu API Guide](artifact/BAIDU-API-GUIDE.md) <br>
-- [Baidu Search API](https://ai.baidu.com/tech/search) <br>
-- [Baidu Search API Documentation](https://ai.baidu.com/ai-doc/SEARCH) <br>
-- [Bing Web Search API](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands] <br>
-**Output Format:** [Terminal text with ranked search results, URLs, snippets, engine labels, and extracted page excerpts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include third-party web content and should be reviewed before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server-resolved release metadata) <br>
+Risk: Search queries and extracted URLs are sent to external search or API providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries and install only in contexts where sending this data to external providers is acceptable.
+
+Risk: URL extraction may expose internal-network information when used on untrusted links or in sensitive networks.
+
+Mitigation: Avoid extracting untrusted URLs in sensitive networks and rely on review of the skill's URL validation behavior before deployment.
+
+Risk: API keys may be configured locally for optional providers.
+
+Mitigation: Prefer environment variables for API keys and restrict any configuration file containing credentials.
+
+Risk: Bundled npm dependencies may become outdated or require review before use.
+
+Mitigation: Review and update npm dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/williamwg2025/skills/openclaw-search-pro)
+- [README_EN.md](README_EN.md)
+- [BAIDU-API-GUIDE.md](BAIDU-API-GUIDE.md)
+- [Baidu Search API](https://ai.baidu.com/tech/search)
+- [Baidu AI Search API Documentation](https://ai.baidu.com/ai-doc/SEARCH)
+- [Microsoft Bing Web Search API](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line text with search result titles, URLs, snippets, and extracted page summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include third-party URLs and snippets from external search providers; URL extraction prints a summarized text excerpt.]
+
+## Skill Version(s):
+
+0.1.6 (source: ClawHub release evidence, created 2026-03-20T01:26:02Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

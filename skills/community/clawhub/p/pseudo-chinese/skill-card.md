@@ -1,38 +1,55 @@
-## Description: <br>
-伪中国语（偽中国語）趣味翻译。将中文翻译为纯汉字日式表达，用和式词汇替换、日语SOV语序、日式婉转/夸张风格和日本汉字字形生成伪中国语风格文本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将中文翻译为纯汉字的日式伪中国语表达，使用和式词汇替换、日语 SOV 语序、日式婉转或夸张风格以及日本汉字字形。
 
-## Publisher: <br>
-[cantoneyes](https://clawhub.ai/user/cantoneyes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cantoneyes](https://clawhub.ai/user/cantoneyes)
 
-## Use Case: <br>
-External users, developers, and language learners use this skill to convert Chinese sentences into pseudo-Chinese, all-kanji Japanese-style wording for cross-cultural social posts, language-play content, memes, and vocabulary comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cantoneyes/pseudo-chinese) <br>
-- [Pseudo-Chinese vocabulary table](references/vocabulary.md) <br>
+External users and language-game creators use this skill to turn Chinese text into stylized pseudo-Chinese/Japanese-kanji output for cross-cultural social posts, memes, language challenges, and learning-oriented vocabulary comparison.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with the source sentence, pseudo-Chinese translation, and annotated word-by-word explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only output; security evidence reports no executable behavior or sensitive access.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The novelty translation format may be unsuitable when a user expects ordinary concise translation.
+
+Mitigation: Ask the agent for standard translation or to avoid this skill when concise literal translation is required.
+
+Risk: Stylized pseudo-Chinese output may be mistaken for accurate Japanese or standard Chinese.
+
+Mitigation: Present generated text as playful stylization and review it before public or professional use.
+
+## Reference(s):
+
+- [Pseudo-Chinese Vocabulary Reference](references/vocabulary.md)
+- [ClawHub Skill Page](https://clawhub.ai/cantoneyes/skills/pseudo-chinese)
+- [Publisher Profile](https://clawhub.ai/user/cantoneyes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with original text, pseudo-Chinese translation, and word-by-word explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed three-line annotated translation format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

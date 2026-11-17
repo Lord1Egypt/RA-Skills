@@ -1,41 +1,57 @@
-## Description: <br>
-LLM Gateway routes agent prompts to GoCreative AI completion endpoints across cheap, pro, and ultra model tiers with x402 pay-per-call billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM Gateway provides agent-facing text completions through GoCreative endpoints for Claude, GPT, and DeepSeek-style model tiers with pay-per-call USDC payment via x402.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Developers and agents use this skill to request AI text completions and route prompts across cost and quality tiers without managing separate model-provider accounts or API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to a third-party GoCreative service and may be exposed in URL logs because the prompt is encoded in the request path. <br>
-Mitigation: Do not include secrets, credentials, regulated data, confidential documents, or private customer information unless GoCreative documents acceptable retention and logging practices. <br>
-Risk: The skill uses x402 pay-per-call endpoints, so agent use can incur per-request USDC charges. <br>
-Mitigation: Review the selected tier and pricing before use, and configure wallet or spending controls appropriate for the agent workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to request AI text completions without direct provider keys, choose a cost and quality tier per task, and route prompts to pay-as-you-go model endpoints.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/colinhughes2121/gocreative-llm) <br>
-- [GoCreative AI API](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text] <br>
-**Output Format:** [Markdown guidance with HTTP GET endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are URL-encoded in request paths; x402 payment may be required before the completion is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Prompt text is sent in URL paths, which can expose sensitive content through logs, browser history, proxies, or monitoring systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts unless separate privacy assurances are in place, and avoid sending secrets, credentials, regulated data, or confidential customer material.
+
+Risk: The skill can trigger automatic USDC payments through x402 without documented spending limits.
+
+Mitigation: Configure wallet controls before use, including low balances, per-transaction approval, exact price and recipient checks, and task-level spending limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/gocreative-llm)
+- [GoCreative API provider](https://api.gocreativeai.com)
+- [GoCreative ask endpoint](https://api.gocreativeai.com/v1/ai/ask/{prompt})
+- [GoCreative pro endpoint](https://api.gocreativeai.com/v1/ai/pro/{prompt})
+- [GoCreative ultra endpoint](https://api.gocreativeai.com/v1/ai/ultra/{prompt})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Plain text completions returned by HTTPS GET endpoints, with Markdown guidance for prompt routing and URL encoding.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires URL-encoded prompts in request paths and x402 wallet payment on Base.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>仿真批量提交系统（示例 Sandbox）</title>
+  <style>
+    body { font-family: sans-serif; margin: 24px; max-width: 960px; }
+    section { margin-bottom: 24px; padding: 16px; border: 1px solid #ccc; }
+    .hidden { display: none; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { border: 1px solid #ddd; padding: 8px; }
+    dialog-like { display: block; border: 2px solid #333; padding: 16px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>仿真业务系统 · 批量提交（示例）</h1>
+
+  <section id="portal-section">
+    <h2>平台门户登录（示例）</h2>
+    <form name="portalGate">
+      <label>门户账号 <input id="portal-user" name="portalUser" /></label>
+      <label>门户密码 <input id="portal-pass" name="portalPass" type="password" /></label>
+      <button type="button" id="portal-enter">进入业务系统</button>
+    </form>
+  </section>
+
+  <section id="login-step1-section" class="hidden">
+    <h2>登录 · 第一步</h2>
+    <form name="simLoginStep1" data-testid="login-step1">
+      <label>账号 <input name="loginId" data-testid="login-id" /></label>
+      <button type="submit">下一步</button>
+    </form>
+  </section>
+
+  <section id="login-step2-section" class="hidden">
+    <h2>登录 · 第二步</h2>
+    <form name="simLoginStep2" data-testid="login-step2">
+      <label>密码 <input name="password" type="password" data-testid="password" /></label>
+      <label>验证码 <input name="captcha" data-testid="captcha" /></label>
+      <button type="submit">登录</button>
+    </form>
+  </section>
+
+  <section id="batch-section" class="hidden">
+    <h2>批量提交</h2>
+    <form name="simBatchForm" data-testid="batch-form">
+      <label>来源账户
+        <select name="fromAccountNo" data-testid="from-account">
+          <option value="">请选择</option>
+          <option value="acct-demo-001">演示账户 acct-demo-001</option>
+          <option value="acct-demo-002">演示账户 acct-demo-002</option>
+        </select>
+      </label>
+      <button type="button" id="tab-page-fill" data-testid="tab-page-fill">页面填写</button>
+      <button type="button" id="btn-add-row" data-testid="add-row">新增一行</button>
+      <table id="batch-table" data-testid="batch-table">
+        <thead><tr><th>#</th><th>姓名</th><th>账号</th><th>备注</th><th>金额</th></tr></thead>
+        <tbody id="batch-rows"></tbody>
+      </table>
+      <label>用途 <input name="purpose" data-testid="purpose" /></label>
+      <button type="submit" data-testid="batch-submit">提交批次</button>
+    </form>
+  </section>
+
+  <section id="success-section" class="hidden">
+    <h2>提交成功</h2>
+    <p data-testid="batch-id" id="batch-id-display"></p>
+    <p data-testid="success-message">批次已受理，等待后续处理。</p>
+  </section>
+
+  <div id="pin-dialog" class="hidden" role="dialog" aria-modal="true" data-testid="pin-dialog">
+    <h3>确认 PIN</h3>
+    <input type="password" inputmode="numeric" data-testid="pin-input" />
+    <button type="button" id="pin-confirm" data-testid="pin-confirm">确认提交</button>
+  </div>
+
+  <script>
+    const DEMO_CAPTCHA = "0000";
+    let rowCount = 0;
+
+    document.getElementById('portal-enter').addEventListener('click', function () {
+      document.getElementById('portal-section').classList.add('hidden');
+      document.getElementById('login-step1-section').classList.remove('hidden');
+    });
+
+    document.querySelector('form[name="simLoginStep1"]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('login-step1-section').classList.add('hidden');
+      document.getElementById('login-step2-section').classList.remove('hidden');
+    });
+
+    document.querySelector('form[name="simLoginStep2"]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const cap = document.querySelector('input[name="captcha"]').value;
+      if (cap !== DEMO_CAPTCHA) {
+        alert('验证码错误（演示值 0000）');
+        return;
+      }
+      document.getElementById('login-step2-section').classList.add('hidden');
+      document.getElementById('batch-section').classList.remove('hidden');
+      ensureRow(1);
+    });
+
+    document.getElementById('tab-page-fill').addEventListener('click', function () {
+      document.getElementById('batch-table').scrollIntoView();
+    });
+
+    document.getElementById('btn-add-row').addEventListener('click', function () {
+      rowCount += 1;
+      addRow(rowCount);
+    });
+
+    function ensureRow(index) {
+      if (!document.querySelector('tr[data-row-index="' + index + '"]')) {
+        addRow(index);
+      }
+      rowCount = Math.max(rowCount, index);
+    }
+
+    function addRow(index) {
+      rowCount = Math.max(rowCount, index);
+      const tbody = document.getElementById('batch-rows');
+      const tr = document.createElement('tr');
+      tr.setAttribute('data-row-index', String(index));
+      tr.innerHTML =
+        '<td>' + index + '</td>' +
+        '<td><input name="name" data-testid="row-name-' + index + '" /></td>' +
+        '<td><input name="account" data-testid="row-account-' + index + '" /></td>' +
+        '<td><input name="note" data-testid="row-note-' + index + '" /></td>' +
+        '<td><input name="amount" data-testid="row-amount-' + index + '" /></td>';
+      tbody.appendChild(tr);
+    }
+
+    document.querySelector('form[name="simBatchForm"]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('pin-dialog').classList.remove('hidden');
+    });
+
+    document.getElementById('pin-confirm').addEventListener('click', function () {
+      const pin = document.querySelector('[data-testid="pin-input"]').value;
+      if (!pin || pin.length < 4) {
+        alert('请输入演示 PIN');
+        return;
+      }
+      document.getElementById('pin-dialog').classList.add('hidden');
+      const batchId = 'SIM-' + Date.now();
+      document.getElementById('batch-section').classList.add('hidden');
+      document.getElementById('success-section').classList.remove('hidden');
+      document.getElementById('batch-id-display').textContent = batchId;
+      document.getElementById('batch-id-display').dataset.batchId = batchId;
+      window.location.hash = '#/batch/' + batchId;
+    });
+  </script>
+</body>
+</html>

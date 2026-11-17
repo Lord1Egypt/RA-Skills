@@ -1,0 +1,17 @@
+{
+  "schema": "neomorphic.received-useful-work.request.v1",
+  "task": "crt-100198-capability-preflight-reuse",
+  "inputs": {
+    "subjectArchive": true,
+    "wallet": false,
+    "grant": false,
+    "contributorId": "cold_visit_100275"
+  },
+  "expectedOutput": "useful-negative-evaluation",
+  "budget": {
+    "maxUsd": 0,
+    "pay": false,
+    "timeoutMs": 8000,
+    "bodyBytes": 65536
+  }
+}

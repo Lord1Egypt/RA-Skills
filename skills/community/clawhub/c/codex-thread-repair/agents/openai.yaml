@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Thread Repair"
+  short_description: "Repair one local Codex task selected by title or thread ID"
+  default_prompt: "Use $codex-thread-repair to diagnose and safely repair a local Codex task by title or thread ID."

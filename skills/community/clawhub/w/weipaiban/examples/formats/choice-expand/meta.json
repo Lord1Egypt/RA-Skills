@@ -1,0 +1,10 @@
+{
+  "taskId": "choice-expand-weekend",
+  "taskDir": "/tmp/weipaiban-choice-expand-weekend",
+  "theme": "周末去处",
+  "format": "choice-expand",
+  "optionCount": 4,
+  "currentStep": "work-ready",
+  "title": "周末去哪",
+  "workId": null
+}

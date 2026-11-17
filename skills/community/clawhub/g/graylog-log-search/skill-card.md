@@ -1,42 +1,58 @@
-## Description: <br>
-Search and debug production logs via Graylog - absolute/relative time queries, stream filtering, system health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and debug production logs via Graylog with absolute or relative time queries, stream filtering, and system health checks.
 
-## Publisher: <br>
-[pranavj17](https://clawhub.ai/user/pranavj17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pranavj17](https://clawhub.ai/user/pranavj17)
 
-## Use Case: <br>
-Developers, SREs, and support engineers use this skill to search Graylog logs, filter by streams and time windows, inspect recent errors, and check Graylog system health during production debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production log searches can expose sensitive operational data, and broad log-related prompts may activate the skill. <br>
-Mitigation: Install only for users who need Graylog access, use a least-privilege read-only Graylog token, and avoid broad production credentials. <br>
-Risk: The skill uses an external npm runtime to connect to Graylog with an API token. <br>
-Mitigation: Pin the runtime to the reviewed package version and install only when the npm package publisher is trusted. <br>
-Risk: Credential mishandling could expose the Graylog API token. <br>
-Mitigation: Provide the token through environment variables, keep it out of prompts and logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to search Graylog production logs, inspect recent or bounded time ranges, discover streams, and check Graylog health during debugging.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pranavj17/graylog-log-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BASE_URL and API_TOKEN; Graylog access is read-only, with documented request timeouts, result limits, and relative time bounds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and frontmatter) <br>
+Risk: Production log access and API-token use can expose sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated read-only Graylog token with limited stream and search permissions, and store it only in environment configuration.
+
+Risk: The skill relies on unverified npm execution for the Graylog MCP server.
+
+Mitigation: Install only after verifying the npm package source or integrity, and pin the package version used by the configuration.
+
+Risk: Broad triggers such as logs and debug logs can cause generic debugging prompts to access production logs.
+
+Mitigation: Rename or scope triggers so production log searches require explicit Graylog intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pranavj17/skills/graylog-log-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/pranavj17)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for read-only Graylog search and monitoring; actual log results depend on the configured Graylog instance and token permissions.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

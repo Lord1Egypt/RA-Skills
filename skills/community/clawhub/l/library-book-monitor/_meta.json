@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn75ecscvnz2tg7ahdgs8j1br9822yb9",
-  "slug": "library-book-monitor",
-  "version": "1.0.1",
-  "publishedAt": 1772773249183
+  "name": "library-book-monitor",
+  "version": "1.0.0",
+  "description": "Monitor library book availability and get notified when books become available for borrowing",
+  "author": "openclaw-community",
+  "category": "productivity",
+  "license": "MIT",
+  "keywords": [
+    "library",
+    "book",
+    "monitor",
+    "availability",
+    "shenzhen-library",
+    "notification"
+  ],
+  "triggers": [
+    "library",
+    "book monitor",
+    "图书馆",
+    "book availability",
+    "借书",
+    "书籍监控"
+  ],
+  "tools": [
+    "bash",
+    "read",
+    "write",
+    "web_search",
+    "web_fetch"
+  ],
+  "permissions": [
+    "network",
+    "filesystem",
+    "shell"
+  ],
+  "minOpenclawVersion": "1.0.0",
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md",
+    "license": "LICENSE"
+  }
 }

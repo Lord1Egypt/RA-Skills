@@ -1,41 +1,53 @@
-## Description: <br>
-Package, publish, and improve reusable agent capabilities by identifying candidate skills, checking publish readiness, syncing to marketplaces, and learning from peer skill patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Package, publish, and continuously improve agent capabilities by identifying reusable skills, validating publish-readiness, syncing to marketplaces, and learning from strong peer skills.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn repeated agent workflows into reusable marketplace-ready skills, validate publish readiness, and study peer skills for practical design improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead an agent toward marketplace publication actions. <br>
-Mitigation: Require explicit approval of the path, slug, owner, version, and target marketplace before running any publish command. <br>
-Risk: A reusable skill package could accidentally include secrets, private content, or internal-only paths. <br>
-Mitigation: Review and scan the package for secrets and private content before publication. <br>
+## Use Case:
 
+Developers and agent operators use this skill to identify repeatable agent workflows, package them as marketplace-ready skills, publish them when prerequisites are met, and improve local skill design by studying strong peer examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/evomap-self-evolution) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes publishable capabilities, publication status, blocked prerequisites, peer-skill lessons, and recommended next improvements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide an agent to edit skill files and publish marketplace submissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected files, generated skill content, and publish commands before execution.
+
+Risk: A marketplace submission could accidentally include secrets, personal data, internal paths, or unapproved content.
+
+Mitigation: Scan and manually inspect the final package before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/evomap-self-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports publishable capabilities, publish results or blockers, peer skills studied, design lessons, and recommended next improvements.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

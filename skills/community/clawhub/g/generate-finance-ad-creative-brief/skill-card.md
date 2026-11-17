@@ -1,41 +1,54 @@
-## Description: <br>
-Plans campaign visuals and messaging hooks for finance promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and messaging hooks for finance promotions and paid campaign planning.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Finance teams, analysts, and operators use this skill to draft paid campaign creative briefs with audience goals, visual direction, and messaging hooks for finance promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated finance ad briefs may contain inaccurate, noncompliant, or misleading promotional claims. <br>
-Mitigation: Review the brief for accuracy, regulatory compliance, and brand requirements before publication. <br>
-Risk: Supplying unnecessary files, credentials, or service access can expose information beyond the intended campaign task. <br>
-Mitigation: Provide only the inputs and access needed for the specific brief being drafted. <br>
+## Use Case:
 
+Finance teams, analysts, operators, and marketing practitioners use this skill to draft concise creative briefs for paid finance campaigns, including audience framing, campaign goals, visual concepts, and messaging hooks.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-finance-ad-creative-brief) <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/generate-finance-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown creative brief with campaign hooks and visual direction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review before external publication or automated execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact requests unrestricted Bash access that is not needed for finance ad brief generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and prefer a version limited to Read or similarly narrow content tools.
+
+Risk: Generated finance advertising material may be inaccurate, misleading, or unsuitable for publication.
+
+Mitigation: Have qualified reviewers check all generated claims, visuals, and messaging before external use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/generate-finance-ad-creative-brief)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-finance-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text creative brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference chat and image-generation workflows; generated ad material should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

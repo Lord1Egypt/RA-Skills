@@ -1,40 +1,53 @@
-## Description: <br>
-Generate professional technical analysis charts with candlesticks, Fibonacci levels, SMA 20/50, RSI, and pattern detection for crypto and commodities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional technical analysis charts with candlesticks, Fibonacci levels, SMA 20/50, RSI, and pattern detection for selected crypto and commodities.
 
-## Publisher: <br>
-[NomadRex](https://clawhub.ai/user/NomadRex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nomadrex](https://clawhub.ai/user/nomadrex)
 
-## Use Case: <br>
-External users and developers use this skill to generate technical-analysis chart images and summaries for BTC, ETH, XRP, SUI, Gold, and Silver. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart images may be sent to a fixed Telegram recipient without the user's selected destination or confirmation. <br>
-Mitigation: Remove or replace the hard-coded Telegram target and require explicit destination confirmation before sending chart images externally. <br>
-Risk: Chart generation depends on a local crypto_charts.py file whose behavior is outside the skill card evidence. <br>
-Mitigation: Use only a trusted local crypto_charts.py file and review it before running chart-generation commands. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to generate technical-analysis chart images and short indicator summaries for BTC, ETH, XRP, SUI, gold, and silver.
 
-## Reference(s): <br>
-- [Stock TA Charts ClawHub release page](https://clawhub.ai/NomadRex/stock-ta-charts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Guidance] <br>
-**Output Format:** [Markdown instructions with bash code blocks; generated PNG chart files and console summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chart generation relies on a trusted local crypto_charts.py module and external market data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill executes a local Python module that is not included in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the local ~/clawd/crypto_charts.py file before installing or running the skill.
+
+Risk: The artifact includes an example command that sends generated charts to a fixed Telegram recipient.
+
+Mitigation: Replace the hard-coded recipient with a user-chosen, confirmed destination before sending any chart.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nomadrex/skills/stock-ta-charts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Text, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated PNG chart file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates chart images from local market-data tooling and may print price, RSI, and detected pattern summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

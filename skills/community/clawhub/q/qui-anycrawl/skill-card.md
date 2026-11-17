@@ -1,43 +1,54 @@
-## Description: <br>
-Provides web scraping, crawling, and Google search through the SkillBoss API for structured data extraction and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anycrawl provides web scraping, crawling, and Google search with multi-engine support through the SkillBoss API Hub.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, scrape individual pages, and crawl websites into structured results for research, content extraction, and automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, search terms, crawl targets, and extracted page content are sent to SkillBoss/HeyBossAI and its backend providers. <br>
-Mitigation: Use only with targets and content approved for external processing; avoid internal-only sites, secrets, personal data, or regulated content unless that sharing is authorized. <br>
-Risk: The skill requires an API key that could be exposed if committed, logged, or synced in shell configuration. <br>
-Mitigation: Store the key in approved secret storage or local configuration, prefer scoped or revocable keys when available, and do not commit files containing the key. <br>
-Risk: Large searches or crawls can consume external API quota or paid service capacity. <br>
-Mitigation: Set conservative crawl depth and page limits, monitor usage, and cancel long-running crawl jobs when they are no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to search the web, scrape individual pages, start and manage site crawls, and retrieve structured page content for research, data extraction, and automation workflows.
 
-## Reference(s): <br>
-- [ClawHub Anycrawl page](https://clawhub.ai/quincygunter/qui-anycrawl) <br>
-- [HeyBossAI API key and service](https://heybossai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, configuration] <br>
-**Output Format:** [JSON objects containing search results, crawl job data, or scraped page content in the requested formats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may return asynchronous crawl job identifiers for later status and result retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Requested URLs, search terms, crawl parameters, extraction prompts, and page content may be sent to SkillBoss/HeyBossAI and downstream scraping providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for approved public or non-sensitive content, and avoid private networks, credentials, personal data, or regulated content unless that use is authorized.
+
+Risk: The skill requires SKILLBOSS_API_KEY for remote API access.
+
+Mitigation: Prefer a session-scoped or managed secret instead of storing the key permanently in shell startup files.
+
+## Reference(s):
+
+- [Anycrawl ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-anycrawl)
+- [HeyBossAI API key portal](https://heybossai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML]
+
+**Output Format:** [Structured API responses containing search results, scraped page content, crawl job metadata, and optional page formats such as markdown, HTML, text, JSON, or screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends requested URLs, search terms, crawl parameters, extraction prompts, and page content to SkillBoss/HeyBossAI and downstream scraping providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

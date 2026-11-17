@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-brainstorming",
+  "name": "brainstorming",
+  "ownerId": "local-workspace-agent",
+  "slug": "brainstorming",
   "version": "0.1.0",
-  "publishedAt": 1779977164815
+  "publishedAt": 1779879293895
 }

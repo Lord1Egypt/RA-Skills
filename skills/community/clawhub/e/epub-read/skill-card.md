@@ -1,45 +1,57 @@
-## Description: <br>
-Task-mode-driven EPUB reading and analysis skill with overview, targeted reading, chunked full reading, extraction, complex-content inspection, and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task-mode-driven EPUB reading and analysis skill with overview, targeted reading, chunked full reading, extraction, complex-content inspection, and batch processing.
 
-## Publisher: <br>
-[inf-lucas](https://clawhub.ai/user/inf-lucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inf-lucas](https://clawhub.ai/user/inf-lucas)
 
-## Use Case: <br>
-Developers, researchers, and other external users use this skill to parse EPUB files, inspect structure, read selected chapters or chunks, extract structured information, and manage long-book reading progress without loading an entire book by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves extracted book content and reading progress on disk. <br>
-Mitigation: Keep output directories private and delete generated artifacts when they are no longer needed. <br>
-Risk: EPUB inputs may contain copyrighted, confidential, or otherwise restricted content. <br>
-Mitigation: Parse only EPUB files the user is allowed to process. <br>
-Risk: Python dependencies and integration tests execute locally. <br>
-Mitigation: Install dependencies in a virtual environment and run integration tests only with the default temporary path or a dedicated disposable directory. <br>
+## Use Case:
 
+Developers and readers use this skill to parse EPUB files, inspect book structure, read targeted sections or chunks, extract structured information, review complex content, and plan batch processing without loading long books into context all at once.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inf-lucas/epub-read) <br>
-- [README](README.md) <br>
-- [Sample usage](examples/sample_usage.md) <br>
-- [ClawHub release notes](docs/CLAWHUB_RELEASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and references to generated JSON and Markdown artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local parsed EPUB artifacts, including metadata, table of contents, chapter files, chunks, reading index, complex-content reports, and session state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The validation helper can delete a caller-supplied output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run validation only with isolated throwaway output directories and do not pass existing important folders to test_integration.py --output-dir.
+
+Risk: Parsing EPUB files from unknown sources may expose the agent environment to untrusted file content and parser dependency behavior.
+
+Mitigation: Process unknown EPUB files in a locked dependency environment and review the generated outputs before using them in downstream work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inf-lucas/skills/epub-read)
+- [Publisher profile](https://clawhub.ai/user/inf-lucas)
+- [README](artifact/README.md)
+- [Sample usage](artifact/examples/sample_usage.md)
+- [ClawHub release notes](artifact/docs/CLAWHUB_RELEASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and structured reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can reference parsed EPUB artifacts such as metadata, TOC, chapter files, chunk files, reading index, session state, and complex-content reports.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

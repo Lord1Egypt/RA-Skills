@@ -4,10 +4,9 @@
 
 import urllib.parse
 from unittest.mock import MagicMock
-import pytest
 
-from scripts.search import SearchAction, FILTER_OPTIONS_MAP
 from scripts.client import XiaohongshuClient
+from scripts.search import FILTER_OPTIONS_MAP, SearchAction
 
 
 class TestMakeSearchUrl:

@@ -1,41 +1,54 @@
-## Description: <br>
-[Didoo AI] Analyzes creative fatigue signals across Meta Ads campaigns. Use when reviewing declining CTR or ROAS, planning creative rotation schedules, or managing creative lifecycle. Run standalone or after meta-ads-daily-pulse flags creative fatigue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Analyzes creative fatigue signals across Meta Ads campaigns.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing analysts and Meta Ads operators use this skill to review active ad creatives for CTR, ROAS, frequency, and lifespan decay, then plan creative refresh timing. It supports standalone creative fatigue reviews and follow-up workflows after a Meta Ads daily pulse flags fatigue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Meta Ads credentials to read ad performance and frequency data. <br>
-Mitigation: Use a least-privilege Meta access token with only ads_read access and protect META_ACCESS_TOKEN and META_AD_ACCOUNT_ID in the agent environment. <br>
-Risk: The skill stores campaign fatigue summaries in session context for downstream Meta Ads workflows. <br>
-Mitigation: Run it only in private sessions and review downstream context sharing before invoking related recommendation or builder skills. <br>
+## Use Case:
 
+External marketing teams and advertising operators use this skill to analyze Meta Ads creative fatigue, identify declining CTR or ROAS, and plan creative refresh timing.
 
-## Reference(s): <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/meta-ads-creative-fatigue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores rotation pipeline, fatigue level, and days-until-death summaries in session context for downstream Meta Ads skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can inspect active Meta Ads performance across the configured account when campaign_id or ad_ids are not provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use campaign_id or ad_ids for narrower analysis when account-wide review is not intended.
+
+Risk: The skill requires read-only Meta Ads credentials and account identifiers.
+
+Mitigation: Provide credentials with the documented ads_read scope only, and handle META_ACCESS_TOKEN and META_AD_ACCOUNT_ID as sensitive configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-creative-fatigue)
+- [Didoo AI blog](https://didoo.ai/blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis tables with concise recommendation guidance and session context values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces fatigue status, frequency decay, ROAS degradation, rotation pipeline, and refresh recommendation sections; no executive summary.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

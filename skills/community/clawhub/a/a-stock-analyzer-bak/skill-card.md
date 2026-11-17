@@ -1,40 +1,57 @@
-## Description: <br>
-Analyzes and screens A-share stocks using seven technical and financial conditions, then produces market summaries, candidate stock picks, and buy/sell guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes China A-share stocks with technical and financial filters and generates market summaries, stock recommendations, buy ranges, target prices, stop-loss levels, and position sizing guidance.
 
-## Publisher: <br>
-[nowly-echo](https://clawhub.ai/user/nowly-echo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nowly-echo](https://clawhub.ai/user/nowly-echo)
 
-## Use Case: <br>
-External users and analysts use this skill to run A-share market scans, generate daily Markdown reports, and review suggested entries, targets, stops, and position sizing. It is intended as screening and analysis support, not as a substitute for independent financial review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can be sent to Feishu or DingTalk webhooks when push settings are enabled. <br>
-Mitigation: Disable or remove webhook settings unless outbound report delivery is intentional and the configured destination has been reviewed. <br>
-Risk: Stock recommendations may rely on defaulted or simulated financial values when source data is unavailable. <br>
-Mitigation: Treat generated stock picks as unverified analysis and confirm financial data, assumptions, and suitability before acting on any recommendation. <br>
+## Use Case:
 
+External users and developers can use this skill to run A-share market screening workflows and produce Markdown reports with candidate stocks, reasons, and trade-planning levels. Outputs should be reviewed as financial analysis rather than treated as verified investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nowly-echo/a-stock-analyzer-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal text, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped Markdown reports and can send report summaries to configured Feishu or DingTalk webhooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 2.1.0) <br>
+Risk: The skill can produce concrete buy, sell, stop-loss, and allocation suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat financial outputs as unverified analysis, review recommendations manually, and do not execute trades without independent validation.
+
+Risk: The artifact may use cached, default, or simulated financial data when live data is unavailable.
+
+Mitigation: Confirm data freshness and source quality before relying on a generated report.
+
+Risk: Configured webhook delivery can send generated reports outside the local machine.
+
+Mitigation: Disable webhook push unless external delivery is intended and verify webhook destinations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nowly-echo/skills/a-stock-analyzer-bak)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with console text, Python scripts, shell command examples, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write timestamped Markdown reports under reports/ and may send reports to configured webhooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.1.0 and artifact _meta.json lists 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

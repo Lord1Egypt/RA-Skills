@@ -1,45 +1,57 @@
-## Description: <br>
-SEVO is an agent software-delivery pipeline that guides requirements, gates, test authoring, architecture contracts, implementation, independent review, regression, release, verification, and delivery ledger work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEVO is an AI-agent software delivery pipeline that guides work from requirements and gated reviews through implementation, audit, regression, release, verification, and delivery ledger.
 
-## Publisher: <br>
-[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw)
 
-## Use Case: <br>
-Developers and agent teams use SEVO to route software work through structured specification, review, implementation, verification, deployment, and delivery-record stages. It is intended to improve traceability and quality gates for AI-agent-assisted software delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release can alter OpenClaw configuration, register hooks, keep pipeline state, dispatch agents, and manage project release workflows. <br>
-Mitigation: Install only in workspaces where those actions are allowed, review init and postinstall behavior, and start with guide, off, demo, or dry-run modes before enabling automation. <br>
-Risk: Automatic repair loops, scheduled scans, and publish or deploy actions can affect project state or external release targets. <br>
-Mitigation: Disable scheduled scans unless wanted, avoid production publish credentials until approval gates and rollback behavior are clear, and review target scopes and retention settings before use. <br>
+## Use Case:
 
+Developers and agent teams use SEVO to coordinate AI coding work through a structured delivery lifecycle with specification, review gates, implementation, audit, regression, release, verification, and ledgered evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/sevo) <br>
-- [SEVO website](https://agentos.site/sevo.html) <br>
-- [README](README.md) <br>
-- [Architecture documentation](docs/architecture.md) <br>
-- [Product requirements](docs/product-requirements.md) <br>
-- [Standalone integration guide](docs/standalone-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands and structured project or pipeline artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initialize OpenClaw configuration, maintain pipeline state, dispatch agents, and manage release workflows when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.13.1 (source: server release evidence and package.json) <br>
+Risk: The reviewed package has broad automation authority over OpenClaw configuration, agent prompts, pipeline state, work routing, probes, and release-related actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, test in a disposable workspace first, pin the package and version, and prepare rollback or disable steps before use in an important environment.
+
+Risk: The security evidence flags unsafe or unverifiable installation behavior around documented npm/npx usage.
+
+Mitigation: Do not run the documented install commands in an important environment until the package name, version, and postinstall behavior are clarified and auditable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/skills/sevo)
+- [SEVO homepage](https://agentos.site/sevo.html)
+- [README](README.md)
+- [Architecture overview](docs/architecture.md)
+- [Product requirements](docs/product-requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, code-oriented task outputs, and JSON configuration or pipeline-state artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local pipeline state and OpenClaw plugin configuration when the documented commands are run.]
+
+## Skill Version(s):
+
+1.13.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

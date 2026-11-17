@@ -1,45 +1,60 @@
-## Description: <br>
-tqsdk helps agents use the TqSdk Python futures and options SDK for market data, backtesting, simulated trading, and live order examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TqSdk helps agents use the open-source Python futures and options trading SDK for market data, backtesting, simulated trading, and live trading workflows.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and trading-focused agents use this skill to draft Python TqSdk setup, market data, backtesting, simulated trading, and order-management examples for futures and options workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Order examples can affect a real futures or options account. <br>
-Mitigation: Use TqSim or backtesting first, and require explicit human confirmation with strict symbol, volume, and loss limits before any live trading. <br>
-Risk: Credentials can be exposed if account details are placed in prompts, logs, or source files. <br>
-Mitigation: Use environment variables or secure secret storage, and keep TqAuth values out of prompts, logs, and committed files. <br>
-Risk: Market data, strategy snippets, or generated examples can be stale, incomplete, or unsuitable for a specific account. <br>
-Mitigation: Validate returned data, handle missing values and API errors, and require qualified human review before execution. <br>
+## Use Case:
 
+Developers and external agents use this skill to draft TqSdk setup steps, Python examples, API usage guidance, and trading workflow snippets for futures and options analysis. It is most appropriate for sandbox, simulated, or backtest work unless a human explicitly authorizes live-account actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coderwpf/tqsdk) <br>
-- [TqSdk documentation](https://doc.shinnytech.com/tqsdk/latest/) <br>
-- [TqSdk Python project](https://github.com/shinnytech/tqsdk-python) <br>
-- [ShinnyTech website](https://www.shinnytech.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; examples may reference TQ_USERNAME and TQ_PASSWORD environment variables and TqSdk account credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Examples can place live trades or change positions through TqSdk APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox, simulation, or backtest account by default, and require explicit user confirmation before generating or running calls to insert_order, cancel_order, TargetPosTask, or live-account APIs.
+
+Risk: Trading account credentials may be exposed if users place passwords in prompts, source files, or logs.
+
+Mitigation: Keep credentials in environment variables or a secrets manager, avoid echoing them in generated code or logs, and never ask the model to store production trading passwords.
+
+Risk: Unreviewed dependency or package changes could alter trading behavior.
+
+Mitigation: Pin and review dependencies before installation, and test generated code against simulated or historical data before any live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/tqsdk)
+- [TqSdk documentation](https://doc.shinnytech.com/tqsdk/latest/)
+- [TqSdk GitHub repository](https://github.com/shinnytech/tqsdk-python)
+- [ShinnyTech website](https://www.shinnytech.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference python3, tqsdk, pandas, and TQ_USERNAME/TQ_PASSWORD configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

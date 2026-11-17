@@ -13,39 +13,15 @@ const OUTPUT_CONTRACT_BY_ACTION = {
   company_discovery: 'company_discovery_table',
   prepare_unlock: 'unlock_plan_summary',
   unlock_companies: 'unlock_details',
-  contact_search: 'contact_rows',
   draft_email: 'email_draft',
   send_email: 'email_send_summary',
   status_check: 'email_status_rows',
   profile_update: 'profile_update_summary',
   balance: 'balance_summary'
 };
-const PAID_ACTIONS = new Set(['unlock_companies', 'contact_search']);
+const PAID_ACTIONS = new Set(['unlock_companies']);
 const SEND_ACTIONS = new Set(['send_email']);
 const WRITE_ACTIONS = new Set(['profile_update']);
-const CONTACT_FIELDS = new Set([
-  'name',
-  'contact_match',
-  'title',
-  'title_type',
-  'company_name',
-  'working_company',
-  'description',
-  'primary_industry_name',
-  'country_codes',
-  'industry_codes',
-  'has_email',
-  'has_phone',
-  'has_linkedin',
-  'has_facebook',
-  'has_company_name',
-  'employees_min',
-  'employees_max',
-  'size',
-  'page'
-]);
-const MAX_CONTACT_SIZE = 100;
-
 function usage() {
   console.error([
     'Usage:',
@@ -146,8 +122,6 @@ function validateActionInputs(action, envelope) {
     validatePrepareUnlockInputs(inputs);
   } else if (action === 'unlock_companies') {
     validateUnlockInputs(inputs);
-  } else if (action === 'contact_search') {
-    validateContactInputs(inputs);
   } else if (action === 'draft_email') {
     requireInput(inputs, 'recipient_refs', 'ENVELOPE_RECIPIENTS_REQUIRED', 'Add recipient or source references for the draft.');
     requireInput(inputs, 'offer_facts_ref', 'ENVELOPE_OFFER_FACTS_REQUIRED', 'Add sourced offer facts for the draft.');
@@ -190,21 +164,6 @@ function validateUnlockInputs(inputs) {
   rejectRawTargetAuthority(inputs);
 }
 
-function validateContactInputs(inputs) {
-  const payload = inputs.contact_payload;
-  assertPlainObject(payload, 'contact_payload');
-  const unsupported = Object.keys(payload).filter((key) => !CONTACT_FIELDS.has(key));
-  if (unsupported.length > 0) {
-    throw validationError('ENVELOPE_UNSUPPORTED_INPUT_FIELD', `Unsupported contact fields: ${unsupported.join(', ')}`, 'Remove unsupported fields before contact search.');
-  }
-  if (payload.size !== undefined) {
-    const size = Number(payload.size);
-    if (!Number.isInteger(size) || size < 1 || size > MAX_CONTACT_SIZE) {
-      throw validationError('ENVELOPE_CONTACT_SIZE_INVALID', 'contact_payload.size must be between 1 and 100.', 'Reduce the contact search size.');
-    }
-  }
-}
-
 function validateConfirmationScope(action, envelope) {
   const confirmation = envelope.confirmation;
   if (!requiresConfirmation(action)) {
@@ -226,10 +185,6 @@ function validateConfirmationScope(action, envelope) {
     }
     if (current && current !== confirmed) {
       throw validationError('ENVELOPE_TARGET_CHANGED', 'Confirmed target fingerprint does not match current target fingerprint.', 'Prepare a new unlock plan for the revised row set and ask for confirmation again.');
-    }
-  } else if (action === 'contact_search') {
-    if (!confirmation.confirmed_scope.credit_cost_acknowledged) {
-      throw validationError('ENVELOPE_CONFIRMATION_MISSING_CREDIT_SCOPE', 'Contact confirmation must acknowledge credit cost.', 'State that contact search costs 1 credit per query and wait for confirmation.');
     }
   } else if (action === 'send_email') {
     if (!cleanString(confirmation.confirmed_scope.recipients_fingerprint)) {

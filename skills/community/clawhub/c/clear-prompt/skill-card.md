@@ -1,38 +1,53 @@
-## Description: <br>
-Transforms vague prompts into clear, structured instructions by specifying goals, context, output, key information, and exclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms vague prompts into clear, structured instructions by specifying goals, context, output, key information, and exclusions for precise results.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Agents and prompt authors use this skill to identify ambiguity in user requests and propose clearer prompts with goals, context, required information, output expectations, and exclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested prompt rewrites can accidentally preserve ambiguity or include sensitive information supplied by the user. <br>
-Mitigation: Review the refined prompt before use and remove secrets, personal data, or unnecessary context. <br>
+## Use Case:
 
+External users and developers use this skill to turn ambiguous requests into clearer prompts before an agent answers, including prompt rewrites, before/after examples, and confirmation-ready refined instructions.
 
-## Reference(s): <br>
-- [Clear Prompt Engineering on ClawHub](https://clawhub.ai/371166758-qq/clear-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with prompt templates, before/after examples, and refined prompt suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code installation, data access, or external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad automatic activation may cause the skill to intervene on prompts where the user did not want prompt coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to apply it only when clarification is useful or after confirming that the user wants a prompt rewrite.
+
+Risk: Template labels may appear in Chinese for users expecting another language.
+
+Mitigation: Set a language preference in the agent instructions or ask the agent to translate template labels for the intended audience.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/371166758-qq/skills/clear-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured prompt templates and before/after examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable template labels for context, existing information, task goal, and output requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

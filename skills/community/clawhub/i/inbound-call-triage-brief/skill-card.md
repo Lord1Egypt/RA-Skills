@@ -1,42 +1,56 @@
-## Description: <br>
-Triage inbound calls to an AI agent line by classifying caller intent, screening questions, escalate-vs-handle rules, message-taking script, and spam signals before the agent picks up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage inbound calls to an AI agent line: classify caller intent, define screening questions, set escalate-vs-handle rules, draft message-taking scripts, and identify spam signals before the agent picks up.
 
-## Publisher: <br>
-[ruti3](https://clawhub.ai/user/ruti3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ruti3](https://clawhub.ai/user/ruti3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customer support teams, receptionists, and builders of AI phone lines use this skill to create an inbound-call playbook. The brief helps classify caller intent, ask minimal screening questions, take messages, identify spam, and define clear handoff rules for urgent or regulated situations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Call handling rules may conflict with jurisdiction-specific recording, privacy, emergency, or regulated-industry requirements.
+
+Mitigation: Review call scripts against applicable business policy and local law before deployment, especially recording disclosures, emergency routing, and health, legal, or financial handoffs.
+
+Risk: Callers may offer sensitive credentials or high-risk personal information during triage.
+
+Mitigation: Keep the skill's credential and PII boundaries in the deployed script: do not collect passwords, OTP codes, full card numbers, SSNs, or unnecessary caller data.
+
+Risk: AI-only handling of emergencies or advice-seeking calls can delay appropriate human response.
+
+Mitigation: Preserve explicit escalation rules for immediate danger, legal threats, VIP or urgent callers, and regulated advice requests.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Customer support, sales, receptionist, and operations teams use this skill to prepare an AI phone agent or human supervisor to classify inbound caller intent, ask minimal screening questions, take messages, and route urgent or sensitive calls to a human. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used around sensitive caller data. <br>
-Mitigation: Collect only the required call-handling fields and do not collect passwords, OTP codes, full card numbers, or SSNs. <br>
-Risk: The skill does not configure phone systems, recording disclosures, identity checks, or emergency routing. <br>
-Mitigation: Have the deploying team verify phone setup, recording-law compliance, identity verification, and emergency or human handoff paths before use. <br>
-Risk: Inbound callers may request regulated advice or describe immediate danger. <br>
-Mitigation: Route emergencies to emergency services and default health, legal, and financial advice requests to a human handoff. <br>
+**Output Format:** [Markdown brief with scripts, routing tables, screening questions, and escalation criteria]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruti3/skills/inbound-call-triage-brief) <br>
+**Other Properties Related to Output:** [Prompt-only, document-only output; no code execution, network access, credentials, or telephony API access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown triage brief with routing tables, scripts, screening questions, message-taking template, spam signals, and escalation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no code execution, network access, credentials, or persistence.] <br>
+1.0.0 (source: frontmatter, skill.json, release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

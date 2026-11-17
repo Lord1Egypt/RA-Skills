@@ -1,49 +1,57 @@
-## Description: <br>
-Converts Figma designs into mobile UI code for Android Jetpack Compose, Android XML, iOS SwiftUI, and iOS UIKit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Figma designs into mobile UI code for Android Jetpack Compose, Android XML, iOS SwiftUI, and iOS UIKit after fetching and interpreting Figma design structure.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and engineers use this skill to fetch Figma design structure, clarify layout choices, and generate native mobile UI code for Android or iOS. It is intended for workflows where a Figma access token and local project context are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Figma access token and may access proprietary design data. <br>
-Mitigation: Use a least-privilege Figma token, configure it through a secure local secret mechanism, and avoid pasting tokens into chat. <br>
-Risk: Token or project details could be exposed if stored in a repository .env file or feedback log. <br>
-Mitigation: Ensure secret files are ignored by version control, and delete or sanitize feedback logs that contain proprietary code or design details. <br>
-Risk: Generated UI code may not fully match project conventions or design intent. <br>
-Mitigation: Review generated code before use and validate it against the target app's component, resource, and security standards. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn Figma links into native mobile UI implementation guidance and code. It helps analyze design hierarchy, clarify platform and layout ambiguity, optionally scan existing project resources, and generate Android or iOS UI code that can be iterated from user feedback.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mike47512/figma-mobile-cn) <br>
-- [Figma interpretation reference](artifact/references/figma-interpretation.md) <br>
-- [Code generation reference](artifact/references/code-generation.md) <br>
-- [Figma scan usage reference](artifact/references/figma-scan-usage.md) <br>
-- [Android Compose mapping reference](artifact/references/platform-compose.md) <br>
-- [Android XML mapping reference](artifact/references/platform-xml.md) <br>
-- [SwiftUI mapping reference](artifact/references/platform-swiftui.md) <br>
-- [UIKit mapping reference](artifact/references/platform-uikit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated native mobile UI code blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on Figma API data, user clarification, and optional local project scans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Figma personal access token, and insecure handling could expose design access credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure FIGMA_TOKEN outside the chat through a trusted secret mechanism; do not paste tokens into conversation, avoid plaintext .env storage when possible, ensure any .env file is gitignored, and rotate tokens that were pasted, committed, logged, or shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/figma-mobile-cn)
+- [Figma community Material Design 3 Messaging App](https://www.figma.com/community/file/1169726503071187057/)
+- [Figma interpretation rules](references/figma-interpretation.md)
+- [Figma project scan usage](references/figma-scan-usage.md)
+- [Code generation rules](references/code-generation.md)
+- [Jetpack Compose mapping](references/platform-compose.md)
+- [Android XML mapping](references/platform-xml.md)
+- [SwiftUI mapping](references/platform-swiftui.md)
+- [UIKit mapping](references/platform-uikit.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, shell commands, and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce platform-specific mobile UI code for Jetpack Compose, Android XML, SwiftUI, or UIKit, plus optional project-scan and feedback-log guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

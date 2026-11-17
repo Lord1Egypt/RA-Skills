@@ -1,0 +1,34 @@
+# Derived ClawHub consumer manifest for the audit-only skill.
+# The canonical multi-skill repository manifest remains at /MANIFEST.yaml.
+
+bundle: graceful-boundaries-audit
+bundle_version: 5
+bundle_date: 2026-11-08
+license: MIT-0
+license_text: MIT-0
+license_code_examples: MIT-0
+description: >
+  Audit APIs and websites for Graceful Boundaries conformance and provide
+  evidence-based guidance for improving operational-limit communication.
+
+origin:
+  repository: https://github.com/snapsynapse/graceful-boundaries
+  repository_commit: 4c02aa8b383371fa18cfe0ecf593315fc0824233
+  repository_release: 1.5.7
+  source_state: commit
+  canonical_url: https://gracefulboundaries.dev
+  source_file: SKILL.md
+  license_text: CC-BY-4.0
+  license_code_examples: MIT
+
+distribution:
+  target: ClawHub
+  listing_slug: graceful-boundaries
+  registry_version: 1.5.7
+  release_tag: latest
+
+files:
+  - path: SKILL.md
+    role: skill
+    version: 5
+    hash: sha256:5092d2ab4ba0546854104b5503d5f6c064782296e65657961a164ce38060fab4

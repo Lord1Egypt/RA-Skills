@@ -1,41 +1,54 @@
-## Description: <br>
-Scaffold LaTeX papers into modular structure for organizing .tex files, generating figure code, and table highlighting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold LaTeX papers into modular structure. Use for organizing .tex files, generating figure code, and table highlighting. Trigger on LaTeX paper organization, figure management, or academic paper formatting.
 
-## Publisher: <br>
-[instinct323](https://clawhub.ai/user/instinct323) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[instinct323](https://clawhub.ai/user/instinct323)
 
-## Use Case: <br>
-Developers, researchers, and academic authors use this skill to structure LaTeX paper projects, split content into modular source files, generate figure snippets for image assets, and add table highlighting definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The asset-generation script writes new .tex files in the selected project's assets directory. <br>
-Mitigation: Run the script only against the intended project root and review generated snippets before building or committing them. <br>
-Risk: The skill points users to an external IEEE template ZIP when no LaTeX project exists. <br>
-Mitigation: Verify the download source and inspect the ZIP contents before using the template. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to organize LaTeX academic papers into modular source files, generate figure include snippets for assets, and add table highlighting conventions.
 
-## Reference(s): <br>
-- [LaTeX Scaffold on ClawHub](https://clawhub.ai/instinct323/latex-scaffold) <br>
-- [IEEE conference template ZIP](https://ras.papercept.net/conferences/support/files/ieeeconf.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with LaTeX and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .tex snippets next to image files under a project's assets directory when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Asset generator behavior can place unsafe filenames directly into generated LaTeX source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use conservative asset filenames, inspect generated .tex files before compiling, and compile with shell escape disabled or in a sandbox.
+
+Risk: Untrusted LaTeX projects or downloaded assets may introduce unsafe content into generated project files.
+
+Mitigation: Review the project and generated snippets before use, especially when assets or source files come from untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/instinct323/skills/latex-scaffold)
+- [IEEE conference template](https://ras.papercept.net/conferences/support/files/ieeeconf.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with LaTeX and bash code blocks; helper script output may create .tex files under assets/.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated asset .tex files are intended to be reviewed and customized before compilation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

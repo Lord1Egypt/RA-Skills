@@ -22,7 +22,14 @@ A {aspect, e.g. 16:9 horizontal} editorial illustration that explains ONE idea: 
 
 Composition ({staging from composition.md}): {the scene — where the mascot is, the move it performs, the one or two built objects, how things flow}. Generous negative space (keep ~35%+ of the canvas empty); the subject is large and confident, ~50–70% of the frame. {If using a primary title: reserve a clear title field in the calm paper area before placing the subject; keep a generous gutter between the title field, mascot, props, and labels.}
 
-CHARACTER (locked, keep exactly on the reference model): {the active character's prompt spec, with its value rule resolved for this palette}. The mascot is a solid OPAQUE shape in front of the scene — no ground line, table edge, horizon, or prop passes through its body; background lines stop at its silhouette. Its limbs join the body cleanly at sensible points, exactly the count its design specifies (no extra, floating, or mid-body arms/legs). Only the mascot's own parts touch its outline: any tool is HELD in a hand and clearly separated from the torso, or rests in the scene — never pressed flat against the body or sprouting from it. Hold at most one prop per hand; any extra object sits on the table or ground. Preserve the character sheet's limb proportions: a stubby arm stays stubby and nearby, never stretched into a long bar/cable/lever or across the whole scene; handles, horns, tails, ears, or accent carriers are not extra hands unless the character pack explicitly says so.
+CHARACTER (locked, keep exactly on the reference model): {the active character's prompt spec, with its value rule resolved for this palette}. The mascot is a solid OPAQUE shape in front of the scene — no ground line, table edge, horizon, or prop passes through its body; background lines stop at its silhouette. Its limbs join the body cleanly at sensible points, exactly the count its design specifies (no extra, floating, or mid-body arms/legs). Only the mascot's own parts touch its outline: any operated object connects only through a contact surface the character's design declares — a hand only when hands are part of the locked design, otherwise the named limb tip, paw, hoof, foot, wheel, tail, handle, or body edge — kept visually distinct from the torso unless body contact is the declared mechanism, or the object rests in the scene; never pressed flat against the body (unless body contact IS the declared mechanism) or sprouting from it. Use at most one operated prop per declared contact surface; any extra object sits on the table or ground. Preserve the character sheet's limb proportions: a stubby arm stays stubby and nearby, never stretched into a long bar/cable/lever or across the whole scene; handles, horns, tails, ears, or accent carriers are not extra hands unless the character pack explicitly says so. Locked silhouette and torso stay the sheet's — dramatize scale in the world (a too-small door, a tiny hatch), never by stretching, squashing, or flattening the mascot to fill architecture or the frame; ~50–70% is occupancy, not a license to distort the body.
+
+INTERACTION GEOMETRY ({from the contact map validated by composition.md's feasibility gate}):
+- Active contact: {character part} touches {object part} at {location} to produce {motion}.
+- Support contact: {character part or base} rests on {surface}.
+- Inactive parts: {parts} stay {specific position, e.g. low at the sides} and touch nothing.
+- Protected regions: only {the locked face marks} appear inside {region}; every scene, prop, and limb stroke stays outside it.
+- Occlusion: {object or route} stops at the mascot silhouette and resumes only beyond it.
 
 LINE LANGUAGE: draw EVERYTHING — mascot, objects, arrows — in ONE bold, even-weight, softly-rounded outline (clean vinyl-sticker line), not thin scratchy sketch lines.
 
@@ -43,16 +50,21 @@ TEXT: no hand-lettered text anywhere — no labels, title, caption, logo, signat
 
 When the request is a **character cutout** (`references/cutout.md`), use this
 template instead of the editorial one — no idea line, no labels, no paper
-ground. Default aspect **1:1**. Pass `--cutout` on `generate`. Always include a
-flat chroma `BACKGROUND:` line — **green `#00FF00` or magenta `#FF00FF`** matching
-the active character's **`Cutout chroma:`** line in `character.md` (default
-magenta). **Registration-locked silhouette** — cutouts must NOT use editorial
-ink-layer offset; see the SILHOUETTE block below.
-Do **not** add a separate "real alpha channel / OUTPUT FORMAT" block — transparency
-is extracted by illo's `--cutout` script, not from the model on Codex.
+ground. Default aspect **1:1**. Pass `--cutout` on `generate`.
+**Registration-locked silhouette** — cutouts must NOT use editorial ink-layer
+offset; see the SILHOUETTE block below. Do **not** add a `BACKGROUND:` or
+`OUTPUT FORMAT:` block: the engine appends the backend contract after routing —
+native alpha for Codex, chroma for OpenRouter. Pass `--chroma green|magenta`
+only to force the compatibility path for a reroll; the engine appends that
+screen too.
 
 Do **not** append a WATERMARK line. Do **not** pass a finished editorial image
-as a style anchor — only the character model sheet as `--ref`.
+as a style anchor — only the character model sheet as `--ref`. The
+anatomy-action feasibility gate (`composition.md`) applies to cutout poses
+too: map any held object or contact fragment to a declared contact surface
+before prompting, emit the validated map as the template's INTERACTION
+GEOMETRY block, and re-pose — an open-hand wave, a body lean, a foot
+brace — instead of inventing grip a pressure-only character doesn't have.
 
 ```text
 A 1:1 square character cutout — transparent compositing asset, NOT an editorial scene.
@@ -61,7 +73,13 @@ Composition (cutout — contact continuity): ONLY the mascot{, plus minimal cont
 
 POSE: {neutral standing / waving / pointing left / sitting on {minimal seat fragment} / hand on table edge / holding {object} / etc.}.
 
-CHARACTER (locked, keep exactly on the reference model): {the active character's prompt spec, with its value rule resolved for this palette}. Only the character's own locked parts touch its silhouette; held objects connect through the hand. Preserve the character sheet's limb proportions — stubby limbs stay stubby, never stretched across the frame.
+CHARACTER (locked, keep exactly on the reference model): {the active character's prompt spec, with its value rule resolved for this palette}. Only the character's own locked parts touch its silhouette; held objects connect only through a declared contact surface (a hand only when the locked design has hands). Preserve the character sheet's limb proportions — stubby limbs stay stubby, never stretched across the frame.
+
+INTERACTION GEOMETRY ({from the validated contact map; omit lines with nothing to say — a plain standing pose may need only the support line}):
+- Active contact: {character part} touches/holds {object or contact fragment} at {location}.
+- Support contact: {character part or base} rests on {surface or seat fragment, or nothing beyond the transparent ground margin}.
+- Inactive parts: {parts} stay {specific position} and touch nothing; protected regions keep only their locked marks.
+- Occlusion: {any object or fragment passing behind the body} stops at the mascot silhouette and resumes only beyond it.
 
 LINE LANGUAGE: draw the mascot and any contact objects in ONE bold, even-weight, softly-rounded outline (clean vinyl-sticker line), not thin scratchy sketch lines.
 
@@ -70,15 +88,13 @@ SILHOUETTE (cutout — registration-locked): ONE locked outer contour only. All 
 STYLE: risograph print — grainy halftone texture on fills, registration-locked single-plate silhouette, flat fills on the character and contact cluster only — NOT on the background.
 
 PALETTE: structure ink {structure hex} for all linework and forms. Accent {accent hex} ONLY on the character's accent part{, plus at most one small accent on a held contact object if needed}. Do not use chroma screen colors anywhere on the character or props.
-
-BACKGROUND: {match the active character's Cutout chroma: line — green #00FF00 or magenta #FF00FF; default magenta}. Solid flat chroma screen everywhere outside the character and its contact cluster — perfectly uniform, no paper grain, no gradient, no cast shadow on the screen, no vignette. The screen color exists only for transparency extraction; it must not bleed onto the mascot outline.
 ```
 
 For non-riso looks, substitute LINE LANGUAGE, STYLE, and PALETTE from the active
 style file as usual — keep the SILHOUETTE block and swap "slight ink-layer offset"
 for **registration-locked single-plate silhouette** in the style's STYLE line.
 Style-internal shadows (e.g. felt layer depth on the body) stay on the character
-cluster; cast shadows onto the chroma screen do not.
+cluster; do not add a cast shadow outside that cluster.
 
 ## Mini-comic variant
 
@@ -93,8 +109,13 @@ Composition (mini-comic, {2–4} panels in ONE image, read left to right, separa
 
 When the shot list declared the **explainer register** (`composition.md`,
 "The explainer register"), replace the Composition and TEXT HIERARCHY lines with the
-two below — CHARACTER, LINE LANGUAGE, STYLE, and PALETTE are unchanged, so
-the structure is drawn in the active look. Resolve the semantic ink hexes
+two below — CHARACTER, INTERACTION GEOMETRY, LINE LANGUAGE, STYLE, and
+PALETTE are unchanged, so the structure is drawn in the active look and the
+mascot's station move keeps its validated contact map. Labeled stages is one
+structure type in that slot; when it locked, run the pack-solve scratch
+first (`composition.md`, "Labeled stages — skeleton, then pack-solve") and
+write one connected system into the Composition line, not a row of islands.
+Resolve the semantic ink hexes
 (flow, warning) from `palettes.md` first.
 
 If the artifact job needs a primary announcement/hero read, revisit the
@@ -110,16 +131,22 @@ structure has a return/exception leg, state its direction twice — where it
 leaves and where it rejoins — or the model may flip the arrowhead.
 
 ```text
-Composition (explainer — {structure type from composition.md}): a hand-built sketch-diagram of ONE structure: {the 3–5 stations/beats, each an invented physical object — what each is and what happens at it}. One main flow direction, {e.g. left to right}, drawn as simple hand-drawn arrows in the flow color{, plus one return leg: it leaves from {station}, travels {direction}, and rejoins at {station} — the arrowhead points at {station}}. The mascot is a WORKING PART of the structure — {its station/jam/sorter/hauler move} — never a presenter beside it. No title, no border, no grid, no legend, no formal flowchart boxes. The structure spans ~40–70% of the frame; keep ~35%+ of the canvas empty with one calm region.
+Composition (explainer — {structure type from composition.md: labeled stages / flow / fan-out / timeline / loop / layer stack / system slice}): a hand-built sketch-diagram of ONE structure: {the 3–5 stations/beats, each an invented physical object — what each is and what happens at it; when labeled stages: one connected system — input, named phases in order, through named stops, output, optional reject/return — world invented from the thesis and the pack, not a plant/belt/hopper default, not disconnected props}. One main flow direction, {e.g. left to right}, drawn as simple hand-drawn arrows in the flow color{, plus one return or reject leg: it leaves from {station}, travels {direction}, and rejoins at {station} — the arrowhead points at {station}}. The mascot is a WORKING PART of the structure — {its one pack-solved station/jam/sorter/hauler move} — never a presenter beside it, never operating two stages. No title, no border, no grid, no legend, no formal flowchart boxes, no generic rectangles. Drawn in the active look — not a whiteboard doodle. The structure spans ~40–70% of the frame; keep ~35%+ of the canvas empty with one calm region.
 
-PALETTE: {the style's PALETTE line as usual, hexes here only}. Semantic roles: the flow arrows and the one flow note use the accent ink; {warning-role sentence per palettes.md when present}; everything else, including all callout text not named above, uses the structure ink.
+PALETTE: {the style's PALETTE line as usual, hexes here only}. Semantic roles: the flow arrows and the arrow notes use the accent ink; {warning-role sentence per palettes.md when present}; everything else, including station names, uses the structure ink.
 
-CALLOUTS: exactly {3–6} short hand-lettered English callouts — {"…", "…"} — each 1–4 words, each appearing EXACTLY ONCE, placed directly on the bare paper near what they name: station names in the structure-ink color, the one main-flow note in the flow color, at most one warning note in the warning color. Hand-letter ONLY these words — no other text, numbers, or color codes anywhere in the image. Never put callout text on a colored fill. No title bar, no type label, no logo.
+CALLOUTS: exactly {3–6} short hand-lettered English callouts — {"…", "…"} — each 1–4 words, each appearing EXACTLY ONCE. Two jobs: station names (short, on the stations — where you are) in the structure-ink color; arrow notes (a verb or condition ON the arrow — what happens between) hand-lettered on or along the arrow in the flow ink. When the type is labeled stages, spend the budget on motion, not more plaques: about 3 station names and up to 2 arrow notes — the main flow arrow gets one verb, the return/reject arrow gets one condition. Never a legend, a title bar, or the same station captioned twice. Hand-letter ONLY these words — no other text, numbers, or color codes anywhere in the image. Never put callout text on a colored fill.
 ```
 
 ## Notes that keep it on-style
 
 - One idea, one structure. Never combine images.
+- INTERACTION GEOMETRY stays positive and concise — concrete spatial
+  ownership in those five lines, never expanded into a list of synonymous
+  negatives. If the geometry can't be stated cleanly, the move failed the
+  feasibility gate — re-stage it (`composition.md`). Dramatize scale in
+  the world, never by stretching or squashing the locked body to fill
+  architecture or the frame.
 - Reference conditioning beats the PALETTE line for the character's accent
   part: when the resolved accent differs from the hue on the pack's model
   sheet, say so inside the CHARACTER block — "the {accent part} uses THIS

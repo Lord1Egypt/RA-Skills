@@ -1,50 +1,64 @@
-## Description: <br>
-When explicitly opted in by the user, this skill adds a persistent smoking-persona layer that weaves brief smoking-characterization beats into agent replies while keeping the user's task primary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds an explicitly opt-in smoking persona layer to an agent, weaving short smoking-characterization beats into otherwise task-focused responses without modeling addiction progression, anti-smoking messaging, or quitting arcs.
 
-## Publisher: <br>
-[siyubuyu](https://clawhub.ai/user/siyubuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siyubuyu](https://clawhub.ai/user/siyubuyu)
 
-## Use Case: <br>
-External users enable this skill when they want an agent persona that adds optional smoking characterization and light smoker-to-smoker interaction around ordinary assistant tasks. It is intended as a roleplay/persona overlay, not smoking advice, cessation guidance, or health guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores smoking preference, persona, brand, wallet, debt, and purchase state locally. <br>
-Mitigation: Install only when persistent persona state is desired, review the state file behavior before deployment, and clear the local state file when the persona should be reset. <br>
-Risk: The skill includes tobacco brand flavor and pricing content. <br>
-Mitigation: Keep usage framed as fictional characterization, avoid treating brand text as purchasing or health advice, and stop the skill when the user objects or sensitive contexts are present. <br>
-Risk: The skill may infer persona form or traits from host prompt context. <br>
-Mitigation: Review host prompt compatibility before enabling it and prefer explicit user confirmation for persona choices. <br>
-Risk: The simulated wallet, borrowing, debt, and purchase loop may steer dialogue beyond a simple style overlay. <br>
-Mitigation: Treat the economy as fictional roleplay, review generated dialogue for user pressure, and disable the skill if it distracts from the user's primary task. <br>
+## Use Case:
 
+External users and agent builders use this skill to add a Chinese-language roleplay persona that can portray a smoking character while keeping the user's actual task as the main thread. The skill is intended for users who explicitly opt in to this characterization and want persistent persona state across sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/siyubuyu/aismokingbuddy) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [State schema](artifact/references/state-schema.md) <br>
-- [Progression reference](artifact/references/progression.md) <br>
-- [Economy rules](artifact/references/economy.md) <br>
-- [Brand reference](artifact/references/brands.md) <br>
-- [Break patterns](artifact/references/break-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational Markdown text with short inline persona beats and occasional state or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user opt-in and may persist local persona, smoking preference, brand, wallet, debt, and purchase state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 7.3) <br>
+Risk: Clawscan marks the release suspicious because it persists smoking-related user profile data and persona economy state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the state behavior before install and clear ~/.claude/state/smoking-persona.json to reset stored persona state.
+
+Risk: The persona economy may ask for fictional cigarette money or extra tasks as part of roleplay.
+
+Mitigation: Use only in explicitly opted-in roleplay contexts and disable the skill if the user objects to borrowing, debt, or smoking prompts.
+
+Risk: Smoking characterization can be inappropriate for users who are quitting, minors, pregnant users, or users who object to smoking content.
+
+Mitigation: Honor the artifact's stop conditions: do not activate without explicit consent, and stop immediately when the user objects or those contexts are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siyubuyu/skills/aismokingbuddy)
+- [Publisher profile](https://clawhub.ai/user/siyubuyu)
+- [State schema](artifact/references/state-schema.md)
+- [Economy rules](artifact/references/economy.md)
+- [Break patterns](artifact/references/break-patterns.md)
+- [Progression](artifact/references/progression.md)
+- [Action library](artifact/references/action-library.md)
+- [Brand and taste talk](artifact/references/brands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural language responses with short inline characterization beats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist persona, smoking preference, fictional wallet, debt, and recent purchase state in a local sidecar JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 7.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

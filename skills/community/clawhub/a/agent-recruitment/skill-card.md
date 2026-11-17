@@ -1,41 +1,50 @@
-## Description: <br>
-智能体招聘技能。完整覆盖新Agent从需求确认、创建隔离工作区、模型配置、路由绑定到交付清单的全流程，适用于OpenClaw agent造册与HR管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Recruitment guides OpenClaw operators through requirements intake, isolated workspace creation, model configuration, Feishu route binding, and delivery checklist generation for new or updated agents.
 
-## Publisher: <br>
-[usewild2026](https://clawhub.ai/user/usewild2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[usewild2026](https://clawhub.ai/user/usewild2026)
 
-## Use Case: <br>
-OpenClaw administrators and agent operations teams use this skill to collect requirements, create isolated agent workspaces, configure models, bind Feishu routes, and produce a delivery checklist for newly registered or updated agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent OpenClaw agent workspaces and retained memory. <br>
-Mitigation: Review generated files under ~/.openclaw/agents and document how to disable routes and delete retained memory before deployment. <br>
-Risk: The skill can bind Feishu group routes so every group message is routed to a bot. <br>
-Mitigation: Require explicit approval for each group route and prefer @mention-only routing unless all participants expect full-message processing. <br>
+## Use Case:
 
+Developers and operators use this skill to create or update OpenClaw agents with isolated workspaces, model bindings, optional Feishu routing, and a clear handoff checklist.
 
-## Reference(s): <br>
-- [Agent Recruitment on ClawHub](https://clawhub.ai/usewild2026/agent-recruitment) <br>
-- [Publisher profile: usewild2026](https://clawhub.ai/user/usewild2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and structured delivery checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe workspace paths, model identifiers, route bindings, and agent role boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu group routing may cause a bot to process and answer every group message without explicit mention-based activation or clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routes before installation, prefer @mention-only activation by default, notify group members that messages may be processed, and define who can authorize, disable, and retain data from routes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/usewild2026/skills/agent-recruitment)
+- [Publisher profile](https://clawhub.ai/user/usewild2026)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown checklist with paths, model bindings, route details, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include absolute workspace paths, Feishu route identifiers, agent identities, and role-boundary notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

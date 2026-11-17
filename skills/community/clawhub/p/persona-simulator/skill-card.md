@@ -1,38 +1,53 @@
-## Description: <br>
-模拟自定义 AI 人格，使助手以特定性格、语言风格和行为特质与用户交互。当用户要求"扮演某种性格"、"以XX风格回答"、"模拟人格"、"角色扮演"时使用本 Skill。支持温和/直率/幽默/沉稳/俏皮/理性/感性等多种性格基调，以及自定义语言风格、行为特质和身份背景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill simulates custom AI personas so an assistant can respond with selected personality, language style, and behavior traits during roleplay or style-specific chat.
 
-## Publisher: <br>
-[githubchenda](https://clawhub.ai/user/githubchenda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[githubchenda](https://clawhub.ai/user/githubchenda)
 
-## Use Case: <br>
-External users use this skill for casual persona and roleplay conversations where the assistant adopts a requested personality, tone, language style, or roleplaying background while staying within content boundaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persona behavior may be unsuitable for factual, high-stakes, or out-of-character answers. <br>
-Mitigation: Ask the assistant to leave the persona and use the preferred language before requesting factual or high-stakes guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Persona style definitions](references/personas.md) <br>
-- [ClawHub skill page](https://clawhub.ai/githubchenda/persona-simulator) <br>
+## Use Case:
 
+External users and agent builders use this skill to make an assistant maintain a selected Chinese-language persona for roleplay, companionship, and emotion-focused chat while preserving stated safety boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, data access, credentials, or persistence according to the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger on common style or roleplay requests and continue speaking in a selected persona rather than explaining its rules.
+
+Mitigation: Install it only when Chinese-language persona and roleplay behavior is desired, and review conversations where persona persistence could affect user expectations.
+
+Risk: Persona roleplay can make responses feel more emotionally intense or socially directed than a neutral assistant response.
+
+Mitigation: Keep the skill's stated boundaries active: avoid inappropriate, violent, dangerous, or threatening content and retain only tone and emotion traits.
+
+## Reference(s):
+
+- [Persona style definitions](references/personas.md)
+- [ClawHub skill page](https://clawhub.ai/githubchenda/skills/persona-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona responses with no code, tool use, data access, persistence, or hidden install behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

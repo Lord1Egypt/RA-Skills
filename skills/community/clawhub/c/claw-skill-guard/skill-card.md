@@ -1,43 +1,58 @@
-## Description: <br>
-Security scanner for OpenClaw skills. Detects malicious patterns, suspicious URLs, and install traps before you install a skill. Use before installing ANY skill from ClawHub or external sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills. Detects malicious patterns, suspicious URLs, and install traps before you install a skill.
 
-## Publisher: <br>
-[vincentchan](https://clawhub.ai/user/vincentchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vincentchan](https://clawhub.ai/user/vincentchan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan OpenClaw skills before installation, review suspicious commands or URLs, and add optional workflow controls such as an AGENTS.md policy or pre-commit hook. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scanner findings can miss sophisticated obfuscation or produce false positives. <br>
-Mitigation: Treat results as advisory and manually review flagged lines before installing or approving a skill. <br>
-Risk: Remote ClawHub scans fetch and unpack skill archives from untrusted sources. <br>
-Mitigation: Scan untrusted remote skills in a constrained workspace and avoid using the optional policy or pre-commit controls unless they match the intended workflow. <br>
-Risk: The optional AGENTS.md policy and pre-commit hook can affect ongoing agent or repository behavior. <br>
-Mitigation: Add these controls only after reviewing the examples and confirming that persistent scanning gates are desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vincentchan/claw-skill-guard) <br>
-- [1Password research on agent skill attack surface](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan OpenClaw or ClawHub skills before installation, review suspicious commands and URLs, and add security checks to local workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text reports and Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Risk findings are advisory and grouped by critical, high, medium, low, or safe status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner fetches user-supplied URLs and can expose network context when pointed at arbitrary links.
+
+Mitigation: Run it only against URLs and directories you intend to scan, and avoid arbitrary untrusted links from sensitive networks.
+
+Risk: A safe scan result can be incomplete because the tool performs limited pattern checks.
+
+Mitigation: Treat results as triage signals and manually review install instructions, flagged lines, publisher identity, and provenance before relying on a skill.
+
+Risk: Using this skill as the only security gate can create misleading confidence.
+
+Mitigation: Use it as one review step alongside human approval for high-risk findings and normal dependency, source, and behavior review.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/vincentchan/skills/claw-skill-guard)
+- [1Password research on OpenClaw skill malware](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface)
+- [Artifact-declared source repository](https://github.com/vincentchan/clawd-workspace/tree/master/skills/claw-skill-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, configuration snippets, and scanner report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner reports include risk levels and flagged lines; results are triage signals, not proof that a skill is safe.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

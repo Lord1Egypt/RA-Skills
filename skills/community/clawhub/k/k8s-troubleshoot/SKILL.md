@@ -1,0 +1,158 @@
+---
+name: k8s-troubleshoot
+description: Debug Kubernetes pods, nodes, and workloads. Use when pods are failing, containers crash, nodes are unhealthy, or users mention debugging, troubleshooting, or diagnosing Kubernetes issues.
+license: MIT-0
+metadata:
+  author: rohitg00
+  version: "2.0.0"
+  tools: 14
+  category: observability
+---
+
+# Kubernetes Troubleshooting
+
+Expert debugging and diagnostics for Kubernetes clusters using kubectl-mcp-server tools.
+
+> Requires the `cilium`, `diagnostics`, `istio`, `policy`, `security` toolsets: start kubectl-mcp-server with `--toolsets default,cilium,diagnostics,istio,policy,security` (or `MCP_TOOLSETS=default,cilium,diagnostics,istio,policy,security`). For deep work, the project-maintained MCP servers may fit better: Kyverno: https://github.com/nirmata/kyverno-mcp.
+
+## When to Apply
+
+Use this skill when:
+- User mentions: "debug", "troubleshoot", "diagnose", "failing", "crash", "not starting", "broken"
+- Pod states: Pending, CrashLoopBackOff, ImagePullBackOff, OOMKilled, Error, Unknown
+- Node issues: NotReady, MemoryPressure, DiskPressure, NetworkUnavailable, PIDPressure
+- Keywords: "logs", "events", "describe", "why isn't working", "stuck", "not responding"
+
+## Priority Rules
+
+| Priority | Rule | Impact | Tools |
+|----------|------|--------|-------|
+| 1 | Check pod status first | CRITICAL | `kubectl_get`, `kubectl_describe` |
+| 2 | View recent events | CRITICAL | `kubectl_get` |
+| 3 | Inspect logs (including previous) | HIGH | `kubectl_logs` |
+| 4 | Check resource metrics | HIGH | `kubectl_top` |
+| 5 | Verify endpoints | MEDIUM | `kubectl_get` |
+| 6 | Review network policies | MEDIUM | `analyze_network_policies` |
+| 7 | Examine node status | LOW | `kubectl_get`, `kubectl_describe` |
+
+## Quick Reference
+
+| Symptom | First Tool | Next Steps |
+|---------|------------|------------|
+| Pod Pending | `kubectl_describe` | Check events, node capacity, resource requests |
+| CrashLoopBackOff | `kubectl_logs(pod_name, previous=True)` | Check exit code, resources, liveness probes |
+| ImagePullBackOff | `kubectl_describe` | Verify image name, registry auth, network |
+| OOMKilled | `kubectl_top` | Increase memory limits, check for memory leaks |
+| ContainerCreating | `kubectl_describe` | Check PVC binding, secrets, configmaps |
+| Terminating (stuck) | `kubectl_describe` | Check finalizers, PDBs, preStop hooks |
+
+## Diagnostic Workflows
+
+### Pod Not Starting
+
+```
+1. kubectl_get(resource_type="pods", namespace, label_selector) - Get pod status
+2. kubectl_describe(name, namespace) - See events and conditions
+3. kubectl_get(resource_type="events", namespace, field_selector="involvedObject.name=<pod>") - Check events
+4. kubectl_logs(name, namespace, previous=True) - For crash loops
+```
+
+### Common Pod States
+
+| State | Likely Cause | Tools to Use |
+|-------|-------------|--------------|
+| Pending | Scheduling issues | `kubectl_describe`, `kubectl_get`, `kubectl_get` |
+| ImagePullBackOff | Registry/auth | `kubectl_describe`, check image name |
+| CrashLoopBackOff | App crash | `kubectl_logs(pod_name, previous=True)` |
+| OOMKilled | Memory limit | `kubectl_top`, adjust limits |
+| ContainerCreating | Volume/network | `kubectl_describe`, `kubectl_get` |
+
+### Node Issues
+
+```
+1. kubectl_get(resource_type="nodes") - List nodes and status
+2. kubectl_describe(name) - See conditions and capacity
+3. Check: Ready, MemoryPressure, DiskPressure, PIDPressure
+4. node_logs(name, "kubelet") - Kubelet logs
+```
+
+## Deep Debugging Workflows
+
+### CrashLoopBackOff Investigation
+
+```
+1. kubectl_logs(name, namespace, previous=True) - See why it crashed
+2. kubectl_describe(name, namespace) - Check resource limits, probes
+3. kubectl_top(name, namespace) - Memory/CPU at crash time
+4. If OOM: compare requests/limits to actual usage
+5. If app error: check logs for stack trace
+```
+
+### Networking Issues
+
+```
+1. kubectl_get(resource_type="services", namespace) - Verify service exists
+2. kubectl_get(resource_type="endpoints", namespace) - Check endpoint backends
+3. If empty endpoints: pods don't match selector
+4. analyze_network_policies(namespace) - Check traffic rules
+5. For Cilium: cilium_list_endpoints(), get_hubble_flows()
+```
+
+### Storage Problems
+
+```
+1. kubectl_get(resource_type="pvc", namespace) - Check PVC status
+2. kubectl_describe(name, namespace) - See binding issues
+3. kubectl_get(resource_type="storageclasses") - Verify provisioner exists
+4. If Pending: check storage class, access modes
+```
+
+### DNS Resolution
+
+```
+1. exec_in_pod(pod, namespace, "nslookup kubernetes.default") - Test DNS
+2. If fails: check coredns pods in kube-system
+3. kubectl_get(resource_type="pods", namespace="kube-system", label_selector="k8s-app=kube-dns")
+4. kubectl_logs(pod_name="coredns-*", namespace="kube-system")
+```
+
+## Multi-Cluster Debugging
+
+All tools support `context` parameter for targeting different clusters:
+
+```python
+kubectl_get(resource_type="pods", namespace="kube-system", context="production-cluster")
+kubectl_get(resource_type="events", namespace="default", context="staging-cluster")
+kubectl_describe(resource_type="pod", name="myapp-xyz", namespace="prod", context="prod-east")
+```
+
+## Diagnostic Scripts
+
+For comprehensive diagnostics, run the bundled scripts:
+- See [scripts/diagnose-pod.py](scripts/diagnose-pod.py) for automated pod analysis
+- See [scripts/health-check.sh](scripts/health-check.sh) for cluster health checks
+
+## Decision Tree
+
+See [references/DECISION-TREE.md](references/DECISION-TREE.md) for visual troubleshooting flowcharts.
+
+## Common Errors Reference
+
+See [references/COMMON-ERRORS.md](references/COMMON-ERRORS.md) for error message explanations and fixes.
+
+## Related Tools
+
+### Core Diagnostics
+- `kubectl_get`, `kubectl_describe`, `kubectl_logs`, `kubectl_top`
+- `kubectl_get`, `kubectl_get`, `kubectl_describe`
+- `kubectl_top`, `compare_namespaces`
+
+### Advanced (Ecosystem)
+- Cilium: `cilium_list_endpoints`, `get_hubble_flows`
+- Istio: `istio_proxy_status`, `istio_analyze`
+
+## Related Skills
+
+- [k8s-diagnostics](../k8s-diagnostics/SKILL.md) - Metrics and health checks
+- [k8s-incident](../k8s-incident/SKILL.md) - Emergency runbooks
+- [k8s-networking](../k8s-networking/SKILL.md) - Network troubleshooting

@@ -1,39 +1,53 @@
-## Description: <br>
-根据当前任务需求，使用 ClawHub 搜索、筛选并安装最合适的技能；支持指定版本安装与安装后验证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, filters, and installs the most appropriate ClawHub skills for the current task, including version-specific installation and post-install verification.
 
-## Publisher: <br>
-[zhaoxiaofeng44](https://clawhub.ai/user/zhaoxiaofeng44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhaoxiaofeng44](https://clawhub.ai/user/zhaoxiaofeng44)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search ClawHub for task-relevant skills, compare concise recommendations, install a selected skill or version, and verify the installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing a recommended skill can add new behaviors or permissions to the agent environment. <br>
-Mitigation: Check the exact slug, version, publisher, and added behavior before approving installation. <br>
-Risk: Broad update commands can change multiple installed skills at once. <br>
-Mitigation: Use targeted install or update commands unless intentionally updating all installed skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Installer skill page](https://clawhub.ai/zhaoxiaofeng44/clawhub-installer) <br>
+## Use Case:
 
+Developers and agent users use this skill when a task requires finding and installing a suitable ClawHub skill, selecting from recommended candidates, optionally pinning a version, and verifying installation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise recommendations and installation or verification commands for ClawHub skills.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing an unreviewed third-party skill can change agent behavior in ways the user did not intend.
+
+Mitigation: Check the publisher, exact version, permissions, and artifact contents before installation; pin a reviewed version for sensitive work.
+
+Risk: Bulk updates can introduce changed skill behavior without per-skill review.
+
+Mitigation: Avoid bulk updates unless each updated skill has been reviewed.
+
+## Reference(s):
+
+- [ClawHub Installer release page](https://clawhub.ai/zhaoxiaofeng44/skills/clawhub-installer)
+- [ClawHub publisher profile: zhaoxiaofeng44](https://clawhub.ai/user/zhaoxiaofeng44)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends up to three candidate skills by default, then provides install and verification commands after user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

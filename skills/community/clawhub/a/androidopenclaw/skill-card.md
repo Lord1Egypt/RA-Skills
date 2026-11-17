@@ -1,40 +1,53 @@
-## Description: <br>
-Android开发专用 helps developers work through Android application development, AOSP customization, performance troubleshooting, hidden API guidance, and backend integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Android开发专用 helps Android engineers with application development, AOSP customization, crash and performance troubleshooting, hidden API compatibility work, and backend service integration.
 
-## Publisher: <br>
-[MygithubTom](https://clawhub.ai/user/MygithubTom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mygithubtom](https://clawhub.ai/user/mygithubtom)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Android app and system-level engineering help, including Java/Kotlin implementation, AOSP and MTK platform adaptation, crash and performance analysis, and backend service integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commands or code may be incorrect or unsafe for a specific Android project or device. <br>
-Mitigation: Review commands, scripts, and code before running them, and test changes in an appropriate development environment. <br>
-Risk: Hidden API and permission-bypass guidance can be dual-use and may affect platform compliance or device security. <br>
-Mitigation: Use hidden-API or permission-bypass advice only on systems and projects you are authorized to modify. <br>
+## Use Case:
 
+Developers and Android system engineers use this skill to get implementation guidance, code snippets, shell commands, and troubleshooting steps for Android app, AOSP, MTK platform, performance, compatibility, and SpringCloud integration tasks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/MygithubTom/androidopenclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with step-by-step guidance and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable commands, scripts, Java/Kotlin snippets, diagnostic analysis, and configuration advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Guidance for hidden API invocation or permission bypass may be inappropriate outside authorized Android development, testing, or compatibility work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this guidance only in authorized environments and prefer documented Android APIs and proper permission flows where possible.
+
+Risk: Commands, scripts, and system-layer changes can affect application behavior, builds, devices, or compliance posture.
+
+Mitigation: Review generated steps before execution, test changes in controlled development environments, and validate behavior against project requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mygithubtom/skills/androidopenclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include step-by-step analysis, executable commands, scripts, and Java or Kotlin code snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

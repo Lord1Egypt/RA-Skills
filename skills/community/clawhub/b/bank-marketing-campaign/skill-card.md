@@ -1,41 +1,52 @@
-## Description: <br>
-AI-powered marketing assistant for banking and securities teams that supports customer segmentation, campaign design, content generation, A/B testing, and ROI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered intelligent marketing assistant for banking and securities that supports customer segmentation, campaign design, content generation, A/B testing, and ROI analysis.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gechengling](https://clawhub.ai/user/gechengling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Bank and securities marketing teams use this skill to segment customers, draft marketing campaigns and content, compare A/B test results, and reason about marketing ROI. It is a drafting and analysis aid whose financial promotions, customer targeting, and campaign recommendations require compliance review before use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated financial promotion, return-claim, or campaign recommendation content may be inaccurate or non-compliant.
+
+Mitigation: Review outputs against applicable advertising, banking, securities, privacy, and suitability rules before publication or customer use.
+
+Risk: Customer segmentation logic may rely on sensitive, suitability-relevant, or privacy-regulated attributes.
+
+Mitigation: Validate segmentation criteria, data use, and targeting decisions with compliance and privacy controls before operational deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Bank and securities marketing teams use this skill to draft campaign plans, segment customers, generate social, SMS, and poster copy, compare A/B test results, and assess ROI. Outputs should be treated as planning drafts requiring qualified compliance review before use with real customers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial marketing outputs may include customer segmentation, investment-product claims, yields, rewards, SMS content, or advertising copy that require regulatory and internal compliance review. <br>
-Mitigation: Treat outputs as planning drafts and have qualified compliance reviewers approve them before using them with real customers. <br>
-Risk: Broad finance-marketing triggers may cause the skill to assist with campaign planning where unsupported or incomplete customer and product context is provided. <br>
-Mitigation: Use the skill only for drafting or analyzing financial marketing campaigns and validate all assumptions, product facts, and audience rules against approved business sources. <br>
+**Output Format:** [Markdown with structured analysis, campaign templates, generated copy, and illustrative code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-marketing-campaign) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gechengling) <br>
+**Other Properties Related to Output:** [May include customer segmentation categories, marketing content drafts, A/B testing calculations, ROI analysis, and compliance reminders.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured campaign plans, draft copy, analysis summaries, and illustrative code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial marketing drafts require human compliance review before customer-facing use.] <br>
+3.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

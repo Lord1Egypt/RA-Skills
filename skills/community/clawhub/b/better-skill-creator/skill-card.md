@@ -1,40 +1,57 @@
-## Description: <br>
-Enhanced skill creation and management tool with built-in end-to-end version control capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better Skill Creator helps agents create, modify, package, back up, compare, and roll back OpenClaw skills with proposal and validation workflows.
 
-## Publisher: <br>
-[zzzanezhou0829](https://clawhub.ai/user/zzzanezhou0829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[zzzanezhou0829](https://clawhub.ai/user/zzzanezhou0829)
 
-## Use Case: <br>
-Developers and agents use this skill to create, modify, package, version, compare, and roll back agent skills with backup and review steps built into the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration or rollback actions can overwrite or remove local skill directories after confirmation. <br>
-Mitigation: Read prompts carefully, verify the target path before proceeding, and keep or inspect backups before relying on the changed skill. <br>
-Risk: Generated plans, diffs, or automated modifications can introduce incorrect guidance or unwanted behavior into a skill. <br>
-Mitigation: Review proposed changes, inspect diffs, and scan or test the skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to scaffold new skills, package releases, manage skill versions, review changes, and roll back to previous versions when needed.
 
-## Reference(s): <br>
-- [Configuration guide](references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and generated or modified skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local skill directories and store backups, proposals, diffs, and changelog-style records under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup, rollback, and installer scripts can overwrite or delete broad local data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a disposable or well-backed-up skill workspace, inspect target paths before confirming deletion or rollback, and avoid elevated privileges.
+
+Risk: Rollback behavior depends on local backup metadata and restored file contents.
+
+Mitigation: Do not roll back from untrusted backup metadata, and preview differences before confirming a restore.
+
+Risk: Backups may copy symlinks or secrets from skill directories.
+
+Mitigation: Remove symlinks and secrets from skill directories before backup.
+
+## Reference(s):
+
+- [Configuration Reference](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, overwrite, or delete local skill directories and backup records when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

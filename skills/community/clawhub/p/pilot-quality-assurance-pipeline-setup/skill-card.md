@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy a quality assurance pipeline with 3 agents that automate test generation, execution, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a quality assurance pipeline with 3 agents that automate test generation, execution, and reporting.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to configure three Pilot agents that generate test cases, execute suites, and report quality results across an automated QA pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QA reports may send secrets, internal URLs, screenshots, PII, or proprietary failure details to Slack, dashboards, webhooks, or bug trackers. <br>
-Mitigation: Approve reporting destinations and redact sensitive test artifacts before enabling the reporter role or external publishing. <br>
-Risk: Misconfigured hostnames or trust handshakes may route test suites and results to unintended Pilot peers. <br>
-Mitigation: Use a unique deployment prefix, verify peer hostnames with pilotctl trust, and confirm subscriptions before publishing test data. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to set up a three-agent Pilot Protocol quality assurance pipeline for test generation, execution, result aggregation, bug filing, and team reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-quality-assurance-pipeline-setup) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup manifests, hostname commands, handshakes, and publish/subscribe examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Role setup installs multiple dependent Pilot skills that may vary by publisher or version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each referenced skill comes from a trusted publisher and use fixed versions before installation.
+
+Risk: The generated reporter role can send QA reports to external webhooks, Slack, dashboards, and bug trackers.
+
+Mitigation: Restrict reporter destinations and redact secrets, customer data, screenshots, and logs before enabling outbound integrations.
+
+Risk: Agent handshakes establish trusted peer communication for test suites and test results.
+
+Mitigation: Verify peer identities before accepting handshakes and use a simple lowercase alphanumeric-and-hyphen deployment prefix.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-quality-assurance-pipeline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilot-protocol, pilotctl, clawhub, a running daemon, and role-specific Pilot skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

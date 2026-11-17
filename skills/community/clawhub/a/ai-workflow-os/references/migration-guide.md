@@ -1,20 +1,28 @@
-# Migration Guide / 迁移指南
+# Migration From The Monolithic v1 Design / 从 v1 单体设计迁移
 
-## From Project Lifecycle Navigator / 从项目生命周期导航助手迁移
+Version 2.0 changes `ai-workflow-os` from a duplicated all-in-one controller into a router. Keep specialist skills independently installable and authoritative. Do not copy their complete state machines back into this package.
 
-Move project intake, MVP planning, code-review upgrade, and realignment rules into:
+2.0 版本把 `ai-workflow-os` 从重复实现全部能力的单体控制器改为路由器。专门 Skill 保持独立安装和权威性，不要再把它们的完整状态机复制回本包。
 
-迁移项目启动、MVP 规划、代码审查升级和校准规则到：
+## Lifecycle / 项目生命周期
 
-```text
-modules/project-lifecycle.md
-```
+Route project discovery, MVP planning, realignment, repository-wide review, latest-delivery review, and target rebaseline to `project-lifecycle-navigator`. Use `modules/project-lifecycle.md` only as a reduced-fidelity fallback.
 
-## From Daily Workflow / 从 Daily Workflow 迁移
+把项目发现、MVP 规划、中期校准、全项目审查、最新交付审查和目标重基线路由到 `project-lifecycle-navigator`。只有专门 Skill 不可用时才使用回退模块。
 
-Map legacy files:
+## Formal Governance And Coding / 正式治理与编码
 
-旧文件映射：
+Route persistent targets, Work Orders, Controller/QA state, and acceptance to `cms-project-governance`. Route authorized coding and coding-loop evidence to `agent-loop-engineering`.
+
+持久目标、Work Order、Controller/QA 状态和验收交给 `cms-project-governance`；授权编码和编码循环证据交给 `agent-loop-engineering`。
+
+## Project Memory / 项目记忆
+
+Keep `daily-workflow` authoritative for explicit checkpoint, wrap-up, and handoff memory. Reuse existing project-owned files; do not create a parallel `Docs/` schema.
+
+明确由 `daily-workflow` 管理 checkpoint、收工和交接记忆。复用项目已有文件，不创建平行 `Docs/` 体系。
+
+Legacy mappings remain read-only until confirmed:
 
 ```text
 PROJECT_TARGET.md  -> TARGET.md
@@ -25,15 +33,13 @@ NEXT_STEPS.md      -> NEXT_ACTIONS.md
 SCHEDULE.md        -> NEXT_ACTIONS.md compatibility alias
 ```
 
-## From Web Search Rules / 从 Web Search Rules 迁移
+## Research Intake / 研究入库
 
-The old web-only workflow becomes Knowledge Intake Governance.
+Keep `web-search-rules` authoritative for web research, source rules, claim evidence, staging, archive, and audit. Use the bundled intake module only for reduced-fidelity fallback.
 
-旧版仅网页搜索流程升级为知识库资料接入治理。
+由 `web-search-rules` 权威管理网页研究、来源规则、主张证据、暂存、归档和审计。本包入库模块只作为降级回退。
 
-Legacy config paths:
-
-旧配置路径：
+Legacy configuration paths may be inspected for migration, but do not delete or modify them automatically:
 
 ```text
 ~/.workbuddy/skills/web-search-rules/config.json
@@ -41,14 +47,12 @@ Legacy config paths:
 ~/.skill-config/web-search-rules-en/config.json
 ```
 
-New recommended config path:
+## One-Writer Migration / 单写入者迁移
 
-新推荐配置路径：
+Before updating any state:
 
-```text
-~/.skill-config/ai-workflow-os/knowledge-intake/config.json
-```
-
-Do not delete old configurations automatically. Compare and migrate with user confirmation.
-
-不要自动删除旧配置。先比较，再经用户确认后迁移。
+1. inventory current and legacy files;
+2. assign one owner to each fact and state machine;
+3. show conflicts and proposed mappings;
+4. copy first and validate;
+5. retain source history unless the user separately authorizes cleanup.

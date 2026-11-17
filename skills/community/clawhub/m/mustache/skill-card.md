@@ -1,42 +1,53 @@
-## Description: <br>
-Use mustache.js (logic-less Mustache templates) for any templating task in JavaScript/Node.js environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use mustache.js (logic-less Mustache templates) for any templating task in JavaScript/Node.js environments.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to render Mustache templates in JavaScript and Node.js projects, including HTML, configuration, and code generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be selected for broad templating requests beyond Mustache-specific use cases. <br>
-Mitigation: Confirm Mustache is the intended templating engine before applying the guidance. <br>
-Risk: Install commands depend on the external npm package and CLI provenance. <br>
-Mitigation: Review npm package provenance and lock or pin dependency versions before installation in managed environments. <br>
-Risk: Unescaped output or global escape overrides can expose untrusted HTML or content. <br>
-Mitigation: Prefer escaped variables for untrusted data and avoid global escape overrides unless they are scoped and restored. <br>
+## Use Case:
 
+Developers and engineers use this skill for help rendering Mustache templates, creating .mustache files, generating HTML, configuration, or code from templates, and applying mustache.js API and CLI patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/mustache) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides Mustache API, CLI, syntax, and anti-pattern guidance; does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Raw HTML rendering, global escape overrides, or innerHTML insertion can expose web-facing code to unsafe output when templates or data are untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use escaped variables by default and only use unescaped output, escape overrides, or innerHTML with trusted or sanitized templates and data.
+
+Risk: Global npm installation changes the user's broader environment and may be unnecessary for project-specific templating work.
+
+Mitigation: Prefer project-local npm installation unless the Mustache CLI is explicitly needed globally.
+
+## Reference(s):
+
+- [Mustache ClawHub skill page](https://clawhub.ai/openlark/skills/mustache)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript, HTML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mustache templates, rendered-output examples, npm install commands, CLI usage, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

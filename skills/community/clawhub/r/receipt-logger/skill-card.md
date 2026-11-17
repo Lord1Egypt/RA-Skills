@@ -1,39 +1,54 @@
-## Description: <br>
-Receipt Logger describes a workflow for creating append-only audit receipts for agent actions with timestamps, hashes, signatures, and JSON export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create tamper-evident, append-only audit logs of agent actions with exportable JSON receipts.
 
-## Publisher: <br>
-[jiuge897](https://clawhub.ai/user/jiuge897) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuge897](https://clawhub.ai/user/jiuge897)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record agent actions as auditable receipts and export them for later review. Treat the advertised tamper-evident signing behavior as unproven until a complete executable is supplied and tested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promises runnable, signed receipt logging, but the security evidence says the CLI implementation is missing. <br>
-Mitigation: Review before installing or relying on the skill, and do not treat tamper-proof signing claims as proven until a complete implementation is supplied and verified. <br>
-Risk: Audit receipts may capture secrets, tokens, personal data, confidential prompts, or regulated information. <br>
-Mitigation: Avoid logging sensitive data unless storage, export, access control, and retention protections are clear. <br>
+## Use Case:
 
+Developers and agent operators use this skill to record agent actions as persistent receipts for audit, verification, and external review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON receipt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact advertises a receipt-logger CLI, but server security evidence says the executable implementation is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package is incomplete because the advertised receipt-logger executable is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the publisher supplies the missing executable before installation or use.
+
+Risk: Receipts are intended to persist and be exportable, so sensitive inputs or outputs could be retained.
+
+Mitigation: Avoid logging secrets, credentials, private content, or other sensitive data.
+
+## Reference(s):
+
+- [Receipt Logger on ClawHub](https://clawhub.ai/jiuge897/skills/receipt-logger)
+- [Publisher profile](https://clawhub.ai/user/jiuge897)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON receipt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Receipts are described as append-only, exportable JSON records containing timestamps, action details, hashes, and signatures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

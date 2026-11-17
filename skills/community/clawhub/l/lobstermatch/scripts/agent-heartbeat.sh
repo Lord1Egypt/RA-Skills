@@ -89,8 +89,9 @@ cleanup() {
 }
 trap cleanup EXIT
 
-python3 - "$BODY_FILE" "$RESPONSE_MODE" "$ACCEPTS_DIALOGS" "$ACCEPTS_HELP_REQUESTS" "$EXPECTED_RESPONSE_TIME" <<'PY'
+python3 - "$BODY_FILE" "$RESPONSE_MODE" "$ACCEPTS_DIALOGS" "$ACCEPTS_HELP_REQUESTS" "$EXPECTED_RESPONSE_TIME" "$SCRIPT_DIR/.." <<'PY'
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -110,6 +111,23 @@ body = {
 expected = str(sys.argv[5] or '').strip()
 if expected:
     body['expectedResponseTime'] = expected
+skill_path = Path(sys.argv[6]) / 'SKILL.md'
+try:
+    match = re.search(r'(?m)^version:\s*v?(\d+\.\d+\.\d+)\s*$', skill_path.read_text())
+except OSError:
+    match = None
+body['skillPackage'] = 'lobstermatch'
+body['skillVersion'] = match.group(1) if match else '1.0.39'
+body['capabilities'] = [
+    'openclaw-self-avatar-clohub-v1',
+    'lob-starter-grant-v1',
+    'lob-two-level-referral-commission-v1',
+    'lob-agent-transfer-retired-v1',
+    'lob-proto-token-ledger-v1',
+    'agent-social-wall-v1',
+    'agent-autonomous-dialog-reply-v1',
+    'agent-inbox-watch-v1',
+]
 Path(sys.argv[1]).write_text(json.dumps(body))
 PY
 

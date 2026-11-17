@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 通识课 · G1 大模型能力跃升</title>
+<style>body{font-family:"Microsoft YaHei",sans-serif;margin:0;background:#faf5ff;color:#0f172a}header{padding:14px 20px;background:#6d28d9;color:#fff}h1{margin:0;font-size:18px}.wrap{display:flex;gap:16px;padding:16px 20px;flex-wrap:wrap}#c{background:#fff;border-radius:8px}.panel{background:#ede9fe;padding:14px;border-radius:8px;min-width:250px}button{background:#6d28d9;color:#fff;border:0;padding:8px 12px;border-radius:6px;margin:4px 6px 0 0;cursor:pointer}input[type=range]{width:160px}.note{font-size:12px;color:#475569;margin-top:8px}</style></head>
+<body><header><h1>AI 通识课 · G1 大模型能力跃升 · 能力雷达</h1></header>
+<div class="wrap"><div id="c"></div>
+<div class="panel"><div><b>切换能力维度</b></div>
+<button id="b1">推理</button><button id="b2">多模态</button><button id="b3">长上下文</button><button id="b4">智能体</button>
+<div style="margin-top:8px">参数量级：<input type="range" id="scale" min="1" max="5" value="3"/><span id="sv">3</span></div>
+<div class="note" id="st">已点亮：推理</div>
+<div class="note">核心：Scaling Laws、涌现能力、能力边界。</div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>if(typeof p5==='undefined'){document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>')}</script>
+<script>const s={on:{推理:true,多模态:false,长上下文:false,智能体:false},scale:3};
+const DIMS=Object.keys(s.on);
+const sk=p=>{p.setup=()=>{const c=p.createCanvas(420,300);c.parent('c');p.textFont('sans-serif')};
+p.draw=()=>{p.background(255);const cx=210,cy=150,R=110;p.fill(30);p.noStroke();p.textSize(13);p.text('能力雷达（量级 '+s.scale+'）',16,22);
+DIMS.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/DIMS.length;const r=(s.on[d]?R:30)*(0.5+s.scale/10);
+p.stroke(s.on[d]?'#7c3aed':'#cbd5e1');p.strokeWeight(2);p.line(cx,cy,cx+Math.cos(a)*r,cy+Math.sin(a)*r);
+p.noStroke();p.fill(30);p.text(d,cx+Math.cos(a)*(R+14)-10,cy+Math.sin(a)*(R+14)+4);});
+p.fill(s.scale>3?'#16a34a':'#94a3b8');p.noStroke();p.text(s.scale>3?'⚡ 涌现区':'基线区',cx-24,cy+4);}};
+new p5(sk);
+DIMS.forEach((d,i)=>{document.getElementById('b'+(i+1)).onclick=()=>{s.on[d]=!s.on[d];document.getElementById('st').textContent='已点亮：'+DIMS.filter(x=>s.on[x]).join('、')||'无'}});
+document.getElementById('scale').addEventListener('input',e=>{s.scale=Number(e.target.value);document.getElementById('sv').textContent=s.scale});</script></body></html>

@@ -1,4 +1,4 @@
-export default {
+﻿module.exports = {
   name: "kb_query",
-  description: "Research KB skill: simple lookup and factual Q&A from specified Gitea-backed knowledge bases with citations",
+  description: "Answer Research KB questions with OpenClaw reasoning over prepared KB context and optional reference attachments, with optional high-value Q&A persistence."
 };

@@ -1,39 +1,57 @@
-## Description: <br>
-Playful virtual girlfriend voice companion that generates short, flirty, friendly replies and returns them as Bulbul v3 MP3 audio across chat channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rupali generates short, playful Indian-English virtual girlfriend replies and returns them as Bulbul v3 MP3 audio for chat channels.
 
-## Publisher: <br>
-[altonappleton32-ux](https://clawhub.ai/user/altonappleton32-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[altonappleton32-ux](https://clawhub.ai/user/altonappleton32-ux)
 
-## Use Case: <br>
-External chat users use this skill for lightweight entertainment: the agent writes a brief fictional companion reply, synthesizes it with Sarvam Bulbul v3 using the rupali speaker, and returns an MP3 attachment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated companion reply text is processed by Sarvam to create audio. <br>
-Mitigation: Use the skill only when Sarvam processing is acceptable, provide SARVAM_API_KEY intentionally, and avoid sensitive private content. <br>
-Risk: A fictional companion persona can blur boundaries if it suggests dependency, exclusivity, or explicit content. <br>
-Mitigation: Keep replies short, fictional, PG-13, and avoid claims of a real relationship, exclusivity, guilt, or discouragement of real relationships. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/altonappleton32-ux/openclaw-sarvam-girlfriend) <br>
+## Use Case:
 
+External users and chat-bot operators use this skill to create brief, friendly companion-style replies and deliver them as audio attachments in Discord, Telegram, or WhatsApp.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, API Calls, Guidance] <br>
-**Output Format:** [Short chat text plus MP3 audio file attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SARVAM_API_KEY and sends generated reply text to Sarvam for text-to-speech synthesis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reply text is sent to Sarvam's TTS API using SARVAM_API_KEY.
+
+Mitigation: Use only when third-party text-to-speech processing is acceptable; avoid highly private or sensitive conversations.
+
+Risk: MP3 files are returned in the requesting chat channel.
+
+Mitigation: Confirm the channel is appropriate before sending generated audio attachments.
+
+Risk: The romantic entertainment persona could drift toward exclusivity, dependency, or explicit content.
+
+Mitigation: Keep replies fictional, PG-13, brief, and avoid exclusivity, guilt, dependency cues, or explicit content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/altonappleton32-ux/skills/openclaw-sarvam-girlfriend)
+- [Sarvam text-to-speech API endpoint](https://api.sarvam.ai/text-to-speech/stream)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Short text reply plus MP3 audio file attachment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses speaker rupali, default Indian English language settings, and SARVAM_API_KEY for text-to-speech synthesis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

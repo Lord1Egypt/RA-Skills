@@ -6,16 +6,19 @@ Each operation is classified by autonomy level per the Enterprise Harness Engine
 
 | Level | Meaning | Agent autonomy | Examples in this skill |
 |:-:|---|---|---|
-| **L1** | Read-only, raw data | Always auto-run | `list_dfw_policies`, `get_dfw_rule`, `list_security_groups`, `list_services`, `traceflow_create`/`get`, IDS/IPS event queries |
+| **L1** | Read-only, raw data | Always auto-run | `list_dfw_policies`, `get_dfw_policy`, `list_dfw_rules`, `get_dfw_rule_stats`, `list_groups`, `get_group`, `list_vm_tags`, `get_traceflow_result`, `list_idps_profiles`, `get_idps_status` |
 | **L2** | Read + analysis / recommendation | Always auto-run | DFW rule conflict detection, shadowed-rule analysis, security group reference graph, traceflow path interpretation |
-| **L3** | Single write — user must approve | Only after explicit confirmation; destructive ops require double-confirm + `--dry-run` | `create_dfw_policy`, `create_dfw_rule`, `delete_dfw_rule`, `create_security_group`, `delete_security_group`, IDS/IPS profile changes |
+| **L3** | Single write — user must approve | Only after explicit confirmation; destructive CLI ops require double-confirm + `--dry-run`; the three MCP deletes preview by default and act only with `confirm=True` | `create_dfw_policy`, `create_dfw_rule`, `delete_dfw_rule`, `create_group`, `delete_group`, `apply_vm_tag`/`remove_vm_tag`, `run_traceflow` (injects a synthetic packet) |
 | **L4** | Multi-step plan / apply workflow | Plan generation auto; apply gated by user approval | *(roadmap — staged microsegmentation rollouts, emergency-block playbooks)* |
 | **L5** | Auto-remediation from learned pattern | Pattern library only; requires `risk:low` + `reversible:true` + `repeatable:true` | *(roadmap — candidates: orphaned-SG cleanup, expired temp-block rule removal)* |
 
 **Notes**:
 - L1/L2 tools are always safe for agents to call without confirmation.
+- **List envelope**: `list_dfw_policies`, `list_dfw_rules`, `list_groups` and `list_idps_profiles` return `{items, returned, limit, total, truncated, hint}` instead of a bare array, so an agent can tell a complete answer from a first page rather than inferring it (VMware-AIops issue #31). `total` is reported only where the scan proved it — the real count on an unfiltered listing under the 1000-item `get_all` cap; `null` for name-filtered listings (the Search API returns matches, not a countable set), for scans that stopped at the cap, and for `list_dfw_rules` (bounded to `offset + limit` by design). Page with the `next_offset` extra — pass it back as `offset` and stop when it is `null`. Never loop on `truncated`: it answers "is `items` the whole collection?", which is still `true` on the last page of a walk. The `hint` distinguishes them — mid-walk it names the next offset; on the last page it says there is no next page; past the end it says so and points back to offset 0. It never advises raising a limit that cannot return another row.
+- **`rule_count` on `list_dfw_policies`**: an int where NSX reported one, `null` where it did not — `null` means "not retrieved", never "no rules". The unfiltered listing asks for the count via `include_rule_count` (NSX omits the field otherwise); a name-filtered listing is resolved through the Policy Search API, which carries no rule counts, so every count there reads `null`. Any `null` adds a `rule_count_note` to the envelope. To find out what a `null` policy enforces, call `list_dfw_rules` on it — never read `null` as an empty policy.
 - L3 tools always pass through the `@vmware_tool` decorator: connection check → policy check → audit log → double-confirm. DFW policy delete additionally checks for active rules; SG delete checks for references.
-- For Segment/Gateway/NAT (network plane) see [vmware-nsx](https://github.com/zw008/VMware-NSX).
+- **MCP deletes preview by default** (`delete_dfw_policy`, `delete_dfw_rule`, `delete_group`). A call without `confirm=True` reads what the delete would remove and returns `{"action": "preview", "blast_radius": {...}}`, deleting nothing. `blast_radius` names the object and what it measured — a policy's category, `rule_count` and `rule_ids`; a rule's parent policy, action, sources, destinations, services, scope and direction; a group's `expression_count`, `reference_count` and `references` — plus `blockers` and `unmeasured`. `confirm=True` re-measures and is refused, deleting nothing, while a blocker remains (rules left in the policy, entities referencing the group) or while any of those reads failed; the refusal is `{"error", "hint", "blast_radius"}`. Show the preview to the user; set `confirm=True` only after they decide — not because they asked for the delete before seeing it. The preview is logged to the skill audit log as `preview`, not `ok`.
+- For Segment/Gateway/NAT (network plane) see [vmware-nsx](https://github.com/vmware-skills/VMware-NSX).
 
 ## DFW Policy Categories
 
@@ -138,16 +141,16 @@ Best practice for NSX tag design:
 | Get policy | GET | /policy/api/v1/infra/domains/default/security-policies/{id} |
 | Create/replace policy | PUT | /policy/api/v1/infra/domains/default/security-policies/{id} |
 | Update policy | PATCH | /policy/api/v1/infra/domains/default/security-policies/{id} |
-| Delete policy | DELETE | /policy/api/v1/infra/domains/default/security-policies/{id} |
+| Delete policy | DELETE | /policy/api/v1/infra/domains/default/security-policies/{id} (MCP first GETs the policy and walks its `/rules`) |
 | List rules | GET | /policy/api/v1/infra/domains/default/security-policies/{id}/rules |
 | Create/replace rule | PUT | .../rules/{rule-id} |
 | Update rule | PATCH | .../rules/{rule-id} |
-| Delete rule | DELETE | .../rules/{rule-id} |
+| Delete rule | DELETE | .../rules/{rule-id} (MCP first GETs the policy and walks its `/rules` for the rule) |
 | Rule statistics | GET | .../rules/{rule-id}/statistics |
 | List groups | GET | /policy/api/v1/infra/domains/default/groups |
 | Get group | GET | /policy/api/v1/infra/domains/default/groups/{id} |
 | Create/replace group | PUT | /policy/api/v1/infra/domains/default/groups/{id} |
-| Delete group | DELETE | /policy/api/v1/infra/domains/default/groups/{id} |
+| Delete group | DELETE | /policy/api/v1/infra/domains/default/groups/{id} (first GETs `/policy/api/v1/infra/group-associations?intent_path=<group path>` for parent groups, and walks `security-policies` and `gateway-policies` with their `rules` for references; MCP also GETs the group) |
 | Group members (VMs) | GET | /policy/api/v1/infra/domains/default/groups/{id}/members/virtual-machines |
 | List VM tags | GET | /api/v1/fabric/virtual-machines?display_name={name} |
 | Apply tag | POST | /api/v1/fabric/virtual-machines?action=add_tags |
@@ -159,6 +162,51 @@ Best practice for NSX tag design:
 | IDPS profiles | GET | /policy/api/v1/infra/settings/firewall/security/intrusion-services/profiles |
 | IDPS signature status | GET | /policy/api/v1/infra/settings/firewall/security/intrusion-services/signatures/status |
 | IDPS settings | GET | /policy/api/v1/infra/settings/firewall/security/intrusion-services |
+| DFW exclusion list | GET | /policy/api/v1/infra/settings/firewall/security/exclude-list?system_owned=true |
+
+## DFW Exclusion List
+
+A member on the NSX distributed-firewall exclusion list has **no DFW in its
+datapath**. Rules that name it, groups that contain it and policies scoped to it
+all still exist, and none of them applies. Any statement that such a VM is
+micro-segmented is wrong — and wrong in the direction that closes an
+investigation rather than opening one. On one real NSX 9.1.0.0200 fabric, 10 of
+12 VMs were on the list, vCenter and VCF Operations and an NSX manager among
+them.
+
+`list_dfw_exclusions` reads it. Three contract details, checked against the
+published NSX 9.1.0 API reference rather than recalled:
+
+- **`members` is an array of Group paths, not VM references.** The
+  `PolicyExcludeList` schema types it as strings (max 100). Naming the VMs
+  therefore means resolving each group's
+  `/members/virtual-machines`, which is what the tool does.
+- **`?system_owned=true` is required to see NSX's own exclusions.** Without it
+  only user-added members come back. The response's `scope` says which list
+  answered — `"user"` means system exclusions are absent, so an empty result
+  there proves nothing.
+- **The Manager API `GET /api/v1/firewall/excludelist` is removed in NSX 9.1.**
+  Its members *are* VM references, so it is the endpoint one reaches for first;
+  it appears on the 9.1.0 Removed Methods page and would 404. A regression test
+  fails if it ever appears in this package.
+
+There is no single call for effective per-VM exclusion state
+(`?action=filter` answers one object per request, which is the per-item pattern
+踩坑 #31 forbids). The cost is therefore one GET plus one member fetch per
+*excluded group* — bounded by the exclusion list, never by the estate.
+
+Where it surfaces:
+
+| Tool | Field | Meaning |
+|------|-------|---------|
+| `list_dfw_exclusions` | `items[]`, `scope` | The list itself, resolved to VMs |
+| `list_vm_tags` | `dfw_excluded`, `dfw_exclusion_note` | Per-VM verdict: `true` / `false` / `null` for "could not be read" |
+| `get_group` | `dfw_excluded` (group and each member) | Whether rules naming this group reach it |
+| `list_dfw_policies` | `exclusion_note` | Present only when something is excluded |
+
+`null` is never `false`. A lookup that failed and answered "not excluded" would
+be the same confidently wrong answer about protection, arriving by a different
+route.
 
 ## NSX Version Compatibility
 

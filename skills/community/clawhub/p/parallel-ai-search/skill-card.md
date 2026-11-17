@@ -1,40 +1,60 @@
-## Description: <br>
-Uses Parallel's parallel-cli for live web search, URL extraction, deep research reports, dataset enrichment, entity discovery, and web monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Parallel's parallel-cli to do live web search, URL extraction, deep research reports, bulk data enrichment, FindAll entity discovery, and web monitoring.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need current web evidence, source extraction, structured enrichment, entity discovery, or ongoing monitoring through Parallel's CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and run Parallel's CLI, including an unverified remote installer and broad curl access. <br>
-Mitigation: Install only after reviewing the installer or use the pipx path, use a dedicated Parallel API key, avoid pasting secrets into chat or shell history, and confirm monitor cadences and webhook destinations before creating ongoing monitors. <br>
+## Use Case:
 
+Developers and agents use this skill when they need current web research, URL extraction, cited reports, dataset enrichment, entity discovery, or web monitoring through Parallel's CLI.
 
-## Reference(s): <br>
-- [Parallel CLI documentation](https://docs.parallel.ai/integrations/cli) <br>
-- [Command templates](references/command-templates.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, citations, and JSON or file output references when Parallel CLI commands are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save long search, extraction, research, enrichment, or entity-discovery outputs to files in /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The setup flow can install a dependency by running an internet-hosted shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented pipx installation path, or independently review and verify the installer script before execution.
+
+Risk: Search, extraction, enrichment, research, and monitoring send task data to Parallel's service.
+
+Mitigation: Use the skill only with data approved for that service and avoid submitting confidential or sensitive information unless the deployment policy permits it.
+
+Risk: Monitor webhooks can disclose results to external endpoints.
+
+Mitigation: Configure webhooks only for endpoints the operator controls and trusts.
+
+## Reference(s):
+
+- [Parallel CLI documentation](https://docs.parallel.ai/integrations/cli)
+- [Command templates](references/command-templates.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/parallel-ai-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links, plus JSON or file outputs when Parallel CLI commands are used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary research, extraction, enrichment, or monitoring result files when outputs are long-running or large.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

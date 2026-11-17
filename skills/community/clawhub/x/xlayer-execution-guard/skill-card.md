@@ -1,43 +1,62 @@
-## Description: <br>
-Runs an executable X Layer pre-execution guard for autonomous agents, combining OnchainOS DEX route judgment, honeypot and price-impact checks, proof-mode evidence, and optional Agentic Wallet execution via onchainos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an executable X Layer pre-execution guard for autonomous agents: OnchainOS DEX route judgment, honeypot and price-impact checks, proof-mode evidence, and optional Agentic Wallet execution via onchainos.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to evaluate X Layer swap intents, block or resize risky routes, generate proof-mode evidence, and optionally execute approved wallet swaps with post-execution proof artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live agentic-wallet mode can trigger real wallet swaps. <br>
-Mitigation: Use proof mode or --no-execute by default, require explicit user approval for live wallet actions, and limit live runs to wallets and amounts the user is prepared to risk. <br>
-Risk: Broad local credentials can be passed into subprocess execution or picked up from environment files. <br>
-Mitigation: Review .env and .env.local files before use, keep OnchainOS credentials scoped to intended runs, and avoid setting EXECUTION_GUARD_EXECUTION_MODE=agentic-wallet globally. <br>
-Risk: Missing OnchainOS API credentials can produce mock output that may be confused with live proof. <br>
-Mitigation: Treat mock output as install verification only and require configured API credentials plus a real transaction hash before presenting output as live execution proof. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to evaluate X Layer swap intents before execution, produce guard decisions, and capture proof-mode or live-wallet execution evidence. It helps agents block, resize, retry, or execute swaps based on route quality, token safety, price impact, and wallet readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richard7463/xlayer-execution-guard) <br>
-- [OnchainOS API base](https://web3.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [JSON guard/proof artifacts and Markdown guidance with bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proof mode produces simulated execution evidence; live agentic-wallet mode may produce transaction hashes after approved wallet execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and plugin.yaml) <br>
+Risk: The skill can use OnchainOS API credentials and a logged-in Agentic Wallet for live swap execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use proof mode or --no-execute by default, and enable agentic-wallet mode only after independent confirmation of the token pair, amount, wallet, chain, and slippage.
+
+Risk: Mock output is produced when API credentials are unavailable and should not be treated as live trading proof.
+
+Mitigation: Check credential configuration and preserve a clear distinction between mock, proof-mode, and live Agentic Wallet results.
+
+Risk: Running in a project directory with sensitive .env files may expose credentials to the skill runtime.
+
+Mitigation: Avoid running the skill from projects containing sensitive .env files and provide only the credentials required for the intended guard run.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Pin and review dependencies before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richard7463/skills/xlayer-execution-guard)
+- [OKX Web3 / OnchainOS API base](https://web3.okx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON guard/proof files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guard output can include pre-execution verdicts, route checks, execution status, proof identifiers, and closed-loop validation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and plugin.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Bilibili helps agents summarize public Bilibili video, article, livestream, creator, search, and ranking data without downloads or bulk collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search, summarize, and compare public Bilibili video, article, livestream, creator, and ranking-page information.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and analysts use this skill to gather lightweight summaries of public Bilibili trends, creator performance, search results, and ranking pages for internal analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill while logged in may include information visible in that session. <br>
-Mitigation: Prefer public pages, avoid sensitive account or personal-page content, and review summaries before sharing. <br>
-Risk: Requests for downloads, bulk scraping, account actions, or bypass attempts would exceed the skill's intended read-only posture. <br>
-Mitigation: Decline those requests, keep collection lightweight, and follow Bilibili platform rules. <br>
-Risk: Dynamic rendering and human verification flows can make extracted metrics incomplete or stale. <br>
-Mitigation: Have a human open or verify pages when needed and confirm important metrics before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to organize public Bilibili trends, keyword results, creator performance, and ranking-page metrics into concise summaries for lightweight analysis and reminders.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeKungfu/bilibili-hot-trend) <br>
-- [Bilibili Home](https://www.bilibili.com/) <br>
-- [Bilibili Ranking](https://www.bilibili.com/v/popular/rank) <br>
-- [Bilibili Search](https://search.bilibili.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only summaries from public Bilibili pages; no downloads, account actions, bypass attempts, or bulk collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and target metadata) <br>
+Risk: Requests could expand into bulk scraping or download-oriented workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tasks specific, limit page scope, avoid downloads, and do not use the skill for batch collection.
+
+Risk: Optional login-state context can include personal-page information.
+
+Mitigation: Use login state only when intentionally organizing personal-page information and avoid automated interactions.
+
+Risk: Dynamic rendering or verification challenges can make extracted Bilibili data incomplete or stale.
+
+Mitigation: Open pages manually when needed, verify important metrics against the public page, and treat summaries as lightweight analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/bilibili-hot-trend)
+- [Bilibili](https://www.bilibili.com/)
+- [Bilibili Rankings](https://www.bilibili.com/v/popular/rank)
+- [Bilibili Search](https://search.bilibili.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on public-page summaries and comparisons; does not provide downloading, reverse engineering, or bulk collection workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

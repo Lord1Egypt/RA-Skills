@@ -1,0 +1,1 @@
+- Hotfix: pin requests>=2.33.0 (CVE-2026-25645 in allowed 2.32.4); declare filesystem/network permissions in SKILL.md metadata (audit findings)

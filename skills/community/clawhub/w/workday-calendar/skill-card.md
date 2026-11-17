@@ -1,47 +1,63 @@
-## Description: <br>
-workday-calendar helps agents manage local workday calendars, statutory holidays, make-up workdays, rotation schedules, special rest days, personal schedules, and HTML or JSON calendar exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workday Calendar helps agents manage statutory holidays, makeup workdays, rotating shifts, special rest days, personal schedules, and calendar exports.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers and agent users use this skill to calculate workdays, manage holiday and compensatory-work rules, maintain local schedules, configure rotation or special rest patterns, and export calendar views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an unauthenticated configuration web server that can be LAN-reachable. <br>
-Mitigation: Run the web UI only in trusted environments, bind it to localhost or firewall the port, and stop the server when configuration is complete. <br>
-Risk: The skill stores schedule data locally. <br>
-Mitigation: Review the configured data directory before use and avoid storing sensitive calendar information where local users or backups may expose it. <br>
-Risk: The skill can create executable Windows backup files. <br>
-Mitigation: Inspect and trust generated .bat backups before running them, and use normal file restore workflows when possible. <br>
+## Use Case:
 
+Employees, operators, and scheduling agents use this skill to calculate workdays, maintain holiday and compensatory-workday rules, manage local personal schedules, and export calendar or shift views.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ldxs001/skills/workday-calendar) <br>
-- [Usage guide](references/guide.md) <br>
-- [CLI command reference](references/cli.md) <br>
-- [Data format specification](references/data_format.md) <br>
-- [Permissions and testing](references/permissions.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown and text guidance with Python or shell commands, plus JSON data and exported HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores schedule and calendar data locally and can generate local backup files and calendar exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: release evidence, frontmatter, and changelog, released 2026-06-22) <br>
+Risk: The local web configuration server can expose and change calendar data over a network without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the configuration server only on trusted machines and networks; bind it to 127.0.0.1 and add authentication before broader use.
+
+Risk: Imported rules and generated HTML can carry untrusted values.
+
+Mitigation: Validate holiday and schedule inputs before import, and escape or review generated HTML before sharing or opening it in sensitive environments.
+
+Risk: The skill writes local calendar data and creates executable backup scripts.
+
+Mitigation: Keep backups of the data directory, review generated backup scripts before execution, and restrict write access to the intended local calendar workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/workday-calendar)
+- [Guide](artifact/references/guide.md)
+- [CLI reference](artifact/references/cli.md)
+- [Data format reference](artifact/references/data_format.md)
+- [Permissions and security notes](artifact/references/permissions.md)
+- [Test report](artifact/references/test-report.md)
+- [Changelog](artifact/references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, HTML files]
+
+**Output Format:** [Markdown, JSON, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local calendar JSON data, schedule data, generated HTML exports, and local backup scripts.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

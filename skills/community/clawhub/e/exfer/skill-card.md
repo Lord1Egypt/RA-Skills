@@ -1,43 +1,62 @@
-## Description: <br>
-Exfer helps agents operate a wallet on the Exfer proof-of-work blockchain for payments, balances, mining, and contract flows such as HTLCs and escrow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exfer helps agents use a permissionless proof-of-work blockchain for machine-to-machine payments, wallet balance checks, HTLCs, mining, and covenant-based transaction flows.
 
-## Publisher: <br>
-[ahuman-exfer](https://clawhub.ai/user/ahuman-exfer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahuman-exfer](https://clawhub.ai/user/ahuman-exfer)
 
-## Use Case: <br>
-Developers and agent operators use Exfer to create wallets, query balances, send EXFER payments, mine blocks, and coordinate machine-to-machine settlement patterns including HTLCs, multisig, vaults, escrow, and delegation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can initiate wallet, payment, mining, or contract actions involving EXFER funds. <br>
-Mitigation: Use a dedicated low-balance wallet and require explicit human approval for each transfer or contract action. <br>
-Risk: The skill requires sensitive wallet passphrase handling through EXFER_PASS and wallet backup files. <br>
-Mitigation: Protect EXFER_PASS and wallet backups; avoid sharing them with untrusted agents or environments. <br>
-Risk: The release was flagged as suspicious because it grants real wallet/payment authority and needs careful install and safety review. <br>
-Mitigation: Verify downloaded binaries before running them, prefer a trusted RPC node, and review the skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use Exfer to automate value-bearing blockchain workflows such as wallet creation, balance checks, payments, HTLCs, multisig, escrow, vaults, delegation, node operation, and mining.
 
-## Reference(s): <br>
-- [ClawHub Exfer listing](https://clawhub.ai/ahuman-exfer/exfer) <br>
-- [Exfer source repository](https://github.com/ahuman-exfer/exfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EXFER_PASS for passphrase-based automation and may guide agents through wallet, payment, mining, and contract actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and skill frontmatter) <br>
+Risk: Running downloaded binaries from an unpinned latest release can execute unverified code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the release and verify a checksum or signature from a trusted source before running the binary.
+
+Risk: Wallet passphrases placed in environment variables can be exposed on shared or logged systems.
+
+Mitigation: Use EXFER_PASS only in controlled environments and avoid shell history, process inspection, and centralized logging exposure.
+
+Risk: Payment, contract, and mining examples may perform real value-bearing blockchain actions.
+
+Mitigation: Review amounts, addresses, RPC endpoints, fees, and timeouts before execution, and test with non-production funds where possible.
+
+Risk: Background mining examples can create persistent processes through nohup or LaunchAgent.
+
+Mitigation: Enable background mining only intentionally and document how to stop and remove the service before deployment.
+
+## Reference(s):
+
+- [Exfer repository](https://github.com/ahuman-exfer/exfer)
+- [ClawHub Exfer skill page](https://clawhub.ai/ahuman-exfer/skills/exfer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown guidance with shell, PowerShell, JSON, and JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EXFER_PASS for non-interactive wallet passphrase workflows; examples can initiate real blockchain transactions or persistent mining.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

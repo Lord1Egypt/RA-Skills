@@ -1,37 +1,52 @@
-## Description: <br>
-Architecture-first workflow for delegating complex projects to AI coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture-first workflow for delegating complex projects to AI coding agents. Ensures code fits the system before it's written.
 
-## Publisher: <br>
-[michaelmonetized](https://clawhub.ai/user/michaelmonetized) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michaelmonetized](https://clawhub.ai/user/michaelmonetized)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide AI coding agents through architecture-first implementation, including dependency checks, filepath declarations, testing expectations, and architectural impact review before code is accepted. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on an accurate architecture document; stale or incomplete architecture guidance can lead the agent to make incorrect design or code decisions. <br>
-Mitigation: Provide the current architecture document and review the agent's architecture analysis, filepath declaration, dependencies, consumers, and tests before accepting changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michaelmonetized/delegation) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to make AI coding agents analyze architecture, declare target files, identify dependencies and consumers, and check for conflicts before implementing code.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with structured sections and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the agent to produce architecture analysis, filepath declarations, implementation code, testing requirements, and architectural impact notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make an agent follow a stricter architecture-check workflow before writing code, which may be misapplied if the architecture source is unclear.
+
+Mitigation: Confirm the architecture document and repository conventions the agent should follow before using the skill.
+
+Risk: Generated implementation guidance may appear production-ready even when project-specific tests, linting, or security review have not run.
+
+Mitigation: Review the declared filepath, dependencies, consumers, tests, and checklist results before accepting generated code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaelmonetized/skills/delegation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured sections and fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes architecture analysis, filepath declaration, implementation, testing requirements, architectural impact, and a compliance checklist.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

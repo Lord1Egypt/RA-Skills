@@ -1,44 +1,61 @@
-## Description: <br>
-Plan your Bali dream trip with flight, hotel, attraction, itinerary, visa, insurance, and car-rental support powered by FlyAI and Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Bali travel with real-time FlyAI/Fliggy-backed searches for flights, hotels, attractions, temples, beaches, villas, itineraries, and related travel services.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel planners and agent users use this skill to collect Bali trip parameters, run FlyAI travel searches, and format real-time flight, hotel, attraction, and itinerary options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global FlyAI CLI package. <br>
-Mitigation: Install and run it only in environments where the user accepts that dependency and its booking-data access. <br>
-Risk: Raw travel requests may contain personal details and can be written to .flyai-execution-log.json. <br>
-Mitigation: Avoid entering passport, payment, or highly personal travel details, and ask the agent not to create or retain the local log unless logging is explicitly desired. <br>
+## Use Case:
 
+External travel planners and agent users use this skill to collect Bali trip parameters, run FlyAI CLI searches, and present bookable Markdown comparisons for flights, lodging, attractions, and itinerary options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/bali-travel) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback handling](references/fallbacks.md) <br>
-- [Execution log schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results, include booking links for listed results, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on an unpinned global FlyAI CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned local or sandboxed CLI installation and review install commands before execution.
+
+Risk: Travel searches may be processed by FlyAI/Fliggy and can reflect commercial booking-link bias.
+
+Mitigation: Get explicit user consent before network-backed searches and present results as booking-provider data rather than neutral market coverage.
+
+Risk: The workflow may persist raw travel queries in .flyai-execution-log.json.
+
+Mitigation: Disable, redact, or periodically delete local query logs when they may contain personal travel details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/bali-travel)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown comparison tables with booking links and inline shell commands for retry or setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results, include booking links from detailUrl values, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

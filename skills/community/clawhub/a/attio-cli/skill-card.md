@@ -1,42 +1,58 @@
-## Description: <br>
-Command-line tool to list, get, and manage objects, records, and lists in an Attio CRM workspace via the Attio API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool to list, get, and manage objects, records, and lists in an Attio CRM workspace via the Attio API.
 
-## Publisher: <br>
-[FroeMic](https://clawhub.ai/user/FroeMic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[froemic](https://clawhub.ai/user/froemic)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to install and run attio-cli commands for inspecting Attio objects, records, lists, and attributes, and for generating a Markdown workspace schema. It also provides examples for API operations that can search, create, and add CRM records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Attio API credentials and CRM metadata. <br>
-Mitigation: Use a least-privileged Attio API key, avoid committing or sharing credential files, and treat generated workspace schema files as sensitive business metadata. <br>
-Risk: Create-record and add-entry examples can change the target CRM workspace. <br>
-Mitigation: Run mutating commands only when the intended workspace, object, list, and payload have been reviewed. <br>
-Risk: Installation depends on an external attio-cli repository that was not server-resolved as release provenance. <br>
-Mitigation: Inspect or pin the external repository before installing and running the CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Attio CRM CLI ClawHub page](https://clawhub.ai/FroeMic/attio-cli) <br>
-- [Attio API base endpoint](https://api.attio.com/v2) <br>
+## Use Case:
 
+Developers and CRM operators use this skill to install and use attio-cli, query Attio objects, records, and lists, and generate a Markdown schema of an Attio workspace for agent context.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with inline bash and curl examples; generated workspace schema is Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires attio-cli, jq, and an ATTIO_API_KEY; some examples can modify the connected CRM workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the upstream CLI without pinning may pull unreviewed changes.
+
+Mitigation: Review the upstream CLI before installing and pin it to a known commit or release when possible.
+
+Risk: Attio API keys and generated workspace.schema.md can expose sensitive CRM access or metadata.
+
+Mitigation: Use a least-privileged Attio API key, keep generated schema files out of version control, and handle them as sensitive workspace data.
+
+Risk: Create-record and add-entry examples can modify a live CRM workspace.
+
+Mitigation: Run write examples only in a sandbox or after confirming the intended live-workspace change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/froemic/skills/attio-cli)
+- [attio-cli Repository](https://github.com/FroeMic/attio-cli)
+- [Attio API v2 Base URL](https://api.attio.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate workspace.schema.md containing sensitive CRM metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

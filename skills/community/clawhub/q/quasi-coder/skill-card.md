@@ -1,42 +1,53 @@
-## Description: <br>
-Expert engineering skill for interpreting shorthand, quasi-code, and natural language descriptions into production-quality code while respecting explicit constraints and target file boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert 10x engineer skill for interpreting and implementing code from shorthand, quasi-code, and natural language descriptions.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and coding agents use this skill to convert incomplete snippets, pseudo-code, and natural language implementation requests into scoped code edits, commands, documentation, or configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to treat shorthand as authorization for file writes, generated files, command execution, or network fetches. <br>
-Mitigation: Require explicit target files and markers, inspect diffs, and obtain separate confirmation before commands, network access, generated files, or writes outside the intended edit area. <br>
-Risk: Ambiguous shorthand may cause implementation choices that do not match the user's intended method or scope. <br>
-Mitigation: Ask clarifying questions when targets, constraints, or non-negotiable implementation choices are unclear, and run isolated tests before committing to key assumptions. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert shorthand, pseudo-code, incomplete snippets, and rough natural-language requirements into scoped code edits or implementation guidance while preserving explicit file and method constraints.
 
-## Reference(s): <br>
-- [Update Code from Shorthand Reference](references/update-code-from-shorthand-example.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jhauga/quasi-coder) <br>
-- [Publisher profile](https://clawhub.ai/user/jhauga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with code blocks, file-edit descriptions, and command suggestions as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify files when the user provides explicit targets and accepts the requested edit scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Ambiguous shorthand can cause edits outside the user's intended file or region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Name the target file, use bounded shorthand markers where possible, and review the generated diff before accepting changes.
+
+Risk: Supporting actions such as command execution, data fetching, or file creation can have unintended effects if requested broadly.
+
+Mitigation: Request these actions deliberately, keep them narrowly scoped, and run focused validation for touched areas.
+
+## Reference(s):
+
+- [Update Code from Shorthand Reference](references/update-code-from-shorthand-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with code blocks, file edits, commands, and concise implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay scoped to explicit target files or bounded shorthand regions and include diff review or focused validation when applicable.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

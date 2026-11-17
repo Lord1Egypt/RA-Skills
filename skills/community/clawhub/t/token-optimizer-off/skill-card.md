@@ -1,45 +1,60 @@
-## Description: <br>
-Token Optimizer Off compresses long OpenClaw agent conversation histories into concise summaries and task-scoped memory to reduce context usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically compresses AI conversation context with session summaries, task-scoped memory, and token budget checks to reduce long-session input size.
 
-## Publisher: <br>
-[thanksandyou](https://clawhub.ai/user/thanksandyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thanksandyou](https://clawhub.ai/user/thanksandyou)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor long OpenClaw sessions, compress session history, and load only relevant memory for the current task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send conversation content to an AI provider for compression. <br>
-Mitigation: Prefer dry-run or manual compression first, and review summaries for secrets before storing or reusing them. <br>
-Risk: The skill stores compressed memory across sessions in the global OpenClaw memory directory. <br>
-Mitigation: Review generated memory files periodically and limit retained content to information that should persist across sessions. <br>
-Risk: The uninstall guidance can delete all OpenClaw memory if run as written. <br>
-Mitigation: Back up or inspect the OpenClaw memory directory before deleting it, and only remove it when full memory erasure is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long OpenClaw sessions within a smaller context budget by checking session health, summarizing history, and loading task-specific memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thanksandyou/token-optimizer-off) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact installation guide](artifact/INSTALL.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write compressed session summaries and state files under the OpenClaw memory directory when run outside dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Session summaries or selected file contents may be sent to the configured AI endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the API URL and credentials before use, and avoid passing sensitive files or confidential session content.
+
+Risk: AI-generated memory is persisted globally and may be loaded by future OpenClaw sessions.
+
+Mitigation: Review generated memory before reuse, back up the memory directory, and isolate TOKEN_OPTIMIZER_MEMORY_DIR when testing or evaluating the skill.
+
+Risk: Cleanup and uninstall paths can affect OpenClaw memory beyond this skill.
+
+Mitigation: Do not run memory deletion commands unless intentional, and confirm the target directory before cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thanksandyou/skills/token-optimizer-off)
+- [README.md](artifact/README.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and script-generated text or JSON-like status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize session or selected file content, write Markdown memory summaries, and update session state under the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

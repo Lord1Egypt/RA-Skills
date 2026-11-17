@@ -1,46 +1,55 @@
-## Description: <br>
-Transparent, rigorous research with full methodology, mandated two-cycle research per theme, APA 7th citations, evidence hierarchy, and user checkpoints for reproducible literature reviews, competitive intelligence, and other source-heavy research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Deep Research guides agents through scoped, multi-cycle investigations with user checkpoints, source validation, contradiction handling, APA 7th citations, and academic-style final reports.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users, researchers, analysts, and developers use this skill to plan and conduct rigorous multi-source investigations, including literature reviews, competitive intelligence, trend reports, and complex claim verification. It is designed for workflows that need transparent methodology, explicit checkpoints, citation discipline, and documented limitations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Networked research queries and fetched sources can expose confidential topics, secrets, internal URLs, or private document details. <br>
-Mitigation: Use the skill only with non-confidential research topics unless the operator explicitly approves the scope; remove secrets and internal URLs before research begins. <br>
-Risk: Exhaustive multi-cycle research can consume significant time or tool budget and may gather irrelevant or contradictory sources. <br>
-Mitigation: Use the planning checkpoint to narrow themes, approve the research plan before execution, and review the final limitations and contradictions. <br>
-Risk: Citation-heavy research can still contain inaccurate synthesis, weak sources, or unresolved conflicts. <br>
-Mitigation: Verify important claims against primary sources and review the evidence hierarchy, confidence annotations, and reference list before relying on the report. <br>
+## Use Case:
 
+External users, researchers, analysts, and developers use this skill when they need transparent deep research, literature reviews, competitive intelligence, trend analysis, or complex topic synthesis with visible methodology and cited evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-deep-research) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [README](README.md) <br>
-- [Quick reference](quickref.md) <br>
-- [Example workflow](example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plans and academic narrative reports with APA-style citations and references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes clarifying questions, research plans, evidence trails, confidence annotations, limitations, contradictions, and final cited reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security review says the workflow may consult persistent agent memory by default before broad research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use memory-disabled operation for sensitive, proprietary, legal, medical, or personal topics, or require explicit approval for the exact memory records that may be used.
+
+Risk: Deep research workflows can produce misleading conclusions when sources are weak, contradictory, outdated, or inaccessible.
+
+Mitigation: Require the skill's stated evidence hierarchy, contradiction analysis, confidence labels, and final limitations section before acting on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-deep-research)
+- [Skill homepage](https://github.com/kesslerio/academic-deep-research-clawhub-skill)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research plans, methodology notes, cited academic narrative reports, and APA-style references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final reports emphasize prose, source citations, confidence annotations, limitations, contradictions, and reproducible research process notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

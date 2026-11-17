@@ -1,45 +1,54 @@
-## Description: <br>
-Coordinate multiple AI agents as a development team for complex coding projects using isolated workspaces, structured delegation, integration, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate multiple AI agents as a development team to tackle complex coding projects faster and more accurately.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multiple coding agents on multi-file features, complex refactors, library implementations, and research reproductions. It helps a lead agent plan dependencies, assign isolated work, integrate changes, and verify the final result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository-wide agent coordination can cause unintended edits, merge conflicts, or data loss when agents are not isolated. <br>
-Mitigation: Use separate git worktrees for each subagent, verify each agent is confined to its assigned workspace, and review all changes before integration. <br>
-Risk: The workflow includes examples involving pushes, merges, resets, and worktree deletion that can affect project history or local work. <br>
-Mitigation: Require explicit user confirmation before destructive or remote-affecting operations, and start from a clean git status or a backup. <br>
-Risk: Weak guardrails around delegated coding tasks can allow subagents to modify files outside their intended scope. <br>
-Mitigation: Provide each subagent with target files, restricted files, and verification commands, then inspect diffs and run tests before accepting the work. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan, delegate, integrate, and verify complex coding work across multiple coordinated agents. It is suited to multi-file features, complex refactors, library implementations, and research reproductions where structured parallel development is useful.
 
-## Reference(s): <br>
-- [Team Code Examples](references/examples.md) <br>
-- [Effective Strategies for Asynchronous Software Engineering Agents](https://arxiv.org/abs/2603.21489) <br>
-- [async-swe-agents GitHub repository](https://github.com/JiayiGeng/async-swe-agents) <br>
-- [ClawHub Team Code release](https://clawhub.ai/simoncatbot/team-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, JSON task specifications, and workflow patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no API keys or MCP tools are declared in the supplied evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill guides high-impact repository automation, including dependency installation, git operations, branch/worktree handling, and deletion or cleanup commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted or disposable workspaces, review dependency and build files before installs, and manually confirm reset, deletion, push, or worktree cleanup steps.
+
+Risk: Shell-string command examples can be unsafe if copied into automation without argument handling.
+
+Mitigation: When converting examples into scripts or tools, replace shell-string execution with argument-safe process APIs and review commands before execution.
+
+## Reference(s):
+
+- [Team Code Examples](references/examples.md)
+- [Effective Strategies for Asynchronous Software Engineering Agents](https://github.com/JiayiGeng/async-swe-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON, JavaScript, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces coordination plans, delegation prompts, verification steps, and integration guidance rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

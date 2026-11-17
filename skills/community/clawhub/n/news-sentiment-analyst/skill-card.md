@@ -1,43 +1,57 @@
-## Description: <br>
-Aggregate and classify financial news sentiment into Risk-On / Risk-Off signals for market and individual stocks using the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregate and classify financial news sentiment into Risk-On / Risk-Off signals for market and individual stocks using the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-Traders, analysts, and market-focused agent users use this skill to fetch financial news through Finskills, classify sentiment across markets, tickers, and sectors, and identify catalysts for informational market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key and sends requested symbols, sectors, or market topics to the Finskills API. <br>
-Mitigation: Use a dedicated API key, avoid sending topics you are not comfortable sharing with Finskills, and rotate or revoke the key if it is exposed. <br>
-Risk: Financial news sentiment can be stale, incomplete, or incorrectly classified and should not be treated as financial advice. <br>
-Mitigation: Confirm high-impact news with primary sources such as company investor relations pages or official filings before relying on the report. <br>
+## Use Case:
 
+Investors, analysts, and market-focused agents use this skill to retrieve financial news, classify market and ticker sentiment, identify catalysts, and produce concise market sentiment reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/finskills/news-sentiment-analyst) <br>
-- [Project homepage](https://github.com/finskills/news-sentiment-analyst) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown structured financial news and sentiment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FINSKILLS_API_KEY; general market news is described as free-tier, while broader latest-news and stock-specific news may require a Pro plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Requested tickers, symbols, sectors, or market-news topics may be sent to Finskills when retrieving news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using proprietary watchlists or confidential trading research unless sharing that information with Finskills is acceptable.
+
+Risk: Financial news latency and AI-assisted sentiment classification may produce incomplete or incorrect market signals.
+
+Mitigation: Verify high-impact news with primary sources such as company investor relations pages, official filings, or original publisher reports before acting on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/news-sentiment-analyst)
+- [Publisher profile](https://clawhub.ai/user/finskills)
+- [Project homepage](https://github.com/finskills/news-sentiment-analyst)
+- [Finskills API](https://finskills.net)
+- [Finskills registration](https://finskills.net/register)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown market sentiment report with summaries, catalyst lists, sector maps, and stock-specific news sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY. General financial news is available on the free plan; latest and symbol-specific news may require a Pro plan.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

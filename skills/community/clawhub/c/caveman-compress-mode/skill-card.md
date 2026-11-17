@@ -1,40 +1,52 @@
-## Description: <br>
-Ultra-compressed communication mode that reduces filler, articles, and pleasantries while preserving technical accuracy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultra-compressed communication mode that reduces filler, articles, and pleasantries while preserving technical accuracy.
 
-## Publisher: <br>
-[liyafeichina](https://clawhub.ai/user/liyafeichina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liyafeichina](https://clawhub.ai/user/liyafeichina)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other agent users use this skill when they want concise, token-saving responses without losing technical substance. It is suited to brief explanations, debugging guidance, and technical answers where exact code blocks and error text must remain unchanged.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad brief-mode triggers can activate a terse style that persists longer than intended.
+
+Mitigation: Use explicit phrases such as "stop caveman" or "normal mode" to turn the style off.
+
+Risk: Highly compressed wording can reduce clarity in contexts where full wording matters.
+
+Mitigation: Avoid using the mode for sensitive warnings, irreversible action confirmations, or multi-step instructions where terse fragments could be misread.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill when they want an assistant to answer in a persistent, ultra-terse style for lower-token technical exchanges. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Terse mode may activate from broad phrases such as asking the assistant to be brief and may persist longer than expected. <br>
-Mitigation: Install only when persistent terse responses are desired, confirm the opt-out command, and use normal mode for important or complex tasks. <br>
-Risk: Over-compression can make security warnings, irreversible actions, or multi-step instructions easier to misread. <br>
-Mitigation: Use the clarity exception for sensitive warnings and ordered steps, then resume terse mode after the clear section. <br>
+**Output Format:** [Plain text or Markdown with code blocks when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyafeichina/caveman-compress-mode) <br>
+**Other Properties Related to Output:** [Uses terse phrasing; preserves exact code blocks and quoted errors.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Terse natural-language responses, with code blocks unchanged when present] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent mode after trigger; temporarily relaxes terse style for clarity-sensitive warnings and multi-step instructions.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

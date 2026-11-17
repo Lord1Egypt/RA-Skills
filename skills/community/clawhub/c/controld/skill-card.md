@@ -1,42 +1,60 @@
-## Description: <br>
-Manage Control D DNS filtering service via API for DNS profiles, devices, custom blocking rules, service filtering, analytics settings, and network diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Control D DNS filtering service via API for DNS profiles, devices, custom blocking rules, service filtering, analytics settings, and network diagnostics.
 
-## Publisher: <br>
-[AustinGarrod](https://clawhub.ai/user/AustinGarrod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[austingarrod](https://clawhub.ai/user/austingarrod)
 
-## Use Case: <br>
-OpenClaw users and DNS administrators use this skill to inspect and manage Control D DNS filtering accounts, profiles, devices, rules, analytics, billing, organization settings, provisioning, and mobile configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer broad Control D account areas, including DNS settings, billing, organizations, provisioning, mobile configuration, and endpoint deployment. <br>
-Mitigation: Install only for intended Control D administration, prefer read-only or tightly scoped tokens, restrict token IP access, and require explicit human approval before write, delete, billing, organization, provisioning, mobileconfig, or endpoint-deployment actions. <br>
-Risk: Remote installer commands and endpoint deployment flows can affect every targeted device. <br>
-Mitigation: Verify the installer path before use and require approval for each affected device before running deployment commands. <br>
+## Use Case:
 
+External users, developers, and DNS administrators use this skill to inspect and manage Control D DNS filtering accounts, including profiles, devices, filters, service rules, analytics, and enterprise deployment workflows.
 
-## Reference(s): <br>
-- [Control D](https://controld.com) <br>
-- [Control D Dashboard](https://controld.com/dashboard) <br>
-- [Control D API Base URL](https://api.controld.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CONTROLD_API_TOKEN plus curl and jq; API responses are typically JSON, while mobile configuration operations can produce .mobileconfig files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can make live Control D account changes, including deletes, organization updates, default-rule changes, provisioning changes, and mass deployment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege or read-only tokens where possible and require manual confirmation before destructive, billable, organization-wide, or mass deployment operations.
+
+Risk: The skill depends on a Control D API token that may grant write access to DNS profiles, devices, analytics, and organization resources.
+
+Mitigation: Store the token outside prompts and files, restrict it by IP where possible, and rotate it if exposed.
+
+Risk: The documented RMM installer one-liners can execute remote endpoint deployment commands at scale.
+
+Mitigation: Independently verify the installer source, signature or checksum, and test deployment in a controlled environment before use across endpoints.
+
+## Reference(s):
+
+- [Control D](https://controld.com)
+- [Control D Dashboard](https://controld.com/dashboard)
+- [Control D API Base URL](https://api.controld.com)
+- [ClawHub Skill Page](https://clawhub.ai/austingarrod/skills/controld)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON API examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CONTROLD_API_TOKEN plus curl and jq for the bundled helper script.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

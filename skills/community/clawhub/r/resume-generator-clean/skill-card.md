@@ -1,43 +1,59 @@
-## Description: <br>
-Generates professional resumes and CVs with PDF, Word, and HTML export from YAML, Markdown, HTML, or Python inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional resumes as PDF, Word, or HTML from YAML, Markdown, or HTML inputs with multiple templates and Chinese/English support.
 
-## Publisher: <br>
-[31504254](https://clawhub.ai/user/31504254) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[31504254](https://clawhub.ai/user/31504254)
 
-## Use Case: <br>
-Developers, job seekers, and academic users use this skill to create or convert resumes and CVs into print-ready PDF, editable Word, or HTML outputs. It is suited for local document generation workflows that need templates, auto-layout, and Chinese/English text support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unaudited Python dependencies or optional document-conversion backends can create supply-chain or compatibility risk. <br>
-Mitigation: Install in a virtual environment and pin or audit dependencies before use. <br>
-Risk: Converting untrusted HTML or Markdown may allow PDF or HTML renderers to process local resources. <br>
-Mitigation: Use trusted input files and review conversion behavior before processing external documents. <br>
+## Use Case:
 
+Developers and external users use this skill to generate polished resumes and CVs from structured YAML, Markdown, or HTML content, then export them to PDF, DOCX, or print-ready HTML.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/31504254/resume-generator-clean) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Example resume YAML](examples/example_resume.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with bash and Python examples; generated artifacts may be PDF, DOCX, or HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts YAML, Markdown, HTML, and Python API inputs; optional PDF backends can affect output fidelity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: HTML-to-PDF conversion can allow crafted resume HTML to access local files or network resources during rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert only trusted HTML, run renderers in an isolated environment, and block local or network resource loading before returning generated PDFs.
+
+Risk: Resume export writes files to user-selected output paths and may create fallback HTML files.
+
+Mitigation: Choose output paths deliberately and review whether an existing file could be overwritten before running export commands.
+
+Risk: Unpinned dependencies and optional PDF backends can change rendering behavior or security posture.
+
+Mitigation: Pin and review dependencies before production use, and select a reviewed PDF backend for deployed workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/31504254/skills/resume-generator-clean)
+- [Artifact README](artifact/README.md)
+- [ReportLab](https://www.reportlab.com/)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command snippets and generated PDF, DOCX, or HTML resume files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output paths are user-selected; PDF generation may fall back to print-ready HTML when optional PDF backends are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

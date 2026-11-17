@@ -1,42 +1,59 @@
-## Description: <br>
-Persistent long-term memory across sessions that helps an agent remember a user's identity, preferences, rules, technical stack, and projects using Mem0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent long-term memory across sessions that remembers identity, preferences, rules, tech stack, and projects so new conversations can start with user context.
 
-## Publisher: <br>
-[kartik-mem0](https://clawhub.ai/user/kartik-mem0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kartik-mem0](https://clawhub.ai/user/kartik-mem0)
 
-## Use Case: <br>
-Developers and agent users use this skill to build, review, export, and hand off persistent user memory across sessions. It supports onboarding, memory maintenance, markdown export, and concise briefings for new agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored long-term memory can contain sensitive personal or work context. <br>
-Mitigation: Do not store secrets, credentials, regulated data, private customer information, or highly confidential employer details; use review and delete workflows regularly. <br>
-Risk: The skill cannot operate unless the Mem0 plugin and API key are configured. <br>
-Mitigation: Run the prerequisite setup and confirm MEM0_API_KEY is configured before using memory workflows. <br>
+## Use Case:
 
+External users and developers use this skill to build, review, export, and hand off persistent Mem0-backed profile context across agent sessions.
 
-## Reference(s): <br>
-- [Mem0](https://mem0.ai) <br>
-- [Mem0 API Keys](https://app.mem0.ai/dashboard/api-keys) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kartik-mem0/openclaw-mem0-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the openclaw-mem0 plugin and MEM0_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent memory can retain personal or work context longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored memories periodically and delete stale or sensitive entries.
+
+Risk: Users may accidentally provide credentials, secrets, or confidential business data during onboarding or review.
+
+Mitigation: Do not store credentials or secrets; configure API keys through the plugin setup and environment only.
+
+Risk: Memory workflows depend on the Mem0 plugin and API key being available.
+
+Mitigation: Confirm the plugin is installed and MEM0_API_KEY is configured before relying on onboarding, review, export, or handoff workflows.
+
+## Reference(s):
+
+- [Mem0](https://mem0.ai)
+- [Mem0 API Keys](https://app.mem0.ai/dashboard/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/kartik-mem0/skills/openclaw-mem0-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Mem0 plugin and MEM0_API_KEY for memory operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

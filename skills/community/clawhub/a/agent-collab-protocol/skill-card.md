@@ -1,47 +1,66 @@
-## Description: <br>
-Standardized agent collaboration protocol for multi-agent systems that defines L0/L1/L2 hierarchy, task contracts, error handling, agent templates, and a new-agent creation checklist for OpenClaw or compatible agent frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized agent collaboration protocol for multi-agent systems. Defines L0/L1/L2 hierarchy, task contracts, error handling, agent templates, and a new-agent creation checklist — ready to use with OpenClaw or any agent framework.
 
-## Publisher: <br>
-[congjianfei](https://clawhub.ai/user/congjianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[congjianfei](https://clawhub.ai/user/congjianfei)
 
-## Use Case: <br>
-Developers, framework authors, and team leads use this skill to standardize multi-agent collaboration, task handoffs, response formats, and new-agent setup workflows for OpenClaw-compatible systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual deletion instructions could remove OpenClaw workspace or agent directories if copied without review. <br>
-Mitigation: Review deletion commands and target paths before executing any operation that removes workspace or agent directories. <br>
-Risk: The scaffold script writes under ~/.openclaw using caller-provided domain and role values. <br>
-Mitigation: Validate domain names and script arguments before running the scaffold so generated paths stay under intended ~/.openclaw directories. <br>
-Risk: The example systemPromptOverride wording may conflict with runtimes that enforce a stricter system, developer, and user instruction priority model. <br>
-Mitigation: Replace the example wording before deployment when stricter instruction priority must be preserved. <br>
+## Use Case:
 
+Developers, framework authors, and team leads use this skill to standardize multi-agent collaboration, define L0/L1/L2 responsibilities, and scaffold OpenClaw-compatible agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/congjianfei/agent-collab-protocol) <br>
-- [Agent Collaboration Protocol](references/AGENT_COLLAB_PROTOCOL.md) <br>
-- [Operations Guide](references/OPERATIONS.md) <br>
-- [New Agent Checklist](references/NEW_AGENT_CHECKLIST.md) <br>
-- [Agent Manual Template](references/TEMPLATE_AGENTS.md) <br>
-- [Domain Scaffold Script](references/scaffold-domain.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown protocol documents, reusable templates, shell command examples, and OpenClaw configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an optional shell scaffold that generates domain workspaces under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: Generated agent instructions and configuration can grant broad control to user or task input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and revise generated prompts, task contracts, and OpenClaw configuration so user/task content cannot override platform policy, authorization boundaries, or agent red lines.
+
+Risk: The scaffold and operations guidance include filesystem workflows that can create or remove OpenClaw workspace and agent directories.
+
+Mitigation: Run scaffold commands only with trusted simple identifiers, review generated paths and configuration before use, and avoid removal steps without validation and backups.
+
+Risk: The security verdict is suspicious and requires review before installation or execution.
+
+Mitigation: Install only after reviewing the artifact, using a pinned installer version, and confirming that the generated configuration matches the intended deployment.
+
+## Reference(s):
+
+- [Agent Collaboration Protocol](references/AGENT_COLLAB_PROTOCOL.md)
+- [Operations Guide](references/OPERATIONS.md)
+- [New Agent Checklist](references/NEW_AGENT_CHECKLIST.md)
+- [AGENTS Template](references/TEMPLATE_AGENTS.md)
+- [Identity Template](references/TEMPLATE_IDENTITY.md)
+- [Values Template](references/TEMPLATE_SOUL.md)
+- [Service Object Template](references/TEMPLATE_USER.md)
+- [Domain Scaffold Script](references/scaffold-domain.sh)
+- [ClawHub Skill Page](https://clawhub.ai/congjianfei/skills/agent-collab-protocol)
+- [Publisher Profile](https://clawhub.ai/user/congjianfei)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown protocol files, JSON configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes templates, checklist-driven guidance, and a shell scaffold for OpenClaw agent workspace setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

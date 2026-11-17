@@ -1,44 +1,55 @@
-## Description: <br>
-Fetches latest cryptocurrency newsflashes and articles from the CoinMeta API with keyword search and pagination support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch latest cryptocurrency newsflashes and market updates using CoinMeta API with keyword search and pagination support.
 
-## Publisher: <br>
-[semithin](https://clawhub.ai/user/semithin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[semithin](https://clawhub.ai/user/semithin)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve CoinMeta cryptocurrency newsflashes and article summaries, search by keyword, paginate results, and format API responses for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and request parameters are sent to CoinMeta's external API. <br>
-Mitigation: Use only non-sensitive queries and configure COINMETA_API_KEY deliberately for CoinMeta lookups. <br>
-Risk: CoinMeta responses are third-party cryptocurrency news data and may be incomplete or outdated. <br>
-Mitigation: Treat returned news as informational and verify important market claims against authoritative sources before acting. <br>
+## Use Case:
 
+External users and agents use this skill to query CoinMeta for cryptocurrency newsflashes, market updates, article lists, and keyword-based article or news searches.
 
-## Reference(s): <br>
-- [CoinMeta-Skill on ClawHub](https://clawhub.ai/semithin/coinmeta-skill) <br>
-- [CoinMeta API](https://api.coinmeta.com) <br>
-- [Newsflash List Endpoint](https://api.coinmeta.com/open/v1/newsflash/list) <br>
-- [Newsflash Search Endpoint](https://www.coinmeta.com/open/v1/newsflash/search) <br>
-- [Article Search Endpoint](https://api.coinmeta.com/open/v1/article/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with curl examples and formatted CoinMeta API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses COINMETA_API_KEY and sends page, size, and keyword values to CoinMeta endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends COINMETA_API_KEY to CoinMeta when the documented API calls are made.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when the agent is expected to query CoinMeta, and scope the API key according to the account's operational requirements.
+
+Risk: The broad 'market updates' trigger could invoke the skill for requests that are not explicitly about CoinMeta or cryptocurrency news.
+
+Mitigation: Tighten trigger usage in the host agent or require explicit CoinMeta or crypto-news intent before calling the skill.
+
+## Reference(s):
+
+- [CoinMeta API base URL](https://api.coinmeta.com)
+- [CoinMeta skill page](https://clawhub.ai/semithin/skills/coinmeta-skill)
+- [Publisher profile](https://clawhub.ai/user/semithin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with curl examples and formatted cryptocurrency news or article summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pagination, keyword search, readable timestamp conversion, and HTML stripping for newsflash content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

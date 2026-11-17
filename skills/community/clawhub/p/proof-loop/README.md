@@ -4,9 +4,46 @@
 
 **Make AI coding agents prove when work is done.**
 
+**v0.3 focus:** use Proof Loop in a real repo today: copy the adoption kit, freeze ACs, run a fresh verifier, and ship with durable proof artifacts instead of a completion story.
+
 Proof Loop is a repo-local verification protocol for AI coding agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
 
 Use it when an agent, team, or multi-agent sprint needs a clear boundary between “looks done” and verified work. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
+
+## Start Here
+
+Run the current proof gate first:
+
+```bash
+git clone https://github.com/LeoStehlik/proof-loop.git
+cd proof-loop
+make test
+bin/proof-loop doctor
+```
+
+Start a proof-tracked task in any repo:
+
+```bash
+bin/proof-loop init maintenance-check --title "Refresh the README proof" --root /path/to/repo
+bin/proof-loop check /path/to/repo/.agent/tasks/maintenance-check
+```
+
+The first check should fail until a fresh verifier records `PASS` for every frozen acceptance criterion and clears `problems.md`. That failure is the point: Proof Loop gives agents a mechanical done gate instead of a confident paragraph.
+
+## Works With
+
+Proof Loop is harness-agnostic. Use it with any coding agent that can read files, write files, run commands, and hand verification to a fresh session.
+
+Known-fit surfaces:
+
+- Codex
+- Claude Code
+- OpenClaw
+- OpenCode
+- Hermes
+- custom multi-agent runners
+
+The repo includes copy-paste guide templates for several harnesses under `templates/`, plus role briefs under `examples/role-briefs/`.
 
 
 ## Activation and Safety
@@ -26,6 +63,26 @@ The bundled helpers create and check repo-local files under `.agent/tasks/<TASK_
 
 Proof artifacts and role-brief examples are indexed in [`examples/README.md`](examples/README.md).
 
+## Use It Today
+
+Drop Proof Loop into a task where an agent is about to edit code:
+
+```bash
+git clone https://github.com/LeoStehlik/proof-loop.git
+cd proof-loop
+make test
+bin/proof-loop init checkout-empty-state --title "Fix checkout empty state" --root /path/to/your/repo
+```
+
+Then freeze `.agent/tasks/checkout-empty-state/spec.md` before implementation starts. After the builder runs, a fresh verifier writes the final `verdict.json`, clears `problems.md`, and the mechanical gate decides whether the work can be called done:
+
+```bash
+bin/proof-loop check /path/to/your/repo/.agent/tasks/checkout-empty-state
+bin/proof-loop report /path/to/your/repo/.agent/tasks/checkout-empty-state --format md
+```
+
+For copy-paste prompts and a completed repo-local proof folder, start with [`docs/adoption-kit.md`](docs/adoption-kit.md) and [`examples/adoption-kit/`](examples/adoption-kit/).
+
 ## 20-second demo
 
 ```bash
@@ -43,9 +100,9 @@ The last command fails on purpose because the generated task has not been verifi
 A completed passing example is included:
 
 ```bash
-bin/proof-loop-check examples/example-task/.agent/tasks/ui-language-fix
+bin/proof-loop-check examples/example-task/tasks/ui-language-fix
 bin/proof-loop doctor
-bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md
+bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof --format md
 ```
 
 ## Why It Exists
@@ -198,7 +255,7 @@ The demo intentionally breaks a tiny navigation-label fixture, shows the check f
 A complete passing example lives at:
 
 ```text
-examples/example-task/.agent/tasks/ui-language-fix/
+examples/example-task/tasks/ui-language-fix/
 ```
 
 Role prompts live at:

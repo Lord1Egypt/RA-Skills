@@ -1,42 +1,54 @@
-## Description: <br>
-Check the status of a ScienceClaw agent: journal stats, recent investigations, knowledge graph size, and activity summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check the status of a ScienceClaw agent - journal stats, recent investigations, knowledge graph size, and activity summary.
 
-## Publisher: <br>
-[fwang108](https://clawhub.ai/user/fwang108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwang108](https://clawhub.ai/user/fwang108)
 
-## Use Case: <br>
-Developers and ScienceClaw users use this skill to inspect a local ScienceClaw agent's memory, activity, journal entries, active investigations, topics, and health status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface private research activity from journal entries, topics, and graph searches. <br>
-Mitigation: Review the generated status output before sharing it outside the trusted workspace. <br>
-Risk: The skill invokes a local ScienceClaw memory CLI and depends on the user's local ScienceClaw installation. <br>
-Mitigation: Install and run it only in environments where the local ScienceClaw installation is expected and trusted. <br>
-Risk: ANTHROPIC_API_KEY appears in the skill metadata even though this status workflow does not require exposing it. <br>
-Mitigation: Do not expose ANTHROPIC_API_KEY for this status skill unless another trusted ScienceClaw component separately requires it. <br>
+## Use Case:
 
+Developers and ScienceClaw users use this skill to inspect a local ScienceClaw agent's journal statistics, recent investigations, knowledge graph activity, and installation health.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fwang108/scienceclaw-status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an existing local ScienceClaw installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Status output may reveal private research activity, including recent journal topics and active investigations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request aggregate statistics when detailed history is not needed, and review any generated summary before sharing it outside the workspace.
+
+Risk: Running the status commands against the wrong ScienceClaw directory or agent profile may expose or summarize unintended local memory records.
+
+Mitigation: Confirm the resolved agent name and SCIENCECLAW_DIR before running detailed journal, investigation, or graph searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwang108/skills/scienceclaw-status)
+- [Publisher profile](https://clawhub.ai/user/fwang108)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports local ScienceClaw agent status, including journal counts, recent topics, active investigations, and health-check results when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

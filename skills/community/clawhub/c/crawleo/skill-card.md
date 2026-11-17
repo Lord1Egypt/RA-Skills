@@ -1,46 +1,67 @@
-## Description: <br>
-Crawleo Web Search lets OpenClaw agents use Crawleo's REST API for web search, Google SERP and Maps data, URL crawling, content extraction, and headful browser crawling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when OpenClaw needs Crawleo-powered web search, Google Search SERP data, Google Maps place data, URL crawling/content extraction, or headful browser crawling through the Crawleo REST API.
 
-## Publisher: <br>
-[crawleo](https://clawhub.ai/user/crawleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crawleo](https://clawhub.ai/user/crawleo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add Crawleo-backed live web search, Google Search, Google Maps place data, URL crawling, content extraction, and headful browser crawling to an agent. Live Crawleo calls require a Crawleo API key before requests are sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crawleo API keys are sensitive credentials, and requests may consume account credits or expose user-chosen queries and URLs to Crawleo. <br>
-Mitigation: Install only if the publisher is trusted, keep CRAWLEO_API_KEY out of logs and committed files, monitor usage, and avoid confidential search terms, private URLs, or access-controlled pages unless sharing them with Crawleo is acceptable. <br>
-Risk: Live web search and crawling send data to Crawleo and can reach protected or highly dynamic sites. <br>
-Mitigation: Use the offline-safe tests and examples by default; run live verification only when both CRAWLEO_API_KEY and CRAWLEO_ENABLE_LIVE_TESTS=1 are intentionally set. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route agent requests through Crawleo for web search, Google SERP data, Google Maps place lookup, direct URL crawling, and headful browser crawling when simpler crawling is insufficient.
 
-## Reference(s): <br>
-- [Crawleo ClawHub listing](https://clawhub.ai/crawleo/crawleo) <br>
-- [Crawleo API introduction](https://docs.crawleo.dev/api-reference/introduction.md) <br>
-- [Crawleo authentication](https://docs.crawleo.dev/authentication.md) <br>
-- [Crawleo MCP overview](https://docs.crawleo.dev/mcp/overview.md) <br>
-- [Crawleo OpenAPI](https://docs.crawleo.dev/openapi.json) <br>
-- [Endpoint contract inventory](contracts/crawleo-endpoints.md) <br>
-- [Machine-readable endpoint contract](contracts/crawleo-endpoints.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON endpoint contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live Crawleo calls require CRAWLEO_API_KEY; default tests and examples are designed to stay offline-safe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The Crawleo API key could be sent to a caller-chosen server if the client is configured with an unapproved base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain live requests to the approved Crawleo HTTPS origin before production use and review any configuration that changes the request base URL.
+
+Risk: Search terms, URLs, or location queries may contain sensitive or internal information.
+
+Mitigation: Send only non-sensitive inputs to Crawleo and avoid internal, authenticated, or private URLs.
+
+Risk: Headful browser crawling can consume higher Crawleo credits than standard crawling.
+
+Mitigation: Use direct crawling first and reserve headful browser calls for sites that require a headed browser or screenshot workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crawleo/skills/crawleo)
+- [Crawleo docs index](https://docs.crawleo.dev/llms.txt)
+- [Crawleo REST API introduction](https://docs.crawleo.dev/api-reference/introduction.md)
+- [Crawleo authentication](https://docs.crawleo.dev/authentication.md)
+- [Crawleo MCP overview](https://docs.crawleo.dev/mcp/overview.md)
+- [Crawleo OpenAPI snapshot](https://docs.crawleo.dev/openapi.json)
+- [Crawleo search endpoint](https://docs.crawleo.dev/api-reference/endpoint/search.md)
+- [Crawleo Google Search endpoint](https://docs.crawleo.dev/api-reference/endpoint/google-search.md)
+- [Crawleo Google Maps endpoint](https://docs.crawleo.dev/api-reference/endpoint/google-maps.md)
+- [Crawleo crawler endpoint](https://docs.crawleo.dev/api-reference/endpoint/crawler.md)
+- [Crawleo headful browser endpoint](https://docs.crawleo.dev/api-reference/endpoint/headful-browser.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript code snippets, shell commands, and API response handling notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live Crawleo calls require CRAWLEO_API_KEY; default tests and examples are intended to be offline-safe unless live execution is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

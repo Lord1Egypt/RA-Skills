@@ -1,40 +1,58 @@
-## Description: <br>
-Converts dates between the Chinese lunar calendar and the Gregorian calendar using a local Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts dates between the Chinese lunar calendar and the Gregorian calendar.
 
-## Publisher: <br>
-[jincan0412](https://clawhub.ai/user/jincan0412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jincan0412](https://clawhub.ai/user/jincan0412)
 
-## Use Case: <br>
-Developers and agents use this skill to answer Chinese lunar-to-Gregorian and Gregorian-to-lunar date conversion requests, including birthday and calendar date lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script and depends on the lunardate package. <br>
-Mitigation: Install only after confirming local script execution is acceptable and the environment provides the disclosed dependency. <br>
-Risk: Conversions are limited to the 1900-2100 date range documented by the artifact. <br>
-Mitigation: Validate requested dates before relying on results and treat out-of-range or error responses as non-results. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to answer Chinese lunar-to-Gregorian or Gregorian-to-lunar date conversion requests, including birthdays, traditional festival dates, and historical date lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jincan0412/lunar-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The conversion script returns a JSON object with a result string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The conversion script depends on the local lunardate Python library being available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm lunardate is installed in the agent runtime before relying on the skill.
+
+Risk: The skill documents support for dates from 1900 through 2100.
+
+Mitigation: Keep user requests within the documented date range or disclose when a requested date is outside the supported range.
+
+Risk: The skill documentation and command responses are primarily in Chinese.
+
+Mitigation: Translate or explain outputs when the consuming workflow or user expects another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jincan0412/skills/lunar-converter)
+- [Publisher profile](https://clawhub.ai/user/jincan0412)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script emits JSON result strings and expects numeric year, month, and day arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

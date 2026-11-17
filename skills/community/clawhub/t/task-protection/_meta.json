@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7545cdqbn524tp2szvsm4w9h82zhdp",
-  "slug": "task-protection",
+  "name": "task-protection",
   "version": "1.0.0",
-  "publishedAt": 1773572485448
+  "slug": "task-protection",
+  "description": "任务闭环管理机制 - 9 个工具函数、8 类故障分析、完整生命周期追踪",
+  "author": "虾球 🦐",
+  "license": "MIT",
+  "homepage": "https://clawhub.com/skills/task-protection",
+  "repository": "https://github.com/openclaw/workspace",
+  "tags": ["task", "tracking", "lifecycle", "failure-analysis", "automation"],
+  "category": "automation",
+  "features": [
+    "9 个核心工具函数",
+    "8 类故障自动分析",
+    "完整生命周期追踪",
+    "AI 任务自动登记",
+    "可视化监控面板",
+    "周报自动生成"
+  ],
+  "scripts": [
+    "task-utils.sh",
+    "ai-task-register.sh",
+    "weekly-task-report.sh"
+  ],
+  "docs": [
+    "QUICKSTART.md",
+    "task-trigger-criteria.md",
+    "ai-task-registration.md"
+  ]
 }

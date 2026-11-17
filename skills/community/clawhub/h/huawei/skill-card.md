@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes public Huawei AppGallery pages, listing rules, distribution guidance, audit standards, and help resources for research and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in organizing public Huawei AppGallery pages, listing rules, distribution information, review guidance, and help resources.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, operators, and researchers use this skill to summarize publicly visible Huawei AppGallery listing procedures, qualification requirements, distribution capabilities, audit rules, announcements, and help content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Huawei AppGallery publishing rules and help pages may change over time. <br>
-Mitigation: Verify important publishing guidance against Huawei's original public pages and include source links and dates in summaries. <br>
-Risk: Requests could ask for account access, private console data, credential handling, or policy-bypass guidance. <br>
-Mitigation: Limit use to publicly visible information and refuse private account operations, sensitive data handling, audit circumvention, signing bypasses, or policy-evasion advice. <br>
+## Use Case:
 
+External users, developers, and app distribution teams use this skill to summarize public Huawei AppGallery listing procedures, qualification requirements, review standards, distribution capabilities, help pages, announcements, and FAQs.
 
-## Reference(s): <br>
-- [Huawei AppGallery](https://appgallery.huawei.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/huawei) <br>
-- [Publisher Profile](https://clawhub.ai/user/mikeclaw007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries with source links and dates when rules may change] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential handling, account access, or private developer-console operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Huawei AppGallery listing rules and review guidance can change quickly, which could make a summary stale or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve original source links and access dates in outputs, and re-check current public pages before acting on the guidance.
+
+Risk: The skill could be misused to request developer-console actions, private account data, certificates, package signing help, or review-rule bypasses.
+
+Mitigation: Use it only for public-information summaries and refuse requests involving private account operations, credentials, signing, backend access, or policy evasion.
+
+## Reference(s):
+
+- [Huawei AppGallery](https://appgallery.huawei.com/)
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/huawei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and checklists with source links and dates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public information only and should preserve original page links and access dates when summarizing fast-changing listing rules.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

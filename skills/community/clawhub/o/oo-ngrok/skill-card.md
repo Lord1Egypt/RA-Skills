@@ -1,45 +1,55 @@
-## Description: <br>
-Use this skill to inspect ngrok endpoints, reserved domains, tunnel sessions, and online tunnels through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use ngrok through an OOMOL-connected account to search and read ngrok data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve ngrok account data such as active endpoints, reserved domains, online tunnel sessions, and online tunnels without calling the ngrok API directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected ngrok account and can query account data. <br>
-Mitigation: Install and use it only when the user is comfortable allowing the oo CLI to query the connected ngrok account. <br>
-Risk: Setup, billing, write, or destructive actions could have account-level effects if introduced or requested. <br>
-Mitigation: Confirm those actions and their expected effects with the user before running them. <br>
-Risk: Using the skill for general ngrok discussion may unnecessarily involve account-connected tooling. <br>
-Mitigation: Use the skill only for ngrok tasks that require account data or connector actions. <br>
+## Use Case:
 
+Developers use this skill to inspect ngrok endpoints, reserved domains, tunnel sessions, and tunnels through their connected OOMOL account. It returns account data from the listed read actions.
 
-## Reference(s): <br>
-- [ClawHub ngrok Skill](https://clawhub.ai/oomol/oo-ngrok) <br>
-- [ngrok Homepage](https://ngrok.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return read-oriented ngrok account data when connector actions are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Automatic setup executes downloaded code and can introduce changes to other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a pinned release with verified integrity, and set OO_SKILLS_SYNC_DISABLED=1 unless startup skill synchronization is wanted.
+
+Risk: The installer and hosted backend were not verified, and OOMOL receives permissions for the connected ngrok account.
+
+Mitigation: Confirm the ngrok permissions granted to OOMOL before connecting or using the skill.
+
+## Reference(s):
+
+- [ngrok API documentation](https://ngrok.com/docs/api/)
+- [ngrok](https://ngrok.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API data, JSON, Guidance]
+
+**Output Format:** [JSON responses with concise textual summaries; Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read results for endpoints, reserved domains, tunnel sessions, and tunnels.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,11 @@
 ---
-name: control-assessment
-description: Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations.
-argument-hint: Specify a control ID (e.g., AC-2, 164.312(a)(1)) and provide the document to assess
-allowed-tools: Read, Glob, Grep, WebFetch
+name: "control-assessment"
+description: "Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations."
+argument-hint: "Specify a control ID (e.g., AC-2, 164.312(a)(1)) and provide the document to assess"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.1"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Control Assessment
@@ -197,6 +200,27 @@ For each control assessed, produce:
   "reasoning": "A thorough review of all document sections found no evidence of contingency plan testing. Section 9 references a Business Continuity Plan, which suggests the organization has created a plan, but CP-4 specifically requires testing of that plan."
 }
 ```
+
+## Vendor BAA Evidence
+
+When the evidence block includes a **"Vendor BAA Commitments"** section, you are evaluating whether:
+1. The organization's documentation (manual) establishes requirements for this control, **and**
+2. The vendor's BAA contractually commits to supporting this control.
+
+Apply these directionality rules:
+
+| Manual | BAA | Status |
+|--------|-----|--------|
+| Addresses control | BAA commits to it | **covered** |
+| Addresses control | BAA silent or vague | **partial** — note "BAA does not commit to [specific requirement]" |
+| No coverage | BAA commits to it | **partial** — note "manual lacks requirement; BAA commits on vendor side" |
+| No coverage | BAA silent | **gap** |
+
+In your reasoning, distinguish which evidence source(s) provide coverage. For example:
+> "The manual requires encryption of PHI in transit (Section 4.2). The vendor's BAA commits to using industry-standard encryption for all data in transit ([Safeguards] clause). Both documentation sources address this control — covered."
+
+Or for a gap:
+> "The manual requires background checks for personnel with access to PHI. The vendor's BAA contains no equivalent commitment for their workforce. The organization cannot verify vendor compliance with this control through the BAA — partial."
 
 ## Important Guidelines
 

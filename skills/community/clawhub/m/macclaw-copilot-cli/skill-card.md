@@ -1,36 +1,48 @@
-## Description: <br>
-GitHub Copilot CLI - AI code analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers use GitHub Copilot CLI for AI-assisted code analysis.
 
-## Publisher: <br>
-[biuyx](https://clawhub.ai/user/biuyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biuyx](https://clawhub.ai/user/biuyx)
 
-## Use Case: <br>
-Developers use this skill to install and invoke GitHub Copilot CLI for code analysis questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The usage example depends on a GitHub Copilot token, and poor token handling could expose the secret through plaintext files, shell history, or process arguments. <br>
-Mitigation: Treat the token as a secret; prefer an official login flow, OS keychain, or environment variable, and avoid commands that expose tokens in shell history or process arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to install and run GitHub Copilot CLI prompts for command-line code analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The usage example reads a local GitHub Copilot token into an environment variable, which can expose credentials through shell history, logs, or overly broad file permissions.
+
+Mitigation: Use the skill only when the token file has restrictive permissions, avoid logging command output or environment variables, and prefer the official CLI authentication flow when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biuyx/skills/macclaw-copilot-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

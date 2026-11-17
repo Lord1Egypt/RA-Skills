@@ -33,7 +33,7 @@ const log = {
   step: (msg) => console.log(`\n${colors.cyan}━━━ ${msg} ━━━${colors.reset}\n`)
 };
 
-const API_KEY = 'sk-sp-319b5ed947404131b3b12e5211592b46';
+const API_KEY = 'REDACTED-SECRET';
 
 // ========== 日志文件 ==========
 let logFile = null;

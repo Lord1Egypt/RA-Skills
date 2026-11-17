@@ -1,47 +1,58 @@
-## Description: <br>
-Analyze home energy usage and propose safe, read-only automation plans for savings. Use when a user wants Home Assistant energy insights, optimization ideas, or draft automation YAML without directly controlling devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze home energy usage and propose safe, read-only automation plans for savings.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Home Assistant users, smart home operators, and developers use this skill to review energy usage, identify savings opportunities, and draft read-only automation plans for manual review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Home Assistant tokens or home-identifying device details could be exposed during analysis. <br>
-Mitigation: Use exported data or least-privilege read-only tokens, avoid admin credentials, keep tokens out of plain text files, and avoid sharing home addresses or uniquely identifying device details. <br>
-Risk: Generated automation YAML could create comfort, safety, or accessibility issues if enabled without review. <br>
-Mitigation: Manually review generated YAML before enabling it, exclude medical devices, security systems, and critical appliances, and preserve user comfort and safety constraints. <br>
-Risk: Webhook or sensor inputs could contain invalid device identifiers, unexpected ranges, or noisy updates. <br>
-Mitigation: Validate webhook sources, device IDs, and data ranges before using them, and rate limit processing to avoid spikes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Overview](references/overview.md) <br>
-- [Auth](references/auth.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Safety](references/safety.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [UX](references/ux.md) <br>
-- [Webhooks](references/webhooks.md) <br>
+## Use Case:
 
+External users and home automation developers use this skill to analyze Home Assistant energy and device data, identify savings opportunities, and prepare draft automation YAML for manual review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Home Assistant YAML snippets, explanations, assumptions, and rollout checklist items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft outputs only; the skill does not control devices or apply configuration changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated automation YAML could be enabled without adequate review and change device schedules in ways that affect comfort, safety, or accessibility.
+
+Mitigation: Manually review every draft automation, exclude medical devices, security systems, and critical appliances, and roll out changes through Home Assistant only after user approval.
+
+Risk: Home Assistant tokens, home addresses, or device identifiers could expose sensitive household information if shared unnecessarily.
+
+Mitigation: Use read-only Home Assistant tokens or exported data, keep tokens out of plain text files, and avoid including home addresses or unnecessary device identifiers in prompts or outputs.
+
+## Reference(s):
+
+- [Auth](references/auth.md)
+- [Endpoints](references/endpoints.md)
+- [Overview](references/overview.md)
+- [Safety](references/safety.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [UX](references/ux.md)
+- [Webhooks](references/webhooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML code blocks and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only recommendations; generated automations are drafts for manual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

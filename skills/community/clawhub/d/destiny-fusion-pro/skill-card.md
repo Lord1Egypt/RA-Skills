@@ -1,46 +1,59 @@
-## Description: <br>
-Destiny Fusion Pro generates offline Ziwei Doushu and Bazi consultation reports from birth details, combining unified calculation rules, dual-system cross-checking, optional chart images, and markdown or JSON deliverables for yearly outlooks, decade luck cycles, relationships, career, wealth, and risk themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Premium destiny consultation skill combining Ziwei Doushu and Bazi in one offline workflow.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-External users and developers use this skill to generate offline Ziwei Doushu and Bazi consultation reports from birth date, birth time, gender, year, timezone, and longitude inputs. The skill supports human-readable destiny analysis and structured automation output for yearly outlooks, decade luck cycles, relationships, career, wealth, and risk themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and optional Node-based calculation code on birth details provided by the user. <br>
-Mitigation: Install dependencies from trusted sources, review the local scripts before running them, and provide only birth details you are comfortable processing locally. <br>
-Risk: Generated chart files may be written to disk and can include sensitive birth inputs in chart metadata or visible labels. <br>
-Mitigation: Confirm the chart output path, avoid shared directories for private reports, and delete generated files when they are no longer needed. <br>
-Risk: Timezone, longitude, and birth-time boundary choices can materially change chart calculations and downstream interpretation. <br>
-Mitigation: Confirm timezone and longitude settings before relying on a report, and use dual-plate comparison when birth time is near a boundary. <br>
-Risk: Astrology-style interpretation can be mistaken for professional advice. <br>
-Mitigation: Use the output as analysis and reflection only; do not treat it as medical, legal, or investment advice. <br>
+## Use Case:
 
+External users and automation builders use this skill to generate consultation-style Ziwei Doushu and Bazi reports from birth date, birth time, gender, and forecast-year inputs. It supports human-readable destiny analysis, structured JSON output, and optional chart image generation.
 
-## Reference(s): <br>
-- [Destiny Fusion Pro ClawHub page](https://clawhub.ai/spyfree/destiny-fusion-pro) <br>
-- [Ziwei Methodology](references/ziwei-methodology.md) <br>
-- [Market Positioning](references/positioning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown or JSON consultation report, with optional SVG or JPG chart file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-first offline workflow; optional chart export should not block report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: Local dependency execution may inherit risk from Python or JavaScript astrology and image-rendering packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin, review, and scan dependencies before installing iztro-py, cairosvg, pillow, lunar-python, or iztro.
+
+Risk: Optional chart generation can write SVG or JPG files to local disk.
+
+Mitigation: Run the skill in a controlled working directory and review chart output paths before sharing or publishing generated files.
+
+Risk: Destiny or astrology-style analysis can be mistaken for professional advice.
+
+Mitigation: Present results as interpretive guidance only and preserve the skill's stated boundary that it is not medical, legal, or investment advice.
+
+## Reference(s):
+
+- [Ziwei Doushu Methodology](references/ziwei-methodology.md)
+- [Market Positioning](references/positioning.md)
+- [ClawHub Skill Page](https://clawhub.ai/spyfree/skills/destiny-fusion-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON consultation report, with optional SVG or JPG chart file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline workflow; chart rendering is optional and should not block text output.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

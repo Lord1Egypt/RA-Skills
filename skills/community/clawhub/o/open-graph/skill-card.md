@@ -1,39 +1,56 @@
-## Description: <br>
-Guides implementation and optimization of Open Graph metadata for social sharing previews across platforms such as Facebook, LinkedIn, Slack, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds or optimizes Open Graph metadata for social sharing previews across platforms such as Facebook, LinkedIn, Slack, and Discord.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO practitioners, and content teams use this skill to add or review Open Graph tags so shared URLs render accurate social preview cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Open Graph titles, descriptions, image URLs, or canonical URLs may be inaccurate or inappropriate for the target page. <br>
-Mitigation: Review all generated metadata for page accuracy, brand fit, image accessibility, and canonical URL correctness before publishing. <br>
+## Use Case:
 
+Developers, marketers, and site maintainers use this skill to create or review Open Graph tags so shared links render clear titles, descriptions, canonical URLs, and preview images.
 
-## Reference(s): <br>
-- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) <br>
-- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with HTML and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recommended Open Graph tag values, image requirements, common mistakes, and testing links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: artifact frontmatter and server evidence) <br>
+Risk: Generated Open Graph titles, descriptions, URLs, or image references may misrepresent the page or affect public link previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated metadata values against the live page content and brand requirements before publishing.
+
+Risk: Preview images may be missing, inaccessible, too small, or referenced with non-absolute URLs.
+
+Mitigation: Use absolute HTTPS image URLs and validate previews with the Facebook Sharing Debugger or LinkedIn Post Inspector.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/open-graph)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with HTML and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended Open Graph tag values, implementation snippets, image requirements, and validation links.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

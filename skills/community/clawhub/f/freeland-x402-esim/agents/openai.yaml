@@ -1,0 +1,4 @@
+interface:
+  display_name: "Freeland x402 eSIM"
+  short_description: "Discover and buy travel eSIMs with Base USDC"
+  default_prompt: "Use $freeland-x402-esim to find and safely buy a Freeland travel eSIM with x402."

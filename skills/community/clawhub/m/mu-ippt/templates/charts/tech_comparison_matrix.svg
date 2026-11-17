@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    对比矩阵/功能矩阵模板
+    列=系统/方案，行=属性/特性，格子里 ✓ ✗ 对比
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    LLM 生成时参考此结构，自由增减列和行。
+    表格设计：列头用强调色，行头用浅底色，✓ 绿色 ✗ 红色。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="38" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 副标题 -->
+  <text x="450" y="58" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" fill="{{SUBTITLE_COLOR}}">{{SUBTITLE}}</text>
+
+  <!-- ====== 表格结构 ====== -->
+  <!-- 4 列（1 行头 + 3 方案），6 行（1 列头 + 5 属性） -->
+
+  <!-- 外框 -->
+  <rect x="80" y="75" width="740" height="330" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{BORDER_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- ====== 列头行 ====== -->
+  <rect x="80" y="75" width="740" height="45" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15"/>
+  <!-- 修复圆角 -->
+  <rect x="80" y="100" width="740" height="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15"/>
+
+  <!-- 行头列（属性名列） -->
+  <text x="190" y="103" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TITLE_COLOR}}">{{COL_HEADER}}</text>
+
+  <!-- 方案列头 -->
+  <text x="390" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{ACCENT_COLOR}}">{{OPTION_1}}</text>
+  <text x="390" y="112" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{OPTION_1_DESC}}</text>
+
+  <text x="560" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{ACCENT2_COLOR}}">{{OPTION_2}}</text>
+  <text x="560" y="112" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{OPTION_2_DESC}}</text>
+
+  <text x="730" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{OPTION_3}}</text>
+  <text x="730" y="112" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{OPTION_3_DESC}}</text>
+
+  <!-- 列分隔线 -->
+  <line x1="300" y1="75" x2="300" y2="405" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <line x1="475" y1="75" x2="475" y2="405" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <line x1="645" y1="75" x2="645" y2="405" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+
+  <!-- ====== 行 1 ====== -->
+  <rect x="80" y="120" width="220" height="46" fill="{{NODE_FILL}}"/>
+  <text x="190" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{ROW_1}}</text>
+  <!-- 行分隔 -->
+  <line x1="80" y1="166" x2="820" y2="166" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+
+  <!-- Row 1 值 -->
+  <text x="390" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT_COLOR}}">{{R1_C1}}</text>
+  <text x="560" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT2_COLOR}}">{{R1_C2}}</text>
+  <text x="730" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT3_COLOR}}">{{R1_C3}}</text>
+
+  <!-- ====== 行 2（浅色交替底） ====== -->
+  <rect x="80" y="166" width="740" height="46"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04"/>
+  <text x="190" y="194" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{ROW_2}}</text>
+  <line x1="80" y1="212" x2="820" y2="212" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+
+  <text x="390" y="194" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT_COLOR}}">{{R2_C1}}</text>
+  <text x="560" y="194" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT2_COLOR}}">{{R2_C2}}</text>
+  <text x="730" y="194" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT3_COLOR}}">{{R2_C3}}</text>
+
+  <!-- ====== 行 3 ====== -->
+  <text x="190" y="240" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{ROW_3}}</text>
+  <line x1="80" y1="258" x2="820" y2="258" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+
+  <text x="390" y="240" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT_COLOR}}">{{R3_C1}}</text>
+  <text x="560" y="240" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT2_COLOR}}">{{R3_C2}}</text>
+  <text x="730" y="240" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT3_COLOR}}">{{R3_C3}}</text>
+
+  <!-- ====== 行 4（浅色交替底） ====== -->
+  <rect x="80" y="258" width="740" height="46"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04"/>
+  <text x="190" y="286" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{ROW_4}}</text>
+  <line x1="80" y1="304" x2="820" y2="304" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+
+  <text x="390" y="286" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT_COLOR}}">{{R4_C1}}</text>
+  <text x="560" y="286" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT2_COLOR}}">{{R4_C2}}</text>
+  <text x="730" y="286" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT3_COLOR}}">{{R4_C3}}</text>
+
+  <!-- ====== 行 5 ====== -->
+  <text x="190" y="332" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{ROW_5}}</text>
+  <line x1="80" y1="350" x2="820" y2="350" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+
+  <text x="390" y="332" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT_COLOR}}">{{R5_C1}}</text>
+  <text x="560" y="332" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT2_COLOR}}">{{R5_C2}}</text>
+  <text x="730" y="332" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" fill="{{ACCENT3_COLOR}}">{{R5_C3}}</text>
+
+  <!-- ====== 行 6（底部总评） ====== -->
+  <rect x="80" y="350" width="740" height="55" rx="0"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.08"/>
+  <!-- 修复底部圆角 -->
+  <rect x="80" y="350" width="740" height="35" fill="{{ACCENT_COLOR}}" fill-opacity="0.08"/>
+
+  <text x="190" y="382" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TITLE_COLOR}}">{{ROW_SUMMARY}}</text>
+
+  <text x="390" y="382" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{ACCENT_COLOR}}">{{SUMMARY_C1}}</text>
+  <text x="560" y="382" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{ACCENT2_COLOR}}">{{SUMMARY_C2}}</text>
+  <text x="730" y="382" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{SUMMARY_C3}}</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="80" y="430" width="300" height="50" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="95" y="450" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+
+  <text x="100" y="470" font-family="{{FONT_FAMILY}}" font-size="14" fill="{{ACCENT_COLOR}}">✓</text>
+  <text x="118" y="470" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">支持</text>
+
+  <text x="158" y="470" font-family="{{FONT_FAMILY}}" font-size="14" fill="{{ACCENT3_COLOR}}">✗</text>
+  <text x="176" y="470" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">不支持</text>
+
+  <text x="220" y="470" font-family="{{FONT_FAMILY}}" font-size="14" fill="{{ACCENT2_COLOR}}">△</text>
+  <text x="238" y="470" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">部分支持</text>
+
+  <text x="305" y="470" font-family="{{FONT_FAMILY}}" font-size="14" fill="{{ACCENT_COLOR}}">★</text>
+  <text x="323" y="470" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">推荐</text>
+
+  <!-- 备注 -->
+  <text x="450" y="470" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{FOOTNOTE}}</text>
+</svg>

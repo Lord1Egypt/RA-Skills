@@ -1,0 +1,25 @@
+# Sales Meeting Notes - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+meeting_date: ""
+meeting_time_et: ""
+channel: "video call"
+attendees:
+  - name: ""
+    role: ""
+    company: ""
+recording_consent: ""
+decisions:
+  - ""
+commitments:
+  - owner: ""
+    action: ""
+    due: ""
+open_items:
+  - owner: ""
+    question: ""
+risks:
+  - ""
+next_step:
+  action: ""
+  owner: ""
+  due: ""

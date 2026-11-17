@@ -1,42 +1,58 @@
-## Description: <br>
-Provides CRUD and search operations for Alexandrie, a self-hosted Markdown note-taking app, through its REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRUD operations for Alexandrie, a self-hosted Markdown note-taking app, including creating, reading, updating, deleting, and searching notes via REST API.
 
-## Publisher: <br>
-[Eth3rnit3](https://clawhub.ai/user/Eth3rnit3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eth3rnit3](https://clawhub.ai/user/eth3rnit3)
 
-## Use Case: <br>
-Developers and agent users can use this skill to authenticate to an Alexandrie notes account and list, read, search, create, update, or delete Markdown notes through the service API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, create, update, and delete Alexandrie notes for the configured account. <br>
-Mitigation: Install only for an account you control, and require explicit confirmation before update or delete actions. <br>
-Risk: The skill uses a local password configuration and temporary authenticated session cookie. <br>
-Mitigation: Protect the ALEXANDRIE_PASSWORD file, log out after use, and remove the temporary cookie when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Eth3rnit3/alexandrie) <br>
-- [Publisher profile](https://clawhub.ai/user/Eth3rnit3) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact Alexandrie shell client](artifact/alexandrie.sh) <br>
+## Use Case:
 
+Developers and agents use this skill to manage notes in a specific Alexandrie account through scripted REST API operations. It supports note listing, retrieval, search, creation, update, deletion, login, and logout workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands; command responses are JSON formatted by jq.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Alexandrie password configuration and stores an authenticated cookie in /tmp during use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles live credentials and currently loads a password from a local shell environment file.
+
+Mitigation: Install only in a trusted Alexandrie account environment, load the password as a single secret value rather than sourcing executable shell content, and restrict credential file access.
+
+Risk: Session cookies are stored in a shared temporary path.
+
+Mitigation: Store cookies in a private user-owned state directory with restrictive permissions and remove them on logout.
+
+Risk: The delete command can remove remote notes immediately.
+
+Mitigation: Require explicit confirmation or a clearly intentional force option before deletion, and keep recoverable backups for important notes.
+
+## Reference(s):
+
+- [Alexandrie ClawHub Skill Page](https://clawhub.ai/eth3rnit3/skills/alexandrie)
+- [Alexandrie App](https://notes.eth3rnit3.org)
+- [Alexandrie API Base URL](https://api-notes.eth3rnit3.org/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Text]
+
+**Output Format:** [Shell command guidance with JSON API responses and Markdown note content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Alexandrie password, authenticated session cookies, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Generates, previews, validates, and optionally executes Volcengine TOS tosutil commands for bucket and object operations, batch transfers, metadata updates, connectivity checks, and common error diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, previews, validates, and diagnoses Volcengine TOS tosutil commands for bucket, object, transfer, metadata, and connectivity workflows.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and operators use this skill to turn TOS storage tasks into reviewed tosutil command previews, structured execution results, and diagnostic next steps. It is intended for workflows such as configuration checks, listing buckets or objects, uploads and downloads, deletion planning, metadata changes, capacity checks, and troubleshooting permission or network failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Volcengine Tosutil on ClawHub](https://clawhub.ai/volc-sdk-team/skills/volcengine-tosutil) <br>
-- [tosutil documentation survey](references/doc-survey.md) <br>
+Developers and storage operators use this skill to plan and preview tosutil configuration, bucket/object operations, uploads, downloads, deletes, metadata updates, capacity checks, and troubleshooting steps for Volcengine TOS.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [JSON results with redacted command previews, execution evidence, and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview-by-default; real execution requires --run, and destructive operations require explicit confirmation such as --yes.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Cloud credentials can be exposed when AK, SK, or token values are passed as command-line arguments.
+
+Mitigation: Prefer restricted configuration profiles or temporary credentials, use a verified version-pinned tosutil binary, and review redacted command previews before execution.
+
+Risk: Destructive delete workflows can bypass interactive confirmation when force or yes-style options are used.
+
+Mitigation: List the exact target first, keep default preview and confirmation behavior, and use force or yes options only after backups, retention, or recovery controls are in place.
+
+## Reference(s):
+
+- [tosutil documentation survey](artifact/references/doc-survey.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and structured JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command previews redact AK, SK, and token values; execution results include status, summaries, diagnostics, and suggested next actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

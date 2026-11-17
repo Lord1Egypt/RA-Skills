@@ -1,40 +1,54 @@
-## Description: <br>
-YES.md 日本語版 guides agents through evidence gathering, safety gates, verification, and escalation when working on code, configuration, database, deployment, API, and data tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YES.md 日本語版 guides coding agents through evidence-based debugging, safer changes, verification after edits, and structured handoff when a task cannot be completed.
 
-## Publisher: <br>
-[sstklen](https://clawhub.ai/user/sstklen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sstklen](https://clawhub.ai/user/sstklen)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to keep implementation, debugging, configuration, deployment, API integration, and data work grounded in evidence, backups, impact checks, and post-change verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages proactive file checks, diagnostics, backups, and verification steps that may lead an agent toward shell commands or operational changes. <br>
-Mitigation: Keep approval gates enabled for shell commands, deployments, database changes, and any action that could affect real systems. <br>
-Risk: Strict workflow guidance may add operational overhead or block premature conclusions when evidence is incomplete. <br>
-Mitigation: Use the skill for tasks involving code, configuration, databases, deployment, API integration, and data changes where evidence gathering and verification are appropriate. <br>
+## Use Case:
 
+Developers and engineering agents use this skill as a Japanese governance checklist for implementation, debugging, configuration, deployment, API integration, and data-processing tasks that require evidence, scoped changes, and post-change verification.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sstklen/yes-md-ja) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; single-file Japanese engineering workflow skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can push agents to search error messages online, which may expose secrets or sensitive system details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require agents to redact credentials, tokens, customer data, hostnames, and other sensitive fragments before any external search.
+
+Risk: The skill requires backups before certain edits, which can create unmanaged copies of secret-bearing files.
+
+Mitigation: Constrain backups to approved locations with clear exclusions, permissions, retention, and cleanup rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sstklen/skills/yes-md-ja)
+- [Publisher profile](https://clawhub.ai/user/sstklen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Encourages agents to provide evidence, verification results, and structured handoff notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

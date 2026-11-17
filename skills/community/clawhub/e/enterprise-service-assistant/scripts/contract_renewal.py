@@ -12,10 +12,10 @@ import os
 import sys
 
 # 添加scripts目录到路径
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "scripts"))
-from data_manager import ContractRenewalDataManager
-from reminder_generator import ContractRenewalReminderGenerator
-from wecom_sender import WecomSender
+sys.path.insert(0, os.path.dirname(__file__))
+from contract_renewal__data_manager import ContractRenewalDataManager
+from contract_renewal__reminder_generator import ContractRenewalReminderGenerator
+from contract_renewal__wecom_sender import WecomSender
 
 class ContractRenewalManager:
     """合同续租管理主类"""

@@ -1,41 +1,53 @@
-## Description: <br>
-Deploy and manage a Guardian watchdog process for OpenClaw Gateway with automated health monitoring, self-repair via `doctor --fix`, git-based workspace rollback, daily snapshots, and optional Discord alerting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage a Guardian watchdog process for OpenClaw Gateway with automated health monitoring, self-repair via `doctor --fix`, git-based workspace rollback, daily snapshots, and optional Discord alerting.
 
-## Publisher: <br>
-[LeoYeAI](https://clawhub.ai/user/LeoYeAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leoyeai](https://clawhub.ai/user/leoyeai)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and manage a watchdog for OpenClaw Gateway instances. It helps monitor uptime, run repair commands, create daily workspace snapshots, and optionally notify a Discord webhook when failures occur. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An unattended watchdog can modify the OpenClaw workspace and may hard-reset local changes. <br>
-Mitigation: Commit or back up important work before enabling rollback, verify the guardian script and reset target, and disable or gate `git reset --hard` unless it is explicitly needed. <br>
-Risk: Discord webhook alerts may send operational details outside the local environment. <br>
-Mitigation: Use Discord alerts only when that data sharing is acceptable, and configure the webhook through controlled environment settings. <br>
-Risk: Automated repair commands can run repeatedly without direct operator review. <br>
-Mitigation: Review the watchdog configuration before deployment and monitor logs during initial operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Openclaw Guardian on ClawHub](https://clawhub.ai/LeoYeAI/openclaw-guardian-ultra) <br>
+## Use Case:
 
+Developers and operators use this skill to set up a watchdog for OpenClaw Gateway instances that need unattended health checks, repair attempts, workspace snapshots, and rollback behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes process verification commands, environment variable setup, and operational notes for OpenClaw Guardian.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent unattended repair can reset Git state and restart processes without enough scoping or warning.
+
+Mitigation: Review the Guardian script before installation, commit or back up important workspace changes, and enable rollback only where unattended reset behavior is acceptable.
+
+Risk: Discord webhook alerts may share operational information with a third-party service.
+
+Mitigation: Use Discord alerts only with an approved webhook and avoid placing sensitive data in alert content.
+
+## Reference(s):
+
+- [Openclaw Guardian on ClawHub](https://clawhub.ai/leoyeai/skills/openclaw-guardian-ultra)
+- [Publisher profile](https://clawhub.ai/user/leoyeai)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Supply Chain Optimization (Lite) diagnoses Amazon seller supply chain bottlenecks and provides cost reduction strategies through guided conversation and local calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supply Chain Optimization (Lite) - Diagnose bottlenecks and provide cost reduction strategies through conversation
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Amazon sellers and ecommerce operators use this skill to collect supply chain inputs, calculate margin and inventory metrics, identify top bottlenecks, and receive practical cost reduction recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supply chain inputs, margin figures, and generated reports may contain sensitive business information. <br>
-Mitigation: Keep inputs and generated reports in trusted local storage, choose text output when files are not needed, and share Markdown or HTML reports only through approved business channels. <br>
-Risk: Opening the optional HTML report may contact jsdelivr to load Chart.js. <br>
-Mitigation: Use text or Markdown output when third-party network contact is not acceptable, or review and replace the CDN dependency before opening the HTML report. <br>
+## Use Case:
 
+External Amazon sellers use this skill to diagnose supply chain bottlenecks, review margin and inventory metrics, and receive cost reduction recommendations through a guided conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/supply-chain-optimization-amazon) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Shell commands, Guidance] <br>
-**Output Format:** [Conversation text, command output, Markdown report, or HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local report files may be generated for sharing or presentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter: 1.0.0) <br>
+Risk: Generated HTML reports load unpinned third-party Chart.js from a CDN, which can access the report's business data when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer text or Markdown reports for sensitive data, or bundle and pin Chart.js with integrity checks before using the HTML report workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/supply-chain-optimization-amazon)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML, shell commands, guidance]
+
+**Output Format:** [Markdown-style diagnostic reports with tables, optional generated Markdown or HTML report files, and inline bash commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable benchmark thresholds for margin, shipping cost, inventory days, cash cycle, and net margin.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

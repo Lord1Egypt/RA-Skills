@@ -1,41 +1,57 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-kol-marketing-info/v1 for Douyin Creator Marketplace (Xingtu) Marketing Metrics through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-kol-marketing-info/v1 for Douyin Creator Marketplace (Xingtu) Marketing Metrics through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch Douyin Creator Marketplace (Xingtu) creator marketing metrics, including rate card and commercial service data, for creator evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is placed in the request URL and could be exposed by command-line, request URL, or logging systems. <br>
-Mitigation: Use a limited-scope or short-lived token when available, avoid environments that log full command lines or URLs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External developers and marketing operations users use this skill to retrieve Douyin Creator Marketplace (Xingtu) marketing metrics for a specific creator KOL ID. It supports creator evaluation, campaign planning, and marketplace research through the JustOneAPI endpoint.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-kol-marketing-info) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_marketing_info&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_marketing_info&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should state the operation ID, endpoint path, and kolId lookup scope before any raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be exposed through process arguments or full request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, scoped token when possible, avoid environments that log command lines or full URLs, and rotate the token if exposure is suspected.
+
+Risk: The endpoint can return creator or commercial service data that may be sensitive.
+
+Mitigation: Call the endpoint only for authorized creator research or campaign planning, and avoid sharing raw response payloads in chat, screenshots, or logs unless necessary.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-kol-marketing-info)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_marketing_info&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_marketing_info&utm_content=project_link)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the getKolMarketingInfoV1 operation with required kolId and optional platformChannel and acceptCache query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

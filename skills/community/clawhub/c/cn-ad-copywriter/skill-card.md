@@ -1,41 +1,50 @@
-## Description: <br>
-Chinese ad copywriter with API-powered compliance checking for Chinese marketing copy across platforms such as Xiaohongshu, Douyin, WeChat, Baidu, Taobao, and JD. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese platform-specific advertising copy and checks drafts for advertising-law restricted terms through an API-backed compliance workflow.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Marketing teams, copywriters, and agents use this skill to draft Chinese ad copy and check it for banned terms, risky claims, and platform-specific advertising compliance issues before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Chinese ad copy drafts, titles, keywords, and platform details to an external Tencent-hosted API. <br>
-Mitigation: Avoid using it with confidential campaigns, unreleased product launches, personal data, or regulated business claims unless privacy, consent, and retention controls are acceptable. <br>
-Risk: Compliance checks and replacement suggestions may miss legal or platform-specific requirements. <br>
-Mitigation: Review generated copy and compliance findings with qualified human judgment before publishing advertising content. <br>
+## Use Case:
 
+Marketing teams, copywriters, and agent users use this skill to draft Chinese ads for platforms such as Xiaohongshu, Douyin, WeChat, Baidu, and e-commerce channels, then review flagged wording and safer replacements before publication.
 
-## Reference(s): <br>
-- [cn-ad-copywriter on ClawHub](https://clawhub.ai/lm203688/cn-ad-copywriter) <br>
-- [External compliance API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with compliance findings, rewritten copy, scores, and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call an external Tencent-hosted API for compliance checks and platform templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: Advertising drafts, titles, keywords, and platform information may be sent to a fixed external Tencent Cloud Function endpoint without clear consent or privacy details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content that can be shared with that endpoint, and avoid confidential launches, client material, regulated data, or customer information unless the publisher documents data handling and provides consent or local-only controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/cn-ad-copywriter)
+- [Documented compliance API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Chinese copy variations, compliance reports, replacement suggestions, and optional shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a fixed external API endpoint; the artifact describes a free tier of 20 checks per month.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence, released 2026-05-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

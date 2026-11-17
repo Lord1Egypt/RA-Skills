@@ -1,43 +1,54 @@
-## Description: <br>
-Generates legal document templates and compliance checklists for startups, including privacy policies, terms of service, cookie consent, refund policies, acceptable use policies, and data processing agreements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates startup-oriented legal document templates and compliance checklists for privacy policies, terms, cookie consent, GDPR, LGPD, CCPA, and related digital product requirements while stating outputs are templates, not legal advice.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-External users, founders, and product teams use this skill to draft plain-language legal templates and compliance checklists for digital products. Outputs are starting points for lawyer review, not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal templates may be mistaken for legal advice or production-ready legal documents. <br>
-Mitigation: Treat outputs as starting points and require review by a qualified lawyer before use. <br>
-Risk: Jurisdiction-specific compliance needs may not be fully covered by common-pattern templates. <br>
-Mitigation: Use the skill's jurisdiction notes as drafting guidance and obtain local legal review for GDPR, LGPD, CCPA, regulated industries, disputes, employment, tax, litigation, or signed agreements. <br>
-Risk: The skill uses broad activation wording for many legal and compliance topics. <br>
-Mitigation: Invoke it only for drafting, checklist, and template assistance, and avoid relying on it for final legal decisions. <br>
+## Use Case:
 
+Startup founders, operators, and product teams use this skill to draft common legal document templates and compliance checklists for digital products. It helps prepare privacy, terms, cookie, refund, acceptable use, and data processing materials for review by qualified counsel.
 
-## Reference(s): <br>
-- [Legal Templates Reference](references/legal-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/emersonbraun/eb-legal-compliance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with legal document templates, checklists, customization notes, and occasional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes disclaimers that generated documents are templates and should be reviewed by a qualified lawyer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated legal templates may be incomplete or unsuitable for a specific jurisdiction, product, or business model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as drafting aids only, tailor them to the product and jurisdiction, and have a qualified lawyer review before production use.
+
+Risk: Broad trigger terms may activate the skill for general compliance questions where template drafting is not the right response.
+
+Mitigation: Confirm the user's jurisdiction, document type, and intended use before producing legal or compliance materials.
+
+## Reference(s):
+
+- [Legal Templates Reference](references/legal-templates.md)
+- [ClawHub skill page](https://clawhub.ai/emersonbraun/skills/eb-legal-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown templates, checklists, customization notes, and occasional TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include a legal-review disclaimer and jurisdiction-specific customization notes when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

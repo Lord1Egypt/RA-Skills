@@ -1,6 +1,6 @@
 ---
 name: kesha-voice-kit
-description: Local multilingual voice toolkit — speech-to-text (STT), text-to-speech (TTS), and language detection. Runs entirely offline on Apple Silicon, Linux, and Windows. No API keys, no cloud. NVIDIA Parakeet TDT for STT across 25 European languages, Kokoro-82M + Vosk-TTS for TTS, plus macOS AVSpeechSynthesizer for ~180 system voices with zero install.
+description: Local multilingual voice toolkit — speech-to-text (STT), text-to-speech (TTS), speaker diarization, and language detection, over a CLI or an MCP server. Runs entirely offline on Apple Silicon, Linux, and Windows. No API keys, no cloud. NVIDIA Parakeet TDT for STT across 25 European languages, Kokoro-82M + Vosk-TTS for TTS in 9 languages, plus macOS AVSpeechSynthesizer for ~180 system voices with zero install.
 emoji: 🎙️
 
 requires:
@@ -17,7 +17,7 @@ install:
 
 Local voice toolkit: transcribe voice messages to text, synthesize speech, detect language of audio or text. Fully offline after `kesha install`. No API keys, no per-minute billing.
 
-**Trigger keywords for when to use this skill:** voice message, voice memo, voice note, .ogg, .opus, .wav, .mp3, audio file, transcribe, transcription, speech-to-text, STT, text-to-speech, TTS, synthesize speech, say, telegram voice note, whatsapp voice note, ogg-opus, opus, multilingual voice, multilingual ASR, language detection, offline voice, privacy, Apple Silicon, CoreML.
+**Trigger keywords for when to use this skill:** voice message, voice memo, voice note, .ogg, .opus, .wav, .mp3, audio file, transcribe, transcription, speech-to-text, STT, text-to-speech, TTS, synthesize speech, say, telegram voice note, whatsapp voice note, ogg-opus, opus, multilingual voice, multilingual ASR, language detection, speaker diarization, who said what, meeting transcript, MCP server, offline voice, privacy, Apple Silicon, CoreML.
 
 ## When to use
 
@@ -25,6 +25,7 @@ Local voice toolkit: transcribe voice messages to text, synthesize speech, detec
 - **Need to send a voice note (Telegram, WhatsApp, Signal, Discord)**: synthesize directly into messenger-native OGG/Opus with `kesha say --format ogg-opus --out reply.ogg "<text>"`. Default is mono 24 kHz @ 32 kbps - what Telegram `sendVoice` expects. No WAV redirect and no `ffmpeg` round-trip.
 - **Need local file playback/debug output**: WAV is still available with `kesha say --out reply.wav "<text>"`, but do not use WAV for Telegram voice replies. Auto-routes by detected language (Kokoro-82M for English, Vosk-TTS for Russian). On darwin-arm64, English Kokoro uses FluidAudio CoreML instead of ONNX. For other languages and ~180 more voices use `--voice macos-*` on macOS (zero model download).
 - **Need to detect what language a file is in** before choosing a pipeline: `kesha --json audio.ogg` returns both audio-based and text-based language detection with confidence scores.
+- **Need to capture your own voice** for transcription or as a voice-note source: `kesha record --out clip.wav` records up to 120s (override with `--max-seconds`) of mono 16 kHz WAV from the default microphone. Pipe straight into `kesha --json clip.wav` to close the loop.
 
 ## OpenClaw plugin setup
 
@@ -106,6 +107,16 @@ When invoking Kesha manually from an OpenClaw flow, write OGG/Opus into an OpenC
 
 Do not configure OpenClaw Telegram TTS as `kesha say "<text>" > reply.wav`; that creates a WAV file and will not render as a native Telegram voice note.
 
+## MCP server
+
+`kesha mcp` serves the same capabilities over Model Context Protocol (stdio), exposing `transcribe_audio`, `synthesize_speech`, `list_voices`, and `list_languages` to any MCP client:
+
+```json
+{ "mcpServers": { "kesha": { "command": "kesha", "args": ["mcp"] } } }
+```
+
+Models are never auto-downloaded — tools fail with a `kesha install` / `kesha install --tts` hint when missing. Full client setup (Claude Code, Claude Desktop, Codex, Cursor): [docs/mcp.md](docs/mcp.md).
+
 ## STT: transcribe audio
 
 ```bash
@@ -150,8 +161,11 @@ Each `segment.speaker` is a number (cluster id, stable within one file). On Linu
 - `kesha audio.ogg` — plain transcript on stdout
 - `kesha --format transcript audio.ogg` — transcript + `[lang: ru, confidence: 0.99]` footer
 - `kesha --json --timestamps audio.ogg` — JSON with timestamped `segments`
+- `kesha --toon audio.ogg` — TOON (compact, LLM-friendly JSON encoding); preferred when piping multi-file results to an LLM/agent
 - `kesha --verbose audio.ogg` — human-readable with language info
 - `kesha --lang en audio.ogg` — warn if detected language differs (useful sanity check)
+
+**Long audio:** files ≥ 120 s auto-engage Silero VAD chunking; force on with `--vad` or off with `--no-vad`. Short files use full-file ASR by default.
 
 ## TTS: synthesize speech
 
@@ -163,6 +177,12 @@ kesha say --list-voices                            # Kokoro + Vosk-TTS + ~180 ma
 ```
 
 Output: WAV mono float32 by default. `--out <path>` writes to a file instead of stdout. For Telegram/OpenClaw replies, prefer `--format ogg-opus --out reply.ogg` or the OpenClaw-provided `{{OutputPath}}`.
+
+**Output formats** (`--format`, or inferred from the `--out` extension): `wav` (default, uncompressed), `ogg-opus` (messenger voice notes), `flac` (lossless, royalty-free, plays in every browser incl. Safari/iOS — the format for web-embeddable samples). FLAC keeps the engine's native rate; `--bitrate` / `--sample-rate` apply only to `ogg-opus`.
+
+```bash
+kesha say --format flac --out sample.flac "Hello"   # web-embeddable, Safari-safe
+```
 
 **Voice notes (Telegram / WhatsApp / Signal / Discord):** add `--format ogg-opus` to emit OGG/Opus directly — the format messenger APIs render as a native voice message:
 
@@ -188,11 +208,25 @@ Format is also inferred from `--out` extension (`.ogg` / `.opus` / `.oga` → OG
 
 ## Install
 
+**Humans use `kesha init` (guided). Agents and scripts use `kesha install` (deterministic).**
+
 ```bash
-bun add -g @drakulavich/kesha-voice-kit          # global CLI install
-kesha install                                    # downloads engine (~350 MB)
-kesha install --tts                              # adds Kokoro + Vosk-TTS RU (~990 MB more, for TTS)
+bun add -g @drakulavich/kesha-voice-kit          # global CLI install (always first)
+
+# For humans: interactive setup that prompts for backend / TTS / VAD / diarize
+kesha init
+
+# For agents and CI: explicit, scriptable install commands
+kesha install                                    # engine only — ~0.6 GB on Apple Silicon, ~2.5 GB on Linux/Windows
+kesha install --plan                             # preview exact download/disk sizes first — downloads nothing
+kesha install --tts                              # + English Kokoro; add langs additively: --tts en ru es
+kesha install --tts --vad                        # + Silero VAD (long-audio chunking)
+kesha install --tts --vad --diarize              # + speaker diarization (darwin-arm64 only)
 ```
+
+Kesha's runtime error/warning messages adapt to the same split: when `kesha` is invoked from a TTY, hints suggest `kesha init`; when stderr is piped (CI logs, OpenClaw, agent subprocess), hints suggest the equivalent `kesha install [...flags]`. Both run the same install code under the hood — pick the one your caller is.
+
+For pre-release builds: `bun add -g @drakulavich/kesha-voice-kit@beta` (current `beta` channel; `@latest` stays on the last stable release).
 
 No system deps — English G2P is embedded (`misaki-rs`); Russian G2P is bundled inside Vosk-TTS. `macos-*` voices need no install either — they use voices already on the Mac.
 
@@ -200,12 +234,19 @@ No system deps — English G2P is embedded (`misaki-rs`); Russian G2P is bundled
 
 **Speech-to-text (25):** Bulgarian, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, German, Greek, Hungarian, Italian, Latvian, Lithuanian, Maltese, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Ukrainian.
 
-**Text-to-speech:** English (Kokoro-82M; FluidAudio CoreML on darwin-arm64, ONNX elsewhere), Russian (Vosk-TTS, 5 baked-in speakers — default `ru-vosk-m02`), plus any macOS system voice via `--voice macos-*`.
+**Text-to-speech (9):** English (Kokoro-82M; FluidAudio CoreML on darwin-arm64, ONNX elsewhere), Russian (Vosk-TTS, 5 baked-in speakers — default `ru-vosk-m02`), Spanish, French, Italian, Portuguese (Kokoro — CharsiuG2P on ONNX builds, FluidAudio G2P on darwin-arm64), plus Hindi, Japanese, Chinese (Kokoro, darwin-arm64 only). `hi`/`ja` accept romanized Latin input only; native Devanagari and kana/kanji are rejected with `E_SCRIPT_UNSUPPORTED` — see [#492](https://github.com/drakulavich/kesha-voice-kit/issues/492). Any macOS system voice is also available via `--voice macos-*`.
 
 ## Performance
 
 - ASR: ~19× faster than OpenAI Whisper on Apple Silicon (CoreML via FluidAudio), ~2.5× on CPU (ONNX via `ort`).
 - TTS: sub-second latency for short utterances on Apple Silicon.
+
+## Troubleshooting
+
+- `kesha doctor` — collect support diagnostics without changing local state. Add `--json` for machine-readable output, `--redact` to scrub secrets and home paths before sharing.
+- `kesha logs` — manage privacy-safe local diagnostic logs. Default mode is `retain-on-failure` (events buffered in memory, flushed to disk only when a command fails). `kesha logs mode on` captures every run, `kesha logs path` prints the NDJSON file, `kesha logs disable` turns it off entirely.
+- `kesha support-bundle --output bundle.tar.gz` — produce a redacted `.tar.gz` for filing an issue. Add `--include-logs` to bundle a bounded tail of diagnostic logs.
+- `kesha stats` — manage local anonymous performance stats (per-command latency percentiles). Actions: `enable | disable | status | week | errors | export | reset | vacuum | retention`. Stays on the machine.
 
 ## Why local
 

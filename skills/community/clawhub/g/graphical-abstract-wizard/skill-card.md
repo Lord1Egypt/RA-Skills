@@ -1,43 +1,57 @@
-## Description: <br>
-Generate graphical abstract layout recommendations based on paper abstracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate graphical abstract layout recommendations based on paper abstracts.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, authors, and developers use this local CLI skill to turn academic paper abstracts into graphical abstract recommendations, visual elements, layout blueprints, and image-generation prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided abstract text or files may contain confidential unpublished research. <br>
-Mitigation: Run the CLI locally and provide only abstracts that are appropriate for local processing. <br>
-Risk: The output flag can overwrite an existing file. <br>
-Mitigation: Choose a fresh output filename or verify the destination before using -o. <br>
-Risk: Generated layout recommendations and image prompts may be incomplete or misleading for publication use. <br>
-Mitigation: Review the generated recommendations before using them in a paper, presentation, or design workflow. <br>
+## Use Case:
 
+Researchers, authors, and developers use this skill to turn academic paper abstracts into graphical abstract recommendations, including key concepts, visual elements, layout blueprints, and image-generation prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/graphical-abstract-wizard) <br>
-- [AIPOCH-AI publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text with layout recommendations and AI art prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include extracted concepts, visual element recommendations, a layout blueprint, and Midjourney and DALL-E prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Confidential or embargoed abstracts may be exposed through shell history or process listings when passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide sensitive abstracts through controlled stdin or files in a protected workspace instead of inline command arguments.
+
+Risk: The skill can write output to a user-specified path.
+
+Mitigation: Keep output paths inside a controlled workspace and review generated files before sharing or publishing them.
+
+Risk: The release includes an unnecessary dataclasses dependency for modern Python environments.
+
+Mitigation: Remove or pin the dependency before using the skill in automated or privileged environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/graphical-abstract-wizard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown, JSON, or plain text recommendations with layout blueprints and Midjourney and DALL-E prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write results to a user-specified output file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

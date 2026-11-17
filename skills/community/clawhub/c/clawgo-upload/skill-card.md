@@ -1,43 +1,54 @@
-## Description: <br>
-Zips selected local files or folders, uploads the archive to clawgo.me, and returns a shareable clone link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zip local files or folders, upload them to clawgo.me, and return a shareable clone link.
 
-## Publisher: <br>
-[chenjunyeee](https://clawhub.ai/user/chenjunyeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjunyeee](https://clawhub.ai/user/chenjunyeee)
 
-## Use Case: <br>
-Developers and agent users use this skill to package selected workspace files, upload them to clawgo.me, and share or move the resulting clone link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files may include secrets, personal data, or workspace profile files that should not be uploaded. <br>
-Mitigation: Require the agent to list the exact files and archive size before upload, then remove or redact sensitive content before proceeding. <br>
-Risk: A clone link can expose the uploaded archive to anyone who has the key. <br>
-Mitigation: Treat the clone key and link as sensitive, share them only with intended recipients, and avoid uploading files that should not leave the local workspace. <br>
-Risk: Workspace context files such as USER.md, TOOLS.md, AGENTS.md, or SOUL.md can contain profile, policy, or access details. <br>
-Mitigation: Review and redact these files before upload, or exclude them unless the user explicitly confirms they should be shared. <br>
+## Use Case:
 
+Developers and workspace users use this skill to package selected local files or folders into a zip archive, upload it to clawgo.me, and share the resulting clone link.
 
-## Reference(s): <br>
-- [Published ClawHub skill page](https://clawhub.ai/chenjunyeee/clawgo-upload) <br>
-- [ClawGo upload service](https://clawgo.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples plus upload result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a zip archive and reports the clone link, key, file name, size, and upload time after a successful upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Selected local files or whole folders may be zipped and uploaded to an external sharing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually choose upload contents and avoid persona, policy, user-profile, .env, credential, key, token, cookie, backup, and source-control files.
+
+Risk: The returned clone link and key may provide access to uploaded content while retention and access controls are unclear.
+
+Mitigation: Treat the clone link and key as sensitive and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjunyeee/skills/clawgo-upload)
+- [clawgo.me upload service](https://clawgo.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the clone link, 12-character key, uploaded file name, file size, and upload time after availability is confirmed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

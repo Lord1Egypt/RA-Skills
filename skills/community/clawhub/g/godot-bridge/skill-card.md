@@ -1,44 +1,58 @@
-## Description: <br>
-Godot Bridge is a Godot 4.x project generator CLI that helps agents create 2D and 3D project scaffolds, scenes, scripts, UI, game components, assets, and export presets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Godot 4.x Project Generator CLI for creating 2D and 3D Godot projects, scenes, scripts, levels, UI, game components, physics elements, particles, animations, materials, and export presets.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers and agents use this skill to scaffold Godot 4.x games, add scenes, scripts, UI, gameplay systems, assets, and export presets during rapid prototyping or automated game-development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates as a local project-generation CLI that writes files in the user's workspace. <br>
-Mitigation: Use it in a dedicated Godot project folder and review generated files before running or committing them. <br>
-Risk: The security evidence reports that the local Godot launcher is implemented unsafely and should be reviewed before installation. <br>
-Mitigation: Avoid or carefully review `clawbridge open` until it launches Godot without shell parsing. <br>
-Risk: Project and file names are used to create local paths and generated content. <br>
-Mitigation: Avoid path separators and shell metacharacters in project, scene, script, and file names. <br>
+## Use Case:
 
+Developers and AI agents use this skill to generate and modify Godot 4.x game project files for rapid prototyping and automated game-development workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/godot-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/dashiming) <br>
-- [Godot Engine](https://godotengine.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated Godot project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and writes Godot project files in the current workspace when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: The authoritative security review flags unsafe file-path handling that can make generated writes risky in normal development workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a disposable or explicitly approved workspace, and avoid untrusted project paths or generation arguments.
+
+Risk: The authoritative security review flags unsafe shell-command handling for opening Godot from project directories.
+
+Mitigation: Do not run `clawbridge open` from untrusted directories until shell invocation and path validation are fixed.
+
+Risk: The release security verdict is suspicious, even though no exfiltration or hidden persistence was found.
+
+Mitigation: Review the skill before installation and scan generated files before moving them into a trusted project.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dashiming/skills/godot-bridge)
+- [Publisher Profile](https://clawhub.ai/user/dashiming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands and generated Godot project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and writes project, scene, script, asset, level, UI, and export configuration files in the active workspace.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Generates a consolidated weekly retail trade report from 12 sales Excel files and a store mapping CSV, including regional ADA metrics, week-over-week comparisons, formatted tables, and charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a consolidated weekly retail trade report from 12 Excel sales files with regional, channel, product, ADA, and week-over-week analysis.
 
-## Publisher: <br>
-[wuminmin](https://clawhub.ai/user/wuminmin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuminmin](https://clawhub.ai/user/wuminmin)
 
-## Use Case: <br>
-Retail operations and reporting teams use this skill to convert weekly channel sales spreadsheets into a single Excel workbook for regional performance review. It is intended for users who can supply the required sales files, validate store-to-region mappings, and review the generated business metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided retail sales spreadsheets and a store mapping CSV, which may contain sensitive business information. <br>
-Mitigation: Run it only with files you are authorized to process and keep generated reports in an approved storage location. <br>
-Risk: Fuzzy store-to-region matching can place unmatched or ambiguous stores in the wrong region or in Others. <br>
-Mitigation: Review the store mapping CSV, aliases, and any stores assigned to Others before relying on the report. <br>
-Risk: Missing, renamed, or mismatched weekly Excel files can produce incomplete or failed reports. <br>
-Mitigation: Confirm all six current-week and six previous-week files are present and use the expected date and report naming patterns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Store Mapping CSV](references/store_mapping.csv) <br>
+## Use Case:
 
+Business analysts and retail operations teams use this skill to consolidate weekly channel sales spreadsheets into a formatted Excel report with regional ADA metrics, WoW comparisons, and charts.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [Excel workbook (.xlsx) with formatted summary tables and embedded charts, plus Python usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires 12 weekly input Excel files and a store mapping CSV; report accuracy depends on file naming, source spreadsheet structure, and mapping coverage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads all matching spreadsheets from the configured sales-report folder and writes an output workbook to the requested path.
+
+Mitigation: Use a dedicated input folder containing only the intended 12 spreadsheets and choose a unique output filename to avoid processing unrelated workbooks or overwriting an existing report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuminmin/skills/retail-trade-report-generator)
+- [SKILL.md](artifact/SKILL.md)
+- [README_CN.md](artifact/README_CN.md)
+- [store_mapping.csv](artifact/references/store_mapping.csv)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python code that generates a formatted Excel workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires 12 weekly input Excel files, a store mapping CSV, and an output workbook path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

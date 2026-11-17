@@ -1,41 +1,50 @@
-## Description: <br>
-Pharmaziegasse namespace for Netsnek e.U. pharmacy management platform. Prescription tracking, inventory, compliance, and staff coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pharmaziegasse is a namespace skill for Netsnek e.U.'s pharmacy management platform, covering prescription tracking, inventory, compliance, and staff coordination.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve concise Pharmaziegasse product information, module summaries, and structured metadata for a pharmacy management platform focused on DACH-region pharmacy operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-DACH region (Austria, Germany, Switzerland) <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute its bundled local shell script. <br>
-Mitigation: Review the script before installation and run it only in environments where local script execution is acceptable. <br>
-Risk: The skill is informational and should not be treated as a source of pharmacy records, credentials, or regulatory determinations. <br>
-Mitigation: Use it for fixed product information only; verify operational, medical, and regulatory decisions against authoritative pharmacy systems and policies. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve concise information about Pharmaziegasse modules and platform metadata for DACH-region pharmacy workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/pharmaziegasse) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+DACH region (Austria, Germany, Switzerland)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown guidance, shell command suggestions, and optional JSON from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included shell script supports summary, module-list, and JSON metadata modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill grants exec permission for a bundled information script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local script before installation; users who avoid shell-capable skills can decline installation or request a markdown-only package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/pharmaziegasse)
+- [Netsnek e.U.](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON from a local shell script, summarized in Markdown when answering users]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux exec permission for scripts/pharma-info.sh; no credentials or hidden data access were identified in the server security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

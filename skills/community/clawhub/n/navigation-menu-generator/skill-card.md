@@ -1,39 +1,49 @@
-## Description: <br>
-Helps agents design, optimize, or audit site navigation menus for SEO, user experience, and accessibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, optimizes, and audits site navigation menus for SEO, UX, accessibility, and site structure.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and site operators use this skill to plan or review navigation structure, labels, HTML/ARIA considerations, SEO checklist items, and accessibility checklist items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill during general navigation or site-structure discussions. <br>
-Mitigation: Use it for explicit navigation-menu work and narrow trigger phrases if accidental activation becomes noisy. <br>
+## Use Case:
 
+Developers, site owners, and content teams use this skill to plan or review header, dropdown, mega menu, mobile menu, and related navigation structures. It produces concise recommendations for menu hierarchy, anchor text, semantic HTML, SEO crawlability, and accessibility checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/navigation-menu-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with structured recommendations, checklists, and HTML/ARIA notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest navigation structure, anchor text, semantic HTML, SEO checks, and accessibility checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may activate on broad navigation-related language and provide advisory output for adjacent site-structure tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the request is about navigation menus and review recommendations before applying them to a live site.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/navigation-menu-generator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with optional HTML and ARIA snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include menu structures, anchor text suggestions, SEO checklists, and accessibility checklists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

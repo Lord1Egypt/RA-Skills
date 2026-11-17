@@ -1,50 +1,69 @@
-## Description: <br>
-PhoenixClaw passively scans OpenClaw session logs and memory files to generate Markdown journals, summaries, timelines, growth maps, and profile updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PhoenixClaw is a passive journaling skill that scans daily conversations from all configured session paths via cron to generate markdown journals using semantic understanding.
 
-## Publisher: <br>
-[goforu](https://clawhub.ai/user/goforu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goforu](https://clawhub.ai/user/goforu)
 
-## Use Case: <br>
-External users and developers use PhoenixClaw to run passive personal journaling over OpenClaw activity, turning session logs, memory files, and media references into daily or weekly Markdown reflections and long-term personal profile artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly reads OpenClaw session logs, memory files, media references, agent runs, and cron runs. <br>
-Mitigation: Install only when that local data access matches the intended private journaling use, and review the configured journal and source paths before enabling automation. <br>
-Risk: Recurring cron operation can summarize private activity without each manual invocation. <br>
-Mitigation: Enable cron deliberately, confirm the schedule and timezone, and review cron registration and history after setup. <br>
-Risk: The security summary notes plugin execution and avoidable shell-command fallbacks. <br>
-Mitigation: Review enabled plugins, pin a fixed version, and prefer a version that removes execSync shell fallbacks and clarifies plugin access. <br>
+## Use Case:
 
+External users and developers use PhoenixClaw to automate daily, weekly, and long-term personal journaling from OpenClaw sessions, memory files, and selected media. It can summarize activity, identify patterns, update profile and growth-map files, and support manual journal regeneration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goforu/phoenixclaw) <br>
-- [Cron setup](references/cron-setup.md) <br>
-- [Media handling](references/media-handling.md) <br>
-- [Plugin protocol](references/plugin-protocol.md) <br>
-- [User configuration](references/user-config.md) <br>
-- [Profile evolution](references/profile-evolution.md) <br>
-- [Obsidian format](references/obsidian-format.md) <br>
-- [Skill recommendations](references/skill-recommendations.md) <br>
-- [Visual design](references/visual-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown journal files and setup guidance with inline shell commands and YAML configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local journal, profile, timeline, and growth-map files, and may copy referenced media into user-configured journal assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.19 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill can read broad private conversation history and memory files for passive journaling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when passive scheduled journaling is desired, review the configured read paths, and choose a journal path appropriate for private records.
+
+Risk: Long-term profile, growth-map, timeline, and media records can retain sensitive personal context.
+
+Mitigation: Review profile and growth-map updates before relying on them, avoid preserving sensitive media or EXIF/GPS data, and keep journal storage under the user's retention controls.
+
+Risk: The rolling-journal script includes an unsafe local shell fallback around configured paths.
+
+Mitigation: Remove the execSync shell fallbacks or strictly validate journal_path before enabling cron or unattended execution.
+
+Risk: Optional plugins can process personal moments, media, or finance-related screenshots.
+
+Mitigation: Disable unwanted plugins and review plugin behavior before allowing their output into daily journals.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/goforu/skills/phoenixclaw)
+- [User configuration](references/user-config.md)
+- [Cron setup](references/cron-setup.md)
+- [Media handling](references/media-handling.md)
+- [Plugin protocol](references/plugin-protocol.md)
+- [Obsidian format](references/obsidian-format.md)
+- [Profile evolution](references/profile-evolution.md)
+- [Skill recommendations](references/skill-recommendations.md)
+- [Visual design](references/visual-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown journal files with supporting configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May copy selected media into journal assets and update timeline, profile, and growth-map files in user-configured paths.]
+
+## Skill Version(s):
+
+0.0.19 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

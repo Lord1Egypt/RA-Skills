@@ -1,38 +1,49 @@
-## Description: <br>
-Prints the USER environment variable as a simple current-username check. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print the current effective username. Simple identity query for scripts, session tracking, and access control verification.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and automation authors use this skill for a quick username check in scripts and session logs. It should not be used for UID, GID, group membership, root detection, or access-control decisions unless the implementation is corrected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation advertises security-relevant identity checks that the included script does not implement. <br>
-Mitigation: Use the skill only for a simple USER environment-variable print, or correct the implementation before relying on effective-user, UID, GID, group, JSON, or access-control behavior. <br>
+## Use Case:
 
+Developers and operators use this skill to request current-user identity information for shell sessions, scripts, session tracking, and permission checks.
 
-## Reference(s): <br>
-- [Whoami Tool on ClawHub](https://clawhub.ai/dinghaibin/whoami-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text username output with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script prints the USER environment variable and does not implement the documented full identity, group, JSON, UID, or user-check options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Identity results may be misleading if used for authorization, privilege checks, auditing, or automation that depends on the real effective OS user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid security-sensitive decisions until the implementation uses kernel-backed identity APIs and the documented options are implemented or removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/whoami-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples; command output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Identity output should be reviewed before use in security-sensitive automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

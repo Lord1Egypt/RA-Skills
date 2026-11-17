@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《丰田一页纸极简思考法》· 出版级读书笔记</title>
+<!-- reading-notes-master 模板 v2.0 演示稿 · 令牌源自 design-tokens.md · 内容事实核对自原书读书笔记语料 -->
+<style>
+  :root{
+    --c-primary:#2F5B7C;               /* 效率整理蓝（工具方法型） */
+    --c-primary-soft:rgba(47,91,124,.08);
+    --c-accent:#E19A2E;                /* 暖金强调 */
+    /* v2 出版级质感令牌（references/design-tokens.md） */
+    --c-ink:rgba(30,26,22,.95);
+    --c-ink-2:rgba(30,26,22,.60);
+    --c-ink-3:rgba(30,26,22,.38);
+    --c-bg:#FFFFFF; --c-bg-alt:#F7F5F2; --c-bg-ivory:#FAF9F5;
+    --c-line:rgba(30,26,22,.10); --c-line-strong:rgba(30,26,22,.16);
+    --sh-1:0 1px 2px rgba(28,25,23,.04);
+    --sh-2:0 1px 3px rgba(28,25,23,.04),0 4px 12px rgba(28,25,23,.04);
+    --sh-3:0 1px 2px rgba(28,25,23,.03),0 4px 12px rgba(28,25,23,.03),0 12px 32px rgba(28,25,23,.04);
+    --r-sm:8px; --r-md:12px; --r-lg:16px;
+    --g:#2E8B57; --b:#2F6FB5; --r:#C20001;   /* 三色笔：绿/蓝/红 */
+    --font-main:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;
+    --font-serif:"Georgia","Songti SC","SimSun",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#221F1C;font-family:var(--font-main);color:var(--c-ink);
+       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+       font-variant-numeric:lining-nums}
+  .slide{width:1280px;height:720px;background:var(--c-bg);position:relative;overflow:hidden;
+         margin:24px auto;box-shadow:0 8px 40px rgba(0,0,0,.35);page-break-after:always;display:flex;flex-direction:column}
+  .slide.alt{background:var(--c-bg-alt)}
+  .body{flex:1;padding:56px 72px;display:flex;flex-direction:column;min-height:0}
+  .hd{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 72px;
+      border-bottom:1px solid var(--c-line);font-size:17px;color:var(--c-ink-2)}
+  .hd .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:2px;color:var(--c-ink)}
+  .hd .brand::before{content:"";width:10px;height:10px;background:var(--c-primary);border-radius:3px}
+  .ft{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 72px;
+      border-top:1px solid var(--c-line);font-size:15px;color:var(--c-ink-3)}
+  .kicker{font-size:18px;letter-spacing:4px;color:var(--c-primary);font-weight:600;margin-bottom:10px}
+  h1.title{font-size:48px;line-height:1.22;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+  .subtitle{font-size:26px;color:var(--c-ink-2);letter-spacing:-.25px}
+  .rule{width:72px;height:6px;border-radius:3px;background:var(--c-primary);margin:22px 0 32px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:9999px;
+        background:var(--c-primary-soft);color:var(--c-primary);font-size:16px;font-weight:600;letter-spacing:1px}
+  .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c-primary)}
+  .cover{background:var(--c-bg);justify-content:center}
+  .cover .sup{font-size:24px;letter-spacing:8px;color:var(--c-primary);font-weight:600;margin-bottom:28px}
+  .cover h1{font-size:104px;line-height:1.12;font-weight:700;letter-spacing:-1.5px}
+  .cover .tagline{font-size:30px;color:var(--c-ink-2);margin-top:26px;letter-spacing:1px}
+  .cover .byline{margin-top:64px;font-size:20px;color:var(--c-ink-2);display:flex;gap:36px}
+  .cover .byline b{color:var(--c-ink);font-weight:600}
+  .cover .bar{position:absolute;left:0;top:0;width:14px;height:100%;background:var(--c-primary)}
+  .part{background:var(--c-primary);color:#fff;justify-content:center;align-items:flex-start;padding:0 96px}
+  .part .no{font-size:26px;letter-spacing:10px;opacity:.85;font-weight:600}
+  .part h1{font-size:76px;font-weight:700;margin:18px 0 20px;letter-spacing:-1px;line-height:1.1}
+  .part .poet{font-size:28px;opacity:.9;line-height:1.7;border-left:4px solid rgba(255,255,255,.55);padding-left:22px}
+  .tl{display:flex;margin-top:34px;position:relative}
+  .tl::before{content:"";position:absolute;left:0;right:0;top:9px;height:3px;background:var(--c-line-strong)}
+  .tl .node{flex:1;padding-right:28px;position:relative}
+  .tl .dot{width:21px;height:21px;border-radius:50%;background:var(--c-bg);border:6px solid var(--c-primary);margin-bottom:18px;position:relative;z-index:1}
+  .tl .yr{font-size:24px;font-weight:700;color:var(--c-primary);margin-bottom:8px}
+  .tl .ev{font-size:19px;line-height:1.55;color:var(--c-ink-2)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .card{border:1px solid var(--c-line);border-radius:var(--r-md);box-shadow:var(--sh-2);
+        padding:26px 26px 22px;position:relative;background:#fff}
+  .card .no{font-size:52px;font-weight:700;color:var(--c-primary);opacity:.14;position:absolute;top:10px;right:18px;line-height:1}
+  .card h3{font-size:24px;margin-bottom:12px;font-weight:600;letter-spacing:-.25px}
+  .card p{font-size:18px;line-height:1.62;color:var(--c-ink-2)}
+  .card::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:var(--c-primary);margin-bottom:16px}
+  .duel{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;margin-top:4px;
+        border:1px solid var(--c-line);border-radius:var(--r-lg);overflow:hidden;background:#fff;box-shadow:var(--sh-1)}
+  .duel .col{padding:30px 36px}
+  .duel .col+.col{border-left:1px dashed var(--c-line)}
+  .duel h3{font-size:26px;font-weight:600;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--c-primary);letter-spacing:-.25px}
+  .duel ul{list-style:none}
+  .duel li{font-size:19px;line-height:1.6;padding:7px 0 7px 24px;position:relative;color:var(--c-ink-2)}
+  .duel li::before{content:"";position:absolute;left:2px;top:17px;width:9px;height:9px;border-radius:50%;background:var(--c-accent)}
+  .golden{justify-content:center;align-items:center;text-align:center;background:var(--c-bg)}
+  .golden .qmark{font-size:150px;line-height:.6;color:var(--c-primary);opacity:.16;font-family:var(--font-serif)}
+  .golden .line{font-family:var(--font-serif);font-weight:500;font-size:46px;line-height:1.65;letter-spacing:-.5px;max-width:940px;margin:30px 0 26px}
+  .golden .src{font-size:19px;color:var(--c-ink-2);letter-spacing:3px}
+  @page{size:1280px 720px;margin:0}
+  @media print{body{background:#fff}.slide{margin:0;box-shadow:none;page-break-after:always}}
+  @media (max-width:820px){.slide{transform:scale(.62);transform-origin:top left}}
+</style>
+</head>
+<body>
+
+<!-- ① 封面 -->
+<section class="slide cover">
+  <div class="bar"></div>
+  <div class="body" style="padding-left:110px">
+    <div class="sup">出 版 级 读 书 笔 记</div>
+    <h1>丰田一页纸<br>极简思考法</h1>
+    <div class="tagline">把任何难题，整理进一页纸里</div>
+    <div class="byline">
+      <span>原著：<b>[日] 浅田卓</b></span>
+      <span>笔记：<b>wdj</b></span>
+      <span>2026 年 10 月</span>
+    </div>
+    <div class="pill" style="margin-top:32px">精华版 · 3 部 12 页速览</div>
+  </div>
+</section>
+
+<!-- ② 作者简介 -->
+<section class="slide">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>作者简介</span></div>
+  <div class="body">
+    <div class="kicker">ABOUT THE AUTHOR</div>
+    <h1 class="title" style="font-size:40px">作者简介：浅田卓</h1>
+    <div class="subtitle">丰田汽车出身的"一页纸"工作法提炼者与推广者</div>
+    <div class="rule"></div>
+    <div class="tl">
+      <div class="node"><div class="dot"></div><div class="yr">起步</div><div class="ev">进入丰田汽车工作，浸染丰田内部资料文化</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">积累</div><div class="ev">在日常业务中反复演练"一页纸"整理术</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">提炼</div><div class="ev">把方法系统化为 Excel1 与 Logic3 两大框架</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">成书</div><div class="ev">著书面向大众推广，让门外汉也能上手</div></div>
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>02 / 12</span></div>
+</section>
+
+<!-- ③ 为什么读它 -->
+<section class="slide">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>为什么读它</span></div>
+  <div class="body">
+    <div class="kicker">WHY THIS BOOK</div>
+    <h1 class="title" style="font-size:40px">本书要回答的两个问题</h1>
+    <div class="rule"></div>
+    <div class="cards" style="grid-template-columns:1fr 1fr">
+      <div class="card"><h3>问题一</h3><p>想法很多却一团乱麻，如何用最短时间把思维整理清楚？</p></div>
+      <div class="card"><h3>问题二</h3><p>资料写了几十页，对方却仍然看不懂——问题出在哪里？</p></div>
+    </div>
+    <div style="margin-top:34px" class="cards">
+      <div class="card"><h3>不会写长文的人</h3><p>不擅长洋洋洒洒写报告的职场人，一页纸就是你的主场。</p></div>
+      <div class="card"><h3>忙碌的职场人</h3><p>时间碎片化，需要"边写边整理"的高效工作法。</p></div>
+      <div class="card"><h3>会议缠身的人</h3><p>开会前没准备、开完会没记录——一页纸全解决。</p></div>
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>03 / 12</span></div>
+</section>
+
+<!-- ④ 目录 -->
+<section class="slide">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>目录</span></div>
+  <div class="body">
+    <div class="kicker">CONTENTS</div>
+    <h1 class="title" style="font-size:40px">目录</h1>
+    <div class="rule"></div>
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <div style="display:flex;align-items:baseline;gap:28px;border-bottom:1px solid var(--c-line);padding-bottom:20px">
+        <span style="font-size:40px;font-weight:700;color:var(--c-primary)">01</span>
+        <div><div style="font-size:28px;font-weight:700;letter-spacing:-.25px">核心概念：一览性与三色笔</div>
+             <div style="font-size:18px;color:var(--c-ink-2);margin-top:4px">看清整体构造，是一切简单易懂的开始</div></div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:28px;border-bottom:1px solid var(--c-line);padding-bottom:20px">
+        <span style="font-size:40px;font-weight:700;color:var(--c-primary)">02</span>
+        <div><div style="font-size:28px;font-weight:700;letter-spacing:-.25px">两大框架：Excel1 与 Logic3</div>
+             <div style="font-size:18px;color:var(--c-ink-2);margin-top:4px">整理思维的基础，与有逻辑地传达</div></div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:28px;border-bottom:1px solid var(--c-line);padding-bottom:20px">
+        <span style="font-size:40px;font-weight:700;color:var(--c-primary)">03</span>
+        <div><div style="font-size:28px;font-weight:700;letter-spacing:-.25px">工作应用：会议 · 记录 · 日程</div>
+             <div style="font-size:18px;color:var(--c-ink-2);margin-top:4px">把方法变成每天 3 分钟的肌肉记忆</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>04 / 12</span></div>
+</section>
+
+<!-- ⑤ 篇章分隔 -->
+<section class="slide part">
+  <div class="body">
+    <div class="no">PART 01</div>
+    <h1>核心概念</h1>
+    <div class="poet">是否能看清整体构造，<br>决定了资料是否简单易懂。</div>
+  </div>
+</section>
+
+<!-- ⑥ 一览性：PPT vs 一页纸（暖纸交替页） -->
+<section class="slide alt">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>PART 01 · 核心概念</span></div>
+  <div class="body">
+    <div class="kicker">KEY CONCEPT · 一览性</div>
+    <h1 class="title" style="font-size:38px">一览性：一页纸的第一性原理</h1>
+    <div class="rule" style="margin:18px 0 26px"></div>
+    <div class="duel">
+      <div class="col"><h3>普通长篇资料</h3>
+        <ul><li>页数多，必须翻页才能读完</li><li>各部分之间的关联被切断</li><li>"很难读懂整体结构"</li><li>没有一览性，读者容易迷失</li></ul>
+      </div>
+      <div class="col"><h3>"一页纸"资料</h3>
+        <ul><li>全部信息收在一页之内</li><li>信息整体构造一目了然</li><li>边写边完成思维的整理</li><li>制作与阅读双双提速</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>06 / 12</span></div>
+</section>
+
+<!-- ⑦ 三色笔 -->
+<section class="slide">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>PART 01 · 核心概念</span></div>
+  <div class="body">
+    <div class="kicker">TOOL · 三色笔</div>
+    <h1 class="title" style="font-size:38px">三色笔：一支笔就是一个动作</h1>
+    <div class="rule" style="margin:18px 0 26px"></div>
+    <div class="cards">
+      <div class="card" style="border-top:6px solid var(--g)"><span class="no" style="color:var(--g)">绿</span>
+        <h3 style="color:var(--g)">绿色笔 · 画框架</h3>
+        <p>画出一页纸的框架、填写主题——先给思维安一个"家"。</p></div>
+      <div class="card" style="border-top:6px solid var(--b)"><span class="no" style="color:var(--b)">蓝</span>
+        <h3 style="color:var(--b)">蓝色笔 · 做整理</h3>
+        <p>在框架内填写内容——书写这个动作本身，就是"整理"。</p></div>
+      <div class="card" style="border-top:6px solid var(--r)"><span class="no" style="color:var(--r)">红</span>
+        <h3 style="color:var(--r)">红色笔 · 提要点</h3>
+        <p>圈出答案、写下"一句话总结"——让结论自己跳出来。</p></div>
+    </div>
+    <div style="margin-top:30px;font-size:19px;color:var(--c-ink-2);background:var(--c-primary-soft);
+                border-radius:var(--r-md);padding:18px 26px">
+      <b style="color:var(--c-primary);font-weight:600">一句话总结：</b>绿色搭台、蓝色填词、红色点睛——三色各司其职，思维自然成形。
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>07 / 12</span></div>
+</section>
+
+<!-- ⑧ Excel1 -->
+<section class="slide">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>PART 02 · 两大框架</span></div>
+  <div class="body">
+    <div class="kicker">FRAMEWORK · Excel1</div>
+    <h1 class="title" style="font-size:38px">Excel1：整理思维的基础框架</h1>
+    <div class="rule" style="margin:18px 0 20px"></div>
+    <div style="display:flex;gap:40px;flex:1;min-height:0">
+      <div style="flex:1.15;display:flex;align-items:center;justify-content:center">
+        <!-- Excel1 九宫格 -->
+        <svg width="520" height="380" viewBox="0 0 520 380">
+          <style>.ce{font:400 17px var(--font-main);fill:var(--c-ink-2)}.ct{font:700 21px var(--font-main);fill:var(--c-primary)}</style>
+          <rect x="10" y="10" width="500" height="60" rx="10" fill="var(--c-primary)"/>
+          <text class="ct" x="260" y="47" text-anchor="middle" fill="#fff">主题（用绿色笔填写）</text>
+          <g stroke="rgba(30,26,22,.16)" stroke-width="2" fill="#fff">
+            <rect x="10"  y="85"  width="163" height="88" rx="8"/><rect x="174" y="85"  width="163" height="88" rx="8"/><rect x="338" y="85"  width="172" height="88" rx="8"/>
+            <rect x="10"  y="180" width="163" height="88" rx="8"/><rect x="174" y="180" width="163" height="88" rx="8"/><rect x="338" y="180" width="172" height="88" rx="8"/>
+            <rect x="10"  y="275" width="163" height="88" rx="8"/><rect x="174" y="275" width="163" height="88" rx="8"/><rect x="338" y="275" width="172" height="88" rx="8"/>
+          </g>
+          <text class="ce" x="91"  y="134" text-anchor="middle">格子1</text><text class="ce" x="255" y="134" text-anchor="middle">格子2</text><text class="ce" x="424" y="134" text-anchor="middle">格子3</text>
+          <text class="ce" x="91"  y="229" text-anchor="middle">格子4</text><text class="ce" x="255" y="229" text-anchor="middle">格子5</text><text class="ce" x="424" y="229" text-anchor="middle">格子6</text>
+          <text class="ce" x="91"  y="324" text-anchor="middle">格子7</text><text class="ce" x="255" y="324" text-anchor="middle">格子8</text><text class="ce" x="424" y="324" text-anchor="middle">格子9</text>
+        </svg>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px">
+        <div class="card" style="padding:20px 24px"><h3 style="font-size:22px">是什么</h3>
+          <p>一张 3×3 表格 + 顶部主题栏，是丰田整理思维的最小单元。</p></div>
+        <div class="card" style="padding:20px 24px"><h3 style="font-size:22px">怎么用</h3>
+          <p>① 用绿色笔画出框架、填写主题 → ② 用蓝色笔在九个格子里填想法 → ③ 红色笔圈出重点。</p></div>
+        <div class="card" style="padding:20px 24px"><h3 style="font-size:22px">为什么有效</h3>
+          <p>把"一片乱麻的大脑"变成"看得见的九个格子"，书写即整理。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>08 / 12</span></div>
+</section>
+
+<!-- ⑨ Logic3 + 步骤（暖纸交替页） -->
+<section class="slide alt">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>PART 02 · 两大框架</span></div>
+  <div class="body">
+    <div class="kicker">FRAMEWORK · Logic3</div>
+    <h1 class="title" style="font-size:38px">Logic3：有逻辑地整理，简单易懂地传达</h1>
+    <div class="rule" style="margin:18px 0 26px"></div>
+    <div class="cards" style="grid-template-columns:repeat(5,1fr);gap:18px">
+      <div class="card" style="padding:22px 20px"><span class="no">①</span><h3 style="font-size:20px">制作框架</h3>
+        <p style="font-size:16.5px">绿色笔制作 Logic3 基本框架</p></div>
+      <div class="card" style="padding:22px 20px"><span class="no">②</span><h3 style="font-size:20px">填写主题</h3>
+        <p style="font-size:16.5px">顶部写下这张纸要解决的主题</p></div>
+      <div class="card" style="padding:22px 20px"><span class="no">③</span><h3 style="font-size:20px">一问一答</h3>
+        <p style="font-size:16.5px">蓝色笔填提问，答案用红色笔圈出</p></div>
+      <div class="card" style="padding:22px 20px"><span class="no">④</span><h3 style="font-size:20px">填满 3×3</h3>
+        <p style="font-size:16.5px">3 个问题 × 3 个答案的逻辑结构</p></div>
+      <div class="card" style="padding:22px 20px"><span class="no">⑤</span><h3 style="font-size:20px">一句话总结</h3>
+        <p style="font-size:16.5px">红色笔在左下角写下总结句</p></div>
+    </div>
+    <div style="margin-top:30px;font-size:19px;color:var(--c-ink-2);background:var(--c-primary-soft);
+                border-radius:var(--r-md);padding:18px 26px">
+      <b style="color:var(--c-primary);font-weight:600">一句话总结：</b>Logic3 = "有逻辑地整理思考，简单易懂地传达"的一页纸框架。
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>09 / 12</span></div>
+</section>
+
+<!-- ⑩ 金句页（衬线 500） -->
+<section class="slide golden">
+  <div class="qmark">“</div>
+  <div class="line">是否能看清整体构造，<br>是制作简单易懂的资料时的一个关键。</div>
+  <div class="src">——《丰田一页纸极简思考法》· 浅田卓</div>
+</section>
+
+<!-- ⑪ 思维导图 + 反思（暖纸交替页） -->
+<section class="slide alt">
+  <div class="hd"><span class="brand">一页纸笔记</span><span>思维导图及反思</span></div>
+  <div class="body">
+    <div class="kicker">MINDMAP & REVIEW</div>
+    <h1 class="title" style="font-size:38px">一图收束全书</h1>
+    <div class="rule" style="margin:18px 0 14px"></div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <svg width="1100" height="400" viewBox="0 0 1100 400">
+        <style>.b1{font:700 21px var(--font-main);fill:#FFF}.l1{font:400 17px var(--font-main);fill:var(--c-ink)}.l2{font:400 16px var(--font-main);fill:var(--c-ink-2)}</style>
+        <ellipse cx="550" cy="200" rx="120" ry="52" fill="var(--c-primary)"/>
+        <text class="b1" x="550" y="207" text-anchor="middle">一页纸思考法</text>
+        <path d="M670 200 C740 105 780 85 860 78"  stroke="var(--c-primary)" stroke-width="2.5" fill="none"/>
+        <path d="M670 200 C740 290 780 315 860 322" stroke="var(--c-primary)" stroke-width="2.5" fill="none"/>
+        <path d="M430 200 C360 115 320 95 240 82"  stroke="var(--c-primary)" stroke-width="2.5" fill="none"/>
+        <path d="M430 200 C360 290 320 312 240 318" stroke="var(--c-primary)" stroke-width="2.5" fill="none"/>
+        <rect x="860" y="50"  width="210" height="60" rx="10" fill="var(--c-primary-soft)"/>
+        <text class="l1" x="965" y="76" text-anchor="middle">一览性</text><text class="l2" x="965" y="98" text-anchor="middle">看清整体构造</text>
+        <rect x="860" y="292" width="210" height="60" rx="10" fill="var(--c-primary-soft)"/>
+        <text class="l1" x="965" y="318" text-anchor="middle">三色笔</text><text class="l2" x="965" y="340" text-anchor="middle">绿框架·蓝整理·红要点</text>
+        <rect x="40"  y="52"  width="200" height="60" rx="10" fill="var(--c-primary-soft)"/>
+        <text class="l1" x="140" y="78" text-anchor="middle">Excel1</text><text class="l2" x="140" y="100" text-anchor="middle">3×3 整理思维基础</text>
+        <rect x="40"  y="288" width="200" height="60" rx="10" fill="var(--c-primary-soft)"/>
+        <text class="l1" x="140" y="314" text-anchor="middle">Logic3</text><text class="l2" x="140" y="336" text-anchor="middle">3 问 × 3 答逻辑传达</text>
+      </svg>
+    </div>
+    <div style="font-size:19px;color:var(--c-ink-2);line-height:1.7;margin-top:2px">
+      <b style="color:var(--c-primary);font-weight:600">读后反思：</b>本周起，所有会议准备与纪要改用"Excel1 + Logic3"一页纸完成——先搭框架，再填内容，最后红色笔点睛。
+    </div>
+  </div>
+  <div class="ft"><span>内部学习资料 · 请勿外传</span><span>11 / 12</span></div>
+</section>
+
+<!-- ⑫ 封底 -->
+<section class="slide cover">
+  <div class="bar" style="left:auto;right:0"></div>
+  <div class="body" style="padding-left:72px;align-items:flex-start;justify-content:center">
+    <div style="font-size:88px;font-weight:700;letter-spacing:-2px">Thank You</div>
+    <div class="tagline" style="margin-top:30px">“书写这个动作，本身就是整理。”</div>
+    <div class="byline"><span>笔记整理：<b>wdj</b></span><span style="color:var(--c-ink-3)">reading-notes-master · v2.0</span></div>
+  </div>
+</section>
+
+</body>
+</html>

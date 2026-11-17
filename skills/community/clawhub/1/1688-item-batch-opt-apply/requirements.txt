@@ -1,0 +1,7 @@
+# 1688-item-batch-opt-apply 依赖
+#
+# 本技能为编排层，核心逻辑仅用 Python 标准库（Python 3.8+）。
+# openpyxl 用于结果导出为 .xlsx；缺失时自动降级 csv（utf-8-sig，
+# Excel 打开不乱码），不因缺依赖阻断主流程。
+# 注：任务输入侧（Excel 等文件）由主 Agent 自行读取结构化，不走脚本解析。
+openpyxl>=3.0.0

@@ -1,0 +1,3 @@
+# Keep line endings consistent across Windows/macOS/Linux checkouts.
+* text=auto eol=lf
+*.png binary

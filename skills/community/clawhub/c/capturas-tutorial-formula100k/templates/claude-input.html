@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.ci-wrap {
+  width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-body);
+}
+
+/* Popup de autocompletado de slash commands */
+.ci-popup {
+  background: #FFFFFF;
+  border: 1px solid var(--gray-line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.ci-popup-header {
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: #FAF8F4;
+  border-bottom: 1px solid var(--gray-line);
+}
+.ci-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid #F1EDE5;
+}
+.ci-row.active { padding: 18px 18px; }
+.ci-row:last-child { border-bottom: none; }
+.ci-row.active {
+  background: #FFF4ED;
+}
+.ci-row .ico {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--gray-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.ci-row.active .ico {
+  background: var(--coral);
+}
+.ci-text { flex: 1; min-width: 0; }
+.ci-name {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.2px;
+}
+.ci-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+.ci-tag {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--coral-dark);
+  background: #FFF;
+  border: 1px solid var(--coral-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.ci-row:not(.active) .ci-name { color: var(--ink-soft); }
+.ci-row:not(.active) .ci-tag { display: none; }
+.ci-row:not(.active) .ci-desc { display: none; }
+
+/* Caja de input */
+.ci-input {
+  background: #FFFFFF;
+  border: 2px solid var(--coral);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 6px 20px rgba(216, 122, 85, 0.18);
+}
+.ci-prompt {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--coral-dark);
+}
+.ci-typed {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+}
+.ci-caret {
+  display: inline-block;
+  width: 3px;
+  height: 26px;
+  background: var(--ink);
+  margin-left: 3px;
+  border-radius: 1px;
+}
+.ci-send {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(216, 122, 85, 0.35);
+}
+.ci-send svg { width: 18px; height: 18px; }
+</style>
+</head>
+<body data-bg="{{bg}}">
+<div class="stage" data-bg="{{bg}}">
+  <div class="ci-wrap">
+    <div class="ci-popup">
+      <div class="ci-popup-header">{{popup_header}}</div>
+
+      <div class="ci-row active">
+        <div class="ico">{{icon_active}}</div>
+        <div class="ci-text">
+          <div class="ci-name">/{{name_active}}</div>
+          <div class="ci-desc">{{desc_active}}</div>
+        </div>
+        <div class="ci-tag">Skill</div>
+      </div>
+
+      <div class="ci-row">
+        <div class="ico">{{icon_2}}</div>
+        <div class="ci-text">
+          <div class="ci-name">/{{name_2}}</div>
+        </div>
+      </div>
+
+      <div class="ci-row">
+        <div class="ico">{{icon_3}}</div>
+        <div class="ci-text">
+          <div class="ci-name">/{{name_3}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ci-input">
+      <div class="ci-prompt">&gt;</div>
+      <div class="ci-typed">/{{typed}}<span class="ci-caret"></span></div>
+      <div class="ci-send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

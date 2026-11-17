@@ -1,42 +1,58 @@
-## Description: <br>
-为自媒体创作者、知识博主和医疗健康内容创作者生成小红书图文内容，包括3:4封面图、内页图、统一中文文案和每张图的主题说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书内容创作专家。输入主题/文章/视频链接，自动生成小红书图文（3:4比例，1080×1440 / 1242×1660 px），包含封面图、内页图和统一中文文案。
 
-## Publisher: <br>
-[hiletian](https://clawhub.ai/user/hiletian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiletian](https://clawhub.ai/user/hiletian)
 
-## Use Case: <br>
-External content creators and health-education authors use this skill to turn a topic, article, or video into Xiaohongshu-ready Chinese image cards and a matching caption. It is especially oriented toward hemophilia and medical-health communication that needs a professional, warm tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private, confidential, copyrighted, or highly sensitive medical material may be exposed when links are fetched or content is transformed into generated assets. <br>
-Mitigation: Use only material the user is permitted to process and share; avoid sensitive patient information unless the user accepts the handling and storage implications. <br>
-Risk: Medical-health content can be inaccurate, incomplete, or overconfident when converted into social-media cards. <br>
-Mitigation: Review medical outputs for accuracy before publication and include appropriate disclaimers. <br>
-Risk: Generated image outputs are saved in the workspace as part of the Xiaohongshu workflow. <br>
-Mitigation: Review generated files before distribution and remove workspace outputs that should not persist. <br>
+## Use Case:
 
+External creators, knowledge bloggers, and health-content publishers use this skill to turn topics, articles, or videos into Xiaohongshu-ready image sets and a unified Chinese caption. It is especially oriented toward medical-health education, patient stories, and practical tutorial posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hiletian/hemophilia-xiaohongshu-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown-style delivery with generated image file links or paths, a unified Chinese caption, and per-image topic notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are designed for 3:4 Xiaohongshu image-card sets with synchronized captions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Medical-health claims in generated Xiaohongshu content may be inaccurate, incomplete, or unsuitable for publication without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review health claims, add appropriate disclaimers, and confirm medical content before publishing.
+
+Risk: User-provided article or video links may expose content the user did not intend to process.
+
+Mitigation: Provide only links and source material that are appropriate for processing in the agent workspace.
+
+Risk: Generated images are intended to be saved under the workspace output path.
+
+Mitigation: Check generated files before sharing and remove any unwanted outputs from the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hiletian/skills/hemophilia-xiaohongshu-creator)
+- [ClawHub publisher profile](https://clawhub.ai/user/hiletian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, images, guidance]
+
+**Output Format:** [Markdown text with generated image links or workspace image paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 3:4 Xiaohongshu image sets, a shared caption, hashtags, and per-image topic notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

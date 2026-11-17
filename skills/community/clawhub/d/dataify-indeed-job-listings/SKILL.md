@@ -1,6 +1,6 @@
 ---
 name: dataify-indeed-job-listings
-description: Collect Indeed job listings through Dataify Scraper API. Use when the user asks to gather, scrape, crawl, fetch, extract, or collect Indeed job listing/job posting/job information data from an Indeed job URL, including noun-plus-verb combinations such as Indeed job listing/job posting/job information/job URL plus scrape/collect/crawl/fetch/extract, "Indeed job listing scrape", "Indeed job URL collect", "Indeed job information extract", "Indeed 职位列表采集", "Indeed 职位列表抓取", "Indeed 职位信息爬取", "Indeed 职位信息获取", "Indeed 职位URL提取", or requests using spider ID indeed_job-listings_by-job-url.
+description: "Collect structured Indeed job-posting data from a known Indeed job URL. Do not use for company profiles or broad job discovery without an Indeed URL."
 ---
 
 # Dataify Indeed Job Listings
@@ -12,42 +12,17 @@ Use this skill to create Indeed job listing collection tasks through Dataify's b
 1. Use the `indeed_job-listings_by-job-url` spider when the user wants to collect Indeed job listings, job postings, job information, or data from an Indeed job URL.
 2. Check the local Python runtime before calling scripts. Prefer `python`; use `python3` if that is the available Python command. Require Python 3 or newer. Do not use version-specific commands such as `py -3.10`.
 3. Tell the user which parameters are required and what the defaults are. Ask whether any values should be changed.
-4. Ask whether the user wants to collect multiple parameter sets. If yes, collect multiple `spider_parameters` objects for the same spider ID. If the user already supplied multiple job URLs, treat that as a multiple-set request.
-5. Before every real API call, show a Markdown confirmation table with the exact parameters that will be submitted. The table must use these columns: `Parameter`, `Current value`, `Default value`, `Required`, `Description`.
 6. If any dropdown fields are added in the future, show all available dropdown values in Markdown tables with exactly these columns: `Label`, `Value`. This tool currently has no dropdown fields.
-7. Ask the user whether any value should be changed. Do not call the API until the user explicitly confirms the table.
-8. Check for the Dataify API token only after parameter confirmation. Prefer a token explicitly provided by the user, then `DATAIFY_API_TOKEN` from the environment.
-9. If no token is available, tell the user: `Missing Dataify API token. Provide a token, or log in/register at` [Dataify](https://dashboard.dataify.com/login?utm_source=skill) `If you already have one, open` [Dataify](https://dashboard.dataify.com?utm_source=skill) `and copy the API TOKEN from the top-right area.`
-10. If the user provides a token and `DATAIFY_API_TOKEN` is not already saved locally, ask whether to save it as `DATAIFY_API_TOKEN`. Save it only after explicit consent and never echo the token back.
-11. After the API call, report the collection task ID and status. Look for common response fields such as `task_id`, `taskId`, `id`, `status`, `data.task_id`, `data.id`, or `data.status`. Then remind the user to view task details in the official dashboard: [Dataify](https://dashboard.dataify.com?utm_source=skill)
-
-## Parameter Preview
-
-Use the preview helper whenever possible:
-
-```bash
-python scripts/preview_params.py --job-url "https://fr.indeed.com/viewjob?jk=55b3e5dfa0c2ff66"
-```
-
-For multiple parameter sets, pass the exact JSON array:
-
-```bash
-python scripts/preview_params.py --parameters-json '[{"job_url":"https://fr.indeed.com/viewjob?jk=55b3e5dfa0c2ff66"},{"job_url":"https://www.indeed.com/viewjob?jk=example"}]'
-```
-
 ## API Call
 
-Use the call helper after confirmation and token handling:
 
 ```bash
 python scripts/indeed_job_listings.py --job-url "https://fr.indeed.com/viewjob?jk=55b3e5dfa0c2ff66"
 python scripts/indeed_job_listings.py --parameters-json '[{"job_url":"https://fr.indeed.com/viewjob?jk=55b3e5dfa0c2ff66"},{"job_url":"https://www.indeed.com/viewjob?jk=example"}]'
 ```
 
-If the token was provided in the conversation instead of the environment, pass it with `--token` and do not expose it in user-facing output:
 
 ```bash
-python scripts/indeed_job_listings.py --token "USER_TOKEN" --job-url "https://fr.indeed.com/viewjob?jk=55b3e5dfa0c2ff66"
 ```
 
 ## Tool
@@ -71,3 +46,40 @@ Always submit to `https://scraperapi.dataify.com/builder?platform=1` with:
 | `file_name` | User value, otherwise `{{TasksID}}` |
 
 Send parameters as form data. Keep `spider_parameters` as a JSON string inside the form body.
+
+## Default completion behavior
+
+The default deliverable is the collected result, not only a `task_id`.
+
+1. Submit the Builder task once and capture its `task_id`.
+2. Immediately continue with `$dataify-task-operations` and monitor the same task ID.
+   - Use the default 600-second wait for ordinary collections.
+   - Use `--timeout 1800` for media downloads or clearly high-volume, multi-page, or multi-input collections.
+3. When the task succeeds, download and return the final JSON result. Summarize large payloads while preserving access to the raw result.
+4. If monitoring times out or is interrupted, return the task ID and a resume command. Do not resubmit the paid task.
+5. Stop after submission only when the user explicitly asks for submission only, a task ID, or `--no-wait` behavior.
+
+## Quick Start
+
+```bash
+python3 scripts/indeed_job_listings.py --help
+```
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

@@ -1,43 +1,58 @@
-## Description: <br>
-Call 179 professional agents on demand from a local prompt catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call 179 professional agents on-demand from database
 
-## Publisher: <br>
-[717986230](https://clawhub.ai/user/717986230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[717986230](https://clawhub.ai/user/717986230)
 
-## Use Case: <br>
-Developers and agent builders use this skill to search, browse, and retrieve preconfigured specialist agent prompts for coding, strategy, design, marketing, testing, and related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled prompt catalog includes high-impact capabilities such as wallet use, purchases, transaction signing, and OAuth-token workflows. <br>
-Mitigation: Treat retrieved prompts as untrusted templates; grant scoped tools only after explicit approval and keep payment, credential, and transaction actions behind human review. <br>
-Risk: Package documentation includes unsafe credential-sharing guidance. <br>
-Mitigation: Use only official browser login or local CLI token entry, and do not share ClawHub API tokens with a skill author, assistant, or chat. <br>
-Risk: Retrieved prompts may introduce unsafe or unsuitable instructions into downstream agents. <br>
-Mitigation: Review prompts before deployment and require environment and tool restrictions for email, posting, persistent memory, credentials, and other sensitive operations. <br>
+## Use Case:
 
+Developers and agent users use this skill to search, browse, and retrieve preconfigured specialist agent prompts from a local catalog for code, product, marketing, design, testing, strategy, and other workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/717986230/agent-caller) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/717986230) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionaries or CLI text containing agent metadata and prompt content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The catalog contains 179 bundled agent prompts across 15 categories and can return full prompt text for downstream agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Bundled prompts may ask an agent to perform high-impact actions such as payments, public posting, shell commands, file edits, memory changes, or scheduling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review retrieved prompts before using them as agent or system instructions, and require explicit user approval with limited tool access for high-impact actions.
+
+Risk: The artifact includes unsafe token-sharing guidance in login documentation.
+
+Mitigation: Do not paste ClawHub tokens into chat; authenticate through the official CLI or a protected local prompt.
+
+Risk: The security verdict is suspicious because safeguards around bundled high-impact prompts are not clearly documented.
+
+Mitigation: Install only for local prompt-catalog use and scan or review selected prompts before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/717986230/skills/agent-caller)
+- [Publisher Profile](https://clawhub.ai/user/717986230)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python dictionaries, prompt text, Markdown examples, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite database populated from bundled agent prompt data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

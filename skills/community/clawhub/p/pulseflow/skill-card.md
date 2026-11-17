@@ -1,50 +1,66 @@
-## Description: <br>
-PulseFlow maintains a Markdown task dashboard with append-only AI work logs, then syncs daily AI DONE TODAY and weekly usage panels through heartbeat or on-demand refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain a Markdown task dashboard backed by agent-written append-only AI work logs, then sync a daily AI DONE TODAY section plus a weekly usage panel via heartbeat or on-demand refresh.
 
-## Publisher: <br>
-[ayao99315](https://clawhub.ai/user/ayao99315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayao99315](https://clawhub.ai/user/ayao99315)
 
-## Use Case: <br>
-Developers and operators use PulseFlow to keep human task planning, AI execution logs, weekly usage visibility, and monthly history aligned in a reusable local workspace workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured file paths may target unintended dashboards, history folders, reports, or AGENTS.md files. <br>
-Mitigation: Review todo/system/config.json before running scripts, especially dashboardPath, historyDir, reportsDir, syncStatePath, and agentsFilePath. <br>
-Risk: Optional summary cron installation can schedule agents to read dashboard and log files and write summary archives. <br>
-Mitigation: Run scripts/install_summary_crons.js with --dry-run first and enable summaryCrons only in workspaces where scheduled summaries are intended. <br>
-Risk: Managed AGENTS.md rule installation changes agent operating instructions so completed work is appended to AI logs. <br>
-Mitigation: Enable AGENTS.md rule installation only for intended agents and confirm the managed rule block after installation. <br>
+## Use Case:
 
+Developers and operators use PulseFlow to maintain a reusable local work dashboard where human tasks, AI work logs, weekly usage visibility, and monthly history stay aligned through initialization, heartbeat sync, repair, and rollover workflows.
 
-## Reference(s): <br>
-- [PulseFlow release page](https://clawhub.ai/ayao99315/pulseflow) <br>
-- [Publisher profile](https://clawhub.ai/user/ayao99315) <br>
-- [Design](docs/design.md) <br>
-- [File Specification](docs/file-spec.md) <br>
-- [Lifecycle](docs/lifecycle.md) <br>
-- [Portability Notes](docs/portability.md) <br>
-- [Agent Log Format](references/agent-log-format.md) <br>
-- [Config Template](references/config-template.json) <br>
-- [Recovery Playbook](references/recovery-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local dashboard, history, sync-state, AI log, AGENTS.md, and optional cron configuration files when the documented scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Local dashboards, logs, and history can contain AI work summaries and task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install PulseFlow only in workspaces where local retention of those details is acceptable, and define retention expectations before use.
+
+Risk: AGENTS.md rule installation changes agent operating instructions for configured agents.
+
+Mitigation: Review managed rule changes before enabling installation and configure only the intended agent files.
+
+Risk: Optional summary crons can run on a schedule and deliver work summaries to configured targets.
+
+Mitigation: Use the dry run first, set trusted internal delivery targets, and verify timezone, paths, agent names, and cron timing.
+
+## Reference(s):
+
+- [PulseFlow ClawHub Page](https://clawhub.ai/ayao99315/skills/pulseflow)
+- [README](README.md)
+- [Design](docs/design.md)
+- [File Specification](docs/file-spec.md)
+- [Lifecycle](docs/lifecycle.md)
+- [Portability](docs/portability.md)
+- [Agent Log Format](references/agent-log-format.md)
+- [Configuration Template](references/config-template.json)
+- [Heartbeat Checklist](references/heartbeat-checklist.md)
+- [Recovery Playbook](references/recovery-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown dashboards and archives, JSON/JSONL state and logs, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files and a JavaScript runtime; optional summary cron installation is configuration-driven.]
+
+## Skill Version(s):
+
+1.2.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

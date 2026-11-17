@@ -1,50 +1,65 @@
-## Description: <br>
-Reverse engineer binaries, APIs, protocols, and workflows with evidence ladders, interface maps, and falsifiable hypotheses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse engineer binaries, APIs, protocols, and workflows with evidence ladders, interface maps, and falsifiable hypotheses.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate opaque binaries, APIs, protocols, file formats, devices, or workflows by bounding the target, mapping external interfaces, testing hypotheses, and documenting evidence-backed findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reverse engineering work can affect unauthorized, production, credential-bearing, or third-party systems if scope is unclear. <br>
-Mitigation: Require authorized access, define boundaries before probing, and default to read-only offline copies, captures, stubs, or sandboxes when the environment or blast radius is unclear. <br>
-Risk: Invasive actions such as fuzzing, patching, authentication, replay, or live-system testing can alter state or expose sensitive data. <br>
-Mitigation: Ask for explicit user approval before any invasive, destructive, credential-bearing, or remote-state-changing step. <br>
-Risk: Reverse engineering findings can overstate certainty when based on a single log, trace, sample, or decompiled path. <br>
-Mitigation: Tag claims with evidence levels, separate observation from inference, and raise confidence only through controlled replay or independent cross-checks. <br>
-Risk: Local notes and captured artifacts can include sensitive target details. <br>
-Mitigation: Tell the user before creating the local workspace, store only approved workflow notes in ~/reverse-engineering/, and keep sensitive evidence in the active workspace or target-specific files. <br>
+## Use Case:
 
+Developers, engineers, and analysts use this skill to investigate authorized opaque systems, including binaries, APIs, protocols, file formats, devices, and legacy workflows. It helps them bound the target, map interfaces, test hypotheses, and produce reusable findings without overstating certainty.
 
-## Reference(s): <br>
-- [Reverse Engineering on ClawHub](https://clawhub.ai/ivangdavila/reverse-engineering) <br>
-- [Reverse Engineering homepage](https://clawic.com/skills/reverse-engineering) <br>
-- [Safety boundaries](artifact/boundaries.md) <br>
-- [TRACE protocol](artifact/protocol.md) <br>
-- [Evidence ladder](artifact/evidence-ladder.md) <br>
-- [Interface map](artifact/interface-map.md) <br>
-- [Deliverable templates](artifact/deliverables.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured notes, tables, hypotheses, reproduction steps, and optional inline commands or code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local reverse-engineering notes only after user approval; no external data transfer by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Reverse-engineering work can exceed lawful or authorized scope if targets, samples, systems, or access boundaries are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authorized access, define the boundary before probing, and prefer read-only inspection, offline copies, captures, stubs, or sandboxes.
+
+Risk: Invasive actions such as patching, fuzzing, credential-bearing requests, or production probing can alter systems or expose sensitive data.
+
+Mitigation: Ask for explicit approval before invasive, destructive, authenticated, or credential-bearing steps, and pause when regulated, customer, or third-party data is involved.
+
+Risk: Local notes, traces, decoded payloads, and reproduction snippets may contain sensitive information.
+
+Mitigation: Store only approved engagement notes, avoid credentials and sensitive payloads in durable memory, and keep sensitive target evidence in the workspace or target-specific files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/reverse-engineering)
+- [Skill homepage](https://clawic.com/skills/reverse-engineering)
+- [TRACE protocol](artifact/protocol.md)
+- [Evidence ladder](artifact/evidence-ladder.md)
+- [Interface map](artifact/interface-map.md)
+- [Deliverables](artifact/deliverables.md)
+- [Safety boundaries](artifact/boundaries.md)
+- [Setup guide](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with concise findings, evidence tags, tables, and inline code or shell commands when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce target briefs, interface maps, hypothesis ledgers, reproduction notes, and remaining-unknowns lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

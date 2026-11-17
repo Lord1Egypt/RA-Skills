@@ -1,43 +1,53 @@
-## Description: <br>
-Duel Loop coordinates isolated execution and QA subagents to draft, score, revise, and either approve or halt changes requested through an explicit QA workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Duel Loop routes complex drafting or analysis tasks through isolated execution and QA subagents, requiring a perfect structured review score before applying an approved draft.
 
-## Publisher: <br>
-[dexzopiclone](https://clawhub.ai/user/dexzopiclone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexzopiclone](https://clawhub.ai/user/dexzopiclone)
 
-## Use Case: <br>
-Developers and teams use this skill when they want an agent to handle rule, plan, protocol, policy, or review-document drafting through a separated execution-and-QA loop, with user review reserved for final acceptance or circuit-break decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes draft files and may land approved content into target production files. <br>
-Mitigation: Confirm draft and target paths before use, and review the final diff before accepting production-file changes. <br>
-Risk: Subagents receive task context and relevant file contents during drafting and QA. <br>
-Mitigation: Pass only task-relevant excerpts and avoid sharing full conversation history or unrelated sensitive context. <br>
-Risk: The automated revision loop can continue through multiple failed QA rounds. <br>
-Mitigation: Use the documented five-round circuit breaker and require a user decision before continuing after repeated QA failures. <br>
+## Use Case:
 
+Developers and agent operators use this skill when a user explicitly requests QA review for rules, plans, protocols, strategies, or other context-sensitive writing. It creates draft revisions, runs structured QA scoring, and either applies the approved result or reports a circuit break after five failed rounds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dexzopiclone/duel-loop) <br>
-- [QA review prompt template](templates/qa-review-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown drafts and QA review reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are versioned under drafts/<name>-v<n>.md, and the loop halts after five failed QA rounds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may spawn subagents, create drafts, and modify a production file after internal scoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit invocation phrase and final confirmation that names the exact target file and intended change before applying output.
+
+Risk: The skill is designed around a Chinese-language QA workflow, which can reduce review quality for operators who cannot assess the prompts and QA findings.
+
+Mitigation: Use it only when the requester or reviewer can evaluate Chinese-language instructions, scoring rationale, and final reports.
+
+## Reference(s):
+
+- [Duel Loop ClawHub Skill Page](https://clawhub.ai/dexzopiclone/skills/duel-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Files]
+
+**Output Format:** [Markdown drafts, QA review tables, and final status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create versioned draft files and apply an approved draft after QA acceptance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

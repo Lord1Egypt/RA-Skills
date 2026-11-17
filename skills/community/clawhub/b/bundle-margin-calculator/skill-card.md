@@ -1,41 +1,57 @@
-## Description: <br>
-Calculate whether a product bundle improves average order value without quietly destroying contribution margin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate whether a product bundle improves average order value without quietly destroying contribution margin. Use when teams want to test bundle structures with clearer economics.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce growth, merchandising, and pricing teams use this skill to pressure-test bundle, discount, or upsell scenarios against AOV, contribution margin, attach-rate, and break-even assumptions before launch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commercial pricing, cost, or margin data may be sensitive. <br>
-Mitigation: Provide only the business data needed for the bundle scenario and avoid unnecessary sensitive inputs. <br>
-Risk: Model assumptions or generated Python scripts may lead to incorrect business decisions if used without review. <br>
-Mitigation: Review assumptions, sensitivity ranges, recommendations, and any generated script before acting on results or running it with sensitive data. <br>
+## Use Case:
 
+Ecommerce, growth, and merchandising teams use this skill to compare bundle or upsell scenarios against baseline order economics, margin impact, sensitivity, break-even pressure, and go/watch/no-go recommendations.
 
-## Reference(s): <br>
-- [Bundle Margin Calculator on ClawHub](https://clawhub.ai/Leooooooow/bundle-margin-calculator) <br>
-- [Output Template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown analysis with optional Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include baseline versus bundle scenario, sensitivity analysis, recommendation, and a reusable Python script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated Python scripts may encode incorrect commercial assumptions or formulas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts, formulas, and input assumptions before using outputs for pricing or launch decisions.
+
+Risk: The clarification workflow starts in Chinese, which may be unexpected for some users.
+
+Mitigation: Confirm the working language at the start of use or adapt the prompts for the target team.
+
+Risk: The referenced output template appears unrelated to bundle-margin analysis.
+
+Mitigation: Review or replace the template before relying on it as a formatting reference.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/bundle-margin-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown analysis with optional Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include baseline and bundle scenarios, margin or break-even implications, sensitivity analysis, risks, recommendations, and a reusable Python script.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

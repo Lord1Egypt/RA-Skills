@@ -1,39 +1,48 @@
-## Description: <br>
-Analyzes competitor websites to identify keyword gaps, SEO weaknesses, content opportunities, and backlink strategies with prioritized, actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes competitor websites to uncover keyword gaps, content opportunities, SEO weaknesses, backlink gaps, and prioritized recommendations.
 
-## Publisher: <br>
-[noahcraft-open](https://clawhub.ai/user/noahcraft-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[noahcraft-open](https://clawhub.ai/user/noahcraft-open)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, SEO practitioners, and site owners use this skill to compare their website or niche against 2-5 competitors and produce keyword, content, on-page, technical SEO, and backlink recommendations with a 30-day action plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: SEO strategy inputs and competitor comparisons may include business-sensitive information.
+
+Mitigation: Share only websites, competitor URLs, and strategic goals that the user is authorized and comfortable having analyzed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-SEO practitioners, marketers, and site owners use this skill to compare a site or niche against 2-5 competitors and turn SEO gaps into a prioritized content, on-page, technical, and backlink action plan. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations may be incomplete or inaccurate and could affect business or website changes. <br>
-Mitigation: Independently verify the analysis, metrics, and recommendations before implementation. <br>
-Risk: The analysis prompt could include unnecessary sensitive business details. <br>
-Mitigation: Provide only public URLs or niche details needed for the comparison. <br>
+**Output Format:** [Markdown analysis with tables, prioritized recommendations, scoring, competitor profiles, and a 30-day action plan]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prompts for a user website or niche, 2-5 competitor URLs, and a primary SEO goal before producing the analysis.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style SEO analysis with tables and a prioritized action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public site and competitor URLs; recommendations should be independently verified before business or website changes.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

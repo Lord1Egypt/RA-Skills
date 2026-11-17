@@ -1,39 +1,48 @@
-## Description: <br>
-Plan X content calendars for growth. Use when creating a 7-day or 30-day schedule across utility, opinion, proof-of-work, conversation, and personal posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan X content calendars for growth. Use when creating a 7-day or 30-day schedule across utility, opinion, proof-of-work, conversation, and personal posts.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, founders, marketers, and brand operators use this skill to plan executable X content calendars with a balanced mix of utility, opinion, proof-of-work, conversation, and personal-context posts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated calendars may include public-facing personal or brand content that is inaccurate, sensitive, or off-brand if published without review.
+
+Mitigation: Review and edit each proposed post, reply target, experiment, and metric before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, creators, and social media operators use this skill to draft executable 7-day or 30-day X posting plans with content pillars, reply targets, weekly experiments, and metrics to watch. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may over-optimize for engagement signals or include messaging that is not appropriate for the user's audience. <br>
-Mitigation: Review all planned posts before publishing and use the skill's metrics section to evaluate quality, not only engagement. <br>
-Risk: Public X algorithm signals may be incomplete or change over time. <br>
-Mitigation: Treat the calendar as planning guidance and validate assumptions with current account metrics and user goals. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces assumptions, content pillars, a day-by-day calendar, reply targets, weekly experiment, and metrics to watch.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, content pillars, calendar entries, reply targets, a weekly experiment, and metrics to watch.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

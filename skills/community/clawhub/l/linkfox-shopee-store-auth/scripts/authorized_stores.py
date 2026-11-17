@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
 Shopee Authorized Stores List - LinkFox Skill
-Calls /shopee/authorizedStores to list all authorized stores
+Calls /shopee/authorizedStores to list all authorized stores (ERP and/or AD).
 
 Usage:
   python authorized_stores.py
+
+Each store row may include appType=erp|ad; the same shopId can appear twice.
 """
 
 import json
@@ -21,11 +23,14 @@ API_ENDPOINT = f"{API_BASE_URL}/shopee/authorizedStores"
 
 
 def get_api_key():
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和积分问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Please set the environment variable:\n"
-            "  export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -45,7 +50,7 @@ def call_api() -> dict:
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -61,13 +66,20 @@ def main():
     if "stores" in result:
         stores = result.get("stores", [])
         total = result.get("total", 0)
-        print(f"\n✓ Found {total} authorized store(s):", file=sys.stderr)
+        print(f"\n✓ Found {total} authorized store record(s):", file=sys.stderr)
         for s in stores:
+            app_type = s.get("appType") or "erp"
             print(
                 f"  - shopId={s.get('shopId')}  {s.get('shopName', 'N/A')}  "
-                f"merchantId={s.get('merchantId', '')}  region={s.get('region', '')}",
+                f"merchantId={s.get('merchantId', '')}  region={s.get('region', '')}  "
+                f"appType={app_type}",
                 file=sys.stderr,
             )
+        print(
+            "Note: Match shopId/merchantId AND appType before calling business APIs. "
+            "ERP authorization does not grant Ads; Ads does not grant ERP.",
+            file=sys.stderr,
+        )
 
 
 if __name__ == "__main__":

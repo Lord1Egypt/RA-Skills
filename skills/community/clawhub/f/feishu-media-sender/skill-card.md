@@ -1,43 +1,56 @@
-## Description: <br>
-Feishu Media Sender uploads and sends images or videos through Feishu OpenAPI with in-chat preview or playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads images or videos to Feishu and sends them as chat media messages with image preview and video playback.
 
-## Publisher: <br>
-[yinranphoto](https://clawhub.ai/user/yinranphoto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinranphoto](https://clawhub.ai/user/yinranphoto)
 
-## Use Case: <br>
-Developers and operators use this skill to send local image or video files to Feishu chats from an agent workflow. It is intended for Feishu bot workflows that need media upload and message delivery through configured OpenClaw credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a selected local image or video file through a configured Feishu app. <br>
-Mitigation: Confirm the file path and recipient ID before running the command, and use credentials scoped to the intended bot and workspace. <br>
-Risk: The skill reads Feishu app credentials from ~/.openclaw/openclaw.json at runtime. <br>
-Mitigation: Limit access to the OpenClaw config file and rotate credentials if they are exposed or no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send local image or video files to Feishu chats through configured Feishu app credentials.
 
-## Reference(s): <br>
-- [Feishu Upload Image API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create) <br>
-- [Feishu Upload File API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create) <br>
-- [Feishu Send Message API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinranphoto/feishu-media-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Text and JSON response output from the Feishu send operation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, Feishu network access, a local media file path, and OpenClaw Feishu credentials in ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Credential selection and file validation are loose enough that the wrong Feishu account, recipient, or local file could be used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, verify the selected workspace, Feishu account binding, recipient ID, and file path; avoid sensitive paths and prefer a version with stricter media validation and explicit upload confirmation.
+
+Risk: The skill reads local OpenClaw configuration and performs network uploads to Feishu at runtime.
+
+Mitigation: Install only in trusted workspaces, keep Feishu app credentials scoped to the intended tenant, and review the command before executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinranphoto/skills/feishu-media-sender)
+- [Feishu Upload Image API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create)
+- [Feishu Upload File API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create)
+- [Feishu Send Message API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown with inline shell commands; runtime command prints a Feishu API JSON response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends media to an external Feishu chat as a side effect.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

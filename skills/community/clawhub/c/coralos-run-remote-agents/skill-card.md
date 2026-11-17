@@ -1,41 +1,54 @@
-## Description: <br>
-End-to-end Coral Cloud workflow - discover registry remote agents, compose and launch a session of agents, then monitor and close it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Coral Cloud workflow to discover registry remote agents, compose and launch a session of agents, then monitor and close it.
 
-## Publisher: <br>
-[omni-georgio](https://clawhub.ai/user/omni-georgio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omni-georgio](https://clawhub.ai/user/omni-georgio)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover Coral Cloud registry agents, prepare a session payload, launch remote agents, and monitor session state through the Coral Cloud workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creating Coral Cloud sessions can launch remote agents with selected payloads, namespaces, permissions, or costs. <br>
-Mitigation: Before creating a session, review the selected agent, payload, namespace, and expected permissions or costs. <br>
-Risk: Helper scripts or templates referenced by the workflow may come from outside the reviewed artifact. <br>
-Mitigation: Treat separately downloaded helper scripts or templates as unreviewed until they are inspected and scanned. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover Coral Cloud registry agents, compose strict session payloads, launch remote agent sessions, and monitor lifecycle state.
 
-## Reference(s): <br>
-- [Coral Cloud API guide](https://docs.coralos.ai/cloud/using-api) <br>
-- [CoralOS ClawHub skill page](https://clawhub.ai/omni-georgio/coralos-run-remote-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide an agent to create, monitor, or close Coral Cloud sessions through external API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review session payloads before submission and require confirmation for state-changing actions such as creating or closing sessions.
+
+Risk: The skill references helper scripts and payload templates that may affect remote session behavior.
+
+Mitigation: Run only trusted helper scripts and inspect referenced payload templates before using them with a live Coral Cloud environment.
+
+## Reference(s):
+
+- [Coral Cloud API guide](https://docs.coralos.ai/cloud/using-api)
+- [CoralOS ClawHub skill page](https://clawhub.ai/omni-georgio/skills/coralos-run-remote-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTTP endpoints, payload requirements, and lifecycle checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead the agent to make external Coral Cloud API calls and review session payloads before submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

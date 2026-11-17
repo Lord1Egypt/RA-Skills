@@ -1,42 +1,55 @@
-## Description: <br>
-Guides software architects, tech leads, and staff engineers through drafting a structured MADR-style Architecture Decision Record with context, decision drivers, alternatives, outcomes, consequences, and supersession links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a software architect, tech lead, or staff engineer needs to capture an in-flight architectural decision as a structured ADR.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Developers and engineering decision makers use this skill to capture an in-flight, superseding, or previously undocumented architecture decision as an ADR before the rationale is lost. It helps document constraints, real alternatives, the chosen outcome, trade-offs, consequences, related decisions, references, and a ready-to-commit filename. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ADRs can contain confidential architecture, vendor, pricing, customer, or security details. <br>
-Mitigation: Review each ADR before committing or sharing, and keep sensitive decision details within the intended repository and review audience. <br>
-Risk: An ADR can preserve an incomplete or misleading rationale if assumptions, alternatives, or consequences are not checked. <br>
-Mitigation: Confirm assumptions with reviewers, require at least two real options, and verify that negative consequences and related decisions are captured before finalizing. <br>
+## Use Case:
 
+Developers, software architects, tech leads, and staff engineers use this skill to document architectural decisions before, during, or after implementation. It guides them through scope, drivers, alternatives, outcome, consequences, related decisions, and references to produce a MADR-style ADR suitable for docs/adr/.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/archlab-space/architecture-decision-record-drafter) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
-- [Feedback issue tracker](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown ADR document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a sequential docs/adr filename proposal and structured sections for status, drivers, options, outcome, consequences, related decisions, and references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: ADRs may include confidential architecture, vendor, pricing, or security details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat sensitive inputs as confidential, avoid external publication, and include sensitive details only when needed for the ADR.
+
+Risk: An ADR can mislead maintainers if it records a bundled decision, vague drivers, or one-sided trade-offs.
+
+Mitigation: Use the skill's staged review, require at least two considered options, connect outcomes to decision drivers, and include honest negative consequences before finalizing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/architecture-decision-record-drafter)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown ADR draft with filename guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured MADR-style Architecture Decision Record and proposes a docs/adr/ filename; the skill uses staged user review before finalizing the record.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

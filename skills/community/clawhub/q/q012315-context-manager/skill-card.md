@@ -1,42 +1,55 @@
-## Description: <br>
-A local context-management skill for adaptive model context limits, layered memory, dynamic memory injection, and SQLite-backed storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Manager helps agents manage local layered memory with model-aware context limits, dynamic memory loading, and SQLite-backed storage.
 
-## Publisher: <br>
-[q012315](https://clawhub.ai/user/q012315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q012315](https://clawhub.ai/user/q012315)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep reusable context in a local SQLite memory store, inspect memory statistics, and adapt context-management behavior for different model context limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user-provided memory content in a local SQLite database, so sensitive or regulated data could persist on disk. <br>
-Mitigation: Avoid adding secrets, credentials, or regulated personal data, and verify the database location printed by --init. <br>
-Risk: Some documented commands are not implemented in the bundled script, so relying on them may fail or produce incomplete workflows. <br>
-Mitigation: Use the implemented commands or review the script before automation; treat unimplemented documented commands as unavailable until the publisher updates the release. <br>
+## Use Case:
 
+Developers and agent users can use this skill to initialize a local memory store, add memories, inspect context statistics, and adapt memory handling to model context limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/q012315/q012315-context-manager) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite database under the user's OpenClaw workspace when the script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Memories may contain sensitive information and are stored locally in plaintext at a predictable ~/.openclaw path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store passwords, tokens, private conversations, or business-sensitive data, and review local memory files before sharing or disposing of an environment.
+
+Risk: Some documented memory-management features may be unavailable in the current implementation.
+
+Mitigation: Validate required commands in a non-sensitive workspace before relying on the skill for operational context management.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/q012315/skills/q012315-context-manager)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local SQLite memory database when the bundled command-line script is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

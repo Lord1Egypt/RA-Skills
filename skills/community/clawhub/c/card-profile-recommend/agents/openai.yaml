@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Profile Recommend"
+  short_description: "Grade a wallet and recommend next cards"
+  default_prompt: "Use $card-profile-recommend to grade my wallet and recommend what card I should add next."

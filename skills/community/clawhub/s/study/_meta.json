@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "study",
-  "version": "1.0.1",
-  "publishedAt": 1771249525851
+  "displayName": "Study",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785140325505
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785112998115
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771249525851
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770822772265
+    }
+  ]
 }

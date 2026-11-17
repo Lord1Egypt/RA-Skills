@@ -1,50 +1,67 @@
-## Description: <br>
-使用 autocli CLI 访问其已支持的网站、桌面应用与外部 CLI。用于浏览、搜索、查看时间线、书签、通知、主页、热榜、文章、历史记录，或在获得用户确认时执行目标平台已支持的写操作。对 autocli 已支持的目标，优先使用 autocli，而不是浏览器自动化或手工切换执行面；仅网站支持自定义适配器。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoCLI zh guides agents in Simplified Chinese to use the autocli CLI for supported websites, desktop applications, and external CLIs, including read workflows and user-confirmed write actions.
 
-## Publisher: <br>
-[poiskgit](https://clawhub.ai/user/poiskgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poiskgit](https://clawhub.ai/user/poiskgit)
 
-## Use Case: <br>
-External users and developers use this skill to route supported website, desktop application, and external CLI tasks through the local autocli command line. It supports read workflows such as search, feeds, bookmarks, notifications, articles, history, and trend checks, and requires explicit confirmation before public or potentially irreversible write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: autocli may use existing browser sessions and expose browser bridge state, logged-in page content, or request traffic during diagnostics, interception, or custom adapter work. <br>
-Mitigation: Use those flows only after the agent explains the scope and receives explicit user consent. <br>
-Risk: write actions such as posting, liking, following, deleting, or commenting may be public or irreversible. <br>
-Mitigation: Confirm the target object, submitted content, and external visibility before execution; use a controlled environment first for sensitive accounts or production data. <br>
-Risk: custom adapters and external CLI registration can persist changes under ~/.autocli. <br>
-Mitigation: Require explicit approval before creating or modifying files in ~/.autocli/adapters, ~/.autocli/plugins, or ~/.autocli/external-clis.yaml, and perform a minimal verification after changes. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent route supported browsing, search, timeline, bookmark, notification, article, and CLI-backed tasks through AutoCLI. It is especially useful when the user wants concise Chinese-language results while preserving confirmation gates for write actions, browser-session debugging, and persistent adapter changes.
 
-## Reference(s): <br>
-- [AutoCLI upstream project](https://github.com/nashsu/AutoCLI) <br>
-- [Bilibili target reference](references/bilibili.md) <br>
-- [Google target reference](references/google.md) <br>
-- [Hacker News target reference](references/hackernews.md) <br>
-- [Mtime target reference](references/mtime.md) <br>
-- [Twitter / X target reference](references/twitter.md) <br>
-- [Wikipedia target reference](references/wikipedia.md) <br>
-- [Fallback workflow guide](guides/fallbacks.md) <br>
-- [Custom adapters guide](guides/custom-adapters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Simplified Chinese prose with optional Markdown, inline shell commands, JSON summaries, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should summarize useful results first, avoid unnecessary raw command dumps, and follow target-specific display guidance when a target reference defines it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Some AutoCLI targets may read account-backed pages through an existing browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those workflows only when the user is comfortable with AutoCLI reading the requested logged-in pages, and obtain consent before browser-session debugging or bridge-state inspection.
+
+Risk: Write actions such as posting, replying, liking, following, deleting, or subscribing may be externally visible or irreversible.
+
+Mitigation: Require explicit user confirmation of the target object and submitted content before executing any write action.
+
+Risk: Custom adapters and plugin configuration can persist changes under ~/.autocli.
+
+Mitigation: Explain the persistent file paths and get user approval before creating or modifying adapters, plugins, or external CLI configuration.
+
+## Reference(s):
+
+- [AutoCLI upstream project](https://github.com/nashsu/AutoCLI)
+- [Bilibili target reference](references/bilibili.md)
+- [Google target reference](references/google.md)
+- [Hacker News target reference](references/hackernews.md)
+- [Mtime target reference](references/mtime.md)
+- [Twitter / X target reference](references/twitter.md)
+- [Wikipedia target reference](references/wikipedia.md)
+- [Fallbacks guide](guides/fallbacks.md)
+- [Custom adapters guide](guides/custom-adapters.md)
+- [Custom adapters reference](guides/custom-adapters-reference.md)
+- [Reference bootstrap guide](guides/reference-bootstrap.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Simplified Chinese Markdown with inline shell commands and optional JSON-oriented command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritizes concise summaries over raw command dumps; supported read operations may use structured JSON output when useful.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

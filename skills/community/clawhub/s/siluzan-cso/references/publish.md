@@ -158,11 +158,13 @@ AI 可直接帮助润色：加钩子开头、适配平台风格、加 SEO 关键
 
 全局 `cover` 作为默认封面；某平台需要不同封面时：
 
+上传的独立封面图片使用 `imageSourceType: 2`，`sourceImageId` 填封面图片自己的素材 ID。`1` 仅用于视频素材首帧（填视频素材 ID），`0` 用于直接图片 URL。
+
 ```json
 "cover": {
   "imageUrl": "https://cdn.example.com/cover-default.jpg",
   "imageName": "cover-default.jpg",
-  "imageSourceType": 1,
+  "imageSourceType": 2,
   "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 },
 "platformOverrides": {
@@ -170,7 +172,7 @@ AI 可直接帮助润色：加钩子开头、适配平台风格、加 SEO 关键
     "cover": {
       "imageUrl": "https://cdn.example.com/cover-youtube.jpg",
       "imageName": "cover-youtube.jpg",
-      "imageSourceType": 1,
+      "imageSourceType": 2,
       "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     }
   }
@@ -216,6 +218,10 @@ AI 可直接帮助润色：加钩子开头、适配平台风格、加 SEO 关键
 ```bash
 siluzan-cso publish -c publish-config.json --dry-run
 ```
+
+视频发布的 `--dry-run` 也会读取素材元数据、刷新封面签名，并检查默认封面及已选平台封面。校验覆盖 HTTP 状态、图片响应类型、实际图片尺寸、15 秒超时、10 MiB 大小上限和最多 3 次重定向；失败会阻止提交。预览过程不会创建发布任务。
+
+普通预览中的封面地址隐藏查询参数和签名；仅显式指定 `--verbose` 时显示完整访问地址及请求体。视频首帧素材未提供缩略图时，可使用配置中可访问的帧图片地址，仍会校验其实际内容。
 
 ---
 

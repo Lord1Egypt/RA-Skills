@@ -1,41 +1,54 @@
-## Description: <br>
-帮助求职者粘贴简历后获得结构诊断、STAR法则改写、量化成果提炼、HR视角点评和投递建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+资深HR简历优化专家，根据用户粘贴的中文简历内容进行诊断、改写和HR视角点评，使用STAR法则、量化成果和岗位关键词优化简历表达。
 
-## Publisher: <br>
-[hadderyes](https://clawhub.ai/user/hadderyes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hadderyes](https://clawhub.ai/user/hadderyes)
 
-## Use Case: <br>
-求职者、应届毕业生和转行者使用该技能优化中文简历内容，获得更清晰的个人优势、工作经历、技能标签和投递建议。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume content may contain highly sensitive personal information. <br>
-Mitigation: Remove government ID numbers, passport data, bank information, exact home address, and private references before pasting a resume. <br>
-Risk: Generated achievements or metrics could overstate a candidate's experience. <br>
-Mitigation: Verify that all rewritten metrics, achievements, and claims are accurate before using the optimized resume. <br>
+## Use Case:
 
+External users and job seekers use this skill to paste Chinese-language resume content and receive a structured diagnosis, optimized resume draft, before-and-after improvement notes, and HR-facing application advice.
 
-## Reference(s): <br>
-- [简历优化技巧 - 完整参考](references/resume-techniques.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hadderyes/resume-optimization-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sections include resume diagnosis, optimized resume, optimization comparison, HR perspective comments, and delivery advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may echo or rewrite personal details included in a pasted resume.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should redact unnecessary contact details, IDs, addresses, or other sensitive information before submitting resume text.
+
+Risk: The skill is intended for Chinese-language resume optimization and may be less reliable outside that language context.
+
+Mitigation: Use it primarily with Chinese-language resumes and review the rewritten content before applying or publishing it.
+
+## Reference(s):
+
+- [Resume Techniques Reference](references/resume-techniques.md)
+- [ClawHub Skill Page](https://clawhub.ai/hadderyes/skills/resume-optimization-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Chinese-language Markdown resume diagnosis and rewrite]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes user-supplied resume text and may echo or rewrite personal details included by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

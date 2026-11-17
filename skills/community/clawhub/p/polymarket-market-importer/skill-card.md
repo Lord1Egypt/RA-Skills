@@ -1,41 +1,57 @@
-## Description: <br>
-Auto-discovers Polymarket markets that match configured keywords, tags, and volume criteria, then previews or imports matching markets into Simmer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-discover and import Polymarket markets matching your keywords, tags, and volume criteria on a schedule, with reusable filters that control which markets are imported.
 
-## Publisher: <br>
-[DjDyll](https://clawhub.ai/user/DjDyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External users and developers use this skill to search Polymarket for markets matching configured keywords, volume thresholds, and categories, then dry-run or import matching markets into a Simmer workspace on a scheduled cadence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live scheduled use can change the user's Simmer account and consume import quota. <br>
-Mitigation: Start with dry run, keep max_per_run and filters conservative, and enable --live or cron only when recurring imports are intended. <br>
-Risk: The skill depends on a Simmer API key for live account operations. <br>
-Mitigation: Store SIMMER_API_KEY securely, avoid logging or sharing it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to find Polymarket markets that match configured keywords, categories, and volume filters, preview them in dry run, and import matching markets into Simmer when run live.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DjDyll/polymarket-market-importer) <br>
-- [Simmer dashboard](https://simmer.markets/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; runtime output is plain text with an optional JSON automaton summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; dry run is the default, live imports require --live, and the artifact defines a six-hour cron schedule.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Live mode can import matching markets into Simmer using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry run, review matched markets, and keep max_per_run conservative before enabling --live.
+
+Risk: Scheduled execution can repeat imports automatically under cron when configured in OpenClaw.
+
+Mitigation: Review the cron schedule and autostart behavior before running the skill in an account that can perform live imports.
+
+Risk: The release depends on simmer-sdk and may follow whatever version is installed by the environment.
+
+Mitigation: Use a pinned or reviewed simmer-sdk version for serious account usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/polymarket-market-importer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Console text with optional automaton JSON status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; dry run is the default and live imports require the --live flag.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

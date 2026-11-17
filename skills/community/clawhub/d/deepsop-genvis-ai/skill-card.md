@@ -1,48 +1,64 @@
-## Description: <br>
-Generates AI images and videos asynchronously through the AI Artist API from text prompts and optional reference media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepsop Genvis 助手 enables agents to generate AI images and videos asynchronously through the AI Artist API from text prompts and optional reference media.
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-External users and developers use this skill to generate images or short videos, choose AI Artist models, upload reference media, and return result links or downloads in chat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference files, generated links, and uploaded media URLs may be sent to ai.deepsop.com. <br>
-Mitigation: Avoid sensitive prompts or private media unless the provider's hosting, retention, and access controls are acceptable. <br>
-Risk: Setting FEISHU_WEBHOOK_URL can notify that webhook with prompt text and result links for every run. <br>
-Mitigation: Set FEISHU_WEBHOOK_URL only for an intended destination and restrict access to the receiving channel. <br>
-Risk: The skill requires a personal AI_ARTIST_TOKEN credential. <br>
-Mitigation: Store the token in environment or secret management and do not commit it to shared files. <br>
+## Use Case:
 
+External users and developers use this skill to create AI-generated images and short videos from prompts and optional reference media. It helps an agent clarify generation intent, choose supported models and parameters, submit tasks, poll for completion, and return generated media as links, Markdown, JSON status, or local downloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kukuoai/deepsop-genvis-ai) <br>
-- [README](artifact/README.md) <br>
-- [AI Artist API reference](artifact/references/api.md) <br>
-- [Chat integration guide](artifact/references/chat-integration.md) <br>
-- [Feishu integration guide](artifact/references/feishu-integration.md) <br>
-- [AI Artist login](https://ai.deepsop.com/login?source=2) <br>
-- [AI Artist registration](https://ai.deepsop.com/register?source=2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown links, URL strings, JSON status, and optional downloaded media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Polls asynchronous generation tasks to completion; can optionally send webhook notifications and download media locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, reference media, generated-media URLs, or notification payloads may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and media before use, and only set FEISHU_WEBHOOK_URL to a trusted HTTPS Feishu endpoint controlled by the user.
+
+Risk: Inherited or unintended webhook configuration could disclose generated-media details to the wrong destination.
+
+Mitigation: Check the runtime environment before execution and avoid inherited FEISHU_WEBHOOK_URL values in shared shells or agents.
+
+Risk: The optional download path can fetch generated-media URLs into shared or sensitive environments.
+
+Mitigation: Use --download only in trusted workspaces and verify the output directory before storing generated media locally.
+
+Risk: Unpinned Python dependencies can change behavior during setup.
+
+Mitigation: Prefer pinned dependency versions when provisioning the Python environment for requests and python-dotenv.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kukuoai/skills/deepsop-genvis-ai)
+- [AI Artist API Detailed Documentation](references/api.md)
+- [Chat Integration Examples](references/chat-integration.md)
+- [Feishu Image Sending Guide](references/feishu-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown links, URLs, one-line JSON status, shell commands, configuration guidance, and optional downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AI_ARTIST_TOKEN; can upload local reference media, poll asynchronous tasks to completion, and optionally send Feishu webhook notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

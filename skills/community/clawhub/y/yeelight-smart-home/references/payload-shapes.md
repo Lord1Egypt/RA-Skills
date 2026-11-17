@@ -19,7 +19,9 @@ Before guessing a large payload, ask Runtime for the objective contract:
 }
 ```
 
-Use returned `requestSchema`, `payloadGuide.payloadShape`, `examples`, and `nextStep` as authoritative. If Runtime returns `editablePayload` or `updateShape`, read-modify-send that complete payload.
+For `invoke --stdin`, these fields live under `result.intentExplanation`. Use returned `requestSchema`, `payloadGuide.payloadShape`, `requestSchema.examples`, `acceptedFields`, and `nextStep` as authoritative. If Runtime returns `editablePayload` or `updateShape`, read-modify-send that complete payload.
+
+Do not assume `acceptedFields` alone defines a complete nested payload. For scene, automation, batch, favorite, panel, knob, or lighting-design writes, inspect `payloadGuide.payloadShape` and `requestSchema.examples`; if they are absent for a supported complex intent, treat that as a Runtime contract gap rather than inventing fields.
 
 ## CLI Standard Contract Fields First
 

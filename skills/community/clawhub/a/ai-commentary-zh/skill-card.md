@@ -1,45 +1,63 @@
-## Description: <br>
-面向解说/讲解场景的 Sparki skill 变体，沿用最新版官方 Sparki 安装、API key、上传和命令说明，同时保留 commentary 场景定位。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向解说/讲解场景的 Sparki skill 变体，沿用最新版官方 Sparki 安装、API key、上传和命令说明，同时保留 commentary 场景定位。
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External creators and developers use this skill to turn source videos into clearer commentary, explainer, reaction, or narrated videos with stronger structure and storytelling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos, filenames, prompts, and edit metadata are uploaded to Sparki for remote processing. <br>
-Mitigation: Install only when that data sharing is acceptable, review selected inputs before upload, and keep the default Sparki endpoint unless another endpoint is intentionally trusted. <br>
-Risk: API keys may be stored in the OpenClaw config file when setup is used. <br>
-Mitigation: Prefer SPARKI_API_KEY for transient credentials or protect the OpenClaw config directory when saving keys locally. <br>
-Risk: Generated videos are written to a local workspace path and may overwrite or expose expected output locations if not reviewed. <br>
-Mitigation: Review output paths before downloading results and restrict workspace access to intended users. <br>
+## Use Case:
 
+External users and content creators use this skill to guide Sparki video editing for commentary, explainer, reaction, and narration-heavy videos. Agents can use it to configure upload, prompt-driven editing, and result retrieval workflows for local video files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/ai-commentary-zh) <br>
-- [Sparki homepage](https://sparki.io) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads selected video files to Sparki for remote processing and can download generated video files to the local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Selected videos and prompts may be uploaded to Sparki for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that upload behavior is acceptable for the content being processed.
+
+Risk: Credential handling may store API keys on disk under ~/.openclaw/config.
+
+Mitigation: Prefer SPARKI_API_KEY for credentials and protect the local configuration directory.
+
+Risk: A custom --base-url can send requests to an unexpected endpoint.
+
+Mitigation: Use --base-url only with endpoints the user fully trusts.
+
+Risk: Remote workflow output may be selected when local video tools would be more appropriate.
+
+Mitigation: Review generated outputs and task fit before relying on the remote workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/ai-commentary-zh)
+- [Sparki homepage](https://sparki.io)
+- [Sparki Telegram upload](https://t.me/Sparki_AI_bot/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Sparki task IDs, status JSON, download URLs, and local output paths for edited videos.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

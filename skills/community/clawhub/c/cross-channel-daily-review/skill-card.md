@@ -1,52 +1,70 @@
-## Description: <br>
-Create a simple, repeatable daily review workflow across whatever conversation surfaces are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a repeatable daily review workflow across available conversation surfaces, producing per-source raw notes, one merged daily summary, index updates, verification, and an optional management update.
 
-## Publisher: <br>
-[panpansirius-cloud](https://clawhub.ai/user/panpansirius-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panpansirius-cloud](https://clawhub.ai/user/panpansirius-cloud)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to run a recurring 24-hour review across available conversation channels, producing per-channel raw notes, one synthesized daily review, index updates, verification output, and an optional management summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-session content may be summarized into persistent local review files that could contain sensitive or business-confidential information. <br>
-Mitigation: Use the skill only for intended review workflows, inspect generated summaries before sharing, and store the memory/daily-review output tree according to the user's confidentiality requirements. <br>
-Risk: A preferred delivery destination may be unavailable, causing the workflow to choose a fallback destination. <br>
-Mitigation: Use generate-only mode or explicitly confirm the resolved destination before external delivery when summaries may contain sensitive content. <br>
-Risk: Retention and archive helpers can affect how long local review artifacts remain available. <br>
-Mitigation: Review retention and archive settings before enabling lifecycle automation, and keep deletion disabled unless the policy has been hardened for the environment. <br>
-Risk: Promoted review rules can make daily findings durable in local workflow memory. <br>
-Mitigation: Review local rules.md promotion behavior before running the workflow on confidential or sensitive channels. <br>
+## Use Case:
 
+External users and developers use this skill to review the last 24 hours of activity across available conversation channels, generate per-channel raw notes, synthesize a cross-channel daily review, maintain an index, and optionally prepare a short management summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panpansirius-cloud/cross-channel-daily-review) <br>
-- [Architecture](references/architecture.md) <br>
-- [Channel Adapter Spec](references/channel-adapter-spec.md) <br>
-- [Delivery Modes](references/delivery-modes.md) <br>
-- [Failure Handling](references/failure-handling.md) <br>
-- [Lifecycle Automation](references/lifecycle-automation.md) <br>
-- [Known Limitations](references/known-limitations.md) <br>
-- [Release Readiness](references/release-readiness.md) <br>
-- [Validation Report](references/validation-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, JSON index records, and command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces per-channel raw review files, one synthesized daily review, index metadata, optional management summary files, periodic rollups, retention plans, and verification results under memory/daily-review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill reads local session transcripts and creates persistent daily review memory, which may include sensitive workspace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where transcript review is appropriate, restrict input paths to intended session directories, and review generated memory files before sharing.
+
+Risk: Security evidence flags unsafe local file handling and recommends strict path validation.
+
+Mitigation: Require slug/date validation and archive source containment before using the skill on sensitive or multi-user workspaces.
+
+Risk: The daily runner can append promoted review rules to persistent rules.md.
+
+Mitigation: Require explicit approval before accepting generated rules or committing persistent rule changes.
+
+Risk: Boss-summary delivery may fall back to another available destination if the preferred channel is unavailable.
+
+Mitigation: Confirm the final delivery target before any external or cross-channel summary is sent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/panpansirius-cloud/skills/cross-channel-daily-review)
+- [Architecture](references/architecture.md)
+- [Channel Adapter Spec](references/channel-adapter-spec.md)
+- [Delivery Modes](references/delivery-modes.md)
+- [Failure Handling](references/failure-handling.md)
+- [Known Limitations](references/known-limitations.md)
+- [Lifecycle Automation](references/lifecycle-automation.md)
+- [Release Readiness](references/release-readiness.md)
+- [Review Dimensions](references/review-dimensions.md)
+- [Validation Report](references/validation-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review reports, JSON indexes and manifests, and shell command plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily-review files under memory/daily-review and verifies generated outputs before reporting success.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

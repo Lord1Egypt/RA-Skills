@@ -1,7 +1,7 @@
 ---
 name: hooks-eval
 description: Evaluate hook security, performance, and SDK compliance. Use for audits
-version: 1.9.8
+version: 1.10.3
 triggers:
   - hooks
   - evaluation
@@ -14,24 +14,14 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Table of Contents
+## When NOT To Use
 
-- [Overview](#overview)
-- [Key Capabilities](#key-capabilities)
-- [Core Components](#core-components)
-- [Quick Reference](#quick-reference)
-- [Hook Event Types](#hook-event-types)
-- [Hook Callback Signature](#hook-callback-signature)
-- [Return Values](#return-values)
-- [Quality Scoring (100 points)](#quality-scoring-(100-points))
-- [Detailed Resources](#detailed-resources)
-- [Basic Evaluation Workflow](#basic-evaluation-workflow)
-- [Integration with Other Tools](#integration-with-other-tools)
-- [Related Skills](#related-skills)
-
+- Writing a new hook (use `abstract:hook-authoring`)
+- Evaluating skills (use `abstract:skills-eval`)
+- Evaluating rules in `.claude/rules/` (use `abstract:rules-eval`)
 
 # Hooks Evaluation Framework
 
@@ -61,17 +51,16 @@ This skill provides a detailed framework for evaluating, auditing, and implement
 
 ```python
 HookEvent = Literal[
-    "PreToolUse",       # Before tool execution
-    "PostToolUse",      # After tool execution
-    "UserPromptSubmit", # When user submits prompt
-    "Stop",             # When stopping execution
-    "SubagentStop",     # When a subagent stops
-    "TeammateIdle",     # When teammate agent becomes idle (2.1.33+)
-    "TaskCompleted",    # When a task finishes execution (2.1.33+)
-    "PreCompact"        # Before message compaction
+    "PreToolUse",  # Before tool execution
+    "PostToolUse",  # After tool execution
+    "UserPromptSubmit",  # When user submits prompt
+    "Stop",  # When stopping execution
+    "SubagentStop",  # When a subagent stops
+    "TeammateIdle",  # When teammate agent becomes idle (2.1.33+)
+    "TaskCompleted",  # When a task finishes execution (2.1.33+)
+    "PreCompact",  # Before message compaction
 ]
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 **Note**: Python SDK does not support `SessionStart`, `SessionEnd`, or `Notification` hooks due to setup limitations. However, plugins can define `SessionStart` hooks via `hooks.json` using shell commands (e.g., leyline's `detect-git-platform.sh`).
 
@@ -86,27 +75,25 @@ Plugins can declare hooks via `"hooks": "./hooks/hooks.json"` in plugin.json. Th
 
 ```python
 async def my_hook(
-    input_data: dict[str, Any],    # Hook-specific input
-    tool_use_id: str | None,       # Tool ID (for tool hooks)
-    context: HookContext           # Additional context
-) -> dict[str, Any]:               # Return decision/messages
+    input_data: dict[str, Any],  # Hook-specific input
+    tool_use_id: str | None,  # Tool ID (for tool hooks)
+    context: HookContext,  # Additional context
+) -> dict[str, Any]:  # Return decision/messages
     ...
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Return Values
 
 ```python
 return {
     "hookSpecificOutput": {
-        "hookEventName": "PreToolUse",       # Match hook type
-        "permissionDecision": "deny",        # Optional: block action
-        "permissionDecisionReason": "...",   # Reason for denial
-        "additionalContext": "...",          # Optional: context added
+        "hookEventName": "PreToolUse",  # Match hook type
+        "permissionDecision": "deny",  # Optional: block action
+        "permissionDecisionReason": "...",  # Reason for denial
+        "additionalContext": "...",  # Optional: context added
     }
 }
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Quality Scoring (100 points)
 
@@ -140,7 +127,6 @@ return {
 # 4. Check compliance
 /hooks-eval --compliance-report
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Integration with Other Tools
 
@@ -150,7 +136,6 @@ return {
 /analyze-hook hooks/specific.py      # Deep-dive on one hook
 /validate-plugin .                   # Validate overall structure
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Related Skills
 
@@ -165,7 +150,21 @@ return {
 Verify hook pattern matches the event. Check hook logs for errors
 
 **Syntax errors**
-Validate JSON/Python syntax before deployment
+Run `python3 plugins/abstract/scripts/hook_validator.py hooks/hooks.json`
+(or a Python hook file) before deployment. It parses the file and reports
+structure and SDK-signature problems.
 
 **Permission denied**
 Check hook file permissions and ownership
+
+## Exit Criteria
+
+- [ ] Every hook in scope receives a composite quality score (0-100) across the five weighted
+  categories: Security (30), Performance (25), Compliance (20), Reliability (15),
+  Maintainability (10).
+- [ ] Any hook scoring below 60 on the Security category is flagged as a blocking issue before
+  the evaluation report is returned.
+- [ ] Shell commands referenced in `hooks.json` are verified to exist and be executable. Missing
+  scripts are listed as FAIL findings.
+- [ ] The evaluation report distinguishes between JSON hooks (Claude Code) and Python SDK hooks
+  and applies the correct signature expectations for each type.

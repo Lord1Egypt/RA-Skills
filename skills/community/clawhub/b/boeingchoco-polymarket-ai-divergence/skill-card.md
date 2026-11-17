@@ -1,46 +1,65 @@
-## Description: <br>
-Find markets where Simmer's AI consensus diverges from the real market price, then trade on the mispriced side using calibration-shrunk Kelly sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find markets where Simmer's AI consensus diverges from the real market price, then trade on the mispriced side using calibration-shrunk Kelly sizing.
 
-## Publisher: <br>
-[boeingchoco](https://clawhub.ai/user/boeingchoco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boeingchoco](https://clawhub.ai/user/boeingchoco)
 
-## Use Case: <br>
-External developers and trading operators use this skill to scan Simmer and Polymarket market data for AI-versus-market price divergence, review filtered opportunities, and optionally execute live trades with configured Kelly sizing and budget controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real-money trades when run in live mode. <br>
-Mitigation: Start in scan-only, managed, or paper trading mode, then use small budget and per-trade limits before enabling live execution. <br>
-Risk: A wallet private key can control funds when external-wallet self-custody trading is used. <br>
-Mitigation: Do not provide a private key unless required for the chosen trading mode, and use a wallet with limited funds. <br>
-Risk: The security summary notes an automatic portfolio action that may redeem winning positions at startup. <br>
-Mitigation: Review startup behavior and portfolio actions before granting credentials or running the skill against a funded account. <br>
+## Use Case:
 
+External users and developers use this skill to scan prediction markets for AI-versus-market price divergence, apply configurable trading safeguards, and optionally execute Polymarket trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/boeingchoco/boeingchoco-polymarket-ai-divergence) <br>
-- [Publisher Profile](https://clawhub.ai/user/boeingchoco) <br>
-- [Simmer API](https://api.simmer.markets) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance, terminal output, and optional JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute live trades when run with live mode and valid credentials; defaults include scan-only commands and configurable risk controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can execute real-money prediction-market trades when live trading is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in paper or managed-wallet mode, keep daily and per-trade limits low, and review proposed actions before enabling live execution.
+
+Risk: External-wallet use may expose a wallet private key to the agent runtime.
+
+Mitigation: Prefer managed wallets when possible, avoid sharing high-value wallet keys, and restrict funds and API scopes used with the skill.
+
+Risk: Changing the Simmer API endpoint can route account or trading activity to an untrusted service.
+
+Mitigation: Leave SIMMER_API_URL at the trusted default unless the replacement endpoint is explicitly verified.
+
+Risk: The default scan path may still touch account state until auto-redemption behavior is explicitly gated.
+
+Mitigation: Treat scan runs as requiring review, use isolated credentials, and verify behavior in a low-risk environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boeingchoco/skills/boeingchoco-polymarket-ai-divergence)
+- [Publisher profile](https://clawhub.ai/user/boeingchoco)
+- [Simmer API](https://api.simmer.markets)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, configuration values, and optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce trading scan summaries, skip-reason counts, and live execution status when configured to trade.]
+
+## Skill Version(s):
+
+2.6.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

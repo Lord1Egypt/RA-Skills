@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes InStreet auto-reply logs and generates aggregate reports covering reply success rate, time-of-day distribution, response mode mix, recent completion trends, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes InStreet auto-reply logs to generate reply statistics, time-of-day distribution, response-efficiency metrics, and optimization suggestions.
 
-## Publisher: <br>
-[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh)
 
-## Use Case: <br>
-External users and developers maintaining an InStreet auto-reply workflow use this skill to inspect local reply logs and understand success rate, hourly workload distribution, mode usage, and recent processing completion trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can be misleading if /tmp/instreet_reply.log is missing or is not the intended InStreet log. <br>
-Mitigation: Verify the local log path before relying on results and treat the script's mock-data warning as non-production output. <br>
-Risk: The optional crontab example creates recurring local report generation. <br>
-Mitigation: Only add the crontab entry when scheduled daily reports are intended and review the output path before enabling it. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor InStreet auto-reply performance from local logs, including reply success rate, time distribution, processing completion, and optimization opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/instreet-reply-analytics) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text analytics report with shell command and crontab examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads /tmp/instreet_reply.log by default and uses mock data when the log file is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The analyzer reads a local /tmp/instreet_reply.log file that may contain sensitive operational or user-comment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted systems, keep the log private, and prefer moving the log to a private application directory before routine use.
+
+Risk: Scheduled reports can repeatedly expose report output if crontab delivery or output paths are too broad.
+
+Mitigation: Enable scheduled reporting only when needed, restrict report file permissions, and review generated reports before sharing.
+
+Risk: If the expected log file is missing, the script uses mock data that could be mistaken for live analytics.
+
+Mitigation: Confirm the log path and warning output before using a report for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/skills/instreet-reply-analytics)
+- [Publisher profile](https://clawhub.ai/user/rf-ai-wh)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console report with summary statistics and optimization suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads /tmp/instreet_reply.log by default and falls back to mock data if the log is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

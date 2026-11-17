@@ -1,50 +1,70 @@
-## Description: <br>
-Editor-first WeChat Official Account publishing skill that helps prepare and post Markdown, HTML, plain-text articles, and image-text posts to WeChat Official Account via API or browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阿淼发公众号 helps agents prepare and publish WeChat Official Account articles or image-text posts from Markdown, HTML, or plain text with editorial polishing, WeChat-native formatting, quality scoring, and API or browser publishing paths.
 
-## Publisher: <br>
-[tmxccc](https://clawhub.ai/user/tmxccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmxccc](https://clawhub.ai/user/tmxccc)
 
-## Use Case: <br>
-External creators, editors, and developers use this skill to polish, package, and publish WeChat Official Account content while checking formatting, metadata, images, and publish readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WeChat account credentials to publish content externally. <br>
-Mitigation: Use only WeChat accounts you control, inspect the runtime before providing credentials, and require explicit confirmation before publishing. <br>
-Risk: Turbo or auto-submit paths may reduce or bypass final user confirmation. <br>
-Mitigation: Avoid Turbo and auto-submit modes until the workflow is trusted; keep confirm-before-publish enabled for normal use. <br>
-Risk: Credential files, token caches, saved drafts, and publish logs may expose account or content information if stored in shared locations. <br>
-Mitigation: Keep .env files, token caches, saved drafts, and publish logs out of shared or synced directories. <br>
+## Use Case:
 
+External users and content operators use this skill to turn drafted content into WeChat Official Account posts, with publishing preparation, formatting, quality checks, and either API-based draft creation or browser-assisted posting. Developers can also use the included command references to configure account credentials and run publishing or conversion scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skills/amiao-post-to-wechat) <br>
-- [Release Page](https://clawhub.ai/tmxccc/amiao-post-to-wechat) <br>
-- [Configuration Reference](references/config-reference.md) <br>
-- [Editorial Rules](references/editorial-rules.md) <br>
-- [FSM Workflow](references/fsm.md) <br>
-- [Quality Scoring](references/quality-scoring.md) <br>
-- [Scripts CLI Reference](references/scripts.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [WeChat Official Account](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and concise prose with command snippets, configuration guidance, and publishing summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pre-publish summaries, quality scores, metadata suggestions, publish logs, and WeChat draft identifiers when the runtime supports publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter says 3.0.0) <br>
+Risk: The skill can publish or save content to an external WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep pre-publish confirmation enabled for live accounts and review the account, method, title, summary, images, cover status, and quality score before publishing.
+
+Risk: Turbo or no-confirm publishing paths can reduce human review before content reaches a live account.
+
+Mitigation: Use Turbo or no-confirm behavior only for pre-polished, low-risk drafts and avoid it for production accounts unless an operator has already reviewed the final content.
+
+Risk: Runtime installation through `npx -y` or `curl | bash` can execute unpinned third-party code.
+
+Mitigation: Install Bun through a trusted and pinned process before using the skill, then run the scripts with that known runtime.
+
+Risk: WeChat AppID and AppSecret credentials are required for API publishing.
+
+Mitigation: Store credentials outside project directories with strict permissions or a credential manager, and avoid committing EXTEND.md files that contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skills/amiao-post-to-wechat)
+- [WeChat Official Accounts platform](https://mp.weixin.qq.com)
+- [WeChat draft API endpoint](https://api.weixin.qq.com/cgi-bin/draft/add?access_token=ACCESS_TOKEN)
+- [Bun runtime install documentation](https://bun.sh/install)
+- [Configuration Reference](references/config-reference.md)
+- [Editorial Rules](references/editorial-rules.md)
+- [FSM Workflow](references/fsm.md)
+- [Quality Scoring](references/quality-scoring.md)
+- [Scripts CLI Reference](references/scripts.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, generated article metadata, and publishing reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WeChat-ready HTML, saved draft metadata, quality scores, publish logs, and setup guidance depending on the selected publishing path.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Tracks heart-rate records, exercise heart rate, health analysis, abnormal alerts, and statistical reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heart Rate Tracker helps users record heart-rate readings, monitor exercise heart rates, review wellness trends, receive abnormal-rate alerts, and generate basic statistical reports.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and developers use this skill to record heart-rate readings, track exercise heart rate, review health trends, configure abnormal heart-rate alerts, and generate statistical health reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heart-rate records may contain sensitive health data. <br>
-Mitigation: Confirm how the underlying clawhub hr commands store, transmit, and delete records before using real health readings. <br>
-Risk: The skill should not be treated as medical diagnosis, emergency monitoring, or safety-critical alerting. <br>
-Mitigation: Use it only for tracking and analysis support, and rely on qualified medical or emergency services for diagnosis and urgent care. <br>
+## Use Case:
 
+External users can use this skill to log resting and exercise heart-rate readings, request basic heart-health trend analysis, configure abnormal heart-rate thresholds, and produce statistical wellness reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/heart-rate-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes command-oriented workflows for recording, analyzing, alerting on, and reporting heart-rate data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill handles heart-rate data and may present health-related analysis that users could mistake for medical guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all analysis as wellness information only, avoid diagnostic claims, and review where heart-rate data is stored or transmitted before deployment.
+
+Risk: The release declares an unexplained `curl` requirement and documents a mutable `npx clawhub@latest` install command.
+
+Mitigation: Pin the installer version and remove the `curl` requirement or document exact network destinations and consent behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/heart-rate-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides wellness tracking guidance and command examples; health-related use requires review before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

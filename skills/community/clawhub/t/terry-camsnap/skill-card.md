@@ -1,39 +1,57 @@
-## Description: <br>
-Take camera snapshots and save them to disk. Use when the user asks to take a photo, capture an image from webcam, or take a snapshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take camera snapshots and save them to disk. Use when the user asks to take a photo, capture an image from webcam, or take a snapshot.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Users and agents use this skill to capture a snapshot from the default webcam, optionally choosing an output path or preview mode, and receive confirmation of the saved file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses a webcam and can leave captured images on disk. <br>
-Mitigation: Install and run it only where camera access and local image storage are appropriate; review saved paths and delete sensitive captures when no longer needed. <br>
-Risk: The artifact invokes a local camsnap.py script that is not included, so users cannot inspect the camera-capture implementation from this release alone. <br>
-Mitigation: Use the skill only in environments where the local camsnap.py script can be inspected or is already trusted before execution. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to capture a snapshot from the default webcam and report where the image was saved.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, files] <br>
-**Output Format:** [Plain text status confirmation with a saved image file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an image file to disk; optional output path, output directory, and preview flags are accepted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Raw Bash argument interpolation may allow command injection if untrusted filenames or options are passed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted arguments and prefer structured, validated argument handling before broad deployment.
+
+Risk: The referenced `camsnap.py` implementation is not included in the artifact, so its behavior cannot be fully reviewed from this release package.
+
+Mitigation: Review the installed local script before use and grant webcam and local file-write access only in trusted environments.
+
+Risk: The skill captures webcam images and writes files to disk.
+
+Mitigation: Use only where camera access and destination directories are authorized; avoid preview mode on headless systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terry-camsnap)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Text]
+
+**Output Format:** [Text status with the saved image file path; the skill also writes an image file to disk.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an optional output path, output directory, and preview flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

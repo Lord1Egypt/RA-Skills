@@ -1,39 +1,58 @@
-## Description: <br>
-Distributed map-reduce over agent swarms for parallel data processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distributed map-reduce over agent swarms for parallel data processing.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to split parallelizable processing jobs across Pilot Protocol mapper peers, collect map results, and send grouped values to reducers for aggregation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map tasks, reduce values, and returned results are shared with Pilot Protocol peers and may expose sensitive data to the swarm. <br>
-Mitigation: Use this skill only with trusted mapper and reducer peers, and avoid secrets, regulated data, or proprietary datasets unless the peer network and local intermediate storage are appropriate. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate parallel map tasks across pilot-protocol worker peers, collect map results, and send grouped values to reducers for batch data-processing jobs.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-map-reduce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command patterns for pilotctl-based mapper discovery, peer messaging, result collection, shuffling, and reduction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Map and reduce messages may expose confidential or regulated data to pilot-protocol peers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted peers and appropriate message access controls; avoid confidential or regulated data unless identities and result handling are approved.
+
+Risk: The example shell snippets can wait indefinitely or process spoofed or stale results if senders and job IDs are not validated.
+
+Mitigation: Validate sender identities and job IDs, add command timeouts, and handle missing or duplicate worker results before production use.
+
+Risk: Inline JSON assembly and temporary result files can cause malformed payloads or unintended data exposure.
+
+Mitigation: Encode JSON safely with tooling such as jq and use private temporary storage for intermediate map results.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-map-reduce)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, sort, pilot-protocol skill, and a running pilotctl daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Use this skill when an agent needs to work with a ClawKB server over HTTP: register itself, obtain or use a Bearer token, upload images, create or update entries, search entries, read entry detail, or inspect plugin-backed API flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an agent needs to work with a ClawKB server over HTTP: register itself, obtain or use a Bearer token, upload images, create or update entries, search entries, read entry detail, or inspect plugin-backed API flows.
 
-## Publisher: <br>
-[hata1234](https://clawhub.ai/user/hata1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hata1234](https://clawhub.ai/user/hata1234)
 
-## Use Case: <br>
-Developers and agents use ClawKB to automate authenticated HTTP workflows for registering agents, uploading images, creating and updating knowledge entries, searching stored knowledge, reading entry details, and managing comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens or server URLs may be exposed through shared logs, repositories, or pasted command output. <br>
-Mitigation: Use scoped, revocable tokens; avoid pasting tokens into shared logs or repositories; and rotate tokens if exposure is suspected. <br>
-Risk: Create, update, upload, comment, and delete examples can change data on the target ClawKB server if executed. <br>
-Mitigation: Confirm the base URL, token scope, target entry, and intended action before running write, delete, or upload commands. <br>
-Risk: The optional auto-recall plugin can send conversation data to ClawKB and inject retrieved knowledge into agent context. <br>
-Mitigation: Enable auto-recall only after reviewing its data flow, configuring per-sender token mappings, and confirming the ClawKB server is trusted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to interact with ClawKB deployments over HTTP for authentication, image uploads, entry creation and editing, search, reading, comments, and internal entry links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hata1234/clawkb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide authenticated HTTP requests against user-provided ClawKB servers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The optional auto-recall plugin may send conversation content to configured ClawKB servers and place returned entries into privileged prompt context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual API access by default; enable auto-recall only for trusted plugin versions and trusted ClawKB backends, and avoid it for sensitive conversations.
+
+Risk: Bearer tokens grant the agent the ClawKB permissions configured for that token.
+
+Mitigation: Provide least-privilege tokens, map users to appropriate server-side access controls, and revoke or rotate tokens when access is no longer needed.
+
+## Reference(s):
+
+- [ClawKB Skill Page](https://clawhub.ai/hata1234/skills/clawkb)
+- [Publisher Profile](https://clawhub.ai/user/hata1234)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP API request examples, response fields to retain, and operational guidance for Bearer token based ClawKB workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

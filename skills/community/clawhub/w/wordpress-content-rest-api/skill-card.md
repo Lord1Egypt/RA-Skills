@@ -1,45 +1,60 @@
-## Description: <br>
-Interact safely with WordPress content via REST API for posts, pages, media, taxonomies, supporting drafts, updates, pagination, search, and retry handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the WordPress REST API for content operations only: auth setup (Application Password and Bearer), safe read/write flows for posts/pages/media, draft/publish/update patterns, taxonomy assignment, pagination/search, retry/rate-limit handling, and dry-run-first safety.
 
-## Publisher: <br>
-[sebastiangansca](https://clawhub.ai/user/sebastiangansca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastiangansca](https://clawhub.ai/user/sebastiangansca)
 
-## Use Case: <br>
-Developers, site operators, and content teams use this skill to inspect, draft, update, publish, and manage WordPress posts, pages, media, categories, and tags through the REST API while following dry-run-first and least-privilege workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential exposure or over-broad WordPress permissions could grant unintended content access. <br>
-Mitigation: Use HTTPS, least-privilege application passwords or scoped bearer tokens, avoid logging raw credentials, and rotate or revoke credentials after incidents or role changes. <br>
-Risk: Writes to the wrong environment or premature publishing can alter live WordPress content. <br>
-Mitigation: Verify the base URL and staging versus production target, run a dry run, read before writing, default writes to draft, and require explicit approval for publishing, deletion, media uploads, taxonomy creation, or bulk updates. <br>
-Risk: Bulk or repeated REST API operations can hit rate limits or leave partial updates. <br>
-Mitigation: Use bounded retries with backoff for retryable failures, keep request bursts small, serialize writes when content integrity matters, and halt on unexpected failures before continuing. <br>
+## Use Case:
 
+Developers and content operators use this skill to safely read, create, update, publish, and manage WordPress posts, pages, media, categories, and tags through the WordPress REST API. It emphasizes dry-run-first writes, least-privilege authentication, dependency validation, and explicit approval before publishing or deleting content.
 
-## Reference(s): <br>
-- [Auth Setup](references/auth.md) <br>
-- [Safe Read/Write Flows](references/content-flows.md) <br>
-- [Taxonomy, Pagination, and Search](references/query-and-taxonomy.md) <br>
-- [Error, Retry, Rate-Limit, and Dry-Run Rules](references/reliability-and-safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with REST API request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sanitized API response summaries, dry-run change plans, and verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The agent may target the wrong WordPress site or environment for a content write.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm WP_SITE and staging or production context before writes, validate authentication with a read call, and perform a dry run first.
+
+Risk: Publishing, deleting, or bulk-updating content could expose unintended changes.
+
+Mitigation: Default changes to draft, require explicit approval for publishing or deleting, avoid destructive bulk updates unless specifically approved, and verify changed fields after each write.
+
+Risk: Credentials or tokens used for WordPress API access could be over-privileged or exposed.
+
+Mitigation: Use least-privilege WordPress accounts or scoped application passwords, avoid logging raw credentials, and rotate or revoke credentials after incidents or role changes.
+
+## Reference(s):
+
+- [Auth Setup](references/auth.md)
+- [Safe Read/Write Flows](references/content-flows.md)
+- [Taxonomy, Pagination, and Search](references/query-and-taxonomy.md)
+- [Error, Retry, Rate-Limit, and Dry-Run Rules](references/reliability-and-safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance and example WordPress REST API requests; no generated files are required.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

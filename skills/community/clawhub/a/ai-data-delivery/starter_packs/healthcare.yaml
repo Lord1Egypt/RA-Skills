@@ -1,0 +1,51 @@
+# starter pack · 医疗门诊运营
+# 来源：mocks/healthcare 合成场景提炼
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: healthcare
+  name: 医疗门诊运营
+  version: '0.1'
+  source: mocks/healthcare 合成场景提炼
+  aligns:
+  - schema.org/MedicalProcedure
+  - schema.org/Physician
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/healthcare.yaml
+ontology:
+  entities:
+  - name: 门诊就诊
+    attributes:
+    - name: 科室
+      value_type: enum
+      values:
+      - 内科
+      - 外科
+      - 儿科
+      - 妇科
+    - name: 就诊类型
+      value_type: enum
+      values:
+      - 初诊
+      - 复诊
+    note: 一行一次门诊就诊
+    uid: ent_outpatient_visit
+    evidence:
+      source: data_observed
+  - name: 医生
+    attributes:
+    - name: 职称
+      value_type: enum
+      values:
+      - 住院医师
+      - 主治医师
+      - 副主任医师
+      - 主任医师
+    note: 一行一个医生
+    uid: ent_doctor
+    evidence:
+      source: user_provided
+  relations:
+  - from: 医生
+    to: 门诊就诊
+    predicate: 接诊
+    mapping: equi_key

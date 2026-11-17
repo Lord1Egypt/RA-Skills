@@ -1,42 +1,60 @@
-## Description: <br>
-Use GoldRush MCP through UXC for multichain wallet balances, transfers, portfolio history, NFT ownership, token approvals, prices, and chain metadata via stdio MCP with injected API-key auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GoldRush MCP through UXC for multichain wallet balances, transfers, portfolio history, NFT ownership, token approvals, prices, and chain metadata via stdio MCP with injected API-key auth.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure and query GoldRush MCP for focused blockchain data lookups, including wallet balances, transfers, portfolio history, NFT ownership, token approvals, prices, and chain metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GoldRush API keys and wallet-history queries can expose sensitive operational or personal information. <br>
-Mitigation: Use a dedicated least-privilege GoldRush API key, avoid unauthorized address lookups, keep wallet-history scans narrow, and remove the UXC credential or link when it is no longer needed. <br>
-Risk: The skill starts the GoldRush MCP server through an npm package fetched with an @latest specifier. <br>
-Mitigation: Review or pin the npm package before operational use, and expect a slower first run while npx downloads the package. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and run GoldRush MCP operations through UXC for blockchain wallet, portfolio, NFT, transfer, token approval, price, and chain metadata queries.
 
-## Reference(s): <br>
-- [GoldRush MCP Server documentation](https://goldrush.dev/docs/goldrush-mcp-server) <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/jolestar/goldrush-mcp-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON output-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes help-first inspection, scoped wallet or chain queries, stable JSON envelope parsing, and API-key injection through GOLDRUSH_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documented command runs @covalenthq/goldrush-mcp-server@latest, so future package changes could alter behavior without a skill update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version or trusted local install before creating the persistent UXC link.
+
+Risk: The GoldRush API key is injected into a child process used by the MCP server.
+
+Mitigation: Use a scoped key where possible, limit exposure, rotate it regularly, and avoid sharing logs or shell history containing secrets.
+
+Risk: The created goldrush-mcp-cli link persists the documented command until it is changed.
+
+Mitigation: Review the linked command during installation and update or remove the link when changing package versions or credential handling.
+
+## Reference(s):
+
+- [GoldRush MCP Server Documentation](https://goldrush.dev/docs/goldrush-mcp-server)
+- [Usage Patterns](references/usage-patterns.md)
+- [GoldRush MCP Skill on ClawHub](https://clawhub.ai/jolestar/skills/goldrush-mcp-skill)
+- [jolestar Publisher Profile](https://clawhub.ai/user/jolestar)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-output handling notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents to inspect operation help first, use stable JSON envelope fields, inject GOLDRUSH_API_KEY into the stdio MCP subprocess, and keep blockchain query scopes narrow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

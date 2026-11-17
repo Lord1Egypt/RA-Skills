@@ -1,37 +1,49 @@
-## Description: <br>
-Currency Exchange Rate converts amounts between currencies, checks current exchange rates, and lists supported currency codes using exchangerate-api.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Currency Exchange Rate helps agents convert currency amounts, check current exchange rates, view rate tables, and list supported currency codes using exchangerate-api.com.
 
-## Publisher: <br>
-[ouyangAbel](https://clawhub.ai/user/ouyangAbel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouyangabel](https://clawhub.ai/user/ouyangabel)
 
-## Use Case: <br>
-External users, developers, and finance-adjacent teams use this skill to convert currency amounts, view current exchange-rate tables, and list supported currency codes. Currency lookups contact exchangerate-api.com and should not be used alone for important financial decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Currency Exchange Rate on ClawHub](https://clawhub.ai/ouyangAbel/currency-exchange) <br>
-- [ExchangeRate API endpoint](https://api.exchangerate-api.com/v4/latest) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with currency amounts, exchange rates, rate dates, or currency code lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses requested currency codes to fetch daily exchange-rate data from exchangerate-api.com; API rate limits may apply.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Developers and agents use this skill to answer currency conversion and exchange-rate questions, including amount conversion, major-currency rate tables, and supported currency-code lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Currency lookup requests are sent to the disclosed third-party exchangerate-api.com service.
+
+Mitigation: Avoid including sensitive business context or identifying information in currency-code arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ouyangabel/skills/currency-exchange)
+- [ExchangeRate-API latest rates endpoint](https://api.exchangerate-api.com/v4/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-line output may appear mostly in Chinese and includes rate date information when returned by the API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

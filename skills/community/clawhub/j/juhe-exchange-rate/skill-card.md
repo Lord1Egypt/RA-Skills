@@ -1,44 +1,60 @@
-## Description: <br>
-Provides global exchange-rate lookup and currency conversion from currency codes using Juhe's exchange-rate API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球汇率查询与货币换算。根据货币代码查询实时汇率、换算金额。使用场景：用户说"查一下汇率"、"美元兑人民币"、"100美元等于多少人民币"、"USD兑换CNY"、"汇率多少"等。通过聚合数据（juhe.cn）API 实时查询，支持 120+ 种货币，数据仅供参考。
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to answer exchange-rate questions, convert amounts between currencies, or list supported currencies. It is suited for reference-rate lookups and should not be treated as authoritative trading or settlement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Juhe API key may be exposed if committed to files, passed on the command line, or handled in an unprotected environment. <br>
-Mitigation: Store the key in a protected environment variable or secret manager, do not commit scripts/.env, and avoid passing the key on the command line. <br>
-Risk: The provided script uses plain HTTP endpoints for exchange-rate requests. <br>
-Mitigation: Use only on trusted networks unless the endpoint is changed to HTTPS and verified. <br>
-Risk: Exchange-rate data is reference information and may not match bank settlement or trading rates. <br>
-Mitigation: Present results as indicative reference rates and direct users to authoritative financial sources for transactions. <br>
+## Use Case:
 
+External users and developers use this skill to look up live exchange rates, convert amounts between currency codes, and list supported currencies through the Juhe exchange-rate API. Results are for reference and should not be treated as bank execution prices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juhemcp/juhe-exchange-rate) <br>
-- [Juhe exchange-rate API documentation](https://www.juhe.cn/docs/api/id/80) <br>
-- [Juhe API platform](https://www.juhe.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JUHE_EXCHANGE_KEY environment variable or equivalent local key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The required Juhe API key can be exposed through command-line arguments or local .env files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the JUHE_EXCHANGE_KEY environment variable, use a low-privilege key, avoid --key on shared systems, and keep scripts/.env out of source control.
+
+Risk: The artifact calls Juhe exchange endpoints over HTTP, which may expose API-key and query data in transit if secure transport is unavailable.
+
+Mitigation: Confirm provider support for HTTPS or update the endpoints to secure transport before installing in sensitive environments.
+
+Risk: Exchange-rate output is reference data and may differ from bank execution prices.
+
+Mitigation: Use the result as informational guidance and verify transaction prices with the relevant financial institution before acting.
+
+## Reference(s):
+
+- [Juhe Exchange Rate API Documentation](https://www.juhe.cn/docs/api/id/80)
+- [Juhe Data Platform](https://www.juhe.cn)
+- [ClawHub Skill Page](https://clawhub.ai/juhemcp/skills/juhe-exchange-rate)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/juhemcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_EXCHANGE_KEY credential; script output includes exchange-rate data, update time, errors, and optional converted amount.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

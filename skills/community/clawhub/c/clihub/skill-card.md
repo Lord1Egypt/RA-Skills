@@ -1,40 +1,62 @@
-## Description: <br>
-Universal CLI discovery gateway - one skill to manage all CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal CLI discovery gateway — one skill to manage all CLI tools.
 
-## Publisher: <br>
-[dull-bird](https://clawhub.ai/user/dull-bird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dull-bird](https://clawhub.ai/user/dull-bird)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up, register, search, and invoke local command-line tools through a structured registry instead of relying on stale model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad ability to discover local CLI tools, run help commands, and persist information about command-line tools. <br>
-Mitigation: Keep command approval enabled, register trusted tools selectively, and review registry entries for untrusted binaries before relying on them. <br>
-Risk: Bulk discovery can inventory local tools on sensitive or production machines. <br>
-Mitigation: Avoid bulk discovery on sensitive or production machines and use targeted registration for specific tools instead. <br>
+## Use Case:
 
+Developers and agent users use this skill to help an agent discover local CLI tools, inspect cached or live help output, and propose appropriate shell commands for CLI-driven tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dull-bird/clihub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown text with inline shell commands and JSON registry details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local CLI registry entries when registration or discovery commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can inventory local CLI tools, execute help or version probes for programs on PATH, and persist captured help output under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local tool discovery is acceptable; limit scans to trusted executables and review registry entries before relying on them.
+
+Risk: Cached help text and generated registry data may contain untrusted or misleading content that an agent could reuse later.
+
+Mitigation: Treat cached help output as reference data rather than instructions, and verify proposed commands before execution.
+
+Risk: Security evidence notes limited safeguards around scan scope and registry file paths.
+
+Mitigation: Avoid system-wide or custom-directory scans unless every executable in scope is trusted, and keep registry storage scoped to the intended user profile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dull-bird/skills/clihub)
+- [README](README.md)
+- [README_CN](README_CN.md)
+- [AgentSkills spec](https://agentskills.io)
+- [Vercel Skills](https://github.com/vercel-labs/skills)
+- [prefrontalsys/register-tool](https://github.com/prefrontalsys/register-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON registry examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested CLI invocations, registry lookup results, parsed help summaries, and configuration steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

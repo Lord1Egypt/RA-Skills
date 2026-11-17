@@ -1,44 +1,57 @@
-## Description: <br>
-Find capsule hotels and pod-style accommodations with real-time travel data and booking links through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds capsule hotels and pod-style accommodations using flyai CLI data, returning real-time hotel options with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to find low-cost capsule or pod lodging, compare live hotel results, and return booking links in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and rely on the global @fly-ai/flyai-cli package and send travel queries through it. <br>
-Mitigation: Review the CLI package provenance before use, install it explicitly when possible, and run the skill in a contained workspace. <br>
-Risk: The skill can retain raw travel queries in a local .flyai-execution-log.json file when filesystem writes are available. <br>
-Mitigation: Delete or disable the local execution log if query retention is not desired. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search for capsule hotels or pod-style accommodations, collect destination and date parameters, and produce bookable hotel options from flyai results.
 
-## Reference(s): <br>
-- [Capsule Pod Hotel on ClawHub](https://clawhub.ai/dingtom336-gif/capsule-pod-hotel) <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Capsule Hotel Playbooks](references/playbooks.md) <br>
-- [Hotel Fallbacks](references/fallbacks.md) <br>
-- [Execution Log Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI data and booking detailUrl links; raw JSON is not returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill may automatically install an unpinned global CLI dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, require explicit approval before installing @fly-ai/flyai-cli, and prefer a pinned and reviewed CLI version in a sandbox or controlled environment.
+
+Risk: Raw travel queries or sensitive travel details may be persisted by the skill's logging behavior.
+
+Mitigation: Avoid entering sensitive personal or travel details until logging and command-construction patterns have been reviewed and fixed.
+
+## Reference(s):
+
+- [Capsule Pod Hotel ClawHub page](https://clawhub.ai/dingtom336-gif/skills/capsule-pod-hotel)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking-link tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results for hotel names, prices, and booking links; raw JSON output is not intended.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and release changelog mention 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

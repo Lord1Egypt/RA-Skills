@@ -1,44 +1,66 @@
-## Description: <br>
-Weeko CLI commands for bookmark management, including search, add, update, delete, group organization, and batch operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weeko CLI commands for bookmark management. Search, add, update, delete bookmarks. Create and organize groups. Batch operations.
 
-## Publisher: <br>
-[occupy5](https://clawhub.ai/user/occupy5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupy5](https://clawhub.ai/user/occupy5)
 
-## Use Case: <br>
-Developers and AI coding assistant users use this skill to manage Weeko bookmarks and groups from the command line, including searching, creating, updating, deleting, organizing, and batch-moving saved items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Weeko API key and gives the agent access to the user's bookmarks and groups. <br>
-Mitigation: Install only when the Weeko CLI package is trusted, keep the API key out of logs and prompts, and run weeko logout or rotate the key if the local config may have been exposed. <br>
-Risk: The skill can delete bookmarks and groups, and group deletion can remove the bookmarks within that group. <br>
-Mitigation: Use --dry-run first, review exact bookmark or group IDs, and require explicit user confirmation before update, delete, group delete, or batch operations. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Weeko CLI bookmark and group management tasks, including search, creation, updates, deletion, and batch organization.
 
-## Reference(s): <br>
-- [Weeko Skill Page](https://clawhub.ai/occupy5/weeko) <br>
-- [Weeko Homepage](https://weeko.blog) <br>
-- [Weeko CLI Repository](https://github.com/nicepkg/weeko) <br>
-- [weeko-cli Package](https://www.npmjs.com/package/weeko-cli) <br>
-- [Weeko CLI Command Reference](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI outputs in JSON, TOON, or pretty text formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports --dry-run for previewing changes and --format toon for token-efficient agent-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Agents can delete bookmarks, groups, and batches of bookmarks, including group deletion that removes contained bookmarks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and a reviewed target list before delete, group delete, or batch delete commands; use `--dry-run` where supported before making changes.
+
+Risk: The skill depends on a mutable global `weeko-cli` package and the Weeko service.
+
+Mitigation: Install only from trusted sources, pin or review the CLI version where possible, and confirm the Weeko service endpoint before use.
+
+Risk: Weeko API keys may be stored locally or supplied through environment variables.
+
+Mitigation: Keep API keys out of chat logs and shared transcripts, use least-privilege operational practices, and rotate credentials if exposure is suspected.
+
+Risk: A custom `WEEKO_API_URL` can redirect CLI operations to an unexpected service.
+
+Mitigation: Avoid custom API URLs unless the user controls and trusts the endpoint.
+
+## Reference(s):
+
+- [Weeko homepage](https://weeko.blog)
+- [Weeko CLI repository](https://github.com/nicepkg/weeko)
+- [weeko-cli npm package](https://www.npmjs.com/package/weeko-cli)
+- [Bun runtime](https://bun.sh)
+- [Command reference](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/occupy5/skills/weeko)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON, TOON, or pretty CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of Weeko CLI output formats, including JSON by default and TOON for token-efficient agent consumption.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

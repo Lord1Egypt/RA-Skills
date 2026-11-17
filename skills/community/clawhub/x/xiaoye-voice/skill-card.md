@@ -1,42 +1,60 @@
-## Description: <br>
-小野语音系统 generates speech audio from text using local macOS Chinese voice support and Edge-TTS for other languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于双引擎策略的智能语音系统，支持中文本地 Tingting 语音和多语言 Edge-TTS 云端语音，输出高质量 OGG 音频。
 
-## Publisher: <br>
-[jackytianjp](https://clawhub.ai/user/jackytianjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackytianjp](https://clawhub.ai/user/jackytianjp)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn Chinese, English, Japanese, or French text into voice audio for assistants, Telegram bots, and OpenClaw-style integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Non-Chinese text is processed through Microsoft Edge-TTS cloud service. <br>
-Mitigation: Use non-sensitive text for cloud-routed languages and review data-handling expectations before deployment. <br>
-Risk: Generated audio remains on disk under the OpenClaw outputs folder. <br>
-Mitigation: Delete generated audio when it is no longer needed and manage file retention according to the deployment environment. <br>
-Risk: The skill depends on ffmpeg and optional Edge-TTS installation for full functionality. <br>
-Mitigation: Install ffmpeg and edge-tts from trusted sources and keep them updated. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate spoken audio for a Xiaoye AI companion workflow, using local macOS Chinese speech when available and Edge-TTS for other supported languages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jackytianjp/xiaoye-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Audio files in OGG, MP3, or WAV format with generated file paths and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated audio under the user's OpenClaw outputs folder by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Non-Chinese input may be processed by Microsoft Edge-TTS cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential text unless use is restricted to the local Chinese macOS path or a local-only control is added.
+
+Risk: Telegram integration can upload generated audio to Telegram.
+
+Mitigation: Review generated audio and destination chat handling before using Telegram delivery with sensitive content.
+
+Risk: The optional edge-tts dependency is declared with a minimum version only.
+
+Mitigation: Pin edge-tts to a reviewed version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackytianjp/skills/xiaoye-voice)
+- [Publisher profile](https://clawhub.ai/user/jackytianjp)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces local audio files, usually OGG, under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

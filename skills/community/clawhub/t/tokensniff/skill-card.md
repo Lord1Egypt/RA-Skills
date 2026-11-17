@@ -1,42 +1,60 @@
-## Description: <br>
-Analyzes memecoins and altcoins for early entry opportunities, whale accumulation signals, and strong momentum before major price moves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes memecoins and altcoins for early entry opportunities, whale accumulation signals, strong momentum, and safety risks before major price moves.
 
-## Publisher: <br>
-[maiahman](https://clawhub.ai/user/maiahman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maiahman](https://clawhub.ai/user/maiahman)
 
-## Use Case: <br>
-External users and crypto analysts use TokenSniff to structure speculative token due diligence reports and quick comparisons for memecoins or altcoins using market, wallet, momentum, and safety signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce BUY/WATCH/AVOID labels and entry guidance for speculative crypto assets that users may mistake for financial advice. <br>
-Mitigation: Treat outputs as screening guidance only, verify market and wallet data independently, preserve the disclaimer, and avoid specific investment amounts. <br>
-Risk: Live token, wallet, liquidity, and social data may be unavailable, incomplete, or stale. <br>
-Mitigation: Clearly mark missing data as unavailable, provide direct source-check links, and do not fabricate wallet addresses, holder counts, or market figures. <br>
-Risk: The release is associated with wallet and sensitive-credential capability tags. <br>
-Mitigation: Do not request private keys, seed phrases, or wallet-control access; use public addresses and read-only data unless a future release explicitly scopes additional access. <br>
+## Use Case:
 
+External users and developers use TokenSniff to produce crypto token alpha reports, quick scans, and trend-discovery summaries for memecoin or altcoin research. It highlights on-chain, momentum, whale, and safety indicators while requiring independent verification and not treating the output as financial advice.
 
-## Reference(s): <br>
-- [TokenSniff ClawHub release](https://clawhub.ai/maiahman/tokensniff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report or comparison table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token scores, BUY/WATCH/AVOID-style verdicts, source-check links, missing-data markers, and a not-financial-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Speculative BUY/WATCH/AVOID labels and entry suggestions could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as research support only, keep the not-financial-advice disclaimer visible, and verify all live market and on-chain data independently before acting.
+
+Risk: Crypto token data can be incomplete, stale, or unavailable during analysis.
+
+Mitigation: Clearly mark unavailable fields, provide direct check sources, and avoid fabricating wallet addresses, holder counts, liquidity, or safety results.
+
+Risk: Users may be tempted to share private wallet credentials while researching tokens.
+
+Mitigation: Do not request or accept private keys, seed phrases, wallet credentials, or account access for token analysis.
+
+## Reference(s):
+
+- [TokenSniff ClawHub listing](https://clawhub.ai/maiahman/skills/tokensniff)
+- [DEXScreener](https://dexscreener.com)
+- [Birdeye](https://birdeye.so)
+- [Pump.fun](https://pump.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report or comparison table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes numeric scores, BUY/WATCH/AVOID verdicts, data-source links, missing-data markers, and a not-financial-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

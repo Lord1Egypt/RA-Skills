@@ -1,41 +1,56 @@
-## Description: <br>
-Upload many files to S3 with automatic organization by first-character prefixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload many files to S3 with automatic organization by first-character prefixes.
 
-## Publisher: <br>
-[6mile-puppet](https://clawhub.ai/user/6mile-puppet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[6mile-puppet](https://clawhub.ai/user/6mile-puppet)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare AWS CLI commands and run a bundled shell script that uploads local files into an S3 bucket organized by first-character prefixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads local files to a user-specified S3 bucket using AWS credentials. <br>
-Mitigation: Use a narrowly scoped IAM role or access key limited to the intended bucket and prefix, and run with --dry-run before uploading. <br>
-Risk: Files present in the selected source directory may be uploaded unintentionally. <br>
-Mitigation: Review the source directory contents before execution and verify that it does not contain private or unrelated files. <br>
-Risk: The documentation includes staging cleanup patterns that remove a directory tree. <br>
-Mitigation: Use the bundled script's temporary staging behavior or confirm any manually configured staging directory is safe to delete before cleanup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/6mile-puppet/s3-sort) <br>
+## Use Case:
 
+Developers and operators use this skill to upload local files to an S3 bucket while grouping objects into first-character prefixes for simpler browsing and management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the AWS CLI and AWS credentials with access to the intended S3 bucket or prefix.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bulk S3 upload behavior can move more data than intended.
+
+Mitigation: Use a dedicated source directory, inspect its contents before execution, and run with --dry-run before uploading.
+
+Risk: AWS credentials may allow broader S3 writes than the intended bucket or prefix.
+
+Mitigation: Use least-privilege AWS credentials restricted to the target bucket and prefix.
+
+Risk: Weak argument handling can make untrusted option values risky, especially for --storage-class.
+
+Mitigation: Avoid passing untrusted values to --storage-class and review command arguments before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/6mile-puppet/skills/s3-sort)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AWS CLI credentials and an existing target S3 bucket.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

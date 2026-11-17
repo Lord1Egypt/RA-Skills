@@ -1,36 +1,52 @@
-## Description: <br>
-Search e-commerce products via n8n webhook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search e-commerce products via n8n webhook integration.
 
-## Publisher: <br>
-[haresh-sai06](https://clawhub.ai/user/haresh-sai06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haresh-sai06](https://clawhub.ai/user/haresh-sai06)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to search an e-commerce catalog with natural language product queries, including category, price, and sorting preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product search queries are sent to an n8n webhook, which may expose user-entered search terms to the configured workflow. <br>
-Mitigation: Install only when the receiving n8n workflow is trusted, configure the actual webhook URL before use, and avoid entering sensitive personal, financial, or business information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and agents use this skill to turn natural language product requests into e-commerce catalog searches with category, price, and sort preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown or text summaries of product search results, with webhook responses parsed into a user-facing format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts product search queries to a configured n8n webhook and returns parsed JSON results or user-facing error guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries may be sent to an undocumented or placeholder webhook destination.
+
+Mitigation: Use the skill only after replacing the endpoint with an explicit webhook that the operator controls and has reviewed.
+
+Risk: Product search requests and webhook responses may expose unnecessary data or be handled without clear validation.
+
+Mitigation: Minimize submitted query data, validate webhook responses, add timeout handling, and disclose the external request path to users before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haresh-sai06/skills/haresh-product-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON from a product-search webhook, typically summarized by the agent as user-facing text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured product-search webhook endpoint before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

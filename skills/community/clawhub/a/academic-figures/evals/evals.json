@@ -1,0 +1,255 @@
+{
+  "skill_name": "academic-figures",
+  "skill_version": "8.0.4",
+  "evals": [
+    {
+      "id": 0,
+      "name": "fatal-data-validation-triggers",
+      "prompt": "用 academic-figures 画一张柱状图。数据文件 bad.json 内容是 {\"labels\": [\"A\", \"B\"], \"series\": {}}（series 为空）。请生成 bad.png 并告诉我结果。",
+      "expected_output": "CLI 以退出码 1 终止，stderr 打印 ERROR 说明 series 为空，不生成任何输出文件，不产生半成品 PNG",
+      "files": [],
+      "assertions": [
+        {
+          "name": "exit_code_1",
+          "type": "behavior_check",
+          "description": "gen_figure.py 对空 series 数据退出码必须为 1（fatal 校验触发）"
+        },
+        {
+          "name": "error_message_on_stderr",
+          "type": "content_check",
+          "description": "stderr 包含 'ERROR' 字样，说明 'series' 为空"
+        },
+        {
+          "name": "no_output_file",
+          "type": "negative_check",
+          "description": "不得生成 bad.png（fatal 时不落盘）"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "verify-pdf-reports-clean",
+      "prompt": "生成一张 PDF 格式的森林图（forest plot），数据用 estimates/ci_low/ci_high，并且加 --verify 参数做像素级重叠验证。输出 report.pdf。",
+      "expected_output": "CLI 退出码 0，stderr 末尾打印 'VERIFY OK: no text overlaps in report.pdf'，report.pdf 文件存在且大于 0 字节",
+      "files": [],
+      "assertions": [
+        {
+          "name": "verify_ok_exit_0",
+          "type": "behavior_check",
+          "description": "干净 PDF 上 --verify 必须退出码 0"
+        },
+        {
+          "name": "verify_ok_message",
+          "type": "content_check",
+          "description": "stderr 包含 'VERIFY OK'"
+        },
+        {
+          "name": "pdf_exists",
+          "type": "file_exists",
+          "description": "report.pdf 生成成功"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "cjk-auto-detection-in-series-keys",
+      "prompt": "画一张柱状图，系列名用中文：{\"labels\": [\"A\", \"B\"], \"series\": {\"对照\": [1.0, 2.0], \"处理\": [2.5, 1.5]}}。输出 fig.png。不要手动指定 --cjk，让它自动检测。",
+      "expected_output": "stderr 打印 'CJK font loaded: ...'，全程无 'Glyph ... missing from font' 警告（无豆腐块），退出码 0",
+      "files": [],
+      "assertions": [
+        {
+          "name": "cjk_font_loaded",
+          "type": "content_check",
+          "description": "stderr 包含 'CJK font loaded'"
+        },
+        {
+          "name": "no_tofu_glyph_warning",
+          "type": "negative_check",
+          "description": "stderr 不得包含 'Glyph' 缺字警告（中文必须渲染而非豆腐块）"
+        },
+        {
+          "name": "exit_0",
+          "type": "behavior_check",
+          "description": "退出码 0"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "journal-preset-nature-double",
+      "prompt": "按 Nature 期刊双栏版式生成柱状图：用 --journal nature --column double。输出 nature.png。",
+      "expected_output": "stderr 打印 'Journal preset: nature (double-column...' 且宽度按双栏全宽 183mm 折算（约 7.20in），字号 7pt",
+      "files": [],
+      "assertions": [
+        {
+          "name": "preset_message",
+          "type": "content_check",
+          "description": "stderr 包含 'Journal preset: nature (double-column'"
+        },
+        {
+          "name": "preset_width",
+          "type": "behavior_check",
+          "description": "实际页面宽度接近 183mm（Nature 双栏全宽，差值 < 1mm）"
+        },
+        {
+          "name": "audit_pdf_6pt_clean",
+          "type": "behavior_check",
+          "description": "audit_pdf.py --min-size 6 对生成的 PDF 检出 0 个违规 span（Nature 最小字号 6pt）"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "multi-series-auto-legend-no-false-warning",
+      "prompt": "画一张双系列柱状图，JSON 用标准系列字典：{\"labels\": [\"A\", \"B\"], \"series\": {\"S1\": [1, 2], \"S2\": [3, 4]}}。输出 legend.png。",
+      "expected_output": "退出码 0 正常生成 PNG；系列字典键自动成为图例标签（legend_audit 不误报），stderr 无 'legend will be empty' 类警告",
+      "files": [],
+      "assertions": [
+        {
+          "name": "exit_0_renders",
+          "type": "behavior_check",
+          "description": "退出码 0，PNG 正常生成"
+        },
+        {
+          "name": "no_false_legend_warning",
+          "type": "negative_check",
+          "description": "标准系列字典（键即标签）下 stderr 不得出现 'legend will be empty' 警告——验证 legend_audit 不误报"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "csv-long-format-scatter-groups",
+      "prompt": "用 CSV 画散点图：三列 x,y,group（前两列数值，第三列分组 A/B）。文件 data.csv：x,y,group\\n1,2,A\\n2,4,A\\n3,6,B\\n4,8,B。输出 scatter.png。",
+      "expected_output": "CSV 被自动转换为 {x, y, groups} 长格式，散点图按 group 着色并自动带图例，退出码 0",
+      "files": [],
+      "assertions": [
+        {
+          "name": "long_format_conversion",
+          "type": "behavior_check",
+          "description": "load_data 将 scatter CSV 转换为含 x/y/groups 三键的 dict，groups=['A','A','B','B']"
+        },
+        {
+          "name": "exit_0_renders",
+          "type": "behavior_check",
+          "description": "退出码 0，scatter.png 生成"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "box-labels-are-group-names",
+      "prompt": "画箱线图，数据是 {\"labels\": [\"Ctrl\", \"Drug\"], \"series\": {\"Ctrl\": [1, 2, 3], \"Drug\": [4, 5, 6]}}（labels 是组名，不是 x 轴刻度长度）。输出 box.png。",
+      "expected_output": "退出码 0 正常生成——box/violin 的 labels 必须按组名数量（=系列数）校验，不能误报长度不匹配（v2.0 修复的 edge case）",
+      "files": [],
+      "assertions": [
+        {
+          "name": "box_labels_not_length_checked",
+          "type": "behavior_check",
+          "description": "labels 长度=系列数（2）时不得触发 fatal 长度不匹配（box 的 labels 是组名）"
+        },
+        {
+          "name": "exit_0_renders",
+          "type": "behavior_check",
+          "description": "退出码 0，box.png 生成"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "legend-generator-journal-format",
+      "prompt": "用 gen_legend.py 给一张 KM 生存曲线生成期刊格式图注，数据含 log_rank: {\"p\": 0.03}。",
+      "expected_output": "图注包含 'Kaplan–Meier survival curves for 2 group(s)' 与 'Log-rank P = 0.03'，单句点、以句号结尾",
+      "files": [],
+      "assertions": [
+        {
+          "name": "km_text_correct",
+          "type": "content_check",
+          "description": "图注包含 'Kaplan–Meier survival curves for 2 group(s)'"
+        },
+        {
+          "name": "log_rank_included",
+          "type": "content_check",
+          "description": "图注包含 'Log-rank P = 0.03'"
+        },
+        {
+          "name": "no_double_period",
+          "type": "negative_check",
+          "description": "图注不得含 '..' 双句点"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "prisma-flow-arithmetic-gate",
+      "prompt": "用 academic-figures 画 PRISMA 流程图。数据 prisma.json：records_identified=100, duplicates_removed=10, records_screened=95, exclusion_reasons={\"a\":3,\"b\":4}, studies_included=5。输出 flow.png。",
+      "expected_output": "CLI 以退出码 1 终止，stderr 打印 ERROR 且包含 arithmetic 字样（records_screened 95 != 100-10=90），不生成输出文件",
+      "files": [],
+      "assertions": [
+        {
+          "name": "exit_code_1",
+          "type": "behavior_check",
+          "description": "数字不自洽时必须 exit 1"
+        },
+        {
+          "name": "arithmetic_error_on_stderr",
+          "type": "content_check",
+          "description": "stderr 包含 'arithmetic'，指出哪一级对不上"
+        },
+        {
+          "name": "no_output_file",
+          "type": "negative_check",
+          "description": "不得生成 flow.png"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "suggest-recommends-chart-type",
+      "prompt": "我有个数据文件 data.json（含 groups 到 [time, survival] 的映射），不确定该画什么图。用 academic-figures 的 --suggest 分析一下。",
+      "expected_output": "CLI --suggest 退出码 0，stdout 首位推荐 km 并给出理由和可直接运行的完整命令（含 Run: 前缀）",
+      "files": [],
+      "assertions": [
+        {
+          "name": "exit_code_0",
+          "type": "behavior_check",
+          "description": "--suggest 正常退出码 0"
+        },
+        {
+          "name": "top_recommendation_km",
+          "type": "content_check",
+          "description": "stdout 推荐列表第一位为 km"
+        },
+        {
+          "name": "runnable_command",
+          "type": "content_check",
+          "description": "stdout 包含 'Run:' 与完整可运行命令"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "journal-chinese-cma",
+      "prompt": "我要投中华医学会系列杂志，帮我把 data.json 画成柱状图，宽度按单栏要求，图里有中文。",
+      "expected_output": "CLI --journal cma 退出码 0；stderr 报告 Journal preset: cma (single-column, width=3.15in)；CJK 字体自动启用，中文正常渲染"
+    },
+    {
+      "id": 12,
+      "name": "stats-auto-brackets",
+      "prompt": "groups.json 是三组原始测量值，画小提琴图并自动标出组间显著性。",
+      "expected_output": "CLI --stats auto 退出码 0；stderr 每组对输出 'stats (violin): A vs B: <method>, p=<p> -> <stars>'；图中出现比较括号与星号"
+    },
+    {
+      "id": 13,
+      "name": "alt-text-sidecar",
+      "prompt": "给 km.json 画 KM 曲线，同时生成无障碍（alt text）描述文件。",
+      "expected_output": "CLI --alt 退出码 0；生成 km.alt.txt，内容含 'Kaplan-Meier'、分组名与 log-rank p 值"
+    },
+    {
+      "id": 14,
+      "name": "xlsx-direct-load",
+      "prompt": "数据在 Excel 文件 results.xlsx 的 Sheet2 里，直接画柱状图。",
+      "expected_output": "CLI --sheet Sheet2 退出码 0，等价于同内容 CSV 渲染；sheet 名不存在时给出含可用 sheet 列表的报错"
+    }
+  ]
+}

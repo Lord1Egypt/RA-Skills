@@ -1,43 +1,58 @@
-## Description: <br>
-Professional web scraping for OpenClaw using stealth Playwright automation, anti-bot bypass, JavaScript rendering, and structured data extraction from modern websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional web scraping for OpenClaw with stealth Playwright automation, anti-bot bypass, JavaScript rendering, and structured data extraction from modern websites.
 
-## Publisher: <br>
-[showmemercy19-rgb](https://clawhub.ai/user/showmemercy19-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial <br>
+## Publisher:
 
+[showmemercy19-rgb](https://clawhub.ai/user/showmemercy19-rgb)
 
-## Use Case: <br>
-Developers and external OpenClaw users use Scrapeless Pro to scrape authorized web pages, render JavaScript-heavy sites, and extract structured data through a CLI or programmatic API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth scraping can be used against sites where the user lacks permission or where scraping is prohibited. <br>
-Mitigation: Restrict use to sites the user owns or has permission to scrape, and avoid sensitive or authenticated pages. <br>
-Risk: The validate command prints the full license key to logs. <br>
-Mitigation: Do not run the validate command until license-key logging is fixed, or only run it where stdout is not captured or retained. <br>
-Risk: Browser automation can collect more page data than intended. <br>
-Mitigation: Use explicit selectors and review output before storing, sharing, or acting on scraped data. <br>
+## Use Case:
 
+Developers and agents use this skill to scrape JavaScript-heavy public web pages, render browser content, and extract structured data using automatic extraction or caller-provided CSS selectors.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/showmemercy19-rgb/scrapeless-pro-skill) <br>
-- [Scrapeless Pro Homepage](https://cosmic-lollipop-a61cc5.netlify.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [JSON, CSV, Markdown, or saved files containing scraped page data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, Playwright, and SCRAPELESS_LICENSE_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can browse arbitrary target URLs with weakened browser protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for authorized scraping tasks in an isolated container or VM with restricted outbound network access.
+
+Risk: The SCRAPELESS_LICENSE_KEY secret can be exposed in output.
+
+Mitigation: Treat the license key as a secret, avoid sharing command output from license validation, and keep it out of logs and shared shells.
+
+Risk: Scraping authenticated, internal, or unauthorized sites can create data-handling and policy risk.
+
+Mitigation: Avoid authenticated or internal URLs and confirm permission, robots guidance, and data-use constraints before scraping.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/showmemercy19-rgb/skills/scrapeless-pro-skill)
+- [Scrapeless Pro homepage](https://cosmic-lollipop-a61cc5.netlify.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI examples and generated JSON, CSV, or Markdown scrape results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npx, Playwright Chromium, and SCRAPELESS_LICENSE_KEY.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Cash flow decision system for solo founders that provides probability-weighted forecasting, runway calculation, burn rate analysis, survival alerts, and optional invoice integration without acting as full accounting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cash flow decision system for solo founders that supports probability-weighted forecasting, runway calculation, burn rate analysis, survival alerts, and optional invoice-manager integration while avoiding full accounting advice.
 
-## Publisher: <br>
-[LeonFJR](https://clawhub.ai/user/LeonFJR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonfjr](https://clawhub.ai/user/leonfjr)
 
-## Use Case: <br>
-Solo founders and one-person companies use this agent to maintain cash-flow snapshots, forecast inflows and outflows, calculate runway, prioritize collections and cost cuts, and surface survival alerts. It is intended for cash-flow visibility and decision support, not accounting, tax, payroll, investment, or bookkeeping advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cashflow snapshots, reports, and imported invoice data can contain sensitive business finance records. <br>
-Mitigation: Install only from a trusted source, run the skill only against intended cashflow and invoice folders, and treat generated files as private business records. <br>
-Risk: Cash-flow recommendations may be mistaken for accounting, tax, payroll, investment, or bookkeeping advice. <br>
-Mitigation: Use the skill for cash visibility only and escalate accounting, tax, financing, payroll, depreciation, and accrual questions to qualified professionals. <br>
-Risk: Cost-cut or cancellation suggestions can disrupt contracts, data access, operations, or rollback paths. <br>
-Mitigation: Before cancelling subscriptions or services, check contracts, data export needs, operational dependencies, and recovery options. <br>
+## Use Case:
 
+Solo founders and one-person companies use this skill to maintain local cash-flow snapshots, produce conservative forecasts, evaluate runway and burn rate, prioritize collections, and identify cost cuts. It is intended for cash-flow visibility and escalates accounting, tax, investment, payroll, and similar professional-advice questions.
 
-## Reference(s): <br>
-- [Cash Flow Forecasting Rules](references/forecasting-rules.md) <br>
-- [Runway Guide](references/runway-guide.md) <br>
-- [Cost-Cutting Playbook](references/cost-cutting-playbook.md) <br>
-- [Cashflow Metadata Schema](templates/cashflow-metadata-schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON cash-flow snapshots, and optional CLI JSON or human-readable output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses decimal-safe amount strings, three forecast scenarios, and local cashflow snapshot/index files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill reads and stores sensitive local business cash-flow snapshots and optional invoice records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cashflow and invoice directories before use, restrict access to generated snapshots, and treat reports as sensitive financial records.
+
+Risk: Forecasts and cost-cutting guidance can be misleading if inputs are stale, optimistic, or incomplete.
+
+Mitigation: Verify source amounts and dates, review the conservative scenario first, and refresh snapshots before making cash decisions.
+
+Risk: The skill is not a substitute for accounting, tax, investment, payroll, or legal advice.
+
+Mitigation: Use it for cash-flow visibility and escalate professional-advice questions to the appropriate advisor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leonfjr/skills/opc-cashflow-manager)
+- [Cash Flow Forecasting Rules](references/forecasting-rules.md)
+- [Runway Calculation and Survival Math](references/runway-guide.md)
+- [Cost-Cutting Playbook for Solo Founders](references/cost-cutting-playbook.md)
+- [Cash Flow Snapshot Schema](templates/cashflow-metadata-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON cash-flow snapshots, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local cashflow snapshots and can optionally import invoice records from invoices/INDEX.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

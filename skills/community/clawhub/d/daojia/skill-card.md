@@ -1,43 +1,54 @@
-## Description: <br>
-Daojia helps agents summarize public JD Daojia merchant, product, activity, price, inventory, review, and delivery information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daojia helps agents summarize publicly visible JD Daojia merchant and product information, including prices, stock, reviews, and delivery timing.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and operators use this skill to inspect public JD Daojia merchant, product, and activity pages for lightweight shopping analysis, alerts, and comparisons without placing orders or using private account actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate too broadly for generic shopping requests. <br>
-Mitigation: Use it only for JD Daojia-specific shopping or merchant and product page tasks, and review when it is invoked. <br>
-Risk: Prices, inventory, delivery timing, and promotions can change by time and region. <br>
-Mitigation: Include collection time, location or address context, and source links with summaries and comparisons. <br>
-Risk: Using the skill for purchases, payments, logged-in account actions, reverse engineering, or bulk scraping would exceed the disclosed scope. <br>
-Mitigation: Keep usage to lightweight analysis of public pages and avoid order placement, payment flows, private account actions, API calls, or bulk collection. <br>
+## Use Case:
 
+Developers and analysts use this skill for lightweight analysis of public JD Daojia merchant listings, product details, category comparisons, and alert summaries. It is bounded to public-page review and excludes ordering, reverse engineering, bulk scraping, and attempts to bypass platform controls.
 
-## Reference(s): <br>
-- [Daojia on ClawHub](https://clawhub.ai/CodeKungfu/daojia) <br>
-- [JD Daojia homepage](https://www.jddj.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown summaries, comparison notes, and extracted public-page fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include collection time, region or address context, source links, and price or inventory caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill could be misused for account actions, ordering, scraping at scale, or attempts to bypass platform controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lightweight summaries of publicly visible JD Daojia merchant or product pages, and do not use it for account actions, orders, bulk scraping, reverse engineering, or platform-control bypass.
+
+Risk: Price, stock, and delivery information can vary by time and region.
+
+Mitigation: Include the collection time and region in summaries and treat results as time-sensitive.
+
+## Reference(s):
+
+- [JD Daojia](https://www.jddj.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/daojia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and comparison notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should note collection time and region when summarizing time- or location-sensitive price, stock, and delivery information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

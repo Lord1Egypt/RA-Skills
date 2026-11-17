@@ -1,40 +1,54 @@
-## Description: <br>
-Smart PDF Reader helps agents extract and summarize PDF content, including scanned and complex documents, through the mineru-open-api CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent PDF reader and content extractor powered by MinerU API for extracting and summarizing content from PDFs, including scanned files, academic papers, reports, and books through the mineru-open-api CLI.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers, researchers, and document-review users use this skill to read, extract, and summarize content from PDFs, including scanned files, academic papers, reports, legal documents, and multilingual documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a third-party CLI/API that may process PDF contents outside the agent environment. <br>
-Mitigation: Verify the mineru-open-api package and source before installing, and avoid confidential PDFs unless MinerU privacy and retention practices are acceptable. <br>
-Risk: Extracted document content may be saved locally in output directories. <br>
-Mitigation: Prefer stdout mode for quick reads, choose output directories deliberately, and clean saved extracts when they are no longer needed. <br>
+## Use Case:
 
+External users, developers, and document-review workflows use this skill to read, extract, and summarize PDF content, including scanned, table-heavy, academic, financial, legal, and multilingual documents.
 
-## Reference(s): <br>
-- [Smart PDF Reader on ClawHub](https://clawhub.ai/veeicwgy/smart-pdf-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown text extracted from PDFs, optional saved output files, and concise summaries or guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call mineru-open-api and may save extracted document content to a chosen or generated output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: PDF content may be processed through external MinerU-related tooling without an explicit privacy disclosure in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with PDFs appropriate for that tooling and avoid confidential documents unless the service's data handling is understood and approved.
+
+Risk: The artifact recommends a mutable global npm installation for mineru-open-api.
+
+Mitigation: Prefer a pinned, local, sandboxed installation before running extraction commands.
+
+## Reference(s):
+
+- [Smart PDF Reader on ClawHub](https://clawhub.ai/veeicwgy/skills/smart-pdf-reader)
+- [Publisher profile: veeicwgy](https://clawhub.ai/user/veeicwgy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown and text extracted from PDFs, with optional output files and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke mineru-open-api flash-extract or extract commands, including OCR, table recognition, and VLM model options described by the artifact.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

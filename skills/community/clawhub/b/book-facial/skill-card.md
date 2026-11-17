@@ -1,40 +1,53 @@
-## Description: <br>
-Book facial services through Lokuli MCP. Use when user needs to find and book facial. Triggers on requests like "book a facial", "find facial near me", or any facial service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book facial services through Lokuli MCP by helping users search providers, check availability, and create bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for facial services, check appointment availability, and create bookings through Lokuli's MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send customer contact details to an external booking service. <br>
-Mitigation: Before creating a booking, confirm the exact contact details that will be sent and that the user is comfortable using Lokuli. <br>
-Risk: The skill can create real appointments without clear confirmation safeguards. <br>
-Mitigation: Require explicit confirmation of the provider, service, time, price if available, cancellation terms, and booking action before calling create_booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Facial ClawHub Page](https://clawhub.ai/edwardrodriguez703-design/book-facial) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to search for facial service providers, check appointment availability, and book facial services through Lokuli's external MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown with JSON-RPC tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create real appointments and send customer contact details to Lokuli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking through the external Lokuli MCP service may send personal contact details and selected appointment information outside the agent environment.
+
+Mitigation: Use the skill only for intended appointment search or booking, and confirm the user's name, email, phone number, selected provider, service, and appointment time before creating a booking.
+
+Risk: Broad facial-service trigger wording may activate the skill for loosely related facial-service requests.
+
+Mitigation: Confirm that the user wants appointment search or booking assistance before calling search, availability, or booking tools.
+
+## Reference(s):
+
+- [Book Facial on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-facial)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, API calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP search, availability, and booking calls that use customer contact and appointment details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

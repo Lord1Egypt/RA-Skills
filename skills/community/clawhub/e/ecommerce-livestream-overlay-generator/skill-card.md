@@ -1,47 +1,60 @@
-## Description: <br>
-Generates ecommerce livestream visual overlay packages from brand, product, promotion, and optional product-photo inputs, including backgrounds, title banners, host persona images, pricing cards, product shelves, benefits bars, green-screen cutouts, composite previews, and packaged local deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ecommerce livestream visual overlay packages from brand, product, promotion, and optional product-photo inputs, including backgrounds, title banners, host imagery, price cards, product shelves, benefits bars, transparent assets, previews, and packaged delivery.
 
-## Publisher: <br>
-[gaoyuji12138](https://clawhub.ai/user/gaoyuji12138) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoyuji12138](https://clawhub.ai/user/gaoyuji12138)
 
-## Use Case: <br>
-External creators, ecommerce operators, and livestream production teams use this skill to create ready-to-deliver overlay assets for Taobao, Douyin, PDD, Kuaishou, and similar commerce streams. Developers or agents may also use it to generate prompts, API calls, local image-processing code, shell commands, and packaged output files for a complete livestream visual set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand, promotion, and optional product-photo data may be sent to Volcano Engine for image generation. <br>
-Mitigation: Use the skill only with data suitable for that service, review the provider privacy terms, and avoid uploading sensitive or proprietary product images unless approved. <br>
-Risk: The skill writes generated images and packaged deliverables to local output locations. <br>
-Mitigation: Confirm the target output folder before delivery and inspect generated files before sharing them externally. <br>
-Risk: Release evidence reports capability-metadata mismatches involving purchase and crypto authority. <br>
-Mitigation: Do not grant purchase, payment, cryptocurrency, or blockchain authority for this skill unless the publisher corrects the metadata and the release is rescanned. <br>
-Risk: The skill requires a Volcano Engine API key. <br>
-Mitigation: Use a scoped or revocable API key through VOLCENGINE_ARK_API_KEY and rotate it if it may have been exposed. <br>
+## Use Case:
 
+External creators, livestream operators, and ecommerce teams use this skill to turn product and promotion details into a ready-to-use livestream overlay kit. The agent helps gather required campaign information, generate prompts, call the image generation API, remove green-screen backgrounds, compose a preview, and deliver local assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoyuji12138/ecommerce-livestream-overlay-generator) <br>
-- [Volcano Engine Ark Console](https://console.volcengine.com/ark) <br>
-- [Volcano Engine image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
-- [Volcano Engine privacy policy](https://www.volcengine.com/docs/6369/71845) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with prompts, JSON API request examples, Python snippets, shell commands, and local image files such as PNG, JPG, and ZIP outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_ARK_API_KEY plus python3 and pip3; outputs are saved locally and may include seven fixed image deliverables and a packaged archive when supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Prompts and product photos may be sent to Volcano Engine for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that third-party processing is acceptable, and avoid uploading unreleased, confidential, or sensitive product imagery.
+
+Risk: Python image-processing dependencies are installed and executed locally.
+
+Mitigation: Install dependencies in a dedicated virtual environment before running the workflow.
+
+Risk: Generated images are saved to local disk and may be placed in a desktop folder when direct file delivery is unavailable.
+
+Mitigation: Review the output location and remove generated assets when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoyuji12138/skills/ecommerce-livestream-overlay-generator)
+- [Volcano Engine Ark console](https://console.volcengine.com/ark)
+- [Volcano Engine privacy policy](https://www.volcengine.com/docs/6369/71845)
+- [Volcano Engine Ark image generation endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, image prompts, PNG assets, JPG preview, and optional ZIP package]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a fixed seven-file overlay package: six PNG assets and one JPG preview; prompts and optional product photos are sent to Volcano Engine under the user's API key, and generated assets are saved locally.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

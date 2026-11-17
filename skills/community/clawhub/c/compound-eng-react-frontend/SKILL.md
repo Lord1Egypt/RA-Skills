@@ -4,31 +4,36 @@ class: language
 description: >-
   React architecture patterns, TypeScript, Next.js, hooks, and testing. Use when
   working with React component structure, state management, Next.js routing,
-  Vitest, React Testing Library, or reviewing React code. For visual design and
-  aesthetic direction, use frontend-design instead.
-paths: "**/*.tsx,**/*.jsx"
+  Vitest, React Testing Library, reviewing React code, or synchronizing JSON
+  locales and reviewing translations in a React or frontend interface. For
+  visual design and aesthetic direction, use frontend-design instead.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.ts"
+  - "**/*.css"
+  - "**/tailwind.config.*"
+  - "**/*.html"
+  - "**/*.vue"
+  - "**/*.blade.php"
 ---
 
 # React Frontend
 
-**Verify before implementing**: For App Router patterns, React 19 APIs, or version-specific behavior, look up current docs via Context7 (`query-docs`) before writing code. Training data may lag current releases.
+**Verify before implementing**: For App Router patterns, React 19 APIs, or version-specific behavior, look up current docs (Context7 `query-docs` if available, else the framework's official docs via web search) before writing code. Training data may lag current releases.
 
-## Component TypeScript
+## Working rules
 
-- Extend native elements with `ComponentPropsWithoutRef<'button'>`, add custom props via intersection
-- Use `React.ReactNode` for children, `React.ReactElement` for single element, render prop `(data: T) => ReactNode`
-- Discriminated unions for variant props -- TypeScript narrows automatically in branches
-- Generic components: `<T>` with `keyof T` for column keys, `T extends { id: string }` for constraints
-- Event types: `React.MouseEvent<HTMLButtonElement>`, `FormEvent<HTMLFormElement>`, `ChangeEvent<HTMLInputElement>`
-- `as const` for custom hook tuple returns
-- `useRef<HTMLInputElement>(null)` for DOM (use `?.`), `useRef<number>(0)` for mutable values
-- Explicit `useState<User | null>(null)` for unions/null
-- useReducer actions as discriminated unions: `{ type: 'set'; payload: number } | { type: 'reset' }`
-- useContext null guard: throw in custom `useX()` hook if context is null
+- Keep derived state in render and user actions in event handlers; use effects for external synchronization.
+- Give async work a lifecycle and cancellation policy; represent failure separately from pending and empty data.
+- **Bind cache keys to the request's identity.** A tenant-scoped key can receive another tenant's response when server session state changes first. Keep request scope and cache identity consistent throughout context switches. Verify isolation with mounted consumers, in-flight requests, and failed refetches.
+- Preserve focus when hiding interactive regions and exercise keyboard navigation in a real browser.
+- Validate and authorize every public server action; send only needed fields across server/client boundaries.
+- Measure performance changes and test user-visible behavior, not type-checking alone.
 
 ## Effects Decision Tree
 
-Effects are escape hatches -- most logic should NOT use effects.
+Effects are escape hatches; most logic should NOT use effects.
 
 | Need | Solution |
 |------|----------|
@@ -40,135 +45,28 @@ Effects are escape hatches -- most logic should NOT use effects.
 | Sync with external system | Effect with cleanup |
 
 **Effect rules:**
-- Never suppress the linter -- fix the code instead
+- Never suppress the linter; fix the code instead
 - Use updater functions (`setItems(prev => [...prev, item])`) to remove state dependencies
 - Move objects/functions inside effects to stabilize dependencies
 - `useEffectEvent` for non-reactive values (e.g., theme in a connection effect)
 - Always return cleanup for subscriptions, connections, listeners
-- Data fetching cancellation (pick by situation): `AbortController` for fetch; `ignore` flag for non-cancellable promises; React Query handles both automatically
+- Data fetching cancellation (pick by situation): `AbortController` for fetch; `ignore` flag for non-cancellable promises. With React Query, pass the query function's signal to the transport, such as `queryFn: ({ signal }) => fetch(url, { signal })`. Without consuming that signal, an unused query can finish and populate the cache; do not describe that behavior as transport cancellation.
+- **A settled request is not completed initialization.** Consume a one-time initialization latch only after applying usable data or observing a successful terminal empty result. Test empty-then-populated responses within one mount. Verify that later refetches preserve user edits.
 
-## Concurrency & Race Classes
-
-Frontend bugs that survive type-checking and unit tests usually land in one of five race classes. Hunt each one explicitly during review:
-
-1. **Lifecycle cleanup gaps** -- in-production signal: "Can't perform state update on an unmounted component" warnings, slow-burn memory leaks under rapid navigation, duplicate event handlers firing. Root cause: `useEffect` registered a listener/timer/observer without returning cleanup (see Effect rules above for the rule).
-2. **Remount-timing mistakes** -- async callbacks mutate DOM or state after swap / disconnect / route change. Classic cases: a `fetch().then(setData)` resolves after navigation to a different route; a `requestAnimationFrame` fires after the parent unmounts. See "Data fetching" in Effect rules above for the cancellation hierarchy.
-3. **Boolean-as-state for UI that isn't binary** -- `isLoading: boolean` can't represent `idle | loading | success | error | retry` without creating inconsistent combinations (`isLoading: true, error: Error` is contradictory). Prefer an explicit state constant (`'idle' | 'loading' | 'success' | 'error'`) with a transition function so invalid states are unreachable.
-4. **Stale promises and timers with no cancel path** -- a promise chain or `setTimeout` holds a reference to `setState` after the component's moved on. Bind every async operation to a cancel mechanism per the cancellation hierarchy above, and verify the cleanup path is exercised by a test.
-5. **Per-element handlers where delegation would be safer** -- attaching `onClick` to every row in a list creates N closures and N subscriptions; delegated listeners (single handler on the parent reading `event.target.closest(...)`) are safer under rapid re-renders, avoid stale-closure bugs, and scale to large lists. Use delegation when the list exceeds ~50 items or updates frequently.
-
-These classes produce bugs that are intermittent, environment-dependent, and invisible to type-checking -- exactly the ones that reach production. Review for them deliberately, not just as "subscriptions need cleanup."
-
-## State Management
-
-```
-Local UI state       → useState, useReducer
-Shared client state  → Zustand (simple) | Redux Toolkit (complex)
-Atomic/granular      → Jotai
-Server/remote data   → React Query (TanStack Query)
-URL state            → nuqs, router search params
-Form state           → React Hook Form
-```
-
-**Key patterns:**
-- Zustand: `create<State>()(devtools(persist((set) => ({...}))))` -- use slices for scale, selective subscriptions to prevent re-renders
-- React Query: query keys factory (`['users', 'detail', id] as const`), `staleTime`/`gcTime`, optimistic updates with `onMutate`/`onError` rollback
-- Separate client state (Zustand) from server state (React Query) -- never duplicate server data in client store
-- Colocate state close to where it's used; don't over-globalize
-
-## Performance
-
-**Critical -- eliminate waterfalls:**
-- `Promise.all()` for independent async operations
-- Move `await` into branches where actually needed
-- Suspense boundaries to stream slow content
-
-**Critical -- bundle size:**
-- Import directly from modules, avoid barrel files (`index.ts` re-exports)
-- `next/dynamic` or `React.lazy()` for heavy components
-- Defer third-party scripts (analytics, logging) until after hydration
-- Preload on hover/focus for perceived speed
-- `content-visibility: auto` + `contain-intrinsic-size` on long lists -- skips off-screen layout/paint
-
-**Re-render optimization:**
-- Derive state during render, not in effects
-- Subscribe to derived booleans, not raw objects (`state.items.length > 0` not `state.items`)
-- Functional setState for stable callbacks: `setCount(c => c + 1)`
-- Lazy state init: `useState(() => expensiveComputation())`
-- `useTransition` for non-urgent updates (search filtering)
-- `useDeferredValue` for expensive derived UI
-- Don't subscribe to searchParams/state if only read in callbacks -- read on demand instead
-- Use ternary (`condition ? <A /> : <B />`), not `&&` for conditionals
-- `React.memo` only for expensive subtrees with stable props
-- Hoist static JSX outside components
-
-**React Compiler** (React 19): auto-memoizes -- write idiomatic React, remove manual `useMemo`/`useCallback`/`memo`. Enable via framework config (Next.js: `reactCompiler: true` in next.config). Non-framework: install `babel-plugin-react-compiler`. Keep components pure.
-
-## React 19
-
-- **ref as prop** -- `forwardRef` deprecated. Accept `ref?: React.Ref<HTMLElement>` as regular prop
-- **useActionState** -- replaces `useFormState`: `const [state, formAction, isPending] = useActionState(action, initialState)`
-- **use()** -- unwrap Promise or Context during render (not in callbacks/effects). Enables conditional context reads
-- **useOptimistic** -- `const [optimistic, addOptimistic] = useOptimistic(state, mergeFn)` for instant UI feedback
-- **useFormStatus** -- `const { pending } = useFormStatus()` in child of `<form action={...}>`
-- **Server Components** -- default in App Router. Async, access DB/secrets directly. No hooks, no event handlers
-- **Server Actions** -- `'use server'` directive. Validate inputs (Zod), `revalidateTag`/`revalidatePath` after mutations. **Server Actions are public endpoints** -- always verify auth/authz inside each action, not just in middleware or layout guards
-- **`<Activity mode='visible'|'hidden'>`** -- preserves state/DOM for toggled components (experimental)
-
-## Next.js App Router
-
-**File conventions:** `page.tsx` (route UI), `layout.tsx` (shared wrapper), `template.tsx` (re-mounted on navigation, unlike layout), `loading.tsx` (Suspense), `error.tsx` (error boundary), `not-found.tsx` (404), `default.tsx` (parallel route fallback), `route.ts` (API endpoint)
-
-**Rendering modes:** Server Components (default) | Client (`'use client'`) | Static (build) | Dynamic (request) | Streaming (progressive)
-
-**Decision:** Server Component unless it needs hooks, event handlers, or browser APIs. Split: server parent + client child. Isolate interactive components as `'use client'` leaf components -- keep server components static with no global state or event handlers.
-
-**Routing patterns:**
-- Route groups `(name)` -- organize without affecting URL
-- Parallel routes `@slot` -- independent loading states in same layout
-- Intercepting routes `(.)` -- modal overlays with full-page fallback
-
-**Caching:**
-- `fetch(url, { cache: 'force-cache' })` -- static
-- `fetch(url, { next: { revalidate: 60 } })` -- ISR
-- `fetch(url, { cache: 'no-store' })` -- dynamic
-- Tag-based: `fetch(url, { next: { tags: ['products'] } })` then `revalidateTag('products')`
-
-**Data fetching:** Fetch in Server Components where data is used. Use Suspense boundaries for slow queries. `React.cache()` for per-request dedup. `generateStaticParams` for static generation. `generateMetadata` for dynamic SEO. Static metadata with `title: { default: 'App', template: '%s | App' }` for cascading page titles. `after()` for non-blocking side effects (logging, analytics) -- runs after response is sent. Hoist static I/O (fonts, config) to module level -- runs once, not per request.
-
-## Testing (Vitest + React Testing Library)
-
-- **Component tests**: Vitest + RTL, co-located `*.test.tsx`. Default for React components.
-- **Hook tests**: `renderHook` + `act`, co-located `*.test.ts`
-- **Unit tests**: Vitest for pure functions, utilities, services
-- **E2E**: Playwright for user flows and critical paths
-- **Query priority**: `getByRole` > `getByLabelText` > `getByPlaceholderText` > `getByText` > `getByTestId`
-- Mock API services and external providers; render child components real for integration confidence
-- One behavior per test with AAA structure. Name: `should <behavior> when <condition>`
-- Use `userEvent` over `fireEvent` for realistic interactions
-- `findBy*` for async elements, `waitFor` after state-triggering actions
-- `vi.clearAllMocks()` in `beforeEach`. Recreate state per test.
-General testing discipline (anti-patterns, rationalization resistance): see [ia-writing-tests](../writing-tests/SKILL.md) skill.
-See [testing patterns and examples](./references/testing.md) for component, hook, and mocking examples.
-See [e2e testing](./references/e2e-testing.md) for Playwright patterns.
-
-## Tailwind Integration
-
-For Tailwind v4 configuration, utility patterns, dark mode, and component variants, see [ia-tailwind-css](../tailwind-css/SKILL.md) skill.
-
-**Class sorting in JSX**: when using `clsx`, `cva`, `cn`, `tv`, or `tw` utility functions, keep Tailwind classes in canonical order. Configure `eslint-plugin-better-tailwindcss` with `useSortedClasses` and `functions: ["clsx", "cva", "cn", "tv", "tw"]` to enforce this automatically across JSX attributes and helper calls.
 
 ## Discipline
 
-- Simplicity first -- every change as simple as possible, impact minimal code
-- Only touch what's necessary -- avoid introducing unrelated changes
-- No hacky workarounds -- if a fix feels wrong, step back and implement the clean solution
+- Simplicity first: every change as simple as possible, impact minimal code
+- Only touch what's necessary; avoid introducing unrelated changes
+- No hacky workarounds: if a fix feels wrong, step back and implement the clean solution
 - Before adding a new abstraction, verify it appears in 3+ places
+
 
 ## References
 
-- [testing.md](./references/testing.md) -- Component, hook, and mocking test examples
-- [e2e-testing.md](./references/e2e-testing.md) -- Playwright E2E patterns
+- [testing.md](./references/testing.md): Component, hook, and mocking test examples
+- [e2e-testing.md](./references/e2e-testing.md): Playwright E2E patterns
+
 
 ## Verify
 
@@ -176,3 +74,17 @@ For Tailwind v4 configuration, utility patterns, dark mode, and component varian
 - No suppressed lint rules (`eslint-disable`, `@ts-ignore`) in new code
 - `useEffect` dependency arrays not manually overridden
 - No `forwardRef` usage in React 19+ projects (use `ref` prop directly)
+
+## Task-specific references
+
+Read the relevant reference before implementing or reviewing the matching behavior:
+
+- For component types, state ownership, async races, focus, or cached query behavior: [components-and-state.md](./references/components-and-state.md).
+- For performance, React APIs, Next.js boundaries, or caching: [rendering-and-frameworks.md](./references/rendering-and-frameworks.md).
+- For Tailwind CSS: utilities, `@theme` tokens, CVA/tailwind-variants, dark mode, v3-to-v4 migration, or overflow and `hidden` pitfalls: [tailwind.md](./references/tailwind.md).
+- For component, hook, browser, or integration test changes: [test-selection.md](./references/test-selection.md).
+- For synchronizing JSON locale files or reviewing translations: [locale-synchronization.md](./references/locale-synchronization.md).
+
+Existing specialized references, when the corresponding topic applies:
+
+- Tailwind details behind [tailwind.md](./references/tailwind.md): [tailwind-configuration.md](./references/tailwind-configuration.md), [tailwind-v3-to-v4.md](./references/tailwind-v3-to-v4.md), [tailwind-class-composition.md](./references/tailwind-class-composition.md), [tailwind-component-patterns.md](./references/tailwind-component-patterns.md), [tailwind-layout-patterns.md](./references/tailwind-layout-patterns.md).

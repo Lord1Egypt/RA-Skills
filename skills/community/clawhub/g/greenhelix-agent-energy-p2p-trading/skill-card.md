@@ -1,42 +1,59 @@
-## Description: <br>
-Guides agents through P2P energy trading patterns for prosumer microgrids, including prosumer registration, smart meter integration, dynamic pricing, escrow-protected settlement, multi-agent orchestration, and regulatory compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build autonomous P2P energy trading agents for prosumer microgrids, including prosumer registration, smart meter integration, dynamic pricing, escrow-protected settlement, microgrid orchestration, EV charging coordination, and compliance reporting.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and energy platform builders use this guide to design agent workflows for prosumer microgrids, including energy offers, smart meter verification, escrow settlement, EV charging coordination, and compliance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide describes autonomous energy-control and payment workflows that could affect live grid devices or payment accounts if applied without review. <br>
-Mitigation: Treat examples as sandbox-only until qualified energy, payments, and compliance operators approve the design and deployment plan. <br>
-Risk: Examples reference sensitive GreenHelix and Stripe credentials. <br>
-Mitigation: Use least-privilege credential scopes, explicit human approvals, spending and dispatch limits, monitoring, safety interlocks, and tested rollback procedures before any live use. <br>
+## Use Case:
 
+Developers and energy platform teams use this skill as a guide for building agent workflows that trade energy between prosumers, coordinate microgrid assets, handle escrow settlement, and prepare compliance reports. The guidance is especially relevant to sandbox-first prototyping before connecting real payment credentials, smart-meter data, or physical energy assets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-agent-energy-p2p-trading) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guide with Python code examples and credential notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; examples reference GREENHELIX_API_KEY and STRIPE_API_KEY for user-managed environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: release evidence and frontmatter) <br>
+Risk: Financial escrow and payment workflows could affect real funds if examples are adapted without production controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox credentials first; require explicit owner consent, operator approval workflows, transaction limits, idempotency, rollback, and reconciliation before using production payment keys.
+
+Risk: Smart-meter and battery-control workflows could affect physical energy assets if connected directly to real devices.
+
+Mitigation: Do not connect real smart-meter data or physical battery controllers until device-scoped authorization and local safety interlocks are in place.
+
+Risk: The guide is not a drop-in production recipe for regulated energy trading.
+
+Mitigation: Treat the examples as high-impact integration guidance and require qualified operational, security, and regulatory review before deployment.
+
+## Reference(s):
+
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-energy-p2p-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guide with Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples reference GREENHELIX_API_KEY and STRIPE_API_KEY.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

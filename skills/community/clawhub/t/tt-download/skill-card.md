@@ -1,48 +1,61 @@
-## Description: <br>
-Resolves signed MP4 video URLs from Oceanengine material-center video_player pages and can optionally download the stream to a local file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolves the signed video URL behind OceanEngine material-center video_player pages and can optionally download the MP4 stream.
 
-## Publisher: <br>
-[suiside](https://clawhub.ai/user/suiside) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suiside](https://clawhub.ai/user/suiside)
 
-## Use Case: <br>
-External users and agents use this skill when they need to extract or save the real signed video URL behind an Oceanengine material-center video_player link. It is intended for trusted Oceanengine material-center links, not for general-purpose video downloading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches a local headless browser and performs network requests to resolve Oceanengine video URLs. <br>
-Mitigation: Review before installation and use it only with trusted Oceanengine material-center links. <br>
-Risk: The downloader can write MP4 output to the local filesystem. <br>
-Mitigation: Ask for explicit user confirmation before downloading and choose an intentional output path. <br>
-Risk: The browser command uses --no-sandbox, which can increase exposure on sensitive machines. <br>
-Mitigation: Run in an isolated browser profile or controlled environment, and consider removing --no-sandbox when the local platform supports it. <br>
+## Use Case:
 
+Developers and agents use this skill when a user provides an OceanEngine material-center video_player token URL and needs the real signed media URL or a local MP4 download. It is scoped to this OceanEngine flow and is not intended as a general-purpose video downloader.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suiside/tt-download) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [Usage contract](references/usage.json) <br>
-- [Chrome path reference](references/chrome-paths.json) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
-- [Microsoft Edge](https://www.microsoft.com/edge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text URL on stdout, optional MP4 file output, and progress or error guidance on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and a local Chromium-based browser; uses network access and local file writes when downloading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The downloader can render and fetch URLs outside the documented OceanEngine material-center flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted OceanEngine video_player token URLs and prefer a release that enforces exact host and path allowlists before rendering or fetching.
+
+Risk: Attacker-supplied @path inputs can hide or swap the URL that will be rendered and fetched.
+
+Mitigation: Inspect @path files before use, avoid untrusted path inputs, and pass the intended URL directly when possible.
+
+Risk: Redirects, cookies, and browser execution increase exposure if the browser environment is not isolated.
+
+Mitigation: Validate redirects, limit cookies to the expected vck_* value, use an isolated temporary browser profile, and enable Chromium sandboxing where supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suiside/skills/tt-download)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [Usage contract](references/usage.json)
+- [Troubleshooting guide](references/troubleshooting.md)
+- [Chrome browser discovery paths](references/chrome-paths.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text URL on stdout, optional MP4 file output, and progress or error messages on stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, Python 3, and a local Chromium-based browser. Resolved signed URLs are short-lived and should not be cached for later download.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

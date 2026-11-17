@@ -1,39 +1,58 @@
-## Description: <br>
-Gives AI agents persistent identity and shared memory across runtimes, devices, and sessions using a Git-native memory hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give AI agents persistent identity and shared memory across runtimes, devices, and sessions — Git-native, no database, no vendor lock-in.
 
-## Publisher: <br>
-[kingcharleslzy-ai](https://clawhub.ai/user/kingcharleslzy-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingcharleslzy-ai](https://clawhub.ai/user/kingcharleslzy-ai)
 
-## Use Case: <br>
-External users and agent developers use this skill to set up a private Git-backed memory hub so multiple AI agents can share stable persona, user preferences, and durable session context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists agent-written context to a Git repository, which can expose secrets, credentials, raw transcripts, or sensitive personal or business data if agents write them into memory. <br>
-Mitigation: Keep the repository private, define what may be stored before first use, prohibit secrets and sensitive raw logs, and review commits periodically. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up Git-backed identity and memory that can persist across agent runtimes, devices, and sessions. It is intended for users who deliberately want durable shared memory across multiple agents or machines.
 
-## Reference(s): <br>
-- [Template repo](https://github.com/kingcharleslzy-ai/agent-soul) <br>
-- [ClawHub skill page](https://clawhub.ai/kingcharleslzy-ai/soul-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git and python3; stores selected memory events in a user-controlled Git repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Agents may persist sensitive or unwanted long-term memories to a shared GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a private repository with restricted access, require user approval before committing memories, and avoid storing secrets, regulated data, raw conversations, or confidential project details.
+
+Risk: The workflow depends on mutable external template files and scripts.
+
+Mitigation: Review and pin the external repository and scripts before installation or deployment.
+
+Risk: GitHub Actions or repository automation may run in the memory repository.
+
+Mitigation: Consider disabling GitHub Actions unless the automation has been reviewed and is required.
+
+## Reference(s):
+
+- [Soul Sharing ClawHub page](https://clawhub.ai/kingcharleslzy-ai/skills/soul-sharing)
+- [agent-soul template repository](https://github.com/kingcharleslzy-ai/agent-soul)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

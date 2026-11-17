@@ -1,43 +1,60 @@
-## Description: <br>
-Syncs an Obsidian vault one way to a Tencent Lexiang knowledge base, including directory structure, Markdown notes, images, and attachments, with full and incremental modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes an Obsidian vault to a Tencent Lexiang knowledge base with one-way full or incremental sync for Markdown, images, folders, and standalone attachments.
 
-## Publisher: <br>
-[ajaxhe](https://clawhub.ai/user/ajaxhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ajaxhe](https://clawhub.ai/user/ajaxhe)
 
-## Use Case: <br>
-Employees, external users, and developers who maintain notes in Obsidian use this skill to preview and run a one-way sync into Tencent Lexiang knowledge bases while preserving folders, Markdown content, images, and attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reuses an existing local Lexiang connector OAuth token. <br>
-Mitigation: Install it only in the intended agent profile and trust boundary, and avoid using it on machines where connector tokens belong to another user or workspace. <br>
-Risk: The skill can upload selected Obsidian notes and attachments to Tencent Lexiang. <br>
-Mitigation: Run dry-run first, limit the vault or source directories, verify the target space and folder, and review the generated report after sync. <br>
+## Use Case:
 
+Developers, knowledge managers, and teams that maintain notes in Obsidian use this skill to publish or refresh a matching Tencent Lexiang knowledge base while preserving folder structure, Markdown content, images, and attachments.
 
-## Reference(s): <br>
-- [Conflict Strategy](references/conflict-strategy.md) <br>
-- [Obsidian](https://obsidian.md/) <br>
-- [Tencent Lexiang](https://lexiangla.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajaxhe/skills/sync-obsidian-to-lexiang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; sync execution returns a JSON summary and a Markdown report path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can create local sync configuration, manifest, lock, and report files inside the selected Obsidian vault.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Authentication fallback could use an unintended Lexiang credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an explicit Lexiang profile or credential file and verify authentication before running a sync.
+
+Risk: Untrusted symlinks or traversal-style attachment references could cause uploads from outside the intended vault boundary.
+
+Mitigation: Use only trusted vaults, remove untrusted symlinks or traversal-style references, and run a dry-run before syncing.
+
+Risk: A non-dry-run sync can publish content to the wrong Lexiang space or folder if target identifiers are incorrect.
+
+Mitigation: Confirm the target Lexiang space and folder before any non-dry-run sync.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ajaxhe/skills/sync-obsidian-to-lexiang)
+- [Conflict Strategy Reference](references/conflict-strategy.md)
+- [upload-markdown-to-lexiang Dependency](https://github.com/ajaxhe/upload-markdown-to-lexiang)
+- [Lexiang Personal Credentials](https://lexiangla.com/ai/claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash command examples, plus JSON status summaries and report files from sync runs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may write manifest, progress, configuration, and report files under the Obsidian vault state directory.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

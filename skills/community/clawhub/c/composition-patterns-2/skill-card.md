@@ -1,45 +1,56 @@
-## Description: <br>
-React composition guidance for refactoring boolean-heavy components, building flexible component libraries, and designing reusable APIs with compound components, context providers, and React 19 patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React composition patterns that scale for refactoring boolean prop proliferation, building flexible component libraries, and designing reusable component APIs.
 
-## Publisher: <br>
-[analsharqy](https://clawhub.ai/user/analsharqy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[analsharqy](https://clawhub.ai/user/analsharqy)
 
-## Use Case: <br>
-Developers and engineers use this skill when refactoring React components, reviewing component architecture, or designing reusable component APIs. It provides concise guidance and examples for composition over boolean prop configuration, compound components, lifted provider state, and React 19 API updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: React 19 guidance may be incomplete or become outdated for a user's project context. <br>
-Mitigation: Verify React 19 API recommendations against official React documentation before applying them broadly. <br>
-Risk: Composition guidance can be misapplied to components where a simpler prop API is sufficient. <br>
-Mitigation: Review proposed refactors against the local codebase's requirements before adopting the pattern. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide React component refactors and API design toward compound components, lifted provider state, explicit variants, and React 19-aware composition patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/analsharqy/composition-patterns-2) <br>
-- [React documentation](https://react.dev) <br>
-- [React context documentation](https://react.dev/learn/passing-data-deeply-with-context) <br>
-- [React use API reference](https://react.dev/reference/react/use) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Compiled React Composition Patterns guide](artifact/AGENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with TypeScript/TSX examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior or sensitive access requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill may influence React refactoring choices that affect component behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or modified React code before merging, especially changes to component APIs, provider boundaries, and state flow.
+
+Risk: React 19-specific guidance may not apply to projects still using React 18 or earlier.
+
+Mitigation: Confirm the target project's React version before applying React 19 API recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/analsharqy/skills/composition-patterns-2)
+- [React documentation](https://react.dev)
+- [React context guide](https://react.dev/learn/passing-data-deeply-with-context)
+- [React use API reference](https://react.dev/reference/react/use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior, persistence, credential handling, or hidden authority.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

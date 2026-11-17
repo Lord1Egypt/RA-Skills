@@ -1,42 +1,55 @@
-## Description: <br>
-Manage Movedone kanban projects, columns, tasks, comments, and task links via the local HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Movedone kanban projects, columns, tasks, comments, and task links via the local HTTP API.
 
-## Publisher: <br>
-[kaichaosun](https://clawhub.ai/user/kaichaosun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaichaosun](https://clawhub.ai/user/kaichaosun)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage local Movedone kanban data through curl commands against the Movedone HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bearer token provides full access to the local Movedone HTTP API and can expose project data if shared. <br>
-Mitigation: Keep MOVEDONE_AUTH_TOKEN private, use the local base URL, and avoid logging or pasting the token into shared contexts. <br>
-Risk: Project, column, task, comment, and link operations can change or delete kanban data. <br>
-Mitigation: Double-check project, column, and task IDs before allowing delete, move, or bulk update commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to operate Movedone kanban data from OpenClaw through the local Movedone HTTP API, including project, column, task, comment, and task-link workflows.
 
-## Reference(s): <br>
-- [Movedone](https://movedone.ai) <br>
-- [Movedone download](https://movedone.ai/#download) <br>
-- [ClawHub release page](https://clawhub.ai/kaichaosun/movedone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, MOVEDONE_BASE_URL, and MOVEDONE_AUTH_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The bearer token and base URL can provide broad access to local Movedone data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MOVEDONE_AUTH_TOKEN private and ensure MOVEDONE_BASE_URL points only to the intended local Movedone HTTP API.
+
+Risk: Update and delete commands can change or remove projects, columns, tasks, comments, and task links.
+
+Mitigation: Verify project, column, task, and target task IDs before running data-changing commands.
+
+## Reference(s):
+
+- [Movedone](https://movedone.ai)
+- [Movedone download](https://movedone.ai/#download)
+- [ClawHub skill page](https://clawhub.ai/kaichaosun/skills/movedone)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command examples and setup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl plus MOVEDONE_BASE_URL and MOVEDONE_AUTH_TOKEN environment variables.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

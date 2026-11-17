@@ -1,0 +1,16 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "API Contract Check",
+  "version": "1.0.0",
+  "description": "When a controller/endpoint file is created, verifies an API contract (OpenAPI spec) exists first. Enforces contract-before-implementation.",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["{DERIVE: controller file patterns from tech-stack.md + module-structure.md}"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "## Package Territory Check (MANDATORY — evaluate FIRST)\nBefore performing any checks below, verify the triggering file path.\n\nEXCLUDED ZONES (package infrastructure — NOT compliance subjects):\n• .kiro/hooks/ — AI-GCE hook infrastructure\n• .kiro/steering/ — AI-DWG/AI-GCE steering infrastructure\n• .kiro/agents/ — AI-GCE agent infrastructure\n• .governance/ — AI-GCE governance rules/agents/logs\n• compliance-log/ — AI-GCE audit trail\n• project-initiation/ — AI-PILC output\n• architecture/ — AI-ADLC output\n• management_framework/ — Shared governance spine\n• docs/compliance-* — AI-GCE generated dashboards\n• templates/ — AI-DWG planning templates\n\nIf the triggering file's path starts with ANY of the above prefixes:\n→ EXIT SILENTLY. Do NOT check, do NOT log, do NOT warn.\n\nIf the file is NOT in an excluded zone → proceed with checks below.\n\n---\n\nCheck .compliance-state.json → currentPhase. This hook applies from Foundation phase onward.\n\nA controller/endpoint file was created. Verify API-First compliance:\n\n1. API CONTRACT EXISTS: Check if an OpenAPI contract (or equivalent spec) exists for this module/endpoint. Look in contracts/ or the module's spec folder.\n2. CONTRACT DEFINES THIS ENDPOINT: If a contract exists, verify it defines the endpoint being implemented.\n3. CONTRACT REVIEWED: Ideally the contract was committed in a prior PR (not the same commit as the controller).\n\nIf no contract exists: WARN with rule GOV-API-001. Suggest creating the contract first.\nIf contract exists but doesn't define this endpoint: WARN.\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"api-contract-check\", \"trigger\": \"fileCreated\", \"ruleId\": \"GOV-API-001\", \"ruleSeverity\": \"critical\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\"}"
+  }
+}

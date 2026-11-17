@@ -1,56 +1,43 @@
 ---
 name: meeting-memory
-description: Record, transcribe, and store meeting notes with persistent semantic memory using BlueColumn. Use when a user wants to save a meeting recording, upload meeting audio, store meeting notes or transcripts, or recall action items, decisions, and topics from past meetings. Triggers on phrases like "store this meeting", "remember this call", "what were the action items from", "recall last meeting", "upload meeting recording". Requires a BlueColumn API key (bc_live_*).
+description: Give AI agents Every meeting becomes searchable. using BlueColumn persistent memory. Use when an agent takes meeting notes and needs recall; when the user wants to store, recall, or search meeting memory context. Requires a BlueColumn API key (bc_live_*).
 ---
 
-# Meeting Memory Skill
+# Meeting Memory — BlueColumn Skill
 
-Store meetings into BlueColumn (bluecolumn.ai) and recall action items, decisions, and key topics anytime. BlueColumn's backend runs on Supabase Edge Functions — this is BlueColumn's official managed infrastructure.
+Every meeting becomes searchable.. Powered by BlueColumn (bluecolumn.ai) persistent vector memory.
 
 ## Setup
-Read `TOOLS.md` for the BlueColumn API key (`bc_live_*`). Keys are generated at bluecolumn.ai/dashboard. If not set, ask the user. Store keys securely — never log or expose them.
+Read `TOOLS.md` or the platform secret store for the BlueColumn API key (`bc_live_*`). Base URL: `https://xkjkwqbfvkswwdmbtndo.supabase.co/functions/v1`
 
-Base URL: `https://xkjkwqbfvkswwdmbtndo.supabase.co/functions/v1` (BlueColumn's official backend)
-
-## Store a Meeting
-
-**From audio URL:**
+## Store
 ```bash
 curl -X POST .../agent-remember \
   -H "Authorization: Bearer <key>" \
-  -d '{"audio_url": "https://...", "title": "Weekly Standup 2026-04-14"}'
+  -H "Content-Type: application/json" \
+  -d '{"text": "Meeting 7/30 standup: blockers — staging env down; owner: dev team.", "title": "meeting-memory - note"}'
 ```
 
-**From transcript/notes (text):**
+## Quick note
 ```bash
-curl -X POST .../agent-remember \
+curl -X POST .../agent-note \
   -H "Authorization: Bearer <key>" \
-  -d '{"text": "<transcript>", "title": "Meeting Title"}'
+  -H "Content-Type: application/json" \
+  -d '{"text": "Meeting 7/30 standup: blockers — staging env down; owner: dev team.", "tags": ["meeting-memory"]}'
 ```
 
-Response includes: `session_id`, `summary`, `action_items[]`, `key_topics[]`
-
-Always confirm storage by showing the user: title, summary, and action items extracted.
-
-## Recall Meeting Info
-
+## Recall
 ```bash
 curl -X POST .../agent-recall \
   -H "Authorization: Bearer <key>" \
-  -d '{"q": "what were the action items from the standup?"}'
+  -H "Content-Type: application/json" \
+  -d '{"q": "What action items came out of the last standup?"}'
 ```
 
 ## Workflow
+1. On new context, first recall: `What action items came out of the last standup?`
+2. Use the answer to personalize the response
+3. After the interaction, store the summary via `/agent-remember`
 
-1. User provides audio URL, file URL, or meeting text
-2. POST to `/agent-remember` with descriptive title (include date)
-3. Show user the extracted summary + action items
-4. Offer to set reminders for action items if calendar access available
-5. For recall queries → POST to `/agent-recall` with natural language question
-
-## Tips
-- Always include date in title: "Product Sync 2026-04-14"
-- For recurring meetings, consistent naming makes recall more accurate
-- Action items returned are auto-extracted by AI — review for accuracy
-
-See [references/api.md](references/api.md) for full API field reference.
+## Docs
+Full API reference: https://bluecolumn.ai/docs — fields are `text`, `q`, `tags` (not `content`/`query`/`note`).

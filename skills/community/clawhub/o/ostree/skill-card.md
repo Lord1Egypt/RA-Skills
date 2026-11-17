@@ -1,43 +1,59 @@
-## Description: <br>
-Guides agents through OSTree atomic system update administration, including repository setup, commits, deployments, rollback, remote sync, branch management, and rpm-ostree workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OSTree atomic system updates with repository, commit, deployment, branch, remote sync, and RPM-OSTree integration for immutable system infrastructures.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers, DevOps engineers, and system administrators use this skill to plan and execute OSTree and rpm-ostree workflows for immutable Linux systems. It is most useful when an agent needs to produce operational guidance, command sequences, or configuration examples for atomic updates and rollback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes high-impact OSTree deployment, undeploy, rollback, prune, and repository modification examples that can affect host boot state or remove recovery options. <br>
-Mitigation: Review commands before use, verify the target host and repository, inspect current deployment status, back up configuration, preserve rollback entries, and test recovery procedures before unattended cleanup. <br>
-Risk: The security review marked the release suspicious because the administrative examples do not include enough safeguards for automated use. <br>
-Mitigation: Treat generated commands as examples for a qualified operator to adapt, not safe defaults for direct unattended execution. <br>
+## Use Case:
 
+Developers, DevOps engineers, and system administrators use this skill to work through OSTree and rpm-ostree repository, commit, deployment, rollback, remote synchronization, and immutable update workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weidongkl/ostree) <br>
-- [OSTree Official Docs](https://ostreedev.github.io/ostree/) <br>
-- [Fedora Silverblue Docs](https://silverblue.fedoraproject.org/) <br>
-- [RHEL CoreOS Docs](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_coreos/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Administrative commands should be reviewed against the target host, repository, deployment status, and recovery plan before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Privileged deployment, rollback, cleanup, and prune examples can alter bootable system deployments or remove recovery options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the OS name, ref, remote, and deployment index before running commands, test changes outside production first, and preserve a known-good rollback deployment.
+
+Risk: Configuration redirection examples can overwrite OSTree repository or remote configuration files.
+
+Mitigation: Back up existing configuration, review target paths and remote URLs, and apply changes through reviewed configuration management where possible.
+
+Risk: The automation script example performs pull, deploy, undeploy, and prune operations without production-grade safeguards.
+
+Mitigation: Add explicit confirmations, logging, dry-run or staging gates, error handling, and environment checks before adapting automation for production systems.
+
+## Reference(s):
+
+- [OSTree Official Documentation](https://ostreedev.github.io/ostree/)
+- [Fedora Silverblue Documentation](https://silverblue.fedoraproject.org/)
+- [Red Hat Enterprise Linux CoreOS Documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_coreos/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English administration examples]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

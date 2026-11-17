@@ -1,41 +1,54 @@
-## Description: <br>
-Generates a personalised French language practice session based on CEFR/DELF level, covering vocabulary, grammar, verb conjugation, gender, reading, and speaking prompts with fresh content every session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalised French language practice session based on CEFR/DELF level, covering vocabulary, grammar, verb conjugation, gender, reading, speaking prompts, quizzes, and cultural notes.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External users and language learners use this skill to generate structured daily French practice tailored to CEFR/DELF/DALF levels from A1 through C2. It supports vocabulary review, grammar practice, conjugation, reading, speaking prompts, quick quizzes, and cultural notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated practice content may contain language mistakes or explanations that are not a substitute for formal instruction. <br>
-Mitigation: Use the output as practice material and verify critical exam preparation or formal usage with a qualified French teacher or authoritative reference. <br>
-Risk: Remembering the user's French level stores a learning preference across sessions. <br>
-Mitigation: Store the level in memory only when the user wants that preference remembered; otherwise provide the level per session. <br>
+## Use Case:
 
+French learners, DELF/DALF/CEFR exam candidates, and language enthusiasts use this skill to generate a structured daily French practice session tailored to their level. It is intended for on-demand study across vocabulary, grammar, reading, speaking, quiz review, and cultural context.
 
-## Reference(s): <br>
-- [French Daily Drill on ClawHub](https://clawhub.ai/tetsuakira-vk/french-daily-drill) <br>
-- [Publisher profile: tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like lesson content with sections, tables, examples, translations, prompts, quiz questions, and answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated in a single response and tailored to the user's stated CEFR/DELF/DALF level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The README uses an unpinned ClawHub install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or verified ClawHub installer version before installing.
+
+Risk: Storing the learner's French level in memory can persist a personal study preference beyond a single session.
+
+Mitigation: Store the level only when the user is comfortable retaining that preference.
+
+## Reference(s):
+
+- [French Daily Drill on ClawHub](https://clawhub.ai/tetsuakira-vk/skills/french-daily-drill)
+- [tetsuakira-vk publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style study session with vocabulary, grammar notes, conjugation tables, reading passages, speaking prompts, quiz questions, answers, and cultural notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Personalized by CEFR/DELF level; produces fresh session content within the conversation and does not require bundled code or external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

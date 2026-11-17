@@ -1,39 +1,49 @@
-## Description: <br>
-Write Figma plugin code to automate UI design in Figma files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Figma plugin code to automate UI design in Figma files.
 
-## Publisher: <br>
-[zerozlw](https://clawhub.ai/user/zerozlw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zerozlw](https://clawhub.ai/user/zerozlw)
 
-## Use Case: <br>
-Developers and designers use this skill to create or update Figma plugin code that builds UI mockups, design systems, app screens, and visual prototypes inside Figma. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default workflow can remove all existing content from the selected Figma page. <br>
-Mitigation: Use the skill on disposable or duplicated pages, confirm the target page before running generated code, and scope or approve deletion behavior before clearing content. <br>
-Risk: Generated plugin code may produce unintended design changes if run in shared or important Figma files. <br>
-Mitigation: Review generated code and run it first in a dedicated frame, duplicate file, or test page before using it in production design work. <br>
+## Use Case:
 
+Designers, developers, and agents use this skill to write Figma plugin code that creates UI mockups, design systems, app screens, and visual prototypes in Figma files.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code for Figma plugin files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code is intended for manual review and execution through Figma's local development plugin flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Default templates can delete all content on a Figma page without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plugin code before running it, use a disposable or duplicated Figma page or file, and prefer replacing a named plugin-owned frame instead of clearing an entire page.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zerozlw/skills/figma-plugin-writer)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code is intended for Figma plugin code.js files and may include manifest guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Free Security & Health Audit. Your OpenClaw deserves a check-up. This skill performs a non-invasive scan to detect security risks, outdated software, and misconfigurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doctorbot Healthcheck Free performs a free, read-only OpenClaw security and health audit to detect security risks, outdated software, and misconfigurations.
 
-## Publisher: <br>
-[bamontejano](https://clawhub.ai/user/bamontejano) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bamontejano](https://clawhub.ai/user/bamontejano)
 
-## Use Case: <br>
-Developers and operators use this skill to run read-only OpenClaw host security and health checks. It helps inspect audit findings, update status, firewall configuration, open ports, OS version, running services, and a system health score without changing the host. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local ports, firewall status, update state, operating system details, running services, and other host diagnostics. <br>
-Mitigation: Use it only on machines where sharing diagnostic information with the agent session is acceptable. <br>
-Risk: The artifact promotes paid Pro hardening features that are separate from the free read-only release. <br>
-Mitigation: Treat any automated fixes or Pro hardening behavior as outside the scope of this free Skill Card. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent to inspect an OpenClaw host's security posture, update status, firewall and open-port state, OS version, and running services, then summarize results as a health report.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown health-check report with inline command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only diagnostic output; no file output is specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The health-check report may expose sensitive host security details such as open ports, firewall state, OS details, and running services.
+
+Mitigation: Treat the report as sensitive system information, restrict sharing, and redact host-specific details before posting or attaching it.
+
+Risk: The skill asks the agent to inspect local OpenClaw and system security state.
+
+Mitigation: Review proposed commands before execution and run the skill only in environments where local security inspection is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bamontejano/skills/skill-doctorbot-healthcheck-free)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with health-check findings and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only inspection output may contain sensitive host security details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

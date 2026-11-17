@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="midnight-ink">
+<head>
+  <meta charset="utf-8">
+  <title>北京旅行笔记 — 枫叶红封面</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root, [data-theme="midnight-ink"] {
+      --paper: #f2e8dc;
+      --paper-2: #e8d5c0;
+      --ink: #2c1810;
+      --muted: #8b6f5e;
+      --line: rgba(44,24,16,.18);
+      --accent: #c4533a;
+      --accent-soft: #f0d5c8;
+      --ink-rgb: 44,24,16;
+      --paper-rgb: 242,232,220;
+      --accent-rgb: 196,83,58;
+    }
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; }
+    .content { position: relative; width: 100%; height: 100%; padding: 0; display: flex; flex-direction: column; z-index: 2; }
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.15) 100%);
+      z-index: 3;
+    }
+    .hero-gradient {
+      position: absolute; top: 0; left: 0; right: 0; height: 60%;
+      background: linear-gradient(to bottom, rgba(196,83,58,0.3), transparent);
+      z-index: 4;
+    }
+    .hero-image {
+      position: absolute; top: 0; left: 0; right: 0; height: 100%;
+      background: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1080&h=1440&fit=crop') center/cover;
+      z-index: 1;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-content {
+      position: relative; z-index: 5; padding: 80px 72px;
+      display: flex; flex-direction: column; height: 100%;
+      justify-content: flex-end;
+    }
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 13px;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.4); padding: 8px 18px; margin-bottom: 24px;
+      backdrop-filter: blur(4px); align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 100px; font-weight: 900;
+      line-height: 1.05; color: #fff; margin-bottom: 8px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+    .hero-title .accent { color: #e8805a; }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 28px; font-weight: 400;
+      font-style: italic; color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+    }
+    .divider-line {
+      width: 80px; height: 2px; background: linear-gradient(90deg, #e8805a, transparent);
+      margin-bottom: 32px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 22px; line-height: 1.7;
+      color: rgba(255,255,255,0.85); max-width: 80%;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 40px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+      padding: 6px 16px; border: 1px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.85); backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body>
+  <div class="poster" id="poster-1">
+    <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="label-tag">TRAVEL · BEIJING</div>
+      <h1 class="hero-title">北<span class="accent">京</span></h1>
+      <div class="hero-sub">AUTUMN IN THE CAPITAL</div>
+      <div class="divider-line"></div>
+      <div class="body-text">
+        秋天的北京，是枫叶与古都的交响。<br>
+        故宫的红墙，香山的红叶，胡同里的暖阳。
+      </div>
+      <div class="tag-row">
+        <div class="tag">枫叶之秋</div>
+        <div class="tag">故宫红墙</div>
+        <div class="tag">香山红叶</div>
+        <div class="tag">古都风韵</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

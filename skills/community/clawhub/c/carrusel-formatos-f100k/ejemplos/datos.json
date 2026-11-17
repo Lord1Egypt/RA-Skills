@@ -1,0 +1,155 @@
+{
+  "plantilla": "datos",
+  "handle": "@tuhandle",
+  "slides": [
+    {
+      "tipo": "tier",
+      "titulo": "Tier list de formatos de carrusel",
+      "filas": [
+        {
+          "nivel": "S",
+          "etiqueta": "Se guarda sí o sí",
+          "items": [
+            {
+              "nombre": "Chuleta densa"
+            },
+            {
+              "nombre": "Comparación con cifras"
+            },
+            {
+              "nombre": "Mapa visual"
+            }
+          ]
+        },
+        {
+          "nivel": "A",
+          "etiqueta": "Muy fuerte",
+          "items": [
+            {
+              "nombre": "Tutorial en libreta"
+            },
+            {
+              "nombre": "Historia con edades"
+            },
+            {
+              "nombre": "Frase partida"
+            }
+          ]
+        },
+        {
+          "nivel": "B",
+          "etiqueta": "Depende de tu cara",
+          "items": [
+            {
+              "nombre": "Foto + tarjeta"
+            },
+            {
+              "nombre": "Hot take"
+            },
+            {
+              "nombre": "Kawaii"
+            }
+          ]
+        },
+        {
+          "nivel": "C",
+          "etiqueta": "Ni debería ser opción",
+          "items": [
+            {
+              "nombre": "Frase motivacional suelta"
+            },
+            {
+              "nombre": "Plantilla de Canva sin cambios"
+            },
+            {
+              "nombre": "Diez tips en una slide"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "cifras",
+      "titulo": "Campeones de comentarios",
+      "sub": "El «link en bio» no gana",
+      "nota": "Comentarios por post · referencias del catálogo, 13-sep-2026",
+      "items": [
+        {
+          "nombre": "Consejo en agenda",
+          "valor": 1602,
+          "unidad": ""
+        },
+        {
+          "nombre": "Tutorial en libreta",
+          "valor": 894,
+          "unidad": ""
+        },
+        {
+          "nombre": "Collage de señales",
+          "valor": 696,
+          "unidad": ""
+        },
+        {
+          "nombre": "Personificación",
+          "valor": 693,
+          "unidad": ""
+        },
+        {
+          "nombre": "Chuleta en lapicero",
+          "valor": 429,
+          "unidad": ""
+        },
+        {
+          "nombre": "Pantalla dividida",
+          "valor": 17,
+          "unidad": ""
+        }
+      ]
+    },
+    {
+      "tipo": "mapa",
+      "centro": "Hazme un|carruselito",
+      "ramas": [
+        {
+          "texto": "Elegir el objetivo"
+        },
+        {
+          "texto": "Buscar referencias",
+          "nota": "(y guardar 40)"
+        },
+        {
+          "texto": "Escoger mecánica"
+        },
+        {
+          "texto": "Guion slide por slide"
+        },
+        {
+          "texto": "Fotos o fondos"
+        },
+        {
+          "texto": "Maquetar"
+        },
+        {
+          "texto": "Revisar tildes",
+          "nota": "(la ñ siempre falla)"
+        },
+        {
+          "texto": "Exportar PNG"
+        },
+        {
+          "texto": "Caption con CTA"
+        },
+        {
+          "texto": "Portada que frene"
+        },
+        {
+          "texto": "Publicar"
+        },
+        {
+          "texto": "Responder comentarios",
+          "nota": "(la parte que nadie ve)"
+        }
+      ]
+    }
+  ]
+}

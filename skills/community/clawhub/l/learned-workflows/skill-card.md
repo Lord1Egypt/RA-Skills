@@ -1,38 +1,49 @@
-## Description: <br>
-Reusable workflow notes for repeatable tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable workflow notes for repeatable tasks.
 
-## Publisher: <br>
-[guillaumemaka](https://clawhub.ai/user/guillaumemaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guillaumemaka](https://clawhub.ai/user/guillaumemaka)
 
-## Use Case: <br>
-Developers and coding agents use this skill to keep concise reusable workflow notes for repeatable tasks and task-specific preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored workflow notes may bias future agent behavior toward recorded preferences. <br>
-Mitigation: Review the workflow note before installation and keep durable notes short, scoped, and current. <br>
+## Use Case:
 
+Developers and agents use this skill to preserve short workflow notes for repeatable tasks, including verification steps and durable pitfalls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guillaumemaka/learned-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, install hooks, credential use, or hidden data behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copied untrusted request metadata could steer future agent sessions if retained as reusable guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove copied sender metadata and one-off layout requests before installing; keep only intentionally approved, task-agnostic workflow rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guillaumemaka/skills/learned-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Zotero Manager helps agents search Zotero libraries, import references by DOI, inspect categories, export references, and route legacy Zotero requests through the knowledge entry point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zotero Manager is a compatibility skill for Zotero literature management that routes users toward the unified knowledge entry point while preserving legacy Zotero workflows.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers, researchers, and external users use this skill to work with Zotero bibliographic libraries from an agent workflow, including searching references, importing DOI metadata, checking local API setup, and producing reference exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Zotero API credentials and may read tokens from local files or environment variables. <br>
-Mitigation: Use a least-privilege Zotero token, prefer read-only permissions unless importing is required, and store tokens in a protected secret store or tightly permissioned file. <br>
-Risk: Import commands can modify a Zotero library by creating items from DOI metadata. <br>
-Mitigation: Run import actions only with intentional write permissions and review target collections before bulk DOI imports. <br>
-Risk: The local API URL is configurable and could be pointed away from the expected local Zotero service. <br>
-Mitigation: Use the default local Zotero endpoint or another trusted local endpoint, and do not pass non-local URLs to --api-url. <br>
+## Use Case:
 
+Developers, researchers, and Zotero users use this skill to search literature, import DOI records, manage categories, and export references through the recommended knowledge zotero command path or compatible legacy Zotero commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/zotero-manager) <br>
-- [Zotero API key settings](https://www.zotero.org/settings/keys) <br>
-- [Zotero Web API v3 documentation](https://www.zotero.org/support/dev/web_api/v3/start) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call local or remote Zotero APIs and may create or modify Zotero library items when import commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles reusable Zotero API credentials that could leak through unsafe storage, shell history, or overly broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Zotero key, prefer read-only permissions, restrict saved key files to the current user, and avoid pasting tokens directly into shell history.
+
+Risk: The local API URL can be overridden, which could send credentials or library data to an untrusted endpoint if misdirected.
+
+Mitigation: Use --api-url only with trusted Zotero loopback addresses such as localhost or 127.0.0.1, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub Zotero Manager release](https://clawhub.ai/jirboy/skills/zotero-manager)
+- [Zotero API key settings](https://www.zotero.org/settings/keys)
+- [Zotero Web API v3 documentation](https://www.zotero.org/support/dev/web_api/v3/start)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance, shell commands, Python command output, and optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Zotero local or remote APIs and may read Zotero API keys from user configuration files or ZOTERO_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

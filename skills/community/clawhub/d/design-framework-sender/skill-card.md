@@ -1,45 +1,62 @@
-## Description: <br>
-设计框架自动生成套件的主控路由，监听 Telegram 群消息中的 @mention，并根据当前任务状态路由到对应的子 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Telegram group @mentions for a design-framework generation suite to the appropriate companion skill based on current task state.
 
-## Publisher: <br>
-[807209066](https://clawhub.ai/user/807209066) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[807209066](https://clawhub.ai/user/807209066)
 
-## Use Case: <br>
-OpenClaw users running a Telegram-based design workflow use this skill as the router for a four-skill design framework suite. It listens for group @mentions, checks task state, and hands work to builder, confirm, or generate companion skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive credentials and outbound messaging to Telegram and OpenRouter. <br>
-Mitigation: Review all companion skills before installation, confirm outbound destinations, and rotate credentials if the scripts have already run on a shared machine. <br>
-Risk: Weak scoping or confusing configuration could send messages to the wrong Telegram group or owner. <br>
-Mitigation: Replace every Telegram ID and trigger value with intended deployment values and verify the group, owner, and bot targets before enabling the suite. <br>
-Risk: Temporary plaintext files may contain credential material during script execution. <br>
-Mitigation: Prefer a reviewed version that avoids plaintext secret files in /tmp and clean up temporary files after testing. <br>
+## Use Case:
 
+Developers and operators use this OpenClaw skill as the Telegram-facing router for a four-skill design generation workflow. It listens for configured group mentions, checks workflow state, and routes work to builder, confirmation, or image generation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/807209066/design-framework-sender) <br>
-- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions) <br>
-- [Telegram Bot API sendMessage endpoint](https://api.telegram.org/bot{bot_token}/sendMessage) <br>
-- [Telegram Bot API sendPhoto endpoint](https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes Telegram-triggered design requests to companion skills and may send text, images, or status messages through configured Telegram and OpenRouter integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill reads stored OpenRouter and Telegram credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted environment, restrict access to the OpenClaw configuration file, limit bot permissions, and rotate credentials after testing or suspected exposure.
+
+Risk: The skill sends text, generated prompts, and images to external OpenRouter and Telegram services.
+
+Mitigation: Avoid processing sensitive source material, confirm recipients before enabling automation, and document the external services involved for users.
+
+Risk: Helper scripts can forward local file contents or images to caller-supplied Telegram targets.
+
+Mitigation: Restrict accepted file paths and destination IDs, run the skill with least privilege, and review outbound messages before use on shared systems.
+
+Risk: Evidence.security flags unsafe shell/Python handling.
+
+Mitigation: Fix quoting and input validation issues, replace shell interpolation with structured argument passing where possible, and re-scan before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/807209066/skills/design-framework-sender)
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Telegram messages, generated image files, local state files, and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on OpenClaw Telegram and OpenRouter configuration plus companion design-framework skills.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

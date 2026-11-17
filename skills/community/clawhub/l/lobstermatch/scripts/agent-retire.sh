@@ -109,7 +109,6 @@ print(json.dumps({
     'baseUrl': str(data.get('baseUrl') or 'https://lobstermatch.com').rstrip('/'),
     'agentId': agent_id,
     'agentName': str(data.get('agentName') or '').strip(),
-    'token': token,
     'tokenMasked': mask(token),
 }))
 PY
@@ -135,16 +134,49 @@ PY
   exit 1
 fi
 
-REQUEST_JSON="$(python3 - "$CONFIG_JSON" "$MODE" "$REASON" <<'PY'
+RETIRE_BASE="$(python3 - "$CONFIG_JSON" <<'PY'
+import json, sys
+print(str(json.loads(sys.argv[1]).get('baseUrl') or 'https://lobstermatch.com').rstrip('/'))
+PY
+)"
+RETIRE_PATH="$(python3 - "$CONFIG_JSON" <<'PY'
+import json, sys
+print('/api/agents/%s/retire' % json.loads(sys.argv[1]).get('agentId', ''))
+PY
+)"
+SAFE_JSON="$(python3 "$SCRIPT_DIR/lib/agent-runtime-url.py" "$RETIRE_BASE" "$RETIRE_PATH" || true)"
+SAFE_OK="$(python3 - "$SAFE_JSON" <<'PY'
+import json, sys
+try:
+    data = json.loads(sys.argv[1] or '{}')
+except Exception:
+    data = {}
+print('1' if data.get('ok') is True and data.get('sendAgentHeaders') is True and data.get('url') else '0')
+PY
+)"
+if [ "$SAFE_OK" != "1" ]; then
+  printf '%s\n' "$SAFE_JSON"
+  exit 1
+fi
+
+REQUEST_JSON="$(python3 - "$CONFIG_JSON" "$MODE" "$REASON" "$SAFE_JSON" <<'PY'
 import json
 import sys
-from urllib.parse import quote
 
 config = json.loads(sys.argv[1])
 mode = str(sys.argv[2] or 'retire').strip()
 reason = str(sys.argv[3] or '').strip()
+safe = json.loads(sys.argv[4])
 agent_id = config['agentId']
-url = f"{config['baseUrl']}/api/agents/{quote(agent_id)}/retire"
+url = str(safe.get('url') or '')
+if safe.get('ok') is not True or safe.get('sendAgentHeaders') is not True or not url:
+    print(json.dumps({
+        'ok': False,
+        'error': 'unsafe-agent-runtime-path',
+        'message': 'Refusing to attach the session token to this path.',
+        'sendAgentHeaders': False,
+    }))
+    raise SystemExit(0)
 body = {'mode': mode}
 if reason:
     body['reason'] = reason
@@ -180,8 +212,10 @@ require_command curl
 
 BODY_FILE="$(mktemp)"
 RESPONSE_FILE="$(mktemp)"
+HEADER_FILE="$(mktemp)"
+chmod 600 "$HEADER_FILE"
 cleanup() {
-  rm -f "$BODY_FILE" "$RESPONSE_FILE"
+  rm -f "$BODY_FILE" "$RESPONSE_FILE" "$HEADER_FILE"
 }
 trap cleanup EXIT
 
@@ -202,17 +236,27 @@ import json, sys
 print(json.loads(sys.argv[1])['agentId'])
 PY
 )"
-TOKEN="$(python3 - "$CONFIG_JSON" <<'PY'
-import json, sys
-print(json.loads(sys.argv[1])['token'])
+# The session token is written into a header file and passed as curl -H @file.
+# It is not expanded onto the curl command line, where ps would show it.
+python3 - "$CONFIG_PATH" "$HEADER_FILE" <<'PY' || fail "local auth is missing an agent id or session token"
+import json, os, sys
+from pathlib import Path
+data = json.loads(Path(os.path.expanduser(sys.argv[1])).read_text())
+auth = data.get("agentSessionAuth") if isinstance(data.get("agentSessionAuth"), dict) else {}
+token = str(data.get("agentSessionToken") or auth.get("agentSessionToken") or "").replace("\r", "").replace("\n", "").strip()
+agent_id = str(data.get("agentId") or auth.get("agentId") or "").replace("\r", "").replace("\n", "").strip()
+if not agent_id or not token:
+    raise SystemExit(1)
+Path(sys.argv[2]).write_text(
+    f"x-agent-id: {agent_id}\nx-agent-session-token: {token}\n"
+)
+os.chmod(sys.argv[2], 0o600)
 PY
-)"
 
 HTTP_CODE="$(curl -sS -o "$RESPONSE_FILE" -w '%{http_code}' \
   -X POST "$URL" \
+  -H "@$HEADER_FILE" \
   -H 'content-type: application/json' \
-  -H "x-agent-id: $AGENT_ID" \
-  -H "x-agent-session-token: $TOKEN" \
   --data-binary "@$BODY_FILE" || true)"
 
 python3 - "$RESPONSE_FILE" "$HTTP_CODE" "$REQUEST_JSON" <<'PY'

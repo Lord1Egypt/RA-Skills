@@ -1,42 +1,55 @@
-## Description: <br>
-Low-cost AI image generation CLI for text-to-image generation and image editing with OpenAI-compatible API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Gen Low Cost is a command-line skill for low-cost AI image generation and image editing through OpenAI-compatible API endpoints.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users and developers use this skill to run a command-line image generation workflow for text-to-image generation, image editing, model selection, token configuration, and saving or printing generated image outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and credentials may be sent to the configured API provider, and the security evidence notes that a third-party default endpoint can receive an existing OpenAI API key. <br>
-Mitigation: Set IMGEN_TOKEN explicitly, verify IMGEN_API_URL before use, and avoid running the skill where OPENAI_API_KEY is set unless that key is intended for this tool. <br>
-Risk: Generated image URLs may be temporary or externally hosted. <br>
-Mitigation: Save required image outputs promptly and review generated files before reuse or distribution. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images from text prompts, edit images from URLs, choose model aliases, configure an API token, and save or print generated image outputs from a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/image-gen-low-cost) <br>
-- [Laozhang API registration](https://api.laozhang.ai/register/?aff_code=lfa0) <br>
-- [Default OpenAI-compatible API endpoint](https://api.laozhang.ai/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown or CLI text with image file paths, image URLs, data URLs, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved to the configured output path or generated-images directory unless URL-only output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and artifact skill.json) <br>
+Risk: Prompts, image URLs, and bearer tokens may be sent to arbitrary or unsafe API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated IMGEN_TOKEN, configure only trusted HTTPS IMGEN_API_URL endpoints, and avoid sensitive prompts or private/internal image URLs.
+
+Risk: The skill can fall back to OPENAI_API_KEY and can store API tokens locally for CLI use.
+
+Mitigation: Prefer a scoped token dedicated to this skill and review local token storage before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/image-gen-low-cost)
+- [Publisher profile](https://clawhub.ai/user/enihsago)
+- [Default API registration page](https://api.laozhang.ai/register/?aff_code=lfa0)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [CLI text output, image URLs, data URLs, and PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves images to generated-images/ by default; --no-save prints URLs or data URLs instead.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

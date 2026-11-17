@@ -1,41 +1,57 @@
-## Description: <br>
-Query Chinese A-share market data using BaoStock. Use when user asks for stock quotes, historical K-line, fundamentals, or market analysis. Supports real-time quotation, daily/minute data, financial reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baostock Skill helps agents query BaoStock for Chinese A-share quotes, historical K-line data, fundamentals, index data, and stock lists.
 
-## Publisher: <br>
-[liyico](https://clawhub.ai/user/liyico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyico](https://clawhub.ai/user/liyico)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to query Chinese A-share quotes, historical K-line data, fundamentals, indices, and stock listings through BaoStock. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied stock query fields can be converted into shell command execution. <br>
-Mitigation: Replace shell-string execution with a safe argument-array subprocess call and validate query type, symbol, dates, and frequency before execution. <br>
-Risk: File access and output behavior may affect paths beyond the intended skill workspace. <br>
-Mitigation: Use package-relative bundled scripts and restrict reads, writes, cache, and output files to documented skill-owned paths. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Chinese A-share market data for finance workflows, including quotes, historical bars, stock lists, index history, and basic market analysis.
 
-## Reference(s): <br>
-- [BaoStock](http://baostock.com) <br>
-- [ClawHub release page](https://clawhub.ai/liyico/baostock-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Files] <br>
-**Output Format:** [JSON objects or arrays, with optional JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs stock quote, history, index, or stock-list records from BaoStock; real-time data may be delayed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The server security verdict reports that ordinary queries can run unsafe local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run in a contained environment, and replace shell execution with argument-array process execution and strict input validation before deployment.
+
+Risk: The server security summary reports broad workspace filesystem access.
+
+Mitigation: Restrict read and write permissions to the minimum required paths and limit file exports to approved destinations.
+
+Risk: The scanner guidance notes dependency and manifest alignment concerns.
+
+Mitigation: Pin dependencies and confirm the manifest points to the packaged entry points before release or use.
+
+## Reference(s):
+
+- [BaoStock](http://baostock.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write JSON query results to a user-specified output file when invoked through the bundled CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

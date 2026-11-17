@@ -1,48 +1,64 @@
-## Description: <br>
-CloudBase WeChat integration guide for Mini Program WeChat Pay, Official Account JSAPI Pay, Native QR-code Pay, Official Account OAuth, openid handling, payment callbacks, and CloudBase Integration Center generated functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers build and troubleshoot CloudBase integrations for WeChat payments, virtual payment, Official Account OAuth, payment callbacks, and generated integration functions.
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binggg](https://clawhub.ai/user/binggg)
 
-## Use Case: <br>
-Developers and engineers use this skill to add, debug, or extend WeChat payment and Official Account OAuth flows in CloudBase applications while keeping merchant and app credentials out of source code and chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Payment-flow guidance can affect financial transactions if generated function names, order amounts, callback paths, or fulfillment logic are wrong. <br>
-Mitigation: Verify generated function names and official CloudBase documentation, validate amounts and orders server-side, and test payment changes with a sandbox or low-value transaction before production use. <br>
-Risk: Merchant credentials, AppSecret values, API keys, certificates, or private keys could be exposed if copied into chat or source code. <br>
-Mitigation: Keep secrets in CloudBase console Integration Center configuration and review generated code to confirm credentials are not embedded in frontend code, repositories, or prompts. <br>
+## Use Case:
 
+Developers use this skill to implement or troubleshoot CloudBase WeChat Mini Program and virtual payments, Native and Official Account JSAPI checkout, OAuth, and payment callbacks. It guides safe use of generated integration functions and order fulfillment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binggg/skills/cloudbase-wechat-integration) <br>
-- [CloudBase Integration Center overview](https://docs.cloudbase.net/integration/introduce/index.md) <br>
-- [CloudBase Integration Center usage](https://docs.cloudbase.net/integration/usage/index.md) <br>
-- [Mini Program WeChat Pay](https://docs.cloudbase.net/integration/wechat-pay-miniprogram/index.md) <br>
-- [Official Account JSAPI Pay](https://docs.cloudbase.net/integration/wechat-pay-jsapi-h5/index.md) <br>
-- [Native QR-code Pay](https://docs.cloudbase.net/integration/wechat-pay-native/index.md) <br>
-- [Official Account OAuth](https://docs.cloudbase.net/integration/wechat-official-oauth/index.md) <br>
-- [Overview reference](references/overview.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scenario-specific guidance for CloudBase WeChat Pay, OAuth, generated functions, callbacks, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: ClawHub release evidence) <br>
+Risk: Merchant, account, or API credentials could be exposed in source code or chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials in the CloudBase console; never place secrets in application code, prompts, or examples.
+
+Risk: Trusting frontend payment success or unverified callbacks could cause incorrect fulfillment or order state.
+
+Mitigation: Confirm payment through verified callbacks or server-side order queries; validate order and amount, and make callback handling idempotent.
+
+Risk: Payment, refund, or deployment changes may affect real transactions or the wrong environment.
+
+Mitigation: Review changes before production, confirm the target environment, and obtain authorization before real-money tests.
+
+## Reference(s):
+
+- [CloudBase Integration Center overview](https://docs.cloudbase.net/integration/introduce.md)
+- [CloudBase Integration Center usage](https://docs.cloudbase.net/integration/usage.md)
+- [CloudBase Mini Program WeChat Pay](https://docs.cloudbase.net/integration/wechat-pay-miniprogram.md)
+- [CloudBase Native WeChat Pay](https://docs.cloudbase.net/integration/wechat-pay-native.md)
+- [CloudBase Official Account JSAPI Pay](https://docs.cloudbase.net/integration/wechat-pay-jsapi-h5.md)
+- [CloudBase Official Account OAuth](https://docs.cloudbase.net/integration/wechat-official-oauth.md)
+- [WeChat Mini Program Virtual Payment guide](https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/business-capabilities/virtual-payment)
+- [WeChat wx.requestVirtualPayment API](https://developers.weixin.qq.com/miniprogram/dev/api/payment/wx.requestVirtualPayment.html)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scenario-specific; confirm the CloudBase environment, generated function routes, and payment channel before implementation.]
+
+## Skill Version(s):
+
+1.2.83 (source: ClawHub release metadata; artifact frontmatter lists 2.36.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

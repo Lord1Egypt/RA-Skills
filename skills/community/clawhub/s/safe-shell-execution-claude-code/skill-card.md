@@ -1,38 +1,52 @@
-## Description: <br>
-Guides an AI agent through layered shell-command safety checks for injection patterns, destructive operations, and sensitive file writes before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for layered shell-command safety checks, including injection detection, destructive-operation warnings, sensitive-path protection, and refusal messaging.
 
-## Publisher: <br>
-[lizlzzzz](https://clawhub.ai/user/lizlzzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lizlzzzz](https://clawhub.ai/user/lizlzzzz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to assess shell commands before execution, reject injection patterns, require confirmation for destructive operations, and protect sensitive files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill permits some destructive shell and git operations after confirmation rather than blocking them outright.
+
+Mitigation: Review the destructive-command policy before deployment and require explicit confirmation for force pushes, hard resets, recursive deletion, and recursive file removal.
+
+Risk: The skill may be consulted for many command-related tasks as an agent-wide shell safety checklist.
+
+Mitigation: Install it only where agent operators want this broad shell-safety behavior, and pair it with existing execution approval controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill as a guardrail or checklist before executing shell commands, especially when commands include user input, write operations, or potentially destructive filesystem and git actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advisory and may be treated as a complete enforcement policy even though the security evidence says it is a guardrail or checklist. <br>
-Mitigation: Use it with explicit human review for sensitive file writes and consider stricter local rules for root or broad recursive deletion, unsafe force pushes, and --no-verify usage. <br>
+**Output Format:** [Markdown guidance with command examples and decision rules]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizlzzzz/safe-shell-execution-claude-code) <br>
+**Other Properties Related to Output:** [No executable payload; intended as an agent safety checklist for command review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with command examples and refusal language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only checklist; no executable payload.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

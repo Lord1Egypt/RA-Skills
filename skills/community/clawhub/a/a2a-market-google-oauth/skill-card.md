@@ -1,42 +1,52 @@
-## Description: <br>
-Handle Google OAuth login, account linking, and session bootstrap for A2A market users and operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle Google OAuth login, account linking, and session bootstrap for A2A market users and operators.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to implement Google OAuth authorization-code login, account linking, callback validation, and secure session bootstrap for A2A market users and operators.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: OAuth runtime code referenced by the artifact may differ from the guidance in the skill.
+
+Mitigation: Review the separate runtime implementation before production use and confirm it hashes, rotates, and scopes refresh tokens as described.
+
+Risk: Incorrect state, nonce, issuer, or audience handling can weaken OAuth callback verification.
+
+Mitigation: Validate state and nonce against server-side storage, reject mismatched issuer or audience values, and test callback failure paths before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Google OAuth authorization, identity linking, callback validation, and session bootstrap for A2A market buyer and merchant sign-in. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated OAuth or session-management code could request overly broad scopes or mishandle refresh-token storage. <br>
-Mitigation: Review generated code before deployment, restrict OAuth scopes, store only hashed refresh tokens, and rotate refresh tokens on use. <br>
-Risk: Authentication, audit, or WebSocket events could expose raw tokens or sensitive account data. <br>
-Mitigation: Redact token material and sensitive account fields from logs and event payloads before connecting production streams. <br>
-Risk: Weak callback checks could allow incorrect account linking or invalid session creation. <br>
-Mitigation: Validate state and nonce with server-side storage, and reject callbacks when issuer or audience does not match configuration. <br>
+**Output Format:** [Markdown guidance with endpoint contracts, code paths, and security requirements]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-market-google-oauth) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with code-oriented implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers OAuth endpoint contracts, identity mapping, token/session lifecycle, audit events, and validation expectations.] <br>
+0.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

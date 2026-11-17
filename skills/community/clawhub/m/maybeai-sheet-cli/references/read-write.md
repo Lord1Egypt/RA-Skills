@@ -1,271 +1,126 @@
 # Read/Write Reference
 
-## Contents
-
-1. When to use this
-2. Worksheet targeting rules
-3. Read endpoints
-4. How to choose a write API
-5. Row and column operations
-6. Worksheet management
-7. Post-write verification
-
-## 1. When to use this
-
-Read this document when the task involves reading sheets, sampling data, reading headers, updating cells, replacing full tables, updating by key, appending rows, inserting or deleting rows and columns, or creating and renaming worksheets.
-
-## 2. Worksheet targeting rules
-
-This is the most important operational rule.
-
-Default workflow:
-
-1. `workbook manifest`
-2. choose `worksheet_name` or `gid`
-3. call `read_sheet`, `read_headers`, or a write API
-
-- Prefer `worksheet_name`
-- Some endpoints only respect `uri?gid=<index>`
-- If you pass neither, the backend often defaults to the first worksheet
-
-Typical rules:
-
-- `read_sheet` / `update_range` / `clear_range` / `update_data_keep_headers`
-  Prefer `worksheet_name`
-- `read_headers` / `append_rows` / `update_range_by_lookup`
-  Commonly use `uri?gid=<index>`
-
-If the user says “update the second sheet” or “append to Summary”, identify the sheet first, then execute the write.
-
-## 3. Read endpoints
-
-### CLI (preferred)
+## 1. Select the model from the runtime CLI and target metadata
 
 ```bash
-# Full sheet with headers + rows (human-friendly)
-maybeai-sheet sheet read --doc-id <DOC_ID> --gid <GID> --output table
-
-# Full sheet (JSON for parsing)
-maybeai-sheet sheet read --doc-id <DOC_ID> --worksheet-name <SHEET>
-
-# Specific range
-maybeai-sheet sheet read-range --doc-id <DOC_ID> --gid <GID> --range A1:G20 --output table
-
-# Headers only
-maybeai-sheet sheet headers --doc-id <DOC_ID> --gid <GID> --output table
-
-# Worksheet list
-maybeai-sheet sheet worksheets --doc-id <DOC_ID> --output table
-
-# Workbook manifest / capabilities
-maybeai-sheet workbook manifest --doc-id <DOC_ID>
-maybeai-sheet workbook capabilities --doc-id <DOC_ID>
+mbs --help
+mbs workbook inspect --target "$WORKBOOK"
+mbs worksheet list --target "$WORKBOOK" --output json
 ```
 
-Targeting flags (`--doc-id`, `--url`, `--uri`, `--gid`, `--worksheet-name`) and output flags (`--output`, `--verbose`, `--timeout`) work at the root, on `sheet` / `workbook`, or on the leaf command. You must always pass a leaf subcommand such as `read`, `headers`, or `worksheets`.
+Use Sheet targets for A1 ranges, worksheet layout, and cell formulas. Use Base
+table targets (`?tid=...`) for typed records and Base fields. A worksheet name
+or `gid` is a locator, not proof that an operation is supported.
 
-With `--output table`, read responses render as an aligned column grid from `result.data` or `result.values` + `headers`. Metadata such as `styles`, `fonts`, and `formulas` is omitted from the table view.
+## 2. Read before writing
 
-### Read workbook manifest first
-
-```text
-POST /api/v3/excel/workbook/manifest
-POST /api/v3/excel/worksheet/list
+```bash
+mbs range inspect --target "$SHEET" --range A1:Z100
+mbs range read --target "$SHEET" --range A1:D20 --output table
+mbs table inspect --target "$BASE_TABLE"
+mbs table schema --target "$BASE_TABLE"
+mbs table sample --target "$BASE_TABLE" --limit 20 --output table
 ```
 
-Use these to:
+For an unfamiliar task, also run the relevant parent and command help. Do not
+use a compatibility command merely because a remembered example contains it.
 
-- inspect worksheet names and gid values
-- confirm engine capabilities before choosing a write path
-- avoid guessing the target sheet
+For a complete table export, use `table read --all --frame-out`; a plain
+`table read` is a single bounded page and currently defaults to 1000 records.
+The CLI follows cursors or `has_more` offset pages, and refuses a full page
+without continuation metadata rather than silently truncate. See
+[cli-commands.md](cli-commands.md) for the export command and failure rules.
 
-### Read a full sheet or a range
+## 3. Write a Sheet safely
 
-```text
-POST /api/v3/excel/range/read
-POST /api/v3/excel/range/read_many
-POST /api/v3/excel/table/read
-POST /api/v3/excel/named_range/read
+```bash
+mbs range write --target "$SHEET" --range A1:C3 --values values.json --verify
+mbs range clear --target "$SHEET" --range A2:C100 --verify
+mbs range merge --target "$SHEET" --range A1:C1 --verify
+mbs range unmerge --target "$SHEET" --range A1:C1 --verify
+mbs range style --target "$SHEET" --range A1:C3 --spec range-style.json --verify
+mbs formula set --target "$SHEET" --range E2:E100 --expression '=SUM(B2:D2)' --verify
+mbs range note set --target "$SHEET" --range B2 --text "Reviewed" --verify
 ```
 
-Common parameters:
+Use `range note read|set|clear` for Sheet notes. `set` and `clear` currently
+require a single A1 cell. Reconcile Sheet key-based data locally before a range
+write; the public CLI does not expose a generic Sheet key-merge operation.
 
-- `worksheet_name`
-- `range_address`
-- `value_render_option`
-- `filter_tokens`
-- `auto_filter`
+## 4. Write Base records safely
 
-Use it to:
-
-- inspect data
-- sample and verify
-- read chart or formatting metadata
-
-Use `range/read_many` when:
-
-- you need several disjoint ranges from one workbook
-- you want one manifest-derived context and one aggregated response
-- you want to reduce repeated chat turns
-
-Use `table/read` when:
-
-- the target is conceptually a rectangular report block or table region
-- you want the response to stay in the table domain rather than a generic range read
-
-Use `named_range/read` when:
-
-- the workbook already exposes a stable business name for the target block
-- you want to avoid leaking worksheet coordinates into the prompt
-- you are reading a finance or reporting region that should survive layout shifts
-
-### Read headers
-
-```text
-POST /api/v3/excel/table/headers
+```bash
+mbs table insert --target "$BASE_TABLE" --frame-in rows.json --verify
+mbs table update --target "$BASE_TABLE" --frame-in corrected_rows.json --key order_id --verify
+mbs row insert --target "$BASE_TABLE" --records records.json --verify
+mbs row delete --target "$BASE_TABLE" --record-id <RECORD_ID> --verify
 ```
 
-Use it to:
+Do not claim that public insert/update commands preserve whole-table replacement
+semantics. If the request requires an atomic replace, deletion of missing
+records, or identity preservation, pause and report the public capability gap.
 
-- get the schema quickly
-- confirm column names before writing SQL
+Use `column insert` and `column rename` for individual exposed Base schema
+changes. Treat `column config --spec` as a style operation. For an in-place
+batch update of existing Base field metadata, use public `column batch-update
+--updates` after checking its runtime help; it does not provide whole-schema
+replacement, deletion, or migration semantics.
 
-### List worksheets and versions
+When converting a current Base Formula field to an ordinary type, include the
+explicit per-field conversion instruction in the updates file:
 
-```text
-POST /api/v3/excel/workbook/versions
-POST /api/v1/excel/read_version
-POST /api/v1/excel/list_worksheets_version
+```json
+[
+  {
+    "field_id": "col_formula",
+    "logical_type": "text",
+    "formula_conversion": "materialize"
+  }
+]
 ```
 
-## 4. How to choose a write API
+Run the public command with `--dry-run` first, then execute with `--verify`:
 
-### `update_data_keep_headers`
-
-Best when:
-
-- headers are already correct
-- you need to replace the entire data region
-- you want to preserve column order
-- you want to preserve formula columns
-
-Advantages:
-
-- input can be list-of-dict
-- safer for agents
-
-### `update_range_by_lookup`
-
-Best when:
-
-- syncing business records by key
-- updating existing rows
-- appending missing rows automatically
-
-Common keys:
-
-- `Order ID`
-- `SKU`
-- `ID`
-
-### `append_rows`
-
-Best when:
-
-- you want a blind append of object rows
-- the target sheet and headers are already known
-
-### `update_range`
-
-Best when:
-
-- you need to update an exact A1 range
-- the target is non-tabular
-- you are making a small manual cell edit
-
-### `clear_range`
-
-Best when:
-
-- you need to clear a specific range
-- you want a local reset before a write
-
-## 5. Row and column operations
-
-Related endpoints:
-
-```text
-POST /api/v3/excel/worksheet/rows/insert
-POST /api/v3/excel/worksheet/rows/delete
-POST /api/v3/excel/worksheet/rows/move
-POST /api/v1/excel/move_row
-POST /api/v1/excel/undo_delete_rows
-POST /api/v3/excel/worksheet/columns/insert
-POST /api/v3/excel/worksheet/columns/delete
-POST /api/v3/excel/worksheet/columns/move
-POST /api/v1/excel/move_column
-POST /api/v1/excel/undo_delete_columns
-POST /api/v1/excel/add_header_columns
-POST /api/v1/excel/set_columns_width
-POST /api/v1/excel/set_rows_height
+```bash
+mbs column batch-update --target "$BASE_TABLE" \
+  --updates formula-to-text.json --dry-run
+mbs column batch-update --target "$BASE_TABLE" \
+  --updates formula-to-text.json --verify
 ```
 
-Notes:
+`formula_conversion` is an operation instruction, not a field property that
+should be inferred or expected in readback. Use it only for an intentional
+Formula-to-ordinary-type conversion; verify the resulting type and values.
 
-- row numbers are 1-based
-- columns typically use Excel letters such as `A` and `B`
+## 5. SQL Config and Base materialization
 
-## 6. Worksheet management
-
-Related endpoints:
-
-```text
-POST /api/v3/excel/worksheet/create
-POST /api/v3/excel/worksheet/delete
-POST /api/v3/excel/worksheet/rename
-POST /api/v3/excel/worksheet/move
-POST /api/v3/excel/worksheet/copy
-POST /api/v3/excel/workbook/copy
+```bash
+mbs sql preview --target "$WORKBOOK?table=Sheet6" --sql-file result.sql --output table
+mbs sql materialize \
+  --target "$WORKBOOK?table=S_orders" \
+  --sql-file result.sql \
+  --mode create \
+  --schema schema.json \
+  --verify
 ```
 
-Guidance:
+Use `sql materialize` for a public Base-table result. For a Worksheet SQL Config
+result, check `mbs sql --help` and selected command help before using `sql
+config` or `sql overwrite`.
 
-- When creating a new report sheet, write data first and style it separately
-- Before deleting a worksheet, confirm the `gid` or sheet name to avoid deleting the wrong sheet
+`sql query` and `sql preview` may select a worksheet through
+`--target "$WORKBOOK?table=<WORKSHEET_NAME>"`; the CLI resolves the selector and
+still performs a workbook SQL request. These operations do not accept a
+Base-table `tid` target.
 
-## 7. Post-write verification
+The response operation for every public `table create` source is
+`table.create`, including frame, SQL-query, and worksheet-range creation.
 
-Do at least one of the following:
+## 6. Verification
 
-- `read_sheet`
-- `read_headers`
-- `list_worksheets`
-- `range/read_many`
-
-Strongly recommended after:
-
-- `sheet upsert` / `sheet append` / `sheet write-range`
-- writes to non-first worksheets
-- `raw post` SQL or formatting operations
-
-See `references/cli-commands.md` for verification commands.
-
-## 8. Workbook-scope batch
-
-Use this when one workbook task naturally contains several ordered operations:
-
-```text
-POST /api/v3/excel/batch
-```
-
-Good fits:
-
-- read several ranges, then write one summary range
-- clear a staging block, append rows, then recalculate formulas
-- create a worksheet and then write its starter block
-
-Current behavior:
-
-- the backend executes supported v3 operations sequentially
-- this is not a cross-engine transaction
-- prefer `continue_on_error=false` unless the workflow explicitly tolerates partial progress
+- Use `--dry-run` before a destructive or unfamiliar mutation.
+- Preserve `--expected-revision` and `--idempotency-key` when supplied.
+- Use `--verify` where available.
+- Read back the exact range, rows, table schema, Formula state, or materialized
+  result that the task changed.
+- Treat `written_unverified` as incomplete until the relevant readback matches.

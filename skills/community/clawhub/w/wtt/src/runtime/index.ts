@@ -20,7 +20,7 @@ export {
 export {
   resolveTaskRunExecutorPersistenceOptions,
   TaskRunExecutorQueueStore,
-} from "./task-executor-persistence.js";
+} from "./taREDACTED-SECRET.js";
 
 export {
   createTaskStatusEventHandler,
@@ -68,7 +68,7 @@ export type {
   TaskRunExecutorPersistenceOptions,
   TaskRunIntentMetadata,
   TaskRunRecoveryMetadata,
-} from "./task-executor-persistence.js";
+} from "./taREDACTED-SECRET.js";
 
 export type {
   TaskStatusConsumeResult,

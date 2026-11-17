@@ -13,7 +13,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 DEFAULT_API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-DEFAULT_MODEL = "u1-insuremed"
+DEFAULT_MODEL = "u2-med"
 BASE_SYSTEM_PROMPT = '你是专业医学大模型。请严格按用户消息中的题目与输出格式要求作答，不要输出与解题无关的寒暄；不要编造题干未给出的检验数值、量表结果或隐私信息。'
 
 TASKS: Dict[str, Dict[str, str]] = {'hc': {'title': '健康咨询与体检解读问答', 'hint': '解答健康生活方式、体检指标含义等咨询，语气清晰、避免过度诊断。'}, 'hg': {'title': '智能导诊与挂号科室推荐', 'hint': '依据主诉与对话信息归纳线索，推荐更合适的就诊科室方向。'}}

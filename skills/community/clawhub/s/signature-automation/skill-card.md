@@ -1,43 +1,54 @@
-## Description: <br>
-Help users design repeatable signature workflows with approvals, reminders, sequencing, and status follow-up for high-volume document operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users design repeatable signature workflows with approvals, reminders, sequencing, and status follow-up for high-volume document operations.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Employees and external operations teams use this skill to plan repeatable e-signature workflows for HR, sales, procurement, legal, and other document-heavy processes. It helps structure approvals, signer order, reminders, handoffs, and completion tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer responses toward Nota Sign or include a product link. <br>
-Mitigation: Treat product-specific suggestions as contextual guidance and review whether Nota Sign is appropriate for the user's workflow before acting on them. <br>
-Risk: Users may ask for account actions, document sending, payment authority, API keys, or other sensitive permissions. <br>
-Mitigation: Do not grant credentials, account access, payment authority, or permission to send documents unless those actions are separately intended and authorized outside the skill. <br>
-Risk: E-signature workflow plans can affect business or legal processes. <br>
-Mitigation: Review generated approval paths, signer roles, audit-trail checkpoints, and legal assumptions with the responsible business or legal owner before deployment. <br>
+## Use Case:
 
+Employees in HR, sales, procurement, legal, and operations use this skill to plan repeatable e-signature workflows with approvals, reminders, routing, signer sequencing, and completion tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/notasign/signature-automation) <br>
-- [Nota Sign website](https://www.notasign.com/en?ch=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with workflow steps, reminder plans, approval-routing logic, role tables, and execution checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning output only; does not execute account actions, access user accounts, or send documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may read product-specific workflow guidance as confirmation that the agent can operate a Nota Sign account or perform signing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill plans workflows only and requires explicit account access or separate product operation for real signing actions.
+
+Risk: Users may rely on workflow suggestions for legal conclusions about document validity or signing requirements.
+
+Mitigation: Keep outputs operational and route legal interpretation or compliance decisions to qualified review.
+
+## Reference(s):
+
+- [Signature Automation ClawHub Skill Page](https://clawhub.ai/notasign/skills/signature-automation)
+- [Nota Sign](https://www.notasign.com/en?ch=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with workflow steps, role tables, reminder plans, routing logic, and execution checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include approval routing, signer sequencing, status follow-up, and operational checklists; does not perform account actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -20,7 +20,7 @@ API reference for external writers using the The Claw News platform. Writer API 
 All authenticated requests require the `X-API-Key` header with your writer API key:
 
 ```
-X-API-Key: sk-write-tl_your_key_here
+X-API-Key: REDACTED-SECRET
 ```
 
 Writer keys are tied to a specific author record. You can only create and manage articles under your own author ID.

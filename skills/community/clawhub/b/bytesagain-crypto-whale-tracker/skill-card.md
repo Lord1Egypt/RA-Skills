@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for blockchain and crypto that provides plain-text guidance for Crypto Whale Tracker concepts, workflows, troubleshooting, performance, security, migration, and quick reference topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for blockchain and crypto that provides plain-text guidance on Crypto Whale Tracker concepts, quickstart, patterns, debugging, performance, security, migration, and cheat-sheet topics.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill as a static reference for crypto whale tracker concepts and common operational topics. It is useful for quick lookup guidance, not for live blockchain monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect live whale-tracking data or blockchain monitoring from the skill name. <br>
-Mitigation: Treat the skill as static reference documentation and verify live blockchain activity with an operational data source before making decisions. <br>
-Risk: The reference guidance is generic and may be incomplete for a specific security, compliance, or trading workflow. <br>
-Mitigation: Review the generated guidance against local policy, current tooling, and trusted domain references before applying it. <br>
+## Use Case:
 
+Developers and security practitioners use this skill to retrieve static reference guidance for Crypto Whale Tracker topics. The release evidence indicates it does not perform live blockchain lookups or tracking.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/loutai0307-prog/bytesagain-crypto-whale-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with Markdown-style headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, or network access indicated by the supplied security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and script report 4.0.2) <br>
+Risk: Users may expect live crypto whale tracking even though release evidence describes the skill as static reference text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for conceptual guidance only and verify live blockchain activity with an appropriate trusted data source.
+
+Risk: Generic security documentation may mention credentials as a topic and could be mistaken for credential-handling behavior.
+
+Mitigation: Treat the credential guidance as general documentation; the security evidence reports no credential access, network use, persistence, or destructive behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-crypto-whale-tracker)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no network access, API calls, or credentials according to release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,215 @@
+# cohesion_examples.yaml
+# 衔接与连贯诊断 Example 样例库
+
+# ============================================================
+# 说明
+# ============================================================
+# ✅ 正例来源：基于10篇心理学顶刊论文的真实Discussion段落提取
+#    （Baron & Kenny 1986; Willis & Todorov 2006; Bargh et al. 1996;
+#      Piff et al. 2010; Stephens et al. 2007; Kraus et al. 2012;
+#      Epley et al. 2004; Goel et al. 2010; Anderson et al. 2012;
+#      Baron-Cohen et al. 1985）
+#
+# ❌ 反例来源：基于学术写作指南中描述的常见衔接与连贯问题，构造的对照句
+#    （参考：APA写作指南、学术英语写作教材、心理学写作规范中描述的
+#      学生常见写作错误类型）
+# ============================================================
+
+
+# ============================================================
+# 维度1：段落主题句（Topic Sentences）
+# ============================================================
+topic_sentence:
+  positive:  # ✅ 正例（来自10篇顶刊论文）
+    - pattern: "The first implication of these results concerns..."
+      source: "Stephens et al. (2007)"
+      why_good: "段首句明确点明该段主题，包含'implication'标记词"
+    
+    - pattern: "These findings have important implications for understanding..."
+      source: "Kraus et al. (2012)"
+      why_good: "用'These findings'回指前文，然后引出理论意义"
+    
+    - pattern: "Several limitations of this study should be acknowledged..."
+      source: "Piff et al. (2010)"
+      why_good: "明确标记转入局限性讨论，包含'limitations'标记词"
+    
+    - pattern: "Future research might fruitfully explore..."
+      source: "Bargh et al. (1996)"
+      why_good: "明确标记未来方向，包含'Future research'标记词"
+    
+    - pattern: "The present results provide evidence that..."
+      source: "Piff et al. (2010)"
+      why_good: "以研究结果开篇，明确归属"
+  
+  negative:  # ❌ 反例（根据写作指南描述的常见问题构造）
+    - pattern: "We found X."
+      why_bad: "首句仅为简单结果复述，无主题标记词，无法概括该段核心论点"
+      source_note: "基于学术写作指南：常见错误——段首句缺乏主题概括"
+    
+    - pattern: "The results were significant."
+      why_bad: "首句<10词，无主题标记词，缺乏段落导向"
+      source_note: "基于学术写作指南：常见错误——段首句过于简短且无导向"
+
+
+# ============================================================
+# 维度2：信息流（Information Flow）
+# ============================================================
+info_flow:
+  positive:  # ✅ 正例（来自10篇顶刊论文）
+    - pattern: "These findings [已知] demonstrate that [新]..."
+      source: "Willis & Todorov (2006)"
+      why_good: "句首'These findings'回指前文已知信息，句尾引入新推论"
+    
+    - pattern: "This effect [已知] was particularly pronounced among [新]"
+      source: "Piff et al. (2010)"
+      why_good: "回指具体效应，然后进行条件限定"
+    
+    - pattern: "Such patterns [已知] suggest that [新]"
+      source: "Stephens et al. (2007)"
+      why_good: "用'Such patterns'回指前文，推进到理论推论"
+    
+    - pattern: "On the other hand, an alternative explanation might be that..."
+      source: "Piff et al. (2010)"
+      why_good: "清晰引出替代解释，体现学术对话"
+  
+  negative:  # ❌ 反例（根据写作指南描述的常见问题构造）
+    - pattern: "X was found. Y was associated with Z. A was correlated with B."
+      why_bad: "连续3句句首均为全新信息，无回指标记，信息流断裂"
+      source_note: "基于学术写作指南：常见错误——信息流断裂，句间缺乏衔接"
+    
+    - pattern: "It is suggested that..."
+      why_bad: "虚主语开头，无已知信息承接，信息流停滞"
+      source_note: "基于学术写作指南：常见错误——过度使用虚主语，缺乏信息推进"
+
+
+# ============================================================
+# 维度3：指代清晰度（Referential Clarity）
+# ============================================================
+referential_clarity:
+  positive:  # ✅ 正例（来自10篇顶刊论文）
+    - pattern: "These findings suggest that..."
+      source: "Willis & Todorov (2006)"
+      why_good: "'These findings'明确指向上文报告的所有结果"
+    
+    - pattern: "This result is consistent with..."
+      source: "Baron & Kenny (1986)"
+      why_good: "明确指向某个具体结果"
+    
+    - pattern: "Our data indicate that..."
+      source: "Bargh et al. (1996)"
+      why_good: "明确研究归属，无模糊指代"
+    
+    - pattern: "The present study provides..."
+      source: "Epley et al. (2004)"
+      why_good: "明确界定本研究的贡献范围"
+    
+    - pattern: "Such patterns suggest that..."
+      source: "Stephens et al. (2007)"
+      why_good: "用'such'+名词明确指代类别"
+  
+  negative:  # ❌ 反例（根据写作指南描述的常见问题构造）
+    - pattern: "This suggests that..."
+      why_bad: "孤立的'This'，前句有多个潜在先行词，指代不明"
+      source_note: "基于学术写作指南：常见错误——指示词指代不明"
+    
+    - pattern: "It is suggested that..."
+      why_bad: "虚主语，缺乏研究归属，典型AI味"
+      source_note: "基于学术写作指南：常见错误——虚主语导致归属不明（AI味标志）"
+    
+    - pattern: "It can be observed that..."
+      why_bad: "虚主语，缺乏归属，AI味"
+      source_note: "基于学术写作指南：常见错误——虚主语"
+    
+    - pattern: "It was found that..."
+      why_bad: "被动语态弱化主体，不明确是谁的研究结果"
+      source_note: "基于APA写作指南：建议使用主动语态明确主体"
+
+
+# ============================================================
+# 维度4：连接词与Hedging
+# ============================================================
+connective_hedging:
+  positive:  # ✅ 正例（来自10篇顶刊论文）
+    # 学术连接词
+    - pattern: "however"
+      source: "Bargh et al. (1996)"
+      example: "However, it is possible that the observed effects could be attributed to alternative mechanisms."
+      why_good: "用'however'准确表转折，引出替代解释"
+    
+    - pattern: "nevertheless"
+      source: "Kraus et al. (2012)"
+      example: "Nevertheless, several limitations of the current research should be acknowledged."
+      why_good: "用'nevertheless'表让步-转折，从贡献转入局限"
+    
+    - pattern: "therefore"
+      source: "Baron & Kenny (1986)"
+      why_good: "用'therefore'表因果推论"
+    
+    # Hedging
+    - pattern: "may / could / might"
+      source: "Bargh et al. (1996)"
+      example: "These findings may suggest that..."
+      why_good: "用'may'表达审慎推论，不过度声称"
+    
+    - pattern: "suggests / indicates"
+      source: "Multiple papers"
+      example: "The evidence suggests that..."
+      why_good: "用'suggests'表达指向性证据，非绝对断言"
+    
+    - pattern: "likely / possibly"
+      source: "Multiple papers"
+      why_good: "表达概率，留有余地"
+  
+  negative:  # ❌ 反例（根据写作指南描述的常见问题构造）
+    - pattern: "and / but / so"
+      why_bad: "过度使用简单连接词（每千词>3次），显得口语化、缺乏学术性"
+      source_note: "基于学术写作指南：常见错误——连接词过于简单且频率过高"
+    
+    - pattern: "clearly / completely / extremely / obviously"
+      why_bad: "过度使用强化语（Boosters），缺乏hedging平衡，学术审慎不足"
+      source_note: "基于学术写作指南：常见错误——过度声称，缺乏模糊限制语"
+    
+    - pattern: "全文无任何hedge"
+      why_bad: "完全缺乏模糊限制语，过度声称，可能被审稿人质疑"
+      source_note: "基于学术写作指南：常见错误——完全缺乏审慎表达"
+
+
+# ============================================================
+# 诊断阈值（基于以上正反例）
+# ============================================================
+thresholds:
+  topic_sentence:
+    pass: "≥75% 段落有清晰主题句"
+    medium_risk: "50%-74% 段落有清晰主题句"
+    high_risk: "<50% 段落有清晰主题句"
+  
+  info_flow:
+    pass: "回指结构占比 ≥ 40%"
+    medium_risk: "回指结构占比 20%-39%"
+    high_risk: "回指结构占比 < 20% 或连续3句无回指"
+  
+  referential_clarity:
+    pass: "无孤立This、无虚主语"
+    medium_risk: "出现1次孤立This或1次虚主语"
+    high_risk: "出现≥2次孤立This或≥2次虚主语"
+  
+  connective_hedging:
+    pass: "简单连接词≤3/千词 且 Hedges≥8"
+    medium_risk: "简单连接词>3/千词 或 Hedges 5-8"
+    high_risk: "Hedges<5"
+
+
+# ============================================================
+# 10篇范文来源
+# ============================================================
+source_papers:
+  - "Baron & Kenny (1986) JPSP"
+  - "Willis & Todorov (2006) Psychological Science"
+  - "Bargh, Chen & Burrows (1996) JPSP"
+  - "Piff et al. (2010) JPSP"
+  - "Stephens et al. (2007) JPSP"
+  - "Kraus et al. (2012) Psychological Review"
+  - "Epley et al. (2004) JPSP"
+  - "Goel et al. (2010) JPSP"
+  - "Anderson et al. (2012) Psychological Science"
+  - "Baron-Cohen et al. (1985) Cognition"

@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn70hbqbgnh8wsj9kb1gb058v580jv2v",
-  "slug": "notion-clipper-skill",
+  "name": "notion-clipper-skill",
   "version": "1.0.0",
-  "publishedAt": 1770876326699
+  "description": "Clip web pages to Notion using Chrome CDP and martian library"
 }

@@ -1,0 +1,302 @@
+name: analyst_agent
+version: 1.0.0
+type: worker_agent
+role: Lead Analyst
+
+description: |
+  技术分析智能体，负责日志分析、流量分析、恶意代码分析、攻击链还原等深度技术研判工作。
+
+responsibilities:
+  - 技术研判与分析
+  - 证据链构建
+  - 时间线重建
+  - IOC提取与验证
+  - 攻击路径还原
+  - 提出处置建议
+
+capabilities:
+  log_analysis: 日志分析（系统、应用、安全日志）
+  traffic_analysis: 网络流量分析
+  malware_analysis: 恶意代码分析
+  attack_reconstruction: 攻击链还原
+  ioc_extraction: IOC提取
+  timeline_reconstruction: 时间线重建
+
+specializations:
+  malware_analyst:
+    description: 恶意软件分析专家
+    skills:
+      - static_analysis
+      - dynamic_analysis
+      - reverse_engineering
+      - sandbox_execution
+    tools:
+      - IDA Pro
+      - Ghidra
+      - Cuckoo Sandbox
+      - VirusTotal
+    
+  network_analyst:
+    description: 网络流量分析专家
+    skills:
+      - pcap_analysis
+      - protocol_analysis
+      - network_forensics
+      - traffic_reconstruction
+    tools:
+      - Wireshark
+      - NetworkMiner
+      - Zeek
+      - Suricata
+    
+  host_analyst:
+    description: 主机取证分析专家
+    skills:
+      - disk_forensics
+      - memory_forensics
+      - registry_analysis
+      - process_analysis
+    tools:
+      - Volatility
+      - Autopsy
+      - FTK Imager
+      - WinDbg
+    
+  ai_analyst:
+    description: AI基础设施分析专家
+    skills:
+      - model_analysis
+      - data_pipeline_analysis
+      - gpu_cluster_analysis
+      - ml_security
+    tools:
+      - model_inspection_tools
+      - data_validation_tools
+      - gpu_monitoring_tools
+
+communication:
+  receive:
+    - tasks
+    - evidence
+    - iocs
+    - queries
+  
+  send:
+    - findings
+    - reports
+    - recommendations
+    - requests
+
+tools:
+  - log_analysis.py
+  - traffic_analysis.py
+  - malware_analysis.py
+  - ioc_extractor.py
+  - timeline_builder.py
+  - note.py
+
+state_machine:
+  initial: idle
+  states:
+    idle:
+      description: 空闲，等待任务
+      transitions: [analyzing]
+    
+    analyzing:
+      description: 分析中
+      transitions: [waiting, idle, blocked]
+    
+    waiting:
+      description: 等待输入/工具/资源
+      transitions: [analyzing, idle]
+    
+    blocked:
+      description: 阻塞，等待依赖
+      transitions: [analyzing, idle]
+    
+    idle:
+      description: 任务完成，返回空闲
+      transitions: [analyzing]
+
+analysis_workflows:
+  log_analysis:
+    steps:
+      - collect_logs
+      - parse_normalize
+      - detect_anomalies
+      - correlate_events
+      - extract_iocs
+      - build_timeline
+      - generate_report
+    
+    tools:
+      - log_parser
+      - anomaly_detector
+      - correlation_engine
+    
+    output:
+      - ioc_list
+      - timeline
+      - anomaly_report
+  
+  malware_analysis:
+    steps:
+      - collect_sample
+      - static_analysis
+      - dynamic_analysis
+      - behavior_analysis
+      - capability_analysis
+      - attribution_analysis
+      - generate_report
+    
+    tools:
+      - disassembler
+      - sandbox
+      - behavior_monitor
+    
+    output:
+      - malware_report
+      - capabilities_list
+      - iocs
+      - attribution
+  
+  network_analysis:
+    steps:
+      - collect_pcap
+      - protocol_identification
+      - session_reconstruction
+      - payload_extraction
+      - traffic_analysis
+      - generate_report
+    
+    tools:
+      - packet_analyzer
+      - session_reconstructor
+      - payload_extractor
+    
+    output:
+      - traffic_report
+      - malicious_sessions
+      - extracted_payloads
+
+ioc_extraction:
+  types:
+    - ip_addresses
+    - domains
+    - urls
+    - file_hashes
+    - file_paths
+    - process_names
+    - registry_keys
+    - email_addresses
+    - user_agents
+  
+  confidence_levels:
+    high: confirmed_malicious
+    medium: suspicious
+    low: potentially_unwanted
+  
+  validation:
+    - cross_reference_threat_intel
+    - frequency_analysis
+    - context_analysis
+    - false_positive_checking
+
+timeline_reconstruction:
+  data_sources:
+    - system_logs
+    - application_logs
+    - security_logs
+    - network_logs
+    - file_system_metadata
+    - memory_artifacts
+    - registry_timestamps
+  
+  granularity:
+    - seconds: critical_events
+    - minutes: important_events
+    - hours: contextual_events
+  
+  validation:
+    - timestamp_consistency
+    - timezone_normalization
+    - clock_skew_adjustment
+
+performance:
+  max_concurrent_tasks: 3
+  task_timeout: 1800
+  analysis_depth:
+    quick: 300
+    standard: 1800
+    deep: 7200
+  
+  cache:
+    enabled: true
+    ttl: 3600
+    max_size: 1GB
+
+collaboration:
+  with_agents:
+    - forensics_agent:
+        purpose: 证据收集协作
+        communication: request_evidence
+    
+    - threat_intel_agent:
+        purpose: IOC丰富与验证
+        communication: query_intel
+    
+    - scribe_agent:
+        purpose: 记录分析结果
+        communication: submit_findings
+    
+    - advisor_agent:
+        purpose: 获取分析建议
+        communication: request_guidance
+
+quality_assurance:
+  peer_review: true
+  validation_steps:
+    - evidence_verification
+    - ioc_validation
+    - timeline_consistency_check
+    - conclusion_verification
+  
+  metrics:
+    - accuracy_rate
+    - false_positive_rate
+    - time_to_analysis
+    - ioc_validation_rate
+
+learning:
+  enabled: true
+  sources:
+    - historical_cases
+    - threat_intel
+    - community_patterns
+    - analyst_feedback
+  
+  models:
+    - anomaly_detection
+    - ioc_scoring
+    - malware_classification
+    - attack_pattern_matching
+
+deployment:
+  max_instances: 10
+  min_instances: 1
+  scaling_policy:
+    trigger: task_queue_length > 5
+    action: spawn_new_instance
+  
+  load_balancing:
+    algorithm: capability_based
+    health_check_interval: 30
+
+logging:
+  level: INFO
+  audit:
+    - task_received
+    - analysis_started
+    - ioc_extracted
+    - report_generated
+    - task_completed

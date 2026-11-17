@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "video-extractor-pro",
-  "version": "1.0.2",
-  "publishedAt": 1773660802382
+  "name": "video-frames",
+  "version": "1.0.0",
+  "description": "视频关键帧提取工具 - 从视频中提取关键帧或短片段",
+  "entry": "scripts/extract.py",
+  "args": ["command"],
+  "commands": {
+    "frame": "提取单帧",
+    "interval": "按间隔提取多帧",
+    "clip": "提取视频片段",
+    "gif": "创建GIF动画",
+    "info": "获取视频信息"
+  },
+  "requirements": ["ffmpeg"],
+  "author": "OpenClaw",
+  "tags": ["视频", "ffmpeg", "截图", "剪辑"],
+  "skillhub": {
+    "keywords": ["视频", "帧提取", "视频截图", "ffmpeg", "视频剪辑"]
+  }
 }

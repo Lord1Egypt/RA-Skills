@@ -1,0 +1,765 @@
+{
+  "version": "2.4.0",
+  "source_id": "pubmed",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T08:59:52.772Z",
+  "notes": [
+    "计数接口：https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=<编码检索式>&retmode=json&rettype=count，返回 esearchresult.count。",
+    "MeSH 字段写作 term=\"myocardial infarction\"[MeSH Terms]；自由词直接放 term。计数为实时值，阈值接近时记录查询时间。"
+  ],
+  "entry": {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "final_url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "title": "PubMed",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T08:59:52.772Z",
+    "identity": {
+      "declared_name": "PubMed",
+      "hostname": "pubmed.ncbi.nlm.nih.gov",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Advanced",
+        "href": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+        "target": ""
+      },
+      {
+        "text": "Advanced Search",
+        "href": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+        "target": ""
+      },
+      {
+        "text": "Help",
+        "href": "https://support.nlm.nih.gov/",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Here's how you know",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Here's how you know",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "observed_at": "2026-10-09T08:59:38.745Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Close",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "observed_at": "2026-10-09T08:59:38.745Z"
+    },
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "Search:",
+      "label": "Search:",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "term",
+      "id": "id_term",
+      "css": "#id_term",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#id_term"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "observed_at": "2026-10-09T08:59:38.745Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Search",
+      "label": "",
+      "aria_label": "Search",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "role": "button",
+        "name": "Search",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "observed_at": "2026-10-09T08:59:38.745Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "pubmed:record-lookup",
+      "source_id": "pubmed",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Here's how you know",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Here's how you know",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Close",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Search:",
+          "label": "Search:",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "term",
+          "id": "id_term",
+          "css": "#id_term",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#id_term"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Search",
+          "label": "",
+          "aria_label": "Search",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "role": "button",
+            "name": "Search",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        }
+      ],
+      "pending": [
+        "提交后的浏览器检查完成后继续读取当前结果；不把检查页当零结果"
+      ],
+      "query_input": {
+        "css": "#id_term"
+      },
+      "submit": {
+        "role": "button",
+        "name": "Search",
+        "exact": true
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "pubmed-eutilities",
+          "kind": "official-api",
+          "method": "GET",
+          "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+          "documentation": [
+            "https://pubmed.ncbi.nlm.nih.gov/help/",
+            "https://dataguide.nlm.nih.gov/eutilities/utilities.html",
+            "https://ncbiinsights.ncbi.nlm.nih.gov/2021/10/05/updated-pubmed-api/",
+            "https://ncbiinsights.ncbi.nlm.nih.gov/2018/08/14/release-plan-for-e-utility-api-keys/"
+          ],
+          "endpoints": [
+            {
+              "path": "esearch.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "term": "{query}",
+                "retmode": "json"
+              },
+              "purpose": "按题检索，核对count、idlist、querytranslation及警告/错误",
+              "status": "blocked_this_environment"
+            },
+            {
+              "path": "esummary.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "id": "{pmids}",
+                "retmode": "json"
+              },
+              "purpose": "已知PMID的记录摘要",
+              "status": "documented_only"
+            },
+            {
+              "path": "efetch.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "id": "{pmids}",
+                "retmode": "xml"
+              },
+              "purpose": "完整PubMed记录；所问机构/MeSH等必须实际存在，不等于期刊全文",
+              "status": "documented_only"
+            }
+          ],
+          "verification": {
+            "status": "blocked",
+            "checked_at": "2026-10-10T03:30:41.155Z",
+            "http_status": null,
+            "attempted_endpoint": "esearch.fcgi",
+            "attempts": 2,
+            "reason": "Node fetch failed；默认Windows curl证书吊销检查离线；无HTTP/API字段"
+          },
+          "use_when": "题目指定PubMed且接口恢复后，选择覆盖所问字段的最少请求；PMID已知时跳过ESearch。",
+          "constraints": [
+            "保持日期字段、类型、完整检索式、查询翻译、排序及分页；API默认排序不自动等于网站Best Match。",
+            "PubMed不等于MEDLINE或PMC；不会自动提供全文权限。",
+            "官方旧接口指南已停更；ESearch只可取前10000个结果，大集合用官方分段/批量方案。"
+          ],
+          "limits": {
+            "without_key_per_second_per_ip": 3,
+            "policy": "提供真实tool，遵守官方当前限制，单源串行；不虚构email或关闭TLS验证。"
+          },
+          "fallback": "本轮直连受阻，优先可读取的官方记录渠道；不每题重复同一失败预检。"
+        }
+      ],
+      "field_routes": [
+        {
+          "target": "已知PMID的题录字段",
+          "route": "直接官方记录或可用EFetch；无需ESearch定位",
+          "scope": "只取本题字段，API既有受阻状态保留"
+        },
+        {
+          "target": "PubMed记录中的物质索引",
+          "route": "读完整Substances字段；与MeSH、摘要词及正文物质分开",
+          "scope": "未读取当前记录，不提供题目物质数；字段完整性未确认时不把缺失当0"
+        }
+      ]
+    },
+    {
+      "id": "pubmed:statistics-ranking",
+      "source_id": "pubmed",
+      "task_kind": "statistics-ranking",
+      "status": "entry_observed",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Here's how you know",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Here's how you know",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Close",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Search:",
+          "label": "Search:",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "term",
+          "id": "id_term",
+          "css": "#id_term",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#id_term"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Search",
+          "label": "",
+          "aria_label": "Search",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "role": "button",
+            "name": "Search",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        }
+      ],
+      "pending": [
+        "提交后的浏览器检查完成后继续读取当前结果；不把检查页当零结果"
+      ],
+      "query_input": {
+        "css": "#id_term"
+      },
+      "submit": {
+        "role": "button",
+        "name": "Search",
+        "exact": true
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "pubmed-eutilities",
+          "kind": "official-api",
+          "method": "GET",
+          "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+          "documentation": [
+            "https://pubmed.ncbi.nlm.nih.gov/help/",
+            "https://dataguide.nlm.nih.gov/eutilities/utilities.html",
+            "https://ncbiinsights.ncbi.nlm.nih.gov/2021/10/05/updated-pubmed-api/",
+            "https://ncbiinsights.ncbi.nlm.nih.gov/2018/08/14/release-plan-for-e-utility-api-keys/"
+          ],
+          "endpoints": [
+            {
+              "path": "esearch.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "term": "{query}",
+                "retmode": "json"
+              },
+              "purpose": "按题检索，核对count、idlist、querytranslation及警告/错误",
+              "status": "blocked_this_environment"
+            },
+            {
+              "path": "esummary.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "id": "{pmids}",
+                "retmode": "json"
+              },
+              "purpose": "已知PMID的记录摘要",
+              "status": "documented_only"
+            },
+            {
+              "path": "efetch.fcgi",
+              "parameters": {
+                "db": "pubmed",
+                "id": "{pmids}",
+                "retmode": "xml"
+              },
+              "purpose": "完整PubMed记录；所问机构/MeSH等必须实际存在，不等于期刊全文",
+              "status": "documented_only"
+            }
+          ],
+          "verification": {
+            "status": "blocked",
+            "checked_at": "2026-10-10T03:30:41.155Z",
+            "http_status": null,
+            "attempted_endpoint": "esearch.fcgi",
+            "attempts": 2,
+            "reason": "Node fetch failed；默认Windows curl证书吊销检查离线；无HTTP/API字段"
+          },
+          "use_when": "题目指定PubMed且接口恢复后，选择覆盖所问字段的最少请求；PMID已知时跳过ESearch。",
+          "constraints": [
+            "保持日期字段、类型、完整检索式、查询翻译、排序及分页；API默认排序不自动等于网站Best Match。",
+            "PubMed不等于MEDLINE或PMC；不会自动提供全文权限。",
+            "官方旧接口指南已停更；ESearch只可取前10000个结果，大集合用官方分段/批量方案。"
+          ],
+          "limits": {
+            "without_key_per_second_per_ip": 3,
+            "policy": "提供真实tool，遵守官方当前限制，单源串行；不虚构email或关闭TLS验证。"
+          },
+          "fallback": "本轮直连受阻，优先可读取的官方记录渠道；不每题重复同一失败预检。"
+        }
+      ],
+      "field_routes": [
+        {
+          "target": "Completion Date + Affiliation",
+          "documentation": "https://pubmed.ncbi.nlm.nih.gov/help/#search-field-tags",
+          "route": "Completion Date使用[dcom]，Affiliation使用[ad]，按本题完整条件核对查询解释与总数",
+          "scope": "字段规则已读官方帮助，非实查计数；完成日期不替换为发表日期，单位不是默认第一作者单位"
+        },
+        {
+          "target": "MeSH主要主题、Title通配符、Publication Type",
+          "documentation": "https://pubmed.ncbi.nlm.nih.gov/help/",
+          "route": "不同字段各按官方标签解释；语法选项读帮助，动态数量/年份/类型选项读取本题结果",
+          "scope": "指南不能证明当前总量或年度最高；不将全部多选项降成语法题"
+        }
+      ]
+    },
+    {
+      "id": "pubmed:search-syntax",
+      "source_id": "pubmed",
+      "task_kind": "search-syntax",
+      "status": "entry_observed",
+      "parameters": [
+        "field",
+        "terms",
+        "operators",
+        "phrase_mode",
+        "wildcard",
+        "exclude_terms"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "在官方检索帮助确认该字段、布尔、短语或截词规则；数据库之间不得互套语法。"
+      ],
+      "transitions": {},
+      "entry_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Here's how you know",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Here's how you know",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Close",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Search:",
+          "label": "Search:",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "term",
+          "id": "id_term",
+          "css": "#id_term",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#id_term"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Search",
+          "label": "",
+          "aria_label": "Search",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "role": "button",
+            "name": "Search",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "observed_at": "2026-10-09T08:59:38.745Z"
+        }
+      ],
+      "pending": [
+        "提交后的浏览器检查完成后继续读取当前结果；不把检查页当零结果"
+      ],
+      "query_input": {
+        "css": "#id_term"
+      },
+      "submit": {
+        "role": "button",
+        "name": "Search",
+        "exact": true
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "pubmed-user-guide",
+          "kind": "official-help",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/help/",
+          "use_when": "PubMed字段、语法、匹配、日期和检索翻译问题；不提供当前题的结果计数。",
+          "verification": {
+            "status": "content_observed",
+            "checked_at": "2026-10-10T03:30:41.155Z",
+            "guide_last_update": "2026-05-07",
+            "scope": "实际读取的官方用户指南相关段落"
+          },
+          "fallback": "当前界面默认值、具体结果次序或未覆盖的规则再读对应官方页面。"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://pubmed.ncbi.nlm.nih.gov/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "search_entry_navigation",
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://pubmed.ncbi.nlm.nih.gov/advanced/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "query_captcha_required",
+      "detail": "本次正常Search提交后进入浏览器检查/reCAPTCHA，未确认结果容器。"
+    },
+    {
+      "kind": "query_captcha_required",
+      "detail": "本次正常Search提交后进入浏览器检查/reCAPTCHA，未确认结果容器。"
+    },
+    {
+      "kind": "query_captcha_required",
+      "detail": "本次正常Search提交后进入浏览器检查/reCAPTCHA，未确认结果容器。"
+    },
+    {
+      "kind": "query_captcha_required",
+      "detail": "本次正常Search提交后进入浏览器检查/reCAPTCHA，未确认结果容器。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "pubmed",
+    "quiz_entries": [
+      "quiz-entry-093"
+    ],
+    "example_ids": [
+      "PT1-Q11",
+      "KH-Q005",
+      "KH-Q019",
+      "KH-Q023"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:52.772Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/pubmed-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/pubmed-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

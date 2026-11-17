@@ -1,41 +1,51 @@
-## Description: <br>
-Fetch and extract clean article content from any URL using the Diffbot Article API. Returns clean Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and extract clean article content from any URL using the Diffbot Article API. Returns clean Markdown.
 
-## Publisher: <br>
-[flobo3](https://clawhub.ai/user/flobo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flobo3](https://clawhub.ai/user/flobo3)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch a URL through Diffbot and extract the article title, metadata, and main text without page clutter. It is useful when clean Markdown article content is needed for reading, summarization, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs and the Diffbot API token are sent to Diffbot. <br>
-Mitigation: Use only URLs that are acceptable to share with Diffbot, and keep the Diffbot API key scoped and protected. <br>
-Risk: Internal, access-controlled, pre-signed, localhost, or otherwise sensitive URLs may expose sensitive request context to Diffbot. <br>
-Mitigation: Avoid using this skill with sensitive URLs unless sharing those URLs with Diffbot is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve the main content and article metadata from public article, blog post, or news URLs as clean Markdown.
 
-## Reference(s): <br>
-- [Diffbot Article API endpoint](https://api.diffbot.com/v3/article) <br>
-- [ClawHub listing](https://clawhub.ai/flobo3/diffbot-fetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown article content printed to standard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DIFFBOT_API_KEY and sends the requested URL to Diffbot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Requested article URLs and the Diffbot API token are sent to Diffbot as part of normal operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for links where sharing with Diffbot is intended and allowed; avoid private, internal, authenticated, or sensitive URLs unless policy permits that sharing.
+
+## Reference(s):
+
+- [Diffbot Article API endpoint](https://api.diffbot.com/v3/article)
+- [ClawHub skill page](https://clawhub.ai/flobo3/skills/diffbot-fetch)
+- [Publisher profile](https://clawhub.ai/user/flobo3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown article content with title and optional author, date, and site metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a URL input and DIFFBOT_API_KEY; the requested URL is sent to Diffbot for article extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

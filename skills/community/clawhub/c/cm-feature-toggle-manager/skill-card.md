@@ -1,40 +1,52 @@
-## Description: <br>
-Audit, manage, and clean up feature flags across codebases to reduce toggle debt <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit, manage, and clean up feature flags across codebases to reduce toggle debt.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to inventory feature flags, assess toggle debt, identify stale or orphaned flags, and plan safe cleanup or rollout work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes examples for querying external feature-flag services and removing or editing flag configuration.
+
+Mitigation: Require explicit approval before API calls, deletion steps, or configuration edits, and prefer read-only or least-privilege credentials.
+
+Risk: A generated cleanup plan could select the wrong branch or remove a flag that still controls active behavior.
+
+Mitigation: Review the plan in code review, validate the expected flag state, run tests, and verify changes in staging before production rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit feature flags, identify stale or orphaned toggles, plan safe cleanup, and design rollout lifecycles across codebases. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to use repository access and service tokens for feature flag or monitoring systems. <br>
-Mitigation: Use read-only or narrowly scoped API keys for audits, and avoid granting write access unless a reviewed change plan requires it. <br>
-Risk: Cleanup plans may remove or collapse flag-controlled code paths incorrectly if service state, git history, or external configuration is incomplete. <br>
-Mitigation: Review the generated cleanup plan, verify blast radius and tests, deploy to staging first, and require owner approval with a rollback plan before production flag deletion or archival. <br>
+**Output Format:** [Markdown reports, checklists, command templates, and code or configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cm-feature-toggle-manager) <br>
+**Other Properties Related to Output:** [Generated cleanup plans and service changes should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and plans with inline shell commands and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API calls requiring scoped service tokens for feature flag or monitoring systems.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

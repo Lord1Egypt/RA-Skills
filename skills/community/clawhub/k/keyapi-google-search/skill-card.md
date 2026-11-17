@@ -1,44 +1,64 @@
-## Description: <br>
-Perform Google web and image searches, returning ranked web results with titles, snippets, and URLs or image results with country, language, count, and pagination controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform Google web and image searches -- retrieve ranked web results with titles, snippets, and URLs, or search for images with country and language targeting, result count control, and page-based pagination.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers and analysts use this skill to call KeyAPI's Google MCP tools for web and image search, cache returned results, and synthesize search intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled runner can use KEYAPI_TOKEN with non-Google tools. <br>
-Mitigation: Use only explicit --platform google commands with web_search or image_search; prefer a Google-only runner or allowlist when available. <br>
-Risk: Search queries and results may be cached locally. <br>
-Mitigation: Avoid sensitive searches when local caching is not acceptable, use --no-cache for fresh uncached calls, and clear .keyapi-cache when needed. <br>
-Risk: The runner can load a plaintext .env token file. <br>
-Mitigation: Prefer a protected environment variable for KEYAPI_TOKEN, restrict access to any .env file, and remove stored tokens when no longer needed. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to collect Google web and image search results through KeyAPI and synthesize search intelligence reports for content research, competitive analysis, SERP monitoring, and visual asset discovery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lycici/keyapi-google-search) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Google MCP endpoint](https://mcp.keyapi.ai/google/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance plus JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KEYAPI_TOKEN and Node.js; API responses are cached locally unless caching is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The runner requires a KeyAPI token and can persist credentials locally if entered interactively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN only in the current shell session, avoid interactive token entry, and remove any generated .env file after use.
+
+Risk: Search requests and responses may be cached locally under .keyapi-cache/.
+
+Mitigation: Treat cached search data as potentially sensitive and review or clear .keyapi-cache/ after use.
+
+Risk: KEYAPI_SERVER_URL can redirect requests to a different MCP endpoint.
+
+Mitigation: Do not set KEYAPI_SERVER_URL unless the endpoint is trusted.
+
+Risk: The shipped runner can call broader KeyAPI MCP tools beyond the Google search framing.
+
+Mitigation: Inspect available tools and schemas before use, and limit calls to the intended Google search tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-google-search)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Google MCP Server](https://mcp.keyapi.ai/google/mcp)
+- [KeyAPI MCP Base](https://mcp.keyapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses KEYAPI_TOKEN, Node.js, and locally cached KeyAPI MCP responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Guides structured help for README Generator using clear templates, checks, and safe defaults (category: Developer Experience). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for README Generator using clear templates, checks, and safe defaults for developer experience workflows.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Developers use this skill to turn project goals and owned notes into concise README plans, numbered checklists, next-action lists, and editable draft copy while avoiding secrets and unsafe installer patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts may include secrets or sensitive project data. <br>
-Mitigation: Request goals, constraints, and owned notes without passwords, OTPs, private keys, wallet seeds, session tokens, or unnecessary personal data. <br>
-Risk: The artifact includes a PayPal donation link that takes users to an external site. <br>
-Mitigation: Treat the donation page as separate from the skill and review the external site before interacting with it. <br>
-Risk: Generated README guidance may still need project-specific review before publication. <br>
-Mitigation: Review factual claims, commands, links, and policy-sensitive wording before adding generated content to a public README. <br>
+## Use Case:
 
+Developers and external users use this skill to produce safer, more structured README planning, checklists, next actions, and editable draft copy without relying on improvised commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, concise plans, next-action lists, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included; user-provided notes should avoid secrets and unnecessary personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+Risk: Users could paste secrets, private data, or other sensitive material into README drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the skill and security guidance to avoid passwords, OTPs, private keys, wallets, seeds, session secrets, and unnecessary personal data.
+
+Risk: Optional donation links can lead users outside the skill workflow.
+
+Mitigation: Use normal caution with the donation link and verify the destination before making any payment.
+
+## Reference(s):
+
+- [README Generator Skill on ClawHub](https://clawhub.ai/abdullah944/skills/readme-generator-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, short next-action lists, and optional draft copy blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or shell commands are produced by default.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-围绕中药名，中药材，别名，来源，分布，功能，主治，归经，四气，四气及其之间的联系构建知识谱图。仅限初步研究，具体应用需根据实际情况调整。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+围绕中药名，中药材，别名，来源，分布，功能，主治，归经，四气，四气及其之间的联系构建知识谱图。仅限初步研究，具体应用需根据实际情况调整。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-External users and developers use this skill for preliminary exploration of a traditional Chinese medicine knowledge graph, including graph schema inspection and read-only Cypher queries over medicine names, materials, aliases, sources, distributions, functions, indications, meridians, and four-nature relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists the user-provided XBY_APIKEY in a local plaintext .env file. <br>
-Mitigation: Use a scoped or disposable API key and run the skill only in directories where a local plaintext .env file is acceptable. <br>
-Risk: Graph queries and parameters are sent to a remote XiaoBenYang service. <br>
-Mitigation: Avoid submitting sensitive graph queries or confidential data unless the remote provider and API terms are acceptable. <br>
-Risk: Server security evidence flags mismatched documentation and broad remote query behavior. <br>
-Mitigation: Review the artifact, requested query, and remote API behavior before deployment or operational use. <br>
+## Use Case:
 
+Researchers, developers, and external users can query a Traditional Chinese Medicine knowledge graph for herb names, aliases, sources, distributions, functions, indications, meridians, qi properties, and their relationships. The skill is intended for preliminary research support, with practical application decisions requiring user review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/traditional-chinese-medicine-kg) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
-- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown summaries of JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY before querying the remote graph service; query results depend on the upstream API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill sends graph queries and an API key to a remote XiaoBenYang service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when the XiaoBenYang service is trusted for the intended data and access scope.
+
+Risk: The skill can store the XiaoBenYang API key in a plaintext .env file in the working directory.
+
+Mitigation: Use a scoped or disposable key where possible, keep .env out of backups and source control, and rotate the key if exposure is suspected.
+
+Risk: Copied gaokao and school-search references may confuse users about the skill's actual Traditional Chinese Medicine knowledge-graph purpose.
+
+Mitigation: Review the skill before routine use and have the publisher correct stale copied references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/traditional-chinese-medicine-kg)
+- [cainingnk ClawHub profile](https://clawhub.ai/user/cainingnk)
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or text summaries derived from JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key and supports schema lookup plus read-only Cypher queries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

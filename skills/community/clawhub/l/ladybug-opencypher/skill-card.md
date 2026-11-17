@@ -1,45 +1,69 @@
-## Description: <br>
-Runs openCypher against Ladybug DB with schema-first DDL, Python sync/async execution, CALL procedures, full-text search, and Neo4j divergence notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs openCypher against Ladybug DB with schema-first DDL, Python sync/async execution, CALL procedures, full-text search, and Neo4j divergence notes.
 
-## Publisher: <br>
-[trenza1ore](https://clawhub.ai/user/trenza1ore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trenza1ore](https://clawhub.ai/user/trenza1ore)
 
-## Use Case: <br>
-Developers and engineers use this skill to write, debug, and migrate Ladybug openCypher queries, including schema-first DDL, Python execution, imports, CALL procedures, full-text search, and Neo4j behavior differences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-run Cypher can modify the selected Ladybug database. <br>
-Mitigation: Review Cypher for CREATE, COPY, LOAD, DROP, SET, and other mutating operations, confirm the .lbug path, and back up important databases before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, debug, and migrate Ladybug openCypher queries, including schema-first DDL, imports, Python execution, CALL procedures, and full-text search workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/trenza1ore/ladybug-opencypher) <br>
-- [API reference](references/api-reference.md) <br>
-- [Workflow patterns](references/workflow-patterns.md) <br>
-- [openCypher](https://opencypher.org/) <br>
-- [Ladybug vs Neo4j](https://docs.ladybugdb.com/cypher/difference/) <br>
-- [Ladybug Python API](https://docs.ladybugdb.com/client-apis/python/) <br>
-- [Ladybug import data](https://docs.ladybugdb.com/import/) <br>
-- [Ladybug full-text search](https://docs.ladybugdb.com/extensions/full-text-search/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Cypher, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that execute user-provided Cypher against a selected Ladybug database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated or supplied Cypher may modify a local Ladybug database through DDL, COPY/LOAD, CALL procedures, or FTS-related operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each Cypher statement before execution and run changes against a disposable or backed-up database when possible.
+
+Risk: COPY, LOAD, and FTS/httpfs-related behavior may read local or remote files according to Ladybug behavior.
+
+Mitigation: Use explicit trusted paths and review file-accessing queries before running helper scripts or Python snippets.
+
+Risk: Neo4j-style assumptions can produce different Ladybug results because schema, DDL, MATCH semantics, and unsupported clauses differ.
+
+Mitigation: Check Ladybug documentation and the bundled workflow patterns for walk/trail behavior, variable-length bounds, unsupported clauses, and CALL-based catalog procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trenza1ore/skills/ladybug-opencypher)
+- [ClawHub publisher profile](https://clawhub.ai/user/trenza1ore)
+- [Ladybug Python & Cypher API reference](references/api-reference.md)
+- [Ladybug workflow patterns](references/workflow-patterns.md)
+- [openCypher](https://opencypher.org/)
+- [Ladybug vs Neo4j](https://docs.ladybugdb.com/cypher/difference/)
+- [Ladybug Python API](https://docs.ladybugdb.com/client-apis/python/)
+- [Ladybug generated Python reference](https://api-docs.ladybugdb.com/python)
+- [Ladybug create table](https://docs.ladybugdb.com/cypher/data-definition/create-table/)
+- [Ladybug import data](https://docs.ladybugdb.com/import/)
+- [Ladybug full-text search](https://docs.ladybugdb.com/extensions/full-text-search/)
+- [Ladybug MATCH](https://docs.ladybugdb.com/cypher/query-clauses/match)
+- [Ladybug CALL](https://docs.ladybugdb.com/cypher/query-clauses/call)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Cypher, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Cypher that reads or modifies local Ladybug databases when the user runs it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

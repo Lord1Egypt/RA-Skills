@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Preview Dataify Indeed job listing parameters.")
     parser.add_argument("--parameters-json", help="JSON object or array for spider_parameters.")
     parser.add_argument("--job-url", dest="job_url")
-    parser.add_argument("--file-name", default=DEFAULT_FILE_NAME)
+    parser.add_argument("--file-name")
     parser.add_argument("--spider-id", default=SPIDER_ID)
     return parser.parse_args()
 
@@ -78,7 +78,7 @@ def print_preview(args: argparse.Namespace) -> None:
         current_parameters = json.dumps(parameter_sets, ensure_ascii=False, separators=(",", ":"))
         current_job_url = "Provided in spider_parameters"
     else:
-        current_job_url = args.job_url or DEFAULT_JOB_URL
+        current_job_url = args.job_url
         current_parameters = json.dumps([{"job_url": current_job_url}], ensure_ascii=False, separators=(",", ":"))
 
     default_parameters = json.dumps([{"job_url": DEFAULT_JOB_URL}], ensure_ascii=False, separators=(",", ":"))

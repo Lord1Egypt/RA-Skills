@@ -1,46 +1,64 @@
-## Description: <br>
-End-to-end stablecoin payments for links, invoices, receipts, and dashboards across Telegram, WhatsApp, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end stablecoin payments for links, invoices, receipts, and dashboards across Telegram, WhatsApp, and Discord.
 
-## Publisher: <br>
-[OFUZORCHUKWUEMEKE](https://clawhub.ai/user/OFUZORCHUKWUEMEKE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ofuzorchukwuemeke](https://clawhub.ai/user/ofuzorchukwuemeke)
 
-## Use Case: <br>
-Developers, merchants, fundraisers, and service providers use this skill to let an agent create and check USDC payment links, invoices, fundraising campaigns, dashboards, and payment history from chat or OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent receives API-key access that can create and inspect payment workflows in the user's Obverse account. <br>
-Mitigation: Use a separate restricted API key where available and require explicit human confirmation before creating invoices, payment links, or fundraising campaigns. <br>
-Risk: Dashboard credentials and customer payment data may appear in normal agent outputs. <br>
-Mitigation: Avoid sharing dashboard passwords in shared chats or logs, and limit dashboard access to trusted users for the shortest practical time. <br>
-Risk: Payment links can collect customer contact details and other custom fields. <br>
-Mitigation: Collect or export customer data only with consent, document the purpose, and apply a clear retention policy. <br>
+## Use Case:
 
+External users, merchants, developers, and agents use this skill to create and track USDC payment links, invoices, fundraising campaigns, customer data collection, and payment dashboards through Obverse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OFUZORCHUKWUEMEKE/obverse-payments) <br>
-- [Obverse homepage](https://www.obverse.cc) <br>
-- [Obverse API docs](https://obverse.onrender.com/api-docs) <br>
-- [README](artifact/README.md) <br>
-- [Deployment guide](artifact/DEPLOYMENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown or plain text with payment links, dashboard links, JSON command results, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OBVERSE_API_KEY; outputs can include payment identifiers, customer data, and temporary dashboard credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json and clawhub.json state 1.0.0) <br>
+Risk: The skill requests payment API authority through OBVERSE_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Obverse API key and rotate it if it is exposed.
+
+Risk: Dashboard passwords may appear in normal agent output.
+
+Mitigation: Do not share generated dashboard credentials in group chats or logs; treat them as short-lived secrets.
+
+Risk: Payment links can collect customer or contributor data.
+
+Mitigation: Collect personal data only with clear consent, purpose, and retention expectations.
+
+Risk: OBVERSE_API_URL can be overridden.
+
+Mitigation: Override OBVERSE_API_URL only for trusted HTTPS endpoints or controlled local development.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ofuzorchukwuemeke/skills/obverse-payments)
+- [Obverse Homepage](https://www.obverse.cc)
+- [Obverse API Key Registration](https://obverse.onrender.com/api-keys/register)
+- [Obverse API Documentation](https://obverse.onrender.com/api-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown and JSON-style payment or status summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OBVERSE_API_KEY; outputs can include payment URLs, dashboard credentials, customer or contributor data, wallet balances, and transaction status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact manifests list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

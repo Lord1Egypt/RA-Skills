@@ -279,7 +279,7 @@ from stats_query import query_count, query_time, query_day_chart, query_week_cha
 
 # 查询服务状态
 status = get_switch_status(
-    sn="48de8c1c1c20a4a3",
+    sn="device_sn",
     user="admin",
     uuid="your-uuid",
     appkey="your-appkey",
@@ -290,7 +290,7 @@ print(f"宠物看护服务：{'已开启' if status else '已关闭'}")
 
 # 新增宠物
 result = add_pet(
-    sn="48de8c1c1c20a4a3",
+    sn="device_sn",
     user="admin",
     name="咪咪",
     pet_type="银渐层",
@@ -303,7 +303,7 @@ result = add_pet(
 
 # 查询异常告警
 alarms = query_alarms(
-    sn="48de8c1c1c20a4a3",
+    sn="device_sn",
     user="admin",
     start_time=1726033162,
     end_time=1726070399,

@@ -1,39 +1,58 @@
-## Description: <br>
-Your personal Currency assistant. Track, analyze, and manage all your travel planning needs from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal Currency assistant. Track, analyze, and manage all your travel planning needs from the command line.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and command-line users use Currency to capture travel plans, bookings, budgets, packing lists, routes, checklists, reminders, searches, and journal notes locally from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel plans, budgets, booking notes, reminders, searches, and journal entries are stored locally and can be exported as plaintext. <br>
-Mitigation: Avoid entering secrets, payment card details, or sensitive account information, and review or delete ~/.local/share/currency/ when history should not be retained. <br>
+## Use Case:
 
+External users and developers can use Currency to record, review, search, and export travel planning notes from the command line.
 
-## Reference(s): <br>
-- [Currency on ClawHub](https://clawhub.ai/ckchzh/currency) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text CLI output with optional JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local travel-planning logs under ~/.local/share/currency/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill advertises broad currency, weather, routing, booking, and reminder assistance but behaves primarily as a local travel-entry logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat entries and outputs as personal notes, and verify currency, weather, routing, booking, or reminder decisions with authoritative tools before relying on them.
+
+Risk: Travel plans, booking notes, routes, budgets, and journal entries may be retained in plaintext local files.
+
+Mitigation: Avoid storing sensitive itinerary or booking details unless local retention is acceptable, and review or delete the local data directory when needed.
+
+Risk: CSV exports can carry spreadsheet-opening risks when user-entered values are later opened in spreadsheet software.
+
+Mitigation: Inspect exports before sharing and open CSV output in tools or modes that do not evaluate spreadsheet formulas.
+
+## Reference(s):
+
+- [Currency on ClawHub](https://clawhub.ai/ckchzh/skills/currency)
+- [Publisher Profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Command-line text with local log and export files in JSON, CSV, or TXT]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores plaintext travel entries under ~/.local/share/currency.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Real-time financial market data MCP server — stocks, crypto, forex quotes, klines, sector analysis and fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time financial market data MCP server for stocks, crypto, forex quotes, klines, sector analysis, and fundamentals.
 
-## Publisher: <br>
-[infoway-api](https://clawhub.ai/user/infoway-api) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infoway-api](https://clawhub.ai/user/infoway-api)
 
-## Use Case: <br>
-Developers and external users use this MCP server to give AI assistants access to real-time quotes, klines, market depth, sector analysis, and company fundamentals across equities, crypto, and forex. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server requires an Infoway API key and sends market-data requests to Infoway. <br>
-Mitigation: Install only where Infoway API-key use and outbound Infoway access are acceptable; use environment-specific keys and rotate them if exposed. <br>
-Risk: Financial data and agent-generated analysis can be time-sensitive or incomplete. <br>
-Mitigation: Verify critical quotes, fundamentals, and analysis against authoritative sources before relying on them for trading or business decisions. <br>
+## Use Case:
 
+Developers and external MCP users use this skill to connect AI assistants to Infoway market data for real-time quotes, K-line charts, market overview, sector analysis, and company fundamentals. It is intended for market-data retrieval and analysis workflows that require an Infoway API key.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/infoway-api/infoway-financial-data) <br>
-- [Infoway API](https://infoway.io) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Configuration] <br>
-**Output Format:** [Text responses containing formatted JSON from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INFOWAY_API_KEY and outbound access to Infoway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: Market-data queries and the Infoway API key are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Infoway's data-handling terms meet the deployment's needs, and avoid sending confidential trading strategies or non-public financial information.
+
+Risk: Installing the MCP server connects an MCP client to a third-party Python package and SDK.
+
+Mitigation: Pin a reviewed package version or use a locked environment before connecting it to production MCP clients.
+
+## Reference(s):
+
+- [Infoway API](https://infoway.io)
+- [ClawHub Skill Page](https://clawhub.ai/infoway-api/skills/infoway-financial-data)
+- [Package Repository](https://github.com/infoway-api/infoway-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [JSON-formatted text returned through MCP tool responses, with configuration snippets for MCP clients.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires INFOWAY_API_KEY and sends market-data queries to the Infoway service.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

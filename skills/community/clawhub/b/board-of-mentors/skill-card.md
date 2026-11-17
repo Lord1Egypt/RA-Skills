@@ -1,40 +1,53 @@
-## Description: <br>
-Board Of Mentors routes founder and operator questions to 17 specialized AI mentor personas for strategic guidance across growth, fundraising, sales, product, engineering, operations, finance, legal, hiring, leadership, wellness, and industry topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Board Of Mentors connects founders and operators with 17 domain expert AI mentor personas for strategic guidance across startup and business challenges.
 
-## Publisher: <br>
-[rmarji](https://clawhub.ai/user/rmarji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rmarji](https://clawhub.ai/user/rmarji)
 
-## Use Case: <br>
-Founders, operators, and startup teams use this skill to select an appropriate mentor persona, ask clarifying questions, and structure strategic advice using domain-specific frameworks. It supports guidance and decision framing, not task execution or replacement for professional legal, financial, or wellness advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Legal, finance, fundraising, and wellness guidance may be incomplete or unsuitable for high-stakes decisions. <br>
-Mitigation: Treat responses as general guidance and verify important decisions with qualified professionals. <br>
-Risk: Users may disclose confidential business details while seeking mentorship. <br>
-Mitigation: Avoid sharing confidential business information unless comfortable with the disclosure context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rmarji/board-of-mentors) <br>
-- [ClawGeeks Platform](https://clawgeeks.com) <br>
+## Use Case:
 
+Founders, operators, and startup advisors use this skill to route business challenges to one or more mentor personas and receive strategic guidance across growth, fundraising, sales, product, engineering, operations, finance, legal, hiring, leadership, wellness, and industry topics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance with mentor introductions, questions, frameworks, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code execution, credentials, persistence, or system access requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Legal, financial, or wellness mentor responses may be mistaken for professional advice.
+
+Mitigation: Treat outputs as general guidance and consult qualified professionals before making legal, financial, or health-related decisions.
+
+Risk: Persona-based guidance may sound confident even when a user's situation needs more context.
+
+Mitigation: Use the mentor questions and frameworks to clarify assumptions before relying on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rmarji/skills/board-of-mentors)
+- [ClawGeeks Platform](https://clawgeeks.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational guidance with mentor framing, diagnostic questions, frameworks, and anti-patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; it does not execute tasks or replace professional legal, financial, or wellness advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

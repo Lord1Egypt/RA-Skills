@@ -138,7 +138,7 @@ echo "  3. Expiration: 'No expiration' (or 90 days)"
 echo "  4. Scopes: ✅ repo (select all sub-scopes)"
 echo "  5. Click 'Generate token' and copy it"
 echo ""
-echo "Token format: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+echo "Token format: REDACTED-SECRET"
 echo ""
 
 # Logout any existing sessions

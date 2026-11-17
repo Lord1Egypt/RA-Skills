@@ -1,45 +1,64 @@
-## Description: <br>
-Generate AI-powered podcast-style audio narratives using Azure OpenAI's GPT Realtime Mini model via WebSocket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates podcast-style audio narratives from text using Azure OpenAI GPT Realtime Mini over WebSocket, with React, FastAPI, streaming, and PCM-to-WAV implementation guidance.
 
-## Publisher: <br>
-[thegovind](https://clawhub.ai/user/thegovind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegovind](https://clawhub.ai/user/thegovind)
 
-## Use Case: <br>
-Developers and engineers use this skill to build text-to-speech and podcast-style audio generation workflows with Azure OpenAI Realtime API. It provides implementation guidance for environment setup, WebSocket streaming, audio event handling, PCM-to-WAV conversion, and frontend playback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected text, bookmark summaries, or scripts are sent to Azure for audio generation. <br>
-Mitigation: Use the skill only for content that is approved for Azure processing, and disclose this third-party processing to users of the resulting workflow. <br>
-Risk: Generated audio and transcripts may contain user content and can become persistent records if stored. <br>
-Mitigation: Define access controls, retention periods, and deletion paths before implementing the database-backed examples. <br>
-Risk: Incorrect Realtime API configuration can cause failed audio generation or incomplete error handling. <br>
-Mitigation: Use a WebSocket endpoint derived from the Azure base endpoint, configure audio output modalities, and handle Realtime API error events as shown in the acceptance criteria. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thegovind/podcast-generation) <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Code Examples](references/code-examples.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [PCM to WAV Conversion Script](scripts/pcm_to_wav.py) <br>
+## Use Case:
 
+Developers and engineers use this skill to add podcast-style text-to-speech generation to applications with Azure OpenAI Realtime API, including backend audio synthesis, frontend playback, and PCM-to-WAV conversion.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Python, JavaScript, environment variable, and audio conversion examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Azure OpenAI API keys may be exposed or misused if copied into client-side code, logs, or shared artifacts.
+
+Mitigation: Store API keys only in server-side secret management, avoid logging secret values, and rotate keys if exposure is suspected.
+
+Risk: Generated content is sent to a cloud provider and may be subject to provider and application retention policies.
+
+Mitigation: Confirm provider and application retention rules before use, and avoid sending confidential, regulated, customer, or otherwise sensitive content unless approved.
+
+Risk: Connecting to an unexpected endpoint can route content or credentials to the wrong service.
+
+Mitigation: Validate or allowlist the Azure OpenAI endpoint before opening the WebSocket connection.
+
+Risk: The helper CLI can overwrite files when deriving a WAV path from a supplied PCM filename.
+
+Mitigation: Pass only expected .pcm inputs or change the helper to require an explicit output path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thegovind/skills/podcast-generation)
+- [Architecture Reference](references/architecture.md)
+- [Code Examples](references/code-examples.md)
+- [Podcast Generation Acceptance Criteria](references/acceptance-criteria.md)
+- [PCM to WAV helper](scripts/pcm_to_wav.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, JavaScript, shell, and environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for Azure OpenAI Realtime WebSocket audio generation, transcript handling, and WAV playback.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

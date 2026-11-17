@@ -1,43 +1,54 @@
-## Description: <br>
-AI-powered insurance anti-fraud analysis skill that provides an advisory framework for claim fraud detection, underwriting risk control, investigation workflows, and insurance risk review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides insurance claims and underwriting teams with fraud indicators, investigation workflows, and prevention guidance for the Chinese insurance market.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Insurance claims, risk control, compliance, and underwriting teams use this skill to structure fraud-risk review, identify common claim and underwriting red flags, and prepare investigation or review guidance. Outputs are advisory and require authorized human professional review before use in real claim, underwriting, or compliance decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fraud indicators, scoring thresholds, and underwriting examples could be mistaken for final legal, financial, medical, or insurance advice. <br>
-Mitigation: Use the skill only as an advisory reference and require authorized human professional review before applying outputs to claim, underwriting, compliance, or customer decisions. <br>
-Risk: The workflow discusses personal data checks, medical records, claim histories, and fraud flags that may involve sensitive or regulated information. <br>
-Mitigation: Apply the guidance only with proper authorization, privacy controls, data-minimization practices, and organization-approved investigation procedures. <br>
+## Use Case:
 
+Chinese insurance claims, underwriting, risk-control, and compliance teams use this skill to review potential fraud indicators, organize investigations, and develop prevention guidance.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/gechengling/insurance-anti-fraud) <br>
-- [Insurance Anti-Fraud Expert README](README.md) <br>
-- [Anti-Fraud Guide](references/anti_fraud_guide.md) <br>
-- [Underwriting Risk Assessment](references/underwriting_risk_assessment.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory analysis with tables, scoring guidance, checklists, and review workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, network access, persistent storage, or credential collection is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.2 (source: server release evidence; artifact frontmatter says 2.0.0) <br>
+Risk: External checks may expose claimant or health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authority to share the information, use approved services, and disclose only what is necessary.
+
+Risk: Risk indicators could be mistaken for proof of fraud or grounds for denial.
+
+Mitigation: Verify indicators against approved source records and have an authorized human reviewer make the final decision.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/gechengling/insurance-anti-fraud)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-anti-fraud)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Case-specific risk indicators and workflow suggestions; claim and underwriting decisions require human review.]
+
+## Skill Version(s):
+
+5.0.8 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Analyze Bilibili AI-generated videos to extract/reverse-engineer prompts for imitation and replication, including frames, subtitles, and detailed ComfyUI/Seedance-format prompt breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Bilibili AI-generated videos to extract/reverse-engineer prompts for imitation and replication, including frames, subtitles, ComfyUI/Seedance-format keyframe prompts, and scene breakdowns.
 
-## Publisher: <br>
-[jilanfang](https://clawhub.ai/user/jilanfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jilanfang](https://clawhub.ai/user/jilanfang)
 
-## Use Case: <br>
-Developers, video creators, and prompt engineers use this skill to analyze Bilibili AI-generated videos and turn downloaded frames and subtitles into reusable keyframe prompts, scene breakdowns, master prompts, and voiceover reference text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded videos, frames, subtitles, style, or voiceover material may be copyrighted or otherwise restricted. <br>
-Mitigation: Confirm permission to download, analyze, and reuse the source material before using the skill outputs. <br>
-Risk: A Bilibili URL may resolve to a playlist or other broader download scope than intended. <br>
-Mitigation: Verify whether the link is a single video or playlist and run downloads in a dedicated output folder. <br>
-Risk: Media tooling installed from untrusted sources can introduce ordinary supply-chain risk. <br>
-Mitigation: Install ffmpeg and yt-dlp only from trusted package managers or official sources. <br>
-Risk: Subtitle output can be incomplete when a video has burned-in subtitles because OCR extraction is not implemented. <br>
-Mitigation: Review subtitle output before relying on it and use manual or OCR extraction when subtitles are not embedded. <br>
+## Use Case:
 
+Developers and creators use this skill to analyze Bilibili AI-generated videos they are permitted to inspect, extract frames and subtitles, and produce prompt material for generating similar videos. It is intended for prompt reverse-engineering workflows that need keyframe prompts, scene sequencing, a master prompt, and voiceover reference text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jilanfang/bilibili-video-prompt-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with shell commands, prompt sections, scene tables, and local media or subtitle file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes technical metadata, keyframe prompts, scene sequence breakdowns, a full video master prompt, negative prompt guidance, and extracted subtitle text when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence and frontmatter) <br>
+Risk: The skill downloads and analyzes Bilibili videos, which can create copyright, permission, or misuse concerns when applied to content the user does not own or have permission to analyze.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on videos the user owns or is authorized to inspect, and review generated prompts before using them to imitate another creator's work.
+
+Risk: Playlist URLs may cause yt-dlp to fetch more than one video.
+
+Mitigation: Review Bilibili URLs before download and avoid playlist URLs unless multi-video download is intended.
+
+Risk: Untrusted or excessive FPS values can cause unexpectedly large frame outputs or slow analysis.
+
+Mitigation: Keep FPS low, use the documented 1 FPS default for short videos, and validate FPS values before running extraction.
+
+Risk: Hard subtitle OCR is not implemented, so videos without embedded subtitle streams may produce an empty subtitle output.
+
+Mitigation: Check whether the source video has embedded subtitles and treat empty subtitle files as a known limitation rather than complete transcript evidence.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/jilanfang/skills/bilibili-video-prompt-analyzer)
+- [ClawHub publisher profile](https://clawhub.ai/user/jilanfang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with shell command examples, extracted text files, JPEG frame files, and comma-separated prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technical metadata, 2-3 keyframe prompts, scene sequence breakdown, a full master prompt, a negative prompt when applicable, and extracted subtitle text.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

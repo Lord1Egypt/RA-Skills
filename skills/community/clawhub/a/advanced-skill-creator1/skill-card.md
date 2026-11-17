@@ -1,43 +1,55 @@
-## Description: <br>
-Advanced OpenClaw skill creation handler that executes a structured 5-step research flow for creating or modifying OpenClaw, Moltbot, and ClawDBot skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Skill Creator helps agents create or modify OpenClaw, Moltbot, and ClawDBot skills by following a five-step research flow with analysis, comparison, security considerations, and structured Markdown output.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create or modify OpenClaw, Moltbot, and ClawDBot skills through a structured research, comparison, and output process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill guidance or SKILL.md content could be incorrect, misleading, or unsuitable for a target environment. <br>
-Mitigation: Review generated skill files and scan them before installation or deployment. <br>
-Risk: The skill depends on the external SkillBoss API, so skill requirements may be sent to that provider. <br>
-Mitigation: Use it only when you trust SkillBoss, avoid including secrets in prompts, and confirm the data handling expectations for your environment. <br>
-Risk: Separately supplied helper scripts could execute behavior that was not reviewed in the generated Markdown. <br>
-Mitigation: Inspect any helper script before running it and do not execute scripts from untrusted sources. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create or modify OpenClaw, Moltbot, and ClawDBot skills with documented research, comparison, security review, and complete output structure.
 
-## Reference(s): <br>
-- [ClawdBot skills documentation](https://docs.clawd.bot/tools/skills) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured sections and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include complete SKILL.md examples, file tree previews, and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated skills may include broad role-prompt, memory-system, or unrelated cognitive-framework language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review generated skill text before installation or publication and remove generic role prompts, memory directives, and unrelated cognitive-framework language.
+
+Risk: The skill may use an external API for AI-assisted skill generation.
+
+Mitigation: Confirm SKILLBOSS_API_KEY use and data-sharing expectations before running the skill with sensitive prompts or unpublished skill content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/advanced-skill-creator1)
+- [ClawdBot Skills Documentation](https://docs.clawd.bot/tools/skills)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Structured Markdown with recommended approach, file tree, and complete skill file contents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require SKILLBOSS_API_KEY, python3, and bash as declared in server metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

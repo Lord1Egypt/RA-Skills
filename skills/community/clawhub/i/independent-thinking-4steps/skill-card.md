@@ -1,39 +1,57 @@
-## Description: <br>
-独立思考四部曲 helps an agent use a four-step think, speak, act, and review workflow grounded in a private vector-memory process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+独立思考四部曲。触发场景：开口/动手前需要深度思考时、方案决策前、复盘总结时、任何需要依托向量补全记忆做全局判断的场景。与沟通四部曲并行通用，贯穿对话、做事、学习、复盘全流程。
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Agents and users use this skill to structure deeper decision-making, communication, execution checks, and retrospectives around retrieved vector-memory context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs broad use of a private vector-memory workflow, which can capture or reuse sensitive context without clear consent, retention, access, or deletion controls. <br>
-Mitigation: Use it only with intentional approval for that memory workflow, and avoid secrets, personal data, regulated information, or confidential business content unless separate controls are in place. <br>
+## Use Case:
 
+External users and agent builders use this skill as a structured thinking, decision, and retrospective workflow that consults a local vector-memory system before communication or action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markma84/independent-thinking-4steps) <br>
-- [Publisher profile](https://clawhub.ai/user/markma84) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell command examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires review before use with sensitive or regulated information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow depends on unaudited local vector-memory scripts and databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after reviewing and trusting the referenced local scripts and storage location.
+
+Risk: Task summaries or sensitive work context may be stored for future retrieval.
+
+Mitigation: Require explicit user approval before writing memory, limit stored content, and define retention boundaries.
+
+Risk: The skill broadly asks agents to apply this memory workflow across routine tasks.
+
+Mitigation: Narrow use to opt-in situations where vector recall is necessary and appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/independent-thinking-4steps)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell command examples and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to retrieve and persist task context through user-local vector-memory scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

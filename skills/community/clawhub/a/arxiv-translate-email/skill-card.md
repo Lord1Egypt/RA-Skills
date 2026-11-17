@@ -1,44 +1,59 @@
-## Description: <br>
-Downloads arXiv papers, translates them into Chinese, and sends the translated PDF by email using synchronous or queued execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads papers from arXiv, translates them into Chinese, and emails the resulting PDF, with synchronous and queued execution modes.
 
-## Publisher: <br>
-[ckqiao](https://clawhub.ai/user/ckqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckqiao](https://clawhub.ai/user/ckqiao)
 
-## Use Case: <br>
-Developers and researchers use this skill to fetch an arXiv paper, translate it to Chinese, and deliver the translated PDF through email. It supports direct execution for one-off work and a queued mode for serialized background processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports embedded live-looking service credentials. <br>
-Mitigation: Remove embedded credentials, rotate any exposed secrets, and require user-provided scoped credentials through a secret store or environment variables. <br>
-Risk: The release evidence reports under-scoped outbound messaging and email delivery. <br>
-Mitigation: Require explicit recipient and attachment confirmation, restrict attachments to generated PDFs, and document all outbound notification targets. <br>
-Risk: The artifact describes background queue and cron execution. <br>
-Mitigation: Make background execution opt-in, expose task status clearly, and keep serialized locking so only one translation job runs at a time. <br>
+## Use Case:
 
+Developers and researchers use this skill to fetch arXiv papers, translate PDFs into Chinese, and send translated PDFs by email through either a queue or a direct run.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ckqiao/arxiv-translate-email) <br>
-- [arXiv API query example](https://export.arxiv.org/api/query?search_query=ti:SearchR1&max_results=3) <br>
-- [arXiv paper example](https://arxiv.org/abs/2503.09516) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated PDF attachments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces translated PDF files and can send them as email attachments when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Embedded API and SMTP credentials may expose accounts or be reused outside the intended environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove embedded credentials before installation and supply secrets through a managed secret store or environment variables.
+
+Risk: The email helper can send existing local PDF attachments with weak user controls.
+
+Mitigation: Constrain attachment paths to generated translation outputs and validate recipients before sending.
+
+Risk: Detached cron or nohup operation can make job tracking and cancellation unclear.
+
+Mitigation: Use tracked queue jobs with status checks and cancellation, and avoid detached runs unless operations are monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckqiao/skills/arxiv-translate-email)
+- [arXiv API query example](https://export.arxiv.org/api/query?search_query=ti:SearchR1&max_results=3)
+- [arXiv paper example](https://arxiv.org/abs/2503.09516)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and Python invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger PDF translation jobs and send translated PDF attachments by email when executed in a configured environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

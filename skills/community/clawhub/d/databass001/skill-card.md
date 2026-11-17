@@ -1,45 +1,64 @@
-## Description: <br>
-V002 fetches public hot-list data from Bilibili, Douyin, and Toutiao and can summarize the retrieved trend items for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates public trending lists from supported Chinese content platforms and can produce terminal summaries or JSON reports for trend monitoring.
 
-## Publisher: <br>
-[loveyou001](https://clawhub.ai/user/loveyou001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loveyou001](https://clawhub.ai/user/loveyou001)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current public trend lists from supported Chinese media platforms and optionally generate a short text or JSON summary for content monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public Bilibili, Douyin, and Toutiao endpoints during normal use. <br>
-Mitigation: Run it only in environments where this outbound network access is acceptable and review egress policies before deployment. <br>
-Risk: Documentation claims AI summaries, push delivery, scheduling, and additional platform coverage that are not supported by the scanned code. <br>
-Mitigation: Treat those claims as marketing or future work and rely on the code-supported Bilibili, Douyin, and Toutiao behavior unless additional implementation is added. <br>
-Risk: Embedded metadata and registry metadata do not fully align. <br>
-Mitigation: Verify the package identity, publisher handle, and release version before installing or distributing the skill. <br>
+## Use Case:
 
+Creators, analysts, and operators use this skill to fetch public hot-list items from supported platforms and generate a daily text or JSON summary for trend monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loveyou001/databass001) <br>
-- [Bilibili popular endpoint](https://api.bilibili.com/x/web-interface/popular) <br>
-- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/web/hot/search/list/) <br>
-- [Toutiao hot board endpoint](https://www.toutiao.com/hot-event/hot-board/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Console text with optional JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and outbound access to supported public platform endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact files also contain 4.0.1, 1.0.0, and 4.0.0) <br>
+Risk: Install and dependency setup may need review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing, prefer a pinned ClawHub installer version, and avoid running npm install unless the python npm dependency is removed or audited.
+
+Risk: Feature claims may overstate platform support.
+
+Mitigation: Expect only Bilibili, Douyin, and Toutiao fetching to work unless additional platform support is verified.
+
+Risk: Unsupported platforms may require cookies or authorization.
+
+Mitigation: Do not provide account cookies for unsupported platforms.
+
+Risk: The --output option writes to the specified path.
+
+Mitigation: Use --output only with a path that is intended to be created or overwritten.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loveyou001/skills/databass001)
+- [Bilibili popular endpoint](https://api.bilibili.com/x/web-interface/popular)
+- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/web/hot/search/list/)
+- [Toutiao hot board endpoint](https://www.toutiao.com/hot-event/hot-board/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script output is terminal text or JSON when an output path is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, performs public web requests, and may overwrite the file named by --output.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

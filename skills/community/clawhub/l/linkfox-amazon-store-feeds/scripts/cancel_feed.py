@@ -19,8 +19,7 @@ from _spapi_feeds_common import (
     emit_result,
     encode_path_segment,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     load_cli_params,
     require_seller_region,
 )
@@ -45,12 +44,7 @@ def main() -> None:
     seller_id, region = require_seller_region(params)
     path = f"{FEEDS_PATH_PREFIX}/feeds/{encode_path_segment(params['feedId'])}"
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_call(region, path, "DELETE", tokens["accessToken"])
+    proxy = developer_proxy_call(region, path, "DELETE", seller_id)
     out: dict = {"developerProxy": proxy, "resolvedPath": path}
     inline = lf_inline_flag()
     emit_result(out, inline)

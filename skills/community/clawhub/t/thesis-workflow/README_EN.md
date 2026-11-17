@@ -56,47 +56,6 @@ User → Phase 1 (Confirmation Checklist) → Phase 2 (Dual-Version Drafting) �
      → Phase 5 (Finalization) → [Phase 5.1 (Optional AI Removal)] → Phase 5.2 (Word Generation)
 ```
 
-## v1.7.6 New
-
-- **Orchestrator Phase 1.3 Integration**: The original Phase 1 only handled directory confirmation and jumped directly to Phase 2, **skipping proposal attribution**. Now Phase 1.3 is mandatory: user uploads proposal → auto-extract content → AI attributes to directory nodes → fine-grained display of each node's `content_hint` + `matched_paragraphs` → user can manually adjust → confirm to enter Phase 2
-- **Phase 1.3 State Machine**: Uses enum field `phase1_3_status = "pending|submitted|confirmed|skipped"`, mandatory per decision #1: must be `confirmed` to enter Phase 2
-- **5 New Orchestrator Actions**: `phase1_confirm` / `phase1_3_submit` / `phase1_3_update_hint` / `phase1_3_confirm` / `phase1_3_skip`
-- **Test Suite Expanded**: 10 additional tests (63 total), covering full state machine + user adjustment + mandatory checks + end-to-end integration
-
-## v1.7.5 New
-
-- **Pre-Writing Info Check (Enhancement 4)**: Before node writing, automatically check 3 information sources (content_hint / user_hints / bridge). If any one is missing (Standard A), returns `action="needs_user_input"` and Orchestrator asks user for 3 options: provide hint / AI self-generate / skip node
-- **Complete content_hint Pipeline**: `extract_content_hints()` extracts → `save_content_hints_to_outline()` writes to state → `build_prompt_package()` reads and adds `## 开题报告方向参考` (Proposal Direction Reference) section, enabling LLM to write more accurately based on the proposal
-- **Test Suite Expanded**: 8 additional tests (53 total), covering all 3 decision paths + complete end-to-end loop
-
-## v1.7.4 New
-
-- **Cross-Parent Bridge — Chapter Summary Nodes (Enhancement 1)**: Solves the bridge breakage where `2.1` cannot find `1.2`'s `key_conclusion`. Each L1 chapter automatically gets a virtual `__ch{N}_summary__` node appended, which absorbs all L2/L3 key conclusions and synthesizes a 200-300 word summary via LLM, providing coherence for the next chapter's bridge.
-- **Three-tier Bridge Priority**: `generate_bridge()` now has P3 fallback chain: P1 previous node → P2 parent node → P3 previous chapter virtual summary
-- **LLM Failure Safe Degradation**: `synthesize_chapter_summary()` returns `action="ask_user"` when LLM fails, allowing Orchestrator to collect user-written summaries instead of degrading to error-prone concatenation
-- **Test Suite Expanded**: 20 additional tests (45 total), including full end-to-end integration tests
-
-## v2.0.0 🎉
-
-**BREAKING CHANGES**: Upgrading from v1.7.3 is a breaking change.
-
-- **Mandatory Phase 1.3**: Must upload proposal docx OR paste outline text, confirm attribution before Phase 2
-- **outline_state Structure Change**: Virtual nodes `__ch{N}_summary__` auto-inserted at the end of each L1 chapter; node fields add `content_hint`
-- **orchestrate_state Adds 5 phase1_3_* Fields**: Enum `pending|submitted|confirmed|skipped`
-- **generate_bridge 3-tier Fallback Chain**: P1 previous node → P2 parent node → P3 previous chapter virtual summary (new)
-- **Pre-Writing Info Check**: `check_info_scarcity()` — any of `content_hint` / `user_hints` / `bridge` missing → returns `action="needs_user_input"` + 3 decision paths
-
-**New Capabilities**:
-
-- **Step 9** — Cross-Parent Bridge: chapter summary nodes + P3 fallback
-- **Step 10** — Pre-Writing Info Check: 3 information sources + Standard A + 3 decision paths
-- **Step 11** — Orchestrator Phase 1.3 Integration: docx/text parse entry + attribution state machine
-- **Step 12** — End-to-end Integration Tests
-
-**Migration Guide**: See `CHANGELOG.md` v2.0.0 section.
-
-Total tests: **72**, all passing ✅. See `CHANGELOG.md` for details.
-
 ## v1.7.3 New
 
 - **Orchestrator Auto-Advance**: `scripts/orchestrator.py` decision engine + Review Loop auto-revision

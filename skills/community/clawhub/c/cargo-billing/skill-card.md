@@ -1,44 +1,65 @@
-## Description: <br>
-Pull usage metrics, check subscription status, view invoices, and manage credits using the Cargo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports Cargo credit balances, usage by workflow, connector, or agent, subscription details, and invoices.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-Cargo workspace admins and developers use this skill to inspect billing analytics, usage reports, credit consumption, subscription details, invoice history, and billing portal access for a Cargo workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires admin-level billing access and sensitive credentials. <br>
-Mitigation: Install only when Cargo billing administration is needed, prefer OAuth or a narrowly managed admin token, verify the workspace with cargo-ai whoami, and rotate or revoke credentials when access is no longer required. <br>
-Risk: Invoice, card, portal-session, usage, and workflow-run commands may expose billing information or consume credits. <br>
-Mitigation: Review commands before execution, share outputs only with authorized users, check remaining credits before large runs, and estimate batch cost from a small sample before scaling. <br>
+## Use Case:
 
+Workspace administrators use this skill to review credit balances, usage across workflows and resources, subscription details, invoices, and payment setup.
 
-## Reference(s): <br>
-- [Cargo Billing on ClawHub](https://clawhub.ai/cargo-ai/cargo-billing) <br>
-- [Cargo skills repository](https://github.com/getcargohq/cargo-skills) <br>
-- [Usage metrics examples](references/examples/usage-metrics.md) <br>
-- [Response shapes](references/response-shapes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Cargo CLI, a Cargo account, and admin-level OAuth or API-token access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security review rates the skill suspicious because cost estimation can launch a live workflow, causing side effects beyond reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the do-not-install guidance and inspect the workflow action before use; require explicit user approval before launching a workflow.
+
+Risk: The CLI install metadata uses an unpinned latest package, so the installed version may change over time.
+
+Mitigation: Select and verify an approved CLI version before installing it.
+
+Risk: Security guidance flags unsafe handling instructions for payment details.
+
+Mitigation: Use the documented --card-stdin option or the Stripe-hosted form instead of passing card details as command-line flags.
+
+Risk: The security review says missing local references prevented complete analysis, so the scan does not establish that unreviewed material is safe.
+
+Mitigation: Review the complete skill bundle and its referenced material before installation.
+
+## Reference(s):
+
+- [Cargo Skills project homepage](https://github.com/getcargohq/cargo-skills)
+- [Cargo Billing on ClawHub](https://clawhub.ai/cargo-ai/skills/cargo-billing)
+- [Usage metrics examples](references/examples/usage-metrics.md)
+- [Response shapes](references/response-shapes.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON billing data summarized in text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credit balances, usage breakdowns, subscription and invoice details, or payment setup guidance.]
+
+## Skill Version(s):
+
+2.1.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

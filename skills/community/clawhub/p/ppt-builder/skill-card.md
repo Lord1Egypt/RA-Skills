@@ -1,46 +1,66 @@
-## Description: <br>
-Build high-quality presentation decks from scratch, covering brainstorming, content writing, visual design, AI image generation, iterative QA, and final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-quality presentation decks from scratch, covering brainstorming, content writing, visual design, AI image generation, iterative QA, and final delivery with OpenRouter and Nano Banana Pro.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to plan, write, design, generate, review, and deliver presentation decks from a topic, source material, or existing draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide prompts may be sent to external image-generation providers such as Ofox or OpenRouter. <br>
-Mitigation: Do not include confidential strategy, customer data, regulated information, or unreleased product details unless the organization permits that provider use. <br>
-Risk: The workflow requires sensitive API credentials for image generation. <br>
-Mitigation: Use a dedicated API key with appropriate access controls and avoid sharing generated configuration files that contain secrets. <br>
-Risk: Generated slide images can contain rendering errors, incorrect text, or misleading visuals. <br>
-Mitigation: Review generated slides before sharing and use the QA workflow to rerun only affected pages. <br>
+## Use Case:
 
+Developers, content creators, and presentation authors use this skill to turn a topic or source material into a structured presentation workflow, including spec, content, design, image prompts, QA, and final deck assembly. It is suitable for product demos, pitch decks, training materials, and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dizhu/ppt-builder) <br>
-- [Prompt Writing Guide for Nano Banana Pro](references/prompt-writing-guide.md) <br>
-- [QA Fix Patterns](references/qa-fix-patterns.md) <br>
-- [Spec Review Checklist](references/spec-review-checklist.md) <br>
-- [Writing Principles](references/writing-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON slide specifications, Python commands, and generated presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce content.md, design.md, slides.json, slide images, PPTX, and optional PDF artifacts through the bundled generation workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: ClawHub server release metadata) <br>
+Risk: Slide prompts and deck content may be sent to third-party image APIs such as Ofox or OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers, review their data handling, and avoid confidential, regulated, customer, financial, or unreleased business material unless explicitly approved.
+
+Risk: The artifact claims no external SaaS dependency while its generation path uses external image API endpoints.
+
+Mitigation: Disclose the external provider dependency before use and require users to configure API credentials only after accepting that dependency.
+
+Risk: Generated slide images can contain altered text, unreadable Chinese, prompt leakage, incorrect numbers, or inconsistent styling.
+
+Mitigation: Run the documented per-slide QA process, rerun only affected slides, and use the HTML plus Playwright fallback when text rendering remains unreliable.
+
+Risk: Local execution requires Python dependencies and API credentials.
+
+Mitigation: Run in a virtual environment, pin dependencies before installing python-pptx, and keep API keys in environment variables rather than embedding them in slide files.
+
+## Reference(s):
+
+- [Prompt Writing Guide for Nano Banana Pro](artifact/references/prompt-writing-guide.md)
+- [QA Fix Patterns](artifact/references/qa-fix-patterns.md)
+- [Spec Review Checklist](artifact/references/spec-review-checklist.md)
+- [Writing Principles](artifact/references/writing-principles.md)
+- [Example slides JSON](artifact/scripts/slides.example.json)
+- [ClawHub skill page](https://clawhub.ai/dizhu/skills/ppt-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON slide configuration, shell commands, and optional generated PPTX/PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate slide JPG files and assemble them into a PPTX when configured with approved image API credentials.]
+
+## Skill Version(s):
+
+1.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

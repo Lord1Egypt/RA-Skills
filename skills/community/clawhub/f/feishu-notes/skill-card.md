@@ -1,46 +1,59 @@
-## Description: <br>
-Read, write, and manage Feishu documents through the Feishu Open API, including document creation, content reading, formatted appends, image insertion, and OAuth token refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, write, and manage Feishu (\u98de\u4e66) documents via the Open API, including document creation, content reading, text appending, and OAuth token refresh.
 
-## Publisher: <br>
-[windsjj20](https://clawhub.ai/user/windsjj20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windsjj20](https://clawhub.ai/user/windsjj20)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent create, read, and update Feishu notes in a user's cloud drive after Feishu app setup and OAuth authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Feishu cloud-drive access may allow reads or writes beyond the intended notes workflow. <br>
-Mitigation: Use a dedicated Feishu app and account or workspace with only the access needed for the intended documents, and review requested document IDs before execution. <br>
-Risk: The documented folder limit is advisory because evidence says it is not enforced. <br>
-Mitigation: Do not rely on the folder token as a hard security boundary; validate document locations and permissions outside the skill before use. <br>
-Risk: Image insertion can fetch arbitrary image URLs. <br>
-Mitigation: Use only trusted image URLs and avoid internal, private, or sensitive network locations. <br>
-Risk: OAuth tokens and app credentials are stored locally. <br>
-Mitigation: Store credentials with restrictive file permissions, rotate credentials if exposed, and remove local token files when the skill is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to create, read, append, and format Feishu notes in a user's personal cloud drive after Feishu Open Platform and OAuth setup.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu Open API base](https://open.feishu.cn/open-apis) <br>
-- [ClawHub skill page](https://clawhub.ai/windsjj20/feishu-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text output with Feishu document links, document content, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu App ID, App Secret, OAuth user token, and optional folder token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad Feishu drive access, which can expose or modify more documents than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Feishu app and account where broad drive access is acceptable, and avoid granting access to sensitive drives.
+
+Risk: The claimed folder-only boundary is not enforced by the evidence security summary.
+
+Mitigation: Treat the folder token as an organization aid, and validate document IDs and folder membership before allowing read, write, move, or delete actions.
+
+Risk: Image insertion can fetch arbitrary URLs supplied to the tool.
+
+Mitigation: Only allow trusted image URLs or vetted image data, and do not pass untrusted prompt-supplied URLs directly to the skill.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn)
+- [ClawHub skill page](https://clawhub.ai/windsjj20/skills/feishu-notes)
+- [Publisher profile](https://clawhub.ai/user/windsjj20)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and Feishu document links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Feishu documents through authenticated Open API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

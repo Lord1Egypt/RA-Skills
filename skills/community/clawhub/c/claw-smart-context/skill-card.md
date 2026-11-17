@@ -1,36 +1,52 @@
-## Description: <br>
-Token-efficient agent behavior - response sizing, context pruning, tool efficiency, and delegation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token-efficient agent behavior - response sizing, context pruning, tool efficiency, and delegation.
 
-## Publisher: <br>
-[Joe3112](https://clawhub.ai/user/Joe3112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joe3112](https://clawhub.ai/user/joe3112)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide an agent toward concise responses, selective context loading, efficient tool use, and cost-aware delegation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages brevity and lower token or tool usage, which can reduce verification on sensitive or high-impact work. <br>
-Mitigation: For sensitive or high-impact work, explicitly ask the agent to verify results, avoid delegation, and be conservative with shell commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent users use this skill to make an assistant more concise and cost-aware during routine work. It guides response sizing, context loading, tool-call batching, and delegation decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance and concise text responses, with shell commands when task execution requires them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, credentials, persistence, or hidden data movement identified by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may make an agent more terse and less likely to perform redundant checks on low-risk work.
+
+Mitigation: Override the skill or require explicit verification when careful review, safety, security, or high-stakes accuracy matters.
+
+Risk: The skill encourages avoiding tools when an answer appears possible from context, which can be unsuitable for current or source-grounded questions.
+
+Mitigation: Require source checks for time-sensitive, niche, legal, financial, medical, security, or otherwise high-accuracy tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joe3112/skills/claw-smart-context)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, shell commands]
+
+**Output Format:** [Plain text or Markdown guidance, with shell commands only when task-relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Promotes concise responses, targeted context loading, batched independent tool calls, and reduced redundant checks for low-risk work.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

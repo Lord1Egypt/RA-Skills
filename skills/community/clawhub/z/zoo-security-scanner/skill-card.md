@@ -1,44 +1,60 @@
-## Description: <br>
-Scan any URL, skill, or infrastructure for security vulnerabilities using the ZOO Security Scanner API with x402 payment in USDC and no API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan URLs, skills, and infrastructure for security vulnerabilities using the paid ZOO Security Scanner API with x402 USDC payments and no API keys.
 
-## Publisher: <br>
-[crazycompanyinc](https://clawhub.ai/user/crazycompanyinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazycompanyinc](https://clawhub.ai/user/crazycompanyinc)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use this skill to request security scans of URLs, skills, or infrastructure and interpret returned findings, scores, and recommendations. It is intended for authorized scanning workflows that may involve paid third-party API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send scan targets to ZOO Technologies. <br>
-Mitigation: Use it only for targets you own or are authorized to test, and avoid submitting sensitive internal targets without approval. <br>
-Risk: The skill can trigger USDC payments through x402. <br>
-Mitigation: Require explicit human approval before each scan or payment and verify current pricing before use. <br>
-Risk: Security scan results may be incomplete or require interpretation. <br>
-Mitigation: Review findings before acting on them and use additional validation for high-impact remediation decisions. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to request vulnerability scans for authorized URLs, skills, or infrastructure and interpret the returned score, findings, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/crazycompanyinc/zoo-security-scanner) <br>
-- [ZOO Technologies](https://zootechnologies.com) <br>
-- [x402 Discovery](https://xgate.run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown with curl examples and JSON scan responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan results include status, score, findings, and recommendations when returned by the third-party API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can cause an agent to spend USDC through x402 payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for every payment and verify the amount, Base network, recipient address, and scan target before approval.
+
+Risk: Scan targets are submitted to an outside hosted API.
+
+Mitigation: Use the skill only for targets the user owns or is authorized to test, and avoid confidential internal hosts unless disclosure to the provider is acceptable.
+
+Risk: The security review marked the release suspicious because the skill lacks enough user-control safeguards.
+
+Mitigation: Review before installing and disable unattended wallet signing or autonomous scan execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/crazycompanyinc/skills/zoo-security-scanner)
+- [ZOO Technologies](https://zootechnologies.com)
+- [ZOO Security Scanner API](https://api.zootechnologies.com/scan)
+- [x402 Discovery](https://xgate.run)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results include status, score, findings, and recommendations when the hosted service returns a response.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

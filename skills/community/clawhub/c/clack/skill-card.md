@@ -1,43 +1,63 @@
-## Description: <br>
-Clack deploys and manages a self-hosted WebSocket voice relay server for OpenClaw, bridging speech-to-text, agent responses, and text-to-speech across local and cloud providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clack deploys and manages a self-hosted WebSocket voice relay for OpenClaw that bridges voice input through STT, an OpenClaw agent, and TTS for real-time voice conversations.
 
-## Publisher: <br>
-[fbn3799](https://clawhub.ai/user/fbn3799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fbn3799](https://clawhub.ai/user/fbn3799)
 
-## Use Case: <br>
-Developers and OpenClaw users use Clack to set up secure, self-hosted voice chat with an agent, choose STT/TTS providers, and manage pairing, service, and runtime configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The relay stores sensitive voice context and authentication tokens. <br>
-Mitigation: Install only on a server you control, treat the relay token like a password, and avoid shared or multi-user deployments unless users understand transcript and context retention. <br>
-Risk: Pairing and authentication controls may be weaker than the documentation suggests. <br>
-Mitigation: Firewall port 9878, prefer TLS or Tailscale, and review the generated systemd unit plus config.json permissions before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use Clack to install and operate a voice interface for an OpenClaw agent, including secure pairing, provider selection, conversation history, and local or cloud STT/TTS modes.
 
-## Reference(s): <br>
-- [Clack ClawHub listing](https://clawhub.ai/fbn3799/clack) <br>
-- [Clack skill homepage](https://github.com/fbn3799/clack-skill) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Clack iOS app](https://clack-app.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide setup of a systemd-managed relay service and provider credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.3 (source: SKILL.md frontmatter, release evidence, CHANGELOG released 2026-02-26) <br>
+Risk: The installer and service use root-level setup, systemd persistence, and host network configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, prefer a dedicated host, and restrict firewall and Tailscale ACLs tightly.
+
+Risk: Relay and gateway tokens grant access to protected voice relay and OpenClaw gateway functions.
+
+Mitigation: Protect and rotate relay and gateway tokens, avoid shared machines, and keep provider API keys in restricted configuration files.
+
+Risk: The update command pulls code and restarts the service.
+
+Mitigation: Review updates before running clack update until the service runs under an unprivileged account with pinned dependencies.
+
+## Reference(s):
+
+- [Clack ClawHub page](https://clawhub.ai/fbn3799/skills/clack)
+- [Clack source homepage](https://github.com/fbn3799/clack-skill)
+- [Clack app](https://clack-app.com)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [README](README.md)
+- [Full protocol docs](SKILL.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, management, pairing, update, and troubleshooting instructions for a Linux-hosted voice relay service.]
+
+## Skill Version(s):
+
+1.5.3 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Ingests user-provided media links or files, asks for intent when needed, and saves a structured note in a personal Obsidian library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Librarian ingests user-provided URLs or files, identifies media type and intent, summarizes key details, tags the content, and saves a structured Markdown note in a personal Obsidian-style library.
 
-## Publisher: <br>
-[EaRu723](https://clawhub.ai/user/EaRu723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earu723](https://clawhub.ai/user/earu723)
 
-## Use Case: <br>
-External users and developers use this skill to turn URLs or files into concise, tagged Obsidian notes that preserve source metadata, key ideas, structure, emotional register, and intended follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided links or files may be persisted into local Obsidian notes, including source URLs, filenames, summaries, and inferred intent. <br>
-Mitigation: Use the skill only with content that is acceptable to save locally, and review generated library notes before sharing or syncing the workspace. <br>
-Risk: X post handling uses the FxTwitter third-party service for tweet retrieval. <br>
-Mitigation: Avoid private, sensitive, or confidential X links unless third-party retrieval is acceptable for the use case. <br>
-Risk: Fetched content may be incomplete for sources such as YouTube videos without transcripts, paywalled articles, or podcast audio. <br>
-Mitigation: Treat generated notes as summaries of available source material and provide transcripts or pasted content when deeper analysis is required. <br>
+## Use Case:
 
+External users and developers use this skill to save articles, videos, PDFs, images, podcasts, and other shared content into a structured personal knowledge library for later reference, analysis, or downstream creative work.
 
-## Reference(s): <br>
-- [Media Type Fetch Strategies](references/media-types.md) <br>
-- [ClawHub skill page](https://clawhub.ai/EaRu723/digital-librarian) <br>
-- [Publisher profile](https://clawhub.ai/user/EaRu723) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown Obsidian note plus a brief text confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local notes under library/YYYY-MM-DD-[slug].md and may include source URLs or filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private or sensitive URLs and files may be fetched, summarized, and stored in local library notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content appropriate for local storage, and review saved notes before sharing or syncing the library folder.
+
+Risk: X/Twitter links are fetched through FxTwitter, which may expose the shared URL to that service.
+
+Mitigation: Avoid using private or sensitive X/Twitter URLs with this workflow, and review fetched content before relying on the note.
+
+Risk: Some media types may produce incomplete notes when transcripts, full text, or audio transcription are unavailable.
+
+Mitigation: Treat those notes as summaries of available metadata unless the user supplies the missing transcript or source text.
+
+## Reference(s):
+
+- [Media Type Fetch Strategies](references/media-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/earu723/skills/digital-librarian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown note file plus concise text confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes notes under library/YYYY-MM-DD-[slug].md and may include a follow-up prompt when user intent is unclear.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

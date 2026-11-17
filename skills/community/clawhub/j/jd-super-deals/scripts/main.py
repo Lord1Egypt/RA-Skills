@@ -8,6 +8,7 @@
 import sys
 import json
 import os
+import socket
 import urllib.request
 import urllib.error
 
@@ -19,6 +20,9 @@ CHANNEL_NAME = "超级补贴"
 TIMEOUT_SHORT = 15
 TIMEOUT_LONG = 90
 
+# 噪音标签：这些标签对用户无意义，过滤掉
+NOISE_TAGS = {"7天无理由退货", "自营", "正品", "7天无理由", "无理由退货"}
+
 
 def _scf_call(tool_name, params, timeout=TIMEOUT_SHORT):
     """调用SCF代理"""
@@ -28,6 +32,8 @@ def _scf_call(tool_name, params, timeout=TIMEOUT_SHORT):
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
+    except (socket.timeout, TimeoutError):
+        return {"ok": False, "error": "timeout"}
     except urllib.error.URLError as e:
         if "timed out" in str(e).lower():
             return {"ok": False, "error": "timeout"}
@@ -38,6 +44,13 @@ def _scf_call(tool_name, params, timeout=TIMEOUT_SHORT):
         if "timed out" in str(e).lower():
             return {"ok": False, "error": "timeout"}
         return {"ok": False, "error": str(e)}
+
+
+def _fmt_num(n):
+    """数字简写：≥10000 → X万"""
+    if n >= 10000:
+        return f"{n/10000:.1f}万"
+    return str(n)
 
 
 def _format_item(g):
@@ -64,7 +77,7 @@ def _format_item(g):
         "shop_name": shop_name,
         "brand_name": g.get("brandName", ""),
         "is_self": bool(is_jd),
-        "tags": g.get("skuTags", []),
+        "tags": [t for t in g.get("skuTags", []) if t not in NOISE_TAGS],
         "image_url": g.get("imageUrl", ""),
         "buy_url": material_url,
         "category": g.get("cid1Name", ""),
@@ -74,6 +87,20 @@ def _format_item(g):
         "good_comments": float(g.get("goodCommentsShare", 0) or 0),
         "score": g.get("_score", 0),
     }
+
+
+def _build_category_overview(items):
+    """从商品列表提取品类概览，生成动态示例关键词"""
+    cat_counter = {}
+    for g in items:
+        cat = g.get("cid1Name", "")
+        if cat:
+            cat_counter[cat] = cat_counter.get(cat, 0) + 1
+    top_cats = sorted(cat_counter.items(), key=lambda x: -x[1])[:3]
+    if not top_cats:
+        return ""
+    keywords = [cat[:2] for cat, _ in top_cats]
+    return "试试搜「" + "」「".join(keywords) + "」"
 
 
 def _build_summary(total, page, page_size, items_len, channel_name, keyword, max_price):
@@ -90,12 +117,10 @@ def _build_summary(total, page, page_size, items_len, channel_name, keyword, max
         conditions.append(f"{int(max_price)}元以内")
     cond_str = "且".join(conditions) if conditions else ""
 
-    quality_desc = f"已精选好评≥98%、销量≥5000的京东自营商品"
-
     if cond_str:
-        parts.append(f"{cond_str}的{channel_name}好货共{total}条，{quality_desc}。")
+        parts.append(f"{cond_str}的{channel_name}好货共{total}条。")
     else:
-        parts.append(f"{channel_name}好货共{total}条，{quality_desc}。")
+        parts.append(f"{channel_name}好货共{total}条。")
 
     if has_more:
         parts.append(f"当前第{page}页，显示第{page_start}-{page_end}条，还有{total - page_end}条。说\"下一页\"查看更多。")
@@ -160,6 +185,9 @@ def tool_get_deals(params):
 
     results = [_format_item(g) for g in items]
     summary = _build_summary(total, page, page_size, len(results), CHANNEL_NAME, keyword, max_price)
+    cat_overview = _build_category_overview(items)
+    if cat_overview:
+        summary += " " + cat_overview
 
     return json.dumps({
         "content": json.dumps(results, ensure_ascii=False, indent=2),

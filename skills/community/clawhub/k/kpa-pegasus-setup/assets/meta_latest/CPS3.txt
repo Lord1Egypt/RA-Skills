@@ -1,0 +1,35 @@
+collection: CPS3
+sort-by: 10
+shortname: cps3
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/fbalpha2012_cps3_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: jojo
+file: jojo.zip
+assets.box_front: Imgs/jojo.png
+description: 《jojo》，由 Capcom 出品，1998 年发行，CPS3 街机 平台。
+publisher: Capcom
+release: 1998
+game: jojoba
+file: jojoba.zip
+assets.box_front: Imgs/jojoba.png
+description: 《jojoba》，由 Capcom 出品，1999 年发行，CPS3 街机 平台。
+publisher: Capcom
+release: 1999
+game: redearth
+file: redearth.zip
+assets.box_front: Imgs/redearth.png
+description: 《redearth》，由 Capcom 出品，1996 年发行，CPS3 街机 平台。
+publisher: Capcom
+release: 1996
+game: sfiii2
+file: sfiii2.zip
+assets.box_front: Imgs/sfiii2.png
+description: 《sfiii2》，由 Capcom 出品，1997 年发行，CPS3 街机 平台。
+publisher: Capcom
+release: 1997
+game: sfiii3
+file: sfiii3.zip
+assets.box_front: Imgs/sfiii3.png
+description: 《sfiii3》，由 Capcom 出品，1999 年发行，CPS3 街机 平台。
+publisher: Capcom
+release: 1999

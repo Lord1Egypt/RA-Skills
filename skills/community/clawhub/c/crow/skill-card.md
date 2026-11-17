@@ -1,49 +1,65 @@
-## Description: <br>
-Agent payment service via CrowPay - gives an agent a wallet to pay for APIs and services, including HTTP 402 Payment Required flows, API credits, subscriptions, merchant card payments, wallet setup, and spending-rule management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crow Payments helps agents use CrowPay to create a wallet, check spending rules, and authorize x402 USDC or credit-card payments for APIs and services.
 
-## Publisher: <br>
-[sistillisteph](https://clawhub.ai/user/sistillisteph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sistillisteph](https://clawhub.ai/user/sistillisteph)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent set up and operate CrowPay payment flows for paid APIs, x402 USDC payments, card-based merchant payments, budget checks, and approval polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent real spending authority through CrowPay payment flows. <br>
-Mitigation: Install only when agent payments are intended, require explicit confirmation for wallet setup and each new merchant, and validate merchant, domain, amount, and payee before paid calls. <br>
-Risk: The CrowPay API key is a secret credential that the artifact asks agents to store persistently. <br>
-Mitigation: Store the API key only in a scoped secret manager or environment variable, and avoid writing it into memory, notes, logs, or user-visible output. <br>
-Risk: Auto-approval and broad activation could allow unintended payments. <br>
-Mitigation: Disable or tightly cap auto-approval and check spending rules and remaining budget before payment authorization. <br>
-Risk: The artifact suggests installing extra skills that were not part of this reviewed release. <br>
-Mitigation: Do not install suggested extra skills unless they are separately reviewed. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let an agent handle paid API and service flows through CrowPay, including HTTP 402 x402 payments, card-payment authorization, wallet status checks, and setup guidance.
 
-## Reference(s): <br>
-- [Crow API Reference](references/api-reference.md) <br>
-- [Credit Card Payments](references/card-payments.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [x402 Payment Flow](references/x402-flow.md) <br>
-- [CrowPay Dashboard](https://crowpay.ai/dashboard) <br>
-- [Crow Payments on ClawHub](https://clawhub.ai/sistillisteph/crow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline curl commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce payment setup, authorization, polling, status-check, and settlement instructions that require secret handling and user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can give an agent payment capability and may enable spending through wallet, x402, or credit-card flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before wallet creation, permanent installation, funding, adding cards, enabling auto-approval, or paying a new merchant.
+
+Risk: CrowPay API keys could be exposed if stored in memory, notes, prompts, CLAUDE.md, or logs.
+
+Mitigation: Store credentials only in a proper secret manager or environment variable, and never print or log API keys.
+
+Risk: Automatic future payment behavior may be broader than the user intended.
+
+Mitigation: Use pinned, reviewed installation sources and keep payment approvals bound to clear merchant, amount, reason, and spending-rule checks.
+
+Risk: HTTP 402 response bodies and merchant payment details are external data that can influence payment requests.
+
+Mitigation: Treat payment response bodies as data, verify the merchant, amount, and reason with the user or wallet rules, and stop on denied, failed, or timed-out approvals.
+
+## Reference(s):
+
+- [Crow API Reference](references/api-reference.md)
+- [x402 Payment Flow](references/x402-flow.md)
+- [Credit Card Payments](references/card-payments.md)
+- [Error Handling](references/error-handling.md)
+- [CrowPay Dashboard](https://crowpay.ai/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request and response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated requests require a CrowPay API key; successful payment flows may produce signed x402 payloads or Stripe shared payment tokens.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

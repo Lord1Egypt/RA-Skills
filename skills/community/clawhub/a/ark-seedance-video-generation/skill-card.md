@@ -1,48 +1,67 @@
-## Description: <br>
-End-to-end Volcengine Ark Seedance video generation using ARK_API_KEY and the bundled Node.js runner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ark Seedance Video guides agents through Volcengine Ark Seedance video generation with a bundled Node.js runner for task creation, polling, task management, downloads, and artifact handling.
 
-## Publisher: <br>
-[iunclear](https://clawhub.ai/user/iunclear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iunclear](https://clawhub.ai/user/iunclear)
 
-## Use Case: <br>
-Developers and tool-using agents use this skill to generate and manage Volcengine Ark Seedance video tasks, including text-to-video, image-to-video, polling, downloads, task inspection, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, remote URLs, and selected local media can be sent to Volcengine Ark during generation. <br>
-Mitigation: Use only inputs that are approved for Ark processing, and disclose local media uploads before execution. <br>
-Risk: Task deletion can remove Ark task records when the delete command is used with a task ID. <br>
-Mitigation: Review task IDs carefully before deletion and prefer inspection or listing before destructive task management. <br>
-Risk: Generated video and last-frame URLs may expire before assets are saved locally. <br>
-Mitigation: Use the run or create-with-wait workflow and download outputs promptly into the workspace output directory. <br>
+## Use Case:
 
+Developers and tool-using agents use this skill to generate and manage Seedance text-to-video and media-conditioned video tasks through Volcengine Ark, including model selection, API authentication, polling, verification, and asset download.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iunclear/ark-seedance-video-generation) <br>
-- [Ark Video API Notes](references/ark-video-api.md) <br>
-- [Video Models](references/video-models.md) <br>
-- [Video Models JSON](references/video-models.json) <br>
-- [Payload Patterns](references/payload-patterns.md) <br>
-- [Ark create video task API sample](https://www.volcengine.com/docs/82379/1520757) <br>
-- [LAS Seedance video generation supported model list](https://www.volcengine.com/docs/6492/2165104) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown status report with shell command usage and generated local JSON or media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and ARK_API_KEY; generated request.json is intended to be sanitized before storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The runner can use override flags or environment variables for API keys and base URLs, which can expose credentials or route requests to an unintended endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide ARK_API_KEY through a secure environment mechanism, use the documented Ark endpoint, and avoid --api-key, --base-url, or ARK_BASE_URL unless reviewed.
+
+Risk: Downloading from task JSON or generated URLs can place untrusted or sensitive media artifacts in the workspace.
+
+Mitigation: Use task.json files only from trusted runs, store outputs in workspace-local directories, and treat prompts, task files, generated videos, and downloads as sensitive.
+
+Risk: Local image, video, or audio inputs are uploaded to Volcengine Ark for generation.
+
+Mitigation: Disclose the upload before execution and stop if the operator does not consent.
+
+## Reference(s):
+
+- [Ark Video API Notes](references/ark-video-api.md)
+- [Payload Patterns](references/payload-patterns.md)
+- [Video Models](references/video-models.md)
+- [Video Models JSON](references/video-models.json)
+- [Ark auth and base URL](https://www.volcengine.com/docs/82379/1399008)
+- [Create video task](https://www.volcengine.com/docs/82379/1520757)
+- [Get video task](https://www.volcengine.com/docs/82379/1521309)
+- [List video tasks](https://www.volcengine.com/docs/82379/1521675)
+- [Delete video task](https://www.volcengine.com/docs/82379/1521720)
+- [LAS Seedance supported model list](https://www.volcengine.com/docs/6492/2165104)
+- [ClawHub skill page](https://clawhub.ai/iunclear/skills/ark-seedance-video-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, Generated media assets, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request and task files, and downloaded video or last-frame assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and ARK_API_KEY; generated video and last-frame URLs should be downloaded promptly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

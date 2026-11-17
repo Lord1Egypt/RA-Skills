@@ -1,44 +1,54 @@
-## Description: <br>
-Rewrite or draft text in a Don Corleone (Godfather)-inspired patriarchal dealmaker writing style: formal, measured, loyal-favors oriented, and decisive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite or draft text in a Don Corleone-inspired patriarchal dealmaker writing style that is formal, measured, loyal-favors oriented, decisive, and professional.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to rewrite or draft professional messages with calm authority, clear terms, reciprocal obligation framing, and firm boundaries. It supports requests such as granting or denying a favor, negotiating terms, correcting accountability gaps, or setting expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated messages can sound intentionally firm and authority-heavy. <br>
-Mitigation: Review generated text before sending and soften wording when the recipient, context, or policy requires a less forceful tone. <br>
-Risk: The style guidance includes anti-AI writing advice that could be misused to misrepresent authorship. <br>
-Mitigation: Use the guidance for readability and tone only, and disclose AI assistance where required by policy, contract, or law. <br>
-Risk: A crime-drama-inspired style can drift toward intimidation if prompted for pressure. <br>
-Mitigation: Keep pressure limited to professional consequences such as deadlines, process escalation, and clear next steps. <br>
+## Use Case:
 
+External users and employees use this skill to rewrite or draft concise, formal communications with calm authority, clear terms, respectful boundaries, and reciprocal obligation framing.
 
-## Reference(s): <br>
-- [The Godfather reference](https://en.wikipedia.org/wiki/The_Godfather) <br>
-- [ClawHub skill page](https://clawhub.ai/anugotta/don-corleone-writing-style) <br>
-- [Publisher profile](https://clawhub.ai/user/anugotta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text, usually a rewritten message or draft plus a brief rationale when required by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional variants only when requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated text may sound too forceful for workplace or customer-facing contexts because the style intentionally adds firm authority and obligation framing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text before sending and soften terms, deadlines, or obligation language when the audience or setting requires a lighter tone.
+
+Risk: A Godfather-inspired style request could drift toward threats, harassment, violence, criminal framing, or copied dialogue.
+
+Mitigation: Keep outputs professional, avoid explicit violence and harassment, and do not reproduce dialogue or quotes from The Godfather.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anugotta/skills/don-corleone-writing-style)
+- [The Godfather background](https://en.wikipedia.org/wiki/The_Godfather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with rewritten or drafted prose and a brief rationale when rewriting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional tone variants when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

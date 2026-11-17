@@ -1,42 +1,60 @@
-## Description: <br>
-Write and typeset richly illustrated books with Typst, including text, CeTZ vector art, AI-generated images, and full layout control to PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and typeset richly illustrated books with Typst, including text, CeTZ vector art, AI-generated images, and full layout control to PDF.
 
-## Publisher: <br>
-[bezkom](https://clawhub.ai/user/bezkom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bezkom](https://clawhub.ai/user/bezkom)
 
-## Use Case: <br>
-Authors, designers, educators, and developers use this skill to plan, write, illustrate, and compile Typst book projects into PDF and PNG outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Typst installation step downloads and runs a release binary. <br>
-Mitigation: Review the Typst download command and only run it if you trust GitHub-hosted Typst releases. <br>
-Risk: The workflow can create book files, embed generated or external images, compile PDFs and PNGs, and download Typst preview packages. <br>
-Mitigation: Run it in a workspace you control and review output paths, referenced assets, and package downloads before compiling. <br>
+## Use Case:
 
+External authors, designers, and developers use this skill to create and typeset illustrated books in Typst, combining prose, CeTZ vector art, generated images, reusable layouts, and PDF or PNG compilation guidance.
 
-## Reference(s): <br>
-- [Typst project](https://github.com/typst/typst) <br>
-- [CeTZ Reference for Book Illustrations](references/cetz-reference.md) <br>
-- [Typst Syntax Quick Reference](references/typst-syntax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Typst and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project structure suggestions, Typst source snippets, image-generation guidance, and compile commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Install guidance downloads a mutable native Typst executable without checksum or signature verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the Typst release before use; prefer an OS package manager or verify the downloaded binary before adding it to PATH.
+
+Risk: The suggested install path can place a newly downloaded binary in a persistent user PATH location.
+
+Mitigation: Only copy binaries into persistent PATH locations when intentionally approved for the environment.
+
+Risk: Typst and CeTZ package use can require network access during setup or first compilation.
+
+Mitigation: Use controlled package caches or review dependencies before compiling in restricted environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bezkom/skills/typst-book)
+- [Typst Project](https://github.com/typst/typst)
+- [CeTZ Reference for Book Illustrations](references/cetz-reference.md)
+- [Typst Syntax Quick Reference](references/typst-syntax.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Typst code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project structure, Typst source files, generated image prompts, PDF/PNG compilation commands, and visual review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

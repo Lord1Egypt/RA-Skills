@@ -1,44 +1,62 @@
-## Description: <br>
-Secure secret handoff and credential setup wizard for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Confidant helps AI agents request, receive, and save user-provided secrets through a human-in-the-loop handoff instead of chat.
 
-## Publisher: <br>
-[ericsantos](https://clawhub.ai/user/ericsantos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericsantos](https://clawhub.ai/user/ericsantos)
 
-## Use Case: <br>
-Developers and agent operators use Confidant to request sensitive credentials from users through a browser-based handoff flow, then save or apply those credentials without exposing them in chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The secret handoff flow depends on unpinned external npm tooling. <br>
-Mitigation: Install only after trusting the @aiconnect/confidant and localtunnel packages, and review package provenance before use. <br>
-Risk: Public tunnel mode can expose the local credential handoff server beyond the local machine. <br>
-Mitigation: Prefer local-only use, enable tunnels only when needed for remote users, and stop tunnel and server processes after the handoff. <br>
-Risk: Secrets can be printed to stdout or written to under-scoped or arbitrary paths. <br>
-Mitigation: Avoid stdout mode, use scoped and revocable secrets, and verify each destination path before saving credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Confidant ClawHub release](https://clawhub.ai/ericsantos/confidant) <br>
-- [Publisher profile: ericsantos](https://clawhub.ai/user/ericsantos) <br>
-- [Confidant homepage](https://github.com/aiconnect-cloud/confidant) <br>
-- [localtunnel documentation](https://theboroer.github.io/localtunnel-www/) <br>
+## Use Case:
 
+Developers and AI agent operators use Confidant to collect API keys, passwords, and tokens from users through a web handoff, then save them to configured files or environment setup without exposing secrets in chat.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce secure request URLs, saved credential files, environment variable setup guidance, diagnostics, and machine-readable status or error JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential handoff can involve local services or public tunnel URLs.
+
+Mitigation: Use the skill only in a trusted, clean environment and avoid public tunneling unless the user is remote and remote submission is necessary.
+
+Risk: Direct secret, get, or stdout flows can expose credentials outside the intended save path.
+
+Mitigation: Prefer the documented request workflow with a service or explicit save path, and avoid stdout or direct secret flows for real credentials.
+
+Risk: Setup and fallback execution can install or run unpinned npm packages.
+
+Mitigation: Review and pin the Confidant and localtunnel dependencies before use in managed or production environments.
+
+Risk: The request workflow can block while waiting for a human to submit a secret.
+
+Mitigation: Run long-lived polling in a persistent session such as tmux so execution timeouts do not interrupt credential receipt.
+
+## Reference(s):
+
+- [Confidant ClawHub Skill Page](https://clawhub.ai/ericsantos/skills/confidant)
+- [Localtunnel Documentation](https://theboroer.github.io/localtunnel-www/)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [Plain text or JSON status output with URLs, request identifiers, save paths, and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local credential files and environment setup through the Confidant CLI.]
+
+## Skill Version(s):
+
+1.5.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

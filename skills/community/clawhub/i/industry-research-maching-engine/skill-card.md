@@ -1,40 +1,50 @@
-## Description: <br>
-Receives an undergraduate major and produces an objective postgraduate major and university direction report using policy, academic, and employment analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates objective postgraduate major and university direction reports from an undergraduate major using policy, academic supply, and employment-demand analysis.
 
-## Publisher: <br>
-[tsingliuwin](https://clawhub.ai/user/tsingliuwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsingliuwin](https://clawhub.ai/user/tsingliuwin)
 
-## Use Case: <br>
-Education consultants and students use this skill to map undergraduate majors to Chinese postgraduate pathways, university tiers, research directions, and employment demand using policy, academic, and market evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions numbers, salary ranges, job descriptions, employer lists, and school recommendations may be outdated or inaccurate if not checked against current official and platform sources. <br>
-Mitigation: Verify key claims against official admissions sources, university sites, employer sites, and reputable recruitment platforms before using the report for education or career decisions. <br>
-Risk: The skill is designed to produce objective guidance, but education and career recommendations can still be misleading if generated from simulated or unsourced data. <br>
-Mitigation: Require live source collection and include source links or data collection dates for important facts in the final report. <br>
+## Use Case:
 
+Education consultants and advising agents use this skill to map an undergraduate major to China-focused postgraduate study paths, university tiers, research directions, representative employers, job requirements, and objective pitfalls.
 
-## Reference(s): <br>
-- [15th Five-Year Industries Reference](artifact/references/15th-five-year-industries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese consulting-style report that should cite source links or collection dates for key admissions, salary, employer, and job-description data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Admissions numbers, salaries, employer lists, and job descriptions may become outdated or be misread because the skill depends on current public web data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited figures and source timestamps against official admissions pages, university sites, employer pages, and reputable recruiting platforms before relying on the report.
+
+## Reference(s):
+
+- [15th Five-Year Industries Reference](artifact/references/15th-five-year-industries.md)
+- [ClawHub Skill Page](https://clawhub.ai/tsingliuwin/skills/industry-research-maching-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report with tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current public-source research and source timestamps for admissions, salary, employer, and job-description claims.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

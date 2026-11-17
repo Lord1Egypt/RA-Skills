@@ -1,47 +1,61 @@
-## Description: <br>
-Claimback Radar scans user-provided emails and bills to extract billing details, identify subscription and refund risks, and produce prioritized savings recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans emails and bills to extract billing data, detect refund opportunities, subscription risks, and generate actionable savings recommendations.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Individuals, support agents, and financial workflow agents use this skill to turn subscription emails, bills, and renewal notices into structured billing summaries, risk flags, and action receipts for refunds, cancellations, reviews, or savings opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided billing, financial, or identity-related text is sent to OpenAI for processing. <br>
-Mitigation: Submit only data whose external processing is acceptable, and avoid account numbers, identity documents, or highly sensitive financial details unless that data flow has been approved. <br>
-Risk: The skill requires an OpenAI API key and can load a local .env file. <br>
-Mitigation: Prefer setting OPENAI_API_KEY explicitly and keep unrelated secrets out of the working directory and any .env file used with the skill. <br>
-Risk: Dependency versions are range-based rather than locked. <br>
-Mitigation: For stricter production use, install with pinned dependencies or a reviewed lockfile. <br>
-Risk: Generated refund, cancellation, or savings recommendations may be incomplete or wrong. <br>
-Mitigation: Review the extracted facts, deadlines, links, and proposed steps before making payments, cancellations, refund claims, or account changes. <br>
+## Use Case:
 
+People reviewing emails, bills, and subscription notices use this skill to identify refund windows, renewal risks, warranty deadlines, and possible savings actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/schchit/claimback-radar) <br>
-- [OpenAI API](https://api.openai.com) <br>
-- [Input Schema](schema/input.json) <br>
-- [Output Schema](schema/output.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, JSON] <br>
-**Output Format:** [JSON object containing a confirmation card, action receipts, risk flags, and an optional summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from user-provided billing text through OpenAI and should be reviewed before acting on financial or account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata, clawhub.json, pyproject.toml, _meta.json) <br>
+Risk: User-provided email or bill text is sent to OpenAI's API and may contain financial or identity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts this external data flow, and avoid submitting sensitive data unless that exposure is intended.
+
+Risk: Generated cancellation, refund, or action links may be inaccurate or unsafe to click.
+
+Mitigation: Verify links and action steps independently before clicking or allowing downstream automation to act on them.
+
+Risk: The CLI can load a local .env file, which may expose unrelated secrets if run from the wrong directory.
+
+Mitigation: Prefer explicit OPENAI_API_KEY injection for production use and keep unrelated secrets out of the working directory's .env file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/schchit/skills/claimback-radar)
+- [Input schema](schema/input.json)
+- [Output schema](schema/output.json)
+- [Netflix subscription example](examples/netflix_email.md)
+- [Amazon Prime renewal example](examples/amazon_prime_email.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [JSON object matching schema/output.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a confirmation_card, action_receipts, risk_flags, and optional summary; generated links and recommended actions should be checked before use.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

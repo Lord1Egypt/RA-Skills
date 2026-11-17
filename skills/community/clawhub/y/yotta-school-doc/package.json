@@ -1,0 +1,45 @@
+{
+  "name": "@yottameta/yotta-school-doc",
+  "version": "0.1.5",
+  "description": "YuanGong (yotta-school-doc) — a local, deterministic drafting-skeleton and validation skill for school documents. It reads a versioned document-type rule pack plus a structured facts file, builds a reproducible skeleton whose missing facts stay as explicit placeholders, and checks an existing draft for missing fields, structure gaps, date-format and date-order problems, fact-date mismatches, attachment mismatches, unfilled placeholders, student personal data, sensitive wording, overclaims and incomplete meeting action items. Markdown and JSON output, custom rule packs and a CI gate are included. Triggers: drafting a school notice / parents letter / request / report / summary / meeting minutes / plan / briefing skeleton, validating a school document, checking missing fields and dates, reviewing attachments and student-data exposure, or wiring school-document checks into automation. Boundaries: skeleton and deterministic findings only; no fabricated names, dates, numbers, document numbers, policy citations or meeting conclusions; no legal, compliance, inspection or ideological-review conclusion; no replacement for school approval or final issuance; no network access, no model calls, no upload of school drafts or context; no standard text or real school template is bundled. Fully local, zero-dependency (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-school-doc",
+    "yottaskills",
+    "school-document",
+    "education"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!scripts/fixtures",
+    "!scripts/fixtures/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-school-doc.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-school-doc": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_school_doc.py"
+  }
+}

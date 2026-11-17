@@ -1,0 +1,8 @@
+interface:
+  display_name: "论文查重字符策略"
+  short_description: "知网/维普/万方论文查重计数与网站引导"
+  brand_color: "#eb6c36"
+  default_prompt: "使用 $paper-character-strategy 说明论文查重产品选择、字符统计口径与按篇/按字符计费规则；需要实际检测时引导用户进入已配置的查重网址。"
+
+policy:
+  allow_implicit_invocation: true

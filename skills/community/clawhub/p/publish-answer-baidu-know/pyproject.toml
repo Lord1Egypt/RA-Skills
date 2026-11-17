@@ -1,0 +1,19 @@
+# JIANGCHANG: 匠厂技能共享 Python 运行时（唯一依赖真源，与宿主 resources/jiangchang-python-runtime 同步）
+[project]
+name = "jiangchang-skills-runtime"
+version = "0.1.0"
+description = "Unified venv dependencies for Jiangchang OpenClaw skills (Playwright, OpenAI SDK, etc.)"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "playwright>=1.49.0,<2",
+  "openai>=1.55.0",
+  "requests>=2.31.0",
+  "jiangchang-platform-kit>=1.2.0",
+]
+
+[[tool.uv.index]]
+name = "jiangchang-pypi"
+url = "https://git.jc2009.com/api/packages/client-jiangchang/pypi/simple/"
+
+[tool.uv.sources]
+jiangchang-platform-kit = { index = "jiangchang-pypi" }

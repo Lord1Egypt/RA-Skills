@@ -1,43 +1,50 @@
-## Description: <br>
-Runs an OpenClaw autonomous research loop that iteratively modifies files, executes a verification command, commits passing changes, and discards failing changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an OpenClaw autonomous iteration loop that modifies files, verifies the result, keeps successful changes, and discards failed changes.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and engineers use this skill to run repeated code-change attempts against a chosen verification command, keeping successful iterations and rolling back failed ones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The loop can run arbitrary shell commands through the task and verification command. <br>
-Mitigation: Review CLAUDE_TASK and the verification command before execution, and run only in a disposable worktree with no secrets or important local-only files. <br>
-Risk: Failed iterations may reset and clean repository files, including untracked work. <br>
-Mitigation: Start from a clean branch or worktree, preserve any needed changes elsewhere, and disable rollback behavior if file deletion is not acceptable. <br>
-Risk: Successful iterations can create commits automatically. <br>
-Mitigation: Review generated commits and diffs before publishing, merging, or using the output in a production workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to run repeated code-change and verification cycles against a stated goal and verification command.
 
-## Reference(s): <br>
-- [Karpathy Autoresearch Reference Implementation](https://github.com/uditgoenka/autoresearch) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/huo15-autoresearch-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown or terminal text with shell command invocations and JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local loop state and logs under ~/.openclaw/tmp when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter is 1.0.2) <br>
+Risk: The skill can run arbitrary shell commands and may commit, reset, or delete repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the task and verification command before execution, use a disposable or clean Git worktree, and avoid repositories with uncommitted or sensitive files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-autoresearch-loop)
+- [uditgoenka/autoresearch](https://github.com/uditgoenka/autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown summaries, shell commands, local state JSON, and git commits when configured]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a caller-supplied goal, verification command, iteration limits, scope globs, and local state files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

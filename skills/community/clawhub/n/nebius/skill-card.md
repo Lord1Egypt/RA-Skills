@@ -1,51 +1,72 @@
-## Description: <br>
-Helps agents deploy and manage Nebius AI Cloud infrastructure, including serverless AI endpoints, GPU and CPU VMs, managed Kubernetes, container registry, networking, IAM, and API/SDK workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deploy and manage Nebius AI Cloud infrastructure, GPU resources, Kubernetes clusters, serverless endpoints, registries, IAM, and related workflows.
 
-## Publisher: <br>
-[colygon](https://clawhub.ai/user/colygon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colygon](https://clawhub.ai/user/colygon)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to guide an agent through Nebius deployments, GPU provisioning, AI endpoint setup, Kubernetes operations, registry workflows, networking, IAM, and SDK or Terraform usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create, delete, expose, or modify cloud resources. <br>
-Mitigation: Require explicit user approval before resource creation, deletion, public exposure, IAM changes, SSH access, or Terraform execution. <br>
-Risk: Nebius IAM tokens, Token Factory API keys, SSH keys, and dashboard passwords may appear in commands, URLs, logs, screenshots, or shell history. <br>
-Mitigation: Use secret managers or environment injection, avoid pasting credentials into shared logs, and rotate any credential that may have been exposed. <br>
-Risk: Public endpoints and broad ingress can expose deployed services. <br>
-Mitigation: Prefer private endpoints, restricted ingress, localhost tunnels, verified SSH host keys, and least-privilege service accounts. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to guide agent-assisted deployment and management of Nebius cloud services, including GPU VMs, serverless AI endpoints, managed Kubernetes, container registries, networking, IAM, SDKs, and Terraform-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/colygon/nebius) <br>
-- [Project Homepage](https://github.com/colygon/openclaw-nebius/tree/main/nebius-skill) <br>
-- [Nebius CLI Install Documentation](https://docs.nebius.com/cli/install) <br>
-- [Serverless AI Endpoints Reference](references/ai-endpoints-reference.md) <br>
-- [Compute VM Reference](references/compute-reference.md) <br>
-- [Managed Kubernetes Reference](references/kubernetes-reference.md) <br>
-- [Container Registry Reference](references/registry-reference.md) <br>
-- [IAM and Authentication Reference](references/iam-reference.md) <br>
-- [Networking Reference](references/networking-reference.md) <br>
-- [Nebius gRPC API and SDK Reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose cloud resource creation, deletion, public exposure, SSH access, IAM changes, and Terraform or SDK workflows that require user approval and valid Nebius credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact metadata version: 1.2.0) <br>
+Risk: The skill can guide high-impact creation, update, deletion, and exposure of Nebius cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before create, update, delete, or public exposure commands, and prefer list-or-check steps before creating resources.
+
+Risk: The artifact includes a curl-to-bash CLI installation path.
+
+Mitigation: Avoid that installer unless it is independently verified; prefer a trusted package or manually reviewed installation method.
+
+Risk: IAM tokens, API keys, dashboard passwords, and provider tokens may be handled during deployment workflows.
+
+Mitigation: Use a secret manager or ephemeral secure input, and avoid placing secrets in chat, shell history, logs, or persistent environment variables.
+
+Risk: Generated endpoint and dashboard workflows may expose services through public IPs or plaintext links.
+
+Mitigation: Keep endpoints private or authenticated, use SSH tunnels or HTTPS where appropriate, and avoid exposing dashboards directly over plaintext public links.
+
+Risk: Container images, plugins, and SSH connections can introduce supply-chain or host-authenticity risk.
+
+Mitigation: Pin images and plugins to trusted versions or digests and verify SSH host keys before connecting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colygon/skills/nebius)
+- [OpenClaw Nebius source homepage](https://github.com/colygon/openclaw-nebius/tree/main/nebius-skill)
+- [Nebius CLI install documentation](https://docs.nebius.com/cli/install)
+- [Serverless AI Endpoints Reference](artifact/references/ai-endpoints-reference.md)
+- [Compute VM Reference](artifact/references/compute-reference.md)
+- [Managed Kubernetes Reference](artifact/references/kubernetes-reference.md)
+- [IAM & Authentication Reference](artifact/references/iam-reference.md)
+- [Nebius gRPC API & SDK Reference](artifact/references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks, configuration snippets, and JSON-oriented CLI output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands that create, update, delete, or expose cloud resources and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata version 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

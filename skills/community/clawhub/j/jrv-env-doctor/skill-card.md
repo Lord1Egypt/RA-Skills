@@ -1,40 +1,49 @@
-## Description: <br>
-Env Doctor validates .env files for common configuration issues, leaked secrets, duplicates, missing variables, placeholders, and syntax errors with a dependency-free Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate .env files for common issues, including leaked secrets, duplicate variables, empty values, .env.example drift, and syntax errors.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit local .env files before committing, deploying, or sharing configuration. It helps identify possible secret leaks, duplicate keys, missing variables against an example file, empty values, placeholders, and syntax issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can expose sensitive variable names, file paths, line numbers, and malformed-line snippets. <br>
-Mitigation: Keep reports local and avoid publishing or broadly logging them, especially in CI. <br>
-Risk: The skill reads selected .env files, which may contain secrets. <br>
-Mitigation: Run it only on intended local files and review output before sharing results with other systems or users. <br>
+## Use Case:
 
+Developers and engineers use Env Doctor to audit local or CI .env files for exposed secrets, duplicate or malformed variables, placeholder values, and drift from .env.example templates.
 
-## Reference(s): <br>
-- [Env Doctor ClawHub release](https://clawhub.ai/Johnnywang2001/jrv-env-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text report or structured JSON from the local checker, plus concise agent guidance when summarizing results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish healthy files, detected issues, and possible secret leaks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads .env files that may contain secrets, and terminal or JSON reports can expose sensitive configuration details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files you intend to inspect, limit access to generated reports and CI logs, and treat output as sensitive.
+
+## Reference(s):
+
+- [Env Doctor ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/jrv-env-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal report or structured JSON, usually summarized in Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes indicate health: 0 healthy, 1 issues, 2 possible secret leaks; reports and CI logs should be treated as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

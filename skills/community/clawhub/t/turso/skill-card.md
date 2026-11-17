@@ -1,46 +1,58 @@
-## Description: <br>
-Manage Turso SQLite databases via CLI, including databases, groups, tokens, and replicas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Turso SQLite databases via CLI - databases, groups, tokens, replicas.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Turso and libSQL resources from an agent-assisted CLI workflow, including databases, groups, organizations, tokens, replicas, and plan commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database, group, organization, and replica commands can change or delete Turso resources. <br>
-Mitigation: Confirm the exact target resource, organization, and intended action before allowing destructive or topology-changing commands. <br>
-Risk: Plan upgrade commands can affect billing or account entitlements. <br>
-Mitigation: Require explicit user approval and organization context before running billing-related commands. <br>
-Risk: Database tokens, especially non-expiring tokens, can expose long-lived access. <br>
-Mitigation: Prefer expiring tokens, avoid placing tokens in logs, chat, or source files, and rotate credentials after use. <br>
-Risk: The Linux setup path uses a curl-to-bash installer. <br>
-Mitigation: Verify the installer source before execution and prefer a package-manager installation path when available. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Turso and libSQL databases from an agent workflow, including database, group, organization, plan, and token operations through the Turso CLI.
 
-## Reference(s): <br>
-- [ClawHub Turso Skill Release](https://clawhub.ai/Melvynx/turso) <br>
-- [Melvynx Publisher Profile](https://clawhub.ai/user/Melvynx) <br>
-- [Turso Linux Installer](https://get.tur.so/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance should prefer --output json where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Linux setup path runs a mutable remote shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace the installer with an official package or verified download before installation.
+
+Risk: The skill includes destructive database and group commands, plan upgrades, organization switching, and token commands.
+
+Mitigation: Require explicit user confirmation before destroy, upgrade, organization switch, token display, or non-expiring token creation commands.
+
+Risk: Auth tokens may expose access to Turso resources.
+
+Mitigation: Treat tokens as secrets and prefer short-lived, least-privilege credentials.
+
+## Reference(s):
+
+- [ClawHub Turso skill page](https://clawhub.ai/melvynx/skills/turso)
+- [Turso Linux installer](https://get.tur.so/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends JSON output for programmatic Turso CLI access where supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

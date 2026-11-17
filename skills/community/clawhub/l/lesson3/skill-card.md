@@ -1,49 +1,62 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new skills, modify and improve existing skills, and measure skill performance.
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
 
-## Use Case: <br>
-Developers and skill authors use this skill to draft, revise, evaluate, benchmark, package, and improve agent skills through an iterative workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scanner verdict is suspicious because the release has local side effects and packaging or privacy concerns. <br>
-Mitigation: Review the skill contents before installing, including the hidden memory file and unrelated daily-menu files identified in the evidence. <br>
-Risk: Packaging workflows may include dotfiles, logs, credentials, private notes, or unrelated folders if pointed at a broad directory. <br>
-Mitigation: Package only the intended skill directory and inspect the archive contents before distribution. <br>
-Risk: Evaluation helpers may use the local Claude CLI session and create temporary .claude command files. <br>
-Mitigation: Run eval helpers only in the intended project and review generated commands, workspaces, and result files. <br>
-Risk: The local review viewer may launch a local server and terminate a process already using the selected port. <br>
-Mitigation: Check the selected port before starting the viewer or choose a dedicated port for review sessions. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create new agent skills, refine existing skills, design evaluation prompts, compare outputs, and package completed skill releases.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yequanzheng/lesson3) <br>
-- [Skill Creator instructions](artifact/SKILL.md) <br>
-- [Evaluation and benchmark schemas](artifact/references/schemas.md) <br>
-- [Benchmark analyzer guidance](artifact/agents/analyzer.md) <br>
-- [Blind comparison guidance](artifact/agents/comparator.md) <br>
-- [Assertion grading guidance](artifact/agents/grader.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON, shell commands, generated reports, and packaged skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate evaluation workspaces, benchmark summaries, HTML review pages, temporary command files, and packaged skill archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The release was flagged for review because the bundled local viewer can execute injected browser code from crafted evaluation outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat evaluation outputs as untrusted, prefer static review output or a known-free port, and review generated reports before opening them in a browser.
+
+Risk: The toolkit can run local Python scripts, Claude subprocesses, browser or local-server tooling, and workspace file writes.
+
+Mitigation: Install only in a controlled workspace where these actions are expected, inspect scripts before use, and avoid exposing sensitive credentials or files during evaluations.
+
+Risk: The package includes unrelated bundled content, including the daily-menu directory and a .codebuddy memory file.
+
+Mitigation: Remove the bundled daily-menu directory and .codebuddy memory file before use or redistribution unless they are intentionally needed.
+
+Risk: The local review server can terminate another process that is listening on its selected port.
+
+Mitigation: Use static review output or choose a known-free port before launching the viewer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yequanzheng/skills/lesson3)
+- [Schemas Reference](references/schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, JSON schemas, shell commands, and generated files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write skill files, evaluation workspaces, benchmark reports, packaged skill archives, and static or local HTML review reports.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

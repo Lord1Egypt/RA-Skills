@@ -1,0 +1,151 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-hippter",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:41.765Z",
+  "entry": {
+    "url": "http://www.hippter.com",
+    "final_url": "http://www.hippter.com/",
+    "title": "HiPPTER | PPT资源导航 | PPT模板图表等设计素材免费下载",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:41.765Z",
+    "identity": {
+      "declared_name": "HIPPTER",
+      "hostname": "www.hippter.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "扑奔网\n\n有很多高质量且免费的模版和素材资源\n\n部分免费 模板 图表",
+        "href": "http://www.pooban.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "花瓣网\n\n图片素材集中站，搜索关键词：PPT、 排版等",
+        "href": "http://huaban.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "优设网\n\n国内最专业的网页设计师交流学习平台，干货不断",
+        "href": "http://www.uisdc.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "Pixabay\n\n全球最大的免费图片站，超50万张图，支持中文搜索\n\n综合 风景 人物",
+        "href": "https://pixabay.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "Barn Images\n\n由专业摄影师拍摄，图片质量非常高，均可免费下载，可商用\n\n综合 风景 人物",
+        "href": "https://barnimages.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "hippopx\n\n收录超过20万张以上的免费CC0授权相片，支持中文检索\n\n综合 风景 人物",
+        "href": "https://www.hippopx.com/zh",
+        "target": "_blank"
+      },
+      {
+        "text": "Iconfont\n\n谁用谁知道！支持中文搜索，选择颜色，大小，矢量！",
+        "href": "http://www.iconfont.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "PSDrepo\n\nPSD素材站，资源来自于一些著名设计网站",
+        "href": "http://psdrepo.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "资源",
+        "href": "http://www.hippter.com/#ziyuan",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "quiz-hippter:navigation-membership",
+      "source_id": "quiz-hippter",
+      "task_kind": "navigation-membership",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "section",
+        "category",
+        "target_item"
+      ],
+      "instructions": [
+        "进入本题指定栏目/分类，读取当前子类和可见成员；不能用截断列表证明不存在。"
+      ],
+      "transitions": {},
+      "entry_url": "http://www.hippter.com/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-116"
+    ],
+    "example_ids": [
+      "PT1-Q40"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:41.765Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-hippter-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-hippter-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

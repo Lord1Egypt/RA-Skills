@@ -1,0 +1,23 @@
+# scenes.toml — the four primary scenes (shuorenhua's axis).
+# Each scene sets a default rewrite level and the default unsourced-citation
+# handling. The scene × tier interaction lives in matrix.toml.
+
+[chat]
+# Short replies, daily conversation, quick feedback. 口语可以，但不能端着。
+level = "minimal"
+unsourced_citation = "rewrite-safe"
+
+[status]
+# Standups, progress syncs, retrospective summaries. 事实密度优先。
+level = "minimal"
+unsourced_citation = "audit-only"
+
+[docs]
+# How-tos, API docs, FAQs, incident reviews. 可检索、可复现、术语稳定。
+level = "minimal"
+unsourced_citation = "audit-only"
+
+[public-writing]
+# 公众号 / 小红书 / 公开帖 / 对外文章. 语域统一，不装"有洞见"。
+level = "standard"
+unsourced_citation = "rewrite-safe"

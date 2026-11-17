@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# npm 打包
+*.tgz
+node_modules/
+
+# 系统
+Thumbs.db
+Desktop.ini
+.DS_Store

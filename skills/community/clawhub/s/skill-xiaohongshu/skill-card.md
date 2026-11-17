@@ -1,41 +1,60 @@
-## Description: <br>
-小红书（XHS/RED）自动化助手，提供登录、搜索、浏览、互动、用户主页读取以及图文和视频发布的 MCP 服务端工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书（XHS/RED）自动化助手，提供用于登录、浏览、搜索、互动、用户资料查看和内容发布的小红书 MCP 服务端工具。
 
-## Publisher: <br>
-[weznai](https://clawhub.ai/user/weznai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weznai](https://clawhub.ai/user/weznai)
 
-## Use Case: <br>
-External users and developers use this skill to automate Xiaohongshu workflows through an MCP service, including login, feed discovery, search, note detail retrieval, engagement actions, profile lookup, and content publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes account cookies and may expose an authenticated Xiaohongshu session. <br>
-Mitigation: Remove bundled cookies before installation, rotate any exposed session, and reauthenticate locally. <br>
-Risk: The MCP service exposes publishing, commenting, replying, liking, favoriting, and local media upload actions. <br>
-Mitigation: Bind the service to localhost or require authentication, and require explicit user approval before state-changing or upload operations. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a local Xiaohongshu MCP service for account login, feed discovery, note detail retrieval, profile lookup, engagement actions, and content publishing.
 
-## Reference(s): <br>
-- [API Documentation](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/weznai/skill-xiaohongshu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON tool responses and Markdown instructions with inline shell and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Xiaohongshu login session; media publishing tools may upload local image or video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release and package.json) <br>
+Risk: The release includes Xiaohongshu account cookies, which should be treated as exposed session credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled cookies before installation, rotate the affected session, and require users to log in with their own account.
+
+Risk: The MCP service can expose account-changing tools if bound beyond the local machine or used without strong access control.
+
+Mitigation: Bind the service to localhost or add strong authentication before use.
+
+Risk: Publishing, commenting, deleting login state, liking, and favoriting can change a real Xiaohongshu account.
+
+Mitigation: Require explicit user approval before executing account-changing actions.
+
+## Reference(s):
+
+- [XHS MCP API 文档](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/weznai/skills/skill-xiaohongshu)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+- [Xiaohongshu Creator Publish](https://creator.xiaohongshu.com/publish/publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [MCP tool responses as JSON text, plus Markdown usage guidance with shell and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Xiaohongshu session for account-specific actions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Article Link Skill submits supported paywalled media URLs to pick-read.vip and returns matched or extracted English article text when authorized with an Import Token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article Link Skill submits supported media article URLs to pick-read.vip, returns matched English article text when available, or queues extraction with quota-aware status checks.
 
-## Publisher: <br>
-[1787812757](https://clawhub.ai/user/1787812757) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1787812757](https://clawhub.ai/user/1787812757)
 
-## Use Case: <br>
-External users and agents use this skill to check supported media, submit article links, monitor extraction jobs, and retrieve English article text through the provided CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends submitted article URLs and an Import Token to pick-read.vip. <br>
-Mitigation: Use only with URLs and tokens you are comfortable sharing with that service, and avoid real Import Tokens until the network, token, and privacy behavior is documented clearly. <br>
-Risk: The security summary reports that the runtime disables HTTPS certificate checks. <br>
-Mitigation: Review before installing and do not use for sensitive tokens until TLS verification behavior is corrected or accepted by the user. <br>
+## Use Case:
 
+External users and developers use this skill to submit supported publisher article links, check quota and job status, and retrieve available English article content through the provided CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1787812757/article-link-skill) <br>
-- [pick-read.vip](https://pick-read.vip) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON results containing article metadata and HTML content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a configured Import Token for most operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends an Import Token and article URLs to a remote API while TLS certificate and hostname verification are disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore TLS verification before using real tokens, restrict API_BASE to the intended HTTPS host, and treat tokens used with this version on untrusted networks as exposed.
+
+Risk: A configurable API_BASE can redirect token-bearing requests away from the intended service.
+
+Mitigation: Use the default pick-read.vip endpoint or enforce an allowlist for the API host before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/1787812757/skills/article-link-skill)
+- [Publisher Profile](https://clawhub.ai/user/1787812757)
+- [pick-read.vip](https://pick-read.vip)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response examples; runtime commands return JSON with article text, quota, media, job, or status data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Article content may be returned as HTML; most operations require an Import Token and are subject to daily quota limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

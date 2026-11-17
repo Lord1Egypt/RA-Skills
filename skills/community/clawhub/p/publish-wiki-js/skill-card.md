@@ -1,43 +1,63 @@
-## Description: <br>
-Publish markdown content to Wiki.js with proper formatting and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown content to Wiki.js by preparing page metadata, cleaning frontmatter, and creating or updating pages through the Wiki.js GraphQL API.
 
-## Publisher: <br>
-[hugogu](https://clawhub.ai/user/hugogu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hugogu](https://clawhub.ai/user/hugogu)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to create or update Wiki.js pages from markdown, including cleaning frontmatter, setting metadata, suggesting paths, and using the Wiki.js GraphQL API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update pages in a connected Wiki.js instance using WIKI_KEY. <br>
-Mitigation: Use the least-privileged Wiki.js token available and treat WIKI_KEY as a sensitive credential. <br>
-Risk: Incorrect target paths or unreviewed content could publish misleading or unwanted wiki pages. <br>
-Mitigation: Review the target path and markdown content before allowing create, update, or broad page listing operations. <br>
+## Use Case:
 
+Developers and content authors use this skill to publish new Wiki.js pages or update existing pages from Markdown content. It helps prepare page titles, paths, descriptions, tags, and API requests while preserving Markdown formatting.
 
-## Reference(s): <br>
-- [Wiki.js GraphQL API Reference](references/wiki-js-api.md) <br>
-- [GraphQL String Type Specification](https://spec.graphql.org/October2021/#sec-String) <br>
-- [Wiki.js API Documentation](https://docs.requarks.io/dev/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hugogu/publish-wiki-js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and GraphQL examples plus command-line usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WIKI_URL and a sensitive WIKI_KEY credential for live Wiki.js API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill uses a Wiki.js API token to read and change wiki content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Wiki.js token scoped to the minimum pages and actions needed, and avoid exposing WIKI_KEY in logs or shared outputs.
+
+Risk: A misconfigured WIKI_URL could send content and credentials to an untrusted endpoint.
+
+Mitigation: Configure WIKI_URL only to a trusted HTTPS Wiki.js GraphQL endpoint before running the skill.
+
+Risk: Publishing to an existing path may update existing wiki content.
+
+Mitigation: Verify the target path and page identity before publishing or updating content.
+
+Risk: The examples and script use the zh locale unless changed.
+
+Mitigation: Review and change the locale setting when publishing to a Wiki.js instance that uses a different locale.
+
+## Reference(s):
+
+- [Wiki.js GraphQL API Reference](references/wiki-js-api.md)
+- [GraphQL Specification - String Type](https://spec.graphql.org/October2021/#sec-String)
+- [Wiki.js API Documentation](https://docs.requarks.io/dev/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration values, and Wiki.js API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform authenticated Wiki.js API calls when WIKI_URL and WIKI_KEY are configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

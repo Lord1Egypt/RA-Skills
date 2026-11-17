@@ -1,49 +1,59 @@
-## Description: <br>
-Comprehensive and systematic guide to Buddhist philosophy, history, and practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive and systematic guide to Buddhist philosophy, history, and practice that helps users navigate Buddhist concepts, major schools, and structured learning curricula while acting as a knowledge map, not a text repository.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-Learners, educators, and agents answering Buddhist studies questions use this skill to map core concepts, compare major traditions, and suggest structured study paths through the included reference modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Religious or doctrinal summaries may be inaccurate, incomplete, or biased for a teaching, publication, or authoritative interpretation use case. <br>
-Mitigation: Review the content for doctrinal accuracy and bias before relying on it for teaching, publication, or formal interpretation. <br>
-Risk: The skill is designed to trigger on broad Buddhist-studies questions, which may be more autonomous than some deployments want. <br>
-Mitigation: Narrow or disable autonomous invocation when tighter control is needed over when the agent uses Buddhist curriculum guidance. <br>
-Risk: Users may mistake the curriculum map for complete canonical source text coverage. <br>
-Mitigation: Present outputs as study-path guidance and reference summaries, and direct users to primary texts or qualified review for authoritative claims. <br>
+## Use Case:
 
+External users and learners use this skill to get structured Buddhist study guidance, compare major traditions such as Theravada, Mahayana, and Zen, and choose reference modules for deeper study. It is most useful for curriculum planning, concept clarification, and knowledge navigation rather than retrieving complete scripture texts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/buddhist-curriculum) <br>
-- [Skill definition](SKILL.md) <br>
-- [Core concepts](references/core-concepts.md) <br>
-- [Three Piles](references/three-piles.md) <br>
-- [Theravada vs Mahayana](references/theravada-vs-mahayana.md) <br>
-- [Mahayana schools](references/mahayana-schools.md) <br>
-- [Zen school](references/zen-school.md) <br>
-- [Modern masters](references/modern-masters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study guidance with references to bundled Markdown modules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Acts as a knowledge map and curriculum guide rather than a repository of full canonical texts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be invoked for broad requests for all Buddhist scriptures even though the evidence describes it as a knowledge map, not a full text repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set expectations that responses should structure the topic, recommend a focused concept or classic, and point to reference modules rather than claiming complete scripture coverage.
+
+Risk: The skill is mainly useful for Chinese-language Buddhist study guidance, which may limit usefulness for users expecting broader multilingual coverage.
+
+Mitigation: Use the skill for Chinese-language study navigation unless the agent can independently support translation or supplemental explanation outside the skill evidence.
+
+## Reference(s):
+
+- [三藏结构解析 (The Three Pillars)](references/three-piles.md)
+- [核心概念辨析 (The Core Concepts)](references/core-concepts.md)
+- [部派佛教 vs 大乘佛教 (Theravada vs Mahayana)](references/theravada-vs-mahayana.md)
+- [大乘佛教主要流派 (Major Mahayana Schools)](references/mahayana-schools.md)
+- [禅宗 (Chan / Zen School)](references/zen-school.md)
+- [现代大师与当代指引 (Modern Masters Index)](references/modern-masters.md)
+- [ClawHub skill page](https://clawhub.ai/mikewongonline/skills/buddhist-curriculum)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured lists and reference pointers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Buddhist study guidance; no code execution, network access, credential handling, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Classifies HR and recruitment AI systems by EU AI Act risk category, identifies compliance gaps, and recommends remediation steps with Irish regulatory context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify HR AI systems by EU AI Act risk level, provide compliance gap analysis, and recommend remediation steps for recruitment and workforce planning tools.
 
-## Publisher: <br>
-[rochyroch](https://clawhub.ai/user/rochyroch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rochyroch](https://clawhub.ai/user/rochyroch)
 
-## Use Case: <br>
-HR professionals, compliance officers, and organizations use this skill to assess recruitment, workforce planning, and worker-management AI systems against EU AI Act and GDPR expectations. It helps produce risk classifications, gap reports, human-oversight checklists, and prioritized remediation actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe, with specific Irish regulatory context <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste real candidate, employee, medical, demographic, disciplinary, or performance data into prompts. <br>
-Mitigation: Use redacted or synthetic examples unless approved data-handling controls are in place. <br>
-Risk: Compliance output may be mistaken for definitive legal advice. <br>
-Mitigation: Treat classifications, gap reports, and remediation steps as a starting point and consult qualified legal professionals for compliance decisions. <br>
+## Use Case:
 
+HR professionals, compliance officers, and developers use this skill to assess recruitment and workforce AI systems, classify risk under the EU AI Act, and produce gap analysis, human oversight, GDPR, and Irish-context remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rochyroch/eu-ai-act-compliance) <br>
-- [Publisher profile](https://clawhub.ai/user/rochyroch) <br>
-- [EU AI Act Article 14: Human Oversight Checklist](references/article-14-checklist.md) <br>
-- [GDPR and AI Intersection in HR Context](references/gdpr-ai-intersection.md) <br>
-- [Irish Employment and Regulatory Context](references/irish-employment-context.md) <br>
-- [AI Recruitment Risk Assessment](references/recruitment-risk-assessment.md) <br>
+### Deployment Geography for Use:
 
+European Union and Ireland, with UK cross-border considerations for automated decision-making.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with classification summaries, compliance gap tables, recommended actions, and references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational compliance guidance only; not legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Regulatory timeline guidance may become outdated or internally inconsistent across package files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current EU, Irish, and UK legal sources before relying on deadlines or compliance conclusions.
+
+Risk: The skill provides informational compliance guidance and may be mistaken for legal advice.
+
+Mitigation: Use outputs as a checklist or drafting aid and have qualified legal or compliance professionals review decisions.
+
+Risk: HR AI classification depends on deployment context, data processed, and human oversight details.
+
+Mitigation: Collect concrete system facts and document assumptions before applying the classification or remediation plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rochyroch/skills/eu-ai-act-compliance)
+- [Article 14 Human Oversight Checklist](references/article-14-checklist.md)
+- [GDPR and AI Intersection](references/gdpr-ai-intersection.md)
+- [Irish Employment and Regulatory Context](references/irish-employment-context.md)
+- [EU AI Act Legislative Timeline](references/legislative-timeline.md)
+- [AI Recruitment Risk Assessment](references/recruitment-risk-assessment.md)
+- [Irish Data Protection Commission](https://www.dataprotection.ie/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Structured Markdown with risk classifications, gap tables, action lists, and references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational compliance guidance only; users should verify current legal sources before acting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

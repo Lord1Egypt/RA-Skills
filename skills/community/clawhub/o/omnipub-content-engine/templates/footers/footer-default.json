@@ -1,0 +1,41 @@
+{
+  "template": "default",
+  "brand": "心明增长实验室",
+  "order": ["recommend", "about", "community", "cta", "signature"],
+  "blocks": {
+    "recommend": {
+      "title": "推荐阅读",
+      "match": "topic_keyword",
+      "count": 3,
+      "placeholder": [
+        {"title": "《命力：你的底层驱动力系统》", "url": "#"},
+        {"title": "《道力：建立人生坐标系》", "url": "#"},
+        {"title": "《器力：驾驭AI，成为超级个体》", "url": "#"}
+      ]
+    },
+    "about": {
+      "title": "关于我",
+      "bio": "心明：16年大健康行业老兵，10年产品人。曾在头部互联网公司做产品，现为个人IP打造陪跑教练。创立「心明九力」知识宇宙体系，带1000+人跑通IP与私域增长。",
+      "portrait": "assets/portrait.png"
+    },
+    "community": {
+      "title": "加入社群",
+      "qr": "assets/community-qr.png",
+      "qr_placeholder": "[在此放置社群二维码]",
+      "incentive": "回复「九力」领取《心明九力·自测清单》"
+    },
+    "cta": {
+      "wechat_qr": "assets/wechat-qr.png",
+      "wechat_qr_placeholder": "[在此放置企微二维码]",
+      "text": "关注「心明增长实验室」，每周拆解大健康×IP×AI的增长方法"
+    },
+    "signature": {
+      "title": "写在最后",
+      "default_quote": "「命力是地基，场力是屋顶——中间七层，我们一起盖。」"
+    }
+  },
+  "render": {
+    "separator": "---",
+    "end_marker": "END"
+  }
+}

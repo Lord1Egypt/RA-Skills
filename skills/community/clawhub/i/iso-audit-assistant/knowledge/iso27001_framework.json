@@ -1,0 +1,88 @@
+{
+  "standard": "ISO/IEC 27001:2022",
+  "chinese_title": "信息安全管理体系 要求",
+  "abbr": "ISMS",
+  "note": "采用 Annex SL；核心为 6.1.2/8.2 信息安全风险评估、8.3 风险处置（SoA）、Annex A 控制项（A.5-A.8 共 93 项）、9.2/9.3 审核评审。",
+  "clauses": [
+    {"clause": "4", "title": "组织环境", "chinese_title": "组织环境",
+     "subclauses": ["4.1 理解组织及其环境", "4.2 理解相关方需求和期望", "4.3 确定体系范围", "4.4 信息安全管理体系"]},
+    {"clause": "5", "title": "领导作用", "chinese_title": "领导作用",
+     "subclauses": ["5.1 领导承诺", "5.2 信息安全方针", "5.3 组织角色、职责和权限"]},
+    {"clause": "6", "title": "策划", "chinese_title": "策划",
+     "subclauses": ["6.1 应对风险和机遇的措施（6.1.2 信息安全风险评估；6.1.3 信息安全风险处置）", "6.2 信息安全目标及其实现的策划", "6.3 变更的策划"]},
+    {"clause": "7", "title": "支持", "chinese_title": "支持",
+     "subclauses": ["7.1 资源", "7.2 能力", "7.3 意识", "7.4 沟通", "7.5 文件化信息"]},
+    {"clause": "8", "title": "运行", "chinese_title": "运行",
+     "subclauses": ["8.1 运行策划和控制", "8.2 信息安全风险评估（执行）", "8.3 信息安全风险处置（SoA）"]},
+    {"clause": "9", "title": "绩效评价", "chinese_title": "绩效评价",
+     "subclauses": ["9.1 监视、测量、分析和评价", "9.2 内部审核", "9.3 管理评审"]},
+    {"clause": "10", "title": "改进", "chinese_title": "改进",
+     "subclauses": ["10.1 总则", "10.2 不符合及纠正措施", "10.3 持续改进"]}
+  ],
+  "clause_keywords": {
+    "4.3": ["体系范围", "ISMS 范围"], "5.2": ["信息安全方针"], "5.3": ["信息安全职责"],
+    "6.1.2": ["风险评估", "risk assessment", "资产识别"], "6.1.3": ["风险处置", "SoA", "适用性声明"],
+    "6.2": ["信息安全目标"], "7.2": ["能力培训", "安全意识"], "7.5": ["文件控制", "记录控制"],
+    "8.2": ["风险评估执行", "风险评价"], "8.3": ["风险处置", "控制措施", "SoA"],
+    "9.1": ["安全监测", "日志审计"], "9.2": ["内部审核"], "9.3": ["管理评审"],
+    "10.2": ["不符合", "纠正措施", "安全事件"]
+  },
+  "high_voltage_lines": [
+    {"id": "risk_assessment", "name_zh": "信息安全风险评估（6.1.2/8.2）", "name_en": "Risk Assessment",
+     "description_zh": "是否建立风险评估方法（准则、资产/威胁/脆弱性识别），形成风险评估报告。",
+     "keywords_zh": ["风险评估", "资产识别", "威胁", "脆弱性", "风险准则"], "keywords_en": ["risk assessment"],
+     "related_clauses": ["6.1.2", "8.2"],
+     "compliance_statement": [
+       "✓ 建立《信息安全风险评估程序》与评估方法（含风险接收准则）。",
+       "✓ 完成资产识别与风险评估，形成《风险评估报告》。"]},
+    {"id": "risk_treatment_soa", "name_zh": "风险处置与SoA（6.1.3/8.3）", "name_en": "Risk Treatment & SoA",
+     "description_zh": "是否制定风险处置计划，对照 Annex A 生成适用性声明（SoA）并说明取舍理由。",
+     "keywords_zh": ["风险处置", "SoA", "适用性声明", "控制措施", "Annex A"], "keywords_en": ["risk treatment", "SoA"],
+     "related_clauses": ["6.1.3", "8.3"],
+     "compliance_statement": [
+       "✓ 制定《风险处置计划》，明确措施、责任与时限。",
+       "✓ 生成《适用性声明 SoA》，对 Annex A 控制项逐条给出适用/不适用理由。"]},
+    {"id": "access_control", "name_zh": "访问控制（Annex A.5/A.8）", "name_en": "Access Control",
+     "description_zh": "是否实施账号分级、最小权限、口令策略、特权账号与远程访问控制。",
+     "keywords_zh": ["访问控制", "账号", "权限", "口令", "最小权限", "特权账号"], "keywords_en": ["access control"],
+     "related_clauses": ["8.3"],
+     "compliance_statement": [
+       "✓ 建立账号生命周期管理与最小权限原则。",
+       "✓ 口令策略、特权账号、远程访问有专门规定并落地。"]},
+    {"id": "incident_mgmt", "name_zh": "信息安全事件管理（Annex A.5.24-5.27）", "name_en": "Incident Management",
+     "description_zh": "是否建立事件识别、报告、响应、复盘机制（含应急演练）。",
+     "keywords_zh": ["安全事件", "事件响应", "应急演练", "事件报告"], "keywords_en": ["incident"],
+     "related_clauses": ["10.2"],
+     "compliance_statement": [
+       "✓ 建立《信息安全事件管理程序》，明确分类、报告渠道与响应流程。",
+       "✓ 定期开展事件应急演练并复盘。"]},
+    {"id": "crypto_asset", "name_zh": "密码学与资产管理（Annex A.5.10-5.12）", "name_en": "Crypto & Asset",
+     "description_zh": "是否建立信息资产台账、分级分类，并规范密码算法与密钥管理。",
+     "keywords_zh": ["信息资产", "资产台账", "分级分类", "密钥", "加密"], "keywords_en": ["asset", "cryptography"],
+     "related_clauses": ["8.3"],
+     "compliance_statement": [
+       "✓ 建立信息资产清单与分类分级标准。",
+       "✓ 密码算法与密钥管理符合策略要求。"]},
+    {"id": "internal_audit", "name_zh": "内部审核（9.2）", "name_en": "Internal Audit",
+     "description_zh": "是否按计划开展 ISMS 内审并闭环。",
+     "keywords_zh": ["内部审核"], "keywords_en": ["internal audit"],
+     "related_clauses": ["9.2"],
+     "compliance_statement": [
+       "✓ 编制年度内审方案，覆盖标准条款与 Annex A 控制。",
+       "✓ 内审不符合项已整改闭环。"]}
+  ],
+  "required_procedures": [
+    {"id": "ISMS-PF-001", "name": "文件控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["文件控制"]},
+    {"id": "ISMS-PF-002", "name": "记录控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["记录控制"]},
+    {"id": "ISMS-PF-003", "name": "信息安全风险评估程序", "clause": "8.2", "priority": "high", "high_voltage_check": ["risk_assessment"], "match_keywords": ["风险评估"]},
+    {"id": "ISMS-PF-004", "name": "信息安全风险处置程序", "clause": "8.3", "priority": "high", "high_voltage_check": ["risk_treatment_soa"], "match_keywords": ["风险处置", "SoA"]},
+    {"id": "ISMS-PF-005", "name": "人力资源安全控制程序", "clause": "7.2", "priority": "medium", "high_voltage_check": [], "match_keywords": ["能力", "安全意识"]},
+    {"id": "ISMS-PF-006", "name": "访问控制管理程序", "clause": "8.3", "priority": "high", "high_voltage_check": ["access_control"], "match_keywords": ["访问控制", "账号", "权限"]},
+    {"id": "ISMS-PF-007", "name": "信息资产管理程序", "clause": "8.3", "priority": "high", "high_voltage_check": ["crypto_asset"], "match_keywords": ["信息资产", "资产台账"]},
+    {"id": "ISMS-PF-008", "name": "信息安全事件管理程序", "clause": "10.2", "priority": "high", "high_voltage_check": ["incident_mgmt"], "match_keywords": ["安全事件", "事件响应"]},
+    {"id": "ISMS-PF-009", "name": "业务连续性/备份管理程序", "clause": "8.3", "priority": "medium", "high_voltage_check": [], "match_keywords": ["备份", "连续性"]},
+    {"id": "ISMS-PF-010", "name": "内部审核控制程序", "clause": "9.2", "priority": "high", "high_voltage_check": ["internal_audit"], "match_keywords": ["内部审核"]},
+    {"id": "ISMS-PF-011", "name": "管理评审控制程序", "clause": "9.3", "priority": "high", "high_voltage_check": [], "match_keywords": ["管理评审"]},
+    {"id": "ISMS-PF-012", "name": "纠正措施控制程序", "clause": "10.2", "priority": "high", "high_voltage_check": [], "match_keywords": ["纠正措施"]}
+  ]
+}

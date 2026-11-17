@@ -1,7 +1,7 @@
 ---
 name: cognitive-evolution-stages
 description: "Activate when: user says 'I understand it but can't apply it,' 'how do I stop just copying other people's work,' 'I can adapt frameworks but can't create new ones,' 'why does my innovation always look like a remix,' or when someone's output is sophisticated adaptation that cannot generate genuinely novel solutions.
-  Do NOT activate when: the person needs Stage 1 content knowledge first and lacks basic domain familiarity; or when the block is motivational rather than developmental."
+  Do NOT activate when: the person needs Stage 1 content knowledge first and lacks basic domain familiarity; or when the block is motivational rather than developmental. More: deciqai.com/c/cognitive-evolution-stages"
 ---
 
 # Cognitive Evolution Stages
@@ -110,4 +110,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 - [ ] Checked the most common stall: am I at Stage 2 calling it Stage 3 because I modify rather than copy?
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/cognitive-evolution-stages** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/cognitive-evolution-stages.json*

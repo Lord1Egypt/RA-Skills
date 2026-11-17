@@ -1,42 +1,56 @@
-## Description: <br>
-Check IP address threat intelligence. Query multiple sources for IP reputation, geolocation, and threat scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check IP address threat intelligence. Query multiple sources for IP reputation, geolocation, and threat scores.
 
-## Publisher: <br>
-[freeter226](https://clawhub.ai/user/freeter226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeter226](https://clawhub.ai/user/freeter226)
 
-## Use Case: <br>
-Security analysts, incident responders, and developers use this skill to check individual or bulk IP addresses for geolocation, network ownership, and reputation signals during log review, triage, or threat hunting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried IP addresses, including entries from bulk files, are sent to external lookup services. <br>
-Mitigation: Use only with indicators approved for third-party sharing, and avoid confidential customer, internal, or incident-response data unless that sharing is approved. <br>
-Risk: AbuseIPDB checks require an API key. <br>
-Mitigation: Provide a limited AbuseIPDB API key through ABUSEIPDB_API_KEY and avoid storing the key in files or command history. <br>
+## Use Case:
 
+Developers and security practitioners use this skill to check suspicious IPs, enrich log analysis, support incident response, and perform threat hunting with IP reputation and geolocation data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/freeter226/ip-threat-check) <br>
-- [ip-api.com lookup endpoint](http://ip-api.com/json/{ip}?fields=status,country,countryCode,region,regionName,city,isp,org,as,asname,query) <br>
-- [AbuseIPDB check endpoint](https://api.abuseipdb.com/api/v2/check?ipAddress={ip}&maxAgeInDays={days}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON results with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. AbuseIPDB checks use ABUSEIPDB_API_KEY when configured; basic geolocation queries use an external IP lookup service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Queried IP addresses, including bulk file contents, are submitted to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for IPs that are approved for external reputation checks, and avoid sensitive internal or customer IP lists unless disclosure is acceptable.
+
+Risk: Bulk checks can disclose many addresses in one run.
+
+Mitigation: Review bulk files before execution and limit them to the smallest necessary investigation scope.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeter226/skills/ip-threat-check)
+- [freeter226 Publisher Profile](https://clawhub.ai/user/freeter226)
+- [ip-api.com lookup endpoint](http://ip-api.com/json/{ip}?fields=status,country,countryCode,region,regionName,city,isp,org,as,asname,query)
+- [AbuseIPDB check endpoint](https://api.abuseipdb.com/api/v2/check?ipAddress={ip}&maxAgeInDays={days})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script returns JSON containing geolocation, network, source status, threat score, report count, and risk level when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

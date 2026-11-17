@@ -1,0 +1,70 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:52.069825+00:00",
+  "input": {
+    "bytes": 1745,
+    "path": "examples/service-map.json",
+    "sha256": "a8626f8077b55aed2c3393d89e84201750c9b17c41b977b319e567aca2908258"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 10989,
+    "path": "examples/service-map.html",
+    "sha256": "bae32da419ed2fefa6df0023a2c2ab8297261411e164a24c8f7e11ea3da736f4"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "architecture",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 5,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "api",
+              "database"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "worker",
+              "llm"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

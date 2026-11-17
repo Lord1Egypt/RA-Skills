@@ -1,0 +1,4 @@
+interface:
+  display_name: "FinXData A股/港股模拟交易"
+  short_description: "通过专用 Trading Key 管理 A 股与港股自选股、账户及模拟买卖。"
+  default_prompt: "使用 $finxdata-simtrading 管理我的 A 股或港股模拟账户并执行模拟交易。"

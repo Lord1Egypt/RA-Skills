@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/sample-context.schema.json",
+  "title": "Prepared representative sample context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "runId", "fingerprints", "windows", "approvalCard", "treatments"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/sample-context.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.sample-context.v1"},
+    "runId": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "fingerprints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plan", "style", "layout", "captions", "timelineRevision", "sample"],
+      "properties": {
+        "plan": {"$ref": "run-manifest.schema.json#/$defs/hash"},
+        "style": {"$ref": "run-manifest.schema.json#/$defs/hash"},
+        "layout": {"$ref": "run-manifest.schema.json#/$defs/hash"},
+        "captions": {"$ref": "run-manifest.schema.json#/$defs/hash"},
+        "timelineRevision": {"type": "string", "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+        "sample": {"$ref": "run-manifest.schema.json#/$defs/hash"}
+      }
+    },
+    "windows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["windowRef", "reason", "startSec", "endSec"],
+        "properties": {
+          "windowRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 80},
+          "coverage": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 80}},
+          "startSec": {"type": "number", "minimum": 0},
+          "endSec": {"type": "number", "exclusiveMinimum": 0}
+        }
+      }
+    },
+    "approvalCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "handled", "notPerformed", "choices"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1, "maxLength": 80},
+        "handled": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 160}},
+        "notPerformed": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 160}},
+        "choices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 80}}
+      }
+    },
+    "treatments": {"$ref": "project-brief.schema.json#/$defs/treatments"}
+  }
+}

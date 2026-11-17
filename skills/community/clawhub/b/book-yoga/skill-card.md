@@ -1,38 +1,52 @@
-## Description: <br>
-Book Yoga helps an agent find and book yoga services through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Yoga helps users search for yoga services and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for yoga services, check availability, and create bookings through Lokuli. The agent should confirm the provider, service, date, time, and customer contact details before booking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external MCP service and may handle personal booking information. <br>
-Mitigation: Confirm the provider, service, date, time, name, email, and phone number before creating a booking, and avoid sharing unnecessary personal information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Yoga on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-yoga) <br>
-- [Lokuli MCP SSE endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to find yoga providers, check availability, and create bookings via Lokuli. The skill is suited to agents handling yoga search or booking requests that require location, time slot, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli's external MCP service for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking requests may send customer name, email, phone number, location or ZIP code, and selected time slot to Lokuli.
+
+Mitigation: Use the skill only for intentional Lokuli-powered yoga search or booking, and confirm the provider, time, and contact details before creating a booking.
+
+Risk: The security summary notes consent and trigger-scope caveats for external booking data use.
+
+Mitigation: Confirm user intent before initiating booking-related MCP calls and avoid collecting contact details until they are needed for a booking.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search criteria, availability parameters, selected booking details, and customer contact details for Lokuli MCP tool calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

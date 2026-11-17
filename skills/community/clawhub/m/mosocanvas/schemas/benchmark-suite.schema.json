@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/benchmark-suite-0.1.json",
+  "title": "MoSoCanvas Benchmark Suite 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "lane", "target", "captured_at", "leakage_control", "tasks"],
+  "properties": {
+    "schema": { "const": "moso.benchmark-suite/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "lane": { "enum": ["curated-ceiling", "matched-challenge"] },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "version_or_surface", "source_policy"],
+      "properties": {
+        "system": { "const": "midjourney" },
+        "version_or_surface": { "type": "string", "minLength": 1 },
+        "source_policy": { "type": "string", "minLength": 1 }
+      }
+    },
+    "captured_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "leakage_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_hidden_during_direction", "target_hidden_during_generation", "holdout_tasks"],
+      "properties": {
+        "target_hidden_during_direction": { "const": true },
+        "target_hidden_during_generation": { "const": true },
+        "holdout_tasks": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_id", "task_class", "brief_ref", "carrier", "mosocanvas_artifacts", "target_artifacts"],
+        "properties": {
+          "task_id": { "type": "string", "minLength": 1 },
+          "task_class": { "type": "string", "minLength": 1 },
+          "brief_ref": { "type": "string", "minLength": 1 },
+          "carrier": { "type": "string", "minLength": 1 },
+          "matched_conditions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["same_brief", "same_carrier", "same_output_count", "same_selection_budget"],
+            "properties": {
+              "same_brief": { "type": "boolean" },
+              "same_carrier": { "type": "boolean" },
+              "same_output_count": { "type": "boolean" },
+              "same_selection_budget": { "type": "boolean" }
+            }
+          },
+          "mosocanvas_artifacts": { "$ref": "#/$defs/artifacts" },
+          "target_artifacts": { "$ref": "#/$defs/artifacts" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lane": { "const": "matched-challenge" } } },
+      "then": {
+        "properties": {
+          "tasks": {
+            "minItems": 5,
+            "items": {
+              "required": ["matched_conditions"],
+              "properties": {
+                "matched_conditions": {
+                  "properties": {
+                    "same_brief": { "const": true },
+                    "same_carrier": { "const": true },
+                    "same_output_count": { "const": true },
+                    "same_selection_budget": { "const": true }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_id", "source_ref"],
+        "properties": {
+          "artifact_id": { "type": "string", "minLength": 1 },
+          "source_ref": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "creator_attribution": { "type": "string", "minLength": 1 },
+          "rights_status": { "enum": ["evaluation-authorized", "public-reference-only", "owned", "unknown"] }
+        }
+      }
+    }
+  }
+}

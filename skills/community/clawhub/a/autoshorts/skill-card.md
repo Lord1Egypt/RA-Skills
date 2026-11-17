@@ -1,47 +1,64 @@
-## Description: <br>
-AutoShorts helps an agent turn vertical long-form videos into reviewed short-form clip candidates and scheduled posts for TikTok, Instagram Reels, and YouTube Shorts using Whisper, Gemini, FFmpeg, and Upload-Post. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn long videos into viral TikTok, Instagram Reels & YouTube Shorts with a daily human-gated pipeline that transcribes with Whisper, uses Gemini 3 Flash to select short-form moments, renders clips with hook overlays, and schedules approved posts through Upload-Post.
 
-## Publisher: <br>
-[mutonby](https://clawhub.ai/user/mutonby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mutonby](https://clawhub.ai/user/mutonby)
 
-## Use Case: <br>
-Content creators and operators use AutoShorts to convert ready-to-post vertical long videos into daily short-form clip candidates, review the generated clips, and schedule approved posts through Upload-Post. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores Gemini and Upload-Post credentials locally and may expose them if pasted into conversation logs. <br>
-Mitigation: Keep required keys in the local .env file, avoid echoing secrets, and rotate any key that was shared in chat. <br>
-Risk: Source videos and transcripts are sent to Gemini, and approved clips plus metadata are sent to Upload-Post. <br>
-Mitigation: Install only when this cloud processing is acceptable for the source media, and verify the target Upload-Post profile before publishing. <br>
-Risk: Publishing and scheduling can affect real social accounts. <br>
-Mitigation: Keep dry-run and human approval steps enabled, review the exact payloads, and use TikTok draft mode unless direct posting is explicitly intended. <br>
-Risk: Local clip history, candidate history, metrics, and learning files can retain operational and engagement data. <br>
-Mitigation: Periodically clear local history and analytics files when retention requirements call for it. <br>
+## Use Case:
 
+Content creators, social media operators, and agent users use this skill to turn already prepared vertical long-form videos into short-form clip candidates, review rendered outputs, and schedule approved posts across TikTok, Instagram Reels, and YouTube Shorts. It is intended for a human-in-the-loop publishing workflow rather than fully autonomous posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mutonby/autoshorts) <br>
-- [Project homepage](https://github.com/mutonby/skill-autoshorts) <br>
-- [Upload-Post](https://upload-post.com) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON status from CLI commands, and file paths for generated video clips.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces candidate clip tables, platform copy, scheduling commands, local output files, and learning-loop notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server evidence and skill frontmatter) <br>
+Risk: The workflow requires Gemini and Upload-Post credentials and may store them in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure secrets through a protected terminal or local secret manager, restrict .env file permissions, avoid pasting keys into chat, and rotate any keys exposed in conversation logs.
+
+Risk: Full videos and transcripts are sent to Gemini for multimodal clip selection.
+
+Mitigation: Use the skill only with videos the user is comfortable sending to Gemini, and avoid processing sensitive, private, or regulated footage without an approved data-handling review.
+
+Risk: Upload-Post credentials can schedule content to connected social media accounts.
+
+Mitigation: Review connected Upload-Post profiles, keep the human approval and dry-run steps in place, and use TikTok draft mode unless direct posting is explicitly required.
+
+Risk: Learning and history files can retain persistent local records of clip decisions and performance analytics.
+
+Mitigation: Treat the learning directory as persistent local history and manage access, retention, and backups according to the user's privacy expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mutonby/skills/autoshorts)
+- [Skill homepage](https://github.com/mutonby/skill-autoshorts)
+- [Upload-Post](https://upload-post.com)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON command output, shell commands, rendered media file paths, and platform-specific publishing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local transcript, clip, preview, state, and learning files; approved clips may be scheduled through Upload-Post after human confirmation.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

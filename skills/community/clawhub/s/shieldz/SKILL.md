@@ -1,92 +1,120 @@
 ---
-name: shieldz
-title: Shieldz Payments
-description: Accept crypto payments with zero setup. Turn a wallet address into a shareable payment link or a reusable tip jar. Non-custodial, no account, no API key.
-version: 0.1.0
-homepage: https://shieldz.cash/agents
-license: MIT
-keywords: [payments, crypto, usdc, usdt, non-custodial, invoice, tip-jar]
+name: crypto-payments
+description: Create a Shieldz crypto payment link or tip jar for a wallet the USER explicitly provides, and read payment status back. Use ONLY when the user directly asks to create a crypto payment link or tip jar (or to check what a Shieldz link has received), has named or confirmed the destination wallet, and has confirmed the amount. Do not infer or auto-create from vague phrasing. Every creation sends data to the external Shieldz service (shieldz.cash) and must be confirmed with the user first.
 ---
 
-# Shieldz Payments
+# Shieldz crypto payments
 
-Let the agent accept crypto with **nothing but a destination wallet address**. No
-account, no dashboard, no API key. Funds settle directly to the address you give;
-Shieldz never holds them. Every link is OFAC sanctions-screened and rate-limited.
+Turn a wallet address the **user controls** into a hosted crypto payment link or a
+reusable tip jar via Shieldz, and read back how much has been paid. Non-custodial:
+funds settle straight to the user's wallet; Shieldz never holds funds or keys.
+Keyless: no account and no API key.
 
-Two ways for the agent to use this skill:
+## Read this before using it (data & privacy)
 
-1. **Direct HTTP (recommended for OpenClaw)** — call the keyless REST API below
-   with `curl`. Works out of the box; nothing to install.
-2. **MCP** — Shieldz also runs a remote MCP server at `https://shieldz.cash/mcp`
-   (tools `create_payment_link`, `create_tip_jar`, `get_account_status`). Use it
-   if your runtime prefers MCP tools.
+This skill calls **external Shieldz network services**, the keyless REST API at
+`https://shieldz.cash/api/v1/...` and, optionally, the remote MCP server at
+`https://shieldz.cash/mcp`. It is **not** a local or offline flow.
 
-## When to use
+On each action, the following is transmitted to Shieldz (a third party):
 
-- The user says "take payments to <address>", "set up a checkout", "charge $X",
-  "make a tip jar", "let people pay me", or asks how much has come in.
+- the destination **wallet address**, chain, and asset
+- the **amount** and any **memo / title** the user provides
+- an **email address**, only if the user explicitly provides one (see below)
+- when reading status, the **manage_token**
 
-## Create a one-time payment link
+Treat every `manage_url` / `manage_token` as a **private access credential**:
+anyone holding it can read the account's totals and settings. Do not post them
+publicly, paste them into shared contexts, or write them to logs.
+
+Only proceed if the user is comfortable sending the above to Shieldz's external
+infrastructure. This skill does **not** collect credentials, read local files,
+harvest environment variables, run dynamic code, or persist anything on the
+machine. It contacts `shieldz.cash` and nothing else.
+
+## When to use, and when NOT to
+
+Use this skill only when **all** of these hold:
+
+- the user **explicitly asks** to create a Shieldz crypto payment link or tip jar,
+  or to check what a specific Shieldz link received, **and**
+- the user has **named or confirmed the destination wallet address**, **and**
+- for a fixed-amount link, the user has **confirmed the amount**.
+
+Do **not** activate on vague or adjacent phrasing such as "I need to get paid",
+"how do payments work", or "set something up". If the intent, the wallet, or the
+amount is unclear, **ask, do not create anything**.
+
+**Confirm before every external call.** Before creating a link or tip jar,
+restate the exact wallet address, chain, asset, amount, memo, and whether an
+email will be sent, then get an explicit "yes". Never create autonomously and
+never batch-create.
+
+## Email is optional and consent-gated
+
+`email` is optional and only lets the human owner claim a dashboard later.
+Because it is **personal data sent to a third party**, do **not** include it
+unless the user explicitly provides an address and agrees to send it. Omit it by
+default, settlement works without it.
+
+## Create a payment link (fixed amount)
+
+Keyless, no `Authorization` header. Only call this after the confirmation above.
 
 ```bash
-curl -s -X POST https://shieldz.cash/api/v1/links \
-  -H "content-type: application/json" \
+curl https://shieldz.cash/api/v1/links \
+  -H "Content-Type: application/json" \
   -d '{
-    "settlement": { "chain": "BASE", "asset": "USDC", "address": "0xUSER_WALLET" },
+    "settlement": { "chain": "BASE", "asset": "USDC", "address": "0xUserProvidedWallet" },
     "amount_usd_cents": 4900,
-    "memo": "Pro plan",
-    "email": "owner@example.com"
+    "memo": "Order #1234"
   }'
 ```
 
-`chain` may be `BASE`, `ARB`, `OP`, `POLY`, or `ETH`. `asset` is `USDC` or `USDT`.
-`amount_usd_cents` is USD cents (4900 = $49.00). `email` is optional (lets the
-owner claim a dashboard later). The response includes:
+- `chain`: `BASE`, `ARBITRUM`, `OPTIMISM`, `POLYGON`, or `ETHEREUM`. `asset`: `USDC` or `USDT`.
+- `amount_usd_cents`: amount in USD cents (`4900` = `$49.00`, range `$1`-`$100k`).
+- Response includes `pay_url` (share this with the payer), and `manage_url` +
+  `manage_token` (**private**, keep secret per the rules above).
 
-- `pay_url` — send this to the payer.
-- `embed` — a `<script>` button snippet.
-- `manage_url` / `manage_token` — keep this; it is how you read status later.
+Give the payer the `pay_url`. Do not add `email` unless the user opted in.
 
-## Create a reusable tip jar (payer chooses the amount)
+## Create a tip jar (pay-what-you-want, reusable)
 
 ```bash
-curl -s -X POST https://shieldz.cash/api/v1/tip-jars \
-  -H "content-type: application/json" \
+curl https://shieldz.cash/api/v1/tip-jars \
+  -H "Content-Type: application/json" \
   -d '{
-    "settlement": { "chain": "BASE", "asset": "USDC", "address": "0xUSER_WALLET" },
+    "settlement": { "chain": "BASE", "asset": "USDC", "address": "0xUserProvidedWallet" },
     "title": "Buy me a coffee",
-    "suggested_amounts_usd_cents": [300, 500, 1000],
-    "email": "owner@example.com"
+    "suggested_amounts_usd_cents": [300, 500, 1000]
   }'
 ```
 
-Returns a reusable `url` (e.g. `https://shieldz.cash/tip/...`). Idempotent per
-wallet address: calling again updates the same jar.
+Response includes `url` (share this) and `manage_token` (**private**).
 
-## Report what came in (e.g. on a heartbeat)
+## Read status (how much has been paid)
 
 ```bash
-curl -s https://shieldz.cash/a/<manage_token>.json
+curl https://shieldz.cash/a/<manage_token>.json
 ```
 
-Returns settlement details, tip jars, and `totals` (paid/pending counts and
-amounts) so you can tell the user "you've received $X across N payments".
+Returns totals and the invoice list. The `manage_token` is a capability secret,
+only use one the user has given you, never guess it, and never share it.
 
-## Rules for the agent
+## Optional: MCP instead of REST
 
-- Always confirm the destination address with the user before creating a link.
-- Never invent an address. If you don't have one, ask.
-- A `403 sanctioned_address` means the address is on the OFAC list; do not retry.
-- A `429` means slow down; wait and retry once.
-- Funds are non-custodial: they go straight to the user's wallet, not to Shieldz.
+If the agent uses MCP, the same three actions are available keyless via the
+Shieldz MCP server: remote at `https://shieldz.cash/mcp`, or local with a
+**pinned** version `npx -y @shieldz/mcp@0.3.0`. Tools: `create_payment_link`,
+`create_tip_jar`, `get_account_status`. The same confirmation, data-disclosure,
+and email-consent rules above apply unchanged.
 
-## Optional: connect via MCP instead of curl
+## Safety summary
 
-If your runtime supports MCP servers, add the remote server and call its tools:
-
-```json
-{ "mcpServers": { "shieldz": { "url": "https://shieldz.cash/mcp" } } }
-```
-
-Tools: `create_payment_link`, `create_tip_jar`, `get_account_status`.
+- Contacts `shieldz.cash` only. No other network destination.
+- Confirms wallet + amount + email-choice with the user before every creation.
+- Never creates from vague intent, and never creates without an explicit "yes".
+- `manage_url` / `manage_token` are private, protect them like a password.
+- `email` is optional, consent-gated, and off by default.
+- No local persistence, no credential / environment / file access, no dynamic
+  code execution, and a pinned MCP dependency.

@@ -1,41 +1,54 @@
-## Description: <br>
-Guide refrigerator buyers through household size, kitchen space, climate, and power questions to determine exact capacity, type, and efficiency specs - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide refrigerator buyers through household size, kitchen space, climate, and power questions to determine exact capacity, type, and efficiency specs, with region-aware and brand-neutral advice.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose refrigerator specifications for a purchase decision. The agent interviews the user about household needs, kitchen fit, climate, power stability, and usage patterns, then provides a structured recommendation and up to five locally relevant product examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest real refrigerator models whose prices, availability, labels, or specifications can change. <br>
-Mitigation: Tell users to verify current local availability, pricing, energy labels, and exact manufacturer spec sheets before purchase. <br>
-Risk: The skill includes product examples and buying guidance but is not a purchasing agent. <br>
-Mitigation: Keep the output advisory and avoid collecting payment details or unnecessary personal information. <br>
+## Use Case:
 
+External buyers use this skill to complete a structured refrigerator purchase consultation, translating household needs, kitchen fit, local climate, power stability, and usage habits into prioritized specifications and up to five matching product examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/refrigerator-buying-consultant) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Conversational questions followed by structured Markdown recommendations and a numbered product list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces shopping guidance only; users should verify current model availability, pricing, energy labels, and exact spec sheets locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Product models, prices, energy labels, and local availability can change or vary by region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggested models as starting points and verify local availability, exact specifications, pricing, and the applicable energy-rating standard before purchasing.
+
+Risk: The consultation depends on practical user-provided details such as kitchen measurements, city, household size, and power stability.
+
+Mitigation: Ask targeted follow-up questions for missing or vague inputs and avoid final recommendations until critical sizing, climate, and fit details are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/refrigerator-buying-consultant)
+- [Skill homepage](https://github.com/arbazex/home-appliance-buying-consultants/tree/master/refrigerator-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text followed by structured Markdown recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caps product suggestions at five and instructs users to verify local availability, pricing, exact model specifications, and energy-label standards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

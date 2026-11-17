@@ -1,40 +1,49 @@
-## Description: <br>
-Compare profitability and market share using variable-width column charts for competitive positioning, product portfolio analysis, and pricing strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare profitability and market share using variable-width column charts. Use for competitive positioning, product portfolio analysis, and pricing strategy.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business analysts, strategy teams, and product leaders use this skill to structure weighted-column and related chart analyses that compare revenue, margin, return on sales, market share, and strategic positioning across competitors or portfolio items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad business-analysis terms where a weighted-column chart may not be the right format. <br>
-Mitigation: Confirm that weighted-column, variable-width column, bubble, or quadrant analysis fits the user's data and decision before applying the template. <br>
-Risk: Business conclusions can be misleading if revenue, margin, return-on-sales, or market-share inputs are incomplete or stale. <br>
-Mitigation: Validate source data and have a domain reviewer check strategic implications before using them for decisions. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to structure weighted column analysis that compares profitability, return on sales, market share, and competitive positioning.
 
-## Reference(s): <br>
-- [Weighted Column ClawHub release page](https://clawhub.ai/linuszz/weighted-column) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with tables and narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no shell commands, API calls, or file writes are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad trigger terms such as profitability or market share may activate the skill when another analysis format would be better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the requested analysis should use a weighted-column or profitability-vs-market-share template before applying the skill's output structure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/weighted-column)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tables, chart-structure guidance, competitive analysis, margin analysis, and strategic implications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

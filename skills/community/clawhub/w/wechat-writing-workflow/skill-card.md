@@ -1,45 +1,63 @@
-## Description: <br>
-Standardized WeChat official account writing workflow that integrates WeChat publishing, toolkit, writing, search, and analysis skills across material research, drafting, formatting, publishing, and post-publication optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized WeChat official account writing workflow integrating wechat-publisher, wechat-toolkit, wechat-mp-writer-skill and other skills. Provides complete workflow from material search to publishing with 5 stages.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External content operators and developers use this skill to plan and execute WeChat official account articles, including material research, drafting, Markdown formatting, publishing checks, and performance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can expose WeChat credentials such as WECHAT_APP_SECRET through prompts, logs, or shell history. <br>
-Mitigation: Treat WeChat secrets as sensitive, avoid echoing them into prompts or logs, and rotate any secret that may have been exposed. <br>
-Risk: Publishing, scheduling, or group-send actions can affect live public WeChat posts. <br>
-Mitigation: Use draft and preview-only defaults, and require explicit manual approval before scheduling, publishing, or group-sending content. <br>
-Risk: Rewrite guidance could be misused to disguise copied work or insufficiently attributed sources. <br>
-Mitigation: Use original writing, limited quotation, attribution, and licensed sources instead of using rewrite steps to hide copied content. <br>
-Risk: The workflow depends on referenced publisher and toolkit skills whose behavior is not assessed by this card. <br>
-Mitigation: Review and scan each referenced publisher, toolkit, search, writing, and analysis skill separately before installation or deployment. <br>
+## Use Case:
 
+External creators, editors, and operators use this skill to plan and run a WeChat official account publishing workflow from material search through drafting, formatting, publishing, and post-publication analysis.
 
-## Reference(s): <br>
-- [WeChat Official Account Developer Documentation](https://developers.weixin.qq.com/) <br>
-- [wenyan-cli](https://github.com/wenyan-md/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated article-planning artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate other WeChat publishing, search, writing, and analysis skills; live publishing requires explicit manual approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow can guide live posting, scheduled publishing, or mass sending to a WeChat official account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review and approval of every draft, preview, schedule, publish, or mass-send action before using connected publishing tools.
+
+Risk: The workflow includes similarity-obscuring rewrite guidance that could be used to evade originality or attribution expectations.
+
+Mitigation: Avoid washing or similarity-evasion steps; require original writing, accurate attribution, and editorial review before publication.
+
+Risk: Publishing workflows may involve WeChat AppID and AppSecret credentials.
+
+Mitigation: Store WeChat secrets outside drafts and shared files, restrict access to credentialed environments, and rotate secrets if exposure is suspected.
+
+Risk: The workflow references external dependency installs for related tooling.
+
+Mitigation: Use pinned versions or isolated environments when installing supporting tools such as npm packages.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/earthwalking/skills/wechat-writing-workflow)
+- [WeChat Official Account documentation](https://developers.weixin.qq.com/)
+- [wenyan-cli](https://github.com/wenyan-md/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown workflow guidance with command examples and configuration checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces article drafts, title suggestions, summaries, cover-image recommendations, publishing status guidance, and data-analysis report guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and openclaw.skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

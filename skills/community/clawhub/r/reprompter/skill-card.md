@@ -1,49 +1,73 @@
-## Description: <br>
-RePrompter transforms rough prompts into structured XML or Markdown prompts, scores prompt quality, and can optionally produce team briefs and per-agent prompts for Claude Code or OpenClaw orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RePrompter turns rough prompts into structured single-agent or multi-agent prompts with quality scoring and optional team orchestration.
 
-## Publisher: <br>
-[AytuncYildizli](https://clawhub.ai/user/AytuncYildizli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aytuncyildizli](https://clawhub.ai/user/aytuncyildizli)
 
-## Use Case: <br>
-Developers, engineers, and agent users use RePrompter to turn vague or compound requests into actionable prompts with clear requirements, constraints, output formats, and success criteria. For larger tasks, it can plan multi-agent work and create scoped sub-prompts for team execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Repromptception mode can launch multi-agent Claude/OpenClaw runs and generate tmux commands that write outputs under /tmp. <br>
-Mitigation: Review generated tmux commands, working directories, and /tmp paths before execution; use single-prompt mode when orchestration is not needed. <br>
-Risk: Prompts, team briefs, and agent outputs may include sensitive user or project data written to temporary files. <br>
-Mitigation: Avoid putting secrets or sensitive private data into prompts and remove temporary files after use. <br>
-Risk: Generated quality scores are self-assessed and may overstate prompt readiness. <br>
-Mitigation: Treat scores as directional and review generated requirements, constraints, and success criteria before using the prompt. <br>
+## Use Case:
 
+Developers and prompt authors use RePrompter to convert vague task requests into structured prompts, quality scores, team briefs, and scoped sub-prompts for coding or research agents.
 
-## Reference(s): <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Anthropic Skills Guide](https://claude.com/blog/complete-guide-to-building-skills-for-claude) <br>
-- [Team Brief Template](docs/references/team-brief-template.md) <br>
-- [Multi-Agent/Swarm Template](docs/references/swarm-template.md) <br>
-- [Feature Template](docs/references/feature-template.md) <br>
-- [API Template](docs/references/api-template.md) <br>
-- [Security Template](docs/references/security-template.md) <br>
-- [Testing Template](docs/references/testing-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with XML prompt blocks, quality score tables, optional team briefs, per-agent sub-prompts, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single mode produces prompts and scores only; Repromptception mode can include tmux orchestration commands and /tmp output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: frontmatter and changelog, released 2026-02-12) <br>
+Risk: Repromptception can spawn multiple agent sessions, write temporary files, read their outputs, retry work, and persist Claude Code team settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated scope before execution, use explicit trigger phrases, and enable team mode only for work where those agent actions are acceptable.
+
+Risk: The README installation command fetches from the main branch, which can change over time.
+
+Mitigation: Install from a pinned release or reviewed commit before use.
+
+Risk: Prompt-improvement output can be wrong or over-scoped if the original request is ambiguous.
+
+Mitigation: Review generated prompts, requirements, constraints, and success criteria before letting an agent modify a project.
+
+## Reference(s):
+
+- [RePrompter ClawHub Page](https://clawhub.ai/aytuncyildizli/skills/reprompter)
+- [README](README.md)
+- [Testing Scenarios](TESTING.md)
+- [API Template](docs/references/api-template.md)
+- [Bugfix Template](docs/references/bugfix-template.md)
+- [Content Template](docs/references/content-template.md)
+- [Documentation Template](docs/references/docs-template.md)
+- [Feature Template](docs/references/feature-template.md)
+- [Refactor Template](docs/references/refactor-template.md)
+- [Research/Analysis Template](docs/references/research-template.md)
+- [Security Template](docs/references/security-template.md)
+- [Multi-Agent/Swarm Template](docs/references/swarm-template.md)
+- [Team Brief Template](docs/references/team-brief-template.md)
+- [Testing Template](docs/references/testing-template.md)
+- [UI Component Template](docs/references/ui-template.md)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Complete Guide to Building Skills for Claude](https://claude.com/blog/complete-guide-to-building-skills-for-claude)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and XML-style structured prompts, with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single prompt mode generates a polished prompt and quality score; Repromptception mode can generate team briefs, per-agent prompts, and agent output files under /tmp.]
+
+## Skill Version(s):
+
+7.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

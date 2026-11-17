@@ -1,39 +1,58 @@
-## Description: <br>
-Build source-backed research claim ledgers from drafts, literature matrices, notes, citation lists, PDFs, source packets, or reviewer comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds source-backed claim ledgers that audit drafts, literature matrices, source packets, and reviewer comments for unsupported, overclaimed, stale, or citation-dependent research claims.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Researchers, students, reviewers, and writing teams use this skill to audit factual, numerical, causal, comparative, novelty, policy, and citation-dependent claims against supplied or discovered sources. It produces a concise evidence ledger that separates support, uncertainty, and repair steps before sharing or submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, source packets, and reviewer comments may contain sensitive or unpublished research material. <br>
-Mitigation: Only provide documents appropriate for agent review, and keep web searching or source discovery under user direction. <br>
-Risk: Claim-support judgments may be incomplete when sources are inaccessible, stale, or require specialist review. <br>
-Mitigation: Treat unsupported, inaccessible, stale, and needs-human-review verdicts as prompts for qualified human verification before relying on the ledger. <br>
+## Use Case:
 
+Researchers, reviewers, students, and research teams use this skill to turn drafts, literature matrices, citation lists, PDFs, notes, source packets, or reviewer comments into a traceable claim-to-source ledger with repair guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces claim ledgers, unsupported-claim summaries, source gaps, repair guidance, and shareable evidence receipts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process confidential or restricted research materials supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces and model environments approved for the sensitivity of the research materials.
+
+Risk: Current or fast-moving claims can be stale or unsupported if they are not checked against current sources.
+
+Mitigation: Require browsing and citations for current facts, and mark unavailable or unchecked evidence explicitly.
+
+Risk: High-stakes medical, legal, financial, safety, or policy claims may need expert judgment beyond source matching.
+
+Mitigation: Use the ledger as an evidence audit and route domain-sensitive conclusions to qualified human review.
+
+## Reference(s):
+
+- [Research Claim Ledger on ClawHub](https://clawhub.ai/zack-dev-cm/skills/research-claim-ledger)
+- [Publisher profile: zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Claim ledger summaries, evidence locators, verdicts, source gaps, repair suggestions, and shareable receipts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

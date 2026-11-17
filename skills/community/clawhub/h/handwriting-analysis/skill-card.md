@@ -1,42 +1,54 @@
-## Description: <br>
-Analyzes handwriting images or samples with graphology-style feature checklists to produce personality, psychological-state, behavioral-tendency, signature, and comparison reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handwriting Analysis is a Chinese-language graphology skill that guides an agent to review handwriting features and produce personality, mental-state, behavioral, signature, comparison, and forensic-style observations.
 
-## Publisher: <br>
-[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883)
 
-## Use Case: <br>
-External users can ask an agent to inspect handwriting samples, record visible writing features, and draft a structured graphology-style report. The output should be treated as speculative guidance only, not as forensic proof, employment assessment, mental-health assessment, or a basis for judging guilt or dangerousness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce sensitive personality, mental-state, criminal-risk, or personnel judgments from handwriting. <br>
-Mitigation: Use results only as speculative graphology guidance and do not rely on them for law-enforcement, hiring, mental-health, guilt, honesty, dangerousness, or other consequential decisions. <br>
-Risk: Handwriting analysis is subjective and can be affected by writing conditions, tools, health, and deliberate disguise. <br>
-Mitigation: Require clear samples, document observable features separately from interpretations, state confidence and limitations, and defer legal or forensic conclusions to qualified professional examiners using corroborating evidence. <br>
+## Use Case:
 
+External users can ask an agent to review handwriting images, identify visible handwriting features, and draft a structured analysis report. The skill should be limited to non-consequential educational exploration and should not be used to judge honesty, mental health, criminal propensity, hiring suitability, or legal responsibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhanchao883/handwriting-analysis) <br>
-- [Forensic handwriting guide](references/forensic-guide.md) <br>
-- [Personality trait mapping](references/personality-traits.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown or structured text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include feature observations, confidence notes, limitations, and comparison or signature-analysis sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs the agent to make unsupported personality, mental-state, and criminal-risk judgments from handwriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for non-consequential educational exploration; do not use outputs for hiring, legal responsibility, mental-health assessment, honesty judgments, or criminal-propensity decisions.
+
+Risk: Forensic handwriting questions may be mistaken for qualified document examination.
+
+Mitigation: Treat outputs as informal observations only and refer forensic or legal matters to qualified document examiners supported by independent evidence.
+
+## Reference(s):
+
+- [Personality traits reference table](references/personality-traits.md)
+- [Forensic handwriting guide](references/forensic-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured report with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include handwriting feature descriptions, confidence ratings, limitations, and cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

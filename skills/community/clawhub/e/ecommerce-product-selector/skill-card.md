@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes ecommerce product opportunities across Taobao, JD, Pinduoduo, Douyin, Amazon, and other marketplaces using market trends, competitor signals, profit estimates, and keyword factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps e-commerce operators analyze product opportunities, market trends, competitor signals, profit potential, keywords, and platform-specific demand across major marketplaces.
 
-## Publisher: <br>
-[wensen2024](https://clawhub.ai/user/wensen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wensen2024](https://clawhub.ai/user/wensen2024)
 
-## Use Case: <br>
-Ecommerce operators, product researchers, and merchants use this skill to screen product ideas and generate advisory market, competitor, profit, keyword, and operating recommendations before sourcing or listing products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market demand, pricing, profitability, and product trend estimates may be stale, incomplete, or misleading. <br>
-Mitigation: Verify recommendations against current marketplace data, supplier quotes, platform fees, advertising costs, and recent sales evidence before making business decisions. <br>
-Risk: Product recommendations may miss legal, marketplace, safety, tax, import, or advertising compliance requirements. <br>
-Mitigation: Review applicable laws, marketplace policies, product safety rules, and internal compliance requirements before sourcing, listing, or promoting products. <br>
-Risk: The artifact includes payment and subscription terms that could affect purchasing decisions. <br>
-Mitigation: Confirm current pricing, recipient identity, payment method, refund terms, and service scope before sending funds or entering a subscription. <br>
+## Use Case:
 
+External e-commerce sellers, operators, and product researchers use this skill to screen product categories, compare competitors, estimate margins, analyze keywords, and produce advisory product-selection reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wensen2024/ecommerce-product-selector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown-style text reports with product recommendations, market analysis, competitor analysis, profit estimates, keyword suggestions, operational guidance, and optional JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory ecommerce analysis only; server security evidence reports no code, credentials, persistence, or hidden authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Product, market, and profit recommendations may be inaccurate, stale, or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as advisory only and validate recommendations against current marketplace data, supplier costs, platform policies, and the user's own operating constraints.
+
+Risk: Private product links, sourcing plans, or business strategy details could be exposed when used in workflows that browse or contact external platforms.
+
+Mitigation: Avoid submitting confidential product or strategy information unless the surrounding agent workflow and connected tools are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wensen2024/skills/ecommerce-product-selector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text product-selection analysis report with optional JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and should be checked against current market data, platform rules, and the user's own business constraints.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Transforms casual, voice-transcribed, mixed-language, vague, or ambiguous user requests into structured AI-optimized prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms casual or voice-transcribed user requests into precise, AI-optimized prompts for mixed-language, vague, or ambiguous tasks.
 
-## Publisher: <br>
-[jamesxu81](https://clawhub.ai/user/jamesxu81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesxu81](https://clawhub.ai/user/jamesxu81)
 
-## Use Case: <br>
-Developers, operators, and other agent users use this skill to convert informal requests into clear prompts with task, context, requirements, references, and output expectations. It is most useful for voice transcription, mixed-language input, ambiguous requests, and complex multi-step work that needs clarification before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account-related examples can encourage users to include private identifiers or message content in prompts. <br>
-Mitigation: Replace personal identifiers with placeholders, avoid unnecessary private content, and confirm before posting, sending, or acting externally. <br>
-Risk: A refined prompt may make an ambiguous or destructive request appear ready to execute. <br>
-Mitigation: For destructive or high-impact actions, summarize the intended action and obtain confirmation before execution. <br>
+## Use Case:
 
+Developers, operators, and AI users use this skill to turn informal, voice-transcribed, mixed-language, or ambiguous requests into structured prompts with clear task, context, requirements, and output criteria.
 
-## Reference(s): <br>
-- [Prompt Refiner release page](https://clawhub.ai/jamesxu81/covert-native-language-to-ai-firendly-prompt) <br>
-- [Prompt Refiner package listing](https://clawhub.com/skills/prompt-refiner) <br>
-- [Worked examples](references/examples.md) <br>
-- [Prompt engineering techniques](references/techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Structured prompt text or Markdown; the bundled CLI can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask a focused clarification question before producing the refined prompt when critical context is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Refined prompts may be used for sensitive workflows such as account access, external posting, deletion, deployment, or service restarts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and require explicit user confirmation before an agent performs sensitive, destructive, or external-facing actions.
+
+Risk: Artifact examples contain real-looking personal identifiers and local paths that could be copied into generated prompts.
+
+Mitigation: Replace example email addresses, account names, service names, and local paths with placeholders or user-provided values before use.
+
+## Reference(s):
+
+- [Prompt Refiner worked examples](references/examples.md)
+- [Prompt engineering techniques reference](references/techniques.md)
+- [ClawHub skill page](https://clawhub.ai/jamesxu81/skills/covert-native-language-to-ai-firendly-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured prompt text with optional JSON analysis from the CLI helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend one clarifying question before producing a final refined prompt.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

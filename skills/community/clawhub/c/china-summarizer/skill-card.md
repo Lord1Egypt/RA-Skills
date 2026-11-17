@@ -1,44 +1,55 @@
-## Description: <br>
-China Summarizer helps agents summarize user-provided text, local TXT, Markdown, PDF, and Word files, web pages, news articles, and WeChat articles into concise Chinese summaries without requiring login or an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Summarizer summarizes Chinese or English content from pasted text, local TXT/MD/PDF/Word files, web pages, news articles, and WeChat articles into Chinese structured summaries.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to extract and summarize user-provided Chinese or English articles, documents, web pages, and pasted text into structured Chinese summaries. It is especially useful when the user needs core points, key facts, and a one-sentence takeaway from long-form content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text, URLs, and local files may contain sensitive information that will be processed by the active model. <br>
-Mitigation: Only provide content you are comfortable having the model process for summarization. <br>
-Risk: The release declares capability tags for credentials, payment authority, and crypto access even though the visible summarization behavior does not need them. <br>
-Mitigation: Do not grant credentials, payment authority, or crypto access when using this skill. <br>
-Risk: Extraction may fail or be incomplete for JavaScript-rendered pages, scanned PDFs, unsupported Word formats, or missing local document parsers. <br>
-Mitigation: Paste source text manually or install the documented parser tools only when needed, then review the generated summary against the source. <br>
+## Use Case:
 
+External users and developers use this skill to extract and summarize user-provided documents, pasted text, and web articles into concise Chinese summaries that preserve key facts, names, dates, and numbers.
 
-## Reference(s): <br>
-- [Content extraction technical notes](references/extract.md) <br>
-- [Summarization prompt templates](references/prompts.md) <br>
-- [ClawHub release page](https://clawhub.ai/tobewin/china-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary in Chinese with structured sections and bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves key figures, dates, names, and conclusions; long inputs are summarized in chunks before final synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The agent may read the local files or URLs that the user asks it to summarize, which can expose sensitive content to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files and links the user intends to process, and review summaries carefully when source material is sensitive or untrusted.
+
+Risk: Optional PDF and Word extraction tools or Python packages may need to be installed for some document types.
+
+Mitigation: Install optional dependencies in a controlled environment without unnecessary administrator privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-summarizer)
+- [Content extraction technical notes](references/extract.md)
+- [Summary prompt templates](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like Chinese structured summary with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Long inputs may be summarized in chunks before final aggregation; summaries target 300-500 Chinese characters, with long-form summaries capped around 500 characters.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

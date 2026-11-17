@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
+  "name": "skill-compounding",
+  "ownerId": "local-workspace-agent",
   "slug": "skill-compounding",
   "version": "0.1.0",
-  "publishedAt": 1779977008374
+  "publishedAt": 1779879293895
 }

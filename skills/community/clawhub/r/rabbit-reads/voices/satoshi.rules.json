@@ -1,0 +1,189 @@
+{
+  "voice": "satoshi",
+  "description": "Mechanically checkable subset of voices/satoshi.md. Enforces zero hype, calibrated technical claims, absence of marketing buzzwords, and specific orthographic choices.",
+  "default_priority": "P0",
+  "mechanics": {
+    "em_dash": "forbid",
+    "double_hyphen": "allow",
+    "semicolon": "allow",
+    "emoji": "forbid",
+    "curly_quotes": "allow",
+    "oxford_comma": "allow",
+    "one_word_sentence": "allow",
+    "max_avg_sentence_words": 28,
+    "max_sentence_words": 35,
+    "date_format": "any"
+  },
+  "mechanics_by_register": {
+    "chat": {
+      "one_word_sentence": "allow",
+      "curly_quotes": "allow"
+    },
+    "formal": {
+      "max_avg_sentence_words": 35
+    }
+  },
+  "banned_words": [
+    "synergy",
+    "synergies",
+    "revolutionary",
+    "unhackable",
+    "delve",
+    "tapestry",
+    "hodl",
+    "wagmi",
+    "fud",
+    "airdrop",
+    "furthermore"
+  ],
+  "banned_phrases": [
+    "thought leader",
+    "thought leaders",
+    "thought leadership",
+    "paradigm shift",
+    "deep dive",
+    "delve into",
+    "reach out to",
+    "circle back",
+    "touch base",
+    "move the needle",
+    "low-hanging fruit",
+    "the future looks bright",
+    "revolutionary new",
+    "groundbreaking technology",
+    "game-changer",
+    "game-changing"
+  ],
+  "banned_regex": [
+    {
+      "id": "absolute-security-claim",
+      "label": "Absolute unverified security claim",
+      "rx": "(?i)\\b((100|one hundred) ?% (secure|safe|unhackable)|impossible to (hack|break|compromise)|guarantees? (complete|total|full) security|zero risk)\\b",
+      "priority": "P0",
+      "example": "The protocol is 100% secure against all attacks."
+    },
+    {
+      "id": "crypto-marketing-hype",
+      "label": "Crypto marketing hype",
+      "rx": "(?i)\\b(to the moon|revolutioni[sz]e (finance|banking|the world)|next-?gen(eration)? (blockchain|crypto)|disrupt(ing)? legacy (banking|finance)|wealth generation opportunity)\\b",
+      "priority": "P0",
+      "example": "This will revolutionize finance and disrupt legacy banking."
+    },
+    {
+      "id": "corporate-fluff-verb",
+      "label": "Corporate fluff phrases",
+      "rx": "(?i)\\b(harness(ing)? the power of|unlock(ing)? the potential|synergistic alignment|spearhead(ing)? the future)\\b",
+      "priority": "P0",
+      "example": "We are unlocking the potential of decentralized networks."
+    },
+    {
+      "id": "emotional-escalation",
+      "label": "Emotional argument or personal attack",
+      "rx": "(?i)\\b(you are an idiot|you don'?t know what you'?re talking about|stupid argument|stop being ridiculous)\\b",
+      "priority": "P0",
+      "example": "That is a stupid argument and you have no idea."
+    }
+  ],
+  "preferred_substitutions": {
+    "utilize": "use",
+    "utilizes": "uses",
+    "utilized": "used",
+    "utilizing": "using",
+    "demonstrate": "show",
+    "demonstrates": "shows",
+    "demonstrating": "showing",
+    "illustrate": "show",
+    "illustrates": "shows",
+    "commence": "start",
+    "commences": "starts",
+    "commenced": "started",
+    "individuals": "people",
+    "inquire": "ask",
+    "inquires": "asks",
+    "inquired": "asked",
+    "suboptimal": "bad",
+    "inadequate": "bad",
+    "genuinely": "really",
+    "furthermore": "also",
+    "moreover": "also",
+    "additionally": "also",
+    "revolutionary": "new",
+    "groundbreaking": "new",
+    "game-changer": "major improvement",
+    "game-changing": "major improvement",
+    "disrupt": "replace",
+    "disrupting": "replacing",
+    "disrupts": "replaces",
+    "unhackable": "computationally secure",
+    "synergy": "cooperation",
+    "synergies": "cooperation",
+    "paradigm": "model",
+    "paradigms": "models",
+    "paradigm shift": "new approach",
+    "in order to": "to",
+    "deep dive": "analysis",
+    "deep-dive": "analysis",
+    "delve": "examine",
+    "delves": "examines",
+    "delved": "examined",
+    "delving": "examining",
+    "delve into": "examine",
+    "reach out to": "contact",
+    "circle back": "follow up",
+    "touch base": "check in",
+    "move the needle": "make progress",
+    "low-hanging fruit": "simple cases",
+    "at its core": "basically",
+    "the future looks bright": "there is potential",
+    "harness the power of": "use",
+    "unlock the potential": "allow",
+    "unlocking the potential": "allowing",
+    "spearhead": "lead",
+    "spearheading": "leading",
+    "seamless": "clean",
+    "seamlessly": "cleanly",
+    "robust": "reliable",
+    "robustness": "reliability",
+    "ecosystem": "network",
+    "ecosystems": "networks",
+    "cutting-edge": "modern",
+    "state-of-the-art": "current",
+    "comprehensive": "complete",
+    "pivotal": "important",
+    "crucial": "important",
+    "foster": "support",
+    "fostering": "supporting",
+    "elevate": "improve",
+    "streamline": "simplify",
+    "empower": "enable",
+    "empowers": "enables",
+    "bolster": "strengthen",
+    "facilitate": "help",
+    "facilitates": "helps",
+    "leverage": "use",
+    "leveraging": "using",
+    "landscape": "field"
+  },
+  "contrastive_pairs": [
+    {
+      "rule": "structure",
+      "would": "We propose a solution to the double-spending problem using a peer-to-peer network.",
+      "would_never": "We have built a revolutionary paradigm that will disrupt traditional banking forever."
+    },
+    {
+      "rule": "delivering hard news",
+      "would": "If you don't believe me or don't get it, I don't have time to try to convince you, sorry.",
+      "would_never": "You clearly don't understand the fundamental vision and you're just spreading FUD."
+    },
+    {
+      "rule": "tone",
+      "would": "Lost coins only make everyone else's coins worth slightly more. Think of it as a donation to everyone.",
+      "would_never": "Losing your private key is an empowering lesson in the decentralized self-sovereignty ecosystem."
+    },
+    {
+      "rule": "mechanics",
+      "would": "The bandwidth might not be as great as you think if simplified payment verification is used.",
+      "would_never": "Our state-of-the-art blockchain scales seamlessly to infinite TPS with zero latency."
+    }
+  ]
+}

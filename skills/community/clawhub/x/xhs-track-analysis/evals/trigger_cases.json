@@ -1,0 +1,205 @@
+{
+  "skill_name": "xhs-track-analysis",
+  "version": "1.0",
+  "description": "xhs-track-analysis v3.0.0 回归测试集。cases 段为触发词静态回归（兼容 skillforge trigger_eval.py 的 S1.3/S1.4/S1.8 校验，验证 description 路由覆盖）；analysis_cases 段为分析逻辑回归基准（防晒霜品类匿名化演示数据 + 期望断言，验证 v3.0 新增维度——长尾信号 / 购买意图分层 / 意图标注 / 评论者类型 / 供给结构 / 风险扫描——是否稳定产出符合预期的判断）。",
+  "negative_case_requirements": {
+    "min_count": 5,
+    "near_miss_ratio": "negative cases 中应包含与 xhs-track-analysis 语义相近但不应触发的意图（市场规模建模 / 算法逆向 / 单达人分析），以暴露 description 过宽问题（AP-10）",
+    "rationale": "纯远邻 negative case（天气/翻译）无法检测误触发。"
+  },
+  "cases": [
+    {
+      "id": "P01",
+      "input": "做一份小红书赛道分析：防晒霜，我们要进这个赛道",
+      "category": "positive",
+      "expected_keywords": ["小红书赛道分析"],
+      "severity": "hard"
+    },
+    {
+      "id": "P02",
+      "input": "分析防晒霜品类在小红书的内容生态",
+      "category": "positive",
+      "expected_keywords": ["分析xx品类在小红书"],
+      "severity": "hard"
+    },
+    {
+      "id": "P03",
+      "input": "小红书防晒赛道研究",
+      "category": "positive",
+      "expected_keywords": ["赛道研究"],
+      "severity": "hard"
+    },
+    {
+      "id": "P04",
+      "input": "小红书品类研究：通勤包",
+      "category": "positive",
+      "expected_keywords": ["小红书品类研究"],
+      "severity": "hard"
+    },
+    {
+      "id": "P05",
+      "input": "看看小红书防晒内容生态怎么样",
+      "category": "positive",
+      "expected_keywords": ["小红书内容生态分析"],
+      "severity": "hard"
+    },
+    {
+      "id": "P06",
+      "input": "小红书竞品内容分析：防晒霜",
+      "category": "positive",
+      "expected_keywords": ["小红书竞品内容分析"],
+      "severity": "hard"
+    },
+    {
+      "id": "P07",
+      "input": "这个防晒博主的内容怎么样，适不适合种草",
+      "category": "positive",
+      "expected_keywords": ["小红书达人分析", "小红书种草分析"],
+      "severity": "hard"
+    },
+    {
+      "id": "P08",
+      "input": "帮我做一份小红书种草分析报告",
+      "category": "positive",
+      "expected_keywords": ["小红书种草分析"],
+      "severity": "hard"
+    },
+    {
+      "id": "N01",
+      "input": "帮我估算防晒霜在小红书的市场规模",
+      "category": "negative",
+      "near_miss": true,
+      "expected_keywords": [],
+      "severity": "hard",
+      "note": "近邻误触发：市场规模建模是 description 明确排斥的，不应触发。"
+    },
+    {
+      "id": "N02",
+      "input": "研究小红书搜索排序算法是怎么工作的",
+      "category": "negative",
+      "near_miss": true,
+      "expected_keywords": [],
+      "severity": "hard",
+      "note": "近邻误触发：平台算法逆向是 description 明确排斥的。"
+    },
+    {
+      "id": "N03",
+      "input": "自动帮我排一份防晒达人投放排期和预算",
+      "category": "negative",
+      "near_miss": true,
+      "expected_keywords": [],
+      "severity": "hard",
+      "note": "近邻误触发：自动生成投放策略是 description 明确排斥的。"
+    },
+    {
+      "id": "N04",
+      "input": "深度分析这个护肤博主的账号内容，判断要不要合作",
+      "category": "negative",
+      "near_miss": true,
+      "expected_keywords": [],
+      "severity": "hard",
+      "note": "近邻误触发：单达人账号深度分析应由 kol-account-analysis skill 处理（赛道级 vs 账号级边界）。"
+    },
+    {
+      "id": "N05",
+      "input": "今天天气怎么样",
+      "category": "negative",
+      "expected_keywords": [],
+      "severity": "soft",
+      "note": "远邻不相关意图。"
+    },
+    {
+      "id": "R01",
+      "input": "防晒这个品类在小红书的机会和风险怎么评估",
+      "category": "paraphrase",
+      "expected_keywords": [],
+      "severity": "soft",
+      "note": "同义改写：'机会和风险评估' ≈ 赛道分析与投决，但 description 未含'风险'关键词。soft miss 反映触发覆盖盲区（已知限制）。"
+    },
+    {
+      "id": "O01",
+      "input": "我们想进防晒这个赛道，帮我看看用户都在纠结什么",
+      "category": "orthogonal",
+      "expected_keywords": ["纠结", "用户"],
+      "severity": "soft",
+      "note": "语义盲区：'用户纠结什么' ≈ 用户问题分析，description 用'用户在问什么'而非'纠结'。关键词匹配不可达，真实 LLM 可能语义触发。"
+    },
+    {
+      "id": "O02",
+      "input": "帮我摸一下防晒品类的内容竞争情况",
+      "category": "orthogonal",
+      "expected_keywords": ["竞争", "饱和"],
+      "severity": "soft",
+      "note": "语义盲区：'内容竞争情况' ≈ 供给结构判断（v3.0 新增维度），description 未含'竞争/饱和'字样。"
+    }
+  ],
+  "analysis_cases": {
+    "description": "分析逻辑回归基准：防晒霜品类匿名化演示数据。用于验证 v3.0 新增六大维度（长尾信号/购买意图分层/意图标注/评论者类型/供给结构/风险扫描）是否稳定产出符合预期的判断。数据为虚构，仅作回归断言。",
+    "fixtures": [
+      {
+        "id": "C01_sunscreen",
+        "category": "防晒霜（匿名化演示）",
+        "setup": {
+          "three_questions": {
+            "want_to_see": "防晒霜品类在小红书的用户需求结构与内容缺口",
+            "brand_decision": "是否进入 + 以什么内容策略进入",
+            "audience": "品牌市场部投决"
+          },
+          "keywords": {
+            "groups": 4,
+            "intent_annotated": true,
+            "decision_intent_word_count": 2,
+            "note": "决策类关键词（避雷/成分表/值不值）仅 2 个，预示决策阶段内容偏薄"
+          }
+        },
+        "data": {
+          "collection": { "raw_records": 320, "deduped_notes": 210, "cross_keyword_hits": 22, "multi_intent_notes": 9 },
+          "longtail": {
+            "top10_collect_old_notes_gt180d": 6,
+            "longtail_examples": [
+              { "note": "通勤防晒红黑榜", "age_months": 14, "current_collects": 82000, "verdict": "strong_longtail" },
+              { "note": "防晒剂成分解析", "age_months": 11, "current_collects": 51000, "verdict": "strong_longtail" },
+              { "note": "学生党平价防晒合集", "age_months": 9, "current_collects": 34000, "verdict": "longtail" },
+              { "note": "某新品实测", "age_months": 0.7, "current_collects": 12000, "verdict": "new_pulse_promo" }
+            ],
+            "expected_signal": "Top 收藏 6/10 为 >180 天老笔记 → 持久真实需求；近 2 周高赞被疑似投放新品占据 → 需打折"
+          },
+          "creator_niches": {
+            "review": "肤感实验室（实测/搓泥对比）",
+            "expert": "成分拆解师（防晒剂/配方解析）",
+            "seeding": "通勤穿搭日记（通勤场景/好物）",
+            "official": "品牌号（新品/活动）"
+          },
+          "comments": {
+            "raw": 260,
+            "classified": 238,
+            "four_behaviors": { "aspiration": 38, "choice_inquiry": 96, "effect_risk": 72, "product_compare": 32 },
+            "commenter_type": { "real": 219, "suspected_marketing": 19, "ratio": "92% / 8%" },
+            "organic_referral_count": 4,
+            "purchase_intent": {
+              "curiosity": 58,
+              "consideration": 52,
+              "decision": 6,
+              "decision_breakdown": { "ordered": 2, "repurchase": 4 },
+              "expected_signal": "决策层仅 6 条（2.5%）→ 用户大量卡在'要不要信/买哪个'；求链接≠购买意愿"
+            }
+          },
+          "supply_structure": { "review": 40, "seeding": 35, "expert": 18, "official": 7 },
+          "risk_scan": { "efficacy_claim_violation_pct": 12, "commercial_distortion": "中" }
+        },
+        "expected_assertions": {
+          "longtail_affects_demand_judgment": true,
+          "purchase_intent_uses_decision_layer_only": true,
+          "intent_gap_drives_entry_strategy": true,
+          "marketing_comments_excluded_from_signal": true,
+          "supply_gap_detected_expert_niche": true,
+          "risk_triggers_conditional_go": true,
+          "decision": "条件GO",
+          "decision_conditions": ["内容表述合规（违规密度 12% 约束）", "以专家型内容打决策阶段缺口"],
+          "entry_strategy": "主攻决策意图阶段 + 通勤/学生人群 + 专家型内容矩阵补缺口",
+          "evidence_boundary": "决策层 6 条评论不可外推为购买率"
+        }
+      }
+    ]
+  }
+}

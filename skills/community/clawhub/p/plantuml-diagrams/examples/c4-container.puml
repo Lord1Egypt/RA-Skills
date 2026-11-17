@@ -1,0 +1,17 @@
+@startuml
+!include <C4/C4_Container>
+title 电商系统 · 容器图
+
+Person(customer, "客户")
+System_Boundary(c1, "电商系统") {
+  Container(web, "Web 应用", "React", "浏览下单入口")
+  Container(api, "API 服务", "Java/Spring", "业务逻辑")
+  ContainerDb(db, "主库", "MySQL", "订单/商品数据")
+}
+System_Ext(payment, "支付网关")
+
+Rel(customer, web, "使用", "HTTPS")
+Rel(web, api, "调用 API", "JSON/HTTPS")
+Rel(api, db, "读写", "JDBC")
+Rel(api, payment, "支付", "同步")
+@enduml

@@ -1,39 +1,54 @@
-## Description: <br>
-RFID technology reference for tag types, frequency bands, read ranges, EPC standards, and inventory tracking used when designing RFID systems, selecting tags/readers, or implementing warehouse tracking solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RFID technology reference - tag types, frequency bands, read ranges, EPC standards, inventory tracking.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, logistics teams, and inventory-system implementers use this skill to compare RFID tag, reader, frequency, and standards options when planning warehouse, retail, asset-tracking, or supply-chain deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes an included Bash helper script when commands are run. <br>
-Mitigation: Install and run it only when the publisher/source is trusted, and review the artifact before deployment. <br>
+## Use Case:
 
+External developers, warehouse operators, retail teams, and systems integrators use this skill as a quick RFID reference when selecting tags and readers, comparing frequency bands, planning read zones, or reviewing EPC and GS1 concepts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/rfid) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference output with Markdown command documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Bash helper script that prints reference material; security evidence reports no data, credential, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Local shell execution can expose users to unexpected behavior if the installed artifact differs from the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from the validated release hash and scan or inspect the script before running it; current security evidence found only static printed guidance.
+
+Risk: RFID deployment guidance may be incomplete for jurisdiction-specific frequency rules, privacy requirements, or hardware constraints.
+
+Mitigation: Use the skill as reference guidance and confirm final deployments against applicable regulations, RFID standards, and vendor documentation.
+
+## Reference(s):
+
+- [Rfid on ClawHub](https://clawhub.ai/bytesagain3/skills/rfid)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text guidance printed by shell commands, with Markdown command documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script prints static RFID reference topics and command help.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

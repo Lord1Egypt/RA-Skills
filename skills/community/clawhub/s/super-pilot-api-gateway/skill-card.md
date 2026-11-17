@@ -1,41 +1,49 @@
-## Description: <br>
-Helps agents expose local APIs to the Pilot Protocol network for remote access without placing the API directly on the public internet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exposes local APIs to the Pilot Protocol network for remote agent access without public internet exposure.
 
-## Publisher: <br>
-[molexazwo](https://clawhub.ai/user/molexazwo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[molexazwo](https://clawhub.ai/user/molexazwo)
 
-## Use Case: <br>
-Developers and operators use this skill to configure pilotctl gateway and messaging commands for private API exposure or agent-service integration. It is intended for local API services that should be reachable by authorized Pilot agents rather than exposed as already-public APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote exposure of local APIs can make sensitive services reachable beyond the local machine. <br>
-Mitigation: Only map intended endpoints, require authentication, and avoid exposing admin panels, metadata endpoints, private business APIs, or unauthenticated services. <br>
-Risk: Gateway and daemon access boundaries may be unclear to users who are unfamiliar with Pilot Protocol networking. <br>
-Mitigation: Verify who can reach the service before use, limit allowed endpoints, and stop the daemon when the gateway is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose local API services to authorized Pilot Protocol agents and integrate private endpoints into Pilot-based agent workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/molexazwo/skills/super-pilot-api-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilot-protocol skill, pilotctl on PATH, a running Pilot daemon, and a local API server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json agrees) <br>
+Risk: Gateway examples may expose local services to remote access without sufficient access-control guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict who can reach the gateway and add authentication, authorization, request validation, logging, and least-privilege service boundaries before using it with real local APIs.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

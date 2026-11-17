@@ -1,54 +1,61 @@
-## Description: <br>
-Integrates with Feishu Open Platform APIs for calendar and meeting room booking, messaging, approvals, Bitable records, contacts, and attendance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu/Lark office integration for agents that supports calendar and room booking, messaging, approvals, Bitable records, contacts, and attendance workflows.
 
-## Publisher: <br>
-[radium0028](https://clawhub.ai/user/radium0028) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[radium0028](https://clawhub.ai/user/radium0028)
 
-## Use Case: <br>
-Employees and workplace automation users use this skill to let an agent perform Feishu office tasks such as scheduling meetings, sending messages, creating or processing approvals, updating Bitable records, looking up contacts, and checking attendance data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live access to workplace messages, calendars, approvals, Bitable records, contacts, and attendance data. <br>
-Mitigation: Use a dedicated low-privilege Feishu app and grant only the scopes needed for the specific deployment. <br>
-Risk: State-changing actions may send messages, alter approvals, delete calendar events, or edit records. <br>
-Mitigation: Require human confirmation before any action that changes Feishu data or communicates on behalf of a user or bot. <br>
-Risk: The Feishu app secret can expose tenant access if it is shared or logged. <br>
-Mitigation: Keep FEISHU_APP_SECRET out of chats, repositories, and logs; load it from a protected local environment or secret store. <br>
-Risk: The artifact documents a remote `curl | sh` installer path. <br>
-Mitigation: Prefer the `claw skill install` path and review the artifact before installation. <br>
-Risk: Exposing the local API server beyond the local machine could broaden access to Feishu actions. <br>
-Mitigation: Bind the service to localhost unless there is an explicit deployment review and access control plan. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/radium0028/official-feishu-toolkit) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Feishu Developer Documentation](https://open.feishu.cn/document/) <br>
-- [Feishu API Explorer](https://open.feishu.cn/api-explorer) <br>
-- [Calendar and Meeting Rooms](references/calendar.md) <br>
-- [Messaging](references/messaging.md) <br>
-- [Approvals](references/approval.md) <br>
-- [Bitable](references/bitable.md) <br>
-- [Contacts](references/contacts.md) <br>
-- [Attendance](references/attendance.md) <br>
+## Use Case:
 
+Developers and employees use this skill to connect an agent to a Feishu/Lark tenant for office workflows such as scheduling, message sending, approvals, Bitable operations, contact lookup, and attendance review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API request or response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET; available actions depend on the configured Feishu app permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes powerful Feishu tenant actions through a local API, including approvals, message sending, deletes, and business-record changes.
+
+Mitigation: Run the service bound only to localhost, add caller authentication such as a local API token, grant only the minimum Feishu scopes, and require explicit human confirmation before sensitive actions.
+
+Risk: The artifact recommends a remote curl-to-shell installer.
+
+Mitigation: Inspect and verify the downloaded installer before executing it in any real Feishu tenant environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/radium0028/skills/official-feishu-toolkit)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu Developer Documentation](https://open.feishu.cn/document/)
+- [Feishu API Explorer](https://open.feishu.cn/api-explorer)
+- [Calendar and Rooms Reference](references/calendar.md)
+- [Messaging Reference](references/messaging.md)
+- [Approval Reference](references/approval.md)
+- [Bitable Reference](references/bitable.md)
+- [Contacts Reference](references/contacts.md)
+- [Attendance Reference](references/attendance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request examples, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv plus FEISHU_APP_ID and FEISHU_APP_SECRET environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

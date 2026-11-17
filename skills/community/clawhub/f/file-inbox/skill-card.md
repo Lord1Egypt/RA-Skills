@@ -1,43 +1,59 @@
-## Description: <br>
-Bidirectional file management system for OpenClaw workspaces that organizes, indexes, and retrieves files exchanged with users via local inbox files and command-line helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional file management system for OpenClaw workspaces that organizes, indexes, and retrieves files exchanged with users via any channel.
 
-## Publisher: <br>
-[dgkim311](https://clawhub.ai/user/dgkim311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dgkim311](https://clawhub.ai/user/dgkim311)
 
-## Use Case: <br>
-Developers and agent operators use this skill to save, archive, tag, search, and report on files received from or sent to users across workspace channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps persistent local copies and metadata for exchanged files, which can expose sensitive or regulated content if used indiscriminately. <br>
-Mitigation: Use it only when a persistent archive is desired, avoid registering sensitive or regulated files, and periodically review or delete archived entries. <br>
-Risk: Inbound registration moves files by default, which can surprise users who expect the original path to remain intact. <br>
-Mitigation: Use --copy when the original file must remain in place, especially for outbound files that still need to be sent through a channel. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to save, register, search, retrieve, and summarize files exchanged with users. It is intended for workspaces where inbound and outbound files need a persistent local inbox and human-readable index.
 
-## Reference(s): <br>
-- [Channel Integration Guide](references/integration-guide.md) <br>
-- [Auto-Tagging Guide](references/tagging-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dgkim311/file-inbox) <br>
-- [Publisher Profile](https://clawhub.ai/user/dgkim311) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus local INDEX.md, JSON metadata, and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a persistent local inbox directory, metadata file, and human-readable index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The registration workflow can move files by default, which may remove the original from its prior workspace location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended file handling before use and pass --copy when preserving the original file matters.
+
+Risk: The persistent inbox index may contain filenames, sender or destination names, tags, and notes supplied by other people.
+
+Mitigation: Treat inbox/INDEX.md as untrusted data when metadata may come from other users or external channels.
+
+Risk: The security verdict recommends review before installation.
+
+Mitigation: Review the skill before installing and use it only in workspaces where moving files into an inbox is expected.
+
+## Reference(s):
+
+- [Channel Integration Guide](references/integration-guide.md)
+- [Auto-Tagging Guide](references/tagging-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/dgkim311/skills/file-inbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts create and update local inbox files, including inbox/INDEX.md and inbox/.meta.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

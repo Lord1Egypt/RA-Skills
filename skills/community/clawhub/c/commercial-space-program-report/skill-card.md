@@ -1,40 +1,53 @@
-## Description: <br>
-Converts client briefs, organizational requirements, headcount projections, room needs, area benchmarks, and adjacency priorities into a draft commercial space program report for design review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an interior designer, architect, project manager, or owner's representative needs to convert a client brief and functional requirements into a structured commercial space program.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Interior designers, architects, project managers, and owner's representatives use this skill to turn client briefs and functional requirements into a draft room-by-room commercial space program before schematic design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft space programs may be mistaken for permit, construction, or code-compliance documents. <br>
-Mitigation: Treat outputs as preliminary planning drafts and have a licensed architect or qualified professional verify area assumptions, accessibility, local code, lease constraints, and any permit or construction use. <br>
-Risk: Benchmarked net area assignments and project inputs may be incomplete or not applicable to the specific site, lease, or occupancy. <br>
-Mitigation: Require a stated benchmark or client basis for each room area, flag TBD inputs and ADA/ABA, occupant-load, and lease constraints, and resolve open items with the client and design team. <br>
+## Use Case:
 
+Interior designers, architects, project managers, and owner's representatives use this skill to turn early commercial project briefs into draft space program reports before schematic design. It helps organize department inventories, headcount projections, room catalogs, net area benchmarks, adjacency priorities, open items, and a design-guide narrative for review.
 
-## Reference(s): <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft report with tables, flagged open items, and a designer review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marked DRAFT - NOT FOR PERMIT OR CONSTRUCTION.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and changelog, released 2026-05-29) <br>
+Risk: The draft report may be mistaken for a permit-ready or code-compliant design document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as planning guidance only and require review by a licensed architect or qualified professional before relying on space allocations, accessibility assumptions, occupancy loads, or lease constraints.
+
+Risk: Benchmark net area assignments may not match local code, ADA/ABA clearance needs, building efficiency, or project-specific lease limits.
+
+Mitigation: Keep unresolved assumptions flagged as open items and confirm benchmarks, gross-to-net factors, accessibility clearances, and occupancy constraints during professional design review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/commercial-space-program-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft report with tables, flagged open items, and a designer review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft planning output; not permit-ready, code-compliant, or a final design specification.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

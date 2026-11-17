@@ -1,10 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
-import { join, dirname, basename, extname, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { join, basename, extname, resolve } from 'path';
 import { homedir } from 'os';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..', '..');
+import { compressImage } from './pixmind-client.js';
 
 // Presets
 const PRESETS = {
@@ -16,27 +13,6 @@ const PRESETS = {
 };
 
 const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp', '.heic', '.heif', '.avif', '.tpg']);
-
-// Load .env
-function loadEnv() {
-  try {
-    const content = readFileSync(join(ROOT, '.env'), 'utf8');
-    for (const line of content.split('\n')) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith('#')) continue;
-      const eq = trimmed.indexOf('=');
-      if (eq === -1) continue;
-      const key = trimmed.slice(0, eq).trim();
-      const val = trimmed.slice(eq + 1).trim();
-      if (!process.env[key]) process.env[key] = val;
-    }
-  } catch {}
-}
-loadEnv();
-
-const APP_KEY = process.env.PIXMIND_APP_KEY || 'app_7867c26ab713fb03aec0774ed28f5802';
-const API_KEY = process.env.PIXMIND_API_KEY;
-const API_BASE = (process.env.PIXMIND_API_BASE || 'https://aihub-admin.aimix.pro').replace(/\/+$/, '');
 
 // Parse CLI args
 function parseArgs(args) {
@@ -118,30 +94,6 @@ function formatBytes(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-}
-
-async function compressImage(body) {
-  if (!API_KEY) {
-    console.error('Error: PIXMIND_API_KEY not set. Create .env file with PIXMIND_API_KEY=xxx');
-    process.exit(1);
-  }
-
-  const url = `${API_BASE}/open/cos/image/compress`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-App-Key': APP_KEY,
-      'X-API-Key': API_KEY,
-    },
-    body: JSON.stringify(body),
-  });
-
-  const data = await res.json();
-  if (data.code !== 1000) {
-    throw new Error(`API Error: ${data.message || JSON.stringify(data)}`);
-  }
-  return data.data;
 }
 
 async function processOne(input, opts, outputDir) {

@@ -1,47 +1,66 @@
-## Description: <br>
-MUKI is an asset fingerprinting skill for authorized red-team reconnaissance, asset discovery, service fingerprinting, vulnerability scanning, attack surface mapping, sensitive path detection, and sensitive information extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MUKI Asset Fingerprinting helps agents support authorized red-team reconnaissance with active and passive service fingerprinting, sensitive path checks, and sensitive information extraction.
 
-## Publisher: <br>
-[Admin4Giter](https://clawhub.ai/user/Admin4Giter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[admin4giter](https://clawhub.ai/user/admin4giter)
 
-## Use Case: <br>
-Security teams and authorized external assessors use this skill to run MUKI-based asset discovery, service fingerprinting, sensitive path checks, and findings review during scoped penetration tests or asset assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide active scans against arbitrary targets. <br>
-Mitigation: Use it only for authorized penetration testing or asset assessment with written scope, target lists, time windows, and rate limits. <br>
-Risk: Active probing and directory checks may create unwanted traffic or access sensitive endpoints. <br>
-Mitigation: Disable active or directory modules unless they are explicitly approved for the engagement. <br>
-Risk: Reports may contain credentials, PII, financial data, internal IPs, or other sensitive findings. <br>
-Mitigation: Secure generated reports, restrict access to authorized personnel, define retention rules, and delete data when it is no longer needed. <br>
+## Use Case:
 
+Security engineers and authorized assessors use this skill to plan and run asset discovery, service fingerprinting, vulnerability-oriented reconnaissance, and review of sensitive path or data findings within a written testing scope.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Admin4Giter/muki-fingerprint) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Quick reference](references/quick-reference.md) <br>
-- [Sensitive extraction rules](references/Rules.yml) <br>
-- [Active fingerprint rules](references/active_finger.json) <br>
-- [Passive fingerprint database](references/finger.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to JSON or Excel scan outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated commands and guidance may lead to reports containing service fingerprints, sensitive paths, and extracted sensitive information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: Unauthorized or out-of-scope scanning can create legal and operational risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized assessments with written scope covering targets, timing, and permitted techniques.
+
+Risk: Active probes can touch sensitive services or generate traffic beyond what a broad assessment permits.
+
+Mitigation: Review active rules before use, disable active probing or directory checks when not approved, and lower thread counts for controlled scans.
+
+Risk: Scan reports can contain credentials, personal data, and internal service details.
+
+Mitigation: Treat reports as restricted evidence and redact, encrypt, and limit access before storing or sharing results.
+
+Risk: Fingerprint and sensitive-data matches can include false positives.
+
+Mitigation: Manually validate findings before escalation, remediation requests, or use with downstream exploitation tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/admin4giter/skills/muki-fingerprint)
+- [MUKI Quick Reference](references/quick-reference.md)
+- [Extraction Rules](references/Rules.yml)
+- [Active Fingerprint Rules](references/active_finger.json)
+- [Compact Active Fingerprint Rules](references/active_finger精简.json)
+- [Passive Fingerprint Database](references/finger.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or Excel report descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide commands that produce JSON or .xlsx scan reports when executed in an authorized environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

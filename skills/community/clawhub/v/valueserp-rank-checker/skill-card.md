@@ -1,40 +1,59 @@
-## Description: <br>
-Verifica la posicion de una palabra clave para un dominio especifico en Google usando la API de ValueSERP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks the Google ranking position of a keyword for a target domain using the ValueSERP API, defaulting to Google Colombia in Spanish unless another country or language is requested.
 
-## Publisher: <br>
-[jorgejaramillo](https://clawhub.ai/user/jorgejaramillo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jorgejaramillo](https://clawhub.ai/user/jorgejaramillo)
 
-## Use Case: <br>
-SEO practitioners, marketers, and agents use this skill to check where a target domain ranks for a keyword in Google results, with optional country, language, and page-depth settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ValueSERP API key and sends searched keywords, domains, country, and language settings to ValueSERP. <br>
-Mitigation: Use an approved, scoped API key and confirm users are comfortable sharing those query details with ValueSERP before running checks. <br>
-Risk: Broad or accidental searches can consume API quota or create unexpected costs. <br>
-Mitigation: Use explicit domain, keyword, country, language, and page-depth settings, and monitor ValueSERP usage. <br>
+## Use Case:
 
+SEO practitioners, marketers, and agents use this skill to check where a domain ranks for a specific keyword in Google results and present the result clearly to the user.
 
-## Reference(s): <br>
-- [ValueSERP Search API documentation](https://www.valueserp.com/docs/search-api/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code] <br>
-**Output Format:** [Markdown response summarizing JSON rank-check results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VALUESERP_API_KEY and defaults to Google Colombia with Spanish language results unless changed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill requires a ValueSERP API key and sends search queries to the ValueSERP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a key scoped to ValueSERP, store it in VALUESERP_API_KEY, and rotate it if exposure is suspected.
+
+Risk: Large page counts can consume API quota or create unexpected costs.
+
+Mitigation: Use modest page counts unless deeper ranking checks are required.
+
+Risk: Default Google Colombia and Spanish settings may not match the intended search market.
+
+Mitigation: Set the country and language options explicitly when another market is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jorgejaramillo/skills/valueserp-rank-checker)
+- [ValueSERP Search API documentation](https://www.valueserp.com/docs/search-api/overview)
+- [ValueSERP API key portal](https://app.valueserp.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown response backed by JSON results from a command-line API query]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VALUESERP_API_KEY and supports country, language, and page-count options.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

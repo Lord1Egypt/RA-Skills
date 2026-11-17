@@ -1,42 +1,64 @@
-## Description: <br>
-Capture, normalize, and report metrics across any domain with reusable dimensions, programmable formulas, and scalable reporting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture, normalize, and report metrics across any domain with reusable dimensions, programmable formulas, and scalable reporting workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external teams, and developers use this skill to define metric contracts, govern formulas, produce decision-oriented reports, and design alert policies across business, product, operations, finance, personal, and other domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Metric memory may contain sensitive or outdated business context when the user enables local retention under ~/metrics/. <br>
-Mitigation: Enable memory only when retention is desired, avoid storing secrets or unrelated personal data, and periodically review or delete ~/metrics/. <br>
-Risk: Ambiguous metric definitions, formula drift, or failed data quality checks can lead to misleading reports. <br>
-Mitigation: Use metric contracts, formula version history, and data quality gates before publishing reports or recommendations. <br>
-Risk: Alerts without owners or response rules can create noise and missed escalations. <br>
-Mitigation: Attach severity, owner, first response action, cooldown, and escalation criteria to every threshold policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/metrics) <br>
-- [Skill homepage](https://clawic.com/skills/metrics) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to define metric contracts, govern formulas, build decision-oriented reports, and maintain reusable alerting workflows across business, product, marketing, operations, finance, and personal domains.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with templates, tables, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local metric memory under ~/metrics/ when memory is enabled by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persisted metric context could include confidential raw business data, secrets, credentials, or unrelated personal details if users add them to local memory.
+
+Mitigation: Store only metric definitions, decisions, formulas, owners, and report cadence notes; avoid storing secrets, credentials, raw business records, or unrelated personal data.
+
+Risk: Formula changes or ambiguous metric contracts can make reports misleading or break historical comparability.
+
+Mitigation: Require explicit metric contracts, version every formula change, document impact expectations, and block report publication when critical quality checks fail.
+
+Risk: Automated alerts can create noise or prompt the wrong response when thresholds lack ownership and escalation rules.
+
+Mitigation: Use explicit trigger conditions, severity levels, owners, response playbooks, cooldown windows, and regular threshold reviews.
+
+## Reference(s):
+
+- [Metrics Skill Page](https://clawhub.ai/ivangdavila/skills/metrics)
+- [Metrics Homepage](https://clawic.com/skills/metrics)
+- [Setup - Metrics](artifact/setup.md)
+- [Memory Template - Metrics](artifact/memory-template.md)
+- [Metric Registry Guide](artifact/metric-registry.md)
+- [Formula Playbook](artifact/formula-playbook.md)
+- [Reporting Pack](artifact/reporting-pack.md)
+- [Automation Patterns](artifact/automation-patterns.md)
+- [Data Quality Gates](artifact/data-quality.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, templates, metric definitions, formula specifications, report outlines, and alert policy drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local metrics memory under ~/metrics/ when the user enables persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

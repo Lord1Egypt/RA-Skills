@@ -1,42 +1,55 @@
-## Description: <br>
-Provides a Chinese-language daily assistant for weather-style lookups, currency conversion, festival reminders, lifestyle tips, and short Chinese-English phrase translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Daily Assistant provides Chinese-language weather lookups, currency conversion, festival reminders, lifestyle tips, and short Chinese-English phrase translation using local static data.
 
-## Publisher: <br>
-[Jenner4S](https://clawhub.ai/user/Jenner4S) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jenner4s](https://clawhub.ai/user/jenner4s)
 
-## Use Case: <br>
-Chinese-speaking ClawHub users can use this skill for quick everyday responses about supported Chinese city weather, common currency conversions, festival dates, lifestyle tips, and common Chinese-English phrases. The weather, exchange-rate, and countdown values should be treated as packaged demo data unless the skill is extended with live data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Weather, exchange-rate, and festival countdown responses may be mistaken for current live facts. <br>
-Mitigation: Treat these outputs as static demo data unless the skill is updated to use validated live data sources. <br>
-Risk: Broad trigger words may cause the skill to answer ordinary weather or translation requests when another tool would be more appropriate. <br>
-Mitigation: Review routing and trigger configuration before deployment in environments with overlapping assistant capabilities. <br>
+## Use Case:
 
+Chinese-speaking ClawHub or Clawdbot users can use this skill for quick daily-life answers, including supported city weather, simple currency conversion, Chinese festival information, practical tips, and common phrase translation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jenner4S/chinese-daily-assistant) <br>
-- [README.md](artifact/README.md) <br>
-- [Usage examples](artifact/使用示例.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style responses, with example shell commands in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are deterministic local responses from packaged data and phrase dictionaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact package.json lists 1.0.0) <br>
+Risk: Weather, exchange-rate, and festival countdown values are static and may be outdated or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as convenience information and verify time-sensitive weather, exchange-rate, and date details before relying on them.
+
+Risk: Future updates that add live weather or exchange APIs could introduce network requests and query sharing.
+
+Mitigation: Review and scan updates for new network behavior and data-sharing implications before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jenner4s/skills/chinese-daily-assistant)
+- [README](README.md)
+- [Usage examples](使用示例.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local static datasets in this release; no external API calls are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

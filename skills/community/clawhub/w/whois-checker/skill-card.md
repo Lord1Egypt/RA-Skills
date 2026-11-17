@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick Whois Checker concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Whois Checker provides command-driven plain-text reference documentation for Whois Checker concepts, quickstarts, patterns, troubleshooting, security, migration, and cheat sheets.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and devtools practitioners use this skill to retrieve static reference guidance for Whois Checker concepts, quickstart, patterns, debugging, performance, security, migration, and cheat sheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect live WHOIS results from the skill name. <br>
-Mitigation: Treat the output as static guidance and verify domain registration data with an authoritative WHOIS or RDAP source separately. <br>
-Risk: Generic commands or practices mentioned in the reference text may not fit a specific environment. <br>
-Mitigation: Review any suggested practice against local policy and system constraints before manual use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a command-driven reference for Whois Checker concepts, setup steps, common patterns, troubleshooting, performance, security, migration, and quick-reference material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/whois-checker) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static command-selected documentation; no network calls or credential use reported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release evidence; SKILL.md frontmatter agrees) <br>
+Risk: The skill content is mostly generic and may be incomplete or misleading for Whois-specific operational work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as orientation and verify Whois procedures against authoritative registry, registrar, or project documentation before applying it.
+
+Risk: The bundled script declares version 4.0.0 while the release evidence and SKILL.md declare version 4.0.1.
+
+Mitigation: Confirm the packaged script version during release validation so displayed command output matches the published release.
+
+## Reference(s):
+
+- [Whois Checker ClawHub page](https://clawhub.ai/xueyetianya/skills/whois-checker)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style reference sections emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are described; commands emit static heredoc reference content.]
+
+## Skill Version(s):
+
+4.0.1 (source: release evidence and SKILL.md frontmatter; script declares 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

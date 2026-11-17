@@ -2,5 +2,6 @@
   "ownerId": "kn7038epqxg8wm5j1crrxanews81z2cr",
   "slug": "cross-agent-notify",
   "version": "1.0.2",
-  "publishedAt": 1775468550704
+  "publishedAt": 1775466581387,
+  "changelog": "Fix: replace explicit agent name '包大人' with placeholder '<auditor_agent>' in PROTOCOL.md Audit Request template (desensitization fix)."
 }

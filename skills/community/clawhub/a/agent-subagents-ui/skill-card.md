@@ -1,47 +1,62 @@
-## Description: <br>
-Add, extend, fix, or document the Subagents panel inside the OpenClaw Control UI Agents page, including editable subagent settings, config save wiring, fallback settings, and alignment with runtime subagent model precedence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add, extend, fix, or document the Subagents panel inside the OpenClaw Control UI Agents page.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or maintain the OpenClaw Agents-page Subagents tab, including model override controls, shared subagent defaults, config save wiring, and focused UI tests aligned with runtime precedence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated edits may change shared subagent defaults or limits that affect multiple OpenClaw agents. <br>
-Mitigation: Review diffs for agents.defaults.subagents and per-agent subagent overrides before saving or deploying. <br>
-Risk: Suggested pnpm validation commands execute project tooling in the target repository. <br>
-Mitigation: Run the suggested checks only in a trusted OpenClaw checkout. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or maintain the OpenClaw Control UI Subagents tab, including editable subagent model choices, fallback settings, thinking levels, and shared concurrency or depth limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/agent-subagents-ui) <br>
-- [File map](references/file-map.md) <br>
-- [Runtime precedence](references/runtime-precedence.md) <br>
-- [Implementation notes](references/implementation-notes.txt) <br>
-- [Subagents panel reference implementation](references/agents-panel-subagents.ts.txt) <br>
-- [Agents page integration reference](references/agents.ts.txt) <br>
-- [App render wiring reference](references/app-render.subagents.txt) <br>
-- [Agents UI tests reference](references/agents.test.ts.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code paths and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for review before applying changes to an OpenClaw repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and target metadata) <br>
+Risk: Generated changes can persistently alter subagent model choices and concurrency or depth limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI and configuration changes before saving them, and confirm they match the intended runtime model precedence.
+
+Risk: The UI can become misleading if it invents unsupported per-agent settings or backend schema.
+
+Mitigation: Keep the panel aligned with the referenced OpenClaw model-selection behavior and existing config form/save flow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/agent-subagents-ui)
+- [File map](references/file-map.md)
+- [Runtime precedence](references/runtime-precedence.md)
+- [Implementation notes](references/implementation-notes.txt)
+- [Subagents panel reference implementation](references/agents-panel-subagents.ts.txt)
+- [Agents page wiring reference](references/agents.ts.txt)
+- [App state reference](references/app.ts.txt)
+- [App view state reference](references/app-view-state.ts.txt)
+- [App render wiring reference](references/app-render.subagents.txt)
+- [Focused UI tests reference](references/agents.test.ts.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with code and shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce UI implementation changes that persist model choices and subagent concurrency or depth limits through the existing OpenClaw config save flow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

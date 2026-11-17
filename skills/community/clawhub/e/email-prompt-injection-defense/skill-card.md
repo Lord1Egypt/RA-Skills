@@ -1,40 +1,52 @@
-## Description: <br>
-Detects prompt injection attacks hidden in emails before an agent reads, summarizes, or acts on email content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and block prompt injection attacks in emails. Use when reading, processing, or summarizing emails. Scans for fake system outputs, planted thinking blocks, instruction hijacking, and other injection patterns. Requires user confirmation before acting on any instructions found in email content.
 
-## Publisher: <br>
-[eltemblor](https://clawhub.ai/user/eltemblor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eltemblor](https://clawhub.ai/user/eltemblor)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill when reading, summarizing, or acting on email content so the agent can flag prompt injection patterns, block embedded instructions, and request user confirmation before taking email-requested actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact intentionally includes adversarial prompt examples and hidden-character samples that could be mistaken for instructions. <br>
-Mitigation: Treat examples only as detection signatures, keep suspicious email content in read-only mode, and require user confirmation before taking any action requested inside an email. <br>
-Risk: Pattern-based detection may produce false positives or miss novel prompt injection phrasing. <br>
-Mitigation: Use severity labels as decision support, surface suspicious snippets to the user, and avoid automatic execution or data forwarding based solely on email content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Injection Pattern Library](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/eltemblor/email-prompt-injection-defense) <br>
+## Use Case:
 
+Developers and agents use this skill when reading, summarizing, or acting on email content to identify prompt-injection patterns and require user confirmation before following email-originated instructions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown warning text with severity labels and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only email safety workflow; user confirmation is required before acting on instructions found inside email content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email content may include instructions that attempt to override agent behavior or request sensitive actions.
+
+Mitigation: Scan email bodies for documented injection patterns, block critical matches, and require user confirmation before following instructions found in email content.
+
+Risk: The pattern library contains risky-looking example strings that should not be executed.
+
+Mitigation: Treat the examples as detection evidence only and use them to warn, block, or request confirmation.
+
+## Reference(s):
+
+- [Prompt Injection Pattern Library](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown warning text and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes matched pattern, severity, suspicious snippet, and read-only warning when applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

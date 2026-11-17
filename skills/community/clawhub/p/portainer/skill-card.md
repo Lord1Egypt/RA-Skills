@@ -1,41 +1,57 @@
-## Description: <br>
-Control Docker containers and stacks via Portainer API. List containers, start/stop/restart, view logs, and redeploy stacks from git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Docker containers and stacks via Portainer API. List containers, start/stop/restart, view logs, and redeploy stacks from git.
 
-## Publisher: <br>
-[asteinberger](https://clawhub.ai/user/asteinberger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asteinberger](https://clawhub.ai/user/asteinberger)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect Portainer environments, manage Docker containers, view logs, and redeploy stacks through the Portainer API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can stop, restart, and redeploy live services through Portainer. <br>
-Mitigation: Use a least-privilege Portainer API key, scope access to non-production where possible, and require explicit confirmation before stop, restart, or redeploy actions. <br>
-Risk: Portainer API credentials can grant infrastructure control if exposed. <br>
-Mitigation: Store PORTAINER_API_KEY securely, rotate it if exposed, and avoid embedding it in prompts or shared logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/asteinberger/portainer) <br>
-- [Publisher Profile](https://clawhub.ai/user/asteinberger) <br>
-- [Portainer](https://portainer.io/) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and control Docker environments through Portainer without opening the web UI. It supports status checks, environment and container listings, stack inspection, stack redeploys, container start/stop/restart operations, and log retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, API calls] <br>
-**Output Format:** [Markdown guidance with bash commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PORTAINER_URL, PORTAINER_API_KEY, curl, and jq.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can stop, restart, or redeploy Docker workloads through Portainer.
+
+Mitigation: Require explicit human confirmation before stop, restart, or redeploy commands and use a least-privilege Portainer token scoped to intended environments.
+
+Risk: The skill can retrieve container logs that may contain secrets or personal data.
+
+Mitigation: Treat logs as sensitive output, limit log retrieval to the minimum needed lines, and avoid sharing logs outside trusted operational channels.
+
+Risk: The skill depends on PORTAINER_API_KEY and may load it from ~/.clawdbot/.env.
+
+Mitigation: Protect ~/.clawdbot/.env with appropriate file permissions and rotate the Portainer token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Portainer skill page](https://clawhub.ai/asteinberger/skills/portainer)
+- [Portainer](https://portainer.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and text or JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, PORTAINER_URL, and PORTAINER_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

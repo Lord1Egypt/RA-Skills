@@ -1,42 +1,58 @@
-## Description: <br>
-微信公众号文章处理器会抓取用户提供的公众号文章链接，提取标题、作者、时间和正文，整理为 Markdown，并保存到飞书云文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章处理工具 - 自动抓取、结构化整理、保存到飞书文档。触发词：处理公众号文章、微信文章转飞书、公众号链接
 
-## Publisher: <br>
-[hoyaryyj](https://clawhub.ai/user/hoyaryyj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoyaryyj](https://clawhub.ai/user/hoyaryyj)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn trusted WeChat public-account article links into structured Feishu documents with article metadata, summary, and main content preserved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A matching WeChat article link may cause the agent to create a Feishu cloud document without a separate confirmation step. <br>
-Mitigation: Use the skill only in workflows where creating a Feishu document from a provided article link is expected, and require a user confirmation step if document creation should be gated. <br>
-Risk: WeChat articles can contain sensitive, copyrighted, login-gated, or otherwise restricted content. <br>
-Mitigation: Process only trusted links and avoid sensitive or login-gated content unless the user has authorization to access and save it. <br>
-Risk: Captcha, login prompts, or incomplete browser extraction can lead to partial article content. <br>
-Mitigation: Ask the user to provide the article text manually when access controls prevent reliable extraction. <br>
+## Use Case:
 
+External users and teams use this skill to turn WeChat public account article links into structured article notes and Feishu documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoyaryyj/wechat-article-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance, Code] <br>
-**Output Format:** [Structured Markdown content saved to a Feishu cloud document, with a returned document link or guidance when manual access is required.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser access to the WeChat article and Feishu authorization; login-gated articles or captcha challenges may require manual user input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: WeChat article content may be sent to and stored in Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is authorized to process, avoid sensitive or access-controlled articles, and confirm Feishu document permissions before saving.
+
+Risk: Some WeChat articles may require login or present verification challenges, which can prevent complete extraction.
+
+Mitigation: Ask the user to provide the article text manually or complete access steps when the article cannot be fetched.
+
+Risk: Automated extraction and summarization can omit or misstructure parts of an article.
+
+Mitigation: Review the structured notes and Feishu document before sharing or relying on the processed content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hoyaryyj/skills/wechat-article-processor)
+- [ClawHub publisher profile](https://clawhub.ai/user/hoyaryyj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown article notes and a Feishu document link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided WeChat article URL and Feishu authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

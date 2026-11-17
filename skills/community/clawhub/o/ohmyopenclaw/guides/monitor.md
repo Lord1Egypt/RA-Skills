@@ -421,7 +421,7 @@ Resume proactive monitoring
 {
   "monitoring": {
     "webhooks": {
-      "onError": "https://hooks.slack.com/services/YOUR/WEBHOOK",
+      "onError": "REDACTED-SECRET",
       "onTaskComplete": "https://api.example.com/callback"
     }
   }

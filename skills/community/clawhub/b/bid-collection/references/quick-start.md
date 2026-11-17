@@ -8,7 +8,7 @@ Place the `bid-collection` folder in your `Desktop/skills/` directory, then type
 /bid-collection
 ```
 
-The skill loads automatically.
+The skill loads and **shows a command help menu** (no-arg invocation does NOT auto-start collection — no outbound requests or local writes occur until you explicitly pick a subcommand like `scan` or `monitor`).
 
 ## Quick Command Reference
 
@@ -40,12 +40,31 @@ The skill loads automatically.
 
 ### 3️⃣ Start Scheduled Background Monitoring
 
+> ⚠️ **Before running, you must acknowledge these side effects:**
+> - Creates a host scheduled task via `CronCreate` (modifies host scheduling)
+> - Periodically sends outbound HTTP requests to monitored platforms (ongoing network traffic)
+> - Sends `PushNotification` for new leads
+> - Writes run logs to `leads-output/bid/monitor.log`
+>
+> **Activation limits:** default interval 120 min; default max 48 runs (~4 days, then auto-stops); **not persistent across sessions by default** (cron lives only for the current session/process unless `--persist` is set); run `monitor --stop` to stop and clean up the cron task.
+>
+> The skill will restate these side effects and ask for explicit confirmation before actually starting.
+
 ```bash
-# Start monitoring (default: scan every 2 hours)
+# Start monitoring (default: scan every 2 hours, max 48 runs, session-only)
 /bid-collection monitor
 
 # Custom scan interval (every 60 minutes)
 /bid-collection monitor --interval=60
+
+# Limit max runs (auto-stop after 24 runs)
+/bid-collection monitor --max-runs=24
+
+# Persist cron across sessions (use --stop to clean up later)
+/bid-collection monitor --persist
+
+# Stop monitoring and clean up the cron task
+/bid-collection monitor --stop
 ```
 
 ### 4️⃣ Generate Summary Report
@@ -66,12 +85,23 @@ The skill loads automatically.
 
 ### 5️⃣ Manage Monitoring Sources
 
+> ⚠️ **Security warning — `add-source` triggers outbound requests (SSRF risk):**
+> Adding a custom source will cause this skill to send outbound WebSearch/WebFetch requests to that URL and ingest its content in subsequent `scan`/`monitor` runs.
+> - **Only add trusted public tender/procurement platforms.**
+> - Adding untrusted sources may: send requests to attacker-controlled hosts (SSRF-like), expose your search keywords to unexpected third parties, and cause the skill to process malicious/misleading content.
+> - Internal/localhost/metadata addresses (e.g. `127.0.0.1`, `169.254.169.254`, `localhost`, private ranges) will be rejected.
+>
+> The skill will restate this risk and ask for explicit confirmation before adding the source.
+
 ```bash
-# View current monitoring channels
+# View current monitoring channels (no outbound request)
 /bid-collection list-sources
 
-# Add a custom monitoring source
+# Add a custom monitoring source (triggers outbound requests to this URL — confirm first)
 /bid-collection add-source https://example-bid-platform.com
+
+# Remove a monitoring source (no outbound request)
+/bid-collection remove-source https://example-bid-platform.com
 ```
 
 ## Usage Scenarios

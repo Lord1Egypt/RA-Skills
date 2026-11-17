@@ -1,44 +1,58 @@
-## Description: <br>
-Huawei Cloud AgentArts workflow packaging factory that generates a standard Skill directory with SKILL.md and invoke_agentarts.py from workflow gateway, path, version, and authentication parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentArts To OfficeAce generates standard skill directories that wrap Huawei Cloud AgentArts workflows for natural-language use in OfficeAce.
 
-## Publisher: <br>
-[plovjet](https://clawhub.ai/user/plovjet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plovjet](https://clawhub.ai/user/plovjet)
 
-## Use Case: <br>
-Developers and teams use this skill to wrap deployed Huawei Cloud AgentArts workflows into reusable OfficeAce-compatible Skill directories without hand-writing the skill definition or invocation script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated invocation script can include default AgentArts API keys and handles sensitive credentials. <br>
-Mitigation: Use a restricted AgentArts token, pass credentials through AGENTARTS_API_KEY, and remove default keys from generated files before sharing or committing them. <br>
-Risk: The generated invoker includes an IP-direct fallback that disables TLS certificate verification. <br>
-Mitigation: Disable or audit the IP-direct TLS-bypass fallback before production use. <br>
-Risk: The generator writes a new skill directory based on user-provided parameters. <br>
-Mitigation: Generate only into an empty intended output directory and review the generated files before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to collect AgentArts workflow connection details and generate reusable OfficeAce skill scaffolding for deployed AgentArts runtimes.
 
-## Reference(s): <br>
-- [Publisher profile](https://clawhub.ai/user/plovjet) <br>
-- [ClawHub skill page](https://clawhub.ai/plovjet/agentarts-skill-factory) <br>
-- [Project homepage](https://github.com/plovjet/agentArts-to-officeAce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration] <br>
-**Output Format:** [Generated Skill directory containing Markdown and Python files, with shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated skills require AgentArts connection parameters and should prefer AGENTARTS_API_KEY for credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated skills can store AgentArts API keys in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require AGENTARTS_API_KEY at runtime, remove default embedded keys before sharing, and avoid production credentials until the generator is changed to never write keys to disk.
+
+Risk: Authenticated requests can use unsafe or overly flexible network paths, including an IP-direct fallback.
+
+Mitigation: Remove the IP-direct TLS fallback and restrict base URLs to approved HTTPS AgentArts hosts.
+
+Risk: Generated files may be written outside the intended location if output paths or names are not controlled.
+
+Mitigation: Use a dedicated output directory and simple skill names when generating skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plovjet/skills/agentarts-skill-factory)
+- [Project homepage](https://github.com/plovjet/agentArts-to-officeAce)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated skill directory containing Markdown and Python files, with optional shell commands for invocation and validation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces SKILL.md and scripts/invoke_agentarts.py from supplied AgentArts workflow settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

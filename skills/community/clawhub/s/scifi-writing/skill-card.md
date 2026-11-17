@@ -1,41 +1,53 @@
-## Description: <br>
-Scifi Writing helps users plan and draft Chinese-language science fiction stories, from premise and worldbuilding through characters, plot, chapters, and revision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language sci-fi writing assistant that helps users ideate, build worlds, design characters, outline plots, draft chapters, and revise short or long-form science-fiction stories.
 
-## Publisher: <br>
-[haorenzhou](https://clawhub.ai/user/haorenzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haorenzhou](https://clawhub.ai/user/haorenzhou)
 
-## Use Case: <br>
-External writers use this skill to develop science fiction concepts, world settings, character profiles, plot outlines, short stories, and chapter drafts. It supports common science fiction modes such as cyberpunk, space opera, hard or soft science fiction, post-apocalyptic stories, time travel, alien civilizations, virtual reality, and AI awakening themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate this skill for general science fiction brainstorming when several writing skills are installed. <br>
-Mitigation: Review trigger wording and skill selection behavior in workspaces with overlapping creative-writing skills. <br>
-Risk: Generated hard-science details or fictional technologies may be inconsistent or inaccurate if treated as factual material. <br>
-Mitigation: Review scientific and technical details before publication, especially for hard science fiction or educational use. <br>
+## Use Case:
 
+Writers and creative agents use this skill to plan and draft Chinese-language science-fiction stories, from short pieces to longer projects that need worldbuilding, character arcs, plot structure, and revision guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haorenzhou/scifi-writing) <br>
-- [Publisher profile](https://clawhub.ai/user/haorenzhou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and prose text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language creative writing assistance; short-form requests may produce full story text, while longer-form requests produce planning documents before chapter drafting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Non-Chinese users may find the skill less accessible or may misunderstand generated guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in Chinese-language writing workflows or have the host agent translate and adapt the instructions for the user.
+
+Risk: Generated fiction plans or drafts may include weak internal logic, inconsistent worldbuilding, or unsuitable creative choices.
+
+Mitigation: Review the story plan, technical assumptions, character motivations, and draft text before publication or continued long-form writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haorenzhou/skills/scifi-writing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or prose story-planning documents and narrative drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language creative-writing guidance and generated fiction; no code execution or external tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Intelica analyzes a specific URL, company description, or market target and returns structured JSON with market positioning, pain points, competitors, battlecard, verified sources, market signals, and Market Score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitive intelligence API for autonomous AI agents that analyzes a URL or company description and returns structured JSON with market positioning, pain points, competitors, battlecards, verified sources, market signals, and Market Score.
 
-## Publisher: <br>
-[teodorofodocrispin-cmyk](https://clawhub.ai/user/teodorofodocrispin-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teodorofodocrispin-cmyk](https://clawhub.ai/user/teodorofodocrispin-cmyk)
 
-## Use Case: <br>
-External agents, developers, founders, sales teams, investors, and compliance reviewers use this skill to request scoped competitive intelligence for a specific public company, product, protocol, or market after approving third-party data submission and any paid API call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company, market, URL, description, and context inputs are sent to the third-party Intelica API. <br>
-Mitigation: Use the skill only with public company or market information, and do not submit private strategy, customer data, regulated data, or PII. <br>
-Risk: Autonomous calls may incur paid API charges when payment credentials are configured. <br>
-Mitigation: Use the free demo or trial key first, require approval for paid calls, and configure explicit budget controls before autonomous use. <br>
-Risk: Competitive-intelligence outputs may have low confidence or insufficient sources. <br>
-Mitigation: Check the returned sources and confidence fields before using market_score recommendations for autonomous actions. <br>
+## Use Case:
 
+External agents and developers use this skill to request structured competitive intelligence for a specific public company, product, or market after the user has approved third-party data submission and any paid API use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teodorofodocrispin-cmyk/intelica-competitive-intelligence) <br>
-- [Intelica API](https://api.intelica.dev) <br>
-- [OpenAPI reference](https://api.intelica.dev/openapi.json) <br>
-- [Full API reference](https://api.intelica.dev/llms-full.txt) <br>
-- [x402 payment manifest](https://api.intelica.dev/.well-known/x402.json) <br>
-- [Try Intelica](https://teodorofodocrispin-cmyk.github.io/Intelica-docs/try.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, shell commands] <br>
-**Output Format:** [Structured JSON responses with markdown API usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include sources, confidence, market_score, analysis, model, tier, mode, and detected_language fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.5.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Company names, URLs, descriptions, and context are sent to Intelica's third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public company or market information and do not submit confidential plans, regulated data, PII, or internal strategy.
+
+Risk: Autonomous use can trigger paid API calls when payment is configured.
+
+Mitigation: Set explicit budget limits, use the free demo or trial key first, and require user approval before enabling paid calls.
+
+Risk: Competitive intelligence may be low confidence or have limited source support.
+
+Mitigation: Check returned sources, confidence, and market_score fields before using the analysis for downstream autonomous actions.
+
+## Reference(s):
+
+- [Intelica API](https://api.intelica.dev)
+- [Intelica OpenAPI](https://api.intelica.dev/openapi.json)
+- [Intelica Full Reference](https://api.intelica.dev/llms-full.txt)
+- [Intelica x402 Manifest](https://api.intelica.dev/.well-known/x402.json)
+- [Intelica Try Page](https://teodorofodocrispin-cmyk.github.io/Intelica-docs/try.html)
+- [ClawHub Skill Page](https://clawhub.ai/teodorofodocrispin-cmyk/skills/intelica-competitive-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, JSON, Guidance]
+
+**Output Format:** [Structured JSON with sources, confidence, market_score, and analysis fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve third-party API calls and paid x402 payments; trial access is available for the first 5 calls.]
+
+## Skill Version(s):
+
+4.5.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

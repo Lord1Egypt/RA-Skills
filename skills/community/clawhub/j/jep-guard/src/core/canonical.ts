@@ -1,9 +1,6 @@
-import stringify from 'fast-json-stable-stringify';
-
-/**
- * JSON Canonicalization Scheme (JCS | RFC 8785)
- * Produces deterministic serialization for signing
- */
+import jcs from 'canonicalize';
 export function canonicalize(obj: unknown): string {
-  return stringify(obj);
+  const result=jcs(obj);
+  if (typeof result !== 'string' || Buffer.byteLength(result)>262144) throw new Error('Invalid or oversized canonical JSON');
+  return result;
 }

@@ -1,44 +1,60 @@
-## Description: <br>
-Address tracker and analysis for on-chain addresses, including address profile lookup, transaction history, and fund-flow tracing through Gate-Info MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks and summarizes on-chain wallet addresses using Gate-Info read-only data, with optional transaction history and fund-flow tracing when warranted.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to inspect an on-chain address, summarize wallet labels, balances, risk signals, DeFi positions, large transactions, and fund flows when Gate-Info MCP access is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried wallet addresses and inferred chain details are sent to the Gate-Info MCP provider. <br>
-Mitigation: Use the skill only for addresses the user is comfortable querying through that provider, and avoid using it for harassment or personal tracking. <br>
-Risk: The skill may deepen analysis for labeled, high-balance, or risk-flagged addresses even when the user asks a broad lookup question. <br>
-Mitigation: Ask explicitly for a basic lookup when limited analysis is desired, and treat labels, risk scores, and flow summaries as provider-supplied signals rather than definitive identity claims. <br>
-Risk: Fund-flow tracing can be unavailable or incomplete. <br>
-Mitigation: Report missing fund-flow data plainly and avoid fabricating transaction edges, values, or ownership conclusions. <br>
+## Use Case:
 
+External users and analysts use this skill to inspect an on-chain address, review labels, balances, risk indicators, DeFi positions, and follow significant transactions or fund flows.
 
-## Reference(s): <br>
-- [Gate Address Tracker MCP Specification](references/mcp.md) <br>
-- [Scenarios & Prompt Examples](references/scenarios.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/gate-info-address-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown address analysis report with tables, fund-flow summaries, risk notes, and missing-data notices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Gate-Info MCP lookups; depth and value thresholds vary by address size and user intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Gate-Info MCP receives submitted wallet addresses and may return enriched blockchain intelligence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when address sharing with Gate-Info MCP is acceptable for the user's context.
+
+Risk: Basic address lookups may automatically expand into transaction and fund-flow tracing for labeled, high-balance, or risk-flagged addresses.
+
+Mitigation: Ask explicitly for profile-only results when deeper tracing is not desired.
+
+Risk: The reviewed package references shared runtime rule files that are not bundled in the artifact.
+
+Mitigation: Bundle or pin the shared runtime rules before treating the release as low-risk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-info-address-tracker)
+- [Gate Address Tracker MCP Specification](references/mcp.md)
+- [Scenarios and Prompt Examples](references/scenarios.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with address profile, holdings, DeFi, PnL, transaction history, fund-flow, and risk-warning sections as available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Gate-Info MCP results are summarized with missing-data and uncertainty notes when data or tools are unavailable.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

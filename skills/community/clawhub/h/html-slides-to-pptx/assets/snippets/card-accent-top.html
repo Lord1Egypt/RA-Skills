@@ -1,0 +1,24 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:顶部强调条卡片(底卡 + 顶条 + 标题 + 正文 + 分隔线 + 注释)
+  ⚠️ 使用限制(去 AI 味反模式 2/7):卡片仅用于真并列实体(产品/方案/角色);要点列表默认裸排;卡片矩阵页每 deck ≤2 页。
+  参数:
+    {{X}} {{Y}} {{W}} {{H}}   卡片位置尺寸(三卡横排常用 W=540~560,H=380~460)
+    {{ACCENT}}      强调条颜色(var(--deep-navy) / var(--accent-orange) / var(--lenovo-red))
+    {{KICKER}}      卡内小标签              {{TITLE}}   卡内标题
+    {{BODY}}        正文(可含 span 强调)    {{FOOTNOTE}} 注释小字
+  z 序: 底卡 z-index:1 < 顶条 z-index:5 < 文字 z-index:10;DOM 顺序保持一致
+  注意: 顶条是独立 shape,不要写 border-top(逐边细条不贴合圆角)
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};background:var(--white);border:1px solid var(--border-light);border-radius:10px;z-index:1;"></div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:5px;background:{{ACCENT}};z-index:5;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + 30px);width:calc({{W}} - 60px);z-index:10;">
+  <div class="num" style="font-size:16px;font-weight:600;letter-spacing:3px;color:var(--text-tertiary);">{{KICKER}}</div>
+  <div style="font-size:32px;font-weight:700;color:var(--charcoal);line-height:1.25;margin-top:8px;">{{TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + 120px);width:calc({{W}} - 60px);z-index:10;">
+  <div style="font-size:24px;font-weight:400;color:var(--text-primary);line-height:1.55;">{{BODY}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + {{H}} - 60px);width:calc({{W}} - 60px);height:1px;background:var(--border-light);z-index:1;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + {{H}} - 44px);width:calc({{W}} - 60px);z-index:10;">
+  <div style="font-size:16px;font-weight:400;color:var(--text-tertiary);line-height:1.5;">{{FOOTNOTE}}</div>
+</div>

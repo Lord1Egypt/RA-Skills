@@ -1,44 +1,58 @@
-## Description: <br>
-Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start every day focused with a daily briefing that summarizes overdue tasks, today's priorities, calendar context, and recent meeting notes.
 
-## Publisher: <br>
-[gitsarp](https://clawhub.ai/user/gitsarp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitsarp](https://clawhub.ai/user/gitsarp)
 
-## Use Case: <br>
-Employees, operators, and productivity-focused users use this skill to generate a concise daily briefing from available task, meeting-note, memory, and calendar context. It helps surface overdue work, today's priorities, schedule items, recent meeting context, and one recommended focus for the day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The briefing may surface private tasks, notes, memory, or calendar details in chat. <br>
-Mitigation: Use explicit briefing prompts and avoid enabling calendar or memory sources that contain information you do not want summarized. <br>
-Risk: Broad trigger phrases can cause the assistant to gather more local productivity context than expected. <br>
-Mitigation: Prefer clear prompts such as "daily briefing" or "run my morning briefing" and review connected data sources before relying on the skill. <br>
+## Use Case:
 
+External users and productivity-focused teams use this skill to generate concise morning, weekly, overdue-item, and calendar briefings from local task lists, meeting notes, calendar context, and optional memory files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gitsarp/ai-daily-briefing-bak) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
-- [Quick Start](artifact/examples/quick-start.md) <br>
-- [Example Output](artifact/examples/output-example.md) <br>
-- [Briefing Preferences Template](artifact/assets/PREFERENCES-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily briefing with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize local tasks, meeting notes, memory files, and connected calendar context when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Briefings may summarize sensitive task, meeting, calendar, or memory/profile content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit briefing commands, review or disable sensitive context sources, and avoid generating briefings in shared-screen or shared-chat contexts unless the output is safe to reveal.
+
+Risk: Broad conversational triggers can cause the agent to gather personal or work context when the user did not intend a full briefing.
+
+Mitigation: Prefer direct trigger phrases such as "daily briefing" and confirm context sources before enabling persistent task, meeting, calendar, or memory files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitsarp/skills/ai-daily-briefing-bak)
+- [Publisher Profile](https://clawhub.ai/user/gitsarp)
+- [Creator Homepage](https://jeffjhunter.com)
+- [Quick Start](artifact/examples/quick-start.md)
+- [Example Output](artifact/examples/output-example.md)
+- [Briefing Preferences Template](artifact/assets/PREFERENCES-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style briefing text with optional YAML preference examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single concise briefing response and skips empty sections when source data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

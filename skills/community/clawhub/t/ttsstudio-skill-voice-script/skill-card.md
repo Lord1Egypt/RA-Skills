@@ -1,40 +1,54 @@
-## Description: <br>
-Transform raw text into a clean voiceover-ready script for narration or TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform raw text into a clean voiceover-ready script for narration or TTS.
 
-## Publisher: <br>
-[yvette1226](https://clawhub.ai/user/yvette1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yvette1226](https://clawhub.ai/user/yvette1226)
 
-## Use Case: <br>
-External users and creators use this skill to turn articles, blog posts, and other written source text into narration-ready scripts for text-to-speech or human voiceover workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source text may contain sensitive or confidential content that the agent will process while preparing the narration script. <br>
-Mitigation: Only provide text suitable for agent processing and downstream text-to-speech workflows. <br>
-Risk: The generated narration script may alter tone, emphasis, or meaning before it is sent to a separate text-to-speech service. <br>
-Mitigation: Review the generated script before narration or use with any separate text-to-speech service. <br>
+## Use Case:
 
+External users and creators use this skill to convert articles, blog posts, and other written material into scripts that sound natural when narrated by a person or a text-to-speech system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yvette1226/ttsstudio-skill-voice-script) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a voiceover script, suggested pauses, and emphasis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rewritten narration text only; it does not create audio or call a text-to-speech service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Source text may contain private or sensitive information that a user later sends to a third-party text-to-speech service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive content before using the generated script with any external TTS provider.
+
+Risk: Narration edits may change tone, emphasis, or meaning from the original text.
+
+Mitigation: Review the generated script against the source text before recording or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yvette1226/skills/ttsstudio-skill-voice-script)
+- [Publisher profile](https://clawhub.ai/user/yvette1226)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown voiceover script with line breaks, suggested pauses, and emphasis cues]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The user should review the script before sending private or sensitive text to any third-party text-to-speech service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

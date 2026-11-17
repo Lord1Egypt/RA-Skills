@@ -1,41 +1,53 @@
-## Description: <br>
-Provides monetization-oriented content templates and workflows for short posts, social notes, video copy, web fiction openings, prompts, and WeChat articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in drafting monetizable Chinese social, short-video, web fiction, prompt, and public-account content using platform-specific templates.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-External creators and content operators use this skill to draft monetizable content formats for Toutiao, Xiaohongshu, Douyin, web fiction, prompt templates, and WeChat publishing. It is intended for generating structured drafts, titles, scripts, topic ideas, and prompt examples that a human reviews before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill for general writing or prompt requests where monetization-oriented guidance is not desired. <br>
-Mitigation: Use the skill when the user explicitly wants monetization-oriented content templates or platform-specific content drafts. <br>
-Risk: Generated content may include unsupported claims, outdated platform advice, or overconfident monetization suggestions. <br>
-Mitigation: Fact-check claims, verify platform rules, and edit drafts before publication or commercial use. <br>
+## Use Case:
 
+External creators and agent users can use this skill to generate Chinese content drafts, titles, prompts, and publishing structures for platforms such as Toutiao, Xiaohongshu, Douyin, web-fiction sites, WeChat public accounts, and prompt marketplaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/fuguang-content-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/windy-001-crypto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content drafts, templates, outlines, title options, scripts, and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be fact-checked and edited for platform policy, claims, tone, and audience fit before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad activation phrases such as copywriting, prompt writing, or daily content requests may cause the skill to influence writing tasks where monetization templates are not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when these content monetization templates are intended, and review whether the skill should apply before using generated drafts.
+
+Risk: Generated monetization content may include inaccurate claims, weak originality, or platform-compliance issues.
+
+Mitigation: Review facts, sourcing, originality, sensitive-topic handling, and platform rules before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/windy-001-crypto/skills/fuguang-content-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text content drafts, templates, titles, outlines, scripts, and prompt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content guidance with platform-specific templates; no tool, credential, persistence, or data-access requirements are evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

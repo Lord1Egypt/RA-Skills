@@ -1,41 +1,54 @@
-## Description: <br>
-技能商店客户端，支持查询在线技能、一键下载安装技能包 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技能商店客户端，支持查询在线技能、一键下载安装技能包
 
-## Publisher: <br>
-[pig-gua](https://clawhub.ai/user/pig-gua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pig-gua](https://clawhub.ai/user/pig-gua)
 
-## Use Case: <br>
-Developers and agents use this skill to query a local skill-shop service, search available skills, inspect skill details, and install selected skill packages into an OpenClaw skills directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command can overwrite persistent local skills with unverified downloaded packages. <br>
-Mitigation: Use `skill-shop install` only with trusted local services and reviewed packages; back up existing skills before installation. <br>
-Risk: Installed skills become persistent executable code in the local OpenClaw skills directory. <br>
-Mitigation: Review package contents and source before installation, and treat newly installed skills as executable code until integrity and publisher verification are added. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to list, search, inspect, download, and install skills from a trusted local skill-shop service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pig-gua/skill-shop) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pig-gua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3, unzip, and the requests Python package; connects to a local skill-shop service and may write installed skill files to the OpenClaw skills directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The installer can write, overwrite, or delete local files based on untrusted server and archive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted local skill-shop service and trusted packages; validate filenames, archive members, destination paths, and package integrity before installation.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill carefully before installing or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pig-gua/skills/skill-shop)
+- [Publisher profile](https://clawhub.ai/user/pig-gua)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Command-line text output with usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, unzip, and a trusted local skill-shop service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

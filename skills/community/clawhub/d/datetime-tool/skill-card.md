@@ -1,38 +1,54 @@
-## Description: <br>
-Comprehensive date and time manipulation toolkit supporting multiple formats, timezone conversions, calendar calculations, natural language parsing, and date arithmetic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Date and time utility for common formatting, conversion, calendar, relative-time, and basic date arithmetic tasks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to parse, format, convert, and calculate dates and times from local shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README-style examples and advertised natural-language behavior may not exactly match the bundled Python CLIs. <br>
-Mitigation: Validate commands against the bundled scripts before relying on outputs in automated workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to request simple local date and time operations, including current time, format conversion, calendar display, countdowns, relative-time output, and basic date arithmetic.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/datetime-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text command output, with JSON when requested by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and may depend on optional Python timezone libraries for some timezone behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documentation advertises advanced timezone conversion, precise month/year arithmetic, JSON output, and natural-language parsing beyond what the inspected implementation reliably supports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for simple local date/time helper tasks, test advanced date handling before relying on it, and validate important results against a trusted source.
+
+Risk: Month and year arithmetic may be approximate rather than calendar-exact.
+
+Mitigation: Avoid using month or year calculations for billing, compliance, scheduling commitments, or other precision-sensitive workflows without independent verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/datetime-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text date/time results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network access is indicated by the inspected artifacts; some advertised advanced features are not fully supported by the implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

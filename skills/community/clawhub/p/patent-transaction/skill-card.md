@@ -1,45 +1,61 @@
-## Description: <br>
-Patent marketplace via trade.9235.net (listings, deals, open license, procurement, Excel export). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent marketplace via trade.9235.net for listings, sellers, deal history, open licensing, procurement, and Excel export.
 
-## Publisher: <br>
-[windinwing](https://clawhub.ai/user/windinwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windinwing](https://clawhub.ai/user/windinwing)
 
-## Use Case: <br>
-External users and developers use this skill to search patent marketplace listings, inspect sellers and deal history, find open licenses and procurement demand, and export patent transaction results for diligence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent transaction searches and diligence activity are sent to trade.9235.net. <br>
-Mitigation: Install only when the organization approves sharing this activity with the external marketplace service. <br>
-Risk: TRADE_API_TOKEN is a sensitive credential and this client places it in request URLs for the default skill endpoint. <br>
-Mitigation: Protect and rotate the token, avoid logging request URLs, and limit token scope where the service supports it. <br>
-Risk: Excel export can install openpyxl at runtime and creates files containing patent transaction data. <br>
-Mitigation: Preinstall or review the export dependency path before deployment, and treat generated Excel or CSV files as business-confidential. <br>
+## Use Case:
 
+External agents and developers use this skill to query a patent marketplace for listed patents, seller information, deal records, open licenses, and procurement demand during patent transfer or licensing due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windinwing/patent-transaction) <br>
-- [Patent marketplace homepage](https://trade.9235.net) <br>
-- [Trade Skill API endpoint](https://trade.9235.net/api/skill) <br>
-- [Due diligence workflow](due-diligence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API calls, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown tables and status messages, JSON-compatible result objects, and Excel or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports may create outbound file assets; API access requires TRADE_API_TOKEN for the default skill endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends patent marketplace queries to trade.9235.net using TRADE_API_TOKEN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in shared or sensitive environments and prefer header-based token authentication.
+
+Risk: The skill can automatically install an unpinned spreadsheet package at runtime.
+
+Mitigation: Install openpyxl through a controlled, pinned dependency process before deployment.
+
+Risk: Exported spreadsheets may contain untrusted marketplace data.
+
+Mitigation: Avoid opening exported spreadsheets without formula-injection protections and review exported transaction data before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windinwing/skills/patent-transaction)
+- [Publisher profile](https://clawhub.ai/user/windinwing)
+- [Trade marketplace homepage](https://trade.9235.net)
+- [Trade Skill API endpoint](https://trade.9235.net/api/skill)
+- [Due diligence checklist](due-diligence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, files, configuration guidance]
+
+**Output Format:** [Markdown tables, strings, JSON-like tool responses, and Excel or CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRADE_API_TOKEN for the default API path; exported transaction data is written under trade-exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

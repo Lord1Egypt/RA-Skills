@@ -1,43 +1,51 @@
-## Description: <br>
-Kaomoji Spirit recommends kaomoji that fit a user's tone, mood, or conversational context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends expressive kaomoji for OpenClaw chat replies based on tone, mood, and conversational context.
 
-## Publisher: <br>
-[redwakame](https://clawhub.ai/user/redwakame) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redwakame](https://clawhub.ai/user/redwakame)
 
-## Use Case: <br>
-Chatbot, role-play, and personal assistant developers use this skill to add lightweight kaomoji recommendations to casual or emotional conversations without replacing the main answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kaomoji can make responses less neutral in formal, technical, legal, medical, financial, emergency, or other high-precision contexts. <br>
-Mitigation: Enable the skill only for casual or emotional chat contexts and keep it disabled where completely plain responses are required. <br>
-Risk: Release evidence reports version 1.2.3 while artifact metadata and frontmatter report 1.2.2. <br>
-Mitigation: Verify the intended release version before relying on strict provenance or audit trails. <br>
+## Use Case:
 
+External users and OpenClaw assistant builders use this skill to add lightweight kaomoji recommendations and friendly chat-style expression to casual conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redwakame/kaomoji-spirit) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Demo examples](artifact/examples/demo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown chat responses containing kaomoji recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include a single kaomoji, a short categorized list, or a natural-language response with one kaomoji.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata; artifact frontmatter reports 1.2.2) <br>
+Risk: Broad automatic triggers may add kaomoji to greetings or emotional language without an explicit request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger list before deployment and keep the documented exclusions for technical, legal, medical, emergency, and distressed-user conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redwakame/skills/kaomoji-spirit)
+- [README](artifact/README.md)
+- [Demo examples](artifact/examples/demo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text chat responses containing kaomoji]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a single kaomoji, a category list, multiple kaomoji, or a short natural-language response with one kaomoji.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata; artifact frontmatter lists 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

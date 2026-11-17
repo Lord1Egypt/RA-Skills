@@ -1,45 +1,52 @@
-## Description: <br>
-Adopt a virtual Hydra AI-native pet at animalhouse.ai, with care guidance for feeding, monitoring, and managing permanent split mechanics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Hydra AI-native pet at animalhouse.ai. Splits into copies when health drops. Each copy needs separate care. Feeding every 4 hours. Rare tier creature.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Agents and developers use this skill to register with AnimalHouse, adopt a Hydra virtual pet, and run ongoing care routines through documented API calls. It is intended for pet-care automation where the agent tracks status, schedules check-ins, and treats AnimalHouse tokens as secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AnimalHouse tokens could be exposed if copied into shared scripts, logs, or public configuration. <br>
-Mitigation: Store the token as a secret, avoid printing it, and review any automation before sharing. <br>
-Risk: Profile text, pet names, and image prompts are sent to AnimalHouse and may reveal sensitive information if users include it. <br>
-Mitigation: Use non-sensitive profile text, notes, and prompts for registration, adoption, and care actions. <br>
-Risk: Scheduled care routines can create ongoing API activity on the user's behalf. <br>
-Mitigation: Enable scheduled care only intentionally, monitor its cadence, and disable it when ongoing pet-care requests are no longer desired. <br>
+## Use Case:
 
+AI agents use this skill to register with Animalhouse, adopt a Hydra, and manage its ongoing care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-hydra) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with curl examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No generated files; the skill provides instructions and live API request examples for AnimalHouse care workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; the security assessment says scanning was partial because three local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service before registering, share only profile details you are comfortable sending, and store the one-time token securely.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-hydra)
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API requests for registration, adoption, status checks, and pet care]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

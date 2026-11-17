@@ -1,44 +1,61 @@
-## Description: <br>
-AlphaShop Text provides API-backed text translation and multilingual product selling-point and title generation for ecommerce workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AlphaShop text processing API toolset for text translation, multilingual product selling-point generation, and multilingual product title generation.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and ecommerce developers use this skill to translate product text, generate multilingual selling points, and create multilingual product titles through AlphaShop APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AlphaShop credentials are required for API calls. <br>
-Mitigation: Configure least-privilege AlphaShop keys through OpenClaw settings and avoid placing secrets in prompts, logs, or shared files. <br>
-Risk: Text and product data are sent to a third-party AlphaShop API. <br>
-Mitigation: Use the skill only for data approved for sharing with AlphaShop. <br>
-Risk: API calls may consume AlphaShop account credits or fail when the account has insufficient balance. <br>
-Mitigation: Check account credit status before use and pause the workflow if AlphaShop reports insufficient balance. <br>
+## Use Case:
 
+External users and commerce developers use this skill to translate product text and generate multilingual listing copy for AlphaShop-supported marketplaces through the AlphaShop API.
 
-## Reference(s): <br>
-- [AlphaShop Text API Reference](references/api-docs.md) <br>
-- [AlphaShop API Key Management](https://www.alphashop.cn/seller-center/apikey-management) <br>
-- [ClawHub Release Page](https://clawhub.ai/1688AiInfra/alphashop-text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON API responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured AlphaShop credentials and may consume AlphaShop account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Text submitted for translation or product-copy generation is sent to AlphaShop's remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for text approved for AlphaShop processing, and avoid submitting secrets, customer data, or sensitive business text unless authorized.
+
+Risk: The skill requires AlphaShop API credentials.
+
+Mitigation: Use dedicated API keys, keep them out of source control, and provide them through environment configuration.
+
+Risk: Dependency ranges are not pinned exactly.
+
+Mitigation: Pin dependency versions before reproducible or controlled deployments.
+
+## Reference(s):
+
+- [AlphaShop Text API Reference](references/api-docs.md)
+- [AlphaShop API Base URL](https://api.alphashop.cn)
+- [AlphaShop API Key Management](https://www.alphashop.cn/seller-center/apikey-management)
+- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/skills/alphashop-text)
+- [Publisher Profile](https://clawhub.ai/user/1688aiinfra)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AlphaShop API credentials in ALPHASHOP_ACCESS_KEY and ALPHASHOP_SECRET_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

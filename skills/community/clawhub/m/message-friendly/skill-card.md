@@ -1,40 +1,54 @@
-## Description: <br>
-Optimizes Markdown-formatted messages for IM platforms by removing unsupported markup and using clean text layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes Markdown-formatted messages for IM platforms (WeChat, DingTalk, etc.) by removing unsupported markup and using clean text layouts.
 
-## Publisher: <br>
-[70asunflower](https://clawhub.ai/user/70asunflower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[70asunflower](https://clawhub.ai/user/70asunflower)
 
-## Use Case: <br>
-People preparing messages for WeChat, DingTalk, or similar IM channels use this skill to convert Markdown-heavy assistant responses into readable plain text while preserving structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic formatting may rework messages more often than expected in IM-focused contexts. <br>
-Mitigation: Review transformed messages before sending when the original formatting or full wording must be preserved. <br>
-Risk: Markdown removal can reduce fidelity for code blocks, tables, links, images, or exact quotes. <br>
-Mitigation: Use the transformed output as a draft and verify technical syntax, URLs, table content, and quoted text before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to convert Markdown-heavy model responses into concise, readable plain text suitable for IM platforms such as WeChat and DingTalk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/70asunflower/message-friendly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text transformed from Markdown-style input.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize or split very long source text for IM readability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automatic formatting can remove Markdown syntax or alter layout before a message is sent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the converted plain-text message before sending it in an IM channel.
+
+Risk: Very long messages may be summarized to improve readability.
+
+Mitigation: Check summarized outputs when exact wording or full detail must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/70asunflower/skills/message-friendly)
+- [Publisher profile](https://clawhub.ai/user/70asunflower)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text converted from Markdown-style input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May remove Markdown formatting and summarize very long messages for IM readability.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

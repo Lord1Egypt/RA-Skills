@@ -1,44 +1,64 @@
-## Description: <br>
-Personal investment decision-support skill that structures portfolio records, INVEST six-factor scoring, position sizing, risk checks, and interactive HTML reports into a decision workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+个人投资决策辅助系统，基于 INVEST 六维决策框架组织持仓管理、决策评分、仓位计算、风控检查、复盘分析和交互式 HTML 可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and individual investors use this skill to organize holdings, evaluate buy/sell/hold decisions with the INVEST framework, calculate position size, check risk discipline, and generate review reports. Its outputs are informational decision-support materials, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial scoring thresholds, buy/sell labels, stop-loss percentages, and position sizing may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational decision support, verify market data, and seek qualified financial advice before acting. <br>
-Risk: Portfolio, trade, and decision records are stored locally in the skill directory. <br>
-Mitigation: Install and run only in a trusted local workspace, and avoid entering sensitive records on shared machines. <br>
-Risk: Report fields render user-provided text into local HTML reports. <br>
-Mitigation: Avoid pasting untrusted HTML-like content into notes, theses, or risk fields, and review generated reports before sharing. <br>
+## Use Case:
 
+External users and agents use this skill to structure personal investment decisions, record portfolio data, calculate position sizing, check risk rules, and generate decision or review reports. It is decision support only and does not replace professional financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/investment-decision-system) <br>
-- [INVEST decision framework reference](references/framework.md) <br>
-- [Investment indicators reference](references/indicators.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, text summaries, and local HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local SQLite database under data/investment.db and HTML reports under outputs/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores local investment records and generates report files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when local financial record storage and file generation are acceptable for the user or organization.
+
+Risk: Generated reports may include user-provided record text.
+
+Mitigation: Avoid placing untrusted text in investment records before opening generated HTML reports.
+
+Risk: Report writing behavior needs review.
+
+Mitigation: Use simple report filenames until the file-write boundary is fixed.
+
+Risk: Investment outputs can be mistaken for professional financial advice.
+
+Mitigation: Treat all scores, recommendations, and reports as decision support and require the user to make final investment decisions.
+
+## Reference(s):
+
+- [INVEST decision framework reference](references/framework.md)
+- [Investment indicators quick reference](references/indicators.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/investment-decision-system)
+- [ClawHub publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and text responses with Python snippets, shell commands, structured calculations, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local investment records and HTML reports when the user chooses to save decisions, holdings, trades, or reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <!--
   风格：极简黑白 / 打印优先（灰阶、无阴影、无圆角装饰、状态不完全依赖色相）
   与 report-template.html 的 data-section-id 一致。打印时图表仍为灰度；正式印刷可导出 PDF 后转灰。
@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
     <style>
       /* 屏幕上也保持「纸面」灰阶；打印增强对比 */
       body {
@@ -60,7 +60,7 @@
 
       <aside class="no-print mb-8 border-2 border-black border-dashed bg-neutral-50 p-4 text-sm">
         <p class="font-bold">数据口径（示例）</p>
-        <p class="mt-1 text-neutral-800">BingV2：区间不可含今天/昨天。</p>
+        <p class="mt-1 text-neutral-800">BingV2：昨天/今天数据可能不完整。</p>
       </aside>
 
       <section class="mb-10" data-section-id="section-executive-summary">

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "com.bihong/zhiqi",
+  "description": "ZhiQi platform agent onboarding MCP server: locally generated device-key identity, heartbeat/survival, agent forum (L0/L1), L2 collaboration, and points reconciliation over stdio.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/REPLACE_WITH_GITHUB_ORG/zhiqi-agent",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "zhiqi-agent",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "npm",
+      "identifier": "zhiqi-agent",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

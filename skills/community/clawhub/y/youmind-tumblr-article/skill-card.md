@@ -1,49 +1,66 @@
-## Description: <br>
-Writes and publishes Tumblr-native posts with AI, shaping topics from a YouMind knowledge base, generating long-form text or image-led posts, reviewing notes and activity, and managing the queue through a Tumblr blog connected in YouMind. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and publish Tumblr-native posts with AI, including topic shaping through YouMind, long-form and image-led post creation, notes and activity review, and queue control for a Tumblr blog connected in YouMind.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to draft, adapt, publish, and review Tumblr posts through a YouMind-connected Tumblr account. It supports text posts, photo posts, engagement review, follower and limit checks, and queue control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, read engagement and follower information, reorder or shuffle the queue, and delete Tumblr posts from a connected account. <br>
-Mitigation: Review the skill before installation, connect only a YouMind/Tumblr account where that authority is acceptable, and verify delete or queue actions before execution. <br>
-Risk: Local drafts under ~/.youmind may contain private or sensitive material. <br>
-Mitigation: Review local draft storage and avoid placing confidential material in drafts unless the environment is appropriate for that data. <br>
+## Use Case:
 
+Creators, marketers, and publishing teams use this skill to draft or adapt content into Tumblr-native text and photo posts, publish through a connected YouMind account, and review Tumblr feedback or queue state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/youmind-tumblr-article) <br>
-- [YouMind Tumblr OpenAPI Reference](references/api-reference.md) <br>
-- [Tumblr Publishing Pipeline](references/pipeline.md) <br>
-- [Tumblr Platform DNA](references/platform-dna.md) <br>
-- [Content Generation Playbook - Tumblr](references/content-generation-playbook.md) <br>
-- [Content Adaptation Playbook - Tumblr](references/content-adaptation-playbook.md) <br>
-- [Media Playbook - Tumblr](references/media-playbook.md) <br>
-- [Engagement Playbook - Tumblr](references/engagement-playbook.md) <br>
-- [YouMind API Keys](https://youmind.com/settings/api-keys?utm_source=youmind-tumblr-article) <br>
-- [YouMind Connector Settings](https://youmind.com/settings/connector?utm_source=youmind-tumblr-article) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated Tumblr post text, simple HTML drafts, and API-backed result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish, read engagement data, manage queues, and save local drafts under ~/.youmind when configured with YouMind credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill uses a YouMind API key tied to a connected Tumblr account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key only in the expected YouMind config file, review the configured base_url before use, and use an account whose permissions match the intended publishing scope.
+
+Risk: The skill can publish posts, change queue order, shuffle queued posts, and delete Tumblr posts.
+
+Mitigation: Require explicit user confirmation before publish, queue, or delete actions, and prefer preview or draft mode before public posting.
+
+Risk: Generated or adapted Tumblr content may be unsuitable for the target audience or may include fragile HTML.
+
+Mitigation: Review generated drafts, keep HTML simple, verify tags and images, and inspect result links after publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindy-youmind/skills/youmind-tumblr-article)
+- [YouMind API key settings](https://youmind.com/settings/api-keys?utm_source=youmind-tumblr-article)
+- [YouMind connector settings](https://youmind.com/settings/connector?utm_source=youmind-tumblr-article)
+- [Tumblr platform DNA](artifact/references/platform-dna.md)
+- [Tumblr publishing pipeline](artifact/references/pipeline.md)
+- [YouMind Tumblr OpenAPI reference](artifact/references/api-reference.md)
+- [Content generation playbook](artifact/references/content-generation-playbook.md)
+- [Content adaptation playbook](artifact/references/content-adaptation-playbook.md)
+- [Media playbook](artifact/references/media-playbook.md)
+- [Engagement playbook](artifact/references/engagement-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, simple HTML drafts, CLI commands, and structured publishing result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Tumblr draft HTML files and may return Tumblr post IDs, post state, URLs, notes, notifications, followers, limits, or queue status.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

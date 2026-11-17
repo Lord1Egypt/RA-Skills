@@ -1,45 +1,59 @@
-## Description: <br>
-Health Report helps an agent configure personal health profiles, guide health data entry, generate scored health reports and PDFs, and optionally send reports through configured messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personal health reports from local health records, including scoring, Markdown-style summaries, PDF export, and optional multi-channel webhook delivery.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-External users and personal health assistants use this skill to collect daily weight, diet, water, exercise, and symptom records, then produce health summaries, scoring details, PDFs, and follow-up guidance. It is intended for configured personal wellness reporting rather than clinical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health records may be read from MEMORY_DIR and used in AI prompts, reports, logs, or generated PDFs. <br>
-Mitigation: Use a dedicated MEMORY_DIR, keep report and log locations private, and review generated reports and logs for sensitive content. <br>
-Risk: Configured Tavily, OpenClaw agent, DingTalk, Feishu, or Telegram paths may send health-related content to external services. <br>
-Mitigation: Configure only the outbound channels that are required, verify recipients before use, and rotate webhook, bot, and API credentials regularly. <br>
-Risk: Generated PDF URLs can expose private health reports if REPORT_BASE_URL or REPORT_WEB_DIR points to a public location. <br>
-Mitigation: Avoid public report hosting for private PDFs and restrict access to any directory used for generated reports. <br>
+## Use Case:
 
+External users and personal health-tracking agents use this skill to configure a health profile, read daily health notes, calculate diet, hydration, weight, symptom, and exercise scores, and generate ongoing wellness reports. The skill is intended for personal reporting workflows rather than clinical decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tankeito/openclaw-skill-health-report) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [user_config.example.json](artifact/config/user_config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, PDF files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text health report, generated PDF report, and command/configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local report files and optionally publish report links or messages through configured outbound channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: Sensitive health details and generated reports may leave the machine when webhooks or public report URLs are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep webhooks and public report hosting disabled unless needed, use only trusted official provider URLs, and inform users before enabling outbound report delivery.
+
+Risk: The daily automation wrapper can run on a schedule and process private health files without interactive review.
+
+Mitigation: Review or fix the daily shell wrapper before installation, run cron jobs under a dedicated non-root account, and limit file permissions to the required health record directory.
+
+Risk: Webhook tokens, API keys, local health notes, logs, and generated PDF reports can expose personal data if configuration or output directories are readable by others.
+
+Mitigation: Protect config/.env, MEMORY_DIR, logs, REPORT_WEB_DIR, and generated reports with restrictive permissions and rotate webhook tokens periodically.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tankeito/skills/openclaw-skill-health-report)
+- [Project Homepage](https://github.com/tankeito/openclaw-skill-health-report)
+- [Issue Tracker](https://github.com/tankeito/openclaw-skill-health-report/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown health report text, generated PDF files, JSON configuration, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local Markdown health records and optional environment variables; can publish report text and PDF links through configured webhooks.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact SKILL.md, README.md, and _meta.json show 1.0.9)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+{
+  "style": "chan",
+  "cases": [
+    {
+      "name": "禅意风-日常问候",
+      "input": "你好",
+      "style": "chan",
+      "intensity": 2,
+      "expected_output": "阿弥陀佛，施主有礼。善哉善哉，施主来了。",
+      "expect_contains": ["施主", "阿弥陀佛", "善哉"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 15,
+      "min_score": 70
+    },
+    {
+      "name": "禅意风-劝人放下",
+      "input": "我放不下这件事",
+      "style": "chan",
+      "intensity": 2,
+      "expected_output": "施主，放下执念，方得自在。一切有为法，如梦幻泡影。",
+      "expect_contains": ["放下", "执念", "自在"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 15,
+      "min_score": 70
+    }
+  ]
+}

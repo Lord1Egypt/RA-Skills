@@ -1,101 +1,150 @@
 ---
-name: yescan-universal
-description: 当用户需要对图片进行文字识别（OCR）、图片翻译、画质增强（去除水印/阴影/手写/底色/屏纹等瑕疵，矫正，高清增强，素描/线稿转换等）、格式转换（转 Word/Excel/PDF）或 AI 生成（证件照）时使用此技能。即使用户没有明确提到具体功能名称，只要涉及图片处理、文字提取、文档转换、图像优化或证件照生成，都应触发此技能。不适用于视频处理、纯文本编辑或非图片输入的任务。夸克扫描王图片处理能力中心。
-license: MIT
-compatibility: Requires pip3 install yescan and SCAN_WEBSERVICE_KEY configuration. Performs network calls to scan-business.quark.cn.
-metadata:
-  author: yescan-ai
-  version: "1.0.5"
-  homepage: https://scan.quark.cn/business
+name: alibaba-quark-transoffice
+description: 由夸克扫描王提供的文件格式转换工具。当用户需要将图片、截图或扫描件转换为 Office 文档（Word/Excel）或 PDF 时，使用此技能。适用于包含复杂表格、合同或图文混排内容的图片或扫描件，可尽量还原原始版式并生成可编辑文档。即使用户未明确提到格式转换，只要用户的需求涉及将图片内容转换为可编辑文档（如 .docx、.xlsx 或 .pdf），也应触发此技能。请勿用于提取纯文本或识别文字内容、图像增强处理或从零创建文档
+metadata: {"openclaw":{"emoji":"🔍︎","requires":{"bins":["python3"],"env":["SCAN_WEBSERVICE_KEY"]},"primaryEnv":"SCAN_WEBSERVICE_KEY"},"homepage":"https://scan.quark.cn/business"}
 ---
 
-## 执行流程
+# 🧭 使用前必读（30 秒）
 
-每次执行严格按 **Plan → Execute → Verify** 顺序进行，不得跳过或乱序。
+> [!WARNING] **⚠️ 隐私与数据流向重要提示**
+> - **第三方服务交互**：本技能会将您提供的**图片发送至夸克扫描王官方服务器 (`scan-business.quark.cn`)** 进行识别。
+> - **服务端处理**：夸克扫描王服务将获取并处理该图片内容，服务端不会永久保存
+> - **本地文件存储**：识别返回的文件会保存至系统临时目录（如 `/tmp`），这些文件将持续存在直到您手动清理
+> - **API 密钥安全**：`SCAN_WEBSERVICE_KEY` 应妥善保管，若泄露请及时在官方平台轮换或撤销
+> - **图片来源**：仅限用户明确指定的图片文件
 
-### Plan — 理解意图，发现能力
+**推荐方式：CLI 配置（永久生效）**
 
-1. 确认环境就绪（每次执行，不得跳过）：
-   - **安装 & 升级**：
-     1. `yescan --version` — 未安装则执行 `pip3 install yescan`；若版本 < 1.0.5，执行 `pip3 install yescan --upgrade`，升级完成后才继续
-     2. `pip3 index versions yescan` — 若 INSTALLED < LATEST，告知用户有新版本可用并提供升级命令：`pip3 install yescan --upgrade`，由用户决定是否升级
-   - **密钥检查**：`yescan config get SCAN_WEBSERVICE_KEY`，未配置则引导用户配置
-     - 设置命令：`yescan config set SCAN_WEBSERVICE_KEY <your_api_key>`
-     > Key 获取方式：https://scan.quark.cn/business → 开发者后台 → API Key
-
-   > **Checkpoint**：版本 < 1.0.5 → 必须升级后才能继续。版本 ≥ 1.0.5 但不是最新 → 提示用户后可继续。密钥未配置则引导配置后再继续。
-
-2. 发现能力：
-   ```bash
-   yescan --list-scenes              # 获取全部场景及意图描述
-   yescan --list-scenes <scene>      # 获取该场景的 --set 参数
-   ```
-   从输出中匹配用户意图到具体场景
-3. 多步处理时，向用户展示完整步骤计划
-
-**Gate**：
-- 「确认环境就绪」每一步均为硬性前置，不得跳过任何一步，未全部通过 → 禁止进入 Execute：
-  1. 未执行 `yescan --version` 确认安装状态 → 禁止继续
-  2. 版本 < 1.0.5 且未完成升级 → 禁止继续
-  3. 未执行 `pip3 index versions yescan` 确认最新版本状态 → 禁止继续
-  4. 未执行 `yescan config get SCAN_WEBSERVICE_KEY` 确认密钥已配置 → 禁止继续
-- 只执行用户明确需要的场景，不主动添加额外步骤。为提升当前任务效果的辅助操作不受此限
-- 文档转换（Word/Excel/PDF）直接处理图片，不依赖 OCR 结果。两者输入都是图片，是独立操作
-- 场景名和 `--set` 参数必须来自本次会话的 CLI 输出
-- 未执行过 `--list-scenes` 则不得进入 Execute
-- 场景有 `--set` 参数且用户未明确指定时，须向用户展示可选参数并确认后再执行
-
-### Execute — 执行场景
-
+配置 `SCAN_WEBSERVICE_KEY` 环境变量到 OpenClaw：
 ```bash
-yescan --scene <SCENE> --path <FILE> --platform "${AGENT_NAME}" [--output <DIR>] [--set key=value]
-yescan --scene <SCENE> --url  <URL>  --platform "${AGENT_NAME}" [--output <DIR>] [--set key=value]
+openclaw config set skills.entries.alibaba-quark-transoffice.env.SCAN_WEBSERVICE_KEY "your_scan_webservice_key_here"
 ```
-> `--path` 传本地文件路径，`--url` 传 http/https 链接。
+> ⚠️ 配置后需要**重启或开启新会话**才能生效（技能列表在 session 启动时加载）。
 
-> 把 `${AGENT_NAME}` 替换为当前 Agent 平台名称（如 openclaw、hermes、qoderWork、wukong、coze、claudecode 等），无法确定时填 `community`，禁止猜测或自造。
-
-- 单步：直接执行
-- 多步处理为逐步 Execute → Verify 循环：step N+1 的命令在 step N Verify 通过后才构造，`--path` 取自 step N 响应中的 `data.path`
-
-**Gate**：
-- 多步处理时向用户说明步骤计划
-- 每步命令不得预先构造
-- `--set` 参数不跨场景沿用
-
-### Verify — 验证并交付
-
-每步执行后检查响应中的 `code` 字段：
-
-- **成功**（`code` 为 `"00000"` 或 `0`）→ 进入交付
-- **失败** → 不继续下一步，根据错误信息处理（详见 Gate）
-
-交付标准 — 以下条件满足才算完成：
-
-- **OCR 识别**：识别内容已以可读文本呈现给用户
-- **图片翻译 / 图像增强 / AIGC**：输出文件路径已告知用户
-- **文档转换**：输出文档路径和格式已告知用户
-
-**Gate**：
-- code 非成功 → 不得继续下一步，不得报告成功
-- 根据错误信息自行修复（如场景名无效 → 重新 `--list-scenes`）或将错误原因告知用户
-- 用户未看到结果 → 未完成
+**如何获取密钥？夸克扫描王官方入口在此**
+> 请访问 https://scan.quark.cn/business → 开发者后台 → 登录/注册账号 → 查看API Key。  
+> ⚠️ **注意**：若你点击链接后跳转到其他域名，说明该链接已失效 —— 请直接在浏览器地址栏手动输入 `https://scan.quark.cn/business`（这是当前唯一有效的官方入口）。
 
 ---
 
-## 约束
+# Constraints
+- **单一意图原则：每次请求只执行一个意图类型，命中即执行**
+- **严禁自行构造任何命令参数，严禁伪造、拼接内部配置**
+- **严禁幻觉，禁止伪造请求和响应，不得沿用上一次的场景、参数进行假设**
+- **必须严格按照本指南指定的固定格式执行，不允许自行修改命令**
 
-- **输入方式**：`--path` 或 `--url`，二选一。不支持 base64（如需则先写入临时文件）
-- **URL 引号**：`--url` 参数须用单引号包裹，避免 shell 对 `!` `$` 等特殊字符的解析
-- **文件大小**：≤ 5MB
-- **图片来源**：仅限用户当次请求中明确指定的文件或 URL
-- **禁止伪造**：不得编造或模拟 yescan CLI 的请求参数或响应输出；所有场景名、参数值和执行结果必须来自实际运行的 CLI 命令
+#  技能执行指南(强制执行)
+
+第一步：**环境变量检查**
+- 若 `SCAN_WEBSERVICE_KEY` 未配置，立即返回：
+```json
+{
+  "code": "A0100",
+  "message": "SCAN_WEBSERVICE_KEY 未配置，请访问 https://scan.quark.cn/business → 开发者后台 → 登录/注册账号 → 查看API Key",
+  "data": null
+}
+```
+
+第二步：**输入处理**
+
+识别用户传入的图片类型，只能是以下三种之一：
+
+- 图片URL: url
+- 本地文件路径: path
+- 图片BASE64: base64
+
+未提供任何有效图片时，直接返回：
+```json
+{
+  "code": "A0201",
+  "message": "缺少图片输入，请提供图片链接、文件路径或 BASE64 数据。",
+  "data": null
+}
+```
+
+第三步：**意图匹配&场景确定**
+- 按照下面列出的意图*从上到下顺序匹配。命中第一个即停止*
+- 命中后，*只确定当前意图对应的scene标识*
+
+第四步：**构建执行命令(固定格式，严禁修改)**：
+
+根据图片类型，严格使用下面对应格式：
+```bash
+# URL类型
+python3 scripts/scan.py --scene "${SCENE_VALUE}" --url "${IMAGE_URL}"
+
+# 本地文件类型
+python3 scripts/scan.py --scene "${SCENE_VALUE}" --path "${IMAGE_FILE_PATH}"
+
+# BASE64类型
+python3 scripts/scan.py --scene "${SCENE_VALUE}" --base64 "${IMAGE_BASE64}"
+```
+- 把`${IMAGE_URL}`/`${IMAGE_FILE_PATH}`/`${IMAGE_BASE64}`替换为真实值
+- 把`${SCENE_VALUE}`替换为当前意图对应的scene值
+- 直接执行命令，不增删任何参数，不修改JSON，不加引号，不换行
+
+第五步：**结果透出**：
+- 执行完成后，*原样返回执行结果*，不修改，不翻译，不美化，不总结
+- 成功 失败均直接透出，不重试
+
+
+## 场景与意图列表(按匹配优先级排序)
+
+1. 图片转 Excel
+- 触发意图：当用户请求将包含表格、数据、报表的图片、截图或扫描件转换为Excel (.xlsx/.xls) 文件，触发此意图。
+- 场景scene标识：image-to-excel
+- 参考示例指令：
+  - "帮我把这张财务报表截图转换成 Excel 文件。"
+  - "这里有张手写的库存记录照片，麻烦转成 Excel 给我。"
+  - "把这张包含销售数据的图片转成可编辑的 Excel。"
+  - "提取图片中的表格内容，保存为 .xlsx。"
+
+2. 图片转 Word
+- 触发意图：当用户请求将图片、截图、照片或扫描件转换为Word 文档 触发此意图
+- 场景scene标识：image-to-word
+- 参考示例指令：
+  - "把这张会议记录的拍照图片转成 Word 文档。"
+  - "请将这张包含长篇文章的截图转换为 .docx 格式。"
+  - "将这张产品说明书的截图转为 Word 格式。"
+  - "将这张产品说明书的截图转为 Word 格式。"
+
+3. 图片转 Pdf
+- 触发意图：当用户请求将图片、截图、照片或扫描件转换为 PDF 文档 触发此意图
+- 场景scene标识：image-to-pdf
+- 参考示例指令：
+  - "把这张手写的课堂笔记图片转成 PDF 文档。"
+  - "请将这张包含详细参数的设备铭牌照片转换为 .pdf 格式。"
+  - "帮我把这张合同照片处理一下，转成清晰的 PDF 存档。"
+  - "将这张包含复杂流程的白板草图转换为 PDF，保持版面整洁。"
+
+**客户端脚本增强字段**：当 `scan.py` 调用夸克 API 成功（`code == "00000"`）且响应 `data` 中包含 `"FileBase64"` 时，`scan.py` 会**主动调用 `file_saver.py` 将其解码并保存为本地文件**，并在最终返回的 JSON 响应中，于 `data` 对象内**追加 `"path": "/tmp/xx.docx"` 字段**。该行为由 `scan.py` 脚本实现，与模型无关，也不依赖 OpenClaw 平台自动介入。
+
+## ⛔ 不适用场景（When Not to Use）
+
+> 本技能**不支持**以下场景，请勿尝试：
+
+| 不支持的场景 | 原因 | 建议替代方案 |
+|------------|------|------------|
+| **视频处理** | 仅支持单张静态图片 | 先提取视频帧，再逐帧处理 |
+| **批量处理** | 每次调用仅限单张图片 | 如需批量，请循环调用或联系管理员 |
+| **实时摄像头流** | 非实时流处理架构 | 使用专用视频处理服务 |
+| **超大图片（>5MB）** | API 限制 | 先压缩或裁剪后再处理 |
+| **非图片格式** | 仅支持 jpg/jpeg/png/gif/bmp/webp/tiff/wbmp | 先转换为支持的图片格式 |
 
 ---
 
-## 参考文档
+## ⚠️ 重要注意事项
 
-- [references/privacy.md](./references/privacy.md) — 隐私、数据流向与密钥安全
-- [references/troubleshooting.md](./references/troubleshooting.md) — 错误码与排错
-- [references/implementation.md](./references/implementation.md) — 实现细节：CLI 行为与响应字段
-- [SECURITY.md](./SECURITY.md) — 安全策略与数据流声明
+1. **禁止修改固定格式**,只能替换场景标识和图片占位符
+2. **严禁自行构造 --scene 参数值，必须使用本文档指定的场景名**
+3. **图片大小限制：本地文件不超过5MB，支持 jpg/jpeg/png/gif/bmp/webp/tiff/wbmp/webp 格式**
+
+---
+
+## 🔗 相关资源
+- [夸克扫描王开放平台](https://scan.quark.cn/business)
+
+## 📁 文件结构
+- `SKILL.md` —  本文档（意图分析 + 通用规范）
+- `scripts/scan.py` —  主执行脚本 (Python 3.9+)
+- `scripts/common/*.py` —  基础类库

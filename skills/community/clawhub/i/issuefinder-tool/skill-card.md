@@ -1,41 +1,58 @@
-## Description: <br>
-A vehicle log download and analysis tool that supports cloud log retrieval, local log processing, and automated fault analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issuefinder Tool helps agents download vehicle logs, process local log archives, and request IssueFinder fault analysis by VIN and event time.
 
-## Publisher: <br>
-[lichm1007](https://clawhub.ai/user/lichm1007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lichm1007](https://clawhub.ai/user/lichm1007)
 
-## Use Case: <br>
-Developers and vehicle diagnostics engineers use this skill to run IssueFinder commands for downloading vehicle logs by VIN and time, processing local log archives, and analyzing fault or reboot information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The tool can auto-download and run replacement code in a persistent user directory without integrity checks or clear approval. <br>
-Mitigation: Review before installing, prefer running with --skip-version-check, and inspect or remove ~/.issuefinder/issuefinder-tool.py before use. <br>
-Risk: Vehicle identifiers, time windows, and downloaded logs may be shared with the configured IssueFinder server or stored locally. <br>
-Mitigation: Use only trusted IssueFinder servers, limit VIN and time queries to what is needed, and store downloaded logs in a restricted directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lichm1007/issuefinder-tool) <br>
-- [Wrapper usage documentation](WRAPPER_USAGE.md) <br>
-- [IssueFinder server endpoint](https://issuefinder-playground-init-dev.inner.chj.cloud) <br>
+## Use Case:
 
+Developers and vehicle log analysts use this skill to run IssueFinder CLI workflows for cloud log download, local archive extraction and parsing, and reboot or fault analysis from VIN and event-time inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files, Analysis] <br>
-**Output Format:** [Markdown guidance with shell command examples and file outputs from the tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download vehicle logs to configured output directories and call the configured IssueFinder server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The tool may automatically replace itself with unverified server-provided code and continue executing a home-directory copy.
+
+Mitigation: Run only trusted releases and servers, use --skip-version-check where appropriate until updater verification is fixed, and review any cached home-directory script before execution.
+
+Risk: Vehicle logs, VINs, and timestamps may be sent to the configured IssueFinder service.
+
+Mitigation: Use the skill only where sharing that data with the configured service is approved, prefer the trusted HTTPS server, and avoid custom or HTTP servers.
+
+Risk: Archives and downloaded outputs may contain untrusted content.
+
+Mitigation: Process files in an isolated workspace, scan outputs before opening or reusing them, and clean up retained logs according to local data-handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lichm1007/skills/issuefinder-tool)
+- [IssueFinder server endpoint](https://issuefinder-playground-init-dev.inner.chj.cloud)
+- [Wrapper usage documentation](artifact/WRAPPER_USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Analysis]
+
+**Output Format:** [Markdown guidance with command examples; CLI runs print text summaries and save downloaded or parsed log files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include vehicle log files, extracted archive contents, parsed logs, reboot reason, final analysis result, screen status, task IDs, environment IDs, and output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact CLI reports 1.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

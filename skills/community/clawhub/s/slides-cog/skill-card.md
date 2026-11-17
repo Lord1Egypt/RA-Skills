@@ -1,41 +1,54 @@
-## Description: <br>
-AI presentation and slide deck generation powered by CellCog for pitch decks, keynotes, business presentations, educational slides, and investor decks in PDF or native PPTX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI presentation slides and deck generation powered by CellCog. Pitch decks, keynotes, business presentations, educational slides, investor decks — PDF or native PPTX. Research-backed content with professional slide design, charts, and layouts.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers and external users use this skill to ask CellCog to create polished slide decks for business, investor, educational, sales, event, and image slideshow workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CellCog API key and sends presentation prompts, attached files, metrics, and generated content to CellCog. <br>
-Mitigation: Use a revocable API key and avoid secrets, regulated data, or confidential business/customer material unless the organization approves that use. <br>
-Risk: Generated presentations may include incorrect or unsuitable content for high-stakes business, investor, educational, or customer-facing use. <br>
-Mitigation: Review generated slides and supporting claims before presenting or distributing them. <br>
+## Use Case:
 
+People preparing business, educational, investor, or event presentations use the skill to turn prompts and supplied information into polished slide decks in PDF, editable PPTX, or interactive HTML formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nitishgargiitd/slides-cog) <br>
-- [CellCog homepage](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, API Calls, Guidance] <br>
-**Output Format:** [PDF, PPTX, interactive HTML, and CellCog response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CELLCOG_API_KEY; may send prompts, attached files, metrics, and generated presentation content to CellCog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release metadata) <br>
+Risk: Presentation prompts and included business information are sent to CellCog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only material you are authorized to share.
+
+Risk: The separate CellCog dependency and its execution were outside the artifact scan review.
+
+Mitigation: Use a reviewed, pinned installation version and review the dependency before use.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Presentation Slides on ClawHub](https://clawhub.ai/cellcog/skills/presentation-slides-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Files]
+
+**Output Format:** [PDF, PPTX, or interactive HTML presentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presentation slides may include text, charts, images, tables, timelines, comparisons, and quotes.]
+
+## Skill Version(s):
+
+1.0.22 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

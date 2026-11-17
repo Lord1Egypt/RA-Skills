@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill for DigitalOcean requests involving account and resource lookup, listing, and approved Droplet lifecycle operations through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DigitalOcean (digitalocean.com). Use this skill for ANY DigitalOcean request — reading, creating, updating, and deleting data. Whenever a task involves DigitalOcean, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and cloud administrators use this skill to inspect DigitalOcean account, Droplet, App Platform, database, DNS, firewall, load balancer, and VPC resources through an OOMOL-connected account. It can also initiate basic Droplet lifecycle actions when the user explicitly approves the target action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill can trigger DigitalOcean Droplet lifecycle changes while describing untagged actions as safe to run directly. <br>
-Mitigation: Treat manage_droplet_lifecycle as a write action and require explicit user approval of the target Droplet and lifecycle operation before execution. <br>
-Risk: The skill may require running remote installer commands for the oo CLI during first-time setup. <br>
-Mitigation: Run remote installer commands only when the CLI is missing and after confirming that the user trusts OOMOL and needs the CLI for this workflow. <br>
-Risk: The skill requires sensitive DigitalOcean credentials through an OOMOL-connected account. <br>
-Mitigation: Use least-privilege DigitalOcean credentials, review connection scopes, and avoid connecting production resources unless the user has approved the operational risk. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect DigitalOcean account resources and manage droplet lifecycle actions through a connected account. It supports account, droplet, app, database, DNS, firewall, load balancer, and VPC operations.
 
-## Reference(s): <br>
-- [DigitalOcean homepage](https://www.digitalocean.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OOMOL server-side credential injection and returns connector responses containing data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup executes unverified remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately, and use a verified release where available.
+
+Risk: The required CLI may silently synchronize additional agent skills at startup.
+
+Mitigation: Consider setting OO_SKILLS_SYNC_DISABLED=1 before running the CLI.
+
+Risk: Using the integration means trusting OOMOL with connected DigitalOcean access.
+
+Mitigation: Use the integration only if you trust OOMOL with that access.
+
+## Reference(s):
+
+- [DigitalOcean API documentation](https://docs.digitalocean.com/reference/api/)
+- [DigitalOcean](https://www.digitalocean.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON API results with concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing droplet lifecycle actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

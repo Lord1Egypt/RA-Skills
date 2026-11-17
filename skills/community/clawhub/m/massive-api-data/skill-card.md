@@ -1,53 +1,66 @@
-## Description: <br>
-Fetch real-time and historical market data from Massive, formerly Polygon.io, for OpenClaw across stocks, options, futures, indices, forex, and crypto. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time and historical market data from Massive (formerly Polygon.io) for use in OpenClaw trading workflows across stocks, options, futures, indices, forex, and crypto.
 
-## Publisher: <br>
-[player-1101](https://clawhub.ai/user/player-1101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[player-1101](https://clawhub.ai/user/player-1101)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to retrieve market data for quotes, OHLCV bars, options chains, futures prices, crypto prices, real-time streaming, and historical datasets used in analysis, backtesting, and trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script installs a package name that security evidence flags as questionable. <br>
-Mitigation: Review or replace the setup dependency with the official Massive Python client package before installation. <br>
-Risk: The skill requires a sensitive Massive API key and may use optional S3 credentials for Flat Files. <br>
-Mitigation: Provide only the credentials needed for the chosen access method, store them in a secret manager or uncommitted .env file, and monitor API usage and billing. <br>
-Risk: Market-data subscription limits, delayed data, rate limits, and WebSocket connection limits can affect downstream decisions. <br>
-Mitigation: Confirm the Massive plan, check response status before using results, handle rate limits, and distinguish delayed data from real-time data in agent workflows. <br>
+## Use Case:
 
+OpenClaw users and trading-system developers use this skill to retrieve market data for quotes, historical bars, real-time streams, backtesting datasets, and research across supported asset classes. The skill provides data access guidance and examples; it does not execute trades.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/player-1101/massive-api-data) <br>
-- [Publisher profile](https://clawhub.ai/user/player-1101) <br>
-- [Massive documentation](https://massive.com/docs) <br>
-- [Massive REST API quickstart](https://massive.com/docs/rest/quickstart) <br>
-- [Massive WebSocket quickstart](https://massive.com/docs/websocket/quickstart) <br>
-- [Massive Flat Files quickstart](https://massive.com/docs/flat-files/quickstart) <br>
-- [Stocks reference](references/stocks.md) <br>
-- [Options reference](references/options.md) <br>
-- [Futures reference](references/futures.md) <br>
-- [Crypto reference](references/crypto.md) <br>
-- [WebSocket reference](references/websocket.md) <br>
-- [Flat Files reference](references/flat-files.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, configuration snippets, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide REST API calls, WebSocket subscriptions, and Flat Files downloads; requires Massive API credentials for live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Massive API and S3 credentials could be exposed through logs, source control, or shared configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in environment variables, a .env file excluded from source control, or a secret manager; rotate keys if exposure is suspected.
+
+Risk: The setup script installs Python dependencies before using the connector.
+
+Mitigation: Review or hash-lock the pinned dependencies before running setup in sensitive environments.
+
+Risk: Market data availability, delay, rate limits, and WebSocket access depend on the Massive subscription plan.
+
+Mitigation: Confirm plan limits before relying on real-time feeds, large backtests, or bulk flat-file downloads.
+
+## Reference(s):
+
+- [Stocks REST API Reference](references/stocks.md)
+- [Options REST API Reference](references/options.md)
+- [Futures REST API Reference](references/futures.md)
+- [Crypto REST API Reference](references/crypto.md)
+- [WebSocket API Reference](references/websocket.md)
+- [Flat Files Reference](references/flat-files.md)
+- [Massive API Documentation](https://massive.com/docs)
+- [Massive REST API Quickstart](https://massive.com/docs/rest/quickstart)
+- [Massive WebSocket Quickstart](https://massive.com/docs/websocket/quickstart)
+- [Massive Flat Files Quickstart](https://massive.com/docs/flat-files/quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell and Python examples; API responses are JSON objects from Massive.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Massive API key; optional S3 credentials are used only for Flat Files bulk downloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

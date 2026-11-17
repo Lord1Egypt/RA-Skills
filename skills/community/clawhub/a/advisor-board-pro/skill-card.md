@@ -1,41 +1,54 @@
-## Description: <br>
-Advisor Board Pro helps enterprise teams run multi-advisor decision reviews with deep research, an 11-step consultation workflow, report export, and team collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advisor Board Pro helps teams run enterprise decision consultations with 36 advisor personas, deep search, an 11-step diagnosis workflow, report export, and collaboration support.
 
-## Publisher: <br>
-[mambamentatily24](https://clawhub.ai/user/mambamentatily24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial <br>
+## Publisher:
 
+[mambamentatily24](https://clawhub.ai/user/mambamentatily24)
 
-## Use Case: <br>
-External business users and enterprise teams use this skill to analyze strategic decisions, investment diligence, product evaluations, and annual planning with structured advisor perspectives and exportable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises prompts, reports, exported files, shared history, team access, and migrated records without clear controls for sensitive business data. <br>
-Mitigation: Review retention, access permissions, export locations, sharing behavior, and automatic sync controls before entering confidential strategy, investment, customer, or operational data. <br>
-Risk: Web research and business-advisor outputs may produce incorrect or misleading strategic, investment, or operational guidance. <br>
-Mitigation: Treat outputs as decision support, verify sourced claims independently, and require human review before acting on reports or recommendations. <br>
+## Use Case:
 
+Business teams, strategy leads, product leaders, and investors use this skill to structure complex enterprise decisions, strategic planning, product assessments, investment diligence, and annual planning into advisor-style analysis and exportable reports.
 
-## Reference(s): <br>
-- [Advisor Board Pro ClawHub page](https://clawhub.ai/mambamentatily24/advisor-board-pro) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown decision reports with optional PDF and Word exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include team comments, decision tracking, shared history, and exported business reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Enterprise consultation history, exported reports, team comments, and migrated records may contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where these records are stored, who can access them, and whether the storage model satisfies the organization's confidentiality requirements before deployment.
+
+Risk: The security evidence flags this release as suspicious because installation and handling of shared or migrated business records need review.
+
+Mitigation: Review the skill before installing in a business environment, pin or verify the installer version, and avoid running installation or usage flows with elevated privileges.
+
+## Reference(s):
+
+- [Advisor Board Pro ClawHub Listing](https://clawhub.ai/mambamentatily24/skills/advisor-board-pro)
+- [Publisher Profile](https://clawhub.ai/user/mambamentatily24)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance and report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce decision analyses, report content, checklists, export requests, collaboration prompts, and customization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

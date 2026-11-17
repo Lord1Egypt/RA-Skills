@@ -1,46 +1,58 @@
-## Description: <br>
-Organizes legal intake materials into facts, dispute points, known evidence, missing materials, follow-up questions, and risk notes without providing legal conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes legal intake materials into facts, dispute points, known evidence, missing materials, follow-up questions, and risk notes without providing legal conclusions.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Legal operations teams, intake coordinators, and legal reviewers use this skill to turn case intake notes, timelines, and existing documents into a structured, reviewable Markdown brief. It is intended for organizing materials and identifying missing information, not for legal advice or replacing attorney review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script can inspect local files or directories and produce reports beyond simple legal intake summarization. <br>
-Mitigation: Run it only on a narrow copied test folder or specific intake file, and avoid pointing it at full case repositories, home directories, or broad document stores. <br>
-Risk: Generated reports may include privileged, confidential, personal, or secret material from the supplied input. <br>
-Mitigation: Review and redact outputs before sharing them, and avoid using sensitive source material unless the deployment environment is approved for that data. <br>
-Risk: The skill organizes legal matter information but may be mistaken for legal advice. <br>
-Mitigation: Use the output as a review draft and checklist only, and require qualified legal review before relying on conclusions or taking action. <br>
+## Use Case:
 
+Legal operations teams, intake staff, and agents use this skill to turn supplied matter materials into a reviewable structured brief and checklist before attorney review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/legal-matter-intake-summarizer) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Output specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, files, guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON report output when the local script is run with --format json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local script can write an output file, run in dry-run mode, and limit sampled findings for supported audit-style modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may mistake the structured intake draft for legal advice or attorney review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the output as an organizational draft, preserve the skill's no-legal-conclusions boundary, and route the matter to qualified legal review before relying on it.
+
+Risk: Legal intake materials may contain sensitive personal or case information.
+
+Mitigation: Use only an appropriate local workspace and output path, and redact or avoid unnecessary sensitive materials before processing.
+
+Risk: The helper script can write generated output to a local file path selected by the user.
+
+Mitigation: Review the target path before execution and use dry-run or stdout output when file writes are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/legal-matter-intake-summarizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python 3 and standard-library code only; supports local file input, local file output, dry-run mode, and markdown/json format selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

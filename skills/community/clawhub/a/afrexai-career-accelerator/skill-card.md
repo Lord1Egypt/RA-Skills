@@ -1,38 +1,51 @@
-## Description: <br>
-A career acceleration skill that guides users through self-assessment, target-company strategy, resume and CV optimization, interview preparation, salary negotiation, career transitions, and long-term growth planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A career acceleration skill that helps users plan job searches, assess career fit, optimize resumes, prepare for interviews, negotiate offers, manage transitions, and plan long-term growth.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External job seekers and career changers use this skill to run a structured career campaign, optimize application materials, prepare for interviews, evaluate offers, and plan long-term growth. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive career, compensation, employer, or job-search context supplied in USER.md. <br>
-Mitigation: Keep USER.md limited to career information you are comfortable sharing with the agent; exclude passwords, tokens, private employer records, and unrelated personal documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-career-accelerator) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Job seekers and career changers use this skill to structure career strategy, job search operations, resume and cover letter tailoring, interview preparation, offer evaluation, and negotiation. It is designed for users across roles, levels, and industries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML templates, tables, checklists, and plain-text scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user-provided career, compensation, employer, and job-search context from USER.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs the agent to read USER.md before tasks, which can expose career profile details even when a request is narrow.
+
+Mitigation: Review and minimize USER.md before installing or invoking the skill, and use it only when sharing career profile context with the active agent is appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-career-accelerator)
+- [Publisher Profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI Storefront](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured templates, tables, scripts, rubrics, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include career audit templates, company research briefs, resume scoring rubrics, outreach drafts, STAR story preparation, pipeline trackers, and offer evaluation frameworks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "spacesuit.monetization",
+  "version": "1.0.0",
+  "contractVersion": 1,
+  "inputs": ["intel/MONETIZATION-TRACKER.md"],
+  "locales": ["en", "zh-CN"],
+  "collection": "explicit-reviewed-cli"
+}

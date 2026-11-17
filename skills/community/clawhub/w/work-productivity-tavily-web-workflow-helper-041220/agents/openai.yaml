@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Tavily Web Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Tavily 搜索-style..."
+  default_prompt: "Use $work-productivity-tavily-web-workflow-helper to help me Agent users show strong demand for Tavily 搜索-style workflows on Clawhub. They need practical help fixing bugs, hardening."
+
+policy:
+  allow_implicit_invocation: true

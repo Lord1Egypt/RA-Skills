@@ -1,41 +1,59 @@
-## Description: <br>
-End-to-end GEO content publishing and distribution orchestrator for turning optimized content into channel-specific variants and AI-crawler-friendly publishing plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end GEO content publishing and distribution orchestrator for turning optimized content into multi-channel publishing plans, channel-specific variants, and AI/crawler visibility packages.
 
-## Publisher: <br>
-[GEOlyAI](https://clawhub.ai/user/GEOlyAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geolyai](https://clawhub.ai/user/geolyai)
 
-## Use Case: <br>
-Content, SEO, and growth teams use this skill to plan GEO-aware launches across websites, blogs, docs, social channels, newsletters, and app surfaces. It produces publishing briefs, channel plans, content variants, structured-data packages, implementation checklists, crawler signaling steps, and launch timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public posts, email copy, schema, sitemap, llms.txt, and internal-linking recommendations may be inaccurate or unsuitable for the user's brand, site, or compliance needs. <br>
-Mitigation: Review generated public-facing content and technical recommendations before publishing or applying them. <br>
-Risk: The helper scripts can read input JSON and optionally write markdown output to user-provided paths. <br>
-Mitigation: Use deliberate input and output paths when running helper scripts. <br>
+## Use Case:
 
+Content, marketing, growth, and developer documentation teams use this skill to package GEO-optimized source content into launch-ready publishing briefs, channel plans, page structures, schema recommendations, AI crawler signaling steps, and final rollout timelines.
 
-## Reference(s): <br>
-- [GEO Content Publisher reference templates](references/publishing-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/GEOlyAI/geo-content-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, content drafts, JSON-LD code blocks, and optional helper-script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include channel mapping, sitemap and llms.txt recommendations, schema snippets, internal-linking recommendations, and execution timelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Broad trigger wording may cause the skill to be selected for adjacent content tasks in workspaces with many GEO or marketing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the user is asking for end-to-end GEO publishing and distribution before applying the full workflow.
+
+Risk: Generated publishing guidance can introduce inaccurate claims, weak citations, or unsuitable channel recommendations if the source content is incomplete.
+
+Mitigation: Have a subject-matter owner review factual claims, canonical URLs, structured data fields, and channel copy before publishing.
+
+Risk: The helper scripts can write Markdown output to a user-provided path.
+
+Mitigation: Confirm output paths before running helper scripts and avoid writing into sensitive or unrelated project locations.
+
+## Reference(s):
+
+- [GEO Content Publisher Reference Templates](artifact/references/publishing-templates.md)
+- [Geo Content Publisher on ClawHub](https://clawhub.ai/geolyai/skills/geo-content-publisher)
+- [GEOlyAI Publisher Profile](https://clawhub.ai/user/geolyai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown plans with tables, checklists, draft copy, JSON-LD snippets, and optional generated Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate conceptually with related GEO skills when present; helper scripts can generate channel-plan tables and page-structure snippets.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

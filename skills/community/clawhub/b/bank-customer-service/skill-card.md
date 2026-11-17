@@ -1,42 +1,54 @@
-## Description: <br>
-AI-powered intelligent customer service for banking and securities, covering FAQ answering, account inquiry, transaction guidance, complaint handling, and 24/7 automated support for China financial institution call centers and digital customer service teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered customer-service guidance for banking and securities workflows, including FAQ answering, account inquiry guidance, transaction guidance, complaint handling, and 24/7 response templates.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External banking and securities service teams use this skill to draft automated customer-service responses, classify customer intent, answer common account and product questions, and structure complaint handling with compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer-service workflows can involve personal, account, or complaint details. <br>
-Mitigation: Collect only the minimum needed information, mask sensitive fields, and never request full account numbers, passwords, or other secrets. <br>
-Risk: Incorrect identity handling could expose banking services or advice to the wrong person. <br>
-Mitigation: Require identity verification through official bank channels before account-specific assistance or transaction guidance. <br>
-Risk: Complaints and regulated financial issues require approved handling and auditability. <br>
-Mitigation: Route complaints into an approved secure ticketing system and review responses against applicable regulations and institutional policies before production use. <br>
+## Use Case:
 
+Financial institution customer-service teams use this skill to structure banking and securities support responses, including FAQ answers, account-service guidance, intent classification, and complaint-handling scripts. It is a static prompt and knowledge-template skill, not a live account, identity-verification, or ticketing system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-customer-service) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown prose with embedded Python-style dictionaries, FAQ response templates, SOP text, and intent classification examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on customer-service answer patterns, complaint handling flow, and intent classification; real deployments should connect responses to approved banking systems and policies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill may be mistaken for a production banking support, ticketing, or account-management system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with real identity verification, ticketing, audit, and notification systems when deployed in customer-facing financial workflows.
+
+Risk: Customer-service responses could collect or invent sensitive operational details such as ticket numbers or account information.
+
+Mitigation: Configure agents to avoid inventing ticket numbers and to collect sensitive customer details only through approved processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bank-customer-service)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and embedded Python-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static response templates, FAQ content, complaint-handling SOPs, and intent-classification examples.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

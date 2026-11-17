@@ -1,40 +1,54 @@
-## Description: <br>
-Caranguejo gives short cultural explanations, facts, and poetic commentary about Pernambuco football, Manguebeat, Recife and Olinda culture, and regional music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Caranguejo helps an agent answer prompts about Pernambuco culture, football, music, places, and Manguebeat with short, culturally descriptive or poetic responses.
 
-## Publisher: <br>
-[daviemmanuel](https://clawhub.ai/user/daviemmanuel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviemmanuel](https://clawhub.ai/user/daviemmanuel)
 
-## Use Case: <br>
-People asking an agent about Pernambuco football, Manguebeat, Recife and Olinda culture, or regional music use this skill to receive concise Brazilian Portuguese facts, cultural explanations, and poetic commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions could add scripts, network access, data permissions, or credential handling that are not present in this release. <br>
-Mitigation: Review and rescan future versions before deployment, especially if artifact files add executable code, external calls, or permission requirements. <br>
-Risk: Responses about clubs, cultural history, or local traditions may be incomplete, outdated, or stylistically subjective. <br>
-Mitigation: Use the skill for lightweight cultural explanation and writing style; verify factual claims against authoritative sources before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to get concise, culturally grounded responses about Pernambuco football clubs, Recife and Olinda cultural references, regional music, and Manguebeat-inspired identity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviemmanuel/caranguejo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text cultural responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normally responds in Brazilian Portuguese; may respond in English when the user asks in English.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact language metadata says English while the skill instructions default to Brazilian Portuguese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended default language during deployment and update metadata or user-facing expectations if English-only behavior is required.
+
+Risk: Poetic Manguebeat-style commentary may blur factual statements with expressive framing.
+
+Mitigation: Use source checking or human review when responses are used for factual claims about clubs, cultural history, or local events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviemmanuel/skills/caranguejo)
+- [Publisher profile](https://clawhub.ai/user/daviemmanuel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Short Markdown-compatible natural-language responses, normally in Brazilian Portuguese and optionally in English when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are shaped by cultural topic, tone, and language instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

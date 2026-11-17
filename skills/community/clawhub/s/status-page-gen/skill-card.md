@@ -1,41 +1,59 @@
-## Description: <br>
-Generates a lightweight static HTML status page for self-hosted services with health endpoint checks, ping checks, SSL certificate validation, and uptime history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a dark-theme static HTML status page with health checks, ping, SSL certificate validation, and uptime history for self-hosted services.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and self-hosting operators use this skill to configure checks for their services, collect status and certificate data, maintain uptime history, and generate a static status page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated status pages can expose internal hostnames, private URLs, service names, uptime history, or certificate details if published publicly. <br>
-Mitigation: Prefer local or private hosting, and redact sensitive service metadata before sharing or publishing the generated page. <br>
-Risk: The service and certificate checks contact the services configured by the user. <br>
-Mitigation: Configure only services the user owns or is authorized to monitor, and run checks from an approved network environment. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to configure service checks, collect uptime and certificate status, and generate a self-contained HTML status page for self-hosted services.
 
-## Reference(s): <br>
-- [status-page-gen Setup Guide](references/setup-guide.md) <br>
-- [Status Page Gen ClawHub Page](https://clawhub.ai/newageinvestments25-byte/status-page-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, status JSON, certificate JSON, history JSON, and generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local artifacts from user-provided service configuration; outputs may include service names, URLs, uptime history, and certificate status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring background execution can continue checking services without clear operational oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron or LaunchAgent scheduling only with logging, documented removal steps, and a trusted, unchanged skill directory.
+
+Risk: Generated status pages can expose service names, URLs, health state, and uptime history if published publicly.
+
+Mitigation: Keep private infrastructure status pages in user-owned local or access-controlled locations and avoid public Gist publishing for sensitive services.
+
+Risk: Service monitoring data is stored locally and may accumulate over time.
+
+Mitigation: Use an appropriate history file location, review its contents before sharing, and prune old history when retention is not needed.
+
+## Reference(s):
+
+- [status-page-gen Setup Guide](references/setup-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/status-page-gen)
+- [Publisher Profile](https://clawhub.ai/user/newageinvestments25-byte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated HTML output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JSON check results, uptime history, and a self-contained HTML status page when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

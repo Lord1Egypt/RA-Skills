@@ -1,7 +1,7 @@
 ---
 name: "contactless-health-risk-detection-analysis"
 description: "Combines frontal facial image capture with multimodal physiological feature analysis to provide early risk screening and alerts for chronic and acute conditions such as heart attack, stroke, hypertension, and hyperlipidemia. | 非接触式健康风险识别技能，通过正面人像采集结合多模态生理特征分析，提供心梗、脑梗、高血压、高血脂等慢病急症早期风险筛查预警"
-version: "1.0.7"
+version: "1.0.15"
 license: "MIT-0"
 ---
 

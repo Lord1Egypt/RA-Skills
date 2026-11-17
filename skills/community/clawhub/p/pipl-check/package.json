@@ -1,0 +1,53 @@
+{
+  "name": "pipl-check",
+  "version": "3.0.3",
+  "description": "PIPL 个人信息保护法合规检查。仅在用户明确要求 PIPL / 个保法合规评估、中国个人信息保护法审查时激活。免费检查（云端真实评分），25 项核心检查；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。API Key 在网页 compliancehub.cn/account.html 注册获取（注册后即时显示），通过 COMPLIANCEHUB_API_KEY 环境变量或 ~/.config/compliancehub 密钥文件提供。",
+  "author": "CQDev",
+  "license": "MIT",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "category": "compliance",
+    "region": "global",
+    "emoji": "🔒",
+    "displayName": "PIPL Compliance Check",
+    "keywords": [
+      "PIPL",
+      "个保法",
+      "privacy",
+      "China",
+      "compliance",
+      "data-protection",
+      "CN-privacy"
+    ],
+    "files": [
+      "SKILL.md",
+      "scripts/pipl-check.py",
+      "package.json"
+    ],
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

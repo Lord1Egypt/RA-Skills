@@ -1,0 +1,23 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-deployment-architect",
+  "stage": 4,
+  "purpose": "Design deployment solutions that are runnable, auditable, downgradeable and rollbackable for customer environments.",
+  "risk_level": "high",
+  "scripts": [],
+  "writes": [
+    "Only architecture and risk documents are output; no changes are made to cloud resources, networks, IAM, or production systems by default."
+  ],
+  "human_confirmation": [
+    "production connection",
+    "External data transfer",
+    "Permission changes",
+    "deploy to production and rollback"
+  ],
+  "high_risk_boundaries": [
+    "A security/compliance review must be performed",
+    "POC runnability does not mean production availability"
+  ]
+}

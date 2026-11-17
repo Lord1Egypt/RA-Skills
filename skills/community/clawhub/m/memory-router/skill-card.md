@@ -1,46 +1,60 @@
-## Description: <br>
-Memory Router helps OpenClaw agents manage local memory by tiering bloated MEMORY.md files, generating query-aware manifests, auditing duplicate or conflicting memories, and maintaining session state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Router helps agents manage local memory files by generating focused manifests, tiering oversized MEMORY.md content, auditing duplicate or conflicting entries, and maintaining entity and session-state indexes.
 
-## Publisher: <br>
-[jlacroix82](https://clawhub.ai/user/jlacroix82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlacroix82](https://clawhub.ai/user/jlacroix82)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep long-running OpenClaw memory stores concise, searchable, and relevant across sessions. It is intended for local workflows that need memory manifests, audits, entity indexing, and controlled MEMORY.md tiering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and modifies local memory files as part of its normal purpose. <br>
-Mitigation: Install only for workflows that intentionally delegate local memory-file management, and keep separate backups of MEMORY.md and memory/ before write operations. <br>
-Risk: Tiering and restore operations can rewrite or overwrite MEMORY.md. <br>
-Mitigation: Run --tier --dry-run first, review the proposed changes, then use --tier --confirm only when ready; do not place --tier --confirm or --restore --force in unattended automation. <br>
-Risk: Archive retention settings can lead to irreversible deletion of archived memory sections. <br>
-Mitigation: Use conservative retention settings, back up the full memory directory, and monitor archived files before reducing retention periods. <br>
-Risk: Persistent helper commands such as entity updates and WAL updates write local state files. <br>
-Mitigation: Review these commands before automating them, and reserve unattended runs for commands documented as safe such as --compact, --audit, --status, entity list/search, WAL get, and --tier --dry-run. <br>
+## Use Case:
 
+Developers and agent operators use Memory Router to reduce memory context bloat, route only relevant memory files into a session, and inspect local memory health before loading or rewriting memory state.
 
-## Reference(s): <br>
-- [Memory Router on ClawHub](https://clawhub.ai/jlacroix82/memory-router) <br>
-- [README.md](artifact/README.md) <br>
-- [INSTALL.md](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON manifests, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local files such as memory/memory-manifest.json, memory/memory-audit-report.md, entity indexes, session state, backups, archives, and updated MEMORY.md content depending on the command used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: server release evidence) <br>
+Risk: Tiering, restore, cleanup, entity, and WAL commands can modify or overwrite local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a backed-up workspace, run status or dry-run commands first, and reserve --tier --confirm and --restore --force for reviewed manual execution.
+
+Risk: Custom workspace or path settings can increase the chance of operating on the wrong files.
+
+Mitigation: Avoid absolute paths or .. components in custom path settings and confirm the workspace before running commands that write files.
+
+Risk: The security verdict is suspicious because destructive restore and tiering guarantees may be weaker than the documentation suggests.
+
+Mitigation: Treat the skill as an assisted local memory tool, review generated manifests and audit reports, and do not rely on its backups as the only recovery mechanism.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jlacroix82/skills/memory-router)
+- [README](artifact/README.md)
+- [Installation Guide](artifact/INSTALL.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, generated JSON manifests, text status output, and Markdown audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local filesystem outputs may include memory/memory-manifest.json, memory/memory-audit-report.md, archive files, backups, entity indexes, and SESSION-STATE.md depending on the command.]
+
+## Skill Version(s):
+
+2.4.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

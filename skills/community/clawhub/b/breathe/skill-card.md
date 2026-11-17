@@ -1,42 +1,54 @@
-## Description: <br>
-Breathing techniques reference for box breathing, 4-7-8, Wim Hof, pranayama, and resonance breathing guidance for stress relief, focus, sleep, and athletic performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breathing techniques reference for box breathing, 4-7-8 breathing, Wim Hof, pranayama, resonance breathing, and related breathwork guidance.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users and agent operators use this skill as static breathwork reference material when selecting or explaining breathing exercises for calm, focus, sleep, stress management, and routine design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Higher-risk breathwork practices such as advanced breath holds, hyperventilation-style breathing, forceful pranayama, and cold exposure can be unsafe in certain settings or for users with relevant medical risk factors. <br>
-Mitigation: Use the skill as static reference material only, avoid those practices while driving, in water, standing, or operating machinery, and seek qualified medical guidance first when pregnant or when cardiovascular, respiratory, seizure, fainting, panic, or similar risk factors apply. <br>
-Risk: Wellness guidance may be mistaken for individualized medical advice. <br>
-Mitigation: Keep recommendations general, avoid presenting breathwork as diagnosis or treatment, and defer to qualified medical professionals for user-specific medical concerns. <br>
+## Use Case:
 
+External users and agents use this skill to select and explain breathwork routines for stress relief, focus, sleep, anxiety management, and athletic performance. It provides command-driven reference text for specific breathing techniques and daily routines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/breathe) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no API keys, network access, hidden data access, persistence, or system-control behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Health-adjacent breathwork and cold-exposure guidance may be unsafe for users with cardiovascular, respiratory, neurologic, pregnancy, panic/anxiety, or fainting risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the material as non-medical reference guidance and advise at-risk users to avoid advanced retention, hyperventilation, and cold-exposure practices unless cleared by a qualified professional.
+
+Risk: Advanced practices such as cyclic hyperventilation, breath retention, and cold exposure can cause lightheadedness, panic, or loss of consciousness if performed in unsafe settings.
+
+Mitigation: Require human review before release and preserve safety guidance that discourages practice in or near water, while driving, standing, or without appropriate precautions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/breathe)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Plain text reference output with Markdown command documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selectable breathwork topics; no external tools, network calls, API keys, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

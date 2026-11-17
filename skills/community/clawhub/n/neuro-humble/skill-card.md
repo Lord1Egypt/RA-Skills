@@ -1,47 +1,63 @@
-## Description: <br>
-Teaches an agent a neuro-humble support posture for responding to human distress, especially neurodivergent, Mad, and disabled experience, using disability justice principles, formation postures, micro-skill tokens, accommodations, and counter-conditioning guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formation, not information: teaches agents to hold a neuro-humble posture rooted in Disability Justice, Mad Studies, and clinical formation pedagogy when responding to distress, neurodivergent experience, and disability.
 
-## Publisher: <br>
-[sparrowpanton](https://clawhub.ai/user/sparrowpanton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sparrowpanton](https://clawhub.ai/user/sparrowpanton)
 
-## Use Case: <br>
-Agents use this skill to shape responses to distress with witness-first, non-pathologizing, structurally aware support. It is intended for external and personal support contexts where the user wants neurodivergent and disability justice accommodations reflected in the agent's tone, pacing, and response choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save sensitive disability and mental-health-adjacent preferences in user-needs.md. <br>
-Mitigation: Make storage opt-in, keep only minimal user-confirmed preferences, avoid inferred sensitive notes, and provide a clear way to inspect, edit, and delete saved data. <br>
-Risk: The support posture could discourage normal escalation for suicide, self-harm, violence, medical emergency, abuse, overdose, or inability-to-stay-safe signals. <br>
-Mitigation: Keep standard safety protocols active for those signals and treat the skill's posture guidance as secondary to crisis, emergency, and abuse-response requirements. <br>
+## Use Case:
 
+External users and agent builders use this skill to shape assistant responses around witnessing, structural normalization, neurodivergent accommodations, and self-checking before intervention. It is most relevant for agents that may encounter distress or disability-related support needs, with safety protocols preserved for crisis, self-harm, abuse, medical, or emergency situations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sparrowpanton/neuro-humble) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Formation posture](artifact/formation-posture.md) <br>
-- [Toolkit tokens](artifact/toolkit-tokens.md) <br>
-- [ND accommodations](artifact/nd-accommodations.md) <br>
-- [Counter-conditioning](artifact/counter-conditioning.md) <br>
-- [Self-check](artifact/self-check.md) <br>
-- [Onboarding](artifact/onboarding.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured response tokens and optional preference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update opt-in user preference notes such as user-needs.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill tells agents to resist crisis-safety defaults, which could delay appropriate escalation in crisis, self-harm, abuse, medical, or emergency situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep crisis, self-harm, abuse, medical, and emergency safety protocols authoritative; use the skill's witnessing posture only when those protocols do not require escalation.
+
+Risk: The onboarding flow encourages persistent notes about disability, sensory needs, medication timing, overwhelm, and support preferences.
+
+Mitigation: Create or update persistent personalization only after explicit user consent, keep stored details minimal and reviewable, and allow the user to inspect or remove them.
+
+Risk: Artifact guidance includes taking consequential actions such as emails, appointments, purchases, medication-related prompts, or other external changes.
+
+Mitigation: Require a separate user confirmation before external actions, purchases, appointments, medication-related actions, or any change outside the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sparrowpanton/skills/neuro-humble)
+- [Project homepage](https://github.com/sparrowpanton/Disability-Justice-LLM)
+- [formation-posture.md](formation-posture.md)
+- [toolkit-tokens.md](toolkit-tokens.md)
+- [nd-accommodations.md](nd-accommodations.md)
+- [counter-conditioning.md](counter-conditioning.md)
+- [self-check.md](self-check.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and conversational response patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend creating or updating a user-needs markdown file when the user explicitly consents to persistent personalization.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

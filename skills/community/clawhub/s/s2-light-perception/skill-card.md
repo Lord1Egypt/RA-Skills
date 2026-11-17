@@ -1,41 +1,58 @@
-## Description: <br>
-S2-SP-OS Light Radar uses real LAN UDP discovery and local Hue/Wiz API calls to read smart-light state and build a 4sqm voxel light memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2-SP-OS Light Radar uses real LAN UDP discovery and local Hue/Wiz API calls to create a 4sqm voxel light memory record.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and smart-home users use this skill to discover trusted local Hue or Wiz lights, read authorized device state, and summarize lighting conditions for spatial-memory and circadian-lighting suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill actively scans the local network for smart lights. <br>
-Mitigation: Run discovery only on trusted networks where scanning is authorized, and confirm before starting discovery. <br>
-Risk: Read operations contact a specified local smart-light device. <br>
-Mitigation: Provide target device IPs intentionally, use the consent flag for reads, and avoid shared or unauthorized networks. <br>
+## Use Case:
 
+External users and developers use this skill to discover smart lights on a local network, read authorized Hue or Wiz device state, and summarize lighting conditions into spatial JSON records with offline lighting suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-light-perception) <br>
-- [S2-SP-OS homepage](https://space2.world/s2-sp-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and access to a trusted local network with target smart-light devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can actively probe the local network for smart lights using UDP broadcast and SSDP multicast.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run discovery only after explicit user approval and only on networks where the user is authorized to scan for Hue or Wiz devices.
+
+Risk: Authorized reads accept a device IP, which could be used against unintended local network destinations.
+
+Mitigation: Restrict reads to user-confirmed Hue or Wiz IP addresses on the user's own LAN and avoid arbitrary or internet-routed destinations.
+
+Risk: The packaged Python file appears malformed as submitted.
+
+Mitigation: Review and test the artifact before deployment, and do not rely on runtime behavior until the package format is corrected.
+
+## Reference(s):
+
+- [S2-SP-OS Homepage](https://space2.world/s2-sp-os)
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-light-perception)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise guidance generated after running Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discovery returns device IP, vendor, and protocol data; authorized reads return spatial light state, estimated lux, vendor status, and offline linkage suggestions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

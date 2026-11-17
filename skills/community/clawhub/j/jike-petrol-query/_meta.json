@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-petrol-query",
-  "version": "1.0.1",
-  "publishedAt": 1777532622829
+  "version": "1.0.0",
+  "title": "国内油价实时查询 - 即刻数据",
+  "description": "按省份查询 92号汽油、95号汽油、98号汽油和0号柴油价格，也支持不传省份返回全部地区油价。",
+  "env": "JIKE_PETROL_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/petrol/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

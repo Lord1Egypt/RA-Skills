@@ -1,40 +1,56 @@
-## Description: <br>
-Guides agents in designing emotional pacing, empathy beats, pain and reward points, and visual hooks for short drama or vertical-video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短剧情绪曲线设计技能。用于 AI 短剧/短视频创作中的情绪节奏规划、观众共鸣设计、虐点/爽点编排。
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-Writers, creative teams, and agents use this skill to plan emotional arcs for 60-90 second short drama episodes, including empathy setup, conflict escalation, crisis timing, and episode-end hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate too broadly and influence general emotional storytelling prompts outside short-drama planning. <br>
-Mitigation: Use it only when the task is explicitly about short-drama emotional arcs, vertical-video pacing, empathy beats, pain points, reward points, or episode hooks. <br>
+## Use Case:
 
+External creators and agents use this skill to plan emotional arcs for 60-90 second short dramas and vertical short videos. It helps structure empathy, pain points, reward points, pacing, hooks, and shot-level emotion design.
 
-## Reference(s): <br>
-- [Emotion Design Principles](references/emotion-design.md) <br>
-- [Short Drama Emotion Pattern Library](references/pattern-library.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/beermanzz/short-drama-emotion-curve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text guidance for story structure, scene beats, and emotional pacing checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not require tools, credentials, APIs, or local execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad emotion-related triggers may activate the skill during ordinary creative writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it when the task is specifically about short dramas, short videos, or emotional arc design.
+
+Risk: Creative pacing guidance can produce misleading or low-quality story structure if applied without editorial review.
+
+Mitigation: Review generated arcs and scene plans against the intended audience, episode length, and platform before production.
+
+## Reference(s):
+
+- [Emotion Design Principles](references/emotion-design.md)
+- [Short Drama Emotion Pattern Library](references/pattern-library.md)
+- [ClawHub Skill Page](https://clawhub.ai/beermanzz/skills/short-drama-emotion-curve)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/beermanzz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain text creative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance for short-drama emotional pacing; no executable output is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

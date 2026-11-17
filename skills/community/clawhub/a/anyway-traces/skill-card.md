@@ -1,45 +1,62 @@
-## Description: <br>
-Adds observability and tracing to AI/LLM applications using the Anyway SDK for monitoring calls to providers like OpenAI and Anthropic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI coding agents instrument AI/LLM applications with the Anyway observability SDK for tracing, monitoring, and cost tracking.
 
-## Publisher: <br>
-[jeremy-any](https://clawhub.ai/user/jeremy-any) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeremy-any](https://clawhub.ai/user/jeremy-any)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to have an agent add Anyway SDK observability, cost tracking, and tracing to Python or JavaScript AI applications that call LLM providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tracing may capture prompts, responses, costs, provider metadata, or other sensitive application data. <br>
-Mitigation: Review instrumentation scope, redact sensitive fields where needed, and align trace retention with the application's privacy and compliance requirements. <br>
-Risk: Incorrect API key handling could expose credentials while configuring the SDK. <br>
-Mitigation: Use environment variables or a secrets manager, and review generated code to confirm credentials are never hardcoded. <br>
+## Use Case:
 
+Developers use this skill to have coding agents add Anyway SDK setup, environment configuration, and tracing instrumentation to Python or JavaScript applications that call LLM providers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jeremy-any/anyway-traces) <br>
-- [Anyway documentation index](https://docs.anyway.sh/llms.txt) <br>
-- [Anyway skill source](https://docs.anyway.sh/skills.md) <br>
-- [Anyway quickstart](https://docs.anyway.sh/quickstart) <br>
-- [Python SDK tracing](https://docs.anyway.sh/sdk/python/tracing) <br>
-- [JavaScript SDK tracing](https://docs.anyway.sh/sdk/js/tracing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose SDK installation, environment variable setup, tracing initialization, provider instrumentation, and workflow or task spans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic instrumentation may export prompts, responses, metadata, or other LLM telemetry to an external collector.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm collection scope, retention, access controls, and redaction settings before enabling the SDK in projects with sensitive data.
+
+Risk: Broad provider auto-instrumentation can capture more application behavior than intended.
+
+Mitigation: Use narrower instrumentation or explicit workflow and task spans when full automatic tracing is not appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jeremy-any/skills/anyway-traces)
+- [Anyway Documentation Index](https://docs.anyway.sh/llms.txt)
+- [Anyway Skill File](https://docs.anyway.sh/skills.md)
+- [Anyway Quickstart](https://docs.anyway.sh/quickstart)
+- [Python SDK Installation](https://docs.anyway.sh/sdk/python/installation)
+- [Python SDK Configuration](https://docs.anyway.sh/sdk/python/configuration)
+- [Python SDK Tracing](https://docs.anyway.sh/sdk/python/tracing)
+- [JavaScript SDK Installation](https://docs.anyway.sh/sdk/js/installation)
+- [JavaScript SDK Configuration](https://docs.anyway.sh/sdk/js/configuration)
+- [JavaScript SDK Tracing](https://docs.anyway.sh/sdk/js/tracing)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown guidance with code and configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit language-specific setup instructions for Python or JavaScript projects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

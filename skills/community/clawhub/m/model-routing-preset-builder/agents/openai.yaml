@@ -1,0 +1,6 @@
+interface:
+  display_name: "Native Routing Policy Builder"
+  short_description: "Customize the native routing policy on request"
+  default_prompt: "Use $model-routing-preset-builder for the requested native model-routing decision, respecting the selected main model and current channel availability."
+policy:
+  allow_implicit_invocation: false

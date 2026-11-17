@@ -1,42 +1,55 @@
-## Description: <br>
-Guides Google Search Ads planning, launch, and optimization across keyword mining, account structure, ad copy, negative keywords, Quality Score, and performance analysis for B2B SaaS and app makers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Google Search Ads end-to-end with guidance for keyword mining, account structure, ad copy, negative keyword architecture, Quality Score, and performance analysis for B2B SaaS and app campaigns.
 
-## Publisher: <br>
-[jeannen](https://clawhub.ai/user/jeannen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeannen](https://clawhub.ai/user/jeannen)
 
-## Use Case: <br>
-External marketers, founders, and growth teams use this skill to plan, launch, diagnose, and optimize Google Search campaigns before or while spending ad budget. It helps produce practical campaign structures, keyword and negative-keyword plans, ad copy guidance, and review workflows tailored to the user's product and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AdKit execution can affect a real Google Ads account and spend money through campaign, keyword upload, budget, or ad-publishing actions. <br>
-Mitigation: Review and approve campaign, keyword, budget, and ad-publishing actions before allowing execution through AdKit. <br>
-Risk: The skill looks for `ad-process.md` and `ad-brief.md`, which may expose sensitive business or advertising context if unrelated sensitive files are kept in the workspace. <br>
-Mitigation: Keep sensitive unrelated files out of the workspace and limit the contents of ad brief files to information intended for campaign guidance. <br>
+## Use Case:
 
+External advertisers, founders, and marketing operators use this skill to plan, launch, troubleshoot, and optimize Google Search campaigns before and after spending budget.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeannen/google-ads-strategy) <br>
-- [AdKit](https://adkit.so) <br>
-- [AdKit Google Ads MCP](https://adkit.so/features/ads-mcp/google) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and Google Ads setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign, keyword, budget, ad copy, and optimization recommendations; may propose AdKit CLI actions when AdKit is installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may use a local AdKit CLI for keyword uploads, campaign creation, ad publishing, and budget-affecting Google Ads operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before uploads, campaign creation, ad publishing, budget changes, or other account-changing actions.
+
+Risk: The skill discusses Enhanced Conversions, which can involve sharing hashed customer data with Google.
+
+Mitigation: Confirm the advertiser's consent, privacy, and data-handling requirements before enabling or sharing customer data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeannen/skills/google-ads-strategy)
+- [AdKit homepage](https://adkit.so)
+- [AdKit Google Ads CLI](https://adkit.so/features/ads-mcp/google)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations from local ad-process.md and ad-brief.md files when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

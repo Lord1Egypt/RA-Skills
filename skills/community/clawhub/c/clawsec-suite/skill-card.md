@@ -1,35 +1,60 @@
-## Description: <br>
-clawsec-suite provides agent guidance for security-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSec suite manager with embedded advisory-feed monitoring, cryptographic signature verification, approval-gated malicious-skill response, and guided setup for additional security skills.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and operators use this skill for security-focused agent workflows and related review guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and security operators use this skill to monitor ClawSec advisories, check installed skills against advisory feed entries, and set up approval-gated safeguards for risky skill installs or removals.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.12 (source: target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Mutable or unsigned remote advisory data can influence security decisions or guarded install outcomes.
+
+Mitigation: Use the manual verified install path or a pinned ClawHub version, keep CLAWSEC_ALLOW_UNSIGNED_FEED disabled, and verify feed signatures and checksum manifests.
+
+Risk: Custom feed or catalog URLs can redirect the suite to untrusted security data.
+
+Mitigation: Only set CLAWSEC_* feed, signature, checksum, or catalog overrides for sources you control and verify.
+
+Risk: The hook and cron setup create ongoing OpenClaw automation in the user's environment.
+
+Mitigation: Review the setup output before enabling persistent automation and rely on the suite's approval-gated flow before any removal or risky install action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-suite)
+- [ClawSec Homepage](https://clawsec.prompt.security/)
+- [ClawSec Advisory Feed](https://clawsec.prompt.security/advisories/feed.json)
+- [ClawSec Skill Catalog Index](https://clawsec.prompt.security/skills/index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and setup oriented; removal and risky install actions remain approval-gated.]
+
+## Skill Version(s):
+
+0.1.16 (source: frontmatter, artifact/skill.json, changelog released 2026-07-14, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

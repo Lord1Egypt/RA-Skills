@@ -1,46 +1,60 @@
-## Description: <br>
-Ecloud Long Term Memory provides a long-term memory workflow backed by China Mobile eCloud, with commands for saving, searching, and listing user memories in cloud storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides long-term memory for an agent by saving, searching, and listing user memories through China Mobile Cloud memory services.
 
-## Publisher: <br>
-[helloofyoursffsf](https://clawhub.ai/user/helloofyoursffsf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helloofyoursffsf](https://clawhub.ai/user/helloofyoursffsf)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to China Mobile eCloud long-term memory, store user-provided personal facts, retrieve relevant memories by semantic search, and list stored history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends raw personal memories and memory search queries to China Mobile eCloud. <br>
-Mitigation: Use it only when remote storage on that service is intended, and avoid storing highly sensitive information unless the service's retention, access, and deletion controls meet the user's needs. <br>
-Risk: The setup flow requires cloud AK/SK credentials and writes them to a generated .env file. <br>
-Mitigation: Use least-privilege credentials, keep the .env file out of version control, and rotate credentials if exposure is suspected. <br>
-Risk: The artifact creates local logs and persistence around memory operations. <br>
-Mitigation: Review local logging behavior before deployment and disable or restrict logs if they could expose personal data. <br>
-Risk: The skill asks the agent to prefer this cloud memory path over built-in or local memory tools. <br>
-Mitigation: Review the installed agent rules and confirm this behavior matches the workspace's privacy and memory-management policy. <br>
+## Use Case:
 
+External users and developers use this skill to add cloud-backed long-term memory to an agent, including saving personal facts, retrieving relevant memories, and listing stored memories. It requires Mobile Cloud credentials, a memory library ID, and a user ID before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/helloofyoursffsf/ecloud-long-term-memory) <br>
-- [China Mobile eCloud AK/SK access page](https://ecloud.10086.cn/api/page/op-aksk-static/#/) <br>
-- [China Mobile eCloud console](https://console.ecloud.10086.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs Node.js scripts for configuration, cloud memory save/search/list operations, and local configuration checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The skill handles cloud access credentials and writes configuration values locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, revocable credentials; avoid entering secrets directly in chat or shell history; and review or patch the .env write behavior before installation.
+
+Risk: The skill can upload personal memory content to a remote cloud service.
+
+Mitigation: Confirm users understand and accept remote storage of personal memories before enabling the skill, and avoid storing sensitive information unless appropriate controls are in place.
+
+Risk: The security summary flags debug logging, TLS bypass behavior, and persistent rule instructions for review.
+
+Mitigation: Review or patch logging, transport validation, and persistent rule changes before using the skill in normal workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/helloofyoursffsf/skills/ecloud-long-term-memory)
+- [Publisher profile](https://clawhub.ai/user/helloofyoursffsf)
+- [Mobile Cloud AK/SK access key page](https://ecloud.10086.cn/api/page/op-aksk-static/#/)
+- [Default Mobile Cloud service endpoint](https://console.ecloud.10086.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured MEMORY_AK, MEMORY_SK, MEMORY_LIBRARY_ID, and MEMORY_USER_ID values.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

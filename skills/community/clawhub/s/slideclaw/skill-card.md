@@ -1,42 +1,58 @@
-## Description: <br>
-Use this for SlideClaw/Marp deck tasks, including creating decks, rendering Marp slides, and saving slide templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for SlideClaw and Marp deck tasks, including creating slide decks, rendering Marp files, and saving reusable templates.
 
-## Publisher: <br>
-[akamichikota](https://clawhub.ai/user/akamichikota) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akamichikota](https://clawhub.ai/user/akamichikota)
 
-## Use Case: <br>
-Developers and content creators use this skill to produce Marp slide decks with SlideClaw, from project setup and requirements capture through HTML/PDF rendering and optional template reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may execute the SlideClaw CLI through a local binary or npx package resolution. <br>
-Mitigation: Install and review a trusted or pinned SlideClaw package version before use in stricter environments. <br>
-Risk: Rendered slide files may be copied to the operating system Downloads folder. <br>
-Mitigation: Use SLIDECLAW_NO_DOWNLOADS=1 or --no-copy-to-downloads when outputs should remain only in the workspace. <br>
+## Use Case:
 
+Developers, content creators, and teams use this skill to create Marp slide decks with SlideClaw, select or create templates, render HTML and PDF outputs, and optionally save durable presentation preferences.
 
-## Reference(s): <br>
-- [SlideClaw ClawHub Listing](https://clawhub.ai/akamichikota/slideclaw) <br>
-- [SlideClaw Homepage](https://github.com/akamichikota/SlideClaw) <br>
-- [Akamichi Publisher Profile](https://clawhub.ai/user/akamichikota) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and generated slide project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Marp source files, rendered HTML/PDF outputs, template updates, and durable profile preference updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence) <br>
+Risk: The skill may use npx -y slideclaw@latest, which can run the current npm package instead of a pinned or locally reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a locally installed or pinned SlideClaw CLI, and review the npm package before allowing the fallback.
+
+Risk: Rendering can copy generated files to the operating system Downloads folder outside the workspace.
+
+Mitigation: Use --no-copy-to-downloads or set SLIDECLAW_NO_DOWNLOADS=1 when out-of-workspace copies are not desired.
+
+Risk: The workflow can update profile/user.md with durable presentation preferences.
+
+Mitigation: Review and approve profile changes explicitly before saving them.
+
+## Reference(s):
+
+- [SlideClaw GitHub homepage](https://github.com/akamichikota/SlideClaw)
+- [SlideClaw ClawHub skill page](https://clawhub.ai/akamichikota/skills/slideclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Marp slide source, shell commands, and rendered slide artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update SlideClaw workspace files and render HTML or PDF outputs; PDF rendering depends on local CLI and browser dependencies.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

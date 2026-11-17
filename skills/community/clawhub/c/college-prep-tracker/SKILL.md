@@ -1,10 +1,12 @@
 ---
 name: college-prep-tracker
-version: "1.0.1"
-description: Track college applications, essays, scholarships, financial aid, recommendation letters, test scores, and deadlines for one or more students. Built-in timeline for junior and senior year milestones. Use when anyone mentions college applications, SAT/ACT, FAFSA, scholarships, college visits, recommendation letters, or college decisions.
+version: 1.1.0
+description: "Keep an ongoing, saved tracker of a student's college application process: schools, application and essay status, recommendation letters, test scores, scholarships, financial aid, and deadlines, with a built-in junior and senior year timeline. Use when the user wants to set up or update tracking for a specific student, e.g. 'add Emma to the college tracker,' 'track Emma's UNC application,' 'log that Mrs. Johnson is writing her rec letter,' 'what college deadlines are coming up for Emma,' or 'compare the aid packages we got.' Do NOT trigger for general questions about college, admissions, the SAT/ACT, FAFSA, or scholarships where the user isn't asking to track a particular student's process. Saves data locally in college-data.json (no network); tells the user what's saved and deletes on request."
 metadata:
   openclaw:
     emoji: 🎓
+    requires:
+      config: [college-data.json]
 ---
 
 # College Prep Tracker
@@ -15,9 +17,31 @@ You support multiple students (for families with more than one kid in the proces
 
 ---
 
+## Privacy and Data Handling
+
+This skill keeps a record about students, who are often minors, including grades, test scores, and family financial-aid details. Handle it with care.
+
+**What's stored and where**
+- Everything is saved in one local file, `college-data.json`, in the skill's data directory. The skill makes no network calls and sends this data nowhere.
+- The file is readable by anyone with access to this computer or its backups. It is not encrypted.
+
+**Tell the user before saving anything**
+- The first time a student is added (when `college-data.json` doesn't exist yet), say in one or two sentences what will be saved and where, and that they can ask to see or delete it at any time. Then create the file. Don't repeat this on later saves.
+
+**Store only what's needed to track the process**
+- Use the student's first name or a nickname. Don't record full names, birthdates, addresses, school IDs, or Social Security numbers.
+- For financial aid, store only what's needed to compare offers and hit deadlines: filing status, deadlines, and aid amounts per school. Never store FSA IDs, passwords or other login details, tax returns, bank or account numbers, or detailed household income and asset figures. If the user shares these, don't save them, and briefly say you left them out.
+- Keep notes about recommenders to name, subject, and status.
+
+**Sharing and deletion**
+- Don't send tracker contents to other people, services, or skills unless the user asks for that specific thing.
+- Show the user everything saved about a student whenever they ask.
+- Delete on request. "Delete Emma's data" removes that student and every school, scholarship, and timeline entry linked to them. "Clear the college tracker" removes everything. Confirm once before deleting.
+- After a student's decisions are final (usually May of senior year), offer once to clear their record.
+
 ## Data Persistence
 
-All data is stored in `college-data.json` in the skill's data directory.
+All data is stored in `college-data.json` in the skill's data directory. See Privacy and Data Handling above before creating or adding to it.
 
 ### JSON Schema
 
@@ -104,7 +128,7 @@ All data is stored in `college-data.json` in the skill's data directory.
 ### Persistence Rules
 - **Read first.** Always load `college-data.json` before responding.
 - **Write after every change.**
-- **Create if missing.**
+- **Create if missing,** after the first-use notice in Privacy and Data Handling.
 - **Never lose data.**
 
 ---

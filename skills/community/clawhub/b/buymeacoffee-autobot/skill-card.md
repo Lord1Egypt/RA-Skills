@@ -1,44 +1,59 @@
-## Description: <br>
-Automates Buy Me a Coffee and Ko-fi creator-page workflows by drafting content updates, thanking supporters, promoting pages, and tracking earnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Buy Me a Coffee and Ko-fi creator-account workflows, including content updates, supporter thank-you messages, promotion, and earnings summaries.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Creators and operators use this skill to plan and generate automation for monetized Buy Me a Coffee or Ko-fi pages, including content posting, supporter thank-you flows, cross-promotion, and earnings summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to use account credentials for monetized creator platforms. <br>
-Mitigation: Store credentials in a secure secret manager, avoid plaintext credential files, and grant access only to accounts you explicitly approve. <br>
-Risk: Automated posting, messaging, and promotion can send public or supporter-facing content without adequate review. <br>
-Mitigation: Require manual review before posts, thank-you messages, or promotional messages are published or sent. <br>
-Risk: Browser automation and earnings scraping may affect creator accounts and platform compliance. <br>
-Mitigation: Limit automation to approved accounts and platforms, and confirm the workflow aligns with the applicable platform rules before use. <br>
+## Use Case:
 
+Creator-operators and developers use this skill to produce agent guidance, code, and configuration for automating supporter engagement and monetization workflows on Buy Me a Coffee or Ko-fi.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/buymeacoffee-autobot) <br>
-- [Buy Me a Coffee](https://buymeacoffee.com) <br>
-- [Ko-fi](https://ko-fi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and configuration file outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser-automation scripts and account credential environment variable names; generated actions should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release metadata) <br>
+Risk: The skill asks for Buy Me a Coffee or Ko-fi account credentials and broad account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected secret store, a unique password, and MFA where available; do not place passwords in ordinary settings.
+
+Risk: Automated posting, thank-you messages, promotions, and account scraping can violate platform rules or publish unintended content.
+
+Mitigation: Require manual review before any post, message, promotion, or scrape, and check the platforms' automation rules before use.
+
+Risk: The release appears incomplete because the scripts referenced by the skill are not included in the artifact.
+
+Mitigation: Review generated or supplied scripts before installation and verify expected files are present before running account automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/buymeacoffee-autobot)
+- [Buy Me a Coffee](https://buymeacoffee.com)
+- [Ko-fi](https://ko-fi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated automation scripts, content schedules, account settings, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

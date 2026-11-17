@@ -1,39 +1,53 @@
-## Description: <br>
-Creates ancient-style SVG illustrations and classical Chinese Markdown introductions for named moves from the Jin Yong-inspired 降龙十八掌 martial-arts set. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an ancient-style SVG illustration and classical Chinese Markdown introduction when a user names one of the eighteen 降龙十八掌 moves.
 
-## Publisher: <br>
-[xiezhenlin-tom](https://clawhub.ai/user/xiezhenlin-tom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiezhenlin-tom](https://clawhub.ai/user/xiezhenlin-tom)
 
-## Use Case: <br>
-External users or agents can ask for a specific 降龙十八掌 move by name or number to receive a stylized SVG sketch plus a classical Chinese explanation of the move's origin, principles, use scenario, and mnemonic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases around 降龙十八掌 move names may activate during casual discussion. <br>
-Mitigation: Review the generated SVG and text before use, and narrow or stop the response when activation was accidental. <br>
+## Use Case:
 
+External users and agents use this entertainment skill to visualize and describe fictional martial-arts moves from 降龙十八掌 in a classical Chinese style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiezhenlin-tom/jianglong-18palms) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with an SVG illustration and formatted Chinese text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds to one requested move at a time; asks for a move or chooses one when unspecified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can auto-activate when users mention specific 降龙十八掌 move names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger phrases or require confirmation when automatic activation is not desired.
+
+Risk: The skill produces fictional, stylized martial-arts text and illustrations that could be mistaken for factual instruction.
+
+Mitigation: Present outputs as entertainment or creative content and review them before use in serious instructional settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiezhenlin-tom/skills/jianglong-18palms)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with embedded SVG code and stylized Chinese prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are entertainment-oriented and may auto-activate on matching move names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

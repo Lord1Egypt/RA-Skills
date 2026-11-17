@@ -1,44 +1,63 @@
-## Description: <br>
-Query Microsoft Azure product information, documentation, parameters, features, and pricing from official sources without login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Microsoft Azure product information, documentation, parameters, features, and pricing from official sources without login.
 
-## Publisher: <br>
-[wangbingpeng](https://clawhub.ai/user/wangbingpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangbingpeng](https://clawhub.ai/user/wangbingpeng)
 
-## Use Case: <br>
-Developers, cloud engineers, and technical users use this skill to find Azure product documentation, pricing pages, REST API references, service parameters, and comparison guidance from public Microsoft sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Azure CLI, SDK, REST, deployment, restart, or delete examples may affect live cloud resources, permissions, availability, or cost if run without review. <br>
-Mitigation: Confirm the subscription, resource group, permissions, credential handling, target resources, and expected cost before executing any administrative example. <br>
-Risk: Pricing and service parameters can change after the skill output is produced. <br>
-Mitigation: Verify pricing, limits, and availability against the linked Microsoft Azure pages before making purchase, deployment, or architecture decisions. <br>
+## Use Case:
 
+Developers, cloud architects, and technical buyers use this skill to find Azure product documentation, compare specifications and pricing, identify service parameters, and produce bilingual summaries or starter examples from official public sources.
 
-## Reference(s): <br>
-- [Azure Homepage](https://azure.microsoft.com/) <br>
-- [Azure Documentation](https://learn.microsoft.com/azure/) <br>
-- [Azure Pricing](https://azure.microsoft.com/pricing/) <br>
-- [Azure REST API Reference](https://learn.microsoft.com/rest/api/azure/) <br>
-- [Azure China](https://www.azure.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, links, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese responses; may include Azure CLI, SDK, REST API, deployment, pricing, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Azure CLI, SDK, REST, or deployment examples could create, modify, or delete Azure resources if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all commands and code before execution, test in a non-production subscription when possible, and use least-privilege Azure roles instead of broad Contributor access.
+
+Risk: Azure pricing, quotas, regions, and product limits can change after the skill provides an answer.
+
+Mitigation: Verify current pricing and service limits on official Microsoft Azure sources before making purchasing or deployment decisions.
+
+Risk: Examples may require Azure subscription identifiers, tenant identifiers, client identifiers, or secrets.
+
+Mitigation: Keep credentials as placeholders in shared output, avoid pasting secrets into prompts, and use secure secret-management practices for any real deployment.
+
+## Reference(s):
+
+- [Azure Global Search on ClawHub](https://clawhub.ai/wangbingpeng/skills/azure-global-search)
+- [Azure Product Query Examples](examples.md)
+- [Azure Homepage](https://azure.microsoft.com/)
+- [Azure China](https://www.azure.cn/)
+- [Microsoft Learn Azure Documentation](https://learn.microsoft.com/azure/)
+- [Azure Pricing](https://azure.microsoft.com/pricing/)
+- [Azure REST API Reference](https://learn.microsoft.com/rest/api/azure/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, links, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English and Chinese content, Azure CLI examples, SDK snippets, REST endpoint references, pricing notes, and official-source links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

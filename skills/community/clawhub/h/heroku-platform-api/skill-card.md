@@ -1,45 +1,61 @@
-## Description: <br>
-Heroku Platform API helps agents manage Heroku applications through audited HTTPS requests with curl and jq, including read-only defaults and guarded write operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heroku Platform API helps agents manage the Heroku application lifecycle through HTTPS API calls using curl and jq, including apps, dynos, config vars, releases, add-ons, domains, logs, builds, pipelines, Postgres, maintenance, webhooks, review apps, and CI/CD workflows.
 
-## Publisher: <br>
-[imucyou](https://clawhub.ai/user/imucyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imucyou](https://clawhub.ai/user/imucyou)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inspect and manage Heroku apps, dynos, config vars, releases, add-ons, domains, logs, builds, pipelines, Postgres resources, webhooks, review apps, and CI/CD workflows from an agent without requiring the Heroku CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent meaningful Heroku operational authority through a sensitive API token. <br>
-Mitigation: Use a narrowly scoped read token first, keep HEROKU_PERMISSION=readonly unless changes are intended, and review operations before enabling full access. <br>
-Risk: The security summary says the skill's safety and network-scope promises do not consistently match its examples. <br>
-Mitigation: Review or patch examples so mutations go through the permission guard and returned URLs are host-validated before use. <br>
-Risk: Logs, build output, source blobs, config values, and database backup URLs can expose sensitive Heroku data. <br>
-Mitigation: Treat returned operational data as sensitive and avoid sharing it outside authorized workflows. <br>
+## Use Case:
 
+Developers, platform engineers, and DevOps operators use this skill to inspect and manage Heroku apps without the Heroku CLI. It provides API-oriented guidance for read-only operations by default and gated write workflows for deployment, scaling, rollback, add-on, database, webhook, and CI/CD tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imucyou/heroku-platform-api) <br>
-- [Source homepage](https://github.com/imucyou/heroku-platform-api) <br>
-- [Heroku OAuth documentation](https://devcenter.heroku.com/articles/oauth) <br>
-- [Heroku account API key page](https://dashboard.heroku.com/account) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue Heroku API calls through curl and may write STATUS.md only during explicit multi-agent orchestration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can guide an agent through Heroku operations affecting deployments, CI/CD, logs, backups, webhooks, and production resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Heroku token scope available, keep HEROKU_PERMISSION=readonly by default, avoid global tokens, and manually review production-changing commands before execution.
+
+Risk: Evidence security summary flags examples that may bypass the promised write-confirmation guard or fetch Heroku-returned URLs outside the stated network boundary.
+
+Mitigation: Review generated commands before running them, especially log, deploy, backup, webhook, and any command that follows a returned URL; require external controls before enabling noninteractive writes.
+
+Risk: Noninteractive write override can allow changes without a live confirmation prompt.
+
+Mitigation: Do not set HEROKU_NONINTERACTIVE_WRITES unless a separate approval and audit process controls the run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imucyou/skills/heroku-platform-api)
+- [Publisher profile](https://clawhub.ai/user/imucyou)
+- [Project homepage](https://github.com/imucyou/heroku-platform-api)
+- [Heroku account API key page](https://dashboard.heroku.com/account)
+- [Heroku OAuth documentation](https://devcenter.heroku.com/articles/oauth)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, curl, jq, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HEROKU_API_KEY, HEROKU_PERMISSION, curl, and jq; examples target api.heroku.com and postgres-api.heroku.com.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

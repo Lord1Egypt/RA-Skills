@@ -1,43 +1,58 @@
-## Description: <br>
-Manages Tencent Cloud Lighthouse instances through mcporter and a Lighthouse MCP server, including setup, instance queries, monitoring, firewall changes, snapshots, and remote command execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Tencent Cloud Lighthouse instances through mcporter and a Lighthouse MCP server, including instance queries, monitoring and alerting, firewall rules, snapshots, diagnostics, and remote commands.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Tencent Cloud Lighthouse servers from an agent, including setup, inventory, monitoring, alerts, firewall rules, snapshots, and remote commands. It is scoped to Lighthouse rather than CVM or other cloud server types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for powerful Tencent Cloud credentials and stores them locally for an external MCP server. <br>
-Mitigation: Use a dedicated least-privileged Tencent CAM key limited to the needed Lighthouse actions, and delete or rotate the key when finished. <br>
-Risk: The MCP workflow can run remote commands and change firewall settings on Lighthouse instances. <br>
-Mitigation: Confirm every remote-command and firewall action before execution, and verify the target Region and InstanceId before running commands. <br>
-Risk: Setup installs or invokes external Node packages for mcporter and the Lighthouse MCP server. <br>
-Mitigation: Verify the mcporter and lighthouse-mcp-server packages before use and run the setup in a least-privileged environment. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure an agent for Tencent Cloud Lighthouse administration, inspect instances, review monitoring data, manage firewall settings, and run approved remote commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/tencent-lighthouse-chen) <br>
-- [Tencent Cloud CAM API key management](https://console.cloud.tencent.com/cam/capi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON arguments, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use mcporter with JSON output and a local mcporter configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Tencent Cloud API keys are written into the mcporter configuration file in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege CAM identity, restrict permissions on ~/.mcporter/mcporter.json, and rotate credentials after testing or suspected exposure.
+
+Risk: Setup and execution rely on npm or npx packages that are not pinned in the artifact.
+
+Mitigation: Review or pin the mcporter and Lighthouse MCP server packages before installation, especially before granting credentials.
+
+Risk: The skill can guide firewall changes and remote command execution against cloud instances.
+
+Mitigation: Confirm the target Region, InstanceId, and command intent before running state-changing or remote-execution operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jason-aka-chen/skills/tencent-lighthouse-chen)
+- [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/capi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses commonly include mcporter commands, setup checks, Tencent Cloud region and instance identifiers, and structured JSON output guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

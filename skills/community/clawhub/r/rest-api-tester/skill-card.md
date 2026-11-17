@@ -1,39 +1,55 @@
-## Description: <br>
-REST API Tester helps developers test REST APIs with configurable headers, authentication, request bodies, response validation, webhook checks, and simple performance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test REST APIs with customizable headers, authentication, request bodies, response validation, webhook checks, performance checks, and health-check automation.
 
-## Publisher: <br>
-[LeonardoDpanda](https://clawhub.ai/user/LeonardoDpanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leonardodpanda](https://clawhub.ai/user/leonardodpanda)
 
-## Use Case: <br>
-Developers and engineers use this skill to debug API endpoints, test authentication flows, validate webhook payloads, check response times, automate health checks, and test third-party integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API testing examples may send credentials, tokens, or sensitive payloads to an unintended endpoint. <br>
-Mitigation: Use only authorized APIs, prefer test environments and least-privilege temporary tokens, sanitize payloads, and verify target URLs before sending requests. <br>
-Risk: Webhook testing with a public tunnel can expose local services or received data while the tunnel is running. <br>
-Mitigation: Treat ngrok or similar tunnels as public, use them only for limited testing windows, and avoid sending production secrets through exposed listeners. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeonardoDpanda/rest-api-tester) <br>
+## Use Case:
+
+Developers and engineers use this skill to debug REST endpoints, test authentication flows, validate responses and webhooks, measure response times, and automate API health checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The webhook listener example can expose captured payloads without authentication.
+
+Mitigation: Use only synthetic webhook data unless authentication, signature validation, redaction, and access controls are added.
+
+Risk: API tests can send credentials or sensitive request data to untrusted endpoints.
+
+Mitigation: Use trusted endpoints and test credentials, and avoid hardcoding real secrets in examples or logs.
+
+Risk: Full request or webhook payload logging can disclose sensitive data.
+
+Mitigation: Redact sensitive fields and avoid logging full payloads during testing.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes examples for GET, POST, authentication, webhook listening, performance testing, and response validation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable request, authentication, webhook listener, performance testing, and response validation snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

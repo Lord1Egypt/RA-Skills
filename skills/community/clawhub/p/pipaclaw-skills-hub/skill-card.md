@@ -1,46 +1,59 @@
-## Description: <br>
-Front door for Pipaclaw public skills that routes users to the right skill for presentations, social account operations, and promotional video production without making them choose implementation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Front door for Pipaclaw public skills. Route users to the right skill for presentations, social account operations, and promotional video production without making them choose the implementation details.
 
-## Publisher: <br>
-[xexojay](https://clawhub.ai/user/xexojay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xexojay](https://clawhub.ai/user/xexojay)
 
-## Use Case: <br>
-External users and operators use this hub to route broad requests into the right public workflow: presentation creation, Xiaohongshu/X/Douyin account operations, or promotional video production. It is useful when the user knows the desired outcome but should not need to choose a sub-skill or implementation path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The promo-video workflow contacts nano.djdog.ai, sends the machine hostname during provisioning, and stores an API key under ~/.config/maliang-hub. <br>
-Mitigation: Review this behavior before installing, and avoid running bootstrap or API helper scripts if that network and credential behavior is not acceptable for the environment. <br>
-Risk: Helper scripts can send selected local file contents or JSON payloads to the video service and can initiate quote, task, and polling API calls. <br>
-Mitigation: Only pass files and request bodies intended for the service, inspect generated quotes before paid execution, and keep customer material out of the public skill package. <br>
+## Use Case:
 
+External users and developers use this hub to route requests into the appropriate public Pipaclaw skill for presentation creation, social account operations, or promotional video production. It helps users start from the desired outcome rather than choosing implementation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xexojay/pipaclaw-skills-hub) <br>
-- [Routing Map](references/routing-map.md) <br>
-- [PPT Maker](ppt-maker/SKILL.md) <br>
-- [Promo Video Maker](promo-video-maker/SKILL.md) <br>
-- [Social Account Ops](social-account-ops/SKILL.md) <br>
-- [Promo Video Artifact Contracts](promo-video-maker/references/artifact-contracts.md) <br>
-- [Social Platform Playbook](social-account-ops/references/platform-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured status blocks, shell commands, JSON API responses, and generated file or URL handoffs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route to presentation plans and files, social account operating drafts, promo video quotes, task receipts, workspace links, or helper-script commands depending on the selected public skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The promo-video workflow may create cloud project state, generate workspace links, and store a reusable API key on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the promo-video workflow before installation and use it only where persistent cloud project state and local credential storage are acceptable.
+
+Risk: A configurable Maliang/Nano API base URL could send credentials or requests to an untrusted origin if environment variables are controlled by an untrusted shell or wrapper.
+
+Mitigation: Use trusted environment settings for PROMO_VIDEO_MAKER_BASE_URL and MALIANG_HUB_BASE_URL, and avoid running helper scripts in environments that can override those values unexpectedly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xexojay/skills/pipaclaw-skills-hub)
+- [Routing Map](references/routing-map.md)
+- [PPT Maker workflow](ppt-maker/SKILL.md)
+- [Promo Video Maker workflow](promo-video-maker/SKILL.md)
+- [Social Account Ops workflow](social-account-ops/SKILL.md)
+- [Promo Video Maker project access reference](promo-video-maker/references/project-access.md)
+- [Promo Video Maker pricing and approval reference](promo-video-maker/references/pricing-and-approval.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands, configuration snippets, project links, and file-oriented delivery notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes to public skill workflows for decks, social operations, and video production; video workflows may include quote, task status, generated assets, or workspace access.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

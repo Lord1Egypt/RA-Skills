@@ -1,0 +1,376 @@
+{
+  "source": "PodPitch public catalog snapshot",
+  "captured_at": "2026-10-06T18:35:04.835381+00:00",
+  "is_live": false,
+  "is_complete_catalog": false,
+  "record_count": 5848,
+  "shards": [
+    {
+      "path": "catalog-001.json",
+      "record_count": 162,
+      "categories": [
+        "",
+        "After Shows",
+        "Alternative Health",
+        "Animation & Manga"
+      ]
+    },
+    {
+      "path": "catalog-002.json",
+      "record_count": 196,
+      "categories": [
+        "Animation & Manga",
+        "Arts",
+        "Astronomy",
+        "Automotive",
+        "Aviation",
+        "arts"
+      ]
+    },
+    {
+      "path": "catalog-003.json",
+      "record_count": 175,
+      "categories": [
+        "Aviation",
+        "Baseball",
+        "Basketball",
+        "Books"
+      ]
+    },
+    {
+      "path": "catalog-004.json",
+      "record_count": 170,
+      "categories": [
+        "Books",
+        "Buddhism",
+        "Business",
+        "Business News",
+        "business"
+      ]
+    },
+    {
+      "path": "catalog-005.json",
+      "record_count": 178,
+      "categories": [
+        "Business News",
+        "Careers",
+        "Chemistry",
+        "Christianity",
+        "Comedy"
+      ]
+    },
+    {
+      "path": "catalog-006.json",
+      "record_count": 185,
+      "categories": [
+        "Comedy",
+        "Comedy Fiction",
+        "Comedy Interviews",
+        "Courses",
+        "comedy"
+      ]
+    },
+    {
+      "path": "catalog-007.json",
+      "record_count": 177,
+      "categories": [
+        "Courses",
+        "Crafts",
+        "Cricket",
+        "Daily News",
+        "Design",
+        "Documentary"
+      ]
+    },
+    {
+      "path": "catalog-008.json",
+      "record_count": 174,
+      "categories": [
+        "Documentary",
+        "Drama",
+        "Earth Sciences",
+        "Education",
+        "education"
+      ]
+    },
+    {
+      "path": "catalog-009.json",
+      "record_count": 155,
+      "categories": [
+        "Education for Kids",
+        "Entertainment News",
+        "Entrepreneurship",
+        "Fantasy Sports",
+        "education"
+      ]
+    },
+    {
+      "path": "catalog-010.json",
+      "record_count": 177,
+      "categories": [
+        "Fantasy Sports",
+        "Fashion & Beauty",
+        "Fiction",
+        "Film History",
+        "fiction"
+      ]
+    },
+    {
+      "path": "catalog-011.json",
+      "record_count": 173,
+      "categories": [
+        "Film History",
+        "Film Interviews",
+        "Film Reviews",
+        "Fitness"
+      ]
+    },
+    {
+      "path": "catalog-012.json",
+      "record_count": 183,
+      "categories": [
+        "Fitness",
+        "Food",
+        "Football",
+        "Games"
+      ]
+    },
+    {
+      "path": "catalog-013.json",
+      "record_count": 188,
+      "categories": [
+        "Games",
+        "Golf",
+        "Government",
+        "Health & Fitness",
+        "games",
+        "government",
+        "health"
+      ]
+    },
+    {
+      "path": "catalog-014.json",
+      "record_count": 179,
+      "categories": [
+        "Health & Fitness",
+        "Hinduism",
+        "History",
+        "Hobbies",
+        "Hockey",
+        "history"
+      ]
+    },
+    {
+      "path": "catalog-015.json",
+      "record_count": 167,
+      "categories": [
+        "Hockey",
+        "Home & Garden",
+        "How To",
+        "Improv"
+      ]
+    },
+    {
+      "path": "catalog-016.json",
+      "record_count": 172,
+      "categories": [
+        "Improv",
+        "Investing",
+        "Islam",
+        "Judaism",
+        "Kids & Family",
+        "kids"
+      ]
+    },
+    {
+      "path": "catalog-017.json",
+      "record_count": 179,
+      "categories": [
+        "Kids & Family",
+        "Language Learning",
+        "Leisure",
+        "Life Sciences",
+        "leisure"
+      ]
+    },
+    {
+      "path": "catalog-018.json",
+      "record_count": 156,
+      "categories": [
+        "Life Sciences",
+        "Management",
+        "Marketing",
+        "Mathematics",
+        "Medicine"
+      ]
+    },
+    {
+      "path": "catalog-019.json",
+      "record_count": 168,
+      "categories": [
+        "Medicine",
+        "Mental Health",
+        "Music"
+      ]
+    },
+    {
+      "path": "catalog-020.json",
+      "record_count": 188,
+      "categories": [
+        "Music Commentary",
+        "Music History",
+        "Music Interviews",
+        "Natural Sciences",
+        "music"
+      ]
+    },
+    {
+      "path": "catalog-021.json",
+      "record_count": 188,
+      "categories": [
+        "Natural Sciences",
+        "Nature",
+        "News",
+        "news"
+      ]
+    },
+    {
+      "path": "catalog-022.json",
+      "record_count": 178,
+      "categories": [
+        "News Commentary",
+        "Non-Profit",
+        "Nutrition",
+        "news"
+      ]
+    },
+    {
+      "path": "catalog-023.json",
+      "record_count": 149,
+      "categories": [
+        "Nutrition",
+        "Parenting",
+        "Performing Arts"
+      ]
+    },
+    {
+      "path": "catalog-024.json",
+      "record_count": 170,
+      "categories": [
+        "Performing Arts",
+        "Personal Journals",
+        "Pets & Animals",
+        "Philosophy"
+      ]
+    },
+    {
+      "path": "catalog-025.json",
+      "record_count": 167,
+      "categories": [
+        "Philosophy",
+        "Physics",
+        "Places & Travel",
+        "Podcasts",
+        "Politics",
+        "Relationships"
+      ]
+    },
+    {
+      "path": "catalog-026.json",
+      "record_count": 197,
+      "categories": [
+        "Relationships",
+        "Religion",
+        "Religion & Spirituality",
+        "Rugby",
+        "Running",
+        "religion"
+      ]
+    },
+    {
+      "path": "catalog-027.json",
+      "record_count": 166,
+      "categories": [
+        "Running",
+        "Science",
+        "Science Fiction",
+        "Self-Improvement",
+        "science"
+      ]
+    },
+    {
+      "path": "catalog-028.json",
+      "record_count": 156,
+      "categories": [
+        "Self-Improvement",
+        "Sexuality",
+        "Soccer",
+        "Social Sciences"
+      ]
+    },
+    {
+      "path": "catalog-029.json",
+      "record_count": 184,
+      "categories": [
+        "Social Sciences",
+        "Society & Culture",
+        "Spirituality",
+        "Sports",
+        "society"
+      ]
+    },
+    {
+      "path": "catalog-030.json",
+      "record_count": 206,
+      "categories": [
+        "Sports",
+        "Sports News",
+        "Stand-Up",
+        "Stories for Kids",
+        "Swimming",
+        "Tech News",
+        "sports"
+      ]
+    },
+    {
+      "path": "catalog-031.json",
+      "record_count": 180,
+      "categories": [
+        "Tech News",
+        "Technology",
+        "Tennis",
+        "True Crime",
+        "technology"
+      ]
+    },
+    {
+      "path": "catalog-032.json",
+      "record_count": 212,
+      "categories": [
+        "TV & Film",
+        "TV Reviews",
+        "True Crime",
+        "Video Games",
+        "tv"
+      ]
+    },
+    {
+      "path": "catalog-033.json",
+      "record_count": 188,
+      "categories": [
+        "Video Games",
+        "Visual Arts",
+        "Volleyball",
+        "Wilderness",
+        "Wrestling"
+      ]
+    },
+    {
+      "path": "catalog-034.json",
+      "record_count": 5,
+      "categories": [
+        "Wrestling"
+      ]
+    }
+  ]
+}

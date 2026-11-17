@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baud"
+  short_description: "Diagnose serial hardware safely with the baud CLI"
+  default_prompt: "Use $baud to diagnose this serial connection safely and report structured raw evidence."

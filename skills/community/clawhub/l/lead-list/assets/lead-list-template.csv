@@ -1,0 +1,3 @@
+First name,Last name,Title,Company,Company domain,Why it matched,Industry,Size,City,Country,Email,Email status,Verified on,Source URL
+Alex,Example,Founder & CEO,Example Books Ltd,example.com,"Bookkeeping for UK tradespeople · 23 staff · Bristol, UK",Accounting,23,Bristol,United Kingdom,alex@example.com,verified,2026-10-14,https://example.com/about
+Sam,Sample,Managing Director,Example Accounts Ltd,example.org,"Accountants for UK dental practices · 41 staff · Leeds, UK",Accounting,41,Leeds,United Kingdom,sam@example.org,catch-all (test first),2026-10-14,https://example.org/team

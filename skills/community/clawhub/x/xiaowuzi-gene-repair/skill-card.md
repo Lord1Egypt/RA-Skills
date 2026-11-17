@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent in detecting and repairing logic, syntax, and instruction conflicts during AI gene-evolution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent monitor and repair logic errors, syntax conflicts, and instruction anomalies during AI gene-evolution workflows.
 
-## Publisher: <br>
-[tonicpopo](https://clawhub.ai/user/tonicpopo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonicpopo](https://clawhub.ai/user/tonicpopo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add an immune-and-repair posture to long-running agent workflows, including anomaly interception, rollback guidance, and instruction repair when generated fragments behave poorly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs automatic rollback and prompt or instruction repair for agents without clear limits or user approval. <br>
-Mitigation: Use it only with explicit approval for repairs or rollbacks, clear logs, and boundaries on what agent state it may change. <br>
-Risk: Using it in agents that can modify their own prompts, skills, or long-running task state may introduce unintended behavioral changes. <br>
-Mitigation: Review before installing in those agents and require human review of proposed state or instruction changes before they are applied. <br>
+## Use Case:
 
+Developers and agent operators use this skill as an immune and repair layer for long-running automated agent workflows, especially when they want anomaly detection, rollback, and instruction repair behavior around evolving prompt or logic fragments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonicpopo/xiaowuzi-gene-repair) <br>
-- [Publisher profile](https://clawhub.ai/user/tonicpopo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill artifact with no executable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes unattended rollback and instruction self-repair without clear limits or approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where autonomous repair is intended, and define explicit limits for what state it may modify and when human confirmation is required.
+
+Risk: The publisher trust tier is low in the server quality metadata.
+
+Mitigation: Review the artifact and security summary before enabling it in workflows that require strict human control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonicpopo/skills/xiaowuzi-gene-repair)
+- [Publisher profile](https://clawhub.ai/user/tonicpopo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance and agent instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose autonomous rollback or prompt/instruction repair behavior; review boundaries before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

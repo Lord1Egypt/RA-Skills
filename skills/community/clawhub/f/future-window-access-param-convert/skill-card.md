@@ -1,40 +1,51 @@
-## Description: <br>
-Converts template strings containing @parameter@ placeholders into concrete smart access-control parameter values for Future Window door-system workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts @param@ placeholders in template strings into access-control parameter values for Future Window/Cyberwin door systems.
 
-## Publisher: <br>
-[cyberwin](https://clawhub.ai/user/cyberwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberwin](https://clawhub.ai/user/cyberwin)
 
-## Use Case: <br>
-Developers and operators use this skill to turn access-control text templates into populated strings using supplied device, permission, area, or similar parameter values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied templates and parameter values are inserted directly into the output text. <br>
-Mitigation: Use trusted templates and validated parameter values before applying generated text in real access-control workflows. <br>
+## Use Case:
 
+Developers and operators configuring Future Window/Cyberwin access-control workflows use this skill to fill parameterized door-access text templates from a supplied parameter object.
 
-## Reference(s): <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cyberwin/future-window-access-param-convert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object containing success, message, and data fields, where data is the converted text string.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Unmatched placeholders are preserved in the output text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Caller-provided access-control values may appear verbatim in the generated text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing sensitive values unless they are intended to be included in the generated output, and review generated text before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberwin/skills/future-window-access-param-convert)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object with a success flag, message, and converted text data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Unmatched @param@ placeholders are preserved; replacements come from caller-provided paramData.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "email",
+      "required": true
+    },
+    {
+      "name": "message",
+      "required": true
+    }
+  ],
+  "values": {
+    "email": "demo@example.com",
+    "message": "Fictional inquiry"
+  }
+}

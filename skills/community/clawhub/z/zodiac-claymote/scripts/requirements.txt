@@ -1,0 +1,3 @@
+# 可选依赖：仅 caption_sticker.py（文案叠加）需要
+# 提示词生成（build_prompt.py、validate_pack.py）零依赖，标准库即可运行
+Pillow>=10.0.0

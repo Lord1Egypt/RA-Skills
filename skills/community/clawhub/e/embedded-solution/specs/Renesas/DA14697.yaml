@@ -1,0 +1,49 @@
+part: DA14697
+aliases:
+- R5F572N
+source_pdf: ../../embedded_dev/renesas/datasheet/DA14697_datasheet.pdf
+datasheet_revision: '3.4'
+datasheet_doc_id: R18DS0049EE0340
+extracted_at: '2026-07-05T23:50:00+08:00'
+extracted_from_pages:
+- 1
+extraction_method: reextract_da_ble.py (strategy=da1469x_template; page-1 Key Features
+  + General Description)
+verified_by_human: false
+product_status: Active (per renesas.com product page, longevity 2041)
+specs:
+  cores:
+  - Arm Cortex-M33F (with FPU)
+  - uCode sensor node controller (M0-class)
+  max_clock_mhz: 96
+  dmips: 144
+  ram_kb: 512
+  cache_kb: 16
+  otp_kb: 4
+  rom_kb: 128
+  ble_version: '5.2'
+  tx_dbm_min: -18
+  tx_dbm_max: 6
+  rx_sensitivity_dbm: -97
+  crypto: AES-256, SHA-1
+  gpio_count_max: 55
+  adc_channels: 8
+  adc_resolution_bits: 10
+  sigma_delta_adc_channels: 8
+  sigma_delta_adc_bits: 14
+  packages:
+  - type: VFBGA86
+    size_mm: 6 × 6
+    pitch_mm: '0.55'
+  - type: VFBGA100
+    size_mm: 5 × 5
+    pitch_mm: '0.475'
+unverified:
+- exact_gpio_count_per_package
+- exact_peripheral_counts_per_package
+notes:
+- Re-extracted 2026-07-05 via scripts/reextract_da_ble.py (strategy=da1469x_template).
+  Prior versions had RX72N content mislabeled with part=DA14697; previous tooling
+  (update_specs.py) wrote incomplete fields. This run produces 18 spec fields sourced
+  directly from the DA BLE datasheet page-1 Key Features block.
+link_status: verified_3-4 (datasheet-pdf-extracted, dedicated page-1 extractor)

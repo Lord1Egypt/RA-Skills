@@ -1,47 +1,62 @@
-## Description: <br>
-PigX UI Pro 前端开发指南 - Vue 3 + TypeScript + Element Plus。当用户提到 PigX UI、PigX 前端、lgb-mgui 项目、Vue 3 企业级后台开发、Element Plus 后台开发时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language front-end development guidance for PigX UI Pro projects using Vue 3, TypeScript, Element Plus, Pinia, Vue Router, Vite, Tailwind CSS, and DaisyUI.
 
-## Publisher: <br>
-[zhibuyu](https://clawhub.ai/user/zhibuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhibuyu](https://clawhub.ai/user/zhibuyu)
 
-## Use Case: <br>
-Developers and engineers use this skill for PigX UI Pro and similar Vue 3 enterprise admin frontend work, including API definitions, routing, Pinia stores, Element Plus UI development, styling, and common project commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project commands and generated examples may be run against the wrong local repository or branch. <br>
-Mitigation: Confirm the target project path, branch, and intended PigX UI version before letting an agent run commands or edit files. <br>
-Risk: Package installation, development server, production build, Docker build, formatting, and Maven archetype commands can modify dependencies, generated files, or build artifacts. <br>
-Mitigation: Review commands before execution and run them in a controlled workspace with normal source control checks. <br>
-Risk: Frontend API, token, tenant, and request-encryption guidance can affect authentication or request handling. <br>
-Mitigation: Review proposed code changes against the application's authorization, tenancy, and encryption requirements before merging. <br>
+## Use Case:
 
+Developers use this skill to guide PigX UI Pro front-end work, including project structure, API modules, routing, Pinia stores, components, styling, and common Vue 3, TypeScript, and Element Plus development commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhibuyu/pigxui-skill) <br>
-- [PigX 技术指南概述](references/pigx-overview.md) <br>
-- [PigX documentation](https://docs.pig4cloud.com) <br>
-- [Vue 3 documentation](https://vuejs.org) <br>
-- [Element Plus documentation](https://element-plus.org) <br>
-- [Tailwind CSS documentation](https://tailwindcss.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Vue, TypeScript, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project-specific command recommendations, frontend file patterns, API call examples, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The guidance references a local Windows project path that may not exist or may point to a private workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target project root before applying path-specific commands or file changes.
+
+Risk: The referenced PigX documentation may require authenticated access.
+
+Mitigation: Use authenticated official documentation or local project files when validating PigX-specific behavior.
+
+Risk: Generated front-end changes can affect authorization headers, tenant IDs, routing, or request encryption behavior.
+
+Mitigation: Review API, routing, and request-layer changes against the project conventions before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhibuyu/skills/pigxui-skill)
+- [PigX Technical Guide Overview](references/pigx-overview.md)
+- [PigX Documentation](https://docs.pig4cloud.com)
+- [Vue 3 Documentation](https://vuejs.org)
+- [Element Plus Documentation](https://element-plus.org)
+- [Tailwind CSS Documentation](https://tailwindcss.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, documentation-only guidance with no automatic execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

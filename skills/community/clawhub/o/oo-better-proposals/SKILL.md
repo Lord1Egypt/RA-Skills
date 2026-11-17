@@ -1,11 +1,11 @@
 ---
 name: oo-better-proposals
-description: "Better Proposals (betterproposals.io). Use this skill for ANY Better Proposals request — reading, creating, and updating data. Whenever a task involves Better Proposals, use this skill instead of calling the API directly."
+description: "Better Proposals (betterproposals.io). Use this skill for ANY Better Proposals request — searching and reading data. Whenever a task involves Better Proposals, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Better Proposals"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["better_proposals"]
   icon: "https://static.oomol.com/logo/third-party/better_proposals.svg"
 ---
@@ -48,7 +48,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_companies` — List Better Proposals companies with optional pagination.
 - `list_currencies` — List Better Proposals currencies with optional pagination.
 - `list_document_types` — List Better Proposals document types with optional pagination.
-- `list_merge_tags` — List Better Proposals custom merge tags with optional pagination. [write]
+- `list_merge_tags` — List Better Proposals custom merge tags with optional pagination.
 - `list_new_proposals` — List Better Proposals proposals that are currently in the new proposal lifecycle state.
 - `list_opened_proposals` — List Better Proposals proposals that have been opened by recipients.
 - `list_paid_proposals` — List Better Proposals proposals that have been paid.
@@ -87,11 +87,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Better Proposals is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=better_proposals
+  https://console.oomol.com/connections/better_proposals
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Better Proposals homepage: https://betterproposals.io
+- API documentation: https://betterproposals.io/resources/api/

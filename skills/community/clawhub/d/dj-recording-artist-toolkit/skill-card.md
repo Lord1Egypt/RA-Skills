@@ -1,40 +1,50 @@
-## Description: <br>
-AI toolkit for DJs and recording artists offering bios, press releases, EPKs, booking strategies, NFT monetization, sync licensing, and viral content tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI toolkit for DJs and recording artists offering bios, press releases, EPKs, booking strategies, NFT monetization, sync licensing, and viral content tools.
 
-## Publisher: <br>
-[blockchain-records](https://clawhub.ai/user/blockchain-records) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockchain-records](https://clawhub.ai/user/blockchain-records)
 
-## Use Case: <br>
-External DJs, producers, independent recording artists, and music entrepreneurs use this skill to generate bios, press releases, EPK content, booking outreach, promotion plans, monetization ideas, and country-specific career guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music business recommendations can include booking agencies, royalty organizations, NFT monetization, sync licensing, or other commercial advice that may be inaccurate or outdated. <br>
-Mitigation: Verify agencies, royalty organizations, NFT, sync licensing, and monetization advice before acting on it. <br>
-Risk: Users may be tempted to provide unreleased contracts, private financial details, credentials, or sensitive music assets while seeking career guidance. <br>
-Mitigation: Avoid sharing private financial details, credentials, unreleased contracts, or sensitive music assets unless the assistant is intended to use them in the conversation. <br>
+## Use Case:
 
+DJs, producers, independent artists, and music entrepreneurs use this skill to generate career materials and planning guidance for bookings, releases, promotion, monetization, and audience growth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blockchain-records/dj-recording-artist-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing music career content and recommendations; no code execution or external tool calls are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks for profile details such as name, country, genre, role, and goal to tailor recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stage names or generalized location details when users prefer to limit personal detail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockchain-records/skills/dj-recording-artist-toolkit)
+- [ClawHub publisher profile](https://clawhub.ai/user/blockchain-records)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown text with generated bios, press releases, EPK content, booking outreach, strategy guidance, and career roadmaps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailors guidance from session profile details such as role, country, genre, name, and goal.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

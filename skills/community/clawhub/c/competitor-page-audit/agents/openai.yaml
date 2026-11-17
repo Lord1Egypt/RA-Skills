@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品商品页审查"
+  short_description: "审查主品与竞品商品页的证据一致性"
+  default_prompt: "使用 $amazon-competitor-page-audit 审查主 ASIN 与竞品商品页的字段完整度和证据一致性。"

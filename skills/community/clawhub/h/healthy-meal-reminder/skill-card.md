@@ -1,42 +1,58 @@
-## Description: <br>
-健康饮食提醒技能。基于《中国居民膳食指南（2022）》八大准则，每日三餐+下午茶定时推荐，每次3个方案ABC供选择，饭后30分钟自动跟进记录饮食+计算热量。按膳食餐盘结构标注每餐配比，按季节推荐应季低卡食谱，含饮水管理、运动搭配、周末放纵餐、食物多样性追踪和周报打卡。支持减肥/维持/增肌三模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+健康饮食提醒 helps agents provide Chinese-language meal, hydration, exercise, and weekly check-in reminders based on the Chinese Dietary Guidelines (2022), with seasonal meal options, calorie estimates, and follow-up logging prompts.
 
-## Publisher: <br>
-[azerwang](https://clawhub.ai/user/azerwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azerwang](https://clawhub.ai/user/azerwang)
 
-## Use Case: <br>
-External users use this skill to receive recurring meal, hydration, exercise, and weekly check-in guidance with selectable meal options and follow-up logging. It is intended for general wellness support, food variety tracking, and habit reminders rather than clinical nutrition care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring reminders may run at unintended times if cron schedules or timezone settings are accepted without review. <br>
-Mitigation: Confirm the active timezone and review each scheduled reminder before enabling cron commands. <br>
-Risk: Diet, water, exercise, allergy, or health-condition details shared with the agent may be stored in conversation or memory history. <br>
-Mitigation: Avoid sharing sensitive medical details unless the user is comfortable with their agent environment retaining them. <br>
-Risk: General meal and calorie guidance may be unsuitable for users with medical conditions or special dietary needs. <br>
-Mitigation: Treat the skill as wellness support only and consult a clinician for pregnancy, lactation, diabetes, or other medical nutrition needs. <br>
+## Use Case:
 
+External users can use this skill to configure a Chinese-language wellness assistant that recommends meals, prompts hydration and exercise, follows up after meals, and summarizes weekly diet progress. It is intended for general wellness reminders, not medical or individualized nutrition advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/azerwang/healthy-meal-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with recurring reminder command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces meal choices, hydration prompts, exercise suggestions, follow-up questions, calorie estimates, and weekly check-in summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The recurring reminders may be installed with schedules, categories, or timezone settings the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm the desired meal, hydration, exercise, follow-up, and weekly report reminders, and adjust the Asia/Shanghai timezone when needed.
+
+Risk: General diet and calorie guidance may be mistaken for medical or individualized nutrition advice.
+
+Mitigation: Treat the skill as general wellness support only; users with pregnancy, breastfeeding, diabetes, eating-disorder risk, or other medical needs should consult a clinician.
+
+Risk: Preset calorie, hydration, and activity targets may not fit every user.
+
+Mitigation: Review targets before use and adapt them to the user's context; do not use the skill to override clinical guidance.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/azerwang/skills/healthy-meal-reminder)
+- [ClawHub publisher profile](https://clawhub.ai/user/azerwang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with OpenClaw cron command examples and Chinese-language reminder prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Asia/Shanghai in the bundled reminder schedules; no credential requirements were detected.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

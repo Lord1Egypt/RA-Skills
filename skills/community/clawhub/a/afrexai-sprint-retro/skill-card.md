@@ -1,36 +1,51 @@
-## Description: <br>
-Facilitates structured sprint retrospectives by collecting team feedback, prioritizing themes, generating action items with owners and deadlines, and tracking patterns across sprints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitates structured sprint retrospectives by collecting team feedback, prioritizing themes, generating action items with owners and deadlines, and tracking patterns across sprints.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Engineering leads, scrum masters, product managers, and agency teams use this skill to run sprint retrospectives, turn feedback into owned action items, and compare recurring themes across recent sprints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Retrospective inputs and generated reports can contain sensitive team feedback, personnel details, or internal business context. <br>
-Mitigation: Decide what information is appropriate to share with the agent before use, and review where generated retro reports are stored or distributed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Engineering leads, scrum masters, product managers, and sprint-based teams use this skill to run retrospectives that turn team feedback into prioritized themes, assigned action items, deadlines, success criteria, and reusable sprint reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Retrospective inputs may contain sensitive personnel, HR, or confidential business information.
+
+Mitigation: Use the skill only in an agent environment approved for that data and avoid pasting sensitive details unless that environment is authorized.
+
+Risk: Promotional external links in the artifact are not required for the skill to function.
+
+Mitigation: Treat those links as optional publisher information rather than operational dependencies.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown retrospective report with prioritized themes, action item tables, and pattern summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include action owners, deadlines, success criteria, and comparisons with previous sprints.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown retrospective report with theme summaries, action-item tables, and pattern analysis when prior sprint context is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include action owners, due dates, success criteria, prioritized themes, and comparisons against previous retrospectives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "AWS S3"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["aws_s3"]
   icon: "https://static.oomol.com/logo/third-party/aws_s3.svg"
 ---
@@ -38,11 +38,12 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `delete_object` — Delete one S3 object. [destructive]
+- `download_object` — Download one S3 object into connector transit storage.
 - `generate_presigned_url` — Generate a pre-signed S3 URL for reading, uploading, or deleting one object.
 - `head_object` — Fetch structured metadata for one S3 object.
 - `list_buckets` — List Amazon S3 buckets visible to the connected AWS credential.
 - `list_objects` — List objects in an S3 bucket with the ListObjectsV2 API.
-- `put_object` — Upload one object to S3 from a public URL, plain text, or base64-encoded content. [write]
+- `put_object` — Upload one object to S3 from a public URL, plain text, or base64-encoded content. [destructive]
 
 ## Safety
 
@@ -73,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — AWS S3 is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=aws_s3
+  https://console.oomol.com/connections/aws_s3
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - AWS S3 homepage: https://aws.amazon.com/s3/
+- API documentation: https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html

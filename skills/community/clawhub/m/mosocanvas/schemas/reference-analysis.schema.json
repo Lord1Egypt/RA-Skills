@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/reference-analysis-0.2.json",
+  "title": "MoSoCanvas Reference Analysis 0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "mode", "sources", "observations", "interpretations", "selected_mechanisms", "provenance"],
+  "properties": {
+    "schema": { "const": "moso.reference-analysis/0.2" },
+    "id": { "type": "string", "minLength": 1 },
+    "mode": { "enum": ["mechanism-transfer", "owned-reconstruction", "restricted-imitation"] },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "role", "do_not_copy"],
+        "properties": {
+          "ref": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "rights_status": { "enum": ["user-owned", "authorized", "reference-only", "unknown"] },
+          "do_not_copy": { "$ref": "#/$defs/stringArray" }
+        }
+      }
+    },
+    "observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "carrier": { "type": "string", "minLength": 1 },
+        "composition": { "$ref": "#/$defs/stringArray" },
+        "hierarchy": { "$ref": "#/$defs/stringArray" },
+        "color": { "$ref": "#/$defs/stringArray" },
+        "lighting": { "$ref": "#/$defs/stringArray" },
+        "line_and_texture": { "$ref": "#/$defs/stringArray" },
+        "typography": { "$ref": "#/$defs/stringArray" },
+        "measurement_refs": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "interpretations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim", "evidence", "confidence", "alternative"],
+        "properties": {
+          "claim": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["low", "medium", "high"] },
+          "alternative": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "selected_mechanisms": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "observation", "function_in_reference", "transfer_to_task", "execution_constraint", "failure_signs", "verification", "confidence"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "observation": { "type": "string", "minLength": 1 },
+          "function_in_reference": { "type": "string", "minLength": 1 },
+          "transfer_to_task": { "type": "string", "minLength": 1 },
+          "execution_constraint": { "type": "string", "minLength": 1 },
+          "failure_signs": { "$ref": "#/$defs/nonEmptyStringArray" },
+          "verification": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["low", "medium", "high"] }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at"],
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "tool_refs": { "$ref": "#/$defs/stringArray" },
+        "analyst_notes": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  }
+}

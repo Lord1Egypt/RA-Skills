@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7c9n3b29arpckacn6vb8rnbh869av7",
-  "slug": "btc-eth-ai-signal",
-  "version": "1.0.1",
-  "publishedAt": 1778166521374
+  "name": "btc-eth-ai-trader",
+  "slug": "btc-eth-ai-trader",
+  "version": "1.0.0",
+  "description": "BTC/ETH 交易分析系统。AI技术分析、开仓建议、飞书推送。",
+  "author": "thanatosmoe",
+  "created": "2026-05-07"
 }

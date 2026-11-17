@@ -1,47 +1,60 @@
-## Description: <br>
-Grove CLI guide - philosophy, commands, and quick start. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grove CLI guide - philosophy, commands, and quick start.
 
-## Publisher: <br>
-[Olshansk](https://clawhub.ai/user/Olshansk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[olshansk](https://clawhub.ai/user/olshansk)
 
-## Use Case: <br>
-Developers, agents, and operators use this skill to install and operate the Grove CLI for checking destinations, sending USDC micro-tips, monitoring balances, and automating funding workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install remote Grove tooling before use. <br>
-Mitigation: Review the remote installer and install only when Grove tooling is intended for the environment. <br>
-Risk: Grove workflows can move real USDC funds and use wallet credentials or API keys. <br>
-Mitigation: Use a dedicated low-balance wallet or constrained API key and protect ~/.grove configuration files. <br>
-Risk: Automated funding can run without confirmation when --yes or cron usage is enabled. <br>
-Mitigation: Avoid unattended auto-funding unless strict balance and funding limits are configured. <br>
-Risk: Balance alerts can send account information to webhook destinations. <br>
-Mitigation: Configure webhooks only for trusted destinations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tip with Grove on ClawHub](https://clawhub.ai/Olshansk/tip-with-grove) <br>
-- [Grove](https://grove.city) <br>
-- [Grove CLI documentation](https://grove.city/docs/cli) <br>
-- [Grove skills documentation](https://grove.city/docs/skills) <br>
-- [Grove CLI installer](https://grove.city/install-cli.sh) <br>
+## Use Case:
 
+Developers, agents, and Grove users use this skill to install and operate the Grove CLI, evaluate tippable destinations, send micro-tips, monitor balances, and automate common tipping workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Grove CLI commands that move funds or read wallet/API-key configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install remote code through a curl-to-bash command.
+
+Mitigation: Review the installer before running it, or install only after independently verifying the Grove source and distribution path.
+
+Risk: Included automation scripts can move funds or initiate multiple tips.
+
+Mitigation: Use isolated low-balance wallets, run dry-run modes first, set conservative limits, and require human review before using scripts with real funds.
+
+Risk: Balance monitoring webhooks can disclose account balance information to the configured webhook destination.
+
+Mitigation: Send alerts only to trusted endpoints and avoid including sensitive wallet or account details in logs or webhook destinations.
+
+## Reference(s):
+
+- [Grove homepage](https://grove.city)
+- [Grove CLI documentation](https://grove.city/docs/cli)
+- [Grove skills documentation](https://grove.city/docs/skills)
+- [Grove CLI installer](https://grove.city/install-cli.sh)
+- [ClawHub skill page](https://clawhub.ai/olshansk/skills/tip-with-grove)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and automation script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Grove CLI setup, tipping, balance monitoring, batch tipping, and auto-funding workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

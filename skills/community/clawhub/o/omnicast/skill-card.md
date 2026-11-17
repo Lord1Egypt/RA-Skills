@@ -1,45 +1,58 @@
-## Description: <br>
-Omnicast is a local multi-modal podcast pipeline that ingests media, drafts scripts, synthesizes audio, renders cover art, packages social media assets, and supports YouTube uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omnicast is a local Node.js media pipeline that turns text, URLs, audio, and video into podcast scripts, synthesized audio, cover art, social media copy, and video assets.
 
-## Publisher: <br>
-[kaudata](https://clawhub.ai/user/kaudata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaudata](https://clawhub.ai/user/kaudata)
 
-## Use Case: <br>
-Content creators, producers, and developers use Omnicast locally to turn URLs, uploaded files, YouTube transcripts, PDFs, audio, video, and text into podcast scripts, synthesized audio, cover art, LinkedIn assets, and YouTube draft uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted media, extracted text, transcripts, scripts, captions, and prompts may be sent to external AI providers. <br>
-Mitigation: Use trusted provider accounts and avoid confidential or regulated content unless the relevant provider agreements and data handling requirements allow it. <br>
-Risk: Session-management actions can delete saved local session folders. <br>
-Mitigation: Keep backups of session folders before using delete-current or delete-all session controls. <br>
-Risk: URL ingestion sends user-supplied URLs through the local processing pipeline. <br>
-Mitigation: Review URLs before ingestion and run the service on a trusted local machine. <br>
+## Use Case:
 
+Creators, developers, and media teams use Omnicast locally to ingest source media, draft a two-host podcast script, synthesize audio, generate cover art, package LinkedIn assets, and optionally upload a private draft to YouTube.
 
-## Reference(s): <br>
-- [Omnicast ClawHub listing](https://clawhub.ai/kaudata/omnicast) <br>
-- [kaudata publisher profile](https://clawhub.ai/user/kaudata) <br>
-- [README](README.md) <br>
-- [SKILL](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Audio files, Image files, Video files, JSON] <br>
-**Output Format:** [Local web application and API outputs including text, JSON responses, generated media files, downloadable archives, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local API keys for Gemini and OpenAI, optional provider credentials for additional services, and FFmpeg for audio and video processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; package.json reports 1.0.8) <br>
+Risk: Uploaded files, URLs, transcripts, scripts, and generated media can be sent to external AI providers or YouTube.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated content unless those provider transfers are approved, and use limited or disposable API keys where practical.
+
+Risk: The local web service has security concerns when handling untrusted URLs or files.
+
+Mitigation: Keep the service bound to localhost, do not expose its port beyond the local machine, and update vulnerable dependencies before relying on it with untrusted inputs.
+
+Risk: The YouTube integration can upload generated video as a private draft after Google sign-in.
+
+Mitigation: Review the title, description, account, and privacy settings before upload, and use the narrowest practical Google access token.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaudata/skills/omnicast)
+- [Publisher Profile](https://clawhub.ai/user/kaudata)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Local web application outputs including plain text, audio files, image files, captions, MP4 video, ZIP archives, and status JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20 or newer, FFmpeg, GEMINI_API_KEY, OPENAI_API_KEY, and optional provider credentials for ElevenLabs or YouTube upload.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

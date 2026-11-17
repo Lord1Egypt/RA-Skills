@@ -1,50 +1,64 @@
-## Description: <br>
-ZERO Trading guides an agent through Hyperliquid market evaluation, ZERO MCP setup, session lifecycle management, risk controls, and operator communications using ZERO's trading engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading agent for Hyperliquid via Zero that evaluates markets through nine intelligence layers and helps operators manage paper or explicitly approved live trading sessions.
 
-## Publisher: <br>
-[squaeragent](https://clawhub.ai/user/squaeragent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squaeragent](https://clawhub.ai/user/squaeragent)
 
-## Use Case: <br>
-External users and trading operators use this skill to connect an agent to ZERO, evaluate crypto markets, choose strategies, manage paper or explicitly approved live sessions, and receive concise trading updates with risk context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects the agent to a remote trading MCP service with trading-session authority. <br>
-Mitigation: Install only when the operator accepts that authority, verify the ZERO MCP endpoint after installation, and keep live mode disabled unless the operator explicitly opts in. <br>
-Risk: The setup flow can persist a ZERO MCP connection in local agent configuration. <br>
-Mitigation: Review the MCP configuration after installation and remove or change the ZERO server entry if the endpoint or permissions are not acceptable. <br>
-Risk: Trading and session history may be shared with ZERO and used for personalized recommendations. <br>
-Mitigation: Use paper mode by default and continue only if the operator is comfortable with ZERO receiving trading and session data. <br>
-Risk: Weak consent boundaries could allow unwanted session activity if confirmations are skipped. <br>
-Mitigation: Require explicit operator confirmation before deployment, show risk parameters first, and require a second confirmation before live trading. <br>
+## Use Case:
 
+External developers and trading operators use this skill to connect an OpenClaw agent to ZERO's remote MCP trading engine, evaluate crypto markets, choose strategies, and manage trading sessions. The skill emphasizes paper mode by default and requires explicit operator approval before live trading.
 
-## Reference(s): <br>
-- [ZERO homepage](https://getzero.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/squaeragent/zero-trading) <br>
-- [Layer details](artifact/references/layer-details.md) <br>
-- [Strategies](artifact/references/strategies.md) <br>
-- [Output templates](artifact/references/output-templates.md) <br>
-- [Error codes](artifact/references/error-codes.md) <br>
-- [Voice guide](artifact/references/voice-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown and text responses with inline shell commands, JSON MCP configuration snippets, trading-session captions, and operator decision prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can direct agent calls to ZERO MCP tools and requires operator confirmation before session deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can persist or overwrite MCP server configuration for a remote trading service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a visible configuration diff, backup, and explicit confirmation before any write or overwrite, and prefer the canonical https://api.getzero.dev/mcp endpoint.
+
+Risk: The skill connects an agent to a remote service that can manage trading sessions.
+
+Mitigation: Start in paper mode, require explicit approval before live trading or auto-rotation, and review strategy risk previews before deployment.
+
+Risk: Market data, session data, or remote tool calls may be unavailable, stale, or incomplete.
+
+Mitigation: Report failed tool calls plainly, do not fabricate market values, and use documented fallbacks such as individual coin evaluation when heat data is empty.
+
+## Reference(s):
+
+- [ZERO Homepage](https://getzero.dev)
+- [ZERO MCP Endpoint](https://api.getzero.dev/mcp)
+- [ZERO Trading ClawHub Page](https://clawhub.ai/squaeragent/skills/zero-trading)
+- [Strategy Reference](references/strategies.md)
+- [Layer Details](references/layer-details.md)
+- [Output Templates Reference](references/output-templates.md)
+- [Error Handling Reference](references/error-codes.md)
+- [Voice Guide](references/voice-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with trading captions, inline buttons, JSON MCP configuration, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference remote ZERO card-rendering endpoints for visual trading summaries; paper mode is the default unless live trading is explicitly approved.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter says 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

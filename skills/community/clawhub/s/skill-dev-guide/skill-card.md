@@ -1,45 +1,55 @@
-## Description: <br>
-A bilingual tutorial for creating reusable ClawHub and OpenClaw skills with guidance on instructions, optional scripts, allowed commands, examples, troubleshooting, and security best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual guide for creating reusable AI skills for ClawHub and OpenClaw, covering SKILL.md structure, instructions, scripts, security practices, examples, and resources.
 
-## Publisher: <br>
-[CCCpan](https://clawhub.ai/user/CCCpan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cccpan](https://clawhub.ai/user/cccpan)
 
-## Use Case: <br>
-Developers and skill authors use this guide to structure SKILL.md files, document expected agent behavior, add optional automation, and prepare ClawHub or OpenClaw skills for publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may copy sample script or command patterns into a real skill without reviewing security, network, or secrets-handling implications. <br>
-Mitigation: Review new scripts, allowed commands, external calls, and secrets handling separately before publishing or running derived skills. <br>
+## Use Case:
 
+Developers and skill authors use this guide to structure new ClawHub/OpenClaw skills, write instructions, add optional automation scripts, and apply basic security checks before publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CCCpan/skill-dev-guide) <br>
-- [ClawHub Documentation](https://clawhub.ai/docs) <br>
-- [OpenClaw Guide](https://openclaw.ai) <br>
-- [data-verify-mcp](https://github.com/CCCpan/data-verify-mcp) <br>
-- [data-verify-mcp Issues](https://github.com/CCCpan/data-verify-mcp/issues) <br>
-- [Minimal Skill Example](examples/minimal.md) <br>
-- [Skill with Scripts Example](examples/with-script.md) <br>
-- [SKILL.md Template](templates/SKILL-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown tutorial with YAML, Markdown, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No installed runtime behavior; examples are instructional and should be reviewed before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Example script snippets and external links may be copied into another skill without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, adapt, and scan snippets and linked resources before incorporating them into a production skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cccpan/skills/skill-dev-guide)
+- [Minimal skill example](examples/minimal.md)
+- [Skill with scripts example](examples/with-script.md)
+- [SKILL.md template](templates/SKILL-template.md)
+- [ClawHub Documentation](https://clawhub.ai/docs)
+- [OpenClaw Guide](https://openclaw.ai)
+- [data-verify-mcp reference project](https://github.com/CCCpan/data-verify-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline YAML and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bilingual English/Chinese guidance and example snippets; no automatic code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

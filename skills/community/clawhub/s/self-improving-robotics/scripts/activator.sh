@@ -17,7 +17,7 @@ After completing this robotics task, evaluate if extractable knowledge emerged:
 - Simulation success but real robot failure? → LEARNINGS.md (sim_to_real_gap)
 - Thermal throttling, battery sag, or power brownout? → LEARNINGS.md (power_thermal_constraint)
 
-If recurring pattern (3+ occurrences): promote to safety checklist, calibration playbook, or tuning runbook.
+If a recurring pattern (3+ occurrences): propose promotion to safety checklist, calibration playbook, or tuning runbook.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </robotics-self-improvement-reminder>
 EOF

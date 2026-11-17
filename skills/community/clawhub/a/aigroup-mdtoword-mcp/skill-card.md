@@ -1,42 +1,51 @@
-## Description: <br>
-Use `aigroup-mdtoword-mcp` to convert Markdown into `.docx`, including Markdown file conversion, generated Markdown conversion, table-to-Markdown preprocessing, formula handling, table handling, and page-layout requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use `aigroup-mdtoword-mcp` to convert Markdown into `.docx`, including Markdown file conversion, generated Markdown conversion, table-to-Markdown preprocessing, formula handling, table handling, and page-layout requests.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers and document authors use this skill to convert existing or generated Markdown into Word `.docx` files. It is suited for notes, reports, memos, formula-heavy documents, structured tables, headers, footers, page numbers, and local images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external MCP package on documents selected for conversion. <br>
-Mitigation: Install only if the upstream converter and runtime are trusted, and avoid converting sensitive Markdown or local images unless that trust is established. <br>
-Risk: Generated `.docx` files may contain formatting assumptions or unintended document content. <br>
-Mitigation: Review generated Word files before sharing and check formulas, tables, page layout, headers, footers, and images. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to convert existing or generated Markdown, including tables and formulas, into polished Word .docx documents.
 
-## Reference(s): <br>
-- [Markdown to Word MCP Capabilities](references/capabilities.md) <br>
-- [ClawHub release page](https://clawhub.ai/jackdark425/aigroup-mdtoword-mcp) <br>
-- [Upstream project homepage](https://github.com/jackdark425/aigroup-mdtoword-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool routing, generated `.docx` file paths, and formatting summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke the `aigroup-mdtoword-mcp` MCP server through stdio to produce Word documents from Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill launches the external aigroup-mdtoword-mcp package through an unpinned npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin an audited package version, use a locked or trusted package source, and run with limited file and network access before processing private documents.
+
+## Reference(s):
+
+- [Markdown to Word MCP Capabilities](references/capabilities.md)
+- [AIGroup Markdown to Word MCP Repository](https://github.com/jackdark425/aigroup-mdtoword-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/jackdark425/skills/aigroup-mdtoword-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool-routing instructions and generated .docx file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or routes conversion work toward native .docx documents with optional styling, formulas, tables, headers, footers, page numbers, and local images.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+# 片段类型：衔接
+## 原文片段
+We chose a LASSO classifier because of the greater interpretability of its results relative to other types of classifiers. This technique involves three stages: training the classifier; testing its accuracy; and generalizing the classification to the Fortune 500 cases. ... Step 1: Training the Classifier. ... Step 2: Testing the Classifier. We tested the LASSO classifier's performance in predicting the labels of arguments in the testing set (which represented the 20% of MBA arguments that were not used in the training set). An argument in the testing set would be classified as fairness case if given the words it used, the classifier predicted that it had an estimated probability superior to 0.75 (the decision threshold) of pertaining to the fairness case category. ... The classifier had a 78.4% F1-score, and an 11.7% test error rate, which is a satisfactory result for accuracy (James et al., 2017). ... Step 3: Generalizing the Classification to the Fortune 500 Organizational Diversity Cases. Finally, we conducted the focal analysis for this study, which aimed at classifying the Fortune 500 diversity cases as either a business or fairness case.
+## 来源文献
+Georgeac, O. A. M., & Rattan, A. (2022). The business case for diversity won't convince everyone. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspi0000394
+## 适配诊断点
+三阶段架构先总述后分述，Step 1/2/3 显式编号，每步衔接上步产出、分类规则（阈值 0.75）与性能指标（F1=78.4%、error=11.7%）前后呼应，是机器学习流程的衔接样板。

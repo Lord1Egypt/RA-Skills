@@ -1,46 +1,52 @@
-## Description: <br>
-Operate Render through an OOMOL-connected account for reading services, workspaces, deploys, and initiating supported service operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Render through an OOMOL-connected account to inspect resources and manage services and deployments.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Render users, workspaces, services, service details, and deploy history, and to request controlled deploy, restart, resume, suspend, or rollback actions through an OOMOL-connected Render account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Render service state, including deploy, restart, resume, suspend, and rollback operations. <br>
-Mitigation: Require explicit user confirmation of the target service, payload, and expected effect before running any state-changing action. <br>
-Risk: Evidence security guidance notes that suspend_service is not clearly marked with the same state-changing tag as other write actions. <br>
-Mitigation: Treat suspend_service as a write action and require the same confirmation standard used for deploy, restart, resume, and rollback. <br>
-Risk: The skill depends on an installed and authenticated oo CLI connected to a Render account. <br>
-Mitigation: Run installation, login, or Render connection steps only after a command fails with a matching setup or authentication error. <br>
+## Use Case:
 
+Developers and service operators use this skill to inspect Render users, workspaces, services, and deploys, and to manage service and deployment state through their connected Render account.
 
-## Reference(s): <br>
-- [ClawHub Render Skill](https://clawhub.ai/oomol/oo-render) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Render Homepage](https://render.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; setup guidance is used only after authentication or connection failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: Setup may run unpinned downloaded code and add bundled agent skills without clearly requesting approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installation, approve CLI installation separately, verify the selected release, and review or disable automatic bundled-skill synchronization.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Render](https://render.com)
+- [Render API documentation](https://render.com/docs/api)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-render)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, JSON, Shell commands]
+
+**Output Format:** [Markdown guidance, oo CLI commands, and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read Render data or change service and deployment state; user confirmation is required for writes and destructive actions.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

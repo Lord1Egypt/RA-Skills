@@ -1,50 +1,63 @@
-## Description: <br>
-Graph-RAG Memory provides persistent, queryable long-term memory for OpenClaw agents using Graphiti, FalkorDB, local Ollama embeddings, and a MoE-style multi-embedding router. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Graph-RAG Memory provides persistent, queryable long-term memory for OpenClaw agents using a Graphiti temporal knowledge graph, FalkorDB, local Ollama embeddings, and MoE-style multi-embedding routing.
 
-## Publisher: <br>
-[jebadiahgreenwood](https://clawhub.ai/user/jebadiahgreenwood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jebadiahgreenwood](https://clawhub.ai/user/jebadiahgreenwood)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, query, and maintain a persistent graph-RAG memory system for agent conversations, documents, and project facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent ingestion can add workspace files, notes, or personal data to the memory graph. <br>
-Mitigation: Run the installer with --dry-run first, review and minimize the seed set, and exclude secrets or personal data before enabling broad workspace ingestion. <br>
-Risk: Installation can modify OpenClaw configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before installation and review the configuration changes before restarting OpenClaw. <br>
-Risk: Background refresh behavior can run through a daemon or silent scheduled job. <br>
-Mitigation: Do not start memwatchd or configure a silent cron job until the referenced runtime files are present and reviewed; monitor the PID and logs if enabled. <br>
-Risk: The skill depends on local services and models whose endpoints may expose or process sensitive workspace content. <br>
-Mitigation: Confirm FalkorDB and Ollama endpoints are local and intended, and use the status script to verify models and graph state before use. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to install and operate persistent agent memory, ingest workspace content or text into a graph, query remembered facts, and check memory system status.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jebadiahgreenwood/graph-rag-memory) <br>
-- [Setup & Environment Reference](references/setup.md) <br>
-- [Research Foundations & Citations](references/research.md) <br>
-- [Publishing to ClawHub](references/clawhub.md) <br>
-- [RouterRetriever](https://arxiv.org/abs/2409.02685) <br>
-- [Graphiti](https://www.getzep.com/graphiti) <br>
-- [FalkorDB](https://github.com/FalkorDB/FalkorDB) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus optional JSON status and query output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on local OpenClaw, FalkorDB, Ollama, and workspace memory state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can persist and index workspace data in FalkorDB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect what will be ingested, scope the workspace deliberately, and run installation with --dry-run and --skip-seed before enabling ingestion.
+
+Risk: The installer can patch OpenClaw configuration and run mutable workspace scripts.
+
+Mitigation: Review install.sh and the memory-upgrade implementation files first, back up configuration, and add dependency pinning before production use.
+
+Risk: The background watcher and recurring refresh can ingest changed Markdown files automatically.
+
+Mitigation: Do not enable the daemon or recurring refresh until workspace scoping, stop/uninstall controls, and operational monitoring are in place.
+
+## Reference(s):
+
+- [Setup & Environment Reference](references/setup.md)
+- [Research Foundations & Citations](references/research.md)
+- [RouterRetriever](https://arxiv.org/abs/2409.02685)
+- [Graphiti](https://github.com/getzep/graphiti)
+- [Graphiti Blog](https://www.getzep.com/graphiti)
+- [FalkorDB](https://github.com/FalkorDB/FalkorDB)
+- [ClawHub Skill Page](https://clawhub.ai/jebadiahgreenwood/skills/graph-rag-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may install dependencies, update local configuration, ingest workspace memory files, query FalkorDB, and start a background file watcher.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

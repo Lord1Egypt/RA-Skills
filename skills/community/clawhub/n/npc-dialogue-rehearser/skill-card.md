@@ -1,41 +1,56 @@
-## Description: <br>
-Rehearse a real-world conversation by modeling likely counterpart styles such as busy, defensive, friendly, or authority-like NPCs, then generate a natural opening line, a short branching script, safer phrase alternatives, and a calm closing line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rehearse a real-world conversation by modeling likely counterpart styles such as busy, defensive, friendly, or authority-like NPCs, then generate a natural opening line, branching script, safer phrase alternatives, and a calm closing line.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to draft non-manipulative rehearsal scripts for everyday conversations, such as asking for help, setting boundaries, or explaining a need. The artifact also includes tabletop NPC dialogue examples, so users should confirm the intended context before relying on the output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may apply rehearsal wording to legal, medical, violent, abusive, or otherwise high-risk situations.
+
+Mitigation: Use the skill only for low-stakes conversation preparation, and seek appropriate real-world or professional support for high-risk situations.
+
+Risk: Documentation mixes real-world conversation rehearsal with tabletop NPC dialogue examples.
+
+Mitigation: Confirm whether the desired output is for an everyday conversation or a roleplaying scenario before using the generated script.
+
+Risk: Generated scripts cannot guarantee how another person will respond.
+
+Mitigation: Treat the output as rehearsal guidance, review it before use, and avoid coercive, manipulative, or pressure-based phrasing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and game masters use this skill to draft relationship-aware conversation rehearsals, NPC-style branches, risky phrase replacements, and calm closing lines for mildly stressful real-world or roleplaying dialogue. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill mixes real-world conversation rehearsal with tabletop NPC writing, which can confuse whether output is practical advice or roleplay drafting. <br>
-Mitigation: Use it as drafting support and review the generated script against the user's real context before relying on it. <br>
-Risk: Conversation scripts could be misused for coercion, manipulation, harassment, or serious legal, medical, violent, or power-abuse situations. <br>
-Mitigation: Do not use it for abusive or high-risk situations; seek appropriate real-world, professional, or safety support when those issues are present. <br>
+**Output Format:** [Markdown with headings and bullet lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/npc-dialogue-rehearser) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [Includes a dialogue objective, opening line, three response branches, risky phrase replacements, closing line, and a safety note when relevant.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversation rehearsal with dialogue objective, opening line, three-branch script, risky phrase replacements, closing line, and optional safety note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a single drafted rehearsal for the supplied scenario and counterpart.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Generates structured Chinese daily and weekly workplace reports from work records, including completed work, todos, key information, and problem retrospectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese daily and weekly workplace reports from work notes, including completed work, todos, important information, and problem retrospectives.
 
-## Publisher: <br>
-[crystaria](https://clawhub.ai/user/crystaria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystaria](https://clawhub.ai/user/crystaria)
 
-## Use Case: <br>
-Employees and team contributors use this skill to turn daily or weekly work notes into structured Chinese Markdown reports for status updates, project progress summaries, and reusable problem retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may persist sensitive workplace details in local Markdown files. <br>
-Mitigation: Avoid including secrets or highly confidential details unless the workspace is protected; request a draft-only or no-save report when notes should not be persisted. <br>
+## Use Case:
 
+Employees and teams use this skill to turn daily or weekly work notes into structured Chinese Markdown reports for status updates, project progress summaries, and reusable problem retrospectives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crystaria/chinese-daily-report-generator) <br>
-- [Clawdis homepage](https://clawhub.ai/skills/chinese-daily-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown report shown in chat and saved as a local .md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily reports are saved under ~/reports/daily; weekly reports are saved under ~/reports/weekly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Reports may contain confidential project, deadline, personnel, or incident details and are automatically saved as local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive content, and verify the save path before keeping reports in a synced, shared, or version-controlled workspace.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/skills/chinese-daily-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports saved as local .md files and shown in chat]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily reports are typically 300-800 Chinese characters; weekly reports are typically 800-2000 Chinese characters; reports include problem retrospectives.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

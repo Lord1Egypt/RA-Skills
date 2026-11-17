@@ -16,6 +16,6 @@ After completing this task, evaluate if engineering knowledge emerged:
 - Design flaw surfaced during implementation or review?
 
 If yes: Log to .learnings/ using the self-improving-engineering skill format.
-If recurring (3+ times): Promote to ADR, coding standard, or CI/CD runbook.
+If recurring (3+ times): propose promotion to ADR, coding standard, or CI/CD runbook.; apply only after explicit user approval.
 </engineering-self-improvement-reminder>
 EOF

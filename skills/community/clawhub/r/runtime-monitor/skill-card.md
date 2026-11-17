@@ -1,41 +1,54 @@
-## Description: <br>
-Runtime Monitor checks AI agent runtime I/O for prompt injection, data leakage, dangerous commands, and risk scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime Monitor checks AI agent runtime input, tool arguments, and tool output for prompt injection, data leakage, and dangerous command patterns.
 
-## Publisher: <br>
-[liwiw](https://clawhub.ai/user/liwiw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liwiw](https://clawhub.ai/user/liwiw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect prompts, tool inputs, and tool outputs for risky patterns before or during agent workflows. It supports triage and audit workflows by returning risk levels, scores, detections, and block decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring reports can contain excerpts of inspected prompts, tool inputs, or tool outputs. <br>
-Mitigation: Treat reports and audit logs as sensitive data, limit access to them, and avoid sending them to untrusted systems. <br>
-Risk: Pattern-based detection and block thresholds can produce false positives or miss novel attacks. <br>
-Mitigation: Test the configured block threshold in representative workflows and use the monitor as one control in a broader review and security process. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to inspect AI agent inputs, tool calls, and tool outputs for prompt injection, data exfiltration, and dangerous command patterns before auditing or blocking risky activity.
 
-## Reference(s): <br>
-- [Runtime Monitor ClawHub page](https://clawhub.ai/liwiw/runtime-monitor) <br>
-- [liwiw publisher profile](https://clawhub.ai/user/liwiw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python objects and dictionaries for monitoring reports, plus integration guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include total checks, detections, maximum risk level, maximum risk score, and block status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: Monitoring reports may contain raw user input, tool arguments, tool output, or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict report access, avoid broad logging, and prefer credential redaction before storing or serializing detection results.
+
+Risk: The server security verdict is suspicious because retained monitored text can expose sensitive data.
+
+Mitigation: Review the skill before installation or integration and deploy it only where security report handling is controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liwiw/skills/runtime-monitor)
+- [Publisher profile](https://clawhub.ai/user/liwiw)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Python monitoring reports with JSON-serializable dictionaries and blocking guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include detection type, risk level, risk score, matched patterns, timestamp, blocked status, and truncated raw input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

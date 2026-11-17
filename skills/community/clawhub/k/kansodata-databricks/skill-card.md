@@ -1,40 +1,53 @@
-## Description: <br>
-Execute conservative read-only Databricks SQL through the Databricks plugin and provide safe planning output for unsupported workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute conservative read-only Databricks SQL through the Databricks plugin and provide safe planning output for unsupported workflows.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Developers and data engineers use this skill to prepare or run conservative read-only Databricks SQL analysis against approved workspace, warehouse, catalog, schema, and table scopes. For unsupported Databricks workflows, it provides planning output only. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorized read-only queries can still expose sensitive Databricks data if the workspace, warehouse, catalog, schema, or table scope is too broad. <br>
-Mitigation: Confirm the Databricks runtime tool is read-only and configured with the intended workspace, SQL warehouse, catalog, schema, and table allowlists before use. <br>
-Risk: Unsupported requests such as Jobs API execution, Unity Catalog lineage API calls, or mutating SQL operations may be mistaken for executable actions. <br>
-Mitigation: Treat unsupported workflows as planning guidance only and review any proposed SQL or operational steps before using separate Databricks tools. <br>
+## Use Case:
 
+Developers and data engineers use this skill to draft and execute conservative read-only Databricks SQL for single SELECT or WITH ... SELECT analysis, and to receive planning output for unsupported workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kansodata/kansodata-databricks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with SQL snippets and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, read-only SQL drafts, validation checklists, risk notes, and rollback signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Read-only Databricks query results may still contain sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where read-only Databricks SQL access is appropriate, and provide narrowly scoped warehouse, catalog, schema, and table targets.
+
+Risk: Unsupported or mutating workflows could be requested by users.
+
+Mitigation: Use planning output only for unsupported workflows and enforce read-only statement limits before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kansodata/skills/kansodata-databricks)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Databricks SQL snippets, checklists, risk notes, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only single SELECT or WITH ... SELECT workflows; unsupported workflows receive planning output only.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

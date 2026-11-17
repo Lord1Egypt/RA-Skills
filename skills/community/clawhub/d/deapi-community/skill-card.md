@@ -1,46 +1,55 @@
-## Description: <br>
-Generate images, music, speech, transcriptions, OCR, video, background removal, upscaling, style transfer, embeddings, and prompt enhancements through the deAPI REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, music, speech, transcriptions, OCR output, video, background removal, upscaling, style transfer, and prompt enhancements through the deAPI media API.
 
-## Publisher: <br>
-[zrewolwerowanykaloryfer](https://clawhub.ai/user/zrewolwerowanykaloryfer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrewolwerowanykaloryfer](https://clawhub.ai/user/zrewolwerowanykaloryfer)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent in making deAPI media API calls for generation, transcription, OCR, transformation, embeddings, prompt enhancement, and account-balance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a deAPI API key and may expose account credit if the key is overprivileged or mishandled. <br>
-Mitigation: Use a dedicated or low-balance API key and keep DEAPI_API_KEY out of prompts, logs, and shared artifacts. <br>
-Risk: Prompts, media files, voice samples, and URLs selected by the user are sent to deAPI for processing. <br>
-Mitigation: Avoid confidential or third-party media unless the user understands provider handling and has permission to process it. <br>
-Risk: Voice cloning can be misused without consent from the speaker. <br>
-Mitigation: Get consent before using voice cloning and reject requests that appear to impersonate someone without authorization. <br>
-Risk: Shell examples that include user-supplied URLs, JSON, or file paths can be unsafe if inputs are substituted directly. <br>
-Mitigation: Build JSON with jq, validate URLs and file paths, and avoid passing raw user input directly into shell strings. <br>
+## Use Case:
 
+External developers and creators use this skill to have an agent prepare deAPI media API requests for transcription, image generation, text-to-speech, voice cloning, music generation, video generation, OCR, image editing, embeddings, and account-balance checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrewolwerowanykaloryfer/deapi-community) <br>
-- [deAPI service site](https://deapi.ai) <br>
-- [deAPI API documentation](https://docs.deapi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash, curl, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEAPI_API_KEY and sends selected prompts, media files, voice samples, and URLs to deAPI for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Untrusted prompts, URLs, or file paths in documented curl workflows could expose local or internal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit user-approved media, validate public URLs strictly, verify local file paths before upload, and replace non-file curl -F fields with --form-string.
+
+Risk: Sensitive or confidential media may be sent to deAPI for processing or made available through result URLs.
+
+Mitigation: Avoid sensitive or confidential files unless the operator has confirmed that deAPI data handling and result-link exposure are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zrewolwerowanykaloryfer/skills/deapi-community)
+- [deAPI service](https://deapi.ai)
+- [deAPI API documentation](https://docs.deapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON payload examples, and result-handling notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEAPI_API_KEY; deAPI media operations are asynchronous and typically require polling a request status endpoint before retrieving results.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Provides read-only Trakt.tv lookups for a user's watching status, recent episode history, watched shows, profile, stats, and OAuth-backed playback progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Trakt.tv skill for checking a user's currently watching item, recent episode history, watched shows list, stats, profile, and OAuth-backed playback progress using the Trakt API.
 
-## Publisher: <br>
-[dennisooki](https://clawhub.ai/user/dennisooki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dennisooki](https://clawhub.ai/user/dennisooki)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve Trakt.tv viewing status, history, profile, stats, and playback progress without performing write operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent query Trakt viewing and profile data. <br>
-Mitigation: Install it only for agents that are allowed to access that Trakt data. <br>
-Risk: OAuth tokens and client secrets can expose playback access if they are shared or logged. <br>
-Mitigation: Configure TRAKT_ACCESS_TOKEN and TRAKT_CLIENT_SECRET only when needed, keep them out of logs and repositories, and rotate them if exposed. <br>
-Risk: Playback progress and device activation require additional OAuth credentials. <br>
-Mitigation: Use the default client ID and username flow for read-only public-profile queries, and enable OAuth only for playback progress or device activation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trakt API Quick Reference](references/trakt-api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dennisooki/trakt-readonly) <br>
-- [Trakt OAuth applications](https://trakt.tv/oauth/applications) <br>
-- [Trakt device activation](https://trakt.tv/activate) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve read-only Trakt.tv activity, profile, stats, and playback-progress information for a configured Trakt account.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown responses, with JSON passthrough for OAuth and playback commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, TRAKT_CLIENT_ID, and TRAKT_USERNAME; TRAKT_ACCESS_TOKEN and TRAKT_CLIENT_SECRET are optional for playback and device OAuth.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The OAuth device-token helper can print account tokens into normal output.
+
+Mitigation: Avoid the device-token command unless token output is redacted or stored through a secure secret mechanism; rotate any Trakt tokens that may have been printed into logs or transcripts.
+
+Risk: The security verdict is suspicious because the OAuth path needs review before installation.
+
+Mitigation: Review the OAuth flow before installing or enabling playback access; basic read-only commands using TRAKT_CLIENT_ID and TRAKT_USERNAME are lower impact.
+
+## Reference(s):
+
+- [Trakt API Quick Reference](references/trakt-api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dennisooki/skills/trakt-readonly)
+- [Trakt API](https://api.trakt.tv)
+- [Trakt OAuth Applications](https://trakt.tv/oauth/applications)
+- [Trakt Device Activation](https://trakt.tv/activate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text or JSON command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, TRAKT_CLIENT_ID, and TRAKT_USERNAME; OAuth playback and device-token commands require additional Trakt secrets.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

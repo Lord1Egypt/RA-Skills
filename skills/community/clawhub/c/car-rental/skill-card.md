@@ -1,46 +1,61 @@
-## Description: <br>
-Find the best car rental deals with price comparison, alerts, and lease vs rent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the best car rental deals with price comparison, alerts, and lease vs rent analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to compare car rental, lease, subscription, and buy options, including total-cost factors such as insurance, fees, mileage, fuel policy, location, and duration. It can also help track local preferences, saved searches, and optional price or availability alerts when the user permits local storage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local preferences, saved searches, and alert history under ~/car-rental/. <br>
-Mitigation: Approve local storage only when personalization is desired, review or delete the files when no longer needed, and keep alerts disabled unless explicitly requested. <br>
-Risk: Broad activation could cause general travel conversations to trigger car-rental assistance. <br>
-Mitigation: Choose narrow activation for explicit car-rental requests during setup. <br>
-Risk: Rental price comparisons and alerts may send search parameters such as location, dates, and car type to rental sites. <br>
-Mitigation: Avoid sharing payment information or personal identifiers through this skill; use it for comparison guidance and complete bookings directly with chosen providers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/car-rental) <br>
-- [Skill Homepage](https://clawic.com/skills/car-rental) <br>
-- [Setup](artifact/setup.md) <br>
-- [Sites and Sources](artifact/sites.md) <br>
-- [Rent vs Lease vs Buy](artifact/comparison.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
+## Use Case:
 
+External users use this skill to compare car rental, lease, subscription, and buy options; track preferences; and monitor price or availability alerts with permission.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional local markdown memory and search configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files under ~/car-rental/ only after user permission; does not make bookings or store payment information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create and maintain local preference, search, alert, and rental-history files.
+
+Mitigation: Create or update files under ~/car-rental/ only after user permission, and keep the files reviewable and removable by the user.
+
+Risk: Price monitoring or broad travel-triggered help could create ongoing assistant behavior the user does not want.
+
+Mitigation: Enable alerts only when explicitly requested, confirm alert frequency and thresholds, and allow the user to disable alerts at any time.
+
+Risk: Rental searches send trip criteria such as location, dates, and car type to rental sites as part of normal comparison.
+
+Mitigation: Use only the search criteria needed for comparison and avoid account credentials, payment information, or personal identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/car-rental)
+- [Skill homepage](https://clawic.com/skills/car-rental)
+- [setup.md](artifact/setup.md)
+- [memory-template.md](artifact/memory-template.md)
+- [sites.md](artifact/sites.md)
+- [comparison.md](artifact/comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional local memory and saved-search file structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose local files under ~/car-rental/ and periodic alert settings only with user permission.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-市场营销助手（Marketing Assistant）协助完成营销选题策划、推广海报文案生成、公众号文章起草、短视频口播脚本编写、营销活动方案策划、多平台内容发布包生成以及运营数据复盘。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场营销助手（Marketing Assistant）协助完成营销选题策划、推广海报文案生成、公众号文章起草、短视频口播脚本编写、营销活动方案策划、多平台内容发布包生成以及运营数据复盘。
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Marketing, communications, and new-media operations teams use this agent to draft campaign ideas, poster copy, WeChat articles, short-video scripts, publishing packages, and performance review reports. It is intended to produce structured drafts, checklists, risk notes, review prompts, and archive records that remain subject to human approval before external use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process and archive marketing work products, which may include confidential campaign plans, customer information, contracts, credentials, or regulated personal data if users provide them. <br>
-Mitigation: Use approved storage, retention, access-control, and redaction practices before submitting or archiving sensitive material. <br>
-Risk: Draft marketing content may contain unverified claims, sensitive data, third-party material, or externally published statements requiring review. <br>
-Mitigation: Require human review before external publication, brand commitments, customer-case references, data disclosures, or third-party material use. <br>
+## Use Case:
 
+Marketing, brand, operations, and management employees use this skill to produce structured marketing drafts, campaign plans, platform-specific publishing packages, content calendars, scripts, review notes, and data recap reports for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afeicn/marketing-assistant) <br>
-- [README](README.md) <br>
-- [Workflow documentation](workflows.md) <br>
-- [Runbook](runbook.md) <br>
-- [Knowledge base guidance](knowledge/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown drafts, tables, checklists, templates, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs routinely include risk or gap notes, required human-confirmation items, and archive-record fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Marketing drafts may include unsupported claims, invented data, advertising-law issues, or unapproved customer and third-party references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review for external publication, brand commitments, data claims, customer cases, and third-party materials; mark unsupported facts as needing confirmation.
+
+Risk: Inputs may contain confidential customer, contract, financial, employee, or unreleased technical material.
+
+Mitigation: Limit access to authorized marketing users and configure masking, retention, approval, audit log, and archive controls before using such material.
+
+Risk: The skill can prepare publishing packages, which may be mistaken for completed external publication.
+
+Mitigation: Keep publishing packages as drafts and require explicit human approval plus confirmed integration results before representing any external submission as complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeicn/skills/marketing-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured Markdown and template-backed text outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include drafts, checklists, tables, risk notes, human review items, and archive records; external publishing and sensitive material require human confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/employee.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

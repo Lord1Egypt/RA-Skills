@@ -30,7 +30,7 @@ sqlalchemy>=2.0.0
 
 This Skill generates SQL through the HTTP API `/api/sql_for_skill/` endpoint:
 
-- Default API address: `https://asksql.ucap.com.cn/`
+- Default API address: `https://asksql.ai/`
 - Service needs to be started before calling
 - Supports custom API address (via `--api-url` parameter)
 
@@ -296,7 +296,7 @@ After configuration is complete (or when existing configuration is detected), us
 After determining topic, call API to generate SQL:
 
 ```bash
-python scripts/query_sql.py --api-url https://asksql.ucap.com.cn/ --question "user question" --config ./output/<topic name>.yaml
+python scripts/query_sql.py --api-url https://asksql.ai/ --question "user question" --config ./output/<topic name>.yaml
 ```
 
 The script calls the API's `/api/sql_for_skill/` endpoint and returns the generated SQL statement.

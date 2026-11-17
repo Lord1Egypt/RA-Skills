@@ -1,39 +1,50 @@
-## Description: <br>
-Legacy alias for /clawpage. Redirects users to the new canonical command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legacy alias for /clawpage. Redirects users to the new canonical command.
 
-## Publisher: <br>
-[imyelo](https://clawhub.ai/user/imyelo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imyelo](https://clawhub.ai/user/imyelo)
 
-## Use Case: <br>
-External users and developers use this legacy alias to discover that chats-share has moved and to find the canonical /clawpage command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the legacy alias for the current implementation. <br>
-Mitigation: Use the canonical /clawpage command for real functionality and inspect that command before relying on it. <br>
+## Use Case:
 
+External users and developers use this legacy alias to learn that chats-share has been renamed and to switch to the canonical /clawpage command.
 
-## Reference(s): <br>
-- [Clawpage homepage](https://github.com/imyelo/clawpage) <br>
-- [Canonical /clawpage command](https://clawhub.ai/imyelo/clawpage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown text with command references and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redirects users to the canonical /clawpage command and does not add executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Risk: The referenced /clawpage command is outside this artifact and is not covered by this skill's security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan /clawpage separately before installing or using it.
+
+## Reference(s):
+
+- [Canonical /clawpage listing](https://clawhub.ai/imyelo/clawpage)
+- [clawpage homepage](https://github.com/imyelo/clawpage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with a ClawHub link and command name.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; redirects users to /clawpage.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

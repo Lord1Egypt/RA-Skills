@@ -1,41 +1,57 @@
-## Description: <br>
-Generates standardized Chinese government or enterprise meeting agendas from structured meeting details as Word and PDF files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized Chinese meeting agenda documents as Word (.docx) and PDF files from user-provided meeting details.
 
-## Publisher: <br>
-[ywwzzsgit](https://clawhub.ai/user/ywwzzsgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ywwzzsgit](https://clawhub.ai/user/ywwzzsgit)
 
-## Use Case: <br>
-Employees, external collaborators, and administrative staff use this skill to turn meeting titles, times, locations, agenda items, hosts, and participant lists into formatted Chinese meeting agenda documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python packages from a package index before generating documents. <br>
-Mitigation: Preinstall trusted dependencies in the execution environment and review dependency sources before use. <br>
-Risk: The skill writes agenda files locally and may invoke Office or LibreOffice tooling for PDF conversion. <br>
-Mitigation: Use a dedicated output folder, review generated filenames and paths, and handle sensitive meeting information according to organizational policy. <br>
+## Use Case:
 
+Employees, external collaborators, and administrative staff use this skill to turn meeting titles, times, locations, agenda items, hosts, and participant lists into standardized Chinese government/enterprise meeting agenda documents.
 
-## Reference(s): <br>
-- [Meeting agenda template specification](references/template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ywwzzsgit/meeting-agenda-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Word document and PDF files generated from JSON meeting data, with brief text status and file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces .docx and .pdf agenda files; PDF output may depend on local Office or LibreOffice conversion support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may install Python packages during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall reviewed dependencies in a controlled environment and avoid runtime package installation where possible.
+
+Risk: Crafted filename values may write generated files outside the intended output folder.
+
+Mitigation: Use a dedicated output directory and validate filename inputs before running the generator.
+
+Risk: PDF conversion depends on local Office, LibreOffice, docx2pdf, and Chinese font availability.
+
+Mitigation: Confirm both generated files before delivery; if PDF conversion fails, deliver the Word file and export PDF manually from a trusted office suite.
+
+## Reference(s):
+
+- [会议议程模板规范](references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Word (.docx) and PDF files generated from structured JSON input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces paired document outputs; PDF generation can depend on local Office, LibreOffice, docx2pdf, and Chinese font availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

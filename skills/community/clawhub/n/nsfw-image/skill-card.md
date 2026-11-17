@@ -1,44 +1,63 @@
-## Description: <br>
-Generates or edits adult-only mature creative images through Atlas Cloud image models with API-key setup, model selection guidance, and a bundled Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates mature (18+) creative images and image edits through Atlas Cloud models such as Wan 2.6, Seedream, and Wan 2.5 using an ATLASCLOUD_API_KEY.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-Adults and developers use this skill to generate or edit mature creative imagery for legitimate adult artistic and professional projects, including figure drawing, fashion photography, fine art, and mature illustration. The skill helps an agent select Atlas Cloud image models, configure parameters, upload optional reference images, poll generation jobs, and save generated files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adult-content image generation is not appropriate for minors or users who have not confirmed they are 18 or older. <br>
-Mitigation: Confirm the user is 18 or older before use and refuse execution when age confirmation is not provided. <br>
-Risk: Prompts and selected image inputs are sent to Atlas Cloud for generation or editing. <br>
-Mitigation: Use only prompts and images the user is allowed and willing to send to Atlas Cloud; avoid confidential or unauthorized images. <br>
-Risk: The Atlas Cloud API key can spend from the associated account balance. <br>
-Mitigation: Use a dedicated low-balance API key, monitor usage, and revoke the key when finished. <br>
+## Use Case:
 
+External adult users and creative professionals use this skill to generate or edit mature image assets for lawful 18+ artistic and professional projects such as figure drawing, fashion photography, fine art, and mature illustration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xixihhhh/nsfw-image) <br>
-- [Skill-Declared Source Repository](https://github.com/AtlasCloudAI/nano-banana-2-skill) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY and sends prompts or selected image inputs to Atlas Cloud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: A broad paid Atlas Cloud API key can bill the user's account and is not scoped to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance key, monitor account usage, and revoke the key when it is no longer needed.
+
+Risk: Prompts and edited source images are sent to Atlas Cloud for generation.
+
+Mitigation: Avoid private, identifying, or sensitive images and prompts unless the user intentionally wants to upload them.
+
+Risk: The script downloads provider-returned output URLs without validating the downloaded content.
+
+Mitigation: Treat downloaded outputs as untrusted files and review or sandbox them until download validation is fixed.
+
+Risk: The skill is intended for mature image generation.
+
+Mitigation: Confirm the user is 18 or older and that the request is for lawful adult creative work before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/nsfw-image)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [Atlas Cloud API endpoint](https://api.atlascloud.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image file paths or provider URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY; prompts and optional source images are sent to Atlas Cloud and generated outputs are downloaded from provider-returned URLs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

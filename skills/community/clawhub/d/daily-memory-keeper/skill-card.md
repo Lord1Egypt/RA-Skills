@@ -1,43 +1,53 @@
-## Description: <br>
-Automatically organizes AI agent memory files by date, supports keyword retrieval and cross-session continuity, generates daily memory briefings, and cleans up expired data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Memory Keeper helps an agent archive memory files by date, search retained memories by keyword, continue context across sessions, generate daily memory briefings, and clean older retained files.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-Developers and agent users use this skill to archive agent memory into a date-organized knowledge base, search prior memories by keyword, continue work across sessions, and receive daily memory summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Archived agent memories may persist secrets or highly sensitive information. <br>
-Mitigation: Avoid storing secrets in agent memory, confirm the archive directory before use, and review stored memory content periodically. <br>
-Risk: Memory recall can surface stale or incorrect context for important work. <br>
-Mitigation: Review recalled memories before relying on them for consequential decisions or changes. <br>
-Risk: Automatic cleanup or short retention settings can remove memory needed for later continuity. <br>
-Mitigation: Set retention days and auto-clean behavior deliberately before enabling routine archiving. <br>
+## Use Case:
 
+Agent users can use this skill to keep persistent memory files organized, searchable, and summarized across daily work sessions. It is most relevant when an agent keeps a local memory directory and the user wants routine archiving, retrieval, and retention cleanup.
 
-## Reference(s): <br>
-- [Daily Memory Keeper on ClawHub](https://clawhub.ai/linbo405/daily-memory-keeper) <br>
-- [linbo405 ClawHub publisher profile](https://clawhub.ai/user/linbo405) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSON configuration examples, archived knowledge-base files, retrieval results, and daily briefing text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable archive directory, retention period, automatic cleanup, and daily briefing settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process persistent memory files that contain sensitive or private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured memory directory before use and limit it to files the user is comfortable having indexed, summarized, and reused.
+
+Risk: Automatic cleanup may delete retained memory before the user has confirmed it is no longer needed.
+
+Mitigation: Disable automatic cleanup or require explicit confirmation before deleting older memory files.
+
+## Reference(s):
+
+- [Daily Memory Keeper on ClawHub](https://clawhub.ai/linbo405/skills/daily-memory-keeper)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown summaries, search-result lists, archived knowledge-base files, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, summarize, reuse, and clean files in the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

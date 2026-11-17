@@ -1,44 +1,57 @@
-## Description: <br>
-Generate AI music and songs with Diffrythm, Tencent Song Generation via inference.sh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to generate AI music and songs with Diffrythm and Tencent Song Generation through the inference.sh CLI.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-External creators, developers, and content teams use this skill to generate background music, songs with vocals, podcast intros, game soundtracks, jingles, and other AI-assisted audio through the inference.sh CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an external CLI and uses a third-party music generation service. <br>
-Mitigation: Install only after reviewing or trusting the inference.sh installer, and prefer the documented manual or package-manager installation path when stronger supply-chain control is needed. <br>
-Risk: Prompts, lyrics, and creative material may be sent to an external provider and may affect account or billing state. <br>
-Mitigation: Avoid submitting secrets, private lyrics, proprietary prompts, or unreleased creative material unless the provider handling and billing impact are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ai Music Generation ClawHub Page](https://clawhub.ai/okaris/ai-music-generation) <br>
-- [inference.sh](https://inference.sh) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline) <br>
-- [Apps Overview](https://inference.sh/docs/apps/overview) <br>
-- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+External developers and content creators use this skill to generate instrumentals, songs with vocals, background music, podcast jingles, and game soundtracks from prompts using inference.sh audio apps.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands invoke external inference.sh audio-generation apps and may create generated audio through that service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick start runs a live internet installer directly in a shell before authentication.
+
+Mitigation: Use a manual, version-pinned CLI download with an independently published checksum or signature, and run login as a separate step.
+
+Risk: Related optional skills may expand the agent's audio and video capabilities beyond this skill's music-generation scope.
+
+Mitigation: Review and approve each optional related skill separately before adding it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/okaris/skills/ai-music-generation)
+- [inference.sh](https://inference.sh)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline)
+- [Apps Overview](https://inference.sh/docs/apps/overview)
+- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON CLI inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes inference.sh app IDs, prompt examples, and install guidance.]
+
+## Skill Version(s):
+
+0.1.5 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Compress, encode, and decode large JSON payloads into a compact, reversible TOON string to reduce token usage in LLM prompts and tool payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress, encode, and decode large JSON payloads into a compact, reversible TOON string to reduce token usage in LLM prompts and tool payloads.
 
-## Publisher: <br>
-[zmkkevin](https://clawhub.ai/user/zmkkevin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmkkevin](https://clawhub.ai/user/zmkkevin)
 
-## Use Case: <br>
-Developers and agents use this skill to shrink repeated or large JSON for prompts and tool payloads, then decode or validate TOON back to JSON when a lossless round trip is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TOON output is reversible and can expose any secrets or sensitive JSON included in the input. <br>
-Mitigation: Treat TOON as plaintext and avoid sending encoded sensitive data to prompts, logs, or external tools unless that sharing is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert large JSON payloads into compact TOON text for prompts or tool payloads, then decode the result back to JSON when round-trip fidelity is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmkkevin/toon-json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [TOON strings, JSON, and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional schema metadata for repeated-key compression; TOON is reversible compression, not encryption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: TOON output contains the same sensitive information as the original JSON and may be pasted into prompts or tool payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid encoding secrets or private data unless that content is intended for the destination prompt or tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmkkevin/skills/toon-json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [TOON string or JSON emitted by a local command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Schema mode can embed a key dictionary; encoded output preserves the information contained in the original JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

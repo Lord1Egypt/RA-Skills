@@ -1,0 +1,18 @@
+{
+  "version": "1.1.0",
+  "date": "2026-08-24",
+  "changelog": {
+    "1.1.0": [
+      "Correção no fallback Edge TTS: resolução robusta do binário edge-tts (env EDGE_TTS_CMD → PATH → locais conhecidos, incl. ~/.local/bin e uv tool)",
+      "Conversão MP3→Opus via ffmpeg no fallback Edge TTS — edge-tts grava MP3 mesmo com extensão .ogg; agora o .ogg final é Opus nativo (voice bubble no Telegram)",
+      "Sanitização para publicação pública: caminhos locais removidos (fallback de binário edge-tts e vault-resolver agora genéricos)"
+    ],
+    "1.0.0": [
+      "MVP: TTS multi-provider — Speechify API (primary) + Edge TTS (fallback)",
+      "Saída .ogg (Opus) pronta para voice messages (Telegram)",
+      "Suporte a SSML (emotions, prosody, pauses) com cheat sheet",
+      "Resolução de chave via env ou vault-resolver",
+      "Referência de vozes (references/voices.md) e exemplos SSML (examples/)"
+    ]
+  }
+}

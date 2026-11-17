@@ -1,0 +1,35 @@
+<template>
+  <div class="screen-root">
+    <div
+      class="screen-wrapper"
+      :style="{
+        transform: `translate(${offsetX}px, ${offsetY}px) scale(${scale})`,
+      }"
+    >
+      <Dashboard />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useScreenScale } from '@/composables/useScreenScale'
+import Dashboard from '@/views/Dashboard.vue'
+
+// 大屏以 1920 x 1080 为设计基准，整体等比缩放铺满任意分辨率
+const { scale, offsetX, offsetY } = useScreenScale(1920, 1080)
+</script>
+
+<style scoped>
+.screen-root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #02060f;
+}
+
+.screen-wrapper {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+}
+</style>

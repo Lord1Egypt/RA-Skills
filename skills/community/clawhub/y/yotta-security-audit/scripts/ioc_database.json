@@ -1,0 +1,55 @@
+{
+  "version": "0.1.0",
+  "last_updated": "2026-08-26",
+  "source": "YottaMeta 元安内置示例 IOC 库",
+  "note": "本库只收录可核实的 IOC。内置条目全部为「示例」（example: true），使用 RFC 5737 文档保留 IP（192.0.2.0/24、198.51.100.0/24、203.0.113.0/24）与 RFC 2606 保留域名（example.com 等），不包含任何真实恶意地址或伪造哈希；生产使用请用 --ioc-db 指向自己的威胁情报（可核实来源：厂商公开报告、开源威胁情报源、自有溯源结果）。example 条目不会被扫描器匹配。",
+  "malicious_ips": [
+    {
+      "ip": "203.0.113.10",
+      "context": "示例：C2 服务器（RFC 5737 文档保留地址，不会真实路由）",
+      "first_seen": "2026-08-26",
+      "threat_actor": "example",
+      "example": true
+    },
+    {
+      "ip": "198.51.100.20",
+      "context": "示例：数据外传端点（RFC 5737 文档保留地址）",
+      "first_seen": "2026-08-26",
+      "threat_actor": "example",
+      "example": true
+    }
+  ],
+  "malicious_domains": [
+    {
+      "domain": "example.com",
+      "context": "示例：恶意载荷托管域名（RFC 2606 保留域名）",
+      "first_seen": "2026-08-26",
+      "threat_actor": "example",
+      "example": true
+    },
+    {
+      "domain": "example.org",
+      "context": "示例：钓鱼域名（RFC 2606 保留域名）",
+      "first_seen": "2026-08-26",
+      "threat_actor": "example",
+      "example": true
+    }
+  ],
+  "malicious_url_patterns": [
+    {
+      "pattern": "example\\.com/raw/",
+      "context": "示例：原始载荷地址模式（RFC 2606 保留域名）",
+      "severity": "CRITICAL",
+      "example": true
+    }
+  ],
+  "malicious_hashes": [
+    {
+      "sha256": "354b64653f944808f297701666ff7a2ce0352fec2b7727a496fdcf266173bbde",
+      "filename": "example-payload.bin",
+      "context": "示例：占位哈希（example-payload.bin 的 SHA256，非真实恶意文件）",
+      "threat_actor": "example",
+      "example": true
+    }
+  ]
+}

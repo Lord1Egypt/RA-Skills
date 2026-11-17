@@ -1,40 +1,54 @@
-## Description: <br>
-Calculates multi-timeframe Binance Event Contract signal suggestions for BTCUSDT and ETHUSDT, including entries, targets, stop loss, confidence, and position sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates multi-timeframe Binance Event Contract signals for BTCUSDT and ETHUSDT with entries, targets, stop loss, confidence, and position sizing.
 
-## Publisher: <br>
-[acwxpunh](https://clawhub.ai/user/acwxpunh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acwxpunh](https://clawhub.ai/user/acwxpunh)
 
-## Use Case: <br>
-Agent users monitoring Binance Event Contract cycles use this skill to combine K-line, liquidity, ICT structure, and risk inputs into structured BTCUSDT/ETHUSDT signal suggestions for speculative analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Signal outputs could influence risky speculative trading decisions. <br>
-Mitigation: Independently verify entries, stops, targets, confidence, and position sizes; do not treat outputs as financial advice or instructions to trade. <br>
-Risk: The skill uses a disclosed market-data API key. <br>
-Mitigation: Use a least-privilege or read-only market-data API key and avoid granting trading or withdrawal permissions. <br>
+## Use Case:
 
+Developers and traders use this skill to have an agent calculate structured Binance Event Contract trading signals for BTCUSDT and ETHUSDT from K-line, liquidity, ICT structure, and risk inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/acwxpunh/binance-event-contract-signal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured trading signal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes direction, entry zone, targets, stop loss, confidence, cycle type, position size, and a Signal Pending fallback when inputs are insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce highly confident trading suggestions and position sizes that users could mistake for reliable investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational signals only, review assumptions and market data independently, and do not rely on stated win rates or sizing as financial advice.
+
+Risk: The installation command references a mutable latest package version.
+
+Mitigation: Prefer a pinned, reviewed installer version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acwxpunh/skills/binance-event-contract-signal)
+- [Publisher profile](https://clawhub.ai/user/acwxpunh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style trading signal text with prices, targets, stop loss, confidence, confluence factors, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Signal Pending when required market, liquidity, or structure data is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

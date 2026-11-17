@@ -1,11 +1,11 @@
 # ILIB\_SymbolSearchItem interface
 
-搜索到的符号属性
+Searched symbol properties
 
 ## Signature
 
 ```typescript
-interface ILIB_SymbolSearchItem 
+interface ILIB_SymbolSearchItem
 ```
 
 ## Properties
@@ -14,211 +14,167 @@ interface ILIB_SymbolSearchItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [ascription](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-归属
-
+Ownership
 
 </td></tr>
 <tr><td>
 
 [classification?](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [lastModifiedBy](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-前次修改者
-
+Last modifier
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-符号名称
-
+Symbol name
 
 </td></tr>
 <tr><td>
 
 [ordinal](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-排序
-
+Sorting
 
 </td></tr>
 <tr><td>
 
 [type](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ELIB\_SymbolType](../enums/ELIB_SymbolType.md)
 
-
 </td><td>
 
-符号类型
-
+Symbol type
 
 </td></tr>
 <tr><td>
 
 [updateTimestamp](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-更新时间戳
-
+Update timestamp
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_SymbolSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-符号 UUID
-
+Symbol UUID
 
 </td></tr>
 </tbody></table>
@@ -231,7 +187,7 @@ string
 
 # ILIB\_SymbolSearchItem.ascription property
 
-归属
+Ownership
 
 ## Signature
 
@@ -243,7 +199,7 @@ ascription: string;
 
 # ILIB\_SymbolSearchItem.classification property
 
-分类
+Classification
 
 ## Signature
 
@@ -255,7 +211,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_SymbolSearchItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -267,7 +223,7 @@ description?: string;
 
 # ILIB\_SymbolSearchItem.lastModifiedBy property
 
-前次修改者
+Last modifier
 
 ## Signature
 
@@ -279,7 +235,7 @@ lastModifiedBy: string;
 
 # ILIB\_SymbolSearchItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -291,7 +247,7 @@ libraryUuid: string;
 
 # ILIB\_SymbolSearchItem.name property
 
-符号名称
+Symbol name
 
 ## Signature
 
@@ -303,7 +259,7 @@ name: string;
 
 # ILIB\_SymbolSearchItem.ordinal property
 
-排序
+Sorting
 
 ## Signature
 
@@ -315,7 +271,7 @@ ordinal: number;
 
 # ILIB\_SymbolSearchItem.type property
 
-符号类型
+Symbol type
 
 ## Signature
 
@@ -327,7 +283,7 @@ type: ELIB_SymbolType;
 
 # ILIB\_SymbolSearchItem.updateTimestamp property
 
-更新时间戳
+Update timestamp
 
 ## Signature
 
@@ -339,7 +295,7 @@ updateTimestamp: number;
 
 # ILIB\_SymbolSearchItem.uuid property
 
-符号 UUID
+Symbol UUID
 
 ## Signature
 

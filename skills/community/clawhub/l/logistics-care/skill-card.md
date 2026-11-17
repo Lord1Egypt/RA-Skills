@@ -1,50 +1,67 @@
-## Description: <br>
-为电商卖家和客服运营人员检测物流延迟风险，生成客户安抚短信，并在确认后通过阿里云或腾讯云短信服务发送通知。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商物流延迟检测与客户安抚短信发送技能，可导入订单 CSV 或手动输入运单号，查询物流轨迹、检测延迟风险、生成安抚短信，并在确认后通过阿里云或腾讯云短信发送。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External ecommerce sellers and customer support teams use this skill to import order CSV data or inspect individual tracking numbers, identify delayed or abnormal shipments, preview customer-care SMS text, and optionally send approved messages. It is most appropriate for operational logistics follow-up where users can review recipient data and message content before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes customer phone numbers, order identifiers, tracking numbers, and generated JSON or HTML reports that may contain sensitive customer data. <br>
-Mitigation: Treat CSV inputs and generated reports as sensitive, limit access and retention, and avoid sharing output files outside the approved support workflow. <br>
-Risk: The skill requires logistics and SMS service credentials, including UAPI, Aliyun, or Tencent Cloud secrets. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid committing configuration files with secrets, and rotate keys after exposure. <br>
-Risk: Using send mode can deliver real SMS messages to customers. <br>
-Mitigation: Run dry-run first, review recipients and message text, and require an explicit operator decision before using --send. <br>
-Risk: Runtime dependency installation can make execution less predictable. <br>
-Mitigation: Preinstall and pin required dependencies in the deployment environment instead of allowing ad hoc installation during execution. <br>
+## Use Case:
 
+External ecommerce operators use this skill to review order logistics, identify delayed or abnormal shipments, and prepare customer care SMS messages. It supports dry-run previews by default and can send messages through configured SMS providers when the operator chooses send mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/logistics-care) <br>
-- [Publisher Profile](https://clawhub.ai/user/bettermen) <br>
-- [Clawdis Homepage](https://github.com/bettermen/logistics-care) <br>
-- [API Configuration Reference](references/api_config.md) <br>
-- [UAPI Tracking Query API](https://uapis.cn/api/v1/misc/tracking/query) <br>
-- [Aliyun SMS](https://www.aliyun.com/product/sms) <br>
-- [Tencent Cloud SMS](https://cloud.tencent.com/product/sms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, HTML] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON logistics and SMS result files, HTML SMS preview reports, and generated SMS text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default dry-run mode previews messages without sending; send mode can call external SMS providers after configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Send mode can send customer SMS messages through configured Aliyun or Tencent Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first and separately review recipients, logistics findings, and message text before enabling send mode.
+
+Risk: The workflow processes customer names, phone numbers, order IDs, tracking numbers, and writes JSON and HTML reports.
+
+Mitigation: Treat generated reports as sensitive customer data, restrict access, and apply retention controls appropriate for customer records.
+
+Risk: The logistics checker can install a Python dependency automatically when requests is missing.
+
+Mitigation: Run it in an environment where package installation is controlled, or preinstall reviewed dependencies before execution.
+
+Risk: SMS and logistics API credentials are required for live integrations.
+
+Mitigation: Store credentials in environment variables or a protected secret store and avoid committing provider keys or local config files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/logistics-care)
+- [Publisher Profile](https://clawhub.ai/user/bettermen)
+- [Project Homepage](https://github.com/bettermen/logistics-care)
+- [API Configuration Reference](references/api_config.md)
+- [UAPI Tracking API](https://uapis.cn/api/v1/misc/tracking/query)
+- [Aliyun SMS](https://www.aliyun.com/product/sms)
+- [Tencent Cloud SMS](https://cloud.tencent.com/product/sms)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML, shell commands, configuration guidance]
+
+**Output Format:** [Command-line output plus JSON logistics results, HTML SMS previews, and generated SMS message text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default mode is dry-run preview; send mode can call configured SMS providers and produce per-message send results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

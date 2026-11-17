@@ -1,0 +1,669 @@
+openapi: 3.1.0
+info:
+  title: 三立智期 slzq-trading OpenClaw Skill API
+  version: 1.1.0
+  description: |
+    三立智期量化交易接口，供 OpenClaw Agent 调用。
+
+    ## Authentication
+    所有交易接口需要在请求头中携带 API Key 和交易环境：
+    ```
+    Authorization: Bearer <SLZQ_OPENCLAW_API_KEY>
+    X-Trading-Env: sim   # 或 live
+    ```
+    无需鉴权的接口：`/open/v1/health`、`/open/v1/skill/version`、`/open/v1/skill/upgrade`，
+    以及 `/open/v1/auth/*`（首次安装时用手机号验证码登录领取模拟盘密钥）。
+
+    ## Key Scope
+    密钥分两档：`SIM`=模拟盘（仅 `sim`）、`SIM_LIVE`=模拟盘+实盘（`sim` 与 `live` 均可）。
+    档位与请求头不匹配时返回 `10412`；`GET /open/v1/me` 可查询当前档位。
+
+    ## Base URL
+    ```
+    API_BASE = SLZQ_OPENCLAW_DOMAIN + /mobile-api
+    ```
+    默认生产域名：`https://slzqapi.sxslqhsh.com`
+    默认交易环境：`sim`（模拟盘）
+
+    ## Important Notes
+    - sim 环境使用模拟撮合账户，live 环境使用真实 CTP 账户。
+    - 实盘 live 平仓时，SHFE/INE 合约可能被服务端自动拆成两笔（先平昨仓再平今仓）。
+    - 实盘下单的 orderRef 由服务端生成，客户端传入值会被忽略；撤单时须使用响应中的 orderRef。
+    - 浮动盈亏估算：`(lastPrice - openAveragePrice) × volumeMultiple × position`（多头），空头取负。
+
+servers:
+  - url: "{domain}/mobile-api"
+    description: 三立智期 API（需填入 SLZQ_OPENCLAW_DOMAIN）
+    variables:
+      domain:
+        default: https://slzqapi.sxslqhsh.com
+        description: 三立智期 API 域名，如 https://slzqapi.sxslqhsh.com
+
+security:
+  - BearerAuth: []
+  - ApiKeyHeader: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OpenClaw API Key，从 App「我的 → 期货辅助交易」获取
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 可替代 Authorization 头传递 API Key
+    TradingEnv:
+      type: apiKey
+      in: header
+      name: X-Trading-Env
+      description: 交易环境，sim（模拟盘）或 live（实盘），每个请求都必须携带
+
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        errorCode:
+          type: string
+          nullable: true
+          example: null
+        errorInfo:
+          type: string
+          nullable: true
+          example: null
+        data:
+          description: 响应数据（各接口不同）
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          description: |
+            错误码：
+            - OPENCLAW_KEY_INVALID：API Key 无效或已吊销
+            - OPENCLAW_ENV_MISMATCH：X-Trading-Env 与密钥配置不符
+            - OPENCLAW_LIVE_NOT_BOUND：实盘密钥未绑定 CTP 凭据
+            - OPENCLAW_AGREEMENT_REQUIRED：未同意 OpenClaw 协议
+          example: OPENCLAW_KEY_INVALID
+        errorInfo:
+          type: string
+          example: API Key 无效或已吊销
+        data:
+          nullable: true
+          example: null
+
+    SkillVersionInfo:
+      type: object
+      properties:
+        latestVersion:
+          type: string
+          description: 服务端最新版本号
+          example: "1.2.0"
+        updateAvailable:
+          type: boolean
+          description: 是否有新版本（传了 clientVersion 且落后时为 true；未传时为 false）
+        zipPath:
+          type: string
+          description: 自托管 zip 下载路径（相对于 API_BASE）
+        clawhubSuggestedCommand:
+          type: string
+          description: ClawHub 一键安装命令
+          example: "clawhub install slzq-trading"
+        upgradeSteps:
+          type: array
+          items:
+            type: string
+          description: 升级步骤描述
+
+    AuthAgreement:
+      type: object
+      description: 登录前必须向用户展示的风险告知
+      properties:
+        version:
+          type: string
+          description: 风险告知版本号，登录时作为 agreementVersion 原样回传
+          example: sim-risk-1
+        title:
+          type: string
+          example: 模拟盘小龙虾风险告知
+        highlights:
+          type: array
+          items:
+            type: string
+          description: 必须原文展示给用户的要点，不要压缩或改写
+        agreementUrl:
+          type: string
+          description: 协议全文地址
+        acceptField:
+          type: string
+          description: 登录接口中回传版本号的字段名
+          example: agreementVersion
+        nextStep:
+          type: string
+
+    AuthLoginResult:
+      type: object
+      description: 登录/注册结果与签发的模拟盘密钥
+      properties:
+        apiKey:
+          type: string
+          description: 完整密钥，禁止回显给用户或写入日志
+        keyId:
+          type: integer
+        keyPrefix:
+          type: string
+          description: 密钥前缀，可安全展示给用户核对
+        userId:
+          type: integer
+        newUser:
+          type: boolean
+          description: 是否本次新注册的账号
+        keyCreated:
+          type: boolean
+          description: true=本次新签发；false=复用了已有的模拟盘密钥
+        scope:
+          type: string
+          enum: [SIM, SIM_LIVE]
+          description: 权限档位；本接口恒为 SIM
+        scopeName:
+          type: string
+          example: 模拟盘
+        allowedTradingEnvs:
+          type: array
+          items:
+            type: string
+          example: ["sim"]
+        canTradeLive:
+          type: boolean
+        defaultTradingEnv:
+          type: string
+          example: sim
+        simAccountReady:
+          type: boolean
+          description: 模拟盘账户是否已就绪（登录时自动开通，无需回 App 操作）
+        simAccountBalance:
+          type: number
+          nullable: true
+          description: 模拟盘账户余额（元）；未就绪时为 null
+        simAccountMessage:
+          type: string
+          description: 账户状态的人话说明，可直接转述给用户
+        domain:
+          type: string
+          description: API 根域名（无尾斜杠、不含 /mobile-api）
+        apiKeyEnvVar:
+          type: string
+          example: SLZQ_OPENCLAW_API_KEY
+        domainEnvVar:
+          type: string
+          example: SLZQ_OPENCLAW_DOMAIN
+        tradingEnvVar:
+          type: string
+          example: SLZQ_OPENCLAW_ENV
+        setupSteps:
+          type: array
+          items:
+            type: string
+          description: 写入客户端配置的步骤
+        liveUpgradeSteps:
+          type: array
+          items:
+            type: string
+          description: 升级到实盘权限的步骤（须回 App 验 CTP 交易密码）
+
+    MeInfo:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: 用户 ID
+        keyId:
+          type: integer
+          description: 密钥 ID
+        tradingEnv:
+          type: string
+          description: 当前生效的交易环境（sim 或 live）
+          example: sim
+        scope:
+          type: string
+          enum: [SIM, SIM_LIVE]
+          description: 密钥权限档位。SIM=模拟盘；SIM_LIVE=模拟盘+实盘（实盘档位天然含模拟盘）
+        scopeName:
+          type: string
+          description: 权限档位中文名
+          example: 模拟盘
+        allowedTradingEnvs:
+          type: array
+          items:
+            type: string
+          description: 该密钥允许的交易环境
+          example: ["sim"]
+        canTradeLive:
+          type: boolean
+          description: 是否可下实盘单；false 时使用 live 会返回 10412
+        liveUpgradeSteps:
+          type: array
+          items:
+            type: string
+          description: 升级到实盘权限的步骤；已具备实盘权限时为空数组
+
+    AccountSummary:
+      type: object
+      properties:
+        tradingEnv:
+          type: string
+          description: 交易环境
+          example: sim
+        simAccount:
+          type: object
+          nullable: true
+          description: 模拟盘账户数据（sim 环境有值，live 环境为 null）
+          properties:
+            balance:
+              type: number
+              description: 账户余额（元）
+            available:
+              type: number
+              description: 可用资金（元）
+            margin:
+              type: number
+              description: 已用保证金（元）
+            positionProfit:
+              type: number
+              description: 持仓盈亏（元）
+        liveTradeAccount:
+          type: object
+          nullable: true
+          description: 实盘 CTP 账户数据（live 环境有值，sim 环境为 null）
+          properties:
+            balance:
+              type: number
+            available:
+              type: number
+            margin:
+              type: number
+            positionProfit:
+              type: number
+        liveMessage:
+          type: string
+          nullable: true
+          description: 实盘数据说明或警告
+
+    PositionModel:
+      type: object
+      properties:
+        instrumentId:
+          type: string
+          description: 合约代码，如 cu2506
+        posiDirection:
+          type: string
+          description: 持仓方向。LONG=多头，SHORT=空头
+          enum: [LONG, SHORT]
+        position:
+          type: integer
+          description: 总持仓手数
+        todayPosition:
+          type: integer
+          description: 今仓手数
+        ydPosition:
+          type: integer
+          description: 昨仓手数（= position - todayPosition）
+        openCost:
+          type: number
+          description: 开仓成本（元）= 成交价 × 合约乘数 × 手数 累计
+        openAveragePrice:
+          type: number
+          description: 开仓均价（报价单位，如元/吨）= openCost ÷ (合约乘数 × position)，用于计算浮动盈亏
+        positionProfit:
+          type: number
+          description: 持仓盈亏（元，服务端口径）
+        useMargin:
+          type: number
+          description: 占用保证金（元）
+        tradingDay:
+          type: string
+          description: 交易日，如 20260327
+
+    RtnOrderModel:
+      type: object
+      properties:
+        instrumentId:
+          type: string
+          description: 合约代码
+        exchangeId:
+          type: string
+          description: 交易所代码，如 SHFE
+        orderRef:
+          type: string
+          description: 报单引用。撤单时必须使用此值（实盘由服务端生成）
+        orderSysId:
+          type: string
+          description: 交易所报单编号。撤单时必须使用此值
+        frontID:
+          type: integer
+          description: 前置编号。撤单时必须使用此值
+        sessionId:
+          type: integer
+          description: 会话编号。撤单时可使用此值
+        direction:
+          type: string
+          enum: [BUY, SELL]
+          description: 买卖方向
+        offsetFlag:
+          type: string
+          enum: [OPEN, CLOSE, CLOSE_TODAY, CLOSE_YESTERDAY]
+          description: 开平标志
+        limitPrice:
+          type: number
+          description: 报单价格
+        volume:
+          type: integer
+          description: 委托手数
+        volumeTraded:
+          type: integer
+          description: 已成交手数
+        volumeTotal:
+          type: integer
+          description: 剩余未成手数
+        orderStatus:
+          type: string
+          description: 委托状态。SUBMITTED=已报，PART_TRADED_QUEUEING=部成挂起，ALL_TRADED=全成，CANCELED=已撤
+        statusMsg:
+          type: string
+          description: 状态描述（含拆单说明、错误信息等）
+        insertDate:
+          type: string
+          description: 报单日期，如 20260327
+        insertTime:
+          type: string
+          description: 报单时间，如 10:15:30
+        tradingDay:
+          type: string
+          description: 交易日
+
+    RtnTradeModel:
+      type: object
+      properties:
+        instrumentId:
+          type: string
+        exchangeId:
+          type: string
+        tradeId:
+          type: string
+          description: 成交编号（交易所分配）
+        orderRef:
+          type: string
+        orderSysId:
+          type: string
+        direction:
+          type: string
+          enum: [BUY, SELL]
+        offsetFlag:
+          type: string
+          enum: [OPEN, CLOSE, CLOSE_TODAY, CLOSE_YESTERDAY]
+        price:
+          type: number
+          description: 成交价格
+        volume:
+          type: integer
+          description: 成交手数
+        tradeDate:
+          type: string
+          description: 成交日期，如 20260327
+        tradeTime:
+          type: string
+          description: 成交时间，如 10:15:32
+        tradingDay:
+          type: string
+        profit:
+          type: number
+          nullable: true
+          description: 平仓时柜台返回的实际盈亏（元）；开仓时为 null
+
+    MarketSnapshot:
+      type: object
+      description: 合约行情快照（来自 Redis 缓存；缓存缺失时字段可能为 null）
+      properties:
+        instrumentId:
+          type: string
+        exchangeId:
+          type: string
+        instrumentName:
+          type: string
+          description: 合约中文名，如 沪金2606
+        volumeMultiple:
+          type: integer
+          description: 合约乘数，计算盈亏必须用此值
+        priceTick:
+          type: string
+          description: 最小变动价位
+        lastPrice:
+          type: string
+          description: 最新价
+        openPrice:
+          type: string
+          description: 今开盘价
+        highestPrice:
+          type: string
+          description: 最高价
+        lowestPrice:
+          type: string
+          description: 最低价
+        bidPrice1:
+          type: string
+          description: 买一价
+        bidVolume1:
+          type: string
+          description: 买一量
+        askPrice1:
+          type: string
+          description: 卖一价
+        askVolume1:
+          type: string
+          description: 卖一量
+        preSettlementPrice:
+          type: string
+          description: 上次结算价
+        settlementPrice:
+          type: string
+          description: 本次结算价
+        tradingDay:
+          type: string
+          description: 交易日，如 20260327
+        updateTime:
+          type: string
+          description: 行情更新时间，如 2026-03-27 10:15:30
+
+    TickData:
+      type: object
+      properties:
+        startTime:
+          type: string
+          description: 交易开始时间，如 09:00:00
+        endTime:
+          type: string
+          description: 交易结束时间，如 15:00:00
+        closeTime:
+          type: string
+          description: 收盘时间
+        totalVolume:
+          type: string
+          description: 全日总成交量
+        reqTime:
+          type: number
+          description: 请求时间戳（秒）
+        ticks:
+          type: array
+          description: 分时数据数组（每条一分钟）
+          items:
+            type: object
+            properties:
+              t:
+                type: string
+                description: 时间戳（秒）
+              p:
+                type: string
+                description: 价格
+              v:
+                type: string
+                description: 该分钟成交量
+              i:
+                type: string
+                description: 持仓量
+              a:
+                type: string
+                description: 成交额（取整）
+
+    KlineData:
+      type: object
+      properties:
+        totalVolume:
+          type: string
+          description: 最新一根 K 线对应的全日总成交量
+        reqTime:
+          type: number
+          description: 请求时间戳（秒）
+        chats:
+          type: array
+          description: K 线数组（从旧到新排列）
+          items:
+            type: object
+            properties:
+              t:
+                type: string
+                description: 时间标签（分钟线格式 MM-dd HH:mm；日线格式 yyyy-MM-dd）
+              o:
+                type: string
+                description: 开盘价
+              h:
+                type: string
+                description: 最高价
+              l:
+                type: string
+                description: 最低价
+              c:
+                type: string
+                description: 收盘价
+              v:
+                type: string
+                description: 成交量
+              a:
+                type: string
+                description: 成交额（取整）
+              u:
+                type: number
+                description: 时间戳（秒）
+              i:
+                type: string
+                description: 持仓量
+              s:
+                type: string
+                nullable: true
+                description: 结算价（仅日K线有值，其他周期为 null 或 "0"）
+
+    ContractDetail:
+      type: object
+      properties:
+        excode:
+          type: string
+          description: 交易所代码
+        exname:
+          type: string
+          description: 交易所名称
+        contractCode:
+          type: string
+          description: 合约代码
+        productId:
+          type: string
+          description: 品种代码
+        goodsName:
+          type: string
+          description: 商品名称
+        isPrincipal:
+          type: integer
+          description: 是否主力合约。1=当前主力，0=非主力
+        volumeMultiple:
+          type: integer
+          description: 合约乘数（计算盈亏必须用此值）
+        priceTick:
+          type: number
+          description: 最小变动单位（报价精度）
+        priceLimit:
+          type: number
+          description: 涨跌停幅度百分比（仅供参考）
+        shortMarginRatioByMoney:
+          type: number
+          description: 保证金率（仅供参考，实际以期货公司为准）
+        tradeTime:
+          type: string
+          description: 完整交易时段，如 21:00-02:30,09:00-11:30,13:30-15:00
+        nextDayFlag:
+          type: integer
+          description: 是否有夜盘。1=有夜盘（跨自然日），0=无夜盘
+        expireDate:
+          type: string
+          description: 合约到期日
+        startDeliveryDate:
+          type: string
+          description: 交割开始日
+        endDeliveryDate:
+          type: string
+          description: 交割结束日
+
+paths:
+  /open/v1/auth/agreement:
+    $ref: 'openapi/paths-auth.yaml#/OpenV1AuthAgreement'
+  /open/v1/auth/sms/send:
+    $ref: 'openapi/paths-auth.yaml#/OpenV1AuthSmsSend'
+  /open/v1/auth/login:
+    $ref: 'openapi/paths-auth.yaml#/OpenV1AuthLogin'
+  /open/v1/health:
+    $ref: 'openapi/paths-skill.yaml#/OpenV1Health'
+  /open/v1/skill/version:
+    $ref: 'openapi/paths-skill.yaml#/OpenV1SkillVersion'
+  /open/v1/skill/upgrade:
+    $ref: 'openapi/paths-skill.yaml#/OpenV1SkillUpgrade'
+  /open/v1/me:
+    $ref: 'openapi/paths-account.yaml#/OpenV1Me'
+  /open/v1/account/summary:
+    $ref: 'openapi/paths-account.yaml#/OpenV1AccountSummary'
+  /open/v1/positions:
+    $ref: 'openapi/paths-positions-orders.yaml#/OpenV1Positions'
+  /open/v1/orders/open:
+    $ref: 'openapi/paths-positions-orders.yaml#/OpenV1OrdersOpen'
+  /open/v1/trades:
+    $ref: 'openapi/paths-positions-orders.yaml#/OpenV1Trades'
+  /open/v1/orders:
+    $ref: 'openapi/paths-positions-orders.yaml#/OpenV1Orders'
+  /open/v1/orders/cancel:
+    $ref: 'openapi/paths-positions-orders.yaml#/OpenV1OrdersCancel'
+  /open/v1/market/snapshot:
+    $ref: 'openapi/paths-market.yaml#/OpenV1MarketSnapshot'
+  /open/v1/market/snapshots:
+    $ref: 'openapi/paths-market.yaml#/OpenV1MarketSnapshots'
+  /open/v1/market/tick:
+    $ref: 'openapi/paths-market.yaml#/OpenV1MarketTick'
+  /open/v1/market/kline:
+    $ref: 'openapi/paths-market.yaml#/OpenV1MarketKline'
+  /open/v1/catalog/goods:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogGoods'
+  /open/v1/catalog/goods/detail:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogGoodsDetail'
+  /open/v1/catalog/contract:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogContract'
+  /open/v1/catalog/contract/f10:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogContractF10'
+  /open/v1/catalog/hot:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogHot'
+  /open/v1/catalog/exchanges:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogExchanges'
+  /open/v1/catalog/session/night-today:
+    $ref: 'openapi/paths-catalog.yaml#/OpenV1CatalogSessionNightToday'

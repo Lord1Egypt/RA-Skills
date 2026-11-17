@@ -1,42 +1,57 @@
-## Description: <br>
-Fetch upcoming events from Luma (lu.ma) for any city, returning event details including venue, date, hosts, ticket status, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch upcoming events from Luma (lu.ma) for any city. Use when the user asks about tech events, startup meetups, networking events, conferences, or things happening in cities around the world. Returns events with details including venue, date, hosts, ticket status, and links.
 
-## Publisher: <br>
-[firefrog-pepe](https://clawhub.ai/user/firefrog-pepe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[firefrog-pepe](https://clawhub.ai/user/firefrog-pepe)
 
-## Use Case: <br>
-External users and agents use this skill to find public Luma events for cities, compare event options, and return event details such as venue, time, hosts, ticket status, and links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts lu.ma public event pages when fetching city event listings. <br>
-Mitigation: Install only when outbound requests to Luma are acceptable for the agent environment. <br>
-Risk: Recently fetched event results are retained in a local OpenClaw workspace cache. <br>
-Mitigation: Delete the luma-events.json cache when retained event data is no longer wanted. <br>
-Risk: Luma page structure changes or unsupported city pages may return empty or failed results. <br>
-Mitigation: Treat empty results as page-format dependent and retry or verify directly on Luma when event completeness matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/firefrog-pepe/luma-enhanced) <br>
-- [Luma city pages](https://lu.ma/{city_slug}) <br>
+## Use Case:
 
+External users and agents use this skill to find upcoming Luma events for one or more city slugs, including event timing, venue, host, ticket status, and direct links. It is useful for answering questions about local tech events, startup meetups, networking events, conferences, and city activity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, files] <br>
-**Output Format:** [Human-readable text or JSON event arrays, with fetched results persisted to a local JSON cache.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; accepts one or more city slugs plus optional day range, result limit, and JSON output flags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts lu.ma and processes public event names, venues, host text, and links as external content.
+
+Mitigation: Treat event details as untrusted until checked on Luma, and review links before relying on them.
+
+Risk: Fetched public event metadata is retained locally for follow-up questions.
+
+Mitigation: Clear ~/.openclaw/workspace/memory/luma-events.json when prior event lookups should not be retained.
+
+Risk: Luma page structure, availability, or rate limits may affect results.
+
+Mitigation: Limit request volume and treat empty or error results as fetch limitations rather than confirmation that no events exist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firefrog-pepe/skills/luma-enhanced)
+- [Luma city event pages](https://lu.ma)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, files]
+
+**Output Format:** [Human-readable text or JSON event data from a Python CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists fetched public event metadata to a local luma-events.json cache for follow-up questions.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

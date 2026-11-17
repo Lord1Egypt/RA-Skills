@@ -1,42 +1,62 @@
-## Description: <br>
-Automates a WeChat public-account article workflow from topic selection through drafting, review, image generation, and creation of account drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a WeChat official-account article workflow from topic generation through drafting, review, image creation, and draft creation.
 
-## Publisher: <br>
-[wuxixixi](https://clawhub.ai/user/wuxixixi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxixixi](https://clawhub.ai/user/wuxixixi)
 
-## Use Case: <br>
-Content teams and developers use this skill to coordinate WeChat public-account article production, including topic generation, article drafting, quality review, supporting image generation, and draft creation in the official account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored WeChat public-account credentials and a DMX image API key can be used to create external drafts or generate images. <br>
-Mitigation: Use dedicated or low-risk credentials, keep secrets out of shared logs, and verify the configured DMX endpoint before running the workflow. <br>
-Risk: Broad chat triggers may start external draft creation without a clearly documented final approval step. <br>
-Mitigation: Manually review generated topics, article content, images, and draft status before publishing anything publicly. <br>
-Risk: The WeChat API test command prints part of an access token in logs. <br>
-Mitigation: Avoid sharing command output or logs from credential tests and rotate credentials if token fragments are exposed. <br>
+## Use Case:
 
+Content operators and developers use this skill to coordinate AI-assisted WeChat article production, including topic selection, article drafting, review scoring, image generation, and creation of official-account drafts for manual review before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxixixi/mp-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles, plain-text workflow status, configuration snippets, and command-line instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create generated image files and WeChat public-account drafts when configured credentials and external APIs are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill depends on WeChat and image-generation credentials and stores credential templates in local .env files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege WeChat credentials, set .env files to owner-only permissions, and enable IP allowlisting before installation or use.
+
+Risk: Image generation can be routed through a configurable DMX_BASE_URL endpoint.
+
+Mitigation: Leave DMX_BASE_URL unset unless the endpoint is trusted and review generated assets before attaching them to drafts.
+
+Risk: The draft-publisher test path prints a prefix of the WeChat access token.
+
+Mitigation: Remove token-prefix logging before operational use and avoid sharing command output from credential checks.
+
+Risk: Automated article drafting can introduce factual or editorial errors before a draft reaches the WeChat account.
+
+Mitigation: Manually review article text, cited facts, generated images, and draft contents before any real publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxixixi/skills/mp-publisher)
+- [Publisher profile](https://clawhub.ai/user/wuxixixi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Files, Guidance]
+
+**Output Format:** [Markdown articles, PNG image files, shell commands, environment-variable configuration, JSON status records, and WeChat draft API requests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates WeChat draft entries rather than live published posts; uses local workspace files and configured WeChat and DMX API credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

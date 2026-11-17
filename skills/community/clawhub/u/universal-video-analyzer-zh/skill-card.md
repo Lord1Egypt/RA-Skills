@@ -1,49 +1,61 @@
-## Description: <br>
-Universal Video Analyzer Zh analyzes video files with configurable multimodal models, combining extracted key frames and speech transcription to generate structured Chinese Markdown and HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Video Analyzer Zh analyzes video frames and speech transcripts with a configured multimodal model API to produce structured Chinese reports.
 
-## Publisher: <br>
-[lantianbaicai](https://clawhub.ai/user/lantianbaicai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantianbaicai](https://clawhub.ai/user/lantianbaicai)
 
-## Use Case: <br>
-External users and developers use this skill to analyze video files through OpenClaw or the command line. It produces Chinese summaries that combine visual scene analysis, key information, and speech transcription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video frames and transcribed speech are sent to the AI provider configured by VIDEO_ANALYZER_BASE_URL. <br>
-Mitigation: Use only a trusted provider or private endpoint, and avoid sensitive or regulated videos unless that provider is approved for the data. <br>
-Risk: The required VIDEO_ANALYZER_API_KEY grants access to the configured model provider. <br>
-Mitigation: Keep the API key private, store it outside shared files, and rotate it if exposure is suspected. <br>
-Risk: Generated Markdown, HTML, and key-frame files may contain private video content. <br>
-Mitigation: Store, share, and delete generated reports and frame folders according to the user's data-handling requirements. <br>
-Risk: Dependencies are specified without a lockfile, which can make installs less reproducible. <br>
-Mitigation: Install in an isolated environment and prefer pinned dependency versions or a lockfile for production use. <br>
+## Use Case:
 
+Developers and external users use this skill to analyze uploaded or local video files, combining sampled frames and speech transcription into a structured Chinese summary and report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lantianbaicai/universal-video-analyzer-zh) <br>
-- [Multi-model configuration example](references/config_example.md) <br>
-- [Volcengine](https://www.volcengine.com/) <br>
-- [Zhipu AI](https://open.bigmodel.cn/) <br>
-- [DashScope](https://dashscope.console.aliyun.com/) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Console text plus generated Markdown and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local video file, ffmpeg, Python dependencies, and VIDEO_ANALYZER_API_KEY; saves extracted key frames locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can send video frames, speech transcripts, prompts, and the configured model API key to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS model endpoints, confirm provider data-handling terms, and avoid analyzing sensitive or unknown attachments.
+
+Risk: Generated HTML reports may include model or transcript content that is not escaped or sanitized.
+
+Mitigation: Treat generated HTML reports as untrusted content until reviewed or sanitized before sharing or opening in sensitive environments.
+
+Risk: Automatic chat-triggered analysis may process private videos unintentionally.
+
+Mitigation: Disable auto-analysis for sensitive chats or require user confirmation before running on attachments.
+
+## Reference(s):
+
+- [Multi-model configuration example](references/config_example.md)
+- [Volcengine](https://www.volcengine.com/)
+- [Zhipu AI](https://open.bigmodel.cn/)
+- [DashScope](https://dashscope.console.aliyun.com/)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Console text plus Markdown report, HTML report, and extracted JPEG frame files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated in Chinese and saved beside the source video unless an output path is supplied.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

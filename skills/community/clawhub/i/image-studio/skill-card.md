@@ -1,41 +1,53 @@
-## Description: <br>
-Generates optimized AI image prompts with style guidance and platform sizing for social posts, brand visuals, ads, thumbnails, blog headers, and other visual content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional AI image prompts for any platform and niche - Instagram, LinkedIn, blog headers, YouTube thumbnails, brand visuals, and ads.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-External creators, marketers, and brand teams use this skill to turn a content brief into platform-specific AI image prompts for social posts, ads, thumbnails, blog headers, and brand visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompt briefs can contain confidential client details, unreleased campaign plans, or sensitive brand information. <br>
-Mitigation: Avoid including sensitive details in prompts unless those details are approved for use in the agent conversation. <br>
-Risk: Generated visuals may contain artifacts, mismatched brand style, unsuitable composition, or inappropriate details. <br>
-Mitigation: Review generated images against the skill's quality checklist before publishing or using them in campaigns. <br>
+## Use Case:
 
+External marketing teams, creators, and developers use this skill to turn brand, platform, mood, and content briefs into reusable image prompts for tools such as DALL-E, Midjourney, Stable Diffusion, and Ideogram.
 
-## Reference(s): <br>
-- [Image Studio on ClawHub](https://clawhub.ai/danielblinker83-bot/image-studio) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text containing structured image prompts, platform specifications, style guidance, and quality checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts may include platform dimensions, visual style, mood, brand color guidance, and tool compatibility notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Broad activation may route unrelated image, branding, or social-media prompt requests to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the skill description or activation criteria to specific marketing image prompt use cases when tighter activation is needed.
+
+Risk: Generated image prompts can still lead to outputs with AI artifacts, unsuitable visuals, or poor brand fit.
+
+Mitigation: Review generated images against the skill's quality checklist for artifacts, audience appropriateness, brand alignment, and usable negative space before publishing.
+
+## Reference(s):
+
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with reusable AI image prompt templates, platform sizing guidance, and quality checklist items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompts and guidance only; it does not call image-generation APIs or run code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,151 @@
+#!/usr/bin/env node
+// calendar-gaps: find scheduling conflicts and free time slots in a day.
+// Pure computation: reads events as JSON, needs no account or network.
+//
+// Input (stdin or --file): JSON array of events
+//   [{"start": "<ISO date-time>", "end": "<ISO date-time>", "summary": "..."}]
+// All-day events (date-only start) are listed but do not block time.
+//
+// Usage:
+//   calendar-gaps --date 2026-11-13|today|tomorrow [--tz America/Los_Angeles]
+//                 [--work 09:00-17:00] [--min 30] [--file events.json] [--json]
+//
+// Output: overlapping events (conflicts) and free slots of at least --min
+// minutes inside the working hours of --date, in the given time zone.
+import { readFileSync } from 'node:fs';
+
+function parseArgs(argv) {
+  const out = {};
+  for (let i = 0; i < argv.length; i++) {
+    if (!argv[i].startsWith('--')) continue;
+    const k = argv[i].slice(2);
+    out[k] = k === 'json' ? true : argv[++i];
+  }
+  return out;
+}
+function fail(msg) {
+  process.stderr.write(`error: ${msg}\n`);
+  process.exit(1);
+}
+
+const args = parseArgs(process.argv.slice(2));
+const tz = args.tz || process.env.TZ_NAME || 'UTC';
+try {
+  new Intl.DateTimeFormat('en-US', { timeZone: tz });
+} catch {
+  fail(`unknown time zone "${tz}"`);
+}
+const minMinutes = Math.max(Number(args.min) || 30, 5);
+const work = (args.work || '09:00-17:00').match(/^(\d{2}):(\d{2})-(\d{2}):(\d{2})$/);
+if (!work) fail('--work must look like 09:00-17:00');
+// "today" / "tomorrow" are resolved in --tz, so callers (e.g. a scheduled
+// prompt) never need another command to compute the date.
+const todayInTz = new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
+const shiftDay = (ymd, n) => {
+  const [y, m, d] = ymd.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+};
+const namedDates = { today: todayInTz, tomorrow: shiftDay(todayInTz, 1) };
+const date = namedDates[String(args.date || '').toLowerCase()] || args.date;
+if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) fail('--date YYYY-MM-DD (or today / tomorrow) is required');
+
+// UTC instant of a wall-clock time on `date` in `tz`.
+function zoned(h, m) {
+  const [y, mo, d] = date.split('-').map(Number);
+  const guess = Date.UTC(y, mo - 1, d, h, m);
+  const offset = (t) => {
+    const p = Object.fromEntries(
+      new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+        .formatToParts(t)
+        .map((x) => [x.type, x.value]),
+    );
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute) - t;
+  };
+  return guess - offset(guess - offset(guess));
+}
+const hm = (t) => new Date(t).toLocaleTimeString('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' });
+
+let raw;
+try {
+  raw = args.file ? readFileSync(args.file, 'utf8') : readFileSync(0, 'utf8');
+} catch {
+  fail('could not read events (pass --file or pipe JSON on stdin)');
+}
+let events;
+try {
+  events = JSON.parse(raw || '[]');
+} catch {
+  fail('events input is not valid JSON');
+}
+if (!Array.isArray(events)) fail('events input must be a JSON array');
+
+const dayStart = zoned(+work[1], +work[2]);
+const dayEnd = zoned(+work[3], +work[4]);
+if (dayEnd <= dayStart) fail('working hours end must be after start');
+
+const allDay = [];
+const timed = [];
+for (const e of events) {
+  if (!e || !e.start || !e.end) continue;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(e.start)) {
+    allDay.push(e.summary || '(no title)');
+    continue;
+  }
+  const s = Date.parse(e.start);
+  const en = Date.parse(e.end);
+  if (Number.isNaN(s) || Number.isNaN(en) || en <= s) continue;
+  if (en <= dayStart || s >= dayEnd) continue; // outside working hours
+  timed.push({ s, e: en, summary: e.summary || '(no title)' });
+}
+timed.sort((a, b) => a.s - b.s);
+
+const conflicts = [];
+for (let i = 0; i < timed.length; i++) {
+  for (let j = i + 1; j < timed.length && timed[j].s < timed[i].e; j++) {
+    conflicts.push({
+      a: timed[i].summary,
+      b: timed[j].summary,
+      start: Math.max(timed[i].s, timed[j].s),
+      end: Math.min(timed[i].e, timed[j].e),
+    });
+  }
+}
+
+const free = [];
+let cursor = dayStart;
+for (const ev of timed) {
+  if (ev.s > cursor) free.push({ start: cursor, end: Math.min(ev.s, dayEnd) });
+  cursor = Math.max(cursor, ev.e);
+}
+if (cursor < dayEnd) free.push({ start: cursor, end: dayEnd });
+const slots = free.filter((f) => (f.end - f.start) / 60000 >= minMinutes);
+const busyMinutes = Math.round(
+  timed.reduce((acc, ev) => acc + (Math.min(ev.e, dayEnd) - Math.max(ev.s, dayStart)), 0) / 60000,
+);
+
+if (args.json) {
+  const iso = (t) => new Date(t).toISOString();
+  console.log(
+    JSON.stringify(
+      {
+        date,
+        timeZone: tz,
+        workingHours: args.work || '09:00-17:00',
+        allDay,
+        conflicts: conflicts.map((c) => ({ ...c, start: iso(c.start), end: iso(c.end) })),
+        freeSlots: slots.map((f) => ({ start: iso(f.start), end: iso(f.end), minutes: Math.round((f.end - f.start) / 60000) })),
+        busyMinutes,
+      },
+      null,
+      2,
+    ),
+  );
+} else {
+  console.log(`${date} (${tz}), working hours ${args.work || '09:00-17:00'}`);
+  if (allDay.length) console.log(`All-day: ${allDay.join('; ')}`);
+  console.log(conflicts.length ? 'Conflicts:' : 'Conflicts: none');
+  for (const c of conflicts) console.log(`- "${c.a}" overlaps "${c.b}" from ${hm(c.start)} to ${hm(c.end)}`);
+  console.log(slots.length ? `Free slots (>= ${minMinutes} min):` : `Free slots (>= ${minMinutes} min): none`);
+  for (const f of slots) console.log(`- ${hm(f.start)} - ${hm(f.end)} (${Math.round((f.end - f.start) / 60000)} min)`);
+  console.log(`Busy: ${busyMinutes} min of working time`);
+}

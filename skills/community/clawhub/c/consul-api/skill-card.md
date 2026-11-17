@@ -1,40 +1,55 @@
-## Description: <br>
-Consul API helps agents provide HTTP API guidance for service discovery, key-value store operations, health checks, ACL token management, and service mesh management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consul HTTP API operations for service discovery, key-value store, health checks, and service mesh management.
 
-## Publisher: <br>
-[jonasgao](https://clawhub.ai/user/jonasgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonasgao](https://clawhub.ai/user/jonasgao)
 
-## Use Case: <br>
-Developers and operators use this skill when working with Consul clusters to look up endpoints and draft requests for catalog, KV, health, ACL, agent, session, transaction, and service mesh operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents powerful Consul administrative operations, including writes, deletes, ACL changes, service deregistration, sessions, transactions, and maintenance-related actions. <br>
-Mitigation: Require explicit review before applying mutating operations, verify the target datacenter, namespace, key prefix, service, or intention, and use least-privilege ACL tokens. <br>
-Risk: Consul examples may include tokens, key values, or operational details that should not be exposed. <br>
-Mitigation: Redact secrets and sensitive cluster information before sharing prompts, outputs, logs, or generated commands. <br>
+## Use Case:
 
+Developers and operators use this skill to look up Consul HTTP API patterns for service discovery, KV storage, health checks, ACL token operations, sessions, transactions, and service mesh configuration.
 
-## Reference(s): <br>
-- [Consul API Reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP endpoint examples, JSON request bodies, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs should be reviewed before applying changes to a Consul cluster.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill documents Consul operations that can change cluster state, including deletes, ACL changes, service registration, and service mesh intentions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation for destructive or access-changing operations, and verify the datacenter, namespace, service, and key prefix before using an example against a real cluster.
+
+Risk: Consul ACL tokens may be exposed if copied into shared prompts, logs, command history, or transcripts.
+
+Mitigation: Use least-privilege ACL tokens, avoid management tokens, redact credentials from examples, and keep real tokens out of shared agent conversations.
+
+## Reference(s):
+
+- [Complete API endpoint reference](references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/jonasgao/skills/consul-api)
+- [Publisher profile](https://clawhub.ai/user/jonasgao)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline HTTP examples, JSON snippets, and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-oriented responses may include Consul endpoint paths, query parameters, request bodies, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

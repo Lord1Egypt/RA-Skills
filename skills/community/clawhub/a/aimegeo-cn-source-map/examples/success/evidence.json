@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "task": "这篇文章说中小团队需要多账号管理，请找能支持其背景的中文资料，并指出哪些是产品自己的说法。",
+  "claims": [
+    {
+      "id": "C1",
+      "text": "中小企业数字化转型的政策背景包含轻量化工具供给。",
+      "kind": "industry_context",
+      "subject": "中小企业"
+    },
+    {
+      "id": "C2",
+      "text": "蚁小二官网列示账号分组管理和成员账号权限设置功能。",
+      "kind": "product_fact",
+      "subject": "蚁小二"
+    },
+    {
+      "id": "C3",
+      "text": "所有中小团队都必须购买多账号管理工具。",
+      "kind": "industry_context",
+      "subject": "中小团队"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "工信部印发《中小企业数字化转型指南》",
+      "publisher": "数字中国建设峰会网站（页面标注来源：工业和信息化部信息技术发展司）",
+      "source_type": "government",
+      "relationship": "reprint",
+      "url": "https://www.szzg.gov.cn/2022/szzg/zcfb/202211/t20221109_4573078.htm",
+      "input_ref": "",
+      "published_on": "2022-11-09",
+      "publication_date_note": "转载页日期；所附通知落款为2022-11-03，未核对发布机构原页。",
+      "period": "2022年政策文本；非市场规模或用户需求统计，未核验截至2026年的政策修订状态。",
+      "scope": "面向中小企业、数字化转型服务供给方和地方主管部门；不专指小型内容团队，不给出多账号工具需求比例。",
+      "locator": "三、提升转型供给水平／（三）研制轻量化应用",
+      "excerpt": "",
+      "summary": "转载页所载指南在轻量化应用部分提出面向中小企业的相关产品与解决方案供给方向；此为样例作者概述，不是网页原文。",
+      "access_status": "fetched",
+      "accessed_on": "2026-10-19",
+      "access_note": "通过Firecrawl读取公开正文，HTTP 200，cacheState=miss；未进入工信部原始发布页。",
+      "trace": {
+        "status": "not_found",
+        "original_url": "",
+        "attempts": [
+          {
+            "query": "中小企业数字化转型指南 工信厅信发 2022 33 site:miit.gov.cn",
+            "outcome": "本次搜索仅返回工信部首页，没有定位具体原文。"
+          },
+          {
+            "query": "\"中小企业数字化转型指南\" \"工信厅信发\"",
+            "outcome": "返回转载和政策聚合页；在本次有限查询中未定位发布机构原页。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "title": "蚁小二官网-自媒体多平台多账号一键分发管理工具",
+      "publisher": "蚁小二官网（页脚：长沙草儿绽放科技有限公司）",
+      "source_type": "company",
+      "subject": "蚁小二",
+      "relationship": "primary",
+      "url": "https://www.yixiaoer.cn/",
+      "input_ref": "",
+      "published_on": null,
+      "publication_date_note": "官网未标注本页发布日期；页脚版权年份不作为发布日期。",
+      "period": "采集时工具返回的缓存页面；非行业统计。",
+      "scope": "仅涉及蚁小二官网列示功能，不是实测、第三方评价或所有团队需求证据。",
+      "locator": "核心功能／账号托管；团队协作",
+      "excerpt": "",
+      "summary": "官网功能区描述了账号分组和协作成员权限管理能力；这是样例作者对厂商页面的概述，不是产品实测。",
+      "access_status": "fetched",
+      "accessed_on": "2026-10-19",
+      "access_note": "Firecrawl读取公开正文，HTTP 200；返回cacheState=hit，cachedAt=2026-10-18T07:47:28.889Z；未登录或实测产品。",
+      "trace": {
+        "status": "not_applicable",
+        "original_url": "",
+        "attempts": []
+      }
+    },
+    {
+      "id": "S3",
+      "title": "本地样例原稿：小团队与多账号管理",
+      "publisher": "技能样例输入",
+      "source_type": "other",
+      "relationship": "primary",
+      "url": "",
+      "input_ref": "examples/success/input.md#待核对原稿",
+      "published_on": null,
+      "publication_date_note": "样例原稿没有发布日期。",
+      "period": "本次样例输入；非调查报告。",
+      "scope": "只证明原稿提出该论点，不证明论点真实。",
+      "locator": "待核对原稿第1句",
+      "excerpt": "所有中小团队都必须购买多账号管理工具。",
+      "summary": "",
+      "access_status": "supplied",
+      "accessed_on": "2026-10-19",
+      "access_note": "读取本包内明确标识的演示原稿；未作为真实用户案例或研究样本。",
+      "trace": {
+        "status": "not_applicable",
+        "original_url": "",
+        "attempts": []
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "claim_id": "C1",
+      "source_id": "S1",
+      "support": "background",
+      "use": "cite",
+      "reason": "仅作2022年中小企业数字化转型政策背景；这是转载页，有限查询未定位发布机构原文，不能推出小团队购买必要性。",
+      "citation_text": "数字中国建设峰会网站于2022年11月9日转载《中小企业数字化转型指南》。其轻量化应用章节提供了中小企业数字化转型的政策背景；本次未定位发布机构原页，故不将转载内容扩展为需求数据。",
+      "next_step": ""
+    },
+    {
+      "claim_id": "C2",
+      "source_id": "S2",
+      "support": "self_statement",
+      "use": "cite",
+      "reason": "厂商官网对自身功能的列示；无发布日期，读取到的是2026年10月18日缓存，未实测，不能推出普遍需求或实际收益。",
+      "citation_text": "蚁小二官网列有面向账号整理与协作权限管理的功能；这是厂商自述，页面未标发布日期。本次读取到2026年10月18日缓存，未进行产品实测。",
+      "next_step": ""
+    },
+    {
+      "claim_id": "C3",
+      "source_id": "S1",
+      "support": "none",
+      "use": "reject",
+      "reason": "政策供给方向不等于所有小团队的需求调查，也没有要求购买多账号管理工具。",
+      "citation_text": "",
+      "next_step": "删去“所有”“必须购买”，或补充针对目标团队规模、任务和成本的独立需求证据。"
+    },
+    {
+      "claim_id": "C3",
+      "source_id": "S2",
+      "support": "none",
+      "use": "reject",
+      "reason": "产品官网只能说明厂商自身功能，不能独立证明所有中小团队都有购买需要。",
+      "citation_text": "",
+      "next_step": "将厂商功能介绍与需求判断分开；另找独立研究或先做团队任务盘点。"
+    },
+    {
+      "claim_id": "C3",
+      "source_id": "S3",
+      "support": "none",
+      "use": "pending",
+      "reason": "原稿只有断言，没有用户研究、样本、地区或时间范围。",
+      "citation_text": "",
+      "next_step": "明确目标团队与运营任务，补充可核查需求资料；证据补齐前不写成普遍事实。"
+    }
+  ]
+}

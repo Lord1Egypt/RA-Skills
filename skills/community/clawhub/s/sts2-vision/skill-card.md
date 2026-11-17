@@ -1,43 +1,53 @@
-## Description: <br>
-Sts2 Vision monitors Slay the Spire 2 combat by capturing the game window, using OCR to read combat values, tracking damage and DPS, and exporting combat reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sts2 Vision captures the Slay the Spire 2 game window and uses OCR to monitor combat data, DPS statistics, and JSON combat reports.
 
-## Publisher: <br>
-[ErebusCry](https://clawhub.ai/user/ErebusCry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erebuscry](https://clawhub.ai/user/erebuscry)
 
-## Use Case: <br>
-Players and tool builders use this skill to monitor local Slay the Spire 2 gameplay, calibrate regions of interest, recognize HP and damage values, calculate DPS, and produce JSON combat reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill captures the local game window and may save screenshots or reports that include visible gameplay data. <br>
-Mitigation: Run it only with the intended game window visible, keep sensitive windows or notifications out of the capture area, and review saved screenshots and reports before sharing. <br>
-Risk: Some monitor modes collect mouse-click telemetry that is not clearly disclosed in the skill description. <br>
-Mitigation: Prefer the main, simple, or local monitor modes unless click-based attribution is specifically needed. <br>
-Risk: OCR and ROI calibration can produce incorrect combat values or DPS statistics. <br>
-Mitigation: Use calibration mode and review generated reports before relying on the statistics. <br>
+## Use Case:
 
+Players, streamers, and developers use Sts2 Vision to monitor Slay the Spire 2 combat state, calibrate screen regions, and produce DPS or combat reports from local screen captures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ErebusCry/sts2-vision) <br>
-- [Publisher profile](https://clawhub.ai/user/ErebusCry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Console status text, JSON combat reports, screenshot/image files for calibration, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are produced locally from captured game-window regions and ROI configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill captures a local game window and can write screenshots or JSON combat reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended Slay the Spire 2 window, review ROI and screenshot settings before use, and keep generated reports in a local path you control.
+
+Risk: The security evidence flags under-disclosed system-wide mouse click monitoring in monitor_v2.py.
+
+Mitigation: Review or disable monitor_v2.py before use, and use a non-click-monitoring entry point when click attribution is not needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/erebuscry/skills/sts2-vision)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples; generated combat reports are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a local game window and write local screenshots or combat report files when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

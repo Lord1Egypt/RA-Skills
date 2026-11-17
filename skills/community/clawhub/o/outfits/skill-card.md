@@ -1,40 +1,48 @@
-## Description: <br>
-Build an outfit planning system for saving inspiration, creating combinations, and dressing for any occasion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build an outfit planning system for saving inspiration, creating combinations, and dressing for any occasion.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to organize wardrobe notes, save outfit inspiration, build clothing combinations, and plan outfits for occasions, venues, weather, and dress codes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages retaining wardrobe notes, inspiration links, screenshots, and style preferences in a local ~/outfits/ workspace. <br>
-Mitigation: Avoid storing sensitive images or private links unless the user intentionally wants those materials retained locally. <br>
-Risk: Outfit suggestions can be incomplete or unsuitable if occasion, venue, weather, dress code, or owned clothing details are missing. <br>
-Mitigation: Ask for missing context before making recommendations and present options with reasoning for user review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Outfits ClawHub skill page](https://clawhub.ai/ivangdavila/outfits) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to maintain a personal outfit-planning workspace, save clothing inspiration, catalog wardrobe notes, and create outfit combinations for occasions, weather, venues, and dress codes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown wardrobe notes, outfit entries, planning suggestions, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local outfit-planning files under ~/outfits/ when used by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may collect wardrobe details, inspiration links or screenshots, style preferences, and event context in local files.
+
+Mitigation: Avoid saving private images or sensitive event details unless you are comfortable retaining them in the local outfit-planning workspace.
+
+## Reference(s):
+
+- [Outfits skill page](https://clawhub.ai/ivangdavila/skills/outfits)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown notes and file-organization guidance for a local outfit-planning workspace]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local folder and Markdown file structure under ~/outfits/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

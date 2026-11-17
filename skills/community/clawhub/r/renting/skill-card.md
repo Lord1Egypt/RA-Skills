@@ -1,40 +1,57 @@
-## Description: <br>
-Provides guidance for apartment rentals, agency listing comparisons, and personal listing discovery across major cities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供各大城市公寓租赁、中介房源比价及个人真房源指引。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users use this skill to compare rental options, identify useful rental workflows, and receive practical privacy and safety guidance before engaging with rental services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose sensitive identity, payment, lease, or account details while applying rental guidance. <br>
-Mitigation: Avoid sharing sensitive rental, payment, identity, or account information unless intentionally working with a trusted rental service outside the skill. <br>
-Risk: Some rental features may depend on third-party services whose availability or data quality can change. <br>
-Mitigation: Confirm availability, pricing, and listing details directly with the relevant rental provider before making decisions. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to compare apartment rental options, agency listings, and personal listings across major cities. It helps structure rental-search workflows, surface practical tips, and highlight privacy and reliability considerations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike47512/renting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with summaries, workflow steps, highlights, alerts, and safety tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance may depend on rental service availability and third-party integration stability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may share personal housing preferences or make sensitive authorization decisions while following rental-search guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing unnecessary personal data and review any requested authorization before acting.
+
+Risk: Language support and activation boundaries are not tightly documented.
+
+Mitigation: Deploy with clear Chinese-language routing and human review for unsupported locales or ambiguous rental-search requests.
+
+Risk: Rental listings, prices, and third-party integrations may be stale or unstable.
+
+Mitigation: Confirm listings, prices, agency terms, and personal-source claims with primary sources before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/renting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language rental-search guidance; no executable code, persistence, credential handling, or hidden high-impact behavior was reported by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

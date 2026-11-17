@@ -1,40 +1,49 @@
-## Description: <br>
-Revises English research paper Introduction sections with a p2-derived stepwise checklist while preserving meaning, citations, claims, structure, terminology, and producing Markdown revision outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revise English research paper Introduction sections with a p2-derived, step-by-step checklist: establish significance, synthesize previous/current research, articulate the gap/problem/opportunity, state the present work, and save two Markdown files.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Academic authors, editors, and research assistants use this skill to revise full English Introduction sections while preserving source claims, citations, structure, and terminology. It also documents each revision step in a method report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated revisions could unintentionally alter claims, citation support, hedging, terminology, or meaning in a manuscript. <br>
-Mitigation: Review the method report and revised Introduction against the original text before relying on the changes. <br>
-Risk: The skill writes Markdown output files, so default filenames may conflict with existing files or expose confidential manuscript content in an uncontrolled folder. <br>
-Mitigation: Use a controlled working folder for confidential manuscripts and specify output names when overwrites matter. <br>
+## Use Case:
 
+External users, researchers, and academic writers use this skill to revise complete English research-paper Introduction sections while preserving meaning, citations, claims, structure, and terminology. The skill produces a traceable method report and a clean revised Introduction.
 
-## Reference(s): <br>
-- [P2-Derived Introduction Checklist](references/introduction-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files containing a step-by-step method report and a clean revised Introduction document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes two Markdown files beside the input file or in the current working directory unless the user requests different filenames or formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes two Markdown output files during normal use, which may be unexpected when a user wants only an in-chat revision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before invoking the skill, specify alternate paths, formats, or in-chat-only output if the default files are not desired.
+
+## Reference(s):
+
+- [P2-Derived Introduction Checklist](references/introduction-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files containing a step-by-step revision method report and a clean revised Introduction]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates two Markdown files by default unless the user requests different filenames, formats, or paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

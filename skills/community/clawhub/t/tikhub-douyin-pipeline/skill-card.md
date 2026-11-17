@@ -1,43 +1,67 @@
-## Description: <br>
-TikHub API 多平台数据爬取工具，支持抖音/TikTok/B站等；用于爬取视频或评论、获取用户信息或粉丝列表、批量下载无水印视频、将抖音链接转写为文字，以及调用 TikHub API。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the TikHub API to collect Douyin, TikTok, Bilibili, and related platform data, download videos, collect comments and user data, and run Douyin video-to-text transcription workflows.
 
-## Publisher: <br>
-[kk-kingkong](https://clawhub.ai/user/kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to collect TikHub-backed Douyin, TikTok, Bilibili, and related platform data, download video assets, collect comments or user metadata, and produce transcripts from downloaded media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a TikHub API key and can make paid TikHub calls. <br>
-Mitigation: Use a limited API key, monitor account balance, and rotate the key if it is exposed. <br>
-Risk: The skill can download platform media and collect comments, followers, and user data. <br>
-Mitigation: Collect only content and personal data that the operator is authorized to access and use. <br>
-Risk: The security review identified an unsafe background transcription command in the CPU Whisper path. <br>
-Mitigation: Prefer the mlx-whisper path or avoid the CPU background path until the shell command is fixed and reviewed. <br>
+## Use Case:
 
+Developers, analysts, and content operations teams use this skill to retrieve TikHub-backed social video data, download authorized media, collect comments or user lists, and convert Douyin video links into transcripts.
 
-## Reference(s): <br>
-- [TikHub API documentation](https://api.tikhub.io/docs) <br>
-- [ClawHub release page](https://clawhub.ai/kk-kingkong/tikhub-douyin-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON files, downloaded media files, extracted audio files, and transcript text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate external API calls, paid TikHub endpoints, file downloads, ffmpeg audio extraction, and Whisper transcription workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The workflow can download media from arbitrary URL-derived sources and process scraped platform data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and restrict use to content the operator is authorized to access, download, and transcribe.
+
+Risk: Transcription paths can invoke local commands and detached background jobs.
+
+Mitigation: Review or modify the command execution paths before installation, monitor spawned jobs, and avoid processing untrusted file paths.
+
+Risk: API keys may be exposed through command-line arguments or local configuration.
+
+Mitigation: Prefer environment-based secret handling, avoid shell history exposure, and rotate TikHub keys if they are disclosed.
+
+Risk: Batch downloads can call paid TikHub endpoints repeatedly.
+
+Mitigation: Check account balance, confirm paid endpoint use before batch runs, and apply conservative limits and delays.
+
+Risk: Dependencies are unpinned.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kk-kingkong/skills/tikhub-douyin-pipeline)
+- [TikHub API documentation](https://api.tikhub.io/docs)
+- [TikHub user console](https://user.tikhub.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated runs may produce JSON, MP4, WAV, TXT, and pipeline result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call paid TikHub endpoints, download URL-sourced media, run ffmpeg, and launch Whisper transcription jobs.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

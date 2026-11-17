@@ -1,6 +1,14 @@
 {
   "ownerId": "kn7161c1ta3qh1fq8vxry4f3tn84m13s",
   "slug": "cgma-global-management-accountant",
-  "version": "2.0.0",
-  "publishedAt": 1776407632136
+  "version": "3.0.0",
+  "publishedAt": 1776407632136,
+  "localUpgrade": {
+    "from": "2.0.0",
+    "to": "3.0.0",
+    "date": "2026-11-15",
+    "basis": "GMAP + CGMA Competency Framework 2019 + Rise2040 Vision Report (AICPA & CIMA, 2026)",
+    "referenceModules": 7,
+    "backup": ".backup-cgma-global-management-accountant-v2.0.0-20261115"
+  }
 }

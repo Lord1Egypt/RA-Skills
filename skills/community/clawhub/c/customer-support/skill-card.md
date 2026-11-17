@@ -1,36 +1,52 @@
-## Description: <br>
-Resolve issues, communicate with empathy, and turn frustrated customers into loyal advocates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve issues, communicate with empathy, and turn frustrated customers into loyal advocates.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Customer support agents and teams use this skill to structure empathetic first responses, resolve customer issues, manage escalations, protect customer data, and turn negative support experiences into constructive outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A deployment connected to real support systems could expose customer data or permit concessions, escalations, notes, or ticket closure beyond an agent's authority. <br>
-Mitigation: Use existing role-based permissions and approval workflows for customer data access, concessions, escalations, internal notes, and ticket closure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Customer support agents and teams use this skill to draft empathetic, policy-aware responses, resolve customer issues, document support context, and identify when escalation is needed.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, persistence, or data transfer mechanisms are described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer data or account details could be shared without appropriate authorization in support replies.
+
+Mitigation: Keep account lookup and sensitive-data disclosure under existing support platform permissions, and verify identity before sharing sensitive information.
+
+Risk: Discounts, extensions, escalations, or internal notes could exceed the agent's authority or bypass support policy.
+
+Mitigation: Require normal approval paths for discounts, extensions, escalations, and internal-note workflows.
+
+## Reference(s):
+
+- [Customer Support Skill Page](https://clawhub.ai/ivangdavila/skills/customer-support)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance should be adapted to the support platform, policy, and customer context.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

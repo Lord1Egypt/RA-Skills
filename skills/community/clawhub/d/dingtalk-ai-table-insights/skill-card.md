@@ -1,49 +1,64 @@
-## Description: <br>
-Analyzes DingTalk AI Tables across multiple tables by keyword or topic to surface business insights, data anomalies, risks, and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes DingTalk AI Tables across multiple tables by keyword or topic to identify risks, anomalies, cross-table relationships, and actionable business insights.
 
-## Publisher: <br>
-[tomray4ai](https://clawhub.ai/user/tomray4ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomray4ai](https://clawhub.ai/user/tomray4ai)
 
-## Use Case: <br>
-Employees and business analysts use this skill to analyze DingTalk AI Table data for a specific project, function, or business line. It produces cross-table insight reports, risk warnings, anomaly notes, and action recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive business table data and generated reports, logs, and cache metadata may aggregate information from multiple tables. <br>
-Mitigation: Use a least-privilege DingTalk token, prefer keyword-scoped runs, avoid full scans on sensitive workspaces, and treat generated reports, logs, and cache metadata as sensitive. <br>
-Risk: Default LLM analysis may send sampled table contents to the configured OpenClaw model or agent context. <br>
-Mitigation: Use --no-llm when table contents should not be sent to the configured model or agent context. <br>
-Risk: Security evidence reports unsafe shell command construction. <br>
-Mitigation: Review or fix shell command construction before installation or production use. <br>
+## Use Case:
 
+Employees, analysts, and developers use this skill to scan DingTalk AI Tables for a business line, project, or function and generate cross-table insight reports with risks, anomalies, trends, and recommended actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomray4ai/dingtalk-ai-table-insights) <br>
-- [dingtalk-ai-table dependency](https://github.com/aliramw/dingtalk-ai-table) <br>
-- [Architecture](references/architecture.md) <br>
-- [Configuration](references/configuration.md) <br>
-- [Dependencies](references/dependencies.md) <br>
-- [LLM Integration](references/llm_integration.md) <br>
-- [Examples](references/examples.md) <br>
-- [Quickstart](references/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and optional JSON output, with shell commands and configuration guidance in supporting documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include sampled table summaries, anomaly findings, risk prioritization, and recommended actions; local template output is available with --no-llm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.10 (source: frontmatter, server release evidence, CHANGELOG) <br>
+Risk: Sensitive DingTalk table data may be included in broad scans or LLM analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review usage with the DingTalk workspace owner or security admin, use a narrow read-only token, avoid all-table scans unless intended, and prefer --no-llm for sensitive data.
+
+Risk: Unsafe command construction, temporary-file handling, and unpinned dependencies require review before broad use.
+
+Mitigation: Review and fix command construction and temporary-file behavior, then pin dependencies before deployment.
+
+Risk: Access tokens may be exposed if handled carelessly.
+
+Mitigation: Do not print tokens or store them in shell startup files; keep tokens least-privileged and rotate them according to workspace policy.
+
+## Reference(s):
+
+- [dingtalk-ai-table dependency](https://github.com/aliramw/dingtalk-ai-table)
+- [Architecture](references/architecture.md)
+- [Configuration](references/configuration.md)
+- [Dependencies](references/dependencies.md)
+- [Examples](references/examples.md)
+- [LLM Integration](references/llm_integration.md)
+- [Prompt Design](references/prompt_design.md)
+- [Quickstart](references/quickstart.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON insight reports, with shell commands and concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may use LLM analysis by default and can fall back to local templates; table reads are sampled and configurable with command-line limits.]
+
+## Skill Version(s):
+
+1.6.10 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

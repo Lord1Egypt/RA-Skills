@@ -1,44 +1,63 @@
-## Description: <br>
-Automates LinkedIn content creation, posting, scheduling, engagement tracking, content ideation, commenting, and audience growth through browser access with a logged-in LinkedIn session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates LinkedIn content creation, posting, scheduling, engagement tracking, content ideation, commenting, and audience growth through a logged-in browser session.
 
-## Publisher: <br>
-[renatomaluhy](https://clawhub.ai/user/renatomaluhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renatomaluhy](https://clawhub.ai/user/renatomaluhy)
 
-## Use Case: <br>
-External users and creators use this skill to draft, publish, schedule, analyze, and engage with LinkedIn content through a logged-in browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through a live LinkedIn account and affect public posts, articles, likes, comments, and scheduled activity. <br>
-Mitigation: Review and confirm every post, article, like, and comment before it goes live, and avoid unbounded recurring schedules. <br>
-Risk: Analytics extraction may include account-specific assumptions such as a hard-coded LinkedIn profile URL. <br>
-Mitigation: Remove or parameterize account-specific URLs before running analytics workflows. <br>
-Risk: Optional webhook configuration can disclose workflow failures or account activity to an unintended destination. <br>
-Mitigation: Configure DISCORD_WEBHOOK only with a webhook endpoint controlled by the user. <br>
+## Use Case:
 
+External users and agents use this skill to draft, post, schedule, and analyze LinkedIn content through a logged-in browser session. It also provides content strategy and engagement guidance for growing a LinkedIn presence.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renatomaluhy/linkedin-automation-enhanced) <br>
-- [LinkedIn Content Strategy Guide](references/content-strategy.md) <br>
-- [LinkedIn Engagement & Growth Tactics](references/engagement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations, post and article text, scheduling instructions, and analytics summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser access to a logged-in LinkedIn session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can act through a logged-in LinkedIn browser session and includes posting, article publishing, commenting, liking, and scheduling workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit manual approval before any public LinkedIn action is executed.
+
+Risk: Analytics extraction targets a hard-coded LinkedIn profile in the artifact scripts.
+
+Mitigation: Replace the hard-coded profile with the current user's profile or an explicit user-supplied target before use.
+
+Risk: The analytics workflow includes an optional Discord webhook alert path.
+
+Mitigation: Document the webhook behavior and keep it opt-in with user-provided configuration.
+
+Risk: The security summary identifies an unsafe shell reporting helper.
+
+Mitigation: Fix or review the eval-based report writer before routine use.
+
+## Reference(s):
+
+- [LinkedIn Content Strategy Guide](references/content-strategy.md)
+- [LinkedIn Engagement & Growth Tactics](references/engagement.md)
+- [ClawHub Skill Page](https://clawhub.ai/renatomaluhy/skills/linkedin-automation-enhanced)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; analytics workflows may produce JSON and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser access with an active LinkedIn session; some workflows depend on OpenClaw browser and cron tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

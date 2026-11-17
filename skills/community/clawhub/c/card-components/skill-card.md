@@ -1,38 +1,48 @@
-## Description: <br>
-When the user wants to design, optimize, or audit card layouts for content display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing, optimizing, or auditing scannable, responsive card layouts for content display.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and their coding agents use this skill to produce guidance for card components, content grids, and responsive repeated-item layouts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Card layout guidance may be applied in ways that reduce clarity, accessibility, or responsiveness.
+
+Mitigation: Review generated designs for scannability, mobile behavior, image alt text, and clear action hierarchy before release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Designers, developers, and content teams use this skill to plan, optimize, or audit responsive card components and card grids for products, articles, resources, galleries, integrations, and similar content displays. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat card-layout advice as a complete automated audit or implementation guarantee. <br>
-Mitigation: Review recommendations against project requirements, accessibility needs, and production UI behavior before applying them. <br>
+**Output Format:** [Markdown guidance with design recommendations, tables, and implementation-oriented notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/card-components) <br>
+**Other Properties Related to Output:** [No tool execution, credential access, persistence, or external access is requested by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Design guidance for card layouts; does not request code execution, credentials, persistence, or data access.] <br>
+1.1.1 (source: skill frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

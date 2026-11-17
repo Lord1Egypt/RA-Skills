@@ -1,0 +1,296 @@
+---
+name: "used-car-walkaround"
+description: "Turn one used-car condition sheet into a listing hero still and a speakable walkaround script, then turn that still into one used car walkaround clip. This used car walkaround studio makes a used-car listing still and a listing walkaround video from the facts you already have. Use it for dealer lot walkaround video, used-car listing video, and inventory walkaround clips."
+---
+
+# Used Car Walkaround
+
+Turn one used-car condition sheet into a listing hero still and a
+speakable walkaround script, then turn that still into one walkaround
+clip. The first delivery is one labeled listing still plus one
+speakable script the dealer can reuse. The clip comes after that lead
+is accepted.
+
+## Scope and adjacent routes
+
+Use this Skill when a used-car dealer wants a listing hero and one
+walkaround clip from a condition sheet they already have: dealer lot
+walkaround video, used-car listing video, or an inventory walkaround
+clip.
+
+Route silent room clips to `listing-room-video-pack`. Route a talking
+presenter that is not a car walkaround to `talking-avatar-video`.
+Route a silent tool demo to `tool-demo-clip`. Route a generic still
+that is not a named listing to `image-to-motion`.
+
+One car is one clip. Remaining stock is a later pack with a new card.
+Do not stitch clips.
+
+## Collect the condition sheet
+
+Hard inputs are:
+
+- one named listing (stock number, or year, make, and model);
+- the user-supplied condition sheet;
+- the language the walkaround should speak.
+
+Reuse already-known destination, voice, and brand look. Ask only for a
+missing hard input. If the condition sheet is missing, ask for it.
+Do not invent a listing to finish the still.
+
+Mileage, accident history, and maintenance records may only be copied
+verbatim from that condition sheet. Never invent or polish those
+facts. Do not round a mileage figure, rewrite an accident line, or
+fill a blank from a similar car. A missing line stays a named gap.
+
+An optional listing photo is a visual reference, not a source for
+missing condition facts. Upload it only after the host Agent inspects
+it. Never pass a local path to a remote tool.
+
+## Plan the free listing still and script
+
+Write a labeled listing still plan and a speakable walkaround script
+before any paid call. Record the named listing, canvas, printed
+condition-sheet lines, the spoken script with mileage, accident, and
+maintenance lines copied verbatim, language, and any optional photo
+role. Keep the script short enough for one 2–15s clip. Extra lines
+stay on the plan as named gaps. That plan plus script is the free
+visible result. Planning is not approval.
+
+Safe defaults:
+
+- one 16:9 2K listing hero still (`model: "auto"`, `count: 1`);
+- one walkaround speech track, `model: "auto"` unless the dealer chose
+  a concrete compatible speech model;
+- one 2–15s walkaround clip with the still as the strict first frame
+  and `driving_audio` required. Omit `aspect_ratio`. Keep
+  `model: "auto"` unless the dealer chose a concrete eligible
+  driving-audio card. Never silently swap the model.
+
+Before setting a concrete still, speech, or video model, canvas,
+format, duration, or price, read the current `beatra.models.list`
+cards for `text_to_image`, `text_to_speech`, and `image_to_video` (plus
+`{"capability": "speech_script"}` when using Smart Voice Director for
+spoken pacing). Filter ready voices with `beatra.voices.list` (bilingual
+`search` and `supports_direction`, `supports_emotion`,
+`supports_performance_tags`, `supports_context`, inspecting all 11
+`capabilities.*` metadata fields) and optionally audition candidates
+free with `beatra.voices.preview`. Never put a display name in `voice`.
+Use `mp3` only when the live speech card supports it and the live video
+card accepts the expected `audio/mpeg`.
+
+When pacing, pauses, or pronunciation cues help delivery, run
+`beatra.speech.prepare_script` (Smart Voice Director, keeping your
+verbatim mileage, accident, and maintenance wording intact; pass ready
+`scripts[].synthesis` unchanged, or if `scripts[].synthesis` is `null`, inspect
+`warnings`; 48h re-call with identical copy changing only `voice`/`model` charges zero
+extra credits; max 2 concurrent; never hand-author braced tags or strip
+`/` pauses manually). Before confirming spend, always run free
+`beatra.speech.validate` with the planned voice, script, model,
+language, and format to inspect `valid`, `weighted_characters`, live
+`price_credits`, and `estimated_duration_seconds`: confirm the walkaround
+narration fits cleanly inside the 2–15s clip cut window before paying
+for synthesis. Keep `subtitle_enable: true` (default) on synthesis for
+free aligned `output.subtitles` (`JSON`/`SRT`/`VTT`) plus
+`speech_start_seconds`, `speech_end_seconds`, and
+`integrated_loudness_lufs`.
+
+## Confirm the lead still and speech, then the walkaround clip
+
+Before any billable still, script prep, or speech, show one current
+six-field lead card and wait (`voices.list`, `voices.preview`, and
+`speech.validate` run free beforehand):
+
+1. Work — one listing hero still (`beatra.images.generate`), optional
+   Smart Voice Director script preparation (`beatra.speech.prepare_script`
+   when needed), and one walkaround speech track (`beatra.speech.synthesize`)
+   for this named car.
+2. Credits — the live `text_to_image` price plus `text_to_speech` price
+   (and live `speech_script` estimate if `prepare_script` is on the
+   card). Do not reuse a remembered number.
+3. Count — two paid calls (`images.generate` and `speech.synthesize`),
+   or three when `prepare_script` is included, one per slot. Do not
+   batch remaining stock into this submit.
+4. Identity — one new opaque `client_request_id` per paid slot.
+   A changed prompt, fact line, voice, format, file, model, or canvas
+   mints a new ID only for the changed slot.
+5. If we stop here — the labeled listing still plan and the speakable
+   walkaround script remain usable.
+6. If the balance is insufficient — relay the official message and its
+   top-up URL exactly. Translate the prose; keep the URL. Do not retry
+   until the dealer says they have topped up.
+
+Submit each lead slot once through bundled `scripts/mcp_client.py`.
+Poll `beatra.tasks.get`. Deliver actual still bytes, actual speech
+bytes, actual duration, and `billing.net_charged_credits`. Present or
+play the real audio when the host can do so. A script preview is not
+an audio review.
+
+After that lead is accepted, refresh the current `beatra.models.list`
+card for `image_to_video`. Admit the actual still and audio against a
+card that accepts `[image, driving_audio]`. Compare every still and
+audio fact with advertised constraints. Choose the smallest supported
+integer duration in the 2–15s range that is at least the actual speech
+length. Do not add silence to force a match. Lead acceptance is not
+video approval.
+
+Then show a fresh six-field animate card and wait:
+
+1. Work — one walkaround clip for this named car, an animate call
+   (`beatra.videos.animate`) with the accepted still as the first
+   frame and the accepted speech as `driving_audio`.
+2. Credits — the live `image_to_video` price just read. Do not reuse a
+   remembered number.
+3. Count — one paid call for this car. Do not stitch. Do not batch
+   remaining stock into this submit.
+4. Identity — one new opaque `client_request_id`. A changed still,
+   audio, prompt, duration, or model mints a new ID.
+5. If we stop here — the accepted still and speech remain usable.
+6. If the balance is insufficient — relay the official message and its
+   top-up URL exactly. Do not retry until the dealer says they have
+   topped up.
+
+After the dealer approves that card, submit `beatra.videos.animate`
+once.
+
+Remaining named cars are a later pack. Show a fresh six-field pack
+card. Do not treat acceptance of the first car as approval of the
+rest.
+
+## Review, deliver, and recover
+
+Review printed and spoken mileage, accident, and maintenance lines
+against the condition sheet. Report only what the host can actually
+see or hear. Unread small type is unread. Do not treat the still or
+clip as a certified vehicle history.
+
+Deliver the still, the speech (with free aligned `output.subtitles`
+`JSON`/`SRT`/`VTT` files when generated), and the clip with actual
+dimensions, duration, usage, and `billing.net_charged_credits`. Never
+invent a stitch, concat, or editor tool.
+
+After a returned `task_id`, poll that task. If the create response is
+lost, search with `beatra.tasks.list` and verify with
+`beatra.tasks.get` before replay. Reuse an ID only with
+byte-identical arguments. Cancel only when the dealer asks.
+
+## Execution
+
+Invoke every remote Beatra operation only through this package's bundled
+`scripts/mcp_client.py`. Put the MCP tool name after `call` and send one
+JSON object on standard input.
+
+```bash
+python3 scripts/mcp_client.py call beatra.models.list
+```
+
+```json
+{"capability": "text_to_image"}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.models.list
+```
+
+```json
+{"capability": "speech_script"}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.models.list
+```
+
+```json
+{"capability": "text_to_speech"}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.models.list
+```
+
+```json
+{"capability": "image_to_video"}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.voices.list
+```
+
+```json
+{"language": "zh", "use_case": "narration", "limit": 20}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.voices.preview
+```
+
+```json
+{"voice_id": "voice_selected"}
+```
+
+```bash
+python3 scripts/mcp_client.py call beatra.speech.validate
+```
+
+```json
+{"voice": "voice_selected", "input": "The speakable walkaround with verbatim mileage, accident, and maintenance lines.", "model": "auto", "format": "mp3"}
+```
+
+```text
+printf '%s' '{"prompt":"Create the listing hero still for this named used car. Print only condition-sheet lines that belong on the still. Do not invent mileage, accident, or maintenance facts.","model":"auto","count":1,"canvas":{"type":"preset","tier":"2K","aspect":"16:9"},"client_request_id":"opaque-used-car-still-01"}' | python3 scripts/mcp_client.py call beatra.images.generate
+```
+
+```text
+printf '%s' '{"voice":"voice_selected","input":"The speakable walkaround with verbatim mileage, accident, and maintenance lines.","subtitle_enable":true,"client_request_id":"opaque-used-car-speech-01"}' | python3 scripts/mcp_client.py call beatra.speech.synthesize
+```
+
+```text
+printf '%s' '{"image":{"type":"artifact","artifact_id":"art_listing_still"},"driving_audio":{"type":"artifact","artifact_id":"art_walkaround_speech"},"prompt":"A restrained walkaround hold on this listing still. Keep the car identity stable. Do not add unstated mileage or accident claims.","duration":8,"client_request_id":"opaque-used-car-video-01"}' | python3 scripts/mcp_client.py call beatra.videos.animate
+```
+
+Do not configure or call a host Beatra Connector, and do not use
+REST/OpenAPI as a fallback.
+
+## Account balance
+
+When the user asks how many credits remain or whether a live estimate fits,
+call `beatra.wallet.get`. When they ask what was charged, call
+`beatra.wallet.ledger`. Both are read-only. Do not invent an account-balance or
+top-up tool. Do not make `wallet.get` a required step before every paid submit.
+
+When a model card comes back carrying a `top_up` block, relay its tiers as the
+card lists them and in that order. Do not rank them, do not talk one down, and
+do not pick one for the user. Which tier suits them is their call, made on
+the wallet page with the whole list in front of them. Never quote a tier from
+memory.
+
+## References by task
+
+- For still plans, scripts, payloads, confirmation, polling, recovery,
+  and review, read
+  [Used-car walkaround workflow](references/workflow.md).
+- For Smart Voice Director, 11-dimension voice discovery and free audition,
+  free `beatra.speech.validate` pacing fit, and free aligned `SRT`/`VTT`
+  subtitles, read
+  [speech, voices, and audio finishing](references/speech-and-audio.md).
+- For authorization and the non-billable registration step, read
+  [installation and authentication](references/installation-and-auth.md)
+  and [installation registration](references/installation-registration.md).
+- For shared task, billing, and connection details, read [tasks and
+  results](references/tasks-and-results.md), [billing, errors, and
+  recovery](references/billing-errors-and-recovery.md), and [Bundled MCP
+  Client diagnostics](references/mcp-connection.md).
+- Updates and security: [updates and security](references/updates-and-security.md)
+- For removal, read [uninstall and disconnect](references/uninstall-and-disconnect.md).
+
+## Updates and security
+
+This Skill runs only the files installed with it and leaves them unchanged while
+it runs; it never downloads or executes other code. It talks to Beatra's official
+services over HTTPS, and a file you choose to upload goes only to the one-time
+upload address Beatra issues for it.
+
+Once a day at most, the bundled client reads Beatra's public version list. When
+the store or tool you installed from has a newer version, it prints one line with
+the command that updates it there. Updating stays your choice, through that store
+or tool. See [updates and security](references/updates-and-security.md).

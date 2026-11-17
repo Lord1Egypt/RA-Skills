@@ -1,40 +1,57 @@
-## Description: <br>
-Generates AI summaries of conversations after silence, extracting entities, action items, and relationships for searchable meeting notes and context retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Percept Summarize generates searchable conversation summaries with entity extraction, action items, and relationship mapping after a silence timeout.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn recent conversation transcripts into searchable summaries, action items, entity records, and relationship context for follow-up and recall. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation transcripts and derived summaries may contain sensitive personal or business information and are processed by OpenClaw. <br>
-Mitigation: Confirm consent, review whether OpenClaw sends prompts to a remote model, and enable the skill only where that processing is acceptable. <br>
-Risk: Summaries, entities, relationships, and speaker profiles are stored locally and may be accessible through the dashboard or SQLite data. <br>
-Mitigation: Restrict access to the dashboard and database, review retention needs, and define a deletion process for stored conversation-derived records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jarvis563/percept-summarize) <br>
-- [Percept GitHub repository](https://github.com/GetPercept/percept) <br>
+## Use Case:
 
+People using Percept use this skill to turn recent conversations and meetings into searchable summaries, action items, entity records, and relationship context for later retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and text, with optional SQL snippets for querying stored summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conversation-derived summaries, entities, relationships, and speaker profiles may be retained locally according to the artifact's retention periods.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes and stores sensitive conversation content, entities, relationships, and speaker profiles.
+
+Mitigation: Review it before installation in private, regulated, or workplace settings; confirm user consent, data access controls, and deletion or expiration policies.
+
+Risk: The security evidence notes unclear controls around external summarization through OpenClaw processing.
+
+Mitigation: Confirm whether OpenClaw processing is local or remote and whether transcripts leave the intended environment before enabling automatic summarization.
+
+Risk: Stored summaries and relationship data may be accessible through SQLite or the dashboard.
+
+Mitigation: Restrict access to the SQLite database and dashboard, and verify retention settings for utterances, summaries, relationships, and speaker profiles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarvis563/skills/percept-summarize)
+- [Percept GitHub repository](https://github.com/GetPercept/percept)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Text summaries plus SQLite-backed conversation, entity, relationship, and action-item records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searchable through the Percept dashboard on port 8960 or SQLite; retention varies by data type.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

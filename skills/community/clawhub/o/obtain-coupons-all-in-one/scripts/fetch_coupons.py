@@ -14,8 +14,35 @@ import json
 import requests
 from typing import Optional, Dict, List, Any
 
+import os
+import uuid
+
 # API配置
 API_BASE_URL = "https://agskills.moontai.top"
+
+
+# 归因配置：渠道标识 + 安装uuid，由中转服务烘焙进 CPS sid 做归因
+CHANNEL = "allinone"
+
+
+def _load_install_id() -> str:
+    """首次运行生成uuid并持久化到 scripts/.install_id，用于渠道归因。"""
+    id_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.install_id')
+    try:
+        with open(id_file, 'r', encoding='utf-8') as f:
+            install_id = f.read().strip()
+            if install_id:
+                return install_id
+    except OSError:
+        pass
+    install_id = uuid.uuid4().hex
+    try:
+        with open(id_file, 'w', encoding='utf-8') as f:
+            f.write(install_id)
+    except OSError:
+        pass
+    return install_id
+
 
 
 class AllInOneCouponFetcher:
@@ -24,9 +51,13 @@ class AllInOneCouponFetcher:
     def __init__(self, base_url: str = API_BASE_URL):
         self.base_url = base_url.rstrip('/')
         self.session = requests.Session()
+        self.session.params.update({
+            'ch': CHANNEL,
+            'u': _load_install_id(),
+        })
         self.session.headers.update({
             'Content-Type': 'application/json',
-            'User-Agent': 'WorkBuddy-AllInOneCouponFetcher/1.0'
+            'User-Agent': 'XiaFan-CouponFetcher/2.0'
         })
 
     def _fetch_api(self, endpoint: str) -> Any:

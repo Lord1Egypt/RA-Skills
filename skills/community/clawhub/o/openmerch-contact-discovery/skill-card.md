@@ -1,41 +1,60 @@
-## Description: <br>
-Find a professional's work email from their name and company domain using OpenMerch; this is contact discovery, not email verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find a professional's work email from their name and company domain using OpenMerch; this is contact discovery, not email verification.
 
-## Publisher: <br>
-[kernel-gd](https://clawhub.ai/user/kernel-gd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernel-gd](https://clawhub.ai/user/kernel-gd)
 
-## Use Case: <br>
-Users with a legitimate business contact-discovery purpose use this skill to look up one professional work email from a first name, last name, and company domain. It returns a normalized lookup result with confidence, optional profile fields, cost, and job ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookups send names and company domains to the external OpenMerch service and may involve personal data. <br>
-Mitigation: Use the skill only for legitimate business purposes, follow applicable privacy and retention rules, and avoid submitting sensitive or non-consensual personal data. <br>
-Risk: Each successful lookup can spend OpenMerch account credits. <br>
-Mitigation: Review the planned price before execution, use the quoted max_cost, and reuse the same idempotency key when retrying the same lookup. <br>
+## Use Case:
 
+External users and developers use this skill to look up a single professional work email from a first name, last name, and company domain. It returns the discovered contact data with confidence, cost, and job metadata, but it does not verify deliverability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kernel-gd/openmerch-contact-discovery) <br>
-- [OpenMerch documentation](https://docs.openmerch.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON result or concise text summary with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One lookup per run; result may include email, confidence score, optional profile fields, raw provider output, cost_usd, and job_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and release evidence) <br>
+Risk: The skill sends names, company domains, and the OpenMerch API key to OpenMerch for paid lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, use an appropriate OpenMerch key, and review returned job cost metadata.
+
+Risk: Changing OPENMERCH_BASE_URL can redirect lookup data and credentials away from the default OpenMerch endpoint.
+
+Mitigation: Leave OPENMERCH_BASE_URL unset for normal use, or set it only to a trusted OpenMerch HTTPS endpoint with a suitable test key.
+
+Risk: The skill finds likely work email addresses but does not verify deliverability.
+
+Mitigation: Treat results as contact discovery output and perform separate verification before relying on deliverability.
+
+## Reference(s):
+
+- [OpenMerch documentation](https://docs.openmerch.dev)
+- [OpenMerch API endpoint](https://api.openmerch.dev)
+- [ClawHub skill page](https://clawhub.ai/kernel-gd/skills/openmerch-contact-discovery)
+- [Publisher profile](https://clawhub.ai/user/kernel-gd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and JSON contact lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One lookup per run; normalized result includes any returned email, name, domain, position, LinkedIn URL, score, raw provider output, cost_usd, and job_id.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

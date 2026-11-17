@@ -1,43 +1,60 @@
-## Description: <br>
-Generates SRT or ASS subtitles by aligning WAV audio and plain-text transcript lines through the Volcengine ATA API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate subtitles with automatic time alignment using the Volcengine ATA API for audio and transcript inputs.
 
-## Publisher: <br>
-[BlackEight4752](https://clawhub.ai/user/BlackEight4752) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackeight4752](https://clawhub.ai/user/blackeight4752)
 
-## Use Case: <br>
-Developers, creators, and media operators use this skill to automate subtitle time alignment from 16 kHz mono WAV audio and one-sentence-per-line transcript text, producing SRT or ASS files for video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio and transcript content are sent to Volcengine or another explicitly configured ATA endpoint. <br>
-Mitigation: Process only authorized content and avoid confidential or regulated recordings unless external processing is approved. <br>
-Risk: Live ATA alignment requires an API token and application identifier. <br>
-Mitigation: Use protected secret handling, prefer restrictive permissions for config files, and avoid exposing credentials in shared logs or command history. <br>
+## Use Case:
 
+Developers, media producers, and agent operators use this skill to create time-aligned subtitle files from WAV audio and a plain-text transcript. It is intended for workflows that need SRT or ASS output and can use Volcengine ATA credentials for real alignment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BlackEight4752/doubao-ata-subtitle) <br>
-- [Volcengine ATA documentation](https://www.volcengine.com/docs/6561/163043?lang=zh) <br>
-- [Volcengine speech application console](https://console.volcengine.com/speech/app) <br>
-- [OpenClaw documentation](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated SRT or ASS subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WAV 16 kHz mono PCM audio, UTF-8 transcript text, and Volcengine credentials for live API alignment; without credentials the artifact can emit mock subtitles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Audio, transcript text, and the API token may be sent to a configured external endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented HTTPS Volcengine endpoint, avoid custom endpoints unless fully trusted, and review the skill before processing recordings.
+
+Risk: Credential files may expose Volcengine application secrets if stored with broad permissions.
+
+Mitigation: Protect ~/.volcengine_ata.conf with restrictive permissions and prefer short-lived or narrowly scoped API tokens.
+
+Risk: Sensitive recordings may be exposed before endpoint validation and upload disclosure gaps are addressed.
+
+Mitigation: Do not process sensitive recordings until those gaps have been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blackeight4752/skills/doubao-ata-subtitle)
+- [Volcengine ATA Documentation](https://www.volcengine.com/docs/6561/163043?lang=zh)
+- [Volcengine Speech App Console](https://console.volcengine.com/speech/app)
+- [OpenClaw Documentation](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated SRT or ASS subtitle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WAV 16 kHz mono PCM audio and one-sentence-per-line UTF-8 text input; uses mock output when API credentials are absent.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

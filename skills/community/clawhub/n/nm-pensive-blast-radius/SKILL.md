@@ -2,23 +2,28 @@
 name: blast-radius
 description: |
   Analyzes code change impact with risk scoring and affected-node mapping. Use before merging to understand what a change touches and what lacks test coverage
-version: 1.9.8
+version: 1.10.3
 triggers:
   - code-review
   - impact-analysis
   - risk-scoring
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e"}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Blast Radius Analysis
 
 Analyze the impact of current code changes using the
 code knowledge graph.
+
+## When NOT To Use
+
+- Reading the changed code for defects (use `pensive:bug-review`)
+- The code graph is missing or stale (use `gauntlet:graph-build`)
 
 ## Prerequisites
 
@@ -60,7 +65,7 @@ Tell the user: "Run `/gauntlet-graph build` first."
    of filename matching. See `leyline:sem-integration`
    for detection patterns.
 
-   **Fallback tier 2 (no sem, no gauntlet)**: Trace
+   **Fallback tier 2 (sem and gauntlet both absent)**: Trace
    callers of changed functions with rg (or grep):
    ```bash
    # Prefer rg for speed; fall back to grep
@@ -87,11 +92,14 @@ Tell the user: "Run `/gauntlet-graph build` first."
 
    Format the output as a table:
    ```
-   Risk  | Node                    | File          | Reason
-   0.85  | auth.py::verify_token   | auth.py:45    | untested, security
-   0.62  | db.py::execute_query    | db.py:112     | high fan-in
-   0.41  | api.py::handle_request  | api.py:78     | flow participant
+   Risk  | Node                    | File          | Anchor                          | Reason
+   0.85  | auth.py::verify_token   | auth.py:45    | `def verify_token(token):`      | untested, security
+   0.62  | db.py::execute_query    | db.py:112     | `cursor.execute(query, params)` | high fan-in
+   0.41  | api.py::handle_request  | api.py:78     | `def handle_request(req):`      | flow participant
    ```
+
+   The `Anchor` column is the verbatim source text at the cited line.
+   It lets a reviewer confirm the finding without re-running the tool.
 
 4. **Highlight untested functions**: List any affected
    functions that lack test coverage (no TESTED_BY edge).
@@ -106,6 +114,22 @@ Tell the user: "Run `/gauntlet-graph build` first."
      and authorization logic carefully"
    - For high-fan-in nodes: "Changes here affect many
      callers; verify backward compatibility"
+
+### Verify Findings Are Grounded (`blast-radius:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] Results table lists every affected node with a `File` (file:line)
+      and verbatim `Anchor` column.
+- [ ] Overall risk level (low/medium/high) is displayed based on the
+      maximum risk score.
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor`
+      confirmed by `citation_verifier.py` (exit `0`), or unverified
+      findings were dropped or labeled `UNVERIFIED`.
 
 ## Risk Scoring Model
 

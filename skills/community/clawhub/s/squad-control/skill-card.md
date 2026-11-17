@@ -1,49 +1,64 @@
-## Description: <br>
-Integrate with Squad Control kanban for AI agent task orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate with Squad Control kanban for AI agent task orchestration.
 
-## Publisher: <br>
-[wgan](https://clawhub.ai/user/wgan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgan](https://clawhub.ai/user/wgan)
 
-## Use Case: <br>
-Developers and operators use this skill to poll Squad Control for assigned work, dispatch worker or reviewer sessions, update task state, create GitHub pull requests, and recover stuck tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can handle GitHub tokens and Squad Control API keys while cloning repositories, pushing branches, creating pull requests, and updating task state. <br>
-Mitigation: Install only on a dedicated, monitored OpenClaw instance; use workspace-scoped Squad Control keys where possible and fine-grained GitHub tokens from a bot account. <br>
-Risk: The skill can spawn workers and merge code, so incorrect task routing or excessive permissions could affect protected repositories. <br>
-Mitigation: Use protected branches, required CI and reviews, conservative agent concurrency, and repository-scoped credentials. <br>
-Risk: The optional wake-listener flow depends on runtime support and is identified by the security guidance as a feature to avoid until reviewed. <br>
-Mitigation: Prefer the polling flow unless the wake-listener script and local runtime path have been reviewed in the target environment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to connect OpenClaw agents to Squad Control tasks, dispatch worker and reviewer sessions, create GitHub PRs, and report status back to the kanban workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wgan/squad-control) <br>
-- [Squad Control](https://squadcontrol.ai) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Squad Control API Reference](references/api-reference.md) <br>
-- [Advanced Flows Reference](references/advanced-flows.md) <br>
-- [Workspace Config Reference](references/workspace-config.md) <br>
-- [Poll Result Schema](references/poll-result.schema.json) <br>
-- [Review Checklist](references/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown instructions with inline shell commands, JSON examples, and API request templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task orchestration guidance and command/API call patterns for an agent; poll scripts can emit HEARTBEAT_OK or a POLL_RESULT JSON envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Automated agents receive Squad Control API keys and may receive GitHub tokens for private repository cloning, pushing, PR creation, and merge workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted Squad Control instances and workspaces; prefer workspace-scoped keys, fine-grained repository tokens, protected branches, and human approval before merges.
+
+Risk: Account-scoped API keys can expose tasks and workspace configuration across multiple workspaces to dispatched agents.
+
+Mitigation: Use workspace-scoped keys when possible and limit account-scoped keys to environments where all connected workspaces and task sources are trusted.
+
+Risk: Secrets may appear in agent prompts, shell environments, logs, or session transcripts during task dispatch.
+
+Mitigation: Redact API keys and GitHub tokens from logs and sessions, and avoid embedding credentials directly in cron messages, clone URLs, or persistent files.
+
+## Reference(s):
+
+- [Squad Control Skill Page](https://clawhub.ai/wgan/skills/squad-control)
+- [Squad Control Homepage](https://squadcontrol.ai)
+- [Setup Guide](references/setup.md)
+- [API Reference](references/api.md)
+- [Advanced Flows Reference](references/advanced-flows.md)
+- [Workspace Config Reference](references/workspace-config.md)
+- [Poll Result Schema](references/poll-result.schema.json)
+- [Review Checklist](references/review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, shell commands, and API call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce GitHub pull requests, Squad Control task status updates, review verdicts, and structured POLL_RESULT JSON during agent workflows.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-中文AI科技日报自动采集与推送。从The Verge、Wired、TechCrunch等英文源抓取最新AI资讯，自动翻译整理为中文，按分类推送到飞书/Telegram/Discord等渠道。适合关注AI行业动态的中文用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai News Zh collects English-language AI news, translates and organizes it into a Chinese daily briefing, and can deliver it to Feishu, Telegram, or Discord.
 
-## Publisher: <br>
-[pppig1357](https://clawhub.ai/user/pppig1357) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pppig1357](https://clawhub.ai/user/pppig1357)
 
-## Use Case: <br>
-Chinese-speaking AI practitioners, operators, and readers use this skill to collect English-language AI news, translate and classify it, and produce a concise daily Chinese briefing for manual review or channel posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may be posted to third-party messaging services when integrations are configured. <br>
-Mitigation: Run the skill manually once, confirm the exact posting channel, and grant only limited bot or API permissions. <br>
-Risk: Generated translations and summaries can omit context or misstate details from source articles. <br>
-Mitigation: Review the selected stories and source links before relying on the briefing or distributing it broadly. <br>
-Risk: Optional search or messaging integrations may require sensitive credentials. <br>
-Mitigation: Store credentials in the agent environment or approved secret manager and avoid granting permissions beyond news collection and intended channel posting. <br>
+## Use Case:
 
+Chinese-language users who follow the AI industry use this skill to collect, deduplicate, translate, categorize, and receive daily AI news briefings from public English-language sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pppig1357/ai-news-zh-1-0-0) <br>
-- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence) <br>
-- [Wired AI RSS](https://www.wired.com/feed/tag/ai/latest/rss) <br>
-- [TechCrunch RSS](https://techcrunch.com/feed/) <br>
-- [Anthropic News](https://www.anthropic.com/news) <br>
-- [MIT Technology Review RSS](https://www.technologyreview.com/feed/) <br>
-- [Google AI Blog](https://blog.google/technology/ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily briefing in Chinese with source links and category labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 8-12 selected news items, ordered by importance, with a short trend insight.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Scheduled delivery can send briefings to an unintended Feishu, Telegram, or Discord destination if the channel is configured incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the exact destination before enabling scheduled delivery or the message tool, then perform a manual run to confirm the content and channel.
+
+Risk: Briefings are generated from public news sources and automated translation, so individual items may contain source inaccuracies, stale information, or translation errors.
+
+Mitigation: Review important items against the included source URLs before relying on them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pppig1357/skills/ai-news-zh-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/pppig1357)
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence)
+- [Wired AI RSS](https://www.wired.com/feed/tag/ai/latest/rss)
+- [TechCrunch RSS](https://techcrunch.com/feed/)
+- [Anthropic News](https://www.anthropic.com/news)
+- [MIT Technology Review RSS](https://www.technologyreview.com/feed/)
+- [Google AI Blog](https://blog.google/technology/ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown daily briefing with Chinese headlines, summaries, source links, category labels, and a short trend observation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically 8-12 news items per briefing; messaging delivery depends on configured Feishu, Telegram, or Discord destination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,66 @@
-## Description: <br>
-MLX Local AI helps agents guide setup and operation of local LLM, embedding, and OpenClaw gateway services on Apple Silicon Macs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MLX Local AI installs and manages local Apple Silicon LLM and Chinese embedding services with OpenAI-compatible endpoints and an OpenClaw gateway.
 
-## Publisher: <br>
-[saybanet](https://clawhub.ai/user/saybanet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saybanet](https://clawhub.ai/user/saybanet)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, start, stop, check, and test local AI services on macOS Apple Silicon. It is intended for local chat-completions and embedding workflows exposed through OpenAI-compatible endpoints and an OpenClaw gateway configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run shell scripts that install unpinned Python packages and download model code on the user's Mac. <br>
-Mitigation: Review the installation and startup scripts before execution, verify package and model sources, and install only in an isolated local environment. <br>
-Risk: The startup workflow can run downloaded model code with trust-remote-code in a background service. <br>
-Mitigation: Confirm that remote model code is acceptable for the environment, consider removing trust-remote-code, and monitor the local service logs. <br>
-Risk: The embedding service depends on a local ~/embedding_server.py file whose contents may not be defined by the release artifact. <br>
-Mitigation: Inspect ~/embedding_server.py before starting services and replace it with a reviewed implementation if needed. <br>
+## Use Case:
 
+Developers and agent users on macOS Apple Silicon use this skill to set up local chat, embedding, and OpenClaw gateway services for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/saybanet/mlx-local-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/saybanet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and service-management guidance for macOS Apple Silicon environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may run local background AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service ports, logs, and startup commands before installation, and start services only when local API exposure is intended.
+
+Risk: The skill may modify shell startup configuration.
+
+Mitigation: Inspect any shell profile changes before sourcing them and keep a backup of existing shell configuration.
+
+Risk: The skill may install unpinned dependencies and download model artifacts from a third-party mirror.
+
+Mitigation: Review dependency and model sources, pin versions where possible, and install only from networks and mirrors approved for the deployment environment.
+
+Risk: The skill may execute model-supplied code.
+
+Mitigation: Review the selected model repository and remote-code requirement before startup, and disable remote-code execution when the model stack allows it.
+
+Risk: The OpenClaw configuration may route requests to a remote Baidu provider unless changed.
+
+Mitigation: Inspect the OpenClaw provider configuration before use and remove or replace remote providers when local-only routing is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saybanet/skills/mlx-local-ai)
+- [Publisher profile](https://clawhub.ai/user/saybanet)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and service-management instructions for local macOS services; no structured post-processing required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

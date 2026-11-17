@@ -1,42 +1,57 @@
-## Description: <br>
-Access and manage credentials, secrets, and domain registrations using the R4 platform with injected environment variables and API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage credentials, secrets, and domain registrations using the R4 platform with environment-variable injection and API calls.
 
-## Publisher: <br>
-[lukezirngibl](https://clawhub.ai/user/lukezirngibl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukezirngibl](https://clawhub.ai/user/lukezirngibl)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve project secrets, inject credentials into commands, and manage domain registration and DNS operations through R4. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad access to vault secrets. <br>
-Mitigation: Use only with an R4 vault and domain account the user is comfortable exposing to the agent, and prefer scoped or temporary secrets. <br>
-Risk: Commands may inject secrets into process environments or reveal secret values. <br>
-Mitigation: Require manual confirmation before listing secrets, retrieving secret values, or running commands with injected secrets. <br>
-Risk: The skill can purchase domains and change DNS records. <br>
-Mitigation: Require manual confirmation before purchasing domains or modifying DNS records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [R4 API Documentation](https://r4.dev/docs/api-reference) <br>
-- [ClawHub R4 Skill Page](https://clawhub.ai/lukezirngibl/r4) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve scoped secrets from R4, run commands with injected environment variables, and manage domain search, purchase, and DNS operations through R4.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that expose or inject secrets and API calls that purchase domains or modify DNS records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose or inject sensitive credentials into agent-run commands.
+
+Mitigation: Use a tightly scoped R4 vault, avoid printing or logging secret values, and do not run untrusted commands through `r4 run`.
+
+Risk: The skill can affect billing or ownership by purchasing domains and changing DNS records.
+
+Mitigation: Require explicit approval before domain purchases, DNS changes, or actions that use billing authority.
+
+Risk: The skill can supply credentials to third-party services.
+
+Mitigation: Require explicit approval before sending credentials to third-party services and limit available vault items to the task scope.
+
+## Reference(s):
+
+- [R4 API Documentation](https://r4.dev/docs/api-reference)
+- [ClawHub R4 Skill](https://clawhub.ai/lukezirngibl/skills/r4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes secret-handling and domain-management guidance; users should avoid exposing raw secret values in logs or command output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

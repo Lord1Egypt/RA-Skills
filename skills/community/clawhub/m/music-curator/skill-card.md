@@ -1,40 +1,53 @@
-## Description: <br>
-Curates personalized playlists and music recommendations with strict intent preservation for playlists, queues, recommendation sets, artist or track expansion, and music discovery with version constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates personalized playlists and music recommendations with strict intent preservation, taste and version constraints, and clear boundaries between official identity and similarity-based discovery.
 
-## Publisher: <br>
-[neqq3](https://clawhub.ai/user/neqq3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neqq3](https://clawhub.ai/user/neqq3)
 
-## Use Case: <br>
-External users and agents use this skill to classify music requests, preserve strict intent boundaries, curate playlists or recommendation sets, and coordinate music discovery or playback tools without substituting off-brief tracks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music preferences and playback intent may be used when the skill coordinates with music discovery or playback tools. <br>
-Mitigation: Use it only for requested music curation tasks and review candidate lists before queueing when confidence is medium or low. <br>
-Risk: Ambiguous requests can lead to off-brief recommendations, such as similarity matches presented as official songs. <br>
-Mitigation: Classify each request as strict identity, similarity, or hybrid, and ask a focused clarifying question when the boundary is unclear. <br>
+## Use Case:
 
+External users and agents use this skill to classify music requests, curate strict official or similarity-based playlists, filter noisy versions, and hand final selections to playback or discovery tools.
 
-## Reference(s): <br>
-- [Music Curator ClawHub page](https://clawhub.ai/neqq3/music-curator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with concise track lists and queue-building instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce candidate track lists, exclusion notes, and short progress updates before or during playback requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Connected music and discovery tools may search, enqueue, or start playback when the user asks for music.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those tools' permissions separately and ask for confirmation when curation confidence is medium or low.
+
+Risk: Strict playlist requests can be diluted by similarity matches, noisy versions, or unrelated substitutions.
+
+Mitigation: Classify each request first, filter non-canonical versions by default, and report missing canonical tracks instead of silently substituting unrelated songs.
+
+## Reference(s):
+
+- [Music Curator on ClawHub](https://clawhub.ai/neqq3/skills/music-curator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text with curated track lists and concise rationale tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include availability notes and short confirmation prompts before queueing uncertain selections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

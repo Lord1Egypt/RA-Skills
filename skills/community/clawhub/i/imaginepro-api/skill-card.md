@@ -1,42 +1,55 @@
-## Description: <br>
-Generate AI images via ImaginePro API (Midjourney, Flux, Nano Banana, Lumi Girl, video). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images via ImaginePro API (Midjourney, Flux, Nano Banana, Lumi Girl, video).
 
-## Publisher: <br>
-[iamzifei](https://clawhub.ai/user/iamzifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iamzifei](https://clawhub.ai/user/iamzifei)
 
-## Use Case: <br>
-Developers and AI agents use this skill to call ImaginePro for image and video generation, prompt enhancement, upscaling, background removal, and status polling from shell workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, image URLs, and optional webhook endpoints to ImaginePro for processing. <br>
-Mitigation: Avoid confidential prompts, private or internal image URLs, personal data, and sensitive webhook endpoints unless ImaginePro processing is acceptable. <br>
-Risk: The skill uses an ImaginePro account API key and can spend account credits. <br>
-Mitigation: Use a dedicated API key where possible, monitor credit usage, and check available credits before large batches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamzifei/imaginepro-api) <br>
-- [ImaginePro AI agent skill documentation](https://platform.imaginepro.ai/ai-agent-skill) <br>
-- [ImaginePro API key setup](https://platform.imaginepro.ai/dashboard/setup) <br>
-- [ImaginePro pricing](https://platform.imaginepro.ai/pricing) <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to generate, edit, upscale, and track images or videos through the ImaginePro API from shell commands or JSON-oriented workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMAGINEPRO_API_KEY and may return message IDs, generation status, image URLs, video task results, or error JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends prompts, image URLs, frame URLs, task metadata, and the ImaginePro API key to ImaginePro API endpoints.
+
+Mitigation: Use only approved prompts and image URLs, keep IMAGINEPRO_API_KEY in the environment rather than hard-coding it, and avoid sending confidential or restricted content.
+
+Risk: Most generation and post-processing operations consume paid ImaginePro credits.
+
+Mitigation: Check credit balance and pricing before batch or repeated generation, and prefer low-volume test runs before larger jobs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iamzifei/skills/imaginepro-api)
+- [ImaginePro AI Agent Skill Documentation](https://platform.imaginepro.ai/ai-agent-skill)
+- [ImaginePro API Key Setup](https://platform.imaginepro.ai/dashboard/setup)
+- [ImaginePro Pricing](https://platform.imaginepro.ai/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper can return pretty-printed or compact JSON containing task IDs, status, result URLs, model data, or errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

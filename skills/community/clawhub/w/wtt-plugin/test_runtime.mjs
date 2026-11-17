@@ -596,11 +596,11 @@ async function testReviewPatchRetryThenSuccess() {
   const statusWrites = [];
 
   const resultRaw = await executor.enqueueRun({
-    taskId: "task-review-retry-success",
-    metadata: runtimeMetadata("task-review-retry-success", "todo"),
+    taskId: "taREDACTED-SECRET",
+    metadata: runtimeMetadata("taREDACTED-SECRET", "todo"),
     accountId: "default",
     apiRequest: async (request) => {
-      if (request.method === "PATCH" && request.path === "/tasks/task-review-retry-success") {
+      if (request.method === "PATCH" && request.path === "/tasks/taREDACTED-SECRET") {
         const status = request.body?.status;
         statusWrites.push(status);
 
@@ -615,7 +615,7 @@ async function testReviewPatchRetryThenSuccess() {
       return { ok: true };
     },
     fetchTaskDetail: async () => ({
-      id: "task-review-retry-success",
+      id: "taREDACTED-SECRET",
       title: "review retry success",
       description: "verify retry path",
       topic_id: "topic-status",

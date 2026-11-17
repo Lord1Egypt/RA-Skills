@@ -1,0 +1,12 @@
+interface:
+  display_name: "Meo Mai Moi MCP"
+  short_description: "Connect Meo Mai Moi via MCP OAuth presets."
+  default_prompt: "Use $meo-mai-moi-mcp to connect Meo Mai Moi with Everyday care, then help with a pet task."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "meo-mai-moi"
+      description: "Meo Mai Moi OAuth MCP gateway"
+      transport: "streamable_http"
+      url: "https://mcp.meo-mai-moi.com/mcp"

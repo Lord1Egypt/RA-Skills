@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "fire_compartment",
+      "patterns": [
+        "防火分区",
+        "防火隔离",
+        "FIRE ZONE"
+      ]
+    },
+    {
+      "type": "evacuation_plan",
+      "patterns": [
+        "疏散平面",
+        "疏散路线",
+        "安全出口",
+        "EVACUATION"
+      ]
+    },
+    {
+      "type": "accessibility_plan",
+      "patterns": [
+        "无障碍平面",
+        "无障碍坡道",
+        "无障碍卫生间",
+        "ACCESSIBLE"
+      ]
+    },
+    {
+      "type": "green_energy_plan",
+      "patterns": [
+        "节能设计",
+        "绿建",
+        "太阳能",
+        "光伏",
+        "GREEN",
+        "ENERGY"
+      ]
+    },
+    {
+      "type": "water_landscape",
+      "patterns": [
+        "海绵城市",
+        "渗排",
+        "雨水花园",
+        "SPONGE"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "fire_safety",
+      "patterns": [
+        "防火",
+        "疏散",
+        "灭火器",
+        "防火门",
+        "防火卷帘",
+        "FIRE"
+      ]
+    },
+    {
+      "system": "accessibility",
+      "patterns": [
+        "无障碍",
+        "轮椅",
+        "坡道",
+        "扶手",
+        "ACCESSIBLE"
+      ]
+    },
+    {
+      "system": "green_building",
+      "patterns": [
+        "绿建",
+        "绿色建筑",
+        "海绵",
+        "雨水",
+        "GREEN"
+      ]
+    },
+    {
+      "system": "energy_efficiency",
+      "patterns": [
+        "节能",
+        "保温",
+        "光伏",
+        "太阳能",
+        "热回收",
+        "ENERGY"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "fire_zone",
+      "system": "fire_safety",
+      "patterns": [
+        "防火分区",
+        "防火单元",
+        "FIRE ZONE"
+      ]
+    },
+    {
+      "category": "evacuation_route",
+      "system": "fire_safety",
+      "patterns": [
+        "疏散路线",
+        "疏散通道",
+        "安全出口",
+        "EVACUATION"
+      ]
+    },
+    {
+      "category": "fire_door",
+      "system": "fire_safety",
+      "patterns": [
+        "防火门",
+        "FM",
+        "FIRE DOOR"
+      ]
+    },
+    {
+      "category": "fire_shutter",
+      "system": "fire_safety",
+      "patterns": [
+        "防火卷帘",
+        "FIRE SHUTTER"
+      ]
+    },
+    {
+      "category": "accessible_route",
+      "system": "accessibility",
+      "patterns": [
+        "无障碍坡道",
+        "无障碍通道",
+        "轮椅",
+        "ACCESSIBLE"
+      ]
+    },
+    {
+      "category": "accessible_toilet",
+      "system": "accessibility",
+      "patterns": [
+        "无障碍卫生间",
+        "无障碍厕所",
+        "ACCESSIBLE WC"
+      ]
+    },
+    {
+      "category": "green_roof",
+      "system": "green_building",
+      "patterns": [
+        "种植屋面",
+        "屋顶绿化",
+        "海绵",
+        "GREEN ROOF"
+      ]
+    },
+    {
+      "category": "rain_garden",
+      "system": "green_building",
+      "patterns": [
+        "雨水花园",
+        "渗排",
+        "下凹绿地",
+        "RAIN GARDEN"
+      ]
+    },
+    {
+      "category": "pv_panel",
+      "system": "energy_efficiency",
+      "patterns": [
+        "光伏板",
+        "太阳能板",
+        "光伏组件",
+        "PV"
+      ]
+    },
+    {
+      "category": "energy_layer",
+      "system": "energy_efficiency",
+      "patterns": [
+        "节能层",
+        "保温层",
+        "断桥",
+        "ENERGY"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "zone_no": "(?<![A-Za-z0-9])(?:FH|FZ|BQ|ZC)\\d{1,4}[A-Za-z]?(?![A-Za-z0-9])",
+    "elevation": "(?<![A-Za-z0-9])标高\\s*[-+]?\\d+(?:\\.\\d+)?",
+    "energy_level": "(?<![A-Za-z0-9])(?:节能|绿建)[^。；;]{0,20}级",
+    "fire_zone_no": "(?<![A-Za-z0-9])(?:FH|FZ|防火分区)[-_/:：]?\\s*\\d{0,4}(?![A-Za-z0-9])"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,4}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "fire",
+      "system": "fire_safety",
+      "patterns": [
+        "防火",
+        "FIRE"
+      ]
+    },
+    {
+      "category": "accessibility",
+      "system": "accessibility",
+      "patterns": [
+        "无障碍",
+        "ACCESSIBLE"
+      ]
+    },
+    {
+      "category": "green",
+      "system": "green_building",
+      "patterns": [
+        "绿建",
+        "海绵",
+        "GREEN"
+      ]
+    },
+    {
+      "category": "energy",
+      "system": "energy_efficiency",
+      "patterns": [
+        "节能",
+        "光伏",
+        "ENERGY"
+      ]
+    }
+  ]
+}

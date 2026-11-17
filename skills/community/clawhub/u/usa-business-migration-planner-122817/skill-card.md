@@ -1,42 +1,55 @@
-## Description: <br>
-Helps operators, founders, and small business owners turn a U.S. business-migration goal into practical planning artifacts, checklists, workflows, analysis, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create practical planning artifacts, workflows, checklists, and analysis for emigrating to the USA and starting a business.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External users, founders, operators, and small business owners use this skill to plan a U.S.-focused business migration path and produce decision support, checklists, or workflows they can act on. It is planning support and should not be treated as legal, immigration, tax, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for U.S.-focused business migration planning <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may auto-trigger on broad business or Ask HN wording outside the user's intended U.S. business-migration context. <br>
-Mitigation: Confirm the user's desired outcome and constraints before producing planning guidance. <br>
-Risk: Users may mistake planning output for legal, immigration, tax, or financial advice. <br>
-Mitigation: State assumptions and limits clearly, and direct users to qualified professionals for regulated decisions. <br>
+## Use Case:
 
+External users, especially operators, founders, and small business owners, use this skill to turn a USA business migration and startup goal into an actionable planning workflow, checklist, analysis, or decision-support artifact.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Ask HN source requirement](https://news.ycombinator.com/item?id=48500638) <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/usa-business-migration-planner-122817) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, checklists, workflows, lightweight analysis, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only planning support; no hidden execution, data access, persistence, or exfiltration identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may produce business, immigration, tax, or legal planning guidance that is incomplete or unsuitable for a user's specific circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general planning support and verify important decisions with qualified business, immigration, tax, or legal professionals.
+
+Risk: Broad activation terms may cause the skill to activate on unrelated business or USA-related requests.
+
+Mitigation: Review activation behavior before deployment and narrow trigger terms when precision is required.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Ask HN source requirement](https://news.ycombinator.com/item?id=48500638)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/usa-business-migration-planner-122817)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with checklists, workflows, assumptions, analysis, and verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-specific assumptions, remaining risks, and recommended professional review for business, immigration, tax, or legal decisions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

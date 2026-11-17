@@ -1,49 +1,68 @@
-## Description: <br>
-HR AI Assistant helps agents answer HR questions and generate HR policies, forms, job descriptions, reports, and related documents through the HRrule AI service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR AI Assistant helps agents answer HR questions and generate HR policies, forms, job descriptions, reports, and related documents through HRrule AI.
 
-## Publisher: <br>
-[aijuntao](https://clawhub.ai/user/aijuntao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aijuntao](https://clawhub.ai/user/aijuntao)
 
-## Use Case: <br>
-HR staff, managers, and business users use this skill to request HR consultation, labor-law-oriented Q&A, and draft HR documents such as employee handbooks, job descriptions, performance forms, compensation materials, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HR prompts and document context may contain employee, compensation, legal, or company-confidential information that is sent to HRrule. <br>
-Mitigation: Minimize sensitive details before use and confirm that the organization is comfortable sending the content to HRrule. <br>
-Risk: API keys may be exposed if pasted into chat or stored in an overly broad local configuration file. <br>
-Mitigation: Use a protected HRRULE_API_KEY environment variable or a carefully permissioned config file, and avoid sharing real API keys in chat transcripts. <br>
-Risk: The skill can produce generated document links or downloaded attachments that may contain sensitive or unreviewed content. <br>
-Mitigation: Review generated attachments before opening, sharing, or relying on them for HR decisions. <br>
-Risk: Credential transmission through query-string API keys can be logged by clients, proxies, or services. <br>
-Mitigation: Prefer wss:// endpoints and avoid query-string API keys where the integration allows a safer authentication method. <br>
+## Use Case:
 
+Employees, HR practitioners, and operators use this skill to draft HR documents and get HR-focused Q&A support. Developers and platform integrators can use the bundled scripts and references to connect an agent to HRrule AI with configured API credentials.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aijuntao/hr-ai-assistant) <br>
-- [HRrule AI service](https://ai.hrrule.com/) <br>
-- [HRrule AI WebSocket API Reference](references/api_reference.md) <br>
-- [HRrule AI Example Prompts](references/example_prompts.md) <br>
-- [Installation Guide](INSTALL.md) <br>
-- [Usage Guide](USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and streamed text with optional code blocks, shell commands, and generated document download links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call HRrule over WebSocket, stream responses, and return links or downloaded attachments when the HRrule service provides generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.9 (source: server release evidence and CHANGELOG.md, released 2026-03-20) <br>
+Risk: The skill can send HR questions and document context to HRrule, which may include sensitive employee, compensation, medical, disciplinary, or legal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorization and a valid data-processing basis, and avoid sending sensitive employee details unless required and approved.
+
+Risk: The skill uses API credentials for HRrule access.
+
+Mitigation: Do not paste real API keys into chat; prefer environment variables or a protected local secret store and rotate keys if exposed.
+
+Risk: Browser examples include an unsecured ws:// endpoint while the Python client uses wss://ai.hrrule.com.
+
+Mitigation: Prefer TLS-protected wss:// connections and avoid the ws:// browser example for real HR data.
+
+Risk: Generated HR and labor-law guidance may be incomplete, jurisdiction-specific, or unsuitable for final use.
+
+Mitigation: Have qualified HR, legal, or compliance reviewers check generated policies, forms, and advice before relying on them.
+
+Risk: The skill includes optional local scripts and attachment download behavior.
+
+Mitigation: Review scripts before execution, run them in a controlled environment, and inspect downloaded documents before distribution.
+
+## Reference(s):
+
+- [HR AI Assistant on ClawHub](https://clawhub.ai/aijuntao/skills/hr-ai-assistant)
+- [HRrule AI](https://ai.hrrule.com/)
+- [HRrule AI WebSocket API Reference](artifact/references/api_reference.md)
+- [HRrule AI Example Prompts](artifact/references/example_prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown text with optional code blocks, shell commands, configuration snippets, and document download links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Streams HRrule responses; generated attachments may be exposed as Markdown links or downloaded when enabled.]
+
+## Skill Version(s):
+
+2.5.9 (source: server release metadata and changelog, released 2026-03-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

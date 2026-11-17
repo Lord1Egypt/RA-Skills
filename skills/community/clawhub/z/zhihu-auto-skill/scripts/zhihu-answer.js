@@ -7,17 +7,27 @@
  * CLI:
  *   node scripts/zhihu-answer.js --question-id "问题ID" --content "回答内容"
  *   node scripts/zhihu-answer.js --search "关键词" --content "回答内容"
+ *
+ * @module zhihu-answer
  */
 
 import { getSession, navigateTo, findElement, typeLikeHuman, humanDelay, sleep, withCrashRecovery, getSelectors } from './zhihu-browser.js';
+import { answerLog } from './zhihu-logger.js';
 
 // ──────────────────────────────────────────
 // 回答问题
 // ──────────────────────────────────────────
 
+/**
+ * 回答问题
+ *
+ * @param {number|string} questionId - 问题 ID
+ * @param {string} content - 回答内容
+ * @returns {Promise<{ status: string, questionId: string, url: string }>} 提交结果
+ */
 async function answerQuestion(questionId, content) {
   const url = `https://www.zhihu.com/question/${questionId}`;
-  console.log(`\n📝 回答问题: ${url}`);
+  answerLog.info(`回答问题: ${url}`);
 
   return await withCrashRecovery(async () => {
     const { page } = await getSession();
@@ -54,7 +64,7 @@ async function answerQuestion(questionId, content) {
     if (submitBtn) {
       await submitBtn.click();
       await humanDelay(2000, 4000);
-      console.log('✅ 回答已提交');
+      answerLog.info('✅ 回答已提交');
       return { status: 'submitted', questionId, url };
     }
 
@@ -66,6 +76,10 @@ async function answerQuestion(questionId, content) {
 // CLI
 // ──────────────────────────────────────────
 
+/**
+ * CLI 主入口
+ * @returns {Promise<void>}
+ */
 async function main() {
   const args = process.argv.slice(2);
   let questionId, content;
@@ -83,7 +97,7 @@ async function main() {
   }
 
   if (!questionId || !content) {
-    console.error('用法: node scripts/zhihu-answer.js --question-id "问题ID" --content "回答内容"');
+    answerLog.error('用法: node scripts/zhihu-answer.js --question-id "问题ID" --content "回答内容"');
     process.exit(1);
   }
 
@@ -92,7 +106,7 @@ async function main() {
     console.log(JSON.stringify(result, null, 2));
     process.exit(0);
   } catch (err) {
-    console.error(`❌ 回答失败:`, err.message);
+    answerLog.error('回答失败', err);
     process.exit(1);
   }
 }

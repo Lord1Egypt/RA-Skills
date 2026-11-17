@@ -54,7 +54,7 @@
 
 功能性内容：
 
-- **代名/署名**：技能的公共作者名（如 `wUwproject`、`Ldxs001`）
+- **代名/署名**：技能的公共作者名（如 `[username-redacted]`、`[username-redacted]`）
 - **公开仓库地址**：GitHub/Gitee 等公开平台的仓库链接
 - **配置模板示例**：`api_key = "your-api-key"` 这种明显是模板的
 - **技术内容**：代码逻辑、函数调用、数据结构定义
@@ -63,11 +63,11 @@
 ### 脱敏方式
 
 - **路径**：只替换"标识用户/机器身份的前缀"，保留功能后缀
-  - `C:\Users\sm001\skills\novel-weaver\...` → `[LOCAL_PATH]\skills\novel-weaver\...`
+  - `C:\Users\USERNAME\skills\novel-weaver\...` → `[LOCAL_PATH]\skills\novel-weaver\...`
 - **凭据**：替换为 `[REDACTED]`
   - `token = "abc123"` → `token = "[REDACTED]"`
 - **邮箱**：替换为 `[EMAIL]`
-  - `user@example.com` → `[EMAIL]`
+  - `[email-redacted]` → `[EMAIL]`
 - **真实姓名**：替换为 `[NAME]`
   - 仅替换非笔名的真实姓名
 

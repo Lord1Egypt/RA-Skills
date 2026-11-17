@@ -1,45 +1,54 @@
-## Description: <br>
-Social Intelligence gives AI agents MCP-based access to Xpoz social media research across Twitter, Instagram, Reddit, and TikTok for search, monitoring, lead discovery, sentiment analysis, influencer research, and CSV export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Intelligence provides AI-powered social media research across Twitter, Instagram, Reddit, and TikTok for search, lead generation, brand monitoring, sentiment analysis, influencer discovery, and CSV export through Xpoz MCP tools.
 
-## Publisher: <br>
-[atyachin](https://clawhub.ai/user/atyachin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atyachin](https://clawhub.ai/user/atyachin)
 
-## Use Case: <br>
-External researchers, marketers, sales teams, and AI agents use this skill to query Xpoz social media data, monitor brands, find leads and experts, analyze sentiment, discover influencers, and export CSV datasets through MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Xpoz queries, results, and authentication material are sent to Xpoz's hosted service. <br>
-Mitigation: Install only if this hosted-service data flow is acceptable, authenticate through the xpoz-setup skill, and protect credentials from logs or shared transcripts. <br>
-Risk: Exported social media datasets may contain personal data or sensitive user content. <br>
-Mitigation: Minimize bulk exports, store CSV files securely, restrict redistribution, and delete data when it is no longer needed. <br>
-Risk: Social media research and exports can create compliance risk under platform terms or applicable privacy rules. <br>
-Mitigation: Confirm the planned use complies with platform terms, organizational policy, and applicable privacy requirements before exporting or sharing results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Social Intelligence on ClawHub](https://clawhub.ai/atyachin/social-intelligence) <br>
-- [Xpoz](https://xpoz.ai) <br>
-- [xpoz-setup skill](https://clawhub.ai/skills/xpoz-setup) <br>
-- [xpoz-social-search skill](https://clawhub.ai/skills/xpoz-social-search) <br>
-- [social-sentiment skill](https://clawhub.ai/skills/social-sentiment) <br>
+## Use Case:
 
+External users and developers use this skill to guide AI agents through social media research workflows, including post search, expert and lead discovery, sentiment analysis, brand monitoring, influencer research, and CSV export.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, CSV exports] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter, xpoz-setup authentication, network access to mcp.xpoz.ai, and an Xpoz account; searches may export CSV datasets up to 64K rows per query.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and CSV exports may contain sensitive social-media data or unnecessary personal data.
+
+Mitigation: Avoid sending confidential, regulated, or unnecessary personal data in searches, and treat large social-media exports as sensitive datasets.
+
+Risk: The skill depends on the Xpoz service and xpoz-setup authentication flow.
+
+Mitigation: Review the Xpoz service and xpoz-setup skill before installing, especially how OAuth tokens, search queries, and CSV exports are handled.
+
+## Reference(s):
+
+- [Xpoz](https://xpoz.ai)
+- [xpoz-setup skill](https://clawhub.ai/skills/xpoz-setup)
+- [Social Intelligence on ClawHub](https://clawhub.ai/atyachin/skills/social-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and service/tool references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to request CSV exports from Xpoz MCP tools, with exports described by the artifact as up to 64K rows per query.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

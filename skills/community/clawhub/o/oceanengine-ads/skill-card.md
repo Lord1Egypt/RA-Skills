@@ -1,43 +1,60 @@
-## Description: <br>
-Integrates with Ocean Engine advertising APIs to help agents manage campaigns, automate launches, monitor performance, and generate ROI-focused optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents manage and optimize Ocean Engine advertising workflows, including campaign operations, reports, automated launch flows, budget suggestions, creative testing, and monitoring.
 
-## Publisher: <br>
-[AQzzzQA](https://clawhub.ai/user/AQzzzQA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqzzzqa](https://clawhub.ai/user/aqzzzqa)
 
-## Use Case: <br>
-Advertising optimizers, digital marketing managers, media buyers, and technical teams use this skill to manage Ocean Engine campaigns, automate launches, monitor performance, and generate ROI-oriented optimization reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch paid advertisements and change budgets, bids, creative settings, or campaign state when configured with live Ocean Engine credentials. <br>
-Mitigation: Use test mode first, require manual review before live launch or batch changes, and set external budget limits in the advertising platform. <br>
-Risk: Credential handling can expose production access tokens or app secrets if local configuration is saved carelessly. <br>
-Mitigation: Use least-privilege or limited-scope credentials where possible, prefer environment variables, and avoid calling save_config() with production secrets. <br>
+## Use Case:
 
+Advertising optimization teams, digital marketing managers, media buyers, and engineers use this skill to manage Ocean Engine ad accounts, inspect campaign reports, generate optimization recommendations, and automate budget or launch workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AQzzzQA/oceanengine-ads) <br>
-- [Ocean Engine developer platform](https://developer.oceanengine.com/) <br>
-- [Ocean Engine technical blog](https://blog.oceanengine.com/) <br>
-- [Ocean Engine developer forum](https://bbs.oceanengine.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, Python return dictionaries, and command-line text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external advertising APIs and may create or modify live ad platform resources when configured with live credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact metadata lists 1.0.0) <br>
+Risk: The skill can create or modify live Ocean Engine ads and budgets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test account first, keep budgets capped, and require review before production actions.
+
+Risk: OAuth credentials and account tokens can grant ad account access.
+
+Mitigation: Use environment variables, protect tokens, and avoid save_config() until credential storage is fixed.
+
+Risk: Dependencies and API clients run with local environment access.
+
+Mitigation: Install and execute the skill in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aqzzzqa/skills/oceanengine-ads)
+- [Ocean Engine developer platform](https://developer.oceanengine.com/)
+- [Ocean Engine](https://oceanengine.com)
+- [LemClaw homepage](https://www.lemclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, CLI text, JSON-like API results, generated reports, and Python snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Ocean Engine ad resources when configured with account credentials; optimization reports can be saved as local text files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact documentation lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

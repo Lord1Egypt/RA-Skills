@@ -1,0 +1,5 @@
+interface:
+  display_name: "本地 Skill 联动总线"
+  short_description: "连接 cad-file-reader 与算量技能的本地契约总线，同一张图只解析一次。"
+  icon_small: icon.png
+  icon_large: icon.png

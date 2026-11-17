@@ -1,7 +1,6 @@
 ---
 name: telegram-full-access
 description: "Give OpenClaw full access to your Telegram: Log into a local Telegram session, use a personal or dedicated account, let Claw automate your workflows, and manage chats through a CRM UI."
-version: 1.1.0
 metadata:
   openclaw:
     homepage: https://github.com/chihoai/telegram-for-ai-agents
@@ -50,7 +49,9 @@ Use Chiho.ai Cloud when the user wants the hosted CRM UI and does not want to ma
 2. Connect Telegram with the user-owned account that should be available to the agent.
 3. Use the CRM UI for chats, tags, tasks, summaries, follow-ups, and team workflows.
 4. Mint an Agent Access token from `https://chiho.ai/profile/agent-access`.
-5. Connect OpenClaw or another MCP client to `https://api.chiho.ai/mcp`.
+5. Copy the MCP endpoint shown on Agent Access and configure OpenClaw or another compatible client to send `Authorization: Bearer <CHIHO_AGENT_TOKEN>` with every MCP request.
+
+Claude Code supports this hosted bearer-token flow through `claude mcp add --transport http ... --header ...`. Claude web, Claude Desktop, and Cowork remote custom connectors require OAuth for authenticated hosted servers and cannot use Chiho Agent Access tokens yet. Never place a Chiho token in a connector URL or OAuth credential field.
 
 Prefer this path when the user wants the CRM UI, hosted session management, or the quickest setup.
 

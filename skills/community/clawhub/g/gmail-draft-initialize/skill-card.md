@@ -1,40 +1,53 @@
-## Description: <br>
-Atomic node skill to initialize a Gmail draft with recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to initialize a Gmail draft with recipients.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents and users composing Gmail messages use this skill to create a new empty Gmail draft addressed to specified recipients, leaving the subject and body for later update steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates Gmail drafts in the account configured for the gog CLI. <br>
-Mitigation: Use it only with a trusted gog CLI configuration and review drafts before sending. <br>
-Risk: An unclear or incorrect recipient list can create a draft addressed to unintended recipients. <br>
-Mitigation: Confirm the intended recipients before running the draft creation command. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create a new Gmail draft addressed to specified recipients, leaving the subject and body for separate update skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-draft-initialize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with an inline shell command and a JSON draft creation result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an empty Gmail draft with recipients only; subject and body are excluded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create persistent Gmail drafts through the gog CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review before installation and use only where the agent is allowed to create Gmail drafts.
+
+Risk: Recipient values may be passed through a broadly triggered shell command without clear confirmation or validation.
+
+Mitigation: Require explicit confirmation of the recipient list and prefer structured process arguments over shell interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/gmail-draft-initialize)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON]
+
+**Output Format:** [JSON response from the Gmail draft creation command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an empty Gmail draft with recipients only and returns a draft ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

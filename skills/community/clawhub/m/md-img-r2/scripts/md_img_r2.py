@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+"""Plan or explicitly apply Markdown image URL replacements for R2-compatible storage."""
 
 import argparse
 import datetime as dt
@@ -15,514 +15,348 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
-MD_IMAGE_RE = re.compile(r'!\[[^\]]*]\(([^)]+)\)')
-HTML_IMG_RE = re.compile(r'(<img\b[^>]*?\bsrc\s*=\s*)(["\']?)([^"\'>\s]+)(\2)', re.IGNORECASE)
-REF_DEF_RE = re.compile(r'^\[([^\]]+)]\s*:\s*(.+)$', re.MULTILINE)
-
-URL_SCHEMES = ("http://", "https://", "data:", "mailto:")
-DEFAULT_REGION = "auto"
-DEFAULT_PREFIX = "md-assets"
-SKILL_ROOT = Path(__file__).resolve().parent.parent
-SKILL_DOTENV = SKILL_ROOT / ".env"
 
 
-def is_remote(value: str) -> bool:
-    return value.strip().startswith(URL_SCHEMES)
+INLINE_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
+HTML_IMAGE_RE = re.compile(r"(<img\b[^>]*?\bsrc\s*=\s*)([\"']?)([^\"'>\s]+)(\2)", re.IGNORECASE)
+IMAGE_REFERENCE_RE = re.compile(r"!\[[^\]]*\]\[([^\]]+)\]")
+REFERENCE_DEF_RE = re.compile(r"^\[([^\]]+)\]\s*:\s*(.+)$", re.MULTILINE)
+REMOTE_PREFIXES = ("http://", "https://", "data:", "mailto:")
 
 
-def parse_md_link_inner(inner: str) -> Tuple[str, str]:
-    s = inner.strip()
-    if s.startswith("<"):
-        end = s.find(">")
-        if end != -1:
-            path = s[1:end].strip()
-            tail = s[end + 1:]
-            return path, tail
-
-    parts = s.split(maxsplit=1)
-    path = parts[0]
-    tail = ""
-    if len(parts) == 2:
-        idx = s.find(parts[1])
-        tail = s[idx - 1:] if idx > 0 else " " + parts[1]
-    return path, tail
+def is_remote(value):
+    return value.strip().lower().startswith(REMOTE_PREFIXES)
 
 
-def parse_ref_definition_rhs(rhs: str) -> Tuple[str, str]:
-    return parse_md_link_inner(rhs)
+def split_target(value):
+    text = value.strip()
+    if text.startswith("<"):
+        close = text.find(">")
+        if close >= 0:
+            return text[1:close].strip(), text[close + 1 :]
+    pieces = text.split(maxsplit=1)
+    return pieces[0], "" if len(pieces) == 1 else " " + pieces[1]
 
 
-def find_md_files(target: Path, recursive: bool) -> List[Path]:
+def find_markdown_files(target, recursive):
     if target.is_file():
         return [target]
-    if not target.is_dir():
-        raise FileNotFoundError(str(target))
     pattern = "**/*.md" if recursive else "*.md"
     return sorted(path for path in target.glob(pattern) if path.is_file())
 
 
-def backup_file(path: Path) -> Path:
-    backup = path.with_suffix(path.suffix + ".bak")
-    shutil.copy2(path, backup)
-    return backup
+def normalize_source(markdown_file, raw):
+    value = urllib.parse.unquote(raw)
+    candidate = Path(value)
+    if not candidate.is_absolute():
+        candidate = markdown_file.parent / candidate
+    return candidate.resolve()
 
 
-def resolve_local_path(md_path: Path, raw: str) -> Path:
-    raw = raw.replace("%20", " ")
-    path = Path(raw)
-    if not path.is_absolute():
-        path = (md_path.parent / path).resolve()
-    return path
+def safe_name(name):
+    value = re.sub(r"[^A-Za-z0-9._-]+", "-", name.strip())
+    value = re.sub(r"-{2,}", "-", value).strip(".-")
+    return value or "image"
 
 
-def replace_in_text(text: str, replacements: List[Tuple[int, int, str]]) -> str:
-    if not replacements:
-        return text
-    replacements.sort(key=lambda item: item[0])
-    out = []
-    last = 0
-    for start, end, new_value in replacements:
-        out.append(text[last:start])
-        out.append(new_value)
-        last = end
-    out.append(text[last:])
-    return "".join(out)
+def object_key(local_file, prefix):
+    digest = hashlib.sha256(local_file.read_bytes()).hexdigest()[:16]
+    base = f"{digest}-{safe_name(local_file.name)}"
+    clean_prefix = prefix.strip("/")
+    return f"{clean_prefix}/{base}" if clean_prefix else base
 
 
-def parse_dotenv_line(line: str) -> Optional[Tuple[str, str]]:
-    stripped = line.strip()
-    if not stripped or stripped.startswith("#"):
-        return None
-    if stripped.startswith("export "):
-        stripped = stripped[len("export "):].strip()
-    if "=" not in stripped:
-        return None
-    key, value = stripped.split("=", 1)
-    key = key.strip()
-    value = value.strip()
-    if not key:
-        return None
-    if value and value[0] == value[-1] and value[0] in {"'", '"'}:
-        value = value[1:-1]
-    return key, value
+def public_url(base, key):
+    return base.rstrip("/") + "/" + urllib.parse.quote(key, safe="/-_.~")
 
 
-def load_dotenv(path: Path) -> Dict[str, str]:
-    data: Dict[str, str] = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
-        parsed = parse_dotenv_line(line)
-        if parsed:
-            key, value = parsed
-            data[key] = value
-    return data
+def replace_spans(text, spans):
+    result = text
+    for start, end, replacement in sorted(spans, reverse=True):
+        result = result[:start] + replacement + result[end:]
+    return result
 
 
-def discover_dotenv(target: Path, explicit_env_file: Optional[str]) -> Optional[Path]:
-    if explicit_env_file:
-        env_path = Path(explicit_env_file).expanduser()
-        if not env_path.is_absolute():
-            env_path = (Path.cwd() / env_path).resolve()
-        if not env_path.is_file():
-            raise SystemExit(f".env file not found: {env_path}")
-        return env_path
-
-    if SKILL_DOTENV.is_file():
-        return SKILL_DOTENV
-
-    search_root = target.parent if target.is_file() else target
-    for directory in [search_root, *search_root.parents]:
-        candidate = directory / ".env"
-        if candidate.is_file():
-            return candidate
-    cwd_env = Path.cwd() / ".env"
-    if cwd_env.is_file():
-        return cwd_env
-    return None
+def collect_occurrences(markdown_file, text):
+    items = []
+    used_reference_labels = {match.group(1).strip().lower() for match in IMAGE_REFERENCE_RE.finditer(text)}
+    for match in INLINE_IMAGE_RE.finditer(text):
+        raw, tail = split_target(match.group(1))
+        items.append({"kind": "markdown", "start": match.start(1), "end": match.end(1), "raw": raw, "tail": tail})
+    for match in HTML_IMAGE_RE.finditer(text):
+        items.append({"kind": "html", "start": match.start(3), "end": match.end(3), "raw": match.group(3), "tail": ""})
+    for match in REFERENCE_DEF_RE.finditer(text):
+        if match.group(1).strip().lower() not in used_reference_labels:
+            continue
+        raw, tail = split_target(match.group(2))
+        items.append({"kind": "reference", "start": match.start(2), "end": match.end(2), "raw": raw, "tail": tail})
+    return items
 
 
-def env_or_arg(
-    arg_value: Optional[str],
-    env_name: str,
-    dotenv: Dict[str, str],
-    default: Optional[str] = None,
-) -> Optional[str]:
-    if arg_value:
-        return arg_value
-    env_value = os.getenv(env_name)
-    if env_value:
-        return env_value
-    dotenv_value = dotenv.get(env_name)
-    if dotenv_value:
-        return dotenv_value
-    return default
+def report_path(markdown_file):
+    return markdown_file.with_suffix(markdown_file.suffix + ".image-publish-plan.json")
 
 
-def default_endpoint(account_id: str) -> str:
-    return f"https://{account_id}.r2.cloudflarestorage.com"
+def read_url_map(path):
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("URL map must be a JSON object of local reference to public URL.")
+    for source, target in payload.items():
+        if not isinstance(source, str) or not isinstance(target, str) or not target.startswith(("http://", "https://")):
+            raise ValueError("Every URL map entry must use a string source and an http or https public URL.")
+    return payload
 
 
-def build_missing_config_message(missing: List[str], dotenv_path: Optional[Path]) -> str:
-    lines = [
-        "Missing required config: " + ", ".join(missing),
-        "You can provide them by either:",
-        "1. shell environment variables",
-        "2. a .env file near your markdown project",
-        "3. --env-file /path/to/.env",
-        "",
-        "Start from this template:",
-        "md-img-r2/r2-config.env",
-    ]
-    if dotenv_path:
-        lines.extend(["", f"Detected .env file: {dotenv_path}"])
-    return "\n".join(lines)
+def environment_or_arg(value, name, default=None):
+    return value or os.getenv(name) or default
 
 
-def resolve_config(args, dotenv: Dict[str, str], dotenv_path: Optional[Path]) -> dict:
-    account_id = env_or_arg(args.account_id, "CF_R2_ACCOUNT_ID", dotenv)
-    access_key_id = env_or_arg(args.access_key_id, "CF_R2_ACCESS_KEY_ID", dotenv)
-    secret_access_key = env_or_arg(args.secret_access_key, "CF_R2_SECRET_ACCESS_KEY", dotenv)
-    bucket = env_or_arg(args.bucket, "CF_R2_BUCKET", dotenv)
-    public_base_url = env_or_arg(args.public_base_url, "CF_R2_PUBLIC_BASE_URL", dotenv)
-    region = env_or_arg(args.region, "CF_R2_REGION", dotenv, DEFAULT_REGION)
-    key_prefix = env_or_arg(args.key_prefix, "CF_R2_KEY_PREFIX", dotenv, DEFAULT_PREFIX) or DEFAULT_PREFIX
-    endpoint = env_or_arg(args.endpoint, "CF_R2_ENDPOINT", dotenv)
-
+def upload_config(args):
+    account_id = environment_or_arg(args.account_id, "R2_ACCOUNT_ID")
+    endpoint = environment_or_arg(args.endpoint, "R2_ENDPOINT")
     if not endpoint and account_id:
-        endpoint = default_endpoint(account_id)
-
-    if args.dry_run:
-        return {
-            "account_id": account_id,
-            "access_key_id": access_key_id,
-            "secret_access_key": secret_access_key,
-            "bucket": bucket,
-            "public_base_url": public_base_url,
-            "region": region,
-            "endpoint": endpoint,
-            "key_prefix": key_prefix.strip("/"),
-            "dotenv_path": str(dotenv_path) if dotenv_path else None,
-        }
-
-    required = {
-        "CF_R2_ACCESS_KEY_ID": access_key_id,
-        "CF_R2_SECRET_ACCESS_KEY": secret_access_key,
-        "CF_R2_BUCKET": bucket,
-        "CF_R2_PUBLIC_BASE_URL": public_base_url,
-    }
-    missing = [name for name, value in required.items() if not value]
-    if missing:
-        raise SystemExit(build_missing_config_message(missing, dotenv_path))
-    if not endpoint:
-        raise SystemExit(
-            "Missing R2 endpoint. Set CF_R2_ENDPOINT or CF_R2_ACCOUNT_ID.\n"
-            "You can fill it in your .env based on md-img-r2/r2-config.env"
-        )
-
-    return {
-        "account_id": account_id,
-        "access_key_id": access_key_id,
-        "secret_access_key": secret_access_key,
-        "bucket": bucket,
-        "public_base_url": public_base_url,
-        "region": region,
+        endpoint = f"https://{account_id}.r2.cloudflarestorage.com"
+    config = {
+        "access_key_id": environment_or_arg(args.access_key_id, "R2_ACCESS_KEY_ID"),
+        "secret_access_key": environment_or_arg(args.secret_access_key, "R2_SECRET_ACCESS_KEY"),
+        "bucket": environment_or_arg(args.bucket, "R2_BUCKET"),
+        "public_base_url": environment_or_arg(args.public_base_url, "R2_PUBLIC_BASE_URL"),
         "endpoint": endpoint,
-        "key_prefix": key_prefix.strip("/"),
-        "dotenv_path": str(dotenv_path) if dotenv_path else None,
+        "region": environment_or_arg(args.region, "R2_REGION", "auto"),
+        "key_prefix": environment_or_arg(args.key_prefix, "R2_KEY_PREFIX", "md-assets"),
     }
+    missing = [name for name in ("access_key_id", "secret_access_key", "bucket", "public_base_url", "endpoint") if not config[name]]
+    if missing:
+        raise ValueError("Missing upload configuration: " + ", ".join(missing))
+    return config
 
 
-def sanitize_filename(name: str) -> str:
-    sanitized = re.sub(r"[^A-Za-z0-9._-]+", "-", name.strip())
-    sanitized = re.sub(r"-{2,}", "-", sanitized).strip(".-")
-    return sanitized or "file"
+def signing_key(secret, date_text, region):
+    def signed(key, value):
+        return hmac.new(key, value.encode("utf-8"), hashlib.sha256).digest()
+
+    date_key = signed(("AWS4" + secret).encode("utf-8"), date_text)
+    region_key = signed(date_key, region)
+    service_key = signed(region_key, "s3")
+    return signed(service_key, "aws4_request")
 
 
-def build_object_key(path: Path, key_prefix: str) -> str:
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()[:16]
-    filename = sanitize_filename(path.name)
-    key = f"{digest}-{filename}"
-    if key_prefix:
-        return f"{key_prefix}/{key}"
-    return key
-
-
-def guess_content_type(path: Path) -> str:
-    content_type, _ = mimetypes.guess_type(str(path))
-    return content_type or "application/octet-stream"
-
-
-def sha256_hex(payload: bytes) -> str:
-    return hashlib.sha256(payload).hexdigest()
-
-
-def sign(key: bytes, msg: str) -> bytes:
-    return hmac.new(key, msg.encode("utf-8"), hashlib.sha256).digest()
-
-
-def get_signature_key(secret_key: str, date_stamp: str, region_name: str, service_name: str) -> bytes:
-    k_date = sign(("AWS4" + secret_key).encode("utf-8"), date_stamp)
-    k_region = sign(k_date, region_name)
-    k_service = sign(k_region, service_name)
-    return sign(k_service, "aws4_request")
-
-
-def build_public_url(public_base_url: Optional[str], object_key: str) -> str:
-    base = (public_base_url or "https://example.invalid").rstrip("/")
-    return base + "/" + urllib.parse.quote(object_key, safe="/-_.~")
-
-
-def build_signed_headers(
-    method: str,
-    url: str,
-    access_key_id: str,
-    secret_access_key: str,
-    region: str,
-    content_type: str,
-    payload_hash: str,
-) -> dict:
+def signed_headers(url, access_key_id, secret_access_key, region, content_type, payload):
     parsed = urllib.parse.urlsplit(url)
-    host = parsed.netloc
     now = dt.datetime.now(dt.timezone.utc)
-    amz_date = now.strftime("%Y%m%dT%H%M%SZ")
-    date_stamp = now.strftime("%Y%m%d")
-    canonical_uri = parsed.path or "/"
-    canonical_querystring = urllib.parse.urlencode(sorted(urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)))
-
-    headers = {
+    amz_time = now.strftime("%Y%m%dT%H%M%SZ")
+    date_text = now.strftime("%Y%m%d")
+    payload_hash = hashlib.sha256(payload).hexdigest()
+    canonical_headers = {
         "content-type": content_type,
-        "host": host,
+        "host": parsed.netloc,
         "x-amz-content-sha256": payload_hash,
-        "x-amz-date": amz_date,
+        "x-amz-date": amz_time,
     }
-    signed_headers = ";".join(sorted(headers))
-    canonical_headers = "".join(f"{key}:{headers[key]}\n" for key in sorted(headers))
-    canonical_request = "\n".join(
-        [
-            method,
-            canonical_uri,
-            canonical_querystring,
-            canonical_headers,
-            signed_headers,
-            payload_hash,
-        ]
-    )
-
-    credential_scope = f"{date_stamp}/{region}/s3/aws4_request"
-    string_to_sign = "\n".join(
-        [
-            "AWS4-HMAC-SHA256",
-            amz_date,
-            credential_scope,
-            sha256_hex(canonical_request.encode("utf-8")),
-        ]
-    )
-    signing_key = get_signature_key(secret_access_key, date_stamp, region, "s3")
-    signature = hmac.new(signing_key, string_to_sign.encode("utf-8"), hashlib.sha256).hexdigest()
-    authorization = (
-        f"AWS4-HMAC-SHA256 Credential={access_key_id}/{credential_scope}, "
-        f"SignedHeaders={signed_headers}, Signature={signature}"
-    )
-
+    header_names = ";".join(sorted(canonical_headers))
+    canonical_header_text = "".join(f"{key}:{canonical_headers[key]}\n" for key in sorted(canonical_headers))
+    query = urllib.parse.urlencode(sorted(urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)))
+    canonical_request = "\n".join(["PUT", parsed.path or "/", query, canonical_header_text, header_names, payload_hash])
+    scope = f"{date_text}/{region}/s3/aws4_request"
+    string_to_sign = "\n".join(["AWS4-HMAC-SHA256", amz_time, scope, hashlib.sha256(canonical_request.encode("utf-8")).hexdigest()])
+    signature = hmac.new(signing_key(secret_access_key, date_text, region), string_to_sign.encode("utf-8"), hashlib.sha256).hexdigest()
     return {
         "Content-Type": content_type,
-        "Host": host,
+        "Host": parsed.netloc,
         "X-Amz-Content-Sha256": payload_hash,
-        "X-Amz-Date": amz_date,
-        "Authorization": authorization,
+        "X-Amz-Date": amz_time,
+        "Authorization": f"AWS4-HMAC-SHA256 Credential={access_key_id}/{scope}, SignedHeaders={header_names}, Signature={signature}",
     }
 
 
-def upload_file(config: dict, local_path: Path, object_key: str) -> str:
-    payload = local_path.read_bytes()
-    content_type = guess_content_type(local_path)
-    object_path = "/" + config["bucket"] + "/" + urllib.parse.quote(object_key, safe="/-_.~")
-    url = config["endpoint"].rstrip("/") + object_path
-    payload_hash = sha256_hex(payload)
-    headers = build_signed_headers(
+def put_object(config, local_file, key):
+    payload = local_file.read_bytes()
+    content_type = mimetypes.guess_type(str(local_file))[0] or "application/octet-stream"
+    object_path = "/" + urllib.parse.quote(config["bucket"], safe="-_.~") + "/" + urllib.parse.quote(key, safe="/-_.~")
+    target_url = config["endpoint"].rstrip("/") + object_path
+    request = urllib.request.Request(
+        target_url,
+        data=payload,
+        headers=signed_headers(target_url, config["access_key_id"], config["secret_access_key"], config["region"], content_type, payload),
         method="PUT",
-        url=url,
-        access_key_id=config["access_key_id"],
-        secret_access_key=config["secret_access_key"],
-        region=config["region"],
-        content_type=content_type,
-        payload_hash=payload_hash,
     )
-    request = urllib.request.Request(url=url, data=payload, headers=headers, method="PUT")
     try:
         with urllib.request.urlopen(request, timeout=120) as response:
             if response.status >= 300:
-                raise RuntimeError(f"Unexpected R2 status: {response.status}")
-    except urllib.error.HTTPError as error:
-        body = error.read().decode("utf-8", errors="replace") if hasattr(error, "read") else ""
-        raise RuntimeError(f"R2 HTTPError {error.code}: {body}") from error
-    except Exception as error:
-        raise RuntimeError(f"R2 upload error: {error}") from error
-    return build_public_url(config["public_base_url"], object_key)
+                raise RuntimeError(f"Unexpected upload status: {response.status}")
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"Upload failed with HTTP {exc.code}") from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"Upload connection failed: {exc.reason}") from exc
+    return public_url(config["public_base_url"], key)
 
 
-def process_one_file(md_file: Path, args, config: dict) -> dict:
-    original = md_file.read_text(encoding="utf-8")
+def build_plan(markdown_file, project_root, allow_outside_root, base_url, prefix):
+    text = markdown_file.read_text(encoding="utf-8")
     report = {
-        "file": str(md_file),
-        "bucket": config["bucket"],
-        "endpoint": config["endpoint"],
-        "public_base_url": config["public_base_url"],
-        "key_prefix": config["key_prefix"],
-        "dotenv_path": config["dotenv_path"],
-        "replaced": [],
+        "file": markdown_file.name,
+        "mode": "plan",
+        "project_root": ".",
+        "key_prefix": prefix.strip("/"),
+        "planned": [],
         "skipped_remote": [],
-        "missing_files": [],
-        "upload_failed": [],
-        "dry_run": bool(args.dry_run),
+        "issues": [],
+        "replacements": [],
     }
-
-    md_matches = []
-    for match in MD_IMAGE_RE.finditer(original):
-        inner = match.group(1)
-        link, tail = parse_md_link_inner(inner)
-        md_matches.append((match.start(1), match.end(1), link, tail))
-
-    html_matches = []
-    for match in HTML_IMG_RE.finditer(original):
-        html_matches.append((match.start(3), match.end(3), match.group(3)))
-
-    ref_matches = []
-    for match in REF_DEF_RE.finditer(original):
-        rhs = match.group(2).strip()
-        link, tail = parse_ref_definition_rhs(rhs)
-        ref_matches.append((match.start(2), match.end(2), link, tail))
-
-    occurrences = []
-    upload_plan: Dict[str, dict] = {}
-
-    for start, end, link, tail in md_matches:
-        if is_remote(link):
-            report["skipped_remote"].append({"kind": "md", "link": link})
+    seen = {}
+    for occurrence in collect_occurrences(markdown_file, text):
+        raw = occurrence["raw"]
+        if is_remote(raw):
+            report["skipped_remote"].append({"kind": occurrence["kind"], "source": raw})
             continue
-        abs_path = resolve_local_path(md_file, link)
-        if not abs_path.exists():
-            report["missing_files"].append({"kind": "md", "link": link, "resolved": str(abs_path)})
+        local_file = normalize_source(markdown_file, raw)
+        if not local_file.is_file():
+            report["issues"].append({"kind": occurrence["kind"], "source": raw, "reason": "local image not found"})
             continue
-        upload_plan.setdefault(str(abs_path), {"object_key": build_object_key(abs_path, config["key_prefix"])})
-        occurrences.append(("md", start, end, link, tail, str(abs_path)))
-
-    for start, end, link in html_matches:
-        if is_remote(link):
-            report["skipped_remote"].append({"kind": "html", "link": link})
+        if not allow_outside_root and project_root not in (local_file, *local_file.parents):
+            report["issues"].append({"kind": occurrence["kind"], "source": raw, "reason": "local image is outside project root"})
             continue
-        abs_path = resolve_local_path(md_file, link)
-        if not abs_path.exists():
-            report["missing_files"].append({"kind": "html", "link": link, "resolved": str(abs_path)})
-            continue
-        upload_plan.setdefault(str(abs_path), {"object_key": build_object_key(abs_path, config["key_prefix"])})
-        occurrences.append(("html", start, end, link, "", str(abs_path)))
-
-    for start, end, link, tail in ref_matches:
-        if is_remote(link):
-            report["skipped_remote"].append({"kind": "ref", "link": link})
-            continue
-        abs_path = resolve_local_path(md_file, link)
-        if not abs_path.exists():
-            report["missing_files"].append({"kind": "ref", "link": link, "resolved": str(abs_path)})
-            continue
-        upload_plan.setdefault(str(abs_path), {"object_key": build_object_key(abs_path, config["key_prefix"])})
-        occurrences.append(("ref", start, end, link, tail, str(abs_path)))
-
-    uploaded_map: Dict[str, str] = {}
-    for abs_path, meta in sorted(upload_plan.items()):
-        object_key = meta["object_key"]
-        if args.dry_run:
-            uploaded_map[abs_path] = build_public_url(config["public_base_url"], object_key)
-            continue
-        try:
-            uploaded_map[abs_path] = upload_file(config, Path(abs_path), object_key)
-        except Exception as error:
-            report["upload_failed"].append(
-                {
-                    "path": abs_path,
-                    "object_key": object_key,
-                    "error": str(error),
-                }
-            )
-
-    spans: List[Tuple[int, int, str]] = []
-    for kind, start, end, link, tail, abs_path in occurrences:
-        url = uploaded_map.get(abs_path)
-        if not url:
-            continue
-        if kind == "md":
-            spans.append((start, end, f"{url}{tail}"))
-        elif kind == "html":
-            spans.append((start, end, url))
-        else:
-            spans.append((start, end, f"{url}{tail}"))
-        report["replaced"].append(
+        record = seen.setdefault(str(local_file), {"key": object_key(local_file, prefix), "sources": []})
+        record["sources"].append({"kind": occurrence["kind"], "source": raw, "start": occurrence["start"], "end": occurrence["end"], "tail": occurrence["tail"]})
+    for local_path, detail in sorted(seen.items()):
+        report["planned"].append(
             {
-                "kind": kind,
-                "from": link,
-                "to": url,
-                "resolved": abs_path,
-                "object_key": upload_plan[abs_path]["object_key"],
+                "local": str(Path(local_path).relative_to(project_root)) if project_root in (Path(local_path), *Path(local_path).parents) else str(Path(local_path)),
+                "object_key": detail["key"],
+                "planned_url": public_url(base_url, detail["key"]),
+                "occurrences": len(detail["sources"]),
             }
         )
-
-    new_text = replace_in_text(original, spans)
-    report_path = md_file.with_suffix(md_file.suffix + ".replace-report.json")
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    if (not args.dry_run) and new_text != original:
-        backup_file(md_file)
-        md_file.write_text(new_text, encoding="utf-8")
-
-    return report
+        for source in detail["sources"]:
+            source["local_path"] = local_path
+            source["object_key"] = detail["key"]
+            report["replacements"].append(source)
+    return text, report
 
 
-def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Upload local images in Markdown directly to Cloudflare R2 and replace paths with public URLs."
-    )
-    parser.add_argument("target", help="Markdown file or directory")
-    parser.add_argument("--recursive", action="store_true", help="If target is a directory, process *.md recursively")
-    parser.add_argument("--dry-run", action="store_true", help="Do not modify files; only generate report")
-    parser.add_argument("--key-prefix", default=None, help="Override CF_R2_KEY_PREFIX")
-    parser.add_argument("--public-base-url", default=None, help="Override CF_R2_PUBLIC_BASE_URL")
-    parser.add_argument("--endpoint", default=None, help="Override CF_R2_ENDPOINT")
-    parser.add_argument("--bucket", default=None, help="Override CF_R2_BUCKET")
-    parser.add_argument("--account-id", default=None, help="Override CF_R2_ACCOUNT_ID")
-    parser.add_argument("--access-key-id", default=None, help="Override CF_R2_ACCESS_KEY_ID")
-    parser.add_argument("--secret-access-key", default=None, help="Override CF_R2_SECRET_ACCESS_KEY")
-    parser.add_argument("--region", default=None, help="Override CF_R2_REGION")
-    parser.add_argument("--env-file", default=None, help="Path to a .env file. Defaults to searching upward from target.")
-    return parser
+def apply_plan(markdown_file, original, report, args, url_map):
+    if report["issues"]:
+        report["mode"] = "blocked"
+        report["apply_reason"] = "Resolve all issues before any upload or rewrite."
+        return False
+    urls = {}
+    if url_map is not None:
+        for replacement in report["replacements"]:
+            mapped = url_map.get(replacement["source"])
+            if not mapped:
+                report["issues"].append({"source": replacement["source"], "reason": "URL map has no replacement"})
+            else:
+                urls[replacement["local_path"]] = mapped
+        if report["issues"]:
+            report["mode"] = "blocked"
+            report["apply_reason"] = "Complete the URL map before rewriting."
+            return False
+        report["mode"] = "apply-url-map"
+    else:
+        try:
+            config = upload_config(args)
+        except ValueError as error:
+            report["issues"].append({"reason": str(error)})
+            report["mode"] = "blocked"
+            report["apply_reason"] = "Supply the required upload configuration before uploading or rewriting."
+            return False
+        report["mode"] = "apply-upload"
+        uploaded = {}
+        for replacement in report["replacements"]:
+            local_path = replacement["local_path"]
+            if local_path not in uploaded:
+                try:
+                    uploaded[local_path] = put_object(config, Path(local_path), replacement["object_key"])
+                except RuntimeError as error:
+                    report["issues"].append({"source": replacement["source"], "reason": str(error)})
+                    report["apply_reason"] = "One or more uploads failed; Markdown was left unchanged."
+                    return False
+            urls[local_path] = uploaded[local_path]
+    spans = []
+    for replacement in report["replacements"]:
+        replacement["public_url"] = urls[replacement["local_path"]]
+        spans.append((replacement["start"], replacement["end"], urls[replacement["local_path"]] + replacement["tail"]))
+    updated = replace_spans(original, spans)
+    if updated == original:
+        report["apply_reason"] = "No local references required rewriting."
+        return True
+    backup = markdown_file.with_suffix(markdown_file.suffix + ".bak")
+    shutil.copy2(markdown_file, backup)
+    markdown_file.write_text(updated, encoding="utf-8")
+    report["backup"] = str(backup)
+    report["apply_reason"] = "Uploaded or mapped public URLs and rewrote local references."
+    return True
 
 
-def main() -> int:
-    parser = build_arg_parser()
-    args = parser.parse_args()
+def write_report(path, report):
+    clean = json.loads(json.dumps(report))
+    for replacement in clean["replacements"]:
+        for field in ("start", "end", "tail", "local_path"):
+            replacement.pop(field, None)
+    if "backup" in clean:
+        clean["backup"] = Path(clean["backup"]).name
+    path.write_text(json.dumps(clean, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def process(markdown_file, args, project_root, base_url, url_map):
+    original, report = build_plan(markdown_file, project_root, args.allow_outside_root, base_url, args.key_prefix or os.getenv("R2_KEY_PREFIX", "md-assets"))
+    success = True
+    if args.apply:
+        success = apply_plan(markdown_file, original, report, args, url_map)
+    report_file = report_path(markdown_file)
+    write_report(report_file, report)
+    print(f"[OK] {markdown_file.name}")
+    print(f"  planned={len(report['planned'])} skipped_remote={len(report['skipped_remote'])} issues={len(report['issues'])}")
+    print(f"  report={report_file}")
+    return success and not report["issues"]
+
+
+def parser():
+    result = argparse.ArgumentParser(description="Plan or explicitly apply Markdown image URL replacements for R2-compatible storage.")
+    result.add_argument("target", help="Markdown file or directory")
+    result.add_argument("--recursive", action="store_true", help="Process Markdown recursively when target is a directory")
+    result.add_argument("--project-root", help="Reviewed root for local images; defaults to the target directory")
+    result.add_argument("--allow-outside-root", action="store_true", help="Allow local images outside the reviewed project root")
+    result.add_argument("--apply", action="store_true", help="Allow an upload or a reviewed URL-map rewrite")
+    result.add_argument("--confirm-upload", action="store_true", help="Confirm the external upload and Markdown rewrite path")
+    result.add_argument("--confirm-write", action="store_true", help="Confirm the URL-map Markdown rewrite path")
+    result.add_argument("--url-map", help="Reviewed JSON map from local image reference to public URL")
+    result.add_argument("--key-prefix", help="Override R2_KEY_PREFIX")
+    result.add_argument("--public-base-url", help="Override R2_PUBLIC_BASE_URL")
+    result.add_argument("--endpoint", help="Override R2_ENDPOINT")
+    result.add_argument("--account-id", help="Override R2_ACCOUNT_ID")
+    result.add_argument("--bucket", help="Override R2_BUCKET")
+    result.add_argument("--access-key-id", help="Override R2_ACCESS_KEY_ID")
+    result.add_argument("--secret-access-key", help="Override R2_SECRET_ACCESS_KEY")
+    result.add_argument("--region", help="Override R2_REGION")
+    return result
+
+
+def main():
+    args = parser().parse_args()
     target = Path(args.target).expanduser().resolve()
-    dotenv_path = discover_dotenv(target, args.env_file)
-    dotenv = load_dotenv(dotenv_path) if dotenv_path else {}
-    config = resolve_config(args, dotenv, dotenv_path)
-    md_files = find_md_files(target, args.recursive)
-    if not md_files:
-        print("No markdown files found.")
+    if not target.exists():
+        raise SystemExit(f"Target not found: {target}")
+    if args.apply and args.url_map:
+        if not args.confirm_write or args.confirm_upload:
+            raise SystemExit("URL-map apply requires --apply --confirm-write and must not include --confirm-upload.")
+    elif args.apply:
+        if not args.confirm_upload or args.confirm_write:
+            raise SystemExit("Upload apply requires --apply --confirm-upload and must not include --confirm-write.")
+    elif args.confirm_upload or args.confirm_write or args.url_map:
+        raise SystemExit("Confirmation and URL-map options require --apply.")
+    url_map = read_url_map(Path(args.url_map).expanduser().resolve()) if args.url_map else None
+    default_root = target if target.is_dir() else target.parent
+    project_root = Path(args.project_root).expanduser().resolve() if args.project_root else default_root
+    if not project_root.is_dir():
+        raise SystemExit(f"Project root is not a directory: {project_root}")
+    base_url = environment_or_arg(args.public_base_url, "R2_PUBLIC_BASE_URL", "https://example.invalid")
+    files = find_markdown_files(target, args.recursive)
+    if not files:
+        print("No Markdown files found.")
         return 0
-
-    for md_file in md_files:
-        report = process_one_file(md_file, args, config)
-        print(f"[OK] {md_file}")
-        print(
-            "  "
-            + f"replaced={len(report['replaced'])} "
-            + f"skipped_remote={len(report['skipped_remote'])} "
-            + f"missing={len(report['missing_files'])} "
-            + f"upload_failed={len(report['upload_failed'])}"
-        )
-        print(f"  report={md_file.with_suffix(md_file.suffix + '.replace-report.json')}")
-
-    return 0
+    outcomes = [process(markdown_file, args, project_root, base_url, url_map) for markdown_file in files]
+    return 0 if all(outcomes) else 2
 
 
 if __name__ == "__main__":

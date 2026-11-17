@@ -1,43 +1,61 @@
-## Description: <br>
-Runs Cue deep research for equity research scenarios, using multiple public data sources and returning source-linked conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Cue to run investment research workflows for equity valuation, financial statement analysis, fundamentals and risk checks, index comparison, and convertible bond risk alerts, producing source-linked research reports from public data.
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-External users and agents use this skill to select and run Cue equity research workflows for stock valuation, financial analysis, market events, sector discovery, and capital-flow research. It is intended to produce evidence-based research reports with source links from public data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can clone or update mutable external runner code before execution. <br>
-Mitigation: Review the upstream runner repository and pin it to a known commit before use in controlled environments. <br>
-Risk: The runner reads a local Cue API key and consumes paid credits. <br>
-Mitigation: Use a least-privilege Cue API key and require explicit user confirmation before starting deep research runs. <br>
+## Use Case:
 
+External users and investment research analysts use this skill to ask an agent to select a live Cue investment-research workflow, confirm credit use, run the Cue research runner, and return a source-linked research report. It is suited for public-data equity, index, financial statement, and convertible bond analysis, not as a substitute for formal due diligence or regulated advice.
 
-## Reference(s): <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue skills runner repository](https://github.com/sensedeal/cue-skills) <br>
-- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-equity-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research report with source links and inline shell commands when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before spending Cue credits; reports should preserve source links and avoid fabricated content when no result is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches or updates mutable remote runner code before local execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Cue runner and publisher before installation, and prefer a pinned, audited checkout for repeatable use.
+
+Risk: The runner can read the Cue API key from ~/.cue/config.json and use paid credits.
+
+Mitigation: Protect the Cue API key, confirm the selected workflow and credit use before running, and monitor credit consumption.
+
+Risk: Investment research outputs may be incomplete, stale, or unsuitable for regulated decisions.
+
+Mitigation: Keep source links in the report, verify important claims independently, and treat outputs as public-data research support rather than due diligence or financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-equity-research)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue API key page](https://cuecue.cn/hub/api-key)
+- [Cue runner repository referenced by the skill](https://github.com/sensedeal/cue-skills)
+- [Cue runner mirror referenced by the skill](https://gitee.com/sensedeal/cue-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require network access, a Cue API key, local runner setup, user confirmation before consuming credits, and replay retrieval for final long-running reports.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

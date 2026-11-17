@@ -1,40 +1,53 @@
-## Description: <br>
-Parse raw WhatsApp exports, provided as TXT or JSON, into normalized message objects with timestamp, sender, and content fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse raw WhatsApp exports (TXT or JSON) into normalized message objects with `timestamp`, `sender`, and `content`.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-Developers and external workflow builders use this skill to convert user-provided WhatsApp exports into schema-valid message objects before downstream extraction or analysis. It is intended for parsing only, not lead interpretation, summarization, storage, or action suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: WhatsApp exports may contain sensitive personal or business information. <br>
-Mitigation: Only provide chat exports that are appropriate to process, and avoid using the skill on data that should not leave the user's controlled workflow. <br>
-Risk: Downstream skills could extract leads, summarize conversations, suggest actions, or store parsed data beyond this parser's stated boundary. <br>
-Mitigation: Review or approve later skills in the chain before allowing extraction, summaries, action suggestions, or storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Parsed Message Array Schema](references/parsed-message-array.schema.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/message-parser) <br>
+## Use Case:
 
+Developers and agents use this skill to convert user-provided WhatsApp chat exports into validated timestamp, sender, and content records before downstream extraction workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Validated JSON array of message objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each object contains timestamp, sender, and content; additional properties are disallowed by the bundled schema.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WhatsApp exports can contain sensitive personal data.
+
+Mitigation: Only provide chat exports that the user intends the agent to process, and keep downstream handling limited to the requested parsing workflow.
+
+Risk: Malformed or ambiguous chat lines could produce invalid structured records.
+
+Mitigation: Return explicit parse errors with line offsets when available and fail closed if the parsed output cannot satisfy the schema.
+
+## Reference(s):
+
+- [Parsed Message Array Schema](references/parsed-message-array.schema.json)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Validated JSON array of message objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each message object contains timestamp, sender, and content; output preserves source order and fails closed when validation cannot pass.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

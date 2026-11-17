@@ -1,49 +1,65 @@
-## Description: <br>
-Assists with proactive CV-driven job searches by analyzing a candidate profile, suggesting salary bands, scanning job boards and career pages, scoring matches, preparing application materials, and tracking follow-ups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with a proactive CV-driven job search by analyzing the user's profile, estimating salary range, scanning job boards and career pages, scoring matches, drafting application materials, and tracking follow-ups.
 
-## Publisher: <br>
-[askenaz](https://clawhub.ai/user/askenaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[askenaz](https://clawhub.ai/user/askenaz)
 
-## Use Case: <br>
-Job seekers and their agents use this skill to turn a CV into a structured job-search workflow: profile analysis, market and salary calibration, targeted opportunity scanning, match scoring, tailored CV and cover-letter drafts, and application follow-up tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal CV, profile, application, and seen-job data locally. <br>
-Mitigation: Install it only in a private workspace or agent profile, keep the data directory out of version control and shared sync folders, and review stored data before sharing the workspace. <br>
-Risk: Job boards may receive search queries derived from configured roles, skills, markets, and salary preferences. <br>
-Mitigation: Review configuration before scans and keep query-driving preferences limited to information you are comfortable exposing to external job boards. <br>
-Risk: Credentials or tokens placed in config files could be exposed through local files or logs. <br>
-Mitigation: Avoid putting tokens or credentials in config.json; use environment variables or the agent platform's secret store when credentials are required. <br>
-Risk: Application materials and salary guidance can be inaccurate if the parsed CV profile or benchmarks are stale. <br>
-Mitigation: Review the generated profile and drafts before use, refresh the profile when the CV changes, and periodically recalibrate salary references. <br>
-Risk: The skill supports application preparation and tracking but should not submit applications automatically. <br>
-Mitigation: Keep final submission under user control and review every tailored CV, cover letter, and job match before applying. <br>
+## Use Case:
 
+Job seekers and their agents use this skill to turn a CV into a structured profile, calibrate salary expectations, discover and rank relevant job openings, draft tailored CV and cover-letter material, and maintain an application follow-up pipeline.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/askenaz/cv-driven-job-hunter) <br>
-- [Job Boards Reference](artifact/references/job-boards.md) <br>
-- [Salary Benchmarks Reference](artifact/references/salary-benchmarks.md) <br>
-- [World-Class Companies Reference](artifact/references/world-class-companies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON files, Markdown drafts, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local CV profiles, job records, application drafts, seen-job state, and notification summaries in the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill stores sensitive CV, profile, job, and application data in local state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a private workspace, keep generated data out of shared profiles and source control, and avoid placing credentials in config.json.
+
+Risk: Job posting text and board responses are untrusted inputs that can affect matching, drafting, and command arguments.
+
+Mitigation: Confirm each web scan and file write, treat posting text as untrusted, and pass job JSON through files or stdin rather than inline shell arguments.
+
+Risk: The scanner flagged the pinned PDF parser dependency as risky.
+
+Mitigation: Update or avoid the pinned PDF parser before processing PDFs, or use TXT/MD CV inputs until the dependency risk is reviewed.
+
+Risk: Salary estimates and match scores are heuristic and may be inaccurate or stale.
+
+Mitigation: Review salary guidance against current market sources and use scores as decision support rather than as final hiring or application decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/askenaz/skills/cv-driven-job-hunter)
+- [Job boards reference](artifact/references/job-boards.md)
+- [Salary benchmarks reference](artifact/references/salary-benchmarks.md)
+- [World-class companies reference](artifact/references/world-class-companies.md)
+- [Application record schema](artifact/templates/application-record.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON, with shell command suggestions and editable application draft files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user review before any application submission; stores local CV, profile, job, and application state under data/.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

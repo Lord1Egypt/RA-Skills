@@ -1,41 +1,55 @@
-## Description: <br>
-Searches and fetches public Volcengine official documentation, returning cleaned markdown that agents can use to answer product, pricing, deployment, troubleshooting, and terms questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Volcengine CLI to search official Volcengine documentation and fetch full document text for product concepts, usage, billing rules, deployment steps, best practices, terms, and linked documentation pages.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers, operators, and support agents use this skill to locate and summarize authoritative Volcengine documentation or fetch the full text of a specific Volcengine documentation page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and documentation URLs are sent to Volcengine's public documentation service. <br>
-Mitigation: Avoid sending confidential, customer-sensitive, or internal-only details in search queries or document URLs. <br>
-Risk: Long documentation results can be saved temporarily on disk for the agent to read. <br>
-Mitigation: Review temporary output handling in the execution environment and remove saved result files when they are no longer needed. <br>
+## Use Case:
 
+Developers and technical users use this skill to answer Volcengine product questions by searching official documentation, fetching relevant article text, and citing the supporting sources.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/volc-sdk-team/skills/volcengine-knowledge-search) <br>
-- [Volcengine documentation](https://www.volcengine.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with source links and optional shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are summarized; fetched documents are paginated and long results may be written to temporary files for follow-up reading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill installs and runs the Volcengine CLI from npm, and the release evidence notes a supply-chain caution because the npm CLI is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted npm registry and prefer a pinned or reviewed CLI version in higher-security environments.
+
+Risk: The documentation commands do not require authentication, but unrelated secrets could still be exposed to the CLI process environment.
+
+Mitigation: Run the CLI with only the required caller-identification environment variables and avoid exposing unrelated secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volc-sdk-team/skills/volcengine-knowledge-search)
+- [Volcengine documentation](https://www.volcengine.com/docs/)
+- [Volcengine documentation alternate host](https://docs.volcengine.com/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with cited documentation links and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise source citations, rewritten search queries, pagination guidance, and error-handling guidance for Volcengine documentation fetches.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

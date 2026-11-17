@@ -1,44 +1,60 @@
-## Description: <br>
-Helps content operators retrieve Xiaohongshu official-account notes and hot topics, and evaluate Xiaohongshu accounts and notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助自媒体运营人员获取小红书官方账号笔记和热点话题，并按返回的评分标准评价账号资料与笔记内容。
 
-## Publisher: <br>
-[zfeng1982](https://clawhub.ai/user/zfeng1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zfeng1982](https://clawhub.ai/user/zfeng1982)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to look up Xiaohongshu official-account notes, review hot topics, and obtain scoring guidance for account profiles and note content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms could cause the skill to activate when the user only mentions Xiaohongshu topics. <br>
-Mitigation: Invoke it for explicit Xiaohongshu operations requests and confirm intent before querying external data. <br>
-Risk: Queries are sent to qianhaistonepark.site and may include account or note content. <br>
-Mitigation: Avoid sharing sensitive private account or note content unless the user trusts the external service. <br>
-Risk: API results may be empty, unavailable, or encoded. <br>
-Mitigation: Report empty or failed API responses as unavailable and decode supported fields before presentation instead of inventing data. <br>
+## Use Case:
 
+External creators and social media operators use this skill to query Xiaohongshu official-account notes, current hot topics, account lists, and scoring criteria for account profiles and post content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zfeng1982/xhs-operation-assistant) <br>
-- [Project homepage](https://github.com/zfeng1982/xhs-operation-assistant) <br>
-- [Xiaohongshu helper API base URL](https://qianhaistonepark.site/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with API response summaries, scoring guidance, and optional curl command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some returned fields may need decoding with the bundled helper before presentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Remote scoring criteria returned by qianhaistonepark.site may steer the agent's answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat decoded scoring content as untrusted reference material and keep system, developer, tool, and user instructions authoritative.
+
+Risk: The skill queries and analyzes social account or note content through a third-party service.
+
+Mitigation: Avoid sensitive private account analysis unless the deployment has an explicit privacy and data-handling boundary.
+
+Risk: Empty or failed API responses could lead to fabricated trends, notes, or scores.
+
+Mitigation: State that no data was retrieved instead of inventing topics, notes, or ratings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zfeng1982/skills/xhs-operation-assistant)
+- [Publisher profile](https://clawhub.ai/user/zfeng1982)
+- [Project homepage](https://github.com/zfeng1982/xhs-operation-assistant)
+- [Service base URL](https://qianhaistonepark.site/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and optional curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some API response fields are decoded by the helper script before display.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

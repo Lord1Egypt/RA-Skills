@@ -1,44 +1,57 @@
-## Description: <br>
-Monitor your brand's AI visibility via BotSee API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor your brand's AI visibility via BotSee API
 
-## Publisher: <br>
-[grahac](https://clawhub.ai/user/grahac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[grahac](https://clawhub.ai/user/grahac)
 
-## Use Case: <br>
-External users and developers use BotSee to connect an agent to a BotSee account, create sites, run AI visibility analyses, review competitors, keywords, sources, and responses, and generate content from analysis results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access BotSee account data and saves the BotSee API key in local configuration. <br>
-Mitigation: Install only for trusted BotSee accounts, use the signup-status flow or deliberate local CLI invocation for API keys, and protect the local BotSee config file. <br>
-Risk: USDC signup and top-up flows can involve real payments. <br>
-Mitigation: Confirm payment amounts, wallet details, payment proofs, and the returned payment requirements before submitting a payment. <br>
-Risk: Archive and delete commands can change or remove BotSee resources. <br>
-Mitigation: Confirm UUID targets and intended archive or delete actions before running mutating commands. <br>
-Risk: Changing BOTSEE_BASE_URL can redirect requests to a non-default BotSee endpoint. <br>
-Mitigation: Keep BOTSEE_BASE_URL unset unless testing against a trusted BotSee endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BotSee ClawHub page](https://clawhub.ai/grahac/botsee) <br>
-- [BotSee homepage](https://botsee.io) <br>
+## Use Case:
 
+External developers and marketing teams use BotSee to manage BotSee API workflows for brand visibility analysis, AI search results, competitive findings, and generated content.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown and human-readable text, with JSON responses and local configuration files for some commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save account and site configuration locally, run polling analysis workflows, and create timestamped markdown content files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.5 (source: server release metadata, skill frontmatter, changelog dated 2026-02-24) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved API keys can be sent to an environment-selected API host if BOTSEE_BASE_URL is set.
+
+Mitigation: Leave BOTSEE_BASE_URL unset unless it points to a trusted BotSee-controlled endpoint, and avoid pasting live API keys into chat.
+
+Risk: The skill exposes non-interactive billing, top-up, analysis, and content commands that can spend credits or initiate payments.
+
+Mitigation: Check the account balance first and require explicit user approval before commands that spend credits or start payment flows.
+
+Risk: Archive and delete commands can make remote account changes.
+
+Mitigation: Confirm target UUIDs and user intent before running archive-site, archive-type, archive-persona, or delete-question.
+
+## Reference(s):
+
+- [BotSee ClawHub skill page](https://clawhub.ai/grahac/skills/botsee)
+- [BotSee homepage](https://botsee.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with shell commands, human-readable CLI text, JSON API result payloads, and saved markdown/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save API credentials to ~/.botsee/config.json, workspace configuration to .context/botsee-config.json, and generated content as timestamped Markdown.]
+
+## Skill Version(s):
+
+0.2.5 (source: frontmatter, plugin manifest, CHANGELOG released 2026-02-24, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Mx Macro Data lets agents query Eastmoney macroeconomic data with natural language and save results as CSV files plus a text description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mx Macro Data lets an agent query Eastmoney macroeconomic data with natural language and save the returned data as CSV files with a text description.
 
-## Publisher: <br>
-[akiry09](https://clawhub.ai/user/akiry09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akiry09](https://clawhub.ai/user/akiry09)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch specific macroeconomic indicators for market research, policy analysis, and reporting across regions and time periods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user queries to an external Eastmoney service using an API key. <br>
-Mitigation: Provide EM_API_KEY only through the environment, confirm the key scope and revocation process, and avoid placing secrets in prompts, logs, or generated files. <br>
-Risk: Broad or ambiguous macroeconomic queries can return incomplete, limited, or unintended datasets. <br>
-Mitigation: Use specific indicators, commodities, regions, and time scopes, then review the generated CSV and description files before relying on results. <br>
-Risk: Set-based requests such as province groups or multiple indicators may require completeness checks across returned files. <br>
-Mitigation: Compare expected region and indicator coverage against each frequency-specific CSV and retry targeted missing pairs before final delivery. <br>
+## Use Case:
 
+Developers, analysts, and research agents use this skill to retrieve global macroeconomic indicators, monetary and fiscal data, trade data, employment data, industry data, and specific commodity prices from Eastmoney. It is most useful when an upstream planner can turn broad user intent into specific indicators, regions, commodities, and follow-up completeness checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akiry09/mx-mx-macro-data) <br>
-- [Eastmoney MxClaw service](https://ai.eastmoney.com/mxClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Code] <br>
-**Output Format:** [CSV files and UTF-8 text description, with CLI or Python API status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY and writes one or more frequency-specific CSV files plus a description file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Query text is sent to Eastmoney's service with the user's EM_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the query with Eastmoney is acceptable, and keep EM_API_KEY out of code, prompts, logs, and output files.
+
+Risk: Generated CSV files contain data from a remote source and may be opened in spreadsheet tools.
+
+Mitigation: Review or sanitize CSV files before opening them with spreadsheet security protections disabled.
+
+Risk: Broad region or multi-indicator requests may return incomplete coverage.
+
+Mitigation: Have the upstream planner compare expected region and indicator pairs against each frequency-specific CSV and issue follow-up queries until complete or a retry limit is reached.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/akiry09/skills/mx-mx-macro-data)
+- [Eastmoney Miaoxiang Service](https://ai.eastmoney.com/mxClaw)
+- [Eastmoney Macro Data API Host](https://ai-saas.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, CSV files, TXT files]
+
+**Output Format:** [Markdown guidance with shell and Python examples; runtime output is CSV files, a TXT description file, and a Python result dictionary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY. Query text is sent to Eastmoney; output files are grouped by detected frequency such as yearly, quarterly, monthly, weekly, daily, or unknown.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

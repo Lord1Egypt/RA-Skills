@@ -1,50 +1,68 @@
-## Description: <br>
-Enhance images and videos using HitPaw's AI enhancement API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhance images and videos using HitPaw's AI enhancement API.
 
-## Publisher: <br>
-[hitpawdev](https://clawhub.ai/user/hitpawdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitpawdev](https://clawhub.ai/user/hitpawdev)
 
-## Use Case: <br>
-Developers and content teams use this skill to call HitPaw's enhancement API for image upscaling, face recovery, denoising, video restoration, and result download workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends provided image or video URLs and the HitPaw API key to HitPaw's API for third-party processing. <br>
-Mitigation: Use only media that is appropriate for third-party processing, review HitPaw's terms for sensitive or regulated content, and protect the HITPAW_API_KEY as a sensitive credential. <br>
-Risk: API usage may consume HitPaw credits or coins. <br>
-Mitigation: Check account balance and expected processing cost before submitting large images, long videos, or batch jobs. <br>
-Risk: The video CLI may fail because the release evidence notes packaging or conflict-marker issues. <br>
-Mitigation: Validate the installed video command on a small, non-sensitive test file before relying on it for production video workflows. <br>
+## Use Case:
 
+Developers and creators use this skill to submit publicly reachable image or video URLs to HitPaw's enhancement API, poll asynchronous jobs, and download enhanced media outputs.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/hitpawdev/hitpaw-image-enhancer) <br>
-- [HitPaw Image API Introduction](https://developer.hitpaw.com/image/Introduction) <br>
-- [HitPaw Image Models](https://developer.hitpaw.com/image/available-models) <br>
-- [HitPaw Image API Reference](https://developer.hitpaw.com/image/API-reference) <br>
-- [HitPaw Video API Introduction](https://developer.hitpaw.com/video/Introduction) <br>
-- [HitPaw Video Models](https://developer.hitpaw.com/video/available-models) <br>
-- [HitPaw Video API Reference](https://developer.hitpaw.com/video/API-reference) <br>
-- [HitPaw OSS Pre-sign PUT API](https://developer.hitpaw.com/common/oss-presign-put-api) <br>
-- [HitPaw Playground](https://playground.hitpaw.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with CLI commands and downloaded media files from API jobs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HITPAW_API_KEY and publicly accessible input media URLs; reports API job status and coin consumption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Media handling is under-scoped and requires sending media through HitPaw or publicly reachable URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only photos or videos that are acceptable to share with HitPaw or expose through a public URL, and avoid confidential, regulated, or sensitive media.
+
+Risk: The video command is broken in the artifact, with unresolved merge conflict markers in src/video-cli.js.
+
+Mitigation: Do not rely on video enhancement until the publisher ships a fixed artifact and the command is rebuilt and tested.
+
+Risk: Remote result downloads are not safely constrained.
+
+Mitigation: Download outputs only to controlled paths, inspect generated media before reuse, and wait for publisher-side constraints on remote downloads.
+
+Risk: The release needs dependency and provenance review before installation.
+
+Mitigation: Review the package before deployment, update vulnerable dependencies, and treat GitHub links in the artifact as documentation links unless server-resolved provenance is added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hitpawdev/skills/hitpaw-image-enhancer)
+- [HitPaw Image API Introduction](https://developer.hitpaw.com/image/Introduction)
+- [HitPaw Image Models](https://developer.hitpaw.com/image/available-models)
+- [HitPaw Video API Introduction](https://developer.hitpaw.com/video/Introduction)
+- [HitPaw Video Models](https://developer.hitpaw.com/video/available-models)
+- [HitPaw Image API Reference](https://developer.hitpaw.com/image/API-reference)
+- [HitPaw Video API Reference](https://developer.hitpaw.com/video/API-reference)
+- [HitPaw OSS Pre-sign Upload API](https://developer.hitpaw.com/common/oss-presign-put-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [CLI status text with downloaded image or video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HITPAW_API_KEY and publicly reachable media URLs; writes enhanced media to user-selected output paths.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence; artifact frontmatter and package.json list 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

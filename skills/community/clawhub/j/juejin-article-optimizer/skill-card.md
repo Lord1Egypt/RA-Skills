@@ -1,44 +1,60 @@
-## Description: <br>
-Optimize technical articles for the Juejin community: improve rankings, readability, and developer engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize technical articles for the Juejin community: improve rankings, readability, and developer engagement.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, DevRel teams, and technical writers use this skill to diagnose and improve Juejin-ready technical articles, including titles, structure, SEO, code explanation, engagement hooks, and publishing strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may contain unpublished or confidential article content. <br>
-Mitigation: Only provide drafts that are appropriate for the agent to process, and review optimized text before reuse or publication. <br>
-Risk: Live trend or URL analysis may be incomplete, unavailable, or subject to Juejin terms and rate limits. <br>
-Mitigation: Treat URL and trend checks as read-only, use cached benchmarks or pasted article text when access is blocked, and avoid attempts to bypass platform controls. <br>
-Risk: Publishing recommendations and title scores are heuristic and cannot guarantee ranking, readership, or engagement. <br>
-Mitigation: Use the recommendations as editorial guidance, keep the user in control of publication, and preserve proper attribution for external sources. <br>
+## Use Case:
 
+Developers, DevRel teams, and technical authors use this skill to diagnose and optimize Juejin-targeted technical drafts, titles, SEO tags, article structure, and publishing strategy while retaining final publishing control.
 
-## Reference(s): <br>
-- [Juejin category benchmarks](references/category_benchmarks.json) <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/juejin-article-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional table or JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic scores, title variants, tag and SEO recommendations, optimized article guidance, and publishing playbooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release metadata) <br>
+Risk: Generated promotional language or publishing advice could be unsuitable for a final Juejin post.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep final publishing under user control and review titles, tags, cross-promotion snippets, and engagement prompts before use.
+
+Risk: JSON output could be unsafe or malformed if passed directly into downstream automation.
+
+Mitigation: Re-serialize or strictly validate script output against the provided output schema before automated use.
+
+Risk: Juejin-oriented, Chinese-market recommendations may not fit other publishing platforms or audiences.
+
+Mitigation: Use the skill for Juejin-focused optimization and review recommendations against the target audience and venue.
+
+## Reference(s):
+
+- [Category Benchmarks](artifact/references/category_benchmarks.json)
+- [Input Schema](artifact/schemas/input.schema.json)
+- [Output Schema](artifact/schemas/output.schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/juejin-article-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and optimized article drafts, with optional JSON from the CLI script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic scores, title variants, SEO recommendations, publishing strategy, warnings, and improved code block guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

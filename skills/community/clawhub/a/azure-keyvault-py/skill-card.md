@@ -1,40 +1,56 @@
-## Description: <br>
-Azure Key Vault SDK for Python guidance for managing secrets, cryptographic keys, and certificates with secure storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using the Azure Key Vault SDK for Python to manage secrets, cryptographic keys, certificates, authentication, and common error handling.
 
-## Publisher: <br>
-[thegovind](https://clawhub.ai/user/thegovind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegovind](https://clawhub.ai/user/thegovind)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and use Azure Key Vault Python SDK clients for secrets, keys, cryptographic operations, and certificates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Secret values or certificate private key material could be exposed if examples that retrieve or print sensitive values are copied into logs or shared output. <br>
-Mitigation: Never print or log secret values or private keys; use managed identity or least-privilege credentials and keep sensitive values out of agent transcripts. <br>
-Risk: Delete and purge examples can remove Azure Key Vault contents, including permanent deletion when purge is used. <br>
-Mitigation: Require explicit human confirmation before delete or purge operations and test administrative flows against non-production vaults first. <br>
-Risk: Examples that manage keys, certificates, or secrets may fail or overreach if run with broad or incorrect Azure permissions. <br>
-Mitigation: Use scoped Azure RBAC roles and verify the target vault, key, secret, or certificate name before executing administrative commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to get Python setup guidance and code examples for Azure Key Vault secrets, keys, certificates, cryptographic operations, authentication, and error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install commands, environment variable setup, client examples, error handling, and best-practice guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples that print retrieved secret values can expose sensitive data in logs or console output.
+
+Mitigation: Use retrieved secrets only in memory and redact or omit secret values from logs and user-visible output.
+
+Risk: Purge operations permanently delete Key Vault objects when run against a real vault.
+
+Mitigation: Require explicit approval, confirm the vault context and object name, and ensure recovery or backup plans before using purge examples.
+
+Risk: Installing unpinned Azure SDK packages can introduce unreviewed dependency changes.
+
+Mitigation: Use pinned dependency versions or a reviewed lock file for production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thegovind/skills/azure-keyvault-py)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Azure SDK package names, environment variable setup, client examples, and best-practice notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

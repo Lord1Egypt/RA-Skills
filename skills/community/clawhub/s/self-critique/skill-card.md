@@ -1,39 +1,55 @@
-## Description: <br>
-Self-Critique guides agents through structured self-review and revision to improve quality for code, writing, analysis, and decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve output quality through structured self-review before finalizing.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Employees, external users, developers, and agent builders use this skill to review important drafts, code, analyses, and decisions before finalizing them. It provides critique criteria, severity levels, and revision steps for quality-sensitive work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The critique workflow may restate or restructure highly sensitive content. <br>
-Mitigation: Use the skill for deliberate pre-submission review and avoid invoking it unnecessarily on highly sensitive content. <br>
+## Use Case:
 
+Employees, external users, developers, and engineers use this skill to critique and revise important writing, code, analysis, and decisions before finalizing them.
 
-## Reference(s): <br>
-- [Detailed Examples](references/examples.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/simoncatbot/self-critique) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured critique findings, revision notes, and revised outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May restate or restructure the user's source content during critique and revision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The self-review workflow can add time and length to agent responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for important outputs where quality matters, and skip it for quick drafts, obvious answers, or pure exploration.
+
+Risk: Self-critique may give a false sense that important claims, code, or decisions are fully verified.
+
+Mitigation: Treat critique findings as review guidance and still verify high-impact facts, security issues, and operational decisions with appropriate evidence or human review.
+
+## Reference(s):
+
+- [Self-Critique detailed examples](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/simoncatbot/skills/self-critique)
+- [Publisher profile](https://clawhub.ai/user/simoncatbot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown and text review checklists with findings, revisions, and final output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; responses may be more deliberate and longer when the critique workflow is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

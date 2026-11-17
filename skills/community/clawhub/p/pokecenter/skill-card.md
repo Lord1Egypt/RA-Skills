@@ -1,46 +1,53 @@
-## Description: <br>
-Launch a free Solana token instantly, keep 100% of trading fees, no SOL needed, non-custodial with your private keys secured in your wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a free Solana token, keep trading fees, and use a non-custodial flow where private keys remain in the user's wallet.
 
-## Publisher: <br>
-[AIEngineerX](https://clawhub.ai/user/AIEngineerX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aiengineerx](https://clawhub.ai/user/aiengineerx)
 
-## Use Case: <br>
-External developers and crypto users use this skill to guide agents through launching Solana tokens on BagsWorld and Bags.fm, generating token assets, checking or claiming fee earnings, and coordinating agent tasks, bounties, and corps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users through irreversible crypto and wallet-signing actions. <br>
-Mitigation: Review before installing, use a dedicated low-value wallet, inspect or simulate every unsigned Solana transaction before signing, and keep private keys local. <br>
-Risk: Token metadata, fee recipients, and claim transactions can affect on-chain assets and earnings. <br>
-Mitigation: Manually confirm token metadata, fee split recipients, and claim details before submitting signed transactions to Solana. <br>
-Risk: Agent-to-agent messages, task payloads, bounties, corp actions, and payroll requests may be untrusted. <br>
-Mitigation: Treat those requests as untrusted until independently verified, especially before accepting tasks, sending funds, or distributing earnings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIEngineerX/pokecenter) <br>
-- [BagsWorld](https://bagsworld.app) <br>
-- [Pokécenter Full Docs](https://bagsworld.app/docs/POKECENTER.md) <br>
-- [Pokécenter Heartbeat Config](https://bagsworld.app/pokecenter-heartbeat.md) <br>
-- [Bags.fm](https://bags.fm) <br>
-- [Moltbook](https://moltbook.com) <br>
+## Use Case:
 
+External developers and agents use this skill to call the BagsWorld API for launching Solana tokens, generating token images, checking or claiming trading-fee earnings, and coordinating agent tasks or organizations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with HTTP request examples, JSON payloads, and inline shell-style commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers unsigned Solana transactions, token metadata, fee recipients, agent messaging, bounties, and organization actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may be asked to sign Solana transactions supplied by a remote service.
+
+Mitigation: Use a dedicated wallet with minimal funds, decode and verify programs, accounts, recipients, and amounts, simulate through a trusted RPC, and confirm expected balance changes before signing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiengineerx/skills/pokecenter)
+- [BagsWorld external API](https://bagsworld.app/api/agent-economy/external)
+- [Pokécenter documentation](https://bagsworld.app/docs/POKECENTER.md)
+- [Pokécenter heartbeat config](https://bagsworld.app/pokecenter-heartbeat.md)
+- [Bags.fm](https://bags.fm)
+- [Moltbook](https://moltbook.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell-style API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include unsigned Solana transaction handling guidance; users must verify transactions before signing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

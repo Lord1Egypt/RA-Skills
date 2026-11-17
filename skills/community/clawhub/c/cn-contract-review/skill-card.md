@@ -1,41 +1,54 @@
-## Description: <br>
-Review Chinese contracts for risky clauses - labor lease purchase NDA. Built-in 20+ rule sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Chinese contracts for risky clauses across labor, lease, purchase, NDA, and related agreement types using built-in rule sets.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and legal or administrative teams use this skill to review Chinese contracts, identify risky clauses, assign severity labels, and produce structured risk reports with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may read sensitive contract text supplied for review. <br>
-Mitigation: Use the skill only with contracts approved for agent processing, and avoid supplying unnecessary personal, confidential, or privileged information. <br>
-Risk: The review may be incomplete or legally unreliable for high-value or legally consequential agreements. <br>
-Mitigation: Treat the output as contract-risk assistance and require qualified legal review before making legal or commercial decisions. <br>
-Risk: Text extraction from PDF, DOCX, or OCR input may miss or alter clauses. <br>
-Mitigation: Compare important findings against the original contract and manually review unclear or low-quality source documents. <br>
+## Use Case:
 
+External users and legal or business reviewers use this skill to triage Chinese-language contracts, identify risky clauses, and produce structured findings for human review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown or JSON structured reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include contract summaries, clause excerpts, severity labels, risk tables, explanations, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive legal or business documents may be reviewed by the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use with appropriate confidentiality controls and review only documents approved for the active environment.
+
+Risk: Contract review outputs may be mistaken for legal advice.
+
+Mitigation: Treat findings as review assistance and have qualified humans validate legal conclusions before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cn-contract-review)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured report in JSON or Markdown with contract summary, risk table, explanations, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-selected contract files and produces review assistance; outputs should not be treated as legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

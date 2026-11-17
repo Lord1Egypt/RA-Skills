@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_query_task_info",
+		"description": "Query the detail of a specific workflow task, including task info, instance info and comments.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"taskId": {
+					"type": "string",
+					"description": "The task ID."
+				}
+			},
+			"required": ["moduleId", "taskId"]
+		}
+	}
+}

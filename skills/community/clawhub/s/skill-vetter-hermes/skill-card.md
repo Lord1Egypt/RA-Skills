@@ -1,45 +1,57 @@
-## Description: <br>
-Security-first skill vetting for AI agents that helps review third-party skills for red flags, permission scope, suspicious patterns, and high-risk behavior before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents that checks skill sources, permissions, suspicious patterns, and high-risk installation behavior before use.
 
-## Publisher: <br>
-[atlaszj](https://clawhub.ai/user/atlaszj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaszj](https://clawhub.ai/user/atlaszj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to vet skills from ClawHub, GitHub, or other sources before installation by reviewing source, permissions, and security red flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact claims automatic install blocking and scanner integration, but the supplied package does not include the scanner or integration code. <br>
-Mitigation: Treat the skill as advisory documentation unless the missing scanner and integration code are supplied and audited. <br>
-Risk: Automatic install-blocking or cleanup hooks could disrupt installations if enabled without operational safeguards. <br>
-Mitigation: Require explicit opt-in, audit logs, and rollback instructions before enabling automated blocking or cleanup behavior. <br>
-Risk: Publishing guidance references a local ClawHub token file. <br>
-Mitigation: Treat token files as sensitive credentials and avoid sharing, logging, or packaging them with the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to review third-party or unknown skills before installation, classify risk, and produce a concise vetting report with permissions, red flags, and install guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atlaszj/skill-vetter-hermes) <br>
-- [README](README.md) <br>
-- [Integration report](INTEGRATION_REPORT.md) <br>
-- [Publishing guide](PUBLISH_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional shell command snippets and JSON-oriented scan examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory security review output; automatic blocking behavior is not established by the supplied artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The release claims scanner and install-hook behavior, but the core scanner file is missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package carefully before relying on it as an installation gate, and verify the scanner file and hook behavior from trusted source materials.
+
+Risk: The documented install hook can block installs and delete downloaded files.
+
+Mitigation: Do not enable hook behavior until deletion, logging, execution, and failure paths are confirmed in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atlaszj/skills/skill-vetter-hermes)
+- [Publisher Profile](https://clawhub.ai/user/atlaszj)
+- [Skill Definition](artifact/SKILL.md)
+- [Integration Report](artifact/INTEGRATION_REPORT.md)
+- [Publish Guide](artifact/PUBLISH_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with checklists, tables, and inline shell or PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces risk classifications, red-flag summaries, permission notes, and install/block recommendations.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

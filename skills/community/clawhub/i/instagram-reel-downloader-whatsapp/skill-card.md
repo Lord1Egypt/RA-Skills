@@ -1,42 +1,57 @@
-## Description: <br>
-Download an Instagram Reel via sssinstagram.com and return it as a WhatsApp-ready video file. Use when a reel URL is provided and yt-dlp is blocked or not preferred. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download an Instagram Reel via sssinstagram.com and return it as a WhatsApp-ready video file.
 
-## Publisher: <br>
-[beSaif](https://clawhub.ai/user/beSaif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[besaif](https://clawhub.ai/user/besaif)
 
-## Use Case: <br>
-External users and agents use this skill to download a user-provided Instagram Reel through sssinstagram.com and send the resulting local video file through WhatsApp. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Instagram Reel URLs are shared with sssinstagram.com during download. <br>
-Mitigation: Use the skill only when sharing the Reel URL with that third-party service is acceptable. <br>
-Risk: The skill runs local browser automation using the configured browser binary. <br>
-Mitigation: Keep BROWSER_EXECUTABLE_PATH pointed at a trusted Chromium-compatible browser and run the workflow in an appropriate sandbox. <br>
-Risk: Downloaded videos are written to the configured download directory. <br>
-Mitigation: Set REEL_DOWNLOAD_DIR to a narrow, non-sensitive location and use the cleanup script when retained files are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/beSaif/instagram-reel-downloader-whatsapp) <br>
-- [sssinstagram Reels Downloader](https://sssinstagram.com/reels-downloader) <br>
+## Use Case:
 
+External users and assistants use this skill to download a provided Instagram Reel through sssinstagram.com and return the resulting video file for WhatsApp delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and a MEDIA_PATH file result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local video file path for WhatsApp media sending; supported video extensions are mp4, mov, mkv, and webm.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reel URLs are sent to sssinstagram.com, a third-party downloader site.
+
+Mitigation: Use the skill only when sharing the Reel URL with that service is acceptable.
+
+Risk: The workflow runs browser automation in a no-sandbox browser configuration.
+
+Mitigation: Run it in an isolated container or unprivileged account with no secrets and restricted network access.
+
+Risk: Downloaded media is accepted from third-party links discovered during automation.
+
+Mitigation: Use a dedicated output directory, review downloaded files before reuse, and run cleanup after completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/besaif/skills/instagram-reel-downloader-whatsapp)
+- [sssinstagram Reels downloader](https://sssinstagram.com/reels-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Plain text status, MEDIA_PATH output, and a downloaded video file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, playwright-core, a Chromium-compatible browser, and network access to Instagram and sssinstagram.com.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

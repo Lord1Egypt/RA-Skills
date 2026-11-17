@@ -10,15 +10,69 @@ instead of a misleading JSONDecodeError.
 
 import argparse
 import hashlib
+import ipaddress
 import json
+import os
 import re
+import socket
+import sys
+import tempfile
 from pathlib import Path
 from typing import Any
-from urllib.parse import unquote, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 
-DEFAULT_SECTION_TITLE = "三、模型列表与倍率价格表（所有模型可用）"
+DEFAULT_SECTION_TITLE = "一、模型价格表（全部模型）"
+DEFAULT_TITLE = "模型价格表更新"
+MAX_RESPONSE_BYTES = 16 * 1024 * 1024
 DOCX_MODE_SPECIFIC = 4
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+
+
+def validate_public_url(url: str, *, resolve: bool = False) -> None:
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower()
+    try:
+        allowed = parsed.port in (None, 443)
+    except ValueError:
+        allowed = False
+    if (parsed.scheme != "https" or not allowed or parsed.username is not None
+            or parsed.password is not None or not any(
+                host == suffix or host.endswith("." + suffix)
+                for suffix in ("feishu.cn", "larksuite.com"))):
+        raise RuntimeError("只允许公开飞书/Lark 的 HTTPS 链接（443 端口，无内嵌凭据）")
+    if resolve:
+        addresses = socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)
+        if not addresses or any(not ipaddress.ip_address(info[4][0]).is_global for info in addresses):
+            raise RuntimeError("飞书链接解析到非公网地址，拒绝请求")
+
+
+def fetch_public_text(session: Any, url: str, **kwargs: Any) -> str:
+    """Validate every redirect and limit bytes; never forward query/auth elsewhere."""
+    headers = kwargs.pop("headers", {"User-Agent": USER_AGENT})
+    for _ in range(6):
+        validate_public_url(url, resolve=True)
+        resp = session.get(url, timeout=30, headers=headers, allow_redirects=False,
+                           stream=True, **kwargs)
+        try:
+            if resp.status_code in (301, 302, 303, 307, 308):
+                location = resp.headers.get("Location")
+                if not location:
+                    raise RuntimeError("飞书重定向缺少 Location")
+                url = urljoin(url, location)
+                kwargs.pop("params", None)
+                continue
+            resp.raise_for_status()
+            chunks = []
+            size = 0
+            for chunk in resp.iter_content(65536):
+                size += len(chunk)
+                if size > MAX_RESPONSE_BYTES:
+                    raise RuntimeError("飞书响应过大，拒绝作为监控快照")
+                chunks.append(chunk)
+            return b"".join(chunks).decode("utf-8-sig")
+        finally:
+            resp.close()
+    raise RuntimeError("飞书重定向次数过多")
 
 
 def fetch_html(url: str, session: Any | None = None) -> str:
@@ -27,16 +81,11 @@ def fetch_html(url: str, session: Any | None = None) -> str:
     except Exception as e:  # pragma: no cover
         raise RuntimeError(f"缺少 requests 依赖: {e}") from e
 
-    http = session or requests
-    resp = http.get(
-        url,
-        timeout=30,
-        headers={"User-Agent": USER_AGENT},
-        allow_redirects=True,
-    )
-    resp.raise_for_status()
-    resp.encoding = resp.encoding or "utf-8"
-    return resp.text
+    if session is not None:
+        return fetch_public_text(session, url)
+    with requests.Session() as http:
+        http.trust_env = False  # Anonymous public requests; do not read .netrc.
+        return fetch_public_text(http, url)
 
 
 def _skip_ws(source: str, index: int) -> int:
@@ -181,6 +230,7 @@ def extract_client_vars_json(html: str) -> dict[str, Any]:
 
 
 def client_vars_api_url(page_url: str) -> str:
+    validate_public_url(page_url)
     parsed = urlparse(page_url)
     if not parsed.scheme or not parsed.netloc:
         raise RuntimeError("飞书链接格式不正确，无法构造分页接口")
@@ -189,18 +239,17 @@ def client_vars_api_url(page_url: str) -> str:
 
 def fetch_client_vars_slice(session: Any, page_url: str, doc_id: str, params: dict[str, Any]) -> dict[str, Any]:
     query = {"id": doc_id, "limit": 239, **params}
-    resp = session.get(
+    body = fetch_public_text(
+        session,
         client_vars_api_url(page_url),
         params=query,
-        timeout=30,
         headers={
             "User-Agent": USER_AGENT,
             "Accept": "application/json, text/plain, */*",
             "Referer": page_url,
         },
     )
-    resp.raise_for_status()
-    payload = resp.json()
+    payload = json.loads(body)
     if payload.get("code", 0) != 0:
         raise RuntimeError(f"飞书分页接口返回错误：{payload.get('msg') or payload.get('message') or payload.get('code')}")
     return payload.get("data") or {}
@@ -231,6 +280,7 @@ def complete_table_block_map(session: Any, page_url: str, client_vars: dict[str,
     doc_id = data.get("id")
     first_cursor = data.get("cursor")
     if not doc_id or not first_cursor:
+        ensure_complete_table(data.get("block_map", {}), table_id)
         return
 
     queue: list[dict[str, Any]] = [
@@ -243,16 +293,41 @@ def complete_table_block_map(session: Any, page_url: str, client_vars: dict[str,
         params = queue.pop(0)
         key = json.dumps(params, ensure_ascii=False, sort_keys=True)
         if key in seen:
-            continue
+            raise RuntimeError("飞书分页游标重复，拒绝不完整快照")
         seen.add(key)
         patch_data = fetch_client_vars_slice(session, page_url, doc_id, params)
         merge_client_vars_data(data, patch_data)
         next_cursors = patch_data.get("next_cursors") or (
             [patch_data.get("cursor")] if patch_data.get("has_more") and patch_data.get("cursor") else []
         )
+        if patch_data.get("has_more") and not next_cursors:
+            raise RuntimeError("飞书分页未结束但缺少游标")
         for cursor in next_cursors:
             if cursor:
                 queue.append({"mode": DOCX_MODE_SPECIFIC, "cursor": cursor})
+    if queue:
+        raise RuntimeError("飞书分页超过 20 页，拒绝不完整快照")
+    ensure_complete_table(data.get("block_map", {}), table_id)
+
+
+def ensure_complete_table(block_map: dict[str, Any], table_id: str) -> None:
+    table = block_map.get(table_id, {}).get("data", {})
+    rows, columns = table.get("rows_id", []), table.get("columns_id", [])
+    if not rows or not columns:
+        raise RuntimeError("飞书表格结构缺失")
+
+    def check(block_id: str, parents: set[str]) -> None:
+        if not block_id or block_id not in block_map:
+            raise RuntimeError("飞书表格单元格未加载完整；保留旧基线，不生成下架通知")
+        if block_id in parents:
+            raise RuntimeError("飞书表格子块存在循环引用")
+        for child in block_map[block_id].get("data", {}).get("children", []) or []:
+            check(child, parents | {block_id})
+
+    for row in rows:
+        for column in columns:
+            cell = table.get("cell_set", {}).get(f"{row}{column}", {})
+            check(cell.get("block_id"), set())
 
 
 def block_plain_text(block_map: dict[str, Any], block_id: str) -> str:
@@ -322,18 +397,29 @@ def normalize_rows(rows: list[list[str]]) -> dict[str, Any]:
     if not rows:
         return {"headers": [], "items": []}
     headers = rows[0]
+    if any(not h.strip() for h in headers) or len(set(headers)) != len(headers):
+        raise RuntimeError("表头为空或重复，无法可靠识别字段")
     items = []
+    seen = set()
     for row in rows[1:]:
-        row = row + [""] * (len(headers) - len(row))
+        if len(row) != len(headers):
+            raise RuntimeError("表格列数不完整，保留旧基线")
         item = {headers[i]: row[i].strip() for i in range(len(headers))}
         item["_model_key"] = canonical_model_name(get_first(item, MODEL_KEYS))
         item["_price"] = get_first(item, PRICE_KEYS)
+        if not item["_model_key"] or not item["_price"]:
+            raise RuntimeError("模型名称或价格缺失，保留旧基线")
+        if item["_model_key"] in seen:
+            raise RuntimeError(f"重复模型 ID：{item['_model_key']}；拒绝覆盖或错误调价")
+        seen.add(item["_model_key"])
         items.append(item)
     return {"headers": headers, "items": items}
 
 
 MODEL_KEYS = ("模型名称", "模型名称（模型 ID）", "模型名称（模型ID）", "模型名")
 PRICE_KEYS = (
+    "每100 万 Tokens 价格",
+    "100 万输入 Tokens 价格",
     "100 万 Tokens 价格",
     "100 万 Tokens 价格（换算价格）",
     "100 万 Tokens 价格 （换算价格）",
@@ -349,16 +435,29 @@ def get_first(item: dict[str, str], keys: tuple[str, ...]) -> str:
         if value:
             return value.strip()
     for key, value in item.items():
-        compact = re.sub(r"\s+", "", key)
-        if any(re.sub(r"\s+", "", candidate) == compact for candidate in keys) and value:
+        compact = re.sub(r"\s+", "", key).lower().removeprefix("每")
+        if any(re.sub(r"\s+", "", candidate).lower().removeprefix("每") == compact for candidate in keys) and value:
             return value.strip()
+    if keys == PRICE_KEYS:
+        matches = [value.strip() for key, value in item.items()
+                   if "价格" in key and not key.startswith("_") and value.strip()]
+        if len(matches) == 1:
+            return matches[0]
+        if len(matches) > 1:
+            raise RuntimeError("存在多个未识别价格列，需明确表头，拒绝猜测")
     return ""
 
 
 def canonical_model_name(value: str) -> str:
     value = re.sub(r"\s+", " ", value or "").strip()
-    value = re.split(r"\s*说明\s*[:：]", value, maxsplit=1)[0].strip()
-    return value
+    # IDs are either the first token or explicitly shown in parentheses (Jev).
+    first = re.split(r"\s+|说明\s*[:：]", value, maxsplit=1)[0].strip()
+    if re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/-]*", first) and ("-" in first or "/" in first):
+        return first
+    parenthesized = re.search(r"[（(]\s*([A-Za-z0-9][A-Za-z0-9._:/-]*)\s*[）)]", value)
+    if parenthesized and not re.search(r"[:：]", value[:parenthesized.start()]):
+        return parenthesized.group(1)
+    return first
 
 
 def is_target_price_table(rows: list[list[str]]) -> bool:
@@ -378,14 +477,15 @@ def snapshot_from_url(url: str, section_title: str) -> dict[str, Any]:
     except Exception as e:  # pragma: no cover
         raise RuntimeError(f"缺少 requests 依赖: {e}") from e
 
-    session = requests.Session()
-    html = fetch_html(url, session=session)
-    client_vars = extract_client_vars_json(html)
-    data = client_vars["data"]
-    block_map = data["block_map"]
-    sequence = data["block_sequence"]
-    table_id, effective_date = find_target_table(block_map, sequence, section_title)
-    complete_table_block_map(session, url, client_vars, table_id)
+    with requests.Session() as session:
+        session.trust_env = False
+        html = fetch_html(url, session=session)
+        client_vars = extract_client_vars_json(html)
+        data = client_vars["data"]
+        block_map = data["block_map"]
+        sequence = data["block_sequence"]
+        table_id, effective_date = find_target_table(block_map, sequence, section_title)
+        complete_table_block_map(session, url, client_vars, table_id)
     rows = table_to_rows(block_map, table_id)
     normalized = normalize_rows(rows)
     snapshot = {
@@ -409,40 +509,51 @@ def summarize_item(item: dict[str, str]) -> str:
     return f"{left} -> {right}".strip(" -> ")
 
 
-def diff_snapshots(old: dict[str, Any], new: dict[str, Any]) -> str:
-    old_items = {json.dumps(item, ensure_ascii=False, sort_keys=True): item for item in old.get("items", [])}
-    new_items = {json.dumps(item, ensure_ascii=False, sort_keys=True): item for item in new.get("items", [])}
-    old_by_model = {item.get("_model_key", "") or canonical_model_name(get_first(item, MODEL_KEYS)): item for item in old.get("items", [])}
-    new_by_model = {item.get("_model_key", "") or canonical_model_name(get_first(item, MODEL_KEYS)): item for item in new.get("items", [])}
+def snapshot_items_by_model(snapshot: dict[str, Any]) -> dict[str, Any]:
+    result = {}
+    for item in snapshot.get("items", []):
+        # Re-derive old 1.0.4 keys/prices instead of trusting its cached fields.
+        model = canonical_model_name(get_first(item, MODEL_KEYS) or item.get("_model_key", ""))
+        if not model or model in result:
+            raise RuntimeError(f"快照模型 ID 为空或重复：{model}；保留旧基线")
+        result[model] = item
+    return result
+
+
+def escape_markdown(value: str) -> str:
+    return re.sub(r"([\\`*_\[\]])", r"\\\1", str(value)).replace("\n", " ")
+
+
+def diff_snapshots(old: dict[str, Any], new: dict[str, Any], title: str = DEFAULT_TITLE) -> str:
+    old_by_model = snapshot_items_by_model(old)
+    new_by_model = snapshot_items_by_model(new)
 
     added_models = [m for m in new_by_model if m and m not in old_by_model]
     removed_models = [m for m in old_by_model if m and m not in new_by_model]
     common_models = [m for m in new_by_model if m in old_by_model]
 
     price_lines: list[str] = []
+    extra_lines: list[str] = []
     for model in common_models:
         old_item = old_by_model[model]
         new_item = new_by_model[model]
-        parts = []
+        price_parts = []
+        other_parts = []
         comparisons = [
             ("厂家", "厂家", old_item.get("厂家", ""), new_item.get("厂家", "")),
             ("倍率", "倍率", old_item.get("倍率", ""), new_item.get("倍率", "")),
-            ("价格", "价格", old_item.get("_price", "") or get_first(old_item, PRICE_KEYS), new_item.get("_price", "") or get_first(new_item, PRICE_KEYS)),
+            ("价格", "价格", get_first(old_item, PRICE_KEYS) or old_item.get("_price", ""), get_first(new_item, PRICE_KEYS) or new_item.get("_price", "")),
+            ("上下文", "上下文", old_item.get("上下文", ""), new_item.get("上下文", "")),
+            ("图片识别", "图片识别", old_item.get("图片识别", ""), new_item.get("图片识别", "")),
         ]
         for _, label, old_value, new_value in comparisons:
             if (old_value or "") != (new_value or ""):
-                parts.append(f"{label} {old_value or '空'} → {new_value or '空'}")
-        if parts:
-            price_lines.append(f"- **{model}**：" + "；".join(parts))
-
-    extra_lines: list[str] = []
-    if not added_models and not removed_models and not price_lines and old.get("hash") != new.get("hash"):
-        old_extra = set(old_items) - set(new_items)
-        new_extra = set(new_items) - set(old_items)
-        if new_extra:
-            extra_lines.extend(f"- {summarize_item(new_items[k])}" for k in sorted(new_extra))
-        if old_extra:
-            extra_lines.extend(f"- {summarize_item(old_items[k])}" for k in sorted(old_extra))
+                parts = price_parts if label in ("倍率", "价格") else other_parts
+                parts.append(f"{label} {escape_markdown(old_value or '空')} → {escape_markdown(new_value or '空')}")
+        if price_parts:
+            price_lines.append(f"- **{escape_markdown(model)}**：" + "；".join(price_parts))
+        if other_parts:
+            extra_lines.append(f"- **{escape_markdown(model)}**：" + "；".join(other_parts))
 
     has_effective_date_change = old.get("effective_date") != new.get("effective_date")
     if not (has_effective_date_change or added_models or removed_models or price_lines or extra_lines):
@@ -455,15 +566,17 @@ def diff_snapshots(old: dict[str, Any], new: dict[str, Any]) -> str:
         summary_parts.append(f"移除 {len(removed_models)}")
     if price_lines:
         summary_parts.append(f"调价 {len(price_lines)}")
+    if extra_lines:
+        summary_parts.append(f"参数变化 {len(extra_lines)}")
     if has_effective_date_change:
         summary_parts.append("版本更新")
     if not summary_parts:
         summary_parts.append("表格变化")
 
     lines = [
-        "# 贵州大模型算力倍率更新啦",
+        "# " + escape_markdown(title),
         "",
-        f"- **文档**：{new['section_title']}",
+        f"- **文档**：{escape_markdown(new['section_title'])}",
         f"- **摘要**：{' · '.join(summary_parts)}",
     ]
     if has_effective_date_change:
@@ -478,11 +591,11 @@ def diff_snapshots(old: dict[str, Any], new: dict[str, Any]) -> str:
         lines.append("")
     if added_models:
         lines.append("## 🆕 新增模型")
-        lines.extend(f"- {summarize_item(new_by_model[m])}" for m in added_models)
+        lines.extend(f"- {escape_markdown(summarize_item(new_by_model[m]))}" for m in added_models)
         lines.append("")
     if removed_models:
         lines.append("## 🗑️ 移除模型")
-        lines.extend(f"- {summarize_item(old_by_model[m])}" for m in removed_models)
+        lines.extend(f"- {escape_markdown(summarize_item(old_by_model[m]))}" for m in removed_models)
         lines.append("")
     if extra_lines:
         lines.append("## 📝 其他表格变化")
@@ -492,10 +605,27 @@ def diff_snapshots(old: dict[str, Any], new: dict[str, Any]) -> str:
     return "\n".join(lines).rstrip()
 
 
+def write_snapshot(state_path: Path, snapshot: dict[str, Any]) -> None:
+    """Replace atomically; an interrupted write cannot corrupt the old baseline."""
+    name = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=state_path.parent,
+                                         prefix=state_path.name + ".", delete=False) as handle:
+            name = handle.name
+            handle.write(json.dumps(snapshot, ensure_ascii=False, indent=2))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(name, state_path)
+    finally:
+        if name and os.path.exists(name):
+            os.unlink(name)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Monitor public Feishu wiki price table")
     parser.add_argument("url")
     parser.add_argument("--section-title", default=DEFAULT_SECTION_TITLE)
+    parser.add_argument("--title", default=DEFAULT_TITLE)
     parser.add_argument("--state-dir", default=str(Path.home() / ".openclaw" / "workspace" / "data" / "feishu-monitors"))
     parser.add_argument("--print-snapshot", action="store_true")
     args = parser.parse_args()
@@ -511,14 +641,14 @@ def main() -> int:
         return 0
 
     if not state_path.exists():
-        state_path.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
+        write_snapshot(state_path, snapshot)
         print("INIT_ONLY")
         return 0
 
     old = json.loads(state_path.read_text(encoding="utf-8"))
-    message = diff_snapshots(old, snapshot)
-    if message != "NO_REPLY":
-        state_path.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
+    message = diff_snapshots(old, snapshot, title=args.title)
+    if old.get("hash") != snapshot.get("hash"):
+        write_snapshot(state_path, snapshot)
     print(message)
     return 0
 
@@ -527,5 +657,5 @@ if __name__ == "__main__":
     try:
         raise SystemExit(main())
     except Exception as e:
-        print(f"飞书价格表监控出错喵：{e}")
-        raise
+        print(f"飞书价格表监控失败（旧基线保留）：{e}", file=sys.stderr)
+        raise SystemExit(1)

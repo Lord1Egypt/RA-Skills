@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!--
+    时序图 SVG 模板
+    参与者用矩形显示在顶部，生命线用虚线，消息用箭头。
+    LLM 生成时参考此结构，自由增减参与者和消息。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-reply" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT2_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 参与者 -->
+  <rect x="60" y="50" width="120" height="40" rx="6"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="75" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{ACTOR_1}}</text>
+
+  <rect x="260" y="50" width="120" height="40" rx="6"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="320" y="75" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{ACTOR_2}}</text>
+
+  <rect x="460" y="50" width="120" height="40" rx="6"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="520" y="75" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{ACTOR_3}}</text>
+
+  <rect x="660" y="50" width="120" height="40" rx="6"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="720" y="75" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{ACTOR_4}}</text>
+
+  <!-- 生命线 -->
+  <line x1="120" y1="90" x2="120" y2="470" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="320" y1="90" x2="320" y2="470" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="520" y1="90" x2="520" y2="470" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="720" y1="90" x2="720" y2="470" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- 消息1: Actor1 → Actor2 -->
+  <line x1="120" y1="130" x2="310" y2="130" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="215" y="123" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT_COLOR}}">{{MSG_1}}</text>
+
+  <!-- 消息2: Actor2 → Actor3 -->
+  <line x1="320" y1="180" x2="510" y2="180" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="415" y="173" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT_COLOR}}">{{MSG_2}}</text>
+
+  <!-- 消息3: Actor3 → Actor4 -->
+  <line x1="520" y1="230" x2="710" y2="230" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="615" y="223" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT_COLOR}}">{{MSG_3}}</text>
+
+  <!-- 返回消息: Actor4 → Actor3 (虚线) -->
+  <line x1="710" y1="280" x2="530" y2="280" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,3" marker-end="url(#arrow-reply)"/>
+  <text x="620" y="273" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT2_COLOR}}">{{REPLY_3}}</text>
+
+  <!-- 返回消息: Actor3 → Actor2 (虚线) -->
+  <line x1="510" y1="330" x2="330" y2="330" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,3" marker-end="url(#arrow-reply)"/>
+  <text x="420" y="323" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT2_COLOR}}">{{REPLY_2}}</text>
+
+  <!-- 返回消息: Actor2 → Actor1 (虚线) -->
+  <line x1="310" y1="380" x2="130" y2="380" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,3" marker-end="url(#arrow-reply)"/>
+  <text x="220" y="373" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT2_COLOR}}">{{REPLY_1}}</text>
+
+  <!-- 激活框（可选） -->
+  <rect x="314" y="125" width="12" height="60" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" rx="2"/>
+  <rect x="514" y="175" width="12" height="110" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" rx="2"/>
+  <rect x="714" y="225" width="12" height="60" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" rx="2"/>
+</svg>

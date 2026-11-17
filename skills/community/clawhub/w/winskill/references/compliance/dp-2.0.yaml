@@ -1,0 +1,87 @@
+---
+version: "1.0.0"
+updated: "2026-08-24"
+standard: "等保 2.0"
+description: "信息安全技术 网络安全等级保护基本要求（GB/T 22239-2019）"
+---
+
+items:
+  - id: "DP-2.0-001"
+    category: 密码策略
+    item: 密码最小长度≥8
+    level: 必级
+    module: module-05
+    check: "net accounts | Select-String 'Minimum password length'"
+    expected: ">= 8"
+
+  - id: "DP-2.0-002"
+    category: 密码策略
+    item: 密码最长使用期限≤90天
+    level: 必级
+    module: module-05
+    check: "net accounts | Select-String 'Maximum password age'"
+    expected: "<= 90 或 Non-never"
+
+  - id: "DP-2.0-003"
+    category: 密码策略
+    item: 密码历史记录≥5
+    level: 必级
+    module: module-05
+    check: "net accounts | Select-String 'Password history length'"
+    expected: ">= 5"
+
+  - id: "DP-2.0-004"
+    category: 账户锁定
+    item: 锁定阈值≤5次
+    level: 必级
+    module: module-05
+    check: "net accounts | Select-String 'Lockout threshold'"
+    expected: "<= 5 且非 Never"
+
+  - id: "DP-2.0-005"
+    category: 账户锁定
+    item: 锁定时间≥15分钟
+    level: 必级
+    module: module-05
+    check: "net accounts | Select-String 'Lockout duration'"
+    expected: ">= 15 且非 Never"
+
+  - id: "DP-2.0-006"
+    category: 审计日志
+    item: 登录事件审计（成功+失败）
+    level: 必级
+    module: module-10
+    check: "auditpol /get /subcategory:'Logon'"
+    expected: "Success and Failure"
+
+  - id: "DP-2.0-007"
+    category: 审计日志
+    item: 对象访问审计（成功+失败）
+    level: 必级
+    module: module-10
+    check: "auditpol /get /subcategory:'Object Access'"
+    expected: "Success and Failure"
+
+  - id: "DP-2.0-008"
+    category: 防火墙
+    item: 所有配置文件已启用防火墙
+    level: 必级
+    module: module-21
+    check: "Get-NetFirewallProfile | Select-Object Name, Enabled"
+    expected: "全部 Enabled = True"
+
+  - id: "DP-2.0-009"
+    category: 补丁更新
+    item: 最近 30 天内有补丁更新
+    level: 必级
+    module: module-15
+    check: "Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 1"
+    expected: "InstalledOn 距今 <= 30 天"
+
+  - id: "DP-2.0-010"
+    category: 远程桌面
+    item: RDP 网络级身份验证（NLA）
+    level: 必级
+    module: module-16
+    check: "Get-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp' -Name UserAuthentication"
+    expected: "UserAuthentication = 1"

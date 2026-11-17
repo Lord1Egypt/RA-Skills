@@ -1,50 +1,61 @@
-## Description: <br>
-On-device multilingual text-to-speech using Supertonic for local voice generation, speech synthesis, and text-to-audio workflows, with optional third-party voice cloning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On-device multilingual text-to-speech using Supertonic (Supertone) for local or offline speech synthesis, with optional voice cloning that requires a one-time upload to Supertone's Voice Builder.
 
-## Publisher: <br>
-[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan)
 
-## Use Case: <br>
-Developers and agents use this skill to generate multilingual speech locally, select built-in Supertonic voices, create WAV audio, and prepare deployment guidance for Python or other ONNX runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The first run downloads Supertonic model files, which may be unsuitable for locked-down or air-gapped environments. <br>
-Mitigation: Preinstall and cache required model assets during deployment review, and confirm the environment permits the expected download path before use. <br>
-Risk: Voice cloning requires uploading a reference voice clip to Supertone's online Voice Builder service. <br>
-Mitigation: Use built-in offline voices for regulated, air-gapped, or highly private voice data, and only use cloning when the user has permission to upload the reference audio. <br>
-Risk: Expression tags are only partially reliable, with only the laugh tag documented as user-verified in the artifact. <br>
-Mitigation: Use expression tags conservatively and prefer wording, punctuation, speed settings, and manual review when emotional delivery matters. <br>
+## Use Case:
 
+Developers and external users use this skill to generate multilingual WAV speech locally from text, choose built-in or exported custom voices, and get guidance on Supertonic setup, language codes, expression tags, and deployment options.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/pratyushchauhan/supertonic-tts) <br>
-- [Voice descriptions and cloning workflow](references/voices.md) <br>
-- [Expression tag testing notes](references/expression-tags.md) <br>
-- [Supported languages](references/languages.md) <br>
-- [Deployment options](references/deployment.md) <br>
-- [Supertonic repository](https://github.com/supertone-inc/supertonic) <br>
-- [Supertonic Python SDK documentation](https://supertone-inc.github.io/supertonic-py/) <br>
-- [Supertonic-3 model card](https://huggingface.co/Supertone/supertonic-3) <br>
-- [Supertone Voice Builder](https://supertonic.supertone.ai/voice_builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; generated speech is saved as WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 31 language codes, built-in voice IDs, optional custom voice style JSON files, speed controls, and quality step settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security review flagged reliance on an unrelated shared Python environment and unpinned downloaded components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a dedicated virtual environment with pinned and hash-checked dependencies before using it in production.
+
+Risk: Voice cloning requires uploading biometric voice audio to Supertone's online Voice Builder service.
+
+Mitigation: Use built-in voices for offline or regulated environments, and use voice cloning only when third-party voice sample upload is acceptable.
+
+## Reference(s):
+
+- [Supertonic TTS Skill Page](https://clawhub.ai/pratyushchauhan/skills/supertonic-tts)
+- [Deployment Options](references/deployment.md)
+- [Expression Tags](references/expression-tags.md)
+- [Supported Languages](references/languages.md)
+- [Supertonic Voices](references/voices.md)
+- [Supertonic GitHub Repository](https://github.com/supertone-inc/supertonic)
+- [Supertonic Python SDK Documentation](https://supertone-inc.github.io/supertonic-py/)
+- [Supertonic-3 Model Card](https://huggingface.co/Supertone/supertonic-3)
+- [Supertonic Voice Builder](https://supertonic.supertone.ai/voice_builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that synthesize 44.1 kHz 16-bit mono WAV audio through the Supertonic package.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

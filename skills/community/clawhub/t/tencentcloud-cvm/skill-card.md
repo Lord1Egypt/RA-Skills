@@ -1,46 +1,65 @@
-## Description: <br>
-Creates and manages Tencent Cloud CVM instances, including lifecycle operations, promotion lookup, cost guidance, and security group setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, inspect, operate, and manage Tencent Cloud CVM instances, including promotional plan lookup, cost controls, and security group setup.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to configure Tencent Cloud credentials, compare CVM purchasing options, and manage CVM instances across create, list, start, stop, restart, security group, and delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, stop, restart, configure, and delete Tencent Cloud infrastructure. <br>
-Mitigation: Require manual review before create, stop, restart, security-group, disk, or delete operations. <br>
-Risk: The documented permission policy is broad and grants wildcard access to CVM, VPC, and CBS resources. <br>
-Mitigation: Use a dedicated sub-user and replace wildcard permissions with the narrowest required actions and resources. <br>
-Risk: Cloud credentials are required for operation and could be exposed if mishandled. <br>
-Mitigation: Keep credentials out of source control, use environment configuration, rotate credentials, and isolate dependencies in a virtual environment. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to guide Tencent Cloud CVM setup and operations, including instance lifecycle management, plan selection, cost-aware shutdown guidance, and security group configuration.
 
-## Reference(s): <br>
-- [Tencent Cloud CVM API documentation](https://cloud.tencent.com/document/api/213) <br>
-- [Tencent Cloud CVM product documentation](https://cloud.tencent.com/document/product/213) <br>
-- [Tencent Cloud promotions center](https://cloud.tencent.com/act) <br>
-- [Tencent Cloud CAM user management](https://cloud.tencent.com/document/product/598) <br>
-- [Tencent Cloud API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python, Bash, YAML, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: Broad Tencent Cloud permissions can allow more CVM, VPC, or disk actions than an agent actually needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Tencent Cloud sub-user and replace wildcard permissions with a narrow allowlist before installing or running the skill.
+
+Risk: Credential handling guidance may expose Tencent Cloud API secrets through config files, terminal output, or shared logs.
+
+Mitigation: Never print or share config/.env values, keep credentials out of version control, and rotate dedicated credentials regularly.
+
+Risk: Lifecycle actions can create paid resources or delete running instances.
+
+Mitigation: Require explicit human approval before creating prepaid resources, stopping production instances, or deleting instances.
+
+Risk: Unpinned dependency installation can introduce unexpected package changes.
+
+Mitigation: Install dependencies in a pinned virtual environment that is reviewed before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/tencentcloud-cvm)
+- [Tencent Cloud CVM API documentation](https://cloud.tencent.com/document/api/213)
+- [Tencent Cloud CVM product documentation](https://cloud.tencent.com/document/product/213)
+- [Tencent Cloud CAM user management documentation](https://cloud.tencent.com/document/product/598)
+- [Tencent Cloud API Explorer](https://console.cloud.tencent.com/api/explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials and environment variables; proposed actions can create, stop, restart, or delete cloud resources.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

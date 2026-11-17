@@ -1,41 +1,53 @@
-## Description: <br>
-Coaches senior leaders through designing or rebuilding KPI trees that connect a North Star Metric to owned operational levers, review cadences, OKRs, planning, and data gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches senior leaders through designing or rebuilding KPI trees that connect a North Star Metric to owned operational levers, operating rhythms, and planning decisions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Executives, finance leaders, strategy leaders, operations leaders, and VP-level functional owners use this skill to choose or validate a North Star Metric and decompose it into an actionable KPI tree. It helps structure metric ownership, operating review cadences, OKR alignment, planning links, and data-engineering gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company metrics, budgets, board materials, and operating-plan details may be sensitive. <br>
-Mitigation: Treat those inputs as confidential and avoid sharing more detail than needed for KPI tree coaching. <br>
-Risk: KPI tree, planning, or operating recommendations may be inaccurate if the company's data maturity, ownership model, or financial context is incomplete. <br>
-Mitigation: Validate recommendations with the responsible finance, operations, and executive owners before acting. <br>
+## Use Case:
 
+CEOs, COOs, CFOs, strategy leaders, operations leaders, and VP-level functional leaders use this skill to design or rebuild KPI trees for companies, business units, or functions. It helps diagnose metric sprawl, select or validate a North Star Metric, decompose drivers, assign metric ownership, and connect the tree to OKRs, planning, and review cadences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/kpi-tree-design-coach) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations, diagnostic questions, KPI tree outlines, and review cadence notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, automatic actions, credential handling, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may share confidential business metrics or operating plans while using the coaching workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive company metrics unless the user is comfortable using them in an AI chat.
+
+Risk: Strategic KPI guidance may be applied without enough business context or data readiness.
+
+Mitigation: Use the diagnostic intake and data maturity checks before adopting a KPI tree for planning, budgeting, or executive review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/kpi-tree-design-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured diagnostic questions, KPI tree recommendations, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, external data access, or persistence behavior is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

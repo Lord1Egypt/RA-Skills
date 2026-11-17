@@ -1,48 +1,71 @@
-## Description: <br>
-Alibaba Cloud MongoDB full lifecycle management for creating, querying, scaling, securing, backing up, upgrading, and deleting standalone, replica set, and sharded cluster instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Alibaba Cloud ApsaraDB for MongoDB instances across creation, querying, scaling, deletion, node management, security settings, backups, upgrades, HA switchover, accounts, tags, renewal, and billing operations.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to administer Alibaba Cloud ApsaraDB for MongoDB instances through guided Aliyun CLI workflows. It supports lifecycle operations including provisioning, querying, scaling, security configuration, backup, upgrade, billing conversion, renewal, node management, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad, costly, or destructive Alibaba Cloud changes. <br>
-Mitigation: Install only for agents expected to administer ApsaraDB for MongoDB, and use a dedicated least-privilege RAM user or role scoped to required regions and resources. <br>
-Risk: Billing, purchase, renewal, public-network, KMS, password reset, and deletion operations can materially affect cost, access, or data availability. <br>
-Mitigation: Require manual approval before these operations and avoid granting BSS, KMS, resource-group, public-network, billing, or delete permissions unless the task requires them. <br>
-Risk: The skill requires sensitive cloud credentials. <br>
-Mitigation: Prefer short-lived credentials and avoid placing real secrets in command arguments, shell profiles, logs, or user-visible output. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage the full lifecycle of Alibaba Cloud MongoDB instances through Aliyun CLI workflows, including resource creation, configuration, maintenance, backups, and deletion. It is intended for users who need guided command generation and operational checks for standalone, replica set, and sharded cluster deployments.
 
-## Reference(s): <br>
-- [Operations](artifact/references/operations.md) <br>
-- [Related APIs](artifact/references/related-apis.md) <br>
-- [RAM Policies](artifact/references/ram-policies.md) <br>
-- [Verification Method](artifact/references/verification-method.md) <br>
-- [CLI Installation Guide](artifact/references/cli-installation-guide.md) <br>
-- [Acceptance Criteria](artifact/references/acceptance-criteria.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-mongodb-instances-manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, parameter summaries, and operation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on actual Alibaba Cloud API or CLI results when reporting resource state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can guide broad Alibaba Cloud MongoDB administration with powerful credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated RAM user with the smallest permissions needed and review requested permissions before use.
+
+Risk: The skill asks users to run mutable Aliyun CLI and plugin installation or update steps.
+
+Mitigation: Verify CLI and plugin provenance before installing, and avoid automatic plugin updates where possible.
+
+Risk: The skill covers destructive or sensitive operations such as deletion, password reset, public endpoint changes, billing changes, KMS changes, and backup-retention changes.
+
+Mitigation: Require explicit human review and confirmation before executing these operations.
+
+Risk: Agent-visible commands can expose cloud secrets if users paste or print credentials.
+
+Mitigation: Avoid entering real secrets in agent-visible commands and check credential status without echoing access keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-mongodb-instances-manage)
+- [Operations reference](references/operations.md)
+- [Related APIs](references/related-apis.md)
+- [RAM policies](references/ram-policies.md)
+- [Verification method](references/verification-method.md)
+- [CLI installation guide](references/cli-installation-guide.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
+- [CreateDBInstance API documentation](https://help.aliyun.com/zh/mongodb/developer-reference/api-dds-2015-12-01-createdbinstance)
+- [CreateShardingDBInstance API documentation](https://help.aliyun.com/zh/mongodb/developer-reference/api-dds-2015-12-01-createshardingdbinstance)
+- [DeleteDBInstance API documentation](https://help.aliyun.com/zh/mongodb/developer-reference/api-dds-2015-12-01-deletedbinstance)
+- [ModifyBackupPolicy API documentation](https://help.aliyun.com/zh/mongodb/developer-reference/api-dds-2015-12-01-modifybackuppolicy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Aliyun CLI command guidance, configuration steps, permission policy snippets, and operation verification checks.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

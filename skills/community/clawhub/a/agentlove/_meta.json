@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn7e514tm6rs72erc94sszsy4s824k8t",
-  "slug": "agentlove",
+  "name": "agentlove",
   "version": "2.9.6",
-  "publishedAt": 1774167904650
+  "description": "AgentLove - AI 机器人一键配置（8 步完成）。提供备份迁移、机器人配置、结婚进化三大核心功能。",
+  "author": "OpenAgentLove Team",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "robot",
+    "configuration",
+    "setup",
+    "agent"
+  ],
+  "main": "skill.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "openclaw": {
+    "minVersion": "2026.3.8",
+    "platforms": [
+      "feishu",
+      "discord",
+      "telegram"
+    ],
+    "commands": [
+      "/new-robot",
+      "/setup-robot",
+      "/create-agent"
+    ]
+  },
+  "repository": "https://github.com/OpenAgentLove/OpenAgent.Love",
+  "homepage": "https://openagent.love"
 }

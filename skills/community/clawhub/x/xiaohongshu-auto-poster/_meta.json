@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f6tk8pd3d2fmn9cwm93290982gs3y",
-  "slug": "xiaohongshu-auto-poster",
+  "name": "xiaohongshu-auto-poster",
   "version": "1.0.0",
-  "publishedAt": 1774969073502
+  "author": "ginmin791",
+  "description": "小红书自动发帖套装 - 配置好后说一句话就能自动发小红书",
+  "tags": ["xiaohongshu", "auto-post", "社交媒体运营", "内容创作"],
+  "slug": "xiaohongshu-auto-poster",
+  "price": 29
 }

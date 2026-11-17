@@ -1,41 +1,53 @@
-## Description: <br>
-MCP tools for Anki Vector: speech, motion, camera, sensors, and automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP tools for Anki Vector: speech, motion, camera, sensors, and automation workflows.
 
-## Publisher: <br>
-[danmartinez78](https://clawhub.ai/user/danmartinez78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danmartinez78](https://clawhub.ai/user/danmartinez78)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw-compatible agents to an Anki or Digital Dream Labs Vector robot for speech, movement, camera capture, sensor reads, and automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent move and operate a physical Vector robot. <br>
-Mitigation: Install it only for intentional robot-control use, keep the robot in a safe non-private area, and require explicit confirmation before movement or speech. <br>
-Risk: Camera tools can capture images from the robot's environment. <br>
-Mitigation: Use camera capture only with consent in appropriate spaces and require explicit confirmation before camera access. <br>
-Risk: Robot serial and SDK certificate files are sensitive operational credentials. <br>
-Mitigation: Protect VECTOR_SERIAL and SDK certificate files, and verify the external Python package before enabling the MCP server. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VectorClaw MCP on ClawHub](https://clawhub.ai/danmartinez78/vectorclaw-mcp) <br>
+## Use Case:
 
+Developers and robot automation users use this skill to connect an agent to an Anki or Digital Dream Labs Vector robot for speech, movement, camera capture, sensor reads, and look-reason-act workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Vector robot, Wire-Pod, the Vector SDK config file, and VECTOR_SERIAL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs the vectorclaw-mcp package, which creates a supply-chain dependency.
+
+Mitigation: Use a pinned, reviewed package version and install only when the package and publisher are trusted.
+
+Risk: The skill can control a physical robot and access camera-related tools.
+
+Mitigation: Run the robot under supervision, use a low-privilege account, and apply caution with motion and camera workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danmartinez78/skills/vectorclaw-mcp)
+- [Project repository listed in skill](https://github.com/danmartinez78/VectorClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing MCP setup and usage guidance; tool responses may include robot status, sensor readings, and camera outputs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Daily thinking practice skill. Generate open-ended exercises based on Pyramid Principle, Asking the Right Questions, and Underlying Logic to help users improve thinking, communication, and cognitive abilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily open-ended thinking exercises based on Pyramid Principle, Asking the Right Questions, and Underlying Logic to help users practice structured expression, critical analysis, and logical reasoning.
 
-## Publisher: <br>
-[Auroka](https://clawhub.ai/user/Auroka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auroka](https://clawhub.ai/user/auroka)
 
-## Use Case: <br>
-External users use this skill for daily open-ended thinking practice, personalized quizzes, and feedback focused on structured expression, critical thinking, and logical analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write persistent personal-growth session records without a clear consent or deletion flow. <br>
-Mitigation: Use explicit commands, inspect the memory/personal-growth-records/ directory, avoid entering sensitive information, and delete stored records when they are no longer needed. <br>
+## Use Case:
 
+External users use this skill for daily self-improvement practice through open-ended quizzes, feedback, and follow-up records focused on structured communication, critical thinking, and essential analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Auroka/personal-growth-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coaching prompts, feedback, reference answers, and session-record updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local personal-growth session records under memory/personal-growth-records/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may keep local notes about quiz performance and weak areas for future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete notes under memory/personal-growth-records/ when that history should not be retained.
+
+## Reference(s):
+
+- [Personal Growth Coach on ClawHub](https://clawhub.ai/auroka/skills/personal-growth-coach)
+- [Auroka publisher profile](https://clawhub.ai/user/auroka)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown coaching prompts, feedback, reference answers, and learning-record notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create scoped local learning records under memory/personal-growth-records/.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

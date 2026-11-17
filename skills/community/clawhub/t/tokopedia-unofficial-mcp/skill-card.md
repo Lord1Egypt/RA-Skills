@@ -1,41 +1,54 @@
-## Description: <br>
-Use Tokopedia MCP tools to find, compare, and evaluate products, reviews, and shops for informed online shopping decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Tokopedia MCP tools for universal shopping tasks: discovery, comparison, detail lookup, reviews, shop checks, and media inspection.
 
-## Publisher: <br>
-[its-benjamin](https://clawhub.ai/user/its-benjamin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[its-benjamin](https://clawhub.ai/user/its-benjamin)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to search Tokopedia, compare product options, inspect reviews and seller context, and produce concise buying recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill expects a separate Tokopedia MCP server that was not part of this reviewed bundle. <br>
-Mitigation: Review and trust the configured MCP server independently before enabling it. <br>
-Risk: Shopping workflows can involve sensitive personal, payment, or account information. <br>
-Mitigation: Avoid sending sensitive information unless the configured provider and tool environment are trusted. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to research Tokopedia products, compare shortlists, inspect reviews and shops, and produce concise buying recommendations with alternatives.
 
-## Reference(s): <br>
-- [Tokopedia Unofficial MCP server homepage](https://github.com/its-benjamin/Tokopedia-unofficial-mcp-server) <br>
-- [ClawHub skill page](https://clawhub.ai/its-benjamin/tokopedia-unofficial-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, text] <br>
-**Output Format:** [Markdown with comparison tables, summaries, recommendations, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product names, prices, ratings, review counts, sold counts, URLs, seller context, strengths, tradeoffs, and suggested next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: The skill depends on a separately connected Tokopedia MCP server that is not included in this bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the connected MCP server before use and confirm it matches the permissions, data access, and behavior expected for the deployment.
+
+Risk: Product listings, prices, stock, reviews, and shop signals can be incomplete, stale, or ambiguous.
+
+Mitigation: Validate important buying decisions with product detail fields, review context, shop information, and clear uncertainty notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/its-benjamin/skills/tokopedia-unofficial-mcp)
+- [Tokopedia MCP Server Homepage](https://github.com/its-benjamin/Tokopedia-unofficial-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with shortlist tables, summaries, recommendations, alternatives, and optional next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product names, prices, ratings, review counts, sold counts, URLs, strengths, tradeoffs, and uncertainty notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

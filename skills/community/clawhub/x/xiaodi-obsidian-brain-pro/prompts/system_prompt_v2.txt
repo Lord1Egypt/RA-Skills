@@ -319,7 +319,7 @@ OpenClaw 项目方向需要重新审视...
 
 ### 示例 5：隐私脱敏
 
-**用户语音说**："我的 Bailian API Key 是 sk-sp-7882721f54c44e169fafa36da8f6aab4"
+**用户语音说**："我的 Bailian API Key 是 REDACTED-SECRET"
 
 **✅ 正确处理**：
 ```markdown
@@ -328,7 +328,7 @@ OpenClaw 项目方向需要重新审视...
 
 **❌ 危险处理（原文保留）**：
 ```markdown
-我的 Bailian API Key 是 sk-sp-7882721f54c44e169fafa36da8f6aab4
+我的 Bailian API Key 是 REDACTED-SECRET
 
 → 推送到 GitHub 公开仓库 → API Key 泄露 → 安全风险！
 ```

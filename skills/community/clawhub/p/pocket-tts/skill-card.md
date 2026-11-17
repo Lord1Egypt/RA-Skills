@@ -1,45 +1,60 @@
-## Description: <br>
-Generate high-quality English speech locally on CPU using Kyutai's Pocket TTS model, built-in voices, or a permitted custom voice sample. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate English speech locally on CPU with Pocket TTS using built-in voices or a user-provided voice sample.
 
-## Publisher: <br>
-[sherajdev](https://clawhub.ai/user/sherajdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sherajdev](https://clawhub.ai/user/sherajdev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local English text-to-speech generation, choose preset voices, clone from an authorized WAV sample, and optionally run a local TTS server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup or first run may require downloads from the Pocket TTS package and Kyutai/Hugging Face model sources. <br>
-Mitigation: Install only in an environment where those upstream sources are trusted, and plan for internet access before relying on offline runtime behavior. <br>
-Risk: Voice cloning can use personal or third-party voice samples. <br>
-Mitigation: Use custom WAV samples only with permission and review generated audio for consent, disclosure, and misuse concerns before distribution. <br>
-Risk: The skill can start a local TTS server and write WAV files to user-selected paths. <br>
-Mitigation: Start the server only when intended and choose output paths deliberately to avoid exposing services or overwriting files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sherajdev/pocket-tts) <br>
-- [Kyutai Pocket TTS model card](https://huggingface.co/kyutai/pocket-tts) <br>
-- [Kyutai Pocket TTS demo](https://kyutai.org/tts) <br>
-- [Kyutai Pocket TTS GitHub repository](https://github.com/kyutai-labs/pocket-tts) <br>
-- [Pocket TTS paper](https://arxiv.org/abs/2509.06926) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local English text-to-speech generation, voice selection, and optional voice cloning to workflows without relying on a hosted TTS API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides generation of WAV audio files and optional local server use; the skill itself returns agent-facing instructions and commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing dependencies and first model or voice downloads may introduce unreviewed packages or remote assets.
+
+Mitigation: Install in an isolated Python environment and pin or review package versions and downloaded assets before use.
+
+Risk: Voice cloning can reproduce a person's voice from a WAV sample.
+
+Mitigation: Use voice cloning only for voices the user has permission to reproduce and keep consent records where required.
+
+Risk: The model is gated and requires accepting external model terms before generation succeeds.
+
+Mitigation: Confirm Hugging Face model license acceptance and applicable terms before deployment.
+
+## Reference(s):
+
+- [Pocket TTS ClawHub Page](https://clawhub.ai/sherajdev/skills/pocket-tts)
+- [Kyutai Pocket TTS Demo](https://kyutai.org/tts)
+- [Pocket TTS GitHub Repository](https://github.com/kyutai-labs/pocket-tts)
+- [Pocket TTS Hugging Face Model](https://huggingface.co/kyutai/pocket-tts)
+- [Pocket TTS Paper](https://arxiv.org/abs/2509.06926)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and Python snippets; generated speech is saved as WAV audio when the CLI is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports built-in voice names, speech speed, output path, and an optional WAV voice sample for cloning.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

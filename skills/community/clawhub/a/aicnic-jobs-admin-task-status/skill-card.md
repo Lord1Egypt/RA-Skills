@@ -1,40 +1,54 @@
-## Description: <br>
-Queries task status from the AICNIC job management system by calling the job information API and extracting returned task fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries task status from the AICNIC job management system by fetching job details for a supplied jobId and returning the jobState field.
 
-## Publisher: <br>
-[bylikai](https://clawhub.ai/user/bylikai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bylikai](https://clawhub.ai/user/bylikai)
 
-## Use Case: <br>
-Developers, operators, or users with an AICNIC job ID use this skill to retrieve task status and basic job metadata from the AICNIC job management system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided job ID is sent to an external AICNIC endpoint over plain HTTP. <br>
-Mitigation: Use the skill only when the user intends to query AICNIC, and avoid submitting sensitive job IDs unless the user accepts that network exposure. <br>
-Risk: Unusual jobId values can create request or shell-command handling issues when interpolated into a URL or curl command. <br>
-Mitigation: Validate or URL-encode jobId values and prefer a safe HTTP client over direct shell interpolation. <br>
+## Use Case:
 
+External users and developers use this skill to check AICNIC task status from a known jobId and retrieve related job metadata such as job ID, name, start time, and end time.
 
-## Reference(s): <br>
-- [AICNIC job status API endpoint](http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28/{jobId}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with optional curl command and extracted JSON fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided jobId and an outbound request to the AICNIC job information endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends user-provided job IDs to an external AICNIC endpoint over plain HTTP, so job IDs and returned job metadata may be visible or modifiable on the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only job IDs that are acceptable to disclose, prefer HTTPS if the service supports it, and review returned metadata before relying on it.
+
+Risk: Broad activation on ambiguous job identifiers could send unintended identifiers to the external AICNIC service.
+
+Mitigation: Ask for confirmation before sending ambiguous identifiers and limit use to explicit AICNIC task status checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bylikai/skills/aicnic-jobs-admin-task-status)
+- [AICNIC jobs API endpoint](http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28/{jobId})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Markdown text with optional inline shell commands and parsed status fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns job status and selected job metadata from the AICNIC API response.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

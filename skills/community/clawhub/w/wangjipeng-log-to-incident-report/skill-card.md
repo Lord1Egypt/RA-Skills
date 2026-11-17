@@ -1,44 +1,59 @@
-## Description: <br>
-Converts user-provided error logs into structured incident reports with root cause, impact, mitigation steps, action items, and confidence notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided error logs into structured incident reports with root cause, impact, timeline, mitigation steps, and action items.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers, site reliability engineers, and support teams use this skill to turn pasted error logs, stack traces, or system output into incident reports that summarize the timeline, likely root cause, impact, mitigation steps, and follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided logs may contain API keys, tokens, cookies, session IDs, private hostnames, personal data, or regulated information. <br>
-Mitigation: Redact sensitive data before pasting logs into the agent context. <br>
-Risk: The README includes API_KEY and write-mode examples that are not explained by the skill behavior. <br>
-Mitigation: Treat those examples as template residue unless the publisher clarifies what service is used and whether any files are created or modified. <br>
-Risk: Root cause and impact can be incomplete when the provided logs do not cover the full incident window. <br>
-Mitigation: Review the report's confidence notes and supply additional logs or operational context before acting on conclusions. <br>
+## Use Case:
 
+Developers, SREs, and incident responders use this skill to turn pasted logs, stack traces, or system output into a structured incident report for triage and follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/wangjipeng-log-to-incident-report) <br>
-- [Skill metadata source](https://github.com/MiniMax-AI/skills) <br>
-- [Reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown incident report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [States assumptions and uncertainty when the logs are incomplete or the impact cannot be determined.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Logs pasted into the agent context may contain tokens, API keys, personal data, internal hostnames, or customer identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive values before use and avoid sharing logs that exceed the intended incident-analysis scope.
+
+Risk: Incomplete logs can lead to uncertain root-cause or impact conclusions.
+
+Mitigation: Review the generated incident report against monitoring data and source systems before using it for operational decisions.
+
+Risk: Artifact documentation includes boilerplate read/write mode and API_KEY sections that may not reflect actual runtime needs.
+
+Mitigation: Treat those sections as unverified until the publisher clarifies configuration and workflow requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/wangjipeng-log-to-incident-report)
+- [Skill reference index](artifact/references/index.md)
+- [MiniMax-AI skills source](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown incident report with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence level, assumptions, and uncertainty statements when logs are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence; artifact frontmatter and changelog use 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

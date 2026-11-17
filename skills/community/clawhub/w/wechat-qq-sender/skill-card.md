@@ -1,43 +1,58 @@
-## Description: <br>
-Windows 平台微信和 QQ 自动发消息工具。支持搜索联系人、发送消息、截图OCR分析、智能回复建议（需用户确认后发送）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows 平台微信和 QQ 自动发消息工具，支持搜索联系人、发送消息、截图 OCR 分析和需用户确认的智能回复建议。
 
-## Publisher: <br>
-[smallccwc](https://clawhub.ai/user/smallccwc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[smallccwc](https://clawhub.ai/user/smallccwc)
 
-## Use Case: <br>
-External users and developers use this skill on Windows to automate WeChat and QQ desktop messaging, capture chat screenshots, run local OCR, and draft reply suggestions that can be reviewed before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control live WeChat and QQ desktop apps, including keyboard, mouse, clipboard, and logged-in chat sessions. <br>
-Mitigation: Install only in a trusted Windows environment, test with low-risk contacts first, and avoid using the machine while automation is running. <br>
-Risk: Direct-send commands may send messages immediately or with uneven confirmation behavior. <br>
-Mitigation: Review target contacts and message text before running send commands, and prefer confirmation-based reply flows for higher-risk conversations. <br>
-Risk: Chat screenshots are saved locally and may contain private or sensitive conversation content. <br>
-Mitigation: Review and delete saved screenshots after use, and do not upload chat screenshots to external AI services unless that privacy exposure is intentional. <br>
+## Use Case:
 
+External users and developers use this skill to automate WeChat and QQ desktop messaging on Windows, including contact search, message sending, local chat screenshots, OCR-assisted review, and suggested replies with user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallccwc/wechat-qq-sender) <br>
-- [Tesseract OCR Windows installer wiki](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local desktop automation steps, screenshot/OCR outputs, and reply suggestions; sending behavior depends on the selected script and user confirmation flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and package.json) <br>
+Risk: GUI automation may send a message to the wrong active chat or contact because recipient verification is fragile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted Windows desktop session, test with non-sensitive contacts first, and require an explicit recipient and message confirmation before sending.
+
+Risk: Screenshots and OCR can expose sensitive chat content.
+
+Mitigation: Avoid sensitive conversations, keep screenshots local, delete saved screenshots after use, and do not upload captures to external AI or OCR services.
+
+Risk: Clipboard and keyboard/mouse automation can interfere with concurrent desktop activity.
+
+Mitigation: Do not use the keyboard, mouse, or clipboard during execution, and review results before relying on the workflow for important messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallccwc/skills/wechat-qq-sender)
+- [Tesseract OCR Windows installer documentation](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may guide Windows GUI automation, local screenshot capture, OCR setup, and user-confirmed message sending workflows.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

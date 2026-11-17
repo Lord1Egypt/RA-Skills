@@ -1,40 +1,54 @@
-## Description: <br>
-Tools and techniques for detrending time series data in macroeconomic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tools and techniques for detrending time series data in macroeconomic analysis. Use when working with economic time series that need to be decomposed into trend and cyclical components. Covers HP filter, log transformations for growth series, and correlation analysis of business cycles.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, analysts, and economics researchers use this skill to decompose macroeconomic time series into trend and cyclical components, select HP-filter smoothing parameters by data frequency, and compare business-cycle correlations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the recommended Python packages can introduce dependency or environment risk. <br>
-Mitigation: Use a virtual environment and verify package sources before installing statsmodels, pandas, and numpy. <br>
-Risk: HP-filter outputs can be misleading when the data frequency, lambda value, or log transform is inappropriate for the series. <br>
-Mitigation: Confirm the series frequency, use the matching smoothing parameter, and avoid log transforms for series with zeros, negative values, or rate units. <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to prepare macroeconomic time series for business-cycle analysis by separating trend and cyclical components, applying appropriate log transforms, and computing cyclical correlations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/econ-detrending-correlation-timeseries-detrending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides analytical guidance and example commands; it does not execute code or access external services by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Unpinned Python dependencies can produce different analysis behavior across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install statsmodels, pandas, and numpy in a virtual environment and pin versions for reproducible or organization-controlled analysis.
+
+Risk: Incorrect detrending choices can lead to misleading macroeconomic cycle interpretation.
+
+Mitigation: Verify the data frequency before selecting the HP-filter lambda, and avoid log transforms for series with zeros, negative values, or rate-style measurements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/econ-detrending-correlation-timeseries-detrending)
+- [Publisher profile](https://clawhub.ai/user/wu-uk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides package installation guidance and example Python snippets for HP filtering, log transformation, and correlation analysis.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

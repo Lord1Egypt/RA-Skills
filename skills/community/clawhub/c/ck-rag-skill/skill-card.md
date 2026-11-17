@@ -1,44 +1,57 @@
-## Description: <br>
-ck-rag-skill queries a RAGFlow knowledge base to answer technical, operations, and troubleshooting questions and return summarized guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries a RAGFlow knowledge base to answer technical, troubleshooting, operations, Docker/container, and development questions, then summarizes actionable guidance from the returned sources.
 
-## Publisher: <br>
-[chenkun-nuaa](https://clawhub.ai/user/chenkun-nuaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chenkun-nuaa](https://clawhub.ai/user/chenkun-nuaa)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to query a configured RAGFlow knowledge base for technical Q&A, Docker/container troubleshooting, system operations guidance, and suggested next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release ships reusable RAGFlow API credentials and a session cookie. <br>
-Mitigation: Rotate or replace the credentials before installation and store secrets outside the skill artifact. <br>
-Risk: The skill uses shared conversation state when querying the RAGFlow service. <br>
-Mitigation: Use per-user or per-session conversation identifiers and clear sensitive context between sessions. <br>
-Risk: Prompts and troubleshooting details are sent to the configured RAGFlow server. <br>
-Mitigation: Avoid sensitive prompts until transport, access control, and retention behavior are understood. <br>
-Risk: The skill may suggest system commands based on knowledge-base answers. <br>
-Mitigation: Inspect suggested commands and require user approval before executing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenkun-nuaa/ck-rag-skill) <br>
-- [RAGFlow Skill Troubleshooting Guide](artifact/TROUBLESHOOTING.md) <br>
+## Use Case:
 
+Developers and operations engineers use this skill to query a RAGFlow knowledge base for technical Q&A, fault diagnosis, and operational guidance, especially for container, Docker, system administration, and development scenarios.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and knowledge-base references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams responses from a configured RAGFlow API; responses may include cited knowledge-base documents and timing statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill ships reusable session credentials.
+
+Mitigation: Rotate the exposed token and session cookie, then move credentials to secure per-user configuration before installation.
+
+Risk: User questions are sent over plaintext HTTP to a fixed internal endpoint.
+
+Mitigation: Use the skill only in a trusted internal environment and switch the endpoint to HTTPS before sending secrets or sensitive operational details.
+
+Risk: A shared conversation ID can retain or mix context across users or sessions.
+
+Mitigation: Use per-user or per-session conversation IDs and avoid sending sensitive operational details until session handling is isolated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenkun-nuaa/skills/ck-rag-skill)
+- [RAGFlow Skill Troubleshooting Guide](TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with summarized answers, optional inline shell commands, source document names, and query status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses streaming responses and may take 5-10 seconds for typical answers, with longer timeouts for complex questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

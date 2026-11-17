@@ -1,40 +1,48 @@
-## Description: <br>
-List all agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lists all agents.
 
-## Publisher: <br>
-[yujin1liu](https://clawhub.ai/user/yujin1liu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yujin1liu](https://clawhub.ai/user/yujin1liu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users can ask an agent to list available agents using the agent-browser command.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact depends on an external agent-browser command whose own provenance is not included in the skill artifact.
+
+Mitigation: Confirm the installed agent-browser command is expected and trusted before enabling the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent to list available agents through the local agent-browser command. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local agent-browser command behavior is outside the submitted skill artifact. <br>
-Mitigation: Confirm the command is from a trusted source and behaves as a read-only agent listing tool before installing or running the skill. <br>
-Risk: The activation condition and documentation are sparse. <br>
-Mitigation: Review the submitted SKILL.md and ClawScan guidance before deployment, and use the skill only where agent listing is intended. <br>
+**Output Format:** [Markdown or plain text responses based on agent-browser command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujin1liu/agent-search) <br>
+**Other Properties Related to Output:** [Requires node, npm, and the agent-browser command to be available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown from agent-browser command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local node, npm, and a trusted agent-browser command.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

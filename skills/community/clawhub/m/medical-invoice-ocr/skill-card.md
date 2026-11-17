@@ -1,46 +1,61 @@
-## Description: <br>
-Extracts structured fields from medical invoice images or PDFs by sending the selected file to the SCNet OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes medical invoices with the Sugon-Scnet OCR API and returns structured JSON fields.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and agent operators use this skill to OCR medical invoice files and extract invoice fields such as invoice number, date, payer, payee, and amount. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Medical invoice files may contain sensitive personal, billing, or healthcare information and are sent to SCNet's OCR service for processing. <br>
-Mitigation: Use the skill only when that data transfer is acceptable for the user and organization, and verify SCNET_API_BASE before sending files. <br>
-Risk: SCNET_API_KEY is a sensitive credential that could permit unauthorized API use if exposed. <br>
-Mitigation: Store SCNET_API_KEY in an environment variable or chmod-600 config/.env file, and do not paste the key into chat or logs. <br>
-Risk: Rapid repeated calls can hit the OCR service rate limit and cause failed or delayed recognition. <br>
-Mitigation: Call the skill serially and back off before retrying when rate-limit responses occur. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to extract structured fields from medical invoice images, PDFs, or supported archives through the Scnet OCR service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/medical-invoice-ocr) <br>
-- [SCNet Publisher Profile](https://clawhub.ai/user/scnet-sugon) <br>
-- [Sugon-Scnet OCR API Docs](references/api-docs.md) <br>
-- [Medical Invoice Field Summary](assets/templates/fields-summary.md) <br>
-- [SCNet Website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [Structured JSON written to stdout containing OCR result data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returned data includes OCR result entries whose elements vary by ocrType; errors are emitted as human-readable messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and frontmatter) <br>
+Risk: Medical invoices may contain sensitive personal or billing information and are uploaded to the Scnet OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming the selected document may be sent to Scnet, especially for real medical invoices.
+
+Risk: The API base URL is configurable, which could route sensitive documents away from the intended service if changed.
+
+Mitigation: Keep SCNET_API_BASE fixed to the official HTTPS endpoint unless a trusted operator has reviewed and approved the alternate endpoint.
+
+Risk: The skill requires an SCNET_API_KEY credential.
+
+Mitigation: Store the key in an environment variable or protected config file, avoid pasting it into chats, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/medical-invoice-ocr)
+- [Publisher profile](https://clawhub.ai/user/scnet-sugon)
+- [Scnet website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API docs](references/api-docs.md)
+- [Medical invoice field summary](assets/templates/fields-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OCR type and a local file path; returns OCR results for submitted medical invoice files.]
+
+## Skill Version(s):
+
+1.1.3 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

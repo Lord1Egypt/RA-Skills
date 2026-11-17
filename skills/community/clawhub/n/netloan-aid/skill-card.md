@@ -1,44 +1,59 @@
-## Description: <br>
-网贷还款援助助手，帮助借款人分析贷款利率合规性、生成还款方案并评估方案可行性；内容仅供参考，不构成正式法律或金融意见。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+网贷还款援助助手，帮助借款人分析贷款合规性、生成还款方案、评估可行性概率；内容由 AI 结合公开资料生成，仅供参考，不构成正式法律意见或金融建议。
 
-## Publisher: <br>
-[naive1024](https://clawhub.ai/user/naive1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naive1024](https://clawhub.ai/user/naive1024)
 
-## Use Case: <br>
-External users facing online-loan repayment questions use this skill to estimate debt totals, check stated annual rates against the tool's built-in rules, compare repayment approaches, and draft negotiation talking points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive financial details while using the local helper. <br>
-Mitigation: Run it only in a trusted local environment, avoid entering identity or contact details, and review any output before sharing it. <br>
-Risk: Repayment, legal, and financial guidance may be incomplete, inaccurate, or not applicable to a user's situation. <br>
-Mitigation: Treat the report as informational support and confirm important decisions with a qualified lawyer, financial adviser, or the relevant financial institution. <br>
-Risk: The artifact includes referral or contact content for additional services. <br>
-Mitigation: Independently verify any provider before using external services or sharing personal or financial information. <br>
+## Use Case:
 
+External users with online-loan repayment concerns use this local Node.js CLI to enter loan amount, interest rate, overdue days, platform name, and monthly income, then receive compliance analysis, debt calculations, repayment options, feasibility estimates, and negotiation wording. The generated material is informational and should be checked with a licensed lawyer or relevant financial institution before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naive1024/netloan-aid) <br>
-- [Publisher profile](https://clawhub.ai/user/naive1024) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Terminal text report with interactive prompts and command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Node.js; accepts interactive prompts or CLI flags for platform, amount, rate, overdue days, and monthly income.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The CLI asks for debt amount, interest rate, overdue days, platform name, and monthly income, which can be sensitive financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment, enter the minimum information needed, and avoid adding identity, contact, bank-account, or repayment details.
+
+Risk: The generated report promotes an external assistance channel without enough privacy or independence disclosure.
+
+Mitigation: Independently verify the external service and its privacy policy before contacting it, and do not share personal financial, identity, contact, or repayment details unless you trust the service.
+
+Risk: The repayment and legal guidance is generated from public references and may be incomplete, outdated, or jurisdiction-specific.
+
+Mitigation: Treat the output as informational planning material and confirm legal or financial decisions with a licensed lawyer, qualified adviser, or the relevant financial institution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/naive1024/skills/netloan-aid)
+- [Publisher Profile](https://clawhub.ai/user/naive1024)
+- [Free Plan Assistance Site](https://loan-aid-test-3g6whqku662d13c8.webapps.tcloudbase.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown-style guidance with repayment-plan sections and negotiation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a local Node.js CLI in interactive or argument mode.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -31,8 +31,8 @@ Music generation can fail in many ways. This is a reference for the common ones,
 | MusicGen: `import audiocraft` fails | "MusicGen not installed. Run: `pip install audiocraft torch`" |
 | MusicGen: CUDA out of memory | "GPU memory full. Try model `small` instead of `medium`/`large`, or reduce duration to 60 seconds." |
 | MusicGen: output is only ~30 seconds | "MusicGen's default chunk is ~30s. For longer tracks, accept shorter output or use a cloud backend (Stable Audio API) or install ACE-Step locally." |
-| MiniMax quota exhausted | "MiniMax quota hit. Switching to next available backend." Then re-run detection, skip MiniMax, try MusicGen or Stable Audio. |
-| The user asks for a fast cover or mashup | "That needs fast cloud cover / style transfer. Switch to `music-craft-minimax` and I will run the pre-flight with the extended checks." |
+| A cloud backend is out of quota or unavailable | Do not switch providers on your own. Say which backend failed, then offer the alternatives (local ACE-Step or MusicGen first; another cloud provider only if the user agrees to send the prompt and lyrics there). |
+| The user asks for a fast cover or mashup | "MiniMax music generation is no longer available. I can try a local ACE-Step cover (slower, experimental); mashup is not available." |
 | The user asks for a local cover/repaint experiment | "I can try this locally with ACE-Step, but it is slower, queue-bound, and source-length sensitive. I will use the ACE-Step cover/repaint workflow and wait helper." |
 | The user asks for emotion analysis | Same redirect to Skill 2 |
 | The user provides audio without a clear goal | Ask: cover? Sample? Style reference? |
@@ -41,7 +41,7 @@ Music generation can fail in many ways. This is a reference for the common ones,
 | The user wants a specific real artist's voice (e.g., "sound like Rosalía") | Tell them: AI generation can imitate style, not specific copyrighted voices. Use the artist's typical style (genre, instruments, vocal register) in the prompt instead. |
 | The user wants the song to mention a real person, brand, or event | Allowed, but flag the ethical / legal implications. The user is responsible for the content. |
 | The user wants the song to include copyrighted lyrics | Tell them: do not paste copyrighted lyrics into the prompt. Rewrite or summarize instead. |
-| The user wants vocals in a language the provider does not support | Skill 2's `lyrics_generation` endpoint handles many languages via MiniMax. For other providers, fall back to English and note the limitation. |
+| The user wants vocals in a language the provider does not support | Explain the limitation and ask: English vocals, another backend that supports the language (ACE-Step supports many), or an instrumental version. |
 
 ## Recovery Patterns
 
@@ -238,7 +238,7 @@ Different providers fail in different ways. Here are the patterns to recognize:
 |---|---|---|---|
 | Insufficient disk space for XL | User wants xl-mixed but <20 GB free (or <10 GB for base models) | "The XL model needs ~20 GB extra disk space (you have X GB free). Standard tier needs ~10 GB total. Options: (1) free up space and retry, (2) use standard tier (no extra download, still sounds great), or (3) use a cloud backend like MiniMax or Stable Audio." | Suggest standard tier or cloud alternative |
 | Insufficient ML budget for requested tier | Tier needs more ML budget than available | "This quality tier needs ~X GB of ML budget (free RAM minus OS overhead, or smaller of free RAM/VRAM on dedicated GPU). Your system has Y GB ML budget. Try: fast (~8 GB), standard (~11 GB), or xl-mixed if you have 15 GB+." | Run memory check, suggest appropriate tier |
-| OOM when loading XL model | Not enough RAM for 4B DiT + LM simultaneously | "ACE-Step ran out of memory. The xl-mixed tier needs ~25-30 GB peak (with MPS pool pressure on unified memory). On a unified-memory Mac, your 24 GB total is actually ~18-20 GB ML budget after macOS + apps. Solutions: (1) restart the server with `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0` env var; (2) close other apps (browser tabs, IDE, Docker); (3) use a shorter audio length (60s instead of 210s); (4) downgrade to standard tier." | Restart with env var, close apps, shorten audio, or downgrade |
+| OOM when loading XL model | Not enough RAM for 4B DiT + LM simultaneously | "ACE-Step ran out of memory. The xl-mixed tier needs ~25-30 GB peak (with MPS pool pressure on unified memory). On a unified-memory Mac, your 24 GB total is actually ~18-20 GB ML budget after macOS + apps. Solutions: (1) with your OK, restart the server with `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0` (this removes the MPS memory cap and can slow the whole Mac); (2) close other apps (browser tabs, IDE, Docker); (3) use a shorter audio length (60s instead of 210s); (4) downgrade to standard tier." | Restart with env var, close apps, shorten audio, or downgrade |
 | System extremely slow during generation | Using xl-mixed with other apps open on limited unified memory | "Your laptop is slow because ACE-Step's xl-mixed tier uses ~25-30 GB RAM during generation (MPS pool pressure on unified memory), but only ~18-20 GB is actually available on a 24 GB Mac after macOS + apps. On a dedicated GPU system this would be a different issue — the bottleneck would be VRAM, not system RAM. Close browser tabs, IDE, or heavy apps and it should speed up significantly. If it doesn't, switch to standard tier." | Close apps, don't multitask during gen |
 | **Generation stalled (step time > 60s)** | Memory pressure causing swap-thrashing (unified) or VRAM exhaustion (dedicated) | "Generation is going very slow (each diffusion step taking 60+ seconds) — this means either (a) unified-memory swap-thrashing: system is using disk as RAM, or (b) dedicated-GPU VRAM exhaustion: GPU is paging. Solutions: (1) set `ACESTEP_GENERATION_TIMEOUT=3600` and wait; (2) close all other apps; (3) restart the API server; (4) downgrade to standard tier. Verified: 60s audio at 50 steps on 24GB M3 unified memory takes ~52 min wall-clock (~50-100s/step) but completes successfully." | Set extended timeout, close apps, OR downgrade |
 | `Music generation timed out after 600 seconds` | Default timeout too short for xl-mixed | "ACE-Step's default 600s (10 min) server timeout fired mid-generation. This is normal for xl-mixed (4B DiT + 1.7B LM) on 24GB M3 unified memory — full generation takes 50+ min. Solution: restart the server with `ACESTEP_GENERATION_TIMEOUT=3600` env var (1 hour). If still timing out, reduce audio duration to 60s or downgrade to standard tier." | Set `ACESTEP_GENERATION_TIMEOUT=3600` |
@@ -266,7 +266,7 @@ Different providers fail in different ways. Here are the patterns to recognize:
 ### Other / unknown providers
 
 - Default to the standard anti-sparse rules.
-- If the result is poor after 2 attempts, recommend the user switch to a known provider or install `music-craft-minimax` (which uses MiniMax and has a more controlled output).
+- If the result is poor after 2 attempts, recommend the user switch to a known provider such as local ACE-Step.
 
 ## When to Give Up and Ask the User
 
@@ -280,7 +280,7 @@ If after 2 retries the result is still unacceptable:
    - Permission to switch to Skill 2 for finer control
    - Acceptance of the best result with a note about the limitation
 
-Never loop forever. Always give the user an off-ramp.
+Cap retries (at most two targeted retries per problem, then stop and ask). Always give the user an off-ramp.
 
 ## Smoke Tests for Base Prompts
 

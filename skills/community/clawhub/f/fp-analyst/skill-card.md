@@ -1,39 +1,56 @@
-## Description: <br>
-Provides FP&A guidance for budgeting, variance analysis, financial planning, rolling forecasts, management reporting, and decision support in Chinese business operating contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FP and A Analyst helps agents produce budgets, variance analyses, financial plans, rolling forecasts, and strategic decision support for Chinese business contexts.
 
-## Publisher: <br>
-[liucheng007](https://clawhub.ai/user/liucheng007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liucheng007](https://clawhub.ai/user/liucheng007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance, operations, and management users in Chinese business settings use this skill to build budget frameworks, analyze budget-to-actual variances, update rolling forecasts, and turn financial results into action-oriented recommendations.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: Company financials, personnel plans, customer receivables, and management observations may be sensitive.
+
+Mitigation: Apply data minimization, access controls, and internal confidentiality handling before using the skill with real business data.
+
+Risk: Broad finance-related activation triggers may route unrelated conversations into this specialized FP&A posture.
+
+Mitigation: Narrow activation triggers or add routing checks before broad deployment.
+
+Risk: Budget, forecast, and resource-allocation recommendations may affect business decisions if accepted without review.
+
+Mitigation: Have qualified finance owners review outputs before using them for management reporting or decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Finance teams, business leaders, and operators use this skill to draft budgets, variance narratives, rolling forecasts, FP&A templates, and management-reporting guidance. It is especially oriented toward Chinese enterprise planning practices and cross-functional financial communication. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential financials, employee behavior profiles, or internal weaknesses when requesting analysis. <br>
-Mitigation: Use appropriate consent, retention, and access controls, and avoid sharing sensitive company or employee information unless the workspace is approved for that data. <br>
-Risk: Budget assumptions, forecasts, and decision-support recommendations may be incorrect or incomplete. <br>
-Mitigation: Have a qualified finance owner review assumptions and recommendations before acting on them. <br>
+**Output Format:** [Markdown and structured text templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs may include financial analysis templates, forecasts, variance explanations, and decision-support recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables and narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory FP&A content; outputs should be reviewed by a qualified finance owner before operational use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

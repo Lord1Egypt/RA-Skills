@@ -1,44 +1,58 @@
-## Description: <br>
-Issue virtual crypto-funded cards and manage Aurex API workflows for users, deposits, card issuance, top-ups, partner markup, and transaction history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue virtual crypto-funded cards and manage payments with the Aurex API.
 
-## Publisher: <br>
-[aurexcards](https://clawhub.ai/user/aurexcards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aurexcards](https://clawhub.ai/user/aurexcards)
 
-## Use Case: <br>
-Developers and payment operations teams use this skill to guide Aurex API workflows for virtual card issuance, wallet deposits, top-ups, card detail retrieval, partner markup, and transaction review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact payment-card actions such as issuing cards, topping up balances, and changing partner markup. <br>
-Mitigation: Require manual confirmation before card issuance, top-ups, markup changes, or other value-moving actions. <br>
-Risk: The Aurex API key may allow card, wallet, and commission operations. <br>
-Mitigation: Use a dedicated, revocable API key with the lowest available permissions and limited balances. <br>
-Risk: Card numbers, CVV, expiry, and OTP values are sensitive payment credentials. <br>
-Mitigation: Avoid retrieving or displaying full card details unless strictly necessary, and never log or store them in plaintext. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Aurex website](https://aurex.cash) <br>
-- [Aurex API base URL](https://aurex.cash/api/dashboard) <br>
-- [Aurex documentation](https://docs.aurex.cash) <br>
-- [ClawHub skill page](https://clawhub.ai/aurexcards/aurex) <br>
+## Use Case:
 
+Developers and operators use this skill to integrate Aurex card workflows, including user creation, wallet funding, virtual card issuance, card top-ups, transaction retrieval, and partner commission operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with HTTP examples, shell commands, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AUREX_API_KEY as the required environment credential.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Aurex API keys and returned card details can expose financial secrets if logged, hardcoded, or stored in plaintext.
+
+Mitigation: Store AUREX_API_KEY in environment variables, avoid logging or plaintext storage of card number, CVV, expiry, and OTP values, and request full card details only when necessary.
+
+Risk: The skill describes financial operations such as issuing cards, topping up balances, changing partner markup, and retrieving full card details.
+
+Mitigation: Require explicit user confirmation before performing card issuance, balance top-ups, markup changes, or full card detail retrieval.
+
+Risk: Installing the latest SDK package can introduce unreviewed dependency changes.
+
+Mitigation: Use a pinned, reviewed SDK version or an audited lockfile for @aurexcash/agent.
+
+## Reference(s):
+
+- [Aurex Skill Page](https://clawhub.ai/aurexcards/skills/aurex)
+- [Aurex Website](https://aurex.cash)
+- [Aurex Docs](https://docs.aurex.cash)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API request examples]
+
+**Output Format:** [Markdown with bash, HTTP, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes credential-handling guidance for AUREX_API_KEY and sensitive card details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Spawn and relay Cursor Agent's CLI (`agent` binary) as an interactive passthrough for running Cursor Agent in a project directory, asking questions, and sending follow-up prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cursor Tui lets an agent spawn Cursor Agent's CLI in a selected project directory and relay interactive output and follow-up prompts as a transparent terminal passthrough.
 
-## Publisher: <br>
-[waldyrious](https://clawhub.ai/user/waldyrious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[waldyrious](https://clawhub.ai/user/waldyrious)
 
-## Use Case: <br>
-Developers and engineers use this skill to run Cursor Agent from an agent session and relay its interactive output and prompts while preserving user control over trust and command-approval decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cursor Agent runs in the selected project directory and may request workspace trust or command approval. <br>
-Mitigation: Relay Cursor trust and approval prompts exactly as shown and wait for explicit user approval before sending a choice. <br>
-Risk: Project files or referenced secrets may be exposed to Cursor Agent during the session. <br>
-Mitigation: Use the skill only in intended project directories, avoid referencing secrets unless Cursor should process them, and end the background session when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cursor Tui on ClawHub](https://clawhub.ai/waldyrious/cursor-tui) <br>
-- [Publisher profile: waldyrious](https://clawhub.ai/user/waldyrious) <br>
+## Use Case:
 
+Developers and engineers use Cursor Tui to run Cursor Agent from an agent workflow in a specific project directory, relay Cursor's terminal output, and send follow-up prompts while preserving user control over trust and command approval prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Interactive terminal text relayed from Cursor Agent with concise prompt-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the cursor or cursor-agent binary on PATH and an explicit user response to Cursor trust or command-approval prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running Cursor Agent in an unintended project directory could expose or modify the wrong workspace.
+
+Mitigation: Choose the workspace deliberately before spawning the session and confirm workspace trust prompts with the user.
+
+Risk: Cursor Agent may request approval for commands or trust decisions during the interactive session.
+
+Mitigation: Relay permission prompts exactly as shown and continue only after explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waldyrious/skills/cursor-tui)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text terminal relay with prompt lines and user-approved interactive input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Cursor Agent CLI through the cursor or cursor-agent binary on PATH.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Provides a daily WeChat writing workflow that pitches topics, supports article drafting, and uploads prepared drafts with images to WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and uploads daily sincere, concise WeChat articles on trending AI and human-interest topics with matched AI images, triggered at 10 AM or on command.
 
-## Publisher: <br>
-[robertstarry-gif](https://clawhub.ai/user/robertstarry-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robertstarry-gif](https://clawhub.ai/user/robertstarry-gif)
 
-## Use Case: <br>
-Content creators and operators use this skill to generate daily Chinese WeChat topic pitches, prepare concise human-interest or AI-focused articles, and move reviewed markdown content into WeChat drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive WeChat credentials and can use them to create drafts. <br>
-Mitigation: Use test WeChat credentials first, keep credentials scoped and private, and connect a production account only after confirming the workflow. <br>
-Risk: Markdown with untrusted remote image URLs may cause the uploader to fetch arbitrary image URLs. <br>
-Mitigation: Use trusted image sources only and add URL-fetch safeguards or explicit upload confirmation before processing third-party content. <br>
-Risk: The automation may overstate which parts are real versus mock behavior. <br>
-Mitigation: Run the scripts manually in a staging workflow and verify each pitch, image, and draft before relying on scheduled automation. <br>
+## Use Case:
 
+Creators and operators use this skill to receive daily Chinese topic pitches, generate WeChat article drafts with section-matched images, and upload selected drafts for review. It supports scheduled daily operation and manual topic selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robertstarry-gif/daily-wechat-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/robertstarry-gif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create WeChat draft uploads when configured with WeChat credentials and image inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Markdown image references can cause local files or unrestricted remote downloads to be transmitted to WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Markdown, review every image URL and local image path before upload, and run the skill in a restricted environment.
+
+Risk: Credential-file use, scheduling behavior, and simulated parts of the writing workflow may not be clear to operators.
+
+Mitigation: Confirm credential storage, scheduled execution, and the actual draft-generation path before enabling routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robertstarry-gif/skills/daily-wechat-writer)
+- [Publisher profile](https://clawhub.ai/user/robertstarry-gif)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with generated article drafts, topic choices, image references, and upload status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require WeChat credentials and a Google Imagen API key; generated article drafts should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

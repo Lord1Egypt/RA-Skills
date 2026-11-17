@@ -1,42 +1,57 @@
-## Description: <br>
-Detect significant price movements and unusual volume across crypto markets, with significance scores combining price change, volume ratio, and market cap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects significant price movements and unusual volume across crypto markets using price change, volume ratio, and market cap scoring.
 
-## Publisher: <br>
-[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay)
 
-## Use Case: <br>
-Developers and analysts use this skill to scan cryptocurrency markets for top gainers, losers, and volume spikes, then prioritize assets with configurable thresholds and significance scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt an agent to run Python-based cryptocurrency market scans and depends on a separate market-price-tracker capability. <br>
-Mitigation: Use explicit crypto-market prompts, install and review the market-price-tracker dependency separately, and review outputs before using them for decisions. <br>
-Risk: The skill supports local JSON and CSV exports, and overwrite protection for --output paths is not described. <br>
-Mitigation: Choose reviewed export paths and check for existing files before running commands that write output. <br>
+## Use Case:
 
+External users, developers, and market analysts use this skill to scan cryptocurrency markets for top gainers, losers, and unusual volume spikes, with configurable thresholds, categories, and export formats.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sarkcesscrewpay/scanning-market-movers-ti) <br>
-- [Publisher Profile](https://clawhub.ai/user/sarkcesscrewpay) <br>
-- [CoinGecko API Documentation](https://www.coingecko.com/en/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, tabular market scan output, JSON, and CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports configurable thresholds, market-cap filters, category filters, timeframes, presets, and local exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Runtime behavior depends on referenced scanner scripts or plugins that were not included in the inspected artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced files and dependent market-price-tracker plugin before relying on scan results.
+
+Risk: Unpinned Python dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Install in a dedicated Python environment and review or pin dependencies before use.
+
+Risk: File export commands could write results to unintended locations.
+
+Mitigation: Provide explicit output paths and review generated JSON or CSV files before sharing them.
+
+## Reference(s):
+
+- [CoinGecko API documentation](https://www.coingecko.com/en/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; scanner results may be displayed as tables or exported as JSON or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable thresholds, category filters, timeframes, and explicit export output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

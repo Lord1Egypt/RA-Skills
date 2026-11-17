@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Europass Candidate document, namespace http://www.europass.eu/1.0.
+
+  UNOFFICIAL. The European Commission publishes no schema for this format. This one is derived from
+  the structure of real exports of the europass.europa.eu editor and from what its importer accepts
+  (see docs/how-it-was-derived.md). Where real exports differ in child order (for instance inside
+  Communication), the content model is a repeatable choice: the importer does not depend on order.
+
+  Validate with:  sh tools/validate.sh your-cv.xml   (xmllint under the hood)
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.europass.eu/1.0"
+           xmlns:ep="http://www.europass.eu/1.0"
+           xmlns:hr="http://www.hr-xml.org/3"
+           xmlns:oa="http://www.openapplications.org/oagis/9"
+           xmlns:eures="http://www.europass_eures.eu/1.0"
+           targetNamespace="http://www.europass.eu/1.0"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.hr-xml.org/3" schemaLocation="hr-xml-3.xsd"/>
+  <xs:import namespace="http://www.openapplications.org/oagis/9" schemaLocation="oagis-9.xsd"/>
+  <xs:import namespace="http://www.europass_eures.eu/1.0" schemaLocation="europass-eures.xsd"/>
+
+  <!-- ====================================================================== -->
+  <!-- Root                                                                     -->
+  <!-- ====================================================================== -->
+
+  <xs:element name="Candidate">
+    <xs:annotation><xs:documentation>The whole CV. The editor embeds this document as "attachment.xml" (text/xml) inside the PDFs it produces and reads it back on import.</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hr:DocumentID"/>
+        <xs:element name="CandidateSupplier" type="CandidateSupplierType"/>
+        <xs:element name="CandidatePerson" type="CandidatePersonType"/>
+        <xs:element name="CandidateProfile" type="CandidateProfileType"/>
+        <xs:element name="RenderingInformation" type="RenderingInformationType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ====================================================================== -->
+  <!-- Shared building blocks                                                   -->
+  <!-- ====================================================================== -->
+
+  <xs:complexType name="TitleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageID" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="CountryCodeType">
+    <xs:annotation><xs:documentation>ISO 3166-1 alpha-2, lower case (the editor writes "it", not "IT").</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z]{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ChannelCodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Email"/>
+      <xs:enumeration value="Telephone"/>
+      <xs:enumeration value="Web"/>
+      <xs:enumeration value="Social Media"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CodeSchemeType">
+    <xs:annotation><xs:documentation>NORMAL: the value is a code from the editor's list (ISO 639-2 for languages). FREE_TEXT: the value is a label.</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NORMAL"/>
+      <xs:enumeration value="FREE_TEXT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="PersonNameType">
+    <xs:sequence>
+      <xs:element ref="oa:GivenName"/>
+      <xs:element ref="hr:FamilyName"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddressType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="oa:AddressLine"/>
+      <xs:element ref="oa:CityName"/>
+      <xs:element name="CountryCode" type="CountryCodeType"/>
+      <xs:element ref="oa:PostalCode"/>
+    </xs:choice>
+    <xs:attribute name="type" type="xs:string">
+      <xs:annotation><xs:documentation>"home" on the person's address.</xs:documentation></xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CommunicationType">
+    <xs:annotation><xs:documentation>
+      One contact channel. Shapes accepted by the importer:
+      - Email:        ChannelCode Email, oa:URI
+      - Web:          ChannelCode Web, oa:URI (any absolute URL)
+      - Social Media: ChannelCode Social Media, UseCode (facebook, twitter, instagram, linkedin, youtube, pinterest, tumblr), oa:URI
+      - Telephone:    ChannelCode Telephone, UseCode (home, work, mobile, other), CountryDialing, oa:DialNumber, CountryCode.
+                      CountryDialing is mandatory: without it the importer rejects the whole file.
+      - Address:      UseCode home, Address type="home"
+      Inside OrganizationContact only Address (city, country) and Web/Email channels are used.
+    </xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="ChannelCode" type="ChannelCodeType"/>
+      <xs:element name="UseCode" type="xs:string"/>
+      <xs:element ref="oa:URI"/>
+      <xs:element name="CountryDialing" type="xs:string"/>
+      <xs:element ref="oa:DialNumber"/>
+      <xs:element name="CountryCode" type="CountryCodeType"/>
+      <xs:element name="Address" type="AddressType"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="OrganizationContactType">
+    <xs:sequence>
+      <xs:element name="Communication" type="CommunicationType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DateType">
+    <xs:sequence>
+      <xs:element ref="hr:FormattedDateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EmptyOrUnknownType">
+    <xs:annotation><xs:documentation>Section containers the editor writes but that have only been observed empty. Content, if any, is not constrained.</xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ====================================================================== -->
+  <!-- CandidateSupplier and CandidatePerson                                    -->
+  <!-- ====================================================================== -->
+
+  <xs:complexType name="CandidateSupplierType">
+    <xs:annotation><xs:documentation>Who supplies the document. The editor writes the person themselves: hr:PartyName "Owner", hr:PrecedenceCode 1.</xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:element ref="hr:PartyID"/>
+      <xs:element ref="hr:PartyName"/>
+      <xs:element name="PersonContact">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PersonName" type="PersonNameType"/>
+            <xs:element name="Communication" type="CommunicationType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element ref="hr:PrecedenceCode"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CandidatePersonType">
+    <xs:annotation><xs:documentation>Personal information. PersonName first; the rest in any order.</xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonName" type="PersonNameType"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Communication" type="CommunicationType"/>
+        <xs:element name="NationalityCode" type="CountryCodeType"/>
+        <xs:element ref="hr:BirthDate"/>
+        <xs:element name="GenderCode" type="xs:string">
+          <xs:annotation><xs:documentation>male, female, other, do_not_indicate.</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="PrimaryLanguageCode">
+          <xs:annotation><xs:documentation>Mother tongue; repeat for more than one. name="NORMAL" with an ISO 639-2 code, or name="FREE_TEXT" with a label.</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="name" type="CodeSchemeType" use="required"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ====================================================================== -->
+  <!-- CandidateProfile                                                          -->
+  <!-- ====================================================================== -->
+
+  <xs:complexType name="CandidateProfileType">
+    <xs:annotation><xs:documentation>The CV proper. Sections in any order; unknown elements are ignored by the importer.</xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="hr:ID"/>
+      <xs:element ref="hr:ExecutiveSummary"/>
+      <xs:element name="EmploymentHistory" type="EmploymentHistoryType"/>
+      <xs:element name="EducationHistory" type="EducationHistoryType"/>
+      <xs:element ref="eures:Licenses"/>
+      <xs:element name="Certifications" type="EmptyOrUnknownType"/>
+      <xs:element name="PublicationHistory" type="PublicationHistoryType"/>
+      <xs:element name="PersonQualifications" type="PersonQualificationsType"/>
+      <xs:element name="EmploymentReferences" type="EmptyOrUnknownType"/>
+      <xs:element ref="eures:Attachment"/>
+      <xs:element name="CreativeWorks" type="EmptyOrUnknownType"/>
+      <xs:element name="Projects" type="EmptyOrUnknownType"/>
+      <xs:element name="SocialAndPoliticalActivities" type="EmptyOrUnknownType"/>
+      <xs:element name="Skills" type="SkillsType"/>
+      <xs:element name="NetworksAndMemberships" type="EmptyOrUnknownType"/>
+      <xs:element name="ConferencesAndSeminars" type="EmptyOrUnknownType"/>
+      <xs:element name="VoluntaryWorks" type="EmptyOrUnknownType"/>
+      <xs:element name="CourseCertifications" type="EmptyOrUnknownType"/>
+      <xs:element name="Others" type="OthersType"/>
+      <!-- Legacy containers written by older editor versions; today's importer ignores their content. -->
+      <xs:element name="CommunicationAndInterpersonalSkills" type="LegacySkillListType"/>
+      <xs:element name="OrganisationalSkills" type="LegacySkillListType"/>
+      <xs:element name="DigitalSkills" type="LegacyDigitalSkillsType"/>
+    </xs:choice>
+    <xs:attribute name="languageCode" type="xs:string" use="required">
+      <xs:annotation><xs:documentation>Language of the CV, two letters (it, en, fr...). Missing: the editor flags the profile language as invalid.</xs:documentation></xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Work experience -->
+
+  <xs:complexType name="EmploymentHistoryType">
+    <xs:sequence>
+      <xs:element name="EmployerHistory" type="EmployerHistoryType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EmployerHistoryType">
+    <xs:annotation><xs:documentation>One employer with one or more positions. The editor writes one EmployerHistory per position.</xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="hr:OrganizationName"/>
+      <xs:element name="OrganizationContact" type="OrganizationContactType"/>
+      <xs:element ref="hr:IndustryCode"/>
+      <xs:element name="Link" type="xs:string"/>
+      <xs:element name="PositionHistory" type="PositionHistoryType"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="PositionHistoryType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="PositionTitle">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="typeCode" type="xs:string">
+                <xs:annotation><xs:documentation>"FREETEXT" in the editor's exports.</xs:documentation></xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="languageID" type="xs:string"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element ref="eures:EmploymentPeriod"/>
+      <xs:element ref="oa:Description"/>
+      <xs:element name="City" type="xs:string"/>
+      <xs:element name="Country" type="CountryCodeType"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- Education and training -->
+
+  <xs:complexType name="EducationHistoryType">
+    <xs:sequence>
+      <xs:element name="EducationOrganizationAttendance" type="EducationOrganizationAttendanceType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EducationOrganizationAttendanceType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="hr:OrganizationName"/>
+      <xs:element name="OrganizationContact" type="OrganizationContactType"/>
+      <xs:element name="AttendancePeriod">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="StartDate" type="DateType"/>
+            <xs:element name="EndDate" type="DateType"/>
+            <xs:element name="Ongoing" type="xs:boolean"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EducationDegree" type="EducationDegreeType"/>
+      <xs:element name="EducationLevelCode" type="xs:string">
+        <xs:annotation><xs:documentation>EQF level, 1 to 8. Read by the importer only at this level (a sibling of EducationDegree).</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="Link" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="EducationDegreeType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="hr:DegreeName"/>
+      <xs:element name="OccupationalSkillsCovered" type="xs:string">
+        <xs:annotation><xs:documentation>Description of the course (HTML stored escaped).</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="FieldOfStudy">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="MainFieldOfStudy" type="ProgramConcentrationType"/>
+            <xs:element name="SpecificFieldOfStudy" type="ProgramConcentrationType"/>
+          </xs:choice>
+          <xs:attribute name="typeCode" type="xs:string">
+            <xs:annotation><xs:documentation>"URI" in the editor's exports; the values are ISCED-F codes.</xs:documentation></xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FinalGrade">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="hr:ScoreText"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Thesis" type="xs:string"/>
+      <xs:element name="NationalClassification" type="xs:string"/>
+      <xs:element name="CreditType" type="xs:string">
+        <xs:annotation><xs:documentation>"ECTS" in the editor's exports.</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="NumberOfCredit" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="ProgramConcentrationType">
+    <xs:sequence>
+      <xs:element name="ProgramConcentration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Publications -->
+
+  <xs:complexType name="PublicationHistoryType">
+    <xs:sequence>
+      <xs:element name="Publication" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="hr:FormattedPublicationDescription"/>
+            <xs:element name="Title" type="TitleType"/>
+            <xs:element name="Year" type="xs:string"/>
+            <xs:element name="Reference" type="xs:string"/>
+            <xs:element name="DOI">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Link" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Authors" type="xs:string"/>
+            <xs:element name="Journal" type="xs:string"/>
+            <xs:element name="Publisher" type="xs:string"/>
+            <xs:element name="Volume" type="xs:string"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Languages and skills -->
+
+  <xs:complexType name="PersonCompetencyType">
+    <xs:annotation><xs:documentation>
+      Under PersonQualifications: a language (CompetencyID = ISO 639-2 code with schemeName NORMAL, or a label with FREE_TEXT;
+      hr:TaxonomyID "language"; one eures:CompetencyDimension per CEFR skill).
+      Under Skills: a digital skill (hr:TaxonomyID "Digital_Skill", hr:CompetencyName).
+    </xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="CompetencyID">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="schemeName" type="CodeSchemeType"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element ref="hr:TaxonomyID"/>
+      <xs:element ref="hr:CompetencyName"/>
+      <xs:element ref="eures:CompetencyDimension"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="PersonQualificationsType">
+    <xs:sequence>
+      <xs:element name="PersonCompetency" type="PersonCompetencyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SkillsType">
+    <xs:annotation><xs:documentation>Digital skills: loose PersonCompetency entries and/or SkillsGroup groups with a Title.</xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="PersonCompetency" type="PersonCompetencyType"/>
+      <xs:element name="SkillsGroup">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Title" type="TitleType"/>
+            <xs:element name="PersonCompetency" type="PersonCompetencyType"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- Custom sections -->
+
+  <xs:complexType name="OthersType">
+    <xs:annotation><xs:documentation>A custom section: its Title and ONE Other (the entry). The importer keeps only the last Other of an Others; to put several entries in one section, repeat Others with the same Title and the importer merges them. Every entry needs a non-blank Title or the editor flags it.</xs:documentation></xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Title" type="TitleType"/>
+      <xs:element name="Other">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Title" type="TitleType"/>
+            <xs:element name="Date">
+              <xs:complexType>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="StartDate" type="DateType"/>
+                  <xs:element name="EndDate" type="DateType"/>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Description" type="xs:string">
+              <xs:annotation><xs:documentation>HTML stored escaped.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:element name="Link" type="xs:string"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- Legacy skill containers (older exports) -->
+
+  <xs:complexType name="LegacySkillListType">
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LegacyDigitalSkillsType">
+    <xs:sequence>
+      <xs:element name="DigitalSkillsGroup" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Title" type="TitleType"/>
+            <xs:element name="DigitalSkill" type="xs:string"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ====================================================================== -->
+  <!-- RenderingInformation                                                      -->
+  <!-- ====================================================================== -->
+
+  <xs:complexType name="RenderingInformationType">
+    <xs:sequence>
+      <xs:element name="Design">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Template" type="xs:string">
+              <xs:annotation><xs:documentation>Template1 (formal), Template2, Template3...</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:element name="Color" type="xs:string"/>
+            <xs:element name="FontSize" type="xs:string"/>
+            <xs:element name="Logo" type="xs:string"/>
+            <xs:element name="PageNumbers" type="xs:boolean"/>
+            <xs:element name="SectionsOrder">
+              <xs:annotation><xs:documentation>
+                THE LIST OF SECTIONS THE EDITOR WILL SHOW. A section that was imported but is not listed here stays hidden.
+                Titles: work-experience, education-training, language, profile-skills, driving-licence, publication, membership,
+                social-or-political-activity, conference-seminar, recommendation, projects, skills-assessment, honour-award,
+                hobbies-interests, creative-works, volunteering, certifications, custom-section.
+              </xs:documentation></xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Section" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="Title" type="TitleType"/>
+                        <xs:element name="Custom" type="xs:boolean"/>
+                      </xs:choice>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

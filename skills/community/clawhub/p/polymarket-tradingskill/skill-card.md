@@ -1,44 +1,59 @@
-## Description: <br>
-Use when an OpenClaw user needs fast NBA opportunity scanning, NBA-only /fair pricing, or deep analysis of one specific Polymarket market or event in any domain, including politics, via prompts like /analyze, analyze this market, or direct PM URLs, without making the final trading decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Decision Support helps users scan NBA and basic soccer Polymarket opportunities, view NBA fair pricing, and analyze a specific Polymarket market or event without making the final trading decision.
 
-## Publisher: <br>
-[a1594834522-coder](https://clawhub.ai/user/a1594834522-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a1594834522-coder](https://clawhub.ai/user/a1594834522-coder)
 
-## Use Case: <br>
-External OpenClaw users use this skill to scan NBA and basic soccer markets, analyze specific Polymarket events or markets, and organize pricing signals for human review. It provides decision support only and does not execute trades, manage wallets, or make final buy/sell decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be routed to the skill automatically when market-analysis intent is detected. <br>
-Mitigation: Review routed requests and confirm the intended market or scan scope before relying on the output. <br>
-Risk: The skill requires a configured OpenClaw agent API base URL and bearer token. <br>
-Mitigation: Use a trusted API endpoint and a least-privilege read-only API key managed outside prompts and responses. <br>
-Risk: Pricing and priority labels can be mistaken for trading instructions. <br>
-Mitigation: Treat outputs as decision support and keep final trading decisions with the user or a separate execution layer. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to produce compact prediction-market review candidates, NBA fair-price views, and single-market analysis while leaving execution and final trading decisions to the user or a separate execution layer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a1594834522-coder/polymarket-tradingskill) <br>
-- [OpenClaw Decision-Support API Quick Reference](references/agent-api.md) <br>
-- [Decision-Support Contract](references/decision-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured JSON-like analysis blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are compact decision-support summaries, opportunity shortlists, pricing views, and risk notes; they are not trading instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Implicit invocation combined with bearer-token API use can expose prediction-market analysis in contexts the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when implicit invocation is desired, keep tokens in user-managed configuration, use a narrow read-only token, and rotate any exposed token.
+
+Risk: Plain HTTP endpoint examples are unsafe for non-local API hosts.
+
+Mitigation: Use HTTPS for any non-local API endpoint.
+
+Risk: Prediction-market analysis can be mistaken for a trading instruction.
+
+Mitigation: Treat outputs as review candidates only; the skill should not place orders, manage wallets, or make final buy/sell decisions.
+
+## Reference(s):
+
+- [OpenClaw Decision-Support API Quick Reference](references/agent-api.md)
+- [Decision-Support Contract](references/decision-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/a1594834522-coder/skills/polymarket-tradingskill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured JSON-style blocks and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only decision-support output; identifies review candidates and does not issue trade execution commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

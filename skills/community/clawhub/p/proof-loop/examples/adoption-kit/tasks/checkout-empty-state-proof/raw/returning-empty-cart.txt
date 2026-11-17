@@ -1,0 +1,1 @@
+PASS /checkout?cart=empty-with-history visible action: Restore saved cart

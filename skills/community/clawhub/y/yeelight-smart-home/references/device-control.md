@@ -4,12 +4,12 @@ Use this reference for home summary, entity lists, entity details, capability ch
 
 ## Fast Direct Control
 
-For ordinary user goals such as "打开孩子屋吸顶灯", "把客厅主灯调到 60%", "执行晚安情景", or "启用主卧 9 点自动化", send one final Runtime request. Do not first call `entity.list`, `entity.get`, `entity.capabilities`, room list, or device detail only to discover IDs.
+For ordinary user goals such as "打开孩子屋吸顶灯", "关闭全屋灯", "把客厅灯调到 60%", "执行晚安情景", or "启用主卧 9 点自动化", send one final Runtime request. Do not first call `entity.list`, `entity.get`, `entity.capabilities`, room list, or device detail only to discover IDs.
 
 Runtime maintains a long-lived topology cache and resolves targets from names, room qualifiers, IDs, and candidates. Give Runtime the user's target words, including likely typos or homophones; Runtime will conservatively resolve high-confidence matches or return candidates when ambiguous. Runtime refreshes topology once if the cached entity index misses. The cache resolves identity only, not current device state:
 
 - For state or diagnostic questions, still send one Runtime request with the user's target words. Runtime may use cached topology to find the entity, but it must read live state, capabilities, or details before answering the factual question.
-- Device control/state:
+- Device or scoped light control:
   ```json
   {
     "intent": "light.power.set",
@@ -18,6 +18,17 @@ Runtime maintains a long-lived topology cache and resolves targets from names, r
       "roomName": "孩子屋",
       "deviceName": "吸顶灯",
       "power": true
+    }
+  }
+  ```
+- Whole-home or room light control can target the scope directly when the scope is clear:
+  ```json
+  {
+    "intent": "light.power.set",
+    "parameters": {
+      "houseId": "known-or-selected-house-id",
+      "targetType": "home",
+      "power": false
     }
   }
   ```
@@ -52,13 +63,17 @@ Only ask the user after Runtime returns `clarification_required`. If Runtime ret
 - Use `device.list` when the user asks for device candidates in one home or a device-affecting plan needs a safer preflight list with room/gateway ownership evidence.
 - Use `device.virtual_count.get` when the user asks how many virtual devices exist in the selected home or a capacity/diagnostic flow needs that count.
 - Use `device.detail.get` for device metadata details when the user asks for device identity, placement, model, or configuration evidence.
+- Use `device.complex.get` when a generated app or advanced workflow needs the installed device's richer controllable/detail payload before rendering dynamic controls. Do not expose raw technical fields directly to ordinary users.
+- Use `device.shadow.get` when the UI needs the device's shadow/current reported payload and already has the installed device id or resource id.
 - Use `device.attr.list` when the user asks for device attribute evidence before a diagnosis or persistent change.
 - Use `sensor.list` when the user asks which sensors exist in the home.
 - Use `sensor.event.list` when the user asks for sensor event definitions or sensor-trigger evidence.
+- Use `sensor.event.write` only for explicit sensor-event configuration create/update/delete/test payloads. Do not substitute it for `automation.create` or `automation.update`; automation rules remain a separate semantic surface.
 - Use `device.energy.summary` when the user asks for device electricity or energy usage.
 - Use `device.weather.get` when the user asks for weather context tied to a device.
 - Use `meshgroup.detail.get` when the user asks for a Mesh group, its member devices, or group detail evidence.
 - Use `node.sorted_device.list` when the user asks for devices under a known room, device, or home node with their saved order. Provide resource identity only when Runtime already returned it; do not guess it from a display name.
+- Use `state.batch.query` when the caller already has exact node or device ids and needs a compact batch read for several targets. This is a fan-out read helper, not a write confirmation protocol.
 - Use `entity.capabilities` before claiming a device, group, scene, or automation supports a property or action.
 - Use product-level `thing.schema.*` intents only for product model questions; do not substitute them for `entity.capabilities` on installed devices.
 - Use `product.pedia.search` for product consultation, manuals, FAQ candidates, SKU resources, and product attachments.
@@ -67,11 +82,16 @@ Only ask the user after Runtime returns `clarification_required`. If Runtime ret
 - Use `thing.product.info.v3.batch_get` when the user provides `capabilityPid` values and a product definition version.
 - Use `thing.product.list.v3` when the user asks for the versioned product list, not for installed home devices.
 - Use `node.property_config.get` when the user asks for installed-node property configuration evidence for a known node id and node type.
-- Use `state.query` for current device state. Pass `parameters.deviceId` when known, or `deviceName` plus room qualifiers when the user names the target. Never answer current power, brightness, online status, or similar real-time values from topology cache alone.
+- Use `device.property.set` only for one concrete installed device when Runtime or UI evidence already provides a writable, non-sensitive property and the user gives an explicit value. Prefer `light.*` for ordinary lighting power, brightness, color-temperature, or RGB requests; prefer `node.*` for home, room, area, group, multi-property, toggle, batch, or action control. Do not use `device.property.set` for vague mood requests, scenes, automations, credentials, network settings, or a guessed property name. If writable-property evidence is missing, use `entity.capabilities`, `device.attr.list`, `device.detail.get`, or `intent.explain` before choosing this generic fallback.
+- Use `node.property.set` only when the caller already has a concrete installed node target (`home`, `room`, `area`, `group`, or `device`), a writable property, and an explicit value. For ordinary light power, brightness, color-temperature, and RGB color controls, prefer `light.power.set`, `light.brightness.set`, `light.color_temperature.set`, and `light.color.set`; these support home, room, area, group, and device targets. For relative brightness or color-temperature changes, `light.brightness.adjust` and `light.color_temperature.adjust` also accept known scope nodes through `targetType`/`targetId`, `nodeType`/`nodeId`, `roomId`, `areaId`, or `groupId`.
+- Use `node.property.toggle`, `node.properties.set`, and `node.property.batch_set` only when the caller has exact installed node identity and writable-property evidence. Prefer the light-specific intents for ordinary lighting UI controls.
+- Use `node.action.execute` only with an `actionName` returned by Runtime capability/detail evidence. Do not invent action names from display labels.
+- Use `lighting.flow.execute` as an advanced lighting-effect capability when the selected node exposes compatible flow support. It is not a replacement for simple brightness, color, or scene execution.
+- Use `state.query` for current device or scope state. Pass `parameters.deviceId` when querying one device, or `targetType`/`targetId`, `nodeType`/`nodeId`, `roomId`, `areaId`, or `groupId` when querying a known home, room, area, or group node. Never answer current power, brightness, online status, or similar real-time values from topology cache alone.
 - Use `entity.rename.batch` when the user explicitly asks to batch rename devices and scenes. Keep every item explicit and let Runtime resolve/validate targets; Runtime accepts device and scene resources, caps one request at 20 items, and verifies names with `entity.list`.
 - Use `device.remove` only when the user explicitly asks to delete a device record from the home. This is R3 high impact: confirm in chat first, then call Runtime; Runtime verifies the device disappeared from `entity.list`.
 - Use `device.unbind` only when the user explicitly asks to unbind a device from the current account/home. This is R3 high impact: confirm in chat first, then call Runtime. Runtime accepts only `clearMac` and `unbindRelDevices` as options and verifies the device disappeared from `entity.list`.
-- Use light-specific intents for power, brightness, color temperature, and RGB color when the user asks for direct lighting control. Prefer `light.power.set`, `light.brightness.set`, `light.color_temperature.set`, and `light.color.set`.
+- Use light-specific intents for power, brightness, color temperature, and RGB color when the user asks for direct lighting control. Prefer `light.power.set`, `light.brightness.set`, `light.color_temperature.set`, `light.color.set`, `light.brightness.adjust`, and `light.color_temperature.adjust`; pass `targetType`/`targetId`, `nodeType`/`nodeId`, `roomId`, `areaId`, or `groupId` when the UI already has exact scope identity.
 - Route white-light wording such as "暖白", "暖光", "自然白", "冷白", "偏暖", or "偏冷" to `light.color_temperature.set` or `light.color_temperature.adjust`, not `light.color.set`. Use RGB color only when the user clearly asks for a color such as red, blue, pink, purple, a hex value, or an explicit RGB value.
 - For direct `light.color.set`, send `color` or `value` as an RGB integer, or `hex` as a hex string. Do not send `{r,g,b}` objects unless Runtime explicitly returns that shape.
 - Use `scene.execute` for running an existing scene.
@@ -106,7 +126,7 @@ Direct light-control intents only support verified lighting properties such as `
 
 ## Direct Light Intent Shapes
 
-Use these shapes for direct single-device control. In SkillRequest JSON, include `houseId` in `parameters` or `homeRef` when known; in traditional shell usage the CLI may also accept `--house-id`.
+Use these shapes for direct device or scope control. In SkillRequest JSON, include `houseId` in `parameters` or `homeRef` when known; in traditional shell usage the CLI may also accept `--house-id`.
 
 Power:
 ```json
@@ -127,8 +147,8 @@ Brightness:
   "intent": "light.brightness.set",
   "parameters": {
     "houseId": "known-or-selected-house-id",
-    "roomName": "客厅",
-    "deviceName": "主灯",
+    "targetType": "room",
+    "targetId": "runtime-returned-room-id",
     "brightness": 60
   }
 }

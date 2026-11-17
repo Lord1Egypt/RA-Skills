@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0",
+  "format": "html",
+  "metadata": {
+    "title": "演示文稿标题",
+    "description": "说明文字",
+    "author": ""
+  },
+  "canvas": {"width": 1920, "height": 1080},
+  "playlist": [
+    "01-first-slide.html",
+    "02-second-slide.html"
+  ]
+}

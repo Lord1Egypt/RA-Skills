@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7e9p3nqh2ermy7n7rkhnyksn833v49",
-  "slug": "playwright-download-fix",
-  "version": "1.0.1",
-  "publishedAt": 1774197080120
+  "name": "playwright-download-fix",
+  "version": "1.0.2",
+  "description": "自动处理 Playwright 下载文件名问题",
+  "author": "AutoClaw",
+  "created": "2026-03-22"
 }

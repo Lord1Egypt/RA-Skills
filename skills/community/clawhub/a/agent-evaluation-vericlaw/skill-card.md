@@ -1,48 +1,61 @@
-## Description: <br>
-Routes agent evaluation, review, audit, LLM QA, human review, drift verification, and fake completion diagnosis requests toward the canonical VeriClaw skill and reference pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes agent-evaluation, review, audit, LLM QA, drift verification, and fake-completion diagnosis requests toward canonical VeriClaw resources and the public install surface.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and agent operators use this alias to map evaluation, review, audit, QA, supervision, drift verification, and fake-completion diagnosis requests back to the canonical VeriClaw skill and its public reference pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this routing alias for the canonical VeriClaw install surface. <br>
-Mitigation: Use the linked canonical VeriClaw ClawHub page or install the main vericlaw skill when installation is the goal. <br>
-Risk: Users may follow linked pages or packages without confirming publisher identity. <br>
-Mitigation: Verify that the publisher is sheygoodbai and that the destination project is the intended VeriClaw release before installing or relying on linked resources. <br>
+## Use Case:
 
+External users and developers use this alias to map agent evaluation, review, audit, LLM QA, drift verification, fake-completion diagnosis, and human review wording back to VeriClaw resources. It helps route requests that need evidence, diagnosis, intervention guidance, verification, and reusable review records instead of generic benchmark scoring.
 
-## Reference(s): <br>
-- [VeriClaw ClawHub skill](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw landing page](https://sheygoodbai.github.io/vericlaw/) <br>
-- [Agent evaluation page](https://sheygoodbai.github.io/vericlaw/agent-evaluation/) <br>
-- [Agent review page](https://sheygoodbai.github.io/vericlaw/agent-review/) <br>
-- [Agent audit page](https://sheygoodbai.github.io/vericlaw/agent-audit/) <br>
-- [LLM QA page](https://sheygoodbai.github.io/vericlaw/llm-qa/) <br>
-- [Fake completion diagnosis page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
-- [VeriClaw ClawHub plugin](https://clawhub.ai/plugins/vericlaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with links and inline command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or data access is described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The alias may route users to the wrong package if they intended a different agent-evaluation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the intended destination is VeriClaw before using the alias or suggested install command.
+
+Risk: Users may run an install command for a resolved package without checking package identity, publisher, or permissions.
+
+Mitigation: Verify the `vericlaw` package identity, publisher, and requested permissions before installation.
+
+## Reference(s):
+
+- [Agent Evaluation Skill Page](https://clawhub.ai/sheygoodbai/skills/agent-evaluation-vericlaw)
+- [VeriClaw ClawHub Home](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw Plugin Page](https://clawhub.ai/plugins/vericlaw)
+- [Agent Evaluation Route](https://sheygoodbai.github.io/vericlaw/agent-evaluation/)
+- [Agent Review Route](https://sheygoodbai.github.io/vericlaw/agent-review/)
+- [Agent Audit Route](https://sheygoodbai.github.io/vericlaw/agent-audit/)
+- [LLM QA Route](https://sheygoodbai.github.io/vericlaw/llm-qa/)
+- [Fake Completion Diagnosis Route](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/)
+- [Review Kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown guidance with inline install commands and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, or persistence disclosed by the security evidence.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

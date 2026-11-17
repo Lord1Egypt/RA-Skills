@@ -1,38 +1,49 @@
-## Description: <br>
-This instruction-only skill tells agents to request user approval before system-changing actions such as configuration edits, service management, software installation, data deletion, network changes, version updates, and permission changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines approval rules that require an agent to ask the user before system-changing or risky operations.
 
-## Publisher: <br>
-[CCCU-IMU](https://clawhub.ai/user/CCCU-IMU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cccu-imu](https://clawhub.ai/user/cccu-imu)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent pause and request explicit approval before performing impactful system, configuration, data, network, version, or permission changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may proceed on vague approval for high-impact operations. <br>
-Mitigation: Require the agent to restate the exact action and receive clear, action-specific approval before proceeding. <br>
+## Use Case:
 
+Developers and agent operators use this skill to require explicit user approval before agents modify configuration, services, scheduled tasks, permissions, data, networking, or runtime components.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CCCU-IMU/user-permissions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; contains no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The approval thresholds may not match an operator's local policy, especially the exception for already configured scheduled tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Chinese policy text before installation and adjust local approval expectations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cccu-imu/skills/user-permissions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown policy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network behavior, persistence, or credential access was identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

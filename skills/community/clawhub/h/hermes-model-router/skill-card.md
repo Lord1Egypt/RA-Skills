@@ -1,41 +1,58 @@
-## Description: <br>
-Automatically routes tasks to local or cloud AI models based on task complexity while preserving context continuity and single-entry model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically classifies task complexity and routes simple tasks to local models while reserving more complex work for configured provider models.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Developers and agent users use this skill to classify a requested task and choose a local or cloud model provider at task start, reducing cost for simple work and reserving provider models for complex or iterative work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Complex-task prompts may be routed to cloud model providers. <br>
-Mitigation: Treat provider-routed prompts as potentially leaving the local machine and avoid sending sensitive data unless the provider handling model is acceptable. <br>
-Risk: Provider configuration may include sensitive values in a plain local config file. <br>
-Mitigation: Avoid placing API keys or sensitive secrets in the config file unless that storage model is acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to choose an appropriate local or cloud model path at the start of a task, preserving context continuity and matching model cost or capability to task complexity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freepengyang/hermes-model-router) <br>
-- [Publisher profile](https://clawhub.ai/user/freepengyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with inline shell commands and JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task classifications include complexity, routing recommendation, and rationale; verbose mode can include selected local or cloud model names and matched keywords.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.1 (source: server release metadata) <br>
+Risk: Cloud routing can send confidential prompts to configured provider endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider settings before using cloud routing and keep sensitive tasks on approved local or enterprise providers.
+
+Risk: The setup wizard may create or overwrite local provider configuration at ~/.model-router/config.json.
+
+Mitigation: Back up existing configuration and review the generated provider settings before relying on the router.
+
+Risk: The workflow and prompts are primarily Chinese-language, which may affect operator review in non-Chinese environments.
+
+Mitigation: Have a Chinese-literate reviewer confirm provider choices, routing labels, and generated configuration before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freepengyang/skills/hermes-model-router)
+- [Publisher profile](https://clawhub.ai/user/freepengyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style guidance with command examples and interactive command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local provider configuration at ~/.model-router/config.json when the setup wizard is run.]
+
+## Skill Version(s):
+
+v1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

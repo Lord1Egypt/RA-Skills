@@ -1,38 +1,48 @@
-## Description: <br>
-Daily pollen forecast and allergy alerts for Chinese cities. Use when user asks about pollen levels, allergy season, hay fever, flower pollen, 花粉, 过敏, or wants to set up daily pollen alerts. Supports Beijing, Shanghai, Guangzhou, and other major Chinese cities. Can create automated daily cron reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily pollen forecasts and allergy alerts for major Chinese cities, including optional recurring reports.
 
-## Publisher: <br>
-[Yuchen-Lju](https://clawhub.ai/user/Yuchen-Lju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuchen-lju](https://clawhub.ai/user/yuchen-lju)
 
-## Use Case: <br>
-External users and agents use this skill to search for current pollen levels in major Chinese cities, format concise daily allergy reports, and optionally prepare a scheduled daily alert. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled alerts can create recurring notifications to an unintended channel or recipient if enabled casually. <br>
-Mitigation: Confirm the city, timezone, schedule, destination channel, and recipient before creating the cron job, and keep instructions available to list or delete the job later. <br>
-Risk: Pollen forecasts may be stale or incomplete when sourced through search. <br>
-Mitigation: Search for current city-specific data at report time and make the report date and forecast window explicit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to ask an agent for current pollen forecasts, protection guidance, and optional daily alerts for supported Chinese cities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional shell command block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are city- and date-specific pollen summaries with optional OpenClaw cron configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring pollen alerts may be created without fully confirming the user's intent or delivery details.
+
+Mitigation: Before adding a daily alert, confirm the city, schedule, timezone, channel, recipient, and how the user can disable the alert.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuchen-lju/skills/pollen-forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown daily report with optional shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include city, date, pollen level, trends, protection advice, and optional alert schedule details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

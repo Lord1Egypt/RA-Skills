@@ -1,45 +1,61 @@
-## Description: <br>
-Automated financial indicator analysis for S&P 500 and NASDAQ stocks, with weighted financial health scoring, red-flag detection, and sector-level rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated financial indicator analysis for S&P 500 and NASDAQ stocks that scores and ranks stocks by weighted financial health metrics, detects red flags, and generates sector-level rankings.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Analysts, developers, and finance teams use this skill to analyze user-provided CSV or JSON stock data, rank S&P 500 and NASDAQ stocks, identify financial red flags, and produce screening reports. It also provides manual Feishu/Lark permission guidance for sharing financial reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial scores and rankings may be misleading if the input data is stale, incomplete, incorrect, or if the scoring assumptions do not fit the user's investment context. <br>
-Mitigation: Verify the source data and review the scoring thresholds before relying on the output; treat the analysis as screening support rather than financial advice. <br>
-Risk: The skill reads local CSV or JSON files selected by the user for analysis. <br>
-Mitigation: Provide only financial data that the agent is intended to read, and avoid including unrelated confidential information in input files. <br>
-Risk: Feishu/Lark sharing guidance may not match an organization's current access-control policy. <br>
-Mitigation: Confirm permissions with the organization's policy owner before sharing reports, and default to named-user, least-privilege access. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to analyze CSV or JSON stock datasets, compare S&P 500 and NASDAQ equities, generate financial screening reports, identify high-risk stocks, and summarize sector rankings. It also provides guidance for Feishu/Lark permission settings when sharing generated reports.
 
-## Reference(s): <br>
-- [Financial Indicators Reference](references/indicators.md) <br>
-- [SEC EDGAR](https://www.sec.gov/cgi-bin/browse-edgar) <br>
-- [Financial Modeling Prep](https://financialmodelingprep.com/) <br>
-- [Alpha Vantage](https://www.alphavantage.co/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis output, Python commands, and permission guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local financial-health scores, sector rankings, red-flag summaries, and manual Feishu/Lark sharing recommendations from user-provided stock data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Generated Markdown reports can include values from input datasets, so untrusted stock data may alter or inject content when reports are published or imported into collaboration tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted financial datasets, review generated Markdown before sharing, and sanitize or escape input-derived text before publishing reports.
+
+Risk: Feishu/Lark permission guidance is advisory and does not enforce document access controls.
+
+Mitigation: Manually configure and verify document permissions, link-sharing settings, external collaborator access, and access expiry in Feishu/Lark before sharing reports.
+
+Risk: Financial scores and rankings depend on user-supplied data quality and fixed threshold logic.
+
+Mitigation: Validate source data, treat results as screening support rather than investment advice, and review high-impact decisions with appropriate financial or compliance expertise.
+
+## Reference(s):
+
+- [Financial Indicators Reference](references/indicators.md)
+- [SEC EDGAR](https://www.sec.gov/cgi-bin/browse-edgar)
+- [Financial Modeling Prep](https://financialmodelingprep.com/)
+- [Alpha Vantage](https://www.alphavantage.co/)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/us-stock-financial-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports or structured JSON generated from CSV/JSON financial data, plus usage commands and permission guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include financial health scores, metric scores, red flags, top and bottom stock rankings, and sector rankings.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

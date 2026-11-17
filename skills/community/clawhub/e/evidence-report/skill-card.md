@@ -1,42 +1,57 @@
-## Description: <br>
-RumorChecker 统一报告标准。确保证据链可追溯、多元交叉验证可视化、误解来源可解释，培养用户辨别能力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RumorChecker 统一报告标准。确保证据链可追溯、多元交叉验证可视化、误解来源可解释，培养用户辨别能力。
 
-## Publisher: <br>
-[EvianEvans](https://clawhub.ai/user/EvianEvans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evianevans](https://clawhub.ai/user/evianevans)
 
-## Use Case: <br>
-External users and fact-checking agents use this skill to produce Chinese-language information-checking reference reports with traceable evidence, cross-source verification, misunderstanding analysis, and reader-oriented discernment tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Readers may treat a generated information-checking report as an authoritative verdict. <br>
-Mitigation: Keep the report framed as a reference, preserve the disclaimer that final judgment remains with the user, and use reference opinions rather than definitive verdict language. <br>
-Risk: Evidence gathered upstream may be incomplete, outdated, or factually incorrect. <br>
-Mitigation: Require complete source URLs, publication dates, source-type labels, credibility reasons, and cross-source verification before presenting the report. <br>
-Risk: Users who do not read Chinese may misunderstand the generated report format or cautions. <br>
-Mitigation: Use this skill only where Chinese-language output is acceptable, or have a fluent reviewer verify the report before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to produce a structured Chinese-language rumor-checking reference report with traceable evidence, cross-source verification, misunderstanding analysis, and practical verification tips.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EvianEvans/evidence-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Chinese-language Markdown report template with JSON intermediate-report schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires traceable source URLs, source credibility ratings, cross-reference analysis, misunderstanding-source analysis, discernment tips, and participant attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fixed Chinese-language report structure may be inconvenient or confusing in non-Chinese workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt the language and section labels before use in non-Chinese environments while preserving the traceable evidence and cross-verification requirements.
+
+Risk: A rumor-checking report can become misleading if upstream agents provide vague, stale, or unsourced evidence.
+
+Mitigation: Require complete source URLs, source type, publication date, credibility reason, and cross-reference status for every evidence item.
+
+Risk: Readers may treat the report as an authoritative judgment rather than a reference aid.
+
+Mitigation: Keep the disclaimer, reference-opinion wording, confidence caveat, and user-final-judgment framing in generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evianevans/skills/evidence-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured Chinese-language Markdown report template with JSON intermediate schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires traceable source URLs, source types, publication dates, credibility ratings, cross-reference matrix, misunderstanding analysis, verification tips, and participant attribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

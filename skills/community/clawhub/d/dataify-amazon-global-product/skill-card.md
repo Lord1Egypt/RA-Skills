@@ -1,41 +1,59 @@
-## Description: <br>
-Submits Amazon global product collection tasks to Dataify Builder by product URL, category URL, keyword, or keyword and brand, then returns the task ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Amazon global-marketplace product data by product URL, category URL, keyword, or keyword plus brand through Dataify Builder.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to create Dataify Builder jobs for Amazon global product collection and retrieve the resulting task ID for follow-up in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided Amazon URLs, keywords, brands, and collection options to Dataify. <br>
-Mitigation: Review the parameter confirmation table before submission and change or remove any values that should not be sent. <br>
-Risk: DATAIFY_API_TOKEN is a sensitive credential required for Builder requests. <br>
-Mitigation: Treat the token as secret, prefer a scoped token if available, and avoid exposing it in shared prompts, logs, or command history. <br>
+## Use Case:
 
+External developers and operators use this skill to submit and monitor Dataify Builder tasks that collect Amazon global product data, then retrieve final JSON results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-amazon-global-product) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance and parameter tables with shell command examples; the helper script prints a JSON task summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful submissions return a task_id, submitted parameter summary, dashboard_url, and message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill requires access to a Dataify API token and may submit collection tasks that consume credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a rotatable Dataify token, verify token handling before installation, and review task scope before submitting high-volume collections.
+
+Risk: Server security evidence reports bundled non-Amazon workflow scripts and runtime-shadowing risks outside the core Amazon collection flow.
+
+Mitigation: Review or remove non-Amazon workflow scripts and prefer packaged runtime imports before deployment.
+
+Risk: Server security guidance flags polling paths that authenticate with API keys in URLs.
+
+Mitigation: Prefer a version that authenticates polling without placing API keys in URLs and avoid retaining request URLs in logs.
+
+## Reference(s):
+
+- [Modes and Parameters](references/modes-and-parameters.md)
+- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-amazon-global-product)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit paid Dataify collection tasks and wait for asynchronous final JSON results when a Dataify API token is configured.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

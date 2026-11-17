@@ -1,45 +1,59 @@
-## Description: <br>
-Provides OpenClaw productivity tools for cost tracking, memory retrieval, context compaction, permission checks, tool tracking, task coordination, slash-command status, token budgeting, and feature flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local OpenClaw productivity utilities for cost tracking, memory retrieval, compaction status, permission checks, tool tracking, task coordination, slash commands, and token-budget monitoring.
 
-## Publisher: <br>
-[bw520333](https://clawhub.ai/user/bw520333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bw520333](https://clawhub.ai/user/bw520333)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local cost, token, memory, compaction, and tool status; retrieve or inject relevant local memories; review permission rules; and manage feature flags for productivity workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit can persist or inject local memory and log contents, which may expose sensitive project or user information. <br>
-Mitigation: Use it only on trusted machines and review memory files before using memory injection, especially in shared workspaces or projects containing secrets. <br>
-Risk: Permission checks include broad allow rules for Python, Node, and curl patterns and do not automatically block all high-impact commands. <br>
-Mitigation: Do not connect the permission manager to automatic approvals until the allow rules are narrowed and high-impact commands require explicit review. <br>
-Risk: Dream consolidation can modify long-term memory files and remove processed log files when run outside dry-run mode. <br>
-Mitigation: Back up ~/.openclaw before enabling consolidation and test with safe status or dry-run workflows before running destructive modes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local agent activity, monitor cost and token budgets, retrieve locally stored memory context, and manage optional local utility features.
 
-## Reference(s): <br>
-- [OpenClaw Boost Tools on ClawHub](https://clawhub.ai/bw520333/openclaw-boost-tools) <br>
-- [Publisher profile: bw520333](https://clawhub.ai/user/bw520333) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact version metadata](artifact/version.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write local OpenClaw memory, logs, feature flags, and permission configuration under ~/.openclaw/bw-openclaw-boost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact/version.json reports current 1.0.7) <br>
+Risk: Permission checks are advisory and should not be treated as a security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tool actions before execution and rely on the host agent or operating system sandbox for enforcement.
+
+Risk: Memory retrieval and consolidation can influence future agent context from locally stored files.
+
+Mitigation: Review stored memory content before injecting it into an agent session, and disable or limit memory features when working with sensitive tasks.
+
+Risk: Dream consolidation can delete processed log files when run with force-style arguments.
+
+Mitigation: Run consolidation in dry-run mode first and back up ~/.openclaw/bw-openclaw-boost/memory before force execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bw520333/skills/openclaw-boost-tools)
+- [Publisher profile](https://clawhub.ai/user/bw520333)
+- [Artifact version manifest](artifact/version.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local operational summaries and configuration guidance; some tools read OpenClaw status or local files under ~/.openclaw/bw-openclaw-boost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact version manifest reports current tool version 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

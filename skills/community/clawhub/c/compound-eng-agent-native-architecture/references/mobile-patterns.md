@@ -1,12 +1,12 @@
 <overview>
-Mobile is a first-class platform for agent-native apps. This file covers why mobile matters, permission handling, offline graceful degradation, and the mobile agent-native checklist. For deeper sections see the linked references below.
+Mobile is a full platform for agent-native apps. This file covers why mobile matters, permission handling, offline graceful degradation, and the mobile agent-native checklist. For deeper sections see the linked references below.
 </overview>
 
 ## See also
 
-- [mobile-storage.md](./mobile-storage.md) — iCloud Documents, file states, entitlements
-- [mobile-execution.md](./mobile-execution.md) — background tasks, battery, on-device vs cloud
-- [mobile-cost.md](./mobile-cost.md) — model tiers, token budgets, batching, caching
+- [mobile-storage.md](./mobile-storage.md): iCloud Documents, file states, entitlements
+- [mobile-execution.md](./mobile-execution.md): background tasks, battery, on-device vs cloud
+- [mobile-cost.md](./mobile-cost.md): model tiers, token budgets, batching, caching
 
 <why_mobile>
 ## Why Mobile Matters
@@ -32,10 +32,10 @@ If you use the file system with iCloud, all devices share the same file system. 
 An agent might need 30 seconds, 5 minutes, or an hour to complete a task. But iOS will background your app after seconds of inactivity, and may kill it entirely to reclaim memory. The user might switch apps, take a call, or lock their phone mid-task.
 
 This means mobile agent apps need:
-- **Checkpointing** -- Saving state so work isn't lost
-- **Resuming** -- Picking up where you left off after interruption
-- **Background execution** -- Using the limited time iOS gives you wisely
-- **On-device vs. cloud decisions** -- What runs locally vs. what needs a server
+- **Checkpointing**: Saving state so work isn't lost
+- **Resuming**: Picking up where you left off after interruption
+- **Background execution**: Using the limited time iOS gives you wisely
+- **On-device vs. cloud decisions**: What runs locally vs. what needs a server
 </why_mobile>
 
 <permissions>
@@ -57,44 +57,51 @@ Mobile agents may need access to system resources. Handle permission requests gr
 
 Check permissions before executing:
 
-```swift
-struct PhotoTools {
-    static func readPhotos() -> AgentTool {
-        tool(
-            name: "read_photos",
-            description: "Read photos from the user's photo library",
-            parameters: [
-                "limit": .number("Maximum photos to read"),
-                "dateRange": .string("Date range filter").optional()
-            ],
-            execute: { params, context in
-                // Check permission first
-                let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
+The TypeScript example uses an app-defined adapter for the platform photo library. Map native authorization states to this contract and restrict reads to the granted selection when access is limited.
 
-                switch status {
-                case .authorized, .limited:
-                    // Proceed with reading photos
-                    let photos = await fetchPhotos(params)
-                    return ToolResult(text: "Found \(photos.count) photos", images: photos)
+```typescript
+type PhotoPermission =
+  | "authorized" | "limited" | "denied" | "restricted"
+  | "not-determined" | "unknown";
+type PhotoQuery = { limit: number; dateRange?: string };
+type PhotoAsset = { id: string; bytes: Uint8Array; mediaType: string };
+type PhotoResult = {
+  status: "complete" | "unavailable";
+  text: string;
+  images?: PhotoAsset[];
+};
+type PhotoLibrary = {
+  status(): Promise<PhotoPermission>;
+  requestAccess(): Promise<PhotoPermission>;
+  fetchVisible(query: PhotoQuery): Promise<PhotoAsset[]>;
+};
 
-                case .denied, .restricted:
-                    return ToolResult(
-                        text: "Photo access needed. Please grant permission in Settings → Privacy → Photos.",
-                        isError: true
-                    )
-
-                case .notDetermined:
-                    return ToolResult(
-                        text: "Photo permission required. Please try again.",
-                        isError: true
-                    )
-
-                @unknown default:
-                    return ToolResult(text: "Unknown permission status", isError: true)
-                }
-            }
-        )
-    }
+function photoTool(library: PhotoLibrary) {
+  return {
+    name: "read_photos",
+    description: "Read photos available under the current photo-library grant",
+    async execute(query: PhotoQuery): Promise<PhotoResult> {
+      if (!Number.isSafeInteger(query.limit) || query.limit <= 0) {
+        throw new Error("Photo limit must be a positive integer");
+      }
+      let status = await library.status();
+      if (status === "not-determined") status = await library.requestAccess();
+      switch (status) {
+        case "authorized":
+        case "limited": {
+          const images = await library.fetchVisible(query);
+          return { status: "complete", text: `Found ${images.length} photos`, images };
+        }
+        case "denied":
+        case "restricted":
+          return { status: "unavailable", text: "Photo access is unavailable. Check the app's photo permissions in system settings." };
+        case "not-determined":
+          return { status: "unavailable", text: "Photo permission is still required. Try again when ready." };
+        case "unknown":
+          return { status: "unavailable", text: "Could not determine photo permission." };
+      }
+    },
+  };
 }
 ```
 
@@ -102,25 +109,17 @@ struct PhotoTools {
 
 When permissions aren't granted, offer alternatives:
 
-```swift
-func readPhotos() async -> ToolResult {
-    let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-
-    switch status {
-    case .denied, .restricted:
-        // Suggest alternative
-        return ToolResult(
-            text: """
-            I don't have access to your photos. You can either:
-            1. Grant access in Settings → Privacy → Photos
-            2. Share specific photos directly in our chat
-
-            Would you like me to help with something else instead?
-            """,
-            isError: false  // Not a hard error, just a limitation
-        )
-    // ...
-    }
+```typescript
+async function readPhotosWithAlternatives(
+  library: PhotoLibrary,
+  query: PhotoQuery,
+): Promise<PhotoResult> {
+  const result = await photoTool(library).execute(query);
+  if (result.status === "complete") return result;
+  return {
+    status: "unavailable",
+    text: `${result.text}\nShare selected photos directly in chat, or continue with a task that does not require photos.`,
+  };
 }
 ```
 
@@ -128,26 +127,29 @@ func readPhotos() async -> ToolResult {
 
 Don't request permissions until needed:
 
-```swift
-// BAD: Request all permissions at launch
-func applicationDidFinishLaunching() {
-    requestPhotoAccess()
-    requestCameraAccess()
-    requestLocationAccess()
-    // User is overwhelmed with permission dialogs
+```typescript
+type ImageInput = { bytes: Uint8Array; mediaType: string };
+type Camera = { requestAccess(): Promise<boolean>; capture(): Promise<ImageInput> };
+
+async function analyzeBookCover(
+  image: ImageInput,
+  analyze: (image: ImageInput) => Promise<string>,
+): Promise<string> {
+  return analyze(image);
 }
 
-// GOOD: Request when the feature is used
-tool("analyze_book_cover", async ({ image }) => {
-    // Only request camera access when user tries to scan a cover
-    let status = await AVCaptureDevice.requestAccess(for: .video)
-    if status {
-        return await scanCover(image)
-    } else {
-        return ToolResult(text: "Camera access needed for book scanning")
-    }
-})
+async function captureBookCover(
+  camera: Camera,
+  analyze: (image: ImageInput) => Promise<string>,
+): Promise<string> {
+  if (!await camera.requestAccess()) {
+    throw new Error("Camera access denied; select an existing image instead");
+  }
+  return analyzeBookCover(await camera.capture(), analyze);
+}
 ```
+
+An imported image requires its source access grant, not camera access. Request camera permission only for capture. If analysis uses a cloud model, separately enforce the permitted transmission of these bytes before invoking it.
 </permissions>
 
 <offline_handling>
@@ -155,89 +157,74 @@ tool("analyze_book_cover", async ({ image }) => {
 
 Handle offline scenarios gracefully:
 
-```swift
-class ConnectivityAwareAgent {
-    @ObservedObject var network = NetworkMonitor()
+Use app-defined connectivity and tool adapters. Keep network requirements in the tool registry so newly added tools receive the same check.
 
-    func executeToolCall(_ toolCall: ToolCall) async -> ToolResult {
-        // Check if tool requires network
-        let requiresNetwork = ["web_search", "web_fetch", "call_api"]
-            .contains(toolCall.name)
+```typescript
+type ToolCall = { name: string; args: unknown };
+type ToolResult = { status: "complete" | "unavailable"; text: string };
+type RegisteredTool = {
+  requiresNetwork: boolean;
+  execute(args: unknown): Promise<ToolResult>;
+};
 
-        if requiresNetwork && !network.isConnected {
-            return ToolResult(
-                text: """
-                I can't access the internet right now. Here's what I can do offline:
-                - Read your library and existing research
-                - Answer questions from cached data
-                - Write notes and drafts for later
-
-                Would you like me to try something that works offline?
-                """,
-                isError: false
-            )
-        }
-
-        return await executeOnline(toolCall)
-    }
+async function executeToolCall(
+  call: ToolCall,
+  registry: ReadonlyMap<string, RegisteredTool>,
+  connected: () => boolean,
+): Promise<ToolResult> {
+  const tool = registry.get(call.name);
+  if (!tool) throw new Error(`Unknown tool: ${call.name}`);
+  if (tool.requiresNetwork && !connected()) {
+    return {
+      status: "unavailable",
+      text: "Internet access is unavailable. Read local files or cached research, or write drafts for later.",
+    };
+  }
+  return tool.execute(call.args);
 }
 ```
+
+Connectivity can change after the check. Let each tool report transport failures and preserve unknown outcomes for remote mutations instead of blindly retrying them.
 
 ### Offline-First Tools
 
 Some tools should work entirely offline:
 
-```swift
-let offlineTools: Set<String> = [
+```typescript
+const offlineTools = new Set([
     "read_file",
     "write_file",
     "list_files",
     "read_library",  // Local database
     "search_local",  // Local search
-]
+]);
 
-let onlineTools: Set<String> = [
+const onlineTools = new Set([
     "web_search",
     "web_fetch",
     "publish_to_cloud",
-]
+]);
 
-let hybridTools: Set<String> = [
+const hybridTools = new Set([
     "publish_to_feed",  // Works offline, syncs later
-]
+]);
 ```
 
 ### Queued Actions
 
 Queue actions that require connectivity:
 
-```swift
-class OfflineQueue: ObservableObject {
-    @Published var pendingActions: [QueuedAction] = []
+Use a durable queue and retain its connectivity subscription for the queue's lifetime:
 
-    func queue(_ action: QueuedAction) {
-        pendingActions.append(action)
-        persist()
-    }
+1. Persist each queued action with a stable operation ID, destination, payload hash, and authorization revision before showing it as queued.
+2. Install one connectivity observer when the queue starts; retain its subscription and dispose it when the queue shuts down. Drain immediately if already online.
+3. Serialize draining or atomically claim actions so reconnect events cannot create competing workers.
+4. Before execution, revalidate authorization and content, then atomically record the attempt as started. Dispatch only an unstarted action.
+5. Persist the authoritative receipt before marking the action complete. Do not remove a started action merely because its request returned or timed out.
+6. If interruption leaves a started action without a receipt, hold it as unknown and reconcile it. Replay only with verified provider idempotency using the original operation key; never replay uncertain external sends automatically.
+7. Show queued, started, completed, failed, and unknown separately. Retry a definite failure only when evidence proves no effect occurred and the action remains authorized.
 
-    func processWhenOnline() {
-        network.$isConnected
-            .filter { $0 }
-            .sink { [weak self] _ in
-                self?.processPendingActions()
-            }
-    }
-
-    private func processPendingActions() {
-        for action in pendingActions {
-            Task {
-                try await execute(action)
-                remove(action)
-            }
-        }
-    }
-}
-```
+Follow [operator-approval-loop.md](./operator-approval-loop.md) for external-send claims and [mobile-execution.md](./mobile-execution.md) for restoring attempts. Test offline enqueue, online startup, later reconnect, duplicate reconnect events, and a crash after the remote effect but before receipt persistence.
 </offline_handling>
 
 <checklist>
@@ -245,14 +232,14 @@ class OfflineQueue: ObservableObject {
 
 **iOS Storage:**
 - [ ] iCloud Documents as primary storage (or conscious alternative)
-- [ ] Local Documents fallback when iCloud unavailable
-- [ ] Handle `.icloud` placeholder files (trigger download)
-- [ ] Use NSFileCoordinator for conflict-safe writes
+- [ ] Stable workspace identity and reconciled migration when changing storage backends
+- [ ] Inspect provider availability and request downloads for remote documents
+- [ ] Coordinate revision-conditional writes and propagate writer errors
 
 **Background Execution:**
 - [ ] Checkpoint/resume implemented for all agent sessions
 - [ ] State machine for agent lifecycle (idle, running, backgrounded, etc.)
-- [ ] Background task extension for critical saves (30 second window)
+- [ ] Incremental checkpoints and expiration-safe critical saves without a fixed runtime guarantee
 - [ ] User-visible status for backgrounded agents
 
 **Permissions:**
@@ -275,8 +262,7 @@ class OfflineQueue: ObservableObject {
 - [ ] Clear user communication about offline state
 
 **Battery Awareness:**
-- [ ] Battery monitoring for heavy operations
+- [ ] Initial battery snapshot and retained charging/level subscriptions for heavy operations
 - [ ] Low power mode detection
 - [ ] Defer or downgrade based on battery state
 </checklist>
-

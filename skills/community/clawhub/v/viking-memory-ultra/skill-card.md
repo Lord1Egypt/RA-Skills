@@ -1,40 +1,58 @@
-## Description: <br>
-Viking Memory System Ultra is a layered memory system for agents, with semantic promotion, weighted retrieval, reversible archiving, review tracking, and command guidance for writing, reading, finding, loading, promoting, weighting, and compressing memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Viking Memory System Ultra provides a layered memory system for agents, with hot, warm, cold, and archive tiers, review status tracking, semantic promotion, weighted recall, and reversible archive summaries.
 
-## Publisher: <br>
-[tsangho](https://clawhub.ai/user/tsangho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsangho](https://clawhub.ai/user/tsangho)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide agents in maintaining long-lived layered work memories, including daily notes, hot/warm/cold/archive retention, review status, shared important memories, and retrieval or compression workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived and shared memories can expose credentials, personal data, private notes, or confidential business context if agents save too much by default. <br>
-Mitigation: Set clear rules for what may be saved or shared, avoid sensitive material, and require confirmation before syncing important content to shared memory. <br>
-Risk: External sv_* scripts and API-assisted scanning or promotion may read, move, compress, or share memory content in ways users do not expect. <br>
-Mitigation: Review the external scripts and configuration before use, run dry-run modes where available, and require confirmation before global sync or API-based scanning. <br>
+## Use Case:
 
+Developers and agent operators use this skill to organize agent memory into lifecycle tiers, write and read memory files, track review state, promote relevant archived memories, and manage compression behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tsangho/viking-memory-ultra) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and frontmatter conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to create and maintain memory files across hot, warm, cold, archive, daily, long-term, meetings, and shared memory locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent memory can retain secrets, credentials, private personal data, or sensitive business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory content before writing it and do not store sensitive data unless explicit approval, redaction, and local-only controls are available.
+
+Risk: Shared memory can make important entries visible across agents.
+
+Mitigation: Limit shared writes to approved content and review entries before using shared-memory commands.
+
+Risk: Archived memory content may be processed by external LLMs during promotion or summarization workflows.
+
+Mitigation: Use the skill only when external processing is acceptable, or configure local-only processing and approval controls before deployment.
+
+## Reference(s):
+
+- [Viking Memory System Ultra on ClawHub](https://clawhub.ai/tsangho/skills/viking-memory-ultra)
+- [Publisher profile](https://clawhub.ai/user/tsangho)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and memory frontmatter templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create persistent memory files, shared memory entries, review metadata, and archive summaries.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter, server release evidence, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

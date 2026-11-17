@@ -1,51 +1,65 @@
-## Description: <br>
-Comprehensive Aruba Instant AP configuration management with automatic baseline capture, rollback support, health monitoring, device discovery, configuration snapshots, SSID management, and safe configuration changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Aruba Instant AP configuration management with baseline capture, rollback support, health monitoring, device discovery, configuration snapshots, SSID management, and safe configuration changes through interactive config mode.
 
-## Publisher: <br>
-[scsun1978](https://clawhub.ai/user/scsun1978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scsun1978](https://clawhub.ai/user/scsun1978)
 
-## Use Case: <br>
-Network administrators and infrastructure engineers use this skill to discover, monitor, snapshot, diff, apply, verify, and roll back Aruba Instant AP configuration changes through iapctl workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live Aruba access-point configuration, which may disrupt network connectivity if applied without authorization or review. <br>
-Mitigation: Use it only in a controlled administrative environment, review generated changes, prefer dry-run mode for critical changes, keep backups, and maintain a tested recovery plan. <br>
-Risk: The skill handles network credentials and may create backups or monitoring output that contain sensitive operational details. <br>
-Mitigation: Prefer SSH keys, avoid command-line passwords and default helper-script credentials, use secret references, and store outputs in protected directories. <br>
-Risk: Post-apply verification can time out even when configuration changes have been applied. <br>
-Mitigation: Retry verification after a short wait and confirm device state before continuing with additional changes. <br>
+## Use Case:
 
+Network administrators and infrastructure engineers use this skill to inspect, back up, monitor, and safely change Aruba Instant AP configurations. It is intended for operational workflows such as SSID management, configuration snapshots, health checks, and rollback planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/scsun1978/aruba-iap) <br>
-- [Skill README](artifact/README.md) <br>
-- [Configuration Changes Guide](artifact/docs/CONFIG-CHANGES.md) <br>
-- [Quick Start Configuration Guide](artifact/docs/QUICKSTART-CONFIG.md) <br>
-- [Quick Reference](artifact/docs/QUICK-REFERENCE.md) <br>
-- [Aruba IAP Best Practices](artifact/references/best_practices.md) <br>
-- [Aruba IAP CLI Command Reference](artifact/references/cli_commands.md) <br>
-- [Aruba IAP Troubleshooting Guide](artifact/references/troubleshooting.md) <br>
-- [Aruba Networking](https://www.arubanetworks.com) <br>
-- [Aruba Technical Documentation](https://arubanetworking.hpe.com/techdocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce iapctl command sequences, dry-run/apply/rollback workflows, and local JSON artifacts for network-device administration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact/iapctl/pyproject.toml) <br>
+Risk: The skill can make high-impact network-management changes to Aruba Instant AP devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned changes, run dry-run workflows first, keep current backups, and apply changes only from a controlled administrator environment.
+
+Risk: Credential and artifact handling may expose sensitive device, network, or secret material if used carelessly.
+
+Mitigation: Prefer SSH keys with host-key verification, avoid plaintext secrets files and password flags for real credentials, keep output directories private, and do not commit generated artifacts.
+
+Risk: Installation behavior and dependency management require review before use on shared systems.
+
+Mitigation: Inspect the code before installation and avoid running install.sh until wrapper overwrite and dependency-pinning concerns are addressed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scsun1978/skills/aruba-iap)
+- [Aruba Networks](https://www.arubanetworks.com)
+- [Aruba IAP Configuration Changes](artifact/docs/CONFIG-CHANGES.md)
+- [iapctl Quick Reference Card](artifact/docs/QUICK-REFERENCE.md)
+- [Quick Start: Aruba IAP Configuration Changes](artifact/docs/QUICKSTART-CONFIG.md)
+- [Aruba IAP Best Practices](artifact/references/best_practices.md)
+- [Aruba IAP CLI Complete Command Reference](artifact/references/cli_commands.md)
+- [Aruba IAP Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [iapctl - Aruba IAP Configuration Management CLI](artifact/iapctl/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create configuration, backup, diff, apply, verification, and monitoring artifacts when the generated commands are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

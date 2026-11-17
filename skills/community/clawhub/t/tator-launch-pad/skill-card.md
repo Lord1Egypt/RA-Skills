@@ -1,49 +1,64 @@
-## Description: <br>
-Helps agents launch and manage tokens through Tator Easy Mode or direct Clanker, Flaunch, and Pump.fun integrations, including fee strategy, claiming, recipient updates, and security guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and developers through token launch planning, fee management, claiming, recipient updates, and secure transaction preparation across Tator, Clanker, Flaunch, and Pump.fun workflows.
 
-## Publisher: <br>
-[azep-ninja](https://clawhub.ai/user/azep-ninja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azep-ninja](https://clawhub.ai/user/azep-ninja)
 
-## Use Case: <br>
-Developers, agents, and token builders use this skill to evaluate token-launch strategy, choose between Tator Easy Mode and direct platform integrations, prepare launch or fee-management calls, and understand the operational and security tradeoffs before signing transactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real token launches and fee-management transactions that may be irreversible once signed and broadcast. <br>
-Mitigation: Require explicit human approval before signing or broadcasting any transaction, and inspect all returned unsigned transactions before approval. <br>
-Risk: Direct Mode requires wallet-key handling and blockchain RPC access in the user's own infrastructure. <br>
-Mitigation: Use a dedicated low-balance launch wallet, store secrets in a secrets manager, pin dependencies, verify contract addresses, and keep keys out of plaintext files. <br>
-Risk: Easy Mode sends the public wallet address, prompt, and provider name to the Tator API. <br>
-Mitigation: Avoid putting sensitive business or personal data in prompts, and review returned transactions locally before signing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Token Launcher - Tator Launch Pad on ClawHub](https://clawhub.ai/azep-ninja/tator-launch-pad) <br>
-- [Tator API documentation](https://docs.tator.bot) <br>
-- [Direct Mode reference](REFERENCE.md) <br>
-- [Clanker v4 direct mode reference](references/clanker.md) <br>
-- [Flaunch direct mode reference](references/flaunch.md) <br>
-- [Pump.fun direct mode reference](references/pumpfun.md) <br>
-- [Clanker SDK docs](https://clanker.gitbook.io/clanker-documentation/sdk/v4.0.0) <br>
-- [Flaunch builder docs](https://docs.flaunch.gg/for-builders) <br>
-- [Pump.fun public docs](https://github.com/pump-fun/pump-public-docs) <br>
+## Use Case:
 
+External agent builders and developers use this skill to evaluate token launch ideas, prepare launch or fee-management actions, and choose between an API-mediated Tator workflow and direct platform integration. It is intended for users who can review blockchain transactions and manage wallet signing safely.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API examples, JSON payloads, shell commands, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; Easy Mode returns unsigned transactions for local signing, while Direct Mode guides SDK and wallet integration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides users through irreversible token deployments, fee-recipient changes, claims, and other externally prepared blockchain transaction payloads.
+
+Mitigation: Decode and simulate every transaction, verify contract addresses and endpoints independently, and require human approval before signing or broadcasting.
+
+Risk: Direct Mode can require private signing keys, RPC endpoints, and IPFS credentials in the user's own infrastructure.
+
+Mitigation: Use a dedicated minimally funded launch wallet, store secrets in a secrets manager, pin dependencies, and avoid autonomous unsupervised signing.
+
+Risk: The authoritative security verdict is suspicious because validation controls for externally constructed transaction payloads are incomplete.
+
+Mitigation: Install only after reviewing the third-party service or SDK path, then apply the security guidance from evidence before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/azep-ninja/skills/tator-launch-pad)
+- [Tator Documentation](https://docs.tator.bot)
+- [Token Launcher Direct Mode Reference](REFERENCE.md)
+- [Clanker v4 Direct Mode Reference](references/clanker.md)
+- [Clanker SDK Documentation](https://clanker.gitbook.io/clanker-documentation/sdk/v4.0.0)
+- [Flaunch Direct Mode Reference](references/flaunch.md)
+- [Flaunch Builder Documentation](https://docs.flaunch.gg/for-builders)
+- [Pump.fun Direct Mode Reference](references/pumpfun.md)
+- [Pump.fun Public Documentation](https://github.com/pump-fun/pump-public-docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline JSON, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; users must review, sign, and broadcast any blockchain transactions outside the skill.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

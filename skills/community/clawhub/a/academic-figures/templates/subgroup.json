@@ -1,0 +1,82 @@
+{
+  "_chart_type": "subgroup",
+  "_command": "python3 scripts/gen_figure.py -t subgroup -d templates/subgroup.json -o subgroup.png --cjk",
+  "_note": "场景：免疫治疗 vs 化疗的 PFS 亚组分析（模拟 Cox 亚组输出，n=218）。三个亚组变量（年龄/性别/PD-L1 表达）各两层：方块=层效应估计（实心=层内 P<0.05），横线=95%CI，右侧 est(CI) 与 P 列；亚组标题行右侧报 P interaction（PD-L1 交互显著=疗效随表达状态异质）；底部 Overall 菱形=总效应。est/p 来自你拟合的亚组模型（引擎不拟合；原始数据可 `--stats cox` 一键拟合，v5.8）；报告口径：交互检验用多因素模型含交互项，逐层检验不代替交互检验。",
+  "subgroups": [
+    {
+      "name": "年龄",
+      "p_interaction": 0.48,
+      "levels": [
+        {
+          "name": "<65 岁",
+          "n": 120,
+          "est": 0.72,
+          "ci_low": 0.55,
+          "ci_high": 0.94,
+          "p": 0.015
+        },
+        {
+          "name": "≥65 岁",
+          "n": 98,
+          "est": 0.81,
+          "ci_low": 0.58,
+          "ci_high": 1.13,
+          "p": 0.22
+        }
+      ]
+    },
+    {
+      "name": "性别",
+      "p_interaction": 0.71,
+      "levels": [
+        {
+          "name": "男",
+          "n": 126,
+          "est": 0.69,
+          "ci_low": 0.52,
+          "ci_high": 0.91,
+          "p": 0.008
+        },
+        {
+          "name": "女",
+          "n": 92,
+          "est": 0.84,
+          "ci_low": 0.6,
+          "ci_high": 1.18,
+          "p": 0.32
+        }
+      ]
+    },
+    {
+      "name": "PD-L1 表达",
+      "p_interaction": 0.03,
+      "levels": [
+        {
+          "name": "TPS≥50%",
+          "n": 84,
+          "est": 0.55,
+          "ci_low": 0.39,
+          "ci_high": 0.78,
+          "p": 0.001
+        },
+        {
+          "name": "TPS<50%",
+          "n": 134,
+          "est": 0.86,
+          "ci_low": 0.67,
+          "ci_high": 1.1,
+          "p": 0.23
+        }
+      ]
+    }
+  ],
+  "overall": {
+    "n": 218,
+    "est": 0.75,
+    "ci_low": 0.61,
+    "ci_high": 0.92,
+    "p": 0.007
+  },
+  "est_label": "HR",
+  "x_label": "PFS HR（免疫治疗 vs 化疗）"
+}

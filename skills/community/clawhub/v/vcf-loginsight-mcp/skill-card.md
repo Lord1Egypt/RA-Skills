@@ -1,43 +1,58 @@
-## Description: <br>
-An MCP server that provides native tools to dynamically search VMware Aria Operations for Logs (Log Insight). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An MCP server that provides native tools to dynamically search VMware Aria Operations for Logs (Log Insight).
 
-## Publisher: <br>
-[kasture-rohit](https://clawhub.ai/user/kasture-rohit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasture-rohit](https://clawhub.ai/user/kasture-rohit)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to let an agent query VMware Aria Operations for Logs through an MCP tool for keyword-based VCF log investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Log Insight API token can expose sensitive log access if leaked. <br>
-Mitigation: Use a least-privilege token, keep it out of source control and logs, and rotate it if exposure is suspected. <br>
-Risk: Returned log messages may contain sensitive or untrusted content. <br>
-Mitigation: Install only for agents allowed to access Log Insight data and treat returned log text as untrusted. <br>
-Risk: TLS verification behavior may rely on disabled certificate checks. <br>
-Mitigation: Prefer proper TLS verification or a trusted CA bundle when deploying this skill. <br>
+## Use Case:
 
+Developers and infrastructure operators use this MCP skill to let an agent search VMware Aria Operations for Logs by keyword and inspect recent VCF log events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kasture-rohit/vcf-loginsight-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/kasture-rohit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON configuration examples; MCP tool responses are plain text log summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOGINSIGHT_HOST and LOGINSIGHT_API_TOKEN environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The skill uses an API token to fetch raw infrastructure logs that may contain sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege read-only Log Insight token and add clear query and redaction controls before exposing returned log data to an agent.
+
+Risk: TLS certificate verification is disabled for Log Insight requests.
+
+Mitigation: Enable certificate verification or install the correct trusted certificate chain before using the skill against sensitive logs.
+
+Risk: Dependencies are not pinned in the artifact requirements.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kasture-rohit/skills/vcf-loginsight-mcp)
+- [Project homepage](https://github.com/kasture-rohit/vcf-openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [Plain text log search results or error messages, with JSON MCP server configuration in setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOGINSIGHT_HOST and LOGINSIGHT_API_TOKEN; the query tool accepts a keyword and an optional event limit.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

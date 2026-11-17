@@ -58,7 +58,7 @@ python {SKILL_DIR}/scripts/chain_manager.py delete --name "链名" --force
 
 ```
 ~/.workbuddy/skills/.standardization/skill-sub/
-├── config.json           # 用户配置（配置界面写入）
+├── config_file           # 用户配置（配置界面写入）
 └── chains/               # 调用链数据
     ├── index.json        # 调用链索引
     ├── 发布流水线.json    # 每条链一个文件
@@ -176,7 +176,7 @@ python {SKILL_DIR}/scripts/chain_manager.py delete --name "链名" --force
 |------|--------------|--------------|----------|----------|-------------------|------|
 | `chain_manager.py` | 低（读 SKILL.md） | 中（写 `chains/` 目录） | 无 | 无 | 无 | **中** |
 | `chain_executor.py` | 低（读调用链） | 低（执行日志） | 无 | 无 | 中（调用其他 skill） | **中** |
-| `settings.py` | 低（读配置） | 低（写 `config.json`） | 无 | 无 | 无 | **低** |
+| `settings.py` | 低（读配置） | 低（写 `config_file`） | 无 | 无 | 无 | **低** |
 | `skill_extractor.py` | 低（读 SKILL.md） | 无 | 无 | 无 | 无 | **低** |
 
 ### 授权方式

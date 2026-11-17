@@ -1,40 +1,54 @@
-## Description: <br>
-Provides high-level business strategy frameworks based on McKinsey, BCG, Bain, and Deloitte methodologies for executive summaries, GTM strategies, risk assessments, financial modeling, and SWOT analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-level business strategy frameworks based on McKinsey, BCG, Bain, and Deloitte methodologies. Use this skill for Executive Summaries, GTM strategies, Risk Assessments, Financial Modeling, and SWOT analysis for any business or project.
 
-## Publisher: <br>
-[sofianhw](https://clawhub.ai/user/sofianhw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sofianhw](https://clawhub.ai/user/sofianhw)
 
-## Use Case: <br>
-Business operators, founders, consultants, and strategy teams use this skill to turn a business context into structured consulting-style analyses, recommendations, roadmaps, risk assessments, and market or competitive evaluations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business strategy outputs may contain incorrect facts, assumptions, benchmarks, or recommendations. <br>
-Mitigation: Treat outputs as advisory and verify business facts, assumptions, and financial inputs before making decisions. <br>
-Risk: The skill may activate on broad business questions where a narrower skill or expert review would be more appropriate. <br>
-Mitigation: Use it for high-level strategy framing and route specialized legal, regulatory, finance, or operational decisions to qualified reviewers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MBB Strategic Frameworks](artifact/references/frameworks.md) <br>
-- [ClawHub release page](https://clawhub.ai/sofianhw/mbb-strategist) <br>
+## Use Case:
 
+Business strategists, founders, operators, and analysts use this skill to turn a business context into structured consulting-style outputs such as executive recommendations, market entry plans, GTM strategy, pricing analysis, risk assessment, financial modeling, SWOT analysis, and competitive landscape reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown strategy analysis with tables, matrices, recommendations, and roadmaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executive summaries, GTM plans, risk matrices, financial models, SWOT analysis, market sizing, and competitive landscape analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Financial projections, market intelligence, and executive recommendations may be incomplete or inaccurate without current source checking.
+
+Mitigation: Treat outputs as draft analysis and verify assumptions, market data, and financial figures before business decisions.
+
+Risk: The skill uses broad consulting persona prompts that can produce confident strategic advice.
+
+Mitigation: Review recommendations with appropriate business, finance, legal, or domain experts before external or executive use.
+
+## Reference(s):
+
+- [MBB Strategic Frameworks](references/frameworks.md)
+- [ClawHub Skill Page](https://clawhub.ai/sofianhw/skills/mbb-strategist)
+- [Publisher Profile](https://clawhub.ai/user/sofianhw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables and decision matrices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scored frameworks, scenario comparisons, financial assumptions, roadmap items, and prioritized recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

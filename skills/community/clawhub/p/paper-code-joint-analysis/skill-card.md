@@ -1,51 +1,59 @@
-## Description: <br>
-Jointly analyze a research paper and its open-source implementation. Use when a user wants to understand a paper through code, map theory/formulas/algorithms/experiments to real classes and methods, identify implementation details not disclosed in the paper, produce reproducibility commands and gaps, build explanatory diagrams or a static reader, or validate that an analysis covers both the paper and repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jointly analyze a research paper and its open-source implementation. Use when a user wants to understand a paper through code, map theory/formulas/algorithms/experiments to real classes and methods, identify implementation details not disclosed in the paper, produce reproducibility commands and gaps, build explanatory diagrams or a static reader, or validate that an analysis covers both the paper and repository.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Developers, researchers, and engineers use this skill in Codex to jointly read a paper and its implementation, map formulas and experiments to real code paths, identify paper-code gaps, and produce reproducibility guidance, diagrams, validation notes, and a reusable static reader. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads target papers and source repositories and writes local analysis artifacts, which may expose private project contents in generated reports. <br>
-Mitigation: Run it in a dedicated project directory and review generated Markdown, JSON, and reader files before sharing them. <br>
-Risk: Reproduction commands or dependency installation can mutate the environment or run untrusted target repository code. <br>
-Mitigation: Use static analysis unless execution is explicitly required, and allow dependency installation or experiment runs only after reviewing the target repository instructions. <br>
-Risk: The optional static reader can download KaTeX font files when full local typography is requested. <br>
-Mitigation: Use the font-install option only when network access and local asset creation are acceptable; otherwise build the reader without downloading fonts. <br>
-Risk: Paper-code mappings and reproducibility commands can be incomplete or misleading if paper claims, source files, or line references are not rechecked. <br>
-Mitigation: Use the bundled validation scripts and require unresolved questions, unsupported experiments, and approximate commands to be recorded in the validation report. <br>
+## Use Case:
 
+Developers, researchers, and engineers use this skill to connect a paper's claims, formulas, algorithms, experiments, and omissions to the concrete classes, methods, parameters, commands, and logs in an open-source implementation. It produces analysis artifacts that help readers understand, reproduce, audit, and modify paper implementations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c-narcissus/paper-code-joint-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/c-narcissus) <br>
-- [Output contract](references/output-contract.md) <br>
-- [Reader data contract](references/reader-data-contract.md) <br>
-- [Analysis bundle schema](references/analysis-bundle.schema.json) <br>
-- [Deep reading overlay](references/deep-reading-overlay.md) <br>
-- [Large artifact policy](references/large-artifact-policy.md) <br>
-- [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, a structured analysis_bundle.json file, Mermaid diagrams, validation output, shell commands, and a generated static HTML reader.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default user-facing reports and reader labels are Chinese while paper titles, code identifiers, paths, commands, class names, method names, and standard acronyms remain in their original form.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and README) <br>
+Risk: The bundled reader builder can recursively delete an arbitrary user-writable output directory when run with a custom --out path and --force.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh project directory, avoid custom --out paths, and use --force only when the output is the expected generated site directory.
+
+Risk: Installing KaTeX fonts requires CDN access.
+
+Mitigation: Use --install-katex-fonts only when external CDN access is acceptable for the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/c-narcissus/skills/paper-code-joint-analysis)
+- [Output Contract](references/output-contract.md)
+- [Analysis Bundle Schema](references/analysis-bundle.schema.json)
+- [Reader Data Contract](references/reader-data-contract.md)
+- [Deep Reading Overlay](references/deep-reading-overlay.md)
+- [Large Artifact Policy](references/large-artifact-policy.md)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON analysis bundle, Mermaid diagrams, reproducibility commands, and generated static reader files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default user-facing reports are in Chinese unless the user requests another language; technical identifiers remain in their original form.]
+
+## Skill Version(s):
+
+1.0.9 (source: evidence release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

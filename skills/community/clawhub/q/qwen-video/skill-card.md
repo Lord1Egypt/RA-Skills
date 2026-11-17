@@ -1,41 +1,59 @@
-## Description: <br>
-Generate videos using Alibaba Cloud DashScope Wan text-to-video APIs, including async task submission, status polling, and local MP4 download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos using Alibaba Cloud DashScope Wan text-to-video APIs, including async submission, status polling, and local MP4 download.
 
-## Publisher: <br>
-[547895019](https://clawhub.ai/user/547895019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[547895019](https://clawhub.ai/user/547895019)
 
-## Use Case: <br>
-Developers and external users use this skill to create short videos from text prompts through Alibaba Cloud DashScope Wan models, then retrieve the generated MP4 for local use. It supports common agent workflows for submitting generation jobs, polling completion, and downloading media. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill disables HTTPS certificate verification while sending an API key. <br>
-Mitigation: Review and patch the scripts before use, remove curl -k, and use a limited DashScope API key where possible. <br>
-Risk: Prompt, audio URL, and generated media handling may expose sensitive inputs or overwrite an existing MP4 path. <br>
-Mitigation: Avoid sensitive prompts or audio URLs and choose an output path where overwriting a file would not matter. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DashScope Wan t2v API notes](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/547895019/qwen-video) <br>
-- [DashScope video synthesis endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis) <br>
+## Use Case:
 
+Developers and external users use this skill to request short Wan text-to-video generations through DashScope, monitor the async task, and save the resulting MP4 locally.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated task or media paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DashScope task IDs, signed video URLs, and local MP4 file paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell networking could expose valuable DashScope credentials or accept unexpected TLS endpoints.
+
+Mitigation: Remove curl -k, require normal TLS verification, and use only non-sensitive prompts and audio URLs until the scripts are reviewed and hardened.
+
+Risk: Crafted prompt, audio URL, or option values could break JSON construction or influence shell execution.
+
+Mitigation: Validate arguments and build request JSON with a structured encoder before using valuable API credentials.
+
+Risk: Returned media URLs may not be constrained to expected HTTPS hosts before download.
+
+Mitigation: Allow downloads only from expected HTTPS result hosts and reject unexpected schemes or domains.
+
+## Reference(s):
+
+- [DashScope Wan t2v API notes](references/api.md)
+- [DashScope video synthesis endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis)
+- [ClawHub skill page](https://clawhub.ai/547895019/skills/qwen-video)
+- [ClawHub publisher profile](https://clawhub.ai/user/547895019)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status/output lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task identifiers, video URLs, and local MP4 file paths when generation succeeds.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Check daily if given stocks hit the 4% volatility threshold condor signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether requested stock tickers meet a 4% volatility threshold for an options condor signal.
 
-## Publisher: <br>
-[jinntrance](https://clawhub.ai/user/jinntrance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinntrance](https://clawhub.ai/user/jinntrance)
 
-## Use Case: <br>
-External users and developers use this skill to run a local options signal script for selected stock tickers and receive an informational condor or strangle trading signal with suggested put and call strike thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces options strike recommendations that can be mistaken for financial advice. <br>
-Mitigation: Present outputs as informational trading analysis and require independent validation before any capital is committed. <br>
-Risk: Short options, iron condors, and strangles can create substantial losses if the market moves beyond the modeled range. <br>
-Mitigation: Use defined-risk structures such as protective wings, limit allocation, and verify suitability against the user's brokerage and risk controls. <br>
-Risk: The script depends on current public market data and a locally trained model, so stale data or model error can produce misleading signals. <br>
-Mitigation: Confirm the data timestamp, rerun the script close to decision time, and compare the result with independent market and options-chain analysis. <br>
+## Use Case:
 
+External users and agents use this skill to check selected equity tickers for a daily options condor or strangle signal and summarize the reported sell-strike thresholds. Its outputs should be treated as informational trading analysis, not as authorization to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinntrance/unbeatable-condor-strategy) <br>
-- [jinntrance publisher profile](https://clawhub.ai/user/jinntrance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with shell command output and trading-risk guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational market analysis only and should be independently validated before risking capital.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can produce direct options-trading instructions that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all results as informational analysis and require a qualified human review before any trade decision.
+
+Risk: An agent could place trades or allocate capital based only on the generated signal.
+
+Mitigation: Do not grant trading or capital-allocation authority to the agent based on this output.
+
+Risk: The skill downloads current market data and runs local Python dependencies.
+
+Mitigation: Review the code before installation and run it only in an isolated Python environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinntrance/skills/unbeatable-condor-strategy)
+- [ClawHub publisher profile](https://clawhub.ai/user/jinntrance)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise trading-signal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include signal status, put and call strike thresholds, abstention guidance, and risk reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

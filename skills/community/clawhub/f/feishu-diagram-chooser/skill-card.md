@@ -1,42 +1,48 @@
-## Description: <br>
-Parse natural language descriptions and output diagram scheme recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses natural language visualization requests and recommends structured diagram schemes for Mermaid diagrams, ECharts-style charts, or image prompts.
 
-## Publisher: <br>
-[zatanyong](https://clawhub.ai/user/zatanyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zatanyong](https://clawhub.ai/user/zatanyong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and external users use this skill to choose an appropriate diagram or chart representation from a natural language description and receive a structured recommendation with reasoning, alternatives, and confidence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Mermaid or chart configuration may be inaccurate, unsupported by the target renderer, or misleading in production documents.
+
+Mitigation: Review generated diagram code or chart configuration before using it in production documents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, developers, and external users use this skill to classify visualization requests and choose an appropriate Mermaid diagram, ECharts chart template, or image prompt fallback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend a diagram format or chart template that does not fit the user's data or rendering environment. <br>
-Mitigation: Review the recommended primary type and alternatives against the actual data, Mermaid version, ECharts support, and allowed diagram constraints before rendering. <br>
-Risk: Users may expect direct Feishu integration or automatic chart rendering even though the security guidance says the skill provides guidance and structured output only. <br>
-Mitigation: Treat the output as a diagram-planning recommendation and use a separate renderer or Feishu workflow to create the final visual artifact. <br>
-Risk: Generated Mermaid code, ECharts configuration, or image prompts may be incomplete or misleading for ambiguous visualization requests. <br>
-Mitigation: Use the clarification questions when confidence is low and validate generated code or configuration in the target rendering environment. <br>
+**Output Format:** [Structured DiagramScheme-style JSON with optional Mermaid code, ECharts configuration, image prompts, reasoning, confidence, and clarification questions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zatanyong/feishu-diagram-chooser) <br>
+**Other Properties Related to Output:** [May include alternative diagram options ordered by preference and environment-aware fallback guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, code, configuration] <br>
-**Output Format:** [Structured DiagramScheme object with recommendation text, optional Mermaid code, ECharts chart configuration, or image prompt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a primary recommendation, ordered alternatives, confidence score, and clarification questions when intent is ambiguous.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

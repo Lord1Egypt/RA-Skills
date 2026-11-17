@@ -1,39 +1,54 @@
-## Description: <br>
-Provides curated Wikipedia content including historical events on a date, daily featured articles, most read pages, and picture of the day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides curated Wikipedia content including historical events on a date, daily featured articles, most read pages, and picture of the day.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to query a Pipeworx remote MCP service for curated Wikipedia feed content, including historical date entries, featured articles, most-read pages, and picture-of-the-day metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wikipedia lookup queries are sent to Pipeworx's remote MCP service, and the artifact does not document service logging or retention practices. <br>
-Mitigation: Use the skill only for non-sensitive lookup prompts and avoid including private context when calling the remote service. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Wikipedia-style daily and date-based content, including historical events, featured articles, most-read pages, and picture-of-the-day metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-wikifeed) <br>
-- [Pipeworx Wikifeed MCP endpoint](https://gateway.pipeworx.io/wikifeed/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote MCP endpoint for Wikipedia feed lookups; avoid sending private context in lookup prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Lookup queries are sent to the disclosed pipeworx.io MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint is acceptable before installation and avoid sending secrets or private data as tool arguments.
+
+Risk: Returned Wikipedia-style content can be time-sensitive or incomplete for consequential decisions.
+
+Mitigation: Treat returned content as informational and verify important facts against authoritative sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-wikifeed)
+- [Wikifeed MCP gateway](https://gateway.pipeworx.io/wikifeed/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl examples and MCP configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Wikipedia content selectors, extracts, URLs, image URLs, thumbnails, and view-count-oriented results depending on the selected tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

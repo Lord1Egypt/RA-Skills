@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "brief",
-  "version": "1.0.1",
-  "publishedAt": 1771258074705
+  "displayName": "Brief",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785068764906
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784844690071
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784811933514
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771258074928
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770894435106
+    }
+  ]
 }

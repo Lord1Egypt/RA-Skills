@@ -1,46 +1,69 @@
-## Description: <br>
-Transcribes voice notes and audio or video files with local Whisper or optional Deepgram, then saves transcripts and optional source audio for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice note transcription and archival for OpenClaw agents, powered by Deepgram Nova-3 or local Whisper, with saved audio and text transcripts.
 
-## Publisher: <br>
-[matthew00ita](https://clawhub.ai/user/matthew00ita) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthew00ita](https://clawhub.ai/user/matthew00ita)
 
-## Use Case: <br>
-External users and developers use this skill to transcribe voice notes, meetings, interviews, or videos into saved text, subtitle, or JSON outputs. It supports private local Whisper processing and optional Deepgram diarization when the user accepts sending audio to Deepgram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcripts and optional source audio may contain sensitive personal or business information and are saved locally. <br>
-Mitigation: Use approved local storage locations, review transcript contents before sharing, and delete retained audio or transcript files according to the user's data policy. <br>
-Risk: Choosing Deepgram sends audio to an external transcription provider. <br>
-Mitigation: Use local Whisper for private recordings; use Deepgram only when the user intentionally accepts external processing and has configured DEEPGRAM_API_KEY. <br>
-Risk: URL input and very large media files can increase exposure to untrusted content, excessive downloads, or processing failures. <br>
-Mitigation: Avoid untrusted or very large URLs, prefer local files from known sources, and split long recordings before transcription. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to transcribe voice notes, audio files, or video audio into local transcript artifacts, with optional speaker diarization through Deepgram.
 
-## Reference(s): <br>
-- [NEXUS Voice Transcriber on ClawHub](https://clawhub.ai/matthew00ita/nexus-voice-transcriber) <br>
-- [Whisper Models Guide](references/whisper-models.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Deepgram Documentation](https://developers.deepgram.com/docs) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, subtitle files, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated transcripts as txt, srt, vtt, or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcripts are saved locally under ~/voice-transcriber/transcripts by default; original audio is saved only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.lock.json) <br>
+Risk: Audio can be uploaded to Deepgram when the cloud provider is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local Whisper for sensitive audio and require explicit user confirmation before selecting Deepgram.
+
+Risk: The skill can fetch remote URLs supplied as transcription inputs.
+
+Mitigation: Avoid untrusted URLs and prefer local files from known sources.
+
+Risk: Transcript and optional audio archives are written under the user's home directory.
+
+Mitigation: Review output paths and permissions before processing sensitive recordings.
+
+Risk: Split-file cleanup may remove chunk_* files in the processing directory.
+
+Mitigation: Run split transcription in a dedicated temporary or empty working directory.
+
+Risk: Unpinned transcription dependencies can change behavior over time.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions where possible.
+
+## Reference(s):
+
+- [NEXUS Voice Transcriber Skill Page](https://clawhub.ai/matthew00ita/skills/nexus-voice-transcriber)
+- [Whisper Models Guide](artifact/references/whisper-models.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [Deepgram Documentation](https://developers.deepgram.com/docs)
+- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text guidance with shell commands; generated transcript files may be TXT, SRT, VTT, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save transcript and optional source-audio archives under ~/voice-transcriber/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.lock.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

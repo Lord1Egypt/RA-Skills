@@ -1,42 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet documentation for SSL Cert Manager concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ssl Cert Manager provides command-based plain-text reference documentation for SSL certificate management concepts, setup, patterns, troubleshooting, performance, security, migration, and quick reference.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for SSL certificate management concepts, operational patterns, troubleshooting, migration, and security considerations. It is intended to return plain-text guidance without requiring API keys, credentials, or network access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be incomplete, generic, or stale for a specific SSL certificate management environment. <br>
-Mitigation: Validate recommendations against current platform documentation, staging tests, and local security policy before applying them. <br>
-Risk: Operator use in a privileged environment could apply guidance with credentials or production access that were not intended for the task. <br>
-Mitigation: Use least-privilege credentials, review any command or configuration change before execution, and avoid production tokens unless operating the registry or environment intentionally. <br>
+## Use Case:
 
+Developers and engineers use this skill as a lightweight local reference for SSL certificate management concepts, workflows, troubleshooting, and operational checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/ssl-cert-manager) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [Publisher Profile](https://clawhub.ai/user/bytesagain-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The SSL certificate content is generic and incomplete, so users may mistake it for authoritative platform or product documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight local reference and verify certificate procedures against the relevant platform or product documentation before making operational changes.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/ssl-cert-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are required.]
+
+## Skill Version(s):
+
+2.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

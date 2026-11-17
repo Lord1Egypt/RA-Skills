@@ -1,74 +1,70 @@
-# Baidu Youjia Car API Key Setup Guide (OpenClaw)
+# 百度有驾汽车查询 API Key 配置指南
 
-## BAIDU_API_KEY Not Configured
+当 `YOUJIA_API_KEY` 未配置时，有两种方式获取 Key。
 
-When the `BAIDU_API_KEY` environment variable is not set, follow these steps:
+## 方式一：手机号验证码获取（推荐）
 
-### 1. Get API Key
-Visit: **https://console.bce.baidu.com/qianfan/ais/console/apiKey**
+通过手机号 + 验证码自动获取 `X-Youjia-OpenAPI-Key`，无需手动配置。
 
-- Log in to your Baidu Cloud account
-- Create an application or view existing API keys
-- Copy your **API Key** (only API Key is needed, no Cookie required)
+### 流程概述
 
-### 2. Configure OpenClaw
-Edit the OpenClaw configuration file: `~/.openclaw/openclaw.json`
+1. 发送手机号 → 接收验证码
+2. 输入验证码 → 返回 API Key
+3. Key 自动持久化到 `~/.youjia/key.json`，并**覆盖**环境变量 `YOUJIA_API_KEY` 与 skill 包内 `.env`
 
-Add or merge the following structure:
+> 验证码重新申请拿到的新 Key 会覆盖本地旧配置，避免旧 Key 因解析优先级继续生效。
 
-```json
-{
-  "skills": {
-    "entries": {
-      "baidu-youjia-car": {
-        "env": {
-          "BAIDU_API_KEY": "your_actual_api_key_here"
-        }
-      }
-    }
-  }
-}
-```
+详细流程见 `tempkey-guide.md`。
 
-Replace `"your_actual_api_key_here"` with your actual API key.
+---
 
-### 3. Verify Configuration
+## 方式二：手动配置
+
+如果你已有 `X-Youjia-OpenAPI-Key`，可通过以下方式手动配置：
+
+### 1. 配置环境变量
+
 ```bash
-# Check JSON format
-cat ~/.openclaw/openclaw.json | python -m json.tool
+export YOUJIA_API_KEY="sk-xxxxxxxxxxxxx"
 ```
 
-### 4. Restart OpenClaw
+### 2. 配置到 .env 文件（推荐）
+
+在本 skill 目录下创建 `.env` 文件（参考 `.env.example`）：
+
 ```bash
-openclaw gateway restart
+cp .env.example .env
+# 编辑 .env，填入你的 Key
 ```
 
-### 5. Test
-```bash
-cd ~/.openclaw/workspace/skills/baidu-youjia-car
-python3 scripts/askprice.py '{"query":"奥迪A4L多少钱"}'
+或使用代码：
+
+```python
+from youjia_client import save_key_to_dotenv
+
+save_key_to_dotenv("sk-xxxxxxxxxxxxx")
 ```
 
-## API Details
+---
 
-- **Endpoint**: `https://qianfan.baidubce.com/v2/tools/clue/askprice`
-- **Method**: GET
-- **Authentication**: Bearer token in Authorization header
-- **Parameters**:
-  - `query` (required): 查询内容，必须包含车系名
-  - `city` (optional): 城市名，默认北京
+## API 详情
 
-### Example Request
-```bash
-curl --location 'https://qianfan.baidubce.com/v2/tools/clue/askprice?query=奥迪A4L多少钱' \
-  --header 'Authorization: Bearer your_api_key_here'
+- **车价查询端点**: `GET https://youjia.baidu.com/bff-third-api/openapi/v1/clue/askprice/popbefore`
+- **认证方式**: `X-Youjia-OpenAPI-Key` 请求头
+- **参数**:
+  - `query` (必填): 查询内容，必须包含车系名
+  - `city` (可选): 城市名，默认北京
+  - `clue_source_type` (固定): `ai_price`
+
+### 示例请求
+
+curl --location 'https://youjia.baidu.com/bff-third-api/openapi/v1/clue/askprice/popbefore?query=%E5%A5%A5%E8%BF%AAA4L&city=%E5%8C%97%E4%BA%AC&clue_source_type=ai_price' \
+  --header 'X-Youjia-OpenAPI-Key: sk-xxxxxxxxxxxxx'
 ```
 
-## Troubleshooting
-- Ensure `~/.openclaw/openclaw.json` exists with correct JSON format
-- Confirm API key is valid and the service is activated
-- Check account balance on Baidu Cloud
-- Restart OpenClaw after configuration changes
-- Note: Cookie is NOT required, only the Authorization header with API Key
+## Key 解析优先级
 
-**Recommended**: Use OpenClaw configuration file for centralized management
+1. 用户传入参数 `YoujiaClient(key="...")`
+2. 环境变量 `YOUJIA_API_KEY`
+3. skill 包内 `.env` 文件
+4. `~/.youjia/key.json`（通过验证码流程自动获取）

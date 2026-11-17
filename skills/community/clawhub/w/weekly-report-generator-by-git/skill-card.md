@@ -1,38 +1,54 @@
-## Description: <br>
-Generates a Chinese weekly report from configured Git repositories by grouping this week's commit history into functional modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese weekly report from this week's Git commit history, grouping entries by functional module in numbered-list format.
 
-## Publisher: <br>
-[anneheartrecord](https://clawhub.ai/user/anneheartrecord) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anneheartrecord](https://clawhub.ai/user/anneheartrecord)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn configured repositories' weekly Git activity into a concise Chinese status report grouped by feature area. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads commit messages and changed-file paths from repositories listed in config.conf, which may expose private project details. <br>
-Mitigation: Create and review config.conf yourself, include only intended repositories, and do not run the skill with a config file from an untrusted source. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to collect weekly Git logs across one or more configured repositories and turn them into a concise Chinese status report organized by functional module.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anneheartrecord/weekly-report-generator-by-git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown numbered list with indented subitems] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Git log output from repositories listed in config.conf and summarizes commit messages and changed-file paths in Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configuration file is executed as shell code, which can create local command-execution risk if config.conf is untrusted or maliciously modified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and control config.conf before running the script, and do not use configuration files from untrusted sources.
+
+Risk: Commit messages or file names from shared repositories may affect the generated report text.
+
+Mitigation: Review the generated weekly report before sharing it, and treat repository text as untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anneheartrecord/skills/weekly-report-generator-by-git)
+- [Publisher profile](https://clawhub.ai/user/anneheartrecord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-compatible numbered Chinese list with optional nested bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is derived from local Git history for the configured repositories and author.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-AuditCore supports network security audits for F5, Cisco, Fortinet, Palo Alto, Juniper, and Arista infrastructure across NIST 800-53, NIST CSF 2.0, CIS Controls v8, PCI DSS v4.0, and ISO 27001:2022, with diagnostics, report generation, and remediation-script drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AuditCore is a network security audit suite for F5, Cisco, Fortinet, Palo Alto, Juniper, and Arista infrastructure that maps checks to NIST 800-53, NIST CSF 2.0, CIS Controls v8, PCI DSS v4.0, and ISO 27001:2022.
 
-## Publisher: <br>
-[santanallen](https://clawhub.ai/user/santanallen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santanallen](https://clawhub.ai/user/santanallen)
 
-## Use Case: <br>
-Security engineers, network operators, and compliance teams use this skill to inspect supported network platforms, map findings to common security frameworks, summarize evidence, and draft reviewable remediation artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as read-only, but server security evidence identifies write-capable, persistence, and script-generation behavior. <br>
-Mitigation: Use a dedicated workspace, restrict access to authorized targets, and review generated remediation, rollback, and verification scripts before any execution. <br>
-Risk: The community index and local tools inventory can route the agent toward broader offensive security tooling. <br>
-Mitigation: Load those components only when explicitly needed, require operator authorization for active scanning or exploitation tools, and keep activity within the approved assessment scope. <br>
-Risk: The release is tagged as requiring OAuth tokens and sensitive credentials. <br>
-Mitigation: Use ephemeral credentials, avoid persisting secrets in evidence or reports, and limit credential scope to the assessed systems. <br>
+## Use Case:
 
+Security and network teams use this skill to run authorized infrastructure audits, collect evidence, evaluate controls, and generate executive and technical reports. It also provides diagnostic workflows and remediation script templates that require human review before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/santanallen/auditcore-network-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, HTML report content, JSON findings, and shell remediation script examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes audit findings, diagnostic summaries, framework mappings, and remediation or rollback scripts intended for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is labeled read-only while evidence describes persistent writes and write-capable audit workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as write-capable; restrict storage paths, retention, target scope, approvals, and deployment environments before use.
+
+Risk: Generated remediation and rollback scripts could change network device configuration if executed.
+
+Mitigation: Require human review, lab validation, backups, and explicit change-window approval before any generated script is run.
+
+Risk: Broad external workflow routing and high-impact security tools can expand the operational scope beyond a normal audit.
+
+Mitigation: Disable or tightly scope tools-secops, community-cybersec-index, and auto-generation unless the operator has written authorization for the targets and techniques.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santanallen/skills/auditcore-network-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command blocks, JSON findings, HTML report content, and shell script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable audit outputs and remediation artifacts; execution and change control remain operator responsibilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

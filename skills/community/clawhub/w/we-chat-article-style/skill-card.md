@@ -1,41 +1,50 @@
-## Description: <br>
-Guides agents to draft Chinese WeChat and knowledge-sharing articles using a seven-part, pain-point-driven structure with tutorials, examples, data tables, and a standard author signature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to draft Chinese WeChat and knowledge-sharing articles in a structured Daxiang style with pain-point openings, practical tutorials, examples, data tables, formatting conventions, and an author footer.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Content creators, marketers, and agents writing Chinese WeChat, Zhihu, product tutorial, or knowledge-sharing posts use this skill to shape drafts with a fixed seven-section structure, concrete examples, formatting conventions, and a publishing checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may retain the fixed Daxiang author signature, QR-code reference, account names, or brand claims from the template. <br>
-Mitigation: Review and replace the signature block, QR-code path, account names, and claims before publishing under another identity or brand. <br>
-Risk: The template encourages examples, data tables, and efficiency claims that may not be supported by the user's actual source material. <br>
-Mitigation: Verify metrics, examples, product claims, and publication assumptions against trusted source material before publishing. <br>
+## Use Case:
 
+Writers, marketers, educators, and agents use this skill to produce polished Chinese WeChat-style technical or knowledge-sharing articles. It is suited to product tutorials, tool introductions, and practical how-to content that benefits from a repeatable seven-part structure.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/daxiangnaoyang/we-chat-article-style) <br>
-- [Source skill guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article drafts and structured writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language style guide with fixed article sections, formatting rules, signature block, and checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact notes v1.0) <br>
+Risk: Generated articles may include the bundled Daxiang author signature, account names, credential claims, copyright text, or QR-code reference even when they are not appropriate for the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the footer, account references, credential claims, copyright line, and QR-code image before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/skills/we-chat-article-style)
+- [Publisher profile](https://clawhub.ai/user/daxiangnaoyang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with headings, lists, code blocks, tables, examples, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces article structure and style guidance; users should verify any fixed author identity, account references, QR-code image, copyright statement, or credential claims before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Stockfish-backed chess buddy for analyzing FEN positions and board images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stockfish-backed chess buddy for analyzing FEN positions and board images.
 
-## Publisher: <br>
-[tommyclawd](https://clawhub.ai/user/tommyclawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommyclawd](https://clawhub.ai/user/tommyclawd)
 
-## Use Case: <br>
-External users and developers use this skill for chess position review, board-image-to-FEN workflows, best-move analysis, candidate lines, blunder review, and training explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local engine execution depends on a Stockfish binary installed on the user's machine. <br>
-Mitigation: Install Stockfish from a trusted source, keep STOCKFISH_PATH under user control, and run the engine-check helper before relying on analysis. <br>
-Risk: Board images and annotations can produce incorrect or ambiguous FEN positions. <br>
-Mitigation: Verify board orientation, side to move, castling rights, en passant status, move counters, and annotation meaning before treating image-derived analysis as authoritative. <br>
-Risk: Engine guidance can be misused for cheating in active human or rated games. <br>
-Mitigation: Use the skill for post-game analysis, training, or general principles, and avoid assistance during active human or rated play. <br>
+## Use Case:
 
+External users and developers use this skill for chess position review, FEN validation, board-image interpretation, best-move analysis, candidate lines, blunder review, and training explanations.
 
-## Reference(s): <br>
-- [Chess Buddy ClawHub page](https://clawhub.ai/tommyclawd/chess-buddy) <br>
-- [Source package homepage](https://github.com/TommyClawd/chess-buddy-skill) <br>
-- [Image to FEN workflow](references/image-to-fen.md) <br>
-- [Output style](references/output-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with concise chess analysis, candidate lines, and caveats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local Stockfish helper commands and engine-backed move lines; image-derived positions should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill runs python3 and a local Stockfish executable for chess analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where local helper execution is acceptable, verify Stockfish availability, and keep analysis depth or time limits modest.
+
+Risk: Untrusted or malformed FEN strings can affect local engine calls or produce misleading results.
+
+Mitigation: Avoid FEN strings with embedded control characters and validate that each FEN has six fields before engine analysis.
+
+Risk: Image-derived board states and annotations can be ambiguous.
+
+Mitigation: Verify board orientation, side to move, castling rights, en passant state, move counters, and annotation meaning before treating analysis as authoritative.
+
+Risk: Engine-backed move recommendations could enable cheating in active human games or rated online play.
+
+Mitigation: For active games, provide only general principles or post-game analysis rather than concrete engine moves.
+
+## Reference(s):
+
+- [Image to FEN Workflow](references/image-to-fen.md)
+- [Output Style](references/output-style.md)
+- [ClawHub Skill Page](https://clawhub.ai/tommyclawd/skills/chess-buddy)
+- [Project Homepage](https://github.com/TommyClawd/chess-buddy-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise Markdown with optional shell commands and Stockfish analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate FEN strings, principal variations, evaluation scores, human-readable plans, and uncertainty notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

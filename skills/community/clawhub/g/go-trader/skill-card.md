@@ -1,40 +1,57 @@
-## Description: <br>
-Control and monitor the go-trader cryptocurrency trading system with natural language commands for strategies, status, risk, and emergency stops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and monitor the go-trader cryptocurrency trading system with natural language commands for strategies, status, risk, and emergency stops.
 
-## Publisher: <br>
-[cyberleo986](https://clawhub.ai/user/cyberleo986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberleo986](https://clawhub.ai/user/cyberleo986)
 
-## Use Case: <br>
-Developers and operators use this skill to control a local go-trader cryptocurrency trading bot, inspect status and logs, manage service health, and trigger emergency stops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect a cryptocurrency trading service that may be connected to live funds. <br>
-Mitigation: Install only on hosts you control, keep the bot in paper mode by default, and require explicit approval before live trading or service-control actions. <br>
-Risk: Emergency stop, start, restart, and reset-style actions can change trading availability or state. <br>
-Mitigation: Use external account limits, exchange permissions without withdrawals, and operational review before enabling these commands for real-money environments. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and control a local go-trader cryptocurrency trading service, including status checks, strategy mode changes, logs, and service stop/start actions.
 
-## Reference(s): <br>
-- [Go Trader on ClawHub](https://clawhub.ai/cyberleo986/go-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local service-control commands and status-check guidance for a go-trader host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: High-impact trading and service actions can stop, restart, reset, or switch the trading system into live operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation and authorization before live trading, stop, restart, emergency stop, or reset actions.
+
+Risk: Raw trading logs and local service responses may expose sensitive operational or account information.
+
+Mitigation: Restrict log access to authorized users and avoid exposing secrets or account identifiers in agent-visible output.
+
+Risk: Emergency stop behavior may not match user expectations for open positions.
+
+Mitigation: Document and verify whether emergency stop only stops the service or also manages open positions before using the skill with live funds.
+
+## Reference(s):
+
+- [Go Trader ClawHub Skill Page](https://clawhub.ai/cyberleo986/skills/go-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include raw service logs and JSON API responses from the local go-trader service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

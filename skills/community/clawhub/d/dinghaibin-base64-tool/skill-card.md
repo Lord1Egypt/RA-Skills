@@ -1,38 +1,53 @@
-## Description: <br>
-Encode and decode base64 data, including standard and URL-safe variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encode and decode base64 data with support for standard and URL-safe variants.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and other users can use this skill to encode strings or files into Base64 and decode Base64 back into text or files, including URL-safe data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decoded Base64 content can be arbitrary binary data. <br>
-Mitigation: Decode only files or strings you intentionally provide, choose output paths carefully, and inspect decoded files before opening or executing them. <br>
+## Use Case:
 
+Developers and agents use this skill to encode text or files to Base64 and decode Base64 input, including URL-safe variants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/dinghaibin-base64-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [Plain text output or decoded file output from Base64 operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports standard and URL-safe Base64; encoded text can optionally be wrapped at a chosen width.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper can read any input file path explicitly passed by the user and write transformed output to an explicitly chosen path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files intended for Base64 transformation and choose output paths deliberately to avoid exposing or overwriting sensitive data.
+
+Risk: Decoded Base64 may produce binary data or text that is not valid UTF-8.
+
+Mitigation: Write decoded binary output to a file and inspect it with an appropriate tool instead of relying on terminal display.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/dinghaibin-base64-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands]
+
+**Output Format:** [Plain text Base64 strings, decoded text, or decoded binary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports standard and URL-safe Base64 and optional line wrapping for encoded strings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

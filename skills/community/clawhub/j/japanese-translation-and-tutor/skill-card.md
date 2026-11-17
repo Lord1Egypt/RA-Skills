@@ -1,39 +1,51 @@
-## Description: <br>
-Japanese-English translator and language tutor that produces structured translations with kanji readings, vocabulary, grammar, and cultural notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Japanese-English translator and language tutor that produces structured translations with readings, vocabulary lists, grammar notes, and cultural context.
 
-## Publisher: <br>
-[itsjaydesu](https://clawhub.ai/user/itsjaydesu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsjaydesu](https://clawhub.ai/user/itsjaydesu)
 
-## Use Case: <br>
-Users use this skill to translate Japanese text, understand Japanese words or phrases, and study grammar, vocabulary, kanji readings, formality, idioms, and cultural nuance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive personal, legal, medical, or business text may be exposed to the assistant during translation. <br>
-Mitigation: Avoid submitting sensitive text unless the user is comfortable having the assistant process it. <br>
-Risk: Translations and language explanations may miss context, ambiguity, register, or cultural nuance. <br>
-Mitigation: Ask for context when meaning depends on formality or situation, flag ambiguities, and review important translations before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itsjaydesu/japanese-translation-and-tutor) <br>
+## Use Case:
+
+External users and employees use this skill to translate Japanese text into English, understand Japanese words and phrases, and learn grammar, vocabulary, readings, formality, idioms, and cultural nuance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Translation responses may be more verbose than a plain translator because the skill adds readings, vocabulary, and notes.
+
+Mitigation: Set expectations for the target channel and ask for a shorter answer when only a direct translation is needed.
+
+Risk: Broad trigger wording could activate the tutoring format when a narrower translation response is desired.
+
+Mitigation: Use clear user instructions for direct translation, tutoring, grammar explanation, or cultural context.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown-style sections for translation, reading, vocabulary, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hiragana readings for every kanji and can adapt formatting for Slack, Discord, or plain text.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured Markdown or plain text with translation, reading, vocabulary, and notes sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hiragana readings for kanji and may adapt formatting for Slack, Discord, or plain text channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

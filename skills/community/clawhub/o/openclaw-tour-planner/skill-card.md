@@ -1,49 +1,63 @@
-## Description: <br>
-Universal travel planning skill for OpenClaw agents. Plan itineraries, check weather, discover attractions, and estimate budgets through natural conversation using free APIs, with no API key required for core features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal travel planning skill for OpenClaw agents. Plan itineraries, check weather, discover attractions, and estimate budgets through natural conversation, with no API key required for core features.
 
-## Publisher: <br>
-[Asif2BD](https://clawhub.ai/user/Asif2BD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-External users and agent developers use this skill to generate destination itineraries, weather summaries, travel guides, attraction lists, and budget estimates for travel planning conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Destination lookups are sent to public travel and weather providers. <br>
-Mitigation: Avoid entering highly sensitive travel plans and review whether use of Nominatim, Wikivoyage, Open-Meteo, or optional Visual Crossing is acceptable for the deployment context. <br>
-Risk: Raw API responses are cached locally in a SQLite database. <br>
-Mitigation: Delete or redirect ~/.openclaw/cache/tour-planner.db, or set TOUR_PLANNER_CACHE_PATH, when local retention of lookup data is not desired. <br>
-Risk: Installing the package builds the better-sqlite3 native module. <br>
-Mitigation: Install in an environment where native Node.js dependencies are allowed and review dependency provenance before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to add destination-aware travel planning to OpenClaw agents, including itineraries, weather summaries, attraction discovery, cultural tips, packing suggestions, and budget estimates.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/Asif2BD/openclaw-tour-planner) <br>
-- [Project Website](https://openclaw.tours) <br>
-- [Project Documentation](https://openclaw.tours/docs) <br>
-- [Nominatim Search API Documentation](https://nominatim.org/release-docs/develop/api/Search/) <br>
-- [Open-Meteo Forecast Documentation](https://open-meteo.com/en/docs#weathervariables) <br>
-- [Visual Crossing Weather API](https://www.visualcrossing.com/weather-api) <br>
-- [Wikivoyage API Endpoint](https://en.wikivoyage.org/w/api.php) <br>
-- [better-sqlite3 Dependency](https://github.com/WiseLibs/better-sqlite3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown travel plans and summaries, with JSON available for agent processing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include itineraries, weather summaries, destination guides, attraction lists, budget estimates, and packing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, package.json, ClawHub release metadata) <br>
+Risk: Destination data is sent to public APIs for geocoding, weather, and travel guide lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review destination privacy requirements before use, avoid submitting sensitive exact addresses when unnecessary, and disclose public API use to users where appropriate.
+
+Risk: The local SQLite cache can reveal searched destinations, including exact addresses if users provide them.
+
+Mitigation: Store the cache in a protected location with TOUR_PLANNER_CACHE_PATH, clear the database when needed, and avoid shared deployments unless cache access is controlled.
+
+Risk: Broad deployment may need dependency review and input limits.
+
+Mitigation: Update or pin dependencies, audit the native better-sqlite3 dependency during installation, and add runtime input limits before shared or production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/asif2bd/skills/openclaw-tour-planner)
+- [OpenCLAW Tour Planner Website](https://openclaw.tours)
+- [OpenCLAW Tour Planner Docs](https://openclaw.tours/docs)
+- [Nominatim Search API](https://nominatim.org/release-docs/develop/api/Search/)
+- [Open-Meteo Forecast API](https://open-meteo.com/en/docs#weathervariables)
+- [Wikivoyage MediaWiki API](https://en.wikivoyage.org/w/api.php)
+- [Visual Crossing Weather API](https://www.visualcrossing.com/weather-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown itineraries and weather or budget summaries, with JSON-compatible itinerary structures for agent processing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include destination geocoding, weather summaries, attraction lists, cultural tips, packing lists, budget ranges, and emergency numbers.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

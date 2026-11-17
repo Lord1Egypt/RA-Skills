@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.local/article-html-to-ppt/asset-manifest.schema.json",
+  "title": "article-html-to-ppt Asset Manifest v2",
+  "type": "object",
+  "required": ["schema_version", "assets"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_id", "type", "path", "usage", "raster_declared", "source_refs"],
+        "properties": {
+          "asset_id": {"type": "string"},
+          "type": {"enum": ["image", "user_upload_image", "brand_logo", "ip_character", "black_cat", "icon", "screenshot", "ai_generated_illustration", "svg", "background_texture", "external_data_chart", "font", "data", "video", "audio"]},
+          "path": {"type": "string"},
+          "usage": {"enum": ["primary", "supporting", "decorative", "source", "fallback"]},
+          "raster_declared": {"type": "boolean"},
+          "editable_alternative": {"type": ["string", "null"]},
+          "license": {"type": "string"},
+          "origin": {"enum": ["user_uploaded", "brand_system", "local_asset", "generated", "external_reference", "derived", "unknown"]},
+          "reproducibility": {"type": "object"},
+          "source_refs": {"type": "array", "items": {"type": "string"}},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

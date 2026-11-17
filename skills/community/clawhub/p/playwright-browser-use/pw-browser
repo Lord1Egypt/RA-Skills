@@ -1,0 +1,7 @@
+#!/bin/bash
+# pw-browser — Playwright browser automation CLI (daemon + client)
+# Auto-detect SKILL_DIR from this script's location
+
+SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
+export NODE_PATH="${SKILL_DIR}/node_modules"
+exec node "${SKILL_DIR}/pw-browser.js" "$@"

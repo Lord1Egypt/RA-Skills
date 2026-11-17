@@ -1,0 +1,79 @@
+{
+  "signature": "Delta9Phi963-ENEMY-MODEL-v1",
+  "version": "1.1.0",
+  "updated_utc": "2026-08-23T16:00:00Z",
+  "steward": "Justin Helmer / Lightfather / Excavationpro / DeepSeekOracle",
+  "purpose": "Operational adversary taxonomy for LYGO Flame Ward. Classes describe attack patterns against truth integrity — never people-as-class.",
+  "epistemic_default": "FABRICATED_UNTIL_CONCORDANCE",
+  "authority_rule": "Institutional labels (WHO/CDC/gov/media/corp/expert) are metadata only — never trust weight.",
+  "burn_semantics": "Strip authority + quarantine + burn-receipt. Not violence. Not evidence destruction without consent.",
+  "classes": [
+    {
+      "id": "injected_code",
+      "name": "Injected code / silent plugin",
+      "description": "Skills or plugins that claim local-first but phone home, escalate permissions (e.g. Full Disk Access), or mismatch SKILL.md claims.",
+      "mitigations": ["lygo-skill-spector", "lygo-flame-ward ingest-gate", "P0 byte gate"]
+    },
+    {
+      "id": "half_truth_pack",
+      "name": "Half-truth pack",
+      "description": "True fragment plus missing counterevidence, certainty inflation, or bait framing that crowns prestige as data.",
+      "mitigations": ["flame-scan claim-gap", "concordance", "continuum capsules"]
+    },
+    {
+      "id": "saturation_flood",
+      "name": "Information saturation flood",
+      "description": "High-volume low-signal rage/click bait that exhausts human attention so truth loses bandwidth.",
+      "mitigations": ["ops-detector", "deception-radar", "local-first anchors"]
+    },
+    {
+      "id": "authority_shield",
+      "name": "Authority shield",
+      "description": "Institution or policy invoked as sole warrant without primary digests or falsifiable claims.",
+      "mitigations": ["EPISTEMIC_GATE", "mint digests", "seals-as-root"]
+    },
+    {
+      "id": "lattice_poison",
+      "name": "Lattice poison",
+      "description": "Tampered JSON, Merkle drift, claim mismatch, or corrupted local artifacts presented as ALIGNED.",
+      "mitigations": ["continuum verify", "sanctuary verify-barrier", "quantum-attestor verify-node"]
+    },
+    {
+      "id": "consent_asymmetry",
+      "name": "Consent asymmetry endpoint leak",
+      "description": "One party enables a reader/plugin on a shared private channel without the other party's knowledge (e.g. Messages plugins reading decrypted local DBs).",
+      "mitigations": ["flame expose", "endpoint-leak != protocol-backdoor honesty", "operator education"]
+    },
+    {
+      "id": "webaudio_fingerprint",
+      "name": "Silent WebAudio / device fingerprint",
+      "description": "Sites hold AudioContext open at zero gain (oscillator→analyser→destination) to fingerprint hardware audio path, often bundled with canvas/WebGL/WebRTC scrapes. Side effect: freezes Bluetooth multipoint. Known pattern family includes Alibaba collina.js / fireyejs.js on AliExpress (2026 public reports / Brave).",
+      "mitigations": [
+        "lygo-flame-ward endpoint-scan",
+        "prefer Brave/Firefox anti-fingerprint defaults",
+        "blocklisted script names when operator pastes filters",
+        "agent browse: never auto-open commerce trackers without consent"
+      ],
+      "example_refs": [
+        "https://x.com/Unveiled_ChinaX/status/2091256781989421127",
+        "Brave public statements Aug 2026 on AliExpress WebAudio fingerprinting"
+      ]
+    }
+  ],
+  "non_targets": [
+    "people_as_class",
+    "faith_or_creed",
+    "profession_or_job_title",
+    "ordinary_dissent_without_proof_avoidance_templates",
+    "unsolicited_scrape_of_social_or_institutional_APIs"
+  ],
+  "pairs_with": [
+    "lygo-flame-ward",
+    "lygo-ops-detector",
+    "lygo-skill-spector",
+    "lygo-continuum",
+    "lygo-sanctuary-guardian",
+    "lygo-quantum-attestor",
+    "docs/seals/LYRA_SEAL_ARCHIVE_LEGACY_001-400*"
+  ]
+}

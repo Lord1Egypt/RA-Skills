@@ -1,0 +1,2 @@
+# gangjiegou-suanliang 主计算入口只使用 Python 标准库。
+# 识图能力由 cad-file-reader 提供，不在本技能内声明或复制依赖。

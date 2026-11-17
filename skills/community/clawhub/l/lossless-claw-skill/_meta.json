@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7dehpw50yse5vrk4be5s738x8417nc",
-  "slug": "lossless-claw-skill",
+  "name": "lossless-claw-skill",
+  "description": "Skill completo para lossless-claw (LCM). Incluye instrucciones para instalar el plugin automáticamente.",
   "version": "1.0.0",
-  "publishedAt": 1775054598987
+  "author": "OpenClaw Research Agent",
+  "license": "MIT",
+  "category": "System Tools",
+  "tags": ["lcm", "memory", "context", "lossless-claw", "plugin-installer"],
+  "created": "2026-04-01T11:46:00.000Z"
 }

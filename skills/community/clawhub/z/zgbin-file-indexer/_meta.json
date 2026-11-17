@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn78ffs4eepck7zadch7e7gh8x83dhk0",
-  "slug": "zgbin-file-indexer",
+  "ownerId": "main",
+  "slug": "file-indexer",
   "version": "1.0.0",
-  "publishedAt": 1774215796450
+  "publishedAt": 1711104000000,
+  "enabled": true,
+  "auto_load": true,
+  "price": {
+    "type": "one_time",
+    "amount": 49,
+    "currency": "CNY",
+    "description": "一次性购买，永久使用"
+  },
+  "tags": [
+    "文件管理",
+    "搜索",
+    "索引",
+    "代码查找",
+    "自动化",
+    "生产力工具"
+  ]
 }

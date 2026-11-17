@@ -1,40 +1,53 @@
-## Description: <br>
-定时获取AI行业最新资讯，整理成每日早报发送给用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每天定时获取AI行业最新资讯，整理为早报并发送给用户。
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Users who want a scheduled AI industry briefing use this skill to collect recent AI news, summarize major developments and trends, and post a concise daily report to a configured messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically posts reports to an enterprise messaging channel. <br>
-Mitigation: Confirm the target channel and recipients, test in a non-production channel first, and disable or edit the cron job when only manual reports are desired. <br>
-Risk: News gathering and message delivery may send prompts or report content through external search and messaging providers. <br>
-Mitigation: Use only approved providers and avoid including sensitive internal prompts or private data in the workflow. <br>
+## Use Case:
 
+Users and teams who follow the AI industry use this skill to generate a concise Chinese-language morning briefing with major news, technical progress, trend analysis, almanac notes, and a selected Mao anthology quotation. It can run manually or as a scheduled 08:30 Asia/Shanghai announcement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrxparley/parley-ai-daily-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown-style daily briefing with optional scheduled messaging configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for a daily 08:30 Asia/Shanghai cron schedule and manual invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: Scheduled announcements may be sent to the wrong WeCom destination or at an undesired time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination channel and the 08:30 Asia/Shanghai schedule before enabling the job.
+
+Risk: Generated public-news summaries may be sent automatically without human review.
+
+Mitigation: Use human review or monitoring when publishing to broad audiences, especially for time-sensitive or reputationally sensitive news.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zrxparley/skills/parley-ai-daily-news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown briefing delivered as an announcement]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for a roughly three-minute daily read; scheduled delivery targets WeCom by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

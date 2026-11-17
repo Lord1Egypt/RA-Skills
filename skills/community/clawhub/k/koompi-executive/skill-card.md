@@ -1,40 +1,54 @@
-## Description: <br>
-Use for C-level executives, ministers, and leaders: daily briefings, decision support, information gathering, report drafting, schedule awareness, and strategic thinking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for C-level executives, ministers, and leaders: daily briefings, decision support, information gathering, report drafting, schedule awareness, and strategic thinking.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Executives, ministers, and senior leaders use this skill as an AI chief of staff for concise briefings, meeting preparation, decision framing, report drafting, and weekly reviews. It helps surface decisions, risks, urgent messages, metrics, and next actions from connected work context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may need access to sensitive executive email, calendar, task, metric, and news sources to prepare briefings and decision support. <br>
-Mitigation: Limit connected sources to the minimum intended scope, review access regularly, and avoid granting access to data sources that are not needed for the leader's workflow. <br>
-Risk: Drafted responses, reports, or external updates could expose confidential information or communicate unapproved decisions. <br>
-Mitigation: Keep message sending and external sharing behind explicit human approval, especially for executive communications and sensitive organizational material. <br>
+## Use Case:
 
+Leaders and their staff use this skill to receive concise briefings, prepare for meetings, gather decision-oriented information, draft reports, and frame recommendations for time-sensitive decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/koompi-executive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown briefings, one-pagers, reports, recommendations, and action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured daily and weekly briefing sections, confidence labels, risks, recommendations, and approval-ready drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill asks an agent to proactively monitor sensitive messages, meetings, tasks, metrics, and external intelligence without clear opt-in boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict which inboxes, calendars, task files, metrics, and news sources the agent may read before enabling heartbeat or briefing behavior.
+
+Risk: Briefings, decision support, and draft responses may affect executive decisions or communications if shared or acted on without review.
+
+Mitigation: Require approval before sending messages, sharing briefings beyond the user, or acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/koompi-executive)
+- [Publisher profile](https://clawhub.ai/user/rithythul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and concise prose briefings, reports, meeting one-pagers, decision recommendations, and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence labels and draft responses for human approval; no shell commands or code outputs are described.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

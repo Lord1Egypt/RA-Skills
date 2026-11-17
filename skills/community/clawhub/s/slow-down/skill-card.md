@@ -1,37 +1,52 @@
-## Description: <br>
-Human-connection-preserving pacing and intervention guidance for agent behavior when a user asks to slow down, not rush, or add relational awareness before action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-connection-preserving pacing and intervention guidance for agent behavior when a user asks to slow down, avoid rushing, or add relational awareness before action.
 
-## Publisher: <br>
-[leovoon](https://clawhub.ai/user/leovoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leovoon](https://clawhub.ai/user/leovoon)
 
-## Use Case: <br>
-Users and agents use this skill to slow conversational pacing when relational impact, rushed certainty, or bypassed understanding may matter. It guides the agent toward brief reflection, one welcoming question when needed, and reversible next steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can slow responses or add reflective prompts when a user expects fast transactional help. <br>
-Mitigation: Install it only when that pacing style is desired; disable it or explicitly ask for fast transactional help when direct speed is preferred. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leovoon/slow-down) <br>
+## Use Case:
 
+External users use this skill to make an agent pause, mirror, or ask one brief reflective question when speed may reduce human connection or understanding. It is most relevant for relational or identity-forming conversations and should usually proceed normally for reversible technical tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language guidance in Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No file, credential, network, or persistent-state access is described by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may add a pause or reflective prompt when phrases like "slow down" or "not rush" are used casually.
+
+Mitigation: Use it primarily in relational or reflective contexts, and proceed normally for reversible technical tasks unless repeated shallow fixes suggest reduced understanding.
+
+Risk: Reflective prompts could feel intrusive if repeated or framed as emotional coaching.
+
+Mitigation: Ask at most one question, avoid moralizing or therapeutic language, and stop after a single mirror statement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leovoon/skills/slow-down)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language guidance in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, file output, data access, persistence, or privileged behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Uniswap v3 Liquidity"
+  short_description: "Uniswap v3 Liquidity workflow and evidence"
+  default_prompt: "Use $uniswap-v3-liquidity for this protocol task and return concrete next steps with evidence."
+policy:
+  allow_implicit_invocation: true

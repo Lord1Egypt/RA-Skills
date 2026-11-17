@@ -1,0 +1,17 @@
+name: ruankao-spgm-essay-scorer
+version: 1.0.0
+display_name: 软考高级·系统规划与管理师论文模拟评分
+description: 挂接 IMA 知识库的软考高级「系统规划与管理师」论文模拟评分 Skill——对考生粘贴的论文全文，按官方 5 维评分标准（切题性/实践性/深度与广度/逻辑性/书面表达）逐项打分、折算官方 75 分制判定是否过线，并对照主库真题/范文/考试大纲给出针对性改进建议。
+author: "一线评标专家&ChesaraM"
+tags:
+  - 软考
+  - 系统规划与管理师
+  - 论文评分
+  - 模拟阅卷
+  - 备考
+  - IMA知识库
+category: 教育学习
+feedback:
+  channel: github
+  account: "https://github.com/ruankao-spgm/essay-scorer/issues"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"

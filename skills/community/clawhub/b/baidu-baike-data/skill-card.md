@@ -1,42 +1,54 @@
-## Description: <br>
-The Baidu Baike Component is a knowledge service tool that queries Baidu Baike for authoritative encyclopedia explanations of nouns such as objects, people, locations, concepts, and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Baidu Baike Component queries Baidu Baike for standardized encyclopedia explanations of user-provided nouns such as objects, people, places, concepts, and events.
 
-## Publisher: <br>
-[ide-rea](https://clawhub.ai/user/ide-rea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ide-rea](https://clawhub.ai/user/ide-rea)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Baidu Baike entries by title or entry ID, including ambiguous terms that need homonym resolution before returning the selected encyclopedia result. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends lookup terms to Baidu and uses a Baidu API key. <br>
-Mitigation: Use a dedicated, revocable API key, monitor quota or billing, and avoid querying confidential internal terms. <br>
-Risk: The Python script depends on the requests package being available in the runtime environment. <br>
-Mitigation: Confirm the runtime has the required Python dependency before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ide-rea/baidu-baike-data) <br>
-- [Publisher profile](https://clawhub.ai/user/ide-rea) <br>
-- [Baidu Baike](https://baike.baidu.com/) <br>
-- [Baidu Baike API endpoint](https://appbuilder.baidu.com/v2/baike) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Baidu Baike entries by title or entry ID, including homonym lists when a term has multiple matching entries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON returned by a Python command-line script, with agent-facing guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; sends lookup terms to Baidu.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Baidu API key.
+
+Mitigation: Use a scoped key, store it through the agent's normal secret handling, and rotate it if it may have been exposed.
+
+Risk: Search terms are sent to Baidu's AppBuilder Baike service.
+
+Mitigation: Avoid submitting private, confidential, or sensitive terms unless that disclosure is acceptable for the deployment.
+
+## Reference(s):
+
+- [Baidu Baike](https://baike.baidu.com/)
+- [Baidu AppBuilder Baike endpoint](https://appbuilder.baidu.com/v2/baike)
+- [ClawHub skill page](https://clawhub.ai/ide-rea/skills/baidu-baike-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON returned by the query script, typically summarized for the user as text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; searched terms are sent to Baidu's AppBuilder Baike service.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

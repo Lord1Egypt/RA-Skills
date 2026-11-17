@@ -1,41 +1,58 @@
-## Description: <br>
-Calls a Strategy Engine MCP server to run quantitative factor-expression strategies, trading backtests, and financial analysis using the MCP server's default parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategy Engine helps agents assemble and run quantitative strategy backtests through an MCP server using documented defaults for dates, periods, instruments, fees, slippage, and stop-loss conditions.
 
-## Publisher: <br>
-[rxjhfmf](https://clawhub.ai/user/rxjhfmf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rxjhfmf](https://clawhub.ai/user/rxjhfmf)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to assemble parameters and invoke Strategy Engine MCP backtests for factor-expression strategies, including period, instrument pool or contract codes, date range, stop-loss, commission, slippage, and result-link reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategy parameters may be sent to an external MCP or result-viewing service during backtest execution. <br>
-Mitigation: Before each run, confirm the date range, contract or pool, initial cash, commission, slippage, and user intent to send the parameters. <br>
-Risk: Incorrect defaults or inferred parameters could produce misleading backtest results. <br>
-Mitigation: Review the assembled MCP parameters before execution, especially period, stock pool, time range, stop-loss logic, fees, and slippage. <br>
+## Use Case:
 
+Developers, analysts, and traders use this skill when an agent needs to translate strategy conditions into a Strategy Engine MCP request, run factor-expression backtests, and return a report link for reviewing results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rxjhfmf/strategy-engine) <br>
-- [Strategy result viewer](https://visual.hzyotoy.com/?data_dir=xzr&data_id=123456789&initCash=10000000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with structured MCP tool-call parameters and result links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Strategy Engine MCP request parameters and a result-viewing link after execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ambiguous financial-analysis requests may cause an agent to run a remote strategy backtest when the user's intent is not explicit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a backtest run before invoking the MCP server, especially for broad financial-analysis requests.
+
+Risk: Default assumptions for dates, commission, slippage, capital, and instrument pools can materially affect backtest results.
+
+Mitigation: Review and restate the selected defaults before execution, and ask the user to supply any missing values that change the analysis.
+
+Risk: The artifact contains stale or inconsistent examples for some defaults and dates.
+
+Mitigation: Prefer server/tool defaults when available and verify generated dates and parameter values before submitting the MCP request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rxjhfmf/skills/strategy-engine)
+- [Strategy analysis report viewer](https://visual.hzyotoy.com/?data_dir=xzr&data_id=123456789&initCash=10000000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with parameterized MCP tool calls and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated run identifiers, defaulted backtest parameters, and external strategy-analysis report links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

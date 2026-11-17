@@ -3,6 +3,7 @@ name: opportunity-cost
 description: >
   Activate when: user says "what could we have done instead," "what's the next-best alternative," "is this worth the cost," "what are we giving up by choosing X," "broken window fallacy," or is allocating scarce resources (money, time, attention, people) across competing options.
   Do NOT activate when: all alternatives are genuinely zero-value (nothing else to do with the resource); the decision is fully reversible at near-zero cost.
+  More: deciqai.com/c/opportunity-cost
 ---
 
 # Opportunity Cost
@@ -13,7 +14,7 @@ description: >
 
 Bastiat (1850) established the foundational insight: every visible benefit forecloses an invisible alternative. Buchanan (1969) formalized it: cost is subjective, prospective, decision-maker-specific — the accountant's number and the economist's number can diverge by 10x.
 
-Composes with [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md), [`first-principles`](../first-principles/SKILL.md), [`pareto-principle`](../pareto-principle/SKILL.md), [`sunk-cost-fallacy`](../sunk-cost-fallacy/SKILL.md), [`compound-interest`](../compound-interest/SKILL.md).
+Composes with `expected-value-and-kelly`, `first-principles`, `pareto-principle`, `sunk-cost-fallacy`, `compound-interest`.
 
 ## When to Use
 
@@ -21,6 +22,7 @@ Composes with [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md)
 - Evaluating an investment vs. holding cash (or vs. another investment)
 - Considering a "free" benefit whose hidden cost is time/attention
 - Any "this is good for X" claim that ignores the alternative use of the same resources
+- Weighing AI capex (GPU spend, model training vs. renting APIs), an AI pivot, or a quarter of roadmap/founder-time against the best forgone alternative amid 2024–2026 AI valuations and adoption
 
 **Not when:** alternatives are genuinely zero-value; resources are not scarce; decision is reversible at near-zero cost.
 
@@ -65,6 +67,7 @@ Decision + reasoning:
 ```
 
 *→ Method in Action: [Bastiat's Broken Window, 1850](examples/bastiats-broken-window-1850.md)*
+*→ 2026 lens: [AI-era opportunity cost of founder time and GPU capital (2023–2026)](examples/ai-era-founder-time-and-gpu-capital-2023-2026.md)*
 
 ## Pack: Opportunity-Cost Application Patterns
 
@@ -115,4 +118,6 @@ Decision + reasoning:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/opportunity-cost** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/opportunity-cost.json*

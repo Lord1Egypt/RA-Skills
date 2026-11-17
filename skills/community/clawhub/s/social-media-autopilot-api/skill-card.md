@@ -1,47 +1,63 @@
-## Description: <br>
-SocialEcho social media management API skill for querying team, accounts, articles, reports, upload URL, Reddit communities, Pinterest boards, and publishing posts using a team API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use SocialEcho OpenAPI for explicit team/account/content queries and user-authorized TikTok Shop sync or cross-platform publishing. Requires a user-provided Team API Key and confirmation before live writes.
 
-## Publisher: <br>
-[socialecho-net](https://clawhub.ai/user/socialecho-net) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socialecho-net](https://clawhub.ai/user/socialecho-net)
 
-## Use Case: <br>
-Developers and social media operations teams use this skill to query SocialEcho team, account, article, reporting, upload, Reddit, Pinterest, and publishing endpoints from an agent workflow using an explicit team API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SocialEcho team API key that can access team data and publishing endpoints. <br>
-Mitigation: Use a least-privilege or revocable API key and avoid exposing the key in shared command logs or prompts. <br>
-Risk: Publishing commands can create or schedule external social media posts. <br>
-Mitigation: Review publish payloads, account IDs, status values, scheduled times, and platform publish limits before running publish commands. <br>
-Risk: The optional base URL setting can direct requests to an unintended endpoint. <br>
-Mitigation: Confirm the base URL before execution and use the default SocialEcho API endpoint unless an approved alternative is required. <br>
+## Use Case:
 
+Developers and social media operations teams use this skill to query SocialEcho team, account, content, report, upload, Reddit, Pinterest, and TikTok Shop APIs, and to prepare or execute user-confirmed publishing and product sync workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/socialecho-net/social-media-autopilot-api) <br>
-- [SocialEcho Publisher Profile](https://clawhub.ai/user/socialecho-net) <br>
-- [OpenAPI Definition](artifact/openapi.yaml) <br>
-- [Platform Publish Limits](artifact/platform-publish-limits_en.md) <br>
-- [SocialEcho Application](https://app.socialecho.net/) <br>
-- [SocialEcho API Base URL](https://api.socialecho.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown guidance] <br>
-**Output Format:** [JSON API responses and Markdown guidance with CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an explicit team API key; supports optional base URL, team ID, and language parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence and package.json) <br>
+Risk: A powerful SocialEcho Team API key may be exposed if placed directly in shell commands, logs, or shared scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Team API key, avoid printing or persisting the key, and rotate any key that may have been logged.
+
+Risk: Publishing content or syncing TikTok Shop products can make live external changes.
+
+Mitigation: Require a dry-run preview, exact account confirmation, and fresh user authorization before adding execution flags for each write action.
+
+Risk: Unexpected API destinations could expose data or credentials.
+
+Mitigation: Restrict API calls to the SocialEcho production host or the development host only when the user explicitly targets development.
+
+## Reference(s):
+
+- [Social media autopilot ClawHub page](https://clawhub.ai/socialecho-net/skills/social-media-autopilot-api)
+- [SocialEcho app](https://app.socialecho.net/)
+- [SocialEcho production API](https://api.socialecho.net)
+- [SocialEcho development API](https://api-dev.socialecho.net)
+- [OpenAPI specification](artifact/openapi.json)
+- [Platform publish limits: copy, media, and formats](artifact/platform-publish-limits_en.md)
+- [Platform publish limits: Chinese reference](artifact/platform-publish-limits_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dry-run previews for publishing and TikTok Shop sync actions before live execution.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence, package.json, openapi.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

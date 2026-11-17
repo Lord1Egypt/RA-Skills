@@ -1,43 +1,57 @@
-## Description: <br>
-微信表情包制作工具。自动将六宫格、九宫格、十二宫格的原图裁剪并转换为符合微信表情包规范的格式（表情主图 240x240，聊天页图标 50x50）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信表情包制作工具。自动将六宫格、九宫格、十二宫格的原图裁剪并转换为符合微信表情包规范的格式（表情主图 240x240，聊天页图标 50x50）。
 
-## Publisher: <br>
-[guanyang](https://clawhub.ai/user/guanyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guanyang](https://clawhub.ai/user/guanyang)
 
-## Use Case: <br>
-External users and developers use this skill to turn prepared grid images into WeChat sticker pack assets, including resized PNG stickers, chat icons, and editable metadata templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The runner creates a local Python virtual environment and installs third-party packages. <br>
-Mitigation: Review and pin dependency versions before use in sensitive environments. <br>
-Risk: Generated files in the selected output directory can be overwritten. <br>
-Mitigation: Use a dedicated output directory and review existing contents before running the skill. <br>
-Risk: Optional background removal depends on rembg model and package behavior. <br>
-Mitigation: Keep background removal disabled unless that dependency behavior is acceptable for the input images and environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guanyang/wechat-sticker-maker) <br>
-- [WeChat Sticker Open Platform](https://sticker.weixin.qq.com/) <br>
-- [WeChat sticker making specifications](https://sticker.weixin.qq.com/cgi-bin/mmemoticon-bin/readtemplate?t=guide/index.html#/makingSpecifications#specifications_stickers) <br>
+## Use Case:
 
+External creators and agent users use this skill to turn grid-based source images into WeChat sticker-pack draft assets, including resized PNG stickers, icon images, and editable metadata templates.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files and UTF-8 text templates, with command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates main sticker images at 240x240, icon images at 50x50, candidate cover and chat icon PNGs, plus meta.txt and info.txt templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The runner creates a local Python environment and installs unpinned dependencies from the network.
+
+Mitigation: Review and pin dependencies before deployment, or run installation in a contained workspace with trusted package indexes.
+
+Risk: Untrusted images or very large layout values can increase file generation, CPU, and memory use.
+
+Mitigation: Process trusted images, set a dedicated output directory, and use reasonable explicit layout values.
+
+Risk: Background removal adds model/runtime processing and may produce imperfect edges on complex images.
+
+Mitigation: Use transparent source PNGs when possible, enable --remove-bg only when needed, and manually review generated sticker assets before submission.
+
+## Reference(s):
+
+- [WeChat Sticker Open Platform](https://sticker.weixin.qq.com/)
+- [WeChat Sticker Making Specifications](https://sticker.weixin.qq.com/cgi-bin/mmemoticon-bin/readtemplate?t=guide/index.html#/makingSpecifications#specifications_stickers)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [PNG image files, text metadata templates, and Markdown or shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates main and icon output directories, meta.txt, info.txt, and candidate cover/icon PNG files in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Expert C# developer specializing in modern .NET development, ASP.NET Core, and cloud-native applications. Masters C# 12 features, Blazor, and cross-platform development with emphasis on performance and clean architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert C# developer specializing in modern .NET development, ASP.NET Core, and cloud-native applications. Masters C# 12 features, Blazor, and cross-platform development with emphasis on performance and clean architecture.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze, implement, and verify C#/.NET solutions across ASP.NET Core, Blazor, Entity Framework Core, cloud-native architecture, testing, and performance work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect and modify project code, including authentication, cloud configuration, migrations, and deployment settings. <br>
-Mitigation: Review generated changes with version control and require project-specific validation before merging or deploying them. <br>
-Risk: C#/.NET implementation guidance may introduce incorrect patterns or assumptions for a specific codebase. <br>
-Mitigation: Run the repository's build, tests, analyzers, security checks, and relevant deployment dry runs before accepting changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess .NET solution structure, implement C# and ASP.NET Core changes, and verify quality through tests, analysis, performance checks, and security review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-csharp-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code snippets, shell commands, configuration guidance, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose source changes, project configuration, tests, migrations, deployment settings, and review guidance for C#/.NET projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide an agent to inspect .NET project files and configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where the agent is allowed to read project source, build files, and package configuration.
+
+Risk: Generated C# or configuration changes can alter application behavior.
+
+Mitigation: Review proposed changes and run the relevant build, tests, analyzers, and security checks before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-csharp-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code snippets, shell commands, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

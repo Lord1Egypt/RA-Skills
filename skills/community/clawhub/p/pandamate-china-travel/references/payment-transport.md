@@ -163,11 +163,16 @@
 | **导航** | 高德地图/百度地图 | 步行/驾车导航 |
 | **翻译** | Google Translate/腾讯翻译君 | 中英互译 |
 | **社交** | 微信 | 必备IM |
-| **点评** | 大众点评 | 餐厅/景点评价 |
+| **美食发现** | 小红书（Xiaohongshu）| 网红餐厅/本地人推荐/打卡攻略 |
+| **美食验证** | 大众点评（Dianping）| 餐厅评分/排队预测/团购折扣 |
 | **外卖** | 美团/饿了么 | 美食外卖 |
 | **视频** | 抖音/Bilibili | 娱乐 |
 | **音乐** | QQ音乐/网易云 | 听歌 |
-| ** VPN** | 自行准备 | 科学上网 |
+| **VPN** | 自行准备 | 科学上网 |
+
+> 📖 **美食APP三件套深度指南**：[Find the Best Food in China as a Foreigner: Xiaohongshu + Dianping + Amap Master Guide (2026)](https://www.pandamate.wiki/blog/china-food-finder-apps-foreigners-2026.html) — 外国游客最大痛点"找不到本地好吃的"完整解决方案
+> 
+> 📖 **8大暗黑马美食城市**：[8 Chinese Cities Where the Food Will Surprise You (2026)](https://www.pandamate.wiki/blog/china-dark-horse-food-cities-2026.html) — 贵阳/潮汕/长沙/昆明/扬州等
 
 ---
 

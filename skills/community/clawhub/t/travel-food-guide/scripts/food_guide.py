@@ -12,7 +12,7 @@ import urllib.error
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
-# 餐饮相关POI类型码
+
 FOOD_TYPE_CODES = "050000|050100|050200|050300|050400|050500|050600|050700|050800|050900"
 
 # 菜系关键词映射

@@ -1,34 +1,34 @@
 ---
 name: fec-list-virtualization
-description: Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.
+description: Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include virtual lists, large list optimization, scroll performance.
 ---
 
-# 列表虚拟化优化
+# List virtualization optimization
 
 ## Purpose
 
-通过窗口化只渲染可视区域，解决大列表 DOM 过多和滚动卡顿。
+Only the visible area is rendered through windowing, which solves the problem of excessive DOM and stuck scrolling in large lists.
 
 ## Procedure
 
-1. 先确认列表规模和瓶颈：500+ 项、滚动掉帧、DOM 节点过多或内存飙升才引入虚拟化。
-2. 先遵循项目现有框架、依赖和设计系统约束，再按场景选库：React 可考虑 `react-window` 或 TanStack Virtual；Vue/Solid/Svelte、动态测量、网格或跨框架场景优先考虑 TanStack Virtual；遗留 `react-virtualized` 只维护不新增。
-3. 明确 item size、overscan、容器高度、key、滚动容器和 resize 行为。
-4. 无限滚动时分离数据分页和 DOM 虚拟化；数据获取可联用数据获取 workflow。
-5. 验证 DOM 节点数、滚动 FPS、键盘/屏幕阅读器体验和 Ctrl+F/SEO 限制。
+1. First confirm the list size and bottleneck: 500+ items, scrolling frame drops, too many DOM nodes, or memory surge before introducing virtualization.
+2. First follow the existing framework, dependencies and design system constraints of the project, and then select the library according to the scenario: React can consider `react-window` or TanStack Virtual; Vue/Solid/Svelte, dynamic measurement, grid or cross-framework scenarios give priority to TanStack Virtual; the legacy `react-virtualized` is only maintained and not added.
+3. Clarify item size, overscan, container height, key, rolling container and resize behavior.
+4. Separate data paging and DOM virtualization during infinite scrolling; data acquisition can be combined with the data acquisition workflow.
+5. Verify DOM node count, scrolling FPS, keyboard/screen reader experience, and Ctrl+F/SEO limitations.
 
-## 详细参考
+## Detailed reference
 
-涉及是否需要虚拟化、库选型、固定高度、可变/动态高度、无限滚动、网格虚拟化和性能注意事项时，加载 [references/virtualization-patterns.md](references/virtualization-patterns.md)。
+Load [references/virtualization-patterns.md](references/virtualization-patterns.md) when it comes to the need for virtualization, library selection, fixed height, variable/dynamic height, infinite scrolling, grid virtualization, and performance considerations.
 
 ## Constraints
 
-- SEO 关键内容不要只存在于虚拟项中。
-- 浏览器原生 Ctrl+F 无法搜索未挂载项目。
-- Row 根元素必须透传虚拟库提供的 style/measure ref。
-- overscan 过大会浪费内存，过小会白屏。
-- 动态高度测量要处理 ResizeObserver 和布局抖动。
+- SEO key content doesn’t exist only in dummy items.
+- Browser native Ctrl+F cannot search for unmounted items.
+- The Row root element must transparently transmit the style/measure ref provided by the virtual library.
+- If overscan is too high, memory will be wasted; if overscan is too low, the screen will be white.
+- Dynamic height measurement to handle ResizeObserver and layout jitter.
 
 ## Expected Output
 
-10000+ 项列表滚动接近 60fps，DOM 节点数稳定在可视区域及缓冲区范围，内存从 O(n) 降至 O(visible)。
+The scrolling of the 10,000+ item list is close to 60fps, the number of DOM nodes is stable within the visible area and buffer range, and the memory is reduced from O(n) to O(visible).

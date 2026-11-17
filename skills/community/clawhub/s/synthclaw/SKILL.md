@@ -2,7 +2,7 @@
 name: synthclaw
 license: MIT
 metadata:
-  version: 0.2.5
+  version: 0.2.6
 description: Render Blender files with agent-controlled procedural parameters for synthetic data generation. A key capability of this skill is returning dynamic quality metrics (Naturalness and LPIPS) upon generation and measuring dataset-wide diversity (Shannon entropy), allowing agents to be guided by the metric results to iteratively optimize parameter ranges and improve synthetic data usefulness. Supports CYCLES (production) and EEVEE (fast testing) render engines.
 ---
 

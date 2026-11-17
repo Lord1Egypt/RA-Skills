@@ -1,0 +1,218 @@
+{
+ "_note": "sanitized fixture: synthetic text and fake ids/cursors; response shapes as returned by @cueai/omni-reader-mcp 1.8.3 (grounded, 2026-10-07)",
+ "parts": {
+  "content": "证券代码：000000 证券简称：示例公司 编号：临 2026-001\n\n# 示例公司关于逾期债务和新增诉讼的公告\n\n●公司及控股子公司新增逾期债务 1.23 亿元；累计逾期债务 45.60 亿元。\n\n一、新增诉讼情况\n公司作为被告的诉讼事项有 12 件，金额 3.40 亿元。\n| 序号 | 诉讼类别 | 涉诉案件数量（件） 涉诉案件金额（亿元） |\n| --- | --- | --- |\n| 1 | 建设工程施工/采购类 | 7 2.10 |\n| 2 | 其他 | 5 1.30 |\n\n二、董事出席情况\n<table border=1><tr><td rowspan=\"2\">董事姓名</td><td>亲自出席次数</td></tr><tr><td>张三</td><td>5</td></tr></table>\n特此公告。",
+  "grounding": "{\"schema_version\":\"omni.grounding.v1\",\"detail\":\"grounded\",\"content\":{\"media_type\":\"text/markdown; charset=utf-8\",\"bytes\":666,\"digest\":\"sha256:cff8efcf6ad727e10b326f73bca7eb7a92ddee6c78f108ccd7494f68dc46947e\"},\"document\":{\"format\":\"pdf\",\"partial\":false,\"incomplete\":[],\"truncated\":[],\"safety\":{\"mode\":\"detect_only\",\"availability\":\"unknown\",\"reason\":\"native_report_absent\"}},\"segments\":[{\"segment_id\":\"segment_000001\",\"content_range_utf8\":{\"start\":0,\"end\":225},\"grounding\":{\"availability\":\"available\",\"anchors\":[{\"kind\":\"page\",\"basis\":\"source_pdf_page_1_based\",\"reliability\":\"reliable\",\"value\":1}]}},{\"segment_id\":\"segment_000002\",\"content_range_utf8\":{\"start\":227,\"end\":496},\"grounding\":{\"availability\":\"available\",\"anchors\":[{\"kind\":\"page\",\"basis\":\"source_pdf_page_1_based\",\"reliability\":\"reliable\",\"value\":2}]}},{\"segment_id\":\"segment_000003\",\"content_range_utf8\":{\"start\":498,\"end\":666},\"grounding\":{\"availability\":\"available\",\"anchors\":[{\"kind\":\"page\",\"basis\":\"source_pdf_page_1_based\",\"reliability\":\"reliable\",\"value\":3}]}}]}"
+ },
+ "inline_tools_call": {
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+   "content": [
+    {
+     "type": "text",
+     "text": "证券代码：000000 证券简称：示例公司 编号：临 2026-001\n\n# 示例公司关于逾期债务和新增诉讼的公告\n\n●公司及控股子公司新增逾期债务 1.23 亿元；累计逾期债务 45.60 亿元。\n\n一、新增诉讼情况\n公司作为被告的诉讼事项有 12 件，金额 3.40 亿元。\n| 序号 | 诉讼类别 | 涉诉案件数量（件） 涉诉案件金额（亿元） |\n| --- | --- | --- |\n| 1 | 建设工程施工/采购类 | 7 2.10 |\n| 2 | 其他 | 5 1.30 |\n\n二、董事出席情况\n<table border=1><tr><td rowspan=\"2\">董事姓名</td><td>亲自出席次数</td></tr><tr><td>张三</td><td>5</td></tr></table>\n特此公告。"
+    }
+   ],
+   "structuredContent": {
+    "status": "completed",
+    "operation_id": "op_FIXTURE00000000000000",
+    "result": {
+     "kind": "bundle",
+     "result_id": "result_FIXTURE0000000000000000",
+     "detail": "grounded",
+     "bundle_protocol_version": "omni.result_bundle.v1",
+     "bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+     "bundle_bytes": 1695,
+     "expires_at": "2026-10-09T03:21:08.299Z",
+     "parts": {
+      "content": {
+       "part": "content",
+       "media_type": "text/markdown; charset=utf-8",
+       "result_bytes": 666,
+       "digest": "sha256:cff8efcf6ad727e10b326f73bca7eb7a92ddee6c78f108ccd7494f68dc46947e",
+       "storage": {
+        "kind": "inline",
+        "text": "证券代码：000000 证券简称：示例公司 编号：临 2026-001\n\n# 示例公司关于逾期债务和新增诉讼的公告\n\n●公司及控股子公司新增逾期债务 1.23 亿元；累计逾期债务 45.60 亿元。\n\n一、新增诉讼情况\n公司作为被告的诉讼事项有 12 件，金额 3.40 亿元。\n| 序号 | 诉讼类别 | 涉诉案件数量（件） 涉诉案件金额（亿元） |\n| --- | --- | --- |\n| 1 | 建设工程施工/采购类 | 7 2.10 |\n| 2 | 其他 | 5 1.30 |\n\n二、董事出席情况\n<table border=1><tr><td rowspan=\"2\">董事姓名</td><td>亲自出席次数</td></tr><tr><td>张三</td><td>5</td></tr></table>\n特此公告。"
+       }
+      },
+      "grounding": {
+       "part": "grounding",
+       "media_type": "application/vnd.cue.omni-grounding+json; version=1",
+       "result_bytes": 1029,
+       "digest": "sha256:eaafa4e8e0f84ede4da23f636c3648b6f7c68c66fbfe1071701afb7b707d122e",
+       "storage": {
+        "kind": "inline",
+        "value": {
+         "schema_version": "omni.grounding.v1",
+         "detail": "grounded",
+         "content": {
+          "media_type": "text/markdown; charset=utf-8",
+          "bytes": 666,
+          "digest": "sha256:cff8efcf6ad727e10b326f73bca7eb7a92ddee6c78f108ccd7494f68dc46947e"
+         },
+         "document": {
+          "format": "pdf",
+          "partial": false,
+          "incomplete": [],
+          "truncated": [],
+          "safety": {
+           "mode": "detect_only",
+           "availability": "unknown",
+           "reason": "native_report_absent"
+          }
+         },
+         "segments": [
+          {
+           "segment_id": "segment_000001",
+           "content_range_utf8": {
+            "start": 0,
+            "end": 225
+           },
+           "grounding": {
+            "availability": "available",
+            "anchors": [
+             {
+              "kind": "page",
+              "basis": "source_pdf_page_1_based",
+              "reliability": "reliable",
+              "value": 1
+             }
+            ]
+           }
+          },
+          {
+           "segment_id": "segment_000002",
+           "content_range_utf8": {
+            "start": 227,
+            "end": 496
+           },
+           "grounding": {
+            "availability": "available",
+            "anchors": [
+             {
+              "kind": "page",
+              "basis": "source_pdf_page_1_based",
+              "reliability": "reliable",
+              "value": 2
+             }
+            ]
+           }
+          },
+          {
+           "segment_id": "segment_000003",
+           "content_range_utf8": {
+            "start": 498,
+            "end": 666
+           },
+           "grounding": {
+            "availability": "available",
+            "anchors": [
+             {
+              "kind": "page",
+              "basis": "source_pdf_page_1_based",
+              "reliability": "reliable",
+              "value": 3
+             }
+            ]
+           }
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "billing": {
+     "credits_charged": 0.201,
+     "credits_remaining": 1000.0
+    },
+    "data_handling": {
+     "processing_copy": "deleted",
+     "temporary_data": "deleted",
+     "delivery_result": "deleted_after_ack",
+     "original_source": "unchanged",
+     "remote_content_retained": false
+    },
+    "local_result_cache": {
+     "expires_at": "2026-10-09T03:21:08.299Z",
+     "discard_action": "discard_result"
+    }
+   }
+  }
+ },
+ "parse_response": {
+  "status": "processing",
+  "operation_id": "op_FIXTURE00000000000000",
+  "stage": "queued",
+  "progress": 0,
+  "next_action": "check_status",
+  "poll_after_seconds": 5,
+  "can_cancel": true,
+  "data_handling": {
+   "processing_copy": "in_use",
+   "temporary_data": "in_use",
+   "delivery_result": "not_created",
+   "original_source": "unchanged"
+  }
+ },
+ "final_response": {
+  "status": "completed",
+  "operation_id": "op_FIXTURE00000000000000",
+  "result": {
+   "kind": "bundle",
+   "result_id": "result_FIXTURE0000000000000000",
+   "detail": "grounded",
+   "bundle_protocol_version": "omni.result_bundle.v1",
+   "bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+   "bundle_bytes": 1695,
+   "expires_at": "2026-10-09T03:21:08.299Z",
+   "parts": {
+    "content": {
+     "part": "content",
+     "media_type": "text/markdown; charset=utf-8",
+     "result_bytes": 666,
+     "digest": "sha256:cff8efcf6ad727e10b326f73bca7eb7a92ddee6c78f108ccd7494f68dc46947e",
+     "storage": {
+      "kind": "artifact",
+      "next_cursor": "cursor_fake:content:0"
+     }
+    },
+    "grounding": {
+     "part": "grounding",
+     "media_type": "application/vnd.cue.omni-grounding+json; version=1",
+     "result_bytes": 1029,
+     "digest": "sha256:eaafa4e8e0f84ede4da23f636c3648b6f7c68c66fbfe1071701afb7b707d122e",
+     "storage": {
+      "kind": "artifact",
+      "next_cursor": "cursor_fake:grounding:0"
+     }
+    }
+   }
+  },
+  "billing": {
+   "credits_charged": 0.201,
+   "credits_remaining": 1000.0
+  },
+  "data_handling": {
+   "processing_copy": "deleted",
+   "temporary_data": "deleted",
+   "delivery_result": "deleted_after_ack",
+   "original_source": "unchanged",
+   "remote_content_retained": false
+  },
+  "local_result_cache": {
+   "expires_at": "2026-10-09T03:21:08.299Z",
+   "discard_action": "discard_result"
+  }
+ },
+ "failed_response": {
+  "status": "failed",
+  "error": {
+   "ok": false,
+   "code": "SOURCE_ACCESS_DENIED",
+   "retryable": false,
+   "billed": false
+  }
+ }
+}

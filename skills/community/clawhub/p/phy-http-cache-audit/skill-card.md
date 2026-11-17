@@ -1,42 +1,54 @@
-## Description: <br>
-HTTP Cache Audit analyzes HTTP caching headers for URLs and local development servers, then reports cache policy issues and suggests fixes for browsers, CDNs, and common web server configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTP caching header analyzer that checks Cache-Control directives, ETag/Last-Modified freshness, Vary correctness, CDN cache status, and stale-while-revalidate opportunities for URLs or local development servers.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and web performance engineers use this skill to audit Cache-Control, validation, Vary, CDN cache status, and stale-while-revalidate behavior for web assets and APIs. It helps identify misconfigured cache policies and generate practical nginx, Apache, Cloudflare, Fastly, or Next.js configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security adjudication noted low confidence because scanner context lacked local artifact contents. <br>
-Mitigation: Review the skill files and install steps before deployment; the supplied scanner signals did not identify a security concern. <br>
-Risk: The skill audits URLs by issuing HTTP header requests, so it may contact external or internal services selected by the user. <br>
-Mitigation: Use it only against systems the operator is authorized to test and review generated cache changes before applying them. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to audit HTTP cache headers, identify inefficient or risky cache behavior, and produce targeted configuration guidance for web assets and APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-http-cache-audit) <br>
-- [PHY041 publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cache grades, issue summaries, curl verification commands, and nginx, Apache, Cloudflare, Fastly, or Next.js cache configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill fetches live response headers from user-provided URLs with curl, which can expose private, local, or unauthorized endpoints to agent-initiated network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only URLs you control or have permission to test, and avoid private admin endpoints, localhost services, and third-party systems unless that access is intended.
+
+Risk: Generated cache guidance can change browser, CDN, or proxy behavior if applied without review.
+
+Mitigation: Review proposed cache directives and configuration snippets against the resource type, data sensitivity, and deployment environment before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-http-cache-audit)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and server configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cache grades, issue summaries, remediation steps, and nginx, Apache, Cloudflare, Fastly, or Next.js configuration examples.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

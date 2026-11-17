@@ -1,42 +1,58 @@
-## Description: <br>
-Build and run low-code browser automation workflows with agent-browser CLI and reusable skills for repeatable browser tasks such as sign-ins, form filling, fixed click flows, state saving, and recurring web operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run low-code browser automation workflows with agent-browser CLI and reusable skills for repeatable web tasks such as sign-ins, form fills, dashboard checks, fixed click flows, and saved-state routines.
 
-## Publisher: <br>
-[cnxufei-tech](https://clawhub.ai/user/cnxufei-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnxufei-tech](https://clawhub.ai/user/cnxufei-tech)
 
-## Use Case: <br>
-Developers and automation users use this skill to convert stable, repetitive browser workflows into reusable agent-browser command sequences or site-specific skills. It is most useful when tasks can be discovered once, rerun many times, and verified through fresh snapshots or saved browser state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser state files can grant access to authenticated sessions. <br>
-Mitigation: Treat auth.json or similar saved state as a password: keep it out of source control, store it in a protected location, use separate files per site or account, and delete or rotate it when no longer needed. <br>
-Risk: Browser automation may interact with sites or accounts where the user lacks permission. <br>
-Mitigation: Use the skill only for sites and workflows the user is authorized to automate, and verify target-site rules before running recurring flows. <br>
+## Use Case:
 
+Developers and automation builders use this skill to convert stable browser workflows into repeatable agent-browser command sequences, reusable site-specific skill instructions, debugging checklists, and saved-state recurring routines.
 
-## Reference(s): <br>
-- [Source Notes](references/source-notes.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/cnxufei-tech/browser-automation-zero-token) <br>
-- [Publisher Profile](https://clawhub.ai/user/cnxufei-tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and reusable workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include saved-state guidance for recurring authenticated browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved browser session state can preserve reusable logged-in access in a local auth file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat saved state files like passwords: keep them outside project folders, restrict permissions, never commit or share them, use separate files per site or account, and revoke or delete sessions when no longer needed.
+
+Risk: Global CLI installation can introduce unpinned dependency risk.
+
+Mitigation: Pin and verify agent-browser where possible before installing global dependencies.
+
+Risk: Browser automation may act on accounts, sites, or workflows where automation is not authorized.
+
+Mitigation: Confirm user authorization, site permission, and credentials before running automated browser interactions.
+
+## Reference(s):
+
+- [Source Notes](references/source-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/cnxufei-tech/skills/browser-automation-zero-token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks and concise workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable command sequences, site-specific skill drafts, auth-state routines, and debugging checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Publishes articles to WeChat Official Accounts through the WeChat API using configured AppID, AppSecret, IP allowlisting, and access token management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes articles to WeChat Official Accounts through the WeChat API using configured AppID, AppSecret, IP whitelist, and access token management.
 
-## Publisher: <br>
-[Saaaa1aaaaS](https://clawhub.ai/user/Saaaa1aaaaS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[saaaa1aaaas](https://clawhub.ai/user/saaaa1aaaas)
 
-## Use Case: <br>
-Developers and content operators use this skill to publish Markdown or text articles to a configured WeChat Official Account, including token retrieval, optional cover upload, draft creation, and publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real WeChat AppID, AppSecret, and access tokens. <br>
-Mitigation: Use a test account first, keep secrets only in a local .env file, and do not share token command output. <br>
-Risk: The publish workflow can create and publish content through a live WeChat Official Account. <br>
-Mitigation: Require human review before running publish commands on production content or production accounts. <br>
-Risk: The security review flags weak safeguards and unsafe credential examples. <br>
-Mitigation: Replace all example credentials with local secrets and review the skill carefully before installing it with a real account. <br>
+## Use Case:
 
+Developers and WeChat Official Account operators use this skill to configure WeChat credentials, fetch access tokens, and publish Markdown or text articles from a Node.js CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Saaaa1aaaaS/wechat-mp-publisher-1-0-0) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript code, and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live WeChat API calls and can print access tokens when the token command is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json declares 1.0.0) <br>
+Risk: WeChat credentials or access tokens may be exposed through example secrets, command output, or an unprotected .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace example secrets with placeholders, rotate any AppSecret that may have been published, avoid printing tokens, and add explicit .env protection such as .gitignore guidance.
+
+Risk: Publishable HTML may be unsafe if generated content is saved or submitted without sanitization.
+
+Mitigation: Sanitize generated HTML before saving or publishing and review article content before submission.
+
+Risk: Flagged npm dependencies may contain known security issues.
+
+Mitigation: Update the flagged npm dependencies before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saaaa1aaaas/skills/wechat-mp-publisher-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/saaaa1aaaas)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, HTML]
+
+**Output Format:** [Markdown guidance with CLI commands, status text, and optional saved HTML output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WeChat AppID and AppSecret environment variables and may publish content through WeChat API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

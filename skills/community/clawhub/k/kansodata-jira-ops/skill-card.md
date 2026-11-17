@@ -1,44 +1,64 @@
-## Description: <br>
-A read-only operational skill for Jira Cloud analysis focused on issue context, blockers, backlog triage, and stakeholder status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill operativa read-only para análisis de Jira Cloud con enfoque en contexto, bloqueadores y triage.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Product, engineering, and support teams use this skill to inspect Jira Cloud issues, summarize current status, identify blockers, triage backlogs, and draft stakeholder updates without modifying Jira. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries may include sensitive Jira business data from issues, comments, and worklogs. <br>
-Mitigation: Restrict the Jira plugin account to intended projects and read-only scopes, and share outputs only with authorized recipients. <br>
-Risk: Incomplete Jira data or insufficient permissions can lead to overconfident blocker, priority, or status conclusions. <br>
-Mitigation: Preserve the skill's required separation between observed facts, inferences, and missing data before acting on its guidance. <br>
+## Use Case:
 
+Developers, project leads, and operations teams use this skill to analyze Jira Cloud issues, summarize status, identify blockers, triage backlog items, and prepare stakeholder updates without changing Jira data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kansodata/kansodata-jira-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/kansodata) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Usage rules](artifact/usage-rules.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates observed Jira facts, inferences, and missing data or insufficient permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The agent can read Jira issues, comments, worklogs, projects, statuses, and transitions available through the connected Jira plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that Jira read access is acceptable, and grant the plugin the least Jira permissions needed for the intended analysis.
+
+Risk: Operational summaries or triage recommendations could be mistaken for confirmed facts.
+
+Mitigation: Require outputs to separate observed Jira facts from inferences and missing data before acting on recommendations.
+
+Risk: Users may expect the skill to update Jira even though this release is read-only.
+
+Mitigation: Keep create, edit, comment, assignment, and transition actions disabled for this skill version.
+
+Risk: The skill instructions and examples are written in Spanish.
+
+Mitigation: Provide translated operating instructions or examples for teams that do not work in Spanish.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kansodata/skills/kansodata-jira-ops)
+- [Examples](artifact/examples.md)
+- [Scope](artifact/scope.md)
+- [Usage Rules](artifact/usage-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with clearly separated facts, inferences, and missing data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Jira analysis; no create, edit, comment, assignment, or transition actions]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

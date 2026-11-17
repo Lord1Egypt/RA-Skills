@@ -1,38 +1,49 @@
-## Description: <br>
-把合作邀约、商务私信、品牌合作需求和合作条款草稿，改写成更专业、更容易推进合作的版本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把合作邀约、商务私信、品牌合作需求和合作条款草稿，改写成更专业、更容易推进合作的版本。
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, external collaborators, and business users use this skill to polish collaboration offers, business direct messages, brand partnership requests, and draft partnership terms into clearer and more professional Chinese-language outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the current macOS clipboard when invoked, so unrelated confidential material could be exposed to the agent. <br>
-Mitigation: Before invoking the skill, copy only the collaboration draft or business message that should be polished and ensure passwords, tokens, private messages, or unrelated confidential material are not on the clipboard. <br>
+## Use Case:
 
+External business users, creators, and partnership teams use this skill to polish collaboration offers, business direct messages, brand pitches, and draft partnership terms into clearer, more professional outreach. It can help generate alternate tones and identify missing information in a draft.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/collab-offer-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with clipboard text delimiters and rewritten collaboration copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads the current macOS clipboard through pbpaste when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and CHANGELOG) <br>
+Risk: The skill reads and prints whatever is currently on the system clipboard when invoked, which can expose unrelated sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only after copying the exact collaboration draft to process; ask before clipboard access and avoid printing unrelated clipboard contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/collab-offer-polisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text rewrite suggestions based on collaboration draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reads the current macOS clipboard and prints the captured text for the agent to polish.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

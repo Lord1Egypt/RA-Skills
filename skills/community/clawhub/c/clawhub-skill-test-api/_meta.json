@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7d59nyg4db0jhwmwncbxjxh982kqkg",
-  "slug": "clawhub-skill-test-api",
-  "version": "0.1.1",
-  "publishedAt": 1773385387075
+  "name": "weaver-e10-api",
+  "version": "1.1.0",
+  "description": "泛微 E10 系统 API 调用工具，支持流程创建、待办查询、审批提交、流程退回等操作。使用 OAuth2.0 认证，自动管理 token 刷新。",
+  "author": "黎争光",
+  "license": "MIT",
+  "category": "enterprise",
+  "tags": ["泛微", "E10", "OA", "审批", "工作流"],
+  "scripts": ["weaver-e10.py"],
+  "examples": ["create_request.json", "approve_request.json"],
+  "security_notes": [
+    "需要配置 WEAVER_API_BASE 等环境变量",
+    "Token 缓存在 ~/.weaver-e10/token.json",
+    "请勿将 .env 文件提交到版本控制"
+  ],
+  "acceptLicenseTerms": true
 }

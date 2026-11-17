@@ -1,0 +1,23 @@
+{
+ "kind": "categorical",
+ "name": "",
+ "series": [
+  "3B82F6",
+  "E4572E",
+  "729C09",
+  "00400D",
+  "10A096",
+  "12A564"
+ ],
+ "checks": {
+  "min_pair_dE_cvd": 0.157,
+  "l_range": 0.315,
+  "count": 6,
+  "verdict": "PASS",
+  "min_vs_canvas_cr": 3.19,
+  "below3_count": 0,
+  "canvas": "FFFFFF"
+ },
+ "verdict": "PASS",
+ "fingerprint": "1aec416922e8bf99dd71155f739938e4efc887fa7803fd2102ec66f1788826ee"
+}

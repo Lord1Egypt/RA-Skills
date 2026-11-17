@@ -1,46 +1,63 @@
-## Description: <br>
-Back up OpenClaw customizations (memory, config, skills, workspace) to cloud storage via rclone, with scheduling + retention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up OpenClaw customizations (memory, config, skills, workspace) to cloud storage via rclone, with scheduling + retention. Works on macOS, Linux, and Windows (Git Bash/WSL).
 
-## Publisher: <br>
-[vidarbrekke](https://clawhub.ai/user/vidarbrekke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vidarbrekke](https://clawhub.ai/user/vidarbrekke)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure scheduled backups of local OpenClaw memory, configuration, skills, workspace files, and related project data to a local archive or rclone destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may include sensitive OpenClaw memory, configuration, skills, workspace files, and project data. <br>
-Mitigation: Review the generated backup script, test local-only mode first, and use an encrypted rclone destination or encrypt archives before offsite storage. <br>
-Risk: The setup can install recurring scheduler entries and retention rules that upload data or delete older backup archives. <br>
-Mitigation: Confirm scheduler, upload mode, destination, and retention settings before enabling automation, then inspect the LaunchAgent, crontab, or Task Scheduler entry after installation. <br>
-Risk: Executing install scripts directly from a one-line download gives the script immediate local access. <br>
-Mitigation: Prefer the git clone installation path and inspect setup.js plus the scheduler installer before running them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate and schedule backups of local OpenClaw configuration, memory, skills, workspace files, and related project data to a local or rclone-backed destination.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vidarbrekke/claw-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/vidarbrekke) <br>
-- [ClawBackup repository](https://github.com/vidarbrekke/ClawBackup) <br>
-- [rclone installation documentation](https://rclone.org/install/) <br>
-- [Node.js downloads](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local backup scripts, scheduler entries, rclone destinations, and restore notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter and README state 1.0.15) <br>
+Risk: The quick install path can execute changing remote code before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clone and pin the repository first, then inspect setup.js and install-launchagent.sh before running setup.
+
+Risk: Scheduler setup may run unintended commands under the user account.
+
+Mitigation: Avoid enabling the scheduler until the Bash escaping issue is fixed, and inspect generated LaunchAgent, cron, or Task Scheduler entries before use.
+
+Risk: Backups may contain sensitive OpenClaw configuration, memory, workspace, and skill data.
+
+Mitigation: Use local-only mode for testing and prefer encrypted rclone destinations or local archive encryption before offsite storage.
+
+Risk: The macOS installer can remove a system LaunchDaemon with sudo.
+
+Mitigation: Do not approve sudo removal unless you intentionally want that exact system service removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vidarbrekke/skills/claw-backup)
+- [rclone installation documentation](https://rclone.org/install/)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with inline bash and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate backup scripts, scheduler setup instructions, restore notes, manifests, and checksum files when run by the user.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release metadata; artifact SKILL.md reports 1.0.15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

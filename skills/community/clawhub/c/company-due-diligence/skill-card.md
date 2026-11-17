@@ -1,45 +1,64 @@
-## Description: <br>
-Automates company due diligence by using Playwright-based browser workflows to query Chinese business, financial, and legal data sources and generate Markdown and PDF reports with screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates company due-diligence collection across Qichacha, Tianyancha, Eastmoney, and China Judgments Online, then generates screenshot-backed Markdown and PDF reports.
 
-## Publisher: <br>
-[guangningsun](https://clawhub.ai/user/guangningsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guangningsun](https://clawhub.ai/user/guangningsun)
 
-## Use Case: <br>
-Developers, analysts, and diligence teams use this skill to collect public company records, financial market data, litigation signals, screenshots, and source summaries for preliminary company due diligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; practical coverage is focused on Chinese companies and Chinese public or commercial data sources. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled session files may contain exposed authentication tokens. <br>
-Mitigation: Remove bundled session files before installation and create fresh sessions outside the skill directory with restrictive file permissions. <br>
-Risk: Unsafe shell command construction can allow command injection when company names, paths, or agent-supplied inputs are untrusted. <br>
-Mitigation: Review and replace shell-string invocations with argument-list subprocess calls or strict input quoting before using untrusted inputs. <br>
-Risk: Company names, screenshots, and browsing activity may be sent to third-party business, financial, and legal data services. <br>
-Mitigation: Use approved accounts and avoid confidential targets unless this data sharing is acceptable for the intended use. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to gather public and authenticated company due-diligence data, capture source screenshots, and produce Markdown or PDF diligence reports for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guangningsun/company-due-diligence) <br>
-- [Data sources reference](artifact/references/data_sources.md) <br>
-- [Due diligence framework](artifact/references/framework.md) <br>
-- [Report template](artifact/assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, PDF reports, screenshots, JSON data files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on third-party site availability, account access, saved browser sessions, and optional PDF tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact documentation also mentions internal version 3.1.0) <br>
+Risk: Bundled browser session and cookie files may expose authenticated accounts or reusable site access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove all bundled session and cookie files before installation, rotate any exposed accounts, and require users to create fresh local sessions.
+
+Risk: Unsafe command execution paths can allow unintended shell behavior when inputs are passed through command construction.
+
+Mitigation: Replace shell-based command construction with argument-list subprocess calls and validate user-supplied company names, paths, and options.
+
+Risk: Reports, screenshots, raw data, and browser sessions may contain sensitive due-diligence information.
+
+Mitigation: Add clear controls for output directories, retention, access permissions, and cleanup of generated reports and browser state.
+
+Risk: Unpinned dependencies can change behavior or security posture between installations.
+
+Mitigation: Pin dependency versions and review updates before publishing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guangningsun/skills/company-due-diligence)
+- [Publisher profile](https://clawhub.ai/user/guangningsun)
+- [Data Sources](references/data_sources.md)
+- [Due Diligence Framework](references/framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, optional PDF reports, screenshots, and raw JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser sessions for authenticated data sources and writes report artifacts to configured local report directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

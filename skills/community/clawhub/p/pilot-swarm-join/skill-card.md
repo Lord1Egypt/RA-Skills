@@ -1,41 +1,54 @@
-## Description: <br>
-Join or create agent swarms with auto-discovery and peer mesh formation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Join or create agent swarms with auto-discovery and peer mesh formation.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to join or create named Pilot Protocol swarms, discover peers, and establish mesh trust among intended swarm members. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The approve-all peer trust command can approve unintended pending nodes. <br>
-Mitigation: Inspect pending requests, verify swarm membership and node identity, and approve only specific trusted peers. <br>
-Risk: Swarm join commands can expose the agent to peers through the configured registry and daemon. <br>
-Mitigation: Use the skill only with a controlled pilotctl daemon, intended registry, and understood peer trust model. <br>
+## Use Case:
 
+Developers and agent operators use this skill to join or create named Pilot Protocol swarms, discover peers, and establish mesh trust with intended swarm members.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-swarm-join) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, a running Pilot daemon, and access to the intended registry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Approval examples can approve every pending peer connection rather than only verified swarm members.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: List pending requests, verify each node against the intended swarm and registry, and approve peers one at a time.
+
+Risk: Using an untrusted registry or unknown swarm members can establish trust with unintended nodes.
+
+Mitigation: Use trusted registries and known swarm members, and do not run blanket approval commands where unrelated handshake requests may be pending.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-swarm-join)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, a running Pilot Protocol daemon, and a registry connection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

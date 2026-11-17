@@ -1,40 +1,54 @@
-## Description: <br>
-Paper Reviewer helps evaluate Chinese and English academic papers across significance, originality, research value, and writing quality, then produces detailed review comments and revision suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+论文审稿专家 - 中英文论文的学术评审，从研究意义、创新性、研究价值、写作水平等多维度评估。生成详细的审稿意见和修改建议。
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-External reviewers, authors, and research teams use this skill to structure academic paper reviews, identify major and minor issues, and draft actionable feedback before submission or publication decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential or unpublished manuscript content without permission. <br>
-Mitigation: Use only manuscript text that may be shared with the agent or model, and follow applicable confidentiality obligations. <br>
-Risk: Review conclusions may be incomplete, incorrect, or overly dependent on the supplied prompt structure. <br>
-Mitigation: Independently verify important assessments and use the output as review assistance rather than as the sole publication decision. <br>
+## Use Case:
 
+External users, academic authors, and reviewers use this skill to produce structured Chinese or English peer-review feedback for manuscripts. It helps evaluate research significance, innovation, research quality, writing quality, and revision priorities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/paper-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review report with structured ratings, issue lists, recommendations, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review assistance only; users should verify important conclusions independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Confidential manuscript content could be shared with the agent without proper authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only manuscript content that the user is allowed to share, and avoid pasting confidential material unless disclosure is permitted.
+
+Risk: The generated review may influence academic or publication decisions.
+
+Mitigation: Treat the output as reviewer support and apply human judgment before acting on recommendations.
+
+## Reference(s):
+
+- [Paper Reviewer ClawHub skill page](https://clawhub.ai/jirboy/skills/paper-reviewer)
+- [jirboy publisher profile](https://clawhub.ai/user/jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review report with ratings, issue lists, recommendations, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English review templates; no code execution or persistence is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -71,6 +71,8 @@ Hello! 亲爱的用户，由于这是我与世界的第一次交互，你是希�
 （30秒无响应将使用默认称呼'塔斯'）
 ```
 
+> ⚠️ **语义澄清（防定位歧义）**：此处的"称呼"指**用户对智能体的称呼**（智能体的名字），不是用户本人的昵称。该值保存于 `personality.json` 的 `user_nickname` 字段——**字段名为历史遗留命名**，其实际语义为"用户赋予智能体的称谓"。引用该字段时请勿按字面（"用户昵称"）解读。
+
 **问题1**：
 ```bash
 python3 scripts/init_dialogue_optimized.py --question 0 --nickname "塔斯" --memory-dir ./agi_memory

@@ -1,44 +1,60 @@
-## Description: <br>
-Privacy pipeline for OpenClaw that uses regex rules and Qwen2.5 to scrub PII such as names, emails, SSNs, phones, wallets, IPs, and paths before external AI processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy pipeline for OpenClaw that uses regexes and a local Qwen2.5 LLM through Ollama to replace common PII in text with placeholder tokens before external AI processing.
 
-## Publisher: <br>
-[solmas](https://clawhub.ai/user/solmas) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solmas](https://clawhub.ai/user/solmas)
 
-## Use Case: <br>
-Developers and engineers use this skill to manually anonymize OpenClaw message text before passing it to external AI services or workflow scripts. It is best suited for reviewed workflows because automatic hook interception is not working in the provided artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Redaction may miss some PII or return incomplete anonymization. <br>
-Mitigation: Review redacted output before sending it to external APIs, especially for real customer or sensitive data. <br>
-Risk: The configured Ollama endpoint receives privacy-sensitive text for name detection. <br>
-Mitigation: Keep OLLAMA_URL on localhost or a trusted private Ollama instance. <br>
-Risk: Automatic hook interception is unfinished and should not be relied on for protection. <br>
-Mitigation: Use manual, reviewed workflows until the hook behavior is fixed and validated. <br>
+## Use Case:
 
+Developers using OpenClaw use this skill to manually anonymize prompts or workflow inputs by replacing common PII patterns and likely person names before sending text to external AI services.
 
-## Reference(s): <br>
-- [OpenClaw PII Anonymizer ClawHub page](https://clawhub.ai/solmas/openclaw-pii-anonymizer) <br>
-- [Publisher profile](https://clawhub.ai/user/solmas) <br>
-- [Artifact homepage](https://github.com/solmas/openclaw-pii-anonymizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text redacted output with Markdown documentation and bash usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replaces detected PII with bracketed tokens such as [NAME], [EMAIL], [SSN], [PHONE], [WALLET], [IP], and [PATH].] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact version notes) <br>
+Risk: Sensitive text can be sent to a configurable HTTP model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep OLLAMA_URL pinned to a trusted local Ollama instance and avoid untrusted remote endpoints.
+
+Risk: The skill may return only partially scrubbed data while appearing anonymized.
+
+Mitigation: Manually review anonymized output before forwarding it to external APIs, especially for regulated or customer PII.
+
+Risk: The deprecated v1 script should not be relied on for current workflows.
+
+Mitigation: Use privacy-anonymize-v2.sh for controlled manual workflows and avoid privacy-anonymize.sh.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solmas/skills/openclaw-pii-anonymizer)
+- [Publisher profile](https://clawhub.ai/user/solmas)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text with placeholder tokens, plus Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a single text input up to 10000 characters; may fall back to regex-only output if the local Ollama endpoint is unavailable.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

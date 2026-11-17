@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Trading Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --m:  #e91e8c;
+      --m2: #ff3d9a;
+      --c:  #00c8c0;
+      --c2: #00f0e8;
+      --bg: #04080f;
+      --text: #f0f4ff;
+      --muted: rgba(200, 228, 255, 0.56);
+      --glass: rgba(3, 9, 24, 0.78);
+      --gb: rgba(0, 200, 190, 0.18);
+      --fd: 'Oswald', 'Impact', sans-serif;
+      --fb: 'Inter', 'Calibri', 'Segoe UI', system-ui, sans-serif;
+
+      /* ── 遮盖调节：在 DevTools :root 里改这些值实时生效 ── */
+      --vig-left-solid:   7%;   /* 左侧纯色遮盖终点 */
+      --vig-left-fade:    14%;   /* 左侧渐变消失点   */
+      --vig-bottom-solid: 7%;   /* 底部遮盖终点     */
+      --vig-bottom-fade:  14%;   /* 底部渐变消失点   */
+      --vig-top-opacity:  1.0;   /* 顶部遮盖不透明度 */
+      --vig-top-fade:     10%;   /* 顶部渐变消失点   */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      font-family: var(--fb);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── Chart background (real image + CSS vignettes) ── */
+    .chart-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      /* Stack order: left-vignette / bottom-vignette / top-vignette / actual image */
+      background-image:
+        linear-gradient(to top,
+          #04080f 0%, rgba(4,8,15,0.8) var(--vig-bottom-solid), transparent var(--vig-bottom-fade)),
+        linear-gradient(to bottom,
+          rgba(4,8,15,var(--vig-top-opacity)) 0%, transparent var(--vig-top-fade)),
+        url('bg.png');
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── Page overlay ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Top nav ── */
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 52px;
+      position: relative;
+      animation: fadeDown 0.5s ease-out;
+    }
+
+    .nav-links { display: flex; gap: 52px; }
+
+    .nav-links a {
+      color: rgba(200, 228, 255, 0.55);
+      text-decoration: none;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-right { position: absolute; right: 52px; }
+
+    .lang-sel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      padding: 8px 34px 8px 14px;
+      border-radius: 999px;
+      appearance: none;
+      font-family: var(--fb);
+      font-size: 0.84rem;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300c8c0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+    }
+    .lang-sel option {
+      background: #0d1829;
+      color: #f0f4ff;
+    }
+
+    /* ── Hero section ── */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 68px 0;
+      animation: fadeUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      padding: 6px 14px;
+      margin-bottom: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,200,190,0.32);
+      background: rgba(0,200,190,0.07);
+      color: var(--c2);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--fd);
+      font-size: clamp(2.6rem, 4.8vw, 5.4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0 0 20px;
+      color: #fff;
+    }
+    .hero-title span { display: block; }
+
+    .hero-sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.55;
+      max-width: 380px;
+    }
+
+    /* ── Launch dock ── */
+    .launch-footer {
+      padding: 0 24px 28px;
+      animation: fadeUp 0.5s ease-out 0.22s both;
+    }
+
+    .launch-dock {
+      background: var(--glass);
+      border: 1px solid var(--gb);
+      border-radius: 22px;
+      padding: 20px 26px;
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      display: flex;
+      align-items: stretch;
+      gap: 24px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 24px 64px rgba(0,0,0,0.36),
+        0 0 0 1px rgba(0,200,190,0.04);
+    }
+
+    .dock-form { flex: 1; min-width: 0; }
+
+    .dock-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dock-field { flex: 0 0 200px; min-width: 0; }
+
+    .dock-field label {
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      color: rgba(0,200,190,0.72);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .dock-field input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(0,200,190,0.35);
+      color: var(--text);
+      padding: 6px 0;
+      font-family: var(--fb);
+      font-size: 0.96rem;
+      letter-spacing: 0.06em;
+      transition: border-color 0.2s;
+    }
+    .dock-field input:focus { outline: none; border-bottom-color: var(--c2); }
+    .dock-field input::placeholder { color: rgba(200,228,255,0.22); }
+
+    .dock-btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 2px;
+    }
+
+    .btn-launch {
+      background: linear-gradient(135deg, var(--m) 0%, var(--m2) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 30px;
+      font-family: var(--fb);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 6px 22px rgba(233,30,140,0.34);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-launch:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(233,30,140,0.5);
+    }
+    .btn-launch:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-adv {
+      background: transparent;
+      border: 1px solid rgba(0,200,190,0.4);
+      color: var(--c2);
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-family: var(--fb);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-adv:hover { background: rgba(0,200,190,0.09); border-color: var(--c2); }
+
+    .btn-stop {
+      background: rgba(233,30,140,0.1);
+      border: 1px solid rgba(233,30,140,0.28);
+      color: #ff80b0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-family: var(--fb);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-stop:hover:not(:disabled) { background: rgba(233,30,140,0.2); }
+    .btn-stop:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-save {
+      background: none; border: none;
+      color: rgba(200,228,255,0.38);
+      font-family: var(--fb);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 8px 2px;
+      margin-top: 10px;
+      transition: color 0.2s;
+      display: block;
+    }
+    .btn-save:hover { color: rgba(200,228,255,0.75); }
+
+    /* advanced toggle */
+    #advancedToggle[aria-expanded="true"] {
+      background: rgba(0,200,190,0.1);
+      border-color: var(--c2);
+    }
+
+    .advanced-panel { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(0,200,190,0.1); }
+    .advanced-panel[hidden] { display: none; }
+
+    .adv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .adv-lbl {
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      color: rgba(0,200,190,0.62);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .adv-grid input,
+    .adv-grid select,
+    .adv-grid textarea {
+      width: 100%;
+      background: rgba(0,200,190,0.04);
+      border: 1px solid rgba(0,200,190,0.18);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-family: var(--fb);
+      font-size: 0.88rem;
+    }
+    .adv-grid input:focus,
+    .adv-grid select:focus,
+    .adv-grid textarea:focus {
+      outline: none;
+      border-color: var(--c2);
+      box-shadow: 0 0 0 2px rgba(0,200,190,0.1);
+    }
+    .adv-grid select {
+      appearance: none;
+      cursor: pointer;
+    }
+    .adv-grid select option {
+      background: #0d1829;
+      color: #f0f4ff;
+    }
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300c8c0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
+    }
+    .adv-grid textarea {
+      min-height: 128px; resize: vertical; line-height: 1.5;
+      grid-column: 1 / -1;
+    }
+
+    .adv-check {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px; border: 1px solid rgba(0,200,190,0.12);
+      border-radius: 10px; background: rgba(0,200,190,0.03);
+      grid-column: 1 / -1;
+    }
+    .adv-check input[type="checkbox"] {
+      width: 16px; height: 16px; margin-top: 2px;
+      accent-color: var(--m2); flex-shrink: 0;
+    }
+    .adv-check strong { display: block; font-size: 0.9rem; margin-bottom: 3px; }
+    .adv-check span { color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+
+    /* dock right brand */
+    .dock-side {
+      display: flex; flex-direction: column;
+      align-items: flex-end; justify-content: space-between;
+      min-width: 130px;
+      padding-left: 24px;
+      border-left: 1px solid rgba(0,200,190,0.1);
+    }
+
+    .dock-brand {
+      font-family: var(--fd);
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: 0.1em; line-height: 1.2;
+      text-transform: uppercase; text-align: right;
+    }
+    .dock-brand .brand-line1 { color: var(--c2); }
+    .dock-brand .brand-line2 {
+      background: linear-gradient(135deg, var(--m), var(--m2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .dock-brand small {
+      display: block; font-family: var(--fb);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(0,200,190,0.45); margin-bottom: 3px;
+      -webkit-text-fill-color: unset; color: rgba(0,200,190,0.45);
+    }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border-radius: 999px;
+      border: 1px solid rgba(0,200,190,0.18);
+      background: rgba(0,200,190,0.06);
+      color: rgba(200,228,255,0.6); font-size: 0.78rem;
+      white-space: nowrap;
+    }
+    .status-pill::before {
+      content: ''; width: 7px; height: 7px;
+      border-radius: 50%; background: rgba(200,228,255,0.4);
+    }
+    .status-pill[data-running="true"]::before {
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
+    }
+
+    /* msg */
+    #msg { font-size: 0.84rem; }
+    #msg.ok {
+      margin-top: 10px; padding: 10px 14px; border-radius: 10px;
+      background: rgba(34,197,94,0.1); color: #86efac;
+      border: 1px solid rgba(34,197,94,0.2); animation: fadeIn 0.25s;
+    }
+    #msg.err {
+      margin-top: 10px; padding: 10px 14px; border-radius: 10px;
+      background: rgba(233,30,140,0.1); color: #fca5a5;
+      border: 1px solid rgba(233,30,140,0.2); animation: fadeIn 0.25s;
+    }
+
+    /* ── Support band ── */
+    .support-band {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      padding: 18px 24px 40px;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.5s ease-out 0.3s both;
+    }
+
+    .support-card {
+      padding: 24px; border-radius: 20px;
+      border: 1px solid rgba(0,200,190,0.11);
+      background: rgba(3,9,22,0.7);
+      backdrop-filter: blur(16px);
+    }
+
+    .s-kicker {
+      display: block; font-size: 0.66rem;
+      letter-spacing: 0.14em; color: rgba(0,200,190,0.58);
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+
+    .support-card h2 { margin: 0 0 10px; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .support-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+
+    .s-val {
+      margin-top: 16px;
+      font-family: var(--fd);
+      font-size: 2rem; font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--c2), var(--m2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .hero-section { padding: 0 32px 44px; }
+      .launch-footer { padding: 0 16px 20px; }
+      .support-band { grid-template-columns: 1fr; padding: 16px 16px 32px; }
+      .dock-row { flex-direction: column; align-items: stretch; }
+      .dock-field { flex: none; }
+      .dock-btns { flex-direction: column; align-items: stretch; }
+      .dock-btns button { text-align: center; }
+      .dock-side { display: none; }
+      .adv-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .topnav { flex-direction: column; gap: 10px; padding: 16px 20px; }
+      .nav-right { position: static; }
+      .hero-title { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     Full-bleed candlestick + DOM chart background
+     ════════════════════════════════════════════════ -->
+<div class="chart-bg"></div>
+
+<!-- ════════════════════════════════════════════════
+     Page content overlay
+     ════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- Top nav -->
+  <nav class="topnav">
+    <div class="nav-links">
+      <a href="#" data-i18n="nav.features">기능</a>
+      <a href="#" data-i18n="nav.pricing">가격</a>
+      <a href="#" data-i18n="nav.docs">문서</a>
+    </div>
+    <div class="nav-right">
+      <select class="lang-sel" id="langSelect" aria-label="Language">
+        <option value="ko">한국어</option>
+        <option value="zh-CN">中文(简体)</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </nav>
+
+  <!-- Hero text -->
+  <section class="hero-section">
+    <div>
+      <div class="hero-kicker" data-i18n="hero.kicker">자동 그리드 전략</div>
+      <h1 class="hero-title">
+        <span data-i18n="hero.line1">경쟁 우위를</span>
+        <span data-i18n="hero.line2">재정의하라</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">전문적인 유동성과 주문 흐름 기능을 활용하십시오.</p>
+    </div>
+  </section>
+
+  <!-- Launch dock -->
+  <div class="launch-footer">
+    <div class="launch-dock">
+      <form id="form" class="dock-form">
+        <div class="dock-row">
+          <div class="dock-field">
+            <label for="apiKey" data-i18n="form.apiKey">API KEY</label>
+            <input type="password" id="apiKey" name="apiKey" autocomplete="off" placeholder="••••••••••••••••">
+          </div>
+          <div class="dock-field">
+            <label for="apiSecret" data-i18n="form.apiSecret">SECRET</label>
+            <input type="password" id="apiSecret" name="apiSecret" autocomplete="off" placeholder="••••••••••••••••">
+          </div>
+          <div class="dock-btns">
+            <button type="button" id="btnStart" class="btn-launch" data-i18n="actions.start">LAUNCH PLATFORM</button>
+            <button type="button" id="advancedToggle" class="btn-adv" aria-expanded="false" aria-controls="advancedSection" data-i18n="form.advancedToggle">ADVANCED SETUP</button>
+            <button type="button" id="btnStop" class="btn-stop" data-i18n="actions.stop">STOP</button>
+          </div>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="btn-save" data-i18n="actions.save">SAVE CONFIG</button>
+
+        <section class="advanced-panel" id="advancedSection" hidden>
+          <div class="adv-grid">
+            <div>
+              <label class="adv-lbl" data-i18n="form.exchange">Exchange</label>
+              <select name="exchangeId" id="exchangeId">
+                <option value="binance">Binance</option>
+                <option value="okx">OKX</option>
+                <option value="bitget">Bitget</option>
+                <option value="gateio">Gate.io</option>
+              </select>
+            </div>
+            <div>
+              <label class="adv-lbl">
+                <span data-i18n="form.passphrase">Passphrase</span>
+                <span style="font-size:0.6rem;opacity:0.5;margin-left:5px" data-i18n="form.optional">Optional</span>
+              </label>
+              <input type="password" name="passphrase" id="passphrase" autocomplete="off" placeholder="Passphrase">
+            </div>
+            <label class="adv-check">
+              <input type="checkbox" name="paper" id="paper" checked disabled>
+              <span>
+                <strong data-i18n="form.paperTitle">Demo trading</strong>
+                <span data-i18n="form.paperCopy">Marketplace build: demo or sandbox only. Orders are sent to the test environment.</span>
+              </span>
+            </label>
+            <div style="grid-column:1/-1">
+              <label class="adv-lbl">
+                <span data-i18n="form.strategyParams">Strategy Parameters</span>
+                <span style="font-size:0.6rem;opacity:0.5;margin-left:5px" data-i18n="form.multiline">Multi-line</span>
+              </label>
+              <textarea name="strategyParams" id="strategyParams" placeholder="symbol=BTC/USDT&#10;gridLevels=5&#10;rangePercent=5&#10;amountPerOrder=0.001&#10;intervalMs=60000&#10;&#10;# lowerPrice / upperPrice 省略则按当前价 ±rangePercent% 自动计算"></textarea>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <div class="dock-side">
+        <div class="dock-brand">
+          <small>Grid Bot</small>
+          <span class="brand-line1">GRID</span>
+          <span class="brand-line2">FLOW</span>
+        </div>
+        <div class="status-pill" id="statusPill" data-running="false" data-i18n="status.idle">대기 중</div>
+      </div>
+    </div>
+    <div id="msg"></div>
+  </div>
+
+  <!-- Support band -->
+  <section class="support-band">
+    <article class="support-card">
+      <span class="s-kicker" data-i18n="sidebar.overviewTitle">Strategy</span>
+      <h2 data-i18n="sidebar.marketTypeValue">Spot Grid</h2>
+      <p data-i18n="sidebar.overviewCopy">Best when price rotates inside a range.</p>
+      <div class="s-val">+19.7%</div>
+    </article>
+    <article class="support-card">
+      <span class="s-kicker" data-i18n="sidebar.stepsTitle">Launch flow</span>
+      <h2 data-i18n="sidebar.step1Title">1. Add API credentials</h2>
+      <p data-i18n="sidebar.step1Copy">Paste your exchange keys.</p>
+      <div class="s-val">24/7</div>
+    </article>
+    <article class="support-card">
+      <span class="s-kicker" data-i18n="sidebar.inputsLabel">Primary inputs</span>
+      <h2 data-i18n="sidebar.step3Title">Launch immediately</h2>
+      <p data-i18n="sidebar.step3Copy">Save and start in one move.</p>
+      <div class="s-val">~236%</div>
+    </article>
+  </section>
+</div>
+
+<script>
+  const form          = document.getElementById('form');
+  const btnSubmit     = document.getElementById('btnSubmit');
+  const btnStart      = document.getElementById('btnStart');
+  const btnStop       = document.getElementById('btnStop');
+  const msg           = document.getElementById('msg');
+  const statusPill    = document.getElementById('statusPill');
+  const langSelect    = document.getElementById('langSelect');
+  const advancedToggle = document.getElementById('advancedToggle');
+  const advancedSection = document.getElementById('advancedSection');
+
+  let operationInProgress = false;
+
+  const translations = {
+    'ko': {
+      'nav.features': '기능', 'nav.pricing': '가격', 'nav.docs': '문서',
+      'hero.kicker': '자동 그리드 전략',
+      'hero.line1': '경쟁 우위를', 'hero.line2': '재정의하라',
+      'hero.sub': '전문적인 유동성과 주문 흐름 기능을 활용하십시오.',
+      'status.idle': '대기 중', 'status.running': '전략 실행 중',
+      'form.apiKey': 'API 키', 'form.apiSecret': '시크릿',
+      'form.advancedToggle': '고급 설정',
+      'form.exchange': '거래소', 'form.passphrase': 'Passphrase', 'form.optional': '선택',
+      'form.paperTitle': '데모 트레이딩',
+      'form.paperCopy': '거래소 데모 또는 샌드박스 환경을 사용합니다. 주문은 해당 환경으로 실제 전송됩니다.',
+      'form.strategyParams': '전략 파라미터', 'form.multiline': '멀티라인',
+      'actions.start': '지금 시작', 'actions.save': '설정 저장', 'actions.stop': '중지',
+      'sidebar.overviewTitle': '전략', 'sidebar.marketTypeValue': '현물 그리드',
+      'sidebar.overviewCopy': '가격이 구간 안에서 회전할 때 가장 좋습니다.',
+      'sidebar.stepsTitle': '시작 흐름', 'sidebar.step1Title': '1. API 자격 증명 입력',
+      'sidebar.step1Copy': '거래소 키를 붙여 넣습니다.',
+      'sidebar.inputsLabel': '주요 입력', 'sidebar.step3Title': '즉시 실행',
+      'sidebar.step3Copy': '저장과 실행을 한 번에 처리합니다.',
+      'msg.loadFailed': '설정을 불러오지 못했습니다: {error}',
+      'msg.saveSuccess': '구성이 저장되었습니다.',
+      'msg.saveFailed': '저장 실패: {error}',
+      'msg.startSuccess': '전략이 시작되었습니다.',
+      'msg.startFailed': '시작 실패: {error}',
+      'msg.stopSuccess': '전략이 중지되었습니다.',
+      'msg.stopFailed': '중지 실패: {error}',
+      'msg.authError': 'API 인증 실패 – 키가 유효하지 않거나 만료되었습니다.'
+    },
+    'zh-CN': {
+      'nav.features': '功能', 'nav.pricing': '定价', 'nav.docs': '文档',
+      'hero.kicker': '自动网格策略',
+      'hero.line1': '重塑你的交易优势', 'hero.line2': '深度驾驭市场行情',
+      'hero.sub': '释放专业的流动性与订单流操控能力，精准捕获每一次价差机会。',
+      'status.idle': '待机中', 'status.running': '策略运行中',
+      'form.apiKey': 'API KEY', 'form.apiSecret': 'SECRET',
+      'form.advancedToggle': '高级设置',
+      'form.exchange': '交易所', 'form.passphrase': 'Passphrase', 'form.optional': '可选',
+      'form.paperTitle': '模拟盘', 'form.paperCopy': '使用交易所 Demo 或沙盒环境，订单仍会真实发送至该环境。',
+      'form.strategyParams': '策略参数', 'form.multiline': '多行文本',
+      'actions.start': '立即启动', 'actions.save': '保存配置', 'actions.stop': '停止策略',
+      'sidebar.overviewTitle': '策略', 'sidebar.marketTypeValue': '现货网格',
+      'sidebar.overviewCopy': '更适合价格在区间内来回波动。',
+      'sidebar.stepsTitle': '启动流程', 'sidebar.step1Title': '1. 填入 API 凭证',
+      'sidebar.step1Copy': '粘贴交易所密钥。',
+      'sidebar.inputsLabel': '主要输入', 'sidebar.step3Title': '立即启动',
+      'sidebar.step3Copy': '一键保存并启动。',
+      'msg.loadFailed': '加载配置失败: {error}',
+      'msg.saveSuccess': '配置已保存。',
+      'msg.saveFailed': '保存失败: {error}',
+      'msg.startSuccess': '策略已启动。',
+      'msg.startFailed': '启动失败: {error}',
+      'msg.stopSuccess': '策略已停止。',
+      'msg.stopFailed': '停止失败: {error}',
+      'msg.authError': 'API 认证失败 – 密钥无效或已过期，策略已终止。'
+    },
+    'en': {
+      'nav.features': 'Features', 'nav.pricing': 'Pricing', 'nav.docs': 'Docs',
+      'hero.kicker': 'Automated Grid Strategy',
+      'hero.line1': 'Remaster your', 'hero.line2': 'competitive edge',
+      'hero.sub': 'Unleash professional liquidity and order flow capabilities.',
+      'status.idle': 'Idle', 'status.running': 'Strategy running',
+      'form.apiKey': 'API KEY', 'form.apiSecret': 'SECRET',
+      'form.advancedToggle': 'ADVANCED SETUP',
+      'form.exchange': 'Exchange', 'form.passphrase': 'Passphrase', 'form.optional': 'Optional',
+      'form.paperTitle': 'Demo trading', 'form.paperCopy': 'Uses exchange demo or sandbox. Orders are sent to the test environment.',
+      'form.strategyParams': 'Strategy Parameters', 'form.multiline': 'Multi-line',
+      'actions.start': 'LAUNCH PLATFORM', 'actions.save': 'SAVE CONFIG', 'actions.stop': 'STOP',
+      'sidebar.overviewTitle': 'Strategy', 'sidebar.marketTypeValue': 'Spot Grid',
+      'sidebar.overviewCopy': 'Best when price rotates inside a range.',
+      'sidebar.stepsTitle': 'Launch flow', 'sidebar.step1Title': '1. Add API credentials',
+      'sidebar.step1Copy': 'Paste your exchange keys.',
+      'sidebar.inputsLabel': 'Primary inputs', 'sidebar.step3Title': 'Launch immediately',
+      'sidebar.step3Copy': 'Save and start in one move.',
+      'msg.loadFailed': 'Failed to load config: {error}',
+      'msg.saveSuccess': 'Configuration saved.',
+      'msg.saveFailed': 'Save failed: {error}',
+      'msg.startSuccess': 'Strategy started.',
+      'msg.startFailed': 'Start failed: {error}',
+      'msg.stopSuccess': 'Strategy stopped.',
+      'msg.stopFailed': 'Stop failed: {error}',
+      'msg.authError': 'API authentication failed – key invalid or expired. Strategy stopped.'
+    },
+    'es': {
+      'nav.features': 'Funciones', 'nav.pricing': 'Precios', 'nav.docs': 'Documentación',
+      'hero.kicker': 'Estrategia de grid automatizada',
+      'hero.line1': 'Redefine tu', 'hero.line2': 'ventaja competitiva',
+      'hero.sub': 'Aprovecha las capacidades profesionales de liquidez y flujo de órdenes.',
+      'status.idle': 'En espera', 'status.running': 'Estrategia en ejecución',
+      'form.apiKey': 'API KEY', 'form.apiSecret': 'SECRET',
+      'form.advancedToggle': 'AJUSTES AVANZADOS',
+      'form.exchange': 'Exchange', 'form.passphrase': 'Passphrase', 'form.optional': 'Opcional',
+      'form.paperTitle': 'Trading demo', 'form.paperCopy': 'Usa credenciales demo o sandbox. Las órdenes se envían al entorno de prueba.',
+      'form.strategyParams': 'Parámetros de estrategia', 'form.multiline': 'Multilínea',
+      'actions.start': 'LANZAR AHORA', 'actions.save': 'GUARDAR CONFIG', 'actions.stop': 'DETENER',
+      'sidebar.overviewTitle': 'Estrategia', 'sidebar.marketTypeValue': 'Grid spot',
+      'sidebar.overviewCopy': 'Funciona mejor cuando el precio gira dentro de un rango.',
+      'sidebar.stepsTitle': 'Flujo de inicio', 'sidebar.step1Title': '1. Añade credenciales API',
+      'sidebar.step1Copy': 'Pega tus claves del exchange.',
+      'sidebar.inputsLabel': 'Entradas principales', 'sidebar.step3Title': 'Lanzamiento inmediato',
+      'sidebar.step3Copy': 'Guardar e iniciar en un solo paso.',
+      'msg.loadFailed': 'Error al cargar config: {error}',
+      'msg.saveSuccess': 'Configuración guardada.',
+      'msg.saveFailed': 'Error al guardar: {error}',
+      'msg.startSuccess': 'Estrategia iniciada.',
+      'msg.startFailed': 'Error al iniciar: {error}',
+      'msg.stopSuccess': 'Estrategia detenida.',
+      'msg.stopFailed': 'Error al detener: {error}',
+      'msg.authError': 'Error de autenticación API – clave inválida o expirada. Estrategia detenida.'
+    }
+  };
+
+  let currentLang = 'ko';
+
+  function t(key, values = {}) {
+    const dict = translations[currentLang] || translations['en'];
+    let text = dict[key] || (translations['en'] && translations['en'][key]) || key;
+    Object.entries(values).forEach(([n, v]) => {
+      text = text.replace(new RegExp(`\\{${n}\\}`, 'g'), String(v));
+    });
+    return text;
+  }
+
+  function applyTranslations() {
+    document.documentElement.lang = currentLang;
+    document.title = 'Grid Trading Bot';
+    document.querySelectorAll('[data-i18n]').forEach(node => {
+      node.innerHTML = t(node.getAttribute('data-i18n'));
+    });
+    updateStatusPill(btnStart.disabled);
+  }
+
+  function toggleAdvanced(open) {
+    advancedSection.hidden = !open;
+    advancedToggle.setAttribute('aria-expanded', String(open));
+  }
+
+  function updateStatusPill(running) {
+    statusPill.dataset.running = running ? 'true' : 'false';
+    statusPill.textContent = running ? t('status.running') : t('status.idle');
+  }
+
+  function showMsg(text, isErr) {
+    msg.textContent = text;
+    msg.className = 'msg ' + (isErr ? 'err' : 'ok');
+  }
+
+  function collectPayload() {
+    return {
+      exchangeId:     document.getElementById('exchangeId').value,
+      apiKey:         document.getElementById('apiKey').value,
+      apiSecret:      document.getElementById('apiSecret').value,
+      passphrase:     document.getElementById('passphrase').value,
+      paper:          document.getElementById('paper').checked,
+      strategyParams: document.getElementById('strategyParams').value
+    };
+  }
+
+  async function saveConfig() {
+    const payload = collectPayload();
+    const res = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`);
+    return data;
+  }
+
+  async function loadConfig() {
+    try {
+      const r = await fetch('/api/config');
+      const data = await r.json();
+      if (data.exchangeId) document.getElementById('exchangeId').value = data.exchangeId;
+      if (data.apiKey)     document.getElementById('apiKey').value     = data.apiKey;
+      if (data.apiSecret)  document.getElementById('apiSecret').value  = data.apiSecret;
+      if (data.passphrase) document.getElementById('passphrase').value = data.passphrase;
+      document.getElementById('paper').checked = data.paper !== false;
+      if (data.strategyParams) document.getElementById('strategyParams').value = data.strategyParams;
+    } catch (e) {
+      showMsg(t('msg.loadFailed', { error: e.message }), true);
+    }
+  }
+
+  async function refreshStatus() {
+    if (operationInProgress) return;
+    try {
+      const r = await fetch('/api/strategy/status');
+      const data = await r.json();
+      btnStart.disabled = data.running;
+      btnStop.disabled  = !data.running;
+      updateStatusPill(Boolean(data.running));
+      if (!data.running && data.lastActivity && data.lastActivity.action === 'auth_error') {
+        showMsg(t('msg.authError'), true);
+      }
+    } catch (_) {}
+  }
+
+  advancedToggle.addEventListener('click', () => toggleAdvanced(advancedSection.hidden));
+
+  langSelect.addEventListener('change', () => {
+    currentLang = langSelect.value;
+    applyTranslations();
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+      await saveConfig();
+      showMsg(t('msg.saveSuccess'), false);
+      setTimeout(refreshStatus, 200);
+    } catch (err) {
+      showMsg(t('msg.saveFailed', { error: err.message }), true);
+    }
+  });
+
+  btnStart.addEventListener('click', async () => {
+    operationInProgress = true;
+    btnStart.disabled = true;
+    btnStop.disabled  = false;
+    updateStatusPill(true);
+    try {
+      await saveConfig();
+      const res  = await fetch('/api/strategy/start', { method: 'POST' });
+      const data = await res.json();
+      if (res.status === 401) throw new Error(t('msg.authError'));
+      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`);
+      showMsg(t('msg.startSuccess'), false);
+    } catch (err) {
+      btnStart.disabled = false;
+      btnStop.disabled  = true;
+      updateStatusPill(false);
+      showMsg(t('msg.startFailed', { error: err.message }), true);
+    } finally {
+      operationInProgress = false;
+      refreshStatus();
+    }
+  });
+
+  btnStop.addEventListener('click', async () => {
+    operationInProgress = true;
+    btnStop.disabled  = true;
+    btnStart.disabled = false;
+    updateStatusPill(false);
+    try {
+      const res  = await fetch('/api/strategy/stop', { method: 'POST' });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`);
+      showMsg(t('msg.stopSuccess'), false);
+    } catch (err) {
+      btnStop.disabled  = false;
+      btnStart.disabled = true;
+      updateStatusPill(true);
+      showMsg(t('msg.stopFailed', { error: err.message }), true);
+    } finally {
+      operationInProgress = false;
+      refreshStatus();
+    }
+  });
+
+  langSelect.value = currentLang;
+  toggleAdvanced(false);
+  applyTranslations();
+  loadConfig();
+  refreshStatus();
+  setInterval(refreshStatus, 2000);
+</script>
+</body>
+</html>

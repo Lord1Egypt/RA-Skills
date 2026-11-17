@@ -1,38 +1,49 @@
-## Description: <br>
-Commander.js is the most popular command-line interface (CLI) framework for Node.js. Used to create professional CLI programs, supporting option parsing, subcommands, automatic help generation, TypeScript, etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for creating professional Node.js CLI programs with Commander.js, including option parsing, subcommands, automatic help generation, TypeScript support, and best practices.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Commander.js reference for creating Node.js command-line tools, including options, arguments, subcommands, help output, and TypeScript examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied npm commands or CLI code examples may be run in the wrong project directory or without normal development review. <br>
-Mitigation: Review snippets before use and run npm commands only in the intended project directory. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly scaffold and configure Commander.js-based command-line interfaces for Node.js projects. It supports common CLI tasks such as defining options and arguments, creating subcommands, customizing help, and adding TypeScript examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/commander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with JavaScript, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution, credential access, or persistence reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Using the examples may add the commander npm dependency or change CLI behavior in a Node.js project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency additions and adapted CLI code before execution, testing, or release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/commander)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JavaScript, TypeScript, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI scaffolding, option and argument examples, subcommand patterns, help customization, TypeScript usage, and best practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

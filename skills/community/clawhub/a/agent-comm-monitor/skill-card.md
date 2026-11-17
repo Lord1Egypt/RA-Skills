@@ -1,39 +1,53 @@
-## Description: <br>
-Monitors communication between the muzhe agent and named peer agents, checks message delivery, and reports normal or abnormal cross-agent communication status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors communication between muzhe and named agents, verifies one-way and two-way message delivery, and reports communication status.
 
-## Publisher: <br>
-[nancliu](https://clawhub.ai/user/nancliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nancliu](https://clawhub.ai/user/nancliu)
 
-## Use Case: <br>
-Developers and operators managing a multi-agent workspace use this skill to test one-way and two-way agent messaging, inspect timeouts, and receive concise communication status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact other agents and persist operational notes without clear user approval. <br>
-Mitigation: Require confirmation before sending cross-agent messages, narrow activation conditions, and review or disable writes to MEMORY.md and HEARTBEAT.md unless persistent state is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check whether muzhe can communicate with named agents, inspect delivery status, and receive a concise status report when communication appears delayed or failed.
 
-## Reference(s): <br>
-- [Agent Comm Monitor Skill Page](https://clawhub.ai/nancliu/agent-comm-monitor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown status report with a table and operational notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include communication status, response timing, timeout notes, and follow-up guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can inspect named agents' communication state and session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit checks to the named target agents and the current communication test window, and review the skill before installing where cross-agent history is sensitive.
+
+Risk: The skill may write persistent abnormality logs to MEMORY.md or HEARTBEAT.md without clear user approval.
+
+Mitigation: Ask before writing persistent logs, keep log contents minimal, and document what was written for user review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nancliu/skills/agent-comm-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status report with a concise table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include communication status, response timing, timeout notes, and follow-up guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

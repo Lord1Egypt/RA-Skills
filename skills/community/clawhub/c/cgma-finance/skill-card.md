@@ -1,40 +1,60 @@
-## Description: <br>
-Builds or restructures enterprise finance management systems based on CGMA Global Management Accounting Principles and produces a board-level whitepaper, CSV capability checklist, and HTML presentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-Class Finance System Builder helps CFOs, finance leaders, consultants, and transformation teams build or restructure enterprise finance management systems using CGMA GMAP and consulting-style finance practices.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-CFOs, finance leaders, management consultants, and finance transformation teams use this skill to design, assess, or restructure enterprise finance management systems and generate executive-ready deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated finance reports and presentations may include confidential business data supplied by the user. <br>
-Mitigation: Avoid providing sensitive business data unless the user is comfortable with it being saved in generated files, and confirm where outputs will be written. <br>
-Risk: Generated HTML or PDF-ready presentation content may be shared externally without review. <br>
-Mitigation: Review generated HTML and PDF content before external distribution. <br>
+## Use Case:
 
+External ClawHub users, finance executives, finance directors, management consultants, and finance transformation leads use this skill to generate board-level finance-system deliverables and CGMA-aligned implementation plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/cgma-finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, CSV capability checklists, and HTML presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create finance whitepapers, CSV files, and HTML/PDF-ready presentation content from user-provided business context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can write finance reports, CSV files, and presentation files to a local work directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination directory before use and review generated files before sharing them.
+
+Risk: Generated deliverables may contain confidential company finance data supplied by the user.
+
+Mitigation: Avoid entering sensitive company data unless the local environment and output handling are approved for that data.
+
+Risk: Presentation validation may use browser automation and PDF generation side effects.
+
+Mitigation: Run validation in a trusted local workspace and inspect generated HTML or PDF output before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/cgma-finance)
+- [Publisher profile](https://clawhub.ai/user/yjkj999999)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown whitepaper, UTF-8 CSV checklist, HTML presentation, and optional PDF-ready presentation output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local finance-report files; presentation output may include keyboard navigation, print CSS, SVG charts, and browser/PDF validation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

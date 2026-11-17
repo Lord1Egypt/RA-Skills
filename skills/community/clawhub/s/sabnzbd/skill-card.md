@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Usenet downloads with SABnzbd through queue, history, speed, category, script, and status commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Usenet downloads with SABnzbd, including queue, NZB, speed, history, category, script, and status operations.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jmagar](https://clawhub.ai/user/jmagar)
 
-## Use Case: <br>
-Developers and operators use this skill to manage SABnzbd downloads from an agent by checking status, adding NZBs, changing queue state, and reviewing history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script has unsafe URL handling that could allow crafted add-command input to run local code. <br>
-Mitigation: Avoid untrusted or unusual URL strings for add commands until the URL encoding bug is fixed. <br>
-Risk: Queue delete, purge, and delete-history commands can remove SABnzbd jobs or associated files. <br>
-Mitigation: Confirm destructive actions before allowing an agent to run them. <br>
-Risk: The skill requires access to a SABnzbd instance and API key. <br>
-Mitigation: Use only SABnzbd instances and API keys you control, and keep the credential file private. <br>
+## Use Case:
 
+External users and developers use this skill to manage a SABnzbd instance from an agent workflow, including viewing queue and history state, adding NZB downloads, changing speed limits, and controlling jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jmagar/sabnzbd) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses from SABnzbd] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SABnzbd URL and API key via config file or environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A crafted NZB URL can execute local Python code through the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted NZB URLs, review add commands before execution, and avoid passing untrusted input to the helper script.
+
+Risk: The helper script supports destructive SABnzbd actions such as purge, deleting files, deleting history, and clearing warnings without confirmation.
+
+Mitigation: Require explicit user confirmation before purge, delete with files, delete-history, or warning-clear operations.
+
+Risk: The SABnzbd API key grants control over the configured SABnzbd instance.
+
+Mitigation: Store the API key with owner-only permissions and prefer HTTPS for non-local SABnzbd URLs.
+
+## Reference(s):
+
+- [SABnzbd Skill README](README.md)
+- [ClawHub skill page](https://clawhub.ai/jmagar/skills/sabnzbd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and SABnzbd JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SABnzbd URL and API key configuration; command outputs depend on the connected SABnzbd instance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

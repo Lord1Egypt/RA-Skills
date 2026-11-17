@@ -1,42 +1,59 @@
-## Description: <br>
-A GDPR-focused compliance aid for checks, DPIA drafting, data-subject rights review, cross-border transfer assessment, and related report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local GDPR compliance checks, DPIA drafting, data subject rights review, cross-border transfer assessment, and multi-format compliance reports for EU data protection workflows.
 
-## Publisher: <br>
-[wwumit](https://clawhub.ai/user/wwumit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwumit](https://clawhub.ai/user/wwumit)
 
-## Use Case: <br>
-Privacy, compliance, legal operations, and engineering teams use this skill to produce preliminary GDPR checklists, DPIA materials, data-subject rights guidance, transfer assessments, and compliance reports. Outputs should be reviewed by qualified legal counsel or a DPO before business, audit, customer, or regulatory use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-EU/EEA and UK <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The main GDPR checker can generate favorable compliance results without real supporting evidence. <br>
-Mitigation: Treat generated pass rates and reports as preliminary and require human legal or DPO review before using them for business, audit, customer, or regulatory purposes. <br>
-Risk: Generated reports may include sensitive business or personal-data context supplied by the user. <br>
-Mitigation: Run the skill in a virtual environment, pin dependencies, and store generated reports in a protected folder. <br>
+## Use Case:
 
+Developers, privacy teams, and compliance reviewers use this skill to run local GDPR self-checks, generate draft DPIA and data subject rights materials, and produce reports for human legal or DPO review.
 
-## Reference(s): <br>
-- [GDPR regulation reference](references/gdpr-regulation.md) <br>
-- [Security check and installation guide](SECURITY_CHECK_GUIDE.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wwumit/gpdr-compliance) <br>
+### Deployment Geography for Use:
 
+EU/EEA and UK
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and writes compliance, DPIA, data-subject-rights, transfer, and security-check reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence, package.json, CHANGELOG) <br>
+Risk: The main GDPR check command can load a parent-directory compliance_core dependency outside the skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove that dependency before installation, use a trusted compliance_core source, and run the skill in an isolated virtual environment with pinned dependencies.
+
+Risk: Generated reports may contain sensitive business, privacy, or compliance information.
+
+Mitigation: Keep generated reports local, restrict access to the output files, and avoid HTML or CSV output when processing untrusted content.
+
+Risk: The skill produces compliance drafts that may be incomplete or unsuitable for a specific legal situation.
+
+Mitigation: Use outputs as review drafts only and have major GDPR decisions reviewed by qualified counsel or a data protection officer.
+
+## Reference(s):
+
+- [GDPR Regulation Summary](references/gdpr-regulation.md)
+- [Security Check Guide](SECURITY_CHECK_GUIDE.md)
+- [ClawHub Skill Page](https://clawhub.ai/wwumit/skills/gdpr-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON, Markdown, HTML, or CSV report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated locally and should be treated as sensitive drafts for professional review.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, package.json, and CHANGELOG, released 2026-07-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

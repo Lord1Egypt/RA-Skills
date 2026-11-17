@@ -1,47 +1,64 @@
-## Description: <br>
-全网持续收录每日公众号原创热门文章内容，向用户推送公众号原创热门文章；当用户需要获取全领域的公众号原创热门文章、或订阅每日原创热门文章推送时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全网持续收录每日公众号原创热门文章内容，向用户推送公众号原创热门文章；当用户需要获取全领域的公众号原创热门文章、或订阅每日原创热门文章推送时使用
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Content creators, WeChat account operators, content planners, and operations teams use this skill to find daily original viral WeChat Official Account articles by category or date, generate ranking reports, and subscribe to daily trend updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and makes network requests to redfox.hk. <br>
-Mitigation: Configure REDFOX_API_KEY as an environment variable only, and confirm the key source, scope, validity period, and revocation process before use. <br>
-Risk: Security evidence flags TLS verification and generated HTML field handling for review. <br>
-Mitigation: Restore normal TLS verification and escape or validate generated HTML fields before routine use. <br>
-Risk: Generated report artifacts may persist locally. <br>
-Mitigation: Review and remove temporary JSON, HTML, or exported report files when they are no longer needed. <br>
-Risk: The skill describes a daily subscription push flow whose implementation and revocation path need confirmation. <br>
-Mitigation: Confirm how subscription push delivery is implemented and how users can revoke it before enabling routine subscriptions. <br>
+## Use Case:
 
+External creators, editors, content planners, and operations teams use this skill to query original viral WeChat Official Account article rankings by category or date, review the returned article table, generate an HTML/PDF-ready report, and request daily category subscription pushes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/wechat-original-hot) <br>
-- [Category mapping reference](references/category_mapping.md) <br>
-- [RedFox article ranking API endpoint](https://redfox.hk/story/api/cozeSkill/getWxDataByCategoryAndTime) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, API Calls, Shell commands] <br>
-**Output Format:** [Markdown article ranking tables with generated local HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; may create temporary JSON data and HTML or PDF-ready report artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill sends authenticated requests to the RedFox API and depends on REDFOX_API_KEY handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the RedFox integration is trusted, keep the key in environment configuration, confirm key scope and revocation, and avoid exposing it in prompts, logs, code, or generated files.
+
+Risk: Remote article fields and URLs are displayed in Markdown and may be used in generated HTML/PDF reports.
+
+Mitigation: Escape and validate article fields and links before display or report generation, and review generated reports before sharing or opening them in sensitive environments.
+
+Risk: The security guidance says normal TLS verification should be restored before real API-key use.
+
+Mitigation: Require standard certificate and hostname verification for API calls before using production credentials.
+
+Risk: The skill can create local report files and prompts for subscription behavior.
+
+Mitigation: Make HTML/PDF generation and subscription actions explicit and user-controlled before creating files or enabling recurring pushes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/wechat-original-hot)
+- [Category mapping reference](references/category_mapping.md)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox data API endpoint](https://redfox.hk/story/api/cozeSkill/getWxDataByCategoryAndTime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Configuration, Guidance]
+
+**Output Format:** [Markdown article ranking tables, subscription prompts, and optional generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY and may create local JSON and HTML report files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

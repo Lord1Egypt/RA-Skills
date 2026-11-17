@@ -1,0 +1,2524 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "module": "ldo-rigid-transform",
+  "strategy": "rigid",
+  "boardOutlineSource": "polygon",
+  "boardOutlineFormat": "arc-polyline",
+  "edgeDistanceMethod": "polygon-centerline",
+  "inputHashSemantic": "sha256(raw-file-bytes)",
+  "layoutSha256": "51700e473f1c41950d1b6d9329f8114d4cd0d3af4277a2fe82cab7370e834442",
+  "boardSha256": "8c90926484f3d408a406c7bc4c2713d3ad8c358106873865afbeec3873cbed09",
+  "candidates": null,
+  "rejected": [
+    {
+      "variant": "translate-right",
+      "reasons": [
+        "C5 is closer than 6.00mil to obstacle C8",
+        "C6 is closer than 6.00mil to obstacle R7",
+        "U2 is closer than 6.00mil to obstacle SW1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 1955,
+          "yMil": 349.4,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 1916.425,
+            "minY": 269.093,
+            "maxX": 1993.575,
+            "maxY": 429.707
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1955,
+              "y": 388.8,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1955,
+              "y": 310,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2044.0015,
+          "yMil": 337.598,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 2011.0445,
+            "minY": 277.877,
+            "maxX": 2076.9555,
+            "maxY": 397.323
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2044,
+              "y": 365.2,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2044,
+              "y": 310,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2350,
+          "yMil": 627,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 2311.425,
+            "minY": 546.693,
+            "maxX": 2388.575,
+            "maxY": 707.307
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2350,
+              "y": 666.4,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2350,
+              "y": 587.6,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 2200.0015,
+          "yMil": 615.198,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 2167.0445,
+            "minY": 555.477,
+            "maxX": 2232.9555,
+            "maxY": 674.923
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2200,
+              "y": 642.8,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2200,
+              "y": 587.6,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 2250,
+          "yMil": 400,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 2089.768,
+            "minY": 266.047,
+            "maxX": 2410.232,
+            "maxY": 533.953
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2138.4,
+              "y": 490.6,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2138.4,
+              "y": 400,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2138.4,
+              "y": 309.5,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2361.6,
+              "y": 400,
+              "width": 97.2,
+              "height": 141.7,
+              "rotation": 180
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1916.425,
+          "minY": 266.047,
+          "maxX": 2410.232,
+          "maxY": 707.307
+        },
+        "moduleWidthMil": 493.807,
+        "moduleHeightMil": 441.26,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -250,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "SW1",
+          "distanceMil": -250
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 269.093,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 277.877,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 546.693,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 555.477,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 266.047,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-right",
+      "reasons": [
+        "U2 is closer than 6.00mil to obstacle SW1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 2300.6,
+          "yMil": 105,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 2220.293,
+            "minY": 66.425,
+            "maxX": 2380.907,
+            "maxY": 143.575
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2261.2,
+              "y": 105,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2340,
+              "y": 105,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2312.402,
+          "yMil": 194.0015,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 2252.677,
+            "minY": 161.0445,
+            "maxX": 2372.123,
+            "maxY": 226.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2284.8,
+              "y": 194,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2340,
+              "y": 194,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2023,
+          "yMil": 500,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1942.693,
+            "minY": 461.425,
+            "maxX": 2103.307,
+            "maxY": 538.575
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1983.6,
+              "y": 500,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2062.4,
+              "y": 500,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 2034.802,
+          "yMil": 350.0015,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1975.077,
+            "minY": 317.0445,
+            "maxX": 2094.523,
+            "maxY": 382.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2007.2,
+              "y": 350,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2062.4,
+              "y": 350,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 2250,
+          "yMil": 400,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2116.047,
+            "minY": 239.768,
+            "maxX": 2383.953,
+            "maxY": 560.232
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2159.4,
+              "y": 288.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2250,
+              "y": 288.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2340.5,
+              "y": 288.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2250,
+              "y": 511.6,
+              "width": 141.7,
+              "height": 97.2,
+              "rotation": 270
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1942.693,
+          "minY": 66.425,
+          "maxX": 2383.953,
+          "maxY": 560.232
+        },
+        "moduleWidthMil": 441.26,
+        "moduleHeightMil": 493.807,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -226.863,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "SW1",
+          "distanceMil": -226.863
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 66.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 161.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 461.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 317.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 239.768,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-right",
+      "reasons": [
+        "C3 is closer than 6.00mil to obstacle SW1",
+        "C4 is closer than 6.00mil to obstacle SW1",
+        "U2 is closer than 6.00mil to obstacle SW1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 2545,
+          "yMil": 450.6,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2506.425,
+            "minY": 370.293,
+            "maxX": 2583.575,
+            "maxY": 530.907
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2545,
+              "y": 411.2,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2545,
+              "y": 490,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2455.9985,
+          "yMil": 462.402,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2423.0445,
+            "minY": 402.677,
+            "maxX": 2488.9555,
+            "maxY": 522.123
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2456,
+              "y": 434.8,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2456,
+              "y": 490,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2150,
+          "yMil": 173,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2111.425,
+            "minY": 92.693,
+            "maxX": 2188.575,
+            "maxY": 253.307
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2150,
+              "y": 133.6,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2150,
+              "y": 212.4,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 2299.9985,
+          "yMil": 184.802,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2267.0445,
+            "minY": 125.077,
+            "maxX": 2332.9555,
+            "maxY": 244.523
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2300,
+              "y": 157.2,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2300,
+              "y": 212.4,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 2250,
+          "yMil": 400,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2089.768,
+            "minY": 266.047,
+            "maxX": 2410.232,
+            "maxY": 533.953
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2361.6,
+              "y": 309.4,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2361.6,
+              "y": 400,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2361.6,
+              "y": 490.5,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2138.4,
+              "y": 400,
+              "width": 97.2,
+              "height": 141.7
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 2089.768,
+          "minY": 92.693,
+          "maxX": 2583.575,
+          "maxY": 533.953
+        },
+        "moduleWidthMil": 493.807,
+        "moduleHeightMil": 441.26,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -250,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "SW1",
+          "distanceMil": -250
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 370.293,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 402.677,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 92.693,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 125.077,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 266.047,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-right",
+      "reasons": [
+        "C4 is closer than 6.00mil to obstacle R7",
+        "C5 is closer than 6.00mil to obstacle SW1",
+        "C6 is closer than 6.00mil to obstacle SW1",
+        "U2 is closer than 6.00mil to obstacle SW1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 2199.4,
+          "yMil": 695,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2119.093,
+            "minY": 656.425,
+            "maxX": 2279.707,
+            "maxY": 733.575
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2238.8,
+              "y": 695,
+              "width": 55.5,
+              "height": 53.1
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2160,
+              "y": 695,
+              "width": 55.5,
+              "height": 53.1
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2187.598,
+          "yMil": 605.9985,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2127.877,
+            "minY": 573.0445,
+            "maxX": 2247.323,
+            "maxY": 638.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2215.2,
+              "y": 606,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2160,
+              "y": 606,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2477,
+          "yMil": 300,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2396.693,
+            "minY": 261.425,
+            "maxX": 2557.307,
+            "maxY": 338.575
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2516.4,
+              "y": 300,
+              "width": 55.5,
+              "height": 53.1
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2437.6,
+              "y": 300,
+              "width": 55.5,
+              "height": 53.1
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 2465.198,
+          "yMil": 449.9985,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2405.477,
+            "minY": 417.0445,
+            "maxX": 2524.923,
+            "maxY": 482.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2492.8,
+              "y": 450,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2437.6,
+              "y": 450,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 2250,
+          "yMil": 400,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 2116.047,
+            "minY": 239.768,
+            "maxX": 2383.953,
+            "maxY": 560.232
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2340.6,
+              "y": 511.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2250,
+              "y": 511.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2159.5,
+              "y": 511.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2250,
+              "y": 288.4,
+              "width": 141.7,
+              "height": 97.2,
+              "rotation": 90
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 2116.047,
+          "minY": 239.768,
+          "maxX": 2557.307,
+          "maxY": 733.575
+        },
+        "moduleWidthMil": 441.26,
+        "moduleHeightMil": 493.807,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -226.863,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "SW1",
+          "distanceMil": -226.863
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 656.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 573.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 261.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 417.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 239.768,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-up",
+      "reasons": [
+        "C3 is closer than 6.00mil to obstacle C10",
+        "C3 is closer than 6.00mil to obstacle C21",
+        "C3 is closer than 6.00mil to obstacle X1",
+        "C4 is closer than 6.00mil to obstacle C10",
+        "C5 is closer than 6.00mil to obstacle R14",
+        "C6 is closer than 6.00mil to obstacle C15",
+        "C6 is closer than 6.00mil to obstacle C20",
+        "C6 is closer than 6.00mil to obstacle U6",
+        "U2 is closer than 6.00mil to obstacle C20",
+        "U2 is closer than 6.00mil to obstacle X1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 1655,
+          "yMil": 649.4,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 1616.425,
+            "minY": 569.093,
+            "maxX": 1693.575,
+            "maxY": 729.707
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1655,
+              "y": 688.8,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1655,
+              "y": 610,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 1744.0015,
+          "yMil": 637.598,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 1711.0445,
+            "minY": 577.877,
+            "maxX": 1776.9555,
+            "maxY": 697.323
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1744,
+              "y": 665.2,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1744,
+              "y": 610,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2050,
+          "yMil": 927,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 2011.425,
+            "minY": 846.693,
+            "maxX": 2088.575,
+            "maxY": 1007.307
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2050,
+              "y": 966.4,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2050,
+              "y": 887.6,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 1900.0015,
+          "yMil": 915.198,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 1867.0445,
+            "minY": 855.477,
+            "maxX": 1932.9555,
+            "maxY": 974.923
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1900,
+              "y": 942.8,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1900,
+              "y": 887.6,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 90
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 1950,
+          "yMil": 700,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1789.768,
+            "minY": 566.047,
+            "maxX": 2110.232,
+            "maxY": 833.953
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 1838.4,
+              "y": 790.6,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1838.4,
+              "y": 700,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1838.4,
+              "y": 609.5,
+              "width": 97.2,
+              "height": 38.6,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2061.6,
+              "y": 700,
+              "width": 97.2,
+              "height": 141.7,
+              "rotation": 180
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1616.425,
+          "minY": 566.047,
+          "maxX": 2110.232,
+          "maxY": 1007.307
+        },
+        "moduleWidthMil": 493.807,
+        "moduleHeightMil": 441.26,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -65.911,
+        "closestExternalComponentGap": {
+          "from": "C3",
+          "to": "C10",
+          "distanceMil": -65.911
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 569.093,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 577.877,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 846.693,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 855.477,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 566.047,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-up",
+      "reasons": [
+        "C5 is closer than 6.00mil to obstacle C21",
+        "C5 is closer than 6.00mil to obstacle X1",
+        "C6 is closer than 6.00mil to obstacle C10",
+        "U2 is closer than 6.00mil to obstacle C20",
+        "U2 is closer than 6.00mil to obstacle X1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 2000.6,
+          "yMil": 405,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1920.293,
+            "minY": 366.425,
+            "maxX": 2080.907,
+            "maxY": 443.575
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1961.2,
+              "y": 405,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2040,
+              "y": 405,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2012.402,
+          "yMil": 494.0015,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1952.677,
+            "minY": 461.0445,
+            "maxX": 2072.123,
+            "maxY": 526.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1984.8,
+              "y": 494,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2040,
+              "y": 494,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 1723,
+          "yMil": 800,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1642.693,
+            "minY": 761.425,
+            "maxX": 1803.307,
+            "maxY": 838.575
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1683.6,
+              "y": 800,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1762.4,
+              "y": 800,
+              "width": 55.5,
+              "height": 53.1,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 1734.802,
+          "yMil": 650.0015,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1675.077,
+            "minY": 617.0445,
+            "maxX": 1794.523,
+            "maxY": 682.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1707.2,
+              "y": 650,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1762.4,
+              "y": 650,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 1950,
+          "yMil": 700,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 1816.047,
+            "minY": 539.768,
+            "maxX": 2083.953,
+            "maxY": 860.232
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 1859.4,
+              "y": 588.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1950,
+              "y": 588.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2040.5,
+              "y": 588.4,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1950,
+              "y": 811.6,
+              "width": 141.7,
+              "height": 97.2,
+              "rotation": 270
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1642.693,
+          "minY": 366.425,
+          "maxX": 2083.953,
+          "maxY": 860.232
+        },
+        "moduleWidthMil": 441.26,
+        "moduleHeightMil": 493.807,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -77.15,
+        "closestExternalComponentGap": {
+          "from": "C5",
+          "to": "X1",
+          "distanceMil": -77.15
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 366.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 461.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 761.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 617.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 539.768,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-up",
+      "reasons": [
+        "U2 is closer than 6.00mil to obstacle C20",
+        "U2 is closer than 6.00mil to obstacle X1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 2245,
+          "yMil": 750.6,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2206.425,
+            "minY": 670.293,
+            "maxX": 2283.575,
+            "maxY": 830.907
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2245,
+              "y": 711.2,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2245,
+              "y": 790,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 2155.9985,
+          "yMil": 762.402,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 2123.0445,
+            "minY": 702.677,
+            "maxX": 2188.9555,
+            "maxY": 822.123
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2156,
+              "y": 734.8,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2156,
+              "y": 790,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 1850,
+          "yMil": 473,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 1811.425,
+            "minY": 392.693,
+            "maxX": 1888.575,
+            "maxY": 553.307
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1850,
+              "y": 433.6,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1850,
+              "y": 512.4,
+              "width": 53.1,
+              "height": 55.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 1999.9985,
+          "yMil": 484.802,
+          "rotationDeg": 270,
+          "layer": 1,
+          "bbox": {
+            "minX": 1967.0445,
+            "minY": 425.077,
+            "maxX": 2032.9555,
+            "maxY": 544.523
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2000,
+              "y": 457.2,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2000,
+              "y": 512.4,
+              "width": 35.4,
+              "height": 31.5,
+              "rotation": 270
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 1950,
+          "yMil": 700,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1789.768,
+            "minY": 566.047,
+            "maxX": 2110.232,
+            "maxY": 833.953
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2061.6,
+              "y": 609.4,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2061.6,
+              "y": 700,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 2061.6,
+              "y": 790.5,
+              "width": 97.2,
+              "height": 38.6
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1838.4,
+              "y": 700,
+              "width": 97.2,
+              "height": 141.7
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1789.768,
+          "minY": 392.693,
+          "maxX": 2283.575,
+          "maxY": 833.953
+        },
+        "moduleWidthMil": 493.807,
+        "moduleHeightMil": 441.26,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -46.9055,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "C20",
+          "distanceMil": -46.9055
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "bottom",
+            "distanceMil": 670.293,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 702.677,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 392.693,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 425.077,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 566.047,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "translate-up",
+      "reasons": [
+        "C3 is closer than 6.00mil to obstacle R14",
+        "C3 is closer than 6.00mil to obstacle U6",
+        "C4 is closer than 6.00mil to obstacle C15",
+        "C4 is closer than 6.00mil to obstacle U6",
+        "C5 is closer than 6.00mil to obstacle R7",
+        "U2 is closer than 6.00mil to obstacle C20",
+        "U2 is closer than 6.00mil to obstacle X1",
+        "copperPolicy require-board-empty rejected a move on a board with 15 routed line(s)"
+      ],
+      "placements": [
+        {
+          "ref": "C3",
+          "primitiveId": "caccbcfe676977f7",
+          "xMil": 1899.4,
+          "yMil": 995,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1819.093,
+            "minY": 956.425,
+            "maxX": 1979.707,
+            "maxY": 1033.575
+          },
+          "pads": [
+            {
+              "primitiveId": "caccbcfe676977f7e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1938.8,
+              "y": 995,
+              "width": 55.5,
+              "height": 53.1
+            },
+            {
+              "primitiveId": "caccbcfe676977f7e16",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1860,
+              "y": 995,
+              "width": 55.5,
+              "height": 53.1
+            }
+          ]
+        },
+        {
+          "ref": "C4",
+          "primitiveId": "bb812d969a1edb5c",
+          "xMil": 1887.598,
+          "yMil": 905.9985,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1827.877,
+            "minY": 873.0445,
+            "maxX": 1947.323,
+            "maxY": 938.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "bb812d969a1edb5ce14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1915.2,
+              "y": 906,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "bb812d969a1edb5ce15",
+              "padNumber": "1",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1860,
+              "y": 906,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "C5",
+          "primitiveId": "60936c39301a46a8",
+          "xMil": 2177,
+          "yMil": 600,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2096.693,
+            "minY": 561.425,
+            "maxX": 2257.307,
+            "maxY": 638.575
+          },
+          "pads": [
+            {
+              "primitiveId": "60936c39301a46a8e15",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2216.4,
+              "y": 600,
+              "width": 55.5,
+              "height": 53.1
+            },
+            {
+              "primitiveId": "60936c39301a46a8e16",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2137.6,
+              "y": 600,
+              "width": 55.5,
+              "height": 53.1
+            }
+          ]
+        },
+        {
+          "ref": "C6",
+          "primitiveId": "6a26faf8eb7d3571",
+          "xMil": 2165.198,
+          "yMil": 749.9985,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 2105.477,
+            "minY": 717.0445,
+            "maxX": 2224.923,
+            "maxY": 782.9555
+          },
+          "pads": [
+            {
+              "primitiveId": "6a26faf8eb7d3571e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 2192.8,
+              "y": 750,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "6a26faf8eb7d3571e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 2137.6,
+              "y": 750,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "U2",
+          "primitiveId": "4efb65798092ccf3",
+          "xMil": 1950,
+          "yMil": 700,
+          "rotationDeg": 90,
+          "layer": 1,
+          "bbox": {
+            "minX": 1816.047,
+            "minY": 539.768,
+            "maxX": 2083.953,
+            "maxY": 860.232
+          },
+          "pads": [
+            {
+              "primitiveId": "4efb65798092ccf3e5",
+              "padNumber": "1",
+              "net": "GND",
+              "layer": 1,
+              "x": 2040.6,
+              "y": 811.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e6",
+              "padNumber": "2",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1950,
+              "y": 811.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e7",
+              "padNumber": "3",
+              "net": "+5V",
+              "layer": 1,
+              "x": 1859.5,
+              "y": 811.6,
+              "width": 38.6,
+              "height": 97.2,
+              "rotation": 90
+            },
+            {
+              "primitiveId": "4efb65798092ccf3e8",
+              "padNumber": "4",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1950,
+              "y": 588.4,
+              "width": 141.7,
+              "height": 97.2,
+              "rotation": 90
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1816.047,
+          "minY": 539.768,
+          "maxX": 2257.307,
+          "maxY": 1033.575
+        },
+        "moduleWidthMil": 441.26,
+        "moduleHeightMil": 493.807,
+        "minInternalGapMil": 12.74,
+        "closestInternalGap": {
+          "from": "C5",
+          "to": "U2",
+          "distanceMil": 12.74
+        },
+        "minExternalComponentGapMil": -65.911,
+        "closestExternalComponentGap": {
+          "from": "U2",
+          "to": "C20",
+          "distanceMil": -65.911
+        },
+        "pinDistances": [
+          {
+            "member": "C3",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 183.4007,
+            "source": "原理图.pdf 第1页：输入10uF→VIN"
+          },
+          {
+            "member": "C4",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "3",
+            "net": "+5V",
+            "distanceMil": 94.4013,
+            "source": "原理图.pdf 第1页：输入100nF→VIN"
+          },
+          {
+            "member": "C5",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 187.9583,
+            "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"
+          },
+          {
+            "member": "C6",
+            "memberPad": "1",
+            "owner": "U2",
+            "ownerPad": "2|4",
+            "net": "+3V3",
+            "distanceMil": 197.4546,
+            "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C3",
+            "nearestEdge": "top",
+            "distanceMil": 934.925,
+            "source": "polygon"
+          },
+          {
+            "ref": "C4",
+            "nearestEdge": "bottom",
+            "distanceMil": 873.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "C5",
+            "nearestEdge": "bottom",
+            "distanceMil": 561.425,
+            "source": "polygon"
+          },
+          {
+            "ref": "C6",
+            "nearestEdge": "bottom",
+            "distanceMil": 717.0445,
+            "source": "polygon"
+          },
+          {
+            "ref": "U2",
+            "nearestEdge": "bottom",
+            "distanceMil": 539.768,
+            "source": "polygon"
+          }
+        ]
+      }
+    }
+  ],
+  "summary": "0 candidate(s), 8 rejected variant(s); no editor writes performed"
+}

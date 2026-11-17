@@ -1,41 +1,52 @@
-## Description: <br>
-基于19份HNB合同三审实战案例提炼的合同风险审查工具，采用三审机制（合规性→商业性→执行性）逐条扫描，100%复用率验证。专为OPC/中小企业设计，零法律背景也能用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于19份HNB合同三审实战案例提炼的合同风险审查工具，采用三审机制（合规性、商业性、执行性）逐条扫描，面向OPC/中小企业提供中文合同风险初筛。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[golngod](https://clawhub.ai/user/golngod)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and small-business operators use this skill to perform preliminary Chinese-language contract risk screening before signing, negotiating, or reviewing disputes. It organizes findings across compliance, commercial balance, and execution risk, then suggests clause revisions and negotiation priorities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce incomplete or incorrect legal-risk conclusions if treated as final legal advice.
+
+Mitigation: Use it only for preliminary Chinese-language contract risk screening, and have a qualified lawyer review material contracts, disputes, regulated-sector issues, cross-border matters, or significant financial exposure.
+
+Risk: Users may over-rely on a prompt-only review for contracts with high commercial impact.
+
+Mitigation: Treat the output as an issue-spotting report and confirm clause changes through human review before signing or relying on the contract.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and small-business operators use this Chinese-language skill to spot contract risks before signing or when reviewing disputes. It produces a structured three-pass review across compliance, commercial balance, and execution issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Contract-review output may be incomplete, jurisdiction-specific, or mistaken if treated as legal advice. <br>
-Mitigation: Use the report for preliminary risk spotting and have qualified counsel or an authorized reviewer validate decisions before signing or escalating a dispute. <br>
-Risk: Contracts may contain confidential, regulated, or third-party-sensitive information. <br>
-Mitigation: Only process contract text that the user is permitted to share in the active agent environment, and redact sensitive details when appropriate. <br>
+**Output Format:** [Markdown contract risk report with risk ratings, clause-level findings, revision suggestions, and negotiation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-contract-risk) <br>
-- [Publisher profile](https://clawhub.ai/user/golngod) <br>
+**Other Properties Related to Output:** [Chinese-language preliminary legal-risk guidance; not a substitute for qualified legal review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown contract-risk report with ratings, revision suggestions, and negotiation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output; intended as preliminary risk-spotting, not legal advice] <br>
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

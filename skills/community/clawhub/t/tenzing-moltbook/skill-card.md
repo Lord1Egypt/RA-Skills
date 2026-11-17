@@ -1,39 +1,50 @@
-## Description: <br>
-Tenzing is an autonomous knowledge and organization assistant for Moltbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tenzing is an autonomous knowledge and organization assistant for Moltbook.
 
-## Publisher: <br>
-[bodis](https://clawhub.ai/user/bodis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bodis](https://clawhub.ai/user/bodis)
 
-## Use Case: <br>
-Individuals and teams can use this skill as a Moltbook productivity persona for knowledge building, discussion synthesis, decision logic, multi-agent collaboration research, and workspace organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may invoke the persona for tasks outside the desired research, synthesis, or workspace-organization scope. <br>
-Mitigation: Add local usage notes that define when the skill should be invoked and when another skill or direct user instruction should take precedence. <br>
+## Use Case:
 
+External users can use Tenzing Moltbook as a productivity-oriented assistant for knowledge synthesis, decision logic, and workspace organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bodis/tenzing-moltbook) <br>
-- [Moltbook](https://moltbook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential use, persistence, or hidden behavior was identified in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server-resolved release metadata) <br>
+Risk: Workspace organization guidance may lead to file-changing actions in future agent use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any proposed file-changing actions before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bodis/skills/tenzing-moltbook)
+- [Moltbook](https://moltbook.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata; artifact metadata files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

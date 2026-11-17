@@ -1,42 +1,57 @@
-## Description: <br>
-Guides agents through preparing, sanitizing, versioning, publishing, verifying, and recording OpenClaw skill releases on ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes OpenClaw skills to the ClawHub marketplace, covering pre-publish checks, personal information sanitization, version selection, CLI publishing, and post-publish records.
 
-## Publisher: <br>
-[jini92](https://clawhub.ai/user/jini92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jini92](https://clawhub.ai/user/jini92)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare OpenClaw skills for ClawHub publication, including language checks, personal information sanitization, version selection, publish commands, and post-publish verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses the operator's ClawHub login to publish skills. <br>
-Mitigation: Confirm the authenticated ClawHub account and intended slug before running publish commands. <br>
-Risk: The artifact includes a hardcoded personal profile check and local bookkeeping updates. <br>
-Mitigation: Replace the profile check with the actual publisher handle and treat memory or Obsidian updates as optional local records. <br>
-Risk: The workflow can rewrite skill files while sanitizing language and personal information. <br>
-Mitigation: Review file diffs before publishing and require confirmation before overwriting source files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Publish release page](https://clawhub.ai/jini92/clawhub-publish-mai) <br>
-- [ClawHub Pre-Publish Checklist](references/checklist.md) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to prepare and publish OpenClaw skills to ClawHub with language, sanitization, versioning, and CLI workflow checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with checklist items, tables, and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces procedural publishing guidance for an agent; it does not produce structured machine-readable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow includes personal-account URLs and local C:\MAIBOT paths that may not fit other users' environments.
+
+Mitigation: Replace the account URL and local paths with the intended publisher profile and workspace paths before using the workflow.
+
+Risk: The post-publish record updates target private memory and Obsidian locations.
+
+Mitigation: Remove those steps unless the user intentionally maintains the same private records.
+
+Risk: The workflow installs and runs the ClawHub CLI.
+
+Mitigation: Install the CLI from a trusted source and avoid administrator privileges where possible.
+
+## Reference(s):
+
+- [ClawHub Pre-Publish Checklist](references/checklist.md)
+- [ClawHub skill page](https://clawhub.ai/jini92/skills/clawhub-publish-mai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline PowerShell and CLI command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklist-driven publishing steps, versioning guidance, and common error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

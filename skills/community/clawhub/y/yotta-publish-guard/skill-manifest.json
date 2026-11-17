@@ -1,0 +1,34 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-publish-guard",
+  "name": "元守",
+  "package": "@yottameta/yotta-publish-guard",
+  "version": "0.4.5",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "allowlist",
+    "process": "child-process",
+    "note": "发布前校验默认离线；名称查重和实际发布只在用户显式调用时使用本地 npm / gh / clawhub 配置。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "发布动作进入执行前执行版本、清单、打包与门禁校验。"
+  },
+  "hooks": [
+    {
+      "event": "before_publish",
+      "require_tool": "publish_gate",
+      "condition": "发布动作进入执行前",
+      "on_fail": "block",
+      "fallback": "wrapper",
+      "evidence": [
+        "exit_code",
+        "audit_log"
+      ]
+    }
+  ]
+}

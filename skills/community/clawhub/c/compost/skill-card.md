@@ -1,41 +1,55 @@
-## Description: <br>
-Composting reference for methods, carbon-to-nitrogen ratio, thermophilic stages, vermicomposting, troubleshooting, and organic waste management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compost provides composting reference guidance for methods, carbon-to-nitrogen ratios, decomposition stages, vermicomposting, material selection, system design, and troubleshooting.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users, gardeners, educators, and operators use this skill as an offline composting reference for selecting methods, balancing materials, assessing compost quality, and troubleshooting common compost problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Composting recommendations may not match local regulations, climate, available materials, or site constraints. <br>
-Mitigation: Review the guidance against local conditions and applicable rules before relying on it for a composting system. <br>
-Risk: The release includes an executable shell script, even though the security evidence describes it as informational and offline. <br>
-Mitigation: Run the script only from the reviewed artifact and inspect command output before applying the advice. <br>
+## Use Case:
 
+External users, gardeners, agriculture practitioners, educators, and agents use this skill to retrieve concise composting guidance for setting up systems, balancing inputs, comparing methods, assessing compost quality, and troubleshooting common composting problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/compost) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Command-line text and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline reference output selected by command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill runs a local shell script when commands are invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation; the provided security evidence reports that the inspected script only prints composting reference material and does not appear to access private data or change system state.
+
+Risk: Composting reference guidance may be applied in contexts with local health, pest, waste, or agricultural constraints.
+
+Mitigation: Use the guidance as a reference and confirm safety-sensitive composting decisions against local requirements and qualified domain guidance.
+
+## Reference(s):
+
+- [Compost skill page](https://clawhub.ai/xueyetianya/skills/compost)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference guidance emitted by shell commands, with markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected topical reference output; no credential inputs or external API calls identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

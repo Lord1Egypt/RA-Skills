@@ -3,7 +3,7 @@ name: maverick-asana-mcp-2
 description: Manage Asana tasks, projects, portfolios, goals, and team workspaces via Asana's hosted MCP server. Thin pass-through to Asana's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Asana tasks, projects, portfolios, goals, assignees, or team workspaces.
 metadata:
   openclaw:
-    emoji: "✅"
+    emoji: '✅'
     homepage: https://developers.asana.com/docs/mcp-server
     primaryEnv: MAVERICK_ASANA_MCP_REFRESH_TOKEN
     requires:

@@ -1,0 +1,15 @@
+{
+  "_comment": "必填: destinations, start_date, return_date, people/people_type. 选填: departure, budgets, travel_mode",
+  "destinations": ["成都市"],
+  "cities": ["成都市"],
+  "people": 2,
+  "people_type": "2成人、0儿童",
+  "max_budget": "",
+  "min_budget": "",
+  "travel_mode": "高铁",
+  "start_date": "2026/06/10",
+  "return_date": "2026/06/12",
+  "days": 3,
+  "city_days": {},
+  "plan_type": "summary"
+}

@@ -1,47 +1,65 @@
-## Description: <br>
-Complete step-by-step installation guide for OpenClaw on Windows 10/11 with WSL2, includes common pitfalls and solutions from real installation experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete step-by-step installation guide for OpenClaw on Windows 10/11 with WSL2, includes common pitfalls and solutions from real installation experience.
 
-## Publisher: <br>
-[aslancootl](https://clawhub.ai/user/aslancootl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aslancootl](https://clawhub.ai/user/aslancootl)
 
-## Use Case: <br>
-Developers, operators, and Windows users use this skill to guide OpenClaw installation on Windows 10/11 via WSL2, including system-drive and custom-drive setup plus troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide includes broad privilege changes, including administrator commands and optional passwordless sudo. <br>
-Mitigation: Review commands before execution, prefer a normal WSL user, and avoid blanket passwordless sudo unless the environment is isolated and temporary. <br>
-Risk: The guide opens TCP port 18789 for OpenClaw access. <br>
-Mitigation: Create firewall access only when needed and restrict exposure to trusted networks or local access. <br>
-Risk: The guide installs OpenClaw by running a remote shell script. <br>
-Mitigation: Inspect or verify the remote install script before running it and use trusted network paths. <br>
+## Use Case:
 
+Developers and external users use this skill to install OpenClaw on Windows 10/11 through WSL2, including system-drive and custom-drive installation paths. It also helps users troubleshoot common WSL, networking, firewall, and OpenClaw startup issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aslancootl/windows-wsl2-install) <br>
-- [Microsoft WSL releases](https://github.com/microsoft/WSL/releases/latest) <br>
-- [Microsoft WSL manual install kernel update](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package) <br>
-- [OpenClaw install script](https://molt.bot/install.sh) <br>
-- [OpenClaw browser relay extension](https://chromewebstore.google.com/detail/openclaw-browser-relay/nglingapjinhecnfejdcpihlpneeadjp) <br>
-- [Feishu developer portal](https://open.feishu.cn/?lang=zh-CN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell, Bash, and INI code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The guide runs a remote installer script in WSL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer contents and verify the source before executing it.
+
+Risk: The guide includes passwordless sudo and routine root-use options.
+
+Mitigation: Use a normal WSL user where possible and avoid passwordless sudo unless the local threat model permits it.
+
+Risk: The guide creates an inbound Windows firewall rule for the OpenClaw service port.
+
+Mitigation: Limit the firewall rule to the required network scope and remove or tighten it when it is no longer needed.
+
+Risk: Some troubleshooting steps may temporarily reduce Windows security protections.
+
+Mitigation: Re-enable security protections immediately after troubleshooting and document any lasting configuration changes.
+
+## Reference(s):
+
+- [Microsoft WSL Releases](https://github.com/microsoft/WSL/releases/latest)
+- [Microsoft WSL Manual Install Documentation](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package.)
+- [OpenClaw Installer Script](https://molt.bot/install.sh)
+- [OpenClaw Browser Relay Chrome Extension](https://chromewebstore.google.com/detail/openclaw-browser-relay/nglingapjinhecnfejdcpihlpneeadjp)
+- [Feishu Developer Portal](https://open.feishu.cn/?lang=zh-CN)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline PowerShell, Bash, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese installation guidance]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

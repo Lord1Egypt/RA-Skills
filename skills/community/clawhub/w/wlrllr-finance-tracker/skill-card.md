@@ -1,40 +1,54 @@
-## Description: <br>
-Tracks personal expenses, monthly budgets, shop purchases, sales, inventory, and profit using local JSON finance records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+收支管理 is a Chinese-language local finance tracking skill for recording personal expenses, budgets, shop purchases and sales, inventory, and profit reports.
 
-## Publisher: <br>
-[wlrllr](https://clawhub.ai/user/wlrllr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wlrllr](https://clawhub.ai/user/wlrllr)
 
-## Use Case: <br>
-Individuals and small shop operators use this skill to record daily spending, monitor monthly budgets, track purchases and sales, calculate inventory, and generate personal or shop finance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores detailed spending, budget, inventory, purchase, and sales history in local private-data files. <br>
-Mitigation: Use it only in trusted OpenClaw environments and review the local finance data directory before sharing or backing up the workspace. <br>
-Risk: Budget checks can produce proactive reminder behavior during heartbeat use. <br>
-Mitigation: Review or disable proactive budget reminders if unsolicited finance prompts are not desired. <br>
+## Use Case:
 
+External users can use this skill to track daily personal spending, monitor monthly budgets, record shop purchases and sales, check inventory, and generate monthly or annual finance reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wlrllr/wlrllr-finance-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional shell command invocations and local JSON-backed finance records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes personal and shop finance data under ~/private_data/openclaw/workspace/data/finance/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores finance records as local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the finance data directory out of shared folders, source control, and unencrypted backups, and consider tightening file permissions.
+
+Risk: Profit, inventory, and budget reports may be estimates or may depend on the completeness of recorded transactions.
+
+Mitigation: Verify calculations and source records before using reports for business, accounting, or tax decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wlrllr/skills/wlrllr-finance-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/wlrllr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain-text finance reports with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores personal and shop finance records as local plaintext JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

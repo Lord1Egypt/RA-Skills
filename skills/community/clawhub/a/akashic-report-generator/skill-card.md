@@ -1,40 +1,55 @@
-## Description: <br>
-Generate comprehensive reports on any topic using multi-agent AI collaboration, including market analysis, technical evaluation, strategy reports, and related report types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive reports on any topic using multi-agent AI collaboration.
 
-## Publisher: <br>
-[c7934597](https://clawhub.ai/user/c7934597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c7934597](https://clawhub.ai/user/c7934597)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to create structured reports from a clarified topic, audience, length, and section requirements. It can request deeper research or chart generation when the report needs current data or visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report prompts and context may be processed by an external Akashic MCP service. <br>
-Mitigation: Avoid confidential, regulated, or sensitive business information unless the provider's data handling is trusted. <br>
-Risk: High-stakes reports may require compliance or regulatory review before use. <br>
-Mitigation: Explicitly request compliance or regulatory review for high-stakes reports and review generated content before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to generate professional reports, market analyses, technical evaluations, strategy reports, and similar research-backed documents from a clarified topic and scope.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c7934597/akashic-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Akashic MCP tools for report generation, deeper research, and charts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Report prompts and context may be sent to the external Akashic MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide confidential, personal, financial, health, legal, or regulated information unless the provider's handling terms are acceptable.
+
+Risk: Compliance checking is disabled by default in the documented workflow.
+
+Mitigation: Explicitly request compliance checking for regulated, legal, financial, health, or other high-impact reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c7934597/skills/akashic-report-generator)
+- [Publisher profile](https://clawhub.ai/user/c7934597)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report content with optional chart guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use an external Akashic MCP service for report generation, research, and charts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat article draft"
+  short_description: "Save one Official Account article draft via Ego Lite. --yes required. Never publishes."
+  default_prompt: "Use wechat-article-ego: check-login first (exit 2 means stop). One mp.weixin.qq.com article draft per run. Nothing uploads without --yes. If more than one Official Account is visible, stop and report the names. Never click 发表, 群发, 定时群发, or 发送预览. Never type a password."

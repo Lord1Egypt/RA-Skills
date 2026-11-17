@@ -1,46 +1,65 @@
-## Description: <br>
-Enable OpenClaw as a native macOS menu bar app with a quick-access chat popup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw as a macOS-only native menu bar app with quick chat popup access to a local OpenClaw gateway.
 
-## Publisher: <br>
-[prab002](https://clawhub.ai/user/prab002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[prab002](https://clawhub.ai/user/prab002)
 
-## Use Case: <br>
-OpenClaw users on macOS use this skill to install and run a native menu bar chat popup without opening the full browser dashboard. Developers can also use the included scripts and Electron app assets to customize the icon, window size, shortcut, or gateway connection behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The app reads an OpenClaw gateway token and can access the user's OpenClaw session. <br>
-Mitigation: Install only if the publisher is trusted, review token handling before use, and rotate or remove the gateway token if exposure is suspected. <br>
-Risk: The security review says token handling and session access are under-secured. <br>
-Mitigation: Harden Electron settings, remove raw token logging, validate custom protocol callbacks, and avoid token-in-URL flows before broader deployment. <br>
-Risk: Dropped files may be sent through the configured gateway. <br>
-Mitigation: Avoid dragging sensitive files into the app unless the configured gateway and publisher are trusted. <br>
-Risk: The app stores local configuration and message history under the user's OpenClaw directory. <br>
-Mitigation: Disclose saved config and history behavior clearly and let users inspect or delete the files when needed. <br>
+## Use Case:
 
+OpenClaw users on macOS use this skill to install and run a lightweight Electron menu bar app for quick chat access without opening the full dashboard.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/prab002/openclaw-menubar) <br>
-- [menubar package](https://github.com/maxogden/menubar) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript/Electron files, HTML, CSS, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires Node.js and a local OpenClaw gateway] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles OpenClaw gateway credentials and authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review token handling before installing; remove token logging and prefer secure OS credential storage such as Keychain.
+
+Risk: The Electron app loads local gateway web content and uses unsafe defaults in parts of the window configuration.
+
+Mitigation: Harden Electron settings before production use, including context isolation, Node integration, remote module access, external navigation, and OAuth callback validation.
+
+Risk: The bundled dependency set may include vulnerable packages.
+
+Mitigation: Run npm audit or equivalent dependency review and update vulnerable dependencies before deployment.
+
+Risk: The app runs as a background macOS menu bar process connected to the local gateway.
+
+Mitigation: Install only on trusted macOS hosts and use the provided stop script when the background app is not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prab002/skills/openclaw-menubar)
+- [Publisher profile](https://clawhub.ai/user/prab002)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [OpenClaw Menu Bar package metadata](artifact/assets/openclaw-menubar/package.json)
+- [menubar package reference](https://github.com/maxogden/menubar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and packaged Electron app files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; requires a local OpenClaw gateway and Node.js.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

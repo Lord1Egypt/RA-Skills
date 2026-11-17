@@ -1,56 +1,55 @@
-## Description: <br>
-Guides an agent in using the Cargo CLI to run actions, workflows, batches, AI-agent messages, orchestration SQL queries, segment fetches, and model inspections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Cargo actions and workflows, launches batches, messages AI agents, builds and diagrams workflows, and queries orchestration history.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-Developers and operations teams use this skill to operate Cargo orchestration from an agent: discovering resources, running tools, actions, workflows, and batches, monitoring asynchronous work, querying runtime history, and troubleshooting workflow behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Cargo credentials and can let an agent operate a Cargo workspace. <br>
-Mitigation: Use least-privilege Cargo tokens or OAuth sessions, verify the active workspace with cargo-ai whoami, and revoke credentials when agent access is no longer needed. <br>
-Risk: Commands can run or modify Cargo workflows and may write to CRM-connected or other integrated systems. <br>
-Mitigation: Test workflow, batch, and CRM-writing examples in a sandbox first, validate node graphs before deployment, and review proposed commands before execution. <br>
-Risk: Workflow and segment operations can process sensitive or regulated data. <br>
-Mitigation: Avoid uploading regulated or sensitive data unless Cargo and connected third-party services are approved by the organization. <br>
+## Use Case:
 
+Developers and operations teams use this skill to manage Cargo actions and workflows from an agent, including testing, batch execution, and run-history queries.
 
-## Reference(s): <br>
-- [Cargo Orchestration listing](https://clawhub.ai/cargo-ai/cargo-orchestration) <br>
-- [Cargo skills homepage](https://github.com/getcargohq/cargo-skills) <br>
-- [Action examples](references/examples/actions.md) <br>
-- [Tool examples](references/examples/tools.md) <br>
-- [Play examples](references/examples/plays.md) <br>
-- [AI agent examples](references/examples/agents.md) <br>
-- [Orchestration query examples](references/examples/queries.md) <br>
-- [Segment data examples](references/examples/segments.md) <br>
-- [Orchestration templates](references/examples/templates.md) <br>
-- [Creating nodes](references/nodes.md) <br>
-- [Node selection](references/node-selection.md) <br>
-- [Filter syntax](references/filter-syntax.md) <br>
-- [Async polling reference](references/polling.md) <br>
-- [Response shapes](references/response-shapes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Cargo CLI commands that execute or modify workflows and connected data when run with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Conflicting record-selection instructions and incomplete replay safeguards could lead to unintended processing or repeated business actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before live runs, set filters to the intended audience and approve the exact records and cost. Check completed steps before retrying; use approved files and provider connections, restrict account permissions, and pin a reviewed CLI version.
+
+## Reference(s):
+
+- [Cargo Orchestration on ClawHub](https://clawhub.ai/cargo-ai/skills/cargo-orchestration)
+- [Cargo skills project homepage (skill metadata)](https://github.com/getcargohq/cargo-skills)
+- [Node selection guide](references/node-selection.md)
+- [Node creation reference](references/nodes.md)
+- [Batch and play examples](references/examples/plays.md)
+- [Orchestration query examples](references/examples/queries.md)
+- [Troubleshooting reference](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Text, Markdown]
+
+**Output Format:** [Markdown with shell commands, JSON workflow definitions, SQL queries, and workflow diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may initiate live runs, batches, messages, or workflow changes when executed.]
+
+## Skill Version(s):
+
+1.18.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

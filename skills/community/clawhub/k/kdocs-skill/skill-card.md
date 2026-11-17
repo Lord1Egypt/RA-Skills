@@ -1,56 +1,59 @@
-## Description: <br>
-This skill helps agents operate KDocs/WPS cloud documents, including creating, reading, editing, searching, sharing, organizing, summarizing, translating, generating presentations, handling forms, and managing knowledge bases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Kdocs (WPS cloud documents) to create, read, edit, search, share, and organize online documents, spreadsheets, PDFs, and presentations.
 
-## Publisher: <br>
-[kdocs-app](https://clawhub.ai/user/kdocs-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kdocs-app](https://clawhub.ai/user/kdocs-app)
 
-## Use Case: <br>
-Employees and external users use this skill to let an agent work with KDocs/WPS cloud documents and related office workflows, including document creation, file search, content extraction, sharing, spreadsheet work, PDF handling, form generation, and knowledge-base organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update a local kdocs-cli executable. <br>
-Mitigation: Install only from trusted publisher releases, review update prompts as privileged changes, and rely on checksum verification when available. <br>
-Risk: The CLI can persist account credentials and access a user's KDocs account. <br>
-Mitigation: Prefer browser-based login, avoid pasting tokens into chat or logs, and revoke or rotate credentials if exposure is suspected. <br>
-Risk: The skill can perform broad cloud-document actions, including sharing and public-link operations. <br>
-Mitigation: Review sharing, deletion, closing, and other irreversible operations before execution, and verify write results with an independent read. <br>
-Risk: Sensitive documents may be processed through cloud and AI-assisted document flows. <br>
-Mitigation: Avoid using the skill on sensitive documents unless the user understands the KDocs cloud-processing path and account permissions involved. <br>
+## Use Case:
 
+People using Kdocs can manage cloud files and work with online documents, spreadsheets, PDFs, and presentations. The skill also provides guidance for document workflows such as content creation, conversion, and automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kdocs-app/skills/kdocs-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/kdocs-app) <br>
-- [KDocs homepage and token URL](https://www.kdocs.cn/latest) <br>
-- [Authentication reference](references/auth.md) <br>
-- [Drive reference](references/drive.md) <br>
-- [File locating guide](references/file-locating-guide.md) <br>
-- [Sheet reference](references/sheet.md) <br>
-- [WPS document reference](references/wps.md) <br>
-- [Presentation reference](references/wpp.md) <br>
-- [PDF reference](references/pdf.md) <br>
-- [Knowledge-base reference](references/kwiki.md) <br>
-- [Form reference](references/form.md) <br>
-- [AI presentation reference](references/aippt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and generated office-document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include KDocs links, CLI commands, command results, JSON request bodies, and document or spreadsheet content generated for cloud-document workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.13 (source: frontmatter and server release metadata) <br>
+Risk: Cloud workflows can overwrite document content, write spreadsheet data, or remove rows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with document copies and require explicit approval for exact overwrites, spreadsheet write-back, and row removal.
+
+Risk: The bundled installer may replace installed software, while the downloaded CLI, credential storage, and server-side behavior remain unverified.
+
+Mitigation: Review before installing or updating, prefer browser login, and keep tokens out of chat.
+
+Risk: Automation filters may lead to unintended actions on cloud spreadsheets.
+
+Mitigation: Review workflow actions and targets, and test filters before activation.
+
+## Reference(s):
+
+- [Kdocs skill on ClawHub](https://clawhub.ai/kdocs-app/skills/kdocs-skill)
+- [Kdocs homepage](https://www.kdocs.cn/latest)
+- [Authentication reference](artifact/references/auth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration, Cloud document content]
+
+**Output Format:** [Markdown guidance, shell commands, configuration, code, and cloud document content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create, update, upload, and organize cloud documents and office files.]
+
+## Skill Version(s):
+
+2.9.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

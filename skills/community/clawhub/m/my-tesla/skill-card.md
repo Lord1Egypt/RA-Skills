@@ -1,44 +1,61 @@
-## Description: <br>
-Control Tesla vehicles from macOS via the Tesla Owner API using teslapy for authentication, vehicle listing, status, lock/unlock, climate, charging, location, and related remote commands with local-only auth caching and confirmation gates for disruptive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Tesla vehicles from macOS via the Tesla Owner API using teslapy for authentication, vehicle status, reports, and safety-gated remote commands.
 
-## Publisher: <br>
-[officialpm](https://clawhub.ai/user/officialpm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[officialpm](https://clawhub.ai/user/officialpm)
 
-## Use Case: <br>
-External Tesla owners and developers use this skill to check vehicle state, generate chat-friendly reports, and run explicit remote vehicle commands from macOS while keeping authentication cache, defaults, and mileage history local. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a Tesla account and issue real vehicle commands. <br>
-Mitigation: Install only when that access is acceptable, review proposed commands before execution, and rely on documented confirmation gates for disruptive actions. <br>
-Risk: Token caches, mileage databases, exports, raw JSON, and precise location outputs can contain sensitive vehicle or account data. <br>
-Mitigation: Keep local cache and export files private, avoid committing logs or outputs, and prefer sanitized JSON or approximate location unless precise data is explicitly needed. <br>
-Risk: Recurring mileage recording through launchd can repeatedly query vehicles and may wake them depending on configuration. <br>
-Mitigation: Review the launchd configuration before enabling it and preserve the documented no-wake and auto-wake limits for routine recording. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [My Tesla ClawHub release page](https://clawhub.ai/officialpm/my-tesla) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Tesla vehicle state, generate chat-friendly or JSON reports, and issue deliberate remote commands for locking, climate, charging, windows, seats, sentry mode, charge-port actions, and mileage logging.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; command results may be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands can issue real vehicle actions, use local credential caching, or expose sensitive vehicle data when raw JSON or precise location is requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.64 (source: server release metadata, VERSION.txt, and CHANGELOG.md, released 2026-01-29) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read Tesla account and vehicle data and issue remote commands to a vehicle.
+
+Mitigation: Install only when this access is intended, review commands before running them, and rely on the documented confirmation flags for disruptive actions.
+
+Risk: Local token cache, default-car settings, logs, and mileage database files can contain sensitive account or vehicle information.
+
+Mitigation: Keep ~/.tesla_cache.json, ~/.my_tesla.json, and ~/.my_tesla/mileage.sqlite out of shared or synced locations and review local file permissions.
+
+Risk: Raw vehicle-data output can include precise location or other sensitive vehicle details.
+
+Mitigation: Prefer sanitized summary or report JSON for routine use, and request raw JSON or precise location only when explicitly needed.
+
+Risk: Hourly mileage logging can create ongoing local records and may wake vehicles under the configured policy.
+
+Mitigation: Enable the launchd example only deliberately and use no-wake or conservative auto-wake settings appropriate for the use case.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/officialpm/skills/my-tesla)
+- [Publisher Profile](https://clawhub.ai/user/officialpm)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus CLI text or JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports sanitized JSON for common reports and raw vehicle data only when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.64 (source: server release metadata, VERSION.txt, changelog released 2026-01-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

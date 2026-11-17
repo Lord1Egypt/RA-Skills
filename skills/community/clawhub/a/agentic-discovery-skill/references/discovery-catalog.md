@@ -192,7 +192,7 @@ Specific approval points:
 Reviewer roles:
 {reviewer_roles}
 
-### risk-and-excluded-use-checklist
+### riREDACTED-SECRET
 Artifact Type: Risk and Excluded-Use Checklist
 
 Risks to assess:

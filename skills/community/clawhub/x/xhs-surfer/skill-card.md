@@ -1,41 +1,58 @@
-## Description: <br>
-Xhs Surfer automates Xiaohongshu browsing and interactions, including search, browsing, likes, comments, follows, and message checks through natural-language or structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Surfer automates Xiaohongshu browsing workflows, including search, content browsing, likes, comments, follows, and related account-session controls.
 
-## Publisher: <br>
-[xjlgod](https://clawhub.ai/user/xjlgod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xjlgod](https://clawhub.ai/user/xjlgod)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to automate Xiaohongshu content discovery and account interactions such as searches, browsing sessions, likes, comments, follows, and message checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu account and perform likes, comments, follows, and message checks. <br>
-Mitigation: Use a separate or low-risk account, prefer QR login over cookie files, and require manual approval before comments, follows, or reading private messages. <br>
-Risk: Marketing-oriented surfing can raise interaction rates and increase account or platform-policy risk. <br>
-Mitigation: Keep interaction limits low and avoid marketing_surf unless the user explicitly needs that mode. <br>
+## Use Case:
 
+External users and developers use this skill to run AI-assisted Xiaohongshu browsing sessions, search for topics, and optionally perform account interactions such as likes, comments, follows, and private-message checks.
 
-## Reference(s): <br>
-- [Xhs Surfer ClawHub page](https://clawhub.ai/xjlgod/xhs-surfer) <br>
-- [Project homepage](https://github.com/MTXAI/xhs_suffer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and JSON-like action result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and the xhs-surfer package; supports natural-language run tasks and structured execute actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can automate Xiaohongshu account actions including likes, comments, follows, marketing-oriented browsing, and private-message checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before interactive account actions and use a dedicated low-privilege account.
+
+Risk: The release depends on an external PyPI package and browser automation, which can affect account state and local browser sessions.
+
+Mitigation: Review or pin the package before use, install only in a controlled environment, and avoid sharing reusable cookies unless necessary.
+
+Risk: Environment variables may include unrelated API keys during execution.
+
+Mitigation: Run the skill with a minimal environment containing only the keys needed for the selected LLM provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xjlgod/skills/xhs-surfer)
+- [Project homepage](https://github.com/MTXAI/xhs_suffer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell code examples; runtime results are JSON-like status objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger browser automation and Xiaohongshu account actions when invoked by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

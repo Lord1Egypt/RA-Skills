@@ -1,43 +1,55 @@
-## Description: <br>
-Publish AI-generated content, including HTML pages, Markdown reports, multi-file sites, dashboards, and visualizations, to a shareable URL using Artidrop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish AI-generated content, including HTML pages, Markdown reports, multi-file sites, dashboards, and visualizations, to a shareable URL using Artidrop.
 
-## Publisher: <br>
-[wenguo17](https://clawhub.ai/user/wenguo17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenguo17](https://clawhub.ai/user/wenguo17)
 
-## Use Case: <br>
-Developers, engineers, and OpenClaw users use this skill to publish generated reports, pages, dashboards, visualizations, or multi-file sites as shareable web links through Artidrop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected content may be uploaded to Artidrop and made accessible through a shareable link. <br>
-Mitigation: Review content before publishing, avoid secrets and personal or confidential data unless appropriate visibility and account controls are in place, and use private visibility only with authentication. <br>
-Risk: Anonymous publishing has lower rate limits and cannot update, delete, list, claim, or create private artifacts. <br>
-Mitigation: Configure ARTIDROP_API_KEY only when authenticated management features, higher rate limits, or private artifacts are needed. <br>
+## Use Case:
 
+External users and developers use Artidrop to publish generated HTML, Markdown, reports, dashboards, and multi-file sites as shareable web pages. It is intended for explicit publish, share, or host requests, not raw chat responses or generic file storage.
 
-## Reference(s): <br>
-- [Artidrop](https://artidrop.ai) <br>
-- [Artidrop CLI on npm](https://www.npmjs.com/package/artidrop) <br>
-- [Artidrop on ClawHub](https://clawhub.ai/wenguo17/artidrop) <br>
-- [Publisher profile](https://clawhub.ai/user/wenguo17) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and returned shareable URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish user-selected content to Artidrop over HTTPS and return a public, unlisted, or private URL depending on CLI options and authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.5 (source: server release metadata) <br>
+Risk: The skill installs and uses an unpinned third-party npm CLI that handles generated content and optional credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the Artidrop CLI version before broad use, and install only when the target environment accepts third-party CLI handling of content.
+
+Risk: Publishing sends user-selected content to Artidrop and may make it accessible through a shareable URL.
+
+Mitigation: Avoid publishing secrets, personal data, internal documents, or proprietary material unless the user explicitly intends to share it; use private visibility for sensitive content when authenticated access is available.
+
+## Reference(s):
+
+- [Artidrop website](https://artidrop.ai)
+- [Artidrop CLI npm package](https://www.npmjs.com/package/artidrop)
+- [Artidrop skill on ClawHub](https://clawhub.ai/wenguo17/skills/artidrop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and returned shareable URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include published Artidrop URLs and optional JSON metadata when the Artidrop CLI is run with --json.]
+
+## Skill Version(s):
+
+1.3.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

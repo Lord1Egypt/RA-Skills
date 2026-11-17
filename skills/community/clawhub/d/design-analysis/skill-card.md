@@ -1,46 +1,59 @@
-## Description: <br>
-Design Analysis scans a local folder of design images and generates a structured, interactive HTML presentation report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Analysis scans local design image folders and generates structured, interactive HTML presentation reports.
 
-## Publisher: <br>
-[Jeasonxiang](https://clawhub.ai/user/Jeasonxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeasonxiang](https://clawhub.ai/user/jeasonxiang)
 
-## Use Case: <br>
-Developers, designers, and design reviewers use this skill to turn local UI screenshots or design drafts into a shareable HTML analysis presentation for review, documentation, or stakeholder walkthroughs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads images from the folder path supplied by the user. <br>
-Mitigation: Run it against a dedicated design-assets folder and avoid including unrelated or sensitive files. <br>
-Risk: The skill writes to the output HTML path supplied by the user and may replace an existing file. <br>
-Mitigation: Choose a new output filename or back up any existing file before running the skill. <br>
-Risk: The wrapper logs full input parameters, including optional context and custom section content. <br>
-Mitigation: Do not pass secrets, private notes, or sensitive customer details in custom sections or context fields. <br>
+## Use Case:
 
+Developers, designers, and design reviewers use this skill to turn local screenshots or design drafts into a paginated HTML presentation for design review, stakeholder sharing, or archival.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jeasonxiang/design-analysis) <br>
-- [HTML5 Presentation Patterns](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5) <br>
-- [CSS Flexible Box Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) <br>
-- [README.md](artifact/README.md) <br>
-- [OPENCLAW.md](artifact/OPENCLAW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, HTML files] <br>
-**Output Format:** [Markdown guidance and examples, shell commands, configuration parameters, and generated interactive HTML files with a JSON-like status summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local image files from a user-provided folder and writes a user-provided HTML output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated HTML can run active JavaScript when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create and open reports only from trusted design folders, filenames, and custom section content; do not open or host reports from untrusted inputs on an authenticated or shared origin.
+
+Risk: Invocation parameters may be logged during execution.
+
+Mitigation: Avoid passing secrets or sensitive project details in skill parameters, and review execution logs before sharing them.
+
+Risk: The configured output file can overwrite an existing report.
+
+Mitigation: Choose a new output filename or back up existing reports before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeasonxiang/skills/design-analysis)
+- [MDN HTML5 Guide](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5)
+- [MDN CSS Flexbox Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout)
+
+## Skill Output:
+
+**Output Type(s):** [code, text, guidance]
+
+**Output Format:** [Standalone HTML document plus JSON-like status summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the report to the requested output path and references local image files by relative path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

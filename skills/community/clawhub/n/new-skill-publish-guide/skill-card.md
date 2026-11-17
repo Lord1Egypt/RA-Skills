@@ -1,40 +1,59 @@
-## Description: <br>
-Guides developers through creating a ClawHub skill package, publishing it to ClawHub, archiving release notes to IMA, and notifying a main agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides skill maintainers through creating a ClawHub skill package, publishing it, archiving release notes in IMA, and notifying the main agent.
 
-## Publisher: <br>
-[clawhub-master](https://clawhub.ai/user/clawhub-master) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawhub-master](https://clawhub.ai/user/clawhub-master)
 
-## Use Case: <br>
-Developers and skill maintainers use this guide to prepare publishable ClawHub skill packages, avoid credential leakage, run ClawHub CLI release commands, and record release information in IMA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports apparent live IMA credentials exposed in the guide. <br>
-Mitigation: Do not reuse the embedded IMA credentials; rotate or revoke them if you control the account, and replace them with your own scoped credentials stored outside the published skill. <br>
-Risk: The guide includes IMA import, append, and read commands that can send or retrieve persistent external content. <br>
-Mitigation: Review the target note operations and content before running any IMA command, and avoid sending sensitive or unapproved material to external persistent storage. <br>
+## Use Case:
 
+Developers and skill maintainers use this guide to prepare new ClawHub skill releases, avoid publishing local secrets, run the ClawHub CLI release flow, archive release information in IMA, and send a completion notice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawhub-master/skills/new-skill-publish-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes release workflow checklists and examples for ClawHub CLI, IMA note operations, and main-agent notification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The artifact exposes apparent live IMA credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the credentials as compromised, rotate them, and replace all credential examples with placeholders or environment-variable references before reuse.
+
+Risk: Broad publishing commands such as sync --all could release unintended skills or files from a shared skills directory.
+
+Mitigation: Review dry-run output first and run publishing commands only from a directory containing the intended release artifacts.
+
+Risk: Local absolute paths and machine-specific setup details can confuse downstream users or disclose local environment structure.
+
+Mitigation: Replace local paths with placeholders and document that users must configure their own runtime package and credentials after installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/clawhub-master/skills/new-skill-publish-guide)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Procedural release checklist with security-sensitive credential handling guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

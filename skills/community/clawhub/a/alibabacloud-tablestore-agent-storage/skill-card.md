@@ -1,51 +1,72 @@
-## Description: <br>
-Alibaba Cloud Tablestore Agent Storage Skill for building and managing Tablestore-based knowledge bases with the tablestore-agent-storage Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers build and manage Alibaba Cloud Tablestore knowledge bases with the tablestore-agent-storage Python SDK.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Alibaba Cloud Tablestore Agent Storage, create or connect knowledge bases, import local or OSS documents, run retrieval, and set up directory synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact Alibaba Cloud Tablestore or OSS mutations and scheduled synchronization. <br>
-Mitigation: Require explicit user confirmation before instance creation or scheduled sync, and review every cloud mutation before execution. <br>
-Risk: Generated configuration may contain sensitive Alibaba Cloud credentials or STS tokens. <br>
-Mitigation: Avoid storing raw AK/SK or STS tokens in generated JSON; prefer the default credential chain or temporary credentials. <br>
-Risk: Directory sync may upload unintended local files to OSS and import them into a knowledge base. <br>
-Mitigation: Review the exact local directory, OSS path, and inclusion filters before enabling sync. <br>
-Risk: Installer shortcuts such as curl-to-bash or sudo commands can expand local execution authority. <br>
-Mitigation: Prefer verified manual CLI installation paths and inspect installation commands before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Alibaba Cloud credentials and Tablestore resources, then create, connect, populate, retrieve from, and optionally sync knowledge bases backed by Tablestore and OSS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-tablestore-agent-storage) <br>
-- [Credentials Configuration](references/credentials.md) <br>
-- [RAM Permissions](references/ram-policies.md) <br>
-- [Metadata Reference](references/metadata.md) <br>
-- [Tablestore Instance Operations](references/tablestore-instance.md) <br>
-- [Tablestore CLI Installation Guide](references/tablestore-cli-installation-guide.md) <br>
-- [ossutil Installation Guide](references/ossutil-installation-guide.md) <br>
-- [Alibaba Cloud CLI Installation Guide](references/aliyun-cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create configuration and synchronization files under tablestore_agent_storage/ when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Cloud credentials may be stored locally or exposed through configuration handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use temporary or least-privilege Alibaba Cloud credentials, prefer the default credential chain, and avoid saving AK/SK or STS tokens in project JSON.
+
+Risk: Installer guidance includes privileged or curl-to-shell patterns.
+
+Mitigation: Verify installer sources and downloaded artifacts before running privileged installation commands.
+
+Risk: Scheduled sync can repeatedly move local files into cloud storage if configured incorrectly.
+
+Mitigation: Enable scheduled sync only after confirming the directory, OSS bucket, sync command, frequency, and removal procedure.
+
+Risk: Automatic plugin installation can install dependencies without deliberate review.
+
+Mitigation: Keep automatic plugin installation disabled unless the operator has reviewed the plugins and source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-tablestore-agent-storage)
+- [Credentials Configuration](references/credentials.md)
+- [Tablestore Instance Operations](references/tablestore-instance.md)
+- [RAM Permissions](references/ram-policies.md)
+- [Metadata Reference](references/metadata.md)
+- [Alibaba Cloud CLI Installation Guide](references/aliyun-cli-installation-guide.md)
+- [Tablestore CLI Installation Guide](references/tablestore-cli-installation-guide.md)
+- [ossutil Installation Guide](references/ossutil-installation-guide.md)
+- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/)
+- [Tablestore CLI documentation](https://help.aliyun.com/zh/tablestore/developer-reference/tablestore-cli)
+- [ossutil documentation](https://help.aliyun.com/zh/oss/developer-reference/ossutil-overview/)
+- [Alibaba Cloud Credentials for Python](https://help.aliyun.com/zh/sdk/developer-reference/v2-manage-python-access-credentials)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, JSON configuration examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create configuration, sync script, and sync cache files under tablestore_agent_storage/ when the user opts into those workflows.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

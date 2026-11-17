@@ -1,40 +1,59 @@
-## Description: <br>
-Create adaptive learning flashcard apps from course materials (URLs, PDFs, or folders). Uses FSRS (Free Spaced Repetition Scheduler) and Bayesian Knowledge Tracing for intelligent review scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create adaptive learning flashcard apps from course materials using FSRS and Bayesian Knowledge Tracing for intelligent review scheduling.
 
-## Publisher: <br>
-[weishuz](https://clawhub.ai/user/weishuz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weishuz](https://clawhub.ai/user/weishuz)
 
-## Use Case: <br>
-Developers, educators, and learners use this skill to turn course material into browser-based adaptive flashcard apps with spaced repetition, topic mastery tracking, and configurable review behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Course URL or PDF ingestion can fetch content from user-provided sources, which may expose the agent to untrusted or misleading material. <br>
-Mitigation: Use URL and PDF ingestion only with trusted course sources, and review generated questions before using them for study or assessment. <br>
-Risk: The skill can be described as offline after app generation, but the gathering step may still require network access for URLs and PDFs. <br>
-Mitigation: Confirm whether the source material is local or remote before running the workflow, and disclose any network-fetching step to users. <br>
+## Use Case:
 
+Developers, educators, and learners use this skill to turn course URLs, PDFs, or local folders into self-contained browser flashcard apps for spaced repetition, adaptive quizzes, and review planning.
 
-## Reference(s): <br>
-- [Adaptive Learning on ClawHub](https://clawhub.ai/weishuz/adaptive-learning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON question-bank structure, shell commands, and generated browser app files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained HTML, CSS, JavaScript, and questions.json-based course packs for local browser use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted question JSON and course IDs can become executable browser content or unsafe output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted course materials, validate course IDs and output paths before running the bundler, and review generated files before opening them.
+
+Risk: Generated apps may run in a browser context that has sensitive same-origin data.
+
+Mitigation: Open generated apps in an isolated browser profile or origin and avoid mixing them with sensitive local or same-origin browser data.
+
+Risk: The framework loads KaTeX from a public CDN by default.
+
+Mitigation: Vendor KaTeX locally or add subresource integrity and network-consent review before broader deployment.
+
+## Reference(s):
+
+- [Adaptive Learning ClawHub release](https://clawhub.ai/weishuz/skills/adaptive-learning)
+- [FSRS algorithm reference](https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm#fsrs-5)
+- [KaTeX 0.16.9 CDN asset](https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON question banks, shell commands, and generated HTML/CSS/JavaScript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained browser study apps that store progress in localStorage and may load KaTeX assets from a CDN unless vendored locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

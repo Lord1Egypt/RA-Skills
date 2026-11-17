@@ -80,7 +80,7 @@ class TestPipeline:
             with open(os.path.join(tmpdir, "1_sanitized_ticket.md")) as f:
                 content = f.read()
             assert "sarah@globalfinance.co.uk" not in content
-            assert "sk_live_TESTKEY000000000demo" not in content
+            assert "REDACTED-SECRET" not in content
             assert "james.wilson@globalfinance.co.uk" not in content
 
             # Check facts extraction

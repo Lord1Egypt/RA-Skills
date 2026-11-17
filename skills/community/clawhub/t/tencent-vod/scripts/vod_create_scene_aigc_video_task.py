@@ -33,7 +33,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -49,13 +49,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -180,7 +183,9 @@ def create_scene_aigc_video_task(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
 
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -258,6 +263,85 @@ def query_task(args):
         sys.exit(1)
 
 
+def print_task_outputs(result):
+    """从任务返回结果中提取并打印产物（FileUrl / FileId / SubjectId 等）。
+
+    兼容多种任务返回结构，按优先级展示：
+    - 顶层 FileId / FileUrl（上传/拉取上传任务）
+    - SubjectId / ElementId（自定义主体任务）
+    - Output.FileInfos[].{FileUrl, FileId}（AIGC / 处理类任务）
+    - Output.FileUrl（部分任务）
+    - 错误信息（FAIL 状态）
+    """
+    if not result:
+        return
+
+    # AIGC 任务可能嵌套在 AigcImageTask/AigcVideoTask 等子对象内
+    task = result
+    for key in ('AigcImageTask', 'AigcVideoTask', 'TaskDetail', 'Data'):
+        if isinstance(result.get(key), dict):
+            task = result[key]
+            break
+
+    # 失败：打印错误信息
+    if task.get('Status') == 'FAIL' or task.get('ErrCode'):
+        err = task.get('Message') or task.get('ErrCodeExt') or '任务失败'
+        print(f"⚠️  错误信息: {err}")
+        return
+
+    printed = False
+
+    # 顶层 SubjectId / ElementId（自定义主体）
+    for sid_key in ('SubjectId', 'ElementId', 'CustomElementId'):
+        if task.get(sid_key) or result.get(sid_key):
+            sid = task.get(sid_key) or result.get(sid_key)
+            print(f"\n🆔 {sid_key}: {sid}")
+            printed = True
+
+    # 顶层 FileId / FileUrl（上传 / 拉取上传）
+    if task.get('FileId') or result.get('FileId'):
+        fid = task.get('FileId') or result.get('FileId')
+        print(f"\n📂 FileId: {fid}")
+        printed = True
+    if task.get('FileUrl') or result.get('FileUrl'):
+        url = task.get('FileUrl') or result.get('FileUrl')
+        print(f"   URL    : {url}")
+        printed = True
+
+    # Output 内的 FileInfos / FileUrl
+    output = task.get('Output') or result.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if file_infos:
+        print(f"\n📦 产物（{len(file_infos)} 个文件）:")
+        for i, fi in enumerate(file_infos, 1):
+            url = fi.get('FileUrl') or fi.get('Url') or ''
+            fid = fi.get('FileId') or ''
+            ftype = fi.get('FileType') or fi.get('Type') or ''
+            prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+            label_parts = []
+            if ftype:
+                label_parts.append(ftype)
+            if fid:
+                label_parts.append(f"FileId={fid}")
+            if label_parts:
+                print(f"{prefix} {' '.join(label_parts)}")
+                if url:
+                    print(f"     URL: {url}")
+            elif url:
+                print(f"{prefix} URL: {url}")
+        printed = True
+    elif output.get('FileUrl'):
+        print(f"\n📦 产物 URL: {output['FileUrl']}")
+        if output.get('FileId'):
+            print(f"   FileId  : {output['FileId']}")
+        printed = True
+
+    if not printed:
+        # 兜底：完成但没找到标准产物字段
+        print(f"\n💡 任务已完成（状态: {task.get('Status', 'N/A')}），如需详细信息使用 --json 查看完整响应")
+
+
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=1800):
     """等待任务完成"""
     print(f"\n等待任务完成 (TaskId: {task_id})...")
@@ -293,13 +377,22 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=1800):
 
 
 def main():
+    # 早加载 .env，确保 argparse `default=os.environ.get(...)` 能取到 TENCENTCLOUD_VOD_SUB_APP_ID
+    # 修复 BUG：此前 argparse 在 add_argument 时立即从环境变量取值，但 .env 加载发生在
+    # get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 场景化 AIGC 视频生成工具\n基于 CreateSceneAigcVideoTask API',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
   # 产品360度展示
-  python vod_create_scene_aigc_video_task.py generate \\
+  python3 vod_create_scene_aigc_video_task.py generate \\
     --sub-app-id 251007502 \\
     --scene-type product_showcase \\
     --input-files "File:3704211xxx" \\
@@ -308,7 +401,7 @@ def main():
     --duration 6
 
   # 查询任务
-  python vod_create_scene_aigc_video_task.py query --task-id "251441341-AigcVideoTask-xxx"
+  python3 vod_create_scene_aigc_video_task.py query --task-id "251441341-AigcVideoTask-xxx"
 
 场景类型:
   - product_showcase: 产品360度展示
@@ -379,7 +472,7 @@ def main():
                            help='保留字段，特殊用途时使用')
 
     # 通用参数
-    gen_parser.add_argument('--region', default='ap-guangzhou',
+    gen_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                            help='地域 (默认: ap-guangzhou)')
     gen_parser.add_argument('--no-wait', action='store_true',
                            help='仅提交任务，不等待结果')
@@ -397,7 +490,7 @@ def main():
     query_parser.add_argument('--sub-app-id', type=int,
                              default=int(os.environ.get('TENCENTCLOUD_VOD_SUB_APP_ID', 0)) or None,
                              help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
-    query_parser.add_argument('--region', default='ap-guangzhou',
+    query_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                              help='地域')
     query_parser.add_argument('--json', action='store_true',
                              help='JSON 格式输出')

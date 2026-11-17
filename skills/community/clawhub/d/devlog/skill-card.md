@@ -1,47 +1,60 @@
-## Description: <br>
-Generate narrative blog posts from AI coding session transcripts, selecting relevant sessions and producing agent-narrated Markdown in builder's log, tutorial, or technical deep-dive styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate narrative blog posts from AI coding session transcripts, selecting relevant sessions and producing agent-narrated builder's log, tutorial, or technical deep-dive Markdown.
 
-## Publisher: <br>
-[lordshashank](https://clawhub.ai/user/lordshashank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lordshashank](https://clawhub.ai/user/lordshashank)
 
-## Use Case: <br>
-Developers and technical writers use this skill to turn AI coding-session transcripts into publishable devlogs that explain what was built, how the human-agent collaboration unfolded, and which technical decisions mattered. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local AI coding-session transcripts, which may contain secrets, private paths, customer data, proprietary code details, or internal decisions. <br>
-Mitigation: Use a specific project and time range, confirm the session index before transcript reading, and review and redact the generated Markdown before sharing or publishing. <br>
-Risk: The skill can optionally publish generated Markdown to Hashnode when credentials are provided. <br>
-Mitigation: Provide Hashnode credentials only when publishing is intentional, and inspect the final post content before running the publishing step. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DevLog Generator instructions](SKILL.md) <br>
-- [Blog writing guide](references/blog-writing-guide.md) <br>
-- [Claude Code platform reference](references/platforms/claude-code/claude-code.md) <br>
-- [Codex platform reference](references/platforms/codex/codex.md) <br>
-- [Gemini CLI platform reference](references/platforms/gemini-cli/gemini-cli.md) <br>
-- [OpenClaw platform reference](references/platforms/openclaw/openclaw.md) <br>
-- [OpenCode platform reference](references/platforms/opencode/opencode.md) <br>
-- [Hashnode publishing reference](references/publishing/hashnode/hashnode.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/lordshashank/devlog) <br>
+## Use Case:
 
+Developers and agent users use this skill to turn AI coding-session transcripts into publishable developer blog posts that explain goals, decisions, implementation work, and collaboration dynamics. It can optionally publish generated Markdown to a supported platform after user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown blog file with a brief text report; optional published post URL when publishing is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mermaid diagrams in Markdown when session content involves architecture, flows, or multi-component interactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads private AI coding-session transcripts that may contain sensitive project details, prompts, file paths, or secrets.
+
+Mitigation: Limit the requested project, platform, sessions, and time range before use, then review and redact the generated Markdown before sharing or publishing it.
+
+Risk: The skill can publish transcript-derived posts online using account credentials.
+
+Mitigation: Treat publishing as a separate high-impact step, confirm the exact destination and content first, and use temporary environment variables or a secret manager for tokens.
+
+## Reference(s):
+
+- [Blog Writing Guide](references/blog-writing-guide.md)
+- [Claude Code Platform Reference](references/platforms/claude-code/claude-code.md)
+- [Codex Platform Reference](references/platforms/codex/codex.md)
+- [Gemini CLI Platform Reference](references/platforms/gemini-cli/gemini-cli.md)
+- [OpenClaw Platform Reference](references/platforms/openclaw/openclaw.md)
+- [OpenCode Platform Reference](references/platforms/opencode/opencode.md)
+- [Hashnode Publishing Reference](references/publishing/hashnode/hashnode.md)
+- [ClawHub Skill Page](https://clawhub.ai/lordshashank/skills/devlog)
+- [Publisher Profile](https://clawhub.ai/user/lordshashank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown blog post with optional Mermaid diagrams and a short completion report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local devlog file and, with user confirmation and credentials, publish the generated Markdown to Hashnode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Jimeng Video Generator helps agents create text-to-video and image-to-video outputs with generated audio through the Volcengine Dreamina API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng Video Generator helps agents create audio-enabled videos from text or images through Volcengine's Dreamina API.
 
-## Publisher: <br>
-[tel18610240060-collab](https://clawhub.ai/user/tel18610240060-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tel18610240060-collab](https://clawhub.ai/user/tel18610240060-collab)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to generate short-form video assets with optional AI-generated sound, run batch jobs, and query generation status through CLI or API commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced media are sent to Volcengine for processing. <br>
-Mitigation: Use the skill only after reviewing Volcengine data handling terms, and avoid submitting secrets, regulated personal data, or confidential material unless approved. <br>
-Risk: Volcengine credentials are required for API access. <br>
-Mitigation: Keep the credentials file private, and do not hardcode, commit, or log API keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tel18610240060-collab/jimeng-video) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tel18610240060-collab) <br>
-- [Volcengine Dreamina Generation Tasks API](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks) <br>
-- [Volcengine Dreamina Task Status API](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks/{task_id}) <br>
+## Use Case:
 
+External creators, content operators, and developers use this skill to generate short-form videos with optional AI-generated ambience, music, or sound effects from text prompts or input images.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Volcengine Dreamina credentials; generated media is produced by the external API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, referenced media, task metadata, and generated videos may be sent to and processed by Volcengine.
+
+Mitigation: Use the skill only with material approved for Volcengine processing, and avoid confidential, regulated, or personal content unless that processing is acceptable.
+
+Risk: API credentials are required for Volcengine access.
+
+Mitigation: Store credentials in the documented credential file or an approved secret store, restrict access, and rotate credentials if exposure is suspected.
+
+Risk: AI-generated audio may not match the intended creative direction or quality bar.
+
+Mitigation: Review generated video and audio before publication, refine audio cues in prompts, or use a silent model with post-production audio when precise sound is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tel18610240060-collab/skills/jimeng-video)
+- [Volcengine content generation tasks API](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown]
+
+**Output Format:** [Markdown with bash, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through asynchronous video generation, task status checks, and result retrieval.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

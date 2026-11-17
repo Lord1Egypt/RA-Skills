@@ -1,40 +1,49 @@
-## Description: <br>
-Read Bear notes tagged "待整理", extract topic keywords, search for relevant GIFs via gifgrep, insert them into the note, and remove the tag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Bear notes tagged "待整理", extract topic keywords, search for relevant GIFs via gifgrep, insert them into the note, and remove the tag.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to batch-process Bear research notes marked with the "待整理" tag by adding topic-relevant GIF markdown and removing the workflow tag when processing is complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill batch-edits Bear notes tagged "待整理" by adding GIF links and removing the workflow tag. <br>
-Mitigation: Reserve the tag for notes intended for automated finalization and review or back up important notes before running the workflow. <br>
-Risk: The workflow uses a local Bear token file and may send derived note topics to GIF or web search providers. <br>
-Mitigation: Protect the grizzly token file and avoid using the skill on sensitive notes when derived topics should not leave the local environment. <br>
+## Use Case:
 
+External users who manage Bear research notes use this skill to finalize notes tagged "待整理" by adding topic-relevant GIF markdown and removing the processing tag.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/research-assistant-bear) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with shell command guidance and inserted GIF markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Bear notes accessible through grizzly and reports processed notes and GIF insertion counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can read Bear notes tagged "待整理", derive search keywords from note content, query GIF or web tools, append media markdown, and remove the processing tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that note access and edit behavior is acceptable; back up important notes or ask the agent for a preview before edits when notes are sensitive or business-critical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/research-assistant-bear)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with Bear note updates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append GIF markdown to Bear notes and report processed notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

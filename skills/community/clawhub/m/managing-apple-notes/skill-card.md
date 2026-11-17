@@ -1,45 +1,60 @@
-## Description: <br>
-Manage Apple Notes from the terminal using the inotes CLI. Use when asked to list, read, create, edit, delete, or search notes in Notes.app on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes from the terminal using the inotes CLI. Use when asked to list, read, create, edit, delete, or search notes in Notes.app on macOS.
 
-## Publisher: <br>
-[wangwalk](https://clawhub.ai/user/wangwalk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangwalk](https://clawhub.ai/user/wangwalk)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to have an agent operate Apple Notes through the local inotes CLI on macOS, including listing, reading, creating, editing, deleting, searching, and exporting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, export, edit, and delete sensitive Apple Notes after Automation permission is granted. <br>
-Mitigation: Ask the agent to show the exact notes, folder or account scope, and intended operation before allowing edits, deletes, exports, or bulk archive actions. <br>
-Risk: Forced or non-interactive operations can bypass confirmations for destructive changes. <br>
-Mitigation: Avoid --force and --no-input unless the specific action and target scope have been clearly authorized. <br>
-Risk: Installing an untrusted inotes binary could expose local note contents or modify notes unexpectedly. <br>
-Mitigation: Install only from the official inotes source and verify checksums when using manual downloads. <br>
+## Use Case:
 
+Developers and macOS users use this skill to manage Apple Notes from an agent session through the inotes command-line tool, including listing, reading, creating, editing, deleting, and searching notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwalk/managing-apple-notes) <br>
-- [inotes GitHub repository](https://github.com/wangwalk/inotes) <br>
-- [inotes releases](https://github.com/wangwalk/inotes/releases) <br>
-- [inotes issues](https://github.com/wangwalk/inotes/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Notes.app, the inotes binary, and user-granted Notes Automation permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requires installing a third-party binary that can control Apple Notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources and verify the Homebrew formula or release checksum before use.
+
+Risk: Granting macOS Automation permission allows the CLI to read, edit, and delete notes.
+
+Mitigation: Grant Automation access only after reviewing the tool and run `inotes status` before attempting note operations.
+
+Risk: Delete, force, no-input, all-account, and bulk edit workflows can change or remove more notes than intended.
+
+Mitigation: Review target notes first, prefer JSON output for programmatic selection, and avoid destructive or bulk flags unless the exact targets are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangwalk/skills/managing-apple-notes)
+- [inotes GitHub repository](https://github.com/wangwalk/inotes)
+- [inotes releases](https://github.com/wangwalk/inotes/releases)
+- [inotes issues](https://github.com/wangwalk/inotes/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended for macOS with Notes.app, the inotes binary, and user-granted Automation permission.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

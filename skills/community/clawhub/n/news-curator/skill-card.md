@@ -1,51 +1,58 @@
-## Description: <br>
-Fetch RSS feeds via curl, curate AI and market news, and deliver scheduled briefings to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch RSS feeds via curl, curate, and deliver news briefings to Telegram.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Developers or operators use this skill to configure an agent that fetches verified RSS feeds, filters AI and financial market stories, and sends concise scheduled briefings to a Telegram destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill schedules automatic outbound RSS requests and sends generated briefings to Telegram without a manual approval step. <br>
-Mitigation: Review the cron configuration and delivery behavior before enabling scheduled runs. <br>
-Risk: The artifact contains a hard-coded Telegram chat destination. <br>
-Mitigation: Change the Telegram destination to an approved recipient before installation or execution. <br>
+## Use Case:
 
+Employees, external users, or developers use this skill to schedule recurring AI and market news briefings that fetch RSS feeds, curate 5-7 stories, and deliver a concise Telegram-ready Markdown briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hohobohan/news-curator) <br>
-- [AI News RSS feed](https://artificialintelligence-news.com/feed/) <br>
-- [TechCrunch AI RSS feed](https://techcrunch.com/category/artificial-intelligence/feed/) <br>
-- [Wired RSS feed](https://www.wired.com/feed/rss) <br>
-- [Ars Technica RSS feed](https://arstechnica.com/feed/) <br>
-- [MIT Technology Review AI RSS feed](https://www.technologyreview.com/topic/artificial-intelligence/feed/) <br>
-- [Benzinga Markets RSS feed](https://www.benzinga.com/markets/feed) <br>
-- [Bloomberg Markets RSS feed](https://feeds.bloomberg.com/markets/news.rss) <br>
-- [Financial Times Markets RSS feed](https://www.ft.com/markets?format=rss) <br>
-- [MarketWatch/Dow Jones RSS feed](https://feeds.content.dowjones.io/public/rss/mw_topstories) <br>
-- [Investing.com RSS feed](https://www.investing.com/rss/news.rss) <br>
-- [Seeking Alpha market currents feed](https://seekingalpha.com/market_currents.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing with links, notes, and inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scheduled cron output is intended for automatic Telegram announcement after RSS retrieval and curation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Scheduled runs auto-send briefings to a hard-coded Telegram chat destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or disable the Telegram delivery target before installation and confirm the intended recipient for scheduled briefings.
+
+Risk: The skill relies on recurring shell-based curl retrieval from external RSS feeds.
+
+Mitigation: Grant cron and exec access only in environments where recurring feed retrieval is acceptable, or adapt the skill to use a restricted feed-fetching wrapper.
+
+Risk: RSS feed failures or blocked endpoints can reduce briefing completeness.
+
+Mitigation: Use the verified feed list, keep failed-feed notes in the briefing, and avoid sources identified by the artifact as unreliable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hohobohan/skills/news-curator)
+- [Publisher profile](https://clawhub.ai/user/hohobohan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing with linked headlines and operational guidance for cron-based RSS retrieval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets 5-7 stories and approximately 1500-3000 characters per briefing.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

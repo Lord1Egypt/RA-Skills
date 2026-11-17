@@ -1,37 +1,47 @@
-## Description: <br>
-Monitor session context levels and proactively save checkpoints before compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor session context levels and proactively save checkpoints before compaction.
 
-## Publisher: <br>
-[xbillwatsonx](https://clawhub.ai/user/xbillwatsonx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xbillwatsonx](https://clawhub.ai/user/xbillwatsonx)
 
-## Use Case: <br>
-Agents and developers use this skill to monitor long-running sessions, warn when context is nearing capacity, and preserve key decisions, pending tasks, modified files, and unresolved issues before compaction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may save conversation summaries more often than some users expect, including sensitive details if they are present in the session. <br>
-Mitigation: Install only if local checkpointing is acceptable, review or clear memory/YYYY-MM-DD.md during sensitive work, and avoid allowing secrets, private data, or temporary assumptions to be persisted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbillwatsonx/session-watchdog) <br>
+## Use Case:
+
+Developers and agent operators use this skill to monitor long-running session context, warn before compaction, and preserve key decisions, pending tasks, modified files, and unresolved issues in local checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can write durable session summaries to local memory, which may preserve secrets, personal data, or raw external instructions if used without review.
+
+Mitigation: Review each checkpoint before storage, omit sensitive data and raw external instructions, and limit when memory writes occur.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and checkpoint templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or write checkpoint summaries to memory/YYYY-MM-DD.md when context thresholds are reached.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [guidance, shell commands, markdown, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and checkpoint templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory checkpoint content that should be reviewed before durable storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

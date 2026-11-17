@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pizarra de tiza</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const TITULO = 'hablaría de tres pilares';          // arriba, subrayado (máx. ~40 letras)
+const PASOS = [                                     // 2 o 3 pasos, se numeran solos (máx. ~40 letras c/u)
+  'lo que llevas sintiendo',
+  'cómo trabajo yo',
+  'cómo se ve la vida ocho semanas después',
+];
+const PALABRA_CLAVE = 'pilares';                    // se encierra en un círculo de tiza al final ('' = sin círculo)
+const COLORES = {
+  pizarra: '#23463a',   // verde de escuela (negro: '#1f2326')
+  madera: '#9a6437',    // el marco
+  tiza: '#f4f1e8',      // el texto
+  tizaNumero: '#ffd86b',// los números de los pasos
+  tizaCirculo: '#ff8fa8',// el círculo de la palabra clave
+  brillo: '255,236,170', // el halo y las chispas de la tiza mágica (r,g,b)
+};
+const LETRAS_POR_SEGUNDO = 15;                      // se acelera sola si el texto es largo (el clip no pasa de 8 s)
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const LETRAS = (TITULO + PASOS.join('')).replace(/\s/g, '').length;
+const LPS = Math.max(LETRAS_POR_SEGUNDO, LETRAS / 3.3);
+const T_INICIO = .55;
+const T_FIN_ESCRIBE = T_INICIO + .35 + LETRAS / LPS + PASOS.length * .18 + .2;
+const T_CIRCULO = T_FIN_ESCRIBE + .1;
+const DUR = +(T_CIRCULO + (PALABRA_CLAVE ? .55 : 0) + 1.5).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const MARCO = { x: 26, y: 150, w: W - 52, h: 1470 }, BORDE = 42;
+const TAB = { x: MARCO.x + BORDE, y: MARCO.y + BORDE, w: MARCO.w - 2 * BORDE, h: MARCO.h - 2 * BORDE };
+
+// ---------- fondo: pared, marco de madera y pizarra con borrones (se pinta UNA vez) ----------
+const FONDO = (() => {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const p = c.getContext('2d'), r = rng(11);
+  p.drawImage(hacerPapel('#d9cdb8', { fibras: false, viñeta: .25 }), 0, 0);
+  // marco con vetas
+  p.fillStyle = 'rgba(0,0,0,.35)'; p.fillRect(MARCO.x + 14, MARCO.y + 22, MARCO.w, MARCO.h);
+  p.fillStyle = COLORES.madera; p.fillRect(MARCO.x, MARCO.y, MARCO.w, MARCO.h);
+  for (let i = 0; i < 260; i++) { const y = MARCO.y + r() * MARCO.h, x = MARCO.x + r() * MARCO.w;
+    p.strokeStyle = r() < .5 ? 'rgba(60,30,10,.28)' : 'rgba(255,220,170,.14)'; p.lineWidth = 1 + r() * 2;
+    p.beginPath(); if (r() < .5) { p.moveTo(x, y); p.bezierCurveTo(x + 60, y + (r() - .5) * 8, x + 120, y + (r() - .5) * 8, x + 200, y); }
+    else { p.moveTo(x, y); p.bezierCurveTo(x + (r() - .5) * 8, y + 60, x + (r() - .5) * 8, y + 120, x, y + 200); } p.stroke(); }
+  p.strokeStyle = 'rgba(40,20,5,.55)'; p.lineWidth = 4; p.strokeRect(TAB.x - 2, TAB.y - 2, TAB.w + 4, TAB.h + 4);
+  p.strokeStyle = 'rgba(255,220,170,.25)'; p.lineWidth = 3; p.strokeRect(MARCO.x + 3, MARCO.y + 3, MARCO.w - 6, MARCO.h - 6);
+  // pizarra: color con manchas suaves
+  p.fillStyle = COLORES.pizarra; p.fillRect(TAB.x, TAB.y, TAB.w, TAB.h);
+  p.save(); p.beginPath(); p.rect(TAB.x, TAB.y, TAB.w, TAB.h); p.clip();
+  for (let y = TAB.y; y < TAB.y + TAB.h; y += 8) for (let x = TAB.x; x < TAB.x + TAB.w; x += 8) {
+    const n = vnoise(x * .006, y * .006) * .7 + vnoise(x * .03, y * .03) * .3;
+    p.fillStyle = `rgba(255,255,255,${(n - .45) * .07})`; if (n > .45) p.fillRect(x, y, 8, 8);
+    else { p.fillStyle = `rgba(0,0,0,${(.45 - n) * .12})`; p.fillRect(x, y, 8, 8); } }
+  // borrones de borrador: arcos anchos muy tenues
+  for (let i = 0; i < 9; i++) { const cx = TAB.x + r() * TAB.w, cy = TAB.y + r() * TAB.h;
+    p.strokeStyle = 'rgba(255,255,255,.035)'; p.lineWidth = 90 + r() * 70; p.lineCap = 'round';
+    p.beginPath(); p.moveTo(cx - 200, cy); p.bezierCurveTo(cx - 60, cy - 80, cx + 60, cy + 80, cx + 220, cy - 10); p.stroke(); }
+  // restos de tiza vieja: garabatos muy tenues
+  p.strokeStyle = 'rgba(255,255,255,.05)'; p.lineWidth = 3;
+  for (let i = 0; i < 14; i++) { const cx = TAB.x + r() * TAB.w, cy = TAB.y + r() * TAB.h; p.beginPath(); p.moveTo(cx, cy);
+    for (let k = 0; k < 5; k++) p.lineTo(cx + (r() - .3) * 160, cy + (r() - .5) * 60); p.stroke(); }
+  // grano fino
+  for (let i = 0; i < 26000; i++) { p.fillStyle = r() < .5 ? 'rgba(255,255,255,.05)' : 'rgba(0,0,0,.08)'; p.fillRect(TAB.x + r() * TAB.w, TAB.y + r() * TAB.h, 1.5, 1.5); }
+  p.restore();
+  // repisa con tizas y borrador
+  const ry = MARCO.y + MARCO.h - 8;
+  p.fillStyle = 'rgba(0,0,0,.3)'; p.fillRect(MARCO.x - 10, ry + 18, MARCO.w + 20, 40);
+  p.fillStyle = '#7d4d27'; p.fillRect(MARCO.x - 16, ry, MARCO.w + 32, 38);
+  p.fillStyle = 'rgba(255,255,255,.18)'; p.fillRect(MARCO.x - 16, ry, MARCO.w + 32, 5);
+  const tiza = (x, w, col) => { p.fillStyle = col; p.beginPath(); p.roundRect(x, ry - 20, w, 22, 10); p.fill(); };
+  tiza(160, 110, '#f4f1e8'); tiza(300, 70, COLORES.tizaNumero); tiza(395, 54, COLORES.tizaCirculo);
+  p.fillStyle = '#3a3a44'; p.beginPath(); p.roundRect(700, ry - 50, 200, 52, 10); p.fill();
+  p.fillStyle = '#c9b89a'; p.beginPath(); p.roundRect(700, ry - 50, 200, 24, 8); p.fill();
+  p.fillStyle = 'rgba(255,255,255,.35)'; p.fillRect(710, ry - 4, 180, 5);
+  return c;
+})();
+
+// ---------- tiza: el texto se pinta una vez con grano y se destapa de a poco ----------
+function texturaTiza(txt, font, col, semilla) {
+  const m = document.createElement('canvas').getContext('2d'); m.font = font;
+  const w = Math.ceil(m.measureText(txt).width) + 40, size = parseInt(font.match(/([\d.]+)px/)[1]), h = Math.ceil(size * 1.6);
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const p = c.getContext('2d'), r = rng(semilla);
+  p.font = font; p.textBaseline = 'alphabetic'; p.fillStyle = col;
+  p.globalAlpha = .35; p.fillText(txt, 21.5, size * 1.12 + 1.5);           // halo de polvo
+  p.globalAlpha = .95; p.fillText(txt, 20, size * 1.12);
+  // el grano: se come pedacitos del trazo, en rayitas diagonales como tiza de verdad
+  p.globalCompositeOperation = 'destination-out';
+  for (let i = 0; i < w * h / 16; i++) { p.globalAlpha = .3 + r() * .7; p.fillRect(r() * w, r() * h, 1 + r() * 2.2, 1 + r() * 1.2); }
+  p.globalAlpha = .5; p.lineWidth = 1.2; p.strokeStyle = '#000';
+  for (let i = 0; i < w * h / 700; i++) { const x = r() * w, y = r() * h; p.beginPath(); p.moveTo(x, y); p.lineTo(x + 7, y - 5); p.stroke(); }
+  return { c, w, size };
+}
+function chalkLine(pts, col, w, seed, p = 1) {         // trazo de tiza: varias pasadas cortadas
+  const n = Math.max(2, Math.round(pts.length * clamp(p))); if (p <= 0) return;
+  const q = pts.slice(0, n);
+  ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = col;
+  for (let k = 0; k < 4; k++) {
+    ctx.globalAlpha = k ? .45 : .8; ctx.lineWidth = k ? w * .45 : w * .8;
+    ctx.setLineDash([9 + hash2(k, seed) * 14, 2 + hash2(seed, k) * 4]); ctx.lineDashOffset = hash2(BOIL, k + seed) * 20;
+    tracePath(J(q, seed + k * .37, 2.2 + k * .6), false); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ---------- diseño del texto ----------
+const IZQ = TAB.x + 70, ANCHO = TAB.w - 140;
+const AJ_T = autoajuste(TITULO, LETRA_MANO, 700, ANCHO, 2, 124, 64);
+const AJ_P = (() => {                               // el tamaño más grande con el que TODOS los pasos caben en la pizarra
+  const alto = 1420 - (320 + AJ_T.size * (AJ_T.rs.length * 1.15) + 110);
+  for (const maxR of [1, 3]) for (let z = 96; z >= (maxR === 1 ? 72 : 44); z -= 2) { const f = `600 ${z}px ${LETRA_MANO}`;
+    const rs = PASOS.map(s => renglones(s, f, ANCHO - 120));
+    if (rs.some(r => r.length > maxR || r.some(x => medir(x, f) > ANCHO - 120))) continue;
+    const tot = rs.reduce((a, r) => a + r.length * z * 1.18, 0) + (PASOS.length - 1) * z * .55;
+    if (tot <= alto) return z; }
+  return 44; })();
+const FONT_P = `600 ${AJ_P}px ${LETRA_MANO}`;
+const LINEAS = []; let y = 320 + AJ_T.size;
+AJ_T.rs.forEach((r, i) => { LINEAS.push({ txt: r, font: AJ_T.font, col: COLORES.tiza, x: W / 2 - medir(r, AJ_T.font) / 2, y, tipo: 'titulo' }); y += AJ_T.size * 1.15; });
+const Y_RAYA = y - AJ_T.size * 1.15 + AJ_T.size * .3;          // la raya bajo el título
+y += 70 + AJ_P * .4;
+const hueco = Math.max(0, (1400 - y - PASOS.length * AJ_P * 2.5) / PASOS.length);
+const FILAS = PASOS.map(s => renglones(s, FONT_P, ANCHO - 120));
+const ALTO_PASOS = FILAS.reduce((a, r) => a + r.length * AJ_P * 1.18, 0);
+const SEP = clamp((1400 - y - ALTO_PASOS) / Math.max(1, PASOS.length - 1), AJ_P * .55, AJ_P * 2.2);   // los pasos se reparten el espacio
+PASOS.forEach((s, i) => {
+  const rs = FILAS[i];
+  LINEAS.push({ txt: (i + 1) + '.', font: `700 ${Math.round(AJ_P * 1.1)}px ${LETRA_MANO}`, col: COLORES.tizaNumero, x: IZQ, y, tipo: 'num' });
+  rs.forEach((r, j) => { LINEAS.push({ txt: r, font: FONT_P, col: COLORES.tiza, x: IZQ + 110, y: y + j * AJ_P * 1.18, tipo: 'paso' }); });
+  y += rs.length * AJ_P * 1.18 + SEP;
+});
+// tiempos: cada renglón en proporción a sus letras, con una pausita antes de cada paso
+{ let t = T_INICIO + .35;
+  for (const l of LINEAS) { if (l.tipo === 'num') t += .18; const n = Math.max(1, l.txt.replace(/\s/g, '').length);
+    l.t0 = t; l.t1 = t + n / LPS; t = l.t1; if (l.tipo === 'titulo' && l === LINEAS.filter(x => x.tipo === 'titulo').pop()) t += .2; }
+}
+LINEAS.forEach((l, i) => { const tx = texturaTiza(l.txt, l.font, l.col, 300 + i); Object.assign(l, { tex: tx, w: medir(l.txt, l.font) }); });
+const T_SUB = LINEAS.filter(l => l.tipo === 'titulo').pop().t1 - .05;
+// palabra clave: primera línea que la contiene
+const CLAVE = (() => { if (!PALABRA_CLAVE) return null;
+  for (const l of LINEAS) { const i = l.txt.toLowerCase().indexOf(PALABRA_CLAVE.toLowerCase()); if (i < 0) continue;
+    const a = l.x + medir(l.txt.slice(0, i), l.font), b = a + medir(l.txt.slice(i, i + PALABRA_CLAVE.length), l.font);
+    const size = parseInt(l.font.match(/([\d.]+)px/)[1]);
+    const hol = Math.min(20, medir(' ', l.font) * .45);   // el círculo no se come la palabra de al lado
+    return { cx: (a + b) / 2, cy: l.y - size * .32, rx: (b - a) / 2 + hol, ry: size * .7 }; } return null; })();
+
+function punta(t) {                                  // dónde está la tiza
+  if (t >= T_CIRCULO && CLAVE) { const k = easeOut(prog(t, T_CIRCULO, T_CIRCULO + .55)), a = -Math.PI * .6 + k * Math.PI * 2.15;
+    return [CLAVE.cx + Math.cos(a) * CLAVE.rx, CLAVE.cy + Math.sin(a) * CLAVE.ry]; }
+  if (t > T_SUB && t < T_SUB + .25) { const k = prog(t, T_SUB, T_SUB + .25), l = LINEAS.find(l => l.tipo === 'titulo');
+    return [lerp(W / 2 - 280, W / 2 + 280, k), Y_RAYA]; }
+  let l = LINEAS[0]; for (const x of LINEAS) if (t >= x.t0) l = x;
+  const k = prog(t, l.t0, l.t1), size = parseInt(l.font.match(/([\d.]+)px/)[1]);
+  const bob = (k > 0 && k < 1) ? Math.sin(t * 40) * size * .12 : 0;
+  return [l.x + l.w * k, l.y - size * .3 + bob];
+}
+const escribiendo = t => t > T_INICIO + .35 && t < T_CIRCULO + (CLAVE ? .55 : 0);
+
+function texto(t) {
+  for (const l of LINEAS) {
+    const k = prog(t, l.t0, l.t1); if (k <= 0) continue;
+    const size = l.tex.size;
+    ctx.save(); ctx.beginPath(); ctx.rect(l.x - 20, l.y - size * 1.3, (l.w + 20) * k + 12, size * 2); ctx.clip();
+    ctx.drawImage(l.tex.c, l.x - 20 + (vnoise(BOIL * .6, l.y) - .5) * 1.6, l.y - size * 1.12);
+    ctx.restore();
+  }
+  // subrayado del título
+  chalkLine(resample([[W / 2 - 290, Y_RAYA], [W / 2 + 290, Y_RAYA - 10]], 10), COLORES.tiza, 9, 17, easeOut(prog(t, T_SUB, T_SUB + .25)));
+  // círculo alrededor de la palabra clave
+  if (CLAVE) { const pts = []; for (let i = 0; i <= 60; i++) { const a = -Math.PI * .6 + i / 60 * Math.PI * 2.15, r = 1 + (i / 60) * .08;
+      pts.push([CLAVE.cx + Math.cos(a) * CLAVE.rx * r, CLAVE.cy + Math.sin(a) * CLAVE.ry * r]); }
+    chalkLine(resample(pts, 9), COLORES.tizaCirculo, 11, 23, easeOut(prog(t, T_CIRCULO, T_CIRCULO + .55))); }
+}
+
+function polvo(t) {                                  // polvito que cae de la punta mientras escribe
+  const f = Math.round(t * FPS);
+  ctx.save(); ctx.fillStyle = COLORES.tiza;
+  for (let k = f - 26; k <= f; k++) {
+    const ts = k / FPS; if (!escribiendo(ts)) continue;
+    const [px, py] = punta(ts), dt = t - ts;
+    for (let j = 0; j < 3; j++) {
+      const vx = (hash2(k, j) - .5) * 70, vy = 10 + hash2(j, k) * 60, x = px + vx * dt, yy = py + 10 + vy * dt + 300 * dt * dt;
+      ctx.globalAlpha = (1 - dt / .87) * .7; const s = 2 + hash2(k + j, 9) * 3; ctx.fillRect(x, yy, s, s);
+    }
+  }
+  ctx.restore();
+}
+
+function tizaMagica(t) {                             // la tiza escribe sola: sin mano ni brazo (salen deformes)
+  const fin = T_CIRCULO + (CLAVE ? .55 : 0);
+  const [px, py] = punta(Math.min(t, fin));
+  herramientaMagica(px, py, t, prog(t, T_INICIO - .1, T_INICIO + .35), prog(t, fin + .2, fin + .75),
+    { tipo: 'tiza', col: COLORES.tiza, brillo: COLORES.brillo });
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(FONDO, 0, 0);
+  ctx.save(); ctx.beginPath(); ctx.rect(TAB.x, TAB.y, TAB.w, TAB.h); ctx.clip();
+  texto(t); polvo(t);
+  ctx.restore();
+  tizaMagica(t);
+});
+</script>
+</body>
+</html>

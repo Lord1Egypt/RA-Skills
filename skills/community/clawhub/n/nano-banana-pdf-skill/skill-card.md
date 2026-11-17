@@ -1,46 +1,59 @@
-## Description: <br>
-Edits PDF pages and slides from natural-language instructions by guiding an agent to run the nano-pdf CLI with Google Gemini image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit PDF slides and pages visually from natural-language prompts with the nano-pdf CLI and Google's Gemini 3 Pro Image.
 
-## Publisher: <br>
-[ps06756](https://clawhub.ai/user/ps06756) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ps06756](https://clawhub.ai/user/ps06756)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to make visual changes to PDF decks or reports, such as fixing typos, updating charts, changing branding, or adding slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDF page content may be sent to Google Gemini during editing. <br>
-Mitigation: Use the skill only for documents approved for third-party AI processing, and avoid confidential, regulated, or customer documents unless policy permits it. <br>
-Risk: PDF edits can alter important content or produce incorrect visual results. <br>
-Mitigation: Keep backups of originals and review edited PDFs before sharing or relying on them. <br>
-Risk: Commands rely on external CLI dependencies, file paths, page numbers, output paths, and context flags. <br>
-Mitigation: Verify dependencies and command arguments before execution, including selected pages, output file, and context/search options. <br>
-Risk: Gemini API use can incur cost through the configured API key. <br>
-Mitigation: Use a dedicated Gemini API key with appropriate billing controls and spending limits. <br>
+## Use Case:
 
+Developers and agents use this skill to modify PDF decks and reports by preparing and running nano-pdf commands for visual edits such as fixing typos, updating charts, changing branding, and adding slides.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/ps06756/nano-banana-pdf-skill) <br>
-- [Nano-PDF](https://github.com/gavrielc/Nano-PDF) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline shell commands and generated PDF file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires nano-pdf dependencies and GEMINI_API_KEY; output PDF quality depends on prompt specificity, resolution, OCR, and model behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: PDF page images and, in some workflows, full document text can be sent to Google Gemini.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents permitted by the user's data policy; avoid confidential, regulated, or customer documents unless that external processing is approved.
+
+Risk: The skill relies on executable dependencies that may be installed or invoked outside the skill package.
+
+Mitigation: Use a reviewed, pinned nano-pdf version in an isolated environment with only the target PDF and GEMINI_API_KEY available.
+
+Risk: Broad trigger language could start an external PDF editing workflow when the user request is ambiguous.
+
+Mitigation: Require explicit user approval before dependency installation, paid API use, or sending document content to an external model.
+
+## Reference(s):
+
+- [Skill homepage](https://github.com/ps06756/nano-banana-pdf-skill)
+- [Nano-PDF](https://github.com/gavrielc/Nano-PDF)
+- [Google AI Studio API keys](https://aistudio.google.com/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in edited PDF files when generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

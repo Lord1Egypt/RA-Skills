@@ -1,39 +1,52 @@
-## Description: <br>
-Generates structured .docx country research reports for global invoicing compliance, serving product managers, engineers, and sales or presales teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured country research reports for global invoicing and e-invoicing compliance, producing .docx documents for sales, product, and engineering audiences.
 
-## Publisher: <br>
-[94lfj](https://clawhub.ai/user/94lfj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[94lfj](https://clawhub.ai/user/94lfj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales and pre-sales teams, product managers, and engineers use this skill to create a structured country-specific invoicing compliance research report. The report frames market and regulatory context, product requirements, and technical integration considerations for manual completion against official sources and local advisor input.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security review found unnecessary supply-chain and environment risk from a globally installed, unpinned npm package.
+
+Mitigation: Review the skill before installing, run dependency installation in a controlled project or sandbox, and prefer a pinned local dependency instead of a global install.
+
+Risk: The skill supports invoicing compliance research, where outdated or incomplete regulatory details can affect business decisions.
+
+Mitigation: Confirm the desired language and report generation before use, and validate report content against official sources and local tax or legal advisors before relying on it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, engineers, sales, and presales teams use this skill to research country-specific invoicing and e-invoicing requirements and generate a structured report template for follow-up review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated invoicing research may be incomplete or outdated for legal, tax, or compliance decisions. <br>
-Mitigation: Review every generated report against official sources and local tax or legal advisors before relying on it. <br>
-Risk: The skill may trigger more broadly than intended for invoicing-related prompts. <br>
-Mitigation: Invoke it with explicit country and invoicing-research requests, and review the generated scope before using the report. <br>
+**Output Format:** [DOCX report file with brief Markdown delivery notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The generated report uses placeholders for unknown items and is intended to be completed with official documentation and local tax advisor review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with generated JavaScript/docx workflow instructions and a .docx report artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports include country-specific placeholders and require review against official sources and local tax or legal advisors before use.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Provides real-time INCLAWNCH token analytics on Base, including price, volume, liquidity, staking TVL, UBI APY, distribution rates, and platform metrics through a public API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time INCLAWNCH token analytics on Base, including price, volume, liquidity, staking TVL, UBI APY, distribution rates, and platform metrics through a public API call.
 
-## Publisher: <br>
-[stuart5915](https://clawhub.ai/user/stuart5915) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stuart5915](https://clawhub.ai/user/stuart5915)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public INCLAWNCH market, staking, and platform analytics for user answers, dashboards, alerts, and ecosystem-health checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts inclawbate.com to retrieve public token analytics. <br>
-Mitigation: Install and use it only when outbound requests to inclawbate.com are acceptable for the agent environment. <br>
-Risk: Market, staking, APY, and token-contract data may be incomplete, stale, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Verify important financial or contract information independently before acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stuart5915/inclawnch-analytics) <br>
-- [Inclawbate skills homepage](https://inclawbate.com/skills) <br>
-- [INCLAWNCH analytics endpoint](https://inclawbate.com/api/inclawbate/analytics) <br>
-- [INCLAWNCH analytics skill spec](https://inclawbate.com/api/inclawbate/skill/analytics) <br>
-- [INCLAWNCH BaseScan token page](https://basescan.org/token/0xa1F72459dfA10BAD200Ac160eCd78C6b77a747be) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve INCLAWNCH token, staking, and platform metrics for user questions, monitoring, dashboards, and alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline curl commands and JSON field descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct endpoint access; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Analytics are retrieved from a third-party public endpoint and may be incomplete, stale, or inaccurate for financial decisions.
+
+Mitigation: Verify token and staking metrics against independent sources before acting on market or yield information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stuart5915/skills/inclawnch-analytics)
+- [Inclawbate Skills Directory](https://inclawbate.com/skills)
+- [INCLAWNCH Analytics Endpoint](https://inclawbate.com/api/inclawbate/analytics)
+- [INCLAWNCH Analytics Skill Spec](https://inclawbate.com/api/inclawbate/skill/analytics)
+- [INCLAWNCH Token on BaseScan](https://basescan.org/token/0xa1F72459dfA10BAD200Ac160eCd78C6b77a747be)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Analysis, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl against a public third-party analytics endpoint; no API key is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

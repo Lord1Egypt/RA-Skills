@@ -1,41 +1,54 @@
-## Description: <br>
-Freight consolidation reference - LCL groupage, milk runs, cross-docking, and shipment merging strategies for optimizing shipping costs, planning consolidated loads, and reducing freight spend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Freight consolidation reference — LCL groupage, milk runs, cross-docking, and shipment merging strategies. Use when optimizing shipping costs, planning consolidated loads, or reducing freight spend.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Employees, external logistics teams, and developers can use this skill as a quick freight-consolidation reference for LCL groupage, cross-docking, milk runs, savings analysis, planning, and consolidation risk review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an executable shell script. <br>
-Mitigation: Review the script before execution and run only the documented commands from the trusted release. <br>
-Risk: The guidance is static logistics reference material and may not match every carrier lane, customs process, SLA, or shipment constraint. <br>
-Mitigation: Validate recommendations against current operational requirements, carrier quotes, regulations, and customer commitments before applying them. <br>
+## Use Case:
 
+External logistics teams and agents use this skill to compare freight consolidation methods, plan consolidated loads, and reason about cost tradeoffs and operational risks.
 
-## Reference(s): <br>
-- [Consolidation on ClawHub](https://clawhub.ai/bytesagain3/consolidation) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text reference output from shell commands, with Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static freight-consolidation guidance; no detected credential, MCP, or external API requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Freight rates, break-even thresholds, and capacity examples may not match current carrier pricing or lane constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate financial and operational decisions against current carrier quotes, TMS data, and service commitments.
+
+Risk: Consolidation choices can delay shipments or combine incompatible cargo.
+
+Mitigation: Set maximum hold times, apply cargo compatibility rules, and review customs or handling constraints before acting.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+- [ClawHub Consolidation Skill](https://clawhub.ai/bytesagain3/skills/consolidation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no external API calls or credentials detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

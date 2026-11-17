@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Monitor · 监控中心"
+  short_description: "汇总评论、商品变化、差评与暂停项，免费查看整个账户的监控状态"
+  default_prompt: "使用 $amazon-monitor-center 查看我的 Amazon 监控中心，汇总最近 7 天变化、新评论、差评和暂停项，只读取不变更设置。"

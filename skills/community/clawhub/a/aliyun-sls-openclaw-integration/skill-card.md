@@ -1,47 +1,70 @@
-## Description: <br>
-Use when the user needs to integrate OpenClaw with Alibaba Cloud SLS/Observability, including collector setup, machine groups, indexes, dashboards, collection configs, or Logtail bindings on Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs to integrate OpenClaw with Alibaba Cloud SLS/Observability, including collector setup, machine groups, indexes, dashboards, collection configs, or Logtail bindings on Linux.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision Alibaba Cloud SLS observability for OpenClaw on Linux hosts, including collector setup, logstore indexing, dashboards, collection configuration, and machine-group binding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can persistently upload broad OpenClaw session logs from local users to Alibaba Cloud SLS. <br>
-Mitigation: Install only when that data flow is intended, narrow collector FilePaths to the intended user or project, and review collected paths before enabling the collector. <br>
-Risk: The setup uses sudo and Alibaba Cloud credentials while installing and configuring collector services. <br>
-Mitigation: Use least-privilege temporary credentials, confirm required environment variables, validate ALIYUN_UID, and review the downloaded LoongCollector installer path before execution. <br>
-Risk: Collector identifiers and services may remain on the host after the integration is no longer needed. <br>
-Mitigation: Plan how to stop the collector service and remove /etc/ilogtail identifiers when disabling the integration. <br>
+## Use Case:
 
+Developers and engineers use this skill to provision Alibaba Cloud SLS observability for OpenClaw on Linux, including the CLI, LoongCollector, machine groups, indexes, dashboards, collection configs, and bindings. It is intended for hosts where the target project, logstore, credentials, and sudo access are already available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-sls-openclaw-integration) <br>
-- [Command flow](references/cli-commands.md) <br>
-- [Index definition](references/index.json) <br>
-- [Audit dashboard template](references/dashboard-audit.json) <br>
-- [Gateway dashboard template](references/dashboard-gateway.json) <br>
-- [Collector config template](references/collector-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux host access, sudo, aliyun CLI access, Alibaba Cloud credentials, PROJECT, LOGSTORE, and ALIYUN_UID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can install or start system logging software on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on an approved Linux host, preferably a dedicated single-user or test machine, and review the installation steps before execution.
+
+Risk: The collector configuration can upload OpenClaw session transcripts from local user home directories.
+
+Mitigation: Collect only with approval from affected users and restrict the collector path to the intended user or workspace before binding the config.
+
+Risk: Alibaba Cloud AK/SK credentials may be exposed if long-lived keys are kept in shared shells.
+
+Mitigation: Use least-privilege SLS permissions, avoid long-lived credentials in shared environments, and rotate or unset credentials after setup.
+
+Risk: The LoongCollector installer is downloaded during setup.
+
+Mitigation: Pin and verify the installer source before running it in production environments.
+
+Risk: Collected logs may retain sensitive session data longer than intended.
+
+Mitigation: Set short SLS retention and maintain a documented uninstall and cleanup procedure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/aliyun-sls-openclaw-integration)
+- [Command flow](references/cli-commands.md)
+- [Index definition](references/index.json)
+- [Dashboard template: OpenClaw Audit](references/dashboard-audit.json)
+- [Dashboard template: OpenClaw Gateway](references/dashboard-gateway.json)
+- [Collection config template](references/collector-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux, sudo, aliyun CLI access, Alibaba Cloud AK/SK environment variables, ALIYUN_UID, PROJECT, and LOGSTORE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

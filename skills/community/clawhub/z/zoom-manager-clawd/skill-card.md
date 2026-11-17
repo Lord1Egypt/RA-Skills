@@ -1,45 +1,57 @@
-## Description: <br>
-Manage Zoom meetings via OAuth API. Create, list, delete, and update events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zoom meetings via OAuth API. Create, list, delete, and update events.
 
-## Publisher: <br>
-[vnagin](https://clawhub.ai/user/vnagin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vnagin](https://clawhub.ai/user/vnagin)
 
-## Use Case: <br>
-Developers and teams use this skill to manage Zoom meetings from an agent workflow, including creating, listing, updating, inspecting, and deleting scheduled meetings through Zoom OAuth API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use broad Zoom meeting administration privileges, including creating, updating, and deleting meetings. <br>
-Mitigation: Use a dedicated least-privilege Zoom Server-to-Server OAuth app and require human confirmation before update or delete commands run. <br>
-Risk: Meeting creation enables cloud recording by default, which may trigger privacy, consent, or organizational compliance obligations. <br>
-Mitigation: Grant recording access only when needed and confirm applicable legal and organizational consent requirements before use. <br>
-Risk: The skill requires Zoom OAuth credentials and account identifiers. <br>
-Mitigation: Store credentials only as environment variables or managed secrets and avoid committing credential files such as config.json. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zoom Manager ClawHub Page](https://clawhub.ai/vnagin/zoom-manager-clawd) <br>
-- [Publisher Profile](https://clawhub.ai/user/vnagin) <br>
-- [Zoom App Marketplace](https://marketplace.zoom.us/) <br>
-- [Zoom OAuth Token Endpoint](https://api.zoom.us/oauth/token) <br>
-- [Zoom Meetings API](https://api.zoom.us/v2/users/{user_id}/meetings) <br>
+## Use Case:
 
+Teams and developers use this skill to create, list, inspect, update, and delete Zoom meetings from an agent or CLI using Zoom Server-to-Server OAuth.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from Zoom API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Zoom Server-to-Server OAuth credentials in environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad account-level Zoom permissions and can create, update, and delete meetings.
+
+Mitigation: Use a dedicated least-privilege Zoom OAuth app, grant only scopes required for the intended workflow, and review sensitive commands before execution.
+
+Risk: Some legacy scripts read Zoom credentials from config.json, which can leave secrets on disk.
+
+Mitigation: Use the environment-variable based CLI path, avoid storing credentials in files, and rotate any secret that was saved in config.json.
+
+Risk: Meeting deletion, meeting updates, and default cloud recording behavior can affect participants and retained meeting data.
+
+Mitigation: Confirm meeting IDs, schedule changes, and recording expectations before running update, delete, or create commands on a real Zoom account.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vnagin/skills/zoom-manager-clawd)
+- [Zoom App Marketplace](https://marketplace.zoom.us/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and Zoom OAuth credentials in ZOOM_CLIENT_ID, ZOOM_CLIENT_SECRET, and ZOOM_ACCOUNT_ID.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,51 @@
-## Description: <br>
-Vibe Coder guides an agent through building apps, tools, CLIs, scripts, web apps, automations, or other software from plain-English briefs with structured planning, incremental work, feedback loops, and final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a confirmation-heavy workflow for building apps, tools, CLIs, scripts, web apps, automations, and other software projects from plain-English briefs.
 
-## Publisher: <br>
-[CaleCorbett](https://clawhub.ai/user/CaleCorbett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[calecorbett](https://clawhub.ai/user/calecorbett)
 
-## Use Case: <br>
-Developers, teams, and nontechnical builders use this skill to turn natural-language software ideas into working projects through an explicit brief, staged plan, incremental implementation, review, and delivery workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate for broad coding requests and may propose changes, commands, or workflows that affect production systems, credentials, deployments, or destructive automation. <br>
-Mitigation: Review proposed plans, code changes, and commands before approval, and apply extra scrutiny for production environments, secrets, deployment actions, and destructive operations. <br>
-Risk: Because the skill is instruction-only and relies on user feedback loops, unclear requirements can lead to implementation that does not match user intent. <br>
-Mitigation: Confirm the brief, technology constraints, and staged plan before implementation, then review each phase before continuing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and external users use this skill to turn plain-English software ideas into staged implementation plans, incremental builds, feedback loops, testing, and final delivery instructions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for many coding requests and slow work with repeated confirmation gates.
+
+Mitigation: Use it for guided greenfield builds where staged approvals are acceptable.
+
+Risk: Generated code, dependencies, and shell commands can introduce errors or unsafe changes.
+
+Mitigation: Review generated code, dependency additions, and commands before running them in the target environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; final output normally includes a working product, build summary, run instructions, and known limitations or next steps.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with prose, code blocks, shell commands, and implementation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes staged approvals, brief explanations, explicit error-handling options, and final run instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

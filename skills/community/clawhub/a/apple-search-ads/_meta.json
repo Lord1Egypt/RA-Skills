@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "apple-search-ads",
-  "version": "1.0.0",
-  "publishedAt": 1771978219234
+  "displayName": "Apple Search Ads",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764894
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784844143100
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784811347613
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1771978219553
+    }
+  ]
 }

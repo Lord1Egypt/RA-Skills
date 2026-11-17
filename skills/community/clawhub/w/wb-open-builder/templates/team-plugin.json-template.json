@@ -1,0 +1,47 @@
+{
+  "name": "{{team-name}}",
+  "version": "1.0.0",
+  "description": "{{English short description}}",
+  "author": { "name": "{{Your Name}}", "email": "{{you@example.com}}" },
+  "agents": [
+    "./agents/{{team-name}}-team-lead.md",
+    "./agents/{{member-a}}.md",
+    "./agents/{{member-b}}.md"
+  ],
+  "expertType": "team",
+  "agentName": "{{team-name}}-team-lead",
+  "teamInfo": {
+    "leadAgent": "{{team-name}}-team-lead",
+    "memberAgents": ["{{member-a}}", "{{member-b}}"]
+  },
+  "displayName": { "en": "{{Team Name}}", "zh": "{{团队名称}}" },
+  "profession": { "en": "{{Team Profession}}", "zh": "{{职业头衔（与 displayName 保持一致）}}" },
+  "displayDescription": {
+    "en": "{{English display description}}",
+    "zh": "{{中文展示描述，严格 40~50 字，突出专家团协作能力}}"
+  },
+  "avatar": "avatars/team.png",
+  "categoryId": "{{15 选 1，同专家枚举}}",
+  "defaultInitPrompt": { "zh": "{{与 quickPrompts 第一条一致}}", "en": "{{same as first quickPrompt}}" },
+  "plugin": "{{team-name}}",
+  "tags": [
+    { "en": "{{Tag 1}}", "zh": "{{标签一}}" },
+    { "en": "{{Tag 2}}", "zh": "{{标签二}}" },
+    { "en": "{{Tag 3}}", "zh": "{{标签三}}" }
+  ],
+  "quickPrompts": [
+    { "en": "{{Prompt 1}}", "zh": "{{提示词一}}" },
+    { "en": "{{Prompt 2}}", "zh": "{{提示词二}}" },
+    { "en": "{{Prompt 3}}", "zh": "{{提示词三}}" }
+  ],
+  "members": [
+    { "id": "{{team-name}}-team-lead", "name": { "en": "{{Lead}}", "zh": "{{主理人名}}" }, "profession": { "en": "Team Lead & Orchestrator", "zh": "主理人" }, "avatar": "avatars/team-lead.png", "role": "lead" },
+    { "id": "{{member-a}}", "name": { "en": "{{A}}", "zh": "{{成员A名}}" }, "profession": { "en": "{{Role A}}", "zh": "{{成员A头衔}}" }, "avatar": "avatars/{{member-a}}.png", "role": "member" },
+    { "id": "{{member-b}}", "name": { "en": "{{B}}", "zh": "{{成员B名}}" }, "profession": { "en": "{{Role B}}", "zh": "{{成员B头衔}}" }, "avatar": "avatars/{{member-b}}.png", "role": "member" }
+  ],
+  "_note_settings": "专家团包内另需 settings.json（设置主理人，必须存在；字段以官方模板 trading-team.zip 为准）",
+  "_optional_dependencies": {
+    "mcpServers": "./.mcp.json",
+    "connectors": ["{{connector-id}}"]
+  }
+}

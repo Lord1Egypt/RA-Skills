@@ -1,45 +1,59 @@
-## Description: <br>
-Stock Tools helps an agent maintain a local A-share watchlist and fetch lightweight public quotes for individual stocks or the saved watchlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Tools manages a persistent A-share watchlist and retrieves lightweight public quotes for individual or watchlist stocks.
 
-## Publisher: <br>
-[daguniang](https://clawhub.ai/user/daguniang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daguniang](https://clawhub.ai/user/daguniang)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to manage a persistent A-share watchlist and answer current quote or watchlist-performance questions in natural language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock codes and quote requests are sent to a public quote service. <br>
-Mitigation: Use the skill only when public quote lookup is acceptable for the requested stocks. <br>
-Risk: The watchlist is stored in a local file, and a custom --file path can point the script at another file. <br>
-Mitigation: Use the default stocks-data/stocklist.txt location unless intentionally selecting a separate watchlist file. <br>
-Risk: Quotes may be unavailable, stale, or invalid outside normal market conditions. <br>
-Mitigation: Treat unavailable or unconfirmed quote timestamps as uncertainty and avoid fabricating market data. <br>
+## Use Case:
 
+External users and agents use this skill to maintain a local A-share watchlist, fetch current public quote data, and summarize individual or watchlist stock performance in natural language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daguniang/stock-tools) <br>
-- [Sina public quote endpoint](https://hq.sinajs.cn/list=...) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
-- [Tonghuashun stock detail page pattern](https://stockpage.10jqka.com.cn/{code}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Concise natural-language stock summaries, line-oriented text, and optional JSON quote records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write a local stocks-data/stocklist.txt watchlist; quote availability depends on the public market data source and trading-state timing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The bundled local script can overwrite arbitrary writable files through an unrestricted file-path option.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill limited to its dedicated stocks-data/stocklist.txt file and avoid exposing or using the --file option.
+
+Risk: Clear or reset requests can remove the persisted watchlist.
+
+Mitigation: Confirm user intent before clearing or resetting saved watchlist data.
+
+Risk: Latest quote lookups depend on a public network call and may be unavailable or lack reliable timing.
+
+Mitigation: State when the lightweight quote source is unavailable or when quote time cannot be confirmed, and do not fabricate market data.
+
+## Reference(s):
+
+- [ClawHub Stock Tools skill page](https://clawhub.ai/daguniang/skills/stock-tools)
+- [Sina public quote endpoint](https://hq.sinajs.cn/list=...)
+- [10jqka stock detail page pattern](https://stockpage.10jqka.com.cn/{code}/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Concise Markdown or plain text for user-facing answers; JSON is available from the quote script for structured processing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local watchlist script reads and writes a stock list file; quote results depend on a public market data endpoint.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Evaluates domain authority across 40 CITE criteria with dimension scoring, veto checks, and prioritized improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a domain's authority, trust, and citation readiness against a declared peer cohort using a 40-item CITE profile with explicit evidence gaps and verified manipulation or penalty veto checks.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-SEO practitioners, marketers, and site owners use this skill to audit a domain's citation trust, identity, trust, and eminence signals before GEO campaigns, competitor benchmarking, link-building reviews, or penalty recovery work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/domain-authority-auditor) <br>
-- [Publisher Profile](https://clawhub.ai/user/aaron-he-zhu) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [CITE Domain Rating](https://github.com/aaron-he-zhu/cite-domain-rating) <br>
-- [CITE Domain Rating Reference](https://github.com/aaron-he-zhu/seo-geo-claude-skills/blob/main/references/cite-domain-rating.md) <br>
-- [Example Report](references/example-report.md) <br>
+SEO/GEO practitioners, marketers, and agent operators use this skill to audit one domain's citation-trust profile against a locked market peer cohort and identify evidence gaps, veto risks, and prioritized fixes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with scored tables, a citation-trust verdict, prioritized actions, and a handoff summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce reusable audit summaries for local memory; for confidential domains, avoid saving results or clear retained memory after the session.] <br>
+Global
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Private analytics, console exports, or backlink data may contain sensitive site information.
+
+Mitigation: Provide private data only when it is intended for the audit, and authorize persistence only when a saved audit artifact is desired.
+
+Risk: Missing peer cohort, market, stage, domain type, or private evidence can prevent a complete score and leave the audit undecided.
+
+Mitigation: Declare the target, observation date, market, entity stage, domain type, locked peer cohort, evidence window, and any unavailable qualified items before relying on the result.
+
+Risk: CITE output can be misread as a prediction that answer engines will cite the audited domain.
+
+Mitigation: Use the result as an advisory citation-trust assessment and review evidence gaps, veto checks, and confidence before making publication or campaign decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aaron-he-zhu/skills/domain-authority-auditor)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Standalone auditor runtime](references/auditor-runtime.md)
+- [Example CITE domain authority report](references/example-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit report with explicit status, verdict, score_state, score tables, evidence gaps, and optional validated audit artifact.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist a permissioned v3 audit artifact only with explicit user authorization; standalone installs fail closed without scoring when the verified runtime is unavailable.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

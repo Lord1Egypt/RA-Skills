@@ -1,41 +1,57 @@
-## Description: <br>
-Deploys the Huo Xiaoding Spring Boot service to a server by building the JAR, uploading it, backing up the previous version, restarting the service, and reporting status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys the HXD Spring Boot service to a remote server by packaging the JAR, uploading it, backing up the previous version, restarting the service, and checking logs.
 
-## Publisher: <br>
-[adtomato](https://clawhub.ai/user/adtomato) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adtomato](https://clawhub.ai/user/adtomato)
 
-## Use Case: <br>
-Developers and operators who manage the Huo Xiaoding service can use this skill to package the Spring Boot application, deploy the configured JAR to the configured server, restart the service, verify logs and status, and report the deployment outcome. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger broad deployment actions on a live server using a root SSH account. <br>
-Mitigation: Require a final confirmation that shows the host, account, artifact path, and service name, and use a limited deployment account instead of root. <br>
-Risk: The documented SSH commands disable host-key checking. <br>
-Mitigation: Verify and pin the SSH host key before deployment instead of bypassing host-key checks. <br>
-Risk: A deployment may replace and restart the configured service from the fixed local JAR path. <br>
-Mitigation: Confirm the artifact path and intended service before execution, keep a timestamped backup, check logs after restart, and use the rollback procedure if verification fails. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy the HXD Spring Boot service to a configured remote host and report upload, backup, restart, and log-check status.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with PowerShell and shell command blocks plus deployment status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a fixed service, host, account, paths, and JAR name from the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make privileged remote production changes using root SSH access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated deployment account and key, and require explicit confirmation that shows the target host, artifact path and checksum, backup name, and restart action before any remote mutation.
+
+Risk: SSH commands disable strict host-key verification, weakening host identity checks.
+
+Mitigation: Enable strict host-key verification and manage the target host key in known_hosts before deployment.
+
+Risk: Broad deployment trigger phrases could cause an unintended deployment.
+
+Mitigation: Remove broad automatic triggers or require a separate explicit approval immediately before upload, replacement, rollback, or restart.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adtomato/skills/hxd-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status report with PowerShell and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports JAR upload status, timestamped backup name, service restart state, log-confirmed running status, and warnings or errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

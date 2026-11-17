@@ -1,41 +1,56 @@
-## Description: <br>
-OpenClaw TDD helps developers generate Python tests from code, run project tests, inspect coverage, and follow a test-driven development workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test-Driven Development assistant that generates Python test cases, runs pytest or unittest tests, reports coverage, and guides parts of the red-green-refactor cycle.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[michealxie001](https://clawhub.ai/user/michealxie001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this local Python-focused TDD helper to generate starter tests, run tests, review coverage, and support a red-green-refactor workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documentation advertises Jest, Go, mutation testing, and full cycle features that the evidence identifies as incomplete.
+
+Mitigation: Use the skill primarily for local Python TDD workflows and verify any non-Python, mutation, or cycle behavior before relying on it.
+
+Risk: Test and coverage helpers use fixed report paths under /tmp, which can be unsuitable in multi-user or high-assurance environments.
+
+Mitigation: Run in an isolated workspace or container and avoid shared temporary directories until report path handling is hardened.
+
+Risk: Generated tests are starter code and may contain incorrect assumptions about expected behavior.
+
+Mitigation: Review generated tests before committing them and run the project test suite after edits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap test files, run local test suites, inspect coverage gaps, and guide red-green-refactor work in coding projects. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read source files, write generated tests or coverage outputs to selected paths, and run project test commands. <br>
-Mitigation: Use it in a trusted workspace, review requested paths and commands, and inspect generated files before committing or executing follow-up changes. <br>
-Risk: The release evidence says some advertised Jest, Go, mutation-testing, specification-generation, and TDD-cycle capabilities are incomplete or overstated. <br>
-Mitigation: Rely on the implemented Python test generation, test running, and coverage workflows unless the publisher updates the implementation and documentation. <br>
+**Output Format:** [Markdown guidance, CLI output, generated Python test code, and coverage summaries.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/openclaw-tdd) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/michealxie001) <br>
+**Other Properties Related to Output:** [May write generated tests or reports to local files when the user provides output paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated test code, shell command output, and optional files written to requested paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read source files, write generated tests or coverage reports to user-selected paths, and run local test commands.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

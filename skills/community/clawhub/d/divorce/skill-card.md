@@ -1,41 +1,53 @@
-## Description: <br>
-Divorce process support with financial inventory, legal preparation, parenting plan organization, deadline tracking, and emotional guidance, without providing legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Divorce process support with financial inventory, legal preparation, emotional guidance, and clear boundaries against legal advice.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users can use this skill to organize divorce-related financial records, documents, attorney meeting preparation, deadlines, and parenting plan considerations while relying on licensed family law counsel for legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store very sensitive divorce-related financial details in plaintext on the user's device. <br>
-Mitigation: Use device or filesystem encryption, avoid entering unnecessary account numbers or identifiers, and delete local divorce memory files when they are no longer needed. <br>
-Risk: Users may mistake organizational divorce support for legal advice. <br>
-Mitigation: Use the skill only for organization and preparation, and consult a licensed family law attorney for legal guidance. <br>
+## Use Case:
 
+External users and agents use this skill to organize divorce-related financial inventory, documents, attorney preparation, deadlines, parenting-plan information, and emotional-support check-ins. It is organizational support only and does not replace licensed family-law counsel.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agenticio/divorce) <br>
-- [Publisher Profile](https://clawhub.ai/user/agenticio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with optional shell command invocations and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local divorce organization records when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Sensitive divorce, custody, and financial details may be stored locally in plaintext or shown in terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an encrypted private environment, restrict file permissions, avoid entering unnecessary sensitive details, and review retention and deletion practices.
+
+Risk: Organizational process guidance could be mistaken for legal advice in a high-consequence divorce matter.
+
+Mitigation: Use the skill for preparation and organization only, and confirm legal decisions, deadlines, filings, and strategy with a licensed family-law attorney.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agenticio/skills/divorce)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command invocations and local JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON files under memory/divorce/ when scripts are used.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

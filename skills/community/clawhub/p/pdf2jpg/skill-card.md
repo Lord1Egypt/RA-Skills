@@ -1,39 +1,56 @@
-## Description: <br>
-Converts PDF files into JPEG page images with pdftoppm, supports optional page ranges, and can package generated JPGs into a zip archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF files to JPEG images with pdftoppm, support optional page ranges, and bundle generated JPGs into a zip archive for sharing.
 
-## Publisher: <br>
-[luohongq](https://clawhub.ai/user/luohongq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[luohongq](https://clawhub.ai/user/luohongq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and other document workflow users use this skill to convert local PDF pages into JPEG files, optionally limiting conversion to a page range and packaging the generated images into a zip archive.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow installs and invokes local command-line tools and scripts on user-selected PDFs.
+
+Mitigation: Install poppler-utils from trusted package sources, review the scripts before running them, and process only PDFs the user is comfortable converting locally.
+
+Risk: Generated JPEG files are written beside the source PDF and optional zip archives may be created.
+
+Mitigation: Run the scripts in a controlled working directory and inspect generated files before sharing or archiving them.
+
+Risk: Script prompts and error messages are in Chinese, which may be unclear to some users.
+
+Mitigation: Prefer passing explicit command-line arguments and translate prompts or messages when needed before operational use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and end users use this skill to convert full PDFs or selected page ranges into JPEG images and optionally bundle those images for sharing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local shell scripts and depends on locally installed poppler-utils/pdftoppm. <br>
-Mitigation: Install and run it only in an environment where local shell execution and the dependency are acceptable. <br>
-Risk: Generated JPEGs and zip archives can expose pages from sensitive PDFs in the target folder. <br>
-Mitigation: Review the output directory and avoid running the scripts on sensitive documents unless the storage location is appropriate. <br>
+**Output Format:** [Markdown with inline bash commands and script usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces local JPEG files beside the source PDF and can create a zip archive of matching generated images.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local JPEG or zip files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires poppler-utils/pdftoppm; generated JPEGs and zip archives are written next to the supplied PDF unless an archive path is provided.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

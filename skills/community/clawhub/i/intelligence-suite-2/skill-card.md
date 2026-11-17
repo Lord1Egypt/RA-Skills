@@ -1,45 +1,66 @@
-## Description: <br>
-Makima's All-Seeing Intelligence Suite combines real-time AI news tracking and global news monitoring for comprehensive strategic briefings with LLM analysis powered by SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Makima's All-Seeing Intelligence Suite combines real-time AI news tracking and global news monitoring for strategic briefings, with LLM analysis powered by SkillBoss API Hub.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to collect recent AI and global news signals, scrape article snippets, and generate structured strategic briefings through an external LLM service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends scraped briefing content and SKILLBOSS_API_KEY-bearing requests to an undeclared external API domain. <br>
-Mitigation: Confirm that api.heybossai.com is the intended SkillBoss endpoint before installing or providing SKILLBOSS_API_KEY. <br>
-Risk: Global monitor output may mix one hardcoded mock news item into live analysis. <br>
-Mitigation: Treat generated global-monitor briefings as unverified and review source items before relying on conclusions. <br>
-Risk: Scraped article snippets are sent to an external LLM service for analysis. <br>
-Mitigation: Avoid processing sensitive or private sources and review organizational data-sharing requirements before use. <br>
+## Use Case:
 
+External users and developers can use this skill to gather recent AI and global news signals, scrape article snippets, and produce structured strategic briefings through an LLM analysis step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/intelligence-suite-2) <br>
-- [Publisher profile](https://clawhub.ai/user/marjoriebroad) <br>
-- [SkillBoss skill page](https://skillboss.co/skills/intelligence-suite) <br>
-- [SkillBoss API endpoint declared in metadata](https://api.skillboss.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text containing structured news packs and LLM-generated briefing sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, network access to configured news sources, and SKILLBOSS_API_KEY for LLM analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary says the skill sends the configured API key and scraped article content to an undeclared API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, confirm the intended API hostname with the publisher, and use only if sending SKILLBOSS_API_KEY and scraped news excerpts to that endpoint is acceptable.
+
+Risk: The security summary says article URLs are fetched without enough network scoping.
+
+Mitigation: Run the skill in a network-restricted environment or patch URL allowlisting before use.
+
+Risk: The security guidance notes that dependencies are not pinned with a lockfile.
+
+Mitigation: Prefer pinned dependencies and a reviewed lockfile before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/intelligence-suite-2)
+- [Publisher Profile](https://clawhub.ai/user/marjoriebroad)
+- [SkillBoss Skill Listing](https://skillboss.co/skills/intelligence-suite)
+- [SkillBoss API Endpoint Used by Artifact](https://api.heybossai.com/v1)
+- [OpenAI Blog RSS](https://openai.com/blog/rss.xml)
+- [Microsoft AI Blog RSS](https://blogs.microsoft.com/ai/feed/)
+- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/topstories.json)
+- [Reuters Agency Feed](https://www.reutersagency.com/feed/?best-regions=global&post_type=best)
+- [SCMP RSS Feed](https://www.scmp.com/rss/91/feed)
+- [RTHK RSS Feed](https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with structured news packs and optional LLM-generated briefing prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, and SKILLBOSS_API_KEY for LLM analysis; without the key, the scripts print collected news packs and skip LLM analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

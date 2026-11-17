@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and discussions
+    url: https://github.com/JohnSmithfan/MAGI-Strategic-Advisor/discussions
+    about: Ask usage questions and discuss ideas with the community.
+  - name: Security vulnerability reports
+    url: https://github.com/JohnSmithfan/MAGI-Strategic-Advisor/security/advisories/new
+    about: Report security issues privately, as described in SECURITY.md.
+  - name: Support guide
+    url: https://github.com/JohnSmithfan/MAGI-Strategic-Advisor/blob/main/SUPPORT.md
+    about: Read the support guide before filing an issue.

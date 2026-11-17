@@ -1,0 +1,175 @@
+---
+name: k8s-cost
+description: Optimize Kubernetes costs through resource right-sizing, unused resource detection, and cluster efficiency analysis. Use for cost optimization, resource analysis, and capacity planning.
+license: MIT-0
+metadata:
+  author: rohitg00
+  version: "2.0.0"
+  tools: 9
+  category: observability
+---
+
+# Kubernetes Cost Optimization
+
+Cost analysis and optimization using kubectl-mcp-server's cost tools.
+
+> Requires the `cost`, `keda` toolsets: start kubectl-mcp-server with `--toolsets default,cost,keda` (or `MCP_TOOLSETS=default,cost,keda`).
+
+## When to Apply
+
+Use this skill when:
+- User mentions: "cost", "savings", "optimize", "expensive", "budget"
+- Operations: cost analysis, right-sizing, cleanup unused resources
+- Keywords: "how much", "reduce", "efficiency", "waste", "overprovisioned"
+
+## Priority Rules
+
+| Priority | Rule | Impact | Tools |
+|----------|------|--------|-------|
+| 1 | Find and delete unused PVCs | CRITICAL | `get_idle_resources` |
+| 2 | Right-size overprovisioned pods | HIGH | `get_resource_recommendations` |
+| 3 | Identify idle LoadBalancers | HIGH | `kubectl_get` |
+| 4 | Scale down non-prod off-hours | MEDIUM | `kubectl_scale` |
+| 5 | Consolidate small namespaces | LOW | Analysis |
+
+## Quick Reference
+
+| Task | Tool | Example |
+|------|------|---------|
+| Namespace cost | `get_namespace_cost_allocation` | `get_namespace_cost_allocation(namespace)` |
+| Cluster cost | `get_cost_analysis` | `get_cost_analysis()` |
+| Unused PVCs | `get_idle_resources` | `get_idle_resources(namespace)` |
+| Right-sizing | `get_resource_recommendations` | `get_resource_recommendations(namespace)` |
+
+## Quick Cost Analysis
+
+### Get Cost Summary
+
+```python
+get_namespace_cost_allocation(namespace)
+get_cost_analysis()
+```
+
+### Find Unused Resources
+
+```python
+get_idle_resources(namespace)
+get_idle_resources(namespace)
+```
+
+### Resource Right-Sizing
+
+```python
+get_resource_recommendations(namespace)
+kubectl_top(name, namespace)
+```
+
+## Cost Optimization Workflow
+
+### 1. Identify Overprovisioned Resources
+
+```python
+get_resource_recommendations(namespace="production")
+
+kubectl_top(name, namespace)
+kubectl_top(namespace)
+```
+
+### 2. Find Idle Resources
+
+```python
+get_idle_resources(namespace)
+
+get_idle_resources(namespace)
+```
+
+### 3. Analyze Node Utilization
+
+```python
+kubectl_get(resource_type="nodes")
+kubectl_top(resource="nodes")
+```
+
+## Right-Sizing Guidelines
+
+| Current State | Recommendation |
+|--------------|----------------|
+| CPU usage < 10% of request | Reduce request by 50% |
+| CPU usage > 80% of request | Increase request by 25% |
+| Memory < 50% of request | Reduce request |
+| Memory near limit | Increase limit, monitor OOM |
+
+## Cost by Resource Type
+
+### Compute (Pods/Deployments)
+
+```python
+kubectl_top(namespace)
+kubectl_top(name, namespace)
+```
+
+### Storage (PVCs)
+
+```python
+kubectl_get(resource_type="pvc", namespace)
+get_idle_resources(namespace)
+```
+
+### Network (LoadBalancers)
+
+```python
+kubectl_get(resource_type="services", namespace)
+```
+
+## Multi-Cluster Cost Analysis
+
+Compare costs across clusters:
+
+```python
+get_cost_analysis(context="production")
+get_cost_analysis(context="staging")
+get_cost_analysis(context="development")
+```
+
+## Cost Reduction Actions
+
+### Immediate Wins
+
+1. **Delete unused PVCs**: `get_idle_resources()` then delete
+2. **Right-size pods**: Apply `get_resource_recommendations()`
+3. **Scale down dev/staging**: Off-hours scaling
+
+### Medium-term Optimizations
+
+1. **Use Spot/Preemptible nodes**: For fault-tolerant workloads
+2. **Implement HPA**: Auto-scale based on demand
+3. **Use KEDA**: Scale to zero for event-driven workloads
+
+### Long-term Strategy
+
+1. **Reserved instances**: For stable production workloads
+2. **Multi-tenant clusters**: Consolidate small clusters
+3. **Right-size node pools**: Match workload requirements
+
+## Automated Analysis Script
+
+For comprehensive cost analysis, see [scripts/find-overprovisioned.py](scripts/find-overprovisioned.py).
+
+## KEDA for Cost Savings
+
+Scale to zero with KEDA:
+
+```python
+keda_scaledobjects_list(namespace)
+keda_scaledobject_get(name, namespace)
+```
+
+KEDA reduces costs by:
+- Scaling pods to 0 when idle
+- Event-driven scaling (queue depth, etc.)
+- Cron-based scaling for predictable patterns
+
+## Related Skills
+
+- [k8s-autoscaling](../k8s-autoscaling/SKILL.md) - HPA, VPA, KEDA
+- [k8s-troubleshoot](../k8s-troubleshoot/SKILL.md) - Resource debugging

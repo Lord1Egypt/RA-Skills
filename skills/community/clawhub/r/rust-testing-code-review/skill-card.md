@@ -1,42 +1,56 @@
-## Description: <br>
-Reviews Rust test code for unit test patterns, integration test structure, async testing, mocking approaches, and property-based testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Rust test code for unit, integration, async, mocking, property-based, concurrency, and edition-specific testing patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust test code, including unit tests, integration tests, async tests, mocks, fixtures, property-based tests, and concurrency-focused test coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested cargo test, Miri, Loom, or tool-install commands may be inappropriate outside the intended repository. <br>
-Mitigation: Review command suggestions before execution and run them only in the intended repository. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Rust test files, test modules, and test infrastructure for correctness, isolation, async behavior, concurrency coverage, and maintainable assertion patterns.
 
-## Reference(s): <br>
-- [Rust Testing Code Review on ClawHub](https://clawhub.ai/anderskev/rust-testing-code-review) <br>
-- [Advanced Testing](references/advanced-testing.md) <br>
-- [Concurrency Testing](references/concurrency-testing.md) <br>
-- [Integration Tests](references/integration-tests.md) <br>
-- [Unit Tests](references/unit-tests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review findings with file and line references, severity labels, explanations, and optional command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by severity and should be grounded in concrete Rust source artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Illustrative database cleanup snippets could be harmful if applied to a non-disposable database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a clearly disposable test database before using destructive cleanup examples.
+
+Risk: Optional test tools used in CI or shared developer environments can drift over time.
+
+Mitigation: Pin optional tools such as cargo-insta when adopting them in CI or shared workflows.
+
+## Reference(s):
+
+- [Unit Tests](references/unit-tests.md)
+- [Integration Tests](references/integration-tests.md)
+- [Advanced Testing](references/advanced-testing.md)
+- [Concurrency Testing](references/concurrency-testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured code review findings with file-line references, severity labels, and concise explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires concrete review evidence before listing findings; may include Rust testing recommendations and command examples when relevant.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

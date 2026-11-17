@@ -1,46 +1,67 @@
-## Description: <br>
-Automates quotation generation in Excel, Word, HTML, and PDF formats with data validation to reduce example-data misuse and optional OKKI CRM support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates quotation documents in Excel, Word, HTML, and PDF with pre-generation data validation to reduce accidental use of sample customer data and optional OKKI CRM workflow support.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and operations agents use this skill to create customer-specific quotation files, validate quotation data before generation, and prepare PDF attachments for outbound customer workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quotation data may be passed to an external OKKI sync workflow. <br>
-Mitigation: Review and control whether OKKI synchronization runs before using the generated workflow with customer data. <br>
-Risk: Generated quotations may contain sensitive customer or commercial details. <br>
-Mitigation: Review generated files before sending, avoid online PDF tools, and use an explicit recipient and attachment confirmation process. <br>
-Risk: Generated HTML loads assets from public CDNs. <br>
-Mitigation: Replace CDN-loaded HTML assets with local copies when operating in restricted or sensitive environments. <br>
+## Use Case:
 
+Sales operators and developers use this skill to turn structured quotation JSON into customer-ready quotation files and to run validation checks before sharing them externally.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cjboy007/quotation-workflow) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Quick Start](QUICK_START.md) <br>
-- [Workflow Checklist](WORKFLOW_CHECKLIST.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON data templates, shell commands, and generated quotation files such as HTML and PDF.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and Chrome; server metadata lists macOS compatibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Running the all-in-one workflow on untrusted file paths or quotation JSON may lead to unintended local file handling or unsafe generated documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted quotation data files only, review workflow boundaries before installation, and inspect generated documents before sending them to customers.
+
+Risk: Generated HTML can include customer-supplied quotation content and external font or icon assets.
+
+Mitigation: Do not open generated HTML from untrusted data, prefer local pinned assets, and ensure content is escaped before customer distribution.
+
+Risk: The workflow can attempt automatic OKKI synchronization through a sibling script.
+
+Mitigation: Disable or remove automatic OKKI sync unless that integration and its credentials are trusted for the deployment environment.
+
+Risk: The bundled signature authorization restricts signature use to quotation documents only.
+
+Mitigation: Use signature assets only for quotation PDFs or Word quotation documents, and exclude them from contracts, invoices, financial records, and legal documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/quotation-workflow)
+- [Quick Start](QUICK_START.md)
+- [Standard Workflow](STANDARD_WORKFLOW.md)
+- [Workflow Checklist](WORKFLOW_CHECKLIST.md)
+- [PDF Export Guide](docs/PDF_EXPORT.md)
+- [Format Comparison](docs/FORMATS.md)
+- [Signature Usage Authorization](assets/signatures/USAGE_AUTHORIZATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON inputs and shell commands that produce Excel, Word, HTML, and PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and Chrome on macOS according to ClawHub metadata; generated HTML may depend on external font and icon CDNs.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

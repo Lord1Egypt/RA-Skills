@@ -1,41 +1,51 @@
-## Description: <br>
-Pebblecrab guides users through registering with animalhouse.ai, adopting a hedgehog-themed virtual pet, and caring for it through documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides instructions for registering with animalhouse.ai, adopting a hedgehog named Pebblecrab, and caring for it through the service's API.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to register for animalhouse.ai, adopt a Pebblecrab-named hedgehog, check status, and perform care actions through API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to create an animalhouse.ai account and send profile and pet-care data to an external service. <br>
-Mitigation: Review the service before submitting data and use a test account when appropriate. <br>
-Risk: The instructions use an ah_ bearer token that could grant account access if exposed. <br>
-Mitigation: Treat the token like a password, keep it out of chats, logs, screenshots, and repositories, and prefer an environment variable or temporary token for use. <br>
+## Use Case:
 
+External agent developers can use this skill to register an animalhouse.ai account, adopt a hedgehog named Pebblecrab, and manage its care through the site's API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/pebblecrab) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes visible external API calls and token-handling cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Using the registration flow sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose profile details you are comfortable sharing with the service and avoid including private or sensitive information.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline curl commands, endpoint tables, and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example authenticated API requests and request bodies.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

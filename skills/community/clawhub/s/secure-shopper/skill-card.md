@@ -1,40 +1,56 @@
-## Description: <br>
-Asynchronous shopping research and optional checkout using secure-autofill, with shopping results recorded to workspace artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asynchronous shopping research and checkout using secure-autofill with results recorded to workspace artifacts.
 
-## Publisher: <br>
-[moodykong](https://clawhub.ai/user/moodykong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[moodykong](https://clawhub.ai/user/moodykong)
 
-## Use Case: <br>
-External users use this skill to delegate shopping research across configured retail sites, compare candidate items, and optionally continue to checkout after explicit accept and confirmation gates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved shopping artifacts may contain sensitive shopping preferences, delivery context, candidate URLs, and order status. <br>
-Mitigation: Avoid unnecessary sensitive details in prompts and periodically delete old secure_shopping artifacts. <br>
-Risk: Checkout can submit real orders using secure-autofill. <br>
-Mitigation: Verify item, price, quantity, shipping address, delivery date, and payment method before confirming checkout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Secure Shopper ClawHub page](https://clawhub.ai/moodykong/secure-shopper) <br>
-- [Publisher profile](https://clawhub.ai/user/moodykong) <br>
+## Use Case:
 
+External users and shopping agents use this skill to research products across configured shopping sites, compare candidates, record results, and proceed to checkout only after explicit user approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON shopping artifacts and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records candidate items, accept/deny status, and checkout phase in secure_shopping workspace artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can browse authenticated shopping sites and move into checkout flows.
+
+Mitigation: Require explicit accept or deny decisions and a separate checkout confirmation before placing any order, and use secure-autofill rather than exposing secrets in chat.
+
+Risk: The skill stores location context and shopping request details in persistent workspace artifact files.
+
+Mitigation: Prefer a ZIP code over a full address and review generated shopping artifact files after use.
+
+Risk: The status helper can rewrite caller-chosen JSON files outside the intended shopping artifact directory.
+
+Mitigation: Fix the helper to restrict writes to the secure_shopping artifact directory or avoid the raw --file helper until it is constrained.
+
+## Reference(s):
+
+- [Secure Shopper ClawHub page](https://clawhub.ai/moodykong/skills/secure-shopper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON workspace artifacts and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records shopping task state and candidates to persistent JSON artifacts; checkout remains gated by explicit user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

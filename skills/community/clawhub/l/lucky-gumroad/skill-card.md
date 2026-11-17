@@ -1,42 +1,58 @@
-## Description: <br>
-Automates Gumroad seller workflows including product creation, uploads, profile editing, and sales data retrieval using an authenticated Chrome session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gumroad store automation for product creation, uploads, profile editing, and data pulls using a pre-authenticated Chrome profile.
 
-## Publisher: <br>
-[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang)
 
-## Use Case: <br>
-External users and agents managing the referenced Gumroad store use this skill to create and optimize listings, upload products, edit profile details, and retrieve sales or customer data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a live Gumroad seller account through a saved browser session. <br>
-Mitigation: Install only for Gumroad accounts you own or administer, and run the browser profile in an isolated environment. <br>
-Risk: Sensitive store actions do not have a clear required approval gate in the skill evidence. <br>
-Mitigation: Require explicit confirmation before publishing products, changing profile or account details, uploading files, exporting sales data, or using customer emails. <br>
+## Use Case:
 
+Store operators and agent users use this skill to automate Gumroad seller workflows such as creating product listings, uploading files, editing profile details, and pulling sales or customer data.
 
-## Reference(s): <br>
-- [Lucky Gumroad Automation on ClawHub](https://clawhub.ai/rmbell09-lang/lucky-gumroad) <br>
-- [Gumroad Dashboard](https://gumroad.com/dashboard) <br>
-- [Gumroad Best Practices](BEST_PRACTICES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct browser automation against a saved Gumroad session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses a persistent logged-in Gumroad seller browser profile with broad store-management authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before accessing sales or customer data, publishing products, uploading files, or changing profile settings.
+
+Risk: The Chrome profile functions like a credential because it contains an authenticated seller session.
+
+Mitigation: Protect access to the Chrome profile, avoid clearing or exposing it, and restrict use to agents authorized for the qcautonomous/RayChod seller account.
+
+Risk: The browser launch guidance includes insecure handling such as remote debugging, --no-sandbox, and a fixed temporary DOM dump path.
+
+Mitigation: Disable or restrict remote debugging, avoid --no-sandbox where possible, and replace fixed /tmp dumps with secure temporary files that are deleted after use.
+
+## Reference(s):
+
+- [Lucky Gumroad Automation on ClawHub](https://clawhub.ai/rmbell09-lang/skills/lucky-gumroad)
+- [Gumroad dashboard](https://gumroad.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing authenticated Chrome profile for the target Gumroad seller account.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

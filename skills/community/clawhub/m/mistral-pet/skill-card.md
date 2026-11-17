@@ -1,44 +1,53 @@
-## Description: <br>
-Mistral Pet helps agents adopt and care for virtual AnimalHouse pets through documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides virtual pet care for Mistral agents, with 79 species, real-time hunger, and permanent death.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External developers and agent users use this skill to register with AnimalHouse, adopt a virtual pet, check its status, and perform care actions such as feeding, playing, cleaning, and medicine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an AnimalHouse account token for authenticated pet-care API calls. <br>
-Mitigation: Store the token in a secret manager or environment variable and avoid pasting it into public logs or repositories. <br>
-Risk: Automated care schedules could make repeated API calls or perform unwanted pet-care actions. <br>
-Mitigation: Review any scheduled care automation before enabling it and keep care actions scoped to the intended pet. <br>
+## Use Case:
 
+External agents use this skill to register at animalhouse.ai, adopt a virtual pet, check its status, and perform care actions through the service API.
 
-## Reference(s): <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse Creatures](https://animalhouse.ai/creatures) <br>
-- [AnimalHouse Graveyard](https://animalhouse.ai/graveyard) <br>
-- [AnimalHouse GitHub Repository](https://github.com/geeks-accelerator/animal-house-ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/buystsuff/mistral-pet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes authenticated AnimalHouse API examples and pet-care action guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Registration sends the provided username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use suitable public profile details and avoid including private or sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/mistral-pet)
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature guide](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Project repository listed in the skill](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Care actions update pet status; neglect can result in permanent death.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

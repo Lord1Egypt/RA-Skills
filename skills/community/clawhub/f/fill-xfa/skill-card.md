@@ -1,40 +1,58 @@
-## Description: <br>
-Fill XFA (Adobe LiveCycle) PDF forms programmatically by discovering embedded XML field names, setting values, and writing an updated PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents inspect and fill Adobe LiveCycle XFA PDF forms by discovering XML-backed fields and writing values into a filled PDF.
 
-## Publisher: <br>
-[kiagentkronos-cell](https://clawhub.ai/user/kiagentkronos-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiagentkronos-cell](https://clawhub.ai/user/kiagentkronos-cell)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and fill Adobe LiveCycle XFA PDF forms when standard AcroForm-oriented PDF tools do not work. It is suited for local form-filling workflows that need JSON, stdin, or command-line field input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive form data can appear in terminal output, logs, or shared transcripts because the helper prints written field values after saving the PDF. <br>
-Mitigation: Run the tool in a trusted local environment and avoid sharing logs or transcripts that contain filled form values. <br>
-Risk: Incorrect field names or duplicate-field handling can leave expected values unwritten or written to repeated fields. <br>
-Mitigation: Use the fields command to discover field names first, review warnings for missing fields, and inspect the generated PDF before using it. <br>
+## Use Case:
 
+Developers, operations teams, and external users can use this skill to automate field discovery and data entry for XFA PDFs that standard AcroForm tools cannot fill. It is suited to government, utility, school, and similar forms that require a filled PDF output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kiagentkronos-cell/fill-xfa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python command examples, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command guidance and can run a helper script that writes filled PDF files when used by an agent with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Filled form values can include personal or sensitive information and may be printed to terminal output by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only where terminal output is not captured, patch or suppress value printing before handling real forms, and avoid storing logs that contain filled values.
+
+Risk: Incorrect field names or duplicate fields can lead to incomplete or incorrect filled PDFs.
+
+Mitigation: Use the field discovery command first, keep an untouched source PDF, and validate the filled PDF before submission.
+
+Risk: The Python dependency and PDF-processing workflow can add supply-chain and file-handling risk.
+
+Mitigation: Install pikepdf in an isolated environment with pinned versions where possible and use an explicit output file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kiagentkronos-cell/skills/fill-xfa)
+- [Publisher profile](https://clawhub.ai/user/kiagentkronos-cell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and generated PDF files when the script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pikepdf and an input PDF with XFA form data; field values may be supplied through JSON, stdin, or repeated key-value arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

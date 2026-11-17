@@ -1,42 +1,52 @@
-## Description: <br>
-Read-only triage for a local git working tree that summarizes uncommitted changes and applies conservative risk flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only triage for a local git working tree that summarizes uncommitted changes and applies conservative risk flags before a commit, handoff, or local review.
 
-## Publisher: <br>
-[amitb-quantum](https://clawhub.ai/user/amitb-quantum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[amitb-quantum](https://clawhub.ai/user/amitb-quantum)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to get a compact, read-only summary of staged, unstaged, untracked, and conflicted local git changes with conservative risk flags before committing, handoff, or local review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The summary may reveal repository paths, filenames, git status, diff stats, and small capped samples of non-sensitive diffs.
+
+Mitigation: Use it only in repositories where that level of local code visibility is acceptable, and keep secret-bearing files limited to filename-level inspection.
+
+Risk: Conservative path- and filename-based risk flags can miss impacts that require full code review.
+
+Mitigation: Treat the output as triage and run focused read-only checks or review before relying on it for important changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly summarize staged, unstaged, untracked, and conflicted local git changes before a commit, handoff, or local review. It helps identify conservative path- and filename-based risk flags without modifying repository state. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may display repository file names, git status, diff stats, and limited non-sensitive diff samples. <br>
-Mitigation: Avoid using it where even limited local repository change details should not be shown. <br>
-Risk: Secret-bearing files could be present in a dirty working tree. <br>
-Mitigation: Inspect matching secret-bearing filenames only at the filename level and do not print values from those files. <br>
-Risk: Conservative risk flags can be incomplete or over-broad because they rely mostly on paths, filenames, and diff stats. <br>
-Mitigation: Treat the output as triage guidance and run targeted review or project-specific checks before relying on it. <br>
+**Output Format:** [Markdown with ordered sections and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amitb-quantum/git-dirty-check) <br>
+**Other Properties Related to Output:** [Read-only git triage; deeper diff inspection is capped and secret-bearing filenames are reported without exposing values.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured sections and inline read-only git commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output follows a fixed section order and may cap changed-file listings, diff inspection, and sensitive-file detail.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

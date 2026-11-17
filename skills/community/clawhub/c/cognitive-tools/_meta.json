@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn71y14cc8mfm34xphjsxnvyyd82gfm4",
-  "slug": "cognitive-tools",
+  "name": "cognitive-tools",
   "version": "1.0.0",
-  "publishedAt": 1775876979177
+  "description": "李继刚的11个AI认知工具箱 - 逻辑之刃、问题之锤、抽象之梯、角度之镜、定义之矛、矩阵之网、类比之弓、汉语新解、Prompt Judger、知识探索专家、公文笔杆子",
+  "author": "李继刚 (Prompt之神)",
+  "contributed_by": "小白 (OpenClaw集成)",
+  "tags": ["thinking", "cognitive", "prompt", "analysis"],
+  "triggers": [
+    "逻辑分析", "问题之锤", "抽象", "多角度", "定义", "矩阵",
+    "类比", "汉语新解", "Prompt打分", "知识探索", "公文"
+  ],
+  "activation_mode": "keyword",
+  "prompt_files": [
+    "prompts/逻辑之刃.md",
+    "prompts/问题之锤.md",
+    "prompts/抽象之梯.md",
+    "prompts/角度之镜.md",
+    "prompts/定义之矛.md",
+    "prompts/矩阵之网.md",
+    "prompts/类比之弓.md",
+    "prompts/汉语新解.md",
+    "prompts/Prompt-Judger.md",
+    "prompts/知识探索专家.md",
+    "prompts/公文笔杆子.md"
+  ]
 }

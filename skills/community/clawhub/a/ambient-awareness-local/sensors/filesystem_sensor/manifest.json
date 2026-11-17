@@ -1,0 +1,9 @@
+{
+  "id": "filesystem.local.watch",
+  "name": "Local Filesystem Watch Sensor",
+  "version": "0.1.0",
+  "capabilities": ["filesystem", "file_created", "file_modified", "file_deleted"],
+  "permission_class": 0,
+  "poll_interval_seconds": 5,
+  "entrypoint": "sensor.py:FilesystemSensor"
+}

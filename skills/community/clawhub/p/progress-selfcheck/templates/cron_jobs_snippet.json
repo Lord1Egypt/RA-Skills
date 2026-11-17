@@ -13,7 +13,7 @@
       "state": {}
     },
     {
-      "name": "task-ledger-compact-weekly",
+      "name": "taREDACTED-SECRET",
       "schedule": {"kind": "cron", "expr": "40 3 * * 0", "tz": "Asia/Shanghai"},
       "sessionTarget": "isolated",
       "payload": {

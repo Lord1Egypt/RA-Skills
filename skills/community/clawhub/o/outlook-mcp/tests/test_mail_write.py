@@ -2,11 +2,14 @@
 
 from unittest.mock import AsyncMock, MagicMock
 
+import httpx
 import pytest
+from msgraph.generated.models.o_data_errors.o_data_error import ODataError
 
 from outlook_mcp.config import Config
-from outlook_mcp.errors import ReadOnlyError
+from outlook_mcp.errors import GraphAPIError, ReadOnlyError, wrap_graph_error
 from outlook_mcp.tools.mail_write import forward, reply, send_message
+from tests.test_mail_drafts import _graph_refusal
 
 _CFG = Config(client_id="test")
 _CFG_RO = Config(client_id="test", read_only=True)
@@ -18,7 +21,10 @@ class TestSendMessage:
         mock_client = AsyncMock()
         mock_client.me.send_mail.post = AsyncMock()
         result = await send_message(
-            mock_client, to=["valid@test.com"], subject="Test", body="Hello",
+            mock_client,
+            to=["valid@test.com"],
+            subject="Test",
+            body="Hello",
             config=_CFG,
         )
         assert result["status"] == "sent"
@@ -29,7 +35,10 @@ class TestSendMessage:
         mock_client = AsyncMock()
         with pytest.raises(ValueError):
             await send_message(
-                mock_client, to=["not-an-email"], subject="Test", body="Hello",
+                mock_client,
+                to=["not-an-email"],
+                subject="Test",
+                body="Hello",
                 config=_CFG,
             )
 
@@ -38,7 +47,10 @@ class TestSendMessage:
         mock_client = AsyncMock()
         with pytest.raises(ReadOnlyError):
             await send_message(
-                mock_client, to=["a@b.com"], subject="Test", body="Hello",
+                mock_client,
+                to=["a@b.com"],
+                subject="Test",
+                body="Hello",
                 config=_CFG_RO,
             )
 
@@ -84,7 +96,11 @@ class TestSendMessage:
         mock_client = AsyncMock()
         mock_client.me.send_mail.post = AsyncMock()
         await send_message(
-            mock_client, to=["to@test.com"], subject="Test", body="Hello", config=_CFG,
+            mock_client,
+            to=["to@test.com"],
+            subject="Test",
+            body="Hello",
+            config=_CFG,
         )
         request_body = mock_client.me.send_mail.post.call_args.args[0]
         assert request_body.message.reply_to is None
@@ -103,30 +119,51 @@ class TestSendMessage:
             )
 
 
+def _thread_client(content="<html><body><div>quoted</div></body></html>", html=True):
+    """A client whose message M1 offers createReply/createReplyAll/createForward, and
+    whose new draft R1 can be patched, sent and deleted. Returns (client, source, draft)."""
+    from msgraph.generated.models.body_type import BodyType
+
+    created = MagicMock(id="R1")
+    created.body = MagicMock(content=content, content_type=BodyType.Html if html else BodyType.Text)
+    source = MagicMock()
+    for action in ("create_reply", "create_reply_all", "create_forward"):
+        getattr(source, action).post = AsyncMock(return_value=created)
+    draft = MagicMock()
+    draft.patch = AsyncMock()
+    draft.delete = AsyncMock()
+    draft.send.post = AsyncMock()
+    builders = {"AAMkAG123=": source, "R1": draft}
+    client = MagicMock()
+    client.me.messages.by_message_id = MagicMock(side_effect=lambda i: builders[i])
+    return client, source, draft
+
+
 class TestReply:
-    async def test_reply_calls_reply_post(self):
-        """reply calls reply.post() for single reply."""
-        mock_client = MagicMock()
-        msg_builder = MagicMock()
-        msg_builder.reply.post = AsyncMock()
-        mock_client.me.messages.by_message_id.return_value = msg_builder
-        result = await reply(mock_client, message_id="AAMkAG123=", body="Thanks!", config=_CFG)
+    async def test_reply_creates_a_reply_draft_patches_it_and_sends_it(self):
+        client, source, draft = _thread_client()
+        result = await reply(client, message_id="AAMkAG123=", body="Thanks!", config=_CFG)
         assert result["status"] == "replied"
         assert result["reply_all"] is False
-        msg_builder.reply.post.assert_called_once()
+        source.create_reply.post.assert_called_once()
+        source.create_reply_all.post.assert_not_called()
+        draft.patch.assert_called_once()
+        draft.send.post.assert_called_once()
+        draft.delete.assert_not_called()
 
-    async def test_reply_all_calls_reply_all_post(self):
-        """reply with reply_all=True calls reply_all.post()."""
-        mock_client = MagicMock()
-        msg_builder = MagicMock()
-        msg_builder.reply_all.post = AsyncMock()
-        mock_client.me.messages.by_message_id.return_value = msg_builder
+    async def test_reply_all_creates_a_reply_all_draft(self):
+        client, source, draft = _thread_client()
         result = await reply(
-            mock_client, message_id="AAMkAG123=", body="Thanks!", reply_all=True,
+            client,
+            message_id="AAMkAG123=",
+            body="Thanks!",
+            reply_all=True,
             config=_CFG,
         )
         assert result["reply_all"] is True
-        msg_builder.reply_all.post.assert_called_once()
+        source.create_reply_all.post.assert_called_once()
+        source.create_reply.post.assert_not_called()
+        draft.send.post.assert_called_once()
 
     async def test_reply_raises_read_only(self):
         """reply raises ReadOnlyError in read-only mode."""
@@ -143,7 +180,10 @@ class TestForward:
         msg_builder.forward.post = AsyncMock()
         mock_client.me.messages.by_message_id.return_value = msg_builder
         result = await forward(
-            mock_client, message_id="AAMkAG123=", to=["a@b.com"], config=_CFG,
+            mock_client,
+            message_id="AAMkAG123=",
+            to=["a@b.com"],
+            config=_CFG,
         )
         assert result["status"] == "forwarded"
         msg_builder.forward.post.assert_called_once()
@@ -153,5 +193,190 @@ class TestForward:
         mock_client = AsyncMock()
         with pytest.raises(ReadOnlyError):
             await forward(
-                mock_client, message_id="AAMkAG123=", to=["a@b.com"], config=_CFG_RO,
+                mock_client,
+                message_id="AAMkAG123=",
+                to=["a@b.com"],
+                config=_CFG_RO,
             )
+
+
+class TestReplyContentType:
+    """Where the reply's text goes. Graph's `comment` joins a multi-line text's lines
+    with spaces on an HTML message, and `message.body` replaces the quoted original
+    (checked against an Exchange Online mailbox), so neither is used: the draft is
+    created empty and the text is patched in above the quote.
+
+    #41 shape found by the dead-parameter guard first: is_html was accepted and
+    ignored until 1.18.0.
+    """
+
+    async def test_plain_reply_is_converted_and_patched_above_the_quote(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, source, draft = _thread_client()
+
+        await reply(client, message_id="AAMkAG123=", body="Thanks!\nSam", config=_CFG)
+
+        created = source.create_reply.post.call_args[0][0]
+        assert created.comment is None
+        assert created.message is None
+        patched = draft.patch.call_args[0][0]
+        assert patched.body.content_type is BodyType.Html
+        assert (
+            patched.body.content
+            == "<html><body><p>Thanks!<br>Sam</p><div>quoted</div></body></html>"
+        )
+
+    async def test_html_reply_is_patched_above_the_quote_as_written(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, source, draft = _thread_client()
+
+        await reply(
+            client,
+            message_id="AAMkAG123=",
+            body="<b>Thanks!</b>",
+            is_html=True,
+            config=_CFG,
+        )
+
+        created = source.create_reply.post.call_args[0][0]
+        # message.body would have replaced the quote; comment cannot carry markup.
+        assert created.message is None
+        assert created.comment is None
+        patched = draft.patch.call_args[0][0]
+        assert patched.body.content == "<html><body><b>Thanks!</b><div>quoted</div></body></html>"
+        assert patched.body.content_type is BodyType.Html
+
+    async def test_a_plain_text_thread_gets_a_plain_text_reply(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, _, draft = _thread_client(content="\r\n> quoted\r\n", html=False)
+
+        await reply(client, message_id="AAMkAG123=", body="Thanks!\nSam", config=_CFG)
+
+        patched = draft.patch.call_args[0][0]
+        assert patched.body.content_type is BodyType.Text
+        assert patched.body.content == "Thanks!\r\nSam\r\n\r\n> quoted\r\n"
+
+    async def test_an_empty_body_sends_the_draft_unpatched(self):
+        client, _, draft = _thread_client()
+
+        await reply(client, message_id="AAMkAG123=", body="", config=_CFG)
+
+        draft.patch.assert_not_called()
+        draft.send.post.assert_called_once()
+
+    async def test_a_failed_patch_deletes_the_draft_and_sends_nothing(self):
+        client, _, draft = _thread_client()
+        draft.patch = AsyncMock(side_effect=RuntimeError("patch refused"))
+
+        with pytest.raises(RuntimeError, match="patch refused"):
+            await reply(client, message_id="AAMkAG123=", body="x", config=_CFG)
+
+        draft.delete.assert_called_once()
+        draft.send.post.assert_not_called()
+
+    async def test_a_send_that_fails_outside_graph_leaves_the_draft(self):
+        """A dropped connection says nothing about whether the send happened, so the
+        agent is told what a 5xx tells it, with the draft's id, not handed a crash."""
+        client, _, draft = _thread_client()
+        draft.send.post = AsyncMock(side_effect=OSError("connection reset"))
+
+        with pytest.raises(GraphAPIError) as caught:
+            await reply(client, message_id="AAMkAG123=", body="x", config=_CFG)
+
+        draft.delete.assert_not_called()
+        text = str(caught.value)
+        assert "OSError" in text and "connection reset" not in text, text
+        assert "Check Sent Items" in text and "still in Drafts" in text, text
+        assert "The draft's id is R1." in text, text
+
+
+def _fail(draft, step):
+    """Make the draft's PATCH, or its send, answer 400; return the error raised."""
+    refusal = _graph_refusal(400)
+    if step == "patch":
+        draft.patch = AsyncMock(side_effect=refusal)
+    else:
+        draft.send.post = AsyncMock(side_effect=refusal)
+    return refusal
+
+
+class TestADraftThatCouldNotBeRemoved:
+    """A reply's draft whose PATCH failed, or whose send Graph refused, is deleted.
+
+    When that delete fails too, the draft is still there: the error the agent reads
+    says so and gives its id. When the delete worked, the error says nothing of it.
+    """
+
+    @pytest.mark.parametrize("step", ["patch", "send"])
+    async def test_the_error_says_the_draft_may_remain_in_drafts(self, step):
+        client, _, draft = _thread_client()
+        _fail(draft, step)
+        draft.delete = AsyncMock(side_effect=_graph_refusal(503, "ServiceUnavailable"))
+
+        with pytest.raises(GraphAPIError) as caught:
+            await reply(client, message_id="AAMkAG123=", body="x", config=_CFG)
+
+        draft.delete.assert_awaited_once()
+        # The PATCH's or the send's error is the one reported, not the delete's.
+        assert (caught.value.status_code, caught.value.message) == (400, "Refused.")
+        text = str(caught.value)
+        assert "may remain in Drafts" in text, text
+        assert "The draft's id is R1." in text, text
+
+    async def test_a_patch_failure_that_is_not_a_graph_answer_says_so_too(self):
+        """Only the failure's type is named: its text can carry the request URL."""
+        client, _, draft = _thread_client()
+        url = "https://graph.microsoft.com/v1.0/me/messages/R1"
+        draft.patch = AsyncMock(side_effect=httpx.ConnectError(url))
+        draft.delete = AsyncMock(side_effect=httpx.ConnectError(url))
+
+        with pytest.raises(GraphAPIError) as caught:
+            await forward(client, "AAMkAG123=", ["a@example.com"], comment="x", config=_CFG)
+
+        draft.send.post.assert_not_called()
+        text = str(caught.value)
+        assert "ConnectError" in text and "may remain in Drafts" in text, text
+        assert "graph.microsoft.com" not in text, text
+
+    @pytest.mark.parametrize("step", ["patch", "send"])
+    async def test_a_draft_that_was_deleted_is_not_said_to_remain(self, step):
+        client, _, draft = _thread_client()
+        refusal = _fail(draft, step)
+
+        with pytest.raises((GraphAPIError, ODataError)) as caught:
+            await reply(client, message_id="AAMkAG123=", body="x", config=_CFG)
+
+        draft.delete.assert_awaited_once()
+        # The PATCH's own error, or the send's as call_without_replay reports it.
+        assert caught.value is refusal or caught.value.__cause__ is refusal
+        reported = caught.value if step == "send" else wrap_graph_error(caught.value)
+        assert "Drafts" not in str(reported), str(reported)
+
+
+class TestForwardComment:
+    async def test_a_comment_goes_through_a_forward_draft_with_the_recipients(self):
+        client, source, draft = _thread_client()
+
+        result = await forward(
+            client, message_id="AAMkAG123=", to=["a@b.com"], comment="FYI\nSam", config=_CFG
+        )
+
+        assert result == {"status": "forwarded"}
+        created = source.create_forward.post.call_args[0][0]
+        assert [r.email_address.address for r in created.message.to_recipients] == ["a@b.com"]
+        assert created.comment is None
+        assert created.to_recipients is None
+        assert "<p>FYI<br>Sam</p>" in draft.patch.call_args[0][0].body.content
+        draft.send.post.assert_called_once()
+        source.forward.post.assert_not_called()
+
+    async def test_recipients_are_validated_before_any_call(self):
+        client, source, _ = _thread_client()
+
+        with pytest.raises(ValueError):
+            await forward(client, message_id="AAMkAG123=", to=["nope"], comment="x", config=_CFG)
+
+        source.create_forward.post.assert_not_called()

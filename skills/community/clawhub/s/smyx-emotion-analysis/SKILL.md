@@ -1,7 +1,7 @@
 ---
 name: "emotion-analysis"
 description: "Professional discernment of subtle cues! It performs detailed analysis and recognition of facial micro-expressions, outputs precise emotional state reports, and unveils true inner emotional activities. | 微观情绪（微表情）识别分析工具，专业察言观色！针对人物面部微表情进行细致分析识别，输出精准的情绪状态分析报告，揭示真实内心情绪活动"
-version: "1.0.4"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

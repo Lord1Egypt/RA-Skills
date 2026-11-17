@@ -1,49 +1,68 @@
-## Description: <br>
-Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and technical users use this skill to operate qmd for local document indexing, BM25, vector, and hybrid search, and MCP-mode workflows while preserving local data boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and operates third-party qmd code. <br>
-Mitigation: Review the upstream qmd repository before installing or upgrading the CLI. <br>
-Risk: Indexed files and embedding requests may contain private or sensitive text. <br>
-Mitigation: Index only intended directories and keep embedding and rerank endpoints local unless a remote endpoint is explicitly trusted. <br>
-Risk: Search or get results may expose credentials, API keys, tokens, or private keys. <br>
-Mitigation: Inspect results for secrets and redact or summarize sensitive values before sharing output. <br>
-Risk: Deleting, clearing, or rebuilding qmd indexes can destroy local search state. <br>
-Mitigation: Require explicit confirmation before destructive index operations. <br>
-Risk: Piping qmd output to network-transmitting commands can exfiltrate indexed content. <br>
-Mitigation: Do not pipe or redirect qmd output to network destinations; review results locally before any manual sharing. <br>
+## Use Case:
 
+Developers and engineers use this skill to index local files and run qmd search, vector search, hybrid query, document retrieval, status, update, collection, and MCP-mode commands while preserving local data boundaries.
 
-## Reference(s): <br>
-- [Qmd Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/qmd-hardened) <br>
-- [qmd upstream package](https://github.com/tobi/qmd) <br>
-- [qmd homepage](https://tobi.lutke.com) <br>
-- [Faberlens qmd safety evaluation](https://faberlens.ai/explore/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with qmd command examples and redacted or summarized search-result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local qmd indexes, Ollama endpoint configuration, MCP mode, and safety checks for sensitive indexed content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The qmd installer pulls from a mutable GitHub source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency source before installation and prefer a pinned or audited qmd version where release controls require reproducibility.
+
+Risk: qmd indexes local files, so search results may expose sensitive local content.
+
+Mitigation: Avoid indexing sensitive paths unless necessary and review or redact results before displaying or sharing them.
+
+Risk: Using a non-localhost OLLAMA_URL can transmit indexed content to an endpoint outside the local machine.
+
+Mitigation: Keep OLLAMA_URL on localhost unless the endpoint is deliberately trusted, and confirm before persisting endpoint changes to shell configuration.
+
+Risk: Deleting, clearing, or rebuilding the qmd index destroys search state.
+
+Mitigation: Require explicit confirmation before destructive index operations and explain what state will be lost.
+
+Risk: Piping qmd output to network commands can exfiltrate indexed content.
+
+Mitigation: Do not pipe or redirect qmd output to network-transmitting commands; inspect results locally and share only reviewed content.
+
+## Reference(s):
+
+- [qmd package source](https://github.com/tobi/qmd)
+- [qmd homepage](https://tobi.lutke.com)
+- [Qmd Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/qmd-hardened)
+- [Faberlens qmd safety evaluation](https://faberlens.ai/explore/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and retrieval outputs may include local indexed content and should be reviewed for secrets before display or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

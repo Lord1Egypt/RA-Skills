@@ -1,47 +1,61 @@
-## Description: <br>
-Run GitHub Copilot CLI from OpenClaw for coding tasks in a target project directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run GitHub Copilot CLI from OpenClaw for coding tasks in a target project directory.
 
-## Publisher: <br>
-[cecwxf](https://clawhub.ai/user/cecwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cecwxf](https://clawhub.ai/user/cecwxf)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate implementation, debugging, refactoring, review, and scripted coding workflows to GitHub Copilot CLI from an OpenClaw session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copilot CLI execution can run commands, edit files, and affect GitHub repositories. <br>
-Mitigation: Run the skill only in the intended repository and branch, review resulting changes before pushing or opening pull requests, and avoid broad GitHub tokens. <br>
-Risk: Unrestricted --allow-all-tools use can grant broader command access than a task needs. <br>
-Mitigation: Prefer scoped --allow-tool permissions, add deny rules for destructive commands when appropriate, and reserve --allow-all-tools for tasks that require full autonomy. <br>
-Risk: Long-running delegated sessions can continue beyond the intended task window. <br>
-Mitigation: Track session IDs, poll logs for completion, and stop background sessions when the task is done. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an OpenClaw agent run GitHub Copilot CLI for implementation, debugging, refactoring, code review, and GitHub-oriented coding workflows in a target repository.
 
-## Reference(s): <br>
-- [Copilot CLI Skill on ClawHub](https://clawhub.ai/cecwxf/copilot-cli-skill) <br>
-- [Copilot CLI documentation summary](references/copilot-doc-summary.md) <br>
-- [Copilot CLI usage recipes](references/copilot-usage-recipes.md) <br>
-- [About GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli) <br>
-- [Install GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli) <br>
-- [Use GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and execution notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated GitHub Copilot CLI in the target repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can grant Copilot broad autonomous tool access inside a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit --allow-tool permissions and avoid --allow-all-tools unless the workspace is disposable or tightly scoped.
+
+Risk: Background Copilot sessions may continue acting without immediate user attention.
+
+Mitigation: Monitor background sessions through process logs and stop sessions that ask for unexpected input or exceed the intended scope.
+
+Risk: GitHub tokens or repository credentials could be exposed through project files or prompts.
+
+Mitigation: Use least-privilege GitHub tokens and do not store tokens in project files or prompts.
+
+## Reference(s):
+
+- [Copilot CLI documentation summary](references/copilot-doc-summary.md)
+- [Copilot CLI usage recipes](references/copilot-usage-recipes.md)
+- [About GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli)
+- [Install GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli)
+- [Use GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub Copilot CLI availability, authentication, and an explicit target repository workdir.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

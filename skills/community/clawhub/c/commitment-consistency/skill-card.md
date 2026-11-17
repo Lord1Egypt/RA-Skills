@@ -1,39 +1,51 @@
-## Description: <br>
-Helps an agent design ethical commitment paths for onboarding, sales, hiring, fundraising, and behavior change, or evaluate whether prior commitments are pressuring a user into a decision they would not choose fresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ethical coaching for designing voluntary commitment paths and evaluating whether past commitments are distorting a current decision.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and agent operators use this skill to produce a structured commitment-consistency analysis for ethical influence design or defense against escalation pressure. It is suited to onboarding, sales, hiring, fundraising, behavior-change, and personal decision review scenarios where prior commitments matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/commitment-consistency) <br>
-- [Primary sources](references/sources.md) <br>
-- [Method in Action: Freedman-Fraser 1966 + Cialdini Systematization + Modern Applications](examples/freedman-fraser-1966-cialdini-systematization-modern-applications.md) <br>
+People designing onboarding, sales, hiring, fundraising, or behavior-change flows use it to plan transparent steps with clear exits. Individuals use it to assess pressure from prior commitments and reconsider choices on their current merits.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with section headings and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no code, credential access, persistence, or hidden actions. Keep ethical checks for user benefit, truthful disclosure, voluntary steps, and easy exits.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Commitment-path advice could be used to pressure people into escalating choices or staying with decisions they no longer want.
+
+Mitigation: Keep each step voluntary and transparent, provide clear exits, and use the fresh-start question to reassess choices on their current merits.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [Freedman-Fraser and Cialdini example](artifact/examples/freedman-fraser-1966-cialdini-systematization-modern-applications.md)
+- [Moriarty field study example](artifact/examples/moriarty-1975-beach-blanket-theft-study.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown structured as a Commitment-Consistency Analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts to a design or decision-review situation; may include a commitment path, fresh-start assessment, ethical review, and monitoring plan.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

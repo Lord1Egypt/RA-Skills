@@ -1,42 +1,55 @@
-## Description: <br>
-Detect and block prompt injection attempts in inputs by identifying suspicious patterns, preventing malicious instructions, and ensuring secure AI interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and block prompt injection attempts in untrusted inputs by identifying suspicious patterns, rejecting malicious instructions, and supporting safer AI interactions.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use Prompt Guard to review untrusted user input, web content, file content, and API responses for prompt-injection indicators before an agent acts on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill as a technical security boundary rather than advisory policy guidance. <br>
-Mitigation: Keep normal sandboxing, tool approvals, and least-privilege controls enabled when using the skill. <br>
-Risk: Logging suspected prompt-injection attempts can capture sensitive user or system data. <br>
-Mitigation: Avoid storing sensitive data in logs and redact suspicious input before retention or sharing. <br>
+## Use Case:
 
+Developers and agent operators use Prompt Guard to evaluate untrusted text from users, web pages, files, and API responses for prompt-injection indicators before acting on it.
 
-## Reference(s): <br>
-- [Prompt Guard ClawHub release](https://clawhub.ai/aptratcn/aptratcn-prompt-guard) <br>
-- [README.md](artifact/README.md) <br>
-- [ATTACK_PATTERNS.md](artifact/ATTACK_PATTERNS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with detection checks, response templates, and setup snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory guardrail guidance; no runtime dependencies are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Benign content that resembles jailbreaks, secret requests, destructive commands, or exfiltration attempts may be flagged or refused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review flagged content, ask for clarification when intent is unclear, and process only the clearly safe portions.
+
+Risk: Security-event logging can retain sensitive details if the host agent records raw suspicious inputs.
+
+Mitigation: Configure the agent environment to redact or avoid retaining secrets and sensitive payload details in logs.
+
+## Reference(s):
+
+- [Prompt Guard ClawHub Release](https://clawhub.ai/aptratcn/skills/aptratcn-prompt-guard)
+- [Prompt Guard README](artifact/README.md)
+- [Attack Patterns Reference](artifact/ATTACK_PATTERNS.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance with pattern lists, response protocols, and detection examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No runtime dependencies are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

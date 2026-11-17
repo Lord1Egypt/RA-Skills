@@ -1,39 +1,51 @@
-## Description: <br>
-Generate customized client onboarding checklists tailored to business type, service, client size, and timeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customized client onboarding checklists tailored to a business type, service, client size, and timeline for smooth, consistent client experiences.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Service business operators, account managers, and delivery teams use this skill to create a structured onboarding checklist for a new client engagement. It helps standardize intake, kickoff, setup, stabilization, and handoff tasks across common service models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Checklist items may lead users to request credentials or access details through insecure channels. <br>
-Mitigation: Use approved identity and secrets-management workflows, avoid sharing passwords in chat or email, and grant least-privilege access. <br>
-Risk: Data import or migration tasks can disrupt client systems if performed without safeguards. <br>
-Mitigation: Require authorization, backups, rollback planning, and validation before any data migration or import. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Client Onboarding on ClawHub](https://clawhub.ai/1kalin/client-onboarding) <br>
+## Use Case:
+
+Service businesses use this skill to generate tailored markdown onboarding checklists for new client engagements, including pre-onboarding, kickoff, setup, stabilization, and handoff activities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated checklists may include a promotional footer unrelated to the onboarding task.
+
+Mitigation: Remove or ignore promotional footer content before sharing or operationalizing the checklist.
+
+Risk: The credential-request checklist item could encourage unsafe collection or sharing of client secrets.
+
+Mitigation: Use secure access patterns such as SSO, scoped invitations, temporary accounts, or password managers instead of sharing secrets in chat.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Customized from the user's business type, service, client size, and onboarding timeline.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored from user-provided business type, service, client size, and onboarding timeline.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

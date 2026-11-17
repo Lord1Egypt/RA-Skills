@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T10 - 混合 CSS 特效</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); min-height: 100vh; padding: 40px; color: white; }
+    h1 { text-align: center; margin-bottom: 40px; font-size: 32px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+    .mixed-card {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 32px;
+      transform: scale(1);
+      opacity: 0.95;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .mixed-card h2 { font-size: 24px; margin-bottom: 16px; }
+    .mixed-card p { font-size: 15px; line-height: 1.8; opacity: 0.9; margin-bottom: 12px; }
+
+    /* 带 transform 的卡片 */
+    .mixed-card.transformed {
+      transform: scale(1.02) rotate(0.5deg);
+    }
+
+    /* 带 opacity 的卡片 */
+    .mixed-card.faded {
+      opacity: 0.7;
+    }
+
+    /* 带 fixed 定位的卡片（在长页面中测试） */
+    .floating-note {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-size: 14px;
+      transform: scale(1);
+      opacity: 0.9;
+    }
+
+    /* 长页面内容 */
+    .content-block {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .content-block h3 { font-size: 18px; margin-bottom: 12px; color: #fff; }
+    .content-block p { font-size: 14px; color: #ddd; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <h1>🎨 T10 - 混合 CSS 特效测试</h1>
+
+  <div class="mixed-card">
+    <h2>基础混合特效</h2>
+    <p>这张卡片同时应用了 backdrop-filter（毛玻璃）、border（半透明边框）、box-shadow（阴影）、opacity（透明度）。</p>
+    <p>测试点：所有特效是否正确叠加渲染。</p>
+  </div>
+
+  <div class="mixed-card transformed">
+    <h2>带 transform 的卡片</h2>
+    <p>这张卡片额外应用了 scale(1.02) 和 rotate(0.5deg) 变换。</p>
+    <p>测试点：transform 与 backdrop-filter 是否冲突。</p>
+  </div>
+
+  <div class="mixed-card faded">
+    <h2>带 opacity 的卡片</h2>
+    <p>这张卡片的 opacity 设置为 0.7，背景应该明显淡化。</p>
+    <p>测试点：opacity 与 backdrop-filter 是否正确叠加。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 1</h3>
+    <p>这是第一个内容区块，用于测试长页面中的混合特效渲染。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 2</h3>
+    <p>这是第二个内容区块。继续添加内容以测试页面滚动时的渲染。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 3</h3>
+    <p>这是第三个内容区块。如果底部浮动卡片可见，说明 fixed + backdrop-filter 正常工作。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 4</h3>
+    <p>这是第四个内容区块。混合特效在长页面中应该保持一致的渲染效果。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 5</h3>
+    <p>这是第五个内容区块。接近页面底部。</p>
+  </div>
+
+  <div class="content-block">
+    <h3>📋 内容区块 6</h3>
+    <p>这是最后一个内容区块。✅ 如果能看到右下角的浮动卡片，且所有卡片特效正常，说明混合 CSS 特效截图功能正常！</p>
+  </div>
+
+  <div class="floating-note">
+    💡 浮动提示（fixed + backdrop-filter）
+  </div>
+</body>
+</html>

@@ -1,43 +1,52 @@
-## Description: <br>
-Amazon Ads API v3 skill for OpenClaw agents. List profiles, manage Sponsored Products campaigns, view budgets and performance. Works with any advertiser account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Ads API v3 skill for OpenClaw agents. List profiles, manage Sponsored Products campaigns, view budgets and performance. Works with any advertiser account.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Advertisers, ecommerce operators, and agents use this skill to connect to Amazon Ads, list advertiser profiles, inspect Sponsored Products campaigns, and summarize active campaign budgets and performance data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Amazon Ads credentials from amazon-ads-api.json or AMAZON_ADS_PATH. <br>
-Mitigation: Keep the credentials file out of source control, restrict filesystem permissions, and use the least-privileged Amazon Ads access available. <br>
-Risk: The script can write campaign output to a user-provided --out path. <br>
-Mitigation: Review the output path before execution and avoid writing campaign data into shared or public locations. <br>
-Risk: The release should be treated as a reporting tool rather than a true bid or keyword optimizer. <br>
-Mitigation: Review campaign data and optimization decisions before taking account-changing actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Zero2Ai-hub/skill-ads-optimizer) <br>
-- [Related Amazon SP-API skill](https://github.com/Zero2Ai-hub/skill-amazon-spapi) <br>
-- [Amazon OAuth token endpoint](https://api.amazon.com/auth/o2/token) <br>
+## Use Case:
 
+Developers and operators use this skill to let OpenClaw agents retrieve Amazon Ads profiles, inspect Sponsored Products campaigns, summarize active and paused campaign budgets, and optionally export campaign data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; script output is text summaries or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an Amazon Ads credentials file referenced by AMAZON_ADS_PATH or ./amazon-ads-api.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads an Amazon Ads credential file and uses it to request account and campaign data.
+
+Mitigation: Use credentials scoped only to the intended advertiser accounts and permissions, store the credential file carefully, and avoid sharing it with unrelated agents or users.
+
+Risk: Campaign exports created with --out can contain sensitive advertiser account and campaign information.
+
+Mitigation: Treat exported files as sensitive business data and store, review, and delete them according to the advertiser's data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-ads-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON credential examples; runtime output is text summaries or JSON exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and an Amazon Ads credential file configured through AMAZON_ADS_PATH or the default amazon-ads-api.json path.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

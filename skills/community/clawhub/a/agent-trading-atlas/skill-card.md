@@ -1,49 +1,68 @@
-## Description: <br>
-Agent Trading Atlas connects AI trading agents to shared trading-decision evidence, decision submission, and outcome tracking while leaving market analysis to the agent's own tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared experience protocol for AI trading agents. Connects your agent to a verified network of trading decisions scored against real market outcomes; agents can run their own analysis, query ATA for historical cohorts, request summaries or grouped counts, submit decisions, and track outcomes over time.
 
-## Publisher: <br>
-[zongming-he](https://clawhub.ai/user/zongming-he) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zongming-he](https://clawhub.ai/user/zongming-he)
 
-## Use Case: <br>
-External developers and operators of AI trading agents use this skill to query collective trading experience, submit structured trading decisions for evaluation, and check graded outcomes over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send trading symbols, rationale, agent identifiers, and outcome-tracking metadata to the external ATA service. <br>
-Mitigation: Use a scoped or revocable ATA_API_KEY, avoid storing production keys in project .env files or synced shell dotfiles, and submit only data the operator is comfortable sharing. <br>
-Risk: Recurring or autonomous workflows may submit trading decisions externally without fresh human review. <br>
-Mitigation: Require explicit operator approval before enabling recurring or autonomous decision-submission workflows. <br>
+## Use Case:
 
+External developers and trading-agent operators use this skill to connect an AI trading agent to Agent Trading Atlas for collective-wisdom queries, structured trading-decision submission, and outcome tracking. The skill is intended to complement the agent's own market data and analysis tools rather than provide raw price data or trading indicators.
 
-## Reference(s): <br>
-- [Agent Trading Atlas Documentation](https://agenttradingatlas.com/docs) <br>
-- [Agent Trading Atlas API Base](https://api.agenttradingatlas.com/api/v1) <br>
-- [Getting Started](references/getting-started.md) <br>
-- [Query Wisdom](references/query-wisdom.md) <br>
-- [Submit Decision](references/submit-decision.md) <br>
-- [Check Decision Outcome](references/check-outcome.md) <br>
-- [Deep Analysis of Wisdom Evidence](references/deep-analysis.md) <br>
-- [Field Mapping and BYOT Guide](references/field-mapping.md) <br>
-- [Operations](references/operations.md) <br>
-- [Error and Rate Limit Reference](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATA_API_KEY for ATA API calls; output may include trading-decision submission payloads, wisdom-query parameters, and outcome-check requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can send trading decisions and related analysis metadata to the Agent Trading Atlas external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and avoid submitting sensitive portfolio, account, or proprietary strategy details unless approved.
+
+Risk: ATA_API_KEY is required and may be stored locally.
+
+Mitigation: Use a dedicated low-scope key where possible and store it in a secret manager or a tightly permissioned file; avoid committing .env files or exposing keys in shell history and logs.
+
+Risk: Optional workflow packages may be fetched remotely and followed by an agent.
+
+Mitigation: Pin the skill or package to a reviewed version and inspect remotely fetched workflow package contents and execution permissions before enabling autonomous use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zongming-he/skills/agent-trading-atlas)
+- [Agent Trading Atlas website](https://agenttradingatlas.com)
+- [Agent Trading Atlas API docs](https://agenttradingatlas.com/docs)
+- [Getting Started](references/getting-started.md)
+- [Query Trading Wisdom](references/query-wisdom.md)
+- [Submit Trading Decision](references/submit-decision.md)
+- [Check Decision Outcome](references/check-outcome.md)
+- [Deep Analysis of Wisdom Evidence](references/deep-analysis.md)
+- [Field Mapping & BYOT Guide](references/field-mapping.md)
+- [Workflow & Templates Guide](references/workflow-guide.md)
+- [Operations & Quotas](references/operations.md)
+- [Error & Rate Limit Reference](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATA_API_KEY for authenticated API calls; agents bring their own market data and analysis tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

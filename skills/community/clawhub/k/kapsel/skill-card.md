@@ -1,45 +1,60 @@
-## Description: <br>
-Project memory capsules archive completed project knowledge to cloud storage through rclone and reload it on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project memory capsules archive completed project knowledge to Google Drive or another rclone-supported cloud remote and reload it on demand.
 
-## Publisher: <br>
-[nuwaiapp](https://clawhub.ai/user/nuwaiapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nuwaiapp](https://clawhub.ai/user/nuwaiapp)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to move inactive project context into named capsules and reload summaries, details, technical notes, and saved files when the project becomes relevant again. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload project context and arbitrary files to cloud storage. <br>
-Mitigation: Use a dedicated low-privilege rclone remote, avoid secrets or regulated data, and confirm the exact files and context before upload. <br>
-Risk: The helper script uses unsafe shell command construction. <br>
-Mitigation: Avoid untrusted capsule names and file paths until command construction is changed to validated arguments without shell=True. <br>
-Risk: Capsules may retain stale or sensitive project memory after active context is cleared. <br>
-Mitigation: Review capsule contents before archiving and periodically remove obsolete or sensitive capsule files from the remote. <br>
+## Use Case:
 
+Developers and agent users use this skill to archive completed project context into structured capsules and reload summaries, details, technical context, or saved files when old project knowledge is needed again.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nuwaiapp/kapsel) <br>
-- [Publisher profile](https://clawhub.ai/user/nuwaiapp) <br>
-- [rclone documentation](https://rclone.org) <br>
-- [rclone installation documentation](https://rclone.org/install/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and generated capsule files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reads summary.md, details.md, context.md, and optional files through a configured rclone remote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The script can execute unintended shell commands through shell-based rclone calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation, use only trusted capsule names and file paths, and prefer a patched version that removes shell=True and validates inputs.
+
+Risk: The skill can write or upload project material to configured cloud storage with weak safeguards.
+
+Mitigation: Use only trusted rclone remotes, avoid secrets or regulated data, and require explicit confirmation before uploads or memory changes.
+
+Risk: Local staging paths and user-provided capsule names may not be sufficiently confined.
+
+Mitigation: Configure a dedicated staging directory and avoid untrusted names or files until path handling is constrained.
+
+## Reference(s):
+
+- [rclone documentation](https://rclone.org)
+- [rclone installation guide](https://rclone.org/install/)
+- [ClawHub skill page](https://clawhub.ai/nuwaiapp/skills/kapsel)
+- [ClawHub publisher profile](https://clawhub.ai/user/nuwaiapp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown and terminal output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads capsule folders containing summary.md, details.md, context.md, and optional saved files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

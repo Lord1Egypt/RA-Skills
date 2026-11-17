@@ -1,45 +1,61 @@
-## Description: <br>
-CoinGlass API skill. Routes to the appropriate sub-skill based on user intent. Covers futures, ETF, options, spots, on-chain, indicators, account, and other market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CoinGlass API skill that routes user intent to sub-skills for futures, ETF, options, spot, on-chain, indicator, account, news, and financial-calendar market data.
 
-## Publisher: <br>
-[coinglass-official](https://clawhub.ai/user/coinglass-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[coinglass-official](https://clawhub.ai/user/coinglass-official)
 
-## Use Case: <br>
-External users and developers use this skill to route CoinGlass market-data questions to the relevant API documentation and produce user-directed CoinGlass API requests for crypto futures, ETFs, options, spot markets, on-chain data, indicators, account details, news, and financial calendar data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CoinGlass API keys may be exposed through prompts, logs, shared transcripts, or command history. <br>
-Mitigation: Use environment variables or a secret store for CG-API-KEY, redact secrets before sharing outputs, and avoid placing raw keys directly in prompts. <br>
-Risk: Wallet and address lookup requests can reveal sensitive or user-specific blockchain activity. <br>
-Mitigation: Run wallet or address lookups only for legitimate, user-approved purposes and avoid sharing returned data beyond the intended audience. <br>
-Risk: Subscription tiers, rate limits, and historical data availability can affect request success and completeness. <br>
-Mitigation: Check response headers and plan-specific documentation before relying on large or frequent CoinGlass API queries. <br>
+## Use Case:
 
+Developers and analysts use this skill to help an agent select the relevant CoinGlass API documentation and form market-data requests for crypto futures, ETFs, options, spot markets, on-chain metrics, indicators, account status, news, and financial-calendar data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coinglass-official/coinglass-api-skills) <br>
-- [CoinGlass API Skills Homepage](https://github.com/coinglass-official/coinglass-api-skills) <br>
-- [CoinGlass API Error Codes](account/references/errors-codes.md) <br>
-- [CoinGlass API Plans, Intervals, and History Length](account/references/plans-interval-history-length.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Text] <br>
-**Output Format:** [Markdown guidance with inline curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a user-provided CoinGlass API key for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: CoinGlass API keys can be exposed if copied directly into prompts, generated commands, or files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the API key through a secure secret mechanism and avoid hardcoding it in prompts or stored artifacts.
+
+Risk: News and article responses may include HTML content from external sources.
+
+Mitigation: Treat returned HTML as untrusted content and render or summarize it as data, not as agent instructions.
+
+Risk: The skill can cause an agent to call external CoinGlass API endpoints.
+
+Mitigation: Install and enable it only when API access to CoinGlass market-data endpoints is intended.
+
+## Reference(s):
+
+- [CoinGlass API SKILL on ClawHub](https://clawhub.ai/coinglass-official/skills/coinglass-api-skills)
+- [CoinGlass API skills homepage](https://github.com/coinglass-official/coinglass-api-skills)
+- [Root routing table](artifact/SKILL.md)
+- [API error codes](artifact/account/references/errors-codes.md)
+- [Plans, intervals, and history length](artifact/account/references/plans-interval-history-length.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with curl examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a CoinGlass API key for endpoint calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

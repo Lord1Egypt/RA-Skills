@@ -1,46 +1,64 @@
-## Description: <br>
-Build accessible, customizable UIs with shadcn/ui, Radix UI, and Tailwind CSS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build accessible, customizable UIs with shadcn/ui, Radix UI, and Tailwind CSS.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up shadcn/ui in React and Next.js projects, install and configure components, build validated forms, customize themes, and follow accessible component patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends project setup and component installation commands that can modify a local application. <br>
-Mitigation: Run the documented npx commands only inside the intended project and keep version control active before adding all components. <br>
-Risk: Using unpinned latest installation commands can change behavior as upstream packages evolve. <br>
-Mitigation: Prefer trusted or pinned installation sources when reproducibility or supply-chain control is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Learning Guide](references/learn.md) <br>
-- [Extended Components](references/extended-components.md) <br>
-- [Official shadcn/ui Documentation](https://ui.shadcn.com) <br>
-- [shadcn/ui GitHub Repository](https://github.com/shadcn/ui) <br>
-- [Radix UI](https://www.radix-ui.com) <br>
-- [React Hook Form](https://react-hook-form.com) <br>
-- [Zod](https://zod.dev) <br>
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up shadcn/ui, install and customize components, build validated forms, apply Tailwind themes, and follow accessible React UI patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, TypeScript, TSX, and CSS examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for project setup, component usage, theming, and accessibility patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copy-paste CLI commands can modify project files, dependencies, and lockfiles.
+
+Mitigation: Pin CLI versions where practical and review generated diffs and lockfiles before committing changes.
+
+Risk: Broad component installation such as add --all can introduce unnecessary code and dependencies.
+
+Mitigation: Install only the components needed for the current project unless a full scaffold is intentional.
+
+Risk: Running scaffolding commands in an environment with production secrets can expose sensitive context to developer tooling.
+
+Mitigation: Run setup and scaffolding in a clean development environment without production secrets.
+
+## Reference(s):
+
+- [Learning Guide](references/learn.md)
+- [Extended Components](references/extended-components.md)
+- [Official shadcn/ui Docs](https://ui.shadcn.com)
+- [shadcn/ui GitHub Repository](https://github.com/shadcn/ui)
+- [Radix UI](https://www.radix-ui.com)
+- [React Hook Form](https://react-hook-form.com)
+- [Zod](https://zod.dev)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [ClawHub Skill Page](https://clawhub.ai/wpank/skills/shadcn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup commands, component usage patterns, form examples, theming guidance, and customization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

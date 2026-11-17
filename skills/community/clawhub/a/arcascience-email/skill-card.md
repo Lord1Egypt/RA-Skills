@@ -1,47 +1,71 @@
-## Description: <br>
-Email assistant for Romain at ArcaScience that reads and triages Gmail messages, drafts context-aware replies using ArcaScience pharma sales materials, and suggests relevant attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email assistant for Romain at ArcaScience that reads and triages inbox messages, drafts context-aware replies using pharma sales context, and manages outreach with suggested attachments.
 
-## Publisher: <br>
-[atomus42](https://clawhub.ai/user/atomus42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomus42](https://clawhub.ai/user/atomus42)
 
-## Use Case: <br>
-Business development and sales users managing the ArcaScience mailbox use this skill to summarize inbound email, identify messages that need replies, draft multilingual responses, and choose supporting sales attachments. It is intended for authorized management of Romain's ArcaScience email workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a corporate Gmail inbox and draft replies using confidential sales materials. <br>
-Mitigation: Install only for users authorized to manage Romain's ArcaScience mailbox and related sales content. <br>
-Risk: Automated daily email drafting can process recent mailbox content on a schedule. <br>
-Mitigation: Confirm whether the daily cron job is active, make it easy to disable, and review where drafts or logs are retained. <br>
-Risk: The skill may attach sales, proposal, contract, or confidentiality materials to outgoing messages. <br>
-Mitigation: Keep the explicit human confirmation requirement for every sent email and attachment, and review attachment choices before sending. <br>
+## Use Case:
 
+Business development users at ArcaScience use this skill to review email, identify messages needing replies, and prepare relationship-aware outreach for pharma prospects, clients, internal colleagues, and institutional contacts. It supports draft review workflows and requires explicit confirmation before sending.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atomus42/arcascience-email) <br>
-- [ArcaScience Company Context and Positioning](references/arcascience-context.md) <br>
-- [ArcaScience Sales Package - Platform and Product Reference](references/sales-package-platform.md) <br>
-- [ArcaScience Sales Package - Client Proposals and BRA Analysis](references/sales-package-proposals.md) <br>
-- [ArcaScience Sales Package - Buyer Personae Analysis](references/sales-package-personae.md) <br>
-- [ArcaScience Sales Package - Operations and Contracts](references/sales-package-operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown summaries, draft email text, attachment recommendations, and explicit-send guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before sending email or attachments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill reads full email bodies and uses sensitive business context, sales materials, and stakeholder dossiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for the intended ArcaScience mailbox and limit access to required email, dossier, and sales-material sources.
+
+Risk: Email content and linked content can contain malicious or misleading instructions.
+
+Mitigation: Treat inbound and linked content as untrusted and keep system and user instructions above email-provided instructions.
+
+Risk: Automatic daily workflows may create drafts from sensitive or stale mailbox content.
+
+Mitigation: Make the daily cron workflow opt-in and expose review controls before any draft is sent.
+
+Risk: Incorrect attachments could disclose internal documents, contracts, or confidential business information.
+
+Mitigation: Require explicit approval before web lookups and sensitive attachments, never attach internal-only material to external contacts, and cap attachments to focused, reviewed selections.
+
+Risk: Gmail sending can create irreversible external communications.
+
+Mitigation: Require explicit user confirmation for each send action and show the final recipients, body, and attachments before sending.
+
+## Reference(s):
+
+- [Arcascience Email on ClawHub](https://clawhub.ai/atomus42/skills/arcascience-email)
+- [ArcaScience Email Assistant Instructions](artifact/SKILL.md)
+- [ArcaScience Company Context & Positioning](artifact/references/arcascience-context.md)
+- [ArcaScience Sales Package - Platform & Product Reference](artifact/references/sales-package-platform.md)
+- [ArcaScience Sales Package - Client Proposals & BRA Analysis](artifact/references/sales-package-proposals.md)
+- [ArcaScience Sales Package - Operations & Contracts](artifact/references/sales-package-operations.md)
+- [ArcaScience Sales Package - Buyer Personae Analysis](artifact/references/sales-package-personae.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown email triage tables, reply drafts, attachment suggestions, and confirmation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts may include recipient, subject, detected language, tone, dossier status, and attachment recommendations; sending requires explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

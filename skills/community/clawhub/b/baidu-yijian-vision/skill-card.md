@@ -1,48 +1,59 @@
-## Description: <br>
-Baidu Yijian Vision helps agents route image and video analysis requests to Baidu Yijian vision skills for object detection, safety monitoring, industrial inspection, and ROI or tripwire workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Yijian Vision helps agents route image and video analysis tasks to Baidu Yijian skills for object detection, safety monitoring, industrial inspection, SOP compliance, and operational analytics.
 
-## Publisher: <br>
-[linpower](https://clawhub.ai/user/linpower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yijian-baidu](https://clawhub.ai/user/yijian-baidu)
 
-## Use Case: <br>
-Developers and operations teams use this skill to call Baidu Yijian vision APIs from an agent, choose public or workspace vision skills by intent, analyze selected images, and define ROI or tripwire regions for inspection, safety, and monitoring tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, ROI or tripwire coordinates, prompts, and related metadata are sent to Baidu Yijian using the user's API key. <br>
-Mitigation: Use only with data approved for that external service, and avoid confidential, regulated, or surveillance images unless the organization has approved the data flow. <br>
-Risk: The skill requires a sensitive YIJIAN_API_KEY credential. <br>
-Mitigation: Store the API key in the agent environment, avoid committing it to files or logs, and rotate it if exposure is suspected. <br>
-Risk: Incorrect ROI or tripwire coordinates can cause misleading detection results. <br>
-Mitigation: Preview grid, ROI, or tripwire overlays and confirm the region before invoking a production vision skill. <br>
+## Use Case:
 
+Developers and external operators use this skill to select or invoke Baidu Yijian vision capabilities against images or video frames, including object detection, ROI and tripwire monitoring, industrial quality inspection, safety monitoring, OCR, pose estimation, and tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linpower/baidu-yijian-vision) <br>
-- [Baidu Yijian Platform](https://yijian-next.cloud.baidu.com) <br>
-- [Baidu Yijian API Key Setup](https://yijian-next.cloud.baidu.com/apaas/) <br>
-- [ROI Workflow](roi-workflow.md) <br>
-- [Tripwire Workflow](tripwire-workflow.md) <br>
-- [Type Definitions](types-guide.md) <br>
-- [Grid Input Guide](grid-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON API responses, and optional generated image or metadata files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and YIJIAN_API_KEY; outputs may include detections, bounding boxes, confidence scores, ROI or tripwire overlays, grid images, and workspace skill lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.42 (source: server release evidence and package.json) <br>
+Risk: The skill can send selected local images, video frames, prompts, and workspace skill metadata to Baidu Yijian using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved inputs, avoid sensitive media unless policy permits sharing it with Baidu Yijian, and keep API keys scoped and rotated according to local credential policy.
+
+Risk: The security summary notes that the client can upload any local file path it is given and lacks clear file-scope safeguards.
+
+Mitigation: Run the skill in a constrained workspace, avoid letting untrusted prompts choose file paths, and review planned file paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yijian-baidu/skills/baidu-yijian-vision)
+- [Baidu Yijian platform](https://yijian-next.cloud.baidu.com)
+- [Baidu Yijian API key setup](https://yijian-next.cloud.baidu.com/apaas/)
+- [ROI workflow](roi-workflow.md)
+- [Tripwire workflow](tripwire-workflow.md)
+- [Grid guide](grid-guide.md)
+- [Types guide](types-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON responses; generated PNG and JSON files for grids, ROI previews, tripwire previews, and visualized detections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and YIJIAN_API_KEY; uses Baidu Yijian APIs and may create local preview or grid artifacts.]
+
+## Skill Version(s):
+
+0.9.42 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Authorize, read, triage, archive, trash, and summarize Gmail inboxes across multiple accounts. Uses Gmail API with OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorize, read, triage, archive, trash, and summarize Gmail inboxes across multiple accounts using the Gmail API with OAuth.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Gmail inboxes across multiple accounts, including reading, filtering, triaging, archiving, trashing, and summarizing messages through OAuth-authorized Gmail API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth client secrets and token files can grant ongoing Gmail account access if exposed. <br>
-Mitigation: Keep OAuth files private, never commit token files, and use the skill only with Gmail accounts intended for agent-managed inbox operations. <br>
-Risk: Bulk archive or trash operations can affect many messages when the account or Gmail query is too broad. <br>
-Mitigation: Require the agent to show the exact account, query, message count, and representative sample messages before archive or trash actions. <br>
+## Use Case:
 
+People managing multiple Gmail inboxes use this skill to authorize accounts, review messages, summarize inbox state, and apply triage actions such as archive, label, mark read, or trash.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gmail OAuth credentials and per-account token files for live mailbox operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and CHANGELOG.md, released 2026-06-03) <br>
+Risk: The skill can store long-lived Gmail refresh tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the secrets/inbox directory, keep token files out of commits and shared archives, and revoke Google OAuth access if a token may have been exposed.
+
+Risk: The skill can archive, label, mark read, or trash Gmail messages across multiple accounts.
+
+Mitigation: Require account-specific confirmation and a preview before any archive, label, mark-read, or trash action.
+
+Risk: Bulk trash operations can affect many messages in one run.
+
+Mitigation: Review Gmail query filters and batch previews before execution, especially when operating across multiple accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hohobohan/skills/hobohan-inbox-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/hohobohan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands, configuration paths, Gmail API request examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe Gmail OAuth setup, local token files, inbox queries, triage actions, and cleanup rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+interface:
+  display_name: Anti-Detect Browser
+  short_description: Drive Chromium from standard Playwright APIs with a real-device fingerprint applied inside the browser kernel, one persistent isolated profile per identity, and a per-profile proxy whose exit IP sets timezone and WebRTC - JavaScript/TypeScript (npm 'anti-detect-browser') or Python (PyPI 'antibrow').
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

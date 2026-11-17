@@ -1,49 +1,62 @@
-## Description: <br>
-Comprehensive code security audit with AI-powered vulnerability detection. Covers OWASP Top 10, dependency scanning, secret detection, SAST, and provides actionable fix recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive code security audit with AI-powered vulnerability detection that covers OWASP Top 10, dependency scanning, secret detection, SAST, and actionable fix recommendations.
 
-## Publisher: <br>
-[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits)
 
-## Use Case: <br>
-Developers, security engineers, and reviewers use this skill to audit codebases for OWASP Top 10 issues, dependency vulnerabilities, exposed secrets, static-analysis findings, and remediation guidance before release or during CI review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation overstates local-only privacy while optional Qwen and ChatGLM providers can transmit analyzed code to external services. <br>
-Mitigation: Use the default local auditor path or local Ollama provider for sensitive code, and enable Qwen or ChatGLM only after explicit review and approval of external data transmission. <br>
-Risk: The self-evaluation script can write persistent iteration reports and global learning-log entries. <br>
-Mitigation: Run iterate.sh only in a controlled or disposable workspace after reviewing its filesystem writes, or avoid it for normal security-audit use. <br>
-Risk: Automated vulnerability findings and generated remediation may be incomplete or incorrect. <br>
-Mitigation: Treat reports and fix suggestions as review inputs, then validate material findings and code changes with human security review and project tests before deployment. <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit repositories for common application security issues, dependency vulnerabilities, leaked secrets, insecure configuration, and remediation guidance. It is suited for pre-release review, CI checks, and security-focused code assessment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zenmejiang-commits/code-security-auditor) <br>
-- [OWASP Top 10 Reference](references/owasp-top10.md) <br>
-- [Codex Security Comparison](references/codex-security-comparison.md) <br>
-- [Extended Security Rules](rules/extended-rules.md) <br>
-- [OWASP Top 10 2021](https://owasp.org/www-project-top-ten/) <br>
-- [CWE Common Weakness Enumeration](https://cwe.mitre.org/) <br>
-- [National Vulnerability Database](https://nvd.nist.gov/) <br>
-- [CVE Program](https://cve.mitre.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON, Markdown, or SARIF-style JSON reports with remediation examples and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files when an output path is provided; optional LLM-backed analysis can return JSON-like vulnerability assessments and fix suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Remote LLM integrations can send source-derived prompts to Qwen or ChatGLM providers when enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default local scanner path for sensitive repositories and enable remote providers only after confirming the data-sharing posture is acceptable.
+
+Risk: The iteration script can write persistent agent learning state.
+
+Mitigation: Do not run iterate.sh unless persistent writes to shared OpenClaw learning state are acceptable for the environment.
+
+Risk: Automated security analysis may miss vulnerabilities or produce findings that need expert judgment.
+
+Mitigation: Review scanner results before acting on them and combine this skill with human security review for production releases.
+
+## Reference(s):
+
+- [OWASP Top 10 Reference](references/owasp-top10.md)
+- [Codex Security Comparison](references/codex-security-comparison.md)
+- [OWASP Top 10 2021](https://owasp.org/www-project-top-ten/)
+- [CWE Common Weakness Enumeration](https://cwe.mitre.org/)
+- [NVD Vulnerability Database](https://nvd.nist.gov/)
+- [CVE Program](https://cve.mitre.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, SARIF, and terminal text with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include vulnerability findings, severity summaries, evidence snippets, remediation guidance, and CI-oriented outputs.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

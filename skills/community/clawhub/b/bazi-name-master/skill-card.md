@@ -1,43 +1,62 @@
-## Description: <br>
-Helps agents handle BaZi-based Chinese baby naming by calculating or checking four-pillar charts, analyzing favorable elements, and evaluating candidate names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants BaZi-based baby naming, asks you to calculate a child's chart from raw birth data, already has a detailed four-pillar chart and wants naming analysis, or wants to judge one or more existing names against a verified chart.
 
-## Publisher: <br>
-[billin9](https://clawhub.ai/user/billin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billin9](https://clawhub.ai/user/billin9)
 
-## Use Case: <br>
-External users and agents use this skill to support BaZi-informed Chinese baby naming, including birth-chart calculation, naming-direction analysis, candidate-name generation, and name scoring or ranking against a verified chart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth and naming details can be sensitive personal information. <br>
-Mitigation: Collect only the details needed for chart verification and naming analysis, and avoid exposing or retaining user-provided birth data outside the current task. <br>
-Risk: BaZi-based conclusions may be treated as deterministic or authoritative when they are traditional interpretive guidance. <br>
-Mitigation: Present recommendations as cultural naming analysis, preserve uncertainty notes, and require chart verification before scoring or ranking names. <br>
-Risk: The supporting script is invoked through local shell commands and the artifact examples include an absolute local path. <br>
-Mitigation: Review the helper before execution, adjust the path to the installed artifact location, and run only the disclosed BaZi calculation script. <br>
+## Use Case:
 
+External users use this skill to collect birth and naming constraints, calculate or verify a BaZi chart, analyze favorable naming directions, and evaluate candidate Chinese names against the verified chart.
 
-## Reference(s): <br>
-- [Bazi Name Master on ClawHub](https://clawhub.ai/billin9/bazi-name-master) <br>
-- [Naming Principles](references/naming-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with optional JSON output from the BaZi calculation helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include birth-data checks, four-pillar chart details, favorable-element guidance, candidate-name explanations, fixed-dimension scores, rankings, and uncertainty notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow may process sensitive birth and family naming details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when users are comfortable sharing those details with the agent workflow; collect only the fields needed for chart verification and naming analysis.
+
+Risk: The BaZi calculation script depends on lunar-python and the evidence notes dependency and localization caveats.
+
+Mitigation: Run the script in a restricted environment and pin lunar-python to a reviewed exact version before relying on production results.
+
+Risk: The artifact references an absolute local script path in examples, which may not resolve in another environment.
+
+Mitigation: Fix or remap the script path to the installed skill artifact before using the calculation workflow.
+
+Risk: Trend and popularity guidance can be incomplete when online research is unavailable.
+
+Mitigation: Disclose when current trend sampling was not performed and treat trend observations as supplemental rather than deterministic.
+
+## Reference(s):
+
+- [Naming Principles](references/naming-principles.md)
+- [Bazi Name Master on ClawHub](https://clawhub.ai/billin9/skills/bazi-name-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with structured analysis, scoring tables, and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a supporting Python script that returns JSON-formatted BaZi calculation results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

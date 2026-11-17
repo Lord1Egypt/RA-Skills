@@ -1,45 +1,57 @@
-## Description: <br>
-Analyze documents and questions with MasterSwarm's cloud API, using parallel AI engines to return professional reports in Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze documents with 15 parallel AI engines via the MasterSwarm cloud API and return professional intelligence reports.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-External users and developers use this skill to send document text or business, financial, legal, medical, research, food, market, or forecasting questions to the MasterSwarm API and receive multi-engine analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text or documents are sent to the MasterSwarm/NeuroDoc cloud API. <br>
-Mitigation: Use the skill only with content you are comfortable sharing with MasterSwarm/NeuroDoc, and redact secrets and unnecessary personal data before requests. <br>
-Risk: Sensitive medical, legal, or financial documents may require extra review before external processing. <br>
-Mitigation: Confirm the provider's privacy and retention claims independently and apply organization-specific review before submitting regulated or high-impact content. <br>
-Risk: Multi-engine runs can send the same content multiple times and consume paid credits. <br>
-Mitigation: Confirm before multi-engine analysis and choose only the engines needed for the task. <br>
+## Use Case:
 
+External users and developers use this skill to send document text or questions to MasterSwarm's hosted API for multi-engine analysis across business, research, market, legal, financial, food, and forecasting tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/contrario/masterswarm) <br>
-- [MasterSwarm homepage](https://masterswarm.net) <br>
-- [MasterSwarm API endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
-- [AetherLang docs](https://aetherlang.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and JSON API responses with setup guidance and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MASTERSWARM_API_KEY; API calls may take 120-180 seconds and consume credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and _meta.json) <br>
+Risk: Document text and prompts are sent to the third-party MasterSwarm/NeuroDoc cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data approved for that service, and avoid secrets, credentials, confidential business files, and regulated medical, legal, or financial data unless an appropriate review has approved the workflow.
+
+Risk: The provided shell substitution example can execute local commands if used with untrusted input.
+
+Mitigation: Serialize request bodies with a safe JSON builder and explicitly review or reject hostile user-supplied text before invoking shell commands.
+
+## Reference(s):
+
+- [MasterSwarm Homepage](https://masterswarm.net)
+- [MasterSwarm API Endpoint](https://api.neurodoc.app/aetherlang/execute)
+- [AetherLang Documentation](https://aetherlang.net)
+- [ClawHub Skill Page](https://clawhub.ai/contrario/skills/masterswarm)
+- [Publisher Profile](https://clawhub.ai/user/contrario)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON API responses, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MASTERSWARM_API_KEY; API calls may take 120-180 seconds and consume paid credits.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

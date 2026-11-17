@@ -1,43 +1,60 @@
-## Description: <br>
-Generates artistic name, signature, and text images by using Baidu AI Studio's ERNIE-Image API with preset calligraphy, cartoon, neon, metallic, and custom styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates artistic text and name-signature images from user-provided names or text using the Baidu AI Studio ERNIE-Image API.
 
-## Publisher: <br>
-[whisky-12](https://clawhub.ai/user/whisky-12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whisky-12](https://clawhub.ai/user/whisky-12)
 
-## Use Case: <br>
-External users and developers use this skill to turn names or short text into local artistic signature images, with optional guidance for style selection and credential setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated names, text, and prompt details are sent to Baidu's ERNIE-Image service. <br>
-Mitigation: Use the skill only with text and prompts that are acceptable to share with Baidu. <br>
-Risk: --set-token stores the Baidu AI Studio access token in plaintext config.json in the skill directory. <br>
-Mitigation: Prefer an environment variable or one-time --token on shared, backed-up, or source-controlled machines, and do not commit config.json. <br>
+## Use Case:
 
+Developers and external users use this skill to turn names or short text into stylized typography, calligraphy, cartoon signature, and watercolor-pencil signature images. It guides token setup, style selection, image generation, and local result handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/whisky-12/ernie-image-art-name) <br>
-- [Baidu AI Studio Access Token](https://aistudio.baidu.com/account/accessToken) <br>
-- [Baidu AI Studio ERNIE-Image API](https://aistudio.baidu.com/llm/lmapi/v3/images/generations) <br>
-- [API Docs](references/api_docs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the script saves generated PNG image files locally.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Baidu AI Studio access token and sends the requested text and prompt to Baidu's ERNIE-Image service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill requires a long-lived Baidu AI Studio bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the AISTUDIO_ACCESS_TOKEN environment variable when possible and rotate the token if it may have been exposed.
+
+Risk: Using --token or --set-token can leave credentials in shell history, logs, or config.json.
+
+Mitigation: Avoid storing the token in the skill directory and remove or rotate credentials after use.
+
+Risk: Generated image files are written to a local output directory.
+
+Mitigation: Choose a user-controlled output folder and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/whisky-12/skills/ernie-image-art-name)
+- [Baidu AI Studio Access Token](https://aistudio.baidu.com/account/accessToken)
+- [Baidu AI Studio ERNIE-Image API Reference](artifact/references/api_docs.md)
+- [Baidu AI Studio Images Generations Endpoint](https://aistudio.baidu.com/llm/lmapi/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and locally saved PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved to a user-selected or configured local output directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

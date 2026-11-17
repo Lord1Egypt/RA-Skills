@@ -1,47 +1,64 @@
-## Description: <br>
-Analyzes China A-share market themes using iTougu Theme Library data, including theme rankings, single-theme details, stock-theme relationships, and structured market insight reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user asks about China A-share market themes, subject analysis, stock-theme relationships, theme heat rankings, or investment insight based on iTougu Theme Library data.
 
-## Publisher: <br>
-[QingYiXiaoYao](https://clawhub.ai/user/QingYiXiaoYao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingyixiaoyao](https://clawhub.ai/user/qingyixiaoyao)
 
-## Use Case: <br>
-External users and analysts use this skill to browse China A-share market themes, inspect theme drivers and related stocks, compare themes, and generate source-attributed Markdown analysis. The skill is intended for informational market research and not for investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; analysis scope is limited to China A-share market data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market analysis could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational only, retain the required investment-risk disclaimer, and avoid buy, sell, or precise price-target recommendations. <br>
-Risk: The skill makes outbound read-only requests to public financial-data and search providers. <br>
-Mitigation: Install only when those public providers are acceptable for the requested analysis, and review optional AKShare or search-tool dependencies separately. <br>
-Risk: Upstream financial-data APIs may be unavailable, incomplete, or stale. <br>
-Mitigation: Surface data-source attribution and missing-data notices in the report, and continue only with clearly identified available data. <br>
+## Use Case:
 
+External users and analysts use this skill to browse China A-share market themes, inspect single-theme details, compare themes, look up stock-theme relationships, and generate structured market-theme analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QingYiXiaoYao/subject-library) <br>
-- [iTougu Theme Library API](https://group-api.itougu.com) <br>
-- [Theme list endpoint](https://group-api.itougu.com/teach-hotspot/subject/fullList) <br>
-- [Theme detail endpoint](https://group-api.itougu.com/teach-hotspot/subject/subjectDetail4Free) <br>
-- [East Money quote API](https://push2.eastmoney.com/api/qt/ulist.np/get) <br>
-- [AKShare](https://github.com/akfamily/akshare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown reports with tables, source attribution, optional Python snippets, and risk disclaimers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public financial-data requests; no credentials required; outputs should disclose data gaps and distinguish analysis from investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may suggest installing additional tooling or packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation instructions before running them and prefer pinned ClawHub and Python package versions.
+
+Risk: Market quotes may come from public unauthenticated endpoints, including an HTTP Tencent quote endpoint.
+
+Mitigation: Treat quote data as unverified, cross-check important values against trusted sources, and preserve source attribution in outputs.
+
+Risk: Generated market analysis may be mistaken for investment advice.
+
+Mitigation: Keep informational-purpose disclaimers, label AI predictions clearly, and avoid explicit buy or sell recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingyixiaoyao/skills/subject-library)
+- [iTougu Theme Library API](https://group-api.itougu.com)
+- [Theme list endpoint](https://group-api.itougu.com/teach-hotspot/subject/fullList)
+- [Theme detail endpoint](https://group-api.itougu.com/teach-hotspot/subject/subjectDetail4Free)
+- [East Money quote API](https://push2.eastmoney.com/api/qt/ulist.np/get)
+- [AKShare](https://github.com/akfamily/akshare)
+- [API reference](artifact/api-reference.md)
+- [Analysis templates](artifact/analysis-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Structured Markdown reports with tables, source attribution, code snippets, and risk disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify data sources, avoid unsupported market claims, and state when data is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

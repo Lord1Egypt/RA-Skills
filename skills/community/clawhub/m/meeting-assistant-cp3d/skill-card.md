@@ -1,42 +1,51 @@
-## Description: <br>
-Helps agents turn meeting text into minutes, extract action items, manage local meeting records, and provide meeting templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Assistant helps an agent generate meeting minutes, extract action items, manage meeting templates, and summarize local meeting records.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Teams, meeting facilitators, and assistant agents use this skill to draft meeting minutes, identify decisions and follow-up tasks, and keep local JSON meeting records for later reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting titles, attendees, notes, and action items can be stored on disk in local JSON files. <br>
-Mitigation: Use the skill only where local retention is acceptable, and establish a deletion or retention practice before using it for confidential meetings. <br>
-Risk: Reminder and calendar-related behavior is described, but the evidence warns not to rely on it until verified. <br>
-Mitigation: Verify reminder and calendar behavior in the target agent environment before depending on it for scheduling workflows. <br>
+## Use Case:
 
+Employees, operators, and team leads use this skill to turn meeting text into concise minutes, action items, schedules, templates, and meeting summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/meeting-assistant-cp3d) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON files, guidance] <br>
-**Output Format:** [Markdown-style responses and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores meeting titles, attendees, notes, and action items in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting records may include sensitive participant names, notes, and action items stored locally in plain JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where local plain-text storage is acceptable, and add deletion, access-control, backup, or encryption practices for confidential meetings.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/meeting-assistant-cp3d)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with local JSON meeting records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores meeting and task data locally as JSON when used through the bundled Python helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

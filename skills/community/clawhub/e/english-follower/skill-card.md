@@ -1,38 +1,50 @@
-## Description: <br>
-English-follower is a conversational English coaching skill that rewrites a user's message as natural English and responds with a concise, warm follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English-follower helps users practice English by rewriting their message in natural English and responding with a brief, conversational reply.
 
-## Publisher: <br>
-[zhanggroot7](https://clawhub.ai/user/zhanggroot7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanggroot7](https://clawhub.ai/user/zhanggroot7)
 
-## Use Case: <br>
-English learners use this skill to practice conversational English, improve grammar, and see natural rewrites of their own messages while continuing the conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation scope is broad for English-related conversations and may take over ordinary requests. <br>
-Mitigation: Use explicit invocation or disable broad auto-invocation when general English discussion should not trigger coaching behavior. <br>
+## Use Case:
 
+External users use this skill to practice English, improve grammar and expressions, and keep a natural English conversation going.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanggroot7/english-follower) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Two-line plain text: a natural English rewrite followed by a one-sentence conversational response.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, data access, persistence, or hidden behavior; intended responses are concise and conversational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may treat ordinary English conversations or multilingual messages as English-practice material when that is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in contexts where users want English coaching, grammar correction, natural-expression practice, or conversation practice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanggroot7/skills/english-follower)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhanggroot7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Two-line Markdown text with a natural rewrite followed by a one-sentence conversational reply]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Constrained to two lines, with the reply kept to one sentence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Design and scale team structures, communication patterns, decision frameworks, and roles to improve organizational effectiveness during growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and scale team structures, communication patterns, decision frameworks, and roles to improve organizational effectiveness during growth.
 
-## Publisher: <br>
-[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther)
 
-## Use Case: <br>
-Developers, managers, and organizational leaders use this skill as a practical reference for choosing team structures, improving information flow, defining decision ownership, and planning role changes as teams scale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Organizational guidance may be misapplied if adopted without considering team size, business model, culture, or legal and HR constraints. <br>
-Mitigation: Review recommendations with relevant leadership, people operations, and affected teams before changing reporting lines, decision rights, or communication processes. <br>
+## Use Case:
 
+Developers, managers, and organizational leaders use this skill for guidance on structuring teams, clarifying decision rights, improving information flow, and identifying scaling failure modes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timbohnett-farther/skill-110) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with diagrams, examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not run code or request sensitive access; recommendations should be reviewed for organizational fit before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Organizational recommendations may not fit a specific company's size, culture, constraints, or regulatory context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general guidance and review them with accountable leaders before changing team structures, roles, or decision processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timbohnett-farther/skills/skill-110)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown prose with lists, examples, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

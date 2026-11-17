@@ -1,44 +1,60 @@
-## Description: <br>
-Read body metrics from a Wyze smart scale, including weight, BMI, body fat, water, muscle, and BMR, with support for multiple household members. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read body metrics from a Wyze smart scale, including weight, BMI, body fat, water, muscle, and BMR, with support for multiple household members through the unofficial wyze-node client.
 
-## Publisher: <br>
-[noelportugal](https://clawhub.ai/user/noelportugal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noelportugal](https://clawhub.ai/user/noelportugal)
 
-## Use Case: <br>
-Users and agents use this skill to retrieve recent Wyze scale readings, weigh-in history, and household member scale records for private body-metrics questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive body metrics and health-related account data. <br>
-Mitigation: Use it only in private conversations, share readings only with the relevant account owner, and avoid group or shared surfaces. <br>
-Risk: The skill requires an API token for a health-related account. <br>
-Mitigation: Protect the token, install only when this access is intended, and revoke or rotate the token when access is no longer needed. <br>
-Risk: The Wyze API integration is unofficial and may break if Wyze changes its API. <br>
-Mitigation: Review results before relying on them and refresh or update the integration when authentication or API calls fail. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve recent Wyze smart-scale readings, weigh-in history, and household member identifiers for private body-metric questions and trend checks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/noelportugal/wyze-scale) <br>
-- [wyze-node package](https://www.npmjs.com/package/wyze-node) <br>
-- [Wyze developer API console](https://developer-api-console.wyze.com/#/apikey/view) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text responses from a Node CLI, with setup guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, wyze-node, Wyze API credentials, and a cached login token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can access Wyze API credentials, cached login tokens, household member identifiers, and body-composition records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep WYZE_ENV and token files private, run the skill only in private sessions, and share readings only with the scale user.
+
+Risk: The runtime dependency is declared with a version range for wyze-node.
+
+Mitigation: Pin wyze-node with a lockfile before use and review dependency updates before installing them.
+
+Risk: The skill depends on unofficial Wyze API behavior that may change.
+
+Mitigation: Recheck authentication and scale-reading behavior after Wyze API or wyze-node changes, and refresh the cached token when auth errors occur.
+
+## Reference(s):
+
+- [wyze-node GitHub repository](https://github.com/noelportugal/wyze-node)
+- [wyze-node npm package](https://www.npmjs.com/package/wyze-node)
+- [Wyze developer API key console](https://developer-api-console.wyze.com/#/apikey/view)
+- [ClawHub skill page](https://clawhub.ai/noelportugal/skills/wyze-scale)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive body-composition records, dates, user names, and household member identifiers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

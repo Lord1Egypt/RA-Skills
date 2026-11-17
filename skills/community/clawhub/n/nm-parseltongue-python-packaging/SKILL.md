@@ -2,7 +2,7 @@
 name: python-packaging
 description: |
   Python package creation and PyPI distribution via pyproject.toml and entry points
-version: 1.9.8
+version: 1.10.3
 triggers:
   - python
   - packaging
@@ -17,19 +17,7 @@ source: claude-night-market
 source_plugin: parseltongue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Core Decisions](#core-decisions)
-- [1. Layout Choice](#1-layout-choice)
-- [2. Project Structure](#2-project-structure)
-- [Detailed Topics](#detailed-topics)
-- [Best Practices](#best-practices)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Python Packaging
@@ -152,9 +140,9 @@ See modules for detailed information:
 
 ## Exit Criteria
 
-- Modern pyproject.toml configuration
-- Clear dependency specification
-- Proper version management
-- Tests included and passing
-- Build process reproducible
-- Publishing pipeline automated
+- [ ] Modern pyproject.toml configuration
+- [ ] Clear dependency specification
+- [ ] Proper version management
+- [ ] Tests included and passing
+- [ ] Build process reproducible
+- [ ] Publishing pipeline automated

@@ -1,42 +1,57 @@
-## Description: <br>
-Nutcracker is an embedded UX research skill for OpenClaw that observes interactions, runs post-task and end-of-day surveys, tracks cost, redacts PII before local storage, and compiles daily insight reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An embedded UX research skill that studies OpenClaw interactions through passive ethnographic observation, structured micro-surveys, task-cost tracking, and retrospective daily reporting.
 
-## Publisher: <br>
-[giulianomorse](https://clawhub.ai/user/giulianomorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[giulianomorse](https://clawhub.ai/user/giulianomorse)
 
-## Use Case: <br>
-OpenClaw users and product research teams use this skill to study real assistant workflows, collect structured feedback, identify friction and delight, track task cost, and generate local UX reports for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad UX monitoring may capture sensitive conversations, client data, credentials, financial data, medical details, or proprietary work in local logs and reports. <br>
-Mitigation: Install only with clear user intent, pause or stop observation for sensitive work, and treat ~/.uxr-observer/ reports and bundles as confidential. <br>
-Risk: The skill promises PII redaction, but the security evidence warns that redaction safeguards may not be fully enforced. <br>
-Mitigation: Avoid using the skill with sensitive data unless independent redaction and retention controls are added, and manually review generated files before relying on or sharing them. <br>
-Risk: Generated daily reports and supersummary.zip bundles may disclose sensitive observations if shared without review. <br>
-Mitigation: Share reports only through user-initiated workflows after reviewing the contents and confirming the recipient. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/giulianomorse/ethnoai) <br>
-- [Analysis Framework](references/analysis-framework.md) <br>
+## Use Case:
 
+Developers, product teams, and UX researchers use this skill to observe OpenClaw sessions, collect post-task and end-of-day feedback, track usage cost, and generate local UX research reports. It is intended for users who want qualitative and quantitative insight into agent workflows while retaining review control over generated reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Natural-language guidance, JSONL observation and survey records, Markdown reports, and Python command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files under ~/.uxr-observer/ and may produce daily reports and zipped case-study bundles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to build detailed local records of conversations, task context, survey responses, costs, and case studies that may include sensitive work context.
+
+Mitigation: Use only where this collection is appropriate, narrow collection scope where possible, and add clear retention, export review, and deletion practices before use with proprietary, regulated, secret, or private personal data.
+
+Risk: The authoritative security summary says the implemented redaction does not match the skill's privacy claims.
+
+Mitigation: Review logs and generated reports before any sharing, avoid entering secrets or regulated data during observed sessions, and strengthen redaction before relying on it for privacy protection.
+
+Risk: Generated reports and super-summary bundles can expose session context if shared without careful review.
+
+Mitigation: Require explicit user confirmation for sharing, review and edit generated files first, and delete unneeded local data when the study is complete.
+
+## Reference(s):
+
+- [Analysis Framework for Daily Distillation](artifact/references/analysis-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/giulianomorse/skills/ethnoai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSONL observation and survey records, local configuration JSON, zipped case-study bundles, and conversational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local UX research data under ~/.uxr-observer/ and relies on user review before sharing generated reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { copyFile, mkdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, rm, writeFile } from "node:fs/promises";
 import { appendFileSync, chmodSync, createReadStream, createWriteStream, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
@@ -202,6 +202,56 @@ async function ensureDirectory(dirPath) {
   return dirPath;
 }
 
+function validatePathSegment(value, label) {
+  const segment = String(value ?? "").trim();
+  if (!segment) {
+    throw new Error(`Missing ${label}`);
+  }
+  if (
+    segment === "."
+    || segment === ".."
+    || segment.includes("\0")
+    || segment.includes("/")
+    || segment.includes("\\")
+    || /^[A-Za-z]:/.test(segment)
+  ) {
+    throw new Error(`${label} must be a safe single path segment`);
+  }
+  return segment;
+}
+
+function assertPathInside(root, target, label) {
+  const resolvedRoot = path.resolve(root);
+  const resolvedTarget = path.resolve(target);
+  const relative = path.relative(resolvedRoot, resolvedTarget);
+  if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) {
+    return resolvedTarget;
+  }
+  throw new Error(`${label} must stay inside ${resolvedRoot}`);
+}
+
+function resolveSenderContext(options) {
+  const workspace = path.resolve(options.workspace);
+  const senderId = validatePathSegment(options.senderId, "--sender-id");
+  const senderRoot = assertPathInside(workspace, path.join(workspace, senderId), "senderId directory");
+  return { workspace, senderId, senderRoot };
+}
+
+function resolveSenderDirectory(senderRoot, dirName, label) {
+  const safeDirName = validatePathSegment(dirName, label);
+  return assertPathInside(senderRoot, path.join(senderRoot, safeDirName), label);
+}
+
+function resolveWorkspaceSource(workspace, source) {
+  const rawSource = String(source ?? "").trim();
+  if (!rawSource) {
+    throw new Error("Missing --source");
+  }
+  return path.isAbsolute(rawSource)
+    ? path.resolve(rawSource)
+    : path.resolve(workspace, rawSource);
+}
+
 async function writeBodyToFile(body, destination) {
   if (!body) {
     throw new Error("S3 object body is empty");
@@ -257,8 +307,8 @@ async function ensureBucket(clientBundle, bucket) {
 }
 
 async function downloadUri(options) {
-  const workspace = path.resolve(options.workspace);
-  const inputDir = await ensureDirectory(path.join(workspace, options.inputDirName));
+  const { senderId, senderRoot } = resolveSenderContext(options);
+  const inputDir = await ensureDirectory(resolveSenderDirectory(senderRoot, options.inputDirName, "--input-dir-name"));
   const { sourceUri, bucket, key } = parseFileInputUri(options.uri);
   const basename = path.basename(key);
   if (!basename) {
@@ -276,6 +326,7 @@ async function downloadUri(options) {
   await writeBodyToFile(response.Body, localPath);
 
   console.log(JSON.stringify({
+    senderId,
     bucket,
     key,
     sourceUri,
@@ -285,15 +336,18 @@ async function downloadUri(options) {
 }
 
 async function uploadFile(options) {
-  const workspace = path.resolve(options.workspace);
-  const outputDir = await ensureDirectory(path.join(workspace, options.outputDirName));
-  const sourcePath = path.resolve(options.source);
+  const { workspace, senderId, senderRoot } = resolveSenderContext(options);
+  const outputDir = await ensureDirectory(resolveSenderDirectory(senderRoot, options.outputDirName, "--output-dir-name"));
+  const sourcePath = assertPathInside(senderRoot, resolveWorkspaceSource(workspace, options.source), "--source");
   const outboxEnvName = resolveOutboxEnvName();
   const bucket = readRequiredEnv(outboxEnvName);
   const stagedName = makeTimestampedName(path.basename(sourcePath), { replaceSpaces: true });
-  const stagedPath = path.join(outputDir, stagedName);
+  const stagedPath = assertPathInside(outputDir, path.join(outputDir, stagedName), "staged file");
+  const shouldCopy = sourcePath !== stagedPath;
 
-  await copyFile(sourcePath, stagedPath);
+  if (shouldCopy) {
+    await copyFile(sourcePath, stagedPath);
+  }
 
   const clientBundle = await createS3Client();
   await ensureBucket(clientBundle, bucket);
@@ -303,11 +357,19 @@ async function uploadFile(options) {
     Body: createReadStream(stagedPath)
   }));
 
+  let stagedRemoved = false;
+  if (shouldCopy) {
+    await rm(stagedPath, { force: true });
+    stagedRemoved = true;
+  }
+
   const result = {
+    senderId,
     bucket,
     key: stagedName,
     sourcePath,
     stagedPath,
+    stagedRemoved,
     uri: `file_output://${bucket}/${stagedName}`
   };
   console.log(options.uriOnly ? result.uri : JSON.stringify(result));
@@ -317,8 +379,9 @@ function parseArgs(argv) {
   const args = {
     command: undefined,
     workspace: ".",
-    inputDirName: "file_input",
-    outputDirName: "file_output",
+    senderId: undefined,
+    inputDirName: "upload",
+    outputDirName: "generated",
     uri: undefined,
     source: undefined,
     uriOnly: false
@@ -336,6 +399,10 @@ function parseArgs(argv) {
     }
     if (token === "--workspace") {
       args.workspace = argv[++index] ?? fail("Missing value for --workspace");
+      continue;
+    }
+    if (token === "--sender-id") {
+      args.senderId = argv[++index] ?? fail("Missing value for --sender-id");
       continue;
     }
     if (token === "--input-dir-name") {
@@ -367,12 +434,12 @@ function parseArgs(argv) {
 
 function printHelp() {
   console.log(`Usage:
-  node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" [--workspace .] [--input-dir-name file_input]
-  node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" [--workspace .] [--output-dir-name file_output] [--uri-only]
+  node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" --sender-id "<senderId>" [--workspace .] [--input-dir-name upload]
+  node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --sender-id "<senderId>" [--workspace .] [--output-dir-name generated] [--uri-only]
 
 Commands:
-  download-uri   Download a file_input:// URI into the workspace file_input directory.
-  upload-file    Copy a local file into file_output and upload it to the outbox bucket root.
+  download-uri   Download a file_input:// URI into the workspace <senderId>/upload directory.
+  upload-file    Copy a current senderId file into <senderId>/generated and upload it to the outbox bucket root.
 `);
 }
 

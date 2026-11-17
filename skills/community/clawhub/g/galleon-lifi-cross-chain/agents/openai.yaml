@@ -1,0 +1,6 @@
+interface:
+  display_name: "LI.FI Cross-chain"
+  short_description: "LI.FI Cross-chain workflow and evidence"
+  default_prompt: "Use $lifi-cross-chain for this protocol task and return concrete next steps with evidence."
+policy:
+  allow_implicit_invocation: true

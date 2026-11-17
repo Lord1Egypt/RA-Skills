@@ -1,0 +1,38 @@
+# OpenGL ES 3.x Rendering Expert — Cursor Rules
+# Load SKILL.md for full detail; this file provides condensed enforcement rules.
+
+## Core Constraints
+- Target: OpenGL ES 3.0 / 3.1 / 3.2 — NEVER use desktop OpenGL APIs (glBegin, glEnd, GL_QUADS, glPolygonMode, etc.).
+- GLSL ES versions: 3.00, 3.10, 3.20. Always place `#version` on the FIRST line of shader source.
+- Fragment shaders MUST declare `precision mediump float;` (use highp only where needed).
+- Use RAII C++17 for all GPU resources (move-only handles, destructor calls glDelete*).
+
+## TBDR Bandwidth (Mali, Adreno, PowerVR)
+- SHOULD clear or call `glInvalidateFramebuffer` on every FBO attachment at pass start/end.
+- Never read back via `glReadPixels` synchronously in the render loop — use PBO async readback.
+- Prefer `EXT_multisampled_render_to_texture` for MSAA on mobile (on-tile resolve, no blit).
+
+## EGL Lifecycle
+- Use `EGL_CONTEXT_CLIENT_VERSION` (EGL 1.4-compatible), not `EGL_CONTEXT_MAJOR_VERSION`.
+- Handle `EGL_CONTEXT_LOST`: recreate context + all GPU resources.
+- One EGL context per thread; share via `EGL_KHR_create_context` shared contexts.
+
+## Compute & Synchronization
+- After SSBO/image writes: `memoryBarrierBuffer()` / `memoryBarrierImage()` in shader.
+- Between dispatches: `glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT)` on host.
+- Use `GL_ARB_sync` / `glFenceSync` for CPU-GPU synchronization, never `glFinish`.
+
+## Vendor Extensions
+- Always check `glGetString(GL_EXTENSIONS)` at runtime before using vendor-specific APIs.
+- Mali: Pixel Local Storage (`GL_EXT_shader_pixel_local_storage`) for on-tile deferred.
+- Adreno: GMEM load/store avoidance, `QCOM_shading_rate`, LRZ.
+- PowerVR: HSR (no depth pre-pass needed), `IMG_framebuffer_downsample`.
+
+## Windows / ANGLE
+- ANGLE EGL tokens (`EGL_PLATFORM_ANGLE_ANGLE` etc.) are NOT in Khronos eglext.h — use `#ifndef` guards.
+- Acquire ANGLE from Chrome/Edge pre-built DLLs; generate import libs via `dumpbin→.def→lib /def:`.
+
+## File References
+- Rules: `references/rules/` (detailed enforcement documents)
+- Cards: `references/cards/` (quick-reference knowledge cards)
+- Examples: `references/examples/` (C++17 / GLSL ES code samples)

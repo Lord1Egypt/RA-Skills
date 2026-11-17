@@ -1,41 +1,54 @@
-## Description: <br>
-Miaoji Video Script helps e-commerce creators generate short-form product video scripts and shot plans from product details and a viral-video reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Video Script helps e-commerce sellers turn product details and viral-video references into short-form marketing video scripts with shot-by-shot guidance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External e-commerce sellers, marketers, and content creators use this skill to turn product details, target platform, duration, and reference-video style into a structured product video script with hooks, shot guidance, narration, BGM direction, and platform notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may contain marketing claims that are inaccurate, unsupported, or unsuitable for a product listing. <br>
-Mitigation: Review and substantiate product claims before publishing or using the script commercially. <br>
-Risk: Platform policy advice may become outdated or may not fit a specific campaign or region. <br>
-Mitigation: Check the current rules for the target platform before filming, editing, or posting the resulting content. <br>
+## Use Case:
 
+E-commerce sellers, marketplace operators, and content creators use this skill to generate short-form product video scripts, hooks, shot plans, BGM direction, and platform-specific notes for TikTok, YouTube Shorts, Instagram Reels, and Amazon-style product videos.
 
-## Reference(s): <br>
-- [Miaoji Video Script on ClawHub](https://clawhub.ai/wangm-a3/miaoji-video-script) <br>
-- [Video format reference](references/video-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or formatted text; the bundled helper script can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided product details, category, platform, duration, style, and optional feature or audience inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Generated marketing claims, calls to action, or platform notes may be inaccurate or noncompliant for a specific product, marketplace, or advertising channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts against current platform policies, advertising rules, and product evidence before public use.
+
+Risk: The workflow is Chinese-language and may require localization review for teams publishing in other languages or markets.
+
+Mitigation: Have a fluent reviewer adapt wording, claims, and cultural context before using the script in production campaigns.
+
+## Reference(s):
+
+- [Platform video format reference](artifact/references/video-formats.md)
+- [ClawHub skill listing](https://clawhub.ai/wangm-a3/skills/miaoji-video-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Chinese-language Markdown script plans, with optional structured JSON from the bundled helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning content only; it does not generate video files, connect to video platforms, store media, or publish content.]
+
+## Skill Version(s):
+
+1.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

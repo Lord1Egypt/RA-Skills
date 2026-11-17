@@ -1,42 +1,63 @@
-## Description: <br>
-Access Google Drive from OpenClaw using either GOOGLE_SERVICE_ACCOUNT_KEY service-account JSON or a GOOGLE_OAUTH_REFRESH_TOKEN from the Google Drive OAuth connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Google Drive from OpenClaw using either GOOGLE_SERVICE_ACCOUNT_KEY service-account JSON or a GOOGLE_OAUTH_REFRESH_TOKEN from the Google Drive OAuth connector.
 
-## Publisher: <br>
-[jack-piplabs](https://clawhub.ai/user/jack-piplabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-piplabs](https://clawhub.ai/user/jack-piplabs)
 
-## Use Case: <br>
-Developers and agents use this skill to search, list, inspect, download, export, upload, and create folders in Google Drive through a service account or OAuth-connected user account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use broad long-lived Google credentials for Drive access. <br>
-Mitigation: Use a dedicated least-privileged Google account or service account and prefer a single intended authentication mode. <br>
-Risk: Domain-wide delegation or OAuth-connected accounts may expose more Drive content than intended. <br>
-Mitigation: Avoid domain-wide delegation unless required, and confirm the authenticated account, folder, and filename before uploads or folder creation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search, list, inspect, download, export, upload, and create folders in Google Drive from an OpenClaw agent session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-piplabs/google-drive-service-account) <br>
-- [Google Drive API endpoint](https://www.googleapis.com/drive/v3) <br>
-- [Google OAuth token endpoint](https://oauth2.googleapis.com/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON, text, files] <br>
-**Output Format:** [Markdown guidance with bash examples; helper commands can return JSON, text, or downloaded files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and openssl plus Google Drive credentials supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can operate with broad Google Drive credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Google credentials and install only where broad Drive access is intended.
+
+Risk: Untrusted service-account JSON can expose or redirect credential use.
+
+Mitigation: Use only trusted service-account JSON files and keep credential material out of prompts, logs, and shared workspaces.
+
+Risk: Upload and folder-creation commands can change shared Drive contents.
+
+Mitigation: Require explicit confirmation before upload or folder creation, especially in shared drives or delegated Workspace environments.
+
+Risk: Arbitrary OAuth scope selection can expand access beyond the intended task.
+
+Mitigation: Restrict or remove arbitrary scope use and prefer the minimum Google Drive scope needed for the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jack-piplabs/skills/google-drive-service-account)
+- [Google Drive API v3](https://www.googleapis.com/drive/v3)
+- [Google OAuth Token Endpoint](https://oauth2.googleapis.com/token)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, json, files]
+
+**Output Format:** [Markdown with inline shell commands; command output is typically JSON or downloaded/exported files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google Drive credentials and Python 3; supports service-account or OAuth refresh-token authentication.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Guides SaaS founders through starting SEO with keyword research, long-tail content, technical SEO, backlink building, and Google Search Console. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide SaaS founders to build SEO from scratch with keyword research, long-tail targeting, technical SEO, backlink building, and Google Search Console.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wellyxy](https://clawhub.ai/user/wellyxy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+SaaS founders and growth teams use this skill to start or improve organic search programs with practical priorities for technical setup, content targeting, backlink building, and performance monitoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share business or website data with optional third-party SEO or testing services mentioned by the skill.
+
+Mitigation: Treat those services as optional and review their terms before sharing business or website data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External SaaS founders use this skill to plan early SEO work from scratch or troubleshoot low organic traffic with prioritized content, technical setup, and backlink guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a promotional link to an external Racoonn waitlist, which may request website, business, or contact information outside ClawHub. <br>
-Mitigation: Treat the Racoonn link as marketing and evaluate that external service separately before sharing information. <br>
+**Output Format:** [Markdown guidance with checklist-style sections and a priority timeline]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Growth Seo on ClawHub](https://clawhub.ai/wellyxy/growth-seo) <br>
+**Other Properties Related to Output:** [No code execution, credential handling, persistence, or hidden agent-control behavior identified in security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only SEO guidance; no code, install hooks, privileged access, or shell commands.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

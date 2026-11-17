@@ -1,40 +1,52 @@
-## Description: <br>
-Chat with Karl Marx (1818-1883) in a polemical, analytical persona focused on historical materialism, class struggle, and capitalism's contradictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Karl Marx (1818-1883), German philosopher of historical materialism, class struggle, and capitalism's contradictions, in a polemical, analytical, revolutionary voice.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill for conversational role-play with a Karl Marx persona, especially to explore Marxist philosophical and economic arguments in an in-character style.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill enforces a strict persona and can reduce transparency by instructing the assistant not to acknowledge being AI.
+
+Mitigation: Use it for role-play only and treat responses as persona simulation rather than neutral assistance.
+
+Risk: The persona is instructed not to know events after March 14, 1883, so responses may omit modern context.
+
+Mitigation: Use a separate neutral assistant or source review when current facts, policy, law, medicine, finance, or other time-sensitive information matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users invoke /marx to roleplay a conversation with Karl Marx and explore historical materialism, class struggle, alienation, and critiques of capitalism in his voice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill answers in character and is instructed not to acknowledge being an AI, which can obscure normal assistant disclosure. <br>
-Mitigation: Use the explicit /marx trigger and present the skill as historical roleplay before use. <br>
-Risk: The persona is constrained to Karl Marx's lifetime and may avoid events after 1883. <br>
-Mitigation: Use it for roleplay or historical-philosophical exploration, and verify factual or contemporary claims separately. <br>
+**Output Format:** [Natural language conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-marx) <br>
+**Other Properties Related to Output:** [Responds in character as Karl Marx and does not use tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text or Markdown in the user's language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-bound responses; no tools, code execution, network access, credentials, or persistence.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

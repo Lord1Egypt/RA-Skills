@@ -1,42 +1,57 @@
-## Description: <br>
-Through the OneBot HTTP API, this skill helps generate local curl commands to send QQ private or group messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 OneBot HTTP API 使用本地命令（curl）发送 QQ 私聊或群消息。
 
-## Publisher: <br>
-[jqllxew](https://clawhub.ai/user/jqllxew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jqllxew](https://clawhub.ai/user/jqllxew)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare OneBot/NapCat HTTP API curl commands for sending QQ private messages or group notifications after confirming the recipient, message body, endpoint, and token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A QQ message could be prepared for the wrong recipient or group. <br>
-Mitigation: Require explicit confirmation of the recipient or group ID, message body, endpoint, and token before any send. <br>
-Risk: Example or reused authorization tokens could expose or misuse a OneBot/NapCat service. <br>
-Mitigation: Do not reuse the example token; ask the user for the correct token only when authorization is needed. <br>
-Risk: Endpoint discovery could expand into unrelated Docker or local network inspection. <br>
-Mitigation: Limit checks to the user-approved OneBot/NapCat endpoint and avoid inspecting unrelated local services. <br>
+## Use Case:
 
+External users and developers use this skill to prepare QQ private-message or group-message requests for a trusted local OneBot/NapCat HTTP endpoint.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jqllxew/onebot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OneBot HTTP API curl command text; execution should remain user-confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: The skill can produce shell-built HTTP commands for sending QQ messages through OneBot/NapCat, including message and file content supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted local endpoint, require explicit confirmation before sending, and avoid sensitive messages or arbitrary local file paths.
+
+Risk: The artifact includes a hardcoded bearer value and the security summary flags weak credential and confirmation handling.
+
+Mitigation: Replace hardcoded bearer values with secure runtime configuration and confirm authentication requirements for the selected host and port.
+
+Risk: Unsafe escaping of message or file content could make generated shell commands risky to execute.
+
+Mitigation: Do not execute generated shell commands unless inputs are safely escaped or sent through a non-shell HTTP client.
+
+## Reference(s):
+
+- [ClawHub onebot skill page](https://clawhub.ai/jqllxew/skills/onebot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command blocks and concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target OneBot private-message and group-message HTTP endpoints and may include CQ image or file message payloads.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

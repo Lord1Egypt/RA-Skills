@@ -1,42 +1,56 @@
-## Description: <br>
-Douyin video transcription suite. Extract audio from Douyin/TikTok China videos, transcribe with Whisper, and analyze content. Supports video links, local files, and image notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Video Transcribe helps agents extract audio from Douyin/TikTok China video links or local files, transcribe speech with Whisper, and produce structured summaries and notes.
 
-## Publisher: <br>
-[don068589](https://clawhub.ai/user/don068589) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[don068589](https://clawhub.ai/user/don068589)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and content analysts use this skill to process Douyin/TikTok China links, local videos, or image notes into transcripts, summaries, key points, and tags.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can start a persistent Docker Whisper service from an unpinned third-party image and expose it on the host network.
+
+Mitigation: Pin the Docker image to a reviewed digest, bind the ASR service to 127.0.0.1, restrict network exposure, and stop or remove the container when transcription is complete.
+
+Risk: The skill downloads external media and processes local audio or video files, which can expose sensitive or unauthorized content.
+
+Mitigation: Use it only with media the user is authorized to process, keep temporary files in a controlled location, and review generated transcripts before sharing them.
+
+Risk: Configured cloud transcription fallbacks may send audio content to external ASR providers.
+
+Mitigation: Require explicit user approval before cloud transcription, confirm which provider and account will be used, and prefer local transcription for sensitive media.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content analysts use this skill to transcribe Douyin or TikTok China videos, local media files, and image-note pages into structured summaries, transcripts, key points, and tags. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download video or audio content, write local media and transcript files, and run ffmpeg or ffprobe. <br>
-Mitigation: Review target URLs and file paths before execution, use a controlled working directory, and inspect generated transcripts before relying on them. <br>
-Risk: The skill can automatically start or create a persistent Docker Whisper service. <br>
-Mitigation: Pre-provision and pin the Whisper container image when possible, and stop or remove the whisper-asr container when transcription work is complete. <br>
-Risk: Configured cloud ASR paths may send audio outside the local machine. <br>
-Mitigation: Use local Whisper by default and configure cloud ASR API keys only when external audio processing is intended and approved. <br>
+**Output Format:** [Markdown transcripts and summaries with inline shell commands and JSON-like transcription results from helper scripts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/don068589/douyin-video-transcribe) <br>
+**Other Properties Related to Output:** [May include transcript text, detected language, timestamped segments, summaries, key points, tags, troubleshooting guidance, and saved Markdown files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown transcript with summaries, key points, tags, and optional command-line transcription output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local audio, video, and transcript files and may return structured transcription result objects from helper scripts.] <br>
+2.0.0 (source: server release metadata and SKILL.md version history)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact version history) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

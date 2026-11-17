@@ -1,40 +1,53 @@
-## Description: <br>
-Provides guidance for finding Youku classic films, exclusive content, recommendations, and video playback options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for finding and using Youku classic video content, exclusive releases, recommendations, and playback features.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users can ask for concise guidance on Youku video discovery, playback workflows, feature highlights, device compatibility, account safety, and common usage pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share personal account details or grant sensitive Youku-related permissions while following guidance. <br>
-Mitigation: Avoid disclosing credentials or personal account data, and grant permissions only when intentionally using official Youku or related third-party services. <br>
-Risk: Some guidance may depend on Youku or third-party interfaces whose behavior and availability can change. <br>
-Mitigation: Verify current feature availability in Youku before relying on time-sensitive playback, VIP, authorization, or cross-device instructions. <br>
+## Use Case:
 
+External users can use this skill to ask for Youku viewing guidance, feature-entry summaries, VIP or free status considerations, and safety reminders across mobile, web, and cross-device scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/youku) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential handling, or install steps are present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Real-time offers, VIP or payment steps, account permissions, and third-party service details may be outdated or require confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review external links, account permissions, and VIP or payment steps directly in Youku or the relevant provider before acting.
+
+Risk: Some referenced functionality may depend on third-party interfaces whose stability can change.
+
+Mitigation: Treat availability and status guidance as conditional and verify current behavior in the Youku app or web service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/youku)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with concise summaries, steps, status notes, and safety tips.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance may discuss external service status, VIP or payment steps, and third-party interface availability.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

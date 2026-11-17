@@ -1,42 +1,64 @@
-## Description: <br>
-Parse, search, filter, and export Kindle highlights and notes from My Clippings.txt through the kindle-clip command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse, search, filter, and export Kindle highlights and notes from "My Clippings.txt" through the kindle-clip command-line tool.
 
-## Publisher: <br>
-[emersonding](https://clawhub.ai/user/emersonding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonding](https://clawhub.ai/user/emersonding)
 
-## Use Case: <br>
-Developers, researchers, and AI agents use this skill to locate, filter, and export Kindle highlights into Markdown for reading review, book summaries, and knowledge management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save or share private Kindle highlights and notes through exported files or downstream messaging workflows. <br>
-Mitigation: Use exports only when intentionally saving results, write them to private locations, avoid synced or shared folders unless desired, and review or redact notes before sending summaries to external services. <br>
-Risk: The artifact documents a piped shell installer pattern for installing the CLI. <br>
-Mitigation: Prefer Homebrew, manual release downloads, or building from source; inspect installation scripts before execution when a shell installer is used. <br>
+## Use Case:
 
+Developers, AI agents, and readers use this skill to locate Kindle highlights, filter them by book, author, keyword, or date, and export selected notes to Markdown for research, summaries, or personal knowledge management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emersonding/kindle-clip-cli) <br>
-- [kindle-clip releases](https://github.com/emersonding/kindle-clip-processor/releases) <br>
-- [kindle-clip install script](https://raw.githubusercontent.com/emersonding/kindle-clip-processor/master/scripts/install-kindle-clip.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and exported Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Kindle clippings, save a default path in user config, and export selected notes to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version and target metadata) <br>
+Risk: The release depends on an external kindle-clip project and release channel that handles private Kindle clippings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned source build or verified release, and review the external project before allowing it to process private reading data.
+
+Risk: Curl-piped shell installation can execute mutable remote code.
+
+Mitigation: Prefer manual release download, Homebrew installation, or source builds over curl-piped installers.
+
+Risk: Exported notes may contain private reading data and can be sent to services such as Telegram in chained workflows.
+
+Mitigation: Review exported Markdown before saving it in shared locations or sending it to third-party services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emersonding/skills/kindle-clip-cli)
+- [Publisher profile](https://clawhub.ai/user/emersonding)
+- [Kindle Clip Processor repository](https://github.com/emersonding/kindle-clip-processor)
+- [Kindle Clip Processor releases](https://github.com/emersonding/kindle-clip-processor/releases)
+- [README.md](artifact/README.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+- [RECIPES.md](artifact/RECIPES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional exported Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a configured Kindle clippings path from an explicit argument, KINDLE_CLIP_PATH, or ~/.config/kindle-clip/config.json.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

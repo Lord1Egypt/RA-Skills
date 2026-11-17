@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "remotion-cn",
+  "name": "remotion-cn",
   "version": "1.0.0",
-  "publishedAt": 1771629974474
+  "description": "Remotion 视频创建框架 - React 编程创建视频（中文版）",
+  "author": "guohongbin-git",
+  "tags": ["remotion", "react", "video", "ffmpeg", "animation", "chinese"]
 }

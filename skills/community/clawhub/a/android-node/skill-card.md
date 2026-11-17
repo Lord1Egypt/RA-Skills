@@ -1,43 +1,53 @@
-## Description: <br>
-Convert Android phones running Termux into local Ollama inference nodes for AI task processing without cloud or special hardware. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Android phones running Termux into local Ollama inference nodes for AI task processing without cloud or special hardware.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision Android phones as local Ollama worker nodes and route AI inference requests across healthy devices on a trusted private network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance may encourage running a Termux provisioning script fetched from the network. <br>
-Mitigation: Inspect the setup script before execution and prefer the bundled setup.sh content when possible. <br>
-Risk: The phone node exposes an unauthenticated local Ollama service on the network. <br>
-Mitigation: Run nodes only on trusted private networks or behind firewall or VPN controls, especially before sending sensitive prompts. <br>
-Risk: Downloaded binaries or models may change over time if they are not pinned or verified. <br>
-Mitigation: Pin or verify downloaded binaries and model artifacts where practical before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to provision Android phones running Termux as local Ollama worker nodes and route AI inference jobs to healthy devices on a trusted network.
 
-## Reference(s): <br>
-- [Android Node on ClawHub](https://clawhub.ai/albionaiinc-del/android-node) <br>
-- [Publisher profile: albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and routing guidance for local Android Ollama nodes; users provide device IP addresses, model choices, and node names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Remote setup and downloaded binaries can execute unreviewed code during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the inspected local setup code, avoid remote curl-to-bash installation, and verify downloaded binaries before running them.
+
+Risk: Phone nodes expose local Ollama inference over the network, and sensitive prompts could be sent without authenticated encryption.
+
+Mitigation: Run nodes only on a trusted isolated network or authenticated encrypted overlay, and do not send sensitive prompts unless transport protection is in place.
+
+## Reference(s):
+
+- [Android Node on ClawHub](https://clawhub.ai/albionaiinc-del/skills/android-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

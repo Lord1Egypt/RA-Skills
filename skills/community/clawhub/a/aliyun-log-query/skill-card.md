@@ -1,43 +1,58 @@
-## Description: <br>
-当需要查询阿里云日志（SLS）时使用此技能，支持 CLI 查询日志、分析数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当需要查询阿里云日志（SLS）时使用此技能，支持 CLI 查询日志、分析数据。
 
-## Publisher: <br>
-[jeweis](https://clawhub.ai/user/jeweis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeweis](https://clawhub.ai/user/jeweis)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Aliyun Log Service CLI access, query SLS logs with bounded SQL searches, and inspect returned log data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to work with Aliyun SLS access credentials. <br>
-Mitigation: Use dedicated read-only RAM or temporary credentials scoped to the required projects and logstores, and avoid passing long-lived keys in chat or shell command arguments. <br>
-Risk: The skill includes broader SLS command guidance that could be used for create, update, or delete operations. <br>
-Mitigation: Approve only log-query operations unless resource changes are explicitly intended and reviewed. <br>
-Risk: Unbounded log queries can expose excessive data or overload the agent context. <br>
-Mitigation: Keep time ranges narrow and use LIMIT clauses, following the skill's default limit guidance. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure Alibaba Cloud SLS CLI access, map project and logstore names, and generate bounded log queries or SQL analysis commands.
 
-## Reference(s): <br>
-- [Project mapping reference](references/project_mapping.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jeweis/aliyun-log-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries should use limited time ranges and LIMIT clauses to avoid excessive output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cloud credentials may be exposed through command-line arguments, shell history, or persistent local CLI configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged short-lived Aliyun credentials, prefer safer credential handling over command-line secrets, and review local configuration before execution.
+
+Risk: Broad CLI instructions and SDK-to-CLI mappings could change cloud or local state if administrative operations are used.
+
+Mitigation: Restrict use to read-only SLS log commands unless administrative operations are explicitly required and confirmed.
+
+Risk: Project mapping updates can persist incorrect or sensitive project/logstore associations.
+
+Mitigation: Require user confirmation before appending new project mappings and avoid storing secrets in the mapping file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeweis/skills/aliyun-log-query)
+- [Project mapping reference](references/project_mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep log query result sizes bounded with LIMIT and short time ranges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

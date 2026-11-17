@@ -1,45 +1,65 @@
-## Description: <br>
-Converts FAQs, chats, and scattered notes into reviewable SOP or playbook drafts with exception branches and rollback steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns FAQ entries, chat logs, and scattered notes into reviewable SOP or Playbook drafts with exception branches and rollback steps.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Operations, support, training, and knowledge-management teams use this skill to turn raw FAQs, chat logs, and procedural notes into structured Markdown SOPs, playbooks, checklists, and review drafts before real-world use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input materials may contain sensitive chat logs, personal data, or operational details. <br>
-Mitigation: Redact sensitive content before processing and use the skill only on files intentionally selected for local analysis. <br>
-Risk: Generated SOPs or playbooks may be incomplete or unsuitable for a real procedure. <br>
-Mitigation: Treat outputs as review drafts and require human approval before execution, publication, or system changes. <br>
-Risk: Writing output to an unintended path could expose or overwrite local draft material. <br>
-Mitigation: Choose output paths deliberately, prefer dry-run or stdout while reviewing, and inspect generated files before reuse. <br>
+## Use Case:
 
+Operations, support, training, and knowledge-management users can use this skill to transform provided FAQ, chat, or procedure notes into structured SOP or playbook drafts. It is suited for reviewable documentation, not direct system changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/knowledge-to-playbook) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown SOP/playbook drafts or JSON reports generated from local input files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local Python script reads chosen inputs and can write a chosen output path; no network, credential, persistence, or destructive behavior is indicated by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: The bundled script can read any file path supplied as input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scope input paths before use, and avoid passing sensitive or unrelated files.
+
+Risk: The generated playbook content may be incomplete or incorrect if source notes are incomplete.
+
+Mitigation: Treat outputs as reviewable drafts and require human approval before publishing or using them for operational changes.
+
+Risk: Dormant audit and scanning code is present but not enabled by the shipped configuration.
+
+Mitigation: Do not rely on audit or scanning behavior unless the publisher documents and scopes those modes clearly.
+
+Risk: Inputs may contain personal information or sensitive operational details.
+
+Mitigation: Sanitize or limit sensitive source material before processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/knowledge-to-playbook)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Output Template](artifact/resources/template.md)
+- [Structured Spec](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown or JSON generated from local input files, with optional shell command usage for the bundled Python helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are reviewable drafts with sections for scenarios, standard steps, exception branches, rollback plans, upgrade paths, common pitfalls, missing information, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

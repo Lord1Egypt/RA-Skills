@@ -1,0 +1,14 @@
+# Subscription Churn Analysis - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+account_id,company_name,plan,mrr_usd,start_date,renewal_date,last_login_date,active_users,seat_limit,tickets_90d,failed_payments_90d,churn_reason,owner,status
+acct-0001,,,,,,,,,,,,,
+acct-0002,,,,,,,,,,,,,
+acct-0003,,,,,,,,,,,,,
+acct-0004,,,,,,,,,,,,,
+acct-0005,,,,,,,,,,,,,
+acct-0006,,,,,,,,,,,,,
+acct-0007,,,,,,,,,,,,,
+acct-0008,,,,,,,,,,,,,
+acct-0009,,,,,,,,,,,,,
+acct-0010,,,,,,,,,,,,,
+acct-0011,,,,,,,,,,,,,

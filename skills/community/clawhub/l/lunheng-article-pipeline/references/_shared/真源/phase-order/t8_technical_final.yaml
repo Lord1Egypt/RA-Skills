@@ -1,0 +1,24 @@
+# 论衡流程真源 · 第二部分：节点 t8_technical_final（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t8_technical_final
+  phase: "Phase 5 终检"
+  phase_seq: 24
+  verdict_scale: four_tier   # v2.12.40：终检结论落四档（通过/不通过/无法判定/路径或参数错误）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = M-Gate-Report + T9 审稿报告均已落盘；不得用缺位时的推断值
+  input: final/定稿.md + final/图件/*.svg + final/M-Gate-Report-*.json + audits/审稿报告-vN.md + audits/G14-检测报告-vN.md   # v2.12.37 审计 P1-2：T8 需读 T9 报告做「建议分流」；v2.12.41：G14 迁至 Phase 4.4 前置后，其报告核验职责由 T7 移交 T8
+  kind: owner_agent
+  agent: T8
+  role: T8
+  write_authority: owner
+  verification_authority: 主控
+  fingerprint: required   # v2.12.49 M-1：交付说明头部必填 final/定稿.sha256，与 T7/G14/T9 三方一致 ⇒ 合格；不一致 ⇒ 不合格（审计对象漂移）
+  audited_artifact_required: true   # v2.12.49 M-1/M-8：本节点报告必填 audited_artifact 三元组；与 T7/G14/T9 集合相等 ⇒ 合格
+  t9_missing_review_policy: {missing_blind_review_blocks_t9_claims: true, owner_acceptance_required_for_limited_delivery: true, complete_final_verdict_forbidden_without_t9_status: true}
+  # v2.12.13（方案 3.1）：显式声明输入含 SVG 图件——SVG 嵌入文本孤儿检查已从 T7 移交 T8
+  output: final/交付说明.md
+  output_chars_max: 10000
+  # v2.12.49 M-10：final/局限性.md 入真源（仅 Acknowledged Limitations 模式存在）
+  output_conditional:
+    acknowledged_limitations_mode: final/局限性.md
+  next: methodology_snapshot

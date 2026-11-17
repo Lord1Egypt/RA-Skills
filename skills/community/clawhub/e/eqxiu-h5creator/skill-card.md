@@ -1,45 +1,55 @@
-## Description: <br>
-易企秀H5制作 helps agents use the Eqxiu AIGC CLI to create and edit flip-style H5 pages from natural-language prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+易企秀H5制作 helps agents create, preview, edit, and update Eqxiu AIGC H5 pages from a user's natural-language request through the bundled CLI.
 
-## Publisher: <br>
-[eqxiu](https://clawhub.ai/user/eqxiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eqxiu](https://clawhub.ai/user/eqxiu)
 
-## Use Case: <br>
-External users and developers use this skill to create invitation, poster, event, and other H5 pages with Eqxiu, return preview and edit links, and optionally adjust text or images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses account tokens for Eqxiu API access. <br>
-Mitigation: Avoid passing tokens directly on the command line, treat the saved token as sensitive, and rotate it if exposure is suspected. <br>
-Risk: The skill can upload local files to Eqxiu/COS services. <br>
-Mitigation: Upload only files the user explicitly wants to send to Eqxiu/COS and is comfortable sharing with those services. <br>
-Risk: Activation may be broader than ideal for H5 generation and editing requests. <br>
-Mitigation: Use the skill only when the user explicitly wants 易企秀 H5 generation, editing, image replacement, or material upload. <br>
+## Use Case:
 
+External users and agents use this skill to automate Eqxiu AIGC H5 creation from event or page requirements, then return preview and edit links. The skill can also support follow-up text edits, body image replacement, material listing, and local material upload for an Eqxiu account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eqxiu/eqxiu-h5creator) <br>
-- [HTTP API reference](references/http-api.md) <br>
-- [Recommended workflow](references/workflow.md) <br>
-- [Eqxiu token access](https://www.eqxiu.com/skillAccess/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Eqxiu previewUrl, editUrl, scene IDs, editable text, image metadata, and upload results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can upload local files to remote Eqxiu material services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve the exact local file before running upload commands and avoid uploading sensitive or unintended files.
+
+Risk: A saved Eqxiu token can be sent to configurable network endpoints.
+
+Mitigation: Keep commands on the default Eqxiu service hosts, avoid untrusted endpoint or environment overrides, and remove or rotate the saved token when no longer needed.
+
+## Reference(s):
+
+- [Eqxiu AIGC HTTP API Reference](references/http-api.md)
+- [Recommended Conversation Workflow](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/eqxiu/skills/eqxiu-h5creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Create operations return previewUrl and editUrl; follow-up commands can update text, replace body images, list materials, or upload local files.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

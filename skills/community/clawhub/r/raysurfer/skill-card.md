@@ -1,43 +1,55 @@
-## Description: <br>
-Cache and reuse code from prior AI agent executions via Raysurfer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cache and reuse code from prior AI agent executions via Raysurfer by searching before coding and uploading successful results afterward.
 
-## Publisher: <br>
-[ryx2](https://clawhub.ai/user/ryx2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryx2](https://clawhub.ai/user/ryx2)
 
-## Use Case: <br>
-Developers and coding agents use this skill to search Raysurfer for cached code before implementing a task and to upload successfully executed code for future reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions and selected source files may be sent to a third-party Raysurfer service. <br>
-Mitigation: Use only when the user is comfortable sharing the task and code; avoid private, regulated, customer, or secret-bearing code unless the upload has been reviewed. <br>
-Risk: Remote cached or public snippets may be incorrect, insecure, or unsuitable for the current project. <br>
-Mitigation: Treat retrieved snippets as untrusted code, review and adapt them before use, and run project tests before accepting the result. <br>
+## Use Case:
 
+Developers and coding agents use this skill to search Raysurfer for reusable code before implementing a task, report whether cached code worked, and upload successful generated code for future reuse.
 
-## Reference(s): <br>
-- [Raysurfer API Reference](artifact/references/api-reference.md) <br>
-- [Raysurfer API](https://api.raysurfer.com) <br>
-- [Raysurfer API Key Dashboard](https://raysurfer.com/dashboard/api-keys) <br>
-- [ClawHub Release Page](https://clawhub.ai/ryx2/raysurfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAYSURFER_API_KEY for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Task descriptions, cache-use metadata, and selected source files may be sent to Raysurfer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data approved for third-party processing, and avoid uploading secrets, proprietary source, or private production code unless policy permits it.
+
+Risk: Cached code returned by the service may be unsuitable or unsafe to run without review.
+
+Mitigation: Manually inspect cached code and test it in an isolated environment before using it in a project.
+
+## Reference(s):
+
+- [Raysurfer API Reference](references/api-reference.md)
+- [Raysurfer API Keys Dashboard](https://raysurfer.com/dashboard/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/ryx2/skills/raysurfer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAYSURFER_API_KEY; may send task descriptions, cache-use metadata, and selected source files to Raysurfer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,32 @@
+{
+  "恶意函数执行": {
+    "plain": [
+      "eval($_POST['p1']",
+      "system($_POST['command']",
+      "shell_exec($_POST['command']",
+      "exec($_POST['command']",
+      "passthru($_POST['command']",
+      "popen($_POST['command']",
+      "assert($_POST[c",
+      "shell_exec($_POST[baba]",
+      "shell_exec($_POST[liz0]",
+      "passthru($_POST['cmd']",
+      "include($_POST['p2']",
+      "@include($_POST['test2_file']",
+      "@unserialize($_COOKIE['f']",
+      "unserialize($_COOKIE[\"$sess_cookie\"]"
+    ],
+    "base64": [
+      "ZXZhbCgkX1BPU1RbJ2MnXSk7"
+    ]
+  },
+  "网络外带/SSRF": {
+    "base64": [
+      "ZXZpbC5jb20="
+    ]
+  },
+  "自我复制": {},
+  "代码解密/混淆还原": {},
+  "敏感输入源": {},
+  "权限维持/常驻": {}
+}

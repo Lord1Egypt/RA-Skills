@@ -1,0 +1,11 @@
+{
+  "name": "sop-dev-004-operaciones-sandbox",
+  "description": "Descripción de SOP: dev",
+  "owner": "OpenClaw",
+  "version": "1.0",
+  "tags": [
+    "sop",
+    "approved",
+    "dev"
+  ]
+}

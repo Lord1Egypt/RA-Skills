@@ -1,43 +1,57 @@
-## Description: <br>
-三笙思考系统通过对话帮助电商从业者分析选品、定价、竞品、运营、内容和平台问题，并可结合用户配置的 Notion 知识库沉淀案例与判断。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三笙电商实战脑子。通过对话分析选品/定价/竞品/运营/内容/平台问题。不直接给结论，注重讨论过程中把问题想清楚。融合三笙多平台实战经验+真实失败复盘+平台观察。关联Notion知识库实现案例自动调用和沉淀进化。
 
-## Publisher: <br>
-[eddylu93](https://clawhub.ai/user/eddylu93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddylu93](https://clawhub.ai/user/eddylu93)
 
-## Use Case: <br>
-External ecommerce operators use this skill to structure conversations about product selection, pricing, competitor analysis, operational diagnosis, platform fit, and multi-platform strategy. It is most useful when the user supplies current business context, platform data, and an intentionally scoped Notion knowledge base for case lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Notion use may expose more knowledge-base content than intended. <br>
-Mitigation: Connect only the Notion workspace, pages, or databases intended for this skill and keep permissions scoped to that content. <br>
-Risk: Suggested saved notes may preserve incorrect or incomplete business judgments. <br>
-Mitigation: Review and approve proposed Notion notes before saving them to the knowledge base. <br>
-Risk: Guidance may be unreliable when store data, competitor data, or current platform rules are missing. <br>
-Mitigation: Provide current business data and verify real-time platform rules or market conditions before acting on the advice. <br>
+## Use Case:
 
+External ecommerce operators and teams use this Chinese-language skill to discuss product selection, pricing, competitor analysis, operations diagnosis, content commerce, platform fit, and multi-platform strategy. It guides the user through questions and tradeoffs rather than issuing unsupported conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eddylu93/sansheng-thinking) <br>
-- [Publisher profile](https://clawhub.ai/user/eddylu93) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, configuration] <br>
-**Output Format:** [Conversational text or Markdown guidance with optional Notion knowledge-base setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user before saving new judgments, lessons, or case notes to a user-configured Notion knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill may consult a user-configured Notion knowledge base for ecommerce examples and lessons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure Notion only with knowledge-base content the user is comfortable letting the agent read.
+
+Risk: The skill may propose adding new judgments, lessons, or cases to Notion after a discussion.
+
+Mitigation: Review any proposed Notion write before approving it.
+
+Risk: The skill cannot provide real-time ecommerce platform data or current platform-rule details on its own.
+
+Mitigation: Use current platform dashboards or authoritative platform documentation when decisions depend on live data or recent rule changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eddylu93/skills/sansheng-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest optional Notion knowledge-base reads or writes when the user has configured a Notion knowledge base.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

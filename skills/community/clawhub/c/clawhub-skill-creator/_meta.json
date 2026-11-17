@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7asmvryqycathxsgmqa6ht6581f5eq",
-  "slug": "clawhub-skill-creator",
+  "name": "clawhub-skill-creator",
   "version": "1.0.0",
-  "publishedAt": 1771779323761
+  "description": "Create effective skills for clawhub registry. Optimized for AI agent usage with progressive disclosure and token optimization.",
+  "requires": {
+    "env": [],
+    "credentials": []
+  },
+  "tags": ["skills", "clawhub", "meta", "creator", "best-practices", "latest"]
 }

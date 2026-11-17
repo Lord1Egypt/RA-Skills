@@ -1,44 +1,61 @@
-## Description: <br>
-Queries VirusTotal for a user-provided MD5 or SHA-256 hash and formats detection statistics, family labels, behavior, community notes, and key sample details. <br>
+## Description:
 
-This skill is for research and development only. <br>
+根据用户提供的哈希值，查询 VirusTotal 样本信息并输出检测统计、家族标签、沙箱行为和关键研究信息报告。
 
-## Publisher: <br>
-[lingggao](https://clawhub.ai/user/lingggao) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingggao](https://clawhub.ai/user/lingggao)
 
-## Use Case: <br>
-Security researchers and analysts use this skill to look up VirusTotal sample reports from hashes and produce concise Chinese-language reports for investigation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: VirusTotal hash lookups can disclose investigated sample identifiers to VirusTotal. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and check organizational policy before enterprise or high-volume workflows. <br>
-Risk: VirusTotal API keys can be exposed if reused broadly or handled outside the intended query flow. <br>
-Mitigation: Prefer a limited, revocable official VirusTotal API key, provide it only for the current query, and do not store it after the report is produced. <br>
+## Use Case:
 
+Security researchers and analysts use this skill to query MD5 or SHA256 hashes in VirusTotal and turn detection, behavior, relations, and community signals into a concise Chinese investigation report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingggao/vt-insight) <br>
-- [VirusTotal API v3 overview](https://docs.virustotal.com/reference/overview) <br>
-- [VirusTotal get a file report](https://docs.virustotal.com/reference/file-info) <br>
-- [VirusTotal get comments on a file](https://docs.virustotal.com/reference/files-comments-get) <br>
-- [VirusTotal behavior reports summary](https://docs.virustotal.com/reference/file-all-behaviours-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language report with fixed sections for detection statistics, family assessment, research notes, and summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.6 (source: server-resolved release metadata) <br>
+Risk: VirusTotal lookups can disclose submitted malware hashes and investigation interest to VirusTotal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable querying the hash before lookup and only submit hashes the user intentionally provides.
+
+Risk: A VirusTotal API key could be exposed if reused, stored, or sent outside the intended lookup.
+
+Mitigation: Use any API key only for the current VirusTotal query, do not store it locally or remotely, and do not send it to other services.
+
+Risk: Browser-based fallback could introduce account, cookie, upload, or download exposure if used carelessly.
+
+Mitigation: Use unauthenticated browsing without login cookies, avoid uploads and downloads, and do not install executables, extensions, drivers, or other tools for the lookup.
+
+## Reference(s):
+
+- [VirusTotal API v3 Overview](https://docs.virustotal.com/reference/overview)
+- [VirusTotal Get a File Report](https://docs.virustotal.com/reference/file-info)
+- [VirusTotal Get Comments on a File](https://docs.virustotal.com/reference/files-comments-get)
+- [VirusTotal File Behaviours Summary](https://docs.virustotal.com/reference/file-all-behaviours-summary)
+- [VirusTotal Get All Behavior Reports for a File](https://docs.virustotal.com/reference/get-all-behavior-reports-for-a-file)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided MD5 or SHA256 hash; may temporarily use a user-supplied VirusTotal API key for lookup.]
+
+## Skill Version(s):
+
+1.8.6 (source: server release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

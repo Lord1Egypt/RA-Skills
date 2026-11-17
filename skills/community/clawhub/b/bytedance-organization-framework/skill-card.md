@@ -1,47 +1,60 @@
-## Description: <br>
-用字节跳动组织方法论分析管理问题，优化信息流、决策透明及人才密度，实现持续快速迭代与长期价值。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for analyzing management, organization design, decision transparency, talent density, and product iteration through a ByteDance-style organization framework.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Managers, founders, product leaders, and organizational-development practitioners use this skill to analyze team structure, decision flow, transparency, iteration cadence, and talent-density questions through a ByteDance-style management framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad management-related trigger phrases and may activate on general organizational questions where the user did not intend to apply a ByteDance-style framework. <br>
-Mitigation: Before installation, narrow or disable generic trigger phrases unless this advisory framework should be active across broad management topics. <br>
-Risk: Users may over-apply ByteDance-inspired practices such as transparency, fast iteration, or talent-density optimization without considering their own legal, cultural, confidentiality, or team-readiness constraints. <br>
-Mitigation: Treat the output as advisory analysis, adapt recommendations to the organization, and review sensitive or people-impacting actions with appropriate stakeholders before implementation. <br>
+## Use Case:
 
+Managers, founders, product leads, and organization designers use this skill to reason about team efficiency, decision quality, transparency, talent density, culture, and rapid iteration using a ByteDance-inspired management lens.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejianjun000/bytedance-organization-framework) <br>
-- [Methodology](artifact/01-methodology.md) <br>
-- [Leader interviews](artifact/02-leader-interviews.md) <br>
-- [Official voice](artifact/03-official-voice.md) <br>
-- [External views](artifact/04-external-views.md) <br>
-- [Decision cases](artifact/05-decision-cases.md) <br>
-- [History timeline](artifact/06-history-timeline.md) <br>
-- [Research summary](artifact/research-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown guidance and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory management-framework content; no tool calls, shell commands, or code generation are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may trigger for broad management questions and provide ByteDance-style advice where a narrower framework or different language would be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Chinese-language ByteDance-style organization guidance is desired, and narrow invocation triggers or add audience context before deployment.
+
+Risk: The framework may be copied too literally into organizations without the talent density, transparency norms, or feedback loops described in the artifact.
+
+Mitigation: Treat recommendations as advisory, pilot changes in a limited team, and adapt them to local culture, legal obligations, and operating constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/bytedance-organization-framework)
+- [Methodology notes](artifact/01-methodology.md)
+- [Leader interview notes](artifact/02-leader-interviews.md)
+- [Official voice notes](artifact/03-official-voice.md)
+- [External view notes](artifact/04-external-views.md)
+- [Decision case notes](artifact/05-decision-cases.md)
+- [History timeline notes](artifact/06-history-timeline.md)
+- [Research summary](artifact/research-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown or plain text management analysis in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; output is advisory and should be reviewed for organizational fit.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Checks AI agent reputation across five platforms, computes a composite trust score, and recommends PayLock escrow for medium or high-risk agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks AI agent reputation across five platforms, computes a composite trust score, and recommends PayLock escrow for medium- or high-risk agents.
 
-## Publisher: <br>
-[kgnvsk](https://clawhub.ai/user/kgnvsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kgnvsk](https://clawhub.ai/user/kgnvsk)
 
-## Use Case: <br>
-Developers and operators use this skill to query an AI agent handle before engaging or paying it, using cross-platform reputation signals as an advisory risk screen. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Parts of the composite trust score can describe the user's own accounts instead of the queried agent. <br>
-Mitigation: Treat scores as advisory and verify that each platform result matches the queried agent before using the score for payment or safety decisions. <br>
-Risk: The skill uses bundled API keys and reads the local Moltbook credential file when present. <br>
-Mitigation: Run only in a trusted environment, review credential access before execution, and replace or rotate bundled keys before operational use. <br>
-Risk: Queried agent names are sent to the listed external reputation services. <br>
-Mitigation: Avoid querying sensitive identifiers unless sharing them with those services is acceptable under the user's privacy and compliance requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kgnvsk/agent-reputation) <br>
-- [PayLock Recommendation Page](https://kgnvsk.github.io/paylock/) <br>
-- [Colony](https://thecolony.cc) <br>
-- [Clawk](https://clawk.ai) <br>
-- [ugig](https://ugig.net) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [Ridgeline](https://ridgeline.so) <br>
+## Use Case:
 
+Developers and operators use this skill to check an agent handle across reputation platforms and receive a concise trust score, risk label, and payment-protection guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports per-platform availability, extracted reputation metrics, a composite trust score, a risk level, and PayLock escrow guidance when applicable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Embedded API keys may expose credentials or tie users to credentials they do not control.
+
+Mitigation: Rotate any embedded keys and require user-controlled credential configuration before installation or use.
+
+Risk: Some platform checks may return self-profile data or an unrelated first search result instead of the requested agent.
+
+Mitigation: Verify that each returned profile matches the requested agent handle before using the composite trust score for decisions.
+
+Risk: Unavailable or failed platform checks can reduce confidence in the final reputation score.
+
+Mitigation: Treat unavailable sources as a review signal and corroborate medium- or high-risk results before acting on payment or trust decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kgnvsk/skills/agent-reputation)
+- [PayLock escrow recommendation page](https://kgnvsk.github.io/paylock/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI report with per-platform metrics, composite trust score, risk label, and escrow recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an agent handle/name as input; network or API failures are reported as unavailable sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

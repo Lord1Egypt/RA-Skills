@@ -1,46 +1,59 @@
-## Description: <br>
-Generates human-reviewed cross-border ecommerce buyer-message reply drafts for Amazon, Shopify, and TikTok Shop using Yufluent's cloud service and platform messaging guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates human-reviewed customer-service reply drafts for Amazon, Shopify, and TikTok Shop buyer messages using buyer text and optional order context.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce sellers and support agents use this skill to draft buyer-message replies for logistics questions, refund requests, product questions, and review-sensitive cases. Sellers must review the draft before sending it through Amazon, Shopify, or TikTok Shop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buyer messages, product information, and provided order context are sent to Yufluent's cloud service. <br>
-Mitigation: Redact unnecessary personal data such as full addresses, phone numbers, emails, or complete order identifiers before use. <br>
-Risk: Changing TOKENAPI_BASE_URL or another base-url setting could send requests to an unintended service. <br>
-Mitigation: Keep base-url settings pointed only at the intended HTTPS service. <br>
-Risk: The skill requires a TOKENAPI_KEY credential for cloud execution. <br>
-Mitigation: Store the token in environment variables or a secrets manager and do not include it in prompts, logs, or shared files. <br>
-Risk: Reply drafts may include wording that is not appropriate for a seller's actual policy, authorization, or platform obligations. <br>
-Mitigation: Review every draft before sending and remove unsupported promises about refunds, compensation, delivery dates, or review changes. <br>
+## Use Case:
 
+External ecommerce sellers and support agents use this skill to draft concise buyer-message replies for logistics questions, refunds, returns, product questions, and review-sensitive conversations. The generated response is intended for human review before sending through Seller Central, Shopify Inbox, or TikTok Shop tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluent-clawhub-publish-yufluentcn-chat-assist) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text buyer-message reply draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 2-5 sentences; human review is required before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Customer messages, order context, and the API token may be sent to a user-configured service endpoint, including plain HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only a trusted HTTPS TOKENAPI_BASE_URL and avoid sending unnecessary personal, order, or sensitive data in prompts.
+
+Risk: Generated replies may contain incorrect commitments, unsupported refund or replacement language, or statements that conflict with marketplace policy.
+
+Mitigation: Require seller or support-agent review before sending replies, especially for refunds, compensation, shipping status, reviews, and platform-policy-sensitive cases.
+
+Risk: Dependency behavior can change if packages are installed without pinning.
+
+Mitigation: Install dependencies in an isolated environment and pin package versions for production support workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluent-clawhub-publish-yufluentcn-chat-assist)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [Yufluent OpenClaw setup](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text customer-service reply draft with command-line status metadata on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are typically 2-5 sentences and require human review before seller use.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

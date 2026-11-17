@@ -61,11 +61,12 @@ metadata:
 
 输入格式
 --------
-请求为 JSON（示例见 `../data/med-major-disease-assess/req_data.json`），最少需要包含：
+请求为 JSON（示例见 `../data/med-major-disease-assess/req_data.json`），推荐使用以下结构：
 
 - `medicalRecord`：病历结构化对象
+  - `hospitalId` / `admissionId`：可选，病例标识
   - `mainDiagName` / `otherDiagName`：诊断信息（字符串/JSON 字符串均可）
-  - `docs`：文书列表（每个 doc 至少包含 `docType` 与文本字段，如 `format_page_text`）
+  - `docs`：文书列表（推荐每个 doc 含 `docName`、`nodes`、`format_page_text`）
 
 也支持通过统一入口 `scripts/run.py` 直接输入 `pdf/doc/docx/xls/xlsx/csv/txt/json`。
 预处理成功后，会先归一化为最小可用的 `medicalRecord.docs[]` JSON，再调用本 skill 的原始评估逻辑。
@@ -76,12 +77,23 @@ metadata:
 - 请求体必须是 JSON object
 - 必须包含 `medicalRecord`（object）
 - `medicalRecord.docs` 必须是非空数组
-- `docs` 中至少一项包含 `docType`
 
 后端接口
 --------
-- HTTP API：`http://10.10.20.15:9010/api/v1/assessment/assess/{disease}?model_type=qwq`
-- Content-Type：`application/json`
+- Base URL：`https://skills-medical.hivoice.cn`
+- 方法：`POST`
+- 路径：`/api/v1/assessment/assess/{disease}`
+- 鉴权请求头：
+  - `Authorization: Bearer <LLM_API_KEY>`
+  - `Content-Type: application/json`
+- 成功判定：
+  - HTTP 200 且 `success=true`：请求处理成功（不代表一定理赔通过）
+  - 业务结论看 `result.final_result.satisfied`：
+    - `true`：满足条件
+    - `false`：不满足，原因见 `result.final_result.reason`
+- 常见错误：
+  - `401`：缺少或错误的 `Authorization: Bearer <api_key>`
+  - `200 + success=false`：业务处理失败，详见 `error`
 
 快速开始
 --------
@@ -90,11 +102,13 @@ metadata:
 # 在本目录下运行（统一入口）
 python3 scripts/run.py \
   --disease aortic_surgery \
+  --appkey <LLM_API_KEY> \
   --input ../data/med-major-disease-assess/req_data.json
 
 # 或继续直接使用原始 medicalRecord JSON 入口
 python3 scripts/major_disease_assess.py \
   --disease aortic_surgery \
+  --appkey <LLM_API_KEY> \
   --input ../data/med-major-disease-assess/req_data.json
 ```
 
@@ -102,14 +116,16 @@ python3 scripts/major_disease_assess.py \
 --------
 - `--disease STRING`
   - 病种类型（如：`aortic_surgery`、`heart_valve_surgery` 等）。
+- `--appkey STRING`
+  - **必填**。接口鉴权 key，请通过 `Authorization: Bearer <api_key>` 传递。
 - `--input PATH`
   - 输入请求 JSON 路径（UTF-8）。
 - `--output-json PATH`
   - 保存接口原始返回 JSON（默认：`../runs/med-major-disease-assess/{disease}_resp.json`）。
 - `--output-text PATH`
   - 保存自然语言结论文本（默认：`../runs/med-major-disease-assess/{disease}_resp.txt`）。
-- `--model-type STRING`
-  - 查询参数 `model_type`（默认：`qwq`）。
+- `--base URL`
+  - 评估接口 base URL（默认：`https://skills-medical.hivoice.cn`）。
 - `--timeout SECONDS`
   - HTTP 超时秒数（默认：60）。
 
@@ -134,13 +150,19 @@ python3 scripts/major_disease_assess.py \
 
 依赖
 ----
+### 前置 Skill
+本 skill 的 `scripts/run.py` 依赖 **`_shared/doc-preprocess`** 提供的公共文件预处理库（`preprocess.py`）。
+请确保 `_shared/doc-preprocess/` 位于 `skills/` 根目录下。
+
 ### 运行环境
 - Python 3.7+
 
 ### 外部 API
-- 后端评估服务：`https://shangbao.yunzhisheng.cn/skills/critical-disease/api/v1/assessment/assess/{disease}`
-  - 方法：POST，Content-Type: application/json
-  - 需要网络访问 `shangbao.yunzhisheng.cn`
+- 后端评估服务：`https://skills-medical.hivoice.cn/api/v1/assessment/assess/{disease}`
+  - 方法：POST
+  - 请求头必须包含：
+    - `Authorization: Bearer <LLM_API_KEY>`
+    - `Content-Type: application/json`
 
 ### Python 第三方包（可选，按输入格式需要）
 | 包名 | 用途 | 必要条件 |

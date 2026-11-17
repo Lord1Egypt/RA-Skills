@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes Android project source code and helps generate source-derived testing knowledge so AI test agents know what to test, how to assert outcomes, and which traps to avoid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Android project source code to generate static prior-knowledge profiles that help AI automated testing agents understand business flows, assertions, state dependencies, edge cases, test traps, and executable test cases.
 
-## Publisher: <br>
-[x-lancer](https://clawhub.ai/user/x-lancer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-lancer](https://clawhub.ai/user/x-lancer)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to inspect Android application source, derive business flows and assertions, and package a static profile for AI-driven automated testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Android source code and extracted test data may contain sensitive implementation details, credentials, or production identifiers. <br>
-Mitigation: Run the skill only on intended project directories, redact secrets and production credentials before use, and review generated files before committing or uploading them. <br>
-Risk: Generated testing guidance can be incomplete or misleading if the analyzed source is partial or stale. <br>
-Mitigation: Validate generated flows, assertions, and static-profile content against the target app before using them in automated test runs. <br>
+## Use Case:
 
+Developers, QA engineers, and AI testing agents use this skill to analyze Android application source code and produce a static-profile JSON package before automated tests run. The profile gives downstream agents concise guidance on what to test, how to navigate core flows, what to assert, and which dead ends or risky actions to avoid.
 
-## Reference(s): <br>
-- [Output schema](artifact/references/output_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON static-profile artifacts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces source-derived testing knowledge, LLM prompts, navigation graph JSON, and static-profile JSON for manual review and import.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill reads Android source code and may include sensitive implementation details, credentials, or proprietary information in generated profile text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on projects approved for LLM processing, add redaction where needed, and review static-profile.json before committing or uploading it.
+
+Risk: Generated static-profile content can be inaccurate or misleading because it depends on source interpretation and LLM-generated summaries.
+
+Mitigation: Treat generated profile text as untrusted input to downstream agents and have a developer or QA reviewer confirm flows, assertions, and test data before use.
+
+Risk: Using the wrong project path can expose unrelated source files or produce an incorrect test profile.
+
+Mitigation: Confirm the exact Android project path before running analysis.
+
+## Reference(s):
+
+- [Android Static Profile output schema](references/output_schema.json)
+- [ClawHub skill page](https://clawhub.ai/x-lancer/skills/android-static-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON static-profile file plus Markdown guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated profile is intended for review before upload or commit because it may summarize source code, credentials, or proprietary details.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

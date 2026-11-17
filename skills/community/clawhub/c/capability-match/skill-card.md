@@ -1,42 +1,54 @@
-## Description: <br>
-AI-powered skill router that analyzes your request and recommends the best installed skill for the job. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered skill router that analyzes your request and recommends the best installed skill for the job.
 
-## Publisher: <br>
-[viratkumar123](https://clawhub.ai/user/viratkumar123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viratkumar123](https://clawhub.ai/user/viratkumar123)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to find an installed skill that best matches a natural-language task. It scans local skill descriptions and returns ranked recommendations with confidence scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the local OpenClaw skills directory to build recommendations. <br>
-Mitigation: Install only where reading local installed skill descriptions is acceptable. <br>
-Risk: Skill recommendations may be incomplete or mismatched for sensitive or high-impact tasks. <br>
-Mitigation: Treat recommendations as guidance and confirm the selected skill before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find the most relevant installed skill for a natural-language task request. It scans local skill descriptions and returns ranked recommendations with confidence scores and example trigger phrases.
 
-## Reference(s): <br>
-- [Capability Match on ClawHub](https://clawhub.ai/viratkumar123/capability-match) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown-like text with ranked recommendations and confidence scores] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw skill metadata; thresholds and maximum results are configurable by environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, _meta.json, release metadata) <br>
+Risk: The skill reads SKILL.md files for locally installed OpenClaw skills and may surface skill names, descriptions, and trigger examples in recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local skill metadata disclosure is acceptable, and review recommendations before invoking another skill.
+
+Risk: The matching result is advisory and may recommend an imperfect skill for the user's task.
+
+Mitigation: Use the confidence score and displayed description to choose the next skill manually.
+
+## Reference(s):
+
+- [Capability Match README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/viratkumar123/skills/capability-match)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text with ranked skill recommendations, confidence scores, and suggested trigger phrases.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and based on local installed skill metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

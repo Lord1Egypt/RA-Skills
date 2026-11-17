@@ -1,39 +1,58 @@
-## Description: <br>
-Analyse une pièce comptable isolée, comme une facture, un relevé bancaire ou une note de frais, pour extraire les données clés et signaler les incohérences sans modifier les fichiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyse une pièce comptable isolée, comme une facture, un relevé bancaire ou une note de frais, pour en extraire les informations clés et signaler les incohérences sans classer, déplacer ni modifier de fichiers.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Comptables and accounting operators use this skill to understand one attached accounting document before deciding how to classify or reconcile it. It extracts document type, amounts, VAT, dates, parties, and document-level anomalies, then turns the findings into a concise business summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads accounting PDFs selected by the user, which may contain sensitive financial information. <br>
-Mitigation: Use it only on individual documents the user explicitly chooses to analyze and avoid sharing outputs beyond the accounting workflow. <br>
-Risk: OCR or visual fallback on scanned or photographed documents can produce uncertain values. <br>
-Mitigation: Treat those results as advisory and confirm important amounts, dates, VAT, and parties against the original document. <br>
+## Use Case:
 
+Accountants and finance operators use this skill to understand one accounting document at a time before deciding how to handle it. It extracts document type, amounts, VAT, dates, parties, bank-statement details, and document-level consistency issues, then helps the agent summarize them in concise business language.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON from the analysis script, followed by concise human-facing text for the accountant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow for one user-selected PDF at a time. OCR or visual fallback results should be treated as advisory and confirmed for scanned or photographed documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes sensitive accounting documents, including invoices, bank statements, and expense reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where the agent is authorized to read those local documents and where accounting data handling policies allow local document analysis.
+
+Risk: Scanned or photographed documents may produce lower-confidence visual readings when text extraction is unavailable.
+
+Mitigation: Treat visually read values as subject to confirmation and re-run OCR or manual review for material documents.
+
+Risk: The parsing behavior is primarily tuned for French accounting and banking document formats.
+
+Mitigation: Review extracted fields and anomaly reports carefully before relying on the output for non-French or unusual document layouts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trendex/skills/analyse-piece-comptable)
+- [Publisher profile](https://clawhub.ai/user/trendex)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Concise Markdown summary supported by JSON output from the local analysis script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one document at a time and is intended to remain read-only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

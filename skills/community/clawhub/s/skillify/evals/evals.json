@@ -1,0 +1,36 @@
+{
+  "skill_name": "skillify",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "This Academy candidate succeeded on three distinct workflows and its clean-context eval beats baseline. Graduate the reusable method into a portable skill.",
+      "expected_output": "A skill package that extracts invariants, removes incidental project details, includes evals and precise trigger metadata, and treats deployment as an explicit graduation step.",
+      "assertions": [
+        "The skill uses real reuse/eval evidence rather than assuming generality",
+        "The skill distinguishes reusable method from project-specific context",
+        "At least two realistic eval cases are specified",
+        "Runtime-specific details are abstracted unless required"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Gear-up just created this temporary procedure once. Immediately install it globally as a proven skill.",
+      "expected_output": "Refuses to call the one-task artifact proven/graduated, recommends Academy candidate evaluation or explicit experimental packaging, and does not conflate hot creation with durable deployment.",
+      "assertions": [
+        "One ephemeral success is not represented as proof of generality",
+        "Academy evaluation or equivalent reuse evidence is required before graduation",
+        "Permanent installation is not automatic"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Save this chat as a skill.",
+      "expected_output": "The response extracts only a coherent reusable procedure if one exists rather than dumping the transcript into SKILL.md; without execution evidence it remains a draft.",
+      "assertions": [
+        "The conversation transcript is not copied wholesale",
+        "A coherent skill responsibility is required",
+        "Unproven content is not labeled proven"
+      ]
+    }
+  ]
+}

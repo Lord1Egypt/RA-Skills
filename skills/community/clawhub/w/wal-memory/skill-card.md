@@ -1,40 +1,55 @@
-## Description: <br>
-WAL Memory helps OpenClaw agents recover from session crashes, disconnects, provider outages, and context compaction by installing a local write-ahead state log, goals template, and cold boot recovery guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session crash and compaction recovery using a two-file WAL (Write-Ahead Log) system.
 
-## Publisher: <br>
-[maikunari](https://clawhub.ai/user/maikunari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maikunari](https://clawhub.ai/user/maikunari)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local continuity for OpenClaw sessions by recording meaningful actions in STATE.log and maintaining a short GOALS.md recovery file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: STATE.log and GOALS.md can contain private project data because the recovery log is local plaintext. <br>
-Mitigation: Add STATE.log to .gitignore, avoid logging secrets or sensitive payloads, and periodically review the recovery files before future sessions read them. <br>
-Risk: Persistent recovery context can preserve stale or misleading session state. <br>
-Mitigation: Review the latest STATE.log entries and keep GOALS.md current so resumed sessions start from accurate context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WAL Memory release page](https://clawhub.ai/maikunari/wal-memory) <br>
-- [GOALS template](assets/GOALS.template.md) <br>
+## Use Case:
+
+Developers and agent operators use this skill to set up a lightweight write-ahead log and goals file so an OpenClaw agent can recover work context after crashes, session rollover, provider outages, or context compaction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Plaintext persistent memory in ~/clawd may contain private task details or sensitive operational context.
+
+Mitigation: Keep secrets and untrusted text out of log messages, add STATE.log to .gitignore, and review log contents before sharing or committing them.
+
+Risk: Future sessions may over-trust recovered log lines or treat historical notes as instructions.
+
+Mitigation: Treat recovered STATE.log lines as context only, review them before acting, and avoid replaying commands from the log without human or agent verification.
+
+Risk: Log input is not safely constrained.
+
+Mitigation: Consider category allowlisting plus escaping or JSON Lines before relying on the log for long-term continuity.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a JavaScript logging script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; writes a local plaintext STATE.log with simple rotation at 5MB.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js in PATH and writes plaintext log entries to ~/clawd/STATE.log.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

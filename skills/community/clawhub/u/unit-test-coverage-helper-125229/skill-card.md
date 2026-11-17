@@ -1,42 +1,55 @@
-## Description: <br>
-Helps maintainers and contributors plan, implement, and verify unit-test additions for software projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps maintainers and contributors plan, implement, and verify unit tests for software changes.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, and contributors use this skill to turn requests for added unit tests into a practical plan, checklist, implementation support, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad unit-test-related wording. <br>
-Mitigation: Confirm the requested scope and target files before allowing code edits or workflow changes. <br>
-Risk: Generated test plans or code may be incomplete or mismatched to the project's test framework. <br>
-Mitigation: Review suggestions against the repository's existing test patterns and run the relevant test suite before merging. <br>
+## Use Case:
 
+Developers and maintainers use this skill to turn requests for added unit tests into a practical plan, checklist, implementation support, and verification notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/unit-test-coverage-helper-125229) <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Source Requirement Issue](https://github.com/ArpitaVerma16/Voice-Driven-Virtual-Customer-Success-Manager/issues/30) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with optional checklists, code blocks, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Broad implicit invocation keywords may activate the skill when the user did not intend unit-test support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow or disable implicit invocation before installing in environments where accidental activation would be disruptive.
+
+Risk: Generated unit-test plans or code suggestions may miss project-specific behavior or introduce incorrect assertions.
+
+Mitigation: Review suggested changes against the codebase and run the relevant test suite before accepting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/unit-test-coverage-helper-125229)
+- [Requirement plan](artifact/references/requirement-plan.md)
+- [Source requirement issue](https://github.com/ArpitaVerma16/Voice-Driven-Virtual-Customer-Success-Manager/issues/30)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with optional code snippets and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, implementation steps, verification notes, and follow-up risks.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-将工作簿中的多个表格合并为一个表格，基于指定的两列（项目名称及特征、生产规格）进行匹配汇总，合计件数和数量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将工作簿中的多个表格合并为一个表格，基于指定的两列（项目名称及特征、生产规格）进行匹配汇总，合计件数和数量。
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-External users and developers use this skill to merge multiple shipment or statistics tables from an Excel workbook into a single summary keyed by project name/features and production specification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A fixed or user-selected output workbook path could replace an existing spreadsheet. <br>
-Mitigation: Confirm the input workbook path and verify the output filename before running the merge. <br>
-Risk: Local workbook contents are processed by the script. <br>
-Mitigation: Use the skill only with Excel files the user is comfortable processing locally. <br>
+## Use Case:
 
+External users and developers use this skill to merge multiple Excel shipment or statistics worksheets into one summarized workbook. It matches rows by project name/features and production specification, totals count and quantity columns, filters irrelevant rows, and sorts by configured Chinese construction keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/excel-multi-table-merge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with Python code and generated Excel workbook output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local Excel workbooks with openpyxl and writes a merged summary workbook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Workbook text copied into the output could preserve attacker-controlled spreadsheet formulas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize names and specifications that begin with =, +, -, @, tab, carriage return, or newline before writing the output workbook, and review the skill before using untrusted workbooks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/excel-multi-table-merge)
+- [ClawHub publisher profile](https://clawhub.ai/user/smxtx)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with Python code and workbook file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or adapts local openpyxl-based workbook merge logic and may generate a summarized .xlsx workbook.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

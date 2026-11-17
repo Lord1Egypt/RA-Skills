@@ -44,7 +44,7 @@ ve clb DescribeServerGroupAttributes --Region "<region>" --ServerGroupId "<serve
 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py" \
   --region "<region>" \
   --type "<clb|alb>" \
   --load-balancer-id "<lb-id>" \

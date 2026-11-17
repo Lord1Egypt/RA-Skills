@@ -1,44 +1,57 @@
-## Description: <br>
-Analyze Monero transactions by inspecting inputs, outputs, ring signatures, fund flows, and privacy features for forensic and verification purposes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Monero transactions by inspecting inputs, outputs, ring signatures, fund flows, and privacy features for forensic and verification purposes.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-Developers, analysts, and investigators use this skill as an educational guide for reviewing Monero transaction structure, privacy mechanisms, and analysis workflows. It should be used only for transactions the user is authorized to investigate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy or forensic-analysis claims may be incomplete or misleading if users rely on a single explorer or unverified tool. <br>
-Mitigation: Verify explorers and CLI tools independently, prefer Tor or trusted self-hosted infrastructure for sensitive lookups, and cross-check conclusions before acting on them. <br>
-Risk: Transaction analysis can expose sensitive information or be misused against transactions the user is not authorized to investigate. <br>
-Mitigation: Limit use to authorized investigations and treat the guide as educational support rather than definitive attribution. <br>
+## Use Case:
 
+Developers, forensic analysts, compliance teams, and incident responders use this skill to understand Monero transaction structure, evaluate privacy signals, and document authorized transaction analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liumaimiao/monero-transaction-analysis) <br>
-- [xmrchain Monero explorer](https://xmrchain.net) <br>
-- [Monero Research Lab](https://research.getmonero.org/) <br>
-- [RingCT technical paper](https://eprint.iacr.org/2017/045.pdf) <br>
-- [Monero StackExchange](https://monero.stackexchange.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only educational analysis guidance; no executable tool is bundled in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact/SKILL.md) <br>
+Risk: Transaction analysis heuristics can produce false positives or overstate traceability for privacy-preserving Monero activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat findings as probabilistic, corroborate with authorized evidence, and document uncertainty in compliance or incident-response workflows.
+
+Risk: Third-party explorers or services may expose lookup metadata, and privacy claims should not be assumed without verification.
+
+Mitigation: Prefer trusted local tooling or privacy-preserving network access, and independently verify any explorer privacy policy before use.
+
+## Reference(s):
+
+- [Monero Transaction Analysis on ClawHub](https://clawhub.ai/liumaimiao/skills/monero-transaction-analysis)
+- [Monero Research Lab](https://research.getmonero.org/)
+- [RingCT Technical Paper](https://eprint.iacr.org/2017/045.pdf)
+- [Monero StackExchange](https://monero.stackexchange.com/)
+- [xmrchain.net Monero Explorer](https://xmrchain.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with illustrative shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational analysis guidance; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

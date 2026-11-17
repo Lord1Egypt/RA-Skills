@@ -1,44 +1,62 @@
-## Description: <br>
-This skill helps agents produce Chinese Feishu automation plans, examples, and templates for scheduled messages, reports, Bitable operations, calendar events, and approval workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书自动化工具 helps agents produce Chinese Feishu automation plans and code-oriented guidance for scheduled messages, reports, Bitable operations, calendar events, and approval workflows.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers, operators, and Feishu workspace administrators use this skill to design automations for message delivery, recurring reports, Bitable data changes, calendar events, and approval reminders. It is intended to return Chinese guidance, code examples, permission checklists, and reusable output templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Feishu permissions can expose private messages, documents, calendars, approvals, contacts, or business records. <br>
-Mitigation: Grant only the scopes required for the workflow, avoid private-message access unless it is necessary, and review permissions before deployment. <br>
-Risk: App Secret values and tenant access tokens can leak through logs, examples, or shared configuration. <br>
-Mitigation: Store secrets securely, keep tokens out of logs and generated output, and mask sensitive values during troubleshooting. <br>
-Risk: Scheduled automations that approve, delete, or modify records can make business changes without timely human review. <br>
-Mitigation: Test each workflow with limited data, require review for destructive or approval-related actions, and monitor scheduled runs before broad rollout. <br>
+## Use Case:
 
+Developers and workplace automation owners use this skill to draft Chinese Feishu automation workflows, permissions, API calls, schedules, and output templates for messages, reports, Bitable records, calendar events, and approvals.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/qqyougitcom/mimo-feishu-automation) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Detailed Feishu automation examples](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown with code blocks, tables, checklists, and automation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs commonly include required Feishu scopes, Cron triggers, data sources, transformation steps, target destinations, and safety notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill covers powerful Feishu workplace actions using app credentials and broad API scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Feishu app with carefully limited scopes, keep scheduled automations narrowly scoped and auditable, and validate target record, event, task, and recipient IDs before execution.
+
+Risk: The artifact includes token-printing examples and token handling patterns.
+
+Mitigation: Remove token-printing examples before production use and store App Secret and tokens in environment variables or encrypted secret storage.
+
+Risk: The skill includes destructive or high-impact actions such as batch deletion, approval decisions, and scheduled automation.
+
+Mitigation: Require explicit confirmation for deletes and approval decisions, add request validation, and review workflows before enabling production schedules.
+
+Risk: Feishu APIs have permission and rate-limit constraints that can cause failed or excessive automation.
+
+Mitigation: Confirm administrator approval for required permissions, apply rate limiting or retry spacing, and monitor automation logs with sensitive values redacted.
+
+## Reference(s):
+
+- [飞书自动化工具 - 详细内容](artifact/references/details.md)
+- [Feishu Open Platform App Console](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown with Python examples, Feishu API payloads, Cron expressions, and configuration checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as plans and examples; executing API actions requires separately configured Feishu credentials and scopes.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

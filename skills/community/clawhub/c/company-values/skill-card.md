@@ -1,40 +1,51 @@
-## Description: <br>
-Help define company values and culture for a minimalist business. Use when someone is setting up their company culture, preparing to hire, or wanting to codify what their company stands for. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help define company values and culture for a minimalist business. Use when someone is setting up their company culture, preparing to hire, or wanting to codify what their company stands for.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-Founders, operators, and early-stage team leads use this skill to draft values that guide hiring, daily work, accountability, and culture for a minimalist business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that one review helper in the release can default to running nested Codex with full filesystem and sandbox bypass authority. <br>
-Mitigation: Review before installing, set AUTOREVIEW_YOLO=0 or pass --no-yolo for safer use, and use moderation or PR-maintainer workflows only with intended accounts, explicit targets, and confirmation for writes. <br>
+## Use Case:
 
+Founders, operators, and hiring teams use this skill to draft company values, culture norms, hiring signals, day-to-day behaviors, and anti-patterns for a minimalist business.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carollili/company-values) <br>
-- [Publisher profile](https://clawhub.ai/user/carollili) <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 3-5 company values with descriptions, example stories, hiring signals, day-to-day behaviors, and anti-patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may over-rely on values and hiring guidance as legal, HR, or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as culture-drafting guidance and have qualified reviewers assess employment, legal, compliance, and policy implications before adoption.
+
+## Reference(s):
+
+- [Company Values on ClawHub](https://clawhub.ai/carollili/skills/company-values)
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+- [Sahil Lavingia](https://twitter.com/shl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory drafting guidance only; it does not execute code, access data, or persist information.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

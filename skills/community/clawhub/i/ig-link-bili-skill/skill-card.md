@@ -1,48 +1,66 @@
-## Description: <br>
-Downloads user-provided Instagram Reel or Post links, drafts Chinese Bilibili title and description metadata, uploads them to Bilibili, and verifies the resulting video link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes user-supplied Instagram Reel or Post links for download, Chinese translation, Bilibili reposting, and post-upload verification without feed scraping, automatic filtering, deduplication, or author blacklists.
 
-## Publisher: <br>
-[arvinyin1](https://clawhub.ai/user/arvinyin1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arvinyin1](https://clawhub.ai/user/arvinyin1)
 
-## Use Case: <br>
-External users and agents use this skill when a user explicitly provides one or more Instagram Reel or Post links and asks to repost them to Bilibili. It guides media download, metadata drafting, Bilibili upload, and post-upload verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to read local browser session cookies and store Bilibili credentials locally. <br>
-Mitigation: Use only a Bilibili account acceptable for posting, keep credentials.json out of version control and logs, restrict file permissions, and delete or rotate credentials when finished. <br>
-Risk: The artifact references upload and cookie setup scripts that were not included for review. <br>
-Mitigation: Review the installed scripts before execution and do not run cookie setup or upload commands until the local implementation has been inspected. <br>
-Risk: The skill reposts user-supplied Instagram content to Bilibili, which can create rights or platform-policy issues. <br>
-Mitigation: Only repost content when the user has confirmed permission or a legitimate basis for reposting, and stop when Bilibili verification indicates rejection or removal. <br>
+## Use Case:
 
+Developers and operators use this skill to convert user-supplied Instagram Reel or Post links into Bilibili uploads, including media preparation, Chinese title and description generation, category and tag selection, upload, and verification.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/ArvinYin1/ig-link-bili-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/arvinyin1/ig-link-bili-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/arvinyin1) <br>
-- [Diagnosis methodology](references/diagnosis-methodology.md) <br>
-- [Known pitfalls](references/pitfalls.md) <br>
-- [Upload verification](references/upload-verification.md) <br>
-- [Configuration example](config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration values, and final Bilibili video URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include upload status details such as bvid or aid when the referenced upload scripts return them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.5.0) <br>
+Risk: The workflow may use a user's Bilibili browser session to upload under that account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile and dedicated Bilibili account, protect credentials.json, avoid logging cookies, and rotate the session if exposed.
+
+Risk: The artifact references setup and upload scripts that are not present in the release evidence and therefore cannot be audited from these files.
+
+Mitigation: Audit or obtain the missing scripts before installation or execution, and run the skill only in an environment where those scripts are trusted.
+
+Risk: Reposting third-party Instagram content to Bilibili can create authorization, copyright, or platform-policy issues.
+
+Mitigation: Only repost content the user is authorized to share, preserve attribution, and stop when verification or platform review indicates rejection.
+
+Risk: Bilibili upload APIs can report initial success before the video is actually available.
+
+Mitigation: Wait before verification, run the documented upload verification step, and treat repeated pending or failure states as requiring review rather than immediate success.
+
+## Reference(s):
+
+- [Server-resolved GitHub import source](https://github.com/ArvinYin1/ig-link-bili-skill)
+- [ClawHub skill page](https://clawhub.ai/arvinyin1/skills/ig-link-bili-skill)
+- [Diagnosis methodology](artifact/references/diagnosis-methodology.md)
+- [Known pitfalls](artifact/references/pitfalls.md)
+- [Upload verification](artifact/references/upload-verification.md)
+- [Configuration example](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a Bilibili video URL after upload verification; may also return troubleshooting guidance when upload or verification fails.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

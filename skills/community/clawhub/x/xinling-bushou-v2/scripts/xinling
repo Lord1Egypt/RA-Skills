@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Safe command-line entry point for session-scoped persona activation."""
+
+import argparse
+import json
+import os
+import sys
+from pathlib import Path
+
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+if str(PROJECT_DIR) not in sys.path:
+    sys.path.insert(0, str(PROJECT_DIR))
+
+from core.persona_engine import PersonaEngine
+from schemas.launch_config import RelationshipMode
+
+
+def build_engine() -> PersonaEngine:
+    raw_base_dir = os.environ.get("XINLING_HOME")
+    base_dir = Path(raw_base_dir).expanduser() if raw_base_dir else PROJECT_DIR
+    return PersonaEngine(base_dir=base_dir)
+
+
+def command_list(engine: PersonaEngine, _args: argparse.Namespace) -> int:
+    for persona_id in engine.list_personas():
+        info = engine.get_persona_info(persona_id) or {}
+        print(f"{persona_id}\t{info.get('name', persona_id)}")
+    return 0
+
+
+def command_show(engine: PersonaEngine, args: argparse.Namespace) -> int:
+    persona = engine.load_persona(args.persona_id)
+    print(json.dumps(persona, ensure_ascii=False, indent=2))
+    return 0
+
+
+def command_activate(engine: PersonaEngine, args: argparse.Namespace) -> int:
+    relationship = RelationshipMode(args.relationship)
+    compiled = engine.activate_persona(
+        session_id=args.session_id,
+        persona_id=args.persona_id,
+        relationship=relationship,
+        override_config={"behavior": {"level": args.level}},
+        allow_auto_activation=args.allow_auto_activation,
+    )
+    print(compiled.fragment)
+    return 0
+
+
+def command_test(engine: PersonaEngine, args: argparse.Namespace) -> int:
+    persona = engine.load_persona(args.persona_id)
+    print(f"validated: {persona['meta']['id']}")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Manage explicit, session-scoped Xinling personas."
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    list_parser = subparsers.add_parser("list", help="list available personas")
+    list_parser.set_defaults(handler=command_list)
+
+    show_parser = subparsers.add_parser("show", help="show a persona definition")
+    show_parser.add_argument("persona_id")
+    show_parser.set_defaults(handler=command_show)
+
+    activate_parser = subparsers.add_parser(
+        "activate",
+        help="compile a persona for one session",
+    )
+    activate_parser.add_argument("persona_id")
+    activate_parser.add_argument("--session-id", default="cli-session")
+    activate_parser.add_argument(
+        "--relationship",
+        choices=[item.value for item in RelationshipMode],
+        default=RelationshipMode.STACK.value,
+    )
+    activate_parser.add_argument("--level", type=int, choices=range(1, 11), default=5)
+    activate_parser.add_argument("--allow-auto-activation", action="store_true")
+    activate_parser.set_defaults(handler=command_activate)
+
+    test_parser = subparsers.add_parser("test", help="validate one persona")
+    test_parser.add_argument("persona_id")
+    test_parser.set_defaults(handler=command_test)
+
+    return parser
+
+
+def main() -> int:
+    args = build_parser().parse_args()
+    engine = build_engine()
+    return args.handler(engine, args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

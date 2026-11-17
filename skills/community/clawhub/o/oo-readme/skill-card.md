@@ -1,46 +1,55 @@
-## Description: <br>
-ReadMe (readme.com). Use this skill for ANY ReadMe request: reading, creating, updating, and deleting ReadMe project data through the OOMOL `readme` connector and `oo` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReadMe (readme.com). Use this skill for ANY ReadMe request — reading, creating, updating, and deleting data. Whenever a task involves ReadMe, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, documentation teams, and agents use this skill to search, read, create, update, and delete ReadMe project resources through an OOMOL-connected ReadMe account. It is suited for maintaining ReadMe docs, categories, changelogs, custom pages, versions, API specifications, and project metadata while inspecting live connector schemas before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fallback setup path may run an unpinned remote installer script for the oo CLI. <br>
-Mitigation: Review the installer before execution and prefer an official signed or checksum-verified installation path when available. <br>
-Risk: The connected ReadMe account may allow write or destructive actions. <br>
-Mitigation: Connect an account with permissions scoped to the intended task and approve exact targets and payloads before any write or destructive action. <br>
-Risk: The skill requires sensitive ReadMe credentials through the OOMOL connection. <br>
-Mitigation: Use only the OOMOL-connected account needed for the task and avoid broad or unnecessary project access. <br>
+## Use Case:
 
+Developers and documentation teams can use this skill to search and manage ReadMe project content, including docs, categories, changelogs, custom pages, API specifications, and versions. It directs the agent to inspect each action's schema and to seek confirmation before writes or destructive changes.
 
-## Reference(s): <br>
-- [ClawHub ReadMe Skill](https://clawhub.ai/oomol/oo-readme) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [ReadMe Homepage](https://readme.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution; ReadMe write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The required CLI can install and update other agent skills without this skill explaining that behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI's broader installation effects and disable unwanted startup skill synchronization with the documented OO_SKILLS_SYNC_DISABLED setting.
+
+Risk: The remote installers and deployed connector service remain unverified.
+
+Mitigation: Use a reviewed installation, connect only the intended ReadMe account, and approve exact edits or deletions.
+
+## Reference(s):
+
+- [ReadMe API authentication documentation](https://docs.readme.com/main/reference/authentication)
+- [oo CLI repository and documentation](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions and payload fields depend on the selected ReadMe operation; inspect its schema before building a payload.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Helps an agent efficiently create content by assessing provided research, limiting repeated failures, and following required templates and tool protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Sonnet 4 Lite Agent guides an agent through efficient content creation workflows with strict limits on retries, search use, and final submission timing.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-Content creators and agents use this skill to structure writing tasks, decide when research is sufficient, generate documents, webpages, presentations, or other attachments, and stop blocked subtasks after two failed attempts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated webpages or other attachments may contain incorrect, unsafe, or unintended content if accepted without review. <br>
-Mitigation: Review generated attachments before opening, publishing, or sharing them. <br>
-Risk: The skill can direct code execution for webpage and attachment creation. <br>
-Mitigation: Run attachment generation in a controlled environment and inspect the resulting files before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teamolab/claude-sonnet-4-lite-agent) <br>
+## Use Case:
+
+External users and content creators use this skill to configure an agent for fast content drafting, structured planning, limited follow-up search, and document, presentation, webpage, or attachment generation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill attempts to redefine the host agent's role and impose broad workflow, search, tool-use, and file-generation rules.
+
+Mitigation: Review and narrow the skill before installation so host identity, verification behavior, search policy, clarification choices, and file-generation safeguards remain controlled by the host agent.
+
+Risk: Strict two-attempt failure handling and one-search limits may cause incomplete verification or premature continuation after blocked subtasks.
+
+Mitigation: Require higher-priority verification and completion policies to override these limits for tasks where accuracy, safety, or user requirements demand additional checks.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Markdown, documents, presentation files, HTML attachments, and other generated attachments depending on the task.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use runtime template variables such as $DATE$; generated attachments should be reviewed before use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with workflow and tool-use instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct creation of documents, presentations, webpages, or other file attachments depending on the task.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

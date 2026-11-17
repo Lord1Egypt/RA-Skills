@@ -1,41 +1,59 @@
-## Description: <br>
-Provides real-time live cricket scores, detailed scorecards, upcoming matches, recent results, IPL standings, and match alerts using the CricketData.org API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides live cricket scores, detailed scorecards, upcoming matches, recent results, IPL standings, and match alerts through CricketData.org API scripts.
 
-## Publisher: <br>
-[harshilmathur](https://clawhub.ai/user/harshilmathur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harshilmathur](https://clawhub.ai/user/harshilmathur)
 
-## Use Case: <br>
-Developers and cricket followers use this agent skill to retrieve live scores, scorecards, schedules, recent results, IPL standings, and cron-ready match alerts from CricketData.org through shell scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CricketData.org API key, and the service uses API-key query parameters. <br>
-Mitigation: Prefer CRICKET_API_KEY over saving the key in config, use a free or limited key, avoid shared multi-user machines where process arguments or temporary files may be visible, and rotate the key if exposed. <br>
-Risk: The skill writes local cache and alert state under /tmp by default. <br>
-Mitigation: Use the default only on trusted single-user systems or set an appropriate cache location for the runtime environment. <br>
+## Use Case:
 
+Sports fans, analysts, and agent users use this skill to retrieve cricket scores, schedules, results, IPL standings, and match alerts from a terminal-accessible workflow. It is useful when an agent needs current cricket information and can run shell scripts with a CricketData.org API key.
 
-## Reference(s): <br>
-- [CricketData.org API](https://cricketdata.org) <br>
-- [ClawHub skill page](https://clawhub.ai/harshilmathur/cricket-live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Messaging-friendly text with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local caching and requires a CricketData.org API key for live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact skill.json) <br>
+Risk: The skill requires a CricketData.org API key and sends it to the service in API requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, rotatable API key through CRICKET_API_KEY and run the skill only on trusted single-user machines.
+
+Risk: Local cache and alert state are stored in shared temporary paths.
+
+Mitigation: Avoid shared or multi-user hosts until cache and state storage are moved to private per-user directories.
+
+Risk: Match identifiers can be used in filenames and URL parameters.
+
+Mitigation: Validate match IDs before using match-detail workflows in automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harshilmathur/skills/cricket-live)
+- [CricketData.org](https://cricketdata.org)
+- [CricketData API Base Endpoint](https://api.cricapi.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-like messaging output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CRICKET_API_KEY plus local curl and jq; uses local cache and alert state files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

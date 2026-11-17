@@ -1,43 +1,58 @@
-## Description: <br>
-Clawdess helps an agent generate companion-style AI photos, videos, and voice notes through configured third-party media providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawdess helps an agent generate persona-based photos, image-to-video clips, and short voice messages through configured third-party AI media providers.
 
-## Publisher: <br>
-[xwings](https://clawhub.ai/user/xwings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwings](https://clawhub.ai/user/xwings)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent create or request AI-generated photos, short image-to-video clips, and TTS voice notes using configured provider API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal images, prompts, and voice text may be sent to third-party AI providers. <br>
-Mitigation: Use only media and text suitable for those providers, configure the agent to ask before generating media, and review provider terms before use. <br>
-Risk: Generated media may be retained in the local media cache. <br>
-Mitigation: Periodically clear ~/.openclaw/media/clawdess when local retention is not desired. <br>
-Risk: Provider API keys are required for photo, video, and voice generation. <br>
-Mitigation: Use least-privilege API keys, store them in the documented environment variables, and rotate them if exposed. <br>
+## Use Case:
 
+External users and agents use this skill when a conversation should produce a generated photo, a short image-based video, or a voice note for the Clawdess persona. The skill requires the user or runtime to provide provider API credentials and, for visual generation, reference or source image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwings/clawdess) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, media URLs] <br>
-**Output Format:** [Markdown or plain text with shell command examples and MEDIA: URLs when generation succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media may be cached locally under ~/.openclaw/media/clawdess.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata) <br>
+Risk: Prompts, reference image URLs, and voice text may be sent to selected third-party AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user understands and accepts provider data sharing, and avoid sensitive personal data in prompts, images, or voice text.
+
+Risk: Broad conversational triggers may initiate media generation without sufficiently explicit consent and may incur provider costs.
+
+Mitigation: Require confirmation for each generation request and keep API credentials scoped to the intended photo, video, or voice provider.
+
+Risk: Generated photo and video files may be cached locally under ~/.openclaw/media/clawdess.
+
+Mitigation: Review local retention needs and clear the cache when generated media should not remain on disk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xwings/skills/clawdess)
+- [xwings publisher profile](https://clawhub.ai/user/xwings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Media URLs, Files, Guidance]
+
+**Output Format:** [CLI-oriented Markdown guidance and text output containing MEDIA URLs; generated photo and video files may also be cached locally.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWDESS_PHOTO_API, CLAWDESS_VIDEO_API, or CLAWDESS_VOICE_API depending on the selected subcommand.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

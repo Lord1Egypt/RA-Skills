@@ -73,6 +73,59 @@
         "16:9 宽屏,自动全屏或居中对齐",
         "品牌色使用 #4F46E5 作为主色,派生渐变/发光效果"
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "做一个 landing page 给我看看,卖高端护肤品的,主打'科学配方+天然成分',目标用户是 25-40 岁女性。",
+      "expected_output": "Vibe test — 检查输出是否避开 AI slop 套路(紫色渐变/Inter 默认/三张等高 feature 卡)。应该有明确的视觉方向选择,暖色调或干净白色优先,衬线仅在品牌明确需要时使用。",
+      "files": [],
+      "expectations": [
+        "Output does NOT use aggressive purple-to-blue gradient as default",
+        "Output does NOT default to Inter as display font without brand justification",
+        "Output avoids 3 equal-height feature cards with identical structure",
+        "Output presents clear visual direction before full build (Design Direction Advisor or intake)",
+        "If premium-consumer: questions warm-beige default, picks palette based on brand emotion",
+        "Images: either real photos (Wikimedia/Unsplash) or honest placeholders, never CSS silhouettes"
+      ],
+      "eval_type": "vibe-test",
+      "vibe_dimensions": [
+        "anti-slop:gradient",
+        "anti-slop:typography",
+        "anti-slop:layout",
+        "process:design-direction-first",
+        "content:real-images-not-css-silhouettes"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "帮我做一个 10 页的技术分享 PPT,主题是'我们如何用 Rust 重写数据库引擎',听众是内部工程师。",
+      "expected_output": "Vibe test — 检查叙事节奏(Pattern P4 或自定义结构清晰),层级分明,代码页有真实感,数字页有冲击。",
+      "files": [],
+      "expectations": "Output has a clear narrative arc (not just 10 random slides). Code slides use real code examples (not lorem ipsum). At least one 'impact moment' with a big number or result. Consistent spacing scale across all slides. Theme appropriate for engineering audience.",
+      "eval_type": "vibe-test",
+      "vibe_dimensions": [
+        "pattern:narrative-arc",
+        "hierarchy:clear-primary-secondary",
+        "content:real-code-not-placeholder",
+        "rhythm:consistent-spacing-scale",
+        "theme:audience-appropriate"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "做一个 8 秒的 logo 揭示动画,logo 是一个简单的圆形变成星形,品牌是儿童教育产品 'Sparkle'。",
+      "expected_output": "Vibe test — 检查动效是否有合理理由,时长边界, reduced-motion 降级,且不会在高频操作上添加冗余动效。",
+      "files": [],
+      "expectations": "Logo morph has a valid animation reason (entrance/reveal, not just 'looks cool'). Duration is within bounds (≤800ms for entrance). Motion is GPU-layer only (transform/opacity). Reduced-motion alternative exists. No ambient particles without narrative purpose. Touch device safe (hover wrapped in @media hover).",
+      "eval_type": "vibe-test",
+      "vibe_dimensions": [
+        "animation:valid-reason",
+        "animation:duration-bounds",
+        "animation:gpu-layer-only",
+        "animation:reduced-motion-granularity",
+        "animation:no-ambient-particles",
+        "input:touch-safe"
+      ]
     }
   ]
 }

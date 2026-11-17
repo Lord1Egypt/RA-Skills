@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "name": "discipline_ai_map",
+    "version": "8.2.0-aipc",
+    "module": "module-h-s-discipline-ai",
+    "section": "S1 5+N 学科 AI 地图",
+    "last_updated": "2026-08-24"
+  },
+  "description": "5 项目 × 35 专业方向 × 3-5 个 AI 切入点（学科 AI 入口地图）",
+  "map": {
+    "CM+N": {
+      "CM+AIM": {
+        "name_zh": "动画与互动媒体",
+        "ai_entry_points": [
+          {"id": "AIM-1", "name": "AI 生成动画帧", "tools": ["Stable Diffusion", "Runway", "Pika"]},
+          {"id": "AIM-2", "name": "实时动作捕捉 + AI 渲染", "tools": ["MediaPipe", "Blender", "DeepSeek"]},
+          {"id": "AIM-3", "name": "AI 角色驱动叙事", "tools": ["DeepSeek", "AIGC"]}
+        ]
+      },
+      "CM+GD": {
+        "name_zh": "游戏设计",
+        "ai_entry_points": [
+          {"id": "GD-1", "name": "AI 数字化身", "tools": ["NeRF", "3DGS", "Blender"]},
+          {"id": "GD-2", "name": "网格压缩", "tools": ["MeshLab", "AI 压缩算法"]},
+          {"id": "GD-3", "name": "NeRF 场景重建", "tools": ["NeRF", "3DGS"]},
+          {"id": "GD-4", "name": "AI 关卡设计", "tools": ["DeepSeek", "p5.js"]}
+        ]
+      },
+      "CM+MAD": {
+        "name_zh": "媒体艺术与设计",
+        "ai_entry_points": [
+          {"id": "MAD-1", "name": "AIGC 创意可视化", "tools": ["Kimi", "Qwen3", "智谱清言"]},
+          {"id": "MAD-2", "name": "提示词 → 海报/视频", "tools": ["AIGC", "Stable Diffusion"]},
+          {"id": "MAD-3", "name": "风格迁移", "tools": ["DeepSeek", "Runway"]}
+        ]
+      }
+    },
+    "DGC+N": {
+      "CGC": {"name_zh": "国际传播", "ai_entry_points": [{"id": "CGC-1", "name": "跨语言 AI 翻译"}, {"id": "CGC-2", "name": "跨文化语义对齐"}, {"id": "CGC-3", "name": "全球舆情 AI 监测"}]},
+      "DGS": {"name_zh": "数字全球研究", "ai_entry_points": [{"id": "DGS-1", "name": "数字文本分析"}, {"id": "DGS-2", "name": "全球媒体 AI 分类"}, {"id": "DGS-3", "name": "数据可视化"}]},
+      "DIS": {"name_zh": "数字跨文化研究", "ai_entry_points": [{"id": "DIS-1", "name": "AI 辅助翻译"}, {"id": "DIS-2", "name": "文化偏见检测"}, {"id": "DIS-3", "name": "跨文化 NLP"}]},
+      "ELLS": {"name_zh": "英语语言文学", "ai_entry_points": [{"id": "ELLS-1", "name": "LLM 文学分析"}, {"id": "ELLS-2", "name": "语料库 AI 挖掘"}, {"id": "ELLS-3", "name": "风格化写作"}]},
+      "GAD": {"name_zh": "全球事务与外交", "ai_entry_points": [{"id": "GAD-1", "name": "全球数字化转型"}, {"id": "GAD-2", "name": "外交舆情 AI"}, {"id": "GAD-3", "name": "政策 AI 模拟"}]},
+      "MCOM": {"name_zh": "媒体与传播", "ai_entry_points": [{"id": "MCOM-1", "name": "AI 新闻业 (MCOM4103)"}, {"id": "MCOM-2", "name": "AIGC 传播"}, {"id": "MCOM-3", "name": "受众行为预测"}]},
+      "PRA": {"name_zh": "公共关系与广告", "ai_entry_points": [{"id": "PRA-1", "name": "大数据广告 (PRA4073)"}, {"id": "PRA-2", "name": "情感分析"}, {"id": "PRA-3", "name": "AIGC 广告创意"}, {"id": "PRA-4", "name": "人机交互 (PRA4083)"}]},
+      "TDH": {"name_zh": "数字人文", "ai_entry_points": [{"id": "TDH-1", "name": "数字叙事 (TDH3013)"}, {"id": "TDH-2", "name": "文本分析与可视化 (TDH4013)"}, {"id": "TDH-3", "name": "算法文化 (DGCX3013)"}]}
+    },
+    "IBL+N": {
+      "ACCT": {"name_zh": "会计学", "ai_entry_points": [{"id": "ACCT-1", "name": "AI 财务审核"}, {"id": "ACCT-2", "name": "智能审计"}, {"id": "ACCT-3", "name": "AI 财务预测"}]},
+      "AE": {"name_zh": "应用经济学", "ai_entry_points": [{"id": "AE-1", "name": "经济 AI 建模"}, {"id": "AE-2", "name": "政策模拟"}, {"id": "AE-3", "name": "AI 计量经济学"}]},
+      "BUSA": {"name_zh": "商业分析", "ai_entry_points": [{"id": "BUSA-1", "name": "商业 AI 决策 (BA2003)"}, {"id": "BUSA-2", "name": "用户行为预测"}, {"id": "BUSA-3", "name": "商业大模型"}]},
+      "FIN": {"name_zh": "财务学", "ai_entry_points": [{"id": "FIN-1", "name": "AI 风险评估"}, {"id": "FIN-2", "name": "算法交易"}, {"id": "FIN-3", "name": "智能投顾"}]},
+      "DMM": {"name_zh": "数字媒体管理", "ai_entry_points": [{"id": "DMM-1", "name": "AI 数据科学管理 (DMM3003)"}, {"id": "DMM-2", "name": "数字内容 AI"}, {"id": "DMM-3", "name": "用户画像"}]},
+      "EBIS": {"name_zh": "电子商务与信息系统", "ai_entry_points": [{"id": "EBIS-1", "name": "推荐系统"}, {"id": "EBIS-2", "name": "商业应用编程 (EBIS3033)"}, {"id": "EBIS-3", "name": "AI 电商运营"}]},
+      "EPIN": {"name_zh": "创业与创新管理", "ai_entry_points": [{"id": "EPIN-1", "name": "AI 创新方法论"}, {"id": "EPIN-2", "name": "创业 AI 助手"}, {"id": "EPIN-3", "name": "商业模式 AI 验证"}]},
+      "MHR": {"name_zh": "人力资源管理", "ai_entry_points": [{"id": "MHR-1", "name": "AI 招聘"}, {"id": "MHR-2", "name": "员工画像"}, {"id": "MHR-3", "name": "组织 AI 分析"}]},
+      "MKT": {"name_zh": "市场营销管理", "ai_entry_points": [{"id": "MKT-1", "name": "AI 营销策略"}, {"id": "MKT-2", "name": "客户细分"}, {"id": "MKT-3", "name": "智能推荐"}]}
+    },
+    "Math+N": {
+      "AM": {"name_zh": "应用数学", "ai_entry_points": [{"id": "AM-1", "name": "符号 AI"}, {"id": "AM-2", "name": "优化算法 AI"}, {"id": "AM-3", "name": "数学建模 AI"}]},
+      "FM": {"name_zh": "金融数学", "ai_entry_points": [{"id": "FM-1", "name": "AI 量化推理"}, {"id": "FM-2", "name": "金融大模型"}, {"id": "FM-3", "name": "风险评估 AI"}]},
+      "STAT": {"name_zh": "统计学", "ai_entry_points": [{"id": "STAT-1", "name": "贝叶斯 AI (STAT3033)"}, {"id": "STAT-2", "name": "数据挖掘 AI (STAT4073)"}, {"id": "STAT-3", "name": "统计学习"}]},
+      "DS": {"name_zh": "数据科学", "ai_entry_points": [{"id": "DS-1", "name": "机器学习全栈"}, {"id": "DS-2", "name": "AI 数据流水线"}, {"id": "DS-3", "name": "MLOps"}]},
+      "CST": {"name_zh": "计算机科学与技术", "ai_entry_points": [{"id": "CST-1", "name": "AI 系统开发"}, {"id": "CST-2", "name": "深度学习框架 (COMP4163)"}, {"id": "CST-3", "name": "AI 工程化"}]},
+      "AI": {"name_zh": "人工智能", "ai_entry_points": [{"id": "AI-1", "name": "神经网络与深度学习 (AI3003)"}, {"id": "AI-2", "name": "NLP (AI3133)"}, {"id": "AI-3", "name": "AI 全栈"}]}
+    },
+    "IST+N": {
+      "AI": {"name_zh": "人工智能", "ai_entry_points": [{"id": "AI-1", "name": "AI 全栈 (AI2013)"}, {"id": "AI-2", "name": "感知 + 认知 (AI2073)"}, {"id": "AI-3", "name": "AI 应用"}]},
+      "AM": {"name_zh": "应用数学", "ai_entry_points": [{"id": "AM-1", "name": "数学建模 AI"}, {"id": "AM-2", "name": "数据结构"}, {"id": "AM-3", "name": "AI 优化"}]},
+      "APSY": {"name_zh": "应用心理学", "ai_entry_points": [{"id": "APSY-1", "name": "认知神经科学 AI (PSY4103)"}, {"id": "APSY-2", "name": "行为预测"}, {"id": "APSY-3", "name": "AI 心理评估"}]},
+      "CST": {"name_zh": "计算机科学与技术", "ai_entry_points": [{"id": "CST-1", "name": "AI 系统"}, {"id": "CST-2", "name": "数据库"}, {"id": "CST-3", "name": "机器人学 (AI3033)"}]},
+      "DS": {"name_zh": "数据科学", "ai_entry_points": [{"id": "DS-1", "name": "ML (AI3013)"}, {"id": "DS-2", "name": "神经科学 AI (AI3063)"}, {"id": "DS-3", "name": "数据工程"}]},
+      "ENVS": {"name_zh": "环境科学", "ai_entry_points": [{"id": "ENVS-1", "name": "环境 AI 监测"}, {"id": "ENVS-2", "name": "GIS AI (ENV3073)"}, {"id": "ENVS-3", "name": "碳技术 AI (ENV3193)"}]},
+      "FM": {"name_zh": "金融数学", "ai_entry_points": [{"id": "FM-1", "name": "金融 AI"}, {"id": "FM-2", "name": "量化推理"}, {"id": "FM-3", "name": "认知科学 (AI2053)"}]},
+      "FS": {"name_zh": "食品科学", "ai_entry_points": [{"id": "FS-1", "name": "食品 AI 研发"}, {"id": "FS-2", "name": "营养 AI 评估"}, {"id": "FS-3", "name": "生信 AI (AI3073)"}]},
+      "STAT": {"name_zh": "统计学", "ai_entry_points": [{"id": "STAT-1", "name": "统计 AI"}, {"id": "STAT-2", "name": "数据结构"}, {"id": "STAT-3", "name": "神经科学 AI (AI3063)"}]}
+    }
+  },
+  "summary": {
+    "total_programs": 5,
+    "total_major_directions": 35,
+    "total_ai_entry_points": 110
+  }
+}

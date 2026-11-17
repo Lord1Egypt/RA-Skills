@@ -1,43 +1,60 @@
-## Description: <br>
-Finnhub Pro helps agents run Finnhub-powered U.S. stock market data lookups for quotes, company profiles, news, analyst recommendations, insider transactions, earnings calendars, financial metrics, market status, peer companies, and ticker search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finnhub Pro is a Python CLI skill for retrieving Finnhub U.S. equities data such as quotes, company profiles, news, analyst trends, insider transactions, earnings calendars, fundamentals, market status, peers, and symbol search.
 
-## Publisher: <br>
-[lsj210001](https://clawhub.ai/user/lsj210001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lsj210001](https://clawhub.ai/user/lsj210001)
 
-## Use Case: <br>
-External developers, analysts, and agent operators use this skill to query Finnhub market data from a Python CLI for U.S. equity research and workflow support. It is intended for quick quote, profile, news, recommendation, insider, earnings, financial, market-status, peer, and symbol-search lookups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Finnhub API key exposure through prompts, shell history, logs, or local configuration. <br>
-Mitigation: Provide the key through FINNHUB_API_KEY, avoid sharing it in prompts or logs, and redact it from any captured command output. <br>
-Risk: Finnhub free-tier limits or paid-only endpoints can return 429 or 403 errors and interrupt workflows. <br>
-Mitigation: Use the documented free-tier commands, keep request volume within the stated limit, and review any dependency installation or paid-upgrade prompt before approving it. <br>
-Risk: Market-data responses can be incomplete, delayed, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Treat outputs as reference data, verify important results against authoritative sources, and avoid using the skill as investment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Finnhub](https://finnhub.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lsj210001/finnhub-pro) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/lsj210001) <br>
+## Use Case:
 
+Developers, analysts, and agent operators use this skill to fetch current U.S. stock market data through Finnhub-backed CLI commands and optional JSON output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON from Finnhub API lookups, with setup and command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINNHUB_API_KEY; free-tier rate limits and paid-endpoint restrictions may apply.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses FINNHUB_API_KEY to call Finnhub, so plaintext credential storage could expose market-data API access.
+
+Mitigation: Store FINNHUB_API_KEY in a protected environment or credential manager instead of a plaintext file.
+
+Risk: The skill sends ticker symbols, search queries, and date ranges to Finnhub using the configured API key.
+
+Mitigation: Use the skill only for queries that are appropriate to transmit to Finnhub and review data-handling expectations before deployment.
+
+Risk: The skill depends on finnhub-python, and dependency drift can change runtime behavior.
+
+Mitigation: Pin finnhub-python to a reviewed version before installation.
+
+Risk: Finnhub free-tier limits and paid-tier boundaries can produce 403 or 429 failures.
+
+Mitigation: Plan for rate-limit handling and confirm that requested endpoints are available for the configured Finnhub plan.
+
+## Reference(s):
+
+- [Finnhub](https://finnhub.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text or JSON, often accompanied by Markdown command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINNHUB_API_KEY and the finnhub-python dependency.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

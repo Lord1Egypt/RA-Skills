@@ -1,40 +1,60 @@
-## Description: <br>
-Run a two-pass, multidisciplinary code audit led by a tie-breaker lead, combining security, performance, UX, DX, and edge-case analysis into one prioritized report with concrete fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a two-pass multidisciplinary code audit across security, performance, UX, DX, and edge cases, producing one prioritized report with concrete fixes.
 
-## Publisher: <br>
-[Swader](https://clawhub.ai/user/Swader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swader](https://clawhub.ai/user/swader)
 
-## Use Case: <br>
-Developers and engineers use this skill to perform structured code audits across backend, frontend, APIs, infrastructure scripts, and product flows. It produces a risk-ranked review with concrete remediation and verification steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional sync script can overwrite or delete local agent skill directories and does not safely constrain destination names. <br>
-Mitigation: Review scripts/sync-to-agents.sh before running it, prefer the default skill name, avoid values containing slashes or '..', and back up existing local agent skill folders before syncing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Audit Framework](references/audit-framework.md) <br>
-- [Claude Agent Skills Overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) <br>
-- [Cursor Skills Documentation](https://cursor.com/docs/context/skills) <br>
-- [Open Skills Installer](https://github.com/vercel-labs/skills) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit repositories, pull requests, product flows, and infrastructure scripts for security, performance, UX, DX, and edge-case risks. The skill is intended to produce a prioritized remediation plan with evidence, concrete fixes, and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with findings, assumptions, remediation summary, and verification checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are prioritized by severity, blast radius, and exploitability, with confidence and evidence references where available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled sync script can overwrite or delete user-writable agent skill directories with weak path guardrails.
+
+Mitigation: Review the skill before installing, prefer the platform's normal reviewed install flow, and expect the script to modify persistent agent skill directories.
+
+Risk: Untrusted --skill-name or --source values can steer the sync script toward unintended persistent locations.
+
+Mitigation: Run the sync script only with trusted arguments and inspect destination paths before use.
+
+Risk: Unpinned npx execution during optional installation can fetch changing installer behavior.
+
+Mitigation: Avoid unpinned npx execution for reviewed installs, or pin and review the installer version before running it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/swader/skills/agent-skills-audit)
+- [Audit Framework](references/audit-framework.md)
+- [Claude Agent Skills Documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Cursor Skills Documentation](https://cursor.com/docs/context/skills)
+- [Open Skills Installer](https://github.com/vercel-labs/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings first, followed by open questions, remediation plan, verification plan, and executive summary.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

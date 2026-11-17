@@ -1,7 +1,7 @@
 ---
 name: architecture-aware-init
 description: Selects architecture paradigm via research before scaffolding
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - initialization
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Architecture-Aware Project Initialization
@@ -26,7 +26,7 @@ selection, template customization, and decision documentation
 into one workflow. Use this skill when the architecture is
 undecided and the choice deserves justification.
 
-## When to Use This Skill
+## When To Use This Skill
 
 - Starting a new project and unsure which architecture fits best
 - Wanting modern, industry-standard architecture choices
@@ -37,12 +37,12 @@ Use **instead of** `project-init` when architecture is undecided.
 Use **before** `project-specification` to establish the
 architectural foundation.
 
-## Required TodoWrite Items
+## Required Progress Items
 
-1. `arch-init:research-completed` -- Online research completed
-2. `arch-init:paradigm-selected` -- Architecture paradigm chosen
-3. `arch-init:templates-customized` -- Templates adapted to paradigm
-4. `arch-init:decision-recorded` -- ADR created
+1. `arch-init:research-completed`: Online research completed
+2. `arch-init:paradigm-selected`: Architecture paradigm chosen
+3. `arch-init:templates-customized`: Templates adapted to paradigm
+4. `arch-init:decision-recorded`: ADR created
 
 ## 5-Step Workflow
 
@@ -66,7 +66,7 @@ Load `modules/paradigm-selection.md` for the decision matrix
 
 Load `modules/scaffold-generation.md` for the paradigm-specific
 directory layouts (Functional Core / Hexagonal / Microservices
-shown; others delegated to the corresponding
+shown, others delegated to the corresponding
 `archetypes:architecture-paradigm-{name}` skill) and the ADR
 template.
 
@@ -127,17 +127,32 @@ and clear decision rationale.
 
 ## Related Skills
 
-- `Skill(archetypes:architecture-paradigms)` -- paradigm catalog
-- `Skill(archetypes:architecture-paradigm-*)` -- per-paradigm
+- `Skill(archetypes:architecture-paradigms)`: paradigm catalog
+- `Skill(archetypes:architecture-paradigm-*)`: per-paradigm
   implementation guidance
-- `Skill(attune:project-brainstorming)` -- ideation before
+- `Skill(attune:project-brainstorming)`: ideation before
   architecture
-- `Skill(attune:project-specification)` -- requirements after
+- `Skill(attune:project-specification)`: requirements after
   the paradigm is chosen
 
 ## See Also
 
-- `/attune:project-init` -- basic project initialization
-- `/attune:blueprint` -- architecture planning after paradigm
+- `/attune:project-init`: basic project initialization
+- `/attune:blueprint`: architecture planning after paradigm
   selection
-- `plugins/archetypes/README.md` -- full paradigm reference
+- `plugins/archetypes/README.md`: full paradigm reference
+
+## Exit Criteria
+
+- [ ] All four progress items are checked off:
+  `arch-init:research-completed`, `arch-init:paradigm-selected`,
+  `arch-init:templates-customized`, `arch-init:decision-recorded`.
+- [ ] An ADR file exists in the initialized project explaining why the selected paradigm was
+  chosen, referencing evidence from the Step 2 research synthesis.
+- [ ] The project directory structure matches the layout prescribed by the chosen
+  `archetypes:architecture-paradigm-*` skill (verified by listing the created directories).
+- [ ] If the paradigm is undecided after research, the skill surfaces the top two candidates
+  with trade-offs and waits for explicit user selection rather than defaulting silently.
+- [ ] When research ran, `research.json` holds `preferred` and `avoid`
+      lists and was passed with `--research-file`; the recommendation's
+      rationale contains a rule naming "research"

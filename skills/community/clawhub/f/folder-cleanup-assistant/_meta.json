@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "folder-cleanup-assistant",
+  "id": 378623320145993,
   "version": "1.0.0",
-  "publishedAt": 1776560818598
+  "name": "folder-cleanup-assistant",
+  "updated_at": 1773990727419,
+  "platform": "minimax"
 }

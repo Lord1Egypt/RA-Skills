@@ -1,44 +1,57 @@
-## Description: <br>
-TPVL (Taiwan Professional Volleyball League) stats, scores, schedules, and standings for Taiwan's pro volleyball. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TPVL (Taiwan Professional Volleyball League) stats, scores, schedules, and standings for Taiwan's pro volleyball.
 
-## Publisher: <br>
-[ichendong](https://clawhub.ai/user/ichendong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichendong](https://clawhub.ai/user/ichendong)
 
-## Use Case: <br>
-External users and developers use this skill to query Taiwan Professional Volleyball League game results, upcoming schedules, team standings, and available player statistics from TPVL public pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on TPVL public website pages and embedded page data, so results may be incomplete or stale if those pages change or become unavailable. <br>
-Mitigation: For important use, compare returned results with TPVL official pages and rerun queries when current data matters. <br>
-Risk: Some player-stat queries may return empty results while TPVL player-stat pages are unavailable. <br>
-Mitigation: Treat empty player-stat output as source data unavailable rather than as a final ranking. <br>
-Risk: The skill runs commands that make outbound requests to TPVL public pages. <br>
-Mitigation: Review command arguments before execution and run the skill only where that network access is expected. <br>
+## Use Case:
 
+Volleyball fans, analysts, and other external users can query Taiwan Professional Volleyball League game results, schedules, standings, and player statistics by season, team, date, or category.
 
-## Reference(s): <br>
-- [ClawHub Tpvl release page](https://clawhub.ai/ichendong/tpvl) <br>
-- [TPVL official website](https://tpvl.tw/) <br>
-- [TPVL API discovery notes](references/api-discovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON or plain text returned by Python command-line scripts, with Markdown usage guidance in the skill instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports filters for team, date, year, result limits, output mode, and player-stat category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Cached scores, schedules, or standings may be up to 30 minutes old.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the TPVL official site for the latest information when timing or live status matters.
+
+Risk: The skill installs its requests dependency and fetches public data from tpvl.tw.
+
+Mitigation: Review the dependency installation and allow the outbound request when league data is needed; no API key or account login is required.
+
+## Reference(s):
+
+- [TPVL matches and schedules](https://tpvl.tw/matches)
+- [TPVL standings](https://tpvl.tw/standings)
+- [TPVL player statistics](https://tpvl.tw/stats/players)
+- [API discovery notes](references/api-discovery.md)
+- [ClawHub release page](https://clawhub.ai/ichendong/skills/tpvl)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON by default, or readable text when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can be filtered by season, date, team, and statistic category; cached responses may be up to 30 minutes old.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

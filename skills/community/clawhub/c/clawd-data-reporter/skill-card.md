@@ -1,42 +1,58 @@
-## Description: <br>
-Automated data reporting and dashboard generation. Connect to databases, APIs, spreadsheets. Generate PDF/PPT/Excel reports with charts. Schedule daily/weekly/monthly reports. Send via email, Slack, Teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated data reporting and dashboard generation that helps agents connect to databases, APIs, spreadsheets, and storage, then generate scheduled reports, dashboards, charts, alerts, and delivery instructions.
 
-## Publisher: <br>
-[Fuczy](https://clawhub.ai/user/Fuczy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuczy](https://clawhub.ai/user/fuczy)
 
-## Use Case: <br>
-Business teams, analysts, and operators use this skill to define recurring reports that pull data from databases, SaaS APIs, spreadsheets, and files, then produce dashboards, spreadsheets, slide decks, PDFs, alerts, and team notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports automated access to sensitive business data and recurring distribution through email, chat, shared documents, or public dashboards. <br>
-Mitigation: Use read-only, least-privilege credentials; keep secrets out of report YAML; verify every recipient, channel, shared document, and public dashboard setting before enabling schedules. <br>
-Risk: Recurring reports and public URLs can continue sharing stale, confidential, or unintended data after initial setup. <br>
-Mitigation: Test with sample or sanitized data first, avoid public URLs unless the data is intentionally public, and confirm how scheduled jobs can be paused and removed. <br>
+## Use Case:
 
+Developers, analysts, and business teams use this skill to design automated business reporting workflows that pull data from operational systems, create PDF, PowerPoint, Excel, dashboard, and alert outputs, and distribute reports through email, Slack, Teams, or webhooks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Fuczy/clawd-data-reporter) <br>
-- [Publisher Profile](https://clawhub.ai/user/Fuczy) <br>
-- [Skill Homepage](https://clawhub.com/skills/data-reporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe scheduled report definitions, connector settings, generated report files, dashboards, notifications, and alerting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can handle sensitive business, financial, customer, and operational data from many sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, preferably read-only credentials and restrict each connector to only the data needed for the intended report.
+
+Risk: Example workflows distribute reports through email, Slack, Teams, webhooks, and public dashboard URLs.
+
+Mitigation: Review every destination before scheduling or sending reports, and avoid public URLs for confidential outputs unless access controls are added.
+
+Risk: Completed configuration files may contain credentials, service-account paths, webhook URLs, or report recipients.
+
+Mitigation: Keep generated configuration and credential files out of source control and store secrets in an approved secret manager.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuczy/skills/clawd-data-reporter)
+- [Skill Homepage](https://clawhub.com/skills/data-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated report definitions, data-source configuration, scheduled workflow commands, delivery channels, dashboards, alerts, and exported files such as PDF, PowerPoint, Excel, and Google Sheets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

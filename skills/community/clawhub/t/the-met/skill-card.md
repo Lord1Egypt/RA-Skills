@@ -1,44 +1,55 @@
-## Description: <br>
-查询搜索和获取博物馆的开放藏品数据 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询搜索和获取博物馆的开放藏品数据
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-External users and agents use this skill to list Met Museum departments, search open collection objects, and retrieve details for a specific object ID. The skill requires a XiaoBenYang API key and routes requests through that third-party MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests for Met Museum collection data are routed through the XiaoBenYang third-party MCP service instead of directly to a public Met endpoint. <br>
-Mitigation: Install only if the user trusts XiaoBenYang and is comfortable sending museum lookup requests and parameters through that service. <br>
-Risk: The skill stores the XiaoBenYang API key in a local plaintext .env file. <br>
-Mitigation: Use a limited-scope key if available, protect the workspace, avoid committing .env, and rotate the key if the workspace is shared or exposed. <br>
-Risk: The published description focuses on open collection lookup while the security evidence flags a third-party API dependency. <br>
-Mitigation: Review the setup requirements and upstream service dependency before use, especially in environments with strict data-routing or credential-storage policies. <br>
+## Use Case:
 
+External users and collection researchers use this skill to list Met Museum departments, search collection object IDs, and retrieve details for specific museum objects through a XiaoBenYang-backed MCP service.
 
-## Reference(s): <br>
-- [XiaoBenYang](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API](https://mcp.xiaobenyang.com) <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/skills/the-met) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, JSON] <br>
-**Output Format:** [Markdown summaries derived from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns list, search, and object-detail data from the upstream service; requires a local API key before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requires a XiaoBenYang API key and stores it in plaintext in the workspace .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value or revocable key, avoid reusable credentials, and review or change credential storage before production use.
+
+Risk: Museum queries are routed through a configurable third-party MCP service that the security evidence flags as not clearly aligned with the advertised Met Museum purpose.
+
+Mitigation: Confirm the endpoint, MCP identifier, tool behavior, and data flow before using the skill with sensitive requests or valuable credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/the-met)
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+- [XiaoBenYang MCP service endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown summaries derived from JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key and external MCP service access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

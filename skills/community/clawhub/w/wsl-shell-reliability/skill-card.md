@@ -1,42 +1,59 @@
-## Description: <br>
-Reliability-first shell selection policy for AI agents on Windows. Choose WSL or PowerShell based on execution risk, not preference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliability-first shell selection policy for AI agents on Windows. Choose WSL or PowerShell based on execution risk, not preference.
 
-## Publisher: <br>
-[cikichen](https://clawhub.ai/user/cikichen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cikichen](https://clawhub.ai/user/cikichen)
 
-## Use Case: <br>
-Developers and agents working on Windows use this skill to choose between WSL/bash and PowerShell/CMD based on execution risk, command semantics, and fallback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent toward commands that install software, delete files, or change system settings. <br>
-Mitigation: Review commands before execution, especially destructive or system-changing commands. <br>
-Risk: Switching between WSL and PowerShell can change quoting, path handling, or tool resolution. <br>
-Mitigation: Require explicit fallback reporting and preserve command intent when translating syntax. <br>
+## Use Case:
 
+Developers and engineering agents use this skill on Windows to choose between WSL/bash and PowerShell/CMD based on execution reliability, shell semantics, and fallback risk.
 
-## Reference(s): <br>
-- [Reliability Notes for Windows Terminal Execution](references/REFERENCE.md) <br>
-- [Scenarios: When to Use WSL vs PowerShell](references/SCENARIOS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cikichen/wsl-shell-reliability) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Explains shell selection, syntax translation, and explicit fallback reporting for Windows terminal tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated commands may delete files, alter services or registry settings, install packages, or cross between WSL and Windows paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review high-impact commands before execution and confirm the selected shell matches the operation.
+
+Risk: Shell fallback could accidentally change command semantics if syntax is translated carelessly.
+
+Mitigation: Preserve the original command intent, translate only shell syntax, and state any fallback explicitly.
+
+Risk: Windows and WSL path, quoting, line-ending, or tool-resolution differences can cause command failures.
+
+Mitigation: Use one path style per command, quote paths with spaces, prefer deterministic WSL invocation when needed, and report environment constraints clearly.
+
+## Reference(s):
+
+- [Reference: Reliability Notes for Windows Terminal Execution](references/REFERENCE.md)
+- [Scenarios: When to Use WSL vs PowerShell](references/SCENARIOS.md)
+- [ClawHub Skill Page](https://clawhub.ai/cikichen/skills/wsl-shell-reliability)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command examples are shell-specific and should preserve intent across fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

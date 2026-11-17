@@ -1,40 +1,59 @@
-## Description: <br>
-Intelligent Labor Coin (ILC) is an epistemic graph protocol for verifiable knowledge attribution and agent-native economics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through evidence-first ILC graph work, attribution, Genesis contact, and OpenClaw local capture.
 
-## Publisher: <br>
-[jamison](https://clawhub.ai/user/jamison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamison](https://clawhub.ai/user/jamison)
 
-## Use Case: <br>
-Developers and autonomous-agent builders use this skill to install ILC packages, initialize agent identity, start a local node, and submit attributed knowledge claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing referenced pip packages may introduce code from packages outside the skill artifact. <br>
-Mitigation: Verify the package names, publishers, and versions before installing or running the ILC CLI. <br>
-Risk: Submitted claims and local identity setup may involve sensitive content, key material, or persistent node state. <br>
-Mitigation: Avoid private claims unless the storage and publication behavior is understood, and protect generated keys and node state. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to set up invite-gated ILC access, inspect public-RC status, manage local graph submissions, and find Genesis contact guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamison/ilc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no bundled executable code or hidden automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Installing an unverified package or source may run untrusted software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the PyPI package or GitHub source before installing.
+
+Risk: Enrollment creates a local ILC identity, and submissions write to a local graph workspace.
+
+Mitigation: Run enrollment or submission commands only when you intend those changes.
+
+Risk: Model Router may promote approved route metadata after the first-run advisory.
+
+Mitigation: Review the advisory and metadata boundary before enabling routing; keep prompts, outputs, and secrets out of graph promotion.
+
+## Reference(s):
+
+- [ILC quickstart](https://github.com/jamison/ilc/blob/main/QUICKSTART.md)
+- [Public RC gate](https://github.com/jamison/ilc/blob/main/docs/specs/ilc_public_rc_gate_001_1575c_v0.1.md)
+- [Genesis contact protocol](https://github.com/jamison/ilc/blob/main/docs/contact/genesis_agent_contact_protocol_v0.1.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local graph work and invite-gated enrollment; no production settlement authority.]
+
+## Skill Version(s):
+
+0.5.9 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

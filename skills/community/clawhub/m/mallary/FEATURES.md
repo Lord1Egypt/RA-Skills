@@ -2,9 +2,21 @@
 
 ## Complete Feature Set
 
-Mallary CLI is the official command-line interface for Mallary.ai. It is designed for developers, operators, CI jobs, and AI agents that need to upload media, create posts, inspect jobs, fetch analytics, manage webhooks, list and target dashboard profiles, update profile-scoped brand settings, list connected platforms, and disconnect platforms from one command surface.
+Mallary CLI is the official command-line interface for Mallary.ai. Its read-only commands let developers, operators, CI jobs, and AI agents inspect jobs, analytics, settings, profiles, webhooks, and connected platforms. It also has write-capable commands for uploads, publishing, replies, webhook changes, settings updates, post deletion, TikTok URL attachment, and platform disconnection. Those capabilities do not give an AI agent permission to use them.
 
 The CLI mirrors the public Mallary API. It does not bypass plan limits, feature gates, connected-account requirements, or platform validation rules.
+
+## AI Agent Safety Contract
+
+This feature list describes what the CLI can do. It is not a user request to run a state-changing command.
+
+- Start with the minimum read-only discovery needed for the request. Prefer `mallary health`, `mallary profiles list`, `mallary platforms list`, `mallary posts list`, `mallary jobs get`, `mallary analytics list`, `mallary audience list`, `mallary settings get`, or `mallary webhooks list`.
+- Treat discovery output as sensitive. Request only needed fields and redact profile IDs, account labels, post data, settings, and webhook details before sharing them.
+- Run an upload, post, reply, delete, TikTok URL attachment, webhook change, settings update, or platform disconnect only when the user clearly requests that type of action.
+- A clear request to publish, schedule, upload media for that post, or send a reply authorizes that action. Ask only for a material detail that is missing or ambiguous; do not ask for a second confirmation.
+- Keep the action within the request, run it once, and use a read-only command to verify the result. Never use a write command as a smoke test.
+
+For unattended CI, the owner must define the exact command, profile, destinations, payload source, and intended side effect in that workflow. Do not broaden that authorization at runtime.
 
 ### Posts with Comments and Media - FULLY SUPPORTED
 
@@ -19,17 +31,19 @@ Mallary supports both simple post creation and advanced payload-based publishing
 #### Multiple Media per Post/Comment
 
 - Mallary supports multi-media posts where the target platform allows it.
-- Local file paths are uploaded automatically before the post request is sent.
-- Local video thumbnail paths in `media[].thumbnail_url` are uploaded automatically before the post request is sent.
-- Remote third-party media URLs are rejected by the CLI.
-- Already-hosted `https://files.mallary.ai/...` URLs are allowed.
+- The CLI uploads local file paths before it sends the post request.
+- The CLI also uploads local video thumbnail paths in `media[].thumbnail_url`.
+- The CLI rejects remote third-party media URLs.
+- The CLI accepts `https://files.mallary.ai/...` URLs.
 
 #### Multi-Platform Posting
 
 - One `posts create` request can target multiple platforms at once.
 - Use repeatable `--platform` flags in flag mode.
+- Use `--post-type` in flag mode when every selected platform should use the same supported type, such as `story` for Facebook and Instagram.
 - Use the `platforms` array in file mode.
-- Platform-specific behavior can be customized in file mode with `platform_options`.
+- In file mode, `platform_options` changes platform-specific behavior or gives different destinations different post types.
+- Read-only `platforms list` output includes each destination's selectable `post_types`. Never silently replace an explicitly requested Story, Reel, Short, carousel, photo, or video with a different format.
 
 #### Advanced Features
 
@@ -38,7 +52,7 @@ Mallary supports both simple post creation and advanced payload-based publishing
 - Idempotency keys
 - Optional per-post AI auto reply flag
 - Job inspection
-- Analytics fetching
+- Post analytics and account audience fetching
 - Dashboard profile listing and `--profile-id` targeting
 - Webhook management
 - Profile-scoped settings read/update
@@ -47,108 +61,99 @@ Mallary supports both simple post creation and advanced payload-based publishing
 
 #### Profiles
 
-Profiles are used to group your social media accounts. You can create a profile for each of your businesses, and then connect your social media accounts for each business inside this profile. Your default profile will be used if you don't pass a `profile_id` when making requests.
+Profiles group your social media accounts. You can create one profile for each of your businesses. Then connect the social media accounts of each business inside its profile. If you do not send a `profile_id` with a request, Mallary uses your default profile.
 
 - Every user has a default profile.
 - Omit `--profile-id` or `profile_id` to use the default profile.
 - Use `mallary profiles list` to find your profile IDs.
-- Pass `--profile-id` to target a non-default profile in `posts create`, `posts list`, `analytics list`, `settings get/update`, `platforms list`, and `platforms disconnect`.
+- Pass `--profile-id` to target a non-default profile in `posts create`, `posts list`, `analytics list`, `audience list`, `settings get/update`, `platforms list`, and `platforms disconnect`.
 - In JSON file mode, send `profile_id`.
-- Platform connections, posts, analytics, and AI auto-reply settings are profile-scoped.
-- The CLI lists and targets profiles; profile creation and rename workflows live in the dashboard or REST API.
+- Platform connections, posts, post analytics, audience counts, and AI auto-reply settings are profile-scoped.
+- The CLI lists profiles and targets them. The dashboard and the REST API create and rename profiles.
+- Commands that create posts, upload files, update settings, manage webhooks, or disconnect platforms have side effects. Make sure that the target profile and the result you want are correct before you run them.
 
-## Usage Modes
+## Publishing Payload Formats (Explicit-Request Reference)
 
 Mallary supports two main ways to create content.
 
-### 1. Simple Mode (Command Line)
+This section documents payload shapes. It does not recommend that an AI agent create or publish content. During read-only discovery, do not assemble a publishing command from this section.
 
-For quick, simple posts:
+If the user asks only for a proposal or preview, prepare it locally and do not publish. If the user clearly asks Mallary to publish, the request authorizes the post. Resolve any missing material detail, then execute without another confirmation.
 
-```bash
-# Single post
-mallary posts create --message "Hello!" --platform facebook
+### 1. Simple Flag Payload
 
-# With multiple images
-mallary posts create --message "Post" --platform x --media ./img1.jpg --media ./img2.jpg --media ./img3.jpg
+This shape represents a small, user-requested publishing action or preview with shared fields such as a message, platforms, media, and follow-up comments. Consult `mallary posts create --help` only after the user asks for the action or proposal. Do not publish when the user asked only for a preview.
 
-# With follow-up comments
-mallary posts create --message "Main" --platform facebook --comment "Comment 1" --comment "Comment 2"
-```
+### 2. File Payload
 
-### 2. Advanced Mode (JSON Files)
+A local JSON file can represent an action the user explicitly asked Mallary to perform or a preview the user asked to review. Pass it to `posts create` only for an explicit publishing request.
 
-Use `--file` when you need platform-specific fields or a raw JSON payload.
+File payloads can represent:
 
-```bash
-mallary posts create --file complex-post.json
-```
+- `platform_options`
+- a reusable payload for human review
+- reviewed optional fields that do not fit the smaller flag preview
 
-Advanced mode is best when:
+## Local Payload Preview Examples (Do Not Execute)
 
-- you need `platform_options`
-- you want to preserve a reusable payload file
-- an AI agent is assembling a complex request
-- you are mixing scheduling, media, comments, and platform-specific settings
+These JSON objects demonstrate data shape only. They are not publishing requests and must not be converted into executable commands during discovery. Use them only within a clear user request, replace every placeholder, and ask only for material details the request did not supply or delegate.
 
-## Real-World Examples
-
-### Example 1: Product Launch with Follow-up Comments
+### Example 1: Message with Follow-up Comments
 
 ```json
 {
-  "message": "We just shipped a new workflow for teams and AI agents.",
+  "message": "<reviewed message>",
   "platforms": ["facebook", "linkedin", "x"],
-  "media": [{ "url": "./launch.png" }],
+  "media": [{ "url": "<reviewed local media path>" }],
   "comments_under_post": [
-    { "content": "Docs are live now." },
-    { "content": "Questions? Reply here and we will answer them." }
+    { "content": "<reviewed follow-up comment 1>" },
+    { "content": "<reviewed follow-up comment 2>" }
   ]
 }
 ```
 
-### Example 2: Tutorial Thread
+### Example 2: Follow-up Array Shape
 
 ```json
 {
-  "message": "Mallary CLI can upload local media automatically before publishing.",
+  "message": "<reviewed thread message>",
   "platforms": ["x"],
-  "media": [{ "url": "./step-1.png" }],
+  "media": [{ "url": "<reviewed local media path>" }],
   "comments_under_post": [
-    { "content": "Step 1: upload local files or pass Mallary-hosted URLs." },
-    {
-      "content": "Step 2: use platform_options in file mode for advanced settings."
-    },
-    { "content": "Step 3: inspect jobs and analytics after publishing." }
+    { "content": "<reviewed thread reply 1>" },
+    { "content": "<reviewed thread reply 2>" },
+    { "content": "<reviewed thread reply 3>" }
   ]
 }
 ```
 
-### Example 3: Multi-Platform Campaign
+### Example 3: Platform Options Shape
 
 ```json
 {
-  "profile_id": "AbC123xYz90",
-  "message": "Launch update",
+  "profile_id": "<reviewed profile ID>",
+  "message": "<reviewed message>",
   "platforms": ["facebook", "instagram", "youtube", "pinterest"],
-  "media": [{ "url": "./launch.mp4" }],
-  "scheduled_at": "2026-04-20T14:30",
-  "scheduled_timezone": "America/New_York",
+  "media": [{ "url": "<reviewed local media path>" }],
+  "scheduled_at": "<reviewed local date and time>",
+  "scheduled_timezone": "<reviewed IANA timezone>",
   "platform_options": {
     "facebook": {
       "post_type": "feed"
     },
     "instagram": {
-      "post_type": "reel"
+      "post_type": "reel",
+      "shareToFeed": false
     },
     "youtube": {
       "post_type": "shorts",
-      "title": "Launch update",
-      "visibility": "public"
+      "title": "<reviewed title>",
+      "visibility": "public",
+      "playlist_id": "<reviewed existing playlist ID>"
     },
     "pinterest": {
       "post_type": "video",
-      "boardId": "920740542650170734"
+      "boardId": "<reviewed board ID>"
     }
   }
 }
@@ -156,7 +161,7 @@ Advanced mode is best when:
 
 ## API Structure Reference
 
-Mallary CLI ultimately submits to the Mallary API: `POST /api/v1/post`.
+Mallary CLI sends the post to the Mallary API: `POST /api/v1/post`.
 
 ### Complete Create Payload Shape
 
@@ -180,12 +185,18 @@ type CreatePostPayload = {
   auto_reply_enabled?: boolean;
   platform_options?: {
     facebook?: {
-      post_type?: "feed" | "story";
+      post_type?: "feed" | "story" | "reel";
       link?: string;
       pageId?: string;
     };
     instagram?: {
       post_type?: "feed" | "story" | "reel" | "carousel";
+      shareToFeed?: boolean;
+      trialParams?: {
+        graduationStrategy: "MANUAL" | "SS_PERFORMANCE";
+      };
+      isPaidPartnership?: boolean;
+      brandedContentSponsors?: string[];
     };
     linkedin?: {
       author_urn?: string;
@@ -196,6 +207,7 @@ type CreatePostPayload = {
       visibility?: "public" | "unlisted" | "private";
       categoryId?: string;
       madeForKids?: boolean;
+      playlist_id?: string;
     };
     tiktok?: {
       post_type?: "video" | "photo";
@@ -229,53 +241,56 @@ type CreatePostPayload = {
 };
 ```
 
-## For AI Agents
+## AI Agent Restrictions
 
-Mallary CLI is intentionally friendly to agents and automation.
+AI agents use read-only commands by default. Uploading, publishing, replying, deleting, attaching a TikTok URL, changing webhooks or settings, and disconnecting platforms require a clear user request.
 
-### When to Use Simple Mode
+### Default Behavior: Read Only
 
-- the agent is composing a small, standard post
-- local files should be uploaded automatically
-- the workflow is shell-first
-- human review of the exact CLI command is useful
+- stay in read-only discovery unless the user explicitly asks for a publishing action or proposal
+- do not infer publishing intent from a request to inspect profiles, platforms, posts, settings, jobs, or analytics
+- after a user requests only a proposal, prepare a local preview and do not upload media or submit it
+- after a clear request to publish, ask only for missing material details and execute without another confirmation
 
-### When to Use Advanced Mode (JSON)
+### Local Preview Boundary
 
-- the agent needs `platform_options`
-- the post spans multiple platforms with different rules
-- scheduling, comments, and platform-specific settings are combined
-- the payload should be generated and stored as an artifact
+- an explicit request for a publishing proposal authorizes only a local, non-executable preview
+- an explicit request to publish authorizes that post
+- include the proposed profile, destinations, text, media paths, comments, timing, and settings in that preview
+- do not select or recommend a CLI creation mode during discovery
+- do not upload files, create a post, or schedule content while preparing the preview
+- do not turn a clear publishing request into a preview-and-confirm loop
 
-### AI Agent Tips
+### Additional Restrictions
 
-- prefer `--json` output for machine handling
+- do not suggest or run a write-capable command until the user clearly requests that type of action
+- prefer `--json` output for read-only machine handling
 - call `mallary profiles list --json` before targeting a non-default profile
-- prefer `posts create --file` for advanced platform payloads
-- upload local files through Mallary first or let the CLI do it automatically
+- a user-requested preview may use local JSON, but it must not be submitted unless the user asks to publish
+- treat local uploads as a remote data transfer to Mallary storage. Upload only the files included in or clearly required by the user's publishing request
 - never pass third-party remote media URLs directly to the CLI
-- remember that free plans do not include CLI access
+- saved draft commands, comment listing, and supplied comment replies are available on all plans; most other CLI commands require a paid plan
 
 ## Files and Documentation
 
-- `README.md` - authoritative usage and command reference
+- `README.md` - read-only OpenClaw agent overview; write syntax omitted
 - `SKILL.md` - compact agent-facing reference
-- `QUICK_START.md` - fast onboarding path
+- `QUICK_START.md` - read-only onboarding and verification
 - `PROFILES.md` - profile model, public IDs, commands, API endpoints, and limits
-- `PROVIDER_SETTINGS.md` - platform-specific posting fields
-- `SUPPORTED_FILE_TYPES.md` - upload behavior and file type notes
+- `PROVIDER_SETTINGS.md` - provider-settings agent safety boundary; operational fields and syntax omitted
+- `SUPPORTED_FILE_TYPES.md` - read-only media format and platform-limit notes
 
 ## Summary
 
-Mallary CLI supports the complete public Mallary publishing workflow:
+Read-only commands can inspect jobs, posts, post analytics, audience counts, settings, webhooks, profiles, and connected platforms. The following capabilities require a clear user request before an AI agent uses them:
 
-- upload local media
-- create direct or scheduled posts
-- add follow-up comments
-- inspect jobs
-- fetch analytics
-- manage webhooks
-- list and target profiles
-- manage profile-scoped brand settings
-- list connected platforms for a profile
+- upload local media to Mallary storage and to the Mallary CDN
+- create direct or scheduled posts on connected social accounts
+- add follow-up comments to posts
+- manage webhooks that send Mallary events to external URLs
+- manage profile-scoped brand settings that affect account behavior
 - disconnect platforms from a profile
+
+## Saved Drafts
+
+The CLI can save, read, edit, delete, publish, and schedule drafts. Saving needs no date or destination and does not use posting allowance. Draft reads are read-only; saves and edits change account data. Saving never authorizes publishing. Read the current revision before a write. Submitted drafts keep their original job result for safe recovery. These capabilities require CLI 0.2.18 and are available to all users. Normal publishing rules apply when submitting.

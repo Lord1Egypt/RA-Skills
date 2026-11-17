@@ -1,45 +1,60 @@
-## Description: <br>
-A guide for building a cross-exchange, cross-strategy portfolio risk monitoring system with webhooks, an event bus, SLA checks, drawdown alerts, correlation monitoring, liquidation proximity checks, circuit breakers, and production deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a cross-exchange, cross-strategy real-time portfolio risk monitoring system with webhooks, an event bus, SLA compliance monitoring, drawdown alerts, correlation monitoring, liquidation proximity checks, and circuit breakers.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and trading bot operators use this skill to design portfolio-level risk monitoring across multiple exchanges and strategies, including alerting, aggregate exposure checks, and circuit-breaker workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live exchange access and order-cancellation examples could affect funds if adapted directly. <br>
-Mitigation: Use sandbox or read-only exchange credentials until trading controls are explicitly approved; require audit logging, least-privilege keys, and human approval before enabling order cancellation or position closing. <br>
-Risk: The guide references sensitive signing and exchange credentials. <br>
-Mitigation: Store secrets in a proper secret manager, avoid hardcoding credentials, and rotate keys when access patterns change. <br>
-Risk: Webhook and platform integrations may transmit portfolio or trading data to GreenHelix and operator-controlled endpoints. <br>
-Mitigation: Verify what data is sent to each endpoint and confirm endpoint trust, retention, and access controls before production use. <br>
+## Use Case:
 
+Developers and trading operations teams use this guide to design portfolio-level risk monitoring across multiple exchanges and strategies. It helps agents produce implementation guidance, code examples, shell commands, and configuration patterns for alerts, circuit breakers, and operational monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-trading-bot-risk-service) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API reference](https://api.greenhelix.net/v1) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with inline Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples reference AGENT_SIGNING_KEY and user-supplied exchange or API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Examples involving live exchange credentials or order cancellation could affect real trading accounts if copied into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox credentials first, avoid write-capable exchange API keys unless automated cancellation is intended, and add explicit confirmations or dry-run controls.
+
+Risk: Signing keys and API credentials could be exposed through terminal output, logs, or copied examples.
+
+Mitigation: Store signing keys and API credentials in a secret manager and avoid printing them in logs or shell history.
+
+Risk: The guide is non-executing but security evidence marks it review-required due to under-disclosed trading-account impact.
+
+Mitigation: Review the generated implementation plan and operational permissions before deployment, especially any circuit-breaker or exchange-order behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-trading-bot-risk-service)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide content that may reference AGENT_SIGNING_KEY and trading API credentials.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

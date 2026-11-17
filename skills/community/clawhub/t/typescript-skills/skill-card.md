@@ -1,41 +1,56 @@
-## Description: <br>
-Provide best-practice coding conventions and generate standards-compliant TypeScript code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide best-practice coding conventions and generate standards-compliant TypeScript code.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Developers and engineers use this prompt-based skill to generate, review, convert, and configure TypeScript code according to strict style and tooling conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate whenever TypeScript is discussed and can influence code or configuration decisions. <br>
-Mitigation: Review generated code, configuration, and style recommendations before applying them to a real project. <br>
+## Use Case:
 
+Developers and engineers use this prompt-based skill to generate, review, convert, and configure TypeScript code according to documented style and tooling conventions.
 
-## Reference(s): <br>
-- [ClawHub TypeScript Skill](https://clawhub.ai/Wscats/typescript-skills) <br>
-- [clawhub.ai TypeScript Guide](https://clawhub.ai/ivangdavila/typescript) <br>
-- [mkosir TypeScript Style Guide](https://mkosir.github.io/typescript-style-guide) <br>
-- [Platypi TypeScript Style Guide](https://github.com/Platypi/style_typescript) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no code execution, credential access, persistence, or hidden behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill activates broadly on TypeScript mentions, which may apply style guidance when a user expected only casual discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation wording or ask for confirmation before applying the style guide in ambiguous TypeScript conversations.
+
+Risk: Generated TypeScript code or configuration may not match a project's existing compiler, linting, framework, or runtime constraints.
+
+Mitigation: Review generated code against project standards and validate changes with the project's normal type checks, lint checks, and tests.
+
+## Reference(s):
+
+- [TypeScript Skill on ClawHub](https://clawhub.ai/wscats/skills/typescript-skills)
+- [ClawHub TypeScript Guide](https://clawhub.ai/ivangdavila/typescript)
+- [mkosir TypeScript Style Guide](https://mkosir.github.io/typescript-style-guide)
+- [Platypi TypeScript Style Guide](https://github.com/Platypi/style_typescript)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-based responses; no tools, MCP references, credentials, or external API calls detected.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

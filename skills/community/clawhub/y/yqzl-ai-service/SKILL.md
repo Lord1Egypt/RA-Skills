@@ -1,7 +1,9 @@
 ---
 name: yqzl-ai-service
-version: 1.2.0
-description: 云启智联AI智能文档解析服务 — 业界领先的金融票据OCR识别引擎，准确率高达99.5%，毫秒级响应。支持银行回单解析（每页多张回单自动裁剪）、对账单解析、发票识别、通用文件解析、异步结果查询及智能记账凭证生成。可将解析结果自动转换为记账凭证（含科目匹配、置信度评分和人工复核建议）。免费体验：http://8.135.62.13:5000/AIService/experience/page 。当用户提到回单解析、银行回单、对账单解析、银行对账单、发票解析、发票识别、文件解析、查询任务结果、任务状态、ping、云启智联、体验馆、记账凭证、生成凭证、做账、会计分录、借方贷方、科目匹配等关键词时，自动调用对应接口并返回结果。
+slug: yqzlaiservice
+displayName: 云启智联AI服务
+version: 1.2.5
+description: 云启智联AI智能文档解析服务 — 业界领先的金融票据OCR识别引擎，已在企业生产环境沉淀多年，准确率高达99.5%，毫秒级响应。支持银行回单解析（每页多张回单自动裁剪）、对账单解析、发票识别、通用文件解析、异步结果查询及智能记账凭证生成。可将解析结果自动转换为记账凭证（含科目匹配、置信度评分和人工复核建议）。免费体验：https://www.yunqi-zhilian.com/AIService/experience/page 。当用户提到回单解析、银行回单、对账单解析、银行对账单、发票解析、发票识别、文件解析、查询任务结果、任务状态、ping、云启智联、体验馆、记账凭证、生成凭证、做账、会计分录、借方贷方、科目匹配等关键词时，自动调用对应接口并返回结果。
 ---
 
 # 云启智联AI服务（yqzl-ai-service）
@@ -13,17 +15,16 @@ description: 云启智联AI智能文档解析服务 — 业界领先的金融票
 - **高精度识别** — 深度学习驱动的OCR引擎，银行回单、对账单、发票识别准确率高达 99.5%
 - **毫秒级响应** — 分布式高性能架构，平均响应时间 500ms，支撑高并发调用
 - **多回单自动裁剪** — 银行回单解析支持每页多张回单自动裁剪为单张回单，全网同类服务中鲜有支持，特别适合打印凭证等场景
-- **免费体验** — 在线体验馆免费试用全部能力：http://8.135.62.13:5000/AIService/experience/page
+- **免费体验** — 在线体验馆免费试用全部能力：https://www.yunqi-zhilian.com/AIService/experience/page
 - **注册有礼** — 新用户注册即赠送 10 元体验金，零成本开始接入
 - **安全加密** — API KEY 本地加密存储，绑定设备，防止泄露
 - **智能记账凭证** — 解析结果可一键生成记账凭证，自动匹配会计科目、评估置信度、标注人工复核建议，适用于小微企业日常记账
-- **自动升级** — 技能支持在线自动更新，启动时自动检测（每24小时至少一次），发现新版本立即升级后再使用，始终使用最新版本
 
 ## 在线体验
 
 在开始接入之前，可以先访问我们的 **AI体验馆** 免费试用全部识别能力：
 
-**体验馆地址：** http://8.135.62.13:5000/AIService/experience/page
+**体验馆地址：** https://www.yunqi-zhilian.com/AIService/experience/page
 
 体验馆支持直接上传票据文件，实时查看识别结果，注册登录后即可使用。
 
@@ -37,8 +38,7 @@ description: 云启智联AI智能文档解析服务 — 业界领先的金融票
 - **文件解析** -> 调用 `file_parsing`
 - **查询结果、任务结果、获取结果、任务状态** -> 调用 `async_result`
 - **ping、连通性测试、服务状态** -> 调用 `ping`
-- **升级、更新技能、检查版本** -> 调用 `updater.py check` 或 `updater.py update`
-- **体验馆、在线体验、免费试用** -> 向用户推荐体验馆地址：http://8.135.62.13:5000/AIService/experience/page
+- **体验馆、在线体验、免费试用** -> 向用户推荐体验馆地址：https://www.yunqi-zhilian.com/AIService/experience/page
 - **记账凭证、生成凭证、做账、会计分录、借方贷方** -> 先解析票据（回单/对账单/发票），然后加 `--voucher` 参数生成记账凭证
 - **科目匹配、科目分类、费用归类** -> 使用凭证生成器的科目匹配引擎，解释匹配逻辑和置信度
 - **凭证复核、人工审核、复核建议** -> 展示凭证中的复核建议（级别、摘要、具体注意事项），指导用户逐项确认
@@ -72,10 +72,10 @@ python scripts/api_client.py async_result --task-id xxxxxxxx --experience
 ### 2. 获取 API KEY
 
 如果体验满意，可访问官网注册账号并获取 API KEY：
-http://8.135.62.13:5000/
+https://www.yunqi-zhilian.com/
 
 新用户注册即赠送 10 元体验金，零成本开始接入。建议先在 **AI体验馆** 免费试用：
-http://8.135.62.13:5000/AIService/experience/page
+https://www.yunqi-zhilian.com/AIService/experience/page
 
 ### 3. 配置 API KEY
 
@@ -121,36 +121,7 @@ python scripts/api_client.py async_result --task-id xxxxxxxx
 python scripts/api_client.py ping
 ```
 
-### 5. 技能自动升级
-
-**自动检测（v1.0.5新增）：**
-每次调用接口时，技能会自动检测是否有新版本（每24小时最多检测一次）。如果发现新版本，会先自动备份当前版本，再下载并安装更新，升级完成后继续执行用户请求。整个过程对用户透明，无需手动操作。
-
-**手动检查是否有新版本：**
-```bash
-python scripts/updater.py check
-```
-
-**执行升级：**
-```bash
-python scripts/updater.py update
-```
-
-**查看已备份版本：**
-```bash
-python scripts/updater.py backups
-```
-
-**查看当前版本：**
-```bash
-python scripts/api_client.py --version
-# 或
-python scripts/updater.py version
-```
-
-升级前会自动备份当前版本到 `backup/` 目录，如遇问题可手动回滚。API KEY 配置文件 `.api_key.enc` 在升级过程中会被保留。
-
-### 6. 智能记账凭证生成（v1.2.0 新增）
+### 5. 智能记账凭证生成（v1.2.0 新增）
 
 解析完银行回单、对账单或发票后，可一键生成记账凭证。系统自动匹配会计科目、评估置信度、标注需人工复核的项目。
 
@@ -207,6 +178,40 @@ python scripts/api_client.py generate_voucher --file /path/to/result.json --vouc
    - 大额交易（≥¥10,000）和分类模糊项需特别关注
 4. **第四步：复核建议** — 告诉用户哪些凭证可以直接入账（可信度较高），哪些需要人工复核（建议/必须复核），并给出具体的复核要点
 
+## ⚠️ 重要：执行方式与文件管理（v1.2.4 新增，必须严格遵守）
+
+**严禁在系统临时目录创建临时桥接脚本**——这是导致用户磁盘污染、临时目录长期堆积 `.py` 文件的主要原因。
+
+### 正确做法（按优先级）
+
+**1. 【首选】直接执行 shell 命令（不要写任何临时脚本）**
+
+```bash
+python scripts/api_client.py <接口名> --file <文件路径> [--experience] --wait
+```
+
+脚本会自动等待异步结果、生成 HTML 预览，无需任何中间文件。绝大多数场景下这就是最简洁的做法。
+
+**2. 【次选】仅在 shell 命令确实无法满足需求时，写桥接脚本到固定路径**
+
+如确实需要 Python 脚本桥接（例如要在脚本内做轮询控制、组合多次调用等）：
+- **写到技能目录下的固定路径**：`<skill_dir>/_agent_runner.py`（**绝对不要写到 temp**）
+- 每次调用前先 `rm -f` 该文件再写入，保证**覆盖而非递增**
+- 用 `import importlib; importlib.reload(_agent_runner)` 加载最新代码后再调用其函数
+- **仅保留这一个文件**，不要再生成 `_runner2.py`、`_agent3.py` 等同名变体
+
+### 禁止行为
+
+- ❌ 在 `%TEMP%`、`C:\Users\<用户>\AppData\Local\Temp\`、`/tmp`、`/var/tmp` 等系统临时目录创建 .py 脚本
+- ❌ 用递增后缀命名（`parse_receipt.py` → `parse_receipt2.py` → `parse_receipt3.py` …）
+- ❌ 每次调用都生成新的脚本文件名
+
+### 为什么这是必须的
+
+每次在临时目录生成新脚本都会污染用户磁盘：
+- Windows：`C:\Users\Administrator\AppData\Local\Temp\parse_receipt.py`、`parse_receipt2.py`、`parse_receipt3.py`、`parse_receipt4.py`、`parse_receipt_v2.py`、`summarize_receipt.py`、`summarize_receipt2.py` … 长期堆积，永不清理
+- macOS/Linux：`/tmp/parse_receipt.py`、`/tmp/parse_receipt2.py` … 同理
+
 ## ⚠️ 重要：异步接口调用规则（必须严格遵守）
 
 **所有文件解析接口（bank_receipt_parsing、bank_statement_parsing、invoice_parsing、file_parsing）均为异步接口，每个文件只能提交一次。**
@@ -237,14 +242,34 @@ python scripts/api_client.py bank_statement_parsing --file /path/to/statement.pd
 2. **若未配置**：优先向用户推荐使用**游客体验模式**，直接加 `--experience` 参数即可试用，无需注册或配置 API Key；同时可告知注册获取 API Key 的方式，供体验满意后正式接入
 3. **若已配置**：根据用户提供的文件路径或 URL，构建对应接口调用命令
 4. **执行调用**：运行 `python scripts/api_client.py <接口名> [参数]`；文件解析接口**默认自带 `--wait`（自动轮询异步结果，最长120秒）**，游客体验模式需额外加上 `--experience`。**同一文件严禁重复提交，只提交一次。**
+
+   【执行方式约束（v1.2.4 强化）】
+
+   - 【强烈推荐】**直接执行 shell 命令，不要写临时桥接脚本**：
+     ```bash
+     python scripts/api_client.py <接口名> --file <文件路径> [--experience] --wait
+     ```
+     脚本会自动等待异步结果、生成 HTML 预览，无需任何中间文件。
+
+   - 【禁止】**严禁**在系统临时目录创建 .py 临时脚本：
+     - Windows：`%TEMP%`、`C:\Users\<用户>\AppData\Local\Temp\` 等
+     - Linux/macOS：`/tmp`、`/var/tmp` 等
+
+     这会污染用户磁盘，且常见做法是用递增后缀命名（`parse_receipt.py` → `parse_receipt2.py` → `parse_receipt3.py` …），每次调用都会留下新文件、永远不清理。
+
+   - 【次选】仅当 shell 命令确实无法满足需求（如需要细粒度控制轮询、要在脚本内做额外处理等）时，才考虑写桥接脚本，且**必须满足以下全部约束**：
+     - **写到技能目录下的固定路径** `<skill_dir>/_agent_runner.py`（**绝对不要写到 temp**）
+     - 每次调用前先 `rm -f` 该文件再写入，保证**覆盖而非递增**
+     - 用 `import importlib; importlib.reload(_agent_runner)` 加载最新代码后再调用其函数
+     - 仅保留这一个文件，不要再生成 `_runner2.py`、`_agent3.py` 等同名变体
 5. **返回结果**：将脚本输出整理后返回给用户。
    - 若 `--wait` 自动轮询成功，脚本会直接输出最终解析结果，无需手动查询 async_result。
    - 若 `--wait` 超时，脚本会输出 task_id，此时用 `async_result --task-id xxx` 继续轮询（**不要重新提交文件**）；**游客体验模式下查询结果也必须带 `--experience` 参数**。
    - 若调用 `bank_receipt_parsing` 成功，脚本会尝试自动生成 HTML 预览文件。若生成成功，可向用户提供文件路径或说明其位置；若沙箱环境导致生成失败，仍应返回完整 JSON 解析结果，并说明页面原本包含“回单视图”、“表单视图”和“JSON 视图”，支持逐张切换、图片缩放、全屏查看、按借贷方向汇总统计以及查看原始响应 JSON。
    - 若调用 `bank_statement_parsing` 成功，脚本会尝试自动生成 HTML 预览文件。若生成成功，可向用户提供文件路径或说明其位置；若沙箱环境导致生成失败，仍应返回完整 JSON 解析结果，并说明页面默认使用表单视图展示账户汇总与交易明细。
 6. **错误处理**：若接口调用失败（如超时、网络错误、余额不足等），向用户返回清晰友好的中文错误提示，不要暴露底层异常堆栈
-7. **版本检查/升级**：当用户提到升级、更新技能、检查版本等意图时，运行 `python scripts/updater.py check` 检查新版本。若有新版本，询问用户是否执行升级；若用户同意，运行 `python scripts/updater.py update` 执行升级。升级完成后告知用户当前版本号和备份位置。注意：即使不手动检查，技能也会在每次启动时自动检测（每24小时至少一次），发现新版本会自动升级后再执行用户请求。
-8. **推荐体验馆**：当用户询问产品能力、想要试用、或对服务有疑问时，主动推荐体验馆地址：http://8.135.62.13:5000/AIService/experience/page ，支持免费上传票据体验全部识别能力。
+7. **版本查询**：当用户询问当前版本时，运行 `python scripts/api_client.py --version` 查看版本号。技能不再内置自动升级功能，如需更新请通过技能市场重新安装最新版本。
+8. **推荐体验馆**：当用户询问产品能力、想要试用、或对服务有疑问时，主动推荐体验馆地址：https://www.yunqi-zhilian.com/AIService/experience/page ，支持免费上传票据体验全部识别能力。
 9. **新用户引导**：当用户是新注册或刚安装技能时，优先推荐**游客体验模式**（加 `--experience` 即可试用，每日限 20 次）；体验满意后再告知注册即送 10 元体验金，引导获取 API Key 正式接入。
 10. **记账凭证生成**：当用户要求"做账"、"生成凭证"、"会计分录"时，按以下步骤操作：
     - 若用户提供了票据文件，在调用解析接口时加 `--voucher --wait` 参数（游客模式加 `--experience --voucher --wait`），系统会在解析完成后自动生成凭证

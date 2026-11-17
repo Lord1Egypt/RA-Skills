@@ -1,43 +1,57 @@
-## Description: <br>
-Manage torrents with qBittorrent WebUI API, including listing, adding, pausing, resuming, deleting, and monitoring torrent activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage torrents with qBittorrent WebUI, including listing, adding, pausing, resuming, deleting, organizing, and monitoring transfers.
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
 
-## Use Case: <br>
-External users and operators use this skill to manage qBittorrent WebUI sessions from an agent, including torrent lifecycle actions, transfer monitoring, categories, tags, and speed limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can delete torrents and downloaded files through destructive qBittorrent actions. <br>
-Mitigation: Require explicit user confirmation before delete operations, especially when the --files option is present. <br>
-Risk: The agent can change persistent qBittorrent application preferences. <br>
-Mitigation: Review or remove set-preferences access unless preference changes are required for the deployment. <br>
-Risk: The skill uses qBittorrent WebUI credentials and session cookies. <br>
-Mitigation: Store credentials and session files in owner-only locations and scope the WebUI account to the minimum permissions practical. <br>
+## Use Case:
 
+External users and developers use this skill to manage qBittorrent WebUI torrents from an agent, including adding downloads, changing torrent state, organizing categories and tags, setting speed limits, and checking transfer status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ricanwarfare/qbittorrent-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/ricanwarfare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses qBittorrent WebUI credentials and can change torrent state, application preferences, and downloaded files when invoked with destructive options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can delete torrents and optionally delete local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of the torrent hash and whether files should be removed before running delete commands.
+
+Risk: The skill can change qBittorrent application preferences and transfer limits.
+
+Mitigation: Limit preference changes to reviewed JSON payloads and confirm the exact setting changes before execution.
+
+Risk: The skill handles qBittorrent WebUI credentials and session cookies.
+
+Mitigation: Use a trusted endpoint, prefer HTTPS except for localhost, and store credential files with owner-only permissions.
+
+## Reference(s):
+
+- [ClawHub qBittorrent Skill](https://clawhub.ai/ricanwarfare/skills/qbittorrent-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a local shell helper that returns qBittorrent WebUI API responses or status JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

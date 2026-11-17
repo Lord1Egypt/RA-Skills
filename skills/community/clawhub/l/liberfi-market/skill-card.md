@@ -1,43 +1,58 @@
-## Description: <br>
-Discovers trending and newly listed tokens across supported blockchains using the LiberFi CLI, with filters for chain, time window, launchpad platform, keywords, and ranking fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liberfi Market helps agents fetch and present public trending-token and newly listed-token rankings across supported blockchains.
 
-## Publisher: <br>
-[bombmod](https://clawhub.ai/user/bombmod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombmod](https://clawhub.ai/user/bombmod)
 
-## Use Case: <br>
-External users and developers use this skill to scan public token-market rankings, discover newly launched tokens, and prepare follow-up token research before any trading workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs an agent to install the LiberFi CLI globally from npm without asking first. <br>
-Mitigation: Require explicit user approval before installing or retrying CLI installation, and prefer a user-verified local installation. <br>
-Risk: Token rankings and newly listed token data can be mistaken for investment advice or a safety endorsement. <br>
-Mitigation: Present rankings as informational only and recommend independent token security review before any follow-up trading or wallet action. <br>
-Risk: Market-ranking workflows may lead users toward wallet credentials, signing, or transaction approval in adjacent skills. <br>
-Mitigation: Do not request wallet credentials or approve transactions while using this market-ranking skill; route trading actions to separate workflows with explicit confirmation. <br>
+## Use Case:
 
+External users and agents use this skill to discover trending or newly listed tokens, compare rankings by chain and time window, and identify tokens for follow-up research before interacting with them.
 
-## Reference(s): <br>
-- [LiberFi homepage](https://liberfi.io) <br>
-- [Liberfi Market ClawHub listing](https://clawhub.ai/bombmod/liberfi-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries and tables with LiberFi CLI commands and JSON-backed results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public market data; ranking output should include token name, symbol, price, and 24-hour change when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The security summary states that the skill tells agents to silently install a global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually install or approve a pinned, reviewed LiberFi CLI version in an isolated environment before enabling the skill.
+
+Risk: The security summary states that the skill tells agents to hide certain installation failures from the user.
+
+Mitigation: Require the agent to report installation failures truthfully and stop until the user approves retry or remediation.
+
+Risk: Token rankings and new-token lists can be mistaken for an endorsement or safety signal.
+
+Mitigation: Present rankings as informational discovery only and run a token security audit before any trading or interaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bombmod/skills/liberfi-market)
+- [LiberFi homepage](https://liberfi.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and tables, with inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses structured JSON CLI output as source data for ranked token summaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

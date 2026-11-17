@@ -1,37 +1,48 @@
-## Description: <br>
-Provides shortcut, interface, alert, and conditional-order guidance for improving A-share trading software efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide concise guidance on A-share trading software shortcuts, market-view navigation, custom indicators, alerts, and conditional orders.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to answer operational questions about improving efficiency in A-share trading software, including shortcut keys, interface customization, alerts, and conditional-order setup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Conditional-order examples could be applied to live trading automation without adequate safeguards.
+
+Mitigation: Require explicit user confirmation before any automatic order feature is used, verify broker rules, and treat sample prices as examples rather than financial advice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and traders use this skill as a reference for A-share trading software shortcuts, market views, indicator overlays, alerts, and conditional-order workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Conditional-order examples could lead to unintended financial trades if applied without review. <br>
-Mitigation: Before using any real conditional order, independently verify the stock, price, quantity, account, trigger rules, and broker behavior; do not let an agent configure or submit trades without explicit confirmation. <br>
+**Output Format:** [Markdown text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include trading-software shortcut lists, configuration guidance, and conditional-order examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shortcut lists and conditional-order examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, or trading authority; trading actions require explicit user review and confirmation.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

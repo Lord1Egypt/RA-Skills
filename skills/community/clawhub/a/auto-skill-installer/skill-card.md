@@ -1,40 +1,53 @@
-## Description: <br>
-Auto Skill Installer helps an agent understand a capability need, discover relevant Codex or agent skills, choose a candidate, install it, and verify the installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Skill Installer helps an agent understand a capability need, discover a suitable skill, install the best candidate, and verify the installation.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and agents use this skill to identify, inspect, install, and verify reusable skills when a task requires missing or specialized capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install third-party skills that persist in the agent environment. <br>
-Mitigation: Review the selected source, install destination, and whether the install is workspace-local or global before allowing installation. <br>
-Risk: GitHub, URL-based, third-party, or yes-flag installs can introduce code or instructions from outside the current workspace. <br>
-Mitigation: Inspect the candidate skill and prefer trusted sources before running an install command. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent find, evaluate, install, and verify reusable skills when a requested task needs a missing capability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/auto-skill-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can add other skills to the agent environment from mutable external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer recommendation mode or require confirmation before installation; install only pinned or verified skills from trusted sources.
+
+Risk: Global or shared installs can change the skill set visible to multiple agent sessions.
+
+Mitigation: Avoid global installs unless explicitly intended, and verify the destination skill directory before relying on the installed skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/auto-skill-installer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or run installation commands and report verification results.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

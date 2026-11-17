@@ -1,46 +1,53 @@
-## Description: <br>
-Applies structured, evidence-aware scientific reasoning to research interpretation, hypothesis evaluation, mechanism analysis, experiment design, and scientific argument construction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when interpreting research findings, evaluating scientific evidence, analyzing mechanisms, comparing competing hypotheses, designing experiments, or constructing scientific arguments.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Researchers, students, analysts, and scientific writers use this skill to frame research questions, separate evidence from interpretation, compare hypotheses, calibrate claim strength, and identify practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implicit invocation can apply the scientific reasoning style when a user did not explicitly request it. <br>
-Mitigation: Review or disable implicit invocation when the skill should only run on direct request. <br>
-Risk: Registry capability tags include crypto and purchase-related labels that are not supported by the artifacts. <br>
-Mitigation: Treat those tags as registry metadata only and do not grant purchase, wallet, credential, or financial authority based on this skill. <br>
-Risk: The skill improves reasoning structure but cannot guarantee that scientific claims are correct or complete. <br>
-Mitigation: Require source review, evidence checks, and human judgment for consequential research, medical, financial, or policy decisions. <br>
+## Use Case:
 
+Researchers, developers, and external users use this skill to structure scientific reasoning, evaluate evidence, compare hypotheses, design or critique experiments, and state uncertainty without overclaiming.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/scientific-thinking-general) <br>
-- [Scientific Thinking README](artifact/README.md) <br>
-- [Scientific Thinking Checklist](artifact/checks.md) <br>
-- [Scientific Thinking Examples](artifact/examples.md) <br>
-- [Agent Skills Format](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured prose responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or external tool dependency is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md metadata) <br>
+Risk: Scientific guidance may be misleading if prompt evidence is incomplete or if a hypothesis is treated as established fact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill directs the agent to label evidence provenance, calibrate claim strength, consider alternatives, state boundaries, and identify the next discriminating step.
+
+Risk: Users may expect automation or data access that the artifact does not provide.
+
+Mitigation: The release evidence describes a reasoning-style research skill with no executable code, credentials, persistence, hidden data access, or external tool requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agents365-ai/skills/scientific-thinking-general)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text structured as scientific reasoning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credentials, persistence, or hidden data access were identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

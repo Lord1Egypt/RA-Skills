@@ -1,47 +1,63 @@
-## Description: <br>
-MiCA compliance evidence and stablecoin risk scoring for regulated tokenized markets, with ES256K-signed responses for explicit stablecoin compliance, MiCA status, and audit evidence workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiCA compliance evidence and stablecoin risk scoring for regulated tokenized markets. 27 MCP tools with ES256K-signed responses. Use when the user explicitly asks about stablecoin compliance, MiCA regulatory status, or needs verifiable evidence for audit workflows.
 
-## Publisher: <br>
-[feedoracle](https://clawhub.ai/user/feedoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feedoracle](https://clawhub.ai/user/feedoracle)
 
-## Use Case: <br>
-External users, compliance teams, and agent developers use this skill when they explicitly need signed evidence for stablecoin MiCA status, issuer due diligence, risk scoring, peg monitoring, reserve data, or audit review workflows. The skill should present signed evidence and supporting identifiers rather than making absolute compliance claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-initiated tools can send question text, agent metadata, decision text, or evidence request IDs to FeedOracle services. <br>
-Mitigation: Invoke FeedOracle only for explicit compliance, MiCA, stablecoin, or audit requests; send only the minimum required fields and get explicit consent before audit logging, agent registration, or report generation. <br>
-Risk: Signed compliance evidence can be misread as an absolute legal determination. <br>
-Mitigation: Call the relevant evidence tool before making status statements, present the signed data and identifiers, and let the user make the final decision. <br>
-Risk: Higher-limit API access and signed report generation may require an API key. <br>
-Mitigation: Use the no-key free tier when sufficient, avoid exposing API keys, and only request report generation when the user explicitly asks for it. <br>
+## Use Case:
 
+Developers, agents, and compliance teams use this skill when a user explicitly requests stablecoin MiCA status, issuer due diligence, peg and reserve risk data, or verifiable evidence for audit workflows.
 
-## Reference(s): <br>
-- [FeedOracle Homepage](https://feedoracle.io) <br>
-- [FeedOracle API Docs](https://feedoracle.io/docs) <br>
-- [FeedOracle MCP Server](https://github.com/feedoracle/feedoracle-mcp) <br>
-- [FeedOracle Trust Policy](https://github.com/feedoracle/feedoracle-mcp/blob/main/docs/TRUST_POLICY.md) <br>
-- [FeedOracle JWKS](https://feedoracle.io/.well-known/jwks.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/feedoracle/feedoracle-compliance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and references to signed MCP evidence responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should cite ES256K signature details, pack IDs, and JWKS verification URLs when evidence is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata; artifact frontmatter reports 1.2.2) <br>
+Risk: User questions, token symbols, agent registration details, or audit decisions can be sent to feedoracle.io when the corresponding tool is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for explicit compliance, MiCA, stablecoin, evidence, KYA, audit, or report requests; avoid PII and unrelated conversation context.
+
+Risk: KYA registration and audit logging are retention-oriented workflows.
+
+Mitigation: Use KYA registration and audit logging only when the user intends the remote service to retain that profile or decision record.
+
+Risk: Installer examples using latest package tags can change over time.
+
+Mitigation: Prefer a pinned installer version when available for production or audited deployments.
+
+## Reference(s):
+
+- [FeedOracle Homepage](https://feedoracle.io)
+- [FeedOracle MCP Server](https://feedoracle.io/mcp/)
+- [FeedOracle API Docs](https://feedoracle.io/docs)
+- [FeedOracle MCP Repository](https://github.com/feedoracle/feedoracle-mcp)
+- [FeedOracle Trust Policy](https://github.com/feedoracle/feedoracle-mcp/blob/main/docs/TRUST_POLICY.md)
+- [FeedOracle JWKS](https://feedoracle.io/.well-known/jwks.json)
+- [ClawHub Skill Page](https://clawhub.ai/feedoracle/skills/feedoracle-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, API calls]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and API-backed compliance evidence summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include signed evidence identifiers, ES256K signatures, pack IDs, JWKS URLs, audit trail identifiers, or generated report references when requested by the user.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

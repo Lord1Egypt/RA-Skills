@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "format": "html",
+  "metadata": {
+    "title": "AI辅助ESG管理革新工作坊 · I.D.E.A.智能工作流一日精修",
+    "description": "讲师投屏PPT · 联想Lenovo视觉风格 · 微软雅黑 · 全天课程",
+    "author": ""
+  },
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "playlist": [
+    "01.html",
+    "02.html",
+    "03.html",
+    "05.html",
+    "08.html",
+    "09.html",
+    "11.html",
+    "12.html",
+    "15.html",
+    "21.html",
+    "07-journey-map.html",
+    "49-four-layer-overview.html",
+    "advice-for-newcomers.html",
+    "data-limit-boundary.html",
+    "90-p0-features.html",
+    "91-p1-forms.html",
+    "92-p1-chart-visual.html",
+    "93-p2-sup-sub-geo.html",
+    "94-p2-gradient.html",
+    "95-p2-master-media.html",
+    {
+      "file": "96-archetype-editorial.html",
+      "transition": "fade"
+    },
+    {
+      "file": "97-archetype-divider.html",
+      "transition": "push"
+    },
+    {
+      "file": "98-archetype-statband.html",
+      "transition": "wipe"
+    },
+    {
+      "file": "99-archetype-chart.html",
+      "transition": "cover"
+    },
+    {
+      "file": "100-agenda.html",
+      "transition": "split"
+    },
+    "101-big-statement.html",
+    "102-quote.html",
+    "103-split-7-5.html",
+    "104-comparison.html",
+    "105-timeline.html",
+    "106-table-focus.html",
+    "107-dashboard.html",
+    "110-icon-grid.html",
+    "111-chevron-flow.html",
+    "112-funnel.html",
+    "113-cycle.html",
+    "114-hub-spoke.html",
+    "115-color-band.html",
+    "116-pyramid.html",
+    "117-vs-cards.html",
+    "118-exec-summary.html",
+    "119-issue-tree.html",
+    "120-harvey-matrix.html",
+    "121-waterfall.html",
+    "122-swimlane-gantt.html",
+    "123-scatter-map.html",
+    "124-driver-tree.html",
+    "125-heatmap-matrix.html",
+    "126-scenario.html",
+    "127-market-sizing.html",
+    "128-maturity-ladder.html",
+    "129-value-chain.html",
+    "130-benchmark.html"
+  ]
+}

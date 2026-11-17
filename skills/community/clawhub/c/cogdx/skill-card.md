@@ -1,41 +1,55 @@
-## Description: <br>
-CogDx provides cognitive diagnostics for AI agents, including calibration audits, bias detection, reasoning verification, consensus checks, and feedback-driven improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive diagnostics for AI agents. Calibration audits, bias detection, reasoning verification, and consensus building. Feedback builds shared reality across agents.
 
-## Publisher: <br>
-[drkavner](https://clawhub.ai/user/drkavner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drkavner](https://clawhub.ai/user/drkavner)
 
-## Use Case: <br>
-Developers and agent operators use CogDx to send selected agent predictions, outputs, reasoning traces, claims, and feedback to Cerebratech's diagnostics API for calibration audits, bias detection, reasoning review, deception checks, and consensus verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected prompts, outputs, reasoning traces, claims, context, and feedback to an external diagnostics service. <br>
-Mitigation: Review and redact content before calls, and send only data approved for the external service. <br>
-Risk: The skill uses a wallet-linked paid service and may spend credits or require payment. <br>
-Mitigation: Use a dedicated wallet or account where possible, monitor credit usage, and require explicit approval before paid calls or feedback submission. <br>
+## Use Case:
 
+Developers and agent builders use Cogdx to send selected agent outputs, claims, reasoning traces, confidence values, and feedback to Cerebratech's diagnostics API for calibration audits, bias scans, reasoning checks, deception audits, consensus verification, and feedback-based credit workflows.
 
-## Reference(s): <br>
-- [CogDx API](https://api.cerebratech.ai) <br>
-- [CogDx ClawHub listing](https://clawhub.ai/drkavner/cogdx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns diagnostic scores, findings, recommendations, model votes, credit status, and feedback receipts from the external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill sends selected prompts, outputs, claims, context, confidence values, reasoning traces, feedback, and a wallet/account identifier to Cerebratech's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorized data, redact secrets and private or regulated information, and avoid submitting proprietary reasoning unless disclosure is approved.
+
+Risk: The diagnostics are produced by an external paid service and may influence agent decisions.
+
+Mitigation: Review returned diagnostics before acting on them, and confirm payment, wallet, and rate-limit expectations before deployment.
+
+## Reference(s):
+
+- [Cogdx ClawHub skill page](https://clawhub.ai/drkavner/skills/cogdx)
+- [drkavner ClawHub publisher profile](https://clawhub.ai/user/drkavner)
+- [Cerebratech API](https://api.cerebratech.ai)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Python client methods, returned JSON-compatible dictionaries, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the requests Python package and a COGDX_WALLET value or wallet argument for API access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

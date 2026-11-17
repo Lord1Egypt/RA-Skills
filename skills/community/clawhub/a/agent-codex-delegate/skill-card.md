@@ -1,42 +1,57 @@
-## Description: <br>
-Use when OpenClaw should delegate coding, repository analysis, file edits, test runs, or code review to the local Codex CLI without asking for or embedding an OpenAI API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding, repository analysis, file edits, test runs, and code review tasks to the local Codex CLI using existing Codex CLI authentication rather than embedded API keys.
 
-## Publisher: <br>
-[jlacroix82](https://clawhub.ai/user/jlacroix82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jlacroix82](https://clawhub.ai/user/jlacroix82)
 
-## Use Case: <br>
-Developers and operators use this skill to delegate repository analysis, code changes, test debugging, code review, and refactoring tasks from OpenClaw to a locally authenticated Codex CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate coding tasks to a locally authenticated Codex CLI and may receive sensitive repository content or credentials if the operator includes them. <br>
-Mitigation: Install only when intentional, use explicit invocation wording, and avoid sending secrets, private keys, or production data unless that exact data flow has been approved. <br>
-Risk: Workspace-write or danger-full-access sandbox modes can allow file changes or broader system access. <br>
-Mitigation: Use read-only for analysis, approve workspace-write only for intended edits, and reserve danger-full-access for isolated machines or containers with explicit operator approval. <br>
-Risk: Delegated output may be incorrect or misleading for code review, debugging, or file-change tasks. <br>
-Mitigation: Treat Codex output as another agent's report and verify important claims, diffs, and test results locally before relying on them. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to delegate repository analysis, code changes, test debugging, and code review to a locally authenticated Codex CLI. It is intended for trusted local operator setups where Codex is already installed and signed in.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jlacroix82/agent-codex-delegate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown or plain text, with optional JSONL event logs and output files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates to the local Codex CLI and returns Codex's final answer; optional wrapper flags control sandbox level, working directory, prompt source, JSON event logging, and output file capture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The wrapper can invoke powerful Codex execution modes, including workspace-write and danger-full-access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to read-only for analysis, approve write tasks explicitly, and use danger-full-access only in an isolated environment.
+
+Risk: Caller-provided output and JSON log paths may write outside the intended repository.
+
+Mitigation: Keep all output and log paths inside the target repository and inspect resulting diffs before treating a task as complete.
+
+Risk: Repository contents and supplied context are delegated to the local Codex CLI.
+
+Mitigation: Use the skill only when the local Codex CLI on PATH is trusted and the operator has approved the exact data flow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jlacroix82/skills/agent-codex-delegate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, with optional code blocks and Codex JSONL logs when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a final Markdown response or JSONL event log to caller-provided paths when those options are used.]
+
+## Skill Version(s):
+
+0.1.3 (source: evidence release, SKILL.md frontmatter, clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

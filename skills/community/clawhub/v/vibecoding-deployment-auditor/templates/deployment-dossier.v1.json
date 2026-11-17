@@ -1,0 +1,74 @@
+{
+  "$schema": "https://example.invalid/schemas/deployment-dossier.v1.json",
+  "schemaVersion": "1.0",
+  "analyzer": {
+    "name": "vibecoding-deployment-auditor",
+    "version": "2.2.0",
+    "analysisMode": "static-only"
+  },
+  "source": {
+    "type": "local-static-artifact",
+    "remote": null,
+    "commit": null,
+    "branch": null,
+    "worktreeDirty": null,
+    "localBundleRequired": true
+  },
+  "safeToSubmit": true,
+  "artifact": {
+    "format": "zip",
+    "archiveSha256": "<sha256-of-archive>",
+    "siteManifestSha256": "<sha256-of-artifact-manifest.json>",
+    "bytes": 0,
+    "fileCount": 0,
+    "uncompressedBytes": 0,
+    "siteRoot": "site",
+    "entryFile": "site/index.html",
+    "routingMode": "static-or-preconfigured-spa-fallback",
+    "manifestPath": "artifact-manifest.json"
+  },
+  "topology": {
+    "recommended": "static-artifact",
+    "confidence": "high",
+    "safeToSubmit": true,
+    "reason": "The submitted archive contains only a locally built static site and has no server runtime, same-origin API contract, secret, executable, or deployment instruction."
+  },
+  "services": [
+    {
+      "id": "web",
+      "classification": "frontend-static",
+      "root": "site",
+      "build": null,
+      "artifactDir": "site",
+      "productionStart": null,
+      "status": "served"
+    }
+  ],
+  "contracts": {
+    "clientCalls": []
+  },
+  "runtimeRequirements": {
+    "environmentVariableNames": [],
+    "persistentPaths": [],
+    "externalDependencies": [],
+    "migrations": [],
+    "backgroundJobs": [],
+    "protocolRequirements": []
+  },
+  "verification": [
+    {
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": [200],
+      "expectedContentType": "text/html"
+    }
+  ],
+  "blockers": [],
+  "risks": [],
+  "security": {
+    "containsSecretValues": false,
+    "containsArbitraryServerCommands": false,
+    "containsServerPathsOrPorts": false,
+    "containsPm2NginxDnsDirectives": false
+  }
+}

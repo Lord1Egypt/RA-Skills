@@ -1,42 +1,55 @@
-## Description: <br>
-A conversational writing companion for book authors that tracks manuscript continuity and helps brainstorm, outline, draft, and unblock fiction or nonfiction projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A conversational OpenClaw skill for book authors that combines project organization with creative writing support across fiction and nonfiction projects.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External authors and writing-focused agent users use this skill to organize book projects, maintain continuity, track research and story structure, brainstorm ideas, draft passages, and work through writer's block. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores manuscript continuity data, research notes, character details, and book ideas in a local book-data.json file. <br>
-Mitigation: Review or delete book-data.json when older book ideas, research notes, or character details should not persist or be reused. <br>
-Risk: The skill may activate on broad or casual book-writing phrases. <br>
-Mitigation: Confirm the active project and intent when a writing-related prompt could be casual or ambiguous. <br>
+## Use Case:
 
+External writers and authors use this skill to organize book projects, track characters, plot or argument threads, chapter outlines, research notes, world-building, continuity, and writing progress. It also helps brainstorm ideas, draft passages, outline nonfiction arguments, and work through writer's block.
 
-## Reference(s): <br>
-- [Book Writing Assistant README](artifact/README.md) <br>
-- [Book Writing Assistant release page](https://clawhub.ai/chris-openclaw/book-writing-assistant) <br>
-- [chris-openclaw publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown responses, drafted prose passages, structured outlines, and local JSON project data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local book-data.json file containing manuscript continuity, research notes, characters, plot threads, chapter outlines, and related project details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The local book-data.json record can contain sensitive unpublished manuscript details, research notes, and continuity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local persistence is desired, and review or delete the stored project file according to the writer's privacy needs.
+
+Risk: Drafted prose, continuity flags, and writing suggestions may be incomplete or misaligned with the author's intent.
+
+Mitigation: Treat generated material as editorial assistance and review important manuscript decisions before incorporating them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris/skills/book-writing-assistant)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Conversational Markdown responses with structured project records in local JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local book-data.json project data when the host agent supports skill data persistence.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

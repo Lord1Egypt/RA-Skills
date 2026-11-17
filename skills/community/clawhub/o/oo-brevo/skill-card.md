@@ -1,45 +1,59 @@
-## Description: <br>
-Brevo lets an agent read, create, update, and delete Brevo data through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Brevo account, contact, and contact-list data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent manage Brevo account, contact, contact-list, and folder workflows through an OOMOL-connected Brevo account. It supports read actions directly and requires confirmation before write or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a Brevo account through OOMOL and may require sensitive account connections or scopes. <br>
-Mitigation: Connect only the Brevo account and scopes intended for agent use, and rely on OOMOL server-side credential injection rather than handling raw tokens. <br>
-Risk: Installer commands fetch and execute the oo CLI installer from a remote URL. <br>
-Mitigation: Review the oo CLI installer before running it, and run setup only when the CLI is missing. <br>
-Risk: Write and destructive actions can create, update, delete, or remove Brevo contact and list data. <br>
-Mitigation: Inspect the live action schema before building payloads, confirm write payloads and effects with the user, and require explicit approval for destructive actions. <br>
+## Use Case:
 
+External users can retrieve Brevo account and contact information, organize contacts into lists, and create, update, or remove contact data through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Brevo skill](https://clawhub.ai/oomol/oo-brevo) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Brevo homepage](https://www.brevo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions return JSON data with execution metadata; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Setup can execute unverified remote code and make broader changes to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately using an inspected, verified release; consider OO_SKILLS_SYNC_DISABLED to control automatic skill synchronization.
+
+Risk: The OOMOL-connected service handles the Brevo connection and contact data.
+
+Mitigation: Assess whether OOMOL should handle your Brevo connection and contact data.
+
+Risk: Write and destructive actions can change or remove Brevo data.
+
+Mitigation: Confirm the exact payload and effect before write actions, and confirm the target before destructive actions.
+
+## Reference(s):
+
+- [Brevo API documentation](https://developers.brevo.com/)
+- [oo CLI command documentation](https://github.com/oomol-lab/oo-cli)
+- [CLI controls for automatic skill synchronization](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and structured JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return Brevo data; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

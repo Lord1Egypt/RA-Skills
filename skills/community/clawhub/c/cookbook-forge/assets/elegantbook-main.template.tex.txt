@@ -1,0 +1,100 @@
+% ElegantBook CookBook 主文件
+% 由 lmdx2tex.mjs 自动生成 — 请勿手动编辑
+\documentclass[12pt,a4paper,openany]{elegantbook}
+
+% ==================== 书籍元信息 ====================
+\title{__BOOK_TITLE__}
+\subtitle{__BOOK_SUBTITLE__}
+\author{__BOOK_AUTHOR__}
+\institute{__BOOK_INSTITUTE__}
+\date{\today}
+\version{__BOOK_VERSION__}
+
+% ==================== 数学宏包 ====================
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+
+% ==================== 表格宏包 ====================
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage{needspace}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+
+% ==================== 代码块（listings + tcolorbox）====================
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listingsutf8}
+
+\lstdefinestyle{cookbookcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=none,
+  tabsize=2,
+  extendedchars=true,
+  literate={-}{{-}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+           {ñ}{{\~n}}1 {ü}{{\"u}}1
+}
+
+\newtcblisting{codeblock}[2][]{
+  listing only,
+  listing style=cookbookcode,
+  listing options={
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={-}{{-}}1
+  },
+  title={#2},
+  breakable,
+  enhanced,
+  colback=gray!3,
+  colframe=gray!45,
+  boxrule=0.4pt,
+  arc=2mm,
+  left=1.5mm, right=1.5mm, top=1mm, bottom=1mm,
+  fonttitle=\bfseries\small,
+  #1
+}
+
+% ==================== 超链接 ====================
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  bookmarks=true,
+  bookmarksopen=true
+}
+
+% ==================== 图形 ====================
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+% ==================== 页眉页脚 ====================
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\nouppercase{\leftmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+
+% ==================== 防止孤行寡行 ====================
+\widowpenalty=10000
+\clubpenalty=10000
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+__CHAPTER_INPUTS__
+
+\end{document}

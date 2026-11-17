@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn71q6xfsh4eawp0ta1gdttpbn8669x8",
-  "slug": "xhs-viral-writer",
+  "name": "小红书爆款笔记生成器",
+  "description": "自动生成小红书风格种草笔记，含标题、正文、标签",
   "version": "1.0.0",
-  "publishedAt": 1778073937027
+  "license": "MIT"
 }

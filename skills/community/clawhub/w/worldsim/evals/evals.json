@@ -1,0 +1,89 @@
+{
+  "skill_name": "worldsim",
+  "notes": "输出质量评测集·基线=前一版本快照·运行与判卷方法见同目录 README.md",
+  "evals": [
+    {
+      "id": 1,
+      "name": "创建-启动-常规三轮",
+      "setup": "干净环境：worlds/ 下无同名世界；每个用例独立新会话（无历史上下文）",
+      "prompt": "帮我建一个西部小镇世界，名字叫 eval-west：1870 年代淘金潮背景，镇上有一桩没人敢提的旧命案。建好直接启动，我扮演刚到任的警长。先别推进剧情，描绘完开场就停下等我。",
+      "expected_output": "create_world 脚手架+创作填充 → init-states 物化动态文件 → 启动轮以沉浸描绘收尾并停住（不替用户做任何决策）→ 用户推进后每轮有叙事正文且状态落盘",
+      "assertions": [
+        "worlds/eval-west/ 存在且含 SETTING.md 与 states/ 动态文件",
+        "conflicts.yaml 为合法 YAML 且含 ≥1 条 CT-XX（CONFLICTS_SEED 净化后物化成功）",
+        "启动轮回复以沉浸描绘收尾停住，未代用户推进任何角色决策",
+        "三轮推进后 round-check 通过（exit 0）",
+        "validate exit 0（格式错误=exit 1 硬拦）",
+        "各阶段写入批次首行为 ###STAGE: <阶段名>（抽查 states 落盘结果或执行记录）",
+        "narrative.md 为合法 UTF-8，中文无乱码（场景名等已知关键词可检索到）",
+        "全部状态 yaml 为 LF 行尾（无 CRLF）"
+      ],
+      "human_review": [
+        "叙事文学质量是否达到六层使命的体感标准（冲突压力/角色自主性）"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "导入角色卡并相遇",
+      "setup": "复用用例 1 的世界；准备合成 SillyTavern 角色卡放 evals/files/test_card.json（一律使用合成卡）",
+      "prompt": "把这张角色卡导进 eval-west：evals/files/test_card.json。导入完让她自然出现在镇上，跟我（警长）来一场初次相遇的戏。",
+      "expected_output": "import_card.py 提取字段写临时素材 tmp/{名}.card.json → LLM 评估后综合生成正式 CHAR_{名}.md → CHAR.md 落盘后临时素材已删除 → 该角色经③导演调度单入画 → 相遇戏符合双方立场与认知边界",
+      "assertions": [
+        "characters/CHAR_{名}.md 已生成且 tmp/{名}.card.json 临时素材已删除",
+        "本轮 direction.调度单 含该角色具名条目（CHAR_{名}）",
+        "相遇叙事中该角色行为能在其档案中找到依据（数据忠诚·抽查 1-2 个动作）",
+        "叙事只写警长 POV 可感知内容，未直接泄露对方内心活动（认知边界）"
+      ],
+      "human_review": [
+        "相遇戏是否有戏剧张力而非流水账寒暄"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "跨场景切换轮",
+      "setup": "接续用例 1 的世界（已至少推进 1 轮）",
+      "prompt": "我先去镇上的酒馆看看。（继续推进）",
+      "expected_output": "③导演切场景 → init_scene --from 继承物理锚点（同物理地点时）→ 焦点场景切换 → 叙事在新场景展开",
+      "assertions": [
+        "scenes/ 下出现新场景目录，含 scene_card.md / scene_state.yaml / pending_actions.yaml",
+        "world_state.焦点场景 已指向新场景且场景 INDEX 的 ACTIVE 行同步",
+        "若与原场景同一物理地点：scene_state 物理锚点/道具继承自旧场景（init_scene --from）",
+        "切换轮 round-check 通过（exit 0）"
+      ],
+      "human_review": [
+        "转场是否自然承接上一拍的节奏（③导演回判）"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "存档与读档（可选扩展）",
+      "setup": "接续用例 1 世界，已推进若干轮",
+      "prompt": "先把现在的进度存个档叫 check-point-1。然后我们读档回到之前的进度试试。",
+      "expected_output": "snap save 落盘 → /load 属破坏性操作，执行前向用户显式确认 → load 后状态回退并自动产生 _before_ 备份",
+      "assertions": [
+        "快照目录出现 check-point-1",
+        "对话记录可见 load 执行前的显式用户确认（破坏性操作硬性）",
+        "load 后自动产生 _before_ 备份快照",
+        "回退后 validate exit 0"
+      ],
+      "human_review": [
+        "读档后叙事衔接是否交代清楚时间线回退"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "循环世界偏离捕获（可选扩展）",
+      "setup": "需自备循环世界 fixture（SETTING 声明循环+至少一名带「默认循环时间线」表的角色）；fixture 不入库，本地放置即可",
+      "prompt": "启动这个世界，把时间调到上午十点，告诉我园子里每个角色此刻应该在哪儿。然后让主角故意在餐厅撞坏其中一个人的既定日程。",
+      "expected_output": "in-track 输出各循环角色预设位置 → 撞日程作为事件被④角色特别推演/①戏剧家捕捉为偏离，而非被忽略",
+      "assertions": [
+        "in-track 输出覆盖全部循环角色，时段与 10:00 匹配",
+        "偏离发生后 conflicts 或对应 CHAR_state 出现变化记录（偏离被系统捕获）",
+        "该轮 round-check 通过（exit 0）"
+      ],
+      "human_review": [
+        "循环角色被撞日程后的反应是否符合「角色视为自己的计划·不知来源」的认知边界"
+      ]
+    }
+  ]
+}

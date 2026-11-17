@@ -1,42 +1,58 @@
-## Description: <br>
-Actively parses daily session logs and unstructured memory files to extract entities, temporal data, and relationships into a structured Knowledge Graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Actively parses daily session logs and unstructured memory files to extract entities, temporal data, and relationships into a structured Knowledge Graph.
 
-## Publisher: <br>
-[ElMoorish](https://clawhub.ai/user/ElMoorish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elmoorish](https://clawhub.ai/user/elmoorish)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to parse daily memory logs into persistent entity Markdown files, then consult those files when answering entity or timeline questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private OpenClaw memory logs may be parsed into persistent entity files containing sensitive names, projects, or relationships. <br>
-Mitigation: Install only where that persistence is acceptable and review ~/.openclaw/workspace/memory/entities/ after use. <br>
-Risk: The bundled cron setup can enable daily background processing of workspace memory. <br>
-Mitigation: Avoid running cron_setup.sh unless daily background processing is intended and approved for the workspace. <br>
-Risk: Generated entity files may be incomplete or imprecise because extraction depends on spaCy or a regex fallback. <br>
-Mitigation: Treat generated entity and timeline material as an aid for review, not as an authoritative record. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to synthesize structured entity summaries from daily memory logs and support later entity or timeline queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ElMoorish/temporal-kg-synthesizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status output plus generated Markdown entity files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes entity Markdown files under ~/.openclaw/workspace/memory/entities/ when dated memory logs are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill reads broad OpenClaw daily memory logs that may contain sensitive names, projects, or relationship context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where that memory access is acceptable, and review the memory scope before enabling the skill.
+
+Risk: Generated entity Markdown files can persist derived summaries under ~/.openclaw/workspace/memory/entities/.
+
+Mitigation: Review generated entity files after execution and remove files that expose sensitive people, projects, or timelines.
+
+Risk: The optional cron setup can keep synthesis running as a daily background task.
+
+Mitigation: Run cron_setup.sh only when daily background processing is intended, and audit or remove the OpenClaw cron entry when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elmoorish/skills/temporal-kg-synthesizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/elmoorish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown status text plus generated Markdown entity files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent entity summaries under ~/.openclaw/workspace/memory/entities/.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

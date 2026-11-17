@@ -1,46 +1,60 @@
-## Description: <br>
-Builds a citation index and original-source mapping for analysis drafts, while distinguishing primary and secondary sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds source indexes and original-source mappings for analytical drafts while distinguishing primary and secondary sources.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Researchers, analysts, auditors, and developers use this skill to organize draft source material into reviewable source directories, primary/secondary-source distinctions, citation mappings, missing-source notes, risk notes, and maintenance suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper reads the input file selected by the user, which may contain sensitive drafts or source notes. <br>
-Mitigation: Use dry-run or stdout for sensitive drafts, redact private material before processing, and choose input files deliberately. <br>
-Risk: Generated citation mappings and source distinctions may be incomplete when the input lacks enough source clues. <br>
-Mitigation: Review the missing-source and risk-note sections before relying on the report. <br>
-Risk: Supplying an output path causes the helper to write a report file locally. <br>
-Mitigation: Choose output paths deliberately and prefer stdout when a file artifact is not needed. <br>
+## Use Case:
 
+Developers, analysts, and research workflow users use this skill to turn draft citations, source clues, and notes into a reviewable source directory with primary-versus-secondary distinctions, citation mappings, missing-source notes, risk notes, and maintenance suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/source-trace-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Skill README](artifact/README.md) <br>
-- [Structured output spec](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON from the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a report file when an output path is supplied, or print to stdout/dry-run for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled script includes local audit and pattern-scanning modes beyond the advertised citation-tracing purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected mode and intended input before execution, use deliberate output paths, and run only on files or directories that should be inspected.
+
+Risk: The skill organizes local input and does not verify source facts online.
+
+Mitigation: Treat missing or unverifiable citations as review items and confirm important claims against primary sources before publication or formal use.
+
+Risk: Citation drafts may include sensitive or personal material from the user's input.
+
+Mitigation: Remove or redact sensitive material before processing and avoid running directory scans on broader folders than necessary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/source-trace-builder)
+- [README.md](artifact/README.md)
+- [resources/spec.json](artifact/resources/spec.json)
+- [resources/template.md](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report or JSON payload from the local helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a report to an explicit output path; supports dry-run and local input only.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

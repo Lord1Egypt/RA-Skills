@@ -1,161 +1,230 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
-const token = require("../utils/token");
-const log = require("../utils/log");
 const search = require("../api/video");
+const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
+const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
-function parseArgs(args) {
-  const result = {
-    keyword: "",
-    limit: 10,
-    helpRequested: false,
-  };
-
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === "--keyword" || arg === "-k") {
-      result.keyword = args[i + 1] || "";
-      i++;
-    } else if (arg === "--limit" || arg === "-l") {
-      result.limit = Number(args[i + 1]) || 10;
-      i++;
-    } else if (arg === "--help" || arg === "-h") {
-      printHelp();
-      result.helpRequested = true;
-    } else if (!arg.startsWith("--") && !result.keyword) {
-      result.keyword = arg;
-    }
-  }
-
-  return result;
-}
+const SCHEMA = {
+  flags: {
+    "--keyword": {
+      alias: "-k",
+      key: "keyword",
+      type: "string",
+      required: true,
+      desc: "搜索关键词",
+    },
+    "--sort": {
+      alias: "-s",
+      key: "sort",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "排序, 0:综合(默认), 1:最新, 2:最热",
+    },
+    "--duration": {
+      alias: "-d",
+      key: "duration",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "视频时长, 0:不限(默认), 1:5分钟以下, 2:5-20分钟, 3:20分钟以上",
+    },
+    "--limit": {
+      alias: "-l",
+      key: "limit",
+      type: "number",
+      default: 10,
+      transform: parseDecimalInteger,
+      desc: "搜索数量, 1-10000（包月 Token 实际最多 20）",
+    },
+  },
+  positionalKey: "keyword",
+};
 
 function printHelp() {
-  console.log(`
-用法: node scripts/wechat/video-cli.js <关键词> [选项]
-
-选项:
-  --keyword \t<关键词> \t搜索关键词
-  --limit \t<数量> \t搜索数量 (默认 10, 最大 100000)
-  --help \t显示帮助信息
-
-示例1: node scripts/wechat/video-cli.js AI
-示例2: node scripts/wechat/video-cli.js "AI 模型"
-示例3: node scripts/wechat/video-cli.js --keyword AI --limit 10
-示例4: node scripts/wechat/video-cli.js --keyword "AI 模型" --limit 20
-
-注意: 
-  - 关键词建议 2-50 个汉字，避免特殊符号
-`);
+  process.stderr.write(
+    buildHelp(SCHEMA, "node scripts/wechat/video-cli.js <关键词> [选项]", [
+      'node scripts/wechat/video-cli.js --keyword "AI"',
+      'node scripts/wechat/video-cli.js --keyword "AI 模型"',
+      "node scripts/wechat/video-cli.js --keyword AI --sort 1 --duration 2 --limit 10",
+      'node scripts/wechat/video-cli.js -k "AI 模型" -s 2 -d 1 -l 20',
+    ]) +
+      "\n\n注意:\n" +
+      "  - 关键词建议 2-50 个字符，不能是链接, 不含 < > \" ' &\n" +
+      "  - 排序、时长、数量若不在允许范围内，命令会直接失败，不会改成默认值后继续搜索\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 20，超限返回 PLAN_LIMIT\n" +
+      "  - 关键词以 - 开头时写成 --keyword=-AI，或在 -- 后面写位置参数",
+  );
 }
 
-/**
- * 主函数 - 视频搜索任务入口
- * @description 解析命令行参数，执行搜索任务，输出结果并保存日志
- */
 async function main() {
   const startTime = Date.now();
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
+    emitError("video", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
-  const parsedArgs = parseArgs(args);
-  let { keyword, limit, helpRequested } = parsedArgs;
-
-  if (helpRequested) return;
-  if (!keyword) {
-    utils.printError(`未提供关键词`);
+  let parsed;
+  try {
+    parsed = parseArgs(args, SCHEMA);
+  } catch (error) {
+    utils.printError(`参数解析错误: ${error.message}`);
+    printHelp();
+    emitError(
+      "video",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
+  }
+  if (parsed._help) {
     printHelp();
     return;
   }
+  let { keyword, sort, duration, limit } = parsed;
 
   utils.printBanner();
-  utils.printInfo(`原始关键词: ${keyword}`);
-  keyword = validator.cleanKeyword(keyword);
-  const isRight = validator.isKeywordValid(keyword);
-  if (!isRight) {
+  const keywordRaw = keyword;
+  utils.printInfo(`原始关键词: ${keywordRaw}`);
+  keyword = validator.normalizeKeyword(keyword);
+  if (!validator.isKeywordValid(keyword)) {
+    emitError(
+      "video",
+      "INVALID_KEYWORD",
+      "关键词不合法: 需 2-50 个字符, 不能是链接, 不含 < > \" ' & 等特殊符号",
+      1,
+      startTime,
+      {
+        command: "video",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        duration: duration,
+        limit: limit,
+      },
+    );
     return;
   }
   utils.printInfo(`清洗后关键词: ${keyword}`);
-  limit = Number(limit);
-  if (limit < 1 || limit > 100000) {
-    utils.printError("获取视频数量必须在1-100000之间");
-    limit = 10;
+  try {
+    [sort, duration, limit] = validator.assertVideoOptions(
+      sort,
+      duration,
+      limit,
+    );
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("video", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "video",
+      keyword_raw: keywordRaw,
+      keyword: keyword,
+      sort: sort,
+      duration: duration,
+      limit: limit,
+    });
+    return;
   }
+  utils.printInfo(`排序: ${sort}, 时长: ${duration}, 数量: ${limit}`);
 
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
-  if (tokenValue === "") return;
+  if (tokenValue === "") {
+    emitError(
+      "video",
+      "AUTH_REQUIRED",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
+      3,
+      startTime,
+      {
+        command: "video",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        duration: duration,
+        limit: limit,
+      },
+    );
+    return;
+  }
+
   let searchTask = null;
   try {
-    const status = await search.createSearchTask(tokenValue, keyword, limit);
-    if (!status || status.errcode !== 0) {
-      throw new Error(
-        `视频搜索任务创建失败时, 遇到未知错误, 请反馈给开发者 ${status} - ${Date.now()}`,
-      );
-    }
+    await search.createSearchTask(
+      tokenValue,
+      keyword,
+      sort,
+      duration,
+      limit,
+    );
     utils.printSuccess(`视频搜索任务创建成功, 正在搜索中...`);
 
-    searchTask = await search.getSearchTask(tokenValue, keyword, limit);
+    searchTask = await search.getSearchTask(
+      tokenValue,
+      keyword,
+      sort,
+      duration,
+      limit,
+    );
   } catch (error) {
-    utils.printError(`视频搜索任务失败: ${error.message}`);
-    const errorOutput = {
-      status: "error",
-      keyword: keyword,
-      message: error.message,
-      error_code: error.code || "UNKNOWN",
-      limit: limit,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(errorOutput, null, 2));
+    utils.printError(`视频搜索失败: ${error.message}`);
+    emitError(
+      "video",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      {
+        command: "video",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        duration: duration,
+        limit: limit,
+      },
+    );
     return;
   }
 
-  if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
-    utils.printError(`视频搜索任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      keyword: keyword,
-      message: "没有找到匹配的视频内容",
-      error_code: "NO_MATCH",
-      limit: limit,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(emptyOutput, null, 2));
-    return;
-  }
-
-  // 输出搜索结果
-  const finalOutput = {
-    status: "success",
+  const searchRequest = {
+    command: "video",
+    keyword_raw: keywordRaw,
     keyword: keyword,
-    message: "视频搜索任务完成",
+    sort: sort,
+    duration: duration,
     limit: limit,
-    total: searchTask.length,
-    timestamp: new Date().toLocaleString(),
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: searchTask,
   };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(`视频搜索任务完成, 共返回 ${finalOutput.total} 条结果`);
+  if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
+    utils.printInfo("没有找到匹配的视频内容");
+    emitEmpty("没有找到匹配的视频内容", startTime, searchRequest);
+    return;
+  }
 
-  await log.taskWrite(
-    `${startTime}_${keyword}_video.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "视频搜索任务完成",
+    startTime,
+    searchRequest,
+    searchTask,
+    searchTask.length,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${sort}_${duration}_video.json`,
+    stderrMessage: `视频搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("video", error);
 });

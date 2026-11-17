@@ -1,42 +1,57 @@
-## Description: <br>
-Automates Vietnamese Telegram and chat interactions for advertising reports, alerts, proposals, competitor checks, and campaign planning without waiting for extra clarification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Vietnamese ads-management interactions in Telegram and chat by routing reports, alerts, proposals, competitor checks, and daily planning for a boss user.
 
-## Publisher: <br>
-[Phap1106](https://clawhub.ai/user/Phap1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phap1106](https://clawhub.ai/user/phap1106)
 
-## Use Case: <br>
-Advertising operators use this skill to route boss requests in Telegram or chat into immediate reports, alerts, proposal handling, competitor research, and campaign recommendations. It is tailored for Vietnamese communication style and ad-management workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; configured for Vietnam time and Vietnamese-language operator workflows. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic authority over sensitive advertising workflows could lead to unintended campaign changes or misleading operational guidance. <br>
-Mitigation: Keep safe mode enabled by default, require explicit confirmation for approvals, publishing, and live Meta writes, and review proposals before execution. <br>
-Risk: Advertising credentials and access tokens could be exposed or granted more permission than necessary. <br>
-Mitigation: Use tightly scoped Meta credentials in a controlled setup, verify boss identity, and do not paste access tokens into chat. <br>
-Risk: The zero-question workflow may act on ambiguous messages too quickly in high-impact situations. <br>
-Mitigation: Limit direct actions to reporting and recommendations, and require explicit confirmation before budget changes, campaign pauses, publishing, or saved instructions. <br>
+## Use Case:
 
+External ads operators and business users can use this skill to make an agent respond to boss messages with immediate advertising reports, alerts, budget proposals, competitor checks, and next actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Phap1106/ads-claw3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Concise Vietnamese chat responses, structured reports, alerts, recommendations, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tool-routing instructions, proposal status handling, campaign metrics, and next-action recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent toward broad automatic authority over sensitive advertising workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to explicit ads-management commands and require confirmation before approvals, writes, publishing, or Meta setting changes.
+
+Risk: Weak scoping and free-form saved instructions can cause unintended persistent behavior.
+
+Mitigation: Review stored instructions, constrain them to the intended ad account and workflow, and remove stale or ambiguous instructions before deployment.
+
+Risk: Credential setup guidance could expose access tokens if handled in chat or skill text.
+
+Mitigation: Move access-token setup to a secure settings flow and avoid storing credentials in free-form messages or skill files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phap1106/skills/ads-claw3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text chat responses with inline commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Vietnamese by default, with concise reports, alerts, proposal recommendations, and concrete next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

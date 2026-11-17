@@ -1,41 +1,50 @@
-## Description: <br>
-Use when user input is vague, underspecified, lacks boundaries or acceptance criteria, or would benefit from being reframed into a more executable prompt before work begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user input is vague, underspecified, lacks boundaries or acceptance criteria, or would benefit from being reframed into a more executable prompt before work begins.
 
-## Publisher: <br>
-[lq434239](https://clawhub.ai/user/lq434239) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lq434239](https://clawhub.ai/user/lq434239)
 
-## Use Case: <br>
-Developers, content authors, and agent users use this skill to turn vague or underspecified requests into clearer prompts with explicit goals, constraints, output format, and acceptance criteria before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rewrite ambiguous requests in a way that changes user intent. <br>
-Mitigation: Keep the default confirmation flow for requests that could change files, spend money, publish content, or affect accounts. <br>
-Risk: Casual phrases such as "just do it" may be treated as permission to use the rewritten prompt immediately. <br>
-Mitigation: Use auto-apply only when the user clearly authorizes skipping confirmation. <br>
+## Use Case:
 
+Developers and agents use this skill to turn vague or underspecified requests into clear, actionable, verifiable prompts before execution. It is useful when a task needs explicit goals, boundaries, output format, or acceptance criteria.
 
-## Reference(s): <br>
-- [Prompt Refinement Patterns](references/prompt-patterns.md) <br>
-- [Prompt Refiner on ClawHub](https://clawhub.ai/lq434239/prompt-refiner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt refinement with optional confirmation choice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a refined prompt and a recommendation to ask the user to choose between the original and refined prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Auto-applying a rewritten prompt could proceed with wording the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit instructions such as 'show me the refined prompt first' or 'do not refine this' when the confirmation flow matters.
+
+## Reference(s):
+
+- [Prompt Refinement Patterns](references/prompt-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/lq434239/skills/prompt-refiner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text prompt refinement with optional confirmation choice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user to choose between the refined and original prompt before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Checks whether domain names are available for registration, supporting common TLDs and cross-verifying WHOIS and DNS records for users who need domain availability, unregistered domain, and naming checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check whether domain names are available for registration using WHOIS and DNS cross-verification.
 
-## Publisher: <br>
-[blueyi](https://clawhub.ai/user/blueyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueyi](https://clawhub.ai/user/blueyi)
 
-## Use Case: <br>
-Developers, founders, and agents use this skill to check domain availability and filter candidate names during naming or branding work. It runs WHOIS and DNS checks and returns availability-style verdicts that should be verified with a registrar before purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain searches can disclose confidential brand, product, or launch names to WHOIS and DNS services. <br>
-Mitigation: Avoid submitting confidential names unless that disclosure is acceptable. <br>
-Risk: A domain that appears available may still be premium-priced or unavailable through a registrar. <br>
-Mitigation: Verify final availability and purchase price with a registrar before buying or recommending a domain. <br>
+## Use Case:
 
+Developers, operators, and naming teams use this skill to check candidate domain names and summarize whether they appear available, taken, likely taken, or unknown before manual registrar confirmation.
 
-## Reference(s): <br>
-- [Domain Checker on ClawHub](https://clawhub.ai/blueyi/domain-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with command examples and plain-text domain verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Domain checks contact WHOIS and DNS services and may return AVAILABLE, TAKEN, LIKELY TAKEN, or UNKNOWN verdicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Risk: WHOIS and DNS checks make outbound queries that may disclose candidate domains to external infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid checking confidential names on unapproved networks and use trusted domain inputs where possible.
+
+Risk: Malformed or machine-supplied domain strings can affect displayed terminal output.
+
+Mitigation: Review or normalize domain inputs before running checks and treat generated output as informational.
+
+Risk: Availability signals may not reflect premium pricing, aftermarket listings, or final registrar purchase status.
+
+Mitigation: Confirm availability and pricing with a registrar before acting on a result.
+
+## Reference(s):
+
+- [Domain Checker ClawHub release page](https://clawhub.ai/blueyi/skills/domain-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with command examples and domain availability verdicts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are advisory and should be confirmed with a registrar before purchase decisions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

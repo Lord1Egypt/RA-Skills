@@ -1,45 +1,60 @@
-## Description: <br>
-Write compelling technical articles and blog posts for developer audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write compelling technical articles and blog posts for developer audiences, covering idea sharpening, hook and title generation, article structure, drafting, editing, image suggestions, and title finalization.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to turn technical topics into structured developer-facing articles, including intake, title exploration, hooks, article structure, full drafts, CTAs, editing guidance, and image suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may introduce conversion goals, CTAs, or marketing framing into otherwise educational technical articles. <br>
-Mitigation: Choose the no-conversion path or explicitly ask the agent to skip CTA and marketing-framing steps when plain technical drafting is desired. <br>
-Risk: The workflow may delegate hook, CTA, or humanizing work to related skills, which can change tone or emphasis. <br>
-Mitigation: Review delegated sections before publication and confirm that the final article still matches the intended technical substance and audience. <br>
-Risk: Generated technical prose may contain inaccurate or unsupported claims if the user's inputs are incomplete. <br>
-Mitigation: Fact-check technical claims, code examples, benchmarks, and external references before publishing. <br>
+## Use Case:
 
+Developers, technical writers, and developer advocates use this skill to plan, draft, and refine technical articles for developer audiences. It guides intake, article positioning, titles, hooks, structure, body drafting, calls to action, humanization, image suggestions, and final title selection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/technical-article-writer) <br>
-- [Project Homepage](https://github.com/samber/cc-skills) <br>
-- [Article Structures Reference](references/article-structures.md) <br>
-- [Hooks and Titles Reference](references/hooks-and-titles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown article drafts, outlines, title lists, editing notes, image suggestions, and optional code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CTA recommendations and image prompt suggestions when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and frontmatter) <br>
+Risk: The workflow may ask detailed intake questions about the user's article goals, audience, thesis, and conversion objective.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only article-planning details appropriate for the writing task and avoid providing confidential product, customer, or unreleased roadmap information unless approved.
+
+Risk: The skill may use optional web lookup for current Midjourney prompt syntax.
+
+Mitigation: Review any web-derived prompt guidance before use and avoid placing private article details into external prompt-generation services.
+
+Risk: The workflow can delegate hook, CTA, or humanization steps to other installed skills.
+
+Mitigation: Review those helper skills separately before relying on delegated output in a production publishing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/technical-article-writer)
+- [Publisher homepage](https://github.com/samber/cc-skills)
+- [Article Structures Reference](references/article-structures.md)
+- [Hooks and Titles Reference](references/hooks-and-titles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown article drafts, outlines, title options, CTA guidance, image suggestions, and revision notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask detailed intake questions, optionally use web lookup for current Midjourney prompt syntax, and delegate hook, CTA, or humanization work to other installed skills when available.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence, target metadata, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

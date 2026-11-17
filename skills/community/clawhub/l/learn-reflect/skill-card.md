@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent capture lessons, structured retrospectives, and plan logs after non-trivial work, errors, unexpected discoveries, or user requests to record what was learned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent capture lessons from work sessions, analyze root causes, and record durable process improvements after errors, discoveries, or retrospective requests.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn completed work, errors, and trial-and-error sessions into reusable lessons, prevention steps, and plan logs that reduce future drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create durable lesson or plan notes about user work without enough consent, scoping, or redaction guidance. <br>
-Mitigation: Require explicit confirmation before creating files or memory entries, let the user choose the storage location, and avoid saving secrets, credentials, private paths, customer data, or raw command output. <br>
-Risk: Suggested code, CI, tooling, or process changes may be incorrect or unsuitable for a project. <br>
-Mitigation: Treat proposed changes as reviewable recommendations and apply normal code, security, and operational review before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve lessons from non-trivial sessions, classify facts versus assumptions, and turn recurring failures into stronger notes, playbooks, checks, or code changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/learn-reflect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown lesson entries, plan logs, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose durable prevention changes such as code, checks, directives, or notes for normal review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server evidence) <br>
+Risk: The skill may persist session details, lessons, or plan logs that contain private data or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each saved entry, keep logs in a known project folder, and review or redact sensitive content before writing durable records.
+
+Risk: The skill encourages changes to code, tools, directives, or documentation as part of annealing.
+
+Mitigation: Treat proposed edits as reviewable changes, require user approval before implementation, and verify changes with tests or checks before relying on them.
+
+Risk: Old plan logs or lessons may become stale and could mislead future work.
+
+Mitigation: Treat historical logs as untrusted notes, prefer current evidence, and date entries so age and relevance are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futurizerush/skills/learn-reflect)
+- [Publisher profile](https://clawhub.ai/user/futurizerush)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured lesson and plan-log templates, plus proposed edits or commands when annealing requires implementation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce durable notes, plan logs, directive updates, checks, scripts, or code changes when the user approves those actions.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

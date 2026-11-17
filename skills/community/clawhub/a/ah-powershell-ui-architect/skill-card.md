@@ -1,39 +1,49 @@
-## Description: <br>
-PowerShell UI Architect helps design desktop and terminal interfaces for PowerShell and .NET automation using WinForms, WPF, TUIs, and Metro-style frameworks such as MahApps.Metro and Elysium. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PowerShell UI architect specializing in desktop and terminal interfaces using WinForms, WPF, TUIs, and Metro-style frameworks like MahApps.Metro and Elysium.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and IT automation engineers use this skill to design maintainable PowerShell interfaces for operational tools, including WinForms utilities, WPF or Metro-style dashboards, and terminal menus. It helps separate UI code from business logic while planning validation, progress handling, theming, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PowerShell UI code may wrap administrative, Active Directory, Azure, Microsoft 365, or infrastructure actions. <br>
-Mitigation: Review generated code before running it, test in a non-production environment, and confirm that the wrapped actions enforce expected permissions and safeguards. <br>
-Risk: Instructional UI guidance could be applied to tools that perform long-running or partially applied operations. <br>
-Mitigation: Include cancellation paths, progress handling, error handling, and rollback or recovery behavior when implementing the generated design. <br>
+## Use Case:
 
+Developers, IT operations engineers, and automation maintainers use this skill to design maintainable PowerShell-based graphical or terminal interfaces over existing automation logic.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with possible PowerShell, XAML, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; review generated PowerShell before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated PowerShell UI code may trigger infrastructure or account-management actions through the automation it exposes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI code and the underlying automation workflow before deployment, especially for privileged operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-powershell-ui-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PowerShell code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance-only agent responses; review generated PowerShell UI code before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

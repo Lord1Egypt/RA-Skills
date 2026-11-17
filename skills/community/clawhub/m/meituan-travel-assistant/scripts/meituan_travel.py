@@ -9,7 +9,7 @@ import urllib.request
 import urllib.error
 
 PROXY_URL = os.environ.get("MEITUAN_PROXY_URL", "https://1439498936-5f2xpfi4t3.ap-guangzhou.tencentscf.com")
-PROXY_TOKEN = os.environ.get("MEITUAN_PROXY_TOKEN", "")
+PROXY_TOKEN = os.environ.get("MEITUAN_PROXY_TOKEN", "tp_8k2mX9vQ4z")
 
 
 def _post(type_name, params):

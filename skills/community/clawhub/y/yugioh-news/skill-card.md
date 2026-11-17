@@ -1,39 +1,49 @@
-## Description: <br>
-Summarizes the previous day's Japanese Yu-Gi-Oh news in Chinese and can be scheduled as a daily Beijing-time OpenClaw cron task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps create a daily Beijing-time OpenClaw task that searches and summarizes the previous day's Yu-Gi-Oh! Japanese news in Chinese.
 
-## Publisher: <br>
-[jiangrongyong](https://clawhub.ai/user/jiangrongyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangrongyong](https://clawhub.ai/user/jiangrongyong)
 
-## Use Case: <br>
-Yu-Gi-Oh players, collectors, content creators, and community maintainers can use this skill to receive a daily Chinese summary of Japanese Yu-Gi-Oh card, rules, event, and product news. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scheduled task can post recurring Yu-Gi-Oh news summaries into the current conversation. <br>
-Mitigation: Install it only when that daily 10:00 Beijing-time behavior is desired, and keep the OpenClaw cron job easy to list, change, or remove. <br>
-Risk: The provided cron prompt contains hardcoded 2026 date wording that can become stale after 2026. <br>
-Mitigation: Update the prompt's year wording before using the skill in later years. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangrongyong/yugioh-news) <br>
+## Use Case:
 
+OpenClaw users who follow Yu-Gi-Oh! Japanese news use this skill to schedule a daily summary of prior-day card reveals, rules updates, tournament information, and product release news. The scheduled task posts a concise Chinese summary to the current conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese news summary with optional shell command guidance for cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for a daily 10:00 Asia/Shanghai schedule; summaries depend on web search results available at runtime.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates an indefinite daily automated task that posts to the current conversation without documented limits or removal steps.
+
+Mitigation: Before enabling it, confirm which account or profile the cron job runs under, how to list and remove the job, and whether the schedule should expire or require manual approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiangrongyong/skills/yugioh-news)
+- [Publisher Profile](https://clawhub.ai/user/jiangrongyong)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and scheduled prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese news summaries in the current conversation when the scheduled task runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

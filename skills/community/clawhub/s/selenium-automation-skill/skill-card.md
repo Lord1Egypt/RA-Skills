@@ -1,42 +1,57 @@
-## Description: <br>
-Automate browser tasks using Selenium, including form filling, web scraping, UI testing, button clicks, alert handling, and screenshot capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate browser tasks using Selenium, including form filling, web scraping, UI testing, button clicks, alert handling, and capturing screenshots.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to create or run Selenium workflows for browser interaction, data extraction, form submission, UI checks, and screenshot capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive form values may be exposed through command-line arguments, logs, or screenshots. <br>
-Mitigation: Avoid passing passwords or private form values through command-line arguments, redact logs, and disable default screenshots when handling sensitive data. <br>
-Risk: Automated form submission or work-record changes may occur with too little user control. <br>
-Mitigation: Review target scripts before use on real accounts and add explicit confirmation before any submit or record-changing action. <br>
-Risk: Running arbitrary sites with the browser sandbox disabled can increase exposure to malicious web content. <br>
-Mitigation: Use trusted targets, keep browser sandboxing enabled where possible, and avoid running arbitrary sites with sandbox-disabling options. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to drive Selenium-based browser workflows for form submission, data extraction, UI checks, navigation, alert handling, and screenshot capture.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/panchenbo/selenium-automation-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; scripts may also produce CSV, JSON, and screenshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser automation may interact with live websites and local browser drivers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can submit forms or time entries and may act on unintended pages or accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against approved sites with non-sensitive test accounts unless the target workflow has been reviewed.
+
+Risk: Form inputs, scraped data, logs, and screenshots may expose credentials or confidential information.
+
+Mitigation: Avoid passing real passwords or confidential data on the command line, inspect generated files before sharing, and run in isolated workspaces.
+
+Risk: Browser drivers and dependencies are installed at runtime and may vary across environments.
+
+Mitigation: Prefer pinned dependencies and preapproved browser drivers.
+
+## Reference(s):
+
+- [Selenium Automation Skill](https://clawhub.ai/panchenbo/skills/selenium-automation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create scraped output files and screenshots when the bundled automation scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

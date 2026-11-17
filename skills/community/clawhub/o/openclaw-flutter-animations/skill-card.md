@@ -1,37 +1,52 @@
-## Description: <br>
-Guides agents through choosing and implementing smooth Flutter animations, including implicit, explicit, Hero, staggered, and physics-based patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating smooth Flutter animations with implicit, explicit, Hero, staggered, and physics-based patterns.
 
-## Publisher: <br>
-[ThomasChangX](https://clawhub.ai/user/ThomasChangX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thomaschangx](https://clawhub.ai/user/thomaschangx)
 
-## Use Case: <br>
-Developers and agents use this skill to select an appropriate Flutter animation approach and produce Dart examples for implicit animations, explicit controllers, Hero transitions, staggered effects, and physics-based motion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has a mildly broad auto-load description, so it may activate for Flutter animation requests where its examples still need project-specific review. <br>
-Mitigation: Use it for Flutter animation guidance, then review generated Dart code against the app's Flutter version, performance goals, accessibility settings, and existing project conventions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ThomasChangX/openclaw-flutter-animations) <br>
+## Use Case:
 
+Developers and engineers use this skill to choose appropriate Flutter animation approaches and produce example Dart code for common animation patterns, transitions, and performance-conscious implementations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Dart code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Flutter SDK availability when applying or testing generated examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Flutter animation examples may need adaptation before use in a specific app architecture or widget tree.
+
+Mitigation: Review the generated Dart code, run Flutter analysis and tests, and validate animation behavior on target devices before release.
+
+Risk: The skill depends on the local Flutter SDK being available for project validation.
+
+Mitigation: Confirm Flutter is installed and use standard Flutter tooling to analyze, build, and test any code produced from the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomaschangx/skills/openclaw-flutter-animations)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with Dart and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces documentation-style guidance and examples; it does not execute code on behalf of the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

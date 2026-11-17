@@ -1,40 +1,54 @@
-## Description: <br>
-Gossip protocol for eventually-consistent shared state propagation across swarms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gossip protocol for eventually-consistent shared state propagation across swarms.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to propagate eventually consistent shared state across Pilot swarms by sending updates to random peer subsets and merging received state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gossiped agent state can spread to peers and peer state can be accepted without clear trust or validation safeguards. <br>
-Mitigation: Use only with trusted Pilot swarms, add peer authentication and payload validation, and never include secrets or private operational data in shared state. <br>
-Risk: Unbounded gossip fanout, rounds, or payload sizes can amplify incorrect state or overload participants. <br>
-Mitigation: Keep fanout and rounds bounded, enforce payload size limits, and define conflict or rollback rules before relying on the state for important workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft shell-based gossip workflows for eventually consistent state sharing across Pilot Protocol swarms.
 
-## Reference(s): <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, shuf, base64, and a running Pilot daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Illustrative shell snippets may be unsafe if copied directly into an operational swarm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build JSON with a proper encoder such as jq, validate message schemas and versions, and review scripts before deployment.
+
+Risk: Unauthenticated peers or undefined conflict handling can corrupt shared swarm state.
+
+Mitigation: Authenticate peers, define conflict-resolution rules, and test merge behavior before relying on the skill for important state.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-gossip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces illustrative Pilot Protocol gossip command patterns that should be adapted and validated before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-Byted Las Asr Pro helps agents transcribe audio and video through Volcengine LAS, with optional diarization, language detection, emotion detection, gender detection, and async batch polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byted Las Asr Pro helps agents use Volcengine LAS to transcribe audio or video files, with optional subtitles, speaker-separated utterances, language detection, and emotion or gender metadata through an asynchronous submit-and-poll workflow.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to submit audio or video transcription jobs to Volcengine LAS, estimate cost before execution, poll asynchronous jobs, and return transcripts, utterances, and recognition metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive LAS credentials and may process private media, transcripts, presigned URLs, logs, and result files. <br>
-Mitigation: Use least-privilege credentials, avoid pasting long-lived secrets into chat, and treat all generated previews, links, logs, and output files as sensitive. <br>
-Risk: Initialization can update or create a local virtual environment from a Volcengine-hosted SDK path. <br>
-Mitigation: Install only when the Volcengine SDK download path is trusted and review environment changes before use. <br>
-Risk: Detached background polling can continue after submission and may be difficult to monitor in some agent runtimes. <br>
-Mitigation: Use background polling only in environments where the process can be monitored and stopped; otherwise return the task ID and poll explicitly later. <br>
-Risk: Submitting transcription jobs can incur usage cost. <br>
-Mitigation: Estimate price before upload or submission and require explicit user confirmation before starting a job. <br>
+## Use Case:
 
+Developers and external users use this skill to submit media to Volcengine LAS for speech-to-text transcription, diarized utterance extraction, subtitle or caption preparation, and optional speech metadata analysis. The workflow also guides agents through credential checks, local media validation, price estimation, task submission, polling, and result presentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-las-asr-pro) <br>
-- [las_asr_pro API Reference](references/api.md) <br>
-- [Pricing Reference](references/prices.md) <br>
-- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808) <br>
-- [Volcengine LAS SDK Manifest](https://las-ai-cn-beijing-online.tos-cn-beijing.volces.com/operator_cards_serving/public/skills/sdk/manifest.json) <br>
+### Deployment Geography for Use:
 
+China regions supported by Volcengine LAS: cn-beijing and cn-shanghai
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON request templates; generated artifacts may include result JSON, transcript text, utterance JSON, and utterance CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LAS credentials and explicit user confirmation of estimated cost before submitting transcription jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically install or update the Volcengine-hosted SDK from a remote URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the SDK source; prefer a release that pins and verifies the SDK package before use.
+
+Risk: Audio, transcripts, and task metadata are uploaded to or retrieved from the provider service using local credentials.
+
+Mitigation: Use only approved recordings, protect LAS_API_KEY and related Volcengine credentials, and avoid storing credentials in shared transcripts or logs.
+
+Risk: Detached background polling can continue with credential access after the initiating interaction ends.
+
+Mitigation: Prefer managed, cancellable polling where available and monitor or terminate background polling jobs when no longer needed.
+
+Risk: Transcription jobs can incur provider billing and the selected rate may depend on service configuration or request parameters.
+
+Mitigation: Estimate cost from media duration and pricing references, disclose that the estimate may differ from the provider bill, and require user confirmation before task submission.
+
+## Reference(s):
+
+- [las_asr_pro API reference](references/api.md)
+- [Volcengine LAS pricing reference](references/prices.md)
+- [Volcengine LAS pricing documentation](https://www.volcengine.com/docs/6492/1544808)
+- [ClawHub skill listing](https://clawhub.ai/volcengine-skills/skills/byted-las-asr-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request templates, transcript text, result JSON, and optional utterance CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local output directories containing result.json, transcript.txt, utterances.json, utterances.csv, poll logs, and completion status files.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

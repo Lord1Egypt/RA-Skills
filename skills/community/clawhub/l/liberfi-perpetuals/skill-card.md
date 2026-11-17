@@ -1,44 +1,59 @@
-## Description: <br>
-Query and trade perpetual futures through LiberFi's unified perpetuals API for Hyperliquid-backed market data, account reads, and signed order, cancel, and deposit flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query perpetual futures market data, account positions, open orders, fills, and prepare signed order, cancel, and deposit flows through LiberFi's CLI and API.
 
-## Publisher: <br>
-[bombmod](https://clawhub.ai/user/bombmod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombmod](https://clawhub.ai/user/bombmod)
 
-## Use Case: <br>
-External users and agents use this skill to inspect perpetual futures markets, read authenticated LiberFi account data, prepare signed trading actions, and fund Hyperliquid perpetual accounts from Solana through LiberFi CLI flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent account access can expose private trading data or sensitive wallet-linked account reads. <br>
-Mitigation: Verify the LiberFi account and wallet before account reads, and know how to revoke the agent login. <br>
-Risk: Deposits, order submissions, and cancellations can move funds or alter live trading positions. <br>
-Mitigation: Require explicit confirmation of the amount, recipient, market, side, size, fees, and signed action before any submit or deposit command. <br>
-Risk: The skill may install and rely on a global LiberFi CLI. <br>
-Mitigation: Install only if the publisher and CLI are trusted, or verify and install the CLI manually before using the skill. <br>
+## Use Case:
 
+External users and developers use this skill to inspect LiberFi perpetuals market data and account-specific positions, orders, and fills. It also guides human-confirmed order, cancel, and SOL deposit workflows for Hyperliquid-backed perpetuals.
 
-## Reference(s): <br>
-- [Perp Deposit Flow](reference/deposit-flow.md) <br>
-- [LiberFi Homepage](https://liberfi.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bombmod/liberfi-perpetuals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON-oriented result handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before order submission, cancellation submission, or deposit placement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact metadata.version is 0.1.2) <br>
+Risk: Silent global CLI installation can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a reviewed, pinned version of @liberfi.io/cli from a trusted source; do not allow automatic global installation without review.
+
+Risk: Authenticated reads can expose account-linked perpetuals positions, orders, and fills.
+
+Mitigation: Confirm the intended account context before authenticated queries and disclose only the requested account data.
+
+Risk: Deposit and signed submit flows can trigger irreversible financial actions.
+
+Mitigation: Require explicit user confirmation of wallet/account, amount, recipient, and action before deposit-place, order-submit, or cancel-submit.
+
+## Reference(s):
+
+- [Perp Deposit Flow](reference/deposit-flow.md)
+- [LiberFi Homepage](https://liberfi.io)
+- [ClawHub Skill Page](https://clawhub.ai/bombmod/skills/liberfi-perpetuals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses structured CLI output and includes human-confirmation gates for financial actions.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

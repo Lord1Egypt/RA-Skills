@@ -1,46 +1,64 @@
-## Description: <br>
-Patent search and analytics via 9235 API (search, detail, claims, company portrait, Excel export). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent search and analytics via 9235 API (search, detail, claims, company portrait, Excel export).
 
-## Publisher: <br>
-[windinwing](https://clawhub.ai/user/windinwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windinwing](https://clawhub.ai/user/windinwing)
 
-## Use Case: <br>
-External users, developers, and patent analysts use this skill to query and analyze patent/IP records through the 9235 API, inspect details and legal/citation data, and export result or analytics files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent/IP search queries, identifiers, and filters are sent to the 9235 service with the user's API token. <br>
-Mitigation: Use only if that data sharing is acceptable, review the provider's terms and privacy policy, and protect or rotate PATENT_API_TOKEN as a secret. <br>
-Risk: Export behavior may automatically install openpyxl or python-docx if they are not already available. <br>
-Mitigation: Run in an isolated environment or preinstall vetted dependency versions before enabling export workflows. <br>
-Risk: Export and download commands can create local files. <br>
-Mitigation: Configure output directories deliberately and review generated files before sharing or committing them. <br>
+## Use Case:
 
+External users, developers, and IP research teams use this skill to query the 9235 patent service for patent records, claims, descriptions, legal events, citations, similar patents, company patent portraits, analytics, and spreadsheet exports.
 
-## Reference(s): <br>
-- [9235 Open Platform](https://www.9235.net/api/open) <br>
-- [9235 API](https://www.9235.net/api) <br>
-- [9235 API Interface Documentation](https://www.9235.net/api/interface.html) <br>
-- [9235 Search Help](https://www.9235.net/help/index.html) <br>
-- [ClawHub patent-search Listing](https://clawhub.ai/windinwing/patent-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown/text responses with optional API result data and local Excel, CSV, or Markdown export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PATENT_API_TOKEN; sends patent/IP queries and identifiers to 9235 and may write export or download files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server evidence, SKILL.md frontmatter, CHANGELOG) <br>
+Risk: Patent and IP search terms, patent identifiers, filters, analytics requests, and download paths are sent to the third-party 9235 API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sending those queries to 9235 is acceptable, and review the provider's terms and privacy policy before deployment.
+
+Risk: The skill requires a 9235 API token for authentication.
+
+Mitigation: Keep the token scoped and protected, provide it through environment or host-managed configuration, avoid committing real tokens, and rotate it if exposed.
+
+Risk: The export path may attempt to install unpinned Python packages for spreadsheet support.
+
+Mitigation: Preinstall required export dependencies from a trusted, pinned environment or restrict export features in controlled deployments.
+
+Risk: Generated CSV/XLSX files may contain spreadsheet formulas or externally sourced content.
+
+Mitigation: Treat exports as untrusted, review or neutralize formula-like values before sharing, and open files with spreadsheet protections enabled.
+
+## Reference(s):
+
+- [9235 Open Platform](https://www.9235.net/api/open)
+- [9235 API Documentation](https://www.9235.net/api/interface.html)
+- [9235 Search Help](https://www.9235.net/help/index.html)
+- [ClawHub Skill Page](https://clawhub.ai/windinwing/skills/patent-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown/text responses with optional outbound CSV or XLSX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PATENT_API_TOKEN or host-managed OpenClaw API key; search terms, patent identifiers, pagination, filters, and download requests are sent to the 9235 API.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

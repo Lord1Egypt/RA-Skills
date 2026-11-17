@@ -1,43 +1,55 @@
-## Description: <br>
-Search indexed Discord community discussions via Answer Overflow to find coding solutions, library issues, and community Q&A that may only exist in Discord conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search indexed Discord community discussions via Answer Overflow. Find solutions to coding problems, library issues, and community Q&A that only exist in Discord conversations.
 
-## Publisher: <br>
-[ijangasbar](https://clawhub.ai/user/ijangasbar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ijangasbar](https://clawhub.ai/user/ijangasbar)
 
-## Use Case: <br>
-Developers and agents use this skill to search public Answer Overflow archives, fetch markdown-formatted threads, and discover Discord community discussions relevant to implementation problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and requested public Answer Overflow URLs may be visible to external services. <br>
-Mitigation: Avoid sending secrets, private identifiers, or sensitive internal problem details in searches or fetch requests. <br>
-Risk: Retrieved Discord conversations are informal community context and may be incomplete, outdated, or incorrect. <br>
-Mitigation: Verify important technical claims against authoritative project documentation or source code before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to search public Answer Overflow Discord discussions, fetch thread content in markdown, and discover community answers for coding problems, library issues, and open source support questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ijangasbar/answeroverflow-1-0-3) <br>
-- [Answer Overflow website](https://www.answeroverflow.com) <br>
-- [Answer Overflow documentation](https://docs.answeroverflow.com) <br>
-- [Answer Overflow MCP server](https://www.answeroverflow.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline URLs and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance for searching public Answer Overflow pages and fetching markdown thread content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search and fetched thread results may contain informal or outdated public Discord advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important technical claims against authoritative project documentation or source code before acting on them.
+
+Risk: Search queries and fetched URLs may reveal private project details if the agent includes sensitive context.
+
+Mitigation: Avoid including secrets, credentials, customer data, or private implementation details in Answer Overflow searches or fetch requests.
+
+## Reference(s):
+
+- [Answer Overflow](https://www.answeroverflow.com)
+- [Answer Overflow Docs](https://docs.answeroverflow.com)
+- [Answer Overflow MCP Server](https://www.answeroverflow.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline web search and fetch command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are public Discord discussion content and should be verified before relying on technical claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

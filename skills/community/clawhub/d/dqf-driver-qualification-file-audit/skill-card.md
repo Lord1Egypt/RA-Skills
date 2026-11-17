@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when a motor-carrier safety director, DOT compliance manager, or third-party DQF administrator needs a pre-audit review of FMCSA Driver Qualification Files under 49 CFR § 391. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a motor-carrier safety director, DOT compliance manager, or third-party DQF administrator needs a pre-audit review of FMCSA Driver Qualification Files under 49 CFR § 391.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Motor-carrier safety directors, DOT compliance managers, third-party DQF administrators, and HR safety staff use this skill to produce draft Driver Qualification File audit findings, prioritized remediation, fleet-level rollups, and DER sign-off support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews sensitive employee compliance records and may involve driver identifiers or medical-certification context. <br>
-Mitigation: Use internal IDs and last-4 CDL only, keep source records in the carrier-controlled DQF system, and avoid pasting full CDL numbers, SSNs, full addresses, or medical-record content into agent working notes. <br>
-Risk: Draft findings could be mistaken for legal advice, medical fitness determinations, official FMCSA submissions, or dispatch authorization. <br>
-Mitigation: Treat outputs as draft audit support requiring DOT-designated employer representative, compliance, legal, and appropriate medical-examiner review before acting on them as compliance records. <br>
-Risk: Users may expect the agent to query or update external compliance systems. <br>
-Mitigation: Use the skill to document required evidence only; do not have the agent log into, query, file with, or alter records in FMCSA, Clearinghouse, CDLIS, DMV, National Registry, TPR, or carrier systems. <br>
+## Use Case:
 
+DOT-regulated motor-carrier safety directors, DOT compliance managers, third-party DQF administrators, and HR safety staff use this skill to conduct draft pre-audit reviews of driver qualification files, prioritize remediation, and prepare DER-reviewed fleet rollups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/dqf-driver-qualification-file-audit) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft audit packet with per-driver findings tables, remediation lists, fleet rollup, cited-regulation appendix, unresolved information, and DER sign-off block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft compliance-review support and should use internal driver IDs and last-4 CDL only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Draft findings may be mistaken for official FMCSA submissions, certified compliance records, or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs labeled as draft pre-audit aids and require DER, compliance counsel, or qualified safety staff review before operational action.
+
+Risk: Driver qualification files may contain sensitive identifiers or medical details.
+
+Mitigation: Avoid pasting full CDL numbers, SSNs, full addresses, or medical details into chat; use internal driver IDs and CDL last-4.
+
+Risk: The agent cannot verify external systems such as Clearinghouse, CDLIS, the FMCSA Portal, the National Registry, TPR, or state DMV databases.
+
+Mitigation: Use the skill to document requirements and draft findings only; authorized carrier staff should perform official system checks outside the agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/dqf-driver-qualification-file-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft audit packet with per-driver tables, prioritized findings, fleet rollup, immediate-action list, cited-regulation appendix, and DER sign-off block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft pre-audit aids for DER and qualified compliance review; use internal driver IDs and CDL last-4 rather than full sensitive identifiers.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Provides a Frank Gallagher-inspired fictional roleplay perspective for dark-humor commentary on life dilemmas while refusing unlawful, violent, sexual, or defamatory requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Frank Gallagher roleplay perspective for dark-humor commentary on life dilemmas, anti-mainstream advice, and safety-preserving refusals for illegal, violent, sexual, or defamatory requests.
 
-## Publisher: <br>
-[nodoth1sl](https://clawhub.ai/user/nodoth1sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodoth1sl](https://clawhub.ai/user/nodoth1sl)
 
-## Use Case: <br>
-External users can use this skill for fictional Frank Gallagher-style roleplay, dark humor, and provocative perspective-taking around everyday life, work, money, family, and failure scenarios. It is intended as entertainment and expressive commentary, not as legal, financial, workplace, relationship, or safety-critical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fictional persona may steer users toward real-world unethical or evasive advice. <br>
-Mitigation: Keep use confined to roleplay and treat outputs as entertainment, not as legal, financial, workplace, relationship, or other real-world guidance. <br>
-Risk: Examples and activation rules may make harmful or unlawful requests feel in character. <br>
-Mitigation: Preserve the safety-boundary refusals and reframe unlawful, violent, sexual, defamatory, or privacy-invasive requests into lawful alternatives. <br>
-Risk: The persona's dark humor and anti-mainstream framing may be mistaken for endorsed advice. <br>
-Mitigation: Add or retain clear disclaimers that the character's values are intentionally distorted and narrow triggers to users explicitly requesting this fictional roleplay. <br>
+## Use Case:
 
+External users can invoke this skill to get Chinese-language fictional Frank Gallagher-style roleplay responses for entertainment, reframing personal dilemmas, and generating dark-humor commentary. It should not be relied on for real legal, financial, workplace, benefits, mental-health, or interpersonal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nodoth1sl/frank-gallagher-perspective) <br>
-- [Public research summary](references/research/01-public-research.md) <br>
-- [Dialogue templates and few-shot examples](references/research/02-dialogue-templates.md) <br>
-- [Safety and boundaries](references/research/03-safety-and-boundaries.md) <br>
-- [Classic quotes library](references/research/04-classic-quotes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose dialogue] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fictional persona roleplay with safety-boundary refusals] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Roleplay examples can normalize exploitative, unethical, or fraud-adjacent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow the trigger terms before deployment and keep the skill limited to fictional entertainment or commentary rather than real-life decision support.
+
+Risk: Users may mistake the antihero persona's advice for legal, financial, workplace, benefits, mental-health, or interpersonal guidance.
+
+Mitigation: Present the skill as fictional roleplay and route high-stakes requests to qualified professional resources or neutral assistance.
+
+Risk: Broad activation terms may invoke the persona when a safer or more neutral response style is expected.
+
+Mitigation: Use explicit opt-in triggers for Frank Gallagher roleplay and test sensitive prompts before enabling the skill broadly.
+
+Risk: Profanity-tinged dark humor may be inappropriate in professional, youth-facing, or support contexts.
+
+Mitigation: Restrict deployment to audiences that intentionally requested this persona and exclude it from formal advice or customer-support workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nodoth1sl/skills/frank-gallagher-perspective)
+- [Frank Gallagher public research](references/research/01-public-research.md)
+- [Frank Gallagher dialogue templates and few-shot examples](references/research/02-dialogue-templates.md)
+- [Frank Gallagher safety and boundaries](references/research/03-safety-and-boundaries.md)
+- [Frank Gallagher classic quote library](references/research/04-classic-quotes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roleplay output may include profanity-tinged dark humor and should preserve explicit refusal boundaries for unsafe requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

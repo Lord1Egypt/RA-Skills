@@ -1,40 +1,58 @@
-## Description: <br>
-Automates a real Chromium browser through Chrome DevTools Protocol using the bb-browser daemon and site adapters for web, social, research, finance, translation, and browser-control tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a host Chromium browser through the bb-browser daemon and Chrome DevTools Protocol for real-session web tasks across search, social, finance, research, translation, and direct browser control.
 
-## Publisher: <br>
-[chatgptnexus](https://clawhub.ai/user/chatgptnexus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatgptnexus](https://clawhub.ai/user/chatgptnexus)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve, inspect, and act on web content through an existing logged-in Chromium session when API-based access is unavailable or insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real logged-in browser session, including JavaScript execution, screenshots, network capture, and actions on authenticated sites. <br>
-Mitigation: Install only when the bb-browser daemon, binary, and extension are trusted; use a dedicated low-privilege browser profile and require explicit confirmation before sensitive browser actions. <br>
-Risk: Site adapters may interact with platforms that use anti-bot controls or require active user sessions. <br>
-Mitigation: Use the skill within each site's permitted usage, keep manual captcha or login resolution under user control, and avoid sensitive accounts in the controlled browser profile. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a real Chromium session through bb-browser for web research, social media, finance, job search, translation, and direct page control while reusing logged-in browser state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chatgptnexus/bb-browser-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and code examples; bb-browser commands can return text, screenshots, page snapshots, network data, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a host bb-browser daemon, browser extension, and active logged-in Chromium session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can let an agent act through a real logged-in browser profile and access private account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome or Chromium profile with no unrelated logins, saved credentials, or private sessions.
+
+Risk: Direct browser control, JavaScript evaluation, and network capture can expose sensitive page content or credentials.
+
+Mitigation: Approve each target site and private resource explicitly, and avoid eval or network capture unless it is narrowly required.
+
+Risk: The skill depends on a host daemon, browser extension, and binary outside the skill artifact.
+
+Mitigation: Verify the bb-browser binary, daemon, and extension from a trusted source before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chatgptnexus/skills/bb-browser-claw)
+- [Publisher profile](https://clawhub.ai/user/chatgptnexus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets plus JSON-producing bb-browser commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a host bb-browser daemon, the browser extension, and active Chromium sessions; commands may access logged-in browser data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

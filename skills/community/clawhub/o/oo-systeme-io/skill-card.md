@@ -1,46 +1,55 @@
-## Description: <br>
-Systeme.io (systeme.io). Use this skill for ANY Systeme.io request - reading, creating, updating, and deleting data. Whenever a task involves Systeme.io, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systeme.io (systeme.io). Use this skill for ANY Systeme.io request — reading, creating, updating, and deleting data. Whenever a task involves Systeme.io, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and go-to-market teams use this skill to manage Systeme.io contacts, tags, webhooks, courses, enrollments, subscriptions, and custom fields through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Systeme.io account and may use sensitive account credentials through OOMOL-managed authentication. <br>
-Mitigation: Install with normal caution and review requested tools, credentials, account connections, and install commands before first use. <br>
-Risk: Write and destructive actions can change or remove Systeme.io contacts, tags, webhooks, enrollments, and subscriptions. <br>
-Mitigation: Confirm the exact action, target, and payload with the user before running write actions, and require explicit approval before destructive actions. <br>
-Risk: Live connector schemas may differ from assumptions in a user request. <br>
-Mitigation: Fetch the action schema with `oo connector schema` before constructing payloads for connector runs. <br>
+## Use Case:
 
+Developers and business operators use the skill to read and manage contacts, tags, courses, subscriptions, enrollments, and webhooks in a connected Systeme.io account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-systeme-io) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Systeme.io homepage](https://systeme.io) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Systeme.io read, write, or destructive actions through the oo CLI when the user has connected credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup may run an unverified remote installer without separate user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI dependency and installer, require separate approval before installation, and prefer a verified fixed release.
+
+Risk: Using a connected Systeme.io account entrusts OOMOL with account credentials and business data.
+
+Mitigation: Review the connection, keep confirmations for account changes, and review or disable automatic skill synchronization.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Systeme.io API documentation](https://developer.systeme.io/)
+- [Systeme.io](https://systeme.io)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON action payloads and connector responses, with textual guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write and destructive actions require user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

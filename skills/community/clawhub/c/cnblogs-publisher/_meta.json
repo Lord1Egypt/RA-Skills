@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7a3mnwtc9x3w6mpn30wbjzyx82x823",
-  "slug": "cnblogs-publisher",
-  "version": "1.0.1",
-  "publishedAt": 1773504616809
+  "id": "cnblogs-publisher",
+  "name": "CNBlogs Publisher",
+  "version": "1.0.0",
+  "description": "Manage CNBlogs articles via MetaWeblog API",
+  "author": "suversal",
+  "license": "MIT",
+  "repository": "https://github.com/suversal/cnblogs-publisher",
+  "keywords": ["cnblogs", "blog", "metaweblog", "publish"]
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ASI-Proxy Phase Orchestrator"
+  short_description: "Advance evidence-gated ASI-proxy capability"
+  default_prompt: "Use $asi-proxy-phase-skill to diagnose the binding readiness dimension and implement the highest-value evidence-gated intervention in this workspace."

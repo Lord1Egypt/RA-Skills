@@ -1,38 +1,53 @@
-## Description: <br>
-Identifies, learns, and applies patterns from OpenClaw operations, errors, logs, and resources to generate templates, analyze efficiency, and suggest optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies, learns, and applies patterns from operations, errors, and resources to generate templates, analyze efficiency, and suggest optimizations.
 
-## Publisher: <br>
-[securecloudprojo](https://clawhub.ai/user/securecloudprojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[securecloudprojo](https://clawhub.ai/user/securecloudprojo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to learn recurring patterns from OpenClaw activity, generate reusable templates, analyze workflow and resource efficiency, and surface optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process local OpenClaw memory, logs, and metrics and persist extracted examples that may contain sensitive project or user content. <br>
-Mitigation: Review source directories for secrets or sensitive content before use, prefer sanitized sample data first, and redact or remove stored pattern outputs that should not be retained. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to learn recurring patterns from OpenClaw operations, errors, logs, and resource data, then generate templates, efficiency analysis, and optimization suggestions.
 
-## Reference(s): <br>
-- [Pattern Recognition on ClawHub](https://clawhub.ai/securecloudprojo/pattern-recognition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, YAML configuration, JSON pattern data, and textual recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist learned patterns, logs, and suggestions in the local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill can scan local memory, logs, and metrics that may contain sensitive workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where those sources are safe to scan, or add redaction, narrower input allowlists, and explicit opt-in before learning.
+
+Risk: Learned examples and patterns may be stored persistently in plaintext.
+
+Mitigation: Apply restrictive file permissions, retention limits, and a way to delete learned data before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/securecloudprojo/skills/pattern-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated templates, analysis summaries, optimization suggestions, and setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

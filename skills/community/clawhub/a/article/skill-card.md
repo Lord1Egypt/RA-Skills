@@ -1,39 +1,47 @@
-## Description: <br>
-Create compelling articles using journalistic standards and engagement optimization for maximum reader impact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create compelling articles using journalistic standards and engagement optimization for maximum reader impact.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Writers, editors, marketers, and content teams use this skill to draft and revise articles with stronger leads, source standards, fact-checking discipline, readability targets, engagement structure, SEO integration, and publication-specific voice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Article drafts can contain unsupported or outdated claims if the agent generates facts without adequate source verification. <br>
-Mitigation: Fact-check generated claims against independent sources before publication. <br>
-Risk: Users may include confidential source material in prompts while drafting or editing an article. <br>
-Mitigation: Avoid pasting confidential source material unless it is intended for use in the writing task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Article skill page](https://clawhub.ai/ivangdavila/article) <br>
+## Use Case:
+
+Writers, editors, marketers, and content teams use this skill to draft and refine articles with clear hooks, source standards, fact-checking discipline, readability targets, SEO structure, and publication-specific voice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Article drafts may contain incorrect statistics, quotes, or factual claims if source material is incomplete or outdated.
+
+Mitigation: Verify factual claims, statistics, quotes, and source attribution against independent authoritative sources before publication.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text article drafts and editorial guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be fact-checked by the user before publication.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or prose guidance for article drafting and revision]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include article structure, source guidance, fact-checking prompts, readability targets, SEO recommendations, and publication voice adjustments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-AI-powered multimodal analysis for user-provided image and video URLs, returning structured tags, scene descriptions, mood analysis, virality scores, and content classifications in up to 15 languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered multimodal analysis for images and videos that returns structured tags, scene descriptions, mood analysis, virality scores, and content classification across 15 languages from user-provided media URLs.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Content, marketing, and media teams use this skill to analyze user-provided images and videos for tagging, scene summaries, mood, content safety, and social performance signals before publishing or organizing assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media URLs submitted for analysis are sent to an external service. <br>
-Mitigation: Avoid submitting private or sensitive media URLs unless the user is comfortable sharing them with the provider. <br>
-Risk: The skill uses x402 USDC micropayments and may incur a per-call charge. <br>
-Mitigation: Confirm the user intends to make a paid request before invoking the paid endpoint. <br>
+## Use Case:
 
+External users and developers use this skill to analyze image or video URLs for content tagging, scene summaries, mood signals, virality scoring, and content-safety classification before publishing or organizing media assets.
 
-## Reference(s): <br>
-- [Ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [Ntriq service catalog](https://x402.ntriq.co.kr/services) <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-video-intelligence-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON or concise natural-language analysis describing tags, scenes, mood, virality, and content safety.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional analysis categories, output language selection, and audience context for virality scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Submitted media URLs are processed by ntriq's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private, confidential, or access-controlled media URLs unless the user has approved sharing those references with the service.
+
+Risk: Each API call may involve a disclosed USDC micropayment.
+
+Mitigation: Confirm payment expectations and call volume before invoking the endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/skills/ntriq-video-intelligence-analyzer)
+- [Ntriq Homepage](https://x402.ntriq.co.kr)
+- [Ntriq Service Catalog](https://x402.ntriq.co.kr/services)
+- [Video Intelligence API Endpoint](https://x402.ntriq.co.kr/video-intel)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell/API call snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include tags, scenes, mood, virality score, virality factors, content safety, and language; calls use user-provided media URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

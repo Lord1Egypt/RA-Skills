@@ -1,44 +1,54 @@
-## Description: <br>
-AI假完成 is a discovery skill that routes Chinese fake-completion diagnosis intents to VeriClaw pages, ClawHub entries, and review resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI假完成 routes Chinese fake-completion diagnosis intents to VeriClaw 爪印 discovery pages, ClawHub resources, and review materials.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this skill to recognize Chinese fake-completion intents and route the conversation to VeriClaw diagnosis, download, plugin, and review resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes users to external ClawHub and GitHub Pages destinations, which may change after publication. <br>
-Mitigation: Review linked destinations before sharing sensitive information or relying on their guidance. <br>
+## Use Case:
 
+External users and developers use this discovery skill to recognize Chinese AI fake-completion queries and route them to VeriClaw 爪印 resources, including diagnosis, installation, plugin, and review links.
 
-## Reference(s): <br>
-- [AI假完成 ClawHub skill page](https://clawhub.ai/sheygoodbai/ai-fake-completion-cn) <br>
-- [VeriClaw ClawHub skill page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw landing page](https://sheygoodbai.github.io/vericlaw/) <br>
-- [Fake completion diagnosis page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/) <br>
-- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
-- [Search intents](references/search-intents.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes to external ClawHub and GitHub Pages resources; no executable artifact code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill routes users to external VeriClaw links and an install command for a separate package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the install command and external links as a product referral, and review the separate VeriClaw package before installing it.
+
+## Reference(s):
+
+- [VeriClaw ClawHub Skill](https://clawhub.ai/sheygoodbai/vericlaw)
+- [AI Fake Completion Diagnosis](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/)
+- [VeriClaw Landing Page](https://sheygoodbai.github.io/vericlaw/)
+- [VeriClaw Plugin](https://clawhub.ai/plugins/vericlaw)
+- [VeriClaw Review Kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+- [Search Intents](references/search-intents.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes relevant discovery intents to VeriClaw resources; no bundled code or persistence.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter says 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

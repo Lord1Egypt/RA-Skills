@@ -1,44 +1,55 @@
-## Description: <br>
-Research-backed customer persona creation with market data and avatar generation, covering demographics, psychographics, jobs-to-be-done, journey mapping, and anti-personas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research-backed customer persona creation with market data and avatar generation, covering demographics, psychographics, jobs-to-be-done, journey mapping, and anti-personas.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Marketing, product, UX, sales, and content teams use this skill to create research-backed customer personas, anti-personas, buying-process notes, and optional avatar prompts from market research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the inference.sh CLI for market research and avatar generation. <br>
-Mitigation: Install only if inference.sh is trusted, and prefer manual verification of the CLI and checksums before use. <br>
-Risk: Customer persona work can expose or overfit real customer personal data. <br>
-Mitigation: Use fictional composite personas and avoid entering real customer PII. <br>
-Risk: Demographic avatar generation can introduce bias or stereotyping. <br>
-Mitigation: Treat avatar generation as optional and review demographic prompts for fairness and representational sensitivity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Customer Persona ClawHub Page](https://clawhub.ai/okaris/customer-persona) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI Installer](https://cli.inference.sh) <br>
-- [inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Marketing, product, UX, sales, and content teams use this skill to build data-backed customer personas, anti-personas, and avatar prompts from market research.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with persona templates and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-research queries, persona fields, validation guidance, and optional avatar-generation prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick start asks users to execute a mutable remote installer and then log in.
+
+Mitigation: Install only after reviewing and trusting the inference.sh installer and account flow; prefer a manual, version-pinned download with checksum or signature verification, and run installation and login as separate steps.
+
+Risk: Related skills are suggested without pinned versions in the artifact.
+
+Mitigation: Review optional related skills before adding them and pin trusted versions where the installation workflow supports it.
+
+## Reference(s):
+
+- [Customer Persona skill page](https://clawhub.ai/okaris/skills/customer-persona)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with persona templates and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of infsh commands for market research and avatar generation.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

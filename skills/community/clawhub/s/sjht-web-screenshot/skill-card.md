@@ -1,43 +1,57 @@
-## Description: <br>
-Captures screenshots of local or remote web pages with Puppeteer in headless Chromium, including login-required SPAs, and writes PNG images plus optional result metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture screenshots of web pages running on local or remote servers using Puppeteer in headless Chromium, including login-required single-page applications when configured.
 
-## Publisher: <br>
-[aowind](https://clawhub.ai/user/aowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aowind](https://clawhub.ai/user/aowind)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to automate screenshots of public or authenticated web application pages for UI review, documentation, and release evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Login credentials can be exposed if reusable config files are shared or committed. <br>
-Mitigation: Use test or least-privileged accounts and keep configs containing credentials out of version control. <br>
-Risk: Screenshots and result.json can contain sensitive application data. <br>
-Mitigation: Write outputs to an approved private directory and review them before sharing. <br>
-Risk: storeLogin invokes an application store method directly. <br>
-Mitigation: Use storeLogin only for applications you control and when the exact store method and arguments are understood. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to capture repeatable screenshots of public or authenticated web application pages for UI review, documentation, and release evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aowind/sjht-web-screenshot) <br>
-- [Publisher profile](https://clawhub.ai/user/aowind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [PNG screenshots and result.json metadata generated from a JSON configuration file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided target URLs, page names, output directory, viewport size, and optional login selectors or store-login settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill weakens browser isolation while capturing pages in headless Chromium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against trusted sites in a contained environment.
+
+Risk: The JSON configuration can drive login flows and broad page navigation.
+
+Mitigation: Restrict who can edit capture configs and avoid committing real credentials.
+
+Risk: The storeLogin option can mutate application state directly.
+
+Mitigation: Treat storeLogin as a privileged app-state mutation feature and review its config before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aowind/skills/sjht-web-screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON configuration examples; generated artifacts are PNG screenshots and result.json metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

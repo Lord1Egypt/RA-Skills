@@ -1,41 +1,49 @@
-## Description: <br>
-A professional multilingual naming creative engine for brands, products, companies, people, pets, IP characters, projects, domains, and online identities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NamingExpert灵犀取名官 helps agents generate cross-cultural names for brands, products, companies, people, pets, characters, handles, and projects, with semantic, cultural, and phonetic analysis.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-External users use this skill to generate and refine culturally aware names for commercial, personal, and creative contexts. It analyzes requirements, proposes 3-5 candidate names, explains semantic, cultural, and phonetic qualities, and supports iterative feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested names may conflict with existing trademarks, domains, cultural meanings, or sensitive personal and commercial constraints. <br>
-Mitigation: Independently verify trademarks, domain availability, cultural interpretations, and sensitive details before using a suggested name publicly. <br>
-Risk: The skill may activate on short or ambiguous requests about names. <br>
-Mitigation: Confirm the naming context and key constraints before relying on generated proposals. <br>
+## Use Case:
 
+External users and creators use this skill to brief an agent on naming needs and receive multiple candidate names with pronunciation, meaning, cultural symbolism, phonetic risk checks, and iteration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qomob/naming-expert) <br>
-- [Publisher profile](https://clawhub.ai/user/qomob) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured naming proposals and analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns 3-5 candidate names by default with pronunciation, semantic analysis, cultural symbolism, phonetic evaluation, style matching, and reminders to verify trademarks, domains, and cultural meanings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Generated names may have trademark, domain, cultural, or cross-language meaning issues that are outside the skill's authoritative knowledge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify trademarks, domains, and cultural meanings independently before adopting a generated name.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qomob/skills/naming-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured candidate name cards and concise analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 3-5 candidate names by default and may iterate based on user feedback.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

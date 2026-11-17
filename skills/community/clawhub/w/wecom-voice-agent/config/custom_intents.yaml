@@ -1,0 +1,47 @@
+# custom_intents.yaml — 自定义意图插件配置（v2.6）
+# 企业自有系统 API 声明式接入
+# 鉴权通过环境变量读取，不硬编码
+
+intents:
+  # 订单查询（企业内部订单系统）
+  query_order:
+    endpoint: "http://localhost:8080/api/order"
+    method: "GET"
+    timeout: 10
+    auth_env: "ORDER_API_TOKEN"  # 从环境变量读取
+    request_template: {}
+    response_template: "您的订单状态：{{status}}，预计{{eta}}送达。"
+    fallback_text: "订单查询服务暂不可用，请稍后再试或转人工。"
+
+  # 报销进度查询
+  query_reimbursement:
+    endpoint: "http://localhost:8080/api/reimbursement"
+    method: "GET"
+    timeout: 10
+    auth_env: "FINANCE_API_TOKEN"
+    request_template: {}
+    response_template: "您的报销单{{reimbursement_id}}，当前状态：{{status}}，预计{{eta}}到账。"
+    fallback_text: "报销查询服务暂不可用，请稍后再试或转人工。"
+
+  # 账户查询
+  account_query:
+    endpoint: "http://localhost:8080/api/account"
+    method: "GET"
+    timeout: 10
+    auth_env: "CRM_API_TOKEN"
+    request_template: {}
+    response_template: "您的账户余额：{{balance}}元，会员等级：{{level}}。"
+    fallback_text: "账户查询服务暂不可用，请稍后再试或转人工。"
+
+  # 退货申请
+  return_apply:
+    endpoint: "http://localhost:8080/api/return"
+    method: "POST"
+    timeout: 15
+    auth_env: "ORDER_API_TOKEN"
+    request_template:
+      order_id: "{order_id}"
+      reason: "{reason}"
+      user_id: "{user_id}"
+    response_template: "退货申请已提交，受理编号：{{ticket_id}}，我们将在3个工作日内处理。"
+    fallback_text: "退货申请提交失败，请稍后再试或转人工。"

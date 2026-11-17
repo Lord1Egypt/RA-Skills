@@ -1,0 +1,9 @@
+{
+  "name": "tencent-cos-static-site",
+  "normalizedName": "tencent-cos-static-site",
+  "description": "腾讯云 COS 静态网站托管 + 自定义域名上线全流程 SOP（含避坑清单），用于回答「网页怎么挂到腾讯云」「域名怎么绑到 COS」「COS 网站打不开怎么查」这类问题。覆盖域名购买确认 → 实名 → 创建存储桶 → 开启静态网站托管 → 上传 HTML（Content-Type 设置）→ 绑定自定义源站域名 → DNSPod CNAME → 等 DNS 传播 → 申请证书 → 强制 HTTPS → 隐私保护 → 证书自动续期。每步按真实参照法以控制台实际状态为准再进下一步，不假设上一步已生效。触发词：COS 静态托管、腾讯云挂网页、自定义域名绑定、DNSPod CNAME、强制 HTTPS、SSL 证书、静态网站上线、COS 网站报错、static site hosting。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

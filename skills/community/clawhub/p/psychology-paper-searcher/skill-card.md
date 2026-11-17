@@ -1,43 +1,56 @@
-## Description: <br>
-心理学学术文献搜索技能 - 支持多平台心理学文献搜索、内容提取和分析 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+心理学学术文献搜索技能 - 支持多平台心理学文献搜索、内容提取和分析
 
-## Publisher: <br>
-[cys723-bot](https://clawhub.ai/user/cys723-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cys723-bot](https://clawhub.ai/user/cys723-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and researchers use this skill to search psychology literature across academic platforms, retrieve source material, and produce structured summaries, comparisons, classifications, and review reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow relies on web search and web fetch access, so results can be unavailable, incomplete, or limited by academic platform access controls.
+
+Mitigation: Confirm access to target sources, preserve citations, and review fetched material before relying on generated summaries.
+
+Risk: The skill instructions are primarily in Chinese and may not fit users expecting English instructions or a strictly psychology-only search template.
+
+Mitigation: Use it for Chinese-language literature-search workflows or adapt the prompts and platform filters before deployment.
+
+Risk: Literature summaries and comparisons can omit context or misstate paper findings.
+
+Mitigation: Check claims against the original papers and keep citations with generated review reports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search psychology literature across academic platforms, fetch source material, analyze findings, and produce structured literature review summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched academic sources may be unreliable, incomplete, paywalled, or subject to access restrictions. <br>
-Mitigation: Review fetched sources directly for reliability, access terms, and citation accuracy before relying on the output. <br>
-Risk: Literature summaries and comparisons may omit context or misstate findings. <br>
-Mitigation: Verify important claims against the original papers and preserve citations for downstream review. <br>
-Risk: Full-text retrieval and reuse can raise copyright concerns. <br>
-Mitigation: Use the skill for academic research workflows and respect source copyright, database terms, and citation requirements. <br>
+**Output Format:** [Markdown guidance with search examples and structured literature review sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cys723-bot/psychology-paper-searcher) <br>
-- [Example arXiv paper URL from skill workflow](https://arxiv.org/abs/important-paper) <br>
+**Other Properties Related to Output:** [May rely on web search and fetch tool access; some academic platforms may restrict access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline search and fetch command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces literature summaries, classification reports, method comparisons, trend analysis, and research-gap identification.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

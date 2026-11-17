@@ -1,47 +1,68 @@
-## Description: <br>
-Source free stock photos and placeholder images with direct URLs for Unsplash, Pexels, Pixabay, and Lorem Picsum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Source free stock photos and placeholder images with direct URLs for Unsplash, Pexels, Pixabay, and Lorem Picsum.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to find ready-to-use stock photo and placeholder image URLs for mockups, prototypes, websites, and presentations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, image dimensions, or private image URLs may be sent to third-party image services. <br>
-Mitigation: Avoid sensitive search terms and private image URLs when using third-party image providers. <br>
-Risk: Stock photo licensing may be unsuitable for production use without review. <br>
-Mitigation: Verify licensing on the original provider page before using images in production or commercial materials. <br>
-Risk: API credentials for optional providers could be exposed if pasted into shared chats or files. <br>
-Mitigation: Keep API keys out of shared conversations and files, and use secure local secret handling when provider APIs are needed. <br>
-Risk: Optional local memory can retain user image preferences if enabled. <br>
-Mitigation: Enable the memory file only when local preference persistence is desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/stock-images) <br>
-- [Skill Homepage](https://clawic.com/skills/stock-images) <br>
-- [Providers Reference](providers.md) <br>
-- [Unsplash Categories Reference](unsplash-categories.md) <br>
-- [Setup Reference](setup.md) <br>
+## Use Case:
 
+Designers, developers, and agents use this skill to source ready-to-use stock photo, avatar, icon, illustration, and placeholder image URLs for mockups, prototypes, websites, and presentations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with direct image URLs and optional shell or API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic placeholder URL workflows do not require authentication; optional provider APIs may require user-managed API keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image dimensions, search terms, and image URLs may be sent to third-party services.
+
+Mitigation: Avoid private, pre-signed, sensitive, or confidential image URLs and search terms when using third-party providers.
+
+Risk: The artifact includes a plaintext HTTP ReSmush.it optimization example.
+
+Mitigation: Avoid sending sensitive image URLs through that example and prefer secure provider workflows for production assets.
+
+Risk: Optional preference memory can save user image preferences and selected URLs.
+
+Mitigation: Create preference memory only when explicitly requested, and avoid storing sensitive image requirements or private URLs.
+
+Risk: Stock-photo and placeholder licensing can vary by provider and by individual image.
+
+Mitigation: For commercial projects, verify license terms on the original photo or provider page before final use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/stock-images)
+- [Skill Homepage](https://clawic.com/skills/stock-images)
+- [Setup](setup.md)
+- [Stock Image Providers](providers.md)
+- [Unsplash Direct URLs by Category](unsplash-categories.md)
+- [Memory Template](memory-template.md)
+- [Unsplash Developers](https://unsplash.com/developers)
+- [Pexels API](https://www.pexels.com/api/)
+- [Pixabay API Docs](https://pixabay.com/api/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with ready-to-use URLs and optional shell commands or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct third-party image URLs and optional local preference-memory guidance; no required binaries or API keys for basic use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-AntV S2 海量数据表格实战指南，帮助开发者配置和优化大数据量表格、交叉表、明细表、多维透视表以及 Vue3 集成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AntV S2 海量数据表格指南 is a Chinese-language guide for using AntV S2 to build high-volume tables, pivot tables, detail tables, multidimensional analysis views, and Vue 3 integrations.
 
-## Publisher: <br>
-[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web)
 
-## Use Case: <br>
-Developers and engineers use this skill for AntV S2 table configuration, large-table rendering, pivot or detail table design, performance tuning, and Vue3 integration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example table interactions can open URLs from table data. <br>
-Mitigation: Validate or allowlist URLs before opening values from link fields. <br>
-Risk: The sample /api/data endpoint is illustrative and not a trusted production backend. <br>
-Mitigation: Replace the sample endpoint with a trusted backend before using the snippets in production. <br>
+## Use Case:
 
+Developers use this skill for Chinese-language guidance and examples when configuring AntV S2 tables, optimizing large table rendering, and integrating AntV S2 with Vue 3.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenxiaoyu0124-web/antd-table-s2-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript and Vue code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes implementation guidance, performance notes, and integration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release and clawhub.json) <br>
+Risk: The link-field click example opens a field value directly as a URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before reusing that pattern, parse the URL, allowlist approved protocols and origins, and open approved links with noopener,noreferrer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenxiaoyu0124-web/skills/antd-table-s2-guide)
+- [ClawHub publisher profile](https://clawhub.ai/user/chenxiaoyu0124-web)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with TypeScript and Vue examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language implementation guidance; no bundled executable code runs or persists.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.json release.version and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

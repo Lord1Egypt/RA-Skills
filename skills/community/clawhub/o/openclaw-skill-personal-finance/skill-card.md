@@ -1,45 +1,55 @@
-## Description: <br>
-Parse personal finance CSV exports, validate schema, categorize transactions via local rules, and summarize/report income, expenses, merchants, and categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse personal finance CSV exports, validate schema, categorize transactions via local rules, and summarize/report income, expenses, merchants, and categories.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and individuals use this skill to process local bank or credit-card CSV exports, validate schema compatibility, categorize transactions with local rules, and generate spending summaries without uploading financial data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Personal finance CSV exports may contain sensitive transaction and account data. <br>
-Mitigation: Keep real exports local, share only reviewed outputs, and rely on the skill's account-number masking for CLI display. <br>
-Risk: Keyword-based categorization can assign an incorrect category when merchant descriptions do not match the local rules well. <br>
-Mitigation: Review categorized output before using it for decisions and update config/category-rules.json for the user's merchant vocabulary. <br>
-Risk: Sample account-number-style values could be reused in public examples. <br>
-Mitigation: Use clearly synthetic values in public demos and avoid copying sample account-number patterns into shared material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-personal-finance) <br>
-- [Publisher profile](https://clawhub.ai/user/ppopen) <br>
-- [README](README.md) <br>
-- [Category rules](config/category-rules.json) <br>
+## Use Case:
+
+External users and agents use this skill to validate, categorize, summarize, and report on exported bank or credit-card CSVs locally with account masking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional CSV export can overwrite files in user-writable locations.
+
+Mitigation: Choose a fresh, non-sensitive output path and check for existing files before using export.
+
+Risk: CSV rows may contain attacker-controlled spreadsheet formulas or misleading transaction data.
+
+Mitigation: Process only trusted CSV exports and avoid opening generated CSVs in spreadsheet software without reviewing or sanitizing formula-like cells.
+
+Risk: The documented output-path safety claim is stronger than the security evidence supports.
+
+Mitigation: Treat output-path checks as a convenience guard, not as protection against overwrites or unsafe destinations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CSV-oriented text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated locally from user-supplied CSV files; account numbers are masked in CLI output, and categorized CSV files are written only when an explicit output path is provided.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples; command output is plain text with optional CSV export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline CSV processing; optional categorized CSV export when an explicit output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

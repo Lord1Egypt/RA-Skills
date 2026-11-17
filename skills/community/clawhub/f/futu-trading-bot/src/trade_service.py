@@ -1,10 +1,20 @@
 """
-港股下单工具模块
+港股交易工具模块
 
-对外只提供一个安全的下单函数 submit_order，内部封装了所有校验逻辑和富途 API 调用。
+对外公开 API（均有风险分级，agent 调用前须获用户明确授权）：
+- submit_order: 下单。trd_env=REAL 时必须 confirm=True
+- modify_order: 改单 / 单笔撤单相关操作。REAL 时必须 confirm=True
+- cancel_order: 单笔撤单。REAL 时必须 confirm=True
+- cancel_all_orders: 全部撤单（高 blast radius）。任何环境都必须 confirm=True
+
+默认与推荐：SIMULATE。REAL 为不可逆真金白银操作。
+
 使用方式：
     from trade_service import submit_order
-    result = submit_order(code='HK.00700', side='BUY', qty=200, price=350.0, acc_id=123456, trd_env='SIMULATE')
+    result = submit_order(
+        code='HK.00700', side='BUY', qty=200, price=350.0,
+        acc_id=123456, trd_env='SIMULATE',
+    )
 """
 
 from typing import Optional, Dict, Any
@@ -588,6 +598,21 @@ _trade_service = _HKTradeService()
 
 
 # ---------- 对外暴露的安全函数 ----------
+def _require_confirm(action: str, trd_env: str, confirm: bool, *, always: bool = False) -> Optional[Dict[str, Any]]:
+    """Gate destructive / live actions. Returns an error dict when blocked, else None."""
+    env = (trd_env or "").upper()
+    if always or env == "REAL":
+        if not confirm:
+            return {
+                "success": False,
+                "message": (
+                    f"{action} requires confirm=True after explicit user approval "
+                    f"(trd_env={env or 'N/A'}). Do not execute without user confirmation."
+                ),
+            }
+    return None
+
+
 def submit_order(
     code: str,
     side: str,
@@ -599,10 +624,13 @@ def submit_order(
     aux_price: Optional[float] = None,
     remark: Optional[str] = None,
     time_in_force: str = "DAY",
-    # 可根据需要添加其他常用参数，但建议保持简洁
+    confirm: bool = False,
 ) -> Dict[str, Any]:
     """
-    安全的下单函数（供 LLM 或脚本调用）
+    下单函数（供 LLM 或脚本调用）。
+
+    安全：trd_env=REAL 时必须 confirm=True（用户已明确批准该笔订单参数）。
+    推荐默认使用 SIMULATE。
 
     参数说明：
         code (str): 股票代码，如 "HK.00700"
@@ -611,6 +639,7 @@ def submit_order(
         acc_id (int): 账户ID
         trd_env (str): 交易环境，"REAL" 或 "SIMULATE"
         price (float, optional): 价格（限价单必须提供）
+        confirm (bool): REAL 下单前的用户确认门闩，默认 False
         order_type (str): 订单类型，可选值：
             - "NORMAL": 限价单
             - "MARKET": 市价单
@@ -638,6 +667,10 @@ def submit_order(
             - order_id (str, optional): 订单号（成功时）
             - message (str): 结果描述
     """
+    blocked = _require_confirm("submit_order", trd_env, confirm)
+    if blocked:
+        return blocked
+
     # 构造 Order 对象
     try:
         order = Order(
@@ -671,10 +704,13 @@ def modify_order(
     qty: Optional[float] = None,
     price: Optional[float] = None,
     acc_id: int = 0,
+    confirm: bool = False,
     **kwargs
 ) -> Dict[str, Any]:
     """
-    修改订单（供 LLM 或脚本调用）
+    修改订单（供 LLM 或脚本调用）。
+
+    安全：trd_env=REAL 时必须 confirm=True。
 
     参数说明：
         op (str): 操作类型，可选值：
@@ -688,11 +724,15 @@ def modify_order(
         price (float, optional): 修改后的价格（改单时需要）
         acc_id (int): 账户ID，0表示默认账户
         trd_env (str): 交易环境，"REAL" 或 "SIMULATE"
+        confirm (bool): REAL 操作前的用户确认门闩，默认 False
         **kwargs: 其他可选参数，如 aux_price, trail_type 等
 
     返回：
         dict: 包含 success、message、order_id 等字段
     """
+    blocked = _require_confirm("modify_order", trd_env, confirm)
+    if blocked:
+        return blocked
     try:
         op_enum = ModifyOrderOp(op.upper())
     except ValueError:
@@ -715,12 +755,36 @@ def modify_order(
     finally:
         _trade_service.close()
 
-def cancel_order(order_id: str, trd_env: str, acc_id: int = 0) -> Dict[str, Any]:
-    """简化撤单函数"""
-    return modify_order(op="CANCEL", order_id=order_id, trd_env=trd_env, acc_id=acc_id)
+def cancel_order(
+    order_id: str,
+    trd_env: str,
+    acc_id: int = 0,
+    confirm: bool = False,
+) -> Dict[str, Any]:
+    """单笔撤单。trd_env=REAL 时必须 confirm=True。"""
+    return modify_order(
+        op="CANCEL",
+        order_id=order_id,
+        trd_env=trd_env,
+        acc_id=acc_id,
+        confirm=confirm,
+    )
 
-def cancel_all_orders(trd_env: str, acc_id: int = 0, trdmarket: Optional[str] = None) -> Dict[str, Any]:
-    """撤销全部订单"""
+
+def cancel_all_orders(
+    trd_env: str,
+    acc_id: int = 0,
+    trdmarket: Optional[str] = None,
+    confirm: bool = False,
+) -> Dict[str, Any]:
+    """
+    撤销全部订单（高 blast radius）。
+
+    安全：任何交易环境都必须 confirm=True。
+    """
+    blocked = _require_confirm("cancel_all_orders", trd_env, confirm, always=True)
+    if blocked:
+        return blocked
     try:
         trd_env_enum = TrdEnv(trd_env.upper())
     except ValueError:
@@ -752,6 +816,11 @@ if __name__ == "__main__":
                                "TRAILING_STOP_LIMIT", "TWAP", "TWAP_LIMIT", "VWAP", "VWAP_LIMIT"], 
                        help="订单类型")
     parser.add_argument("--aux_price", type=float, help="触发价（止损单需要）")
+    parser.add_argument(
+        "--confirm",
+        action="store_true",
+        help="确认执行（REAL 环境必须传入）",
+    )
     args = parser.parse_args()
 
     result = submit_order(
@@ -762,6 +831,7 @@ if __name__ == "__main__":
         trd_env=args.trd_env,
         price=args.price,
         order_type=args.order_type,
-        aux_price=args.aux_price
+        aux_price=args.aux_price,
+        confirm=args.confirm,
     )
     print(result)

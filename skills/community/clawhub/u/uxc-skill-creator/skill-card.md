@@ -1,45 +1,60 @@
-## Description: <br>
-Creates wrapper skills that call remote tools through UXC, with reusable templates, validation rules, and anti-pattern guidance for provider skill design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create wrapper skills that call remote tools through UXC. Use when defining a new provider skill and you need reusable templates, validation rules, and anti-pattern guidance based on proven UXC skill practices.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create or refine UXC-based provider wrapper skills with consistent command linking, discovery, authentication, validation, and safety conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated wrapper skills may include incorrect provider endpoint, protocol, authentication, or operation assumptions if used before verification. <br>
-Mitigation: Confirm provider details with official documentation, UXC help probes, and local auth-binding checks before publishing or relying on the wrapper. <br>
-Risk: Wrapper guidance can enable provider write operations when a generated skill is adapted for a service with high-impact actions. <br>
-Mitigation: Keep read-before-write workflows and require explicit user confirmation before destructive or high-impact operations. <br>
-Risk: Provider accounts or OAuth scopes may grant broader access than the wrapper skill needs. <br>
-Mitigation: Use trusted provider endpoints, review OAuth or API-key scopes before connecting accounts, and remove local UXC links that are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Templates](references/templates.md) <br>
-- [Validation Rules](references/validation-rules.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jolestar/uxc-skill-creator) <br>
+## Use Case:
 
+Developers and engineers use this skill to create standardized UXC-based provider wrapper skills with reusable templates, validation checks, and guidance for link-first, help-first command flows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file templates, YAML configuration examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces wrapper skill structure and validation guidance for UXC-based provider integrations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to probe user-provided provider endpoints through UXC.
+
+Mitigation: Use trusted endpoints, avoid private or local network targets unless intentional, and review endpoint candidates before probing.
+
+Risk: Generated shell command examples may include user-controlled host values.
+
+Mitigation: Validate and safely quote host values before executing generated commands.
+
+Risk: Generated wrapper skills may include high-impact write operations for a provider.
+
+Mitigation: Require read-before-write behavior and explicit user confirmation for destructive or high-impact writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/uxc-skill-creator)
+- [Workflow](references/workflow.md)
+- [Templates](references/templates.md)
+- [Validation Rules](references/validation-rules.md)
+- [Anti-Patterns](references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML and shell code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposed skill files and validation commands for agent review before installation or release.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

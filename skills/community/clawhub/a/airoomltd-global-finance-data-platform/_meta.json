@@ -1,6 +1,70 @@
 {
-  "ownerId": "kn77yknnp1vwqgkmzdewmyxmd581zfpn",
-  "slug": "airoomltd-global-finance-data-platform",
+  "ownerId": "airoom-ltd",
+  "slug": "airoom-ltd-global-finance-data-platform",
   "version": "1.0.0",
-  "publishedAt": 1773632323171
+  "publishedAt": 1769313591294,
+  "installation": {
+    "type": "python-package",
+    "requirements": [
+      "pip install -r requirements.txt",
+      "playwright install chromium"
+    ],
+    "description": "Install Python dependencies and Chromium browser for web automation"
+  },
+  "credentialRequirements": {
+    "required": [
+      {
+        "name": "WP_USERNAME",
+        "description": "WordPress username for authentication (used when target page requires login)",
+        "required": false,
+        "sensitive": true
+      },
+      {
+        "name": "WP_PASSWORD",
+        "description": "WordPress password for authentication (used when target page requires login)",
+        "required": false,
+        "sensitive": true
+      },
+      {
+        "name": "WP_URL",
+        "description": "Base URL of the WordPress site",
+        "required": true,
+        "sensitive": false
+      },
+      {
+        "name": "WP_TARGET_URL",
+        "description": "Target page URL to download financial data files from",
+        "required": true,
+        "sensitive": false
+      }
+    ],
+    "optional": [
+      {
+        "name": "WP_OUTPUT_DIR",
+        "description": "Directory to save downloaded financial data files",
+        "required": false,
+        "sensitive": false
+      },
+      {
+        "name": "WP_MAX_FILES",
+        "description": "Maximum number of files to download (0 = unlimited)",
+        "required": false,
+        "sensitive": false
+      }
+    ]
+  },
+  "capabilities": [
+    "Automated web browsing to access financial data pages",
+    "Detect and download financial data files (CSV, Excel, JSON, etc.) from WordPress pages",
+    "Save downloaded financial data to local directory",
+    "Handle both public pages (no login required) and authenticated pages"
+  ],
+  "securityNotes": [
+    "Uses headless browser (Playwright with Chromium) to navigate web pages - standard web automation tool",
+    "Downloads files only from the specified target page URL",
+    "Executable files (.exe, .apk, .bat, etc.) are blocked by default for security",
+    "For http://airoom.ltd/index.php/airoom/ - no login required, page is publicly accessible",
+    "No data is sent to third-party servers - all data is saved locally"
+  ],
+  "purpose": "This tool is part of airdrop-ltd-global-finance-data-platform package. It is designed specifically to download financial data from the airoom.ltd WordPress site. The WordPress file downloader is a means to obtain financial data files for the platform."
 }

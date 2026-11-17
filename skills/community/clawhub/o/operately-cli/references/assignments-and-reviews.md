@@ -28,6 +28,7 @@ Items you own that require immediate attention:
 Items where you are the reviewer and need to provide acknowledgment:
 - Project check-ins awaiting review
 - Goal updates requiring acknowledgment
+- Project and goal retrospectives awaiting acknowledgment
 - Milestone completions needing approval
 
 ### 3. `upcoming`
@@ -42,10 +43,13 @@ Each assignment includes:
 - **`type`** - The kind of item:
   - `project_check_in` - Project status update
   - `goal_check_in` - Goal progress update
+  - `project_retrospective` - Closed project retrospective awaiting review
+  - `goal_retrospective` - Closed goal retrospective awaiting review
   - `milestone` - Project milestone
   - `project_task` - Task within a project
   - `space_task` - Task within a space
   - `goal` - Goal itself
+  - `project` - Project requiring review
 
 - **`role`** - Your relationship to the item:
   - `owner` - You are responsible for completing it
@@ -175,17 +179,18 @@ operately people list_assignments --compact | \
   jq '.data.due_soon, .data.needs_review'
 ```
 
-### Acknowledge Check-ins
+### Acknowledge Reviews
 
 After reviewing items, acknowledge them:
 
 ```bash
-# List check-ins needing review
-operately people list_assignments --compact | \
-  jq '.data.needs_review[].assignments[] | select(.type == "project_check_in") | .resource_id'
+# Check-ins: use resource_id
+operately projects acknowledge_check_in --id <resource_id>
+operately goals acknowledge_check_in --id <resource_id>
 
-# Acknowledge a specific check-in
-operately projects acknowledge_check_in --check-in-id <id>
+# Retrospectives: use origin.id (not resource_id). Authors cannot acknowledge their own.
+operately projects acknowledge_retrospective --project-id <origin.id>
+operately goals acknowledge_retrospective --goal-id <origin.id>
 ```
 
 ### Update Task Status
@@ -213,8 +218,8 @@ operately tasks update_status \
 
 The assignments list provides IDs and context for other operations:
 
-- Use `resource_id` to get full details: `operately projects get_milestone --id <resource_id>`
-- Use `origin.id` to navigate to parent: `operately projects get --id <origin.id>`
+- Use `resource_id` for check-ins, milestones, and tasks (e.g. `acknowledge_check_in --id <resource_id>`)
+- Use `origin.id` for retrospective acknowledgement (`--project-id` / `--goal-id`) and to load the parent
 - Use `path` to construct web URLs for sharing
 
 ## Tips

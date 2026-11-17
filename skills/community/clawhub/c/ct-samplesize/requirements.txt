@@ -1,0 +1,13 @@
+# ct-samplesize v5 — the published skill is stdlib-only: NO third-party runtime
+# dependencies (argparse / json / urllib / math ... standard library only).
+# The coze R engine runs server-side; local computation needs nothing extra.
+#
+# Optional extras (not required for core computation):
+#   cairosvg — only for --figure-mode png_file (local SVG→PNG rasterization).
+#              Install into your interpreter when PNG output is needed.
+#
+# Dev-only extras (adapters/local-r/ is NOT shipped in the published package):
+#   numpy, scipy — only for adapters/local-r/legacy/adaptive_simulator.py
+#                  (Monte-Carlo fallback of the local-R dev backend). The
+#                  published skill never imports it; install manually if you
+#                  work on the dev backend:  pip install numpy scipy

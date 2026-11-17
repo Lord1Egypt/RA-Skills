@@ -1,0 +1,5 @@
+interface:
+  display_name: "BailingHub Agent Governance Executor"
+  short_description: "Govern OpenClaw actions in business systems"
+  default_prompt: "Use $bailinghub-executor to connect this OpenClaw agent to a self-hosted BailingHub target as an outbound executor, then verify the governed task path without exposing credentials."
+

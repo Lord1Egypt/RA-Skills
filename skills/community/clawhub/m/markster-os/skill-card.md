@@ -1,41 +1,55 @@
-## Description: <br>
-Lightweight guide and router for Markster OS that explains the system, points users to the full Git-backed workspace setup, and helps decide whether to approve installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill explains Markster OS, routes users to setup guidance, and asks for explicit approval before full installation or Git-backed workspace operations.
 
-## Publisher: <br>
-[atiti](https://clawhub.ai/user/atiti) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atiti](https://clawhub.ai/user/atiti)
 
-## Use Case: <br>
-Developers and small-team operators use this bootstrap skill to understand Markster OS, review the setup path, initialize a Git-backed company workspace, and hand off to the local runtime skill after installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The full setup fetches and runs an installer from an external repository branch that may change over time. <br>
-Mitigation: Review the external repository and install.sh before approving the full installation. <br>
-Risk: Git remote or push actions could publish secrets, private notes, customer data, or other unintended company information from the workspace. <br>
-Mitigation: Inspect the workspace before any commit or push and require explicit user approval before remote or push commands. <br>
+## Use Case:
 
+Developers and operators use this bootstrap skill to understand Markster OS, review setup steps, and initialize a Git-backed company workspace only after explicit approval.
 
-## Reference(s): <br>
-- [Markster OS repository](https://github.com/markster-public/markster-os) <br>
-- [OpenClaw guide](https://github.com/markster-public/markster-os/blob/master/setup-prompts/openclaw.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit approval before install, remote, or push commands and hands off to the local runtime skill after setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill directs users to clone an upstream repository and run install.sh locally, giving an external installer broad local authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trust and inspect the upstream repository and installer first, prefer a pinned reviewed commit or signed release, avoid sudo, and run setup in a constrained or disposable workspace.
+
+Risk: Workspace remote attachment and first push can affect a company repository if approved without review.
+
+Mitigation: Require explicit approval before remote or push commands and run markster-os validate . before treating the workspace as ready.
+
+## Reference(s):
+
+- [Markster OS repository](https://github.com/markster-public/markster-os)
+- [Markster OS OpenClaw guide](https://github.com/markster-public/markster-os/blob/master/setup-prompts/openclaw.md)
+- [Markster OS ClawHub listing](https://clawhub.ai/atiti/skills/markster-os)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before install, remote, or push commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

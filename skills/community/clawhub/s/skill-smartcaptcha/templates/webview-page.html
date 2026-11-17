@@ -1,0 +1,121 @@
+<!-- Шаблон: HTML-страница с SmartCaptcha для мобильного WebView (Android и iOS).
+     Разместите на своем сервере и загружайте в WebView с query-параметром ?sitekey=<ключ_клиента>
+     (для невидимой капчи добавьте &invisible=true). Подробности: docs/mobile-webview.md,
+     платформенный код: docs/mobile-android.md, docs/mobile-ios.md, docs/mobile-flutter.md -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SmartCaptcha Mobile</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script>
+      // Вызывается скриптом captcha.js после загрузки (render=onload&onload=onSmartCaptchaReady).
+      function onSmartCaptchaReady() {
+        if (!window.smartCaptcha) {
+          throw new Error("SmartCaptcha is not present");
+        }
+
+        const params = getParameters();
+
+        const widgetId = window.smartCaptcha.render(
+          "captcha-container",
+          params
+        );
+
+        // События нужны нативному коду: показать/скрыть WebView с заданием
+        // и получить токен после проверки.
+        window.smartCaptcha.subscribe(
+          widgetId,
+          "challenge-visible",
+          handleChallengeVisible
+        );
+
+        window.smartCaptcha.subscribe(
+          widgetId,
+          "challenge-hidden",
+          handleChallengeHidden
+        );
+
+        window.smartCaptcha.subscribe(widgetId, "success", handleSuccess);
+
+        // Невидимая капча: запускаем проверку сразу после отрисовки.
+        // Момент проверки выбирает приложение — моментом загрузки этой страницы.
+        if (params.invisible) {
+          window.smartCaptcha.execute(widgetId);
+        }
+      }
+
+      function handleSuccess(token) {
+        sendToNative("onGetToken", "captchaDidFinish", token);
+      }
+
+      function handleChallengeVisible() {
+        sendToNative("onChallengeVisible", "challengeDidAppear");
+      }
+
+      function handleChallengeHidden() {
+        sendToNative("onChallengeHidden", "challengeDidDisappear");
+      }
+
+      // Отправляет сообщение в нативный код, проверяя наличие обоих мостов:
+      // - Android: объект JavaScript Interface, зарегистрированный как NativeClient
+      //   (addJavascriptInterface(WebJsInterface(), "NativeClient"));
+      // - iOS: обработчик webkit.messageHandlers.NativeClient
+      //   (userContentController.add(_:name: "NativeClient")).
+      function sendToNative(androidMethod, iosMethod, data) {
+        if (window.NativeClient && window.NativeClient[androidMethod]) {
+          // Android: у методов моста с данными — строковый аргумент.
+          if (data !== undefined) {
+            window.NativeClient[androidMethod](data);
+          } else {
+            window.NativeClient[androidMethod]();
+          }
+        } else if (window.webkit && window.webkit.messageHandlers) {
+          // iOS: сообщение-объект {method, data}.
+          window.webkit.messageHandlers.NativeClient.postMessage({
+            method: iosMethod,
+            data: data !== undefined ? data : ""
+          });
+        }
+      }
+
+      // Собирает параметры render() из query-строки URL, который загрузило приложение:
+      // ?sitekey=<ключ_клиента>&invisible=true&test=true&hideShield=true
+      function getParameters() {
+        const result = {};
+
+        if (window.location.search) {
+          const queryParams = new URLSearchParams(window.location.search);
+
+          queryParams.forEach((value, key) => {
+            result[key] = value;
+          });
+        }
+
+        // Булевы параметры приходят строками — приводим к boolean.
+        result.test = result.test === "true";
+        result.invisible = result.invisible === "true";
+        result.hideShield = result.hideShield === "true";
+        // webview: true повышает точность оценки пользователей в WebView.
+        result.webview = true;
+
+        return result;
+      }
+    </script>
+
+    <script
+      src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onSmartCaptchaReady"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="captcha-container"></div>
+  </body>
+</html>

@@ -1,43 +1,59 @@
-## Description: <br>
-Provides PDF processing guidance and helper scripts for reading, extracting, combining, splitting, rotating, creating, filling, encrypting, decrypting, image extraction, and OCR workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF helper skill for reading, extracting, creating, modifying, merging, splitting, watermarking, OCR, encryption, and form filling.
 
-## Publisher: <br>
-[climbkim](https://clawhub.ai/user/climbkim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[climbkim](https://clawhub.ai/user/climbkim)
 
-## Use Case: <br>
-Developers, engineers, and document automation users use this skill to inspect, extract, transform, generate, and fill PDF documents through Python snippets, helper scripts, and command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: A form-filling path can make persistent font and font-cache changes on the host system. <br>
-Mitigation: Review or disable the annotation form-filling font behavior before use, and run the skill without elevated privileges. <br>
-Risk: PDF workflows may overwrite outputs, alter documents, or decrypt files. <br>
-Mitigation: Work on copies of important PDFs and only decrypt documents you are authorized to access. <br>
+## Use Case:
 
+Developers and agents use this skill to choose PDF processing tools and produce code or shell commands for extracting content, manipulating documents, running OCR, and filling forms.
 
-## Reference(s): <br>
-- [PDF Processing Guide](artifact/SKILL.md) <br>
-- [PDF Forms Workflow](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/climbkim/pdf-nano) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, JavaScript, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to create or modify local PDF, image, text, JSON, spreadsheet, and validation files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Annotation-based form filling can silently make persistent host font or cache changes from workspace-adjacent font files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace or container, inspect nearby assets/fonts directories first, and require explicit approval before persistent environment changes.
+
+Risk: Untrusted PDFs or directories can expose sensitive data or trigger risky PDF parsing and rendering paths.
+
+Mitigation: Avoid running annotation-based form filling on untrusted PDFs or directories, and work on copies of sensitive PDFs.
+
+Risk: Incorrect form coordinates or field values can produce misleading completed PDFs.
+
+Mitigation: Validate field IDs and bounding boxes, convert output PDFs to images for inspection, and verify final documents before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/climbkim/skills/pdf-nano)
+- [PDF form workflow](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to create or modify local PDF, image, text, and JSON files when the recommended commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

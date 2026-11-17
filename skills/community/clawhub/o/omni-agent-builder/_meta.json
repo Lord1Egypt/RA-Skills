@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7efwb6whhm372443tpnrjysd8293rg",
-  "slug": "omni-agent-builder",
-  "version": "1.0.0",
-  "publishedAt": 1772671614702
+  "name": "omni-agent-builder",
+  "version": "1.1.0",
+  "created": "2026-03-04",
+  "files": [
+    "SKILL.md",
+    "references/*",
+    "scripts/*"
+  ]
 }

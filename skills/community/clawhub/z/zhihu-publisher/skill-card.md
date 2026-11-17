@@ -1,40 +1,59 @@
-## Description: <br>
-Automates Zhihu article publishing by guiding an agent through Chrome-based login, article editing, formatting, and posting with xbrowser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Zhihu article publishing by guiding an agent through Chrome-based login, drafting, formatting, and publication with xbrowser.
 
-## Publisher: <br>
-[liuxucai](https://clawhub.ai/user/liuxucai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxucai](https://clawhub.ai/user/liuxucai)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent operate a logged-in Chrome session to draft, format, and publish long-form articles on Zhihu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish publicly to a user's Zhihu account from a logged-in Chrome session. <br>
-Mitigation: Require the agent to show the final article title and content and receive explicit user approval before clicking publish. <br>
-Risk: Account credentials and logged-in browser access are involved during setup and use. <br>
-Mitigation: Provide credentials interactively, do not store them in files, and use only a browser session/account intended for the publishing task. <br>
+## Use Case:
 
+Developers and content operators use this skill to automate publishing prepared articles to Zhihu through a controlled Chrome browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuxucai/zhihu-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with bash and JavaScript command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires xbrowser with Chrome and an active user-controlled Zhihu account session; long article text is inserted in chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Live Zhihu account credentials could be exposed if they are supplied through command-line text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual login or an isolated browser profile, and do not provide passwords through command-line text.
+
+Risk: The skill can publish unintended content to a live Zhihu account.
+
+Mitigation: Use it only for deliberate publishing requests and require a preview plus explicit confirmation before publication.
+
+Risk: Article text copied from untrusted sources may be unsafe for browser-based insertion.
+
+Mitigation: Avoid untrusted article text unless the insertion method is changed to treat content strictly as data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuxucai/skills/zhihu-publisher)
+- [Zhihu Sign-In](https://www.zhihu.com/signin)
+- [Zhihu Article Editor](https://zhuanlan.zhihu.com/write)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome and xbrowser; article text is inserted in chunks for long drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

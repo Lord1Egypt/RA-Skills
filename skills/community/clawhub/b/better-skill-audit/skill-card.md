@@ -1,43 +1,61 @@
-## Description: <br>
-Deprecated ClawHub skill-quality auditor that performs L1/L2 static and dry-run checks, scores agent skills, and produces Markdown audit reports with optional explicitly authorized fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated ClawHub skill-quality auditor for agent skills, preserved for backward compatibility after being renamed to skill-deep-audit.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and skill maintainers use this deprecated compatibility slug to audit agent skill directories against a seven-dimension quality checklist, produce a Markdown scorecard, and review suggested fixes before migrating to skill-deep-audit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security review reports conflicting instructions about when the skill may write or edit files. <br>
-Mitigation: Use the skill in read-only audit mode by default; run fix mode only after explicit approval, on a scoped workspace, and with version control or separate backups. <br>
-Risk: Generated audit reports and fix suggestions may be incorrect or misleading if static checks misclassify a skill's behavior. <br>
-Mitigation: Review reported ERR and WARN items before acting, and manually verify any finding that affects code, security controls, or release decisions. <br>
+## Use Case:
 
+Developers and skill maintainers use this deprecated compatibility skill to audit agent skill directories for quality, safety, portability, documentation, dependency, and packaging issues. New use should migrate to skill-deep-audit.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/songhonglei/better-skill-audit) <br>
-- [Check rules](artifact/references/check-rules.md) <br>
-- [Controlled domains](artifact/references/controlled-domains.md) <br>
-- [Audit output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit reports with score tables, findings, fix guidance, and concise terminal summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write AUDIT-{date}.md scorecards; fix mode may edit audited skill files only after explicit user approval and backup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; deprecated compatibility slug) <br>
+Risk: The server security verdict is suspicious because the skill mixes read-only audit claims with target-directory writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, expect audit-report writes into the target directory, and do not allow the fix workflow unless modification of audited skill files is intended.
+
+Risk: Unsafe shell command templates may be affected by user-supplied paths containing shell metacharacters.
+
+Mitigation: Use only trusted, simple target paths and avoid paths containing shell metacharacters.
+
+Risk: The skill may optionally query Hub tooling and can back up and modify audited skill files during the fix workflow.
+
+Mitigation: Run it in an environment where optional Hub queries are acceptable, and start the fix workflow only after explicit review of the proposed file changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/better-skill-audit)
+- [Replacement skill listing](https://clawhub.com/skills/skill-deep-audit)
+- [Check rules](references/check-rules.md)
+- [Controlled domains](references/controlled-domains.md)
+- [Audit report template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and concise text guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit scoring, findings, remediation guidance, and optional fix-workflow instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

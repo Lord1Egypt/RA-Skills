@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/source_coverage.schema.json",
+  "title": "AGY PPT source coverage map (Phase 12)",
+  "description": "Layer B (deterministic) contract for the source-coverage sidecar artifact. Deterministic accounting: every HIGH-priority source unit must be accounted for (covered, speaker_notes_only, intentionally_omitted with a reason, or not_applicable) -- it can never silently disappear as 'unaccounted'. AGY decides the coverage_status and omission_reason; the validator only checks accounting completeness and referenced-id existence.",
+  "type": "object",
+  "required": ["schema_version", "project_id", "entries"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "project_id": { "type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9._-]+$" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/entry" }
+    }
+  },
+  "definitions": {
+    "entry": {
+      "type": "object",
+      "required": ["source_unit_id", "priority", "coverage_status"],
+      "additionalProperties": true,
+      "properties": {
+        "source_unit_id": {
+          "type": "string",
+          "pattern": "^su:[A-Za-z0-9._-]+:[a-f0-9]{8,}$",
+          "description": "Must exist in source_inventory.json's units[]."
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["HIGH", "MEDIUM", "LOW"],
+          "description": "Mirrors the unit's priority in source_inventory.json at the time this entry was written."
+        },
+        "coverage_status": {
+          "type": "string",
+          "enum": [
+            "covered",
+            "speaker_notes_only",
+            "intentionally_omitted",
+            "not_applicable",
+            "unaccounted"
+          ]
+        },
+        "covered_by_slide_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^slide_[0-9]{2,}$" }
+        },
+        "covered_by_claim_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^cl:[A-Za-z0-9._-]+:[0-9]{2,}$" }
+        },
+        "omission_reason": {
+          "type": ["string", "null"],
+          "description": "Required (non-null) when coverage_status is 'intentionally_omitted'."
+        }
+      }
+    }
+  }
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-输入被执行公司名和债务金额，生成标准格式的《追加被执行人申请书》、可追加对象清单、证据材料清单、判例引用模板和后续操作指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入被执行公司名和债务金额，自动检索可追加的股东名单，并生成标准格式《追加被执行人申请书》、证据材料清单和后续操作指引。
 
-## Publisher: <br>
-[hjfl888](https://clawhub.ai/user/hjfl888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjfl888](https://clawhub.ai/user/hjfl888)
 
-## Use Case: <br>
-External users and legal-support agents use this skill to draft Chinese court application materials for adding enforceable parties after a company judgment remains unpaid. Generated filings should be treated as drafting assistance and reviewed against current law, case facts, and professional legal judgment before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated application materials may be incomplete, outdated, or unsuitable for a specific enforcement matter. <br>
-Mitigation: Review every filing against current law, the case record, and qualified legal advice before submission. <br>
-Risk: The skill may be invoked for broad financial distress or enforcement questions where the requested document is not the right remedy. <br>
-Mitigation: Confirm that adding an enforceable party is procedurally appropriate before relying on the generated draft. <br>
-Risk: Self-approval labels in the artifact should not be treated as independent legal or security assurance. <br>
-Mitigation: Use the server security evidence and a human review process to assess suitability before installation or use. <br>
+## Use Case:
 
+External legal professionals and parties in enforcement matters use this skill to draft Chinese court materials for adding enforceable parties after a company judgment remains unpaid. It helps prepare applicant documents, candidate target lists, legal-basis notes, evidence checklists, precedent templates, and follow-up guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjfl888/execute-addition-applicant) <br>
-- [Publisher profile](https://clawhub.ai/user/hjfl888) <br>
-- [Publisher website](https://flzwcz.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown legal drafting output with structured lists and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft legal materials that require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release and skill.json) <br>
+Risk: Generated enforcement-related legal documents may contain incorrect facts, outdated law, jurisdictional mismatches, or unsuitable legal strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all output as a draft and verify facts, current law, jurisdictional requirements, evidence, and filing strategy with qualified counsel before use.
+
+Risk: The artifact contains self-stated CLEAN and NOT Suspicious labels that are publisher claims rather than independent guarantees.
+
+Mitigation: Rely on the server security evidence and local review before deployment, and install only when legal drafting assistance for this use case is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjfl888/skills/execute-addition-applicant)
+- [Publisher profile](https://clawhub.ai/user/hjfl888)
+- [Publisher website](https://flzwcz.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown legal drafting content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft court application text, addable-party lists, evidence checklists, legal-basis notes, precedent templates, and follow-up steps.]
+
+## Skill Version(s):
+
+2.3.1 (source: server release evidence and skill.json; SKILL.md frontmatter lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

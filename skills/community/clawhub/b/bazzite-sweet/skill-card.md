@@ -1,39 +1,54 @@
-## Description: <br>
-Bazzite-specific setup, optimization, and troubleshooting for Steam Deck tweaks, Flatpak management, Wayland, GNOME/KDE, and uBlue image layers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bazzite-specific setup, optimization, and troubleshooting — Steam Deck tweaks, Flatpak management, Wayland, GNOME/KDE, uBlue image layers.
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverod](https://clawhub.ai/user/silverod)
 
-## Use Case: <br>
-Linux users and operators use this skill to get Bazzite-specific guidance for setup, maintenance, Steam Deck tuning, Flatpak and package management, display troubleshooting, and uBlue rebasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some guidance includes commands that can change an immutable Linux installation, install packages, alter Flatpak state, mount storage, or reboot the system. <br>
-Mitigation: Review each command before running it and confirm it matches the target Bazzite edition, device, and recovery plan. <br>
-Risk: Rebase, reset, cleanup, mount, and package-layering commands may affect system boot state or user data if used on the wrong target. <br>
-Mitigation: Check current deployments and backups first, prefer dry status checks before changes, and keep rollback instructions available. <br>
+## Use Case:
 
+External users and Linux-focused developers use this skill as a Bazzite command reference for setup, Steam Deck tuning, Flatpak management, package layering, rebase/update workflows, and troubleshooting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; commands may require review before execution on the target Linux system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: System maintenance commands such as rpm-ostree upgrade, rebase, cleanup, package layering, mount, and reboot can affect host state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command against the current Bazzite edition before execution and use status, backup, pin, or rollback workflows where appropriate.
+
+Risk: Screenshot and recording commands can capture visible private information.
+
+Mitigation: Confirm the visible screen contents and output location before running screenshot or recording commands.
+
+## Reference(s):
+
+- [Bazzite Sweet ClawHub Skill Page](https://clawhub.ai/silverod/skills/bazzite-sweet)
+- [Flathub Flatpak Repository](https://dl.flathub.org/repo/flathub.flatpakrepo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are user-run and may include system maintenance, package changes, reboot, screenshot, or recording operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Validate ESLint v9+ flat config files exported as JSON for structural correctness, language options, rules configuration, plugin hygiene, file patterns, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate ESLint v9+ flat config files (JSON-exported) for structural correctness, language options, rules configuration, plugin hygiene, file patterns, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit JSON-exported ESLint v9+ flat configs, enforce config standards in CI, and review eslint.config.js changes before merging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented Node export command loads eslint.config.js, which executes code from the target configuration as part of producing the JSON snapshot. <br>
-Mitigation: Export configs only from trusted projects or isolated environments, then run the Python validator against the generated JSON snapshot. <br>
-Risk: Validation results apply to the exported JSON snapshot and may become stale if eslint.config.js changes afterward. <br>
-Mitigation: Regenerate the JSON snapshot immediately before validation, especially in CI or pre-merge checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit ESLint v9+ flat configuration snapshots, review eslint.config.js changes, and enforce configuration standards in CI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/eslint-flat-config-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; validator output can be text, JSON, or summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish clean results, validation failures, and file or parse errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The documented ESLint config export step runs project JavaScript, which can expose local or CI secrets when used on untrusted code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate JSON snapshots only from trusted projects, or run the export in a disposable sandbox or container with no secrets, no credential mounts, restricted network access, and a read-only repository mount.
+
+Risk: The security verdict is suspicious because the skill lacks a warning about executing project JavaScript during export.
+
+Mitigation: Review the skill carefully before installing and avoid running the export step on untrusted pull requests or privileged CI runners.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/eslint-flat-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or summary output with validation findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes distinguish success, validation failures, and file or parse errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

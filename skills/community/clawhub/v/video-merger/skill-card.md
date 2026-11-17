@@ -1,45 +1,54 @@
-## Description: <br>
-多片段短视频自动拼接工具，支持按文件名排序、统一音视频参数、淡入淡出转场、分块/完整拼接，适合短剧、分镜头视频批量拼接 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges numerically prefixed MP4 clips into a single video or time-based chunks while normalizing resolution, frame rate, codec, audio, and optional fade transitions.
 
-## Publisher: <br>
-[machunlin](https://clawhub.ai/user/machunlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[machunlin](https://clawhub.ai/user/machunlin)
 
-## Use Case: <br>
-Developers, video editors, and short-form content producers use this skill to merge numbered MP4 segments into complete or chunked videos with consistent encoding, frame rate, resolution, and fade transitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local ffmpeg and ffprobe binaries for video processing. <br>
-Mitigation: Install ffmpeg from a trusted source and review custom binary paths before using --ffmpeg-path or --ffprobe-path. <br>
-Risk: The output path may be created or overwritten during merging. <br>
-Mitigation: Choose an output file or directory that is intended for generated video artifacts and keep backups of important files. <br>
-Risk: The skill processes every matching MP4 file in the selected input directory. <br>
-Mitigation: Point --input only at the intended segment folder and verify numeric filename prefixes before running a merge. <br>
+## Use Case:
 
+External creators, developers, and video production teams use this skill to batch-combine AI-generated scenes or recorded clips into finished MP4 videos or chunked outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/machunlin/video-merger) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python examples; runtime output is MP4 video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ffmpeg and ffprobe binaries; can produce one merged MP4 file or multiple chunked MP4 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact package files report 1.0.0) <br>
+Risk: Unsafe filename handling can expose risk when clip names or input directories are attacker supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted video directories and filenames, and avoid running the skill on attacker-supplied clip names.
+
+Risk: The skill runs FFmpeg commands and the install script may use sudo or a system package manager to install FFmpeg.
+
+Mitigation: Review install.sh before installation, inspect commands before execution, and choose output paths carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/machunlin/skills/video-merger)
+- [FFmpeg download](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; MP4 files are produced when the commands are executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local FFmpeg and trusted MP4 input directories and filenames.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

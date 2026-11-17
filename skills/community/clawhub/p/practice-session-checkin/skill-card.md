@@ -1,45 +1,59 @@
-## Description: <br>
-Public-safe practice session intake, start confirmation, reminder flow, completion check, and follow-up tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public-safe practice session intake, start confirmation, reminder flow, completion check, and follow-up tracking.
 
-## Publisher: <br>
-[guoma970](https://clawhub.ai/user/guoma970) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoma970](https://clawhub.ai/user/guoma970)
 
-## Use Case: <br>
-External users and agents use this skill to coordinate generic practice-session check-ins: record a task, confirm start time, send short reminders, check completion, and track unfinished follow-up without adding private assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Practice reminders could expose identifying details if users include real names, institution names, account IDs, health details, child-identifying information, or private schedules tied to identity. <br>
-Mitigation: Use generic task descriptions and remove identity-specific or sensitive details before publishing or sharing examples. <br>
-Risk: The assistant could overstep by inventing missing practice details, assuming a start time, or marking completion without confirmation. <br>
-Mitigation: Ask one short clarification question for missing details, confirm start time before reminders, and record completion or follow-up only after user confirmation. <br>
+## Use Case:
 
+External users use this skill to coordinate generic practice tasks through intake, start-time confirmation, reminder messages, completion checks, and unfinished-task follow-up while keeping examples public-safe and non-identifying.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoma970/practice-session-checkin) <br>
-- [README](artifact/README.md) <br>
-- [Customization Guide](artifact/CUSTOMIZATION.md) <br>
-- [Examples](artifact/examples/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Release notes v1.0.1](artifact/releases/1.0.1.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise conversational text and markdown task-status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reminder and check-in flow; no tool, credential, or privileged-access requirements were identified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, and server release metadata) <br>
+Risk: Users may enter identifying or sensitive schedule details while adapting the practice reminder flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep task examples generic and avoid real names, institution names, private schedules tied to identity, account IDs, group IDs, health-sensitive details, and child-identifying information.
+
+Risk: The assistant could overstep by guessing missing practice details or follow-up decisions.
+
+Mitigation: Record the task as provided, ask one short clarification question when needed, confirm start time before reminders, and require confirmation before follow-up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoma970/skills/practice-session-checkin)
+- [ClawHub publisher profile](https://clawhub.ai/user/guoma970)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+- [Customization Guide](CUSTOMIZATION.md)
+- [Release notes v1.0.1](releases/1.0.1.md)
+- [Examples](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise conversational text or Markdown check-in messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve the provided practice task, confirm timing before reminders, and avoid sensitive or identifying details.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

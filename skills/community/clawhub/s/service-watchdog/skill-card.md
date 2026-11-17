@@ -1,44 +1,49 @@
-## Description: <br>
-Monitors self-hosted services by checking HTTP endpoints, TCP ports, SSL certificate expiry, and DNS resolution, then reports status and alerts in concise, chat-friendly formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors self-hosted services by checking HTTP endpoints, TCP ports, SSL certificate expiry, and DNS resolution, then reports service status and alerts.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers, operators, and self-hosted infrastructure maintainers use this skill to check whether configured HTTP, TCP, DNS, and TLS endpoints are healthy and to summarize alerts for agent-assisted monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill monitors endpoints and writes service inventory or outage history that may be sensitive. <br>
-Mitigation: Use --no-history or configure a private history_file path when service names, endpoints, or outage records should not be persisted. <br>
-Risk: HTTPS checks use curl with --insecure, which can mask certificate trust failures in normal endpoint checks. <br>
-Mitigation: Review and remove the default --insecure behavior before relying on HTTPS health results for trusted production monitoring. <br>
-Risk: TCP checks can fall back to bash /dev/tcp when nc or ncat is unavailable. <br>
-Mitigation: Install nc or ncat and run the skill in an environment where monitored hosts and watchdog.json are trusted and controlled. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to check whether self-hosted services are healthy, review recent monitoring history, and surface alerts for outages, slow responses, DNS issues, or expiring TLS certificates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mariusfit/service-watchdog) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Watchdog script](artifact/watchdog.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus summary, report, alerts-only, SSL-only, and JSON runtime output modes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local watchdog.json configuration and can append service status history to a CSV file unless run with --no-history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/watchdog.sh) <br>
+Risk: Unsafe configuration handling could let a bad config run commands or damage writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted watchdog.json files, avoid untrusted host, port, URL, and history_file values, prefer disabling history or confining it to a dedicated directory, and do not rely on HTTPS results for certificate trust until the insecure TLS behavior is corrected.
+
+## Reference(s):
+
+- [Service Watchdog on ClawHub](https://clawhub.ai/mariusfit/skills/service-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, status summaries, reports, and optional machine-readable JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit summary, detailed report, JSON, SSL-only, or alerts-only output depending on command flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

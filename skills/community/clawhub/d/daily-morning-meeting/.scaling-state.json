@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "current_tier": "micro",
+  "tier_history": [],
+  "pending_proposals": [],
+  "next_evaluation": "2026-10-21T09:10:00Z",
+  "last_metrics": {
+    "agent_count": 0,
+    "routing_accuracy": 1.0,
+    "max_blocks_per_department": 9,
+    "error_code_reuse_ratio": 0.0
+  }
+}

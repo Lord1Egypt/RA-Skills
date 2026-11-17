@@ -1,47 +1,54 @@
-## Description: <br>
-Memory Four Types gives OpenClaw agents a structured way to classify, store, index, and maintain persistent memories as user, feedback, project, and reference Markdown records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Four Types helps an OpenClaw agent classify, store, and index long-term memory as user, feedback, project, and reference records.
 
-## Publisher: <br>
-[rickhuang28](https://clawhub.ai/user/rickhuang28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rickhuang28](https://clawhub.ai/user/rickhuang28)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep long-term local memory organized across sessions. It helps agents decide what to remember, where to store it, how to index it, and when to prune or refresh stale entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain personal, project, or preference details across sessions longer than intended. <br>
-Mitigation: Review and prune MEMORY.md, USER.md, SOUL.md, and memory files regularly, and only save context that should persist. <br>
-Risk: Secrets or sensitive personal details could be written into local memory files if the agent records raw conversation content. <br>
-Mitigation: Follow the skill's sensitive-information checks before writing memory, redact credentials, and avoid saving passwords, API keys, tokens, or unnecessary sensitive details. <br>
-Risk: Automated heartbeat, cron, or sub-agent memory maintenance can update stored context without direct user review. <br>
-Mitigation: Enable automated maintenance deliberately, review generated memory changes, and keep stale or inaccurate project and reference memories marked or removed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain structured workspace memory, including user preferences, operational feedback, project context, and external references.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/rickhuang28/memory-four-types) <br>
-- [Memory index template](templates/MEMORY-index.md) <br>
-- [User memory template](templates/user-example.md) <br>
-- [Feedback memory template](templates/feedback-example.md) <br>
-- [Project memory template](templates/project-example.md) <br>
-- [Reference memory template](templates/reference-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory organization guidance and Markdown file patterns; no external tools are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill encourages persistent storage of personal details and conversation-derived memory, which can retain private information without adequate consent or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent before saving user details, avoid raw conversation logs, redact private data, and define review, deletion, and retention rules for the memory directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rickhuang28/skills/memory-four-types)
+- [Memory Index Template](templates/MEMORY-index.md)
+- [User Memory Template](templates/user-example.md)
+- [Feedback Memory Template](templates/feedback-example.md)
+- [Project Memory Template](templates/project-example.md)
+- [Reference Memory Template](templates/reference-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with example commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent memory file structures and indexing conventions for agent workspaces.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+# 本 Skill 专属产物目录（自动创建，忽略全部产物）
+.medic/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 系统文件
+Thumbs.db
+.DS_Store

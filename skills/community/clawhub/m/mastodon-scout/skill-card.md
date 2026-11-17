@@ -1,42 +1,51 @@
-## Description: <br>
-Read-only Mastodon skill. Outputs human-readable timeline summaries or raw JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Mastodon skill. Outputs human-readable timeline summaries or raw JSON.
 
-## Publisher: <br>
-[patelhiren](https://clawhub.ai/user/patelhiren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[patelhiren](https://clawhub.ai/user/patelhiren)
 
-## Use Case: <br>
-Developers and Mastodon users use this skill to inspect home timelines, own posts, mentions, and search results from a Mastodon instance without performing write actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Mastodon OAuth bearer token, which could expose account data if over-scoped or leaked. <br>
-Mitigation: Use a dedicated token with only the read scope, keep it secret, and revoke it from Mastodon development settings when no longer needed. <br>
-Risk: Using an untrusted or mismatched Mastodon instance URL can send the bearer token to the wrong server. <br>
-Mitigation: Set MASTODON_INSTANCE to the exact Mastodon server that issued the token and avoid untrusted --instance URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patelhiren/mastodon-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/patelhiren) <br>
-- [Default Mastodon instance](https://mastodon.social) <br>
-- [Alternative Mastodon instance](https://fosstodon.org) <br>
+## Use Case:
 
+External users and developers use this skill to inspect a Mastodon account's home timeline, mentions, own posts, and status search results through read-only API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable timeline summaries or raw Mastodon API JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MASTODON_TOKEN; MASTODON_INSTANCE is optional and defaults to https://mastodon.social.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bearer token can be sent to any configured instance URL because the destination is not validated.
+
+Mitigation: Use only a read-scope token, set MASTODON_INSTANCE to the trusted HTTPS instance that issued it, do not let prompts choose --instance, and revoke or rotate the token if it may have been used with an unknown or non-HTTPS instance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patelhiren/skills/mastodon-scout)
+- [Publisher profile](https://clawhub.ai/user/patelhiren)
+- [Default Mastodon instance](https://mastodon.social)
+- [Example Mastodon instance](https://fosstodon.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Human-readable timeline summaries or raw Mastodon API JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MASTODON_TOKEN; MASTODON_INSTANCE defaults to https://mastodon.social.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

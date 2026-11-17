@@ -1,40 +1,53 @@
-## Description: <br>
-Manage Trilium Notes by reading, searching, and creating notes via the ETAPI with a provided server URL and ETAPI token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Trilium Notes by reading, searching, and creating notes via the ETAPI with a provided server URL and ETAPI token.
 
-## Publisher: <br>
-[mtbf999](https://clawhub.ai/user/mtbf999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mtbf999](https://clawhub.ai/user/mtbf999)
 
-## Use Case: <br>
-Developers and Trilium users use this skill to connect an agent to their Trilium database so it can search, read, and create notes with an ETAPI token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The ETAPI token can allow the agent to read and modify notes in the configured Trilium instance. <br>
-Mitigation: Use a token with the least access you are comfortable granting for the connected Trilium instance. <br>
-Risk: Important note-management requests could create, update, or delete content the user did not intend. <br>
-Mitigation: Ask for confirmation before create, update, or delete operations when the requested change is important. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trilium ETAPI Reference](references/api.md) <br>
-- [Trilium ETAPI Wiki](https://github.com/zadam/trilium/wiki/Etapi) <br>
+## Use Case:
 
+Developers and Trilium users use this skill to search, read, and create notebook content in a Trilium database through the External Trilium API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with Trilium note content handled through ETAPI requests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRILIUM_ETAPI_TOKEN and TRILIUM_SERVER_URL for Trilium access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill needs access to a Trilium database through an ETAPI token.
+
+Mitigation: Use only a Trilium server and token you control, keep the token out of chat, and store it in the environment or a local configuration file.
+
+Risk: Agent actions could create, update, or delete Trilium notes when ETAPI access is available.
+
+Mitigation: Review requested note changes or deletions before allowing them, especially for important notebooks.
+
+## Reference(s):
+
+- [Trilium ETAPI Reference](references/api.md)
+- [Trilium ETAPI Wiki](https://github.com/zadam/trilium/wiki/Etapi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls, Markdown]
+
+**Output Format:** [Markdown with Trilium note content, search results, configuration guidance, and ETAPI request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-controlled Trilium server URL and ETAPI token.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

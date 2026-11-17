@@ -1,0 +1,540 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "西北",
+ "city": "兰州",
+ "zone": "04-区",
+ "zone_climate": "IX温带草原区",
+ "cities": [
+  "兰州",
+  "满洲里",
+  "齐齐哈尔",
+  "银川",
+  "呼和浩特",
+  "张家口"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#04-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "青杄(青扦)",
+   "aliases": [
+    "青扦"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白杄(白扦)",
+   "aliases": [
+    "白扦"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鳞皮云杉",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫果云杉",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鳞皮冷杉",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "箭杆杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "胡杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "千斤榆(千金榆)",
+   "aliases": [
+    "千金榆"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "圆冠榆",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青甘杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "康定杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "康定柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黑榆",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红桦",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "坚桦（杵榆桦）",
+   "aliases": [
+    "杵榆桦"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马氏槭（五尖槭）",
+   "aliases": [
+    "五尖槭"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山杏",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "方枝柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "高山柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香茶鹿子",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "陕甘花楸",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多腺悬钧子",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西北栒子",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "匍匐栒子",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄蔷薇",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "峨眉蔷薇",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒙古绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "细枝绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "高山绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶忍冬",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "陇塞忍冬(唐古特忍冬)",
+   "aliases": [
+    "唐古特忍冬"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "宁夏枸杞",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "直穗小檗",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "匙叶小檗",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栓翅卫矛",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫花卫矛",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "扁核木",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "宝兴茶藨子",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "百里香",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长穗柽柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "互叶醉鱼草",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杆柳(杠柳)",
+   "aliases": [
+    "杠柳"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天目蓼",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "啤酒花",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "何首乌",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "甘肃铁线莲",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绣球藤",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "藤山柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羊胡子草（白颖苔草）",
+   "aliases": [
+    "白颖苔草"
+   ],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "费菜",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "狼毒",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东方草莓",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金色补血草",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白射干",
+   "aliases": [],
+   "region": "西北",
+   "city": "兰州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#04-区",
+   "confidence": "medium"
+  }
+ ]
+}

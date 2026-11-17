@@ -13,13 +13,20 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.error import HTTPError, URLError
 
-from .audible_fetch import AudibleBlockedError, AudibleFetchError, decode_response_bytes, validate_audible_fetch_url
+from .audible_fetch import (
+    AudibleBlockedError,
+    AudibleFetchError,
+    decode_response_bytes,
+    open_audible_url,
+    validate_audible_fetch_url,
+)
 from .constants import AUDIBLE_BLOCK_MARKERS, PROMOTION_MARKERS
 from .shared import (
     normalize_author_key,
     normalize_space,
     normalized_key,
     parse_localized_price,
+    read_limited_bytes,
     strip_html,
     write_json_atomic,
 )
@@ -70,19 +77,26 @@ def fetch_catalog_text_with_final_url(url: str, *, allow_unsafe_url: bool = Fals
         },
     )
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            raw = response.read()
+        with open_audible_url(request, timeout=30, allow_unsafe_url=allow_unsafe_url) as response:
+            raw = read_limited_bytes(response)
             text = decode_response_bytes(raw, str(response.headers.get("Content-Encoding") or ""))
+            final_url = str(response.geturl() or url)
+            validate_audible_fetch_url(final_url, allow_unsafe_url=allow_unsafe_url)
             lowered = text.lower()
             if any(marker in lowered for marker in AUDIBLE_BLOCK_MARKERS):
                 raise AudibleBlockedError(f"Audible blocked the request for {url}.")
-            return text, str(response.geturl() or url)
+            return text, final_url
     except HTTPError as exc:
-        if exc.code in {403, 429}:
-            raise AudibleBlockedError(f"Audible request blocked with HTTP {exc.code}.") from exc
-        raise AudibleFetchError(f"Audible request failed for {url}: {exc}") from exc
+        http_status = exc.code
+        error_text = str(exc)
+        exc.close()
+        if http_status in {403, 429}:
+            raise AudibleBlockedError(f"Audible request blocked with HTTP {http_status}.") from exc
+        raise AudibleFetchError(f"Audible request failed for {url}: {error_text}") from exc
     except URLError as exc:
         raise AudibleFetchError(f"Audible request failed for {url}: {exc}") from exc
+    except ValueError as exc:
+        raise AudibleFetchError(f"Audible response failed safety validation for {url}: {exc}") from exc
 
 
 def utc_now() -> datetime:
@@ -97,8 +111,8 @@ def canonical_audible_url(url: str) -> str:
 
 
 def audible_product_id(url: str) -> str:
-    match = re.search(r"/pd/(?:[^/?#]+/)?([A-Z0-9]{10})", url)
-    return match.group(1) if match else ""
+    match = re.search(r"/pd/(?:[^/?#]+/)?([A-Z0-9]{10})(?:[/?#]|$)", url, re.I)
+    return match.group(1).upper() if match else ""
 
 
 def build_search_url(title: str, author: str) -> str:
@@ -189,7 +203,7 @@ def hidden_price_status(text: str) -> str | None:
 
 def _price_values_near(text: str) -> list[float]:
     values: list[float] = []
-    for match in re.finditer(r"(?:US)?[$]\s*\d[\d.,]*", text, flags=re.I):
+    for match in re.finditer(r"(?:US)?[$]\s*\d(?:[\d.,]*\d)?", text, flags=re.I):
         context = text[max(0, match.start() - PRICE_CONTEXT_RADIUS) : min(len(text), match.end() + PRICE_CONTEXT_RADIUS)].casefold()
         if any(marker in context for marker in IGNORED_PRICE_CONTEXT_MARKERS):
             continue
@@ -299,10 +313,15 @@ def unknown_offer() -> dict[str, Any]:
 
 
 def _anchor_title_for_href(block: str, href: str) -> str:
-    escaped = re.escape(href)
-    match = re.search(rf'<a[^>]+href=["\']{escaped}["\'][^>]*>(.*?)</a>', block, flags=re.I | re.S)
-    if match:
-        anchor_text = normalize_space(strip_html(match.group(1)))
+    wanted_url = canonical_audible_url(html.unescape(href))
+    for match in re.finditer(
+        r"<a\b[^>]*\bhref\s*=\s*['\"]([^'\"]+)['\"][^>]*>(.*?)</a>",
+        block,
+        flags=re.I | re.S,
+    ):
+        if canonical_audible_url(html.unescape(match.group(1))) != wanted_url:
+            continue
+        anchor_text = normalize_space(strip_html(match.group(2)))
         if anchor_text:
             return anchor_text
     title_match = re.search(r"<h[1-4][^>]*>(.*?)</h[1-4]>", block, flags=re.I | re.S)
@@ -311,8 +330,7 @@ def _anchor_title_for_href(block: str, href: str) -> str:
 
 def _author_from_block(block: str) -> str:
     patterns = (
-        r"By:\s*</?[^>]*>\s*<a[^>]*>(.*?)</a>",
-        r"By:\s*<a[^>]*>(.*?)</a>",
+        r"\bBy:\s*(?:</?[^>]+>\s*){0,6}<a\b[^>]*>(.*?)</a>",
         r"By:\s*([^<\n]+)",
     )
     for pattern in patterns:
@@ -325,14 +343,15 @@ def _author_from_block(block: str) -> str:
 def parse_search_cards(html_text: str, base_url: str = "https://www.audible.com") -> list[dict[str, Any]]:
     cards: list[dict[str, Any]] = []
     seen: set[str] = set()
-    for match in re.finditer(r'href=["\']([^"\']*/pd/[^"\']+)["\']', html_text, flags=re.I):
+    lowered_html = html_text.casefold()
+    for match in re.finditer(r"href\s*=\s*['\"]([^'\"]*/pd/[^'\"]+)['\"]", html_text, flags=re.I):
         raw_href = html.unescape(match.group(1))
         url = canonical_audible_url(urllib.parse.urljoin(base_url, raw_href))
         if url in seen:
             continue
         seen.add(url)
-        product_marker = html_text.rfind("productListItem", 0, match.start())
-        product_start = html_text.rfind("<li", 0, product_marker) if product_marker >= 0 else -1
+        product_marker = lowered_html.rfind("productlistitem", 0, match.start())
+        product_start = lowered_html.rfind("<li", 0, product_marker) if product_marker >= 0 else -1
         next_product = re.search(r'<li[^>]+class=["\'][^"\']*productListItem', html_text[match.end() :], flags=re.I | re.S)
         if product_start >= 0:
             product_end = match.end() + next_product.start() if next_product else min(len(html_text), match.end() + 15_000)
@@ -448,13 +467,20 @@ class AudibleCatalogClient:
         }
 
     def _manifest(self) -> dict[str, Any]:
-        if not self.offline_fixtures:
+        fixture_root = self.offline_fixtures
+        if fixture_root is None:
             return {}
         if self._fixture_manifest is None:
-            self._fixture_manifest = json.loads((self.offline_fixtures / "manifest.json").read_text(encoding="utf-8"))
+            loaded = json.loads((fixture_root / "manifest.json").read_text(encoding="utf-8"))
+            if not isinstance(loaded, dict):
+                raise AudibleFetchError("Offline fixture manifest must contain a JSON object.")
+            self._fixture_manifest = loaded
         return self._fixture_manifest
 
     def _fixture_html(self, section: str, key: str) -> tuple[str, str]:
+        fixture_root = self.offline_fixtures
+        if fixture_root is None:
+            raise AudibleFetchError("Offline fixtures are not configured.")
         manifest = self._manifest()
         section_payload = dict(manifest.get(section) or {})
         fixture = section_payload.get(key)
@@ -465,7 +491,7 @@ class AudibleCatalogClient:
             if failure in {"403", "429", "captcha", "robot"}:
                 raise AudibleBlockedError(f"Offline fixture block: {failure}")
             raise AudibleFetchError(f"Offline fixture failure: {failure}")
-        fixture_path = self.offline_fixtures / str(fixture)
+        fixture_path = fixture_root / str(fixture)
         return fixture_path.read_text(encoding="utf-8"), key
 
     def _fetch_html(self, section: str, key: str, url: str) -> tuple[dict[str, Any], str | None]:
@@ -518,6 +544,7 @@ class AudibleCatalogClient:
         selected_status = "not_found"
         selected_reason = "no plausible candidate in first 3 search results"
         candidate_notes: list[dict[str, Any]] = []
+        review_fallback: tuple[dict[str, Any], str] | None = None
         for card in cards[:3]:
             match_status, reason = validate_candidate(book, card)
             candidate_notes.append(
@@ -529,11 +556,16 @@ class AudibleCatalogClient:
                     "matchReason": reason,
                 }
             )
-            if match_status in {"matched", "needs_review"}:
+            if match_status == "matched":
                 selected = card
                 selected_status = match_status
                 selected_reason = reason
                 break
+            if match_status == "needs_review" and review_fallback is None:
+                review_fallback = (card, reason)
+        if selected is None and review_fallback is not None:
+            selected, selected_reason = review_fallback
+            selected_status = "needs_review"
         if selected is None:
             return self._base_result(book, search_url, "not_found", "not_found", selected_reason, candidate_notes)
         if selected_status == "needs_review":
@@ -566,6 +598,9 @@ class AudibleCatalogClient:
         candidate_notes: list[dict[str, Any]],
         min_discount_percent: int,
     ) -> dict[str, Any] | None:
+        authenticated_lookup = self.authenticated_price_lookup
+        if authenticated_lookup is None:
+            return None
         product_id = normalize_space(str(card.get("productId") or ""))
         if not product_id:
             return None
@@ -583,7 +618,7 @@ class AudibleCatalogClient:
             if self.live_requests > 0 and self.request_delay > 0:
                 time.sleep(self.request_delay)
             self.live_requests += 1
-            pricing = self.authenticated_price_lookup(product_id, min_discount_percent)
+            pricing = authenticated_lookup(product_id, min_discount_percent)
         except Exception as exc:
             self.ordinary_failures += 1
             result = self._card_result(

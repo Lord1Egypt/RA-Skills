@@ -1,40 +1,54 @@
-## Description: <br>
-An AI-powered short-form video content generator for planning viral YouTube Shorts, TikTok videos, Instagram Reels, and other vertical video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-powered short-form video content generator for creating scripts, visual directions, captions, voiceover specifications, music recommendations, and platform metadata for YouTube Shorts, TikTok, Instagram Reels, and similar vertical video formats.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to plan and generate short-form video scripts, visual directions, voiceover specifications, caption styles, music recommendations, and platform-specific metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use third-party media, voice, image, or video providers that receive user URLs, scripts, images, audio, or video. <br>
-Mitigation: Confirm which services will receive content before use and avoid sharing sensitive or confidential material. <br>
-Risk: Provider-backed features may require API keys, subscriptions, or other credentials. <br>
-Mitigation: Use limited-scope keys or subscriptions rather than sensitive personal or production credentials. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to plan short-form video content from topics, scripts, URLs, audio, or images. It helps generate timed scripts, scene-level visual direction, captions, voiceover settings, music guidance, and platform-specific metadata.
 
-## Reference(s): <br>
-- [Shorts Generator code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript examples and structured content plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scripts, timing notes, visual direction, voiceover specifications, caption styling, music recommendations, and platform-specific metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may provide private URLs, confidential scripts, unreleased media, or copyrighted assets while planning content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid supplying sensitive or rights-restricted material unless the chosen external media, voice, image, or video providers are approved for that content.
+
+Risk: Generated content plans may reference external media and AI providers whose terms, quality, or data handling vary.
+
+Mitigation: Review provider choices, licensing, and platform requirements before using generated scripts, visuals, voiceover, music, or metadata in a release workflow.
+
+## Reference(s):
+
+- [Shorts Generator Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-shorts-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript examples and structured content-generation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable plans and specifications for short-form video generation rather than executing a production video pipeline.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

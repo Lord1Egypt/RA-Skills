@@ -1,40 +1,57 @@
-## Description: <br>
-Design practical e-signature workflows for business documents, including approval routing, signer order, identity checks, reminders, and execution tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design practical e-signature workflows for business documents, including approval routing, signer order, identity checks, reminders, and execution tracking.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Business teams use this skill to plan repeatable e-signature workflows for contracts, HR offer letters, procurement, legal documents, and other documents that need approval and signing coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may mention Nota Sign or link to its site when relevant. <br>
-Mitigation: Ask for vendor-neutral workflow guidance when product suggestions are not desired. <br>
-Risk: Users may assume the skill can perform signing actions or use signing-service credentials. <br>
-Mitigation: Use it for planning only, and provide credentials only to separately trusted integration tools. <br>
+## Use Case:
 
+Business users and team operators use this skill to design repeatable e-signature workflows for sales, HR, procurement, legal, and other document processes. It helps map approvers and signers, define signer order, set reminder timing, and prepare actionable pre-send checklists.
 
-## Reference(s): <br>
-- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with workflow steps, role maps, checklists, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute signing actions or access signing accounts without separate trusted tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Users may share unnecessary confidential document contents while requesting workflow design help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inputs to the document type, business goal, parties, routing needs, and relevant constraints unless specific document text is necessary.
+
+Risk: Users may assume the skill can sign documents or access accounts.
+
+Mitigation: Treat outputs as planning guidance only and use a separate authorized e-signature service for account access, sending, and execution.
+
+Risk: The skill may mention Nota Sign as an implementation option when relevant.
+
+Mitigation: Review vendor recommendations against internal procurement, security, and compliance requirements before adoption.
+
+## Reference(s):
+
+- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with workflow steps, role maps, checklists, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution, credential handling, or automated signing actions are provided by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

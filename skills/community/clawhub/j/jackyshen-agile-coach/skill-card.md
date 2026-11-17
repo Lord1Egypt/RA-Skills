@@ -1,40 +1,51 @@
-## Description: <br>
-Provides structured Agile and Scrum prompt templates for Scrum Masters and Product Owners across backlog, risk, product insight, retrospective, and facilitation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jackyshen Agile Coach provides structured prompt support for Scrum Masters and Product Owners across common Scrum, backlog, product, risk, and facilitation workflows.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-Scrum practitioners, Scrum Masters, and Product Owners use this skill to select and customize ready-to-use prompts for common agile team workflows, including Definition of Ready checks, backlog prioritization, risk analysis, refinement, persona creation, churn analysis, PRD drafting, decision support, retrospectives, and scenario modeling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms such as risk, requirements, persona, decision-making, or pattern recognition may trigger the skill during general business analysis tasks. <br>
-Mitigation: Confirm the user is working in an Agile or Scrum context before applying the prompt library when the trigger is generic. <br>
+## Use Case:
 
+Scrum Masters, Product Owners, and agile team facilitators use this skill to select and tailor prompt templates for Definition of Ready checks, backlog prioritization, risk analysis, user personas, PRDs, retrospectives, and related agile workflows.
 
-## Reference(s): <br>
-- [Prompt Library](references/prompt-library.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mebusw/jackyshen-agile-coach) <br>
-- [Publisher Profile](https://clawhub.ai/user/mebusw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt templates and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include placeholders for missing team, product, sprint, or data details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The activation wording is broad and may trigger on generic planning terms such as risk or decision-making.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it when agile coaching prompt support is intended; review outputs for fit before applying them to non-agile planning work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mebusw/skills/jackyshen-agile-coach)
+- [Server-Resolved GitHub Repository](https://github.com/mebusw/jackyshen-agile-coach)
+- [Server-Resolved GitHub Commit](https://github.com/mebusw/jackyshen-agile-coach/commit/97945b8e867e9e7dd9051c61427f6b6764ddd03b)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt templates and concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to the user's language and marks missing user-specific details with placeholders.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -108,8 +108,7 @@ def main() -> None:
 
     private_key_pem = _normalize_pem(
         private_key_raw,
-        "-----BEGIN PRIVATE KEY-----",
-        "-----END PRIVATE KEY-----",
+        "REDACTED-SECRET",
         "private key",
     )
     public_key_pem = _normalize_pem(

@@ -1,41 +1,53 @@
-## Description: <br>
-Essential Git commands and workflows for version control, branching, and collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essential Git commands and workflows for version control, branching, and collaboration.
 
-## Publisher: <br>
-[mbright4497](https://clawhub.ai/user/mbright4497) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbright4497](https://clawhub.ai/user/mbright4497)
 
-## Use Case: <br>
-Developers and agents use this skill as a Git reference for repository setup, everyday branching and commit workflows, synchronization with remotes, history inspection, undo operations, stashing, rebasing, tagging, and common troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git commands such as reset --hard, clean, deletion, rebase, and force-push can discard work or rewrite shared history when run against the wrong repository, branch, or remote. <br>
-Mitigation: Before executing examples, confirm the repository, current branch, target remote, and intended effect; review destructive commands and prefer preview or reversible steps where available. <br>
+## Use Case:
 
+Developers and engineers use this skill as a Git reference for repository setup, staging, commits, branching, merging, rebasing, remote workflows, tags, stashing, and common troubleshooting tasks.
 
-## Reference(s): <br>
-- [Git homepage](https://git-scm.com/) <br>
-- [Git documentation](https://git-scm.com/doc) <br>
-- [Pro Git book](https://git-scm.com/book) <br>
-- [A Visual Git Reference](https://marklodato.github.io/visual-git-guide/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and ini code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the git command-line tool for command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Some examples can discard local work, remove untracked files, rewrite history, change global Git configuration, clear stashes, or update shared remotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Agents should present these as deliberate user-controlled actions and avoid running destructive Git commands unless the user explicitly requests them and understands the effect.
+
+## Reference(s):
+
+- [Git Essentials Skill Page](https://clawhub.ai/mbright4497/skills/git-essentials-1-0-0)
+- [Git Homepage](https://git-scm.com/)
+- [Git Documentation](https://git-scm.com/doc)
+- [Pro Git Book](https://git-scm.com/book)
+- [A Visual Git Reference](https://marklodato.github.io/visual-git-guide/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and ini code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the git command-line tool for command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

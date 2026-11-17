@@ -1,41 +1,54 @@
-## Description: <br>
-Implement secure webhook receivers and senders with proper verification and reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement secure webhook receivers and senders with proper verification and reliability.
 
-## Publisher: <br>
-[carloscbrls](https://clawhub.ai/user/carloscbrls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carloscbrls](https://clawhub.ai/user/carloscbrls)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and review secure webhook receivers and senders, including signature verification, replay prevention, idempotency, retry behavior, and delivery tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook logging can expose secrets or personal data if payloads, headers, or response bodies are stored verbatim. <br>
-Mitigation: Redact secrets and personal data, restrict log access, and keep retention short. <br>
-Risk: Server-resolved GitHub provenance is unavailable for this version. <br>
-Mitigation: Verify the publisher profile before relying on provenance-sensitive deployments. <br>
+## Use Case:
 
+Developers and engineers use this skill to design webhook receivers and senders with HMAC verification, replay prevention, idempotency, retry handling, and delivery tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carloscbrls/cc3po-webhook) <br>
-- [Skill homepage](https://clawhub.ai/carloscbrls/webhook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with implementation checklists and inline code patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance; no API calls or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Webhook debugging logs may expose full URLs, tokens, query strings, headers, payloads, or response bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Log endpoint identifiers, status codes, timings, sizes, and correlation IDs by default; redact sensitive data, restrict access, and keep retention short.
+
+Risk: Webhook implementation guidance can be applied incorrectly in production systems.
+
+Mitigation: Review proposed receiver and sender behavior before deployment, especially signature verification, replay prevention, idempotency, retry handling, and logging.
+
+## Reference(s):
+
+- [CC3PO Webhook Skill Page](https://clawhub.ai/carloscbrls/skills/cc3po-webhook)
+- [ClawHub metadata homepage](https://clawhub.ai/carloscbrls/webhook)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline examples and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides webhook security and reliability recommendations; no executable tools are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

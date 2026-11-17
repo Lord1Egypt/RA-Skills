@@ -1,42 +1,54 @@
-## Description: <br>
-中国生活服务工具包，支持天气查询（街道级）、限行提醒、油价查询、快递物流跟踪、公交换乘查询等日常生活服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国生活服务工具包，支持天气查询（街道级）、限行提醒、油价查询、快递物流跟踪、公交换乘查询等日常生活服务。
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-External users and agents use this skill to answer China local-life service questions, including street-level weather, traffic restriction reminders, fuel prices, courier tracking, and public transit routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location, route, address, vehicle, or parcel details may be sent to external China-based service providers during lookups. <br>
-Mitigation: Confirm with the user before sending precise addresses, courier tracking numbers, or other sensitive details to third-party services. <br>
-Risk: Weather, traffic restriction, fuel price, courier, and transit results can be delayed or temporarily inaccurate. <br>
-Mitigation: Present time-sensitive results with source and freshness context, and advise users to confirm critical travel or delivery decisions with official sources. <br>
+## Use Case:
 
+External users in or traveling within China use this skill to ask an agent for weather, vehicle restriction, fuel price, parcel tracking, and public transit guidance for daily-life decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/cn-life-toolkit) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text responses with local-service lookup results and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include weather, traffic restriction, fuel price, courier tracking, or transit details sourced from external China-based service providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README changelog) <br>
+Risk: Queries may include parcel numbers, exact addresses, travel routes, or other location-linked details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the minimum information needed for the lookup and avoid exposing sensitive personal or delivery details.
+
+Risk: Weather, courier, traffic, fuel price, and transit answers may depend on third-party services or public notices that can be delayed or change quickly.
+
+Mitigation: Confirm time-sensitive results against official or primary service sources before making travel, driving, or delivery decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/cn-life-toolkit)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted natural-language responses with local-service lookup details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include weather, traffic restriction, fuel price, parcel, transit, and location-linked details from third-party or public sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Translate trading strategies between different frameworks and languages, including Pine Script to Python, NautilusTrader ports, and cross-platform migrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate trading strategies between different frameworks and languages, including Pine Script, Python, NautilusTrader, and cross-platform migrations.
 
-## Publisher: <br>
-[ahuserious](https://clawhub.ai/user/ahuserious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ahuserious](https://clawhub.ai/user/ahuserious)
 
-## Use Case: <br>
-Developers and trading researchers use this skill to plan and produce repo-ready strategy translations, implementation sketches, verification steps, and risk checklists for trading research workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated trading strategy code, backtests, assumptions, or risk controls may be incorrect or unsuitable for real trading. <br>
-Mitigation: Review all generated file changes and independently validate trading logic, backtests, assumptions, and risk controls before using outputs for real trading or financial decisions. <br>
-Risk: The skill has disclosed file-editing authority and can help create or modify repository code and documentation. <br>
-Mitigation: Inspect diffs, run project tests and scans, and approve changes before committing or deploying generated artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahuserious/strategy-translator) <br>
-- [MCPMarket source listing](https://mcpmarket.com/tools/skills/strategy-translator) <br>
+## Use Case:
 
+Developers and quantitative trading researchers use this skill to migrate strategy logic across trading frameworks while preserving objectives, data constraints, validation gates, and repo-ready deliverables.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with implementation sketches, validation steps, risk checklists, and commands where applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file changes and trading strategy validation steps; review generated changes and independently validate trading assumptions before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated strategy translations may contain incorrect logic, incomplete validation assumptions, or misleading research guidance.
+
+Mitigation: Review generated strategy logic, assumptions, validation gates, and repository changes before relying on outputs for financial decisions or live trading.
+
+Risk: The skill can propose edits to code and documentation in a repository.
+
+Mitigation: Inspect diffs, run tests or backtests, and confirm changes before committing or deploying generated artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahuserious/skills/strategy-translator)
+- [MCPMarket Source Listing](https://mcpmarket.com/tools/skills/strategy-translator)
+- [Source Provenance](references/SOURCE.md)
+- [References](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code sketches, checklists, and run commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation gates, implementation sketches, repository change plans, and financial-strategy risk checklists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

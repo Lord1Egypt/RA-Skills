@@ -1,41 +1,58 @@
-## Description: <br>
-Extracts subtitles from Bilibili videos and produces a structured summary of the main ideas, topics, and conclusions, with full transcript output when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts subtitles from Bilibili videos and summarizes the core points, main topics, and key conclusions, with full transcript output when requested.
 
-## Publisher: <br>
-[kongym1234](https://clawhub.ai/user/kongym1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongym1234](https://clawhub.ai/user/kongym1234)
 
-## Use Case: <br>
-External users and agents use this skill when a user provides a Bilibili URL or BV identifier and wants video captions extracted, summarized, or returned as a transcript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send selected Bilibili video audio to SiliconFlow for transcription when captions are unavailable. <br>
-Mitigation: Avoid using it for private or sensitive videos, and use normal Bilibili links or BV IDs for public videos. <br>
-Risk: The included Python script requires access to a SiliconFlow API key from the agent environment. <br>
-Mitigation: Store the key in the configured environment file and do not pass or invent plaintext API keys in commands. <br>
+## Use Case:
 
+External users and agents use this skill to turn a Bilibili video URL or BV identifier into a readable transcript summary. When the user explicitly asks for raw subtitles, the skill outputs the extracted transcript instead of a summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongym1234/bilibiliextractor) <br>
-- [Publisher profile](https://clawhub.ai/user/kongym1234) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries or plain transcript text, with shell commands and configuration guidance when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to summarizing extracted captions; returns full transcript text only when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may send Bilibili video requests to Bilibili and may upload audio to SiliconFlow for transcription when subtitles are unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with videos the user is comfortable processing through those services, and obtain clear user consent before ASR fallback.
+
+Risk: The skill instructions source a broad local .env file to load secrets.
+
+Mitigation: Provide only SILICONFLOW_API_KEY through a trusted secret mechanism instead of sourcing unrelated local environment variables.
+
+Risk: The artifact includes overbroad temporary-file cleanup guidance and runtime dependency installation guidance.
+
+Mitigation: Avoid wildcard cleanup commands during agent execution and prefer preinstalled or pinned dependencies over runtime installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongym1234/skills/bilibiliextractor)
+- [Publisher profile](https://clawhub.ai/user/kongym1234)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary or plain transcript text with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a structured summary; full transcript output is used only when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

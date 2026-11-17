@@ -1,0 +1,124 @@
+<!-- exemplar
+kind: editorial
+register: light
+recipe: EDITORIAL-MAG
+techniques: R1,R6,R9,出血,窄文,三联
+palette: EA526F,D7AF70,937D64,585B56,F3E7D4
+validated: 四闸 PASS(0P0/0P1/0P2)+渲染评审 v1-v7
+regen: python3 scripts/make_exemplars.py(勿手改本文件)
+-->
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>晨柔手帖</title>
+<!-- recipe-source: EDITORIAL-MAG(0.14) 声明色板: 4F4335,585B56,C8A56D,D7AF70,E5D9C7,EA526F,EE959C,F3E7D4,FAF4EC 裁切: 16:9/3:2/4:5 -->
+<style>:root{
+  --night:#585B56;--pale:#F3E7D4;--mist:#E5D9C7;--sage:#EE959C;
+  --surface:#D7AF70;--ink:#585B56;--ink2:#4F4335;--accent:#EA526F;
+  --card:#FAF4EC;--line:#C8A56D;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
+  --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --display:var(--sans);
+  --mono:ui-monospace,'SF Mono',Consolas,monospace;
+}
+:lang(zh){text-autospace:normal;line-break:strict}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+:lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--pale);color:var(--ink);font:400 16px/1.75 var(--sans)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.kicker{display:flex;align-items:center;gap:10px;font:700 12px/1.6 var(--sans);
+         letter-spacing:.28em;color:var(--accent-ink,var(--accent));margin-bottom:14px}
+.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
+.hairline{border:0;border-top:1px solid var(--line)}
+.mono{font:400 12px/1.6 var(--mono);letter-spacing:.05em;opacity:.62}
+.btn{display:inline-block;background:var(--ink);color:var(--pale);font:700 15px/1 var(--sans);
+      padding:16px 32px;border-radius:10px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ghost-num{font:900 clamp(96px,12vw,160px)/1 var(--serif);color:transparent;
+            -webkit-text-stroke:1px var(--line);pointer-events:none}
+.cross{position:absolute;width:11px;height:11px;pointer-events:none}
+.cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
+.cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+             letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
+.bg-motif{position:absolute;pointer-events:none;opacity:.07}
+.dark .bg-motif{opacity:.12}
+section{padding:96px 0}
+section .sub{padding:64px 0 0}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
+td{padding:12px 18px;border-top:1px solid var(--line)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lift{transition:transform .22s ease,box-shadow .22s ease}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+@media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
+figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
+@supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
+  font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
+@media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+
+.bleed{height:60vh;background:var(--night);position:relative;overflow:hidden;
+        display:flex;align-items:flex-end}
+.bleed::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");opacity:.07}
+.bleed .art{position:absolute;right:6vw;top:50%;transform:translateY(-50%);opacity:.5}
+.bleed .meta{position:absolute;left:48px;top:40px;z-index:2;color:var(--mist)}
+.bleed .cap{position:relative;z-index:2;color:var(--mist);padding:0 48px 40px;width:100%}
+.narrow{max-width:66ch;margin:0 auto;padding:72px 24px}
+.narrow h2{font:800 clamp(26px,3vw,38px)/1.25 var(--serif);margin:10px 0 14px}
+.offset{display:grid;grid-template-columns:5fr 7fr;gap:32px;align-items:start}
+.offset .drop{margin-bottom:-64px;position:relative;z-index:2}
+.pull{grid-column:3/span 9;padding:64px 0}
+.pull p{font:700 clamp(26px,3.6vw,44px)/1.4 var(--serif)}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.close-bar{background:var(--night);color:var(--pale)}
+@media (max-width:900px){.offset{grid-template-columns:1fr}.tri{grid-template-columns:1fr}.bleed{height:48vh}}
+</style></head><body>
+<div style='display:flex;height:5px' aria-hidden='true'><span style='flex:1;background:#585B56'></span><span style='flex:1;background:#4F4335'></span><span style='flex:1;background:#EA526F'></span><span style='flex:1;background:#EE959C'></span><span style='flex:1;background:#F3E7D4'></span></div>
+<div class="bleed">
+  <span class="meta mono">ISSUE 01 — MORNPASTEL — 三代手作</span>
+  <div class="art"><svg width='420' height='420' viewBox='0 0 420 420' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='3'><circle cx='210.0' cy='210.0' r='190.20000000000002'/><circle cx='210.0' cy='210.0' r='138.6'/><circle cx='210.0' cy='210.0' r='84.0'/></g><g fill='none' stroke='#EA526F' stroke-width='3'><circle cx='210.0' cy='210.0' r='29.400000000000002'/></g><circle cx='210.0' cy='210.0' r='10.4' fill='#585B56'/></svg></div>
+  <div class="cap">
+    <h1 style="font:900 clamp(34px,5vw,64px)/1.15 var(--serif);color:var(--pale);max-width:20ch">开篇大标,像杂志封面一样说话。(替换)</h1>
+    <p style="margin-top:14px;font-size:14.5px;max-width:44ch">副题一行:本期给读者什么。(替换)</p></div></div>
+<div class="narrow dropcap" style="position:relative">
+  <div class="bg-motif" style="right:-80px;top:-40px"><svg width='280' height='280' viewBox='0 0 280 280' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='140.0' cy='140.0' r='126.80000000000001'/><circle cx='140.0' cy='140.0' r='92.4'/><circle cx='140.0' cy='140.0' r='56.0'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='140.0' cy='140.0' r='19.6'/></g><circle cx='140.0' cy='140.0' r='7.6000000000000005' fill='#585B56'/></svg></div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);
+       border-bottom:1px solid var(--line);padding:10px 2px;margin-bottom:26px">
+    <span class="mono">VOL.01 — 手作特辑(替换)</span><span class="mono">MORNPASTEL</span></div>
+  <p class="kicker" style="position:relative">导语</p>
+  <h2 style="position:relative">窄文节:66ch 的阅读宽度。(替换)</h2>
+  <p style="color:var(--ink2)">导语两行,说清本期给读者什么。图像主导的页面里,文字节是呼吸点——一节只做一件事。(替换)</p>
+</div>
+<div class="wrap"><section style="padding-top:0"><div class="offset">
+  <div style="background:var(--pale);border-radius:14px;padding:36px 32px">
+    <p class="kicker">主理人手记</p>
+    <p style="font:700 19px/1.7 var(--serif)">「甜点的分寸,和做人的分寸一样——<br>多一分则腻,少一分则寡。」</p>
+    <footer style="margin-top:16px;font-size:12.5px;color:var(--ink2)">—— 主理人 · 每周手记</footer></div>
+  <div class="drop" style="background:var(--card);border-radius:14px;padding:36px 32px">
+    <p class="kicker">到店信息</p>
+    <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px">
+      <span>营业</span><b>周三至周日 11:00-19:00</b></div>
+    <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px">
+      <span>地址</span><b style="text-align:right">湖畔路 12 号 · 一层</b></div>
+    <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:14px">
+      <span>预约</span><b>建议提前 48 小时</b></div></div>
+</div></section>
+<section class="sub"><div class="grid"><div class="pull">
+  <p><span style="color:var(--sage);font-size:1.3em">「</span>跨栏大引文,3+9 的留白就是它的音量。<span style="color:var(--sage);font-size:1.3em">」</span>(替换)</p>
+  <footer class="mono" style="margin-top:14px">—— 署名 · 年份</footer></div></div></section>
+<section class="sub"><div class="tri">
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 01 — 木纹研究(替换)</figcaption></figure>
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 02 — 榫卯细节(替换)</figcaption></figure>
+  <figure style="margin:0"><div style='aspect-ratio:4/5;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px'><svg width='96' height='96' viewBox='0 0 96 96' aria-hidden='true' style='display:block'><g fill='none' stroke='#EE959C' stroke-width='2'><circle cx='48.0' cy='48.0' r='42.160000000000004'/><circle cx='48.0' cy='48.0' r='31.68'/><circle cx='48.0' cy='48.0' r='19.200000000000003'/></g><g fill='none' stroke='#EA526F' stroke-width='2'><circle cx='48.0' cy='48.0' r='6.720000000000001'/></g><circle cx='48.0' cy='48.0' r='3.92' fill='#585B56'/></svg><span class='mono' style='color:var(--ink2)'>4:5(替换)</span></div><figcaption>图 03 — 成品全貌(替换)</figcaption></figure>
+</div></section></div>
+<section class="close-bar" id="cta"><div class="wrap" style="text-align:center;padding:96px 24px">
+  <h2 style="font:800 clamp(28px,3.8vw,46px)/1.22 var(--serif)">出血收尾 + 一句 CTA。(替换)</h2>
+  <p style="color:var(--mist);margin:12px 0 24px;font-size:14.5px">颗粒在暗幕上,故事在亮处讲完。</p>
+  <a class="btn" style="background:var(--pale);color:var(--night)" href="#">主行动(替换)</a></div></section>
+<footer><div class="wrap" style="padding:22px 0 36px;font-size:12.5px;color:var(--ink2);display:flex;justify-content:space-between">
+  <span>© 2026 晨柔手帖</span><span>aesthete-agent 配方 EDITORIAL-MAG</span></div></footer>
+</body></html>

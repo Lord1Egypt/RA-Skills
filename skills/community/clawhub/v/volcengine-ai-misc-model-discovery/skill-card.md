@@ -1,37 +1,48 @@
-## Description: <br>
-Discover and route Volcengine AI model capabilities. Use when users ask which model to use, need endpoint capability checks, or require model selection matrices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and route Volcengine AI model capabilities.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare Volcengine model endpoints by task, constraints, tradeoffs, and fallback options before choosing a recommended endpoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Model availability, pricing, or endpoint behavior may change after the skill is published. <br>
-Mitigation: Verify current Volcengine model documentation and endpoint behavior before using recommendations for production or cost-sensitive decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
+## Use Case:
 
+Developers and agents use this skill to compare Volcengine model endpoints by task, constraints, tradeoffs, and fallback options.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown decision table with endpoint recommendation and invocation template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate endpoints, recommended endpoint, tradeoffs, and fallback guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Model endpoint availability, pricing, or capability details may change after the skill was published.
+
+Mitigation: Verify recommended Volcengine endpoints against current official provider documentation before relying on them.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown decision table with a recommended endpoint, tradeoffs, fallback, and invocation template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should be checked against current Volcengine model and endpoint documentation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

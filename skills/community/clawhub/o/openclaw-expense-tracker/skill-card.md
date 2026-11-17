@@ -1,40 +1,60 @@
-## Description: <br>
-智能记账本 helps agents record Chinese natural-language expense entries, classify spending, and summarize local expense history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language OpenClaw expense-tracking skill that records expenses from natural-language input, categorizes spending, summarizes day/week/month totals, and stores entries in a local JSON file.
 
-## Publisher: <br>
-[GlorySunshine](https://clawhub.ai/user/GlorySunshine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[glorysunshine](https://clawhub.ai/user/glorysunshine)
 
-## Use Case: <br>
-Individuals and agents use this skill to record daily spending from Chinese-language messages, classify expenses such as food, transport, shopping, entertainment, and medical costs, and request day, week, or month summaries from locally stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Expense history is saved locally in a JSON file and may contain sensitive personal finance information. <br>
-Mitigation: Use the skill only where local file permissions are appropriate, and delete or protect data.json on shared machines. <br>
-Risk: Broad trigger words such as record or add may create unintended expense entries. <br>
-Mitigation: Use explicit phrasing such as "记账" with a clear amount and review recent entries when precision matters. <br>
+## Use Case:
 
+Individuals and developers use this skill to record personal spending in Chinese, query recent expense history, and review category-based spending summaries without relying on a remote service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GlorySunshine/openclaw-expense-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Chinese text responses with local JSON expense records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records are stored locally in data.json; no network access or external data collection is indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: Expense history is stored in a plaintext local data.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in protected local directories, remove bundled sample data before real use, and avoid shared machines unless filesystem permissions protect the skill directory.
+
+Risk: The release includes packaging cleanup issues and a malformed skill.json file.
+
+Mitigation: Validate package metadata and repair or remove malformed files before production distribution.
+
+Risk: The @openclaw/sdk dependency is declared with a floating compatible-version range.
+
+Mitigation: Pin or remove the dependency before production use when reproducible installs are required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/glorysunshine/skills/openclaw-expense-tracker)
+- [Publisher Profile](https://clawhub.ai/user/glorysunshine)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with natural-language examples, command snippets, and JavaScript implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime skill returns Chinese text responses for expense entries, recent records, and spending summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

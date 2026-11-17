@@ -1,46 +1,57 @@
-## Description: <br>
-Craft authentic, compliant sustainability messaging for e-commerce brands including environmental claims, eco-friendly positioning, greenwashing avoidance, certification guidance, and customer communication strategies that build trust without legal risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft authentic, compliant sustainability messaging for e-commerce brands including environmental claims, eco-friendly positioning, greenwashing avoidance, certification guidance, and customer communication strategies that build trust without legal risk.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-E-commerce brand teams, marketers, and operators use this skill to audit sustainability practices, draft substantiated environmental claims, choose credible certifications, and prepare channel-specific messaging that reduces greenwashing risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sustainability and environmental claim rules may change or vary by market. <br>
-Mitigation: Verify current FTC, EU, and local requirements before publishing claims. <br>
-Risk: Drafted claims may be inaccurate if the brand's evidence, certifications, or sustainability practices are incomplete or outdated. <br>
-Mitigation: Review all claims against current documents, certificates, data, and the included quality checklist before use. <br>
-Risk: Internal sustainability records can contain sensitive business information. <br>
-Mitigation: Provide redacted summaries instead of raw sensitive internal records when using the skill. <br>
+## Use Case:
 
+External e-commerce brand teams, marketers, and consultants use this skill to audit sustainability practices, draft channel-specific environmental claims, choose credible certification language, and reduce greenwashing risk before publishing customer-facing messaging.
 
-## Reference(s): <br>
-- [Sustainability Messaging Skill](https://clawhub.ai/leooooooow/sustainability-messaging) <br>
-- [Output Template](references/output-template.md) <br>
-- [Certification Directory](references/certification-directory.md) <br>
-- [Claim Language Guide](references/claim-language-guide.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown with tables, checklists, examples, and channel-specific recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audit findings, claim inventories, risk assessments, content calendars, and action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Sustainability claims drafted from this skill could be published without legal review or current regulatory validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting support; confirm claim substantiation, certifications, and applicable FTC, EU, and local rules before publication.
+
+Risk: Incomplete or outdated brand evidence can lead to misleading sustainability messaging.
+
+Mitigation: Use the audit template and quality checklist to verify current data, scope, certification status, and limitations before using any claim.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/sustainability-messaging)
+- [Output Template](references/output-template.md)
+- [Sustainability Certification Directory for E-Commerce](references/certification-directory.md)
+- [Sustainability Claim Language Guide](references/claim-language-guide.md)
+- [Sustainability Messaging Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, claim examples, audit tables, checklists, and strategy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Passive drafting and review guidance; no tool calls, shell commands, or system actions are requested by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

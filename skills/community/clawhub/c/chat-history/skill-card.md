@@ -1,46 +1,61 @@
-## Description: <br>
-Chat History archives OpenClaw conversations locally, organizes them by date and channel, and helps users search previous chats and skill evaluation notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives and searches local OpenClaw chat histories using manual commands, keyword triggers, and scheduled archiving.
 
-## Publisher: <br>
-[Tonyfenwick1982](https://clawhub.ai/user/Tonyfenwick1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonyfenwick1982](https://clawhub.ai/user/tonyfenwick1982)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to keep a local, searchable archive of their conversation history and revisit prior discussions or evaluation records. It is intended for personal productivity workflows where the user controls the local archive and scheduling behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a searchable local archive of conversation history, which may include sensitive content. <br>
-Mitigation: Restrict permissions on the archive directory, avoid storing secrets in chats, and periodically review or delete archived conversations. <br>
-Risk: Scheduled archiving can continue updating the local archive after initial setup. <br>
-Mitigation: Inspect the scheduled task before enabling it and confirm how to stop the task and remove generated archive files. <br>
-Risk: Multiple script entry points and versioned files can make the active behavior unclear. <br>
-Mitigation: Select and review one intended entry point, such as main_v3.py, before running or scheduling the skill. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to retain, search, and manage their own local conversation history across channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Tonyfenwick1982/chat-history) <br>
-- [Publisher profile](https://clawhub.ai/user/Tonyfenwick1982) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README-v3.md](artifact/README-v3.md) <br>
-- [SECURITY-NOTICE-v3.md](artifact/SECURITY-NOTICE-v3.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and terminal text responses, with local text and JSON archive files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local conversation-archives directory and can configure recurring archive runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill retains searchable local copies of sensitive conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when local retention is intended, review the archive location, and remove archives that should not persist.
+
+Risk: Scheduled archive tasks may continue collecting conversations after initial setup.
+
+Mitigation: Prefer explicit manual archiving unless automation is needed, and review or remove cron/OpenClaw cron tasks you do not want.
+
+Risk: The release includes conflicting or under-scoped implementation paths.
+
+Mitigation: Review the selected execution path before use and avoid the legacy main.py path unless it is fixed or removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonyfenwick1982/skills/chat-history)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Security utility assessment](artifact/SECURITY-UTILITY-ASSESSMENT.md)
+- [Security notice](artifact/SECURITY-NOTICE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local archive files and scheduled archive tasks when enabled.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

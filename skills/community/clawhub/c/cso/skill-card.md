@@ -1,40 +1,65 @@
-## Description: <br>
-Lead strategy with competitive analysis, strategic planning, growth roadmaps, and business portfolio management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead strategy with competitive analysis, strategic planning, growth roadmaps, and business portfolio management.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and external business operators use this skill for CSO-level strategy guidance, including strategic planning, competitive intelligence, growth initiatives, corporate development, compliance strategy, incident response reference material, and vendor strategy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incident-response, credential reset, ransomware, legal notification, and containment guidance could be misapplied as permission to act on production systems. <br>
-Mitigation: Use those sections as reference material only; require authorized responders and human approval before operational action. <br>
-Risk: Strategic recommendations can be wrong if assumptions, market data, or legal and compliance constraints are stale or incomplete. <br>
-Mitigation: Validate recommendations against current company data and route material pivots, M&A decisions, partnerships, and resource allocation choices through human executive review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/cso) <br>
-- [Skill Homepage](https://clawic.com/skills/cso) <br>
+## Use Case:
 
+Executives, founders, and strategy operators use this skill to frame corporate strategy, competitive analysis, growth planning, M&A or partnership decisions, compliance posture, incident response, and vendor risk choices.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, and decision templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior or hidden access requests according to security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incident-response playbooks include high-impact actions such as credential resets, session revocation, network blocking, system isolation, breach notification, and ransom decisions.
+
+Mitigation: Require approval from security, legal, and business leadership before an agent turns this guidance into operational action.
+
+Risk: Strategic recommendations may affect market pivots, acquisitions, partnerships, or resource allocation.
+
+Mitigation: Use the skill as decision support and keep final decisions with accountable human leaders.
+
+Risk: Compliance and security checklist guidance may not match a specific jurisdiction, industry, or control environment.
+
+Mitigation: Validate recommendations with qualified compliance, privacy, and security reviewers before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cso)
+- [Skill homepage](https://clawic.com/skills/cso)
+- [Strategic planning](artifact/planning.md)
+- [Competitive intelligence](artifact/competitive.md)
+- [Growth strategy](artifact/growth.md)
+- [Corporate development](artifact/corporate-dev.md)
+- [Strategic audits](artifact/audits.md)
+- [Compliance framework reference](artifact/compliance.md)
+- [Incident response playbooks](artifact/incidents.md)
+- [Vendor security assessments](artifact/vendors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown prose, decision frameworks, checklists, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human approval is expected for major pivots, M&A decisions, material partnerships, business-unit resource allocation, and security incident actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

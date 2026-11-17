@@ -1,43 +1,53 @@
-## Description: <br>
-Extract structured data from Malaysian and Singaporean invoices and receipts, with SST/GST-aware tax guidance for Bahasa Malaysia, English, and Chinese inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents extract structured data from Malaysian and Singaporean invoices and receipts with SST/GST-aware fields, multilingual guidance, and a paid tax-rate retrieval step.
 
-## Publisher: <br>
-[wms2537](https://clawhub.ai/user/wms2537) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wms2537](https://clawhub.ai/user/wms2537)
 
-## Use Case: <br>
-External users and agents use this skill to prepare structured invoice or receipt JSON for Malaysia and Singapore, including local SST/GST detection and tax calculations. The hosted endpoint is used for SkillPay billing authorization and tax-rate retrieval before the agent performs extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ClawScan reports that the executable code charges a user before doing invoice parsing or explicit per-call confirmation. <br>
-Mitigation: Use the skill only when the agent obtains explicit user approval for each paid call and discloses the $0.02 USDT SkillPay charge before sending the request. <br>
-Risk: ClawScan characterizes the release as a paid billing and tax-rate helper rather than a self-contained invoice parser. <br>
-Mitigation: Treat endpoint results as billing status and tax-rate data only; the agent should perform and validate invoice extraction separately. <br>
-Risk: Security guidance notes that calls send user_id and country to the hosted endpoint. <br>
-Mitigation: Send only the required user_id and country after user approval, and avoid including invoice contents or additional personal data in the endpoint request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wms2537/my-sg-invoice-parser) <br>
-- [Publisher profile](https://clawhub.ai/user/wms2537) <br>
-- [Project homepage](https://github.com/swmeng/myskills) <br>
+## Use Case:
 
+External users and developers use this skill to guide invoice and receipt data extraction for Malaysia and Singapore, including tax type detection, currency selection, line-item fields, and totals. The release also includes a paid endpoint that charges through SkillPay and returns current tax-rate values.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON] <br>
-**Output Format:** [Markdown instructions and JSON examples for structured invoice data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLPAY_API_KEY for the hosted billing and tax-rate endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The paid endpoint sends a user identifier and may charge a caller-supplied user ID.
+
+Mitigation: Install only where SkillPay independently authenticates users and prevents duplicate or unauthorized charges.
+
+Risk: The endpoint primarily returns tax rates after billing rather than performing invoice OCR or structured parsing.
+
+Mitigation: Use the skill's extraction guidance with an agent's own document parsing capability and verify parsed invoice results before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wms2537/skills/my-sg-invoice-parser)
+- [Homepage](https://github.com/swmeng/myskills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, API calls]
+
+**Output Format:** [Markdown instructions with JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLPAY_API_KEY for the paid billing and tax-rate endpoint.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

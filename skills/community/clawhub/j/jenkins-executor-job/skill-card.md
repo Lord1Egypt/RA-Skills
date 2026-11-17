@@ -1,43 +1,57 @@
-## Description: <br>
-Manages the Jenkins job lifecycle by listing jobs, triggering builds, checking build status, retrieving build logs, and stopping running builds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jenkins Executor Skill lets an agent list Jenkins jobs, trigger builds, check build status, retrieve build logs, and stop running builds for CI/CD and operations workflows.
 
-## Publisher: <br>
-[jack084015](https://clawhub.ai/user/jack084015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack084015](https://clawhub.ai/user/jack084015)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to let an agent inspect Jenkins jobs, start parameterized or non-parameterized builds, monitor their status, read console logs, and stop selected running builds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to start and stop Jenkins builds. <br>
-Mitigation: Use a dedicated least-privilege Jenkins API token and require human approval before triggering or stopping builds. <br>
-Risk: The skill can retrieve build logs that may contain secrets or internal operational details. <br>
-Mitigation: Treat returned logs as sensitive and limit the Jenkins account to approved jobs and environments. <br>
-Risk: The skill connects directly to Jenkins using configured credentials. <br>
-Mitigation: Prefer HTTPS Jenkins endpoints and store credentials outside the skill artifact using the deployment platform's secret management. <br>
+## Use Case:
 
+Developers, release engineers, and operations teams use this skill to let an agent interact with Jenkins jobs for build orchestration, monitoring, log review, and stopping active builds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack084015/jenkins-executor-job) <br>
-- [Publisher profile](https://clawhub.ai/user/jack084015) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration] <br>
-**Output Format:** [JSON responses from Jenkins job, build, status, log, and stop operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Build log output is truncated to the last 3000 characters by the skill implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Jenkins credentials may be handled unsafely if real tokens are placed in packaged configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-specific secrets management, keep real credentials out of config.json, and issue a least-privilege Jenkins API token.
+
+Risk: Build trigger and stop actions can affect high-impact CI/CD or release jobs.
+
+Mitigation: Restrict the token to approved jobs and add explicit approvals or job allowlists before granting access to production deploy or release jobs.
+
+Risk: Jenkins API access over insecure transport can expose credentials or build data.
+
+Mitigation: Require HTTPS for Jenkins connections and review the target Jenkins URL before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack084015/skills/jenkins-executor-job)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [JSON-like tool responses with job metadata, build status, log excerpts, and operation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Build log output is limited to a recent excerpt by the artifact implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

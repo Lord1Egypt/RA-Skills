@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "apaleo"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["apaleo"]
-  icon: "https://static.oomol.com/logo/third-party/Apaleo.svg"
+  icon: "https://static.oomol.com/logo/third-party/apaleo.png"
 ---
 
 # apaleo
@@ -37,12 +37,12 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `archive_property` — Archive a live property by ID. [write]
+- `archive_property` — Archive a live property by ID. [destructive]
 - `check_property_exists` — Check whether a property exists by ID.
 - `check_unit_attribute_exists` — Check whether a unit attribute definition exists by ID.
 - `check_unit_exists` — Check whether a unit exists by ID.
 - `check_unit_group_exists` — Check whether a unit group exists by ID.
-- `clone_property` — Clone an existing property into a new property with inventory and rate plans.
+- `clone_property` — Clone an existing property into a new property with inventory and rate plans. [write]
 - `count_properties` — Return the total number of properties accessible to the connected apaleo account.
 - `count_unit_groups` — Return the total number of unit groups matching the provided filters.
 - `count_units` — Return the total number of units matching the provided filters.
@@ -64,7 +64,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_unit_groups` — List unit groups with filters for property, unit group type, pagination, and embedded resources.
 - `list_units` — List units with filters for property, unit group, attributes, occupancy, maintenance state, archive state, and expansions.
 - `move_property_to_live` — Move a test property to live status. [write]
-- `replace_unit_group` — Completely replace the mutable fields of an existing unit group. [write]
+- `replace_unit_group` — Completely replace the mutable fields of an existing unit group. [destructive]
 - `reset_property_data` — Delete all transactional data for a test property. [destructive]
 
 ## Safety
@@ -96,11 +96,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — apaleo is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=apaleo
+  https://console.oomol.com/connections/apaleo
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - apaleo homepage: https://apaleo.com
+- API documentation: https://apaleo.dev/

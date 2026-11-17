@@ -1,41 +1,53 @@
-## Description: <br>
-Interprets CSV, JSON, and structured data to profile datasets, identify trends and anomalies, extract insights, and recommend appropriate visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets CSV, JSON, and structured data to profile datasets, identify trends and anomalies, compare categories, extract insights, and recommend visualizations.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-External users, analysts, developers, and business teams use this skill to turn tabular or structured datasets into concise data profiles, prioritized findings, anomaly notes, and chart recommendations for reports or decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports a suspicious review-helper posture in the skill set, specifically a bundled helper defaulting to nested full-access review mode. <br>
-Mitigation: Review the autoreview helper before installing or using the skill set, and disable nested full-access review mode unless that workflow is intentionally trusted. <br>
-Risk: Data analysis outputs can be misleading when source data is incomplete, inconsistent, duplicated, too small, or affected by outliers. <br>
-Mitigation: Start with explicit data profiling, call out quality limitations, distinguish correlation from causation, and state assumptions before presenting actions. <br>
+## Use Case:
 
+Users and analysts use this skill to turn structured datasets into concise analysis reports with dataset profiles, prioritized findings, anomaly notes, visualization recommendations, and data quality guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/371166758-qq/qf-data-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/371166758-qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown data analysis report with dataset overview, key findings, anomalies, visualization recommendations, and data quality notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include numeric summaries, caveats about sample size or data quality, and recommended tools such as spreadsheets, Python, Tableau, or Power BI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-provided datasets may contain sensitive or regulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in agent environments and downstream tools that are appropriate for the data being analyzed.
+
+Risk: Analysis reports can be misleading when source data is incomplete, inconsistent, or too small to support strong conclusions.
+
+Mitigation: Profile row counts, column types, missing values, duplicates, date ranges, and numeric summaries before presenting findings, and state assumptions or confidence limitations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/qf-data-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with dataset overview, key findings, anomaly notes, recommended visualizations, and data quality notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides analysis guidance for user-supplied structured data and does not include executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

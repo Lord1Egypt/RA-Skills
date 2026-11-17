@@ -1,40 +1,50 @@
-## Description: <br>
-用财务指标快速排除垃圾股，找到有基本面支撑的标的。用于A股基本面选股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用财务指标快速排除垃圾股，找到有基本面支撑的标的。用于A股基本面选股。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users analyzing Chinese A-share equities use this skill to apply fixed growth, value, and risk-exclusion checks before considering a stock. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for complete investment advice or definitive financial analysis. <br>
-Mitigation: Treat outputs as preliminary screening guidance and request broader investment context when needed. <br>
-Risk: Market, valuation, shareholder, or financial-statement data may be incomplete, stale, or incorrect. <br>
-Mitigation: Verify market data independently before acting on any screening result. <br>
+## Use Case:
 
+External users can use this skill to screen A-share stocks by growth, value, leverage, shareholder-reduction, loss, ST, and black-swan risk signals before deeper financial review. It is a quick fundamental filter and should not be treated as standalone investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/a-stock-fundamental-screening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text screening guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a fixed checklist of financial, shareholder, valuation, and risk-exclusion criteria; outputs are preliminary and require independent market-data verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's stock-screening thresholds may be incomplete, stale, or insufficient for investment decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as a quick filter, verify financial data and risks with reliable sources, and avoid using the skill alone for buy, sell, or trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/a-stock-fundamental-screening)
+- [ClawHub publisher profile](https://clawhub.ai/user/haohanyang92)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock-screening rationale, risk checks, and data-source guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

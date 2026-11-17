@@ -1,42 +1,58 @@
-## Description: <br>
-Practical relationship maintenance for couples. Use when a relationship feels stale, tense, or on autopilot, when communication has broken down, or when someone wants to strengthen a partnership before it is in crisis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical relationship maintenance for couples. Use when a relationship feels stale, tense, or on autopilot, when communication has broken down, or when someone wants to strengthen a partnership before it's in crisis.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to provide structured relationship maintenance guidance, weekly check-ins, repair scripts, and referral cues for couples whose relationship feels stale, tense, or disconnected. It is intended for non-abusive relationship maintenance and not as a replacement for couples therapy or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply relationship maintenance advice in abusive, coercive, violent, threatening, stalking, sexual coercion, financial abuse, fear-of-partner, or suicidal-crisis situations. <br>
-Mitigation: Use safety planning, crisis resources, domestic violence support, or qualified professional help instead of relationship repair guidance in those situations. <br>
-Risk: The artifact declares a filesystem tool requirement that is not used by the skill content. <br>
-Mitigation: Do not treat filesystem access as necessary for normal use of this release. <br>
+## Use Case:
 
+External users use this skill for practical relationship maintenance when a romantic relationship feels stale, tense, disconnected, or strained by repeated conflict. It guides weekly check-ins, repair attempts, bids for connection, intimacy maintenance, and escalation to professional or safety resources when self-help is not appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/romantic-relationship-maintenance) <br>
-- [HowToUseHumans publisher profile](https://clawhub.ai/user/howtousehumans) <br>
-- [The Gottman Institute](https://www.gottman.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured prompts, scripts, checklists, and resource guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Relationship self-help guidance only; not intended for abuse, coercive control, violence, threats, stalking, sexual coercion, financial abuse, fear of a partner, or suicidal crisis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests filesystem capability that is not explained by its relationship-guidance purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an environment where unnecessary file access is removed or tightly sandboxed.
+
+Risk: The install command is unpinned, so future installs may resolve to a different package version than the reviewed release.
+
+Mitigation: Prefer a version-pinned install path before deployment.
+
+Risk: Relationship guidance may be inappropriate where abuse, coercive control, threats, or crisis indicators are present.
+
+Mitigation: Follow the skill's safety rules by prioritizing safe-exit or crisis resources before relationship-maintenance advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/romantic-relationship-maintenance)
+- [The Gottman Institute](https://www.gottman.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured scripts, checklists, and resource recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide relationship self-assessment prompts, weekly check-in structures, repair scripts, therapy referrals, and crisis or safety resource guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

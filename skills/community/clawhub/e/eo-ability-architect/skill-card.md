@@ -1,40 +1,53 @@
-## Description: <br>
-Designs software system architecture with an Architect expert, including architecture structure, technology choices, module breakdowns, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eo Ability Architect helps agents produce system architecture designs, technology stack recommendations, module breakdowns, risk assessments, and complexity estimates.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan software system architecture, select technology stacks, divide systems into modules, and identify technical risks for new or existing applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture, security, scaling, or cost recommendations may be incomplete or unsuitable for production if applied without review. <br>
-Mitigation: Treat outputs as planning guidance and independently review significant architecture decisions before implementation. <br>
-Risk: When the EO plugin is unavailable, the artifact describes a fallback to general LLM architecture suggestions. <br>
-Mitigation: Confirm which mode is available and validate recommendations against project requirements and constraints. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for system architecture recommendations, including diagrams, technology stacks, module boundaries, risk analysis, and complexity estimates for new or existing systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/467718584/eo-ability-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with architecture diagrams, technology stack recommendations, module breakdowns, and risk and complexity assessments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no installs, credentials, persistence, or hidden data access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Architecture recommendations may be incomplete or inappropriate for a specific production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified engineers review proposed architecture, technology choices, and risks before implementation.
+
+Risk: The artifact is primarily Chinese-language, which may be unsuitable for teams expecting English-only output.
+
+Mitigation: Confirm the intended language behavior with the publisher or constrain the agent's requested output language before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/467718584/skills/eo-ability-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with architecture diagrams, technology recommendations, module breakdowns, and risk assessment.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ASCII architecture diagrams and code-like interface structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

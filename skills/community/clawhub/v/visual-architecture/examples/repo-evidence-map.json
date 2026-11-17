@@ -1,0 +1,122 @@
+{
+  "mode": "architecture",
+  "title": "Repo Evidence Architecture Map",
+  "summary": "A reviewable map separates authored topology from source-pinned evidence and confidence.",
+  "show_grid": false,
+  "nodes": [
+    {
+      "id": "repo",
+      "label": "Repository",
+      "subtitle": "commit abc1234",
+      "kind": "memory",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "scanner",
+      "label": "Evidence Scanner",
+      "subtitle": "files + imports",
+      "kind": "agent",
+      "evidence": [
+        {
+          "source": "scripts/render_architecture.py",
+          "lines": [1, 80],
+          "commit": "fac5854",
+          "confidence": "high",
+          "note": "The scanner is represented by the local renderer/validator code path."
+        }
+      ],
+      "x": 360,
+      "y": 160
+    },
+    {
+      "id": "spec",
+      "label": "Typed Spec",
+      "subtitle": "nodes + edges",
+      "kind": "service",
+      "x": 600,
+      "y": 160
+    },
+    {
+      "id": "renderer",
+      "label": "Renderer",
+      "subtitle": "deterministic",
+      "kind": "service",
+      "evidence": {
+        "source": "scripts/render_architecture.py",
+        "line": 300,
+        "commit": "fac5854",
+        "confidence": "high",
+        "note": "Render output is produced locally from JSON."
+      },
+      "x": 840,
+      "y": 160
+    },
+    {
+      "id": "map",
+      "label": "System Map",
+      "subtitle": "local HTML",
+      "kind": "service",
+      "x": 840,
+      "y": 320
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence Receipt",
+      "subtitle": "file/line/confidence",
+      "kind": "memory",
+      "evidence": {
+        "source": "examples/repo-evidence-map.html.receipt.json",
+        "confidence": "medium",
+        "note": "Receipt records artifact hashes and validation metrics."
+      },
+      "x": 600,
+      "y": 320
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo",
+      "to": "scanner",
+      "kind": "primary-data",
+      "label": "read",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "scanner",
+      "to": "spec",
+      "kind": "control",
+      "label": "author",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "spec",
+      "to": "renderer",
+      "kind": "primary-data",
+      "label": "render",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "renderer",
+      "to": "map",
+      "kind": "primary-data",
+      "label": "artifact"
+    },
+    {
+      "from": "spec",
+      "to": "evidence",
+      "kind": "memory-write",
+      "label": "facts",
+      "source_side": "bottom",
+      "target_side": "top"
+    },
+    {
+      "from": "evidence",
+      "to": "map",
+      "kind": "control",
+      "label": "cite",
+      "source_side": "right",
+      "target_side": "left"
+    }
+  ]
+}

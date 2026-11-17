@@ -1,0 +1,19 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "Earth in Numbers",
+  "handle": "@earthinnumbers"
+ },
+ "slides": [
+  {
+   "type": "stat",
+   "number": "55%",
+   "body": "of the water under our feet is *salty*, not fresh",
+   "source": "USGS: 12.87 of 23.4 million km³ of groundwater is saline",
+   "alt": "55% of the water under our feet is salty, not fresh. USGS: 12.87 of 23.4 million cubic km of groundwater is saline."
+  }
+ ]
+}

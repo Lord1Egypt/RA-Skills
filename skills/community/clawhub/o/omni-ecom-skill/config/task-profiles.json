@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "default_task_type": "store_diagnosis",
+  "profiles": {
+    "store_diagnosis": {
+      "display_name": "店铺经营诊断",
+      "default_title": "店铺经营诊断报告",
+      "period_grain": "custom",
+      "comparison_expectation": "至少包含目标期与一个同口径对比期；新店无历史时明确标注基线不足",
+      "decision_focus": ["经营健康度", "核心问题", "增长机会", "90天行动"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "weekly_report": {
+      "display_name": "经营周报",
+      "default_title": "经营周报",
+      "period_grain": "week",
+      "comparison_expectation": "本周对上周；具备可比数据时增加近四周趋势",
+      "decision_focus": ["本周变化", "异常原因", "下周动作", "风险与待补数据"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "monthly_report": {
+      "display_name": "经营月报",
+      "default_title": "经营月报",
+      "period_grain": "month",
+      "comparison_expectation": "本月对上月；具备可比数据时增加去年同期与月内周趋势",
+      "decision_focus": ["月度目标", "渠道结构", "利润质量", "下月资源配置"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "quarterly_report": {
+      "display_name": "季度经营复盘",
+      "default_title": "季度经营复盘报告",
+      "period_grain": "quarter",
+      "comparison_expectation": "本季度对上季度；具备可比数据时增加去年同期",
+      "decision_focus": ["目标达成", "结构变化", "策略复盘", "下季度优先级"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "annual_report": {
+      "display_name": "年度经营复盘",
+      "default_title": "年度经营复盘报告",
+      "period_grain": "year",
+      "comparison_expectation": "本年对上年并呈现月度或季度趋势；缺少完整年度数据时降级并标注",
+      "decision_focus": ["年度目标", "增长来源", "利润与投入", "次年经营方向"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "campaign_review": {
+      "display_name": "大促与专项复盘",
+      "default_title": "大促与专项复盘报告",
+      "period_grain": "campaign",
+      "comparison_expectation": "活动期对基准期，并明确预热、爆发、返场等阶段口径",
+      "decision_focus": ["目标达成", "流量效率", "商品与内容贡献", "投流利润", "复用动作"],
+      "default_collaboration_mode": "comprehensive",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "data_quality_audit": {
+      "display_name": "数据质量审计",
+      "default_title": "经营数据质量审计报告",
+      "period_grain": "custom",
+      "comparison_expectation": "按文件、期间、粒度和导出时间核对，不强制经营对比",
+      "decision_focus": ["资料清单", "口径冲突", "可用指标", "阻断项", "补数清单"],
+      "default_collaboration_mode": "single_point",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    },
+    "single_topic": {
+      "display_name": "单项经营专题",
+      "default_title": "单项经营专题报告",
+      "period_grain": "custom",
+      "comparison_expectation": "只使用与专题指标同口径的目标期和对比期",
+      "decision_focus": ["专题事实", "限制", "可验证建议", "停止条件"],
+      "default_collaboration_mode": "single_point",
+      "required_delivery": ["report.json", "report.md", "report.pdf", "pdf-delivery.json", "claim-receipt.json"],
+      "minimum_charts": 3
+    }
+  }
+}

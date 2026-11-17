@@ -1,0 +1,38 @@
+slug: secrets-inject
+name: secrets-inject
+owner: jlacroix82
+description: "HIGH-PRIVILEGE companion to secrets-manager. Substitutes encrypted secrets into command strings and materializes them as executable shell scripts (chmod 0600 temp files) or prints them to stdout. A secret-exfiltration-capable capability by design — use only to hand secrets to a shell command. Reads the secrets-manager store (memory/secrets). Requires secrets-manager to be used first."
+version: 1.0.0
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - secrets
+  - injection
+  - command-generation
+  - high-privilege
+capabilities:
+  - filesystem
+  - environment
+  - crypto
+  - command-generation
+entry: SKILL.md
+dependencies:
+  - secrets-manager
+permissions:
+  - name: filesystem.read
+    description: Read the secrets-manager store (memory/secrets/secrets.json, .master-key)
+  - name: environment.read
+    description: Read SECRETS_DIR and SECRETS_MASTER_KEY environment variables
+  - name: crypto.aes-256-gcm
+    description: Decrypt secrets with AES-256-GCM (mirrors secrets-manager)
+  - name: command-generation
+    description: Generate executable shell scripts containing substituted secret values
+data_retention:
+  temp_files: 'chmod 0600 plaintext shell scripts in os.tmpdir(); tracked in memory/secrets/.tmp-injections.json; NOT auto-removed — user must run --cleanup-tmp'
+security_notes:
+  - 'HIGH PRIVILEGE: materializes plaintext secrets into executable shell scripts'
+  - 'Temp files are plaintext-on-disk; delete with --cleanup-tmp after use'
+  - 'Stdout mode requires --confirm-expose (refuses otherwise)'
+  - 'Never use on shared/containerized/CI hosts you do not fully trust'
+  - 'Does not store secrets; only reads the secrets-manager store'

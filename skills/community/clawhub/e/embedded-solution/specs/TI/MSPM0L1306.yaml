@@ -1,0 +1,117 @@
+part: MSPM0L1306
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI MSPM0L1306 \u2014 Ultra-Low-Power 32-MHz Cortex-M0+ MCU"
+main_page: https://www.ti.com/product/MSPM0L1306
+datasheet_path_expected: datasheets/mspm0l1306.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/mspm0l1306.pdf
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: "MSPM0L (MSPM0 platform \u2014 low-power tier; sister to MSPM0G and MSPM0C)"
+  cores:
+  - Arm Cortex-M0+ @ up to 32 MHz (32-bit)
+  memory:
+    flash: 64 KB
+    sram: 4 KB
+    nvm: 64 KB
+  power:
+    supply_voltage_v_min: 1.62
+    supply_voltage_v_max: 3.6
+    modes:
+    - mode: RUN
+      current: "71 \xB5A/MHz (CoreMark)"
+    - mode: STOP @ 4 MHz
+      current: "151 \xB5A"
+    - mode: STOP @ 32 kHz
+      current: "44 \xB5A"
+    - mode: STANDBY
+      current: "1.0 \xB5A"
+      notes: "32-kHz 16-bit timer + SRAM/registers retained; 32 MHz wake-up in 3.2 \xB5s"
+    - mode: SHUTDOWN
+      current: 61 nA
+      notes: IO wake-up capability
+  analog:
+    adc_12bit_1_68msps: yes (up to 10 external channels)
+    adc_vref_selectable: 1.4 V or 2.5 V (internal)
+    zero_drift_opa: "2x (0.5 \xB5V/\xB0C drift, 6-pA input bias, integrated 1-32x PGA)"
+    gpamp: 1
+    high_speed_comparator: "1 (32 ns propagation delay, <1 \xB5A LP mode, 8-bit ref DAC)"
+    programmable_analog_routing: "yes (ADC \u2194 OPA \u2194 COMP \u2194 DAC)"
+    temperature_sensor: integrated
+  digital:
+    dma_controller: 3-channel
+    event_fabric: 3-channel
+    timers: 4x 16-bit GP (8 PWM total, STANDBY-capable)
+    watchdog: windowed
+  communication:
+    uart: 2 (one supports LIN/IrDA/DALI/Smart Card/Manchester; STANDBY-compatible)
+    i2c: 2 (one supports FM+ 1 Mbit/s; both with SMBus, PMBus, STOP wakeup)
+    spi: 1 (up to 16 Mbit/s)
+  gpio_count_options:
+  - 13
+  - 20
+  - 24
+  - 28
+  security:
+    secure_debug: true
+  operating_temp_c_min: -40
+  operating_temp_c_max: 125
+  operating_system: BareMetal (No OS)
+  package_options:
+  - type: SOT-23-THN (DYY)
+    pins: 16
+    dim_mm: 4.2x2
+    area_mm2: 8.4
+  - type: VQFN (RGE)
+    pins: 24
+    dim_mm: 4x4
+    area_mm2: 16
+  - type: VQFN (RHB)
+    pins: 32
+    dim_mm: 5x5
+    area_mm2: 25
+  - type: VSSOP (DGS)
+    pins: 20
+    dim_mm: 5.1x4.9
+    area_mm2: 24.99
+  - type: VSSOP (DGS)
+    pins: 28
+    dim_mm: 7.1x4.9
+    area_mm2: 34.79
+  - type: WQFN (RTR)
+    pins: 16
+    dim_mm: 2x3
+    area_mm2: 6
+  dev_tools:
+    launchpad: LP-MSPM0L1306
+    programmer: ALGO-3P-UISP1-TI (Algocraft)
+    eval: DEYAN-3P-MSPM0-KIT
+    debug_probes:
+    - TMDSEMU110-U (XDS110)
+    - TMDSEMU200-U (XDS200)
+    - SEGGR-3P-J-LINK
+  use_cases:
+  - Battery-powered sensor nodes (61 nA SHUTDOWN = years on coin cell)
+  - Wearables / health patches (CGM, ECG)
+  - Industrial 4-20 mA loop sensors
+  - Smoke detectors, water/gas meters
+  - Smart locks, battery management
+unverified:
+- exact shutdown wake-up time
+- exact ADC linearity / DNL specs
+- exact OPA input common-mode range
+- exact ZCD (zero-crossover distortion) cancellation performance
+- exact Flash endurance / retention
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com MSPM0L1306 product page via Firecrawl (286,796 bytes raw)."
+- 'Family differentiator vs MSPM0G3507 (already in yaml set): MSPM0L = ultra-low-power emphasis (61 nA SHUTDOWN, 5 lp modes),
+  Cortex-M0+ @ 32 MHz; MSPM0G = general purpose @ 80 MHz with Cortex-M0+ but more memory and peripherals.'
+- 'Family differentiator vs CC2340R5 (BLE wireless MCU): MSPM0L1306 is bare-host MCU for sensor front-end; CC2340R5 is wireless
+  MCU (BLE + 802.15.4). Pair them for wireless sensor nodes.'
+- 'Use case: ultra-low-power battery devices targeting 5-10+ year battery life on coin cell (e.g. smoke detectors, water meters).'
+- 'Verified 2026-07-01 via pdfplumber against mspm0l1306.pdf: 19/21 spec fields matched (90%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0L1306-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0L1306-family_raw.md
+extraction_credits_used: 1

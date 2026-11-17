@@ -1,0 +1,7 @@
+interface:
+  display_name: "Trading Universe"
+  short_description: "Validated ICT tickets and automatic trade tracking"
+  brand_color: "#7C3AED"
+  default_prompt: "Use $trading-universe to scan the selected markets, validate the best ICT ticket, and summarize its tracked lifecycle."
+policy:
+  allow_implicit_invocation: false

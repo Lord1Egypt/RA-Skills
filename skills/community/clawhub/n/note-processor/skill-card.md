@@ -1,37 +1,53 @@
-## Description: <br>
-Summarize, extract keywords, search, and list research notes from research-assistant's database to review progress and find insights efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize and analyze research notes created by research-assistant, including topic summaries, keyword extraction, topic search, and topic listing for the research_db.json format.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-Developers and researchers use this skill to inspect local research notes, summarize topics, extract frequent keywords, search within a topic, and list topic-level progress without re-reading every note. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local research-note content from ~/.openclaw/workspace/research_db.json may be displayed in the terminal or agent session. <br>
-Mitigation: Use the skill only with notes you are comfortable surfacing, and avoid notes containing secrets, credentials, sensitive personal data, or untrusted instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johstracke/note-processor) <br>
+## Use Case:
 
+Developers and researchers use this skill to review accumulated research notes, identify recurring themes, and find topic-specific information without rereading every note. It is intended for local note analysis against the research-assistant database format.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local research notes from ~/.openclaw/workspace/research_db.json and prints requested summaries, keywords, searches, or topic lists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Terminal output may expose local note contents, tags, previews, and derived keywords from research_db.json.
+
+Mitigation: Run only in trusted terminals and avoid shared logs when notes contain sensitive information.
+
+Risk: Keyword extraction and key point detection are simple frequency- and pattern-based aids, not semantic analysis.
+
+Mitigation: Use the output to guide review and confirm important conclusions against the underlying notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johstracke/skills/note-processor)
+- [Publisher Profile](https://clawhub.ai/user/johstracke)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with markdown-style examples and inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a local research_db.json file and prints summaries, keyword counts, search results, and topic lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

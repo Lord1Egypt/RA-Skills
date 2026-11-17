@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论采集 · 批量抓取导出"
+  short_description: "八大站点评论批量采集、筛选与导出"
+  default_prompt: "使用 $amazon-review-scraper 采集一个 Amazon ASIN 的评论并导出 CSV。"

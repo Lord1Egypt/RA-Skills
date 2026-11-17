@@ -1,36 +1,47 @@
-## Description: <br>
-My New Skill is a starter template for drafting a future agent skill workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+My New Skill is an unfinished template skill that outlines how to structure a future workflow, task, reference, or capabilities-based skill.
 
-## Publisher: <br>
-[enchantedmotorcycle](https://clawhub.ai/user/enchantedmotorcycle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[enchantedmotorcycle](https://clawhub.ai/user/enchantedmotorcycle)
 
-## Use Case: <br>
-Developers and skill authors can use this template as a starting point for defining a concrete skill purpose, trigger conditions, workflow structure, and resource layout. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release is an unfinished template, so it does not yet provide reliable task guidance or a concrete operating boundary. <br>
-Mitigation: Replace the TODO placeholders with a specific purpose, trigger conditions, boundaries, and any required permission or environment disclosures before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and skill authors can use this release as a starting template for drafting a real ClawHub skill. As published, it should be edited and reviewed before installation or use because it does not define a concrete purpose, boundaries, or workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release is an unfinished template with no clear purpose or activation scope.
+
+Mitigation: Install only if you intend to edit it into a real skill first, then review its purpose, boundaries, and workflow before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance for skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, credentials, or external data access are declared.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and placeholder sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable outputs, tool calls, configuration files, or generated artifacts are defined by the published template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

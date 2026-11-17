@@ -1,44 +1,60 @@
-## Description: <br>
-AI-powered legal knowledge management. Search contracts, compliance requirements, legal cases, and policy documents with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered legal knowledge management. Search contracts, compliance requirements, legal cases, and policy documents with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Legal, compliance, and operations teams use this skill to search organizational contracts, compliance documents, cases, policies, and legal memoranda, then surface cited internal knowledge and responsible knowledge owners. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents broad access to sensitive legal context. <br>
-Mitigation: Use a least-privilege legal-only token, restrict access to the approved UPLO host, and preserve classification boundaries for confidential or restricted records. <br>
-Risk: The skill can export full organizational context or log conversation summaries. <br>
-Mitigation: Require explicit approval before context export or conversation logging, especially for privileged, regulated, investigation-related, or confidential legal work. <br>
-Risk: The MCP server package and UPLO instance become trusted execution and data-access dependencies. <br>
-Mitigation: Install only from a trusted UPLO instance, prefer a pinned MCP server version, and review package updates before deployment. <br>
+## Use Case:
 
+Legal teams and employees use this skill to search organization-specific contracts, compliance materials, legal cases, policy documents, and legal review workflows. It helps agents retrieve source-grounded legal knowledge, identify responsible knowledge owners, and avoid substituting general legal advice for organizational records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RooJenkins/uplo-legal) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO Schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cited legal knowledge, GraphRAG context, organizational context exports, directives, knowledge-owner lookups, and conversation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill can access sensitive legal knowledge and export broad organizational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a least-privilege UPLO token, and confirm that full organization-context export is approved for the legal data in scope.
+
+Risk: Conversation logging may capture privileged or confidential legal matters.
+
+Mitigation: Require user consent for logging privileged matters or disable conversation logging where legal confidentiality requirements apply.
+
+Risk: The MCP server package install is not pinned in the artifact and receives the API token.
+
+Mitigation: Use a pinned or otherwise verified MCP server package before running the skill with real credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-legal)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+- [Publisher profile](https://clawhub.ai/user/roojenkins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an UPLO instance URL and API key; UPLO-derived answers should cite the relevant source documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

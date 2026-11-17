@@ -1,42 +1,52 @@
-## Description: <br>
-Guides an agent in installing, authenticating, troubleshooting, and using the Viam CLI to manage robotics fleets, modules, machine data, datasets, and data pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and commands for installing, authenticating, troubleshooting, and managing Viam robotics platform resources through the Viam CLI.
 
-## Publisher: <br>
-[hexbabe](https://clawhub.ai/user/hexbabe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexbabe](https://clawhub.ai/user/hexbabe)
 
-## Use Case: <br>
-Developers and robotics operators use this skill to help an agent work with Viam CLI commands for fleet administration, module development, data management, and local troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad administration of Viam machines, deployments, data, and credentials. <br>
-Mitigation: Use a least-privilege Viam account, authenticate outside chat, and verify the active account with `viam whoami` before sensitive work. <br>
-Risk: Remote shell access, file copy, module deploys, registry uploads, data exports or deletes, pipeline changes, API-key creation, and database-user changes can have high impact. <br>
-Mitigation: Require explicit user approval before those actions and list or describe resources before mutating them. <br>
-Risk: CLI command syntax may drift as the Viam platform changes. <br>
-Mitigation: Check the installed CLI help for failing commands and ask permission before upgrading the CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexbabe/viam-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/hexbabe) <br>
+## Use Case:
 
+Developers and robotics operators use this skill to work with Viam CLI workflows for fleet, machine, module, data, dataset, pipeline, and ML operations. It is suited for agent-assisted command selection, setup guidance, and troubleshooting against the user's installed Viam CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Viam CLI commands that affect remote machines, registry assets, data, credentials, and pipelines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Viam CLI authority could allow an agent to modify robotics fleet, machine, data, credential, deployment, or remote-shell state beyond the intended task.
+
+Mitigation: Use Viam accounts and machine parts scoped to the task, and require explicit user approval before API key creation, remote shell, file copy, module reload/upload, database-user changes, data export, or deletion.
+
+Risk: Installing or upgrading the Viam CLI through Homebrew changes the local toolchain used by the agent.
+
+Mitigation: Verify the Homebrew source and Viam CLI version before approving installation or upgrade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexbabe/skills/viam-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for explicit user approval before installation, upgrades, destructive operations, API key creation, remote shell, file copy, module reload/upload, database-user changes, or data export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

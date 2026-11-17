@@ -1,42 +1,60 @@
-## Description: <br>
-全能旅行规划师根据出发地、目的地、预算、天数、人数和偏好生成覆盖交通、住宿、餐饮、景点、预算和备选方案的旅行计划。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-oriented travel planning skill that gathers trip details and current web information to produce structured itineraries covering food, lodging, attractions, transportation, budgets, weather, practical tips, and backup options for domestic and international destinations.
 
-## Publisher: <br>
-[nameused](https://clawhub.ai/user/nameused) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameused](https://clawhub.ai/user/nameused)
 
-## Use Case: <br>
-External users use this skill to produce structured travel plans for domestic or international destinations, including itinerary timing, transport choices, food and lodging suggestions, budget allocation, weather preparation, and contingency options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated itinerary files may be saved in the workspace and could contain sensitive travel details. <br>
-Mitigation: Confirm the save location before generating files and avoid including passport, payment, private contact, or sensitive booking details unless local storage is acceptable. <br>
-Risk: Travel, fare, weather, restaurant, lodging, and attraction details can change after a plan is generated. <br>
-Mitigation: Verify time-sensitive bookings, prices, hours, restrictions, and transportation details with current sources before purchase or departure. <br>
+## Use Case:
 
+External users use this skill to create practical domestic or international travel plans from their departure city, destination, dates, group type, budget, preferences, and special needs. It is especially suited for Chinese-language itinerary planning that compares transportation options and organizes attractions, food, lodging, budget, weather, local transport, tips, and fallback plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nameused/skills/all-round-travel-planner) <br>
-- [Destination templates and transport query guide](references/destination_templates.md) <br>
-- [HTML travel-plan output template](references/html_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional single-file HTML, tables, documents, presentations, or visual itinerary artifacts when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use current web research for destination, transport, fare, weather, restaurant, lodging, and attraction details; generated trip documents may be saved locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Travel recommendations, prices, schedules, weather, and availability can change after web research is summarized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive details with current carrier, booking, venue, weather, and destination sources before purchase or travel.
+
+Risk: Generated HTML may contain user-provided or web-sourced names, links, and other dynamic values.
+
+Mitigation: Treat those values as untrusted, escape them before generating HTML, and review links before opening or sharing generated files.
+
+Risk: Optional HTML output can load Chart.js from the jsDelivr CDN.
+
+Mitigation: Remove or pin the CDN dependency when third-party script loading is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nameused/skills/all-round-travel-planner)
+- [Destination information templates and transport query guide](artifact/references/destination_templates.md)
+- [HTML output template](artifact/references/html_template.md)
+- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Markdown travel plans by default; optional HTML, tables, document, presentation, or visualization-ready output when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use current web search for destination facts, flight fares, weather, lodging, dining, and local transport; optional HTML can include Chart.js from jsDelivr.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

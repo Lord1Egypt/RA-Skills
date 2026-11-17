@@ -1,44 +1,59 @@
-## Description: <br>
-Search and download Bilibili videos using yt-dlp and httpx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download Bilibili videos using yt-dlp and httpx.
 
-## Publisher: <br>
-[ecojust](https://clawhub.ai/user/ecojust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecojust](https://clawhub.ai/user/ecojust)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to search Bilibili by keyword, collect video metadata, save structured search results, and download selected videos through Python tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The downloader can accept URLs beyond Bilibili through yt-dlp. <br>
-Mitigation: Review URLs before execution and restrict use to intended Bilibili video pages or BV identifiers. <br>
-Risk: Authenticated downloads may use browser cookies from Chrome. <br>
-Mitigation: Avoid browser-cookie access unless explicitly needed; prefer a narrowly scoped exported cookies file for authenticated downloads. <br>
-Risk: The skill can install Python dependencies, contact network services, and write media files locally. <br>
-Mitigation: Run in a virtual environment, review dependency installation commands, and choose an expected working directory before download. <br>
+## Use Case:
 
+Developers and external users use this skill to search Bilibili by keyword, collect video metadata, save structured search results, and download selected videos.
 
-## Reference(s): <br>
-- [Bilibili search API endpoint](https://api.bilibili.com/x/web-interface/search/type) <br>
-- [Bilibili video page format](https://www.bilibili.com/video/BV1qD4y1U7fs) <br>
-- [ClawHub skill page](https://clawhub.ai/ecojust/bilibili-video-search-and-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; generated files may include JSON search results and downloaded media.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can write search.json and media files under downloads/ and can contact Bilibili or other URLs accepted by yt-dlp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser cookie use can expose authenticated session material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid browser-cookie commands unless needed for quality access; prefer exported cookies scoped to Bilibili.
+
+Risk: Download commands accept user-supplied URLs.
+
+Mitigation: Only pass Bilibili video URLs or BV IDs and run the skill in a constrained workspace.
+
+Risk: Mutable dependency installs and fallback public mirrors can change what code is installed.
+
+Mitigation: Pin dependencies and use trusted package indexes when deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ecojust/skills/bilibili-video-search-and-download)
+- [Bilibili video search API endpoint](https://api.bilibili.com/x/web-interface/search/type)
+- [Bilibili website](https://www.bilibili.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and Python code; search results are saved as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create search.json and downloaded media files in a local downloads directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

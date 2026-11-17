@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches recent Twitter/X posts from followed or specified accounts, saves objective tweet facts, and supports agent-authored Chinese daily digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent Twitter/X posts from followed or specified accounts, saves objective tweet data as JSON, and guides the agent to create a Chinese daily digest that can be shared locally, in chat, and in Notion.
 
-## Publisher: <br>
-[ceylonlatte](https://clawhub.ai/user/ceylonlatte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceylonlatte](https://clawhub.ai/user/ceylonlatte)
 
-## Use Case: <br>
-External users and agents use this skill to gather recent Twitter/X activity from followed or specified accounts, then create a readable Chinese digest with links, metrics, and failure awareness. It also supports saving the final Markdown locally and optionally syncing that existing Markdown to Notion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an authenticated Twitter/X CLI to fetch followed accounts and recent posts, which can expose account activity and leave digest data on disk. <br>
-Mitigation: Run it only with an account the user intends to use for this purpose, choose output paths deliberately, and review or remove generated digest files according to local retention needs. <br>
-Risk: Optional Notion sync can create pages using local Notion credentials and a default parent page destination. <br>
-Mitigation: Verify or override the Notion parent page, use a limited Notion integration token, and require an explicit user action before any Notion write. <br>
-Risk: Twitter/X fetches can be partially successful when individual accounts fail. <br>
-Mitigation: Check failed account information in the JSON facts, disclose partial results in the digest when relevant, and retry failed accounts before treating the digest as complete. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to gather recent Twitter/X activity from authenticated account access, then turn the resulting facts into a readable Chinese daily digest. It supports full following-list digests, sampled runs, named-account checks, local Markdown output, chat delivery, and optional Notion sync.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ceylonlatte/twitter-daily-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON fact files, Chinese text or Markdown digest content, and shell-command workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May leave digest files on disk and can optionally write Markdown content to a configured Notion parent page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses authenticated Twitter/X account access to read following activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows where this access is intended, and pin and verify the twitter-cli dependency before use.
+
+Risk: Digest content can be persisted locally under the user's home/Desktop area.
+
+Mitigation: Review the configured output path and generated Markdown before treating the digest as final.
+
+Risk: The skill can publish the finished digest into the configured Notion parent page.
+
+Mitigation: Check the Notion parent page, scope the Notion API key appropriately, and require explicit confirmation before running Notion sync.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceylonlatte/skills/twitter-daily-digest)
+- [Publisher profile](https://clawhub.ai/user/ceylonlatte)
+- [Notion parent page configured by the skill](https://www.notion.so/323dfb80f233811ab597f30cb2013145)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON facts, Markdown digest content, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script produces objective Twitter/X facts; the agent performs subjective selection, grouping, translation, and final Chinese digest writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

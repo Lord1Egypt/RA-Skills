@@ -1,47 +1,57 @@
-## Description: <br>
-分析 A 股板块热力图，识别领涨、上升、反转行业。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes A-share sector heatmaps to identify leading, rising, and potential reversal sectors using DaxiAPI sector data and CS indicator guidance.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and analysts use this skill to fetch DaxiAPI A-share sector heatmap, concept, and leading-stock data, then produce a structured market breadth report. It focuses on sector rotation, leading sectors, rising sectors, reversal candidates, heat diffusion, and risk notes rather than individual stock, index, or bond analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market reports may be incorrect, incomplete, or mistaken for investment advice. <br>
-Mitigation: Treat outputs as reference material, keep the artifact's disclaimer, and review conclusions before acting on them. <br>
-Risk: The workflow requires a DaxiAPI token and calls the daxiapi CLI. <br>
-Mitigation: Use a trusted daxiapi CLI, provide only a DaxiAPI token, and avoid entering real tokens directly in command history when possible. <br>
-Risk: CS indicators can lag price action and sector heat can reverse quickly. <br>
-Mitigation: Use the required historical CS direction, leading-stock breadth checks, market posture classification, and risk notes before presenting sector conclusions. <br>
+## Use Case:
 
+External users and market analysts use this skill to generate structured A-share sector heatmap reports, including market posture, sector strength, heat diffusion, concept-sector hotspots, and non-personalized risk notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ksky521/xiapi-heatmap-analysis) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
-- [CLI 命令参考](references/cli-commands.md) <br>
-- [CS 指标说明](references/cs-indicator.md) <br>
-- [字段说明](references/field-descriptions.md) <br>
-- [板块热力图分析报告模板](assets/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DaxiAPI sector heatmap, concept, and leading-stock data; generated market reports are reference material and not guaranteed investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The token configuration check can expose a stored DaxiAPI token in shared terminals or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a status-only authentication check when available, or run the intended data command and handle authentication errors without printing the token value.
+
+Risk: Generated sector views may be mistaken for personalized investment advice.
+
+Mitigation: Present the output as market commentary, keep the disclaimer, and require users to make their own suitability and risk decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-heatmap-analysis)
+- [DaxiAPI](https://daxiapi.com)
+- [CLI command reference](artifact/references/cli-commands.md)
+- [CS indicator guide](artifact/references/cs-indicator.md)
+- [Heatmap field descriptions](artifact/references/field-descriptions.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance, analysis]
+
+**Output Format:** [Markdown report with inline shell commands and structured analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DaxiAPI heatmap, concept-sector, and top-stock data; output should remain market commentary and not personalized investment advice.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

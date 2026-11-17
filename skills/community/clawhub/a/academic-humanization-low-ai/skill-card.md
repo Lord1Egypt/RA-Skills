@@ -1,41 +1,52 @@
-## Description: <br>
-Rewrites academic text to reduce AI-generated writing signals while preserving the core meaning, academic tone, terminology, and approximate length. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites academic text to preserve meaning while reducing visible AI-generated writing patterns.
 
-## Publisher: <br>
-[zhengqizhuang](https://clawhub.ai/user/zhengqizhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhengqizhuang](https://clawhub.ai/user/zhengqizhuang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to rewrite academic passages while preserving terminology, tone, meaning, and approximate length. Use should be reviewed against applicable school, journal, employer, and platform disclosure rules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can be used to make AI-generated academic text look less machine-generated.
+
+Mitigation: Use only when the rewriting complies with applicable school, journal, employer, and platform disclosure rules.
+
+Risk: The rewritten output may be treated as final academic text without sufficient human review.
+
+Mitigation: Review the rewritten text for accuracy, attribution, academic integrity, and policy compliance before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to rewrite AI-generated or AI-assisted academic text into a less formulaic academic style. It is intended for text transformation only and should be used consistently with school, publisher, employer, and platform disclosure rules. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is explicitly designed to lower AI-detection signals in academic writing, which can create academic-integrity or disclosure risks. <br>
-Mitigation: Use only where rewriting support is allowed, and follow school, publisher, employer, and platform disclosure requirements. <br>
-Risk: The rewrite may preserve meaning imperfectly or alter nuance while trying to change style and structure. <br>
-Mitigation: Review the rewritten text against the source before submission or publication. <br>
+**Output Format:** [Plain text rewrite]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhengqizhuang/academic-humanization-low-ai) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zhengqizhuang) <br>
+**Other Properties Related to Output:** [Returns only the rewritten text, without process explanation or summary statements.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text rewritten academic prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the rewritten text and does not include an explanation, process notes, or summary.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

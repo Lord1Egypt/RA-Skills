@@ -1,37 +1,48 @@
-## Description: <br>
-Generates complete, responsive HTML landing pages from a product name, tagline, and description, with clean CSS and mobile-ready hero, feature, CTA, and footer sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate complete, responsive HTML landing pages from a product name, tagline, and description. Clean CSS, mobile-ready, with hero, features, CTA, and footer sections.
 
-## Publisher: <br>
-[claudiodrusus](https://clawhub.ai/user/claudiodrusus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[claudiodrusus](https://clawhub.ai/user/claudiodrusus)
 
-## Use Case: <br>
-Developers and agents use this skill to generate a self-contained HTML landing page from three local inputs: product name, tagline, and description. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Untrusted product names, taglines, or descriptions can render as active HTML or JavaScript in the generated page. <br>
-Mitigation: Use trusted local inputs or add HTML escaping or sanitization before publishing generated pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claudiodrusus/shelly-landing-gen) <br>
+## Use Case:
 
+Developers and makers use this skill to generate a self-contained responsive HTML landing page from simple product copy.
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, guidance] <br>
-**Output Format:** [Self-contained HTML emitted to stdout, with Markdown usage guidance and bash command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages include inline CSS and no external dependencies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated HTML embeds product name, tagline, and description without HTML escaping, so untrusted copy can inject markup or scripts into generated pages.
+
+Mitigation: Use only trusted input, or update the generator to HTML-escape values before publishing generated pages.
+
+## Reference(s):
+
+- [Landing Page Generator on ClawHub](https://clawhub.ai/claudiodrusus/skills/shelly-landing-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [Self-contained HTML printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML includes inline CSS and no external dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

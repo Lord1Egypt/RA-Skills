@@ -37,7 +37,10 @@ function firstDocumentId(upload) {
 }
 
 async function main() {
-  const client = createClient({ timeout: Number(process.env.RAGFLOW_REPRO_TIMEOUT_MS || 60000) });
+  if (process.argv.slice(2).length !== 1 || process.argv[2] !== "--confirm-destructive") {
+    throw new Error("This diagnostic creates and deletes remote resources. Run with --confirm-destructive against a designated test deployment.");
+  }
+  const client = createClient({ allowDestructive: true, timeout: Number(process.env.RAGFLOW_REPRO_TIMEOUT_MS || 60000) });
   const retries = Number(process.env.RAGFLOW_REPRO_DELETE_RETRIES || DEFAULT_RETRIES);
   const retryDelayMs = Number(process.env.RAGFLOW_REPRO_DELETE_RETRY_DELAY_MS || DEFAULT_RETRY_DELAY_MS);
   const embeddingModel = process.env.RAGFLOW_REPRO_EMBEDDING_MODEL || "text-embedding-v4@Tongyi-Qianwen";

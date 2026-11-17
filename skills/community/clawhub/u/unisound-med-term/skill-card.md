@@ -1,41 +1,58 @@
-## Description: <br>
-Provides concise medical-term definitions and clinical context from a question supplied directly, through stdin, or from JSON, JSONL, or text input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise definitions and clinical context for medical terms from direct questions, JSON, JSONL, text files, or stdin by calling a configurable medical model API.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and clinical content teams can use this skill to send medical terminology questions to a configured medical LLM and receive concise explanatory answers with metadata. It is intended as model-assisted information and not as a formal diagnosis or treatment decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided medical questions are sent to a configured hivoice.cn-compatible model endpoint and may contain sensitive health information. <br>
-Mitigation: Use a dedicated app key, keep the API URL pointed at a trusted endpoint, and submit only de-identified or organization-approved medical text. <br>
-Risk: Model-generated medical explanations may be incomplete or unsuitable for clinical decision-making. <br>
-Mitigation: Treat outputs as assistive information and review them under the applicable clinical, compliance, and quality process before relying on them. <br>
+## Use Case:
 
+Developers and external evaluators use this skill to submit medical terminology questions and receive model-generated definitions with clinical context. It supports direct CLI questions, structured input files, stdin, and dry-run parsing for integration workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-term) <br>
-- [Default hivoice.cn-compatible chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [JSON object or NDJSON, with optional plain text answer output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write UTF-8 JSON or NDJSON to an output path; dry-run returns parsed input metadata without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Medical model responses may be mistaken for formal diagnosis or treatment decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as auxiliary terminology information and route real clinical decisions through approved medical review.
+
+Risk: Questions, optional metadata, and the app key are sent to the configured model API.
+
+Mitigation: Protect the app key, de-identify patient data before use, and follow the organization's approval process for any patient-related input.
+
+Risk: A custom API URL can redirect sensitive content or credentials to an untrusted endpoint.
+
+Mitigation: Use only organization-approved API endpoints and avoid custom --api-url values from untrusted instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-term)
+- [Default medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON by default, plain text when --text-only is used, or NDJSON for batches.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write UTF-8 output files; dry-run emits parsed input without calling the API; an app key is required outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

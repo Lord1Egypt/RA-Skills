@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn7aqpfmsr1zqr47bgzj35a8rh80pkhr",
-  "slug": "research-library",
+  "name": "research-library",
   "version": "0.1.0",
-  "publishedAt": 1770496383923
+  "description": "Local-first multimedia research library for hardware projects",
+  "author": "Sage",
+  "license": "MIT",
+  "keywords": ["knowledge-management", "research", "hardware", "documentation", "sqlite", "fts5"],
+  "repository": "https://github.com/openclaw/skills",
+  "homepage": "https://clawhub.ai/sage/research-library",
+  "bugs": "https://github.com/openclaw/openclaw/issues",
+  "requires": {
+    "python": ">=3.8",
+    "openclaw": ">=2026.2.0"
+  },
+  "dependencies": [
+    "click>=8.0",
+    "pdfplumber>=0.10",
+    "pytesseract>=0.3.10"
+  ],
+  "optional-dependencies": {
+    "dev": ["pytest>=7.0", "black>=22.0", "mypy>=0.990"]
+  },
+  "commands": {
+    "reslib": "reslib.cli:main"
+  },
+  "entry_points": {
+    "console_scripts": [
+      "reslib=reslib.cli:main"
+    ]
+  },
+  "installation_instructions": "pip install research-library or clawhub install research-library",
+  "tags": ["skill", "cli", "database", "search", "extraction"],
+  "changelog": {
+    "0.1.0": "Initial release. MVP with 15K lines, 214 tests, all core features."
+  }
 }

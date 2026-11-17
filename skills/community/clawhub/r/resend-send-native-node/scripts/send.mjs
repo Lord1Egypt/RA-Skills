@@ -4,6 +4,7 @@
 // Requires Node 18+ (uses native fetch). Reads RESEND_API_KEY from the process environment only.
 
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 const ENDPOINT = "https://api.resend.com/emails";
 const SEND_TIMEOUT_MS = 30_000;
@@ -67,12 +68,15 @@ function parseArgs(argv) {
     dryRun: false,
     send: false,
     json: false,
+    inputJsonStdin: false,
+    _messageFlagSeen: false,
   };
   const listFlags = new Set(["--to", "--cc", "--bcc"]);
   const singleFlags = new Set(["--subject", "--body", "--from", "--reply-to"]);
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a === "--html") { out.html = true; continue; }
+    if (a === "--html") { out.html = true; out._messageFlagSeen = true; continue; }
+    if (a === "--input-json-stdin") { out.inputJsonStdin = true; continue; }
     if (a === "--dry-run") { out.dryRun = true; continue; }
     if (a === "--send") { out.send = true; continue; }
     if (a === "--json") { out.json = true; continue; }
@@ -80,6 +84,7 @@ function parseArgs(argv) {
     if (listFlags.has(a)) {
       const v = argv[++i];
       if (v === undefined) die(`flag ${a} needs a value`);
+      out._messageFlagSeen = true;
       const key = a.slice(2);
       out[key].push(...v.split(",").map(s => s.trim()).filter(Boolean));
       continue;
@@ -87,6 +92,7 @@ function parseArgs(argv) {
     if (singleFlags.has(a)) {
       const v = argv[++i];
       if (v === undefined) die(`flag ${a} needs a value`);
+      out._messageFlagSeen = true;
       switch (a) {
         case "--subject":  out.subject = v; break;
         case "--body":     out.body    = v; break;
@@ -98,14 +104,66 @@ function parseArgs(argv) {
     if (a === "--body-file") die("--body-file is not supported in the public package. Review file contents yourself and pass approved text with --body.");
     die(`unknown arg: ${a}. Try --help.`);
   }
+  if (out.inputJsonStdin) applyInputJsonFromStdin(out);
+  delete out._messageFlagSeen;
   return out;
+}
+
+function asStringList(label, value) {
+  if (value === undefined || value === null) return [];
+  if (Array.isArray(value)) {
+    return value.map((item) => {
+      if (typeof item !== "string") die(`${label} entries must be strings in --input-json-stdin payload`);
+      return item.trim();
+    }).filter(Boolean);
+  }
+  if (typeof value === "string") return value.split(",").map(s => s.trim()).filter(Boolean);
+  die(`${label} must be a string or string array in --input-json-stdin payload`);
+}
+
+function optionalString(label, value) {
+  if (value === undefined || value === null || value === "") return null;
+  if (typeof value !== "string") die(`${label} must be a string in --input-json-stdin payload`);
+  return value;
+}
+
+function applyInputJsonFromStdin(out) {
+  if (out._messageFlagSeen) die("--input-json-stdin cannot be combined with inline message flags such as --to, --subject, --body, --from, --reply-to, --cc, --bcc, or --html. Pass message content through stdin JSON and mode flags through argv.");
+  let raw;
+  try {
+    raw = readFileSync(0, "utf8");
+  } catch (e) {
+    die(`failed to read --input-json-stdin payload: ${e.message || e}`);
+  }
+  if (!raw.trim()) die("--input-json-stdin requires a JSON object on stdin");
+  let payload;
+  try {
+    payload = JSON.parse(raw);
+  } catch (e) {
+    die(`--input-json-stdin payload is not valid JSON: ${e.message || e}`);
+  }
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) die("--input-json-stdin payload must be a JSON object");
+  const allowed = new Set(["to", "cc", "bcc", "subject", "body", "html", "from", "replyTo", "reply_to"]);
+  const unknown = Object.keys(payload).filter((key) => !allowed.has(key));
+  if (unknown.length) die(`--input-json-stdin payload has unsupported field(s): ${unknown.join(", ")}`);
+  out.to = asStringList("to", payload.to);
+  out.cc = asStringList("cc", payload.cc);
+  out.bcc = asStringList("bcc", payload.bcc);
+  out.subject = optionalString("subject", payload.subject) || "";
+  out.body = optionalString("body", payload.body) || "";
+  if (payload.html !== undefined) {
+    if (typeof payload.html !== "boolean") die("html must be a boolean in --input-json-stdin payload");
+    out.html = payload.html;
+  }
+  out.from = optionalString("from", payload.from);
+  out.replyTo = optionalString("replyTo", payload.replyTo ?? payload.reply_to);
 }
 
 function printHelp() {
   process.stdout.write(
     "Usage: send.mjs --to addr[,addr] --subject \"text\" --body \"text\" [flags]\n" +
     "\n" +
-    "Required:\n" +
+    "Required message fields (inline flags or --input-json-stdin):\n" +
     "  --to       comma-separated recipients\n" +
     "  --subject  message subject\n" +
     "  --body     message body text or HTML\n" +
@@ -119,10 +177,14 @@ function printHelp() {
     "  --dry-run    build request but don't send; print the JSON payload\n" +
     "  --send       actually send; without this flag the script dry-runs by default\n" +
     "  --json       print a stable machine-readable receipt for dry-run or send\n" +
+    "  --input-json-stdin\n" +
+    "               read message fields from one JSON object on stdin; use this for\n" +
+    "               agent-generated or arbitrary text to avoid shell interpolation\n" +
     "\n" +
     "Credentials (process environment only):\n" +
     "  RESEND_API_KEY    API key from https://resend.com (starts with re_)\n" +
-    "  RESEND_ALLOWED_TO comma-separated recipient allowlist for real sends\n"
+    "  RESEND_ALLOWED_TO comma-separated recipient allowlist for real sends\n" +
+    "                    operator-controlled; do not set/widen merely to make --send succeed\n"
   );
 }
 
@@ -207,6 +269,7 @@ async function main() {
   try {
     resp = await fetch(ENDPOINT, {
       method: "POST",
+      redirect: "error",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -230,7 +293,8 @@ async function main() {
   if (!resp.ok) {
     let detail = text;
     try { const j = JSON.parse(text); detail = j.message || j.error || text; } catch {}
-    die(`HTTP ${resp.status}: ${String(detail).slice(0, 500)}`);
+    const retryNote = resp.status >= 500 ? " If the request may have reached Resend, verify in the dashboard before retrying to avoid duplicates." : "";
+    die(`HTTP ${resp.status}: ${String(detail).slice(0, 500)}${retryNote}`);
   }
 
   let data;

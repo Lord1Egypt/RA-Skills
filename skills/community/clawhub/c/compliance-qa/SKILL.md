@@ -1,8 +1,11 @@
 ---
-name: compliance-qa
-description: RAG-enhanced compliance Q&A with regulatory interpretation guardrails, source attribution, and escalation triggers.
-argument-hint: Ask a compliance question, then provide document context when prompted
-allowed-tools: Read, Glob, Grep, WebFetch
+name: "compliance-qa"
+description: "RAG-enhanced compliance Q&A with regulatory interpretation guardrails, source attribution, and escalation triggers."
+argument-hint: "Ask a compliance question, then provide document context when prompted"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.2"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Compliance Q&A
@@ -125,11 +128,11 @@ Medium — The text covers laptop security but omits the specific detail request
 **Response:**
 
 **Summary Answer:**
-This situation may constitute a breach of unsecured PHI under HIPAA and requires immediate attention from your Privacy Officer and legal counsel.
+This describes a potential unauthorized access to PHI. I can't determine whether it meets the legal definition of a reportable breach under HIPAA — that determination requires your Privacy Officer and legal counsel.
 
 **Detailed Analysis:**
 - Based on the provided documents, I cannot give you a step-by-step incident response plan
-- This situation requires human legal review and should not be handled based solely on AI analysis
+- Whether this rises to a reportable breach depends on facts and legal analysis outside what I can assess — it requires human legal review and should not be handled based solely on AI analysis
 
 **Context Gaps / Caveats:**
 This question involves an active compliance incident. The provided documents may contain relevant breach notification procedures, but the appropriate response depends on facts not available in this context (scope of access, type of PHI, state law requirements).

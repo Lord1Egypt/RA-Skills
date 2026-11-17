@@ -1,40 +1,58 @@
-## Description: <br>
-Automates browser-based collection of article and video result data from Douyin keyword search pages with configurable output format, result limit, browser mode, and output file path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin keyword searches with Playwright and returns scraped search result data in JSON, CSV, or text.
 
-## Publisher: <br>
-[urhd528](https://clawhub.ai/user/urhd528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[urhd528](https://clawhub.ai/user/urhd528)
 
-## Use Case: <br>
-Developers and analysts use this skill to run keyword searches on Douyin and export structured search-result records for review, reporting, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation may interact with an authenticated Douyin session or expose account-linked content in a failed-run screenshot. <br>
-Mitigation: Run in a virtual environment or disposable workspace, use a dedicated Douyin account or isolated browser session, and delete debug_screenshot.png after failed runs if it contains private content. <br>
-Risk: The skill requires installing Playwright and Chromium before use. <br>
-Mitigation: Review the Playwright and Chromium installation steps before approval and install dependencies in an isolated environment. <br>
+## Use Case:
 
+Developers and analysts use this skill to run keyword searches on Douyin and collect result metadata for review or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urhd528/douyin-keyword-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON, CSV, or text data output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print results to the console or write them to a user-specified output file; may create a debug screenshot when search-result parsing fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency setup can modify the local Python environment and download Playwright or browser binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated Python environment, and review dependencies before setup.
+
+Risk: Browser scraping may use a logged-in Douyin session, and failed runs can save debug_screenshot.png with page contents.
+
+Mitigation: Use a dedicated Douyin test account or browser session, and delete debug_screenshot.png after failed scrapes.
+
+Risk: Automated scraping may conflict with Douyin terms or create unwanted traffic.
+
+Mitigation: Follow Douyin terms and robots guidance, keep limits and frequency low, and stop if access controls or rate limits appear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/urhd528/skills/douyin-keyword-search)
+- [Skill Documentation](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime script output can be JSON, CSV, or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write results to a user-specified output file and may create debug_screenshot.png after failed scraping.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

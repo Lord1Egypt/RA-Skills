@@ -1,38 +1,48 @@
-## Description: <br>
-Guides agents in creating, optimizing, or auditing free tools pages and toolkit hubs for SEO-driven traffic and lead generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create, optimize, or audit free tools pages.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, marketers, and growth teams use this skill to plan, optimize, or audit free tools pages and toolkit hubs that support traffic, lead generation, product CTAs, and programmatic SEO.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate this skill for generic free-tool or toolkit requests where a more specific skill would fit better.
+
+Mitigation: Confirm the user is asking about free tools pages, toolkit hubs, lead-magnet tools, or related page strategy before relying on this skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to plan free standalone calculators, checkers, converters, generators, analyzers, and toolkit hubs that support the same audience as a paid product. It helps structure tool pages, choose gating and internal-linking strategies, and define SEO metadata for lead generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for loosely related tool, calculator, or checker requests that are not actually about a free tools page or tools hub. <br>
-Mitigation: Redirect the agent to a more appropriate skill or general response path when the user request is not about planning, optimizing, or auditing free tools pages. <br>
+**Output Format:** [Markdown or structured text with page structure, strategy, linking, and SEO recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/tools-page-generator) <br>
+**Other Properties Related to Output:** [May include tool lists, toolkit hub structure, per-tool page structure, gate strategy, internal linking guidance, programmatic templates, and SEO metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with structured lists and page outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces tool lists, toolkit hub structures, per-tool page structures, gate strategies, internal-linking plans, programmatic templates, and SEO metadata.] <br>
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

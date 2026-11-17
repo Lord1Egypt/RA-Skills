@@ -1,46 +1,51 @@
-## Description: <br>
-Operate Sendbird through an OOMOL-connected account for reading, creating, updating, and deleting Sendbird data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sendbird (sendbird.com). Use this skill for ANY Sendbird request — reading, creating, updating, and deleting data. Whenever a task involves Sendbird, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Sendbird group channels, users, messages, members, bans, mutes, and session tokens through the oo CLI. It is intended for authenticated Sendbird administration where reads can be run directly and state-changing actions require confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run authenticated Sendbird write and destructive actions that affect channels, users, messages, membership, bans, mutes, and session tokens. <br>
-Mitigation: Confirm the exact target, payload, and expected effect before any write action, and require explicit approval before destructive actions. <br>
-Risk: Incorrect payloads or stale assumptions about a Sendbird action can change the wrong resource or fail unexpectedly. <br>
-Mitigation: Fetch the live action schema with `oo connector schema` before constructing a payload. <br>
-Risk: The skill requires an authenticated OOMOL connection to Sendbird and may expose operational access through the connected account. <br>
-Mitigation: Use only authorized accounts, avoid handling raw credentials directly, and reconnect or adjust scopes only when an auth or connection error requires it. <br>
+## Use Case:
 
+Developers use the skill to read and manage Sendbird users, channels, and messages through an OOMOL-connected account. Changes and deletions require confirmation before execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-sendbird) <br>
-- [Sendbird Homepage](https://sendbird.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL Sendbird Connection](https://console.oomol.com/app-connections?provider=sendbird) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include oo CLI commands, Sendbird action names, schema inspection steps, and confirmation prompts for write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The missing-command fallback runs a remote CLI installer without a separate approval step; the remote installer and hosted connector were not audited in the supplied evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation before allowing the fallback, check settings for installing or synchronizing other agent skills, and use narrowly scoped Sendbird access. Keep the documented confirmation step for changes and deletions.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Sendbird Platform API documentation](https://sendbird.com/docs/chat/platform-api/v3/prepare-to-use-api)
+- [Sendbird](https://sendbird.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read results and action outcomes; writes and deletions require user confirmation]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Guides an agent through market interpretation, event analysis, portfolio diagnosis, asset allocation, and behavioral coaching using a four-expert investment advisory workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A scenario-driven investment advisory workflow for market interpretation, event analysis, portfolio diagnosis, asset allocation, and behavioral coaching using four expert perspectives.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agent operators use this skill to structure investment-advisory support across market reads, event impact analysis, portfolio diagnosis, asset allocation, and behavioral correction. The workflow emphasizes KYC collection, source attribution, confidence labeling, disclaimers, and privacy handling before producing advisory reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive portfolio context or personal financial details may be exposed during advisory workflows. <br>
-Mitigation: Invoke the skill explicitly, avoid sharing full identity or account numbers, and verify credential scope, logging, retention, and data destinations for any data or MCP integrations. <br>
-Risk: Generated outputs could be mistaken for licensed investment advice. <br>
-Mitigation: Treat outputs as informational unless reviewed under appropriate professional controls, keep disclaimers visible, and require KYC details before asset-allocation recommendations. <br>
-Risk: Incomplete or stale market data can reduce the reliability of reports and recommendations. <br>
-Mitigation: Require source and timestamp labels, confidence notes, and a clear downgrade path when referenced data sources are unavailable. <br>
+## Use Case:
 
+External users and financial-advice agents use this skill to route common investment advisory requests into structured market analysis, portfolio review, asset allocation, and behavior-coaching reports. It is intended to support advisory workflows and does not replace licensed investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/investment-advisory-workflow) <br>
-- [Four-expert framework](references/four-experts.md) <br>
-- [Six-stage capability library](references/six-stages.md) <br>
-- [Shared skill documentation](references/shared-skills.md) <br>
-- [Report template](templates/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, advisory prompts, KYC questions, action checklists, and optional card-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include data sources, confidence notes, disclaimers, and privacy-preserving treatment of sensitive identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and clawhub.yaml; SKILL.md frontmatter reports 1.2.0) <br>
+Risk: The skill may process sensitive financial profile details, holdings, amounts, age, and risk preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize inputs, redact account identifiers, IDs, bank-card numbers, and credentials, and avoid retaining unnecessary precise portfolio details.
+
+Risk: The documented purpose does not justify broad Bash/Exec and file read/write access.
+
+Mitigation: Run the skill in a sandbox and restrict command execution and file permissions before use.
+
+Risk: Personalized allocation or trading suggestions may be unsuitable without complete KYC information or professional review.
+
+Mitigation: Require risk profile, time horizon, amount, and other KYC inputs before allocation guidance, keep disclaimers visible, and review recommendations with a qualified professional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/investment-advisory-workflow)
+- [Four Experts Framework](artifact/references/four-experts.md)
+- [Six-Stage Capability Library](artifact/references/six-stages.md)
+- [Shared Skills Reference](artifact/references/shared-skills.md)
+- [Report Template](artifact/templates/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis, files]
+
+**Output Format:** [Markdown reports with structured tables, data-source labels, confidence notes, action guidance, and optional PNG cards.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require external market-data tools or MCP services; reports should include disclaimers and data freshness or data-missing notes.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact clawhub.yaml; SKILL.md frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

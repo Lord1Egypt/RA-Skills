@@ -1,45 +1,60 @@
-## Description: <br>
-商业捡漏预警虾 helps agents define and run multi-platform deal-monitoring rules for discounted goods, real estate, auctions, and procurement opportunities, with valuation and risk-screening guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商业捡漏预警虾 monitors configured deal, real estate, auction, and procurement sources, evaluates discounts and risks, and returns alert-ready results.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users and business operators use this skill to express monitoring criteria, generate rule JSON, run marketplace or procurement scans, and review candidate opportunities before acting. It is most useful for alerting workflows that compare listed prices against valuation references and attach risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring scraping-style monitoring can conflict with target platform rules, especially when login-state or anti-bot collection techniques are used. <br>
-Mitigation: Confirm each target platform permits automation, avoid logged-in sessions unless clearly authorized, and keep collection frequency conservative and inspectable. <br>
-Risk: Listing data, contact details, and alert logs may be retained locally longer than intended. <br>
-Mitigation: Collect only necessary fields, decide whether contact details should be collected at all, and keep the data directory and scheduled jobs easy to inspect and delete. <br>
-Risk: The bundled collector is an example implementation that returns simulated results until real platform collectors are added. <br>
-Mitigation: Treat example output as non-authoritative and validate any real collector, valuation logic, and risk filter before relying on alerts. <br>
+## Use Case:
 
+External users and operators use this skill to define monitoring rules for low-priced second-hand goods, real estate, foreclosure assets, and procurement opportunities, then review generated alert candidates with discount and risk notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/deal-hunter-alert-claw) <br>
-- [Platform collection rules](references/platform-rules.md) <br>
-- [Risk signal library](references/risk-signals.md) <br>
-- [Valuation model library](references/valuation-models.md) <br>
+### Deployment Geography for Use:
 
+Global; practical coverage is focused on the listed Chinese-language platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON monitoring rules; the bundled monitor can print JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The monitor script may create local seen-ID and alert-log files in the configured deal-hunter data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled monitor writes local seen-id and alert history files under the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set DEAL_HUNTER_DATA to an approved local directory and define retention expectations before scheduled runs.
+
+Risk: Real scraping, login sessions, Feishu notifications, and cron scheduling are suggested but require operator configuration.
+
+Mitigation: Confirm platform permissions, credential or session handling, recipients, schedule, and alert-data retention before enabling those features.
+
+Risk: The included collectors return simulated example data until real platform integrations are added.
+
+Mitigation: Treat generated alerts as demonstration output unless the collectors have been replaced and validated against approved data sources.
+
+## Reference(s):
+
+- [Valuation Models](artifact/references/valuation-models.md)
+- [Risk Signals](artifact/references/risk-signals.md)
+- [Platform Rules](artifact/references/platform-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/deal-hunter-alert-claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON rule examples, shell commands, and optional JSON alert results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The monitor can write local seen-id and alert log files when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,118 +1,83 @@
 # Changelog
 
-All notable changes to Agent Communication Hub are documented here.
+## [3.0.24] - 2026-08-14 — 宿主执行器闭环收口（HostExecutor 注入）
 
-## [Unreleased]
+### Changed (宿主接入收口)
+- **真实宿主执行器（HostExecutor）**：新增 `client-sdk/adapters/host-executor.ts`，提供 `LlmHostExecutor`（直连 Anthropic/OpenAI，需 `HOST_LLM_API_KEY`）与 `HttpHostExecutor`（POST 到 `HOST_EXEC_ENDPOINT`）两套参考实现；`defaultHostExecutor()` 按环境变量自动二选一；`AbstractHostTaskBridge` 新增可注入 `executor` 字段（默认 `defaultHostExecutor()`）
+- **消灭 setTimeout 占位**：WorkBuddy / Hermes 桥的 `runTask()` 改为委托 `this.executor.execute(task, report)`，任务到达即触发宿主真实能力，「任务派发 → Agent 自动干活 → 回写结果」真正闭环
+- **文档**：`docs/HOST_INTEGRATION.md` §4 重写为 HostExecutor 注入模型 + 环境变量表 + 自定义执行器示例
 
-### Fixed
-- **FTS5 JOIN NULL 修复**: `recallMemory` 和 `deleteMemory` 中 FTS5 表 JOIN 条件不再因 NULL title 失效
-- **db.ts 硬编码路径移除**: 删除 WorkBuddy 特定路径回退，仅依赖 `DB_PATH` 环境变量或 CWD
-- **stdio 日志统一**: `console.error` 替换为结构化 logger
+## [3.0.23] - 2026-08-14 — Agent 自主执行闭环 + 人在环授权
 
-### Changed
-- **metrics O(1) 查找**: Counter/Histogram 从线性数组改为 `Map<string, T>`，消除 O(n) 遍历
-- **类型安全 DB 助手**: 新增 `getRow<T>` / `getAllRows<T>` / `getCount`，减少 `as any` 58→45 处
+### Added (Feature A — Agent 自主执行闭环)
+- **`AgentRuntime` 运行时原语**（`client-sdk/runtime.ts`）：包裹 `AgentClient`，自动驱动 `in_progress → execute() → completed/failed`，内置 inFlight 去重、崩溃恢复、loopGuard，消灭 Agent 间人工「传话」
+- **`runAutonomousLoop` 工厂**：宿主一行接入即可让 Agent 自动消费任务事件并自循环
 
-### Added
-- **memory 模块单元测试**: 26 个测试覆盖 store/recall/list/delete 全部路径
-- **CHANGELOG.md**: 首次创建
+### Added (Feature B — 人在环授权队列)
+- **操作级授权**：`auth_requests` 表 + `request_authorization` / `resolve_authorization` / `list_authorization_requests` 工具，deny-by-default，TTL 10min
+- **Web `AuthQueue` 面板**：待授权操作实时队列，用户一键批准 / 拒绝
+- **SSE 事件推送**授权请求；宿主侧 `AgentClient.requestAuthorization(op)` 阻塞等待决议
 
-### Docs
-- **README 文档链接修复**: 移除已删除的 API_REFERENCE/evolution-engine/hermes-integration 引用
-- **Docker 示例修正**: 增加 `-v` 卷挂载和 `DB_PATH` 环境变量
-- **SKILL.md 版本对齐**: v2.5.5 → v2.4.5，与 package.json 一致
+### Chore
+- 清理 `client-sdk/` 下 3 个 5 月陈旧编译产物（`agent-client.js` / `hermes-integration.js` / `workbuddy-integration.js`）及其 `.map`，修正 `client-sdk/package.json` 的 `main` / `files` 入口引用；vitest 的 `.js→.ts` 别名已旁路这些文件，移除不影响构建与 312 项测试
 
-### Housekeeping
-- **.gitignore**: `coverage/` 目录加入忽略列表并从 git 跟踪移除
+## [3.0.22] - 2026-07-23 — 在线状态 / 审计归档 / 备份路径
 
-## [2.4.5] — 2026-05-22
+### Changed (在线状态判定)
+- **SSE 实时连接纳入「在线」判定**：新增统一判定 `isAgentOnline()` / `getOnlineAgentIds()` =（存在 SSE 连接）**或**（心跳在 90s 阈值内）。`get_online_agents` 工具、派单候选排序（`orchestrator`）、`/health/detailed`、`/api/agents`、`hub_agents_online` 指标全部改用统一判定
+- **心跳监控不再误杀 SSE 在线 Agent**：`startHeartbeatMonitor` 对仍有 SSE 连接的 Agent 不再因心跳陈旧标记离线、也不再广播离线通知
+- **SSE 连接同步 `agents.status`**：连接建立即标记 `online`、断开且心跳陈旧才标 `offline`，数据库与「SSE 已连」事实一致
 
-### Changed
-- Docker 多阶段构建优化，减小镜像体积
-- 统一全部文档中工具数量描述为 53
+### Changed (审计日志归档)
+- **`enforceAuditLogCap(maxRows)`**：`audit_log` 超过 `AUDIT_LOG_MAX_ROWS`（默认 3000，env 可调）行时，将最旧溢出行自动**镜像**到 `audit_log_archive`（WORM 安全，不删源表）
+- **维护调度器**：`server` 启动即跑、之后每小时执行「90 天时间归档 + 行数上限镜像」，解决「audit_log 无限增长、归档机制空转」
 
-### Added
-- DB 分裂三层防护系统（检测 + 自动合并 + 看门狗自愈）
-- Live demo 页面（`demo/index.html`）
+### Changed (备份路径)
+- **`backup.ts` 改用稳定路径**：`BACKUP_DIR` 从 `process.cwd()/backups`（易失 workspace）改为 `~/agent-comm-hub/backups`，与 launchd 备份脚本同目录；支持 `BACKUP_DIR` 环境变量覆盖
 
-### Fixed
-- Node v24 兼容性（better-sqlite3 rebuild）
-- tsconfig.json rootDir 修复 Docker 构建路径问题
-- 敏感词清理（v2.4.4）
+## [3.0.21] - 2026-07-23 — 审计修复（稳定性 / 安全 / 质量）
 
-## [2.4.1] — 2026-05-17
+### Fixed (P1 — 稳定性 / 安全)
+- **P1-1 SSE 重连竞态**：`registerClient`/`removeClient` 增加连接级 `connId` 校验，旧 socket 的 `close` 事件不再误删「当前」实时连接，重连后消息 / 任务 / 激活通知不再静默丢失
+- **P1-2 并发写 `SQLITE_BUSY`**：`db` 初始化增加 `busy_timeout=5000` + `foreign_keys=ON` + `wal_autocheckpoint`，消除 HTTP handler / SSE push / 后台调度并发写导致的静默丢数据
+- **P1-3 限流绕过**：认证前置 IP / 全局限流（防令牌爆破与未认证 `/mcp` 耗尽资源）；`/mcp` 增加并发在途上限（默认 50）防 DoS
+- **P1-4 / P1-5 FTS 值碰撞**：`memories_fts` 增加 `memory_id` 精确关联键（启动迁移旧表），召回按 `id` 关联、删除按 `id` 命中，内容相同的两条记忆不再互相串台（删除一条误伤另一条）
 
-### Changed
-- 统一错误码体系（HubError）
-- 清理无用代码和冗余导入
+### Fixed (P2 — 质量 / 文档)
+- **P2-1 信任分误扣**：`revoke_token` 审计将「被吊销者」写入 `target` 列，信任分公式改按 `target` 统计，管理员不再被误扣、被吊销者正确扣分
+- **P2-2 metrics 无界数组**：`counters` 改为 keyed `Map`，消除高基数标签下的 O(N) 扫描与内存增长
+- **P2-3 对象级授权**：并行组内跨任务访问保持协作语义（by-design）；资源不存在时正确交由调用方 404
+- **P2-4 优雅关闭顺序**：`await httpServer.close()` 后再关 DB，避免 WAL 写后关
+- **P2-5 SSE 写后关保护**：`pushToAgent` / `writeStoredEvent` 写前校验 `res` 可写
+- **P2-6 令牌泄漏**：受保护端点移除 `?token=` 与 `x-api-key` 接受，仅保留 Bearer
+- **P2-7 死代码清理**：移除 `RateLimiter.getTopLimited` 死桩；`version.ts` 增加 `readFileSync`/`JSON.parse` 的 `try/catch` 防启动崩溃
+- **P2-8 文档漂移**：README 修正 `engines.node` 声明（实际为 `>=22 <23`）；补齐 CHANGELOG；SKILL.md 版本号同步
 
-### Fixed
-- 测试文件中的硬编码路径替换为 `__file__` 相对路径
-- SKILL.md 去敏通过 ClawHub 安全扫描
-
-## [2.4.0] — 2026-05-16
-
-### Added
-- Phase 5a: RBAC 细化（group_admin 角色）
-- Phase 5a: 审计日志哈希链防篡改
-- Phase 5a: 信任评分自动计算
-- Phase 4b: 依赖链（DFS 环检测）
-- Phase 4b: 并行组（ParallelGroup）
-- Phase 4b: 质量门（QualityGate）
-- Phase 4b: 交接协议（Handoff）
-- Phase 4b: 分级策略审批（Tier 1-3）
-- Phase 3: Evolution Engine（经验共享 + 策略审批 + 反馈闭环）
-- 共享记忆三级作用域（private/group/collective）
-- FTS5 中文分词（N-gram）
-- SSE 实时推送（客户端去重）
-- Python SDK（68 方法，零外部依赖）
-- TypeScript SDK（35 公共方法）
-- Prometheus + Grafana 可观测性栈
-
-### Security
-- RBAC 4 级（public → member → group_admin → admin）
-- Token SHA-256 哈希存储
-- 审计哈希链保证日志不可篡改
-- CORS 白名单制
-- 安全头（X-Frame-Options, CSP, HSTS, X-XSS-Protection）
-
-## [2.3.2] — 2026-05-08
-
-### Added
-- 文件传输（upload / download / list）
-- `get_db_stats` / `archive_data` 数据库维护工具
+## [3.0.20] - 2026-07-23 — 构建产物固化
 
 ### Fixed
-- 消息去重模块边缘情况修复
+- 固化 `dist/package.json` 生成到 `build` 脚本与启动脚本，消除「安装即崩溃」类问题（`version.ts` 启动依赖 `../package.json`）
 
-## [2.3.0] — 2026-05-06
-
-### Added
-- MCP Streamable HTTP Transport 支持
-- stdio MCP 传输入口
-- 速率限制器
-- 邀请码注册机制
-- Hermes 集成指南
-
-### Changed
-- 工具数扩展至 45+
-
-## [2.2.3] — 2026-04-22
-
-### Added
-- Phase 2: 消息去重（dedup cache + nonce 管理）
-- Phase 2: 记忆溯源（source_agent_id / source_task_id）
-- 客户端 SSE 去重（event_id 递增）
-- 看门狗定时清理（Dedup TTL）
+## [3.0.19] - 2026-07-23 — 文档与版本一致性修复 (D10)
 
 ### Fixed
-- SSE 断线重连时的消息补发问题
+- 文档工具数统一为 **58**（与 `src/security.ts` 的 `TOOL_PERMISSIONS` 矩阵一致）：README 与 SKILL.md 中残留的 56 / 53 全部更正
+- 新建 `docs/API_REFERENCE.md`：准确的 HTTP / SSE / MCP 端点速查，含 Bearer 鉴权与 SSE `Last-Event-ID` 断线重连说明
+- 修复 README 三处死链：`API_REFERENCE.md`（已新建）、`evolution-engine-guide.md` 与 `hermes-integration-guide.md`（标注 TODO，计划从 A 层同步）
+- SKILL.md 文件传输工具名更正：`send_file` / `receive_file` → `upload_file` / `download_file`
+- A 层 `install.sh`：构建产物路径 `dist/server.js` → `dist/src/server.js`；新增版本固定（从 `package.json` 读取 version 并 `git checkout v<version>`）
+- 在 README 注明 B 层为文档权威源；因 `scripts/sync-docs.ts` 暂缺，A 层 Skill 分发包需手动同步
 
-## [2.2.2] — 2026-04-18
+## [2.5.0] - 2026-07-07
 
 ### Added
-- 初始发布：消息通信 + 任务调度 + SSE 推送
-- SQLite WAL 持久化
-- 3 个单元测试（security / utils / dedup）
-- Docker 镜像
-- GitHub Actions CI/CD
+- P1-4 激活编排层：Agent 状态机 (registered/active/suspended/retired) + Pipeline 状态机 (draft/active/paused/completed/cancelled) + ActivationOrchestrator
+- P1-4 MCP 工具：activate_agent / deactivate_agent / pause_pipeline / resume_pipeline
+- P2-8 令牌桶限流：RateLimiter（单 Agent 100/min + 全局 1000/min，env 可配）
+- P2-8 Backoff 指数退避：client-sdk/backoff.ts（base 200ms, cap 10s, jitter）
+- P2-8 send_message 限流接入：超限返回 429 + Retry-After
+- P2-7 Web 管理面板：Vite + React + MUI + Tailwind 运维仪表盘
+- P2-7 面板后端端点：GET /api/status + GET /api/audit/tail + /dashboard 静态托管
+- Metrics 增强：getTopLimited() 限流 Top N 查询
+- SSE 增强：broadcastToAll() 全连接广播
+- 版本同步：CHANGELOG.md 变更日志

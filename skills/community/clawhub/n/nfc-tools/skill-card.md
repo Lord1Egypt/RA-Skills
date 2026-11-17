@@ -1,43 +1,59 @@
-## Description: <br>
-NFC tag discovery, inspection, and cautious write workflows using libnfc/nfc-utils; trigger when the user asks to read tags, inspect NDEF payloads, write or update NFC data, or automate tag batches with a PN532/ACR122 reader. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NFC tag discovery, inspection, and cautious write workflows using libnfc/nfc-utils; trigger when the user asks to read tags, inspect NDEF payloads, write or update NFC data, or automate tag batches with a PN532/ACR122 reader.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect NFC readers and tags, plan NDEF or block-level payloads, and perform guarded read, write, erase, or format workflows with libnfc-compatible hardware. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: NFC write, erase, format, or reset commands can permanently change a physical tag. <br>
-Mitigation: Require the exact confirmation gate, verify the reader, tag, payload, and rollback dump first, then re-read the tag after the operation. <br>
-Risk: Tag UIDs and dumps can expose sensitive identifiers or access data. <br>
-Mitigation: Redact UIDs in user-visible output by default and keep tag dumps private unless disclosure is operationally required. <br>
-Risk: Reader setup can require elevated OS permissions or udev changes. <br>
-Mitigation: Review sudo and udev setup before use and run the provided NFC environment check before touching hardware. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect NFC readers and tags, plan NDEF or sector payloads, and run guarded read, write, erase, or format workflows with libnfc/nfc-utils. It is also useful for offline preparation when NFC hardware or drivers are unavailable.
 
-## Reference(s): <br>
-- [NFC hardware fallback guide](references/fallback.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/nfc-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit confirmation before NFC write, erase, format, or reset commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: NFC write, erase, format, or reset operations can irreversibly change tag contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require exact confirmation text before destructive operations, preview payload bytes, preserve a pre-write dump, and re-read the tag after writing.
+
+Risk: Tag UIDs and identifiers can expose sensitive device or access-token metadata in logs or user-visible output.
+
+Mitigation: Redact UIDs by default and reveal them only when the operation explicitly requires it.
+
+Risk: Local setup commands may require elevated permissions for NFC utilities, udev rules, or reader configuration.
+
+Mitigation: Review sudo setup commands before running them and install only when local NFC reader support is needed.
+
+## Reference(s):
+
+- [NFC hardware fallback guide](references/fallback.md)
+- [NFC CLI sanity-check script](scripts/check-nfc.sh)
+- [ClawHub skill page](https://clawhub.ai/ppopen/skills/nfc-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and procedural checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation gates for destructive NFC operations and UID redaction guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

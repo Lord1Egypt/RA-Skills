@@ -1,46 +1,64 @@
-## Description: <br>
-Undo gives AI coding agents project file history, snapshots, checkpoints, and restore operations through local Node.js scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Undo gives AI coding agents local file-change snapshots, history listing, checkpoints, and restore commands so they can revert project files to earlier states.
 
-## Publisher: <br>
-[x-guang](https://clawhub.ai/user/x-guang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-guang](https://clawhub.ai/user/x-guang)
 
-## Use Case: <br>
-Developers and AI coding-agent users use this skill to track file edits, create named checkpoints, list recent change history, and restore a project to a prior snapshot after experimentation or mistaken edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy project contents into persistent local history outside the project. <br>
-Mitigation: Avoid running it on projects containing secrets unless exclusions are configured and retention is acceptable. <br>
-Risk: The background watcher can retain file changes automatically after it is started. <br>
-Mitigation: Start the watcher only deliberately, track its process ID, and stop it when automatic snapshots are no longer needed. <br>
-Risk: Undo operations can overwrite files in the working project. <br>
-Mitigation: List history and manually review the target checkpoint, timestamp, or step count before running an undo. <br>
-Risk: Initialization may attempt to install Git automatically if Git is missing. <br>
-Mitigation: Preinstall Git through approved system processes before using the skill. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to track file edits during AI-assisted work, create checkpoints before risky changes, inspect history, and revert project files by step count, timestamp, or named checkpoint.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/x-guang/undo) <br>
-- [Undo API Reference](artifact/references/api.md) <br>
-- [OpenClaw Skills Documentation](https://openclaws.io/docs/tools/skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Single-line JSON script results with supporting markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; the skill's ClawHub metadata declares node as a required binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Initialization can make automatic host package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review initialization before use, remove or explicitly gate automatic package installation, and avoid privileged or production environments.
+
+Risk: The skill persists broad local snapshots of project source files outside the project directory.
+
+Mitigation: Use only in projects where persistent local snapshots are acceptable, avoid repositories containing secrets, and define cleanup expectations for snapshot storage.
+
+Risk: Scanner guidance identifies local command-injection and symlink-copying risks.
+
+Mitigation: Prefer a patched version that uses safe Git argument arrays, strict checkpoint-name validation, and avoids tracking untrusted symlinks.
+
+Risk: Undo operations can overwrite working files while restoring an earlier state.
+
+Mitigation: Require user confirmation before undo operations and preserve the pre-undo state through checkpoints.
+
+## Reference(s):
+
+- [Undo API Reference](artifact/references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/x-guang/skills/undo)
+- [OpenClaw Skills Documentation](https://openclaws.io/docs/tools/skills/)
+- [AgentSkills](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and one-line JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Git; scripts operate on local project files and persistent local snapshot storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Provides an OpenClaw workflow for Xiaohongshu/XHS keyword search, note details, comment retrieval, and normalized engagement metrics through a local xiaohongshu-mcp server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to query Xiaohongshu/Rednote notes, retrieve note details and comments, and summarize engagement metrics through an MCP-based workflow.
 
-## Publisher: <br>
-[Glitterccc](https://clawhub.ai/user/Glitterccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glitterccc](https://clawhub.ai/user/glitterccc)
 
-## Use Case: <br>
-Developers and agents use this skill to query Xiaohongshu/XHS content from OpenClaw, collect note details and comments, and summarize engagement metrics after a user-authenticated login flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an account-backed local MCP service and can expose QR/login output or XHS session data if used on an untrusted machine. <br>
-Mitigation: Install only on a trusted machine, keep the service reachable only from localhost or behind a firewall, and treat QR/login output and session data as sensitive. <br>
-Risk: Setup may install or update the underlying XHS MCP runtime without an explicit pinned version. <br>
-Mitigation: Pin XHS_MCP_VERSION before running setup when reproducibility or change control matters. <br>
-Risk: The QR login helper can auto-open QR targets during login. <br>
-Mitigation: Set XHS_QR_AUTO_OPEN=0 to review QR targets manually before opening them. <br>
-Risk: The optional service installer can keep the MCP server running beyond a single interactive session. <br>
-Mitigation: Avoid service_install.sh unless always-on behavior is required, and uninstall or disable the service when it is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to search Xiaohongshu/Rednote content, fetch note details and comments, and produce normalized summaries of likes, comments, authors, and note text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Glitterccc/xiaohongshu-mcp-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/Glitterccc) <br>
-- [Project repository cited by artifact README](https://gitea.leapinfra.cn/GlitterCCCC/xiaohongshu-mcp-openclaw) <br>
-- [Field Mapping](references/field-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local QR file paths, open commands, search results, note details, comments, normalized engagement metrics, and summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup and runtime scripts install or run unpinned external executables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup scripts and pin or verify dependency versions before running on a sensitive machine.
+
+Risk: The optional service installer can create a background service that starts across sessions.
+
+Mitigation: Avoid service_install.sh unless persistent background operation is intentional, and review the service definition before enabling it.
+
+Risk: The QR login flow may open local files or URLs automatically.
+
+Mitigation: Set XHS_QR_AUTO_OPEN=0 when automatic file or URL opening is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glitterccc/skills/xiaohongshu-mcp-openclaw)
+- [README](artifact/README.md)
+- [Field Mapping](artifact/references/field-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local QR-code file paths, MCP query results, summarized note metrics, and next-step commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

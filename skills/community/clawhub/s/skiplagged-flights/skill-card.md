@@ -1,45 +1,63 @@
-## Description: <br>
-Use when the user asks to find flights, compare itineraries, search hidden-city routes, check cheapest dates, explore destinations, search hotels, plan a trip, or get general flights and trip-planning help grounded in official Skiplagged MCP results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Skiplagged's public MCP server to search flights, hotels, rental cars, flexible date calendars, and destination options.
 
-## Publisher: <br>
-[wzs](https://clawhub.ai/user/wzs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wzs](https://clawhub.ai/user/wzs)
 
-## Use Case: <br>
-External users and agents use this skill to query Skiplagged's public MCP server for flights, hotels, cars, flexible-date calendars, and destination discovery. It helps present concise travel-search results with booking links, price and routing tradeoffs, and hidden-city caveats when relevant. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel-search details are sent to Skiplagged's public MCP service. <br>
-Mitigation: Use the skill only for explicit flight, hotel, car, or flexible-date searches, and avoid entering unnecessary personal information. <br>
-Risk: The skill depends on the mcporter CLI being installed and available on PATH. <br>
-Mitigation: Install and verify mcporter before use, and inspect the MCP tool schemas with the documented list command when parameters are uncertain. <br>
-Risk: Flight prices, availability, and hidden-city itinerary details can change quickly. <br>
-Mitigation: Treat results as point-in-time, encourage confirmation through returned booking links or Skiplagged directly, and include checked-bag and missed-leg caveats for hidden-city itineraries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skiplagged](https://skiplagged.com) <br>
-- [Skiplagged MCP docs and privacy notes](https://skiplagged.github.io/mcp/) <br>
-- [Skiplagged public MCP server](https://mcp.skiplagged.com/mcp) <br>
-- [MCPorter CLI README](https://raw.githubusercontent.com/steipete/mcporter/main/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wzs/skiplagged-flights) <br>
+## Use Case:
 
+Travel planners, assistants, and developers use this skill to query Skiplagged MCP results for flight comparisons, flexible date checks, destination discovery, hotel searches, and car searches.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON results from MCP calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise, mobile-friendly bullets or labeled lines; top 3-5 results by default; no markdown tables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires an unpinned Node-based mcporter executable.
+
+Mitigation: Use a reviewed and pinned mcporter version where possible, or install and run it in a sandboxed environment.
+
+Risk: Travel search details are sent to Skiplagged's public MCP service.
+
+Mitigation: Invoke the skill only for searches that need Skiplagged results and avoid adding unnecessary sensitive personal details.
+
+Risk: The skill may trigger broadly for general travel planning requests.
+
+Mitigation: Use it when Skiplagged flight, hotel, car, destination, or fare-calendar results are specifically useful.
+
+Risk: Prices, availability, and hidden-city itineraries can change or carry traveler constraints.
+
+Mitigation: Present results as point-in-time, include booking or deep links when available, and clearly caveat hidden-city checked-bag and missed-leg implications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzs/skills/skiplagged-flights)
+- [Skiplagged](https://skiplagged.com)
+- [Skiplagged MCP docs and privacy notes](https://skiplagged.github.io/mcp/)
+- [MCPorter CLI README](https://raw.githubusercontent.com/steipete/mcporter/main/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown bullets or labeled lines, optionally grounded in JSON MCP results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mobile-friendly summaries; no markdown tables; includes booking or deep links when returned.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

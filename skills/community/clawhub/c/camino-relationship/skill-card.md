@@ -1,43 +1,55 @@
-## Description: <br>
-Calculate spatial relationships between two points including distance, direction, travel time, and human-readable descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate spatial relationships between two points including distance, direction, travel time, and human-readable descriptions.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-Developers and agents use this skill to submit two latitude and longitude points to Camino and receive distance, direction, travel-time estimates, and a human-readable relationship summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided location pairs to Camino together with a Camino API key. <br>
-Mitigation: Avoid submitting sensitive home, work, or personal-location pairs unless Camino processing is acceptable, and keep CAMINO_API_KEY protected. <br>
-Risk: Installing the full Camino companion suite increases the reviewed surface beyond this relationship helper. <br>
-Mitigation: Install only camino-relationship unless the companion skills have also been reviewed for the intended environment. <br>
+## Use Case:
 
+External developers and agents use this skill to calculate distance, direction, estimated travel times, and plain-language spatial descriptions between two latitude/longitude points through Camino's relationship API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/camino-relationship) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino relationship API endpoint](https://api.getcamino.ai/relationship) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON API responses and Markdown usage guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and CAMINO_API_KEY; sends user-provided location pairs to Camino.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: evidence.release.version) <br>
+Risk: The skill sends exact start and end coordinates to Camino's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive home, workplace, medical, or regulated-location data unless Camino's data handling is acceptable for the use case.
+
+Risk: The artifact's install examples are not version-pinned.
+
+Mitigation: Use a pinned version or commit and install only the specific skill needed.
+
+## Reference(s):
+
+- [ClawHub Relationship skill page](https://clawhub.ai/james-southendsolutions/skills/camino-relationship)
+- [Camino API activation](https://app.getcamino.ai/skills/activate)
+- [Camino relationship API endpoint](https://api.getcamino.ai/relationship)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration]
+
+**Output Format:** [JSON API response, with shell-command examples and configuration guidance in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY, curl, and jq; sends supplied start and end coordinates to api.getcamino.ai.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

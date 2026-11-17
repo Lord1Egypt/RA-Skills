@@ -1,41 +1,53 @@
-## Description: <br>
-Send local files, images, audio, video, and other media through QQBot end to end. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send local files, images, audio, video, and other media through QQBot end to end.
 
-## Publisher: <br>
-[zykkk-power](https://clawhub.ai/user/zykkk-power) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zykkk-power](https://clawhub.ai/user/zykkk-power)
 
-## Use Case: <br>
-Developers and agent users use this skill to send local files or URL media through QQBot by staging eligible local files and emitting QQ rich-media tags for delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may unintentionally send sensitive local files through QQBot. <br>
-Mitigation: Confirm the exact file path and intended recipient before sending. <br>
-Risk: Staged copies may remain in ~/.openclaw/media/qqbot/ after delivery. <br>
-Mitigation: Periodically clean the QQBot media relay directory, especially after sending sensitive files. <br>
+## Use Case:
 
+External users and developers use this skill to send user-requested local files or URL media through QQBot. It stages readable local files into the QQBot media relay directory when needed, then delivers them with QQ rich-media tagging.
 
-## Reference(s): <br>
-- [QQBot Send ClawHub page](https://clawhub.ai/zykkk-power/qqbot-send) <br>
-- [Publisher profile](https://clawhub.ai/user/zykkk-power) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and QQ rich-media tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stages local files up to 10 MB into ~/.openclaw/media/qqbot/ before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Sensitive files could be sent to QQBot if the path or recipient is not confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the file path and intended recipient before sending sensitive files.
+
+Risk: Staged file copies may remain in the local QQBot media relay directory after delivery.
+
+Mitigation: Periodically clean ~/.openclaw/media/qqbot/ when retained staged copies are no longer needed.
+
+## Reference(s):
+
+- [QQBot Send ClawHub Page](https://clawhub.ai/zykkk-power/skills/qqbot-send)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and QQ media tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stages local files up to 10 MB into ~/.openclaw/media/qqbot/ and preserves the original file extension.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

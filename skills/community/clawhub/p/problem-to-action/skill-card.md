@@ -1,41 +1,56 @@
-## Description: <br>
-Problem-to-Action guides users through an eight-step problem-solving workflow that turns a stated problem into a clear, executable action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Problem-to-Action guides users through an eight-step problem-solving workflow that turns a stated problem into a structured action plan.
 
-## Publisher: <br>
-[monkeykingll](https://clawhub.ai/user/monkeykingll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[monkeykingll](https://clawhub.ai/user/monkeykingll)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to analyze personal, work, career, or business problems through a required eight-step coaching flow and leave with a concrete action plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad activation language may start the workflow for problem statements where a lighter response would be more appropriate.
+
+Mitigation: Confirm that the user wants a structured eight-step analysis before continuing through the full flow.
+
+Risk: Users may over-rely on the generated plan for medical, legal, financial, crisis, or other high-stakes situations.
+
+Mitigation: Frame outputs as planning support and direct users to qualified professionals for high-stakes decisions.
+
+Risk: The skill includes a paid Pro-version prompt after the plan.
+
+Mitigation: Keep the paid upgrade prompt clearly optional and separate from the generated action plan.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and employees use this skill when they need a structured assistant to clarify a problem, identify stakeholders, separate facts from opinions, define goals, compare gaps, and produce a practical action plan. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad problem-related language and start a structured planning workflow when a user intended a different kind of help. <br>
-Mitigation: Confirm the user's intent before proceeding through the eight-step process, and let the user pause or opt out. <br>
-Risk: Users could apply the generated plan to emergencies, self-harm, medical, legal, financial, abuse, or other high-stakes situations. <br>
-Mitigation: Treat the output as general planning support only and direct users to qualified or emergency help for high-stakes situations. <br>
+**Output Format:** [Markdown with structured prompts, progress summaries, and action-plan tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/monkeykingll/problem-to-action) <br>
-- [Publisher profile](https://clawhub.ai/user/monkeykingll) <br>
+**Other Properties Related to Output:** [Interactive eight-step flow with required checks before the final report.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted interactive prompts, progress summaries, structured planning cards, and a final action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or tool calls are produced by the skill itself.] <br>
+2026.5.2 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2026.5.2 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

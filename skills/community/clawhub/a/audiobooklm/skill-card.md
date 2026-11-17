@@ -1,45 +1,64 @@
-## Description: <br>
-AudioBookLM helps agents run audiobook and podcast creation workflows through the audiobooklm_mcp remote tools, including chapter creation, voice assignment, synthesis, mixing, and optional album publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AudioBookLM helps agents produce podcasts and narrated audiobooks, including multi-voice performances, chapter synthesis, character voice binding, audio mixing, and optional album publishing through audiobooklm_mcp.
 
-## Publisher: <br>
-[audiobooklm](https://clawhub.ai/user/audiobooklm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[audiobooklm](https://clawhub.ai/user/audiobooklm)
 
-## Use Case: <br>
-External creators and developers use this skill to guide podcast, single-narrator audiobook, and multi-cast audiobook production through AudioBookLM/Ximalaya tools. It helps configure authentication, choose the appropriate workflow, confirm user inputs, bind voices, synthesize chapters, mix audio, and optionally publish to an album. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AudioBookLM/Ximalaya token and may send user-provided content or files to the remote service. <br>
-Mitigation: Install only if the user trusts AudioBookLM/Ximalaya with the token and content, and avoid sending private, copyrighted, or sensitive files unless authorized. <br>
-Risk: The security summary notes a local-file upload path using a raw authenticated curl command outside the stated MCP workflow. <br>
-Mitigation: Before approving any local-file upload, verify the exact file path, destination, and token handling; do not expose Authorization headers in user-visible output. <br>
-Risk: The workflows can create or modify books, chapters, character voice bindings, synthesis jobs, mixed audio, and album uploads. <br>
-Mitigation: Require user confirmation before write operations, use returned IDs and statuses only, and stop on tool errors or unverified results. <br>
+## Use Case:
 
+External creators and developers use this skill to create podcast or audiobook projects, prepare chapters, select and bind voices, synthesize and mix chapter audio, and optionally publish finished audio to a Ximalaya album.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/audiobooklm/audiobooklm) <br>
-- [AudioBookLM homepage](https://aigc.ximalaya.com) <br>
-- [AudioBookLM MCP endpoint](https://aigc.ximalaya.com/audiobooklm/mcp) <br>
-- [AudioBookLM user center](https://aigc.ximalaya.com/user/center) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API calls] <br>
-**Output Format:** [Markdown with MCP tool call guidance and inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns confirmed book, chapter, character, speaker, task, audio, edit, and album details; does not expose tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can upload local text files to the AudioBookLM/Ximalaya service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only files the user is allowed to send to the service, require explicit confirmation before upload, and continue only from the service-returned file path.
+
+Risk: The skill can mutate book and character metadata, including speaker bindings.
+
+Mitigation: Require explicit confirmation before patch_abs writes, use real IDs returned by tools, prefer dry-run handling for high-risk bulk changes, and verify results before synthesis.
+
+Risk: The skill can generate audio and optionally publish finished audio to an album.
+
+Mitigation: Confirm content rights and privacy before synthesis, ask for album-publishing confirmation, and return only URLs that tools or documented workflows provide.
+
+Risk: The workflow requires an AudioBookLM/Ximalaya token.
+
+Mitigation: Use environment or MCP authorization configuration, avoid pasting tokens into chat, and never echo authorization headers in user-facing output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/audiobooklm/skills/audiobooklm)
+- [AudioBookLM Homepage](https://aigc.ximalaya.com)
+- [AudioBookLM MCP Endpoint](https://aigc.ximalaya.com/audiobooklm/mcp)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/audiobooklm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and concise natural-language status summaries with inline JSON configuration snippets and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tool-returned book IDs, chapter IDs, task IDs, speaker IDs, audio URLs, album URLs, edit links, and payment links; avoids exposing tokens, authorization headers, raw large JSON, or inferred URLs.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

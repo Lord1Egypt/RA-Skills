@@ -1,46 +1,58 @@
-## Description: <br>
-Manage Apple Notes via the `memo` CLI on macOS, including creating, viewing, editing, deleting, searching, moving, and exporting notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, list notes, search notes, or manage note folders.
 
-## Publisher: <br>
-[readbyte-ai](https://clawhub.ai/user/readbyte-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[readbyte-ai](https://clawhub.ai/user/readbyte-ai)
 
-## Use Case: <br>
-Mac users and agents use this skill to manage Apple Notes from a terminal workflow through the third-party `memo` CLI. It is useful for creating, finding, organizing, exporting, and deleting notes when Apple Notes.app and macOS Automation access are available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party macOS CLI that can access Apple Notes. <br>
-Mitigation: Install only from a trusted `memo` source and grant Notes Automation access only when needed. <br>
-Risk: Editing, moving, exporting, or deleting the wrong selected note can expose or alter personal note content. <br>
-Mitigation: Review note titles and selected folders before confirming interactive `memo notes` actions. <br>
-Risk: Deleted notes may be difficult or impossible to recover. <br>
-Mitigation: Treat deletion as irreversible and prefer export or backup before destructive actions. <br>
-Risk: The `memo` CLI cannot edit notes that contain images or attachments. <br>
-Mitigation: Use Apple Notes.app directly for notes with images or attachments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/readbyte-ai/apple-notes-1-0-0) <br>
-- [readbyte-ai publisher profile](https://clawhub.ai/user/readbyte-ai) <br>
-- [memo project](https://github.com/antoniorodr/memo) <br>
-- [Homebrew formula: antoniorodr/memo/memo](https://github.com/antoniorodr/memo) <br>
+## Use Case:
 
+External users and developers use this skill to manage Apple Notes from an agent-assisted terminal workflow on macOS, including creating, searching, editing, moving, exporting, and deleting notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target macOS and require the `memo` CLI plus Apple Notes Automation access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide operations that read, export, edit, move, or delete Apple Notes through a third-party CLI.
+
+Mitigation: Install only from a trusted memo CLI source, grant Notes.app Automation access deliberately, and review selected notes before any edit, move, export, or delete action.
+
+Risk: Deleted notes may be difficult or impossible to recover.
+
+Mitigation: Confirm delete targets carefully and prefer export or backup workflows before destructive changes.
+
+Risk: The skill is macOS-only and depends on local terminal access, the memo binary, Apple Notes.app availability, and Automation permissions.
+
+Mitigation: Use it only on macOS systems where memo is installed and Notes.app Automation permissions are configured.
+
+## Reference(s):
+
+- [memo GitHub repository](https://github.com/antoniorodr/memo)
+- [Apple Notes 1.0.0 on ClawHub](https://clawhub.ai/readbyte-ai/skills/apple-notes-1-0-0)
+- [readbyte-ai publisher profile](https://clawhub.ai/user/readbyte-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide interactive terminal operations that read, export, edit, move, or delete Apple Notes through the memo CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

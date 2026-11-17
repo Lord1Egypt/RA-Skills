@@ -1,43 +1,58 @@
-## Description: <br>
-EvoMap Tools helps agents interact with the EvoMap AI collaboration marketplace to publish, fetch, rank, and manage Capsules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EvoMap Tools helps agents publish, fetch, rank, and monitor Capsules in the EvoMap AI collaboration marketplace.
 
-## Publisher: <br>
-[aeoleader](https://clawhub.ai/user/aeoleader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aeoleader](https://clawhub.ai/user/aeoleader)
 
-## Use Case: <br>
-External developers and agent operators use this skill to interact with EvoMap's Capsule marketplace, including checking node status, fetching or ranking Capsules, and preparing solution Capsule submissions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Capsule content and node metadata may be sent to evomap.ai. <br>
-Mitigation: Use the skill only with data approved for sharing with EvoMap; do not publish private code, secrets, customer data, or internal incident details. <br>
-Risk: The artifact includes apparent node claim credentials. <br>
-Mitigation: Rotate the exposed claim code before use and replace embedded credentials with placeholders or user-provided configuration. <br>
-Risk: The skill describes automatic heartbeat behavior without clear controls. <br>
-Mitigation: Require explicit opt-in for any heartbeat or cron setup and document removal steps before enabling background activity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aeoleader/evomap-tools) <br>
-- [EvoMap hub](https://evomap.ai) <br>
-- [EvoMap A2A fetch endpoint](https://evomap.ai/a2a/fetch) <br>
+## Use Case:
 
+Developers and agent operators use this skill to interact with EvoMap by checking node status, fetching and ranking Capsules, and preparing Capsule publication workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Networked commands exchange Capsule and node metadata with evomap.ai; no token or size limits are specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release includes an exposed EvoMap claim code.
+
+Mitigation: Treat the claim code as potentially compromised and ask the publisher to revoke or rotate it before relying on the node registration.
+
+Risk: The skill describes recurring heartbeat traffic to EvoMap without detailed control or scoping.
+
+Mitigation: Do not enable heartbeat automation unless the operator understands what data is sent, how often it runs, and how to disable it.
+
+Risk: Commands contact evomap.ai and may publish, fetch, or report node status.
+
+Mitigation: Review commands before execution and install only in environments where outbound EvoMap network calls are acceptable.
+
+## Reference(s):
+
+- [EvoMap service](https://evomap.ai)
+- [EvoMap fetch endpoint](https://evomap.ai/a2a/fetch)
+- [ClawHub release page](https://clawhub.ai/aeoleader/skills/evomap-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that contact evomap.ai and JSON responses from EvoMap endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Enables the bot to manage Docker containers, images, and stacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables the bot to manage Docker containers, images, and stacks.
 
-## Publisher: <br>
-[mkrdiop](https://clawhub.ai/user/mkrdiop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkrdiop](https://clawhub.ai/user/mkrdiop)
 
-## Use Case: <br>
-Developers and operators use MoltDocker to ask an agent for Docker container, image, stack, log, stats, and troubleshooting commands while preserving confirmations for destructive Docker actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Docker commands can stop containers, remove images, prune Docker data, or otherwise affect running services. <br>
-Mitigation: Review proposed Docker commands and require explicit confirmation before destructive operations such as docker rm, docker rmi, and docker system prune. <br>
-Risk: Docker logs, inspect output, and configuration details may expose sensitive environment or service information. <br>
-Mitigation: Summarize large outputs and avoid sharing sensitive values from logs, environment variables, or container configuration unless the user explicitly needs them. <br>
-Risk: Installing this skill allows an agent to operate Docker on the user's machine. <br>
-Mitigation: Install it only in environments where agent-assisted Docker operations are intended and acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use MoltDocker to ask an agent for common Docker container, image, and stack management tasks, including listing resources, starting or stopping containers, viewing logs, checking stats, cleanup, and troubleshooting with logs and inspect output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent may run Docker commands that modify or remove local containers, images, or other Docker resources.
+
+Mitigation: Confirm destructive commands such as docker rm, docker rmi, and docker system prune before execution, and review the target resource names carefully.
+
+Risk: Docker logs and inspect output can expose secrets, internal configuration, or other sensitive environment details.
+
+Mitigation: Limit shared command output to the needed diagnostic details, summarize large outputs, and avoid pasting secrets into follow-up prompts or reports.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may include Docker actions that should be reviewed before execution; destructive actions require confirmation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects Docker CLI access and asks for confirmation before destructive Docker removal or prune commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Create hand-drawn workflow diagrams from natural-language process descriptions by generating strictly validated Mermaid flowchart, sequenceDiagram, or classDiagram code, converting Mermaid to Excalidraw scene files, and exporting PNGs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create hand-drawn workflow diagrams from natural-language process descriptions by generating strictly validated Mermaid flowchart, sequenceDiagram, or classDiagram code, converting Mermaid to Excalidraw scene files, and exporting PNGs.
 
-## Publisher: <br>
-[zengiai](https://clawhub.ai/user/zengiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengiai](https://clawhub.ai/user/zengiai)
 
-## Use Case: <br>
-Developers and technical writers use this skill to turn process descriptions into validated Mermaid diagrams and render them as sketch-style Excalidraw and PNG artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The renderer depends on npm packages and a local headless browser. <br>
-Mitigation: Install and run it only in an environment where those local dependencies are acceptable. <br>
-Risk: Output files using the selected diagram name can be created or overwritten. <br>
-Mitigation: Use a dedicated output folder for generated diagrams. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn natural-language process descriptions into validated Mermaid diagrams and hand-drawn Excalidraw or PNG outputs for workflow, interaction, and domain-model visualization.
 
-## Reference(s): <br>
-- [Mermaid Generation Rules](references/mermaid-generation-rules.md) <br>
-- [Project homepage](https://github.com/zengiai/handdraw-flowchart) <br>
-- [ClawHub skill page](https://clawhub.ai/zengiai/handdraw-flowchart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, files, guidance] <br>
-**Output Format:** [Mermaid source, Excalidraw scene JSON, PNG image files, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Renderer writes normalized .mmd, .excalidraw, and .png files using the selected diagram name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Local npm dependencies and headless browser rendering introduce ordinary dependency and browser execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use locked installs, audit dependencies before deployment, and run the renderer in a workspace-scoped local environment.
+
+Risk: Untrusted or very large Mermaid inputs may create rendering failures, resource strain, or misleading visual output.
+
+Mitigation: Validate Mermaid before export, keep output directories scoped to the workspace, and visually review generated PNG and Excalidraw files before relying on them.
+
+## Reference(s):
+
+- [Mermaid Generation Rules](references/mermaid-generation-rules.md)
+- [Project homepage](https://github.com/zengiai/handdraw-flowchart)
+- [ClawHub skill page](https://clawhub.ai/zengiai/skills/handdraw-flowchart)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Mermaid source with generated .mmd, .excalidraw, and .png files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Renderer validates supported Mermaid flowchart, sequenceDiagram, and classDiagram inputs before export; flowcharts provide the best editable Excalidraw output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and package.json declare 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

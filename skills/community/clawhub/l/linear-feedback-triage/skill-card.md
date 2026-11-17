@@ -1,40 +1,53 @@
-## Description: <br>
-Triage user-feedback issues in Linear, especially FB team / 用户反馈 workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage user-feedback issues in Linear, especially FB team / 用户反馈 workflows.
 
-## Publisher: <br>
-[qwqcode](https://clawhub.ai/user/qwqcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwqcode](https://clawhub.ai/user/qwqcode)
 
-## Use Case: <br>
-Support and product teams use this skill to query Linear feedback issues, identify duplicates, categorize membership or payment complaints, suggest labels and statuses, and draft concise user replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward Linear write actions such as status, label, and comment updates. <br>
-Mitigation: Review proposed Linear changes before execution and prefer read-only issue queries until a write is explicitly requested. <br>
-Risk: Linear MCP credentials may expose team feedback data beyond the intended workflow. <br>
-Mitigation: Configure credentials with access appropriate for the FB/Tide workflow and avoid installing the skill where that team data should not be read. <br>
+## Use Case:
 
+Support and product teams use this skill to query Linear feedback issues, classify complaints, identify duplicates, recommend labels and statuses, and draft concise user replies for the Tide feedback process.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qwqcode/linear-feedback-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with Linear command examples and reply drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only queries are preferred before proposed Linear updates; write actions should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow runs an unpinned npm command that may execute changing third-party package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or preinstall mcporter from a trusted source before using the skill.
+
+Risk: The workflow can read and modify Linear business tickets.
+
+Mitigation: Use least-privilege Linear credentials and require clear user confirmation before any write operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qwqcode/skills/linear-feedback-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell commands and reply drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include issue IDs, statuses, labels, duplicate recommendations, grouping buckets, and proposed Linear write actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

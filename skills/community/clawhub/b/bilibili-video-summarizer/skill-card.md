@@ -1,39 +1,60 @@
-## Description: <br>
-Downloads available Bilibili subtitles for a provided video URL, parses them into plain text, and helps an agent produce a structured video summary in Chinese or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili Video Summarizer downloads available Bilibili subtitles, parses them into plain text, and helps an agent produce structured summaries in Chinese or English.
 
-## Publisher: <br>
-[yeezi02](https://clawhub.ai/user/yeezi02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeezi02](https://clawhub.ai/user/yeezi02)
 
-## Use Case: <br>
-External users and developers use this skill to summarize Bilibili videos when subtitles are available. It is intended for subtitle retrieval, subtitle-to-text parsing, and concise structured summaries of video content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to expose and persist a live Bilibili session cookie, which can create account-security risk in an untrusted local agent environment. <br>
-Mitigation: Use only in a trusted environment, manually create the cookie file with restrictive permissions when possible, use a low-risk account, and revoke or rotate the session after use. <br>
+## Use Case:
 
+External users and developers use this skill to summarize Bilibili videos by downloading official or AI-generated subtitles, converting them to plain text, and drafting a concise structured summary.
 
-## Reference(s): <br>
-- [Bilibili Cookie Setup Guide](references/cookie-setup.md) <br>
-- [Bilibili](https://www.bilibili.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with optional shell command output and plain-text subtitle content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally stored Bilibili SESSDATA cookie for authenticated subtitle access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to provide and persist a Bilibili SESSDATA login session cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local environment, treat SESSDATA as a credential, store it with restrictive file permissions, and delete or revoke it after use.
+
+Risk: The artifact recommends a system-level yt-dlp installation command.
+
+Mitigation: Install yt-dlp in an isolated, pinned environment instead of using a broad system-level pip install.
+
+Risk: Summaries depend on the availability and quality of official or AI-generated subtitles.
+
+Mitigation: Tell users when subtitles are unavailable and keep generated summaries faithful to the retrieved subtitle text.
+
+## Reference(s):
+
+- [Bilibili Cookie Setup Guide](references/cookie-setup.md)
+- [Bilibili](https://www.bilibili.com)
+- [Bilibili Video Summarizer on ClawHub](https://clawhub.ai/yeezi02/skills/bilibili-video-summarizer)
+- [Publisher Profile](https://clawhub.ai/user/yeezi02)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with extracted subtitle text and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Bilibili SESSDATA cookie and yt-dlp to retrieve subtitles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

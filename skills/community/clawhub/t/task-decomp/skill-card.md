@@ -1,36 +1,51 @@
-## Description: <br>
-Task Decomposition helps agents plan, track, revise, resume, and learn from complex multi-step work using dependency-aware Markdown plans and retrospectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, track, and learn from complex multi-step tasks by decomposing requests into dependency-aware subtasks with parallel execution, progress tracking, and a learning loop from completed plans.
 
-## Publisher: <br>
-[nathancjackson](https://clawhub.ai/user/nathancjackson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nathancjackson](https://clawhub.ai/user/nathancjackson)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to break complex requests into sized, dependency-aware tasks, track progress, delegate independent branches, and record retrospectives that improve future planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent plan and pattern notes can expose sensitive project details if users record secrets, credentials, or full connection strings. <br>
-Mitigation: Review plans/ and patterns.md before sharing a workspace, keep secrets out of plan text, and use secret managers or protected environment configuration for credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers, engineers, and agents use this skill to plan and execute complex multi-step work, especially when tasks have dependencies, parallel workstreams, resumable state, or retrospectives that should improve future planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Plan files and retrospectives may capture sensitive project details if the user includes them.
+
+Mitigation: Keep passwords, tokens, private connection strings, customer data, and confidential strategy out of plans/, patterns.md, and .env examples.
+
+Risk: Learned planning patterns can become stale or too specific to one project.
+
+Mitigation: Review patterns.md monthly and remove patterns that no longer apply, have been wrong more than once, or are too project-specific to generalize.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown plan files, Markdown retrospectives, and concise text progress reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates workspace-relative planning notes under plans/ when used.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+**Output Type(s):** [markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown planning templates, task lists, progress summaries, retrospectives, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace-local files under plans/ for active plans, archived plans, and learned planning patterns.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

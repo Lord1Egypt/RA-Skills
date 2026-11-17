@@ -1,38 +1,57 @@
-## Description: <br>
-Enforces workspace file naming, directory placement, and cleanup rules so agent-created files remain predictable, findable, and traceable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Guardian guides agents to place, name, organize, and clean workspace files consistently when users have not specified exact paths.
 
-## Publisher: <br>
-[lujun2508](https://clawhub.ai/user/lujun2508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujun2508](https://clawhub.ai/user/lujun2508)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep generated reports, scripts, data, and temporary files inside predictable project directories with consistent names. It is most useful when an agent is creating or organizing local workspace files and the user has not supplied an explicit destination path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt an agent to delete, move, archive, or prune local files based on ambiguous comments about generated outputs. <br>
-Mitigation: Require explicit user confirmation before deleting, moving, archiving, or pruning files outside a clearly scoped temporary directory. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep generated files in predictable project directories, apply naming conventions, and manage temporary or rejected outputs when no exact path is provided.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lujun2508/workspace-guardian-by-lujun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies to local file organization and cleanup behavior when no explicit output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill gives broad default file-placement instructions that may conflict with a user's unstated preference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target project and destination before creating non-temporary files when the path is ambiguous.
+
+Risk: The skill authorizes deletion or archiving when users reject, redo, or regenerate outputs without always requiring explicit deletion approval.
+
+Mitigation: Ask before deleting or archiving any non-temporary output unless the user explicitly requested deletion.
+
+Risk: Cleanup guidance for failed scripts and temporary files may remove material that is still useful for troubleshooting.
+
+Mitigation: Retain or archive diagnostic files when they may help explain failures, and clean only clearly temporary files automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lujun2508/skills/workspace-guardian-by-lujun)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown instructions and policy text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies default file placement, naming, and cleanup guidance for agent workspace activity.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

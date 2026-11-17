@@ -1,46 +1,63 @@
-## Description: <br>
-Finds airport-area hotels for layovers, early flights, and late arrivals by running flyai CLI searches and formatting real-time booking results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hotels near airports for layovers, early morning flights, or late-night arrivals, sorted by distance to terminal with shuttle information and booking links powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-assistance agents use this skill to search for hotels near airports, transit capsules, and pre-flight stays through flyai CLI results. It helps compare options and present Markdown booking tables with real-time prices and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and running the external flyai CLI, which may send travel-search details to that provider. <br>
-Mitigation: Review the CLI provider and avoid entering sensitive personal itinerary details unless the user accepts that data sharing. <br>
-Risk: The skill may retain raw user requests and command details in a local .flyai-execution-log.json file when filesystem writes are available. <br>
-Mitigation: Disable or delete the local execution log if retaining travel query history is not desired. <br>
-Risk: Hotel recommendations can be misleading if the agent falls back to model knowledge instead of live CLI results. <br>
-Mitigation: Require successful flyai CLI execution and booking detailUrl links before presenting hotel availability, prices, or booking options. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to find airport-area hotels for layovers, late arrivals, and early departures using live flyai CLI results. It helps compare nearby hotel options and present booking links without relying on model training data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejinsong/airport-transit-hotel) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for hotel data and booking links; should not answer travel availability from model knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill may install and run an unpinned global third-party npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package before installation, pin an approved version where possible, and run it in a constrained environment.
+
+Risk: Travel searches may be sent to the flyai/Fliggy service and booking links may direct users to an external provider.
+
+Mitigation: Use the skill only when that provider dependency is acceptable, and review generated booking links before acting on them.
+
+Risk: The artifact describes local logging of raw travel queries and command execution details.
+
+Mitigation: Disable, constrain, or regularly clear local execution logs when queries may contain sensitive travel details.
+
+## Reference(s):
+
+- [Airport Transit Hotel README](README.md)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+- [Parent flyai Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/airport-transit-hotel)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be based on live flyai CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter describes 2.0.0 behavior)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

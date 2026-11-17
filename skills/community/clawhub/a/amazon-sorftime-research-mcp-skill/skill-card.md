@@ -1,47 +1,65 @@
-## Description: <br>
-Analyzes Amazon competitor listings with Sorftime MCP data and produces Markdown reports covering listing copy, reviews, keywords, market trends, and strategy recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an /amazon-analyse workflow that uses Sorftime MCP data to analyze Amazon competitor listings across copy, reviews, keywords, market dynamics, and saves Markdown reports.
 
-## Publisher: <br>
-[liangdabiao](https://clawhub.ai/user/liangdabiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liangdabiao](https://clawhub.ai/user/liangdabiao)
 
-## Use Case: <br>
-Amazon marketplace operators, brand teams, and ecommerce analysts use this skill to collect Sorftime MCP data for a target ASIN and generate a structured competitor intelligence report. The report supports listing optimization, keyword strategy, pricing review, product positioning, and market monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Amazon product research data to Sorftime MCP and requires a Sorftime API key. <br>
-Mitigation: Install only if you trust Sorftime, protect the API key, and avoid committing .mcp.json or other files containing credentials. <br>
-Risk: Bundled references describe Sorftime tools that can change keyword collections or access non-Amazon research surfaces beyond the main analysis workflow. <br>
-Mitigation: Allow only the Sorftime tools needed for the intended Amazon ASIN analysis unless the user explicitly approves broader tool use. <br>
-Risk: The security verdict is suspicious because the bundled references expose unrelated account-changing tools and weak API-key handling. <br>
-Mitigation: Review the security summary and guidance before deployment, then constrain agent permissions and outbound data according to the deployment environment. <br>
+## Use Case:
 
+External sellers, marketplace analysts, and ecommerce operators use this skill to collect Sorftime MCP data for an Amazon ASIN, assess competitor listing strategy, review sentiment, keywords, and market movement, and produce a structured competitive analysis report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liangdabiao/amazon-sorftime-research-mcp-skill) <br>
-- [Sorftime website](https://www.sorftime.com) <br>
-- [Sorftime MCP endpoint](https://mcp.sorftime.com) <br>
-- [API tools reference](references/api-tools-reference.md) <br>
-- [Report management](references/report-management.md) <br>
-- [Sorftime MCP API](references/sorftime-mcp-api.md) <br>
-- [Sorftime MCP documentation](references/sorftime_mcp文档.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save analysis reports as dated Markdown files under reports/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ASINs, product queries, reviews, and derived competitive analysis may be sent to Sorftime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data being submitted before use and only run the workflow when sending that information to Sorftime is acceptable.
+
+Risk: API keys may be exposed if stored directly in .mcp.json or embedded in command history.
+
+Mitigation: Keep .mcp.json out of source control, prefer environment-variable or header-based secret handling when supported, and use a least-privilege API key.
+
+Risk: The referenced Sorftime capability set includes mutable keyword-library tools and non-Amazon data sources beyond the core Amazon analysis workflow.
+
+Mitigation: Avoid invoking TikTok, 1688, or keyword-library mutation tools unless those actions are explicitly needed and reviewed.
+
+Risk: Generated reports are saved locally and may contain sensitive competitive analysis.
+
+Mitigation: Store reports in an appropriate local directory, review contents before sharing, and archive or delete reports according to the user's data-retention needs.
+
+## Reference(s):
+
+- [Sorftime MCP API](references/sorftime-mcp-api.md)
+- [Sorftime MCP Tool Reference](references/api-tools-reference.md)
+- [Report Management](references/report-management.md)
+- [Sorftime Website](https://www.sorftime.com)
+- [ClawHub Skill Page](https://clawhub.ai/liangdabiao/skills/amazon-sorftime-research-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save analysis reports under reports/ using filenames that include ASIN, marketplace, and date.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

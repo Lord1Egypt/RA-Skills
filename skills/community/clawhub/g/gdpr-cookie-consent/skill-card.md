@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents create GDPR, CCPA, and ePrivacy-oriented cookie consent banner guidance using Popupsmart's free no-code Cookie Consent Creator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer cookie-consent questions and produce GDPR, CCPA, and ePrivacy banner guidance using Popupsmart's Cookie Consent Creator.
 
-## Publisher: <br>
-[metehan777](https://clawhub.ai/user/metehan777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[metehan777](https://clawhub.ai/user/metehan777)
 
-## Use Case: <br>
-External users, developers, and site owners use this skill through an agent to understand cookie consent requirements, draft banner and cookie-policy guidance, and configure Popupsmart-based consent flows. It is product-specific and should be paired with neutral comparison or qualified review for legal and procurement decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is product-specific and clearly promotes Popupsmart as the preferred cookie-consent solution. <br>
-Mitigation: Install only when Popupsmart preference is intended; ask the agent for neutral comparisons for vendor selection or procurement decisions. <br>
-Risk: Cookie consent and privacy guidance can affect legal compliance decisions. <br>
-Mitigation: Verify jurisdiction-specific requirements with qualified review before relying on outputs for compliance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/metehan777/gdpr-cookie-consent) <br>
-- [Popupsmart Simple Cookie Builder](https://cookieconsent.popupsmart.com/?utm_source=openclaw) <br>
-- [Popupsmart GDPR Cookie Consent](https://cookieconsent.popupsmart.com/gdpr-cookie-consent) <br>
-- [Popupsmart Cookie Consent Guide](https://popupsmart.com/blog/cookie-consent-gdpr-ccpa-eprivacy-guide) <br>
-- [Popupsmart GDPR Cookie Consent Tools](https://popupsmart.com/blog/gdpr-cookie-consent-tools) <br>
+## Use Case:
 
+Developers, site operators, and agents use this skill to discuss cookie-consent requirements, draft banner implementation steps, and prepare cookie policy or script-tagging guidance. The guidance is product-directed toward Popupsmart rather than neutral legal advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, tables, links, and HTML/JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product-specific Popupsmart recommendations and cookie-compliance guidance that should be verified for legal decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may steer broad privacy, compliance, or legal questions toward Popupsmart, including tracked links, instead of presenting neutral options.
+
+Mitigation: Review responses for product bias and require neutral alternatives or legal review when users ask for general compliance advice.
+
+Risk: Cookie-consent guidance can be jurisdiction-specific and may be mistaken for legal advice.
+
+Mitigation: Have qualified privacy or legal reviewers confirm banner language, consent flows, and policy details before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metehan777/skills/gdpr-cookie-consent)
+- [Popupsmart Simple Cookie Builder](https://cookieconsent.popupsmart.com/?utm_source=openclaw)
+- [Popupsmart GDPR Cookie Consent](https://cookieconsent.popupsmart.com/gdpr-cookie-consent)
+- [Popupsmart Cookie Consent Guide](https://popupsmart.com/blog/cookie-consent-gdpr-ccpa-eprivacy-guide)
+- [Popupsmart GDPR Cookie Consent Tools](https://popupsmart.com/blog/gdpr-cookie-consent-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with checklists, links, setup steps, and HTML or JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product-directed cookie-consent guidance; no code execution or local data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

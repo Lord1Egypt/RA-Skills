@@ -1,41 +1,54 @@
-## Description: <br>
-PluginEval wraps plugineval-core to provide combined security and quality vetting, workflow support, and report generation for skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PluginEval Quality Evaluation with enhanced UI. Wraps plugineval-core with vetting and reporting features. Requires plugineval-core.
 
-## Publisher: <br>
-[donmeusi](https://clawhub.ai/user/donmeusi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donmeusi](https://clawhub.ai/user/donmeusi)
 
-## Use Case: <br>
-Developers and maintainers use PluginEval to evaluate skills before installation or publication with combined security scans, quality scoring, anti-pattern checks, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime behavior depends on plugineval-core and referenced workspace scripts that are not bundled in the reviewed artifact. <br>
-Mitigation: Install plugineval-core from a trusted source and verify any referenced workspace scripts before running vetting commands. <br>
-Risk: Version references are inconsistent across the artifact files. <br>
-Mitigation: Treat the server release and SKILL.md frontmatter version 2.0.0 as the release version, and review _meta.json and EXTERNAL.md if packaging or installation tooling uses those files. <br>
+## Use Case:
 
+Developers and skill publishers use PluginEval to vet OpenClaw skills before installation or publication by combining security checks, quality evaluation, anti-pattern detection, and report generation.
 
-## Reference(s): <br>
-- [External Dependencies](EXTERNAL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/donmeusi/plugineval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or text report with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a combined security and quality report for a supplied skill name or path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and SKILL.md frontmatter; _meta.json lists 1.3.0) <br>
+Risk: The main workflow depends on unpinned external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted and pinned releases of plugineval-core and verify dependency provenance before use.
+
+Risk: Standalone setup can copy external scripts into PATH.
+
+Mitigation: Review copied scripts before adding them to PATH and limit execution to trusted local environments.
+
+## Reference(s):
+
+- [PluginEval ClawHub page](https://clawhub.ai/donmeusi/skills/plugineval)
+- [External dependencies](EXTERNAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports depend on plugineval-core and local workspace evaluation scripts.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

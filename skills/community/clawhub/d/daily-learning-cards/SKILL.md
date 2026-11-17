@@ -1,4 +1,4 @@
-# daily-learning-cards v2.0.0
+# daily-learning-cards v1.1.0
 
 每日学习卡片自动生成 - 从会话记录中提炼知识，生成结构化学习卡片。
 
@@ -27,7 +27,7 @@
 |------|------|------|
 | 📝 **每日学习卡片** | 每天 | 提取当日对话中的主题、决策、踩坑、新概念、金句 |
 | 📊 **每周学习周报** | 每周一 | 汇总上周学习概览，Elon 经理点评 + 下周建议 |
-| 📋 **每周测试题** | 每周一 | AI 基于上周学习卡片出 20 道独立设计的题，内容不足时自动补充 AI 扩展题 |
+| 📋 **每周测试题** | 每周一 | 基于上周学习卡片出 20 道题（70% 本周 + 30% 历史） |
 
 三项自动串联：每日卡片 → 周报 → 测试 → 错题本，形成"输入 → 沉淀 → 检验"的闭环。
 
@@ -514,10 +514,7 @@ daily-learning-cards/
 ├── scripts/                      # 脚本目录
 │   ├── extract.js                # 数据提取
 │   ├── generate-card.js          # 学习卡片生成
-│   ├── generate-exam.js          # 考题生成 V1（模板，保留作 fallback）
-│   ├── generate-exam-v2.js       # 考题生成 V2（AI 智能出题）🆕
-│   ├── generate-summary-v2.js    # 周报生成 V2（AI 智能生成）🆕
-│   ├── extract-exam-data.js      # 考题数据提取器 🆕
+│   ├── generate-exam.js          # 考题生成
 │   ├── extract-insights.js       # 金句提取
 │   ├── extract-pitfalls.js       # 踩坑提取
 │   ├── extract-concepts.js       # 新概念提取
@@ -536,17 +533,7 @@ daily-learning-cards/
 
 ## 更新日志
 
-### v2.0.0 (2026-05-28)
-- 🚀 **AI 智能出题**：考题生成从模板引擎改为 AI 直接生成，每道题独立设计，杜绝"20道题套同一模板"
-- 🚀 **AI 智能周报**：周报从 shell 模板拼接改为 AI 生成，Elon 经理点评更有深度
-- 🆕 **数据提取器**：`extract-exam-data.js` 从学习卡片 + 原始记忆文件双源提取结构化 JSON
-- 🆕 **内容稀疏处理**：学习内容不足时自动补充 AI 扩展题（提示词工程/Agent架构/AI安全）
-- 🔧 **JSON 多层容错**：考题 JSON 解析支持 markdown 代码块、裸文本等多层回退
-- 🔧 **API 超时优化**：出题 timeout 3min→5min，max_tokens 8K→16K
-- 📝 新增脚本：`extract-exam-data.js`、`generate-exam-v2.js`、`generate-summary-v2.js`
-- ⚡ 保留旧版 `generate-exam.js` 作为 fallback
-
-### v1.1.0 (2026-05-19)
+### v1.0.0 (2026-05-08)
 - 🎉 初始版本
 - ✅ 多渠道合并（飞书/WebUI/钉钉/微信/QQ 等可扩展）
 - ✅ 自动飞书推送

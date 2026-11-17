@@ -1,41 +1,59 @@
-## Description: <br>
-Guides non-technical users through targeted questions to create complete OpenClaw skills without coding, including SKILL.md and optional GitHub upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides non-technical users through targeted questions to create complete OpenClaw skills without coding, including SKILL.md and optional GitHub upload.
 
-## Publisher: <br>
-[zihaowyt5525-max](https://clawhub.ai/user/zihaowyt5525-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zihaowyt5525-max](https://clawhub.ai/user/zihaowyt5525-max)
 
-## Use Case: <br>
-Non-technical users and developers use this skill to define a skill idea, answer structured setup questions, and receive a ready-to-use OpenClaw SKILL.md with optional README and upload guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files may contain incorrect instructions, unsuitable workflows, or sensitive content before upload. <br>
-Mitigation: Review the generated SKILL.md and README before publishing, and remove credentials, proprietary prompts, internal workflows, or other sensitive material. <br>
-Risk: Optional GitHub or ClawHub upload steps could publish to the wrong account or visibility setting. <br>
-Mitigation: Confirm the destination account, repository name, and public or private visibility before running upload commands. <br>
+## Use Case:
 
+Non-technical OpenClaw users use this skill to turn an idea into a structured skill definition through a guided questionnaire. It helps produce a ready-to-use SKILL.md, optional README content, and optional GitHub publishing steps.
 
-## Reference(s): <br>
-- [Skill Creator Assistant on ClawHub](https://clawhub.ai/zihaowyt5525-max/skill-creator-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/zihaowyt5525-max) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with structured questions, generated SKILL.md content, optional README content, and optional GitHub shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewable skill documentation; optional upload guidance should be checked before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated SKILL.md or README content could include secrets, proprietary workflow details, or unintended sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before publishing and remove credentials, private process details, or confidential examples.
+
+Risk: Optional GitHub upload could publish to the wrong account or expose a repository that should remain private.
+
+Mitigation: Confirm the target GitHub account and repository visibility before running upload commands.
+
+Risk: Generated skills that depend on paid APIs, runtime environments, or complex multi-agent behavior may not be fully testable by this assistant.
+
+Mitigation: Manually validate dependencies, credentials, and runtime behavior before using the generated skill in production.
+
+## Reference(s):
+
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/zihaowyt5525-max/skills/skill-creator-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Guided conversation with generated Markdown files and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SKILL.md, README.md, and optional GitHub publishing instructions; users should review generated content before upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

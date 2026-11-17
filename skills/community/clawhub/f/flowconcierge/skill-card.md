@@ -1,45 +1,65 @@
-## Description: <br>
-FlowConcierge turns a business website or knowledge base into a VAPI phone receptionist that can connect a Twilio number and log call outcomes to HubSpot with optional SMS follow-ups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI phone receptionist for any business that can scrape a website or use a knowledge base, create a VAPI voice assistant, connect a Twilio phone number, and log calls to HubSpot CRM with optional SMS follow-ups.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Business operators and developers use this skill to create and manage an AI phone receptionist from a website URL or markdown knowledge base. The skill supports setup of a VAPI assistant, Twilio phone connectivity, and webhook-based HubSpot call logging with optional SMS follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can make paid Twilio changes when credentials are provided. <br>
-Mitigation: Use test or limited-scope accounts first, confirm Twilio costs before setup, and prefer connecting an existing number when appropriate. <br>
-Risk: The webhook can update HubSpot and send SMS follow-ups after call events. <br>
-Mitigation: Secure the webhook before exposing it publicly and keep SMS follow-ups disabled until consent processes are in place. <br>
-Risk: The skill requires access to VAPI, Twilio, and HubSpot accounts. <br>
-Mitigation: Install only when granting that account access is acceptable, and use scoped or limited credentials where the services support them. <br>
+## Use Case:
 
+Developers and business operators use this skill to set up an AI phone receptionist that answers caller questions from business content, connects a phone number, and records call outcomes in CRM. It is intended for customer-facing reception workflows that require careful credential, consent, and webhook controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windseeker1111/flowconcierge) <br>
-- [VAPI](https://vapi.ai) <br>
-- [Twilio](https://twilio.com) <br>
-- [HubSpot](https://hubspot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates external VAPI, Twilio, and HubSpot resources when run with valid service credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The webhook can receive public call events and trigger billable CRM or SMS actions without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add a shared secret or signature validation, apply rate limits, and avoid exposing the webhook publicly until those controls are in place.
+
+Risk: SMS follow-ups and CRM logging may create consent, privacy, or regulatory obligations for callers.
+
+Mitigation: Keep SMS follow-up disabled until caller consent, transcript handling, retention, and CRM data policies are confirmed.
+
+Risk: Automatic Twilio number purchase can create unexpected costs.
+
+Mitigation: Use an existing Twilio number or require explicit purchase confirmation before buying a new number.
+
+Risk: Installation pulls dependencies and browser assets into the local environment.
+
+Mitigation: Install in an isolated virtual environment and pin dependencies before production use.
+
+## Reference(s):
+
+- [FlowConcierge ClawHub skill page](https://clawhub.ai/windseeker1111/skills/flowconcierge)
+- [windseeker1111 ClawHub publisher profile](https://clawhub.ai/user/windseeker1111)
+- [VAPI](https://vapi.ai)
+- [Twilio](https://twilio.com)
+- [HubSpot](https://hubspot.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python command examples, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local shell configuration during installation and may trigger external VAPI, Twilio, and HubSpot API actions when used with credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Create, edit, improve, or audit AgentSkills, including new skill creation, existing skill cleanup, skill directory restructuring, and validation against the AgentSkills spec. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, improve, or audit AgentSkills.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, edit, package, validate, improve, or audit AgentSkills for Codex. It is especially useful when converting a skill idea into a structured SKILL.md plus optional scripts, references, and assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified skill content can introduce incorrect instructions or package unintended files. <br>
-Mitigation: Review SKILL.md changes before installing or sharing them, and inspect packaged .skill archives before distribution. <br>
-Risk: The skill can guide local file creation and packaging behavior. <br>
-Mitigation: Run it only on intended skill directories and review outputs before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, edit, validate, package, and audit AgentSkills and SKILL.md files with guidance on structure, progressive disclosure, and bundled resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utromaya-code/skill-creator-agent) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify skill files and package .skill archives when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Packaging untrusted or shared skill directories could include unintended content or be affected by local file replacement during archive creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run packaging only on skill directories you control, avoid shared or attacker-writable folders, and review generated .skill archives before publishing.
+
+Risk: Skill-authoring guidance can produce incomplete or inappropriate skill content for a specific release.
+
+Mitigation: Review SKILL.md and bundled resources, then run validation before publishing or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/utromaya-code/skills/skill-creator-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and generated files or shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill files and may run validation or packaging scripts when the user requests implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

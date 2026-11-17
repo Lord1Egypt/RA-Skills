@@ -1,47 +1,61 @@
-## Description: <br>
-Automates TikTok carousel content creation, smart scheduling, publishing through Postiz, and analytics-driven optimization for niche accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates TikTok carousel content creation, smart scheduling, Postiz-based publishing, and analytics-driven optimization for niche accounts.
 
-## Publisher: <br>
-[matttandy855](https://clawhub.ai/user/matttandy855) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[matttandy855](https://clawhub.ai/user/matttandy855)
 
-## Use Case: <br>
-Creators, operators, and developers use this skill to generate TikTok carousel content, manage account-specific templates, schedule posts, publish through a connected Postiz/TikTok account, and review analytics for content improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Connected Postiz and TikTok accounts can publish or schedule real content. <br>
-Mitigation: Use draft mode or a test account first, review generated content and account settings, and enable live posting only after confirming the target configuration. <br>
-Risk: API keys and integration IDs are needed for publishing and analytics. <br>
-Mitigation: Prefer the POSTIZ_API_KEY environment variable, avoid passing secrets in CLI arguments, and keep local account configuration private. <br>
-Risk: Automation and auto-improve behavior can modify account configuration or posting behavior. <br>
-Mitigation: Review analytics recommendations before enabling auto-improve or cron-based posting. <br>
+## Use Case:
 
+Creators, social media operators, and developers use this skill to generate TikTok carousel assets, manage posting schedules, publish through Postiz, and review performance reports for one or more niche accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matttandy855/tiktok-content-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/matttandy855) <br>
-- [README](README.md) <br>
-- [Setup Guide](SETUP.md) <br>
-- [Agent Reference](SKILL.md) <br>
-- [Postiz](https://postiz.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown guidance, JSON configuration, generated image files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local account configuration, generated content assets, analytics reports, and Postiz publishing or scheduling actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: evidence.json server release metadata) <br>
+Risk: Publishing and scheduling actions can affect live TikTok or Postiz-connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test with a throwaway account first, keep generated posts in draft until reviewed, and avoid cron, --post, and --auto-improve until behavior is confirmed.
+
+Risk: Postiz API keys are sensitive and may be exposed through config files or logs.
+
+Mitigation: Prefer POSTIZ_API_KEY in the environment, use a least-privilege key where possible, keep per-account config files out of version control, and treat logs as sensitive.
+
+Risk: The skill depends on the Postiz CLI and npm packages for publishing, analytics, and image generation.
+
+Mitigation: Pin and review the Postiz CLI and npm dependencies before deployment, and run npm audit after installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matttandy855/skills/tiktok-content-pipeline)
+- [README](README.md)
+- [Setup Guide](SETUP.md)
+- [Agent Reference](SKILL.md)
+- [Postiz](https://postiz.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration, shell commands, generated content files, and analytics reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local account directories, generated media outputs, post metadata, and analytics report files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

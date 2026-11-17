@@ -1,40 +1,49 @@
-## Description: <br>
-Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create beautiful visual art in .png and .pdf documents using design philosophy.
 
-## Publisher: <br>
-[hsuyungfeng](https://clawhub.ai/user/hsuyungfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[hsuyungfeng](https://clawhub.ai/user/hsuyungfeng)
 
-## Use Case: <br>
-External users and creative practitioners use this skill to direct an agent through a two-phase workflow: first creating a concise visual design philosophy, then expressing it as original static artwork in PNG or PDF form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional font downloads can introduce trust and licensing uncertainty. <br>
-Mitigation: Prefer the bundled canvas-fonts directory or approve a trusted font source explicitly before allowing downloads. <br>
-Risk: Generated visual files may need review before external publication. <br>
-Mitigation: Review generated PNG and PDF outputs for quality, suitability, and rights-sensitive content before publishing. <br>
+## Use Case:
 
+Developers, designers, and creative users use this skill to have an agent create a visual design philosophy and express it as original static artwork. It is suited for posters, art pieces, design studies, and other visual-first PNG or PDF artifacts.
 
-## Reference(s): <br>
-- [Canvas Design Pro ClawHub Release](https://clawhub.ai/hsuyungfeng/canvas-design-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, PNG files, PDF files, Guidance] <br>
-**Output Format:** [Markdown design philosophy plus generated PNG or PDF artwork files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled font license references and may recommend reviewing generated visual files before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may prompt the agent to download third-party fonts for artwork.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer bundled or local fonts; require approval for any font download; use trusted sources with license and integrity checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hsuyungfeng/skills/canvas-design-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Files]
+
+**Output Format:** [Markdown plus generated PNG or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a design philosophy .md file and a single-page .png or .pdf artwork unless more pages are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

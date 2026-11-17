@@ -1,40 +1,58 @@
-## Description: <br>
-LMeterX Web Load Test analyzes a webpage URL, pre-checks discovered APIs, and creates LMeterX load-testing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LMeterX Web Load Test analyzes a webpage URL, pre-checks discovered APIs, and creates LMeterX load-testing tasks.
 
-## Publisher: <br>
-[luckyyc](https://clawhub.ai/user/luckyyc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckyyc](https://clawhub.ai/user/luckyyc)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn a website URL into LMeterX load-test tasks, including page analysis, API connectivity checks, and report links for created tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create remote load-test tasks for arbitrary websites with weak consent, credential, and transport-safety controls. <br>
-Mitigation: Use only on systems you own or are explicitly authorized to test; require manual confirmation of the target URL, concurrency, duration, spawn rate, and authorization before execution. <br>
-Risk: The bundled workflow uses a default LMeterX token and may send target URLs and discovered API details to the LMeterX service. <br>
-Mitigation: Replace the default token with a user-scoped credential, avoid private or secret-bearing URLs, and confirm that sharing target details with the LMeterX service is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to run authorized web load tests by analyzing a target page, checking API connectivity, and creating LMeterX task reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckyyc/lmeterx-web-loadtest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary of discovered APIs, pre-check results, created task IDs, and LMeterX report links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target webpage URL and can use optional concurrency, duration, and spawn-rate parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create live load-test tasks for website targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against systems the user owns or is explicitly authorized to test, and require manual confirmation before task creation.
+
+Risk: The release evidence notes use of a shared default LMeterX token.
+
+Mitigation: Replace the shared token with a user-specific secret before real use.
+
+Risk: The release evidence flags unsafe TLS certificate verification.
+
+Mitigation: Fix TLS certificate verification before using the skill in a real environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luckyyc/skills/lmeterx-web-loadtest)
+- [LMeterX service endpoint](https://lmeterx.openxlab.org.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown response with an execution summary, failure classification, task IDs, and report links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a webpage URL and optionally accepts concurrency, duration, and spawn-rate parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

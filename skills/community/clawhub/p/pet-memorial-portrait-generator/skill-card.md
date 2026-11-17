@@ -1,41 +1,58 @@
-## Description: <br>
-Create heartfelt pet memorial portraits and remembrance keepsakes for dogs, cats, and beloved animals who have passed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI pet memorial portraits and remembrance keepsake imagery from written descriptions using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and agents use this skill to create pet memorial portrait prompts and request generated remembrance images through the Neta AI image generation API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's prompt, optional reference image identifier, and Neta/TalesOfAI token to api.talesofai.com. <br>
-Mitigation: Avoid highly private memorial details and use a limited or disposable API token when possible. <br>
-Risk: The documented usage passes the Neta/TalesOfAI token on the command line. <br>
-Mitigation: Prefer a limited token and avoid sharing command history or terminal logs that include the token. <br>
+## Use Case:
 
+External users and developers use this skill to generate pet memorial portrait images from text descriptions, with optional orientation and reference-style settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/pet-memorial-portrait-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL with command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports portrait, landscape, square, and tall image sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts and tokens are sent to the Neta/Tales of AI external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify trust in the provider before use and avoid including sensitive personal details in prompts unless that sharing is acceptable.
+
+Risk: The documented token flag can expose credentials through command history or process listings.
+
+Mitigation: Use a safer token handling mechanism where available, such as an environment variable or a reviewed wrapper around the command.
+
+Risk: Unversioned installation commands can pull code that differs from the reviewed release.
+
+Mitigation: Prefer pinned or reviewed installation sources for deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/pet-memorial-portrait-generator)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports portrait, landscape, square, and tall image sizes, plus an optional reference image UUID for style inheritance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

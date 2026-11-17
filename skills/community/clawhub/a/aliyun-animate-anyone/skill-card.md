@@ -1,46 +1,63 @@
-## Description: <br>
-Use when generating dance or motion-transfer videos with Alibaba Cloud Model Studio AnimateAnyone (`animate-anyone-gen2`) using a detected character image and an action template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating dance or motion-transfer videos with Alibaba Cloud Model Studio AnimateAnyone (`animate-anyone-gen2`) using a detected character image and an action template.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and creative automation agents use this skill to prepare Alibaba Cloud Model Studio AnimateAnyone detect, template, and generation requests for dance or large body motion-transfer video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland (Beijing region) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input media and generated request artifacts may expose personal, confidential, or biometric content through public URLs or local output files. <br>
-Mitigation: Avoid confidential or biometric media, prefer short-lived public URLs, and clean up output/aliyun-animate-anyone/ when request payloads or task IDs are sensitive. <br>
-Risk: Alibaba Cloud Model Studio requests require credentials and region-specific service access. <br>
-Mitigation: Use a dedicated DASHSCOPE_API_KEY where possible and confirm access to the China mainland Beijing region before running workflows. <br>
+## Use Case:
 
+Developers and external users use this skill to prepare Alibaba Cloud Model Studio AnimateAnyone detect, action-template, and video-generation requests for dance or large-body motion transfer from source motion video to a target character image.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-animate-anyone) <br>
-- [Artifact source references](references/sources.md) <br>
-- [Alibaba Cloud Model Studio video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [AnimateAnyone quick start](https://help.aliyun.com/zh/model-studio/animateanyone-quick-start/) <br>
-- [AnimateAnyone image detection API](https://help.aliyun.com/zh/model-studio/animate-anyone-detect-api) <br>
-- [AnimateAnyone action template API](https://help.aliyun.com/zh/model-studio/animate-anyone-template-api) <br>
-- [AnimateAnyone video generation API](https://help.aliyun.com/zh/model-studio/animateanyone-video-generation-api) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing)
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request payloads, detection outputs, template IDs, and task polling snapshots under output/aliyun-animate-anyone/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires an Alibaba DashScope API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials out of source control and logs, and provide them through the environment or the documented local credentials file.
+
+Risk: Input media must be available through public HTTP or HTTPS URLs.
+
+Mitigation: Review source image and video URLs before use and avoid exposing private or sensitive media.
+
+Risk: Generated request artifacts may contain task IDs, media URLs, or provider workflow details.
+
+Mitigation: Review files under output/aliyun-animate-anyone before sharing or committing them.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/cinience/skills/aliyun-animate-anyone)
+- [references/sources.md](references/sources.md)
+- [Video generation overview (AnimateAnyone)](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [AnimateAnyone quick start](https://help.aliyun.com/zh/model-studio/animateanyone-quick-start/)
+- [AnimateAnyone image detection API](https://help.aliyun.com/zh/model-studio/animate-anyone-detect-api)
+- [AnimateAnyone action template API](https://help.aliyun.com/zh/model-studio/animate-anyone-template-api)
+- [AnimateAnyone video generation API](https://help.aliyun.com/zh/model-studio/animateanyone-video-generation-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes normalized request payloads, detection outputs, template IDs, and task polling snapshots under output/aliyun-animate-anyone/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

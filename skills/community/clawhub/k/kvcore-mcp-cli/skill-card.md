@@ -1,40 +1,53 @@
-## Description: <br>
-Use this skill when users need KVcore CRM actions through MCP/CLI (contacts, tags, notes, calls, email, text, campaigns), including raw endpoint access and optional Twilio call fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when users need KVcore CRM actions through MCP/CLI (contacts, tags, notes, calls, email, text, campaigns), including raw endpoint access and optional Twilio call fallback.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to perform KVcore contact, tag, note, call, email, text, campaign, and raw API actions from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change CRM records and trigger outbound email, text, call, campaign, tag, note, and raw API actions. <br>
-Mitigation: Use least-privilege KVcore and Twilio credentials, review account scope before installation, and require explicit human confirmation before sending messages, placing calls, changing contacts or tags, refreshing campaigns, or using raw API access. <br>
-Risk: The security summary flags broad CRM-changing, outbound messaging, raw API, and Twilio call powers without enough scoping or user-control guidance. <br>
-Mitigation: Review the referenced MCP and CLI implementation source before giving it production credentials, and restrict use to trusted KVcore and Twilio accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/danielfoch/kvcore-mcp-cli) <br>
-- [KVcore API base URL](https://api.kvcore.com) <br>
+## Use Case:
 
+Developers and CRM operators use this skill to perform KVcore contact, tag, note, call, email, text, campaign, and raw endpoint actions through MCP tools or CLI commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe or execute CRM-changing and outbound communication actions when connected to configured KVcore or Twilio credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad KVcore and Twilio access could send messages, place calls, change CRM records, refresh campaigns, or call raw endpoints unexpectedly.
+
+Mitigation: Require explicit user confirmation before messaging, calling, changing contacts or tags, refreshing campaigns, or using raw API endpoints.
+
+Risk: KVcore and Twilio credentials could grant sensitive CRM and communications access if over-scoped or exposed.
+
+Mitigation: Use least-privilege credentials and store secrets only in secure environment storage.
+
+## Reference(s):
+
+- [KVcore API base URL](https://api.kvcore.com)
+- [ClawHub skill page](https://clawhub.ai/danielfoch/skills/kvcore-mcp-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe MCP tool calls, KVcore CLI commands, raw API requests, and credential setup steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

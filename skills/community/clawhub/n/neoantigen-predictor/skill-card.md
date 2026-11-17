@@ -1,46 +1,61 @@
-## Description: <br>
-Published as Neoantigen Predictor, this release installs an NIH biosketch generator that creates 2022 OMB-approved NIH biosketch documents from structured input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate NIH Biosketch documents compliant with the 2022 OMB-approved format.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers can use the installed artifact to generate NIH biosketch DOCX files from JSON data and optionally retrieve publication metadata from PubMed. Users should confirm that they intended to install an NIH biosketch generator because the published name and slug describe a different tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is published as Neoantigen Predictor but the artifact installs an NIH biosketch generator, which can cause users to install or run the wrong tool. <br>
-Mitigation: Confirm the intended tool before installation and use this release only when the desired workflow is NIH biosketch generation. <br>
-Risk: PubMed import and author search options make network requests that send PMIDs or author query terms to NCBI. <br>
-Mitigation: Run the skill in an isolated Python environment and avoid using network-backed options with sensitive or unapproved query data. <br>
-Risk: The dependency declaration lists docx while the script expects python-docx behavior. <br>
-Mitigation: Review and correct the dependency declaration to the intended python-docx package before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to prepare NIH biosketch materials from structured researcher, contribution, support, and publication data. The packaged workflow can produce DOCX biosketch files or JSON publication/template outputs and can optionally retrieve publication metadata from PubMed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/neoantigen-predictor) <br>
-- [NIH Biosketch Format Instructions](https://grants.nih.gov/grants/forms/biosketch.htm) <br>
-- [SciENcv](https://www.ncbi.nlm.nih.gov/sciencv/) <br>
-- [NCBI Entrez Utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [DOCX files, JSON files, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local output files and may call PubMed or NCBI endpoints when publication import or search options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency setup may install an unintended package or unreviewed dependency versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated virtual environment, prefer the documented python-docx package over requirements.txt as written, and pin reviewed dependency versions before installation.
+
+Risk: PubMed features send publication identifiers or author queries to NIH services.
+
+Mitigation: Run PubMed import or search only when the user is comfortable sharing those identifiers or queries with NIH.
+
+Risk: Writable output paths can overwrite existing files.
+
+Mitigation: Choose output paths deliberately inside the workspace and check for existing files before running generation commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/neoantigen-predictor)
+- [NIH Biosketch Format Instructions](https://grants.nih.gov/grants/forms/biosketch.htm)
+- [SciENcv](https://www.ncbi.nlm.nih.gov/sciencv/)
+- [PubMed E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts may be DOCX or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structured JSON input for biosketch generation; optional PubMed features use external NIH APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,3 @@
+# yun-zhi-seo-skill / seo_audit.py 依赖清单
+# 本工具零第三方依赖，仅需 Python 3.8+ 标准库（urllib / html.parser / json / re / argparse）。
+# 无需 pip install。

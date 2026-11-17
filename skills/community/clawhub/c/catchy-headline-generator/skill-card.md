@@ -1,41 +1,53 @@
-## Description: <br>
-Generates five Chinese viral headline options for a user's content topic, tailored to platforms such as Xiaohongshu, Douyin, WeChat public accounts, Bilibili, and Weibo, with estimated CTR and publishing suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户输入的内容主题生成5个不同风格的中文社交媒体爆款标题，并附带平台适配、预估点击率、推荐标题和发布建议。
 
-## Publisher: <br>
-[hadderyes](https://clawhub.ai/user/hadderyes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hadderyes](https://clawhub.ai/user/hadderyes)
 
-## Use Case: <br>
-External content creators, marketers, and social media operators use this skill to turn a content topic into multiple Chinese headline candidates with platform fit, CTR estimates, a recommended title, and publishing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: General title-writing or title-optimization requests may route to this skill and produce a clickbait-style Chinese headline template. <br>
-Mitigation: Review generated titles for accuracy, tone, audience fit, and platform policy compliance before publication. <br>
-Risk: CTR estimates and publishing-time advice are heuristic suggestions, not measured performance guarantees. <br>
-Mitigation: Treat the estimates as editorial guidance and validate final titles against campaign data or platform analytics. <br>
+## Use Case:
 
+External creators, social media operators, and marketing writers use this skill to turn a content topic into five Chinese headline options tailored for platforms such as Xiaohongshu, Douyin, WeChat Official Accounts, Bilibili, and Weibo.
 
-## Reference(s): <br>
-- [Title formulas reference](artifact/references/title-formulas.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/hadderyes/catchy-headline-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured text with content analysis, five headline candidates, a recommendation, and usage suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are Chinese-language headline suggestions with heuristic CTR estimates and platform-specific publishing advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad title-writing requests and return a prescriptive Chinese social-media format when another language or style is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly for Chinese social media headline generation, or override language, platform, and output format in the user prompt.
+
+Risk: Generated headlines and CTR estimates may encourage overly sensational framing or imply engagement certainty.
+
+Mitigation: Review each title for accuracy, platform policy, brand fit, and audience expectations before publishing.
+
+## Reference(s):
+
+- [爆款标题公式库 - 完整参考](references/title-formulas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured Chinese text with content analysis, five headline candidates, CTR estimates, one recommendation, and publishing suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or external data flow identified by server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

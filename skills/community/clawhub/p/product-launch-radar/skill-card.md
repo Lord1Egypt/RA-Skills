@@ -1,48 +1,56 @@
-## Description: <br>
-Automatically tracks product launches across industry sources, filters for high-value items, and prioritizes updates for decision-makers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Launch Radar monitors product launch activity across multiple sources, filters high-value updates, and prioritizes briefings for decision makers.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Product managers, investors, technical leaders, and market analysts use this skill to monitor product-launch signals, filter noisy updates, and receive concise daily or weekly briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled and webhook-triggered notifications can send summaries to configured channels without enough clarity about webhook access controls. <br>
-Mitigation: Require authenticated webhook access, review cron schedules, and confirm notification recipients before enabling automated runs. <br>
-Risk: Feishu webhook URLs and email recipient settings may expose sensitive routing or credentials if handled carelessly. <br>
-Mitigation: Store notification secrets in protected environment variables and restrict access to channel configuration. <br>
-Risk: The release metadata includes high-impact capability tags for crypto and purchases that are not explained by the skill behavior. <br>
-Mitigation: Verify the need for those capability tags and remove or reject them before deployment if they are not required. <br>
-Risk: The skill depends on other aggregation, audit, and notification skills to fetch sources, score content, and deliver messages. <br>
-Mitigation: Review dependent skills and their permissions before using this workflow in a shared or production environment. <br>
+## Use Case:
 
+Product managers, investors, technical leads, and market analysts use this skill to aggregate product launch signals, reduce noise, generate daily or weekly briefs, and route important updates to configured team channels.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/zlszhonglongshen/product-launch-radar) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Usage Examples](artifact/examples.md) <br>
-- [Workflow Configuration](artifact/workflow.json) <br>
-- [Runtime Configuration](artifact/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown briefs, reports, configuration updates, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized launch summaries, source links, scores, notification routing, and schedule configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and skill documentation) <br>
+Risk: Competitive-intelligence briefs may be shared with unintended recipients if notification or report settings are misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Feishu webhook, email recipients, and report path before installation, and share generated briefs only with the configured recipients.
+
+Risk: Scheduled or webhook-triggered runs may execute at an unexpected time or with overbroad access.
+
+Mitigation: Confirm the cron schedule and timezone, and use scoped tokens for the API trigger.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/product-launch-radar)
+- [Workflow definition](artifact/workflow.json)
+- [Configuration reference](artifact/config.yaml)
+- [Usage examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefs, JSON API responses, shell commands, and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save reports to ./reports/daily-brief-{date}.md and route notifications through configured Feishu or email channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

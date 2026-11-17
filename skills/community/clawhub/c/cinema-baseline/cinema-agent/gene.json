@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "geneId": "cinema_baseline",
+  "geneVersion": "1.0.0",
+  "pluginId": "bagbot.cinema-baseline",
+  "mode": "cinema_baseline",
+  "businessMode": "",
+  "displayName": "基线影院 2026-13-15",
+  "executionMode": "data-only",
+  "requiredIdentity": [],
+  "allowedOverrides": [],
+  "runtimeTemplate": {
+    "mode": "cinema_baseline"
+  }
+}

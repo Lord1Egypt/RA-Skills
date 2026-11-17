@@ -1,0 +1,158 @@
+{
+  "story_id": "comic_diary_ocean_park_zh",
+  "visual_form": "comic",
+  "format": "webtoon",
+  "genre": "diary",
+  "language": "zh-CN",
+  "style_id": "slice-of-life-color",
+  "aspect_ratio": "9:16",
+  "source_summary": "一篇加班后的漫画日记：下班路上临时起意逛了海洋公园，在晚风里放空，回家把这一天画进日记。",
+  "target_audience": "self / daily life diary readers",
+  "character_bible": [
+    {
+      "character_id": "char_diary_me",
+      "name": "我",
+      "appearance": {
+        "age_presentation": "young adult woman",
+        "hair": "short black hair",
+        "face": "round face",
+        "eyewear": "round glasses",
+        "outfit": "plain casual top",
+        "accent_color": "teal",
+        "build": "slim",
+        "vibe": "quiet, slightly tired but warm"
+      },
+      "must_keep": [
+        "short black hair",
+        "round glasses",
+        "slim female figure"
+      ]
+    }
+  ],
+  "panels": [
+    {
+      "panel_id": 1,
+      "narrative_role": "setup",
+      "shot": "medium",
+      "scene": "office building entrance at dusk, an aquarium glow across the street",
+      "scene_tag": "OUTDOOR_STREET_NIGHT",
+      "action": "她加班结束走出大楼，抬头看见对面水族馆还亮着灯，犹豫了一下。",
+      "emotion": "tired then curious",
+      "dialogue": [
+        {
+          "speaker": "我",
+          "text": "加班完，想去放空一下。",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "下班路上，临时起意。",
+      "must_include": [
+        "round glasses",
+        "short black hair",
+        "office tower behind",
+        "aquarium glow"
+      ],
+      "avoid": [
+        "extra coworkers",
+        "text on buildings"
+      ],
+      "visual_priority": "spontaneous detour",
+      "text_budget": 18
+    },
+    {
+      "panel_id": 2,
+      "narrative_role": "build",
+      "shot": "wide",
+      "scene": "inside the aquarium, jellyfish tanks glowing in deep blue light",
+      "scene_tag": "INDOOR_AQUARIUM",
+      "action": "她站在水母缸前，看着水母慢慢漂，呼吸跟着慢下来。",
+      "emotion": "calm and fascinated",
+      "dialogue": [
+        {
+          "speaker": "我",
+          "text": "水母慢慢飘，世界也慢了。",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "十几分钟，也够充电。",
+      "must_include": [
+        "jellyfish tank",
+        "blue glow",
+        "round glasses reflection",
+        "slim silhouette"
+      ],
+      "avoid": [
+        "crowds of visitors",
+        "overly dark scene"
+      ],
+      "visual_priority": "quiet wonder",
+      "text_budget": 28,
+      "continuity_from_panel": 1
+    },
+    {
+      "panel_id": 3,
+      "narrative_role": "transition",
+      "shot": "medium",
+      "scene": "park bench by the aquarium exit in the evening breeze",
+      "scene_tag": "OUTDOOR_PARK_NIGHT",
+      "action": "她在出口长椅上坐了一会儿，晚风很舒服，不想立刻回家。",
+      "emotion": "peaceful",
+      "dialogue": [
+        {
+          "speaker": "我",
+          "text": "加班很累，可今晚的风还不错。",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "晚风不长，刚好够发一会儿呆。",
+      "must_include": [
+        "park bench",
+        "evening breeze hint via leaves",
+        "same casual outfit"
+      ],
+      "avoid": [
+        "busy city signage",
+        "rain"
+      ],
+      "visual_priority": "moment of rest",
+      "text_budget": 26,
+      "continuity_from_panel": 2
+    },
+    {
+      "panel_id": 4,
+      "narrative_role": "payoff",
+      "shot": "close-up",
+      "scene": "home desk at night, open sketch diary, pen in hand",
+      "scene_tag": "INDOOR_HOME_NIGHT",
+      "action": "回到家，她把今天的水母和晚风画进漫画日记，笑着合上本子。",
+      "emotion": "soft and satisfied",
+      "dialogue": [
+        {
+          "speaker": "我",
+          "text": "把小事画下来，这天就没白过。",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "日记里多了一页蓝色的夜晚。",
+      "must_include": [
+        "sketch diary with simple jellyfish doodle",
+        "round glasses",
+        "warm desk lamp",
+        "short black hair"
+      ],
+      "avoid": [
+        "messy background",
+        "legible long diary text"
+      ],
+      "visual_priority": "cozy wrap-up",
+      "text_budget": 34,
+      "continuity_from_panel": 3
+    }
+  ],
+  "assembly": {
+    "layout": "vertical-stack",
+    "gutter_px": 24,
+    "caption_mode": "below-panel",
+    "background": "#FAF8F5"
+  }
+}

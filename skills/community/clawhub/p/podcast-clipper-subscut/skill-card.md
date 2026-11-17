@@ -1,47 +1,55 @@
-## Description: <br>
-Use this skill when the user wants to turn a long podcast, interview, webinar, or talking-head video into multiple short clips for TikTok, Reels, or YouTube Shorts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Clipper turns long podcasts, interviews, webinars, and talking-head videos into short clips for TikTok, Reels, or YouTube Shorts through Subscut's API.
 
-## Publisher: <br>
-[arpittiwari24](https://clawhub.ai/user/arpittiwari24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arpittiwari24](https://clawhub.ai/user/arpittiwari24)
 
-## Use Case: <br>
-External users and developers use this skill to turn long-form spoken videos into short-form clips with captions, clip titles, scores, URLs, and timestamps. It is intended for podcast, interview, webinar, and talking-head video repurposing through Subscut. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Subscut API key and may expose credentials if users hard-code secrets in shared files. <br>
-Mitigation: Keep SUBSCUT_API_KEY in environment configuration or a secret manager, and avoid committing keys or passing them in shared command logs. <br>
-Risk: The skill sends a user-provided video URL to Subscut for processing, which can disclose media content or metadata to the service. <br>
-Mitigation: Use public or authorized video URLs, and avoid submitting confidential media unless the user accepts Subscut's handling of that content. <br>
-Risk: Generated clips may be prepared for public channels such as TikTok, Reels, or YouTube Shorts. <br>
-Mitigation: Keep a human review step before publishing clips publicly, especially for copyrighted, sensitive, or brand-controlled content. <br>
+## Use Case:
 
+External creators, marketers, and agent users use this skill to repurpose long-form spoken videos into captioned short-form clips with titles, scores, clip URLs, and timestamps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arpittiwari24/podcast-clipper-subscut) <br>
-- [Publisher profile](https://clawhub.ai/user/arpittiwari24) <br>
-- [Subscut agents page](https://subscut.com/agents) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Tool contract example](artifact/examples/tool-contract.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON clip results from the CLI wrapper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUBSCUT_API_KEY; accepts public or authorized video URLs; returns up to 20 clips with rendered URLs, titles, confidence scores, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can send the Subscut API key to a configured HTTPS API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep SUBSCUT_API_BASE_URL at the default https://subscut.com unless deliberately testing with a separate non-production key, and rotate the key if it may have been used with an untrusted endpoint.
+
+Risk: The skill sends the provided video URL and processing request to Subscut.
+
+Mitigation: Install and use the skill only when sharing the source video URL and related clipping request with Subscut is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arpittiwari24/skills/podcast-clipper-subscut)
+- [Subscut agent documentation](https://subscut.com/agents)
+- [Subscut API base URL](https://subscut.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON response with clip URLs, titles, scores, and timestamps; Markdown or shell commands when explaining usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npm and a SUBSCUT_API_KEY; supports optional SUBSCUT_API_BASE_URL, clip count, caption style, render format, captions, and duration bounds.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

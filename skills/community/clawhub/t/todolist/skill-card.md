@@ -1,43 +1,53 @@
-## Description: <br>
-Manage macOS Reminders through AppleScript, including adding, listing, completing, deleting, searching, and creating reminder lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage macOS Reminders through AppleScript-backed commands for adding, listing, completing, deleting, searching, and organizing reminders.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Mac users and their agents use this skill to manage reminders and todo lists in the native macOS Reminders app through clear shell-script actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fuzzy matching for complete and delete actions may affect the first partial reminder match. <br>
-Mitigation: List matching reminders before completing or deleting items, and use specific reminder titles when issuing commands. <br>
-Risk: Reminder changes can sync to other Apple devices through iCloud. <br>
-Mitigation: Confirm destructive actions with the user before deleting reminders or changing shared lists. <br>
-Risk: The skill requires local permission to control macOS Reminders. <br>
-Mitigation: Install only when the user expects agent access to Reminders and approve macOS automation prompts deliberately. <br>
+## Use Case:
 
+External users and developers use this skill to manage macOS Reminders from an agent workflow on macOS, including creating, listing, completing, deleting, searching, and organizing reminders.
 
-## Reference(s): <br>
-- [Todo List for MacOS on ClawHub](https://clawhub.ai/manifoldor/todolist) <br>
-- [Publisher profile: manifoldor](https://clawhub.ai/user/manifoldor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Reminders access; results may reflect iCloud-synced reminder state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Fuzzy no-confirmation complete, uncomplete, and delete actions can affect the wrong reminder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use specific reminder titles, avoid vague fragments, and confirm important reminders in the Reminders app before destructive changes.
+
+Risk: Reminder changes may sync to other Apple devices.
+
+Mitigation: Treat completion and deletion as user-visible synced changes and manually verify high-value reminders after running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manifoldor/skills/todolist)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with Reminders app permission; recurring reminders may need manual configuration in Reminders.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

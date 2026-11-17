@@ -1,50 +1,62 @@
-## Description: <br>
-Autonomous Nad.fun trading agent that scans markets via API and indexer, analyzes tokens, executes trades, and shares profits with MMIND token holders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Nad.fun trading agent that scans markets via API and indexer, analyzes tokens, executes trades, and shares profits with MMIND token holders.
 
-## Publisher: <br>
-[encipher88](https://clawhub.ai/user/encipher88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[encipher88](https://clawhub.ai/user/encipher88)
 
-## Use Case: <br>
-External users and developers use this skill to run an autonomous Nad.fun trading workflow on Monad, including market scanning, token scoring, trade execution, position monitoring, and MMIND profit distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for wallet private keys and stores sensitive trading configuration. <br>
-Mitigation: Use a dedicated low-balance wallet, keep secrets in a protected environment file, and never paste a production private key into chat. <br>
-Risk: The skill can run unattended live crypto trades and may lose funds. <br>
-Mitigation: Start with dry-run or manual review, avoid enabling cron until the strategy is understood, and keep strict position-size limits. <br>
-Risk: The security scan reports unsafe shell-command construction. <br>
-Mitigation: Review and fix command construction before using the skill with meaningful funds, and run it in an isolated environment. <br>
+## Use Case:
 
+External users and developers use nadfunagent to monitor Nad.fun markets, evaluate candidate tokens, manage positions, execute Monad-based trades, and prepare profit-distribution steps for MMIND token holders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/encipher88/nadfunagent) <br>
-- [README.md](README.md) <br>
-- [DEPENDENCIES.md](DEPENDENCIES.md) <br>
-- [INSTALL.md](INSTALL.md) <br>
-- [Trading README](trading/README.md) <br>
-- [P&L documentation](trading/HOW_PNL_WORKS.md) <br>
-- [Entry price tracking](trading/ENTRY_PRICE_TRACKING.md) <br>
-- [Nad.fun](https://nad.fun) <br>
-- [Nad.fun API](https://api.nadapp.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration values, script invocations, and JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local token and position report files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and release metadata) <br>
+Risk: The skill asks for a wallet private key and may store trading configuration in agent memory or local environment files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable, low-balance wallet; do not paste a valuable private key into chat; prefer a dedicated signer or locked-down local secret store.
+
+Risk: The skill can run unattended financial transactions, including buys, sells, approvals, and profit distributions.
+
+Mitigation: Disable cron until every transaction path is reviewed, and require manual confirmation before executing trades or distributions.
+
+Risk: Automated trading can act on volatile market data or incorrect token analysis.
+
+Mitigation: Keep position limits low, review token choices before execution, and test with dry runs or manual operation before enabling automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/encipher88/skills/nadfunagent)
+- [Nad.fun](https://nad.fun)
+- [Nad.fun Agent API](https://api.nadapp.net)
+- [README](README.md)
+- [Dependencies](DEPENDENCIES.md)
+- [Trading Scripts](trading/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to call APIs and local Node.js trading scripts after required wallet and RPC configuration is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

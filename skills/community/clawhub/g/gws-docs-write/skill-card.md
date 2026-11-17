@@ -1,37 +1,52 @@
-## Description: <br>
-Google Docs: Append text to a document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Docs: Append text to a document.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators managing Google Workspace documents use this skill to append plain text to a specified Google Doc through the gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-docs-write) <br>
+Agents use this skill to append plain text to an existing Google Docs document through the configured gws command-line account, after confirming the document ID and exact text with the user.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and gws-shared authentication setup. Because this is a write action, confirm the Google Doc ID and appended text before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill appends text to a Google Docs document through the configured gws account, so incorrect arguments can modify the wrong document or add unintended content.
+
+Mitigation: Confirm the document ID, target account, and exact plain text with the user before execution.
+
+## Reference(s):
+
+- [Gws Docs Write on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/gws-docs-write)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+- [gws-shared auth and security rules](../gws-shared/SKILL.md)
+- [gws-docs command family](../gws-docs/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, text]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws binary, a Google Docs document ID, and plain text to append; the action writes to the target document.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

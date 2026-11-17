@@ -1,42 +1,52 @@
-## Description: <br>
-Manage and execute periodic heartbeat tasks for trading, memory evaluation, archiving, and reporting with state tracking and anomaly alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and execute periodic heartbeat tasks for trading, memory evaluation, archiving, summaries, and anomaly reporting with state tracking.
 
-## Publisher: <br>
-[WuZiMaKi](https://clawhub.ai/user/WuZiMaKi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuzimaki](https://clawhub.ai/user/wuzimaki)
 
-## Use Case: <br>
-Developers and agent operators use this skill to schedule recurring heartbeat checks for crypto trading decisions, memory maintenance, summaries, and anomaly reporting. It is suited for agents that need to track state and report problems while staying quiet during normal runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask an agent to run recurring crypto trading checks and take trading actions without clearly stated safety limits. <br>
-Mitigation: Keep trading in paper mode or require explicit confirmation for live orders, and enforce strict account, position, and credential scopes before use. <br>
-Risk: The skill can modify persistent memory and state files as part of scheduled heartbeat work. <br>
-Mitigation: Back up MEMORY.md, trading_rules.md, and heartbeat-state.json before use, and review changes after heartbeat runs. <br>
-Risk: Normal operation may be silent except for HEARTBEAT_OK, which can hide unwanted behavior if monitoring is weak. <br>
-Mitigation: Log heartbeat runs, audit state changes, and require detailed reporting for exceptions or trading-related decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WuZiMaKi/heartbeat-tasks) <br>
-- [Publisher profile](https://clawhub.ai/user/WuZiMaKi) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate recurring heartbeat checks that trigger crypto trading decisions, memory management, archive maintenance, daily trading summaries, and weekly reviews. It is intended for environments where these automated tasks and state-file updates are expected.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text or Markdown status reports, including HEARTBEAT_OK for normal runs and detailed issue reports when anomalies occur.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update heartbeat state, memory, archive, and trading summary files when the host agent has access to those paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes autonomous crypto trading decisions and execution without clear approval controls.
+
+Mitigation: Use only with known accounts, explicit confirmation gates, trading limits, audit logs, and separate operational oversight.
+
+Risk: The skill describes memory-file mutation, cleanup, and archiving without rollback controls.
+
+Mitigation: Restrict write paths, keep backups, and review proposed memory changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuzimaki/skills/heartbeat-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, text]
+
+**Output Format:** [Markdown task guidance with status text and file path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal operation may produce HEARTBEAT_OK; exceptions should include problem details and suggested actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

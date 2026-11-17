@@ -1,45 +1,61 @@
-## Description: <br>
-Process accounting documents, including invoices, purchase orders, and bank statements, by extracting structured data from PDFs and images with OCR and producing Excel tracking sheets and JSON backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process accounting documents, including invoices, purchase orders, and bank statements, by classifying files and extracting structured data from PDFs and images with OCR.
 
-## Publisher: <br>
-[DVNghiem](https://clawhub.ai/user/DVNghiem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dvnghiem](https://clawhub.ai/user/dvnghiem)
 
-## Use Case: <br>
-Developers, operators, and accounting teams use this skill to classify accounting documents, extract invoice, purchase order, and bank statement fields, and prepare structured outputs for review and tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented batch workflow can execute attacker-controlled shell commands through eval when processing classifier output. <br>
-Mitigation: Do not use the README eval batch snippet on untrusted files; use --classify-only or route by the returned document type with fixed script calls and quoted arguments. <br>
-Risk: The skill writes extracted accounting data to Excel and JSON files, which may contain sensitive financial information. <br>
-Mitigation: Store generated Excel and JSON files only in protected locations and use --dry-run when persistent outputs are not needed. <br>
+## Use Case:
 
+Developers, finance operations teams, and accounting staff use this skill to extract structured records from invoices, purchase orders, and bank statements, then save tracking data as Excel workbooks and JSON backups. It is useful for Vietnamese and international accounting document workflows that need OCR, classification, confidence scoring, and validation alerts.
 
-## Reference(s): <br>
-- [Accounting Skill on ClawHub](https://clawhub.ai/DVNghiem/vn-accounting-skill) <br>
-- [Invoice Field Reference](references/invoice-fields.md) <br>
-- [Bank Statement Formats](references/bank-formats.md) <br>
-- [Purchase Order Field Reference](references/po-fields.md) <br>
-- [OCR Setup Guide](references/ocr-setup.md) <br>
-- [PEP 723 Inline Script Metadata](https://peps.python.org/pep-0723/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, Excel files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts produce JSON responses, JSON backup files, and Excel workbooks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run parsing, confidence scores, validation alerts, and configurable Excel and JSON output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The server security review flags unsafe command-running guidance in the README batch workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the README batch workflow that uses eval; run extractor scripts directly with quoted paths or use a safe dispatcher.
+
+Risk: The server security review notes that untrusted document text can be written into generated Excel files.
+
+Mitigation: Store outputs only in protected directories and be cautious when opening generated spreadsheets from untrusted documents.
+
+Risk: The server security review recommends dependency review before installation.
+
+Mitigation: Prefer pinned dependencies or a locked environment before running the skill.
+
+## Reference(s):
+
+- [Invoice Field Reference](artifact/references/invoice-fields.md)
+- [Bank Statement Formats](artifact/references/bank-formats.md)
+- [Purchase Order Field Reference](artifact/references/po-fields.md)
+- [OCR Setup Guide](artifact/references/ocr-setup.md)
+- [PEP 723 Inline Script Metadata](https://peps.python.org/pep-0723/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands; extractor scripts produce JSON records and Excel workbooks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include OCR confidence, extraction confidence, validation status, and needs-review flags.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Guides an agent through a multi-round PRD drafting and review workflow that uses user-confirmed writer and reviewer models to produce final Markdown PRD deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRD Iterative guides an agent through a multi-round Chinese-language PRD drafting workflow with writer and reviewer iterations from a product topic, background material, and target platform.
 
-## Publisher: <br>
-[galaxy-operations-guide](https://clawhub.ai/user/galaxy-operations-guide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galaxy-operations-guide](https://clawhub.ai/user/galaxy-operations-guide)
 
-## Use Case: <br>
-Product managers, founders, and product-oriented agents use this skill to turn a product topic, background material, and target platform into iterated PRD drafts, review notes, and a final Markdown PRD. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided links or background material may be processed by the selected writer and reviewer models. <br>
-Mitigation: Confirm that the user is comfortable sharing the material with those models before fetching or processing it. <br>
-Risk: The workflow writes multiple PRD and review Markdown files to disk. <br>
-Mitigation: Confirm the output folder before starting and report generated file paths after each round. <br>
-Risk: Using the skill for quick one-off PRD advice may produce more process overhead than needed. <br>
-Mitigation: Use it when a structured multi-round drafting and review loop is appropriate. <br>
+## Use Case:
 
+External users, product teams, and developers use this skill to draft and review Chinese-language PRDs over configurable writer/reviewer rounds, producing versioned PRD and review outputs in a user-confirmed location.
 
-## Reference(s): <br>
-- [PRD standard structure reference](references/prd-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/galaxy-operations-guide/prd-iterative) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown PRD drafts, Markdown review reports, and concise status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes versioned PRD and review files to a user-confirmed output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Background material or linked sources may contain private or sensitive product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source material with the user and avoid processing sensitive inputs unless the user accepts that handling.
+
+Risk: The workflow may fetch linked material and write PRD files to a user-specified location.
+
+Mitigation: Confirm models, links, output folder, and round count before starting the workflow.
+
+## Reference(s):
+
+- [PRD standard structure reference](references/prd-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown files with concise progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces versioned PRD and review Markdown files in a user-confirmed output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

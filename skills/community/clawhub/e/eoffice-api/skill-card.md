@@ -1,45 +1,60 @@
-## Description: <br>
-泛微 e-office 协同办公系统 OpenAPI - 用户管理、部门管理、审批流程、考勤等企业级 API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+泛微 e-office 协同办公系统 OpenAPI - 用户管理、部门管理、审批流程、考勤等企业级 API
 
-## Publisher: <br>
-[quanruxiaohong](https://clawhub.ai/user/quanruxiaohong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanruxiaohong](https://clawhub.ai/user/quanruxiaohong)
 
-## Use Case: <br>
-Employees and administrators use this skill to let an agent query and operate an e-office OA deployment, including users, departments, workflow approvals, attendance, notifications, customers, contracts, attachments, and custom modeling data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad access to enterprise OA accounts, approvals, files, and business data. <br>
-Mitigation: Install only for deliberate OA automation use, configure a dedicated least-privilege OA application, restrict the OA whitelist, and avoid administrator credentials unless they are required. <br>
-Risk: Create, edit, delete, approval, upload, and bulk actions may change production OA records. <br>
-Mitigation: Require human confirmation and audit logging for sensitive or destructive actions before execution. <br>
-Risk: Misconfigured base URLs or exposed secrets could route requests to the wrong system or disclose OA credentials. <br>
-Mitigation: Protect secret configuration, verify the configured OA base URL, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Employees and enterprise administrators use this skill to let an agent query and operate a configured e-office OA system, including users, departments, workflows, attendance records, notifications, modeling data, and attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quanruxiaohong/eoffice-api) <br>
-- [Project homepage](https://github.com/yourname/eoffice-skill) <br>
-- [e-office OpenAPI complete interface documentation](references/api.md) <br>
-- [OA open platform application management documentation](https://service.e-office.cn/knowledge/detail/49/ke7d0a3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for authenticated e-office API operations; actual API effects depend on configured OA credentials and permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can create, edit, and delete users, departments, modeling data, and attachments in a live OA system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped application credentials, prefer test environments for validation, and require explicit confirmation before create, edit, delete, upload, or download actions.
+
+Risk: Access tokens and application secrets are required, and the token helper prints tokens to stdout.
+
+Mitigation: Avoid logging token output, keep credentials out of shared transcripts and source files, and rotate credentials if exposed.
+
+Risk: Connecting to non-HTTPS or overbroad OA endpoints can expose sensitive enterprise data.
+
+Mitigation: Configure HTTPS-only OA endpoints and restrict the e-office application account to the minimum permissions needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quanruxiaohong/skills/eoffice-api)
+- [e-office OpenAPI reference](references/api.md)
+- [OA Open Platform application management](https://service.e-office.cn/knowledge/detail/49/ke7d0a3)
+- [ClawDIS homepage](https://github.com/yourname/eoffice-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate authenticated API requests against a configured e-office OA endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

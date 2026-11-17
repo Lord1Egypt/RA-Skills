@@ -1,42 +1,63 @@
-## Description: <br>
-Calls Tencent Cloud's DetectFace API to detect faces in images, returning face locations and optional face attribute or quality details from local files, Base64 input, or image URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud FaceID DetectFace to detect faces in images and return structured face location, optional attribute, and optional quality results.
 
-## Publisher: <br>
-[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tencent Cloud face detection when they need face counts, bounding boxes, optional face attributes, or image quality scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected face images, Base64 image data, or image URLs are sent to Tencent Cloud for analysis. <br>
-Mitigation: Process only images the user has permission to analyze, avoid unnecessary uploads, and follow the user's privacy and retention requirements. <br>
-Risk: Optional attribute and quality detection can expose sensitive personal or biometric-adjacent information. <br>
-Mitigation: Enable face attributes or quality detection only when needed for the task and avoid collecting or storing extra results. <br>
-Risk: The script requires Tencent Cloud credentials in environment variables. <br>
-Mitigation: Use least-privileged credentials, keep secrets out of prompts and logs, and rotate credentials according to the deployment policy. <br>
+## Use Case:
 
+Developers and operators use this skill to run Tencent Cloud face detection against a local image, Base64 image, or image URL and receive JSON results for face counts, bounding boxes, attributes, and quality signals.
 
-## Reference(s): <br>
-- [Tencent Cloud DetectFace API Documentation](https://cloud.tencent.com/document/product/867/44989) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands] <br>
-**Output Format:** [JSON printed by scripts/main.py, with progress and errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes face count, bounding boxes, optional face attributes, optional quality scores, and Tencent Cloud RequestId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can upload any readable local file supplied as an image path to Tencent Cloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended image files, avoid arbitrary local paths, and run the skill in a restricted environment.
+
+Risk: Face images and derived biometric attributes may involve sensitive personal data.
+
+Mitigation: Use images with appropriate consent and review privacy requirements before enabling attribute or quality detection.
+
+Risk: Tencent Cloud credentials are required for API calls.
+
+Mitigation: Use narrowly scoped credentials stored in environment variables and rotate or revoke them according to local policy.
+
+Risk: The artifact depends on an unpinned Tencent Cloud SDK installation.
+
+Mitigation: Pin and review dependencies before broad deployment.
+
+## Reference(s):
+
+- [Tencent Cloud DetectFace API documentation](https://cloud.tencent.com/document/product/867/44989)
+- [ClawHub skill page](https://clawhub.ai/xiaoqiangjava/skills/tencentcloud-faceid-detectface)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiaoqiangjava)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Guidance]
+
+**Output Format:** [JSON returned by a command-line Python script, with setup and usage guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials in environment variables and may submit image data to Tencent Cloud.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Helps configure an agent to act proactively through persistent memory, write-ahead logging, onboarding, heartbeat checks, security hardening, and guarded autonomous workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+德胧主动Agent框架 helps agent builders turn task-following assistants into proactive partners using WAL logging, working buffers, onboarding files, heartbeat checks, and security patterns.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up proactive agent behavior, including onboarding users, preserving memory across context loss, running periodic heartbeat checks, and proposing useful work while gating external actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent proactive behavior can broaden agent authority over memory, cleanup, account checks, and background work. <br>
-Mitigation: Require explicit opt-in before enabling persistence or background jobs, keep stop controls visible, and review memory and rule-file edits. <br>
-Risk: Sensitive credentials or personal data may be exposed through account integrations or workspace memory. <br>
-Mitigation: Limit accessible folders and tools, keep credentials out of memory files and logs, and approve email, calendar, or account access case by case. <br>
-Risk: Heartbeat cleanup or autonomous cron actions can alter local state without adequate user control. <br>
-Mitigation: Disable or require confirmation for cleanup, deletion, sending, posting, and other external or irreversible actions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add proactive behavior, persistent memory routines, onboarding, heartbeat checks, and safety practices to an AI agent workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chaoliuzhu/delonix-proactive-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/chaoliuzhu) <br>
-- [Onboarding Flow Reference](artifact/references/onboarding-flow.md) <br>
-- [Security Patterns Reference](artifact/references/security-patterns.md) <br>
-- [Creator Profile](https://x.com/halthelobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and starter configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes starter files and a security audit script; outputs should be reviewed before enabling persistent memory, background jobs, or external account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.1.0) <br>
+Risk: The skill encourages broad persistent conversation and profile memory, which can capture sensitive personal data or secrets in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory opt-in, exclude secrets and sensitive personal data, and review inferred profile entries before saving them.
+
+Risk: The skill encourages proactive local actions and background maintenance with weak user control.
+
+Mitigation: Require approval before changing operating-rule files or workspace content, and disable autonomous cleanup or background actions unless rollback and audit controls are in place.
+
+Risk: The authoritative security verdict is suspicious because the skill is highly stateful and proactive.
+
+Mitigation: Install only when this behavior is deliberate, scan the skill before deployment, and review the included security guidance before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaoliuzhu/skills/delonix-proactive-agent)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/chaoliuzhu)
+- [Onboarding Flow Reference](artifact/references/onboarding-flow.md)
+- [Security Patterns Reference](artifact/references/security-patterns.md)
+- [Creator Profile](https://x.com/halthelobster)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and starter workspace file templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local operating-rule, memory, onboarding, heartbeat, and security-audit patterns for an agent workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports upstream 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

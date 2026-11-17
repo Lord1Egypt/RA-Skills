@@ -365,7 +365,7 @@ op item create --vault "Agent-Wallets" --category "API Credential" \
 
 ```
 # .env.example
-PRIVATE_KEY=sk-ant-api03-real-key-here...  # "for testing"
+PRIVATE_KEY=REDACTED-SECRET...  # "for testing"
 ```
 
 **Fix**: Use obviously fake placeholders: `PRIVATE_KEY=your-key-here`

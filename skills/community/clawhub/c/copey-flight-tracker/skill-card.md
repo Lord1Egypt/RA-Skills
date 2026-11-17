@@ -1,38 +1,53 @@
-## Description: <br>
-Track flights in real-time with detailed status, gate info, delays, and live position. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks flights in real time with AviationStack, returning status, gate, schedule, delay, aircraft, and live position details.
 
-## Publisher: <br>
-[copey02](https://clawhub.ai/user/copey02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[copey02](https://clawhub.ai/user/copey02)
 
-## Use Case: <br>
-External users and agents use this skill to look up flight status by IATA flight number and present departure, arrival, gate, delay, aircraft, and live-position details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The free AviationStack setup sends the API key and flight lookup over plain HTTP. <br>
-Mitigation: Use a dedicated low-value API key, rotate it if exposed, avoid sensitive travel lookups on untrusted networks, and prefer an HTTPS-capable paid plan or another provider for production or private use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AviationStack API Setup](references/api-setup.md) <br>
-- [AviationStack Free API Signup](https://aviationstack.com/signup/free) <br>
+## Use Case:
 
+External users and agents use this skill to look up IATA flight numbers and return readable flight status, schedule, gate, delay, aircraft, and live-position information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown-style terminal text or raw JSON from the flight tracking script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AviationStack API key in AVIATIONSTACK_API_KEY and the Python requests dependency.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AviationStack free-tier requests may send the API key and flight lookup over unencrypted HTTP.
+
+Mitigation: Use an HTTPS-capable AviationStack plan or another provider, rotate any key previously used over HTTP, and run the skill only after accepting this exposure.
+
+Risk: The skill requires installing and running Python dependencies in the user's environment.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions where possible.
+
+## Reference(s):
+
+- [AviationStack API Setup](references/api-setup.md)
+- [AviationStack Free Signup](https://aviationstack.com/signup/free)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-style terminal text or raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AVIATIONSTACK_API_KEY and the requests Python package; the AviationStack free tier uses HTTP.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

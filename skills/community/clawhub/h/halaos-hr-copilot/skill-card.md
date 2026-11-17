@@ -1,41 +1,63 @@
-## Description: <br>
-AI HR Copilot for Southeast Asia that works with the HalaOS MCP Server for live employee, attendance, leave, payroll, compliance, and org intelligence data, or standalone with built-in PH/SG/LK labor law knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HalaOS HR Copilot helps agents answer Southeast Asia HR questions and, when configured with HalaOS MCP or API access, work with live employee, attendance, leave, payroll, compliance, and organization intelligence data.
 
-## Publisher: <br>
-[tonypk](https://clawhub.ai/user/tonypk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonypk](https://clawhub.ai/user/tonypk)
 
-## Use Case: <br>
-HR teams, managers, and authorized employees use this skill to ask HR questions, review live HalaOS data, manage leave and attendance workflows, inspect payroll and compliance information, and generate HR documents through conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose or change sensitive employee, payroll, leave, attendance, and workforce-risk data from broad natural-language prompts. <br>
-Mitigation: Install only for authorized HR users, use the narrowest HalaOS API key available, and avoid admin credentials for routine questions. <br>
-Risk: Payroll runs, approvals, attendance changes, government-form generation, flight-risk reviews, and org-wide employee access can have operational or privacy impact. <br>
-Mitigation: Require explicit confirmation before executing high-impact actions or retrieving organization-wide sensitive data. <br>
+## Use Case:
 
+HR staff, managers, and authorized employees use this skill to get HR briefings, review leave and payroll information, answer compliance questions, generate HR documents, and inspect workforce intelligence for HalaOS tenants or offline PH/SG/LK HR guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonypk/halaos-hr-copilot) <br>
-- [HalaOS website](https://halaos.com) <br>
+### Deployment Geography for Use:
 
+Southeast Asia, with specific built-in guidance for the Philippines, Singapore, and Sri Lanka.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown with tables, summaries, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured HalaOS MCP tools or use standalone labor-law knowledge depending on available credentials and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad prompts or shared chat contexts may expose sensitive employee, attendance, leave, payroll, compliance, or risk data from a connected HalaOS tenant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorized users, avoid broad casual prompts in shared chats, and configure a least-privileged HALAOS_API_KEY.
+
+Risk: Payroll, government form, approval, or rejection actions can affect important HR records or compliance outcomes.
+
+Mitigation: Require human review before executing payroll, filing, approval, rejection, or similar state-changing actions.
+
+Risk: Installing the MCP server with an unpinned @latest version can change behavior without review.
+
+Mitigation: Prefer a pinned MCP server version and review release changes before upgrading.
+
+Risk: Flight-risk results depend on background risk scoring and may be stale or unavailable.
+
+Mitigation: Check data freshness and treat empty or unexpected risk results as a signal to verify whether scoring has run before taking action.
+
+## Reference(s):
+
+- [HalaOS Website](https://halaos.com)
+- [Linked GitHub Repository](https://github.com/tonypk/aigonhr)
+- [ClawHub Skill Page](https://clawhub.ai/tonypk/skills/halaos-hr-copilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell Commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with tables, JSON configuration snippets, shell commands, and HR document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive HR, payroll, compliance, approval, and employee-risk information when connected to a HalaOS tenant.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

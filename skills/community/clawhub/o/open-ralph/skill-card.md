@@ -1,41 +1,54 @@
-## Description: <br>
-Run an autonomous Open Ralph Wiggum coding loop using OpenCode Zen with free models and automatic fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an autonomous Open Ralph Wiggum coding loop using OpenCode Zen with free models and automatic fallback.
 
-## Publisher: <br>
-[Bderiel](https://clawhub.ai/user/Bderiel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bderiel](https://clawhub.ai/user/bderiel)
 
-## Use Case: <br>
-Developers and engineers use this skill to run bounded autonomous coding loops for fixing tests, implementing scoped features, refactoring, resolving lint or type errors, and iterating on build failures inside a git repository. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an autonomous local coding agent to modify repository files over multiple iterations. <br>
-Mitigation: Run it on a clean branch or worktree, keep iteration limits conservative, and review the full git diff before committing or merging. <br>
-Risk: Prompts and repository context may be processed by OpenCode or its configured model providers. <br>
-Mitigation: Avoid private code or secrets unless that provider processing is acceptable for the project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bderiel/open-ralph) <br>
-- [Skill metadata homepage](https://github.com/Th0rgal/open-ralph-wiggum) <br>
-- [OpenCode Zen models](https://opencode.ai/zen/v1/models) <br>
+## Use Case:
 
+Developers use open-ralph to run a bounded autonomous coding loop for fixing tests, implementing scoped changes, refactoring, and resolving build, lint, or type errors inside a git repository.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for running Ralph with bounded iterations, completion criteria, fallback models, and troubleshooting flags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The autonomous coding loop can repeatedly modify files in the current repository.
+
+Mitigation: Run it on a clean git branch, keep iteration limits modest, and inspect the final diff before merging or committing changes.
+
+Risk: Broad or unverifiable prompts can produce changes that do not satisfy the intended task.
+
+Mitigation: Provide precise task scope, verifiable success criteria, and a completion promise before starting the loop.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bderiel/skills/open-ralph)
+- [Project homepage](https://github.com/Th0rgal/open-ralph-wiggum)
+- [OpenCode Zen models](https://opencode.ai/zen/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, ralph, and opencode binaries; autonomous loops should use explicit success criteria, completion promises, and iteration limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Estimate intrinsic value with a first-principles DCF from structured JSON or provider-backed ticker input, and return auditable FCFF, WACC, and per-share value output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate intrinsic value with a first-principles DCF from structured JSON or provider-backed ticker input, and return auditable FCFF, WACC, and per-share value output.
 
-## Publisher: <br>
-[tiejiang8](https://clawhub.ai/user/tiejiang8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiejiang8](https://clawhub.ai/user/tiejiang8)
 
-## Use Case: <br>
-Developers, agents, and research workflows use FP-DCF to run auditable public-company DCF valuations, implied-growth checks, and WACC/terminal-growth sensitivity analysis from structured or provider-backed inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Valuation outputs may be misleading if assumptions, provider data, or cache freshness are stale or unsuitable for the company. <br>
-Mitigation: Review all assumptions, freshness fields, diagnostics, and warnings before relying on the result, and refresh provider data when current market conditions matter. <br>
-Risk: Provider-backed runs may contact Yahoo Finance, AkShare, and BaoStock and cache market snapshots locally. <br>
-Mitigation: Use manual fundamentals, disable provider refreshes, and set a dedicated cache or output directory for private or policy-restricted workflows. <br>
-Risk: The tool is a valuation layer and is not designed for buy/sell decisions, portfolio construction, or financial-sector company models. <br>
-Mitigation: Pair outputs with independent business analysis and avoid using the skill as a standalone investment recommendation system. <br>
+## Use Case:
 
+Developers, agents, and research workflows use FP-DCF to produce auditable DCF valuations, market-implied growth checks, WACC and terminal-growth sensitivity outputs, and structured diagnostics from explicit fundamentals or provider-backed ticker data.
 
-## Reference(s): <br>
-- [FP-DCF methodology](references/methodology.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tiejiang8/fp-dcf) <br>
-- [Project homepage](https://github.com/tiejiang8/FP-DCF) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON with optional SVG/PNG sensitivity chart files and concise Markdown-facing summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provider-backed runs may fetch public market data and write local cache or output artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: ClawHub release metadata) <br>
+Risk: The skill includes repository workflow instructions that could influence an agent to bypass normal branch or pull-request review practices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for valuation tasks and do not grant Git publish authority while it is active.
+
+Risk: Provider-backed runs may contact finance data providers and write local cache or output artifacts.
+
+Mitigation: Run in a constrained environment, review generated artifacts, and refresh provider data when the user asks for current market conditions.
+
+Risk: DCF outputs can be misleading if treated as buy, sell, portfolio, or financial-sector valuation advice.
+
+Mitigation: Present FP-DCF as a valuation layer only, surface diagnostics and warnings, and require separate business, industry, and risk analysis before investment conclusions.
+
+## Reference(s):
+
+- [FP-DCF ClawHub Skill Page](https://clawhub.ai/tiejiang8/skills/fp-dcf)
+- [FP-DCF Homepage](https://github.com/tiejiang8/FP-DCF)
+- [FP-DCF Methodology](references/methodology.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands; runtime execution returns structured JSON and optional sensitivity chart files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Valuation outputs may include FCFF, WACC, enterprise value, equity value, per-share value, market-implied growth, provider data freshness, diagnostics, warnings, and sensitivity artifact paths.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

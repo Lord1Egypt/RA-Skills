@@ -1,40 +1,57 @@
-## Description: <br>
-Fetches and extracts public WeChat article titles, authors, publish times, account names, and cleaned article text from user-provided mp.weixin.qq.com URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public WeChat article content, including title, author, publish time, account name, body text, URL, and optional raw HTML.
 
-## Publisher: <br>
-[lvzaiyi-afk](https://clawhub.ai/user/lvzaiyi-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvzaiyi-afk](https://clawhub.ai/user/lvzaiyi-afk)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve WeChat public article text and metadata for reading, summarization, analysis, or archiving. It is intended for user-provided public article URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes HTTP requests to article URLs provided by the user. <br>
-Mitigation: Use public WeChat article links only, and apply normal network review controls before running it in sensitive environments. <br>
-Risk: Optional raw HTML output can include markup fetched from the remote article page. <br>
-Mitigation: Prefer cleaned text and metadata outputs unless raw HTML is needed, and review raw HTML before storing it or passing it to downstream tools. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve, summarize, analyze, or archive public WeChat articles from supplied URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvzaiyi-afk/wechat-article-fetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python dictionary data, plain text article content, and Markdown/code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include remote page HTML when raw HTML output is explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can make outbound web requests to any user-supplied URL rather than only WeChat article URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public WeChat article URLs, preferably in an isolated environment, and validate URLs to https://mp.weixin.qq.com before use.
+
+Risk: Raw HTML output may expose untrusted page content when enabled.
+
+Mitigation: Keep raw HTML output disabled unless needed, and do not render or execute returned HTML.
+
+Risk: Dependencies are not pinned in the artifact instructions.
+
+Mitigation: Install reviewed, pinned versions of requests and beautifulsoup4 in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lvzaiyi-afk/skills/wechat-article-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Structured data, Guidance]
+
+**Output Format:** [Plain text summaries and JSON-like article metadata dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include optional raw HTML when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact documentation notes 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

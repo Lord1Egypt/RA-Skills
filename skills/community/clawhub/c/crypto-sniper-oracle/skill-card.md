@@ -1,45 +1,62 @@
-## Description: <br>
-Institutional-grade quantitative market oracle with Order Book Imbalance (OBI), VWAP analysis, automated reports, and Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Institutional-grade quantitative market oracle with Order Book Imbalance (OBI), VWAP analysis, automated reports, and Telegram alerts.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-Developers, analysts, and crypto-market operators use this skill to fetch public Binance market data, calculate OBI, VWAP, and liquidity signals, and generate local or optional Telegram-delivered reports. The skill is for market analysis and reporting; it does not place trades or access private exchange data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public Binance API calls and writes local cache, report, and log files under /workspace. <br>
-Mitigation: Install only if public market-data requests and local report storage are acceptable; review generated files and workspace paths before scheduled use. <br>
-Risk: Optional Telegram delivery sends generated market reports off-host using user-provided bot credentials. <br>
-Mitigation: Keep Telegram disabled unless off-host delivery is intended, store bot tokens carefully, and rotate credentials if they are exposed. <br>
-Risk: Optional cron jobs can keep market monitoring and report delivery running after setup. <br>
-Mitigation: Review cron entries before enabling automation and remove them when scheduled monitoring is no longer wanted. <br>
-Risk: Generated market reports may contain suggested actions based on quantitative signals. <br>
-Mitigation: Treat reports as analysis inputs, not autonomous trading instructions, and require human review before financial decisions. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch public cryptocurrency market data, calculate order book and VWAP signals, and generate manual or scheduled market reports. Optional Telegram delivery can send generated summaries and anomaly alerts to a configured chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/georges91560/crypto-sniper-oracle) <br>
-- [Project repository](https://github.com/georges91560/crypto-sniper-oracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text, Files] <br>
-**Output Format:** [JSON market snapshots, Markdown reports and logs, terminal text, and optional Telegram Markdown messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Binance market data, writes local cache, report, and log files under /workspace, and optionally sends reports to a user-configured Telegram chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Telegram bot credentials may be exposed if stored in shell profile files, browser URLs, shared terminals, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials only through a secure runtime secret mechanism, rotate any exposed bot token, and avoid persisting real tokens in ~/.bashrc or ~/.profile.
+
+Risk: Automated reports and alerts can present trading-style recommendations that may be mistaken for verified financial advice.
+
+Mitigation: Treat all generated signals as informational only and require independent review before making trading or investment decisions.
+
+Risk: Scheduled cron runs can repeatedly write reports and logs under /workspace and optionally send them to Telegram.
+
+Mitigation: Enable cron and Telegram delivery only after reviewing destination, retention, and workspace storage expectations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georges91560/skills/crypto-sniper-oracle)
+- [Publisher Profile](https://clawhub.ai/user/georges91560)
+- [Homepage](https://github.com/georges91560/crypto-sniper-oracle)
+- [Repository](https://github.com/georges91560/crypto-sniper-oracle)
+- [Binance Public Market Data API](https://api.binance.com/api/v3/*)
+- [Telegram Bot API](https://api.telegram.org/bot*)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON market data, Markdown reports, and concise command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes cache, report, and log files under /workspace; optional Telegram delivery requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.]
+
+## Skill Version(s):
+
+3.3.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

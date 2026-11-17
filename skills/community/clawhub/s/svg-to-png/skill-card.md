@@ -1,39 +1,50 @@
-## Description: <br>
-Converts SVG vector images to PNG files at a specified square dimension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts SVG vector images to PNG files with an optional square output size.
 
-## Publisher: <br>
-[try520](https://clawhub.ai/user/try520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[try520](https://clawhub.ai/user/try520)
 
-## Use Case: <br>
-Developers and designers use this skill to convert SVG icons, logos, and frontend assets into PNG files and resize them from a command line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the converter adds an npm dependency and writes an output file to the requested path. <br>
-Mitigation: Install and run it in a project or sandbox where adding npm dependencies is acceptable, and verify input and output paths before execution. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to convert SVG icons and application assets into PNG files, optionally resizing output for target resource dimensions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/try520/svg-to-png) <br>
-- [Publisher profile](https://clawhub.ai/user/try520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image file plus console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output size is 1024x1024; the optional size argument sets square output dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a reported vulnerable native image-processing dependency in the SVG-to-PNG conversion path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, update sharp to a non-vulnerable release with a regenerated lockfile, and run conversions for untrusted SVG files in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/try520/skills/svg-to-png)
+- [ClawHub publisher profile](https://clawhub.ai/user/try520)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG file with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts an input SVG path, optional output PNG path, and optional square size; defaults to 1024 pixels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

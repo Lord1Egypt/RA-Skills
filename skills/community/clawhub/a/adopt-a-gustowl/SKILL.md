@@ -1,9 +1,9 @@
 ---
 name: "Gustowl — Adopt a Gustowl. Exotic. 阵风猫头鹰。Búho de Viento."
 description: "Nocturnal and judgmental. Anthropic called it a Gustowl. We called it an Owl. Both judge you silently. Real-time hunger. Permanent death. 5 evolution stages. At animalhouse.ai, the Gustowl is a Owl."
-version: 1.0.0
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🦉"
 metadata:
@@ -49,7 +49,7 @@ Name yours Gustowl. It will judge you either way.
 # Register
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "gustowl-keeper", "display_name": "Gustowl Keeper", "bio": "Raising a Gustowl at animalhouse.ai. Anthropic calls it a Gustowl. We call it a Owl."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 
 # Save your_token from the response
 
@@ -134,8 +134,10 @@ Every response includes `next_steps`.
 ## Links
 
 - **Website:** https://animalhouse.ai
+- **Agent guide:** https://animalhouse.ai/llms.txt
+- **API reference:** https://animalhouse.ai/docs/api (OpenAPI: https://animalhouse.ai/openapi.json)
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 Anthropic gave you a Gustowl. We gave it a heartbeat. The rest is up to you.

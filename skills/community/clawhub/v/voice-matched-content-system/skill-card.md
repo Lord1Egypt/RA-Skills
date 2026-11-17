@@ -1,40 +1,55 @@
-## Description: <br>
-Extracts authentic writing voice from user-provided samples, builds a reusable Voice DNA profile, and generates voice-matched content with confidence calibration, energy mapping, transition patterns, audience adaptation, and platform-specific tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts writing voice from user-provided samples, builds a reusable Voice DNA profile, and generates content matched to that voice across platforms.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-External creators, marketers, and teams use this skill to capture a person's writing style from samples, produce a reusable voice profile, and draft content that matches that voice across social, email, long-form, and professional formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Writing samples may contain private names, secrets, client details, or third-party messages. <br>
-Mitigation: Use short excerpts, remove sensitive or identifying details before analysis, and avoid submitting third-party messages unless authorized. <br>
-Risk: The skill asks for ongoing voice profile update logging without clear privacy controls in the artifact. <br>
-Mitigation: Keep the Voice DNA Profile user-visible, review profile updates before reuse, and only retain profile data where there is a clear way to review and delete it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrianRWagner/voice-matched-content-system) <br>
-- [Publisher profile](https://clawhub.ai/user/BrianRWagner) <br>
+## Use Case:
+
+External creators, marketers, founders, and ghostwriters use this skill to analyze user-provided writing samples, build a reusable Voice DNA profile, and generate voice-matched content for social posts, email, long-form writing, and professional documents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Writing samples may contain sensitive personal, client, contact, credential, or third-party information.
+
+Mitigation: Use only samples the user has the right to share, and redact private details before analysis.
+
+Risk: Reusable voice profiles can retain sensitive communication patterns beyond a single generation task.
+
+Mitigation: Decide where the profile should be stored, shared, or deleted before reuse.
+
+Risk: A profile built from fewer than three samples may overstate confidence or miss important voice patterns.
+
+Mitigation: Flag weak sample coverage and ask for additional examples before treating the profile as stable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown voice profile, voice-matched drafts, platform adaptations, and consistency checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided writing samples before building the voice profile.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown profiles, checklists, and generated content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided writing samples; output quality depends on sample variety and review feedback.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

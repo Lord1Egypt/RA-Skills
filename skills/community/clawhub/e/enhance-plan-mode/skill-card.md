@@ -1,38 +1,54 @@
-## Description: <br>
-结构化规划模式 — 在执行复杂任务前先做系统性规划。借鉴 Claude Code 的 Plan Agent。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to produce a structured plan before complex or multi-step work.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and agent users use this skill to make the agent plan before complex or multi-step work. It guides the agent to restate requirements, inspect relevant context, identify risks, produce a structured plan, and wait for user confirmation before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plans for sensitive or production repositories may contain incorrect or misleading guidance. <br>
-Mitigation: Review the generated plan before approving edits, especially when the task affects sensitive or production code. <br>
+## Use Case:
 
+Developers and agent users use this skill when a request needs multiple steps, design work, code investigation, risk review, or a concrete execution plan before changes begin.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/enhance-plan-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown plan with sections, bullets, and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks for user confirmation before execution on complex work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users who do not read Chinese may misunderstand or miss the planning workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide translation or clarification before relying on the skill in non-Chinese workflows.
+
+Risk: A plan can still contain incorrect assumptions or unsuitable proposed changes.
+
+Mitigation: Review the proposed plan, risks, rollback notes, and verification checklist before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/enhance-plan-mode)
+- [Project homepage](https://github.com/jobzhao15/openclaw-enhance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown planning outline with risks, rollback notes, and verification checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language skill instructions; no required binaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

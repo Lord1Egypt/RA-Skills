@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn7a8bq36pjqtt668eapmmh2ss805ysv",
-  "slug": "gumroad-pro",
+  "name": "gumroad-pro",
   "version": "1.2.9",
-  "publishedAt": 1771062376112
+  "homepage": "https://github.com/abdul-karim-mia/gumroad-pro",
+  "description": "Professional Gumroad merchant management with adaptive UI and CLI.",
+  "author": "Abdul Karim Mia",
+  "config": {
+    "GUMROAD_ACCESS_TOKEN": {
+      "type": "string",
+      "description": "Gumroad API Key (preferred)",
+      "required": true
+    },
+    "API_KEY": {
+      "type": "string",
+      "description": "Gumroad API Key (alternative)",
+      "required": false
+    }
+  },
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": [
+          "node"
+        ],
+        "env": [
+          "GUMROAD_ACCESS_TOKEN",
+          "API_KEY"
+        ],
+        "config": []
+      },
+      "primaryEnv": "GUMROAD_ACCESS_TOKEN"
+    }
+  }
 }

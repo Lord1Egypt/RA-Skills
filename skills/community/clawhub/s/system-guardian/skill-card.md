@@ -1,43 +1,63 @@
-## Description: <br>
-金刚罩 is an OpenClaw system guardian skill for configuration validation, backup-backed safe restarts, health patrols, resource cleanup, and failure recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金刚罩 is an OpenClaw system-guardian skill for safe gateway restarts, configuration checks, health patrols, resource cleanup, and rollback support.
 
-## Publisher: <br>
-[RealHossie](https://clawhub.ai/user/RealHossie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realhossie](https://clawhub.ai/user/realhossie)
 
-## Use Case: <br>
-Developers and engineers use this skill to maintain OpenClaw installations by checking configuration safety, restarting the gateway with rollback protection, auditing changes, and cleaning old local data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete local session, backup, log, and temporary data during automated maintenance. <br>
-Mitigation: Review the retention constants and run health patrol manually before enabling scheduled cleanup. <br>
-Risk: Backups may create additional plaintext copies of configuration or secret-bearing files. <br>
-Mitigation: Secure ~/.openclaw/backups and ~/.openclaw/data/system-guardian, and avoid inline secrets in openclaw.json where possible. <br>
-Risk: The skill has restart and rollback authority over an OpenClaw gateway. <br>
-Mitigation: Install only when automated OpenClaw maintenance is desired, and review restart behavior before using cron automation. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain local OpenClaw installations by validating configuration changes, restarting the gateway with backup and rollback, running health checks, and cleaning aged sessions, backups, logs, and temporary files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RealHossie/system-guardian) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local backup, audit, baseline, and cleanup outputs under the user's OpenClaw directories when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release version and SKILL.md frontmatter) <br>
+Risk: Backups and audit logs may contain secrets from openclaw.json, .env, or configuration diffs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-variable secrets where possible, restrict access to ~/.openclaw/backups and ~/.openclaw/data/system-guardian, and review config-audit.log for secret exposure.
+
+Risk: Automated cleanup deletes old sessions, extra backups, logs, and matching temporary files.
+
+Mitigation: Review the cleanup thresholds before scheduled runs and keep independent backups for data that must be retained.
+
+Risk: Safe restart can restart OpenClaw Gateway and restore backed-up configuration files during rollback.
+
+Mitigation: Run the config guard before configuration changes and execute the restart flow only when a gateway restart and possible rollback are acceptable.
+
+Risk: The artifact README includes an unpinned git-clone installation path while server-resolved provenance is unavailable.
+
+Mitigation: Install from the validated ClawHub release or verify the exact external repository commit before using the git-clone path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realhossie/skills/system-guardian)
+- [Publisher profile](https://clawhub.ai/user/realhossie)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Bash commands and structured status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include health summaries, warnings, critical status lines, exit codes, and maintenance guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter, _meta.json, and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

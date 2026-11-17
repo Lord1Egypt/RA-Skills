@@ -1,40 +1,53 @@
-## Description: <br>
-Clawlet Daily generates a personalized Markdown daily report by summarizing local memory notes, learning records, task logs, and AI briefings with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlet Daily generates a personalized Markdown daily report by aggregating learning notes, task logs, and AI briefing records from the memory directory with summaries and source links.
 
-## Publisher: <br>
-[zzszsp](https://clawhub.ai/user/zzszsp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzszsp](https://clawhub.ai/user/zzszsp)
 
-## Use Case: <br>
-External users and agents use this skill to turn Clawlet memory files into a concise daily activity report with achievements, learning points, insights, next steps, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads files under memory/ and may include private details from notes or task logs in the generated report. <br>
-Mitigation: Use explicit prompts when requesting a report and review the generated Markdown before sharing it. <br>
-Risk: Broad daily-summary phrases may activate the skill unintentionally. <br>
-Mitigation: Trigger it with clear Clawlet daily-report requests and confirm the output is relevant before using it. <br>
+## Use Case:
 
+Clawlet users use this skill to answer daily-summary prompts by scanning matching memory records and producing a sourced daily activity report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzszsp/clawlet-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily report with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include private details from local memory notes or task logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad daily-summary triggers may cause the agent to read and summarize memory files that contain private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted single-user contexts, narrow requests to explicit dates, and review memory contents for secrets before generating reports.
+
+Risk: A daily report can expose or overstate activity records if source files are incomplete, stale, or unrelated to the requested date.
+
+Mitigation: Keep source links in the report and review summarized claims against the referenced memory files.
+
+## Reference(s):
+
+- [Clawlet Daily on ClawHub](https://clawhub.ai/zzszsp/skills/clawlet-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown daily report with linked source references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are grounded in matching memory files when those files are available to the agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

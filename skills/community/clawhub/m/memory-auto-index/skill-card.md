@@ -1,41 +1,57 @@
-## Description: <br>
-Automatically adds index entries for MEMORY.md and memory/ files, with tag classification and key decision tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically adds index entries for MEMORY.md and memory/ files, including tag classification, key decision tracking, and duplicate entry prevention.
 
-## Publisher: <br>
-[mengnessly](https://clawhub.ai/user/mengnessly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengnessly](https://clawhub.ai/user/mengnessly)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep local memory files discoverable by adding index entries, tags, and decision references after important memory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated indexing can modify MEMORY.md and files under memory/. <br>
-Mitigation: Review scripts before use and prefer preview or confirmation before automated writes. <br>
-Risk: Subjects or tags passed to shell commands could be unsafe if they contain untrusted input. <br>
-Mitigation: Sanitize subjects and tags before invoking local shell scripts. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep persistent memory indexes synchronized with memory files, classify entries by tags, and surface important decisions in a consistent Markdown index.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mengnessly/memory-auto-index) <br>
-- [Publisher Profile](https://clawhub.ai/user/mengnessly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces indexing conventions, script invocation patterns, tag guidance, and maintenance checks for local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic trigger examples can execute shell commands built from memory-derived strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safe argument-vector process APIs, avoid shell interpolation, and validate subjects, tags, dates, and paths before execution.
+
+Risk: The skill updates persistent memory indexes, which can make incorrect or unwanted entries durable.
+
+Mitigation: Limit writes to MEMORY.md and memory/ paths, review generated diffs before committing them, and keep backups or version control for memory files.
+
+Risk: The artifact describes referenced scripts that are not included in the release artifact.
+
+Mitigation: Inspect or supply the referenced scripts before installation, and do not run missing or locally substituted scripts without review.
+
+## Reference(s):
+
+- [Memory Auto Index on ClawHub](https://clawhub.ai/mengnessly/skills/memory-auto-index)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory index conventions, trigger guidance, and maintenance commands for MEMORY.md and memory/ files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

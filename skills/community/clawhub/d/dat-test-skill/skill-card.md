@@ -1,42 +1,52 @@
-## Description: <br>
-Generates ByteRover usage and health summaries for one or more project directories, covering query activity, curate activity, file changes, durations, and quota or rate-limit errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ByteRover usage metrics report that runs the metrics script to summarize query and curate activity, including counts, durations, file changes, and quota errors across one or more project directories.
 
-## Publisher: <br>
-[datpham-6996](https://clawhub.ai/user/datpham-6996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[datpham-6996](https://clawhub.ai/user/datpham-6996)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to run ByteRover health and usage checks for one or more project directories. It summarizes query activity, curate activity, file changes, and quota or rate-limit issues for routine reporting or scheduled checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Runtime instructions and script behavior can execute unpinned or unintended shell code in some environments.
+
+Mitigation: Review before installing or running, especially in CI or cron, and prefer a pinned local dependency instead of unversioned npx.
+
+Risk: BRV_CMD and BRV_SINCE can change command execution or query scope if populated from untrusted sources.
+
+Mitigation: Use trusted configuration values only until the script validates inputs and uses argument-array execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to run a local ByteRover metrics script for daily health checks, project-specific usage reports, or scheduled monitoring across one or more project directories. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Runs the local ByteRover CLI through Node tooling on selected project directories. <br>
-Mitigation: Install only when the local ByteRover CLI and Node tooling are trusted, and run it only against intended project paths. <br>
-Risk: Metrics reports may expose private activity, file-change counts, errors, or quota details. <br>
-Mitigation: Review reports before sharing outside the workspace and redact sensitive activity or error details. <br>
-Risk: Environment variables can change the command path and lookback window. <br>
-Mitigation: Keep BRV_CMD and BRV_SINCE simple and trusted, especially in cron or CI. <br>
+**Output Format:** [Markdown summary with metric sections and a status line]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datpham-6996/dat-test-skill) <br>
+**Other Properties Related to Output:** [Can report one or more project directories; output highlights query activity, curate activity, quota warnings, and overall health.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with query activity, curate activity, quota warnings, and a status line.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include separate project sections and a combined status line for multiple project directories.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

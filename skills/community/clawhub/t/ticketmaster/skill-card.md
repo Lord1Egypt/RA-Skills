@@ -1,46 +1,67 @@
-## Description: <br>
-Search Ticketmaster events, venues, and attractions with Discovery API filters, market-aware queries, and copy-ready curl and shell helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Ticketmaster events, venues, and attractions with Discovery API filters, market-aware queries, and copy-ready curl and shell helpers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, event researchers, and agents use this skill to search Ticketmaster listings, venues, attractions, classifications, onsale windows, and API-ready filters through the open Discovery API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, filters, locale, timestamps, event or venue IDs, and the Ticketmaster API key are sent to Ticketmaster. <br>
-Mitigation: Install only when sharing this data with Ticketmaster is acceptable; keep TM_API_KEY in the environment and out of local memory, files, screenshots, and pasted examples. <br>
-Risk: Discovery API results expose listings and metadata but do not confirm purchases, holds, refunds, or account actions. <br>
-Mitigation: Treat the skill as a search and lookup tool; explain the open API boundary before responding to purchase automation requests. <br>
-Risk: Broad or deeply paged searches can waste quota and miss supported result boundaries. <br>
-Mitigation: Constrain searches with keyword, city, countryCode, marketId, venueId, attractionId, date windows, or classification before paging. <br>
+## Use Case:
 
+Developers and external users use this skill to search Ticketmaster Discovery API listings, venues, attractions, sales windows, and classifications while shaping filters and reusable local defaults.
 
-## Reference(s): <br>
-- [TicketMaster ClawHub Release](https://clawhub.ai/ivangdavila/ticketmaster) <br>
-- [Ticketmaster Discovery API Base Endpoint](https://app.ticketmaster.com/discovery/v2) <br>
-- [Ticketmaster Discovery Event Search Endpoint](https://app.ticketmaster.com/discovery/v2/events.json) <br>
-- [Ticketmaster Discovery Venue Search Endpoint](https://app.ticketmaster.com/discovery/v2/venues.json) <br>
-- [Ticketmaster Discovery Attraction Search Endpoint](https://app.ticketmaster.com/discovery/v2/attractions.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown guidance with inline bash and curl examples; helper commands return JSON from Ticketmaster.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TM_API_KEY and curl; optional jq improves local JSON formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Ticketmaster receives search terms, filters, timestamps, IDs, locale, and the API key as query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated TM_API_KEY, keep it in the environment, and avoid pasting keys into files, screenshots, logs, or shared examples.
+
+Risk: Local memory and saved queries may accumulate preferences, event IDs, venue IDs, or market details.
+
+Mitigation: Periodically review ~/ticketmaster/memory.md and ~/ticketmaster/queries.md and remove preferences or IDs that should no longer be retained.
+
+Risk: Discovery API results can be mistaken for purchase, hold, refund, or seat-locking capability.
+
+Mitigation: Treat the skill as search and lookup guidance only, and explicitly confirm that transaction workflows are outside the open Discovery API surface.
+
+Risk: Broad queries, deep paging, or high request rates may produce noisy results or hit documented Ticketmaster limits.
+
+Mitigation: Constrain queries with city, country, venue, attraction, classification, and date filters before paging, and respect the documented rate and quota limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/ticketmaster)
+- [Ticketmaster Discovery API](https://app.ticketmaster.com/discovery/v2)
+- [Ticketmaster Discovery Endpoints](artifact/endpoints.md)
+- [Query Patterns](artifact/query-patterns.md)
+- [Filters and Pagination](artifact/filters-and-pagination.md)
+- [Error Handling and Limits](artifact/errors.md)
+- [Setup](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide GET requests to Ticketmaster Discovery API and local preference files under ~/ticketmaster/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

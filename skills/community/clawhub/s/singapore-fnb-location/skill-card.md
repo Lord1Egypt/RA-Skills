@@ -1,40 +1,58 @@
-## Description: <br>
-新加坡餐饮选址助手：分析租金、人流、竞争、盈亏平衡，辅助餐饮店铺选址决策. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language assistant for evaluating Singapore food and beverage locations by analyzing rent, foot traffic, competition, break-even points, and common operational risks.
 
-## Publisher: <br>
-[gisellekokkok](https://clawhub.ai/user/gisellekokkok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gisellekokkok](https://clawhub.ai/user/gisellekokkok)
 
-## Use Case: <br>
-Restaurant founders, operators, investors, and brands use this skill to plan Singapore food-and-beverage locations, estimate break-even needs, compare neighborhoods, and identify common operational or compliance pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Singapore <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location, rent, legal, immigration, and profitability guidance may be outdated or incomplete for a specific business decision. <br>
-Mitigation: Verify current Singapore requirements, market data, site conditions, and financial assumptions with authoritative sources or qualified advisors before committing capital. <br>
-Risk: The artifact mentions an optional paid offering, but server evidence does not validate the terms of that offer. <br>
-Mitigation: Confirm paid-service scope, pricing, and provider identity before purchasing or relying on any external consultation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gisellekokkok/singapore-fnb-location) <br>
-- [Project homepage](https://github.com/gisellekokkok/Fnb-location-SG) <br>
+## Use Case:
 
+External entrepreneurs, restaurant operators, brands, and food and beverage investors use this skill to compare Singapore locations, estimate break-even requirements, and identify operational or compliance pitfalls before choosing a site.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with calculations, comparisons, and location recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning support only; users should verify current Singapore market data, regulations, and paid-service details before acting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Singapore
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rent, market, and foot-traffic figures may be incomplete or stale when used for a real site decision.
+
+Mitigation: Treat outputs as a planning starting point and verify current figures against official records, commercial property sources, and direct site observations.
+
+Risk: Licensing, immigration, employment, and food-service requirements can affect whether a proposed plan is viable.
+
+Mitigation: Confirm requirements with current Singapore government sources or a qualified local advisor before committing funds or signing leases.
+
+Risk: Break-even and success estimates depend on user-provided assumptions such as rent, labor cost, margin, and order volume.
+
+Mitigation: Review the assumptions, run conservative scenarios, and compare the result with real quotes and operating data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gisellekokkok/skills/singapore-fnb-location)
+- [Project homepage](https://github.com/gisellekokkok/Fnb-location-SG)
+- [Project README](https://github.com/gisellekokkok/Fnb-location-SG/blob/main/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown or conversational text with tables and calculation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory output; no executable commands or files are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, ClawHub release metadata, README changelog dated 2026-02-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Transforms task-following agents into proactive assistants with persistent memory, onboarding, heartbeat checks, self-healing routines, security hardening, WAL protocol, working buffer recovery, and autonomous cron patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners that maintain memory, recover from context loss, use check-ins, and improve with user-approved guardrails.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-External developers and agent operators use this skill to configure an assistant that remembers user context, performs proactive check-ins, recovers from context loss, and applies explicit safety guardrails before external or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent personal memory can retain sensitive user context longer than intended. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal information, and regularly review or delete generated memory files. <br>
-Risk: Proactive background checks, email or calendar monitoring, autonomous crons, spawned agents, app or tab cleanup, and automatic memory capture may act beyond the user's intended scope. <br>
-Mitigation: Disable or tightly scope those behaviors before use, and require explicit approval for external, public, destructive, or irreversible actions. <br>
-Risk: The release was classified by the server security scan as suspicious because it requests broad persistent memory, background monitoring, and local-environment actions without enough user control. <br>
-Mitigation: Install only when those behaviors are explicitly desired and review the configured memory, monitoring, cron, and cleanup settings before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure agents with persistent memory, proactive check-ins, self-improvement routines, onboarding flows, and security-conscious operating patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy27725/proactive-agent-andy27725) <br>
-- [Onboarding Flow Reference](references/onboarding-flow.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes starter workspace files for memory, onboarding, heartbeat checks, user profile, agent identity, tool notes, and security audit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata); bundled artifact frontmatter version 3.1.0 <br>
+Risk: The skill encourages broad personal memory capture with weak consent boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the templates before use, require opt-in before saving personal details, and disable opportunistic profile capture unless explicitly approved.
+
+Risk: Heartbeat and self-improvement routines may lead to background actions or self-modifying workspace guidance.
+
+Mitigation: Make heartbeats report-only by default and require confirmation before file cleanup, app or tab closing, or changes to AGENTS.md and TOOLS.md.
+
+Risk: Autonomous isolated agentTurn cron jobs can perform work outside the user's immediate attention.
+
+Mitigation: Avoid autonomous cron jobs unless they are tightly scoped, preapproved, logged, and easy to disable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/proactive-agent-andy27725)
+- [Onboarding Flow Reference](artifact/references/onboarding-flow.md)
+- [Security Patterns Reference](artifact/references/security-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent operating guidance, workspace memory templates, onboarding references, and a local security audit script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

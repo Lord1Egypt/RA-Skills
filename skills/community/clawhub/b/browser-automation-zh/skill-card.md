@@ -1,40 +1,58 @@
-## Description: <br>
-Browser Automation Zh helps agents automate browser navigation, element interaction, data extraction, screenshots, form filling, scraping, and UI testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Automation Zh helps an agent automate browser navigation, element interaction, data extraction, screenshots, form filling, and UI automation testing.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Operations, marketing, data analysis, and technical teams use this skill to automate browser tasks such as price monitoring, competitor tracking, batch data collection, dashboard screenshots, form submission, and UI test flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can submit forms, affect accounts, capture screenshots, or collect scraped data in ways the user did not intend. <br>
-Mitigation: Use the skill only for clearly specified, authorized tasks; confirm before form submissions or account changes; and store screenshots or scraped data only in approved locations. <br>
-Risk: Login and scraping workflows may expose sensitive credentials, account data, or site-restricted information. <br>
-Mitigation: Avoid giving the agent passwords directly, limit automation to sites and accounts the user is authorized to automate, and tightly control scraping scope. <br>
+## Use Case:
 
+External users, developers, data analysts, marketing teams, and ecommerce operators use this skill to collect webpage data, monitor competitor or product information, capture dashboard screenshots, fill forms, and run browser-based UI automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/browser-automation-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with structured data examples, browser action plans, screenshots, files, and execution logs when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scraped data, screenshots, and browser operation logs for user-authorized tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation can interact with third-party sites, logged-in dashboards, or production systems without adequate authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on systems where automation is authorized, and review workflows before enabling them in production or authenticated environments.
+
+Risk: Automated login, screenshots, and data extraction can expose credentials, sensitive page content, or business data.
+
+Mitigation: Avoid storing secrets or screenshots in plaintext, limit captured data to what is necessary, and handle outputs according to the relevant data protection requirements.
+
+Risk: Automated form submission or scheduled browser actions can make unintended changes if run without confirmation or an easy stop path.
+
+Mitigation: Require confirmation before submitting forms, keep scheduled automation explicit, and make every recurring workflow easy to disable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/browser-automation-zh)
+- [Publisher profile](https://clawhub.ai/user/olina1ye)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON examples, operational guidance, and automation commands or scripts when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser automation plans, extracted data examples, screenshot workflow guidance, form-filling steps, or test automation instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

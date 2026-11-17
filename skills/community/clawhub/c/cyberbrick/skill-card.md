@@ -1,44 +1,55 @@
-## Description: <br>
-Provides information, documentation, and resources for the Bambu Lab Cyberbrick, a modular smart toy ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides information, documentation, and resources for the Bambu Lab Cyberbrick, a modular smart toy ecosystem.
 
-## Publisher: <br>
-[vilda007](https://clawhub.ai/user/vilda007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vilda007](https://clawhub.ai/user/vilda007)
 
-## Use Case: <br>
-Makers, students, educators, and developers use this skill to answer Cyberbrick questions about hardware modules, MicroPython or block-based programming concepts, CAD resources, and project building. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Programming API and CAD-model answers may be incomplete because the artifact references programming.md and cad_models.md, but those files are not included. <br>
-Mitigation: Confirm API functions and CAD model details against the official Cyberbrick API documentation and Maker's Supply product pages before using them in a project. <br>
+## Use Case:
 
+External makers, educators, and developers use this skill to answer Cyberbrick ecosystem questions about modules, hardware specifications, coding options, CAD resources, and project building.
 
-## Reference(s): <br>
-- [Cyberbrick Skill Page](https://clawhub.ai/vilda007/skills/cyberbrick) <br>
-- [Introduction to Cyberbrick](references/introduction.md) <br>
-- [Cyberbrick Hardware Components](references/hardware.md) <br>
-- [Bambu Lab Cyberbrick Component List](https://wiki.bambulab.com/en/cyberbrick/components/component-list) <br>
-- [Bambu Lab Cyberbrick Introduction](https://wiki.bambulab.com/en/makerworld/cyberbrick/intro) <br>
-- [Cyberbrick API Documentation](https://makerworld.com/en/cyberbrick/api-doc) <br>
-- [CyberBrick Official GitHub](https://github.com/CyberBrick-Official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with optional inline code snippets and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are grounded in bundled Cyberbrick markdown references and cited project links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Programming and CAD guidance may be incomplete because the skill advertises reference files for those topics that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the included introduction and hardware references as the grounded source, and verify programming APIs or CAD model details against official Cyberbrick documentation before relying on them.
+
+## Reference(s):
+
+- [Cyberbrick Skill Page](https://clawhub.ai/vilda007/skills/cyberbrick)
+- [Introduction to Cyberbrick](references/introduction.md)
+- [Cyberbrick Hardware Components](references/hardware.md)
+- [Bambu Lab Cyberbrick Introduction](https://wiki.bambulab.com/en/makerworld/cyberbrick/intro)
+- [Bambu Lab Cyberbrick Component List](https://wiki.bambulab.com/en/cyberbrick/components/component-list)
+- [Cyberbrick API Documentation](https://makerworld.com/en/cyberbrick/api-doc)
+- [CyberBrick Official GitHub](https://github.com/CyberBrick-Official)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text answers, with code snippets when supported by the available references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable behavior is included in the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

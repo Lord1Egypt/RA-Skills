@@ -1,41 +1,55 @@
-## Description: <br>
-Helps AI agents act more proactively, preserve context through local memory files, and improve continuously using WAL, working buffer, and recovery patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI agents act more proactively by maintaining local working notes, recovering context, and capturing learnings for continuous self-improvement.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure agents for proactive check-ins, local persistent memory across context loss, and continuous self-improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proactive monitoring and local persistent memory can capture exchanges or context beyond what the user intended. <br>
-Mitigation: Set explicit rules for what the agent may monitor, when it may act without being asked, what may be written into .autonomia, how long those files are kept, and how to review or delete them. <br>
-Risk: Continuous self-improvement and recovery routines can change agent behavior over time. <br>
-Mitigation: Review generated memory, learning, and recovery files before relying on them, and keep clear guardrails for autonomous actions. <br>
+## Use Case:
 
+Developers and external users can use this Portuguese-language skill to make OpenClaw-style agents more proactive, persistent across context loss, and able to capture lessons for future interactions. It is intended for users who want local working notes and self-improvement patterns in agent sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/engsathiago/autonomia-agente) <br>
-- [Project homepage](https://github.com/eve-agent/autonomia-agente) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file layout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to create or maintain local .autonomia memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill may lead an agent to write local interaction notes under .autonomia, which can include sensitive conversation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local note persistence is acceptable, and periodically review or delete .autonomia files.
+
+Risk: Proactive check-ins and self-improvement behavior can produce unwanted or unexpected agent actions.
+
+Mitigation: Review proposed behavior changes before relying on them and keep guardrails in place for agent evolution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/engsathiago/skills/autonomia-agente)
+- [Autonomia Agente Repository](https://github.com/eve-agent/autonomia-agente)
+- [Autonomia Agente Support Issues](https://github.com/eve-agent/autonomia-agente/issues)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and file path conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to keep local working notes under .autonomia.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, SKILL.md frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Design Cassandra tables, write efficient queries, and avoid distributed database pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Cassandra tables, write efficient queries, and avoid distributed database pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and database engineers use this skill for Cassandra data modeling, query planning, consistency-level choices, and operational checks that avoid common distributed database pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: cqlsh or nodetool examples may affect a live Cassandra cluster if run against production targets. <br>
-Mitigation: Verify the cluster, environment, and intended effect before executing any database command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cassandra) <br>
+## Use Case:
 
+Developers and database operators use this skill for Cassandra data modeling, query design, consistency choices, and operational guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline Cassandra query and nodetool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References cqlsh and nodetool when relevant; commands should be reviewed against the target Cassandra cluster before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Operational Cassandra advice such as repairs, schema changes, or rolling restarts can affect production availability and data consistency if applied without review.
+
+Mitigation: Review recommendations against the target cluster topology, operational runbooks, and change-management safeguards before applying them.
+
+Risk: The skill requires external Cassandra administration tools such as cqlsh or nodetool for users who choose to act on the guidance.
+
+Mitigation: Use normal access controls, least-privilege credentials, and environment-specific validation before running any Cassandra commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cassandra)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline Cassandra and nodetool command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory text only; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

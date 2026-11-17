@@ -1,44 +1,63 @@
-## Description: <br>
-Creates and manages Baidu Agent Sandbox instances, including setup, connection, command execution, file listing, and teardown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Agent Sandbox management skill for creating, connecting to, inspecting, executing commands in, and destroying sandbox instances.
 
-## Publisher: <br>
-[igogo888](https://clawhub.ai/user/igogo888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igogo888](https://clawhub.ai/user/igogo888)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision, connect to, inspect, run commands in, and destroy Baidu Agent Sandbox environments through an agent or command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sandbox credentials may be written to ~/.env and partially echoed in logs. <br>
-Mitigation: Review credential writes before installation, prefer session-only environment variables or a restricted credential file, and rotate the API key if it appears in logs or screenshots. <br>
-Risk: The skill can execute commands inside sandbox instances and destroy sandbox resources. <br>
-Mitigation: Confirm command execution and sandbox deletion explicitly, and avoid sharing sandbox URLs or identifiers outside trusted channels. <br>
-Risk: The skill depends on a Baidu sandbox service and package index. <br>
-Mitigation: Install only when the Baidu service and package index are trusted for the intended environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Baidu Agent Sandbox credentials, create sandbox instances from supported templates, connect to existing sandboxes, inspect sandbox files and metadata, run commands, and end sandbox sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igogo888/sandbox-manager) <br>
-- [Baidu sandbox management platform](https://console.cloud.baidu-int.com/aitools/sandbox-square) <br>
-- [Baidu sandbox usage documentation](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/_SKPgSwp2G/B8wSneaLSC/xBjsa6yz-ZsV4-) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python snippets plus command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return sandbox identifiers, service URLs, command output, and configuration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles powerful sandbox credentials and may store API keys in a user-level environment file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher and service; prefer a safer secret manager or tightly permissioned skill-specific file for secrets.
+
+Risk: The skill can pass sensitive API keys or COMATE tokens through command-line arguments or sandbox environment variables.
+
+Mitigation: Avoid passing real API keys or COMATE tokens on the command line; scope credentials narrowly and rotate them after testing.
+
+Risk: The skill depends on the Baidu sandbox service and a custom Baidu pip index.
+
+Mitigation: Review the configured E2B_DOMAIN and dependency source before use, and install only if those services are trusted.
+
+Risk: Sandbox kill operations destroy sandbox state.
+
+Mitigation: Confirm destructive lifecycle commands and preserve important sandbox data before ending a sandbox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/igogo888/skills/sandbox-manager)
+- [Baidu Agent Sandbox console](https://console.cloud.baidu-int.com/aitools/sandbox-square)
+- [Baidu sandbox usage documentation](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/_SKPgSwp2G/B8wSneaLSC/xBjsa6yz-ZsV4-)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, sandbox identifiers, and service URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential setup steps, sandbox template choices, timeout values, command results, and sandbox lifecycle status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

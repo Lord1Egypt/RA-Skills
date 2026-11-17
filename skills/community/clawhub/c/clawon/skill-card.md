@@ -1,45 +1,60 @@
-## Description: <br>
-Clawon helps users back up and restore an OpenClaw workspace, including memory, skills, configuration, and optional local or cloud snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up and restore your OpenClaw workspace, including memory, skills, and configuration, using local or cloud backups.
 
-## Publisher: <br>
-[chelouche9](https://clawhub.ai/user/chelouche9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chelouche9](https://clawhub.ai/user/chelouche9)
 
-## Use Case: <br>
-OpenClaw users and developers use Clawon to preview, back up, restore, and schedule local or cloud snapshots of workspace files, skills, memory, configuration, and optional session or secret data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain sensitive workspace data when users opt into memory databases, sessions, or secrets. <br>
-Mitigation: Run discovery and secret scanning before backup, keep sensitive options opt-in, and use encryption for backups that include secrets or are uploaded to cloud storage. <br>
-Risk: Cloud backup and restore require a Clawon account and API key, which can be exposed if handled inline in shell commands. <br>
-Mitigation: Verify the npm package or use a reviewed local clone, prefer the CLAWON_API_KEY environment variable, and rotate any key that may have been exposed. <br>
-Risk: Scheduled backups create a persistent cron entry on supported systems. <br>
-Mitigation: Enable scheduling only when persistent backups are intended, review schedules with status or crontab inspection, and disable schedules when they are no longer needed. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to discover, back up, restore, encrypt, schedule, and optionally sync workspace data across machines.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chelouche9/clawon) <br>
-- [Clawon homepage](https://clawon.io) <br>
-- [Clawon CLI repository](https://github.com/chelouche9/clawon-cli) <br>
-- [Clawon npm package](https://www.npmjs.com/package/clawon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should start with discovery before backup or restore actions and should keep API keys and encryption passphrases under user control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill can lead users to run unpinned npm code for backup, restore, cloud sync, and scheduled jobs that handle sensitive workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Clawon package, prefer a locally audited install, and pin a trusted version before executing commands.
+
+Risk: Scheduled backups create persistent crontab entries and may repeatedly process workspace data.
+
+Mitigation: Inspect the generated crontab entry and disable or edit the schedule when it is no longer needed.
+
+Risk: Including sessions, memory databases, or credentials can expose sensitive data, especially during cloud backup.
+
+Mitigation: Run discovery first, keep secrets excluded unless necessary, require encryption for cloud secrets, and store encryption passphrases securely.
+
+## Reference(s):
+
+- [Clawon Skill Listing](https://clawhub.ai/chelouche9/skills/clawon)
+- [Clawon Homepage](https://clawon.io)
+- [Clawon npm Package](https://www.npmjs.com/package/clawon)
+- [Clawon Source Repository](https://github.com/chelouche9/clawon-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may perform local backup, restore, cloud sync, scheduling, encryption, and discovery actions through the Clawon CLI.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

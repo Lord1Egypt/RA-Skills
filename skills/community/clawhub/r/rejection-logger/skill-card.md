@@ -1,38 +1,47 @@
-## Description: <br>
-Captures and logs choices, options, or prompts that the agent evaluated and decided NOT to execute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures and logs choices, options, or prompts that an agent evaluated and decided not to execute, so skipped tasks, rejected approaches, or alternative methods can be documented.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record rejected requests, skipped approaches, and selected alternatives in a persistent workspace audit log. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent rejection logs can expose private context, prompts, secrets, or sensitive reasoning if recorded verbatim. <br>
-Mitigation: Log only short sanitized summaries with user consent, avoid secrets and full prompts, and review .learnings/REJECTIONS.md before committing or sharing a workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balkanblbn/rejection-logger) <br>
-- [Publisher profile](https://clawhub.ai/user/balkanblbn) <br>
+## Use Case:
+
+Developers and agent operators use this skill to record rejected tasks, skipped approaches, and chosen alternatives in a workspace audit log.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive prompts, personal data, or internal decision details in plaintext audit logs.
+
+Mitigation: Use only in workspaces where persistent audit logs are acceptable, keep .learnings/REJECTIONS.md out of version control unless intentionally shared, and record sanitized high-level summaries instead of raw sensitive details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown rejection log entries and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends entries to .learnings/REJECTIONS.md when the bundled script is used.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown log entries and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends entries to .learnings/REJECTIONS.md when used with the bundled shell script.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

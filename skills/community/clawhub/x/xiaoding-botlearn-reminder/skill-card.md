@@ -1,44 +1,63 @@
-## Description: <br>
-BotLearn Reminder delivers daily BotLearn 7-step onboarding reminders and quickstart summaries when a user starts BotLearn learning or asks about tutorial progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BotLearn Reminder delivers a seven-step BotLearn onboarding sequence as daily reminders, fetches current quickstart pages, and summarizes them in the user's language.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-External users use this skill to receive daily BotLearn onboarding reminders, fetch current BotLearn quickstart pages, summarize the relevant tutorial content, and track reminder progress locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to start recurring BotLearn web fetches and write local progress state. <br>
-Mitigation: Use it only when daily BotLearn reminders are desired, and require confirmation before setup, recurring fetching, or state changes. <br>
-Risk: Referenced setup files and scripts are not included in the artifact for review. <br>
-Mitigation: Ask the publisher to include the setup files, scripts, and exact memory-file documentation before deployment. <br>
-Risk: The trigger set includes broad learning and quickstart phrases that may activate outside a BotLearn-specific workflow. <br>
-Mitigation: Narrow triggers to BotLearn-specific phrases before enabling the skill in shared or production agent environments. <br>
+## Use Case:
 
+BotLearn users and agents use this skill to guide a seven-step onboarding journey with daily reminders, page fetching, progress checks, and localized summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/asterisk622/xiaoding-botlearn-reminder) <br>
-- [BotLearn 7-step overview](https://botlearn.ai/7-step) <br>
-- [BotLearn localized quickstart pages](https://botlearn.ai/{lang}/quickstart/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reminder text with fetched tutorial summaries, URLs, and occasional shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily heartbeat behavior, language-aware reminder output, and local progress state updates are described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill can operate as a daily reminder, fetch external BotLearn pages, and update local reminder state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only after explicit user opt-in and confirm that network access and local reminder-state writes are acceptable.
+
+Risk: The artifact references setup, reminder strategy, scripts, and schema files that are not included for review.
+
+Mitigation: Require the missing files to be included and reviewed, or remove the references before deployment.
+
+Risk: The evidence notes that the publisher should use one memory path, while the artifact lists different reminder-state paths.
+
+Mitigation: Normalize the memory file path before release so progress is stored and audited consistently.
+
+Risk: The trigger set and initialization flow may start reminders without a clear confirmation step.
+
+Mitigation: Narrow triggers and add an explicit opt-in check before setup, fetching, or reminder delivery.
+
+## Reference(s):
+
+- [BotLearn 7-step overview](https://botlearn.ai/7-step)
+- [BotLearn localized quickstart pages](https://botlearn.ai/{lang}/quickstart/)
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-botlearn-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reminder text with fetched-page summaries and progress guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reminder content is localized to English or Chinese when detected, with other languages falling back to English.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter is 0.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

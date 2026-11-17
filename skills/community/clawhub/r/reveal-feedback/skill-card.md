@@ -1,44 +1,60 @@
-## Description: <br>
-Interact with Reveal feedback infrastructure to manage products, create review tasks, read AI-analyzed user feedback, get sentiment insights, view submissions, manage notifications, register webhooks, and generate marketing content such as scripts, images, and videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Reveal feedback infrastructure to manage products, create review tasks, read AI-analyzed user feedback, get sentiment insights, view submissions, manage notifications, register webhooks, and generate marketing content such as scripts, images, and videos.
 
-## Publisher: <br>
-[tolulopeayo](https://clawhub.ai/user/tolulopeayo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tolulopeayo](https://clawhub.ai/user/tolulopeayo)
 
-## Use Case: <br>
-Product, marketing, and customer feedback teams use this skill to inspect Reveal account data, summarize product review insights, manage review tasks and notifications, register webhooks, and generate marketing assets from feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Reveal API key to read account data and change account state. <br>
-Mitigation: Keep REVEAL_API_KEY private and require explicit confirmation before creating or changing review tasks, marking notifications, generating persistent media jobs, or registering webhooks. <br>
-Risk: Webhook registration can create persistent callbacks and returns a signing secret. <br>
-Mitigation: Use only URLs the user controls, limit subscribed events, store the signing secret securely, and remove unused webhooks. <br>
-Risk: The optional REVEAL_BASE_URL override can redirect API traffic to a nonstandard endpoint. <br>
-Mitigation: Set REVEAL_BASE_URL only when the endpoint is fully trusted. <br>
+## Use Case:
 
+Product, marketing, and customer-feedback teams use this skill to inspect Reveal product feedback, review tasks, submissions, notifications, webhooks, and AI-derived insights. It can also help generate marketing scripts, images, and videos from product feedback through the Reveal API.
 
-## Reference(s): <br>
-- [Reveal REST API v1 Reference](references/api-reference.md) <br>
-- [Reveal Homepage](https://testreveal.ai) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/tolulopeayo/reveal-feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with API request guidance and returned Reveal URLs or identifiers when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVEAL_API_KEY and may return task IDs, webhook secrets, image URLs, video job IDs, access tokens, or video URLs from the Reveal API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: A broad Reveal API key can be sent to a configurable network destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where REVEAL_BASE_URL is unset or pinned to a trusted Reveal endpoint, and keep REVEAL_API_KEY scoped and rotated according to Reveal account policy.
+
+Risk: The skill can perform account-changing actions such as task updates, webhook changes, notification changes, and media generation.
+
+Mitigation: Require explicit user confirmation before sending update, webhook, notification, or media-generation requests.
+
+Risk: Reveal submissions, transcripts, videos, notes, analyses, webhook secrets, and video access tokens may contain sensitive account data.
+
+Mitigation: Avoid exposing secrets or sensitive submission details in responses, logs, or shared outputs; store webhook secrets and video access tokens securely.
+
+## Reference(s):
+
+- [Reveal REST API v1 Reference](references/api-reference.md)
+- [Reveal Homepage](https://testreveal.ai)
+- [Reveal Skill on ClawHub](https://clawhub.ai/tolulopeayo/skills/reveal-feedback)
+- [Publisher Profile](https://clawhub.ai/user/tolulopeayo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON request and response examples, API guidance, and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVEAL_API_KEY; uses Reveal API responses as source data and may return generated media URLs, job IDs, webhook secrets, and video access tokens.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

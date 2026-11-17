@@ -13,6 +13,43 @@ YAML-driven text-to-speech over SSH using Qwen3-TTS models.
 
 For installation and deployment, see [references/setup.md](references/setup.md).
 
+## Security & safety
+
+- **Voice cloning requires consent.** Reference audio (`ref_audio`) is
+  biometric data of a real person's voice — only clone a voice you have
+  explicit consent for. Cloning someone's voice without consent enables
+  impersonation and fraud; never clone from audio scraped or supplied
+  without the speaker's permission, and never use a clone to impersonate
+  a specific named individual without their say-so. See
+  [Modes](#modes) below.
+- **Every call leaves your host.** `scripts/qwenspeak.sh` execs `ssh` to
+  `tts@$QWENSPEAK_HOST:$QWENSPEAK_PORT` and pipes text, YAML job configs,
+  and any audio you `put`/`get` over that connection — none of it stays
+  local. Only point `QWENSPEAK_HOST`/`QWENSPEAK_PORT` at an instance you
+  run or explicitly trust; see [SSH Wrapper](#ssh-wrapper) below.
+- Both env vars are required — the wrapper hard-fails (`QWENSPEAK_HOST
+  not set` / `QWENSPEAK_PORT not set`) if either is empty, so there is no
+  silent unauthenticated fallback. Auth itself is SSH public-key only
+  (see below).
+
+## Security model
+
+qwenspeak is **not** a general-purpose shell. The instance runs inside a
+[lockbox](https://github.com/psyb0t/docker-lockbox)-hardened container, and this
+skill only ever talks to an instance you (or your operator) already run and trust:
+
+- **Key-auth only** — SSH accepts public-key auth only (no passwords), connecting
+  as a restricted `tts@` user. There is no interactive shell and no PTY.
+- **Fixed command set** — the SSH channel dispatches only the `tts` command plus
+  lockbox's built-in, scoped file operations (the tables below). Anything else is
+  refused; the remote never spawns a shell, so there is no command-injection surface.
+- **Work-dir confined** — every file path resolves under the instance work
+  directory; traversal is blocked. The sandbox cannot read or write your host
+  filesystem.
+- **Consumer-only** — this skill submits TTS jobs and moves files to/from a
+  running instance. It never provisions, escalates, or installs anything on your
+  machine (server setup is a separate, operator-side step — see setup.md).
+
 ## SSH Wrapper
 
 Use `scripts/qwenspeak.sh` for all commands. It handles host, port, and host key acceptance via `QWENSPEAK_HOST` and `QWENSPEAK_PORT` env vars.
@@ -22,6 +59,11 @@ scripts/qwenspeak.sh <command> [args]
 scripts/qwenspeak.sh <command> < input_file
 scripts/qwenspeak.sh <command> > output_file
 ```
+
+**External transmission.** Every invocation sends its command, YAML job
+body, and any piped stdin/stdout (text, transcripts, audio bytes) over
+SSH to whatever `QWENSPEAK_HOST`/`QWENSPEAK_PORT` point at — data leaves
+your host. Point these only at a service you run or explicitly trust.
 
 ## TTS Generation
 
@@ -87,6 +129,14 @@ steps:
 **voice-design** — Describe the voice in natural language via `instruct`. 1.7B only.
 
 **voice-clone** — Clone from reference audio. Set `ref_audio` and `ref_text` at step level to reuse across generations. `x_vector_only: true` skips transcript.
+
+**Consent & privacy.** `ref_audio` is a voice sample of a real person —
+treat it as sensitive personal data. Only clone a voice you have
+explicit consent to clone; an agent must NEVER clone a voice from audio
+of someone who hasn't agreed to it, and must never use a clone to
+impersonate a specific named individual (e.g. for fraud, harassment, or
+deceptive/synthetic-media purposes). If the user's request or the
+reference audio's provenance is unclear, ask before proceeding.
 
 ### Emotion trick for cloned voices
 

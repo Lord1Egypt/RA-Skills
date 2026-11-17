@@ -1,49 +1,63 @@
-## Description: <br>
-Whispers from the Star is a xianxia text-adventure skill that guides a player from mortal life through seven cultivation realms with choice-driven character growth, reincarnation, inventory, and biography systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Whispers from the Star is a Chinese-language xianxia text adventure skill that guides an agent through cultivation realms, character growth, inventory handling, reincarnation, and choice-driven narrative play.
 
-## Publisher: <br>
-[ouwenjie03](https://clawhub.ai/user/ouwenjie03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouwenjie03](https://clawhub.ai/user/ouwenjie03)
 
-## Use Case: <br>
-External users and role-playing agents use this skill to run a Chinese-language cultivation-themed interactive fiction game, maintain fictional character progress, and advance through realm-specific story chapters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain and change a local game_state.md save file for fictional progress. <br>
-Mitigation: Keep game_state.md limited to fictional game content and review or back it up before resets, new-game-plus transitions, or choices that discard inventory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouwenjie03/whispers-from-the-star) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Game Start and Initialization](references/ch00_start.md) <br>
-- [Qi Refining Realm Journey](references/ch01_qi_refining.md) <br>
-- [Foundation Establishment Realm](references/ch02_foundation.md) <br>
-- [Golden Core Realm](references/ch03_golden_core.md) <br>
-- [Nascent Soul Realm](references/ch04_nascent_soul.md) <br>
-- [Spirit Transformation Realm](references/ch05_spirit_transformation.md) <br>
-- [Tribulation Realm](references/ch06_tribulation.md) <br>
-- [Ascension and Reincarnation](references/ch07_ascension.md) <br>
-- [Managing Character System](references/system_character_system.md) <br>
-- [Managing Inventory System](references/system_inventory_system.md) <br>
-- [Managing Biography System](references/system_biography_system.md) <br>
+## Use Case:
 
+External users and role-playing agents use this skill to run a Chinese-language cultivation text RPG with persistent character, inventory, and biography state. It is intended for interactive story play, branching choices, and xianxia scenario generation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown narrative and structured game-state guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains fictional game progress in a local game_state.md save file when the hosting agent follows the skill guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gameplay can modify the local game_state.md save file during normal use.
+
+Mitigation: Back up game_state.md before play or before major story decisions if preserving a run matters.
+
+Risk: Inventory rules may discard in-game items when the backpack is full and the player gives an unclear choice.
+
+Mitigation: Give explicit item names or numbers when resolving inventory prompts, and review the resulting game_state.md if item preservation is important.
+
+## Reference(s):
+
+- [Whispers from the Star ClawHub Page](https://clawhub.ai/ouwenjie03/skills/whispers-from-the-star)
+- [Game Start and Initialization](references/ch00_start.md)
+- [Qi Refining Realm Journey](references/ch01_qi_refining.md)
+- [Foundation Building Realm Journey](references/ch02_foundation.md)
+- [Golden Core Realm Journey](references/ch03_golden_core.md)
+- [Nascent Soul Realm Journey](references/ch04_nascent_soul.md)
+- [Spirit Transformation Realm Journey](references/ch05_spirit_transformation.md)
+- [Tribulation Realm Journey](references/ch06_tribulation.md)
+- [Ascension Realm Journey](references/ch07_ascension.md)
+- [Managing Character System](references/system_character_system.md)
+- [Managing Inventory System](references/system_inventory_system.md)
+- [Managing Biography System](references/system_biography_system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Interactive Markdown narrative with local Markdown save-state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language gameplay; reads bundled chapter and system files and may update a local game_state.md save file during play.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

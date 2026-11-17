@@ -1,43 +1,56 @@
-## Description: <br>
-Complete AI travel concierge covering flights, hotels, lounges, awards, activities, deals, wallet, and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete AI travel concierge covering flights, hotels, lounges, awards, activities, deals, wallet, and recovery.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to plan, compare, book, and optimize trips through Aerobase APIs, including flight scoring, hotels, lounges, awards, activities, wallet information, and jetlag recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support booking, cancellation, payment-adjacent, wallet, loyalty-program, boarding-pass, and delete actions through Aerobase APIs. <br>
-Mitigation: Require explicit user confirmation before any booking, cancellation, card or wallet change, loyalty-program change, payment-related step, boarding-pass storage, or delete action. <br>
-Risk: The required Aerobase API key may expose sensitive travel and account data to the agent. <br>
-Mitigation: Install only when the user accepts Aerobase API access, keep AEROBASE_API_KEY in the agent environment, and redact API keys from all user-visible output. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan, compare, book, monitor, and optimize trips across flights, hotels, lounges, awards, activities, deals, wallet value, and jetlag recovery.
 
-## Reference(s): <br>
-- [Aerobase API Reference](references/aerobase-api.md) <br>
-- [Aerobase Homepage](https://aerobase.app) <br>
-- [Aerobase OpenAPI Spec](https://aerobase.app/api/v1/openapi) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kurosh87/aerobase-travel-concierge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown with concise travel recommendations, next actions, and API-backed results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; free usage is capped at 5 requests per day.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use an Aerobase API key to book or cancel travel and change wallet or payment-related data without clearly requiring user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before booking, cancellation, deletion, alert creation, or wallet/card/loyalty changes.
+
+Risk: Aerobase API use may expose travel, booking, wallet, payment, and boarding-pass data to the third-party service.
+
+Mitigation: Install only when the user or organization trusts Aerobase for those data categories and has reviewed the skill before use.
+
+## Reference(s):
+
+- [Aerobase API Reference](references/aerobase-api.md)
+- [Aerobase Homepage](https://aerobase.app)
+- [Aerobase OpenClaw Travel Agent](https://aerobase.app/openclaw-travel-agent)
+- [Aerobase OpenAPI Spec](https://aerobase.app/api/v1/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Concise Markdown travel recommendations with endpoint-backed options and next actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; responses should redact raw API keys and prioritize top options.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

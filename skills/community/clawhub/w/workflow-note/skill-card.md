@@ -1,42 +1,55 @@
-## Description: <br>
-流程构建类笔记的写作规范与模板，用于为 workflows/ 分类撰写新笔记，覆盖文章结构、内容要求、质量标准和发布流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Note provides Chinese writing standards and templates for agents drafting reproducible workflow-building notes about AI-built automation processes.
 
-## Publisher: <br>
-[tino-chen](https://clawhub.ai/user/tino-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tino-chen](https://clawhub.ai/user/tino-chen)
 
-## Use Case: <br>
-Documentation authors and agent users use this skill to draft Chinese workflow-building notes that explain how AI tools are combined into reproducible automation processes. It helps structure notes with clear outcomes, architecture, implementation steps, pitfalls, and references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead an agent to copy local configuration, private prompts, internal paths, or other sensitive operational details into a note. <br>
-Mitigation: Review the generated note and repository diff before committing or pushing; redact secrets, personal information, private prompts, internal paths, and operational details that should not be published. <br>
-Risk: Generated workflow notes may include commands, configuration, or process guidance that is incomplete or misleading if copied from the wrong local context. <br>
-Mitigation: Verify included commands and configuration against the intended environment and keep only reproducible details that are appropriate for the target audience. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent draft Chinese workflow notes with a consistent structure, reproducible steps, complete configuration excerpts, verified commands or code, and useful references.
 
-## Reference(s): <br>
-- [Writing Example](references/example.md) <br>
-- [Workflow Guide](https://tino-chen.github.io/notes/workflows/auto-note-system.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tino-chen/workflow-note) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with templates, checklists, and optional code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese prose is expected for note body content; generated notes may include full configuration excerpts when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: Copied cron prompts, AGENTS.md, HEARTBEAT.md, or similar configuration may contain secrets, personal data, internal addresses, or private instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review copied configuration content before publishing notes and remove sensitive or private material.
+
+Risk: The workflow asks an agent to build, commit, and push changes as part of publication.
+
+Mitigation: Treat build, commit, and push operations as actions requiring explicit user intent before execution.
+
+## Reference(s):
+
+- [Workflow Note on ClawHub](https://clawhub.ai/tino-chen/skills/workflow-note)
+- [Workflow Note guide](https://tino-chen.github.io/notes/workflows/auto-note-system.html)
+- [Writing example](references/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown note drafts with YAML frontmatter, headings, tables or ASCII diagrams, command/code blocks, and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review of copied configuration content for secrets, personal data, internal addresses, and private instructions before publication]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

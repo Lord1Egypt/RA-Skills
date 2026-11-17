@@ -1,44 +1,60 @@
-## Description: <br>
-Save restaurants, bars, and cafes from TikTok and Instagram videos, then search saved places and get weekend suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save restaurants, bars, and cafes from TikTok and Instagram videos. Search your saved places and get weekend suggestions.
 
-## Publisher: <br>
-[bgrober](https://clawhub.ai/user/bgrober) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bgrober](https://clawhub.ai/user/bgrober)
 
-## Use Case: <br>
-External users and developers use Alista to capture restaurant, bar, cafe, and event leads from Instagram or TikTok posts, verify them with Google Places, store them locally, and search or request weekend suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Social-media URLs and place queries are sent to Apify and Google Places using the user's API keys. <br>
-Mitigation: Install and use the skill only when this data sharing is acceptable, and configure API keys with appropriate account controls. <br>
-Risk: Image downloads and video frame extraction may process third-party media from social platforms. <br>
-Mitigation: Use media download and frame extraction only for content the user is authorized to process. <br>
-Risk: Saved places are stored in the local SQLite database alista.db. <br>
-Mitigation: Treat the database as user data and manage local access, backup, and deletion according to the user's privacy expectations. <br>
+## Use Case:
 
+External users and developers use Alista to save restaurants, bars, cafes, and events from Instagram or TikTok posts into a local SQLite bookmark database, then search saved places or ask for weekend suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bgrober/alista) <br>
-- [Google Places API setup](https://console.cloud.google.com/apis/library/places-backend.googleapis.com) <br>
-- [Apify Console](https://console.apify.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Conversational text with JSON returned by supporting TypeScript scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google Places and Apify API keys; saved places are stored locally in alista.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and package.json) <br>
+Risk: Social-media URLs, captions, tagged users, transcripts, media metadata, and place queries may be sent to Apify and Google Places.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and provide API keys only in workspaces authorized for those services.
+
+Risk: The security evidence says the social-media fetcher can be tricked into contacting non-social or local network URLs.
+
+Mitigation: Avoid processing untrusted links until URL validation is fixed, and run the skill in a tightly network-restricted workspace.
+
+Risk: Optional media download and frame extraction can write files outside the intended workspace.
+
+Mitigation: Avoid --download-images and --extract-frames for untrusted links, or pass only reviewed output directories inside an isolated workspace.
+
+## Reference(s):
+
+- [Alista ClawHub Skill Page](https://clawhub.ai/bgrober/skills/alista)
+- [Publisher Profile](https://clawhub.ai/user/bgrober)
+- [Google Places API](https://console.cloud.google.com/apis/library/places-backend.googleapis.com)
+- [Apify Console](https://console.apify.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Conversational Markdown with inline shell commands, JSON script output, and local SQLite data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local alista.db SQLite database and optional downloaded image or frame files when those script options are used.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

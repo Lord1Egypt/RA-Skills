@@ -1,41 +1,54 @@
-## Description: <br>
-Mystical Divination Toolkit provides tarot card readings, I Ching hexagrams, numerology life path calculations, and astrology zodiac analysis for entertainment-style guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mystical Divination Toolkit provides tarot readings, I Ching hexagrams, numerology life path calculations, and zodiac analysis for entertainment-style guidance.
 
-## Publisher: <br>
-[tylerchen0225-web](https://clawhub.ai/user/tylerchen0225-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tylerchen0225-web](https://clawhub.ai/user/tylerchen0225-web)
 
-## Use Case: <br>
-External users and developers use this skill to generate entertainment-style tarot, I Ching, numerology, and zodiac readings through natural-language prompts. It should not be used for medical, legal, financial, or other high-stakes decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat entertainment-style divination or numerology output as high-stakes advice. <br>
-Mitigation: Use the skill only for entertainment-style guidance and avoid relying on it for medical, legal, financial, or other high-stakes decisions. <br>
-Risk: Life path calculations may require a birth date. <br>
-Mitigation: Provide birth-date information only when the user clearly intends to run a life-path calculation. <br>
+## Use Case:
 
+External users and agent builders use this skill to generate entertainment-style tarot, I Ching, numerology, and zodiac readings in Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tylerchen0225-web/mystical-divination-en) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tylerchen0225-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted divination readings and interpretive guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request a birth date for life path calculations; no hidden execution, persistence, credential use, or data exfiltration was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Users may over-rely on entertainment-style divination for financial, legal, medical, or safety decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as entertainment guidance and avoid treating them as authoritative advice for high-stakes decisions.
+
+Risk: Numerology workflows may ask for a full birth date.
+
+Mitigation: Request birth dates only when needed for the immediate calculation and avoid retaining or reusing that information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tylerchen0225-web/skills/mystical-divination-en)
+- [ClawHub publisher profile](https://clawhub.ai/user/tylerchen0225-web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown readings and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a birth date for numerology; no code execution, persistence, or network access indicated by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

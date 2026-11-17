@@ -1,44 +1,53 @@
-## Description: <br>
-Call GET /api/twitter/get-user-posts/v1 for Twitter User Published Posts through JustOneAPI with restId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/twitter/get-user-posts/v1 for Twitter User Published Posts through JustOneAPI with restId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch published posts for a specific X/Twitter user through JustOneAPI using a required restId, with optional pagination support for longer timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token to call the endpoint. <br>
-Mitigation: Run it in a trusted local environment and avoid sharing command logs, screenshots, or output that may expose the token. <br>
-Risk: Endpoint responses may include account monitoring data and engagement details for Twitter/X posts. <br>
-Mitigation: Review returned JSON before sharing it and handle the results according to the user's privacy, compliance, and data-use requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve a Twitter user's published posts through JustOneAPI for account monitoring and content analysis. The required lookup input is the user's numeric restId, with cursor support for pagination.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-twitter-get-user-posts) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_posts&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_posts&utm_content=project_link) <br>
-- [Generated Operations Reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with a shell command example and JSON API response output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and a Twitter/X user restId; cursor is optional for pagination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API token may be exposed through command arguments or URL query strings when the helper calls JustOneAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where sending the token and queried Twitter user IDs to JustOneAPI is acceptable; avoid logging commands or URLs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_posts&utm_content=project_link)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_twitter_get_user_posts&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-twitter-get-user-posts)
+- [Generated Operations Reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON response payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a Twitter restId; supports an optional pagination cursor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

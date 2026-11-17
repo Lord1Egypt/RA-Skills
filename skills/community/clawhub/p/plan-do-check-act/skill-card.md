@@ -1,43 +1,57 @@
-## Description: <br>
-PDCA workflow automation with session binding and progress recovery. Requires Python 3.6 and Git (optional). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDCA workflow automation with session binding and progress recovery. Requires Python 3.6 and Git (optional).
 
-## Publisher: <br>
-[brucezhu888](https://clawhub.ai/user/brucezhu888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucezhu888](https://clawhub.ai/user/brucezhu888)
 
-## Use Case: <br>
-Developers and agents use this skill to break complex work into plan.md checklists, track execution status, recover incomplete work by session, and archive completed plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plan files may contain real session IDs or sensitive project details. <br>
-Mitigation: Use a dedicated workspace and avoid storing sensitive identifiers or confidential project details in plan files that may be shared. <br>
-Risk: Recovered progress may be inferred from recent file changes and can be incomplete or misleading. <br>
-Mitigation: Review the reported progress before acting on it or resuming work. <br>
-Risk: Archive cleanup can delete old archived plan files. <br>
-Mitigation: Run cleanup with --dry-run first and confirm the target workspace and retention period. <br>
+## Use Case:
 
+Developers and agent operators use this skill to break complex work into PDCA plans, track checklist progress, recover interrupted work, and archive completed plan files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucezhu888/plan-do-check-act) <br>
-- [Publisher Profile](https://clawhub.ai/user/brucezhu888) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plan files, terminal status text, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local plan*.md files in the configured workspace; archive cleanup can remove old archived plan files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: Plan files and progress checks can expose saved session IDs, task names, and filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace, avoid real session IDs or sensitive task names in shared plan files, and review progress output before sharing it.
+
+Risk: Commands that accept paths can operate outside the documented plan workspace.
+
+Mitigation: Run the skill only in the intended workspace and avoid absolute paths or parent-directory paths in plan commands.
+
+Risk: Archive and cleanup actions can move or delete archived plan files.
+
+Mitigation: Require user confirmation for archive and cleanup, and use cleanup --dry-run before deleting files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucezhu888/skills/plan-do-check-act)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, console status text, shell command examples, and plan.md-style task files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can create, update, pause, resume, archive, and clean up plan files through bundled Python scripts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

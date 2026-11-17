@@ -1,42 +1,59 @@
-## Description: <br>
-Smart Web Search helps agents run region-aware web searches and optionally fetch result-page content across China and international networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart web search with auto region detection, query intent rewriting, and dual-tier content fetching. Works in both China and international networks.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to search the web, collect ranked results, and optionally fetch page text for research, troubleshooting, and content discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, IP/network metadata, and fetched result URLs are sent to search engines, geolocation services, and result websites. <br>
-Mitigation: Avoid sensitive searches, disable or reduce automatic fetching when possible, and use explicit search requests when privacy matters. <br>
-Risk: Fetched page content may be incomplete, outdated, or shaped by search-engine and result-site behavior. <br>
-Mitigation: Review returned URLs and fetched content before relying on them for decisions, citations, or downstream skill changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to run web searches, rewrite search queries for better relevance, and fetch page content from search results across China and international networks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ucsdzehualiu/free-smart-web-search) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and fetched page-content text, with setup and usage guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result count, automatic page fetching, maximum fetched text length, and regional search routing are configurable by command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill performs web searches and fetches web pages from the runtime environment, which may expose sensitive search terms or reach internal network resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a contained, low-privilege environment with restricted outbound network access and avoid using sensitive search terms or internal URLs.
+
+Risk: The skill uses browser automation for search and content fetching fallbacks.
+
+Mitigation: Review browser automation behavior before deployment and prefer environments without sensitive developer credentials.
+
+Risk: Dependency setup can install Node packages and Playwright Chromium unless dependencies are already locked and provisioned.
+
+Mitigation: Require locked dependencies and review setup behavior before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/free-smart-web-search)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and command-line output with search result text, links, and fetched page excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include externally fetched web content and search-engine result metadata.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

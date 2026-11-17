@@ -1,47 +1,59 @@
-## Description: <br>
-Fetches employee attendance data from the DingTalk Open Platform and saves it locally or sends it to a configured channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches employee attendance data from the DingTalk Open Platform and saves local JSON and Excel reports.
 
-## Publisher: <br>
-[renjicode](https://clawhub.ai/user/renjicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renjicode](https://clawhub.ai/user/renjicode)
 
-## Use Case: <br>
-HR, operations, or IT administrators use this skill to collect DingTalk department, employee, and attendance records for daily, weekly, or date-range reporting. It can generate local JSON and Excel attendance reports after the DingTalk app is configured and authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive employee attendance and directory data. <br>
-Mitigation: Install and run it only for authorized DingTalk administrators; keep credentials out of version control, restrict output directory access, and define retention and deletion rules. <br>
-Risk: Normal use can install a Python dependency automatically if openpyxl is missing. <br>
-Mitigation: Install npm and Python dependencies in a controlled environment before running, and remove or avoid the automatic pip-install fallback where policy requires fixed dependencies. <br>
-Risk: Scheduled collection can repeatedly export employee data without direct user review. <br>
-Mitigation: Enable cron or other automated execution only with clear approval, monitoring, and access controls for generated reports. <br>
+## Use Case:
 
+HR, operations, and internal automation teams use this skill to retrieve DingTalk department, employee, and attendance records for daily, weekly, or custom date-range reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renjicode/keplerjai-dingtalk-attendance) <br>
-- [Publisher profile](https://clawhub.ai/user/renjicode) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com) <br>
-- [README.md](README.md) <br>
-- [CONFIG_GUIDE.md](CONFIG_GUIDE.md) <br>
-- [WEEKLY_GUIDE.md](WEEKLY_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated JSON and Excel files from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local attendance reports and summary statistics; credentials are read from local configuration and should not be echoed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Employee attendance data and DingTalk credentials may be exposed through local configuration or generated report files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the .env file, restrict output directories and file permissions, and install only after review by someone authorized to handle employee attendance data.
+
+Risk: Unsafe command execution and automatic dependency installation can increase execution and supply-chain risk.
+
+Mitigation: Patch Excel export to use argument-based process execution, remove automatic pip installs, and pin dependencies before deployment.
+
+Risk: Scheduled attendance pulls can increase impact if run with excessive privileges.
+
+Mitigation: Run scheduled jobs under a least-privilege account rather than a privileged account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renjicode/skills/keplerjai-dingtalk-attendance)
+- [ClawHub publisher profile](https://clawhub.ai/user/renjicode)
+- [DingTalk Open Platform](https://open.dingtalk.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, Excel files, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text plus local JSON and .xlsx report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DingTalk app credentials in a local .env or config.json and appropriate attendance/contact permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Monitors official Vietnam NSO monthly and quarterly socio-economic releases and compares same-period trends; used when users request official macro updates and year-over-year context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors official Vietnam NSO monthly and quarterly socio-economic releases and compares same-period trends; used when users request official macro updates and year-over-year context.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-External users and analysts use this skill to retrieve official Vietnam NSO macro releases, compare current indicators with the same period in the prior year, and summarize sector implications for Vietnam equities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Official NSO pages, linked reports, or PDFs may be partially unavailable, causing missing macro indicator blocks or historical comparators. <br>
-Mitigation: Report retrieval coverage, list missing GDP/CPI/IIP/trade/retail/FDI/credit fields, and downgrade confidence when required blocks are incomplete. <br>
-Risk: Sector-impact summaries can be mistaken for investment instructions or may rely on unverified macro figures. <br>
-Mitigation: Separate NSO facts from sector inferences, cite source URLs for key claims, verify macro figures before financial use, and avoid absolute buy or sell instructions. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to retrieve official Vietnam NSO macroeconomic releases, compare current data with the same period in the prior year, and summarize sector implications for Vietnam equities with confidence and data-gap notes.
 
-## Reference(s): <br>
-- [Vietnam NSO monthly socio-economic reports](https://www.nso.gov.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-hang-thang) <br>
-- [ClawHub release page](https://clawhub.ai/ndtchan/nso-macro-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with release metadata, indicator tables, sector implications, confidence notes, data gaps, and cited URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web access to official NSO pages and linked reports or PDFs; outputs confidence levels based on retrieval coverage and missing indicator blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill uses web access to read official NSO pages and linked PDFs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm web access is acceptable before installation and require canonical NSO URLs over reposted summaries.
+
+Risk: PDF or report extraction failures can leave indicator coverage incomplete.
+
+Mitigation: Attempt both the summary page and report or PDF, list missing GDP/CPI/IIP/trade/retail/FDI/credit blocks, and downgrade confidence when data is incomplete.
+
+Risk: Sector implications for Vietnam equities are interpretive and could be mistaken for financial advice.
+
+Mitigation: Label NSO-derived statements as facts, label sector mappings as inferences, cite URLs for key claims, and avoid absolute buy or sell instructions.
+
+## Reference(s):
+
+- [Vietnam NSO Monthly Socio-Economic Reports](https://www.nso.gov.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-hang-thang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with metadata, indicator tables, sector implications, confidence notes, data gaps, and cited URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes release date, extraction timestamp in ICT (UTC+7), completed and missing indicator blocks, and fact-versus-inference labeling.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

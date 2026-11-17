@@ -1,48 +1,57 @@
-## Description: <br>
-Create and manage PandaDoc documents, templates, folders, contacts, and signing workflows via the PandaDoc API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage PandaDoc documents, templates, folders, and contacts via the PandaDoc API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to PandaDoc through ClawLink, create documents from templates or uploads, manage templates, folders, and contacts, and track document signing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-backed access to the user's PandaDoc account through ClawLink. <br>
-Mitigation: Install only when the user intends to connect PandaDoc through ClawLink, and review the requested PandaDoc permissions during connection. <br>
-Risk: Write or destructive actions can create, update, move, send, or delete PandaDoc resources. <br>
-Mitigation: Confirm the target resource and intended effect before executing any create, update, move, send, or delete action. <br>
-Risk: Document sending and workflow triggers can affect external recipients. <br>
-Mitigation: Preview the document, recipients, and workflow action with the user before sending or triggering a document workflow. <br>
-Risk: Webhook creation can subscribe external endpoints to PandaDoc events. <br>
-Mitigation: Confirm the webhook endpoint, event scope, and business purpose before creating a webhook subscription. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to create PandaDoc documents from templates or file uploads, manage templates, folders, contacts, and attachments, and track or send documents for signature through a connected PandaDoc account.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hith3sh/pandadoc-documents) <br>
-- [PandaDoc API Documentation](https://developers.pandadoc.com/) <br>
-- [PandaDoc Document API](https://developers.pandadoc.com/reference/documents) <br>
-- [PandaDoc Template API](https://developers.pandadoc.com/reference/templates) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected PandaDoc account through ClawLink; write, destructive, sending, and webhook actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill routes PandaDoc OAuth access through ClawLink, which may expose sensitive document and account access to a third-party integration path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the plugin publisher and version, reviewing requested PandaDoc permissions, and granting the least-privileged PandaDoc access available.
+
+Risk: Write actions can send documents, delete templates or contacts, upload attachments, or create webhooks that affect external parties or account state.
+
+Mitigation: Require explicit user confirmation before create, update, delete, send, upload, or webhook actions, including the target resource and intended effect.
+
+## Reference(s):
+
+- [PandaDoc API Documentation](https://developers.pandadoc.com/)
+- [PandaDoc Document API](https://developers.pandadoc.com/reference/documents)
+- [PandaDoc Template API](https://developers.pandadoc.com/reference/templates)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=pandadoc-documents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include PandaDoc identifiers, document metadata, contact details, and workflow status from the connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

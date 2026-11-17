@@ -1,40 +1,53 @@
-## Description: <br>
-Automated report generation for self-reflection and system analysis across daily, weekly, and monthly reports from logs, databases, and system metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated report generation for self-reflection and system analysis. Creates daily, weekly, and monthly reports from logs, databases, and system metrics.
 
-## Publisher: <br>
-[kikikari](https://clawhub.ai/user/kikikari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikikari](https://clawhub.ai/user/kikikari)
 
-## Use Case: <br>
-Developers and operators use this skill to generate daily, weekly, monthly, and ad-hoc Markdown reports from local databases, logs, memory notes, and system metrics for monitoring, review, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may summarize sensitive logs, databases, memory notes, or system metrics. <br>
-Mitigation: Restrict input paths, redact secrets and personal data, and protect the reports directory before enabling report generation. <br>
-Risk: Scheduled reports may repeatedly process local operational data without manual review. <br>
-Mitigation: Review any report-generation scripts before scheduling them and confirm retention and output settings match local policy. <br>
+## Use Case:
 
+Developers and operators use this skill to create daily, weekly, monthly, and ad-hoc Markdown reports from local logs, databases, documentation changes, filesystem activity, and system metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kikikari/reports-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with command examples and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces report files under a reports directory and may summarize local logs, databases, memory notes, and system metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: Generated reports may expose sensitive logs, documentation changes, filesystem activity, operational metrics, or other private details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the reports directory with appropriate permissions and redact secrets or private operational details before sharing reports.
+
+Risk: Scheduled report generation may run against local systems on an automated cadence.
+
+Mitigation: Review cron entries and scheduled commands before enabling them.
+
+## Reference(s):
+
+- [Reports Creator on ClawHub](https://clawhub.ai/kikikari/skills/reports-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be written to a configured reports directory and generated manually or on a schedule.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

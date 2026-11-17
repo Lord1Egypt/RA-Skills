@@ -1,41 +1,54 @@
-## Description: <br>
-Mult Call analyzes intent-recognition output, retrieves related QA and SQL examples from a vector knowledge base, and retrieves table DDL from a graph database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mult Call analyzes metric and dimension output from intent recognition, recalls similar question-and-SQL examples from a vector knowledge base, and retrieves table DDL from a graph database.
 
-## Publisher: <br>
-[LoveNerverMore](https://clawhub.ai/user/LoveNerverMore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovenervermore](https://clawhub.ai/user/lovenervermore)
 
-## Use Case: <br>
-Developers and data-agent builders use this skill as a retrieval step after intent recognition to gather table schema, metric context, and similar QA/SQL examples before SQL generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads shared environment variables into a Python subprocess, which can expose unrelated credentials if the shared skills .env contains broad secrets. <br>
-Mitigation: Install it only with least-privilege credentials for this workflow, and keep unrelated API keys, account tokens, and production secrets out of the shared .env. <br>
-Risk: Business questions and retrieval context may be sent to configured Neo4j, Milvus, and embedding endpoints. <br>
-Mitigation: Review those endpoint configurations before using the skill with sensitive business questions. <br>
+## Use Case:
 
+Developers and data application teams use this skill in a SQL-generation workflow to enrich an interpreted user query with table schema, metric context, and relevant question-and-SQL examples before generating SQL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LoveNerverMore/mult-call) <br>
-- [Publisher profile](https://clawhub.ai/user/LoveNerverMore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [JSON containing table DDL, indicator metrics, and QA/SQL pairs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Neo4j failures degrade to empty or default DDL, and Milvus failures degrade to empty QA pairs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read broad environment files and pass the process environment into a Python subprocess.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it with a dedicated, minimal .env containing only the required Neo4j, Milvus, and embedding variables.
+
+Risk: Standalone execution can contact configured Neo4j, Milvus, and embedding services and can write or clean workflow JSON files.
+
+Mitigation: Review service endpoints and credentials before running, and execute it only in a workspace where the workflow JSON files are expected to be modified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lovenervermore/skills/mult-call)
+- [Publisher Profile](https://clawhub.ai/user/lovenervermore)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration]
+
+**Output Format:** [JSON object containing table DDL text, metric context, similar question-and-SQL pairs, and workflow metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can degrade independently when the graph database or vector retrieval service is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,70 @@
-## Description: <br>
-Automates Douyin Creator Platform publishing, login checks, Feishu notifications, analytics, interaction replies, and digital-human marketing workflows through MCP tools and local scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin Creator Center publishing and account operations, with Feishu-mediated login checks, content planning, data reporting, comment and direct-message replies, and digital-human marketing workflows.
 
-## Publisher: <br>
-[mrchenyh](https://clawhub.ai/user/mrchenyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrchenyh](https://clawhub.ai/user/mrchenyh)
 
-## Use Case: <br>
-Developers and operators use this skill to run Douyin publishing, login recovery, Feishu-guided customer workflows, data reporting, comment/DM replies, and digital-human marketing automation from an agent environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a Douyin account, send Feishu messages, read interaction data, and run persistent background jobs. <br>
-Mitigation: Install it on a dedicated machine or browser profile, review bootstrap and scheduler behavior before use, and grant only the accounts and credentials needed for the intended workflow. <br>
-Risk: Local daemon and browser automation ports may expose account-control surfaces if reachable from a network. <br>
-Mitigation: Keep daemon ports bound to local use, do not expose them publicly, and run the automation in a restricted environment. <br>
-Risk: Automatic comment and private-message replies can send customer-facing messages without manual review when enabled. <br>
-Mitigation: Inspect or disable the scheduler and require explicit approval for reply workflows unless the deployment policy allows automated responses. <br>
+## Use Case:
 
+External operators, OpenClaw users, and developers use this skill to publish Douyin video or image-text content, coordinate login and verification through Feishu, sync Douyin data to Feishu Bitable, and generate follow-up marketing content. It is also used to route customer Feishu messages into guarded automation for publishing, reporting, auto-replies, and digital-human video workflows.
 
-## Reference(s): <br>
-- [English README](README.en.md) <br>
-- [Customer Install Guide](references/customer-install-guide.md) <br>
-- [Publish Flow](references/publish-flow.md) <br>
-- [Data, Comments, And DMs](references/data-interactions.md) <br>
-- [Pitfalls And Generalization Rules](references/pitfalls.md) <br>
-- [Local Configuration Template](references/skill-local-config.md) <br>
+### Deployment Geography for Use:
 
+Global, subject to Douyin, Feishu, and local platform availability and compliance requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, configuration snippets, and MCP tool instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start persistent local browser, scheduler, and Feishu/Douyin automation jobs when configured and authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata and package.json) <br>
+Risk: The scanner verdict is suspicious because the skill installs persistent local automation and scheduling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a dedicated machine or OpenClaw profile, review the bootstrap script before running --apply, and monitor or disable the supervisor and scheduler when automation is not intended.
+
+Risk: The scanner summary reports broad session-log access and fallback inference for Feishu routing.
+
+Mitigation: Pass explicit Feishu messageId and chatId, restrict who can call the MCP tools, and avoid relying on session-log inference for sensitive workflows.
+
+Risk: The scanner summary reports unrestricted URL fetching.
+
+Mitigation: Accept media and cover URLs only from trusted sources, validate fieldized publish tasks before execution, and keep human review in place before publishing.
+
+Risk: The scanner summary reports agent-response steering in an automation flow that can publish content and message customers.
+
+Mitigation: Require human confirmation for publishing, login, SMS verification, and security-verification steps, and keep customer-facing messages concise and reviewable.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/mrchenyh/skills/douyin-upload-mcp-skill)
+- [English README](README.en.md)
+- [Customer Install Guide](references/customer-install-guide.md)
+- [Login And Feishu Flow](references/login-feishu.md)
+- [Data, Comments, And DMs](references/data-interactions.md)
+- [Publish Flow](references/publish-flow.md)
+- [Publish Task Contract](references/publish-task.md)
+- [Local Configuration Template](references/skill-local-config.md)
+- [XiaoIce Service Configuration](references/xiaoice-service-config.md)
+- [Operational Pitfalls](references/pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, shell commands, and MCP tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include operational status, customer-facing Feishu copy, task JSON, publishing plans, reports, screenshots, and local configuration guidance; execution depends on configured credentials, browser state, Douyin and Feishu access, and provider APIs.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

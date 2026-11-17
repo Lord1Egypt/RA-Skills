@@ -1,43 +1,54 @@
-## Description: <br>
-Design and run iterative generate→critique→revise loops optimized for Claude Opus 4.8, with thinking-as-critic, cost controls, and model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and run iterative generate→critique→revise loops optimized for Claude Opus 4.8, with thinking-as-critic, cost controls, and model routing.
 
-## Publisher: <br>
-[prometheus-prime](https://clawhub.ai/user/prometheus-prime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prometheus-prime](https://clawhub.ai/user/prometheus-prime)
 
-## Use Case: <br>
-Developers, prompt engineers, and agent builders use this skill to design refinement loops that improve generated outputs through explicit criteria, critique, revision, convergence checks, and cost controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refinement loops can send sensitive documents or private data to external AI model providers. <br>
-Mitigation: Avoid sending sensitive data unless the provider account settings, terms, and data-handling expectations permit it. <br>
-Risk: Multi-pass AI loops can exceed intended token or cost budgets. <br>
-Mitigation: Set token and cost limits before running a loop, log token usage per pass, and stop when limits are reached. <br>
-Risk: Weak rubrics or soft critique can converge on incorrect or misleading guidance. <br>
-Mitigation: Use explicit evaluation criteria, objective checks where possible, a separate critic role, and human review for high-impact outputs. <br>
+## Use Case:
 
+Developers and AI practitioners use this skill to design bounded refinement loops for writing, prompt, and structured-output tasks where a first pass is not good enough and improvement can be measured with explicit criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/prometheus-prime/refinement-loop) <br>
-- [Prometheus-prime publisher profile](https://clawhub.ai/user/prometheus-prime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with prompt templates, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files; includes cost-control, model-routing, and convergence guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Repeated refinement-loop model calls can consume tokens quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set hard cost, token, and iteration limits before running the loop, and abort to the best candidate when a budget is reached.
+
+Risk: Weak or vague critique can cause loop churn without meaningful improvement.
+
+Mitigation: Use explicit rubrics, objective checks where available, convergence detection, and keep-best tracking.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/prometheus-prime/skills/refinement-loop)
+- [Prometheus-Prime publisher profile](https://clawhub.ai/user/prometheus-prime)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown with prompt templates, rubric guidance, and Python-like pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve explicit iteration caps, cost budgets, convergence checks, and keep-best tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

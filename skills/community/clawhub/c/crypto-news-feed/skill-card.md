@@ -1,39 +1,50 @@
-## Description: <br>
-Reference tool for blockchain and crypto concepts, including introductions, formulas, regulations, risks, instruments, strategies, glossary terms, and checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for blockchain and crypto covering intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist topics.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve static plain-text reference material about blockchain and crypto topics. It is useful for quick lookup and checklist-style guidance, not for live market news or individualized financial or legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto, regulatory, and investment-related reference text may be outdated or unsuitable for a user's specific situation. <br>
-Mitigation: Treat the output as general reference material only and verify current market, legal, and compliance details with authoritative sources before acting. <br>
+## Use Case:
 
+External users and developers use this skill for quick offline reference on crypto news feed concepts, calculations, regulatory topics, risks, instruments, strategies, glossary terms, and due diligence checklist items.
 
-## Reference(s): <br>
-- [Crypto News Feed on ClawHub](https://clawhub.ai/bytesagain1/crypto-news-feed) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference sections emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static predefined content; no credentials, network access, file access, or account access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: release evidence) <br>
+Risk: Static crypto, regulatory, and financial reference content may be outdated or mistaken for current legal, investment, or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as generic reference material and verify against current authoritative sources before making financial, legal, or compliance decisions.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Crypto News Feed on ClawHub](https://clawhub.ai/bytesagain1/skills/crypto-news-feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline reference output; no external API calls, credentials, network access, persistence, or privileged actions reported by security evidence.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

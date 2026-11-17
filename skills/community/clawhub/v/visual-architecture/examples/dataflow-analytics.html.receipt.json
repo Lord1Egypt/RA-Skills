@@ -1,0 +1,69 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:50.515401+00:00",
+  "input": {
+    "bytes": 1420,
+    "path": "examples/dataflow-analytics.json",
+    "sha256": "6e789d69c0327ae4ed09648e9ec1d801fd44025af428825702d43f841231bf29"
+  },
+  "mode": "dataflow",
+  "output": {
+    "bytes": 11863,
+    "path": "examples/dataflow-analytics.html",
+    "sha256": "9a9c85e9c8c5733c41543b467d9f38745ef1c35a7059a75578f67d1dd0568559"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "dataflow",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "queue",
+              "privacy"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "warehouse",
+              "dashboard"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

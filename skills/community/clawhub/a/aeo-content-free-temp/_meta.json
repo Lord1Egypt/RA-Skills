@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7ccbkzqg7t2vy3a4qqpgv2md82vf6r",
-  "slug": "aeo-content-free-temp",
-  "version": "1.0.0",
-  "publishedAt": 1773970985206
+  "owner": "psyduckler",
+  "slug": "aeo-content-free-local",
+  "displayName": "AEO Content (Free)",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1771171451822,
+    "commit": "https://github.com/openclaw/skills/commit/cf36dc328c316b93e96a25fa851a494dcb3f1c10"
+  },
+  "history": []
 }

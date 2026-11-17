@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# 讨论记录可选择性提交（默认保留，如需隐私可取消注释）
+# memory/*.md
+
+# 临时文件
+*.tmp
+*.bak

@@ -1,43 +1,60 @@
-## Description: <br>
-Manages agent progress reporting and OKF-compliant memory syncing to Fulcra. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages agent progress reporting and OKF-compliant memory syncing to Fulcra.
 
-## Publisher: <br>
-[fulcra](https://clawhub.ai/user/fulcra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fulcra](https://clawhub.ai/user/fulcra)
 
-## Use Case: <br>
-Agents and developers use this skill to maintain Fulcra-backed progress reports, role files, session summaries, task records, knowledge files, and inbox archives in an OKF-compliant memory namespace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External memory uploads could include sensitive user data, credentials, or private internal reasoning if generated memory files are not reviewed. <br>
-Mitigation: Review progress, session, task, role, and knowledge files before upload, minimize disclosures, and follow the skill's privacy requirement. <br>
-Risk: Inbox cleanup can delete source items after processing if archive upload is incomplete or misnamed. <br>
-Mitigation: Confirm the archive upload and timestamped archive path before deleting inbox files. <br>
+## Use Case:
 
+Developers and agents use this skill to maintain OKF-compliant progress, role, session, task, knowledge, and inbox memory files and sync selected summaries to Fulcra.
 
-## Reference(s): <br>
-- [Fulcra Memory CLI Reference](references/fulcra-memory-cli.md) <br>
-- [Fulcra onboarding CLI documentation](https://raw.githubusercontent.com/fulcradynamics/agent-skills/main/skills/fulcra-onboarding/references/fulcra-cli.md) <br>
-- [Open Knowledge Format specification](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) <br>
-- [Fulcra Memory on ClawHub](https://clawhub.ai/fulcra/skills/fulcra-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OKF-oriented memory file guidance and Fulcra CLI commands for progress, role, session, task, knowledge, and inbox workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.8 (source: ClawHub release evidence) <br>
+Risk: The skill uploads persistent agent and user context, including work summaries, decisions, links, preferences, and task context, to Fulcra.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory content before upload, minimize sensitive disclosures, and require explicit user approval before syncing sensitive context.
+
+Risk: The skill relies on an external Fulcra CLI for authentication, uploads, and deletion, and the security evidence notes that the CLI is unpinned.
+
+Mitigation: Use a pinned and trusted fulcra-api installation and limit Fulcra credentials to the intended agent namespace.
+
+Risk: Inbox processing can delete source files after archiving.
+
+Mitigation: Verify archive upload success before deleting inbox files.
+
+## Reference(s):
+
+- [Fulcra Memory CLI Reference](references/fulcra-memory-cli.md)
+- [Fulcra CLI Documentation](https://raw.githubusercontent.com/fulcradynamics/agent-skills/main/skills/fulcra-get-started/references/fulcra-cli.md)
+- [Open Knowledge Format Specification](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+- [ClawHub Skill Page](https://clawhub.ai/fulcra/skills/fulcra-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and OKF-formatted memory file examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in persistent Fulcra memory files when the agent follows the CLI workflow.]
+
+## Skill Version(s):
+
+0.1.9 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Akshare-Stock-Analyzer helps agents fetch A-share stock or ETF market data and produce short-term technical trend, signal, score, and risk summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Akshare-Stock-Analyzer helps agents analyze A-share stocks and ETFs using intraday snapshots, recent daily trends, buy/sell/hold signals, and short-term technical scores.
 
-## Publisher: <br>
-[YuanfuC](https://clawhub.ai/user/YuanfuC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanfuc](https://clawhub.ai/user/yuanfuc)
 
-## Use Case: <br>
-External users and developers use this skill to analyze A-share stocks and ETFs from natural-language requests, including intraday snapshots, recent daily trends, buy/sell/hold signals, scores, and technical risk context. The output is technical reference material only and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public market data through external providers, so network errors, provider outages, or delayed data can affect analysis quality. <br>
-Mitigation: Run it in a controlled Python environment, handle fetch failures explicitly, and avoid presenting results when upstream data cannot be retrieved. <br>
-Risk: Buy, sell, hold, score, and risk outputs may be mistaken for investment advice. <br>
-Mitigation: Present outputs as short-term technical reference only and remind users to combine them with fundamentals, news, position sizing, and personal risk tolerance. <br>
-Risk: The release includes Python scripts and unpinned third-party dependencies. <br>
-Mitigation: Review the scripts before execution and install dependencies in a virtual environment before running setup_env.py. <br>
+## Use Case:
 
+External users and developers use this skill to inspect single A-share stocks or ETFs, fetch current market snapshots, and summarize recent technical trend, momentum, risk level, signal, and score. Outputs are technical indicators only and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/YuanfuC/akshare-stock-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/YuanfuC) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [README.md](artifact/README.md) <br>
-- [AnalysisResult field reference](artifact/scripts/analyze_result.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Concise Markdown or plain text with optional JSON-like analysis fields and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trend, weekly_change_pct, today_change_pct, signal, score, moving-average context, MACD, RSI, reversal hints, and risk level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Unpinned akshare and pandas dependencies may change behavior across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment and review dependency installation before running setup_env.py.
+
+Risk: The skill makes network calls to public market-data providers, so upstream outages or delays can affect results.
+
+Mitigation: Treat failed or stale data fetches as blockers for analysis and avoid fabricating market conclusions.
+
+Risk: fetch.py can write local CSV output when run directly.
+
+Mitigation: Run the skill in an expected working directory and review generated files before sharing or retaining them.
+
+Risk: Buy, sell, and hold outputs can be mistaken for financial advice.
+
+Mitigation: Present outputs as short-term technical indicators only and include an investment-advice disclaimer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanfuc/skills/akshare-stock-analyzer)
+- [Publisher profile](https://clawhub.ai/user/yuanfuc)
+- [English README](artifact/README.en.md)
+- [Chinese README](artifact/README.md)
+- [AnalysisResult field reference](artifact/scripts/analyze_result.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional shell commands and structured technical-analysis fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trend, weekly_change_pct, today_change_pct, signal, score, moving-average context, MACD, RSI, reversal_hint, and risk_level.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

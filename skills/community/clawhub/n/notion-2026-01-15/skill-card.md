@@ -1,42 +1,54 @@
-## Description: <br>
-Helps agents use the Notion API to create, read, update, move, lock, and manage pages, data sources, blocks, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and curl examples for using the Notion API to create, move, update, and manage pages, data sources, blocks, templates, and locks.
 
-## Publisher: <br>
-[DongkuKim](https://clawhub.ai/user/DongkuKim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongkukim](https://clawhub.ai/user/dongkukim)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate Notion API guidance, request examples, shell commands, and configuration steps for managing Notion workspaces through an integration token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples that can move, lock, update, or erase Notion page content. <br>
-Mitigation: Require explicit user confirmation before applying content-changing actions and review generated requests before execution. <br>
-Risk: The skill relies on a Notion integration token stored on the local machine. <br>
-Mitigation: Protect ~/.config/notion/api_key and share the Notion integration only with pages or data sources it needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DongkuKim/notion-2026-01-15) <br>
-- [DongkuKim ClawHub profile](https://clawhub.ai/user/DongkuKim) <br>
-- [Notion API documentation](https://developers.notion.com) <br>
-- [Notion integrations](https://notion.so/my-integrations) <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to compose Notion API requests for page, data source, block, template, and locking workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include content-changing Notion API examples that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores a long-lived Notion token in a local file.
+
+Mitigation: Use a least-privilege Notion integration, share only required pages or data sources, and store the token in a keychain or with owner-only file permissions.
+
+Risk: Examples include content-changing operations such as moving, locking, updating, and applying templates with erase_content.
+
+Mitigation: Require explicit confirmation before running move, lock, update, or erase-content requests against a workspace.
+
+## Reference(s):
+
+- [Notion Developers](https://developers.notion.com)
+- [Notion Integrations](https://notion.so/my-integrations)
+- [ClawHub Skill Page](https://clawhub.ai/dongkukim/skills/notion-2026-01-15)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with bash and JSON curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion integration token and page or data source identifiers supplied by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

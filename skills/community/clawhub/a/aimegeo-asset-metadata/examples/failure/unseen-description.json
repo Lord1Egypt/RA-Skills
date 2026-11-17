@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "id": "unknown-shot",
+      "type": "image",
+      "original_filename": "未打开.png",
+      "evidence": {
+        "kind": "unavailable",
+        "scope": "none",
+        "reference": "只有文件名，未能查看"
+      },
+      "alt": "仪表盘显示访问量增长。"
+    }
+  ]
+}

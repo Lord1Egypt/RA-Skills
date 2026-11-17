@@ -1,40 +1,53 @@
-## Description: <br>
-Converts recipe text, transcripts, image descriptions, or other raw content into a .paprikarecipes import file for Paprika Recipe Manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert recipe text, transcripts, image descriptions, or other raw recipe content into a .paprikarecipes file for Paprika Recipe Manager.
 
-## Publisher: <br>
-[nogara](https://clawhub.ai/user/nogara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nogara](https://clawhub.ai/user/nogara)
 
-## Use Case: <br>
-External users and agent operators use this skill to convert recipe content from pasted text, transcripts, image descriptions, or URL content into Paprika import files. The skill is intended to preserve only recipe fields present in the source and report which fields were found or absent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recipe-derived filenames and shared temporary paths can expose source titles, collide with existing files, or create unsafe shell paths. <br>
-Mitigation: Use sanitized fixed filenames or a private temporary directory, quote paths, and remove intermediate JSON files after creating the `.paprikarecipes` archive. <br>
-Risk: The skill creates local recipe files and runs a local Python packaging script. <br>
-Mitigation: Review the extracted recipe JSON and destination path before running the script, and only install the skill if local file creation is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Paprika Recipe Manager](https://www.paprikaapp.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/nogara/paprika-recipe-importer) <br>
+## Use Case:
 
+External users use this skill to turn recipes from pasted text, transcripts, image descriptions, or URL content into Paprika import files while preserving only fields present in the source.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [.paprikarecipes archive with concise Markdown guidance and a field coverage summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local JSON intermediates and a Paprika import archive; supports a single recipe object or an array of recipes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recipe details may be written to local temporary JSON and .paprikarecipes files during packaging.
+
+Mitigation: Avoid sensitive personal recipe notes or delete temporary JSON and .paprikarecipes files after import.
+
+Risk: The resulting recipe can only reflect fields present in the source content.
+
+Mitigation: Review the delivered field summary and update missing or incorrect recipe details before relying on the import.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nogara/skills/paprika-recipe-importer)
+- [Paprika Recipe Manager](https://www.paprikaapp.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON recipe data and a generated .paprikarecipes file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Paprika import archives from local temporary JSON recipe files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

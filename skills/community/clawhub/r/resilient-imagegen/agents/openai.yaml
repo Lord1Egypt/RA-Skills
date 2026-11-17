@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resilient ImageGen"
+  short_description: "Retryable batch image generation"
+  default_prompt: "Stabilize this multi-image generation job with a retryable ImageGen queue and a reviewable manifest."

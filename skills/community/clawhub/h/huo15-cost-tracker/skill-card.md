@@ -1,42 +1,58 @@
-## Description: <br>
-Tracks AI API usage, token consumption, call counts, response duration, and estimated costs for configured MiniMax, OpenAI, Anthropic, and related models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks AI API token usage, call counts, response duration, and estimated USD costs for configured models such as MiniMax and OpenAI.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record LLM API token counts and durations, estimate costs from configured model pricing, review cost reports, and reset local statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local API usage metadata including token counts, model names, timestamps, durations, and estimated costs. <br>
-Mitigation: Install only where this local metadata storage is acceptable and review access controls and retention for the activity stats file. <br>
-Risk: A hardcoded /Users/jobzhao pricing configuration path can cause fallback pricing or inaccurate cost estimates on other machines. <br>
-Mitigation: Update the pricing path or script configuration for the local environment before relying on reported costs. <br>
-Risk: The reset command clears active cost statistics after writing a backup. <br>
-Mitigation: Confirm the backup location and retain copies before resetting records that may be needed later. <br>
+## Use Case:
 
+Developers and agent operators use this skill to record LLM token consumption, estimate model costs, review daily or aggregate usage reports, and reset local cost history when needed.
 
-## Reference(s): <br>
-- [Huo15 Cost Tracker ClawHub release](https://clawhub.ai/jobzhao15/huo15-cost-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-backed local cost reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts write local usage statistics to ~/.openclaw/workspace/memory/activity/cost-stats.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Cost reports may be inaccurate if pricing data is stale, default pricing is used, or the hard-coded pricing path does not match the installed location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and update config/pricing.json and installation paths before relying on totals for budgeting or audit decisions.
+
+Risk: Malformed or negative usage inputs can corrupt accumulated totals.
+
+Mitigation: Validate token and duration inputs at integration points and inspect reports for anomalies before using the data operationally.
+
+Risk: Resetting statistics changes persistent local cost history, even though a backup is written.
+
+Mitigation: Restrict reset use to trusted operators and retain backup files when cost history is needed for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-cost-tracker)
+- [Publisher profile](https://clawhub.ai/user/jobzhao15)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and terminal text with shell command examples and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local cost statistics as JSON and prints cost reports in the terminal.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

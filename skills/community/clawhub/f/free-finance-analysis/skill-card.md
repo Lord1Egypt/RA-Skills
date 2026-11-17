@@ -1,47 +1,66 @@
-## Description: <br>
-Stock, ETF, index, and commodity market analysis guidance that combines public market data, technical indicators, sentiment, news, and finance-analysis frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes stocks, ETFs, indexes, and commodities using public market data, technical indicators, sentiment signals, and financial news.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-External users and developers can use this skill to structure market-analysis responses for stocks, ETFs, indices, and commodities, especially US-market analysis involving price action, RSI, valuation context, sentiment, news, and stop-profit or stop-loss ranges. Outputs are informational and should not be treated as personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce market-analysis conclusions, valuation notes, stop-loss ranges, take-profit ranges, and position-sizing examples that may be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as general informational analysis, consult qualified financial professionals for personal decisions, and avoid using the skill as the sole basis for trades. <br>
-Risk: The skill depends on public web data that may be delayed, incomplete, unavailable, or inaccurate. <br>
-Mitigation: Verify market data independently, label failed data pulls clearly, and reduce conclusion strength when required sources are missing. <br>
-Risk: Some public-data workflows may depend on third-party websites with their own access limits or terms. <br>
-Mitigation: Use the skill only with data sources the user is authorized to access and respect site terms when gathering market data. <br>
+## Use Case:
 
+External users and analysts use this skill to produce structured market analysis reports for equities, ETFs, indexes, and commodities. It is intended for informational analysis, risk framing, and stop-profit or stop-loss planning, not for trade execution or professional financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/free-finance-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/ucsdzehualiu) <br>
-- [Data sources](references/data-sources.md) <br>
-- [Technical analysis](references/technical-analysis.md) <br>
-- [Stop-profit and stop-loss](references/stop-profit-loss.md) <br>
-- [Fundamental analysis](references/fundamental-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with structured sections and source-completeness notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-data checklists, support and resistance levels, sentiment summaries, valuation notes, risk points, and stop-profit or stop-loss ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill's market-analysis output could influence real investment decisions even though it is informational.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as non-professional analysis, verify data independently, and apply the user's own risk tolerance or a licensed adviser before making trades.
+
+Risk: Public web data used by the skill may be delayed, incomplete, inaccurate, or unavailable.
+
+Mitigation: Require explicit data-completeness reporting, label failed data pulls, and avoid replacing missing facts with assumptions.
+
+Risk: Suggested thresholds, position sizing examples, and stop-profit or stop-loss ranges may not fit a user's financial situation.
+
+Mitigation: Use thresholds as planning prompts only and review them against portfolio context, liquidity, volatility, and loss tolerance.
+
+## Reference(s):
+
+- [Free Finance Analysis on ClawHub](https://clawhub.ai/ucsdzehualiu/skills/free-finance-analysis)
+- [Data Sources](references/data-sources.md)
+- [Technical Analysis](references/technical-analysis.md)
+- [Fundamental Analysis](references/fundamental-analysis.md)
+- [Stop-Profit and Stop-Loss Strategy](references/stop-profit-loss.md)
+- [CNBC Quote Pages](https://www.cnbc.com/quotes/{SYMBOL})
+- [Benzinga Quote Pages](https://www.benzinga.com/quote/{SYMBOL})
+- [CNN Fear and Greed Index](https://www.cnn.com/markets/fear-and-greed)
+- [Current Market Valuation](https://www.currentmarketvaluation.com/)
+- [Jin10 Market News](https://www.jin10.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market-analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include data-completeness notes, market indicators, technical and fundamental analysis, sentiment context, risk points, and stop-profit or stop-loss ranges.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-查询并播报耳机设备的电量信息，包括耳机仓、左耳和右耳，并根据用户意图选择播报范围。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+设备电量查询与播报。当用户询问电量、剩余电量、还有多少电、电池状态、耳机电量、耳机仓电量、左耳电量、右耳电量时使用此技能。
 
-## Publisher: <br>
-[dory123456](https://clawhub.ai/user/dory123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dory123456](https://clawhub.ai/user/dory123456)
 
-## Use Case: <br>
-External users use this skill when asking an assistant about earbud, charging case, left earbud, or right earbud battery status and estimated remaining use time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can only answer accurately when the assistant already has legitimate access to current device battery values. <br>
-Mitigation: Use it only in environments where those values are available, current, and permitted to be used in the response. <br>
-Risk: Broad battery and duration trigger phrases may cause the skill to answer ambiguous questions that are not about earbud battery status. <br>
-Mitigation: Confirm the intended device or ask a clarifying question when the user request does not clearly refer to the earbuds, charging case, or all device batteries. <br>
+## Use Case:
 
+External users use this skill to answer Chinese-language questions about headphone, charging case, left earbud, and right earbud battery level and estimated remaining use time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dory123456/device-battery-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language text response in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats battery percentages and estimated remaining time for the earbud case, left earbud, and right earbud when those values are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases such as “还有多少电” or “还能用多久” may activate the skill when the user intended a different battery context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger phrases before installing if the agent handles multiple battery-related devices or workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dory123456/skills/device-battery-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Chinese natural-language battery status response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses cover the charging case, left earbud, and right earbud according to user intent.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

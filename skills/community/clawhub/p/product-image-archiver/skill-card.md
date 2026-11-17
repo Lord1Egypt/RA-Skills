@@ -1,44 +1,60 @@
-## Description: <br>
-Archives original product images from a manually supplied product link into a structured folder with an Excel manifest for download, integrity, and risk-review fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Image Archiver archives original images for a manually supplied product link and product ID, preserving files, organizing folders, checking integrity, and marking potential image-risk indicators.
 
-## Publisher: <br>
-[guowaa223](https://clawhub.ai/user/guowaa223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowaa223](https://clawhub.ai/user/guowaa223)
 
-## Use Case: <br>
-E-commerce operators and developers use this skill to archive original images for a single manually identified product, preserve downloaded files, and produce a manifest for follow-up review. The generated risk and compliance fields should be treated as unverified prompts for human review, not as legal conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can present infringement, license, CMA, and supplier-quality fields as if they were validated compliance evidence. <br>
-Mitigation: Treat generated risk and compliance entries as unverified review prompts and require manual legal or business review before relying on them. <br>
-Risk: Downloaded product images may come from untrusted or incorrect product links. <br>
-Mitigation: Use trusted product URLs and manually inspect downloaded images before business publication or legal decisions. <br>
-Risk: Runtime dependencies and network downloads affect production security posture. <br>
-Mitigation: Pin and audit Python dependencies before production use, and run the skill in a controlled environment. <br>
+## Use Case:
 
+E-commerce operators and agents use this skill to archive one product's source images into a fixed folder structure and create a manifest for review before listing or reuse.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guowaa223/product-image-archiver) <br>
-- [Baidu AI Console](https://console.bce.baidu.com/ai/) <br>
-- [1688](https://www.1688.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured archive folders, downloaded image files, an Excel manifest, and terminal progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires manual product ID and product URL input; Windows and python3 are declared in ClawHub metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill fetches network content and writes local files without enough scoping for untrusted product URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in a restricted, non-admin environment with a dedicated archive directory and limited outbound network access.
+
+Risk: Untrusted product URLs may expose the operator to unsafe redirects, unexpected hosts, oversized downloads, or unsafe product ID paths.
+
+Mitigation: Do not process untrusted product URLs until hostname allowlisting, redirect validation, image URL validation, size quotas, and product ID path sanitization are added.
+
+Risk: Advertised risk-detection and completeness checks are incomplete.
+
+Mitigation: Treat risk and integrity results as advisory and require human review before relying on archived images for publication or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowaa223/skills/product-image-archiver)
+- [ClawHub publisher profile](https://clawhub.ai/user/guowaa223)
+- [Baidu AI Console](https://console.bce.baidu.com/ai/)
+- [1688](https://www.1688.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Structured archive folders with original image files, an Excel manifest, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and writes archives to a local archive directory; declared dependencies include requests, pandas, openpyxl, and Pillow.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

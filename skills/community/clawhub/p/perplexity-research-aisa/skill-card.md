@@ -1,42 +1,55 @@
-## Description: <br>
-Produce citation-backed deep research answers through Perplexity Sonar models via AISA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produce citation-backed deep research answers through Perplexity Sonar models via AISA for synthesized research, comparative analysis, and long-form cited answers.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to produce synthesized research, comparative analysis, and long-form cited answers through AISA-backed search and Perplexity Sonar calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AISA API key and sends research queries and user-supplied URLs to api.aisa.one. <br>
-Mitigation: Use only with credentials and queries approved for that service, and avoid confidential, internal, localhost, or private-network URLs unless stronger scoping and consent controls are documented. <br>
-Risk: The scanner found the runtime broader than the Sonar-focused description because it supports multi-source search and remote URL extraction. <br>
-Mitigation: Treat the skill as a broader multi-source web research client, review selected commands before execution, and verify cited outputs before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for cited research synthesis, comparative analysis, and long-form answers through AISA-backed Perplexity Sonar and related search endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bibaofeng/perplexity-research-aisa) <br>
-- [AISA API service](https://api.aisa.one/apis/v1) <br>
-- [AISA](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Terminal text and citation-backed summaries suitable for Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends research queries or user-supplied URLs to api.aisa.one.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Research prompts, URLs, and retrieved content may be sent to AISA-backed external APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, private documents, internal URLs, and sensitive business data; review intended queries before execution.
+
+Risk: The bundled client exposes broader web search and URL extraction behavior than the concise skill description advertises.
+
+Mitigation: Review the available commands before deployment and restrict usage to the advertised Perplexity research workflow unless the broader surface is explicitly accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/perplexity-research-aisa)
+- [AISA service](https://aisa.one)
+- [AISA API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with citations and source URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and may return API usage metadata when provided by the external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

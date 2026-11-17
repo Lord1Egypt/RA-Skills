@@ -1,44 +1,61 @@
-## Description: <br>
-Check if AC Milan played yesterday and send the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether AC Milan played yesterday and, when a match occurred, returns a Chinese-language Serie A result summary with score, YouTube highlights search, and up to three Google News links.
 
-## Publisher: <br>
-[paoloxiamn](https://clawhub.ai/user/paoloxiamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paoloxiamn](https://clawhub.ai/user/paoloxiamn)
 
-## Use Case: <br>
-Fans and automation users use this skill to run a daily AC Milan match check and forward a concise result message when the club played the previous day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled execution makes public web requests to ESPN and Google News. <br>
-Mitigation: Install only if these public requests fit the deployment environment, and keep cron or nodes.run configured to the reviewed check_match.py path. <br>
-Risk: The schedule updater rewrites the bundled schedule.json file. <br>
-Mitigation: Run update_schedule.py only when automatic schedule refresh is desired, and review the changed schedule before relying on it for notifications. <br>
-Risk: The notifier may include related YouTube highlight search and Google News links in addition to match results. <br>
-Mitigation: Forward the output only when those related links are appropriate for the recipient. <br>
+## Use Case:
 
+Developers, automation users, and AC Milan followers use this skill in scheduled agent runs to check yesterday's match status and forward a concise match notification only when a scheduled AC Milan match is found.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paoloxiamn/acmilan-match-monitor) <br>
-- [ESPN AC Milan schedule endpoint](https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/103/schedule?limit=5) <br>
-- [Google News RSS search endpoint](https://news.google.com/rss/search?q={news_query}&hl=en&gl=US&ceid=US:en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text match notification with links, plus Markdown and JSON setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Silent when no scheduled previous-day match is found; may include a YouTube highlights search link and up to three Google News links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The scheduled Python script contacts ESPN and Google News and generates YouTube search links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where public sports and news network requests are acceptable, and review scheduled execution settings before deployment.
+
+Risk: The security guidance notes under-documented behavior around Google News, YouTube search links, and the optional schedule update script.
+
+Mitigation: Review the artifact scripts and update user-facing documentation before relying on the skill in routine automation.
+
+Risk: The local schedule.json file controls whether the notifier checks a match and can become stale.
+
+Mitigation: Maintain the schedule file or review the optional update script before depending on silence as a signal that no match occurred.
+
+## Reference(s):
+
+- [AC Milan Match Monitor ClawHub page](https://clawhub.ai/paoloxiamn/skills/acmilan-match-monitor)
+- [Publisher profile](https://clawhub.ai/user/paoloxiamn)
+- [ESPN AC Milan schedule API](https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/103/schedule?limit=5)
+- [Google News RSS search](https://news.google.com/rss/search)
+- [YouTube search results](https://www.youtube.com/results)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions and Chinese-language plain-text notification output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Silent when no scheduled match is found; includes external highlights and news links when a result is available.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

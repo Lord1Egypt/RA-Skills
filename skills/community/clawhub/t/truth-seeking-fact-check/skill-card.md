@@ -1,42 +1,59 @@
-## Description: <br>
-Truth Seeking Fact Check checks text for possible hallucinations or misinformation, assigns credibility and confidence scores, flags problematic sentences, and supports batch checks, configurable scoring weights, optional timed rechecks, advisory blockchain-hash checks, and configured external search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Truth Seeking Fact Check helps agents evaluate text for possible AI hallucinations or misinformation, producing credibility scores, highlighted issues, suggestions, and optional blockchain-evidence checks.
 
-## Publisher: <br>
-[tangtaozhanshen](https://clawhub.ai/user/tangtaozhanshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangtaozhanshen](https://clawhub.ai/user/tangtaozhanshen)
 
-## Use Case: <br>
-Agents and users can use this skill to review claims in supplied text, receive a credibility score with confidence information, and identify statements that may need additional verification. It is suited for fact-checking drafts, summaries, and recurring monitored text where advisory results are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy claims may be overstated because configured external datasources can send checked text to Brave Search. <br>
-Mitigation: Disable external datasources or avoid submitting sensitive and confidential text unless sharing the query text with the configured provider is acceptable. <br>
-Risk: Verification and blockchain results are advisory and may not prove that content is authentic or accurate. <br>
-Mitigation: Treat scores, confidence values, and blockchain checks as signals for review, and cross-check important claims with authoritative sources. <br>
-Risk: Timed checks keep text available for background rechecking when the scheduler is enabled. <br>
-Mitigation: Enable timed checks only for text that is appropriate to retain and reprocess in the running agent environment. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to run local fact-checking workflows over single texts, batches, or scheduled checks, then review credibility scores, confidence details, problematic sentences, and improvement suggestions. It is suited for content review support, not as a sole authority for truth or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangtaozhanshen/truth-seeking-fact-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON objects or Markdown summaries with credibility scores, meta-confidence, flagged sentences, suggestions, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-text and batch results; timed checks can report score changes when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: evidence.json release, CHANGELOG.md, manifest.json, package.json) <br>
+Risk: Private or sensitive checked text may be exposed if external data sources are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with external data sources disabled unless sending search queries to Brave is acceptable for the deployment.
+
+Risk: Blockchain verification should not be treated as strong proof of authenticity.
+
+Mitigation: Treat blockchain evidence as an advisory signal and require independent review before relying on the result.
+
+Risk: Unpinned dependencies and broad permissions can increase production deployment risk.
+
+Mitigation: Pin dependencies, review requested permissions, and run a security review before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangtaozhanshen/skills/truth-seeking-fact-check)
+- [Artifact README and usage guide](artifact/SKILL.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON objects or Markdown reports with scores, confidence details, issue annotations, suggestions, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-text, batch, and optional scheduled checks; results are advisory and depend on configured local and external data sources.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata, manifest.json, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

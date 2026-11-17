@@ -2,36 +2,70 @@
 
 ## Install
 
-All install methods fetch from the same source: [github.com/zw008/VMware-Monitor](https://github.com/zw008/VMware-Monitor) (MIT licensed). We recommend reviewing the source code before installing.
+All install methods fetch from the same source: [github.com/vmware-skills/VMware-Monitor](https://github.com/vmware-skills/VMware-Monitor) (MIT licensed). We recommend reviewing the source code before installing.
 
 ```bash
 # Via PyPI (recommended for version pinning)
-uv tool install vmware-monitor
+uv tool install vmware-monitor==2.6.2
 
 # Via Skills.sh (fetches from GitHub)
-npx skills add zw008/VMware-Monitor
+npx skills@1.7.6 add vmware-skills/VMware-Monitor#v2.6.2
 
 # Via ClawHub (fetches from ClawHub registry snapshot of GitHub)
-clawhub install vmware-monitor
+clawhub install @zw008/vmware-monitor --version 2.6.2
 ```
+
+The installer is pinned to `skills@1.7.6` (Node.js >=22.20.0); the repository tag separately selects the skill revision. Review the installer and its dependencies before running it. Pinning the top-level package does not lock its dependency graph. Alternative: use the release-tagged manual copy below.
 
 ### Claude Code
 
+`npx skills add` and `clawhub install` both place the skill in Claude Code's skills
+directory. To install it manually from a clone:
+
+```bash
+mkdir -p ~/.claude/skills/vmware-monitor
+cp -r skills/vmware-monitor/. ~/.claude/skills/vmware-monitor/
 ```
-/plugin marketplace add zw008/VMware-Monitor
-/plugin install vmware-monitor
-/vmware-monitor:vmware-monitor
+
+For tool access (not just skill context), register the MCP server:
+
+```bash
+claude mcp add vmware-monitor -- vmware-monitor mcp
 ```
 
 ## What Gets Installed
 
-The `vmware-monitor` package installs a read-only Python CLI binary and its dependencies (pyVmomi, Click, Rich, APScheduler, python-dotenv). No background services, daemons, or system-level changes are made during installation. The scheduled scanner (`daemon start`) only runs when explicitly started by the user.
+The `vmware-monitor` package installs a Python CLI binary — read-only toward vSphere — and its dependencies (pyVmomi, Click, Rich, APScheduler, python-dotenv). No background services, daemons, or system-level changes are made during installation. The scheduled scanner (`daemon start`) only runs when explicitly started by the user.
+
+### What "read-only" covers, and what it writes locally
+
+"Read-only" is a claim about vCenter/ESXi: no code path changes their state. On
+vCenter the skill opens only its own login session (SOAP, plus a REST session for
+the three vSphere 9.1 REST tools) and short-lived query handles — container views
+and a task-history collector — that it releases after use.
+
+It does write to the local machine — by default under your home directory:
+
+| Path | Written by | When |
+|---|---|---|
+| `~/.vmware-monitor/config.yaml`, `~/.vmware-monitor/.env` | `vmware-monitor init` | Once, when you run it (`.env` is set to 0600) |
+| `~/.vmware-monitor/.env` (rewritten in place) | Every run | Only if it holds a plaintext `*_PASSWORD`: the value is rewritten as `b64:` (see below) |
+| `~/.vmware/audit.db` (SQLite; `OPS_HOME` moves it) | vmware-policy | Every MCP tool call, remote CLI call, daemon target scan and webhook send |
+| `~/.vmware-monitor/audit.log` (JSON Lines) | CLI | Every CLI query command |
+| `~/vmware-health/*.html` | `summary` / `investigate` / `attention` | Only with `--html` (or `--html-path <file>`) |
+| `~/.vmware-monitor/daemon.pid`, `~/.vmware-monitor/scan.log` (`notify.log_file` moves the log) | Scanner daemon | Only after `daemon start` |
+| The file you name | `mcp-config generate --output <file>` | Only with `--output`; otherwise it prints |
+
+Outbound traffic beyond vCenter/ESXi: the daemon posts to your Slack/Discord
+webhook, only if you configured one and a scan finds an issue it sends — any
+critical issue, or an alarm/event warning (host-log warnings and `info` rows
+are never sent).
 
 ## Configuration
 
 ```bash
 # 1. Install
-uv tool install vmware-monitor
+uv tool install vmware-monitor==2.6.2
 
 # 2. Verify
 vmware-monitor --version
@@ -44,10 +78,46 @@ chmod 600 ~/.vmware-monitor/.env
 # Edit ~/.vmware-monitor/config.yaml and .env with your target details
 ```
 
+### Declare `environment:` on each target
+
+```yaml
+targets:
+  - name: prod-vcenter
+    host: vcenter-prod.example.com
+    environment: production   # production | staging | lab | <your own label>
+```
+
+`environment` is an optional label. This skill has zero write tools, so nothing
+it exposes is ever gated by it — reads are never gated under any setting. It
+matters for the write skills (`vmware-aiops`, `vmware-storage`, `vmware-nsx`)
+pointed at the same vCenter: an environment-scoped `deny` rule in
+`~/.vmware/rules.yaml` can match on the label to block their writes (e.g. freeze
+`production`). A target with no label is simply not matched by such a rule.
+
+### Choose the default target
+
+```yaml
+default_target: prod-vcenter   # optional; without it the first entry under targets: is used
+```
+
+A tool uses the default only when the request names no target. The MCP server
+lists every configured target (name, type, host) in its instructions and asks the
+agent to pick the one the question is about: a vCenter for the environment,
+clusters or several hosts; the managing vCenter for a named ESXi host, since
+vCenter holds that host's alarms, events and tasks; a standalone `esxi` target
+only when asked about that host directly. When the request does not say which and
+the answers would differ, the agent is told to ask. A result from a tool that takes
+`target` carries `target: {name, type}` naming the target that answered, so the
+answer can say where it came from; a request for a target name that is not
+configured returns an error listing the configured names instead. A
+`default_target` that names no configured target is an error, not a fallback —
+falling back to the first entry is how a standalone ESXi host once answered a
+question about vCenter.
+
 ## Development Install
 
 ```bash
-git clone https://github.com/zw008/VMware-Monitor.git
+git clone --branch v2.6.2 https://github.com/vmware-skills/VMware-Monitor.git
 cd VMware-Monitor
 uv venv && source .venv/bin/activate
 uv pip install -e .
@@ -89,13 +159,30 @@ For Claude Code / Cursor users who prefer structured tool calls, add to `~/.clau
 ```
 
 > v1.5.15+ recommends the single-command form `vmware-monitor mcp`. Pre-1.5.15 used
-> `uvx --from vmware-monitor vmware-monitor-mcp`, which still works but re-resolves from
+> `uvx --from vmware-monitor==2.6.2 vmware-monitor-mcp`, which still works but re-resolves from
 > PyPI on each launch and breaks behind corporate TLS proxies. The legacy
 > `vmware-monitor-mcp` entry point is also kept for backward compatibility.
 
-MCP exposes 8 read-only tools: `list_virtual_machines`, `list_esxi_hosts`, `list_all_datastores`, `list_all_clusters`, `get_alarms`, `get_events`, `vm_info`, `vm_list_snapshots`. All accept optional `target` parameter.
+MCP exposes 33 read-only tools:
 
-`list_virtual_machines` supports `limit`, `sort_by`, `power_state`, `fields` for compact context in large inventories.
+| Group | Tools |
+|---|---|
+| Inventory | `list_virtual_machines`, `list_esxi_hosts`, `list_all_datastores`, `list_all_clusters`, `list_all_networks`, `get_resource_pool_usage` |
+| Health & triage | `get_alarms`, `get_events`, `get_cluster_health_summary`, `get_cross_vcenter_attention` |
+| VM detail | `get_vm_info`, `list_vm_snapshots`, `get_vm_performance`, `find_aging_snapshots` |
+| Host detail | `get_host_performance`, `scan_host_logs`, `get_host_sensors`, `get_host_services`, `get_ntp_status` |
+| Platform state | `get_certificate_status`, `get_license_status`, `list_active_sessions`, `list_active_tasks`, `get_datastore_capacity` |
+| Investigation bundles | `investigate_vm`, `investigate_host`, `investigate_datastore` |
+| Patching & vSphere 9 | `get_cluster_patch_compliance`, `get_cluster_last_apply_result`, `get_host_memory_tiering`, `get_vcenter_deployment_size` |
+| Backups | `get_vm_backup_snapshot_history` |
+| Account access | `get_access_info` |
+
+All accept an optional `target` parameter except `get_cross_vcenter_attention`, which
+sweeps every configured target by design.
+
+List-style tools take `limit` (default 50) to keep large inventories from flooding
+context; `list_virtual_machines` additionally supports `sort_by`, `power_state`,
+`fields`, and `folder_filter`.
 
 ### Password obfuscation at rest
 
@@ -112,38 +199,109 @@ whitespace are handled correctly).
 > Secrets Manager, or a Kubernetes Secret) into the `*_PASSWORD` environment
 > variable at process start. The code reads the env var either way.
 
+## Serving MCP over HTTPS
+
+By default the MCP server speaks stdio to one local client. To let clients on other machines reach it, serve it over
+HTTPS. Every caller then needs a bearer token.
+
+```bash
+vmware-audit token create alice                      # prints the token once; give it to alice
+vmware-monitor mcp --transport https --host 0.0.0.0 --port 8443 \
+    --cert /etc/vmware-mcp/server.pem --key /etc/vmware-mcp/server-key.pem \
+    --public-name mcp.example.com
+```
+
+- Clients connect to `https://mcp.example.com:8443/mcp` and send `Authorization: Bearer <token>`.
+- `--public-name` lists every host name clients use (comma-separated); requests for any other Host or Origin are
+  refused. Use a certificate your clients trust for those names.
+- Behind a reverse proxy that terminates TLS (Nginx, HAProxy) on the same machine, use
+  `--transport http --host 127.0.0.1 --public-name mcp.example.com` (the names the proxy forwards in `Host`), and
+  have the proxy pass the `Authorization` header through.
+- Behind a load balancer or gateway on another machine, keep `--transport https` (a self-signed certificate is
+  fine: the balancer is the client that has to trust it), list in `--public-name` the host name the balancer sends
+  as `Host`, and have it forward `Authorization`. Point its health probe at `GET /healthz`: it needs no token, returns
+  only `{"status": "ok"}` and accepts any `Host` (vmware-policy ≥ 1.23.0). Every other path still needs the token.
+- Correlation: each audit row stores the caller's `traceparent` trace-id, else its `X-Request-ID` /
+  `X-Correlation-ID`. Have the agent platform send one, and `vmware-audit log --correlation-id ID` lists the calls
+  behind one platform request.
+- `vmware-audit token list` / `token revoke NAME` manage callers; a revoked token is refused from its next request.
+  Replace a leaked token under a new name.
+- The server will not start without at least one token, and checks before it binds that unauthenticated requests
+  are refused.
+- Each audit row records the caller as `token:<name>`. Calls run side by side, with up to `VMWARE_MCP_POOL_SIZE`
+  (default 2) sessions per target; each session is a login on the target, and a call waits at most 300 s for one.
+- **Everyone who can reach the endpoint acts with this server's account.** Tokens identify callers; they grant
+  nothing on the platform. Run one endpoint per privilege level (for example a read-only account behind
+  `--expose read`, and a separate endpoint for operators).
+- **Several people or roles on one endpoint:** run `vmware-audit roles enable` once, then give each token a role (`vmware-audit token create NAME --role reader`, or a role in `roles.yaml` naming tools and targets; vmware-policy ≥ 1.24.0). A role limits what the token may call on this endpoint; it cannot grant more than the account has. See vmware-policy's README, "Roles for network callers".
+
+## Behind an MCP gateway
+
+A gateway (one MCP endpoint in front of several servers, for example vmware-monitor, vmware-aria and
+vmware-log-insight) works with these servers as they are: each backend runs as in
+[Serving MCP over HTTPS](#serving-mcp-over-https), and the gateway is just another client. Tool names do not
+collide across vmware-monitor, vmware-aria and vmware-log-insight, so the gateway needs no prefixes. What to
+decide:
+
+- **Who the backend sees.** If the gateway calls every backend with one token of its own, every audit row says
+  `token:<gateway>` and per-caller roles stop meaning anything. To keep per-person audit and roles, have the gateway
+  **forward each caller's own `Authorization` header** to the backend. Servers on one host with the same `OPS_HOME`
+  (default `~/.vmware`) share one token file, so one token per person works on all of them. A backend session is
+  bound to the token that opened it, so the gateway must open a backend session per caller, not share one. If the gateway does
+  its own authentication instead, give it a token per backend and accept that audit identifies the gateway, not
+  the person; forward `traceparent` or `X-Request-ID` so `vmware-audit log --correlation-id ID` still ties calls to
+  one platform request.
+- **Read-only does not depend on the gateway.** Keep the layers on each backend: a read-only platform account (the
+  real boundary), `--expose read` so write tools are never offered, and deny rules in `~/.vmware/rules.yaml`. A
+  gateway misconfiguration then cannot turn into a write.
+- **Tool list size is the main cost, not the extra hop.** The hop adds milliseconds; platform calls take hundreds
+  of milliseconds to seconds. But clients put every offered tool's schema into the model's context on every turn.
+  Even with `--expose read`, the schemas of vmware-monitor, vmware-aria and vmware-log-insight together come to
+  about 30,000 tokens or more. Offer the gateway's clients a curated subset, or group
+  tools per task, rather than passing all of them through.
+- **Timeouts and sessions.** Set the gateway's per-call timeout above the longest call you expect: a call can wait
+  up to 300 s for a free session to a busy target. A backend MCP session expires after 30 minutes idle; the gateway
+  must start a new session when the backend answers 404 for an old one, as the MCP specification requires.
+- **Scaling.** Run one backend endpoint per privilege level, not one per caller. Add sessions per target with
+  `VMWARE_MCP_POOL_SIZE` before adding processes. Point the gateway's health checks at `GET /healthz`.
+
 ## Security
 
 > **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware" and "vSphere" are trademarks of Broadcom.
 
-- **Read-Only by Design**: This is an independent repository with zero destructive code paths. No power off, delete, create, reconfigure, or migrate functions exist in the codebase.
-- **Source Code**: Fully open source at [github.com/zw008/VMware-Monitor](https://github.com/zw008/VMware-Monitor) (MIT). The `uv` installer fetches the `vmware-monitor` package from PyPI, which is built from this GitHub repository. We recommend reviewing the source code and commit history before deploying in production.
-- **TLS Verification**: Enabled by default. The `disableSslCertValidation` option exists solely for ESXi hosts using self-signed certificates in isolated lab/home environments. In production, always use CA-signed certificates with full TLS verification.
+- **Read-Only toward vSphere**: This is an independent repository with zero destructive code paths. No power off, delete, create, reconfigure, or migrate functions exist in the codebase. Enforced by [`tests/eval/regression/test_read_only_enforcement.py`](https://github.com/vmware-skills/VMware-Monitor/blob/main/tests/eval/regression/test_read_only_enforcement.py) — in the source repository, not in this skill bundle — which allowlists every vSphere method the package calls against pyVmomi's own type metadata. It is a gate on source code, not a runtime block, and this repo has no CI — for defence that does not depend on it, use a least-privilege account (next item). Local files the skill writes are listed under [What "read-only" covers](#what-read-only-covers-and-what-it-writes-locally).
+- **Least Privilege**: Give the skill a dedicated vCenter service account holding the built-in **Read-Only** role (propagated from the inventory root), not an administrator. That role has no privilege to change anything, so the read-only claim no longer rests on this code. Two reads need more than it grants: `list_active_sessions` reads the session list, which vCenter gates on `Sessions.TerminateSession` (a privilege that also allows ending sessions — without it the tool returns a one-row explanation instead); and ESXi host-log reads (`scan_host_logs` and the daemon's host-log pass) call `BrowseDiagnosticLog`, gated on `Global.Diagnostics`. Grant those only if you need those reads.
+- **Source Code**: Fully open source at [github.com/vmware-skills/VMware-Monitor](https://github.com/vmware-skills/VMware-Monitor) (MIT). The `uv` installer fetches the `vmware-monitor` package from PyPI, which is built from this GitHub repository. We recommend reviewing the source code and commit history before deploying in production.
+- **TLS Verification**: Enabled by default. Setting `verify_ssl: false` is solely for ESXi hosts using self-signed certificates in isolated lab/home environments. In production, always use CA-signed certificates with full TLS verification.
 - **Credentials & Config**: This skill requires the following secrets, all stored in `~/.vmware-monitor/.env` (`chmod 600`, loaded via `python-dotenv`):
   - `VMWARE_<TARGET>_PASSWORD` — per-target password where `<TARGET>` is the uppercased target name from `config.yaml` (hyphens become underscores). Example: target named `vcenter-prod` uses `VMWARE_VCENTER_PROD_PASSWORD`.
   - (Optional) Webhook URLs for Slack/Discord notifications
 
   The config file `~/.vmware-monitor/config.yaml` stores only target hostnames, ports, and usernames — it does **not** contain passwords or tokens. The env var `VMWARE_MONITOR_CONFIG` points to this YAML file.
-- **Webhook Data Scope**: Webhook notifications are **disabled by default**. When enabled, they send monitoring summaries (alarm counts, event types, host status) to **user-configured URLs only** (Slack, Discord, or any HTTP endpoint you control). No data is sent to third-party services. Webhook payloads contain no credentials, IPs, or personally identifiable information — only aggregated alert metadata.
+- **Webhook Data Scope**: Webhook notifications are **disabled by default**. When enabled, the daemon posts to **user-configured URLs only** (Slack, Discord, or any HTTP endpoint you control); no data is sent to any other service. Each payload carries critical/warning counts plus every critical issue and every alarm/event warning from that scan — host-log warnings go to `scan.log` only, and `info` rows (unreadable or partly-read host logs) are never sent. Each issue carries the entity name and one of: the alarm name, vCenter event message (sanitized, ≤500 chars), ESXi log line matching critical/panic/corrupt (sanitized, ≤200 chars), or a generic connection/policy failure class, without raw exception text. Event and log text can contain host names, IP addresses, and user names — treat the webhook destination as receiving operational data. No credentials from the skill's config or `.env` are included.
 - **Prompt Injection Protection**: All vSphere-sourced content (event messages, host logs) is truncated, stripped of control characters, and wrapped in boundary markers (`[VSPHERE_EVENT]`/`[VSPHERE_HOST_LOG]`) before output to prevent prompt injection when consumed by LLM agents.
+
+**The account is the boundary.** This skill has no write tools, but an agent that can run shell commands can reach
+the platform without it (SSH, curl, govc, PowerCLI). Give the service account only the read privileges it needs;
+nothing in the skill can stop the same credentials being used another way.
 
 ## Supported AI Platforms
 
 | Platform | Status | Config File |
 |----------|--------|-------------|
-| Claude Code | Native Skill | `plugins/.../SKILL.md` |
-| Gemini CLI | Extension | `gemini-extension/GEMINI.md` |
-| OpenAI Codex CLI | Skill + AGENTS.md | `codex-skill/AGENTS.md` |
-| Aider | Conventions | `codex-skill/AGENTS.md` |
-| Continue CLI | Rules | `codex-skill/AGENTS.md` |
-| Trae IDE | Rules | `trae-rules/project_rules.md` |
-| Kimi Code CLI | Skill | `kimi-skill/SKILL.md` |
-| MCP Server | MCP Protocol | `mcp_server/` |
+| Claude Code | Native Skill | `skills/vmware-monitor/SKILL.md` |
+| Gemini CLI | Context file + MCP | `skills/vmware-monitor/SKILL.md` |
+| OpenAI Codex CLI | Skill + AGENTS.md | `skills/vmware-monitor/SKILL.md` |
+| Aider | Conventions | `skills/vmware-monitor/SKILL.md` |
+| Continue CLI | Rules | `skills/vmware-monitor/SKILL.md` |
+| Trae IDE | Rules | `skills/vmware-monitor/SKILL.md` |
+| Kimi Code CLI | Skill | `skills/vmware-monitor/SKILL.md` |
+| MCP Server | MCP Protocol | `vmware_monitor/mcp_server/` |
 | Python CLI | Standalone | N/A |
 
 ### MCP Server — Local Agent Compatibility
 
-The MCP server works with any MCP-compatible agent via stdio transport. All 11 tools are **read-only**. Config templates in `examples/mcp-configs/`:
+The MCP server works with any MCP-compatible agent via stdio transport. All 33 tools are **read-only** toward vSphere. Config templates in `examples/mcp-configs/`:
 
 | Agent | Local Models | Config Template |
 |-------|:----------:|-----------------|
@@ -157,7 +315,7 @@ The MCP server works with any MCP-compatible agent via stdio transport. All 11 t
 
 ```bash
 # Example: Aider + Ollama (fully local, no cloud API)
-aider --conventions codex-skill/AGENTS.md --model ollama/qwen2.5-coder:32b
+aider --conventions skills/vmware-monitor/SKILL.md --model ollama/qwen2.5-coder:32b
 ```
 
 ## First Interaction: Environment Selection
@@ -167,3 +325,5 @@ When the user starts a conversation, **always ask first**:
 1. **Which environment** do they want to monitor? (vCenter Server or standalone ESXi host)
 2. **Which target** from their config? (e.g., `prod-vcenter`, `lab-esxi`)
 3. If no config exists yet, guide them through creating `~/.vmware-monitor/config.yaml`
+
+Daemon target reads (`daemon_scan`) and notification sends (`webhook_send`) pass Policy before network access. Their unified audit rows use `surface=daemon` and contain counts/outcomes, not endpoint URLs or incident text. Repeated unchanged failures are recorded once until recovery or an outcome change; successful operations are always recorded. A background scan with failed passes or unread/skipped log coverage is audited as incomplete.

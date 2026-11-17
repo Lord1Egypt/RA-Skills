@@ -1,45 +1,52 @@
-## Description: <br>
-Helps agents generate MiniMax videos from text prompts, source images, or first and last frames, query generation status, and save completed videos locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with MiniMax from text prompts, image prompts, or paired first and last frames, and can query generation status and download completed videos.
 
-## Publisher: <br>
-[turbos7](https://clawhub.ai/user/turbos7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turbos7](https://clawhub.ai/user/turbos7)
 
-## Use Case: <br>
-Developers and creators use this skill to create or query MiniMax video-generation jobs from text prompts, uploaded images, or first and last frames. The helper workflow polls job status and saves generated MP4 videos to local storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or images are sent to the MiniMax cloud video-generation service. <br>
-Mitigation: Do not submit confidential, regulated, or private content unless MiniMax processing is approved for the use case. <br>
-Risk: The skill requires a MiniMax API key. <br>
-Mitigation: Store MINIMAX_API_KEY as a protected environment variable or scoped secret, avoid sharing it in prompts or logs, and rotate it if exposed. <br>
-Risk: Generated videos remain on local disk after download. <br>
-Mitigation: Review and clean the output directory when generated videos are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to create short videos through MiniMax models from text, a starting image, or first and last frame images. It also supports checking task status and saving completed MP4 files locally.
 
-## Reference(s): <br>
-- [MiniMax video generation API endpoint](https://api.minimaxi.com/v1/video_generation) <br>
-- [MiniMax video generation status endpoint](https://api.minimaxi.com/v1/query/video_generation?task_id={task_id}) <br>
-- [MiniMax file retrieval endpoint](https://api.minimaxi.com/v1/files/retrieve?file_id={file_id}) <br>
-- [ClawHub listing](https://clawhub.ai/turbos7/turbos7-minimax-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with Python and bash examples; generated MP4 files when the helper script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; generated videos are saved under ~/.openclaw/workspace/assets/videos by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The script can upload any readable local path supplied as a first or last image to MiniMax without file validation or an explicit confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, non-sensitive image paths, and add file type and size validation plus explicit upload confirmation before shared or sensitive workspace use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/turbos7/skills/turbos7-minimax-video)
+- [MiniMax video generation endpoint](https://api.minimaxi.com/v1/video_generation)
+- [MiniMax video generation status endpoint](https://api.minimaxi.com/v1/query/video_generation?task_id={task_id})
+- [MiniMax file retrieval endpoint](https://api.minimaxi.com/v1/files/retrieve?file_id={file_id})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; the script produces CLI text output and MP4 video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY or an explicit API key; generated videos are saved to the configured local directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

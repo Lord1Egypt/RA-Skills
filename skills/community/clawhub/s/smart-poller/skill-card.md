@@ -1,45 +1,56 @@
-## Description: <br>
-Periodically polls a Feishu task board, detects pending tasks assigned to the current AI agent, and writes completion feedback to the board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Periodically polls a Feishu task board to detect tasks assigned to the current AI agent, run simple task-handling logic, and write completion feedback.
 
-## Publisher: <br>
-[socneo](https://clawhub.ai/user/socneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socneo](https://clawhub.ai/user/socneo)
 
-## Use Case: <br>
-Developers and AI-agent operators use Smart Poller to coordinate asynchronous work through a shared Feishu task board, where each agent polls for tasks assigned to its configured identity and posts status feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can mark Feishu tasks as completed even when it has only generated canned status text. <br>
-Mitigation: Treat completion feedback as a status signal, not proof of work; review important task results before accepting them. <br>
-Risk: The skill uses Feishu app credentials and a document token from local configuration. <br>
-Mitigation: Use a dedicated least-privilege Feishu app, keep config.json private, and restrict who can edit the task board. <br>
-Risk: Recurring polling can repeatedly modify a shared remote task board. <br>
-Mitigation: Test with --once before enabling scheduled polling and monitor the board after deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an AI agent to a Feishu task board, poll for assigned pending tasks, and record status feedback back into the shared document.
 
-## Reference(s): <br>
-- [Smart Poller on ClawHub](https://clawhub.ai/socneo/smart-poller) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [README.md](artifact/README.md) <br>
-- [README.zh-CN.md](artifact/README.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and plain-text task feedback written to Feishu.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run once for testing or on a recurring polling interval; uses Feishu app credentials and a document token supplied in local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact changelog v1.0.0, released 2026-03-17) <br>
+Risk: The poller can run persistently and act on task text from a shared Feishu document without an approval step or strong verification that work was completed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted, access-restricted task board; test with --once first; and add approval, audit logging, and clear task-creation rules before continuous use.
+
+Risk: The skill requires Feishu app credentials and a document token in local configuration.
+
+Mitigation: Use a least-privilege Feishu app, keep config.json out of source control, and restrict file permissions for credential-bearing configuration.
+
+## Reference(s):
+
+- [Smart Poller ClawHub release](https://clawhub.ai/socneo/skills/smart-poller)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [README.md](README.md)
+- [README.zh-CN.md](README.zh-CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON configuration examples, CLI commands, runtime text or JSON status summaries, and Feishu document feedback entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run continuously or once, fetch tasks from a configured Feishu document, and append completion feedback to that document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

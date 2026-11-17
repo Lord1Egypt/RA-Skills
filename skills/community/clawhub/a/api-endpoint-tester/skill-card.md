@@ -1,45 +1,62 @@
-## Description: <br>
-CLI tool to test REST API endpoints with various HTTP methods, headers, and payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to test REST API endpoints with various HTTP methods, headers, and payloads.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers and engineers use this skill to manually test REST API endpoints, inspect response headers and bodies, validate status codes, and debug API integrations from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Requests to production or unintended endpoints, especially with DELETE, PUT, PATCH, or authenticated calls, can change remote systems or expose sensitive data. <br>
-Mitigation: Verify the exact URL, HTTP method, request body, and headers before running the skill, and prefer staging endpoints and test credentials for mutating or authenticated requests. <br>
-Risk: Authentication tokens placed directly in command-line headers may be retained in shell history or logs. <br>
-Mitigation: Avoid using production tokens directly in shell commands; use short-lived test credentials and clear or protect shell history where needed. <br>
-Risk: Saved response output may contain sensitive API data. <br>
-Mitigation: Use the optional output file only for non-sensitive responses or store the file in a protected location within the skill directory. <br>
-Risk: Disabling SSL verification can hide certificate or interception problems. <br>
-Mitigation: Keep SSL verification enabled unless testing a controlled development endpoint with known certificate constraints. <br>
+## Use Case:
 
+Developers and engineers use this skill to send single HTTP or HTTPS requests, inspect responses, validate status codes, and debug REST API integrations.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Derick001/api-endpoint-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files] <br>
-**Output Format:** [JSON object printed to stdout, with optional JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request status, status code, response headers, response body, response time, URL, and HTTP method.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can make broad outbound HTTP or HTTPS requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only against URLs you control or are explicitly authorized to test, and avoid private, internal, and metadata endpoints.
+
+Risk: Headers and request bodies can contain sensitive credentials or payload data.
+
+Mitigation: Do not paste live tokens, secrets, or sensitive data into command-line headers or bodies; use scoped test credentials when needed.
+
+Risk: The optional output-file behavior writes response data to disk.
+
+Mitigation: Avoid the output-file option until path containment and overwrite behavior have been reviewed and fixed.
+
+Risk: The requests dependency is declared without a pinned version.
+
+Mitigation: Pin the dependency version for reproducible installation and review updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/api-endpoint-tester)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files]
+
+**Output Format:** [JSON response object with status, headers, body, response time, URL, and method; optionally written to a JSON file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs one request at a time, supports common HTTP methods, and defaults to a 10-second timeout.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

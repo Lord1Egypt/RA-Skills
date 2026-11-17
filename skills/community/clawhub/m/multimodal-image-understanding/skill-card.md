@@ -1,41 +1,58 @@
-## Description: <br>
-Helps text-only agents answer image questions by calling a configured BYOK multimodal API when native image input is unavailable or the user requests a configured vision model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps a text-only agent analyze, describe, extract, or OCR image content by sending a user-supplied image and prompt to a configured multimodal API.
 
-## Publisher: <br>
-[zzfly256](https://clawhub.ai/user/zzfly256) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzfly256](https://clawhub.ai/user/zzfly256)
 
-## Use Case: <br>
-Developers and agent users use this skill to route image description, analysis, extraction, and OCR-style questions from text-only models to a configured multimodal provider. It is intended for BYOK workflows where the user controls the upstream Anthropic or OpenAI-compatible endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and prompts are sent to the configured upstream multimodal API provider. <br>
-Mitigation: Use the skill only with intended providers, and avoid private or sensitive images unless sharing them with that provider is acceptable. <br>
-Risk: API keys may be exposed if stored directly in the configuration file. <br>
-Mitigation: Prefer environment-variable references for credentials and restrict configuration file permissions when secrets are stored on disk. <br>
+## Use Case:
 
+Developers and agent users use this skill when a text-only model needs to answer questions about images through a bring-your-own-key multimodal provider. It supports local image files and image URLs with Anthropic-compatible or OpenAI-compatible APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zzfly256/multimodal-image-understanding) <br>
-- [Configuration schema reference](references/config-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text model response on stdout; JSON-formatted errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided image input, prompt text, and BYOK provider configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Images, image URLs, prompts, optional system prompts, and API credentials are sent to the configured multimodal provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only providers and HTTPS endpoints approved for the data being processed, and avoid sensitive images unless that provider is approved.
+
+Risk: The skill can fetch arbitrary image URLs from the user's machine when URL input is used with base64 transfer.
+
+Mitigation: Avoid arbitrary or private-network image URLs until URL validation and download limits are added.
+
+Risk: API keys may be stored directly in the local configuration file.
+
+Mitigation: Prefer environment variable references for credentials and restrict any local config file permissions.
+
+## Reference(s):
+
+- [Configuration Schema Reference](references/config-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/zzfly256/skills/multimodal-image-understanding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script prints the upstream model reply to stdout and emits JSON-formatted errors to stderr.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Expert Flutter specialist mastering Flutter 3+ with modern architecture patterns. Specializes in cross-platform development, custom animations, native integrations, and performance optimization with focus on creating beautiful, native-performance applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Flutter specialist mastering Flutter 3+ with modern architecture patterns. Specializes in cross-platform development, custom animations, native integrations, and performance optimization with focus on creating beautiful, native-performance applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for Flutter 3+ application architecture, state management, platform integration, custom animation, testing, deployment, and performance optimization guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Flutter changes may affect deployment, code-signing, analytics, CI/CD, or other sensitive project configuration.
+
+Mitigation: Review proposed changes before applying them, especially for release, signing, analytics, and automation configuration.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for Flutter 3+ application planning, implementation, testing, performance optimization, native integrations, and deployment guidance across mobile, web, and desktop targets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated app code involving permissions, signing, analytics, notifications, or production deployment can affect end users. <br>
-Mitigation: Review and test those areas before production release, especially platform permissions, store signing, telemetry behavior, and notification flows. <br>
+**Output Format:** [Markdown with code, command, and configuration recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May propose Flutter architecture, testing, deployment, performance, and native integration changes for human review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code, command, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Flutter development recommendations and implementation artifacts for the active project context.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

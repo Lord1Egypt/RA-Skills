@@ -1,39 +1,53 @@
-## Description: <br>
-Provides Node.js V8 heap snapshot diagnostics and perf_hooks-based performance profiling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates V8 heap snapshots and perf_hooks profiling output for local Node.js and OpenClaw diagnostics.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-Developers and engineers use this skill for on-demand local Node.js memory diagnostics, heap snapshot generation, and timing profile reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heap snapshot files can contain secrets, tokens, user content, or other application data captured from process memory. <br>
-Mitigation: Keep generated heap snapshots private, restrict access to diagnostic artifacts, and delete them after analysis. <br>
-Risk: The skill writes local diagnostic files under the user's home directory, which may persist beyond the debugging session. <br>
-Mitigation: Review and clean up generated heap snapshot, diagnostics, profiler state, and history files when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to capture local heap snapshots, inspect memory diagnostics, and track perf_hooks checkpoints during performance investigations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated local diagnostic files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates heap snapshots, diagnostics JSON, profiler state, history, and text reports under the user's local home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Heap snapshots and diagnostic files can be large and may contain runtime details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only when local diagnostics are needed, restrict access to generated files, and delete snapshots after analysis.
+
+Risk: Profiler state and history persist locally under ~/.openclaw/profiles/.
+
+Mitigation: Review and remove profiler history when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amd5/skills/heap-dump)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands]
+
+**Output Format:** [Console text plus local .heapsnapshot, JSON diagnostics, and JSONL/profile state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local diagnostic files under ~/.openclaw; generated snapshots and profiler history may need manual cleanup.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Nightly Workspace Audit scans OpenClaw workspace Markdown and JSON files for dependency issues, memory hygiene needs, HOT/WARM/COLD tier changes, sync inconsistencies, and workspace health reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nightly Workspace Audit scans workspace files for dependency issues, manages HOT/WARM/COLD memory tiers, detects orphaned files and sync inconsistencies, and reports workspace health.
 
-## Publisher: <br>
-[emrys-hong](https://clawhub.ai/user/emrys-hong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emrys-hong](https://clawhub.ai/user/emrys-hong)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to run scheduled or requested OpenClaw workspace audits, identify broken links and orphaned files, manage memory tiers, and receive a concise health report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify persistent workspace memory by deleting, moving, renaming, archiving, or rewriting files during cleanup and tiering. <br>
-Mitigation: Run a dry run first, keep backups of MEMORY.md and memory/, and require explicit approval before destructive or reorganizing changes. <br>
-Risk: Automated dependency and tier decisions may misclassify useful files as orphaned, stale, or ready for demotion. <br>
-Mitigation: Review the audit report and proposed tier changes before applying them, especially for cron-referenced, active project, or protected files. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to audit OpenClaw workspaces, identify broken links, orphaned files, duplicate or drifting memory content, and summarize cleanup or tier changes after nightly or manual checks.
 
-## Reference(s): <br>
-- [Tier Rules](references/tier-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown report with dependency, cleanup, tier-change, sync, and health sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include changed-file summaries and required review notes for memory tier changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read broad workspace and memory context during dependency discovery and memory hygiene checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where that level of access is acceptable, and review the audit report before relying on its conclusions.
+
+Risk: The skill can propose or perform persistent cleanup actions such as pruning, archiving, renaming, or MEMORY.md updates.
+
+Mitigation: Use report-only or manual review first, keep backups or version control, and approve deletions, moves, renames, and memory edits before applying them.
+
+Risk: Automatic HOT/WARM/COLD tier changes can remove frequently loaded context or archive useful memory if reference counts are incomplete.
+
+Mitigation: Check listed promotions and demotions against cron jobs, local overrides, active projects, and recent workspace usage before accepting tier changes.
+
+## Reference(s):
+
+- [Tier Rules](references/tier-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/emrys-hong/skills/nightly-workspace-audit)
+- [Publisher Profile](https://clawhub.ai/user/emrys-hong)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown health report with dependency, cleanup, tier-change, sync, and health sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed or completed file cleanup, archive, rename, MEMORY.md update, and tier promotion or demotion details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

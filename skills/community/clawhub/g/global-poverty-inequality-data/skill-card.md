@@ -1,42 +1,55 @@
-## Description: <br>
-Queries World Bank poverty and inequality data by country or region, including poverty headcounts, Gini index, income shares, trends, regional comparisons, and SDG context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Poverty & Inequality Data: Query World Bank poverty and inequality data by country or region name, returning poverty headcount thresholds, Gini index, income shares, and extreme poverty metrics through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to add AgentPMT-hosted queries for poverty, inequality, regional comparison, trend analysis, policy research, and SDG monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool inputs are sent to AgentPMT-hosted infrastructure. <br>
-Mitigation: Keep requests minimal and do not include secrets, private personal details, internal identifiers, wallet private keys, mnemonics, signatures, or payment headers unless explicitly intended for that service. <br>
-Risk: Poverty and inequality indicators can be delayed or incomplete for some countries and metrics. <br>
-Mitigation: Use returned source attribution, years, data notes, and availability warnings when interpreting results, especially for time-sensitive analysis. <br>
+## Use Case:
 
+Developers and analysts use this skill to query country, regional, income-group, or global poverty and inequality metrics from World Bank data for development analysis, poverty research, inequality studies, SDG monitoring, and policy research.
 
-## Reference(s): <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/global-poverty-inequality-data) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-poverty-inequality-data) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT tool calls return JSON poverty and inequality data, trends, regional comparisons, insights, SDG notes, and data notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact frontmatter) <br>
+Risk: The skill relies on remote, paid AgentPMT API use and mutable live schema or instruction responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if AgentPMT is trusted, prefer pinned setup packages, and review local schema before approving changes from live schema or examples.
+
+Risk: World Bank poverty and inequality data may lag current conditions and can have country or indicator gaps.
+
+Mitigation: Check returned years, source attribution, and data notes before using results for analysis or policy decisions.
+
+## Reference(s):
+
+- [Global Poverty Inequality Data schema](./schema.md)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/global-poverty-inequality-data)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-poverty-inequality-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include indicator data, trends, regional comparisons, insights, SDG alignment, data notes, and error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

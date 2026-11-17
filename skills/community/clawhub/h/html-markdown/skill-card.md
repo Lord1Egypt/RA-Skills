@@ -1,44 +1,60 @@
-## Description: <br>
-Converts local HTML files and web pages to clean Markdown using MinerU's document processing engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local HTML files and web pages to clean Markdown using MinerU while preserving common document structure such as headings, lists, tables, links, and code blocks.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, technical writers, and content teams use this skill to convert local HTML files or web pages into Markdown for documentation, content migration, and Markdown-based publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML content or URLs submitted for conversion may be processed by MinerU's external API. <br>
-Mitigation: Do not process confidential, regulated, authenticated, or internal pages unless the user has approval and understands MinerU's handling of submitted content. <br>
-Risk: The skill requires a MinerU API token for HTML conversion. <br>
-Mitigation: Keep MINERU_TOKEN out of prompts, logs, generated files, and source control; use the documented authentication flow or environment variable only in trusted environments. <br>
+## Use Case:
 
+Developers, technical writers, and content teams use this skill to convert HTML pages or files into Markdown for documentation, content migration, and Markdown-based publishing workflows.
 
-## Reference(s): <br>
-- [HTML Markdown on ClawHub](https://clawhub.ai/mzlzyca/html-markdown) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU Repository](https://github.com/opendatalab/MinerU) <br>
-- [mineru-open-api CLI](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Converted document content is emitted to stdout by default or saved with an output directory; progress and status messages are sent to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Converted HTML files or URLs may be processed by MinerU's cloud/API service, which can expose sensitive page content if submitted without approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat converted HTML and URLs as potentially sent to MinerU's service, and do not submit sensitive internal pages unless that is approved.
+
+Risk: Installing the MinerU CLI from an untrusted or floating source can introduce supply-chain risk.
+
+Mitigation: Install only from a trusted MinerU source and prefer a pinned version or isolated environment.
+
+Risk: A MinerU token is required for HTML conversion and could be exposed in shared environments.
+
+Mitigation: Use a limited MinerU token and keep authentication in the MINERU_TOKEN environment variable or MinerU auth flow rather than in skill text or committed files.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [MinerU API token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU Open API Go package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated Markdown output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [HTML conversion requires MinerU authentication; progress and status messages are sent to stderr while document content is sent to stdout.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

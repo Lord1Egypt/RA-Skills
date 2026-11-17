@@ -9,6 +9,7 @@ const { getDefaultTokenDir } = require('./token_store');
 const { ensurePrivateDir, writeSecretFile } = require("./security_utils");
 const { createSecureAxios } = require("./axios_secure");
 const { wenjuanUrl } = require("./api_config");
+const { resolveRegSource } = require("./source_params");
 const http = createSecureAxios();
 
 // API 地址
@@ -17,9 +18,13 @@ const QRCODE_URL = wenjuanUrl("/login/qrcode");
 /**
  * 获取二维码
  */
-async function getQrcode() {
+async function getQrcode(regSource) {
   try {
-    const response = await http.post(QRCODE_URL, {}, { timeout: 30000 });
+    const response = await http.post(
+      QRCODE_URL,
+      { reg_source: resolveRegSource(regSource) },
+      { timeout: 30000 }
+    );
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -38,6 +43,7 @@ async function main() {
   let saveDeviceCode = false;
   let outputJson = false;
   let tokenDir = null;
+  let regSource = null;
   
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -48,6 +54,8 @@ async function main() {
       tokenDir = args[++i];
     } else if (arg === "--json") {
       outputJson = true;
+    } else if (arg === "--reg-source" && i + 1 < args.length) {
+      regSource = resolveRegSource(args[++i]);
     } else if (arg === "-h" || arg === "--help") {
       showHelp();
       process.exit(0);
@@ -55,7 +63,7 @@ async function main() {
   }
   
   try {
-    const result = await getQrcode();
+    const result = await getQrcode(regSource);
     
     if (result.error) {
       console.error(`❌ ${result.error}`);
@@ -97,6 +105,7 @@ function showHelp() {
 选项:
   --save                  保存 device_code 到 <凭证目录>/device_code（目录见 --token-dir / auth.md）
   --token-dir <dir>       凭证目录（默认 ~/.wenjuan 或 WENJUAN_TOKEN_DIR）
+  --reg-source <source>   注册来源（优先按 SKILL.md 传入；未传则用 JS 默认值）
   --json                  输出原始JSON响应
   -h, --help              显示帮助信息
 

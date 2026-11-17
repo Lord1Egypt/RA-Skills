@@ -1,43 +1,58 @@
-## Description: <br>
-OpenClaw Security Guard helps agents run lightweight local checks for prompt injection, secrets, risky commands, suspicious URLs, sensitive paths, and skill-folder publish or install risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security Guard helps agents run lightweight local checks for prompt injection, secret leakage, risky shell commands, SSRF-prone URLs, sensitive paths, and unsafe skill install or publish flows.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers, maintainers, and agent operators use this skill to preflight untrusted text, commands, URLs, paths, and third-party skill folders before installation, automation, or publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lightweight local checks can miss unsafe behavior or produce findings that still need context. <br>
-Mitigation: Use the results as a preflight signal, then manually review WARN or BLOCK findings before trusting, installing, or publishing a skill. <br>
-Risk: Generated audit JSON or markdown notes may include excerpts from scanned files. <br>
-Mitigation: Treat generated reports as sensitive when the scanned input may contain secrets, private paths, or proprietary content. <br>
-Risk: The hook installer creates a persistent local prepublish helper. <br>
-Mitigation: Run the installer only when a persistent local helper is intended and the target workspace path is acceptable. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to preflight agent workflows, commands, URLs, paths, and skill folders for common security red flags before install, automation, or ClawHub publishing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/X-RayLuan/clawlite-openclaw-security-guard) <br>
-- [Security Guard Checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audit notes or a prepublish helper when the user runs the relevant script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence and package.json) <br>
+Risk: Security evidence says helper scripts can write outside expected locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a controlled workspace and only use the hook installer or Obsidian writer when the destination path and note title are intentional and controlled.
+
+Risk: Security evidence says the prepublish guard can be bypassed and should not be the sole publish or install gate.
+
+Mitigation: Treat WARN and BLOCK findings as review triggers, inspect flagged lines manually, and use runtime isolation or additional review for high-risk skills.
+
+Risk: Artifact behavior relies on lightweight regex detection for common secret, command, URL, and path risks.
+
+Mitigation: Use the checks as a preflight filter, not a safety proof, and escalate uncertain or high-impact automation to human security review.
+
+## Reference(s):
+
+- [Security Guard Checklist](references/checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/x-rayluan/skills/clawlite-openclaw-security-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; bundled scripts emit JSON audit/check results and can write Markdown audit notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lightweight regex-based checks return ALLOW, WARN, or BLOCK verdicts; clean results do not prove safety.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

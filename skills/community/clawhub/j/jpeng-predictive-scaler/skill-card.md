@@ -1,40 +1,54 @@
-## Description: <br>
-Analyze resource usage patterns and predict future scaling needs using trend analysis and forecasting methods for capacity planning and auto-scaling decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze resource usage patterns and predict future scaling needs using trend analysis and forecasting methods for capacity planning and auto-scaling decisions.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and SREs use Predictive Scaler to analyze historical resource metrics, forecast CPU, memory, or request load, and generate capacity planning or auto-scaling recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasts and scaling recommendations may be inaccurate when historical data is sparse, noisy, or bursty. <br>
-Mitigation: Use the output as decision support, compare predictions with observed utilization, and validate recommendations before changing production capacity. <br>
-Risk: Resource metrics can include sensitive operational information. <br>
-Mitigation: Avoid supplying sensitive operational data unless the host environment and data-handling practices are approved for that data. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to analyze resource utilization history, forecast CPU, memory, and request load, and generate capacity planning or auto-scaling recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-predictive-scaler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance] <br>
-**Output Format:** [JavaScript object or JSON-like prediction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes predictions, confidence scores, trend and bursty-pattern signals, statistics, and scaling recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Very large prediction horizons, step counts, or input arrays can create availability risk when prediction APIs are exposed to untrusted callers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill local or add finite positive integer limits for horizon and steps plus reasonable maximum input sizes before exposing it to untrusted users.
+
+Risk: Forecasts are statistical estimates and can be less reliable for bursty or highly variable workloads.
+
+Mitigation: Review confidence, burst detection, and recent observed utilization before applying scaling recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-predictive-scaler)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [JSON-style prediction objects and concise recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes forecast values, confidence, trend and burst detection, usage statistics, and scale-up, scale-down, maintain, or unknown recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

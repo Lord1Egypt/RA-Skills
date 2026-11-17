@@ -1,0 +1,71 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "ppp://schemas/workflow@7",
+ "title": "paper-polisher-pro workflow report (v7 contract)",
+ "description": "pp_api.workflow / pp_workflow.py 的输出契约：端到端自查综合报告。",
+ "type": "object",
+ "required": [
+  "detect",
+  "paragraphs",
+  "gate",
+  "findings_ledger",
+  "engine_version",
+  "integrity_notice"
+ ],
+ "properties": {
+  "detect": {
+   "type": "object"
+  },
+  "paragraphs": {
+   "type": "object",
+   "required": [
+    "high",
+    "medium",
+    "total"
+   ]
+  },
+  "gate": {
+   "type": "object",
+   "required": [
+    "verdict"
+   ]
+  },
+  "findings_ledger": {
+   "type": "object"
+  },
+  "engine_version": {
+   "type": "string"
+  },
+  "generated_at": {
+   "type": "string"
+  },
+  "integrity_notice": {
+   "type": "string"
+  },
+  "style_norm": {
+   "type": "object"
+  },
+  "terms": {
+   "type": "object"
+  },
+  "smell": {
+   "type": "object"
+  },
+  "style": {
+   "type": "object"
+  },
+  "quality": {
+   "type": "object"
+  },
+  "aigc_label": {
+   "type": "object"
+  },
+  "mixed_document": {
+   "type": "object"
+  },
+  "length_chars": {
+   "type": "integer"
+  }
+ },
+ "additionalProperties": true
+}

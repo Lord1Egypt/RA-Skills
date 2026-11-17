@@ -1,42 +1,56 @@
-## Description: <br>
-10 business skills from The Minimalist Entrepreneur by Sahil Lavingia. Covers the full startup journey: find community, validate ideas, build MVP, processize, find first customers, pricing, marketing, sustainable growth, company values, and minimalist review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides 10 business-advisor workflows from The Minimalist Entrepreneur by Sahil Lavingia for finding a community, validating ideas, building MVPs, processizing, finding first customers, pricing, marketing, sustainable growth, company values, and minimalist business reviews.
 
-## Publisher: <br>
-[maryambahri](https://clawhub.ai/user/maryambahri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maryambahri](https://clawhub.ai/user/maryambahri)
 
-## Use Case: <br>
-External founders, creators, and business operators use this skill for practical coaching on community selection, idea validation, MVP scoping, first customers, pricing, marketing, sustainable growth, company values, and minimalist business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat practical startup coaching as legal, tax, investment, or compliance advice. <br>
-Mitigation: Use the skill for business planning and decision support only, and seek qualified professional advice for legal, tax, investment, or regulated compliance decisions. <br>
-Risk: Cold-outreach and customer-development guidance may involve email, customer data, or platform communities subject to rules and laws. <br>
-Mitigation: Review outreach plans for applicable anti-spam, privacy, customer-data, and platform requirements before acting. <br>
+## Use Case:
 
+External users, founders, and small-business operators use this skill for community-first startup coaching, idea validation, MVP scoping, pricing, marketing, customer acquisition, sustainable growth, company values, and decision reviews.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maryambahri/the-minimalist-entrepreneur) <br>
-- [Original Skills Homepage](https://github.com/slavingia/skills) <br>
-- [The Minimalist Entrepreneur](https://www.minimalistentrepreneur.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory responses with structured recommendations, checklists, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden system access are part of the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat broad startup coaching as professional financial, legal, tax, or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as general business guidance and consult qualified professionals before making financial, legal, tax, or investment decisions.
+
+Risk: The broad description may cause the skill to be invoked for many business-decision questions where context is incomplete.
+
+Mitigation: Ask for missing business context and present recommendations as decision support rather than definitive instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maryambahri/skills/the-minimalist-entrepreneur)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/maryambahri)
+- [Clawdis Homepage](https://github.com/slavingia/skills)
+- [The Minimalist Entrepreneur](https://www.minimalistentrepreneur.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, frameworks, verdicts, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or hidden data movement was identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

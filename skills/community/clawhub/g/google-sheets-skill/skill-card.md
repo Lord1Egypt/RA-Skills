@@ -1,44 +1,59 @@
-## Description: <br>
-Google Sheets Secure Management. Use when the user wants to create, read, write, or append spreadsheet data; manage tabs (read/add/delete); copy spreadsheets; or manage sharing, permissions, renames, and deletes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets Secure Management helps agents create, read, write, append, copy, share, rename, delete, and manage tabs for Google Sheets through the porteden CLI.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Google Sheets through the PortEden CLI, including spreadsheet data operations, tab management, file copy/export, sharing, renaming, and trashing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Google account, Sheets, and Drive data through PortEden credentials. <br>
-Mitigation: Install only when that access is acceptable; review requested Google scopes and use a dedicated profile or token when possible. <br>
-Risk: Share, delete, rename, and bulk write operations can expose, alter, or trash spreadsheet data. <br>
-Mitigation: Confirm carefully before executing share, delete, rename, or bulk write commands, and prefer scoped credentials for the intended workspace. <br>
-Risk: Read operations may return clipped tab data by default for larger sheets. <br>
-Mitigation: Check for clipped responses and use the returned full range, explicit ranges, or a higher row cap when complete data is required. <br>
+## Use Case:
 
+Developers, operators, and AI agents use this skill to manage Google Sheets data, spreadsheet files, tabs, and permissions from natural-language workflows backed by porteden CLI commands.
 
-## Reference(s): <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/porteden/google-sheets-skill) <br>
-- [PortEden publisher profile](https://clawhub.ai/user/porteden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly request compact JSON output with -jc; operations require PortEden authentication and Google Drive access where applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on the third-party porteden CLI and credentials with Google Sheets or Drive access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted porteden sources, use a dedicated Google account or profile when practical, and keep PE_API_KEY narrowly scoped.
+
+Risk: Spreadsheet sharing and delete operations can expose or remove user data.
+
+Mitigation: Manually confirm share and delete operations before execution, and prefer restricted sharing scopes.
+
+Risk: Broad Drive scopes can grant access beyond a single spreadsheet workflow.
+
+Mitigation: Avoid broad Drive scopes unless required for the task, and verify token access information before sensitive operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/google-sheets-skill)
+- [PortEden publisher profile](https://clawhub.ai/user/porteden)
+- [PortEden homepage](https://porteden.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compact JSON-oriented command flags for AI-friendly spreadsheet responses.]
+
+## Skill Version(s):
+
+1.0.8 (source: evidence.json release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

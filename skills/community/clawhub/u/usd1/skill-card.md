@@ -1,40 +1,62 @@
-## Description: <br>
-Transfers USD1 (USDC on Wormhole) between wallets using Wormhole Liquidity Facility on testnet and returns the transaction hash and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfers USD1 (USDC on Wormhole) between wallets using Wormhole Liquidity Facility on testnet and returns a transaction hash, status, and message.
 
-## Publisher: <br>
-[AsgherAli](https://clawhub.ai/user/AsgherAli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[asgherali](https://clawhub.ai/user/asgherali)
 
-## Use Case: <br>
-Developers and agents use this skill to initiate testnet USD1/USDC wallet-to-wallet transfers, optionally check sender balance, and receive transaction status details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to handle a raw wallet private key and can submit a token transfer directly. <br>
-Mitigation: Use only a disposable testnet wallet or a signer flow with explicit approval, and do not provide any mainnet or reused private key. <br>
-Risk: Incorrect token, amount, chain, or recipient inputs could lead to failed or unintended transfers. <br>
-Mitigation: Verify the exact token, amount, chain, and recipient address outside the skill before invoking it. <br>
+## Use Case:
 
+Developers and agents use this skill to initiate testnet USD1 transfers after receiving an amount, recipient address, chain, and sender key, then report the resulting transaction status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AsgherAli/usd1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text] <br>
-**Output Format:** [JSON object with transactionHash, status, and message fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success or failed status; runs on Testnet by default and requires amount, recipient address, and private key input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, changelog, package.json) <br>
+Risk: The skill asks for a raw wallet private key, which can expose funds if the key is reused, stored, or logged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a disposable testnet wallet key that controls no real funds, and replace raw private-key input with a constrained wallet or signer flow before broader use.
+
+Risk: The skill can send tokens without a final transaction preview or confirmation step.
+
+Mitigation: Add an explicit transaction preview and user confirmation before submitting any transfer.
+
+Risk: Invalid chain, address, or amount inputs could cause failed or unintended transfer attempts.
+
+Mitigation: Validate chain, recipient address, and amount exactly before constructing the transaction.
+
+Risk: Dependency and network behavior may change over time.
+
+Mitigation: Pin and regularly update dependencies, and restrict network access to the required testnet endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asgherali/skills/usd1)
+- [Publisher profile](https://clawhub.ai/user/asgherali)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON object with transactionHash, status, and message fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires amount, recipient address, and sender private key as inputs; chain defaults to Solana.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

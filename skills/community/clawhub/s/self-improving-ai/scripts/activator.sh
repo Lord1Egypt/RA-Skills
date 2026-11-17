@@ -18,6 +18,6 @@ After completing this task, evaluate if AI/model learnings emerged:
 - Did RAG retrieval return relevant context?
 
 If yes: Log to .learnings/ using the self-improving-ai format.
-If model config change needed: Update model selection or prompt library.
+If a model config change is needed: propose an update and apply only after explicit user approval.
 </ai-improvement-reminder>
 EOF

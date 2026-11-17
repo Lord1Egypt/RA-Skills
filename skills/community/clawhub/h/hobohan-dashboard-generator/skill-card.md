@@ -1,41 +1,57 @@
-## Description: <br>
-Generate self-contained HTML dashboards for memory logs, expense charts, and token usage. Run hourly via cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate self-contained HTML dashboards for memory logs, expense charts, and token usage. Run hourly via cron.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Developers and operators use this skill to keep local OpenClaw memory, expense, and token usage dashboards generated and available for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill serves private memory logs, ledger data, and usage data through a persistent local HTTP dashboard without clear access controls. <br>
-Mitigation: Enable it only in the intended local OpenClaw environment, confirm the dashboard is bound to localhost or otherwise access-controlled, and review the data exposed before use. <br>
-Risk: The server watchdog can restart a persistent dashboard process automatically. <br>
-Mitigation: Confirm the watchdog and cron behavior are easy to disable before deployment and monitor the server process after enabling it. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain local dashboards for memory logs, expense data, and token usage so private operational activity can be reviewed from generated HTML and JSON outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hohobohan/hobohan-dashboard-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/hohobohan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON/HTML dashboard artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local dashboard files and watchdog/cron behavior for a port 8081 dashboard server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and changelog, released 2026-06-03) <br>
+Risk: The skill sets up persistent scheduled jobs and a local dashboard server that can expose comprehensive memory, ledger, and usage data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a persistent local dashboard is intended, bind the server to localhost, restrict served directory permissions, and document stop and removal procedures for cron jobs and watchdogs.
+
+Risk: The security evidence does not identify clear access controls for the served dashboard data.
+
+Mitigation: Add authentication or another access gate before enabling access beyond a trusted local environment.
+
+Risk: The skill runs external workspace scripts to generate and serve dashboard data.
+
+Mitigation: Review the referenced scripts before deployment and limit their filesystem permissions to the dashboard and source data they require.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hohobohan/skills/hobohan-dashboard-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands plus HTML and JSON dashboard file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or refreshes local dashboard files and runs a localhost dashboard server when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

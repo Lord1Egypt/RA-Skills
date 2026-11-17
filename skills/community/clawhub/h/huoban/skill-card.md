@@ -1,43 +1,54 @@
-## Description: <br>
-Huoban is a low-code platform assistant for multidimensional table design, automation workflows, analytics dashboards, permissions, and API integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huoban is a zero-code platform guide for building table, board, and dashboard apps; comparing Huoban with Jiandaoyun, Mingdao, and Feishu multidimensional tables; and planning Excel-to-online-database migrations.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users, employees, developers, and operations teams use this skill to design Huoban data tables, configure automations, build dashboards, manage permissions, and plan Huoban API or webhook integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API examples can expose or mishandle Huoban API tokens if users paste secrets into prompts, code, or shared files. <br>
-Mitigation: Keep API tokens out of code and prompts, store them in secret managers or environment variables, and use scoped tokens where possible. <br>
-Risk: Update and delete API operations can modify or remove business records. <br>
-Mitigation: Require explicit confirmation before running update or delete operations and test requests against non-production data first. <br>
-Risk: Webhook integrations can send business data to untrusted or incorrect endpoints. <br>
-Mitigation: Verify webhook URLs, use HTTPS endpoints, and limit payload contents to the minimum data required. <br>
+## Use Case:
 
+Developers, operations teams, and business users use this skill to design Huoban zero-code data applications, automation flows, dashboards, permissions, and API integrations. It also helps teams compare Huoban with related collaboration database tools and plan migrations from Excel.
 
-## Reference(s): <br>
-- [Huoban API endpoint](https://api.huoban.com/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/huoban) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with tables and inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python API examples, webhook patterns, formulas, table schemas, and workflow configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Webhook and API examples can affect business records without showing sufficient safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require webhook signature or shared-secret verification, strict payload validation, replay protection, table and tenant allowlists, and least-privilege Huoban API tokens before using create, update, or delete record operations.
+
+Risk: Product-selection or platform-version guidance may become inaccurate as Huoban pricing and features change.
+
+Mitigation: Check Huoban's official current documentation and pricing before making implementation or purchasing decisions.
+
+## Reference(s):
+
+- [Huoban API base URL](https://api.huoban.com/v2)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/huoban)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with tables and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python API examples, webhook examples, table designs, automation patterns, dashboard guidance, and product-selection recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

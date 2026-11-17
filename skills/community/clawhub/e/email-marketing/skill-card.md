@@ -1,39 +1,52 @@
-## Description: <br>
-Email deliverability, list management, sequences, segmentation, and campaign optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email deliverability, list management, sequences, segmentation, and campaign optimization.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Marketing operators and business teams use this skill for email deliverability, list hygiene, segmentation, campaign sequencing, A/B testing, and compliance-aware campaign planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Campaign guidance can be misapplied to audiences without valid consent, unsubscribe handling, or jurisdiction-specific privacy review. <br>
-Mitigation: Verify consent records, opt-out handling, privacy obligations, and anti-spam compliance before using generated campaign advice. <br>
-Risk: Email performance heuristics may not fit every audience or sender reputation profile. <br>
-Mitigation: Validate recommendations with audience-specific tests and monitor deliverability, complaints, bounces, and unsubscribes before scaling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/email-marketing) <br>
+## Use Case:
 
+Marketing teams, founders, and operators use this skill to plan email campaigns, improve deliverability, manage subscriber health, design sequences, segment audiences, and evaluate campaign performance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; no executable code, account access, or hidden automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Behavioral segmentation and click-tracking guidance can create privacy, consent, unsubscribe, deletion, or retention issues if applied without policy controls.
+
+Mitigation: Use the skill's recommendations only in email platforms and campaigns that honor privacy laws, documented consent, unsubscribe choices, deletion requests, and reasonable retention limits.
+
+Risk: Marketing guidance may be incomplete for a specific jurisdiction, brand, audience, or email service provider.
+
+Mitigation: Review campaign plans against applicable legal requirements, internal policy, and email platform settings before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/email-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and campaign recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable marketing guidance; no API calls, tools, or credential environment variables detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Autonomous engine that systematically evaluates and ranks agent skills across models using rubric grading, error taxonomy, and improvement feedback loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous engine that systematically evaluates and ranks agent skills across models using rubric grading, error taxonomy, and improvement feedback loops.
 
-## Publisher: <br>
-[jensen-srp](https://clawhub.ai/user/jensen-srp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jensen-srp](https://clawhub.ai/user/jensen-srp)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate agent skills against baselines, compare behavior across execution models, generate evaluation reports, maintain leaderboards, and produce improvement drafts for low-scoring skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill improvements or knowledge-base updates could introduce incorrect or misleading behavior if installed without review. <br>
-Mitigation: Review generated SKILL-improved.md files and knowledge-base changes before adopting them in production agent behavior. <br>
-Risk: Evaluation runs may expose private skill content to configured external model providers. <br>
-Mitigation: Use an isolated workspace and avoid evaluating private skills with external providers unless that data sharing is acceptable. <br>
+## Use Case:
 
+Developers and evaluation engineers use this skill to design, run, grade, compare, and improve agent-skill evaluations across one or more execution models.
 
-## Reference(s): <br>
-- [Skill-Eval on ClawHub](https://clawhub.ai/jensen-srp/skill-eval) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON evaluation data, HTML leaderboard output, and draft skill-improvement files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce per-model score tables, grading summaries, benchmark metadata, leaderboard entries, and SKILL-improved.md drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The skill may execute untrusted skills or local script steps during evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled evaluation workspace with trusted repository contents before running local commands.
+
+Risk: The skill may propose persistent changes to knowledge-base files, SKILL-EVAL.md, or SKILL.md.
+
+Mitigation: Require human review before accepting generated methodology, knowledge-base, or skill changes.
+
+Risk: Unrelated credentials could be exposed if evaluations run in a shared workspace.
+
+Mitigation: Run evaluations with disposable outputs and no unrelated credentials available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jensen-srp/skills/skill-eval)
+- [Publisher profile](https://clawhub.ai/user/jensen-srp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces evaluation reports, leaderboard artifacts, grading summaries, and proposed skill improvements.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

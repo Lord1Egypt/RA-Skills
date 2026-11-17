@@ -1,42 +1,55 @@
-## Description: <br>
-Registry Sync keeps a Feishu registry sheet current when agents create or significantly update local skills, workflows, templates, or content flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep the Feishu registry sheet in sync whenever a new local skill, workflow, or template is created or significantly updated.
 
-## Publisher: <br>
-[G-Hanasq](https://clawhub.ai/user/G-Hanasq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g-hanasq](https://clawhub.ai/user/g-hanasq)
 
-## Use Case: <br>
-Developers and agents use this skill to keep a Feishu-based registry aligned with newly created or materially updated local skills, reusable workflows, templates, and content-related flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may update a specific Feishu registry sheet automatically after local skills, workflows, templates, or content flows change. <br>
-Mitigation: Confirm the sheet is appropriate for the data, keep Feishu permissions scoped, and review direct or queued registry changes. <br>
-Risk: If Feishu Sheets is unavailable, pending registry details may be written to a local backlog file. <br>
-Mitigation: Avoid placing sensitive internal details in queued backlog entries and review the backlog before syncing it. <br>
+## Use Case:
 
+Developers and operators use this skill to keep local skills, reusable workflows, and templates represented in a Feishu registry sheet or queued in a local backlog when direct sync is unavailable.
 
-## Reference(s): <br>
-- [Registry Sync source](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/G-Hanasq/registry-sync) <br>
-- [Configured Feishu registry sheet](https://bytedance.larkoffice.com/sheets/Bf6qsMV9fhqrD6tPE6TcQhF7nEe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Concise Markdown confirmation; registry rows or backlog entries as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the configured Feishu sheet or queue a local backlog entry when the sheet is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can automatically write metadata to a named Feishu sheet or local backlog without explicit user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target tab, fields, and write destination before use; add a dry-run or confirmation step for environments where unintended registry updates would be harmful.
+
+Risk: The skill references a specific Feishu registry and local OpenClaw workspace paths that may not match the installing user's environment.
+
+Mitigation: Confirm the registry URL and local workspace paths before enabling the skill, or adapt them to the intended workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g-hanasq/skills/registry-sync)
+- [Publisher profile](https://clawhub.ai/user/g-hanasq)
+- [Feishu registry sheet](https://bytedance.larkoffice.com/sheets/Bf6qsMV9fhqrD6tPE6TcQhF7nEe)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Text]
+
+**Output Format:** [Markdown or concise text confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe whether registry changes were written directly or queued.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -394,7 +394,7 @@ romantic and healing atmosphere, illustration style, delicate and beautiful
 uv run /tmp/dream_gen.py --prompt "[构造的prompt]" \
   --filename "/Users/openclaw/.openclaw/workspace/dream-[YYYY-MM-DD]-[意象词].png" \
   --resolution 2K \
-  --api-key AIzaSyAsht5bO-nUQUuXeH1NT26e3C9QEJNyQVg
+  --api-key REDACTED-SECRET
 ```
 
 **代理注意：** google-genai SDK 不读系统代理，必须用 `/tmp/dream_gen.py`（含 httpx monkey-patch）。

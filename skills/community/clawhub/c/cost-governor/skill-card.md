@@ -1,44 +1,58 @@
-## Description: <br>
-Tracks LLM API costs in real time, enforces budget limits with circuit breakers, and supports optional autonomous agent payments through the x402 protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cost Governor helps agents and operators track LLM API costs, enforce budget limits with circuit breakers, and manage optional x402-based Pro payments.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor LLM provider spending, set budget limits, receive alerts, and pause activity when configured limits are exceeded. Operators may also use its x402 payment flow for optional Pro features when they have reviewed wallet funding and approval controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages agents to spend from funded wallets for Pro features. <br>
-Mitigation: Use a separate low-balance wallet and require explicit human approval for each payment or renewal. <br>
-Risk: Autonomous payment behavior may run without enough spending limits or operator review. <br>
-Mitigation: Configure strict budget limits, confirm how to disable hooks and circuit breakers, and review the package/source code before running setup. <br>
-Risk: Payment verification is described as trusting reported transaction hashes in the artifact documentation. <br>
-Mitigation: Do not rely on the payment flow for high-value or unattended purchases until on-chain verification and approval controls are reviewed. <br>
+## Use Case:
 
+Developers, agent operators, and OpenClaw users use this skill to monitor LLM provider spend, receive budget alerts, pause activity at limits, and review cost reports before costs overrun budgets.
 
-## Reference(s): <br>
-- [Cost Governor on ClawHub](https://clawhub.ai/AtlasPA/cost-governor) <br>
-- [Project GitHub link from artifact documentation](https://github.com/AtlasPA/openclaw-cost-governor) <br>
-- [x402 Protocol](https://www.x402.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for cost tracking, local dashboard use, budget configuration, circuit-breaker reset, and optional payment setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Autonomous x402 payment setup can expose funds or allow payments without adequate operator review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the free local tracking features unless payment is needed; isolate payment capability behind a dedicated low-balance wallet, hard signer limits, and explicit human approval.
+
+Risk: The security review warns against running an unpinned npm setup in sensitive environments without verified package provenance and implementation.
+
+Mitigation: Pin package versions, verify package provenance and reviewed source code, and run setup in an isolated environment before production use.
+
+Risk: The artifact states the MVP payment verification trusts reported transaction hashes.
+
+Mitigation: Do not rely on Pro payment enforcement until on-chain verification is implemented or independently validated.
+
+## Reference(s):
+
+- [Cost Governor ClawHub listing](https://clawhub.ai/atlaspa/skills/cost-governor)
+- [x402 Protocol](https://www.x402.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, JSON configuration examples, and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce setup, status, dashboard, reporting, reset, and payment workflow guidance for local OpenClaw use.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

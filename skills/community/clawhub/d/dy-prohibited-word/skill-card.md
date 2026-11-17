@@ -1,45 +1,57 @@
-## Description: <br>
-检测文案、文件或网页中的抖音违禁词并加粗显示，提供违禁词替换建议和仅替换违禁词后的文案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+检测文案、文件或网页中的抖音违禁词并加粗显示，提供违禁词替换建议和仅替换违禁词后的文案；当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-Content creators, e-commerce operators, live-stream script planners, and marketing teams use this skill to check Douyin copy, uploaded text files, extracted image text, or webpage text for prohibited words before publication. It returns highlighted risks, replacement suggestions, and a revised copy file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checked text and extracted webpage or file content is sent to RedFox for processing. <br>
-Mitigation: Use the skill only for content appropriate to send to RedFox over HTTPS, and avoid highly sensitive internal documents. <br>
-Risk: The skill requires a RedFox API key. <br>
-Mitigation: Use a scoped, revocable key and do not hard-code or expose it in prompts, logs, code, or output files. <br>
-Risk: The skill writes revised copy to a local text file. <br>
-Mitigation: Delete generated output files when they are no longer needed. <br>
+## Use Case:
 
+Douyin content creators and marketing operators use this skill to check copy, files, or webpages for potentially prohibited terms and receive highlighted findings, contextual replacement suggestions, and a revised copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/dy-prohibited-word) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox service](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown sections with tables and bold highlights, plus a generated plain-text revised-copy file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; checks content in batches when input exceeds 3000 characters and stops above 10000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The recharge workflow can install a payment tool, submit a payment, and retry the query automatically after payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before installing payment tools and before each recharge; verify the recipient and amount, and use a reviewed, pinned payment package.
+
+Risk: Submitted text is sent to RedFox, and revised copies remain on disk despite the skill's privacy claim.
+
+Mitigation: Provide the intended account key explicitly, avoid confidential content unless its processing and storage are acceptable, and review or remove saved copies when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/if530770/skills/dy-prohibited-word)
+- [RedFox service](https://redfox.hk?source=clawhub)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Core workflow](references/core_workflow.md)
+- [Alipay recharge guidance](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown findings with highlighted terms and replacement suggestions, plus a plain-text revised copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process pasted text or extracted text from supported files, images, and webpages; revised text is also written to a local text file.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

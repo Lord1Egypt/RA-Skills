@@ -1,40 +1,59 @@
-## Description: <br>
-OpenClaw Bootstrap provides a one-command setup for new OpenClaw installations, including workspace files, learning logs, hooks, scheduled reviews, and community skill setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-command bootstrap for new OpenClaw installations. Sets up workspace files, self-evolution system (.learnings + hooks + crons), and community skills. Use when setting up a fresh OpenClaw or replicating setup to another machine.
 
-## Publisher: <br>
-[DjangoZH](https://clawhub.ai/user/DjangoZH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[djangozh](https://clawhub.ai/user/djangozh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize or replicate an OpenClaw workspace with standard memory files, learning logs, hooks, scheduled reviews, and community skill setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent automation and memory collection with weak user-facing consent controls. <br>
-Mitigation: Install only when long-term local memory, hooks, and scheduled jobs are desired; inspect each file before running the bootstrap and confirm how to disable automation and delete stored memory. <br>
-Risk: The bootstrap may perform networked installs for the ClawHub CLI and a community self-improving-agent skill. <br>
-Mitigation: Review the install commands first, skip or remove networked installs that are not needed, and run ClawHub login or installation steps manually when appropriate. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to initialize a new OpenClaw workspace or replicate an existing setup to another machine. It creates workspace memory files, learning logs, hooks, scheduled reviews, and community skill setup commands.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with bash commands and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bootstrap is intended to be idempotent and writes local OpenClaw workspace, hook, cron, and learning-log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: The skill can create persistent memory, hooks, and scheduled review workflows in an OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent workspace automation is intended; inspect generated files, review the self-improving-agent hook before enabling it, and disable cron jobs that are not desired.
+
+Risk: The setup may install unpinned remote packages and community skills.
+
+Mitigation: Pin and verify dependencies and community skill versions before running the bootstrap in a trusted workspace.
+
+Risk: Automatic promotion into AGENTS.md or MEMORY.md could preserve incorrect or unwanted guidance.
+
+Mitigation: Require human review before promoting learning entries or memory updates into long-lived workspace files.
+
+## Reference(s):
+
+- [Architecture](artifact/references/architecture.md)
+- [OpenClaw Bootstrap ClawHub listing](https://clawhub.ai/djangozh/skills/openclaw-bootstrap)
+- [djangozh ClawHub profile](https://clawhub.ai/user/djangozh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and files for an OpenClaw workspace; shell commands may install packages, enable hooks, and add scheduled jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

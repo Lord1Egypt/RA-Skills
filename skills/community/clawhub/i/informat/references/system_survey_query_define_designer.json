@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_survey_query_define_designer",
+		"description": "查询指定问卷调查模块详情,返回问卷调查列表。",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"scope": {
+					"description": "survey module ID",
+					"type": "string"
+				}
+			},
+			"required": [
+				"scope"
+			]
+		}
+	}
+}

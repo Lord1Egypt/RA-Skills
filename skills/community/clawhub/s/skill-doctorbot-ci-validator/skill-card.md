@@ -1,38 +1,48 @@
-## Description: <br>
-Validates GitHub Actions, GitLab CI, Keep, and other CI/CD workflow files offline so developers and agents can catch YAML and workflow issues before release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates CI/CD workflow files offline for GitHub Actions, GitLab CI, Keep, and other YAML-based workflows.
 
-## Publisher: <br>
-[bamontejano](https://clawhub.ai/user/bamontejano) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bamontejano](https://clawhub.ai/user/bamontejano)
 
-## Use Case: <br>
-Developers, DevOps engineers, and coding agents use this skill to validate workflow files before committing or deploying CI/CD changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package is documentation only, while the skill text references validator scripts that are not included. <br>
-Mitigation: Confirm any referenced scripts come from the intended project and inspect them before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bamontejano/skill-doctorbot-ci-validator) <br>
-- [Artifact-declared homepage](https://github.com/bamontejano/skill-doctorbot-ci-validator) <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to check workflow syntax and CI logic before committing, running pipelines, or proposing automation changes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference validator scripts that are not included in the reviewed package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter states 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review found that the inspected artifact contains instructions but does not include the validator scripts it references.
+
+Mitigation: Confirm the validator scripts are supplied by the installed package before relying on generated validation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bamontejano/skills/skill-doctorbot-ci-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference package-provided validator scripts when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

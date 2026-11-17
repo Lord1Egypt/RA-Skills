@@ -1,39 +1,49 @@
-## Description: <br>
-KK Innovation Advisor: Think like Kevin Kelly about innovation, products, and the future. Based on the Nine Laws, 12 Inevitable Forces, and 12 New Rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KK Innovation Advisor helps users evaluate innovation, product, and future-facing ideas through Kevin Kelly-inspired frameworks including the Nine Laws, the 12 Inevitable Forces, and the 12 New Rules.
 
-## Publisher: <br>
-[dickyao](https://clawhub.ai/user/dickyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dickyao](https://clawhub.ai/user/dickyao)
 
-## Use Case: <br>
-External users, founders, and product builders use this skill to explore product ideas through Kevin Kelly-inspired trend, network-economy, emergence, and long-horizon thinking. It guides brainstorming from problem framing through trend analysis, innovation gaps, product design, future vision, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy guidance may be incomplete, misleading, or unsuitable for business, financial, legal, or investment decisions. <br>
-Mitigation: Treat the output as creative brainstorming support and validate decisions with qualified review and independent evidence. <br>
-Risk: Prompts may include sensitive product ideas or business details. <br>
-Mitigation: Share only information you are comfortable putting into a chat and remove confidential details before use. <br>
+## Use Case:
 
+Developers, founders, product teams, and strategists use this skill to stress-test ideas, identify relevant technology and market trends, find innovation gaps, and shape practical next moves.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown response with structured questions, trend analysis, product design guidance, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; no code execution, credential access, persistence, or local data use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake brainstorming guidance for definitive predictions, product strategy, or a complete business plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as an ideation aid and validate recommendations with customer evidence, market research, domain experts, and human decision-makers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dickyao/skills/kk-innovation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Question-driven advisory workflow; no files, code, shell commands, or configuration are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

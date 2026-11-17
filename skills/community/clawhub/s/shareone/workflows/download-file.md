@@ -19,7 +19,13 @@ node scripts/download_share.js "<LINK_OR_ID>" --save
 ```text
 INFO:FILENAME:<原始文件名>
 INFO:CONTENT_TYPE:<mime 类型>
+INFO:REMOTE_SOURCE:<remote_url>      # 仅当该 share 的内容来自远程 URL 时出现
+HINT:EDIT_AT_SOURCE                  # 伴随 REMOTE_SOURCE 出现
 ```
+
+如果出现 `INFO:REMOTE_SOURCE` 和 `HINT:EDIT_AT_SOURCE`，说明这个 share 的内容来源是远程 URL（如 GitHub 仓库文件或另一个 ShareOne 链接）。提示用户：如果要修改内容，建议直接去源头修改（如在 GitHub 上编辑原文件），这样所有引用该源的分享链接都会自动同步更新。
+
+用户进一步要求修改 Git 源或管理版本时，读 [git-backed-versions.md](git-backed-versions.md)。跟随分支的源可拉取后续提交；固定 commit 的源需要显式换 URL 才会换版。单纯下载不修改仓库或分享绑定。
 
 脚本会在已配置 ShareOne API Key 时先尝试 owner 下载接口；owner 下载不受访问密码和 `allow_download` 限制。如果当前 API Key 不是 owner 或没有 API Key，脚本会自动退回公开下载。
 

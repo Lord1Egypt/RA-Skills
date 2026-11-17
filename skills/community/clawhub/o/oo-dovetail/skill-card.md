@@ -1,39 +1,52 @@
-## Description: <br>
-Dovetail (dovetail.com) supports Dovetail requests for reading, creating, and updating data through the oo CLI instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Dovetail to read, create, update, and export research data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Dovetail through an OOMOL-connected account, including listing projects and data, exporting records, checking token metadata, and creating or updating Dovetail data records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Dovetail homepage](https://dovetail.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+Dovetail users can list projects and records, retrieve or export records, and create or update records.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI and an OOMOL-connected Dovetail account; write actions require user confirmation before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Fallback setup may execute an online installer whose contents and local changes have not been verified.
+
+Mitigation: Use fallback setup only after reviewing and explicitly approving the CLI installation; do not run an unverified installer automatically.
+
+## Reference(s):
+
+- [Dovetail API documentation](https://developers.dovetail.com/)
+- [Dovetail](https://dovetail.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-dovetail)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, HTML, Guidance]
+
+**Output Format:** [Structured JSON responses and HTML or Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The format depends on the selected Dovetail action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

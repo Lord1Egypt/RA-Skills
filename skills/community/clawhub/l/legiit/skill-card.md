@@ -1,40 +1,52 @@
-## Description: <br>
-Help an OpenClaw agent guide buyers on Legiit: clarify what they need, choose a fitting service, reduce risk, and draft practical messages for each order stage (pre-order, active order, revisions, delivery). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help an OpenClaw agent guide buyers on Legiit: clarify what they need, choose a fitting service, reduce risk, and draft practical messages for each order stage (pre-order, active order, revisions, delivery).
 
-## Publisher: <br>
-[NCampbellHCG](https://clawhub.ai/user/NCampbellHCG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ncampbellhcg](https://clawhub.ai/user/ncampbellhcg)
 
-## Use Case: <br>
-External users and agents use this skill to help Legiit buyers define requirements, compare service options, reduce order risk, and draft concise messages for pre-order, active order, revision, and delivery stages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Marketplace rules, policies, or dispute procedures may change outside the skill artifact. <br>
-Mitigation: Verify current Legiit rules directly before relying on policy-sensitive guidance. <br>
-Risk: Sharing sensitive account, payment, or private business details in drafted messages could expose unnecessary information. <br>
-Mitigation: Keep payments and deliverables on-platform and avoid including sensitive account or payment details in message drafts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Legiit Playbook](references/legiit-playbook.md) <br>
-- [ClawHub Legiit Marketplace Release](https://clawhub.ai/NCampbellHCG/legiit) <br>
+## Use Case:
 
+External buyers use this skill to define Legiit service requirements, compare service options, manage orders, and draft concise seller messages across pre-order, active order, revision, and delivery stages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown with structured recommendations, next actions, and copy-ready message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to stay compact and scannable, with message drafts kept under about 120 words when included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Legiit-specific marketplace guidance could be mistaken for official platform policy.
+
+Mitigation: Treat policy-sensitive advice as marketplace guidance and verify policy questions against official Legiit documentation before purchasing.
+
+Risk: Moving payments, deliverables, or key order details off-platform can reduce traceability and dispute protection.
+
+Mitigation: Keep payments, deliverables, and important order decisions on the Legiit order thread.
+
+## Reference(s):
+
+- [Legiit Playbook](references/legiit-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Structured Markdown with concise sections and copy-ready message drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces buyer recommendations, risk notes, next actions, and seller message drafts; no code execution or external tool access is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

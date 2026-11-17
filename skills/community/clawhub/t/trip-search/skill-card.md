@@ -1,40 +1,48 @@
-## Description: <br>
-Searches for flights, hotels, and travel packages with real prices and booking links, including requests such as "find flights", "hotels in X", and "cheapest way to reach X", while tracking costs against a trip budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for flights, hotels, and travel packages with real prices and booking links. Handles "find flights", "hotels in X", "cheapest way to reach X". Tracks costs against trip budget.
 
-## Publisher: <br>
-[swayamg20](https://clawhub.ai/user/swayamg20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swayamg20](https://clawhub.ai/user/swayamg20)
 
-## Use Case: <br>
-Travel planners use this skill to compare current flight, hotel, bus, and train options with prices, booking links, and a running trip budget. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel prices and availability can change between search and booking. <br>
-Mitigation: Use current web search results and remind users to verify prices on the booking site before paying. <br>
-Risk: Live travel searches can involve personal or itinerary details that may not be needed for comparison. <br>
-Mitigation: Ask for only the trip details needed for the search and avoid collecting sensitive personal details unless required. <br>
-Risk: The skill may activate on broad travel questions and perform live searches when the user only wanted general advice. <br>
-Mitigation: Use clear wording when requesting current flights, hotels, or transport comparisons. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to compare flights, hotels, and ground transport options with current prices and booking links, then track selected costs against a trip budget.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style travel option lists with booking links, price notes, and budget totals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits comparisons to the top 3 options and includes price verification guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Travel prices, schedules, cancellation terms, and payment details may change or differ from web search results.
+
+Mitigation: Verify prices, schedules, cancellation terms, and payment details directly on the booking site before purchasing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/swayamg20/skills/trip-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise ranked options, booking links, price disclaimers, and budget totals when applicable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits recommendations to three options and asks users to verify prices before booking.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

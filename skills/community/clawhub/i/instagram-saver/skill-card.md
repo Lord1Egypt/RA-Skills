@@ -1,40 +1,53 @@
-## Description: <br>
-當使用者貼上 Instagram 連結時，自動下載該貼文的所有高解析度圖片與影片。使用 Cobalt API 進行解析，支援多圖貼文，若為私人帳號會自動回報。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When a user provides an Instagram link, this skill helps an agent retrieve high-resolution images and videos from the post through the Cobalt API, including carousel posts and private-account status responses.
 
-## Publisher: <br>
-[kenleung1205](https://clawhub.ai/user/kenleung1205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kenleung1205](https://clawhub.ai/user/kenleung1205)
 
-## Use Case: <br>
-Users provide an Instagram post URL so an agent can retrieve high-resolution images or videos, including carousel media, through the Cobalt API. The skill is intended for public or non-sensitive links and should not be used with Instagram credentials or cookies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Instagram URLs are shared with the third-party Cobalt API. <br>
-Mitigation: Use the skill only for public or non-sensitive links and avoid providing Instagram credentials, cookies, or private-account content. <br>
-Risk: Unusual user-provided URLs could be unsafe if inserted directly into a shell command. <br>
-Mitigation: Validate that input is an Instagram URL and construct the curl request safely instead of blindly shell-interpolating raw user input. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenleung1205/instagram-saver) <br>
-- [Cobalt API endpoint](https://api.cobalt.tools/api/json) <br>
+## Use Case:
 
+External users and agents can use this skill to process Instagram post URLs and request downloadable media links through Cobalt. It is intended for Instagram media retrieval workflows where the user supplies the source URL.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a curl request pattern and user-facing guidance for downloading media links returned by Cobalt.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided Instagram links may be sent to the third-party Cobalt service.
+
+Mitigation: Require explicit user confirmation before sending a link and disclose that Cobalt will receive the URL.
+
+Risk: The artifact instructs the agent to construct a shell command using a pasted URL.
+
+Mitigation: Validate that the URL is an Instagram URL and use a structured HTTP client or argument-array invocation instead of interpolating user input into shell text.
+
+## Reference(s):
+
+- [Instagram Saver on ClawHub](https://clawhub.ai/kenleung1205/skills/instagram-saver)
+- [Cobalt API endpoint](https://api.cobalt.tools/api/json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send user-provided Instagram links to Cobalt for media lookup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

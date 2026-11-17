@@ -1,46 +1,57 @@
-## Description: <br>
-A wheel-spotting scout that finds reusable solutions before you build from scratch. Cost-controlled intelligent search with complexity-aware filtering, intent-based platform selection, and form consistency checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A wheel-spotting scout that finds reusable solutions before you build from scratch. Cost-controlled intelligent search with complexity-aware filtering, intent-based platform selection, and form consistency checks.
 
-## Publisher: <br>
-[garylooop](https://clawhub.ai/user/garylooop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garylooop](https://clawhub.ai/user/garylooop)
 
-## Use Case: <br>
-Developers and engineers use WheelSpotter to check public package, code, and service registries for reusable libraries, tools, APIs, or references before implementing from scratch. It helps classify the request, search relevant platforms, filter stale or weak candidates, and return actionable recommendations or a self-build decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms or summarized requirements may be sent to public package and code registries. <br>
-Mitigation: Avoid using highly sensitive unreleased project details in searches; summarize requirements at a level appropriate for public registry queries. <br>
-Risk: The skill can use a GitHub token to increase API limits. <br>
-Mitigation: Use a low-scope GitHub token only when needed, and do not provide broader credentials than registry search requires. <br>
-Risk: Broad trigger phrases may start registry searches when the user only wanted general advice. <br>
-Mitigation: Confirm intent before network searches when a request is ambiguous or contains confidential implementation context. <br>
+## Use Case:
 
+Developers and engineers use WheelSpotter to search for reusable libraries, services, tools, or reference implementations before building from scratch. The skill helps classify intent and complexity, query relevant package or repository sources, and return actionable recommendations or a self-build conclusion.
 
-## Reference(s): <br>
-- [WheelSpotter ClawHub page](https://clawhub.ai/garylooop/wheelspotter) <br>
-- [Publisher profile](https://clawhub.ai/user/garylooop) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Search script](artifact/scripts/search.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON search results and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package names, source URLs, install commands, filtering notes, warnings, and cost metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: GitHub tokens can be supplied through command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-based secret handling where possible, avoid placing tokens in shell history or logs, and prefer running unauthenticated searches when higher rate limits are not required.
+
+Risk: Search results and package metadata come from external sources and may be inaccurate, malicious, or stale.
+
+Mitigation: Verify package ownership, license, recent activity, vulnerability status, and installation commands before integrating any recommendation.
+
+Risk: The skill can suggest external packages or repositories that may not fit the user's exact requirements.
+
+Mitigation: Treat recommendations as research leads, review the linked project documentation, and test candidates in an isolated environment before production use.
+
+## Reference(s):
+
+- [WheelSpotter ClawHub release page](https://clawhub.ai/garylooop/skills/wheelspotter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include package names, repository or package URLs, install commands, filtering rationale, warnings, and search cost metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

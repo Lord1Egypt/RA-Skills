@@ -1,0 +1,51 @@
+{
+  "name": "ccpa-guard",
+  "displayName": "CCPA Guardrail —— CCPA 合规护栏",
+  "version": "1.0.0",
+  "description": "CCPA 合规护栏。在 AI 应用输入/输出链路中实时检测 CCPA 语境下的个人数据：US SSN、驾照号码、加州 ID、信用卡（Luhn）等模式，以及 CCPA 分类中的商业信息、生物识别、地理位置、就业/教育记录等。纯本地运行，零网络、零动态执行。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "CCPA",
+    "CPRA",
+    "guardrail",
+    "California privacy",
+    "US PII detection",
+    "SSN",
+    "consumer data",
+    "compliance",
+    "data privacy"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --action detect --format json",
+    "mask": "python3 scripts/guard.py --action mask",
+    "block": "python3 scripts/guard.py --action block",
+    "profiles": "python3 scripts/guard.py --list-profiles"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "us",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/ccpa-guard"
+  },
+  "homepage": "https://github.com/wwumit/ccpa-guard"
+}

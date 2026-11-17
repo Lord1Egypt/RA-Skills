@@ -121,10 +121,10 @@ npx -y -p asrai-mcp asrai indicator_guide ALSAT
 | `macro` | S&P 500 & Nasdaq signals — global market context | $0.01 |
 | `sentiment` | CBBI, CMC sentiment, AI insights, channel news, Galaxy Score, social dominance | $0.03 |
 | `late_unlocked_coins` | Post-vesting coins with low remaining selling pressure | $0.005 |
-| `trade_signals` | Trade setups: trending movers, bounces, SAR & MACD entries, RSI, Galaxy Score, today's indicator signals | $0.04 (8 calls) |
+| `trade_signals` | Trade setups: trending movers, bounces, SAR & MACD entries, RSI, Galaxy Score, stronger & weaker coins, today's indicator signals | $0.045 (9 calls) |
 | `technical_analysis(symbol, timeframe)` | Signals, ALSAT, SuperALSAT, PSAR, MACD-DEMA, AlphaTrend, TD, SMC, S/R, Elliott Wave, Ichimoku | $0.055 |
 | `forecast(symbol)` | AI 3-7 day price prediction | $0.005 |
-| `screener(type)` | Find coins by criteria (ichimoku-trend, rsi, vwap, volume, bounce-dip...) | $0.005 |
+| `screener(type)` | Find coins by criteria (ichimoku-trend, rsi, vwap, volume, bounce-dip, stronger-weaker-coins...) | $0.005 |
 | `smart_money(symbol, timeframe)` | Order blocks, fair value gaps, support/resistance | $0.01 |
 | `elliott_wave(symbol, timeframe)` | Elliott Wave analysis | $0.005 |
 | `ichimoku(symbol, timeframe)` | Ichimoku cloud analysis | $0.005 |

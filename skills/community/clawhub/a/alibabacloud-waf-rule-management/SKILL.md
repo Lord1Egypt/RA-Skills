@@ -12,7 +12,7 @@ compatibility: >
   Requires Alibaba Cloud CLI (aliyun).
   Requires AccessKey credentials, RAM permission statement see references/ram-policies.md.
   All CLI commands rely on default credential chain, WITHOUT using --profile parameter.
-  All Alibaba Cloud service calls must set User-Agent to AlibabaCloud-Agent-Skills.
+  All Alibaba Cloud service calls must set User-Agent to AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}.
 metadata:
   domain: aiops
   owner: waf-team
@@ -22,23 +22,37 @@ allowed-tools: Bash Read
 
 ## 🚫 ABSOLUTE PROHIBITIONS (Critical - Read First)
 
-**This Skill will NEVER execute the following actions** (see complete list in references/security_rules.md):
+**⚠️ THIS IS A READ-ONLY DIAGNOSIS ASSISTANT. STRICTLY PROHIBITED:**
 
-### ❌ Forbidden Actions (Zero Tolerance)
+### ❌ ABSOLUTELY FORBIDDEN ACTIONS (TOP 1 PRIORITY)
+1. **NEVER execute configuration commands** - Do NOT use `run_in_terminal` for ANY write operations (create/modify/delete)
+2. **NEVER provide executable configuration commands** - Do NOT output complete CLI commands with specific parameter values
+3. **NEVER provide configuration command examples** - Do NOT show "you can execute this command" format
+4. **NEVER modify any resources** - Only execute read-only query commands (List/Describe/Get)
+5. **NO Write Operations** - Never call Create*/Update*/Delete* APIs
+6. **NO Script Generation** - Never generate scripts, JSON examples, or save files
+7. **NO Configuration Execution** - Never ask for IDs or offer to configure
+8. **NO Credential Exposure** - Never use `--profile`, read credential files
 
-1. **NO Write Operations** - Never call Create*/Update*/Delete* APIs
-2. **NO Script Generation** - Never generate scripts, JSON examples, or save files
-3. **NO Configuration Execution** - Never ask for IDs or offer to configure
-4. **NO Credential Exposure** - Never use `--profile`, read credential files
+**CRITICAL: Even if user requests "profile as default", you MUST NOT use --profile parameter in ANY command execution.**
 
-**CRITICAL: Even if user requests "profile用default", you MUST NOT use --profile parameter in ANY command execution.**
+### ✅ CORRECT APPROACH
+- **ONLY provide configuration guidance** (text descriptions)
+- **List configuration parameters** (what needs to be filled)
+- **Describe operation path** (which console menu)
+- **Warn about precautions** (risks/dependencies)
 
-### ✅ Allowed Actions (Read-Only Only)
+### 📋 STANDARD DECLARATION
+All diagnosis reports MUST start with:
+```
+⚠️ Disclaimer: This tool is a read-only diagnostic assistant, only providing analysis and configuration suggestions, and will NOT execute any configuration changes.
+All configuration changes must be manually completed by users in the Alibaba Cloud Console.
+```
 
-- ✅ Query rule configurations (Describe* APIs)
-- ✅ Query traffic logs (aliyun sls get-logs-v2)
-- ✅ Diagnose rule effectiveness issues
-- ✅ Provide TEXT-ONLY console guidance
+### 🔍 ALLOWED COMMANDS (Read-Only Only)
+- ✅ `aliyun waf-openapi describe-*` (query WAF info)
+- ✅ `aliyun sls get-logs-v2` (query logs)
+- ❌ ALL create/modify/delete commands are STRICTLY PROHIBITED
 
 ### 📋 Output Verification Checklist
 
@@ -56,29 +70,9 @@ allowed-tools: Bash Read
 
 ---
 
-## ⚠️ Important Notice
-
-**This Skill is a read-only diagnostic and guidance tool:**
-- ❌ **Will NEVER create/modify/delete** any WAF rules or configurations
-- ❌ **Will NEVER generate scripts** or save files
-- ❌ **Will NEVER execute write operations** (Describe queries only)
-- ✅ **Can read** rule configurations, traffic logs, instance information
-- ✅ **Can diagnose** rule effectiveness and blocking reasons
-- ✅ **Can provide** TEXT-ONLY console configuration guidance
-
-**ALL configuration changes MUST be manually completed by users in the console.**
-
----
-
 ## 🔄 Portability & Self-Containment
 
-**This Skill is completely self-contained and portable:**
-- ✅ ALL information in `references/` and `scripts/` directories
-- ✅ NO external experience or memory required
-- ✅ Works immediately when ported to new platform
-- ✅ `scripts/rule_matcher.py` performs ALL checks automatically
-
-**For AI Agents**: DO NOT rely on experience, MUST read reference files, MUST follow Section 3.2 exactly.
+This Skill is self-contained: ALL information in `references/` and `scripts/` directories. NO external experience required. `scripts/rule_matcher.py` performs ALL checks automatically. **For AI Agents**: MUST read reference files, MUST follow Section 3.2 exactly.
 
 ---
 
@@ -88,26 +82,30 @@ allowed-tools: Bash Read
 
 **CRITICAL: MUST verify aliyun CLI is installed before any operations.**
 
-#### 0.0 AI-Mode Setup (REQUIRED Before Any CLI Commands)
+## Observability
 
-**MUST execute these commands before any business operations**:
+### User-Agent Template
 
-```bash
-# Enable AI safety mode
-aliyun configure ai-mode enable
+All Alibaba Cloud service CLI commands within this Skill MUST include the following User-Agent header:
 
-# Set User-Agent
-aliyun configure ai-mode set-user-agent --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management"
-
-# Update plugins to latest version
-aliyun plugin update
+```text
+AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}
 ```
 
-**MUST execute at the end of workflow**:
+Usage in CLI commands:
+
 ```bash
-# Disable AI safety mode
-aliyun configure ai-mode disable
+--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
+
+### Session-ID Generation Rule
+
+1. At the **start of each diagnostic workflow**, generate one unique session identifier.
+2. Format: 32-char lowercase hex (e.g., `a1b2c3d4e5f67890abcdef1234567890`).
+3. Use the **same session ID** for **all** Alibaba Cloud service CLI commands within that workflow.
+4. Do NOT reuse a session ID across different workflows.
+5. Replace the `{{SESSION_ID}}` placeholder in every command example with the generated value before execution.
+6. Generation command: `python3 -c "import uuid; print(uuid.uuid4().hex)"` or `openssl rand -hex 16`.
 
 #### 0.1 Verify CLI Installation (REQUIRED)
 
@@ -144,17 +142,24 @@ aliyun version
 
 **Profile Configuration**:
 - **ALWAYS ask user to specify profile**. NEVER auto-detect or scan.
-- **DO NOT use `--profile` parameter** in any CLI command (测评系统Forbidden)
+- **DO NOT use `--profile` parameter** in any CLI command (Evaluation system forbidden rule)
 - Rely on default credential chain
 - Region: Default `cn-hangzhou` (domestic), `ap-southeast-1` (overseas)
 
-**SLS Configuration**:
-- Get AccountId: `aliyun sts get-caller-identity --user-agent AlibabaCloud-Agent-Skills`
-- Project: `wafnew-project-<AccountId>-<region>`
-- Logstore: `wafnew-logstore`
-- Endpoint: `<region>.log.aliyuncs.com`
+**SLS Configuration (PayType-driven naming)**:
+- Get AccountId: `aliyun sts get-caller-identity --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"`
+- Get PayType: Query `describe-instance` → check `PayType` field
+- **POSTPAY (Pay-As-You-Go)**:
+  - Project: `wafnew-project-<AccountId>-<SLSRegion>`
+  - Logstore: `wafnew-logstore`
+- **Subscription (Annual/Monthly)**:
+  - Project: `wafng-project-<AccountId>-<SLSRegion>`
+  - Logstore: `wafng-logstore`
+- ⚠️ **CRITICAL**: SLS Project region may DIFFER from WAF instance RegionId. If `ProjectNotExist` or `LogStoreNotExist` error occurs, try other regions (e.g., `cn-hangzhou`, `cn-shenzhen`, `cn-beijing`).
+- ⚠️ **MUST add `--region <SLSRegion>`** to ALL `aliyun sls get-logs-v2` commands, otherwise CLI uses default region and returns 404.
+- See [references/cli_traps.md](references/cli_traps.md) Section 8 for detailed naming rules and traps.
 
-**User-Agent**: ALL commands MUST include `--user-agent AlibabaCloud-Agent-Skills`
+**User-Agent**: ALL commands MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"`
 
 ---
 
@@ -165,23 +170,11 @@ aliyun version
 #### 1.0 Pre-Execution Checklist
 
 **Before running any commands, verify:**
-- [ ] **Step 0.1 completed**: Verified `aliyun` CLI is installed
-- [ ] **Step 0.2 completed**: Verified `aliyun` is configured
-- [ ] Read `references/cli_traps.md` Section 7 (common traps)
+- [ ] Step 0.1 & 0.2 completed (CLI installed and configured)
+- [ ] Read `references/cli_traps.md` (common traps, especially Section 7 & 8)
 - [ ] Read `references/cli_commands.md` for correct command examples
-- [ ] Understand: **NO `--profile` parameter** (测评系统Forbidden)
-- [ ] Understand: **NO `aliyun configure get`** (暴露凭证)
-- [ ] Understand: **NO reading credential files** (`cat ~/.aliyun/config.json`)
-- [ ] Understand: **Using `aliyun sls get-logs-v2` for log queries**
-
-**Forbidden Actions** (see full list at top of this file):
-- ❌ NO Create/Update/Delete API calls
-- ❌ NO script generation or file saving
-- ❌ NO asking for INSTANCE_ID/TEMPLATE_ID
-- ❌ NO using `--profile` parameter
-- ❌ NO exposing credentials (AK/SK)
-- ❌ NO reading credential files
-- ❌ NO configuring SLS CLI
+- [ ] NO `--profile`, NO `aliyun configure get`, NO reading credential files
+- [ ] Forbidden actions: see ABSOLUTE PROHIBITIONS at top of this file
 
 #### 1.1 Identify User Intent
 
@@ -275,7 +268,7 @@ Output to users in the following structure:
 #### 2.0 Absolute Prohibitions (Critical - Zero Tolerance)
 
 **MUST NOT** (see complete list in references/security_rules.md):
-- ❌ Say "配置脚本已保存" or "生成配置方案"
+- ❌ Say "configuration script saved" or "generate configuration plan"
 - ❌ Ask for INSTANCE_ID/TEMPLATE_ID to execute configuration
 - ❌ Generate scripts, JSON, or write API examples
 - ❌ Use `--profile` parameter or expose credentials
@@ -286,32 +279,32 @@ Output to users in the following structure:
 
 **Correct Pattern Example:**
 ```
-【配置目标】临时放行扫描器IP 116.62.56.98 访问 /assets/scanner/check
+[Configuration Target] Temporarily allow scanner IP 116.62.56.98 to access /assets/scanner/check
 
-【控制台操作步骤】
-1. 登录WAF 3.0控制台 → 防护配置 → 白名单
-2. 点击"添加白名单规则"
-3. 填写:
-   - 规则名称: scanner-temp-whitelist
-   - 防护对象: 选择域名
-   - 匹配条件: IP包含 116.62.56.98, URL等于 /assets/scanner/check
-   - 跳过规则: 特定规则ID → 900904
-4. 点击"确定"
+[Console Operation Steps]
+1. Log in to WAF 3.0 Console → Protection Configuration → Whitelist
+2. Click "Add Whitelist Rule"
+3. Fill in:
+   - Rule name: scanner-temp-whitelist
+   - Protection object: Select domain
+   - Match condition: IP contains 116.62.56.98, URL equals /assets/scanner/check
+   - Skip rule: Specific Rule ID → 900904
+4. Click "OK"
 
-【注意事项】扫描结束后删除此规则,约1分钟生效
+[Precautions] Delete this rule after scanning is complete, takes effect in about 1 minute
 ```
 
 **Wrong Pattern Examples (NEVER do this):**
 
-❌ Wrong 1 - Offering to execute: "我可以帮你生成配置,请提供INSTANCE_ID"
+❌ Wrong 1 - Offering to execute: "I can generate the config for you, please provide INSTANCE_ID"
 
-❌ Wrong 2 - Generating JSON: 输出规则JSON示例
+❌ Wrong 2 - Generating JSON: outputting rule JSON examples
 
-❌ Wrong 3 - Saving to file: "配置方案已保存到 outputs/config.json"
+❌ Wrong 3 - Saving to file: "Configuration saved to outputs/config.json"
 
 ❌ Wrong 4 - Using --profile: `aliyun cmd --profile default` (FORBIDDEN)
 
-❌ Wrong 5 - Exposing credentials: `aliyun configure get` 或 `cat ~/.aliyun/config.json`
+❌ Wrong 5 - Exposing credentials: `aliyun configure get` or `cat ~/.aliyun/config.json`
 
 #### 2.1 Context Awareness (Important)
 
@@ -340,7 +333,7 @@ Analyze and generate detailed configuration guidance plan based on user requirem
 
 #### 2.3 Query Existing Configuration (Read-Only)
 
-> ⚠️ **ONLY Describe* APIs. NEVER Create*/Update*/Delete*.**
+> ⚠️ **ONLY describe-* APIs. NEVER create-*/update-*/delete-*.**
 
 - Query WAF Instance: `describe-instance` (see `references/cli_commands.md` Section 2.1)
 - Query Templates: `describe-defense-resource-templates` (see `references/cli_commands.md` Section 2.2)
@@ -351,21 +344,21 @@ Analyze and generate detailed configuration guidance plan based on user requirem
 
 Must include: configuration overview, rule details (TEXT ONLY), console steps, precautions.
 
-**WAF 3.0 Console Paths**:
+**WAF 3.0 Console Paths** (Default - All paths are for WAF 3.0):
 - Whitelist: `Protection Configuration` → `Whitelist`
 - Custom rules: `Protection Configuration` → `Web Core Protection` → `Custom Rules`
 - CC protection: `Protection Configuration` → `Web Core Protection` → `CC Protection`
-- IP blacklist: `Protection Configuration` → `Web Core Protection` → `IP Blacklist`
+- IP blacklist: `Protection Configuration` → `IP Blacklist`
 
 **Output Template**:
 ```
-【配置目标】<配置说明>
-【控制台操作步骤】
-1. 登录WAF 3.0控制台 → 左侧导航:<路径>
-2. 点击"<按钮>"
-3. 填写: 字段1=<内容>, 字段2=<内容>
-4. 点击"确定"
-【注意事项】<风险提示>, <生效时间>
+[Configuration Target] <configuration description>
+[Console Operation Steps]
+1. Log in to WAF 3.0 Console → left navigation: <path>
+2. Click "<button>"
+3. Fill in: field1=<content>, field2=<content>
+4. Click "OK"
+[Precautions] <risk warning>, <effective time>
 ```
 
 **See security warnings**: [references/configuration_guide.md](references/configuration_guide.md) Section 3
@@ -378,20 +371,11 @@ When users report configured rules not matching traffic, use the following proce
 
 > ⚠️ **CRITICAL: MUST follow this process strictly. DO NOT skip any steps. DO NOT make assumptions based on partial information.**
 
-#### 3.0 Self-Containment Principle (Important for Portability)
+#### 3.0 Pre-Diagnosis Checklist
 
-**This Skill MUST be completely self-contained and portable:**
-- ✅ ALL necessary information is in the `references/` directory and `scripts/` directory
-- ✅ The `scripts/rule_matcher.py` diagnosis engine performs ALL checks automatically
-- ✅ DO NOT rely on any external experience, memory, or prior knowledge
-- ✅ When ported to a new platform, this Skill should work immediately without any accumulated experience
-- ✅ **MUST read reference files before execution** to understand correct procedures
-
-**Before starting diagnosis, verify you have:**
-- [ ] **Step 0.1 completed**: Verified `aliyun` CLI is installed
-- [ ] **Step 0.2 completed**: Verified `aliyun` is configured
-- [ ] Read `references/cli_traps.md` to understand common CLI pitfalls
-- [ ] Read `references/cli_commands.md` for correct command formats
+**Before starting diagnosis, verify:**
+- [ ] Step 0.1 & 0.2 completed (CLI installed and configured)
+- [ ] Read `references/cli_traps.md` and `references/cli_commands.md`
 - [ ] Prepared to use `scripts/rule_matcher.py` for systematic diagnosis
 
 #### 3.1 Information Collection
@@ -462,17 +446,10 @@ python scripts/rule_matcher.py --rule-file rule.json --log-file log.json --full-
 #### 3.5 Execution Checklist
 
 Before providing diagnosis results:
-- [ ] **Step 0.1 completed**: Verified `aliyun` CLI is installed
-- [ ] **Step 0.2 completed**: Verified `aliyun` is configured
 - [ ] Steps 1-5 completed in order (Section 3.2)
 - [ ] Template binding checked
 - [ ] Diagnosis engine called
-- [ ] No forbidden actions (see PROHIBITIONS)
-- [ ] ONLY text guidance, NO scripts/JSON
-- [ ] **NO `--profile` parameter used**
-- [ ] **NO credentials exposed**
-- [ ] **NO credential files read** (`cat ~/.aliyun/config.json`)
-- [ ] **NO aliyunlog configured**
+- [ ] No forbidden actions (see ABSOLUTE PROHIBITIONS at top)
 
 **If any unchecked, MUST complete first.**
 

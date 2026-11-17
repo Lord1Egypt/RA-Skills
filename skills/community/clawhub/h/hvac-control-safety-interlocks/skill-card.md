@@ -1,38 +1,53 @@
-## Description: <br>
-Implement safety interlocks and protective mechanisms to prevent equipment damage and ensure safe control system operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement safety interlocks and protective mechanisms to prevent equipment damage and ensure safe control system operation.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and control-system engineers use this skill to add safety-limit checks, output clamping, event logging, and pre-control verification to control loops and open-loop tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the reference examples as certified control-system software. <br>
-Mitigation: Have a qualified controls engineer adapt the patterns and test them in simulation or a controlled environment before use with real equipment. <br>
+## Use Case:
 
+Developers and control-system engineers use this skill for agent guidance on adding safety interlocks, output clamping, event logging, and pre-control checks to control loops and open-loop tests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/hvac-control-safety-interlocks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reference patterns and checklists; examples are not certified control-system software.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The safety-control examples may be copied into real equipment or other high-impact systems despite incomplete interlock coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require substantial engineering review before use in equipment, industrial control, lab automation, robotics, or other high-impact systems.
+
+Risk: Incomplete limit handling or non-finite sensor values could lead to unsafe control behavior.
+
+Mitigation: Add explicit lower- and upper-limit handling, finite-value checks, verified fail-safe actions, and tests before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/hvac-control-safety-interlocks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

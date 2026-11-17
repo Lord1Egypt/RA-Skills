@@ -1,41 +1,52 @@
-## Description: <br>
-Generate meme images from memegen.rs by building a URL for a template, caption text, and optional image or output settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate meme images from memegen.rs by building a stable, shareable image URL from a template, captions, and optional image parameters.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and general users use this skill to create stable, shareable meme links or image responses from memegen.rs templates, captions, optional custom background URLs, and output settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme captions and supplied background image URLs may be exposed through shareable memegen.rs URLs. <br>
-Mitigation: Do not use confidential text, private image links, or internal URLs when generating memes. <br>
+## Use Case:
 
+Developers and agents use this skill to create meme image links from memegen.rs templates, captions, and optional custom background image URLs when a user asks for a meme or shareable meme link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/memegen-rs) <br>
-- [memegen-rs homepage](https://github.com/tenequm/memegen-rs) <br>
-- [memegen.rs OpenAPI specification](https://memegen.rs/openapi.json) <br>
-- [memegen.rs templates](https://memegen.rs/templates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with clickable memegen.rs URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PNG or animated GIF URL paths and optional query parameters; no local files are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Meme captions and custom background image URLs are exposed to memegen.rs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private image URLs, secrets, internal links, personal data, and sensitive business text in captions or background parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenequm/skills/memegen-rs)
+- [Project homepage](https://github.com/tenequm/memegen-rs)
+- [Release v0.1.2](https://github.com/tenequm/memegen-rs/releases/tag/v0.1.2)
+- [memegen.rs OpenAPI spec](https://memegen.rs/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown link or plain URL for a PNG or animated GIF meme image]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated URL may include caption path segments and optional query parameters such as style, layout, width, height, color, or background.]
+
+## Skill Version(s):
+
+0.1.2 (source: evidence release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Recognizes cat and dog vocalizations with pet voiceprint AI and returns emotions, behavioral intent, structured results, suggestions, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes cat and dog vocalizations and reports likely emotions and behavioral intentions in human-readable form.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and agents use this skill to analyze cat or dog audio/video inputs, infer likely vocal emotion and intent, and retrieve prior cloud-generated pet vocal analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says this skill sends pet media, file paths or URLs, and linked report history to the publisher's cloud service. <br>
-Mitigation: Use only with media and report history you are comfortable sharing with the publisher, and review the cloud API behavior before deployment. <br>
-Risk: The security review flags automatic identity creation, local token storage, and cloud history retrieval as broader than pet vocal analysis alone. <br>
-Mitigation: Confirm that automatic identity handling, local state, and history access match your privacy expectations before enabling the skill. <br>
+## Use Case:
 
+Pet owners use the skill to submit a cat or dog vocal recording and receive a structured estimate of the animal’s emotion and likely intent. They can also request a list of earlier analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-vocal-emotion-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON-like structured analysis text with optional report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save analysis output to a user-specified file and may print cloud report history as Markdown tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.6) <br>
+Risk: ClawScan rates the skill suspicious and reports account creation, credential storage or exposure risks, and possible media or credential transfers; scanner coverage is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reported behavior before installation, and avoid use unless you are comfortable with account creation, credential storage, and potential media or credential transfers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-vocal-emotion-analysis)
+- [Skill API reference](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured analysis report; Markdown table for report lists; JSON detail when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emotion and intent are estimates for entertainment; recording clarity and background noise can affect results.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

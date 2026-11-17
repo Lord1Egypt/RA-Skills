@@ -1,39 +1,52 @@
-## Description: <br>
-Converts data between CSV, JSON, XML, YAML, and TOML formats, including batch conversion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert data between CSV, JSON, XML, YAML, and TOML formats, including simple batch conversion workflows.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and agents use this skill to convert structured data between common interchange formats such as CSV, JSON, XML, YAML, and TOML. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The converter has disclosed reliability issues and may mishandle YAML, XML, TOML, CSV quoting, or batch cases. <br>
-Mitigation: Test with non-sensitive sample data first and verify converted output before using it downstream. <br>
-Risk: The skill may be too basic for production or sensitive data conversion workflows. <br>
-Mitigation: Prefer a more complete converter for production or sensitive conversions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HonestQiao/data-format-converter) <br>
+## Use Case:
 
+Developers and agents use this skill to convert structured text data between common interchange formats such as CSV, JSON, XML, YAML, and TOML.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Converted data as plain text or structured data text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the requested source and target formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger phrases and Chinese-first documentation may activate the skill when a narrower routing policy is required.
+
+Mitigation: Review trigger patterns before installation in environments that require precise routing or English-only behavior.
+
+Risk: The sample converter is lightweight and may not handle complex CSV, YAML, XML, or TOML edge cases.
+
+Mitigation: Use hardened, tested parsers before relying on the skill for complex or production data conversions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honestqiao/skills/data-format-converter)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [String containing converted data, with Markdown examples or code snippets when explaining usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces text data conversions; complex CSV, YAML, XML, or unsupported TOML cases should be reviewed before production reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Automate web browser interactions using natural language via CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browser interactions using natural language via CLI commands.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agents use this skill to navigate websites, interact with web applications, extract structured page data, capture screenshots, fill forms, and manage browser sessions through a CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser tasks may be routed through SkillBoss API Hub when SKILLBOSS_API_KEY is configured. <br>
-Mitigation: Use the remote mode only for sites and data approved for that service, and avoid submitting sensitive information unless explicitly required. <br>
-Risk: The skill can reuse persistent logged-in browser state through .chrome-profile. <br>
-Mitigation: Use an isolated or disposable browser profile for sensitive work and regularly clear .chrome-profile after use. <br>
-Risk: The browser can submit forms and download files locally. <br>
-Mitigation: Confirm before submitting forms or downloading files, and review downloaded files in ./agent/downloads before opening or using them. <br>
-Risk: The reviewed artifact does not include the CLI implementation that users are asked to install. <br>
-Mitigation: Verify the implementation source before installing dependencies or linking the browser command. <br>
+## Use Case:
 
+Developers and agents use this skill to navigate websites, interact with page elements, extract structured data, take screenshots, and automate browser workflows through CLI commands.
 
-## Reference(s): <br>
-- [Browser Automation Skill](https://clawhub.ai/abeltennyson/abe-browser-automation) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
-- [REFERENCE.md](artifact/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON command results, screenshots, and downloaded files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create browser screenshots, downloads, and persistent Chrome profile state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can control a browser on authenticated sites and submit forms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts or an isolated browser profile, and review actions before submitting forms or logging in.
+
+Risk: The skill may use an external AI service for browser actions and extraction without a per-use prompt.
+
+Mitigation: Avoid sensitive or internal sites unless external processing is approved.
+
+Risk: Browser sessions, screenshots, and downloads can persist after use.
+
+Mitigation: Clean up .chrome-profile, browser_screenshots, and downloads directories after use, and verify downloaded files before opening or using them.
+
+## Reference(s):
+
+- [Browser Automation Examples](EXAMPLES.md)
+- [Browser Automation CLI Reference](REFERENCE.md)
+- [ClawHub Skill Page](https://clawhub.ai/abeltennyson/skills/abe-browser-automation)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce screenshots and downloaded files in local agent directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,72 @@
-## Description: <br>
-Build and operate a portable Kitchen Compass meal-planning workspace for setup, recipe normalization, catalog querying, weekly dinner planning, inventory updates, weekly deal briefs, and meal history while keeping reusable engine files separate from household data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate a portable Kitchen Compass meal-planning workspace for setting up a household data root, converting recipes into the Kitchen Compass markdown contract, building and querying the dinner-and-side catalog, generating weekly dinner plans, and recording meal history while keeping reusable engine files separate from household-specific data.
 
-## Publisher: <br>
-[drewsadik-ctrl](https://clawhub.ai/user/drewsadik-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drewsadik-ctrl](https://clawhub.ai/user/drewsadik-ctrl)
 
-## Use Case: <br>
-External users and agent operators use Kitchen Compass to create a local household meal-planning data root, normalize recipes into a stable markdown contract, query dinner and side options, generate weekly plans, record meal history, manage remembered inventory, and prepare manual weekly deal briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes household recipes, preferences, inventory notes, store/deal notes, and meal history in the selected data root. <br>
-Mitigation: Use a dedicated Kitchen Compass data root and keep sensitive household notes out of that folder if they should not be available to the agent. <br>
-Risk: Recipe pages, retailer URLs, and weekly deal notes can be stale, incorrect, or unsuitable for the household. <br>
-Mitigation: Review recipe sources, retailer URLs, and curated deal briefs before asking the agent to rely on them for planning. <br>
-Risk: Remembered inventory is approximate household memory, not a real-time stock system. <br>
-Mitigation: Use explicit inventory updates and confirmed-use commands, and treat planner inventory boosts as decision support rather than proof that ingredients are available. <br>
+## Use Case:
 
+Households and agents with local filesystem access use Kitchen Compass to maintain a separate household data root, normalize recipes, query dinner and side catalogs, build weekly plans, track remembered inventory and meal history, and prepare guided weekly deal briefs.
 
-## Reference(s): <br>
-- [Kitchen Compass ClawHub release page](https://clawhub.ai/drewsadik-ctrl/kitchen-compass) <br>
-- [Kitchen Compass setup flow](references/setup-flow.md) <br>
-- [Kitchen Compass runtime contract](references/runtime-contract.md) <br>
-- [Kitchen Compass recipe schema](references/recipe-schema.md) <br>
-- [Kitchen Compass planning logic](references/planning-logic.md) <br>
-- [Kitchen Compass inventory logic](references/inventory-logic.md) <br>
-- [Weekly Deal Brief and Combined Deal Sheet](references/weekly-deal-brief.md) <br>
-- [Kitchen Compass user-data layout](references/user-data-layout.md) <br>
-- [Kitchen Compass portable boundary rules](references/live-vs-portable-boundary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus generated JSON and Markdown household planning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes a user-selected local household data root; generated planning, query, history, inventory, and deal outputs are rebuildable from authored household files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill reads and writes a local household data folder that may contain recipes, preferences, inventory, meal history, store notes, and generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data root, avoid storing sensitive household details unnecessarily, and review the data root before sharing or backing it up to shared locations.
+
+Risk: Imported recipe links or copied recipe content may carry inaccurate source details or unwanted changes into the household catalog.
+
+Mitigation: Review imported recipe links and normalized recipe markdown before saving them as household source material.
+
+Risk: Skipping validation can allow malformed recipe markdown to affect catalog, query, or planner output.
+
+Mitigation: Leave validation enabled during normal catalog builds and run recipe validation after edits.
+
+Risk: Remembered inventory is approximate household memory, not real-time stock state.
+
+Mitigation: Require explicit inventory updates and user-confirmed usage before changing stored inventory quantities.
+
+Risk: Weekly deal workflows are manual or guided and retailer-specific retrieval may be brittle.
+
+Mitigation: Treat deal briefs as decision support, review per-store inputs before combining them, and do not rely on deals as automatic planner scoring.
+
+## Reference(s):
+
+- [Setup Flow](references/setup-flow.md)
+- [Recipe Schema](references/recipe-schema.md)
+- [Runtime Contract](references/runtime-contract.md)
+- [Planning Logic](references/planning-logic.md)
+- [Inventory Logic](references/inventory-logic.md)
+- [Weekly Deal Brief and Combined Deal Sheet](references/weekly-deal-brief.md)
+- [User Data Layout](references/user-data-layout.md)
+- [Portable Boundary Rules](references/live-vs-portable-boundary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text, Markdown recipe and planning views, JSON data files, and shell commands for local scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local to a user-selected Kitchen Compass data root; generated files are rebuildable from authored recipes, household settings, inventory, deal inputs, and history.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

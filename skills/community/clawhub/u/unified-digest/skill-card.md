@@ -1,42 +1,58 @@
-## Description: <br>
-Unified subscription router for the AI builders digest and the pharma investment digest. Use when the agent should proactively offer subscriptions on session start, remember user choices, and route onboarding into follow-builders or med-builders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified subscription router for the AI builders digest and the pharma investment digest. Use when the agent should proactively offer subscriptions on session start, remember user choices, and route onboarding into follow-builders or med-builders.
 
-## Publisher: <br>
-[spzwin](https://clawhub.ai/user/spzwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spzwin](https://clawhub.ai/user/spzwin)
 
-## Use Case: <br>
-Developers and agent users use this skill to present one startup subscription choice for AI builders and pharma investment digests, remember the user's preference, and route onboarding to the selected downstream digest skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic startup subscription prompts can interrupt normal task flow or continue after a user no longer wants them. <br>
-Mitigation: Review the skill before installing, keep the prompt short, and honor the documented snooze and dismiss choices before prompting again. <br>
-Risk: The skill stores topic, locale, cadence, and delivery preferences in local subscription state. <br>
-Mitigation: Explain where state is stored before writing it, provide inspect and opt-out paths, and avoid collecting unnecessary preference details. <br>
-Risk: The artifact documents Node helper commands for startup hooks and state management, so missing or changed helper scripts can break routing. <br>
-Mitigation: Verify the installed package includes the expected helper scripts before enabling session-start integration. <br>
+## Use Case:
 
+External users and agent hosts use this skill as a startup subscription router for AI builders and pharma investment digests. It prompts only when shared state says prompting is appropriate, records the user's subscription choice, and routes onboarding to follow-builders, med-builders, or both.
 
-## Reference(s): <br>
-- [JSON Schema draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON-compatible state payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and persists subscription choices, locale, cadence, and delivery defaults in local subscription state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server evidence) <br>
+Risk: The skill can interrupt unrelated new sessions with proactive subscription onboarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in hosts where users expect digest prompts, and keep the prompt gated by clear opt-in, snooze, and dismissal behavior.
+
+Risk: The skill persists subscription preferences and defaults across sessions.
+
+Mitigation: Provide users a clear way to view, change, pause, or clear stored subscription state before relying on saved preferences.
+
+Risk: The skill changes routing into downstream digest onboarding flows.
+
+Mitigation: Do not route into follow-builders or med-builders until the user explicitly chooses the matching digest topic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spzwin/skills/unified-digest)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce host-facing session-start prompt text, subscription routing actions, and shared state configuration guidance.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

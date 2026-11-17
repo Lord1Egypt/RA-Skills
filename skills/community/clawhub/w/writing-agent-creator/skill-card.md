@@ -1,42 +1,59 @@
-## Description: <br>
-Generates reusable OpenClaw writing-agent configurations, including specialized templates, SOUL.md snippets, and sub-agent spawn instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates OpenClaw writing-agent configurations, reusable custom templates, and sub-agent spawn instructions for specialized writing workflows.
 
-## Publisher: <br>
-[balingsisi](https://clawhub.ai/user/balingsisi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[balingsisi](https://clawhub.ai/user/balingsisi)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create, list, and reuse specialized writing-agent templates for technical, marketing, academic, business, creative, and development writing tasks. It can generate SOUL.md snippets, sub-agent spawn instructions, or local user templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SOUL.md snippets or sub-agent instructions can change future agent behavior if applied without review. <br>
-Mitigation: Review generated configuration before adding it to SOUL.md or using it to spawn a sub-agent. <br>
-Risk: Saved custom templates can override built-in templates and shape future writing-agent behavior. <br>
-Mitigation: Only save or keep custom templates from trusted sources, and periodically review user template files. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to create reusable writing-agent templates, generate SOUL.md configuration snippets, and produce sub-agent spawn instructions for writing, development, review, testing, and database tasks.
 
-## Reference(s): <br>
-- [Agent Template Registry](references/agent-registry.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/balingsisi/writing-agent-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with configuration snippets and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce reusable local template definitions that influence future writing-agent behavior when saved by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent, auto-loaded custom templates can override built-in templates when they reuse the same ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted custom templates and review same-ID templates before allowing them to replace built-in behavior.
+
+Risk: Generated content may change agent behavior if saved into SOUL.md or the user template directory.
+
+Mitigation: Confirm and review generated configuration before copying it into SOUL.md or saving it under ~/.openclaw/workspace/agent-templates/.
+
+Risk: The skill's file-write behavior is described inconsistently across the evidence.
+
+Mitigation: Treat generated outputs as proposals until the user explicitly approves any persistent save location.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/balingsisi/skills/writing-agent-creator)
+- [Agent Template Registry](references/agent-registry.md)
+- [Output Templates](references/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown snippets with inline command examples and YAML-style template configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable user template content and sub-agent spawn instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

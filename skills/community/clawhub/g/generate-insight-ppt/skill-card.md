@@ -1,44 +1,59 @@
-## Description: <br>
-Generates technology insight PowerPoint reports through a workflow for web collection, insight extraction, slide content generation, optimization, and PPTX output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates technical report generation by collecting research material, extracting insights, drafting slide content, optimizing it, and producing a PowerPoint deck.
 
-## Publisher: <br>
-[xieyuantao7](https://clawhub.ai/user/xieyuantao7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xieyuantao7](https://clawhub.ai/user/xieyuantao7)
 
-## Use Case: <br>
-Developers, analysts, and technical teams use this skill to research a technology topic, extract supporting insights, structure a slide outline, and generate a PPTX report with consistent styling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches the web, downloads pages or PDFs, and turns collected material into report files. <br>
-Mitigation: Run it in a limited workspace and review collected sources and generated slides before relying on the report. <br>
-Risk: The artifact uses hard-coded Windows output paths under D:\techinsight\reports. <br>
-Mitigation: Review or adjust the configured output path before execution so generated files stay within the intended workspace. <br>
-Risk: The security guidance notes quality and path-scope caveats in the included PPT generator scripts. <br>
-Mitigation: Treat the PPT generation scripts as needing repair or validation before production use, and confirm the generated PPTX opens correctly. <br>
+## Use Case:
 
+Developers, analysts, and technical teams use this skill to turn a research topic into a structured technical insight presentation with collected sources, extracted insights, generated slide content, and a final PPTX file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xieyuantao7/generate-insight-ppt) <br>
-- [README.md](README.md) <br>
-- [scripts/README.md](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSON, Shell commands] <br>
-**Output Format:** [PPTX presentation files with intermediate JSON and Markdown artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes session output folders under D:\techinsight\reports by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: URL fetching during collection can reach untrusted or internal network resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with limited network access, allowlist trusted sources, and avoid allowing untrusted URLs to drive downloads.
+
+Risk: Session-file handling may write outside the intended report folder.
+
+Mitigation: Use simple alphanumeric session IDs and inspect configured output paths before execution.
+
+Risk: Runtime dependencies may vary if installed without version pinning.
+
+Mitigation: Pin and review presentation-generation dependencies in an isolated environment before use.
+
+## Reference(s):
+
+- [Tech Report PPT Generator on ClawHub](https://clawhub.ai/xieyuantao7/skills/generate-insight-ppt)
+- [User README](artifact/README.md)
+- [Scripts README](artifact/scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [PowerPoint files with Markdown and JSON intermediate artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces collected web-page Markdown, insight and outline JSON, slide content files, logs, and PPTX output under a session directory.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

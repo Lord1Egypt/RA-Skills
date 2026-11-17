@@ -1,49 +1,63 @@
-## Description: <br>
-Unified Memory Architect manages dream memories with layered indexing and hybrid search for fast storage, retrieval, filtering, and statistics in the OpenClaw Agent Platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified Memory Architect helps OpenClaw agents store, index, and retrieve dream memories using layered organization and hybrid search.
 
-## Publisher: <br>
-[mouxangithub](https://clawhub.ai/user/mouxangithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mouxangithub](https://clawhub.ai/user/mouxangithub)
 
-## Use Case: <br>
-Developers and agent builders use this skill to organize, index, query, and maintain persistent dream-memory data through CLI commands and JavaScript APIs. It is intended for OpenClaw deployments that need memory statistics, tag/date/sentiment/entity filtering, and hybrid search over stored memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marked the release suspicious because it includes persistent assistant identity, memory, heartbeat, messaging, and deletion behavior beyond the advertised memory-search scope. <br>
-Mitigation: Review AGENTS.md and BOOTSTRAP.md before use, deploy only where persistent assistant behavior is intended, and disable or tightly scope heartbeat and messaging integrations. <br>
-Risk: Persistent memory files such as MEMORY.md and daily notes may contain private context if used in shared or group environments. <br>
-Mitigation: Avoid shared-context access to MEMORY.md, restrict workspace access, and separate personal memory files from group-chat or multi-user deployments. <br>
-Risk: Memory import, cleanup, rollback, and deletion instructions can affect stored memory data. <br>
-Mitigation: Back up memory data before following uninstall, rollback, migration, import, cleanup, or deletion commands. <br>
+## Use Case:
 
+Developers and OpenClaw agent builders use this skill to manage memory datasets, run CLI or JavaScript queries, inspect memory statistics, and retrieve memories by tag, date, sentiment, entity, language, or full-text search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mouxangithub/unified-memory-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/mouxangithub) <br>
-- [API documentation](docs/API.md) <br>
-- [Architecture documentation](docs/ARCHITECTURE.md) <br>
-- [User guide](docs/USER_GUIDE.md) <br>
-- [Quickstart](docs/QUICKSTART.md) <br>
-- [Performance documentation](docs/PERFORMANCE.md) <br>
-- [Troubleshooting guide](docs/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference memory query results, statistics, indexing behavior, and maintenance steps for OpenClaw memory data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The package includes broad agent-control, persistent-memory, and background-check behavior that could affect an agent workspace beyond memory search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and disable AGENTS, BOOTSTRAP, SOUL, USER, and HEARTBEAT behavior before installation, and use an isolated workspace for evaluation.
+
+Risk: Memory data and scripts may modify or depend on local workspace state.
+
+Mitigation: Back up memory data and verify the source, scripts, and expected file paths before running install, migration, cleanup, or query commands.
+
+Risk: The integration example may expose an API without sufficient access control or network binding safeguards.
+
+Mitigation: Add authentication and bind services to localhost before running API examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mouxangithub/skills/unified-memory-architect)
+- [Publisher profile](https://clawhub.ai/user/mouxangithub)
+- [Packaged skill documentation](artifact/clawhub/SKILL.md)
+- [API documentation](artifact/docs/API.md)
+- [Architecture documentation](artifact/docs/ARCHITECTURE.md)
+- [Changelog](artifact/github/CHANGELOG.md)
+- [Repository listed in package metadata](https://github.com/openclaw/unified-memory-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes CLI and JavaScript query workflows for memory statistics, search, filtering, and integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/clawhub/skill.json, artifact/github/CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,268 +1,227 @@
 ---
 name: git-commit
-description: Generate git commit messages following Conventional Commits specification. Use this skill when users ask to: (1) Create a git commit with a meaningful message, (2) Generate commit messages from git changes, (3) Help write commit messages following best practices, (4) Format or improve existing commit messages. The skill supports both automatic analysis (by examining git diff) and interactive guided generation. Automatically detects project language style (Chinese/English) and adapts commit messages accordingly.
+description: Use when the user explicitly asks to prepare, review, or create a Git commit, including "提交", "提交代码", "帮我提交", "commit", "git commit", "确认提交", or requests a commit message.
 ---
 
-# Git Commit Message Generator
+# Git Commit
 
-Generate conventional commit messages with automatic language style detection.
+基于仓库规则和全部未提交改动生成 Conventional Commit 计划。核心原则是：**先按业务意图形成可独立审查、可独立回滚的原子变更，再用该组的主要意图确定 type。**
 
-## Commit Format
+## Hard Gate
 
+Skill 首次被调用时只执行准备阶段：读取、分析、分组并展示提交消息。完成展示后必须停止，等待用户确认。
+
+- 准备阶段不得执行 `git add`、`git commit`、`git reset`、`git restore` 或其他写操作。
+- 只有当前对话中已经展示过完整提交计划，且用户随后明确回复“确认提交”“按方案提交”等确认表达，才能进入执行阶段。
+- “直接提交”出现在首次调用中时仍先展示计划；它不能跳过确认门禁。
+- 如果没有可核对的当前计划，“确认提交”只触发重新准备，不直接提交。
+
+## Workflow
+
+### 1. Validate Repository State
+
+先确认仓库根目录、当前分支和 Git 操作状态。检查是否存在未完成的 merge、rebase、cherry-pick、revert 或冲突；存在时停止并说明，不能生成可执行提交计划。
+
+收集全部非忽略改动，而不是只看暂存区：
+
+```bash
+git rev-parse --show-toplevel
+git status --short --branch
+git status --porcelain=v1 -z
+git diff --cached --name-status
+git diff --name-status
+git ls-files --others --exclude-standard
 ```
-<type>[optional scope]: <subject>
 
-<body>
+随后读取：
+
+- staged 文件的完整文本 diff；
+- unstaged 文件的完整文本 diff；
+- untracked 文本文件的内容；
+- 删除、重命名、类型变化、子模块和冲突状态；
+- 二进制、大文件和敏感文件的路径与元数据，不在输出中暴露其内容。
+
+如果 staged、unstaged、untracked 都为空，报告“没有可提交的改动”并停止。不得使用 `git diff HEAD~1` 代替当前改动。
+
+### 2. Read Repository Rules
+
+读取与改动文件适用的仓库规则，优先级如下：
+
+1. 用户本次明确要求；
+2. 适用的 `AGENTS.md`、`CLAUDE.md`；
+3. `.github/COMMIT_CONVENTION.md`、`CONTRIBUTING.md`、README 中的提交约定；
+4. `.commitlintrc*`、`commitlint.config.*`、`package.json` 中的 commitlint 配置；
+5. `git config --get commit.template` 指向的模板和相关 commit hook；
+6. 最近 20 条非 merge 提交：`git log --no-merges -20 --pretty=format:%s`；
+7. 本 Skill 的默认 Conventional Commits 规则。
+
+报告实际采用了哪些规则来源。仓库规则不能覆盖确认门禁和敏感文件保护。
+
+### 3. Account for Every Changed Path
+
+建立完整改动清单。按去重后的仓库相对路径计数：同一路径同时包含 staged 和 unstaged 内容时只计一次；rename 作为一个改动条目记录旧、新路径。每个改动条目必须且只能出现在以下一个位置：
+
+- 某个原子提交组；
+- 明确排除清单；
+- 待用户决定清单。
+
+完成分组前核对：
+
+```text
+检测到的改动路径数 = 已归组路径数 + 排除路径数 + 待决定路径数
+```
+
+如果等式不成立、路径重复归组、untracked 文件尚未检查或存在无法读取的内容，不得声称计划完成。
+
+### 4. Group by Business Intent
+
+先判断每项改动解决的业务问题或交付目标，再形成原子组：
+
+- 同一功能的实现、类型定义、测试、mock、文档、迁移、配置和国际化资源放在同一组。
+- 缺陷修复与证明该缺陷的回归测试放在同一组。
+- 无关功能、独立重构、依赖升级、纯格式化或工具链调整拆成不同组。
+- 同为 `feat` 或同为 `fix` 不代表属于同一组；业务意图不同仍要拆分。
+- 文件类型只是证据，不能主导分组。不得因为文件是 `*.spec.*` 或 `*.md` 就把它从所属功能组拆走。
+- 一个文件包含多个无法安全分离的业务意图时，列入“待用户决定”；不得自行使用交互式 hunk staging 猜测边界。
+
+每个原子组应满足：有一个清晰意图，可以独立说明、独立审查，并能安全地独立回滚。
+
+### 5. Choose Type From the Primary Intent
+
+先形成原子组，再选择 type。项目约定优先；没有约定时使用：
+
+| Primary intent | Type |
+|---|---|
+| 增加或扩展用户可用能力 | `feat` |
+| 修复错误行为 | `fix` |
+| 只调整内部结构且不改变外部行为 | `refactor` |
+| 主要改善性能 | `perf` |
+| 只新增或修改测试 | `test` |
+| 只修改文档 | `docs` |
+| 只修改格式且不改变语义 | `style` |
+| 构建系统、构建依赖或打包 | `build` |
+| CI/CD 配置 | `ci` |
+| 其他维护工作 | `chore` |
+| 回退既有提交 | `revert` |
+
+不要把含义不明确的组自动降级为 `chore`；说明歧义并等待用户决定。
+
+Scope 遵循项目历史和 commitlint 规则；否则选择最能表示业务模块的简短名称。跨多个无共同模块的改动省略 scope。
+
+### 6. Construct the Message
+
+格式：
+
+```text
+<type>[optional scope][optional !]: <subject>
+
+[optional body]
 
 [optional footer]
 ```
 
-**Types**: `feat` `fix` `docs` `style` `refactor` `perf` `test` `build` `ci` `chore` `revert`
+默认规则：
 
-**Rules**:
-- Type: lowercase English, always
-- Subject: <72 chars, imperative mood, no period
-- Body: detailed explanation of changed files, core changes, problems solved, or behavior changes
-- Footer: `Refs #123`, `BREAKING CHANGE: ...`, etc. Omit if not applicable.
+- type 始终使用小写英文；
+- 中文 subject 使用简洁动宾结构，英文 subject 使用 imperative mood；
+- subject 不加句号，默认不超过 72 个字符；
+- body 说明这组改动做了什么、为什么需要，避免机械复述文件清单；
+- 简单改动允许省略 body；
+- footer 使用机器可读格式，如 `Refs #123`、`Fixes #456`；
+- breaking change 使用 `!` 和 `BREAKING CHANGE: ...`，并在计划中醒目标记风险。
 
-## Output Behavior
+消息语言优先遵循仓库规则，其次参考最近非 merge 提交；无法判断时默认中文。
 
-**Default (full template)**: Always provide a complete commit command with type, scope, subject, body, and footer. This is the standard behavior unless the user requests otherwise.
+### 7. Present the Plan and Stop
 
-```bash
-git commit -m "$(cat <<'EOF'
-<type>(<scope>): <subject>
+按以下结构展示，不输出依赖特定 shell 的 Bash HEREDOC：
 
-<body>
+```text
+提交计划
 
-<footer>
-EOF
-)"
+仓库：<name>
+分支：<branch>
+规则来源：<files/config/history>
+
+提交组 1：<业务意图>
+文件：
+- <status> <path>
+
+Commit message:
+<完整消息>
+
+分组原因：<为什么这些文件构成一个原子变更>
+
+风险或待决定项：<无，或具体说明>
+
+覆盖核对：
+- 检测到：N
+- 已归组：N
+- 排除：N
+- 待决定：N
+
+回复“确认提交”后执行；也可以要求调整分组或消息。
 ```
 
-**Short mode**: Only when the user explicitly says "简短一点", "只给 commit message", "只给命令", or similar brevity requests — output just the one-line subject:
+存在多个组时逐组展示，并说明建议提交顺序。展示完成后停止，不执行任何 Git 写操作。
 
-```bash
-git commit -m "<type>(<scope>): <subject>"
+## Execute After Confirmation
+
+收到有效确认后：
+
+1. 重新执行仓库状态和全部改动检查。
+2. 将当前路径、状态和 diff 与已确认计划逐项比较。
+3. 只要出现新增、删除、内容变化、暂存状态变化或规则变化，旧确认立即失效；重新生成计划并再次等待确认。
+4. 记录执行前的 staged 路径和 staged diff 快照，并标明它们属于哪个计划组。
+5. 如果当前 index 的全部内容只属于一个计划组，优先提交该组；按组使用 `git add -A -- <exact-paths>` 精确暂存，不使用 `git add .`。rename 必须同时包含旧、新路径。
+6. 已暂存与未暂存内容共存于同一文件时，确保计划包含整份文件；否则停止并请用户决定，不能意外扩大提交范围。
+7. 每组提交前重新检查当前组的 staged diff 和整个 index：
+   - index 不含其他组内容时，才可使用普通 `git commit`；
+   - index 同时包含其他组内容时，禁止普通 `git commit`，使用 `git commit --only -- <current-group-exact-paths>` 隔离当前组；
+   - 如果精确 pathspec 不能安全表示当前组，停止并请用户决定，不得通过 reset、restore 或交互式 staging 猜测处理。
+8. 使用适合当前 shell 的安全多行输入提交消息；PowerShell 不得生成 Bash HEREDOC。需要跨 shell 时优先使用 `git commit -F -` 配合当前 shell 的标准输入方式。
+9. 每次提交后验证退出码、commit hash 和实际文件清单；如果使用 `--only`，还要比较其余 staged diff 与提交前快照，确认其他组的暂存内容没有丢失或改变。
+10. 验证通过后再继续下一组；最终报告每个 commit hash、消息、文件，以及剩余未提交改动。
+
+如果某组失败，停止后续提交并报告已经成功的提交和当前仓库状态；不得自动 amend、reset 或回滚。
+
+## Safety
+
+- 敏感路径或内容（如 `.env*`、credentials、secrets、`*.pem`、`*.key`、令牌、证书）默认排除；只有用户明确点名包含后才可暂存。
+- 大型或未知二进制文件必须在计划中标出大小并等待明确确认。
+- 不输出检测到的秘密值。
+- 不使用 `--no-verify`，除非用户明确要求并已获准。
+- 不 amend、不 force push，不修改或删除用户未授权的改动。
+- Commit hook 修改工作区或提交失败时立即停止并报告，不自动修复或重试。
+
+## Completion Criteria
+
+准备阶段只有在以下条件全部满足时才完成：
+
+- 仓库规则已读取并报告来源；
+- staged、unstaged、untracked 等全部路径均已检查；
+- 每个路径恰好归入一个组、排除项或待决定项；
+- 原子组按业务意图形成，type 只表示主要意图；
+- 每组完整 commit message 已展示；
+- 尚未执行任何 Git 写操作；
+- 已明确等待用户确认。
+
+执行阶段只有在每个成功提交都完成 hash/文件验证，并报告剩余工作区状态后才完成。
+
+## Example
+
+以下文件共同交付“用户登录”能力：
+
+```text
+src/auth/login.ts
+tests/auth/login.spec.ts
+docs/auth.md
 ```
 
-## Language Detection
+它们应形成一个原子组，而不是拆成 `feat`、`test`、`docs` 三个提交：
 
-Detect project language from multiple signals (in priority order):
+```text
+feat(auth): 增加用户登录能力
 
-1. **Recent commits** (primary): `git log -20 --oneline`
-   - Contains Chinese characters → Chinese
-2. **README.md**: Check if README is written in Chinese
-3. **Default**: Chinese
-
-| Style | Format Example |
-|-------|---------------|
-| English | `feat(api): add user authentication endpoint` |
-| Chinese | `feat(用户管理): 添加登录功能` |
-
-**Language Rules**:
-- **Type**: Always English (`feat`, `fix`, `refactor`, etc.)
-- **Scope**: Follow project style (English or Chinese)
-- **Subject/Body**: Match detected project language
-
-## Workflow
-
-### 1. Parallel Analysis (single response)
-
-Run these in parallel to gather context:
-
-```bash
-git status
-git diff --staged          # staged changes (primary)
-git diff                   # unstaged changes (fallback if nothing staged)
-git log -20 --oneline      # recent commits for language + style detection
+实现登录认证及回归测试，并补充使用说明。
 ```
-
-If nothing is staged and nothing is unstaged, check:
-```bash
-git diff HEAD~1            # show last commit changes
-```
-
-### 2. Project Convention Detection
-
-Before generating, check if the project has commit conventions:
-
-1. Look for `.github/COMMIT_CONVENTION.md`, `CONTRIBUTING.md`, or similar
-2. Check recent commit patterns for project-specific types or scopes
-3. If project uses a convention (e.g., Angular, custom types), follow it **first**
-
-### 3. Smart Type Inference
-
-**Priority: project convention > keyword matching > file pattern matching**
-
-| Pattern | Type |
-|---------|------|
-| `*.test.*`, `*.spec.*`, `__tests__/`, `*Test.java` | `test` |
-| `package.json`, `*.lock`, `Dockerfile`, `Makefile`, `pom.xml`, `build.gradle` | `build` |
-| `.github/`, `.gitlab-ci.yml`, `Jenkinsfile`, `*.yml` (CI config) | `ci` |
-| `*.md`, `docs/`, `README*`, `CHANGELOG*` | `docs` |
-| Only whitespace/formatting changes | `style` |
-| Keywords: fix/bug/resolve/repair/patch | `fix` |
-| Keywords: add/implement/create/introduce/support | `feat` |
-| Keywords: refactor/extract/reorganize/restructure | `refactor` |
-| Keywords: optimize/cache/performance/speed | `perf` |
-| Keywords: update/upgrade/bump (dependencies) | `chore` |
-| Keywords: revert/undo | `revert` |
-| Mixed or unclear | `chore` |
-
-### 4. Scope Inference
-
-Extract scope from changed file paths:
-
-**Strategy**: Use the most meaningful directory name under `src/` or project root.
-
-| Path Pattern | Scope |
-|-------------|-------|
-| `src/api/user/*`, `server/api/*` | `api` or `user` |
-| `src/components/Button/*` | `Button` or `components` |
-| `src/views/目标管理/*` | `目标管理` |
-| `src/utils/*`, `src/lib/*` | `utils` |
-| Root config files only | omit scope |
-| Mixed across many modules | omit scope or use broad scope |
-
-**Rules**:
-- Prefer the module name that best represents the change's impact
-- If changes span multiple unrelated modules, omit scope
-- If a single file is changed, use the parent directory name
-- For monorepos: use package name as scope
-
-### 5. Body Construction
-
-The body must answer **what changed and why**, not how. Structure:
-
-- **Multiple files**: Use numbered list (`1. 2. 3.`), each item specifies the file/module and the change
-- **Single file**: One concise paragraph explaining the change
-- **Bug fix**: Describe the problem, root cause, and solution
-- **New feature**: Describe what it does and the use case
-
-### 6. Breaking Changes
-
-When changes break backward compatibility:
-
-- Add `!` after type/scope: `feat(api)!: change response format`
-- Add footer: `BREAKING CHANGE: <description of what breaks and migration path>`
-
-### 7. Present & Confirm
-
-When changes include multiple distinct categories (for example: docs + fix + feat), the skill will split them into multiple commits by responsibility and present a batch of commit commands for user approval.
-
-Behavior:
-- Group changed files by inferred type (project convention > keyword matching > path patterns).
-- For each group generate a complete commit (type, optional scope, subject, body) and the corresponding `git add <files>` + `git commit` command using HEREDOC.
-- If a file matches multiple groups, assign it to the highest-priority inferred type; if still ambiguous, place it in a `mixed` group and flag for interactive review.
-- Small formatting/whitespace-only changes across many files may be squashed into a single `style` commit to avoid noise.
-- Present all proposed commit commands together with a short summary of which files belong to each commit and the rationale for grouping.
-
-Confirmation step:
-- Show the user the list of proposed commands and ask which commits to execute (all, subset, or none).
-- If anything is unclear (ambiguous grouping, unclear scope, files assigned to multiple types, presence of sensitive files like .env, or any other ambiguity), immediately pause and ask the user clarifying question(s); do NOT proceed until clarified.
-- Do NOT run any `git` commands until explicit user approval is given.
-
-Example (two commits):
-
-```bash
-# Commit 1 - bug fix
-git add src/payment/*.ts
-git commit -m "$(cat <<'EOF'\nfix(payment): 修复订单金额计算错误\n\n1. 调整 OrderService.calculateTotal 中折扣优先级，先应用商品折扣再叠加优惠券。\n2. 新增 utils/discount.ts 及单元测试。\n\nFixes #456\nEOF\n)"
-
-# Commit 2 - docs
-git add docs/CHANGELOG.md README.md
-git commit -m "$(cat <<'EOF'\ndocs: 更新变更日志和 README\n\n1. 增加 2026-06-08 发布条目。\nEOF\n)"
-```
-
-Always await user approval before executing any of the above commands.
-
-## Examples
-
-### Full Template — Chinese (default)
-
-```bash
-git commit -m "$(cat <<'EOF'
-feat(用户管理): 添加登录功能
-
-1. AuthService 实现基于JWT的用户认证，支持登录和登出。
-2. TokenManager 添加令牌刷新机制和会话管理。
-3. routes/auth.ts 更新API路由增加认证中间件。
-
-关联 #123
-EOF
-)"
-```
-
-### Full Template — English
-
-```bash
-git commit -m "$(cat <<'EOF'
-feat(api): add user authentication endpoint
-
-1. Implement JWT-based authentication in AuthService for login/logout.
-2. Add token refresh mechanism and session management in TokenManager.
-3. Update routes/auth.ts with authentication middleware.
-
-Closes #123
-EOF
-)"
-```
-
-### Bug Fix — Chinese
-
-```bash
-git commit -m "$(cat <<'EOF'
-fix(支付模块): 修复订单金额计算错误
-
-问题：当商品包含折扣时，总价计算未考虑优惠券叠加，导致金额偏高。
-修复：OrderService.calculateTotal() 中调整折扣优先级，先应用商品折扣再叠加优惠券。
-新增：utils/discount.ts 添加折扣计算工具函数及对应单元测试。
-
-Fixes #456
-EOF
-)"
-```
-
-### Breaking Change
-
-```bash
-git commit -m "$(cat <<'EOF'
-feat(api)!: 更改用户接口响应格式
-
-将用户列表接口的响应结构从数组改为分页对象，包含 data、total、page 字段。
-前端分页组件需同步更新以适配新格式。
-
-BREAKING CHANGE: GET /api/users 响应格式从 User[] 变为 { data: User[], total: number, page: number }，所有消费该接口的客户端需更新解析逻辑。
-EOF
-)"
-```
-
-### Revert
-
-```bash
-git commit -m "$(cat <<'EOF'
-revert: 回退用户头像上传功能
-
-回退 commit abc1234 中引入的头像上传功能，原因是文件存储服务迁移中，
-待迁移完成后重新引入。
-
-Refs #789
-EOF
-)"
-```
-
-### Short Mode (only when user explicitly requests)
-
-```bash
-git commit -m "feat(api): add user authentication endpoint"
-```
-
-## Git Safety
-
-- NEVER use `--no-verify` unless explicitly requested
-- NEVER amend commits unless explicitly requested — create NEW commits
-- NEVER force push without explicit request
-- ALWAYS use HEREDOC for commit messages to preserve formatting
-- Prefer `git add <specific-files>` over `git add .` — avoid accidentally staging sensitive files
-- Warn user if staged files include `.env`, credentials, or large binaries

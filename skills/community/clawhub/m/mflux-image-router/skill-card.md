@@ -1,46 +1,64 @@
-## Description: <br>
-Routes local mflux image generation requests across an Apple Silicon Mac fleet and provides setup, API, and monitoring guidance for using ollama-herd with mflux models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes local mflux image-generation requests across Apple Silicon devices so agents can generate PNG images with Z-Image-Turbo, Flux Dev, or Flux Schnell while balancing fleet load.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure local mflux image generation through an ollama-herd fleet router, generate images via HTTP APIs, and monitor image generation activity across trusted Mac devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local router can process image prompts and also exposes non-image endpoints for text, audio, embeddings, and chat workloads. <br>
-Mitigation: Keep the router limited to trusted devices and use non-image endpoints only when prompt, audio, or text processing by that fleet is intended. <br>
-Risk: The setup depends on local ollama-herd and mflux packages and models that run on user-managed machines. <br>
-Mitigation: Review the packages before installation and confirm model downloads or changes before running commands that alter the local fleet environment. <br>
-Risk: Generated images and fleet-manager configuration files can be user data or operational state. <br>
-Mitigation: Do not delete or modify generated images or files under ~/.fleet-manager/ unless the user explicitly confirms the action. <br>
+## Use Case:
 
+Developers and agent builders use this skill to install and call a local fleet router for mflux image generation, choose generation parameters, monitor image-generation activity, and save generated PNG outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/mflux-image-router) <br>
-- [ollama-herd Package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to produce local HTTP requests, example code, and operational guidance for mflux image generation; generated image files are produced by the local router, not by the skill text itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill teaches broader fleet API use beyond its stated image-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review non-image API examples before use and avoid sending sensitive text, audio, or prompts through those APIs unless that broader use is intended.
+
+Risk: The workflow starts a local fleet router and exposes documented local HTTP APIs on port 11435.
+
+Mitigation: Run the router only in a trusted local environment and review network exposure before allowing other devices to connect.
+
+Risk: The workflow installs and uses current releases of ollama-herd and mflux.
+
+Mitigation: Install only from trusted package sources and pin or review package versions when deployment reproducibility matters.
+
+Risk: mflux model operations can involve large downloads and generated image files.
+
+Mitigation: Require explicit confirmation before pulling or deleting models and before deleting or modifying generated image files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/mflux-image-router)
+- [ollama-herd Package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, JavaScript, curl examples, and API parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, starting a local router on port 11435, calling local HTTP APIs, and writing PNG image outputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-B2B官网SEO全维度审计技能，输入目标网站URL后执行技术SEO健康检查、内容SEO诊断、竞品差距分析、关键词机会地图、TOP 20优化排序、90天执行计划与KPI框架设计，并输出Markdown审计报告和交互式HTML可视化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a B2B website across technical SEO, content quality, competitor gaps, keyword opportunities, priority pages, execution planning, and KPI reporting, then produces Markdown and interactive HTML audit reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Marketing teams, SEO specialists, growth operators, and B2B founders use this skill to diagnose public website SEO health, compare competitors, prioritize keyword and page opportunities, and turn findings into a 90-day execution plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow performs public website lookups and may include the audited domain and findings in generated reports. <br>
-Mitigation: Provide only public website URLs and review the Markdown and HTML reports before sharing them. <br>
-Risk: The generated HTML report loads Chart.js from a CDN. <br>
-Mitigation: Review the HTML before distribution and host or replace external assets if the report must run in a restricted environment. <br>
+## Use Case:
 
+External marketing teams, SEO consultants, and B2B site operators use this skill to diagnose organic search, content, competitive, keyword, and conversion-path gaps for a target website and to turn findings into a prioritized 90-day SEO plan.
 
-## Reference(s): <br>
-- [B2B SEO Audit Framework](references/seo-audit-framework.md) <br>
-- [B2B SEO KPI Framework & Reporting](references/kpi-framework.md) <br>
-- [ClawHub release page](https://clawhub.ai/bettermen/b2b-seo-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report plus generated HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local report files in the workspace and may include audited-domain details in the generated HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated HTML reports may execute unsafe injected or third-party JavaScript when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated HTML as untrusted, open reports in an isolated browser profile, and sanitize or escape website-derived content before sharing or publishing.
+
+Risk: The HTML report template loads Chart.js from a remote CDN.
+
+Mitigation: Remove the remote script or pin it with integrity controls before using reports in privileged or shared browser contexts.
+
+Risk: The workflow fetches target and likely competitor websites during audits.
+
+Mitigation: Audit only sites the user is comfortable fetching, avoid sensitive internal URLs, and disclose when findings rely on public web data or inferred metrics.
+
+## Reference(s):
+
+- [B2B SEO Audit Framework](references/seo-audit-framework.md)
+- [B2B SEO KPI Framework & Reporting](references/kpi-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/b2b-seo-audit)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, files, guidance]
+
+**Output Format:** [Markdown report and interactive HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technical and content findings, competitor gap tables, keyword opportunity maps, TOP 20 page priorities, a 90-day execution plan, and KPI reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

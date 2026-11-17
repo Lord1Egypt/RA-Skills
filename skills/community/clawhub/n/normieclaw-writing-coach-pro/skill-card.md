@@ -1,48 +1,61 @@
-## Description: <br>
-Writing Coach Pro helps an OpenClaw agent review, rewrite, and coach writing for grammar, style, tone, readability, consistency, and user-specific preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes and improves writing by checking grammar, style, tone, readability, and consistency while adapting to the user's saved writing preferences.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Writers, editors, and teams use this skill inside OpenClaw to check grammar, polish drafts, analyze readability, enforce a style profile, and learn from recurring writing feedback. It is suited to emails, reports, blog posts, technical prose, academic writing, and other documents where consistency and tone matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved writing history, preferences, issue descriptions, and text excerpts can include personal or sensitive information. <br>
-Mitigation: Protect the local data directory like personal files, delete stored analysis data when it is no longer needed, and use a local LLM for sensitive documents. <br>
-Risk: Submitted text is processed by whichever LLM backend the user's OpenClaw agent is configured to use. <br>
-Mitigation: Review the selected LLM provider's data handling policies before processing sensitive text, or configure a local model. <br>
-Risk: Optional dashboard reporting may sync derived writing stats and issue data if installed. <br>
-Mitigation: Review dashboard settings before relying on sync, and disable dashboard reporting when local-only use is required. <br>
-Risk: Cleanup commands can remove locally stored writing analysis data. <br>
-Mitigation: Verify the target data path carefully before running cleanup commands. <br>
+## Use Case:
 
+Writers, professionals, and agent users use this skill to proofread, rewrite, and coach submitted text across emails, resumes, blog posts, reports, and other prose. It can produce quick grammar checks, full writing analysis, rewrite options, coaching explanations, profile updates, and progress reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-writing-coach-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security notes](artifact/SECURITY.md) <br>
-- [Setup guide](artifact/SETUP-PROMPT.md) <br>
-- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, inline corrections, rewritten prose, coaching explanations, and setup or export commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local style profiles, learning logs, session summaries, exported reports, and optional dashboard records when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Submitted writing may be processed by the user's configured LLM backend, including cloud-hosted providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected LLM provider's data handling terms before using confidential text, or use a local model when text must remain on the user's machine.
+
+Risk: Writing-derived profile, learning, session, report, and dashboard data may be retained or synced when the dashboard is present.
+
+Mitigation: Review local data and dashboard settings before installation, disable learning or dashboard sync when the host supports it, and protect or delete stored data as personal information.
+
+Risk: The documented reset flow permanently deletes stored Writing Coach Pro data.
+
+Mitigation: Export needed reports or back up the data directory before running reset or deletion commands.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nollio/skills/normieclaw-writing-coach-pro)
+- [Security information](SECURITY.md)
+- [Setup guide](SETUP-PROMPT.md)
+- [Dashboard integration spec](dashboard-kit/DASHBOARD-SPEC.md)
+- [NormieClaw support](https://normieclaw.ai/support)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with issue lists, readability metrics, rewritten text, coaching explanations, profile settings, and optional markdown or PDF progress reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store local style profiles, learning logs, session summaries, exported reports, and optional dashboard records when enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

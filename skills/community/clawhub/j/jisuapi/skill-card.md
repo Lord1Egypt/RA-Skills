@@ -1,45 +1,58 @@
-## Description: <br>
-用自然语言搜索并调用极速数据 500+ 接口，支持 search to execute 工作流和调用统计查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for and calls JisuAPI data interfaces from natural-language requests, including search, execute, and usage-statistics workflows.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover JisuAPI tools from natural-language requests, execute selected APIs, and inspect usage or cost statistics without memorizing individual endpoint names. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, parameters, and identifiers can be sent to JisuAPI and may include sensitive data. <br>
-Mitigation: Use a scoped or limited JISU_API_KEY and review the selected tool plus exact parameters before sending phone numbers or other sensitive identifiers. <br>
-Risk: Executed API calls may incur charges under the selected JisuAPI tool's pricing rules. <br>
-Mitigation: Check stats, stats_detail, or stats_dashboard regularly and require confirmation before executing paid or ambiguous calls. <br>
+## Use Case:
 
+Developers and external users use this skill to discover the right JisuAPI interface from a natural-language request, execute the selected API with parameters, and review API usage, cost, and execution details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisuapi) <br>
-- [JisuAPI Agent documentation](https://www.jisuapi.com/agent/docs/) <br>
-- [JisuAPI Agent search API](https://www.jisuapi.com/agent/docs/search) <br>
-- [JisuAPI Agent execute API](https://www.jisuapi.com/agent/docs/execute) <br>
-- [JisuAPI Agent stats API](https://www.jisuapi.com/agent/docs/stats) <br>
-- [JisuAPI Agent tools list](https://www.jisuapi.com/agent/docs/tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; API calls may return third-party service data and usage statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The one-step run mode can send user data and spend API quota on a remotely selected tool without enforcing confirmation or confidence checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented search then execute flow; confirm the selected tool, parameters, and match quality before execution.
+
+Risk: A JISU_API_KEY with paid access or sensitive account permissions can expose account quota and billing to agent-driven calls.
+
+Mitigation: Review account permissions before installation, avoid sending personal or confidential data unless necessary, and monitor JisuAPI usage charges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisuapi)
+- [JisuAPI Agent documentation](https://www.jisuapi.com/agent/docs/)
+- [JisuAPI Agent search API](https://www.jisuapi.com/agent/docs/search)
+- [JisuAPI Agent execute API](https://www.jisuapi.com/agent/docs/execute)
+- [JisuAPI Agent stats API](https://www.jisuapi.com/agent/docs/stats)
+- [JisuAPI available tools](https://www.jisuapi.com/agent/docs/tools)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; command output is printed as formatted JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

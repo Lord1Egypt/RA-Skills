@@ -1,41 +1,60 @@
-## Description: <br>
-Checks an image.z.ai web login session, captures Zhipu-related browser cookies when needed, generates GLM-Image images through the web interface, and downloads the results locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and downloads images through the Zhipu GLM-Image web experience by checking browser login state, capturing Zhipu cookies, calling the image.z.ai web endpoint, and saving results locally.
 
-## Publisher: <br>
-[huangm199](https://clawhub.ai/user/huangm199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangm199](https://clawhub.ai/user/huangm199)
 
-## Use Case: <br>
-Developers and external users can use this skill to check a Zhipu Image web session, open the login flow when needed, submit an image prompt, and save generated images to a local captures directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads browser login cookies through a logged-in Chrome DevTools session and saves Zhipu-related cookies locally. <br>
-Mitigation: Use an isolated browser profile, keep the network monitor off during unrelated browsing, and delete ~/.zhipu_image_session.json when the session is no longer needed. <br>
-Risk: Broad browser traffic monitoring helpers can expose unrelated browsing metadata if run outside the intended Zhipu Image workflow. <br>
-Mitigation: Run the monitor only while troubleshooting image.z.ai requests and stop it before using the browser for other activity. <br>
+## Use Case:
 
+Developers and image-generation users use this skill to prepare a Zhipu web login session, submit GLM-Image prompts, and download generated image files into a local captures directory.
 
-## Reference(s): <br>
-- [Zhipu Image web application](https://image.z.ai/) <br>
-- [ClawHub zhipu-image release page](https://clawhub.ai/huangm199/zhipu-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [JSON status messages, shell command guidance, and downloaded PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved to a local captures directory by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill connects to a Chrome remote-debugging browser and extracts Zhipu-related cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile for Zhipu activity and run the skill only when you intentionally want it to access that profile.
+
+Risk: The captured session is stored locally in plaintext.
+
+Mitigation: Delete the local session JSON after use and avoid sharing the workstation or workspace with untrusted users.
+
+Risk: The network monitor can print request details and POST bodies during debugging.
+
+Mitigation: Run the monitor only for deliberate troubleshooting and avoid using it with sensitive prompts or unrelated logged-in browser activity.
+
+## Reference(s):
+
+- [Zhipu Image web app](https://image.z.ai/)
+- [Zhipu Image API proxy endpoint](https://image.z.ai/api/proxy)
+- [ClawHub skill page](https://clawhub.ai/huangm199/skills/zhipu-image)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangm199)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output; generated images are saved as local PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Chrome remote-debugging browser session on port 18800 and an authenticated Zhipu web session.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence.json release.version and artifact/scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

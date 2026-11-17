@@ -1,43 +1,60 @@
-## Description: <br>
-Branch a coding session into a new conversation with full context handoff -- generate structured handoff doc, startup prompts, and guide the new session to pick up exactly where you left off. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Branches a coding session into a new conversation by generating a structured handoff document and startup prompts when explicitly invoked.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Developers and coding agents use this skill to preserve project state when moving a long or branching coding session into a new conversation. It analyzes the current session and project, writes a structured handoff document, validates it with a checklist, and produces a startup prompt for the next session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to read broad project, IDE, identity, memory, scheduled-task, channel, connector, and environment-variable context. <br>
-Mitigation: Limit scanning to project-local files unless the user explicitly approves broader WorkBuddy identity, memory, task, channel, connector, and environment-variable review. <br>
-Risk: The generated handoff file may persist sensitive personal, path, project, or secret-adjacent context if not reviewed. <br>
-Mitigation: Review the handoff before committing or sharing it, and use repo-relative paths and placeholders for personal or secret values. <br>
+## Use Case:
 
+Developers and coding agents use this skill when a long or branching coding conversation needs a sanitized handoff document, startup prompt, and continuation plan for a new session.
 
-## Reference(s): <br>
-- [Session Branch on ClawHub](https://clawhub.ai/edwardwason/session-branch) <br>
-- [Handoff Template](references/handoff-template.md) <br>
-- [Validation Checklist](references/checklist.md) <br>
-- [Startup Prompts](references/startup-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown handoff document plus text startup prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create docs/session-handoff.md or .workbuddy/session-handoff.md depending on target IDE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and changelog, released 2026-06-04) <br>
+Risk: The skill creates or overwrites a project handoff file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended handoff path before execution and review any existing file before allowing overwrite.
+
+Risk: Optional IDE memory, profile, or configuration scans may expose personal or project-internal context.
+
+Mitigation: Grant access only to needed sources, decline unnecessary scans, and require explicit consent before reading memory or identity files.
+
+Risk: Generated handoff content may retain sensitive context if sanitization misses an item.
+
+Mitigation: Review the generated handoff before sharing, committing, or using it in another environment.
+
+## Reference(s):
+
+- [Handoff Template](references/handoff-template.md)
+- [Validation Checklist](references/checklist.md)
+- [Startup Prompt Templates](references/startup-prompts.md)
+- [TRAE Memory System Reference Guide](references/memory-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown handoff document, startup prompt text, validation checklist results, and file path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a project handoff file and may include sanitized summaries of current session state.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,68 @@
-## Description: <br>
-自媒体文章生成技能 - 根据关键词自动搜索、汇总数据、生成抖音/小红书/微博文章，特别擅长美食（面食）主题 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates food-focused social media articles for Douyin, Xiaohongshu, and Weibo by searching web content, extracting structured points, and formatting platform-specific posts.
 
-## Publisher: <br>
-[fyi0329-pixel](https://clawhub.ai/user/fyi0329-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fyi0329-pixel](https://clawhub.ai/user/fyi0329-pixel)
 
-## Use Case: <br>
-External content creators and marketing teams use this skill to research noodle and food topics, extract useful facts, and generate platform-specific drafts for Douyin, Xiaohongshu, and Weibo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided topics and keywords can be passed into a shell command during search. <br>
-Mitigation: Run only with trusted inputs until search execution is rewritten to use safe argument passing or direct API calls. <br>
-Risk: Generated posts may contain inaccurate, misleading, or outdated food and venue claims from search results. <br>
-Mitigation: Review generated articles and cited source data before publishing. <br>
-Risk: Raw output data may retain prompts, search results, and generated content in the workspace. <br>
-Mitigation: Use a constrained workspace and delete raw output data that should not be retained. <br>
-Risk: The skill requires a Tavily API key for search. <br>
-Mitigation: Set the API key intentionally and avoid including confidential information in topics or keywords. <br>
+## Use Case:
 
+Content creators, social media operators, and marketing teams use this skill to draft noodle and food-themed posts tailored to Douyin, Xiaohongshu, and Weibo. It is suited for generating platform-specific Markdown copy from a topic, keywords, and web search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fyi0329-pixel/noodle-create-writing) <br>
-- [Tavily API documentation](https://tavily.com) <br>
-- [OpenClaw skill development guide](https://docs.openclaw.ai) <br>
-- [Weibo](https://weibo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown article drafts, plain text copies, and JSON source data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate platform-specific drafts for Douyin, Xiaohongshu, Weibo, or all supported platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: User-controlled article topics and keywords can reach a shell command used for Tavily search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and replace shell command construction with an argument-array API or equivalent input-safe invocation.
+
+Risk: Generated Weibo-style content can include giveaway or prize language.
+
+Mitigation: Remove giveaway templates or require human approval before publishing promotional claims.
+
+Risk: Food and health-benefit wording may produce unsupported health-effect claims.
+
+Mitigation: Require source review and remove health claims unless they are explicitly authorized and substantiated.
+
+Risk: The normal workflow saves raw search results and extracted data to disk.
+
+Mitigation: Use dry-run for review workflows and make raw-data persistence opt-in before handling sensitive topics or sources.
+
+Risk: Runtime behavior depends on external Tavily and npm packages.
+
+Mitigation: Pin or verify dependencies and review the Tavily integration before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fyi0329-pixel/skills/noodle-create-writing)
+- [Publisher Profile](https://clawhub.ai/user/fyi0329-pixel)
+- [Tavily API](https://tavily.com)
+- [OpenClaw Skill Development Guide](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown articles, plain-text article copies, and JSON source-data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Douyin, Xiaohongshu, Weibo, or all platforms; normal execution saves generated articles and source data unless dry-run is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-智能早餐推荐助手，根据冰箱食材推荐早餐、管理食材、记录偏好与历史。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能早餐推荐助手，根据冰箱食材推荐早餐、管理食材、记录偏好与历史。
 
-## Publisher: <br>
-[sophiayuan1984-jpg](https://clawhub.ai/user/sophiayuan1984-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophiayuan1984-jpg](https://clawhub.ai/user/sophiayuan1984-jpg)
 
-## Use Case: <br>
-External users use this skill to manage local breakfast ingredients, dietary preferences, and recommendation history, then receive simple breakfast suggestions based on what is available. It also supports read-only fridge checks, expiring-ingredient review, and optional scheduled breakfast recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local records of fridge contents, breakfast history, and dietary preferences or allergies. <br>
-Mitigation: Review or delete files under ~/.openclaw/workspace/breakfast-recommender/ when they become outdated, and avoid storing sensitive dietary details unless needed for recommendations. <br>
-Risk: Scheduled recommendations can create recurring agent messages. <br>
-Mitigation: Enable scheduled recommendations only when recurring messages are desired, and confirm the configured time and cancellation path. <br>
+## Use Case:
 
+External users use this Chinese-language assistant to maintain a local fridge list, record dietary preferences, avoid repeating recent breakfast suggestions, and receive simple breakfast recommendations from available ingredients.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sophiayuan1984-jpg/breakfast-recommender) <br>
-- [Publisher Profile](https://clawhub.ai/user/sophiayuan1984-jpg) <br>
-- [fridge.md](references/fridge.md) <br>
-- [history.md](references/history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown recommendations, tables, confirmations, and local Markdown record updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local fridge, preference, and recommendation-history files under ~/.openclaw/workspace/breakfast-recommender/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: Replacing the full fridge list can overwrite prior stored ingredients when the user provides a complete new list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user intends to replace the existing fridge list before writing a full-list update.
+
+Risk: A recurring breakfast reminder can continue scheduled agent turns until cancelled.
+
+Mitigation: Create recurring reminders only after an explicit user request and tell the user how to cancel them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sophiayuan1984-jpg/skills/breakfast-recommender)
+- [fridge.md](references/fridge.md)
+- [history.md](references/history.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown tables and concise Chinese-language recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local fridge, preference, and recommendation-history files; may propose a recurring breakfast reminder when requested.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

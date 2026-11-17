@@ -1,46 +1,56 @@
-## Description: <br>
-Map the complete ecommerce customer journey from brand discovery through repeat purchase, identifying touchpoints, friction points, and optimization opportunities across all seven stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map the complete ecommerce customer journey from brand discovery through repeat purchase, identifying touchpoints, friction points, and optimization opportunities across all seven stages.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, growth marketers, customer experience managers, product managers, and founders use this skill to map seven-stage customer journeys, diagnose friction, and prioritize conversion, retention, and advocacy improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process customer feedback, support tickets, surveys, session recordings, or interview notes that contain personal or sensitive customer data. <br>
-Mitigation: Keep customer data in approved systems, prefer aggregated or anonymized reporting, and redact personal information before sharing data with an agent. <br>
-Risk: Metadata capability tags include purchase and crypto authority even though the artifact is documentation-only. <br>
-Mitigation: Before installation, verify that the platform does not grant purchasing or crypto permissions based solely on metadata tags. <br>
-Risk: Journey recommendations can affect marketing, checkout, retention, and customer operations decisions. <br>
-Mitigation: Review proposed optimizations with responsible stakeholders, validate against business data, and follow consent, retention, and access-control requirements. <br>
+## Use Case:
 
+Ecommerce operators, growth marketers, CX managers, product managers, and founders use this skill to map seven-stage customer journeys, diagnose friction, compare touchpoint metrics, and prioritize conversion and retention improvements.
 
-## Reference(s): <br>
-- [Customer Journey Mapper release page](https://clawhub.ai/leooooooow/customer-journey-mapper) <br>
-- [Output Template](references/output-template.md) <br>
-- [Journey Mapping Guide](references/journey-mapping-guide.md) <br>
-- [Touchpoint Metrics Reference](references/touchpoint-metrics-reference.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown journey map with tables, friction analysis, metrics, and a prioritized action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ecommerce analytics, customer feedback, support, advertising, and post-purchase data supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Real analytics, support tickets, customer interviews, and session recordings may contain customer personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize or anonymize customer data before use with an agent.
+
+Risk: Broad platform access could expose store data beyond what is needed for journey mapping.
+
+Mitigation: Limit platform access to the specific stores and reports required for the journey map.
+
+## Reference(s):
+
+- [Journey Mapping Methodology Guide](references/journey-mapping-guide.md)
+- [Customer Journey Map Output Template](references/output-template.md)
+- [Touchpoint Metrics Reference](references/touchpoint-metrics-reference.md)
+- [Customer Journey Map Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown journey map with tables, stage-by-stage analysis, friction diagnosis, metrics, and prioritized action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided ecommerce analytics, customer feedback, support, advertising, and post-purchase data; no hidden execution or persistence behavior was reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

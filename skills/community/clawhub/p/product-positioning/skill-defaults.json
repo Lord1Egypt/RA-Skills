@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "product-positioning",
+  "workflow": "product",
+  "focus": "positioning",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

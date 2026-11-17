@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn714vqhd3tfxkfcc44zgfedph84g9v8",
-  "slug": "openclaw-recovery",
-  "version": "4.0.1",
-  "publishedAt": 1777227367795
+  "id": "openclaw-recovery",
+  "name": "OpenClaw 自救系统",
+  "version": "2.3.0",
+  "description": "智能备份、健康监控、自动回滚、系统通知 - 让 OpenClaw 永不掉线",
+  "author": "爱丽丝",
+  "type": "utility",
+  "tags": ["backup", "recovery", "monitoring", "self-healing"],
+  "features": [
+    "实时监控备份",
+    "每日自动备份",
+    "健康检查",
+    "自动回滚",
+    "系统通知",
+    "一键回滚"
+  ]
 }

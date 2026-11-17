@@ -1,47 +1,64 @@
-## Description: <br>
-Article2Book helps an agent evaluate existing writing assets and reorganize them into a book, booklet, course, article series, practical handbook, knowledge base, or a recommendation not to productize. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article2Book helps an agent assess existing articles, columns, course scripts, transcripts, interviews, notes, PDF text, Word documents, and related content assets, then recommend whether they should become a book, booklet, course, article series, practice manual, knowledge base, or remain unproductized.
 
-## Publisher: <br>
-[cat-xierluo](https://clawhub.ai/user/cat-xierluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cat-xierluo](https://clawhub.ai/user/cat-xierluo)
 
-## Use Case: <br>
-External users and content teams use this skill when they have a folder of existing text materials and need an agent to assess the best content product shape, produce a planning opinion, and, after confirmation, draft the chosen deliverable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and summarizes a selected folder of writing materials, which may include client, personal, or sensitive content. <br>
-Mitigation: Use a dedicated folder containing only intended documents, redact sensitive information first, and review or delete generated output files that contain sensitive summaries or snippets. <br>
-Risk: Published capability metadata includes unsupported crypto and purchase tags, although the supplied artifacts do not show that behavior. <br>
-Mitigation: Do not treat this as a crypto or purchasing automation skill; rely on the artifact behavior and ask the publisher to correct the metadata. <br>
+## Use Case:
 
+External users, authors, consultants, and content strategists use this skill to evaluate a directory of existing text-based content assets and turn them into a concise productization plan. It supports staged delivery: first a planning recommendation, then an optional draft for the recommended content form after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cat-xierluo/article2book) <br>
-- [Project homepage](https://github.com/cat-xierluo/legal-skills) <br>
-- [Agent reading protocol](references/agent-reading-protocol.md) <br>
-- [Book viability rubric](references/book-viability-rubric.md) <br>
-- [Content productization models](references/content-productization-models.md) <br>
-- [Content screening rubric](references/content-screening-rubric.md) <br>
-- [Output template](references/output-template.md) <br>
-- [Source type handling](references/source-type-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown planning documents and optional local draft files, with shell commands only for optional inventory support.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default outputs are written under a local source-directory output folder; optional processed notes and inventory files may be created for large or complex material sets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and CHANGELOG, released 2026-05-17) <br>
+Risk: The agent may read sensitive or mixed-trust documents from the selected content directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow source folder, remove unrelated private materials, and review generated recommendations before sharing or publishing them.
+
+Risk: Generated CSV inventory files may be unsafe to open directly in spreadsheet software if source filenames or metadata contain formula-like text.
+
+Mitigation: Sanitize formula-like cells or inspect the inventory in a plain-text editor before opening it in a spreadsheet application.
+
+Risk: Content productization recommendations can be incomplete or misleading if the source set is stale, repetitive, or not fully text-readable.
+
+Mitigation: Confirm the source set, require human review of the planning recommendation, and preprocess PDF, Word, audio, video, or scanned materials before relying on the result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cat-xierluo/skills/article2book)
+- [Project Homepage](https://github.com/cat-xierluo/legal-skills)
+- [Agent Reading Protocol](references/agent-reading-protocol.md)
+- [Book Viability Rubric](references/book-viability-rubric.md)
+- [Content Productization Models](references/content-productization-models.md)
+- [Content Screening Rubric](references/content-screening-rubric.md)
+- [Output Template](references/output-template.md)
+- [Source Type Handling](references/source-type-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown planning files with optional CSV, JSONL, and Markdown inventory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a single planning recommendation under the source directory; optional inventory artifacts are generated only when useful or requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and changelog, released 2026-05-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-View and operate Lista Lending vaults/markets. Use when user asks about LENDING-ONLY positions or wants to deposit/withdraw/borrow/repay. For report-style overview, use lista instead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View and operate Lista Lending vaults and markets for lending-only positions and deposit, withdraw, borrow, or repay workflows.
 
-## Publisher: <br>
-[lawson-ccy](https://clawhub.ai/user/lawson-ccy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lawson-ccy](https://clawhub.ai/user/lawson-ccy)
 
-## Use Case: <br>
-External users and agents use this skill to inspect Lista lending-only vault and market positions, select lending targets, and perform deposit, withdraw, supply, borrow, repay, or market-withdraw operations with wallet consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real wallet-adjacent lending transactions. <br>
-Mitigation: Verify the selected wallet, chain, vault or market, amount, and RPC endpoint before approving any write action. <br>
-Risk: Wallet session details and lending context may be stored or reused locally. <br>
-Mitigation: Treat files under ~/.agent-wallet as sensitive and clear lending context after use. <br>
-Risk: Debug logs may expose transaction or wallet-adjacent operational details. <br>
-Mitigation: Enable debug logging only when needed and handle generated logs as sensitive data. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Lista Lending vault and market positions, select supported vault or market targets, and prepare or execute lending actions such as deposits, withdrawals, supply, borrow, and repay with wallet consent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lawson-ccy/lista-lending) <br>
-- [Publisher profile](https://clawhub.ai/user/lawson-ccy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Human-readable summaries and tables derived from CLI JSON, with agent-side shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations require wallet context and explicit user consent before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter, package.json, server release evidence) <br>
+Risk: State-changing lending operations may be unsafe because the security review reports a serious command-injection flaw in transaction execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run deposit, withdraw, supply, borrow, repay, or market-withdraw until transaction execution avoids shell interpretation; review every transaction before signing.
+
+Risk: Wallet-session metadata and debug logs may expose wallet topics or related session details.
+
+Mitigation: Avoid enabling debug logs with wallet topics, restrict access to wallet-session files, and reconnect or rotate sessions if logs were exposed.
+
+Risk: RPC endpoint trust affects lending reads and transaction preparation.
+
+Mitigation: Use trusted RPC endpoints and confirm chain, market or vault target, token, and amount before consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lawson-ccy/skills/lista-lending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON CLI output summarized by the agent as concise text or Markdown tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports vault, market, holdings, selection, configuration, simulation, and wallet-mediated transaction workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

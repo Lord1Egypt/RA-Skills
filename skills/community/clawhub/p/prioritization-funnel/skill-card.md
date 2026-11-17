@@ -1,37 +1,53 @@
-## Description: <br>
-Evaluate and prioritize opportunities through a structured filtering process for resource allocation, strategic decision support, and project management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate and prioritize opportunities through a structured filtering process. Use for resource allocation, strategic decision support, and project management.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-External users or employees use this skill to compare candidate opportunities, narrow them through staged criteria, and produce a ranked set of priorities with resource allocation and monitoring notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-support output could be mistaken for approval-ready budget, staffing, or strategic commitments. <br>
-Mitigation: Use the skill as a structured prioritization aid and keep human review for real budget, staffing, and strategy decisions. <br>
+## Use Case:
 
+Business, strategy, product, and portfolio teams use this skill to screen opportunities, compare weighted criteria, model financial impact, and document selected priorities for resource allocation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and decision-support narrative] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes staged scoring, financial modeling, selection, resource allocation, governance, and monitoring sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scoring tables and financial modeling outputs may be mistaken for validated financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision-support templates and review all thresholds, assumptions, and recommendations through the user's own approval process.
+
+Risk: Prioritization results can become stale as opportunities, budgets, resources, and market conditions change.
+
+Mitigation: Review the funnel regularly and update scoring criteria, resource constraints, and decision rationale before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/prioritization-funnel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-supplied scoring criteria, financial assumptions, thresholds, and review process.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

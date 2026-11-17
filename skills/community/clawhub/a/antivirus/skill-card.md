@@ -1,43 +1,58 @@
-## Description: <br>
-MoltGuard helps protect agents and users from prompt injection, data exfiltration, malicious commands, and related runtime security risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltGuard helps protect OpenClaw agents and users from prompt injection, data exfiltration, and malicious command risks.
 
-## Publisher: <br>
-[thomas-security](https://clawhub.ai/user/thomas-security) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomaslwang](https://clawhub.ai/user/thomaslwang)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and operate MoltGuard protections for prompt-injection, command-risk, and data-leakage checks. It provides setup commands, status and account-linking commands, and guidance for default or enterprise Core deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a third-party security service that participates in runtime checks. <br>
-Mitigation: Install only after confirming trust in OpenGuardrails/MoltGuard and reviewing what data is sent to Core. <br>
-Risk: The skill handles API credentials and can expose an API key through /og_claim. <br>
-Mitigation: Confirm credential storage and revocation procedures before use, and avoid sharing /og_claim output in shared or logged chats. <br>
-Risk: The artifact provides broad agent-side installation, dashboard, account-linking, and enterprise-enrollment commands. <br>
-Mitigation: Review commands before execution and prefer managed enterprise Core configuration when organizational policy requires it. <br>
+## Use Case:
 
+External users and developers use this skill to install and operate MoltGuard protections for OpenClaw agents, including status checks, account linking, dashboard access, updates, and enterprise Core enrollment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thomas-security/antivirus) <br>
-- [MoltGuard homepage](https://github.com/openguardrails/openguardrails/tree/main/moltguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational commands for installation, status checks, dashboard access, account linking, enterprise enrollment, updates, and uninstall.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.8.20 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill installs and activates an external cloud-backed plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after explicit user approval and confirm the package and version are the intended trusted release.
+
+Risk: API keys and agent credentials may be displayed or handled during status and account-linking flows.
+
+Mitigation: Treat generated API keys as secrets and avoid exposing them in shared transcripts, screenshots, or logs.
+
+Risk: Core service data handling, retention, redaction, and credential-storage protections are not established in the provided evidence.
+
+Mitigation: Avoid use with sensitive or regulated data until those controls are reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomaslwang/skills/antivirus)
+- [MoltGuard homepage](https://github.com/openguardrails/openguardrails/tree/main/moltguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational commands for plugin installation, status checks, account linking, dashboard access, enterprise enrollment, updates, and uninstall.]
+
+## Skill Version(s):
+
+6.8.20 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

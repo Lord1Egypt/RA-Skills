@@ -1,44 +1,61 @@
-## Description: <br>
-Compile LaTeX documents to PDF using pdflatex, xelatex, or lualatex with template support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile LaTeX documents to PDF using pdflatex, xelatex, or lualatex with template support.
 
-## Publisher: <br>
-[willamhou](https://clawhub.ai/user/willamhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willamhou](https://clawhub.ai/user/willamhou)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to compile LaTeX source strings, preview PDFs, and start from common LaTeX templates through a local compilation service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate local LaTeX compilation container. <br>
-Mitigation: Review the referenced container setup before use, confirm the localhost port binding, and keep the service local-only. <br>
-Risk: LaTeX source is sent to a service that the user may not have audited. <br>
-Mitigation: Avoid compiling highly sensitive documents through the service unless the container and its runtime configuration have been reviewed. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to compile LaTeX source into PDFs, preview generated PDFs, and retrieve starter templates through a local Prismer LaTeX container.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willamhou/latex-compiler) <br>
-- [Prismer project](https://github.com/Prismer-AI/Prismer) <br>
-- [Prismer LaTeX container source](https://github.com/Prismer-AI/Prismer/tree/main/docker/base) <br>
-- [Prismer base Dockerfile](https://github.com/Prismer-AI/Prismer/blob/main/docker/base/Dockerfile) <br>
-- [Prismer development Docker Compose](https://github.com/Prismer-AI/Prismer/blob/main/docker/docker-compose.dev.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON tool results containing PDF paths, base64 PDF data, logs, errors, warnings, and LaTeX template content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated PDFs are stored inside the local container; preview output can return a base64-encoded PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: LaTeX source is active input processed by a separate local compilation container.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the Prismer LaTeX container before use, and treat submitted LaTeX content as potentially active input.
+
+Risk: Compilation requires a local server at localhost:8080; calls fail when the service is unavailable.
+
+Mitigation: Start and verify the expected Prismer LaTeX compilation server before invoking compile or preview tools.
+
+Risk: Generated PDF paths are container-internal and are not host-mounted.
+
+Mitigation: Use the preview path that returns base64 output when an agent needs to inspect or display the PDF without relying on host filesystem access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/willamhou/skills/latex-compiler)
+- [Prismer Project](https://github.com/Prismer-AI/Prismer)
+- [Prismer LaTeX Container Source](https://github.com/Prismer-AI/Prismer/tree/main/docker/base)
+- [Prismer Dockerfile](https://github.com/Prismer-AI/Prismer/blob/main/docker/base/Dockerfile)
+- [Prismer Docker Compose](https://github.com/Prismer-AI/Prismer/blob/main/docker/docker-compose.dev.yml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [JSON tool results containing compilation status, PDF paths, logs, warnings, errors, templates, or base64-encoded PDF output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [LaTeX compilation depends on a local server at localhost:8080; generated PDF paths are container-internal unless returned as base64 preview output.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

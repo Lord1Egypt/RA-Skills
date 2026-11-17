@@ -1,44 +1,59 @@
-## Description: <br>
-Draft Chinese daily reports, weekly/monthly summaries, meeting recaps, study notes, and concise research digests from rough notes, links, chat logs, documents, or web research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Chinese daily reports, weekly and monthly summaries, meeting recaps, study notes, and concise networking or cybersecurity research digests from rough notes, links, chat logs, documents, or web research.
 
-## Publisher: <br>
-[381608544](https://clawhub.ai/user/381608544) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[381608544](https://clawhub.ai/user/381608544)
 
-## Use Case: <br>
-Employees, developers, and external users can use this skill to turn rough notes, task lists, chat logs, documents, URLs, or research findings into concise Chinese reports, summaries, study notes, and defensive networking or security research digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes, chat logs, documents, or URLs provided to the skill may contain sensitive information visible to the agent. <br>
-Mitigation: Review inputs before sharing and avoid providing secrets or confidential data that the agent should not process. <br>
-Risk: Networking and security research can become stale when versions, advisories, or best practices change. <br>
-Mitigation: Fetch current official or primary sources, cite them when research matters, and note dates, versions, and scope. <br>
-Risk: Reports or summaries can overstate progress if the source material is incomplete. <br>
-Mitigation: Preserve uncertainty, mark incomplete input clearly, and avoid inventing unsupported work or conclusions. <br>
+## Use Case:
 
+Developers, knowledge workers, and internal teams use this skill to turn rough notes, logs, documents, URLs, or web research into Chinese reports, summaries, study notes, and defensive networking or cybersecurity research digests.
 
-## Reference(s): <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Security Research Checklist](references/security-research.md) <br>
-- [ClawHub Publish Copy](references/publish-copy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with short sections and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers Chinese output unless the user asks otherwise; prompts users to verify current sources for time-sensitive networking or security claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and bundled publish copy) <br>
+Risk: Networking and cybersecurity research outputs may become outdated or miss version-specific scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fetch current official or primary sources when freshness matters, and state versions, dates, assumptions, and uncertainty in the output.
+
+Risk: User-provided logs, chat records, or documents may contain sensitive private information.
+
+Mitigation: Avoid pasting sensitive material unless it is intended for summarization, and redact secrets or private identifiers before use.
+
+Risk: The skill defaults to Chinese prose, which may not match every target audience.
+
+Mitigation: Ask for another language, audience, or tone explicitly when the default Chinese professional style is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/381608544/skills/clawhub-report)
+- [Report Templates](references/report-templates.md)
+- [Security Research Checklist](references/security-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured Chinese prose with short sections and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to concise Chinese output unless the user asks for another language or style.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

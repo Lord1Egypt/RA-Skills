@@ -1,45 +1,60 @@
-## Description: <br>
-Install and configure the AgentPMT MCP server for AI agents and MCP-compatible clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the AgentPMT MCP server so MCP-compatible AI agents can connect to the AgentPMT tool marketplace.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and operators use this skill to connect Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, Zed, Codex CLI, Gemini CLI, or other MCP-compatible clients to AgentPMT tools using either a local STDIO router or a remote HTTPS MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects agents to paid AgentPMT tools and APIs, which can spend from configured budgets. <br>
-Mitigation: Use tightly scoped budget keys, approve only needed products, and review spending caps before enabling tools. <br>
-Risk: The STDIO setup path installs local npm code and stores a bearer token in MCP client configuration. <br>
-Mitigation: Review the package and setup behavior before installation, consider pinning package versions, and verify where the client stores the token. <br>
-Risk: AgentPMT API keys, budget keys, and derived bearer tokens are sensitive credentials. <br>
-Mitigation: Do not log or commit credentials; rotate keys after exposure and prefer least-privilege budget keys. <br>
+## Use Case:
 
+Developers and AI agent users use this skill to connect MCP-compatible clients to AgentPMT through either a local STDIO connector or the remote HTTP endpoint. The setup covers credentials, client configuration, connection checks, and basic troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/agentpmt/install-agentpmt-mcp) <br>
-- [AgentPMT website](https://www.agentpmt.com) <br>
-- [AgentPMT MCP endpoint](https://api.agentpmt.com/mcp) <br>
-- [AgentPMT dashboard](https://www.agentpmt.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash, JSON, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes client-specific MCP configuration examples and troubleshooting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup guidance uses unpinned package installation and @latest examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin an exact reviewed package version and avoid global installation unless the user has accepted that installation scope.
+
+Risk: Bearer tokens combine an API key and budget key and may be stored in persistent agent configuration.
+
+Mitigation: Keep tokens out of source control, logs, screenshots, and project files; prefer the narrowest budget key and rotate credentials immediately after exposure.
+
+Risk: Connected agents may access paid tools through spending-authorized credentials.
+
+Mitigation: Use budget limits, product approvals, spending caps, and dashboard audit logs to constrain and monitor tool usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/install-agentpmt-mcp)
+- [AgentPMT website](https://www.agentpmt.com)
+- [AgentPMT MCP endpoint](https://api.agentpmt.com/mcp)
+- [AgentPMT dashboard](https://www.agentpmt.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, client configuration snippets, authentication examples, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

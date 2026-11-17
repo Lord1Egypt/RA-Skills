@@ -1,41 +1,54 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for an executive recruiting firm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a executive recruiting firm.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Executive recruiters and talent partners use this skill to draft client education handouts that explain a recruiting process or service, answer common questions, and provide clear next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recruiting content could be inaccurate, unfair, or non-compliant if used without review. <br>
-Mitigation: Review hiring-related content for accuracy, fairness, and compliance before sharing or relying on it. <br>
-Risk: The skill declares Bash and Read permissions even though the core task is content drafting. <br>
-Mitigation: Restrict Bash and Read permissions where the agent environment supports tighter controls. <br>
+## Use Case:
 
+External recruiting clients and executive recruiting teams use this skill to draft client education handouts, FAQs, visual explanations, and next steps for boutique executive recruiting services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/generate-executive-recruiting-boutique-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-executive-recruiting-boutique-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual guidance, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested visuals or generated image assets when image generation is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests shell and local-file access that is not justified by its content-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only in contexts where Bash and Read access are necessary, or remove those permissions before deployment.
+
+Risk: Generated recruiting education content could be mistaken for employment screening guidance or used to support biased decisions.
+
+Mitigation: Keep human review in the workflow and avoid using generated content as the sole basis for candidate screening or employment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/generate-executive-recruiting-boutique-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-executive-recruiting-boutique-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text handout content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include client-facing FAQs, visual content prompts or descriptions, and recommended next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

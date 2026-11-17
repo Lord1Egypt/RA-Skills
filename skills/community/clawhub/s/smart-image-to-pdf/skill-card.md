@@ -1,44 +1,52 @@
-## Description: <br>
-Combine multiple image screenshots into a paginated A4 PDF, with page-break handling that aims to avoid cutting through text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combine multiple image screenshots into a paginated A4 PDF. Intelligently handles page breaks to avoid cutting through text. Use when the user wants to combine, merge, or stitch images/screenshots into a PDF, especially exam papers or documents.
 
-## Publisher: <br>
-[wxttt](https://clawhub.ai/user/wxttt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wxttt](https://clawhub.ai/user/wxttt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to combine screenshots, scanned document images, or exam paper images into a printable A4 PDF with automatic trimming and page splitting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Runtime dependency resolution may download Pillow and numpy when they are not already available.
+
+Mitigation: Use a trusted or pinned Python package environment when stronger supply-chain control is required.
+
+Risk: The script reads local image inputs and writes a PDF to the requested output path.
+
+Mitigation: Run it only on intended image-to-PDF tasks and review the output path before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to combine image files or image directories into a print-ready A4 PDF, especially for screenshots, exam papers, and document photos. The agent identifies the input and output paths, runs the bundled Python script, and reports the processed image count, generated page count, and output path. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill may download Pillow and numpy through uv. <br>
-Mitigation: Review dependency installation in the execution environment before running the command. <br>
-Risk: The script writes a PDF to the chosen path, or to output.pdf by default. <br>
-Mitigation: Use an explicit output filename and check whether the target file already exists before execution. <br>
-Risk: The skill processes local images supplied by the user. <br>
-Mitigation: Run it only on intended local image files and avoid including sensitive images unless the local execution environment is appropriate. <br>
+**Output Format:** [Markdown or plain text status with an executable shell command and generated PDF file path]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wxttt/smart-image-to-pdf) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Image-to-PDF script](artifact/scripts/combine.py) <br>
+**Other Properties Related to Output:** [The skill runs locally on user-provided image files and produces a PDF at the selected output path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and a generated PDF file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local PDF at the requested output path, or output.pdf by default.] <br>
+0.1.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

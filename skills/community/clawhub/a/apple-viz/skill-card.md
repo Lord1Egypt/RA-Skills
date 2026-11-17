@@ -1,42 +1,53 @@
-## Description: <br>
-Generate Apple HIG-inspired HTML visualizations for bar, line, donut, progress, horizontal bar, and stat-card charts, then capture them as PNG images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Apple HIG-inspired HTML visualizations for bar, line, donut, progress, and stat-card charts, then save them as PNG screenshots.
 
-## Publisher: <br>
-[baderfahoum17](https://clawhub.ai/user/baderfahoum17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baderfahoum17](https://clawhub.ai/user/baderfahoum17)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured chart data into Apple-style PNG visualizations for reports, dashboards, and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill renders user-provided chart data through local browser screenshot tooling. <br>
-Mitigation: Use trusted or sanitized chart data and run the skill in an environment appropriate for local browser execution. <br>
-Risk: The output path is caller-controlled and the skill writes PNG files to that location. <br>
-Mitigation: Choose output paths deliberately and avoid overwriting important files. <br>
-Risk: The release depends on browser tooling and an unpinned pyppeteer dependency. <br>
-Mitigation: Pin dependencies before use in sensitive or reproducible environments. <br>
+## Use Case:
 
+Developers and external users use Apple Viz to turn provided JSON data into polished PNG chart files for reports, dashboards, and quick visual summaries.
 
-## Reference(s): <br>
-- [Apple Viz ClawHub skill page](https://clawhub.ai/baderfahoum17/skills/apple-viz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands] <br>
-**Output Format:** [PNG image file path, with command-line invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports light and dark mode, custom width and height, and JSON data schemas for supported chart types.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-controlled chart data is rendered in a browser and may include unescaped fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated execution with non-sensitive or trusted chart data; escape user-controlled fields and validate colors and numeric inputs before broader deployment.
+
+Risk: Screenshot rendering can fall back to an unsandboxed Chromium path and uses unpinned runtime dependencies.
+
+Mitigation: Keep browser sandboxing enabled where possible, restrict browser and network behavior, and pin dependencies before production use.
+
+## Reference(s):
+
+- [Apple Viz ClawHub skill page](https://clawhub.ai/baderfahoum17/skills/apple-viz)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [PNG image file plus a printed output path; on screenshot failure, a temporary HTML path may be printed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports light and dark mode, custom image dimensions, and bar, line, donut, progress, horizontal bar, and stat-card chart types.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

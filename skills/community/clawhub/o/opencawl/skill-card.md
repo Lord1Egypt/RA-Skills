@@ -1,46 +1,65 @@
-## Description: <br>
-Add phone calling to your agent through OpenCawl. Use this skill to place calls, check outcomes, end active calls, and review voicemails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add phone calling to your agent through OpenCawl. Use this skill to place calls, check outcomes, end active calls, and review voicemails.
 
-## Publisher: <br>
-[ammbo](https://clawhub.ai/user/ammbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ammbo](https://clawhub.ai/user/ammbo)
 
-## Use Case: <br>
-Developers and agents use OpenCawl to place authorized outbound phone calls, track call status, end active calls, and review recent calls or voicemails through the OpenCawl API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real phone calls and may contact people without proper authorization or consent. <br>
-Mitigation: Use it only for authorized recipients and require explicit confirmation before each outbound call. <br>
-Risk: Calls may collect personal data and return recordings, transcripts, summaries, or extracted contact details. <br>
-Mitigation: Keep call goals minimal, avoid sensitive personal or confidential information, and follow applicable recording, consent, and privacy rules. <br>
-Risk: The OpenCawl API key is a sensitive credential. <br>
-Mitigation: Store OPENCAWL_API_KEY securely, restrict access to it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use OpenCawl to add outbound and optional inbound phone workflows to an agent, including placing calls, checking outcomes, ending active calls, and reviewing voicemails.
 
-## Reference(s): <br>
-- [OpenCawl Skill Page](https://clawhub.ai/ammbo/opencawl) <br>
-- [OpenCawl Homepage](https://opencawl.com) <br>
-- [API Reference](artifact/api.md) <br>
-- [Inbound Automation Reference](artifact/inbound.md) <br>
-- [Persona Reference](artifact/personas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Guidance] <br>
-**Output Format:** [JSON API requests and responses with text summaries, transcripts, call status, voicemail details, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCAWL_API_KEY and uses asynchronous call flows that return a call_id for later status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Phone numbers, call goals, context, transcripts, recordings, voicemails, and extracted contact details may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if OpenCawl is trusted with this data and apply appropriate handling, retention, and access controls.
+
+Risk: Outbound and inbound calls may create consent, notice, or recording-law obligations.
+
+Mitigation: Confirm applicable consent and recording requirements before making or receiving calls.
+
+Risk: Inbound webhooks and gateway tokens can expose call-related task data to external endpoints.
+
+Mitigation: Configure callbacks and bearer tokens only for HTTPS endpoints you control and trust.
+
+Risk: The OPENCAWL_API_KEY grants access to the OpenCawl integration.
+
+Mitigation: Store the API key through the agent's normal secret-management path and avoid exposing it in prompts, logs, or shared files.
+
+## Reference(s):
+
+- [OpenCawl Skill Page](https://clawhub.ai/ammbo/skills/opencawl)
+- [OpenCawl Homepage](https://opencawl.com)
+- [OpenCawl API Reference](api.md)
+- [Inbound Call Handling](inbound.md)
+- [Personas & Voice Configuration](personas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command examples and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return call IDs, call status and outcome summaries, transcripts, recording URLs, voicemails, and extracted contact details when available.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

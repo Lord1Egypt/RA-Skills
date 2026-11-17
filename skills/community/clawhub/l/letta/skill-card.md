@@ -1,41 +1,50 @@
-## Description: <br>
-Build AI with advanced memory that learns and self-improves over time, including agents with persistent memory, sub-agents, and a skill system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build AI with advanced memory that learns & self-improves over time — agents with persistent memory, sub-agents & skill system
 
-## Publisher: <br>
-[harryhihi](https://clawhub.ai/user/harryhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harryhihi](https://clawhub.ai/user/harryhihi)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Letta-oriented guidance for designing memory-augmented agents, persistent context patterns, and composable agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during broad discussions of memory-augmented agents. <br>
-Mitigation: Use it for explicit Letta-oriented memory-agent work and verify that its guidance matches the intended project context. <br>
-Risk: The artifact references an npm install command for the Letta CLI. <br>
-Mitigation: Run installation commands only when the user explicitly wants the Letta CLI installed and after reviewing the package and environment impact. <br>
+## Use Case:
 
+Developers and agent builders use this skill for guidance on Letta memory-augmented agents, including persistent memory patterns, local CLI usage, API-based application integration, and composable skill or sub-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Letta Skill Page](https://clawhub.ai/harryhihi/letta) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/harryhihi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; the skill provides documentation-style guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may prompt users to run a global npm install command, which can execute package code and add persistent CLI binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the package version, verify the package source, and avoid running the install from sudo or administrator shells.
+
+## Reference(s):
+
+- [Letta project repository](https://github.com/letta-ai/letta)
+- [ClawHub Letta skill page](https://clawhub.ai/harryhihi/skills/letta)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include references to Letta architecture, examples, CLI installation commands, and implementation patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

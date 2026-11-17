@@ -1,46 +1,60 @@
-## Description: <br>
-Source-distributed deterministic execution service with pinned dependencies that runs with signed approval artifacts in ClawShield mode, emits verifiable receipts, performs no outbound HTTP or governance calls, and avoids runtime package installation or dynamic downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenExec is a source-distributed deterministic execution service with pinned dependencies, signed approval enforcement in ClawShield mode, verifiable receipts, no outbound governance calls, and no runtime package installation or dynamic downloads.
 
-## Publisher: <br>
-[trendinghot](https://clawhub.ai/user/trendinghot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trendinghot](https://clawhub.ai/user/trendinghot)
 
-## Use Case: <br>
-Developers and platform engineers use OpenExec to route high-impact agent actions through a deterministic execution boundary with replay protection, signed approval checks in ClawShield mode, and verifiable receipts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Demo mode auto-approves registered actions. <br>
-Mitigation: For production use, set OPENEXEC_MODE=clawshield and configure a trusted CLAWSHIELD_PUBLIC_KEY. <br>
-Risk: Registered handlers execute with the hosting process privileges and OpenExec does not provide OS-level sandboxing. <br>
-Mitigation: Run in a hardened container or VM, avoid running as root, audit handlers, and configure OPENEXEC_ALLOWED_ACTIONS. <br>
-Risk: Network exposure or remote database configuration can expand the deployment trust boundary. <br>
-Mitigation: Bind locally or place the service behind a firewall or reverse proxy, use TLS when externally reachable, and keep the database local or otherwise trusted. <br>
-Risk: Stored payloads and results may contain sensitive audit data. <br>
-Mitigation: Apply appropriate database access controls, retention policies, backups, and monitoring. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenExec ClawHub release](https://clawhub.ai/trendinghot/openexec-skill) <br>
-- [ClawShield governance service](https://clawshield.forgerun.ai/) <br>
-- [README](README.md) <br>
-- [Security model](SECURITY.md) <br>
+## Use Case:
 
+Developers and engineers use OpenExec to route approved AI-system actions through a deterministic execution boundary with replay protection, signed approval checks in ClawShield mode, and verifiable receipts. It is intended for architectures that separate proposal, authorization, execution, and witnessing.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with shell commands, configuration examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Execution responses include deterministic results and receipt hashes; receipt verification accepts JSON inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.10 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Server security evidence says approval, replay, and receipt guarantees are weaker than documented for production or high-impact use.
+
+Mitigation: Use only for local demo or isolated evaluation until approvals are single-use, replay retrieval is authorization-bound, receipts are signed or HMAC-protected, dependencies are reviewed, ClawShield mode is enforced, and an explicit action allow-list is configured.
+
+Risk: Registered handlers execute with the privileges of the hosting process and the skill does not provide OS-level sandboxing.
+
+Mitigation: Run inside a hardened container or VM, avoid root execution, restrict allowed actions, and audit registered handlers before use.
+
+Risk: Inbound HTTP endpoints can receive execution and receipt-verification requests.
+
+Mitigation: Bind to localhost by default, place externally reachable deployments behind firewall or reverse proxy controls, and use TLS outside localhost.
+
+## Reference(s):
+
+- [OpenExec Skill Page](https://clawhub.ai/trendinghot/skills/openexec-skill)
+- [Publisher Profile](https://clawhub.ai/user/trendinghot)
+- [README](artifact/README.md)
+- [Security Model](artifact/SECURITY.md)
+- [ClawShield Governance Layer](https://clawshield.forgerun.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP endpoint examples, environment variable settings, configuration guidance, and operational hardening notes.]
+
+## Skill Version(s):
+
+0.1.10 (source: frontmatter, release evidence, main.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

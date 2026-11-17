@@ -1,37 +1,54 @@
-## Description: <br>
-Automates contract review with risk identification and clause analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides automated contract review with risk identification and clause analysis.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Legal, procurement, sales, and HR teams use this skill to review contracts, flag clause risks, compare terms against standard contracts, draft filled contracts, track renewals, and organize contract records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract text can contain confidential, personal, or regulated information. <br>
-Mitigation: Use redacted or test contracts until document processing, storage, archive access, reminder access, and deletion behavior are confirmed. <br>
+## Use Case:
 
+Legal, procurement, sales, and HR teams use this skill to flag contract clause risks, compare contracts against standard terms, draft filled contract text, track renewals, and organize contract records.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with contract analysis, operational guidance, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process sensitive contract text; review data handling before using real contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Install steps direct users to download and run unaudited remote code from a mutable repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the downloaded code, pin trusted revisions, and run it in a sandbox before using it with real contracts.
+
+Risk: Contract review can involve confidential, privileged, personal, or business-critical documents.
+
+Mitigation: Do not process sensitive contracts until storage, model processing, retention, deletion, and access controls are understood and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-contract-review)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown or text guidance with contract risk notes, clause comparisons, setup commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference contract content supplied by the user; review handling of confidential, privileged, personal, or business-critical contracts before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

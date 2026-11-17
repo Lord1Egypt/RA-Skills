@@ -1,41 +1,57 @@
-## Description: <br>
-Query BirdWeather station data for species detections, trends, and comparisons from BirdNET-Pi and PUC bird song detection stations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query BirdWeather station data for species detections, trends, and comparisons from BirdNET-Pi and PUC bird song detection stations without an API key.
 
-## Publisher: <br>
-[maxdraki](https://clawhub.ai/user/maxdraki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maxdraki](https://clawhub.ai/user/maxdraki)
 
-## Use Case: <br>
-Developers, analysts, birders, and wildlife-monitoring users can use this skill to query public BirdWeather station data, inspect recent detections, compare time periods, and summarize local bird activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: BirdWeather API queries may reveal the station IDs, dates, periods, or species filters a user asks about. <br>
-Mitigation: Use only station and query details that are acceptable to send to BirdWeather's public API. <br>
-Risk: BirdNET AI classifications can misidentify species, and offline stations can produce empty or stale results. <br>
-Mitigation: Treat unusual detections and empty result sets as signals to verify against station status, recent detections, or other observations before making decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub BirdWeather Release](https://clawhub.ai/maxdraki/birdweather) <br>
-- [BirdWeather Station App](https://app.birdweather.com/) <br>
-- [BirdWeather API](https://app.birdweather.com/api/v1) <br>
+## Use Case:
 
+Developers, birders, and wildlife monitoring users use this skill to retrieve station information, species detections, recent detections, top species, and period comparisons from public BirdWeather stations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output as plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key required; queries use public BirdWeather station data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Station IDs, date ranges, limits, and species filters are sent to BirdWeather's public API.
+
+Mitigation: Review command inputs before running the skill and avoid submitting information that should not be disclosed to the public API.
+
+Risk: BirdNET AI classification can misidentify species, especially unusual detections.
+
+Mitigation: Treat detection results and trends as advisory and verify unusual species with supporting observations or source data.
+
+Risk: Empty results can reflect offline stations rather than absence of birds.
+
+Mitigation: Check station status and latest detection metadata before drawing conclusions from empty results.
+
+## Reference(s):
+
+- [BirdWeather station directory](https://app.birdweather.com/)
+- [BirdWeather API endpoint](https://app.birdweather.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Plain text summaries with optional raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses station IDs, date ranges, period selections, limits, and optional species filters; no API key required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

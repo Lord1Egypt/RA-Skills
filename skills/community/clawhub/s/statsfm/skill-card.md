@@ -1,43 +1,55 @@
-## Description: <br>
-Comprehensive music data tool for Spotify and Apple Music, powered by the stats.fm API, that can look up public album, artist, and chart data without an account and query personal listening history with a stats.fm username. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+statsfm helps agents query stats.fm data for public Spotify and Apple Music catalog information, global charts, and, with a stats.fm username, personal listening history, play counts, top items, monthly breakdowns, and currently playing tracks.
 
-## Publisher: <br>
-[space0mel](https://clawhub.ai/user/space0mel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[space0mel](https://clawhub.ai/user/space0mel)
 
-## Use Case: <br>
-External users and developers use this skill to query stats.fm music data, analyze personal Spotify listening history when a stats.fm username is supplied, and inspect public album, artist, track, and chart information without an account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query personal music-listening analytics from api.stats.fm when a username is provided. <br>
-Mitigation: Provide usernames intentionally and ask the agent to limit queries when tighter privacy is desired. <br>
-Risk: Deep analysis workflows can make repeated stats.fm API calls. <br>
-Mitigation: Set clear bounds on date ranges, follow-up calls, and analysis depth when rate-control or data minimization matters. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for music listening analysis, artist and album deep dives, discovery timelines, personal stats.fm history, and public chart or catalog lookups.
 
-## Reference(s): <br>
-- [stats.fm API Reference](references/api.md) <br>
-- [stats.fm API Base URL](https://api.stats.fm/api/v1) <br>
-- [statsfm-cli GitHub Repository](https://github.com/Beat-YT/statsfm-cli) <br>
-- [Official stats.fm JavaScript Client](https://github.com/statsfm/statsfm.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and summarized music-listening analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stats.fm usernames, listening time ranges, artist or album identifiers, and public API query context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.1 (source: server release metadata) <br>
+Risk: The skill can send a stats.fm username, listening-history query parameters, and detected timezone to stats.fm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that disclosure is acceptable, avoid saving the username in shared environments, and request narrow queries when broad history analysis is not wanted.
+
+Risk: The skill may make many stats.fm API queries during deep music-history analysis.
+
+Mitigation: Constrain the requested date range, artist, album, or chart scope when minimizing data exposure or request volume matters.
+
+## Reference(s):
+
+- [stats.fm API Reference](references/api.md)
+- [stats.fm API](https://api.stats.fm/api/v1)
+- [ClawHub skill page](https://clawhub.ai/space0mel/skills/statsfm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown narrative with CLI command references and summarized stats.fm results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personal listening-history statistics when a stats.fm username is supplied.]
+
+## Skill Version(s):
+
+2.6.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

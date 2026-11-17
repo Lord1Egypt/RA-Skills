@@ -1,84 +1,103 @@
 ---
-name: reddit-ads-strategy
-displayName: "Reddit Ads Strategy: Subreddit Targeting and Community-Aware Advertising"
+name: reddit-ads
+displayName: "AdKit for Reddit Ads: Campaigns, Ad Groups, Ads and Reporting"
 description: >
-    Run Reddit advertising campaigns: subreddit and interest targeting, native ad format,
-    community-aware copy, and performance optimization. For B2B SaaS, developer tools,
-    and niche products reaching highly engaged, skeptical communities on Reddit.
+  Create, edit, and report on Reddit ads from an AI agent through the AdKit MCP connector:
+  campaigns, ad groups, ads, carousels, account defaults, and results. Every change is saved
+  as a draft that the user approves before it goes live. Use when the user wants to run,
+  change, or check Reddit ads. Not for Reddit ad strategy or creative advice.
 version: 0.1.0
 metadata:
-    openclaw:
-        homepage: https://adkit.so
+  openclaw:
+    homepage: https://adkit.so/features/ads-mcp/reddit
 triggers:
-    - reddit ads
-    - reddit advertising
-    - reddit campaign
-    - reddit promoted posts
-    - subreddit targeting
-    - reddit ads strategy
-    - reddit ads for saas
-    - reddit ads for developers
-    - reddit ads optimization
-    - reddit ads not working
+  - reddit ads
+  - reddit ads mcp
+  - reddit ads manager
+  - reddit campaign
+  - reddit ad group
+  - reddit promoted post
+  - reddit ads report
+  - reddit ads api
 ---
 
-# Reddit Ads Strategy
+# Reddit Ads with AdKit
 
-Guide Reddit advertising decisions. Ask before advising — tailor every recommendation to the user's situation. Reply in the same language as the user.
+This skill tells you how to create, edit, and report on Reddit ads through AdKit. It covers the steps, not the strategy.
 
-## Understanding Reddit as an Ad Channel
+## Connect AdKit
 
-Reddit is unlike any other ad platform. The audience is highly engaged, highly skeptical, and acutely aware when something feels like an ad. A promotional tone backfires. A community-aware, genuinely useful ad can outperform the same message on any other platform.
+AdKit is one MCP connector for Meta, Google, TikTok, LinkedIn, Microsoft, Reddit, X, and Pinterest ads.
 
-**Who Reddit works for:**
+- **Claude, ChatGPT, and most AI apps:** add a custom connector with the address `https://mcp.adkit.so`, then sign in.
+- **Claude Code:** `claude mcp add --transport http adkit https://mcp.adkit.so`
 
-- Developer tools and technical products — r/programming, r/webdev, r/devops, r/MachineLearning
-- SaaS targeting niche professional verticals — r/smallbusiness, r/entrepreneur, r/marketing
-- Consumer tech with passionate communities — r/productivity, r/homeautomation, r/software
-- Products where the audience actively searches for recommendations ("what's the best X?")
+For other AI apps, see how to set up the [AdKit MCP server for Reddit Ads](https://adkit.so/features/ads-mcp/reddit). If the AdKit tools are not available, tell the user how to connect. Then stop.
 
-**Who it doesn't work for:** broad consumer brands, anything that needs mass reach, anything where the core message is "buy now" with no community angle.
+## What AdKit can do on Reddit
 
-## Targeting Options
+| Entity      | Actions                                                                             |
+| ----------- | ----------------------------------------------------------------------------------- |
+| `campaigns` | list, get, create, update                                                           |
+| `ad-groups` | list, get, create, update                                                           |
+| `ads`       | list, get, create, update (image, video, carousel, or an existing post)             |
+| `results`   | list (account, campaign, ad group, or ad level)                                     |
+| `accounts`  | list, available, connect, disconnect, update, profiles, pixels, funding-instruments |
+| `drafts`    | get, publish (review your changes, then send them)                                  |
 
-| Method                  | Description                                                               |
-| ----------------------- | ------------------------------------------------------------------------- |
-| **Subreddit targeting** | Place ads in specific subreddits where your ICP lives. Highest precision. |
-| **Interest targeting**  | Reddit's behavioral interest categories. Broader, less precise.           |
-| **Keyword targeting**   | Show ads alongside Reddit search results for specific terms.              |
-| **Custom audiences**    | Upload email lists or pixel-based retargeting.                            |
-| **Lookalike audiences** | Expand from a customer list or pixel seed.                                |
+AdKit cannot delete Reddit campaigns, ad groups, or ads. Pause them instead with `status: "paused"`.
 
-**Subreddit targeting is the core lever.** Build a list of 10–30 subreddits where your target users spend time. Think beyond the obvious — find the adjacent communities where your ICP hangs out outside of work.
+## Steps
 
-## Ad Format
+All calls go through `adkit_manage` with `platform: "reddit"`. Before a call you have not made in this session, read its fields with `adkit_help({ path: "manage reddit <entity> <action>" })`. Do not guess field names. In this skill, `campaigns` `create` means `entity: "campaigns"`, `action: "create"`.
 
-Reddit Promoted Posts appear native in the feed — they look exactly like regular Reddit posts, with a "Promoted" label. This is both the challenge and the opportunity.
+1. **Project:** call `adkit_projects` and get the `projectId`. Every call needs it.
+2. **Account:** call `adkit_status`. If no Reddit account is connected, call `adkit_setup` with `platform: "reddit"` and give the user the link. After they sign in, use `accounts` `available`, then `accounts` `connect`.
+3. **Account defaults:** find the profile, pixel, and funding instrument with `accounts` `profiles`, `accounts` `pixels`, and `accounts` `funding-instruments`. Save them with `accounts` `update`. This change applies immediately, with no draft.
+4. **Build from the top down.** Each create saves a draft. For each level, do these steps before you start the next level:
+   - Show the draft to the user (`drafts` `get`, or the link `https://app.adkit.so/manage/drafts?open=<draftId>`).
+   - Wait for a yes. Then publish it with `drafts` `publish`.
+   - Use the Reddit ID that the publish result returns as the parent of the next level. A draft ID never works as a parent ID.
 
-**The ad must earn its place.** If a Reddit user wouldn't upvote it as an organic post, it'll be downvoted (yes, users can downvote ads) and ignored.
+   The levels, in order:
+   1. **Campaign:** `campaigns` `create` with a name and an objective. Campaigns start paused, so they spend nothing.
+   2. **Ad group:** `ad-groups` `create` with the `campaignId`, the budget, bidding, and targeting.
+   3. **Ad:** `ads` `create` with the `adGroupId` and the creative. For an image or video: call `adkit_manage` with `entity: "media"` and `action: "request_upload_url"` (no platform). It returns an upload URL. Send the file to that URL with `PUT`. Put the returned `uploadId` in `creative.media[].id`. A video also needs a thumbnail image. AdKit sends the files to Reddit when the ad is published.
 
-**What works:**
+5. **Go live:** `campaigns` `update` with `status: "active"`. Publish that draft only after the user says yes. Then check with `ad-groups` `list` and `ads` `list` that the ad groups and ads are active too.
+6. **Results:** `results` `list` with a `level` and a date range (`from` and `to`).
 
-- **Educational angle:** share something genuinely useful — a data point, a lesson, a how-to
-- **Community-aware copy:** reference the subreddit's context. "For those of you building in r/SideProject..."
-- **Product comparison or "we built this" posts:** Reddit users respect founders who are direct about what they're selling, without overselling
-- **Free tool or resource offer:** drive traffic to something valuable, not a generic landing page
+## Reddit rules
 
-**What doesn't work:** traditional ad copy, heavy branding, stock imagery, aggressive CTAs.
+- Write support is in beta. When a write fails, read the error and its `retryable` flag. Check your drafts and the existing Reddit objects before you retry, so you do not create the same thing twice. Report unexpected failures with `adkit_feedback`.
+- Campaigns start paused. Ad groups and ads start active.
+- A lifetime budget on the campaign turns on campaign budget optimization: Reddit splits that one budget across the ad groups. Otherwise, put a daily budget on each ad group.
+- AdKit creates the Reddit post behind each ad. Do not create posts yourself.
+- Use AdKit field names (camelCase). The entities in the table above ignore raw Reddit API field names.
 
-## Campaign Structure
+## Anything else in the Reddit API
 
-- **Objective:** start with **Traffic** (CPC). Convert to **Conversions** once the pixel has data.
-- **Budgets:** minimum $20/day. Reddit CPMs are low ($0.75–$2.50) but conversion rates can be lower than other platforms.
-- **Ad groups:** segment by subreddit cluster (technical communities, business communities, etc.)
-- **Creative:** write 2–3 copy variants per ad group. Test angles — educational vs direct, problem-first vs solution-first.
+For a Reddit feature that AdKit does not cover, use `entity: "platform-api-request"` with `action: "mutate"`. The action is always `mutate`, also for reads. AdKit sends the request to `https://ads-api.reddit.com/api/v3` as it is. The user must turn on Advanced Platform Access in AdKit's Agent Permissions.
 
-## Moderation Awareness
+- Check every path and field in the [Reddit Ads API docs](https://ads-api.reddit.com/docs/v3/).
+- Writes save a draft, like any other change.
+- After you use it, report the missing feature with `adkit_feedback`.
 
-Reddit communities have moderators who can flag or remove ads that violate subreddit rules. Before targeting a community:
+```json
+{
+  "projectId": "<projectId>",
+  "entity": "platform-api-request",
+  "action": "mutate",
+  "data": {
+    "platform": "reddit",
+    "accountId": "<accountId>",
+    "endpoint": "ad_accounts/<accountId>/campaigns",
+    "method": "GET",
+    "description": "List campaigns"
+  }
+}
+```
 
-1. Read the subreddit rules
-2. Check if the subreddit allows promotional content (some explicitly ban it)
-3. Make sure your ad doesn't feel like spam
+## Other platforms
 
-Reddit also shows how many comments and upvotes your promoted post has received — negative engagement is visible. Monitor this and pause ads that are accumulating downvotes.
+The same AdKit connector runs [Meta Ads](https://adkit.so/features/ads-mcp/meta), [Google Ads](https://adkit.so/features/ads-mcp/google), [TikTok Ads](https://adkit.so/features/ads-mcp/tiktok), [LinkedIn Ads](https://adkit.so/features/ads-mcp/linkedin), [Microsoft Ads](https://adkit.so/features/ads-mcp/microsoft), [X Ads](https://adkit.so/features/ads-mcp/x), and [Pinterest Ads](https://adkit.so/features/ads-mcp/pinterest) ads. Each platform has its own skill in this repo, for example `meta-ads` and `google-ads`.

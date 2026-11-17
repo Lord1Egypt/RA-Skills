@@ -1,40 +1,54 @@
-## Description: <br>
-Astronomy visibility helper for a given location (lat/lon). Lists what you can see tonight and in the next days: Moon phase and rise/set, planet visibility windows, and optional ISS passes. Use when the user asks for astronomical events visible from their coordinates/city. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local astronomical visibility including moon phase, rise/set times, planet viewing windows, and optional ISS pass predictions by location and date.
 
-## Publisher: <br>
-[elandivar](https://clawhub.ai/user/elandivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elandivar](https://clawhub.ai/user/elandivar)
 
-## Use Case: <br>
-External users and agents use this skill to compute local sky visibility for a specified latitude, longitude, timezone, and date range, including moon information, planet viewing windows, twilight transitions, and ISS passes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script creates a local Python virtual environment and installs unpinned Python dependencies. <br>
-Mitigation: Review the dependency installation step before use and run it in a controlled local environment. <br>
-Risk: The skill downloads public astronomy datasets during normal operation, including Skyfield ephemeris data and ISS TLE data from Celestrak. <br>
-Mitigation: Allow only the disclosed outbound dataset downloads needed for astronomy calculations. <br>
+## Use Case:
 
+External users and developers use this skill to answer location-specific astronomy visibility questions, including tonight's Moon phase, twilight window, planet viewing times, and ISS passes.
 
-## Reference(s): <br>
-- [Celestrak Stations TLE Data](https://celestrak.org/NORAD/elements/stations.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reports with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports twilight transitions, moon phase, planet viewing windows, and ISS pass times; requires local Python setup and public astronomy data downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Setup downloads Python packages and runs fetch public astronomy datasets from the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where those downloads are acceptable; stricter deployments should pin dependencies and use local dataset caches.
+
+Risk: ISS predictions depend on current public TLE data and can be unavailable or stale when network access fails.
+
+Mitigation: Review the report context before relying on predictions and consider an offline or no-ISS mode for constrained environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elandivar/skills/neomano-astro-events)
+- [Celestrak ISS TLE dataset](https://celestrak.org/NORAD/elements/stations.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text astronomy report with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated for a supplied latitude, longitude, timezone, and date window.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

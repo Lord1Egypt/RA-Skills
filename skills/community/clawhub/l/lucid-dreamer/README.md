@@ -53,7 +53,7 @@ Daily Notes (7 days)     MEMORY.md + USER.md
 ```bash
 mkdir -p memory/review
 
-openclaw cron add \
+openclaw automations add \
   --name "lucid" \
   --cron "0 3 * * *" \
   --tz "Your/Timezone" \
@@ -64,6 +64,10 @@ openclaw cron add \
   --message "$(cat prompts/nightly-review.md)"
 ```
 
+On OpenClaw 2.0, check `openclaw automations list` first. The `memory-core` plugin ships
+its own memory sweep at `0 3 * * *`, so this schedule collides with it out of the box.
+SKILL.md explains the three ways to resolve that.
+
 Check results in the morning:
 ```bash
 cat memory/review/YYYY-MM-DD.md
@@ -73,24 +77,24 @@ Tell your agent what to accept or reject. It handles the rest.
 
 ### Optional: Pre-flight Flush (Recommended)
 
-Add a cron at 02:45 Vienna time using `prompts/pre-flight-flush.md` as the message. This ensures your daily memory file is up-to-date before Lucid runs at 03:00, even if you forgot to manually flush your session.
+Add an automation at 02:45 Vienna time using `prompts/pre-flight-flush.md` as the message. This ensures your daily memory file is up-to-date before Lucid runs at 03:00, even if you forgot to manually flush your session.
 
-Cron schedule: `45 2 * * *` tz: Europe/Vienna
+Schedule: `--cron "45 2 * * *" --tz Europe/Vienna`
 
 ### Optional: Session Debrief at ~18:00
 
 Session debrief is a quick daily capture pass that runs before the full nightly review. It is meant for a fast end-of-day sweep: read today's daily note, pull out key decisions and durable facts, and write them directly into memory without generating a review report.
 
-Recommended OpenClaw cron:
+Use a full `provider/model` reference. A short alias is skipped without an error and the
+job silently runs on the session default.
 
 ```bash
-openclaw cron add \
+openclaw automations add \
   --name "lucid-debrief" \
   --cron "0 18 * * *" \
   --tz "Europe/Vienna" \
-  --model "your-preferred-model" \  # e.g. anthropic/claude-haiku-4-5 or opencode-go/minimax-m2.7
+  --model "anthropic/claude-haiku-4-5" \
   --session isolated \
-  --wake-mode now \
   --message "$(cat prompts/session-debrief.md)"
 ```
 

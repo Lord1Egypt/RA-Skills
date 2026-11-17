@@ -1,40 +1,53 @@
-## Description: <br>
-Retrieves Binance Web3 on-chain Smart Money trading signal data, including buy/sell direction, trigger and current prices, max gain, exit rate, token tags, and supported chain filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribe to and retrieve on-chain Smart Money trading signals, including buy/sell activity, trigger price, current price, max gain, and exit rate.
 
-## Publisher: <br>
-[viktor-huang](https://clawhub.ai/user/viktor-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[viktor-huang](https://clawhub.ai/user/viktor-huang)
 
-## Use Case: <br>
-External users and agents can fetch Binance Web3 smart-money signal data to inspect trading activity, compare trigger and current prices, and monitor token signal status on BSC or Solana. Treat the data as informational market data, not investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trading signals are volatile market data and may be wrong, stale, manipulated, or misread as financial advice. <br>
-Mitigation: Treat all signals as informational references and require explicit user review before any trading decision. <br>
-Risk: The skill relies on an external Binance Web3 endpoint and third-party publisher context. <br>
-Mitigation: Verify the publisher and endpoint independently before installation or use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Binance Web3 smart-money signal endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money) <br>
-- [ClawHub skill listing](https://clawhub.ai/viktor-huang/binance-trading-signal) <br>
+## Use Case:
 
+External users and agents use this skill to fetch Binance Web3 on-chain Smart Money trading signals for BSC and Solana. It supports monitoring token activity, signal direction, pricing context, and historical performance indicators for informational trading analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reference workflow; no credentials declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trading signals are speculative, time-sensitive, and may be incomplete or stale.
+
+Mitigation: Treat outputs as informational only, confirm prices and signal status independently, and avoid relying on this skill alone for trading decisions.
+
+Risk: Users may mistake summarized signal data for financial advice.
+
+Mitigation: Present signal summaries with clear caveats and encourage independent due diligence before any investment action.
+
+## Reference(s):
+
+- [Binance Web3 Smart Money Signal API Endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money)
+- [ClawHub Skill Page](https://clawhub.ai/viktor-huang/skills/binance-trading-signal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional curl examples and summarized JSON signal data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are informational, time-sensitive, and depend on live public trading-signal data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

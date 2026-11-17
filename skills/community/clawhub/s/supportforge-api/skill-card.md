@@ -1,42 +1,60 @@
-## Description: <br>
-AI-powered customer support automation using SupportForge API for help desk ticket routing, automated responses, knowledge base search, sentiment analysis, support escalation, workflow automation, and support analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates customer support workflows with SupportForge API examples for API key signup, ticket routing, response generation, knowledge-base search, sentiment analysis, workflow creation, integrations, and analytics.
 
-## Publisher: <br>
-[Jbennett111](https://clawhub.ai/user/Jbennett111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbennett111](https://clawhub.ai/user/jbennett111)
 
-## Use Case: <br>
-Support teams, operators, and developers use this skill to guide an agent through SupportForge API calls for customer support automation, including API key setup, ticket routing, response generation, knowledge base lookup, sentiment analysis, escalation, and analytics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send SupportForge API keys and customer support data to a third-party service. <br>
-Mitigation: Use a dedicated API key, verify the provider and domain before use, keep secrets out of chats and logs, and send customer data only when authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jbennett111/supportforge-api) <br>
-- [Publisher profile](https://clawhub.ai/user/Jbennett111) <br>
-- [SupportForge API key endpoint](https://supportforge.vosscg.com/v1/keys) <br>
-- [SupportForge ticket routing endpoint](https://supportforge.vosscg.com/v1/tickets/route) <br>
-- [SupportForge response generation endpoint](https://supportforge.vosscg.com/v1/responses/generate) <br>
-- [SupportForge pricing and limits](https://vosscg.com/forges) <br>
+## Use Case:
 
+Developers and support operations teams use this skill to call SupportForge endpoints for help desk automation, including ticket classification, routing, response drafting, knowledge-base lookup, escalation support, and analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SupportForge API key and may include customer support data in API requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer support prompts and examples may include personal data, account value, interaction history, or confidential business details sent to SupportForge.
+
+Mitigation: Use the skill only when SupportForge is approved for the data being processed, and remove or minimize PII, regulated data, and confidential details before sending requests.
+
+Risk: The skill includes commands that create and use API keys for a third-party service.
+
+Mitigation: Store API keys securely, avoid committing them to files or chat transcripts, and rotate keys if they are exposed.
+
+Risk: Automated response, routing, and escalation recommendations can be inaccurate or inappropriate for customer-facing support decisions.
+
+Mitigation: Review generated responses and routing decisions before customer delivery or escalation, especially for billing, refunds, high-value accounts, and sensitive issues.
+
+## Reference(s):
+
+- [SupportForge API key endpoint](https://supportforge.vosscg.com/v1/keys)
+- [SupportForge ticket routing endpoint](https://supportforge.vosscg.com/v1/tickets/route)
+- [SupportForge response generation endpoint](https://supportforge.vosscg.com/v1/responses/generate)
+- [SupportForge knowledge-base search endpoint](https://supportforge.vosscg.com/v1/kb/search)
+- [SupportForge plans and upgrades](https://vosscg.com/forges)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown with inline curl commands and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SupportForge API key and may transmit customer support data to a third-party API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

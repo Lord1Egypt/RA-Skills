@@ -1,45 +1,60 @@
-## Description: <br>
-Skill for managing EVM wallets, transactions, and network helpers via cast; covers onboarding, checks, and operating procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for managing EVM wallets, transactions, and network helpers via cast; covers onboarding, checks, and operating procedures.
 
-## Publisher: <br>
-[tezatezaz](https://clawhub.ai/user/tezatezaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tezatezaz](https://clawhub.ai/user/tezatezaz)
 
-## Use Case: <br>
-Developers and agents use this skill to set up and operate a local hot wallet for EVM networks with Foundry cast. It supports wallet creation or import, network selection, balance checks, token metadata, transaction command guidance, and wallet removal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles local hot-wallet secrets and stores sensitive wallet material on disk. <br>
-Mitigation: Use only limited funds, avoid importing valuable seed phrases or private keys, and remove wallet material when it is no longer needed. <br>
-Risk: Installation and setup commands may change the local environment. <br>
-Mitigation: Review installation commands before running them and avoid granting sudo during wallet setup. <br>
-Risk: Transaction signing or broadcasting can move real assets irreversibly. <br>
-Mitigation: Require explicit human confirmation before any transaction is signed or broadcast. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tezatezaz/clawcast) <br>
-- [ClawAudit report](https://clawaudit.duckdns.org/audit/7737be97-edda-4cd4-9070-fa47547dd44a) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
-- [EVM network list](artifact/assets/evm-networks.json) <br>
-- [EVM token metadata](artifact/assets/evm-network-tokens.json) <br>
+## Use Case:
 
+Developers and crypto wallet operators use this skill to create or import EVM wallets, configure networks, inspect balances, and prepare everyday cast-based transaction workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may guide scripts that create local wallet state, keystore files, password files, and transaction mention logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet seed phrases, private keys, and keystore passwords may be stored in local plaintext helper files during onboarding.
+
+Mitigation: Use only low-value test wallets unless the workflow is changed to avoid plaintext secret storage and to require secure secret entry at execution time.
+
+Risk: The setup flow may run unverified installer commands and package installation with elevated privileges.
+
+Mitigation: Review installer commands before execution, install Foundry through a trusted channel, and remove automatic sudo package installation from the workflow.
+
+Risk: Wallet paths, balances, and transaction references may be displayed or logged locally.
+
+Mitigation: Make balance checks and transaction logging opt-in, avoid exposing wallet metadata unnecessarily, and clear local logs when removing a wallet.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tezatezaz/skills/clawcast)
+- [Foundry installer](https://foundry.paradigm.xyz)
+- [EVM network list](assets/evm-networks.json)
+- [EVM token metadata](assets/evm-network-tokens.json)
+- [ClawAudit report](https://clawaudit.duckdns.org/audit/7737be97-edda-4cd4-9070-fa47547dd44a)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and interactive prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local wallet configuration, keystore paths, network settings, token metadata updates, and transaction log entries during guided operation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

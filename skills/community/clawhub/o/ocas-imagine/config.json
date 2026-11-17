@@ -1,0 +1,13 @@
+{
+  "created_by": "ocas-custodian",
+  "created_at": "2026-07-09T13:01:44.801459+00:00",
+  "generation_backend": "current_active_model",
+  "forbidden_backends": [
+    "image_generate",
+    "pollinations",
+    "pollination",
+    "fal",
+    "direct_provider_http"
+  ],
+  "degraded_reason": "current_model_t2i_unavailable"
+}

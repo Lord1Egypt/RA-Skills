@@ -1,40 +1,59 @@
-## Description: <br>
-Keji Skill Showcase is a curated research-skills entry point that guides agents toward literature search, citation checking, and academic knowledge-base skills based on the user's research task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+科研技能鉴赏 routes users to a curated set of 13 Chinese academic workflow skills for literature search, citation checking, research integrity review, paper meetings, defense practice, methodology support, and skill improvement.
 
-## Publisher: <br>
-[j-levee](https://clawhub.ai/user/j-levee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j-levee](https://clawhub.ai/user/j-levee)
 
-## Use Case: <br>
-External users and research-focused agents use this skill to select an appropriate specialized skill for finding papers, checking citation authenticity, downloading PDFs, conducting literature research, or building an academic knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends downstream research skills that may have their own permissions, account access, file access, or external-service behavior. <br>
-Mitigation: Review each suggested downstream skill separately before installation or use. <br>
-Risk: Broad research triggers could route a user to a skill that is not the best fit for a specific task. <br>
-Mitigation: Confirm the user's need against the skill's categories before recommending a downstream installation command. <br>
+## Use Case:
 
+Students, researchers, and agent users use this skill as a lightweight router for choosing the right Chinese academic workflow skill before starting a research task. It helps select specialized skills for literature retrieval, knowledge-base management, citation validation, integrity checks, meeting preparation, defense rehearsal, methodology guidance, and skill authoring.
 
-## Reference(s): <br>
-- [Keji Skill Showcase on ClawHub](https://clawhub.ai/j-levee/skills/keji-skill-showcase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline installation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes users to downstream research skills; no code execution or credential handling is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may expect this router skill to perform retrieval, checking, conversion, or knowledge-base work directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill is an entry point only and hand off concrete tasks to the matching specialized skill.
+
+Risk: A routing mistake could send a research task to a neighboring skill with a different scope.
+
+Mitigation: Compare the request against the quick routing table and the listed boundaries before recommending a skill.
+
+Risk: Recommended SmartLib-dependent skills may share the same wallet quota.
+
+Mitigation: Tell users that SmartLib search, download, and verification skills share quota under the same email.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j-levee/skills/keji-skill-showcase)
+- [SkillHub installation guide](https://skillhub.cn/install/skillhub.md)
+- [SkillHub skill listing](https://skillhub.cloud.tencent.com/skills/keji-skill-showcase)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown text with routing recommendations and installation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute retrieval, checking, conversion, or code-running tasks itself.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

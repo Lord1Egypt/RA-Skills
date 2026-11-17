@@ -1,39 +1,55 @@
-## Description: <br>
-Memory Pill is an AI-native memory and orchestration system for OpenClaw that helps agents use persistent memory, behavioral discipline, and delegation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Pill is an AI-native memory and orchestration system for OpenClaw that helps agents use persistent memory, behavioral scaffolding, and delegation patterns.
 
-## Publisher: <br>
-[7D-codes](https://clawhub.ai/user/7D-codes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[7d-codes](https://clawhub.ai/user/7d-codes)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to initialize and maintain persistent workspace memory, project notes, daily notes, behavior files, and orchestration guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains persistent local memory and behavior files under ~/.openclaw/workspace. <br>
-Mitigation: Review planned diffs before activation, periodically inspect the workspace, and avoid storing secrets or sensitive personal data. <br>
-Risk: Email, calendar, and cron-related checks are described as optional behaviors. <br>
-Mitigation: Treat those integrations as separate opt-in actions and confirm scope before enabling scheduled or external checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Pill on ClawHub](https://clawhub.ai/7D-codes/memory-pill) <br>
+## Use Case:
+
+Developers and OpenClaw users use this skill to add persistent workspace memory, agent behavior files, project summaries, daily notes, and orchestration guidance to an OpenClaw environment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent memory and behavior files can change how future OpenClaw sessions operate.
+
+Mitigation: Install only when a global persistent memory system is intended, and require separate confirmation plus a diff before each modification.
+
+Risk: Stored user context may include sensitive personal details or secrets.
+
+Mitigation: Avoid storing secrets or sensitive personal details, and review the exact files the skill may read or write before activation.
+
+Risk: Existing SOUL.md, AGENTS.md, USER.md, and memory files may be overwritten or altered during setup.
+
+Mitigation: Keep backups of existing memory and behavior files before using the skill.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to ~/.openclaw/workspace and related behavior files; activation asks the user before setup.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.8.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON/YAML file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or create persistent OpenClaw workspace files after user confirmation.]
+
+## Skill Version(s):
+
+0.8.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

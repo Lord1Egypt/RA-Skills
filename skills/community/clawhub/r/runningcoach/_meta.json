@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7ek9dc9ch178kbqd7yymy2s582j0mg",
-  "slug": "runningcoach",
-  "version": "1.0.1",
-  "publishedAt": 1773059345144
+  "name": "running-coach",
+  "description": "跑步教练助手 - 训练计划管理，配速区间设置、Intervals.icu同步。基于全频训练法为跑者生成周期性训练计划。首次使用需先注册Intervals.icu并获取API凭证。",
+  "version": "1.2.0",
+  "author": "小龙",
+  "tags": ["跑步", "训练", "Intervals.icu", "马拉松", "全频训练法"],
+  "environment": {
+    "INTERVALS_API_KEY": "Intervals.icu API密钥",
+    "INTERVALS_ATHLETE_ID": "Intervals.icu运动员ID",
+    "INTERVALS_THRESHOLD_PACE": "阈值配速(秒/km)，默认217"
+  }
 }

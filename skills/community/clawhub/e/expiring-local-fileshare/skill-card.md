@@ -1,44 +1,59 @@
-## Description: <br>
-Lets OpenClaw share single workspace files through expiring, tokenized HTTP links intended for local-network or VPN access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets OpenClaw share single local workspace files through expiring, tokenized local-network HTTP links with optional one-time access.
 
-## Publisher: <br>
-[tradmangh](https://clawhub.ai/user/tradmangh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tradmangh](https://clawhub.ai/user/tradmangh)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need to make a single workspace file available from a browser or another local/VPN-connected machine without publishing it publicly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes selected local files over the network. <br>
-Mitigation: Share only files intentionally meant for local/VPN access, keep validity windows short, use one-time links when practical, and stop the printed server PID when finished. <br>
-Risk: Active tokenized links may be readable from a predictable temporary log while the share is running. <br>
-Mitigation: Use the skill on trusted machines, avoid sharing sensitive files, and remove or protect temporary share logs after stopping the server. <br>
-Risk: VPN-connected or shared-network clients may be able to reach the server if they have the token. <br>
-Mitigation: Review network exposure before use and avoid running shares on untrusted shared networks. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create short-lived local or VPN-only browser links for individual workspace files such as images, Markdown, PDFs, or text files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tradmangh/expiring-local-fileshare) <br>
-- [Publisher profile](https://clawhub.ai/user/tradmangh) <br>
-- [Publisher homepage](https://github.com/tradmangh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and a generated HTTP link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a tokenized local-network URL, server PID, and stop command for a selected file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: METADATA.json and server release evidence) <br>
+Risk: Selected workspace files are exposed over plain HTTP to local or VPN network clients that possess the generated bearer link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only non-sensitive files, prefer short expirations and one-time links, and do not use this skill for secrets, keys, credentials, regulated data, or highly sensitive files.
+
+Risk: Generated links and server details are written to /tmp logs, which can matter on multi-user systems.
+
+Mitigation: Treat links as bearer credentials, review local log exposure, and remove share logs when they are no longer needed.
+
+Risk: A background share server can continue serving until the token expires or the process is stopped.
+
+Mitigation: Stop active share processes when finished using the printed PID or the documented kill commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tradmangh/skills/expiring-local-fileshare)
+- [Publisher Profile](https://clawhub.ai/user/tradmangh)
+- [Metadata Homepage](https://github.com/tradmangh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and a local HTTP link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one expiring tokenized URL for a single file, plus the background server PID and stop command.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version, artifact/METADATA.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

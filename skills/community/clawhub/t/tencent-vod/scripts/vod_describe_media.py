@@ -30,7 +30,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -46,13 +46,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -557,25 +560,34 @@ def describe_media(args):
 
 
 def main():
+    # 早加载 .env，确保 argparse `default=os.environ.get(...)` 能取到 TENCENTCLOUD_VOD_SUB_APP_ID
+    # 修复 BUG：此前 argparse 在 add_argument 时立即从环境变量取值，但 .env 加载发生在
+    # get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 媒体信息查询工具',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
   # 查询单个媒体
-  python vod_describe_media.py --file-id 5285485487985271487
+  python3 vod_describe_media.py --file-id 5285485487985271487
 
   # 查询多个媒体
-  python vod_describe_media.py --file-id 5285485487985271487 5285485487985271488
+  python3 vod_describe_media.py --file-id 5285485487985271487 5285485487985271488
 
   # 只查询基础信息
-  python vod_describe_media.py --file-id 5285485487985271487 --filters basicInfo
+  python3 vod_describe_media.py --file-id 5285485487985271487 --filters basicInfo
 
   # 查询转码+字幕信息
-  python vod_describe_media.py --file-id 5285485487985271487 --filters transcodeInfo subtitleInfo
+  python3 vod_describe_media.py --file-id 5285485487985271487 --filters transcodeInfo subtitleInfo
 
   # 查询审核信息
-  python vod_describe_media.py --file-id 5285485487985271487 --filters reviewInfo
+  python3 vod_describe_media.py --file-id 5285485487985271487 --filters reviewInfo
         '''
     )
 
@@ -588,7 +600,7 @@ def main():
     parser.add_argument('--sub-app-id', type=int,
                         default=int(os.environ.get('TENCENTCLOUD_VOD_SUB_APP_ID', 0)) or None,
                         help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
-    parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     parser.add_argument('--json', action='store_true', help='JSON 格式输出')
     parser.add_argument('--dry-run', action='store_true', help='预览请求参数')
 

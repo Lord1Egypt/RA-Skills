@@ -1,42 +1,60 @@
-## Description: <br>
-AI-Interview-Coach helps users prepare for interviews by generating targeted questions, mock interview flows, sprint plans, readiness scores, progress summaries, radar charts, and answer rewrites across junior, mid, and senior difficulty levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered interview preparation assistant with three difficulty levels, flexible question counts, five question types, interview history tracking, progress analysis, capability radar charts, 7-day sprint plans, job readiness scoring, answer rewriting, document generation mode, and interactive mock interview mode.
 
-## Publisher: <br>
-[hogozhang](https://clawhub.ai/user/hogozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hogozhang](https://clawhub.ai/user/hogozhang)
 
-## Use Case: <br>
-External users preparing for job interviews use this skill to generate role-specific practice material, run mock interviews, assess readiness, track progress, and improve interview answers. It supports resume-based and job-role-based preparation for technical, product, and behavioral interviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process resume details or job-history information provided by the user. <br>
-Mitigation: Provide only the resume details needed for interview preparation and avoid unnecessary sensitive personal information. <br>
-Risk: The skill can save local interview practice history at ~/.ai-interview-coach/history.json. <br>
-Mitigation: Review, manage, or delete the local history file when practice records should not be retained. <br>
+## Use Case:
 
+External users and developers use this skill to prepare for job interviews by generating targeted interview questions, practicing mock interviews, assessing readiness, improving answers, and tracking interview practice progress from resumes or role descriptions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hogozhang/ai-interview-coach) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown interview-preparation content with structured questions, answer spaces, reference answers, scoring summaries, plans, and rewrite suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local interview-history summaries and capability radar chart text when the user requests progress tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Risk: The skill may read resumes that users explicitly provide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary personal details from resumes before use and provide only the resume content needed for interview preparation.
+
+Risk: The skill may keep local practice history in ~/.ai-interview-coach/history.json.
+
+Mitigation: Review or delete the local history file when practice records should not be retained.
+
+Risk: The documented npx installation command is not pinned.
+
+Mitigation: Use a pinned or manual install path when release reproducibility is required.
+
+## Reference(s):
+
+- [AI-Interview-Coach on ClawHub](https://clawhub.ai/hogozhang/skills/ai-interview-coach)
+- [Publisher profile: hogozhang](https://clawhub.ai/user/hogozhang)
+- [README](artifact/README.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance, Analysis]
+
+**Output Format:** [Markdown with interview questions, reference answers, scoring summaries, practice plans, answer rewrites, and optional code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-provided resumes and may store local interview practice history for progress tracking.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

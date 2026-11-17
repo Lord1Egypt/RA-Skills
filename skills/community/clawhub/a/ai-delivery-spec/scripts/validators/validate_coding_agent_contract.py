@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""Use the current PRD contract by default; legacy annex rules are opt-in."""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+import yaml
+
+from prd_structure import analyze as analyze_structure
+
+
+BASE_AREAS = {
+    "source precedence, intake and scope": ("来源优先", "source-of-truth", "准入结论", "intake decision"),
+    "requirement baseline and change entry": ("req id", "req-*", "需求准入", "变更入口", "chg-"),
+    "roles, permission and data scope": ("数据范围", "权限", "data scope", "角色"),
+    "role journeys and flow closure": ("角色旅程", "端到端", "flow-", "跨角色"),
+    "IA, page and region layout": ("信息架构", "页面与布局", "page layout", "view contract"),
+    "fields and data flow": ("全局字段字典", "字段字典", "field dictionary", "数据流转"),
+    "states, rules and recovery": ("状态机", "规则与状态机", "state machine", "rules and states", "异常与边界", "failure / recovery"),
+    "API/integration business contract": ("api、事件与集成", "请求字段", "request fields", "集成业务契约"),
+    "security, privacy and NFR": ("非功能与合规", "non-functional", "security", "privacy", "nfr", "安全", "隐私"),
+    "machine-readable acceptance": ("机器可读验收", "machine-readable acceptance", "structured acceptance", "ac_structured", "evidence_required"),
+    "bidirectional traceability": ("双向追溯", "反向索引", "traceability"),
+    "forbidden invention": ("禁止推断", "禁止发明", "forbidden invention"),
+}
+
+SLICE_AREAS = {key: BASE_AREAS[key] for key in (
+    "source precedence, intake and scope", "requirement baseline and change entry",
+    "roles, permission and data scope", "role journeys and flow closure",
+    "IA, page and region layout", "fields and data flow", "states, rules and recovery",
+    "machine-readable acceptance", "bidirectional traceability", "forbidden invention",
+)}
+
+L3_AREAS = {
+    "AI runtime contract": ("ai runtime", "模型契约", "prompt version", "tool policy"),
+    "AI evaluation and human accountability": ("评测契约", "evaluation contract", "human gate", "人工兜底"),
+}
+
+ID_RULES = {
+    "REQ IDs": r"\bREQ-[A-Z0-9-]+\b",
+    "ROLE IDs": r"\bROLE-[A-Z0-9-]+\b",
+    "module IDs": r"\bMOD-[A-Z0-9-]+\b",
+    "flow IDs": r"\bFLOW-[A-Z0-9-]+\b",
+    "view/page IDs": r"\b(?:VIEW|PAGE)-[A-Z0-9-]+\b",
+    "action IDs": r"\bACT-[A-Z0-9-]+\b",
+    "field IDs": r"\bFLD-[A-Z0-9-]+\b",
+    "state machine IDs": r"\b(?:SM|STM|STATE)-[A-Z0-9-]+\b",
+    "acceptance IDs": r"\bAC-[A-Z0-9-]+\b",
+}
+
+STRUCTURED_AC_FIELDS = (
+    ("preconditions", "前置条件"), ("steps", "步骤"),
+    ("expected_visible", "预期可见结果", "可见结果"),
+    ("expected_domain", "预期领域结果", "业务结果"),
+    ("evidence_required", "证据"),
+)
+
+
+def has_any(text: str, terms: tuple[str, ...]) -> bool:
+    return any(term.lower() in text for term in terms)
+
+
+AI_PRODUCT_PATTERNS = (
+    r"\bai[- ]?native\b",
+    r"ai\s+runtime",
+    r"ai\s*(?:组课|推荐|生成|审核|客服|决策)",
+    r"人工智能\s*(?:组课|推荐|生成|审核|客服|决策)",
+    r"(?:大模型|模型)\s*(?:调用|推理|生成|编排|契约|输出)",
+    r"智能体\s*(?:工作流|编排|运行时|调用|协作)",
+    r"prompt\s+version|tool\s+policy|human\s+gate",
+)
+AI_NON_PRODUCT_MARKERS = (
+    "不建设", "不包含", "不在本期", "不适用", "排除", "仅预留",
+    "out of scope", "not applicable", "excluded", "future phase only",
+)
+
+
+def ai_contract_applicable(raw: str) -> bool:
+    """Detect positive AI product behavior without treating exclusions as scope.
+
+    "AI Coding" describes a document consumer, not an AI product feature. Split
+    clauses before applying exclusion markers so a later positive AI clause on
+    the same line still activates the runtime/evaluation contract.
+    """
+    for clause in re.split(r"[。；;\n]", raw):
+        lowered = clause.lower().strip()
+        if not lowered or "ai coding" in lowered or "coding agent" in lowered:
+            continue
+        if any(marker in lowered for marker in AI_NON_PRODUCT_MARKERS):
+            continue
+        if any(re.search(pattern, lowered, re.I) for pattern in AI_PRODUCT_PATTERNS):
+            return True
+    return False
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("document", type=Path)
+    parser.add_argument("--level", choices=["auto", "L0", "L1", "L2", "L3", "L4"], default="auto")
+    parser.add_argument("--profile", choices=["full_prd", "slice"], default="full_prd")
+    parser.add_argument("--domain-rules", type=Path)
+    parser.add_argument("--legacy", action="store_true", help="Explicitly run the historical annex/section-count contract")
+    parser.add_argument("--stage", default="specify", choices=["specify", "review", "baseline", "implementation", "acceptance", "closed"])
+    args = parser.parse_args()
+    if not args.legacy:
+        if args.domain_rules:
+            parser.error("--domain-rules belongs to the legacy checker; pass --legacy explicitly, or review domain behavior with the current PRD gate")
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        from quality_gate import Gate
+        gate = Gate()
+        gate.check_prd(args.document, level=args.level, stage=args.stage)
+        for item in gate.findings:
+            print(f"{item.severity} {item.code} {item.ref}: {item.message}")
+        blocks = any(item.severity == "BLOCK" for item in gate.findings)
+        gaps = any(item.severity == "GAP" for item in gate.findings)
+        print("BLOCKED" if blocks else "REVIEW_COMPLETE_WITH_GAPS" if gaps else "PASS: scoped PRD static checks / 指定范围的需求静态检查通过")
+        print("This checks declared requirements; it does not prove business correctness, implementation readiness or acceptance. / 不代表业务语义完整、实现已完成或业务验收通过。")
+        return 2 if blocks else 1 if gaps else 0
+    if args.level == "auto":
+        args.level = "L2"
+    raw = args.document.read_text(encoding="utf-8")
+    text = raw.lower()
+    failures: list[str] = []
+
+    if args.level in {"L0", "L1"}:
+        required = {"goal": ("目标", "goal"), "scope": ("范围", "scope"), "acceptance": ("验收", "ac-")}
+    else:
+        required = dict(BASE_AREAS if args.profile == "full_prd" else SLICE_AREAS)
+        if args.level in {"L3", "L4"} and ai_contract_applicable(raw):
+            required.update(L3_AREAS)
+    for area, terms in required.items():
+        if not has_any(text, terms):
+            failures.append(f"missing contract area: {area}")
+
+    if args.level in {"L2", "L3", "L4"}:
+        heading_count = len(re.findall(r"(?m)^#{2,4}\s+\S", raw))
+        table_rows = len(re.findall(r"(?m)^\s*\|(?:[^\n|]+\|){2,}\s*$", raw))
+        if args.profile == "full_prd" and heading_count < 14:
+            failures.append(f"full unified PRD has only {heading_count} section headings; need at least 14")
+        if table_rows < 8:
+            failures.append(f"contract has only {table_rows} table rows; precise mappings are missing")
+        for label, pattern in ID_RULES.items():
+            if not re.search(pattern, raw, flags=re.IGNORECASE):
+                failures.append(f"missing stable {label}")
+        for terms in STRUCTURED_AC_FIELDS:
+            if not has_any(text, terms):
+                failures.append(f"structured acceptance misses {terms[0]}")
+        api_not_applicable = bool(re.search(r"(?:api|接口)[^\n]{0,80}(?:不适用|not applicable)", text))
+        if not api_not_applicable:
+            if not re.search(r"/(?:api|openapi)/|\b(?:get|post|put|patch|delete)\s+[`/]", text):
+                failures.append("applicable API contract has no concrete method/path or explicit engineering-owned path decision")
+            for label, terms in {
+                "request fields/body": ("request fields", "请求字段", "request body"),
+                "response fields/body": ("response fields", "成功响应", "response body", "统一响应"),
+                "error/idempotency": ("错误码", "业务错误", "error code", "幂等", "idempotency"),
+            }.items():
+                if not has_any(text, terms):
+                    failures.append(f"API contract misses {label}")
+        if not has_any(text, ("异常", "失败", "failure")):
+            failures.append("contract misses failure behavior")
+        failures.extend(analyze_structure(raw, full_prd=args.profile == "full_prd"))
+
+    if args.domain_rules:
+        rules = yaml.safe_load(args.domain_rules.read_text(encoding="utf-8")) or {}
+        for term in rules.get("validators", {}).get("coding_agent", {}).get("required_terms", []):
+            if term.lower() not in text:
+                failures.append(f"missing domain term: {term}")
+    if failures:
+        for failure in failures:
+            print(f"FAIL: {failure}")
+        return 1
+    print(f"PASS: explicitly selected legacy {args.level} annex structure checks; not engineering readiness or acceptance")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

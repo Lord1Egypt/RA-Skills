@@ -1,40 +1,56 @@
-## Description: <br>
-AI-powered system for creating structured, balanced performance reviews, self-assessments, 360-degree feedback, and calibration notes across review cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered system for creating structured, balanced performance reviews, self-assessments, 360-degree feedback, and calibration notes across review cycles.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Managers, HR partners, and employees use this skill to draft performance reviews, self-assessments, peer-feedback summaries, calibration notes, development plans, and review-delivery scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Performance-review prompts may contain confidential employee, peer-feedback, or personnel-record data. <br>
-Mitigation: Use only when authorized to handle performance-review data, limit access to HR or managers with a need to know, and store final records only in approved HR systems. <br>
-Risk: Review drafts may include unnecessary personal details, protected-class information, medical information, or raw peer comments. <br>
-Mitigation: Do not paste unnecessary sensitive details, protected-class or medical information, raw peer comments, or confidential personnel records unless organizational policy permits it. <br>
-Risk: Generated review language may need human judgment for fairness, calibration, and compliance. <br>
-Mitigation: Treat outputs as drafts and have authorized reviewers check them for observable evidence, bias, and HR or legal requirements before delivery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Managers, HR teams, and employees use this skill to draft self-assessments, manager reviews, 360-degree feedback summaries, calibration notes, development plans, and performance check-in materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, YAML-style review-cycle configuration, tables, checklists, and structured guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as drafts for authorized HR or manager review before use in personnel records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may generate or summarize sensitive employment data, including review notes, peer feedback, promotion status, flight-risk labels, and PIP information.
+
+Mitigation: Install only for authorized HR or management use and handle generated materials as confidential employment data.
+
+Risk: Outputs could influence compensation, promotion, discipline, or termination decisions.
+
+Mitigation: Require human review plus legal or HR policy checks before relying on outputs for employment decisions.
+
+Risk: Performance reviews and calibration notes can contain incomplete, biased, or legally sensitive claims.
+
+Mitigation: Review drafts for specific observable evidence, protected-characteristic references, calibration bias, and compliance with internal HR policy before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-performance-review)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Configuration, Guidance]
+
+**Output Format:** [Markdown, YAML templates, checklists, scripts, scoring rubrics, and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive employment review content such as ratings, peer feedback themes, promotion candidacy, flight-risk labels, and PIP or coaching notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

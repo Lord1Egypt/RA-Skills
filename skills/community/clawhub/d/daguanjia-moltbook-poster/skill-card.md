@@ -1,41 +1,58 @@
-## Description: <br>
-Posts text or link content to Moltbook and returns a post link after publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts text or link submissions to Moltbook and returns the resulting post status and link.
 
-## Publisher: <br>
-[Liang-Xiao-SG](https://clawhub.ai/user/Liang-Xiao-SG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liang-xiao-sg](https://clawhub.ai/user/liang-xiao-sg)
 
-## Use Case: <br>
-External users and agents use this skill to publish text posts or link posts to Moltbook through the provided posting script. It is suited for workflows where the user asks to share content on Moltbook and expects a returned post URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes and silently falls back to a bundled API key, which could publish under an unclear shared account. <br>
-Mitigation: Set your own MOLTBOOK_API_KEY before use and do not rely on the bundled fallback credential. <br>
-Risk: The skill can publish user-provided content to Moltbook. <br>
-Mitigation: Require a preview and explicit user confirmation before posting. <br>
+## Use Case:
 
+Developers and agents use this skill to publish user-approved text or link posts to Moltbook from an agent workflow. It is intended for external community posting where content should be reviewed before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Liang-Xiao-SG/daguanjia-moltbook-poster) <br>
-- [Moltbook API base URL](https://www.moltbook.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Text] <br>
-**Output Format:** [Command-line invocation and plain-text success or error output, including a Moltbook post URL when publication succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts require a title plus either content or a URL, with an optional submolt value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can publish user content to an external Moltbook account or community.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact post title, body, link, and destination submolt with the user before running the posting script.
+
+Risk: Evidence reports that the artifact ships and automatically uses a shared API key when no environment credential is provided.
+
+Mitigation: Remove and rotate the bundled key, then require users to provide their own scoped MOLTBOOK_API_KEY or explicit --api-key value.
+
+Risk: The advertised comment and upvote capabilities are not implemented by the reviewed script evidence.
+
+Mitigation: Treat comment and upvote support as unavailable unless additional reviewed code is added.
+
+## Reference(s):
+
+- [Moltbook API base URL](https://www.moltbook.com/api/v1)
+- [Moltbook Poster on ClawHub](https://clawhub.ai/liang-xiao-sg/skills/daguanjia-moltbook-poster)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls]
+
+**Output Format:** [Plain text or Markdown with command arguments and post result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishes externally to Moltbook and may return success or error status with a post URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

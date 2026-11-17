@@ -1,48 +1,68 @@
-## Description: <br>
-Complete Feishu (Lark) skills collection for Claude Code and OpenClaw agents, covering document management, messaging, spreadsheets, Bitable, interactive cards, bot bridging, cross-group memory, and leave requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Feishu (Lark) skills collection for Claude Code and OpenClaw agents, covering document management, messaging, spreadsheets, Bitable records, interactive cards, bot bridging, cross-group memory, and leave request workflows.
 
-## Publisher: <br>
-[hewenqiang](https://clawhub.ai/user/hewenqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hewenqiang](https://clawhub.ai/user/hewenqiang)
 
-## Use Case: <br>
-Developers and operators use this kit to connect Claude Code or OpenClaw agents to Feishu/Lark workspaces for document publishing and editing, messaging, interactive cards, spreadsheet and Bitable operations, bot bridging, memory recall, and guided leave request workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unsafe shell command construction may execute unintended commands. <br>
-Mitigation: Review or disable affected helper scripts, and replace shell-string dispatch with argument-array subprocess calls or direct module calls before enabling them. <br>
-Risk: Remote write scripts can send messages or modify Feishu documents, sheets, Bitable records, or workflow requests without clear user control. <br>
-Mitigation: Use least-privilege Feishu app scopes, restrict approved chats and documents, and require explicit user confirmation for destructive or external-write actions. <br>
-Risk: Bridge, autostart, and cross-group memory features can expose private messages across chats or accounts. <br>
-Mitigation: Enable those features only for approved chats and accounts, limit retained data, and avoid uploading secrets or private files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hewenqiang/feishu-skills-kit) <br>
-- [Release setup guide](artifact/README.md) <br>
-- [MCP configuration template](artifact/mcp-config-template.json) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Feishu API documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list) <br>
-- [Feishu document editor API guide](artifact/skills/feishu-doc-editor/references/api-guide.md) <br>
-- [Feishu document permission setup](artifact/skills/feishu-doc-editor/references/permission-setup.md) <br>
-- [Feishu sheets API reference](artifact/skills/feishu-sheets-skill/references/api-reference.md) <br>
+## Use Case:
 
+Developers and teams use this skill kit to connect agents with Feishu/Lark workspaces for document publishing and editing, message sending, spreadsheet and Bitable operations, bot conversations, memory recall, and guided leave requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and code or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Feishu/Lark app credentials, MCP setup, and least-privilege app permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundle uses Feishu app credentials and may also use a local gateway token.
+
+Mitigation: Store secrets outside the skill files, restrict file permissions, rotate exposed credentials, and grant only the Feishu scopes needed for the selected skills.
+
+Risk: The bridge can run persistently and connect Feishu messages to a local agent gateway.
+
+Mitigation: Enable the bridge only after review, restrict allowed senders and chats, monitor logs, and confirm that persistent LaunchAgent behavior is acceptable.
+
+Risk: The security scan reports exploitable command-handling flaws in card scripts.
+
+Mitigation: Review and replace shell-string execution before use, then retest the affected messaging and card workflows.
+
+Risk: The MCP server setup can provide broad local-agent access to Feishu workspace data.
+
+Mitigation: Review the MCP server repository at a pinned commit, use least-privilege Feishu app permissions, and deploy only the skills required for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hewenqiang/skills/feishu-skills-kit)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [Feishu Server API Documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list)
+- [Feishu Doc Editor API Guide](skills/feishu-doc-editor/references/api-guide.md)
+- [Feishu Doc Editor Permission Setup](skills/feishu-doc-editor/references/permission-setup.md)
+- [Feishu Doc Editor Common Errors](skills/feishu-doc-editor/references/common-errors.md)
+- [Feishu Docx PowerWrite Templates](skills/feishu-docx-powerwrite/references/templates.md)
+- [Feishu Docx PowerWrite Troubleshooting](skills/feishu-docx-powerwrite/references/troubleshooting.md)
+- [Feishu Sheets API Reference](skills/feishu-sheets-skill/references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, JSON configuration, and API-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Feishu app credentials, Feishu workspace permissions, MCP server configuration, Node.js, Python, npm, and optional local bridge execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

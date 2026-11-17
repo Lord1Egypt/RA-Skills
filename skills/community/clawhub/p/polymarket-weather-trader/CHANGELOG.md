@@ -1,9 +1,149 @@
-# Changelog — polymarket-weather-trader
+# Changelog
 
-## [Unreleased]
+## [1.23.22] - 2026-09-18
+
+### Added
+- **Per-market position cap (SIM-5499).** `max_buys_per_market` (`SIMMER_WEATHER_MAX_BUYS_PER_MARKET`, default `1`) checks held positions via `get_positions()` before entry and skips a market that's already at cap. The 2026-09-17 gate run's replay DCA'd into every underpriced bucket every tick (mean 34 buys/market, max 137, 94.8% max DD) while live lands 1-2 because balance/backoffs throttle it — the two were measuring different strategies. Default `1` makes replay one-buy-per-market like live; raise it to keep DCA, or set `0` for the old unbounded behavior.
+
+### Changed
+- Requires `simmer-sdk>=0.25.8`, the first release whose `preflight()` is replay-aware. On an older SDK a backtest of this skill stops filling, because preflight blocks replay trades now that the skill no longer passes `skip_preflight`. Live trading is unaffected.
+
+### Fixed
+- **Skip reasons were collected but never surfaced.** `run_weather_strategy` built a `skip_reasons` list all run and never printed it, so diagnosing "location X entered zero markets" (the London 0/36 half of SIM-5499) meant re-reading per-tick logs. The summary now prints a per-location skip-reason breakdown (forces past `--quiet`, same as the station-parse coverage guard), and the two skip paths that carried no reason at all ("no forecast available", "no bucket found") now record one. Events whose text never parses into a location are tracked separately by a snippet of the event name.
+
+## [1.23.20] - 2026-09-17
+
+### Changed
+- **Replay trades no longer pass the deprecated `skip_preflight` valve (SIM-5430).** `SimmerClient.preflight()` is replay-aware under `SIMMER_REPLAY=1` on a loopback base URL, so `execute_trade` / `execute_sell` drop `skip_preflight=replay`. Live behaviour unchanged: preflight still runs and still blocks on `WALLET_UNVERIFIED`. Version skips 1.23.18/1.23.19, reserved for #384 and SIM-5440 which are in flight.
+## [1.23.19] - 2026-09-17
+
+### Fixed
+- Replay archive builder hardening from the KEEP/KILL run (SIM-5440): Open-Meteo HTTP 5xx responses retry up to 3 attempts with backoff, while HTTP 4xx still aborts immediately.
+- Long or old Previous Runs windows are fetched in 10-day chunks and merged internally. The build aborts if `utc_offset_seconds` differs across chunks for a station.
+- Added `--stations us|intl|all` (default `all`). `us` limits the build to the 8 configured Polymarket US resolution stations, so US-only archives avoid international DST guards and 56 needless requests.
+
+## [1.23.18] - 2026-09-17
+
+### Fixed
+- **Replay positions were always empty (SIM-5484).** `get_positions()` filtered by `venue="polymarket"` even under replay, but the replay server rejects any `venue` filter (422, SIM-5067). The 422 was swallowed to `[]`, so the skill never knew what it already held and re-bought the same bucket every tick (13-25x/market observed on a full-tape run). Replay now omits the venue filter; live is unchanged.
+
+### Docs
+- **`SIMMER_WEATHER_LOCATIONS` defaulting to `"NYC"` is not a bug.** A full-tape backtest with markets from many cities will show entries in NYC only unless this env var is widened to match the tape's city mix. Documented in the KEEP/KILL table and the reproduction recipe so a single-city result isn't misread as a station/forecast defect.
+- **The reproduction recipe's `export SIMMER_WEATHER_LOCATIONS=...` does not work under replay.** The bundle subprocess env is built from a strict allowlist (SIM-5067) that this var is not on, so the export was silently stripped and every re-run still measured NYC only. Recipe now uses `--set locations=...` on the entrypoint (writes `config.json`, which `load_config()` reads before env vars and which survives the bundle copy), and names the tape's actual cities instead of a generic US list. Hong Kong is called out separately: it has no station mapping anywhere in the skill (checked `LOCATIONS` and `INTERNATIONAL_STATION_COORDS`) and cannot enter regardless of this list — not a defect, just unmapped coverage.
+
+## [1.23.17] - 2026-09-16
+
+### Fixed
+- **Lead selection uses station-local event end, not UTC date (SIM-5434).** `_replay_lead_for_event(event_date, station_id)` picks the smallest N in 1–3 such that `E_end_utc − N·24h ≤ tick`. `E_end_utc` is the event date's 23:59:59 in `_meta["utc_offset_seconds"][station]`. Unknown offset assumes UTC−12; provenance then includes `tz=assumed`. A 00:30Z tick no longer assigns Seattle May 1 to lead 2.
+- **Hourly fold requires 00:00–23:00 each once.** No 23–25 DST blanket. A missing 18:00 aborts the build.
+- Builder fetch retries URL errors twice (60s timeout) so a transient SSL timeout does not abort a 64-station build.
+- **Windows that cross a DST transition are refused.** Open-Meteo labels every hour with the request-time offset, so a cross-transition window folds the wrong local hours. `reject_dst_crossing` (zoneinfo on the payload `timezone`) aborts with "split the window at the transition date".
+
+## [1.23.16] - 2026-09-16
+
+### Fixed
+- **Look-ahead via `previous_day1` (SIM-5434).** Hourly `temperature_2m_previous_day1` at valid hour H is the run ~24h before H, not one D-1 issuance. Horizon (D+2) and same-day-ahead evening hours could see a run issued after the replay tick. The builder now fetches leads 1–3 in one request and writes `{high, low, leads}`. The loader picks `lead = (event_date − tick.date).days + 1` in 1–3; further-out events skip. Top-level high/low stays lead 1. Archives without `leads` (sample / hand-built) keep the old path. Provenance appends `leads=1-3` when present.
+- **Incomplete hourly responses fail closed.** Missing or short arrays, a null hour, or a missing requested date raise `ArchiveBuildError` naming station/date/lead. One valid hour is not a daily high/low.
+
+## [1.23.15] - 2026-09-16
+
+### Added
+- **Historical forecast archive builder (SIM-5434).** `scripts/build_replay_forecast_archive.py --start YYYY-MM-DD --end YYYY-MM-DD --out …` fetches Open-Meteo Previous Runs (`temperature_2m_previous_day1` hourly on the forecast endpoint, per station coord) and writes `{_meta, station: {date: {high, low}}}`. Tick D sees the D-1 forecast. US stations (LOCATIONS / STATION_ID_TO_NOAA) are °F; international stations are °C — same as `_station_forecast`. `_meta` is source / fetched_at / lead=previous_day1.
+
+### Fixed
+- Loader ignores `_meta` so a builder file does not look like a station.
+
+### Docs
+- KEEP/KILL sequence is now build → copy to `fixtures/replay_forecasts.json` (uncommitted; `.sample.json` is shape-only) → `simmer backtest` → read the table. Auto-load is still only the user file, never the sample.
+
+## [1.23.14] - 2026-09-16
+
+### Fixed
+- The committed sample is never auto-loaded. Invented KLGA / 2026-04-30 temps live only in `fixtures/replay_forecasts.sample.json` (shape reference). Auto-load is `SIMMER_REPLAY_FORECASTS` or a user file `fixtures/replay_forecasts.json` (gitignored). Default plane is empty → honest FIX.
+- One forced provenance line (`force=True`): path, station count, min/max date, or `no archive: NOAA dark, 0 entries is FIX`.
+- Startup uses `_ensure_replay_forecasts_loaded()` so an inject is not clobbered by a later file load.
+
+### Docs
+- Copy your archive to `fixtures/replay_forecasts.json` (uncommitted); the `.sample.json` is shape reference only and is never loaded. This release ships a loader, not an archive. A full-tape run stays FIX until a real historical-forecast file covers the window.
+
+## [1.23.13] - 2026-09-16
+
+### Added
+- **Replay forecast archive loader (SIM-5429).** Under `SIMMER_REPLAY=1`, `load_replay_forecasts()` fills `_REPLAY_FORECASTS` from `SIMMER_REPLAY_FORECASTS=/path.json` (same `{station: {YYYY-MM-DD: {high, low}}}` shape the tests inject). If the env is unset, a user file `fixtures/replay_forecasts.json` is used when present (not committed). The shipped `fixtures/replay_forecasts.sample.json` is a shape example only and is never auto-loaded. Live NOAA/Open-Meteo stay dark. A set-but-missing path raises `ReplayForecastArchiveError`. The replay archive line always prints (`force=True`) with station count and min/max date.
+
+### Docs
+- Full-tape KEEP/KILL: copy a window-covering archive to `fixtures/replay_forecasts.json`, then `simmer backtest … --q temperature`. 0 entries with NOAA dark is FIX when no user archive is in place. Do not treat the sample temps as history.
+
+## [1.23.12] - 2026-09-16
+
+### Fixed
+- Live price path is again `external_price_yes or 0.5`. Replay-only fallthrough to `yes_price` / `current_probability`. `None` and `0.0` stay 0.5 on live.
+- City-station fallback only when criteria is missing (`SKIP_MISSING_CRITERIA`). Present-but-unreadable still skips. Fallbacks use their own counter, not `station_parse_ok`.
+
+### Docs
+- `run_backtest_gate.py` prints a path-check line, not KEEP. KEEP requires a full-tape `simmer backtest ... --q temperature` with evals > 0, entries > 0, and an honest forecast. A full-tape run cannot produce KEEP or KILL until a forecast archive exists; 0 entries with NOAA dark is FIX.
+
+## [1.23.11] - 2026-09-16
+
+### Added
+- **Backtest-as-gate (SIM-5428).** Extends the #368 replay discovery tests into an explicit keep/kill gate for the real-capital path. `scripts/run_backtest_gate.py` runs those pinned tests and prints the verdict table. 90-day Simmer P&L remains the lock. Dogfood `MIN_HOURS=12` is unchanged.
+
+### Fixed
+- Replay entry path used wall-clock `datetime.now()` (horizon/date parse dropped historical tape rows), ignored replay `yes_price` (silent 0.50), skipped every event when the tape omitted `resolution_criteria`, called live NOAA (look-ahead), and hit `WALLET_UNVERIFIED` on `agents/me` so SimState never filled. Under `SIMMER_REPLAY=1` the skill now uses `SIMMER_REPLAY_NOW`, replay price fields, the existing city-station fallback (Dallas still excluded), injected `_REPLAY_FORECASTS` only, skips live import (eval budget), and passes `skip_preflight=True`.
+
+## [1.23.10] - 2026-09-14
+
+### Fixed
+- Discovery/scan was newest-first and same-calendar-day heavy. A morning heartbeat with `SIMMER_WEATHER_MIN_HOURS_TO_RESOLVE=24` then saw only resolve-day buckets ("Resolves in 10–22h - too soon") and took 0 fills. The existing `tags=weather` fetch and location keyword import now also query +1/+2 calendar days. Horizon is `max(MIN_HOURS_TO_RESOLVE, 48h)` — no new env knob.
+
+### Docs
+- Raising `MIN_HOURS_TO_RESOLVE` widens discovery. Do not lower the hours floor to fix morning no-fills.
+
+## [1.23.9] - 2026-09-14
+
+### Fixed
+- **Replay discovery.** `GET /api/sdk/markets?tags=weather&status=active` 422s on the backtest replay server (sdk 0.25.3/0.25.4). Under `SIMMER_REPLAY=1` the skill now uses the existing replay `q=` path (`q=temperature`) and omits `tags`/`status`. Live still uses the weather tag — questions like "Austin 82-83F on Sep 7" do not contain "weather".
+- **Fail-closed on listing failure.** `fetch_weather_markets()` used to swallow the 422, return `[]`, and exit 0 — `bundle.clean=true` with 0 evals. It now raises `MarketFetchError` so the tick is `failed_ticks`. An empty 200 is still a clean no-trade (empty tape).
+
+### Docs
+- Tape gap: default HF volume slices in the #368 dogfood had 0 weather/temperature markets (vol floor ~$201k). A weather-capable tape query (`tags`, lower `--min-volume`, or a dedicated weather slice) is server/slice follow-up. This skill does not pretend a high-volume slice contains weather.
+
+## [1.23.8] - 2026-09-08
+
+### Added
+- Added 26 Polymarket weather resolution stations: `KAUS`, `KHOU`, `KBKF`, `ZBAA`, `ZSPD`, `ZGGG`, `ZGSZ`, `ZUUU`, `ZUCK`, `ZHHH`, `ZSQD`, `ZHCC`, `WSSS`, `WMKK`, `RPLL`, `RKPK`, `CYYZ`, `SAEZ`, `SBGR`, `MMMX`, `FACT`, `EFHK`, `OEJN`, `EPWA`, `LFPB`, and `MPMG`. US stations route through NOAA with Open-Meteo cross-checks; international stations route through exact airport coordinates instead of city centers.
+
+## [1.23.7] - 2026-09-08
+
+### Added
+- `SIMMER_WEATHER_MIN_ENTRY_PRICE` (default `0` = off). Rejects entries below this mid so a raised `ENTRY_THRESHOLD` (upper bound only) cannot buy lottery tickets. Same entry-price check as before; this is the missing floor.
+- `SIMMER_WEATHER_MIN_HOURS_TO_RESOLVE` (default `2`). Env override of the hardcoded time-decay constant inside `check_context_safeguards`. Entry-only: exits keep the original 2h floor. No new gate, no calendar-day skip.
+
+### Docs
+- `ENTRY_THRESHOLD` is documented as an upper bound only. Raising it above the `0.45` exit default will self-exit unless `EXIT_THRESHOLD` is raised too.
+
+## [1.23.6] - 2026-09-06
+
+### Fixed
+- **Polymarket reworded every weather-temperature market on 2026-08-22 and the station parser stopped reading all of them.** The criteria dropped their Wunderground URL (resolution source moved to NOAA) and gained an agency clause — `recorded BY NOAA at the LaGuardia Airport Station`. Both parser patterns matched neither, so `parse_resolution_station()` returned `None` on 100% of current criteria and the skill skipped every event without entering. Verified against the live corpus: 2,195 of 2,596 active weather-temperature markets carry the new wording; only 84 keep the old. The station phrase now accepts an optional, generic agency clause, so `by NWS` or `by the National Weather Service` will not break it again.
+- Added name aliases for three stations Polymarket cites under a different name than our coordinate tables hold: `Hartsfield-Jackson International Airport` → `KATL`, `Amsterdam Airport Schiphol` → `EHAM`, `Malpensa Intl Airport` → `LIMC`. With these, all 16 advertised locations route again — the six US cities in `SIMMER_WEATHER_LOCATIONS` plus every international alias. Aliases may only point at stations we already have coordinates for; routing a market to an airport we cannot forecast is the silent KDFW/KDAL failure mode.
+- The skip log no longer claims `need SDK ≥ 2026-05-03` when criteria is present. Missing criteria and unreadable criteria were sharing one message that blamed a stale SDK for both; they are now distinct reasons.
+
+### Added
+- Parse-coverage guard. When a run reads a station out of fewer than 50% of the events that had criteria, the skill says so loudly (surviving `--quiet`) instead of reporting a clean scan. A parser that falls behind upstream wording throws nothing, fails no trade and retries nothing, so every downstream health metric stays green while the skill quietly stops entering — this was invisible for two weeks. The warning names the real cause: it is not finding no opportunities, it is failing to look.
+- `parse_resolution_station_result(criteria)` — returns the station plus the reason it could not be read (`SKIP_MISSING_CRITERIA` / `SKIP_UNPARSEABLE_CRITERIA`). `parse_resolution_station()` is unchanged for existing callers.
+- Whitespace in the station phrase is collapsed before matching, so the pattern uses literal single spaces. The first cut used `\s+` around the lazy capture, which let the engine repartition a whitespace run on every failure — `recorded at the` followed by 1,600 spaces took 6.8s, growing ~8x per doubling. Criteria text is authored upstream, so one malformed market would have stalled the whole scan. Collapsing first also means a station phrase wrapped across newlines now parses, which the old pattern could not do.
+- `tests/test_resolution_criteria_reword.py` — pins the new and old wording, the reason split, alias-to-coordinate integrity, and the coverage guard's thresholds against live criteria strings.
+
+### Thanks
+- Reported by the Grok Bot dogfood seat, which caught it on a clean v1.23.5 install and correctly identified that the log message was lying about the cause.
+
+
+## [1.23.4] - 2026-07-22
 
 ### Fixed
 - Added `EGLC` (London City Airport) to the international station coordinate map so Polymarket London weather markets that cite the official London City station can route to Open-Meteo instead of fail-closing as an unsupported station. This does not change markets whose Simmer/SDK metadata lacks usable `resolution_criteria`; those still fail closed.
+- `order_type=FOK` (Fill Or Kill) is now overridden to GTC, the same way `FAK` has been since v1.20.0. Weather markets are structurally illiquid — both FOK and FAK orders are cancelled immediately with no fill, creating a retry-loop that burns attempts on every run. The warning message now names the actual configured type (`FAK` or `FOK`) so it's actionable.
 
 ## [1.22.2] - 2026-05-24
 

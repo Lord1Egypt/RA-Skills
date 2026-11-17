@@ -1,39 +1,48 @@
-## Description: <br>
-Tools permission management: fine-grained control over which tools an agent may use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages per-tool permission levels so an agent can distinguish public, warning, approval, and forbidden tool use.
 
-## Publisher: <br>
-[soroyue](https://clawhub.ai/user/soroyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[soroyue](https://clawhub.ai/user/soroyue)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and workspace administrators use this skill to describe per-tool permission tiers and guide how an agent should handle reads, searches, command execution, file writes, messaging, scheduled tasks, session controls, gateway configuration, and deletion actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad natural-language permission changes could loosen permissions for sensitive tools without adequate safeguards.
+
+Mitigation: Define a narrow command format, require explicit confirmation, maintain allowed tool lists and role checks, log permission changes, and provide rollback behavior before trusting the skill to manage command execution, file writes, messaging, cron jobs, or session controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify tool access into public, warning, approval, and forbidden levels before an agent invokes tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes dynamic authorization for powerful tools without a precise enforcement policy. <br>
-Mitigation: Use it only with an agent platform that enforces tool permissions independently of the skill text. <br>
-Risk: The skill includes privileged tool categories such as command execution, file writes, messaging, scheduled tasks, sessions, gateway configuration, and file deletion. <br>
-Mitigation: Require explicit confirmation and a structured permission policy before enabling these privileged tool categories. <br>
+**Output Format:** [Markdown with inline JSON configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The skill describes tiered permission handling and a sample permission map.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown with JSON configuration example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for assigning tool permission levels.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

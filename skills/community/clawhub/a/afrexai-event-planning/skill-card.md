@@ -1,41 +1,56 @@
-## Description: <br>
-Advises event planners on pricing, vendor management, logistics, budgeting, timelines, staffing, legal considerations, and scaling from solo practice to agency operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advise event planners on pricing, vendor management, logistics, budgeting, timelines, staffing, legal requirements, and business scaling from solo practice to agency operations.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Event planners, wedding planning business owners, corporate event managers, and AI agents use this skill to answer operational questions about service pricing, vendor management, budgets, timelines, staffing, contracts, sales, marketing, and business growth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, insurance, legal, and market benchmarks may be outdated or may not match the user's jurisdiction or event segment. <br>
-Mitigation: Verify benchmarks against current local requirements, vendor quotes, insurance providers, and professional legal or compliance advice before relying on them for contracts or operations. <br>
+## Use Case:
 
+Event planners, wedding planning business owners, independent corporate event managers, and AI agents use this skill as an operations playbook for pricing services, managing vendors, building budgets and timelines, staffing teams, and scaling an event planning business.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/afrexai-event-planning) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown advisory prose with tables, checklists, benchmarks, and planning timelines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; business, pricing, insurance, legal, and market benchmarks should be verified against current local requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pricing, insurance, legal, and market benchmarks may be outdated or vary by jurisdiction, vendor, and client segment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify local legal requirements, current insurance obligations, vendor rates, and market benchmarks before using the guidance for contracts, client pricing, or operational decisions.
+
+Risk: Operational playbook guidance may not fit every event category, venue policy, or client risk profile.
+
+Mitigation: Review recommendations against the specific event scope, venue requirements, vendor contracts, and client approvals before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-event-planning)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and operational benchmarks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference guidance only; no code execution, credential access, persistence, or data exfiltration behavior identified in release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Abyssale helps agents read, create, and update Abyssale data through the OOMOL oo CLI instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Abyssale (abyssale.com). Use this skill for ANY Abyssale request — reading, creating, and updating data. Whenever a task involves Abyssale, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Abyssale from an agent session, including listing designs and projects, inspecting designs and formats, creating projects or dynamic image URLs, and generating banners from JSON element overrides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OOMOL-connected Abyssale account and requires sensitive credential access. <br>
-Mitigation: Use the existing OOMOL connection and avoid handling raw API tokens; run setup or reconnection only after an auth or connection error. <br>
-Risk: Write actions can create Abyssale projects or dynamic image URLs. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running actions tagged as write or destructive. <br>
-Risk: Action inputs can drift from the expected schema or produce unintended banner outputs. <br>
-Mitigation: Inspect the live connector schema before constructing payloads and review JSON overrides before execution. <br>
+## Use Case:
 
+Developers and Abyssale account users can inspect designs, projects, fonts, and generated files, and create projects, dynamic image URLs, or banners through a connected account.
 
-## Reference(s): <br>
-- [Abyssale homepage](https://www.abyssale.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-abyssale) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include connector data and execution metadata when actions are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup can execute unverified remote code and enable broader, persistent agent changes; the downloaded installers were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release separately before using this skill, and decide whether to allow its automatic skill synchronization.
+
+Risk: Abyssale write actions change account state.
+
+Mitigation: Confirm the exact payload and effect with the user before running a write action.
+
+## Reference(s):
+
+- [Abyssale API documentation](https://api-reference.abyssale.com/)
+- [Abyssale](https://www.abyssale.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Abyssale skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-abyssale)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON connector responses with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read Abyssale data or create projects, dynamic image URLs, and banners; write actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

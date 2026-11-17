@@ -1,44 +1,60 @@
-## Description: <br>
-Access Guru knowledge base via MCP - ask AI questions, search documents, create drafts, and update cards. Connects to all your Guru sources including Slack, Drive, Confluence, and SharePoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Guru knowledge base via MCP - ask AI questions, search documents, create drafts, and update cards. Connects to all your Guru sources including Slack, Drive, Confluence, and SharePoint.
 
-## Publisher: <br>
-[pvoo](https://clawhub.ai/user/pvoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pvoo](https://clawhub.ai/user/pvoo)
 
-## Use Case: <br>
-Teams that use Guru can let an agent answer workplace knowledge questions, search Guru content, read cards, create drafts, and update existing cards through the Guru MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to broad workplace knowledge through a Guru API token. <br>
-Mitigation: Install only for Guru workspaces and data approved for agent access, and use the least-privileged token available. <br>
-Risk: The skill can create drafts and update Guru cards. <br>
-Mitigation: Manually review any draft creation or card update before allowing it to run. <br>
-Risk: Questions and retrieved content may include sensitive business information. <br>
-Mitigation: Avoid secrets or regulated personal data in questions and follow the organization's data handling policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Guru MCP Documentation](https://help.getguru.com/docs/connecting-gurus-mcp-server) <br>
-- [Guru API Reference](https://developer.getguru.com) <br>
-- [AI Agent Center](https://app.getguru.com/ai-agent-center) <br>
-- [Guru Homepage](https://www.getguru.com) <br>
+## Use Case:
 
+Employees and teams with Guru workspaces use this skill to ask knowledge-agent questions, search Guru documents, read cards, and create or update Guru card drafts from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and MCP tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and a GURU_API_TOKEN environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent can access Guru content using the permissions of the supplied token.
+
+Mitigation: Use a least-privilege Guru token and install the skill only for workflows where that Guru access is intended.
+
+Risk: Create and update tools can make remote content changes in Guru.
+
+Mitigation: Require explicit user requests and human review before creating drafts or updating cards.
+
+Risk: Guru results may include internal knowledge from connected sources such as Slack, Drive, Confluence, or SharePoint.
+
+Mitigation: Keep outputs within authorized contexts and rely on Guru permissions to limit what the token can retrieve.
+
+## Reference(s):
+
+- [Guru MCP Documentation](https://help.getguru.com/docs/connecting-gurus-mcp-server)
+- [Guru API Reference](https://developer.getguru.com)
+- [AI Agent Center](https://app.getguru.com/ai-agent-center)
+- [Guru Homepage](https://www.getguru.com)
+- [ClawHub Skill Page](https://clawhub.ai/pvoo/skills/guru-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Guru MCP tools that return answers, document search results, card HTML, draft metadata, and update results according to the supplied Guru token permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

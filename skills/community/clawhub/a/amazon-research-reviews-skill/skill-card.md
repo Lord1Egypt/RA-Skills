@@ -1,44 +1,58 @@
-## Description: <br>
-AI-powered e-commerce review analysis skill that labels product reviews across 22 dimensions, identifies user personas and Voice of Customer insights, and generates CSV, Markdown, and HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes e-commerce product reviews with AI-generated tag dimensions, user personas, Voice of Customer insights, opportunity analysis, labeled CSV output, Markdown reports, and HTML dashboards.
 
-## Publisher: <br>
-[liangdabiao](https://clawhub.ai/user/liangdabiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangdabiao](https://clawhub.ai/user/liangdabiao)
 
-## Use Case: <br>
-Product, marketplace, and e-commerce teams use this skill to analyze customer review files, surface product pain points and opportunities, and create review intelligence outputs for product optimization, competitor analysis, market research, and user insight work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install the openpyxl Python package when Excel support is needed. <br>
-Mitigation: Review before installing and preinstall a pinned openpyxl version in the execution environment if Excel processing is required. <br>
-Risk: The skill creates local prompt, sample, intermediate, and output files that may contain copied review data. <br>
-Mitigation: Use only intentionally selected review files, avoid sensitive or personal data unless local copies are acceptable, and inspect or delete generated files before sharing or committing the workspace. <br>
-Risk: Generated review insights and recommendations may be incomplete or misleading if treated as final business guidance. <br>
-Mitigation: Review generated CSV, Markdown, and HTML outputs before using them for product, market, or competitive decisions. <br>
+## Use Case:
 
+Product, market research, and e-commerce teams use this skill to analyze Amazon, eBay, AliExpress, or similar product reviews, extract customer pain points and personas, and produce actionable review intelligence.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liangdabiao/amazon-research-reviews-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [CSV files, Markdown reports, HTML dashboard files, JSON intermediates, and shell-command-oriented workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes selected review files in batches of up to 30 reviews and writes generated analysis artifacts to local output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run local code paths and process user-provided review files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in an isolated environment, and avoid attacker-controlled or unusual filenames until the reported path-interpolation issue is fixed.
+
+Risk: Excel processing may auto-install a dependency during execution.
+
+Mitigation: Avoid Excel mode unless dependencies are preinstalled and approved for the execution environment.
+
+Risk: Generated prompts, CSV files, Markdown reports, and HTML dashboards may persist raw review content.
+
+Mitigation: Use only non-sensitive or anonymized review datasets and inspect generated output directories before sharing or retaining results.
+
+## Reference(s):
+
+- [Review Analyzer README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/liangdabiao/skills/amazon-research-reviews-skill)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CSV files, Markdown reports, HTML dashboards, and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates output directories per product and date; batch review tagging is limited to 30 reviews per batch.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

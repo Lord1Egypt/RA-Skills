@@ -1,45 +1,64 @@
-## Description: <br>
-基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于惠迈校准框架的高考升学规划专家，三级校准+裂变定价+温情模式
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Students, parents, and education advisors use this skill to generate gaokao college recommendations, major-fit assessments, application strategies, and personalized planning reports. Promoters may also use its pricing and redemption-code materials for paid advisory distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused; usable globally where gaokao admissions planning is relevant. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing materials describe identity tracking, payments, referral attribution, redemption codes, and commission settlement that are not reconciled with the privacy claims. <br>
-Mitigation: Clarify what personal identifiers, payment records, referral data, and redemption-code data are collected or stored; document access, consent, deletion, refund, and dispute processes before commercial use. <br>
-Risk: The skill requires sensitive external service credentials for model access. <br>
-Mitigation: Store API keys only in the platform's credential profile mechanism, avoid embedding secrets in skill files or prompts, and rotate any exposed credentials. <br>
-Risk: Admissions recommendations can be incomplete, outdated, or misinterpreted as a guarantee. <br>
-Mitigation: Present outputs as advisory, keep the no-guarantee disclaimer visible, and require users to verify decisions against official admissions sources. <br>
+## Use Case:
 
+External students, parents, and admissions-planning operators use this skill to produce Gaokao school recommendations, major-fit assessments, application strategy, and personalized planning reports. Promoters can also use its pricing guidance to structure paid service packages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/prospect-advisor) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Calibration principles](artifact/calibration/principles.md) <br>
-- [Pricing technical plan](artifact/pricing/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations, reports, and JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on OpenClaw Gateway, a configured DeepSeek API profile, and platform-provided historical admissions data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact/_meta.json; artifact/package.json lists 0.1.0) <br>
+Risk: The skill may inspect the agent environment and installed Skill list for compatibility checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and restrict access to private installed-Skill lists through the host platform when that behavior is not acceptable.
+
+Risk: The skill includes under-scoped memory-reuse guidance beyond ordinary admissions advice.
+
+Mitigation: Install only where persistent memory access can be reviewed, disabled, or scoped to this admissions-planning use case.
+
+Risk: Admissions recommendations may be incorrect or interpreted as enrollment guarantees.
+
+Mitigation: Treat outputs as reference material, verify against official admissions data, and keep the skill's no-guarantee disclaimer visible to users.
+
+Risk: The skill describes external DeepSeek API use for planning queries.
+
+Mitigation: Use the host platform's configured API profile and review what query data is sent before enabling external service calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/skills/prospect-advisor)
+- [Skill Overview](artifact/SKILL.md)
+- [Calibration Principles](artifact/calibration/principles.md)
+- [Pricing Technical Plan](artifact/pricing/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include admissions recommendations, major assessments, application strategy reports, calibration results, pricing analysis, and install or configuration snippets.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

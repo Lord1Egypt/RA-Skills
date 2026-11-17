@@ -1,45 +1,59 @@
-## Description: <br>
-Run an explicit, bounded modify-verify-decide loop toward a measurable metric with approval gates, scoped edits, and rollback proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an explicit, bounded modify-verify-decide loop toward a measurable metric with approval gates, scoped edits, and rollback proof.
 
-## Publisher: <br>
-[leostehlik](https://clawhub.ai/user/leostehlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leostehlik](https://clawhub.ai/user/leostehlik)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a bounded iterative improvement process against a measurable goal, with explicit approval gates for commands, scope, rollback, external research, and iteration limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Iterative edits and command execution could affect private repositories, secrets, or proprietary data if the run contract is incomplete. <br>
-Mitigation: Require explicit approval for scope, verify and guard commands, rollback strategy, external research policy, and private-data boundaries before starting. <br>
-Risk: A change may improve the target metric while causing unrelated regressions. <br>
-Mitigation: Run the approved guard command after every verification, keep one atomic change per iteration, and discard or rework changes that fail the guard. <br>
-Risk: Background or unattended operation can drift from the approved goal or run longer than intended. <br>
-Mitigation: Use foreground mode by default; require explicit approval, fixed scope, rollback strategy, progress cadence, and an iteration cap for background runs. <br>
+## Use Case:
 
+Developers and agents use this skill to run bounded, measurable improvement loops in version-controlled workspaces. It helps structure iterative code, configuration, or research-quality work around approved metrics, guard commands, scoped edits, rollback, and stop conditions.
 
-## Reference(s): <br>
-- [Autoresearch Loop on ClawHub](https://clawhub.ai/leostehlik/autoresearch-loop) <br>
-- [Loop Protocol](references/loop-protocol.md) <br>
-- [Pivot Protocol](references/pivot-protocol.md) <br>
-- [Lessons Protocol](references/lessons-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command snippets, code edits, and structured run logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scoped iteration plans, verification and guard command use, keep/discard decisions, rollback notes, and lesson entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The loop may make unwanted edits if the goal, metric, commands, or scope are vague.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit run contract before edits begin, including allowed paths, forbidden paths, verification, guard command, rollback strategy, and iteration cap.
+
+Risk: A metric improvement may introduce regressions elsewhere in the project.
+
+Mitigation: Run a separate approved guard command after each verify command and discard or rework changes when the guard fails.
+
+Risk: Unattended execution, external research, or broad rollback actions may expose private data or disturb unrelated work.
+
+Mitigation: Default to foreground operation, require explicit approval for background mode or external research, keep edits scoped, and revert only current-loop changes.
+
+## Reference(s):
+
+- [Loop Protocol](artifact/references/loop-protocol.md)
+- [Pivot Protocol](artifact/references/pivot-protocol.md)
+- [Lessons Protocol](artifact/references/lessons-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command summaries and optional code or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single iteration stream with run-contract prompts, results logs, keep/discard decisions, and lesson summaries.]
+
+## Skill Version(s):
+
+0.2.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

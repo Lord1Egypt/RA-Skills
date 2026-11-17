@@ -1,37 +1,54 @@
-## Description: <br>
-Agente Redacao coaches Portuguese essay practice for the FUVEST second-phase exam, including argumentative essays, narrative writing, letters, manifestos, repertoire building, and structured draft feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente Redacao coaches Portuguese-language FUVEST essay practice, helping Antonio develop theses, arguments, repertoire, genre-specific structure, and concise diagnostic feedback.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-External learners use this skill to practice and improve FUVEST essay writing in Portuguese. It helps structure ideas, unblock thesis development, adapt to newer genre options, estimate draft quality, and identify the next writing priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/agente-redacao) <br>
+Antonio or agents assisting his study workflow use this skill as a personalized FUVEST writing coach for essay practice, correction, repertoire selection, and planning across dissertation and other exam genres.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with structured essay feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credentials, or hidden system access; users should avoid sharing private personal information in essays or repertoire notes.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill is personalized and may use prior study context or related subject-agent outputs.
+
+Mitigation: Use it only in workflows where that study context is intended to be available, and avoid adding sensitive personal information unless needed.
+
+Risk: Essay scores and correction priorities are coaching estimates, not official FUVEST grading decisions.
+
+Mitigation: Treat diagnostics as practice feedback and review important submissions or exam strategy with a qualified teacher or official rubric.
+
+## Reference(s):
+
+- [Source skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/agente-redacao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text coaching feedback in Portuguese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured essay diagnostics with estimated score, strength, critical issue, and next priority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

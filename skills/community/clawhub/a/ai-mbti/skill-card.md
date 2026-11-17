@@ -1,43 +1,57 @@
-## Description: <br>
-A Chinese-language personality quiz that compares how a user behaves with AI versus in real life and returns a playful dual-MBTI profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language entertainment quiz that asks six multiple-choice questions to compare a user's real-world MBTI-style profile with their AI-interaction profile.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users can run this Chinese-language entertainment quiz to answer short multiple-choice prompts and receive a Markdown result comparing their real-world and AI-facing MBTI-style personas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tracks quiz progress, answers, results, and history as user state. <br>
-Mitigation: Use it only for non-sensitive entertainment responses and avoid sharing personal details that should not be retained by the host agent. <br>
-Risk: Personality quiz results may be mistaken for psychological or employment guidance. <br>
-Mitigation: Treat the output as entertainment and do not use it for clinical, hiring, or other consequential decisions. <br>
-Risk: Default-channel activation may surprise users who did not intend to start the quiz. <br>
-Mitigation: Prefer explicit invocation and confirm that the user wants to begin or continue the quiz before collecting answers. <br>
+## Use Case:
 
+External users use this skill to complete a short entertainment quiz that contrasts how they behave with AI systems and with people. The skill returns MBTI-style labels, role names, a mirror index, and retest/status summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/ai-mbti) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown quiz prompts, progress text, tables, and result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses per-user quiz state to track responses, previous results, and drift summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence, artifact frontmatter, manifest) <br>
+Risk: Users may read entertainment MBTI-style results as psychological or mental-health guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the results as entertainment only and avoid entering sensitive personal or mental-health details.
+
+Risk: The skill stores prior quiz results for retest and status features.
+
+Mitigation: Use only the required multiple-choice answers and clear or limit retained quiz history where the host platform provides controls.
+
+Risk: Some outputs include fixed branding text.
+
+Mitigation: Review the branding text before deployment to confirm it is acceptable for the release channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/ai-mbti)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and short conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces quiz prompts, result cards, share/retest actions, and status summaries; no executable code or network behavior is reported in the security evidence.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter, manifest, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

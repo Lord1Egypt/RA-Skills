@@ -1,44 +1,54 @@
-## Description: <br>
-Submit customer-authorized property damage restoration help requests for water, fire, mold, storm, biohazard, and reconstruction services across the United States. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit customer-authorized property damage restoration help requests for water, fire, mold, storm, biohazard, and reconstruction services across the United States.
 
-## Publisher: <br>
-[kyle-breesy](https://clawhub.ai/user/kyle-breesy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyle-breesy](https://clawhub.ai/user/kyle-breesy)
 
-## Use Case: <br>
-External customers or assisting agents use this skill to submit customer-authorized restoration service requests for property damage. It supports water, fire, smoke, mold, storm, biohazard, and reconstruction request workflows across the United States. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting a restoration request shares customer contact, location, service type, urgency, and damage details with Breesy Restoration Connect or its restoration partners. <br>
-Mitigation: Submit only after the customer authorizes contact and verify the phone number, location, service type, urgency, and damage details before sending. <br>
-Risk: Retrying a request without a stable retry key could create duplicate service requests. <br>
-Mitigation: Use idempotencyKey when retrying the same customer request. <br>
+## Use Case:
 
+External service agents and support workflows use this skill to submit customer-authorized property restoration help requests to Breesy Restoration Connect for US restoration services.
 
-## Reference(s): <br>
-- [Breesy Connect Homepage](https://breesy-connect.com) <br>
-- [OpenAPI Specification](https://breesy-connect.com/openapi.json) <br>
-- [Agent Instructions](https://breesy-connect.com/llms.txt) <br>
-- [Agent Manifest](https://breesy-connect.com/.well-known/agent.json) <br>
-- [Agent Card](https://breesy-connect.com/.well-known/agent-card.json) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON-compatible API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit customer consent before submission; use idempotencyKey when retrying the same customer request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The agent may send a customer's service address, damage details, and callback phone to Breesy Restoration Connect and its restoration partners.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit requests only after clear customer authorization for contact, and review the request details before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyle-breesy/skills/breesy-restoration-connect)
+- [Breesy Restoration Connect Homepage](https://breesy-connect.com)
+- [OpenAPI Specification](https://breesy-connect.com/openapi.json)
+- [Agent Instructions](https://breesy-connect.com/llms.txt)
+- [Agent Manifest](https://breesy-connect.com/.well-known/agent.json)
+- [Agent Card](https://breesy-connect.com/.well-known/agent-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Text instructions and REST API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits customer-authorized requests with urgency, service type, service location, state, details, callback phone, and optional idempotency key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

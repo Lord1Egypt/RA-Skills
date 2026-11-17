@@ -1,43 +1,58 @@
-## Description: <br>
-Free EVM transaction safety triage for agents before signing transactions; routes deep explain, simulation, and token-risk checks to the paid ClawMart EVM Transaction Safety Toolkit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free EVM transaction safety triage for agents before signing txs; routes deep explain/simulate/token-risk checks to the paid ClawMart EVM Transaction Safety Toolkit.
 
-## Publisher: <br>
-[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs)
 
-## Use Case: <br>
-Agents and developers use this skill to run a pre-signing checklist for EVM transactions and token approvals before signing or routing them. It helps identify missing, ambiguous, or risky transaction details and directs deeper live checks to a separately reviewed toolkit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may treat the checklist as permission to sign without live decoding, simulation, or token-risk review. <br>
-Mitigation: Use it as triage only; pause or use a separately reviewed live-check toolkit when calldata, token risk, value, allowance, or state changes are unclear. <br>
-Risk: Transaction metadata such as wallet addresses, calldata, value, and spender details may be sensitive. <br>
-Mitigation: Share only the minimum metadata needed for review and never provide seed phrases, private keys, session keys, or raw wallet credentials. <br>
-Risk: The linked paid ClawMart toolkit is a separate package with live backend checks. <br>
-Mitigation: Review that package and its requested wallet, network, and transaction authority before granting access. <br>
+## Use Case:
 
+Developers and agents use this skill for a lightweight pre-signing review of EVM transactions, approvals, calldata, value, target addresses, and simulation posture before signing or routing a transaction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sebastiancoombs/evm-transaction-safety-preview) <br>
-- [ClawMart EVM Transaction Safety Toolkit](https://www.shopclawmart.com/listings/evm-transaction-safety-toolkit-89902e40) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist only; no signing, broadcasting, credential handling, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A pre-signing checklist can miss transaction risk and should not be treated as proof that a transaction is safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify chain, addresses, calldata, value, and approvals independently, and pause when fields are missing, ambiguous, or inconsistent.
+
+Risk: Wallet secrets or credentials could be exposed if a user supplies them during transaction review.
+
+Mitigation: Do not request, reveal, or store seed phrases, private keys, session keys, or raw wallet credentials.
+
+Risk: The free preview does not perform live execution, simulation, or token-risk checks by itself.
+
+Mitigation: Use it as triage only, and use live checks or the paid toolkit when token risk, state changes, or simulation results matter before signing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sebastiancoombs/skills/evm-transaction-safety-preview)
+- [ClawMart EVM Transaction Safety Toolkit](https://www.shopclawmart.com/listings/evm-transaction-safety-toolkit-89902e40)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown checklist and concise safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checklist-only preview; does not sign, broadcast, or make network calls by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

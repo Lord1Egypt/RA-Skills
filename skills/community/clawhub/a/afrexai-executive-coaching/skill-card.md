@@ -1,41 +1,53 @@
-## Description: <br>
-A complete executive coaching system for leadership assessment, 360-degree feedback, coaching engagements, development plans, team effectiveness, executive presence, career transitions, and succession planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete executive coaching system covering leadership assessment, 360-degree feedback, coaching engagements, development planning, team effectiveness, executive presence, and succession planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External coaches, HR partners, managers, and leaders use this skill to structure leadership assessments, 360-degree feedback, coaching sessions, development plans, team health work, succession planning, and career transitions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Coaching workflows can involve sensitive workplace data, including 360-degree feedback, performance concerns, and succession-planning information. <br>
-Mitigation: Anonymize feedback where possible, avoid unnecessary personal details, and follow applicable HR, privacy, and confidentiality obligations. <br>
-Risk: Outputs may influence career-impacting decisions such as performance actions, role changes, or succession planning. <br>
-Mitigation: Keep human oversight for career-impacting decisions and treat generated coaching material as decision support, not an automated determination. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-executive-coaching) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Employees, people leaders, HR partners, and external coaches use this skill to structure leadership assessments, 360-degree feedback, coaching conversations, development plans, team effectiveness work, career transitions, and succession planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured checklists, tables, survey questions, and YAML-style templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include leadership assessments, 360-degree feedback plans, coaching session structures, development plans, team health assessments, and succession-planning templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may process confidential leadership feedback, performance concerns, and succession-planning details.
+
+Mitigation: Apply appropriate HR, legal, and privacy review before acting on sensitive personnel recommendations.
+
+Risk: Coaching outputs may be mistaken for authoritative employment, legal, therapeutic, or safety advice.
+
+Mitigation: Use the skill as a coaching framework and route employment, legal, safety, or mental-health matters to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-executive-coaching)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured templates, tables, checklists, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include leadership assessment scores, 360-degree survey drafts, coaching session plans, development plans, transition plans, succession matrices, and coaching quality rubrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

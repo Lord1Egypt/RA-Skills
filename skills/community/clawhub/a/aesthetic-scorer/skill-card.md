@@ -1,41 +1,59 @@
-## Description: <br>
-给你的照片打分、评价反馈、给出改进建议或美学分析 / Aesthetic photo scorer with detailed analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores and analyzes photo aesthetics with local image scoring models, then provides concise bilingual feedback and improvement suggestions.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-Photographers, content creators, and agent users use this skill to score local images, compare photos, and receive composition, color, lighting, technical-quality, and improvement guidance in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves detailed analyses of user photos for later retrieval, which may expose sensitive image-derived information in the host agent's storage. <br>
-Mitigation: Avoid using sensitive images unless the host agent and its storage are acceptable for that data, and clear saved analyses according to local retention practices. <br>
-Risk: The skill runs third-party local ML dependencies and model files on user-supplied images. <br>
-Mitigation: Install only after reviewing the dependency set, use an isolated Python environment, and prefer explicit invocation when requesting aesthetic scoring. <br>
+## Use Case:
 
+Photographers, content creators, and agents use this skill to score image aesthetics, compare photos, and generate composition, color, lighting, technical quality, and improvement feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kooui/aesthetic-scorer) <br>
-- [Publisher profile](https://clawhub.ai/user/kooui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with numeric scores, rating labels, comparison tables, and improvement guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports brief, medium, and detailed report lengths; the artifact describes saving detailed analyses for later retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.9 (source: server release metadata; artifact frontmatter and config report 1.7.0) <br>
+Risk: Setup depends on third-party ML repositories and packages that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment or container and pin or verify repository commits and package versions before use.
+
+Risk: The skill makes strong offline and privacy claims while initial setup may require external downloads.
+
+Mitigation: Treat offline privacy claims as applying to local runtime image scoring after dependencies and model weights have been obtained and verified.
+
+Risk: Running ML setup or scoring scripts with elevated privileges increases impact if dependencies are compromised.
+
+Mitigation: Avoid administrator or root execution and restrict filesystem access to only the images and model files needed for scoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/aesthetic-scorer)
+- [Improved Aesthetic Predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor)
+- [NIMA Neural Image Assessment](https://github.com/titu1994/neural-image-assessment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with numeric scores, rating labels, analysis sections, and optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports brief, medium, detailed, and multi-photo comparison reports in Chinese or English.]
+
+## Skill Version(s):
+
+1.4.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

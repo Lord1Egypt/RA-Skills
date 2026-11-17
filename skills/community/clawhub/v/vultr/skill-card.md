@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Vultr cloud infrastructure including VPS instances, bare metal, Kubernetes clusters, databases, DNS, firewalls, VPCs, object storage, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vultr helps an agent manage Vultr cloud infrastructure including instances, bare metal, Kubernetes clusters, databases, DNS, firewalls, VPCs, storage, reserved IPs, billing, tickets, users, and startup scripts.
 
-## Publisher: <br>
-[happytreees](https://clawhub.ai/user/happytreees) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happytreees](https://clawhub.ai/user/happytreees)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to administer Vultr resources through the Vultr API, including compute, Kubernetes, databases, DNS, networking, storage, billing, tickets, and account users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad account and infrastructure changes in a Vultr account. <br>
-Mitigation: Install it only when an agent is intended to administer Vultr, and use a narrowly scoped API key where possible. <br>
-Risk: The API key grants access through a local credential file. <br>
-Mitigation: Protect ~/.config/vultr/api_key with restrictive file permissions and avoid production-wide credentials. <br>
-Risk: Delete, reinstall, user-management, DNS, firewall, storage, Kubernetes, database, billing, ticket, and key-regeneration actions can be destructive or account-changing. <br>
-Mitigation: Require explicit human review before executing those actions. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to list, deploy, and modify Vultr cloud resources through the Vultr API v2 using a local API key.
 
-## Reference(s): <br>
-- [Vultr API Reference](references/api-reference.md) <br>
-- [Vultr API v2 Endpoint](https://api.vultr.com/v2) <br>
-- [ClawHub Skill Page](https://clawhub.ai/happytreees/vultr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, API calls, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Vultr API key stored at ~/.config/vultr/api_key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can perform broad account-changing actions in a Vultr account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Vultr API key and review create, update, delete, reinstall, close, attach, detach, and key-regeneration commands before execution.
+
+Risk: The skill can retrieve or handle sensitive material such as kubeconfig files, regenerated object-storage keys, account API keys, and user passwords.
+
+Mitigation: Avoid saving sensitive outputs in shared workspaces, restrict file permissions, and treat command arguments and JSON responses as secrets when they contain credentials.
+
+Risk: The security evidence reports no built-in confirmations or tight scoping.
+
+Mitigation: Run commands only from clear, explicit prompts and avoid destructive operations from ambiguous requests.
+
+## Reference(s):
+
+- [Vultr API Reference](references/api-reference.md)
+- [Vultr API v2 endpoint](https://api.vultr.com/v2)
+- [Vultr API key settings](https://my.vultr.com/settings/#settingsapi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require a Vultr API key stored at ~/.config/vultr/api_key.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -791,9 +791,9 @@ metadata:
 
 ## 💉 麻醉与疼�?(11)
 
-- name: laryngeal-mask-airway-indications-and-contraindications
+- name: laryngeal-maREDACTED-SECRET
   display: 喉罩气道适应证与禁忌�?  trigger: 需快速建立气道张口度�?cm
-  ref: laryngeal-mask-airway-indications-and-contraindications/SKILL.md
+  ref: laryngeal-maREDACTED-SECRET/SKILL.md
 
 - name: endotracheal-intubation-indications
   display: 气管内插管适应症与位置确认

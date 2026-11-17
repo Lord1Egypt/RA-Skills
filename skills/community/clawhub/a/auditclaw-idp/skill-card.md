@@ -1,45 +1,60 @@
-## Description: <br>
-Identity provider compliance checks for auditclaw-grc across Google Workspace MFA, admin audit, inactive users, passwords, and Okta MFA, password policy, inactive users, and session policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity provider compliance checks for auditclaw-grc. 8 read-only checks across Google Workspace (MFA, admin audit, inactive users, passwords) and Okta (MFA, password policy, inactive users, session policy).
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-Security, compliance, and GRC teams use this skill to collect identity-provider evidence from Google Workspace and Okta and store findings for AuditClaw GRC workflows. It supports checks for MFA coverage, administrator posture, inactive accounts, password policy, and session policy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests sensitive identity-provider access, including Google Workspace domain-wide delegation and Okta token permissions. <br>
-Mitigation: Confirm the exact Google and Okta permissions before installation, use least-privileged read-only accounts or tokens, and avoid granting the Google admin.reports.audit.readonly scope unless the publisher explains why it is needed. <br>
-Risk: The local GRC SQLite database may contain user emails, MFA status, admin status, login activity, and policy findings. <br>
-Mitigation: Protect the local database with appropriate filesystem permissions, encryption or endpoint controls, and retention practices aligned to the organization's identity-data policy. <br>
-Risk: Okta API tokens inherit the permissions of the administrator who creates them. <br>
-Mitigation: Create a dedicated read-only admin or scoped token where available, rotate it regularly, and revoke it when the skill is no longer in use. <br>
+## Use Case:
 
+Developers and security or GRC teams use this skill to collect Google Workspace and Okta identity-provider compliance evidence for AuditClaw GRC. It supports MFA, administrator, inactive-user, password, and session-policy checks and records results for audit workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mailnike/auditclaw-idp) <br>
-- [AuditClaw Homepage](https://www.auditclaw.ai) <br>
-- [AuditClaw IDP Source Link](https://github.com/avansaber/auditclaw-idp) <br>
-- [AuditClaw GRC](https://github.com/avansaber/auditclaw-grc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, JSON evidence] <br>
-**Output Format:** [Markdown with inline shell commands and JSON evidence written to a local SQLite-backed GRC evidence store] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and optional Google Workspace or Okta credentials for provider-specific checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The setup can expose highly privileged Google Workspace and Okta access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege Google Workspace and Okta service identities, remove the unused Google audit-report scope, and grant only the read permissions needed for configured checks.
+
+Risk: Identity-provider tokens and tenant configuration could be misused if exposed or pointed at the wrong tenant.
+
+Mitigation: Restrict OKTA_ORG_URL to the exact tenant, store tokens outside shared logs or prompts, and rotate Google and Okta credentials on a regular schedule.
+
+Risk: The local GRC database stores identifiable user security-posture data.
+
+Mitigation: Protect ~/.openclaw/grc/compliance.sqlite with local access controls, encrypted backups where applicable, and retention aligned to the organization's audit policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mailnike/skills/auditclaw-idp)
+- [AuditClaw homepage](https://www.auditclaw.ai)
+- [AuditClaw GRC](https://github.com/avansaber/auditclaw-grc)
+- [Declared source repository](https://github.com/avansaber/auditclaw-idp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs configured provider checks and stores automated evidence records in the local AuditClaw GRC SQLite database.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

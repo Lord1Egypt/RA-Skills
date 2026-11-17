@@ -1,44 +1,61 @@
-## Description: <br>
-Expert content marketing system for founders and solopreneurs who need help with content strategy, editorial calendars, platform-specific copy, repurposing, SEO briefs, thought leadership, and Web3 or crypto content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert content marketing system for founders and solopreneurs who run their own marketing.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Founders, solopreneurs, and operators use this skill to plan and create practical marketing content, including content pillars, posting calendars, social posts, repurposed assets, SEO briefs, and thought-leadership plans. It includes a Web3 and crypto niche module for users working on blockchain, DeFi, NFT, fintech, or crypto-native content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide wallet seed phrases, private keys, customer secrets, or unpublished sensitive business data as examples for content generation. <br>
-Mitigation: Do not provide wallet seed phrases, private keys, customer secrets, or unpublished sensitive business data; use sanitized examples instead. <br>
-Risk: The skill is a strongly opinionated content-marketing assistant and may produce copy that does not match a brand voice, audience, or compliance expectations without review. <br>
-Mitigation: Review generated content before publication, especially Web3 or crypto content that could be read as financial, security, or investment guidance. <br>
-Risk: Some prompts and examples use Spanish, which may be inconsistent with an English-only workflow. <br>
-Mitigation: Specify the target language and audience when requesting final copy, and edit outputs for language consistency before publishing. <br>
+## Use Case:
 
+Founders, solopreneurs, and external users use this skill to plan content strategy, generate editorial calendars, draft platform-specific posts, repurpose content, create SEO briefs, and build thought leadership. It includes a Web3 and crypto niche module for users working in crypto, Web3, DeFi, NFTs, blockchain, or fintech.
 
-## Reference(s): <br>
-- [Platform Playbooks](references/platform-playbooks.md) <br>
-- [Web3 / Crypto Niche Module](references/web3-niche.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/founder-content-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, tables, briefs, post drafts, hooks, calendars, and roadmap documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask intake questions before producing final content when audience, platform, topic, voice, or concrete examples are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad content or crypto-related requests and produce opinionated content-marketing guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's goal, audience, platform, and preferred language before producing final content.
+
+Risk: Generated marketing or Web3 examples may be too generic or may include claims the user has not substantiated.
+
+Mitigation: Ask for concrete user-provided details, numbers, stories, or examples and review outputs before publishing.
+
+Risk: The skill includes Spanish-language prompts and examples, which may not match every user's preferred language.
+
+Mitigation: Ask the user for their preferred language or state the working language when the request is ambiguous.
+
+## Reference(s):
+
+- [Platform Playbooks](references/platform-playbooks.md)
+- [Web3 / Crypto Niche Module](references/web3-niche.md)
+- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/skills/founder-content-marketing)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, tables, briefs, post drafts, scripts, calendars, and roadmap documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, data access, persistence, or hidden high-impact behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

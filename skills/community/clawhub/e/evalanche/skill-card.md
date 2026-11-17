@@ -1,43 +1,53 @@
-## Description: <br>
-Evalanche is a multi-EVM agent wallet SDK for autonomous wallet operation, on-chain identity, payment-gated requests, cross-chain liquidity, trading, market intelligence, prediction markets, and DeFi actions across supported EVM and Avalanche networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-EVM agent wallet SDK for on-chain identity, payments, cross-chain transfers, trading, market data, and DeFi operations.
 
-## Publisher: <br>
-[ijaack](https://clawhub.ai/user/ijaack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ijaack](https://clawhub.ai/user/ijaack)
 
-## Use Case: <br>
-Developers and agents use this skill to operate blockchain wallets, query markets, move funds, execute trades, bridge assets, and perform DeFi workflows through CLI or MCP interfaces. It is intended for environments where wallet credentials, transaction authority, spending limits, and chain policies are controlled before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous agents can move funds, trade, bridge assets, and use private keys. <br>
-Mitigation: Use a dedicated low-balance wallet and enforce strict confirmation, spending-limit, approved-chain, approved-contract, and trade-size policies before enabling write actions. <br>
-Risk: Wallet secrets and mnemonics may be exposed through prompts, logs, environment variables, or local files. <br>
-Mitigation: Prefer OpenClaw secrets or a protected secret manager, avoid sharing mnemonics in prompts or logs, and restrict keystore and environment access. <br>
-Risk: Authenticated Polymarket operations depend on an external CLI binary. <br>
-Mitigation: Pin the Polymarket CLI path with EVALANCHE_POLYMARKET_CLI_BIN and review the binary source before production use. <br>
+## Use Case:
 
+Developers and agent operators use Evalanche to create or connect an EVM wallet and obtain wallet, identity, payment, bridge, trading, market-data, and DeFi capabilities across supported networks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ijaack/evalanche) <br>
-- [Project Homepage](https://github.com/iJaack/evalanche) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown with tables and inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference wallet credentials, network selection, paid services, external CLI binaries, and on-chain transaction results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.0 (source: server release metadata) <br>
+Risk: Wallet keys or mnemonics can authorize transfers, trades, and other on-chain actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect credentials in the encrypted keystore or an approved secret store, use a dedicated wallet with limited funds, and review transaction details before signing.
+
+Risk: An exposed HTTP MCP endpoint could make wallet tools reachable to unintended callers.
+
+Mitigation: Keep HTTP mode bound to localhost, require its authentication token, and apply additional network controls before any remote access.
+
+## Reference(s):
+
+- [Evalanche repository](https://github.com/iJaack/evalanche)
+
+## Skill Output:
+
+**Output Type(s):** [API data, Transaction and signature data, Configuration]
+
+**Output Format:** [Structured responses and transaction or signature results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some operations can sign or submit financial transactions and incur network or venue costs.]
+
+## Skill Version(s):
+
+1.18.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

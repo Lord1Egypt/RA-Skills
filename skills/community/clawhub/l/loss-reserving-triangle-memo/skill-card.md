@@ -1,44 +1,53 @@
-## Description: <br>
-Creates a draft P&C loss reserving memo from paid and incurred triangles, exposure data, and prior selections, including reserving methods, diagnostics, sensitivities, and a judgment log for actuary review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps P&C reserving actuaries and analysts prepare a triangle-based draft reserve indication and peer-reviewable reserving memo with LDF, BF, Cape Cod, frequency-severity methods, diagnostics, reconciliations, sensitivities, and judgment logs for Appointed Actuary support.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-P&C reserving actuaries, actuarial analysts, captive actuaries, and reinsurance actuaries use this skill to prepare peer-reviewable draft reserving work papers that support reserve selections and Appointed Actuary review. It is not a signed Statement of Actuarial Opinion, regulatory filing, or legal, accounting, investment, or solvency opinion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft reserve indications could be mistaken for final actuarial opinions or regulatory filings. <br>
-Mitigation: Keep the output labeled as draft work-paper support and require review and signature by a credentialed actuary before relying on any reserve selection. <br>
-Risk: Users may paste sensitive insurance, claimant, or company identifiers into the working memo. <br>
-Mitigation: Use non-identifying book and segment codes, and redact claimant names, named insureds, claim numbers, SSNs, tax IDs, and NAIC codes. <br>
-Risk: Wallet access, credentials, or secrets may be supplied even though the skill does not need them. <br>
-Mitigation: Do not grant wallet access or provide secrets, credentials, or sensitive tokens when using this text-only drafting skill. <br>
-Risk: Incomplete triangles or unsupported assumptions can produce misleading reserve indications. <br>
-Mitigation: Review data quality, unresolved information, diagnostics, method selections, sensitivity results, and the judgment log before using the memo for actuarial review. <br>
+## Use Case:
 
+External P&C reserving actuaries, actuarial analysts, captive actuaries, and reinsurance actuaries use this skill to draft reserve-review workpapers from triangles, exposure data, prior selections, and selected actuarial judgments. The memo is designed for peer review and Appointed Actuary support, not for signed SAOs or regulatory filings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/loss-reserving-triangle-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown draft memo with tables, diagnostics, sensitivity analysis, unresolved-information notes, and a judgment log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only actuarial support output requiring credentialed actuary review before reliance] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The workflow may involve sensitive business or claims information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use coded, non-identifying data and redact named insureds, claimants, claim numbers, SSNs, tax IDs, NAIC company codes, and similar identifiers before use.
+
+Risk: Draft reserve indications or memo language could be mistaken for final actuarial work product.
+
+Mitigation: Treat outputs as draft actuarial workpapers requiring credentialed-actuary review before booking reserves, supporting an SAO, or using them in governance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/loss-reserving-triangle-memo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Draft actuarial reserving memo in Markdown with tables, diagnostics, sensitivity analysis, unresolved information, and judgment log.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft only; requires credentialed-actuary review before booking, SAO support, or governance use.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

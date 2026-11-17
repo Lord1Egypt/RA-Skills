@@ -1,39 +1,57 @@
-## Description: <br>
-生成每日科技摘要，行业新闻为主体，OpenClaw 为固定板块，ClawHub 信息优先使用命令行。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily technology briefing focused on industry news, with fixed OpenClaw coverage and ClawHub items gathered through the CLI first.
 
-## Publisher: <br>
-[gift-is-coding](https://clawhub.ai/user/gift-is-coding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gift-is-coding](https://clawhub.ai/user/gift-is-coding)
 
-## Use Case: <br>
-Employees, external users, and content teams use this skill to create a Chinese daily technology briefing or podcast outline focused on industry news, Elon Musk, Tesla, xAI, AI companies, OpenClaw updates, and ClawHub skill activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cron workflow can run a caller-specified podcast or briefing script without clear limits. <br>
-Mitigation: Use the cron workflow only with a trusted fixed script path, review what that script can read, write, publish, or upload, and do not let untrusted prompts or callers choose arbitrary commands. <br>
+## Use Case:
 
+External users and developers use this skill to produce a source-grounded daily technology briefing or podcast outline covering Elon Musk, Tesla, xAI, major AI and technology news, OpenClaw updates, and ClawHub skill discoveries.
 
-## Reference(s): <br>
-- [Daily Tech Brief on ClawHub](https://clawhub.ai/gift-is-coding/daily-tech-brief) <br>
-- [gift-is-coding publisher profile](https://clawhub.ai/user/gift-is-coding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing in Chinese with cited source links and optional execution status details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes source-verified industry news, includes fixed OpenClaw and ClawHub sections, and reports any ClawHub CLI fallback reason.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Current news research can include stale, unverifiable, or misleading items if source checks are skipped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require original or authoritative source links for each item and omit claims that cannot be confirmed.
+
+Risk: Automated cron use may execute a caller-specified briefing or podcast script outside the skill's Markdown-only behavior.
+
+Mitigation: Review the caller-specified script separately before allowing scheduled execution.
+
+Risk: ClawHub coverage may be incomplete when the ClawHub CLI is unavailable.
+
+Mitigation: Clearly disclose the fallback reason in the generated briefing when CLI access is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gift-is-coding/skills/daily-tech-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown briefing with sourced news items and operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is Chinese and is structured for daily briefing or podcast preparation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

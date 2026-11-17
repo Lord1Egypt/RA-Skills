@@ -1,40 +1,52 @@
-## Description: <br>
-jax-skills helps agents use JAX for numerical computing and machine learning workflows, including array loading and saving, map and reduce operations, gradients, RNN-style scans, and JIT execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance numerical computing and machine learning workflows using JAX, including array operations, automatic differentiation, JIT compilation, RNN-style scans, map/reduce operations, and gradient computations.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to generate JAX-oriented code and guidance for loading and saving numerical arrays, elementwise mapping, reductions, gradient computation, RNN-style scans, and JIT-compiled execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Saving arrays writes to the caller-provided path and may replace an existing .npy file.
+
+Mitigation: Review output paths before execution and avoid sensitive, ambiguous, or shared locations.
+
+Risk: Loading local .npy or .npz files depends on the data supplied by the caller.
+
+Mitigation: Use known numerical data files and validate shapes and types before running downstream JAX operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to work with JAX-native arrays, automatic differentiation, JIT compilation, simple recurrent scans, and numerical transformations for scientific computing and machine learning prototyping. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Code, Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Loading arrays from untrusted files can expose users to unsafe or unexpected file contents, especially if pickle-based workflows are introduced. <br>
-Mitigation: Prefer .npy or .npz files from trusted sources and avoid loading pickle files from untrusted sources. <br>
-Risk: Saving arrays can overwrite existing output files. <br>
-Mitigation: Check destination paths before running save operations. <br>
+**Output Format:** [Markdown with Python code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/jax-computing-basics-jax-skills) <br>
+**Other Properties Related to Output:** [May include examples for local file loading and saving with .npy or .npz array data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown with Python code examples and helper functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs focus on local JAX and NumPy array operations; save operations can overwrite destination files.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

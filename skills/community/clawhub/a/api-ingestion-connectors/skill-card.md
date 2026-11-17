@@ -1,45 +1,61 @@
-## Description: <br>
-Connect to external APIs and ingest data into graph-ready structures for ETL pipelines and knowledge graph construction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to external APIs and ingest data into graph-ready structures for ETL pipelines and knowledge graph construction.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to configure REST, GraphQL, and OAuth-protected API ingestion workflows, then transform responses into graph-ready nodes, edges, triples, or ETL pipeline inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Protected API ingestion requires credentials, OAuth tokens, or other sensitive secrets. <br>
-Mitigation: Use least-privilege credentials stored in environment variables or a secrets manager, and avoid logging Authorization headers, request bodies, or raw secrets. <br>
-Risk: External API data may be regulated, confidential, or restricted by source-system terms. <br>
-Mitigation: Confirm that ingested data is allowed to leave the source system before use and apply downstream access controls appropriate to the data. <br>
-Risk: Connector settings for pagination, retries, and broad endpoints can ingest more data than intended or exceed source API limits. <br>
-Mitigation: Validate endpoint scope, schemas, page sizes, retry behavior, and rate-limit handling before running ingestion workflows. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design API ingestion connectors that collect REST, GraphQL, and authenticated API data and transform responses into graph-ready nodes, edges, triples, datasets, and ETL configuration.
 
-## Reference(s): <br>
-- [API Connector Design Patterns](references/connector-patterns.md) <br>
-- [API Connector Examples](examples/example-connectors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/api-ingestion-connectors) <br>
-- [ClawHub Homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and JSON/YAML configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include connector configurations, transformation mappings, and graph-ready node-edge or RDF structures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Authenticated API requests can expose API keys, bearer tokens, Basic Auth credentials, or OAuth secrets if users place credentials in files, logs, shell history, screenshots, or support messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secrets manager, apply least-privilege tokens, and redact Authorization, API key, Basic Auth, and OAuth values from outputs and shared materials.
+
+Risk: The helper prepares external API request configurations and does not enforce HTTPS for authenticated endpoints.
+
+Mitigation: Use trusted HTTPS endpoints for authenticated requests and review downstream code that sends generated request configurations.
+
+Risk: Large or rate-limited APIs can fail, throttle, or return incomplete data during ingestion.
+
+Mitigation: Respect API terms and limits, configure retries with exponential backoff, handle pagination deliberately, and validate response schemas before transformation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fisa712/skills/api-ingestion-connectors)
+- [ClawHub publisher profile](https://clawhub.ai/user/fisa712)
+- [ClawHub homepage](https://clawhub.com)
+- [API Connector Design Patterns](references/connector-patterns.md)
+- [API Connector Examples](examples/example-connectors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, shell, Python, GraphQL, Turtle, and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces connector patterns, request configurations, transformation mappings, graph-ready node-edge structures, RDF triples, datasets, and ETL pipeline guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Robotomail gives an AI agent a real inbox and outbound email for sending, reading, replying to, and reacting to messages through the Robotomail API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give an AI agent a real inbox and outbound email using Robotomail.
 
-## Publisher: <br>
-[johnjoubert](https://clawhub.ai/user/johnjoubert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnjoubert](https://clawhub.ai/user/johnjoubert)
 
-## Use Case: <br>
-Developers and operators use this skill to connect agents to Robotomail mailboxes for support inboxes, outbound follow-ups, reminders, replies, and real-time inbound email workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can read, send, and monitor real email through Robotomail. <br>
-Mitigation: Install only when real email access is intended, use a scoped API key where possible, and confirm every send and mailbox read. <br>
-Risk: Webhook and SSE setup can create persistent email monitoring flows. <br>
-Mitigation: Avoid all-mailbox webhooks unless required, limit events and mailboxes to the workflow, and review persistent monitoring setup before enabling it. <br>
-Risk: The skill requires a sensitive Robotomail API key. <br>
-Mitigation: Store ROBOTOMAIL_API_KEY as a secret, rotate or revoke keys when no longer needed, and prefer mailbox-scoped keys when supported. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent send, receive, read, reply to, and react to email through Robotomail mailboxes, webhooks, and SSE.
 
-## Reference(s): <br>
-- [Robotomail ClawHub Skill Page](https://clawhub.ai/johnjoubert/robotomail) <br>
-- [Robotomail Website](https://robotomail.com) <br>
-- [Robotomail API Reference](artifact/references/api-reference.md) <br>
-- [Webhook Signature Verification](artifact/references/webhook-verification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with HTTP endpoint guidance, JSON examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Robotomail API key supplied through ROBOTOMAIL_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill can guide an agent through actions that use a real mailbox, including sending mail, reading threads, creating listeners, and deleting resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a mailbox-scoped API key where possible and require explicit user confirmation before sending email, reading sensitive threads, creating webhooks or SSE listeners, or deleting resources.
+
+Risk: Email contents, recipient lists, webhook secrets, and presigned attachment URLs may expose sensitive data.
+
+Mitigation: Treat message bodies, recipient lists, webhook secrets, and attachment URLs as sensitive; avoid logging or sharing them unless the user explicitly requests it.
+
+Risk: Webhook receivers can be abused if signatures are mishandled or replayed.
+
+Mitigation: Verify Robotomail webhook signatures with timing-safe comparison, add replay protection, and handle malformed signatures robustly.
+
+## Reference(s):
+
+- [Robotomail API Reference](references/api-reference.md)
+- [Webhook Signature Verification](references/webhook-verification.md)
+- [Robotomail Website](https://robotomail.com)
+- [Robotomail ClawHub Skill Page](https://clawhub.ai/johnjoubert/skills/robotomail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP endpoints, JSON examples, curl-compatible commands, and webhook verification code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Robotomail API key in ROBOTOMAIL_API_KEY; may guide actions that affect real mailbox data and outbound email.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

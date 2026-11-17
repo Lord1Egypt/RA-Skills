@@ -1,45 +1,63 @@
-## Description: <br>
-Political sentiment analysis using PoliBERTweet, a RoBERTa model pre-trained on political tweets, to analyze support, opposition, and stance toward political figures and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides political sentiment analysis with PoliBERTweet for support, opposition, and neutral stance detection over direct text, local files, stdin, and Reddit political discussions.
 
-## Publisher: <br>
-[erongcao](https://clawhub.ai/user/erongcao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[erongcao](https://clawhub.ai/user/erongcao)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to classify political text from direct input, local files, standard input, or Reddit searches into support, oppose, or neutral sentiment. It is best used as one signal alongside polling, market, and domain evidence rather than as a standalone forecasting source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Political text or research terms may be sensitive, especially when using Reddit search or processing private local files. <br>
-Mitigation: Avoid using confidential political text or private research terms; review inputs before running Reddit-backed collection. <br>
-Risk: Sentiment and market-helper outputs may be stale, biased, or misleading if treated as a complete forecast. <br>
-Mitigation: Use the skill as one analytical signal and validate findings against current polling, market data, and other domain evidence. <br>
-Risk: The first model run can download a large HuggingFace model and may fail in restricted network environments. <br>
-Mitigation: Confirm model download permissions, storage, and network access before deployment. <br>
+## Use Case:
 
+External developers, analysts, and researchers use this skill to classify political sentiment around candidates, figures, issues, and events from text, files, stdin, or Reddit discussions. It is best used as one signal in a broader analysis or forecasting workflow, not as a standalone decision source.
 
-## Reference(s): <br>
-- [PoliBERTweet GitHub repository](https://github.com/GU-DataLab/PoliBERTweet) <br>
-- [PoliBERTweet LREC 2022 paper](https://aclanthology.org/2022.lrec-1.801) <br>
-- [ClawHub skill page](https://clawhub.ai/erongcao/polibert-sentiment) <br>
-- [Publisher profile](https://clawhub.ai/user/erongcao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable sentiment summaries or structured JSON results from command-line execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download a HuggingFace model on first run and may query Reddit when the Reddit option is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Political sentiment outputs may be mistaken for dependable forecasts or representative public opinion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as experimental and combine them with other evidence such as polling, market data, and source review.
+
+Risk: Local files or political research inputs may contain sensitive information.
+
+Mitigation: Avoid private or sensitive inputs unless the runtime environment and downstream handling are approved.
+
+Risk: The Hugging Face model and Python dependencies affect reliability and supply-chain exposure.
+
+Mitigation: Pin and verify the model and update vulnerable dependencies before installing in controlled environments.
+
+Risk: The bundled Polymarket script is under-documented relative to the sentiment-analysis workflow.
+
+Mitigation: Remove it or clearly document its role before relying on the package.
+
+## Reference(s):
+
+- [PoliBERTweet Repository](https://github.com/GU-DataLab/PoliBERTweet)
+- [PoliBERTweet LREC 2022 Paper](https://aclanthology.org/2022.lrec-1.801)
+- [ClawHub Skill Page](https://clawhub.ai/erongcao/skills/polibert-sentiment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; sentiment tool output can be human-readable text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes direct text, stdin, local files, or Reddit search results; first model use may download an approximately 500 MB Hugging Face model.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

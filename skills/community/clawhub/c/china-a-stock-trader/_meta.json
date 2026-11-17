@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
-  "slug": "china-a-stock-trader",
+  "name": "china-a-stock-trader",
   "version": "1.0.1",
-  "publishedAt": 1774069296224
+  "description": "中国A股实战分析Skill v1.0.1 - 接入akshare真实财务数据、龙虎榜、市场热度",
+  "author": "dxie48892-jpg",
+  "license": "MIT",
+  "created": "2026-03-21",
+  "updated": "2026-03-21",
+  "tags": ["stock", "a-share", "china", "trading", "analysis", "akshare"],
+  "features": [
+    "实时行情（腾讯API）",
+    "技术指标（均线/KDJ/MACD/布林带）",
+    "基本面筛选（akshare真实财务数据）",
+    "情绪周期判断",
+    "龙头战法信号",
+    "避坑检查（ST/减持/商誉）",
+    "龙虎榜数据（akshare）",
+    "市场热度追踪（akshare）",
+    "个股财务报告（akshare）"
+  ]
 }

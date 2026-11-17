@@ -7,9 +7,15 @@
     "start": "node scripts/learn-courses.js"
   },
   "dependencies": {
-    "playwright": "^1.40.0"
+    "archiver": "^7.0.1",
+    "playwright": "^1.58.2"
   },
-  "keywords": ["mooc", "自动化", "学习", "playwright"],
+  "keywords": [
+    "mooc",
+    "自动化",
+    "学习",
+    "playwright"
+  ],
   "author": "",
   "license": "ISC"
 }

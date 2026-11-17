@@ -1,42 +1,53 @@
-## Description: <br>
-Plan trips end-to-end and turn them into polished static travel-guide webpages deployed to Cloudflare Pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan trips end-to-end and turn them into polished static travel-guide webpages deployed to Cloudflare Pages.
 
-## Publisher: <br>
-[cianweeresinghe-sudo](https://clawhub.ai/user/cianweeresinghe-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cianweeresinghe-sudo](https://clawhub.ai/user/cianweeresinghe-sudo)
 
-## Use Case: <br>
-External users and travel planners use this skill to shape trip routes, itineraries, lodging options, transport plans, and booking checklists around traveller preferences and constraints. Once the trip structure is stable, it can package the plan as an image-led static travel guide and prepare it for Cloudflare Pages deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish travel plans as a public Cloudflare Pages site, which may expose personal trip, family, or schedule details. <br>
-Mitigation: Before deployment, review the final page for sensitive details and remove private information that should not be public. <br>
-Risk: The skill may request Cloudflare access information to deploy a site. <br>
-Mitigation: Use a secure secret mechanism, grant only the minimum required Cloudflare permissions, and confirm the target account and project before deployment. <br>
-Risk: The security summary notes unclear final confirmation before publishing. <br>
-Mitigation: Require an explicit user confirmation of the exact content and destination before deploying the travel guide. <br>
+## Use Case:
 
+External travelers, trip planners, and agents use this skill to design realistic trips, compare route and base options, generate itineraries, shortlist hotels and activities, and package the result as a static travel-guide microsite.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cianweeresinghe-sudo/travel-guide-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown travel planning guidance, static HTML/CSS, deployment commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route summaries, map links, image sourcing notes, hotel shortlists, booking checklists, and Cloudflare Pages URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Reusable traveller profiles can retain personal or preference details that are not necessary for future planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what details will be saved, store only durable travel-planning preferences, and avoid retaining unnecessary sensitive information.
+
+Risk: Published travel-guide microsites can expose itinerary, rooming, or traveller preference details if the agent includes them in public page content.
+
+Mitigation: Review generated pages before deployment and remove personal, sensitive, or overly specific travel details that do not need to be public.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cianweeresinghe-sudo/skills/travel-guide-test)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated static HTML/CSS and deployment commands when publishing is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route summaries, day-by-day itineraries, hotel shortlists, booking checklists, map or leg links, image guidance, and Cloudflare Pages deployment steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

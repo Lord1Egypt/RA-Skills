@@ -1,42 +1,55 @@
-## Description: <br>
-A prompt-guidance skill that helps agents choose and apply five reasoning modes: Chain-of-Thought, Self-Consistency, Tree-of-Thought, ReAct, and Plan-and-Execute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高级推理模式工具箱，实现 Chain-of-Thought、Self-Consistency、Tree-of-Thought、ReAct 和 Plan-and-Execute 五种提示词工程模式，用于按任务需要选择特定推理策略。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External users and developers use this skill to request or automatically select structured reasoning strategies for explanation, answer verification, multi-path analysis, tool-assisted research, and long multi-step tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases can route ordinary requests into structured reasoning modes, increasing verbosity or cost. <br>
-Mitigation: Install only when those reasoning modes are desired and keep default direct answers for ordinary requests when the skill is not needed. <br>
-Risk: ReAct-style workflows may lead an agent toward sensitive tool use such as browser login, file access, code execution, or database queries. <br>
-Mitigation: Keep normal confirmations and permission checks for sensitive tool use, and review tool actions before execution. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to guide an agent in selecting and applying structured reasoning modes for explanation, verification, multi-path exploration, tool-assisted work, and multi-step planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/prompting-modes) <br>
-- [Implementation guide](references/implementation-guide.md) <br>
-- [Modes reference](references/modes-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with structured reasoning sections and optional tool-action traces] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; ReAct mode should keep sensitive tool actions behind normal confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: The skill can route ordinary requests into tool, file, database, browser, or code-execution workflows without explicit confirmation rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before code execution, database access, file-system reads, browser actions, or any state-changing operation, especially in ReAct and Plan-and-Execute modes.
+
+Risk: Self-Consistency is implemented as simulated multiple reasoning paths in one agent response rather than independent model calls.
+
+Mitigation: Use it as a lightweight verification aid, and require independent checks for high-impact factual, legal, medical, financial, or security decisions.
+
+## Reference(s):
+
+- [Prompting Modes Skill Page](https://clawhub.ai/paudyyin/skills/prompting-modes)
+- [Implementation Guide](references/implementation-guide.md)
+- [Modes Reference](references/modes-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with structured reasoning sections and optional tool/action records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [ReAct guidance limits action loops to five rounds; Self-Consistency is represented as multiple reasoning paths in one response.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

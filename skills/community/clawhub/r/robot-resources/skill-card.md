@@ -1,46 +1,59 @@
-## Description: <br>
-Robot Resources helps agents reduce LLM API costs with local model routing and compress web pages into token-optimized markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Robot Resources helps agents propose setup for local LLM routing and web-content scraping to reduce model API costs and token usage.
 
-## Publisher: <br>
-[Manuelsobrino](https://clawhub.ai/user/Manuelsobrino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manuelsobrino](https://clawhub.ai/user/manuelsobrino)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and configure Robot Resources for lower-cost LLM routing and token-efficient web scraping. It is most relevant when API cost reduction, compressed web context, or OpenClaw provider setup is the task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run an external npm installer. <br>
-Mitigation: Review the package source, exact install command, and requested setup changes before execution. <br>
-Risk: The skill may install a persistent local proxy that reroutes AI traffic. <br>
-Mitigation: Confirm the service name, listening port, affected agent configuration, logging behavior, and rollback steps before enabling it. <br>
-Risk: The skill may use provider API keys and route requests that incur model-provider costs. <br>
-Mitigation: Verify credential handling, provider selection, spend controls, and whether prompts and responses remain local before use. <br>
-Risk: The signup flow may require GitHub OAuth or a generated claim URL. <br>
-Mitigation: Have the human owner review the OAuth request, account ownership flow, and claim URL handling before proceeding. <br>
+## Use Case:
 
+Agents and developers use this skill when a human wants lower LLM API costs or compressed web context. It guides human-approved installation and configuration of a local routing proxy and scraper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Manuelsobrino/robot-resources) <br>
-- [Robot Resources homepage](https://robotresources.ai) <br>
-- [Robot Resources full docs](https://robotresources.ai/llms-full.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local service setup guidance, provider configuration, API key environment variables, and troubleshooting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Future model traffic may be routed through a local proxy that can observe prompts, responses, and provider-key-backed traffic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Proceed only after the human approves the proxy behavior and trusts the publisher and installer.
+
+Risk: Installation may create persistent local software, register services, or change agent configuration.
+
+Mitigation: Review expected file, service, and configuration changes before installation and confirm how to uninstall or revert them.
+
+Risk: The installation command uses an unpinned npm package.
+
+Mitigation: Verify the package and publisher before running the installer, especially in production or sensitive environments.
+
+## Reference(s):
+
+- [Robot Resources website](https://robotresources.ai)
+- [Robot Resources full docs](https://robotresources.ai/llms-full.txt)
+- [ClawHub skill page](https://clawhub.ai/manuelsobrino/skills/robot-resources)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, HTTP, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation and configuration guidance; does not execute the installer by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

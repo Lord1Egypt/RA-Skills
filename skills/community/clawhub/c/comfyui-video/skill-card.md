@@ -1,45 +1,59 @@
-## Description: <br>
-Automates AI video generation in ComfyUI with LTX-2.3 for text-to-video, image-to-video, batch scene rendering, troubleshooting, and performance tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates AI video generation with ComfyUI and LTX-2.3 for text-to-video, image-to-video, batch scene rendering, progress monitoring, fault recovery, and performance tuning.
 
-## Publisher: <br>
-[a3165458](https://clawhub.ai/user/a3165458) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3165458](https://clawhub.ai/user/a3165458)
 
-## Use Case: <br>
-Developers and video creators use this skill to configure and operate ComfyUI LTX-2.3 workflows for T2V/I2V video generation, batch music-video scenes, progress checks, fault recovery, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JavaScript helper changes the active ComfyUI graph and fetches a workflow from the local ComfyUI API. <br>
-Mitigation: Review scripts/batch_scenes.js before use and run it only in the intended ComfyUI browser session. <br>
-Risk: The workflow guidance includes SSH tunneling and remote output checks that could expose broader host access if run with excessive privileges. <br>
-Mitigation: Use a least-privileged SSH account and limit access to the ComfyUI port and output paths required for generation. <br>
-Risk: Untrusted model or workflow files can affect generated output and runtime behavior. <br>
-Mitigation: Use trusted LTX-2.3 model, LoRA, VAE, and workflow files and verify paths before running batch generation. <br>
+## Use Case:
 
+Developers and video creators use this skill to guide ComfyUI LTX-2.3 text-to-video, image-to-video, batch scene rendering, monitoring, and troubleshooting workflows.
 
-## Reference(s): <br>
-- [ComfyUI Video skill page](https://clawhub.ai/a3165458/comfyui-video) <br>
-- [Tips & Best Practices](references/tips.md) <br>
-- [Workflow Node Reference](references/workflow_nodes.md) <br>
-- [Batch scene automation script](scripts/batch_scenes.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ComfyUI workflow node IDs, model paths, SSH tunnel checks, batch scene configuration, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SSH tunneling and remote shell commands can affect a ComfyUI host if used on systems the user does not control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorized ComfyUI hosts, review each command before execution, and close background SSH tunnels when finished.
+
+Risk: Browser-console JavaScript changes the active ComfyUI workflow graph.
+
+Mitigation: Run the script only in the intended ComfyUI session, review scene parameters before running, and reload the workflow before generation.
+
+Risk: Large LTX-2.3 generation jobs can exhaust VRAM or leave long-running workloads active.
+
+Mitigation: Run one generation at a time, monitor logs and output files, and restart ComfyUI after out-of-memory failures.
+
+## Reference(s):
+
+- [Workflow Nodes Reference](references/workflow_nodes.md)
+- [Tips & Best Practices](references/tips.md)
+- [ClawHub Skill Page](https://clawhub.ai/a3165458/skills/comfyui-video)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser-console JavaScript for ComfyUI and SSH commands for authorized remote hosts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

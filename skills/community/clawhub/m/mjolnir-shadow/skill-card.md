@@ -1,44 +1,59 @@
-## Description: <br>
-Mjolnir Shadow (雷神之影) helps OpenClaw users create rotating, GPG-encrypted backups to WebDAV storage and restore workspace, configuration, strategy, and skill data when recovery is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates rotating backups and restores of OpenClaw workspaces, configuration, strategies, and skills to WebDAV storage, with GPG-supported credential storage.
 
-## Publisher: <br>
-[king6381](https://clawhub.ai/user/king6381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[king6381](https://clawhub.ai/user/king6381)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure encrypted recurring backups, upload them to WebDAV storage, and restore OpenClaw workspace state after data loss, migration, or system rebuilds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic restore paths can overwrite live OpenClaw data and restart OpenClaw. <br>
-Mitigation: Back up the current ~/.openclaw directory first, prefer manual restore initially, and inspect downloaded archives before running --auto or restore-kit. <br>
-Risk: The bare-metal restore kit can install system software, perform global npm installs, and start or restart OpenClaw. <br>
-Mitigation: Run the restore kit only on systems where those changes are acceptable and only after trusting the publisher, WebDAV server, and backup archives. <br>
-Risk: GPG passphrases supplied through environment variables can be exposed by local environment handling or operator error. <br>
-Mitigation: Prefer gpg-agent or a secure secret store and avoid putting plaintext passphrases in cron commands or world-readable files. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to configure WebDAV backups, run rotating workspace backups, and restore OpenClaw state after data loss or machine replacement.
 
-## Reference(s): <br>
-- [Configuration Reference](artifact/references/config-reference.md) <br>
-- [Project homepage](https://github.com/king6381/mjolnir-shadow) <br>
-- [ClawHub release page](https://clawhub.ai/king6381/mjolnir-shadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local encrypted configuration files, WebDAV backup archives, and restore operations outside the rendered response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.release.version) <br>
+Risk: Restore operations can overwrite OpenClaw memory, configuration, strategies, and installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep a separate local backup and inspect or verify downloaded archives before using automatic restore modes.
+
+Risk: The remote WebDAV server may be able to read backup contents if payload encryption is not fixed.
+
+Mitigation: Use only trusted HTTPS WebDAV endpoints and treat server-side storage as sensitive.
+
+Risk: Standalone restore bootstrap behavior can install system software from network sources.
+
+Mitigation: Review the restore kit before running it, especially on machines that already contain trusted OpenClaw state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/king6381/skills/mjolnir-shadow)
+- [Project homepage](https://github.com/king6381/mjolnir-shadow)
+- [Configuration reference](references/config-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration files and compressed backup archives and transfer them to WebDAV when scripts are executed.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

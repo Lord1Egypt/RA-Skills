@@ -1,44 +1,63 @@
-## Description: <br>
-Connects agents to Zrise tasks through XML-RPC and Lobster approval workflows for task analysis, execution, review, and writeback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects and operates Zrise tasks through XML-RPC with approval-based AI workflows and result writeback.
 
-## Publisher: <br>
-[khoabd](https://clawhub.ai/user/khoabd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khoabd](https://clawhub.ai/user/khoabd)
 
-## Use Case: <br>
-Operations teams and developers use this skill to process Zrise work items with agent-assisted planning, approval checkpoints, task execution, comments, timesheets, and stage updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live Zrise business-data changes, including writebacks, timesheet creation, stage transitions, and knowledge-base updates. <br>
-Mitigation: Start in a test or tightly controlled workspace, use least-privilege Zrise credentials, avoid real task IDs during onboarding, and require explicit review before any production writeback. <br>
-Risk: Credentialed remote access and weak runtime defaults can expose sensitive workflow or Zrise access. <br>
-Mitigation: Re-enable verified TLS before production use, configure WORKFLOW_UI_TOKEN, and bind the workflow UI to localhost where possible. <br>
+## Use Case:
 
+Teams using Zrise can use this skill to fetch tasks, route work to AI agents, collect approvals, post comments or results, fill timesheets, and move task stages. It is intended for controlled task automation where Zrise credentials and workflow approvals are managed by the deploying team.
 
-## Reference(s): <br>
-- [Zrise Connect Release on ClawHub](https://clawhub.ai/khoabd/zrise-connect-release) <br>
-- [README](README.md) <br>
-- [Team Onboarding](docs/TEAM_ONBOARDING.md) <br>
-- [Workflow Templates](docs/WORKFLOW_TEMPLATES.md) <br>
-- [Telegram Integration](docs/TELEGRAM_INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, configuration snippets, and generated Zrise task updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce task plans, review comments, writeback content, timesheet entries, stage changes, and workflow configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: server release metadata) <br>
+Risk: High-impact task automation can modify Zrise task state, comments, and timesheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled environment, use a least-privileged Zrise account, keep approval gates active, and test first against non-production Zrise tasks.
+
+Risk: Weak network, credential, and permission safeguards could expose the workflow UI or credentials.
+
+Mitigation: Require WORKFLOW_UI_TOKEN, bind the UI to 127.0.0.1, restore TLS certificate verification, and remove permission-bypass execution modes before operational use.
+
+Risk: Mutable setup steps and dependencies can change behavior after installation.
+
+Mitigation: Avoid installing executables from /tmp or using mutable latest dependencies; pin and verify dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khoabd/skills/zrise-connect-release)
+- [Artifact README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Workflow templates guide](artifact/docs/WORKFLOW_TEMPLATES.md)
+- [Workflow UI guide](artifact/docs/WORKFLOW_UI_COMPLETE.md)
+- [Team onboarding guide](artifact/docs/TEAM_ONBOARDING.md)
+- [Telegram integration guide](artifact/docs/TELEGRAM_INTEGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML-formatted Zrise comments, JSON status objects, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update Zrise tasks, comments, stages, timesheets, and local workflow state when run with configured credentials.]
+
+## Skill Version(s):
+
+3.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

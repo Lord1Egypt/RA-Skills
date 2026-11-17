@@ -1,43 +1,60 @@
-## Description: <br>
-Checks whether a brand is mentioned, ranked, and cited across AI search surfaces through MentionsAPI.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check whether a brand is mentioned, ranked, and cited across AI search surfaces including ChatGPT, Claude, Gemini, Perplexity, Google AI Overviews/AI Mode, and Bing Copilot via MentionsAPI.com.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikhonit](https://clawhub.ai/user/nikhonit)
 
-## Use Case: <br>
-Marketing, SEO, and growth teams use this skill to measure whether a named brand appears, how it ranks, and which sources are cited for a specific AI-search question across supported providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious review helper that can launch nested review with sandbox and approval bypass authority. <br>
-Mitigation: Install only if the publisher is trusted, and use --no-yolo or AUTOREVIEW_YOLO=0 before running autoreview so nested review does not bypass sandbox and approval protections by default. <br>
-Risk: The skill requires a MentionsAPI key and makes paid API calls, so ambiguous or repeated checks can spend credits and send brand and query data to MentionsAPI. <br>
-Mitigation: Run it only after confirming the brand, query, mode, and runs count; store MENTIONSAPI_KEY only in the environment, start with the lowest-cost mode, and rotate the key if it is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to measure whether a specific brand appears, how it ranks, and what citations are returned for a chosen AI-search query.
 
-## Reference(s): <br>
-- [MentionsAPI homepage](https://mentionsapi.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/nikhonit/mentions-check) <br>
-- [MentionsAPI check endpoint reference](https://mentionsapi.com/docs/api/check) <br>
-- [MentionsAPI OpenAPI spec](https://mentionsapi.com/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON-compatible Python dict with per-provider mention, rank, context, citation, cost, balance, or error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY. API calls may consume paid credits, and mode or runs settings can change cost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Brand visibility checks send the tested query, brand name, selected mode, and API key to MentionsAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit visibility checks, avoid sensitive query text, and configure MENTIONSAPI_KEY only in trusted agent environments.
+
+Risk: Each check can consume MentionsAPI credits, and live modes or repeated runs increase cost.
+
+Mitigation: Confirm ambiguous requests before calling the tool, start with the quick mode when appropriate, and choose runs and live modes deliberately.
+
+Risk: The separately mentioned hosted MCP alternative introduces package supply-chain risk if used.
+
+Mitigation: Use a pinned and reviewed MCP package version when choosing that alternative instead of this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nikhonit/skills/mentions-check)
+- [MentionsAPI homepage](https://mentionsapi.com)
+- [MentionsAPI check endpoint reference](https://mentionsapi.com/docs/api/check)
+- [MentionsAPI OpenAPI specification](https://mentionsapi.com/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Python dict or JSON-like response containing per-surface mention, rank, citation, cost, balance, cache, or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY and sends user-requested brand visibility checks to MentionsAPI; calls may consume credits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

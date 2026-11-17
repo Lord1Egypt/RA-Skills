@@ -1,43 +1,58 @@
-## Description: <br>
-Tracks crypto wallet addresses locally and retrieves current USD prices for common assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured crypto wallet addresses and retrieves live market prices to generate a basic portfolio overview.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-External users and developers can use this skill as a simple local notebook for wallet addresses and a command-line price checker for common crypto assets. It is not a full portfolio valuation, profit calculator, or automated reporting system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses are saved locally in ~/.crypto-portfolio.json. <br>
-Mitigation: Use only public wallet addresses you are comfortable storing on the local machine and remove the local JSON file when it is no longer needed. <br>
-Risk: Price checks call CoinGecko and may be unavailable, delayed, or insufficient for precise accounting. <br>
-Mitigation: Treat returned prices as convenience estimates and verify values with an authoritative source before making financial or tax decisions. <br>
-Risk: The artifact presents broader portfolio and profit-reporting claims than the implementation supports. <br>
-Mitigation: Use it as a wallet-address notebook and basic price checker rather than a complete holdings monitor or profit calculator. <br>
+## Use Case:
 
+External users and agents use this skill to add wallet addresses, refresh cryptocurrency prices, and produce command-line portfolio summaries. It is best suited for lightweight tracking, not authoritative balance, profit/loss, alerting, or financial decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/crypto-holdings-monitor) <br>
-- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON storage for wallet addresses and performs network price lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may overstate its ability to monitor actual wallet balances, portfolio holdings, profit/loss, or alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight prototype unless the implementation is corrected and validated against authoritative balance and transaction sources.
+
+Risk: Wallet addresses are stored in a home-directory JSON file.
+
+Mitigation: Review local storage behavior before deployment and avoid adding sensitive or unnecessary wallet identifiers.
+
+Risk: The script contacts CoinGecko for market prices.
+
+Mitigation: Confirm that outbound network access to CoinGecko is acceptable for the deployment environment.
+
+## Reference(s):
+
+- [Crypto Holdings Monitor on ClawHub](https://clawhub.ai/sxliuyu/skills/crypto-holdings-monitor)
+- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores configured wallet addresses in a home-directory JSON file and contacts CoinGecko for market prices.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

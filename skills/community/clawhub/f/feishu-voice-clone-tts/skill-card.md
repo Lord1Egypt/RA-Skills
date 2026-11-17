@@ -1,46 +1,59 @@
-## Description: <br>
-Converts text to speech with Volcengine TTS using preset or cloned voices and sends the generated audio to Feishu chats or groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text to speech using Volcengine TTS with preset or cloned voices and send the generated audio as a Feishu voice message.
 
-## Publisher: <br>
-[willsonchenservice-eng](https://clawhub.ai/user/willsonchenservice-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[willsonchenservice-eng](https://clawhub.ai/user/willsonchenservice-eng)
 
-## Use Case: <br>
-Developers and operators use this skill to generate spoken messages from text and deliver them into Feishu one-on-one chats or groups. It is useful for agent workflows that need voice notifications or voice-message delivery through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Text is sent to Volcengine for speech synthesis and generated audio is sent to Feishu. <br>
-Mitigation: Use only approved text, accounts, and chat destinations; confirm the target chat before sending. <br>
-Risk: Feishu and Volcengine credentials are required for runtime operation. <br>
-Mitigation: Use least-privileged Feishu credentials, protect VOLC_API_KEY and any ~/.volcengine_key file, and avoid exposing secrets in logs or shared environments. <br>
-Risk: Voice cloning can reproduce a person's voice. <br>
-Mitigation: Use cloned voices only with proper authorization and consent. <br>
-Risk: A configurable VOLC_TTS_URL could route speech requests to an unintended endpoint. <br>
-Mitigation: Keep VOLC_TTS_URL unset or restrict it to a trusted official endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent turn supplied text into speech and deliver it to a Feishu user or group chat. It supports Volcengine preset voices and user-provided cloned voice IDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willsonchenservice-eng/feishu-voice-clone-tts) <br>
-- [Volcengine TTS console](https://console.volcengine.com/speech/new/experience/tts?projectName=default) <br>
-- [Volcengine voice clone console](https://console.volcengine.com/speech/new/experience/clone?projectName=default) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Audio messages] <br>
-**Output Format:** [Markdown guidance with inline shell commands and runtime audio delivery through Feishu] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu credentials, a Volcengine API key, a voice type, and ffmpeg/ffprobe at runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends supplied text and the Volcengine API key to a TTS endpoint controlled by the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where VOLC_TTS_URL cannot be set by untrusted parties, or remove or validate that override before use.
+
+Risk: Generated audio is uploaded to Feishu and posted to the configured recipient.
+
+Mitigation: Do not use the skill for secrets or regulated data, and verify the recipient chat ID before sending.
+
+Risk: Cloned voices can be misused without permission.
+
+Mitigation: Use cloned voice IDs only with consent from the voice owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willsonchenservice-eng/skills/feishu-voice-clone-tts)
+- [Volcengine TTS console](https://console.volcengine.com/speech/new/experience/tts?projectName=default)
+- [Volcengine voice clone console](https://console.volcengine.com/speech/new/experience/clone?projectName=default)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Audio messages]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime output is a Feishu audio message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu credentials, a Volcengine API key, a voice type ID, and ffmpeg/ffprobe.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

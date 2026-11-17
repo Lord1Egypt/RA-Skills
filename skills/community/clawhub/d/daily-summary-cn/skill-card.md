@@ -1,39 +1,57 @@
-## Description: <br>
-每日工作总结自动生成。根据聊天记录和浏览器历史生成一句话工作总结，定时发送飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Summary generates a concise daily work summary from local OpenClaw memory and Chrome/Edge browsing history for Feishu delivery.
 
-## Publisher: <br>
-[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu)
 
-## Use Case: <br>
-OpenClaw users use this skill to generate a concise daily work summary from local chat memory and browser history, then save it locally or send it through a configured Feishu channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw memory and Chrome/Edge browsing history, which may include sensitive personal or work information. <br>
-Mitigation: Review the local data sources before use, run the skill manually first, and install it only where this local history access is acceptable. <br>
-Risk: Optional Feishu delivery can send generated work summaries to a configured channel. <br>
-Mitigation: Use a Feishu destination approved for automated work summaries and verify the channel configuration before enabling the scheduled command. <br>
+## Use Case:
 
+OpenClaw users use this skill to create a one-sentence summary of the day's work from local memory and recent browser activity. It can be run manually or scheduled to support recurring Feishu status updates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Plain text summary with a Markdown memory entry and optional setup commands/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a short daily-summary sentence and appends it to the local OpenClaw memory file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill reads sensitive local activity data from OpenClaw memory and Chrome/Edge browsing history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data access before installation and prefer manual runs until the skill documents explicit opt-in controls.
+
+Risk: The skill can be scheduled as a recurring Feishu-channel task.
+
+Mitigation: Confirm the schedule and channel before enabling automation, and require clear removal steps for any recurring task.
+
+Risk: The skill appends generated summaries to persistent OpenClaw memory.
+
+Mitigation: Review generated summaries before relying on them and keep a way to inspect or remove appended memory entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppop0uuiu/skills/daily-summary-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain text summary appended to a Markdown memory file, with optional Feishu delivery configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local OpenClaw memory and Chrome/Edge browsing history, append to the daily memory file, and run through a scheduled Feishu channel task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

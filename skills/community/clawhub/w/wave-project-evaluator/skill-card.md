@@ -1,40 +1,50 @@
-## Description: <br>
-Evaluates project structure, delivery quality, and improvement opportunities with a nine-dimension rubric that includes process quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates project delivery quality with a structured nine-dimension rubric, identifies concrete improvements, supports validation, and produces a project evaluation report.
 
-## Publisher: <br>
-[youxiyin](https://clawhub.ai/user/youxiyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youxiyin](https://clawhub.ai/user/youxiyin)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to score project health, identify weak dimensions, propose concrete improvements, and generate Markdown evaluation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose or make project edits that affect files or git history. <br>
-Mitigation: Use read-only mode unless remediation is intended, and review the diff before approving changes. <br>
-Risk: Generated evaluation reports may capture confidential project details. <br>
-Mitigation: Avoid storing reports for confidential projects unless the memory/project-evals path is appropriate. <br>
+## Use Case:
 
+Developers and project owners use this skill to assess project readiness, identify the lowest-scoring quality dimensions, plan one concrete improvement at a time, and generate a structured evaluation report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youxiyin/wave-project-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown scorecards, edit previews, diffs, shell commands, and project evaluation reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write reports under memory/project-evals and may propose or perform remediation when the user approves changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The workflow may inspect a repository and propose or apply edits, create commits, revert changes, and save evaluation reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories where those actions are acceptable, and require a clear preview before any write, commit, revert, or saved report.
+
+## Reference(s):
+
+- [Wave Project Evaluator release page](https://clawhub.ai/youxiyin/skills/wave-project-evaluator)
+- [AgentLens methodology (arXiv:2605.12925)](https://arxiv.org/abs/2605.12925)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with scoring tables, improvement plans, validation notes, and optional shell commands or file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save project evaluation reports when the user approves that workflow.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

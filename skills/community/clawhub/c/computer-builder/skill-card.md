@@ -1,40 +1,50 @@
-## Description: <br>
-Computer Builder helps agents recommend desktop PC configurations, assess hardware compatibility, troubleshoot common hardware issues, and guide system, driver, and software installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computer Builder provides Chinese-language desktop PC build recommendations, hardware compatibility analysis, troubleshooting guidance, driver installation guidance, and operating system reinstall support.
 
-## Publisher: <br>
-[jhinking](https://clawhub.ai/user/jhinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhinking](https://clawhub.ai/user/jhinking)
 
-## Use Case: <br>
-Users seeking desktop PC build advice use this skill to compare parts, evaluate compatibility and value, troubleshoot common failures, and plan Windows reinstall or driver-installation steps. It is primarily for desktop PC configuration and maintenance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: System reinstall, partitioning, boot USB, or driver-installation guidance can affect user data or system stability if followed carelessly. <br>
-Mitigation: Back up important files and verify steps against the exact hardware and official vendor sources before acting. <br>
-Risk: Hardware prices, availability, model details, and driver versions can change quickly. <br>
-Mitigation: Confirm current prices, specifications, compatibility notes, and driver downloads with vendor or retailer sources before purchasing or installing. <br>
+## Use Case:
 
+External users use this skill to get Chinese-language guidance for selecting desktop PC parts, checking compatibility, comparing budget configurations, diagnosing common hardware issues, and planning Windows, driver, or software installation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhinking/computer-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables, checklists, and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price ranges, compatibility notes, troubleshooting steps, and cautions to verify current hardware prices and vendor documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: BIOS changes, disk partitioning, formatting, and operating system reinstall guidance can cause data loss or device misconfiguration if followed on the wrong hardware or drive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up important files, confirm the exact target disk and device model, and prefer official vendor downloads before following those steps.
+
+## Reference(s):
+
+- [Computer Builder Skill Page](https://clawhub.ai/jhinking/skills/computer-builder)
+- [Publisher Profile](https://clawhub.ai/user/jhinking)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown with tables, ordered troubleshooting steps, and occasional inline commands or code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses focused on desktop PC hardware selection, compatibility checks, troubleshooting, driver installation, and system reinstall planning.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

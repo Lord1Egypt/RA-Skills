@@ -1,41 +1,50 @@
-## Description: <br>
-Assess third-party vendor risk for AI and SaaS products across security posture, data handling, compliance, financial stability, and operational resilience, producing a scored risk report with mitigation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess third-party vendor risk for AI and SaaS products by evaluating security posture, data handling, compliance, financial stability, operational resilience, and contractual terms.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Procurement, security, compliance, and vendor management teams use this skill to assess AI and SaaS vendors during onboarding, annual reviews, build-vs-buy decisions, partnership diligence, or compliance reviews. It helps produce a scored vendor risk report with findings, recommendations, and mitigation requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated assessments could influence procurement or compliance decisions. <br>
-Mitigation: Review the generated assessment, cited sources, and vendor documentation before relying on the result. <br>
+## Use Case:
 
+Procurement, security, compliance, and vendor management teams use this skill to assess SaaS and AI vendors during onboarding, annual review, partnership due diligence, or build-versus-buy decisions. It produces a scored risk report with recommendation and mitigation requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-vendor-risk-assessment) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [AfrexAI](https://afrexai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown scored risk report with tables, recommendations, mitigation requirements, and research sources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores six vendor risk dimensions from 1-10 and weights the overall score by data sensitivity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact metadata says 1.0.0) <br>
+Risk: Generated reports may label AfrexAI as the assessor even when the assessment is performed for another organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the assessor field and change or remove that attribution before using the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-vendor-risk-assessment)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown risk assessment report with scored dimension table, recommendation, findings, mitigation requirements, and research sources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include low, medium, high, or critical risk labels; data-sensitivity weighting; go/no-go recommendation; vendor comparison matrix; review schedule; and escalation triggers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

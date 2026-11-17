@@ -1,44 +1,55 @@
-## Description: <br>
-Queries Chinese city weather forecasts from weather.com.cn with optional JSON output and life-index guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国城市天气查询工具
 
-## Publisher: <br>
-[woodcoal](https://clawhub.ai/user/woodcoal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woodcoal](https://clawhub.ai/user/woodcoal)
 
-## Use Case: <br>
-Developers and agents use this skill to answer Chinese city weather questions, including current-day or seven-day forecasts, structured JSON output, and optional life-index advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries are sent to external weather providers and may reveal a user's requested location. <br>
-Mitigation: Ask for location confirmation when a prompt is vague and avoid sending sensitive or unintended location details. <br>
-Risk: Searched city names may be saved locally in citys.txt for future lookups. <br>
-Mitigation: Review or clear the local city-code cache when lookup history should not persist. <br>
-Risk: Weather data can be delayed or unavailable because the skill depends on network access to weather providers. <br>
-Mitigation: Treat results as provider-supplied weather guidance and retry or use documented fallback providers when the primary source is unavailable. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese city and county-level weather questions, including current-day conditions, seven-day forecasts, rain likelihood, temperature, wind, and optional life indices.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/woodcoal/china-weather-skill) <br>
-- [weather.com.cn](https://www.weather.com.cn/) <br>
-- [Referenced China Weather skill](https://clawhub.ai/hoopan007/weather-china) <br>
+### Deployment Geography for Use:
 
+Global; the weather coverage is focused on Chinese cities and county-level regions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Plain text weather report or structured JSON forecast] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports city name input plus -json, -today, and -life options; may save newly discovered city codes in citys.txt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: City queries are sent to third-party weather services, and newly discovered city-code mappings may be cached locally in citys.txt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only locations suitable for third-party lookup and local caching; review or clear citys.txt when location history should not persist.
+
+Risk: Weather data can be delayed, and life indices are general-purpose guidance.
+
+Mitigation: Treat outputs as informational and verify time-sensitive or safety-critical decisions with authoritative weather sources.
+
+## Reference(s):
+
+- [中国天气网](https://www.weather.com.cn/)
+- [ClawHub skill page](https://clawhub.ai/woodcoal/skills/china-weather-skill)
+- [Referenced China Weather skill](https://clawhub.ai/hoopan007/weather-china)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON weather forecast output, with documented shell command fallbacks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include seven-day forecasts, today's forecast only, and optional life indices such as clothing, car wash, and UV guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

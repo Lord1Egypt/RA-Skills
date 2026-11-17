@@ -1,43 +1,57 @@
-## Description: <br>
-Guides agents through planning AI films, short dramas, cinematic sequences, and storyboard-driven video scenes with cross-shot continuity and film-language control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through continuity-preserving shortform AI video planning with shot cards, cinematic blocking, gated keyframes, bridge-frame selection, and chain-referenced generation.
 
-## Publisher: <br>
-[hakityc](https://clawhub.ai/user/hakityc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hakityc](https://clawhub.ai/user/hakityc)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to turn shortform video ideas into continuity-aware preproduction assets, shot cards, review gates, bridge-frame choices, and chained shot prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository-specific paths and optional uv run aivideo commands may read project files or write a continuity ledger in the wrong AI-video project. <br>
-Mitigation: Confirm the target project path and command arguments before using repository-specific workflow steps. <br>
-Risk: AI video shot prompts can drift from locked identity, scene, prop, camera, or edit-continuity facts. <br>
-Mitigation: Use the master-scene, shot-delta, bridge-frame, and final-clip gates before approving chained clips. <br>
+## Use Case:
 
+External creators, developers, and AI video practitioners use this skill to plan short cinematic sequences that preserve character, prop, scene, and camera continuity across shots. It helps convert story beats into shot cards, continuity ledgers, gated keyframe reviews, and chain-referenced video generation plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hakityc/chain-referenced-shortform-video) <br>
-- [Film Language For Chain-Referenced Shortform](references/film-language.md) <br>
-- [Repo Mapping For Chain-Referenced Shortform](references/repo-mapping.md) <br>
-- [Review Rubric For Chain-Referenced Shortform](references/review-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with structured shot cards, continuity ledgers, review rubrics, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden execution; repository-specific commands should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Hard-coded absolute project paths could make an agent read local source files outside the intended project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the absolute paths with relative paths or require an explicit project-root confirmation before loading repository-specific files.
+
+Risk: Continuity or shot-planning guidance can still produce unusable video outputs if candidate frames are not reviewed.
+
+Mitigation: Use the skill's master-scene, shot-delta, bridge-frame, and final-clip gates before approving generated sequence clips.
+
+## Reference(s):
+
+- [Film Language For Chain-Referenced Shortform](artifact/references/film-language.md)
+- [Repo Mapping For Chain-Referenced Shortform](artifact/references/repo-mapping.md)
+- [Review Rubric For Chain-Referenced Shortform](artifact/references/review-rubric.md)
+- [ClawHub skill page](https://clawhub.ai/hakityc/skills/chain-referenced-shortform-video)
+- [Publisher profile](https://clawhub.ai/user/hakityc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with structured shot cards, YAML field mappings, continuity review notes, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project-specific planning guidance after relevant files are loaded from an approved project root.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

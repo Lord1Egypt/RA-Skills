@@ -1,51 +1,65 @@
-## Description: <br>
-Control Discord from Clawdbot and access SkillBoss models for chat, image, video, audio, search, document processing, email, and SMS tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Discord from Clawdbot and access SkillBoss models for chat, media generation, transcription, search, document processing, email, and SMS.
 
-## Publisher: <br>
-[GodferyLindsay](https://clawhub.ai/user/GodferyLindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to call SkillBoss APIs for Discord-oriented actions and broad multimodal model workflows. It requires a SkillBoss API key and includes examples for model discovery, generation, transcription, search, document parsing, email, and SMS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled as a Discord skill, but the evidence describes a broad SkillBoss API wrapper that can send user data to third-party services. <br>
-Mitigation: Install only when broad SkillBoss API access is intended, and review planned requests before sending private files, audio, documents, or prompts. <br>
-Risk: The skill can trigger email, SMS, and OTP-related actions. <br>
-Mitigation: Require explicit approval before email, SMS, or OTP actions and use a limited SkillBoss API key. <br>
-Risk: The skill requires an API key with access to external model and tool providers. <br>
-Mitigation: Store SKILLBOSS_API_KEY securely, scope or rotate it where possible, and avoid exposing it in logs or generated command output. <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to operate Discord workflows and call SkillBoss-hosted AI models through documented API examples. It supports message actions, reactions, stickers, emojis, media generation, speech, search, document processing, email, and SMS tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GodferyLindsay/discords) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [SkillBoss model discovery endpoint](https://api.heybossai.com/v1/models) <br>
-- [Audio Models](audio-models.md) <br>
-- [Chat Models](chat-models.md) <br>
-- [Image Models](image-models.md) <br>
-- [Search & Scraping Models](search-models.md) <br>
-- [Tool Models](tools-models.md) <br>
-- [Video Models](video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; responses may include generated text, media URLs, parsed documents, search results, email actions, or SMS actions depending on the selected SkillBoss model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is packaged as a Discord skill but exposes broad SkillBoss API actions including email, SMS, document processing, and model calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review it as a broad external API integration before installation, not as a Discord-only skill.
+
+Risk: Prompts, media, document URLs, search queries, email contents, and phone numbers may be sent to SkillBoss and possibly downstream providers.
+
+Mitigation: Only provide SKILLBOSS_API_KEY and run examples when those data transfers are acceptable for the intended use.
+
+Risk: The artifact includes run.mjs examples whose executable resolution may be unclear in a local environment.
+
+Mitigation: Verify exactly which executable will run before using run.mjs examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/discords)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [Audio models](artifact/audio-models.md)
+- [Chat models](artifact/chat-models.md)
+- [Image models](artifact/image-models.md)
+- [Search and scraping models](artifact/search-models.md)
+- [Tool models](artifact/tools-models.md)
+- [Video models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may send prompts, media, document URLs, search queries, email contents, and phone numbers to SkillBoss or downstream providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

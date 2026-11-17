@@ -1,47 +1,55 @@
-## Description: <br>
-Analyzes fixed aquarium camera images or video to detect fish gasping, rapid mouth movement, and increased gill-cover motion, then reports visual warning signals for ammonia-poisoning or hypoxia risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes aquarium video for fish surface gasping and abnormal breathing, then provides visual risk alerts and suggested water-quality checks.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, aquarium operators, and aquaculture teams use this skill to analyze aquarium or pond camera footage for early visual warning signs of fish gasping, abnormal respiration, and possible hypoxia or ammonia-related water-quality risk. The skill produces structured alerts, suggested non-drug response actions, and report links without presenting a veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Aquarium media or supplied URLs may be processed by the publisher's cloud service. <br>
-Mitigation: Use only footage and URLs appropriate for that third-party service, and avoid private camera feeds or internal URLs unless the publisher and its retention controls are trusted. <br>
-Risk: The skill creates or reuses an internal user identity and can query prior cloud reports. <br>
-Mitigation: Review account, token, and report-access behavior before installation, and limit deployment to environments where this identity model is acceptable. <br>
-Risk: Visual warning results may be mistaken for a definitive fish-health or water-quality diagnosis. <br>
-Mitigation: Treat outputs as visual risk warnings only; confirm water quality with tests and consult an aquarium veterinarian or aquaculture technician when severe or repeated alerts occur. <br>
-Risk: Poor camera coverage, surface disturbance, or plant occlusion can produce unreliable detections. <br>
-Mitigation: Require clear footage covering the water surface and mid-water area, and return an unreliable-signal result when tracking quality is insufficient. <br>
+## Use Case:
 
+Aquarium owners, aquarium staff, and aquaculture operators can use video analysis to flag fish surface gasping or abnormal breathing and decide when to check water conditions. Results are visual risk warnings, not a confirmed diagnosis.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/18072937735/skills/smyx-fish-gasping-ammonia-warning-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON structured analysis report with alert levels, observed metrics, recommendations, and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local file or URL inputs, optional report export, and cloud history listing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The security summary flags suspicious account, data, and remote-service behavior, including a reported risk that a configured secret may be sent during registration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review registration, credential handling, remote destinations, and host permissions before use; provide only an appropriately scoped secret after verifying its handling.
+
+Risk: Video analysis and historical report access involve remote processing and account or identity handling, which may affect the privacy of aquarium footage and report data.
+
+Mitigation: Use only footage and account data authorized for remote processing, and confirm retention, access, and export practices meet your requirements before uploading or sharing reports.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-fish-gasping-ammonia-warning-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured analysis report or text summary with visual risk alerts, observations, suggested checks, and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video-based observations; does not confirm water chemistry or diagnose disease.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release evidence; artifact SKILL.md frontmatter lists 1.0.21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "name": "Sandbox & Blast-Radius Control Engine X∞",
+  "slug": "sandbox-blast-radius-control-engine",
+  "version": "1.0.0",
+  "type": "security",
+  "author": "pmuhammadagus-byte",
+  "license": "MIT",
+  "description": "Lapisan keamanan eksekusi OpenClaw: klasifikasi risiko, blast-radius, least-privilege, isolation, dry-run, backup, rollback, verifikasi.",
+  "tags": ["security", "sandbox", "blast-radius", "risk-control", "isolation", "rollback", "safety"],
+  "risk_level": "critical",
+  "owner": "pmuhammadagus-byte",
+  "status": "active",
+  "xinf": {
+    "compliance": "21-node mandatory structure v1.0.0",
+    "principles": 15,
+    "spec_sections": 51
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "itp.agent_doc.v1",
+  "role": "buyer",
+  "product_scope": "itpay is the single public CLI entry point, and $itpay is its user-facing Skill invocation. Under that one product entry point, the two top-level commerce actions are buy and sell: Buyer workflows are available now; Seller workflows will use the same entry point and are not implemented yet.",
+  "topic": "payment-flow",
+  "title": "Human Checkout Handoff And Payment Verification",
+  "purpose": "Show the ItPay Checkout to the human and recover authoritative payment state without creating duplicate payment resources.",
+  "when_to_use": [
+    "buy or services checkout returned human_checkout_required.",
+    "The agent restarted or lost the Checkout output before payment was confirmed."
+  ],
+  "commands": [
+    {
+      "intent": "present the Checkout handoff",
+      "command": "<execute the exact command returned by buy or services checkout>",
+      "success_signal": "the human can see both the ItPay Checkout QR or image and the Checkout URL"
+    },
+    {
+      "intent": "read authoritative Checkout state",
+      "command": "itpay checkout --id <checkout_id> --token <display_token> --json",
+      "success_signal": "pending returns one human handoff; completed returns no payment handoff and routes to delivery"
+    },
+    {
+      "intent": "recover a service Checkout handoff",
+      "command": "itpay services checkout <service_execution_id> --resume --json",
+      "success_signal": "the same unpaid Checkout is reused with a fresh short-lived handoff"
+    }
+  ],
+  "agent_rules": [
+    "Normal buyer flow opens the ItPay Checkout page; itpay pay and buy --pay are operator escape hatches.",
+    "Use only handoff fields returned for the current Host and make them actually visible to the human.",
+    "Before creating a single-Service Checkout, send the exact price confirmation requested by the current instruction, stop, and wait for explicit human agreement.",
+    "After presenting a Checkout, stop. Run the returned next.command only after the human completes the payment action or asks to query the same Checkout.",
+    "For workbuddy with plain-chat, send or open the fully rendered Card Link in handoff.url and never call present_files or create another payment resource.",
+    "For openclaw with telegram, execute the returned native message action using the current trusted target. For any other explicit OpenClaw Host, show the returned HTTPS QR image and Checkout URL.",
+    "Payment is verified only by Backend Checkout or Order state, never by QR rendering, redirect, or user claim.",
+    "A terminal payment state must never display another payment handoff."
+  ],
+  "forbidden": [
+    "Do not render a provider QR in place of the ItPay Checkout handoff.",
+    "Do not mix a display token from another Checkout.",
+    "Do not create a replacement Checkout after an uncertain response; recover first.",
+    "Do not use services quote, cart, buy, or pay as a fallback when the single-Service checkout flow fails.",
+    "Do not start another Service Execution to bypass quota, candidate, quote, checkout, or delivery state."
+  ],
+  "next_docs": [
+    {
+      "condition": "Payment is verified",
+      "topic": "orders-refunds"
+    },
+    {
+      "condition": "The current Host cannot display the handoff",
+      "topic": "render-hosts"
+    }
+  ],
+  "search_terms": [
+    "payment",
+    "checkout",
+    "QR",
+    "display token",
+    "resume",
+    "verified"
+  ]
+}

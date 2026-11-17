@@ -1,40 +1,57 @@
-## Description: <br>
-Bulk download TikTok videos from a text file of URLs using yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bulk download TikTok videos from a text file of URLs using yt-dlp.
 
-## Publisher: <br>
-[mes28io](https://clawhub.ai/user/mes28io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mes28io](https://clawhub.ai/user/mes28io)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local downloader for batches of TikTok URLs, choose an output folder, and report successful and failed downloads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill performs user-directed network downloads and writes video files to a local folder. <br>
-Mitigation: Review the URL list before use, select a dedicated download directory, avoid elevated privileges, and download only content you are authorized to save. <br>
-Risk: Some TikTok downloads can fail because content is private, deleted, region restricted, or rate limited. <br>
-Mitigation: Check the failed URL list, reduce batch size when needed, and retry later only when the download is authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Upstream README](references/upstream-readme.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mes28io/bulk-tiktok-downloader-skill) <br>
+## Use Case:
 
+Developers and operators use this skill to install and run a local yt-dlp based workflow for downloading batches of authorized TikTok videos from a trusted URL list into a chosen folder.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and terminal output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local download status summaries, failed URL lists, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs yt-dlp locally.
+
+Mitigation: Install it in an isolated virtual environment and consider pinning the dependency version before use.
+
+Risk: The downloader processes whatever URLs are placed in the input file.
+
+Mitigation: Use a URL list that you created or trust, and download only content you are authorized to save.
+
+Risk: The output directory can fill with downloaded media files.
+
+Mitigation: Set the output directory to a scoped folder with expected storage capacity.
+
+## Reference(s):
+
+- [Upstream README](artifact/references/upstream-readme.md)
+- [ClawHub skill page](https://clawhub.ai/mes28io/skills/bulk-tiktok-downloader-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and local command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, successful and failed download counts, failed URLs, and likely failure reasons.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

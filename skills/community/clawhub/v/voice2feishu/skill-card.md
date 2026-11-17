@@ -1,46 +1,63 @@
-## Description: <br>
-Converts text to speech and sends the resulting audio message to Feishu, using either a configured TTS API or a local ChatTTS service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to speech and sends the resulting audio to Feishu, using either a configured TTS API or local ChatTTS.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-Developers and operators use this skill to generate spoken messages from text and deliver them to Feishu users or group chats. It supports API-based TTS for hosted voice generation and local ChatTTS for local voice generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local ChatTTS mode starts an unauthenticated service that may be reachable beyond the local machine. <br>
-Mitigation: Bind the service to 127.0.0.1 or firewall port 8080, avoid exposing it to other machines, and stop it when finished. <br>
-Risk: The skill requires Feishu message-sending credentials and may send message text to a configured TTS provider in API mode. <br>
-Mitigation: Install only if the operator accepts those credential and data-sharing requirements; use scoped Feishu app credentials and a trusted TTS endpoint. <br>
+## Use Case:
 
+Developers and Feishu workspace users use this skill to turn short text messages into audio and deliver them to a Feishu user or chat. It supports third-party API-based TTS and a local ChatTTS workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/voice2feishu) <br>
-- [Publisher profile](https://clawhub.ai/user/enihsago) <br>
-- [ChatTTS](https://github.com/2noise/ChatTTS) <br>
-- [ChatTTS model](https://huggingface.co/2Noise/ChatTTS) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Zhipu AI TTS API](https://open.bigmodel.cn/api/paas/v4/audio/speech) <br>
-- [OpenAI TTS API](https://api.openai.com/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, audio files, API calls, guidance] <br>
-**Output Format:** [Command-line guidance and shell execution that generates audio and sends Feishu messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu credentials, curl, jq, ffmpeg, and ffprobe; API mode also requires TTS API configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: API mode sends message text to the configured TTS provider and sends generated audio through Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API mode only for text approved for those services, restrict TTS_API_URL to a trusted HTTPS endpoint, and protect Feishu and TTS credentials.
+
+Risk: The local ChatTTS service is reported as exposed more broadly than documented.
+
+Mitigation: Run local ChatTTS only on a trusted machine or network, firewall the service, or bind it to 127.0.0.1 before use.
+
+Risk: Unsafe temporary-file and PID-file handling was reported for the local server workflow.
+
+Mitigation: Avoid running the local server workflow as a privileged account until temporary-file and PID-file handling are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/voice2feishu)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [ChatTTS](https://github.com/2noise/ChatTTS)
+- [ChatTTS model on Hugging Face](https://huggingface.co/2Noise/ChatTTS)
+- [ChatTTS model on ModelScope](https://modelscope.cn/models/pkuchoong/ChatTTS)
+- [Zhipu AI speech API endpoint](https://open.bigmodel.cn/api/paas/v4/audio/speech)
+- [OpenAI audio speech API endpoint](https://api.openai.com/v1/audio/speech)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment variable settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create temporary audio files and send audio messages through Feishu when executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

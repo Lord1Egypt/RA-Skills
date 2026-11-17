@@ -2,7 +2,7 @@
 name: quality-gate
 description: |
   Orchestrates the QUALITY pipeline stage for egregore work items, running code review, unbloat, and test updates
-version: 1.9.8
+version: 1.10.3
 triggers:
   - egregore
   - quality
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: egregore
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Quality Gate
@@ -97,6 +97,48 @@ Record verdict in manifest decisions:
 }
 ```
 
+### Completion Integrity (opt-in, default OFF)
+
+By default the loop runs indefinitely and autonomously: a
+`fix-required` verdict is recorded but does not, on its own,
+stop the item from advancing. This preserves the historical
+hands-off posture.
+
+When `config.pipeline.completion_integrity` is `true`, the
+verdict becomes a gate the agent cannot talk its way past:
+
+1. A `fix-required` verdict is reported to the orchestrator as
+   a **step failure**, so the item cannot advance to the ship
+   stage with unresolved blocking findings. It retries in place
+   and, on exhausting `max_attempts`, is marked `failed` and
+   the overseer is alerted (never silently `completed`).
+2. Merge is held for human review regardless of `auto_merge`:
+   the PR is prepared but left open.
+
+This binds "done" to the verifier (convention checks plus the
+mapped review skills), not to the agent's own say-so. The
+principle comes from shipped agent harnesses, stated best by
+`KbWen/agentic-os`: an agent "can still cut a corner, it just
+can't cut this one past a check it doesn't control." The
+recurring patterns across those harnesses:
+
+| Pattern | What it does | Source |
+|---------|--------------|--------|
+| Verifier gate as completion judge | Bind "done" to tests, lints, or result hashes the agent cannot fake | Aider, snarktank/ralph, gaasher |
+| Completion promise + max-iterations cap | String-matching "done" is insufficient; pair it with an iteration ceiling and manual abort | anthropics ralph-wiggum |
+| Evidence gates the agent does not control | Credential scan, test-execution validation, phase-log parsing enforced by hooks or CI | KbWen/agentic-os |
+| Keep-if-better / revert-if-worse ledger | Score each change, revert regressions, log to an append-only ledger for review | gaasher/Agent-Loop-Skills |
+| Legibility anchor | A persisted current-state or repo-map file that lets a human re-enter the loop | Aider repo map, agentic-os |
+| Human observer checkpoint | Watch early iterations, monitor diffs, reserve loops for defined problems | anthropics, ghuntley |
+
+Further rationale: make the illegal state unrepresentable before
+guarding against it, because a fallback that hides an impossible case
+becomes silent corruption instead of a locatable crash. Armin
+Ronacher, "The Coming Loop" (2026),
+https://lucumr.pocoo.org/2026/6/23/the-coming-loop/. The flag
+is off by default. Enabling it is a deliberate choice to keep a
+human as the final judge.
+
 ## PR-Review Workflow
 
 When mode is "pr-review":
@@ -153,7 +195,7 @@ accordingly before running checks.
 
 ## Exit Criteria
 
-- All applicable convention checks executed
-- All mapped skills invoked
-- Verdict calculated and recorded in manifest
-- For PR-review: GitHub review posted
+- [ ] All applicable convention checks executed
+- [ ] All mapped skills invoked
+- [ ] Verdict calculated and recorded in manifest
+- [ ] For PR-review: GitHub review posted

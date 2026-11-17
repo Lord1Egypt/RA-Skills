@@ -1,44 +1,57 @@
-## Description: <br>
-Audit Shopify store pages for conversion blockers including slow load, weak copy, missing trust signals, and friction in the add-to-cart flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Shopify store pages for conversion blockers including slow load, weak copy, missing trust signals, and friction in the add-to-cart flow.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Store owners, ecommerce operators, and conversion teams use this skill to audit Shopify home, collection, product, cart, and checkout flows for conversion blockers and prioritized fixes. It is especially suited to low add-to-cart or checkout conversion, pre-launch or BFCM readiness, redesign reviews, and paid-traffic troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may involve sharing a Shopify store URL and optional conversion metrics. <br>
-Mitigation: Share only the store details and metrics needed for the audit, and avoid providing credentials or sensitive customer data. <br>
-Risk: Recommendations may include theme, checkout, payment, or app changes that could affect store behavior or revenue. <br>
-Mitigation: Review recommendations before applying them in Shopify, test changes in a theme preview or controlled rollout, and keep a rollback path. <br>
+## Use Case:
 
+Store owners, ecommerce operators, and conversion teams use this skill to audit Shopify storefronts across homepage, collection, product, cart, checkout, performance, and mobile flows. It produces a prioritized, executable fix list for conversion blockers such as weak copy, missing trust signals, surprise costs, slow pages, and add-to-cart friction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/shopify-audit) <br>
-- [Output Template - Shopify Conversion Audit Report](artifact/output-template.md) <br>
-- [Page-by-Page Guide - What to Check at Each Funnel Stage](artifact/page-by-page-guide.md) <br>
-- [Trust & Performance Guide - Signals and Speed Targets for Shopify](artifact/trust-and-performance-guide.md) <br>
-- [Shopify Audit Coverage Checklist](artifact/audit-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with scorecards, prioritized findings, evidence, fixes, copy rewrites, performance notes, and mobile pass notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are capped at 15 and sorted by estimated impact and implementation effort.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may recommend Shopify payment, checkout, app, or theme changes that affect a live storefront.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested changes before applying them in production and validate important changes against baseline conversion, add-to-cart, and checkout metrics.
+
+Risk: The audit can involve store URLs and conversion or checkout metrics that may be commercially sensitive.
+
+Mitigation: Share only the store URL and metrics needed for the audit, and avoid including unnecessary private customer or order data.
+
+## Reference(s):
+
+- [Shopify Audit Skill Page](https://clawhub.ai/leooooooow/skills/shopify-audit)
+- [Output Template](artifact/output-template.md)
+- [Page-by-Page Guide](artifact/page-by-page-guide.md)
+- [Trust and Performance Guide](artifact/trust-and-performance-guide.md)
+- [Audit Quality Checklist](artifact/audit-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown audit report with prioritized findings, scorecard, copy rewrites, performance summary, mobile notes, and re-audit schedule]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are capped at 15 and sorted by estimated revenue impact and implementation effort.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

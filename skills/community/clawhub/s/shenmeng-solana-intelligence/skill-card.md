@@ -1,49 +1,64 @@
-## Description: <br>
-Solana 链上智能分析与机会检测工具。用于分析 Solana 生态项目、检测新兴机会、追踪 Meme币趋势、监控链上数据和提供投资建议。当用户需要分析 Solana 生态、发现新项目、追踪链上机会、获取 Solana 市场情报或进行链上数据分析时触发此 Skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana 链上智能分析与机会检测工具，用于分析 Solana 生态项目、检测新兴机会、追踪 Meme 币趋势、监控链上数据并提供投资决策参考.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users and crypto analysts use this skill to review Solana ecosystem health, evaluate new tokens and launchpad activity, monitor market and on-chain signals, and frame speculative research with explicit risk warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a paid verification flow that may send wallet identifiers to SkillPay. <br>
-Mitigation: Install only when that data sharing is acceptable, and avoid providing wallet addresses unless payment verification is required and approved. <br>
-Risk: The artifact exposes a payment API key and uses an external verification service. <br>
-Mitigation: Review and rotate payment credentials before deployment, and restrict execution of payment code to trusted environments. <br>
-Risk: Token, launchpad, and market recommendations are speculative and may be misleading or financially harmful. <br>
-Mitigation: Treat outputs as research support, verify claims against independent data sources, and avoid presenting analysis as financial advice. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Solana ecosystem health, evaluate new tokens, monitor launchpad activity, and produce risk-aware market intelligence for crypto research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenmeng/shenmeng-solana-intelligence) <br>
-- [Solana 链上分析脚本参考](references/api-reference.md) <br>
-- [Solana 生态核心项目参考](references/ecosystem.md) <br>
-- [Pump.fun 与新币发射分析指南](references/launchpad-guide.md) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=solana-ecosystem&order=market_cap_desc&per_page=100&page=1) <br>
-- [DefiLlama Solana Data](https://defillama.com/chain/Solana) <br>
-- [Solscan](https://solscan.io) <br>
-- [Solana Explorer](https://explorer.solana.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, Python script references, and structured analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use external Solana, market-data, social-signal, and SkillPay verification services when the agent follows the artifact guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The release evidence reports an embedded payment-service API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed key before installation and move payment credentials to environment-managed secrets.
+
+Risk: The release evidence reports that wallet addresses can be sent to an external payment service without clear in-skill disclosure.
+
+Mitigation: Document what wallet data is transmitted, obtain user approval before payment verification, and avoid sending wallet addresses unless required.
+
+Risk: The skill provides crypto market and token opportunity guidance that may be incorrect, stale, or unsuitable for a user's circumstances.
+
+Mitigation: Treat outputs as research support only, verify market data against authoritative sources, and avoid relying on the skill as financial advice.
+
+## Reference(s):
+
+- [Solana Intelligence Skill Page](https://clawhub.ai/shenmeng/skills/shenmeng-solana-intelligence)
+- [Solana 链上分析脚本参考](references/api-reference.md)
+- [Solana 生态核心项目参考](references/ecosystem.md)
+- [Pump.fun 与新币发射分析指南](references/launchpad-guide.md)
+- [CoinGecko Solana Ecosystem Markets API](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=solana-ecosystem&order=market_cap_desc&per_page=100&page=1)
+- [DefiLlama Solana Chain API](https://api.llama.fi/chain/Solana)
+- [Solscan](https://solscan.io)
+- [Solana Explorer](https://explorer.solana.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, Python code examples, shell commands, and JSON analysis files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external market-data and payment services when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

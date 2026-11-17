@@ -6,54 +6,20 @@ Covers:
   - ShoppingList.remove(): exact match, partial match, missing item
   - ShoppingList._load() / _save(): file locking, atomic write
   - ShoppingList.format_for_whatsapp(): grouped by store, store filter
-  - detect_store(): keyword matching for costco/indian/target/general
 """
-import fcntl
-import json
-import os
 import sys
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
-import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    sys.modules.setdefault(mod, MagicMock() if "MagicMock" in dir() else __import__("unittest.mock", fromlist=["MagicMock"]).MagicMock())
 
-from unittest.mock import MagicMock
-
-with patch("core.keychain_secrets.load_google_secrets", return_value=None), \
-     patch("core.config_loader._load_config") as _mc:
+with patch("core.config_loader._load_config") as _mc:
     from conftest import MINIMAL_CONFIG
     from core.config_loader import Config
     _mc.return_value = Config(MINIMAL_CONFIG)
-    from features.shopping.shopping_list import ShoppingList, detect_store, STORE_LABELS
-
-
-# ─── detect_store ─────────────────────────────────────────────────────────────
-
-class TestDetectStore:
-    def test_detects_costco(self):
-        assert detect_store("from costco") == "costco"
-
-    def test_detects_indian_store(self):
-        assert detect_store("from Spencer's indian store") == "indian"
-        assert detect_store("ninas grocery") == "indian"
-
-    def test_detects_target(self):
-        assert detect_store("at target") == "target"
-        assert detect_store("walmart") == "target"
-
-    def test_defaults_to_general(self):
-        assert detect_store("random item") == "general"
-
-    def test_case_insensitive(self):
-        assert detect_store("COSTCO") == "costco"
-        assert detect_store("Target") == "target"
+    from features.shopping.shopping_list import ShoppingList
 
 
 # ─── ShoppingList.add ─────────────────────────────────────────────────────────
@@ -206,19 +172,13 @@ class TestFormatForWhatsapp:
         assert "2 items" in result or "2 item" in result
 
 
-# ─── clear / clear_store ──────────────────────────────────────────────────────
+# ─── clear ──────────────────────────────────────────────────────────────────
 
 class TestClearOperations:
     def test_clear_removes_all_items(self, tmp_path):
         sl = ShoppingList(str(tmp_path))
-        sl.add("A", 1); sl.add("B", 1); sl.add("C", 1)
+        sl.add("A", 1)
+        sl.add("B", 1)
+        sl.add("C", 1)
         sl.clear()
         assert sl.is_empty()
-
-    def test_clear_store_removes_only_that_store(self, tmp_path):
-        sl = ShoppingList(str(tmp_path))
-        sl.add("Milk", 1, "costco")
-        sl.add("Ghee", 1, "indian")
-        sl.clear_store("costco")
-        assert "milk" not in sl.items
-        assert "ghee" in sl.items

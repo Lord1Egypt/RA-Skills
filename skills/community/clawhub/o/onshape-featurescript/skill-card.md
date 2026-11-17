@@ -1,39 +1,54 @@
-## Description: <br>
-Generate and modify Onshape FeatureScript code for custom CAD features, focusing on dust collection fittings like wyes, elbows, and adapters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and modify Onshape FeatureScript code for custom CAD features, with a focus on parametric dust collection fittings such as wyes, elbows, adapters, and crosses.
 
-## Publisher: <br>
-[bryko](https://clawhub.ai/user/bryko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryko](https://clawhub.ai/user/bryko)
 
-## Use Case: <br>
-Developers and CAD engineers use this skill to draft, revise, and debug FeatureScript for custom Onshape features, especially parametric dust collection fittings and reusable patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FeatureScript may contain modeling errors or invalid assumptions for a specific part. <br>
-Mitigation: Review the generated code and test the resulting feature in Onshape before relying on it for design or fabrication. <br>
+## Use Case:
 
+Developers and CAD engineers use this skill to draft, modify, and troubleshoot FeatureScript for Onshape custom features and reusable fitting patterns.
 
-## Reference(s): <br>
-- [Dust Collection Fittings Lib Spec](references/fittings.md) <br>
-- [Proven FS Patterns and Pitfalls](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with FeatureScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code is intended for user review and manual paste into the Onshape FeatureScript editor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated FeatureScript may create invalid or inefficient CAD geometry if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated FeatureScript and validate geometry behavior in Onshape before relying on it.
+
+Risk: The skill references AllertaStencil-Regular.ttf for label workflows, but the font is not included in the artifact.
+
+Mitigation: Provide the referenced font or adjust label generation before depending on stencil label output.
+
+## Reference(s):
+
+- [Dust Collection Fittings Lib Spec](references/fittings.md)
+- [Proven FS Patterns & Pitfalls](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with FeatureScript code blocks and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code is intended for review before pasting into the Onshape FeatureScript editor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

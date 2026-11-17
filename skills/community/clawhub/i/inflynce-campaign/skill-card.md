@@ -1,44 +1,59 @@
-## Description: <br>
-Create and launch Inflynce Boost campaigns to promote HTTPS links by paying USDC rewards to users on Base based on social influence scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and launch Inflynce Boost campaigns to promote any HTTPS link by paying USDC rewards to real users on Base based on social influence scores.
 
-## Publisher: <br>
-[inflynceprotocol](https://clawhub.ai/user/inflynceprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inflynceprotocol](https://clawhub.ai/user/inflynceprotocol)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to create paid Inflynce Boost campaigns for tweets, websites, Farcaster casts, and other HTTPS links. It can also guide setup for campaign fees, USDC budget approvals, and Base transaction prerequisites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help create paid public marketing campaigns and broadcast Base transactions. <br>
-Mitigation: Install only if this behavior is intended, review campaign details before execution, and prefer the web wallet flow when possible. <br>
-Risk: Programmatic fee payment and top-up flows require a wallet private key and can move or approve real USDC. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid passing private keys on the command line, keep USDC approvals small, and revoke unused allowances after use. <br>
-Risk: Incorrect recipient, token, or spender addresses could cause loss of funds or unintended approvals. <br>
-Mitigation: Verify the Inflynce fee recipient, USDC contract, and boosts contract addresses against the Inflynce site or documentation before signing transactions. <br>
+## Use Case:
 
+External marketers, creators, and developers use this skill to create Inflynce Boost campaigns for tweets, websites, Farcaster casts, and other HTTPS links. The skill supports campaign creation, payment proof submission, and optional USDC fee or top-up transactions on Base.
 
-## Reference(s): <br>
-- [Inflynce Campaign on ClawHub](https://clawhub.ai/inflynceprotocol/inflynce-campaign) <br>
-- [Inflynce Boost](https://boost.inflynce.com) <br>
-- [Inflynce GraphQL API endpoint](https://boost.inflynce.com/api/graphql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference transaction hashes, campaign IDs, wallet addresses, Base network settings, and USDC amounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json, clawhub.json) <br>
+Risk: Helper scripts can broadcast real Base mainnet USDC transfer or approval transactions when supplied with a private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Inflynce web UI or an external wallet for payments and top-ups; if programmatic signing is required, use a dedicated low-balance wallet.
+
+Risk: Passing a wallet private key through command-line flags can expose the key through shell history or process inspection.
+
+Mitigation: Avoid --private-key for real wallets and use environment handling or a wallet workflow that does not disclose the key to the agent.
+
+Risk: The dependency lockfile includes a flagged transitive ws version according to the authoritative security evidence.
+
+Mitigation: Review dependency updates before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/inflynceprotocol/skills/inflynce-campaign)
+- [Inflynce Boost](https://boost.inflynce.com)
+- [Inflynce GraphQL API Endpoint](https://boost.inflynce.com/api/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Campaign creation returns a boost id, status, and creator wallet when the Inflynce API accepts the request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

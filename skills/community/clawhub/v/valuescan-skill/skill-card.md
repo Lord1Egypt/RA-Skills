@@ -1,52 +1,62 @@
-## Description: <br>
-ValueScan data-query skill for cryptocurrency market analysis, including token search, K-line data, major fund-flow analysis, and on-chain data queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ValueScan Skill helps agents query cryptocurrency market data, including token search, candlesticks, major fund-flow analysis, on-chain data, sentiment, and market indicators.
 
-## Publisher: <br>
-[valuescan-io](https://clawhub.ai/user/valuescan-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[valuescan-io](https://clawhub.ai/user/valuescan-io)
 
-## Use Case: <br>
-External analysts, traders, and agent developers use this skill to query ValueScan for cryptocurrency token discovery, market data, fund-flow signals, on-chain address trends, and support or resistance indicators. The outputs are decision-support data and should not be treated as guaranteed investment outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires ValueScan API credentials for signed requests. <br>
-Mitigation: Use scoped credentials where possible, store them only in the expected credential location, and rotate them if exposure is suspected. <br>
-Risk: Market queries, token identifiers, and wallet addresses requested for analysis may be sent to ValueScan. <br>
-Mitigation: Clarify the user's intent before sending sensitive wallet-address analysis inputs and avoid submitting data that is not needed for the requested query. <br>
-Risk: Some authenticated ValueScan calls consume credits. <br>
-Mitigation: Resolve ambiguous or broad market questions before invoking paid endpoints, and explain when a query may spend credits. <br>
-Risk: The older AI market-analysis subscription endpoint is documented as deprecated with service ending on 2026-06-01. <br>
-Mitigation: Prefer the documented replacement endpoint, POST /ai/getMarketAnalysisList, for market-analysis history requests. <br>
+## Use Case:
 
+External developers and agents use this skill to access ValueScan cryptocurrency data for market monitoring, token analysis, fund-flow review, on-chain activity checks, and API-backed research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/valuescan-io/valuescan-skill) <br>
-- [ValueScan homepage](https://www.valuescan.ai) <br>
-- [ValueScan API documentation](https://claw.valuescan.io) <br>
-- [ValueScan API SDK README](script/sdk/README.md) <br>
-- [Common API enums](references/enums.json) <br>
-- [Token list API reference](references/base/token-list.json) <br>
-- [Market analysis list API reference](references/ai/market-analysis-list.json) <br>
-- [Realtime fund API reference](references/fund/realtime-fund.json) <br>
-- [Large trade API reference](references/chain/large-trade.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API data and JavaScript request-signing examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ValueScan API calls, signed request headers, token identifiers, wallet-address analysis inputs, and credit-consuming authenticated queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The included SDK can attach signed API credentials to a non-ValueScan URL if a caller passes an absolute path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Harden SDK usage so signed headers are only sent to https://api.valuescan.io/api/open/v1 paths.
+
+Risk: Broad market-analysis prompts may trigger paid ValueScan API requests.
+
+Mitigation: Confirm intended endpoints, account credit impact, and user authorization before making broad or repeated calls.
+
+Risk: Outputs are financial data signals and may be mistaken for guaranteed trading advice.
+
+Mitigation: Treat results as informational signals and require independent review before investment or trading decisions.
+
+## Reference(s):
+
+- [ValueScan Homepage](https://www.valuescan.ai)
+- [ValueScan API Documentation](https://claw.valuescan.io)
+- [ValueScan Developer Portal](https://www.valuescan.ai/dev-portal/home/)
+- [ValueScan Skill on ClawHub](https://clawhub.ai/valuescan-io/skills/valuescan-skill)
+- [API Reference Files](references/)
+- [Signing SDK README](script/sdk/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples, JSON response interpretation, and optional JavaScript signing code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated ValueScan API calls that consume account credits.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

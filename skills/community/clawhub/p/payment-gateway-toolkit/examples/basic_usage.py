@@ -48,7 +48,7 @@ def example_alipay_payment():
     # 支付宝配置
     alipay_config = {
         "app_id": "2024XXXXXXXXXXXX",
-        "private_key": "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----",
+        "private_key": "REDACTED-SECRET",
         "alipay_public_key": "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----",
         "notify_url": "https://your-domain.com/alipay/notify",
         "debug": True  # 沙箱模式

@@ -1,40 +1,53 @@
-## Description: <br>
-Get report from Sure personal financial board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get reports from a Sure personal financial board.
 
-## Publisher: <br>
-[bt0r](https://clawhub.ai/user/bt0r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bt0r](https://clawhub.ai/user/bt0r)
 
-## Use Case: <br>
-External users and developers use this skill to configure a Sure API key and base URL, then retrieve account amounts from a Sure personal financial board. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a configured Sure API key to read account amounts, which are sensitive financial data. <br>
-Mitigation: Use a least-privilege or read-only API key if available, keep the key in environment variables, and treat returned account amounts as private information. <br>
-Risk: A misconfigured SURE_BASE_URL could send the API key or request to the wrong Sure instance. <br>
-Mitigation: Verify SURE_BASE_URL before running the command and install the skill only for Sure instances you trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sure homepage](https://sure.am) <br>
-- [ClawHub skill page](https://clawhub.ai/bt0r/sure) <br>
+## Use Case:
 
+External users and developers use this skill to configure Sure API access and retrieve personal financial account amounts through a user-directed API request.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus SURE_API_KEY and SURE_BASE_URL; retrieved account amounts may contain private financial information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can let an agent query Sure financial account data.
+
+Mitigation: Install it only when that access is intended, and review retrieved account information before sharing or storing it elsewhere.
+
+Risk: A Sure API key or untrusted base URL could expose account data.
+
+Mitigation: Keep SURE_API_KEY private, use a trusted SURE_BASE_URL, and prefer a limited or revocable API key if Sure supports one.
+
+## Reference(s):
+
+- [Sure homepage](https://sure.am)
+- [ClawHub skill page](https://clawhub.ai/bt0r/skills/sure)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl with SURE_API_KEY and SURE_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

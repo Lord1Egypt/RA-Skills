@@ -1,46 +1,55 @@
-## Description: <br>
-End-of-session knowledge cleanup reconciles project documentation and agent memory against the codebase so knowledge stays current, concise, and useful. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconciles project documentation and persistent agent memory against the code at the end of a development session or milestone.
 
-## Publisher: <br>
-[vincentjiang06](https://clawhub.ai/user/vincentjiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Developers and agent users use this skill at the end of a coding session or milestone to update README, docs, CLAUDE.md/AGENTS.md, and agent memory from the current code state. It is intended for documentation and knowledge-base reconciliation, not general code cleanup or unrelated tidying tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause broad documentation, instruction-file, or memory changes, including deletion or persistent state updates. <br>
-Mitigation: Use it on a clean branch, review the proposed file list before changes, and require confirmation before deletion or global memory/config updates. <br>
-Risk: Incorrect reconciliation can leave project guidance misleading or out of date. <br>
-Mitigation: Compare proposed changes against the codebase, run the included audit where applicable, and review generated documentation before relying on it. <br>
-Risk: Broad rollback commands can discard unrelated work while recovering from a bad cleanup run. <br>
-Mitigation: Back up or stash work before cleanup and avoid broad rollback commands unless the intended changes are isolated and reviewed. <br>
+## Use Case:
 
+Developers use this skill after coding milestones to bring README, project guidance, documentation, and agent memory into alignment with verified changes. It audits for stale or oversized knowledge, edits supported facts, and presents sensitive changes for approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentjiang06/skills/neat) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [agent-paths.md](artifact/references/agent-paths.md) <br>
-- [sync-matrix.md](artifact/references/sync-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with proposed file edits and shell commands when verification is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify project documentation, agent instruction files, and memory files when the user approves the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and CHANGELOG.md) <br>
+Risk: Persistent documentation or memory edits could preserve incorrect or outdated facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check edits against the code and verification anchors, and review the change summary before relying on updated guidance.
+
+Risk: Memory deletions, batch rewrites, or new agent rules could remove context or change future agent behavior.
+
+Mitigation: Review pending proposals and approve only the intended changes; use a version-pinned installation when possible.
+
+## Reference(s):
+
+- [Neat on ClawHub](https://clawhub.ai/vincentjiang06/skills/neat)
+- [Change-to-documentation sync matrix](artifact/references/sync-matrix.md)
+- [Agent memory and configuration paths](artifact/references/agent-paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Documentation and memory edits]
+
+**Output Format:** [Edited project knowledge files and a Markdown change summary with pending proposals and audit results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposed memory deletions, batch rewrites, and agent-rule changes require user confirmation.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release metadata, skill frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Expert web fetching and crawling using Scrapling for static pages, JavaScript-rendered pages, anti-bot sites, bulk URL fetching, and site crawling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert web fetching and crawling using Scrapling for web retrieval tasks, JS-rendered pages, anti-bot sites, bulk URL fetching, and site crawling with static GET, browser automation, stealth mode, and checkpoint/resume support.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve, extract, and crawl web content with static, browser-rendered, or stealth fetching modes when ordinary retrieval is insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make direct network requests and crawl sites from the user's machine. <br>
-Mitigation: Use it only for URLs and domains the user is allowed to access. <br>
-Risk: Stealth and Cloudflare-bypass modes may be inappropriate for some sites or policies. <br>
-Mitigation: Use stealth or challenge-solving modes only when explicitly appropriate for the target domain and task. <br>
-Risk: Fetched content can be written to user-selected output paths and may contain sensitive data. <br>
-Mitigation: Choose output paths carefully, avoid overwriting important files, and remove retained fetched content when it is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch individual pages, extract text or HTML with selectors, and crawl URL lists or same-domain sites when normal web retrieval is insufficient.
 
-## Reference(s): <br>
-- [Web Retrieval Skill Page](https://clawhub.ai/seanford/web-retrieval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, raw HTML, or JSON depending on command options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write fetched pages or crawl results to user-selected files and directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can fetch and crawl URLs through the host network, including internal, localhost, private-network, cloud metadata, or token-bearing URLs if directed there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict target URLs to intended public destinations and avoid sensitive network locations unless that access is explicitly authorized.
+
+Risk: Fetched or crawled remote content can be written to local output paths.
+
+Mitigation: Direct output only to approved temporary or workspace paths and treat retrieved content as untrusted until reviewed.
+
+Risk: Stealth and challenge-solving modes may retrieve sites that actively discourage automated access.
+
+Mitigation: Use stealth features only where automated retrieval is permitted and consistent with the target site's terms and policy requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanford/skills/web-retrieval)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, JSON, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown, plain text, raw HTML, JSON crawl results, shell commands, and Python usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch output can be returned on stdout or written to a local file; crawl output can be written as per-page Markdown files or a single JSON array.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

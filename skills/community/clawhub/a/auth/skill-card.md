@@ -1,40 +1,58 @@
-## Description: <br>
-Build secure authentication with sessions, JWT, OAuth, passwordless, MFA, and SSO for web and mobile apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build secure authentication with sessions, JWT, OAuth, passwordless, MFA, and SSO for web and mobile apps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers use this skill as an authentication reference for choosing and implementing login flows, token strategies, password handling, OAuth, MFA, SSO, and framework middleware. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The OAuth account-linking example could be unsafe if copied into production without verifying trusted email claims and token issuer details. <br>
-Mitigation: Require trusted verified-email claims and issuer validation, or require users to log in to the existing account before linking a provider. <br>
-Risk: Authentication snippets are reference templates and may omit application-specific security controls. <br>
-Mitigation: Treat snippets as starting points, review them for the target stack, and add project-specific controls such as secret management, rate limiting, logging, and token lifetime policies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/auth) <br>
-- [Auth Skill Homepage](https://clawic.com/skills/auth) <br>
+## Use Case:
 
+Developers and engineers use this reference skill to choose and adapt authentication patterns for login flows, token strategies, password security, OAuth and OIDC integration, MFA, SSO, and framework middleware.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with explanatory text and illustrative code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; example snippets are templates for developer adaptation and are not executed by the agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copying the OAuth, OIDC, middleware, or session examples directly into production could leave token verification, session validation, or account-linking checks incomplete.
+
+Mitigation: Treat examples as checklists and replace them with implementation patterns that verify tokens fully, validate sessions cryptographically or through a trusted server-side store, and require authenticated confirmation before linking accounts.
+
+Risk: The skill discusses high-impact authentication controls, so incorrect adaptation could put user accounts at risk.
+
+Mitigation: Use the guidance as design support only, review changes against current provider and framework documentation, and security-review authentication code before deployment.
+
+## Reference(s):
+
+- [ClawHub Auth skill page](https://clawhub.ai/ivangdavila/skills/auth)
+- [Auth skill homepage](https://clawic.com/skills/auth)
+- [Authentication Strategies](artifact/strategies.md)
+- [Password Handling](artifact/passwords.md)
+- [Multi-Factor Authentication](artifact/mfa.md)
+- [OAuth and Social Login](artifact/oauth.md)
+- [Framework Middleware](artifact/middleware.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with reference code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; examples are not executed by the agent.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

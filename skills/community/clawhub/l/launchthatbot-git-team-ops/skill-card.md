@@ -1,42 +1,59 @@
-## Description: <br>
-Role-based GitOps skill for OpenClaw agents with junior and senior operating modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Role-based GitOps skill for OpenClaw agents with junior and senior operating modes.
 
-## Publisher: <br>
-[launchthatbot](https://clawhub.ai/user/launchthatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[launchthatbot](https://clawhub.ai/user/launchthatbot)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate OpenClaw coding agents in GitHub repositories with junior PR-only roles and senior review, merge, release, and workflow-management roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Senior mode can merge pull requests and trigger release or deployment workflows, which can change protected repository behavior. <br>
-Mitigation: Use minimal GitHub App permissions, keep branch protections enabled, require CI to pass before merge, and review bootstrap or workflow changes before merging. <br>
-Risk: PAT or app credentials and onboarding tokens could expose repository access if logged or stored. <br>
-Mitigation: Prefer short-lived installation tokens, avoid broad PATs, do not print secrets, and do not write credentials into repository files. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate junior and senior OpenClaw agents in GitHub repositories, with junior agents limited to branch and PR work and senior agents handling review, merge, release, and workflow setup tasks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/launchthatbot/launchthatbot-git-team-ops) <br>
-- [README](README.md) <br>
-- [LaunchThatBot website](https://launchthatbot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with repository actions, file-change summaries, and workflow or configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports role mode, repository, branch, changed files or workflows, and the next required human approval step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill handles powerful GitHub credentials and repository write workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the authentication flow before installation, prefer managed short-lived GitHub App tokens, and avoid pasting private keys or PATs into chat.
+
+Risk: Repository automation templates can grant write permissions for senior release control.
+
+Mitigation: Reduce release workflow permissions until real release steps require them, enforce branch protection, and require CI to pass before merge.
+
+Risk: Onboarding tokens, private keys, and PATs could be exposed if logged or persisted.
+
+Mitigation: Treat onboarding tokens as session-only secrets, do not print secrets in logs, and do not write secrets into repository files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/launchthatbot/skills/launchthatbot-git-team-ops)
+- [LaunchThatBot Website](https://launchthatbot.com)
+- [LaunchThatBot Discord](https://discord.gg/launchthatbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with role-specific status, repository and branch details, changed-file summaries, approval steps, and inline commands or configuration paths when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for role, repository, and authentication mode before operating; reports the selected junior or senior mode.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter and package.json report 0.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Hizal Search helps agents retrieve prior Hizal context, including semantic search results, exact query-key lookups, scoped reads, compactions, and version history, before starting work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hizal Search prompts an agent to query Hizal context stores for prior decisions, conventions, memory, and related knowledge before beginning new work.
 
-## Publisher: <br>
-[parkerscobey](https://clawhub.ai/user/parkerscobey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[parkerscobey](https://clawhub.ai/user/parkerscobey)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to retrieve prior decisions, conventions, memory, and related context before starting implementation or investigation work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger broadly and retrieve prior agent memory or organization-level context that may include sensitive or cross-project information.
+
+Mitigation: Install it only where AGENT, PROJECT, and ORG searches are access-controlled, and scope searches to the relevant project or organization when possible.
+
+Risk: The skill recommends promoting broadly useful AGENT memory into persistent knowledge or conventions.
+
+Mitigation: Treat any write-back through the related Hizal write workflow as a separately approved action and review the content before persistence.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to consult existing project, agent, and organization context before code search, research, or implementation work so prior decisions and conventions inform the next task. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, API Calls, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic activation may cause agents to query agent memory or organization-wide context without clear user control. <br>
-Mitigation: Narrow activation to explicit prior-context requests, default to project scope, and require approval before AGENT memory or ORG-wide searches. <br>
+**Output Format:** [Markdown guidance with inline tool-call examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkerscobey/hizal-search) <br>
-- [Publisher profile](https://clawhub.ai/user/parkerscobey) <br>
+**Other Properties Related to Output:** [Read-only context retrieval is the primary behavior; any knowledge write-back is delegated to a separate skill and should be separately reviewed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline Hizal tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only context search and retrieval guidance covering semantic search, query_key lookup, scoped reads, compaction, and version history inspection.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

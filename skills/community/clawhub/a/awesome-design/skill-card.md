@@ -1,50 +1,62 @@
-## Description: <br>
-Helps agents recommend design skills, UI tools, and design workflows for tasks such as logos, UI components, animations, presentations, icons, and design systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents choose design-related skills for UI/UX, logos, icons, animation, presentations, data visualization, image generation, theming, and design systems.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers, designers, and agent users use this skill to choose an appropriate design-related skill for UI, UX, branding, icon, animation, visualization, presentation, and image-generation tasks. It provides curated options, installation commands, and selection guidance by task and framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends cloning third-party repositories into a local agent skill environment. <br>
-Mitigation: Review each linked repository before installing it, prefer a pinned commit or trusted release, and install only skills explicitly needed for the local workflow. <br>
-Risk: Curated design-skill recommendations can become stale as external repositories change. <br>
-Mitigation: Check the linked repository activity and current documentation before relying on a recommendation for production work. <br>
+## Use Case:
 
+Developers and agents use this skill to select design-focused companion skills and installation sources for UI, visual design, icons, logos, animations, presentations, visualization, theming, and image-generation tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/futurizerush/awesome-design) <br>
-- [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) <br>
-- [Taste](https://github.com/Leonxlnx/taste-skill) <br>
-- [Impeccable](https://github.com/pbakaus/impeccable) <br>
-- [Design & Refine](https://github.com/0xdesign/design-plugin) <br>
-- [Interface Design](https://github.com/Dammyjay93/interface-design) <br>
-- [Shadcnblocks](https://github.com/masonjames/Shadcnblocks-Skill) <br>
-- [Better Icons](https://github.com/better-auth/better-icons) <br>
-- [SVG Logo Designer and Related Skills](https://github.com/rknall/claude-skills) <br>
-- [Anthropic Skills](https://github.com/anthropics/skills) <br>
-- [Z-Image Skill](https://github.com/FuturizeRush/zimage-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with tables and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curated recommendations by design task and framework, plus a quick security-scan command for reviewing additional skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill recommends mutable third-party repositories and packages for installation into trusted agent skill locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each linked repository and package before installation, prefer pinned commits or releases, and clone into a temporary review directory before copying files into trusted agent skill locations.
+
+Risk: Installing multiple design skills can change future agent behavior and may introduce conflicting design guidance.
+
+Mitigation: Install only the needed skill for the task, review behavior after installation, and remove skills that are not required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/futurizerush/skills/awesome-design)
+- [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+- [Taste](https://github.com/Leonxlnx/taste-skill)
+- [Impeccable](https://github.com/pbakaus/impeccable)
+- [Design & Refine](https://github.com/0xdesign/design-plugin)
+- [Interface Design](https://github.com/Dammyjay93/interface-design)
+- [Shadcnblocks](https://github.com/masonjames/Shadcnblocks-Skill)
+- [Better Icons](https://github.com/better-auth/better-icons)
+- [Anthropic Skills](https://github.com/anthropics/skills)
+- [Z-Image Skill](https://github.com/FuturizeRush/zimage-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with installation command snippets and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends third-party skill repositories and installation commands; output depends on linked projects remaining available.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

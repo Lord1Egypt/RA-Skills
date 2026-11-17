@@ -1,46 +1,61 @@
-## Description: <br>
-Control Unity Editor via OpenClaw Unity Plugin for Unity game development tasks including scene management, GameObject and component manipulation, debugging, input simulation, and Play mode control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Unity Editor via OpenClaw Unity Plugin for Unity game development tasks including scene management, GameObject and Component manipulation, debugging, input simulation, and Play mode control.
 
-## Publisher: <br>
-[mlichao456](https://clawhub.ai/user/mlichao456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlichao456](https://clawhub.ai/user/mlichao456)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent workflow to Unity Editor for inspecting scenes, changing GameObjects, running editor actions, managing assets and packages, testing gameplay, and collecting debug output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Unity Editor control can modify scenes, assets, packages, scripts, saved project state, and runtime input. <br>
-Mitigation: Use only on backed-up or version-controlled Unity projects and require explicit human review before script.execute, package.add from Git, deletion, save, batch execution, or input simulation. <br>
-Risk: Exposing the Unity gateway or bridge beyond trusted local access could allow unintended editor control. <br>
-Mitigation: Keep the gateway local or otherwise network-restricted, and install the extension only when Unity Editor control is intentionally required. <br>
-Risk: Changing automated invocation settings can reduce oversight of project-changing tool calls. <br>
-Mitigation: Keep automated tool invocation disabled unless the operator deliberately accepts autonomous Unity tool use. <br>
+## Use Case:
 
+Developers and engineers use this skill to control and inspect Unity Editor projects through OpenClaw workflows. It supports scene operations, object and component changes, asset and package management, testing, screenshots, and local or gateway-based Unity sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mlichao456/unity-plugin) <br>
-- [Skill Homepage](https://github.com/TomLeeLive/openclaw-unity-skill) <br>
-- [Unity Tool Reference](references/tools.md) <br>
-- [OpenClaw Unity Plugin](https://github.com/TomLeeLive/openclaw-unity-plugin) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and Unity tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Unity tool names and JSON-like parameters for unity_execute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.6.1) <br>
+Risk: The skill can make broad project-changing updates in Unity projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on test or version-controlled projects and review proposed Unity actions before execution.
+
+Risk: The supplied security evidence reports an unauthenticated bridge with weak safeguards.
+
+Mitigation: Keep the gateway reachable only from trusted local or private contexts and review the bridge authentication gap before using valuable projects.
+
+Risk: Package installation and reflection-based script execution can introduce or run unintended code.
+
+Mitigation: Avoid arbitrary Git package installs and reflection script execution unless explicitly intended and reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mlichao456/skills/unity-plugin)
+- [Skill Homepage](https://github.com/TomLeeLive/openclaw-unity-skill)
+- [Unity Plugin Repository](https://github.com/TomLeeLive/openclaw-unity-plugin)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Unity Plugin Tools Reference](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command examples and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May queue Unity Editor commands and return JSON-formatted tool results through OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter states 1.6.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

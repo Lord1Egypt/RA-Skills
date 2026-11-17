@@ -1,45 +1,58 @@
-## Description: <br>
-AI Development Quality Guardian for contract-driven, design-first quality guardrails in AI-assisted full-stack development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aegis Quality Guardian provides contract-driven, design-first guardrails for AI-assisted full-stack development across design, contract, implementation, verification, and project management workflows.
 
-## Publisher: <br>
-[peterhiroshi](https://clawhub.ai/user/peterhiroshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterhiroshi](https://clawhub.ai/user/peterhiroshi)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to add design briefs, contract-first API workflows, verification gates, and multi-agent coordination practices to software projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence project workflow by adding guardrail files, pre-commit hooks, CI configuration, and CLAUDE.md guidance. <br>
-Mitigation: Review generated or modified files before accepting them into a repository. <br>
-Risk: Setup and type-generation scripts may download dependencies through package managers. <br>
-Mitigation: Review script contents and dependency downloads before running setup or type-generation commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure AI-assisted full-stack work around design briefs, API contracts, implementation constraints, verification gates, and multi-agent coordination.
 
-## Reference(s): <br>
-- [Contract-First Development Guide](references/contract-first-guide.md) <br>
-- [Contract Guide](references/contract-guide.md) <br>
-- [Dispatch Protocol](references/dispatch-protocol.md) <br>
-- [Multi-Agent Protocol](references/multi-agent-protocol.md) <br>
-- [Testing Strategy](references/testing-strategy.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/peterhiroshi/aegis-quality-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, templates, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project guardrail files, contract templates, pre-commit hooks, and CI configuration when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The setup workflows can persistently change repositories by writing guardrail scripts, Git hooks, and generated CI configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned file changes before applying setup workflows, use dry-run or manual review where available, and require explicit approval before writing hooks or CI in sensitive repositories.
+
+Risk: Dependency and code-generation patterns were flagged as unsafe by the server security summary.
+
+Mitigation: Pin dependency versions, inspect generated code and CI before execution, and defer sensitive-repository use until the reported code-generation injection issues are fixed.
+
+## Reference(s):
+
+- [Aegis Quality Guardian on ClawHub](https://clawhub.ai/peterhiroshi/skills/aegis-quality-guardian)
+- [Contract-First Development Guide](references/contract-first-guide.md)
+- [Contract-First Development Guide](references/contract-guide.md)
+- [Dispatch Protocol](references/dispatch-protocol.md)
+- [Multi-Agent Protocol](references/multi-agent-protocol.md)
+- [Testing Strategy](references/testing-strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands, project templates, YAML configuration, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or modify project contract files, guardrail scripts, Git hooks, CI configuration, and design documentation when the user chooses setup workflows.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

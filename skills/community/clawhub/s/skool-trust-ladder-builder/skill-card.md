@@ -1,42 +1,53 @@
-## Description: <br>
-Build a free-course trust ladder for Skool communities. Use when the user wants to earn trust in a free or early community through proof, public templates, proof reviews, and delayed monetization thresholds without public paid implementation offers or guaranteed growth claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a free-course trust ladder for Skool communities using proof, public templates, proof reviews, and delayed monetization thresholds without paid-offer pressure or guaranteed growth claims.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-External community creators and operators use this skill to design a public-safe free-course trust ladder for a Skool community, including a positioning sentence, validation metrics, a 7-day CTA plan, and delayed monetization gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated community plans could imply guaranteed income, growth, conversion, rank, time saved, health, financial, legal, or education outcomes. <br>
-Mitigation: Review generated copy before use and remove guarantees, pressure claims, and public paid implementation offers. <br>
-Risk: Using private Skool member data, DMs, paid lessons, hidden pages, credentials, payment data, exports, or unconsented testimonials would create privacy and account-safety concerns. <br>
-Mitigation: Use only public or creator-owned examples, aggregate metrics, visible posts, synthetic examples, or consented proof. <br>
-Risk: Future monetization could pressure community members before trust is established. <br>
-Mitigation: Treat monetization only as an interest list or validation gate after explicit member demand. <br>
+## Use Case:
 
+External community builders and creators use this skill to plan a free Skool community trust ladder with public templates, proof reviews, validation metrics, and delayed monetization gates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zack-dev-cm/skool-trust-ladder-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables and short planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a positioning sentence, trust ladder table, 7-day trust CTA plan, first free-course module copy, and trust thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A user may provide private member data, credentials, DMs, paid-course exports, or unconsented testimonials while planning a trust ladder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate metrics, visible posts, synthetic examples, or creator-owned proof, and do not request or process private community data or credentials.
+
+Risk: A generated plan may imply guaranteed growth, income, conversion, or other outcomes.
+
+Mitigation: Keep outputs framed as planning guidance with validation metrics, and avoid promises about income, growth, conversion, rank, time saved, health, financial, legal, or education outcomes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/skills/skool-trust-ladder-builder)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown with tables and short-form copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a positioning sentence, trust ladder table, 7-day CTA plan, first free-course module copy, and trust thresholds.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

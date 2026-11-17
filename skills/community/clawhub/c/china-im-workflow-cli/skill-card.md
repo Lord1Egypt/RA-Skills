@@ -1,43 +1,60 @@
-## Description: <br>
-Orchestrates cross-platform IM workflows across Feishu CLI, DingTalk Workspace CLI, and WeCom CLI for reporting, task sync, notifications, marketing distribution, and meeting coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates cross-platform enterprise IM workflows across Feishu, DingTalk, and WeCom CLIs for reporting, task synchronization, notifications, marketing distribution, and meeting coordination.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and business operations teams use this skill to guide agents in composing Feishu, DingTalk, and WeCom CLI commands for multi-platform enterprise messaging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to send broadcasts, urgent messages, customer-group messages, calendar invites, task updates, and document writes across enterprise IM platforms. <br>
-Mitigation: Require explicit confirmation of platform, authenticated tenant/account, recipients, audience size, and final message or item content before executing generated commands. <br>
-Risk: Cross-platform workflow commands may create inconsistent state if one platform operation fails after others succeed. <br>
-Mitigation: Preview planned operations, execute in a controlled sequence, and report per-platform success or failure so the user can reconcile partial completion. <br>
+## Use Case:
 
+Developers, operations teams, and business automation teams use this skill to plan and execute Feishu, DingTalk, and WeCom CLI workflows for reports, task sync, broadcasts, marketing distribution, and meeting coordination.
 
-## Reference(s): <br>
-- [China IM Workflow CLI release page](https://clawhub.ai/lm203688/china-im-workflow-cli) <br>
-- [Feishu/Lark CLI](https://github.com/larksuite/cli) <br>
-- [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) <br>
-- [WeCom CLI](https://github.com/WecomTeam/wecom-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed against authenticated account, tenant, recipient, audience size, and message content before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Installing or running third-party CLIs can introduce package provenance and authentication risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only the required CLIs, verify package provenance, prefer pinned or project-local installs, and authenticate with minimal platform scopes.
+
+Risk: Generated commands may post, create, update, or delete enterprise content on behalf of the authenticated user.
+
+Mitigation: Review commands before execution, use preview or dry-run modes when available, and require explicit confirmation for destructive actions.
+
+Risk: Cross-platform broadcasts can amplify mistakes or send sensitive content to the wrong audience.
+
+Mitigation: Check recipients and message content before sending, limit broadcast rate, and report any platform failure instead of silently retrying.
+
+## Reference(s):
+
+- [Lark CLI](https://github.com/larksuite/cli)
+- [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli)
+- [WeCom CLI](https://github.com/WecomTeam/wecom-cli)
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/china-im-workflow-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific command sequences and pre-execution checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

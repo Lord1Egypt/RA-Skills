@@ -1,39 +1,53 @@
-## Description: <br>
-公众号文章自动化写作流程。支持资料搜索、文章撰写、爆款标题生成、排版优化。当用户提到写公众号、微信文章、自媒体写作、爆款文章、内容创作时使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公众号文章自动化写作流程，支持资料搜索、文章撰写、爆款标题生成和排版优化。
 
-## Publisher: <br>
-[hiletian](https://clawhub.ai/user/hiletian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiletian](https://clawhub.ai/user/hiletian)
 
-## Use Case: <br>
-Content creators and teams use this skill to draft WeChat public account articles from a topic, research current materials, generate headline options, and propose readable formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to read the user's local CLAUDE.md file to obtain writing style without an explicit consent step or scope limit. <br>
-Mitigation: Ask for user consent before reading local style files, limit activation to explicit WeChat public account article tasks, or have the user provide style preferences directly. <br>
+## Use Case:
 
+内容创作者和社交媒体运营人员用它来产生微信公众号文章草稿、标题备选和排版建议。该技能将资料搜索、写作风格对齐、文章撰写和发布前优化组织成一个流程。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hiletian/hemophilia-wechat-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/hiletian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article draft with headline options and layout recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically targets 1000-1500 Chinese characters and includes five headline suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill asks the agent to read local CLAUDE.md content, which may contain private project guidance, operational instructions, or sensitive preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLAUDE.md before use and instruct the agent to use it only for writing style, ignoring non-style instructions and sensitive content.
+
+Risk: The workflow relies on current web research and headline optimization, so article drafts may include outdated, unsupported, or overly promotional claims.
+
+Mitigation: Review sources, facts, and tone before publication, especially for medical or other high-stakes topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hiletian/skills/hemophilia-wechat-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article drafts with headline options, research summaries, and layout recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically targets 1000-1500 Chinese characters and WeChat public-account formatting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

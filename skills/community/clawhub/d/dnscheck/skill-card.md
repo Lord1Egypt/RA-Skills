@@ -1,38 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Dnscheck concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dnscheck is a static reference helper that provides plain-text guidance for dnscheck concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat sheets.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve plain-text Dnscheck reference guidance for quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Dnscheck listing](https://clawhub.ai/xueyetianya/dnscheck) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+Developers and engineers use this skill as a quick reference for dnscheck-related concepts, implementation patterns, troubleshooting, performance, security, migration, and command cheat sheets.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output only; security evidence reports no file, credential, network, or system-state access.] <br>
+Global
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may treat generic dnscheck reference text as authoritative dnscheck documentation.
+
+Mitigation: Use the skill as a quick reference and verify operational or production decisions against authoritative dnscheck documentation.
+
+Risk: The server release version, skill frontmatter version, and script version do not match.
+
+Mitigation: Use the server release version for this card and reconcile artifact version strings before a future release.
+
+## Reference(s):
+
+- [Dnscheck ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/dnscheck)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference guidance with Markdown-style headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, network access, or persistent system access according to the release evidence.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata; artifact frontmatter 2.0.4 and script 2.0.3 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

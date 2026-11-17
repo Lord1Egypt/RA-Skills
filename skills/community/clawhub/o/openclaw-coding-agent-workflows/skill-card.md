@@ -1,38 +1,54 @@
-## Description: <br>
-Delegate coding tasks to Codex, Claude Code, Pi, or OpenCode from bash with safe launch modes, background monitoring, and repo-isolated review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Codex, Claude Code, Pi, or OpenCode from bash with safe launch modes, background monitoring, and repo-isolated review workflows.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate repository implementation, review, issue triage, and repeatable verification loops to coding agents while keeping work scoped to an appropriate checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes high-autonomy coding-agent modes that reduce normal approval safeguards. <br>
-Mitigation: Install only when intentional, use isolated worktrees or temporary clones, review diffs before merging, avoid sensitive repositories or secrets, and treat full-auto or bypass-permissions modes as elevated. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate repository implementation, review, issue triage, and repeated run/fix/verify loops to a selected coding agent while keeping work scoped and reviewable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danielsinewe/openclaw-coding-agent-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least one supported coding-agent binary: claude, codex, opencode, or pi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Delegated coding agents can run with broad autonomy, including permission-bypassing or fully automated modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use conservative permission settings, disposable containers or VMs for untrusted repositories, remove inherited secrets, and inspect commands and file changes before accepting results.
+
+Risk: Agent-generated edits or review guidance can introduce incorrect behavior or miss repository-specific constraints.
+
+Mitigation: Keep each delegated session scoped to one repository and one objective, then review diffs and run the relevant tests or lint checks before merging.
+
+## Reference(s):
+
+- [OpenClaw Coding Agent Workflows on ClawHub](https://clawhub.ai/danielsinewe/skills/openclaw-coding-agent-workflows)
+- [danielsinewe publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and text prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for agent orchestration, background session monitoring, and repo-isolated review workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

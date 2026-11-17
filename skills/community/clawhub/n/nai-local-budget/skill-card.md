@@ -1,42 +1,59 @@
-## Description: <br>
-Analyze exported bank/credit card CSV files locally to track spending, categorize transactions with LLM reasoning, compare against user-defined budgets, and generate markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze exported bank and credit card CSV files locally to track spending, categorize transactions, compare against budgets, and generate Markdown reports.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Individuals and agents use this skill to analyze local bank or credit card CSV exports, categorize transactions, compare spending against budgets, and generate markdown finance reports. It is suited for privacy-sensitive personal budgeting workflows where raw financial files stay local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive bank CSVs and can write intermediate JSON and markdown reports containing transaction details. <br>
-Mitigation: Keep raw CSVs, generated JSON, and reports in private local folders, and avoid shared or synced vaults unless that storage is intended. <br>
-Risk: Automated transaction categorization can produce incorrect budget conclusions. <br>
-Mitigation: Review suggested categories, especially low-confidence or uncategorized transactions, before relying on the final report. <br>
+## Use Case:
 
+External users and developers use this skill to process personal bank or card CSV exports locally, review transaction categories, and generate budget comparison reports for private finance tracking.
 
-## Reference(s): <br>
-- [Local Budget ClawHub Release](https://clawhub.ai/newageinvestments25-byte/nai-local-budget) <br>
-- [Spending Categories Reference](references/categories.md) <br>
-- [CSV Format Reference](references/csv-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and generated markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSON intermediates and Obsidian-compatible markdown reports from user-provided transaction CSVs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bank and card CSV exports, categorized transactions, and generated reports can contain sensitive personal finance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process files in a private local folder, keep outputs out of synced or shared vaults unless intended, and delete intermediate JSON files when no longer needed.
+
+Risk: Generated Markdown reports may expose sensitive details if opened in a renderer or workspace with remote-loading or sharing behavior.
+
+Mitigation: Review generated Markdown before opening it in renderers that auto-load remote images or publishing it to shared spaces.
+
+Risk: Rule-based category matching and LLM review can misclassify transactions or budget categories.
+
+Mitigation: Review low- and medium-confidence transactions, especially items categorized as Other, before generating or relying on the final report.
+
+## Reference(s):
+
+- [Spending Categories Reference](references/categories.md)
+- [CSV Format Reference](references/csv-formats.md)
+- [Local Budget ClawHub Release](https://clawhub.ai/newageinvestments25-byte/skills/nai-local-budget)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, local JSON files, and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on user-provided CSV exports; generated transaction JSON and reports are written to user-selected paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

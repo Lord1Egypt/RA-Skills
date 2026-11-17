@@ -1,50 +1,67 @@
-## Description: <br>
-Writes and publishes Dev.to articles with AI, using YouMind for topic research, developer-audience adaptation, Markdown front matter, draft preview, and publishing through a connected Dev.to account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes and publishes Dev.to articles by researching with YouMind, adapting for developer audiences, formatting Markdown front matter, validating content, and publishing drafts or public posts through the user's connected Dev.to account.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-Developers, technical writers, and developer advocates use this skill to generate, validate, preview, and publish Dev.to posts from a topic or existing Markdown while keeping publishing draft-first unless the user confirms public release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a YouMind API key and accesses YouMind content and Dev.to publishing APIs. <br>
-Mitigation: Store credentials only in the shared YouMind config, avoid committing config files, and review generated drafts for secrets or private content before publishing. <br>
-Risk: Publishing actions can make content public or change existing Dev.to articles. <br>
-Mitigation: Keep draft mode as the default and require explicit user confirmation before public publishing, publish-by-ID, or unpublish-by-ID operations. <br>
-Risk: Generated technical articles may include inaccurate claims, outdated examples, or unsuitable tags. <br>
-Mitigation: Run the skill's validation and conformance checks, verify code examples and sources, and edit drafts before release. <br>
+## Use Case:
 
+Developers and technical authors use this skill to turn topics or existing Markdown into Dev.to-native articles, validate tags, front matter, and code blocks, and publish or manage drafts through YouMind.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/youmind-devto-article) <br>
-- [YouMind Dev.to OpenAPI Reference](references/api-reference.md) <br>
-- [Pipeline](references/pipeline.md) <br>
-- [Platform DNA](references/platform-dna.md) <br>
-- [Content Generation Playbook](references/content-generation-playbook.md) <br>
-- [Content Adaptation Playbook](references/content-adaptation-playbook.md) <br>
-- [YouMind API keys](https://youmind.com/settings/api-keys?utm_source=youmind-devto-article) <br>
-- [Dev.to dashboard](https://dev.to/dashboard) <br>
-- [YouMind pricing](https://youmind.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown article drafts with Dev.to front matter, command-line guidance, validation reports, and result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are saved locally; publishing uses the user's YouMind API key and Dev.to account connected in YouMind.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill handles publishing credentials and article content that may be sent to YouMind and then Dev.to.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep youmind.base_url set to https://youmind.com/openapi/v1, protect ~/.youmind/config.yaml, and do not use config overrides from untrusted sources.
+
+Risk: The skill can publish public Dev.to posts through a connected account.
+
+Mitigation: Use draft mode first and require explicit approval before setting published output to public.
+
+Risk: The installation flow uses npm install and the security evidence notes unpinned npm packages.
+
+Mitigation: Review dependencies and add or verify a lockfile before treating this release as low-risk.
+
+## Reference(s):
+
+- [YouMind Dev.to OpenAPI Reference](references/api-reference.md)
+- [Dev.to Platform DNA](references/platform-dna.md)
+- [Generation Playbook: Idea to Dev.to-Native Draft](references/content-generation-playbook.md)
+- [Adaptation Playbook: Existing Article to Dev.to-Native](references/content-adaptation-playbook.md)
+- [Dev.to Content Adaptation Guide](references/content-adaptation.md)
+- [Dev.to Article Pipeline](references/pipeline.md)
+- [Publishing Guidelines](shared/PUBLISHING.md)
+- [YouMind Home Directory](shared/YOUMIND_HOME.md)
+- [Dispatch Integration Protocol](shared/DISPATCH_CONTRACT.md)
+- [YouMind API Keys](https://youmind.com/settings/api-keys?utm_source=youmind-devto-article)
+- [YouMind Pricing](https://youmind.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles with YAML front matter, inline shell commands, validation notes, and result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are preferred by default; public publishing requires explicit user intent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

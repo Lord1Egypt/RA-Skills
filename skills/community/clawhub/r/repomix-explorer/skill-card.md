@@ -1,39 +1,53 @@
-## Description: <br>
-Use this skill when the user wants to analyze or explore a codebase, remote repository, or local repository using Repomix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to analyze or explore a codebase using Repomix, including remote repositories, local repositories, repository structure, file and token counts, and code patterns.
 
-## Publisher: <br>
-[kongyo2](https://clawhub.ai/user/kongyo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kongyo2](https://clawhub.ai/user/kongyo2)
 
-## Use Case: <br>
-Developers and engineers use this skill to package a target repository with the Repomix CLI, inspect the generated repository summary, and produce concise structure, metrics, and pattern-finding analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask an agent to run Repomix shell commands against repositories and generate packed code files. <br>
-Mitigation: Review the proposed command before execution and use scoped include or ignore patterns for private projects. <br>
-Risk: Generated Repomix output can contain sensitive source content if broad local folders are scanned. <br>
-Mitigation: Avoid scanning folders that may contain secrets and delete generated output files when they include sensitive code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Repomix documentation](https://github.com/yamadashy/repomix) <br>
+## Use Case:
 
+Developers and engineers use this skill to pack repositories with Repomix and analyze the generated output for structure, metrics, important files, and implementation patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Repomix output files that contain packed repository content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs the agent to run npx repomix@latest, which can download and execute mutable third-party code.
+
+Mitigation: Pin Repomix to a reviewed version and ask the user before first execution or network access.
+
+Risk: Repository packing reads local or remote repository contents and writes generated output files that may be large or sensitive.
+
+Mitigation: Validate repository and path inputs, keep remote outputs in /tmp, and limit cleanup to known generated files.
+
+## Reference(s):
+
+- [Repomix](https://github.com/yamadashy/repomix)
+- [Repomix Explorer on ClawHub](https://clawhub.ai/kongyo2/skills/repomix-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and repository analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Repomix output files such as XML, Markdown, JSON, or plain text for analysis.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

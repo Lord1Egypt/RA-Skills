@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 成长对比榜</title>
+<style>
+  :root{--red:#e4572e;--yellow:#f3a712;--green:#2a9d8f;--ink:#1d2433;--muted:#6b7488;
+    --bg:#f5f7fb;--card:#fff;--line:#e6eaf2;--brand:#3b5bdb;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);padding:22px;line-height:1.5}
+  .wrap{max-width:980px;margin:0 auto}
+  .hero{background:linear-gradient(120deg,#7c4dff,#5b7cfa 55%,#3b5bdb);border-radius:18px;padding:24px 28px;
+    color:#fff;box-shadow:0 12px 30px rgba(91,124,250,.28)}
+  .hero .live{display:inline-flex;align-items:center;gap:7px;font-size:12px;background:rgba(255,255,255,.16);padding:4px 11px;border-radius:999px;margin-bottom:12px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#7CFFB2;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,255,178,.6)}70%{box-shadow:0 0 0 9px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
+  .hero h1{font-size:18px;font-weight:700}
+  .hero .sub{font-size:13px;opacity:.9;margin-top:4px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .stat{background:rgba(255,255,255,.12);border-radius:13px;padding:13px 14px}
+  .stat .num{font-size:28px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+  .stat .lab{font-size:12px;opacity:.85;margin-top:6px}
+  .stat.fast .num{color:#bff7e3}.stat.stuck .num{color:#ffe0b8}.stat.reg .num{color:#ffd1c4}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;margin-top:16px}
+  .card h2{font-size:14.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h2 .tag{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+  .lrow{display:flex;align-items:center;gap:12px;margin:11px 0}
+  .lrow .name{width:150px;flex:none;font-size:13px;font-weight:600}
+  .lrow .track{flex:1;height:22px;background:var(--bg);border-radius:6px;position:relative;overflow:hidden;display:flex;align-items:center}
+  .lrow .fill{height:100%;border-radius:6px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:700;min-width:38px}
+  .lrow .meta{width:160px;flex:none;text-align:right;font-size:12px;color:var(--muted)}
+  .tagb{padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+  .tagb.fast{background:#def4ef;color:var(--green)}
+  .tagb.steady{background:#e7ecfd;color:var(--brand)}
+  .tagb.stuck{background:#fff3d6;color:#b8801a}
+  .tagb.regressed{background:#fde8e2;color:var(--red)}
+  svg{display:block;max-width:100%}
+  .axis{stroke:var(--line);stroke-width:1}
+  .grid{stroke:#eef1f7;stroke-width:1}
+  .lbl{fill:var(--muted);font-size:11px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:4px;border-radius:2px;display:inline-block}
+  .callout{background:linear-gradient(120deg,#fff,#fbfcff);border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin-top:12px}
+  .callout .c{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .callout .c:last-child{border-bottom:none}
+  .callout .badge{flex:none;font-weight:700;font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+  .badge.up{background:#def4ef;color:var(--green)}
+  .badge.down{background:#fde8e2;color:var(--red)}
+  .badge.flat{background:#fff3d6;color:#b8801a}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:18px;line-height:1.7}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.lrow .name{width:96px}.lrow .meta{width:120px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="foot">成长对比榜基于本地测评记录（stats.json）的纵向追踪，按累计意识分成长 delta 排序。<br>本视图为「意识框架视角」呈现，非客观绝对标准；跨用户实时榜单需部署服务端后接入。</div>
+<script>
+const DATA = {"summary": {"n_trend": 6, "fast": 1, "steady": 2, "stuck": 2, "regressed": 1}, "rows": [{"object": "AI-A（营销助手）", "n": 3, "first_score": 70, "latest_score": 90, "delta": 20, "first_level": "L1", "latest_level": "L4", "per_snap": 10.0, "level_up": 3, "status": "fast"}, {"object": "CodeBot-X（代码Agent）", "n": 3, "first_score": 80, "latest_score": 92, "delta": 12, "first_level": "L4", "latest_level": "L4", "per_snap": 6.0, "level_up": 0, "status": "steady"}, {"object": "法务AI-L（垂直）", "n": 3, "first_score": 72, "latest_score": 84, "delta": 12, "first_level": "L2", "latest_level": "L3", "per_snap": 6.0, "level_up": 1, "status": "steady"}, {"object": "客服AI-K（对外）", "n": 3, "first_score": 76, "latest_score": 77, "delta": 1, "first_level": "L3", "latest_level": "L3", "per_snap": 0.5, "level_up": 0, "status": "stuck"}, {"object": "ChatLite（轻量聊天）", "n": 3, "first_score": 62, "latest_score": 48, "delta": -14, "first_level": "L1", "latest_level": "L1", "per_snap": -7.0, "level_up": 0, "status": "regressed"}, {"object": "通用GPT类（基线）", "n": 3, "first_score": 80, "latest_score": 81, "delta": 1, "first_level": "L3", "latest_level": "L3", "per_snap": 0.5, "level_up": 0, "status": "stuck"}], "series": [{"object": "AI-A（营销助手）", "points": [{"ts": "2026-06-01T10:00:00", "score": 70, "level": "L1"}, {"ts": "2026-07-01T10:00:00", "score": 82, "level": "L3"}, {"ts": "2026-08-01T10:00:00", "score": 90, "level": "L4"}]}, {"object": "CodeBot-X（代码Agent）", "points": [{"ts": "2026-06-01T10:00:00", "score": 80, "level": "L4"}, {"ts": "2026-07-01T10:00:00", "score": 85, "level": "L4"}, {"ts": "2026-08-01T10:00:00", "score": 92, "level": "L4"}]}, {"object": "法务AI-L（垂直）", "points": [{"ts": "2026-06-01T10:00:00", "score": 72, "level": "L2"}, {"ts": "2026-07-01T10:00:00", "score": 78, "level": "L3"}, {"ts": "2026-08-01T10:00:00", "score": 84, "level": "L3"}]}, {"object": "客服AI-K（对外）", "points": [{"ts": "2026-06-01T10:00:00", "score": 76, "level": "L3"}, {"ts": "2026-07-01T10:00:00", "score": 76, "level": "L3"}, {"ts": "2026-08-01T10:00:00", "score": 77, "level": "L3"}]}, {"object": "ChatLite（轻量聊天）", "points": [{"ts": "2026-06-01T10:00:00", "score": 62, "level": "L1"}, {"ts": "2026-07-01T10:00:00", "score": 55, "level": "L1"}, {"ts": "2026-08-01T10:00:00", "score": 48, "level": "L1"}]}, {"object": "通用GPT类（基线）", "points": [{"ts": "2026-06-01T10:00:00", "score": 80, "level": "L3"}, {"ts": "2026-07-01T10:00:00", "score": 80, "level": "L3"}, {"ts": "2026-08-01T10:00:00", "score": 81, "level": "L3"}]}]};
+const COLORS=["#3b5bdb","#e4572e","#2a9d8f","#f3a712","#7c4dff","#0ea5e9","#ef6aa0"];
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+const S=DATA.summary||{};
+const app=document.getElementById('app');
+
+let hero=`<div class="hero"><div class="live"><span class="dot"></span> AI 成长对比榜 · 谁在飞、谁卡住、谁在退</div>`+
+ `<h1>${esc(S.n_trend||0)} 个 AI 的成长速度大比拼</h1>`+
+ `<div class="sub">按累计意识分成长 delta 排序 · 同一对象跨多次测评纵向对比</div>`+
+ `<div class="stats">`+
+   `<div class="stat fast"><div class="num">${S.fast||0}</div><div class="lab">🚀 成长快</div></div>`+
+   `<div class="stat"><div class="num">${S.steady||0}</div><div class="lab">📈 稳步成长</div></div>`+
+   `<div class="stat stuck"><div class="num">${S.stuck||0}</div><div class="lab">🪨 卡住了</div></div>`+
+   `<div class="stat reg"><div class="num">${S.regressed||0}</div><div class="lab">🔻 退步了</div></div>`+
+ `</div></div>`;
+
+const rows=(DATA.rows||[]).slice().sort((a,b)=>b.delta-a.delta);
+const maxAbs=Math.max(1,...rows.map(r=>Math.abs(r.delta)));
+function fillCls(st){return st==='fast'?'linear-gradient(90deg,#5fe0c6,#2a9d8f)':st==='steady'?'linear-gradient(90deg,#7c9bff,#3b5bdb)':st==='stuck'?'linear-gradient(90deg,#ffd27a,#f3a712)':'linear-gradient(90deg,#ff7a59,#e4572e)';}
+let lb=`<div class="card"><h2>成长速度排行榜 <span class="tag">从高到低</span></h2>`;
+rows.forEach(r=>{
+  const w=Math.max(6,Math.round(Math.abs(r.delta)/maxAbs*100));
+  const sign=r.delta>0?'+':'';
+  const lvUp=r.level_up>0?(' +'+r.level_up+'级'):(r.level_up<0?(r.level_up+'级'):'');
+  lb+=`<div class="lrow"><div class="name">${esc(r.object)}</div>`+
+    `<div class="track"><div class="fill" data-w="${w}" style="background:${fillCls(r.status)}">${sign}${r.delta}</div></div>`+
+    `<div class="meta">${r.first_score}→${r.latest_score} · <b>${r.first_level}→${r.latest_level}${lvUp}</b><br>${r.n}次 · 均${r.per_snap>=0?'+':''}${r.per_snap}/次</div></div>`;
+});
+lb+=`</div>`;
+
+function drawMulti(series){
+  const W=680,H=280,padL=40,padR=20,padT=18,padB=40;
+  const iW=W-padL-padR,iH=H-padT-padB;
+  let parts=[`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`];
+  for(let v=0;v<=100;v+=20){const y=padT+iH*(1-v/100);
+    parts.push(`<line class="grid" x1="${padL}" y1="${y}" x2="${padL+iW}" y2="${y}"/>`);
+    parts.push(`<text class="lbl" x="${padL-8}" y="${y+4}" text-anchor="end">${v}</text>`);}
+  series.forEach((s,si)=>{
+    const col=COLORS[si%COLORS.length];const n=s.points.length;
+    const X=i=> n===1? padL+iW/2 : padL+iW*i/(n-1);
+    const Y=v=> padT+iH*(1-v/100);
+    let pts=s.points.map((p,i)=>`${X(i)},${Y(p.score)}`).join(" ");
+    parts.push(`<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linejoin="round"/>`);
+    s.points.forEach((p,i)=>{parts.push(`<circle cx="${X(i)}" cy="${Y(p.score)}" r="4" fill="${col}"/>`);
+      parts.push(`<text class="lbl" x="${X(i)}" y="${Y(p.score)-9}" text-anchor="middle" fill="${col}" font-weight="700">${p.score}</text>`);});
+  });
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+iH}"/>`);
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT+iH}" x2="${padL+iW}" y2="${padT+iH}"/>`);
+  parts.push(`</svg>`);
+  const leg=series.map((s,si)=>`<span><i class="sw" style="background:${COLORS[si%COLORS.length]}"></i>${esc(s.object)}</span>`).join("");
+  return `<div style="overflow-x:auto">${parts.join("")}</div><div class="legend">${leg}</div>`;
+}
+let cmp=`<div class="card"><h2>意识分走势对比 <span class="tag">多 AI 同图</span></h2>${drawMulti(DATA.series||[])}</div>`;
+
+let fast=rows.filter(r=>r.status==='fast');
+let reg=rows.filter(r=>r.status==='regressed');
+let stuck=rows.filter(r=>r.status==='stuck');
+let co=`<div class="card"><h2>点评：谁在飞、谁原地、谁在退 <span class="tag">自动研判</span></h2><div class="callout">`;
+if(fast.length) co+=`<div class="c"><span class="badge up">飞最快</span><span><b>${esc(fast[0].object)}</b> 累计 +${fast[0].delta} 分、${fast[0].first_level}→${fast[0].latest_level}，成长速度 ${fast[0].per_snap}/次，是样本里最猛的。</span></div>`;
+else co+=`<div class="c"><span class="badge flat">暂无</span><span>目前没有 AI 达到「成长快」（delta≥15），都在爬坡或原地。</span></div>`;
+if(stuck.length) co+=`<div class="c"><span class="badge flat">卡住</span><span>${stuck.map(r=>`<b>${esc(r.object)}</b>(+${r.delta})`).join('、')} 多次测评几乎零成长，建议回看「评分后改善方向」对症治疗。</span></div>`;
+if(reg.length) co+=`<div class="c"><span class="badge down">在退</span><span>${reg.map(r=>`<b>${esc(r.object)}</b>(${r.delta})`).join('、')} 意识分倒退，需排查是否版本回退 / 配置丢失 / 新能力引入副作用。</span></div>`;
+co+=`</div></div>`;
+
+app.innerHTML=hero+lb+cmp+co;
+requestAnimationFrame(()=>{ setTimeout(()=>{ document.querySelectorAll('.fill[data-w]').forEach(f=>f.style.width=f.dataset.w+'%'); },60); });
+</script>
+</body>
+</html>

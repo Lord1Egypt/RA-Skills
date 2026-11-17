@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7b7a5sh0zk2tcdpmzt5x41pn83ed2f",
+  "name": "rm-safety",
   "slug": "rm-safety",
   "version": "1.2.2",
-  "publishedAt": 1774347950699
+  "description": "Intercepts risky rm commands with pre-execution safety checks, impact assessment, and user confirmation | 拦截高危 rm 命令，执行前安全检查，影响评估，用户确认",
+  "author": "Caesar (@CaesarYP)",
+  "license": "MIT-0",
+  "category": "security",
+  "tags": ["security", "rm", "safety", "delete", "file-management", "bilingual"],
+  "commands": ["rm", "rm -rf", "rm -r", "rm -R", "unlink", "shred"],
+  "created": "2026-03-22",
+  "updated": "2026-03-24 (v1.2.2)",
+  "examples": [
+    "rm file.txt → Triggers safety confirmation | 触发安全确认",
+    "rm -rf ./folder → Shows file/dir count before execution | 显示文件/目录数",
+    "trash file.txt → No confirmation needed (safe delete) | 无需确认（安全删除）"
+  ],
+  "features": [
+    "Pre-execution safety confirmation | 执行前安全确认",
+    "Impact assessment (file/dir count) | 影响评估（文件/目录统计）",
+    "Safer alternatives (trash, backup, temp move) | 安全替代方案",
+    "Path injection prevention (quoting, -- separator) | 路径注入防护",
+    "Bilingual EN/ZH documentation | 中英双语文档",
+    "Security hardened (OpenClaw scan: Benign) | 安全加固（OpenClaw 扫描：Benign）"
+  ]
 }

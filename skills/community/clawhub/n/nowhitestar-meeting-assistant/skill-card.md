@@ -1,42 +1,57 @@
-## Description: <br>
-Native macOS meeting automation for OpenClaw: calendar/window detection, prompt-before-recording, ScreenCaptureKit system audio + microphone recording, local whisper-cli transcription, and agent-generated meeting notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native macOS meeting automation for OpenClaw that detects meetings, prompts before recording, captures system and microphone audio, transcribes locally with whisper-cli, and queues agent-generated meeting notes.
 
-## Publisher: <br>
-[nowhitestar](https://clawhub.ai/user/nowhitestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nowhitestar](https://clawhub.ai/user/nowhitestar)
 
-## Use Case: <br>
-Developers and macOS users use this skill to install and operate a desktop meeting assistant that detects meetings, asks before recording, records microphone and system audio, transcribes locally, and queues meeting-note generation for an OpenClaw agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests microphone, system-audio, Accessibility, and optional calendar access, which can expose sensitive meeting and window context. <br>
-Mitigation: Install only when those permissions are acceptable, grant the minimum permissions needed, and review configuration before enabling calendar integration. <br>
-Risk: Meeting recordings, transcripts, and summaries may contain sensitive content. <br>
-Mitigation: Keep output configured to local file storage unless external sharing is intended, and review any LLM, Notion, Telegram, or Zulip configuration before use. <br>
-Risk: The security evidence reports sensitive recording and window-inspection controls exposed too broadly for a desktop skill. <br>
-Mitigation: Restrict the AudioDaemon socket permissions before use and avoid enabling the public calendar tunnel unless it is required. <br>
+## Use Case:
 
+Employees and individual operators use this skill to automate meeting detection, consent prompts, local recording, transcription, and summary generation on macOS. Developers can also use its scripts and configuration guidance to integrate OpenClaw meeting-note workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nowhitestar/nowhitestar-meeting-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets; generated meeting notes are written as Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcripts, summary request queue entries, and optional summary delivery instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill requests sensitive macOS permissions and installs background services for recording and meeting detection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, especially on shared or work machines, and grant Microphone, Screen and System Audio Recording, and Accessibility permissions only when the intended workflow requires them.
+
+Risk: The recording daemon and calendar webhook increase local control and network attack surface.
+
+Mitigation: Restrict the audio daemon socket, authenticate webhook requests, and expose webhook or tunnel services only when they are needed.
+
+Risk: Installer behavior and OAuth handling can expose users to unwanted command execution or retained secrets.
+
+Mitigation: Avoid curl-to-bash installation, remove eval-based setup behavior before deployment, and keep OAuth client secrets, refresh tokens, API keys, and personal calendar IDs out of the skill package.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nowhitestar/skills/nowhitestar-meeting-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, transcript text, and summary Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local recordings and generated meeting notes after the user grants the required macOS permissions and configures local services.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

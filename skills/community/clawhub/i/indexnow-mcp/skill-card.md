@@ -1,40 +1,53 @@
-## Description: <br>
-Submit URLs for instant indexing via IndexNow (Bing, Yandex, Naver, Seznam) and Google Indexing API. Generate API keys, submit sitemaps, and check indexing status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit URLs for instant indexing via IndexNow (Bing, Yandex, Naver, Seznam) and Google Indexing API. Generate API keys, submit sitemaps, and check indexing status.
 
-## Publisher: <br>
-[sharozdawa](https://clawhub.ai/user/sharozdawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharozdawa](https://clawhub.ai/user/sharozdawa)
 
-## Use Case: <br>
-Developers, site owners, and SEO operators use this skill to generate IndexNow verification keys, submit URLs or sitemaps to supported indexing services, and check indexing notification status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting a URL or sitemap not intended for public discovery can expose draft, private, or wrong-domain content to indexing services. <br>
-Mitigation: Confirm every URL and sitemap entry is public and belongs to the target domain before submission. <br>
-Risk: Google Indexing API use requires service-account credentials that could grant access beyond the intended site if mishandled. <br>
-Mitigation: Use a dedicated service account limited to the relevant Search Console property, keep tokens private, and revoke access when it is no longer needed. <br>
+## Use Case:
 
+Developers, site owners, and SEO operators use this skill to prepare indexing submissions for URLs or sitemaps after publishing, updating, migrating, or repairing site content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sharozdawa/indexnow-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and service-specific setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated IndexNow keys, verification file instructions, per-engine submission results, and status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Indexing submissions could be sent for the wrong domain, URL list, sitemap, or target search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact site ownership, URLs or sitemap, and target engines before submitting.
+
+Risk: Google Indexing API use requires service-account credentials or access tokens.
+
+Mitigation: Keep credentials out of chat when possible and use secure secret handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sharozdawa/skills/indexnow-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include per-engine submission results and indexing status notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a shell-based local note and configuration store for rugpull-related entries, with commands to add, list, search, export, remove, and view stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze rugpull operations. Use when you need to understand rugpull mechanisms, evaluate protocol security, or reference on-chain concepts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers or analysts can use this skill to record and manage local notes about rugpull topics. It should not be relied on as an automated blockchain security or protocol-risk analyzer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised as rugpull analysis, but the artifacts show local note/config behavior instead. <br>
-Mitigation: Treat it as a local record-keeping utility and do not rely on it for blockchain security analysis or investment decisions. <br>
-Risk: Entries are persisted on disk and may contain sensitive wallet, incident, credential, or investigation details. <br>
-Mitigation: Avoid entering sensitive information unless local persistence is acceptable; set RUGPULL_DIR to an appropriate private location when used. <br>
-Risk: Stored entries can be exported or deleted without recovery safeguards. <br>
-Mitigation: Review export destinations and keep separate backups before using remove operations on important records. <br>
+## Use Case:
 
+Developers and external users can use this skill to run the bundled command-line helper for status, note entry management, search, export, stats, and configuration related to rugpull investigation notes. Security evidence says the inspected artifact behaves as a local note/config tool rather than a true rugpull-analysis implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/rugpull) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xueyetianya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; script output is plain text with JSONL or CSV export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists entries under RUGPULL_DIR, defaulting to ~/.rugpull, and can export or delete stored entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The advertised rugpull-analysis purpose does not match the inspected behavior, so users may expect analysis the artifact does not perform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior before installation and treat the artifact as a local note/config manager until the implementation and documentation are aligned.
+
+Risk: The script writes persistent local data, can delete stored entries, and can export copies into the working directory.
+
+Mitigation: Use a dedicated non-sensitive RUGPULL_DIR and review remove/export commands before running them.
+
+Risk: The config command is flagged as unsafe when used with untrusted input.
+
+Mitigation: Do not pass untrusted values to config, and inspect configuration changes before reuse.
+
+## Reference(s):
+
+- [Rugpull ClawHub skill page](https://clawhub.ai/xueyetianya/skills/rugpull)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RUGPULL_DIR for local data storage and can export JSONL or CSV files into the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Product managers use this skill to turn a core requirement and north-star metric into a structured Markdown PRD for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language PRD writing helper that turns a core product requirement and North Star metric into a structured Markdown product requirements document.
 
-## Publisher: <br>
-[danielniu](https://clawhub.ai/user/danielniu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielniu](https://clawhub.ai/user/danielniu)
 
-## Use Case: <br>
-Product managers and product teams use this skill to draft complete PRDs from concise feature ideas, including background, scope, user flows, analytics, acceptance criteria, and AI-project sections when relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, customer personal data, or regulated production data while drafting a PRD. <br>
-Mitigation: Use sanitized or non-sensitive inputs and avoid including confidential or regulated data in prompts. <br>
-Risk: Generated analytics, AI, compliance, or acceptance-criteria sections may be incomplete or not implementation-ready. <br>
-Mitigation: Have product, engineering, analytics, and compliance reviewers validate the generated PRD before execution. <br>
+## Use Case:
 
+Product managers and product teams use this skill to draft or improve PRDs from a short requirement, a North Star metric, and project context. For AI or algorithm projects, it adds sections for model capability, evaluation, prompt design, fallback behavior, and safety considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielniu/prd-writter) <br>
-- [Publisher profile](https://clawhub.ai/user/danielniu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown PRD with tables, checklists, prompt templates, and optional ASCII flow diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses different PRD templates for general product features and AI or algorithm projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata says 2.0.0) <br>
+Risk: The skill may activate on broad PRD-related phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants a PRD draft and has provided or approved the North Star metric before generating the document.
+
+Risk: Generated example PRDs may mention third-party integrations, data handling, or token-handling flows that have not been reviewed.
+
+Mitigation: Review privacy, consent, credential handling, and integration requirements before implementing any generated PRD.
+
+Risk: Generated requirements, metrics, timelines, and acceptance criteria may contain assumptions.
+
+Mitigation: Have product, engineering, design, and QA reviewers validate the generated Markdown before using it as an implementation source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielniu/skills/prd-writter)
+- [README.md](artifact/README.md)
+- [Skill Manifest](artifact/manifest.md)
+- [General PRD template](artifact/templates/prd-template.md)
+- [AI project PRD template](artifact/templates/ai-prd-template.md)
+- [Example PRD](artifact/examples/example-prd.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown PRD document with tables, checklists, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; general product and AI-project templates are selected according to the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

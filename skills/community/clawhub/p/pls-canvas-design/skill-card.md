@@ -1,38 +1,48 @@
-## Description: <br>
-Generates visual art and posters by expressing original design philosophies as meticulously crafted PNG or PDF assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates original visual art and posters as PNG or PDF files using defined design philosophies like minimalism, brutalism, or skeuomorphism.
 
-## Publisher: <br>
-[mattvalenta](https://clawhub.ai/user/mattvalenta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattvalenta](https://clawhub.ai/user/mattvalenta)
 
-## Use Case: <br>
-Designers, developers, and creative teams use this skill to turn design ideas into poster or visual-art assets in styles such as minimalism, brutalism, skeuomorphism, neumorphism, and glassmorphism. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated PNG or PDF assets may not match the intended message, style, or sharing requirements. <br>
-Mitigation: Review generated files before sharing or using them in downstream work. <br>
-Risk: Python examples rely on local image and PDF libraries that may be outdated or environment-specific. <br>
-Mitigation: Run examples in a normal project or virtual environment and keep third-party image/PDF libraries updated. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users, designers, and developers use this skill to plan visual art or poster concepts and generate PNG or PDF assets from selected design philosophies.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Files] <br>
-**Output Format:** [Markdown guidance with Python examples for PNG and PDF asset generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated assets should be reviewed before sharing or use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sample asset-generation code writes fixed output filenames and could overwrite existing local files.
+
+Mitigation: Set explicit output filenames or confirm target files do not already exist before running the generated code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattvalenta/skills/pls-canvas-design)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, files]
+
+**Output Format:** [Markdown guidance with Python code examples for PNG and PDF asset generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated assets may include PNG or PDF files created locally by the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

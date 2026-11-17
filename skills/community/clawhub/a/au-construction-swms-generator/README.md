@@ -56,7 +56,7 @@ Copy the contents of `SKILL.md` into your agent's system prompt or skill slot.
 
 ## Key references
 
-- Safe Work Australia (SWMS guidance): [safeworkaustralia.gov.au](https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms)
+- Safe Work Australia (SWMS guidance): [safeworkaustralia.gov.au](https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-riREDACTED-SECRET)
 - Model WHS Regulations Part 6.2: [legislation.gov.au](https://www.legislation.gov.au/Series/F2011L01664)
 - Model Code of Practice — Construction work: [safeworkaustralia.gov.au](https://www.safeworkaustralia.gov.au/doc/model-code-practice-construction-work)
 - Dial Before You Dig: [1100.com.au](https://www.1100.com.au) | Call 1100

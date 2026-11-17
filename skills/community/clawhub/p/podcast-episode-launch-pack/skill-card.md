@@ -1,40 +1,54 @@
-## Description: <br>
-Turn a podcast transcript, episode outline, or topic into a complete launch package with title variants, show notes, a subscriber email blast, an Instagram audiogram caption, and optional social promotion drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a podcast transcript, episode outline, or topic into a complete launch package with episode title variants, show notes, timestamps and key takeaways, a subscriber email blast, an Instagram audiogram caption, and optional pull quotes, LinkedIn copy, and a promo thread.
 
-## Publisher: <br>
-[zepoldani](https://clawhub.ai/user/zepoldani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zepoldani](https://clawhub.ai/user/zepoldani)
 
-## Use Case: <br>
-External creators and podcast teams use this skill to turn transcripts, outlines, or topics into launch-ready episode packaging: titles, show notes, email copy, audiogram captions, and optional social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast transcripts may contain private guest, customer, or listener information. <br>
-Mitigation: Redact sensitive material before pasting transcripts, outlines, or episode notes into the agent. <br>
-Risk: Generated quotes, timestamps, guest bios, and promotional copy may be inaccurate or unsuitable for publication. <br>
-Mitigation: Review all generated launch materials before publishing, especially factual claims, guest credentials, timestamps, and any quoted language. <br>
+## Use Case:
 
+Podcast creators, producers, and marketing teams use this skill to package a recorded episode, outline, or topic into publish-ready show notes, episode titles, email copy, and social promotion assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zepoldani/podcast-episode-launch-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown sections containing podcast launch copy, show notes, email copy, captions, and optional social drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external integrations, credentials, executable code, or persistent data handling are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated show notes, quotes, timestamps, or social copy may be inaccurate when working from outlines, topic-only inputs, or imperfect transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct show notes, quotes, timestamps, guest details, and promotional copy before publishing.
+
+Risk: Podcast transcripts or outlines may contain confidential, unpublished, or sensitive material.
+
+Mitigation: Only paste transcript material that is appropriate to use in the current OpenClaw session and publishing workflow.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/zepoldani/skills/podcast-episode-launch-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections for titles, show notes, email copy, social captions, and optional promotional drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no code execution, external integrations, persistence, or automatic publishing behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

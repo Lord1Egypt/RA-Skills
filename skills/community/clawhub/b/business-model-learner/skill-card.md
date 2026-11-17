@@ -1,43 +1,59 @@
-## Description: <br>
-商业模式学习与分析智能体，帮助用户深入理解、分析和设计商业模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商业模式学习与分析智能体，帮助用户理解、分析和设计商业模式，覆盖经典案例学习、商业模式画布分析、新模式设计、创新迭代和可行性评估。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Business learners, founders, product teams, and strategy analysts use this skill to study business model patterns, analyze companies with the Business Model Canvas, design new models, and evaluate feasibility or iteration options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business model analysis may involve confidential strategy, customer data, trade secrets, credentials, or non-public operating metrics. <br>
-Mitigation: Avoid pasting sensitive or identifying information unless necessary and redacted. <br>
-Risk: The canvas helper is a local formatting tool and should not be treated as a source of authoritative business advice. <br>
-Mitigation: Use generated canvases and comparisons as drafts for human review before making business decisions. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to learn business-model patterns, analyze companies with a business model canvas, design new revenue and operating models, and assess business-model risks and feasibility.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/smallkeyboy/business-model-learner) <br>
-- [商业模式画布详解](references/canvas-guide.md) <br>
-- [商业模式案例库](references/case-studies.md) <br>
-- [商业模式创新方法论](references/innovation-methods.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis, code] <br>
-**Output Format:** [Markdown with structured tables, canvas diagrams, and analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local Python helper that formats business model canvas and comparison outputs as Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad business terms such as business model, profit model, monetization, and business canvas may trigger the skill in general business conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants business-model learning or analysis before applying the skill to broad business prompts.
+
+Risk: The skill is primarily written for Chinese-language assistance, so non-Chinese users may receive outputs in a language they did not expect.
+
+Mitigation: Ask for the preferred language when the user's language preference is unclear, and adapt or translate the output accordingly.
+
+Risk: Business-model analysis can be misleading when company, market, financial, or regulatory assumptions are incomplete or stale.
+
+Mitigation: Treat outputs as structured analysis drafts and verify key assumptions against current business, financial, and legal sources before making decisions.
+
+## Reference(s):
+
+- [商业模式画布详解](references/canvas-guide.md)
+- [商业模式案例库](references/case-studies.md)
+- [商业模式创新方法论](references/innovation-methods.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language Markdown with tables, structured analysis, and optional canvas or comparison Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include business model canvases, case analyses, risk notes, improvement suggestions, and Markdown tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

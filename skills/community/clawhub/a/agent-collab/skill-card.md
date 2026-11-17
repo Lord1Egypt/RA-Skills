@@ -1,42 +1,53 @@
-## Description: <br>
-Agent Collaboration Framework defines OpenClaw multi-agent collaboration patterns for dispatching one-shot tasks, maintaining cross-department sessions, supporting direct chats, and using file-based handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent collaboration framework for OpenClaw that defines Dispatch, Collaborate, and Direct Chat workflows with organization hierarchy, HANDOFF file exchange, and scope-isolated memory.
 
-## Publisher: <br>
-[kylin19860916](https://clawhub.ai/user/kylin19860916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylin19860916](https://clawhub.ai/user/kylin19860916)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use this skill to coordinate work among specialized agents, choose between one-shot dispatch, persistent collaboration sessions, and direct department-level chats, and document handoffs when sessions may be interrupted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad session visibility and agent routing can send work or context to unintended agents. <br>
-Mitigation: Review openclaw.json and AGENTS.md changes before applying them, and keep allowed agents narrow. <br>
-Risk: HANDOFF files can persist task context or sensitive details on disk. <br>
-Mitigation: Avoid secrets in HANDOFF files and delete each handoff after the receiving agent has read it. <br>
-Risk: Persistent collaboration sessions can remain active after the collaboration task is complete. <br>
-Mitigation: Monitor or close persistent sessions when the task is finished. <br>
+## Use Case:
 
+Developers and teams configuring OpenClaw multi-agent deployments use this skill to route one-shot tasks, persistent cross-agent collaboration, and direct department-specific conversations while coordinating handoffs across workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kylin19860916/agent-collab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; outputs depend on the agent applying the collaboration workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad session visibility and cross-workspace handoffs can expose or propagate sensitive context across agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow session visibility where possible, avoid sensitive data in handoffs, and require confirmation before spawning sessions or writing HANDOFF files.
+
+Risk: Deleting a received HANDOFF file can remove the only copy of task context or results.
+
+Mitigation: Archive the handoff or log receipt before removing the active file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylin19860916/skills/agent-collab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw session, subagent, workspace, and HANDOFF conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

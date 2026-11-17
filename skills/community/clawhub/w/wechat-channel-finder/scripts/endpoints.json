@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "ch-info",
+      "name": "视频号作品资料",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-info/videos/info",
+      "price": 0.21,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "标题/账号/时间/媒体/互动",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-info"
+    },
+    {
+      "key": "ch-account-search",
+      "name": "视频号账号搜索",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-search/videos/search",
+      "price": 0.1,
+      "params": [
+        "keyword",
+        "cursor",
+        "limit"
+      ],
+      "purpose": "按关键词找视频号",
+      "param_types": {
+        "keyword": "string",
+        "cursor": "string",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-channel-search"
+    }
+  ]
+}

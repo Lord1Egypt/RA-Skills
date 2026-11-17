@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn79rjem750rqx057ca5q80kph804196",
-  "slug": "wechat-helper",
-  "version": "1.1.0",
-  "publishedAt": 1773135225821
+  "schema": "clawhub/skill/v1",
+  "name": "wechat-helper",
+  "displayName": "WeChat File Helper",
+  "description": "Automate WeChat File Helper for sending messages via browser",
+  "version": "1.0.0",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": ["wechat", "file-helper", "messaging", "automation"],
+  "repository": "https://github.com/openclaw/openclaw",
+  "bugs": "https://github.com/openclaw/openclaw/issues",
+  "homepage": "https://filehelper.weixin.qq.com",
+  "engines": {
+    "openclaw": ">=2025.0.0"
+  },
+  "clawhub": {
+    "categories": ["messaging", "automation"],
+    "rating": {
+      "stability": "stable",
+      "usage": "medium"
+    }
+  }
 }

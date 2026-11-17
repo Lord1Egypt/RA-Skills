@@ -1,39 +1,53 @@
-## Description: <br>
-Productivity tracker and daily review assistant. Input activity logs, time notes, goals, or a daily schedule; output time categories, bottlenecks, focus leaks, and next-day actions. Works from user-provided data and does not require account access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Productivity Tracker analyzes user-provided activity logs, time notes, goals, or schedules to produce time categories, bottlenecks, focus leaks, and next-day actions without requiring account access.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to record activities, categorize time, review productivity patterns, and generate daily or weekly summaries from user-provided work and life activity logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Activity history may include sensitive personal or work details and is stored locally in plain JSON and Markdown files. <br>
-Mitigation: Use explicit /track commands for intended entries, avoid logging sensitive details, and manually delete or manage the local data directory when long-term history is not desired. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to track activities, categorize time, analyze focus patterns, and generate daily or weekly productivity reviews from data they provide. It is suited for local personal productivity workflows where the user controls the activity records and reports.
 
-## Reference(s): <br>
-- [Skill Source](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/productivity-improving) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, guidance] <br>
-**Output Format:** [Plain text responses, Markdown reports, JSON activity data, and CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores activity history and generated logs locally unless the user exports or connects optional integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Report generation can overwrite Markdown files outside the intended logs folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain report dates to a strict YYYY-MM-DD format, resolve the output path before writing, and reject any path that escapes the logs directory.
+
+Risk: Activity names, timestamps, and generated reports may reveal sensitive routines.
+
+Mitigation: Keep activity data local, limit filesystem permissions to the skill's own data directory, and avoid entering sensitive personal or workplace details unless local storage protections are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/productivity-improving)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance]
+
+**Output Format:** [Plain-text insights, Markdown reports, JSON activity records, and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from local user-provided activity data and may be written under the skill's data directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

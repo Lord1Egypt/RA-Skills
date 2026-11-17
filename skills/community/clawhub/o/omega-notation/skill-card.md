@@ -1,41 +1,54 @@
-## Description: <br>
-Omega Notation compresses structured agent outputs into dense shorthand for machine-to-machine agent communication, reducing token cost for evals, decisions, routing, policies, and media summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omega Notation compresses structured agent outputs into compact shorthand for machine-to-machine communication.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and AI system builders use this skill to serialize and deserialize compact structured messages for agent-to-agent evals, routing, decisions, policy outputs, and media summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compressed Omega messages can omit context or be parsed inaccurately in high-impact routing, policy, finance, or audit workflows. <br>
-Mitigation: Keep original data or add validation for high-impact decisions, and use explicit dictionaries when messages cross trust boundaries. <br>
-Risk: The artifact is designed for structured machine-to-machine messages, not human-facing prose or global default responses. <br>
-Mitigation: Invoke Omega Notation only for structured outputs where compact notation is appropriate and preserve normal conversational responses elsewhere. <br>
+## Use Case:
 
+Developers and agent builders use this skill to express evaluations, routing decisions, policy outputs, tier escalations, and media digests in a compact structured notation for agent-to-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/omega-notation) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Omega Notation text with TypeScript serializer/deserializer code and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies; intended for structured messages, not prose or high-impact decisions without validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Decoded routing, policy, or escalation records may be corrupted or misleading because the parser is not authoritative for security decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the notation only with trusted data and require review before agents treat decoded records as authoritative control inputs.
+
+Risk: Malformed packets and ambiguous escaping can undermine the claimed round-trip integrity.
+
+Mitigation: Reject malformed packets, add unambiguous escaping, and verify full object equality in tests before relying on the serializer/parser in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/omega-notation)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Markdown guidance with compact text notation examples and TypeScript serializer/deserializer code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for structured agent messages, not human-facing prose.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

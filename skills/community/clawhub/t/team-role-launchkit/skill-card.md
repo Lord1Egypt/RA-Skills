@@ -1,42 +1,54 @@
-## Description: <br>
-Launch clone-like multi-agent workflows using explicit role prompts (researcher, builder, editor), strict handoff contracts, and shared behavior files for consistent long-running execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch clone-like multi-agent workflows using explicit role prompts (researcher, builder, editor), strict handoff contracts, and shared behavior files for consistent long-running execution.
 
-## Publisher: <br>
-[cwheeler67](https://clawhub.ai/user/cwheeler67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwheeler67](https://clawhub.ai/user/cwheeler67)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate complex, multi-step work across researcher, builder, and editor roles while preserving explicit handoff criteria and review boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Role handoffs may promote unnecessary or sensitive working notes into durable memory when the agent platform supports memory. <br>
-Mitigation: Review handoff outputs before saving durable memory and only promote approved outcomes. <br>
-Risk: Poorly scoped handoffs can cause a role to act outside the intended task boundaries. <br>
-Mitigation: Require done criteria and receiver restatement before each role acts. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate complex or long-running agent tasks across research, implementation, and final-response editing roles while keeping handoffs explicit.
 
-## Reference(s): <br>
-- [Handoff Contract](references/handoff-contract.md) <br>
-- [Role Prompts](references/role-prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cwheeler67/team-role-launchkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific handoff notes, final deliverables, unresolved risks or questions, and a next best action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can encourage agents to record durable outcomes in memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory promotion decisions and keep temporary notes out of durable memory unless explicitly approved.
+
+Risk: Multi-role workflows can blur approval boundaries for external or public actions.
+
+Mitigation: Use the handoff contract to document approval constraints before roles act on sensitive projects.
+
+## Reference(s):
+
+- [Handoff Contract](references/handoff-contract.md)
+- [Role Prompts](references/role-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific deliverables include final output, role-by-role changes, unresolved risks or questions, and the next best action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

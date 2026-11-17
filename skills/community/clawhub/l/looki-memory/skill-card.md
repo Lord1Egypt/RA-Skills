@@ -1,43 +1,53 @@
-## Description: <br>
-Access the user's digital personal memory to retrieve context and generate more personalized, data-driven responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve the user's personal memories saved by Looki, including moments of daily activities, daily and weekly life summaries, chat history and summaries, health reports, AI-generated journals such as illustrated diaries, comics, and vlogs, and a memory overview, through MCP (if available) or the Looki CLI.
 
-## Publisher: <br>
-[haibo-looki](https://clawhub.ai/user/haibo-looki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[looki](https://clawhub.ai/user/looki)
 
-## Use Case: <br>
-External users use this skill to let an agent retrieve Looki profile, memory, highlight, and realtime-event context so responses can reflect the user's real-world activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private wearable memory data and account profile details. <br>
-Mitigation: Install it only when you trust Looki and the configured base URL, and use narrow date or topic requests when possible. <br>
-Risk: The Looki API key is a sensitive credential that could expose personal memory data if mishandled. <br>
-Mitigation: Treat the API key like a password, avoid saving it unless persistence is needed, and remove ~/.config/looki/credentials.json when the skill is no longer used. <br>
-Risk: Sending the API key to an untrusted endpoint could disclose credentials. <br>
-Mitigation: Validate the base URL before first use and send the X-API-Key header only to the configured base URL. <br>
+## Use Case:
 
+People using an authorized Looki account can retrieve saved personal context to recall activities, review summaries and health observations, continue past chats, or find saved journals. The agent should retrieve only the records needed for the request and respect authorization in shared conversations.
 
-## Reference(s): <br>
-- [Looki Base URL Verification API](https://open.looki.ai/api/v1/verify?endpoint={base_url}) <br>
-- [Looki Memory on ClawHub](https://clawhub.ai/haibo-looki/looki-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Looki base URL and API key; documented API requests are limited to 60 requests per minute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Personal, health, location, and chat records may expose sensitive information, especially in shared conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an authorized Looki account, retrieve only records and fields needed for the request, and confirm authorization before sharing records in a shared conversation.
+
+Risk: External Looki CLI and MCP behavior was not audited.
+
+Mitigation: Use only capabilities exposed by the authorized connection, discover current MCP schemas, and check the installed CLI version and command help before querying.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/looki/skills/looki-personal-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Retrieved Looki records and summaries as text or Markdown, with requested media or saved files where available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Record and file availability depends on the connected Looki MCP server or installed, authenticated Looki CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

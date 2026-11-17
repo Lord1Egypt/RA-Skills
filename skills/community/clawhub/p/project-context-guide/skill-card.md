@@ -1,45 +1,57 @@
-## Description: <br>
-Project Context Guide helps users understand codebase structure, trace code decisions, analyze dependencies and change impact, identify maintainers, and gather contextual information for code reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Context Guide helps agents analyze codebase structure, dependency and impact relationships, Git history, ownership, and review context for complex software projects.
 
-## Publisher: <br>
-[TeamoPlum](https://clawhub.ai/user/TeamoPlum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teamoplum](https://clawhub.ai/user/teamoplum)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to onboard into unfamiliar repositories, trace design decisions, assess dependency and change impact, and identify likely maintainers for review or follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may expose sensitive repository and Git history details, including diffs, commit messages, contributor emails, maintainer names, collaboration relationships, and activity-time patterns. <br>
-Mitigation: Install and run it only in repositories where the user is authorized to inspect source and Git history, and treat generated reports as sensitive project data. <br>
-Risk: External team-system integrations such as Slack, JIRA, or Confluence can expand data access beyond the repository. <br>
-Mitigation: Enable those integrations only with explicit team consent and documented data-handling rules. <br>
-Risk: Contributor profiling and maintainer suggestions may be incomplete or misleading when history is sparse, stale, or lacks clear controls. <br>
-Mitigation: Use ownership and activity recommendations as review aids, and confirm them with current team knowledge before acting. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to understand unfamiliar or legacy codebases, trace implementation decisions, estimate change impact, and identify likely maintainers during onboarding and code review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/TeamoPlum/project-context-guide) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Release notes](artifact/RELEASE_NOTES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local repository analysis may include file paths, diffs, commit metadata, contributor names, and maintainer suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated reports may expose source details, Git history, contributor metadata, raw diffs, or ownership information from private repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before sharing, keep outputs inside approved workspaces, and avoid exporting raw Git history unless necessary.
+
+Risk: The artifact claims automatic sensitive-information redaction, but server security evidence says that redaction is not implemented.
+
+Mitigation: Do not rely on automatic redaction; manually inspect reports for secrets, private code, personal data, and sensitive repository history before distribution.
+
+Risk: Potential collaboration integrations could access external systems such as Slack or similar tools.
+
+Mitigation: Enable external integrations only with administrator approval, least-privilege tokens, and explicit data-handling rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teamoplum/skills/project-context-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown and structured JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include code structure, call chains, Git history, contributor metadata, ownership suggestions, and review guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

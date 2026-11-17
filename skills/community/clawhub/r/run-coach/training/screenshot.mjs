@@ -5,9 +5,10 @@
 //
 // Usage: node screenshot.mjs <input.html> <output.png>
 
-import { chromium } from '/app/node_modules/playwright-core/index.mjs';
+import { chromium } from 'playwright-core';
 import { readdirSync, existsSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
+import { pathToFileURL } from 'url';
 
 const [,, htmlFile, outFile] = process.argv;
 if (!htmlFile || !outFile) {
@@ -15,9 +16,11 @@ if (!htmlFile || !outFile) {
   process.exit(1);
 }
 
-// Auto-detect chrome-headless-shell binary path using native fs only
+// Auto-detect chrome-headless-shell binary path using native fs (no child_process)
 function findHeadlessShell() {
-  const base = '/home/node/.cache/ms-playwright';
+  // Standard Playwright cache locations; override with PLAYWRIGHT_BROWSERS_PATH
+  const base = process.env.PLAYWRIGHT_BROWSERS_PATH
+    || join(process.env.HOME || '', '.cache', 'ms-playwright');
   if (!existsSync(base)) return null;
   for (const dir of readdirSync(base)) {
     const candidate = join(base, dir, 'chrome-headless-shell-linux64', 'chrome-headless-shell');
@@ -32,6 +35,10 @@ if (!executablePath) {
   process.exit(1);
 }
 
+// --no-sandbox is required for chrome-headless-shell as a non-root user inside
+// Docker. The page it renders is made inert instead: JavaScript is disabled,
+// every non-file:// request is blocked, and text-to-image.sh HTML-escapes all
+// plan content before it reaches the page.
 const browser = await chromium.launch({
   headless: true,
   executablePath,
@@ -40,11 +47,17 @@ const browser = await chromium.launch({
 
 const context = await browser.newContext({
   viewport: { width: 1200, height: 800 },
-  deviceScaleFactor: 2  // 2400px output width — sharp text, within Telegram's 10000px total limit
+  deviceScaleFactor: 2,  // 2400px output width — sharp text, within Telegram's 10000px total limit
+  javaScriptEnabled: false,
+  offline: true
 });
 
 const page = await context.newPage();
-await page.goto('file://' + htmlFile, { waitUntil: 'networkidle' });
+// Local-only rendering: the plan page never loads anything over the network.
+await page.route('**/*', route =>
+  route.request().url().startsWith('file://') ? route.continue() : route.abort()
+);
+await page.goto(pathToFileURL(resolve(htmlFile)).href, { waitUntil: 'load' });
 await page.screenshot({ path: outFile, type: 'png', fullPage: true });
 await browser.close();
 

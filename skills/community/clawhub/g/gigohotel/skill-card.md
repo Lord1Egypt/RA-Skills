@@ -1,43 +1,54 @@
-## Description: <br>
-Intelligent hotel search that supports filtering by place, date, star rating, budget, and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIGo Hotel Search helps agents search hotels by location, dates, star rating, budget, and tags through the AIGoHotel MCP service.
 
-## Publisher: <br>
-[l18784175468-oss](https://clawhub.ai/user/l18784175468-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[l18784175468-oss](https://clawhub.ai/user/l18784175468-oss)
 
-## Use Case: <br>
-External users and travel-assistant agents use this skill to search for hotels, inspect room pricing, and discover hotel filter tags through the AIGoHotel MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hotel search criteria are sent to the AIGoHotel MCP service. <br>
-Mitigation: Send only search-relevant fields such as location, dates, budget, guest counts, and preferences. <br>
-Risk: User prompts may contain personal information unrelated to hotel search. <br>
-Mitigation: Remove names, phone numbers, emails, ID numbers, and unrelated personal details before setting originQuery or calling hotel tools. <br>
-Risk: The bundled public API key may be rate limited. <br>
-Mitigation: Use the public key for normal access and apply for a dedicated key when higher quota is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/l18784175468-oss/gigohotel) <br>
-- [AIGoHotel MCP endpoint](https://mcp.aigohotel.com/mcp) <br>
-- [AIGoHotel API key application](https://mcp.aigohotel.com/apply) <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search hotels, inspect room prices, and discover available hotel filters while limiting shared data to hotel-search parameters.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, text] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and structured hotel results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include hotel lists, room prices, cancellation policies, and categorized search tags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hotel search details such as location, dates, party size, budget, and preferences may be sent to the external AIGoHotel MCP service.
+
+Mitigation: Filter out names, phone numbers, email addresses, identity numbers, local file details, system information, and unrelated free text before calling the MCP tools.
+
+Risk: The bundled public AIGoHotel key may be rate-limited or provide less request attribution than a dedicated key.
+
+Mitigation: Use a dedicated AIGoHotel key when higher quota, operational accountability, or clearer request attribution is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/l18784175468-oss/skills/gigohotel)
+- [AIGoHotel MCP Service](https://mcp.aigohotel.com/mcp)
+- [AIGoHotel API Key Application](https://mcp.aigohotel.com/apply)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses searchHotels, getHotelDetail, and getHotelSearchTags; hotel queries should exclude personal identifiers.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Generate a phased exhibitor prep checklist with task owners and deadlines from your show details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a phased trade show exhibitor preparation checklist with task owners, deadlines, logistics notes, and follow-up handoffs from show details.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Marketing, sales, operations, and logistics teams use this skill to turn trade show details into a tailored pre-show execution checklist with owners and deadlines. It is intended for exhibitor planning once a show is likely enough that concrete preparation tasks matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated lead-capture tasks can involve personal data from event visitors. <br>
-Mitigation: Confirm badge-scanning permission, store exported lead lists securely, limit retention, and follow event terms and applicable privacy rules before using those tasks. <br>
+## Use Case:
 
+External trade show teams use this skill to turn show details into a copy-pasteable preparation checklist for booth planning, staffing, logistics, lead capture, and follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/exhibitor-checklist-generator) <br>
-- [Artifact README](README.md) <br>
-- [MEDICA First-Timer Example](examples/medica-20sqm-first-timer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist with phase headings, checkbox tasks, owner roles, deadlines, summaries, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist items are designed for copy-paste into markdown-compatible project management tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated checklist outputs include a Lensmor promotional footer, which may be unsuitable for some branded or internal workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated outputs before distribution and override or remove the footer when third-party marketing copy is inappropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/exhibitor-checklist-generator)
+- [Skill homepage](https://github.com/LensmorOfficial/trade-show-skills/tree/main/exhibitor-checklist-generator)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=readme&utm_campaign=exhibitor-checklist-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist with phase headings, task checkboxes, owner roles, deadlines, summaries, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailors checklist items to show dates, booth type, team size, exhibitor experience, shipping context, lead capture needs, and stated goals.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

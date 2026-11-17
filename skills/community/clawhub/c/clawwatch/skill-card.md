@@ -1,43 +1,58 @@
-## Description: <br>
-ClawWatch helps agents manage crypto and stock watchlists, fetch prices, set alerts, export data, and check the Crypto Fear & Greed Index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto and stock price watchlist tracker for adding or removing tracked assets, checking prices, setting price alerts, getting market overviews, and viewing the Crypto Fear & Greed Index.
 
-## Publisher: <br>
-[goarstne](https://clawhub.ai/user/goarstne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[goarstne](https://clawhub.ai/user/goarstne)
 
-## Use Case: <br>
-External users and agents use ClawWatch to maintain a market watchlist, fetch current crypto and stock prices, set alerts, and summarize machine-readable CLI results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market prices and alerts can be stale, unavailable, or affected by third-party API rate limits. <br>
-Mitigation: Summarize prices as current at fetch time, use the JSON output for clarity, and avoid running checks more often than the documented 60-second interval. <br>
-Risk: Watchlist notes, cached files, exports, and analysis handoffs can reveal sensitive portfolio details. <br>
-Mitigation: Avoid storing sensitive details in notes and share watchlist JSON with another agent only when the user intends that sharing. <br>
-Risk: Optional market data API keys can be exposed if copied into prompts, logs, or exported files. <br>
-Mitigation: Treat configured API keys as private configuration and do not include them in summaries, prompts, or exports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawWatch ClawHub listing](https://clawhub.ai/goarstne/clawwatch) <br>
-- [ClawWatch API Notes & Quirks](references/api-notes.md) <br>
-- [ClawWatch CLI Reference](references/cli-reference.md) <br>
+## Use Case:
 
+External users and agents use ClawWatch to manage crypto and stock watchlists, fetch current prices, check configured alerts, export watchlist data, and summarize market status from CLI output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and optional parsed JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON CLI output for structured summaries; respects market API rate limits and local watchlist state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on installing and running an external clawwatch CLI package that is not pinned in the artifact.
+
+Mitigation: Review the package before installation and prefer an isolated virtual environment.
+
+Risk: API keys entered through shell commands may be exposed on shared machines.
+
+Mitigation: Avoid entering API keys through shell history on shared systems and follow local secret-handling practices.
+
+Risk: Watchlist, cached price data, and possibly configuration can persist under ~/.clawwatch.
+
+Mitigation: Treat local ClawWatch files as user data and remove or protect them according to the deployment environment.
+
+## Reference(s):
+
+- [ClawWatch ClawHub page](https://clawhub.ai/goarstne/skills/clawwatch)
+- [ClawWatch API Notes & Quirks](references/api-notes.md)
+- [ClawWatch CLI Reference](references/cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise text or Markdown with inline shell commands and summaries of JSON CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use --json CLI output for agent parsing and natural-language summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-AIUSD Pro is an AI-powered trading agent that lets users trade, check balances, and manage positions through natural language conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIUSD Pro is an AI-powered trading agent that lets users trade, check balances, and manage positions through natural-language conversation.
 
-## Publisher: <br>
-[tech-FE-aiusd](https://clawhub.ai/user/tech-FE-aiusd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tech-fe-aiusd](https://clawhub.ai/user/tech-fe-aiusd)
 
-## Use Case: <br>
-External users use this skill to interact with AIUSD through natural language for balance checks, trading, staking, position management, and market queries. Agents use it to relay user intent to the AIUSD CLI, handle authentication and session flow, and return the backend response to the authenticated user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates trading, staking, cancellation, and position-management actions to an external AIUSD CLI and backend. <br>
-Mitigation: Use only when the user trusts the aiusd-pro npm package and AIUSD backend, and require exact confirmation of asset, amount, venue, leverage, fees, and risk before any financial action. <br>
-Risk: The skill maintains session context and may return backend links or raw outputs that expose account or trading information. <br>
-Mitigation: Relay outputs only to the authenticated user and avoid sharing AIUSD links or response content outside that user's session. <br>
+## Use Case:
 
+External users and developers use AIUSD Pro to interact with AIUSD for balances, trading, staking, position management, and market queries through natural-language chat. The skill guides an agent to run the AIUSD CLI, relay responses, and continue multi-turn confirmation flows.
 
-## Reference(s): <br>
-- [AIUSD Pro on ClawHub](https://clawhub.ai/tech-FE-aiusd/aiusd-pro) <br>
-- [tech-FE-aiusd Publisher Profile](https://clawhub.ai/user/tech-FE-aiusd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and relayed CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include an AIUSD browser link for continuing the authenticated conversation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.0.1) <br>
+Risk: The skill can initiate trading, staking, leverage, or wallet-related actions that may affect real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify every asset, amount, venue, leverage level, fee, slippage value, wallet approval, and confirmation prompt before proceeding.
+
+Risk: The CLI is resolved through npm at execution time, so behavior can change if an unreviewed package version is installed.
+
+Mitigation: Prefer a pinned and reviewed CLI version before using the skill with production accounts or real funds.
+
+Risk: Authentication and conversation state use browser links and session identifiers that may grant access to sensitive trading context.
+
+Mitigation: Verify the login domain, keep session IDs private, and avoid sharing generated session links except with the intended user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tech-fe-aiusd/skills/aiusd-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and relayed CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >= 18 and the node binary; send operations are expected to run in background mode because responses can take 10-300 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

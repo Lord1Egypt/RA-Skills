@@ -1,46 +1,57 @@
-## Description: <br>
-Adds local vector-driven semantic search for OpenClaw Markdown memory files using memsearch, hybrid dense-vector and BM25 retrieval, SHA-256 deduplication, and local embeddings without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds vector-driven semantic search for OpenClaw Markdown memory files using memsearch with hybrid dense-vector and BM25 retrieval, SHA-256 deduplication, and local embeddings without an API key.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index local Markdown memory files and retrieve relevant memory snippets with semantic and hybrid search instead of keyword-only grep. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill indexes local OpenClaw memory files, which may contain sensitive personal, project, or operational information. <br>
-Mitigation: Restrict indexed paths to memory files you approve and review the configured memory path before running indexing commands. <br>
-Risk: The release security summary notes documented daily Discord reporting for sensitive memory indexing without clear limits on what leaves the machine. <br>
-Mitigation: Disable or remove any Discord notification path unless you explicitly want external reporting and have verified exactly what data is sent. <br>
-Risk: Search results are derived from local indexed files and may expose stale or unintended memory content. <br>
-Mitigation: Review search results before using them in downstream decisions, prompts, or shared artifacts. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to index local Markdown memory files and retrieve semantically related memory snippets with memsearch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyhot/semantic-memory-search) <br>
-- [Publisher profile](https://clawhub.ai/user/sunnyhot) <br>
-- [memsearch GitHub](https://github.com/zilliztech/memsearch) <br>
-- [memsearch documentation](https://zilliztech.github.io/memsearch/) <br>
-- [Milvus](https://milvus.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and text search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output depends on the user's local indexed memory files and memsearch configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub server release evidence) <br>
+Risk: The skill can index private OpenClaw memory content, and documented Discord reporting conflicts with the offline privacy claim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration before enabling integrations, confirm exactly what is sent externally, and disable or audit Discord reporting before use.
+
+Risk: Installing or running memsearch without version controls can change retrieval behavior or dependency exposure over time.
+
+Mitigation: Install in an isolated environment with pinned versions and review the generated index location before indexing sensitive files.
+
+## Reference(s):
+
+- [Semantic Memory Search on ClawHub](https://clawhub.ai/sunnyhot/skills/semantic-memory-search)
+- [memsearch GitHub](https://github.com/zilliztech/memsearch)
+- [memsearch Documentation](https://zilliztech.github.io/memsearch/)
+- [Milvus](https://milvus.io/)
+- [Semantic Memory Search Use Case](https://github.com/AlexAnys/awesome-openclaw-usecases-zh/blob/main/usecases/semantic-memory-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results depend on local memory files, the memsearch installation, and configured top_k.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

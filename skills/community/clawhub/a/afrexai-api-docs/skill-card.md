@@ -1,40 +1,53 @@
-## Description: <br>
-Generate comprehensive OpenAPI 3.0 specs, markdown reference docs, and SDK quickstarts from API endpoint descriptions with examples and error codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive OpenAPI 3.0 specs, markdown reference docs, and SDK quickstarts from API endpoint descriptions with examples and error codes.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn API endpoint descriptions, route files, schemas, or controller code into consistent API documentation and onboarding material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Endpoint examples, route files, or controller code may contain real API keys, production secrets, customer data, or sensitive internal implementation details. <br>
-Mitigation: Use sanitized examples and remove secrets or sensitive data before providing API material to the agent runtime. <br>
-Risk: Generated API documentation can become inaccurate if endpoint behavior, authentication, pagination, or error handling is underspecified. <br>
-Mitigation: Review the generated OpenAPI YAML, reference docs, and quickstart snippets against the implemented API before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-api-docs) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn API endpoint descriptions, route files, or controller snippets into OpenAPI specifications, human-readable API references, and SDK quickstart guides.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration] <br>
-**Output Format:** [OpenAPI 3.0 YAML, markdown API reference, and markdown quickstart guide with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint descriptions, parameter tables, request and response examples, error code references, authentication notes, rate limiting notes, and SDK quickstart snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated API examples can accidentally include secrets, credentials, or private production data if those details are pasted into endpoint descriptions or source snippets.
+
+Mitigation: Avoid providing secrets or private production data as input, and review generated examples before publishing documentation.
+
+Risk: Generated documentation may contain inaccurate examples, missing edge cases, or misleading endpoint behavior.
+
+Mitigation: Review the generated OpenAPI spec, examples, authentication notes, and error responses against the implemented API before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-api-docs)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [OpenAPI 3.0 YAML, Markdown reference documentation, and SDK quickstart guides]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes request and response examples, error code references, authentication notes, rate limiting notes, and language-specific quickstart snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

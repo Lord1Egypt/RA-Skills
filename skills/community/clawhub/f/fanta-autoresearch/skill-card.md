@@ -1,44 +1,59 @@
-## Description: <br>
-Autonomous goal-directed iteration for optimization and improvement tasks, including metric-driven loops that make one focused change, verify it, keep or revert it, and repeat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoresearch guides agents through bounded goal-metric iteration loops that make focused changes, verify them mechanically, keep improvements, revert regressions, and log results.
 
-## Publisher: <br>
-[fantaclaw-ai](https://clawhub.ai/user/fantaclaw-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantaclaw-ai](https://clawhub.ai/user/fantaclaw-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to structure autonomous optimization work around a clear goal, measurable metric, bounded scope, baseline, verification command, rollback decision, and iteration log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run shell verification commands during iterative optimization. <br>
-Mitigation: Use only trusted verification commands, set timeouts and maximum iterations, and review command behavior before execution. <br>
-Risk: The skill encourages file-changing loops, including delegated or background execution. <br>
-Mitigation: Define the exact editable scope, rollback rules, and whether subagents or background execution are allowed before starting a loop. <br>
-Risk: Autonomous iterations may touch sensitive files or data if scope is too broad. <br>
-Mitigation: Exclude secrets, production data, account settings, and broad home-directory paths unless they are explicitly in scope and will be reviewed. <br>
+## Use Case:
 
+Developers and engineers use this skill to run structured optimization loops for benchmark improvement, test fixing, configuration tuning, bundle-size reduction, coverage increases, and similar metric-driven tasks.
 
-## Reference(s): <br>
-- [Fanta Autoresearch ClawHub page](https://clawhub.ai/fantaclaw-ai/fanta-autoresearch) <br>
-- [Autoresearch Workflows](references/workflows.md) <br>
-- [Common Metrics for Autoresearch](references/metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command examples, templates, tables, and an optional Python loop executor script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write an autoresearch TSV log when the bundled executor script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide agents to edit files and run verification commands across repeated iterations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a defined file scope, maximum iteration count, explicit verification commands, timeouts, and rollback expectations.
+
+Risk: Long-running loops, subagents, or background runs can continue making changes longer than intended.
+
+Mitigation: Set a fixed iteration limit, require progress logs, and allow subagents or background execution only when the task boundary is clear.
+
+Risk: Verification commands may include unreviewed package or external commands.
+
+Mitigation: Review commands before execution, avoid sensitive directories, and do not run unreviewed npx or package-manager commands.
+
+## Reference(s):
+
+- [Autoresearch Workflows](artifact/references/workflows.md)
+- [Common Metrics for Autoresearch](artifact/references/metrics.md)
+- [ClawHub Skill Page](https://clawhub.ai/fantaclaw-ai/skills/fanta-autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and an optional Python loop executor]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce TSV iteration logs when the bundled executor script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Create and edit Tally forms via API for building surveys, feedback forms, or questionnaires programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit Tally forms via API for building surveys, feedback forms, and questionnaires programmatically.
 
-## Publisher: <br>
-[yujesyoga](https://clawhub.ai/user/yujesyoga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yujesyoga](https://clawhub.ai/user/yujesyoga)
 
-## Use Case: <br>
-Developers and automation agents use this skill to list, read, update, and back up Tally forms while generating survey, feedback, and questionnaire structures through the Tally API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use a Tally API key to list, read, and update forms. <br>
-Mitigation: Use a dedicated or least-privileged API key and confirm form IDs and JSON payloads before updates. <br>
-Risk: Downloaded backups or submissions may contain sensitive respondent data. <br>
-Mitigation: Treat backups and submissions as sensitive data and store, share, and delete them according to the user's data-handling requirements. <br>
-Risk: Incorrect form block JSON could break or misconfigure a Tally form. <br>
-Mitigation: Back up the form before patching it and verify the resulting block count and rendered form after the update. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujesyoga/tally) <br>
-- [Tally forms API endpoint](https://api.tally.so/forms) <br>
+## Use Case:
 
+Developers and agents use this skill to create, inspect, update, and back up Tally forms through the Tally API when building surveys, feedback forms, or questionnaires.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Tally form block JSON, curl commands, backup steps, and verification guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Tally API key that may grant access to account forms.
+
+Mitigation: Keep the key least-privileged where possible, store it privately, and install the skill only when the agent should work with the Tally account.
+
+Risk: The skill can retrieve submissions or update live forms.
+
+Mitigation: Access submissions only when authorized, duplicate or back up forms before PATCH updates, and verify form state after changes.
+
+Risk: Example commands use fixed /tmp file paths for backup and form JSON files.
+
+Mitigation: Replace fixed /tmp paths with private files controlled by the user or deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujesyoga/skills/tally)
+- [Tally forms API endpoint](https://api.tally.so/forms)
+- [Tally form detail and update endpoint](https://api.tally.so/forms/{id})
+- [Tally form submissions endpoint](https://api.tally.so/forms/{id}/submissions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Tally API block structures, endpoint examples, and update workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

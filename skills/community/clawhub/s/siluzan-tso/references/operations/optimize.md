@@ -1,6 +1,4 @@
-# AI 广告优化记录（optimize）
-
-> 所属 skill：`siluzan-tso`。
+﻿# AI 广告优化记录（optimize）
 
 ```bash
 siluzan-tso optimize list    [选项]                  # 账户级优化主列表

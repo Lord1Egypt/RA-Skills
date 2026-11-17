@@ -1,37 +1,54 @@
-## Description: <br>
-Helps agents draft subreddit-aware Reddit posts and comments that follow platform norms and provide publish-ready copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create Reddit post copy, comments, or optimize for Reddit.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Copy agents and content creators use this skill to produce Reddit titles, bodies, suggested flair, and posting reminders tailored to subreddit norms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Reddit copy may be inaccurate, overly promotional, or misaligned with subreddit rules and community norms. <br>
-Mitigation: Review and edit the draft for accuracy, disclosure of promotional intent, subreddit-specific rules, and tone before posting. <br>
+## Use Case:
 
+External users and copy agents use this skill to draft subreddit-aware Reddit titles, post bodies, comments, suggested flair, and posting reminders. It is intended for publish-ready copy that respects subreddit norms and community culture.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured title, body, flair, and reminder sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Subreddit-aware copy should be reviewed against local subreddit rules before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for general Reddit mentions, not only explicit drafting requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Reddit copy or optimization before applying the skill when the request is ambiguous.
+
+Risk: Generated copy may conflict with subreddit-specific rules or flair requirements.
+
+Mitigation: Include a reminder to verify subreddit rules before posting and adapt the title, body, and flair to the target subreddit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/reddit-posts)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Text]
+
+**Output Format:** [Markdown with title, body, suggested flair, and subreddit reminder]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Reddit copy guidance only; it does not post content or access accounts.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "name": "esp8266at",
+  "desc": "ESP8266/ESP-AT 响应解析库（IPD帧/CWJAP错误码/行分类全纯函数）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 16 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 esp8266at.h/esp8266at.c 进工程（纯解析、无总线时序），再按 esp8266at_port.h 注释填 3 个 UART 接口（uart_send_bytes / uart_recv_line / esp8266_delay_ms），串口收一行调 esp8266_classify_line 即可",
+  "common_pitfalls": "CH_PD未拉高→无响应；供电<500mA→发射时重启；指令结尾\\n→ERROR；CIPSEND未等>→丢数据"
+}

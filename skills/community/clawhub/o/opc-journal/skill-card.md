@@ -1,43 +1,57 @@
-## Description: <br>
-OPC Journal is a CLI-style skill for One Person Company growth journaling, local entry storage, search, export, milestone candidate detection, task tracking, and raw signal extraction for caller-led analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OPC Journal is a local-only CLI-style skill for One Person Company growth tracking that records entries and tasks, searches or exports journal history, and prepares raw pattern, milestone, and insight context for caller interpretation.
 
-## Publisher: <br>
-[coidea](https://clawhub.ai/user/coidea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coidea](https://clawhub.ai/user/coidea)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local OPC growth journal, record and search entries, export journal data, track simple tasks, and provide structured journal context for an agent to interpret. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private journal contents can be exported to arbitrary local paths. <br>
-Mitigation: Review export paths before execution, prefer the default local customer directory, and avoid sensitive or shared filenames. <br>
-Risk: Analysis and insight commands can return raw journal text to the calling agent. <br>
-Mitigation: Use the skill only with agents and users authorized to handle the journal contents. <br>
-Risk: Delete and archive clear operations are intentionally destructive when run with --force. <br>
-Mitigation: Treat --force as an explicit confirmation step and verify the target customer ID and entry ID before running destructive commands. <br>
+## Use Case:
 
+External users and agent operators use OPC Journal to maintain a local One Person Company growth journal, record entries and tasks, search or export history, and prepare raw pattern, milestone, and insight context for the caller to interpret.
 
-## Reference(s): <br>
-- [OPC Journal on ClawHub](https://clawhub.ai/coidea/opc-journal) <br>
-- [coidea publisher profile](https://clawhub.ai/user/coidea) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command results with status, result, and message fields; export commands can write Markdown or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily local filesystem output under the OpenClaw customer directory, with caller-selected export paths supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: server release evidence and SKILL.md body) <br>
+Risk: The export command can write outside the promised customer folder and overwrite arbitrary user-writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, keep exports inside ~/.openclaw/customers/{customer_id}/, and do not allow untrusted prompts to choose export paths.
+
+Risk: Journal and task data persists locally until archived or cleared.
+
+Mitigation: Set retention expectations before use and archive or clear local data when it is no longer needed.
+
+Risk: Deletion by incomplete entry IDs can remove unintended journal content.
+
+Mitigation: Use complete entry IDs for delete operations and keep the existing --force confirmation requirement.
+
+## Reference(s):
+
+- [ClawHub OPC Journal skill page](https://clawhub.ai/coidea/skills/opc-journal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [JSON command results with optional Markdown or JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only file persistence under ~/.openclaw/customers/{customer_id}/; destructive delete and archive clearing require --force.]
+
+## Skill Version(s):
+
+2.5.2 (source: server release evidence and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,23 @@
 # Other Backends
 
-Backend guides for everything that is not ACE-Step: MusicGen (local, free),
-the mmx CLI (MiniMax), Stable Audio (Stability AI REST API), and generic
+Backend guides for everything that is not ACE-Step: MusicGen (local,
+non-commercial weights),
+Stable Audio (Stability AI REST API), and generic
 CLI backends. Load this when the selected backend is one of these.
 
-## MusicGen (local — free, no API key, no quota)
+## MusicGen (local — non-commercial weights, no API key, no quota)
 
-**Best for:** fully offline generation, no API dependency, unlimited use. **Trade-off:** quality is lower than MiniMax/ACE-Step, especially for vocals. Use as a fallback or for instrumentals.
+**License gate:** AudioCraft code is MIT, but MusicGen model weights are
+CC-BY-NC 4.0. Use this backend only for personal, research, or other
+non-commercial work permitted by that license. Do not use its output for
+commercial releases, monetized channels, client work, paid products, or
+advertising. For commercial local generation, use a backend whose exact model
+checkpoint terms permit it, such as the currently documented ACE-Step 1.5
+route, after verifying the current license.
+
+**Best for:** fully offline non-commercial generation, no API dependency, and
+no quota. **Trade-off:** quality is lower than MiniMax/ACE-Step, especially
+for vocals. Use it for sketches or non-commercial instrumentals.
 
 MusicGen takes a single text description. It does NOT have a separate lyrics parameter — the text description IS the entire input. MusicGen was trained on short natural-language descriptions, NOT structured production sheets like MiniMax. The skill must reformat the prompt before passing it.
 
@@ -177,40 +188,60 @@ Each segment takes 2-5 min on MPS, so a 3-minute song = 6-15 min total. Acceptab
 | Audio polish | ⚠️ Lo-fi by default | ✅ Production-quality |
 | Speed (CPU, 30s) | ~7 min | ~30s (cloud) |
 
-Use MusicGen for instrumentals, sketches, or when cloud is unavailable. Use MiniMax/ACE-Step when you need actual sung lyrics.
+Use MusicGen for instrumentals, sketches, or when cloud is unavailable. Use ACE-Step when you need actual sung lyrics.
 
 Install details: see **MusicGen Installation Details** in [`setup-and-preflight.md`](setup-and-preflight.md).
 
-## mmx CLI (MiniMax)
+## MiniMax (cloud) — no longer available
 
-**Best for:** highest quality with per-flag control, cloud-based.
+MiniMax closed its paid music and lyrics APIs to new users on 2026-08-20, is
+discontinuing the free music models, and a paying account received HTTP 410 in
+September 2026. `mmx` 1.0.28 no longer has a `music` command. Do not offer
+MiniMax as a backend.
 
-```bash
-mmx music generate \
-  --prompt "<production-sheet prompt>" \
-  --lyrics-file <lyrics.txt> \
-  --out <output.mp3> \
-  --model music-2.6-free
-```
+## MiniMax Music 3 (local open weights) — researched, not verified
 
-Supports separate lyrics file, explicit model selection, and per-flag control (`--bpm`, `--key`, `--avoid`, `--structure`). Subject to MiniMax API quota.
+MiniMax's suggested replacement is its open-weights
+[`MiniMaxAI/MiniMax-Music3`](https://huggingface.co/MiniMaxAI/MiniMax-Music3).
+This skill has not run it. Research notes, checked 2026-10-18:
 
-For cover, style transfer, mashup, the lyrics API, and fine flag control (BPM, key, structure, avoid list), use the `music-craft-minimax` skill instead of calling mmx from here.
+- **Strength:** full songs with vocals, lyrics and section structure.
+- **Apple Silicon:** the official weights need CUDA. The local route is
+  `mlx-audio` with the `mlx-community/MiniMax-Music3-*` conversions: 4-bit
+  9.2 GB, 6-bit 11.7 GB (the sensible choice for 24 GB of memory), 8-bit
+  14.2 GB, BF16 28.5 GB (does not fit 24 GB).
+- **Behavior:** the requested duration is an upper bound (the model may stop
+  early), so it is not an exact-duration backend; trim or crossfade to length.
+  Lyrics are required: pass `[instrumental]` for an instrumental. Output is
+  44.1 kHz stereo WAV on the MLX route, up to about 5 minutes.
+- **License (MiniMax-Music3 Community License):** commercial use is allowed
+  while yearly revenue from products using it stays at or under USD 20M;
+  above that, written authorization is needed. A commercial product must show
+  "MiniMax-Music3" in its UI, and publishing generated content without clear
+  disclosure that it is AI-generated is a restricted use. Name the license and
+  get the user's acceptance before any download, like the other local models.
+
+Before relying on it: install into its own virtual environment, pin the
+`mlx-audio` revision, run a 30 s probe, and compare by ear with ACE-Step.
 
 ## Stable Audio (Stability AI REST API)
 
 **Best for:** short instrumentals, sound design, text-to-audio.
 
-```bash
-curl -s -X POST https://api.stability.ai/v2alpha/audio/generate \
-  -H "Authorization: Bearer $STABILITY_API_KEY" \
-  -F "prompt=<prompt>" \
-  -F "duration=180" \
-  -F "output_format=mp3" \
-  -o <output.mp3>
-```
+**Data sharing:** this is a cloud API. The prompt (and any lyrics you fold into
+it) is sent to Stability AI and billed to the user's account. Before the first
+call, tell the user what will be sent and get their OK; offer local ACE-Step or
+MusicGen if they prefer to keep the content on their machine. Never include
+credentials or personal details in the prompt.
 
-Stable Audio may not support separate lyrics input. For vocal tracks, combine lyrics into the prompt text. Check current Stability AI docs for the latest endpoint and parameters.
+Use Stability AI's current audio-generation endpoint from their official API
+documentation with the user's `STABILITY_API_KEY` (read from the environment,
+never pasted into chat or files). Typical request fields: the text `prompt`, a
+`duration` in seconds, and an `output_format` such as `mp3`. Save the response
+body to the output file the user chose, then run the normal verification.
+
+Stable Audio may not support separate lyrics input. For vocal tracks, combine
+lyrics into the prompt text only after the user agrees to send them.
 
 ## Generic CLI (any other)
 

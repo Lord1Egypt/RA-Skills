@@ -1,44 +1,58 @@
-## Description: <br>
-SSH remote connection and operation for servers (Linux/Unix cloud servers, etc.) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SSH remote connection and operation for servers (Linux/Unix cloud servers, etc.)
 
-## Publisher: <br>
-[XingFaLin](https://clawhub.ai/user/XingFaLin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingfalin](https://clawhub.ai/user/xingfalin)
 
-## Use Case: <br>
-Developers and administrators use this skill to connect to Linux or Unix servers over SSH, configure saved server entries, inspect system status, view logs, and run common service or Docker operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents an SSH command that disables strict host key checking, which can expose users to server impersonation. <br>
-Mitigation: Prefer verified host keys and avoid StrictHostKeyChecking=no for normal connections. <br>
-Risk: The skill asks users to store powerful server credentials through helper code that is not included for review in the artifact. <br>
-Mitigation: Prefer SSH keys or an SSH agent, and inspect or avoid the helper before entering server passwords. <br>
-Risk: The skill includes service, Docker, sudo, and file-changing command patterns that can affect remote systems. <br>
-Mitigation: Require explicit user approval and review command impact before running privileged or state-changing operations. <br>
+## Use Case:
 
+Developers and operators use this skill to connect to Linux/Unix servers over SSH, inspect system status and logs, and run common service or Docker administration commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/XingFaLin/ssh-server) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SSH, systemctl, Docker, log inspection, and local configuration commands that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Using `StrictHostKeyChecking=no` can expose users to server impersonation and credential theft.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify and pin SSH host keys instead of using the documented unsafe connection option.
+
+Risk: Privileged service, Docker, and log commands can disrupt servers or expose sensitive operational data.
+
+Mitigation: Run these commands only on servers you control after confirming the target host, command, and expected impact.
+
+Risk: Password-based SSH access and saved credentials increase credential exposure risk.
+
+Mitigation: Prefer SSH key authentication, avoid direct root login where possible, and do not share passwords in chat.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xingfalin/skills/ssh-server)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/xingfalin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an SSH client binary and access to servers the user controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

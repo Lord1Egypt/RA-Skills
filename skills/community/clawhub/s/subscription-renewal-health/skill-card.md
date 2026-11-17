@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor recurring-billing and subscription business health - pool volatility, churn, and payment failure - then output dunning and retention email series grounded in compensation psychology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor recurring-billing and subscription business health, including pool volatility, churn, and payment failure, then produce dunning and retention email series grounded in compensation psychology.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Subscription operators and growth teams use this skill to monitor recurring-billing health, distinguish voluntary from involuntary churn, track payment failures, and draft dunning or win-back communications with approved compensation framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dunning, SMS, or win-back copy may be sent before it is checked against brand policy, customer consent, unsubscribe obligations, or subscription-law requirements. <br>
-Mitigation: Review all generated customer communications before sending and apply the organization's compliance, consent, and unsubscribe rules. <br>
-Risk: The skill may suggest compensation framing that operations cannot actually honor. <br>
-Mitigation: Use only compensation offers that are approved and real, and do not promise credits, free periods, skips, or add-ons unless fulfillment is confirmed. <br>
+## Use Case:
 
+Subscription operators, lifecycle marketers, and customer-success teams use this skill to review recurring-billing health, track failed renewals, and draft structured dunning or win-back messages. It is intended for subscription contexts with churn, payment-failure, or retention concerns, not one-off transactional receipts.
 
-## Reference(s): <br>
-- [Subscription playbook](references/subscription_playbook.md) <br>
-- [ClawHub release page](https://clawhub.ai/RIJOYAI/subscription-renewal-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and email draft sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subscription health tables, payment failure tracking, and 3+ message dunning or retention email series when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may share sensitive subscription metrics or payment-failure summaries while using the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the customer and billing data needed for the task, redact raw payment details, and follow internal data-handling policies.
+
+Risk: Retention or dunning messages could promise compensation that operations cannot fulfill.
+
+Mitigation: Confirm approved make-good options before sending messages and avoid promises outside policy.
+
+Risk: Win-back messages may be treated differently from transactional dunning communications.
+
+Mitigation: Review consent, unsubscribe, and jurisdiction-specific email requirements before sending marketing-oriented win-back messages.
+
+## Reference(s):
+
+- [Subscription health, dunning & compensation psychology](references/subscription_playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables and email drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces health tables, payment-failure tracking, and multi-message retention or dunning sequences; no executable code is produced by default.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

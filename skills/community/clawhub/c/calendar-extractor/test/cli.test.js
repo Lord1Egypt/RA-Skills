@@ -271,19 +271,17 @@ test('doPush only delivers the NEW events when mixing seen and fresh', async () 
   assert.doesNotMatch(client.calls.push[1].content, /Old/);
 });
 
-// ---- THE PUSH TZ FIX: mirror in the server zone, not the container UTC ----
+// ---- THE PUSH TZ FIX: doPush resolves the server zone, not the container UTC --
 // Mirrors the doUpdate server-tz regression in update.test.js. The EXTRACTION
-// push path used to resolve tz via resolveTz(null) (-> TZ env -> system -> UTC in
-// prod), so a "June 22 7pm PDT" event (a Z instant 2026-06-23T02:00:00Z) was
-// stored as the UTC instant 2026-06-23 02:00:00 instead of the user's wall-clock
-// 2026-06-22 19:00:00, landing the card on the wrong day. With NO deps.tz and the
-// server's authoritative zone injected via deps.fetchTz, the mirrored start_at is
-// the naive-local wall-clock in that zone (no Z/offset). deps.fetchTz keeps the
-// resolveUserTz call offline.
-test('doPush mirrors start_at in the SERVER zone when no deps.tz (no UTC instant stamped)', async () => {
+// push path must resolve tz via the server's authoritative zone (deps.fetchTz),
+// NOT resolveTz(null) (-> TZ env -> system -> UTC in prod). deps.fetchTz keeps the
+// resolveUserTz call offline. Since the absolute-instant fix (§B) the mirrored
+// start_at is a UTC-Z instant, so for a ZONED input it is tz-independent — the tz
+// resolution itself is what this test guards, via recorded.tz below.
+test('doPush resolves the SERVER zone when no deps.tz (fetchTz, not container UTC)', async () => {
   // A mirror that captures the tz doPush resolved AND shapes the skill_data items
   // exactly as the real mirror does (buildSkillDataItems with that tz), so we
-  // assert the naive-local start_at the row would actually carry.
+  // assert both the resolved zone and the absolute-instant start_at the row carries.
   const { buildSkillDataItems } = require('../scripts/lib');
   const recorded = { tz: null, items: null };
   const client = {
@@ -317,11 +315,86 @@ test('doPush mirrors start_at in the SERVER zone when no deps.tz (no UTC instant
     else process.env.TZ = prevTz;
   }
 
-  // doPush resolved the SERVER zone (via fetchTz), not the container UTC.
+  // doPush resolved the SERVER zone (via fetchTz), not the container UTC. This is
+  // the load-bearing assertion now: the buggy resolveTz(null) fallback would yield
+  // UTC/'' here instead of Asia/Tokyo.
   assert.equal(recorded.tz, 'Asia/Tokyo', 'push resolves the server zone, not UTC');
   const [item] = recorded.items;
-  assert.equal(item.start_at, '2026-06-23T11:00:00', 'Z instant collapses in the server zone (Jun 23 11am Tokyo), not UTC (Jun 23 2am) or system-LA (Jun 22 7pm)');
-  assert.doesNotMatch(item.start_at, /[Z+]/, 'start_at carries no Z/offset (naive-local)');
+  // Absolute-instant (§B): a ZONED input keeps its instant, emitted as UTC-Z.
+  assert.equal(item.start_at, '2026-06-23T02:00:00Z', 'zoned input keeps its absolute instant (UTC Z)');
+  assert.match(item.start_at, /Z$/, 'start_at is an absolute UTC instant with Z');
+});
+
+// ---- dispatcher resilience: a failing single-unit fetch must NOT abort ------
+// Spec: docs/superpowers/specs/2026-08-02-dispatch-prompt-embed-unit-context-
+// resilience-design.md — the dispatcher embeds the unit (transcript + source_ref
+// + source_kind + reference_date + tz) in the run prompt, so a re-fetch that 404s
+// (the source row was dropped after dispatch) must degrade to an empty-sessions
+// envelope rather than throw. The agent then falls back to the prompt UNIT
+// CONTEXT and STILL produces the /api/skill/data upsert (source_ref from prompt).
+test('doFetch degrades to an empty-sessions envelope on a failing fetch (no throw, anchor + fetch_error present)', async () => {
+  let emitted;
+  // httpGet rejects exactly as defaultHttpGet does on a 404 keyboard-input miss.
+  await doFetch(
+    { token: 't', sessionFilter: null, kbdFilter: '1189', hours: 24, limit: 50, tz: TZ },
+    {
+      httpGet: async () => { throw new Error('GET /api/transcripts/keyboard-input/1189 -> HTTP 404'); },
+      now: NOW,
+      emit: (o) => { emitted = o; },
+    }
+  );
+  // Did NOT throw — degraded payload emitted with zero sessions.
+  assert.equal(emitted.sessions.length, 0, 'a failed fetch yields no sessions, not an abort');
+  // The miss is surfaced non-silently in the envelope so the agent can knowingly
+  // fall back to the run-prompt UNIT CONTEXT.
+  assert.match(emitted.fetch_error, /404/, 'the fetch miss is surfaced as fetch_error');
+  // The relative-date anchor is still emitted so extraction can resolve times.
+  assert.equal(emitted.reference_date, '2026-06-03');
+  assert.equal(emitted.tz, TZ);
+});
+
+test('failing fetch --kbd-input + prompt UNIT CONTEXT still produces the /api/skill/data upsert (source_ref from prompt)', async () => {
+  // 1) The dispatcher re-fetch 404s (source row dropped) — doFetch degrades
+  //    rather than aborting, so the run continues on the prompt UNIT CONTEXT.
+  let fetched;
+  await doFetch(
+    { token: 't', sessionFilter: null, kbdFilter: '1189', hours: 24, limit: 50, tz: TZ },
+    {
+      httpGet: async () => { throw new Error('GET /api/transcripts/keyboard-input/1189 -> HTTP 404'); },
+      now: NOW,
+      emit: (o) => { fetched = o; },
+    }
+  );
+  assert.equal(fetched.sessions.length, 0);
+  assert.match(fetched.fetch_error, /404/);
+
+  // 2) The agent extracts from the prompt UNIT CONTEXT ("meeting at 1 PM today"),
+  //    carrying the prompt's source_ref/source_kind onto the event. The unit id
+  //    (kbd:1189 -> session_id 1189) is the source_ref supplied by the prompt.
+  const PROMPT_SOURCE_REF = '1189';
+  const events = [{
+    title: 'Meeting', startAt: '2026-06-03T20:00:00.000Z', endAt: null, // 1 PM PDT
+    location: null, attendees: [], notes: null,
+    sourceRef: PROMPT_SOURCE_REF, sourceKind: 'keyboard',
+  }];
+
+  // 3) push still writes the skill_data upsert — capture the exact items posted.
+  const { buildSkillDataItems } = require('../scripts/lib');
+  const recorded = { items: null };
+  const client = {
+    mirror: async (_token, evs, tz) => { recorded.items = buildSkillDataItems(evs, tz); },
+    push: async () => {},
+  };
+  const store = makeStore({ userId: 'self' });
+
+  await doPush({ token: 't', client, events, ...store, tz: TZ, now: NOW });
+
+  // The write happened (NOT "emitting nothing") and carries the prompt source_ref.
+  assert.ok(recorded.items, 'a failed fetch must not suppress the skill_data upsert');
+  assert.equal(recorded.items.length, 1);
+  assert.equal(recorded.items[0].source_ref, PROMPT_SOURCE_REF,
+    'source_ref rides through from the prompt UNIT CONTEXT');
+  assert.equal(recorded.items[0].status, 'pending', 'still a PENDING upsert (contract unchanged)');
 });
 
 test('doPush with an empty events array pushes nothing (empty-fetch path)', async () => {

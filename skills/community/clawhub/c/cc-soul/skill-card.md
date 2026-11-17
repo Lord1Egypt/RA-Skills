@@ -1,44 +1,62 @@
-## Description: <br>
-Zero-vector AI memory engine with self-learning, local SQLite storage, REST memory APIs, and optional user-configured LLM reranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-vector AI memory engine with self-learning for local long-term memory, recall, and agent behavior adaptation.
 
-## Publisher: <br>
-[wenroudeyu-collab](https://clawhub.ai/user/wenroudeyu-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenroudeyu-collab](https://clawhub.ai/user/wenroudeyu-collab)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local conversational memory, memory search, fact extraction, and recall context to OpenClaw-style agents through a local API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and processes personal conversational memory locally, which can include sensitive information. <br>
-Mitigation: Run it in an isolated environment first, avoid storing sensitive memories, and regularly inspect or delete data in the cc-soul and OpenClaw data directories. <br>
-Risk: The local API can expose memory data if bound beyond localhost or allowed through a firewall. <br>
-Mitigation: Keep the API bound to localhost or restrict access with host firewall rules before using it with real data. <br>
-Risk: Optional LLM and CLI features may send memory-derived context to user-configured external services. <br>
-Mitigation: Leave remote LLM and CLI features disabled unless needed, and use only reviewed endpoints and credentials. <br>
+## Use Case:
 
+Developers and agent users use this skill to add local memory storage, search, recall, and adaptive personalization to an assistant without requiring vector embeddings or cloud storage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenroudeyu-collab/cc-soul) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory API responses and configuration guidance; optional LLM behavior depends on user-supplied credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.5 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill exposes private memory through local memory storage and retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only on a trusted machine, avoid storing secrets, and delete or export memory data according to local policy.
+
+Risk: A local API can expose memory data if bound beyond localhost or deployed without access controls.
+
+Mitigation: Bind the API to localhost or add authentication before use on shared or networked systems.
+
+Risk: Optional remote LLM or webhook settings can send memory data outside the device.
+
+Mitigation: Enable remote LLM or webhook settings only after accepting the data-sharing implications for that endpoint.
+
+Risk: The skill may change assistant identity, style, and long-term memory automatically.
+
+Mitigation: Review behavior changes before deployment and monitor memory updates in workflows where consistency is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenroudeyu-collab/skills/cc-soul)
+- [Project homepage](https://github.com/wenroudeyu-collab/cc-soul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, code examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate through a local HTTP API and optional user-configured LLM endpoint.]
+
+## Skill Version(s):
+
+3.2.5 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

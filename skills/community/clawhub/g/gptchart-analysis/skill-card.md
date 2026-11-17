@@ -1,44 +1,56 @@
-## Description: <br>
-Analyze cryptocurrency, stock, and forex trading charts using GPTChart.ai's AI-powered technical analysis engine with basic and expert modes and GPTChart credit usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze cryptocurrency, stock, and forex trading charts using GPTChart.ai's AI-powered technical analysis engine, with basic and expert modes and account-credit usage tied to GPTCHART_API_KEY.
 
-## Publisher: <br>
-[jiasheng98](https://clawhub.ai/user/jiasheng98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiasheng98](https://clawhub.ai/user/jiasheng98)
 
-## Use Case: <br>
-External users and trading-focused agent operators use this skill to request GPTChart.ai technical analysis for crypto, stock, and forex symbols, then present market bias, price levels, reasoning, and credits used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GPTChart API key and analysis calls can consume GPTChart credits. <br>
-Mitigation: Use a dedicated or easily rotated key, avoid exposing the key in logs or responses, and ask for confirmation before running batches of analyses. <br>
-Risk: Custom prompts and analysis requests are sent to GPTChart.ai. <br>
-Mitigation: Avoid sending sensitive personal, account, or trading information in prompts or symbols beyond what is needed for the analysis. <br>
-Risk: Market analysis may be incomplete or unsuitable as the sole basis for trading decisions. <br>
-Mitigation: Treat results as informational analysis, review the reasoning and price levels, and apply independent risk controls before acting. <br>
+## Use Case:
 
+External users and developers use this skill to request GPTChart.ai chart analysis for crypto, stock, and forex symbols, including indicator-based, multi-timeframe, custom-prompt, and strategy-based analysis. It helps agents format API calls and present bias, price levels, reasoning, and credits used.
 
-## Reference(s): <br>
-- [GPTChart.ai](https://gptchart.ai) <br>
-- [GPTChart API keys](https://gptchart.ai/account/api-keys) <br>
-- [GPTChart pricing plan](https://gptchart.ai/account/pricing-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with optional shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GPTCHART_API_KEY; analysis calls can consume GPTChart credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Analysis calls send chart symbols, custom prompts, and strategy IDs to GPTChart.ai and may consume account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an intended GPTCHART_API_KEY, avoid secrets or proprietary trading logic in customPrompt, and report credits used after each analysis.
+
+Risk: Trading analysis can be incomplete or misleading if treated as a standalone investment decision.
+
+Mitigation: Present the returned bias, entry, stop loss, take profit, confirmation price, and reasoning clearly so users can review the analysis before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiasheng98/skills/gptchart-analysis)
+- [GPTChart.ai](https://gptchart.ai)
+- [GPTChart API keys](https://gptchart.ai/account/api-keys)
+- [GPTChart pricing plan](https://gptchart.ai/account/pricing-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request payloads, trading-analysis summaries, formatted price levels, market bias, and credits used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

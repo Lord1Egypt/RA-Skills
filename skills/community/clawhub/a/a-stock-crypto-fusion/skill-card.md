@@ -1,45 +1,58 @@
-## Description: <br>
-FusionAlpha A&Crypto Desk helps an agent produce structured A-share, crypto, and morning-brief market research reports from user-provided or script-fetched market data, with fixed templates, evidence lists, and conservative risk controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates evidence-constrained A-share, crypto, and morning briefing reports from structured market JSON, with fixed templates for decisions, win rate, drawdown, risk, and data limitations.
 
-## Publisher: <br>
-[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng)
 
-## Use Case: <br>
-External users and agent developers use this skill to draft research-oriented A-share, crypto, and morning market reports from structured market data. It supports trading-plan style outputs, but the security evidence recommends treating generated reports as research rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading reports may be interpreted as financial advice or may contain incorrect conclusions if input market data is incomplete. <br>
-Mitigation: Present outputs as research, require evidence lists for specific conclusions, and review decisions before acting on them. <br>
-Risk: Python helper scripts call public market-data services and may install dependencies locally. <br>
-Mitigation: Run scripts intentionally in a local virtual environment and review dependencies before installation. <br>
-Risk: CryptoPanic news access can require a user token. <br>
-Mitigation: Pass the token through an environment variable or parameter and avoid echoing, storing, or placing it in chat logs. <br>
+## Use Case:
 
+External users and agent developers use this skill to draft research-oriented A-share, crypto, dual-market, and morning briefing reports from supplied or fetched JSON market data. The skill is intended for structured analysis and briefing support, not financial, legal, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xinyuqinfeng/a-stock-crypto-fusion) <br>
-- [Publisher Profile](https://clawhub.ai/user/xinyuqinfeng) <br>
-- [Data Sources Reference](references/data_sources.md) <br>
-- [CryptoPanic Developer API](https://cryptopanic.com/api/developer/v2/posts/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with evidence lists and final decision summary lines; helper scripts emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on supplied market data quality; optional CryptoPanic news access requires a user-provided token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Generated trading reports could be mistaken for financial advice or could contain misleading market guidance if source data is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as research drafts, review all outputs before acting, and preserve the skill's evidence-list and data-insufficiency requirements.
+
+Risk: The crypto news path can use and transmit a saved CryptoPanic token when the environment variable is set.
+
+Mitigation: Unset CRYPTOPANIC_TOKEN unless news is explicitly needed, avoid passing tokens on the command line, and never echo or store user-provided tokens.
+
+Risk: The included fetch scripts make network calls to public market-data providers and may depend on vulnerable or outdated packages.
+
+Mitigation: Run scripts only in environments where those network calls are acceptable, inspect or update dependencies before regular use, and review scan results before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xinyuqinfeng/skills/a-stock-crypto-fusion)
+- [Data Sources](references/data_sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON-producing helper script commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs require evidence lists with concrete JSON paths and values; helper scripts may return partial JSON with errors recorded when upstream market-data providers fail.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

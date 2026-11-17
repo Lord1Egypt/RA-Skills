@@ -1,47 +1,60 @@
-## Description: <br>
-Analyze TRON contracts for deploy information, hot methods, top callers, open-source verification status, and transaction count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze TRON contracts for deployment information, call statistics, callers, events, energy usage, open-source verification status, and transaction activity using TronScan MCP.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-Developers, security reviewers, and TRON ecosystem analysts use this skill to inspect contract metadata, verification status, call patterns, events, energy usage, and caller activity through the TronScan MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TRON contract or address queries are sent to the disclosed TronScan MCP service. <br>
-Mitigation: Use the skill only when sharing those query details with TronScan is acceptable. <br>
-Risk: Routing ambiguity can occur for token-holder, token-supply, or account-balance questions. <br>
-Mitigation: Use the more specific token or account skills for token-holder, token-supply, and account-balance requests. <br>
-Risk: Contract verification status reflects source-code availability and verification on TronScan, not official endorsement or project certification. <br>
-Mitigation: Treat verification as a code-level signal and combine it with call statistics, events, energy usage, and other review evidence before making safety conclusions. <br>
-Risk: TronScan API rate limits may affect analysis completeness. <br>
-Mitigation: If rate limits occur, configure a TronScan developer API key and retry with appropriate pagination or time ranges. <br>
+## Use Case:
 
+Developers and analysts use this skill to inspect public TRON contract details, verification status, call activity, top callers, events, energy consumption, and transaction trends. It supports contract-analysis workflows but is not a replacement for a smart-contract audit or token/project safety review.
 
-## Reference(s): <br>
-- [TronScan Contract Analysis on ClawHub](https://clawhub.ai/sshnii/tronscan-contract-analysis) <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan MCP Server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or plain-text analysis with TronScan MCP tool call results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only contract analysis; outputs may include contract metadata, verification status, call statistics, event summaries, energy usage, transaction counts, caller lists, and routing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Users may treat TronScan contract verification or open-source status as proof that a token or project is endorsed, certified, or safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that verification only means the contract source code has been open-sourced and verified on TronScan, and recommend independent review before relying on the contract.
+
+Risk: Broad TRON contract, token-holder, or account-balance questions may be routed outside the skill's intended contract-analysis scope.
+
+Mitigation: Confirm that the request is about contract analysis and redirect token supply, holder-list, or address-balance requests to the appropriate specialized workflow.
+
+Risk: TronScan MCP connection issues or API rate limits can interrupt public data lookups.
+
+Mitigation: Surface connection or rate-limit errors clearly and advise configuring TronScan MCP or API access before retrying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sshnii/skills/tronscan-contract-analysis)
+- [TronScan MCP server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analysis based on TronScan MCP results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public contract details, verification status, call statistics, caller summaries, events, energy usage, and transaction activity.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

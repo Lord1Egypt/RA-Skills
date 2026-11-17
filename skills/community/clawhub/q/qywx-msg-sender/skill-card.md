@@ -1,41 +1,53 @@
-## Description: <br>
-Sends notifications to WeCom group robot webhooks as text, Markdown, Markdown V2, image, or file messages, either by direct webhook URL/chat ID or by registered chat name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends WeCom group robot webhook notifications as text, Markdown, Markdown V2, image, or file messages, either to a supplied webhook URL or to a registered named chat.
 
-## Publisher: <br>
-[gavinyao](https://clawhub.ai/user/gavinyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinyao](https://clawhub.ai/user/gavinyao)
 
-## Use Case: <br>
-Developers and operators use this skill to send deployment notices, service alerts, scheduled job results, reports, images, and files to WeCom chats from shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeCom webhook URLs act like credentials and may be stored in the chat registry or printed by registration and listing commands. <br>
-Mitigation: Store the registry with restrictive permissions, avoid sharing terminal output or logs, prefer environment or protected secret storage over command history, and rotate exposed webhook URLs. <br>
-Risk: Messages, images, and files are sent to external WeCom webhook endpoints. <br>
-Mitigation: Review the target chat name, webhook URL, chat ID, and message or file contents before sending. <br>
+## Use Case:
 
+Developers and operations teams use this skill to send service alerts, scheduled job results, data reports, and other notifications to WeCom chats from shell workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gavinyao/qywx-msg-sender) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON payload behavior.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; WeCom webhook URLs and chat registry values must be treated as secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Webhook URLs can grant message-sending access and may be exposed by registry listings or shared logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat webhook URLs as secrets, avoid sharing listing output, and restrict permissions on the local registry file.
+
+Risk: User-provided messages or files can be sent to arbitrary webhook URLs.
+
+Mitigation: Prefer pre-registered trusted destinations and review command arguments before sending content or files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gavinyao/skills/qywx-msg-sender)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts send user-selected text, Markdown, images, and files to WeCom webhook endpoints and maintain an optional local chat registry.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

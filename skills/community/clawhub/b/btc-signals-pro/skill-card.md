@@ -1,45 +1,56 @@
-## Description: <br>
-Real-time Bitcoin trading intelligence API providing market data, AI trade signals, derivatives flow, liquidation heatmaps, live crypto news, economic calendar, historical OHLCV, and 50+ data sources for AI-driven trade decisions and automated trading bots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time Bitcoin trading intelligence API providing market data, AI trade signals, derivatives flow, liquidation heatmaps, live crypto news, economic calendar, historical OHLCV, and 50+ data sources for AI-driven trade decisions and automated trading bots.
 
-## Publisher: <br>
-[ricklaughhunn](https://clawhub.ai/user/ricklaughhunn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricklaughhunn](https://clawhub.ai/user/ricklaughhunn)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to BTC Signals Pro for Bitcoin market snapshots, trade-signal summaries, derivatives and liquidity context, crypto news, macro calendar checks, and historical market analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides trading outputs that may be incorrect, stale, or financially risky. <br>
-Mitigation: Treat outputs as informational and manually review buy/sell levels, stop losses, and bot-pattern guidance before risking funds. <br>
-Risk: The skill makes authenticated requests to BTC Signals Pro using BTC_SIGNALS_API_KEY. <br>
-Mitigation: Keep the API key private, avoid printing it in chat, and monitor API usage. <br>
-Risk: The skill depends on an external paid API and network availability. <br>
-Mitigation: Confirm the subscription and key status before relying on responses, and handle failed or rate-limited API calls conservatively. <br>
+## Use Case:
 
+External users, developers, and trading-system builders use this skill to query BTC Signals Pro for Bitcoin market snapshots, signals, derivatives flow, news, macro calendar data, historical OHLCV, and trade setup analysis through an agent.
 
-## Reference(s): <br>
-- [BTC Signals Pro API Reference](artifact/references/api-reference.md) <br>
-- [BTC Signals Pro API](https://api.btcsignals.pro/v1) <br>
-- [BTC Signals Pro pricing](https://btcsignals.pro/pricing) <br>
-- [ClawHub release page](https://clawhub.ai/ricklaughhunn/btc-signals-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with API request examples, market-analysis narrative, and trading levels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BTC_SIGNALS_API_KEY for authenticated requests and should not print the full key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.2.0) <br>
+Risk: The skill gives aggressive financial decision support that could lead an agent to open, modify, or close positions without strong user-control guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it disconnected from exchange, broker, wallet, and order-placement tools unless trading automation is intentionally enabled and every order, modification, or close action requires explicit confirmation.
+
+Risk: The skill requires a BTC Signals Pro API key for paid API access.
+
+Mitigation: Store BTC_SIGNALS_API_KEY only in the agent configuration, pass it via the X-API-Key header, and do not print or share the full key.
+
+## Reference(s):
+
+- [BTC Signals Pro API Reference](references/api-reference.md)
+- [BTC Signals Pro API](https://api.btcsignals.pro/v1)
+- [BTC Signals Pro Pricing](https://btcsignals.pro/pricing)
+- [ClawHub Skill Page](https://clawhub.ai/ricklaughhunn/skills/btc-signals-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON API response summaries and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BTC_SIGNALS_API_KEY and a BTC Signals Pro data plan; API calls are rate limited to 60 requests per minute.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

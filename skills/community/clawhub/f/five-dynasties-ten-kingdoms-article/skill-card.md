@@ -1,41 +1,61 @@
-## Description: <br>
-Researches and writes a timeline-driven long-form article on the Five Dynasties and Ten Kingdoms period in Simplified Chinese, with citations and map links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and write a timeline-driven long-form article on the Five Dynasties and Ten Kingdoms (五代十国, c. 907-979) in Simplified Chinese, with citations and map links.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External users, writers, researchers, and students use this skill to produce a structured, citation-oriented Markdown article about the Five Dynasties and Ten Kingdoms period. It is intended for Chinese-language historical writing with timeline, regime-change, culture, territory, map, and FAQ sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prefer Simplified Chinese even when a user wants another language or Traditional Chinese. <br>
-Mitigation: Use it when Simplified Chinese is desired, or explicitly instruct the agent to follow the requested language and script. <br>
+## Use Case:
 
+External readers, writers, and history researchers use this skill to produce a Simplified Chinese long-form historical article on the Five Dynasties and Ten Kingdoms, including a timeline, frequently asked questions, citations, and map links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/five-dynasties-ten-kingdoms-article) <br>
-- [Five Dynasties and Ten Kingdoms timeline reference](references/timeline.md) <br>
-- [Five Dynasties and Ten Kingdoms FAQ reference](references/faq.md) <br>
-- [Five Dynasties and Ten Kingdoms maps](https://commons.wikimedia.org/wiki/Category:Five_Dynasties_and_Ten_Kingdoms_maps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article with headings, timeline content, citations, map links, FAQ, and references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a Simplified Chinese long-form article of about 5000 Chinese characters or more unless the user requests a shorter version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Historical claims, dates, names, or wording may be inaccurate or weakly supported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited facts and links before publication, and cross-check key claims against reliable public sources.
+
+Risk: The fictional drama hook may be confused with historical evidence.
+
+Mitigation: Keep drama references clearly labeled as fictional background and do not use them as historical sources.
+
+Risk: Map links and fetched public pages may be outdated, unavailable, or unsuitable for publication.
+
+Mitigation: Verify all external map and citation links during final editorial review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/five-dynasties-ten-kingdoms-article)
+- [Server-resolved GitHub import](https://github.com/j3ffyang/ai-custom-skills/tree/main/hermes/five-dynasties-ten-kingdoms-article)
+- [Five Dynasties and Ten Kingdoms maps](https://commons.wikimedia.org/wiki/Category:Five_Dynasties_and_Ten_Kingdoms_maps)
+- [Timeline reference](references/timeline.md)
+- [FAQ reference](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown long-form article in Simplified Chinese with citations, timeline sections, FAQ entries, and map links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web search and fetched public pages for citation and map verification.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,30 @@
+# Meta Ads Creative Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+brand: ""
+campaign_name: ""
+objective: ""
+landing_page_url: ""
+offer:
+  headline_offer: ""
+  price_usd: ""
+  expires: ""
+audience:
+  who: ""
+  what_they_already_tried: ""
+proof_points:
+  - ""
+  - ""
+primary_text: ""
+headline: ""
+description: ""
+call_to_action: ""
+placement_notes:
+  feed_ratio: "1:1 or 4:5"
+  stories_ratio: "9:16"
+  primary_text_limit: 125
+  headline_limit: 40
+  description_limit: 25
+claims_to_verify:
+  - ""
+forbidden_phrases:
+  - ""

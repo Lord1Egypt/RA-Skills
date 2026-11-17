@@ -1,40 +1,53 @@
-## Description: <br>
-Executable AI-assisted research and planning that helps agents preserve source content, reduce hallucination, and maintain traceability across multi-document work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executable AI-assisted research and planning that emphasizes content preservation, source validation, and traceability across multiple source documents.
 
-## Publisher: <br>
-[markbunyevacz](https://clawhub.ai/user/markbunyevacz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markbunyevacz](https://clawhub.ai/user/markbunyevacz)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to structure multi-document research, gap analysis, translation review, document consolidation, and compliance-oriented deliverables with source traceability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can copy source files and create local traceability records that may contain sensitive inputs. <br>
-Mitigation: Use it in a dedicated project folder, avoid unnecessary sensitive inputs, and review copied files, manifests, registries, and process logs before sharing generated packages. <br>
-Risk: Research deliverables may still contain omissions or incorrect conclusions if the provided sources are incomplete or misread. <br>
-Mitigation: Review generated source inventories, traceability matrices, validated claims, and final deliverables before relying on them for decisions or compliance. <br>
+## Use Case:
 
+Researchers, analysts, and planning teams use this skill to structure multi-document research, gap analysis, deliverable generation, translation verification, and document consolidation with explicit source traceability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markbunyevacz/zeroloss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with structured process artifacts and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project scaffolds, source inventories, traceability matrices, manifests, process logs, and deliverables when followed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may copy source documents into generated project folders and preserve detailed process logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace for sensitive material and agree in advance which files may be copied, what logs may contain, and when artifacts should be deleted.
+
+Risk: The skill broadly auto-applies to research and planning tasks, which can increase unintended activation.
+
+Mitigation: Review activation scope before installation and require user confirmation before creating project scaffolds or processing source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markbunyevacz/skills/zeroloss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with process checklists, pseudocode, tables, and optional generated project artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a project artifact tree containing copied source files, deliverables, traceability records, source registries, validation reports, manifests, and process logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Masonry helps agents generate images and videos, manage jobs, and explore models through the Masonry CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered image and video generation. Generate images, videos, manage jobs, and explore models via the masonry CLI.
 
-## Publisher: <br>
-[junaid1460](https://clawhub.ai/user/junaid1460) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[junaid1460](https://clawhub.ai/user/junaid1460)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to generate images or videos, inspect available models, track generation jobs, and download completed media through Masonry. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Masonry account credentials and may process private prompts or reference images through an external service. <br>
-Mitigation: Use an appropriately scoped Masonry token, prefer environment-variable setup, and submit only content that is acceptable for Masonry processing. <br>
-Risk: The skill depends on the Masonry CLI package and external Masonry service availability. <br>
-Mitigation: Install only trusted versions of @masonryai/cli and verify command output, job IDs, and model keys from Masonry responses before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Masonry homepage](https://masonry.so) <br>
-- [Masonry pricing](https://masonry.so/pricing) <br>
-- [ClawHub skill page](https://clawhub.ai/junaid1460/masonry-generate-image-and-video) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate AI images and videos, inspect available Masonry models, track generation jobs, and download completed media outputs through the Masonry CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON command responses, and downloaded media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is downloaded through Masonry job commands and surfaced to the user with MEDIA path lines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Masonry account token and can initiate login flows for access to a Masonry workspace.
+
+Mitigation: Avoid pasting tokens into chat; enter credentials only in a local terminal or secure secret mechanism and use MASONRY_TOKEN from a managed secret store when available.
+
+Risk: The skill depends on the Masonry npm CLI package to generate and download media.
+
+Mitigation: Install only if you trust the Masonry CLI package; prefer a pinned or reviewed CLI version where possible.
+
+Risk: Incorrect job IDs, model keys, or guessed CLI responses can lead to failed or misleading generation workflows.
+
+Mitigation: Use only job IDs, model keys, wait intervals, and status values returned by Masonry CLI JSON output.
+
+## Reference(s):
+
+- [Masonry homepage](https://masonry.so)
+- [Masonry pricing](https://masonry.so/pricing)
+- [Masonry skills feedback](https://github.com/masonry-so/skills/issues)
+- [ClawHub skill page](https://clawhub.ai/junaid1460/skills/masonry-generate-image-and-video)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files]
+
+**Output Format:** [Markdown guidance with bash command examples, JSON CLI responses, and downloaded media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit MEDIA: file path lines after successful downloads; relies on Masonry CLI JSON responses.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

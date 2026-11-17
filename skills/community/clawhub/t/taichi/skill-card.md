@@ -1,44 +1,59 @@
-## Description: <br>
-Taichi is a Redis-based multi-agent workflow framework that supports centralized, distributed, and hybrid execution modes across Planner, Drafter, Validator, and Dispatcher stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taichi is a multi-agent collaboration framework that supports centralized, distributed, and hybrid execution modes through a Redis message bus and Planner, Drafter, Validator, and Dispatcher workflow stages.
 
-## Publisher: <br>
-[indivisible2025](https://clawhub.ai/user/indivisible2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indivisible2025](https://clawhub.ai/user/indivisible2025)
 
-## Use Case: <br>
-Developers and engineers use Taichi to run multi-agent task workflows through centralized, distributed, or hybrid modes backed by a Redis message bus. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags broad local command execution and weak safety checks. <br>
-Mitigation: Install only in an isolated development environment and do not use untrusted task text until shell execution is disabled or sandboxed and task payloads are authenticated and validated. <br>
-Risk: The skill can install and start Redis locally and uses Redis-backed worker coordination. <br>
-Mitigation: Run it only where Redis service changes are acceptable, and avoid shared or production Redis instances unless install, start, and stop behavior is explicitly user-controlled. <br>
-Risk: Uninstall behavior can delete the configured Taichi workspace. <br>
-Mitigation: Set a dedicated workspace and review workspace contents before running uninstall commands. <br>
+## Use Case:
 
+Developers and engineers use Taichi to run multi-agent workflows for linear task planning, parallel data processing, and multi-stage task coordination across centralized, distributed, or hybrid execution modes.
 
-## Reference(s): <br>
-- [Taichi Framework README](artifact/taichi-framework/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/indivisible2025/taichi) <br>
-- [Publisher homepage](https://github.com/Indivisible2025/Cloudfin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and text output from local workflow runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.9+, Redis, and a local virtual environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The framework includes unsafe shell execution behavior that can run local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch the subprocess executor before using real data, and restrict execution to explicitly approved commands.
+
+Risk: Install and uninstall scripts can make broad local environment changes, including host package installation and workspace deletion.
+
+Mitigation: Install only in an isolated development environment, avoid sudo unless host package changes are intended, and keep TAICHI_WORKSPACE scoped to the framework workspace.
+
+Risk: The workflow depends on Redis for inter-agent messaging.
+
+Mitigation: Use a local, protected Redis instance and avoid exposing the message bus to untrusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indivisible2025/skills/taichi)
+- [Project homepage](https://github.com/Indivisible2025/Cloudfin)
+- [Taichi framework README](artifact/taichi-framework/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and runtime text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, a Python virtual environment, and a local Redis message bus.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-Optimizes, improves, benchmarks, and evaluates skill prompts by running automated prompt experiments using the Karpathy autoresearch pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs iterative prompt experiments to evaluate and improve AI agent skills against user-defined criteria.
 
-## Publisher: <br>
-[zning1994](https://clawhub.ai/user/zning1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zning1994](https://clawhub.ai/user/zning1994)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to define binary evals, run prompt optimization experiments against a target SKILL.md or similar prompt file, and review the winning prompt variant before applying it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content, eval cases, and generated outputs may be sent to the selected LLM provider. <br>
-Mitigation: Run only with data that may be shared with that provider, avoid secrets in prompts and evals, and choose the provider API key deliberately. <br>
-Risk: The optimizer modifies the target prompt file while testing variants. <br>
-Mitigation: Run on a copy or in version control, use the generated baseline backup, and review the final prompt diff before committing. <br>
-Risk: Verbose runs may expose prompt or model-response details in shared terminals or CI logs. <br>
-Mitigation: Avoid --verbose in shared environments and keep result artifacts out of public logs when prompts or evals contain sensitive material. <br>
-Risk: Repeated LLM experiments can consume paid API quota. <br>
-Mitigation: Set conservative --runs and --max-experiments values, monitor provider usage, and stop runs that are not improving. <br>
+## Use Case:
 
+Developers and skill authors use it to benchmark prompt variants against defined evaluations and improve an existing skill's instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zning1994/brainforge-autoresearch) <br>
-- [Project homepage](https://github.com/zning1994/brainforge-autoresearch) <br>
-- [Karpathy autoresearch pattern](https://github.com/karpathy/autoresearch) <br>
-- [Claude Code autoresearch adaptation](https://github.com/olelehmann100kMRR/autoresearch-skill) <br>
-- [Eval guide](artifact/eval-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the optimizer can write local result files, a dashboard, and a baseline backup, and it can update the target prompt file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: frontmatter, changelog, server release) <br>
+Risk: Experiments can automatically rewrite the target skill prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run on a copy or version-controlled skill and review the diff before retaining changes.
+
+Risk: Prompt and evaluation content is sent to third-party LLM APIs.
+
+Mitigation: Do not use confidential prompts or evaluation data without approval for the chosen provider.
+
+Risk: Installation commands may fetch a changing release.
+
+Mitigation: Pin the installed version where possible.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zning1994/skills/brainharness-autoresearch)
+- [Project homepage (listed in skill metadata)](https://github.com/zning1994/brainharness-autoresearch)
+- [Evaluation guide](eval-guide.md)
+- [Autoresearch methodology](https://github.com/karpathy/autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance and JSON evaluation definitions; experiment results in TSV and JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write revised prompt files, experiment logs, and an original-prompt backup.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

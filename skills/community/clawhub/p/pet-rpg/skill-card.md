@@ -1,39 +1,53 @@
-## Description: <br>
-A Tamagotchi-style digital pet for AI agents. Raise your pet, battle others, evolve through stages. Includes A2A multiplayer for agent challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Tamagotchi-style digital pet for AI agents. Raise your pet, battle others, evolve through stages. Includes A2A multiplayer for agent challenges.
 
-## Publisher: <br>
-[NoizceEra](https://clawhub.ai/user/NoizceEra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noizceera](https://clawhub.ai/user/noizceera)
 
-## Use Case: <br>
-External users and agent developers use PetRPG to run a local digital pet game with pet care, evolution, turn-based battles, achievements, and optional agent-to-agent challenge concepts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Achievement tracking may create or update local progress data. <br>
-Mitigation: Install and run the skill only where local game state under data/achievements.json is acceptable. <br>
-Risk: The skill advertises online or A2A multiplayer concepts, but the shipped artifact does not include an online.py implementation. <br>
-Mitigation: Review any separately added multiplayer implementation for connection targets, transmitted pet or user data, and challenge authentication before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PetRPG ClawHub release](https://clawhub.ai/NoizceEra/pet-rpg) <br>
+## Use Case:
 
+External users and developers use PetRPG to run a local digital pet game for agents, including pet care actions, stats, evolution, turn-based battles, and achievement tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python command examples and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local game progress such as data/achievements.json when achievement tracking is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact describes A2A multiplayer behavior, but the inspected files do not implement online synchronization.
+
+Mitigation: Treat multiplayer documentation as unimplemented and require separate review before adding networked data sharing, peer authentication, or user-consent flows.
+
+Risk: Achievement tracking can write local progress data.
+
+Mitigation: Run the skill only in a workspace where creating or updating data/achievements.json is acceptable.
+
+## Reference(s):
+
+- [PetRPG ClawHub skill page](https://clawhub.ai/noizceera/skills/pet-rpg)
+- [NoizceEra ClawHub publisher profile](https://clawhub.ai/user/noizceera)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets, shell commands, and text or ASCII-art game output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local data/achievements.json file when achievement tracking is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

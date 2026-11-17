@@ -1,12 +1,24 @@
 # 宿主编排：三类 Google 投放自控（详细步骤）
 
-> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)  
-> **编排责任**：定时、多条件 IF、滑动时间窗、通知（含 P1 /「空耗熔断」文案）由 **OpenClaw / WorkBuddy / Cron** 等宿主实现。  
+> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)
+> **编排责任**：定时、多条件 IF、滑动时间窗、通知（含 P1 /「空耗熔断」文案）由 **OpenClaw / WorkBuddy / Cron** 等宿主实现。
 > **本页责任**：说明如何用 `siluzan-tso` **拉检查项**、**执行最终写操作**、**写后复核**。
+> Bing / Yandex / TikTok / Facebook **没有**本页写操作，只读巡检见 `hosted-automation-bing.md` / `hosted-automation-yandex.md` / `hosted-automation-tiktok.md` / `hosted-automation-facebook.md`。
+
+## Contents
+
+- 通用约定
+- 场景 1：单日预算熔断（Campaign）
+- 场景 2：CPA 飙升自动降价（Campaign / Ad Group）
+- 场景 3：连续空耗自动暂停（Ad Group / Ad）
+- 宿主编排实现清单（摘要）
+- 与 `forewarning` 的关系
+
+---
 
 **必读交叉引用**：
 
-- 金额与展示：`SKILL.md`「金额与货币单位硬约束」；**`ad campaigns --json-out ./snap` 的 `budget` 已为元**；组级等 `*Display` 与原始分字段关系见 `references/google-ads/google-ads.md`、`ad groups` 的 `--json-out` 说明。
+- 金额与展示：`references/google-ads/google-ads.md` § Gotchas（金额单位）；**`ad campaigns --json-out` 的 `budget` 已为元**；组级 `*Display` 见 `ad groups` 的 `--json-out` 说明。
 - `--json-out` 与 Node 过滤：`references/core/tips.md`
 - 写命令语法：`references/google-ads/google-ads.md`（系列编辑、广告组编辑、启停等）
 - 账户/维度分析、时间窗：`references/analytics/account-analytics.md`
@@ -24,13 +36,17 @@
 
 ### 检查项常用 JSON 字段（以当次 `siluzan-tso … --json-out ./snap` 为准）
 
-| 检查意图              | 可关注的 JSON 字段（键名以实际 stdout 为准）                                                                                                                                   |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 周期内费用            | 系列/组/创意列表中的 **`spend`**；报表类子命令中带费用的指标字段                                                                                                               |
-| 日预算与费用比        | **`ad campaigns --json-out ./snap`**：`**budget`**（CLI 已为元）与 **`spend`**；比较时须**统一货币与单位\*\*（见 `SKILL.md` 金额硬规范）                                       |
-| 转化次数              | **`conversions`**（或报表里等价字段名）                                                                                                                                        |
-| 实际 CPA              | 宿主侧 **`spend / conversions`**（`conversions` 为 0 时不做 CPA 判断）                                                                                                         |
-| 目标 CPA（系列 / 组） | 系列列表 JSON 中的 **`targetCpa_BidingAmount`** 等；组列表 **`ad groups --json-out ./snap`** 中的 **`targetCpaAmount`**（写入口径见 `references/google-ads/google-ads.md`「广告组编辑」） |
+| 检查意图               | 可关注的 JSON 字段（键名以实际 stdout 为准）                                                                                                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **区间合计费用**       | 系列/组/创意列表中的 **`spend`** = **`--start`～`--end` 整段合计**（**不是**「一天的消耗」；窗口 7 天则约为 7 日之和）                                                                          |
+| **日预算**             | **`ad campaigns --json-out ./snap`** 的 **`budget`**（CLI 已为元）= **每日预算上限**，与 `spend` **量纲不同**                                                                                   |
+| 日预算与「当日」费用比 | **仅当** `--start` 与 `--end` 为**同一统计日**时，才可用 `spend` 对比 `budget`；**禁止**用多日 `spend` 去除以或对比日预算（会把周/月合计误当成「一天花了这么多」）                              |
+| 转化次数               | **`conversions`**（窗口内合计）                                                                                                                                                                 |
+| 实际 CPA               | 宿主侧 **`spend / conversions`**（同窗口合计；`conversions` 为 0 时不做 CPA 判断）                                                                                                              |
+| 目标 CPA（系列 / 组）  | 系列列表 JSON 的 **`targetCpaAmountYuan`**（元）；组列表 **`targetCpaAmountYuan`**。不要读系列上的 `targetCpa_BidingAmount`（分） |
+| 日均消耗（续航用）     | 用 `balance-scan` 的 **`dailySpend`**（近 7 日合计/7），或自算 `spend / 活跃天数`；**禁止**把多日 `spend` 直接当「日消耗」                                                                      |
+
+> **硬约束（自动化 / 预警必读）**：凡带 `--start` / `--end` 的读命令，返回的 `spend` / `impressions` / `clicks` / `conversions` 均为**该闭区间合计**。要「一天的消耗」必须 `start=end=该日`，或显式 `合计 ÷ 天数`；要「日均」用 `balance-scan.dailySpend` / `overview.averageDailyCost`。
 
 若某条检查所需字段在**当前**落盘 JSON 中不存在，**禁止猜测**：先换用 `references/analytics/account-analytics.md` 中其它子命令拉数，或与维护方确认是否需扩展 `siluzan-tso`；宿主侧不得编造字段。
 
@@ -38,23 +54,36 @@
 
 ## 场景 1：单日预算熔断（Campaign）
 
-**业务目标**：当周期内费用相对日预算达到设定比例（如 **≥ 110%**，建议 **110%–120%** 缓冲 API 延迟）时，**将系列状态置为 Paused**；恢复由人工加预算后在网页或 CLI 再启用。
+**业务目标**：当**当日**系列花费相对**日预算**达到设定比例（如 **≥ 110%**，建议 **110%–120%** 缓冲 API 延迟）时，**将系列状态置为 Paused**；恢复由人工加预算后在网页或 CLI 再启用。
 
-### 检查项（宿主每轮执行）
+### 首选（全户 / 多户 Google）
 
-1. 解析 `mediaCustomerId`（见上文前置）。
-2. 拉系列列表（**统计日 = 当日**，起止同为该日或业务日定义）：
+一条命令扫描名下 Google 户并交付命中表（**只读，不暂停**）：
 
 ```bash
-siluzan-tso ad campaigns -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD> --json-out ./snap
+siluzan-tso guard budget-circuit -m Google --date <当日YYYY-MM-DD> --ratio 1.1 --json-out ./snap-guard
+# 确认某条命中后，对该账户单独暂停（写审计记这一次）：
+siluzan-tso ad campaign-status -a <mediaCustomerId> --id <campaignId> --status Paused --commit "超预算熔断"
+```
+
+参数与落盘字段见 **`references/operations/guard.md`**。**禁止** `list-accounts` 六媒体循环 + 逐户 `ad campaigns`。
+
+### 单户排障（可选细粒度）
+
+1. 解析 `mediaCustomerId`（见上文前置）。
+2. 拉系列列表（**必须** `--start` = `--end` = **当日**统计日；**禁止**用默认近 7 天窗口做本场景）：
+
+```bash
+siluzan-tso ad campaigns -a <mediaCustomerId> --start <当日YYYY-MM-DD> --end <当日YYYY-MM-DD> --json-out ./snap
 ```
 
 3. 对 `items[]` 中每条系列（`id` 为系列 ID）：
-   - 读取 **`spend`**（或文档约定的费用字段）与 **`budget`**（`ad campaigns` JSON 下**已为元**，与 `spend` 同量级口径，见 `SKILL.md` 硬规范）。
-   - 计算阈值：`threshold = budget_in_same_unit * (coefficient / 100)`，系数 `coefficient` 建议 **110–120**（配置项）。
+   - 读取 **`spend`**（= **仅当日**合计费用）与 **`budget`**（**日预算**，元）。
+   - 计算阈值：`threshold = budget * (coefficient / 100)`，系数 `coefficient` 建议 **110–120**（配置项）。
    - **IF** `spend >= threshold` **且**宿主策略允许对该系列熔断（如排除白名单），则进入写操作。
+   - **禁止**：`--start`≠`--end` 时仍用 `spend` 对比 `budget`（会把多日合计误判成单日超预算）。
 
-### 最终操作
+### 最终操作（单户手写时）
 
 ```bash
 siluzan-tso ad campaign-status -a <mediaCustomerId> --id <campaignId> --status Paused
@@ -76,9 +105,10 @@ siluzan-tso ad campaign-status -a <mediaCustomerId> --id <campaignId> --status E
 
 ### CLI 能力摘要
 
-| 状态 | 说明                                                                                                          |
-| ---- | ------------------------------------------------------------------------------------------------------------- |
-| 有   | 读：`ad campaigns --json-out ./snap`；写：`ad campaign-status`；复核：再次 `ad campaigns --json-out ./snap`。 |
+| 状态 | 说明                                                                               |
+| ---- | ---------------------------------------------------------------------------------- |
+| 首选 | `guard budget-circuit -m Google`（全户扫描，只读）；暂停用 `ad campaign-status`     |
+| 单户 | 读：`ad campaigns --json-out`；写：`ad campaign-status`；复核：再次 `ad campaigns` |
 
 ---
 
@@ -99,7 +129,7 @@ siluzan-tso ad campaign-status -a <mediaCustomerId> --id <campaignId> --status E
 3. 对候选对象：
    - `conversions`（窗口内）**≥ 3**
    - `actual_cpa = spend / conversions`（`conversions > 0`）
-   - 读取 **目标 CPA**（系列：`targetCpa_BidingAmount` 或 JSON 中实际键；组：`targetCpaAmount`）；与 **`actual_cpa`** 同单位后再比。
+   - 读取 **目标 CPA**（系列：`targetCpaAmountYuan`；组：`targetCpaAmountYuan`，都是元）。`spend` 已是账户币种，与这两个字段同单位后再比。不要用 `targetCpa_BidingAmount`（分）。
    - **IF** `actual_cpa > target_cpa * spike_threshold`（如 `1.3`），则进入写操作。
 
 ### 最终操作
@@ -130,10 +160,10 @@ siluzan-tso ad adgroup-edit -a <mediaCustomerId> --id <adGroupId> --max-cpc <主
 
 ### 写后复核
 
-再次 **`ad campaigns --json-out ./snap`** 或 **`ad groups --json-out ./snap`**：
+再次 **`ad campaigns --json-out ./snap`** 或 **`ad groups --json-out ./snap`**（刚改完系列/组加 `--fresh`）：
 
-- 优先比对 **`*Display` 字段**（主币种）与预期主币种金额一致；
-- 整数字段 `targetCpa_BidingAmount` / `targetCpaAmount` / `maxCPCAmount` / `budget` 应等于 `主币种 × 100` 后的整数。
+- 系列比对 `budget`、`targetSpendBidCeilingYuan`、`targetCpaAmountYuan`（已是元）。不要用 `targetSpend_BidCeilingAmount` / `targetCpa_BidingAmount`（分），也不要再 ×100。
+- 组只比对 `maxCPCAmountYuan`、`targetCpaAmountYuan`。出口里没有 `maxCPCAmount` / `targetCpaAmount`。
 
 ### CLI 能力摘要
 
@@ -147,7 +177,17 @@ siluzan-tso ad adgroup-edit -a <mediaCustomerId> --id <adGroupId> --max-cpc <主
 
 **业务目标**：**今日**（或约定日）累计 **`cost`（费用）≥ 目标 CPA × N`** 且 **`conversions = 0`** 时，**暂停**广告组或广告；**P1 告警 + 文案「空耗熔断」** 由宿主通知 skill 发送（本 CLI 不发送 P1）。
 
-### 检查项（宿主每轮执行）
+### 首选（全户 / 多户 Google）
+
+```bash
+siluzan-tso guard zero-conv -m Google --date <当日> --cpa-multiple 3 --level adgroup --json-out ./snap-guard
+# 确认某条命中后，对该账户单独暂停；创意维加 --level ad|both --fallback-target-cpa <元>
+siluzan-tso ad adgroup-status -a <mediaCustomerId> --id <adGroupId> --status Paused --commit "空耗熔断"
+```
+
+见 **`references/operations/guard.md`**。摘要文案为「空耗熔断」。
+
+### 单户排障（可选）
 
 1. 确定「今日」`--start` / `--end`（同场景 1 时区约定）。
 2. **广告组**：
@@ -156,9 +196,9 @@ siluzan-tso ad adgroup-edit -a <mediaCustomerId> --id <adGroupId> --max-cpc <主
 siluzan-tso ad groups -a <mediaCustomerId> --start <当日> --end <当日> --json-out ./snap
 ```
 
-对 `items[]`：读取 **`spend`**（费用）、**`conversions`**；目标 CPA 来自 **`targetCpaAmount`** 与 **`toDisplayMoney` 逆运算** 或宿主配置的「目标 CPA（主币种）」；计算 `limit = target_cpa_main_currency * N`（**N** 为配置）。
+对 `items[]`：读取 **`spend`**（费用）、**`conversions`**；目标 CPA 来自 **`targetCpaAmountYuan`**（元）或宿主配置；计算 `limit = target_cpa * N`。
 
-- **IF** `conversions === 0` **且** `spend >= limit`（注意 **`spend` 与 limit 单位一致**），则对该 `id` 执行组暂停。
+- **IF** `conversions === 0` **且** `spend >= limit`，则对该 `id` 执行组暂停。
 
 3. **广告（创意）**级：若策略在创意维熔断：
 
@@ -168,15 +208,13 @@ siluzan-tso ad list -a <mediaCustomerId> --start <当日> --end <当日> --json-
 
 同样判断费用与转化；命中则 **`ad ad-status`**。
 
-### 最终操作
+### 最终操作（单户手写时）
 
 ```bash
 siluzan-tso ad adgroup-status -a <mediaCustomerId> --id <adGroupId> --status Paused
 # 或
 siluzan-tso ad ad-status -a <mediaCustomerId> --id <adId> --status Paused
 ```
-
-（`ad-status` 若需 `--start`/`--end` 见 `references/google-ads/google-ads.md`。）
 
 ### 通知（宿主）
 
@@ -186,16 +224,16 @@ siluzan-tso ad ad-status -a <mediaCustomerId> --id <adId> --status Paused
 
 ```bash
 siluzan-tso ad groups -a <mediaCustomerId> --start <当日> --end <当日> --json-out ./snap
-# 或 ad list …
 ```
 
 确认对应 **`statusV2`** 为 **`Paused`**。
 
 ### CLI 能力摘要
 
-| 状态 | 说明                                                                                           |
-| ---- | ---------------------------------------------------------------------------------------------- |
-| 有   | 读：`ad groups` / `ad list`；写：`adgroup-status` / `ad-status`；通知：宿主；复核：再次 list。 |
+| 状态 | 说明                                                                        |
+| ---- | --------------------------------------------------------------------------- |
+| 首选 | `guard zero-conv -m Google`                                                 |
+| 单户 | 读：`ad groups` / `ad list`；写：`adgroup-status` / `ad-status`；通知：宿主 |
 
 ---
 

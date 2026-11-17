@@ -1,43 +1,57 @@
-## Description: <br>
-Routes AI agent correction and supervision discovery queries to the canonical VeriClaw skill and plugin surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Correction is an alias route that maps correction and supervision search terms back to the canonical VeriClaw skill and resources.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this alias to map broad AI agent correction, agent supervision, and evidence-first recovery queries to the canonical VeriClaw install and review surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat this alias as a complete description of VeriClaw behavior. <br>
-Mitigation: Review the separate VeriClaw skill or plugin before installing or relying on that target. <br>
-Risk: Broad AI agent correction or supervision queries may be routed to VeriClaw when a different remediation path is needed. <br>
-Mitigation: Confirm the user's goal matches VeriClaw's evidence, diagnosis, intervention, verification, and recovery workflow before recommending installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route AI agent correction, supervision, and evidence-first recovery requests to the canonical VeriClaw install, plugin, and review resources.
 
-## Reference(s): <br>
-- [Official VeriClaw ClawHub Skill](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw Plugin](https://clawhub.ai/plugins/vericlaw) <br>
-- [AI Agent Correction Page](https://sheygoodbai.github.io/vericlaw/ai-agent-correction/) <br>
-- [VeriClaw Review Kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Alias routing guidance only; no automatic local access, credential use, or actions are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may assume this alias installs or validates the canonical VeriClaw package or plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the separate vericlaw package or plugin before relying on those external components.
+
+Risk: The alias points users to external VeriClaw resources that are not contained in this artifact.
+
+Mitigation: Confirm the linked ClawHub and VeriClaw pages are the intended canonical resources before following their guidance.
+
+## Reference(s):
+
+- [AI Agent Correction Page](https://sheygoodbai.github.io/vericlaw/ai-agent-correction/)
+- [VeriClaw ClawHub Skill Page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw ClawHub Plugin Page](https://clawhub.ai/plugins/vericlaw)
+- [VeriClaw Review Kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+- [AI Agent Correction ClawHub Release Page](https://clawhub.ai/sheygoodbai/skills/ai-agent-correction)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with links and install command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; routes users to external VeriClaw resources.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

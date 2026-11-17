@@ -259,56 +259,16 @@ def extract_declared_deps(skill_dir: Path) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Declaration-vs-code env check (ClawHub security analysis parity)
+# Declaration-vs-code env check — delegated to _env_check classifier (v1.1)
+#
+# The old "reads env == must declare" logic moved to scripts/_env_check.py:
+# per-access records → required/optional/runtime/ambient/test/review
+# classification → per-finding-code profile severity. Contract lists live in
+# config/env_contracts.json. Kept here: thin wrappers for backward compat.
 # ---------------------------------------------------------------------------
 
-# Env-var access patterns: os.environ["X"], os.environ.get("X"),
-# os.getenv("X"), and JS process.env.X / process.env["X"].
-_ENV_ACCESS_PATTERNS = [
-    re.compile(r'os\.environ\s*\[\s*[\'"]([A-Z_][A-Z0-9_]*)[\'"]\s*\]'),
-    re.compile(r'os\.environ\.get\s*\(\s*[\'"]([A-Z_][A-Z0-9_]*)[\'"]'),
-    re.compile(r'os\.getenv\s*\(\s*[\'"]([A-Z_][A-Z0-9_]*)[\'"]'),
-    re.compile(r'process\.env\.([A-Z_][A-Z0-9_]*)'),
-    re.compile(r'process\.env\s*\[\s*[\'"]([A-Z_][A-Z0-9_]*)[\'"]\s*\]'),
-]
-
-# Common env vars that are ambient / not skill-specific credentials — declaring
-# them is unnecessary, so we don't flag them.
-_AMBIENT_ENV = {
-    "PATH", "HOME", "USER", "PWD", "SHELL", "LANG", "LC_ALL", "TERM", "TMPDIR",
-    "TMP", "TEMP", "PYTHONPATH", "VIRTUAL_ENV", "CI", "DEBUG", "NODE_ENV",
-    "HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY", "http_proxy", "https_proxy",
-}
-
-
-def extract_env_access(skill_dir: Path) -> "set[str]":
-    """Scan scripts/ for environment-variable reads (Python + JS/TS)."""
-    found: set[str] = set()
-    scripts_dir = skill_dir / "scripts"
-    if not scripts_dir.exists():
-        return found
-    for script in scripts_dir.rglob("*"):
-        if not script.is_file() or script.suffix not in {".py", ".sh", ".js", ".ts", ".mjs", ".cjs"}:
-            continue
-        try:
-            raw = script.read_text(encoding="utf-8")
-        except Exception:
-            continue
-        # Drop full-line and trailing comments so the checker doesn't match its
-        # own illustrative patterns inside `# os.environ["X"]` comments. This is a
-        # heuristic (won't perfectly handle `#` inside string literals) but is
-        # safe for env-access detection: a real env read is rarely comment-only.
-        code_lines = []
-        for ln in raw.splitlines():
-            stripped = ln.lstrip()
-            if stripped.startswith("#") or stripped.startswith("//"):
-                continue
-            code_lines.append(ln.split("  #", 1)[0])
-        text = "\n".join(code_lines)
-        for pat in _ENV_ACCESS_PATTERNS:
-            for m in pat.finditer(text):
-                found.add(m.group(1))
-    return {v for v in found if v not in _AMBIENT_ENV}
+sys.path.insert(0, str(Path(__file__).parent))
+from _env_check import check_env_declarations  # noqa: E402
 
 
 def extract_declared_env(skill_dir: Path) -> "set[str]":
@@ -344,25 +304,40 @@ def extract_declared_env(skill_dir: Path) -> "set[str]":
     return declared
 
 
-def check_declaration_vs_code(skill_dir: Path, severity: str = "WARN") -> list[dict]:
-    """Flag env vars the code reads but does not declare in frontmatter.
+def check_declaration_vs_code(skill_dir: Path, severity: str = "WARN",
+                              profile: dict | None = None) -> "list[dict]":
+    """Classified env declaration check (false-positive governance v1.1).
 
-    Mirrors ClawHub's security analysis: undeclared env access is a metadata
-    mismatch. Severity is profile-driven ("OFF" disables the check).
+    Each visible finding becomes one issue with code/variable/location/reason
+    — no more single aggregated WARN. `severity` is kept for backward
+    compatibility (legacy declaration_vs_code profile key) and maps onto the
+    ENV_REQUIRED_UNDECLARED code when the profile lacks per-code config.
     """
-    if not severity or severity.upper() == "OFF":
-        return []
-    used = extract_env_access(skill_dir)
     declared = extract_declared_env(skill_dir)
-    missing = sorted(used - declared)
-    if not missing:
-        return []
-    return [{
-        "file": "SKILL.md",
-        "line": None,
-        "message": t("deps.undeclared_env", vars=', '.join(missing)),
-        "severity": severity.upper(),
-    }]
+    prof = dict(profile or {})
+    if severity and severity.upper() not in ("OFF",):
+        prof.setdefault("env_severity", {})
+        # explicit --severity arg wins over profile only when the profile has
+        # no per-code config of its own
+        if "ENV_REQUIRED_UNDECLARED" not in prof["env_severity"]:
+            prof["env_severity"]["ENV_REQUIRED_UNDECLARED"] = severity
+    result = check_env_declarations(skill_dir, declared, prof)
+
+    issues = []
+    for fd in result["issues"]:
+        msg = t("deps.env_finding",
+                code=fd.get("code", ""), variable=fd.get("variable", ""),
+                file=fd.get("file", ""), line=fd.get("line") or 0,
+                access=fd.get("access", ""), reason=fd.get("reason", ""))
+        issues.append({
+            "file": fd["file"],
+            "line": fd.get("line"),
+            "message": msg,
+            "severity": fd["severity"],
+            "code": fd.get("code", ""),
+            "variable": fd.get("variable", ""),
+        })
+    return issues
 
 
 # ---------------------------------------------------------------------------
@@ -552,20 +527,33 @@ def run(skill_dir: Path, auto_install: bool = False, install_timeout: int = 60,
             "severity": "WARN",
         })
 
-    # ----- Declaration-vs-code env check (profile-driven) -----
+    # ----- Declaration-vs-code env check (classified, profile-driven) -----
     decl_severity = (profile or {}).get("declaration_vs_code", "WARN")
-    issues.extend(check_declaration_vs_code(skill_dir, severity=decl_severity))
+    issues.extend(check_declaration_vs_code(skill_dir, severity=decl_severity,
+                                            profile=profile))
+    # Machine-readable evidence for JSON mode: classified hidden findings
+    # (optional / runtime / ambient / review) ride along, never counted as WARN.
+    try:
+        from _env_check import check_env_declarations as _cec
+        _decl_env = extract_declared_env(skill_dir)
+        _env_full = _cec(skill_dir, _decl_env, profile or {})
+        env_evidence = _env_full.get("evidence", [])
+    except Exception:
+        env_evidence = []
 
     errors = [i for i in issues if i["severity"] == "ERROR"]
     warnings = [i for i in issues if i["severity"] == "WARN"]
 
-    return {
+    result = {
         "module": t("module.deps"),
         "status": "FAIL" if errors else ("WARN" if warnings else "PASS"),
         "issues": issues,
         "auto_installed": auto_installed,
         "install_failed": [pkg for pkg, _ in install_failed],
     }
+    if env_evidence:
+        result["env_evidence"] = env_evidence
+    return result
 
 
 def _bin_install_hint(bin_name: str) -> str:

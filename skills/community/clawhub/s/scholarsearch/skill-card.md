@@ -1,42 +1,52 @@
-## Description: <br>
-Scholarsearch generates relevance-ranked academic literature briefings from Tavily API, PubMed, and Google Scholar results, with options to save reports to Obsidian and send summaries via Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic literature search and briefing generation with Tavily API, PubMed, and Google Scholar for topic-specific paper discovery, Top 10 relevance-ranked reports, Obsidian saving, and Feishu summaries.
 
-## Publisher: <br>
-[flying-baozi](https://clawhub.ai/user/flying-baozi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[flying-baozi](https://clawhub.ai/user/flying-baozi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and analysts use Scholarsearch to search academic literature on chosen topics and produce relevance-ranked Top 10 briefing reports. The skill can save the briefing to an Obsidian daily note path and send the complete content through Feishu.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Complete briefing content may be saved to an Obsidian path and sent through Feishu, which can expose confidential research topics or summaries.
+
+Mitigation: Use approved Obsidian storage locations and Feishu destinations before running the workflow with confidential or sensitive research topics.
+
+Risk: The generated report includes a CoffeeDog footer, which may be inappropriate when neutral attribution or organizational branding is required.
+
+Mitigation: Remove or override the footer before sharing reports that require neutral attribution or official branding.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to search recent academic literature by keyword, rank the most relevant papers, and produce concise Top 10 research briefings for review or recurring updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local scholarsearch command or wrapper may use external services and credentials. <br>
-Mitigation: Verify the command that will run before installation and configure Tavily and Feishu credentials with limited scope. <br>
-Risk: Reports may be saved or delivered to an unintended Obsidian path or Feishu destination. <br>
-Mitigation: Choose the Obsidian save path and Feishu destination deliberately before running the skill. <br>
-Risk: Cron or heartbeat scheduling can create recurring automated reports. <br>
-Mitigation: Enable recurring scheduling only when automated reports are expected and approved. <br>
+**Output Format:** [Markdown briefing with paper links, abstracts, relevance scores, summaries, and configuration notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flying-baozi/scholarsearch) <br>
+**Other Properties Related to Output:** [Accepts comma-separated or space-separated keywords; reports are intended for Obsidian storage and Feishu delivery when configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefing with ranked literature summaries, links, abstracts, key findings, and configuration notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts comma- or space-separated keywords; may save to an Obsidian daily note and send through Feishu when configured.] <br>
+1.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

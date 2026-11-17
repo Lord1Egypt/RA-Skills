@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "saas-billing-system",
+  "schema_version": "1",
+  "name": "saas-billing-system",
   "version": "1.0.0",
-  "publishedAt": 1772647890301
+  "description": "Complete SaaS billing - subscriptions, invoices, payments, usage tracking, dunning management",
+  "homepage": "",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["saas", "billing", "subscriptions", "payments", "stripe", "invoices"],
+  "license": "MIT"
 }

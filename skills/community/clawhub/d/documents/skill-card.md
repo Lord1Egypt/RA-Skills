@@ -1,37 +1,57 @@
-## Description: <br>
-Build a personal document system for instant access to IDs, contracts, certificates, and important files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal document system for instant access to IDs, contracts, certificates, and important files.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals and assistants use this skill to organize important personal documents, track locations and expiry dates, and quickly answer where key records are stored. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local document index and notes may contain sensitive personal information. <br>
-Mitigation: Store minimal references instead of full identifiers, use encryption or restrictive permissions for ~/docs/, and verify whether the folder is backed up or synced before adding private details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/documents) <br>
+## Use Case:
 
+External users use this skill to help an agent catalog sensitive personal documents, track expiry dates, and locate local references to important files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown notes, directory plans, indexes, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose a local ~/docs/ structure and document-entry templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to maintain a persistent local index of sensitive identity, financial, medical, and legal document metadata.
+
+Mitigation: Use a private encrypted location, restrict file permissions, and avoid synced or shared folders unless access controls are clear.
+
+Risk: Document entries could expose full IDs, account numbers, policy numbers, or other sensitive values in plain text.
+
+Mitigation: Store sensitive numbers as references only and keep full values in an appropriate secure store.
+
+Risk: Stale document metadata may cause incorrect expiry or renewal reminders.
+
+Mitigation: Review and update the local index after renewals, replacements, and newly received documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/documents)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown guidance with suggested local file structures and document-entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of a persistent local document index containing sensitive personal metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

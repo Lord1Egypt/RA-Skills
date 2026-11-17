@@ -1,48 +1,59 @@
-## Description: <br>
-Infinite organized memory that complements an agent's built-in memory with unlimited categorized storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infinite organized memory that complements an agent's built-in memory with unlimited categorized storage.
 
-## Publisher: <br>
-[edwardyjcool](https://clawhub.ai/user/edwardyjcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardyjcool](https://clawhub.ai/user/edwardyjcool)
 
-## Use Case: <br>
-External users and developers use this skill to create and maintain a local long-term memory system for projects, contacts, decisions, domain knowledge, collections, and other structured notes that grow over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived local notes may accumulate sensitive personal, financial, health, account, or project information. <br>
-Mitigation: Review what is saved, avoid storing secrets unless explicitly intentional, and periodically delete or prune old memory files. <br>
-Risk: Copied built-in memory can duplicate or preserve information longer than intended. <br>
-Mitigation: Use the optional sync deliberately, copy only information that benefits from long-term organization, and keep built-in memory as the source for short summaries. <br>
-Risk: Large or stale memory indexes can make retrieval slower or misleading. <br>
-Mitigation: Maintain category indexes, split large categories, archive inactive entries, and remove outdated content during regular reviews. <br>
+## Use Case:
 
+External users and developers use this skill to create and maintain a local ~/memory/ folder for structured long-term notes, project history, contacts, decisions, knowledge, and collections.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edwardyjcool/my-custom-skill) <br>
-- [Skill homepage](https://clawic.com/skills/memory) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory templates](artifact/memory-template.md) <br>
-- [Organization patterns](artifact/patterns.md) <br>
-- [Troubleshooting](artifact/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates user-controlled markdown notes under ~/memory when the user chooses to use the memory system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local memory files can retain personal or sensitive information over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing credentials, government IDs, health or financial details, and sensitive business information unless local protections are in place; periodically review ~/memory/ for deletion or redaction.
+
+Risk: Optional sync from built-in memory can copy more information into persistent local storage than intended.
+
+Mitigation: Use sync narrowly, keep it one-way into ~/memory/, and review synced entries before relying on or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardyjcool/skills/my-custom-skill)
+- [Publisher profile](https://clawhub.ai/user/edwardyjcool)
+- [Skill homepage](https://clawic.com/skills/memory)
+- [Setup guide](artifact/setup.md)
+- [Memory templates](artifact/memory-template.md)
+- [Organization patterns](artifact/patterns.md)
+- [Troubleshooting](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under ~/memory/ when used; no network services are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-05-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Helps an agent connect to a configured DingTalk mailbox MCP service through mcporter to list mailboxes, search messages, read message details, and send email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to configure and use mcporter with DingTalk mailbox MCP tools for listing mailboxes, searching and reading mail, and sending messages.
 
-## Publisher: <br>
-[jackeylee007](https://clawhub.ai/user/jackeylee007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackeylee007](https://clawhub.ai/user/jackeylee007)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure mailbox access and operate DingTalk email workflows, including querying mail, reading messages, drafting replies, and sending messages through an approved MCP connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured DingTalk mailbox MCP URL can grant mailbox access and should be treated like a credential. <br>
-Mitigation: Keep the URL scoped to the intended account, store it in the local mcporter configuration, and avoid sharing it in prompts, logs, or public files. <br>
-Risk: The skill can send email, including bulk messages, through the configured mailbox. <br>
-Mitigation: Require preview and explicit approval of sender, recipients, subject, body, and CC fields before any send_email call. <br>
-Risk: Mailbox search and message retrieval can expose sensitive email contents. <br>
-Mitigation: Limit searches to the necessary mailbox and query scope, and avoid copying sensitive message content into unrelated tools or outputs. <br>
+## Use Case:
 
+Developers and users with DingTalk enterprise mailbox accounts use this skill to connect an AI assistant to mailbox search, reading, and sending workflows. It is intended for mailbox management tasks such as finding messages, reviewing message details, drafting replies, and sending email after human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackeylee007/dingtalk-mailbox) <br>
-- [DingTalk Mailbox MCP service documentation](https://help.aliyun.com/document_detail/2925708.html) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [mcporter documentation](https://mcpmarket.com/zh/tools/skills/mcporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and MCP call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided DingTalk mailbox MCP URL and mcporter configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill enables an assistant to read and send DingTalk email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a mailbox token with limited, revocable permissions and require manual review before any email is sent.
+
+Risk: The DingTalk mailbox access URL is stored locally in ~/.mcporter/mcporter.json.
+
+Mitigation: Protect the mcporter configuration file as a secret and rotate or revoke the token if it may have been exposed.
+
+Risk: The workflow depends on the globally installed mcporter package.
+
+Mitigation: Verify the mcporter package source and version before using the skill.
+
+## Reference(s):
+
+- [DingTalk Mailbox MCP Service Documentation](https://help.aliyun.com/document_detail/2925708.html)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [mcporter Documentation](https://mcpmarket.com/zh/tools/skills/mcporter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes DingTalk mailbox MCP tool names, argument examples, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

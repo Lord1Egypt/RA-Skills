@@ -1,38 +1,52 @@
-## Description: <br>
-Visualize competitive positioning using sector charts. Use for market analysis and competitive strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize competitive positioning using sector charts. Use for market analysis and competitive strategy.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and strategy teams use this skill to create concise sector charts that compare competitors by market share, price or quality, revenue, category, and related positioning signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market data used in a sector chart may be inaccurate, stale, or unsupported.
+
+Mitigation: Verify market share, price, revenue, and competitor data against reliable sources before using the chart for decisions.
+
+Risk: Overcrowded or inconsistently scaled charts can make competitive positioning misleading.
+
+Mitigation: Use consistent scales, size bubbles proportionally, and limit comparisons to roughly 10-15 competitors when possible.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, analysts, and strategy teams use this skill to structure competitive-positioning sector charts with market-share, price or performance, revenue, and segment dimensions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market share, revenue, pricing, or strategic claims may be incorrect or unsupported. <br>
-Mitigation: Verify generated chart data and strategic conclusions against authoritative market sources before using them for decisions. <br>
+**Output Format:** [Markdown with tables, chart template text, key insights, and strategic implications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linuszz/sector-charts) <br>
+**Other Properties Related to Output:** [The skill produces chart-ready structure and analysis guidance; users should verify supplied market data before relying on conclusions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tabular data, chart structure, key insights, and strategic implications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use consistent chart scales, proportional bubble sizing, and no more than 10-15 competitors for clarity.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-结构化头脑风暴 - 4视角拆解问题：约束/方案/边界/优先级，自动归档到知识库 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+结构化头脑风暴 guides agents to break a topic into constraints, alternatives, edge cases, and priorities, with a Python example that formats sessions as Markdown.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users, developers, and product teams use this skill to structure brainstorming around constraints, alternative approaches, edge cases, and priorities for planning, product design, technical choices, bug fixes, and OKR work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generic activation phrase “想一下” may trigger the skill during ordinary conversation. <br>
-Mitigation: Edit or ignore that trigger if accidental activation would be disruptive. <br>
-Risk: Brainstorming outputs may be saved by the host agent's normal note or memory settings. <br>
-Mitigation: Check the agent's note or memory configuration before using the skill for sensitive topics. <br>
+## Use Case:
 
+External users and developers use this skill to structure brainstorming for product design, technical selection, bug fixing, OKR planning, and similar decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-brainstorm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured lists and optional Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Organizes ideas into constraints, alternatives, edge cases, and priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Brainstorm content may be saved if the host platform honors the skill's automatic knowledge-base archiving claim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive plans until the knowledge-base location, retention, access, and deletion controls are understood.
+
+Risk: The release evidence marks the skill as markdown-only with no executable install behavior, but the archive behavior is unclear.
+
+Mitigation: Confirm host-platform archiving behavior before relying on the skill for confidential or regulated planning work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-brainstorm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with optional Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No third-party dependencies are required by the included Python example.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

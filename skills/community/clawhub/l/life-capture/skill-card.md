@@ -1,44 +1,57 @@
-## Description: <br>
-Life Capture parses daily-life notes into structured records, writes daily markdown notes, and syncs expenses, tasks, schedules, and ideas into a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture daily-life notes into Markdown and SQLite by parsing natural-language entries for expenses, tasks, schedules, reminders, and ideas.
 
-## Publisher: <br>
-[epitomizelu](https://clawhub.ai/user/epitomizelu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[epitomizelu](https://clawhub.ai/user/epitomizelu)
 
-## Use Case: <br>
-External users and developers use this skill to capture personal life-log entries from natural language, classify them as expenses, tasks, schedules, or ideas, and persist them for later review and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal journal entries may include sensitive details and are stored durably in local markdown and SQLite files. <br>
-Mitigation: Keep the life folder private and avoid saving secrets or highly sensitive details. <br>
-Risk: Natural-language parsing can be ambiguous before records are written. <br>
-Mitigation: Use the parse-only workflow to review structured output before saving ambiguous entries. <br>
+## Use Case:
 
+External users use this skill to turn personal life-log notes into organized Markdown records and structured SQLite rows for later review and reporting.
 
-## Reference(s): <br>
-- [Life Capture on ClawHub](https://clawhub.ai/epitomizelu/life-capture) <br>
-- [Parser configuration](references/configuration.md) <br>
-- [Example payloads and commands](references/examples.md) <br>
-- [Schema](references/schema.md) <br>
-- [Parser config JSON](references/parser_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown response with JSON record blocks, plus local daily markdown files and SQLite rows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local paths under life/ and life/db/life.db; preserves raw user text and leaves unknown fields null.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted structured input may write Markdown outside the intended daily-notes folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid saving JSON records from untrusted sources, preview parsed records before writing, and run the skill in a restricted or test directory until path containment is added.
+
+Risk: The skill stores personal life-log data locally in Markdown files and a SQLite database.
+
+Mitigation: Use it only with data you are comfortable storing locally under the configured life directory and database path.
+
+## Reference(s):
+
+- [Parser configuration](references/configuration.md)
+- [Example payloads and commands](references/examples.md)
+- [Parser config JSON](references/parser_config.json)
+- [SQLite schema](references/schema.md)
+- [Life Capture ClawHub page](https://clawhub.ai/epitomizelu/skills/life-capture)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown summary with parsed JSON records, plus Markdown daily-note files and SQLite database rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local life-log data under the configured root directory and SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Connect directly to any API using its OpenAPI spec with local API key storage, ensuring private, middleware-free requests from your machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Freeapi lets an agent load an OpenAPI or Swagger specification and execute API operations directly from the local machine.
 
-## Publisher: <br>
-[numbpill3d](https://clawhub.ai/user/numbpill3d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[numbpill3d](https://clawhub.ai/user/numbpill3d)
 
-## Use Case: <br>
-Developers and agent operators use Freeapi to connect to OpenAPI or Swagger services from localhost, manage API keys locally, list available operations, and execute API requests without a middleware service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad API-client power and can make requests against external services. <br>
-Mitigation: Inspect the target server and operation before each run, and manually confirm create, update, delete, billing, publishing, or sensitive-data requests. <br>
-Risk: API keys are handled locally through a .env file. <br>
-Mitigation: Use least-privilege tokens, keep .env out of source control, and rotate credentials if they are exposed. <br>
-Risk: Remote OpenAPI specs can direct the client toward unexpected endpoints or operations. <br>
-Mitigation: Use official specs and review the resolved operation and parameters before execution. <br>
+## Use Case:
 
+Developers and agent users use Freeapi to connect local agents to APIs from OpenAPI specifications, list available operations, run selected endpoints, and manage local API credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/numbpill3d/freeapi) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads OpenAPI or Swagger specs from local paths or URLs and stores configured API keys in a local .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version, package.json) <br>
+Risk: The skill handles API keys and can expose them through untrusted OpenAPI specifications, local files, or unintended network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted OpenAPI specifications and API servers, keep tokens narrowly scoped, avoid storing valuable credentials in project .env files, and revoke any credential used with an untrusted spec.
+
+Risk: The skill executes requests based on server URLs and operations described by the selected OpenAPI specification.
+
+Mitigation: Review the specification source, target server, operation, parameters, and request body before execution, especially when using credentials with write access.
+
+## Reference(s):
+
+- [Freeapi ClawHub skill page](https://clawhub.ai/numbpill3d/skills/freeapi)
+- [numbpill3d ClawHub publisher profile](https://clawhub.ai/user/numbpill3d)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read OpenAPI specifications from local files or URLs, store service credentials in a local .env file, and execute network requests to API servers defined by the selected specification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

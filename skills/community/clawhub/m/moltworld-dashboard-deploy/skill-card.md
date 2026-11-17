@@ -1,42 +1,57 @@
-## Description: <br>
-Install, harden, and run the MoltWorld Dashboard reliably for real users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, harden, and run the MoltWorld Dashboard reliably for real users.
 
-## Publisher: <br>
-[guillaumetch](https://clawhub.ai/user/guillaumetch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guillaumetch](https://clawhub.ai/user/guillaumetch)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare, deploy, verify, and troubleshoot a MoltWorld Dashboard service on port 8787 using local, Docker, Docker Compose, or explicitly approved systemd paths. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Package installation or project dependencies may execute unwanted behavior if accepted without review. <br>
-Mitigation: Review package.json and lockfiles before npm commands, and use npm ci --ignore-scripts unless install scripts are explicitly reviewed and approved. <br>
-Risk: Docker, Docker Compose, or systemd deployment can create a persistent service on the host. <br>
-Mitigation: Use non-privileged local runtime paths first, and require explicit operator approval before Docker persistence or any privileged systemd action. <br>
-Risk: A deployed dashboard may be unreachable or fail after an interactive session ends. <br>
-Mitigation: Verify the listener and HTTP response on localhost:8787, then use Docker Compose or approved systemd supervision for long-running operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltWorld Dashboard Deploy Commands](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/guillaumetch/moltworld-dashboard-deploy) <br>
+## Use Case:
 
+Developers and operators use this skill to scaffold, deploy, supervise, and troubleshoot a MoltWorld Dashboard service for real users on the default port 8787.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with bash snippets and deployment file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local runtime scaffolding, Docker or Docker Compose deployment files, optional systemd service guidance, and port 8787 verification steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Docker, Compose, or systemd files could create a persistent host-level service if applied without review.
+
+Mitigation: Review generated deployment files and approve sudo or systemd steps only when persistent host-level service is intended.
+
+Risk: Environment configuration can expose secrets if copied into shareable files or committed to source control.
+
+Mitigation: Keep .env out of git and use .env.example for shareable configuration.
+
+Risk: Package installation may run untrusted project scripts or dependencies.
+
+Mitigation: Inspect package.json and lockfile before installing, and prefer npm ci --ignore-scripts unless install scripts have been reviewed and approved.
+
+## Reference(s):
+
+- [MoltWorld Dashboard Deploy Commands](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/guillaumetch/skills/moltworld-dashboard-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and deployment file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose README, package.json, .env.example, .gitignore, Dockerfile, docker-compose.yml, and optional systemd service content.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-通过 zentao 命令行工具查询和操作禅道（ZenTao）数据，覆盖项目集、产品、项目、执行、需求、Bug、任务、测试用例、测试单、产品计划、版本、发布、反馈、工单、应用、用户、附件等模块的增删改查及状态流转。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZenTao CLI helps agents query and maintain ZenTao products, projects, requirements, tasks, and bugs, including status transitions, progress summaries, installation, configuration, and troubleshooting.
 
-## Publisher: <br>
-[catouse](https://clawhub.ai/user/catouse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catouse](https://clawhub.ai/user/catouse)
 
-## Use Case: <br>
-Developers, project managers, QA engineers, and support teams use this skill to query and operate ZenTao project-management records through the zentao CLI. It helps agents list, inspect, create, update, delete, and transition ZenTao objects when the user explicitly asks for ZenTao work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, and transition ZenTao project-management data. <br>
-Mitigation: Require clear user confirmation before create, update, delete, user, file, or status-change operations. <br>
-Risk: The skill may activate on generic project-management requests. <br>
-Mitigation: Keep usage tied to explicit ZenTao or zentao-cli requests before running commands. <br>
-Risk: The workflow depends on an external globally installed zentao-cli package. <br>
-Mitigation: Review the external package before global installation and prefer the user's approved package manager. <br>
-Risk: ZenTao credentials and tokens are sensitive. <br>
-Mitigation: Do not collect credentials in chat or read local credential files or environment variables; let the CLI handle authentication. <br>
+## Use Case:
 
+Developers, engineers, and project-management operators use this skill to run ZenTao CLI commands for reading, updating, and summarizing ZenTao work items and related project records. It is also used to install, configure, authenticate, and troubleshoot the CLI in agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/catouse/zentao-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/catouse) <br>
-- [zentao-cli repository metadata](https://github.com/easysoft/zentao-cli.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI output is Markdown by default or JSON when --format=json is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external zentao CLI and a user-authorized ZenTao account; write operations should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide write, delete, bulk update, and status-transition operations that change ZenTao business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with intended ZenTao sites and accounts, confirm the authorized object set before destructive or bulk changes, require explicit delete confirmation such as --yes where applicable, and verify results after writes.
+
+Risk: Credential exposure or unintended account selection could give the agent access beyond the user's intent.
+
+Mitigation: Do not collect passwords or tokens in chat, avoid reading or printing credential files or environment variables, and verify the selected site and account with a scoped read-only query when needed.
+
+Risk: CLI help, fields, actions, and minimum server versions can differ from the installed CLI or ZenTao server.
+
+Mitigation: Check local command help and server compatibility before requests, report unsupported-version errors clearly, and use only supported equivalent queries when a direct action is unavailable.
+
+Risk: Partial pages, local filters, or batch partial failures can lead to incomplete summaries or incorrect success claims.
+
+Mitigation: Use JSON output for programmatic work, paginate when complete counts are required, separate success, failed, and skipped batch results, and query uncertain write outcomes before retrying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catouse/skills/zentao-cli)
+- [Publisher profile](https://clawhub.ai/user/catouse)
+- [ZenTao CLI repository](https://github.com/easysoft/zentao-cli.git)
+- [ZenTao official site](https://www.zentao.net/)
+- [Output, filtering, and statistics reference](artifact/references/data-output.md)
+- [Writes, status transitions, and batch operations reference](artifact/references/writes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ZenTao CLI commands, status summaries, parsed JSON results, error explanations, and verification steps.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

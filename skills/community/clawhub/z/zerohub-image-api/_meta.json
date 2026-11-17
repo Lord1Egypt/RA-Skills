@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn76xk0d6vnhra3m5t255vjvn58350sk",
-  "slug": "zerohub-image-api",
+  "name": "zerohub-image-api-public",
   "version": "1.0.1",
-  "publishedAt": 1780239625268
+  "description": "zeroHub 图片生成 API Skill：使用用户提供的 API Key 生成图片、查询任务，并将结果安全下载到指定目录",
+  "homepage": "https://zerohub.zhyy.ltd",
+  "docs": "https://zerohub.zhyy.ltd/docs",
+  "permissions": {
+    "env": ["ZEROHUB_API_KEY", "ZEROHUB_BASE_URL", "ZEROHUB_MODEL", "ZEROHUB_MAX_DOWNLOAD_BYTES"],
+    "network": ["https://zerohub.zhyy.ltd"],
+    "filesystem": ["write:user-specified-output-dir"]
+  },
+  "security": {
+    "download_host_policy": "zeroHub hosts only by default",
+    "private_network_blocking": true,
+    "default_max_download_bytes": 26214400,
+    "https_only_by_default": true
+  },
+  "license": "MIT"
 }

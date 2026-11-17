@@ -42,16 +42,16 @@ Before querying rules, confirm:
 
 ## 2. SLS Query Field Truncation Issue
 
-**API**: `aliyunlog log get_log`
+**API**: `aliyun sls get-logs-v2`
 
 ### Error Pattern
 
 ```bash
 # ❌ WRONG: Without specifying select, log fields may be truncated
-aliyunlog log get_log \
-  --project=<project> --logstore=wafnew-logstore \
-  --from=<timestamp> --to=<timestamp> \
-  --query="request_traceid: '<traceid>'"
+aliyun sls get-logs-v2 \
+  --project "<project>" --logstore "wafnew-logstore" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "request_traceid: <traceid>"
 # Result: Key fields like matched_host, real_client_ip may be missing
 ```
 
@@ -59,10 +59,11 @@ aliyunlog log get_log \
 
 ```bash
 # ✅ CORRECT: Use select to explicitly specify required fields
-aliyunlog log get_log \
-  --project=<project> --logstore=wafnew-logstore \
-  --from=<timestamp> --to=<timestamp> \
-  --query="* | select request_traceid, matched_host, host, real_client_ip, request_path, request_method, status, final_plugin, final_rule_id, waf_rule_type, waf_action"
+aliyun sls get-logs-v2 \
+  --project "<project>" --logstore "wafnew-logstore" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "* | select request_traceid, matched_host, host, real_client_ip, request_path, request_method, status, final_plugin, final_rule_id, waf_rule_type, waf_action" \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ---
@@ -153,10 +154,10 @@ All rule names and protection template names MUST NOT contain spaces.
 
 ```bash
 # ❌ WRONG: Missing User-Agent parameter
-aliyunlog log get_log \
-  --project=<project> --logstore=wafnew-logstore \
-  --from=<timestamp> --to=<timestamp> \
-  --query="*"
+aliyun sls get-logs-v2 \
+  --project "<project>" --logstore "wafnew-logstore" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "*"
 ```
 
 ### Correct Usage
@@ -165,99 +166,158 @@ aliyunlog log get_log \
 # ✅ CORRECT: ALL Alibaba Cloud CLI commands MUST include User-Agent
 aliyun waf-openapi describe-instance \
   --version 2021-10-01 --force --region cn-hangzhou \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ---
 
-## 7. SLS CLI 命令格式陷阱 (aliyunlog)
+## 7. SLS CLI Command Format Traps (aliyun sls get-logs-v2)
 
-**重要**: `aliyunlog` 命令有多个常见陷阱,必须严格遵守正确格式。
+**Important**: The `aliyun sls get-logs-v2` command has several common traps; the correct format must be strictly followed.
 
-### 7.1 子命令缺失
+### 7.1 Credential Parameter Errors
 
 ```bash
-# ❌ 错误: 缺少 log 子命令
-aliyunlog get_log --project=... --logstore=...
+# ❌ WRONG: Using --profile parameter (not supported, forbidden)
+aliyun sls get-logs-v2 ... --profile default
 
-# ✅ 正确: 必须包含 log 子命令
-aliyunlog log get_log --project=... --logstore=...
+# ✅ CORRECT: Rely on default credential chain, NO --profile
+aliyun sls get-logs-v2 \
+  --project "<project>" --logstore "<logstore>" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "<query>" \
+  --line 10 \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
-### 7.2 时间参数名称错误
+**Important Notes**:
+- `aliyun sls get-logs-v2` does NOT support `--profile` parameter
+- Credentials rely on the default credential chain (`~/.aliyun/config.json`)
+- If user has not configured, guide user to run: `aliyun configure`
+
+### 7.2 Query Syntax Format
 
 ```bash
-# ❌ 错误: 使用 --from 和 --to
-aliyunlog log get_log ... --from="$(date +%s)" --to="$(date +%s)"
-
-# ✅ 正确: 必须使用 --from_time 和 --to_time
-aliyunlog log get_log ... --from_time="$(date +%s)" --to_time="$(date +%s)"
-```
-
-### 7.3 凭证参数错误
-
-```bash
-# ❌ 错误: aliyunlog 不支持 --profile 参数
-aliyunlog log get_log ... --profile default --endpoint cn-hangzhou.log.aliyuncs.com
-
-# ✅ 正确: 使用 --region-endpoint 参数,凭证通过 ~/.aliyunlog/config 配置
-aliyunlog log get_log --region-endpoint="cn-hangzhou.log.aliyuncs.com" --project=... --logstore=...
-```
-
-**重要说明**:
-- `aliyunlog` **不支持** `--profile` 参数
-- 凭证必须提前通过 `aliyunlog configure` 配置,存储在 `~/.aliyunlog/config`
-- 如果用户未配置,需要指导用户先运行: `aliyunlog configure`
-
-### 7.4 查询语法格式
-
-```bash
-# ❌ 错误: 使用纯 SQL 格式
+# ❌ WRONG: Using pure SQL format
 --query="* | select field1, field2 where request_traceid = 'xxx'"
 
-# ✅ 正确: 使用 SLS 查询语法 (先过滤后处理)
+# ✅ CORRECT: Use SLS query syntax (filter first, then process)
 --query="request_traceid:xxx | select field1, field2 limit 1"
 ```
 
-### 7.5 完整正确示例
+### 7.3 Complete Correct Example
 
 ```bash
-# ✅ 完整的正确命令格式
-aliyunlog log get_log \
-  --region-endpoint="cn-hangzhou.log.aliyuncs.com" \
-  --project="wafnew-project-1882089769163987-cn-hangzhou" \
-  --logstore="wafnew-logstore" \
-  --from_time="$(( $(date +%s) - 604800 ))" \
-  --to_time="$(date +%s)" \
-  --query="request_traceid:2f6f0cbc17759652456034145eef13 | select matched_host, host, real_client_ip, request_path, request_method, status, final_plugin, final_rule_id, waf_rule_type, waf_action limit 1" \
-  --format=json
+# ✅ Complete correct command format
+aliyun sls get-logs-v2 \
+  --project "wafnew-project-1882089769163987-cn-hangzhou" \
+  --logstore "wafnew-logstore" \
+  --from "$(( $(date +%s) - 604800 ))" \
+  --to "$(date +%s)" \
+  --query "request_traceid:2f6f0cbc17759652456034145eef13 | select matched_host, host, real_client_ip, request_path, request_method, status, final_plugin, final_rule_id, waf_rule_type, waf_action limit 1" \
+  --read-timeout 30 --connect-timeout 10 \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
-### 7.6 常见错误排查
+### 7.4 Common Error Troubleshooting
 
-| 错误信息 | 原因 | 解决方案 |
+| Error Message | Cause | Solution |
 |---------|------|---------|
-| `Unknown command: 'get_log'` | 缺少 `log` 子命令 | 使用 `aliyunlog log get_log` |
-| `Missing required parameter 'from_time'` | 使用了 `--from` 而非 `--from_time` | 改用 `--from_time` 和 `--to_time` |
-| `Missing required parameter 'logstore'` | 参数格式错误或使用了不支持的参数 | 检查参数名称,移除 `--profile` |
-| `Invalid parameters` | 多个参数格式问题 | 参考 7.5 完整示例重新构造命令 |
+| `Invalid parameters` | Used `--profile` or unsupported parameters | Remove `--profile`, rely on default credential chain |
+| `Column 'xxx' cannot be resolved` | Query uses non-existent field | Remove the field or use `select` to specify valid fields |
+| Query returns empty | Time range mismatch or wrong Region | Confirm time range and Region (domestic `cn-hangzhou`, overseas `ap-southeast-1`) |
+| `AccessDenied` | AK/SK lacks SLS permission | Check RAM permissions (see [ram-policies.md](ram-policies.md)) |
+
+---
+
+## 8. SLS Region & PayType Naming Trap (CRITICAL)
+
+**API**: `aliyun sls get-logs-v2`
+
+### Error Pattern 1: Missing --region Parameter
+
+```bash
+# ❌ WRONG: Without --region, CLI uses default region (cn-hangzhou)
+# If SLS project is in cn-shenzhen, returns ProjectNotExist (404)
+aliyun sls get-logs-v2 \
+  --project "wafnew-project-1882089769163987-cn-shenzhen" \
+  --logstore "wafnew-logstore" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "request_traceid:xxx"
+# Result: ProjectNotExist error
+```
+
+### Correct Usage
+
+```bash
+# ✅ CORRECT: MUST add --region matching the SLS project's region
+aliyun sls get-logs-v2 \
+  --project "wafnew-project-1882089769163987-cn-shenzhen" \
+  --logstore "wafnew-logstore" \
+  --from "<timestamp>" --to "<timestamp>" \
+  --query "request_traceid:xxx" \
+  --region cn-shenzhen \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
+```
+
+### Error Pattern 2: Wrong PayType Naming
+
+```bash
+# WRONG: Using wafnew-* for a Subscription (Annual/Monthly) instance
+# Subscription instances use wafng-* naming
+--project "wafnew-project-<AccountId>-<region>"  # Wrong for Subscription
+--logstore "wafnew-logstore"                     # Wrong for Subscription
+```
+
+### PayType-Based Naming Rules
+
+| PayType | SLS Project | Logstore |
+|---------|-------------|----------|
+| POSTPAY (Pay-As-You-Go) | `wafnew-project-<AccountId>-<SLSRegion>` | `wafnew-logstore` |
+| Subscription (Annual/Monthly) | `wafng-project-<AccountId>-<SLSRegion>` | `wafng-logstore` |
+
+### How to Determine Correct Parameters
+
+1. **Get AccountId**: `aliyun sts get-caller-identity`
+2. **Get PayType**: Query `describe-instance` → check `PayType` field (POSTPAY or Subscription)
+3. **Determine SLSRegion**: ⚠️ SLS project region may DIFFER from WAF instance RegionId
+   - Try WAF instance region first
+   - If `ProjectNotExist`, try other regions: cn-hangzhou, cn-shenzhen, cn-beijing, etc.
+   - Use `aliyun sls list-log-stores --project "<project>" --region <region>` to verify project existence
+4. **Construct query**: Use correct Project + Logstore + `--region`
+
+### Root Cause
+
+- `aliyun sls get-logs-v2` defaults to the CLI's configured region (usually cn-hangzhou)
+- SLS projects are region-specific resources; querying from wrong region returns 404
+- WAF instance RegionId (e.g., cn-hangzhou) does NOT guarantee the SLS project is in the same region (e.g., may be cn-shenzhen)
+- PayType determines the project name prefix: `wafnew-` (POSTPAY) vs `wafng-` (Subscription)
+
+### Checklist
+
+Before executing SLS queries:
+- [ ] Checked PayType from `describe-instance` response
+- [ ] Used correct project prefix (`wafnew-` for POSTPAY, `wafng-` for Subscription)
+- [ ] Used correct logstore name (`wafnew-logstore` for POSTPAY, `wafng-logstore` for Subscription)
+- [ ] Added `--region <SLSRegion>` to the SLS query command
+- [ ] If `ProjectNotExist`, tried other regions before concluding logstore doesn't exist
 
 ---
 
 ## Quick Reference Checklist
 
-在执行任何 WAF CLI 命令之前:
+Before executing any WAF CLI command:
 
-- [ ] 使用 WAF 3.0 API 版本 (`2021-10-01`)
-- [ ] 使用正确的 WAF 3.0 控制台路径 (非 WAF 2.0)
-- [ ] 添加了 `--user-agent AlibabaCloud-Agent-Skills` 参数 (仅限 aliyun 命令)
-- [ ] **未使用 `--profile` 参数** (依赖默认配置)
-- [ ] **未运行 `aliyun configure get`** (会暴露AK/SK)
-- [ ] aliyunlog 命令使用 `--region-endpoint` 而非 `--profile`
-- [ ] aliyunlog 命令包含 `log` 子命令
-- [ ] aliyunlog 时间参数使用 `--from_time` 和 `--to_time`
-- [ ] 规则名称不包含空格
-- [ ] 白名单查询包含 `--RuleType whitelist`
-- [ ] SLS 查询使用显式 `select` 指定关键字段
-- [ ] CC 防护严格模式不用于 API 接口
-- [ ] 输出简洁 (尽可能控制在 20 行以内)
+- [ ] Using WAF 3.0 API version (`2021-10-01`)
+- [ ] Using correct WAF 3.0 console paths (not WAF 2.0)
+- [ ] Added `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"` parameter
+- [ ] **NOT using `--profile` parameter** (rely on default configuration)
+- [ ] **NOT running `aliyun configure get`** (exposes AK/SK)
+- [ ] SLS query uses `aliyun sls get-logs-v2` (SLS plugin required)
+- [ ] **Checked PayType to determine correct SLS Project/Logstore name** (wafnew-* vs wafng-*)
+- [ ] **Added `--region <SLSRegion>` to SLS query commands** (SLS region may differ from WAF region)
+- [ ] Rule names do not contain spaces
+- [ ] Whitelist query includes `--RuleType whitelist`
+- [ ] SLS query uses explicit `select` to specify key fields
+- [ ] CC protection strict mode not used for API interfaces
+- [ ] Output is concise (keep within 20 lines where possible)

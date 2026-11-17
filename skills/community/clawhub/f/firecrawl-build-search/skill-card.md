@@ -1,42 +1,61 @@
-## Description: <br>
-Integrate Firecrawl `/search` into product code and agent workflows for query-first source discovery, ranking, and optional content hydration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Firecrawl `/search` into product code and agent workflows. Use when an app needs discovery before extraction, when the feature starts with a query instead of a URL, or when the system should search the web and optionally hydrate result content.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eohmig](https://clawhub.ai/user/eohmig)
 
-## Use Case: <br>
-Developers and agent builders use this skill when an application starts from a search query and needs to discover, rank, and select web sources before optional scraping or extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may expose secrets, regulated personal data, customer records, or confidential internal project details to Firecrawl or self-hosted search logs. <br>
-Mitigation: Use this skill only with a Firecrawl deployment approved for the data being searched, and avoid sending sensitive query text unless logging and retention are acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Firecrawl query-based web discovery to products or agent workflows, especially when a workflow must find sources before scraping or extracting content.
 
-## Reference(s): <br>
-- [Firecrawl homepage](https://www.firecrawl.dev) <br>
-- [Firecrawl Node / TypeScript source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/node) <br>
-- [Firecrawl Python source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/python) <br>
-- [Firecrawl cURL / REST source-of-truth docs](https://docs.firecrawl.dev/agent-source-of-truth/curl) <br>
-- [ClawHub release page](https://clawhub.ai/eohmig/firecrawl-build-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code snippets, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Firecrawl API key for hosted requests and may use a custom Firecrawl API URL for approved self-hosted deployments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries may be sent to Firecrawl when the skill is used for hosted web discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only in environments where sharing those queries with Firecrawl is acceptable, and avoid sending sensitive queries unless approved.
+
+Risk: A Firecrawl API key is required for hosted requests.
+
+Mitigation: Provide FIRECRAWL_API_KEY only through approved secret-management mechanisms and avoid hard-coding it in generated code or configuration.
+
+## Reference(s):
+
+- [Firecrawl homepage](https://www.firecrawl.dev)
+- [Firecrawl skills repository](https://github.com/firecrawl/skills)
+- [Firecrawl Node / TypeScript source of truth](https://docs.firecrawl.dev/agent-source-of-truth/node)
+- [Firecrawl Python source of truth](https://docs.firecrawl.dev/agent-source-of-truth/python)
+- [Firecrawl Rust source of truth](https://docs.firecrawl.dev/agent-source-of-truth/rust)
+- [Firecrawl Java source of truth](https://docs.firecrawl.dev/agent-source-of-truth/java)
+- [Firecrawl Elixir source of truth](https://docs.firecrawl.dev/agent-source-of-truth/elixir)
+- [Firecrawl cURL / REST source of truth](https://docs.firecrawl.dev/agent-source-of-truth/curl)
+- [ClawHub skill page](https://clawhub.ai/eohmig/skills/firecrawl-build-search)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with implementation notes, code snippets, command examples, and configuration details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference FIRECRAWL_API_KEY for hosted Firecrawl requests and optional FIRECRAWL_API_URL for self-hosted deployments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

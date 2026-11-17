@@ -1,47 +1,62 @@
-## Description: <br>
-Query live Hedera blockchain data - token prices, whale movements, HCS topics, governance proposals, identity/KYC screening, and smart contract analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query live Hedera blockchain data including token prices, whale movements, HCS topics, governance proposals, identity/KYC screening, and smart contract analysis through pay-per-call HBAR micropayments.
 
-## Publisher: <br>
-[mountainmystic](https://clawhub.ai/user/mountainmystic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mountainmystic](https://clawhub.ai/user/mountainmystic)
 
-## Use Case: <br>
-External developers and agent operators use HederaToolbox to query Hedera market, HCS, governance, identity, compliance, and smart contract data through pay-per-call MCP tools. It is suited for workflows such as whale alerts, DAO governance digests, compliance record checks, and smart contract due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent tool calls can spend prepaid HBAR from the configured HederaToolbox balance. <br>
-Mitigation: Start with a small prepaid balance, monitor the balance, and require manual approval for paid calls. <br>
-Risk: HCS write operations can create persistent on-chain records that include submitted data. <br>
-Mitigation: Require manual approval for HCS writes and avoid sending sensitive identity or compliance data unless it is necessary. <br>
-Risk: Tool calls send account IDs, contract addresses, token IDs, and query parameters to the HederaToolbox API. <br>
-Mitigation: Review data handling requirements before use and avoid sending sensitive data that is not needed for the task. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent query Hedera network data, inspect tokens, monitor HCS topics, check identity and governance signals, and perform paid or on-chain HederaToolbox MCP operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mountainmystic/hederatoolbox) <br>
-- [Publisher Profile](https://clawhub.ai/user/mountainmystic) <br>
-- [HederaToolbox Website](https://hederatoolbox.com) <br>
-- [HederaToolbox GitHub Repository](https://github.com/mountainmystic/hederatoolbox) <br>
-- [HederaToolbox MCP Endpoint](https://api.hederatoolbox.com/mcp) <br>
-- [Platform Wallet on Hashscan](https://hashscan.io/mainnet/account/0.0.10309126) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and structured tool responses from MCP calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live blockchain data, account identifiers, token identifiers, contract identifiers, HCS topic data, compliance records, and risk summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: The billing identifier is a public Hedera account ID, which evidence.security identifies as a real authorization concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a small prepaid HBAR balance unless the publisher documents stronger account-ownership verification or revocable credentials.
+
+Risk: Paid or on-chain write operations can consume remote balance or create records through the platform account.
+
+Mitigation: Review planned tool calls before execution, keep prepaid balances limited, and require user confirmation for paid or HCS write workflows.
+
+Risk: Tool calls and query details are sent to HederaToolbox.
+
+Mitigation: Avoid sending sensitive identifiers or confidential query details unless the deployment has reviewed the service privacy and retention posture.
+
+## Reference(s):
+
+- [HederaToolbox website](https://hederatoolbox.com)
+- [HederaToolbox MCP endpoint](https://api.hederatoolbox.com/mcp)
+- [HederaToolbox GitHub repository](https://github.com/mountainmystic/hederatoolbox)
+- [Payment watcher source](https://github.com/mountainmystic/hederatoolbox/blob/master/src/watcher.js)
+- [Hashscan platform account](https://hashscan.io/mainnet/account/0.0.10309126)
+- [ClawHub skill page](https://clawhub.ai/mountainmystic/skills/hederatoolbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and environment configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead the agent to call a remote MCP service that returns live Hedera data, consumes prepaid HBAR balance, or creates HCS records through the platform account.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

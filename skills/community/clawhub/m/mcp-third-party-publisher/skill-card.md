@@ -1,47 +1,62 @@
-## Description: <br>
-Use when publishing or submitting an MCP server to third-party MCP directories and marketplaces including Glama, mcp.so, Smithery, and MCP Market, especially when Codex must use Computer Use, Browser, or Chrome to open websites, fill submission forms, verify listing pages, and stop before final external submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when publishing or submitting an MCP server to third-party MCP directories and marketplaces including Glama, mcp.so, Smithery, and MCP Market, especially when Codex must use Computer Use, Browser, or Chrome to open websites, fill submission forms, verify listing pages, and stop before final external submission.
 
-## Publisher: <br>
-[zian502](https://clawhub.ai/user/zian502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zian502](https://clawhub.ai/user/zian502)
 
-## Use Case: <br>
-Developers and operators use this skill to submit MCP servers to third-party directories and marketplaces, including Glama, mcp.so, Smithery, and MCP Market. It guides browser-based form filling, listing checks, final-submit confirmation, and result reporting for publication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help submit listings to external marketplaces, including actions that may publish under an unintended account or contact email. <br>
-Mitigation: Confirm the account, contact email, marketplace target, listing fields, and final-submit intent before sending data to any third-party platform. <br>
-Risk: The skill includes a default paid MCP Market listing path, which could create an unwanted charge if followed without explicit approval. <br>
-Mitigation: Require explicit user confirmation for any paid listing option or charge before selecting or submitting the paid plan. <br>
-Risk: Incorrect MCP endpoint or marketplace URL selection can produce incomplete listings or review states that need follow-up. <br>
-Mitigation: Validate the selected server ID, repository URL, MCP endpoint, and resulting public URL, and report needs_human when review or correction is required. <br>
+## Use Case:
 
+Developers and maintainers use this skill to publish MCP servers to third-party directories and marketplaces, fill listing forms, verify resulting listing pages, and stop for human confirmation before final external submission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zian502/skills/mcp-third-party-publisher) <br>
-- [Publisher Profile](https://clawhub.ai/user/zian502) <br>
-- [Glama MCP Directory](https://glama.ai/mcp) <br>
-- [mcp.so Submit Page](https://mcp.so/submit) <br>
-- [Smithery New Server Page](https://smithery.ai/servers/new) <br>
-- [MCP Market Submit Page](https://mcpmarket.com/submit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text guidance with inline shell commands, field mappings, status labels, and public listing URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return listed, submitted, needs_human, or failed status after publication attempts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review says the skill may run payload-provided CLI commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every command against the intended MCP server and destination before allowing execution.
+
+Risk: The security review says the skill can use hardcoded account details and steer users toward a paid listing option.
+
+Mitigation: Confirm the account, email, listing tier, and any payment or publication action with the user before proceeding.
+
+Risk: The skill submits data to external third-party platforms.
+
+Mitigation: Use the skill's stop-before-submit behavior to verify destination, account page, and submitted fields before final submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zian502/skills/mcp-third-party-publisher)
+- [Glama MCP directory](https://glama.ai/mcp)
+- [mcp.so submit page](https://mcp.so/submit)
+- [Smithery server publish page](https://smithery.ai/servers/new)
+- [MCP Market submit page](https://mcpmarket.com/submit)
+- [PatSnap MCP repository](https://github.com/patsnap/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline commands, JSON snippets, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports platform, status, public URL, page messages, review state, or failure reason; requires human confirmation before final external submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

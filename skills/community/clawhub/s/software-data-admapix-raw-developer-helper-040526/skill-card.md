@@ -1,41 +1,55 @@
-## Description: <br>
-Design and harden AdMapix-style raw data workflows for creative, app, ranking, revenue, and analytics datasets before they become dashboards or agent tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and harden AdMapix-style raw data workflows for creative, app, ranking, revenue, and analytics datasets before they become dashboards or agent tools.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, data engineers, growth analysts, and agent builders use this skill to plan reproducible raw-to-clean data workflows for AdMapix-style advertising, app analytics, ranking, revenue, and creative datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger wording may activate the skill for generic data, ETL, revenue, or ranking requests outside the intended AdMapix-style workflow. <br>
-Mitigation: Confirm the request is about AdMapix-style raw advertising or app-market data before relying on the skill's recommendations. <br>
-Risk: Workflow advice for raw data pipelines can lead to misleading dashboards or agent outputs if provenance, schema drift, or partial exports are missed. <br>
-Mitigation: Keep immutable raw captures separate from cleaned outputs, record source and transform metadata, and review validation checks before publishing downstream results. <br>
+## Use Case:
 
+Developers, data engineers, growth analysts, skill authors, and agent builders use this skill to plan AdMapix-style raw data ingestion, normalization, validation, and publication workflows while preserving provenance and auditability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/software-data-admapix-raw-developer-helper-040526) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code snippets, validation rules, data-model outlines, checklists, and implementation plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-to-table maps, audit-trail fields, local CSV/JSON/SQLite/DuckDB prototyping steps, and consumer-facing caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Broad implicit invocation may route generic analytics, revenue, or ETL prompts to this skill outside the intended AdMapix-style raw data context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review implicit invocation settings and scope use to AdMapix, app-market, creative, ranking, revenue, or raw-data workflow requests.
+
+Risk: Workflow guidance applied without source-specific validation could produce misleading cleaned datasets or dashboards.
+
+Mitigation: Keep immutable raw captures separate, require validation for schema drift, duplicates, missing values, metric consistency, and record source, timestamp, row count, and anomalies for each transform.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/software-data-admapix-raw-developer-helper-040526)
+- [AdMapix Demand Signal](https://clawhub.ai/skills/admapix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, validation rules, data model notes, and optional code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw-to-clean data models, schema checks, local ingestion plans, audit trail requirements, and reliability checklists.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

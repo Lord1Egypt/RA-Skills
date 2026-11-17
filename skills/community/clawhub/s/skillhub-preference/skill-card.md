@@ -1,40 +1,49 @@
-## Description: <br>
-Prefer `skillhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides policy guidance to prefer skillhub for skill discovery, installation, and updates, with fallback to clawhub when skillhub is unavailable or finds no match.
 
-## Publisher: <br>
-[pcicq](https://clawhub.ai/user/pcicq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcicq](https://clawhub.ai/user/pcicq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prefer skillhub for skill discovery, installation, and updates while retaining clawhub as an allowed fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes registry preference for skill search, install, and update workflows. <br>
-Mitigation: Install only when the operator wants skillhub attempted before clawhub, and review the reported source, version, publisher, and risk signals before approving resulting installations. <br>
-Risk: Low quality score and quarantine decision indicate the release requires moderation review before listing. <br>
-Mitigation: Complete moderation review and confirm the guidance is appropriate for the target agent environment before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to standardize how agents search for, install, and update skills, including fallback behavior and pre-install risk summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pcicq/skillhub-preference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution is bundled with the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill changes agent preference for skill-related tasks by trying skillhub before clawhub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source, version, and risk summary before approving any skill installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pcicq/skills/skillhub-preference)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Policy guidance may include the reported output of skillhub search commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

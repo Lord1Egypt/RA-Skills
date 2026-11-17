@@ -1,40 +1,53 @@
-## Description: <br>
-AI 模型对比指南 - 深度对比主流模型，帮你选最合适的。适合：选型困难、成本优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language AI model comparison guide that helps users choose mainstream AI models by cost, capability, free quota, and scenario fit.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users, developers, creators, and enterprises use this skill to compare mainstream AI models for selection, cost planning, fallback strategy, and free-quota tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model prices, free quotas, and recommendations may become outdated as providers change terms. <br>
-Mitigation: Confirm current provider pricing and quotas before making purchasing or deployment decisions. <br>
-Risk: The artifact includes external contact details for paid consulting. <br>
-Mitigation: Treat contact and consulting information as third-party content and verify the publisher before engaging. <br>
+## Use Case:
 
+External users and developers use this Chinese-language guide to compare mainstream AI models and select options for everyday chat, coding, long-document analysis, reasoning, multimodal use, content creation, and enterprise scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-model-comparison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with comparison tables and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational recommendations and cost estimates; provider prices and quotas may change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Model pricing, free tiers, and recommendations may become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current provider pricing, quotas, model availability, and terms before relying on the guide for purchasing or deployment decisions.
+
+Risk: The guide includes paid consulting contact information.
+
+Mitigation: Review the contact details and commercial offers before sharing or using the skill in environments that restrict solicitation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-model-comparison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with comparison tables and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language recommendations, pricing tables, free-quota comparisons, cost estimates, fallback examples, and paid consulting contact details.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

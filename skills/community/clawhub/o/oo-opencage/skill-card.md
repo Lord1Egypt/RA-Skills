@@ -1,44 +1,56 @@
-## Description: <br>
-OpenCage lets agents run forward, reverse, and GeoJSON geocoding through an OOMOL-connected OpenCage account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCage (opencagedata.com). Use this skill for ANY OpenCage request — searching and reading data. Whenever a task involves OpenCage, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to geocode addresses or places, reverse geocode coordinates, and request GeoJSON geocoding results through their connected OpenCage account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected OOMOL/OpenCage account and sends geocoding inputs through that integration. <br>
-Mitigation: Install only when OpenCage access through OOMOL is intended, and avoid submitting sensitive location data unless the user accepts that service flow. <br>
-Risk: The artifact can install and invoke the oo CLI when the command is missing or authentication fails. <br>
-Mitigation: Review the oo CLI installation path and only run setup steps after an auth or connection failure. <br>
-Risk: Forward geocoding is tagged as a write action in the artifact even though the described behavior is geocoding lookup. <br>
-Mitigation: Inspect the live connector schema and confirm the exact payload and expected effect before running tagged actions. <br>
+## Use Case:
 
+Agents and users use this skill to run forward geocoding, GeoJSON geocoding, and reverse geocoding through an OpenCage connection managed by OOMOL.
 
-## Reference(s): <br>
-- [OpenCage homepage](https://opencagedata.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub OpenCage release](https://clawhub.ai/oomol/oo-opencage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and returns connector responses that include data and metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The missing-command fallback can run an online installer that was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer separately, use a reviewed version-pinned installation, and check which agent skills it installs or updates.
+
+Risk: Addresses and coordinates submitted through the skill go through OOMOL to OpenCage and may consume service credit.
+
+Mitigation: Submit only location data appropriate for these services and account for the associated service credit.
+
+## Reference(s):
+
+- [OpenCage API Documentation](https://opencagedata.com/api)
+- [OpenCage](https://opencagedata.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-opencage)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, GeoJSON, Text]
+
+**Output Format:** [Geocoding results as JSON or GeoJSON, presented to the agent as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected geocoding action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

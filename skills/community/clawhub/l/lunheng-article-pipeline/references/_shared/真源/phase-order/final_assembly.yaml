@@ -1,0 +1,19 @@
+# 论衡流程真源 · 第二部分：节点 final_assembly（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: final_assembly   # 别名：文档层「Phase 4.4 后置」/ 定稿组装（非独立 Phase 标签，主控呈现时归入 Phase 4）
+  phase: "Phase 4.4 后置（定稿组装）"
+  phase_seq: 21
+  input: drafts/current_draft.md + data/数据卡.md + final/图件/*.svg（图件存在时用于嵌入）
+  kind: mechanical_checkpoint
+  verdict_scale: four_tier   # v2.12.40：组装前置核验结论落四档（当前稿不存在 = 路径或参数错误）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 当前权威稿已落盘；上游改写后必须重新组装
+  owner: 主控
+  write_authority: owner
+  output: final/定稿.md
+  fingerprint: required   # v2.12.49 M-1：产出后必须写 final/定稿.sha256（主控 read + 主人 host shell 补算 sha256sum 写入）；指纹真源
+  post_assembly_checks: [g14_caption_recheck]
+  post_assembly_recheck: required
+  recheck_record: status.md
+  note: 主控组装 final/定稿.md；图件存在时必须按 `![图N：标题](图件/图N_标题.svg)` 嵌入且计数等于拍板 N。组装后必做 `g14_caption_recheck`：核对最终图位数量、图注—数据卡对应关系、图注是否引入未登记新主张与 Markdown 嵌入形态，结果写 status.md；未完成/不可判定不得进入 t9_review。该复核只覆盖组装新增/变形的图注图位文本，不替代 G14 首审。
+  next: t9_review

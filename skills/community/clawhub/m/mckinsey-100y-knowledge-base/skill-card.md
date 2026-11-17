@@ -1,44 +1,60 @@
-## Description: <br>
-麦肯锡100年知识库 - 涵盖191篇精选内容，融合金字塔原理、结构化战略思维、麦肯锡工作法、写作与阅读方法论，以及麦肯锡全球行业洞察报告（金融、AI、消费、能源、汽车等）。支持知识检索、方法论指导、问题解决框架和行业趋势分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+麦肯锡100年知识库 - 涵盖191篇精选内容，融合金字塔原理、结构化战略思维、麦肯锡工作法、写作与阅读方法论，以及麦肯锡全球行业洞察报告（金融、AI、消费、能源、汽车等）。支持知识检索、方法论指导、问题解决框架和行业趋势分析。
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Employees, consultants, analysts, and business users use this skill to retrieve McKinsey-style methodology, structure business problems, summarize industry insights, and draft problem-solving reports or presentation outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes use of local IMA client ID and API key credentials and external API commands. <br>
-Mitigation: Install only when IMA access is intended, require explicit confirmation before API commands run, and keep credentials out of prompts, logs, and shared outputs. <br>
-Risk: Queries may send relevant user material to an external knowledge service. <br>
-Mitigation: Avoid confidential business material unless the user's IMA account and data-handling terms allow that use. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill for Chinese-first consulting reference work: applying McKinsey-style problem solving methods, finding industry-report summaries, selecting thinking models, and drafting structured reports or presentation outlines. It is best treated as a research and learning aid because the artifact states that underlying content remains owned by McKinsey and original authors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/mckinsey-100y-knowledge-base) <br>
-- [Core methodology reference](references/01-core-methodology.md) <br>
-- [Work skills reference](references/02-work-skills.md) <br>
-- [Industry reports reference](references/03-industry-reports.md) <br>
-- [Thinking models reference](references/04-thinking-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and report or presentation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May load local reference files and may require user-approved IMA API access for live knowledge queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill documents IMA credential use with an unaudited absolute-path Node helper, which could expose API keys or send data to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the helper script and network behavior before use, keep credentials out of shell history, logs, and process listings, and avoid real credentials until the data flow is understood.
+
+Risk: The skill is a third-party Chinese-first consulting reference built from curated McKinsey-style materials whose original content rights may belong to McKinsey or other authors.
+
+Mitigation: Use it as a research and learning aid, verify cited source material independently, and confirm content rights before commercial publication or redistribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/mckinsey-100y-knowledge-base)
+- [Publisher GitHub profile](https://github.com/yjkj999999)
+- [麦肯锡核心方法论](references/01-core-methodology.md)
+- [麦肯锡工作技能](references/02-work-skills.md)
+- [麦肯锡行业洞察报告](references/03-industry-reports.md)
+- [麦肯锡思维模型图集](references/04-thinking-models.md)
+- [麦肯锡问题解决报告模板](templates/problem-solving-report.md)
+- [麦肯锡幻灯片模板](templates/presentation-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, structured report or presentation templates, and optional shell command snippets for IMA knowledge-base queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first consulting reference output; external IMA knowledge-base query behavior requires credential and network review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

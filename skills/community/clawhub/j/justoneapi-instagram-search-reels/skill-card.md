@@ -1,45 +1,56 @@
-## Description: <br>
-Call GET /api/instagram/search-reels/v1 for Instagram Reels Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/instagram/search-reels/v1 for Instagram Reels Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to search Instagram Reels through JustOneAPI by keyword or hashtag and summarize returned post, caption, and author-profile data for trend or niche research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JUST_ONE_API_TOKEN is sent to api.justoneapi.com as a URL query parameter. <br>
-Mitigation: Treat the token as sensitive, avoid sharing full request URLs or command output, and rotate the token if exposure is suspected. <br>
-Risk: Search keywords, hashtags, and pagination tokens are sent to JustOneAPI. <br>
-Mitigation: Use this skill only when the user is comfortable sending those lookup values to JustOneAPI. <br>
-Risk: Backend errors may include payload details from the API provider. <br>
-Mitigation: Review error output before sharing it and remove tokens, full URLs, or sensitive search terms. <br>
+## Use Case:
 
+Developers and external users can use this skill to search Instagram Reels by keyword or hashtag through JustOneAPI. It supports trend tracking and discovery of high-engagement reels by returning endpoint-specific result data such as post IDs, captions, and author profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-instagram-search-reels) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_reels&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_reels&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the API helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN; sends keyword and optional paginationToken as query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command arguments or URL query logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, low-scope token where possible, avoid pasting token values into chat or logs, and rotate the token if it may have been exposed.
+
+Risk: The skill requires access to an external JustOneAPI endpoint and may return backend error payloads.
+
+Mitigation: Review backend error payloads before sharing them and avoid including credentials, sensitive search terms, or private operational context in support requests.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_reels&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_reels&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-instagram-search-reels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with JSON response payloads and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses operation searchReelsV1 on /api/instagram/search-reels/v1; accepts keyword and optional paginationToken.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

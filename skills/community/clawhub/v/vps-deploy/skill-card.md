@@ -1,43 +1,54 @@
-## Description: <br>
-Deploy a full-stack app to a VPS by guiding server setup, Docker deployment, Nginx reverse proxy, SSL certificates, and post-deploy health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a full-stack app to any VPS from zero to production in one command, including SSH hardening, firewall setup, Docker, Nginx reverse proxy, SSL certificates, and health verification.
 
-## Publisher: <br>
-[llcsamih](https://clawhub.ai/user/llcsamih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llcsamih](https://clawhub.ai/user/llcsamih)
 
-## Use Case: <br>
-Developers and engineers use this skill to take a local full-stack app to a bare Ubuntu/Debian VPS by configuring SSH, firewall, Docker Compose, Nginx, SSL, and verification checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change SSH and firewall settings on a VPS, which could lock out administrators or disrupt access. <br>
-Mitigation: Use a fresh or backed-up server, keep an existing SSH session open, and verify deploy-user SSH access before disabling root login. <br>
-Risk: The skill can modify Nginx and deployment configuration on a live server. <br>
-Mitigation: Back up existing Nginx configs first, run configuration tests before reloads, and review generated deployment files before applying them. <br>
-Risk: The skill installs Docker from an external script and creates a deploy user with passwordless sudo. <br>
-Mitigation: Review the Docker install command before execution and remove or restrict passwordless sudo when deployment is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy an application from a local project to a fresh Ubuntu or Debian VPS with Docker, Nginx, optional TLS, and post-deployment checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/llcsamih/vps-deploy) <br>
-- [Docker installation script endpoint](https://get.docker.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, Dockerfile, YAML, and Nginx configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce server administration commands, deployment files, and verification checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide broad, permanent root-level VPS changes that may expose or break a server if followed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a fresh or dedicated VPS, review commands before execution, and require explicit confirmation before SSH, firewall, Nginx, or destructive changes.
+
+Risk: The Docker installation flow uses curl-to-shell, and the deployment flow may create unrestricted passwordless sudo or reuse root SSH keys.
+
+Mitigation: Prefer a verified package workflow for Docker, use a dedicated deploy public key, avoid unrestricted passwordless sudo, and back up Nginx configs before changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/llcsamih/skills/vps-deploy)
+- [Publisher Profile](https://clawhub.ai/user/llcsamih)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Dockerfile, YAML, and Nginx configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated Dockerfile and docker-compose.yml content, remote SSH commands, Nginx site configuration, certificate setup commands, and verification checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

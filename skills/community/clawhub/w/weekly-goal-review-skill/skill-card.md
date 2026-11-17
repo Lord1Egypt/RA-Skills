@@ -1,40 +1,53 @@
-## Description: <br>
-Guides structured help for Weekly Goal Review using clear templates, checks, and safe defaults (category: Planning & Productivity). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Weekly Goal Review using clear templates, checks, and safe defaults (category: Planning & Productivity).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users and planning-focused teams use this skill to turn weekly goals into concise plans, reusable checklists, next actions, and editable draft copy without requesting private data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets or highly sensitive personal details into goal-review prompts. <br>
-Mitigation: Keep inputs limited to non-secret goal summaries and minimize personally identifiable information. <br>
-Risk: The PayPal donation link in the artifact could be mistaken for part of the skill's function. <br>
-Mitigation: Treat the donation link as optional support information, not as a required workflow step. <br>
+## Use Case:
 
+External users and productivity-focused teams use this skill to review weekly goals and turn owned notes into a concise plan, numbered checklist, next actions, and optional editable copy blocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/weekly-goal-review-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, tool calls, or account access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and metadata.json) <br>
+Risk: Planning notes can include sensitive personal details or private operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and keep personally identifiable information minimal when providing goals, constraints, or pasted notes.
+
+Risk: The artifact includes an optional external PayPal donation link.
+
+Mitigation: Treat the donation link as optional external payment activity and verify it independently before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/abdullah944/skills/weekly-goal-review-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise planning prose with a reusable numbered checklist and short next-action list.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

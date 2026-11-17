@@ -1,42 +1,57 @@
-## Description: <br>
-ClaWHub skill synchronization and update helper for checking local skill versions, syncing workspace skills, and reporting update status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClaWHub skill synchronization and automatic updates for detecting, updating, syncing, and reporting local skill version status.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Developers and operators use this skill to check local ClaWHub skill versions, run workspace sync flows, and receive a concise update report for managed skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect local skills and account sync flows with broad automatic authority. <br>
-Mitigation: Require an explicit confirmation or dry-run report before any update, sync, or publish action. <br>
-Risk: Broad trigger phrases or scheduled execution could start update checks when the user did not intend it. <br>
-Mitigation: Narrow the trigger phrases and keep the cron schedule disabled unless the operator explicitly enables it. <br>
-Risk: The skill references reading a local ClawHub token file as part of its workflow. <br>
-Mitigation: Limit use to trusted workspaces and avoid exposing token contents in generated reports or logs. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to check local workspace skills, compare versions, synchronize them with ClaWHub, and produce a difference report.
 
-## Reference(s): <br>
-- [Yq Skill Sync on ClaWHub](https://clawhub.ai/tianheihei002/yq-skill-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include version comparisons, sync status, and recommended follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill requests access to the configured ClaWHub account and token file for synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts intended to update local skills, avoid direct token-file reads where possible, and use a protected account configuration.
+
+Risk: Bulk synchronization and publishing can update or publish many local skills at once.
+
+Mitigation: Require a dry run and explicit confirmation before sync or publish actions, and restrict synchronization to approved skill directories.
+
+Risk: The artifact suggests a fixed CLI path and optional daily cron automation.
+
+Mitigation: Use a protected, pinned CLI path and leave recurring cron execution disabled unless ongoing publishing is explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-skill-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include version comparison results, synchronization status, and recommended confirmation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata; artifact body also mentions 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

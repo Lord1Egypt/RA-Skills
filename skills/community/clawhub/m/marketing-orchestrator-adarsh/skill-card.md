@@ -1,40 +1,53 @@
-## Description: <br>
-Orchestrates marketing audits by running collectors for Instagram, Meta Ads, SEO, competitors, and website audit, then generates a comprehensive report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates marketing audits by running collectors for Instagram, Meta Ads, SEO, competitors, and website audit, then generates a comprehensive report.
 
-## Publisher: <br>
-[AdarshVMore](https://clawhub.ai/user/AdarshVMore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adarshvmore](https://clawhub.ai/user/adarshvmore)
 
-## Use Case: <br>
-Marketing teams, founders, and operators use this skill to coordinate a brand marketing audit from an Instagram handle or website domain and receive a consolidated report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External-source and raw-data handling are not fully disclosed. <br>
-Mitigation: Before use, confirm which sources are queried, what rawData contains, and whether collected data is logged or retained. <br>
-Risk: Collector failures or incomplete collector results can affect report quality. <br>
-Mitigation: Review the generated report and rawData before relying on audit findings, and make individual collector errors visible in the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdarshVMore/marketing-orchestrator-adarsh) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Marketing teams, agencies, and developers use this skill to coordinate a multi-source marketing audit from a brand Instagram handle or website domain and produce a final report with collected raw data.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with structured raw data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns reportMarkdown, rawData, and optionally an error field.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The orchestrated collector skills may require configured API keys for social, ads, SEO, competitor, or website-audit services.
+
+Mitigation: Confirm required credentials and service access before installation, and limit credentials to the minimum scope needed for the audit.
+
+Risk: Collector failures or incomplete source data can produce partial or misleading audit results.
+
+Mitigation: Review the final report and raw collected data before using findings for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adarshvmore/skills/marketing-orchestrator-adarsh)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown report with raw audit data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an error string when orchestration cannot complete.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

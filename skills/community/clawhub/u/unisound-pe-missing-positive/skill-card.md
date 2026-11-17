@@ -1,45 +1,62 @@
-## Description: <br>
-门诊病历内涵质控：体格检查中遗漏主要阳性体征。给定门诊病历文本，调用内部医疗大模型，输出无缺陷或有缺陷及原因。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks outpatient medical records for missing key positive physical-exam findings and returns whether a defect is present with the reason when applicable.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Healthcare quality-control teams and clinical workflow developers use this skill to review de-identified outpatient medical records for missing key positive physical examination findings related to the diagnosis. It returns a concise no-defect or defect result with a reason for clinician review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends de-identified medical-record fields to the configured HiVoice MaaS endpoint. <br>
-Mitigation: Use it only where that processing is authorized, and de-identify records before submission. <br>
-Risk: The required app key could expose access if committed or shared. <br>
-Mitigation: Keep the app key out of repositories and provide it only through an approved secure workflow. <br>
-Risk: Changing --base to an untrusted URL can send records to an unintended service. <br>
-Mitigation: Use only approved model API base URLs. <br>
-Risk: --save-prepared can persist preprocessed record text locally. <br>
-Mitigation: Do not use --save-prepared with sensitive records unless local storage is approved. <br>
+## Use Case:
 
+Clinical quality-control teams and developers use this skill to review de-identified outpatient records for one medical-record rule: whether physical-exam notes omit major positive findings relevant to selected diagnoses. Results are advisory and require clinician review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unisound-llm/unisound-pe-missing-positive) <br>
-- [HiVoice MaaS API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [UTF-8 text: either 无缺陷 or 有缺陷 followed by a reason] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the quality-control result to a local text file and prints the same result to the console.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send sensitive medical-record text and a bearer app key to a user-supplied model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a controlled clinical environment with de-identified records, an approved HTTPS endpoint, and a narrowly scoped app key.
+
+Risk: Prepared or result files may contain clinical content if saved to disk.
+
+Mitigation: Protect output directories and avoid --save-prepared unless the destination is authorized for sensitive clinical data.
+
+Risk: The quality-control result is advisory and may be incomplete or incorrect.
+
+Mitigation: Require review by a licensed clinician before using findings in clinical or operational decisions.
+
+Risk: The multi-format entry point depends on shared preprocessing code that must be trusted in the deployment environment.
+
+Mitigation: Install the shared preprocessing directory from a trusted source and scan it before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-pe-missing-positive)
+- [HiVoice MaaS OpenAI-compatible chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [UTF-8 plain text result with optional console messages and saved text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs either no defect or defect with a reason; may save prepared text when requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

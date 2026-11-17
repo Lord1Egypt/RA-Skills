@@ -1,38 +1,54 @@
-## Description: <br>
-Checks for OpenClaw updates by comparing the installed version against the npm registry and reporting whether an update is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for OpenClaw updates by comparing installed version against the npm registry and reporting status without modifying the system.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether a globally installed OpenClaw package is current, including periodic monitoring or responding to version-status questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw package.json from known global npm install paths and contacts the npm registry over HTTPS. <br>
-Mitigation: Use it only where those read-only local version checks and outbound access to registry.npmjs.org are acceptable; it should not need credentials or write access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pfrederiksen/openclaw-update-checker) <br>
-- [OpenClaw npm registry endpoint](https://registry.npmjs.org/openclaw) <br>
+## Use Case:
 
+Developers and operators use this skill to check whether a globally installed OpenClaw package is current, including periodic update monitoring in cron or dashboard workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Plain text status summary or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output reports installed version, latest version, update status, newer versions, and a changelog URL when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads known global OpenClaw package.json locations to determine the installed version.
+
+Mitigation: Install only where read-only access to those package metadata paths is acceptable.
+
+Risk: The skill sends a read-only HTTPS request to the public npm registry for OpenClaw version metadata.
+
+Mitigation: Use it only in environments where outbound HTTPS access to registry.npmjs.org is approved.
+
+## Reference(s):
+
+- [OpenClaw npm registry metadata](https://registry.npmjs.org/openclaw)
+- [OpenClaw release notes](https://github.com/openclaw/openclaw/releases/tag/v2026.2.21)
+- [OpenClaw Update Checker on ClawHub](https://clawhub.ai/pfrederiksen/skills/openclaw-update-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON status report, with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports installed version, latest version, update status, newer versions, and a changelog URL when available.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

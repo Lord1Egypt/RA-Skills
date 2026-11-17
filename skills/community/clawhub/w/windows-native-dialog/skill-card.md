@@ -1,38 +1,57 @@
-## Description: <br>
-Handles native Windows file picker dialogs from WSL2 using exec and PowerShell. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles native Windows file picker dialogs from WSL2 using exec and PowerShell.
 
-## Publisher: <br>
-[Owlock](https://clawhub.ai/user/Owlock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[owlock](https://clawhub.ai/user/owlock)
 
-## Use Case: <br>
-Developers and automation users working in WSL2 use this skill to handle Windows-native file picker dialogs that browser automation cannot see, especially upload workflows that require a local Windows file selection step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run a Windows PowerShell command from WSL2, which could be broadened into unrelated host commands if adapted carelessly. <br>
-Mitigation: Review the exact PowerShell command before first use, keep it scoped to the intended file-selection workflow, and do not allow the agent to repurpose it for unrelated host actions. <br>
+## Use Case:
 
+Developers and automation users use this skill to handle Windows native file picker dialogs from WSL2 when browser automation cannot see or operate the dialog.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Owlock/windows-native-dialog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is scoped to Windows 10 with WSL2 and a Windows PowerShell file-selection workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Broad persistent tool permissions can leave more access enabled than the file-dialog task requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions where possible and restore tool permissions after completing the task.
+
+Risk: Host PowerShell execution can run local scripts or commands with effects outside browser automation.
+
+Mitigation: Review the exact PowerShell and Python command before execution and use fixed file paths or trusted inputs.
+
+Risk: The publish step may complete an external posting workflow without enough user control.
+
+Mitigation: Require confirmation before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/owlock/skills/windows-native-dialog)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell and PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through browser automation, host PowerShell execution, and publish confirmation steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

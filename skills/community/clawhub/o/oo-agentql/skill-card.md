@@ -1,43 +1,52 @@
-## Description: <br>
-AgentQL (agentql.com) supports reading, creating, and updating AgentQL data through the OOMOL-connected oo CLI instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentQL (agentql.com). Use this skill for ANY AgentQL request — reading, creating, and updating data. Whenever a task involves AgentQL, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate AgentQL through an OOMOL-connected account, inspect live connector schemas, query webpages for structured data, create remote browser sessions, and review usage telemetry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time setup includes remote installer commands, including pipe-to-shell and PowerShell execution patterns. <br>
-Mitigation: Use verified OOMOL CLI documentation, review the installer before execution, and require explicit approval before running installer commands. <br>
-Risk: The skill operates through an OOMOL-connected AgentQL account and may use sensitive credentials supplied server-side. <br>
-Mitigation: Install only for intended OOMOL and AgentQL use, keep account access scoped appropriately, and confirm payloads before running write actions. <br>
+## Use Case:
 
+Developers and users with an OOMOL-connected AgentQL account use this skill to query webpages, inspect account and session usage, and create Tetra browser sessions through the oo CLI.
 
-## Reference(s): <br>
-- [AgentQL homepage](https://www.agentql.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub AgentQL release page](https://clawhub.ai/oomol/oo-agentql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL sign-in, and an AgentQL connection for live actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Fallback setup executes downloaded CLI installers whose exact system changes were not inspected; setup can introduce broader persistent changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately before fallback setup. Consider OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization, and preserve the skill's confirmation requirements for write actions.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [AgentQL](https://www.agentql.com)
+- [AgentQL API reference](https://docs.agentql.com/rest-api/api-reference)
+- [oo CLI command reference: environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require confirmation; responses may include AgentQL data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

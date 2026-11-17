@@ -1,42 +1,57 @@
-## Description: <br>
-通过 OpenClaw 自动生成公众号内容、数字产品素材和市场发布资产，帮助创作者搭建可重复运行的 AI 副业工作流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users plan repeatable AI-assisted workflows for WeChat article drafting, digital product packaging, marketplace asset publication, and feedback-driven iteration toward passive income.
 
-## Publisher: <br>
-[suda6632](https://clawhub.ai/user/suda6632) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suda6632](https://clawhub.ai/user/suda6632)
 
-## Use Case: <br>
-有 OpenClaw 经验并拥有微信公众号账号的创作者可用它规划和运行公众号内容工厂、数字产品打包流程和市场资产发布流程。它面向希望把 AI 写作、数据追踪、反馈收集和迭代升级组织成可重复副业闭环的用户。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring publishing workflows may upload WeChat drafts or marketplace assets without clear approval controls. <br>
-Mitigation: Require explicit manual approval before WeChat draft upload or marketplace publication. <br>
-Risk: Workspace scanning and asset packaging may expose credentials, private files, or unrelated local content. <br>
-Mitigation: Restrict scanning to an allowlisted folder and exclude credentials and private files before packaging. <br>
-Risk: The workflow depends on WeChat account credentials and publishing permissions. <br>
-Mitigation: Store WeChat credentials only in approved secret storage and review permission scope before use. <br>
+## Use Case:
 
+OpenClaw users with WeChat Official Account access use this skill to organize repeatable AI-assisted content and digital product workflows, including draft production, package creation, publishing preparation, data tracking, and feedback iteration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suda6632/sleep-income-v1-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with workflow diagrams, command references, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe scheduled publishing, credential-dependent setup, and manual review steps for marketplace or WeChat publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide an agent to scan local workspace content before packaging assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict scans to explicit allowlists and exclude secrets, private files, and unrelated projects.
+
+Risk: The workflow involves WeChat AppID/AppSecret values and external publication.
+
+Mitigation: Store secrets in a secure secret store and require manual approval for uploads, draft submissions, marketplace releases, and account-impacting actions.
+
+Risk: Security evidence marks the release suspicious because external publishing and workspace scanning lack clear review and secret-protection steps.
+
+Mitigation: Review the package manifest and approve each account-impacting action before installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/suda6632/skills/sleep-income-v1-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with workflow outlines, checklists, and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include monetization workflow steps and publication-preparation instructions; users should review them before external publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

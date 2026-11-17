@@ -1,44 +1,55 @@
-## Description: <br>
-Access 2,179+ datasets from the City of Edmonton open data portal to search, fetch, and analyze city data on transit, traffic, environment, census, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access City of Edmonton open data through a Bash-invoked CLI that searches, lists, fetches, and exports Socrata datasets.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers, analysts, and civic-data users use this skill to discover City of Edmonton datasets, inspect dataset metadata, fetch filtered rows, and export results for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper runs Python commands that contact data.edmonton.ca and write a local dataset catalog cache. <br>
-Mitigation: Review commands before execution, allow network access only to the City of Edmonton open-data portal, and remove the local cache if a fresh catalog is required. <br>
-Risk: The optional SOCRATA_APP_TOKEN may be exposed if an unrelated credential is provided. <br>
-Mitigation: Set only a Socrata app token when higher rate limits are needed, and do not provide unrelated secrets. <br>
-Risk: Fetched public datasets may be incomplete, stale, or unavailable depending on the upstream portal. <br>
-Mitigation: Check dataset metadata, update timestamps, and portal availability before relying on generated analysis. <br>
+## Use Case:
 
+Developers, analysts, and civic-data users use this skill to discover City of Edmonton datasets, inspect dataset metadata, and retrieve public data for analysis or reporting.
 
-## Reference(s): <br>
-- [City of Edmonton Open Data Portal](https://data.edmonton.ca) <br>
-- [Popular & Useful Edmonton Open Data Datasets](references/datasets.md) <br>
-- [ClawHub release page](https://clawhub.ai/raychanpmp/edmonton-opendata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper script output may be JSON, CSV, GeoJSON, or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an optional SOCRATA_APP_TOKEN for Socrata rate limits and may write a small dataset catalog cache under the skill scripts directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: CSV exports contain remote public data and can be unsafe when opened directly in spreadsheet applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer JSON output for analysis, or sanitize exported CSV files before opening them in spreadsheet tools.
+
+Risk: The helper contacts data.edmonton.ca and caches the public dataset catalog locally.
+
+Mitigation: Use the skill only in environments where outbound access to data.edmonton.ca and local catalog caching are acceptable.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/raychanpmp/skills/edmonton-opendata)
+- [City of Edmonton Open Data Portal](https://data.edmonton.ca)
+- [Curated Edmonton dataset examples](references/datasets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI output in JSON, CSV, or GeoJSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact data.edmonton.ca and may cache the public dataset catalog locally.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

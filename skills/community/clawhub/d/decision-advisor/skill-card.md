@@ -1,42 +1,52 @@
-## Description: <br>
-Decision-making advisor using Tree of Thoughts for exploring options, analyzing trade-offs, and providing data-driven recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision-making advisor using Tree of Thoughts for exploring options, analyzing trade-offs, and providing data-driven recommendations.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[banxian87](https://clawhub.ai/user/banxian87)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, technical teams, business users, and individuals use this skill to compare options, define weighted criteria, analyze trade-offs, and generate structured decision recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Decision prompts can contain confidential business or personal details that may be sent to the configured LLM backend.
+
+Mitigation: Use a trusted LLM backend and avoid entering sensitive information unless sharing it with that backend is approved.
+
+Risk: Generated scores and recommendations can be incomplete or misleading for consequential decisions.
+
+Mitigation: Treat outputs as decision support and review the criteria, assumptions, scores, and recommendation before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and decision-makers use this skill to compare options, weigh criteria, assess trade-offs, and generate structured recommendations for technical, business, or personal decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Decision details, criteria, context, and options may be sent to the configured LLM provider. <br>
-Mitigation: Do not include confidential business plans, financial details, legal issues, personal data, or trade secrets unless the provider configuration and retention policy are acceptable. <br>
-Risk: LLM-generated scoring and recommendations can be incomplete or misleading for high-impact decisions. <br>
-Mitigation: Treat outputs as decision support, review the assumptions and weights, and require human approval before acting on consequential recommendations. <br>
+**Output Format:** [Structured text or Markdown decision analysis with scores, reasoning, risks, alternatives, and a recommendation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banxian87/decision-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/banxian87) <br>
-- [Skill documentation](SKILL.md) <br>
+**Other Properties Related to Output:** [Uses the configured LLM backend when generating options, criteria, and scores; falls back to simple default scoring behavior when no backend is provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured recommendation objects and Markdown-style analysis tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a recommendation, weighted score, confidence level, reasoning, risks, alternatives, and full option ranking.] <br>
+1.0.0 (source: server release evidence and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

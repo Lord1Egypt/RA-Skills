@@ -1,46 +1,60 @@
-## Description: <br>
-A Chinese-language resume optimization skill that diagnoses ATS friendliness, extracts JD keywords, rewrites experience with STAR framing, and drafts job-search and interview preparation materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+反AI简历筛查助手Pro helps Chinese-language job seekers diagnose resumes, optimize JD keyword matching, rewrite experience with STAR structure, prepare application materials, and anticipate interview questions.
 
-## Publisher: <br>
-[ew-ericwu](https://clawhub.ai/user/ew-ericwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bagel-ew](https://clawhub.ai/user/bagel-ew)
 
-## Use Case: <br>
-External job seekers use this skill to evaluate and improve Chinese resumes for ATS and AI screening, align resumes to target job descriptions, strengthen achievement statements, and prepare supporting application and interview materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume text can contain sensitive personal or private company information. <br>
-Mitigation: Remove unnecessary personal details, private identifiers, home address, marital status, and private company information before using the skill. <br>
-Risk: Resume rewrites may overstate achievements, metrics, or claims if accepted without review. <br>
-Mitigation: Review rewritten achievements and metrics carefully so the final resume remains accurate and verifiable. <br>
-Risk: The skill defaults to Chinese resume optimization and may not fit another target language without clarification. <br>
-Mitigation: Confirm the target language before using it for a non-Chinese resume. <br>
+## Use Case:
 
+External job seekers use this skill to improve resume structure, ATS readability, job-description keyword alignment, achievement wording, cover letters, self-introductions, and interview preparation. It is designed primarily for Chinese-language resumes across student, experienced, and career-change scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ew-ericwu/anti-ai-resume-screener) <br>
-- [ATS optimization guide](references/ats-optimization-guide.md) <br>
-- [Resume writing frameworks](references/resume-frameworks.md) <br>
-- [STAR rewrite examples](references/star-examples.md) <br>
-- [ATS-friendly resume template](templates/resume-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, rewrite suggestions, templates, and interview-preparation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese by default; may include structured scoring tables, keyword reports, STAR rewrites, application drafts, and interview question frameworks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Resume and job-description content can contain personal or sensitive employment information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information the user is comfortable sharing with the agent, and avoid adding unnecessary sensitive personal details.
+
+Risk: The skill is mainly designed for Chinese-language resumes and may miss market-specific conventions in other languages or regions.
+
+Mitigation: Ask the user to specify the target language, country, and job market when the resume is not for a Chinese-language hiring context.
+
+Risk: Resume optimization can overstate responsibilities or results if rewritten achievements are not checked.
+
+Mitigation: Review rewritten bullets with the user and keep accomplishments truthful, evidence-based, and aligned with the original experience.
+
+## Reference(s):
+
+- [ATS Optimization Guide](references/ats-optimization-guide.md)
+- [Resume Frameworks](references/resume-frameworks.md)
+- [STAR Examples](references/star-examples.md)
+- [ATS-Friendly Resume Template](templates/resume-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, rewritten resume sections, application copy, and interview question guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve user-provided facts and flag changes that need user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

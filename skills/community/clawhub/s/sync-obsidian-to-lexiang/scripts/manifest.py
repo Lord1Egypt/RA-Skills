@@ -26,6 +26,8 @@ LOCK_STALE_SECONDS = 3600
 DEFAULT_CONFIG = {
     "target_space_id": "",
     "target_folder_entry_id": "",
+    "lexiang_profile": "",
+    "lexiang_credential_file": "",
     "conflict_strategy": "lexiang_wins",
     "exclude_patterns": [".obsidian/**", "*.canvas"],
     "sync_attachments": True,

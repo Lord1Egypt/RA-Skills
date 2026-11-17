@@ -1,47 +1,62 @@
-## Description: <br>
-Uses Tencent Cloud's FuseFaceUltra API to fuse a user face image with a template image and return a generated result image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Tencent Cloud FuseFaceUltra to fuse a user face image with a template image and return a generated result URL.
 
-## Publisher: <br>
-[Neck-cn](https://clawhub.ai/user/Neck-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neck-cn](https://clawhub.ai/user/neck-cn)
 
-## Use Case: <br>
-Developers and external users use this skill to run Tencent Cloud image face fusion on supplied face and template images, with optional model selection and AI-label settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected face and template images are sent to Tencent Cloud for processing. <br>
-Mitigation: Process only images the user has permission to use and disclose the external Tencent Cloud processing path before deployment. <br>
-Risk: Tencent Cloud API credentials and account quota are required. <br>
-Mitigation: Use least-privileged Tencent API keys, avoid hardcoding secrets, and prefer controlled secret storage over long-lived shell startup exports. <br>
-Risk: The script can install the Tencent Cloud SDK at runtime if it is missing. <br>
-Mitigation: Preinstall or pin the SDK in controlled environments before using the skill. <br>
-Risk: The skill can disable the AI-generated content label with a runtime option. <br>
-Mitigation: Keep AI-generated labeling enabled unless there is a legitimate reviewed reason to disable it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TencentCloud Image Face Fusion Skill Page](https://clawhub.ai/Neck-cn/tencentcloud-image-face-fusion) <br>
-- [Tencent Cloud FuseFaceUltra API](https://cloud.tencent.com/document/product/670/106891) <br>
-- [Local FuseFaceUltra API Reference](references/FuseFaceUltraApi.md) <br>
-- [Tencent Cloud Face Fusion Console](https://console.cloud.tencent.com/facefusion) <br>
-- [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/capi) <br>
+## Use Case:
 
+External users and developers use this skill to run Tencent Cloud face fusion on authorized face and template images. It is suited for agent workflows that return the service-generated fused image URL or a clear JSON error.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [JSON result containing a fused image URL or a structured error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials and sends selected input images to Tencent Cloud.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive face and template images are processed by Tencent Cloud.
+
+Mitigation: Use the skill only with images the user is authorized to process, and disclose that images are sent to Tencent Cloud before enabling the workflow.
+
+Risk: Tencent Cloud credentials are required for execution.
+
+Mitigation: Use narrowly scoped Tencent Cloud credentials and avoid persisting secrets in shell startup files when possible.
+
+Risk: The script can install the Tencent Cloud SDK at runtime without a pinned version.
+
+Mitigation: Preinstall a pinned Tencent SDK in a controlled environment before using the skill.
+
+Risk: The AI-synthesis logo can be disabled with a command option.
+
+Mitigation: Keep the synthesis logo enabled unless there is a legitimate and reviewed reason to disable it.
+
+## Reference(s):
+
+- [Tencent Cloud FuseFaceUltra API reference](artifact/references/FuseFaceUltraApi.md)
+- [Tencent Cloud original FuseFaceUltra documentation](https://cloud.tencent.com/document/product/670/106891)
+- [ClawHub skill release page](https://clawhub.ai/neck-cn/skills/tencentcloud-image-face-fusion)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [JSON response containing a FusedImage URL, or JSON error output when credentials, image input, or the Tencent Cloud API call fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials and sends provided face and template images to Tencent Cloud; result URLs from the API may be time-limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,55 @@
-## Description: <br>
-Manage Hugging Face Hub via hf CLI. Use when working with HF AI models, datasets, spaces, or repos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Hugging Face Hub via hf CLI. Use when working with HF AI models, datasets, spaces, or repos.
 
-## Publisher: <br>
-[YevhenDiachenko0](https://clawhub.ai/user/YevhenDiachenko0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yevhendiachenko0](https://clawhub.ai/user/yevhendiachenko0)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for Hugging Face Hub CLI guidance, including installing the `hf` command, authenticating with `HF_TOKEN`, browsing models, datasets, spaces, papers, and managing Hub resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can delete repositories, files, buckets, collections, endpoints, discussions, jobs, or local cache data. <br>
-Mitigation: Require explicit user confirmation before destructive `hf` commands or commands using deletion flags. <br>
-Risk: Hugging Face access tokens can grant read or write access to private Hub resources. <br>
-Mitigation: Use `HF_TOKEN` from the environment, never print or persist the token value, and prefer read tokens unless write operations are required. <br>
-Risk: Uploads to public repositories may expose sensitive files or model weights. <br>
-Mitigation: Warn the user before public uploads and confirm the target repository visibility and content. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Hugging Face Hub models, datasets, spaces, repositories, jobs, endpoints, discussions, collections, and cache operations through the official hf CLI.
 
-## Reference(s): <br>
-- [Hugging Face](https://huggingface.co) <br>
-- [Hugging Face CLI installation guide](https://huggingface.co/docs/huggingface_hub/guides/cli#getting-started) <br>
-- [Hugging Face CLI guide](https://huggingface.co/docs/huggingface_hub/guides/cli) <br>
-- [Hugging Face CLI reference](https://huggingface.co/docs/huggingface_hub/package_reference/cli) <br>
-- [Hugging Face token settings](https://huggingface.co/settings/tokens) <br>
-- [ClawHub skill page](https://clawhub.ai/YevhenDiachenko0/hugging-face-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-confirmed commands for Hugging Face Hub operations; should not expose or log `HF_TOKEN`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and frontmatter metadata) <br>
+Risk: HF_TOKEN can grant access to private Hugging Face resources and write operations when broadly scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only token for browsing or downloads, create a separate narrowly scoped write token only when needed, and never expose or log the token value.
+
+Risk: Some hf commands can delete repositories, files, buckets, collections, endpoints, jobs, cache entries, or discussions.
+
+Mitigation: Review destructive hf commands before execution and require explicit user confirmation for delete, prune, cancel, close, merge, or sync-with-delete operations.
+
+## Reference(s):
+
+- [Hugging Face](https://huggingface.co)
+- [Hugging Face CLI Guide](https://huggingface.co/docs/huggingface_hub/guides/cli)
+- [Hugging Face CLI Reference](https://huggingface.co/docs/huggingface_hub/package_reference/cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires hf CLI and HF_TOKEN for authenticated Hugging Face operations.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

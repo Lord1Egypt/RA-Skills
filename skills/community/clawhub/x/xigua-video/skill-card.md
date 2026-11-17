@@ -1,42 +1,60 @@
-## Description: <br>
-整理并摘要西瓜视频公开视频和短剧页的信息，包括视频数据、短剧更新和榜单统计，便于轻量分析和检索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public Xigua Video videos, short drama pages, and topic pages, including video metrics, update status, and ranking statistics for lightweight analysis and retrieval.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to summarize public Xigua Video pages, short-drama update state, and topic or ranking metadata for lightweight analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be used beyond its stated scope for downloading, bulk scraping, API reverse engineering, or bypassing platform checks. <br>
-Mitigation: Keep use limited to public content, low request volume, and browser-assisted analysis; do not download content, call private APIs, reverse engineer interfaces, or bypass verification. <br>
-Risk: Summaries of public video, short-drama, topic, or ranking pages may become stale as pages update. <br>
-Mitigation: Include the source link and collection time in outputs when reporting page-derived metrics or update status. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to collect concise summaries from visible Xigua Video public pages, including keyword video results, short drama episode/update information, and ranking or topic statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeKungfu/xigua-video) <br>
-- [Xigua Video Homepage](https://www.ixigua.com/) <br>
-- [Xigua Video Search](https://www.ixigua.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should stay limited to public page information and lightweight browser-assisted analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Use outside visible public pages could violate platform rules or access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only publicly visible Xigua Video pages and do not provide login credentials or attempt to bypass access controls.
+
+Risk: High-volume collection could conflict with platform limits or expected lightweight use.
+
+Mitigation: Keep request frequency controlled and avoid bulk scraping or automated large-scale collection.
+
+Risk: The skill may be misused for downloading content or reverse engineering interfaces.
+
+Mitigation: Do not use it for downloads, interface reverse engineering, hidden automation, or direct API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/xigua-video)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+- [Xigua Video homepage](https://www.ixigua.com/)
+- [Xigua Video search](https://www.ixigua.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses visible public page content only; does not require credentials, downloads, bulk collection, reverse engineering, or API calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

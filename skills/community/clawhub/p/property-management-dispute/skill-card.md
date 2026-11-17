@@ -1,43 +1,58 @@
-## Description: <br>
-One-stop AI-powered engine for Chinese residential property management dispute resolution covering fee disputes, facility damage, water leaks, parking disputes, public revenue, utility cutoffs, decoration deposits, HOA formation, maintenance funds, and neighbor disputes with property-management inaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-stop AI-powered engine for Chinese residential property management dispute resolution covering fee disputes, facility damage, water leaks, parking disputes, public revenue, utility cutoffs, decoration deposits, HOA formation, maintenance funds, and property-management inaction under PRC Civil Code Articles 937-950.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External homeowners, tenants, HOA members, and new homeowners use this skill to assess Chinese residential property-management disputes, identify relevant legal provisions, plan escalation, prepare complaint documents, draft communication scripts, and organize evidence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal guidance may be incomplete, outdated, or unsuitable for a specific city, property contract, or dispute posture. <br>
-Mitigation: Treat outputs as reference material, verify local rules and documents before use, and consult a licensed attorney for significant damage, personal injury, or high-stakes disputes. <br>
-Risk: Generated complaint letters, scripts, or escalation plans could contain factual errors if the user's intake details are incomplete or inaccurate. <br>
-Mitigation: Review all generated materials against the user's evidence, contracts, dates, payment records, and local complaint-channel requirements before submitting them. <br>
-Risk: Users may try to rely on the skill for active litigation, arbitration, proxy filing, or unlawful protest activity. <br>
-Mitigation: Keep use within the skill's stated scope: do not intervene in active proceedings, do not file or call on the user's behalf, and redirect users to lawful channels and professional counsel when needed. <br>
+## Use Case:
 
+Residential property owners and tenants in China use this skill to assess property-management disputes, organize evidence, draft complaint materials, and plan lawful escalation routes. It is intended as a drafting and preparation aid rather than a substitute for licensed legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/property-management-dispute) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration, Legal document drafts] <br>
-**Output Format:** [Markdown prose, structured checklists, escalation plans, scripts, and document drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-provided dispute details and may include fields for the user to complete before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Users may treat AI-assisted legal analysis or generated complaint materials as licensed legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as drafting and preparation aids, require user verification, and direct users to a licensed attorney for major damage, personal injury, active litigation, or high-value disputes.
+
+Risk: Local property-management rules or document facts may differ from the national-level legal framework used by the skill.
+
+Mitigation: Ask users to verify local regulations, property-service contract terms, dates, amounts, and evidence before submitting any generated material.
+
+Risk: Generated documents may include personal property, contact, or dispute details.
+
+Mitigation: Collect only the personal details needed to prepare the requested materials and avoid sharing unnecessary sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/property-management-dispute)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured claim assessments, evidence checklists, escalation plans, scripts, and document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Simplified Chinese legal-dispute preparation content; generated documents require user review before submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and manifest report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

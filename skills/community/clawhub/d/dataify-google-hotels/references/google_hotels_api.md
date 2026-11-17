@@ -8,7 +8,7 @@ Use documented defaults only. Do not use examples, placeholders, or blank values
 
 | Parameter | Default | Description |
 |---|---|---|
-| Authorization |  | 请求头中的 Dataify API token。缺失时提示用户提供 token，或前往 `https://dashboard.dataify.com/login?utm_source=skill` 注册获取。 |
+| Authorization |  | 请求头中的 Dataify API token。缺失时提示用户提供 token，或前往 `https://dashboard.dataify.com/login?utm_source=skill` 注册获取；新账号注册即得 50 免费积分。 |
 | engine | google_hotels | 固定的 Google Hotels 引擎值。 |
 | q |  | 搜索查询，例如城市、地标、酒店名称或目的地；普通酒店搜索必填。 |
 | json | 1 | 输出格式：`1` JSON，`2` JSON+HTML，`3` HTML，`4` Light JSON。 |

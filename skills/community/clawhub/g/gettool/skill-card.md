@@ -1,37 +1,52 @@
-## Description: <br>
-Fetch and install C++ tools/libraries from cpp_tools repository for downloading, cloning, building, installing, listing, and managing repository URLs for third-party C++ libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and installs C++ tools and libraries from a cpp_tools repository, including listing, cloning, optional CMake builds, installation scripts, version checkout, and repository URL management.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent propose gettool commands for fetching C++ library sources, optionally building them with CMake/make, running configured installation scripts, and managing the cpp_tools repository URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to fetch, build, and install third-party code, including system-wide installation with sudo. <br>
-Mitigation: Confirm the repository URL, package name, target path, exact command, and install scope before execution; prefer project-local directories, pinned versions, and inspection of build or install scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/gettool) <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch, clone, build, and install third-party C++ libraries such as eigen, opencv, pcl, fmt, and spdlog into local project directories.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may include local paths, version or branch selectors, repository URL changes, build flags, and install flags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch C++ source code and run build or install commands from configurable repositories.
+
+Mitigation: Use pinned trusted sources and run builds in a contained, non-privileged environment.
+
+Risk: The documented global install option can invoke privileged installation behavior.
+
+Mitigation: Avoid --global-install-flag unless the repository and installation scripts have been manually verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/gettool)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and command options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that fetch, build, or install source code from configurable repositories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

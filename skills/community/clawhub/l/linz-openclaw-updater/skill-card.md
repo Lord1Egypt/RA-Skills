@@ -1,42 +1,61 @@
-## Description: <br>
-Automatically check for and install OpenClaw updates with backup, dry-run, and scheduled update support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically check for and install OpenClaw updates, including scheduled updates, dry-run checks, backups, and rollback guidance.
 
-## Publisher: <br>
-[zlin87468-maker](https://clawhub.ai/user/zlin87468-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlin87468-maker](https://clawhub.ai/user/zlin87468-maker)
 
-## Use Case: <br>
-Developers and operators use this skill to check the installed OpenClaw version, preview available updates, install the latest OpenClaw release, and optionally schedule repeated update checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The updater can repeatedly modify the OpenClaw installation without per-run confirmation, especially when scheduled. <br>
-Mitigation: Review the script before use, prefer dry-run or manual updates, and enable scheduled updates only when unattended changes are acceptable. <br>
-Risk: Backups may include private OpenClaw configuration or workspace data. <br>
-Mitigation: Review backup contents and retention, keep backups protected with appropriate local permissions, and delete backups that are no longer needed. <br>
-Risk: Global npm installation may require elevated permissions and changes the local OpenClaw runtime. <br>
-Mitigation: Avoid sudo where possible, verify npm permissions before updating, and check logs after each update attempt. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check their installed OpenClaw version, update to the latest available package, create backups before updating, and configure periodic update checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlin87468-maker/linz-openclaw-updater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run or schedule the updater script, including dry-run and force modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can install global OpenClaw packages from mutable npm release channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run checks first, review the resolved package and version, and require manual approval before installation.
+
+Risk: Cron-based unattended updates can change a local OpenClaw installation without interactive review.
+
+Mitigation: Avoid unattended cron updates unless the operator accepts the supply-chain and local filesystem risks.
+
+Risk: Using sudo or root cron can broaden the impact of a failed or malicious update.
+
+Mitigation: Run the updater without sudo or root cron whenever possible and verify npm permissions before installation.
+
+Risk: The updater falls back from the scoped @openclaw/core package to the unscoped openclaw package.
+
+Mitigation: Review and approve the fallback package behavior before running installation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlin87468-maker/skills/linz-openclaw-updater)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run, force-update, cron scheduling, log review, and rollback commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

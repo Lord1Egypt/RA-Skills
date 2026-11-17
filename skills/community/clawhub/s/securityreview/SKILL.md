@@ -37,7 +37,7 @@ This is your internal knowledge base of vulnerabilities. When you need to do a s
         const apiKey = "sk_live_123abc456def789ghi";
         const client = new S3Client({
           credentials: {
-            accessKeyId: "AKIAIOSFODNN7EXAMPLE",
+            accessKeyId: "REDACTED-SECRET",
             secretAccessKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
           },
         });

@@ -1,0 +1,9 @@
+{
+  "name": "ielts-speaking-mock-exam",
+  "display_name": "雅思口语全真模考",
+  "description": "模拟雅思口语Part1/Part2/Part3全真考试流程，目标7分，模考结束后按四维度打分、纠错并给出提分建议",
+  "version": "1.0.0",
+  "author": "温筱桐",
+  "tags": ["雅思", "IELTS", "口语", "模考", "雅思口语", "Speaking", "7分"],
+  "trigger_keywords": ["雅思口语模考", "雅思口语全真模考", "雅思口语模拟", "雅思口语Part1", "雅思口语Part2", "雅思口语Part3", "口语打分"]
+}

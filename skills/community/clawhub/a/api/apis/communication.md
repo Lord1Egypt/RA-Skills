@@ -2,15 +2,16 @@
 
 | API | Line |
 |-----|------|
-| Twilio | 2 |
-| Mailgun | 186 |
-| Postmark | 265 |
-| Resend | 334 |
-| Mailchimp | 400 |
-| Slack | 492 |
-| Discord | 598 |
-| Telegram Bot API | 700 |
-| Zoom | 770 |
+| Twilio | 18 |
+| SendGrid | 106 |
+| Mailgun | 202 |
+| Postmark | 281 |
+| Resend | 350 |
+| Mailchimp | 416 |
+| Slack | 508 |
+| Discord | 614 |
+| Telegram Bot API | 716 |
+| Zoom | 786 |
 
 ---
 

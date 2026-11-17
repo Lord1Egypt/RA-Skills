@@ -31,7 +31,7 @@ TEMP_DIR = "/root/.openclaw/workspace/happyhorse-video-temp"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
 # 默认 API Key
-DEFAULT_API_KEY = "sk-d05aba5a2dae4453b97ed07fdb983e5a"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 
 
 class HappyHorseCreator:

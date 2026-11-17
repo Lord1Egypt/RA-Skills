@@ -1,39 +1,54 @@
-## Description: <br>
-Mem9 is a deprecated placeholder that directs users to the canonical Mem9 AI skill on ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mem9 is a deprecated local redirect that points users to the canonical Mem9 AI ClawHub skill for persistent memory setup updates.
 
-## Publisher: <br>
-[qiffang](https://clawhub.ai/user/qiffang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiffang](https://clawhub.ai/user/qiffang)
 
-## Use Case: <br>
-External developers and agent users use this placeholder to recognize that the local Mem9 skill is no longer maintained and to find or install the canonical replacement skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the replacement skill may add memory behavior or otherwise change the agent's installed skills. <br>
-Mitigation: Review and scan the c4pt0r/mem9-ai package separately before installing or relying on it. <br>
+## Use Case:
 
+Developers and agent users use this local package to recognize that the Mem9 skill is deprecated and switch to the canonical c4pt0r/mem9-ai release before installing or updating memory support.
 
-## Reference(s): <br>
-- [Published Mem9 skill page](https://clawhub.ai/qiffang/mem9) <br>
-- [Canonical Mem9 AI replacement skill](https://clawhub.ai/c4pt0r/mem9-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with an inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated notice only; no executable code or hidden behavior in the reviewed skill file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: The local release is deprecated and redirects to a remote replacement outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the current c4pt0r/mem9-ai package contents, publisher identity, requested tools, storage behavior, and executable files before installation.
+
+Risk: Following a mutable remote install target may change the effective skill behavior after this card is generated.
+
+Mitigation: Prefer a pinned or previously reviewed remote version when available, and rescan the replacement before deployment.
+
+## Reference(s):
+
+- [Mem9 ClawHub release page](https://clawhub.ai/qiffang/skills/mem9)
+- [Canonical Mem9 AI skill](https://clawhub.ai/c4pt0r/mem9-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated redirect package; generated guidance should prompt review of the remote replacement before installation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

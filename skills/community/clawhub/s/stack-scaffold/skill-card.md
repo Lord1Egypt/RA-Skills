@@ -1,41 +1,56 @@
-## Description: <br>
-Scaffolds a full-stack project with Next.js App Router, Supabase, Firebase Auth, Vercel, and Cloudflare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds a full-stack project with Next.js App Router, Supabase, Firebase Auth, Vercel, and Cloudflare.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[guifav](https://clawhub.ai/user/guifav)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use Stack Scaffold to create new full-stack Next.js projects with Supabase, Firebase Auth, Vercel configuration, Cloudflare-oriented follow-up steps, tests, and starter environment guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs live npm and npx scaffolding and dependency installation commands that may resolve changing package versions.
+
+Mitigation: Review the generated plan before execution, run it only in a new or empty project directory, and pin package or CLI versions when repeatability is required.
+
+Risk: The scaffold includes Firebase admin credential environment variables that should not be collected during initial project creation.
+
+Mitigation: Do not provide production private keys while scaffolding; populate credentials later in a restricted environment or secret manager.
+
+Risk: The workflow creates files, initializes git, and makes commits in the target directory.
+
+Mitigation: Confirm the target path before execution and review generated files before deploying or connecting production services.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to create a new Next.js full-stack project scaffold with Supabase, Firebase Auth, Vercel configuration, Cloudflare deployment guidance, tests, and environment templates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Project scaffolding can create files, initialize git, install packages, and run npx/npm commands in the target directory. <br>
-Mitigation: Use a new or empty directory, review planned commands before execution, and confirm the project name and target path before files are created. <br>
-Risk: The generated project requires Supabase and Firebase environment values, including server-side Firebase credentials. <br>
-Mitigation: Add real secrets only after confirming .env files are ignored by git, and keep .env.local and credential files out of source control. <br>
+**Output Format:** [Markdown with file paths, code blocks, shell commands, configuration snippets, and setup guidance.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Stack Scaffold on ClawHub](https://clawhub.ai/guifav/stack-scaffold) <br>
-- [OpenClaw Skills Repository](https://github.com/guifav/openclaw-skills) <br>
+**Other Properties Related to Output:** [Produces a new project scaffold, environment template guidance, dependency installation steps, and recommended follow-up skill sequence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a new project scaffold and prompts for configuration of Supabase, Firebase, Vercel, and Cloudflare settings.] <br>
+0.1.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

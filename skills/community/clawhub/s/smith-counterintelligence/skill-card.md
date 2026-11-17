@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes Agent Smith-style friction as structured signal and helps an agent decide whether to accept, adapt, or counter while preserving governance boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Agent Smith's friction as structured signal; decide whether to accept, adapt, or counter without violating system rules.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to turn adversarial feedback, rejection, or boundary enforcement into a neutral response strategy and a corrected next message or action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could activate the skill when adversarial-review framing was not intended. <br>
-Mitigation: Invoke the skill explicitly when this framing is wanted, and confirm that the current task calls for counter-intelligence analysis before applying it. <br>
-Risk: Adversarial-review framing can produce unhelpful escalation if treated as conflict rather than structured feedback. <br>
-Mitigation: Keep the response neutral, avoid ego defense, and preserve system and governance boundaries. <br>
+## Use Case:
 
+External users and agent builders use this skill to analyze adversarial feedback from Agent Smith, identify what risk or weakness it exposed, and draft a neutral next response or action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/smith-counterintelligence) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a response strategy, exposed issue, draft next message, and optional next action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases related to Agent Smith or adversarial pressure may activate the skill when the user did not intend it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow the triggers before installation if accidental activation would be distracting.
+
+Risk: Adversarial feedback can escalate conflict or encourage attempts to bypass governance boundaries.
+
+Mitigation: Keep responses neutral and require any suggested next action to preserve system rules and governance constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/smith-counterintelligence)
+- [Skill documentation](artifact/smith-counterintelligence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with response strategy, exposed issue, next message, and next action.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only advisory output; no tool calls, data access, persistence, or execution authority are requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact metadata lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Security audit and credential hardening tool for OpenClaw instances. Scan for sensitive files, detect credential exposure, check gateway configuration, and migrate credentials to environment variables. Essential for maintaining a secure OpenClaw deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit and credential hardening tool for OpenClaw instances that scans for sensitive files, detects credential exposure, checks gateway configuration, and migrates credentials to environment variables.
 
-## Publisher: <br>
-[Vincent-Big-fish](https://clawhub.ai/user/Vincent-Big-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vincent-big-fish](https://clawhub.ai/user/vincent-big-fish)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit local OpenClaw configuration for sensitive files, exposed credentials, gateway security issues, and to migrate credentials into environment variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The hardening workflow reads and modifies local OpenClaw configuration that may contain real credentials. <br>
-Mitigation: Review changes before running harden.py, keep generated .env files, backups, and setup scripts out of source control and synced folders, restrict file permissions, and rotate credentials if any generated files are exposed. <br>
-Risk: Audit reports and generated files may still reveal sensitive configuration context even when credential values are masked. <br>
-Mitigation: Store outputs locally, limit access to trusted users, and inspect reports before sharing them. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw installations for exposed credentials, sensitive files, and gateway misconfiguration, then optionally harden credentials by moving them into environment variables.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Vincent-Big-fish/openclaw-safe-audit) <br>
-- [Publisher Profile](https://clawhub.ai/user/Vincent-Big-fish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts produce JSON audit reports and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against ~/.openclaw and may create reports, backups, .env files, and platform setup scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Hardening mode handles live credentials and writes credential-bearing files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audit.py first, use harden.py with --dry-run before applying changes, and restrict permissions on ~/.openclaw/.env and security-backups.
+
+Risk: Generated set_env.sh or set_env.ps1 scripts modify the user's environment.
+
+Mitigation: Inspect generated setup scripts before running or sourcing them.
+
+Risk: A custom --path can direct the scripts at an unexpected OpenClaw directory.
+
+Mitigation: Use the default ~/.openclaw path or verify any custom --path before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vincent-big-fish/skills/openclaw-safe-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, JSON audit reports, environment files, and platform-specific setup scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit mode writes timestamped JSON reports; hardening mode may create backups, .env files, sanitized configuration, and setup scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Interact with the TikiCow farming game to plant, water, harvest crops, manage cows, trade items, check market, weather, energy, and view leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the TikiCow farming game to plant, water, harvest crops, manage cows, trade items, check market, weather, energy, and view leaderboards.
 
-## Publisher: <br>
-[mhue-ai](https://clawhub.ai/user/mhue-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mhue-ai](https://clawhub.ai/user/mhue-ai)
 
-## Use Case: <br>
-Players and developers use this skill to let an agent operate a linked TikiCow account, plan farming and market actions, and interact with game APIs under the documented cooldown and rate-limit rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent receives a live TikiCow bearer token that can change account state. <br>
-Mitigation: Generate linking codes only inside the official game, treat the returned token like a password, and avoid logging or sharing it. <br>
-Risk: Autonomous actions can trade items, use energy, register bots, or otherwise alter game state. <br>
-Mitigation: Require explicit approval before marketplace trades, bot registration, or other state-changing actions unless autonomous play is intended. <br>
-Risk: Ignoring movement, cooldown, or rate-limit rules can cause failed actions or ineffective automation. <br>
-Mitigation: Move within 30 seconds before write actions, respect the 2-second write cooldown, check energy before expensive operations, and stay within documented request limits. <br>
+## Use Case:
 
+Players and agent developers use this skill to operate a linked TikiCow game account through documented API actions for farming, cow care, trading, weather-aware planning, energy checks, and leaderboard participation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mhue-ai/tikicow) <br>
-- [Play TikiCow](https://play.tikicow.com) <br>
-- [TikiCow developers](https://www.tikicow.com/developers) <br>
-- [TikiCow API reference](https://api.tikicow.com/v1/agent/api-reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown with HTTP endpoint examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a player-generated linking code and bearer token for authenticated game actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A linked agent can make ongoing changes to the user's TikiCow account, including purchases, sales, listings, batch actions, and bot registration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when account operation is intended, generate linking codes yourself, protect bearer tokens, and require confirmation before write-heavy or market-facing actions.
+
+Risk: Game actions can fail or waste resources when the agent skips movement, ignores cooldowns, or acts without checking energy and market conditions.
+
+Mitigation: Move before each write action, respect documented rate limits and cooldowns, check energy before expensive actions, and use the status endpoint for current farm, market, weather, and energy state.
+
+## Reference(s):
+
+- [TikiCow skill page](https://clawhub.ai/mhue-ai/skills/tikicow)
+- [Play TikiCow](https://play.tikicow.com)
+- [TikiCow Developers](https://www.tikicow.com/developers)
+- [TikiCow API reference](https://api.tikicow.com/v1/agent/api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown with API endpoint examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a human-generated linking code and bearer token for account-changing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

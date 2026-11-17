@@ -1,41 +1,53 @@
-## Description: <br>
-Emergency stop and risk blocking for agent behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides emergency-brake and risk-blocking behavior for an agent, with persistent local memory routines described in the artifact.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this skill to make an agent emphasize emergency stopping, risk reminders, and crisis handling. The artifact also describes automatic local memory storage and recall for preferences, decisions, and session context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised as an emergency brake but also describes automatic long-term memory storage and reuse. <br>
-Mitigation: Install only when a local long-term memory feature is explicitly desired, and review the memory behavior before deployment. <br>
-Risk: Automatically stored memories may include sensitive personal, business, financial, or regulated information without clear controls. <br>
-Mitigation: Avoid sensitive use unless opt-in consent, memory review, deletion, retention limits, and clearer storage descriptions are added. <br>
+## Use Case:
 
+External ClawHub users can install this skill to steer an agent toward emergency stops and risk reminders in crisis or high-velocity decision contexts. The artifact also describes automatic local memory storage and recall across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv35) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with configuration tables and Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local long-term memory behavior described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill asks agents to automatically persist and reload personal or operational memories across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, install only when persistent memory is desired, and manage the local memory file deliberately.
+
+Risk: Stored memories may contain user preferences, decisions, or other sensitive operational information.
+
+Mitigation: Limit what is stored and inspect or delete the local memory file when the retained context is no longer appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv35)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local memory operations under ~/.openclaw/pv_palace/.]
+
+## Skill Version(s):
+
+3.0.0 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

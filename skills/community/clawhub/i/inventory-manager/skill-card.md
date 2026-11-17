@@ -1,41 +1,51 @@
-## Description: <br>
-Inventory management reference — SKU systems, FIFO/LIFO valuation, barcode formats, ABC analysis, EOQ formula, and WMS migration <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inventory management reference covering SKU systems, FIFO/LIFO valuation, barcode formats, ABC analysis, EOQ formula, and WMS migration.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, external operators, and business users use this skill to retrieve concise reference guidance for inventory concepts, barcode and GS1 standards, troubleshooting, optimization formulas, security controls, and WMS migration planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory valuation, tax, accounting, and migration guidance may not match a user's jurisdiction, accounting treatment, system constraints, or internal policy. <br>
-Mitigation: Treat the output as general reference material and verify tax, valuation, accounting, and migration decisions against internal policies and qualified professionals before operational use. <br>
-Risk: Users could apply reference guidance directly to real inventory processes without validating current system data or controls. <br>
-Mitigation: Review recommendations with the relevant operations, finance, and security owners before changing inventory counts, access controls, reorder policies, or WMS workflows. <br>
+## Use Case:
 
+Employees, operators, and business users can use this skill for concise inventory-management reference material, including inventory concepts, barcode standards, stock discrepancy troubleshooting, optimization formulas, security controls, migration planning, and FAQs.
 
-## Reference(s): <br>
-- [Inventory Manager on ClawHub](https://clawhub.ai/ckchzh/inventory-manager) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; no API keys, credentials, network access, or live inventory-system actions are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Inventory, tax, and benchmark figures may be unsuitable as authoritative professional advice for a specific business or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general reference material and have qualified business, accounting, tax, or compliance reviewers confirm decisions before operational use.
+
+## Reference(s):
+
+- [Inventory Manager on ClawHub](https://clawhub.ai/ckchzh/skills/inventory-manager)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain-text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no credentials, API calls, network access, or external services are required.]
+
+## Skill Version(s):
+
+5.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Search the web via the Bright Data CLI using keyword SERP commands or intent-ranked discovery with optional page content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web via the Bright Data CLI using `bdata search` for Google, Bing, or Yandex SERP results and `bdata discover` for intent-ranked semantic results with optional page content.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and agents use this skill to run Bright Data web search and discovery workflows, collect SERP or semantic result URLs, and optionally retrieve page content for later analysis or scraping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Bright Data credentials and may process sensitive search queries. <br>
-Mitigation: Use the intended Bright Data account or API key, authenticate through the documented CLI flow, and avoid sensitive queries unless their use has been approved. <br>
-Risk: Search and discovery results may include untrusted external page content, including block pages or misleading content. <br>
-Mitigation: Validate JSON output, confirm non-empty result arrays and expected fields, check included content for block-page signatures, and review privacy, copyright, and retention needs before using fetched bodies. <br>
-Risk: SERP order and localization can vary by geography, language, and device. <br>
-Mitigation: Set country, language, and device flags explicitly when reproducible or region-specific search results are required. <br>
+## Use Case:
 
+Developers and agents use this skill to choose and run Bright Data CLI web search or discovery commands, collect SERP or semantic result URLs, and verify JSON result quality before downstream scraping or analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/meirk-brd/brightdata-search) <br>
-- [Flag Reference](references/flags.md) <br>
-- [Search Patterns](references/patterns.md) <br>
-- [Worked Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and Bright Data JSON result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce URL lists and optional markdown page bodies from Bright Data discovery results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries, target URLs, and optional fetched page content may be sent through Bright Data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Bright Data web search is intended, and avoid `--include-content` unless full page bodies are needed.
+
+Risk: Search and discovery results can be empty, mislocalized, or contain block-page content when page bodies are included.
+
+Mitigation: Validate JSON parsing, result counts, expected fields, country and language fit, and block-page signatures before using the output.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/meirk-brd/skills/brightdata-search)
+- [flags.md](references/flags.md)
+- [patterns.md](references/patterns.md)
+- [examples.md](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON verification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that write JSON search or discovery outputs to local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

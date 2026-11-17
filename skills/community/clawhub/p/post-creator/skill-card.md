@@ -1,46 +1,60 @@
-## Description: <br>
-Generate single-page HTML posters with multiple visual styles and support for Chinese, English, and bilingual content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate single-page HTML posters, flyers, promotional images, marketing materials, and visual designs in Chinese, English, or bilingual formats across multiple visual styles.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, designers, marketers, and developers use the skill to generate ready-to-open HTML posters, flyers, promotional images, and social media visuals in Chinese, English, or bilingual formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated poster files may load Google Fonts and html2canvas from third-party CDNs when opened in a browser. <br>
-Mitigation: For privacy-sensitive or offline use, request a no-CDN version before opening or sharing the generated file. <br>
-Risk: The agent creates a local HTML poster file that includes user-provided content. <br>
-Mitigation: Confirm the filename, save location, and included content before generation or distribution. <br>
-Risk: CSS background gradients on the main poster container may not export reliably. <br>
-Mitigation: Use a solid main poster background and reserve gradients for text, buttons, borders, or decorative elements. <br>
+## Use Case:
 
+External users, designers, marketers, and developers use this skill to generate ready-to-open HTML poster files for events, product launches, promotions, announcements, social posts, business materials, education, and holiday greetings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ToBeWin/post-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/ToBeWin) <br>
-- [Poster Style Reference Guide](references/styles.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [html2canvas CDN library](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [HTML file content, typically delivered in Markdown code fences with inline CSS and browser export JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained single-page poster output may load Google Fonts and html2canvas from third-party CDNs when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: server release, SKILL.md frontmatter, skill.json) <br>
+Risk: Generated local HTML can include browser JavaScript and third-party font or script loads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only if those browser-side dependencies are acceptable, and review generated HTML before opening when possible.
+
+Risk: Poster content may be exposed through generated HTML, browser rendering, or exported image files.
+
+Mitigation: Use non-sensitive poster content unless the output location, browser environment, and sharing path are appropriate.
+
+Risk: Generated file output can overwrite existing files if saved with an unsafe name or location.
+
+Mitigation: Choose a safe filename and destination before saving generated HTML or exported images.
+
+## Reference(s):
+
+- [Post Creator Skill Page](https://clawhub.ai/tobewin/skills/post-creator)
+- [Poster Style Reference Guide](artifact/references/styles.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [html2canvas Browser Export Dependency](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [code, files, guidance]
+
+**Output Format:** [Complete self-contained HTML with inline CSS and browser JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated posters may include Google Fonts and html2canvas CDN references for browser rendering and image export.]
+
+## Skill Version(s):
+
+1.6.3 (source: server release metadata, SKILL.md frontmatter, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -33,7 +33,7 @@ import urllib.request
 MANIFEST = os.path.join(os.path.dirname(__file__), "..", "data", "lobe-icons.json")
 STYLE = ("shape=image;html=1;imageAspect=0;aspect=fixed;"
          "verticalLabelPosition=bottom;verticalAlign=top;image=")
-_VARIANT = re.compile(r"-(color|text)$")
+_VARIANT = re.compile(r"-(?:color|text(?:-[a-z]{2})?|brand(?:-color)?)$")
 
 # Common RAG/LLM data stores that lobe-icons lacks, mapped to simple-icons
 # slugs (https://simpleicons.org, CC0). Served from the simple-icons CDN. Each
@@ -114,9 +114,9 @@ def search_supplement(query):
 
 
 def pick_variant(base, variants, prefer):
-    order = {"color": ["-color", "", "-text"],
-             "mono":  ["", "-color", "-text"],
-             "text":  ["-text", "-color", ""]}[prefer]
+    order = {"color": ["-color", "-brand-color", "", "-brand", "-text", "-text-cn"],
+             "mono":  ["", "-brand", "-color", "-brand-color", "-text", "-text-cn"],
+             "text":  ["-text", "-text-cn", "-brand", "-brand-color", "-color", ""]}[prefer]
     for suffix in order:
         cand = base + suffix
         if cand in variants:
@@ -164,6 +164,8 @@ def main():
                     continue
                 # Rewrite the 1em intrinsic size so draw.io scales the inlined SVG.
                 svg = svg.replace(b'width="1em"', b'width="24"').replace(b'height="1em"', b'height="24"')
+                # Marker-less base64: draw.io splits style values on ';', so a
+                # ';base64,' marker would truncate the image= value (issue #80).
                 image = "data:image/svg+xml," + base64.b64encode(svg).decode()
             else:
                 image = url
@@ -179,6 +181,7 @@ def main():
             if args.embed:
                 try:
                     svg = urllib.request.urlopen(url, timeout=15).read()
+                    # Marker-less base64 (see issue #80 note above).
                     image = "data:image/svg+xml," + base64.b64encode(svg).decode()
                 except Exception as exc:                   # noqa: BLE001 - keep the CDN URL
                     sys.stderr.write(f"warning: could not fetch {url} ({exc}); using CDN URL\n")

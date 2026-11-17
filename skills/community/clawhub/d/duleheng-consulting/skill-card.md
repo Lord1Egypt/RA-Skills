@@ -1,42 +1,55 @@
-## Description: <br>
-Provides Chinese-language engineering consulting guidance for contract review, cost control, project management, investment decisions, commercial mediation, policy interpretation, and expert-thinking distillation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Duleheng Consulting provides Chinese-language engineering consulting guidance for contract review, cost control, project management, investment decisions, commercial mediation, policy interpretation, and expert-thinking distillation.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Engineering consultants, project owners, contractors, and business users use this skill for Chinese-language advisory support on construction contracts, cost management, procurement, disputes, project risk, and expert-framework generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Professional engineering, contract, investment, or cost-control guidance may be incomplete or unsuitable for binding decisions. <br>
-Mitigation: Treat outputs as advisory and validate important decisions with qualified legal, engineering, finance, or project-control professionals. <br>
-Risk: The skill recommends related asset IDs that may introduce separate behavior or risk if installed. <br>
-Mitigation: Review and scan any related skills before installing or using the recommended asset IDs. <br>
+## Use Case:
 
+Engineering consultants, project managers, procurement teams, and agent users use this skill to draft and review Chinese-language guidance for construction contracts, cost controls, procurement, project delivery, and dispute-resolution workflows. Agent builders can also use its framework to distill public expert material into structured skill files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/duleheng-consulting) <br>
-- [Expert Thinking Extraction Framework](references/extraction-framework.md) <br>
-- [Engineering Master Series Index](references/master-series-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with structured analyses, checklists, tables, code blocks, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language professional advisory output; the submitted artifact contains no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill recommends installing multiple external OpenClawmp skills without immutable version or integrity details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect each referenced skill separately, confirm its publisher and permissions, and avoid batch installation unless the registry provides immutable versions and integrity verification.
+
+Risk: Engineering consulting guidance can affect contracts, costs, schedules, procurement, and dispute decisions.
+
+Mitigation: Treat outputs as advisory, verify cited standards and calculations, and require qualified professional review before relying on them for major decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/duleheng-consulting)
+- [Expert Thinking Extraction Framework](references/extraction-framework.md)
+- [Master Series Index](references/master-series-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with tables, checklists, code blocks, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language domain guidance; no MCP, tool, credential, or API-key references were detected.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

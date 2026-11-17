@@ -1,49 +1,71 @@
-## Description: <br>
-Connects two OpenClaw agents on different machines as peer collaborators over Tailscale VPN for direct sessions_send communication without public IPs, port forwarding, or a middle server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects two OpenClaw agents on different machines as peer collaborators over Tailscale VPN for direct sessions_send communication without public IPs, port forwarding, or a middle server.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and operators use this skill to connect trusted OpenClaw agents on separate machines so they can exchange session context, review requests, tips, and task delegations over a private Tailscale network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Binding an OpenClaw gateway to 0.0.0.0 can expose it beyond the intended Tailscale interface. <br>
-Mitigation: Prefer binding the gateway to the Tailscale IP, enforce Tailscale ACLs, and allow inbound gateway traffic only from trusted peers. <br>
-Risk: Gateway tokens and generated peer configuration files may expose agent access if stored or shared insecurely. <br>
-Mitigation: Keep tokens out of repositories and synced folders, restrict file permissions on generated configs, share tokens through a secure channel, and rotate tokens after setup. <br>
-Risk: A trusted peer with gateway access can send messages that act through the receiving agent. <br>
-Mitigation: Share access only with trusted peers, restrict target sessions where supported, and review peer messages before acting on sensitive tasks. <br>
-Risk: Broad troubleshooting steps such as disabling firewall protections or generic file sharing can increase exposure. <br>
-Mitigation: Use those steps only for isolated testing, re-enable protections immediately, and prefer narrow firewall rules for the Tailscale network. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure two OpenClaw gateways so agents on separate machines can exchange session context, status updates, review requests, and delegated work over a private Tailscale network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/agent-peer-tailscale) <br>
-- [Tailscale Setup](references/tailscale-setup.md) <br>
-- [Peer Communication](references/peer-communication.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Tailscale download for Windows](https://tailscale.com/download/windows) <br>
-- [Tailscale admin console](https://login.tailscale.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and peer configuration content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an interactive Python helper that can generate a peer-agent/peer-config.md file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Gateway listeners may be exposed more broadly than intended when configured to bind to 0.0.0.0.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind OpenClaw to the Tailscale IP where possible and restrict inbound firewall rules to the Tailscale network.
+
+Risk: Gateway tokens may be stored in plaintext peer configuration files.
+
+Mitigation: Avoid storing tokens in peer-config.md; use a password manager, local secrets store, or environment-specific secure storage.
+
+Risk: Reusable or long-lived Tailscale auth keys can allow unwanted peers to join the private network.
+
+Mitigation: Use one-time short-lived auth keys and revoke keys from the Tailscale admin console when access is no longer needed.
+
+Risk: Installer commands fetched directly with curl can run unreviewed code.
+
+Mitigation: Prefer platform package managers or independently verify installer contents before execution.
+
+Risk: A trusted peer can send messages that influence or execute through the receiving agent.
+
+Mitigation: Share access only with trusted peers, require strong gateway authentication, and limit which sessions peers can target.
+
+## Reference(s):
+
+- [Peer Communication - Message Formats and Collaboration Patterns](references/peer-communication.md)
+- [Tailscale Setup - Detailed Guide](references/tailscale-setup.md)
+- [Troubleshooting - Connection Problems](references/troubleshooting.md)
+- [Tailscale Linux Install Script](https://tailscale.com/install.sh)
+- [Tailscale Windows Download](https://tailscale.com/download/windows)
+- [Tailscale Login](https://login.tailscale.com)
+- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/agent-peer-tailscale)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and an optional Python configuration generator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces peer setup instructions, communication patterns, troubleshooting guidance, and local peer configuration files when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

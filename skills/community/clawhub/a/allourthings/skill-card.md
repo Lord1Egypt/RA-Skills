@@ -1,42 +1,59 @@
-## Description: <br>
-Household and personal inventory management for adding, finding, updating, searching, or deleting items and attachments in the user's AllOurThings vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AllOurThings helps agents add, find, update, search, and delete household or personal inventory records and attachments in a user's configured vault.
 
-## Publisher: <br>
-[matt-harding](https://clawhub.ai/user/matt-harding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matt-harding](https://clawhub.ai/user/matt-harding)
 
-## Use Case: <br>
-External users and agents use this skill to manage a household or personal inventory vault, including belongings, warranties, receipts, manuals, photos, and purchase history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can delete inventory records and attachments. <br>
-Mitigation: Ask the agent to show exactly what will be deleted, confirm one item or attachment at a time, and keep backups for records that cannot be easily replaced. <br>
-Risk: The skill depends on the configured vault path. <br>
-Mitigation: Do not use inventory tools until ALLOURTHINGS_DATA_DIR points to the intended AllOurThings vault folder. <br>
+## Use Case:
 
+External users use this skill to manage a household or personal inventory vault, including possessions, warranties, purchase history, locations, and related attachments. It is intended for inventory questions and record changes when ALLOURTHINGS_DATA_DIR is configured.
 
-## Reference(s): <br>
-- [AllOurThings homepage](https://allourthings.io) <br>
-- [ClawHub skill page](https://clawhub.ai/matt-harding/allourthings) <br>
-- [Publisher profile](https://clawhub.ai/user/matt-harding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALLOURTHINGS_DATA_DIR to point to the user's vault folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The MCP server is installed through unpinned npm package resolution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed package version before deployment.
+
+Risk: The skill can delete inventory items and attachments from the configured vault.
+
+Mitigation: Require explicit user confirmation before deleting items or attachments.
+
+Risk: The MCP server accesses personal inventory records and attachment files.
+
+Mitigation: Limit filesystem access to the ALLOURTHINGS_DATA_DIR vault and install only when the package source is trusted.
+
+## Reference(s):
+
+- [AllOurThings homepage](https://allourthings.io)
+- [ClawHub skill page](https://clawhub.ai/matt-harding/skills/allourthings)
+- [Publisher profile](https://clawhub.ai/user/matt-harding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can trigger MCP operations that read, create, update, delete, or attach files in the configured inventory vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

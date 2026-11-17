@@ -1,38 +1,50 @@
-## Description: <br>
-Recipe: Search your knowledge base, synthesize findings, and run a Recipe workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recipe: Search your knowledge base, synthesize findings, and run a Recipe workflow.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Developers and agent users use this skill to search a DeepVista knowledge base, synthesize relevant findings, choose a Recipe workflow, and run it after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-recipe-research-to-recipe) <br>
-- [DeepVista CLI homepage](https://cli.deepvista.ai) <br>
+Developers and agents use this skill to search a DeepVista knowledge base, summarize relevant cards, and pass the findings into a selected Recipe workflow.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and confirmation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the DeepVista CLI and a trusted DeepVista account setup. Review the selected recipe and input before approval because a recipe run may access the full DeepVista knowledge base.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Running a Recipe can expose the full knowledge base to that Recipe, even when the input focuses on selected cards.
+
+Mitigation: Install only from a trusted DeepVista CLI package source, confirm before running a Recipe, and avoid using untrusted Recipes with sensitive workspaces.
+
+## Reference(s):
+
+- [DeepVista CLI](https://cli.deepvista.ai)
+- [ClawHub Skill Page](https://clawhub.ai/jingconan/skills/deepvista-recipe-research-to-recipe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the DeepVista CLI and the deepvista-vistabase and deepvista-recipe skills.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

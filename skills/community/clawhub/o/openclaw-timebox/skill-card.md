@@ -1,48 +1,65 @@
-## Description: <br>
-OpenClaw Timebox helps OpenClaw users plan a day into timeboxes, run focused work sessions without agent interruptions, collect quick check-ins, and produce an end-of-day review with optional calendar, task, and note synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Timebox helps users plan a full day into focused timeboxes, stay undisturbed during execution, collect quick check-ins after each block, review the day, and optionally sync calendars, logs, and TickTick or Dida365 tasks.
 
-## Publisher: <br>
-[vinile](https://clawhub.ai/user/vinile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vinile](https://clawhub.ai/user/vinile)
 
-## Use Case: <br>
-Employees, developers, and productivity-focused OpenClaw users use this skill to structure daily work into planned timeboxes, preserve local work logs, and optionally sync summaries or tasks to their chosen calendar, task, and note services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store detailed daily work records locally and optionally send summaries, tasks, or calendar entries to third-party services. <br>
-Mitigation: Keep local logging and task_sync set to none unless integrations are needed, and avoid entering confidential client or business details into synced notes or tasks. <br>
-Risk: TickTick, Dida, calendar, note, and document integrations can require OAuth tokens, API tokens, or locally stored token files. <br>
-Mitigation: Protect token files and API tokens, use only the integrations required for the workflow, and rotate credentials if a local device or workspace is shared. <br>
-Risk: Automatic calendar and task updates can create or modify user-facing work records. <br>
-Mitigation: Review the planned timeboxes and selected target calendar, project, or workspace before enabling synchronization. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn a day's tasks into timeboxed plans, preserve focus during execution, capture lightweight completion notes, and produce an end-of-day review. It can also create calendar placeholders, write local Markdown logs, and synchronize selected task or summary data with configured third-party services.
 
-## Reference(s): <br>
-- [OpenClaw Timebox on ClawHub](https://clawhub.ai/vinile/openclaw-timebox) <br>
-- [dida-cli on ClawHub](https://clawhub.ai/ilooch/dida-cli) <br>
-- [TickTick Developer Portal](https://developer.ticktick.com/) <br>
-- [TickTick Open API](https://api.ticktick.com/open/v1) <br>
-- [Feishu Calendar API endpoint](https://open.feishu.cn/open-apis/calendar/v4/calendars/{calendar_id}/events) <br>
-- [Google Calendar API endpoint](https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events) <br>
-- [Notion Pages API endpoint](https://api.notion.com/v1/pages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML configuration, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown logs and optional task, calendar, or note updates when the user configures integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can write detailed local work logs and optionally send summaries or task details to calendar, task, and note services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only the integrations needed for your workflow, keep sensitive tasks out of synced summaries when appropriate, and confirm destination workspaces before use.
+
+Risk: TickTick OAuth uses a persistent token file and a generated local helper script.
+
+Mitigation: Protect the token file and helper script with local file permissions or move credentials to a secure credential store before enabling TickTick sync.
+
+Risk: OpenClaw cron reminders are identified by the security evidence as having unsafe persistence and shell-injection risk.
+
+Mitigation: Avoid OpenClaw cron reminders until the scheduler command is one-shot and safely escaped; use manual return-to-check or a trusted external timer instead.
+
+## Reference(s):
+
+- [OpenClaw Timebox Skill Page](https://clawhub.ai/vinile/skills/openclaw-timebox)
+- [Publisher Profile](https://clawhub.ai/user/vinile)
+- [dida-cli](https://clawhub.ai/ilooch/dida-cli)
+- [TickTick Developer Portal](https://developer.ticktick.com/)
+- [TickTick Open API](https://api.ticktick.com/open/v1)
+- [Feishu Calendar API](https://open.feishu.cn/open-apis/calendar/v4/calendars/{calendar_id}/events)
+- [Google Calendar API](https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events)
+- [Notion Pages API](https://api.notion.com/v1/pages)
+- [Google Docs API](https://docs.googleapis.com/v1/documents/{documentId}:batchUpdate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown with inline shell commands, configuration snippets, task plans, logs, and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown logs, create calendar or task entries, and call configured third-party services when the user enables those integrations.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

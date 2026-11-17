@@ -1,43 +1,57 @@
-## Description: <br>
-Multi-agent orchestration system that analyzes tasks, selects suitable agents, and coordinates handoffs for complex work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agency Orchestrator analyzes tasks, selects suitable agents, and coordinates multi-agent collaboration for complex work.
 
-## Publisher: <br>
-[gonghaiquan](https://clawhub.ai/user/gonghaiquan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gonghaiquan](https://clawhub.ai/user/gonghaiquan)
 
-## Use Case: <br>
-Developers and agent users use this skill to route task prompts to a local collection of specialized agents, inspect available agent categories, and prepare coordinated multi-agent execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The integration script can persistently alter local shell and OpenClaw configuration. <br>
-Mitigation: Review integrate_with_clawx.sh before running it and back up ~/.openclaw/openclaw.json and ~/.bash_profile. <br>
-Risk: Collaborative mode imports code from hard-coded local paths that may not exist or may point to unexpected code. <br>
-Mitigation: Verify or remove the hard-coded collaborative_mode.py import paths before using collaborative mode. <br>
-Risk: Task prompts and selected-agent details can be stored in local plaintext logs. <br>
-Mitigation: Avoid submitting secrets, credentials, or sensitive business data as task prompts unless local log retention is acceptable. <br>
+## Use Case:
 
+Developers and ClawX users use this skill to route complex tasks to relevant design, engineering, marketing, product, testing, and support agents and inspect the selected agents through Python or command-line entry points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gonghaiquan/agency-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/gonghaiquan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON-style orchestration results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenClaw and Agency Agents ZH paths; may write local configuration and plaintext task logs when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The integration script makes persistent OpenClaw configuration and shell profile changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review integrate_with_clawx.sh before running it, and remove or skip PATH and alias additions that are not needed.
+
+Risk: Task text can be written to local orchestration and collaboration logs.
+
+Mitigation: Avoid sending secrets or sensitive data in tasks, and review or delete logs under ~/.openclaw/agency-agents-zh/logs when appropriate.
+
+Risk: collaborative_mode.py imports external local code that is not included in the artifact.
+
+Mitigation: Treat collaborative_mode.py as unsafe unless the external collaborative_agents module and local paths are trusted and audited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gonghaiquan/skills/agency-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON/text command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local orchestration and integration logs when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

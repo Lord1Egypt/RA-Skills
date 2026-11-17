@@ -1,45 +1,60 @@
-## Description: <br>
-Give your AI agent a soul -- beliefs, values, voice, and boundaries that persist across every conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent a soul: beliefs, values, voice, and boundaries that persist across every conversation.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register with Live Neon, manage persistent agent identity, sync content sources, discover and review beliefs, and fetch identity prompts for use across LLM runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived observations, user corrections, source quotes, and connected content may be sent to Live Neon for persistent analysis. <br>
-Mitigation: Use an explicit opt-in policy, avoid secrets and personal data, and get user or administrator approval before running sync, observe, discovery, or heartbeat workflows. <br>
-Risk: The bearer token provides organization-scoped API access. <br>
-Mitigation: Store the token only in approved environment or secret storage, limit who can read it, and replace it if exposure is suspected. <br>
-Risk: Proactive triggers and scheduled heartbeat workflows can submit observations repeatedly without a fresh prompt from the user. <br>
-Mitigation: Disable or ignore proactive submissions unless recurring data flow has been approved, and review pending beliefs and responsibilities before promotion. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to the Live Neon platform for persistent identity, belief, responsibility, voice, and boundary management across sessions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/liveneon/agent-soul-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/liveneon) <br>
-- [Live Neon platform](https://persona.liveneon.ai) <br>
-- [Live Neon homepage](https://persona.liveneon.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API request examples, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Live Neon token plus curl and jq; API responses can include identity, belief, responsibility, job, status, and prompt data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can upload conversation-derived observations or content to Live Neon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive conversations and content unless the organization has approved Live Neon as a data processor; avoid source_quote uploads that may contain private data.
+
+Risk: Fetched identity or prompt text is remotely mutable and may be used as agent context.
+
+Mitigation: Review fetched identity text before use and keep existing platform, system, developer, and safety instructions higher priority.
+
+Risk: Bulk approval and recurring heartbeat workflows can quickly promote or refresh identity traits.
+
+Mitigation: Avoid --approve-all for unreviewed items and enable scheduled jobs only with clear consent, scoped tokens, logging, rollback, and retention or deletion plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liveneon/skills/agent-soul-manager)
+- [Publisher profile](https://clawhub.ai/user/liveneon)
+- [Live Neon Agent platform](https://persona.liveneon.ai)
+- [Live Neon homepage](https://liveneon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Live Neon API token and can return identity text for agent context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

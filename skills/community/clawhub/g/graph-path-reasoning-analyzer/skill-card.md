@@ -1,47 +1,57 @@
-## Description: <br>
-Analyze and discover paths between entities in knowledge graphs to explain relationships, identify indirect connections, and reason over traversal patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and discover paths between entities in knowledge graphs to explain relationships, identify indirect connections, and provide reasoning over traversal patterns.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect paths, shortest connections, relationship chains, ranking, filtering, and explanations in user-provided knowledge graphs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided graph data can contain sensitive social, business, fraud-investigation, or relationship information. <br>
-Mitigation: Treat graph inputs and generated path explanations as sensitive; avoid exposing them outside the intended workspace or review channel. <br>
-Risk: All-path enumeration can grow quickly on dense or large graphs. <br>
-Mitigation: Use maximum depth, result limits, relationship filters, and shortest-path or K-shortest modes when analyzing large graphs. <br>
-Risk: Optional third-party graph libraries may introduce separate dependency or security considerations. <br>
-Mitigation: Review and scan any added libraries before deployment. <br>
+## Use Case:
 
+Developers and knowledge-graph practitioners use this skill to find, rank, filter, and explain paths between graph entities for relationship discovery, recommendations, investigations, supply-chain analysis, and other multi-hop reasoning workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/graph-path-reasoning-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/fisa712) <br>
-- [ClawHub Homepage](https://clawhub.com) <br>
-- [README](artifact/README.md) <br>
-- [Graph Path Patterns](artifact/references/graph-path-patterns.md) <br>
-- [Graph Path Examples](artifact/examples/graph-path-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python code examples and structured path-analysis outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include path lists, hop counts, relationship sequences, rankings, graph statistics, and natural language explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and SKILL.md frontmatter) <br>
+Risk: All-path enumeration can grow quickly on large or highly connected graphs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit maximum path length and result limits, and prefer shortest-path or K-shortest-path modes for large or user-supplied graphs.
+
+Risk: Generated path explanations may be treated as decision evidence even when graph data or relationship confidence is incomplete.
+
+Mitigation: Validate explanations and source graph data before relying on results for investigations, recommendations, or operational decisions.
+
+## Reference(s):
+
+- [Graph Path Reasoning Patterns](references/graph-path-patterns.md)
+- [Graph Path Reasoning Examples](examples/graph-path-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/graph-path-reasoning-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/fisa712)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and structured path-analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include graph traversal explanations, path rankings, statistics, and JSON-like result examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Creates draft-only WeChat Official Account image-first sticker posts by uploading local images as permanent materials and creating `newspic` drafts through the official API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes WeChat Official Account image-first sticker posts into the draft box by uploading local images as permanent materials and creating draft-only `newspic` posts through the official API.
 
-## Publisher: <br>
-[hzlawliet](https://clawhub.ai/user/hzlawliet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzlawliet](https://clawhub.ai/user/hzlawliet)
 
-## Use Case: <br>
-External users and developers use this skill to create WeChat Official Account image-message drafts from local image files and short caption text. It supports draft-box preparation only; final publication remains a manual action in the WeChat backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat Official Account credentials and can upload selected images and caption text to WeChat. <br>
-Mitigation: Install and run it only for intended WeChat draft creation, and provide credentials through environment variables or a secure secret manager. <br>
-Risk: Local credential files and output JSON records may contain sensitive app details, media IDs, remote asset references, or private filenames. <br>
-Mitigation: Keep `wechat.env` and generated `outputs/` records out of version control, and review or delete output records before sharing the skill directory. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to create image-first WeChat Official Account draft posts from local image files and short supporting text. It is intended for draft creation only; final publication remains a manual WeChat backend action.
 
-## Reference(s): <br>
-- [API Notes](references/api-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hzlawliet/wechat-sticker-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/hzlawliet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; execution writes JSON run records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat Official Account credentials and absolute local image paths; supports up to 20 images per draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill uploads selected local images and draft text to a WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with intended images and copy, then review the generated draft manually in WeChat before publishing.
+
+Risk: WeChat credentials and output records can expose account secrets, media IDs, remote asset URLs, or private local paths.
+
+Mitigation: Keep WECHAT_APP_SECRET private and do not commit local credential files or output records.
+
+## Reference(s):
+
+- [API Notes](artifact/references/api-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/hzlawliet/skills/wechat-sticker-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON run records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates draft-only WeChat records in an outputs directory; supports up to 20 absolute local image paths per run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Analyzes ecommerce browsing behavior from CSV, JSON, or manual input to score product interest, evaluate product copy, diagnose price and copy issues, and generate local JSON and interactive HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商商品兴趣度分析助手，可读取用户浏览行为数据（CSV、JSON 或手动录入），通过多维度加权算法分析商品兴趣度，结合 NLP 文案质量评估诊断价格和文案问题，并生成交互式 HTML 可视化诊断报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External ecommerce operators, analysts, and developers use this skill to turn product behavior data into interest scores, conversion diagnostics, copy-quality findings, and prioritized optimization guidance for ecommerce products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can run content derived from report data and load Chart.js from a public CDN. <br>
-Mitigation: Use trusted CSV/JSON inputs, review generated reports before opening, and prefer escaped report fields plus bundled or integrity-pinned Chart.js before broader deployment. <br>
+## Use Case:
 
+External ecommerce operators, analysts, and developers use this skill to turn product behavior metrics into interest scores, conversion diagnostics, HTML reports, and prioritized optimization guidance for platforms such as Douyin Ecommerce, Taobao, Pinduoduo, and JD.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/ecommerce-interest-analyzer) <br>
-- [Project Homepage](https://github.com/bettermen/ecommerce-interest-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text guidance with shell commands; generated JSON analysis results and interactive HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library; generated HTML loads Chart.js from a public CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports can execute injected JavaScript when built from malicious CSV or JSON input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted datasets only, and avoid opening or sharing reports from untrusted inputs until report fields are HTML-escaped and JavaScript values are safely serialized.
+
+Risk: Reports load Chart.js from a public CDN, which may be unsuitable for sensitive business data or offline environments.
+
+Mitigation: Bundle Chart.js locally before using the skill with sensitive data or in restricted-network deployments.
+
+Risk: Interest scores and recommendations are heuristic diagnostics and may not capture all business context.
+
+Mitigation: Treat the report as decision support and review recommendations with business, pricing, and merchandising context before acting.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/bettermen/ecommerce-interest-analyzer)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/ecommerce-interest-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON analysis results and an interactive HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on CSV or JSON ecommerce behavior data; generated reports load Chart.js from a CDN unless the dependency is bundled locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

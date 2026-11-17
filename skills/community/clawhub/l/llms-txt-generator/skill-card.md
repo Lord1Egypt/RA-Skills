@@ -1,42 +1,59 @@
-## Description: <br>
-Generates a well-structured llms.txt file for a business website by crawling the site, filling gaps conversationally, and producing an agent-optimized Markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates agent-optimized llms.txt files for business websites by crawling public pages, filling gaps conversationally, and producing structured markdown.
 
-## Publisher: <br>
-[ngm9](https://clawhub.ai/user/ngm9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ngm9](https://clawhub.ai/user/ngm9)
 
-## Use Case: <br>
-Developers, site owners, and business operators use this skill to make a business website easier for AI agents to understand by generating a structured llms.txt draft from crawled site content and user-supplied clarifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs are shown inside shell command examples, creating command-injection risk if untrusted or unsanitized values are passed through. <br>
-Mitigation: Treat URLs as untrusted input, avoid unsanitized shell interpolation, and review or quote command arguments before execution. <br>
-Risk: The crawler reads website pages and can extract emails and page text into local temporary files. <br>
-Mitigation: Avoid internal or private URLs, review extracted content before reuse, and prefer a project-specific output path over a shared /tmp file. <br>
+## Use Case:
 
+Business owners, marketers, and developers use this skill to make a public website easier for AI agents to understand and transact with. It crawls public site pages, asks for missing business details, and produces a publishable llms.txt draft for human review.
 
-## Reference(s): <br>
-- [llms.txt Specification & Examples](references/llms_txt_spec.md) <br>
-- [llmstxt.org](https://llmstxt.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ngm9/llms-txt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown llms.txt content with conversational guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local /tmp/llms_final.txt file after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Risk: The crawler may fetch unintended internal or sensitive URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with contained outbound network access and provide public business website URLs, not private intranet or sensitive application URLs.
+
+Risk: Untrusted page text can influence the generated llms.txt draft.
+
+Mitigation: Review crawl results and the final markdown before publication, and remove unsupported claims or links.
+
+Risk: The generated file may include inaccurate business claims, pricing, team details, or testimonials.
+
+Mitigation: Treat the output as a draft and manually verify public claims, quotes, contact paths, and links before deploying the llms.txt file.
+
+## Reference(s):
+
+- [llms.txt Specification & Examples](references/llms_txt_spec.md)
+- [llmstxt.org](https://llmstxt.org)
+- [ClawHub Skill Page](https://clawhub.ai/ngm9/skills/llms-txt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown llms.txt content with short conversational guidance and gap reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a final llms.txt draft intended for manual verification before publication.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Automatically evaluates task legality, ethical impact, risk level, and provides compliance suggestions with decision logging for AI assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically evaluates task legality, ethical impact, risk level, and provides compliance suggestions with decision logging for AI assistants.
 
-## Publisher: <br>
-[BetsyMalthus](https://clawhub.ai/user/BetsyMalthus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[betsymalthus](https://clawhub.ai/user/betsymalthus)
 
-## Use Case: <br>
-Developers, AI assistant operators, and compliance reviewers use this skill to evaluate requested tasks for legal, privacy, security, and ethical risk before execution. It returns risk level, compliance status, review requirements, warnings, issues, and recommended next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Decision logs can contain sensitive task descriptions and task details when logging or export is enabled. <br>
-Mitigation: Disable decision logging for sensitive workflows when possible, clear logs regularly, and export logs only to trusted locations with appropriate file permissions. <br>
+## Use Case:
 
+Developers, AI assistant operators, and compliance reviewers use this skill to screen proposed tasks for legal, privacy, security, and ethical risk before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BetsyMalthus/claw-ethics-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured Python objects or JSON containing risk level, compliance status, human review requirement, warnings, legal issues, ethical concerns, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can keep an in-memory decision log and export that log to a JSON file when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact/package.json) <br>
+Risk: Decision logging may retain full task descriptions and task details, which can include confidential, personal, legal, or security-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable decision logging or tightly control logs when sensitive task content may be processed.
+
+Risk: Installation and update instructions reference mutable or inconsistent remote sources.
+
+Mitigation: Install only a pinned, verified release from a single canonical source and avoid mutable global install or update commands where possible.
+
+Risk: Automatic approval rules can allow risky tasks to proceed without enough review.
+
+Mitigation: Keep human review enabled for non-trivial tasks and treat auto-approval rules as high-risk configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/betsymalthus/skills/claw-ethics-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and structured ethics-check results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May record full task descriptions and task details in an in-memory decision log when decision logging is enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

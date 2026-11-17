@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn72vgxs38j4b6mn2nfwy6w2jd80c3yp",
   "slug": "x-oauth-api",
-  "version": "1.1.0",
-  "publishedAt": 1773787191050
+  "version": "1.0.0",
+  "license": "MIT"
 }

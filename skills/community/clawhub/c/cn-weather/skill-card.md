@@ -1,43 +1,60 @@
-## Description: <br>
-中国天气 API - 使用和風天气 (QWeather) 获取中国城市天气数据。支持双 API（和风天气 + Open-Meteo）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国天气 API - 使用和風天气 (QWeather) 获取中国城市天气数据。支持双 API（和风天气 + Open-Meteo）。
 
-## Publisher: <br>
-[zhengge6](https://clawhub.ai/user/zhengge6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengge6](https://clawhub.ai/user/zhengge6)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure and run China-focused weather reporting through QWeather, with Open-Meteo as a fallback data source. It can produce current conditions, a three-day forecast, and optional email delivery for configured cities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local TOOLS.md content that may contain QWeather and QQ SMTP credentials. <br>
-Mitigation: Keep TOOLS.md out of Git and synced backups, store only the required credentials, and rotate credentials if the file is exposed. <br>
-Risk: The weather report script can send email automatically and includes a hardcoded default recipient. <br>
-Mitigation: Remove or override the default recipient before running the script, and execute it only when email delivery is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhengge6/cn-weather) <br>
-- [QWeather API documentation](https://dev.qweather.com/docs/api/) <br>
-- [QWeather documentation](https://dev.qweather.com/docs/) <br>
-- [QWeather console](https://console.qweather.com) <br>
-- [QWeather icons](https://icons.qweather.com) <br>
+## Use Case:
 
+Developers and external users can use this skill to fetch current weather and short forecasts for configured Chinese cities, using QWeather when configured and Open-Meteo as a fallback. It can produce a daily weather report and optionally send it by email.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell snippets and plain-text weather report output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWEATHER_API_KEY for QWeather access and may use configured QQ SMTP credentials for email delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads local email credentials from TOOLS.md.
+
+Mitigation: Treat TOOLS.md as plaintext, keep it out of version control, and use low-privilege dedicated credentials.
+
+Risk: The script can email reports to a hard-coded outside address when no recipient is supplied.
+
+Mitigation: Run the script only with an explicit intended recipient and review the destination before execution.
+
+Risk: Wildcard API host allowlists can expose QWeather credentials more broadly than intended.
+
+Mitigation: Avoid wildcard host allowlists; restrict QWeather credentials to the minimum hosts required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengge6/skills/cn-weather)
+- [QWeather API documentation](https://dev.qweather.com/docs/api/)
+- [QWeather developer documentation](https://dev.qweather.com/docs/)
+- [QWeather console](https://console.qweather.com)
+- [QWeather icons](https://icons.qweather.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown setup guidance and plain-text weather reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QWEATHER_API_KEY for QWeather; can fall back to Open-Meteo when QWeather is unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

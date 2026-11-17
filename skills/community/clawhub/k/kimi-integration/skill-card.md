@@ -1,46 +1,57 @@
-## Description: <br>
-Step-by-step guide for integrating Moonshot AI (Kimi) and Kimi Code models into Clawdbot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step guide for integrating Moonshot AI (Kimi) and Kimi Code models into Clawdbot.
 
-## Publisher: <br>
-[evgyur](https://clawhub.ai/user/evgyur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[evgyur](https://clawhub.ai/user/evgyur)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Clawdbot with Moonshot AI and Kimi Code model providers, including API keys, model aliases, verification commands, and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if copied into shared terminals, logs, or unprotected configuration files. <br>
-Mitigation: Use environment variables or a protected env file, and avoid printing full keys in shared terminals or logs. <br>
-Risk: The included test script makes live requests to external Moonshot and Kimi endpoints. <br>
-Mitigation: Run the test script only when a live external API request is intended and approved. <br>
-Risk: Prompts or code sent through configured providers may leave the local environment. <br>
-Mitigation: Send only data that the organization permits Moonshot or Kimi providers to process. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Moonshot AI and Kimi Code providers in Clawdbot, set model aliases, verify connectivity, and troubleshoot authentication or model-listing issues.
 
-## Reference(s): <br>
-- [Configuration Examples](references/config-examples.md) <br>
-- [Moonshot AI Documentation](https://platform.moonshot.cn/docs) <br>
-- [Kimi Code API](https://api.kimi.com/coding/docs) <br>
-- [Clawdbot Model Providers](https://docs.clawd.bot/concepts/model-providers) <br>
-- [ClawHub Skill Page](https://clawhub.ai/evgyur/kimi-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and JSON5 code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes provider configuration snippets, environment variable setup, model selection commands, and an optional live API connection test script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Unsafe API-key handling could expose Moonshot or Kimi Code credentials through shell history, shared config files, logs, screenshots, or support transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store keys in restricted environment files or a secret manager, avoid printing keys, and rotate any key that may have been exposed.
+
+Risk: The connection test script sends a bearer token and a test prompt to Moonshot/Kimi endpoints.
+
+Mitigation: Run the script only when comfortable sending that data to those endpoints, and prefer scoped or disposable credentials for testing.
+
+## Reference(s):
+
+- [Configuration Examples](references/config-examples.md)
+- [Moonshot AI Documentation](https://platform.moonshot.cn/docs)
+- [Kimi Code API](https://api.kimi.com/coding/docs)
+- [Clawdbot Model Providers](https://docs.clawd.bot/concepts/model-providers)
+- [ClawHub Skill Page](https://clawhub.ai/evgyur/skills/kimi-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes provider setup steps, model selection examples, and an optional shell script for endpoint testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

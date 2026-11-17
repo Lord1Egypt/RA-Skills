@@ -1,38 +1,54 @@
-## Description: <br>
-Saike is an Indonesian WhatsApp bot assistant persona that gives concise coding, debugging, research, and writing help while enforcing owner-only access for sensitive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saike is an Indonesian-language WhatsApp bot assistant persona for concise coding, debugging, research, writing, and technical help with owner-only handling for sensitive actions and anti-jailbreak behavior.
 
-## Publisher: <br>
-[danzu0x](https://clawhub.ai/user/danzu0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danzu0x](https://clawhub.ai/user/danzu0x)
 
-## Use Case: <br>
-External users and bot operators use Saike as a WhatsApp assistant persona for direct answers, coding help, debugging, research, text cleanup, and technical explanations. The persona is designed to keep sensitive bot actions owner-only and to refuse requests for internal secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danzu0x/skills/saike-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/danzu0x) <br>
+Developers and bot operators use Saike to give a WhatsApp assistant a concise Indonesian persona for user support, coding and debugging help, research, writing cleanup, and safe handling of sensitive bot actions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Natural-language responses, with Markdown or code blocks when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only guidance; security evidence reports no executable code or hidden data access.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill loads automatically and broadly changes the assistant's identity, disclosure behavior, and response style.
+
+Mitigation: Install it only in a dedicated Saike WhatsApp bot environment where this persona is intended for all sessions.
+
+Risk: The skill describes owner-only access rules but depends on external owner checks that are not implemented in the package.
+
+Mitigation: Verify the host bot enforces owner authorization separately before relying on the skill for sensitive actions.
+
+## Reference(s):
+
+- [Saike ClawHub skill page](https://clawhub.ai/danzu0x/skills/saike-ai)
+- [danzu0x ClawHub publisher profile](https://clawhub.ai/user/danzu0x)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Natural-language responses with Markdown and code blocks when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise Indonesian persona; structured formats are used only when helpful.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

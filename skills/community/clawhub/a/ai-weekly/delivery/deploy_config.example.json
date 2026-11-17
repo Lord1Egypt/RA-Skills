@@ -1,0 +1,39 @@
+{
+  "_comment": "部署后端配置示例（P0-1：飞书推送去 GitHub 化）。复制为对应文件名并填入真实值，或改用同名环境变量。所有文件均被 .gitignore 忽略，不入库。",
+  "github-pages": {
+    "_how": "默认后端，零配置。凭据优先级：`gh auth token`（已登录 gh 即可，不落盘）> 环境变量 GITHUB_TOKEN / GH_TOKEN（短期令牌）。无需再把 PAT 写入仓库目录下的 .github_token（已废弃）。仓库需已开 Pages 源=gh-pages。",
+    "view_base": "自动从 git remote 推导：https://<owner>.github.io/<repo>/"
+  },
+  "tencent-cos": {
+    "_file": "delivery/cos_config.json",
+    "bucket": "ai-weekly-xxxxx",
+    "region": "ap-guangzhou",
+    "secret_id": "AKIDxxxxxxxxxxxxxxxx",
+    "secret_key": "xxxxxxxxxxxxxxxxxxxxxxxx",
+    "base_url": "https://ai-weekly-xxxxx.cos-website.ap-guangzhou.myqcloud.com",
+    "prefix": "reports",
+    "_note": "国内首选：腾讯云 COS 开通「静态网站托管」后，base_url 即其访问域名。需 pip install cos-python-sdk-v5。"
+  },
+  "vercel": {
+    "_file": "delivery/vercel_config.json 或环境变量 VERCEL_TOKEN / VERCEL_PROJECT",
+    "token": "xxxxxxxxxxxxxxxx",
+    "project": "ai-weekly",
+    "_note": "需 npx vercel 登录过或提供 token；一条命令 vercel --prod 部署。"
+  },
+  "netlify": {
+    "_file": "delivery/netlify_config.json 或环境变量 NETLIFY_AUTH_TOKEN / NETLIFY_SITE_ID",
+    "token": "xxxxxxxxxxxxxxxx",
+    "site_id": "xxxxxxxxxxxxxxxx"
+  },
+  "cloudflare-pages": {
+    "_file": "delivery/cf_pages_config.json 或环境变量 CLOUDFLARE_PAGES_PROJECT / CLOUDFLARE_API_TOKEN",
+    "project": "ai-weekly",
+    "token": "xxxxxxxxxxxxxxxx"
+  },
+  "local": {
+    "_file": "delivery/local_config.json 或环境变量 LOCAL_DEPLOY_DIR / LOCAL_VIEW_BASE",
+    "dest": "C:/path/to/your/webroot",
+    "view_base": "https://your.public.host/ai-weekly/",
+    "_note": "适合已有自有服务器 / 内网反代的用户；view_base 必须是对外可访问的地址。"
+  }
+}

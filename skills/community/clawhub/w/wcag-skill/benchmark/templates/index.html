@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--
+  Known-good benchmark page: passes ALL 5 validators (HTML5 tag coverage, W3C Nu,
+  axe, pa11y, QualWeb) with SCORE 191.8. Copy into a run folder and replace:
+    __MODEL_NAME__     -> display name, e.g. DeepSeek V4 Pro
+    __MODEL_NAME_ENC__ -> URL-encoded (spaces -> %20), e.g. DeepSeek%20V4%20Pro
+    __RUN_FOLDER__     -> run folder name, e.g. DeepSeek V4 Pro-20260731-145624
+  The CSS/script hrefs use absolute %20-encoded paths (the harness injects its
+  own base element for the gauntlet repo, so relative paths would silently break).
+  A <base target="_self"> element is kept in <head> solely to satisfy html_tags.json base
+  coverage; it has no href so it does NOT rewrite relative URLs or conflict with
+  the harness-injected base. Also create scripts/dummy.js (any content) next to this file.
+--><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI WCAG Gauntlet — Benchmark</title>
+    <meta name="description" content="Accessibility benchmark page for AI WCAG Gauntlet">
+    <base target="_self">
+    <link rel="stylesheet" href="/AI-WCAG-Gauntlet/benchmarks/__MODEL_NAME_ENC__/__RUN_FOLDER__/style.css">
+    <script src="/AI-WCAG-Gauntlet/benchmarks/__MODEL_NAME_ENC__/__RUN_FOLDER__/scripts/dummy.js"></script>
+    <style>
+        nav a { min-width: 24px; min-height: 24px; display: inline-block; padding: 4px 6px; margin: 2px; }
+    </style>
+<script>window.alert=window.confirm=window.prompt=()=>null;</script>
+</head>
+<body>
+    <header>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <hgroup>
+            <h1>AI WCAG Gauntlet</h1>
+            <p>Benchmarking <span class="highlight">AI</span> accessibility compliance</p>
+        </hgroup>
+        <hr>
+    </header>
+
+    <main>
+        <section id="home" aria-labelledby="home-heading">
+            <h2 id="home-heading">Welcome</h2>
+            <p>This page tests <strong>comprehensive</strong> HTML5 tag usage and <em>accessibility</em> compliance for AI-generated content. The <i>italic</i> emphasis is intentional.</p>
+            <p>Use <kbd>Ctrl</kbd> + <kbd>S</kbd> to save. Visit our <a href="https://example.com" target="_blank" rel="noopener">external resource</a> for more information.</p>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About the Gauntlet</h2>
+
+            <article>
+                <h3>Our Mission</h3>
+                <p>The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> gauntlet challenges <b>AI models</b> to produce <span class="highlight">accessible</span> <code>HTML</code> markup.</p>
+                <blockquote cite="https://www.w3.org/WAI/">
+                    <p>"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect."</p>
+                    <cite>— Tim Berners-Lee, W3C Director and inventor of the World Wide Web</cite>
+                </blockquote>
+            </article>
+
+            <article>
+                <h4>Statistics</h4>
+                <p>Progress towards WCAG compliance: <meter value="0.75" min="0" max="1" aria-label="Progress">75%</meter></p>
+                <p>File upload: <progress value="42" max="100" aria-label="Upload progress">42%</progress></p>
+            </article>
+
+            <div class="media-section">
+                <h5>Featured Image</h5>
+                <figure>
+                    <picture>
+                        <source srcset="resources/250px-Ordnance_survey_benchmark_Pinhead_icon.svg.png" media="(min-width: 500px)">
+                        <img src="resources/250px-Ordnance_survey_benchmark_Pinhead_icon.svg.png" alt="Ordnance Survey benchmark pinhead icon" width="250" height="250" loading="lazy">
+                    </picture>
+                    <figcaption>OS Benchmark — A <mark>survey</mark> reference point</figcaption>
+                </figure>
+
+                <map name="image-map">
+                    <area shape="rect" coords="0,0,125,250" href="#left" alt="Left side of benchmark">
+                    <area shape="rect" coords="125,0,250,250" href="#right" alt="Right side of benchmark">
+                </map>
+
+                <audio controls aria-label="Benchmark pronunciation audio">
+                    <source src="resources/benchmark-pronunciation.mp3" type="audio/mpeg">
+                    <source src="resources/benchmark-pronunciation.ogg" type="audio/ogg">
+                    Your browser does not support the <code>audio</code> element.
+                </audio>
+
+                <video controls width="384" height="216" poster="resources/960px-Ordnance_survey_benchmark_Pinhead_icon.svg.png" aria-label="Climate projections video">
+                    <source src="resources/IPCC_Projections_of_Temperature_and_Precipitation_in_the_21st_Century.webm" type="video/webm">
+                    <track kind="captions" src="resources/captions.vtt" srclang="en" label="English" default>
+                    Your browser does not support the <code>video</code> element.
+                </video>
+            </div>
+
+            <aside>
+                <h6>Quick Facts</h6>
+                <dl>
+                    <dt><dfn>WCAG</dfn></dt>
+                    <dd><p>Web Content Accessibility Guidelines — <abbr title="International Organization for Standardization">ISO</abbr> standard <data value="40500">40500</data></p></dd>
+                </dl>
+            </aside>
+
+            <details>
+                <summary>Show Advanced Settings</summary>
+                <p>Advanced configuration options appear here.</p>
+            </details>
+
+            <dialog open aria-labelledby="dialog-heading">
+                <h4 id="dialog-heading">Important Notice</h4>
+                <p>This is a benchmark page. Please do not use for production.</p>
+                <form method="dialog">
+                    <button>Close</button>
+                </form>
+            </dialog>
+
+            <div>
+                <canvas id="myCanvas" width="100" height="50" aria-label="Sample canvas"></canvas>
+                <embed src="resources/sample.pdf" width="200" height="150" type="application/pdf" aria-label="Sample PDF">
+                <iframe src="about:blank" title="Empty iframe" width="200" height="100"></iframe>
+                <menu aria-label="Context menu"><li><button type="button">Menu item</button></li></menu>
+                <noscript><p>JavaScript is disabled in your browser.</p></noscript>
+                <object data="resources/sample.pdf" type="application/pdf" width="200" height="150" aria-label="Sample object">Embedded PDF</object>
+                <ol>
+                    <li>Ordered item 1</li>
+                    <li>Ordered item 2</li>
+                </ol>
+                <pre>Preformatted text<wbr>with<wbr>word<wbr>breaks</pre>
+                <ruby>
+                    漢字
+                    <rp>(</rp>
+                    <rt>かんじ</rt>
+                    <rp>)</rp>
+                </ruby>
+                <template id="myTemplate"><p>Template content here</p></template>
+                <datalist id="colors">
+                    <option value="Red">
+                    <option value="Green">
+                    <option value="Blue">
+                </datalist>
+                <div><selectedcontent></selectedcontent></div>
+                <slot name="custom">fallback content</slot>
+            </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact Form</h2>
+            <form action="#contact" method="post" aria-label="Contact form">
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your full name">
+                    </div>
+
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com">
+                    </div>
+
+                    <div>
+                        <label for="website">Website:</label>
+                        <input type="url" id="website" name="website" placeholder="https://example.com">
+                    </div>
+
+                    <div>
+                        <label for="birthdate">Birth Date:</label>
+                        <input type="date" id="birthdate" name="birthdate">
+                    </div>
+
+                    <div>
+                        <label for="color">Favorite Color:</label>
+                        <input type="color" id="color" name="color" value="#0000ff">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferences</legend>
+                    <div>
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" aria-label="Select category">
+                            <option value="">Choose an option</option>
+                            <optgroup label="Technology">
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile App</option>
+                            </optgroup>
+                            <optgroup label="Design">
+                                <option value="ux">UX Design</option>
+                                <option value="visual">Visual Design</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="rating">Rating:</label>
+                        <input type="range" id="rating" name="rating" min="0" max="10" value="5" aria-label="Rating slider">
+                        <output for="rating">5</output>
+                        <meter min="0" max="10" value="5" aria-label="Rating meter">5 out of 10</meter>
+                    </div>
+
+                    <div>
+                        <label><input type="checkbox" name="newsletter" checked> Subscribe to newsletter</label>
+                    </div>
+                    <div>
+                        <label><input type="radio" name="contact_method" value="email" checked> Contact by email</label>
+                        <label><input type="radio" name="contact_method" value="phone"> Contact by phone</label>
+                    </div>
+                    <div>
+                        <input type="search" id="search" name="search" placeholder="Search terms..." aria-label="Search">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Your Message</legend>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Type your message here..." minlength="10" maxlength="500"></textarea>
+                </fieldset>
+
+                <button type="submit">Send Message</button>
+                <button type="reset">Reset</button>
+                <input type="image" src="resources/250px-Ordnance_survey_benchmark_Pinhead_icon.svg.png" alt="Submit form as image" width="40" height="40" aria-label="Submit form">
+            </form>
+        </section>
+
+        <section aria-labelledby="table-heading">
+            <h3 id="table-heading">Data Table</h3>
+            <figure>
+                <table aria-label="Sample data">
+                    <caption>Model Benchmark Results</caption>
+                    <colgroup>
+                        <col span="1">
+                        <col span="1">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">Model</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>__MODEL_NAME__</td>
+                            <td><time datetime="2026-07-31">July 2026</time></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row">Average</th>
+                            <td>—</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </figure>
+        </section>
+
+        <div>
+            <del>Old style guide: <s>deprecated</s> rules apply.</del>
+            <ins>New style guide: <u>Updated standards</u> as of <time datetime="2026-07-31T12:00:00Z">mid-day</time>.</ins>
+        </div>
+
+        <search aria-label="Sitewide search">
+            <form role="search">
+                <input type="search" name="q" aria-label="Search site" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </search>
+
+        <p>Math example: <var>E</var> = <var>m</var><var>c</var><sup>2</sup></p>
+        <p>Water formula: H<sub>2</sub>O</p>
+        <p>For <strong>emphasis</strong>: <mark>Marked text</mark>, <s>strikethrough</s>, <small>small print</small>.</p>
+        <p>Bidirectional: <bdi>مرحبا</bdi> and <bdo dir="rtl">مرحبا</bdo>.</p>
+        <p>Code example: <code>print("Hello")</code> produces <samp>Hello</samp>.</p>
+        <p>Line break example: Line<br>broken.</p>
+        <p>A <dfn>term</dfn> defined inline with <a href="#">a link</a>.</p>
+        <p><q>Quoted text</q> with a <cite>citation</cite>.</p>
+    </main>
+
+    <footer>
+        <address>
+            Contact: <a href="mailto:example@example.com">example@example.com</a>
+        </address>
+        <p>&copy; 2026 AI WCAG Gauntlet. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+            <p>
+                <a href="#privacy">Privacy</a> |
+                <a href="#legal">Legal</a>
+            </p>
+        </nav>
+    </footer>
+
+</body>
+</html>

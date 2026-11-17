@@ -1,5 +1,19 @@
 # AgentCall: Phone Numbers for AI Agents
 
+<!-- BEGIN GENERATED OFFER POLICY -->
+## Current offer and agent behavior
+
+New accounts receive a one-time 72-hour live trial with one US/Canada local number, 300 managed inbound AI seconds (five minutes) total, and five SMS send attempts to verified destinations. Card verification is required before number allocation; the clock starts when allocation succeeds. There is no monthly reset or automatic paid subscription. Live OTP extraction and outbound calls require Pro.
+
+Existing Free accounts retain their assigned monthly allowances. Read the account's offerVersion, trial and limits rather than assuming every Free account has the same offer. Only describe a monthly reset when the account response supplies a non-null resetsAt.
+
+Pro is $19.99/month plus number rental and usage: local numbers $2/month each, toll-free $2.50/month, outbound SMS $0.015/message, standard outbound voice $0.035/min, managed AI voice $0.40/min, BYOK voice $0.10/min plus your AI provider's charges, or Premium Voice $0.59/min. AI calls round up to whole minutes per call. New-account destination/business verification can still apply after upgrading.
+
+After trial expiry, the number is held for at least 48 hours before release, with a successful expiry notice before release becomes eligible. A delayed notice extends the hold. Trial expiry and number retention are separate; stored configuration and results remain available. Upgrading during the hold preserves the number.
+
+Before quoting allowances or taking a paid action, call get_plan (or GET /v1/account) and use the returned offerVersion, trial, limits, billingStatus and summary. New live_trial_72h_v1 accounts have a one-time 72-hour trial starting at successful number allocation, 300 managed inbound AI seconds total and five verified-destination SMS attempts; card verification is required first. No monthly reset, automatic upgrade or Free overage. Existing free_monthly_v1 accounts retain assigned monthly allowances. Live OTP extraction, outbound calls, BYOK and Premium Voice require Pro for new trial accounts. Explain payment_method_required, payment_recovery_required, trial expiry and quota errors; stop retrying them. Share the returned setup/upgrade link when the user wants to proceed, let the human complete card/payment steps, then reread get_plan before retrying. Do not assume saving a card upgrades the account, or promise a released number can be recovered. Pro is $19.99/month plus number rental and usage. Do not auto-run upgrade_to_pro just because another tool failed. Honor the user's authorization for any real-world action. Read https://api.agentcall.co/llms.txt for the current reference.
+<!-- END GENERATED OFFER POLICY -->
+
 You have access to the AgentCall API for phone numbers, SMS, voice calls, and AI voice calls. Inbound and outbound calls can both be answered or initiated by an AI voice agent.
 
 ## Authentication
@@ -20,13 +34,13 @@ Several tools below take real-world actions on the user's behalf. Confirm with t
 
 **Billable actions (cost real money. Confirm scope first):**
 - `POST /v1/numbers/provision`: recurring monthly cost ($2.00–$2.50/month depending on type). Confirm the user wants a new number; ask which type, country, and label before provisioning.
-- `POST /v1/sms/send`: $0.015/message on Pro (10/month free on Free plan). Confirm the recipient number and the message body before sending.
+- `POST /v1/sms/send`: $0.015/message on Pro (new trials: five attempts total to verified destinations; existing Free: assigned allowance). Confirm the recipient number and the message body before sending.
 - `POST /v1/calls/initiate`: $0.035/min on Pro. Confirm the destination number and purpose before dialing. Optional `record: true` adds $0.01/min on top.
 - `POST /v1/calls/ai`: $0.40/min on Pro. Confirm the destination, the system prompt, and `maxDurationSecs` before dialing. Outbound AI calls reach a real human and accumulate cost per minute.
-- Inbound AI voice (`POST /v1/numbers/:id/inbound-config` with `mode: "ai"`). Free tier includes 5 minutes/month with no card required. Once the trial is exhausted, additional inbound AI calls hang up at the carrier with status `trial_exhausted` until the trial resets on the 1st of next month (UTC), OR until the user upgrades to Pro for unlimited inbound AI. Pro inbound AI is per-number configurable in two billing modes: Managed at $0.40/min (default; AgentCall holds the AI provider key) or BYOK at $0.10/min (customer provides their own AI provider key via `set_byok_openai_key`). There is no pay-as-you-go overage path on Free. Confirm the user wants inbound AI enabled on this specific number, and that the system prompt accurately describes their business.
+- Inbound AI voice (`POST /v1/numbers/:id/inbound-config` with `mode: "ai"`). New accounts get 300 managed inbound AI seconds total within a one-time 72-hour live trial, with card verification before number allocation. Exhaustion or expiry stops new trial calls; it does not create paid overage or a monthly reset. Existing Free accounts keep their assigned monthly offer. Read get_plan or GET /v1/account before quoting limits. Pro inbound AI is per-number configurable in two billing modes: Managed at $0.40/min (default; AgentCall holds the AI provider key) or BYOK at $0.10/min (customer provides their own AI provider key via `set_byok_openai_key`). There is no pay-as-you-go overage path on Free. Confirm the user wants inbound AI enabled on this specific number, and that the system prompt accurately describes their business.
 - `POST /v1/numbers/:id/byok-key` (`set_byok_openai_key`): switches a number's inbound AI voice from Managed billing ($0.40/min) to BYOK billing ($0.10/min) and stores the customer-supplied AI provider key for that number. Confirm the user wants to switch billing modes on the specific number, that they have a working key on hand, and that they understand the per-minute rate change before invoking.
 - `DELETE /v1/numbers/:id/byok-key` (`disable_byok`): removes the stored BYOK key on a number and reverts it to Managed billing ($0.40/min). Confirm the user wants to revert billing modes; the system prompt, voice, recording flag, and notify block on the number are preserved.
-- `POST /v1/numbers/:id/premium-voice` (`set_premium_voice`): enables Premium Voice on a number, or changes which premium voice it uses. Premium Voice is an opt-in Pro add-on: a curated voice library, all 13 languages, full caller memory, billed at $0.59/min only on the numbers where it is enabled (the 10 standard voices stay the default at $0.40/min). Applies to both inbound calls and outbound AI calls placed from the same number. Pass a `voiceId` from `list_premium_voices`. The number must already have inbound AI configured; enabling premium never wipes the rest of the inbound config; idempotent. Confirm the exact numberId, the chosen voice, and that the user accepts the $0.59/min premium rate before invoking. Requires Pro + a card on file + inbound AI configured, else returns 403 / 402 / 409 respectively; surface that error, do not retry.
+- `POST /v1/numbers/:id/premium-voice` (`set_premium_voice`): enables Premium Voice on a number, or changes which premium voice it uses. Premium Voice is an opt-in Pro add-on: a curated voice library, the same 31 languages as the standard voice plus auto-detect, full caller memory, billed at $0.59/min only on the numbers where it is enabled (the 10 standard voices stay the default at $0.40/min). Applies to both inbound calls and outbound AI calls placed from the same number. Pass a `voiceId` from `list_premium_voices`. The number must already have inbound AI configured; enabling premium never wipes the rest of the inbound config; idempotent. Confirm the exact numberId, the chosen voice, and that the user accepts the $0.59/min premium rate before invoking. Requires Pro + a card on file + inbound AI configured, else returns 403 / 402 / 409 respectively; surface that error, do not retry.
 - `DELETE /v1/numbers/:id/premium-voice` (`disable_premium_voice`): reverts a number to the standard inbound AI voice, stopping the $0.59/min add-on. Preserves the rest of the inbound config. Idempotent. Pro plan only.
 - `list_premium_voices` (`GET /v1/calls/premium-voices`, no auth): browse the Premium Voice catalog (id, name, description, gender, accent, sampleUrl). Use the returned id with set_premium_voice.
 - Optional `record: true` on AI voice paths. $0.01/min on top of the AI rate. Mention this delta when proposing recording.
@@ -41,9 +55,11 @@ Several tools below take real-world actions on the user's behalf. Confirm with t
 - For two-party-consent states (CA, FL, IL, MD, MA, PA, WA, NV, NH, MT, CT, DE), recording requires disclosure. AgentCall auto-prepends "This call may be recorded for quality." to the spoken `firstMessage` when `record: true` is set on AI voice paths and the message doesn't already mention recording. But you should still mention recording in firstMessage content for clarity if the user is writing one from scratch.
 
 **Built-in API guardrails (don't rely on these as your only check):**
-- Free plan hard caps: 1 local number, 10 SMS/month, 5 voice minutes/month, 5 inbound AI voice minutes/month (no card required for the trial), 5 OTP extractions/month. Prevents runaway spend on the free tier.
+- **New live trial**: New accounts receive a one-time 72-hour live trial with one US/Canada local number, 300 managed inbound AI seconds (five minutes) total, and five SMS send attempts to verified destinations. Card verification is required before number allocation; the clock starts when allocation succeeds. There is no monthly reset or automatic paid subscription. Live OTP extraction and outbound calls require Pro. Existing Free accounts retain their assigned monthly allowances. Read the account's offerVersion, trial and limits rather than assuming every Free account has the same offer. Only describe a monthly reset when the account response supplies a non-null resetsAt.
 - Outbound AI voice + call recording require a payment method on file (Pro plan). The API returns 402 with a `setupUrl` if a Pro user has no card. Surface this to the user instead of looping.
-- Inbound AI voice past the 5-minute Free trial requires upgrading to Pro. The API returns 403 `plan_limit_inbound_ai_trial_exhausted` with an `upgradeUrl`. There is no pay-as-you-go overage path on Free; the trial resets on the 1st of each month (UTC).
+- **403 plan_limit_inbound_ai_trial_exhausted**: New accounts get 300 managed inbound AI seconds total within a one-time 72-hour live trial, with card verification before number allocation. Exhaustion or expiry stops new trial calls; it does not create paid overage or a monthly reset. Existing Free accounts keep their assigned monthly offer. Read get_plan or GET /v1/account before quoting limits. Before quoting allowances or taking a paid action, call get_plan (or GET /v1/account) and use the returned offerVersion, trial, limits, billingStatus and summary. New live_trial_72h_v1 accounts have a one-time 72-hour trial starting at successful number allocation, 300 managed inbound AI seconds total and five verified-destination SMS attempts; card verification is required first. No monthly reset, automatic upgrade or Free overage. Existing free_monthly_v1 accounts retain assigned monthly allowances. Live OTP extraction, outbound calls, BYOK and Premium Voice require Pro for new trial accounts. Explain payment_method_required, payment_recovery_required, trial expiry and quota errors; stop retrying them. Share the returned setup/upgrade link when the user wants to proceed, let the human complete card/payment steps, then reread get_plan before retrying. Do not assume saving a card upgrades the account, or promise a released number can be recovered. Pro is $19.99/month plus number rental and usage. Do not auto-offer upgrade_to_pro only if the user requests an upgrade just because another tool failed. Honor the user's authorization for any real-world action. Read https://api.agentcall.co/llms.txt for the current reference.
+- Every `plan_limit_*` error carries `upgradeUrl` (https://agentcall.co/billing) and `upgradeToolName` (`upgrade_to_pro`). When one comes back, tell the user what the feature costs (Pro is $19.99/mo plus usage), and only if they say yes run `upgrade_to_pro` and show them the checkout link it returns. That tool starts a Stripe Checkout session; nothing is charged until the human completes the form themselves. Never call it speculatively, and never call it more than once per conversation.
+- Redial cap: a destination can be dialed at most 3 times per UTC day (numbers the account owns or has verified are exempt). A 429 `redial_limit_exceeded` means stop dialing that number today; do not retry or try variations.
 - Rate limits: 100 req/min global; per-route limits on expensive endpoints (10 req/min on AI voice, 20 req/hour on uploads).
 - Carrier restrictions: AI voice (in or out) and inbound AI configuration are US/Canada-only; the API returns 400 `carrier_not_supported` for other countries.
 
@@ -57,7 +73,7 @@ Several tools below take real-world actions on the user's behalf. Confirm with t
 3. The recording setting (`record: true` or `false`). Default to `false`. Confirm explicit opt-in if the user wants recording.
 4. The notification email and/or text (`notify.emailTo`, `notify.smsTo`). Confirm the destination belongs to the user and that they want post-call summaries delivered to it.
 5. The shortest practical call duration (`maxDurationSecs`). Pick the smallest value that fits the use case rather than relying on the 600-second default.
-6. The budget expectation: Free 5 minutes/month with carrier hang-up after exhaustion, or Pro at $0.40/min with no monthly cap. Tell the user which applies and what their expected monthly bill is.
+New accounts get 300 managed inbound AI seconds total within a one-time 72-hour live trial, with card verification before number allocation. Exhaustion or expiry stops new trial calls; it does not create paid overage or a monthly reset. Existing Free accounts keep their assigned monthly offer. Read get_plan or GET /v1/account before quoting limits. New live trials include five SMS send attempts total to verified destinations during the trial. Failed or ambiguous sends consume an attempt. Existing Free accounts keep their assigned monthly SMS allowance; read get_plan or GET /v1/account. Pro outbound SMS is $0.015/message, subject to account and destination restrictions.
 
 **Post-configuration responsibility:**
 - Monitor usage: periodically call `get_usage` or point the user at the dashboard at /billing.
@@ -72,7 +88,7 @@ If the user's request is ambiguous (e.g. "set up a phone number" with no type or
 ```
 POST /v1/numbers/provision
 Body: { "type": "local", "country": "US", "label": "my-agent" }
-Types: local ($2/mo), tollfree ($2.50/mo), mobile ($2/mo). All numbers are VoIP-routed via licensed US carriers; not for consumer-platform signup verification (Stripe, WhatsApp, Google, banks).
+Types: local ($2/mo), tollfree ($2.50/mo). All numbers are VoIP-routed via licensed US carriers; not for consumer-platform signup verification (Stripe, WhatsApp, Google, banks).
 Response: { "id": "num_xxx", "number": "+12125551234", "type": "local", ... }
 ```
 
@@ -100,12 +116,12 @@ Body: { "voice": "marin" }                             // voice only (requires i
 Body: { "language": "es" }                             // language only (requires inbound AI already configured)
 Body: { "label": "Hermes", "voice": "coral", "language": "fr" }  // any combination
 Voices: alloy, ash, ballad, cedar, coral, echo, marin, sage, shimmer, verse
-Languages: auto, en, es, fr, de, it, pt, nl, ja, ko, zh, hi, ar
+Languages: auto, en, es, fr, de, it, pt, nl, ja, ko, zh, hi, ar, ru, id, tr, pl, uk, vi, ta, ms, ro, el, cs, sv, hu, da, fi, no, sk, hr, bg  (31 languages plus auto)
 Response: full number object including updated `inbound` block.
 ```
 Use this when the user wants to change the voice or language on an existing receptionist. Do NOT call `POST /v1/numbers/:id/inbound-config` for a voice or language change. That endpoint replaces the entire inbound config and would wipe the system prompt, first message, recording flag, and notify block.
 
-## Inbound AI Voice (Free 5 min/month trial, then Pro plan: Managed $0.40/min or BYOK $0.10/min; US and Canada numbers only)
+## Inbound AI Voice (72-hour live trial; Pro Managed $0.40/min or BYOK $0.10/min)
 
 Configure a phone number so incoming calls are answered autonomously by an AI voice agent. The AI follows the system prompt you set.
 
@@ -121,6 +137,7 @@ Body: {
   "language": "auto",
   "firstMessage": "Hi, thanks for calling Acme Plumbing. How can I help?",
   "maxDurationSecs": 300,
+  "transferTo": "+14155551234",
   "notify": {
     "emailTo": "owner@acmeplumbing.com",
     "smsTo": "+14155551234",
@@ -132,7 +149,9 @@ Body: {
 
 The `notify` block is optional. Set `notify.emailTo` to receive the post-call summary email; `businessName` is shown in the email subject; `agencyName` is the sign-off line. Set `notify.smsTo` (E.164 phone) to also receive a short text summary of each call (caller, what they wanted, urgency, callback time), US-local senders only, one text per call (spam skipped), reply STOP to opt out, billed as one outbound SMS ($0.015). `emailTo` and `smsTo` are independent: set either, both, or neither. The MCP `configure_inbound_ai` tool also accepts `notify`: agents in Claude Desktop, Cursor, Windsurf, etc. can configure the email and text destinations in the same call as the system prompt, no dashboard handoff needed.
 
-**Spoken language (optional, default 'auto'):** the `language` field controls what language the AI answers in. `'auto'` matches the caller's language naturally and is what existing receptionists do today. Pass a specific ISO-639-1 code to make the AI respond ONLY in that language even if the caller speaks another, useful when the business serves a specific language community. Supported: `auto`, `en` (English), `es` (Spanish), `fr` (French), `de` (German), `it` (Italian), `pt` (Portuguese), `nl` (Dutch), `ja` (Japanese), `ko` (Korean), `zh` (Chinese Mandarin), `hi` (Hindi), `ar` (Arabic). The directive is added at session-build time so the customer's `systemPrompt` stays unchanged when language is swapped. Use `update_number_language` to change just the language without touching anything else.
+**Transfer to a human (optional):** set `transferTo` (an E.164 number) and the AI hands the live call to a real person whenever the caller asks for one, or when it cannot help. It says a short handoff line, then transfers the call; whoever answers sees the caller's number, not the AgentCall number. If nobody picks up within about 25 seconds, the AI resumes and takes a message instead, so the caller is never dropped. Works with no webhook or tool setup and coexists with declared `tools`. AI minutes stop at the handoff; the human portion of the call bills at the standard $0.035/min voice rate. Transfers show as `transferredTo` / `transferredAt` on the call record. Omit or pass `null` for no transfer (the AI takes a message, the default). Confirm the transfer destination with the user before configuring it: it is a real phone that will ring on live calls.
+
+**Spoken language (optional, default 'auto'):** the `language` field controls what language the AI answers in. `'auto'` matches the caller's language naturally and is what existing receptionists do today. Pass a specific ISO-639-1 code to make the AI respond ONLY in that language even if the caller speaks another, useful when the business serves a specific language community. Supported (31 languages plus auto): `auto`, `en` (English), `es` (Spanish), `fr` (French), `de` (German), `it` (Italian), `pt` (Portuguese), `nl` (Dutch), `ja` (Japanese), `ko` (Korean), `zh` (Chinese Mandarin), `hi` (Hindi), `ar` (Arabic), `ru` (Russian), `id` (Indonesian), `tr` (Turkish), `pl` (Polish), `uk` (Ukrainian), `vi` (Vietnamese), `ta` (Tamil), `ms` (Malay), `ro` (Romanian), `el` (Greek), `cs` (Czech), `sv` (Swedish), `hu` (Hungarian), `da` (Danish), `fi` (Finnish), `no` (Norwegian), `sk` (Slovak), `hr` (Croatian), `bg` (Bulgarian). Premium Voice covers the same 31 languages plus `auto`. The directive is added at session-build time so the customer's `systemPrompt` stays unchanged when language is swapped. Use `update_number_language` to change just the language without touching anything else.
 
 **Pre-call context webhook (optional):** add a `contextWebhook` block to wire a live context source onto the number. When set, AgentCall POSTs to your HTTPS URL on every inbound call connect (HMAC-signed with `signingSecret`); your endpoint responds with `{"contextBlock":"..."}` and AgentCall merges that string onto the system prompt before the AI answers. Useful for injecting today's brief, current priorities, or recent email signals so the AI speaks with up-to-date data instead of a static prompt. Example:
 ```
@@ -208,7 +227,7 @@ The newest natural-sounding picks are `marin` (soft, natural) and `cedar` (warm,
 GET /v1/calls/premium-voices
 Returns: { voices: [{ id, name, description, gender, accent, sampleUrl }, ...], pricing: { premiumVoice: "$0.59/minute" } }
 ```
-Premium Voice is the higher-quality, brandable tier for inbound AI receptionists: a curated voice library, all 13 languages, and full caller memory, a Pro add-on at $0.59/min. Each entry's `id` is the voiceId; preview it via the returned `sampleUrl`. Enable it on a number with `set_premium_voice` (numberId + voiceId), or from the dashboard (a number's inbound AI settings, then the Premium Voice section); revert with `disable_premium_voice`. As a billable add-on, confirm the user accepts the $0.59/min premium rate on the specific number before enabling.
+Premium Voice is the higher-quality, brandable tier for inbound AI receptionists: a curated voice library, the same 31 languages as the standard voice plus auto-detect, and full caller memory, a Pro add-on at $0.59/min.  Each entry's `id` is the voiceId; preview it via the returned `sampleUrl`. Enable it on a number with `set_premium_voice` (numberId + voiceId), or from the dashboard (a number's inbound AI settings, then the Premium Voice section); revert with `disable_premium_voice`. As a billable add-on, confirm the user accepts the $0.59/min premium rate on the specific number before enabling.
 
 **List ready-made prompt templates:**
 ```
@@ -223,6 +242,35 @@ Each entry includes: id, title, description, recommendedVoice, maxDurationSecs, 
 ```
 
 For a comprehensive prompt-writing guide: https://agentcall.co/docs/voice-prompts
+
+## New-Account Outbound Restriction (read before the first outbound text or call)
+
+A new account may not *call* an arbitrary number, and a Pro account under 7 days old may only text new numbers within its starter allowance (below). Attempting anything past that returns `403 destination_not_verified`. This is enforced on every outbound path, including proactive schedules (which never use the starter allowance). Retrying does not help.
+
+New live trials include five SMS send attempts total to verified destinations during the trial. Failed or ambiguous sends consume an attempt. Existing Free accounts keep their assigned monthly SMS allowance; read get_plan or GET /v1/account. Pro outbound SMS is $0.015/message, subject to account and destination restrictions. New live trials do not use the legacy starter-destination exception. Existing Free and new Pro accounts can have separate starter allowances; read account and verification status. Never retry destination restrictions in a loop.
+
+A restricted account CAN already:
+- contact any number the account owns (agent-to-agent testing works immediately)
+- reply to anyone who contacted it first, within the last 30 days (inbound threads and callbacks are unaffected)
+- contact any number verified individually: `POST /v1/verified-destinations` with `{ "phone": "+14155551234" }` sends a 6-digit code there, then `POST /v1/verified-destinations/:id/confirm` with `{ "code": "123456" }`. Cap 25 on Pro, 5 on Free.
+
+None of the three paths above consume a starter slot. Only a text to a brand-new stranger does.
+
+To lift the restriction entirely (Pro only), the account owner submits a business verification:
+```
+POST /v1/business-verification
+Body: {
+  "legalName": "Ridgeline Painting LLC",
+  "website": "https://ridgelinepainting.com",   // website OR ein required
+  "contactName": "Dana Whitfield",
+  "useCase": "Payment reminders to existing customers with unpaid invoices, including a pay link.",
+  "sampleMessage": "Invoice 4021 for $840 is 12 days past due. Pay here: example.com/pay/4021. Reply STOP to opt out."
+}
+GET /v1/business-verification    # returns grantsOutboundPilot: can this account contact strangers now?
+```
+This lifts the restriction on submission (a human reviews afterwards). A daily cap on distinct NEW recipients applies while the account is under 7 days old, starting at 25 on day one. After 7 days on Pro the restriction lifts automatically regardless.
+
+**If you are an AI agent and hit this error:** do not retry, do not try other numbers to find one that works, and do not attempt to work around it. Report it to the user and tell them the two routes above. Submitting the business verification requires the user's own business details, so ask them for those rather than inventing any.
 
 ## SMS
 
@@ -265,9 +313,11 @@ The same `tools` + `actionWebhook` pair also powers in-call VOICE tool calling: 
 **Read SMS threads:**
 ```
 GET /v1/sms-conversations            # list threads (paginated)
-GET /v1/sms-conversations/:id        # one thread + last 50 messages
+GET /v1/sms-conversations/:id        # one thread + last 50 messages + context
 ```
 MCP tools: list_sms_conversations, get_sms_conversation.
+
+The thread detail also returns a `context` object that classifies those same messages by age, and you should use it for anything about recency. `messages` is the last 50 texts on the thread, which on a quiet thread can span months, so treating them as a recent conversation makes you describe a months-old exchange as something you just talked about. `context.recentMessages` covers the last 7 days, `context.recentSubstantiveMessages` is that list with plain greetings removed, and `context.olderMessages` is background only. Answer "what did we recently talk about?" from `recentSubstantiveMessages` alone; when it is empty, say there has been no recent substantive text discussion rather than reaching into `olderMessages`, durable memory, or call history and presenting any of them as a recent text conversation. `context.freshness` carries the window and the reference time it was measured against.
 
 **Reply into a thread (relay mode):**
 ```
@@ -276,11 +326,13 @@ Body: { "body": "3 emails need you today.", "idempotencyKey": "turn_8842" }
 ```
 Your own agent calls this when it has an answer; AgentCall sends and threads the text. Opt-out-checked (refuses to text someone who sent STOP) and idempotent on `idempotencyKey` for 24 hours so a retried agent never double-texts. MCP tool: reply_to_sms_conversation. Billed as one outbound text.
 
-STOP and UNSUBSCRIBE are always honored before either mode runs. Both are inbound-only in v1 (the customer texts first).
+The relay push to your `agentWebhook` carries the same freshness-classified thread as an additive `smsContext` field beside `message`, `conversation`, and `context`, so your agent gets the recency split without a second API call. An endpoint written against the earlier payload keeps working unchanged.
+
+STOP and UNSUBSCRIBE are always honored before either mode runs. Both modes are reactive: they handle texts that arrive. To open a conversation yourself, send the first message with `POST /v1/sms/send` (`send_sms`) or set a proactive schedule (below); the contact's reply lands on the same thread and is handled by whichever mode the number is in.
 
 ## Proactive Scheduling (the agent texts first)
 
-Two-way AI SMS is reactive: the number answers when someone texts it. Proactive scheduling makes a number's AI agent reach out FIRST on a schedule, so it can send appointment reminders and recurring digests without the contact messaging in. The number must have inbound AI / `smsMode: "ai"` (Pro plan). A reply to a proactive message flows back into the same AI thread, so a one-word answer like "C" is understood in context.
+Two-way AI SMS is reactive: the number answers when someone texts it. Proactive scheduling makes a number's agent reach out FIRST on a schedule, so it can send appointment reminders, payment follow-ups, and recurring digests without the contact messaging in. Pro plan only (proactive sends never fire on Free). The send itself works on any provisioned number; set `smsMode: "ai"` when you want the contact's reply answered automatically on the same thread, so a one-word answer like "C" is understood in context. Each fire is billed as one standard outbound text, is skipped for anyone who has sent STOP, and is capped at 200 per number per day.
 
 ```
 POST   /v1/numbers/:numberId/schedules     # create a schedule
@@ -336,9 +388,11 @@ Add `record: true` to capture an mp3 of the call. Adds $0.01/min on top.
 Optional fields for orchestrators:
 - `metadata`: a string-to-string map (at most 24 keys, 64-char keys, 512-char values, 2KB serialized) echoed on the call object and in every subsequent webhook payload (call.status, call.transcript, call.recording, call.report.ready). When the destination is another number on the same account, the linked inbound leg carries the same metadata. Use it to tag calls with your own IDs (showId, segmentId) instead of joining on callId.
 - `liveTranscript: true`: stream the transcript live. Each finalized utterance fires a `transcript.partial` webhook during the call ({ callId, sequence, role, text, timestamp }, sequence is monotonic per call) within a second or two of speech. Requires a webhook subscribed to `transcript.partial`. The final `call.transcript` stays unchanged and authoritative.
+- `hangUpOnVoicemail: true`: voicemail handling, recommended for any outreach list. The carrier runs answering-machine detection on answer; a voicemail or answering machine ends the call automatically before a message is left (call `endReason: "voicemail_detected"`, not billed). The AI also gets a built-in `end_call` tool and is told to hang up on a voicemail greeting or phone menu the carrier missed, when asked not to call again, and once the conversation is finished (`endReason: "ai_hangup"`, billed normally). Detection is not perfect. Can also be saved on the number with `set_outbound_defaults` so `useSavedAgent` picks it up. Default false.
+- `waitForGreeting: true`: let the callee speak first, recommended when calling businesses. The AI stays quiet on answer, waits for the person's own greeting ("Acme Plumbing, this is Mike"), then says `firstMessage`; after about 3 seconds of silence it speaks first anyway. Without it the AI speaks on connect, which plays over a business greeting. Omitting `firstMessage` does not make the AI wait. Standard voices only. Can also be saved with `set_outbound_defaults`. Default false.
 - Calls between two numbers on the same account expose `peerCallId` on both call records and in webhook payloads, linking the outbound and inbound legs.
 
-**Spoken language on outbound calls (optional, default 'auto'):** the `language` field controls what language the AI speaks during the call. `'auto'` lets the AI match the recipient's language naturally. Pass a specific ISO-639-1 code to make the AI respond ONLY in that language. Useful for booking appointments or requesting info on behalf of someone in another language, e.g. `language: 'es'` to call a Spanish-speaking doctor's office on behalf of a customer who doesn't speak Spanish. Supported: `auto`, `en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `ja`, `ko`, `zh`, `hi`, `ar`. The `firstMessage` stays verbatim, so if you want the greeting in Spanish, write the firstMessage in Spanish yourself; the language setting only governs the AI's responses after.
+**Spoken language on outbound calls (optional, default 'auto'):** the `language` field controls what language the AI speaks during the call. `'auto'` lets the AI match the recipient's language naturally. Pass a specific ISO-639-1 code to make the AI respond ONLY in that language. Useful for booking appointments or requesting info on behalf of someone in another language, e.g. `language: 'es'` to call a Spanish-speaking doctor's office on behalf of a customer who doesn't speak Spanish. Supported (31 languages plus auto): `auto`, `en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `ja`, `ko`, `zh`, `hi`, `ar`, `ru`, `id`, `tr`, `pl`, `uk`, `vi`, `ta`, `ms`, `ro`, `el`, `cs`, `sv`, `hu`, `da`, `fi`, `no`, `sk`, `hr`, `bg`. The `firstMessage` stays verbatim, so if you want the greeting in Spanish, write the firstMessage in Spanish yourself; the language setting only governs the AI's responses after.
 
 **Outbound prompt templates** (no auth, public): fetch `GET /v1/calls/prompt-templates?direction=outbound` for three ready-made outbound templates with `[BRACKETED]` placeholders to fill in: `outbound-appointment-booker` (book an appointment on behalf of someone), `outbound-info-request` (call to ask a specific question on behalf of someone), `outbound-callback-confirmation` (follow up on something).
 
@@ -679,6 +733,12 @@ Subscribe to `call.report.ready` to receive the structured CallReport on every c
 
 ## Usage & Billing
 
+**Check the plan before promising anything (`get_plan`, `GET /v1/account`):**
+Returns the plan name, the Free limits, the remaining AI allowance and actual trial expiry or legacy reset, and a one-sentence `summary` you can read aloud, for example "You are on the Free plan the remaining allowance and expiry reported by your account. Pro is $19.99/mo plus usage." Call it when the user asks what they are on, what something will cost, or why a feature was refused.
+
+**Upgrade to Pro (`upgrade_to_pro`, `POST /v1/account/upgrade`):**
+Returns a secure checkout link the human clicks to subscribe. Pro is $19.99/mo plus usage (AI voice calls $0.40/min, SMS $0.015). Run it only after the user has said they want to upgrade, show the link exactly as returned, and tell them the failed action can be retried about a minute after they finish. An account that is already on Pro gets a friendly note instead of a link.
+
 **Get usage breakdown:**
 ```
 GET /v1/usage
@@ -743,11 +803,19 @@ All phone numbers must be E.164: `+{country code}{number}`, e.g. `+14155551234`
 ## Error Codes
 - **401**: Invalid or missing API key
 - **402 payment_method_required**: Add a card before configuring billable features (returns `setupUrl` to Stripe Checkout)
-- **403 plan_limit_voice_ai**: Outbound AI voice requires Pro plan ($19.99/mo).
-- **403 plan_limit_inbound_ai_trial_exhausted**: Free user has used up their 5-minute monthly inbound AI trial. Returned with `upgradeUrl`. Trial resets on the 1st of next month (UTC) or the user can upgrade to Pro for unlimited inbound AI.
-- **403 plan_limit_***: Other plan limits. Upgrade at agentcall.co/dashboard
+- **403 plan_limit_voice_ai**: Outbound AI voice requires the Pro plan ($19.99/mo plus usage, AI voice $0.40/min). This is the most common wall a new account hits.
+- **403 plan_limit_standard_calls**: Plain (non-AI) outbound calls via `initiate_call` are Pro only. On Free, use inbound AI on the number, or `initiate_ai_call` after upgrading.
+- **403 plan_limit_inbound_ai_trial_exhausted**: New accounts get 300 managed inbound AI seconds total within a one-time 72-hour live trial, with card verification before number allocation. Exhaustion or expiry stops new trial calls; it does not create paid overage or a monthly reset. Existing Free accounts keep their assigned monthly offer. Read get_plan or GET /v1/account before quoting limits. Before quoting allowances or taking a paid action, call get_plan (or GET /v1/account) and use the returned offerVersion, trial, limits, billingStatus and summary. New live_trial_72h_v1 accounts have a one-time 72-hour trial starting at successful number allocation, 300 managed inbound AI seconds total and five verified-destination SMS attempts; card verification is required first. No monthly reset, automatic upgrade or Free overage. Existing free_monthly_v1 accounts retain assigned monthly allowances. Live OTP extraction, outbound calls, BYOK and Premium Voice require Pro for new trial accounts. Explain payment_method_required, payment_recovery_required, trial expiry and quota errors; stop retrying them. Share the returned setup/upgrade link when the user wants to proceed, let the human complete card/payment steps, then reread get_plan before retrying. Do not assume saving a card upgrades the account, or promise a released number can be recovered. Pro is $19.99/month plus number rental and usage. Do not auto-offer upgrade_to_pro only if the user requests an upgrade just because another tool failed. Honor the user's authorization for any real-world action. Read https://api.agentcall.co/llms.txt for the current reference.
+- **403 plan_limit_***: Every plan-limit error carries `upgradeUrl` (https://agentcall.co/billing) and `upgradeToolName` (`upgrade_to_pro`). Explain the cost, and if the user wants to proceed run `upgrade_to_pro` and hand them the link. Do not retry the failed call until they confirm the upgrade went through.
+- **429 redial_limit_exceeded**: This destination has already been dialed 3 times today. Stop; try again tomorrow. Numbers the account owns or has verified are exempt.
+- **403 destination_not_verified**: The account may not contact this number yet (any new account by voice; by SMS this only appears outside the starter allowance, e.g. on a scheduled send from a restricted account). See "New-Account Outbound Restriction" below. Do NOT retry; the same call will fail again. Tell the user how to clear it.
+- **403 sms_starter_exhausted**: The account has spent its starter allowance of different new SMS destinations (10 lifetime on Free, 25 on a new Pro account). Do NOT retry and do NOT try other numbers. The user can still text verified numbers, their own numbers, and anyone who contacted them first. On Pro, a business verification lifts the restriction in minutes and it lifts on its own after 7 days; on Free, unlimited texting needs Pro.
+- **A text that reports success but never arrives**: `send_sms` returning 201 only means the carrier accepted the message. Re-read it with `get_message`: `status` moves `queued` -> `sent` -> `delivered` | `failed`, and a failed message carries an `errorCode`. An `errorCode` of `40010` means the SENDING number is not registered for A2P texting yet, not that anything is wrong with the recipient. Check that number with `get_number` and read `messaging.state`: `pending` means registration is still provisioning with carriers (usually about two hours, occasionally days) and it will start working on its own; `action_needed` means it failed and is being retried every 15 minutes. Do NOT retry the send in a loop or switch numbers; tell the user the number is still activating.
 - **400 carrier_not_supported**: Inbound AI voice is only supported on US and Canada numbers
 - **404**: Resource not found
+- **404 no_numbers_in_area_code**: `provision_number` found no inventory in the requested area code. Retry once with `areaCode` omitted to get any number in the country. This costs nothing: failed attempts do not count against the provisioning budget.
 - **422**: Validation error (check request body)
-- **429**: Rate limit exceeded (100 req/min global; per-route limits on expensive endpoints)
+- **429**: Rate limit exceeded (100 req/min global; per-route limits on expensive endpoints). Read the `Retry-After` header and wait that long rather than retrying sooner.
+- **429 provisioning_rate_limit**: The account has provisioned 10 numbers in the last hour (100 in 24h is the outer cap). Only numbers actually received count, so carrier failures and empty area codes never cause this. `Retry-After` carries the wait in seconds.
+- **502 carrier_error on provision_number**: The carrier failed or the request timed out. Do NOT retry blindly. Call `list_numbers` first, because the request may have provisioned a number even though it returned an error, and a retry would buy a second one you get billed for. If no new number is there, one retry is fine.
 - **503 voice_ai_unavailable**: Server-side AI voice infrastructure issue. Retry later

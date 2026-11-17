@@ -1,48 +1,65 @@
-## Description: <br>
-Pengbo Space helps agents query Pengbo SMM services, select service IDs, place explicitly confirmed orders, check order status, request refills, and inspect account balance through pengbo.space/api/v1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pengbo Space helps agents query pengbo.space SMM services, find service IDs, place confirmed orders, check order status, request refills, and check account balance through the pengbo.space API.
 
-## Publisher: <br>
-[AmadoHallal](https://clawhub.ai/user/AmadoHallal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amadohallal](https://clawhub.ai/user/amadohallal)
 
-## Use Case: <br>
-External users and agents use this skill to configure a Pengbo Space API key, discover social media growth services, submit paid orders only after confirmation, and monitor order, refill, and balance state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid social-media growth orders can spend account balance or affect external social media targets. <br>
-Mitigation: Review the service ID, target link, quantity, and expected cost before using add or refill, and require the documented --confirm flag for write actions. <br>
-Risk: The Pengbo API key grants access to account operations. <br>
-Mitigation: Store the key in PENGBO_API_KEY or pass it only at runtime, avoid sharing command transcripts containing secrets, and rotate the key if exposure is suspected. <br>
-Risk: Local cache and audit logs can contain service, order, link, and activity details. <br>
-Mitigation: Inspect retention needs and periodically clear local data files such as services caches and data/orders-log.jsonl when they are no longer needed. <br>
-Risk: Maintenance scripts can install SBOM tooling or download signed update artifacts. <br>
-Mitigation: Run release, SBOM, scan, and update helper scripts only as maintenance tasks, and apply updates only after signature verification succeeds. <br>
+## Use Case:
 
+External operators and developers use this skill to automate pengbo.space social-media growth workflows, including service discovery, order placement after explicit confirmation, order tracking, refill requests, and balance checks.
 
-## Reference(s): <br>
-- [Pengbo Space Skill Page](https://clawhub.ai/AmadoHallal/pengbo-space) <br>
-- [Pengbo Space API Documentation](https://pengbo.space/user/api/docs) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Security Release Checklist](references/security-release-checklist.md) <br>
-- [Update Signing](references/update-signing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese, English, Spanish, and mixed-language responses; write actions require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1-beta.1 (source: server release metadata) <br>
+Risk: The skill can place or refill paid social-growth orders after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service ID, link, quantity, account balance, and confirmation flag before running order or refill commands.
+
+Risk: Bundled update and release/security scripts can modify local files or the user's Python environment.
+
+Mitigation: Run those scripts only from a trusted release source, verify update signatures, and pin dependencies before use.
+
+Risk: API keys, output links, order data, and API responses may be sensitive.
+
+Mitigation: Store API keys in environment variables or a secret manager, limit log sharing, and redact order and account details before redistribution.
+
+Risk: The release evidence flags unsolicited recharge promotion content.
+
+Mitigation: Treat promotional claims as unverified and confirm terms directly on pengbo.space before acting on them.
+
+## Reference(s):
+
+- [Pengbo Space Skill Page](https://clawhub.ai/amadohallal/skills/pengbo-space)
+- [Pengbo Space API Documentation](https://pengbo.space/user/api/docs)
+- [Pengbo Space API Reference](references/api-reference.md)
+- [Security Release Checklist](references/security-release-checklist.md)
+- [Update Signing](references/update-signing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require explicit confirmation; API responses and order data may include sensitive information.]
+
+## Skill Version(s):
+
+1.1.1-beta.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

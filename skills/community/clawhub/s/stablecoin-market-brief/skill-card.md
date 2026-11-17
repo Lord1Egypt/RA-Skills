@@ -1,46 +1,57 @@
-## Description: <br>
-Gets real-time stablecoin market overviews from Barker, including total and yield-bearing market cap, asset and chain distribution, and market-wide APY statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a real-time stablecoin market overview from 500+ protocols and 20+ CEX, including market cap, yield-bearing market cap, asset and chain distribution, and market-wide APY statistics.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users and analysts use this skill to fetch and summarize current stablecoin market size, TVL distribution, chain distribution, and APY trends from Barker's public API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Barker's public API for crypto-market data. <br>
-Mitigation: Install and use it only where outbound requests to Barker are acceptable. <br>
-Risk: Stablecoin market summaries may be mistaken for financial advice. <br>
-Mitigation: Treat responses as third-party crypto-market information and review them before acting on investment or treasury decisions. <br>
-Risk: A generic market-overview query may activate this skill when another market analysis was intended. <br>
-Mitigation: Confirm that the user is asking about stablecoins before relying on the generated brief. <br>
+## Use Case:
 
+External users and analysts use this skill to answer stablecoin market overview questions with Barker public API data, including market capitalization, TVL distribution, chain distribution, and APY trend comparisons.
 
-## Reference(s): <br>
-- [Stablecoin Market Brief on ClawHub](https://clawhub.ai/zuoyeweb3/stablecoin-market-brief) <br>
-- [Barker](https://barker.money) <br>
-- [Barker Stablecoin Market API](https://api.barker.money/api/public/v1/stablecoin-market) <br>
-- [Barker Stablecoin APY Trend API](https://api.barker.money/api/public/v1/stablecoin-apy-trend?days=90) <br>
-- [Barker Public API Base](https://api.barker.money/api/public/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with market figures, ranked distributions, APY trend commentary, and source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Barker API responses; no credentials or privileged actions are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Responses depend on Barker as the market-data source and may reflect that source's coverage, availability, and attribution requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when Barker-sourced stablecoin market data is acceptable, and preserve the Barker attribution described by the skill.
+
+Risk: Generic market questions could trigger the skill even when the user is not asking about stablecoins.
+
+Mitigation: Apply the skill only when the request is about stablecoins, stablecoin market capitalization, stablecoin TVL, or stablecoin yield trends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/skills/stablecoin-market-brief)
+- [Barker website](https://barker.money)
+- [Stablecoin market API](https://api.barker.money/api/public/v1/stablecoin-market)
+- [Stablecoin APY trend API](https://api.barker.money/api/public/v1/stablecoin-apy-trend?days=90)
+- [Barker public API base](https://api.barker.money/api/public/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with ranked lists, numeric market metrics, and Barker attribution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Barker public API endpoints for current market and APY trend data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

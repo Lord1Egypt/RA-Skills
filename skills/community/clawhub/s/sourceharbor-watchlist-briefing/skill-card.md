@@ -1,47 +1,63 @@
-## Description: <br>
-Use SourceHarbor watchlists, briefings, Ask, MCP, and HTTP API to answer one question with current story context and evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use SourceHarbor watchlists, briefings, Ask, MCP, and HTTP API to answer one question with current story context and evidence.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to inspect one SourceHarbor watchlist, reuse the current briefing or story payload, and answer one operator question with evidence and a concrete next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an external SourceHarbor MCP server or local HTTP API, so an untrusted setup could return misleading briefing evidence. <br>
-Mitigation: Install only with a trusted SourceHarbor MCP/API setup, review the external SourceHarbor repository before running its MCP server, and keep the API base URL pointed at a trusted local endpoint. <br>
-Risk: Optional report-send or workflow-run capabilities may affect operator workflows if used without review. <br>
-Mitigation: Require explicit user approval before any report is sent or workflow is run. <br>
+## Use Case:
 
+External operators and developers use this skill to inspect one SourceHarbor watchlist through MCP or a local HTTP API, answer one operator question with current story context and evidence, and recommend a next action.
 
-## Reference(s): <br>
-- [SourceHarbor Watchlist Briefing ClawHub Listing](https://clawhub.ai/xiaojiou176/sourceharbor-watchlist-briefing) <br>
-- [SourceHarbor Capability Map](references/CAPABILITIES.md) <br>
-- [SourceHarbor MCP And HTTP Setup](references/INSTALL.md) <br>
-- [OpenHands MCP Config](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP Config](references/OPENCLAW_MCP_CONFIG.json) <br>
-- [SourceHarbor HTTP Fallback](references/http-fallback.md) <br>
-- [Example Output](references/example-output.md) <br>
-- [SourceHarbor Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing with structured fields and optional shell commands or API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current_story, what_changed, evidence_used, suggested_next_action, and runtime_gap when access is partial.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and manifest.yaml) <br>
+Risk: The setup path asks users to run external SourceHarbor code without a pinned revision in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed SourceHarbor revision or signed release before connecting it to an agent runtime.
+
+Risk: The capability map includes report-sending and workflow actions that go beyond a read-only watchlist briefing.
+
+Mitigation: Run the MCP server with minimal permissions and prefer a read-only SourceHarbor role unless report sending or workflow execution is explicitly intended.
+
+Risk: A partial MCP or HTTP connection can leave the agent without enough evidence to answer the operator question.
+
+Mitigation: Require the agent to state runtime gaps clearly and avoid filling missing watchlist, briefing, or evidence data with guesses.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/xiaojiou176/skills/sourceharbor-watchlist-briefing)
+- [README](artifact/README.md)
+- [SourceHarbor Skill References](artifact/references/README.md)
+- [SourceHarbor MCP And HTTP Setup](artifact/references/INSTALL.md)
+- [SourceHarbor Capability Map](artifact/references/CAPABILITIES.md)
+- [OpenHands / OpenClaw Demo Walkthrough](artifact/references/DEMO.md)
+- [SourceHarbor Troubleshooting](artifact/references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured briefing fields and inline command or configuration snippets when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected fields include current_story, what_changed, evidence_used, suggested_next_action, and runtime_gap when access is partial.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

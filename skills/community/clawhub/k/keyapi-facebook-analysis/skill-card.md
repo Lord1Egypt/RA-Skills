@@ -1,47 +1,60 @@
-## Description: <br>
-Explore and analyze public Facebook data, including profile details, posts, photos, Reels, group activity, group events, and identifier resolution for profiles and groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and analyze public Facebook data, including profile details, posts, photos, Reels, group activity, group events, and identifier resolution for profiles and groups.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to query KeyAPI's Facebook MCP tools for public profile, page, and group data, then synthesize profile, content, engagement, and event findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Facebook URLs, IDs, and query parameters submitted through this skill are sent to KeyAPI. <br>
-Mitigation: Use the skill only with public data and only when you trust KeyAPI with the submitted inputs. <br>
-Risk: KEYAPI_TOKEN is required and may be loaded from the shell or a local .env file. <br>
-Mitigation: Set the token through a shell or secrets manager, avoid committing .env files, and rotate the token if it is exposed. <br>
-Risk: API responses are cached locally in .keyapi-cache by default. <br>
-Mitigation: Review cached files for sensitive context and clear .keyapi-cache when the retained results are no longer needed. <br>
-Risk: KEYAPI_SERVER_URL can redirect requests to a different MCP endpoint. <br>
-Mitigation: Leave KEYAPI_SERVER_URL unset unless the alternate endpoint is trusted. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve and summarize public Facebook profile, page, and group data through the KeyAPI MCP service. It supports profile and group lookup, content feed analysis, event discovery, and identifier resolution for downstream API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-facebook-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/lycici) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Facebook MCP server](https://mcp.keyapi.ai/facebook/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KEYAPI_TOKEN and Node.js; caches API responses locally unless disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runner requires a KeyAPI token and may persist it locally if entered interactively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped KeyAPI token and set it through the environment instead of interactive entry.
+
+Risk: Custom KEYAPI_SERVER_URL values can redirect API calls and credentials to a non-default endpoint.
+
+Mitigation: Use the default KeyAPI MCP endpoint unless the replacement server is fully trusted.
+
+Risk: Cached response files may contain public-profile research results.
+
+Mitigation: Treat local cache and output files as data artifacts and remove them when they are no longer needed.
+
+## Reference(s):
+
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Facebook MCP server](https://mcp.keyapi.ai/facebook/mcp)
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-facebook-analysis)
+- [Publisher profile](https://clawhub.ai/user/lycici)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, analysis, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local cache and output JSON files when the runner is used with caching or output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

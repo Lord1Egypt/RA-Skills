@@ -1,44 +1,51 @@
-## Description: <br>
-Search Xiaohongshu notes, inspect creator profiles, resolve share links, and drill into note comments, replies, and note detail endpoints through JustOneAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Xiaohongshu notes, inspect creator profiles, resolve share links, and drill into note comments, replies, and note detail endpoints through JustOneAPI.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve structured Xiaohongshu note, creator, comment, reply, search, and share-link data through JustOneAPI endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is used for authenticated requests and may appear in query parameters or command logs if handled carelessly. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN in an environment variable, avoid sharing full request URLs or logs, and rotate the token if it is exposed. <br>
-Risk: Submitted Xiaohongshu searches, note IDs, user IDs, comment IDs, cursors, and share links are sent to JustOneAPI. <br>
-Mitigation: Use the skill only when the user trusts JustOneAPI with those inputs and avoid sending unnecessary sensitive identifiers. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve structured Xiaohongshu note, creator, comment, reply, and share-link data through JustOneAPI when given keywords, note IDs, user IDs, share URLs, or pagination cursors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu&utm_content=project_link) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu&utm_content=project_link) <br>
-- [Generated operations reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and the JUST_ONE_API_TOKEN environment variable for authenticated JustOneAPI requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The JustOneAPI token may be exposed through command arguments, URLs, or process logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token where available, avoid environments that log process arguments or full request URLs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should summarize the concrete Xiaohongshu result first and include backend payloads when an API call fails.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

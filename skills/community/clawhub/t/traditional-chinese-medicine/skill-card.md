@@ -1,46 +1,62 @@
-## Description: <br>
-Provides an educational Traditional Chinese Medicine reference for theory, pattern differentiation, herbal properties, formula analysis, acupuncture protocols, contraindications, and constitution study. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an educational Traditional Chinese Medicine reference for theory, pattern differentiation, herbal properties, formula analysis, acupuncture protocols, contraindications, and constitution study.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External learners, practitioners, and serious TCM enthusiasts use this skill as an educational study companion for TCM theory, pattern differentiation practice, materia medica, formulas, acupuncture points, contraindications, and constitution frameworks. It is not a substitute for licensed clinical care, diagnosis, or treatment planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical, herbal, formula, or acupuncture information could be mistaken for patient-specific advice. <br>
-Mitigation: Keep responses educational, avoid diagnosis or treatment plans, and direct users to licensed healthcare professionals for real health decisions. <br>
-Risk: Herbs, formulas, and points may involve pregnancy, pediatric, toxicity, or drug-interaction concerns. <br>
-Mitigation: Surface contraindication and caution context prominently, especially for pregnancy, children, interactions, urgent symptoms, and treatment choices. <br>
+## Use Case:
 
+Students, practitioners, and serious enthusiasts use this skill as an educational TCM study reference for classical theory, pattern differentiation practice, materia medica, formulas, acupuncture points, contraindications, and constitution frameworks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/traditional-chinese-medicine) <br>
-- [Acupoints reference data](references/acupoints.json) <br>
-- [Constitution reference data](references/constitution_db.json) <br>
-- [Contraindications reference data](references/contraindications.json) <br>
-- [Formula reference data](references/formulas.json) <br>
-- [Herb reference data](references/herbs_db.json) <br>
-- [Syndrome rules reference data](references/syndrome_rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown educational explanations, structured tables, study templates, and safety disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content only; clinical use requires qualified supervision and appropriate licensure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat TCM herb, formula, acupuncture, pregnancy, or drug-interaction content as personal medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present content as educational study material only and direct personal health decisions to licensed healthcare professionals.
+
+Risk: Emergency or acute medical situations may require immediate care outside the skill scope.
+
+Mitigation: Do not provide emergency guidance; route urgent concerns to appropriate emergency services or licensed clinicians.
+
+Risk: Herbal substances, classical formulas, and acupuncture points can involve pregnancy, pediatric, contraindication, or drug-interaction concerns.
+
+Mitigation: Surface contraindications and require qualified professional supervision before any clinical application.
+
+## Reference(s):
+
+- [Acupuncture Point Reference](references/acupoints.json)
+- [Constitution Database](references/constitution_db.json)
+- [Contraindications Database](references/contraindications.json)
+- [Classical Formula Reference](references/formulas.json)
+- [Materia Medica Reference](references/herbs_db.json)
+- [Syndrome Rules Reference](references/syndrome_rules.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown educational explanations, tables, and structured study references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes educational scope limits, clinical-use disclaimers, and prompts users to consult licensed healthcare professionals for health concerns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

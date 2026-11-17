@@ -1,43 +1,57 @@
-## Description: <br>
-Manage X (Twitter) accounts: post tweets, like, reply, retweet, view timeline, search, auto-interact, and analyze data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage X (Twitter) accounts to post tweets, like, reply, retweet, view timelines, search, auto-interact, and analyze data.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and agents use this skill to manage X/Twitter account activity, including posting, engagement, timeline retrieval, and search through configured user credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local credential files can expose X/Twitter API tokens. <br>
-Mitigation: Store credentials only in protected local paths, avoid committing per-user credential files, and rotate tokens if exposure is suspected. <br>
-Risk: The skill can post, reply, like, retweet, or auto-reply without built-in confirmation. <br>
-Mitigation: Require human approval before any account-changing action, especially automated replies or engagement. <br>
-Risk: An unrestricted agent could act with credentials for the wrong USER_ID. <br>
-Mitigation: Restrict which USER_ID values an agent can use and run the skill only in a trusted, isolated environment. <br>
+## Use Case:
 
+Developers and operators use this skill to manage authorized X/Twitter accounts from an agent workflow, including posting, engagement actions, timeline and user retrieval, search, and keyword-based auto-replies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/patches429/storyclaw-x-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/patches429) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python scripts that call X/Twitter API endpoints with user-scoped credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Reusable X/Twitter credentials may be stored in plaintext credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tokens outside the package or in a secure secret store, restrict credential file permissions, and rotate any exposed tokens.
+
+Risk: Unchecked user-selected credential files can be used before public account actions.
+
+Mitigation: Use only in a trusted single-user environment unless credential loading is hardened and user IDs are validated.
+
+Risk: Posting, replying, liking, retweeting, or automation can create public account activity.
+
+Mitigation: Require explicit confirmation before account-changing actions and before enabling automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patches429/skills/storyclaw-x-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X/Twitter API credentials; account actions can create public posts, replies, likes, and retweets.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

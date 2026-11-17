@@ -1,43 +1,55 @@
-## Description: <br>
-Docker optimization expert. Analyzes Dockerfiles for security and performance, generates multi-stage builds, optimizes image size, creates docker-compose configs, and identifies container misconfigurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker optimization expert. Analyzes Dockerfiles for security and performance, generates multi-stage builds, optimizes image size, creates docker-compose configs, and identifies container misconfigurations.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to analyze Dockerfiles, docker-compose files, and container architecture for security, performance, reliability, and maintainability. It produces scored findings and concrete before/after fixes for production-ready container deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose deployment code or Docker commands that materially change container behavior, exposed ports, volumes, privileges, or cleanup state. <br>
-Mitigation: Review generated Dockerfiles, compose files, secrets handling, port mappings, volumes, privileged settings, Docker socket mounts, and cleanup commands before applying them. <br>
-Risk: Docker prune examples can remove unused volumes, images, and build cache. <br>
-Mitigation: Run cleanup commands only after confirming what data and cache will be removed in the target environment. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to review Dockerfiles, Docker Compose files, and container deployment plans. It produces scored findings, optimized Dockerfiles, Compose configurations, CI/CD snippets, remediation commands, and practical security guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-docker-wizard) <br>
-- [Publisher profile](https://clawhub.ai/user/ryudi84) <br>
-- [Project homepage](https://github.com/ryudi84/sovereign-tools) <br>
-- [Forge Tools](https://ryudi84.github.io/sovereign-tools/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables, inline code, fenced Dockerfile, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity ratings, 0-100 dimension scores, size impact estimates, complete rewritten Dockerfiles, docker-compose files, .dockerignore recommendations, and CI/CD snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated Docker commands, cleanup commands, CI/CD workflows, or container configuration snippets can affect production hosts, repositories, images, secrets, or publishing credentials if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands and configuration before use, test changes away from production first, and avoid running cleanup or publishing commands against production systems until approved.
+
+Risk: Copyable guidance involving container escape scenarios, Docker socket access, privileged containers, and secret handling could weaken host or credential security if applied outside a defensive review context.
+
+Mitigation: Treat exploit demonstrations and Docker socket or secret-management advice as review material; remove privileged mode and socket mounts unless there is a specific, reviewed operational need.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-docker-wizard)
+- [Project homepage](https://github.com/ryudi84/sovereign-tools)
+- [Forge Tools](https://ryudi84.github.io/sovereign-tools/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, Dockerfile and YAML code blocks, before/after examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity ratings, image-size impact estimates, and complete rewritten Docker-related files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

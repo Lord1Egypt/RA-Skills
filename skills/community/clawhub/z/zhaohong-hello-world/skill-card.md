@@ -1,38 +1,54 @@
-## Description: <br>
-Generates Amap search links for place names provided by the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Amap search links from user-provided place, location, or address names.
 
-## Publisher: <br>
-[zhaohong-test](https://clawhub.ai/user/zhaohong-test) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaohong-test](https://clawhub.ai/user/zhaohong-test)
 
-## Use Case: <br>
-External users can ask for locations, addresses, or directions and receive direct Amap search links for the requested places. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Opening a generated Amap link sends the searched place text to Amap. <br>
-Mitigation: Review place names before opening links and avoid using sensitive location text in search queries. <br>
+## Use Case:
 
+External users can ask an agent to convert place, location, or address requests into direct Amap search links, including separate links for multiple locations in one request.
 
-## Reference(s): <br>
-- [Amap search URL template](https://ditu.amap.com/search?query={keyword}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text containing generated Amap search links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated links include the extracted place query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad location questions may be answered with an Amap search link instead of directions or factual context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for search-link generation and ask separately when directions or factual context are needed.
+
+Risk: Place names with unusual characters may produce links that need URL encoding review.
+
+Mitigation: Check generated links for unusual place-name input and percent-encode the query value when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaohong-test/skills/zhaohong-hello-world)
+- [Amap search URL template](https://ditu.amap.com/search?query={keyword})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown containing generated Amap search links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns links only; no API key, credential, file access, code execution, persistence, or external API call is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

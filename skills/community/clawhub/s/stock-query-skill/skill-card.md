@@ -1,44 +1,63 @@
-## Description: <br>
-Queries a stock ticker's past 30 days of daily market data and returns prices, volume, dividends, and stock split information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Query Skill helps agents query the past 30 days of daily stock-price data for a supplied ticker and save the returned market data as a CSV file.
 
-## Publisher: <br>
-[tf9527666666-spec](https://clawhub.ai/user/tf9527666666-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tf9527666666-spec](https://clawhub.ai/user/tf9527666666-spec)
 
-## Use Case: <br>
-Developers and analysts use this skill to request recent daily stock-price data for a ticker and save the resulting market-data table for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external market-data services through yfinance. <br>
-Mitigation: Use it only where outbound market-data requests are acceptable. <br>
-Risk: Running the script writes a ticker-named CSV file and may overwrite an existing file in the current directory. <br>
-Mitigation: Run it from a directory where creating or replacing the output CSV is acceptable. <br>
-Risk: The skill depends on yfinance and pandas in the active Python environment. <br>
-Mitigation: Install dependencies only in a Python environment you trust. <br>
+## Use Case:
 
+Agents assisting developers, analysts, or operations users can use this skill to fetch recent daily OHLCV data for a stock ticker through yfinance and produce a CSV file for inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tf9527666666-spec/stock-query-skill) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text and CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a ticker-named 30-day CSV file in the current directory when the script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contacts market-data services through yfinance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound market-data access is expected and approved.
+
+Risk: The script creates a CSV file in the current working directory.
+
+Mitigation: Run it from an isolated workspace or disposable directory and review generated files before reuse.
+
+Risk: The dependency set includes yfinance and pandas without pinned reviewed versions in the artifact.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin reviewed package versions before deployment.
+
+Risk: The security guidance notes that the current script appears to need a syntax fix before it will run.
+
+Mitigation: Review and test the script before relying on generated stock-price output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tf9527666666-spec/skills/stock-query-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with command examples and CSV file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a ticker-named CSV file in the current working directory and uses yfinance for market-data retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,13 +2,17 @@
 
 > 用途：把策略路线拆成平台分工、KOL组合、内容交付、评论区动作和复盘指标。适用于发布节奏、种草计划、KOL简报、社媒排期、评测解禁和危机预案。
 
+本模板属于项目执行层。用户要求老板合作提案、创作者邀约方案或发布会创意方案时，先按 [正式物料受众分层](audience-layering.md) 生成前台提案，再把本模板作为内部附录或合作确认单。前台提案不展示“必说、禁说、复核点、执行就绪门”等控制标签。
+
 ## 必读文件
 
 - [strategy-decision-system.md](strategy-decision-system.md)：确定路线和目标。
 - [message-house.md](message-house.md)：确定主张、证据、禁用表达和回应口径。
+- [execution-readiness-gate.md](execution-readiness-gate.md)：确认执行门、负责人、触发条件和复盘指标。
 - [../references/industry-ecosystem.md](../references/industry-ecosystem.md)：平台传播规律。
 - [../ecosystem/kols.md](../ecosystem/kols.md)：KOL 风格、恰饭风险和合作注意事项。
 - [../ecosystem/negative-early-warning.md](../ecosystem/negative-early-warning.md)：负面苗头和处理动作。
+- [audience-layering.md](audience-layering.md)：区分老板提案、创作者邀约和内部执行 Brief 的呈现位置。
 
 ## 平台分工
 
@@ -31,6 +35,8 @@
 | 跨圈层创作者 | 破圈和审美表达 | 场景片、生活方式内容 | 评估价值观和历史言论 |
 
 ## Brief 输出模板
+
+以下完整格式用于内部执行 Brief、已确认合作后的工作单，或用户明确要求的上线检查。老板创意提案与创作者邀约只在内部附录保留这些字段。
 
 ```
 渠道与KOL执行 Brief
@@ -65,6 +71,12 @@ KOL组合
 | 信任 | 数据质疑是否下降 | 高赞负面占比 |
 | 转化 | 询价/收藏/跳转 | 平台后台或人工记录 |
 | 风险 | 负面信号是否扩散 | 截图、跨平台重复、KOL跟进 |
+
+执行就绪门
+- 上线结论: {直接执行/调整后执行/暂停重做}
+- 关键卡点: {物料/证据/KOL/评论区/复盘}
+- 24小时补齐项: {上线前必须补齐的内容}
+- 暂停/切换阈值: {触发后动作}
 ```
 
 ## 执行纪律
@@ -74,3 +86,4 @@ KOL组合
 - 种草类内容必须允许真实缺点，避免一眼软广。
 - 评论区优先解释事实和条件，谨慎使用情绪对抗。
 - 如果触发高等级负面信号，先暂停扩散，再补证据或改口径。
+- 每个平台动作都要有交付物、负责人角色、发布时间和复盘指标。

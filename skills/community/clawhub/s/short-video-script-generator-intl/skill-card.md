@@ -1,42 +1,70 @@
-## Description: <br>
-Generates short-video scripts for TikTok, YouTube Shorts, Instagram Reels, Facebook Reels, and Snapchat with hooks, shot lists, voiceover, subtitles, background music suggestions, and calls to action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-video scripts for TikTok, YouTube Shorts, Instagram Reels, Facebook Reels, and Snapchat with hooks, shot lists, voiceover, subtitles, background music suggestions, and calls to action.
 
-## Publisher: <br>
-[baolige2023](https://clawhub.ai/user/baolige2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baolige2023](https://clawhub.ai/user/baolige2023)
 
-## Use Case: <br>
-External short-video creators use this skill to generate, save, manage, and export scripts for short-form social platforms. It is intended for creating complete script drafts that include a hook, timed shots, voiceover, subtitles, background music direction, and a CTA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Billing behavior is unclear because the displayed price, runtime charge amount, and charge timing do not align. <br>
-Mitigation: Review and confirm the payment behavior before installing or using the skill, and avoid use until billing terms are clarified if the charges are unacceptable. <br>
-Risk: User topics are processed by an external AI provider. <br>
-Mitigation: Do not enter confidential, sensitive, or regulated topics unless external processing by the provider is acceptable. <br>
-Risk: The artifact includes hard-coded secrets and runs a debug Flask server exposed on all interfaces. <br>
-Mitigation: Run only on a trusted local machine; remove or rotate embedded secrets and disable debug network exposure before broader deployment. <br>
+## Use Case:
 
+External creators, marketers, and social media teams use this skill to draft platform-specific short-video scripts from a topic and selected duration.
 
-## Reference(s): <br>
-- [AI Short Video Script Generator Pro on ClawHub](https://clawhub.ai/baolige2023/short-video-script-generator-intl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Structured script sections with Markdown/TXT export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include a hook, shot list, voiceover, subtitles, background music recommendation, and call to action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Embedded service credentials can expose payment or AI service access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hardcoded keys, rotate exposed credentials, and load secrets from a managed runtime secret store before installation.
+
+Risk: Debug server settings and all-interface binding can expose the app in deployment.
+
+Mitigation: Disable debug mode and deploy behind an approved production server with restricted network binding.
+
+Risk: Billing consent and pricing are inconsistent between the release description and application behavior.
+
+Mitigation: Align all displayed prices, charge amounts, payment prompts, and consent flow before commercial use.
+
+Risk: Payment redirects may send users to unvalidated URLs.
+
+Mitigation: Validate payment URLs against the expected payment provider before redirecting users.
+
+Risk: User prompts and generated scripts may be shared with a third-party AI service without clear disclosure.
+
+Mitigation: Document third-party AI data sharing and avoid sensitive or regulated content until the data handling terms are reviewed.
+
+Risk: Generated content rendered in the browser can create injection risk if not escaped.
+
+Mitigation: Escape or sanitize generated fields before rendering or exporting user-visible content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baolige2023/skills/short-video-script-generator-intl)
+- [Publisher profile](https://clawhub.ai/user/baolige2023)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured script text exportable as Markdown or TXT]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hook, time-coded shots, voiceover, subtitles, background music suggestion, and CTA.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

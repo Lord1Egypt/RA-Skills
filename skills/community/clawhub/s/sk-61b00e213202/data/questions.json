@@ -1,0 +1,279 @@
+{
+  "version": "1.0.0",
+  "max_weight": 3,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "坊市里捡到一颗不知名的果子，四下无人",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "揣进袖子就走，找个没人的地方再慢慢看",
+          "weights": {
+            "metal": 3,
+            "water": 3,
+            "earth": 1,
+            "wood": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "当场咬一口。是毒是宝，试了才算数；真要是好东西，回头再种一株",
+          "weights": {
+            "wood": 3,
+            "fire": 3,
+            "water": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "不急。先放三天，看它有没有变化再说",
+          "weights": {
+            "earth": 3,
+            "metal": 1,
+            "fire": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "同门抢了你先看中的法器，你已经报了价",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "让他先拿走。东西认人，我耗得起",
+          "weights": {
+            "water": 3,
+            "wood": 3,
+            "earth": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "当众把话挑明：这东西我看上了，谁拿走我记谁一辈子",
+          "weights": {
+            "fire": 3,
+            "earth": 3,
+            "metal": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "找执事按市契评理。规矩就是规矩，一步不让",
+          "weights": {
+            "metal": 3,
+            "water": 1,
+            "fire": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "长老问你要不要去趟秘境，没说报酬",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "去。没报酬也去，秘境本身就是报酬",
+          "weights": {
+            "wood": 3,
+            "fire": 3,
+            "water": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "先把条件问清楚再点头。不明不白的活，不接",
+          "weights": {
+            "earth": 3,
+            "metal": 3,
+            "water": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "应下，但留个心眼，走一步看三步",
+          "weights": {
+            "water": 3,
+            "wood": 1,
+            "metal": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "你发现带你入门的师兄在偷炼禁制功法",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "当面问清楚，问完该干什么干什么",
+          "weights": {
+            "fire": 3,
+            "earth": 3,
+            "metal": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "装作没看见。他的路是他的，我的路是我的",
+          "weights": {
+            "metal": 3,
+            "water": 3,
+            "wood": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "按门规来，该报就报。拖下去，对谁都没好处",
+          "weights": {
+            "wood": 3,
+            "water": 1,
+            "fire": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "秘境里救了个不认识的人，后来才知道是对头家的",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "救都救了，但从此两清，下不为例",
+          "weights": {
+            "earth": 3,
+            "metal": 3,
+            "fire": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "既然救了就救到底。人跟人之间，没那么快翻篇",
+          "weights": {
+            "water": 3,
+            "wood": 3,
+            "earth": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "先探探他的口风，能多知道点事就多知道点",
+          "weights": {
+            "fire": 3,
+            "water": 1,
+            "wood": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "三年苦修卡在瓶颈，有人说有条歪路能绕过去",
+      "default": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "不试。歪路省下的时间，迟早加倍还回去",
+          "weights": {
+            "metal": 3,
+            "water": 3,
+            "wood": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "试。但先把退路想好，别把三年搭进去",
+          "weights": {
+            "wood": 3,
+            "fire": 3,
+            "earth": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "不试，也不硬熬。换个法子慢慢磨，总能过去",
+          "weights": {
+            "earth": 3,
+            "water": 1,
+            "fire": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "你身上有件秘密法宝，同门随口问起",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "轻描淡写带过去。日子长着呢，让他们慢慢看见",
+          "weights": {
+            "water": 3,
+            "wood": 3,
+            "fire": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "实话实说。法宝认主，藏着掖着才招祸",
+          "weights": {
+            "fire": 3,
+            "earth": 3,
+            "metal": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "不答。反问他一句：你从哪听来的？",
+          "weights": {
+            "metal": 3,
+            "earth": 1,
+            "water": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "走到岔路口，一条近而险，一条远而稳",
+      "default": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "走近的。险就险，省下的时间实打实",
+          "weights": {
+            "fire": 3,
+            "earth": 3,
+            "water": 1
+          }
+        },
+        {
+          "id": "B",
+          "text": "都不急。先坐下看看地形，问问走过的人",
+          "weights": {
+            "metal": 3,
+            "water": 3,
+            "earth": 1
+          }
+        },
+        {
+          "id": "C",
+          "text": "走远的。快不一定是快，绕过去的那段路不是白走的",
+          "weights": {
+            "wood": 3,
+            "metal": 1,
+            "fire": 1
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Watercolor no. 73, Blue and Lavender",
+  "creator": "Allen Tucker",
+  "institution": "Smithsonian American Art Museum",
+  "item_record_url": "https://americanart.si.edu/artwork/watercolor-no-73-blue-and-lavender-24276",
+  "official_image_url": "https://ids.si.edu/ids/download?id=SAAM-1966.34.7_1.tif",
+  "object_number": "1966.34.7",
+  "medium": "watercolor",
+  "date": "1928",
+  "rights_status": "FREE TO USE",
+  "rights_statement": "This media is in the public domain (free of copyright restrictions). You can copy, modify, and distribute this work without contacting the Smithsonian.",
+  "license_url": "https://americanart.si.edu/artwork/watercolor-no-73-blue-and-lavender-24276",
+  "retrieval_date": "2026-08-27",
+  "download_date": "2026-08-27",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "TIFF",
+    "width": 6000,
+    "height": 4152,
+    "bytes": 149505536,
+    "sha256": "b9fde9608683ab350a7927e8e51e731f40f340544ecbcfaf52157822c888dbee"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 1600,
+    "height": 1107,
+    "long_edge_px": 1600,
+    "bytes": 242272,
+    "sha256": "2eaaba5baf916b35f198a9be907fdf9126dab8a89725111148d8005f051c1b10",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "transparent watercolor wash and material handling",
+    "soft-to-controlled edge transitions",
+    "cool blue and lavender value grouping",
+    "selective dark anchors that preserve open paper"
+  ],
+  "subject_exclusions": [
+    "seascape",
+    "shoreline",
+    "water horizon",
+    "landscape subject",
+    "reference composition"
+  ]
+}

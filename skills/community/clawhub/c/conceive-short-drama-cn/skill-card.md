@@ -1,37 +1,52 @@
-## Description: <br>
-根据一句话灵感，创作跌宕起伏、充满励志奋斗与真善美元素、情感丰富且逻辑自洽的中文短剧纯叙事剧情大纲。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据一句话灵感，创作跌宕起伏、充满励志奋斗与真善美元素、情感丰富且逻辑自洽的短剧纯叙事剧情大纲。
 
-## Publisher: <br>
-[hexidyg](https://clawhub.ai/user/hexidyg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexidyg](https://clawhub.ai/user/hexidyg)
 
-## Use Case: <br>
-中文短剧创作者、短视频策划者和内容团队使用此技能，将一句话创意扩展为约 500 字的剧情大纲，并标注爽点、逆袭路径和核心看点。 <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated plots may be unoriginal, inappropriate, or misaligned with a team's content standards. <br>
-Mitigation: Review generated outlines for originality, appropriateness, and content-policy fit before publication or production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexidyg/conceive-short-drama-cn) <br>
+## Use Case:
 
+Chinese-language creators, writers, and agents use this skill to turn a short story idea into a compact short-drama plot outline with escalating conflict, emotional payoff, positive values, and categorized story hooks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative outline in Chinese with categorized highlights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool use, file access, credentials, installs, or background access required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is optimized for Chinese-language short-drama ideation and may not match another requested language by default.
+
+Mitigation: Ask explicitly for the preferred output language when non-Chinese output is required.
+
+Risk: Generated plot outlines may still require editorial review for audience, brand, or platform content standards.
+
+Mitigation: Review outputs before publication and keep the skill's positive-content constraints against graphic violence or harmful negative descriptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexidyg/skills/conceive-short-drama-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with Chinese narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an approximately 500-character pure narrative outline plus categorized story hooks, reversal path, and core highlights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

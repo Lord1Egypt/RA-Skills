@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "checker": "check_restricted_scope.py",
+  "contract": "money-case-good.json",
+  "profiles": [
+    "restricted-scope"
+  ],
+  "mutants": [
+    {
+      "id": "item-left",
+      "class": "fragment-left-in-item",
+      "file": "money-list.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "物品": "话筒"
+          },
+          "column": "物品",
+          "value": "话筒押金50元"
+        }
+      ]
+    },
+    {
+      "id": "note-left",
+      "class": "fragment-left-in-note",
+      "file": "money-list.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "物品": "音箱"
+          },
+          "column": "备注",
+          "value": "赔偿五十元已处理"
+        }
+      ]
+    },
+    {
+      "id": "reminder-left",
+      "class": "fragment-left-in-reminder",
+      "file": "money-reminder.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "话筒 完好",
+          "replace": "话筒 完好 押金50元"
+        }
+      ]
+    },
+    {
+      "id": "keep-deleted",
+      "class": "keep-content-deleted",
+      "file": "money-list.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "物品": "三元件"
+          },
+          "column": "物品",
+          "value": "件"
+        }
+      ]
+    },
+    {
+      "id": "digits-left",
+      "class": "partial-digits-left",
+      "file": "money-list.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "物品": "幕布"
+          },
+          "column": "备注",
+          "value": "637"
+        }
+      ]
+    },
+    {
+      "id": "reminder-digits",
+      "class": "partial-digits-left",
+      "file": "money-reminder.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "音箱 已处理",
+          "replace": "音箱 五十 已处理"
+        }
+      ]
+    }
+  ]
+}

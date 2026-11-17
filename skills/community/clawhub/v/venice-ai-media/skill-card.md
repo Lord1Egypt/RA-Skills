@@ -1,43 +1,63 @@
-## Description: <br>
-Generate, edit, and upscale images; create videos from images via Venice AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, edit, and upscale images and create videos from images via Venice AI, with support for text-to-image, image-to-video (Sora, WAN), upscaling, and AI editing.
 
-## Publisher: <br>
-[nhannah](https://clawhub.ai/user/nhannah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nhannah](https://clawhub.ai/user/nhannah)
 
-## Use Case: <br>
-Developers and AI assistants use this skill to generate media assets, edit or upscale source images, and create short image-to-video outputs through Venice AI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source images, and generated media are sent to Venice AI. <br>
-Mitigation: Avoid submitting sensitive photos, documents, audio, or private prompt text unless Venice AI's data handling is acceptable for the use case. <br>
-Risk: Image and video generation can spend Venice API credits, especially longer or higher-resolution video jobs. <br>
-Mitigation: Use a dedicated revocable Venice API key, monitor credit usage, and use quote mode before expensive video generation. <br>
-Risk: Embedding EXIF metadata can expose prompt text or generation details when images are shared. <br>
-Mitigation: Avoid --embed-exif for sensitive prompts or strip metadata before distributing generated images. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Venice AI](https://venice.ai) <br>
-- [Venice API settings](https://venice.ai/settings/api) <br>
-- [ClawHub skill page](https://clawhub.ai/nhannah/venice-ai-media) <br>
+## Use Case:
 
+Developers and creative operators use this skill to generate images, edit and upscale existing images, quote and create image-to-video jobs, and return generated media files from Venice AI.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown instructions with shell command examples and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media scripts print MEDIA lines for agent attachment; use VENICE_API_KEY for authenticated Venice API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: URL-based image inputs can fetch arbitrary internal, private, or large URLs from the user's machine and forward them to Venice.
+
+Mitigation: Prefer local image files; only pass trusted public image URLs; avoid internal, private, or unusually large URLs.
+
+Risk: The Venice API key may be stored in the user environment or Clawdbot configuration file.
+
+Mitigation: Protect the configuration file, keep API keys out of shared logs and prompts, and rotate keys if exposure is suspected.
+
+Risk: Embedding prompts in image EXIF metadata can disclose sensitive generation details.
+
+Mitigation: Avoid --embed-exif for sensitive prompts or when generated files will be shared externally.
+
+Risk: --no-validate can bypass model availability checks and affect cost, behavior, or safety filtering.
+
+Mitigation: Use model validation by default, run --list-models before selecting new models, and use --quote for video generation cost checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nhannah/skills/venice-ai-media)
+- [Venice AI Homepage](https://venice.ai)
+- [Venice API Key Settings](https://venice.ai/settings/api)
+- [Venice API Base Endpoint](https://api.venice.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, media files]
+
+**Output Format:** [Markdown guidance with shell commands and generated media file paths; scripts print MEDIA lines for attachment.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ and VENICE_API_KEY; output media can be image or video files depending on the selected command.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

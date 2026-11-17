@@ -1,49 +1,65 @@
-## Description: <br>
-LoongFlow guides an agent through PEES iterative optimization, using either a native async subagent loop or a LoongFlow Engine background evolutionary search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LoongFlow helps agents run PEES iterations and optional evolutionary search to improve code, algorithms, prompts, or other tasks toward a target score.
 
-## Publisher: <br>
-[freshmand](https://clawhub.ai/user/freshmand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freshmand](https://clawhub.ai/user/freshmand)
 
-## Use Case: <br>
-Developers and engineers use this skill when a coding, algorithm, prompt, or optimization task needs structured iteration rather than a single pass. It helps choose between a short native PEES loop and a longer background evolutionary search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run iterative jobs in the background and modify workspace files. <br>
-Mitigation: Use a dedicated workspace or branch and review resulting file changes before merging or deploying them. <br>
-Risk: Engine mode may install code from a moving GitHub branch. <br>
-Mitigation: Review the downloaded source and pin or record the revision before using it for sensitive work. <br>
-Risk: Monitoring can read LoongFlow task logs across configured workspaces and send progress summaries to a detected user. <br>
-Mitigation: Review created cron jobs, task registries, and notification routing before starting tasks. <br>
-Risk: Engine mode relies on API key and base URL environment variables. <br>
-Mitigation: Avoid exposing API keys in task files or logs and use scoped credentials where available. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose a PEES mode, launch iterative agent work, and monitor optimization tasks where a single pass is insufficient.
 
-## Reference(s): <br>
-- [LoongFlow ClawHub page](https://clawhub.ai/freshmand/loongflow) <br>
-- [Publisher profile](https://clawhub.ai/user/freshmand) <br>
-- [LoongFlow repository](https://github.com/baidu-baige/LoongFlow) <br>
-- [Native PEES Mode](references/native-pees.md) <br>
-- [LoongFlow Engine Mode](references/engine-mode.md) <br>
-- [LoongFlow Monitoring Cron](references/monitoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell and configuration snippets, plus workspace task files and progress summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create task registries, iteration artifacts, background jobs, logs, and final result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can launch autonomous optimization work and create recurring monitoring behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before starting background work or creating a recurring cron, and review the task scope before execution.
+
+Risk: Engine mode can install mutable remote code from GitHub.
+
+Mitigation: Pin and review the engine source before installation or execution.
+
+Risk: Engine setup can expose part of an API key in command output.
+
+Mitigation: Remove API-key echoing and avoid logging secrets before using engine mode.
+
+Risk: Monitoring can read task and log content across configured workspaces and send progress summaries.
+
+Mitigation: Scope monitoring to one approved workspace and one intended recipient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freshmand/skills/loongflow)
+- [LoongFlow GitHub Repository](https://github.com/baidu-baige/LoongFlow)
+- [Native PEES Mode](references/native-pees.md)
+- [LoongFlow Engine Mode](references/engine-mode.md)
+- [LoongFlow Monitoring](references/monitoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create task records, engine configuration, background work, progress summaries, and notification commands after the user selects a mode.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

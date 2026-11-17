@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-source-driven-development",
-  "version": "2.5.0",
-  "description": "Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions; Chinese triggers include 查官方文档, 以源码为准, source-driven, 版本差异.",
+  "version": "2.9.0",
+  "description": "Use when frontend decisions depend on framework, library, browser, runtime, package, API, or platform behavior that may have changed, including official documentation checks, version-sensitive patterns, migration choices, or public interface assumptions; Chinese triggers include Check official documentation, source code shall prevail, source-driven, version differences.",
   "type": "module",
   "license": "MIT",
   "author": {

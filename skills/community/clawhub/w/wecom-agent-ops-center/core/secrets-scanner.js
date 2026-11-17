@@ -108,19 +108,19 @@ const BUILTIN_PATTERNS = [
   // ── 私钥 ─────────────────────────────────────────
   {
     name: 'RSA Private Key',
-    pattern: /-----BEGIN RSA PRIVATE KEY-----[\s\S]{20,}-----END RSA PRIVATE KEY-----/g,
+    pattern: /REDACTED-SECRET/g,
     severity: 'critical',
     category: 'private_key',
   },
   {
     name: 'EC Private Key',
-    pattern: /-----BEGIN EC PRIVATE KEY-----[\s\S]{20,}-----END EC PRIVATE KEY-----/g,
+    pattern: /REDACTED-SECRET/g,
     severity: 'critical',
     category: 'private_key',
   },
   {
     name: 'OpenSSH Private Key',
-    pattern: /-----BEGIN OPENSSH PRIVATE KEY-----[\s\S]{20,}-----END OPENSSH PRIVATE KEY-----/g,
+    pattern: /REDACTED-SECRET/g,
     severity: 'critical',
     category: 'private_key',
   },

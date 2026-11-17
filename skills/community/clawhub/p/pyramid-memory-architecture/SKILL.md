@@ -1,14 +1,14 @@
 ---
 name: 金字塔记忆架构
-version: 3.4.0
-description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:顶层(AGENTS.md)只放铁律级行为规则,中层(MEMORY.md/SOUL.md/HEARTBEAT.md)放业务规则和人格配置,底层(SKILL.md/TOOLS.md)放技术实现细节。适用于所有新建子 Agent 工作区初始化。触发场景:创建新 Agent、初始化工作区、记忆架构设计、规则录入引导、md 文件冗余检查、触发机制职责划分、任务归属标记检查。
+version: 3.6.0
+description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:顶层(AGENTS.md)只放铁律级行为规则,中层(MEMORY.md/SOUL.md/HEARTBEAT.md)放业务规则和人格配置,底层(SKILL.md/TOOLS.md)放技术实现细节。适用于所有新建子 Agent 工作区初始化。触发场景:创建新 Agent、初始化工作区、记忆架构设计、规则录入引导、md 文件冗余检查、触发机制职责划分、任务归属标记检查、cron锚点格式检查、cron复杂度分级。
 ---
 
 # 金字塔记忆架构(Pyramid Memory Architecture)
 
 > 本 Skill 提供一套标准化的 Agent 记忆分层架构,适用于任何新建子 Agent 工作区。
 > 核心理念:**规则按触发优先级分层存放,引导只能从上往下,下层不引导回上层。**
-> 版本:**v3.4** - 第9项新增:Heartbeat-Cron任务归属标记检查(杜绝重复执行)
+> 版本:**v3.6** - Cron任务按复杂度分级:简单任务用锚点引导,复杂任务直写进cron payload,彻底解决隔离会话引导断裂问题
 
 ## 📐 架构总览
 
@@ -34,7 +34,7 @@ description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:
 | **顶层** | `AGENTS.md` | 系统级注入,每次必加载 | 铁律级行为规则、安全红线、引导表 |
 | **中层** | `MEMORY.md` | 主会话系统注入 | 业务触发规则、长期记忆、项目规则 |
 | **中层** | `SOUL.md` | 系统级注入 | 人格、身份、使命、行为准则 |
-| **中层** | `HEARTBEAT.md` | 心跳触发时加载 | 待办提醒、报告队列、周期性检查清单 |
+| **中层** | `HEARTBEAT.md` | cron触发时通过锚点引导加载 | 待办提醒、报告队列、周期性检查清单 |
 | **中层** | `IDENTITY.md` | 系统级注入 | Agent 身份卡片(名字、形象、表情) |
 | **中层** | `USER.md` | 系统级注入 | 主人信息、作息、偏好 |
 | **中层** | `TOOLS.md` | 系统级注入 | 本地配置笔记(设备、端口、Cookie) |
@@ -62,7 +62,7 @@ description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:
 
 **注入文件**(每次对话自动加载,Agent 一定能读到):
 - `AGENTS.md` `SOUL.md` `MEMORY.md` `IDENTITY.md` `USER.md` `TOOLS.md`(由 OpenClaw 系统注入)
-- `HEARTBEAT.md`(心跳触发时加载)
+- `HEARTBEAT.md`(cron 触发时通过锚点引导加载)
 
 **非注入文件**(需要 Agent 主动读取,可能读不到):
 - `SKILL.md`(需 `<available_skills>` 匹配才自动读取)
@@ -79,7 +79,7 @@ description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:
 ### ⚠️ 隔离场景直写铁律
 <!-- #isolated-direct-write -->
 
-**cron 定时任务、子 agent、隔离会话中,禁止使用多级引导(详见XX),规则必须直写在 prompt 里。**
+**cron 定时任务、子 agent、隔离会话中,禁止使用多级引导(详见 SKILL.md「隔离场景直写铁律」(#isolated-direct-write)),规则必须直写在 prompt 里。**
 
 原因:隔离会话不加载 MEMORY.md/SOUL.md/HEARTBEAT.md 等注入文件,引导会断裂。
 
@@ -109,6 +109,29 @@ description: 通用 AI Agent 记忆架构 Skill。采用"金字塔"分层结构:
 ```
 
 **总结:主会话对话可以 A→B→C 多级联链,隔离场景必须一句话写完,不要跳转。**
+
+### ⚠️ 隔离场景 Cron 任务复杂度分级
+<!-- #cron-complexity-grades -->
+
+**核心原则:按任务复杂度决定 cron payload 的写法,不搞一刀切。**
+
+| 级别 | 任务特征 | 示例 | payload 写法 |
+|------|---------|------|-------------|
+| **简单** | 规则少(≤3条)、逻辑简单、无需查外部文件 | 值班日判断、每月1号提醒 | 锚点引导:读 HEARTBEAT.md #xxx 锚点区块 |
+| **中等** | 规则适中(4-8条)、需要1-2步判断 | 工作汇报整理、缺陷归档 | 锚点引导 + 关键步骤直写 |
+| **复杂** | 规则多(≥9条)、需要多步检查、有报告模板 | 冗余检查9项清单 | 完整直写:9项清单+报告模板全部写进payload |
+
+**为什么要分级:**
+- 简单任务用锚点引导:保持规则集中管理,HEARTBEAT.md 改一次所有 cron 自动生效
+- 复杂任务直写:避免多级引导断裂(隔离会话可能不读 SKILL.md 正文),确保执行完整性
+
+**复杂任务 cron payload 标准写法:**
+1. 先声明:"以下是完整执行指令,不需要跳转任何文件"
+2. 把 SKILL.md 中的完整 9 项清单逐条写入 payload
+3. 把报告模板也写入 payload
+4. HEARTBEAT.md 里只留一句简短说明(标注"详见cron payload直写"),不重复规则内容
+
+**第9项检查标准(见下方):** 按复杂度分级来检查,不再要求"必须锚点引导"。
 
 ### 规则分类决策树
 <!-- #rule-classify-tree -->
@@ -281,30 +304,46 @@ MEMORY.md(业务规则)
 ### 触发机制配置
 <!-- #trigger-setup -->
 
-冗余检查**不会自动触发**，需要手动配置触发器。根据 Agent 类型选择方案：
+冗余检查**不会自动触发**，需要手动配置触发器。推荐使用 **cron 定时任务**：
 
-**方案 A：Heartbeat + 状态文件（推荐，适用于有心跳的 Agent）**
+**方案：cron 定时任务（推荐）— 复杂度「复杂」级，直写进 payload**
 
-1. **在 `HEARTBEAT.md` 添加任务**：
+1. **在 `HEARTBEAT.md` 添加简短锚点区块**（不重复完整规则，标注详见cron payload）：
    ```markdown
+   <!-- #redundancy-check -->
    ## 🔺 金字塔冗余检查（每 3 天一次）
-   1. 读取 `memory/redundancy-check-state.json`，检查 `lastCheckDate`
-   2. 如果距今天 ≥ 3 天，或 `lastCheck` 为 `null`（首次），则执行
-   3. 按本 Skill `#redundancy-check` 的 9 项清单逐一检查
-   4. 向主人汇报结果（只汇报，不擅自修改，等确认再清理）
-   5. 更新 `memory/redundancy-check-state.json` 的 `lastCheck` 和 `lastCheckDate`
+   - 此为复杂任务，完整 9 项清单和报告模板直写在 cron payload 中
+   - 详见对应 cron payload 直写内容
    ```
-2. **创建状态文件** `memory/redundancy-check-state.json`：
-   ```json
-   {
-     "lastCheck": null,
-     "lastCheckDate": null
-   }
+2. **创建 cron 任务**，payload 直写完整 9 项清单：
    ```
-
-**方案 B：cron 定时任务（无心跳的 Agent）**
-
-隔离会话无法读取 Skill，必须把 9 项检查流程完整写在 cron prompt 里，不能用「详见 SKILL.md」引导。
+   以下是金字塔冗余检查完整执行指令（复杂任务直写，不需要跳转任何文件）：
+   先读 memory/redundancy-check-state.json 判断是否≥3天间隔，然后逐项执行以下 9 项检查：
+   1.内容冗余:同一规则是否出现在多个文件中
+   2.引导方向:有没有底层文件引导回顶层
+   3.锚点一致性:引导语里#[锚点]是否在目标文件中真实存在
+   4.引导格式:是否都使用"详见[文件][章节名](#[锚点])"格式
+   5.版本历史:各SKILL.md版本历史是否超过2条
+   6.文件大小:各md文件是否异常膨胀(>3KB需检查)
+   7.金字塔合规(动态词指纹):扫描所有SKILL.md提取技术关键词→匹配MEMORY.md→发现错位建议移至SKILL.md;检查AGENTS.md是否有操作类内容应下放;检查MEMORY.md是否有铁律类内容应上移
+   8.连接建议:只在明显相关时才建议级联
+   9.Cron锚点格式:按复杂度分级检查—简单任务应锚点引导,复杂任务应直写;检查HEARTBEAT.md锚点唯一性和命名规范;检查cron与HEARTBEAT.md一一对应;检查无重复规则
+   最后按以下模板格式汇报:
+   ##冗余检查报告(日期)
+   |检查项|状态|详情|
+   |内容冗余|✅/❌|...|
+   |引导方向|✅/❌|...|
+   |锚点一致性|✅/❌|...|
+   |引导格式|✅/❌|...|
+   |版本历史|✅/❌|...|
+   |文件大小|✅/❌|...|
+   |金字塔合规|✅/❌|...|
+   |连接建议|💡/无|...|
+   |触发机制+锚点|✅/⚠️|...|
+   发现问题/层级放错建议/锚点格式告警/建议操作
+   注意:只检查不擅自修改,等主人确认再清理。完成后更新 memory/redundancy-check-state.json。
+   ```
+3. **Schedule**: `0 12 */3 * *`（每 3 天中午 12 点）
 
 ### 9 项检查清单
 
@@ -323,38 +362,19 @@ MEMORY.md(业务规则)
    - **Step 4**: 同时检查 AGENTS.md 中是否包含操作/技术类内容（应下放至 SKILL.md）
    - **Step 5**: 检查 MEMORY.md 中是否包含铁律/红线类内容（应上移至 AGENTS.md）
 8. **连接建议**:只在发现明显主题相关的规则时才建议级联,不全量扫描
-9. **触发机制职责划分+健康检查+通道校验+触发-流程链路完整性**:
-   - **三域扫描**:扫描当前agent自己workspace下的HEARTBEAT.md流程规则、当前agent的cron任务列表、当前agent的launchd任务列表(**只检查本agent区域,不干涉其他agent**)
-   - **同域去重**:
-     - Cron内部:同一个功能不能建两个cron任务
-     - Launchd内部:不能重复配置
-     - Cron vs Launchd:同一功能不能既配cron又配launchd脚本
-     - ⚠️ HEARTBEAT.md vs Cron**不去重**(它们是配套关系:流程说明书+闹钟)
-   - **触发状态健康检查**:
-     - **Heartbeat**:检查当前agent的heartbeat是否启用、间隔是否正常、上次触发时间
-     - **Cron**:检查当前agent的cron任务status是否为ok、Last是否有值(证明跑过)、有无失败记录
-     - **Launchd**:检查PID是否存在、LastExitStatus是否为0(正常退出)、有无crash重启
-     - 发现问题标记:⚠️配置了但没触发 / ⚠️触发了但失败 / ⚠️从来没跑过
-   - **触发机制职责划分**:
-     - 逐个分析任务特性,推荐最适合的机制:
-       - **launchd**(macOS系统级):不需要OpenClaw会话的独立任务,如脚本执行、文件备份、系统健康检查
-       - **Cron**(OpenClaw内置):需要精确时间点触发、隔离会话执行的任务,如"周三14:00开会""每日23:00写日志"
-       - **Heartbeat**(OpenClaw主会话唤醒):不需要精确时间点,定期唤醒判断状态再执行的任务,如"每3天冗余检查""值班日判断"
-   - **推送通道校验**:
-     - 检查每个提醒任务的delivery target(agent+channel)是否与任务类型匹配
-     - 工作类应走微信通道,舞蹈类可走石榴的QQ通道,运维类走栗子QQ通道
-     - 发现问题标记:⚠️工作提醒推到了QQ / ⚠️舞蹈提醒推到了微信 / ⚠️推送到不存在的通道
-   - **触发-流程链路完整性**:
-     - HEARTBEAT.md有流程 → 有没有对应cron触发?(防遗漏)
-     - cron有任务 → prompt有没有正确引用HEARTBEAT.md对应区块?(防断链)
-     - cron prompt是否包含"读HEARTBEAT.md第X区块,按流程执行"的明确指令?(隔离会话必须一句话写完规则,不能跳转引用)
-     - 有没有cron触发了但HEARTBEAT.md没对应流程的?(防空转)
-   - **Heartbeat-Cron任务归属标记检查**:
-     - HEARTBEAT.md每个任务是否明确标注归属?(cron/heartbeat/流程参考)
-     - 已配cron的任务 → HEARTBEAT.md是否标记为"流程参考"或"走cron",避免heartbeat重复执行?
-     - 没有配cron的任务 → 是否标注为"heartbeat待执行"?
-     - 发现问题标记:⚠️任务归属不明 / ⚠️已配cron但HEARTBEAT未标注流程参考
-   - 生成报告汇报给主人,等确认后再调整,不自动修改
+9. **Cron锚点格式检查（v3.6升级:按复杂度分级）:**
+   - **复杂度分级检查**（新增）：
+     - 简单任务(≤3条规则、逻辑简单):cron payload 应使用锚点引导(如「读 HEARTBEAT.md 的 #xxx 锚点区块」)
+     - 复杂任务(≥9条规则、多步检查、有报告模板):cron payload 应直写完整清单,不再强制锚点引导
+     - 中等任务(4-8条):锚点引导+关键步骤直写
+     - 检查方法:按任务实际规则条数判断属于哪一级,确认 cron payload 写法匹配
+   - HEARTBEAT.md 每个任务块必须有唯一锚点（`<!-- #xxx -->`）
+   - 锚点格式：`<!-- #xxx -->`，命名规范「领域-功能」，全小写+短横线
+   - **直写任务检查**：复杂任务直写时,HEARTBEAT.md 锚点区块应只留简短说明(标注"详见cron payload"),不重复完整规则
+   - 检查 HEARTBEAT.md 锚点与 cron 任务一一对应，无遗漏/冗余
+   - 检查是否有重复的规则内容（同一规则既完整出现在 HEARTBEAT.md 又完整出现在 cron payload 里——复杂任务除外）
+   - 检查 HEARTBEAT.md 锚点格式是否规范（锚点必须在章节标题前一行，不能悬空或重复）
+   - 生成报告汇报给主人，等确认后再调整，不自动修改
 
 ### 执行步骤
 
@@ -368,15 +388,15 @@ MEMORY.md(业务规则)
    d. 扫描 MEMORY.md,发现铁律/红线类内容→建议上移至 AGENTS.md
    e. 检查 MEMORY.md 是否违反 Skill 自包含原则(含操作步骤/API/标题公式等)
 4. 第8项(连接建议):只在发现明显主题相关的规则时才建议级联(如两条都是运维安全类),不强制
-5. 第9项(触发机制职责划分+健康检查+通道校验+链路完整性+归属标记):
-   a. 扫描当前agent自己workspace下的HEARTBEAT.md所有流程规则(cron和launchd只查当前agent的,通过agentId过滤,不干涉其他agent)
-   b. 同域去重:cron内部/cron与launchd之间的重复任务
-   c. 触发状态健康检查:Heartbeat启用状态、Cron Last值、Launchd PID和ExitStatus
-   d. 触发机制职责划分:逐个分析推荐最适合机制(launchd/cron/heartbeat)
-   e. 推送通道校验:检查delivery target是否与任务类型匹配
-   f. 触发-流程链路完整性:HEARTBEAT.md流程vs cron prompt双向检查,确保链路完整
-   g. 任务归属标记检查:HEARTBEAT.md每个任务是否明确标注归属(cron/heartbeat/流程参考)
-   h. 生成报告,汇报给主人,等确认后再调整
+5. 第9项(Cron锚点格式检查):
+   a. **复杂度分级判断**:按任务规则条数判断级别(简单≤3/中等4-8/复杂≥9)
+   b. 简单任务:检查是否使用锚点引导
+   c. 复杂任务:检查是否直写完整清单,HEARTBEAT.md是否只留简短说明
+   d. 检查 HEARTBEAT.md 每个任务块是否有唯一锚点（<!-- #xxx -->）
+   e. 检查锚点格式是否规范（命名：领域-功能，全小写+短横线）
+   f. 检查 HEARTBEAT.md 锚点与 cron 任务一一对应，无遗漏/冗余
+   g. 检查是否有重复规则
+   h. 生成报告，汇报给主人，等确认后再调整
 8. 按照金字塔架构规则,以高层级文件为准,删除低层级重复
 9. 向主人汇报检查结果,确认后执行清理
 10. **更新状态文件**：写入当前时间到 `memory/redundancy-check-state.json`（仅 Heartbeat 方案）
@@ -396,15 +416,12 @@ MEMORY.md(业务规则)
 | 文件大小 | ✅/❌ | ... |
 | 金字塔合规 | ✅/❌ | 动态词指纹检查结果 + 层级错位详情 |
 | 连接建议 | 💡/无 | 仅明显相关时建议 |
-| 触发机制划分+链路完整性 | ✅/⚠️ | 三域职责划分+健康检查+通道校验+触发-流程链路完整性(仅本agent区域) |
+| 触发机制划分+锚点格式 | ✅/⚠️ | cron锚点格式+HEARTBEAT.md锚点规范+一一对应检查 |
 
 发现问题:[描述]
 层级放错建议:[描述]
 重复触发风险:[同一任务出现在两个及以上机制中时列出]
-触发健康告警:[配置了但没触发/触发了但失败/从来没跑过的任务]
-通道校验告警:[工作提醒推到了QQ/舞蹈提醒推到了微信/推送到不存在的通道]
-链路完整性告警:[HEARTBEAT有流程但无cron触发/cron有任务但HEARTBEAT无对应流程/cron prompt未正确引用HEARTBEAT区块]
-归属标记告警:[任务归属不明/已配cron但HEARTBEAT未标注流程参考/未标注heartbeat待执行]
+锚点格式告警:[HEARTBEAT.md锚点格式不规范/锚点与cron不一一对应/规则重复出现在HEARTBEAT.md和cron payload中]
 归类建议:[每个任务推荐放的触发机制及理由]
 连接建议:[仅明显相关时才提]
 建议操作:[描述]
@@ -457,5 +474,6 @@ workspace-{name}/
 ## 📖 版本历史
 
 | 版本 | 日期 | 变更 |
-| v3.4 | 2026-05-31 | **第9项新增任务归属标记检查**:1新增HEARTBEAT-Cron任务归属标记检查(每个任务必须标注归属:走cron/走heartbeat/流程参考);2防止已配cron的任务被heartbeat重复执行;3HEARTBEAT.md已配cron任务应标注为"流程参考"未配cron任务标注为"heartbeat待执行";4发现问题标记告警;5生成报告不自动修改 ✅ |
-| v3.3 | 2026-05-31 | **第9项重构为触发-流程链路完整性**:1明确HEARTBEAT.md=Cron配套关系(流程说明书+闹钟)不去重;2新增同域去重(cron内部/cron与launchd);3新增Agent隔离(只查本agent区域,按agentId过滤,不干涉其他agent);4新增推送通道校验(agent+channel匹配);5新增触发-流程链路完整性双向检查(HEARTBEAT流程vs cron prompt);6新增cron prompt规范(隔离会话一句话写完规则,禁止跳转引用);7生成报告不自动修改 ✅ |
+| v3.6 | 2026-06-07 | **Cron任务按复杂度分级(修复引导断裂)**:1新增#cron-complexity-grades分级规则(简单≤3条锚点引导/中等4-8条混合/复杂≥9条直写);2#trigger-setup冗余检查改为直写9项清单+报告模板进payload;3第9项检查标准更新为按复杂度分级检查,不再一刀切要求锚点引导;4解决隔离会话引导链断裂导致agent偷懒跑简化版的问题 ✅ |
+| v3.5 | 2026-06-05 | **第9项重构为Cron锚点格式检查**:1HEARTBEAT.md改为cron触发时通过锚点引导加载;2每个任务块必须有唯一锚点(<!--#xxx-->);3cron payload使用锚点引导(而非硬编码长规则);4检查锚点与cron一一对应,无遗漏/冗余;5检查是否有重复规则(同一规则既在HEARTBEAT.md又在cron payload硬编码);6生成报告不自动修改 ✅ |
+

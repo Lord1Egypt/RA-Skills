@@ -1,37 +1,50 @@
-## Description: <br>
-Fix a bug from BugPack by reading its context, locating code, applying fixes, and updating status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix a BugPack issue by reading its context, locating relevant code, applying a fix, and updating the local BugPack status.
 
-## Publisher: <br>
-[duhuazhu](https://clawhub.ai/user/duhuazhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duhuazhu](https://clawhub.ai/user/duhuazhu)
 
-## Use Case: <br>
-Developers and coding agents use this skill when asked to fix a BugPack issue: it fetches bug context, analyzes screenshots and related files, edits the relevant code, and updates the bug status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may apply an incorrect code change or update the wrong BugPack issue status. <br>
-Mitigation: Review the diff, run relevant tests, and confirm the correct bug ID before relying on the fixed status. <br>
+## Use Case:
 
+Developers and agents use this skill when asked to resolve a BugPack issue. It guides them through fetching bug context, reviewing screenshots and related files, applying code changes, and updating the BugPack status.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell-style API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source edits and BugPack status updates performed by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The agent may mark a BugPack issue as fixed before the code change has been adequately validated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code diff and confirm tests or manual checks support the fix before relying on the final status update.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duhuazhu/skills/bugpack-fix-bug)
+- [Publisher Profile](https://clawhub.ai/user/duhuazhu)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and concise status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local BugPack API requests and code diff summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

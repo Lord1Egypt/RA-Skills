@@ -1,43 +1,59 @@
-## Description: <br>
-Calculates halachic times (zmanim), Shabbos times, candle lighting, Daf Yomi, weekly parsha, and Jewish calendar dates for a given location and date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate Halachic times (zmanim), Shabbos times, candle lighting, Daf Yomi, weekly parsha, and related Jewish calendar dates for a requested location and date.
 
-## Publisher: <br>
-[abeperl](https://clawhub.ai/user/abeperl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeperl](https://clawhub.ai/user/abeperl)
 
-## Use Case: <br>
-External users and agents use this skill to answer Jewish calendar questions, including zmanim, Shabbos and candle-lighting times, Daf Yomi, parsha, and upcoming Yom Tov dates for a specified location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location inputs or coordinates may be sent to Hebcal when calculations run. <br>
-Mitigation: Use explicit city or coordinate inputs intentionally and avoid sharing sensitive location data when privacy matters. <br>
-Risk: Important halachic times may vary by local custom, calculation method, or edge-case geography. <br>
-Mitigation: Verify important zmanim with a trusted local source before relying on them for observance. <br>
-Risk: Some documented IP, ZIP, or positional examples may not work as described. <br>
-Mitigation: Prefer explicit city names or latitude and longitude inputs and test commands before operational use. <br>
+## Use Case:
 
+External users and developers use this skill to answer Jewish calendar and zmanim requests, including Shabbos times, candle lighting, sunrise/sunset, Daf Yomi, parsha, and Yom Tov lookups.
 
-## Reference(s): <br>
-- [Hebcal API](https://www.hebcal.com/hebcal) <br>
-- [GeoNames Search API](http://api.geonames.org/searchJSON) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON command output, with Markdown usage guidance and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external location and calendar APIs when calculations run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Optional dependency installation is unpinned and may install changing package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the bundled script without installing dependencies where possible, or install dependencies in an isolated environment with pinned versions.
+
+Risk: Location-based API use can disclose city or coordinate information, and advertised IP auto-detection is not documented in the artifact.
+
+Mitigation: Provide city or coordinates intentionally, and avoid IP auto-detection unless the publisher documents the behavior and obtains user consent.
+
+Risk: Zmanim and Yom Tov guidance can vary by location and local minhag.
+
+Mitigation: Verify observance-sensitive results against local rabbinic or community guidance before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeperl/skills/zmanim-calculator)
+- [Hebcal API](https://www.hebcal.com/hebcal)
+- [GeoNames search API](http://api.geonames.org/searchJSON)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, plain text output, and optional JSON output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on requested location, date, and calendar mode; network-backed lookups may be unavailable or incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

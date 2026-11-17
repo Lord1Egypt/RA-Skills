@@ -1,46 +1,59 @@
-## Description: <br>
-Invention disclosure template, checklist, and Markdown-to-Word export (no third-party API token). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invention disclosure template, checklist, and Markdown-to-Word export (no third-party API token).
 
-## Publisher: <br>
-[windinwing](https://clawhub.ai/user/windinwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windinwing](https://clawhub.ai/user/windinwing)
 
-## Use Case: <br>
-External users and developers use this skill to collect invention disclosure details, draft a structured patent disclosure, compare prior art with a related patent-search workflow, and export the completed Markdown disclosure to a Word document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invention disclosures can contain sensitive business and patent strategy information. <br>
-Mitigation: Limit access to generated files and confirm upload or download retention policies before sharing disclosure content. <br>
-Risk: Word export depends on python-docx and may attempt dependency installation if it is unavailable. <br>
-Mitigation: Install and approve python-docx up front in controlled environments, or rely on the Markdown fallback when dependency installation is not acceptable. <br>
-Risk: Patentability comments and prior-art comparisons may be incomplete or unsuitable for filing decisions. <br>
-Mitigation: Have a qualified patent professional review the disclosure before filing or making legal decisions. <br>
+## Use Case:
 
+Developers, inventors, and patent workflow teams use this skill to draft invention disclosure Markdown, check required disclosure details, compare against prior art with patent-search, and export completed disclosures as downloadable Word files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windinwing/patent-disclosure) <br>
-- [Publisher profile](https://clawhub.ai/user/windinwing) <br>
-- [README](artifact/README.md) <br>
-- [Disclosure template](artifact/template.md) <br>
-- [Disclosure checklist](artifact/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, files] <br>
-**Output Format:** [Markdown text for templates and checklists; downloadable Word (.docx) or Markdown file for exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Export expects complete disclosure Markdown content and can fall back to Markdown output when Word export dependencies are unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The export path can install an unpinned python-docx package at runtime, changing the local Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install python-docx through a controlled, pinned dependency process before use, or disable runtime package installation in shared and sensitive environments.
+
+Risk: Generated invention disclosure files can contain confidential patent information and may be saved to the configured upload directory.
+
+Mitigation: Use an approved upload location, limit access to generated files, and remove exported disclosure files when they are no longer needed.
+
+Risk: Patentability comments are only drafting support and are not legal advice.
+
+Mitigation: Have a qualified patent attorney or agent review the disclosure before filing or relying on patentability conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windinwing/skills/patent-disclosure)
+- [Publisher profile](https://clawhub.ai/user/windinwing)
+- [OpenClaw](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance and downloadable .docx or .md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The export command accepts completed Markdown content and may return a local download asset.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

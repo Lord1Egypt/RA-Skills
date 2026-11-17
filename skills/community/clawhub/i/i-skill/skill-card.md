@@ -1,42 +1,53 @@
-## Description: <br>
-Generates personalized interaction guides by analyzing user conversations so assistants can adapt responses to user preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized interaction guides by analyzing user conversations so assistants can adapt responses to user preferences.
 
-## Publisher: <br>
-[neuhanli](https://clawhub.ai/user/neuhanli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuhanli](https://clawhub.ai/user/neuhanli)
 
-## Use Case: <br>
-Agents and users use this skill to build and maintain a local personalization profile from consented conversation signals, enabling customized responses while providing view, pause, reset, and delete controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores a local personalization profile and related logs that may contain personal preference data. <br>
-Mitigation: Install only when persistent local personalization is desired, keep ISKILL_DATA_PATH unset or pointed at a private dedicated directory, and protect that directory with appropriate permissions. <br>
-Risk: A generated profile can become inaccurate or include details the user later considers too sensitive. <br>
-Mitigation: Use the skill's view, pause, reset, or delete commands to inspect, stop, clear, or remove personalization data. <br>
+## Use Case:
 
+External users and assistant operators use i-skill to create and maintain a concise local personalization profile that lets an agent adapt language, format, and recommendations after manual activation.
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/neuhanli/i-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/neuhanli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown profile, JSON state files, audit logs, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent local personalization data is stored only after user activation and consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill stores and mutates a persistent local personalization profile and related consent or audit logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private data directory with restricted permissions and avoid storing sensitive identifiers in the profile.
+
+Risk: Consent and sanitization protections are described, but the security evidence says they are incomplete until enforced directly in code.
+
+Mitigation: Review profile updates before use and treat consent and sanitization behavior as requiring human oversight before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neuhanli/skills/i-skill)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, configuration]
+
+**Output Format:** [Markdown personalization profile with supporting local JSON and log records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile content is intended to remain concise and is updated only after activation or explicit update consent.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

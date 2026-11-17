@@ -1,44 +1,59 @@
-## Description: <br>
-AI Agent Detection and Response for real-time security monitoring with Sigma rules and optional LLM-powered triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Detection and Response for real-time security monitoring with Sigma rules and optional LLM-powered triage.
 
-## Publisher: <br>
-[markbriers](https://clawhub.ai/user/markbriers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[markbriers](https://clawhub.ai/user/markbriers)
 
-## Use Case: <br>
-Developers and operators use AgentShield to monitor AI agent tool calls, evaluate them against Sigma-style security rules, and optionally triage suspicious events with OpenAI or Anthropic providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation makes persistent and blocking changes to the local OpenClaw environment. <br>
-Mitigation: Review install.sh before installation and confirm that a persistent security daemon and timeout_policy=block behavior are acceptable. <br>
-Risk: The installer creates a local authentication token and configures OpenClaw to send tool-call evaluation requests to the AgentShield service. <br>
-Mitigation: Keep the generated token private, protect the AgentShield configuration file, and rotate the token if it may have been exposed. <br>
-Risk: Optional LLM triage can send security event details outside the local machine. <br>
-Mitigation: Enable OpenAI or Anthropic triage only after confirming that the provider, model, and event data handling meet the deployment's security requirements. <br>
+## Use Case:
 
+Developers and security engineers use AgentShield to monitor AI agent tool calls, evaluate activity against Sigma-style rules, and triage suspicious events before allowing or blocking actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markbriers/agentshield) <br>
-- [Publisher profile](https://clawhub.ai/user/markbriers) <br>
-- [OpenClaw metadata](artifact/claw.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation, configuration, operation, API, and troubleshooting guidance for an AgentShield security monitor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and claw.json) <br>
+Risk: The installer pulls remote AgentShield releases, Go module code, rules, and an OpenClaw plugin during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the AgentShield release process and npm plugin publisher; prefer pinned versions or verified artifacts before sensitive use.
+
+Risk: The installed service runs persistently and can observe or block AI agent tool-call and lifecycle events.
+
+Mitigation: Review the OpenClaw plugin configuration and run in audit or shadow mode first when validating behavior in a new environment.
+
+Risk: Optional LLM triage may send suspicious-event context to a configured model provider.
+
+Mitigation: Enable triage only with an approved provider and avoid sending sensitive work context unless the deployment's data-handling requirements are satisfied.
+
+## Reference(s):
+
+- [ClawHub AgentShield Skill](https://clawhub.ai/markbriers/skills/agentshield)
+- [AgentShield GitHub Repository](https://github.com/agentshield-ai/agentshield)
+- [AgentShield Sigma Rules Repository](https://github.com/agentshield-ai/sigma-ai.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline bash, YAML, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Linux and macOS on amd64 and arm64; requires either Go or curl for installation.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

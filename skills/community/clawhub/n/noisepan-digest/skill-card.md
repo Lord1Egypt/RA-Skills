@@ -1,45 +1,60 @@
-## Description: <br>
-Set up automated news digests using noisepan for signal extraction, entropia for source verification, and Hacker News blind spot detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up automated news digests using noisepan for signal extraction, entropia for source verification, and Hacker News blind spot detection.
 
-## Publisher: <br>
-[ppiankov](https://clawhub.ai/user/ppiankov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppiankov](https://clawhub.ai/user/ppiankov)
 
-## Use Case: <br>
-Developers and operators use this skill to configure automated daily news briefs, curate RSS feeds, score noisy sources, verify selected links, and schedule digest generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run third-party noisepan and entropia binaries. <br>
-Mitigation: Use Homebrew or a user-local bin directory where possible, verify release checksums, and run version or doctor commands before using the tools. <br>
-Risk: The skill includes helper scripts and scheduled jobs that fetch external feeds and execute local commands. <br>
-Mitigation: Review generated scripts before enabling cron jobs, keep the schedule explicit, and limit writes to user-owned configuration and cache paths. <br>
-Risk: The Reddit prefetch wrapper starts a temporary HTTP server for cached RSS content. <br>
-Mitigation: Bind the temporary server to 127.0.0.1 when using the wrapper and stop the process after the pull completes. <br>
+## Use Case:
 
+External developers and operators use this skill to configure daily automated news briefs, RSS feed curation, source verification, and blind spot checks that reduce manual news browsing.
 
-## Reference(s): <br>
-- [Noisepan Digest on ClawHub](https://clawhub.ai/ppiankov/noisepan-digest) <br>
-- [Noisepan project](https://github.com/ppiankov/noisepan) <br>
-- [Entropia project](https://github.com/ppiankov/entropia) <br>
-- [Agent-Native CLI Convention](https://ancc.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, cron setup steps, and digest table templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions for noisepan, entropia, RSS feed configuration, optional helper scripts, and scheduled digest prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill asks users to install mutable third-party binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or pinned verified releases, verify checksums before installation, and review install commands before execution.
+
+Risk: The Linux installation path may write to /usr/local/bin.
+
+Mitigation: Ask before system-wide installation and offer a user-local bin directory when appropriate.
+
+Risk: The helper workflow creates local automation and temporary HTTP serving.
+
+Mitigation: Bind temporary servers to 127.0.0.1, use private temporary directories, and review or remove helper scripts and cron jobs when no longer needed.
+
+## Reference(s):
+
+- [Noisepan source repository](https://github.com/ppiankov/noisepan)
+- [Entropia source repository](https://github.com/ppiankov/entropia)
+- [Agent-Native CLI Convention](https://ancc.dev)
+- [ClawHub skill page](https://clawhub.ai/ppiankov/skills/noisepan-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, YAML, and digest table examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local setup steps, helper scripts, cron prompts, RSS configuration, and quality-filtering guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

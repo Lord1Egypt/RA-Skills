@@ -1,43 +1,52 @@
-## Description: <br>
-Humanitix lets an agent read Humanitix event data and account tags through an OOMOL-connected Humanitix account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to search and read Humanitix events and tags through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to retrieve Humanitix event details, list accessible events, and list account tags from a connected Humanitix account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Humanitix account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Review the requested account access in ClawHub and connect only the Humanitix account needed for the intended use. <br>
-Risk: Connector schemas and available account data can vary by connection state, scope, or credential expiry. <br>
-Mitigation: Inspect the live connector schema before running an action and reconnect or refresh credentials only when an authentication or scope error occurs. <br>
+## Use Case:
 
+Humanitix account holders can list accessible events, retrieve event details, and review account tags.
 
-## Reference(s): <br>
-- [Humanitix ClawHub listing](https://clawhub.ai/oomol/oo-humanitix) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Humanitix homepage](https://humanitix.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include Humanitix connector command output returned as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup can execute unverified remote installation code without separate user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and authorize CLI installation separately before using the skill.
+
+## Reference(s):
+
+- [Humanitix](https://humanitix.com)
+- [Humanitix public API documentation](https://help.humanitix.com/en/articles/8888275-public-api-documentation)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Shell commands]
+
+**Output Format:** [JSON action payloads and Humanitix data via the oo CLI, with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only event and tag retrieval; event details require an event ID.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

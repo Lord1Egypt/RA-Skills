@@ -1,44 +1,64 @@
-## Description: <br>
-AI-native web demo project generator using Project Blueprint system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native web demo project generator using Project Blueprint system. Use when user wants to "build a demo", "create a web project", "generate a landing page", "make an AI tool UI", or similar requests.
 
-## Publisher: <br>
-[xianhaocao](https://clawhub.ai/user/xianhaocao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xianhaocao](https://clawhub.ai/user/xianhaocao)
 
-## Use Case: <br>
-Developers and builders use this skill to plan and scaffold AI tools, dashboards, landing pages, SaaS apps, content sites, and other web demo projects. It guides the user through project type, pages, components, UI library, design style, icons, and confirmation before generating files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose and run scaffolding commands that write files and install dependencies in the workspace. <br>
-Mitigation: Review the generated scaffolding command before confirming and run it only in a disposable or intended project folder. <br>
-Risk: The skill may fetch design references from URLs supplied by the user or listed in its catalogs. <br>
-Mitigation: Avoid providing sensitive or internal URLs as design references and review fetched design guidance before applying it. <br>
+## Use Case:
 
+Developers and designers use this skill to clarify requirements and generate AI-assisted web demo projects such as AI tools, dashboards, SaaS apps, landing pages, content sites, and marketplaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xianhaocao/awesome-demo-web-build) <br>
-- [Project Blueprint System](references/templates.md) <br>
-- [Tech Stack Best Practices](references/best-practices.md) <br>
-- [Design System Catalog](references/design-catalog.md) <br>
-- [Tech Stack Catalog](references/tech-catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration notes, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a web project structure, add DESIGN.md, install dependencies, and fetch selected design or technology documentation after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can ask an agent to run unpinned remote scaffolding tools and install npm packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact commands before execution, prefer pinned package versions, and run generation in an isolated workspace.
+
+Risk: The skill can fetch mutable remote Markdown for design and documentation inputs.
+
+Mitigation: Treat fetched DESIGN.md and documentation as untrusted data, avoid arbitrary or internal URLs, and review fetched content before applying it to generated code.
+
+Risk: The release includes a local Claude settings file that disables figma-developer-mcp.
+
+Mitigation: Check whether the local settings file is expected before installation and remove or override it when it conflicts with the target agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xianhaocao/skills/awesome-demo-web-build)
+- [Project Blueprint System](artifact/references/templates.md)
+- [Tech Stack Best Practices](artifact/references/best-practices.md)
+- [Design System Catalog](artifact/references/design-catalog.md)
+- [Tech Stack Catalog](artifact/references/tech-catalog.md)
+- [Next.js documentation](https://nextjs.org/docs)
+- [shadcn/ui documentation](https://ui.shadcn.com/docs)
+- [VoltAgent awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a scaffolded web project with DESIGN.md, Tailwind configuration, application routes, components, package dependencies, and related configuration files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

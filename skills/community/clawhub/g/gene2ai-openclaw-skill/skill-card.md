@@ -1,43 +1,58 @@
-## Description: <br>
-Your personal health data hub for AI agents: query genomic insights, upload medical documents, record daily health metrics, explore genomic-lab cross-references, receive personalized daily health briefings, and get contextual health advice woven into everyday conversations using the user's genetic and clinical data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal health data hub for AI agents. Query genomic insights, upload medical documents, record daily health metrics, explore genomic-lab cross-references, receive personalized daily health briefings, and get contextual health advice woven into everyday conversations -- all powered by your actual genetic and clinical data.
 
-## Publisher: <br>
-[gangchen](https://clawhub.ai/user/gangchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangchen](https://clawhub.ai/user/gangchen)
 
-## Use Case: <br>
-External users and their agents use this skill to connect Gene2AI health profiles with conversational health workflows, including genomic queries, health-document uploads, daily metrics, and personalized health briefings. It is intended for agents configured with a profile-scoped Gene2AI API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags sensitive medical and genetic information, persistent agent memory, and proactive messages as requiring review. <br>
-Mitigation: Install only if the user trusts Gene2AI with health data, avoid cross-session memory for health profile details unless explicitly desired, and enable daily briefings or proactive messages only deliberately. <br>
-Risk: Messaging previews or briefings may expose sensitive health inferences. <br>
-Mitigation: Keep announcement text high level, avoid raw genetic variants or lab values in previews, and discuss details only in direct conversation after the user engages. <br>
-Risk: A configured API key grants access to a profile-scoped health profile. <br>
-Mitigation: Use separate keys for separate profiles and revoke or rotate the Gene2AI API key when the skill is no longer in use. <br>
+## Use Case:
 
+External users and their agents use this skill to connect to Gene2AI, query personalized genomic and clinical health data, upload health documents with confirmation, log daily metrics, and receive contextual health briefings.
 
-## Reference(s): <br>
-- [Gene2AI Guide](https://gene2.ai/guide) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gangchen/gene2ai-openclaw-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference sensitive medical and genetic profile data returned by Gene2AI APIs when configured with GENE2AI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata; artifact frontmatter lists 3.3.1) <br>
+Risk: The skill can access and update sensitive health and genetic information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Gene2AI access through the agent is intended; require explicit user confirmation before uploads or health-data updates.
+
+Risk: The skill instructions allow sensitive health-profile conclusions to be cached or memorized across sessions.
+
+Mitigation: Disable or revise cross-session memory behavior unless the user has explicitly consented to durable retention of health information.
+
+Risk: The skill instructions allow undisclosed scheduled health nudges.
+
+Mitigation: Disable hidden proactive scheduling or require clear user consent and visibility for any scheduled health messages.
+
+## Reference(s):
+
+- [Gene2AI Guide](https://gene2.ai/guide)
+- [ClawHub Skill Page](https://clawhub.ai/gangchen/skills/gene2ai-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with curl examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the profile-scoped GENE2AI_API_KEY environment variable.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata; artifact frontmatter reports 3.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

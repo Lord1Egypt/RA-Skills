@@ -1,44 +1,63 @@
-## Description: <br>
-Search and manage Confluence pages and spaces using confluence-cli. Read documentation, create pages, and navigate spaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and manage Confluence pages and spaces using confluence-cli. Read documentation, create pages, and navigate spaces.
 
-## Publisher: <br>
-[francisbrero](https://clawhub.ai/user/francisbrero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[francisbrero](https://clawhub.ai/user/francisbrero)
 
-## Use Case: <br>
-Developers, support engineers, and documentation maintainers use this skill to search, read, create, update, and export Confluence pages and spaces from an agent session through confluence-cli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party CLI that can access Confluence content using an Atlassian API token. <br>
-Mitigation: Install confluence-cli only if you trust the package and grant the token only the Confluence permissions needed for the task. <br>
-Risk: Confluence credentials and local CLI configuration can expose account access if mishandled. <br>
-Mitigation: Treat the Atlassian API token and ~/.confluence-cli/config.json as sensitive secrets and avoid sharing them in prompts, logs, or repositories. <br>
-Risk: Create and update commands can change Confluence pages or place content in the wrong space or page. <br>
-Mitigation: Review page IDs, space keys, parent pages, and generated content before allowing create, create-child, or update commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/francisbrero/confluence) <br>
-- [confluence-cli project](https://github.com/pchuri/confluence-cli) <br>
-- [confluence-cli npm package](https://www.npmjs.com/package/confluence-cli) <br>
-- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+## Use Case:
 
+Developers, documentation maintainers, and operational teams use this skill to search, read, create, update, and export Confluence pages and spaces through the confluence-cli command-line tool.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires confluence-cli and a CONFLUENCE_TOKEN or configured Atlassian API token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Confluence token and can access sensitive workspace content.
+
+Mitigation: Use a Confluence account or token with the minimum permissions needed and keep credentials out of prompts, logs, and shared files.
+
+Risk: Create and update commands make live changes to Confluence pages.
+
+Mitigation: Review generated commands and target page identifiers before execution, especially for write operations.
+
+Risk: Export commands can write potentially sensitive documentation and attachments to local disk.
+
+Mitigation: Choose an appropriate output directory and handle exported files according to the workspace's data handling requirements.
+
+Risk: The skill depends on the external confluence-cli npm package.
+
+Mitigation: Install only after trusting the package source, and preferably pin a reviewed package version.
+
+## Reference(s):
+
+- [ClawHub Confluence skill page](https://clawhub.ai/francisbrero/skills/confluence)
+- [confluence-cli project](https://github.com/pchuri/confluence-cli)
+- [confluence-cli npm package](https://www.npmjs.com/package/confluence-cli)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read from or write to Confluence and may export page content and attachments to local disk.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

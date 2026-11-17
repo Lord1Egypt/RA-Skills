@@ -1,40 +1,51 @@
-## Description: <br>
-Complete media and public relations intelligence system for press coverage, press releases, journalist pitches, media crisis response, PR strategy, and public communication at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Press supports public relations workflows for earning media coverage, drafting press releases and pitches, planning PR strategy, and responding to media or reputation issues.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Employees and external communications teams use this skill to develop newsworthy story angles, draft press releases and media pitches, build media lists, and prepare crisis communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated press materials may contain incorrect factual claims, contact details, quotes, or crisis statements. <br>
-Mitigation: Review all facts, names, contact details, quotations, and statements before sending or publishing. <br>
-Risk: Crisis or reputation-management guidance can affect legal, reputational, or high-stakes business outcomes. <br>
-Mitigation: Use the skill as a drafting and strategy aid and obtain appropriate internal, legal, or executive review for sensitive situations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/press) <br>
-- [Publisher profile](https://clawhub.ai/user/agenticio) <br>
+## Use Case:
+
+External communications, marketing, and PR users use this skill to assess press scenarios, develop story angles, draft press releases and journalist pitches, build media lists, and prepare crisis communications.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can activate for broad public-communication requests where narrower writing or marketing guidance may be more appropriate.
+
+Mitigation: Confirm the request is a press, media relations, PR strategy, or crisis communications task before relying on the skill output.
+
+Risk: Generated external statements, media pitches, or crisis responses could be inaccurate, misleading, or reputationally sensitive if used without review.
+
+Mitigation: Review all generated public statements for factual accuracy, legal sensitivity, brand alignment, and stakeholder impact before publication.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text communications guidance and drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, credentials, persistence, or external account access according to security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with structured PR drafts, checklists, and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls or executable output evidenced; external-facing statements should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -268,13 +268,18 @@ class TestProjectStructureGeneration:
 | E2E-004 | 多模块项目生成 | 指定多模块结构 | 项目编译成功 | P1 |
 | E2E-005 | 项目名包含中文 | 项目名="我的应用" | 正确处理或友好报错 | P2 |
 
+> **实现状态**：E2E-001a（脚手架生成）、E2E-002、E2E-003 目前实现为结构与配置校验，
+> 不执行 Gradle 构建。真实 `assembleDebug` 仅由 E2E-001b 执行，且需外部提供
+> `E2E_WRAPPER_TEMPLATE`（含真实 wrapper 的目录）与 `ANDROID_HOME`/`ANDROID_SDK_ROOT`，
+> 前置条件缺失时该用例跳过，不会被计入通过数。E2E-004、E2E-005 尚未实现。
+
 ```python
 import subprocess
 import tempfile
 from pathlib import Path
 
 class TestEndToEnd:
-    """E2E-001: stable 配置编译成功"""
+    """E2E-001b: stable 配置真实编译（需外部 toolchain，缺失则跳过）"""
     @pytest.mark.slow
     def test_stable_profile_compiles(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

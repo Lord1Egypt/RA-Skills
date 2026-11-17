@@ -1,47 +1,60 @@
-## Description: <br>
-彩票助手查询双色球、大乐透、排列三、排列五、福彩3D、北京快乐8、七乐彩和七星彩的开奖信息，支持按最新期、期数或日期范围查询、导出结果，并生成娱乐用途的推荐号码和计算依据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+彩票助手 queries draw results for 双色球, 大乐透, 排列三, 排列五, 福彩3D, 北京快乐8, 七乐彩, and 七星彩; exports results to txt, markdown, XLSX, or SQLite; and can generate entertainment-only number recommendations with stated rationale.
 
-## Publisher: <br>
-[zhuce1ge](https://clawhub.ai/user/zhuce1ge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuce1ge](https://clawhub.ai/user/zhuce1ge)
 
-## Use Case: <br>
-External users use this skill to retrieve recent or historical Chinese lottery draw results, export the data, and request entertainment-only number recommendations with supporting calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact the third-party site 17500.cn to fetch public lottery data. <br>
-Mitigation: Run it only in environments where that outbound network access is acceptable and treat the third-party data source as external. <br>
-Risk: The skill can write txt, md, xlsx, or sqlite files to user-chosen paths. <br>
-Mitigation: Use sensible output paths and review generated files before sharing or importing them elsewhere. <br>
-Risk: Lottery recommendations may be mistaken for predictive or financial advice. <br>
-Mitigation: Present recommendations as entertainment only and retain the disclaimer that historical results do not affect future random draws. <br>
-Risk: Backtesting can take more time and CPU than a normal query. <br>
-Mitigation: Ask for user confirmation before running backtests and explain the expected runtime. <br>
+## Use Case:
 
+External users use this skill to retrieve Chinese lottery draw data, export it in common file formats, and request clearly disclaimed entertainment-only number recommendations based on historical data analysis.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zhuce1ge/lottery-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuce1ge) <br>
-- [彩票数据接口（17500.cn）](references/apis.md) <br>
-- [彩票一等奖中奖率](references/odds.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional exported txt, md, xlsx, or sqlite files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can contact 17500.cn for public lottery data and can write user-selected export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated XLSX files can contain unvalidated external lottery data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exported data before opening or sharing spreadsheets, use spreadsheet protections, and prefer txt, markdown, or SQLite export when Excel output is not needed.
+
+Risk: The skill contacts data.17500.cn and depends on that third-party data source.
+
+Mitigation: Use the skill only when contacting that host is acceptable, and review the destination and returned data before relying on results.
+
+Risk: Lottery recommendations could be misunderstood as predictive or financial advice.
+
+Mitigation: Keep the skill's disclaimer with recommendation output and treat recommendations as entertainment only, not as a promise of improved odds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuce1ge/skills/lottery-helper)
+- [Lottery data API reference](references/apis.md)
+- [Lottery odds reference](references/odds.md)
+- [17500 lottery data endpoint pattern](https://data.17500.cn/{code}_{asc|desc}.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown or plain text responses with optional txt, md, xlsx, and sqlite export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call data.17500.cn and write local export files when the user requests export.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

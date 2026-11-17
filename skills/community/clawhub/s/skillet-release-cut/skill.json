@@ -1,0 +1,8 @@
+{
+  "id": "release-cut",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh release-cut"
+  ],
+  "trust_level": "workspace"
+}

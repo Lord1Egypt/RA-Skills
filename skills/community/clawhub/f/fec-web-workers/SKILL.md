@@ -1,35 +1,35 @@
 ---
 name: fec-web-workers
-description: Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, 后台线程, 主线程阻塞.
+description: Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, background thread, main thread blocking.
 ---
 
 # Web Workers
 
 ## Purpose
 
-把昂贵计算移出主线程，保持输入、滚动和动画响应。
+Move expensive calculations off the main thread and keep input, scrolling, and animations responsive.
 
 ## Procedure
 
-1. 先确认瓶颈：任务超过约 10ms、用户输入延迟明显、FPS 下滑或大文件解析/图像处理/加密计算才考虑 Worker。
-2. 选择通信模型：简单任务用 `postMessage`，函数式 RPC 用 Comlink，大量并行小任务用 Worker pool，跨 Tab 同步用 SharedWorker。
-3. 设计消息协议：请求/响应类型、错误类型、取消或超时策略都要明确。
-4. 传大对象时优先 Transferable Objects；不要让结构化克隆吞掉 Worker 带来的收益。
-5. 在组件或页面卸载时 `terminate()`，并通过 Profiler、Performance 面板或 FPS 指标验证主线程改善。
+1. Confirm the bottleneck first: consider workers only if the task exceeds about 10ms, user input delay is obvious, FPS drops, or large file parsing/image processing/encryption calculation.
+2. Choose a communication model: use `postMessage` for simple tasks, use Comlink for functional RPC, use Worker pool for a large number of parallel small tasks, and use SharedWorker for cross-Tab synchronization.
+3. Design the message protocol: request/response types, error types, cancellation or timeout strategies must be clear.
+4. Prioritize Transferable Objects when transferring large objects; don’t let structured cloning swallow up the benefits brought by Worker.
+5. `terminate()` when a component or page is unloaded and verify main thread improvements through Profiler, Performance panel or FPS metrics.
 
-## 详细参考
+## Detailed reference
 
-- 需要原生 Worker 文件、构建工具导入、React 生命周期封装和清理示例时，加载 [references/basic-worker.md](references/basic-worker.md)。
-- 需要 Transferable Objects、Comlink、Worker pool、SharedWorker、CSP 和 SharedArrayBuffer 注意事项时，加载 [references/advanced-workers.md](references/advanced-workers.md)。
+- Load [references/basic-worker.md](references/basic-worker.md) when you need native Worker files, build tool imports, React lifecycle encapsulation and cleanup examples.
+- Load [references/advanced-workers.md](references/advanced-workers.md) when Transferable Objects, Comlink, Worker pool, SharedWorker, CSP and SharedArrayBuffer considerations are required.
 
 ## Constraints
 
-- Worker 内不能访问 DOM、`window`、`document`、`alert()` 或同步 `localStorage`。
-- 高频通信可能比主线程计算更慢；先测量再拆分。
-- Worker 文件必须同源加载，并受 `worker-src` CSP 限制。
-- 大型二进制数据优先 transfer，transfer 后原引用会失效。
-- 每个 Worker 有独立 JS 堆，必须主动管理生命周期和内存。
+- Cannot access DOM, `window`, `document`, `alert()` or synchronize `localStorage` within Worker.
+- High frequency communication may be slower than main thread calculations; measure first then split.
+- Worker files must be loaded from the same source and are subject to `worker-src` CSP restrictions.
+- Large binary data is transferred first, and the original reference will become invalid after the transfer.
+- Each Worker has an independent JS heap and must actively manage life cycle and memory.
 
 ## Expected Output
 
-计算密集型操作在后台线程执行，主线程输入和滚动恢复流畅，错误与取消路径明确，Worker 在卸载时被终止且无内存泄漏。
+Computationally intensive operations are performed on a background thread, main thread input and scrolling resume smoothly, error and cancellation paths are clear, and workers are terminated on unloading without memory leaks.

@@ -1,45 +1,58 @@
-## Description: <br>
-Prepare for the TOEFL iBT exam with progress tracking, weak area analysis, score prediction, and university targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare for the TOEFL iBT exam with progress tracking, weak area analysis, score prediction, and university targeting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External TOEFL iBT learners, retakers, tutors, and applicants use this skill to plan study, track practice results, analyze weak areas, estimate readiness, and coordinate university or immigration score requirements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local TOEFL records may include personal, student, school, score, schedule, or application details. <br>
-Mitigation: Avoid unnecessary identifiers, keep only useful study data, and review or delete ~/toefl/ and ~/toefl-tutor/ when they are no longer needed. <br>
-Risk: School, ETS, and immigration requirements can change and may vary by program or jurisdiction. <br>
-Mitigation: Confirm deadlines, accepted test versions, score validity, MyBest policies, waivers, and immigration requirements with official sources before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TOEFL skill definition](artifact/SKILL.md) <br>
-- [TOEFL exam configuration](artifact/exam-config.md) <br>
-- [Progress tracking system](artifact/tracking.md) <br>
-- [Study methods](artifact/study-methods.md) <br>
-- [University and immigration targets](artifact/targets.md) <br>
-- [User type adaptations](artifact/user-types.md) <br>
-- [Feedback and self-improvement system](artifact/feedback.md) <br>
+## Use Case:
 
+External TOEFL candidates, retakers, tutors, and professionals use this skill to plan preparation, track study progress, analyze weak areas, estimate readiness, and coordinate school or immigration score requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance, Configuration] <br>
-**Output Format:** [Markdown study plans, score analyses, checklists, and local progress records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local TOEFL study records under ~/toefl/ or tutor records under ~/toefl-tutor/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to retain TOEFL goals, scores, target schools, study sessions, practice results, vocabulary, and feedback in local files.
+
+Mitigation: Use it on a trusted device and review or delete the local files under ~/toefl/ or ~/toefl-tutor/ when that information should not be retained.
+
+Risk: University, immigration, waiver, and score acceptance policies can change and may affect user decisions.
+
+Mitigation: Verify current requirements with the relevant institution or official program before registering, sending scores, or relying on an eligibility decision.
+
+## Reference(s):
+
+- [TOEFL Skill Page](https://clawhub.ai/ivangdavila/skills/toefl)
+- [TOEFL iBT Exam Configuration](artifact/exam-config.md)
+- [Progress Tracking System](artifact/tracking.md)
+- [Study Methods](artifact/study-methods.md)
+- [University & Immigration Targets](artifact/targets.md)
+- [User Type Adaptations](artifact/user-types.md)
+- [Feedback & Self-Improvement System](artifact/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance and local Markdown tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local study, progress, practice, vocabulary, and feedback notes under ~/toefl/ or ~/toefl-tutor/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Dev Setup records, searches, summarizes, and exports local development setup notes from a command-line logbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Setup helps agents and developers record, search, summarize, and export timestamped notes about macOS development environment setup tasks.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers can use this skill to keep a local, searchable record of development setup activities, configuration notes, and related exports. It should be treated as a setup logbook rather than an automated macOS provisioning tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises macOS provisioning, but security evidence says it appears to be a local setup logbook rather than an automated provisioning tool. <br>
-Mitigation: Review the skill before installation and do not rely on it to install or configure development tools without separate verification. <br>
-Risk: Setup notes are stored locally as plaintext logs and exports, which can expose sensitive entries if users record secrets or private infrastructure details. <br>
-Mitigation: Do not enter passwords, API keys, tokens, private hostnames, or sensitive command output; review or delete ~/.local/share/dev-setup before sharing exports. <br>
+## Use Case:
 
+Developers and engineers use Dev Setup to keep a local, searchable history of macOS development setup activities, tool installation notes, configuration changes, and onboarding records.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or export local plaintext setup logs under ~/.local/share/dev-setup when the associated script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat the skill as an automated macOS provisioning tool even though the artifact behaves as a local setup-note logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use it for recording setup notes rather than unattended provisioning.
+
+Risk: Setup notes can include secrets, tokens, passwords, private host details, or credential-bearing commands, and entries are stored verbatim in the user's home directory.
+
+Mitigation: Do not record sensitive values; review local logs and exported files before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/dev-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external services, databases, or API keys are required; the artifact stores log and export files locally under ~/.local/share/dev-setup/.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

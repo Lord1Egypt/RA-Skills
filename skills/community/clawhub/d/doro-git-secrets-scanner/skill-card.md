@@ -1,44 +1,55 @@
-## Description: <br>
-Git security scanner guidance for checking commits for leaked sensitive information such as API keys, passwords, and tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers scan Git repositories for leaked secrets such as API keys, passwords, and tokens.
 
-## Publisher: <br>
-[a2mus](https://clawhub.ai/user/a2mus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a2mus](https://clawhub.ai/user/a2mus)
 
-## Use Case: <br>
-Developers and security engineers use this skill to choose and run Git secret-scanning tools, set up pre-commit or CI checks, and respond to leaked credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Secret scan results may expose live credentials or sensitive repository details. <br>
-Mitigation: Treat scan output as confidential, restrict access to results, and rotate leaked credentials before sharing or storing findings. <br>
-Risk: History-rewrite remediation steps such as BFG cleanup and force-push can disrupt collaborators or lose work if used carelessly. <br>
-Mitigation: Back up the repository, coordinate with collaborators, and confirm local clone recovery steps before rewriting history or force-pushing. <br>
-Risk: Referenced secret-scanning tools may produce false positives or require human judgment. <br>
-Mitigation: Review findings in context and verify suspected secrets before taking destructive remediation actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Doro Git Secrets Scanner on ClawHub](https://clawhub.ai/a2mus/doro-git-secrets-scanner) <br>
-- [Gitleaks Releases](https://github.com/gitleaks/gitleaks/releases) <br>
-- [TruffleHog Releases](https://github.com/trufflesecurity/trufflehog/releases) <br>
-- [git-secrets Repository](https://github.com/awslabs/git-secrets.git) <br>
+## Use Case:
 
+Developers and security engineers use this skill to get practical commands and configuration examples for scanning Git repositories with Gitleaks, TruffleHog, and git-secrets, then responding to exposed secrets.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash, YAML, and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tool installation commands, scanning examples, CI configuration, and remediation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some tool and CI examples can give third-party scanners or GitHub Actions sensitive repository and token access without enough version pinning or permission limits.
+
+Mitigation: Pin tool versions, Docker digests, and GitHub Actions to reviewed commits; use minimal workflow permissions; provide GITHUB_TOKEN only when it is required.
+
+Risk: The remediation examples include hooks, scheduled scans, sudo installation, BFG history rewriting, and force pushes that can disrupt repositories if run casually.
+
+Mitigation: Require repository-owner approval, backups, team coordination, and a recovery plan before installing privileged tooling or rewriting Git history.
+
+## Reference(s):
+
+- [Gitleaks Releases](https://github.com/gitleaks/gitleaks/releases)
+- [TruffleHog Releases](https://github.com/trufflesecurity/trufflehog/releases)
+- [git-secrets Repository](https://github.com/awslabs/git-secrets.git)
+- [ClawHub Skill Page](https://clawhub.ai/a2mus/skills/doro-git-secrets-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, YAML, and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install commands, scan examples, CI configuration, remediation steps, and scanner configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

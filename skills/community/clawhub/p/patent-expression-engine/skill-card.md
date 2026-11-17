@@ -1,41 +1,57 @@
-## Description: <br>
-Converts user-provided technical ideas, engineering experience, or solution outlines into structured patent-style Markdown drafts that identify innovation points and strengthen technical expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured patent-style Markdown from user-provided technical ideas, identifying innovation points and strengthening technical expression.
 
-## Publisher: <br>
-[nishibushiyaozhuangguai](https://clawhub.ai/user/nishibushiyaozhuangguai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nishibushiyaozhuangguai](https://clawhub.ai/user/nishibushiyaozhuangguai)
 
-## Use Case: <br>
-Engineers, inventors, and technical teams use this skill to turn existing technical concepts, project experience, or problem-solution notes into structured patent draft material. It is intended for patent ideation, documentation, and technical knowledge preservation before professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent ideas and invention details may be sensitive if shared with the agent environment. <br>
-Mitigation: Share only information appropriate for that environment and handle generated drafts as confidential working material. <br>
-Risk: Generated patent drafts may be incomplete, inaccurate, or unsuitable for filing. <br>
-Mitigation: Have outputs reviewed by a qualified patent professional before filing, publication, or external disclosure. <br>
+## Use Case:
 
+Developers, engineers, and product teams use this skill to turn supplied technical scenarios, problems, and solution ideas into patent-style drafts for review and knowledge preservation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nishibushiyaozhuangguai/patent-expression-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/nishibushiyaozhuangguai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown patent draft with structured sections and optional Mermaid flowchart] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Based on user-provided technical information; generated drafts should be reviewed before filing or disclosure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated patent drafts may be mistaken for legal advice or filing-ready patent material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text with a qualified professional before using it for a formal patent submission.
+
+Risk: The skill only abstracts and enhances user-provided technical content; it does not create inventions from nothing.
+
+Mitigation: Provide concrete technical scenarios, existing problems, solution ideas, and expected effects before relying on the output.
+
+Risk: The current artifact instructions are Chinese-only.
+
+Mitigation: Use reviewers who can evaluate the Chinese instructions and generated Chinese patent-style content, or translate the material before review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nishibushiyaozhuangguai/skills/patent-expression-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown patent draft with structured sections and a Mermaid flowchart]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language instructions; outputs should be reviewed before patent filing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

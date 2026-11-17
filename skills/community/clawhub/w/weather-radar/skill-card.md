@@ -1,42 +1,59 @@
-## Description: <br>
-Generates an animated GIF of current and recent weather radar over an OpenStreetMap base map for a specified city or coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and generate an image of the current weather radar combined with a base map.
 
-## Publisher: <br>
-[chaosconst](https://clawhub.ai/user/chaosconst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaosconst](https://clawhub.ai/user/chaosconst)
 
-## Use Case: <br>
-External users and agents use this skill when someone requests a rain or precipitation radar image for a city or coordinates, generating a shareable animated GIF from RainViewer radar layers and OpenStreetMap tiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external RainViewer and OpenStreetMap services to generate radar imagery. <br>
-Mitigation: Use it only in environments where those outbound requests are acceptable, and review the output path before running the script. <br>
-Risk: Location requests can expose or infer user location when no explicit city or coordinates are provided. <br>
-Mitigation: Prefer explicit city names or coordinates, and avoid relying on inferred precise user location unless the user has requested it. <br>
+## Use Case:
 
+External users and agents use this skill to create animated weather radar GIFs for a requested city or coordinate pair using public radar and map tiles.
 
-## Reference(s): <br>
-- [ClawHub Weather Radar Release](https://clawhub.ai/chaosconst/weather-radar) <br>
-- [RainViewer Public Weather Maps API](https://api.rainviewer.com/public/weather-maps.json) <br>
-- [OpenStreetMap Tile Service](https://tile.openstreetmap.org/{zoom}/{x}/{y}.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Animated GIF file with concise text or Markdown delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated GIF is a 3x3 tile grid and defaults to zoom 7 with recent radar frames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generating radar imagery contacts RainViewer and OpenStreetMap, which can disclose the approximate requested location through API and tile requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only locations appropriate to share with those services, and avoid sensitive coordinates in higher-control environments.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Pin requests and Pillow versions before deployment in controlled environments.
+
+Risk: The script writes a GIF to a user-specified output path.
+
+Mitigation: Run the skill in a sandbox with only the intended output directory writable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaosconst/skills/weather-radar)
+- [RainViewer Public Weather Maps API](https://api.rainviewer.com/public/weather-maps.json)
+- [OpenStreetMap Tile Endpoint](https://tile.openstreetmap.org/{zoom}/{x}/{y}.png)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated GIF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 768x768 animated GIF composed from a 3x3 tile grid; requires requests and Pillow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

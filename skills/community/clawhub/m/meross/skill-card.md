@@ -1,43 +1,53 @@
-## Description: <br>
-Control Meross cloud plugs via local CLI commands for discovery, state checks, and switch on/off actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Meross cloud plugs via local CLI commands for discovery, state checks, and switch on/off actions.
 
-## Publisher: <br>
-[powtac](https://clawhub.ai/user/powtac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[powtac](https://clawhub.ai/user/powtac)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent discover Meross cloud plugs, read switch state, and perform explicitly confirmed on/off actions through a local CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Meross account credentials to access cloud devices. <br>
-Mitigation: Set MEROSS_EMAIL and MEROSS_PASSWORD only in a trusted runtime, avoid writing credentials to project files, and protect the local environment. <br>
-Risk: The skill can switch supported plugs on or off. <br>
-Mitigation: Verify the exact deviceId, capability, and requested value before approving any set-device command. <br>
-Risk: The local devices.json registry contains device identifiers and aliases. <br>
-Mitigation: Keep devices.json access controlled and refresh it only from trusted runs of setup-once. <br>
+## Use Case:
 
+External users and developers use this skill to discover Meross cloud plugs, read their switch state, and turn supported plugs on or off through the local CLI after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub Meross Smart skill page](https://clawhub.ai/powtac/meross) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI payloads or results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Switch writes require an exact confirmation object; registry setup writes device identifiers and aliases to devices.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.27 (source: server release metadata and package.json) <br>
+Risk: The skill controls cloud-connected power devices using Meross account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege or test Meross credentials where possible, keep credentials out of project files, and require exact user confirmation before switch writes.
+
+Risk: The authoritative security review flags a concerning npm dependency chain.
+
+Mitigation: Review or update the dependency chain before installation, especially request, form-data, ip-address, and ws, and run the skill in an isolated environment where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/powtac/skills/meross)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI success and failure responses are JSON; switch writes require an exact confirmation object.]
+
+## Skill Version(s):
+
+1.0.27 (source: package.json, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

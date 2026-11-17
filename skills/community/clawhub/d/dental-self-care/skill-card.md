@@ -1,41 +1,58 @@
-## Description: <br>
-Use when you lack dental insurance, face high costs for dental care, live in remote/gig-economy situations, or work physical trades with irregular access to professionals and need to prevent painful, expensive emergencies through consistent self-managed protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users maintain oral health routines, track dental symptoms and supplies, find lower-cost care options, and prepare communication scripts while emphasizing escalation to licensed dental or emergency care for urgent symptoms.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to maintain daily dental self-care routines, track symptoms and supplies, prepare communication with low-cost providers, and identify situations that require professional or emergency care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive dental, medical, location, job, and income-related details in local files. <br>
-Mitigation: Use it only in a trusted workspace, review generated files before sharing them, and avoid entering details that are not needed for care tracking or provider navigation. <br>
-Risk: Dental self-management guidance could be mistaken for diagnosis or treatment. <br>
-Mitigation: Use the skill for prevention, tracking, and care navigation only, and escalate to a licensed dentist, urgent care, or emergency care for worsening pain, swelling, fever, pus, trauma, difficulty swallowing or breathing, pregnancy, diabetes, heart conditions, immunocompromise, or uncertainty. <br>
+## Use Case:
 
+External users who lack regular access to dental care use this skill to plan preventive oral hygiene, maintain symptom and supply trackers, identify affordable provider options, and draft appointment or payment-plan outreach. It is informational support and should not replace licensed dental or emergency medical care.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/howtousehumans/dental-self-care) <br>
-- [HowToUseHumans publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown guidance with tracker tables, scripts, reminders, inventories, and local filesystem records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files containing dental symptoms, medical conditions, location, job, and income-related details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: DIY dental or emergency instructions may be mistaken for licensed dental or medical care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for reminders, supply lists, provider research, and preparation only; escalate urgent symptoms to a licensed dentist, urgent-care facility, or emergency department.
+
+Risk: Symptom, income, location, and contact details may be stored in local tracker files.
+
+Mitigation: Use a controlled file location with appropriate permissions, retention, and deletion practices before allowing the skill to persist sensitive details.
+
+Risk: Provider outreach scripts may include sensitive health or financial information.
+
+Mitigation: Review and edit all generated messages before sending, and include only the minimum personal information needed for the specific provider interaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/dental-self-care)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with checklists, decision trees, tracker tables, communication scripts, reminders, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local filesystem trackers for symptoms, supplies, adherence, and provider outreach.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

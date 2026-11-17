@@ -1,51 +1,60 @@
-## Description: <br>
-Pub Whisper gives agents examples for calling the SkillBoss API gateway for chat, media generation, transcription, search, document processing, email, and SMS workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and curl examples for using the SkillBoss remote API gateway to access chat, media generation, speech, search, document processing, email, and SMS models.
 
-## Publisher: <br>
-[ModestyRichards](https://clawhub.ai/user/ModestyRichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and external agent users can use this skill to discover model IDs and draft API calls for SkillBoss-hosted chat, image, video, audio, search, document, email, and SMS tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as local Whisper transcription but documents a remote multi-service API gateway. <br>
-Mitigation: Review carefully before installing and use it only when remote gateway behavior is intended. <br>
-Risk: Audio, text, images, search queries, documents, email content, and phone numbers may leave the user's environment. <br>
-Mitigation: Require explicit user approval before uploading sensitive content or sending any message. <br>
-Risk: Email and SMS examples can initiate external communications. <br>
-Mitigation: Confirm recipients, content, and purpose before executing email or SMS commands. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and call SkillBoss-hosted models through an API key for text, media, transcription, search, document, email, and SMS workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ModestyRichards/openai-whispers) <br>
-- [Publisher profile](https://clawhub.ai/user/ModestyRichards) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is presented as local Whisper transcription while the evidence describes remote API use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users intend to grant a SkillBoss API key and send content to a remote service before installing or invoking it.
+
+Risk: Audio, documents, prompts, and generated content may be sent to remote providers through the gateway.
+
+Mitigation: Avoid private recordings, sensitive documents, and confidential prompts unless provider data handling has been reviewed and approved.
+
+Risk: Documented email and SMS actions can contact real recipients or phone numbers.
+
+Mitigation: Require explicit confirmation of recipient, message, and purpose before using email or SMS capabilities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/openai-whispers)
+- [Publisher profile](https://clawhub.ai/user/modestyrichards)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command examples, endpoint references, and parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for remote API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

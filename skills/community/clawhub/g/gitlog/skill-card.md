@@ -1,42 +1,55 @@
-## Description: <br>
-View formatted commit history, author stats, and commit frequency patterns. Use when reviewing logs, comparing contributions, or generating repo reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View formatted commit history, author stats, and commit frequency patterns. Use when reviewing logs, comparing contributions, or generating repo reports.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use Gitlog to record and review local notes about git and release workflows, including checks, validations, changelog generation, diffs, lint results, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gitlog stores typed log entries persistently on the local machine, which could retain secrets, tokens, confidential unreleased details, or sensitive compliance notes. <br>
-Mitigation: Avoid entering sensitive information and review or delete ~/.local/share/gitlog when local retention is no longer needed. <br>
-Risk: The tool is described as a local logging utility and does not inspect git history itself. <br>
-Mitigation: Use it as a manual note log for git and release workflow entries, not as an automated source of repository truth. <br>
+## Use Case:
 
+Developers and engineers use Gitlog to record and review local command-line notes about commit checks, validations, changelog generation, linting, diffs, and release reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/gitlog) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text with optional JSON, CSV, or plain-text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered log entries locally under ~/.local/share/gitlog and can export accumulated entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill stores user-provided text in persistent local log files under ~/.local/share/gitlog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, tokens, private incident details, or sensitive repository notes, and review or delete the local data directory when the logs are no longer needed.
+
+Risk: The release is presented as a Git history tool, while security evidence says it mainly records typed local activity notes.
+
+Mitigation: Use it as a local activity logger and independently verify repository history with trusted Git commands or review tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/gitlog)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance for local CLI use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local log entries and exports as JSON, CSV, or plain text when invoked by the user.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

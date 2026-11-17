@@ -1,46 +1,61 @@
-## Description: <br>
-Set up Orthogonal for an AI agent to access premium APIs, curated skills, and OAuth-connected integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Orthogonal for your AI agent - access premium APIs and skills.
 
-## Publisher: <br>
-[yshuolu](https://clawhub.ai/user/yshuolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshuolu](https://clawhub.ai/user/yshuolu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and configure the Orthogonal CLI, discover curated skills and APIs, authenticate with an API key, and run Orthogonal integrations from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad API and integration access can allow paid API calls and actions in connected accounts. <br>
-Mitigation: Require manual approval before paid API calls or actions that send messages, create calendar events, update repositories, or modify Drive, Sheets, Notion, Gmail, or Slack data. <br>
-Risk: API keys and OAuth credentials can be exposed or overused if stored insecurely. <br>
-Mitigation: Use secure secret storage or environment variables, protect the Orthogonal API key, and connect only required OAuth services. <br>
-Risk: Installed skills and marketplace APIs may introduce separate behavior and permissions. <br>
-Mitigation: Review and scan each added skill or API before deployment and verify parameters with `orth api show` before running new endpoints. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and authenticate the Orthogonal CLI, discover skills and APIs, and route external API or OAuth integration tasks through Orthogonal.
 
-## Reference(s): <br>
-- [Orthogonal homepage](https://orthogonal.com) <br>
-- [Orthogonal documentation](https://docs.orthogonal.com) <br>
-- [Orthogonal skills](https://orthogonal.com/skills) <br>
-- [Orthogonal API discovery](https://orthogonal.com/discover) <br>
-- [Orthogonal integrations](https://orthogonal.com/integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI setup, authentication, API discovery, billing, integration guidance, and support links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill directs agents to install skills and use paid APIs or OAuth-connected accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installed skills before use, prefer pinned or local installs, and confirm account scope and billing impact before execution.
+
+Risk: The skill includes workflows that can send messages, modify cloud data, create GitHub objects, or delete account content.
+
+Mitigation: Require explicit user approval before any state-changing integration action and verify endpoint parameters with orth api show before running commands.
+
+Risk: Credential handling can expose API keys if users choose manual setup.
+
+Mitigation: Use orth login when possible, protect local credential files and environment variables, and rotate keys if exposure is suspected.
+
+## Reference(s):
+
+- [Orthogonal Homepage](https://orthogonal.com)
+- [Orthogonal Documentation](https://docs.orthogonal.com)
+- [Orthogonal Skills](https://orthogonal.com/skills)
+- [Orthogonal API Discovery](https://orthogonal.com/discover)
+- [Orthogonal Integrations](https://orthogonal.com/integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI commands, setup steps, API discovery workflow, authentication guidance, billing guidance, and OAuth integration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

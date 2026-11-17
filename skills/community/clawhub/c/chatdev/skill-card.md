@@ -1,40 +1,54 @@
-## Description: <br>
-Invoke ChatDev ability units through a local API to browse, inspect, run, and manage multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invokes ChatDev ability units through a local API so an agent can browse, inspect, run, upload, and manage multi-agent workflows.
 
-## Publisher: <br>
-[NA-Wen](https://clawhub.ai/user/NA-Wen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[na-wen](https://clawhub.ai/user/na-wen)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to a trusted local ChatDev service, discover available ability units, run paper review or data visualization workflows, and manage workflow YAML or local function tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently upload, update, rename, copy, or delete ChatDev workflows and create or overwrite local tool code. <br>
-Mitigation: Require explicit user approval before any write, delete, rename, copy, move, or overwrite action, and review generated YAML or code before sending it to the local service. <br>
-Risk: Workflow runs and attachments may expose user data to the local ChatDev backend and its configured model provider. <br>
-Mitigation: Use the skill only with a trusted local ChatDev service and avoid sensitive datasets unless the backend and model-provider data handling are understood. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate ChatDev 2.0 ability units through the local API for tasks such as paper review, data visualization, and custom multi-agent workflow execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NA-Wen/chatdev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON API responses, YAML workflow templates, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow runs return a final_message when available and may also create output files in a local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can administer a local ChatDev backend, including deleting workflows and overwriting executable local tool files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before upload, update, rename, copy, delete, output-directory moves, and local tool create or overwrite actions.
+
+Risk: Hot-update endpoints can change executable Python tool files.
+
+Mitigation: Use the hot-update endpoint only after reviewing the exact filename and Python code and confirming a rollback path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/na-wen/skills/chatdev)
+- [Publisher profile](https://clawhub.ai/user/na-wen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON payloads, and YAML workflow templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return ChatDev final_message text and move generated output directories into the workspace when workflows produce artifacts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

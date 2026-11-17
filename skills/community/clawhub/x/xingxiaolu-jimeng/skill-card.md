@@ -1,46 +1,60 @@
-## Description: <br>
-Jimeng AI Image Generator calls the Volcengine Jimeng API to generate images and videos from prompts and includes prompt templates for ecommerce, social media, commercial design, and video scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng AI Image Generator helps agents create images and videos through the Volcengine Jimeng API, with prompt templates for commerce, social, design, and video scenarios.
 
-## Publisher: <br>
-[luis1213899](https://clawhub.ai/user/luis1213899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1213899](https://clawhub.ai/user/luis1213899)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate Jimeng/Volcengine images or videos from prompts, query generation tasks, and reuse prompt templates for marketing, social media, and design workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation requests are sent to Volcengine/Jimeng. <br>
-Mitigation: Avoid sending secrets, regulated data, or confidential material in prompts unless approved for that external service. <br>
-Risk: The skill requires Jimeng/Volcengine credentials and can consume quota or paid capacity. <br>
-Mitigation: Use a scoped key where possible, store it only in the expected secrets manager, and monitor quota and billing. <br>
-Risk: Generated image data may be written to local output paths. <br>
-Mitigation: Choose output paths deliberately and avoid overwriting important files. <br>
-Risk: The release security summary notes that metadata does not explicitly declare network/API use. <br>
-Mitigation: Confirm that external API access to Volcengine is acceptable before installing or running the skill. <br>
+## Use Case:
 
+Developers and creative operators use this skill to ask an agent to submit Jimeng text-to-image, video-generation, and task-query jobs with saved files or media URLs. It is suited for marketing, social media, design, and short-video asset generation when Volcengine processing is acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luis1213899/xingxiaolu-jimeng) <br>
-- [Prompt Template Library](references/prompts-templates.md) <br>
-- [Prompt Template Source Article](https://www.tahou.com/article/203607417559502853) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Command output with task IDs, MEDIA_URL values, generated image files, and video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write image files to the requested output path or the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Prompts and generated-media requests are sent to Volcengine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or proprietary source material unless Volcengine handling is acceptable for the use case.
+
+Risk: Jimeng AccessKeyId and SecretAccessKey are required for authentication.
+
+Mitigation: Store credentials only in the intended OpenClaw token manager and avoid copying them into prompts, logs, or shared files.
+
+Risk: Generated images may be written to local output paths.
+
+Mitigation: Use explicit output paths in private directories when generated content should not be exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luis1213899/skills/xingxiaolu-jimeng)
+- [Prompt template library](references/prompts-templates.md)
+- [Prompt template source](https://www.tahou.com/article/203607417559502853)
+- [Volcengine Visual API endpoint](https://visual.volcengineapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime scripts emit task IDs, media URLs, and saved file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local image files or return media URLs after Volcengine processing.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

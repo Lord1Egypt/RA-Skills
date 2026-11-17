@@ -1,40 +1,58 @@
-## Description: <br>
-Looks up the generic name for a provided drug name using a local SearXNG search service and returns structured results for agent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic Drug looks up a drug product name with a local SearXNG service and returns search context that an agent can use to identify the generic drug name, defaulting to the original name when no generic name is found.
 
-## Publisher: <br>
-[dddwinter](https://clawhub.ai/user/dddwinter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddwinter](https://clawhub.ai/user/dddwinter)
 
-## Use Case: <br>
-Developers and agent users can use this skill to query drug names and receive search context that helps identify a likely generic name. It is intended for lookup assistance, not medical advice or clinical decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drug name searches can reveal sensitive health interests to the configured local SearXNG service. <br>
-Mitigation: Use only a trusted local SearXNG instance and avoid entering identifying medical details unless logging and retention are understood. <br>
-Risk: Search results and agent interpretation may produce an incorrect generic-name match. <br>
-Mitigation: Treat results as lookup assistance and verify drug information against authoritative medical or pharmacy sources before use. <br>
+## Use Case:
 
+Developers and agents use this skill to query likely generic names for drug products, excipients, or ambiguous medicine names and receive structured search context for final analysis.
 
-## Reference(s): <br>
-- [Generic Drug ClawHub release](https://clawhub.ai/dddwinter/generic-drug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [JSON with optional plain-text analysis prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, jq, python3, and a trusted local SearXNG service at http://localhost:8080.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Medication queries and search snippets may contain sensitive health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local SearXNG deployment and treat queried names and returned snippets as sensitive data.
+
+Risk: Returned search snippets can be incomplete, misleading, or include prompt-like instructions.
+
+Mitigation: Ignore instructions found in search results and verify medication conclusions against authoritative medical sources before decisions.
+
+Risk: When no generic name is found, the skill may fall back to the original input name.
+
+Mitigation: Treat fallback results as unresolved rather than confirmed generic-name matches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddwinter/skills/generic-drug)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON followed by plain-text analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries local SearXNG at http://localhost:8080 and may include up to five formatted search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-cron-ops-lite",
+  "name": "aoi-cron-ops-lite",
   "version": "0.1.0",
-  "publishedAt": 1771251134667
+  "description": "Public-safe cron hygiene + cost-control for OpenClaw: report-only audits that detect duplicates, spammy notifications, heavy cadence, and repeated failures; proposes minimal, reversible fixes.",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["openclaw", "cron", "ops", "maintenance", "cost-control", "observability"],
+  "sdna": "AOI-2026-0216-SDNA-CRONOPS01"
 }

@@ -130,6 +130,47 @@
 
     .nav-links .btn-pill:hover { background: #e6bc00; color: var(--black); }
 
+    /* ── MOBILE NAV ──────────────────────────── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.75);
+      transition: background 0.15s;
+    }
+    .nav-toggle:hover span { background: var(--yellow); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; position: relative; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--black);
+        border-top: 1px solid #222;
+        padding: 0.5rem 1.25rem 1.25rem;
+        gap: 0;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { padding: 0.6rem 0; border-bottom: 1px solid #1e1e1e; }
+      .nav-links li:last-child { border-bottom: none; padding-top: 0.9rem; }
+      .nav-links .btn-pill { display: inline-block; }
+    }
+
     /* ── HERO ─────────────────────────────────── */
     .hero {
       background: var(--black);
@@ -494,6 +535,30 @@
     }
 
     .footer-right a:hover { color: var(--yellow); }
+
+    /* ── GLOBAL MOBILE FIXES ─────────────────── */
+    @media (max-width: 768px) {
+      body { font-size: 16px; }
+
+      .hero { padding: 4rem 1.25rem 3rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 0.95rem; }
+      .hero-install-box { padding: 1.75rem 1.25rem; }
+
+      .cards-section { padding: 3.5rem 1.25rem; }
+      .announcement { padding: 3.5rem 1.25rem; }
+      .contact-section { padding: 3.5rem 1.25rem; }
+
+      /* stats strip */
+      div[style*="gap:3rem"] { gap: 1.5rem !important; padding: 1.5rem 1.25rem !important; }
+
+      /* cmd list */
+      .cmd-row { flex-direction: column; gap: 0.2rem; }
+      .cmd-name { min-width: unset; }
+
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-right { flex-wrap: wrap; gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -501,11 +566,15 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Fleece</a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#workflows">Workflows</a></li>
     <li><a href="#agents">Agents</a></li>
-    <li><a href="#commands">CLI</a></li>
+    <li><a href="commands">Commands</a></li>
+    <li><a href="ios">iOS</a></li>
     <li><a href="https://github.com/chenyuan99/fleece" target="_blank" class="btn-pill">GitHub</a></li>
   </ul>
 </nav>
@@ -529,14 +598,20 @@
       </div>
     </div>
     <div class="hero-install-box">
-      <h2>Install CLI</h2>
+      <h2>Install</h2>
+      <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;">CLI</div>
       <div class="install-cmd"><span>$</span> pip install fleece-cli</div>
       <div style="display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap;">
         <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">v0.4.0</span>
         <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">Python 3.11+</span>
         <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">MIT</span>
       </div>
-      <p><code style="color:rgba(255,255,255,0.5);font-size:0.85em">BRAVE_API_KEY</code> is optional — <code style="color:rgba(255,255,255,0.5);font-size:0.85em">mcc</code>, <code style="color:rgba(255,255,255,0.5);font-size:0.85em">flights</code>, and <code style="color:rgba(255,255,255,0.5);font-size:0.85em">hotels</code> work fully offline. Live research commands require it. Requires Python 3.11+.</p>
+      <div style="border-top:1px solid #2a2a2a;padding-top:1.1rem;margin-bottom:0.4rem;">
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;">Agent skill — 55+ agents</div>
+        <div class="install-cmd"><span>$</span> npx skills add chenyuan99/fleece</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:0.5rem;">Claude Code, Cursor, Copilot, Gemini CLI, Windsurf, Cline, Codex, Warp &amp; more</p>
+      </div>
+      <p style="margin-top:0.75rem;"><code style="color:rgba(255,255,255,0.5);font-size:0.85em">BRAVE_API_KEY</code> is optional — <code style="color:rgba(255,255,255,0.5);font-size:0.85em">mcc</code>, <code style="color:rgba(255,255,255,0.5);font-size:0.85em">flights</code>, and <code style="color:rgba(255,255,255,0.5);font-size:0.85em">hotels</code> work fully offline.</p>
     </div>
   </div>
 </section>
@@ -692,8 +767,11 @@
 <section class="cards-section" id="agents" style="border-top: 1px solid var(--border);">
   <div style="max-width:1100px;margin:0 auto;padding:0 0 2rem;">
     <p class="section-label" style="color:var(--mid);font-size:0.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.6rem;">Agent Integration</p>
-    <h2 style="font-family:var(--font-head);font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:0.75rem;">Works with your AI agent</h2>
-    <p style="font-size:1rem;color:var(--mid);max-width:540px;margin-bottom:2.5rem;">Install once and every supported agent gains access to all 12 Fleece commands — research, wallet analysis, MCC lookup, and award redemption.</p>
+    <h2 style="font-family:var(--font-head);font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:0.75rem;">Works with 55+ AI agents</h2>
+    <p style="font-size:1rem;color:var(--mid);max-width:540px;margin-bottom:1.5rem;">One command installs Fleece across Claude Code, Cursor, Copilot, Gemini CLI, Windsurf, Cline, Codex, Warp, and more.</p>
+    <div style="display:inline-flex;align-items:center;gap:10px;background:var(--black);border-radius:6px;padding:0.75rem 1.25rem;margin-bottom:2.5rem;">
+      <span style="font-family:'Courier New',monospace;font-size:0.9rem;color:var(--yellow);">npx skills add chenyuan99/fleece</span>
+    </div>
   </div>
 
   <div class="cards-inner" style="grid-template-columns: repeat(3, 1fr);">
@@ -784,7 +862,7 @@
         <div class="cmd-row"><span class="cmd-name">fleece credits</span><span class="cmd-desc">Statement credits and perks</span></div>
         <div class="cmd-row"><span class="cmd-name">fleece news</span><span class="cmd-desc">Recent changes in the past month</span></div>
         <div class="cmd-row"><span class="cmd-name">fleece compare</span><span class="cmd-desc">Side-by-side card comparison</span></div>
-        <div class="cmd-row"><span class="cmd-name">fleece wallet</span><span class="cmd-desc">Portfolio analysis — coverage, overlaps, gaps</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece wallet</span><span class="cmd-desc">Portfolio analysis — coverage map, overlaps, gaps, next-card suggestions</span></div>
         <div class="cmd-row"><span class="cmd-name">fleece roi</span><span class="cmd-desc">First-year ROI estimate by spend profile</span></div>
         <div class="cmd-row"><span class="cmd-name">fleece recommend</span><span class="cmd-desc">Card recommendations for a spending profile</span></div>
         <div class="cmd-row"><span class="cmd-name" style="color:var(--yellow)">fleece mcc</span><span class="cmd-desc">Look up a merchant category code — find your best card at checkout</span></div>
@@ -813,5 +891,19 @@
   </div>
 </footer>
 
+<script>
+  var toggle = document.querySelector('.nav-toggle');
+  var links  = document.querySelector('.nav-links');
+  toggle.addEventListener('click', function() {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>

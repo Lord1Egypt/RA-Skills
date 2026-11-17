@@ -1,40 +1,49 @@
-## Description: <br>
-Converts JSON files to CSV by flattening nested objects and arrays for use in spreadsheets and data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts JSON files to CSV by flattening nested objects and arrays for spreadsheet and analytics workflows.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to convert JSON objects or lists into flattened CSV files for spreadsheet import and analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads an input JSON file and writes a CSV output file, so unintended file paths could read or overwrite local files. <br>
-Mitigation: Review the command arguments before execution and run conversions only on intended input and output paths. <br>
-Risk: The security evidence reports a clean verdict but the publisher trust tier is low. <br>
-Mitigation: Inspect the visible skill instructions and source files before granting additional permissions or using the skill in automated workflows. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to convert JSON objects or lists into flattened CSV files for spreadsheets, reporting, and downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/json2csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-line guidance for reading a JSON input file and writing a flattened CSV output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Spreadsheet apps may interpret untrusted CSV values that begin with formula characters such as =, +, -, or @.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted JSON input or inspect and sanitize generated CSV output before opening it in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/json2csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Markdown usage guidance, shell commands, and generated CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flattens nested JSON keys with dot-separated paths and writes sorted CSV headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

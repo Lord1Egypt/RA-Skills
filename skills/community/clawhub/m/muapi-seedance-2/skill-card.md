@@ -1,43 +1,54 @@
-## Description: <br>
-Expert Cinema Director skill for Seedance 2.0 (ByteDance): high-fidelity video generation using technical camera grammar and multimodal references for text-to-video, image-to-video, and video extension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Cinema Director skill for Seedance 2.0 (ByteDance) - high-fidelity video generation using technical camera grammar and multimodal references.
 
-## Publisher: <br>
-[Anil-matcha](https://clawhub.ai/user/Anil-matcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anil-matcha](https://clawhub.ai/user/anil-matcha)
 
-## Use Case: <br>
-External creators, developers, and agents use this skill to convert creative video intent into structured Director Brief prompts and shell commands for Seedance 2.0 text-to-video, image-to-video, and video extension workflows via MuAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, uploaded images, and video-generation requests are sent to an external generation provider. <br>
-Mitigation: Avoid secrets, confidential prompts, private media, and internal image URLs unless the operator is comfortable sharing them with the provider. <br>
-Risk: The MuAPI key is required for API access and could be exposed if placed in shared files or logs. <br>
-Mitigation: Use a limited API key, store it in a controlled environment or secret manager, avoid committing .env files, and rotate the key if exposure is suspected. <br>
-Risk: The shell script can upload local image files and download generated video outputs into the workspace. <br>
-Mitigation: Review shell commands before running them, confirm selected input files, and run the skill from an appropriate workspace before downloading generated media. <br>
+## Use Case:
 
+Developers and creative operators use this skill to turn video intent into technical Director Brief prompts and shell commands for Seedance 2.0 text-to-video, image-to-video, and video extension workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Anil-matcha/muapi-seedance-2) <br>
-- [MuAPI API base](https://api.muapi.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, api calls, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Director Brief prompt structure, bash command examples, request IDs, JSON responses, video URLs, and optional downloaded media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MUAPI_KEY for MuAPI calls; supports asynchronous jobs, local image uploads, up to 9 image references for image-to-video, and optional download of generated videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter says 0.1.0) <br>
+Risk: The helper script can source a local .env file before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from a trusted directory and provide MUAPI_KEY through a controlled environment variable.
+
+Risk: The helper script contacts MuAPI, uploads selected local images, and can download or open generated media.
+
+Mitigation: Review files before upload, avoid sensitive inputs, and inspect downloaded outputs before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anil-matcha/skills/muapi-seedance-2)
+- [MuAPI API endpoint](https://api.muapi.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated Director Brief text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON request responses and downloaded media paths when the helper script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

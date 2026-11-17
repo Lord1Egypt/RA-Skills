@@ -1,0 +1,31 @@
+English,Chinese
+# 术语表模板 (Glossary Template)
+# 格式: English,Chinese (CSV格式，逗号分隔)
+# 空行和以#开头的行会被忽略
+# 专有名词保留英文不翻译
+AICPA,AICPA
+CIMA,CIMA
+CPA,CPA
+CGMA,CGMA
+Anticipatory Organization,Anticipatory Organization
+Future Forums,Future Forums
+Rise2040,Rise2040
+Association of International Certified Professional Accountants,Association of International Certified Professional Accountants
+# 人名保留英文
+Daniel Burrus,Daniel Burrus
+Mark Koziel,Mark Koziel
+Lexy Kessler,Lexy Kessler
+John Graham,John Graham
+# 核心概念统一译法
+Hard Trends,硬趋势
+Soft Trends,软趋势
+Human in the Lead,人类主导
+Trust,信任
+compliance,合规
+assurance,鉴证
+advisory,咨询
+value chain,价值链
+public accounting,公共会计
+management accounting,管理会计
+FP&A,财务规划与分析
+ESG,ESG

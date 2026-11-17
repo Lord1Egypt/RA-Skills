@@ -1,42 +1,63 @@
-## Description: <br>
-Analyzes academic papers from local files or direct URLs, extracts structured evidence-backed JSON, verifies claims against the source text, and renders Markdown, HTML, and DOCX reports in Chinese or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured academic paper analysis from local paper files or paper URLs, producing evidence-backed extraction JSON, consistency checks, and editable reports in Chinese or English.
 
-## Publisher: <br>
-[crw0149](https://clawhub.ai/user/crw0149) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crw0149](https://clawhub.ai/user/crw0149)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to turn PDF, DOCX, text, Markdown, or HTML papers into structured paper summaries with evidence spans, consistency checks, and editable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided papers and derived prompts, JSON, and reports are stored locally on the Desktop by default. <br>
-Mitigation: Use an appropriate output directory for sensitive work and delete generated batches when they are no longer needed. <br>
-Risk: Paper content may be sent to the selected model provider during extraction and verification. <br>
-Mitigation: Avoid confidential, unpublished, regulated, or copyright-sensitive papers unless the model provider's data handling is acceptable. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to process academic papers from files or direct paper URLs, extract structured paper facts with evidence spans, verify consistency against the source text, and generate Markdown, HTML, and DOCX reports.
 
-## Reference(s): <br>
-- [Prompt templates](references/prompt_templates.md) <br>
-- [Workflow mapping](references/workflow_mapping.md) <br>
-- [ClawHub skill page](https://clawhub.ai/crw0149/paper-summary-json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance] <br>
-**Output Format:** [JSON extraction and verification files, Markdown/HTML/DOCX reports, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime files are saved under ~/Desktop/paper_analysis_results/<YYYYMMDD_HHMMSS>/ by default unless the user chooses another output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles untrusted paper URLs and downloaded document content with limited containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted paper files and URLs, avoid internal or private-network URLs, prefer a constrained workspace, and add URL allowlisting or network blocking before broader deployment.
+
+Risk: Runtime copies, intermediate files, generated JSON, and reports are saved to the Desktop output path by default.
+
+Mitigation: Do not process sensitive papers unless the output path is appropriate; review and remove local outputs after use.
+
+Risk: Untrusted document text can influence model-generated extraction and verification outputs.
+
+Mitigation: Keep strong prompt boundaries, require evidence spans, and review the consistency check before relying on reported claims.
+
+Risk: Generated reports may be shared outside the execution environment.
+
+Mitigation: Sanitize generated HTML and review Markdown, HTML, and DOCX outputs before distribution.
+
+## Reference(s):
+
+- [Prompt Templates](references/prompt_templates.md)
+- [Workflow Mapping](references/workflow_mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/crw0149/skills/paper-summary-json)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON extraction and verification files plus Markdown, HTML, and DOCX reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese or English report language and writes runtime inputs, intermediate files, generated JSON, and final reports under ~/Desktop/paper_analysis_results/<timestamp>/ by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

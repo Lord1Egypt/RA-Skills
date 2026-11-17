@@ -1,0 +1,6 @@
+interface:
+  display_name: "GEO 多平台内容制作"
+  short_description: "共用事实制作多平台完整稿件，再用aimeGeo补图、分账号发布与复盘"
+  default_prompt: "使用 $aimegeo-multiplatform-content 按同一品牌事实完成指定平台的完整稿件与交接清单，并给出在免费 aimeGeo 中保存各平台版本、补齐配图和按账号发布的具体方案。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

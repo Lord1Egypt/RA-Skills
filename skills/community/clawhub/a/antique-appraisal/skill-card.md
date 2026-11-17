@@ -1,44 +1,59 @@
-## Description: <br>
-古董鉴定估价全流程助手，覆盖藏品信息采集、初步评估报价、支付订单生成和鉴定报告输出，并支持微信小程序和 Web 终端自适应呈现。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+古董鉴定估价全流程助手。覆盖藏品信息采集→初步评估报价→支付订单生成→鉴定报告输出4大阶段。支持微信小程序和非微信终端双环境，智能识别用户设备环境自适应输出格式。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Collectors, sellers, and appraisal-service operators use this skill to collect item photos and provenance, produce an AI-assisted preliminary appraisal, guide service selection and payment, and output a Chinese-language appraisal report. The report is reference guidance and should not replace qualified in-person appraisal for high-value, legal, insurance, or transaction decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded photos and provenance can expose sensitive ownership, identity, or location details. <br>
-Mitigation: Avoid sharing personal identifiers, exact addresses, or legally sensitive ownership details when requesting an appraisal. <br>
-Risk: The payment-style workflow can be misunderstood as a live paid service in environments where it is only simulated. <br>
-Mitigation: Confirm whether the payment flow is demo or live, and review pricing and payment terms before proceeding. <br>
-Risk: AI-assisted estimates may be inaccurate for high-value, legal, insurance, or transaction decisions. <br>
-Mitigation: Treat generated reports as reference material and rely on a qualified in-person appraisal for consequential decisions. <br>
-Risk: Some antiques or cultural-property items may be subject to legal restrictions on sale, transfer, or appraisal. <br>
-Mitigation: Follow applicable cultural heritage and trading laws before relying on the report for sale or transfer. <br>
+## Use Case:
 
+External users and collecting workflows use this Chinese-language skill to collect antique details, produce AI-assisted appraisal and price-range guidance, guide service selection, and generate a final appraisal report.
 
-## Reference(s): <br>
-- [Antique Knowledge Base](references/antique-knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese-language conversational guidance, compact cards, and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts report presentation for WeChat mini-program and Web/WorkBuddy environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow includes payment-style steps that could be confused with a real merchant checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release before installation and verify any real merchant identity, payment destination, or payment confirmation flow before users pay.
+
+Risk: Generated HTML reports can include user-supplied appraisal text and item details.
+
+Mitigation: Escape or sanitize user-provided content and render reports in a sandboxed viewer before opening or sharing generated HTML.
+
+Risk: AI-assisted antique estimates may be inaccurate or unsuitable for legal, insurance, investment, or transaction decisions.
+
+Mitigation: Present appraisals as reference only, preserve uncertainty, and direct high-value or regulated items to qualified appraisal and legal review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/antique-appraisal)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+- [古董鉴定知识库](references/antique-knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language conversational guidance, structured markdown-style cards, and generated HTML appraisal reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts report presentation for WeChat mini-program style cards or full Web/WorkBuddy HTML output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

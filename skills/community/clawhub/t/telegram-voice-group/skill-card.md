@@ -1,48 +1,62 @@
-## Description: <br>
-Sends text-to-speech voice messages to specified Telegram groups and topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends text-to-speech voice messages to specified Telegram groups and group topics.
 
-## Publisher: <br>
-[sanwecn](https://clawhub.ai/user/sanwecn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sanwecn](https://clawhub.ai/user/sanwecn)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate Chinese TTS audio, convert it to Telegram-compatible OGG Opus voice format, and send it into a target Telegram group or topic. It is suited to community notifications, topic-specific updates, and organized group workflows that need spoken summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation asks for broader Telegram administrator permissions than are needed to send voice messages. <br>
-Mitigation: Grant only the minimum Telegram bot permissions needed to send messages and media in the intended groups or topics. <br>
-Risk: The security evidence reports unsafe command execution paths. <br>
-Mitigation: Use only with trusted users or agents until the command-execution issue is fixed and re-scanned. <br>
-Risk: Voice messages may expose sensitive or private information to Telegram group members. <br>
-Mitigation: Do not send secrets or private information through this skill, and restrict target groups and topics to the intended audience. <br>
+## Use Case:
 
+Developers and operators use this skill to generate Chinese text-to-speech audio, convert it to Telegram-compatible voice-message format, and send it to a configured Telegram group or topic. It supports topic-level routing for communities and teams that organize discussions through Telegram topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanwecn/telegram-voice-group) <br>
-- [Publisher profile](https://clawhub.ai/user/sanwecn) <br>
-- [README](artifact/README.md) <br>
-- [Dependency guide](artifact/DEPENDENCIES.md) <br>
-- [Feature details](artifact/FEATURES.md) <br>
-- [Telegram topic guide](artifact/TELEGRAM_TOPICS.md) <br>
-- [Use cases](artifact/USE_CASES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; runtime behavior sends Telegram voice messages as OGG Opus audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux, edge-tts, ffmpeg, Telegram bot send-message/send-media permissions, and OpenClaw messaging support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: ClawHub release evidence; package.json reports 1.0.0) <br>
+Risk: Voice text is sent to a Telegram group and may be processed by text-to-speech tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive text that is intended for the target Telegram group or topic.
+
+Risk: Setup guidance requests broad Telegram bot administration capabilities.
+
+Mitigation: Grant only the permissions needed to send messages and media unless a separate review approves additional moderation powers.
+
+Risk: Current JavaScript and shell entry points construct commands from user-provided text and options.
+
+Mitigation: Review and harden command construction before running the skill with untrusted input.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sanwecn/skills/telegram-voice-group)
+- [README](artifact/README.md)
+- [Features](artifact/FEATURES.md)
+- [Dependencies](artifact/DEPENDENCIES.md)
+- [Telegram Topics](artifact/TELEGRAM_TOPICS.md)
+- [Use Cases](artifact/USE_CASES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Audio, Telegram messages, Shell commands, Guidance]
+
+**Output Format:** [OGG Opus voice message plus Markdown, JavaScript, and shell usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux, edge-tts, ffmpeg, and Telegram bot permission to send messages and media.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

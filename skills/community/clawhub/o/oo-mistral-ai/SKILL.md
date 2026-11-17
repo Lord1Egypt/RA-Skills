@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Mistral AI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["mistral_ai"]
   icon: "https://static.oomol.com/logo/third-party/Mistral%20AI.svg"
 ---
@@ -37,11 +37,11 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `append_to_conversation` — Appends a new message to an existing session and triggers a new completion.
+- `append_to_conversation` — Appends a new message to an existing session and triggers a new completion. [write]
 - `create_agent` — Create a new Mistral Agent. [write]
 - `create_agents_completion` — Call the Mistral agents completions interface to generate Agent responses. [write]
 - `create_audio_transcription` — Upload the audio file and call the Mistral transcoding interface. [write]
-- `create_chat_completion` — Call the Mistral chat completions interface to generate chat responses. [write]
+- `create_chat_completion` — Call the Mistral chat completions interface to generate chat responses.
 - `create_chat_moderation` — Call the Mistral chat moderations interface to detect chat message security risks. [write]
 - `create_embeddings` — Call the Mistral embeddings interface to generate vectors. [write]
 - `create_fim_completion` — Call the Mistral FIM completions interface to generate completion results. [write]
@@ -82,7 +82,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_library_shares` — List shared access records for the specified library.
 - `list_models` — List all Mistral models accessible by the current API Key.
 - `reprocess_document` — Reprocess the specified library document.
-- `restart_conversation` — Restarts the session from some historical point in the session and generates a new subsequent response. [write]
+- `restart_conversation` — Restarts the session from some historical point in the session and generates a new subsequent response.
 - `retrieve_file` — Get file metadata by file ID.
 - `start_conversation` — Create a new session and immediately append the message or tool call context. [write]
 - `update_agent` — Update the Agent configuration and create a new version. [write]
@@ -121,11 +121,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Mistral AI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=mistral_ai
+  https://console.oomol.com/connections/mistral_ai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Mistral AI homepage: https://mistral.ai
+- API documentation: https://docs.mistral.ai/api/

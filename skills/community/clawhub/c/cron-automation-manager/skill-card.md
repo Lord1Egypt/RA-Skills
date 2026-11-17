@@ -1,47 +1,61 @@
-## Description: <br>
-Manage and create scheduled cron jobs, automated monitoring tasks, reminders, and periodic push notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage scheduled cron jobs, automated monitoring tasks, reminders, periodic reports, and push notifications for OpenClaw agents.
 
-## Publisher: <br>
-[Mr-chen-05](https://clawhub.ai/user/Mr-chen-05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-chen-05](https://clawhub.ai/user/mr-chen-05)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to create, inspect, update, and troubleshoot recurring cron-based automations for monitoring, reminders, reports, and notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, modify, or delete recurring scheduled automations. <br>
-Mitigation: Require explicit user confirmation before changing or deleting cron jobs, and restrict the jobs the skill is allowed to control. <br>
-Risk: Automation outputs may be stored long-term in local intelligence logs. <br>
-Mitigation: Review the contents of intel/daily logs and define a retention or deletion practice before relying on the skill for ongoing monitoring. <br>
-Risk: Reports may be sent to external delivery services. <br>
-Mitigation: Enable only trusted delivery channels and use least-privilege credentials for each configured service. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to create, inspect, modify, and delete recurring cron-based automation workflows. It is suited for monitoring pipelines, daily or weekly reports, reminders, price alerts, GitHub tracking, AI news monitoring, and notification routing.
 
-## Reference(s): <br>
-- [Cron Automation Manager README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Delivery Configuration Example](artifact/config/delivery-config.example.json) <br>
-- [Task Creator Module](artifact/modules/task-creator.md) <br>
-- [Delivery Router Module](artifact/modules/delivery-router.md) <br>
-- [Health Check Module](artifact/modules/health-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with cron configuration snippets and delivery configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update scheduled automation definitions, local intelligence logs, and delivery settings when the agent applies the guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill can create and manage persistent cron jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before creating, modifying, or deleting jobs, and maintain clear rules for which recurring jobs are allowed.
+
+Risk: Automation outputs are written to mandatory local intelligence logs.
+
+Mitigation: Define retention and redaction practices for intel/daily files and avoid logging secrets, private content, or credentials.
+
+Risk: External delivery channels can send generated reports outside the local workspace.
+
+Mitigation: Keep external channels disabled by default and enable only the specific channels with configured, authorized credentials.
+
+## Reference(s):
+
+- [Cron Automation Manager README](artifact/README.md)
+- [Cron Automation Manager Skill](artifact/SKILL.md)
+- [Delivery Configuration Example](artifact/config/delivery-config.example.json)
+- [ClawHub Skill Page](https://clawhub.ai/mr-chen-05/skills/cron-automation-manager)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/mr-chen-05)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with cron expressions, configuration snippets, and structured task summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent local intelligence logs and route generated reports through configured delivery channels.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

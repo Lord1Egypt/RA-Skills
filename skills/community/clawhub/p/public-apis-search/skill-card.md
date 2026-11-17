@@ -1,42 +1,59 @@
-## Description: <br>
-Public Apis Search helps agents search a local public API catalog by keyword, category, authentication type, HTTPS support, or random discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover public APIs from the public-apis directory using a bundled local database with keyword, category, authentication, HTTPS, and random discovery filters.
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-Developers and agents use this skill to discover public APIs from a bundled local catalog, compare basic API metadata, and identify candidate provider documentation before integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search results may include plain-HTTP or third-party provider URLs. <br>
-Mitigation: Prefer the HTTPS filter, verify provider documentation before use, and do not send credentials or sensitive data to plain-HTTP endpoints. <br>
-Risk: Catalog entries are leads rather than endorsements of provider security, reliability, or terms. <br>
-Mitigation: Review each provider's current documentation, authentication requirements, and terms before integrating an API. <br>
+## Use Case:
 
+Developers and API-consuming teams use this skill to quickly find public APIs, compare authentication and HTTPS requirements, browse categories, and identify API documentation links from a local catalog.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jijinbao-code/public-apis-search) <br>
-- [public-apis source repository](https://github.com/public-apis/public-apis) <br>
-- [public-apis README data source](https://raw.githubusercontent.com/public-apis/public-apis/master/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text API search results with names, descriptions, categories, authentication metadata, HTTPS/CORS indicators, and URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are limited by the CLI limit argument and may be filtered by category, authentication type, and HTTPS support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The optional update command downloads refreshed source data from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the update only in a trusted environment and review refreshed data before relying on it.
+
+Risk: Search results link to third-party APIs that may require credentials, API keys, or personal data.
+
+Mitigation: Review each third-party API's documentation, terms, and security posture before sending credentials or sensitive data.
+
+Risk: The bundled local API directory can become stale between manual updates.
+
+Mitigation: Refresh from the documented source and verify critical API details before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jijinbao-code/skills/public-apis-search)
+- [public-apis repository](https://github.com/public-apis/public-apis)
+- [public-apis README data source](https://raw.githubusercontent.com/public-apis/public-apis/master/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with command examples and plain-text API result listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a bundled local JSON API directory; an optional update command fetches the public-apis README from GitHub.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

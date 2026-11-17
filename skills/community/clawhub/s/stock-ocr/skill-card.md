@@ -1,47 +1,66 @@
-## Description: <br>
-从通达信金融终端窗口截取股票日K图，并使用OCR识别MA均线数值。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从通达信金融终端窗口截取股票日K图，并使用OCR识别MA均线数值。
 
-## Publisher: <br>
-[hustjim2026](https://clawhub.ai/user/hustjim2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hustjim2026](https://clawhub.ai/user/hustjim2026)
 
-## Use Case: <br>
-External users and agents use this skill to inspect a Windows stock trading terminal, capture the moving-average area of a daily K-line chart, and extract MA values with OCR. It is intended for chart-reading automation, not as investment advice or unattended trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can focus and type into a live trading application window. <br>
-Mitigation: Verify the exact target window title before execution and avoid running it while order-entry or unrelated sensitive windows are active. <br>
-Risk: Screenshots of financial charts may be saved locally or sent to cloud OCR services. <br>
-Mitigation: Prefer local OCR for sensitive workflows, avoid visible confidential content, and delete retained screenshots when they are no longer needed. <br>
-Risk: Embedded or configured OCR credentials may be exposed or reused. <br>
-Mitigation: Remove embedded credentials, rotate any exposed keys, and provide OCR credentials through user-controlled environment variables or local secret storage. <br>
+## Use Case:
 
+External users and developers use this skill to capture stock chart regions from the Tongdaxin financial terminal and extract MA moving-average values with OCR. It is intended for workflows that inspect MA5, MA10, MA20, and MA60 values or compare OCR engines for financial chart screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hustjim2026/stock-ocr) <br>
-- [OCR配置指南](docs/OCR配置指南.md) <br>
-- [OCR configuration reference](references/ocr_config_guide.md) <br>
-- [Baidu Cloud OCR](https://cloud.baidu.com/) <br>
-- [RapidOCR](https://github.com/RapidAI/RapidOCR) <br>
-- [Tesseract OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and OCR-extracted numeric values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local screenshot files when requested; OCR accuracy depends on chart visibility, OCR engine, and credential configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Financial screenshots may be sent to cloud OCR providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local OCR where possible, or send screenshots to a cloud OCR provider only after confirming that sharing the image is acceptable.
+
+Risk: OCR credentials appear in the skill evidence and may be reused accidentally.
+
+Mitigation: Rotate or remove embedded OCR credentials and prefer environment variables or a local secret store.
+
+Risk: Setup and PowerShell helper commands can be unsafe when run with untrusted paths, window titles, or pasted credential strings.
+
+Mitigation: Review helper commands before execution and use only trusted input values.
+
+Risk: OCR output can misread market data and produce incorrect moving-average values.
+
+Mitigation: Verify extracted MA values against the trading terminal, especially before using them in financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hustjim2026/skills/stock-ocr)
+- [OCR配置指南](artifact/references/ocr_config_guide.md)
+- [OCR引擎配置指南](artifact/docs/OCR配置指南.md)
+- [Tesseract OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki)
+- [RapidOCR](https://github.com/RapidAI/RapidOCR)
+- [Baidu Cloud OCR](https://cloud.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and OCR result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference screenshot files and OCR engine configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

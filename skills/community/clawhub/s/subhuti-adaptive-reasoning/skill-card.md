@@ -1,39 +1,50 @@
-## Description: <br>
-Automatically assess task complexity and adjust reasoning level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assess task complexity and adjust reasoning level.
 
-## Publisher: <br>
-[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim)
 
-## Use Case: <br>
-Developers and agent users use this skill to make an assistant assess request complexity before responding and decide when deeper reasoning is warranted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically spend more reasoning effort or add reasoning icons, which may be undesirable for fast or strictly formatted responses. <br>
-Mitigation: Install it only when automatic reasoning escalation is desired, and disable or avoid it for workflows that require explicit reasoning control, low latency, or unchanged response formatting. <br>
+## Use Case:
 
+Developers and agent users use this skill as a pre-processing step to decide when a request would benefit from deeper reasoning before answering complex questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/subhuti-adaptive-reasoning) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dorjenorbulim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append reasoning status icons to responses when the skill classifies a request as complex.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can silently change reasoning behavior across a session and affect every user message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when session-wide reasoning automation is desired, review its behavior before deployment, and prefer explicit opt-in controls for reasoning changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/skills/subhuti-adaptive-reasoning)
+- [Publisher profile](https://clawhub.ai/user/dorjenorbulim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with optional reasoning status indicators]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append visible reasoning markers to responses when the skill classifies a request as complex.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "JEV Gated Agent Workflow"
+  short_description: "Route costly agent actions through a safe JEV gate"
+  default_prompt: "Design or review a natural-language-only JEV decision gate with fixed allowlists, default-deny permits, and minimal retrieval."

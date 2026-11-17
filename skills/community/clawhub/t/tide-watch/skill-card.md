@@ -1,47 +1,63 @@
-## Description: <br>
-Proactive session capacity monitoring and management for OpenClaw that warns at configurable thresholds, supports session resumption prompts, and includes optional CLI tools for capacity checks, dashboards, archive management, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tide Watch helps OpenClaw users monitor local session capacity, receive configurable threshold warnings, manage resumption prompts, and optionally run a local CLI for dashboards, reports, and session archiving.
 
-## Publisher: <br>
-[chrisagiddings](https://clawhub.ai/user/chrisagiddings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrisagiddings](https://clawhub.ai/user/chrisagiddings)
 
-## Use Case: <br>
-Developers and OpenClaw users use Tide Watch to monitor session capacity, receive threshold warnings, prepare session resumption prompts, and optionally run local CLI commands for dashboards, reports, and archive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional local CLI can read OpenClaw session files, discover sessions across agents, and move or delete session-related files when management commands are invoked. <br>
-Mitigation: Prefer Directives-Only mode for capacity warnings, inspect the CLI before installation, use dry-run or read-only commands first, and avoid running archive or delete workflows on sessions that have not been backed up. <br>
-Risk: Session archive, reset, restore, cleanup, or backup behavior can cause data loss if the artifact's backup and restore claims do not match local behavior. <br>
-Mitigation: Create independent backups of session files before using session-changing workflows and verify archive or restore results before deleting originals. <br>
-Risk: The skill can add or modify local AGENTS.md and HEARTBEAT.md guidance that affects future agent behavior. <br>
-Mitigation: Review proposed AGENTS.md and HEARTBEAT.md changes before applying them and keep edits scoped to session-capacity monitoring. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill during long-running or multi-channel work to detect context-window capacity issues before sessions lock, preserve continuity through resumption prompts, and review local session status. Users who need active management can optionally install the CLI for reports, dashboards, and archive operations.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/chrisagiddings/tide-watch) <br>
-- [README](README.md) <br>
-- [Installation Guide](INSTALLATION.md) <br>
-- [Usage Examples](docs/USAGE-EXAMPLES.md) <br>
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) <br>
-- [Security Advisory CVE-2026-001](SECURITY-ADVISORY-CVE-2026-001.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and optional CLI text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional CLI mode requires Node.js 14+ and can read, move, or delete local OpenClaw session-related files when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: SKILL.md metadata, package.json, CHANGELOG, ClawHub release) <br>
+Risk: The optional CLI has a path-validation weakness around session handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer directives-only mode; if using the CLI, provide only trusted session IDs and avoid hand-crafted identifiers.
+
+Risk: Archive and delete operations can modify local OpenClaw session files.
+
+Mitigation: Use dry-run review before archive/delete actions and keep independent backups for sensitive workspaces.
+
+Risk: Documentation may overstate automatic backup or reset behavior.
+
+Mitigation: Treat backup and reset claims as workflow guidance unless verified in the installed version and test behavior before relying on it.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/chrisagiddings/skills/tide-watch)
+- [README](README.md)
+- [Usage examples](docs/USAGE-EXAMPLES.md)
+- [FAQ](docs/FAQ.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Parsing behavior](PARSING.md)
+- [Security advisory CVE-2026-001](SECURITY-ADVISORY-CVE-2026-001.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directives-only mode can avoid code installation; optional CLI mode operates on local OpenClaw session files.]
+
+## Skill Version(s):
+
+1.3.6 (source: SKILL.md metadata, package.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

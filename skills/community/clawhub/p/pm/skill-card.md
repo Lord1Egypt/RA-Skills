@@ -1,40 +1,53 @@
-## Description: <br>
-PM guides an agent through project planning, API contract design, task breakdown, iterative implementation, testing, and status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PM provides a Chinese-language project management workflow for requirements decomposition, API contract design, task planning, iterative development, test verification, and status updates.
 
-## Publisher: <br>
-[zengn1](https://clawhub.ai/user/zengn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengn1](https://clawhub.ai/user/zengn1)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to have an agent establish architecture and API contracts, split work into small tasks, implement changes iteratively, run local verification, and keep planning and error logs current. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to manage planning documents, edit code, and run local tests in a project. <br>
-Mitigation: Install it only in projects where that workflow is intended, and review generated planning files, code changes, and test results before approving continued work. <br>
-Risk: Status and error logs may shape later development decisions if they are inaccurate or outdated. <br>
-Mitigation: Review ARCHITECTURE.md, TASK_TRACKER.md, and ERROR_LOG.md after each completed task and correct stale or misleading entries. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to manage software projects through documented architecture, API contracts, small task increments, terminal-based verification, and status tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengn1/pm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with project documents, code changes, test commands, and status updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ARCHITECTURE.md, TASK_TRACKER.md, and ERROR_LOG.md in the active project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can create or update planning documents, code, and tests in the repository root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans and repository changes before approving implementation.
+
+Risk: The workflow can run local verification commands while implementing tasks.
+
+Mitigation: Run commands in an appropriate local workspace and inspect command intent before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengn1/skills/pm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with project documents, implementation steps, test commands, and status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update repository documents such as ARCHITECTURE.md, TASK_TRACKER.md, and ERROR_LOG.md as part of the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

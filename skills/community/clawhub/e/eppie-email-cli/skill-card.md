@@ -1,44 +1,59 @@
-## Description: <br>
-Guides an agent to operate the eppie-console email CLI for account, folder, message, synchronization, sending, and vault workflows with structured automation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to operate the eppie-console email CLI for account, folder, message, sync, send, and local vault workflows using deterministic commands and structured output.
 
-## Publisher: <br>
-[eppieapp](https://clawhub.ai/user/eppieapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eppieapp](https://clawhub.ai/user/eppieapp)
 
-## Use Case: <br>
-Developers and automation agents use this skill to run eppie-console predictably for reading, sending, syncing, account setup, and local vault management. It is intended for workflows that need machine-readable CLI output and explicit standard-input contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables agents to operate real email mailboxes and local vaults, including account-changing actions. <br>
-Mitigation: Require explicit user confirmation before send, reset, delete-message, and other account-changing commands. <br>
-Risk: Reset and delete-message workflows can remove mailbox or vault data, including permanent deletion for messages already in Trash. <br>
-Mitigation: Use disposable or isolated working directories for destructive tests and avoid high-value mailboxes until the workflow has been validated. <br>
-Risk: Mailbox and provider credentials may be exposed if passed through command-line arguments or logs. <br>
-Mitigation: Pass vault passwords and provider secrets through the documented stdin contracts and avoid logging raw command input. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an autonomous or semi-autonomous agent needs to inspect email accounts and folders, read or send messages, synchronize folders, and manage a local eppie-console vault with machine-readable output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eppieapp/eppie-email-cli) <br>
-- [Eppie CLI releases](https://github.com/Eppie-io/Eppie-CLI/releases/latest) <br>
-- [Eppie CLI repository](https://github.com/Eppie-io/Eppie-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and structured command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes JSON CLI output, exact stdin ordering, bounded pagination, and explicit handling of warning and error envelopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The skill can direct an agent to run a downloaded eppie-console executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, verified build and prefer a pinned release with an independently checked digest or signature.
+
+Risk: The skill includes destructive operations such as reset and delete-message.
+
+Mitigation: Run in an isolated working directory and require explicit user approval before destructive mail or vault actions.
+
+Risk: The skill can send mail and provide account or vault credentials to the CLI.
+
+Mitigation: Require explicit user approval before sending mail or supplying credentials, and pass secrets only through the documented standard-input paths.
+
+## Reference(s):
+
+- [Eppie CLI latest release](https://github.com/Eppie-io/Eppie-CLI/releases/latest)
+- [Eppie CLI repository](https://github.com/Eppie-io/Eppie-CLI)
+- [ClawHub skill page](https://clawhub.ai/eppieapp/skills/eppie-email-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers eppie-console JSON envelopes with type, code, data, meta, and message fields for agent automation.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

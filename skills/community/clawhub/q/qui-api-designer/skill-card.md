@@ -1,45 +1,53 @@
-## Description: <br>
-Use when designing REST or GraphQL APIs, creating OpenAPI specifications, or planning API architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing REST or GraphQL APIs, creating OpenAPI specifications, or planning API architecture.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and engineers use this skill to model API resources, design REST or GraphQL contracts, and produce OpenAPI 3.1 specifications with pagination, versioning, authentication, authorization, and error-handling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated API specifications or examples could include incorrect authorization boundaries, destructive endpoint behavior, payment flows, or misleading authentication guidance. <br>
-Mitigation: Review generated API designs before production use, with particular attention to authentication, authorization, destructive operations, payments, and permission models. <br>
-Risk: Prompts or example specifications could expose real credentials, OAuth tokens, or sensitive implementation details. <br>
-Mitigation: Use placeholder secrets and redact sensitive values before sharing prompts, generated examples, or OpenAPI documents. <br>
+## Use Case:
 
+Developers and engineers use this skill to design REST or GraphQL APIs, model resources, define endpoint contracts, and produce OpenAPI 3.1 specifications with supporting guidance for versioning, pagination, authentication, and error handling.
 
-## Reference(s): <br>
-- [REST Design Patterns](references/rest-patterns.md) <br>
-- [API Versioning Strategies](references/versioning.md) <br>
-- [Pagination Patterns](references/pagination.md) <br>
-- [API Error Handling](references/error-handling.md) <br>
-- [OpenAPI 3.1 Specification](references/openapi.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/quincygunter/qui-api-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with OpenAPI YAML or JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resource models, endpoint specifications, authentication and authorization flows, error catalogs, pagination patterns, and versioning plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated API designs may include weak pagination cursor handling if implemented without additional safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review pagination designs before implementation and require signed or otherwise integrity-protected cursors, strict validation, and authorization checks.
+
+## Reference(s):
+
+- [REST Design Patterns](references/rest-patterns.md)
+- [API Versioning Strategies](references/versioning.md)
+- [Pagination Patterns](references/pagination.md)
+- [API Error Handling](references/error-handling.md)
+- [OpenAPI 3.1 Specification](references/openapi.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with OpenAPI YAML or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include resource models, endpoint specifications, authentication flows, error catalogs, pagination patterns, and versioning plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

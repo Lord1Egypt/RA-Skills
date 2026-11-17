@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7ddcz4t1kwd6bpanpqk34ad983b903",
-  "slug": "arxiv-survey",
+  "name": "arxiv-survey",
   "version": "1.0.0",
-  "publishedAt": 1775881427475
+  "description": "Survey arXiv papers from a given year to present on a specific theme",
+  "author": "OpenClaw Workspace",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "survey",
+      "description": "Generate a survey report on arXiv papers for a theme",
+      "usage": "survey <year>:<theme>",
+      "example": "survey 2026:AI assisted open source contribution"
+    }
+  ]
 }

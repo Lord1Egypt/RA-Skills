@@ -1,46 +1,61 @@
-## Description: <br>
-Google Contacts API integration with managed OAuth for searching, inspecting, creating, and updating contacts and contact groups stored in Google People. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Contacts API integration with managed OAuth for searching, inspecting, creating, and updating contacts and contact groups stored in Google People.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an OpenClaw agent to Google Contacts through managed OAuth, then search, inspect, create, update, and organize contacts and contact groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to contacts and contact groups in the connected Google account. <br>
-Mitigation: Review the Google OAuth consent screen before connecting and install only when ClawLink access to Google Contacts is intended. <br>
-Risk: Create, update, and delete operations can change or remove contact and contact group data. <br>
-Mitigation: Confirm the exact target resource and intended change before executing any write or delete operation. <br>
-Risk: An active connection can continue to provide access after the immediate task is complete. <br>
-Mitigation: Revoke the ClawLink or Google connection when ongoing access is no longer needed. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to connect a Google account through ClawLink, inspect Google Contacts data, and perform confirmed contact, group, photo, and batch changes.
 
-## Reference(s): <br>
-- [ClawHub Google Contacts Skill Page](https://clawhub.ai/hith3sh/google-contacts-address-book) <br>
-- [Google People API Overview](https://developers.google.com/people/api/rest) <br>
-- [Google Contacts API](https://developers.google.com/contacts/v3) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes OAuth connection checks, live tool discovery, and confirmation steps for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Contact, group, photo, and batch write operations can change or delete data in the connected Google account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user confirmation before any write or delete operation, including the target resource and intended effect.
+
+Risk: Connecting the wrong Google account could expose or modify unintended contacts.
+
+Mitigation: Connect only the intended Google account and review the OAuth scopes during pairing.
+
+Risk: The skill relies on the ClawLink plugin and hosted OAuth connection.
+
+Mitigation: Install only if the user trusts ClawLink and the ClawHub plugin source.
+
+## Reference(s):
+
+- [Google People API Overview](https://developers.google.com/people/api/rest)
+- [Google Contacts API](https://developers.google.com/contacts/v3)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=google-contacts-address-book)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-contacts-address-book)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected Google account through ClawLink; write operations require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence, released 2026-06-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

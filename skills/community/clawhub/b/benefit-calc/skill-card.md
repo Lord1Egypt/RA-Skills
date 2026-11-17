@@ -1,40 +1,54 @@
-## Description: <br>
-Calculate insurance benefit payouts, coverage amounts, and premiums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benefit Calc helps agents estimate insurance benefit payouts, coverage amounts, reimbursements, annuity income, and premiums from user-provided inputs.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users use this skill to estimate insurance payouts, required coverage amounts, premiums, and retirement annuity income from their stated inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share more personal financial, family, or medical information than needed for a calculation. <br>
-Mitigation: Collect only the minimum inputs required for the requested estimate and avoid retaining unnecessary sensitive details. <br>
-Risk: Insurance estimates may be treated as final advice for important coverage decisions. <br>
-Mitigation: Present results as estimates and recommend verification with an insurer or qualified professional before purchase or claim decisions. <br>
+## Use Case:
 
+External users and agents use this skill to estimate insurance coverage needs, expected benefit payouts, medical reimbursements, critical illness coverage, annuity income, and premium amounts while showing calculation steps.
 
-## Reference(s): <br>
-- [Benefit Calc ClawHub listing](https://clawhub.ai/jiwenbing/benefit-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with transparent calculation steps and contextual recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitivity analysis when relevant inputs change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Insurance estimates may be misleading if the country, currency, policy terms, or benefit assumptions do not match the user's situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm jurisdiction, currency, policy terms, and calculation assumptions before presenting or relying on results.
+
+Risk: Rule-of-thumb coverage and premium calculations can be incomplete for complex insurance products or provider-specific rules.
+
+Mitigation: Show inputs and calculation steps transparently, include sensitivity analysis when useful, and recommend checking final decisions against the policy or provider.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiwenbing/skills/benefit-calc)
+- [Publisher Profile](https://clawhub.ai/user/jiwenbing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with transparent calculation steps and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on user-provided insurance, jurisdiction, currency, and policy assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

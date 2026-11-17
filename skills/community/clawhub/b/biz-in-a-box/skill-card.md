@@ -1,43 +1,56 @@
-## Description: <br>
-Agent-native double-entry business ledger for any entity type, supporting transaction recording, auditing, reporting, and data integrity validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-native double-entry business ledger for any entity type, supporting transaction recording, auditing, reporting, and data integrity validation.
 
-## Publisher: <br>
-[taylorhou](https://clawhub.ai/user/taylorhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[taylorhou](https://clawhub.ai/user/taylorhou)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to set up an entity ledger, record double-entry transactions, query financial reports, audit hash-chain integrity, and adapt the protocol for vertical business workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The quickstart asks users to run validation code from an external GitHub repository that may be unpinned. <br>
-Mitigation: Inspect or pin the repository before running node validate.js. <br>
-Risk: Ledger files may contain private business, entity, or financial data, and proposed entries may be incorrect if accepted without review. <br>
-Mitigation: Keep ledgers private, review proposed journal entries before accepting them, and back up or version-control the repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [biz-in-a-box Protocol Spec](references/spec.md) <br>
-- [Default Chart of Accounts](references/accounts.md) <br>
-- [Verticals](references/verticals.md) <br>
-- [biz-in-a-box Website](https://biz-in-a-box.org) <br>
-- [biz-in-a-box GitHub Repository](https://github.com/taylorhou/biz-in-a-box) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to set up entity-specific business ledgers, record balanced journal entries, validate ledger integrity, and derive P&L, balance sheet, cash flow, burn rate, balance, and audit reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ledger files, journal entries, validation commands, and report queries for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quickstart asks users to clone a mutable GitHub repository and run node validate.js, but that validator is not included in the reviewed artifact.
+
+Mitigation: Review or pin the GitHub repository before running node validate.js, and execute it in an isolated working directory or container without unrelated credentials or sensitive files.
+
+Risk: Ledger entries and reports can affect business accounting decisions if inaccurate or incomplete.
+
+Mitigation: Review generated journal entries, account mappings, and derived reports against source records before using them for financial decisions or compliance work.
+
+## Reference(s):
+
+- [biz-in-a-box Protocol Spec](references/spec.md)
+- [Default Chart of Accounts](references/accounts.md)
+- [Verticals](references/verticals.md)
+- [biz-in-a-box GitHub project](https://github.com/taylorhou/biz-in-a-box)
+- [biz-in-a-box website](https://biz-in-a-box.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify ledger-oriented files such as journal.ndjson, entity.yaml, accounts.yaml, labels.yaml, access.yaml, and vertical specifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="endTopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D02300;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A01A00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF" />
+  <rect x="0" y="0" width="1280" height="8" fill="url(#endTopGrad)" />
+  <text x="640" y="340" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="52" font-weight="bold" fill="#2D2D2D">感谢聆听</text>
+  <text x="640" y="400" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#5A5A5A">{{SUBTITLE}}</text>
+  <line x1="440" y1="440" x2="840" y2="440" stroke="#D02300" stroke-width="2" />
+  <rect x="490" y="480" width="300" height="80" rx="8" fill="#F5F0EB" />
+  <text x="640" y="520" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#2D2D2D">{{CONTACT_INFO}}</text>
+  <rect x="0" y="680" width="1280" height="40" fill="#A01A00" />
+  <text x="640" y="705" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" fill-opacity="0.8">{{PAGE_NUM}}</text>
+</svg>

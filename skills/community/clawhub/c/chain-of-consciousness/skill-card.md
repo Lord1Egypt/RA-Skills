@@ -1,46 +1,61 @@
-## Description: <br>
-Adds cryptographic provenance to agent work by creating tamper-evident audit trails for learned information, decisions, created artifacts, and verification steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chain of Consciousness helps agents create and verify tamper-evident audit trails of decisions, learning, actions, and generated artifacts using hash-linked local records and optional timestamp anchoring.
 
-## Publisher: <br>
-[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, verify, and export local tamper-evident audit trails of agent sessions, decisions, learning, and created artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent audit logs may capture secrets, personal data, regulated information, raw conversation text, hidden reasoning, or confidential project details if the agent logs too broadly. <br>
-Mitigation: Use concise non-sensitive summaries, instruct the agent not to log sensitive or regulated content, and review chain contents before exporting or sharing. <br>
-Risk: The skill depends on an external PyPI package and CLI for logging and verification behavior. <br>
-Mitigation: Review or pin the chain-of-consciousness dependency before installation and run it only in environments where local file writes are intended. <br>
-Risk: Optional external timestamp anchoring uses third-party timestamp services and may require network access. <br>
-Mitigation: Enable anchoring only when third-party timestamping is acceptable for the project and verify what data is sent before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize, append, verify, and export local provenance chains for agent work. It is intended for auditability, accountability, and cross-agent verification workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/chain-of-consciousness) <br>
-- [Vibe Agent Making](https://vibeagentmaking.com) <br>
-- [PyPI Package](https://pypi.org/project/chain-of-consciousness/) <br>
-- [Whitepaper](https://vibeagentmaking.com/whitepaper) <br>
-- [Verification Demo](https://vibeagentmaking.com/verify/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation, verification, tailing, and export of local JSONL or JSON provenance files through the external coc CLI or Python API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Chain files and exports can contain sensitive project records, personal data, secrets, or decision rationale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review chain contents before sharing and avoid logging secrets, credentials, or unnecessary personal data.
+
+Risk: The skill depends on installing and running the external chain-of-consciousness Python package.
+
+Mitigation: Install the package in a sandboxed or pinned environment appropriate for the workspace.
+
+Risk: Optional timestamp anchoring uses third-party services and network access.
+
+Mitigation: Use anchoring only when external timestamp proof is needed and account for third-party service availability.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/skills/chain-of-consciousness)
+- [Vibe Agent Making](https://vibeagentmaking.com)
+- [PyPI Package](https://pypi.org/project/chain-of-consciousness/)
+- [Whitepaper](https://vibeagentmaking.com/whitepaper)
+- [Verification Demo](https://vibeagentmaking.com/verify/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSONL chain files and exported JSON when the agent runs the coc CLI.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

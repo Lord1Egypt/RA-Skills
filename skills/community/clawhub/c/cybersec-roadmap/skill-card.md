@@ -1,41 +1,52 @@
-## Description: <br>
-Generate personalized cybersecurity career roadmaps based on professional assessment data and individual goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized cybersecurity career roadmaps based on professional assessment data and individual goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External cybersecurity practitioners, career counselors, HR professionals, and security training organizations use this skill to turn professional assessment data into structured cybersecurity career development plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Professional profile details are sent to an external API provider. <br>
-Mitigation: Submit only career information needed for roadmap generation, and avoid confidential employer details, sensitive internal security architecture, project names, or unnecessary personal identifiers unless the provider's data handling and retention practices are acceptable. <br>
+## Use Case:
 
+External users, career counselors, HR professionals, security training organizations, and cybersecurity practitioners use this skill to generate role, skill, and certification roadmaps from assessment data and career goals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/cybersec-roadmap) <br>
-- [API Docs](https://api.mkkpro.com:8075/docs) <br>
-- [Kong Route](https://api.mkkpro.com/career/cybersec-roadmap) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces career roadmap recommendations, skill development plans, certification paths, and phase-based objectives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Assessment details are sent to api.mkkpro.com, which may include career history, skills, goals, and identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session or user IDs, avoid unnecessary employer-identifying or sensitive career details, and review the provider's privacy and retention terms before using real user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/cybersec-roadmap)
+- [API Docs](https://api.mkkpro.com:8075/docs)
+- [Cybersecurity Roadmap API Route](https://api.mkkpro.com/career/cybersec-roadmap)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, JSON]
+
+**Output Format:** [JSON response containing a personalized cybersecurity career roadmap, skill development plan, and certification path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

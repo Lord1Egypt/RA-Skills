@@ -1,38 +1,53 @@
-## Description: <br>
-Generate professional technical documentation from codebases, including API docs, READMEs, architecture diagrams, changelogs, and onboarding guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional technical documentation from codebases - API docs, READMEs, architecture diagrams, changelogs, and onboarding guides.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan a project and generate client-deliverable technical documentation, including README files, API documentation, architecture overviews, changelogs, onboarding guides, OpenAPI YAML, and Mermaid diagrams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation can expose secrets, internal URLs, credentials, database details, or architecture information from the inspected project. <br>
-Mitigation: Review generated documents before publishing or sending them to clients, and remove sensitive implementation details. <br>
-Risk: The skill writes generated documentation files into the workspace. <br>
-Mitigation: Run it on an explicit project path and keep the repository under version control so changes can be reviewed before acceptance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and technical writers use this skill to generate client-deliverable documentation from codebases, including READMEs, API documentation, architecture overviews, changelogs, and onboarding guides.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation files, OpenAPI YAML, Mermaid diagrams, and summary guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated documentation under output/docs/ or docs/ depending on the requested documentation package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads selected project files and can write generated documentation into the workspace.
+
+Mitigation: Run it on a working branch, prefer an output directory when possible, and review generated docs or README changes before committing.
+
+Risk: Generated documentation may be incomplete or inaccurate if project structure, APIs, or configuration are not fully captured by the scan.
+
+Mitigation: Review generated documentation against the source code and existing project docs before publishing or sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanwyngaard/skills/technical-doc-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/seanwyngaard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation files, OpenAPI YAML, Mermaid diagrams, and summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated documentation to output/docs/ or docs/ depending on the requested documentation package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

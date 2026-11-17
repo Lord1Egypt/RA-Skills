@@ -76,7 +76,7 @@
 
 ### 文献资产集成
 
-Zotero 不作为 llm-wiki 原生待开发模块。可使用 OpenAI Plugins Zotero skill（<https://github.com/openai/plugins/tree/main/plugins/zotero/skills/zotero>）或等价的 Zotero-capable skill 承担文献层工作流：探测或启用 Zotero Desktop 本地 API，搜索本地条目、collection 和 tag，导出 BibTeX/citation，按需读取附件 file URL 或索引全文，并在确认后导入 BibTeX/RIS 记录。
+Zotero 不作为 llm-wiki 原生待开发模块。所有文献层操作统一通过 `54yyyu/zotero-mcp`：搜索条目、collection 和 tag，读取 metadata、citation、附件、全文和批注，并在明确授权后执行增量写回。详细能力门和失败处理以 `docs/ZOTERO_MCP_INTEGRATION.md` 为准。
 
 llm-wiki 的职责是把这些 Zotero 结果作为来源发现和 provenance：读取 metadata、全文、批注或附件路径，综合生成 Markdown wiki 页面，并在可用时保存 `zotero_item_key`、`citation_key`、`library_id`、`zotero_uri`、DOI、arXiv ID 等标识。
 
@@ -201,11 +201,11 @@ llm-wiki 的职责是把这些 Zotero 结果作为来源发现和 provenance：�
 
 ### 2026-06-05：Zotero 改为外部 Agent skill 工作流
 
-**决定**：不在 llm-wiki TODO 中实现原生 Zotero MCP server/client 封装；Zotero 连接由外部 Agent/Zotero skill 承担，推荐使用 OpenAI Plugins Zotero skill（<https://github.com/openai/plugins/tree/main/plugins/zotero/skills/zotero>）。llm-wiki 只规范如何使用 Zotero 结果作为来源发现和 provenance。
+**决定**：不在 llm-wiki TODO 中实现原生 Zotero MCP server/client 封装；Zotero 连接由外部 Agent 通过 `54yyyu/zotero-mcp` 承担。llm-wiki 负责来源发现、provenance、只读同步计划和写回协议，不绕过 MCP 直接访问 Zotero。
 
 **理由**：
 
-- 已有 Zotero skill 能连接 Zotero Desktop 本地 API，覆盖搜索、collection/tag、BibTeX/citation、附件路径/全文读取，以及经确认后的 BibTeX/RIS 导入。
+- `54yyyu/zotero-mcp` 提供搜索、collection/tag、metadata/citation、附件/全文/批注以及经授权的增量写回能力；实际暴露的工具集仍须逐次通过 capability gate。
 - llm-wiki 的边界应保持为 Markdown 知识层，避免重复实现文献管理器。
 - 任意文档上传/附件管理能力尚未在 llm-wiki 工作流中验证，因此不写成项目已支持能力。
 
@@ -217,3 +217,15 @@ llm-wiki 的职责是把这些 Zotero 结果作为来源发现和 provenance：�
 ---
 
 *最后更新：2026-06-05*
+
+### 2026-08-23：采用轻量、一次性 Zotero enrichment worker
+
+**决定**：在不绕过 `54yyyu/zotero-mcp` 的前提下，允许 llm-wiki 使用 MCP Python SDK 启动配置好的 Zotero MCP server，执行 collection 级 DOI、引用量、开放期刊指标和 preprint 正式发表候选刷新。该封装是 MCP tool caller，不是 Zotero Web API/SQLite 客户端，也不复制 zotero-mcp 的数据访问层。
+
+**范围**：
+
+- Crossref 负责 DOI identity 和正式发表候选；OpenAlex 负责引用量与开放 source metrics
+- 命令一次运行后退出，通过 freshness timestamp 和忽略提交的 `var/zotero-enrichment.sqlite` 跳过未过期请求
+- 默认 dry-run；安全自动写回只包含 namespaced Extra、`llm-wiki:*` 状态 tag 和保守 DOI URL 规范化
+- 新 DOI、作者/标题/venue/date、item type、preprint 合并和 Zotero Related 保持 review-only
+- 首个真实效果测试 collection 为 `DeepLearning / GNN`

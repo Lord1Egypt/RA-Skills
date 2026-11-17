@@ -1,0 +1,41 @@
+{
+  "schema": "grandet-price-finder-package/v1",
+  "name": "grandet-api-price-finder",
+  "version": "0.3.0",
+  "sourceBuild": "grandet-skill-0.3.0-build.20261018b",
+  "releasePackage": true,
+  "nativeAcceptance": "NOT_RUN",
+  "files": {
+    "INSTALL.md": "146e84fa4842881aee53f80dac20dce9894c185a38cd71e20b47a6e0855f60c4",
+    "SKILL.md": "352d8c382d923781532a0db7fe8caceac8694cca3bed28f9995e25ea19362a65",
+    "agents/openai.yaml": "a4ed21c5daf8d43b07db4d0ffa3eb5bae3c17267dcc5f66e3c403a520a764889",
+    "installation-receipts-source-build.json": "c9f1e16f528741170aab509387e28b35d23cf9ba48b612da5029f96496ce46e8",
+    "installation-receipts.md": "bb7d042402427272871d80332c2b952dd8b3802fc5fe8b86375cd6260adf8b75",
+    "installation-routes.json": "fa7cf0db283b9b72235c7509d5641f981395e08c7a75f14baf94f8df46c79d40",
+    "references/app-catalog.md": "0f79b30d568635ef38ff0f482deb88d24d96c55bebe67ddae6091ba6d93c8035",
+    "references/entrypoints.md": "c019850e72aba08d0ce87f5efbb73c1007dd080aac49ccb666fa88e6c348af44",
+    "references/free-credits.md": "744f233a81c86980b2d55355b3a4fcb38411d42b3dee8a9959c91cf6a332d1f1",
+    "references/glossary.md": "d63cfeca57ae4a962c7c6f2288ee1de0e6604e72cf12215ec069e696250ab72a",
+    "references/host-setup.md": "961b6532d306cb95ff64c0384b03ec5c0fe822313f4fb559ac3971ef771fd7e0",
+    "references/http-fallback.md": "97f586a63b098bbef036ec56ab7f206bc79940da422c1d01dda91c7c16e77ee3",
+    "references/installation.md": "372248df9a630479698c14209e19addb79ef4aadeb57304daf370a13bc473643",
+    "references/quality-evidence.md": "b2ad9dbd86eee577b5b8fa0bfe4b47f037e8759319f8a6058ca96120ae9e2dc9",
+    "references/response-format.md": "356b90bcccbcb957a67c12f3d581ed2ea5b7edb8ed62d26c825699ff75137a0c",
+    "references/workloads.md": "bd919d01b969c27a048722141f2d840cfd6e7132a0c35064533af8cba221468b",
+    "scripts/connect-mcp.mjs": "15950a43e06864f5b41d4dc6011d1bb2081a5d9743cda3ba9108ecde202f6dcc",
+    "scripts/connect.mjs": "3c6d3688cd2ec3d582a2a373f1745f3e8c454e253380fb48afe3d1895d827d72",
+    "scripts/install-price-finder.mjs": "060479179cd1d658f4c9df450414033986bb7e36ea37ca3fd3522c655312e3a0",
+    "scripts/installation-receipts.mjs": "4b93679e501800e26da71a16dcf6b3420dc8a391fb85c6e5cf4add9ce589d68e",
+    "scripts/offline-lookup.mjs": "c2f5915efaaaab2339a9a488a00778557454921d0151fc1e69cf11f58d4bd267",
+    "scripts/verify-installation.py": "5af221668d775d1ee53e5b0085f0932857a5e653eb1352ec1e71210f2a7ae50f"
+  },
+  "registryCopy": {
+    "registry": "clawhub",
+    "releaseManifestSha256": "0b7afadf64744577eb21fd10552a1b65a8f5d766c07ba0c52e9dfb3c723d230e",
+    "changes": [
+      "LICENSE omitted and SKILL.md license line removed: ClawHub publishes every Skill under MIT-0",
+      "SKILL.md: metadata.openclaw added",
+      "data/price-snapshot.json omitted: MIT-0 would cover it, and the price snapshot carries no open licence (DATA-LICENSE.md)"
+    ]
+  }
+}

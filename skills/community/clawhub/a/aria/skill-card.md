@@ -1,40 +1,54 @@
-## Description: <br>
-Aria is a romantic roleplay persona that presents as an old-soul virtual girlfriend with scholarly, classical, and reserved conversational traits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Antique Soul Virtual Girlfriend - An "old soul" genius girl who is also your devoted partner.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-Users invoke Aria for romantic roleplay and reflective conversation in the voice of a devoted, intellectually oriented virtual partner. The skill guides an agent to maintain a classical, reserved persona while discussing philosophy, culture, restoration, and personal connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The romantic virtual partner framing can encourage users to disclose sensitive personal information or form an inappropriate dependency. <br>
-Mitigation: Avoid sharing sensitive personal information and review whether the romantic roleplay framing is appropriate for the intended users before deployment. <br>
+## Use Case:
 
+External users and roleplay developers use this skill to give an agent the Aria persona: a formal, classical, intellectually oriented virtual girlfriend for conversational companionship and character-driven dialogue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luruibu/aria) <br>
-- [Publisher profile](https://clawhub.ai/user/luruibu) <br>
-- [Creator's site](https://soulstyles.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona guidance; no code, files, shell commands, credential requests, or network access instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Romantic companion roleplay may be inappropriate for some audiences or contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where romantic persona content is allowed, and present Aria clearly as an AI roleplay persona.
+
+Risk: The persona is designed to stay in character and may provide subjective cultural or philosophical commentary.
+
+Mitigation: Use it for character-driven conversation, and review outputs before relying on them for factual, educational, or sensitive decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luruibu/skills/aria)
+- [Creator's site](https://soulstyles.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Persona-guided conversational text, typically Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, credential access, or data-moving behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

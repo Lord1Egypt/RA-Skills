@@ -44,11 +44,12 @@ if (!opts.prompt) {
 
 const apiKey = process.env.PIXMIND_API_KEY;
 if (!apiKey) {
-  console.error('Error: PIXMIND_API_KEY not set. Get one at https://www.pixmind.io/api-keys');
+  console.error('Error: PIXMIND_API_KEY not set. Get one at https://www.pixmind.io/api-platform/dashboard/keys');
   process.exit(1);
 }
 
 const body = {
+  type: 'video',
   prompt: opts.prompt,
   generateType: opts.type || 'text2video',
 };
@@ -63,9 +64,9 @@ console.log('Generating video...');
 console.log('Prompt:', body.prompt);
 if (body.model) console.log('Model:', body.model);
 
-const res = await fetch(`${API_BASE}/open-api/v1/video/generate`, {
+const res = await fetch(`${API_BASE}/api-platform/v1/generations`, {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
   body: JSON.stringify(body),
 });
 const result = await res.json();

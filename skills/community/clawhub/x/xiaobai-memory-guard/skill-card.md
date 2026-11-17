@@ -1,41 +1,55 @@
-## Description: <br>
-Memory Guard helps agents check memory, note, reflection, and handoff files for continuity gaps, missing references, and stale session state before work begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Guard helps AI agents scan memory, notes, and handoff files to detect missing context, continuity gaps, and memory health issues before or during long-running sessions.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add startup and periodic memory-continuity checks to long-running or restarted AI agent workflows. It is intended to surface missing handoff files, unreferenced addenda, stale memory records, and similar context-continuity issues before the agent proceeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to clone and automatically run an unpinned external Node script that is not included in the reviewed package. <br>
-Mitigation: Review the referenced repository before installing, pin it to a trusted commit, and do not add startup hooks or cron jobs until the script's reads, writes, and logging are understood. <br>
-Risk: Memory, note, reflection, and handoff files may contain sensitive operational details or credentials. <br>
-Mitigation: Keep secrets and credentials out of memory files, handoff notes, reflections, and generated logs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add memory-continuity checks, health reports, and recovery guidance to long-running AI agent sessions where missed handoff files or stale memory can cause task context loss.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aptratcn/xiaobai-memory-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/aptratcn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and status-report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct an agent or operator to inspect memory, notes, reflections, handoff files, and git history before continuing work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The release asks users to run an unaudited, mutable GitHub-hosted memory guard script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or vendor the actual memory-guard.mjs implementation before installing it, and pin any dependency or source checkout to a trusted immutable revision.
+
+Risk: Optional startup or cron integration can create recurring access to agent memory files and git history under the user's account.
+
+Mitigation: Avoid adding the startup block or cron job unless recurring scans are intentional, and limit the files and repositories available to the process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/xiaobai-memory-guard)
+- [Artifact README](artifact/README.md)
+- [Artifact English README](artifact/README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain-text memory health reports with inline shell commands and recovery checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require access to local memory, notes, handoff files, and git history when the referenced guard script is installed and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

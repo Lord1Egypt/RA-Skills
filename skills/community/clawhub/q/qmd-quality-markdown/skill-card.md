@@ -1,43 +1,54 @@
-## Description: <br>
-Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
 
-## Publisher: <br>
-[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk)
 
-## Use Case: <br>
-Developers and agents use this skill to index local files, search them with lexical, vector, or hybrid retrieval, and retrieve relevant document snippets while working with local Markdown and text collections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Indexing broad local folders may include sensitive files in the qmd cache. <br>
-Mitigation: Configure narrow collection paths and masks, avoid secrets and broad home or work directories, and clear ~/.cache/qmd when the index is no longer needed. <br>
-Risk: MCP mode can expose indexed local content to connected clients. <br>
-Mitigation: Enable qmd mcp only for trusted local clients. <br>
-Risk: The installed qmd package is an upstream dependency outside the skill artifact. <br>
-Mitigation: Review the upstream package and pin or otherwise control the dependency when supply-chain assurance matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sonnenberglauramarie-afk/qmd-quality-markdown) <br>
-- [qmd package repository](https://github.com/tobi/qmd) <br>
-- [Homepage](https://tobi.lutke.com) <br>
+## Use Case:
 
+Developers and agents use this skill to install and operate qmd for indexing local Markdown or documentation collections and searching them with BM25, vector, or hybrid queries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local qmd indexes, Ollama configuration, MCP mode, and cache paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs qmd from an unpinned GitHub source, so future upstream changes can alter installed behavior.
+
+Mitigation: Review the referenced project before installation and use a pinned or audited package source where the deployment process supports it.
+
+Risk: Local indexes may include sensitive files if broad directories are added.
+
+Mitigation: Index only intended directories, exclude sensitive paths, and manage cached index data under ~/.cache/qmd according to local data-handling policy.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sonnenberglauramarie-afk/skills/qmd-quality-markdown)
+- [qmd install package](https://github.com/tobi/qmd)
+- [Publisher homepage](https://tobi.lutke.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local qmd indexes and Ollama-backed embedding or reranking behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

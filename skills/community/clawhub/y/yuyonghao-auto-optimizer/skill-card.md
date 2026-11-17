@@ -1,40 +1,53 @@
-## Description: <br>
-Auto Optimizer monitors OpenClaw skill performance, analyzes bottlenecks, generates optimization recommendations, and can apply optimization changes to local skill code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Optimizer monitors OpenClaw skill performance, analyzes bottlenecks, generates optimization recommendations, and can apply code changes to improve efficiency and stability.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and skill maintainers use Auto Optimizer to collect performance metrics, identify slow or unstable skill behavior, produce optimization reports, and optionally apply code changes for common performance and reliability issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may edit local skill source files and persist backups or metrics without clear confirmation or path limits. <br>
-Mitigation: Use it only on a test copy or version-controlled workspace, restrict target paths yourself, and review proposed or applied changes before deployment. <br>
-Risk: Dry-run and rollback behavior may not provide reliable recovery for modified source files. <br>
-Mitigation: Do not rely on dry-run or rollback behavior unless you verify it in the code first; keep independent backups before applying optimizations. <br>
+## Use Case:
 
+Developers and maintainers use this skill to monitor OpenClaw skill performance, identify bottlenecks, and generate or apply optimization plans for skill code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/yuyonghao-auto-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JavaScript objects and Markdown optimization reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local metrics and backups, and may modify local skill source files when optimization application is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill can persistently change other skills' code and metric files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a version-controlled workspace, review generated plans, prefer dry-run or preview behavior where available, and inspect diffs before accepting changes.
+
+Risk: Weak path scoping and missing explicit approval gates can make untrusted skill names or paths unsafe.
+
+Mitigation: Pass only trusted, explicit skill paths; validate path scope before execution; and require human confirmation before applying optimizations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-auto-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JavaScript objects, Markdown reports, and proposed or applied code changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write performance metrics, create backups, and modify target skill files when optimization application is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Captures negotiation strategy failures, concession leaks, BATNA weakness, framing misses, objection handling gaps, escalation misalignment, anchor errors, and agreement quality risks for continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs redacted negotiation learnings, issues, and feature requests for concession leaks, BATNA gaps, framing misses, objections, agreement risk, and optional project-scoped reminder hooks.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers, sales operators, and agent users use this skill to capture negotiation learnings, issues, and feature requests in local markdown logs. It supports recurring review of concession discipline, BATNA readiness, objection handling, escalation timing, and agreement-risk patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional hooks can emit broad negotiation reminders or inspect Bash output for negotiation keywords, including unrelated prompts or commands. <br>
-Mitigation: Enable hooks deliberately, keep matchers narrow where possible, and treat hook output as reminder-only guidance. <br>
-Risk: Negotiation logs may contain confidential deal terms, pricing, legal positions, or counterparty details. <br>
-Mitigation: Avoid storing sensitive details unless workspace access controls, retention rules, and redaction practices are appropriate. <br>
-Risk: Negotiation guidance could be mistaken for authority to approve high-impact concessions or final terms. <br>
-Mitigation: Require explicit human approval for concessions, pricing, legal commitments, and final agreements. <br>
+## Use Case:
 
+Developers and negotiation teams use this skill to capture redacted negotiation patterns, risks, and tooling requests in local markdown files. It helps agents propose reviewed improvements such as playbooks, objection libraries, concession guardrails, BATNA checklists, and deal review templates without accepting terms or approving deals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jose-compu/self-improving-negotiation) <br>
-- [Examples](references/examples.md) <br>
-- [Hooks setup](references/hooks-setup.md) <br>
-- [OpenClaw integration](references/openclaw-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and optional hook reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local .learnings markdown files only when the user or agent follows the instructions; optional hooks emit reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive negotiation details such as BATNA values, pricing floors, confidential terms, legal advice, approval tokens, or raw transcripts could be captured in local learning files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Log only redacted process-level summaries, keep .learnings private or access-controlled, and review entries before committing or sharing them.
+
+Risk: Reminder hooks could create excessive or overly broad negotiation prompts if installed globally or configured with broad matchers.
+
+Mitigation: Use project-scoped hooks only, avoid empty or catch-all matchers, and keep hook behavior reminder-only.
+
+Risk: Generated skill scaffolds could introduce weak or misleading negotiation guidance if published without review.
+
+Mitigation: Keep extraction dry-run by default, pass --write only after explicit user approval, and review any generated SKILL.md before enabling or publishing it.
+
+Risk: Negotiation suggestions could be mistaken for authority to accept terms, set pricing, approve concessions, or finalize agreements.
+
+Mitigation: Require explicit human approval for high-impact concessions and final terms; the skill must remain logging and reminder focused.
+
+## Reference(s):
+
+- [Examples](references/examples.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local learning-log entries, reminder text, and optional reviewed skill scaffold guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

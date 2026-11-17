@@ -1,0 +1,25 @@
+# Release exclusion set for the android-project-generator skill package.
+#
+# The published package must contain only the skill runtime:
+#   SKILL.md, README.md, LICENSE, references/, scripts/
+#
+# Everything listed below is development-only tooling. It must never be
+# shipped, because it is not part of the skill's declared purpose and must
+# not be reachable from the skill workflow described in SKILL.md.
+
+# Dev-only self-test harness
+tests/
+
+# Generated caches and reports
+cache/
+reports/
+htmlcov/
+.coverage
+
+# Repository metadata
+.git/
+.gitignore
+.github/
+
+# Local environment noise
+*.log

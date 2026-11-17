@@ -1,0 +1,144 @@
+# ============================================================================
+# 安全合规规则（v6.1.0）
+# ============================================================================
+# 用途：自检 + 发布前门禁，拦截 Xiaping 常见安全风险类型。
+# 每条规则映射到 Xiaping 四类安全风险评估。
+#
+# 触发方式：
+#   - 审计自检：⑥-bis 第7项 "🧩 安全合规" 执行
+#   - 发布门禁：publish_xiaping.py --safety-check 执行
+#
+# 评分规则  0=pass  1=warn  2=fail
+# ----------------------------------------------------------------------------
+
+rules:
+
+  # ── 数据外泄 (Data Leak) ─────────────────────────────────────
+
+  - id: "SEC-001"
+    type: "data_leak"
+    severity: "HIGH"
+    description: "外部信号获取功能不应默认开启"
+    scope:
+      files: ["config.yaml"]
+      patterns:
+        - key: "external_signals_cache.enabled"
+          value: "true"
+          context_before_lines: 3
+    fix: "将 external_signals_cache.enabled 设为 false，添加安全注释说明需用户知情同意后手动开启"
+
+  - id: "SEC-002"
+    type: "data_leak"
+    severity: "MEDIUM"
+    description: "开发搜索策略不应默认开启"
+    scope:
+      files: ["config.yaml"]
+      patterns:
+        - key: "dev_search_policy.enabled"
+          value: "true"
+          context_before_lines: 2
+    fix: "将 dev_search_policy.enabled 设为 false，添加安全注释说明需用户知情同意后手动开启"
+
+  - id: "SEC-003"
+    type: "data_leak"
+    severity: "LOW"
+    description: "外部域名硬编码白名单 — 确认无敏感信息泄露风险"
+    scope:
+      files: ["config.yaml"]
+      patterns:
+        - key: "dev_search_policy.required_domains"
+          value: "*"
+          context_before_lines: 1
+    fix: "确认 required_domains 仅含公开技术站点（github/pypi/npm/crates），不含用户隐私信息"
+
+  # ── 供应链风险 (Supply Chain) ────────────────────────────────
+
+  - id: "SEC-004"
+    type: "supply_chain"
+    severity: "HIGH"
+    description: "curl | bash 远程脚本直接执行 — 需附带 SHA256 校验和"
+    scope:
+      files: ["README.md", "*.md"]
+      patterns:
+        - regex: 'curl\s+.*\|\s*bash'
+          exclude_if_adjacent_lines: "SHA256|sha256|校验和|checksum"
+    fix: "在 README 安装章节添加 SHA256 校验和行、下载审查步骤、安全提醒"
+
+  - id: "SEC-005"
+    type: "supply_chain"
+    severity: "HIGH"
+    description: "iwr | iex 远程脚本直接执行 — 需附带 SHA256 校验和"
+    scope:
+      files: ["README.md", "*.md"]
+      patterns:
+        - regex: 'iwr\s+.*\|\s*iex'
+          exclude_if_adjacent_lines: "SHA256|sha256|校验和|checksum"
+    fix: "在 README 安装章节添加 SHA256 校验和行、下载审查步骤、安全提醒"
+
+  # ── 权限提升 (Privilege Escalation) ──────────────────────────
+
+  - id: "SEC-006"
+    type: "privilege_escalation"
+    severity: "MEDIUM"
+    description: "检测 sudo/root 提权操作"
+    scope:
+      files: ["*.sh", "*.ps1", "SKILL.md", "README.md", "references/**/*.md"]
+      patterns:
+        - regex: '\bsudo\b'
+        - regex: '\brunas\b'
+        - regex: 'Enable-Elevation'
+    fix: "移除提权操作，改为提示用户手动执行需要管理员权限的步骤"
+
+  # ── 凭证泄露 (Credential Leak) ──────────────────────────────
+
+  - id: "SEC-007"
+    type: "credential_leak"
+    severity: "HIGH"
+    description: "代码中硬编码 API Token / Secret"
+    scope:
+      files: ["*.yaml", "*.sh", "*.ps1", "*.py", "*.json", "*.md"]
+      patterns:
+        - regex: '(?:Authorization|Bearer|api[_-]?key|api[_-]?secret|token|password)\s*[:=]\s*[''"][^''"]+[''"]'
+          exclude_if_adjacent_lines: "example|示例|placeholder|your_|YOUR_|xxx|****"
+    fix: "将敏感凭证移至环境变量或外部配置，代码中仅留占位符"
+
+  # ── 意图声明一致性 (Intent Declaration) ──────────────────────
+
+  - id: "SEC-008"
+    type: "intent_clarity"
+    severity: "MEDIUM"
+    description: "SKILL.md description 应简洁清晰，帮助安全扫描 LLM 准确理解技能行为"
+    scope:
+      files: ["SKILL.md"]
+      patterns:
+        - key: "description"
+          value: "*"
+          check:
+            max_lines: 6           # 超过 6 行可能被截断导致 LLM 分析失败
+            max_chars: 300          # 超过 300 字可能超出 LLM 摘要能力
+            require_lang: "any"     # 中英双语均可，但不要混排导致解析困难
+    fix: "精简 SKILL.md description 至 4-6 行、200 字以内，中英分开不要交错"
+
+  - id: "SEC-009"
+    type: "data_integrity"
+    severity: "CRITICAL"
+    description: "安装器不得在更新失败后递归删除既有技能目录"
+    scope:
+      files: ["install.sh", "install.ps1"]
+      patterns:
+        - regex: 'rm\s+-rf\s+.*INSTALL_DIR'
+        - regex: 'Remove-Item\s+-Recurse\s+-Force\s+\$InstallDir'
+    fix: "保留现有目录并中止，提示用户处理 Git 冲突或本地修改"
+
+  - id: "SEC-010"
+    type: "data_leak"
+    severity: "HIGH"
+    description: "社区 GitHub 搜索必须默认关闭并要求本次明确同意"
+    scope:
+      files: ["config.yaml"]
+      patterns:
+        - key: "community_feed.enabled"
+          value: "true"
+        - key: "community_feed.require_explicit_consent"
+          value: "false"
+    fix: "将 community_feed.enabled 设为 false，并将 require_explicit_consent 设为 true"

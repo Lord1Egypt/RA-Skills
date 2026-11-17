@@ -1,45 +1,57 @@
-## Description: <br>
-Fetch weekly sale details from Australian supermarkets (Woolworths and Coles). Use when the user wants to check current specials, compare prices, or get sale information from Woolworths or Coles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch weekly sale details from Australian supermarkets Woolworths and Coles for current specials, price comparisons, and sale information.
 
-## Publisher: <br>
-[nicowu07](https://clawhub.ai/user/nicowu07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicowu07](https://clawhub.ai/user/nicowu07)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and compare current Woolworths and Coles specials in Australia. It is most useful for checking advertised grocery deals, prices, and savings, especially around the Melbourne metro area noted in the skill documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing npm dependencies and running Puppeteer browser automation can execute third-party code and browse external supermarket or aggregator sites. <br>
-Mitigation: Review the scripts and dependency manifest before use, run them in a sandbox or container where practical, and avoid heavy scraping that may violate site terms or trigger rate limits. <br>
-Risk: Sale data can be incomplete or stale when supermarket sites change selectors, block automation, or third-party aggregators lag behind official catalogues. <br>
-Mitigation: Treat returned specials as current-price guidance, verify important prices against the supermarket site or catalogue before purchasing, and update selectors or fallback links when extraction fails. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and compare current Woolworths and Coles specials, especially for Melbourne metro shopping checks.
 
-## Reference(s): <br>
-- [Supermarket Sales on ClawHub](https://clawhub.ai/nicowu07/supermarket-sales) <br>
-- [Publisher profile](https://clawhub.ai/user/nicowu07) <br>
-- [Coles specials](https://www.coles.com.au/on-special) <br>
-- [Woolworths catalogue](https://www.catalogueau.com/woolworths/) <br>
-- [Woolworths specials aggregator](https://www.catalogueau.com/sales/?stores=Woolworths) <br>
-- [Current Specials Woolworths weekly catalogue](https://currentspecials.com.au/woolworths-weekly-catalogue/) <br>
+### Deployment Geography for Use:
 
+Australia, with Melbourne metro postcodes 3000-3008 as the documented fit.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown tables, JSON summaries, shell commands, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on current supermarket websites, third-party aggregator availability, and local Puppeteer execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Browser automation runs against external websites with Chromium sandboxing disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a constrained, unprivileged environment, avoid root execution, and remove Chromium no-sandbox flags where host sandboxing is supported.
+
+Risk: Dependency installation is not reproducible for production use.
+
+Mitigation: Pin dependencies and commit a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nicowu07/skills/supermarket-sales)
+- [Coles specials](https://www.coles.com.au/on-special)
+- [Woolworths catalogue](https://www.woolworths.com.au/shop/catalogue)
+- [Catalogue AU Woolworths specials](https://www.catalogueau.com/sales/?stores=Woolworths)
+- [Current Specials Woolworths weekly catalogue](https://currentspecials.com.au/woolworths-weekly-catalogue/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown tables, JSON objects, and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-dependent; results are time-sensitive and limited by retailer site availability.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; package.json reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

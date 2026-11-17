@@ -1,39 +1,49 @@
-## Description: <br>
-Guidelines for proactive behavior, periodic checks, and memory maintenance using heartbeats and cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidelines for proactive behavior, periodic checks, and memory maintenance using heartbeats and cron.
 
-## Publisher: <br>
-[FlayZz](https://clawhub.ai/user/FlayZz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flayzz](https://clawhub.ai/user/flayzz)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure proactive heartbeat checks, choose between heartbeat polls and cron jobs, and maintain compact long-term memory notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages unattended checks across private accounts, workspace files, and project state. <br>
-Mitigation: Restrict which accounts, directories, and files the agent may inspect before enabling heartbeat behavior. <br>
-Risk: The skill permits proactive memory edits and repository changes, including commits and pushes. <br>
-Mitigation: Require explicit approval before commits, pushes, deletions, or long-term memory updates, and periodically review HEARTBEAT.md, MEMORY.md, and memory/heartbeat-state.json. <br>
+## Use Case:
 
+Agents and users use Heartbeats to decide how to handle periodic heartbeat polls, batch non-urgent checks, and maintain workspace memory without unnecessary interruptions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with optional JSON state and file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update HEARTBEAT.md, MEMORY.md, memory/heartbeat-state.json, documentation, and repository state when the agent is allowed to act proactively.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports broad proactive access to private data, persistent memory, and repository publishing without clear approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is allowed to read connected personal sources and modify workspace memory, and require explicit approval before commits, pushes, external messages, HEARTBEAT.md edits, and MEMORY.md deletions or rewrites.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flayzz/skills/heartbeats)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to create or update HEARTBEAT.md, MEMORY.md, and memory/heartbeat-state.json when workspace access allows it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

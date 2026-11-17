@@ -468,7 +468,7 @@ class Monitor:
                 # 磁盘使用率
                 disk = psutil.disk_usage("/")
                 self.record_count("system.disk.usage", disk.percent)
-                self.record_count("system.disk.available", disk.available)
+                self.record_count("system.disk.available", disk.free)
 
             except Exception as e:
                 print(f"[Monitor] 资源监控失败: {e}")

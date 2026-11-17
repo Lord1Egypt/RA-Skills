@@ -1,46 +1,58 @@
-## Description: <br>
-Use when a team wants to generate multiple ad, spoken-copy, sales, or promo voice variants from one typed or spoken creative brief, transcribe voice memos with AudioClaw ASR, and synthesize the variants with the same AudioClaw voice_id for A/B testing, regional wording experiments, or rapid commercial validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a team wants to generate multiple ad, spoken-copy, sales, or promo voice variants from one typed or spoken creative brief, transcribe voice memos with AudioClaw ASR, and synthesize the variants with the same AudioClaw voice_id for A/B testing, regional wording experiments, or rapid commercial validation.
 
-## Publisher: <br>
-[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79)
 
-## Use Case: <br>
-Commercial, growth, sales, and content teams use this skill to turn typed briefs or spoken voice memos into multiple same-voice ad or promo variants for A/B review. The workflow supports ASR intake, structured brief extraction, copy variant generation, TTS synthesis, CSV review export, and optional Feishu audio delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign briefs, voice recordings, generated copy, synthesized audio, and metadata may be sent to AudioClaw/SenseAudio and, when enabled, Feishu. <br>
-Mitigation: Use the skill only with data approved for those services, verify the Feishu destination before sending, and use least-privilege API and Feishu credentials. <br>
-Risk: Feishu delivery and shared AudioClaw credential handling rely on helper code in the install tree. <br>
-Mitigation: Review, trust, and pin the sibling Feishu helper and shared AudioClaw modules before enabling automatic audio delivery. <br>
-Risk: Regional styles are wording adaptations and are not guaranteed dialect TTS. <br>
-Mitigation: Treat regional variants as copy-testing candidates and review them with target-audience or language reviewers before launch. <br>
+## Use Case:
 
+Commercial marketing, sales, and content teams use this skill to turn typed campaign briefs or spoken voice memos into multiple same-voice copy and audio variants for A/B review, regional wording tests, and rapid validation.
 
-## Reference(s): <br>
-- [AudioClaw ASR Brief Pipeline](references/asr_brief_pipeline.md) <br>
-- [Commercial Voice A/B Patterns](references/commercial_ab_patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kikidouloveme79/senseaudio-voice-ab-lab) <br>
-- [AudioClaw ASR API Endpoint](https://api.senseaudio.cn/v1/audio/transcriptions) <br>
-- [AudioClaw TTS API Endpoint](https://api.senseaudio.cn/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, CSV, audio files] <br>
-**Output Format:** [Markdown guidance with Python commands, JSON manifests, CSV review sheets, and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a fixed voice_id across generated variants and can optionally send audio messages to Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Briefs, transcripts, generated copy, and synthesized audio may be sent to SenseAudio and optionally to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated API and Feishu credentials, provide explicit chat IDs, review result JSON before Feishu delivery, and avoid processing unrelated private audio in the same workspace.
+
+Risk: The security summary reports unsafe helper loading and broad credential use.
+
+Mitigation: Review helper-loading paths and credential scope before installation; run in a constrained workspace until path validation and helper-loading issues are fixed.
+
+## Reference(s):
+
+- [Commercial Voice A/B Patterns](references/commercial_ab_patterns.md)
+- [AudioClaw ASR brief intake](references/asr_brief_pipeline.md)
+- [AudioClaw ASR API endpoint](https://api.senseaudio.cn/v1/audio/transcriptions)
+- [AudioClaw platform API](https://platform.senseaudio.cn/api)
+- [AudioClaw TTS API endpoint](https://api.senseaudio.cn/v1/t2a_v2)
+- [ClawHub skill page](https://clawhub.ai/kikidouloveme79/skills/senseaudio-voice-ab-lab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON manifests, CSV review sheets, transcripts, and generated audio file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write synthesized MP3 variants, optional OGG/Opus Feishu delivery artifacts, variant metadata, ASR transcripts, and review exports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

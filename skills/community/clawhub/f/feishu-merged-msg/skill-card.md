@@ -1,39 +1,50 @@
-## Description: <br>
-Fetch and parse Feishu merged/forwarded messages (合并转发消息) when a Feishu message shows "Merged and Forwarded Message" with no readable content or sub-messages must be retrieved from a merge_forward message type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and parse Feishu merged/forwarded messages (合并转发消息). Activate when a Feishu message shows "Merged and Forwarded Message" with no readable content, or when you need to retrieve sub-messages from a merge_forward message type.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and Feishu bot operators use this skill to retrieve sub-messages from merged or forwarded Feishu conversations and summarize the thread for a user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose Feishu app credentials or forwarded-message contents if credentials are read from local configuration, passed on the command line, or printed in agent-visible output. <br>
-Mitigation: Use a managed secret mechanism, avoid printing or logging credentials, avoid command-line secrets where possible, and grant only the minimum Feishu read-only scope. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deadblue22/feishu-merged-msg) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu message retrieval endpoint](https://open.feishu.cn/open-apis/im/v1/messages/${MSG_ID}) <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve unreadable Feishu merge_forward messages, parse their sub-messages, and summarize forwarded conversation threads for users.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Feishu message ID plus Feishu app credentials with im:message:readonly scope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Feishu app credentials may be exposed because the skill reads local OpenClaw configuration and passes app_id and app_secret to a shell script.
+
+Mitigation: Install only when credential access is acceptable; prefer a safer version that avoids printing appSecret, avoids command-line secret arguments, and limits credential use to the requested message retrieval task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deadblue22/skills/feishu-merged-msg)
+- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu message retrieval endpoint](https://open.feishu.cn/open-apis/im/v1/messages/{message_id})
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response parsing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summarized conversation text, sender details, mentions, and notes about inaccessible image_key references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

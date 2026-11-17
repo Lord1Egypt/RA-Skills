@@ -1,46 +1,60 @@
-## Description: <br>
-Use APIDot for Seedream 5.0 Lite API workflows, including image generation, image editing, multi-reference generation, reference-guided editing, structured layout planning, async task submission, polling, task status, webhook integration, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes agents to APIDot Seedream 5.0 Lite documentation and integration guidance for image generation, image editing, reference-guided workflows, async task handling, polling, task status, and webhooks.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to route Seedream 5.0 Lite integration questions to APIDot model pages, API docs, async task patterns, polling guidance, and webhook guidance. It supports planning image generation and editing workflows without bundling executable code or stored credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY or private media data could be exposed during real integration work. <br>
-Mitigation: Keep API keys server-side, avoid logging private prompts or image URLs, and use a backend secret manager or environment variables for real API calls. <br>
-Risk: Model request fields, pricing, availability, or commercial terms may change after the skill release. <br>
-Mitigation: Verify current fields and terms in the live APIDot docs and model page before submitting production requests. <br>
+## Use Case:
 
+Developers and agents use this skill to find the right APIDot Seedream 5.0 Lite documentation path and plan image generation or editing integrations without inventing model-specific API details. It is useful for async task submission, task_id persistence, polling, webhook delivery, and safe API key handling.
 
-## Reference(s): <br>
-- [Local APIDot Seedream 5.0 Lite Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Seedream 5.0 Lite Model Page](https://apidot.ai/models/seedream-5-0-lite) <br>
-- [APIDot Seedream 5.0 Lite Docs](https://apidot.ai/docs/seedream-5-0-lite) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with documentation links and concise integration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable files, automatic network calls, or credential storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDOT_API_KEY, private prompts, image URLs, generated image URLs, or callback URLs could be exposed during integration work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side secret storage, never place it in browser code or public repos, and avoid logging prompts, image URLs, generated image URLs, callback URLs, or keys.
+
+Risk: Outdated or guessed Seedream 5.0 Lite request fields could produce invalid payloads or misleading integration guidance.
+
+Mitigation: Verify current model-specific fields, limits, availability, and commercial terms in APIDot's live docs before making real API calls.
+
+## Reference(s):
+
+- [APIDot Seedream 5.0 Lite Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [Seedream 5.0 Lite Model Page](https://apidot.ai/models/seedream-5-0-lite)
+- [Seedream 5.0 Lite API Docs](https://apidot.ai/docs/seedream-5-0-lite)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [ClawHub Skill Page](https://clawhub.ai/jiehao71727/skills/apidot-seedream-5-0-lite-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with documentation links and optional code or configuration snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; does not execute API calls, make network requests, or store credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

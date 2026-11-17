@@ -1,40 +1,58 @@
-## Description: <br>
-轻量级编码助手，支持 Python 脚本生成与执行、Excel/WPS 函数自动化、小程序代码生成、SQL 查询助手。快速响应，不占用过多 context。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+轻量级编码助手，支持 Python 脚本生成与执行、Excel/WPS 函数自动化、小程序代码生成、SQL 查询助手。快速响应，不占用过多 context。
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Developers, analysts, and spreadsheet users use this skill for lightweight, high-frequency coding help such as Python scripts, Excel/WPS formulas, mini program snippets, and SQL queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts, SQL, macros, and automation may perform file, database, network, or spreadsheet actions with the user's permissions. <br>
-Mitigation: Review generated outputs before running them, back up important data, and require explicit confirmation before file, database, network, or macro actions. <br>
-Risk: Generated code or queries may be incorrect, unsafe for production, or vulnerable to issues such as SQL injection if used without adaptation. <br>
-Mitigation: Test in a non-production environment, validate inputs and permissions, and add project-specific security checks before production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill for quick, lightweight code generation and automation support in Python, Excel/WPS formulas, mini program scaffolding, and SQL queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/coding-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks, formulas, SQL snippets, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable code, macros, automation steps, or data-changing SQL that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README changelog) <br>
+Risk: Generated scripts or shell commands may modify files, install packages, or run in an unsafe local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, run unfamiliar code in a sandbox or virtual environment, and back up data before file operations.
+
+Risk: SQL UPDATE, DELETE, macro, or spreadsheet automation guidance can change or delete user data.
+
+Mitigation: Inspect generated statements and macros, require explicit confirmation for destructive actions, and test against copies or transactions first.
+
+Risk: Generated scraping or API examples may be inappropriate for a target service or data source.
+
+Mitigation: Check service terms, credentials handling, rate limits, and data permissions before running generated scraping or API code.
+
+## Reference(s):
+
+- [Coding Lite ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/coding-lite)
+- [cp3d1455926-svg publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code, SQL, macros, and commands should be reviewed before execution; production-critical use requires separate testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

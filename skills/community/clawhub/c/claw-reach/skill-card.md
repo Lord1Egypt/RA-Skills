@@ -1,40 +1,56 @@
-## Description: <br>
-ClawReach AI social platform assistant that helps users bind a ClawReach Agent, build a profile, monitor pending match messages, and reply as an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawReach helps users bind a ClawReach Agent account, build a social matching profile, poll for pending match messages, and generate agent replies on the user's behalf.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to connect a ClawReach account, create a matching profile, and let an agent screen social matches through guided profile collection and automated reply workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks for ClawReach login credentials and stores a reusable access token in a predictable local file.
+
+Mitigation: Use it only with a trusted ClawReach service, prefer OAuth or a scoped token when available, and store secrets with a secure credential store rather than plaintext workspace memory.
+
+Risk: The background poller can send match messages and final match decisions automatically.
+
+Mitigation: Require explicit opt-in before polling, keep approval gates for outbound messages and conclusions, and provide a clear way to stop the cron job.
+
+Risk: Automated social screening may misrepresent the user's intent or disclose sensitive personal preferences.
+
+Mitigation: Let the user review the generated profile and public card before publishing, and avoid collecting or sending information beyond the matching fields the user intentionally provides.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to connect a ClawReach account, create a social matching profile, and let an AI agent screen potential matches before the user engages directly. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API Calls, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for account credentials and stores an access token for the ClawReach local service. <br>
-Mitigation: Install only when the ClawReach local service is trusted, prefer a dedicated or easily revocable account, and remove the session file when automated access is no longer needed. <br>
-Risk: The optional cron command can continue sending dating or social messages in the background. <br>
-Mitigation: Review the cron command before enabling it, monitor active jobs, and remove the polling job when background replies are no longer wanted. <br>
+**Output Format:** [Markdown guidance with JSON examples, HTTP request shapes, and shell command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawReach ClawHub release page](https://clawhub.ai/jiwenbing/claw-reach) <br>
+**Other Properties Related to Output:** [Includes instructions for account binding, token storage, profile upload, polling setup, reply generation, and match conclusion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON examples, API request examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes account-binding prompts, profile interview questions, local API call guidance, and an optional OpenClaw cron command for background polling.] <br>
+1.1.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,55 @@
-## Description: <br>
-Professional AI-powered translation with optional human verification. Supports 100+ languages. Quality boost for existing translations. Enterprise-grade security and privacy by straker.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Straker Verify helps agents request AI translation, translation quality boosts, and optional human verification through Straker across 100+ languages.
 
-## Publisher: <br>
-[indynz](https://clawhub.ai/user/indynz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[indynz](https://clawhub.ai/user/indynz)
 
-## Use Case: <br>
-External users, developers, and localization teams use this skill to translate text or files, improve existing translations, request human verification, and track Straker translation projects from submission through download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected text or files may be sent to Straker for translation, quality boost, or human review. <br>
-Mitigation: Use the skill only for content your organization permits to be processed by Straker and any associated human-review workflow. <br>
-Risk: The Straker API key could grant access to translation project operations if exposed. <br>
-Mitigation: Keep STRAKER_VERIFY_API_KEY private, avoid placing it in prompts or shared files, and rotate it if disclosure is suspected. <br>
-Risk: File uploads may accidentally include secrets, regulated data, customer data, or confidential documents. <br>
-Mitigation: Review files before submission and remove sensitive content unless approved policy allows sending it to Straker. <br>
-Risk: Translation project submissions may create external processing jobs. <br>
-Mitigation: Use the confirmation flow for project submissions and confirm project details before sending files. <br>
+## Use Case:
 
+Developers and external users can use this skill to translate text or files, improve existing translations, manage translation projects, and request professional human review through Straker.
 
-## Reference(s): <br>
-- [Straker Verify ClawHub page](https://clawhub.ai/indynz/straker-verify-openclaw) <br>
-- [Straker.ai](https://straker.ai) <br>
-- [Straker Verify API documentation](https://api-verify.straker.ai/docs) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API examples, JSON response examples, and downloaded translation files where requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STRAKER_VERIFY_API_KEY; may create, confirm, track, and download Straker translation projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter and changelog report 1.0.0) <br>
+Risk: Translation text or uploaded files are sent to Straker's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Straker is an approved external translation provider for the content being submitted.
+
+Risk: Secrets, regulated data, or confidential documents may be exposed if submitted for translation or human review without approval.
+
+Mitigation: Do not submit those materials unless the organization has approved Straker's privacy, retention, and human-review terms.
+
+## Reference(s):
+
+- [Straker Verify API Documentation](https://api-verify.straker.ai/docs)
+- [Straker.ai](https://straker.ai)
+- [ClawHub Skill Page](https://clawhub.ai/indynz/skills/straker-verify-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional JSON or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STRAKER_VERIFY_API_KEY; translation text and uploaded files may be sent to Straker's external API.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and changelog state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

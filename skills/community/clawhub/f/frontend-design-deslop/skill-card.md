@@ -1,49 +1,60 @@
-## Description: <br>
-Frontend Design Deslop guides agents through strategy-first frontend design, from artifact discovery and brand adjectives to tokens, component states, motion, imagery, accessibility, and a final slop audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a strategy-first frontend design workflow that turns artifact type, audience, positioning, typography, color, layout, components, motion, imagery, dark mode, and accessibility into distinctive, non-generic UI.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and product teams use this skill when creating or refining web frontends, apps, dashboards, landing pages, portfolios, decks, and other UI artifacts. It helps agents establish design strategy, build a tokenized visual system, apply craft details, and audit the result before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to make broad design-system or UI edits when the user only wanted a small frontend change. <br>
-Mitigation: Confirm the intended scope and review generated design guidance, DESIGN.md updates, and UI file changes before accepting them. <br>
-Risk: The workflow may use web research for visual references, which can introduce irrelevant or untrusted inspiration. <br>
-Mitigation: Use trusted references, transpose ideas rather than copying them, and review any externally sourced design direction before implementation. <br>
-Risk: Generated UI changes can still introduce usability or accessibility regressions. <br>
-Mitigation: Run the included accessibility and slop-audit checks, then manually review focus behavior, contrast, keyboard access, motion, and component states before deployment. <br>
+## Use Case:
 
+Developers, designers, and agent users apply this skill when building or improving web frontends, dashboards, landing pages, portfolios, decks, and other UI artifacts that need a clear design strategy and less generic execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/frontend-design-deslop) <br>
-- [Project homepage](https://github.com/samber/cc-skills) <br>
-- [Discovery protocol](references/discovery.md) <br>
-- [Design theory](references/design-theory.md) <br>
-- [DESIGN.md schema](references/design-md.md) <br>
-- [Artifact type guidance](references/artifact-types.md) <br>
-- [Accessibility guidance](references/accessibility.md) <br>
-- [Slop checklist](references/slop-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with optional CSS, frontend code, design tokens, and file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update DESIGN.md and frontend UI files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may edit project UI files or create and update DESIGN.md as part of its workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated design decisions and file changes before committing or shipping them.
+
+Risk: An optional unpinned unpkg Open Props import can introduce an external runtime CSS dependency.
+
+Mitigation: Pin or vendor the dependency before production use, or remove it when an external runtime CSS dependency is not acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/frontend-design-deslop)
+- [Project Homepage](https://github.com/samber/cc-skills)
+- [Design Theory](references/design-theory.md)
+- [Discovery](references/discovery.md)
+- [Artifact Types](references/artifact-types.md)
+- [Design MD](references/design-md.md)
+- [Accessibility](references/accessibility.md)
+- [Slop Checklist](references/slop-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, configuration snippets, and design documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project UI files and DESIGN.md when used in an editable workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

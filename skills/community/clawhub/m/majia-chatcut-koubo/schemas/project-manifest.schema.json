@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/project-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "runId",
+    "timeline",
+    "sources",
+    "contracts"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timelineId",
+        "revision",
+        "duration",
+        "resolution"
+      ],
+      "properties": {
+        "timelineId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "revision": {
+          "$ref": "creator-os-common.schema.json#/$defs/revision"
+        },
+        "duration": {
+          "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+        },
+        "resolution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "width",
+            "height"
+          ],
+          "properties": {
+            "width": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetId",
+          "role",
+          "revision",
+          "duration"
+        ],
+        "properties": {
+          "assetId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "role": {
+            "enum": [
+              "speaker",
+              "screen",
+              "b-roll",
+              "audio",
+              "graphic"
+            ]
+          },
+          "revision": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "duration": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          }
+        }
+      }
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyVersion",
+        "registryVersion"
+      ],
+      "properties": {
+        "policyVersion": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "registryVersion": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        }
+      }
+    }
+  }
+}

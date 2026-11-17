@@ -14,14 +14,19 @@ MANIFEST_FALLBACK = os.path.join(os.path.dirname(__file__), 'manifest.json')
 
 
 def sanitize(name):
-    return re.sub(r'[<>:"/\\|?*]', ' ', name).strip()
+    if not name:
+        return ""
+    return re.sub(r'[<>:"/\\|?*]', ' ', name).strip()  # / is illegal on Windows
 
 
 def build_filename(m, counter=None):
-    year_str = f'[{m["year"]}]' if m.get('year') else '[????]'
-    venue_str = f'[{m["venue"]}]' if m.get('venue') else ''
-    title = sanitize(m.get('title', m['filename'].replace('.pdf', '')))
-    name = f'{year_str} {venue_str} {title}'.strip()
+    year_str = f'[{m["year"]}]' if m.get("year") else "[????]"
+    venue_str = ""
+    venue = m.get("venue")
+    if venue:
+        venue_str = f'[{sanitize(venue)}]'
+    title = sanitize(m.get("title") or m["filename"].replace(".pdf", ""))
+    name = f"{year_str} {venue_str} {title}".strip()
     name = re.sub(r'\s+', ' ', name)
     if counter:
         name = f'{name} ({counter})'
@@ -32,7 +37,7 @@ def run(folder, dry_run=True):
     # Load manifest (prefer verified, fallback to auto)
     manifest_path = MANIFEST_IN if os.path.exists(MANIFEST_IN) else MANIFEST_FALLBACK
     if not os.path.exists(manifest_path):
-        print(f'[ERROR] No manifest found. Run extract.py first.')
+        print('[ERROR] No manifest found. Run extract.py first.')
         return
     with open(manifest_path, 'r', encoding='utf-8') as f:
         manifest = json.load(f)
@@ -40,12 +45,7 @@ def run(folder, dry_run=True):
     ready = [m for m in manifest if m.get('status') == 'ready']
     skipped = [m for m in manifest if m.get('status') != 'ready']
 
-    if dry_run:
-        print(f'\n[DRY RUN] {len(ready)} files to rename, {len(skipped)} skipped\n')
-    else:
-        backup_dir = os.path.join(folder, f'_backup_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
-        os.makedirs(backup_dir, exist_ok=True)
-        print(f'\n[BACKUP] {backup_dir}\n')
+    print(f'\n[DRY RUN] {len(ready)} files to rename, {len(skipped)} skipped\n')
 
     # Assign duplicate counters
     dup_counters = {}
@@ -54,8 +54,12 @@ def run(folder, dry_run=True):
             grp = m['duplicate_group']
             dup_counters[grp] = dup_counters.get(grp, 0) + 1
 
-    dup_current = {}
     errors = []
+
+    if not dry_run:
+        backup_dir = os.path.join(folder, f'_backup_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+        os.makedirs(backup_dir, exist_ok=True)
+        print(f'[BACKUP] {backup_dir}\n')
 
     for m in ready:
         new_name = build_filename(m, counter=dup_counters.get(m['duplicate_group']) if m.get('is_duplicate') else None)
@@ -75,12 +79,13 @@ def run(folder, dry_run=True):
             print()
         else:
             try:
-                shutil.copy2(m['filepath'], os.path.join(backup_dir, m['filename']))
+                if os.path.exists(m['filepath']):
+                    shutil.copy2(m['filepath'], os.path.join(backup_dir, m['filename']))
                 shutil.move(m['filepath'], dst)
-                print(f'  ✅ {m["filename"]} -> {new_name}')
+                print(f'  [OK] {m["filename"]} -> {new_name}')
             except Exception as e:
                 errors.append((m['filename'], str(e)))
-                print(f'  ❌ {m["filename"]} -> FAILED: {e}')
+                print(f'  [FAIL] {m["filename"]} -> FAILED: {e}')
 
     if skipped:
         print(f'\n[{len(skipped)} skipped files]:')

@@ -1,41 +1,59 @@
-## Description: <br>
-Assigns a 4-square-meter local habitat and visual avatar to an agent, writes a local JSON state file, and emits Markdown with remote image URLs for display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assigns a deterministic local habitat and visual avatar to an OpenClaw agent, writes a local JSON state file, and emits Markdown with remote image URLs.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to assign deterministic habitat metadata and a visual avatar to an agent, then render the generated Markdown in a Markdown-capable viewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a local state file under ./s2_matrix_data in the directory where it runs. <br>
-Mitigation: Run it from an intended working directory and delete ./s2_matrix_data if you do not want the avatar metadata retained. <br>
-Risk: The generated Markdown contains external image URLs that a viewer may fetch from the Space2 CDN. <br>
-Mitigation: Review the Markdown before rendering it, especially in environments where external network requests are restricted. <br>
+## Use Case:
 
+Agent users and developers use this skill to give an OpenClaw agent a repeatable local pod identity, avatar, coordinates, and shareable Markdown profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-matrix-pod) <br>
-- [Space2.world](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Console text plus Markdown and a local JSON state file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes state under ./s2_matrix_data and includes remote image URLs for optional Markdown rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; manifest.json matches; SKILL.md and skill.py mention v1.0.4) <br>
+Risk: The skill writes a visible JSON state file in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a workspace where creating an s2_matrix_data directory and pod state file is acceptable.
+
+Risk: Rendered Markdown can load remote images from spacesq.org when pasted into a Markdown viewer.
+
+Mitigation: Use Markdown viewers that sanitize raw HTML or block remote resources when remote image loading is not desired.
+
+Risk: Untrusted agent names may be embedded into generated Markdown-like output.
+
+Mitigation: Avoid untrusted HTML-like input for the agent name before copying output into Markdown viewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-matrix-pod)
+- [Space2.world](https://space2.world)
+- [Space2 image host](https://spacesq.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Console text containing Markdown plus a local JSON state file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an s2_matrix_data directory in the current working directory and writes a visible pod state JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

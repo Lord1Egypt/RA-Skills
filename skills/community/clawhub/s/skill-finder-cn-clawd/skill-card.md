@@ -1,42 +1,50 @@
-## Description: <br>
-Skill 查找器 helps users discover, inspect, and install relevant ClawHub skills from Chinese or English skill-search requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill 查找器 helps Chinese-language users discover and install ClawHub skills by turning a stated need into ClawHub search, inspection, and installation guidance.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users and developers use this skill to search ClawHub for skills that match a task, review skill details, and receive installation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill search and recommendation workflows may expose installed skill names, search keywords, or device identifiers when network-enabled behavior is used. <br>
-Mitigation: Use local mode when that data sharing is not acceptable, and review the skill's search or recommendation plan before enabling networked actions. <br>
-Risk: Install, update, cleanup, or notification suggestions could make unwanted changes if accepted without review. <br>
-Mitigation: Review every proposed ClawHub command before confirming execution. <br>
+## Use Case:
 
+External users and developers use this skill to find ClawHub skills that match a task, review basic details with `clawhub inspect`, and get installation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/skill-finder-cn-clawd) <br>
-- [ClawHub skill homepage](https://clawhub.com/skills/skill-finder-cn) <br>
-- [ClawHub CLI requirement](clawdis:requires.bins:clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and install recommendations depend on the ClawHub CLI and available ClawHub catalog results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Recommended third-party skills may have their own permissions, behavior, and publisher trust considerations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `clawhub inspect <skill-name>` output and confirm publisher trust before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/skill-finder-cn-clawd)
+- [Skill Homepage](https://clawhub.com/skills/skill-finder-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the `clawhub` command-line tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json, _meta.json, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

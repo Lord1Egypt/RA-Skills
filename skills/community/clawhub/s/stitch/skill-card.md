@@ -1,45 +1,61 @@
-## Description: <br>
-Guides agents through using Google Stitch's remote MCP server to manage projects and screens and generate or edit UI designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in configuring and using Google Stitch's remote MCP API to manage Stitch projects and screens, generate UI screens from prompts, edit screens, and create design variants.
 
-## Publisher: <br>
-[arielletolome](https://clawhub.ai/user/arielletolome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arielletolome](https://clawhub.ai/user/arielletolome)
 
-## Use Case: <br>
-Designers, developers, and agents use this skill to connect to an authenticated Google Stitch workspace, inspect or create projects, retrieve screen assets, and generate or edit UI screens through remote MCP calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mutating Stitch actions can create or change remote projects and screens in an authenticated workspace. <br>
-Mitigation: Confirm the target project or screen before running mutating tools, and use test projects for experiments. <br>
-Risk: Screen generation and editing can continue after connection errors, which may lead to duplicate remote changes if retried immediately. <br>
-Mitigation: Do not retry generation or editing blindly; wait and inspect progress with the relevant screen retrieval call. <br>
-Risk: The skill relies on a Google Stitch API key for remote access. <br>
-Mitigation: Provide the key through environment or client configuration, avoid embedding it in shared files, and rotate it if exposed. <br>
+## Use Case:
 
+Developers and design teams use this skill to let an agent configure Google Stitch MCP access, list or create Stitch projects, retrieve screens, and generate, edit, or vary UI screen designs through Stitch.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arielletolome/stitch) <br>
-- [Google Stitch MCP Setup and Authentication](https://stitch.withgoogle.com/docs/mcp/setup/) <br>
-- [Google Stitch MCP Reference](https://stitch.withgoogle.com/docs/mcp/reference/) <br>
-- [Google Stitch MCP Guide](https://stitch.withgoogle.com/docs/mcp/guide/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, bash, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes remote MCP tool names, request arguments, authentication setup, and workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents using this skill need a Google Stitch API key and may expose it if prompts, configuration, or logs are handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API key private, pass it through protected MCP client configuration or environment variables, and rotate or remove it when access is no longer needed.
+
+Risk: Prompts and project data sent through the remote MCP API are processed by Google Stitch and may include sensitive design or business information.
+
+Mitigation: Avoid sending sensitive prompts or project data unless sharing that information with Google Stitch is appropriate for the user's environment.
+
+Risk: Generation and edit calls can create or change remote Stitch project content and may continue after a transient connection failure.
+
+Mitigation: Check screen status with retrieval calls before retrying generation or edit operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arielletolome/skills/stitch)
+- [Publisher Profile](https://clawhub.ai/user/arielletolome)
+- [Stitch MCP Setup and Authentication](https://stitch.withgoogle.com/docs/mcp/setup/)
+- [Stitch MCP Reference](https://stitch.withgoogle.com/docs/mcp/reference/)
+- [Stitch MCP Guide](https://stitch.withgoogle.com/docs/mcp/guide/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls, Code]
+
+**Output Format:** [Markdown with inline bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides remote MCP endpoint configuration and request examples; generated Stitch screen artifacts are retrieved from Google Stitch download URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

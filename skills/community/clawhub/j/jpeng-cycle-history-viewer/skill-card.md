@@ -1,38 +1,53 @@
-## Description: <br>
-Views and searches evolution cycle history with filtering capabilities for tracking progress and analyzing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Views and searches evolution cycle history with filtering capabilities for tracking progress and analyzing patterns.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local evolution-cycle status logs, search prior outcomes, summarize recent cycles, and generate history reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Markdown reports or JSON exports may include details from prior local status files. <br>
-Mitigation: Review generated output before sharing it outside the workspace. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect local evolution cycle logs, search by result, intent, or keyword, summarize recent activity, and generate history exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-cycle-history-viewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, JSON exports, and JavaScript API return values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local logs/status_XXXX.json files from the supplied workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The security summary reports that status-file reads can follow symlinks and expose unrelated readable JSON files from the machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted workspace logs directories; reject symlinks, require regular status_XXXX.json files, and verify resolved paths stay inside the workspace logs directory before broad use.
+
+Risk: Generated Markdown reports or JSON exports can include local cycle history details.
+
+Mitigation: Review generated reports and JSON exports before sharing them outside the intended workspace or team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-cycle-history-viewer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JavaScript return values, Markdown reports, and JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local logs/status_XXXX.json files and returns filtered cycle records, summaries, reports, or exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

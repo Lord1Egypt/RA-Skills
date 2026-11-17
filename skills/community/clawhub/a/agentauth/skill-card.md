@@ -1,47 +1,62 @@
-## Description: <br>
-agentauth requires user-initiated biometric passkey approval before OpenClaw agents perform sensitive actions such as deleting files, sending emails, making purchases, or modifying system configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+agentauth requires user-initiated biometric passkey approval before an OpenClaw agent performs sensitive or irreversible actions such as deleting files, sending emails, making purchases, or modifying system configuration.
 
-## Publisher: <br>
-[braga-agentauth](https://clawhub.ai/user/braga-agentauth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[braga-agentauth](https://clawhub.ai/user/braga-agentauth)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add passkey-backed human approval before an agent executes sensitive or irreversible local actions. It is intended for workflows where agent actions may affect files, credentials, external systems, purchases, or system configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can mediate and execute dangerous local commands after passkey approval. <br>
-Mitigation: Install only when this command-execution authority is intended, and require approvers to review the real command before approving. <br>
-Risk: The approval display text may be incomplete or differ from the command that will run. <br>
-Mitigation: Treat display text as a summary and verify the underlying command or tool call before approval. <br>
-Risk: Persistent configuration changes and cleanup behavior affect OpenClaw files such as AGENTS.md and ~/.openclaw/.env. <br>
-Mitigation: Review configuration changes before use, protect ~/.openclaw/.env, and run the documented cleanup flow before uninstalling. <br>
-Risk: Commands built from untrusted prompts or external text can lead to unintended local execution. <br>
-Mitigation: Avoid passing commands assembled from untrusted text, and require explicit approval for each sensitive operation. <br>
+## Use Case:
 
+Developers and operators use this skill to add human-in-the-loop authorization to OpenClaw workflows before high-risk agent actions run. It is intended for actions where explicit passkey-backed approval, notification, and auditability are needed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/braga-agentauth/agentauth) <br>
-- [AgentAuth homepage](https://agentauth.id) <br>
-- [README](artifact/README.md) <br>
-- [SKILL](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Approval, setup, and cleanup flows may invoke local CLI commands and notification channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill becomes a broad local command executor after passkey approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where approved commands are still reviewed carefully and limited to the intended OpenClaw workspace.
+
+Risk: Command metadata is sent to AgentAuth-hosted services and notification channels.
+
+Mitigation: Keep display strings concise, avoid unnecessary sensitive details, and rely on the skill's redaction guidance before sending approval requests.
+
+Risk: Credentials are stored in the shared OpenClaw .env file.
+
+Mitigation: Restrict access to the OpenClaw environment file and rotate AgentAuth credentials if the file may have been exposed.
+
+Risk: Cleanup may not fully restore the original policy file byte-for-byte.
+
+Mitigation: Review AGENTS.md manually after cleanup and remove any remaining AgentAuth instruction block if uninstalling.
+
+## Reference(s):
+
+- [AgentAuth Homepage](https://agentauth.id)
+- [ClawHub Skill Page](https://clawhub.ai/braga-agentauth/skills/agentauth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status output from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses auth-flow, approval-flow, notification, and cleanup commands around OpenClaw actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

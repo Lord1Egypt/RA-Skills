@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users publish or update a skill on ClawhHub by guiding folder selection, versioning, changelog collection, confirmation, and `clawhub publish` CLI execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes or updates ClawhHub skills by guiding an agent through skill selection, versioning, changelog collection, confirmation, and `clawhub publish` CLI execution.
 
-## Publisher: <br>
-[xingke2023](https://clawhub.ai/user/xingke2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingke2023](https://clawhub.ai/user/xingke2023)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to release new or updated ClawHub skills with a confirmed slug, version, changelog, and local CLI account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing the wrong skill folder, slug, version, changelog, tags, or local account could release unintended content. <br>
-Mitigation: Verify the selected folder, slug, version, changelog, tags, and active `clawhub` CLI account before confirming publication. <br>
-Risk: The skill has a broad activation trigger for publishing requests. <br>
-Mitigation: Use it only for user-directed ClawHub publishing tasks and require explicit confirmation before running the publish command. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to publish or update ClawhHub skills with an explicit version, changelog, slug, display name, and latest tag. It is intended for release workflows that need guided confirmation before running the publish command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xingke2023/xingke-clawhub-publish) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xingke2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce `clawhub inspect`, `clawhub publish`, `clawhub whoami`, and related local CLI commands for user review and execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The publish command template can mishandle untrusted folder, slug, name, version, or changelog values and may lead to unintended local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill folder, slug, version, and changelog before publishing, and avoid metadata containing shell metacharacters until safer argument handling is used.
+
+Risk: The workflow can publish the wrong skill or version if the selected folder, slug, or current release state is mistaken.
+
+Mitigation: Run inspection first, confirm the release summary with the user, and verify the final published slug and version from CLI output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xingke2023/skills/xingke-clawhub-publish)
+- [Publisher profile](https://clawhub.ai/user/xingke2023)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command output summaries, version recommendations, changelog text, and publish status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

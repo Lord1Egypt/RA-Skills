@@ -1,42 +1,61 @@
-## Description: <br>
-Real-time security monitor for AI agents. Watches every tool call, flags threats, and alerts you before damage is done. Works with OpenClaw and Claude Code. Free, open source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shoofly Basic monitors AI agent tool calls for prompt injection, tool response injection, out-of-scope writes, runaway loops, and data exfiltration signals, then logs and sends alerts without blocking execution.
 
-## Publisher: <br>
-[wow-leeroy-jenkins05](https://clawhub.ai/user/wow-leeroy-jenkins05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wow-leeroy-jenkins05](https://clawhub.ai/user/wow-leeroy-jenkins05)
 
-## Use Case: <br>
-Developers and agent operators use Shoofly Basic to monitor OpenClaw or Claude Code tool activity for prompt injection, tool response injection, out-of-scope writes, runaway loops, and data exfiltration signals. It logs evaluations and sends alerts, but does not block tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records tool activity and security evaluations in ~/.shoofly/logs/alerts.log. <br>
-Mitigation: Protect the log directory, avoid placing secrets in alert summaries, and periodically delete or rotate the log file. <br>
-Risk: Alert text may be sent to configured messaging channels or local notification systems. <br>
-Mitigation: Enable only notification channels you control and review channel configuration before using the skill. <br>
-Risk: Shoofly Basic alerts on suspicious behavior but does not block tool calls. <br>
-Mitigation: Treat alerts as review signals and keep normal approval controls in place for sensitive tool use. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to monitor agent tool activity for suspicious behavior and receive notifications while allowing the session to continue.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wow-leeroy-jenkins05/shoofly-basic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSONL log records, terminal messages, desktop notifications, and optional messaging-channel alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and curl; alert text is truncated to 500 characters by the bundled notifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill changes agent behavior globally by asking the agent to monitor every tool call and persist broad tool-call data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, enable it only for projects where continuous local logging is acceptable, and periodically inspect or rotate ~/.shoofly/logs/alerts.log.
+
+Risk: Alerts may include sensitive project context and can be sent through configured external messaging channels.
+
+Mitigation: Avoid external channels for sensitive projects unless alert content is redacted and channel targets are explicitly approved.
+
+Risk: The security evidence recommends fixing the notifier script before use.
+
+Mitigation: Review and correct the notifier behavior in bin/shoofly-notify.sh, then test each configured notification channel before enabling the skill.
+
+Risk: The bundled warning text includes promotional content that may be inappropriate for operational security alerts.
+
+Mitigation: Remove or replace promotional alert text before deployment so notifications contain only actionable security information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wow-leeroy-jenkins05/skills/shoofly-basic)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSONL log entries and shell-based notifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and curl; alerts may be written locally and sent through configured terminal, OpenClaw, Telegram, WhatsApp, Discord, desktop, or macOS notification channels.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

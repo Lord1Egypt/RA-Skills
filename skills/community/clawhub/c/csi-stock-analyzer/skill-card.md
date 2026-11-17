@@ -1,44 +1,59 @@
-## Description: <br>
-Professional A-share stock analysis skill for market data retrieval, technical indicators, data caching, news sentiment, financial analysis, and stock-specific reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes China A-share stocks, especially CSI 2000 constituents, using technical indicators, financial data, news sentiment, and local caching to generate text reports and buy/sell-style signals.
 
-## Publisher: <br>
-[evanslin99](https://clawhub.ai/user/evanslin99) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanslin99](https://clawhub.ai/user/evanslin99)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Chinese A-share stocks, combining technical indicators, financial ratios, and news sentiment into readable stock analysis reports. It is suitable for exploratory analysis workflows, not for unreviewed investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy, sell, rating, and confidence guidance from simulated or hard-coded market, financial, or holder data. <br>
-Mitigation: Treat results as informational only unless all data sources are replaced with verified live sources and the outputs are independently reviewed before any investment decision. <br>
-Risk: News search can send company or stock queries to third-party services and report generation can retain local analysis records. <br>
-Mitigation: Use a dedicated Tavily API key, run in a virtual environment, and disable news search, caching, or report saving when query disclosure or local retention is not acceptable. <br>
-Risk: Dependency and API behavior can change over time, affecting data quality or availability. <br>
-Mitigation: Pin dependencies, review API terms and rate limits, and verify source freshness before relying on generated reports. <br>
+## Use Case:
 
+External users and developers can ask an agent to run or adapt A-share stock analysis workflows for ticker research, technical-indicator summaries, news-sentiment checks, and report generation. Outputs should be treated as informational demos unless connected to verified market and financial data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evanslin99/csi-stock-analyzer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-text or Markdown stock analysis reports with optional command-line usage and configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local report files and cache market, financial, or news data when configured to do so.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Simulated or hardcoded market and financial data may be presented with buy/sell-style recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as a demo or prototype until verified data sources are configured, synthetic output is clearly labeled, and recommendations are reviewed before financial use.
+
+Risk: Report generation can write analysis output to files.
+
+Mitigation: Constrain report writes to an approved output directory and validate user-provided paths before automated use.
+
+Risk: News analysis can require network calls and API credentials.
+
+Mitigation: Run with least-privilege environment variables, document permitted network endpoints, and respect third-party API limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evanslin99/skills/csi-stock-analyzer)
+- [Publisher profile](https://clawhub.ai/user/evanslin99)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown reports, Python API examples, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write report files, call network news APIs, and default to simulated market and financial data unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

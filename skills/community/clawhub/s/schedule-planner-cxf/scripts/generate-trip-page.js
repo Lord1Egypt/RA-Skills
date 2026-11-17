@@ -1,51 +1,26 @@
 #!/usr/bin/env node
-/**
- * generate-trip-page.js — 生成行程网页
- *
- * 用法:
- *   node scripts/generate-trip-page.js            # 从 JSON 文件读取
- *   node scripts/generate-trip-page.js --mock     # 使用预置模拟数据
- */
+'use strict';
+const path = require('node:path');
+const { CSP, escapeHtml, validateTrip, validatePlatformUrl, readJson, writeOutput } = require('./lib/safety');
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-
-// === 解析参数 ===
-const args = process.argv.slice(2);
-const useMock = args.includes('--mock');
-
-// === 获取行程数据 ===
-let tripData;
-let tripDataPath;
-
-if (useMock) {
-  const mockDataModule = path.join(__dirname, 'mock-data.js');
-  const { getMockTripData } = require(mockDataModule);
-  tripData = getMockTripData();
-  tripDataPath = 'MOCK';
-  console.log('[Mock mode] Using built-in mock trip data');
-} else {
-  tripDataPath = path.join(__dirname, 'trip-data.json');
-  if (!fs.existsSync(tripDataPath)) {
-    console.error('Error: trip-data.json not found.');
-    console.log('');
-    console.log('  Option 1: Create trip-data.json in scripts/ directory');
-    console.log('  Option 2: Use --mock for demo mode:');
-    console.log('    node scripts/generate-trip-page.js --mock');
-    console.log('');
-    process.exit(1);
-  }
-  tripData = JSON.parse(fs.readFileSync(tripDataPath, 'utf8'));
+// Validation happens on raw data. Escape a fresh copy exactly once, before interpolation.
+function escapeData(value) {
+  if (typeof value === 'string') return escapeHtml(value);
+  if (Array.isArray(value)) return value.map(escapeData);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, escapeData(v)]));
+  return value;
 }
-
-// === 生成 HTML ===
+function renderTrip(raw) {
+  validateTrip(raw);
+  const tripData = escapeData({ ...raw, ...(raw.platformUrl ? { platformUrl: validatePlatformUrl(raw.platformUrl) } : {}) });
+  const zh = raw.language === 'zh-CN';
 const html = `<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="${tripData.language || 'en'}">
 <head>
   <meta charset="UTF-8">
+  ${CSP}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${tripData.destination}${tripData.tripType} Trip - ${tripData.duration}</title>
+  <title>${tripData.destination}${tripData.tripType} ${zh ? '行程' : 'Trip'} - ${tripData.duration}</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -122,14 +97,15 @@ const html = `<!DOCTYPE html>
 <body>
   <div class="container">
     <div class="header">
-      <h1>${tripData.destination}${tripData.tripType} Trip</h1>
-      <p>${tripData.duration} | Passenger: ${tripData.passenger || 'N/A'}</p>
+      ${tripData.mock ? `<p role="note">${zh ? '模拟数据 · 非实时报价' : 'MOCK DATA · Not live prices'}</p>` : ''}
+      <h1>${tripData.destination}${tripData.tripType} ${zh ? '行程' : 'Trip'}</h1>
+      <p>${tripData.duration}</p>
     </div>
     <div class="content">
       <div class="left">
         ${tripData.dailyPlan && tripData.dailyPlan.length > 0 ? `
         <div class="section">
-          <div class="section-title"><span>📅</span><span>Daily Plan</span></div>
+          <div class="section-title"><span>📅</span><span>${zh ? '每日安排' : 'Daily Plan'}</span></div>
           ${tripData.dailyPlan.map(day => `
           <div class="day-plan">
             <h4>${day.day}</h4>
@@ -140,7 +116,7 @@ const html = `<!DOCTYPE html>
 
         ${tripData.segments.filter(s => s.type === 'train').length > 0 ? `
         <div class="section">
-          <div class="section-title"><span>🚄</span><span>Train</span></div>
+          <div class="section-title"><span>🚄</span><span>${zh ? '火车' : 'Train'}</span></div>
           ${tripData.segments.filter(s => s.type === 'train').map(train => `
           <div class="card">
             <h3><span>${train.segmentNo || train.trainNo}</span><span class="price">¥${train.price}</span></h3>
@@ -155,7 +131,7 @@ const html = `<!DOCTYPE html>
 
         ${tripData.segments.filter(s => s.type === 'hotel').length > 0 ? `
         <div class="section">
-          <div class="section-title"><span>🏨</span><span>Hotel</span></div>
+          <div class="section-title"><span>🏨</span><span>${zh ? '酒店' : 'Hotel'}</span></div>
           ${tripData.segments.filter(s => s.type === 'hotel').map(hotel => `
           <div class="hotel-card">
             <h3>${hotel.name}</h3>
@@ -172,7 +148,7 @@ const html = `<!DOCTYPE html>
 
         ${tripData.segments.filter(s => s.type === 'flight').length > 0 ? `
         <div class="section">
-          <div class="section-title"><span>✈️</span><span>Flight</span></div>
+          <div class="section-title"><span>✈️</span><span>${zh ? '航班' : 'Flight'}</span></div>
           ${tripData.segments.filter(s => s.type === 'flight').map(flight => `
           <div class="card">
             <h3><span>${flight.flightNo || flight.segmentNo}</span><span class="price">¥${flight.price}</span></h3>
@@ -186,14 +162,14 @@ const html = `<!DOCTYPE html>
 
         ${tripData.tips && tripData.tips.length > 0 ? `
         <div class="section">
-          <div class="section-title"><span>💡</span><span>Tips</span></div>
+          <div class="section-title"><span>💡</span><span>${zh ? '提示' : 'Tips'}</span></div>
           <ul class="tips-list">${tripData.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
         </div>` : ''}
       </div>
 
       <div class="right">
         <div class="total-box">
-          <div class="label">Total Cost</div>
+          <div class="label">${zh ? '预估总费用' : 'Total Cost'}</div>
           <div class="amount">¥${tripData.costs.total}</div>
           <div class="breakdown">
             ${Object.entries(tripData.costs).filter(([k]) => k !== 'total').map(([k, v]) => {
@@ -202,65 +178,38 @@ const html = `<!DOCTYPE html>
             }).join('')}
           </div>
         </div>
-        <div class="qr-section">
-          <h3>Scan to Pay</h3>
-          <div class="qr-code" style="display:flex;align-items:center;justify-content:center;font-size:14px;color:#999;">
-            [QR Code Placeholder]
-          </div>
-          <p style="font-size:13px;color:#667eea;">Open WeChat to scan</p>
-        </div>
-        ${tripData.paymentUrl ? `<a href="${tripData.paymentUrl}" class="btn" target="_blank">📱 View Orders</a>` : ''}
+        ${tripData.platformUrl ? `<a href="${tripData.platformUrl}" class="btn" target="_blank" rel="noopener noreferrer">${zh ? '访问平台首页' : 'Visit platform homepage'}</a>` : ''}
+        <p>${zh ? '仅供规划参考。请在平台自行搜索和预订。' : 'Planning reference only. Search and book independently on the platform.'}</p>
       </div>
     </div>
-    <div class="footer">Safe travels!</div>
+    <div class="footer">${zh ? '祝旅途顺利！' : 'Safe travels!'}</div>
   </div>
 </body>
 </html>`;
 
-// === 写入文件 ===
-const outputDir = './output';
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+
+  return html;
 }
-
-const timestamp = Date.now();
-const sanitizedDest = tripData.destination.replace(/\s+/g, '-');
-const htmlFileName = `trip-${sanitizedDest}-${timestamp}.html`;
-const htmlPath = path.join(outputDir, htmlFileName);
-fs.writeFileSync(htmlPath, html, 'utf8');
-
-console.log('HTML generated:', htmlPath);
-
-// === 生成二维码 ===
-const qrScript = path.join(__dirname, 'qrcode.js');
-const paymentUrl = tripData.paymentUrl;
-
-if (paymentUrl && !useMock) {
-  try {
-    console.log('Generating QR code for:', paymentUrl);
-    const qrOutput = path.join(outputDir, `qr-${timestamp}.html`);
-    execSync(`node "${qrScript}" "${paymentUrl}" "${qrOutput}"`, {
-      stdio: 'inherit',
-      timeout: 15000
-    });
-    console.log('QR code generated:', qrOutput);
-  } catch (err) {
-    console.log('QR generation skipped:', err.message);
+async function main(args = process.argv.slice(2)) {
+  const flags = new Set(['--mock', '--desktop', '--input']);
+  let input;
+  for (let i = 0; i < args.length; i++) {
+    if (!flags.has(args[i])) throw new Error('Use --mock or --input FILE, optionally --desktop. Open the generated file manually.');
+    if (args[i] === '--input') {
+      input = args[++i];
+      if (!input || input.startsWith('--')) throw new Error('--input requires a JSON file.');
+    }
   }
-} else if (paymentUrl && useMock) {
-  console.log('[Mock mode] QR code generation skipped');
+  if (input && args.includes('--mock')) throw new Error('Choose either --input or --mock.');
+  const raw = args.includes('--mock') ? require('./mock-data').getMockTripData() : readJson(input || path.join(__dirname, 'trip-data.json'));
+  const html = renderTrip(raw);
+  // Build optional QR content before writing anything, so URL/dependency failures fail closed.
+  const qr = raw.platformUrl ? await require('./qrcode').renderQRCodeHTML(raw.platformUrl) : null;
+  const desktop = args.includes('--desktop');
+  const file = writeOutput(html, 'trip', 'html', desktop);
+  if (qr) console.log('Platform QR page:', writeOutput(qr.html, 'platform-qr', 'html', desktop));
+  console.log('Itinerary saved:', file);
+  return file;
 }
-
-// === 打开网页（默认不自动打开，添加 --open 参数才会尝试） ===
-const shouldOpen = args.includes('--open');
-if (shouldOpen) {
-  try {
-    execSync(`powershell -NoProfile -Command "Start-Process '${htmlPath}'"`, { stdio: 'pipe', timeout: 5000 });
-    console.log('Opened in browser:', htmlPath);
-  } catch (e) {
-    console.log('Auto-open failed. Please open manually:', htmlPath);
-  }
-} else {
-  console.log('HTML saved. Use --open flag to auto-launch browser.');
-  console.log('File path:', htmlPath);
-}
+if (require.main === module) main().catch(() => { console.error('Generation failed. Check input schema, supported flags and local dependencies.'); process.exitCode = 1; });
+module.exports = { renderTrip, main };

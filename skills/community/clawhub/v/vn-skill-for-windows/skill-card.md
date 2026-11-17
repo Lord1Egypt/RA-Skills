@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents run local Windows media-processing workflows with VN Tools CLI, including captions, subtitle burn-in, audio denoising, audio or frame extraction, compression, clip merging, and video cutout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local video, image, and audio processing skill for Windows that helps an agent run VN Tools CLI workflows for captions, subtitles, denoising, extraction, compression, merging, and cutout tasks on local files.
 
-## Publisher: <br>
-[cawcut](https://clawhub.ai/user/cawcut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cawcut](https://clawhub.ai/user/cawcut)
 
-## Use Case: <br>
-External users and developers use this skill to process local video, image, and audio files on Windows without cloud upload or API keys. It is intended for supported VN Tools CLI operations such as captioning, subtitle burn-in, compression, extraction, denoising, merging, and foreground cutout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or upgrade VN Tools CLI by downloading and running software on Windows. <br>
-Mitigation: Require explicit user approval before any install or upgrade, and prefer manual CLI installation and verification on managed or privacy-sensitive systems. <br>
-Risk: Some workflows can trigger network downloads, including the installer and larger Whisper model files. <br>
-Mitigation: Disclose download size and source before starting downloads, and confirm with the user before downloading URLs, attachments, installers, or large model files. <br>
-Risk: Media processing may involve private local audio, video, or images. <br>
-Mitigation: Use local files only, avoid cloud uploads, and confirm source and output paths before processing sensitive media. <br>
+## Use Case:
 
+External users and developers use this skill to process local media files on Windows through guided VN Tools CLI commands. It is intended for practical video, image, and audio transformations such as auto-captioning, subtitle burn-in, compression, denoising, extraction, clip merging, and foreground cutout.
 
-## Reference(s): <br>
-- [VN Tools CLI Reference](references/cli-reference.md) <br>
-- [VN Skill Homepage](https://www.vlognow.me/skill/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with inline PowerShell commands and concise user-facing status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for local Windows processing and reports generated media file paths after CLI execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can automatically download and silently install an unverified Windows MSI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, and prefer a release that asks before installation and verifies the MSI hash and publisher signature.
+
+Risk: Some caption models may download on first use.
+
+Mitigation: Use the skill only when first-use model downloads are acceptable, or choose the built-in caption model path when avoiding additional downloads is required.
+
+## Reference(s):
+
+- [VN Tools CLI reference](references/cli-reference.md)
+- [VN Skill homepage](https://www.vlognow.me/skill/)
+- [ClawHub skill page](https://clawhub.ai/cawcut/skills/vn-skill-for-windows)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown status messages with PowerShell command invocations and local media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI prints generated output paths on success; filenames include timestamps, and large video outputs may be represented by lower-resolution previews when chat upload limits apply.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

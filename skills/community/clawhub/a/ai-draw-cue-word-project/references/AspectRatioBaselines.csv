@@ -1,0 +1,6 @@
+Art-style version,Head-to-body ratio,Eye spacing,Hand reference,Shoulder-width reference,Common failures,Fix action
+Chibi,2-3 heads tall,≥1.2 eye-width,Hand ≈ 1/3 of the head,Head ≈ 2 body-widths,"Big-head small-body imbalance, features too dense","Add ""chibi 3-head"" positive words + lower the realism weight"
+Young woman (example: Nanwang),6-6.5 heads tall,≈1 eye-width,Palm ≈ face size,Shoulder ≈ 1.5 head-widths,"Hands too big, extra fingers, legs too short",Hand-specific negative words + inpaint
+Young adult,6.5-7 heads tall,≈1 eye-width,Hand ≈ face size,Shoulder ≈ 1.8 head-widths,"Hands too big, extra fingers","Same as above + add ""7-head"""
+Adult,7-8 heads tall,0.9-1 eye-width,Hand ≈ face size,Shoulder ≈ 2 head-widths,"Legs too long, torso too short",Leg-length negative words + torso positive words
+Realistic,7.5+ heads tall,≈0.9 eye-width,Hand ≈ face size,Shoulder ≈ 2 head-widths,"Skewed features, uncanny valley",Switch to a realistic model + reference image + low stylize

@@ -1,0 +1,33 @@
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Compile health checker
+        run: python -m py_compile utilities/config-health-check/config_health_check.py
+      - name: Parse API dictionary
+        run: >-
+          python -c "import pathlib,yaml;
+          doc=yaml.safe_load(pathlib.Path('access.yaml').read_text(encoding='utf-8'));
+          assert doc.get('meta'); assert doc.get('endpoints')"
+      - name: Check skill metadata
+        run: >-
+          python -c "import pathlib;
+          text=pathlib.Path('SKILL.md').read_text(encoding='utf-8');
+          assert 'name: convbox-diagclaw' in text;
+          assert 'license: MIT-0' in text"

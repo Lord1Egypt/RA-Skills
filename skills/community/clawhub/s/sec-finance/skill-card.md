@@ -1,43 +1,53 @@
-## Description: <br>
-Fetch structured financial data and filing metadata from SEC EDGAR and SEC XBRL companyfacts for US-listed companies, especially Chinese issuers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch structured financial data and filing metadata from SEC EDGAR and SEC XBRL companyfacts for US-listed companies, especially Chinese issuers.
 
-## Publisher: <br>
-[wangwllu](https://clawhub.ai/user/wangwllu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwllu](https://clawhub.ai/user/wangwllu)
 
-## Use Case: <br>
-External users, developers, and financial analysts use this skill to resolve public-company CIKs, retrieve SEC companyfacts, and summarize revenue, net income, EPS, and filing metadata for quarterly or annual analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The HTTPS fallback can make retrieved SEC data less trustworthy if a network connection is intercepted. <br>
-Mitigation: Prefer verified HTTPS connections, remove the insecure SSL fallback for sensitive deployments, and verify important results directly against official SEC pages. <br>
-Risk: Financial, legal, audit, or compliance-sensitive work can be harmed by stale, incomplete, or misunderstood filing data. <br>
-Mitigation: Use the skill output as a lookup aid and confirm material conclusions against official SEC filings before relying on them. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to resolve SEC CIKs, fetch companyfacts data, and return quarterly or annual revenue, net income, EPS, and filing metadata. It is intended for structured SEC data retrieval, not investor-relations PDF discovery or downloading.
 
-## Reference(s): <br>
-- [Issuer reference data](references/issuers.json) <br>
-- [SEC XBRL companyfacts API](https://data.sec.gov/api/xbrl) <br>
-- [SEC EDGAR company search](https://www.sec.gov/cgi-bin/browse-edgar) <br>
-- [ClawHub skill page](https://clawhub.ai/wangwllu/sec-finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown tables or JSON financial data with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries SEC EDGAR and data.sec.gov; important financial, legal, audit, or compliance-sensitive results should be verified against official SEC records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Automatic relaxed SSL fallback can allow tampered SEC data to be accepted on a hostile or misconfigured network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, independently verify financial outputs, and remove or disable relaxed SSL fallback before relying on the skill for decision-grade results.
+
+## Reference(s):
+
+- [SEC XBRL companyfacts API](https://data.sec.gov/api/xbrl)
+- [SEC EDGAR company search](https://www.sec.gov/cgi-bin/browse-edgar)
+- [Issuer CIK reference data](references/issuers.json)
+- [ClawHub skill page](https://clawhub.ai/wangwllu/skills/sec-finance)
+- [Publisher profile](https://clawhub.ai/user/wangwllu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Plain text table or JSON, typically summarized for the user in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include resolved CIK, company name, filing form, period end, revenue, net income, EPS, currency, concepts used, and SEC data update timestamp.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

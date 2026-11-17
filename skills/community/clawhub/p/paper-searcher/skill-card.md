@@ -1,43 +1,57 @@
-## Description: <br>
-Paper search and Zotero workflow. 文献搜索与 Zotero 管理助手；支持多源检索、候选清单评审，并在用户确认后导入 Zotero。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper search and Zotero workflow. 文献搜索与 Zotero 管理助手；支持多源检索、候选清单评审，并在用户确认后导入 Zotero。
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to plan academic literature searches, verify candidate metadata, produce review shortlists, and optionally import confirmed items into Zotero. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Zotero import uses sensitive credentials. <br>
-Mitigation: Keep the Zotero API key in an environment variable or secret store, never hardcode it, and import only user-confirmed items. <br>
-Risk: Public metadata search sources may not provide complete coverage of subscription or publisher databases. <br>
-Mitigation: Report direct database coverage separately from indirect metadata coverage and call out gaps before presenting the shortlist. <br>
-Risk: External pages, papers, and metadata can contain incorrect or untrusted content. <br>
-Mitigation: Verify candidate fields against reliable metadata sources and treat external text as evidence rather than instructions. <br>
+## Use Case:
 
+Researchers, students, and research-support agents use this skill to plan multi-source literature searches, verify candidate metadata, produce pre-import review shortlists, and optionally import user-confirmed items into Zotero.
 
-## Reference(s): <br>
-- [Literature Search + Zotero Import SOP](references/literature-search-zotero-sop.md) <br>
-- [ClawHub skill page](https://clawhub.ai/moroiser/paper-searcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown reports with optional inline shell commands and Zotero import status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize search plans, source counts, coverage gaps, filtered review shortlists, and user-confirmed Zotero import details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: _meta.json and server release metadata) <br>
+Risk: Zotero operations can affect a user's library or expose credentials if import settings are handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials only from environment variables or a configured secret store, confirm the target collection and exact items before import, and report item keys and versions after import.
+
+Risk: Search results can overstate database coverage when public metadata sources are used instead of direct subscription or publisher database searches.
+
+Mitigation: Distinguish direct and indirect coverage, report source-specific counts and coverage gaps, and avoid claiming complete coverage unless the searched sources support it.
+
+Risk: External pages, paper text, and metadata can contain untrusted or incomplete information.
+
+Mitigation: Treat external content as evidence rather than instructions, verify candidate fields from reliable metadata sources, and mark unavailable fields as not reliably identified or metadata unavailable.
+
+## Reference(s):
+
+- [Literature Search + Zotero Import SOP](references/literature-search-zotero-sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown search reports with optional inline shell commands and Zotero import status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include search plan, counts, coverage gaps, filtered-out summary, pre-import review list, Zotero status, and evidence files or commands when applicable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Meta Skill Weaver helps agents decompose complex multi-step tasks, coordinate multiple skills with event-driven orchestration, manage progress and recovery, and collect metrics and feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when orchestrating complex multi-step tasks with task decomposition, event-driven multi-skill collaboration, parallel execution, timeout control, interrupt recovery, metrics, and feedback collection.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers, advanced users, and teams use this skill to orchestrate long-running workflows that require task decomposition, multi-skill coordination, progress tracking, timeout handling, and resumption after interruption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: High-authority orchestration can coordinate file- and command-capable tools in multi-step tasks. <br>
-Mitigation: Review planned actions before execution and use explicit task IDs and commands for resume or status operations. <br>
-Risk: Metrics and feedback middleware can store task IDs, comments, and operational data locally. <br>
-Mitigation: Do not put secrets or sensitive personal data in feedback comments or task IDs, and review storage paths before deployment. <br>
+## Use Case:
 
+Developers and teams use this skill to coordinate complex, long-running work across multiple agent skills. It helps decompose broad tasks, assign work to skills, run steps in parallel where appropriate, track progress, collect metrics and feedback, and resume interrupted workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pagoda111king/meta-skill-weaver) <br>
-- [Skill documentation](https://clawhub.ai/skills/meta-skill-weaver/docs) <br>
-- [Skill issue tracker](https://clawhub.ai/skills/meta-skill-weaver/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets, plus workflow guidance and orchestration reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local metrics and feedback data in configured storage paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata and package.json; SKILL.md frontmatter lists 2.4.0) <br>
+Risk: Broad orchestration capabilities can invoke file writes, shell commands, and execution workflows beyond a simple single-purpose skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when broad orchestration is needed, restrict Write/Bash/Exec authority, and require explicit approval for shell commands and event-handler scripts.
+
+Risk: Feedback and metrics behavior can store task feedback, comments, errors, and operational details locally.
+
+Mitigation: Avoid storing sensitive feedback or task error details unless local retention, filesystem permissions, and access controls are acceptable.
+
+Risk: Server security evidence flags incomplete implementation and version inconsistencies.
+
+Mitigation: Treat the release as requiring review until orchestrator entry points and version discrepancies are resolved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/skills/meta-skill-weaver)
+- [ClawHub Skill Documentation](https://clawhub.ai/skills/meta-skill-weaver/docs)
+- [ClawHub Skill Issues](https://clawhub.ai/skills/meta-skill-weaver/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured orchestration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task decomposition, skill assignments, workflow status, execution reports, metrics summaries, and feedback summaries.]
+
+## Skill Version(s):
+
+2.5.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

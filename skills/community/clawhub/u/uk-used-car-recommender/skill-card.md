@@ -1,47 +1,70 @@
-## Description: <br>
-Your smart used-car buying advisor for the UK market. Recommends second-hand cars based on budget, reliability, mileage, service history, depreciation, and running costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A UK used-car buying advisor that recommends second-hand cars using budget, reliability, mileage, service history, depreciation, running costs, and live listing data.
 
-## Publisher: <br>
-[hifinan](https://clawhub.ai/user/hifinan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hifinan](https://clawhub.ai/user/hifinan)
 
-## Use Case: <br>
-External users use this skill to get UK used-car buying guidance, including model recommendations, live listing research, running-cost checks, MOT and HPI due diligence, and photo-based screening support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches external car sites and may fetch listing images, which can expose user search criteria or location preferences to those services. <br>
-Mitigation: Install dependencies in a virtual environment, use only the location precision the user is comfortable sharing, and disclose external listing or image lookups before running them. <br>
-Risk: Listing, photo, MOT, HPI, service-history, and seller information can be incomplete, stale, or misleading. <br>
-Mitigation: Treat AI analysis as screening help only and independently verify MOT records, HPI status, service history, seller identity, vehicle condition, and paperwork before purchase. <br>
+## Use Case:
 
+External users and agents use this skill to research UK used-car options, compare budget-fit models, inspect listing evidence, and plan due diligence before buying.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hifinan/uk-used-car-recommender) <br>
-- [Data-Driven Recommendation Guide](docs/DATA_DRIVEN_RECOMMENDATION.md) <br>
-- [Gumtree CLI Search Guide](docs/GUMTREE_SEARCH.md) <br>
-- [AutoTrader Integration Guide](docs/AUTOTRADER_INTEGRATION.md) <br>
-- [UK Used Car Market Reference](docs/UK_MARKET_REFERENCE.md) <br>
-- [Used Car Image Analysis Guide](docs/IMAGE_ANALYSIS_GUIDE.md) <br>
-- [AutoTrader UK](https://www.autotrader.co.uk/) <br>
-- [AutoTrader Connect API](https://developers.autotrader.co.uk/api) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with structured recommendation cards, comparison tables, listing summaries, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market-search results and listing-photo screening observations when the required search tools and network access are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live listing searches may disclose budget, vehicle preferences, city, or postcode to marketplace websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum location precision needed, avoid sharing unnecessary personal details, and disclose that searches contact external marketplaces.
+
+Risk: Python dependencies and optional scraper packages can change or introduce supply-chain risk.
+
+Mitigation: Install in an isolated Python environment and review or pin dependencies before running package installation commands.
+
+Risk: Image-based condition checks, market hotness scores, and sales-speed estimates can be incomplete or wrong.
+
+Mitigation: Treat these outputs as advisory and verify important details with MOT history, HPI checks, seller records, and in-person inspection.
+
+Risk: Live marketplace data can be stale, incomplete, or affected by site changes.
+
+Mitigation: Cross-check recommendations against current listings and confirm vehicle details directly with the seller before making buying decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hifinan/skills/uk-used-car-recommender)
+- [Data Driven Recommendation Guide](docs/DATA_DRIVEN_RECOMMENDATION.md)
+- [AutoTrader Integration Guide](docs/AUTOTRADER_INTEGRATION.md)
+- [Gumtree Search Guide](docs/GUMTREE_SEARCH.md)
+- [UK Market Reference](docs/UK_MARKET_REFERENCE.md)
+- [Workflow Guide](docs/WORKFLOW_GUIDE.md)
+- [Image Analysis Guide](docs/IMAGE_ANALYSIS_GUIDE.md)
+- [AutoTrader UK](https://www.autotrader.co.uk/)
+- [AutoTrader Connect API](https://developers.autotrader.co.uk/api)
+- [autotrader_scraper](https://github.com/suhailidrees/autotrader_scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown recommendations, comparison tables, listing summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live marketplace links, advisory risk warnings, and photo-condition observations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

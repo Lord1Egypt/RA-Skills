@@ -1,41 +1,51 @@
-## Description: <br>
-Parse anime storyboard scripts and generate four types of prompts: character prompts, scene prompts, Sora video generation prompts, and standard storyboard prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse anime storyboard scripts and generate four types of prompts: character prompts, scene prompts, Sora video generation prompts, and standard storyboard prompts.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External creators, storyboard artists, and prompt writers use this skill to turn anime storyboard notes into bilingual character, scene, Sora video, and standard storyboard prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated bilingual prompt output may not fit workflows that require one language or strict machine-parseable responses. <br>
-Mitigation: Review and normalize the generated format before using it in automated image or video pipelines. <br>
-Risk: Template-based visual style and quality keywords may be inconsistent with a project's preferred style guide. <br>
-Mitigation: Review style keywords and keep a project-specific vocabulary before generation. <br>
+## Use Case:
 
+External users and creators use this skill to convert anime or film storyboard scripts into bilingual prompts for character, scene, Sora video, and standard storyboard generation workflows.
 
-## Reference(s): <br>
-- [Prompt Template Library](references/templates.md) <br>
-- [Storyboard Terminology Reference](references/terminology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with bilingual prompt blocks and optional negative prompt sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include aspect ratio suggestions and batch entries for multiple storyboard panels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompt wording can influence downstream image or video generation results and may carry incorrect storyboard, style, or formatting assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before using them in media generation tools, especially for project style consistency, negative prompts, and aspect ratio choices.
+
+## Reference(s):
+
+- [Storyboard Terminology Reference](references/terminology.md)
+- [Prompt Template Library](references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/storyboard-prompt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with bilingual prompt text, template-driven sections, negative prompt suggestions, and aspect ratio guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single storyboard requests and batch generation for multiple storyboard panels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

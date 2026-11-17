@@ -1,46 +1,61 @@
-## Description: <br>
-Enterprise-grade data analysis assistant that cleans, analyzes, and visualizes CSV, Excel, JSON, and TSV data and generates summaries, charts, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade data analysis assistant that cleans, analyzes, and visualizes local CSV, Excel, JSON, and TSV data.
 
-## Publisher: <br>
-[wuyandong8](https://clawhub.ai/user/wuyandong8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyandong8](https://clawhub.ai/user/wuyandong8)
 
-## Use Case: <br>
-Employees, external users, developers, and business analysts use this skill to inspect tabular data, clean data quality issues, produce statistical summaries, generate charts, and create Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries, charts, cleaned CSVs, and reports may contain sensitive source data. <br>
-Mitigation: Review outputs before sharing and keep confidential datasets in approved local or protected storage. <br>
-Risk: The install script installs Python dependencies and changes executable permissions. <br>
-Mitigation: Install in a virtual environment when possible and review install.sh before running it. <br>
-Risk: Example workflows mention email, cloud-upload, or curl-style data movement that could expose confidential data if copied without review. <br>
-Mitigation: Do not use external transfer examples with confidential data or untrusted sources without approval. <br>
+## Use Case:
 
+Business analysts, data teams, and developers use this skill to inspect local tabular datasets, clean common data quality issues, generate statistical summaries, create charts, and produce Markdown reports for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/wuyandong8/smart-data-insights) <br>
-- [Data Cleaning Reference](references/data_cleaning.md) <br>
-- [Data Analysis Reference](references/data_analysis.md) <br>
-- [Visualization Reference](references/visualization.md) <br>
-- [Report Generation Reference](references/report_generation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON summaries, CSV files, PNG charts, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written locally and may contain sensitive information from the source dataset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Package installation can affect the user's Python environment if run globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a virtual environment and avoid sudo pip.
+
+Risk: Generated summaries, cleaned data, charts, and reports may overwrite similarly named files near the input dataset.
+
+Mitigation: Run analysis in a dedicated working directory, review output paths before execution, and keep backups of original data.
+
+Risk: Reports may contain sensitive or misleading information if source data is unauthorized, private, or misinterpreted.
+
+Mitigation: Use only data the user is authorized to analyze and review generated reports before sharing, emailing, or uploading them.
+
+## Reference(s):
+
+- [Data Cleaning Reference](artifact/references/data_cleaning.md)
+- [Data Analysis Reference](artifact/references/data_analysis.md)
+- [Visualization Reference](artifact/references/visualization.md)
+- [Report Generation Reference](artifact/references/report_generation.md)
+- [ClawHub Skill Listing](https://clawhub.ai/wuyandong8/skills/smart-data-insights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, JSON summaries, CSV files, PNG charts, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with Python dependencies and writes generated files near the input dataset or requested output path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

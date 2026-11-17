@@ -1,48 +1,63 @@
-## Description: <br>
-Woop Daily guides a user through a five-minute conversational WOOP exercise that turns a wish into an if-then action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a five-minute conversational WOOP practice that helps users turn a wish into a concrete outcome, inner obstacle, and if-then action plan.
 
-## Publisher: <br>
-[reffwu](https://clawhub.ai/user/reffwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reffwu](https://clawhub.ai/user/reffwu)
 
-## Use Case: <br>
-External users use this skill when they want structured help turning a wish, goal, or habit into a concrete WOOP plan. The agent asks guided questions, handles review and reminder modes, and records completed practice history when the skill completes a WOOP session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill silently self-updates during startup. <br>
-Mitigation: Remove the auto-update block or require explicit user confirmation before updating the installed skill. <br>
-Risk: The skill stores sensitive personal reflection history under ~/.woop-daily by default. <br>
-Mitigation: Make logging and history recall explicit opt-in, and provide clear controls for reviewing and deleting stored history. <br>
-Risk: The skill can set reminders and run shell commands when reminder mode is requested. <br>
-Mitigation: Review generated OpenClaw cron commands before execution and confirm the requested schedule with the user. <br>
+## Use Case:
 
+External users use this skill in an agent chat to work through daily, weekly, habit-building, review, reminder, or story-guided WOOP sessions for personal goal follow-through.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reffwu/woop-daily) <br>
-- [Project homepage](https://github.com/ReffWu/woop-daily) <br>
-- [Conversation craft reference](references/conversation-craft.md) <br>
-- [WOOP / MCII science background](references/science.md) <br>
-- [Parable: the boy who built bridges](references/parable-fog-river.md) <br>
-- [Skill design principles](references/skill-design-principles.md) <br>
-- [Official WOOP practice resource](https://woopmylife.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with optional inline shell commands and JSONL or Markdown log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or append local WOOP history files and may propose OpenClaw cron reminder commands when the user requests reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill can silently self-update during startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or review the installed version before use, and remove silent self-update behavior in environments that require change control.
+
+Risk: The skill stores personal WOOP reflections in plaintext files under the user's home directory.
+
+Mitigation: Treat session logs as sensitive, avoid entering highly sensitive information, and provide clear opt-in, retention, and deletion practices before deployment.
+
+Risk: The skill uses Bash for logging and can create OpenClaw cron reminders.
+
+Mitigation: Review commands before execution and grant shell or cron access only in trusted local environments.
+
+## Reference(s):
+
+- [Woop Daily Homepage](https://github.com/ReffWu/woop-daily)
+- [ClawHub Skill Page](https://clawhub.ai/reffwu/skills/woop-daily)
+- [WOOP Official Practice Resource](https://woopmylife.org)
+- [WOOP / MCII Science Background](references/science.md)
+- [Conversation Craft](references/conversation-craft.md)
+- [Parable: The Boy Who Built Bridges](references/parable-fog-river.md)
+- [Skill Design Principles](references/skill-design-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational Markdown with occasional inline shell commands for reminders and local session logging]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local plaintext WOOP history and optional cron reminders when the user enables those flows.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

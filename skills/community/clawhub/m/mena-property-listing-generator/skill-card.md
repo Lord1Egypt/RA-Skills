@@ -1,45 +1,55 @@
-## Description: <br>
-Generates bilingual Arabic and English property listing copy and social-ready real estate content for MENA agents from basic property specs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered bilingual property listing generator for MENA real estate agents that turns basic property specs into SEO-optimized Arabic and English listings, social posts, and WhatsApp follow-up scripts.
 
-## Publisher: <br>
-[jzargona](https://clawhub.ai/user/jzargona) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzargona](https://clawhub.ai/user/jzargona)
 
-## Use Case: <br>
-External real estate agents, agencies, property managers, and project sales teams use this skill to turn property specs into bilingual listing copy and channel-specific marketing or follow-up text for MENA markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Middle East and North Africa (MENA) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Listing data, agent names, and phone numbers may be sent to an LLM when MINIMAX_API_KEY is set, and server security evidence says destination and credential behavior needs review. <br>
-Mitigation: Review network and credential settings before installation; avoid private client or agent data until the publisher clearly declares allowed destinations and credential behavior. <br>
-Risk: The skill stores listing records, agent profiles, and monthly counters under the user's local OpenClaw data directory. <br>
-Mitigation: Treat local files as client and contact data; restrict filesystem access and remove saved records when they are no longer needed. <br>
-Risk: Generated real estate copy may contain incorrect property facts, market claims, or platform-specific wording. <br>
-Mitigation: Have a qualified agent review prices, details, compliance language, and platform requirements before publishing or sending generated content. <br>
+## Use Case:
 
+External real estate agents, property managers, and sales teams in MENA use this skill to generate bilingual property listing copy, social media content, and WhatsApp lead follow-up scripts from basic property specs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jzargona/skills/mena-property-listing-generator) <br>
-- [MENA Property Listing Generator source skill](artifact/SKILL.md) <br>
-- [Reference docs index](artifact/references/README.md) <br>
-- [Marketing copy reference](artifact/references/marketing.md) <br>
+### Deployment Geography for Use:
 
+Middle East and North Africa (MENA)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown and plain text listing content, with local JSON records for saved listings and agent profiles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Arabic and English real estate copy, social captions, short video scripts, WhatsApp follow-up text, and PDF-style listing descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill sends property details and agent contact details to a remote LLM service for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid entering unnecessary personal data, and install it only if sending those details to the configured LLM service is acceptable.
+
+Risk: Security evidence reports that listing data and a MiniMax API key may be sent to undeclared LLM hosts if the environment is configured that way.
+
+Mitigation: Keep LLM_BASE_URL unset unless the routing behavior is understood, and use a restricted MiniMax API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jzargona/skills/mena-property-listing-generator)
+- [Reference docs index](references/README.md)
+- [Marketing copy](references/marketing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown and plain text listing content with local JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated listings, agent profiles, and monthly counters under ~/.openclaw/mena-property-listing-generator/.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, release metadata, script __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-OpenClaw skill for designing Telegram Bot API workflows and command-driven conversations using direct HTTPS requests without SDKs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for designing Telegram Bot API workflows and command-driven conversations using direct HTTPS requests (no SDKs).
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-Developers and engineers use this skill to design Telegram bot command flows, update routing, direct HTTPS Bot API requests, and operational checklists without relying on a full SDK. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens could be exposed if copied into chat logs, generated examples, or application logs. <br>
-Mitigation: Treat bot tokens as secrets, use a test bot while experimenting, and avoid logging tokens in generated code or operational output. <br>
-Risk: Generated Telegram API calls such as setWebhook, sendMessage, editMessageText, or deleteMessage can affect a production bot or chat if used without review. <br>
-Mitigation: Review generated API calls and payloads before using them with a production bot, and validate chat context and update payloads. <br>
-Risk: Webhook or polling handlers can receive untrusted or repeated updates. <br>
-Mitigation: Use secret webhook headers where possible, restrict allowed update types, and keep handlers idempotent with retry-aware backoff. <br>
+## Use Case:
 
+Developers and engineers use this skill to design Telegram Bot API command flows, webhook or polling update handling, direct HTTPS request payloads, and operational checklists for bot releases.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lovefromio/lovefromio-telegram) <br>
-- [Telegram Bot API](https://core.telegram.org/bots/api) <br>
-- [Telegram Bot FAQ](https://core.telegram.org/bots/faq) <br>
-- [Telegram Bot API Field Notes](references/telegram-bot-api.md) <br>
-- [Telegram Command Playbook](references/telegram-commands-playbook.md) <br>
-- [Telegram Request Templates](references/telegram-request-templates.md) <br>
-- [Telegram Update Routing](references/telegram-update-routing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON payload snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance and templates; no executable install behavior is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Telegram bot tokens, webhook secrets, or update payloads could be exposed through generated examples, logs, or source control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tokens and webhook secrets out of logs and source control, use a secret store or environment variables, and review generated bot code before use.
+
+Risk: A bot that accepts broad or unvalidated update types can process unexpected chats, callbacks, or payloads.
+
+Mitigation: Restrict allowed update types, validate incoming update payloads and chat context, and use a webhook secret token header when webhooks are enabled.
+
+Risk: Generated HTTP requests can send messages, change webhook settings, or trigger Bot API side effects if executed without review.
+
+Mitigation: Treat generated requests as proposals, inspect endpoint, token, chat_id, and payload values, and test in a controlled bot or chat before production use.
+
+## Reference(s):
+
+- [Telegram Bot API Field Notes](references/telegram-bot-api.md)
+- [Telegram Command Playbook](references/telegram-commands-playbook.md)
+- [Telegram Request Templates (HTTP)](references/telegram-request-templates.md)
+- [Telegram Update Routing](references/telegram-update-routing.md)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [Telegram Bot FAQ](https://core.telegram.org/bots/faq)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with HTTP request templates and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Bot API endpoint plans, command routing tables, webhook or polling configuration, and operational checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,82 @@
+# Requirement Plan
+
+## Live Requirement
+
+Validated demand: Teams need repeatable help adding useful unit tests and raising test coverage for existing codebases. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+
+## Audience
+
+software maintainers, QA engineers, open-source contributors, and product teams who need confidence that changes do not break existing behavior
+
+## Category
+
+software-and-data
+
+## Requirement Score
+
+Total: 100/100
+
+Demand: 70/70
+
+Local feasibility: 30/30
+
+Evidence coverage: 12 signals across 3 source families.
+
+Scoring rationale:
+
+- Evidence count: 12; required minimum: 3.
+- Distinct source families: 3; sources: github, hacker-news, segmentfault.
+- Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
+- Local feasibility score: 30/30.
+- Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
+
+## Evidence
+
+- github-issues (2026-06-17T17:08:17+00:00): [[aw] No-Op Runs](https://github.com/github/gh-aw/issues/39849)
+- hacker-news-search (2026-06-24T08:54:12+00:00): [You can't unit test for taste](https://dev.karltryggvason.com/you-cant-unit-test-for-taste/)
+- github-issues (2026-06-16T08:04:29+00:00): [Daily audit: 2 findings (2026-06-16)](https://github.com/jaylamping/marengo/issues/16)
+- hacker-news-search (2026-06-22T17:06:09+00:00): [Unit Tests for a Novel](https://worldfall.ink/blog/)
+- hacker-news-search (2026-06-15T09:27:26+00:00): [What are you looking for when reviewing LLM generated code?](https://news.ycombinator.com/item?id=48538778)
+- github-issues (2026-06-26T11:58:12+00:00): [Slack integration throughout portal: developer alerts and admin ops notifications](https://github.com/SimCorp/ai-gw/issues/186)
+- hacker-news-search (2026-06-23T20:47:18+00:00): [How Small Can a C++ Unit Test Framework Be?](https://freshsources.com/code-capsules/test-part1/)
+- hacker-news-search (2026-06-24T16:49:33+00:00): [A green unit test, a red CI, and a chown that raced a zsh lock file](https://inferhaven.com/blog/2026-06-18-building-haven-bench-in-the-open/)
+- github-issues (2026-06-26T12:01:16+00:00): [test: add dedicated test coverage for ReadmeHealthBreakdown component](https://github.com/JhaSourav07/commitpulse/issues/6683)
+- github-issues (2026-06-26T04:41:47+00:00): [Stable-wifi SSH drop: reactive network handoff has NO debounce/settle window — a real WIFI↔CELLULAR flip (or transient onLost) tears down a live link with no ride-through](https://github.com/alexeygrigorev/pocketshell/issues/981)
+- github-issues (2026-06-16T14:37:09+00:00): [[refactor] Extract resolve_repo_root helper for 16+ duplicated args.repo_root or get_repo_root() patterns](https://github.com/HomericIntelligence/ProjectHephaestus/issues/1413)
+- segmentfault-search (2026-06-26T12:06:01.343077+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+
+## How The Skill Meets The Requirement
+
+Transforms the live request into a repeatable workflow that clarifies the user's context, produces a concrete deliverable, checks the result against the original need, and keeps execution feasible on ordinary CPU or family GPU hardware.
+
+## Executable Implementation Plan
+
+1. Restate the user's outcome, constraints, available inputs, and success criteria.
+2. Inspect technical constraints, propose implementation steps, and include test or verification commands when code or data is involved.
+3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
+4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
+5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
+6. Validate the output against the success criteria and list any remaining risks or follow-up work.
+
+## Expected Outputs
+
+- A tailored answer or artifact for the user's immediate situation.
+- A reusable checklist or workflow when the task is repeatable.
+- A verification note showing how the result was checked.
+
+## Review Criteria
+
+- The output directly addresses the discovered requirement.
+- The user can act on the result without reading the original source post.
+- Assumptions, limits, and required inputs are visible.
+- The final response includes a short usage or next-step note when helpful.
+
+## Usage Signals
+
+Keywords: software-and-data, unit tests, test coverage, testing, regression, quality
+
+Trigger sentences:
+
+- Help me Teams need repeatable help adding useful unit tests and raising test coverage for existing codebases.
+- I need a practical workflow for Teams need repeatable help adding useful unit tests and raising test coverage for existing codebases.
+- Use $unit-test-coverage-helper to handle Teams need repeatable help adding useful unit tests and raising test coverage for existing codebases.

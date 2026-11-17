@@ -1,41 +1,57 @@
-## Description: <br>
-基于《实践论》的自我迭代系统，当需要自动整理记忆、反思改进、或创建新技能时使用，包含 Heartbeat 检查清单、Cron 定时任务配置和技能创建工作流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于《实践论》的自我迭代系统。当需要自动整理记忆、反思改进、或创建新技能时使用。包含Heartbeat检查清单、Cron定时任务配置、和技能创建工作流。
 
-## Publisher: <br>
-[kongchenga](https://clawhub.ai/user/kongchenga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongchenga](https://clawhub.ai/user/kongchenga)
 
-## Use Case: <br>
-External users and agent developers use this skill to configure an agent workflow for persistent memory review, scheduled reflection, and repeated-pattern skill creation. It is intended for agents that should maintain and reorganize conversation-derived notes over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to persist and reorganize conversation-derived memory, which can retain sensitive information without enough user control. <br>
-Mitigation: Before enabling it, define where memory files live, what information must never be saved, and how users can review, edit, or disable memory updates. <br>
-Risk: Scheduled cleanup can delete or rewrite memory files automatically. <br>
-Mitigation: Require reviewable change logs or backups for memory cleanup jobs, and keep destructive cron behavior disabled until the operator approves the policy. <br>
+## Use Case:
 
+Agents and developers use this skill to organize long-term memory, run periodic reflection checklists, configure cron reminders, and create reusable skills when repeated needs emerge.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub release page](https://clawhub.ai/kongchenga/knowledge-actionloop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and checklist templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory-maintenance checklists, cron setup commands, and skill-creation workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic long-term memory management may persist conversation details that should not be retained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide what conversations may be retained, avoid storing secrets, and keep memory files inspectable, editable, deletable, and recoverable.
+
+Risk: Cron jobs and automated memory updates can run with limited user control.
+
+Mitigation: Review or remove cron commands before enabling the skill and add a manual approval step before MEMORY.md updates.
+
+Risk: Automated skill update behavior may change agent behavior unexpectedly.
+
+Mitigation: Review and scan skill changes before deployment or installation.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and checklist templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update memory files, HEARTBEAT.md, cron configuration, and skill files when enabled by the agent environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
+  "name": "Self-Driven AI",
   "slug": "self-driven",
-  "version": "0.1.0",
-  "publishedAt": 1773227523901
+  "version": "1.0.0",
+  "description": "让 AI 不用人催，自己找事做 - 实现自我驱动闭环",
+  "author": "小溪",
+  "tags": ["自我驱动", "AI", "自动化", "任务管理"],
+  "trigger": ["自我驱动", "自己找事做", "执行任务", "Cron 任务"]
 }

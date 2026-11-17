@@ -1,38 +1,51 @@
-## Description: <br>
-Archive completed conversations and projects. Use on project completion, resolved threads, or when asked to archive a conversation. Writes structured summaries to files and optionally posts to a Discord channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archive completed conversations and projects. Use on project completion, resolved threads, or when asked to archive a conversation. Writes structured summaries to files and optionally posts to a Discord channel.
 
-## Publisher: <br>
-[npfaerber](https://clawhub.ai/user/npfaerber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npfaerber](https://clawhub.ai/user/npfaerber)
 
-## Use Case: <br>
-Developers and agents use this skill to archive completed project conversations into structured workspace summaries, with optional concise posting to a designated Discord channel and related memory or task updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Archive summaries, memory updates, and optional Discord posts may expose sensitive project or conversation details. <br>
-Mitigation: Review summaries for secrets or sensitive details before saving or posting, and use Discord posting only when explicitly intended. <br>
-Risk: Workspace writes and task closure can affect project records if the target paths or tasks are chosen incorrectly. <br>
-Mitigation: Confirm the archive directory, memory file pattern, and related task before applying updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers, operators, and project teams use this skill to archive completed conversations or project threads into structured summaries, with optional concise posting to a designated Discord archive channel.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Conversation summaries may persist private project details, personal data, credentials, or internal decisions.
+
+Mitigation: Use the skill only for explicit archive requests and review or redact summaries before storing them.
+
+Risk: Optional Discord posting can expose summaries or full-file links to an unintended audience.
+
+Mitigation: Keep Discord posting disabled unless the destination channel is trusted, and review shared summaries and links before posting.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes archive summaries to a configurable workspace path and treats Discord posting, memory updates, and task closure as explicit user-directed actions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown summary files with concise text summaries and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update daily memory files, task status, and an optional Discord archive channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

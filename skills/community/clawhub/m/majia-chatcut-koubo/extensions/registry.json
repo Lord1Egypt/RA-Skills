@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "packs": [
+    {
+      "id": "cuttips-kb",
+      "mode": "bundled",
+      "manifest": "extensions/cuttips-kb/manifest.json",
+      "required": false,
+      "purpose": "用 198 份公开来源蒸馏的知识卡和规则为口播剪辑候选提供检索依据"
+    },
+    {
+      "id": "video-shotcraft",
+      "mode": "external",
+      "manifest": "extensions/video-shotcraft/manifest.json",
+      "required": false,
+      "purpose": "在确有信息任务时提供经过白名单约束的 Remotion 镜头配方候选"
+    }
+  ]
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-公文排版工具 - 根据公文格式规范自动排版Word文档。适用于发送Word文件前进行格式调整。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公文排版工具 - 根据公文格式规范自动排版Word文档。适用于发送Word文件前进行格式调整。
 
-## Publisher: <br>
-[batduke](https://clawhub.ai/user/batduke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[batduke](https://clawhub.ai/user/batduke)
 
-## Use Case: <br>
-Employees, document preparers, and agents use this skill to reformat Word documents before sending them as official Chinese government-style documents. It applies heading, body text, table, margin, line-spacing, and page-number formatting rules from the bundled reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatting a Word document can change important layout details or overwrite a needed output path. <br>
-Mitigation: Use a separate output filename and keep backups of sensitive or important documents. <br>
-Risk: The formatter depends on local Python packages and document fonts, which can affect execution or visual results. <br>
-Mitigation: Install python-docx from a trusted Python environment and confirm required fonts are available before relying on the formatted document. <br>
+## Use Case:
 
+External users and document-preparation agents use this skill to format Word documents according to Chinese official-document style before sharing or sending them.
 
-## Reference(s): <br>
-- [Format Rules](references/format-rules.md) <br>
-- [ClawHub release page](https://clawhub.ai/batduke/doc-format-gw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown usage guidance with bash and Python examples; formatted .docx files when the script is executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and python-docx; reads a user-selected .docx file and writes a formatted output .docx file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Formatting changes may make an official document inaccurate or unsuitable to send.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the formatter on a copy or separate output file, then review the resulting Word document before sending.
+
+Risk: Documents with tables may fail during formatting.
+
+Mitigation: Test table-heavy documents before relying on the output, and manually review or adjust table formatting when needed.
+
+Risk: Missing expected Chinese fonts can cause layout differences from the documented format.
+
+Mitigation: Verify the required fonts are installed in the execution environment before formatting final documents.
+
+## Reference(s):
+
+- [Format Rules](references/format-rules.md)
+- [ClawHub skill page](https://clawhub.ai/batduke/skills/doc-format-gw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks; generated Word document file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, python-docx, and the expected Chinese fonts for reliable document formatting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

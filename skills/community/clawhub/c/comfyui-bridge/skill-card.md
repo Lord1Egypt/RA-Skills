@@ -1,43 +1,60 @@
-## Description: <br>
-Generate images, faceswap, edit photos, animate expressions, and do style transfer via a self-hosted ComfyUI instance on your LAN. Your GPU, your models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, faceswap, edit photos, animate expressions, and do style transfer via a self-hosted ComfyUI instance on your LAN.
 
-## Publisher: <br>
-[Bortlesboat](https://clawhub.ai/user/Bortlesboat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bortlesboat](https://clawhub.ai/user/bortlesboat)
 
-## Use Case: <br>
-Developers and creators use this skill to route image generation, photo editing, face swapping, expression animation, and style transfer tasks to a self-hosted ComfyUI environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images may be sent to the configured bridge and queued as local copies under ~/.openclaw/faceswap-queue. <br>
-Mitigation: Review the bridge target before use and define a cleanup process for queued private images. <br>
-Risk: Queued results can be sent later through iMessage to a hard-coded default chat target. <br>
-Mitigation: Do not run the queue daemon until the chat target and recipient behavior have been checked or changed. <br>
+## Use Case:
 
+External users and developers use this skill to route image generation, image editing, faceswap, expression animation, and style-transfer requests to their own LAN-hosted ComfyUI setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Bortlesboat/comfyui-bridge) <br>
-- [ComfyUI Bridge Repository](https://github.com/Bortlesboat/comfyui-bridge) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image output paths and may queue requests for later delivery when the bridge is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Sensitive, private, or face images may be sent to the configured bridge and may be queued on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted local or authenticated bridge, avoid plaintext non-loopback HTTP for private or face images, and clear queued image copies when they are no longer needed.
+
+Risk: Queued background delivery can send generated images through iMessage to an unintended recipient.
+
+Mitigation: Disable or tightly control the queue daemon and verify the intended iMessage recipient or chat target before enabling delivery.
+
+Risk: The security evidence flags command-execution risk in the queue processor shell fallback and queue path handling.
+
+Mitigation: Do not run the queue processor until the shell fallback and queue path validation issues are fixed, and do not process queue files from untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bortlesboat/skills/comfyui-bridge)
+- [ComfyUI Bridge project homepage](https://github.com/Bortlesboat/comfyui-bridge)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [Ollama](https://ollama.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs commonly include a MEDIA path to a generated image file; queued requests may later deliver results through the configured local workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-AI-based SBTI skill test SEO operations for https://aisbti.com/ with weighted backlink scoring, internal link-juice relay planning, and safe anchor distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-based SBTI skill test SEO operations for https://aisbti.com/ with weighted backlink scoring, internal link-juice relay planning, and safe anchor distribution.
 
-## Publisher: <br>
-[cweiping](https://clawhub.ai/user/cweiping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cweiping](https://clawhub.ai/user/cweiping)
 
-## Use Case: <br>
-External users and SEO operators use this skill to score backlink prospects for aisbti.com, plan safe anchor distribution, and generate internal relay recommendations for priority pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runner script sources a workspace secrets file even though the planner does not appear to require credentials. <br>
-Mitigation: Create the env file manually, keep it limited to path and scoring settings, and do not place unrelated API keys or account credentials in it. <br>
-Risk: Backlink outreach or submission actions could create SEO quality or policy risk if executed without review. <br>
-Mitigation: Review generated backlink opportunities manually and follow the skill's white-hat rules before acting on any outreach plan. <br>
+## Use Case:
 
+SEO operators and site maintainers use this skill to score backlink prospects for aisbti.com, check anchor distribution, and plan internal link relay actions from acquired links to priority pages.
 
-## Reference(s): <br>
-- [SEO Link Building Standard](references/seo-link-building-standard.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cweiping/ai-sbti-skill-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON files generated from CSV inputs, with shell command and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include scored backlink candidates, anchor mix alerts, rejected-candidate reasons, and optional internal relay summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runner can source a configurable env file before generating the plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you control the env file and CSV inputs, run as an unprivileged user, and do not point AI_SBTI_SKILL_TEST_ENV_FILE at untrusted files.
+
+Risk: Generated Markdown may include content derived from external prospect data.
+
+Mitigation: Review generated Markdown as untrusted content before sharing or acting on it.
+
+## Reference(s):
+
+- [SEO Link Building Standard](references/seo-link-building-standard.md)
+- [ClawHub Skill Page](https://clawhub.ai/cweiping/skills/ai-sbti-skill-test)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plan and JSON report, with shell commands and configuration guidance for running the planner.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scored backlink candidates, rejected-candidate reasons, anchor-mix alerts, and internal relay recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

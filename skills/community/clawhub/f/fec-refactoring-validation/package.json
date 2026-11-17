@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-refactoring-validation",
+  "version": "2.9.0",
+  "description": "Use when proving that a frontend refactoring preserved existing behavior, selecting an appropriate safety net, validating each structural step, or assigning a PASS, PARTIAL, or NOT PROVEN preservation verdict.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactoring-validation"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactoring",
+    "validation",
+    "behavior-preservation",
+    "rollback"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

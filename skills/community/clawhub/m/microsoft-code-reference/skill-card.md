@@ -1,39 +1,49 @@
-## Description: <br>
-Look up Microsoft API references, official code samples, and SDK details to verify Azure SDK, .NET library, and Microsoft API usage against Microsoft documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up Microsoft API references, find working code samples, and verify SDK code is correct.
 
-## Publisher: <br>
-[TianqiZhang](https://clawhub.ai/user/TianqiZhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianqizhang](https://clawhub.ai/user/tianqizhang)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify Microsoft SDK and API methods, fetch official references, find working samples, and troubleshoot implementation errors before or while writing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional CLI fallback may run or install the @microsoft/learn-cli npm package on the user's system. <br>
-Mitigation: Prefer the Microsoft Learn MCP server when available; if using the CLI fallback, verify the package source and avoid global installation unless it is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to verify Microsoft SDK and API usage against Microsoft Learn references, working code samples, and full API pages before or after writing code.
 
-## Reference(s): <br>
-- [Microsoft Learn MCP Server](https://learn.microsoft.com/api/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/TianqiZhang/microsoft-code-reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with tool queries, code-oriented references, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials detected in release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The CLI fallback can run or install an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Microsoft Learn MCP tools when available; if using the CLI fallback, avoid elevated privileges, consider pinning a reviewed @microsoft/learn-cli version, and avoid global installation unless persistent tooling is intended.
+
+## Reference(s):
+
+- [Microsoft Learn MCP Server](https://learn.microsoft.com/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with documentation references, code examples, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Microsoft Learn MCP tools or the mslearn CLI fallback when the MCP server is unavailable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

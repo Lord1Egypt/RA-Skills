@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Optimize Prompt before and after example</title>
+  <desc id="desc">A vague request becomes a structured, agent-ready prompt while constraints are preserved.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1020"/><stop offset="1" stop-color="#172554"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#34d399"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <text x="70" y="78" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="38" font-weight="700">Optimize Prompt</text>
+  <text x="70" y="116" fill="#93c5fd" font-family="Inter,Arial,sans-serif" font-size="21">Compress • Clarify • Structure • Audit</text>
+  <rect x="64" y="158" width="430" height="356" rx="22" fill="#111827" stroke="#334155" filter="url(#shadow)"/>
+  <text x="94" y="205" fill="#fca5a5" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">BEFORE</text>
+  <text x="94" y="260" fill="#e2e8f0" font-family="Inter,Arial,sans-serif" font-size="25">“Please help me write a SQL query</text>
+  <text x="94" y="298" fill="#e2e8f0" font-family="Inter,Arial,sans-serif" font-size="25">for recent orders. Make it good, and</text>
+  <text x="94" y="336" fill="#e2e8f0" font-family="Inter,Arial,sans-serif" font-size="25">please don't modify any data.”</text>
+  <text x="94" y="424" fill="#94a3b8" font-family="Inter,Arial,sans-serif" font-size="18">Vague scope • filler • implicit output</text>
+  <circle cx="596" cy="336" r="52" fill="url(#accent)"/>
+  <path d="M574 336h38m-14-14 14 14-14 14" fill="none" stroke="#07111f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="698" y="158" width="438" height="356" rx="22" fill="#0f172a" stroke="#38bdf8" filter="url(#shadow)"/>
+  <text x="728" y="205" fill="#6ee7b7" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">AFTER</text>
+  <text x="728" y="252" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700">Generate a read-only SQL query that:</text>
+  <text x="728" y="300" fill="#cbd5e1" font-family="Inter,Arial,sans-serif" font-size="20">• retrieves recent orders</text>
+  <text x="728" y="340" fill="#cbd5e1" font-family="Inter,Arial,sans-serif" font-size="20">• preserves the user's stated scope</text>
+  <text x="728" y="380" fill="#cbd5e1" font-family="Inter,Arial,sans-serif" font-size="20">• does not modify data</text>
+  <text x="728" y="420" fill="#cbd5e1" font-family="Inter,Arial,sans-serif" font-size="20">• flags missing critical parameters</text>
+  <text x="728" y="475" fill="#7dd3fc" font-family="Inter,Arial,sans-serif" font-size="18">Agent-ready • auditable • constraint-safe</text>
+  <rect x="64" y="552" width="1072" height="4" rx="2" fill="url(#accent)"/>
+  <text x="64" y="594" fill="#94a3b8" font-family="Inter,Arial,sans-serif" font-size="17">Semantic fidelity first. Compression second. No task execution.</text>
+</svg>

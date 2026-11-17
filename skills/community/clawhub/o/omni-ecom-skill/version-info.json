@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "team_id": "omni-ecom",
+  "team_version": "2.0.3",
+  "maintenance_revision": "20261014-r2",
+  "maintenance_scope": "补齐岗位执行规则、问题文字核验、上期行动反馈与完整 PDF 条件呈现；不更换模型、不扩大授权范围",
+  "release_status": "released",
+  "release_ready": true,
+  "release_name": "Export-report multi-agent commerce operations",
+  "release_date": "2026-10-13",
+  "release_scope": "authorized_export_reports",
+  "optional_capabilities": {
+    "platform_api_read": "not_enabled",
+    "controlled_action_readback": "not_enabled",
+    "live_model_route_baseline": "not_enabled"
+  },
+  "previous_version": "2.0.2",
+  "changes": [
+    "修正缺数岗位检查及一次性交接格式",
+    "按岗位分发紧凑资料并统一问题契约",
+    "报告按类型呈现完整分析、行动及证据附录",
+    "统一复核导航与重复构建保护"
+  ],
+  "compatibility": {
+    "reads": [
+      "v1.x handoff/action/report/claim history through explicit read-only migration"
+    ],
+    "writes": [
+      "2.0 reports, expert handoffs, claim ledgers, review chain artifacts, claim/public guard receipts and PDF/completion receipts for authorized export-report runs; optional API and backend execution capabilities are not enabled"
+    ],
+    "upgrade_note": "v2.0.3 为现有专家团的流程修整补丁版，上一正式版 v2.0.2。已通过无客户固定夹具的 WorkBuddy/Codex 真实多专家、图表 PDF 与独立复核验收；不代表客户经营数据认证或实际周报耗时承诺。API、后台操作和跨模型路线基线未启用；模型沿用用户选择，历史任务与报告保持原身份。"
+  }
+}

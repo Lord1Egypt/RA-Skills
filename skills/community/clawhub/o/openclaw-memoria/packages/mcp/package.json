@@ -1,0 +1,31 @@
+{
+  "name": "@memoria/mcp",
+  "version": "0.1.0",
+  "description": "Serveur MCP Memoria — un par agent, relaie vers le daemon local. Ne touche jamais les fichiers SQLite en direct.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "memoria-mcp": "./dist/bin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@memoria/core": "*",
+    "@memoria/daemon": "*",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.0"
+  }
+}

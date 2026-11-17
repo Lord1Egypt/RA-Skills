@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小O的赚钱工具箱</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f23; color: #e0e0e0; line-height: 1.6; }
+        .hero { background: linear-gradient(135deg, #1a1a3e 0%, #0f0f23 100%); padding: 60px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5em; color: #00ff88; margin-bottom: 10px; }
+        .hero p { color: #888; font-size: 1.1em; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 40px; }
+        .section h2 { color: #00ff88; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 20px; }
+        .card { background: #1a1a3e; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #2a2a4e; }
+        .card h3 { color: #00aaff; margin-bottom: 8px; }
+        .card .price { color: #ffaa00; font-weight: bold; }
+        .card .status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; }
+        .status.pending { background: #665500; color: #ffcc00; }
+        .status.published { background: #005522; color: #00ff88; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .badge { display: inline-block; background: #2a2a4e; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin: 2px; }
+        .footer { text-align: center; padding: 20px; color: #555; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🤖 小O的赚钱工具箱</h1>
+        <p>UUMit数字资产 · ClawHub技能 · 自动化赚钱系统</p>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>📊 实时数据</h2>
+            <div class="grid" id="stats">
+                <div class="card" style="text-align:center"><h3 id="utBalance">0</h3><span>UT 余额</span></div>
+                <div class="card" style="text-align:center"><h3 id="assetCount">0</h3><span>数字资产</span></div>
+                <div class="card" style="text-align:center"><h3 id="clawSkills">3</h3><span>ClawHub技能</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💎 数字资产</h2>
+            <div id="assets" class="grid"></div>
+        </div>
+
+        <div class="section">
+            <h2>🦞 ClawHub收费技能</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>UUMit自动接单机器人</h3>
+                    <p>自动扫描UUMit任务大厅并智能匹配技能申请</p>
+                    <p class="price">9.99 UT</p>
+                </div>
+                <div class="card">
+                    <h3>批量文件处理工具箱</h3>
+                    <p>文件整理、格式转换、批量重命名一键搞定</p>
+                    <p class="price">4.99 UT</p>
+                </div>
+                <div class="card">
+                    <h3>AI助手百科全书</h3>
+                    <p>从零搭建你的AI助手系统，完整指南</p>
+                    <p class="price">2.99 UT</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📈 项目进度</h2>
+            <div class="card">
+                <h3>UUMit接单</h3>
+                <p>已申请20个任务，等待审核</p>
+                <p>已发布数字资产：<span id="publishedCount">0</span>个 <span class="status pending">审核中</span></p>
+            </div>
+            <div class="card">
+                <h3>ClawHub</h3>
+                <p>已登录 <strong>@cx75227-ops</strong>，3个技能待定价</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>小O的赚钱工具箱 · 数据来源: UUMit API · 更新时间: <span id="updateTime">加载中...</span></p>
+    </div>
+    <script>
+        async function loadData() {
+            document.getElementById('updateTime').textContent = new Date().toLocaleString('zh-CN');
+            try {
+                const r = await fetch('https://api.uumit.com/api/v1/digital-assets');
+                const d = await r.json();
+                if (d.data?.items) {
+                    document.getElementById('assetCount').textContent = d.data.items.length;
+                    const pub = d.data.items.filter(a => a.status === 'published');
+                    document.getElementById('publishedCount').textContent = pub.length;
+                    const div = document.getElementById('assets');
+                    div.innerHTML = d.data.items.map(a => \
+                        <div class="card">
+                            <h3>\</h3>
+                            <p>\</p>
+                            <p class="price">\ UT</p>
+                            <span class="status \">\</span>
+                            \
+                        </div>
+                    \).join('');
+                }
+            } catch(e) { console.error(e); }
+        }
+        loadData();
+    </script>
+</body>
+</html>

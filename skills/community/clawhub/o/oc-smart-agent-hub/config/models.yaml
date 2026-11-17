@@ -18,7 +18,7 @@ providers:
   #   priority: 1
   #   base_url: https://coding.dashscope.aliyuncs.com/v1
   #   api_key_env: BAILIAN_API_KEY
-  #   api_key: sk-sp-your-api-key-here  # ⚠️ 替换为你的 API Key
+  #   api_key: REDACTED-SECRET  # ⚠️ 替换为你的 API Key
   #   timeout: 30
   #   retry_count: 3
   #   models:

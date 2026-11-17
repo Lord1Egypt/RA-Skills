@@ -1,45 +1,60 @@
-## Description: <br>
-Batch Format Converter helps agents convert files between CSV, Excel, JSON, PDF, Markdown, DOCX, HTML, PNG, JPG, and TXT formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch Format Converter helps agents convert batches of CSV, Excel, JSON, PDF, Markdown, DOCX, HTML, image, and TXT files between supported output formats.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Developers, analysts, operations staff, finance teams, and document workers use this skill to batch-convert data and document files between common office, data, image, and web formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release under-discloses credential handling and remote license verification. <br>
-Mitigation: Review before installing; use only a dedicated converter or 91Skillhub license token if the publisher endpoint is trusted, and avoid relying on OPENAI_API_KEY for this tool. <br>
-Risk: Remote validation and optional delivery features may expose sensitive workflow context if enabled with untrusted endpoints or documents. <br>
-Mitigation: Disable network access when only local conversion is needed, and do not enable Feishu delivery for sensitive documents unless the metadata or files being sent are understood. <br>
-Risk: Cleanup commands documented with the artifact can remove files if copied into unrelated directories. <br>
-Mitigation: Run cleanup commands only inside an intended disposable skill workspace after reviewing the target paths. <br>
+## Use Case:
 
+Data professionals, analysts, operations teams, finance users, document workers, and developers can use this skill to batch convert common data and document files while preserving a concise success, failure, and skipped-file summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiji0802/batch-format-converter) <br>
-- [Publisher Profile](https://clawhub.ai/user/qiji0802) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Description](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Converted files with CLI status text and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Python dependencies, system OCR tools for scanned PDFs, and optional configuration for webhook-based delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The server security verdict is suspicious because the converter includes under-disclosed credential and network behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation, remove the OPENAI_API_KEY fallback if it is not needed, and provide only a converter-specific API key when token verification is required.
+
+Risk: Feishu push behavior can send conversion notifications or results outside the local environment.
+
+Mitigation: Keep Feishu disabled for sensitive documents unless the webhook destination and transmitted content are approved.
+
+Risk: Cleanup commands included in the artifact can remove local files if copied into the wrong directory.
+
+Mitigation: Review cleanup commands before use and run them only in the intended release or disposable working directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qiji0802/skills/batch-format-converter)
+- [Publisher Profile](https://clawhub.ai/user/qiji0802)
+- [YK-Global](https://yk-global.com)
+- [Tesseract OCR Windows Installer Reference](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands, configuration, guidance]
+
+**Output Format:** [Converted files plus JSON-style conversion summaries, CLI output, and Markdown guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports batch conversion, tier-aware quota checks, optional OCR dependencies, and optional Feishu notification output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

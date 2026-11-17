@@ -1,0 +1,64 @@
+{
+  "id": "domain-youtube",
+  "label": "YouTube — Video Platform Browser",
+  "emoji": "▶️",
+  "domain": "youtube.com",
+  "description": "Extracted from: ScrapeClaw youtube-scraper, scrapfly.io YouTube guides, generic video site scrapers. Verified 2026-07-16: #comments null before scroll, loads after scroll. 700px trigger confirmed.",
+  "source_patterns": [
+    "Video page: scroll down to trigger comments section (lazy-loaded — major pattern)",
+    "Post-navigate pause: 3-8s (watch intro before scrolling)",
+    "Comments: scroll to bottom of video section → 2-3s for comments to load → scroll comments",
+    "Search: type query → 2-4s → scroll results → click video",
+    "'Show more' on description: click → 1-2s expand",
+    "Sidebar: click suggested video → 1-2s load → scroll to push comments down again"
+  ],
+  "active_hours": {
+    "description": "All day — peaks after work",
+    "peak": [8, 12, 14, 18, 23],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "wpm": { "min": 55, "max": 90 },
+    "profile": "natural",
+    "think_prob": 0.015,
+    "think_ms": [400, 1500],
+    "backspace_freq": 0.03,
+    "search_typing_wpm": { "min": 70, "max": 110 }
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Key pattern: MUST scroll past video player to trigger comment lazy-load. Source: scrapfly",
+    "speed_px_per_ms": { "min": 18, "max": 45 },
+    "pause_between_passes_ms": { "min": 1500, "max": 4000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.7 },
+    "scroll_strategy": "incremental — first pass to trigger comments, second to read them"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 3000, "max": 8000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 },
+    "post_search_pause_ms": { "min": 2000, "max": 4000 }
+  },
+  "mouse": {
+    "speed": 0.85,
+    "curvature": 0.15,
+    "jitter": 0.3,
+    "description": "Moderate — video player interaction is simple click targets"
+  },
+  "platform_specific": {
+    "comment_section": {
+      "description": "Comments are lazy-loaded when scrolled into view. Must scroll below video player.",
+      "strategy": "scroll down 600-800px → wait 2-3s → comments render → scroll through comments",
+      "scroll_to_trigger_px": 700,
+      "render_wait_ms": { "min": 2000, "max": 4000 }
+    },
+    "selectors_css": {
+      "search_box": "input#search",
+      "video_title": "h1.ytd-video-primary-info-renderer",
+      "show_more": "#description-inner #more",
+      "comment_section": "#comments",
+      "suggested_video": "ytd-compact-video-renderer"
+    },
+    "sequence_hint": "search → scroll results → click video → watch/intro pause (3-8s) → scroll down to comments (pause) → scroll comments → click show more on description → click suggested video → repeat"
+  }
+}

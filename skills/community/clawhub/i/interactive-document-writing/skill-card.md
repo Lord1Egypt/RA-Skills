@@ -1,40 +1,58 @@
-## Description: <br>
-Interactive Document Writing guides Chinese-language, question-driven collaboration to create, revise, audit, and deliver long-form documents chapter by chapter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through interactive, chapter-by-chapter creation, revision, audit, and delivery of long-form documents such as white papers, proposals, manuals, and reports.
 
-## Publisher: <br>
-[jiargcn](https://clawhub.ai/user/jiargcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiargcn](https://clawhub.ai/user/jiargcn)
 
-## Use Case: <br>
-External users and writing teams use this skill to co-create white papers, proposals, manuals, reports, and other long-form documents through a structured discovery, outline, drafting, audit, and delivery workflow. It is also used to resume interrupted document-writing sessions from local progress state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read and edit project documents and maintain local progress files that may contain planning details. <br>
-Mitigation: Use it in a folder containing only the documents intended for the writing session, and delete or exclude .doc-progress-* files if they contain sensitive details. <br>
-Risk: Generated long-form Markdown may contain incorrect, incomplete, or misleading content if accepted without review. <br>
-Mitigation: Review generated Markdown, audit notes, and final reports before relying on or distributing the document. <br>
+## Use Case:
 
+External users, employees, and writing-focused agents use this skill to co-create or revise long-form documents through one-question-at-a-time discovery, outline design, chapter drafting, audit, final review, and delivery. It is especially suited to Chinese-first workflows that need persistent progress tracking across sessions.
 
-## Reference(s): <br>
-- [Example session](references/example-session.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown documents, structured audit notes, progress checklists, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update Markdown documents and local .doc-progress-* state files during long writing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read relevant workspace documents while preparing or revising long-form content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces containing documents the agent is allowed to inspect.
+
+Risk: The skill may create or update Markdown documents and .doc-progress-* state files near the document.
+
+Mitigation: Review file changes before accepting them, especially when revising an existing document.
+
+Risk: The skill may suggest a pandoc conversion command for Word output.
+
+Mitigation: Approve and run conversion commands only after reviewing the exact command and input/output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiargcn/skills/interactive-document-writing)
+- [Example session](references/example-session.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance, Shell commands]
+
+**Output Format:** [Markdown documents, structured review reports, progress files, and optional shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first interaction; may create or update Markdown documents and .doc-progress-* state files near the working document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

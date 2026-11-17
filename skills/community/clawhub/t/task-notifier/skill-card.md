@@ -1,41 +1,54 @@
-## Description: <br>
-Sends desktop notifications when an OpenClaw agent or subagent finishes a task, with support for macOS and WSL-on-Windows, smart suppression, and language detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Notifier helps agents guide users through installing, configuring, verifying, troubleshooting, updating, or removing desktop notifications for completed OpenClaw agent tasks.
 
-## Publisher: <br>
-[wdgame](https://clawhub.ai/user/wdgame) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[wdgame](https://clawhub.ai/user/wdgame)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor long-running agent and multi-agent workflows and receive local desktop notifications when work completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt installation of a separate runtime plugin using unsafe install flags, and that plugin was not included in the reviewed skill files. <br>
-Mitigation: Inspect the runtime plugin package before installation and proceed only if its local notification behavior and install flags are acceptable. <br>
-Risk: The runtime plugin is described as having broad all-agent lifecycle hook coverage for task-completion monitoring. <br>
-Mitigation: Use the documented include and exclude filters to narrow monitored agents, or avoid installing the runtime plugin when broad monitoring is not acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage Task Notifier setup and operations so they can receive desktop notifications when long-running main-agent or subagent tasks finish. It also provides consent, verification, configuration, and rollback guidance for the separate runtime plugin.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wdgame/task-notifier) <br>
-- [ClawHub README Link](https://clawhub.ai/skills/task-notifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill itself is documentation-only; notification behavior depends on a separately installed runtime plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Installing Task Notifier requires an unsafe-install bypass for a separate persistent runtime plugin with OpenClaw lifecycle access that was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after explicit user consent, prefer a reviewed and pinned runtime version or source bundle, and use the documented disable, uninstall, and state-cleanup steps if removing it.
+
+Risk: The runtime plugin can inspect active foreground window titles, run local notification commands, and write per-run state files in active workspaces.
+
+Mitigation: Review the requested permissions before installation, keep agent filters and active-window matching narrowly configured, and run the documented doctor check after setup.
+
+## Reference(s):
+
+- [Task Notifier ClawHub Page](https://clawhub.ai/wdgame/skills/task-notifier)
+- [Task Notifier Reference README](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash command blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides install, verification, debugging, configuration, and rollback guidance; desktop notification behavior depends on a separate runtime plugin.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

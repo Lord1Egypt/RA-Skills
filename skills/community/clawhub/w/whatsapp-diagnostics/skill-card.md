@@ -1,40 +1,53 @@
-## Description: <br>
-Diagnose and fix WhatsApp connectivity issues for OpenClaw agents when a PA is not responding, WhatsApp shows connected but messages do not arrive, the agent is online but not replying, or a new agent setup needs troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix WhatsApp connectivity issues for OpenClaw agents. Use when: a PA is not responding, WhatsApp shows connected but messages don't arrive, the agent is online but not replying, or troubleshooting a new agent setup.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw WhatsApp channel failures, separate connection, ingest, and runtime issues, and decide when to escalate to a platform administrator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional API-key checks make live outbound requests using provider credentials. <br>
-Mitigation: Run the checks only in a trusted shell and redact API keys, HTTP traces, and related command output before sharing logs. <br>
-Risk: Gateway restart commands can affect shared OpenClaw infrastructure. <br>
-Mitigation: Coordinate restarts with the responsible platform administrator when multiple agents or shared services may be affected. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose WhatsApp channel connectivity, message ingest, and agent runtime response issues for OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/whatsapp-diagnostics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a decision tree and an optional shell health-check script; API-key checks perform live outbound requests when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The health-check script can use live AI-provider API keys and contact external provider endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or edit the script before running it, make credential checks explicit, and prefer test or scoped keys.
+
+Risk: The diagnostic workflow may run gateway commands while troubleshooting WhatsApp connectivity.
+
+Mitigation: Run gateway checks in an appropriate maintenance context and confirm operational impact before restart commands.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/netanel-abergel/skills/whatsapp-diagnostics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a diagnostic decision tree, CLI checks, curl-based provider checks, escalation guidance, and prevention notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

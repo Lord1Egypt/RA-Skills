@@ -1,47 +1,66 @@
-## Description: <br>
-Helps agents plan and attempt demo video generation from web pages or local UI files using Playwright-oriented recording, scenario decomposition, and narration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional REAL demo video generation with PM-driven scenario decomposition and region-aware recording. Uses Playwright native recording + bmad-agent-pm integration for intelligent video production.
 
-## Publisher: <br>
-[rosscui-chy](https://clawhub.ai/user/rosscui-chy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rosscui-chy](https://clawhub.ai/user/rosscui-chy)
 
-## Use Case: <br>
-Developers and product teams use this skill to automate product-demo and tutorial video workflows from web UI targets, local UI files, templates, or project code. It can guide CLI, Python API, Web UI, and VS Code extension usage for generating or validating video outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate working video generation or report success before a real, usable video has been produced. <br>
-Mitigation: Manually verify the generated media file and playback quality before relying on any success message or publishing the result. <br>
-Risk: The skill can interact with local files, workspace code, environment secrets, and web content, including sensitive pages if pointed at them. <br>
-Mitigation: Run it only in a reviewed, isolated workspace against non-sensitive pages or files; avoid authenticated, internal, financial, customer, or secret-bearing targets. <br>
-Risk: Untrusted templates or helper integrations may expose local data or credentials. <br>
-Mitigation: Review template archives before installation and scrub sensitive environment variables before using the VS Code helper or related automation. <br>
+## Use Case:
 
+Developers and automation teams use this skill to produce narrated demo videos from web pages, local HTML, templates, or product scenarios through CLI, Python API, Web UI, and VS Code workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rosscui-chy/auto-video-generator) <br>
-- [Project Homepage](https://github.com/avg-team/auto-video-generator) <br>
-- [README](artifact/README.md) <br>
-- [CI/CD Documentation](artifact/CI_CD_DOCUMENTATION.md) <br>
-- [VS Code Extension README](artifact/vscode-extension/README.md) <br>
-- [Web UI README](artifact/web-ui/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference generated video files and project files when the underlying tooling is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files contain conflicting 2.0.0, 3.0.0, and 3.2.0 version signals) <br>
+Risk: The security review marks the release suspicious and notes a mismatch between production claims and inspected prototype-grade behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package carefully before installation and validate generated outputs before using them in customer-facing or production workflows.
+
+Risk: The bundled web UI may introduce local or network exposure risk if run on a reachable interface.
+
+Mitigation: Run the web UI only in a trusted local environment and avoid exposing it to shared or public networks until it has been reviewed.
+
+Risk: Template installation or import can introduce untrusted content into the generation workflow.
+
+Mitigation: Use only trusted templates and inspect template archives before installing or importing them.
+
+Risk: The security guidance warns against using the VS Code extension until external script path and environment handling are fixed.
+
+Mitigation: Disable or avoid the VS Code extension unless those handling paths have been reviewed and corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rosscui-chy/skills/auto-video-generator)
+- [ClawDIS homepage](https://github.com/avg-team/auto-video-generator)
+- [Documentation](https://auto-video-generator.readthedocs.io)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration examples, and generated video workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to produce MP4/WebM video artifacts, narration files, PRD-derived scenario data, and local configuration files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

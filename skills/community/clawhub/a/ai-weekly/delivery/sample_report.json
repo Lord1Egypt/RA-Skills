@@ -1,0 +1,79 @@
+{
+  "week": "2026-W33",
+  "generated_at": "2026-08-17T16:00:00+08:00",
+  "lead": "本周主线：大模型推理成本继续下探，单位智能降价成为全场最强信号，产品差异化重心从「选哪个模型」转向「场景与数据」。",
+  "headlines": [
+    {
+      "title": "旗舰模型密集上新，单位智能定价开始松动",
+      "url": "https://example.com/news/1",
+      "summary": "Claude Opus 5、GPT-5.2 本周先后发布，长上下文与agent能力成标配。",
+      "source": "机器之心",
+      "category": "ai-models",
+      "mustRead": true
+    },
+    {
+      "title": "国内开源模型集体冲榜，Qwen3 登顶多项基准",
+      "url": "https://example.com/news/2",
+      "summary": "阿里 Qwen3 系列在 OpenCompass 与 HF 榜单双线领先。",
+      "source": "量子位",
+      "category": "ai-models",
+      "mustRead": false
+    },
+    {
+      "title": "AI 编程工具融资升温，Cursor 估值再翻倍",
+      "url": "https://example.com/news/3",
+      "summary": "AI 原生 IDE 赛道单季融资超 30 亿美元。",
+      "source": "36氪",
+      "category": "industry",
+      "mustRead": false
+    },
+    {
+      "title": "多模态-agent 进入生产环境，客服率先落地",
+      "url": "https://example.com/news/4",
+      "summary": "头部电商把多模态 agent 用于售前售后一体化。",
+      "source": "极客公园",
+      "category": "ai-products",
+      "mustRead": false
+    },
+    {
+      "title": "监管收紧：欧盟 AI Act 全面生效",
+      "url": "https://example.com/news/5",
+      "summary": "高风险系统强制透明度与备案。",
+      "source": "TechCrunch",
+      "category": "industry",
+      "mustRead": true
+    }
+  ],
+  "insights": [
+    {
+      "kicker": "模型格局",
+      "title": "旗舰模型密集上新，单位智能的定价开始松动",
+      "insight": "做 AI 产品的团队最纠结的调用账单可以重算一遍了；本周趋势是「能力过剩、成本骤降」，往后看半年，我判断模型层会先把价格战打透，差异化重心挪到场景与数据。"
+    },
+    {
+      "kicker": "资本风向",
+      "title": "AI 编程工具融资升温",
+      "insight": "资本在用脚投票：agent 化开发工具是最先跑出 PMF 的赛道；本周趋势是「工具即生产力」，往后看我倾向于认为独立 IDE 会被云厂商免费捆绑。"
+    },
+    {
+      "kicker": "监管",
+      "title": "欧盟 AI Act 全面生效",
+      "insight": "合规从「可选项」变成「入场券」；本周趋势是监管追上技术，往后看出海产品必须把透明度与备案做成默认能力。"
+    }
+  ],
+  "audience": {
+    "开发者": "先把上季度调用账单重算一遍再决定要不要换栈，开源模型已能覆盖多数场景。",
+    "AI 产品经理": "能力过剩、成本骤降，产品差异化重心从「用哪个模型」挪到「场景与数据」。",
+    "科技媒体工作者": "「单位智能降价」是本周传播力最强的选题，配上账单对比图最好用。"
+  },
+  "keywords": [
+    {"term": "单位智能降价", "tag": "资本"},
+    {"term": "开源模型冲榜", "tag": "模型"},
+    {"term": "AI 编程融资", "tag": "资本"},
+    {"term": "多模态 agent", "tag": "产品"},
+    {"term": "欧盟 AI Act", "tag": "监管"},
+    {"term": "长上下文", "tag": "基建"}
+  ],
+  "view_url": "https://your-host.example.com/AI_News_2026-08-17.html",
+  "view_label": "查看完整周报"
+}

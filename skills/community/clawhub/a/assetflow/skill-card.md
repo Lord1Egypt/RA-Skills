@@ -1,40 +1,53 @@
-## Description: <br>
-Organize and store digital assets across cloud providers with automated workflows. Use when the user needs DAM integration, file organization, or asset metadata management for creative teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and store digital assets across cloud providers with automated workflows for DAM integration, file organization, and asset metadata management for creative teams.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Creative teams, DAM administrators, and operations teams use Assetflow to organize, tag, sync, and report on digital assets across cloud storage and DAM platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad asset-moving, sync, archive, retention, and cold-storage operations that may affect production asset libraries. <br>
-Mitigation: Use it first on a test folder or with read-only credentials, require previews, and require explicit approval before move, sync, archive, retention, or cold-storage actions. <br>
-Risk: Incorrect metadata, retention, or workflow configuration could make assets harder to find or could trigger unintended review and compliance work. <br>
-Mitigation: Review taxonomy, metadata templates, retention policies, and failed-sync reports before applying changes to production libraries. <br>
+## Use Case:
 
+Creative operations teams and developers use Assetflow to organize, tag, sync, archive, and report on digital assets across cloud storage, DAM systems, Slack, and Google Sheets. It is intended for workflows that need structured asset taxonomies, metadata templates, retention rules, and review queues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/assetflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration examples, shell commands, and asset workflow status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Assetflow workspace and provider credentials such as ASSETFLOW_DAM_API_KEY, ASSETFLOW_STORAGE_PROVIDER, and ASSETFLOW_WORKSPACE_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and SKILL.md frontmatter) <br>
+Risk: Broad cloud storage and DAM access could move, tag, index, share, or notify on more assets than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run a dry run first, narrow target folders or buckets, and require confirmation before write or archive actions.
+
+Risk: Asset metadata, previews, OCR results, or AI-derived analysis may expose sensitive repository content through Slack or third-party providers.
+
+Mitigation: Disable OCR or AI analysis for sensitive repositories unless explicitly needed, and review metadata or preview payloads before sending them to notification channels or external services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ncreighton/skills/assetflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with configuration examples, shell commands, workflow guidance, and status/report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce asset organization reports, sync status summaries, search results, setup instructions, taxonomy examples, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

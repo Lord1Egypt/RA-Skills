@@ -1,38 +1,49 @@
-## Description: <br>
-Atomic node skill to upload a file to Google Drive using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to upload a file to Google Drive using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill when a local file needs to be uploaded to Google Drive through a configured gog CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may upload a local file to Google Drive that the user did not intend to share, including sensitive files. <br>
-Mitigation: Confirm the exact file path and Google account before upload, and avoid uploading secrets, private keys, .env files, credentials, or other sensitive local data. <br>
+## Use Case:
 
+Developers and agents use this skill when a specified local file needs to be uploaded to Google Drive through the gog CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-drive-upload-file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with an inline shell command and JSON result expectation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary; upload results are expected as JSON with the uploaded file and Drive ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can upload a specified local file to Google Drive, which may expose secrets, credentials, personal data, or unintended files if the path is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact local file path before use and avoid uploading sensitive or unwanted files to the Drive account.
+
+## Reference(s):
+
+- [Google Drive Upload File on ClawHub](https://clawhub.ai/zvirb/skills/google-drive-upload-file)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell command and JSON example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected command output is a JSON object confirming the uploaded file and its Drive ID.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Build trading interfaces using pre-built React components - OrderEntry, Positions, TradingPage, WalletConnect, Sheets, Tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build trading interfaces using pre-built React components - OrderEntry, Positions, TradingPage, WalletConnect, Sheets, Tables.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers use this skill to build trading interfaces with Orderly Network React components, including order entry, positions, order books, wallet connection, charts, tables, sheets, and modals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples may be adapted into live trading flows involving wallets, orders, positions, withdrawals, or leverage without sufficient user confirmation or sandbox testing. <br>
-Mitigation: Test with sandbox accounts first and require explicit confirmations for orders, closes, withdrawals, and leverage changes before connecting to live trading workflows. <br>
-Risk: Trading UI code can expose users to account, network, fee, slippage, liquidation, or permission mistakes if important transaction details are hidden or broad authority is granted. <br>
-Mitigation: Display network, account, amount, fees, slippage, and liquidation impact before submission, and avoid broad wallet or trading-key authority for unreviewed code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-ui-components) <br>
+## Use Case:
 
+Developers use this skill to add Orderly Network trading UI components, wallet connection, charts, order entry, positions, orderbook, tables, sheets, modals, and notifications to React applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, CSS, and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation examples and integration guidance for React trading UI components.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes wallet connection and order-submission examples that could affect real funds in a live trading app.
+
+Mitigation: Review the skill before installation, configure testnet or disabled-trading modes where appropriate, and require explicit user confirmation for order placement or position-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-ui-components)
+- [Publisher profile](https://clawhub.ai/user/tarnadas)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript, CSS, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes React component examples and integration guidance for Orderly Network UI packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

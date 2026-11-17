@@ -1,45 +1,61 @@
-## Description: <br>
-Polymarket prediction market CLI for browsing markets, checking prices, executing trades, and managing a portfolio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket prediction market CLI - Browse markets, check prices, execute trades, and manage portfolio.
 
-## Publisher: <br>
-[aplanckfish](https://clawhub.ai/user/aplanckfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aplanckfish](https://clawhub.ai/user/aplanckfish)
 
-## Use Case: <br>
-Developers and agent users use this skill to browse Polymarket prediction markets, inspect prices and positions, and place buy or sell trades through a configured wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real-money Polymarket trades without a built-in confirmation step. <br>
-Mitigation: Use a dedicated wallet with limited funds and require explicit manual approval before any buy or sell command. <br>
-Risk: Wallet and API credentials may be persisted locally. <br>
-Mitigation: Prefer environment variables where possible, restrict credential-file permissions, and rotate credentials if exposure is suspected. <br>
-Risk: Trading outcomes depend on external Polymarket market, price, and order APIs. <br>
-Mitigation: Verify token IDs, prices, amounts, and order details against Polymarket before approving trades. <br>
+## Use Case:
 
+External users and developers use this skill to browse Polymarket prediction markets, inspect market prices, execute USDC buy or sell trades, and review wallet positions and balances through a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aplanckfish/polymarket-autotrade) <br>
-- [Polymarket events API](https://gamma-api.polymarket.com/events/pagination) <br>
-- [Polymarket positions API](https://data-api.polymarket.com/positions) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown guidance with inline shell and JSON configuration blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute live trading actions and may create local API credential files when trading is initialized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can submit live Polymarket trades when wallet credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds and manually review intended trades outside the skill before execution.
+
+Risk: Wallet private keys and generated API credentials are required for trading and may be stored in local configuration files.
+
+Mitigation: Prefer environment variables where practical, restrict credential-file permissions, and avoid using a main wallet.
+
+Risk: The trading dependency is specified without an upper bound or lockfile in the release evidence.
+
+Mitigation: Treat dependency installation as a supply-chain risk and pin or review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aplanckfish/skills/polymarket-autotrade)
+- [Polymarket events API](https://gamma-api.polymarket.com/events/pagination)
+- [Polymarket positions API](https://data-api.polymarket.com/positions)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [Polygon RPC endpoint](https://polygon-rpc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and Markdown-style command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, pip, POLYMARKET_PRIVATE_KEY, POLYMARKET_PROXY_ADDRESS, requests, and py-clob-client on Linux or macOS.]
+
+## Skill Version(s):
+
+1.2.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

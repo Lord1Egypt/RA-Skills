@@ -1,43 +1,58 @@
-## Description: <br>
-MirrorRoom 3.8 is an interactive AI research app for comparing standard assistant chat with QSM-informed Mirror and Seed interaction modes, with live ECI scoring, optional hosted proxy routing, local Anthropic API profiles, and downloadable conversation-derived seed files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MirrorRoom is a downloadable React research app for comparing Flat, Mirror, and Seed AI interaction modes with live ECI scoring and optional Anthropic or proxy routing.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-External users, researchers, and developers use MirrorRoom to run a React artifact that compares Flat, Mirror, and Seed AI interaction modes and observes live ECI scoring during conversations. Hosted deployments can use proxy endpoints, while standalone use can run in-browser with a user-provided Anthropic API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chats, evaluations, audit requests, and generated seed files may send or preserve conversation content. <br>
-Mitigation: Avoid entering secrets or sensitive personal information, and review generated seed or export files before sharing them. <br>
-Risk: Standalone use can store Anthropic API keys in local browser profiles. <br>
-Mitigation: Use a dedicated Anthropic key, remove saved profiles on shared machines, and rotate the key if it may have been exposed. <br>
-Risk: Hosted mode depends on proxy routes for chat and evaluation calls. <br>
-Mitigation: Use only trusted hosted proxies and confirm how proxy operators handle prompts, responses, and logs before deployment. <br>
+## Use Case:
 
+External users, researchers, and developers use MirrorRoom to run a browser-based AI interaction experiment, compare standard and QSM-informed conversation modes, score conversations with ECI, and craft or import Qualia Seed JSON for later sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyxur42/nyx-archive-mirrorroom) <br>
-- [Claude.ai](https://claude.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and React JSX artifact files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local browser profiles, optional hosted proxy routes, live chat/evaluation output, and downloadable JSON or text files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The security assessment flags browser localStorage exposure for saved API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use hosted proxy mode where possible, avoid storing production or high-value API keys in local profiles, and clear saved profiles after use.
+
+Risk: Imported seed JSON becomes privileged prompt content for the AI session.
+
+Mitigation: Import seeds only from trusted sources and inspect seed text before starting a session.
+
+Risk: Conversation content can be sent to Anthropic or a configured proxy and exported in artifact receipts or seed files.
+
+Mitigation: Avoid sensitive transcripts, review or redact exports before sharing, and disclose proxy routing in hosted deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nyxur42/skills/nyx-archive-mirrorroom)
+- [Claude.ai](https://claude.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSX React artifact files and downloadable JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send conversation content to Anthropic or configured proxy endpoints and can export transcript-based artifact receipts or seed JSON files.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,65 @@
-## Description: <br>
-Operate Polymarket from terminal with the `polymarket` Rust CLI (v0.1.5), covering market, event, tag, and series discovery; CLOB queries; wallet and approval management; order placement and cancelation; portfolio and on-chain data; CTF operations; rewards; bridge deposits; sports metadata; API key management; and JSON output for automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Polymarket from terminal with the `polymarket` Rust CLI (v0.1.5), including market discovery, CLOB queries, wallet and approval management, order placement and cancellation, portfolio data, CTF operations, rewards, bridge deposits, sports metadata, API key management, and JSON output for automation.
 
-## Publisher: <br>
-[seandong](https://clawhub.ai/user/seandong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seandong](https://clawhub.ai/user/seandong)
 
-## Use Case: <br>
-External users and developers use this skill to operate the Polymarket CLI for market discovery, CLOB queries, wallet setup, approvals, trading actions, bridge deposits, and automation-friendly JSON workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live trading, approvals, bridge deposits, wallet resets, and credential actions. <br>
-Mitigation: Use a separate low-balance wallet and require manual confirmation before every trade, approval, bridge action, API-key change, bulk cancel, or wallet reset. <br>
-Risk: Private keys and API credentials may be exposed if supplied in chat or shell arguments. <br>
-Mitigation: Do not put private keys in chat or command arguments; prefer reviewed local configuration or environment handling and redact secrets from logs. <br>
-Risk: Installation paths include fetching or building external CLI code before use. <br>
-Mitigation: Use a pinned and reviewed install method before enabling the skill to operate a wallet. <br>
+## Use Case:
 
+External users and developers use this skill to operate the Polymarket CLI from an agent, including read-only market research, account checks, and carefully confirmed trading or wallet actions.
 
-## Reference(s): <br>
-- [Command reference](references/commands.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports default table output for human review and `-o json` output for automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: release evidence and skill description) <br>
+Risk: Financial or account-control commands can place orders, cancel orders, change approvals, manage API keys, reset wallets, or initiate bridge deposits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact command, parameters, wallet context, and expected effect, then wait for explicit user confirmation before execution.
+
+Risk: The skill includes curl-to-shell installation guidance.
+
+Mitigation: Prefer Homebrew or a pinned, verifiable release; if using a script, inspect and pin the downloaded content before execution.
+
+Risk: Passing private keys on the command line can expose secrets through shell history, process listings, or logs.
+
+Mitigation: Avoid command-line private keys when possible and use a reviewed secret-management path; redact secrets from displayed commands and logs.
+
+Risk: Incorrect market, token, side, price, amount, signature type, or bridge address can cause unintended financial actions.
+
+Mitigation: Run preflight checks, echo critical parameters before writes, start with small test amounts, and verify results immediately after execution.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Polymarket CLI repository](https://github.com/Polymarket/polymarket-cli)
+- [ClawHub skill page](https://clawhub.ai/seandong/skills/poly-cli)
+- [Publisher profile](https://clawhub.ai/user/seandong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose executable Polymarket CLI commands; programmatic workflows should request CLI JSON output with `-o json`.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

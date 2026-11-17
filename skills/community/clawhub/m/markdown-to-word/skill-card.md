@@ -1,43 +1,53 @@
-## Description: <br>
-Convert a Markdown file or raw Markdown string into a polished Word DOCX document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a Markdown file or raw Markdown string into a polished Word DOCX document.
 
-## Publisher: <br>
-[mutour](https://clawhub.ai/user/mutour) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mutour](https://clawhub.ai/user/mutour)
 
-## Use Case: <br>
-Developers, writers, and agents use this skill to convert Markdown files or raw Markdown strings into Word DOCX documents with built-in or custom reference templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes to a user-selected DOCX output path and could overwrite an important file if that path is chosen incorrectly. <br>
-Mitigation: Review the output path before running the conversion. <br>
-Risk: The skill reads user-provided Markdown, template, metadata, and resource paths. <br>
-Mitigation: Use trusted Markdown and templates when possible and provide only the files needed for the conversion. <br>
-Risk: The converter depends on pandoc being installed and available on PATH. <br>
-Mitigation: Confirm pandoc is installed before invoking the conversion command. <br>
+## Use Case:
 
+Developers and document authors use this skill to convert Markdown files or raw Markdown strings into Word DOCX reports, proposals, memos, or documentation with built-in or custom reference templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mutour/markdown-to-word) <br>
-- [Example Markdown](assets/examples/sample.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated DOCX file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Markdown, template, metadata, and resource paths provided by the user and writes the chosen DOCX output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill runs the local pandoc executable and reads the Markdown, template, metadata, and resource files selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in environments where the local pandoc executable is trusted, and review input, template, metadata, and resource paths before conversion.
+
+Risk: The converter creates parent directories and writes DOCX files to the requested output path.
+
+Mitigation: Review the output path before running the command and avoid broad or sensitive destination directories.
+
+## Reference(s):
+
+- [Markdown to Word example](assets/examples/sample.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create DOCX files at user-selected output paths and can use templates, metadata, resource paths, a table of contents, and numbered sections.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Airports MCP wraps the AirportGap API for free airport data lookups without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Airports MCP — wraps AirportGap API (free, no auth required)
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to query airport information through the Pipeworx Airports MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Airport-related queries are sent to the remote Pipeworx gateway. <br>
-Mitigation: Use the skill only when sending those queries to Pipeworx is acceptable for the user or organization. <br>
-Risk: The optional MCP client configuration uses mcp-remote@latest. <br>
-Mitigation: Review or pin the mcp-remote package version before using that configuration in managed environments. <br>
-Risk: Anonymous use may be rate limited. <br>
-Mitigation: Plan for rate limits or sign up at Pipeworx when higher request limits are needed. <br>
+## Use Case:
 
+Developers and agents use this skill to query airport information through the Pipeworx Airports MCP gateway and receive JSON-RPC responses from AirportGap-backed tools.
 
-## Reference(s): <br>
-- [Pipeworx Airports](https://pipeworx.io/packs/airports) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [Pipeworx Airports MCP Gateway](https://gateway.pipeworx.io/airports/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-airports) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON-RPC 2.0 responses from the remote Pipeworx gateway; anonymous use may be rate limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The MCP client setup uses an automatic install of an unpinned mcp-remote package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the MCP client setup before installing and pin mcp-remote to an exact reviewed version.
+
+Risk: Airport query data is routed through a third-party gateway.
+
+Mitigation: Do not send secrets, credentials, private identifiers, or confidential business data through the gateway; run the client with limited filesystem and environment access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-airports)
+- [Pipeworx airports homepage](https://pipeworx.io/packs/airports)
+- [Pipeworx homepage](https://pipeworx.io)
+- [Pipeworx airports MCP endpoint](https://gateway.pipeworx.io/airports/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash and JSON configuration examples; gateway calls return JSON-RPC responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples. Anonymous use is rate limited; the MCP client setup should be reviewed before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

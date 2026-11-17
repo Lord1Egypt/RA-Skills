@@ -1,42 +1,56 @@
-## Description: <br>
-Assisted Rappi ordering through a local openclaw-rappi service that drafts carts, summarizes checkout details, requests explicit approval, and submits purchases only after exact current-chat approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assisted Rappi ordering through the local openclaw-rappi HTTP service. Use when the user asks to order food, groceries, pharmacy, convenience items, lunch, snacks, household basics, or anything "por Rappi". The skill structures the request, creates a cart draft in visible Chrome, summarizes cart/checkout, prepares review handoff, sends a native approval button when available, and submits the final purchase only after exact explicit approval in the current chat.
 
-## Publisher: <br>
-[zarruk](https://clawhub.ai/user/zarruk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zarruk](https://clawhub.ai/user/zarruk)
 
-## Use Case: <br>
-External users and agents use this skill to assemble Rappi orders for food, groceries, pharmacy, convenience, and household items, then present cart or checkout details for human review. It is intended to keep final purchase submission gated by exact per-order approval in the current chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bootstrap and run an unpinned external local service with access to a logged-in Rappi browser profile. <br>
-Mitigation: Install only if the publisher and local service are trusted, review the service before use, use a dedicated visible browser profile, and keep separate stop or uninstall instructions available. <br>
-Risk: The skill can prepare and submit purchases after approval. <br>
-Mitigation: Review the checkout summary carefully, use the exact approval phrase only for orders intended for payment, and stop if checkout details differ from the approved summary. <br>
-Risk: Ordering workflows may expose sensitive account, address, payment, verification, or restricted-item screens. <br>
-Mitigation: Require manual intervention for login, captcha, 2FA, age verification, prescription medication, payment changes, address changes, identity validation, or other sensitive screens. <br>
+## Use Case:
 
+External users and assistants use this skill to prepare Rappi food, grocery, pharmacy, convenience, and household orders through a local service, then review cart or checkout details before any purchase. It is intended for assisted ordering workflows where the final purchase requires exact, per-order user approval in the current chat.
 
-## Reference(s): <br>
-- [Openclaw Rappi on ClawHub](https://clawhub.ai/zarruk/rappi-ordering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires exact current-chat approval text before final purchase submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The setup flow can download and run unpinned GitHub/npm code and start a background local service before setup approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit setup approval and use a pinned, reviewed install before enabling ordering.
+
+Risk: The skill controls a dedicated logged-in Chrome profile for purchase workflows.
+
+Mitigation: Use a dedicated browser profile, review every checkout summary, require exact per-order approval, and stop on login, captcha, payment, address, identity, restricted-item, or material checkout changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zarruk/skills/rappi-ordering)
+- [Publisher profile](https://clawhub.ai/user/zarruk)
+- [openclaw-rappi repository referenced by setup instructions](https://github.com/zarruk/openclaw-rappi.git)
+- [Rappi website referenced for visible Chrome login](https://www.rappi.com.co/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cart and checkout summaries, approval requests, local HTTP API calls, setup commands, and blocker reports.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

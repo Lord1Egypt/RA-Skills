@@ -1,44 +1,61 @@
-## Description: <br>
-Remotely control a target host via GLKVM HTTP API, supporting keyboard/mouse input, screenshot capture, OCR recognition, Fingerbot physical button control, and ATX power management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remotely controls GLKVM IP-KVM devices and attached hosts through HTTP API workflows for screenshots, OCR, keyboard and mouse input, Fingerbot and ATX power actions, device management, firmware upgrades, and virtual MSD storage.
 
-## Publisher: <br>
-[duzefu](https://clawhub.ai/user/duzefu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzefu](https://clawhub.ai/user/duzefu)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent administer a trusted GLKVM device and attached host, including screen inspection, keyboard and mouse control, power workflows, firmware operations, and remote ISO media handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad remote control over a GLKVM device and the attached host. <br>
-Mitigation: Install only for trusted GLKVM devices on trusted networks, and require explicit approval before power, reset, firmware upgrade, or virtual media actions. <br>
-Risk: Screenshots and OCR output may expose sensitive host information. <br>
-Mitigation: Treat captured images and recognized text as sensitive data and avoid retaining or sharing them beyond the session need. <br>
-Risk: The documented HTTP examples ignore TLS certificate errors. <br>
-Mitigation: Verify the device endpoint and network path before use, and avoid using the skill on untrusted networks. <br>
-Risk: Firmware and ISO workflows can introduce untrusted software to the device or host. <br>
-Mitigation: Verify firmware and ISO sources before download, upload, mounting, or installation. <br>
+## Use Case:
 
+Developers, operators, and administrators use this skill to operate authorized GLKVM-managed hosts remotely, inspect screen state, send keyboard and mouse input, manage host power, update device firmware, and prepare virtual media.
 
-## Reference(s): <br>
-- [ClawHub glkvm page](https://clawhub.ai/duzefu/glkvm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, files] <br>
-**Output Format:** [Markdown with inline bash code blocks and GLKVM HTTP API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save screenshots and cookies to local temporary files; GLKVM responses may include JSON, image files, OCR text, or NDJSON progress streams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill handles full-control GLKVM credentials and session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private per-session cookie file, treat it as a credential, and delete tokens after the task.
+
+Risk: Transport examples disable certificate verification, which can weaken protection on untrusted networks.
+
+Mitigation: Use the skill only on trusted management networks and prefer valid certificates or pinned certificates or public keys.
+
+Risk: Screenshots and OCR may expose sensitive data from the attached host.
+
+Mitigation: Treat screen captures and OCR output as sensitive and avoid retaining them beyond the task.
+
+Risk: Power, reset, firmware, and virtual media operations can disrupt service or cause data loss.
+
+Mitigation: Require explicit user confirmation before disruptive operations and use only trusted firmware or ISO sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzefu/skills/glkvm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GLKVM IP address and admin password supplied by an authorized user.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

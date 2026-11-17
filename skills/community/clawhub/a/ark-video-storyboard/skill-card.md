@@ -1,49 +1,66 @@
-## Description: <br>
-Generate a storyboard and prompts from a scene or reference images, confirm the script with the user, then optionally submit multi-segment video generation tasks to the Volcengine Ark video API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a storyboard and prompts from a scene or reference images, confirm the script with the user, then optionally submit multi-segment video generation tasks to the Volcengine Ark video API.
 
-## Publisher: <br>
-[yunni123](https://clawhub.ai/user/yunni123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunni123](https://clawhub.ai/user/yunni123)
 
-## Use Case: <br>
-External users and developers use this skill to turn scene ideas or reference images into structured video storyboards, English generation prompts, and optional Ark multi-segment video generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts and reference-image-derived content may be sent to Volcengine Ark during execution. <br>
-Mitigation: Confirm the storyboard and execution step with the user before calling the API, and avoid using sensitive prompts or images unless external processing is acceptable. <br>
-Risk: Generated videos are saved under ~/.openclaw/media and the workflow may send final files through Feishu. <br>
-Mitigation: Review local storage and delivery needs before execution, remove unneeded media after use, and only send files through Feishu when the user expects that delivery path. <br>
-Risk: The artifact includes a default rule that represents unspecified human characters as East Asian. <br>
-Mitigation: Review or replace the default character-representation rule when neutral, user-directed, or region-specific representation is required. <br>
-Risk: The server security summary flags under-scoped external delivery and persistent workflow logging. <br>
-Mitigation: Check the execution plan before enabling generation, delivery, or logging behavior, and keep only records needed for the workflow. <br>
+## Use Case:
 
+External users, developers, and video creators use this skill to turn a scene idea or reference images into a structured storyboard, segment plan, and generation prompts. After explicit approval, it can submit segments to the Volcengine Ark video API, poll for results, and download generated media.
 
-## Reference(s): <br>
-- [Ark Video API Notes](artifact/references/api.md) <br>
-- [Storyboard Schema](artifact/references/storyboard-schema.md) <br>
-- [Prompt Rules](artifact/references/prompt-rules.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yunni123/ark-video-storyboard) <br>
-- [Publisher Profile](https://clawhub.ai/user/yunni123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown storyboard guidance, JSON storyboard data, shell commands, API request results, and downloaded video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are confirmation-first; optional generation sends prompts and reference-image-derived content to Volcengine Ark and may save generated videos under ~/.openclaw/media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Ark API credentials, prompts, and reference images may be used with an external video generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Ark API key and avoid sensitive prompts or reference images.
+
+Risk: Generated videos are downloaded and stored locally, and the workflow can send media externally.
+
+Mitigation: Confirm where files will be saved and sent, and do not send media to Feishu unless the destination is explicit.
+
+Risk: The skill defaults unspecified human characters to East Asian appearance.
+
+Mitigation: Remove or override the default and ask the user for character attributes when they matter.
+
+Risk: The security summary reports weak safeguards around API, downloader, and media-sending behavior.
+
+Mitigation: Review and harden the API and downloader scripts before using the skill in a shared or monitored environment.
+
+## Reference(s):
+
+- [Ark Video API Notes](references/api.md)
+- [Storyboard Schema](references/storyboard-schema.md)
+- [Prompt Rules](references/prompt-rules.md)
+- [Examples](references/examples.md)
+- [Volcengine Ark video generation tasks endpoint](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks)
+- [Volcengine Ark task status endpoint](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks/{id})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown storyboard and prompt guidance, JSON storyboard and API result data, shell commands, and optional local MP4 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can call the Volcengine Ark API, poll tasks, and download generated videos after explicit user approval.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

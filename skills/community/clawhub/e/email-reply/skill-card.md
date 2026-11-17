@@ -1,40 +1,52 @@
-## Description: <br>
-da-fu-da-gui monitors new email and sends configurable automatic replies using templates and keyword rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates email replies by monitoring incoming mail, applying configurable templates, and avoiding duplicate responses.
 
-## Publisher: <br>
-[biaojian2008](https://clawhub.ai/user/biaojian2008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biaojian2008](https://clawhub.ai/user/biaojian2008)
 
-## Use Case: <br>
-People managing business, support, or personal mailboxes can use this skill to send automatic replies for new messages with templates and keyword matching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic replies may be sent from a connected mailbox without enough documented approval, rate-limit, pause, or audit controls. <br>
-Mitigation: Use a low-risk or test mailbox first, review templates and keyword rules, and confirm controls for permissions, approval mode, rate limits, logs, pause or disable behavior, and reply-history deletion before production use. <br>
-Risk: Mailbox authorization can expose the connected account to unintended replies or data handling. <br>
-Mitigation: Grant the least mailbox access possible and avoid accounts containing sensitive mail until the permission model and operational controls are verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biaojian2008/email-reply) <br>
-- [Publisher profile](https://clawhub.ai/user/biaojian2008) <br>
+## Use Case:
 
+Business users, support teams, and individual mailbox owners use this skill to send timely template-based replies for routine inquiries, out-of-office notices, and similar email workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Email reply text and mailbox auto-reply configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send replies from a connected mailbox and keep reply history, according to the skill description.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mailbox monitoring and automatic replies can send unintended messages if rules or templates are too broad.
+
+Mitigation: Confirm recipient rules, subject keyword rules, reply limits, logs, and whether replies require review before enabling automatic sending.
+
+Risk: The skill requires mailbox access for a background auto-reply workflow.
+
+Mitigation: Grant only the mailbox scope needed, verify there is a disable switch, and monitor reply history after deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biaojian2008/skills/email-reply)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [Plain text email replies and template or rule settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate automatically against a connected mailbox according to configured templates and recipient or subject rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,34 @@
+# ClawHub / WorkBuddy 技能市场上架元数据
+# 与 SKILL.md 的 frontmatter 保持 name 一致；本文件用于市场 listing 与安全扫描。
+name: offline-quiz-builder
+display_name: 离线智能题库生成器
+version: 1.0.0
+description: 把学习资料或已有题库一键变成可离线运行的复习题库网站。内置艾宾浩斯自适应遗忘曲线排程、每日练习与打卡日历，数据全本地存储不上传。
+category: 教育
+tags:
+  - 题库
+  - 学习
+  - 艾宾浩斯
+  - 离线
+  - 复习
+  - 教育
+triggers:
+  - 生成复习题库
+  - 做刷题网站
+  - 把资料变成题库
+  - 离线背题工具
+  - 按遗忘曲线复习
+  - 艾宾浩斯 复习
+  - build quiz from notes
+  - offline study bank
+requires_api_key: false
+homepage: https://github.com/HouNextItem/offline-quiz-builder
+license: MIT
+# 安全边界：本技能仅读写本地文件、调用本地脚本，无任何外部网络请求。
+permissions:
+  filesystem: read-write-local
+  network: none
+  tools:
+    - Read
+    - Write
+    - Bash

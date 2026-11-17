@@ -1,49 +1,68 @@
-## Description: <br>
-Tencent Cloud AndonQ helps agents query support tickets, inspect ticket details and activity, manage organization tickets and request records, and ask Tencent Cloud product questions through SmartQA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AndonQ helps agents query Tencent Cloud support tickets, organization tickets and stories, ticket activity, and Tencent Cloud SmartQA product support answers.
 
-## Publisher: <br>
-[llm-pm](https://clawhub.ai/user/llm-pm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llm-pm](https://clawhub.ai/user/llm-pm)
 
-## Use Case: <br>
-Developers, operators, and support teams use this skill to retrieve Tencent Cloud support ticket data, review organization-level ticket and request records, and ask Tencent Cloud product support questions without leaving the agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require persistent Tencent Cloud AK/SK credentials for ticket operations. <br>
-Mitigation: Use the least-privileged Tencent Cloud credentials available, prefer safer secret storage over long-lived shell profile entries, and rotate or revoke credentials that may have been exposed. <br>
-Risk: Ticket details, organization lists, internal notes, attachment URLs, and SmartQA prompts may contain confidential support data. <br>
-Mitigation: Treat outputs and prompts as confidential, avoid sharing them in public channels, and redact sensitive values before copying results into logs or other systems. <br>
-Risk: Verbose and dry-run modes can reveal request payloads or headers in shared terminals and logs. <br>
-Mitigation: Avoid verbose or dry-run output in shared environments, and review terminal transcripts or CI logs for sensitive data before retaining or sharing them. <br>
+## Use Case:
 
+Developers, operators, and support staff use this skill to retrieve Tencent Cloud ticket information, inspect organization support records, and ask Tencent Cloud product support questions from an agent session.
 
-## Reference(s): <br>
-- [GetMCTicketList](references/GetMCTicketList.md) <br>
-- [GetMCTicketById](references/GetMCTicketById.md) <br>
-- [SmartQA](references/SmartQA.md) <br>
-- [DescribeOrganizationTickets](references/DescribeOrganizationTickets.md) <br>
-- [DescribeTicket](references/DescribeTicket.md) <br>
-- [DescribeTicketOperation](references/DescribeTicketOperation.md) <br>
-- [DescribeOrganizationStories](references/DescribeOrganizationStories.md) <br>
-- [DescribeOrganizationStory](references/DescribeOrganizationStory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ticket tables, ticket details, activity records, SmartQA answers, session identifiers for follow-up questions, and request IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can query sensitive Tencent Cloud support ticket data using user-provided credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged, revocable Tencent Cloud sub-account key and prefer session-only or secret-manager injection over plaintext shell-profile storage.
+
+Risk: Organization ticket mode can expand the data scope to member tickets, UINs, descriptions, and operation records.
+
+Mitigation: Use organization-wide queries only when the user explicitly requests them, and disclose the expanded scope before presenting results.
+
+Risk: SmartQA sends questions and multi-turn context to Tencent Cloud services for processing.
+
+Mitigation: Warn users before first SmartQA use and avoid sending secrets, internal hostnames, customer data, or other sensitive content.
+
+Risk: Verbose and dry-run modes can expose request payloads, response data, or signed request metadata in terminal output.
+
+Mitigation: Avoid verbose or dry-run output in shared terminals, logs, recordings, or transcripts.
+
+## Reference(s):
+
+- [GetMCTicketList](artifact/references/GetMCTicketList.md)
+- [GetMCTicketById](artifact/references/GetMCTicketById.md)
+- [SmartQA](artifact/references/SmartQA.md)
+- [DescribeOrganizationTickets](artifact/references/DescribeOrganizationTickets.md)
+- [DescribeTicket](artifact/references/DescribeTicket.md)
+- [DescribeTicketOperation](artifact/references/DescribeTicketOperation.md)
+- [DescribeOrganizationStories](artifact/references/DescribeOrganizationStories.md)
+- [DescribeOrganizationStory](artifact/references/DescribeOrganizationStory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ticket APIs require Tencent Cloud AK/SK environment variables; SmartQA can run without AK/SK.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

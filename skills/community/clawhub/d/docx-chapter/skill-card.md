@@ -1,47 +1,66 @@
-## Description: <br>
-Research-backed chapter pipeline that turns an outline into Markdown and DOCX chapters with source, DOCX, and screenshot verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docx Chapter Clean helps agents turn chapter outlines into researched Markdown and DOCX drafts with source, footnote, and screenshot verification.
 
-## Publisher: <br>
-[ccmxigua](https://clawhub.ai/user/ccmxigua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmxigua](https://clawhub.ai/user/ccmxigua)
 
-## Use Case: <br>
-Developers and content teams use this skill to generate research-backed chapters from structured outlines, produce Markdown and DOCX deliverables, and verify citations, footnotes, and screenshots before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send research excerpts, visible page text, URLs, screenshots, and model-call prompts through search, browser, and agent tools. <br>
-Mitigation: Use it only with public, intended source URLs and avoid internal sites, private documents, regulated data, and pages containing secrets. <br>
-Risk: The skill requires sensitive credentials for dependent research tooling. <br>
-Mitigation: Provide only the minimum required credentials, store them outside generated chapter artifacts, and rotate them if exposed during a run. <br>
-Risk: Generated chapters may contain unsupported claims, stale citations, inaccessible URLs, or screenshot evidence that does not match the claim. <br>
-Mitigation: Keep the mandatory source, DOCX, and screenshot verification steps enabled and require human review before publication or delivery. <br>
+## Use Case:
 
+Developers and writers use this skill to create research-backed chapter drafts, convert them to DOCX, and verify citations, footnotes, source support, and screenshot evidence before delivery.
 
-## Reference(s): <br>
-- [Docx Chapter Clean on ClawHub](https://clawhub.ai/ccmxigua/docx-chapter) <br>
-- [Unified Search Suite dependency](https://clawhub.ai/ccmxigua/unified-search-suite) <br>
-- [Claim verification schema](references/claim_verification_schema.json) <br>
-- [Mandatory search templates](references/search_templates.md) <br>
-- [Citation Check Skill acknowledgment](https://github.com/serenakeyitan/citation-check-skill) <br>
-- [Claude Code issue 50597](https://github.com/anthropics/claude-code/issues/50597) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, DOCX, JSON verification reports, PNG screenshots, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces chapter.md, chapter.docx, chapter_verification.json, verification_keywords.json, URL status data, and source screenshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The workflow can open arbitrary citation URLs in a browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review footnote URLs before screenshot verification, avoid private or authenticated pages, and use a network-restricted environment when appropriate.
+
+Risk: Research text or page text may be sent to model tooling.
+
+Mitigation: Do not process confidential, private, or regulated content unless the execution environment and model tooling are approved for that data.
+
+Risk: LLM-selected highlights are candidate evidence and may not prove that a source supports a claim.
+
+Mitigation: Keep human review in the verification loop and compare highlighted evidence against the exact claim before delivery.
+
+Risk: DOCX mutation and footnote post-processing can affect links, footnote references, or document formatting.
+
+Mitigation: Run the bundled DOCX verification checks and manually review generated files before sharing them.
+
+## Reference(s):
+
+- [Docx Chapter Clean on ClawHub](https://clawhub.ai/ccmxigua/skills/docx-chapter)
+- [Unified Search Suite dependency](https://clawhub.ai/ccmxigua/unified-search-suite)
+- [Claim verification schema](references/claim_verification_schema.json)
+- [Mandatory search templates](references/search_templates.md)
+- [Claude Code issue 50597](https://github.com/anthropics/claude-code/issues/50597)
+- [Citation Check Skill](https://github.com/serenakeyitan/citation-check-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown, DOCX files, JSON verification reports, screenshots, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pandoc and may use external search, model calls, browser automation, and DOCX post-processing.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

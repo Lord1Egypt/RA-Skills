@@ -1,44 +1,58 @@
-## Description: <br>
-MIA helps OpenClaw reuse task experience through memory retrieval, planning, and feedback modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MIA (Memory-Intelligent Assistant) helps OpenClaw reuse prior task experience through memory retrieval, plan generation, and feedback collection.
 
-## Publisher: <br>
-[jingyangqiao](https://clawhub.ai/user/jingyangqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingyangqiao](https://clawhub.ai/user/jingyangqiao)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve similar prior task trajectories, generate task plans from current and historical context, and collect answer-quality feedback for new questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task history, execution traces, questions, answers, and feedback can be stored persistently in local memory or feedback files. <br>
-Mitigation: Keep memory and feedback files in private locations, avoid storing secrets or personal data, and periodically review or delete stored records. <br>
-Risk: Planning prompts may be sent to a configured model API endpoint. <br>
-Mitigation: Use local mode or a trusted HTTPS endpoint with a dedicated API key for sensitive workflows. <br>
+## Use Case:
 
+Developers and OpenClaw users use MIA to retrieve similar prior task trajectories, generate execution plans with optional historical context, and collect answer feedback for new problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingyangqiao/mia) <br>
-- [Main skill documentation](artifact/SKILL.md) <br>
-- [MIA Memory documentation](artifact/mia-memory/SKILL.md) <br>
-- [MIA Planner documentation](artifact/mia-planner/SKILL.md) <br>
-- [MIA Feedback documentation](artifact/mia-feedback/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Memory and feedback commands read and write local JSONL files; planner output may use a configured OpenAI-compatible model endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Task history and feedback may be persisted locally in JSONL files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MIA_MEMORY_FILE and MIA_FEEDBACK_FILE to protected paths, limit file permissions, and review or delete stored records regularly.
+
+Risk: Planner API mode can send prompts, historical plans, and bearer credentials to a configured external endpoint.
+
+Mitigation: Prefer local mode for sensitive work; use API mode only with trusted HTTPS endpoints and narrowly scoped API keys.
+
+Risk: Planner output may reflect incorrect or unsuitable guidance from the configured model or historical reference plan.
+
+Mitigation: Treat generated plans as proposals and review them before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jingyangqiao/skills/mia)
+- [Publisher profile](https://clawhub.ai/user/jingyangqiao)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, shell commands, configuration]
+
+**Output Format:** [JSON command-line output with generated plan text, memory records, and feedback records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planner output is capped by the configured model request; memory and feedback modules persist JSONL records to configurable local files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

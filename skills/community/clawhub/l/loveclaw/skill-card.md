@@ -1,46 +1,62 @@
-## Description: <br>
-LoveClaw provides conversational dating registration, same-city Bazi-based matching, optional photo handling, daily matching, and evening match reports through a cloud backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LoveClaw is an OpenClaw agent skill for conversational dating profile registration, daily bazi-based local matching, optional photo handling, and evening match report delivery through a cloud service.
 
-## Publisher: <br>
-[jackysly88](https://clawhub.ai/user/jackysly88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackysly88](https://clawhub.ai/user/jackysly88)
 
-## Use Case: <br>
-External users use this skill to register for matchmaking through chat, manage profile and notification preferences, and receive daily match reports. OpenClaw workspace operators install it with the required token and scheduled jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive dating data, photos, birth details, city, preferences, match results, and contact details. <br>
-Mitigation: Install only if the LoveClaw backend is trusted and users accept sharing this data with that backend. <br>
-Risk: Workspace secrets and local session data may affect the skill's runtime behavior. <br>
-Mitigation: Use a dedicated OpenClaw workspace and keep only LoveClaw-related secrets in the workspace .env. <br>
-Risk: Photo handling can involve local files or URLs. <br>
-Mitigation: Do not paste local file paths as photos; prefer normal channel photo upload flows. <br>
-Risk: Persistent scheduled jobs can continue sending match reports after setup. <br>
-Mitigation: Verify how to remove LoveClaw cron jobs and local session files when canceling registration or disabling push notifications. <br>
+## Use Case:
 
+External OpenClaw users use LoveClaw to create dating profiles, submit optional photos, receive daily city-and-preference-compatible bazi match results, and manage evening push notifications.
 
-## Reference(s): <br>
-- [LoveClaw ClawHub Page](https://clawhub.ai/jackysly88/loveclaw) <br>
-- [LoveClaw README](artifact/README.md) <br>
-- [LoveClaw Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text chat replies, JSON delivery payloads for scheduled reports, and cron configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and LOVECLAW_API_TOKEN; optional LOVECLAW_API_BASE and OPENCLAW_BIN can alter backend or CLI routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-21.21.21 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Photo handling, credential, environment, and scheduling behavior are broader than users would reasonably expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the publisher, preferably in an isolated OpenClaw workspace with a dedicated LOVECLAW_API_TOKEN.
+
+Risk: A shared workspace .env could expose unrelated API_TOKEN-style secrets or route the skill to an unexpected API endpoint.
+
+Mitigation: Keep unrelated API_TOKEN secrets out of the shared workspace .env and verify LOVECLAW_API_BASE before use.
+
+Risk: Photo inputs and local session files may create privacy or access-control risk when used with real users.
+
+Mitigation: Avoid submitting local file paths as photos and require fixes for photo path validation, session-file permissions, and global session-registry access before production use.
+
+Risk: Dependency age and scheduled notification behavior require operational review.
+
+Mitigation: Update dependencies and review scheduled match/report delivery behavior before deploying with real users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackysly88/skills/loveclaw)
+- [Publisher Profile](https://clawhub.ai/user/jackysly88)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text chat responses and JSON-marked scheduled report payloads, with shell commands and configuration guidance for cron delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include signed image URLs for uploaded photos or match reports.]
+
+## Skill Version(s):
+
+21.21.21 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

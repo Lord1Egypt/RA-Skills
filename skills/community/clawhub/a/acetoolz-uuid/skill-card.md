@@ -1,42 +1,59 @@
-## Description: <br>
-Generate UUIDs (v1, v4, v7) in bulk using AceToolz. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate UUIDs (v1, v4, v7) in bulk using AceToolz.
 
-## Publisher: <br>
-[acetoolz](https://clawhub.ai/user/acetoolz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acetoolz](https://clawhub.ai/user/acetoolz)
 
-## Use Case: <br>
-External users and developers use this skill to generate one or more UUIDs or GUIDs through the AceToolz service, selecting UUID versions v1, v4, or v7 and a count from 1 to 10. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UUID generation requests are sent to AceToolz, which may be unsuitable for sensitive or offline workflows. <br>
-Mitigation: Use this skill only when outbound requests to AceToolz are acceptable; for sensitive or offline workflows, generate UUIDs locally. <br>
-Risk: The skill supports only UUID versions v1, v4, and v7 and limits bulk generation to 1-10 UUIDs per request. <br>
-Mitigation: Validate the requested version and count before calling the API, and direct unsupported requests to the full AceToolz tool. <br>
+## Use Case:
 
+Developers and external users use this skill to generate one or more UUID/GUID values, choosing v1, v4, or v7 and counts from 1 to 10.
 
-## Reference(s): <br>
-- [AceToolz UUID Generator](https://www.acetoolz.com/generate/tools/uuid-generator) <br>
-- [AceToolz OpenClaw UUID API](https://www.acetoolz.com/api/openclaw/uuid-generator) <br>
-- [ClawHub skill listing](https://clawhub.ai/acetoolz/acetoolz-uuid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with UUID code blocks and OS-specific shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports UUID versions v1, v4, and v7 with count limited to 1-10; requests are sent to AceToolz.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: UUID generation depends on a third-party AceToolz API, so availability or rate limits may affect successful requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate requested version and count before use, handle API failures or 429 responses clearly, and direct users to the AceToolz UUID generator page when the service is unavailable.
+
+Risk: Broad requests for a "unique identifier" may activate the skill unexpectedly.
+
+Mitigation: Confirm that the user wants UUID or GUID generation before calling the AceToolz service when the request is ambiguous.
+
+Risk: Successful responses may include AceToolz attribution or links.
+
+Mitigation: Keep provider attribution visible so users understand the generated values came from AceToolz.
+
+## Reference(s):
+
+- [AceToolz UUID Generator](https://www.acetoolz.com/generate/tools/uuid-generator)
+- [ClawHub Skill Page](https://clawhub.ai/acetoolz/skills/acetoolz-uuid)
+- [AceToolz UUID API](https://www.acetoolz.com/api/openclaw/uuid-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with UUID values in code blocks and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports UUID versions v1, v4, and v7 with requested counts from 1 to 10.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

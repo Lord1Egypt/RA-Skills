@@ -1,41 +1,57 @@
-## Description: <br>
-Provides a daily morning brief with the current date, week number, China public-holiday countdowns, and week, month, and year progress percentages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically posts a daily Chinese-language morning brief with the current date, week number, weekend and holiday countdowns, and week, month, and year progress percentages.
 
-## Publisher: <br>
-[foxseller](https://clawhub.ai/user/foxseller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxseller](https://clawhub.ai/user/foxseller)
 
-## Use Case: <br>
-Agents or users who want a scheduled daily status message use this skill to generate a morning brief with date context, China holiday countdowns, and time-progress reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts an external public holiday-data source, so generated holiday countdowns can be unavailable or stale if that source changes. <br>
-Mitigation: Monitor or review the upstream data source and confirm holiday output before relying on it for time-sensitive workflows. <br>
-Risk: The release relies on npm dependencies without evidence of a reviewed lockfile. <br>
-Mitigation: Install with pinned dependency versions or a reviewed lockfile to improve reproducibility. <br>
+## Use Case:
 
+Users and teams use this skill to receive an automatic morning reminder with China holiday countdowns and time-progress context. It is suited for personal or workplace daily briefing workflows that benefit from scheduled calendar status updates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/foxseller/wakeup-niuma) <br>
-- [China holiday calendar data source](https://github.com/lanceliao/china-holiday-calender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text daily brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scheduled cron execution; writes a local yearly holiday cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, clawhub.json, skill.json) <br>
+Risk: The skill contacts an external holiday-calendar endpoint and uses the returned holiday dates in its brief.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the endpoint trust and validate the generated dates before relying on the brief for planning decisions.
+
+Risk: The skill writes a local holiday cache file.
+
+Mitigation: Run it with expected workspace permissions and refresh or delete the cache if holiday data becomes stale.
+
+Risk: Dependency versions are specified as ranges rather than exact pins.
+
+Mitigation: Use a lockfile or pinned dependency versions for repeatable installation and stronger supply-chain control.
+
+## Reference(s):
+
+- [China Holiday Calendar Data Source](https://github.com/lanceliao/china-holiday-calender)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text Chinese morning brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled daily cron output; holiday calendar data is cached locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

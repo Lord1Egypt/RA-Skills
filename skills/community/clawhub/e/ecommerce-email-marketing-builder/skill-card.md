@@ -1,42 +1,55 @@
-## Description: <br>
-E-commerce email marketing system builder that creates automation flows, copywriting, subject lines, ESP setup instructions, segmentation rules, and annual campaign calendars for online stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce email marketing system builder that creates copy-paste-ready automation flows, email copy, subject lines, ESP setup instructions, segmentation rules, and annual campaign calendars for online stores.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-E-commerce operators, marketers, and founders use this skill to plan and draft email automation systems for storefronts, including welcome, abandonment, post-purchase, review, cross-sell, win-back, loyalty, replenishment, and sunset flows. It also helps choose ESP setup details, segmentation rules, seasonal campaigns, and list growth tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email, SMS, push opt-in, and list growth recommendations may affect privacy, telecom, platform, and email-service compliance obligations. <br>
-Mitigation: Treat consent and opt-in guidance as a draft; confirm it against applicable rules, use clear affirmative consent, keep consent records, and separate transactional messages from promotional marketing. <br>
-Risk: Generated ESP pricing, setup paths, and marketing recommendations may be outdated or unsuitable for a specific storefront. <br>
-Mitigation: Verify current ESP pricing and platform instructions before launch, and review campaign claims, discounts, and timing against the business model and margins. <br>
+## Use Case:
 
+External e-commerce operators and marketing teams use this skill to plan and draft email automation systems for store platforms and ESPs, including welcome, abandonment, post-purchase, review, cross-sell, win-back, VIP, replenishment, and sunset flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/ecommerce-email-marketing-builder) <br>
-- [Nexscope](https://www.nexscope.ai/) <br>
-- [eCommerce-Skills Repository](https://github.com/nexscope-ai/eCommerce-Skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions, Text] <br>
-**Output Format:** [Markdown with structured flow diagrams, email copy, subject line variants, setup instructions, segmentation rules, calendars, and list growth plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces copy-paste-ready marketing drafts and ESP setup guidance; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Mutable global install commands can execute changing package contents over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install source before use and prefer a pinned or project-local install when available.
+
+Risk: Pre-checked marketing opt-in can create consent and compliance risk.
+
+Mitigation: Use explicit customer consent and obtain jurisdiction-specific compliance review for marketing subscription flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/ecommerce-email-marketing-builder)
+- [Nexscope website](https://www.nexscope.ai/)
+- [eCommerce-Skills repository link mentioned in artifact](https://github.com/nexscope-ai/eCommerce-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with email copy, flow diagrams, tables, and ESP setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include subject line variants, preview text, CTA copy, segmentation rules, campaign calendars, and list growth recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Paradiz helps agents answer VK guest inquiries by quoting stays from a price table, checking booking availability, and preparing concise booking responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paradiz helps agents answer VK lodging inquiries by calculating prices from a price sheet, preparing short customer replies, and supporting booking or hold records.
 
-## Publisher: <br>
-[keeper1978](https://clawhub.ai/user/keeper1978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[keeper1978](https://clawhub.ai/user/keeper1978)
 
-## Use Case: <br>
-External hospitality operators and booking agents use this skill to respond to VK inquiries, calculate stay costs, manage holds, and prepare booking records for Paradiz guests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores guest personal data in booking, hold, lead, and comment records. <br>
-Mitigation: Remove bundled customer data before release, collect only needed booking fields, and define retention, deletion, and consent rules for guest records. <br>
-Risk: Telegram notifications can forward guest details outside the local booking workflow. <br>
-Mitigation: Use dedicated Paradiz Telegram credentials, disable global Telegram fallback, and confirm that guests understand how their booking details are shared. <br>
-Risk: Database maintenance and synchronization scripts can modify booking and pricing data. <br>
-Mitigation: Run database scripts only through an explicit administrator workflow with backups and review of intended changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keeper1978/paradiz) <br>
-- [Price table](artifact/references/prices.csv) <br>
-- [Price table template](artifact/references/price_template.csv) <br>
+## Use Case:
 
+External-facing booking and hospitality staff use this skill to price Paradiz lodging requests from dates, guest counts, and room choices, then draft VK replies and manage booking records.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Short VK-ready text, JSON command output, booking files, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local booking, hold, document, and SQLite records when the included scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package includes real-looking guest records and lead data.
+
+Mitigation: Remove packaged guest records before use and apply retention and deletion rules for customer data.
+
+Risk: Booking workflows can send guest details to Telegram and depend on Telegram credentials.
+
+Mitigation: Use dedicated Telegram credentials, disclose and minimize customer data sent to Telegram, and confirm the configured recipient before enabling notifications.
+
+Risk: The skill can act as a booking and CRM helper that writes booking files and interacts with SQLite maintenance scripts.
+
+Mitigation: Review database-maintenance scripts and backup behavior before running write operations in a production booking environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keeper1978/skills/paradiz)
+- [Publisher profile](https://clawhub.ai/user/keeper1978)
+- [Price template](artifact/references/price_template.csv)
+- [Price data](artifact/references/prices.csv)
+- [Human-readable price data](artifact/references/prices_human_utf8.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or file outputs from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce VK response text, booking journal entries, JSONL hold or booking records, Word booking documents, SQLite updates, and Telegram notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

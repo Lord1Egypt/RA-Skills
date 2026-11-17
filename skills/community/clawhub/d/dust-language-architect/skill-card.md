@@ -1,40 +1,56 @@
-## Description: <br>
-Expert Dust Language Architect grounded in the full Dust ecosystem, with the Dust Programming Language Specification as canon and all dustlang organization repositories treated as supporting corpus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Dust Language Architect grounded in the full Dust ecosystem, with the Dust Programming Language Specification as canon and all dustlang organization repositories treated as supporting corpus.
 
-## Publisher: <br>
-[litecreator](https://clawhub.ai/user/litecreator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litecreator](https://clawhub.ai/user/litecreator)
 
-## Use Case: <br>
-Developers, documentation authors, and language designers use this skill to answer Dust language questions, review Dust architecture, and generate repository-grounded explanations or documentation from the Dust ecosystem corpus. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally directs the agent to consider all files in the Dust repositories, so unrelated private files or secrets could be exposed to agent reasoning if they are present. <br>
-Mitigation: Install or run the skill only with Dust repository copies that have been reviewed to exclude secrets and unrelated private files. <br>
+## Use Case:
 
+Developers, documentation writers, and language-design reviewers use this skill to interpret the Dust programming language from the packaged Dust ecosystem repositories, with the Dust specification treated as canon.
 
-## Reference(s): <br>
-- [Dust Programming Language Specification](https://github.com/dustlang/dustlang) <br>
-- [Dust Compiler and Implementation Repository](https://github.com/dustlang/dust) <br>
-- [Dust Website Repository](https://github.com/dustlang/dustlang.github.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with repository-grounded explanations and code snippets when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should distinguish canonical specification facts from implementation evidence, tests, examples, public documentation, implications, and unresolved ambiguity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill directs the agent to read all files packaged under the Dust skill directory, which could expose unrelated sensitive material if such files are included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Package only intended Dust reference repositories and exclude secrets, tokens, private environment files, and unrelated repositories before deployment.
+
+Risk: Repository-grounded language guidance can become misleading if the packaged corpus is stale, incomplete, or internally inconsistent.
+
+Mitigation: Review outputs against the canonical Dust specification and current packaged repositories, especially when using the skill for implementation or documentation decisions.
+
+## Reference(s):
+
+- [Dust Language Architect on ClawHub](https://clawhub.ai/litecreator/skills/dust-language-architect)
+- [Dust Programming Language Specification](https://github.com/dustlang/dustlang)
+- [Dust Compiler Repository](https://github.com/dustlang/dust)
+- [Dust Website Repository](https://github.com/dustlang/dustlang.github.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with optional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Repository-grounded responses should separate canonical specification facts from implementation, examples, public documentation, and unresolved ambiguity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

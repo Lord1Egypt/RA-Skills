@@ -1,0 +1,295 @@
+name: scribe_agent
+version: 1.0.0
+type: support_agent
+role: Scribe
+
+description: |
+  记录员智能体，负责全过程记录（WAL）、证据文件管理、时间线维护和报告生成。
+
+responsibilities:
+  - 全过程记录（WAL）
+  - 证据文件管理
+  - 时间线维护
+  - 报告生成
+  - 数据持久化
+  - 审计追踪
+
+capabilities:
+  automatic_recording: 自动记录关键事件
+  structured_storage: 结构化数据存储
+  evidence_management: 证据完整性校验与管理
+  report_generation: 报告模板填充与生成
+  data_persistence: 数据持久化
+  audit_trail: 审计追踪
+
+communication:
+  receive:
+    - events
+    - evidence
+    - iocs
+    - timeline_updates
+    - report_requests
+  
+  send:
+    - records
+    - reports
+    - summaries
+    - status_updates
+
+tools:
+  - note.py
+  - evidence_manager.py
+  - timeline_builder.py
+  - generate_report.py
+  - data_persistence.py
+
+state_machine:
+  initial: idle
+  states:
+    idle:
+      description: 空闲，监听事件
+      transitions: [recording, generating]
+    
+    recording:
+      description: 记录事件/证据
+      transitions: [idle, persisting]
+    
+    persisting:
+      description: 持久化数据
+      transitions: [recording, idle]
+    
+    generating:
+      description: 生成报告
+      transitions: [idle]
+
+wal_protocol:
+  write_ahead_logging:
+    enabled: true
+    sync_interval: 5
+    buffer_size: 100
+    
+  record_types:
+    - event
+    - evidence
+    - ioc
+    - timeline
+    - action
+    - decision
+  
+  fields:
+    required:
+      - timestamp
+      - event_type
+      - source_agent
+      - content
+    
+    optional:
+      - phase
+      - severity
+      - tags
+      - metadata
+
+evidence_management:
+  storage:
+    base_path: evidence/
+    organization:
+      by_date: true
+      by_type: true
+      by_agent: true
+    
+    naming_convention: "{date}/{type}/{agent_id}/{timestamp}_{name}"
+  
+  integrity:
+    hash_algorithm: SHA256
+    verification: on_write
+    
+  lifecycle:
+    retention_days: 365
+    archive_after_days: 90
+    compression: gzip
+  
+  access_control:
+    read: all_agents
+    write: source_agent_only
+    delete: ic_agent_only
+
+timeline_management:
+  data_structure:
+    type: linked_list
+    sorted_by: timestamp
+    
+  events:
+    - incident_detected
+    - evidence_collected
+    - ioc_identified
+    - analysis_completed
+    - containment_applied
+    - eradication_performed
+    - recovery_completed
+  
+  granularity: seconds
+  timezone_handling: UTC_storage + display_conversion
+
+report_generation:
+  templates:
+    - ir_report.md
+    - timeline.md
+    - executive_summary.md
+    - technical_report.md
+    - compliance_report.md
+  
+  formats:
+    - markdown
+    - html
+    - pdf
+    - json
+  
+  sections:
+    required:
+      - executive_summary
+      - incident_overview
+      - timeline
+      - ioc_list
+      - evidence_list
+      - actions_taken
+      - recommendations
+      - lessons_learned
+    
+    optional:
+      - technical_details
+      - compliance_mapping
+      - cost_analysis
+
+  generation_triggers:
+    - phase_transition
+    - manual_request
+    - incident_closure
+    - scheduled_interval
+
+data_persistence:
+  storage_backend:
+    primary: sqlite
+    backup: json_files
+    
+  schema:
+    sessions_table:
+      - session_id (PRIMARY KEY)
+      - incident_name
+      - start_time
+      - end_time
+      - phase
+    
+    actions_table:
+      - action_id (PRIMARY KEY)
+      - session_id (FOREIGN KEY)
+      - timestamp
+      - agent_id
+      - action_type
+      - content
+    
+    iocs_table:
+      - ioc_id (PRIMARY KEY)
+      - session_id (FOREIGN KEY)
+      - ioc_type
+      - ioc_value
+      - confidence
+      - source
+    
+    evidence_table:
+      - evidence_id (PRIMARY KEY)
+      - session_id (FOREIGN KEY)
+      - file_path
+      - hash
+      - size
+      - timestamp
+  
+  backup:
+    interval: 300
+    retention: 30_days
+    compression: true
+
+audit_trail:
+  events_logged:
+    - data_write
+    - data_read
+    - data_delete
+    - report_generation
+    - evidence_upload
+    - evidence_download
+  
+  log_format:
+    timestamp: ISO8601
+    actor: agent_id
+    action: action_type
+    target: resource_id
+    result: success/failure
+    metadata: json
+
+performance:
+  batch_writing:
+    enabled: true
+    batch_size: 50
+    flush_interval: 10
+  
+  caching:
+    enabled: true
+    ttl: 300
+    max_size: 100MB
+  
+  indexing:
+    fields:
+      - timestamp
+      - session_id
+      - agent_id
+      - event_type
+
+collaboration:
+  with_agents:
+    - all_agents:
+        purpose: 接收记录请求
+        communication: event_stream
+    
+    - ic_agent:
+        purpose: 接收报告请求
+        communication: report_request
+    
+    - analyst_agent:
+        purpose: 接收分析结果
+        communication: findings_submission
+
+deployment:
+  max_instances: 3
+  min_instances: 1
+  priority: high
+  dependencies:
+    - storage_service
+    - memory_service
+
+security:
+  data_encryption: AES256
+  access_control: RBAC
+  audit: all_operations
+  
+  sensitive_data:
+    - credentials
+    - personal_data
+    - business_secrets
+    
+  anonymization:
+    enabled: true
+    patterns:
+      - ip_addresses
+      - email_addresses
+      - phone_numbers
+
+monitoring:
+  metrics:
+    - write_throughput
+    - read_latency
+    - storage_usage
+    - report_generation_time
+  
+  alerts:
+    - storage_usage > 80%
+    - write_latency > 100ms
+    - backup_failure

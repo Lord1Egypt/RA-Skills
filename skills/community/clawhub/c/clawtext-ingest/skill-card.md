@@ -1,47 +1,67 @@
-## Description: <br>
-Multi-source memory ingestion with Discord support, automatic deduplication, and agent-ready patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source memory ingestion with Discord support, automatic deduplication, and agent-ready patterns.
 
-## Publisher: <br>
-[ragesaq](https://clawhub.ai/user/ragesaq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ragesaq](https://clawhub.ai/user/ragesaq)
 
-## Use Case: <br>
-Developers and agent builders use this skill to ingest files, URLs, JSON, text, and Discord content into structured, deduplicated memory for ClawText-backed agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected Discord channels, files, URLs, or exports may contain sensitive or unauthorized content that becomes persistent agent memory. <br>
-Mitigation: Ingest only sources the user is authorized to store, and review or redact sensitive content before persistence. <br>
-Risk: Discord bot tokens and other secrets can be exposed through command history or overly broad permissions. <br>
-Mitigation: Use a least-privilege Discord bot token and avoid passing secrets directly in shell history. <br>
-Risk: Exported JSON and memory directories can retain private or regulated data after ingestion. <br>
-Mitigation: Protect exported files and memory directories, and delete them when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent builders use Clawtext Ingest to convert Discord forums, local files, URLs, JSON, and raw text into structured ClawText memories with deduplication and metadata for RAG-enabled agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ragesaq/clawtext-ingest) <br>
-- [README](https://github.com/ragesaq/clawtext-ingest#readme) <br>
-- [Agent Guide](https://github.com/ragesaq/clawtext-ingest/blob/main/AGENT_GUIDE.md) <br>
-- [API Reference](https://github.com/ragesaq/clawtext-ingest/blob/main/API_REFERENCE.md) <br>
-- [CLI Reference](https://github.com/ragesaq/clawtext-ingest/blob/main/PHASE2_CLI_GUIDE.md) <br>
-- [Discord Bot Setup](https://github.com/ragesaq/clawtext-ingest/blob/main/DISCORD_BOT_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory entries with YAML metadata, JSON results, and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deduplicates ingested content and can rebuild ClawText clusters after ingestion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can ingest Discord, web, file, and chat-export content into agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit Discord channel access, URL sources, local file paths, and memory directories to explicitly approved content before installation.
+
+Risk: Autonomous or scheduled ingestion can repeatedly store sensitive or untrusted content.
+
+Mitigation: Avoid autonomous schedules until URL allowlists, file path containment, privacy rules, and retention rules are in place.
+
+Risk: Chat exports and web content may contain secrets, private data, or prompt-injection text.
+
+Mitigation: Sanitize and review imported content before storing it in agent memory.
+
+Risk: CLI subprocess patterns may expose secrets or execute under-scoped commands.
+
+Mitigation: Keep tokens in environment variables, review command construction, and run ingestion with least-privilege credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ragesaq/skills/clawtext-ingest)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Agent Guide](artifact/AGENT_GUIDE.md)
+- [API Reference](artifact/API_REFERENCE.md)
+- [CLI Guide](artifact/PHASE2_CLI_GUIDE.md)
+- [Discord Bot Setup](artifact/DISCORD_BOT_SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown memory entries with YAML frontmatter, CLI commands, and JavaScript API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist deduplication hashes and trigger ClawText cluster rebuilds after ingestion.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Zero-friction RealmRouter model manager for OpenClaw. Chat-first workflow for setting API key, guided model picking, switching with availability check, rollback, connectivity testing, and short rr commands on both Unix and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-friction RealmRouter model manager for OpenClaw. Chat-first workflow for setting API key, guided model picking, switching with availability check, rollback, connectivity testing, and short rr commands on both Unix and Windows.
 
-## Publisher: <br>
-[vegetable1bird](https://clawhub.ai/user/vegetable1bird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vegetable1bird](https://clawhub.ai/user/vegetable1bird)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure RealmRouter as an OpenClaw provider, set or update the RealmRouter API key, choose a default model, test connectivity, and roll back configuration changes when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw provider, default model, API key, backup, and gateway state. <br>
-Mitigation: Install and run it only when those local configuration changes are intended, and review the generated backup before relying on rollback. <br>
-Risk: RealmRouter API keys may be exposed through shared chat, shell history, configuration files, or backups. <br>
-Mitigation: Treat the API key as a secret, avoid pasting real keys into shared contexts, and protect ~/.openclaw/openclaw.json and ~/.openclaw/backups. <br>
-Risk: The artifact documentation references Windows PowerShell scripts that are not present in the artifact. <br>
-Mitigation: Use the bundled Python Windows installer and wrapper when installing on Windows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vegetable1bird/realmrouter-switch) <br>
-- [RealmRouter API endpoint](https://realmrouter.cn/v1) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure RealmRouter credentials, choose or switch default models, test connectivity, and roll back OpenClaw configuration changes across macOS, Linux, and Windows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify local OpenClaw configuration, write backups, update a RealmRouter API key, and restart the OpenClaw gateway.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can store a RealmRouter API key in OpenClaw configuration and backup files.
+
+Mitigation: Use a dedicated RealmRouter key, keep OpenClaw configuration and backup files access-controlled, and rotate or revoke the key if it may have been exposed.
+
+Risk: The skill can change the default OpenClaw model and restart the OpenClaw gateway.
+
+Mitigation: Review the selected model and current configuration before switching, keep the generated backups, and use rollback if behavior is not as expected.
+
+Risk: Installer commands add local rr wrappers and the Windows workflow may request elevated execution.
+
+Mitigation: Install from a pinned, trusted ClawHub release where possible and avoid running Windows installation with administrator privileges unless it is required.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/vegetable1bird/skills/realmrouter-switch)
+- [RealmRouter API endpoint](https://realmrouter.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw configuration, create backups, and restart the OpenClaw gateway when the user executes the skill's commands.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

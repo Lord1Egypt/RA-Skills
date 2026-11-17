@@ -1,38 +1,58 @@
-## Description: <br>
-Extracts verified B2B leads (name, email, company, LinkedIn, job title) from target sources and exports them as CRM-ready CSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts verified B2B leads (name, email, company, LinkedIn, job title) from target sources and exports them as CRM-ready CSV files.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-Sales, marketing, and growth teams use this skill to collect, deduplicate, validate, and export targeted B2B lead lists for CRM import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a live LinkedIn session cookie, which can expose an account if the cookie is logged, shared, or stored insecurely. <br>
-Mitigation: Use only a dedicated or low-risk LinkedIn account, treat LI_SESSION/li_at like a password, avoid logging or sharing it, rotate or revoke the session after use, and consider an official API or OAuth-based workflow where available. <br>
+## Use Case:
 
+External sales, marketing, and operations teams use this skill to generate filtered B2B lead lists and export deduplicated records for CRM import.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neo1307/argus-lead-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, csv, files, guidance] <br>
-**Output Format:** [CSV file plus a text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV rows include contact and company fields such as name, job title, company, LinkedIn URL, email, and location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and frontmatter) <br>
+Risk: The skill uses a LinkedIn session cookie, which is a live account credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store LI_SESSION only in an approved secrets manager, limit access to authorized operators, rotate or revoke it after use, and avoid sharing it in prompts, logs, or output files.
+
+Risk: Bulk collection of personal lead data can create privacy, contractual, and compliance exposure.
+
+Mitigation: Run the skill only with clear authorization for the target sources, prefer official APIs or approved providers, and define retention, deletion, and CSV-sharing controls before collection.
+
+Risk: The artifact describes throttling to avoid detection and saving raw data before cleaning.
+
+Mitigation: Require review of target-source terms, approved collection limits, and raw-data storage controls before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neo1307/skills/argus-lead-scraper)
+- [ClawHub publisher profile](https://clawhub.ai/user/neo1307)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces UTF-8 CRM-ready CSV files and a run summary with totals, duplicate removals, and validation pass rate.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,91 @@
 {
-  "ownerId": "kn76382c011x6w3pmxsvzkf3xx8247ky",
-  "slug": "stock-subscribe-helper",
-  "version": "1.0.6",
-  "publishedAt": 1773151278434
+  "id": "stock-subscribe-helper-compliant",
+  "name": "A股新债新股申购助手（合规版）",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "description": "基于官方API的A股新债/新股申购助手，100%合规安全，使用东方财富官方API和集思录API",
+  "license": "MIT",
+  "keywords": ["stock", "ipo", "subscribe", "china-stock", "feishu", "investment"],
+  "homepage": "https://clawhub.com/skills/stock-subscribe-helper",
+  
+  "triggers": [
+    {
+      "type": "cron",
+      "expression": "0 30 9 * * 1-5",
+      "description": "每个交易日9:30运行"
+    }
+  ],
+  
+  "configSchema": {
+    "feishuWebhook": {
+      "type": "string",
+      "label": "飞书机器人Webhook",
+      "required": true,
+      "description": "飞书群自定义机器人Webhook地址",
+      "pattern": "^https://open\\.feishu\\.cn/open-apis/bot/v2/hook/[a-zA-Z0-9-]+$"
+    },
+    "feishuAccessToken": {
+      "type": "string",
+      "label": "飞书AccessToken",
+      "required": true,
+      "description": "飞书开放平台获取的应用访问凭证"
+    },
+    "feishuAppToken": {
+      "type": "string",
+      "label": "飞书多维表格AppToken",
+      "required": true,
+      "description": "飞书表格的App Token"
+    },
+    "feishuTableId": {
+      "type": "string",
+      "label": "飞书表格ID",
+      "required": true,
+      "description": "飞书表格的Table ID"
+    },
+    "subscriptionProduct": {
+      "type": "string",
+      "label": "订阅产品类型",
+      "enum": ["仅新债", "仅新股", "新债+新股"],
+      "default": "新债+新股",
+      "description": "选择关注的申购产品类型"
+    },
+    "subscriptionPlate": {
+      "type": "array",
+      "label": "关注板块",
+      "items": {
+        "type": "string",
+        "enum": ["主板", "创业板", "科创板", "北交所"]
+      },
+      "default": ["主板", "创业板"],
+      "description": "选择关注的股票板块"
+    },
+    "userId": {
+      "type": "string",
+      "label": "用户ID",
+      "required": true,
+      "default": "default_user",
+      "description": "用于标识操作的用户ID"
+    }
+  },
+  
+  "dependencies": {
+    "node": ">=16.0.0",
+    "packages": [
+      "axios@^1.6.0",
+      "date-fns@^3.0.0"
+    ]
+  },
+  
+  "security": {
+    "noWebScraping": true,
+    "officialAPIsOnly": true,
+    "noExternalNetwork": false,
+    "requiresAuthentication": true,
+    "dataValidation": true
+  },
+  
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "platforms": ["linux", "macos", "windows"]
+  }
 }

@@ -1,42 +1,58 @@
-## Description: <br>
-clash-auto-switch lets an agent check Clash proxy health, list and switch proxy nodes, and automatically move to a preferred healthy node. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clash Auto Switch helps an agent check Clash proxy health, list proxy groups, and switch to a responsive or region-preferred node.
 
-## Publisher: <br>
-[adminlove520](https://clawhub.ai/user/adminlove520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adminlove520](https://clawhub.ai/user/adminlove520)
 
-## Use Case: <br>
-Developers and operators who run Clash use this skill to let an agent inspect proxy health and switch nodes manually, by region, or automatically when connectivity fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local proxy routing automatically or on a schedule. <br>
-Mitigation: Enable automatic or scheduled switching only when unattended routing changes are acceptable. <br>
-Risk: The artifact includes unsafe Clash credential handling in Bash helper scripts. <br>
-Mitigation: Prefer the Python/OpenClaw path, remove or rotate embedded Bash secrets before use, and keep CLASH_SECRET in protected local configuration. <br>
-Risk: A reachable Clash controller could let the agent alter proxy selection. <br>
-Mitigation: Bind the Clash controller to localhost and install the skill only when agent-controlled proxy selection is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor local Clash proxy connectivity and switch nodes manually, automatically, or by preferred region. It is suited for environments where an agent is allowed to call a local Clash controller.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adminlove520/clash-auto-switch) <br>
-- [Publisher profile](https://clawhub.ai/user/adminlove520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent command responses with Markdown guidance and shell or configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the local Clash controller API when invoked with configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Unsafe credential handling can expose the local Clash controller secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique local Clash secret through environment configuration, keep the controller bound to localhost, and avoid passing secrets on command lines or committing them to config files.
+
+Risk: The bundled shell scripts are flagged for hardcoded secret handling, injectable shell behavior, and temporary state handling.
+
+Mitigation: Prefer the Python skill path and avoid the shell scripts until those issues are fixed.
+
+Risk: Elevated scheduled tasks can increase impact if the skill or local proxy configuration is misused.
+
+Mitigation: Do not run scheduled health checks as administrator or root.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adminlove520/skills/clash-auto-switch)
+- [OpenClaw installation guide](docs/openclaw.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include proxy health summaries, proxy group listings, node switch status, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

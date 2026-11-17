@@ -1,42 +1,58 @@
-## Description: <br>
-Safe OpenClaw upgrade procedure with backup, doctor fix, service migration, rollback, and post-upgrade testing to prevent silent failures from Dashboard upgrades, entrypoint renames, and config breaking changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe OpenClaw upgrade procedure with backup, doctor fix, service migration, rollback, and post-upgrade testing.
 
-## Publisher: <br>
-[gjoham](https://clawhub.ai/user/gjoham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gjoham](https://clawhub.ai/user/gjoham)
 
-## Use Case: <br>
-Developers and operators use this skill when upgrading OpenClaw installations, planning a safe version transition, or recovering from a failed upgrade. It guides backup, upgrade, service migration, rollback, and post-upgrade validation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup directories created during the procedure may contain credentials, agent data, or service configuration. <br>
-Mitigation: Keep backup directories private, restrict access, and remove or secure them after the upgrade or rollback window closes. <br>
-Risk: Upgrade and recovery commands can modify global packages, OpenClaw configuration, and the user systemd service. <br>
-Mitigation: Confirm the package source and target version before running commands, keep the backup available, and review each command for the local installation path. <br>
-Risk: Doctor output and gateway logs collected for troubleshooting may expose environment or account details. <br>
-Mitigation: Redact doctor output and gateway logs before sharing them in public bug reports or support channels. <br>
+## Use Case:
 
+Developers and operators use this skill to plan, execute, validate, and roll back OpenClaw upgrades while reducing risk from Dashboard upgrade failures, service entrypoint changes, and configuration migrations.
 
-## Reference(s): <br>
-- [OpenClaw Releases](https://github.com/openclaw/openclaw/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and a validation checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backup, rollback, test checklist, and bug report evidence guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Credential and agent backups may expose sensitive data if copied into broadly accessible workspace paths or retained longer than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, adapt the backup location and scope, store backups with owner-only permissions, avoid copying the full credentials directory unless necessary, and delete sensitive backups after rollback or verification.
+
+Risk: Failure logs and bug reports may include sensitive operational details.
+
+Mitigation: Redact logs and diagnostic output before sharing them in public bug reports.
+
+Risk: Upgrade and rollback commands modify global packages and user service files, which can interrupt OpenClaw gateway availability if applied to the wrong environment.
+
+Mitigation: Review commands against the target installation, record the old version, run the documented validation checks, and keep rollback artifacts available until the upgrade is verified.
+
+## Reference(s):
+
+- [OpenClaw releases](https://github.com/openclaw/openclaw/releases)
+- [OpenClaw Upgrade Standard on ClawHub](https://clawhub.ai/gjoham/skills/openclaw-upgrade-standard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown procedure with inline bash commands and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup, upgrade, service migration, rollback, and bug-report evidence collection guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

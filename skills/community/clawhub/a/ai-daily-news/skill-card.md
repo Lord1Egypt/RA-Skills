@@ -1,47 +1,69 @@
-## Description: <br>
-Automates collection of AI papers, AI products, creator videos, and RSS news items, then generates structured daily reports and pushes them to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated AI daily news collection and reporting system that collects AI papers from arXiv and Hugging Face, AI products from Product Hunt, YouTube videos from AI creators, and RSS feeds, then generates structured daily reports and pushes them to Feishu.
 
-## Publisher: <br>
-[josephleohou-ui](https://clawhub.ai/user/josephleohou-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephleohou-ui](https://clawhub.ai/user/josephleohou-ui)
 
-## Use Case: <br>
-Developers, operators, and news workflow maintainers use this skill to configure automated AI news collection, generate daily summaries, schedule runs, and deliver reports to a Feishu chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The YouTube collector can install yt-dlp at runtime if it is missing. <br>
-Mitigation: Install reviewed dependencies from artifact/references/requirements.txt in an isolated environment before running the skill, and disable or review runtime package installation paths. <br>
-Risk: Browser fallback behavior can invoke broad browser automation commands for scraping. <br>
-Mitigation: Run the skill with least privilege, restrict network and browser access where possible, and review configured sources before enabling fallback scraping or scheduled execution. <br>
-Risk: Feishu webhook and app credentials in config.json can expose report delivery permissions if shared or committed. <br>
-Mitigation: Use a limited Feishu webhook, store config.json outside source control and backups, and rotate credentials if they are exposed. <br>
-Risk: Scheduled execution can repeatedly collect and send content without further review. <br>
-Mitigation: Enable scheduled runs only after validating source configuration, report contents, and recipient channel behavior with a manual dry run. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run an automated daily AI news workflow that collects papers, products, videos, and RSS items, stores a structured local report, and optionally pushes the report to Feishu.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/josephleohou-ui/ai-daily-news) <br>
-- [Development Guide](artifact/references/DEVELOPMENT.md) <br>
-- [Example Configuration](artifact/references/config.example.json) <br>
-- [Python Requirements](artifact/references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON news data, configuration files, logs, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write config.json, data/daily_news.json, and log files; can send configured reports to a Feishu webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Unsafe automation and dependency behavior may affect the host environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation, use an isolated low-privilege environment, and preinstall pinned dependencies through normal deployment controls.
+
+Risk: The YouTube collection path can attempt automatic yt-dlp installation.
+
+Mitigation: Avoid the automatic install path by preinstalling an approved yt-dlp version or disabling that collection path until reviewed.
+
+Risk: Custom RSS feeds and browser fallback can fetch untrusted web content.
+
+Mitigation: Restrict configured feeds to trusted HTTPS domains and review fallback behavior before enabling scheduled collection.
+
+Risk: Feishu webhook and local config values are sensitive operational secrets.
+
+Mitigation: Protect config.json as a secret, limit webhook scope, and rotate the webhook if it is exposed.
+
+Risk: Scheduled execution can repeatedly run network collection and webhook posting.
+
+Mitigation: Run the scheduler only under a low-privilege account and avoid privileged deployment until the shell-based browser helper is removed or tightly constrained.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/josephleohou-ui/skills/ai-daily-news)
+- [Publisher profile](https://clawhub.ai/user/josephleohou-ui)
+- [Development guide](references/DEVELOPMENT.md)
+- [Configuration example](references/config.example.json)
+- [Python requirements](references/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands; runtime scripts produce local JSON news data and Feishu interactive card payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable source limits, schedule settings, browser fallback behavior, and Feishu webhook settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

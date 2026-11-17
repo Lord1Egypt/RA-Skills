@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "kb-eval-repo",
+  "name": "kb_eval_repo",
   "version": "1.0.0",
-  "publishedAt": 1782415753343
+  "description": "Evaluate GitHub/open-source repositories against selected Research KB context; usable from the query page for usefulness, reproducibility, setup effort, risks, and worth-studying judgments.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "research-kb-desktop",
+  "taskTypes": ["kb_query", "kb_eval_repo"],
+  "requires": {
+    "env": ["GITEA_URL", "GITEA_ADMIN_TOKEN", "GITEA_BOT_USERNAME"],
+    "optionalEnv": ["GITHUB_TOKEN"],
+    "input": ["research_kb_agent_task JSON"]
+  }
 }

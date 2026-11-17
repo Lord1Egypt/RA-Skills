@@ -1,0 +1,281 @@
+{
+  "_meta": "场景目录单一来源（v6.7.0）——pp.py scenarios 的数据源；SKILL 快速开始的场景注解由此对账。字段：scene=场景名 / when=什么时候用 / cmd=命令 / output=你会得到什么 / tags=检索词。命令必须真实存在于 COMMANDS（tests 锁）。",
+  "scenarios": [
+    {
+      "id": "quickstart",
+      "scene_zh": "零基础一键体验",
+      "scene_en": "First-time demo",
+      "when_zh": "还没建文件、没装模型，想先看看这套工具长什么样",
+      "when_en": "No files or model yet — see what the toolkit does first",
+      "cmd": "python scripts/pp.py quickstart",
+      "output_zh": "内嵌样例的完整体验（检测→建议→环境）",
+      "output_en": "Full demo on a built-in sample (detect → suggest → doctor)",
+      "tags": [
+        "体验",
+        "上手",
+        "demo"
+      ]
+    },
+    {
+      "id": "tour",
+      "scene_zh": "五站导览",
+      "scene_en": "Guided tour",
+      "when_zh": "功能多不知从哪开始，想有人带着把主路走一遍",
+      "when_en": "Too many features — walk the main route with a guide",
+      "cmd": "python scripts/pp.py tour",
+      "output_zh": "五站现场真实运行（检测→解读→改写→可视化→环境）",
+      "output_en": "Five live stations (detect → explain → fix → visuals → doctor)",
+      "tags": [
+        "导览",
+        "入门",
+        "tour"
+      ]
+    },
+    {
+      "id": "check-ai",
+      "scene_zh": "测 AI 率",
+      "scene_en": "Check AI likelihood",
+      "when_zh": "写完一段（建议 300 字以上），想知道整体像不像 AI 写的、哪几段最像",
+      "when_en": "Drafted 300+ chars — how AI-like is it overall, which paragraphs worst",
+      "cmd": "python scripts/pp.py detect draft.txt --format json",
+      "output_zh": "总分+风险带+逐段分级+分层证据+指纹归因",
+      "output_en": "Score + risk band + per-paragraph grading + layered evidence",
+      "tags": [
+        "ai率",
+        "检测",
+        "detect"
+      ]
+    },
+    {
+      "id": "which-sentences",
+      "scene_zh": "找要改的句子",
+      "scene_en": "Locate sentences to fix",
+      "when_zh": "检测分高了，想知道具体哪几句有问题、各自怎么改（不代改，改不改你定）",
+      "when_en": "Score is high — which sentences, why, how to improve (never auto-rewrites)",
+      "cmd": "python scripts/pp.py fix draft.txt --top 10",
+      "output_zh": "逐句特征定位+改写策略",
+      "output_en": "Per-sentence features + rewrite strategies",
+      "tags": [
+        "改写",
+        "句子",
+        "fix"
+      ]
+    },
+    {
+      "id": "full-report",
+      "scene_zh": "一次全查",
+      "scene_en": "Full self-check",
+      "when_zh": "投稿/提交前做一次端到端体检（检测+规范+术语+门禁一次跑完）",
+      "when_en": "Before submission — one end-to-end pass (detect + norms + terms + gate)",
+      "cmd": "python scripts/pp.py workflow draft.txt",
+      "output_zh": "Markdown+JSON 双报告（人读+机读）",
+      "output_en": "Markdown + JSON reports (human- and machine-readable)",
+      "tags": [
+        "全流程",
+        "工作流",
+        "workflow"
+      ]
+    },
+    {
+      "id": "understand-report",
+      "scene_zh": "看懂报告",
+      "scene_en": "Understand a report",
+      "when_zh": "拿到 workflow/detect JSON 看不懂，想要结论/证据/行动清单的人话版",
+      "when_en": "Got a workflow JSON — want a plain-language reading",
+      "cmd": "python scripts/pp.py explain draft.workflow.json",
+      "output_zh": "三段人话：结论/证据/行动清单（带具体命令）",
+      "output_en": "Verdict / evidence / action checklist with concrete commands",
+      "tags": [
+        "解读",
+        "解释",
+        "explain"
+      ]
+    },
+    {
+      "id": "evidence-pack",
+      "scene_zh": "准备说明材料",
+      "scene_en": "Evidence pack",
+      "when_zh": "被质疑是不是 AI 写的，需要一份如实呈现判定与证据的存档/说明材料",
+      "when_en": "Questioned about AI use — need a faithful evidence archive to show",
+      "cmd": "python scripts/pp.py evidence draft.txt --outdir evidence/",
+      "output_zh": "HTML+MD 证据报告（含固定局限与诚信声明；不构成未使用 AI 证明）",
+      "output_en": "HTML+MD evidence report (fixed limitation/integrity statements)",
+      "tags": [
+        "证据",
+        "质疑",
+        "存档",
+        "evidence"
+      ]
+    },
+    {
+      "id": "norm-check",
+      "scene_zh": "规范自查",
+      "scene_en": "Style norms",
+      "when_zh": "查全半角混用/数字用法/缩写没定义/单位格式/LLM 腔这类机械体例问题",
+      "when_en": "Fullwidth/number/abbreviation/unit/LLM-jargon mechanical checks",
+      "cmd": "python scripts/pp.py norm draft.txt",
+      "output_zh": "逐条发现+改法（不评分）",
+      "output_en": "Itemized findings + fixes (no score)",
+      "tags": [
+        "规范",
+        "全半角",
+        "norm"
+      ]
+    },
+    {
+      "id": "term-unify",
+      "scene_zh": "术语统一（单文件）",
+      "scene_en": "Terminology (single file)",
+      "when_zh": "同一概念在一篇里写法不一（如混用别名），想按规范名统一",
+      "when_en": "Mixed alias spellings in one file — unify to standard names",
+      "cmd": "python scripts/pp.py term draft.txt --auto-fix",
+      "output_zh": "非标准用法清单+自动修复稿",
+      "output_en": "Non-standard list + auto-fixed file",
+      "tags": [
+        "术语",
+        "统一",
+        "term"
+      ]
+    },
+    {
+      "id": "term-thesis",
+      "scene_zh": "术语统一（全稿多文件）",
+      "scene_en": "Terminology (thesis-wide)",
+      "when_zh": "学位论文/报告拆了多个章节文件，要查跨文件的写法一致性",
+      "when_en": "Thesis split across chapter files — check cross-file consistency",
+      "cmd": "python scripts/pp.py term-project 章节目录/ --html matrix.html",
+      "output_zh": "跨文件写法矩阵+统一建议（库内概念）",
+      "output_en": "Cross-file writing matrix + unification advice",
+      "tags": [
+        "多文档",
+        "章节",
+        "学位论文",
+        "一致性"
+      ]
+    },
+    {
+      "id": "after-rewrite",
+      "scene_zh": "改完验效果",
+      "scene_en": "Verify a rewrite",
+      "when_zh": "按建议改了一版，想对比改写前后的分数与特征变化（引擎同源）",
+      "when_en": "Rewrote a draft — compare scores/features before vs after",
+      "cmd": "python scripts/pp.py rewrite-check 原稿.txt 改稿.txt",
+      "output_zh": "分数迁移+逐段 delta+特征清除/残留",
+      "output_en": "Score migration + paragraph deltas + feature clears/remaining",
+      "tags": [
+        "对比",
+        "效果",
+        "rewrite"
+      ]
+    },
+    {
+      "id": "multi-round",
+      "scene_zh": "多轮复盘",
+      "scene_en": "Across revisions",
+      "when_zh": "改了好几轮，想看分数轨迹确认整体在改善（每轮跑一次 workflow 存档）",
+      "when_en": "Several revision rounds — see the score trajectory",
+      "cmd": "python scripts/pp.py trend 轮次目录/ -o trend.html",
+      "output_zh": "轨迹仪表盘+逐轮 delta（诚实边界：分降≠更好）",
+      "output_en": "Trajectory dashboard + per-round deltas (lower ≠ better)",
+      "tags": [
+        "趋势",
+        "多轮",
+        "trend"
+      ]
+    },
+    {
+      "id": "visual-dashboard",
+      "scene_zh": "可视化仪表盘",
+      "scene_en": "Visual dashboard",
+      "when_zh": "想把 JSON 报告变成一份能直接看的单文件 HTML",
+      "when_en": "Turn a JSON report into one viewable HTML",
+      "cmd": "python scripts/pp.py html-report draft.workflow.json -o report.html",
+      "output_zh": "自包含 HTML（仪表+直方图+热表）",
+      "output_en": "Self-contained HTML (gauge + histogram + tables)",
+      "tags": [
+        "可视化",
+        "仪表盘",
+        "html"
+      ]
+    },
+    {
+      "id": "batch-dir",
+      "scene_zh": "批量处理",
+      "scene_en": "Batch a directory",
+      "when_zh": "一整个目录的文稿都要过一遍（自动补扫瞬时失败，连续坏文件熔断）",
+      "when_en": "A whole directory to process (auto-retry; circuit breaker on bad batches)",
+      "cmd": "python scripts/ai_detector.py --batch manuscript_dir --csv scores.csv --report report.html",
+      "output_zh": "逐文件结果 CSV+HTML 汇总",
+      "output_en": "Per-file CSV + HTML summary",
+      "tags": [
+        "批量",
+        "目录",
+        "batch"
+      ]
+    },
+    {
+      "id": "submission-bundle",
+      "scene_zh": "投稿前打包自查",
+      "scene_en": "Submission bundle",
+      "when_zh": "投刊/送审前一条命令产出全部自查产物并归档",
+      "when_en": "One command → dated archive of all self-check artifacts",
+      "cmd": "python scripts/pp.py bundle thesis.docx --outdir ~/selfcheck",
+      "output_zh": "带日期目录：workflow+归因 HTML+建议+规范+清单",
+      "output_en": "Dated directory: workflow + attribution + suggestions + norms",
+      "tags": [
+        "投稿",
+        "打包",
+        "bundle"
+      ]
+    },
+    {
+      "id": "env-check",
+      "scene_zh": "环境与装模",
+      "scene_en": "Environment & model",
+      "when_zh": "跑不了/报错/想知道自己现在跑的是哪一档（要不要装监督模型）",
+      "when_en": "Errors or unsure which tier you're on / whether to install the model",
+      "cmd": "python scripts/pp.py doctor",
+      "output_zh": "逐项体检+档位判定+缺什么怎么补",
+      "output_en": "Itemized probes + tier verdict + what's missing",
+      "tags": [
+        "环境",
+        "报错",
+        "装模",
+        "doctor"
+      ]
+    },
+    {
+      "id": "mcp-integration",
+      "scene_zh": "agent 客户端接入",
+      "scene_en": "Agent-client integration",
+      "when_zh": "在 Claude Code/Cursor 等客户端里直接调用八个工具（不进命令行）",
+      "when_en": "Call eight tools from Claude Code/Cursor via MCP",
+      "cmd": "python scripts/pp.py mcp",
+      "output_zh": "MCP stdio server（零依赖；配置见 SKILL § MCP server）",
+      "output_en": "MCP stdio server (zero-dep; config in SKILL § MCP server)",
+      "tags": [
+        "mcp",
+        "agent",
+        "cursor",
+        "集成"
+      ]
+    },
+    {
+      "id": "project-workbench",
+      "scene_zh": "项目级自查（学位论文/书稿）",
+      "scene_en": "Project-wide self-check",
+      "when_zh": "学位论文/书稿拆了多个章节文件，想一条命令跑完全套并拿项目总览（逐文件分数对照+术语跨文件统一+总览 HTML）",
+      "when_en": "Thesis/book as multiple chapter files — one command for the full pass + project overview",
+      "cmd": "python scripts/pp.py project 章节目录/ --outdir project_report/",
+      "output_zh": "每文件 workflow 报告+项目总览 HTML（分数对照+术语一致性+聚合）",
+      "output_en": "Per-file workflow reports + overview HTML (scores + terminology + aggregates)",
+      "tags": [
+        "项目",
+        "学位论文",
+        "书稿",
+        "总览",
+        "project"
+      ]
+    }
+  ]
+}

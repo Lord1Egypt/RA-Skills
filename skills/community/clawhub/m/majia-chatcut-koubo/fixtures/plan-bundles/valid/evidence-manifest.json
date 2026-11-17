@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/evidence-manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "timelineRevision": "rev_demo",
+  "artifacts": [
+    {
+      "evidenceId": "evidence_transcript",
+      "kind": "transcript-source",
+      "targetRef": "transcript_demo",
+      "path": null,
+      "sha256": null,
+      "result": "passed",
+      "sensitive": true,
+      "checks": [
+        "SOURCE_BOUND"
+      ]
+    }
+  ]
+}

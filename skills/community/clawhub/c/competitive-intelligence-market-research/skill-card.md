@@ -1,39 +1,51 @@
-## Description: <br>
-B2B SaaS competitive intelligence with 24 scenarios across Sales, HR, Fintech, and Operations Tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS competitive intelligence with 24 scenarios across Sales, HR, Fintech, and Operations Tech.
 
-## Publisher: <br>
-[shashwatgtm](https://clawhub.ai/user/shashwatgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shashwatgtm](https://clawhub.ai/user/shashwatgtm)
 
-## Use Case: <br>
-External B2B SaaS founders, product marketers, sales leaders, and strategy teams use this skill to structure competitive intelligence, market research, positioning, pricing analysis, and sales battle cards across SaaS verticals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive research and networking prompts could be misused to seek confidential competitor information or bypass legal or contractual obligations. <br>
-Mitigation: Use the skill only for public, licensed, or first-party research, and do not misrepresent identity, solicit confidential information, or evade applicable obligations. <br>
+## Use Case:
 
+External B2B SaaS founders, product marketing, sales, product management, and strategy teams use this skill to structure competitive analysis, market research, pricing intelligence, positioning, and sales enablement deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shashwatgtm/competitive-intelligence-market-research) <br>
-- [Publisher profile](https://clawhub.ai/user/shashwatgtm) <br>
-- [Publisher homepage](https://github.com/shashwatgtm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with templates, checklists, matrices, and example deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or automated data collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes a risky tactic to subtly ask competitor employees for pricing information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid competitor-employee outreach and keep competitive research limited to public sources, first-party customer interviews, licensed research tools, and legally reviewed claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shashwatgtm/skills/competitive-intelligence-market-research)
+- [Publisher homepage](https://github.com/shashwatgtm)
+- [Author LinkedIn](https://linkedin.com/in/shashwatghosh-ai-b2b-gtm-fractionalcmo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured templates, checklists, matrices, scripts, and strategic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces research frameworks and analysis templates; it does not fetch real-time data or perform automated monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

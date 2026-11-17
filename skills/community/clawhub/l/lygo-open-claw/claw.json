@@ -1,0 +1,32 @@
+{
+  "name": "lygo-open-claw",
+  "displayName": "LYGO OpenClaw (Sovereign Router Alias)",
+  "version": "1.0.0",
+  "description": "Public alias for lygo-open-claw sovereign command router (slug also published as lygo-sovereign-claw). P0–P5 gates, consent-gated planter. Pair with lyra-openclaw for hybrid runtime.",
+  "slug": "lygo-open-claw",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-open-claw",
+  "signature": "Delta9Phi963-lygo-open-claw-v1.0.0",
+  "tags": ["latest", "lygo", "openclaw", "router", "p0", "sovereign", "biophase7"],
+  "entry": "SKILL.md",
+  "scripts": { "self_check": "scripts/self_check.py" },
+  "openclaw": {
+    "emoji": "🦞",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": { "https_get": false, "http_post": false },
+    "filesystem": { "shell": false, "os_system": false, "subprocess": false },
+    "publish": { "git_push": false, "clawhub": false, "social": false }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "canonical_slug": "lygo-sovereign-claw",
+    "version": "1.0.0"
+  }
+}

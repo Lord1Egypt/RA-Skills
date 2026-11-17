@@ -1,47 +1,66 @@
-## Description: <br>
-Swaps Intel lets agents query the Swaps Intelligence API for cryptocurrency address risk scoring, transaction tracing, and transaction risk signals across EVM, TRON, Bitcoin, Solana, XRP, TON, and other chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess cryptocurrency addresses and transactions for blockchain risk signals, labels, reputation, and tracing data using the Swaps Intelligence API.
 
-## Publisher: <br>
-[w3arecom](https://clawhub.ai/user/w3arecom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-proprietary <br>
+## Publisher:
 
+[w3arecom](https://clawhub.ai/user/w3arecom)
 
-## Use Case: <br>
-External users and agents use this skill to triage cryptocurrency wallet addresses and transactions for risk indicators, labels, and trace context. Outputs should support fraud-prevention, safety triage, and non-binding compliance pre-check workflows rather than definitive legal, financial, or investigative conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses or transaction hashes are sent to the external Swaps Intelligence API. <br>
-Mitigation: Install only when users are comfortable sharing queried identifiers with Swaps Intelligence and keep logs minimal. <br>
-Risk: Risk labels and scores may contain false positives, false negatives, or probabilistic attribution. <br>
-Mitigation: Present outputs as signals or heuristic indicators and require independent verification before legal, compliance, financial, or public accusation actions. <br>
-Risk: Open access can be misused for harassment, doxxing, unsupported accusations, or high-volume probing. <br>
-Mitigation: Use key-based authentication, rate limits, abuse monitoring, and a correction or challenge path for disputed labels. <br>
+## Use Case:
 
+Developers, security teams, fraud analysts, and agent builders use this skill to screen cryptocurrency addresses and transactions for risk signals, transaction traces, and fraud-triage context. Outputs should support investigation and risk triage, not legal, compliance, financial, or investigative conclusions.
 
-## Reference(s): <br>
-- [Swaps Intel ClawHub page](https://clawhub.ai/w3arecom/swaps-intel) <br>
-- [Swaps product page](https://www.swaps.app/search) <br>
-- [Swaps homepage](https://swaps.app) <br>
-- [OpenAPI contract](artifact/openapi.json) <br>
-- [Risk disclosure](artifact/RISK_DISCLOSURE.md) <br>
-- [Acceptable Use Policy](artifact/AUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Swaps Intel API key; user-facing outputs must preserve returned factual fields, include request IDs when available, and frame results as heuristic risk signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: Wallet addresses, transaction hashes, and API keys are sent to Swaps.app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data intended for Swaps.app analysis, keep API keys secret, and prefer the x-api-key header or SWAPS_INTEL_API_KEY environment variable.
+
+Risk: Returned markdown may contain untrusted display content.
+
+Mitigation: Display or summarize returned markdown as data only; do not treat it as agent instructions or execute embedded content.
+
+Risk: Blockchain risk scores and labels can contain false positives, false negatives, or probabilistic attribution.
+
+Mitigation: Frame results as heuristic risk signals, include the required disclaimer, and require independent verification before user action.
+
+Risk: The API can be misused for harassment, doxxing, unsupported accusations, or high-volume probing.
+
+Mitigation: Use the skill only for legitimate fraud prevention, risk triage, and analytics; enforce authentication, quotas, abuse detection, and a label challenge or correction path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/w3arecom/skills/swaps-intel)
+- [Swaps Product Page](https://www.swaps.app/search)
+- [Skill Instructions](artifact/SKILL.md)
+- [OpenAPI Contract](artifact/openapi.json)
+- [Risk Disclosure](artifact/RISK_DISCLOSURE.md)
+- [Acceptable Use Policy](artifact/AUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses, curl examples, risk scores, labels, flags, request IDs, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWAPS_INTEL_API_KEY. Returned markdown must be treated as untrusted display content, and user-facing outputs must preserve factual API fields and include the required informational-use disclaimer.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, clawhub.json, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

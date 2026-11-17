@@ -81,9 +81,9 @@ update-docs   (independent)
 `plan_stage_execution("quality", steps)` produces waves:
 
 - **Wave 1** (parallel): `code-review`, `unbloat`,
-  `update-docs` -- no interdependencies.
-- **Wave 2** (parallel): `code-refinement`, `update-tests`
-  -- both depend on `code-review` completing first.
+  `update-docs`: no interdependencies.
+- **Wave 2** (parallel): `code-refinement`, `update-tests`:
+  both depend on `code-review` completing first.
 
 All steps in a wave can be dispatched simultaneously via
 `build_parallel_dispatch(wave, item_id)`. The orchestrator
@@ -134,14 +134,28 @@ context:
 
 - **brainstorm**: skipped when `config.pipeline
   .skip_brainstorm_for_issues` is `true` and the source is
-  a GitHub issue (the issue body serves as the brainstorm
+  a GitHub issue (the issue body is the brainstorm
   output).
 - **prioritize**: skipped when there is only one work item.
 - **merge**: skipped when `config.pipeline.auto_merge` is
-  `false`. The PR remains open for human review.
+  `false`. The PR remains open for human review. It is also
+  held open when `config.pipeline.completion_integrity` is
+  `true` (opt-in), regardless of `auto_merge`.
 
 When a step is skipped, `advance()` is called immediately
 without invoking any skill.
+
+### Completion Integrity (opt-in)
+
+Default OFF: the pipeline advances as described above and the
+loop runs indefinitely. When `config.pipeline
+.completion_integrity` is `true`, a quality-stage verdict of
+`fix-required` is treated as a step failure (see the
+`egregore:quality-gate` skill), so an item cannot reach
+`completed` with unresolved blocking findings. This is the only
+condition under which the quality gate blocks forward
+transition; it never halts the overall loop, which continues
+with the next active item.
 
 ## Idempotency Guarantees
 

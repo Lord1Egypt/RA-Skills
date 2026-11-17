@@ -1,49 +1,57 @@
-## Description: <br>
-Runs a review-first autoresearch growth loop that reads analytics snapshots, preserves product truth, generates and critiques experiment variants, ranks them with Borda scoring, and outputs two review-ready A/B test variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses analytics and product constraints to propose, critique, and rank two review-ready growth experiment variants.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers, product teams, and growth teams use this skill to turn analytics snapshots or project briefs into review-ready copy and experiment variants for landing pages, onboarding, pricing, CTAs, signup, checkout, and activation surfaces. The default workflow produces artifacts for human review before any production implementation or experiment wiring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics snapshots or event payloads may contain sensitive project data or PII. <br>
-Mitigation: Use scoped analytics access, review saved snapshots before sharing, and avoid storing PII or temporary metric values in project context. <br>
-Risk: Generated experiment variants could introduce misleading claims, product drift, or unsupported conversion language. <br>
-Mitigation: Review final_variants.md against the product truth, data limitations, and guardrails before approving any implementation. <br>
-Risk: The outer experiment loop can lead to production copy or experiment setup changes after approval. <br>
-Mitigation: Keep the default workflow review-only and require explicit human approval before editing product code, wiring experiments, or launching measurement. <br>
+## Use Case:
 
+Growth teams, product managers, and developers use this skill to turn analytics and a product brief into two ranked, review-ready A/B test variants for landing pages, onboarding, or pricing. Live changes require explicit approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dannyshmueli/agent-analytics-autoresearch) <br>
-- [Agent Analytics homepage](https://agentanalytics.sh) <br>
-- [Agent Analytics skills repository](https://github.com/Agent-Analytics/skills) <br>
-- [Autoresearch Growth template](https://github.com/Agent-Analytics/autoresearch-growth) <br>
-- [Regular Agent Analytics skill](https://github.com/Agent-Analytics/skills/tree/main/skills/agent-analytics) <br>
-- [Autoresearch Growth Loop](references/program.md) <br>
-- [Growth Loop Brief template](references/brief-template.md) <br>
-- [Final Variants template](references/final-variants-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and TSV files with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local run artifacts such as brief.md, results.tsv, final_variants.md, and data snapshots; production changes require explicit human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Analytics snapshots may contain sensitive project or user data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege analytics access and review local snapshots before sharing or committing them.
+
+Risk: Proposed copy or an experiment may be inaccurate or change live product behavior.
+
+Mitigation: Review claims and guardrails, and require explicit approval before changing product copy or wiring an experiment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dannyshmueli/skills/agent-analytics-autoresearch)
+- [Autoresearch Growth template](https://github.com/Agent-Analytics/autoresearch-growth)
+- [Agent Analytics](https://agentanalytics.sh)
+- [Agent Analytics skill](https://github.com/Agent-Analytics/skills/tree/main/skills/agent-analytics)
+- [Growth loop reference](references/program.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Code]
+
+**Output Format:** [Markdown variant brief and tab-separated round results; optional implementation after approval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Two ranked variants with exact copy, rationale, risks, experiment shape, and data limitations; no live experiment by default.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "patent-draft-helper",
+  "name": "patent-draft-helper",
   "version": "1.3.0",
-  "publishedAt": 1774374965739
+  "description": "专利文案撰写助手 - 辅助撰写电机/机械领域专利申请书、技术交底书、权利要求书，含完整模板和电机领域实例",
+  "tags": ["专利", "知识产权", "技术交底书", "权利要求书", "电机", "机械", "发明专利"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

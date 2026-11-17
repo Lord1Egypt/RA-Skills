@@ -20,6 +20,15 @@ This skill is for routing video generation questions to the right APIDot docs, e
 
 This release contains only `SKILL.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Browse video-ready models: https://apidot.ai/models
+- Read APIDot API docs: https://apidot.ai/docs
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Run official video examples: https://github.com/APIDotAI/apidot-examples#video-models
+
 ## When To Use
 
 Use this skill when the user asks to:

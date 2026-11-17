@@ -1,41 +1,58 @@
-## Description: <br>
-Compare two local documents and convert differences into LLM-ready Markdown in one synchronous call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two local documents through Calliper and returns their differences as Markdown for review and downstream analysis.
 
-## Publisher: <br>
-[paodingai](https://clawhub.ai/user/paodingai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paodingai](https://clawhub.ai/user/paodingai)
 
-## Use Case: <br>
-Developers and document-review teams use this skill to compare two local PDF, Word, PowerPoint, or image documents through Calliper/PaodingAI and receive a structured Markdown diff for review, extraction, validation, or downstream agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compared documents are uploaded to a configured Calliper/PaodingAI endpoint for processing. <br>
-Mitigation: Use the skill only when remote processing is approved for the documents, especially for confidential or regulated content. <br>
-Risk: The workflow depends on bearer tokens and a configurable routing base URL. <br>
-Mitigation: Store PAODINGAI_API_KEY and CALLIPER_ACCESS_TOKEN as secrets and verify PD_ROUTER_BASE_URL before execution. <br>
+## Use Case:
 
+Developers and document reviewers compare two selected files to review changes, inspect clause differences, or feed structured Markdown differences into follow-up checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paodingai/calliper-compare2markdown) <br>
-- [PaodingAI platform endpoint](https://platform.paodingai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown diff text, optionally written to a file and also printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, a bearer token from PAODINGAI_API_KEY or CALLIPER_ACCESS_TOKEN, and network access to the configured PD Router endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server-resolved release evidence) <br>
+Risk: Selected document contents and filenames are sent to the configured Calliper endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination before use and obtain approval before submitting confidential or regulated documents.
+
+Risk: Overridden endpoint settings can send documents and an API token to an unintended service.
+
+Mitigation: Verify endpoint-related environment variables before running the skill.
+
+Risk: Unreviewed updates may change what code runs locally.
+
+Mitigation: Install a pinned version or reviewed commit when possible.
+
+## Reference(s):
+
+- [Calliper SaaS Markdown on ClawHub](https://clawhub.ai/paodingai/skills/calliper-compare2markdown)
+- [paodingai publisher profile](https://clawhub.ai/user/paodingai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text]
+
+**Output Format:** [Markdown diff table; plain text or JSON if returned by the service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints the result and optionally saves it to a Markdown file.]
+
+## Skill Version(s):
+
+1.4.0 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

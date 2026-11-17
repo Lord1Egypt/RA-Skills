@@ -1,42 +1,51 @@
-## Description: <br>
-Notion API for creating and managing pages, databases, and blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API for creating and managing pages, databases, and blocks.
 
-## Publisher: <br>
-[nhuanlaptrinh](https://clawhub.ai/user/nhuanlaptrinh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhuanlaptrinh](https://clawhub.ai/user/nhuanlaptrinh)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Notion API requests for reading, creating, and updating pages, data sources, and blocks from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Notion integration token can read or change any Notion content shared with that integration. <br>
-Mitigation: Use a dedicated Notion integration, share only required pages or data sources, store the token securely, and rotate it if exposed. <br>
-Risk: POST and PATCH examples can create or update live Notion content. <br>
-Mitigation: Review target IDs and payloads before executing write requests, and test against non-critical pages first. <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents through common Notion API workflows, including creating, reading, updating, and querying pages, data sources, and blocks.
 
-## Reference(s): <br>
-- [Notion API documentation](https://developers.notion.com) <br>
-- [Notion integrations](https://notion.so/my-integrations) <br>
-- [ClawHub skill page](https://clawhub.ai/nhuanlaptrinh/nhuann8n) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with bash curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a NOTION_API_KEY token and access to the target Notion pages or data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill guides agents to use a Notion integration token that can access shared pages and data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token with owner-only permissions, grant the narrowest practical Notion integration permissions, avoid exposing the token in shell history, and revoke or rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nhuanlaptrinh/skills/nhuann8n)
+- [Notion API documentation](https://developers.notion.com)
+- [Notion integrations setup](https://notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion integration token provided through NOTION_API_KEY or an equivalent local secret file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

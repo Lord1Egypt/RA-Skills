@@ -1,43 +1,59 @@
-## Description: <br>
-Hologres privilege management using the PostgreSQL standard authorization model for creating users, granting and revoking schema, table, column, and view privileges, configuring default privileges, diagnosing permission issues, and planning role-based access control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hologres privilege management using the PostgreSQL standard authorization model for creating users, granting and revoking schema, table, column, and view privileges, configuring default privileges, diagnosing permission issues, and planning role-based access control.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Database administrators, data platform engineers, and developers use this skill to manage Hologres Expert Model privileges, prepare GRANT and REVOKE workflows, configure default privileges for future objects, and diagnose permission failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL may change Hologres users, roles, privileges, default privileges, or ownership if executed against the wrong instance, database, schema, role, or user. <br>
-Mitigation: Verify the target instance, database, schema, role, and user before running generated SQL, and require review before write operations. <br>
-Risk: Examples include powerful administrative actions such as SUPERUSER changes, PUBLIC grants, ownership transfer, DROP USER/ROLE, REASSIGN OWNED, ALTER DATABASE, and default-privilege changes. <br>
-Mitigation: Avoid PUBLIC and SUPERUSER unless explicitly intended, and require extra review for ownership transfer, user or role removal, database alteration, and default-privilege changes. <br>
+## Use Case:
 
+Developers, data platform engineers, and database administrators use this skill to manage and audit Hologres Expert Model permissions with PostgreSQL GRANT, REVOKE, role, ownership, and default privilege workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenbingyu/hologres-privileges) <br>
-- [GRANT/REVOKE Complete Syntax Reference](references/grant-revoke-reference.md) <br>
-- [Permission Diagnostic SQL Collection](references/diagnostic-queries.md) <br>
-- [Privilege Management Best Practices](references/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SQL and commands should be reviewed before execution against a Hologres instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence and VERSION file) <br>
+Risk: Privilege-changing SQL examples can grant broad access, alter ownership, or change administrative state if copied into production without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized Hologres administrative accounts, review each command against the intended access boundary, and prefer role-based least-privilege grants.
+
+Risk: Examples involving PUBLIC, SUPERUSER, DROP, OWNER, or ALTER DATABASE can have high operational or security impact.
+
+Mitigation: Require explicit approval and environment-specific scoping before applying these commands.
+
+Risk: The skill depends on hologres-cli for SQL execution.
+
+Mitigation: Install hologres-cli from a trusted, pinned source and verify the target Hologres instance before running write operations.
+
+## Reference(s):
+
+- [GRANT/REVOKE Complete Syntax Reference](references/grant-revoke-reference.md)
+- [Permission Diagnostic SQL Collection](references/diagnostic-queries.md)
+- [Privilege Management Best Practices](references/best-practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance depends on hologres-cli for SQL execution and should be reviewed before applying privilege-changing commands.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

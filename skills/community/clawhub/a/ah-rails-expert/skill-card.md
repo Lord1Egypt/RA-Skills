@@ -1,38 +1,49 @@
-## Description: <br>
-Expert Rails specialist mastering Rails 8.1 with modern conventions, including convention over configuration, Hotwire/Turbo, Action Cable, and rapid application development for elegant, maintainable web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Rails specialist mastering Rails 8.1 with modern conventions, including convention over configuration, Hotwire/Turbo, Action Cable, and rapid application development for elegant, maintainable web applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill for Rails application architecture, implementation, testing, performance tuning, Hotwire integration, background jobs, and deployment-oriented Rails guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rails guidance may propose migrations, package installs, deployment changes, or commands that affect production systems. <br>
-Mitigation: Review generated code and commands before running them, especially for database, deployment, dependency, or production-impacting changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill for Rails application architecture, implementation guidance, testing, performance optimization, Hotwire/Turbo workflows, Action Cable, background jobs, and deployment planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-rails-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and command examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated code, migrations, package installs, deployment changes, and production-impacting commands before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact mixes Rails 8.1 positioning with Rails 7 terminology, which may lead to version-specific guidance that does not fit a target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target application's Rails version and verify generated changes against the matching Rails documentation before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-rails-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Rails project analysis, implementation steps, tests, and deployment recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

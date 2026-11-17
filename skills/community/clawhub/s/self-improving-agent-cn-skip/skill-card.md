@@ -1,43 +1,53 @@
-## Description: <br>
-Records command errors, user corrections, and best practices as local memory so an agent can check prior lessons before repeating work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent record command errors, user corrections, and best practices as long-term memory to reduce repeated mistakes.
 
-## Publisher: <br>
-[a-din](https://clawhub.ai/user/a-din) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-din](https://clawhub.ai/user/a-din)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist local lessons from failed commands, user corrections, and better practices, then check those records before future command execution or workflow decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can influence future agent behavior after the original context is gone. <br>
-Mitigation: Require explicit confirmation before saving memories and periodically review stored records for accuracy, sensitivity, and continued relevance. <br>
-Risk: Automatic writes to AGENTS.md, MEMORY.md, .learnings, or git backups can change project instructions without clear approval. <br>
-Mitigation: Disable automatic instruction-file and backup writes unless a human reviews and approves each proposed change. <br>
-Risk: Stored memories could suggest privileged commands such as sudo retries without enough review. <br>
-Mitigation: Never allow stored memories to trigger sudo or other privileged commands without explicit review at execution time. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture repeated command failures, user preference corrections, and project best practices so future agent runs can consult prior lessons before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a-din/self-improving-agent-cn-skip) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/a-din) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSONL memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local memory files under the user's OpenClaw memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.json, and SKILL.md frontmatter) <br>
+Risk: The skill can store commands, errors, corrections, and preferences across projects, which may retain sensitive or stale information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before saving memories and regularly review or redact memory files.
+
+Risk: The skill describes automatic instruction-file edits and sudo fallback behavior, which can change agent behavior or escalate commands unexpectedly.
+
+Mitigation: Disable automatic sudo fallback and require review before applying memories or editing AGENTS.md or MEMORY.md.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/a-din/skills/self-improving-agent-cn-skip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSONL memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads local memory files under the user's OpenClaw memory directory when its helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

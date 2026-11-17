@@ -1,45 +1,60 @@
-## Description: <br>
-Authenticate sudo and macOS system prompts using your phone's biometric (Face ID/fingerprint) instead of typing passwords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authenticate sudo and macOS system prompts using your phone's biometric (Face ID/fingerprint) instead of typing passwords.
 
-## Publisher: <br>
-[hmakt99](https://clawhub.ai/user/hmakt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hmakt99](https://clawhub.ai/user/hmakt99)
 
-## Use Case: <br>
-External users and developers use this skill to install, configure, test, and operate TouchBridge so macOS sudo and system authentication prompts can be approved from a phone, watch, browser, or terminal instead of a typed password. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides installation of third-party software into the macOS sudo and authentication path. <br>
-Mitigation: Install only when the project and package provenance are intentionally trusted, and confirm how to restore the original PAM configuration before relying on it. <br>
-Risk: Simulator mode auto-approves authentication and is not suitable for real security use. <br>
-Mitigation: Use simulator mode only in controlled testing, then switch to paired-device production approval for normal use. <br>
-Risk: Browser URL approval may be less controlled than paired-device approval. <br>
-Mitigation: Prefer paired-device production approval over browser URL approval where possible. <br>
+## Use Case:
 
+Mac users and developers use this skill to install, configure, test, and operate TouchBridge so sudo and macOS authentication prompts can be approved from a phone biometric workflow while preserving password fallback.
 
-## Reference(s): <br>
-- [TouchBridge setup reference](references/setup.md) <br>
-- [TouchBridge project homepage](https://github.com/HMAKT99/UnTouchID) <br>
-- [Install TouchBridge package](https://github.com/HMAKT99/UnTouchID/releases/download/v0.1.0-alpha/TouchBridge-0.1.0.pkg) <br>
-- [ClawHub skill page](https://clawhub.ai/hmakt99/touchbridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the touchbridged and touchbridge-test binaries for the documented workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to install and run unverified code in the macOS sudo/PAM authentication path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package and source independently, inspect privileged install scripts before running them, and keep a tested rollback path for PAM changes.
+
+Risk: Simulator mode auto-approves authentication and is documented as a test mode.
+
+Mitigation: Use simulator mode only on test systems, and switch to phone-based approval before relying on TouchBridge for real authentication.
+
+Risk: Remote GitHub installer or source content is referenced without verification by the skill.
+
+Mitigation: Confirm the release source, checksum, and installation contents before installing or building from source.
+
+## Reference(s):
+
+- [TouchBridge Setup Reference](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/hmakt99/skills/touchbridge)
+- [TouchBridge Package Installer](https://github.com/HMAKT99/UnTouchID/releases/download/v0.1.0-alpha/TouchBridge-0.1.0.pkg)
+- [TouchBridge Project Homepage](https://github.com/HMAKT99/UnTouchID)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TouchBridge command-line binaries touchbridged and touchbridge-test for local execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

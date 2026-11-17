@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent route x402-enabled API requests through the Obul proxy with authentication guidance, health checks, and automatic payment negotiation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obul Proxy (x402) helps agents route requests through Obul to call x402-enabled APIs while Obul handles payment negotiation automatically.
 
-## Publisher: <br>
-[notbdu](https://clawhub.ai/user/notbdu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[notbdu](https://clawhub.ai/user/notbdu)
 
-## Use Case: <br>
-Developers and agents use this skill to proxy x402-enabled HTTP requests through Obul with an OBUL_API_KEY, check proxy health, and understand error handling for paid upstream endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send arbitrary requests through a paid third-party proxy, which may expose sensitive request data or incur unexpected charges. <br>
-Mitigation: Confirm the destination endpoint, expected price, and request contents before use; prefer scoped API keys and account spending limits when available. <br>
-Risk: Exposure of OBUL_API_KEY could allow unauthorized proxy usage. <br>
-Mitigation: Store the key in an environment variable, keep it out of logs and client-side code, and rotate or scope the key according to Obul account controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Obul homepage](https://obul.ai) <br>
-- [Obul proxy health endpoint](https://proxy.obul.ai/healthz) <br>
+## Use Case:
 
+Developers and agents use this skill to construct authenticated Obul proxy requests, check proxy health, and troubleshoot x402 payment-related responses for upstream API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OBUL_API_KEY and may send requests through a paid third-party proxy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Open-ended proxy requests can reach arbitrary upstream services and may incur variable x402 charges.
+
+Mitigation: Approve the upstream URL and expected cost before use, and restrict use to intended x402 API calls.
+
+Risk: The skill requires an Obul API key for billable proxy calls.
+
+Mitigation: Store OBUL_API_KEY in an environment variable, avoid logging it, and do not expose it in client-side code.
+
+Risk: Sensitive data sent through unknown upstream services may leave the user's control.
+
+Mitigation: Review request payloads and avoid sending secrets or sensitive data to untrusted upstream endpoints.
+
+## Reference(s):
+
+- [Obul homepage](https://obul.ai)
+- [Obul proxy health endpoint](https://proxy.obul.ai/healthz)
+- [ClawHub skill listing](https://clawhub.ai/notbdu/skills/obul-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OBUL_API_KEY; proxied requests may incur upstream x402 charges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

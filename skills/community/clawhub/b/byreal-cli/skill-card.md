@@ -1,44 +1,60 @@
-## Description: <br>
-Byreal Cli helps agents use the Byreal Solana DEX CLI to query pools, tokens, TVL, APR, k-line charts, farmer rankings, launchpad projects, and DeFi position statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byreal DEX (Solana) data & analytics CLI: query pools, tokens, TVL, APR, k-line charts, farmer rankings, launchpad projects, and DeFi position stats.
 
-## Publisher: <br>
-[ggg223399](https://clawhub.ai/user/ggg223399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggg223399](https://clawhub.ai/user/ggg223399)
 
-## Use Case: <br>
-External developers and agents use this skill to discover and invoke Byreal CLI commands for Solana DEX analytics. The skill is also used to keep wallet setup and confirmed write actions inside the CLI's own interactive flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is framed as analytics-focused, but the documented CLI can perform wallet-backed write actions that may affect funds. <br>
-Mitigation: Use read-only analytics by default; for write actions, run dry-run first, inspect the output, and require explicit user approval before using --confirm. <br>
-Risk: Wallet setup could expose sensitive credentials if handled through chat. <br>
-Mitigation: Do not ask users to paste private keys; direct users to the interactive byreal-cli setup flow. <br>
-Risk: The CLI self-update path may introduce unreviewed behavior in sensitive environments. <br>
-Mitigation: Avoid self-update in sensitive environments unless the target release has been reviewed or is otherwise trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to query Byreal DEX analytics, inspect Solana pool and token data, and prepare wallet-backed actions through the Byreal CLI when explicitly needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ggg223399/byreal-cli) <br>
-- [Byreal CLI Homepage](https://github.com/byreal-git/byreal-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/ggg223399) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to CLI-rendered tables, charts, and JSON output from byreal-cli.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.7 (source: server release evidence) <br>
+Risk: The skill installs and updates an unpinned global CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted @byreal-io/byreal-cli release channel, prefer pinning or reviewing the CLI version, and avoid running self-updates blindly.
+
+Risk: The CLI can perform wallet-backed write operations.
+
+Mitigation: Use dry-run previews before confirmation and verify every wallet operation, recipient, amount, and slippage before execution.
+
+Risk: Wallet credentials may be mishandled if collected outside the CLI flow.
+
+Mitigation: Do not ask users to paste private keys in chat; direct wallet setup through the interactive byreal-cli setup flow.
+
+## Reference(s):
+
+- [Byreal CLI GitHub repository](https://github.com/byreal-git/byreal-cli)
+- [Byreal CLI package](npm:@byreal-io/byreal-cli)
+- [ClawHub skill page](https://clawhub.ai/ggg223399/skills/byreal-cli)
+- [Publisher profile](https://clawhub.ai/user/ggg223399)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves full on-chain identifiers and relies on the CLI's native tables and charts for user-facing output.]
+
+## Skill Version(s):
+
+0.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,60 @@
-## Description: <br>
-Remotely install and configure Claude Code CLI on a target machine via SSH. Requires the user to explicitly provide a target address (user@host) and password. The skill never stores, logs, or transmits credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remotely install and configure Claude Code CLI on a target machine via SSH. Requires the user to explicitly provide a target address (user@host) and password. The skill never stores, logs, or transmits credentials.
 
-## Publisher: <br>
-[lingmaker9](https://clawhub.ai/user/lingmaker9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingmaker9](https://clawhub.ai/user/lingmaker9)
 
-## Use Case: <br>
-Developers and operators use this skill to remotely install Claude Code CLI on a Linux target machine over SSH after the user supplies an explicit target address and password. It guides dependency checks, package installation, npm registry configuration, Claude Code installation, onboarding configuration, and manual API-key setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run high-impact SSH commands and privileged dependency installation on a remote machine. <br>
-Mitigation: Use it only on machines you control, review each command before execution, and require explicit confirmation before any sudo action. <br>
-Risk: The dependency path can execute a downloaded setup script with sudo and change npm package-source settings. <br>
-Mitigation: Confirm the setup script, registry, mirror choices, and package version against trusted sources before installation. <br>
-Risk: The skill modifies Claude configuration by setting the onboarding flag in the target user's home directory. <br>
-Mitigation: Review or back up any existing Claude configuration before writing changes, especially on shared or production accounts. <br>
-Risk: The workflow relies on a user-provided SSH password for the remote session. <br>
-Mitigation: Provide credentials only for the current session, avoid logging or storing them, and prefer a controlled account with the minimum required privileges. <br>
-Risk: The API-key setup guidance includes a placeholder package-source choice. <br>
-Mitigation: Replace placeholder API-key setup and package-source choices with trusted, organization-approved instructions before use. <br>
+## Use Case:
 
+Developers and operators use this skill to install Claude Code CLI on a Linux machine over SSH after explicitly providing the target address and password. The skill checks dependencies, configures the npm registry, installs Claude Code, updates the onboarding flag, and leaves API key configuration to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingmaker9/claude-installer) <br>
-- [Server-resolved source repository](https://github.com/LingMaker9/claude-installer) <br>
-- [NodeSource Node.js setup script referenced by the skill](https://deb.nodesource.com/setup_20.x) <br>
-- [npm mirror registry referenced by the skill](https://registry.npmmirror.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and step-by-step operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an explicit SSH target address and password; stops for missing inputs, unsupported targets, sudo confirmation, or unexpected states.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Privileged remote dependency installation can alter a target machine or run installer setup steps with elevated permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on machines you control, avoid the `curl | sudo bash` dependency step, require explicit approval before sudo use, and review the exact commands before execution.
+
+Risk: Installing an unpinned Claude Code package or relying on an unintended npm registry can introduce supply-chain uncertainty.
+
+Mitigation: Pin or confirm the Claude Code package version and choose the npm registry explicitly before installation.
+
+Risk: The skill modifies `~/.claude.json`, which can change persistent Claude Code configuration on the target machine.
+
+Mitigation: Back up or explicitly approve changes to `~/.claude.json` before the onboarding flag is updated.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/LingMaker9/claude-installer)
+- [ClawHub skill page](https://clawhub.ai/lingmaker9/skills/claude-installer)
+- [NodeSource Node.js setup source](https://deb.nodesource.com/setup_20.x)
+- [npmmirror registry](https://registry.npmmirror.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit SSH target and password before remote commands are proposed or executed.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Helps audit transitive skill dependency chains in agent compositions, catching risks where a direct dependency appears safe but a deeper dependency introduces vulnerability into the full chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps audit transitive skill dependency chains in agent compositions, catching cases where indirect dependencies introduce vulnerabilities that propagate through the chain.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use this skill to audit full skill dependency graphs for transitive dependency risk, trust decay, version pinning gaps, graph anomalies, and undeclared capability propagation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use network lookups and process provided skill identifiers or installed skill lists. <br>
-Mitigation: Use it as an advisory audit aid, review any network lookup targets before execution, and avoid providing sensitive private inventory data unless the execution environment is trusted. <br>
-Risk: Incomplete or inaccurate dependency metadata can produce incomplete dependency graphs. <br>
-Mitigation: Confirm dependency declarations and registry metadata before relying on the chain integrity verdict for deployment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skill-dependency-chain-auditor) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit an agent skill's direct and transitive dependencies, assess trust gradients and version pinning, identify graph anomalies, and summarize dependency-chain risk.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a transitive dependency inventory, trust gradient analysis, version pinning assessment, graph anomaly findings, aggregated capability surface, chain integrity verdict, and recommended actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Audit results can be incomplete when dependency metadata is missing, inaccurate, or unavailable across the full transitive chain.
+
+Mitigation: Confirm dependency declarations and registry metadata before relying on the audit verdict for deployment decisions.
+
+Risk: The skill may guide use of dependency metadata or registries during an audit, even though the artifact itself has no executable behavior.
+
+Mitigation: Review proposed data sources and commands before use, and limit registry access to approved environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/skill-dependency-chain-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report may include dependency inventory, trust-gradient analysis, version-pinning assessment, graph anomalies, capability aggregation, a chain integrity verdict, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

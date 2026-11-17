@@ -1,45 +1,53 @@
-## Description: <br>
-Cron Sentinel helps agents wrap scheduled commands so each run is recorded, retried when configured, and checked for failed or overdue executions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors recurring jobs for failures and missed runs, with optional retries and guidance for setting up alerts.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to monitor recurring cron or scheduled jobs by wrapping commands, recording recent run state, and surfacing loud failures or silent missed runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wrapped commands run through the local shell and can perform whatever action the provided command performs. <br>
-Mitigation: Use the skill only for commands the user explicitly chooses and review generated shell or crontab commands before running them. <br>
-Risk: Recent command output is recorded locally and may include secrets if the wrapped job prints credentials or tokens. <br>
-Mitigation: Avoid wrapping commands that print secrets, redirect sensitive output away from Sentinel, and protect the state file location. <br>
-Risk: Command output shown in logs or status views may be unsafe to inspect if the wrapped command is untrusted. <br>
-Mitigation: Avoid untrusted wrapped commands or review logs in a safe viewer until output sanitization is added. <br>
+## Use Case:
 
+Developers and operators use this skill to detect failed or overdue scheduled jobs and set up a watchdog that can trigger their chosen alerting channel.
 
-## Reference(s): <br>
-- [Cron Sentinel ClawHub release page](https://clawhub.ai/chris-openclaw/cron-sentinel) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include crontab entries, watchdog commands, status interpretation, and retry or timeout settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Generated crontab lines may schedule commands or alerts differently than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated lines before adding them to the scheduler.
+
+Risk: Captured job output may contain credentials or other sensitive data despite best-effort redaction.
+
+Mitigation: Use --no-output-tail for jobs that may print sensitive information.
+
+## Reference(s):
+
+- [Cron Sentinel on ClawHub](https://clawhub.ai/chris/skills/cron-sentinel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with shell snippets and human-readable job status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated crontab entries require user review and installation; watchdog checks can exit non-zero to signal unhealthy jobs.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, changelog, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

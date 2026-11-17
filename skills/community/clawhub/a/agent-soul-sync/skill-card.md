@@ -1,44 +1,59 @@
-## Description: <br>
-Syncs user-selected local OpenClaw skills to a remote NanoClaw agent on Mysta over HTTPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync local OpenClaw skills to a remote NanoClaw agent on Mysta by listing agents and uploading selected local SKILL.md file contents through the Mysta MCP server.
 
-## Publisher: <br>
-[hongyegong](https://clawhub.ai/user/hongyegong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongyegong](https://clawhub.ai/user/hongyegong)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to select local skills and upload their SKILL.md contents to a Mysta NanoClaw cloud agent so those skills are available remotely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local SKILL.md files may contain private instructions, credentials, or other sensitive content before upload. <br>
-Mitigation: Review the selected SKILL.md files before syncing and avoid choosing all when any local skill may contain sensitive data. <br>
-Risk: The workflow uses a Mysta API key and sends requests to a remote MCP endpoint. <br>
-Mitigation: Use a revocable scoped API key when available, keep it in MYSTA_API_KEY, and verify the MCP URL is a Mysta endpoint before connecting. <br>
-Risk: Uploading to the wrong agent can make skills available in an unintended remote environment. <br>
-Mitigation: Confirm the target agent with the user before upload and require explicit consent before opening a browser, connecting to Mysta, or uploading files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make local OpenClaw skills available on a Mysta-hosted NanoClaw agent. It helps them authenticate, choose a target agent, select local skills, and upload those skills for remote use.
 
-## Reference(s): <br>
-- [Agent Soul Sync on ClawHub](https://clawhub.ai/hongyegong/agent-soul-sync) <br>
-- [Mysta app](https://app.staging.mysta.tech) <br>
-- [Mysta API keys](https://app.staging.mysta.tech/en/profile#api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, MYSTA_API_KEY, a selected Mysta agent, and user-selected local SKILL.md files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release and SKILL.md metadata) <br>
+Risk: A configurable Mysta MCP server URL can receive the user's Mysta API key and selected skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MYSTA_MCP_URL unset unless intentionally using a trusted Mysta environment, and use a limited API key that can be revoked.
+
+Risk: Uploaded SKILL.md files may contain secrets, private prompts, or other sensitive content and synced skills persist remotely.
+
+Mitigation: Review selected skill files before syncing and confirm that the remote copy should persist before upload.
+
+Risk: Uploading a skill with the same name overwrites the remote copy.
+
+Mitigation: Confirm the selected agent and skill names before syncing, especially when using batch upload.
+
+## Reference(s):
+
+- [Agent Soul Sync on ClawHub](https://clawhub.ai/hongyegong/skills/agent-soul-sync)
+- [Mysta application](https://app.staging.mysta.tech)
+- [Mysta API keys](https://app.staging.mysta.tech/en/profile#api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, MYSTA_API_KEY, and user consent before browser opening, API connection, or uploads.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

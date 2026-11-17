@@ -1,43 +1,54 @@
-## Description: <br>
-Fetches public WeChat article pages and converts them into Obsidian-compatible Markdown, with optional image downloads and formatting cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章抓取工具。将微信文章转换为 Obsidian 兼容的 Markdown 格式，支持图片下载、智能格式识别（代码块/列表/引用）。
 
-## Publisher: <br>
-[kuiilabs](https://clawhub.ai/user/kuiilabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuiilabs](https://clawhub.ai/user/kuiilabs)
 
-## Use Case: <br>
-Developers, researchers, and knowledge-base users use this skill to save public WeChat articles into local Obsidian-compatible Markdown files, including article metadata and optional local image assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided WeChat pages and images over the network. <br>
-Mitigation: Install and run it only when that network access is expected, and use --no-images if local asset downloads are not needed. <br>
-Risk: The skill writes Markdown and image files into a local Obsidian output directory. <br>
-Mitigation: Run it first against a dedicated output directory and review generated files before moving them into a primary knowledge base. <br>
-Risk: Articles with the same cleaned title can overwrite existing output. <br>
-Mitigation: Check the destination folder for same-title articles or use a separate output directory for each batch. <br>
+## Use Case:
 
+External users and developers use this skill to save public WeChat article links into local Obsidian-compatible Markdown notes. It can process one or more article URLs, optionally download images, and generate Markdown with frontmatter, source links, and capture timestamps.
 
-## Reference(s): <br>
-- [WeChat Saver Usage Guide](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kuiilabs/wechat-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, local image files, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can process one or more user-provided WeChat article URLs; images can be skipped with --no-images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can fetch arbitrary article and embedded image URLs and write downloaded content into local notes without strong URL, domain, size, or path validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only trusted links, choose an explicit output directory, and prefer --no-images for untrusted articles until stronger validation and limits are added.
+
+Risk: Dependency installation examples include --break-system-packages, which can alter the system Python environment.
+
+Mitigation: Install dependencies in a dedicated virtual environment and avoid --break-system-packages unless the environment is disposable.
+
+## Reference(s):
+
+- [WeChat Saver Usage Guide](references/usage.md)
+- [ClawHub skill page](https://clawhub.ai/kuiilabs/skills/wechat-saver)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter, relative image links, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes converted articles to a local output directory and may write downloaded images to an images subdirectory.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

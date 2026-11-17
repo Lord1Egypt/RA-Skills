@@ -1,44 +1,57 @@
-## Description: <br>
-Reviews CloudKit code for container setup, record handling, subscriptions, and sharing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews CloudKit code for container setup, record handling, subscriptions, and sharing patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Swift CloudKit code for container configuration, record handling, subscriptions, sharing, and release-readiness issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan summary says the unpacked target artifact was not clearly available for direct review. <br>
-Mitigation: Review the installed skill files at install time and confirm that any requested local or account access matches expected behavior. <br>
-Risk: CloudKit review findings can be misleading if based on isolated snippets or unverified deployment assumptions. <br>
-Mitigation: Apply the skill's hard gates: cite a current file and line, read the full surrounding unit, inspect concrete CloudKit or deployment artifacts when required, and downgrade unsupported claims to review questions. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Swift CloudKit integrations for common correctness, deployment, synchronization, sharing, and error-handling issues.
 
-## Reference(s): <br>
-- [CloudKit Container Setup](artifact/references/container-setup.md) <br>
-- [CloudKit Records](artifact/references/records.md) <br>
-- [CloudKit Subscriptions](artifact/references/subscriptions.md) <br>
-- [CloudKit Sharing](artifact/references/sharing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/cloudkit-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings with file and line references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to use [FILE:LINE] ISSUE_TITLE and include review questions when evidence is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill depends on an unbundled sibling review-verification-protocol file that can affect whether findings are reported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that protocol is trusted, bundled with the release, or pinned to a reviewed version.
+
+Risk: Review findings may be changed or suppressed if the external protocol changes without visibility.
+
+Mitigation: Review the protocol alongside this skill before relying on the skill for CloudKit code-review decisions.
+
+## Reference(s):
+
+- [CloudKit Container Setup](references/container-setup.md)
+- [CloudKit Records](references/records.md)
+- [CloudKit Sharing](references/sharing.md)
+- [CloudKit Subscriptions](references/subscriptions.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/cloudkit-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown issue reports using [FILE:LINE] ISSUE_TITLE entries, review questions, and concise supporting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are expected to satisfy location, scope, CloudKit artifact, and review protocol gates before reporting.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

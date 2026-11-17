@@ -1,46 +1,58 @@
-## Description: <br>
-Turn briefs, mockups, and product context into Stitch UI screens, design variants, Tailwind-friendly HTML, and screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn briefs, mockups, and product context into Stitch UI screens, design variants, Tailwind-friendly HTML, and screenshots.
 
-## Publisher: <br>
-[yshishenya](https://clawhub.ai/user/yshishenya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshishenya](https://clawhub.ai/user/yshishenya)
 
-## Use Case: <br>
-Designers, developers, and product teams use StitchFlow to turn natural-language briefs, product context, or existing UI direction into Stitch-generated screens, variants, Tailwind-friendly HTML, screenshots, and local review artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Stitch tooling and depends on a configured Stitch API key. <br>
-Mitigation: Review the stitch-starter toolkit and installer before setup, use a scoped Stitch API key when possible, and never expose STITCH_API_KEY or .env contents. <br>
-Risk: Briefs, mockups, private code, or inspected UI context may be shared through Stitch during generation or editing. <br>
-Mitigation: Avoid confidential briefs or private code unless sharing that context through Stitch is acceptable for the project. <br>
-Risk: Saved runs and latest-screen state can carry project context between sessions. <br>
-Mitigation: Clear or check the saved runs/latest-screen state when switching projects. <br>
+## Use Case:
 
+Designers, developers, and product teams use StitchFlow to turn briefs, mockups, and existing product context into Stitch screen generations, targeted edits, visual variants, and local review artifacts.
 
-## Reference(s): <br>
-- [StitchFlow ClawHub Page](https://clawhub.ai/yshishenya/stitchflow) <br>
-- [Publisher Profile](https://clawhub.ai/user/yshishenya) <br>
-- [Project Homepage](https://github.com/yshishenya/stitchflow) <br>
-- [Local CLI Usage](references/cli-usage.md) <br>
-- [Prompt Keywords](references/prompt-keywords.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command summaries, artifact paths, design assessment, and references to generated HTML and image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local Stitch run outputs including result JSON, HTML, screenshots, URL text files, and latest-screen state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Design briefs and product context may be sent through the local Stitch toolkit/API and saved under the toolkit runs directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, avoid sensitive prompt content, and review saved artifacts before sharing.
+
+Risk: Broad implicit activation and shell-command templates can carry user-derived prompt text or ids without clear safety boundaries.
+
+Mitigation: Use explicit invocation, avoid untrusted prompt or id text, and prefer launchers that pass arguments without shell interpolation or that support prompt files and strict id validation.
+
+## Reference(s):
+
+- [StitchFlow homepage](https://github.com/yshishenya/stitchflow)
+- [Local CLI Usage](references/cli-usage.md)
+- [Prompt Keywords](references/prompt-keywords.md)
+- [Text-to-Design Workflow](workflows/text-to-design.md)
+- [Edit-Design Workflow](workflows/edit-design.md)
+- [Variants Workflow](workflows/variants.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, generated HTML, screenshots, JSON result files, and local artifact paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22+, STITCH_API_KEY, and the local stitch-starter toolkit; outputs are saved under the toolkit runs directory.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

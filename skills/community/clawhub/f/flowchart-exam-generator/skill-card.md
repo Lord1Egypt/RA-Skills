@@ -1,43 +1,52 @@
-## Description: <br>
-Generates Chinese single-choice and multiple-choice exam questions from an uploaded flowchart and exports them as a structured Excel question bank. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flowchart Exam Generator analyzes uploaded flowchart images and produces single-choice and multiple-choice exam questions for process-knowledge checks.
 
-## Publisher: <br>
-[geming416684729-svg](https://clawhub.ai/user/geming416684729-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[geming416684729-svg](https://clawhub.ai/user/geming416684729-svg)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, trainers, and operations teams use this skill to convert readable process flowcharts into standardized exam-question spreadsheets. It is suited for creating single-choice and multiple-choice checks that include options, numeric answer keys, explanations, and source-flow references.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated spreadsheets may be unsafe when source flowchart text comes from untrusted people or contains formula-like content.
+
+Mitigation: Treat generated spreadsheets as untrusted, open them with external links and active content disabled, and sanitize formula-like input before sharing.
+
+Risk: Unclear flowchart images or incomplete extraction can produce inaccurate questions, answers, or explanations.
+
+Mitigation: Review the extracted flow steps and generated answer key against the original flowchart before using the exam.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, educators, and training-content authors use this skill to turn flowchart images into review-ready exam questions with answers, explanations, and source labels. It is suited for generating “应知应会” question banks from operational process diagrams. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Files, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated questions or explanations may misread unclear flowchart content. <br>
-Mitigation: Review the generated question bank against the source flowchart before sharing or importing it into training systems. <br>
-Risk: The Excel output path determines where generated files are written. <br>
-Mitigation: Choose the output filename and directory intentionally, especially when running in shared workspaces. <br>
-Risk: The helper script depends on the local Python package environment. <br>
-Mitigation: Run it in a trusted Python environment with the expected openpyxl dependency installed. <br>
+**Output Format:** [Chinese exam-question content and Excel spreadsheet files (.xlsx)]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geming416684729-svg/flowchart-exam-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/geming416684729-svg) <br>
+**Other Properties Related to Output:** [Produces four-option questions with numeric answer keys, explanations, and flowchart source labels.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Excel workbook with generated exam questions, answers, explanations, and source labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses four options per question and numeric answer encoding where A=1, B=2, C=3, and D=4.] <br>
+1.0.0 (source: release metadata and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

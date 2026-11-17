@@ -1,43 +1,58 @@
-## Description: <br>
-Revenue Tracker (Tianyi) helps agents track local income, expenses, task pricing, and daily, weekly, and monthly financial reports without external data sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks income, expenses, task pricing, and daily, weekly, and monthly financial reports for local revenue management workflows.
 
-## Publisher: <br>
-[fffdz](https://clawhub.ai/user/fffdz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[fffdz](https://clawhub.ai/user/fffdz)
 
-## Use Case: <br>
-Freelancers and developers use this skill to record revenue and expenses, estimate service pricing, monitor budgets, and generate local financial reports for ClawHub or OpenClaw-related work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local income, expense, budget, and pricing information that may be sensitive. <br>
-Mitigation: Keep finance logs and reports in a reviewed local location, and do not provide unrelated account credentials or sensitive files. <br>
-Risk: Incorrect transaction entries, platform fees, budgets, or pricing suggestions could lead to misleading financial reports or quotes. <br>
-Mitigation: Keep transaction creation user-directed and review amounts, fees, budget thresholds, and generated reports before relying on them. <br>
+## Use Case:
 
+Independent operators and agent users use this skill to record revenue and expenses, calculate task prices, monitor budgets, and generate recurring financial summaries. It is intended for local financial tracking and pricing guidance rather than accounting-system integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fffdz/tianyi-revenue-tracker) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command examples, configuration snippets, and financial report templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for local financial tracking and pricing workflows; users should review generated records and reports before acting on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, README changelog) <br>
+Risk: Private financial details may be entered into model-assisted pricing or reporting workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where OpenClaw model calls are processed before entering private financial data, and disable automatic model invocation when local-only handling is required.
+
+Risk: The published artifact references PowerShell scripts that are not included in the inspected package.
+
+Mitigation: Verify the installed package contains the expected scripts before relying on command examples or automated log/report generation.
+
+Risk: Pricing and report outputs may be incomplete or misleading if source transactions are missing or incorrectly categorized.
+
+Mitigation: Review generated logs, pricing recommendations, and reports before using them for client quotes or financial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fffdz/skills/tianyi-revenue-tracker)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with PowerShell command examples, financial log entries, pricing suggestions, and report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local finance logs and reports when the referenced supporting scripts are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/SKILL.md clawdbot.version, artifact/README.md changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

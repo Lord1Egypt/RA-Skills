@@ -1,40 +1,52 @@
-## Description: <br>
-PKU Info Common guides agents working with the shared info-common crate for IAAA authentication, OTP, session persistence, credential resolution, and QR rendering across PKU CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PKU Info Common guides agents working on the info-common shared authentication crate for PKU CLI tools, including IAAA login, OTP, credential resolution, session persistence, cookie storage, and QR rendering.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wjsoj](https://clawhub.ai/user/wjsoj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill when maintaining or extending the PKU info-common authentication crate and related PKU CLI tools. It helps with shared IAAA authentication, OTP handling, credential and keyring integration, session persistence, cookie storage, and QR-code login behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Credential and SMS-code values may be exposed if placed in broad shell environments.
+
+Mitigation: Prefer OS keyring or interactive prompts, and scope PKU_PASSWORD or PKU_SMS_CODE to the narrow operation that needs them.
+
+Risk: Guidance may affect session, cookie, and authentication behavior for PKU CLI tools.
+
+Mitigation: Review changes in the intended PKU info-common context before applying them, and do not write passwords to disk.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents working on PKU IAAA-based CLI tools use this skill to understand and modify shared authentication, OTP, session storage, credential resolution, and QR-code workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may expose PKU login credentials, SMS codes, sessions, cookies, keyring entries, or campus-card/payment QR codes. <br>
-Mitigation: Use it only for explicitly PKU-related tasks and confirm the user is comfortable before allowing an agent to log in, reuse sessions, read keyring entries, set SMS codes, or display payment QR codes. <br>
-Risk: Authentication material can be mishandled if passwords are passed through commands or written into project files. <br>
-Mitigation: Prefer OS keyring or environment-variable credential resolution and do not pass passwords as CLI arguments or store them in repository files. <br>
+**Output Format:** [Markdown guidance with code identifiers, shell command examples, and configuration notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [PKU Info Common on ClawHub](https://clawhub.ai/wjsoj/pku-info-common) <br>
+**Other Properties Related to Output:** [May reference PKU credential, session, cookie, keyring, and SMS-code handling; avoid exposing passwords or SMS codes in generated commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference PKU credential, session, keyring, environment variable, and QR-code workflows.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release; SKILL.md frontmatter lists 2.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

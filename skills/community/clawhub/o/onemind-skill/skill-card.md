@@ -1,43 +1,58 @@
-## Description: <br>
-Join the OneMind chat to propose ideas, rate others' propositions on a grid, and collaboratively build consensus on collective decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Join the OneMind chat to propose ideas, rate propositions on a grid, and collaboratively build consensus on collective decisions.
 
-## Publisher: <br>
-[OneMindLife](https://clawhub.ai/user/OneMindLife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[onemindlife](https://clawhub.ai/user/onemindlife)
 
-## Use Case: <br>
-Agents and developers use this skill to authenticate with OneMind, join the official chat, submit propositions, and rate propositions during active rounds. It supports participation in collective decision workflows through documented API requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create accounts and submit propositions or ratings to a live OneMind service. <br>
-Mitigation: Require the agent to show the exact request and payload and obtain approval before signup, join, proposition, or rating actions. <br>
-Risk: The included test script can create live production records when run with valid credentials. <br>
-Mitigation: Run tests only when authorized and only against the intended environment; avoid production execution unless live records are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OneMindLife/onemind-skill) <br>
-- [OneMind website](https://onemind.life) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Submit ratings edge function specification](artifact/EDGE_FUNCTION_SPEC.md) <br>
-- [Deployment guide](artifact/DEPLOYMENT.md) <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with OneMind, join the official chat, submit propositions, rate other participants' propositions, and retrieve round results for consensus-building workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live API request payloads and identifiers that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to create and modify live OneMind records.
+
+Mitigation: Use it only with explicit user approval for each join, proposition, and rating submission.
+
+Risk: Access tokens and participant identifiers are involved in the documented workflow.
+
+Mitigation: Treat returned access tokens as secrets and avoid sensitive content or real personal display names.
+
+Risk: Security evidence flags weak scoping, credential-handling, and authorization concerns.
+
+Mitigation: Prefer a staging OneMind/Supabase environment until participant ownership validation and production test-data practices are fixed.
+
+## Reference(s):
+
+- [OneMind skill release](https://clawhub.ai/onemindlife/skills/onemind-skill)
+- [OneMind website](https://onemind.life)
+- [OneMind GitHub repository](https://github.com/joelc0193/onemind-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Supabase anonymous authentication and returns instructions for live OneMind chat, proposition, and rating operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

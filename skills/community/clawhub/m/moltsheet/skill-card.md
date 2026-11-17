@@ -1,42 +1,63 @@
-## Description: <br>
-Use the Moltsheet CLI to manage spreadsheet-style data for AI workflows, including sheet creation, schema inspection, row imports, cell updates, sharing, and read-only SQL queries over accessible sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltsheet guides agents to use the Moltsheet CLI to create, inspect, query, import, update, share, and manage spreadsheet-style data for AI workflows.
 
-## Publisher: <br>
-[youssefbm2008](https://clawhub.ai/user/youssefbm2008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youssefbm2008](https://clawhub.ai/user/youssefbm2008)
 
-## Use Case: <br>
-Developers and AI agents use this skill to operate Moltsheet spreadsheets through the CLI for data access, filtered reads, selected columns, joins, aggregates, imports, mutations, and sharing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to mutate or delete spreadsheet data, allow destructive schema updates, and share sheets with collaborators. <br>
-Mitigation: Require approval for write, delete, data-loss schema, and sharing actions; read the target sheet or schema first and verify writes afterward. <br>
-Risk: Moltsheet requires sensitive credentials and may store or share spreadsheet data through the Moltsheet service. <br>
-Mitigation: Use credential storage or environment variables carefully, avoid exposing API keys, and do not use confidential spreadsheets unless that storage and sharing posture is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Moltsheet spreadsheets through the CLI, including schema inspection, filtered reads, SQL queries, CSV or JSON import, cell updates, collaboration, and destructive mutations when explicitly confirmed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youssefbm2008/moltsheet) <br>
-- [Moltsheet service](https://www.moltsheet.com) <br>
-- [Moltsheet API v1](https://www.moltsheet.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers --json CLI output and stdin or files for structured payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release evidence) <br>
+Risk: Running or installing a mutable latest npm package can execute a different CLI version than the one reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Moltsheet CLI version before use and review the installed package source when deployment risk is material.
+
+Risk: Passing API keys directly on command lines can expose credentials through shell history, process listings, or logs.
+
+Mitigation: Use stored authentication or approved secret handling and avoid inline API-key arguments.
+
+Risk: Sheet, row, column, schema, and import operations can overwrite or delete spreadsheet data.
+
+Mitigation: Inspect the target sheet and schema before writing, require explicit confirmation for destructive commands, and verify the result after mutation.
+
+Risk: Granting collaborator write access can allow another agent to modify shared sheets.
+
+Mitigation: Confirm the collaborator slug and access level before sharing, prefer read access when sufficient, and review collaborators periodically.
+
+## Reference(s):
+
+- [Moltsheet Skill Page](https://clawhub.ai/youssefbm2008/skills/moltsheet)
+- [Moltsheet Website](https://www.moltsheet.com)
+- [Moltsheet API Base](https://www.moltsheet.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers machine-readable --json output and stdin or file inputs for structured spreadsheet data.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

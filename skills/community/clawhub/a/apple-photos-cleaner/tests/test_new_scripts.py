@@ -39,7 +39,8 @@ def create_full_test_db():
             ZAVALANCHEKIND INTEGER DEFAULT 0,
             ZAVALANCHEPICKTYPE INTEGER,
             ZDUPLICATEASSETVISIBILITYSTATE INTEGER DEFAULT 0,
-            ZUNIFORMTYPEIDENTIFIER TEXT
+            ZUNIFORMTYPEIDENTIFIER TEXT,
+            ZUUID TEXT
         )
     """)
 
@@ -108,8 +109,8 @@ def create_full_test_db():
     # -- Insert sample data --
 
     # People
-    cursor.execute("INSERT INTO ZPERSON VALUES (1, 'Jonah', 100)")
-    cursor.execute("INSERT INTO ZPERSON VALUES (2, 'Silas', 80)")
+    cursor.execute("INSERT INTO ZPERSON VALUES (1, 'Alex', 100)")
+    cursor.execute("INSERT INTO ZPERSON VALUES (2, 'Sam', 80)")
     cursor.execute("INSERT INTO ZPERSON VALUES (3, NULL, 10)")  # unnamed
 
     # Albums
@@ -123,7 +124,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             1, 'IMG_001.heic', ?, 4032, 3024, 0, 0, 1, 0, 0,
-            41.5369, -90.5776, 0, NULL, 0, 'public.heic'
+            41.5369, -90.5776, 0, NULL, 0, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000001'
         )
     """,
         (ts1,),
@@ -143,7 +144,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             2, 'IMG_002.heic', ?, 4032, 3024, 0, 0, 0, 0, 0,
-            41.5370, -90.5775, 0, NULL, 0, 'public.heic'
+            41.5370, -90.5775, 0, NULL, 0, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000002'
         )
     """,
         (ts2,),
@@ -160,7 +161,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             3, 'Screenshot_001.png', ?, 1920, 1080, 0, 1, 0, 0, 0,
-            NULL, NULL, 0, NULL, 0, 'public.png'
+            NULL, NULL, 0, NULL, 0, 'public.png', 'BBBBBBBB-0000-0000-0000-000000000003'
         )
     """,
         (ts3,),
@@ -173,7 +174,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             4, 'IMG_003.jpg', ?, 1024, 768, 0, 0, 0, 0, 0,
-            NULL, NULL, 0, NULL, 0, 'public.jpeg'
+            NULL, NULL, 0, NULL, 0, 'public.jpeg', 'BBBBBBBB-0000-0000-0000-000000000004'
         )
     """,
         (ts4,),
@@ -187,7 +188,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             5, 'IMG_004.heic', ?, 4032, 3024, 0, 0, 0, 0, 0,
-            41.5369, -90.5776, 2, 0, 0, 'public.heic'
+            41.5369, -90.5776, 2, 0, 0, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000005'
         )
     """,
         (ts5,),
@@ -201,7 +202,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             6, 'VID_001.mov', ?, 1920, 1080, 1, 0, 0, 0, 0,
-            41.5369, -90.5776, 0, NULL, 0, 'com.apple.quicktime-movie'
+            41.5369, -90.5776, 0, NULL, 0, 'com.apple.quicktime-movie', 'BBBBBBBB-0000-0000-0000-000000000006'
         )
     """,
         (ts6,),
@@ -214,7 +215,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             7, 'IMG_005.heic', ?, 4032, 3024, 0, 0, 0, 0, 1,
-            NULL, NULL, 0, NULL, 0, 'public.heic'
+            NULL, NULL, 0, NULL, 0, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000007'
         )
     """,
         (ts7,),
@@ -227,7 +228,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             8, 'IMG_006.heic', ?, 4032, 3024, 0, 0, 0, 0, 0,
-            NULL, NULL, 0, NULL, 2, 'public.heic'
+            NULL, NULL, 0, NULL, 2, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000008'
         )
     """,
         (ts8,),
@@ -240,7 +241,7 @@ def create_full_test_db():
         """
         INSERT INTO ZASSET VALUES (
             9, 'IMG_007.heic', ?, 4032, 3024, 0, 0, 0, 0, 0,
-            42.0, -91.0, 0, NULL, 0, 'public.heic'
+            42.0, -91.0, 0, NULL, 0, 'public.heic', 'BBBBBBBB-0000-0000-0000-000000000009'
         )
     """,
         (ts9,),
@@ -249,6 +250,10 @@ def create_full_test_db():
     cursor.execute("INSERT INTO ZCOMPUTEDASSETATTRIBUTES VALUES (9, 0.2, 0.3, 0.7, 0.65, 0.5, 0.5, 0.5, 0.4, 0.6)")
     cursor.execute("INSERT INTO ZDETECTEDFACE (ZASSETFORFACE, ZPERSONFORFACE) VALUES (9, 1)")
     cursor.execute("INSERT INTO ZSCENECLASSIFICATION VALUES (9, 'dog', 0.7)")
+
+    # Real libraries have a user-entered title here; added last so the positional
+    # INSERTs above stay valid. seasonal_highlights reads it.
+    cursor.execute("ALTER TABLE ZADDITIONALASSETATTRIBUTES ADD COLUMN ZTITLE TEXT")
 
     conn.commit()
     return conn
@@ -367,9 +372,9 @@ class TestPeopleAnalyzer:
             result = analyze_people(db_path="test", min_photos=1)
 
         assert result["summary"]["total_named_people"] >= 1
-        # Jonah should be in results (appears in photos 1, 2, 9)
+        # Alex should be in results (appears in photos 1, 2, 9)
         names = [p["name"] for p in result["people"]]
-        assert "Jonah" in names
+        assert "Alex" in names
         conn.close()
 
     def test_co_occurrences(self):
@@ -383,7 +388,7 @@ class TestPeopleAnalyzer:
             mock_db.return_value.__exit__ = MagicMock(return_value=False)
             result = analyze_people(db_path="test", min_photos=1)
 
-        # Jonah + Silas appear together in photo 1
+        # Alex + Sam appear together in photo 1
         if result["co_occurrences"]:
             pair = result["co_occurrences"][0]
             assert pair["shared_photos"] >= 1
@@ -394,13 +399,13 @@ class TestPeopleAnalyzer:
         from people_analyzer import format_summary
 
         data = {
-            "people": [{"name": "Jonah", "photo_count": 100, "favorites": 5, "by_year": {"2025": 50}}],
-            "co_occurrences": [{"person_1": "Jonah", "person_2": "Silas", "shared_photos": 30}],
+            "people": [{"name": "Alex", "photo_count": 100, "favorites": 5, "by_year": {"2025": 50}}],
+            "co_occurrences": [{"person_1": "Alex", "person_2": "Sam", "shared_photos": 30}],
             "summary": {"total_named_people": 2, "unnamed_face_photos": 10, "min_photos_threshold": 5},
         }
         output = format_summary(data)
         assert "👥" in output
-        assert "Jonah" in output
+        assert "Alex" in output
 
 
 # ===== Location Mapper Tests =====
@@ -663,7 +668,7 @@ class TestOnThisDay:
                     "years_ago": 2,
                     "photo_count": 5,
                     "favorites": 1,
-                    "people": [{"name": "Jonah", "count": 3}],
+                    "people": [{"name": "Alex", "count": 3}],
                     "scenes": [{"scene": "beach", "count": 2}],
                     "best_photo": {"filename": "IMG_001.heic", "quality_score": 0.9},
                 },
@@ -827,11 +832,150 @@ class TestCleanupExecutor:
         """Test AppleScript generation."""
         from cleanup_executor import generate_trash_applescript
 
-        script = generate_trash_applescript(["IMG_001.jpg", "IMG_002.jpg"])
+        script = generate_trash_applescript(
+            [
+                {"uuid": "AAAA-1", "filename": "IMG_001.jpg", "size": 1000},
+                {"uuid": "AAAA-2", "filename": "IMG_002.jpg", "size": 2000},
+            ]
+        )
         assert 'tell application "Photos"' in script
         assert "IMG_001.jpg" in script
         assert "IMG_002.jpg" in script
         assert "delete" in script
+
+    def test_generate_applescript_targets_uuids_not_filenames(self):
+        """Items must be looked up by stable UUID, never by a filename search."""
+        from cleanup_executor import LOCAL_IDENTIFIER_SUFFIX, generate_trash_applescript
+
+        script = generate_trash_applescript([{"uuid": "ABC-123", "filename": "IMG_001.jpg", "size": 1}])
+
+        assert "media item id" in script
+        assert f'"ABC-123{LOCAL_IDENTIFIER_SUFFIX}"' in script
+        # Filename search is non-unique and would risk deleting the wrong photo.
+        assert "search for" not in script
+
+    def test_generate_applescript_requires_uuid(self):
+        """A candidate without a UUID must abort the whole batch."""
+        from cleanup_executor import generate_trash_applescript
+
+        candidates = [
+            {"uuid": "ABC-123", "filename": "IMG_001.jpg", "size": 1},
+            {"uuid": None, "filename": "IMG_002.jpg", "size": 2},
+        ]
+        with pytest.raises(ValueError, match="no UUID"):
+            generate_trash_applescript(candidates)
+
+    def test_generate_applescript_escapes_filenames(self):
+        """Quotes in a filename must not break out of the AppleScript string."""
+        from cleanup_executor import generate_trash_applescript
+
+        script = generate_trash_applescript([{"uuid": "ABC-123", "filename": 'my"photo.jpg', "size": 1}])
+
+        assert '\\"' in script
+
+    def test_candidates_include_uuid(self):
+        """Every category must surface a UUID so cleanup can target assets safely."""
+        from cleanup_executor import get_cleanup_candidates
+
+        for category in ("old_screenshots", "burst_leftovers", "duplicates", "low_quality"):
+            conn = create_full_test_db()
+            with patch("cleanup_executor.PhotosDB") as mock_db:
+                mock_db.return_value.__enter__ = MagicMock(return_value=conn)
+                mock_db.return_value.__exit__ = MagicMock(return_value=False)
+                result = get_cleanup_candidates(db_path="test", category=category, screenshot_age_days=30)
+            conn.close()
+
+            for candidate in result["candidates"]:
+                assert candidate["uuid"], f"{category} candidate missing uuid: {candidate}"
+
+    def test_require_uuid_support_rejects_old_schema(self):
+        """A library without ZASSET.ZUUID must refuse to run rather than guess."""
+        from cleanup_executor import require_uuid_support
+
+        conn = sqlite3.connect(":memory:")
+        conn.execute("CREATE TABLE ZASSET (Z_PK INTEGER PRIMARY KEY, ZFILENAME TEXT)")
+        with pytest.raises(RuntimeError, match="ZUUID"):
+            require_uuid_support(conn.cursor(), "Cleanup")
+        conn.close()
+
+    def test_execute_cleanup_reports_actual_deletions(self):
+        """success_count reflects what Photos reported, not the batch size."""
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": i, "uuid": f"UUID-{i}", "filename": f"test{i}.jpg", "size": 1000} for i in range(3)]
+
+        completed = MagicMock(returncode=0, stdout="DELETED:1 SKIPPED:2", stderr="")
+        with patch("cleanup_executor.subprocess.run", return_value=completed):
+            result = execute_cleanup(candidates, dry_run=False)
+
+        assert result["success_count"] == 1
+        assert result["skipped_count"] == 2
+        assert "Skipped 2" in result["message"]
+
+    def test_execute_cleanup_unparseable_output_counts_nothing(self):
+        """Unrecognized AppleScript output must not be reported as success."""
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": 1, "uuid": "UUID-1", "filename": "test.jpg", "size": 1000}]
+
+        completed = MagicMock(returncode=0, stdout="", stderr="")
+        with patch("cleanup_executor.subprocess.run", return_value=completed):
+            result = execute_cleanup(candidates, dry_run=False)
+
+        assert result["success_count"] == 0
+        assert result["skipped_count"] == 1
+
+    def test_execute_cleanup_missing_uuid_is_an_error_not_a_delete(self):
+        """A UUID-less batch is recorded as an error and never sent to Photos."""
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": 1, "filename": "test.jpg", "size": 1000}]
+
+        with patch("cleanup_executor.subprocess.run") as mock_run:
+            result = execute_cleanup(candidates, dry_run=False)
+
+        mock_run.assert_not_called()
+        assert result["success_count"] == 0
+        assert result["errors"]
+
+    def test_execute_cleanup_timeout_is_not_a_success(self):
+        """A timed-out batch must not be counted as deleted."""
+        import subprocess
+
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": i, "uuid": f"UUID-{i}", "filename": f"t{i}.jpg", "size": 1000} for i in range(3)]
+
+        with patch("cleanup_executor.subprocess.run", side_effect=subprocess.TimeoutExpired("osascript", 60)):
+            result = execute_cleanup(candidates, dry_run=False)
+
+        assert result["success_count"] == 0
+        assert any("timed out" in e for e in result["errors"])
+
+    def test_execute_cleanup_unexpected_exception_is_not_a_success(self):
+        """An unexpected failure is recorded, not silently treated as deletion."""
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": 1, "uuid": "UUID-1", "filename": "t.jpg", "size": 1000}]
+
+        with patch("cleanup_executor.subprocess.run", side_effect=OSError("osascript missing")):
+            result = execute_cleanup(candidates, dry_run=False)
+
+        assert result["success_count"] == 0
+        assert any("osascript missing" in e for e in result["errors"])
+
+    def test_execute_cleanup_nonzero_returncode_is_not_a_success(self):
+        """A failing osascript exit status must not count as deletion."""
+        from cleanup_executor import execute_cleanup
+
+        candidates = [{"id": 1, "uuid": "UUID-1", "filename": "t.jpg", "size": 1000}]
+
+        completed = MagicMock(returncode=1, stdout="", stderr="Not authorised")
+        with patch("cleanup_executor.subprocess.run", return_value=completed):
+            result = execute_cleanup(candidates, dry_run=False)
+
+        assert result["success_count"] == 0
+        assert any("Not authorised" in e for e in result["errors"])
 
     def test_dry_run(self):
         """Test dry run mode."""

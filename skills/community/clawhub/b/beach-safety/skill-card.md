@@ -1,45 +1,57 @@
-## Description: <br>
-Comprehensive beach surf conditions via mcporter MCP call for surf, waves, swim conditions, rip currents, or beach safety at beaches worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides beach surf, weather, UV, and swimming-safety reports through an MCP server.
 
-## Publisher: <br>
-[evanfoglia](https://clawhub.ai/user/evanfoglia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanfoglia](https://clawhub.ai/user/evanfoglia)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve beach safety, surf, UV, wind, wave, and rip-current condition summaries or structured data for a named beach or coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Beach names or coordinates may be sent to public mapping and weather providers. <br>
-Mitigation: Avoid using highly sensitive location queries when that sharing is a concern. <br>
-Risk: Beach safety reports can be incomplete or unavailable when upstream public data sources do not provide local conditions. <br>
-Mitigation: Use the report as situational guidance and follow local lifeguard, posted, or official emergency advisories. <br>
+## Use Case:
 
+Beachgoers and their assistants use this skill to check waves, wind, UV exposure, rip-current risk, and advisory swimming conditions for a named beach or location.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/evanfoglia/beach-safety) <br>
-- [NOAA National Weather Service API](https://api.weather.gov) <br>
-- [Open-Meteo Marine API](https://marine-api.open-meteo.com/v1/marine) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [OpenStreetMap Nominatim Search](https://nominatim.openstreetmap.org/search) <br>
-- [Photon Geocoder](https://photon.komoot.io/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Plain text safety reports or structured JSON returned by MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include beach coordinates, timestamps, safety scores, rip-current risk, UV index, wave, swell, wind, temperature, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Beach names and coordinates are sent to third-party geocoding and weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only locations you are comfortable sending to public services.
+
+Risk: The advisory safety score may not reflect current local hazards.
+
+Mitigation: Check lifeguard guidance and official beach warnings before entering the water.
+
+Risk: Unpinned dependencies may change behavior after installation.
+
+Mitigation: Consider pinning and reviewing dependencies before operational use.
+
+## Reference(s):
+
+- [Beach Safety on ClawHub](https://clawhub.ai/evanfoglia/skills/beach-safety)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain-text report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a 1–10 advisory safety score, conditions and recommendations; NOAA surf-zone detail is primarily available for US coasts.]
+
+## Skill Version(s):
+
+1.1.4 (source: ClawHub release metadata; bundled SKILL.md lists 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

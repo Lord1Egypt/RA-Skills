@@ -1,42 +1,58 @@
-## Description: <br>
-Extracts full text and metadata from WeChat Official Account article URLs for reading, summarization, analysis, or archiving, using headless Chromium with a mirror-search fallback when browser rendering is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts full text and metadata from WeChat Official Account article URLs using headless Chromium, with a mirror-search fallback when browser extraction is unavailable.
 
-## Publisher: <br>
-[PPPPanda](https://clawhub.ai/user/PPPPanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppppanda](https://clawhub.ai/user/ppppanda)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a user provides an mp.weixin.qq.com article link and needs the article text or metadata for summarization, analysis, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python packages and a Chromium browser binary during setup or first run. <br>
-Mitigation: Review and approve setup before running, prefer pinned preinstalled dependencies, and run the skill in an isolated environment. <br>
-Risk: Fetching articles contacts WeChat and mirror or aggregator sites, which may disclose article URLs or query terms externally. <br>
-Mitigation: Use only with URLs safe to send to those services, and ask before enabling mirror fallback for sensitive links. <br>
-Risk: The evidence security review notes undeclared permissions and recommends separating setup from runtime. <br>
-Mitigation: Prefer a release that declares permissions clearly and keeps dependency installation as an explicit setup step. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to read, summarize, analyze, or archive content from a shared mp.weixin.qq.com article link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PPPPanda/wechat-article-getter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON by default, with optional Markdown or plain text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write extracted article output to a user-specified file path; includes title, author, publish time, content, word count, source, URL, and error fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically install unpinned Playwright browser tooling and Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall reviewed and pinned dependencies through a controlled process, and avoid running setup as root or with sudo.
+
+Risk: The skill renders caller-supplied URLs in a browser configuration that the security evidence identifies as unsafe.
+
+Mitigation: Run the skill only in an isolated, unprivileged environment with outbound network restrictions.
+
+Risk: URL and redirect validation is not fixed in the supplied security guidance.
+
+Mitigation: Only pass exact https://mp.weixin.qq.com article URLs until URL and redirect validation are corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppppanda/skills/wechat-article-getter)
+- [Publisher profile](https://clawhub.ai/user/ppppanda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON by default, with optional Markdown or plain text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns title, author, publish time, article content, word count, source, URL, and error status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

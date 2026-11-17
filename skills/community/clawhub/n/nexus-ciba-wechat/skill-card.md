@@ -1,39 +1,56 @@
-## Description: <br>
-Generates shareable HTML and PNG cards from the Ciba or Iciba daily sentence API, including daily English sentence layouts, API images, and QR codes for pronunciation audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates shareable HTML and PNG cards from the Ciba/Iciba Daily Sentence API, with selectable layouts and QR codes for pronunciation audio.
 
-## Publisher: <br>
-[lwter](https://clawhub.ai/user/lwter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lwter](https://clawhub.ai/user/lwter)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate polished daily sentence cards for sharing, using Iciba API text, images, and pronunciation audio. It supports repeatable local rendering from either live API data or a supplied JSON file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lwter/nexus-ciba-wechat) <br>
-- [Iciba API fields](references/iciba-api-fields.md) <br>
-- [Iciba daily sentence API](https://open.iciba.com/dsapi/) <br>
+External users and developers use this skill to turn Iciba daily sentence data into social sharing cards, including vertical moments-style and horizontal postcard-style layouts with pronunciation QR codes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [HTML, PNG, JSON, text metadata, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local HTML, PNG, data JSON, and hero-source metadata; requires network access for live Iciba data and image/audio URLs unless a local JSON input is supplied.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The renderer can make outbound web requests from the user's environment, including user-provided API and image URLs.
+
+Mitigation: Use the default Iciba endpoint when possible, avoid untrusted --api-url or --input-json values, and run the renderer in a network-restricted sandbox for sensitive environments.
+
+Risk: Dependency behavior may change because the artifact lists unpinned Python packages.
+
+Mitigation: Prefer pinned dependency versions before production use and review dependency updates before deployment.
+
+## Reference(s):
+
+- [Iciba API Fields](artifact/references/iciba-api-fields.md)
+- [ClawHub Skill Page](https://clawhub.ai/lwter/skills/nexus-ciba-wechat)
+- [Publisher Profile](https://clawhub.ai/user/lwter)
+- [Iciba Daily Sentence API](https://open.iciba.com/dsapi/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML, PNG, JSON, and status files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Renderer outputs include an HTML card, PNG card, data JSON, and hero_source.txt indicating whether the image came from the API or fallback generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

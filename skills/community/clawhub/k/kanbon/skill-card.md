@@ -1,42 +1,50 @@
-## Description: <br>
-Kanbon reserves a ClawHub namespace for the Netsnek e.U. project-management brand and provides copyright and identity information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kanbon namespace for Netsnek e.U. project management and team coordination tools.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Users and agents invoke this skill when they need concise Kanbon brand, copyright, and identity information for the Netsnek e.U. project-management namespace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests exec permission for a static identity task. <br>
-Mitigation: Review the bundled script before installation and run it only when copyright or brand identity output is needed. <br>
-Risk: The script output is fixed brand information and may become stale if ownership, licensing, or website details change. <br>
-Mitigation: Confirm the current publisher profile and Netsnek website before relying on the output in public or commercial materials. <br>
+## Use Case:
 
+Users and agents use this skill to answer questions about the Kanbon brand and provide Netsnek e.U. copyright, website, and identity information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/kanbon) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Plain text or JSON, summarized for the user in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints fixed copyright, brand, and website information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release evidence) <br>
+Risk: The skill requests exec permission to run a bundled shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation or request a release that provides the same copyright text without script execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/kanbon)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON from the bundled shell script, summarized to the user in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text output by default and JSON output with --format json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, SKILL.md frontmatter, claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

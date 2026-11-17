@@ -1,41 +1,57 @@
-## Description: <br>
-Generate algorithmic visual art -- flow fields, fractals, cellular automata, circle packing, wave patterns. SVG + PNG output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate algorithmic visual art — flow fields, fractals, cellular automata, circle packing, wave patterns. SVG + PNG output.
 
-## Publisher: <br>
-[eliot-onbox](https://clawhub.ai/user/eliot-onbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eliot-onbox](https://clawhub.ai/user/eliot-onbox)
 
-## Use Case: <br>
-Developers, artists, and agent users use GenArt to create deterministic SVG or PNG visual art from configurable procedural algorithms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated output can overwrite files when an existing output path is reused. <br>
-Mitigation: Choose dedicated output paths and review file destinations before running generation commands. <br>
-Risk: Glitch input mode reads and rewrites SVG or XML content supplied by the user. <br>
-Mitigation: Use glitch input only with SVG or XML files intended for modification, and keep an original copy when needed. <br>
-Risk: PNG export may invoke the system rsvg-convert renderer if it is installed. <br>
-Mitigation: Use a trusted local renderer for PNG conversion, or keep SVG output when raster conversion is not needed. <br>
+## Use Case:
 
+Developers, designers, and creative agents use GenArt to generate deterministic procedural visual art as SVG or PNG files from configurable algorithmic patterns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are SVG or PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic generation is seed-based. Users choose output paths, and PNG export may use the local rsvg-convert renderer when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Generated output can overwrite files at paths writable by the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose explicit output paths in a disposable or project-specific directory and review paths before running generation commands.
+
+Risk: PNG generation may invoke a local SVG renderer, and SVG input handling is under-documented.
+
+Mitigation: Use trusted SVG inputs for glitch transformations and review renderer availability and behavior before relying on PNG output.
+
+Risk: Extreme size, count, iteration, layer, row, or column settings can create local resource pressure.
+
+Mitigation: Keep dimensions and generation counts within practical limits, especially in automated agent workflows.
+
+## Reference(s):
+
+- [GenArt ClawHub release](https://clawhub.ai/eliot-onbox/skills/genart)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [SVG and PNG files with Markdown or shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are deterministic when a seed is supplied; PNG creation may depend on a local SVG renderer.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, released 2026-03-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -16,6 +16,7 @@ Note: this lives on .86 alongside the BT tools. ADB binary at /usr/bin/adb
 from __future__ import annotations
 
 import json
+import os
 import re
 import shlex
 import subprocess
@@ -267,9 +268,21 @@ def sms_send_silent(number: str, text: str,
                     serial: Optional[str] = None) -> dict:
     """Send SMS without UI by directly calling SmsManager via service call.
 
+    ⚠️  SECURITY WARNING: this sends an SMS with NO on-device UI, prompt, or
+    user consent. It is gated behind an explicit opt-in environment variable to
+    prevent silent/unattended message sending. Set PAIRED_ALLOW_SILENT_SMS=1 to
+    enable; otherwise this raises AdbError. Prefer sms_send() (Intent UI, user
+    taps send) for anything that does not strictly require headless operation.
+
     REQUIRES: the device is rooted OR ADB has WRITE_SMS permission grant.
     Most user-mode Android 10+ devices reject this with SecurityException.
     """
+    if os.environ.get("PAIRED_ALLOW_SILENT_SMS") != "1":
+        raise AdbError(
+            "sms_send_silent is disabled: silent/no-consent SMS send requires "
+            "explicit opt-in. Set PAIRED_ALLOW_SILENT_SMS=1 to enable it, or use "
+            "sms_send() (Intent UI) instead."
+        )
     # Encode the strings as UTF-16 hex (Android Parcel format)
     def enc_str(s: str) -> str:
         # Each Parcel string is: int32 length + UTF-16-LE bytes + null term + padding

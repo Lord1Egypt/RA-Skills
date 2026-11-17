@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches LightReading and TechCrunch news, prepares Chinese AI summaries, and sends the digest to Enterprise WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches LightReading and TechCrunch technology news, prepares Chinese summaries, and sends the digest to Enterprise WeChat.
 
-## Publisher: <br>
-[sophieliiiiii](https://clawhub.ai/user/sophieliiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophieliiiiii](https://clawhub.ai/user/sophieliiiiii)
 
-## Use Case: <br>
-Developers and operators can use this skill to automate a Chinese technology-news digest from LightReading and TechCrunch. It supports scheduled collection, AI summarization, local summary files, and Enterprise WeChat delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hard-coded Enterprise WeChat webhook keys can expose or misuse the configured message destination. <br>
-Mitigation: Remove embedded webhook keys before use, rotate any real key, and configure the destination through a secret or local configuration. <br>
-Risk: Scheduled automation can send summaries at unintended times or to unintended channels. <br>
-Mitigation: Verify the cron schedule and destination configuration before enabling recurring pushes. <br>
-Risk: The optional email webhook server can create unsafe network exposure if run on a reachable interface. <br>
-Mitigation: Bind it to localhost, add protection before network exposure, and remove the health-check directory listing if the server is kept. <br>
+## Use Case:
 
+Operators and agents use this skill to collect current telecom and technology articles, prepare Chinese news summaries, and publish scheduled Enterprise WeChat digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sophieliiiiii/lightreading-daily) <br>
-- [LightReading RSS feed](https://www.lightreading.com/rss.xml) <br>
-- [TechCrunch feed](https://techcrunch.com/feed/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese digest text with Markdown-style links, plus setup commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local English and Chinese summary files and can send text payloads to Enterprise WeChat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.9.1 (source: server release metadata and SKILL.md version history) <br>
+Risk: A shipped Enterprise WeChat webhook key could send messages to an unintended workspace or expose an existing integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled key, rotate it if it was ever valid, and configure a new webhook through a secret or environment variable.
+
+Risk: The optional email webhook can expose a network listener without built-in authentication or request limits.
+
+Mitigation: Avoid running the webhook unless it is bound to localhost or protected by authentication, request limits, and network access controls.
+
+Risk: Automated scheduled publishing can distribute unreviewed or stale generated summaries.
+
+Mitigation: Run the workflow in dry-run or manual mode first, review generated Chinese summaries, and restrict cron automation until the output is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sophieliiiiii/skills/lightreading-daily)
+- [LightReading RSS feed](https://www.lightreading.com/rss.xml)
+- [TechCrunch RSS feed](https://techcrunch.com/feed/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text summaries with Python scripts and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces generated news files and Enterprise WeChat payloads when executed.]
+
+## Skill Version(s):
+
+5.9.1 (source: server release metadata and SKILL.md version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

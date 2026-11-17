@@ -1,45 +1,64 @@
-## Description: <br>
-Work with the WordPress REST API for route discovery, authentication, read and write operations, core endpoint selection, and custom namespace inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with the WordPress REST API for route discovery, authentication, reads and writes, core endpoint selection, and custom namespace inspection.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and site operators use this skill to inspect a WordPress site's live REST routes, choose authentication patterns, and work with core or custom endpoints before API automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated calls may send WordPress application-password credentials to an unrelated URL when a full route URL is supplied. <br>
-Mitigation: Use least-privilege application passwords, prefer relative routes such as /wp/v2/posts, avoid full --route URLs when credentials are present, and verify the final URL before authenticated calls. <br>
-Risk: Write-capable WordPress REST operations can change content, settings, plugins, or themes. <br>
-Mitigation: Require explicit approval before content, settings, plugin, or theme changes and inspect route permissions with OPTIONS before unfamiliar write automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matthewxmurphy/wordpress-rest-api) <br>
-- [Auth And Discovery](references/auth-and-discovery.md) <br>
-- [Core Endpoints](references/core-endpoints.md) <br>
-- [Custom Route Rules](references/custom-route-rules.md) <br>
-- [WordPress REST API reference](https://developer.wordpress.org/rest-api/reference/) <br>
-- [WordPress REST API authentication](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/) <br>
-- [WordPress routes and endpoints handbook](https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/) <br>
+## Use Case:
 
+Developers and site maintainers use this skill to inspect live WordPress REST routes, choose authentication models, select core endpoints, and design or review custom REST endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route discovery steps, authentication guidance, endpoint choices, and review notes for custom WordPress REST routes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Application passwords can be exposed if credentials are pasted directly into shell commands or retained in shell history.
+
+Mitigation: Use test or narrowly scoped WordPress application passwords, avoid placing real credentials directly in shell history, and rotate any credential that may have been exposed.
+
+Risk: Authenticated calls to non-HTTPS targets can expose credentials or API data in transit.
+
+Mitigation: Prefer HTTPS-only WordPress targets for authenticated REST API inspection and writes.
+
+Risk: Authenticated calls with absolute route URLs may target a different origin than the site argument.
+
+Mitigation: Use site-relative routes for authenticated calls unless same-origin HTTPS behavior is enforced before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthewxmurphy/skills/wordpress-rest-api)
+- [Auth And Discovery](references/auth-and-discovery.md)
+- [Core Endpoints](references/core-endpoints.md)
+- [Custom Route Rules](references/custom-route-rules.md)
+- [WordPress REST API reference](https://developer.wordpress.org/rest-api/reference/)
+- [WordPress REST API authentication overview](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/)
+- [Application Passwords integration guide](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/#basic-authentication-with-application-passwords)
+- [Routes and endpoints handbook](https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/)
+- [Adding custom endpoints](https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, REST route examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST route URLs, curl commands, JSON response summaries, authentication guidance, and implementation review notes.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

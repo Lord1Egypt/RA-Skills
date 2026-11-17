@@ -1,41 +1,59 @@
-## Description: <br>
-Build real-time voice chatbot applications with natural conversation flow and customizable personalities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build real-time voice chatbot applications with natural conversation flow and customizable personalities.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers use this skill to create SenseAudio voice chatbot integrations for customer support, education, companion bots, and other real-time conversational applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice interactions and session metadata are sent to the SenseAudio service and may include sensitive user information. <br>
-Mitigation: Confirm the data-sharing posture is acceptable for the use case and obtain user consent where voice or emotion-processing data may be involved. <br>
-Risk: API keys, session tokens, room IDs, and conversation IDs can grant access to voice sessions or account resources if exposed. <br>
-Mitigation: Keep credentials and session tokens server-side, avoid unnecessary logging of tokens or conversation IDs, and review integrations before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to build SenseAudio-backed voice assistants, customer service bots, educational assistants, and companion chatbots with session management and real-time voice integration.
 
-## Reference(s): <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key setup](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python and HTML code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, session-management patterns, analytics patterns, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: SenseAudio API keys, session tokens, room IDs, and conversation IDs can expose account access or private session data if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials and session identifiers server-side where possible, avoid logging them, and rotate or revoke exposed credentials promptly.
+
+Risk: Voice and chat sessions may be processed by SenseAudio services.
+
+Mitigation: Inform users before collecting voice input and review data handling requirements for the intended deployment.
+
+Risk: Generated integration code may need adaptation for production authentication, timeout, quota, and error handling requirements.
+
+Mitigation: Review the generated code before deployment, add application-specific controls, and test network failure and quota scenarios.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/chatbot)
+- [SenseAudio Homepage](https://senseaudio.cn)
+- [SenseAudio API Key Setup](https://senseaudio.cn/platform/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python and HTML code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration guidance for SenseAudio API sessions, real-time voice connection setup, status checks, and conversation analytics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

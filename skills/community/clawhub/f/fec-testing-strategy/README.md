@@ -1,17 +1,17 @@
-# 测试策略
+# testing strategy
 
-Frontend Craft skill for 测试策略.
+Plan frontend test coverage by risk across static checks, unit, component, integration, and E2E layers.
 
 ## Skill
 
 - ID: `fec-testing-strategy`
 - Category: `testing`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-testing-strategy/SKILL.md`
 
 ## Description
 
-Use when planning or reviewing a frontend testing strategy, selecting the right test layer by risk, mapping coverage across static checks, unit tests, component tests, integration tests, E2E, Storybook/visual regression, a11y, security, performance, or CI gates. Do not use to write individual component/E2E tests or merely run existing validation commands; Chinese triggers include 测试策略, 测试分层, 测试计划, 覆盖矩阵.
+Use when planning or reviewing a frontend testing strategy, selecting the right test layer by risk, mapping coverage across static checks, unit tests, component tests, integration tests, E2E, Storybook/visual regression, a11y, security, performance, or CI gates. Do not use to write individual component/E2E tests or merely run existing validation commands; Chinese triggers include test strategy, test layering, test plan, coverage matrix.
 
 ## Usage
 

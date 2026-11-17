@@ -1,40 +1,53 @@
-## Description: <br>
-Provides NVIDIA Jetson CUDA tools to query CUDA version, GPU device information, and CUDA library paths on Jetson devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides NVIDIA Jetson CUDA tools to query CUDA version, GPU device information, and CUDA library paths on Jetson devices.
 
-## Publisher: <br>
-[wxd9199](https://clawhub.ai/user/wxd9199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxd9199](https://clawhub.ai/user/wxd9199)
 
-## Use Case: <br>
-Developers and engineers working on NVIDIA Jetson systems use this skill to inspect local CUDA Toolkit availability and NVIDIA GPU state before debugging or configuring CUDA workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local NVIDIA/CUDA diagnostic commands can reveal driver, GPU, and process information from the host. <br>
-Mitigation: Use the skill only on Jetson systems where local CUDA and GPU state inspection is intended. <br>
-Risk: The skill reports missing CUDA or NVIDIA tooling but does not install or configure those dependencies. <br>
-Mitigation: Confirm CUDA Toolkit and nvidia-smi are installed before relying on the diagnostic output. <br>
+## Use Case:
 
+Developers and engineers working on NVIDIA Jetson devices use this skill to check local CUDA Toolkit availability, GPU status, and related CUDA environment details.
 
-## Reference(s): <br>
-- [Jetson CUDA on ClawHub](https://clawhub.ai/wxd9199/jetson-cuda) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CUDA Toolkit and NVIDIA tools to be installed on the target Jetson system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on local CUDA Toolkit and nvidia-smi availability, so results may be incomplete or report missing tools on systems without those dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on the intended Jetson target and confirm CUDA Toolkit and nvidia-smi are installed before relying on the reported status.
+
+Risk: Usage notes are Chinese-only in the inspected artifact, which can lead to misunderstanding during review or installation.
+
+Mitigation: Have a reviewer who can read the usage notes confirm the commands and prerequisites before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxd9199/skills/jetson-cuda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CUDA Toolkit and nvidia-smi on the target Jetson system for full results.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

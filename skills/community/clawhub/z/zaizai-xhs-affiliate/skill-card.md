@@ -1,42 +1,54 @@
-## Description: <br>
-小红书种草带货技能，支持选品分析、文案创作、内容审核、图片提示和佣金变现准备。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书种草带货技能，支持选品分析、种草文案创作、图片生成、内容审核和佣金变现准备。
 
-## Publisher: <br>
-[155143783](https://clawhub.ai/user/155143783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[155143783](https://clawhub.ai/user/155143783)
 
-## Use Case: <br>
-Content creators and affiliate marketers use this skill to draft Xiaohongshu product-selection reports, promotional note copy, image prompts, review reports, and manual publishing checklists for commerce workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill includes guidance to assist with login using a stored account identifier and a secret-file location. <br>
-Mitigation: Use the skill only for drafting, review, image prompts, and publication checklists unless the author removes the phone number and secret-file path and confirms that users perform all login and publishing steps manually. <br>
-Risk: Generated affiliate content can be misleading, non-compliant, or unsuitable for Xiaohongshu publication without review. <br>
-Mitigation: Require human review of product claims, prohibited words, disclosures, image quality, and final publication decisions before use. <br>
+## Use Case:
 
+External creators and marketing operators use this skill to draft Xiaohongshu affiliate product recommendations, promotional notes, image prompts, content audits, and publishing approval materials while keeping final review and publishing manual.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/155143783/zaizai-xhs-affiliate) <br>
-- [小红书内容审核模板](references/audit_template.md) <br>
-- [小红书创作者服务平台](https://creator.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates, review checklists, and natural-language drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product-selection reports, draft promotional copy, image prompts, content audit reports, and manual publishing approval checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes account login and browser automation guidance for an authenticated Xiaohongshu creator account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let the agent read SECRET.md, handle phone numbers or passwords, autofill login forms, or operate an authenticated creator account; keep login and publishing manual.
+
+Risk: Affiliate marketing drafts may include misleading claims, prohibited words, unverified product information, or undisclosed commercial relationships.
+
+Mitigation: Use the audit checklist and require human review for compliance, factual accuracy, disclosure of brand or affiliate relationships, and platform policy checks before publishing.
+
+## Reference(s):
+
+- [小红书内容审核模板](references/audit_template.md)
+- [ClawHub skill page](https://clawhub.ai/155143783/skills/zaizai-xhs-affiliate)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Text]
+
+**Output Format:** [Markdown templates, Chinese prose, checklists, and prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces product selection reports, affiliate copy drafts, image prompt guidance, audit reports, and manual publishing checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

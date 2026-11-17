@@ -1,38 +1,56 @@
-## Description: <br>
-Translate PPTX presentations to another language while preserving slide layout through a render-and-verify workflow that can check for text overflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates PPTX files to another language while preserving layout through a LibreOffice render and vision verification loop.
 
-## Publisher: <br>
-[Nimo1987](https://clawhub.ai/user/Nimo1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nimo1987](https://clawhub.ai/user/nimo1987)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to translate editable PPTX presentations while retaining the original slide layout. It supports agent workflows that extract slide text, supply translations, rewrite the presentation, and verify rendered slides before returning the final file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Presentation text and rendered slide images may be processed through the user's configured translation or Vision workflow. <br>
-Mitigation: Use approved model and data-handling settings for sensitive decks, and avoid sending confidential content to services that are not cleared for that data. <br>
-Risk: Layout preservation depends on the calling agent performing verification and retries, not on the script alone. <br>
-Mitigation: Review rendered slides before relying on the final PPTX, and rerun or adjust scaling when overflow or formatting issues remain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and agents use this skill to translate editable PPTX presentations while preserving layout, then return the translated PPTX and optional render artifacts for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [PPTX file with optional PNG render, JSON/log text, and agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python-pptx and LibreOffice; supports PPTX input and output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Processing untrusted presentation files can expose the workflow to unsafe or malformed local PPTX content.
+
+Mitigation: Use trusted PPTX files and review the generated presentation before sharing or relying on it.
+
+Risk: The activation wording mentions PPT/PPTX, but the artifact only supports modern PPTX files.
+
+Mitigation: Do not rely on the skill for legacy .ppt files; convert or reject legacy presentations before use.
+
+Risk: Careless output path selection can place generated files somewhere unintended.
+
+Mitigation: Specify output paths deliberately and inspect the output location after each run.
+
+## Reference(s):
+
+- [PPT Translator ClawHub skill page](https://clawhub.ai/nimo1987/skills/ppt-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
+
+**Output Format:** [Editable PPTX files, optional PNG renders, JSON text extraction, and Markdown guidance with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local PPTX input, python-pptx, and LibreOffice; external agent vision is used to verify render overflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

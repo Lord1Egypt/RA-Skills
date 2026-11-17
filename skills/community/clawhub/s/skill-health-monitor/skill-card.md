@@ -1,42 +1,59 @@
-## Description: <br>
-Skill Health Monitor helps agents and maintainers assess OpenClaw skill health with multidimensional scores, alert levels, and optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors agent skill health with six-dimensional scoring, three alert levels, optimization recommendations, and historical check tracking.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to check single skills or skill groups, review health scores and alert levels, and receive practical improvement recommendations before or after changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad batch checks can lead an agent to inspect more skills than the user intended. <br>
-Mitigation: Confirm the exact skill scope before running checks across multiple or all skills. <br>
-Risk: Current health records and alerts are stored in memory and can be lost when the process restarts. <br>
-Mitigation: Export or record important reports separately until a reviewed persistence feature is available. <br>
-Risk: Health reports may recommend operational actions such as stopping service or rolling back a version. <br>
-Mitigation: Require human approval before applying any service stop, rollback, notification, or automated remediation. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to score individual or grouped agent skills across six health dimensions, surface warning, critical, or emergency states, and generate recommendations before releases or during routine reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pagoda111king/skill-health-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown-style health reports and JavaScript object results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include skill name, health score, alert level, dimensional scores, recommendations, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The utility stores check history and alerts in memory, so recorded monitoring data is lost when the process restarts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Export or persist reports externally when historical review is required.
+
+Risk: Health scores depend on caller-provided metrics and can be misleading if inputs are incomplete or subjective.
+
+Mitigation: Validate metric values before invocation and review generated recommendations before acting on them.
+
+Risk: The artifact behaves as a lightweight scoring helper rather than a robust security monitor.
+
+Mitigation: Use explicit invocation and separate security review or scanning before deployment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/skills/skill-health-monitor)
+- [Usage Examples](artifact/examples/usage-examples.md)
+- [Version History](artifact/VERSION_HISTORY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown health reports and JavaScript result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation and output examples; scoring depends on caller-provided metric inputs.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and auto changelog, released 2026-04-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Search Z-Library and send EPUBs to Kindle <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Z-Library and send EPUBs to Kindle
 
-## Publisher: <br>
-[Hsin-Lan](https://clawhub.ai/user/Hsin-Lan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hsin-lan](https://clawhub.ai/user/hsin-lan)
 
-## Use Case: <br>
-External users and developers use this skill to run a local book2kindle CLI for searching Z-Library and sending selected EPUB files to Kindle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local book2kindle CLI and sends user-selected content to Kindle. <br>
-Mitigation: Install only when the local CLI is trusted, verify the selected result number before sending, and avoid sensitive account destinations or untrusted files. <br>
-Risk: Z-Library search and EPUB delivery can involve copyright or usage-rights concerns. <br>
-Mitigation: Confirm the user has the right to download and send the selected book before using the skill. <br>
+## Use Case:
 
+External users use this skill to search for EPUB books through the book2kindle CLI and send a selected result to Kindle.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Conversational text summarizing CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include numbered search results with title, author, format, and file size when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Raw arguments are passed to the CLI and may allow unintended options or actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted book titles and options; prefer a revision that allowlists supported commands and validates numeric options.
+
+Risk: The skill can send selected book data to Kindle or another third-party service.
+
+Mitigation: Require explicit user confirmation before sending and disclose external data sharing before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hsin-lan/skills/book2kindle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Conversational Markdown summarizing CLI output and search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows book title, author, format, and file size when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

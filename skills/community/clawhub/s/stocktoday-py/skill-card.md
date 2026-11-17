@@ -1,44 +1,59 @@
-## Description: <br>
-Stocktoday Data helps agents retrieve, compare, summarize, and export market and financial data through the Tushare Python API routed via the StockToday gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A finance data research skill for A-shares, Hong Kong stocks, U.S. stocks, funds, futures, options, bonds, and macro data that maps user requests into Tushare-compatible data retrieval, cleaning, comparison, screening, and export workflows through the StockToday gateway.
 
-## Publisher: <br>
-[usa2046](https://clawhub.ai/user/usa2046) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[usa2046](https://clawhub.ai/user/usa2046)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to translate natural-language market research requests into Tushare-compatible Python calls for equities, funds, futures, options, bonds, macro data, financial statements, sector analysis, news, and exports. It is intended for data retrieval and analysis support, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A sensitive Tushare token and query history may be sent through the custom StockToday gateway. <br>
-Mitigation: Install only when the user intentionally trusts StockToday, use an isolated or low-privilege token, and review the provider's logging, retention, and credential-protection practices before use. <br>
-Risk: Unsafe HTTP backup endpoint guidance could expose tokens or query traffic in transit. <br>
-Mitigation: Avoid HTTP gateways and use only HTTPS endpoints unless the environment has a separate trusted transport control. <br>
-Risk: Market data may be unavailable, delayed, permission-limited, or empty for non-trading days. <br>
-Mitigation: Include source interface, request parameters, timestamps, row counts, and missing-data or permission notes in user-facing outputs. <br>
+## Use Case:
 
+External users and developers use this skill to turn Chinese natural-language financial research requests into StockToday/Tushare-compatible API calls, analysis summaries, tabular comparisons, and optional local exports. Typical tasks include market trend checks, financial statement snapshots, stock comparisons, sector and fund-flow reviews, announcement/news checks, macro data lookups, and reusable research scripts.
 
-## Reference(s): <br>
-- [Data Interface Reference](references/数据接口.md) <br>
-- [StockToday Tushare Gateway](https://tushare.citydata.club/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/usa2046/stocktoday-py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown summaries with concise tables, Python code snippets, optional shell commands, and optional CSV or Parquet file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include data scope, source interface, request parameters, retrieval time, row counts, field lists, and any missing-data or permission limits when files are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Tushare tokens and financial query history are routed through the StockToday gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this routing is acceptable, prefer a dedicated or limited token, and rotate any token previously used through the gateway.
+
+Risk: The artifact documents HTTP backup gateways for financial API traffic.
+
+Mitigation: Avoid the HTTP backup gateways and use HTTPS endpoints where possible.
+
+Risk: The authoritative security verdict is suspicious and calls for careful review before installation.
+
+Mitigation: Review the skill, gateway configuration, and token-handling posture before deploying it in a production agent.
+
+## Reference(s):
+
+- [StockToday Data Interface Reference](artifact/references/数据接口.md)
+- [ClawHub Skill Page](https://clawhub.ai/usa2046/skills/stocktoday-py)
+- [Publisher Profile](https://clawhub.ai/user/usa2046)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown summaries with concise tables, optional Python snippets, and optional CSV or parquet exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state the query interface, parameters, retrieval time, row count, fields, missing data, failed segments, and relevant data limitations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

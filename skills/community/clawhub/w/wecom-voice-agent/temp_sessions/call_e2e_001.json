@@ -1,0 +1,25 @@
+{
+  "call_id": "e2e_001",
+  "userid": "zhangsan",
+  "direction": "outbound",
+  "state": "speaking",
+  "confidence": 0.92,
+  "asr_text": "同意",
+  "pending_confirmation": "",
+  "history": [
+    {
+      "role": "agent",
+      "content": "本次通话可能被录音，请问您是否同意？",
+      "time": "2026-07-15T15:42:59.515560"
+    },
+    {
+      "role": "user",
+      "content": "同意",
+      "confidence": 0.92,
+      "time": "2026-07-15T15:42:59.516113"
+    }
+  ],
+  "start_time": 1784101379.5148604,
+  "last_activity": 1784101379.5161114,
+  "turn_count": 1
+}

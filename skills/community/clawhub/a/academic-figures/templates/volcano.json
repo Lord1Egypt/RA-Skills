@@ -1,0 +1,42 @@
+{
+  "_command": "python3 scripts/gen_figure.py -t volcano -d templates/volcano.json -o volcano.png --cjk",
+  "log2fc": [
+    -2.3,
+    -1.4,
+    -1.1,
+    -0.4,
+    0.2,
+    0.6,
+    1.2,
+    1.6,
+    2.4
+  ],
+  "pvalue": [
+    0.0003,
+    0.012,
+    0.04,
+    0.5,
+    0.8,
+    0.3,
+    0.02,
+    3e-05,
+    8e-07
+  ],
+  "names": [
+    "SLC6A4",
+    "MAOA",
+    "FKBP5",
+    "NR3C1",
+    "CRH",
+    "AVP",
+    "BDNF",
+    "COMT",
+    "HTR1A"
+  ],
+  "fc_cut": 1.0,
+  "p_cut": 0.05,
+  "top": 10,
+  "_scene": "组学差异表达（转录组/蛋白组）：log2FC × -log10(p)，阈值线 + Top 基因标注",
+  "_chart_type": "volcano",
+  "_note": "p=0 请用最小可表示值（如 1e-300）；FDR 需先在数据侧换算"
+}

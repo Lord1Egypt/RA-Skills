@@ -1,42 +1,50 @@
-## Description: <br>
-Hamilton Helmer's strategic framework for achieving sustainable competitive advantage through seven distinct power types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hamilton Helmer's strategic framework for achieving sustainable competitive advantage through seven distinct power types.
 
-## Publisher: <br>
-[golfzero01](https://clawhub.ai/user/golfzero01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golfzero01](https://clawhub.ai/user/golfzero01)
 
-## Use Case: <br>
-Employees, external users, and strategy-focused agents use this skill to analyze business strategy, competitive moats, investment defensibility, and product strategy through the 7 Powers framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad business strategy terms when a different strategy framework is intended. <br>
-Mitigation: Clarify that the 7 Powers framework should be used, or name a different framework when that is preferred. <br>
-Risk: Strategic guidance can be misapplied if the business lifecycle phase, benefits, or competitive barriers are assessed incorrectly. <br>
-Mitigation: Review conclusions against current business evidence before using them for investment, product, or strategy decisions. <br>
+## Use Case:
 
+Business strategists, product leaders, founders, and investment analysts use this skill to analyze competitive moats, evaluate defensibility, diagnose weak advantages, and prioritize powers by company lifecycle phase.
 
-## Reference(s): <br>
-- [7 Powers Skill Page](https://clawhub.ai/golfzero01/7-powers) <br>
-- [golfzero01 Publisher Profile](https://clawhub.ai/user/golfzero01) <br>
-- [7 Powers Detailed Reference](references/powers-detail.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown guidance and diagnostic analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only strategy reference; no code execution, credential use, persistence, or hidden data access according to ClawHub security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may be invoked for broad business-strategy prompts where a framework-based answer could overstate defensibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against company-specific evidence and treat the framework as decision support rather than a definitive strategy recommendation.
+
+## Reference(s):
+
+- [7 Powers Detailed Reference](references/powers-detail.md)
+- [ClawHub Skill Page](https://clawhub.ai/golfzero01/skills/7-powers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text strategic analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, data access, persistence, or tool invocation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

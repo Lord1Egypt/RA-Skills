@@ -1,42 +1,50 @@
-## Description: <br>
-Generate structured, blame-free incident postmortem reports from logs, timeline data, and incident metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured, blame-free incident postmortem reports from logs, timeline data, and incident metadata, including root cause analysis, impact assessment, timeline reconstruction, lessons learned, and action items.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, incident commanders, and operations teams use this skill to draft post-incident reviews, reconstruct timelines from logs or JSON inputs, summarize impact and root cause, and check reports for blameful language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident logs and generated postmortems may include secrets, customer data, or internal operational details. <br>
-Mitigation: Process only intended local files and store generated reports in trusted locations with appropriate access controls. <br>
-Risk: Generated root cause, timeline, impact, or action item content may be incomplete or misleading if source logs or incident metadata are incomplete. <br>
-Mitigation: Have the incident team review and correct the generated report before sharing or using it as an official record. <br>
+## Use Case:
 
+Developers, SREs, and incident response teams use this skill to draft post-incident reviews from logs, timeline JSON, and incident metadata, then refine the output into a blame-free report. It can also check existing reports for blameful language.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/incident-postmortem-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
-- [Postmortem templates and guidelines](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML, JSON, or plain text reports with optional shell command examples and structured incident fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write reports to user-selected output paths and can return CI-style exit codes based on severity or detected log errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: HTML reports can execute script hidden in incident data or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted inputs for HTML reports, or prefer Markdown and JSON output for untrusted logs and incident JSON until HTML escaping or sanitization is added.
+
+## Reference(s):
+
+- [Postmortem Templates & Guidelines](artifact/references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/incident-postmortem-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, or plain text from a Python command-line generator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports to a file path or print to stdout; P0/P1 incidents and parsed fatal or error log events influence process exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:大字观点(一句话独占一页 · 原型 5 · airy)
+  参数:
+    {{STATEMENT}}  观点句(≤35 字,可含 <br> 与一处 span 强调)
+    {{PROOF}}      佐证行(一个数字或来源;可留空则删整个第二块)
+  用法: 整页替换 .slide-container 内容;呼吸页,每 3-4 页内容页插一页;
+        ≤20 字字号 80px,20-35 字 72px,>35 字删字不降 64px 以下;
+        深底变体:容器 --deep-navy、文字 --on-navy-text/sub
+  纪律: 居中合法(大字页例外);不加 kicker/页码/装饰;全页高亮 ≤1 处
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:200px;top:400px;width:1520px;">
+  <div style="font-size:72px;font-weight:800;line-height:1.25;color:var(--charcoal);text-align:center;">{{STATEMENT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:200px;top:640px;width:1520px;">
+  <div style="font-size:26px;line-height:1.5;color:var(--text-secondary);text-align:center;">{{PROOF}}</div>
+</div>

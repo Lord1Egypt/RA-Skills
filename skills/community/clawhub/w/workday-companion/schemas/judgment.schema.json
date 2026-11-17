@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://workday-companion.local/schemas/judgment.schema.json",
+  "title": "Workday Companion Judgment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["module", "title", "verdict", "reason", "action", "backup", "follow_up", "share_safe"],
+  "properties": {
+    "module": {
+      "type": "string",
+      "enum": ["work_charm", "lunch_oracle", "mood_weather", "afterwork_pass"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16
+    },
+    "verdict": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 48
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "backup": {
+      "type": ["string", "null"],
+      "maxLength": 36
+    },
+    "follow_up": {
+      "type": ["string", "null"],
+      "maxLength": 32
+    },
+    "share_safe": {
+      "type": "boolean"
+    }
+  }
+}

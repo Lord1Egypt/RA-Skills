@@ -1,0 +1,4 @@
+interface:
+  display_name: "腾讯会议冲突检查"
+  short_description: "检查腾讯会议时间冲突并在办公时段静默监测新冲突事件"
+  default_prompt: "Use $tmeet-conflict-check to check my visible Tencent Meetings for conflicts or configure the office-hours watcher that wakes the Agent only for new conflicts."

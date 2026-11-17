@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Build artifacts
+briefing.html
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.token
+.env

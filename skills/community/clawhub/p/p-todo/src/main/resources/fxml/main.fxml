@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.teamtodo.controller.MainController"
+            styleClass="root">
+    <!-- 顶栏 -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="status-bar" prefHeight="52">
+            <padding><Insets top="6" right="16" bottom="6" left="16"/></padding>
+            <Label fx:id="appTitleLabel" text="P的事" styleClass="app-title"/>
+            <TextField fx:id="searchField" promptText="搜索任务…" styleClass="search-field"
+                       onAction="#onSearchFieldEnter"
+                       HBox.hgrow="ALWAYS" prefWidth="280"/>
+            <Button fx:id="btnMiniWindow" text="小窗" styleClass="btn-ghost" onAction="#onToggleMiniWindow"/>
+            <Button fx:id="btnNewTop" text="+ 新建" styleClass="btn-primary" onAction="#onNewTodo"/>
+        </HBox>
+    </top>
+
+    <!-- 左侧导航 -->
+    <left>
+        <VBox prefWidth="172" fx:id="sidebarBox" styleClass="sidebar">
+            <Button fx:id="btnToggleSidebar" text="◀" styleClass="btn-icon" onAction="#onToggleSidebar"
+                    maxWidth="Infinity" alignment="CENTER" style="-fx-font-size:18px;"/>
+            <VBox fx:id="sidebarContent" prefWidth="172" alignment="CENTER_LEFT">
+                <Button fx:id="navDashboard" text="  📊 工作台" styleClass="btn-icon" onAction="#onNavDashboard" alignment="CENTER_LEFT"/>
+                <Button fx:id="navMyTasks" text="  📋 我的任务" styleClass="btn-icon" onAction="#onNavMyTasks" alignment="CENTER_LEFT"/>
+                <Button fx:id="navCalendar" text="  📅 日历" styleClass="btn-icon" onAction="#onNavCalendar" alignment="CENTER_LEFT"/>
+                <Button fx:id="navStats" text="  📈 统计" styleClass="btn-icon" onAction="#onNavStats" alignment="CENTER_LEFT"/>
+                <VBox fx:id="statsSubMenu" spacing="0">
+                    <Button fx:id="filterAll" text="  全部" styleClass="btn-sub" onAction="#onFilterAll" alignment="CENTER_LEFT"/>
+                    <Button fx:id="filterInProgress" text="  进行中" styleClass="btn-sub" onAction="#onFilterInProgress" alignment="CENTER_LEFT"/>
+                    <Button fx:id="filterPending" text="  待办" styleClass="btn-sub" onAction="#onFilterPending" alignment="CENTER_LEFT"/>
+                    <Button fx:id="filterOverdue" text="  逾期" styleClass="btn-sub" onAction="#onFilterOverdue" alignment="CENTER_LEFT"/>
+                    <Button fx:id="filterDone" text="  完成" styleClass="btn-sub" onAction="#onFilterDone" alignment="CENTER_LEFT"/>
+                </VBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Separator styleClass="divider" prefWidth="120" style="-fx-margin-block:8 0;" visible="false"/>
+                <Button fx:id="navSettings" text="  ⚙ 设置" styleClass="btn-icon" onAction="#onNavSettings" alignment="CENTER_LEFT"/>
+                <Button fx:id="navAbout" text="  ℹ 关于" styleClass="btn-icon" onAction="#onNavAbout" alignment="CENTER_LEFT"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- 主内容区 -->
+    <center>
+        <VBox>
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="view-bar">
+                <Label fx:id="viewTitle" text="我的任务" styleClass="view-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ToggleButton fx:id="viewList" text="列表" selected="true" styleClass="filter-btn" onAction="#onViewList"/>
+                <ToggleButton fx:id="viewKanban" text="看板" styleClass="filter-btn" onAction="#onViewKanban"/>
+            </HBox>
+            <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS" styleClass="content-pane">
+                <ListView fx:id="todoListView" styleClass="content-list"/>
+            </StackPane>
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="footer-bar">
+                <Label fx:id="statusLabel" text="就绪" styleClass="meta-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="statsLabel" text="" styleClass="meta-label"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- 右侧详情面板已移除，改为双击弹窗 -->
+</BorderPane>

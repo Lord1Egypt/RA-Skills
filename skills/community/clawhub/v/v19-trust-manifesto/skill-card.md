@@ -1,46 +1,58 @@
-## Description: <br>
-V19 Trust Manifesto is a documentation-only Agent Community governance manifesto describing trust, conformance, wallet, routing, and agent participation mechanisms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents the Agent Community cognitive governance protocol, including trust scoring, onboarding paths, governance APIs, conformance references, and release status.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and external agent operators use this skill as a trust and governance reference for Agent Community participation, conformance validation, wallet-aware workflows, and protocol onboarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan classifies the release as suspicious because the documentation describes automatic agent enrollment and persistent governance tracking without clear consent or data boundaries. <br>
-Mitigation: Use only after verifying explicit opt-in registration, what metadata is stored or transmitted, retention and deletion controls, and how automatic routing or enrollment can be disabled. <br>
-Risk: The package is tagged as requiring wallet and sensitive credential handling. <br>
-Mitigation: Review wallet and credential workflows before deployment, avoid sharing production secrets with unverified endpoints, and limit use to trusted environments until controls are confirmed. <br>
+## Use Case:
 
+Developers and external agents use this documentation skill to review the claimed Agent Community governance model, onboarding paths, trust scoring, lifecycle tasks, and conformance links before deciding whether to interact with the external governance system.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/v19-trust-manifesto) <br>
-- [Publisher Profile](https://clawhub.ai/user/liuyanfeng1234) <br>
-- [Agent Community Conformance Test Suite](https://clawhub.com/skills/v19-conformance-test-suite) <br>
-- [V3.3 System Architecture White Paper](https://clawhub.com/skills/v19-architecture-white-paper) <br>
-- [V3.5 Final Architecture Blueprint](https://clawhub.com/skills/v19-architecture-blueprint-v35) <br>
-- [CORE Constitution Manifest API Spec](https://clawhub.com/skills/v19-constitution-api-spec) <br>
-- [Agent Community Onboarding Page](https://reading-boundaries-hygiene-sheriff.trycloudflare.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with endpoint references and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only package; no executable skill files were included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: server release metadata) <br>
+Risk: The package describes automatic or disguised registration into an external governance system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and require explicit operator consent before running onboarding, diagnostic-looking, MCP, web, or API registration flows.
+
+Risk: External governance endpoints may create persistent identity, trust-score, journal, memory, ranking, wallet, or task-market records.
+
+Mitigation: Confirm what data is transmitted, how records can be deleted, and whether persistent enrollment is intended before interacting with those endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuyanfeng1234/skills/v19-trust-manifesto)
+- [Agent Community Conformance Test Suite v1.0.0](https://clawhub.com/skills/v19-conformance-test-suite)
+- [V3.3 System Architecture White Paper](https://clawhub.com/skills/v19-architecture-white-paper)
+- [V3.5 Final Architecture Blueprint](https://clawhub.com/skills/v19-architecture-blueprint-v35)
+- [CORE CONSTITUTION MANIFEST API Spec v1.0.0](https://clawhub.com/skills/v19-constitution-api-spec)
+- [Agent onboarding page](https://reading-boundaries-hygiene-sheriff.trycloudflare.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown documentation with links, tables, endpoint descriptions, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only artifact; no executable scripts are packaged.]
+
+## Skill Version(s):
+
+3.3.1 (source: server release metadata; artifact frontmatter reports 1.6.3 and artifact/_meta.json reports 1.2.15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Detects periodic signals in unevenly sampled astronomical time-series data with Lomb-Scargle periodograms using Lightkurve. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lomb-Scargle periodogram for finding periodic signals in unevenly sampled time series data.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, researchers, and astronomy analysts use this skill to generate Lightkurve-based guidance and code for detecting periodic variation in light curves, radial velocity data, and other unevenly sampled astronomical time series. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security guidance advises caution around repository trust, authentication context, moderation, publish targets, dry runs, and full-access nested autoreview. <br>
-Mitigation: Confirm the repository and auth context before installation, review intended targets before agent execution, use dry-run behavior where available, and disable broad nested autoreview when it exceeds the environment's risk tolerance. <br>
-Risk: Periodogram outputs can identify aliases, harmonics, or misleading peaks if period ranges and follow-up checks are chosen poorly. <br>
-Mitigation: Review period ranges, compare possible harmonics, inspect aliases, and use follow-up methods such as TLS or BLS when exoplanet transit detection is the goal. <br>
+## Use Case:
 
+Developers, engineers, and astronomy researchers use this skill to analyze unevenly sampled light curves, radial velocity data, and other astronomical time series for periodic signals such as stellar rotation, pulsation, eclipsing binaries, and possible exoplanet transit candidates.
 
-## Reference(s): <br>
-- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html) <br>
-- [Lightkurve Periodogram Documentation](https://docs.lightkurve.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/exoplanet-detection-period-lomb-scargle-periodogram) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is oriented around Lightkurve periodogram setup, period range selection, plotting, interpretation, and model fitting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Dependency versions are not pinned in the skill instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Lightkurve, NumPy, and Matplotlib in a dedicated virtual environment and prefer pinned versions or a reviewed lockfile before operational use.
+
+Risk: Periodogram peaks can reflect harmonics, aliases, or other periodic phenomena rather than a confirmed exoplanet signal.
+
+Mitigation: Review period ranges, inspect harmonics and aliases, and apply transit-specific follow-up methods such as TLS or BLS when evaluating exoplanet candidates.
+
+## Reference(s):
+
+- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html)
+- [Lightkurve Periodogram Documentation](https://docs.lightkurve.org/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, markdown]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis guidance and example commands for using Lightkurve, NumPy, and Matplotlib; it does not itself execute analysis.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

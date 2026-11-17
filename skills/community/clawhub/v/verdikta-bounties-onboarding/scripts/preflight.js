@@ -12,20 +12,18 @@
 //   3. On-chain bounty matches API (creator, CID, classId, threshold)
 //   4. On-chain isAcceptingSubmissions returns true
 //   5. Deadline has sufficient buffer
-//   6. Bot has sufficient LINK balance (via /estimate-fee)
-//   7. Bot has sufficient ETH for gas
+//   6. Bot has sufficient ETH for gas
+//   7. Bot has sufficient ETH for the live requiredPrepay
 //
 // Prints a clear GO / NO-GO verdict.
 
 import './_env.js';
 import { ethers } from 'ethers';
-import {
-  getNetwork, providerFor, loadWallet,
-  escrowContract, linkBalance, arg, loadApiKey,
-} from './_lib.js';
+import { getNetwork, providerFor, loadWallet, escrowContract, preflightDeployment, arg, hasFlag, loadApiKey, reviewedApiOrigin } from './_lib.js';
 
 const jobId = arg('jobId');
 const minBufferMin = Number(arg('minBuffer', '30')); // minutes before deadline
+if (hasFlag('require-link')) throw new Error('LINK is not used by current bounty submissions');
 
 if (!jobId) {
   console.error('Usage: node preflight.js --jobId <ID> [--minBuffer <minutes>]');
@@ -35,11 +33,7 @@ if (!jobId) {
 // ---- Setup ----
 
 const network = getNetwork();
-const baseUrl = (process.env.VERDIKTA_BOUNTIES_BASE_URL || '').replace(/\/+$/, '');
-if (!baseUrl) {
-  console.error('VERDIKTA_BOUNTIES_BASE_URL not set. Run onboard.js first.');
-  process.exit(1);
-}
+const baseUrl = reviewedApiOrigin(network, process.env.VERDIKTA_BOUNTIES_BASE_URL);
 
 const provider = providerFor(network);
 const wallet = await loadWallet();
@@ -179,28 +173,13 @@ if (job?.submissionCloseTime) {
   check('Deadline buffer', true, 'no deadline set');
 }
 
-// 6. LINK balance (vs estimate-fee)
-let estimatedLink = 0.05; // fallback
+// 6. Live ETH oracle prepay; never treat prepare-time estimates as authoritative.
 try {
-  const feeRes = await fetch(`${baseUrl}/api/jobs/${jobId}/estimate-fee`, { headers });
-  if (feeRes.ok) {
-    const feeData = await feeRes.json();
-    estimatedLink = Number(feeData.estimatedFee || feeData.fee || feeData.linkCost || 0.05);
-  }
-} catch { /* use fallback */ }
-
-try {
-  const { bal, dec } = await linkBalance(network, provider, botAddress);
-  const linkHuman = Number(ethers.formatUnits(bal, dec));
-  const enough = linkHuman >= estimatedLink;
-  check('LINK balance', enough,
-    enough
-      ? `${linkHuman.toFixed(4)} LINK (need ~${estimatedLink.toFixed(4)})`
-      : `${linkHuman.toFixed(4)} LINK — need ~${estimatedLink.toFixed(4)} LINK`
-  );
-} catch (err) {
-  check('LINK balance', false, err.message);
-}
+  await preflightDeployment(network, provider, baseUrl);
+  const required = await escrowContract(network, provider).requiredPrepay(jobId);
+  const balance = await provider.getBalance(botAddress);
+  check('ETH evaluation prepay', balance > required, `${ethers.formatEther(required)} ETH plus gas required`);
+} catch (err) { check('ETH evaluation prepay', false, err.message); }
 
 // 7. ETH balance for gas
 try {

@@ -1,42 +1,63 @@
-## Description: <br>
-Write a coding standards document for a project using the coding styles from the file(s) and/or folder(s) passed as arguments in the prompt, without modifying analyzed source files unless edits are explicitly requested and confirmed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write a coding standards document for a project using the coding styles from the file(s) and/or folder(s) passed as arguments in the prompt, without modifying analyzed source files unless edits are explicitly requested and confirmed.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to analyze selected project files and draft a coding standards document that reflects the project's existing style. It can also summarize inconsistencies and, when explicitly approved, prepare standards-related project changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected files or folders, which can expose sensitive project content if the scope is too broad. <br>
-Mitigation: Provide exact file paths or narrow folders, and avoid secrets, environment files, private directories, generated output, and dependency folders. <br>
-Risk: The skill can create a standards document or propose README, test, or source-file changes when those options are enabled. <br>
-Mitigation: Keep the default read-only posture unless changes are intended, and review any proposed diffs before accepting them. <br>
-Risk: Optional external style-reference fetching may be inappropriate for restricted projects. <br>
-Mitigation: Disable external style fetching for private or restricted work. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze explicitly provided project files or narrowly scoped folders and produce a coding standards document, README section, or prompt output that reflects the project's existing style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhauga/write-coding-standards-from-file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown standards document, markdown report, or proposed file changes depending on user-selected options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a fileName input; may also use folderName, instructions, and configuration-style options. Defaults favor read-only analysis and creating a new standards document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad folder analysis could unintentionally include secrets, generated outputs, dependency folders, or unrelated private files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Analyze only explicit file paths or narrowly scoped folders and keep the default exclusions for secret, private, dependency, build, and environment files.
+
+Risk: Generated coding standards or inconsistency summaries may be incomplete or misleading if the provided files are not representative.
+
+Mitigation: Review the generated standards against the project before adopting them, and provide additional representative files when needed.
+
+Risk: README, test-file, or source-file edits can change project behavior or documentation unexpectedly.
+
+Mitigation: Use read-only prompt output when appropriate, and require explicit approval plus diff review before accepting any file edits.
+
+Risk: Optional public style-guide fetching may make network requests during standards generation.
+
+Mitigation: Set fetchStyleURL=false in restricted environments or when external reference fetching is not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhauga/skills/write-coding-standards-from-file)
+- [Publisher profile](https://clawhub.ai/user/jhauga)
+- [Skill source evidence](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, with optional project file updates when explicitly requested and confirmed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a coding standards file, add README content, summarize inconsistencies, or propose reviewed diffs depending on configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

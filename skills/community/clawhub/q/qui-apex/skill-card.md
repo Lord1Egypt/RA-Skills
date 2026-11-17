@@ -1,43 +1,60 @@
-## Description: <br>
-Trade and monitor ApeX perpetual futures, including balances, positions, P&L, market and limit orders, order cancellation, trade history, market analysis, and reward enrollment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade and monitor ApeX perpetual futures. Check balances, view positions with P&L, place/cancel orders, execute market trades, or submit trade reward enrollments. Use when the user asks about ApeX trading, portfolio status, crypto positions, activity enrollments, or wants to execute trades on ApeX.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent monitor ApeX perpetual futures accounts, inspect market conditions, and prepare or execute ApeX trading operations through the bundled CLI scripts. It is intended for users who deliberately want agent-assisted access to an ApeX futures account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use live ApeX credentials and an Omni seed to place or cancel real perpetual futures orders. <br>
-Mitigation: Use testnet first, keep the Omni seed private, use restricted and revocable credentials, and manually confirm symbol, side, size, price, environment, and cancel-all actions before execution. <br>
-Risk: Incorrect trade parameters or agent misunderstanding could create unwanted exposure or losses. <br>
-Mitigation: Review current price, account balance, open positions, and estimated cost before approving trades; avoid automatic retries for failed trade commands. <br>
+## Use Case:
 
+External users and developers use Apex to monitor ApeX perpetual futures portfolios, analyze market momentum, and prepare or execute ApeX orders through agent-guided shell commands. Because it can place or cancel real trades, users should treat agent outputs as proposals and confirm trading actions explicitly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-apex) <br>
-- [ApeX Omni API Reference](references/api.md) <br>
-- [ApeX Omni API mainnet](https://omni.apex.exchange) <br>
-- [ApeX Omni API testnet](https://qa.omni.apex.exchange) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Private trading commands require ApeX API credentials and an Omni seed; public market-data commands can run without private credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill can place or cancel live ApeX perpetual futures orders when credentials are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet first and require explicit user confirmation before any trade, close, cancel, reward enrollment, or reward submission.
+
+Risk: The skill handles ApeX API credentials, an Omni seed, and sensitive account data.
+
+Mitigation: Use the least-privileged ApeX API key possible, never reuse the Omni seed elsewhere, and protect or remove any generated trading-state.json file.
+
+Risk: Generated market signals may be incorrect, stale, or incomplete.
+
+Mitigation: Treat market signals as informational only and independently review price, position size, and account exposure before acting.
+
+## Reference(s):
+
+- [ApeX Omni API Reference](artifact/references/api.md)
+- [ApeX Omni mainnet API](https://omni.apex.exchange)
+- [ApeX Omni testnet API](https://qa.omni.apex.exchange)
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-apex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from CLI commands plus Markdown guidance for chat presentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market analysis, portfolio summaries, order details, and command suggestions; trading commands require ApeX credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

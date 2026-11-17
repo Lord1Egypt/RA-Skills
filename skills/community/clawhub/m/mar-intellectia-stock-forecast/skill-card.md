@@ -1,44 +1,60 @@
-## Description: <br>
-Provides stock and crypto forecasts, target-price predictions, probability estimates, technical ratings, and buy/sell/hold Q&A through SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides single-symbol stock and crypto forecasts and buy/sell/hold analysis through the SkillBoss API Hub.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and agents use this skill to request single-symbol stock or crypto forecasts and buy/sell/hold rationale through SkillBoss API Hub for informational analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and investment questions are sent to SkillBoss API Hub. <br>
-Mitigation: Keep SKILLBOSS_API_KEY in environment configuration and avoid submitting brokerage details, account data, or sensitive portfolio information. <br>
-Risk: Forecasts and buy/sell/hold analysis may be inaccurate, delayed, or misleading. <br>
-Mitigation: Treat results as informational only and verify important financial conclusions with licensed data sources or qualified professionals. <br>
-Risk: API credentials can be exposed if copied into prompts, source files, or logs. <br>
-Mitigation: Use environment variables for credentials and review commands before running or sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to request single-ticker stock or crypto forecasts and structured investment Q&A. It helps an agent call SkillBoss API Hub endpoints for forecast searches and buy/sell/hold analysis while presenting results as informational guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/mar-intellectia-stock-forecast) <br>
-- [SkillBoss Intellectia Stock Forecast](https://skillboss.co/skills/intellectia-stock-forecast) <br>
-- [SkillBoss API Hub endpoint](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with curl and Python examples, plus SkillBoss API results as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends ticker symbols or investment questions to SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends an API key and stock-analysis prompts to SkillBoss API Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust SkillBoss with the submitted prompts and protect SKILLBOSS_API_KEY in a constrained environment.
+
+Risk: Forecasts and buy/sell/hold analysis can be incorrect, stale, or unsuitable for financial decisions.
+
+Mitigation: Treat results as informational only and verify important decisions with licensed market data and qualified financial advice.
+
+Risk: The Python example depends on the requests package from the package ecosystem.
+
+Mitigation: Use a constrained environment and pin dependencies when stricter supply-chain control is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-intellectia-stock-forecast)
+- [Publisher profile](https://clawhub.ai/user/marjoriebroad)
+- [SkillBoss skill information](https://skillboss.co/skills/intellectia-stock-forecast)
+- [SkillBoss API Hub pilot endpoint](https://api.skillboss.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and Python examples; API responses may be JSON or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; results are informational and may not be real-time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

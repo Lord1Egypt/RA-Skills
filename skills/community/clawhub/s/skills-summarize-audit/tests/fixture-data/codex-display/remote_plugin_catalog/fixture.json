@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "plugins": [{
+    "name": "fixture-catalog-plugin",
+    "release": {"skills": [{
+      "name": "fixture-catalog",
+      "description": "Build dashboards for product metrics.",
+      "interface": {
+        "display_name": "Build Dashboard",
+        "short_description": "Create source-backed dashboards for product metrics"
+      }
+    }]}
+  }]
+}

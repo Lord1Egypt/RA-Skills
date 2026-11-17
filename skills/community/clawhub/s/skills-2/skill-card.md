@@ -1,46 +1,55 @@
-## Description: <br>
-Execute AI workflow orchestration flows using the AetherLang Omega DSL for multi-step AI pipelines across recipes, business strategy, market analysis, molecular gastronomy, and related analysis tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes AI workflow orchestration flows using the AetherLang \u03a9 DSL for multi-step AI pipelines such as recipes, business strategy, market analysis, and molecular gastronomy.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-External users and developers use this skill to build and submit AetherLang workflow DSL flows that call an external orchestration API and return structured AI-generated results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided flow code and query text are sent to api.neurodoc.app for processing. <br>
-Mitigation: Inform users before the first API call and send only the minimum flow code and explicit query text needed for the task. <br>
-Risk: Sensitive personal data, credentials, private files, or confidential business information could be exposed if included in the request text. <br>
-Mitigation: Review and strip sensitive content before sending requests to the external service. <br>
-Risk: External API availability, rate limits, or server errors can prevent workflow execution. <br>
-Mitigation: Handle 400, 413, 429, and 500 responses clearly and avoid retrying requests that include sensitive or unnecessary data. <br>
+## Use Case:
 
+Developers and operators use this skill to submit AetherLang flow code and a user query to an external API that runs orchestrated AI workflows and returns structured results.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/contrario/skills-2) <br>
-- [Publisher homepage](https://masterswarm.net) <br>
-- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
-- [Aether Nexus Omega DSL page](https://neurodoc.app/aether-nexus-omega-dsl) <br>
-- [Artifact-declared security middleware source](https://github.com/contrario/aetherlang/blob/main/aetherlang/middleware/security.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown and structured text from external API responses, with AetherLang DSL code examples where needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided flow code and query text; no credentials are required by the packaged skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill sends AetherLang flow code and user query text to api.neurodoc.app for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Notify the user before the first API call and install only when the user is comfortable with that external data transfer.
+
+Risk: Requests could expose sensitive information if a user includes secrets, credentials, personal account details, confidential business data, uploaded files, or hidden context.
+
+Mitigation: Send only the explicit flow code and query text, strip sensitive data before requests, and avoid including files, credentials, or hidden context.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/contrario/skills/skills-2)
+- [Publisher homepage and privacy policy](https://masterswarm.net)
+- [AetherLang execution API endpoint](https://api.neurodoc.app/aetherlang/execute)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request and response structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends only AetherLang flow code and user query text to the disclosed external API.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

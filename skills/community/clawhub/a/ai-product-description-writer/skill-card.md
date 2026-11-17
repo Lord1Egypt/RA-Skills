@@ -1,44 +1,56 @@
-## Description: <br>
-Generates professional, casual, luxury, or SEO product descriptions from a product name and feature list using Grok AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate product descriptions in professional, casual, luxury, and SEO styles from a product name and features using Grok AI.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-E-commerce and marketing users can draft product listing copy for stores, marketplaces, and promotional content from a product name and comma-separated feature list. The skill supports professional, casual, luxury, SEO, or all styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an xAI API key. <br>
-Mitigation: Use a dedicated key, keep it in the XAI_API_KEY environment variable, avoid committing it, and rotate it if exposed. <br>
-Risk: Product names and feature details are sent to xAI/Grok for generation. <br>
-Mitigation: Do not submit confidential product launches, customer data, or proprietary details unless your organization approves xAI processing. <br>
-Risk: Generated marketing copy may contain inaccurate, unsupported, or overbroad claims. <br>
-Mitigation: Review descriptions before publication and verify claims against the product's approved specifications. <br>
+## Use Case:
 
+External users and e-commerce operators use this skill to draft ready-to-publish product listing copy for channels such as online stores and marketplaces from a product name and comma-separated feature list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/ai-product-description-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text product descriptions printed by a shell command, with headings for each requested style.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY and sends the product name and feature list to xAI/Grok for generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Product names, features, and prompts are sent to x.ai using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unreleased, confidential, regulated, or customer-sensitive product data unless organizational policy permits that sharing.
+
+Risk: The skill depends on a user-supplied XAI_API_KEY for API access.
+
+Mitigation: Store the key securely, avoid committing it to files or logs, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/ai-product-description-writer)
+- [BytesAgain homepage](https://bytesagain.com)
+- [xAI Console](https://console.x.ai)
+- [xAI Chat Completions API endpoint](https://api.x.ai/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text with section headings for each requested description style]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and sends product names, features, and prompts to the x.ai API.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

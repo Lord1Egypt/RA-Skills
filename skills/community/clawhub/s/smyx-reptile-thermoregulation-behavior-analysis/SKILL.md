@@ -1,7 +1,7 @@
 ---
 name: "smyx-reptile-thermoregulation-behavior-analysis"
 description: "Through fixed enclosure cameras, the system analyzes behavior videos of reptiles (lizards, snakes, turtles) and detects movement frequency and dwell duration between the basking zone (heated area under the basking lamp) and the hiding zone (cave/cool side). | 通过爬宠箱固定摄像头，分析爬行动物（如蜥蜴、蛇、龟）的行为视频，检测宠物在晒点（加热灯下方高温区域）与躲避区（洞穴、冷区）之间的移动频次、停留时长以及活动节律。系统连续监测，生成每日温区利用报告，异常时推送提醒。"
-version: "1.0.3"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

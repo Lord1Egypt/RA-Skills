@@ -1,43 +1,59 @@
-## Description: <br>
-Continuously gathers Binance BTCUSDT and ETHUSDT event-contract market data and produces advisory signal, ICT-structure, risk, execution-tracking, and reporting outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Binance-only BTCUSDT and ETHUSDT event-contract data fetching, signal calculation, ICT structure analysis, risk checks, advisory execution logging, and reporting for human-reviewed trading workflows.
 
-## Publisher: <br>
-[acwxpunh](https://clawhub.ai/user/acwxpunh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acwxpunh](https://clawhub.ai/user/acwxpunh)
 
-## Use Case: <br>
-Traders, analysts, and agent operators use this skill system to monitor Binance BTCUSDT and ETHUSDT event-contract conditions, generate advisory trade signals, check risk limits, track signal status, and produce performance reports. It is advisory-oriented and its outputs require human review before any trading decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to run continuously and poll Binance data every minute, which may create operational load or unwanted background activity. <br>
-Mitigation: Install it only when continuous crypto-market monitoring is intended, and confirm how to disable or pause polling before activation. <br>
-Risk: The skill produces financial trading signals, win-rate claims, position-size guidance, and P&L tracking that may be mistaken for guaranteed trading advice. <br>
-Mitigation: Treat all signal, win-rate, and position-size outputs as unverified financial analysis requiring independent human review. <br>
-Risk: Reports and alerts may be sent to Feishu, which could expose trading-analysis details or performance logs. <br>
-Mitigation: Confirm exactly what data is sent to Feishu and where execution logs and caches are stored before using the workflow. <br>
+## Use Case:
 
+External users and trading workflow operators use this skill system to monitor Binance BTC/ETH event-contract market data, generate advisory entry, target, and stop guidance, run risk checks, and summarize signal performance without placing orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/acwxpunh/binance-event-contract) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/acwxpunh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reports, advisory signal summaries, risk-check results, status logs, alerts, and installation or trigger commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs focus on Binance BTCUSDT and ETHUSDT event-contract workflows and may include prices, targets, stop-loss levels, position-size guidance, P&L tracking, and Feishu alert content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can run unattended, poll Binance continuously, cache and share market data, and produce trading recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in scheduling, provide pause or uninstall controls, and review the workflow before deployment.
+
+Risk: The release uses mutable installer commands.
+
+Mitigation: Use pinned and reviewed installer and skill versions.
+
+Risk: The security summary flags flawed high-impact risk guidance in the risk manager.
+
+Mitigation: Do not rely on risk-manager output until position-size math is corrected and independently tested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/acwxpunh/skills/binance-event-contract)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/acwxpunh)
+- [Binance API Endpoint](https://api.binance.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style advisory reports with inline installation and trigger commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces market-data summaries, signal recommendations, ICT structure reports, risk-check results, execution logs, P&L monitoring, alerts, and periodic performance reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

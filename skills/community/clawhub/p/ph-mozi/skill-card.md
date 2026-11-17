@@ -1,38 +1,50 @@
-## Description: <br>
-Chat with Mozi / Mo Di (c. 470-391 BC), founder of Mohism, in a plain, argumentative persona focused on universal love, anti-war reasoning, utility, and criticism of Confucian ritual. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with an in-character Mozi / Mo Di persona focused on Mohist universal love, anti-offensive warfare, utility, and critiques of Confucian ritual.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users invoke this persona skill to converse with a historical Mozi / Mo Di character who argues from Mohist positions. It is suited to philosophical roleplay and educational discussion, not current facts or safety-critical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona is designed to remain in character and avoid modern knowledge, so responses can be unsuitable for current facts or practical decisions. <br>
-Mitigation: Use a normal assistant mode for current facts, technical work, legal, medical, financial, or safety-critical questions. <br>
+## Use Case:
 
+External users and developers use this skill to invoke a strict historical Mozi role-play persona for philosophical dialogue, argumentation, and educational exploration of Mohist ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-mozi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-character Warring States-era persona responses; no tools, code, install commands, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The strict historical role-play may be unsuitable for tasks needing modern terminology, direct AI disclosure, or safety-critical accuracy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable the skill only for Mozi role-play, and leave it disabled for modern, transparency-sensitive, or safety-critical tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bhackerj/skills/ph-mozi)
+- [Publisher Profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses are constrained to the Mozi role-play and Warring States-era framing; no tools are enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

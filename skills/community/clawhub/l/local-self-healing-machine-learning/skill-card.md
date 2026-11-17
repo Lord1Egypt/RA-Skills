@@ -1,45 +1,64 @@
-## Description: <br>
-A fully local machine learning engine that makes an OpenClaw agent smarter over time by learning from runtime failures, clustering similar errors, and evolving fix strategies without default outbound telemetry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fully local machine learning engine that helps an OpenClaw agent learn from runtime errors without default telemetry, fingerprinting, or external network calls.
 
-## Publisher: <br>
-[josephtandle](https://clawhub.ai/user/josephtandle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephtandle](https://clawhub.ai/user/josephtandle)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a local self-healing loop that analyzes OpenClaw runtime history, proposes or applies code fixes, validates outcomes, and records lessons in local memory. It is aimed at local automation workflows where auditability and offline operation are important. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent OpenClaw sessions, persist learning state, and spawn or drive executor agents that change code. <br>
-Mitigation: Run it only in a controlled workspace, review proposed changes before accepting them, and keep human review mode enabled for sensitive projects. <br>
-Risk: Optional bridge, hub task, auto-update, remote Ollama, and publishing paths can introduce network or executor behavior beyond the default local posture. <br>
-Mitigation: Keep EVOLVE_BRIDGE, EVOLVE_HUB_TASKS, auto-update, remote OLLAMA_URL values, and asset publishing disabled unless explicitly required. <br>
-Risk: The local dashboard can expose diagnostics and local state if reachable from shared or networked machines. <br>
-Mitigation: Bind or firewall the dashboard and avoid exposing the configured dashboard port outside the local machine. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor local runtime history, cluster recurring failures, select repair strategies, and record outcomes for auditable self-healing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/josephtandle/local-self-healing-machine-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/josephtandle) <br>
-- [Author site from clawdis metadata](https://mastermindshq.business) <br>
-- [Ollama installation documentation](https://ollama.com/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, console text, local JSON/JSONL state files, and generated code changes when execution is enabled] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local audit artifacts, feedback records, embeddings cache, knowledge base entries, and optional dashboard data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact package.json reports 2.0.0) <br>
+Risk: The skill can read broad OpenClaw session and memory data and use it to drive repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where this access is acceptable, prefer review mode, and set a narrow EVOLVER_SESSION_SCOPE.
+
+Risk: Automated repair behavior can change local repository files.
+
+Mitigation: Use --review or EVOLVE_BRIDGE=false for human oversight before applying changes.
+
+Risk: Non-loopback embedding endpoints or an exposed dashboard can disclose local workflow data.
+
+Mitigation: Keep OLLAMA_URL on loopback and do not expose the dashboard beyond localhost.
+
+Risk: The documented Ollama install path uses curl piped to a shell.
+
+Mitigation: Avoid that install path unless it has been independently trusted and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephtandle/skills/local-self-healing-machine-learning)
+- [Publisher profile](https://clawhub.ai/user/josephtandle)
+- [Author website](https://mastermindshq.business)
+- [Ollama installation documentation](https://ollama.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and console text with inline shell commands and JSON-backed local state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audit records, feedback data, predictor state, and dashboard status data when run by an agent.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; package.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

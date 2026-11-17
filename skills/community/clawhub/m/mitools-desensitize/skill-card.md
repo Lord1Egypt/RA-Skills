@@ -1,40 +1,57 @@
-## Description: <br>
-A data desensitization skill that masks phone numbers, ID cards, bank cards, emails, IP addresses, Chinese names, path usernames, long digit sequences, and sensitive field names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data desensitization tool for masking phone numbers, ID cards, bank cards, email addresses, IP addresses, Chinese names, path usernames, long digit sequences, field names, and custom wildcard matches.
 
-## Publisher: <br>
-[bianchengyy](https://clawhub.ai/user/bianchengyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianchengyy](https://clawhub.ai/user/bianchengyy)
 
-## Use Case: <br>
-Developers, operations staff, and data handlers use this skill to mask sensitive values in text, logs, files, and documents before sharing data, preparing test data, or processing documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create reversible mappings that expose original sensitive values if stored, committed, backed up, or shared. <br>
-Mitigation: Use restoration only when needed and protect generated mapping files like secrets; keep them out of commits, shared workspaces, and backups. <br>
-Risk: Regex-based masking may miss sensitive values outside the documented rules or custom rule set. <br>
-Mitigation: Review desensitized output before sharing and add custom rules for formats that are not covered by the built-in rule list. <br>
+## Use Case:
 
+Developers and agents use this skill to mask sensitive content in text, files, logs, shared data, test data, and documents, and to restore masked values when a mapping table is intentionally retained.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bianchengyy/mitools-desensitize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, configuration] <br>
-**Output Format:** [Plain text and JSON; file mode can write a desensitized file and a mapping JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit reversible mapping data that should be handled as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Reversible plaintext mapping files can expose original sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a private directory, treat .mapping.json files as sensitive secrets, and protect or delete mapping files immediately after use.
+
+Risk: Restoration requires sharing a mapping JSON that contains original-to-masked value relationships.
+
+Mitigation: Share mapping data only with trusted operators and avoid passing mappings to agents or third parties unless restoration is required and approved.
+
+Risk: File mode may write desensitized output and a related mapping file beside the source or output path.
+
+Mitigation: Choose explicit output locations and avoid running file mode on highly sensitive data unless the residual restoration risk is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bianchengyy/skills/mitools-desensitize)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Plain text or file output with JSON mapping data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [File mode may create a .mapping.json file that enables restoration of masked values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

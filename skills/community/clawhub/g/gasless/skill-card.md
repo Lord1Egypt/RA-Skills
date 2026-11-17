@@ -1,41 +1,58 @@
-## Description: <br>
-Gasless provides shell commands for storing, listing, searching, removing, exporting, and configuring local plaintext entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gasless is presented as a gasless blockchain analysis skill, but the release evidence shows it ships a local record-management shell tool.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators can use this skill as a local plaintext entry manager for notes or configuration-like records. It should not be treated as a gasless blockchain analysis tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's label and description can lead users to expect gasless blockchain analysis, while the observed behavior is local note and configuration storage. <br>
-Mitigation: Use it only as a local entry manager and do not rely on it for protocol analysis, security evaluation, or on-chain concepts. <br>
-Risk: User-entered data is stored in plaintext under ~/.gasless and exports may be written to the current working directory. <br>
-Mitigation: Do not enter secrets, wallet data, API keys, incident notes, or sensitive protocol information unless plaintext local storage and export files are acceptable. <br>
+## Use Case:
 
+Developers and reviewers can use this skill to inspect or run a simple local command-line record manager while treating its blockchain-analysis claims as unverified.
 
-## Reference(s): <br>
-- [Gasless ClawHub release](https://clawhub.ai/bytesagain3/gasless) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSONL, CSV, and configuration files under ~/.gasless or the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The advertised gasless blockchain analysis purpose does not match the shipped local record-manager behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the behavior against the intended use case before deployment and do not rely on it for protocol or on-chain security analysis.
+
+Risk: Commands can mutate local files by adding, removing, exporting, and changing configuration data.
+
+Mitigation: Run only after review, avoid sensitive entries, use a controlled GASLESS_DIR, and do not execute with elevated privileges.
+
+Risk: Exports are written to the current working directory.
+
+Mitigation: Run from a trusted directory and review generated export files before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/gasless)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, remove, search, and export local journal/config files under GASLESS_DIR or ~/.gasless.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

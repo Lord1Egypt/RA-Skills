@@ -1,38 +1,49 @@
-## Description: <br>
-Clean up unused npm dependencies in a project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up unused npm dependencies in a project. Use when you want to remove packages that are installed but not used in the codebase.
 
-## Publisher: <br>
-[hgxszhj-pixel](https://clawhub.ai/user/hgxszhj-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgxszhj-pixel](https://clawhub.ai/user/hgxszhj-pixel)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify unused npm dependencies with depcheck, review the results, and remove confirmed unused packages with npm uninstall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgxszhj-pixel/clean-unused-deps) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hgxszhj-pixel) <br>
+Developers and engineers use this skill to identify unused npm dependencies, review the findings, and remove selected packages with npm uninstall.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should be reviewed against project source, scripts, configuration, and CI before uninstalling packages.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Dependency cleanup can remove packages that are still needed through dynamic imports, scripts, configuration files, or framework conventions.
+
+Mitigation: Treat depcheck output as a starting point, preserve the current project state first, review findings manually, uninstall in small batches, and run tests and builds after changes.
+
+## Reference(s):
+
+- [Clean Unused Deps on ClawHub](https://clawhub.ai/hgxszhj-pixel/skills/clean-unused-deps)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advises users to review dependency findings before uninstalling packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

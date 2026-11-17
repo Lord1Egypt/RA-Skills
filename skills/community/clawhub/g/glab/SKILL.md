@@ -77,7 +77,7 @@ jq --version
 glab auth login
 
 # Or via environment
-export GITLAB_TOKEN="glpat-xxxxxxxxxxxxxxxxxxxx"
+export GITLAB_TOKEN="REDACTED-SECRET"
 export GITLAB_HOST="gitlab.example.org"  # for self-hosted
 
 # Verify auth

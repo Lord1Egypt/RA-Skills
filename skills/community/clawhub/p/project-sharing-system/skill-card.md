@@ -1,41 +1,58 @@
-## Description: <br>
-Project Sharing System helps agents share project status, discover active work, sync updates, and keep project history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Sharing System helps multiple agents share project status, discover active work, synchronize updates, keep history, and generate snapshots, summaries, backups, and an HTML dashboard.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain a shared project-status workspace for multiple agents, including project listing, updates, summaries, snapshots, and automatic backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent project files and backups may retain local project state, history, and operational notes. <br>
-Mitigation: Install only where that data is acceptable to persist, and review or reset the bundled projects_status.json before relying on it. <br>
-Risk: Local helper scripts write project data, regenerate Markdown views, and run backup commands in the configured workspace. <br>
-Mitigation: Use the skill in a trusted workspace and prevent untrusted users from modifying the installed scripts or project data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep a shared project-status file, manage updates across multiple agents, and generate Markdown snapshots, summaries, backups, and a dashboard.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clementgu/project-sharing-system) <br>
-- [Publisher profile](https://clawhub.ai/user/clementgu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown status snapshots, JSON project data, shell command examples, and an HTML dashboard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates persistent local project-state files and backup snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Crafted workspace paths or project data could run code or browser script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated, trusted workspace and do not let untrusted users control CLAWHUB_WORKDIR or project data.
+
+Risk: Dashboard rendering may expose users to browser script execution when served from a privileged or authenticated origin.
+
+Mitigation: Avoid serving the dashboard from authenticated or privileged origins until the Python path handling and innerHTML rendering are fixed.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill before installing and scan it before deployment.
+
+## Reference(s):
+
+- [Project Sharing System on ClawHub](https://clawhub.ai/clementgu/skills/project-sharing-system)
+- [clementgu ClawHub Publisher Profile](https://clawhub.ai/user/clementgu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation, JSON project status data, shell command output, and HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manages workspace files such as projects_status.json, PROJECT_STATUS.md, projects_snapshot.md, backups, and dashboard.html.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

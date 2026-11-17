@@ -1,40 +1,58 @@
-## Description: <br>
-Generates Architecture Decision Records from architectural decisions discussed in the current session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Architecture Decision Records from decisions made during the current session by gathering repository context, extracting decisions, confirming user selections, writing ADR files, reporting results, and verifying output quality.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineering teams use this skill after design discussions to identify decisions worth documenting, confirm which ones should become ADRs, and create draft ADR markdown files for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ADRs may omit context or include draft conclusions that are not yet accepted. <br>
-Mitigation: Review each generated ADR before treating it as an accepted architecture record. <br>
-Risk: The workflow reads conversation and repository context to extract candidate decisions. <br>
-Mitigation: Use it only in workspaces where that context is appropriate for ADR generation. <br>
+## Use Case:
 
+Developers and engineers use this skill after architecture discussions to turn confirmed decisions into MADR-style ADR documentation. It is intended for repository workflows where ADRs should be created, numbered, reviewed, and verified before commit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/skills/write-adr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown ADR files and Markdown status summaries with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates user-confirmed ADR files under docs/adrs and reports verification status for each generated record.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Generated ADRs may misrepresent architectural decisions or omit important context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The workflow requires presenting extracted decisions for user confirmation before files are written and recommends reviewing generated ADRs before committing them.
+
+Risk: ADR numbering or file creation can fail if the expected repo-local numbering script or related ADR skills are unavailable.
+
+Mitigation: Verify the required ADR helper skills and numbering script exist in the target repository before relying on the generated files.
+
+Risk: Generated ADR files may not meet the expected frontmatter, alternatives, or consequences requirements.
+
+Mitigation: Use the skill's verification step to check YAML frontmatter, status, date, documented alternatives, and Good/Bad consequences for every created ADR.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/write-adr)
+- [Publisher profile](https://clawhub.ai/user/anderskev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown ADR files, confirmation prompts, JSON decision extraction payloads, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or adjusts Markdown files under docs/adrs/ after user confirmation and reports verification status.]
+
+## Skill Version(s):
+
+1.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

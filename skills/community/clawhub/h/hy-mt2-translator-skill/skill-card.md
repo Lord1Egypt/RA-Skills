@@ -1,46 +1,61 @@
-## Description: <br>
-Tencent Hy-MT2-Translator provides Hy-MT2-based machine translation across 38 supported languages with basic, terminology-constrained, style-controlled, delimiter-preserving, structured-data, context-aware, file, and batch JSONL workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides machine translation capabilities based on the Hy-MT2 model, supporting 38 languages and six translation modes for single text, multi-line files, and batch JSONL translation.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-External users, developers, and localization teams use this skill to translate text, documents, structured content, and batch JSONL files through Tencent Cloud Hy-MT2 or a user-hosted OpenAI-compatible translation backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored API keys, backend URLs, model names, and active backend choices can be reused across sessions. <br>
-Mitigation: Use limited-scope API keys, clear stored credentials when changing backends, and rotate keys when access is no longer needed. <br>
-Risk: Sensitive text may be sent to the previously selected backend without a fresh confirmation. <br>
-Mitigation: Confirm the active backend and data approval status before translating confidential or regulated content. <br>
-Risk: Custom private-model endpoints can send translation data to untrusted infrastructure. <br>
-Mitigation: Use only trusted, approved OpenAI-compatible endpoints and avoid unverified backend URLs. <br>
+## Use Case:
 
+External users and developers use this skill to translate text, structured content, files, and JSONL batches with terminology, style, delimiter-preservation, and context controls through Tencent Cloud or a user-hosted OpenAI-compatible backend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/hy-mt2-translator-skill) <br>
-- [Tencent Cloud Hy-MT2 model detail](https://console.cloud.tencent.com/tokenhub/models/detail?modelId=hy-mt2-pro) <br>
-- [Tencent Hy-MT2 Hugging Face collection](https://huggingface.co/collections/tencent/hy-mt2) <br>
-- [Supported Languages](references/supported-languages.md) <br>
-- [Translation Modes Reference](references/translation-modes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain translated text for single requests; JSONL files with added translation fields for batch jobs; Markdown guidance and shell commands for setup and execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Tencent Cloud or a user-hosted OpenAI-compatible backend. Batch mode supports resumable JSONL output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores translation backend selection, model names, endpoint URLs, and API keys in agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key with limited scope, rotate it regularly, and delete remembered credentials and backend settings when the skill is no longer needed.
+
+Risk: Source text, files, terminology, and contextual information can be sent to Tencent Cloud or a user-configured remote endpoint.
+
+Mitigation: Avoid translating highly sensitive material unless the selected backend and data handling terms are acceptable for that content.
+
+Risk: Users can override the Tencent endpoint URL or choose a private OpenAI-compatible backend.
+
+Mitigation: Use only endpoints that the user or organization trusts, and prefer a private backend controlled by the deploying team for sensitive workloads.
+
+## Reference(s):
+
+- [Supported Languages](artifact/references/supported-languages.md)
+- [Translation Modes Reference](artifact/references/translation-modes.md)
+- [Tencent Cloud Hy-MT2 Model Detail](https://console.cloud.tencent.com/tokenhub/models/detail?modelId=hy-mt2-pro)
+- [Tencent Hy-MT2 Hugging Face Collection](https://huggingface.co/collections/tencent/hy-mt2)
+- [ClawHub Skill Page](https://clawhub.ai/tencent-adm/skills/hy-mt2-translator-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with bash command blocks, translated text, and JSONL files for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single translations are returned as text; batch runs append translations to JSONL records and report success, failure counts, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

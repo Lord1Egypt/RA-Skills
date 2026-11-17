@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life-money-skill.local/assets/schemas/career_profile.schema.json",
+  "title": "Career Profile — 职业信息档案",
+  "description": "「人生搞钱」Skill 的唯一输入契约（Contract 1）。由访谈或简历解析产出，经用户确认门后方可进入 7 轮分析。所有分析结论必须可回溯到本档案字段；档案之外的经历、数字、头衔不得出现在分析产出中。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "meta", "identity", "salary", "work_history", "skills", "time_budget", "goals"],
+  "properties": {
+    "schema_version": {
+      "const": "0.2",
+      "description": "契约版本；破坏性变更时递增，同步检查渲染与分析规格"
+    },
+    "meta": {
+      "type": "object",
+      "required": ["created_at", "source"],
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "source": {
+          "enum": ["interview", "resume", "mixed"],
+          "description": "信息采集方式：访谈 / 材料解析（简历、项目报告、作品集等）/ 两者结合"
+        },
+        "resume_filename": {
+          "type": "string",
+          "description": "若来自简历，仅记录文件名；不存简历原文"
+        },
+        "language": { "type": "string", "default": "zh-CN" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": ["current_role", "industry", "city", "years_of_experience"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "可选，报告显示用；留空则报告以「你」叙事"
+        },
+        "current_role": { "type": "string", "description": "当前职位 / 身份" },
+        "industry": { "type": "string" },
+        "city": { "type": "string", "description": "常驻城市（影响市场校准口径）" },
+        "years_of_experience": { "type": "number", "minimum": 0 },
+        "employment_status": {
+          "enum": ["在职", "待业", "自由职业", "创业中", "学生", "其他"]
+        }
+      }
+    },
+    "salary": {
+      "type": "object",
+      "required": ["current_amount", "currency", "period"],
+      "properties": {
+        "current_amount": { "type": "number", "minimum": 0 },
+        "currency": { "type": "string", "description": "ISO 4217 代码，如 CNY / EUR / USD" },
+        "period": { "enum": ["monthly", "annual"] },
+        "notes": { "type": "string", "description": "口径说明（税前 / 税后、是否含奖金等）" },
+        "components": {
+          "type": "array",
+          "description": "薪资构成：基本工资 / 奖金 / 补贴等（可选）",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "amount": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "work_history": {
+      "type": "array",
+      "minItems": 1,
+      "description": "职业经历，按时间倒序",
+      "items": {
+        "type": "object",
+        "required": ["company", "role", "period"],
+        "properties": {
+          "company": { "type": "string" },
+          "role": { "type": "string" },
+          "period": {
+            "type": "object",
+            "required": ["start"],
+            "properties": {
+              "start": { "type": "string", "description": "YYYY-MM" },
+              "end": { "type": ["string", "null"], "description": "YYYY-MM；在职为 null" }
+            }
+          },
+          "industry": { "type": "string" },
+          "responsibilities": { "type": "array", "items": { "type": "string" } },
+          "achievements": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "成果 / 亮点，可量化优先；数字必须来自用户原话"
+          },
+          "skills_used": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "required": ["self_assessed"],
+      "properties": {
+        "self_assessed": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "level": { "type": "integer", "minimum": 1, "maximum": 5, "description": "自评 1-5" },
+              "evidence": { "type": "string", "description": "支撑该技能的成果 / 经历" }
+            }
+          }
+        },
+        "tools_and_domains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "工具、行业知识、语言、证书等"
+        }
+      }
+    },
+    "time_budget": {
+      "type": "object",
+      "required": ["hours_per_week"],
+      "properties": {
+        "hours_per_week": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 168,
+          "description": "每周可投入变现探索的小时数"
+        },
+        "launch_hours_per_week": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 168,
+          "default": 6,
+          "description": "门禁 3 确认值：每周启动副业可投入时间（默认 6 小时）"
+        },
+        "constraints": { "type": "string", "description": "时间约束：加班 / 家庭 / 竞业等" }
+      }
+    },
+    "goals": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": { "type": "string", "description": "主要目标（用户原话优先）" },
+        "income_target": {
+          "type": "object",
+          "description": "门禁 2 确认值：每月额外赚取目标（默认 1000-3000 元 / 月）",
+          "properties": {
+            "min_amount": { "type": "number", "description": "目标下限" },
+            "max_amount": { "type": ["number", "null"], "description": "目标上限（可为空）" },
+            "currency": { "type": "string" },
+            "period": { "enum": ["monthly", "annual"] }
+          }
+        },
+        "risk_tolerance": { "enum": ["low", "medium", "high"] },
+        "interests": { "type": "array", "items": { "type": "string" }, "description": "愿意投入的方向偏好" }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "其他硬约束：竞业协议、签证、家庭安排、健康等"
+    }
+  }
+}

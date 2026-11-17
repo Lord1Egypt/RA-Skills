@@ -1,41 +1,60 @@
-## Description: <br>
-Guides developers and engineers through Linux kernel panic and vmcore analysis with crash, kdump, and related memory debugging tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug Linux kernel crashes through evidence-first vmcore analysis with the crash utility and memory and concurrency debugging tools.
 
-## Publisher: <br>
-[crazyss](https://clawhub.ai/user/crazyss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazyss](https://clawhub.ai/user/crazyss)
 
-## Use Case: <br>
-Developers, kernel engineers, and operators use this skill to triage Linux kernel crashes, inspect vmcore files, configure kdump, and reason about memory corruption, deadlocks, OOM events, and architecture-specific crash parameters. Because the workflow can involve live-system tooling and sensitive memory dumps, it is best used by experienced operators in controlled environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crazyss/linux-kernel-crash-debug) <br>
-- [Project homepage](https://github.com/crazyss/linux-kernel-crash-debug) <br>
-- [Kernel.org kdump documentation](https://docs.kernel.org/admin-guide/kdump/kdump.html) <br>
-- [Crash utility documentation](https://crash-utility.github.io/) <br>
-- [Crash utility whitepaper](https://crash-utility.github.io/crash_whitepaper.html) <br>
+Developers and systems engineers use this skill to investigate Linux kernel panics and crash dumps, trace symptoms to evidence-supported causes, and choose focused follow-up debugging steps. It guides offline vmcore analysis and cautious live-system diagnostics.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and crash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include diagnostic command sequences, kdump setup guidance, vmcore handling guidance, and bounded wrapper commands for crash analysis.] <br>
+Global
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The security scan verdict is benign with medium confidence, but the scan was partial: one referenced file was not fully inspected and a trigger may be broad.
+
+Mitigation: Review the complete release contents and trigger scope before installation; interpret the verdict as based on incomplete scan evidence.
+
+Risk: Privileged setup, service changes, tracing, or other live diagnostics can modify a host; vmcores and trace output can contain sensitive process data.
+
+Mitigation: Prefer offline read-only analysis. Make live changes only with explicit authorization for the host and action, a bounded plan and rollback; keep collected data access-controlled and do not share it without approval and sanitization.
+
+## Reference(s):
+
+- [Evidence-first analysis workflow](references/evidence-first-workflow.md)
+- [Crash dump format and validation](references/vmcore-format.md)
+- [Debugging tools guide](references/debug-tools-guide.md)
+- [Kdump setup guide](references/kdump-setup-guide.md)
+- [Worked kernel crash case studies](references/case-studies.md)
+- [Crash utility documentation](https://crash-utility.github.io/)
+- [Linux kernel Kdump documentation](https://docs.kernel.org/admin-guide/kdump/kdump.html)
+- [Project homepage (metadata.clawdis)](https://github.com/crazyss/linux-kernel-crash-debug)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown findings, diagnostic runbooks, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-linked conclusions with confidence and disproof checks; live-system commands require explicit authorization.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

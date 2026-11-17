@@ -1,46 +1,59 @@
-## Description: <br>
-Integrate Paddle payments with subscriptions, webhooks, checkout, and tax compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Paddle payments with subscriptions, webhooks, checkout, and tax compliance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Paddle billing for SaaS products, including checkout setup, subscription management, webhook verification, API calls, and tax compliance configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live billing operations can change subscriptions, access, or charges. <br>
-Mitigation: Use Paddle sandbox keys first and require explicit review before any live subscription changes. <br>
-Risk: API keys and webhook secrets could be exposed through prompts, logs, or local notes. <br>
-Mitigation: Keep API keys and webhook secrets in environment variables or a secret manager, and keep ~/paddle/memory.md limited to non-secret integration notes. <br>
-Risk: Customer and payment data is sent to Paddle during billing workflows. <br>
-Mitigation: Install and use this skill only for Paddle billing work where sending customer, subscription, and payment data to Paddle is expected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Paddle Skill Page](https://clawhub.ai/ivangdavila/paddle) <br>
-- [Paddle Skill Homepage](https://clawic.com/skills/paddle) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [API Reference](artifact/api.md) <br>
-- [Webhook Handling](artifact/webhooks.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Paddle for SaaS payments, including API calls, checkout setup, subscription lifecycle handling, webhook verification, and tax compliance configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration notes, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Paddle API calls, webhook handling examples, checkout snippets, and local integration notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill covers high-impact billing operations such as creating customers and changing subscriptions against a live Paddle account.
+
+Mitigation: Require explicit user confirmation before creating customers or changing subscriptions, and prefer sandbox endpoints until the user is ready for production.
+
+Risk: API keys and integration details could be mishandled in local Paddle memory.
+
+Mitigation: Keep API keys out of ~/paddle/memory.md and store only environment, product, tech stack, price ID, and decision notes.
+
+Risk: Webhook verification examples are under-scoped for a payments workflow.
+
+Mitigation: Replace examples with hardened code that checks timestamp freshness, validates signature format, handles malformed input safely, and minimizes webhook payload logging.
+
+## Reference(s):
+
+- [Paddle ClawHub skill page](https://clawhub.ai/ivangdavila/skills/paddle)
+- [Paddle skill homepage](https://clawic.com/skills/paddle)
+- [Paddle production API endpoint](https://api.paddle.com)
+- [Paddle sandbox API endpoint](https://sandbox-api.paddle.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Paddle API request examples, webhook handler examples, and local integration memory guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

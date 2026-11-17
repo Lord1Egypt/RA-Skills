@@ -1,42 +1,54 @@
-## Description: <br>
-Use when conducting an in-depth adaptive interview with a domain expert to extract structured Q&A pairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts adaptive, multi-round interviews with domain experts to extract structured Q&A pairs, decision frameworks, and cognitive boundaries through progressive questioning.
 
-## Publisher: <br>
-[billb13](https://clawhub.ai/user/billb13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billb13](https://clawhub.ai/user/billb13)
 
-## Use Case: <br>
-External users, researchers, and knowledge-management teams use this skill to run adaptive expert interviews that capture expert knowledge, decision frameworks, and cognitive boundaries as structured Q&A pairs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview answers and analysis are written to local state, backup, and JSONL export files. <br>
-Mitigation: Do not enter confidential or regulated information unless authorized, and protect or delete generated state, backup, and export files according to the user's data-handling requirements. <br>
-Risk: The skill workflow references interview_engine.py and prompt templates that are not included in the submitted artifact. <br>
-Mitigation: Verify that the referenced Python engine and prompt files are present and trusted before relying on the workflow. <br>
+## Use Case:
 
+External users and developers can use this skill to run structured adaptive interviews with domain experts, turning implicit expertise into standardized question-and-answer records for later analysis.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/BillB13/expert-distiller) <br>
-- [ClawHub skill page](https://clawhub.ai/billb13/expert-distiller) <br>
-- [Publisher profile](https://clawhub.ai/user/billb13) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSONL interview export output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow saves interview state and exports one JSON object per line with question, answer, phase, type, dimension, and timestamp fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow depends on interview_engine.py and prompt templates that are referenced but not included in the artifact evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust those helper files separately before running the Python commands.
+
+Risk: The workflow writes local interview state, backup, and JSONL result files that may contain expert-provided sensitive information.
+
+Mitigation: Run it in an appropriate workspace and handle generated files according to the user's data policy.
+
+## Reference(s):
+
+- [Source repository (server-resolved provenance)](https://github.com/BillB13/expert-distiller)
+- [ClawHub skill page](https://clawhub.ai/billb13/skills/expert-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON/JSONL interview records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates adaptive interview questions, response analyses, state updates, snapshots, and JSONL exports through a local Python interview workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

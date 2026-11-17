@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "self-improving-agent-jarvis",
+  "name": "self-improving-agent-jarvis",
+  "displayName": "Self-Improving Agent Jarvis",
   "version": "3.0.11",
-  "publishedAt": 1775174395351
+  "slug": "self-improving-agent-jarvis",
+  "description": "自改进 AI 代理 - 从错误中学习并持续优化代码",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["agent", "self-improvement", "learning", "automation", "ai"],
+  "pricing": {
+    "type": "paid",
+    "amount": 29,
+    "currency": "CNY"
+  },
+  "requirements": [],
+  "category": "automation"
 }

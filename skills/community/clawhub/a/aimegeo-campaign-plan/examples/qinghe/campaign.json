@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "request": "青禾下周参展，两个人拍摄，请给展前、展中、展后内容及当天拍摄清单。",
+  "event": {
+    "id": "qinghe-expo",
+    "brand": "青禾",
+    "kind": "参展",
+    "time": {
+      "raw": "下周",
+      "anchor_date": null,
+      "timezone": null,
+      "start_date": null,
+      "end_date": null
+    },
+    "staff": [
+      {
+        "id": "A",
+        "role": "口播与接待（建议）"
+      },
+      {
+        "id": "B",
+        "role": "拍摄与记录（建议）"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F01",
+      "key": "brand",
+      "status": "confirmed",
+      "value": "青禾",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "青禾"
+      }
+    },
+    {
+      "id": "F02",
+      "key": "event_kind",
+      "status": "confirmed",
+      "value": "参展",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "参展"
+      }
+    },
+    {
+      "id": "F03",
+      "key": "time_raw",
+      "status": "confirmed",
+      "value": "下周",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "下周"
+      }
+    },
+    {
+      "id": "F04",
+      "key": "staff_count",
+      "status": "confirmed",
+      "value": 2,
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "两个人拍摄"
+      }
+    },
+    {
+      "id": "F05",
+      "key": "exhibition_name",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F06",
+      "key": "event_dates",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F07",
+      "key": "booth",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F08",
+      "key": "business",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F09",
+      "key": "audience",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F10",
+      "key": "goal",
+      "status": "missing",
+      "value": null,
+      "source": null
+    }
+  ],
+  "scope": {
+    "mode": "all",
+    "selected_ids": [],
+    "authorization": "全部9条一起成稿，不用每3条停下；未知信息不编，现场内容保留采集条件。",
+    "stages": [
+      "before",
+      "during",
+      "after"
+    ],
+    "channels": [
+      "public",
+      "moments",
+      "dm"
+    ]
+  },
+  "topics": [
+    {
+      "id": "01",
+      "stage": "before",
+      "channel": "public",
+      "platform": "抖音（建议，账号待指定）",
+      "format": "short_video",
+      "time_label": "下周参展前",
+      "title": "青禾下周参展，出发前先确认哪些信息",
+      "hook": "下周要不要去找青禾？先核对参展安排。",
+      "audience": "正在考虑了解此次参展安排的人",
+      "action": "留言最想确认的问题",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "faq_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "shot_ids": [],
+      "owner": "A",
+      "publish_conditions": [
+        "只使用已确认的参展原话，不提供未核实的出行指引"
+      ]
+    },
+    {
+      "id": "02",
+      "stage": "before",
+      "channel": "moments",
+      "platform": "微信朋友圈（建议）",
+      "format": "text_with_image",
+      "time_label": "下周参展前",
+      "title": "下周参展，先把你想问的带上",
+      "hook": "青禾下周参展。你想先了解什么？",
+      "audience": "朋友圈里主动关注此次参展的联系人",
+      "action": "回复一个具体问题",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "faq_ids": [
+        "Q01"
+      ],
+      "shot_ids": [],
+      "owner": "A",
+      "publish_conditions": [
+        "没有备展照片时发纯文字，不借用旧现场冒充本次"
+      ]
+    },
+    {
+      "id": "03",
+      "stage": "before",
+      "channel": "dm",
+      "platform": "微信私聊（建议）",
+      "format": "direct_message",
+      "time_label": "下周参展前",
+      "title": "发给已主动咨询此次参展安排的人",
+      "hook": "青禾下周参展，您想先确认哪方面？",
+      "audience": "实际主动咨询过此次参展、允许继续沟通的人",
+      "action": "回复最关心的一项",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "faq_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "shot_ids": [],
+      "owner": "A",
+      "publish_conditions": [
+        "先核对真实咨询记录，未发生过咨询则不使用此私聊对象条件"
+      ]
+    },
+    {
+      "id": "04",
+      "stage": "during",
+      "channel": "public",
+      "platform": "抖音（建议，账号待指定）",
+      "format": "short_video",
+      "time_label": "下周参展当天",
+      "title": "现场和青禾沟通，先把需求说具体",
+      "hook": "先说明你想了解什么，再看相关资料。",
+      "audience": "计划在展会现场沟通的人",
+      "action": "私信希望核对的需求或资料",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "shot_ids": [
+        "S01",
+        "S02",
+        "S04"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "当天确实参展且素材可用后使用，不在画面叠加猜测的馆号或展位"
+      ]
+    },
+    {
+      "id": "05",
+      "stage": "during",
+      "channel": "moments",
+      "platform": "微信朋友圈（建议）",
+      "format": "text_with_image",
+      "time_label": "下周参展当天",
+      "title": "把关心的问题留下，现场逐项核实",
+      "hook": "把想问的先发来，涉及具体信息要核实。",
+      "audience": "无法到场但有具体问题的联系人",
+      "action": "留言问题",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q02",
+        "Q03"
+      ],
+      "shot_ids": [
+        "S03",
+        "S04",
+        "S05"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "实际提问采集后再决定是否扩成问答稿，照片不露个人资料"
+      ]
+    },
+    {
+      "id": "06",
+      "stage": "during",
+      "channel": "dm",
+      "platform": "微信私聊（建议）",
+      "format": "direct_message",
+      "time_label": "下周参展当天",
+      "title": "给明确想现场沟通的人补充确认",
+      "hook": "方便的话，先把想了解的事项发来。",
+      "audience": "真实表达过现场沟通意愿、允许继续联系的人",
+      "action": "确认沟通事项与是否到场",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q02"
+      ],
+      "shot_ids": [
+        "S03",
+        "S05"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "实际有现场沟通意愿才发；未核实展位前不发路线"
+      ]
+    },
+    {
+      "id": "07",
+      "stage": "after",
+      "channel": "public",
+      "platform": "抖音（建议，账号待指定）",
+      "format": "short_video",
+      "time_label": "下周参展结束后",
+      "title": "没到现场，也能先按这份问题单了解青禾",
+      "hook": "没有到现场，可以先从几个问题了解青禾。",
+      "audience": "没到场、希望先判断是否相关的人",
+      "action": "留言希望先看的资料类型",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q03"
+      ],
+      "shot_ids": [
+        "S06",
+        "S07"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "确认参展结束后使用；不把问题清单包装成现场统计结果"
+      ]
+    },
+    {
+      "id": "08",
+      "stage": "after",
+      "channel": "moments",
+      "platform": "微信朋友圈（建议）",
+      "format": "text_with_image",
+      "time_label": "下周参展结束后",
+      "title": "参展资料怎么补，先从你关心的问题开始",
+      "hook": "后续资料按实际关心的问题整理。",
+      "audience": "继续关注参展内容的联系人",
+      "action": "回复希望补充的资料",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q03"
+      ],
+      "shot_ids": [
+        "S06",
+        "S07"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "确认参展结束后使用；没有实测数据就不写成交和反馈"
+      ]
+    },
+    {
+      "id": "09",
+      "stage": "after",
+      "channel": "dm",
+      "platform": "微信私聊（建议）",
+      "format": "direct_message",
+      "time_label": "下周参展结束后",
+      "title": "给实际提出资料需求的人跟进",
+      "hook": "先把需要的资料说具体，再核对内容。",
+      "audience": "真实提出资料需求且允许继续沟通的人",
+      "action": "说明所需资料或合适沟通时间",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "faq_ids": [
+        "Q03"
+      ],
+      "shot_ids": [
+        "S07"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "参展结束且存在真实资料需求才使用；拒绝或不方便时停止跟进"
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "window": "布展完成后",
+      "start_minute": 0,
+      "end_minute": 4,
+      "people": [
+        "B"
+      ],
+      "content": "拍清自家识别牌及实际位置，避开无关人员",
+      "priority": "essential",
+      "topic_ids": [
+        "04"
+      ],
+      "fallback": "没有可核实展位时保留识别牌，不提供路线",
+      "status": "planned"
+    },
+    {
+      "id": "S02",
+      "window": "布展完成后",
+      "start_minute": 4,
+      "end_minute": 9,
+      "people": [
+        "A",
+        "B"
+      ],
+      "content": "A 口播如何把需求说具体，B 固定机位和收声",
+      "priority": "essential",
+      "topic_ids": [
+        "04"
+      ],
+      "fallback": "接待开始就暂停，改为无人物识别画面加字幕",
+      "status": "planned"
+    },
+    {
+      "id": "S03",
+      "window": "接待间隙一",
+      "start_minute": 0,
+      "end_minute": 4,
+      "people": [
+        "B"
+      ],
+      "content": "把真实问题记成匿名笔记，不拍联系方式和订单",
+      "priority": "essential",
+      "topic_ids": [
+        "05",
+        "06"
+      ],
+      "fallback": "没有提问时保留空白采集任务，不编问题",
+      "status": "planned"
+    },
+    {
+      "id": "S04",
+      "window": "接待间隙一",
+      "start_minute": 4,
+      "end_minute": 10,
+      "people": [
+        "A",
+        "B"
+      ],
+      "content": "拍可公开实物或资料，A 只解释有事实依据的内容",
+      "priority": "essential",
+      "topic_ids": [
+        "04",
+        "05"
+      ],
+      "fallback": "没有可公开实物时拍自有资料核对过程",
+      "status": "planned"
+    },
+    {
+      "id": "S05",
+      "window": "接待间隙二",
+      "start_minute": 0,
+      "end_minute": 4,
+      "people": [
+        "B"
+      ],
+      "content": "补拍自家资料和无人物环境，给文字内容留配图",
+      "priority": "optional",
+      "topic_ids": [
+        "05",
+        "06"
+      ],
+      "fallback": "忙时取消，不找无关展位代拍",
+      "status": "planned"
+    },
+    {
+      "id": "S06",
+      "window": "收展时",
+      "start_minute": 0,
+      "end_minute": 4,
+      "people": [
+        "B"
+      ],
+      "content": "记录自家展位收整或资料归档，不摆拍人流",
+      "priority": "essential",
+      "topic_ids": [
+        "07",
+        "08"
+      ],
+      "fallback": "没有收展镜头时用真实资料归档画面",
+      "status": "planned"
+    },
+    {
+      "id": "S07",
+      "window": "收展时",
+      "start_minute": 4,
+      "end_minute": 9,
+      "people": [
+        "A",
+        "B"
+      ],
+      "content": "A 说后续需要核实什么，B 记录，不预报成交数",
+      "priority": "essential",
+      "topic_ids": [
+        "07",
+        "08",
+        "09"
+      ],
+      "fallback": "口播录不了就写核对笔记，后续另拍",
+      "status": "planned"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "Q01",
+      "question": "青禾什么时候参加什么展会？",
+      "status": "partial",
+      "answer": "青禾下周参展。具体展会名称和展期尚待提供，不推定为周末。",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "missing_keys": [
+        "exhibition_name",
+        "event_dates"
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "怎样找到青禾展位？",
+      "status": "missing",
+      "answer": null,
+      "fact_ids": [],
+      "missing_keys": [
+        "booth",
+        "exhibition_name",
+        "event_dates"
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "青禾提供什么，适合哪些人？",
+      "status": "missing",
+      "answer": null,
+      "fact_ids": [],
+      "missing_keys": [
+        "business",
+        "audience"
+      ]
+    }
+  ],
+  "drafts": [
+    {
+      "topic_id": "01",
+      "text": "青禾下周参展。准备去现场之前，先核对展会名称、开展日期、场馆和展位，再决定怎么安排出行。也可以先把想了解的事情列出来，避免到了现场才临时想问题。你现在最想确认的是哪一项？欢迎把具体问题留下。",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [],
+      "status": "ready_for_review"
+    },
+    {
+      "topic_id": "02",
+      "text": "青禾下周参展。\n如果你也在关注，可以先把想了解的问题发来。\n具体出行安排，请先核对展期、场馆和展位。\n你最关心哪一项？",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [],
+      "status": "ready_for_review"
+    },
+    {
+      "topic_id": "03",
+      "text": "您好，青禾下周参展。您想先了解哪方面的信息？可以把问题发我，方便继续沟通。如果计划到场，请先核对具体展期、场馆和展位，再安排出行。您想先确认哪一项？",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [],
+      "status": "ready_for_review"
+    },
+    {
+      "topic_id": "04",
+      "text": "现场和青禾沟通时，可以先把自己的需求说具体：你正在了解什么、最关心哪个环节、需要怎样的资料。听到介绍后，再核对适用范围、条件和还没有确认的部分。不用只记一个结论；把问题和依据一起留下，后续沟通更清楚。想先核对哪项，可以把事项发来。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [
+        "S01",
+        "S02",
+        "S04"
+      ],
+      "status": "awaiting_capture"
+    },
+    {
+      "topic_id": "05",
+      "text": "如果你也在关注青禾这次参展，可以把问题发来。\n涉及具体安排和业务信息，请以核实后的内容为准。\n不方便到场，也欢迎先说说关心什么。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [],
+      "status": "awaiting_capture",
+      "required_shot_any_of": [
+        [
+          "S03",
+          "S04"
+        ]
+      ]
+    },
+    {
+      "topic_id": "06",
+      "text": "如果您还打算现场沟通，方便时先发一下您想了解的事项。到场前请再核对展期、场馆和展位；是否当场能聊，以现场安排为准。如果不方便来，也可以先把问题发我。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [
+        "S03"
+      ],
+      "status": "awaiting_capture"
+    },
+    {
+      "topic_id": "07",
+      "text": "没有到现场，也可以先从几个问题了解青禾：具体做什么、适合谁、有哪些可以核对的资料，以及下一步如何沟通。涉及业务和参展安排的说法，应以核实后的信息为准。你最希望先看哪一项？把问题留下，方便继续补充。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [
+        "S06",
+        "S07"
+      ],
+      "status": "awaiting_capture"
+    },
+    {
+      "topic_id": "08",
+      "text": "这次参展内容，后续按大家实际关心的问题整理。\n想了解青禾哪方面，欢迎留言。\n涉及展会数据、产品细节和客户反馈的内容，核实后再补。\n不把没核实的消息当结论。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [
+        "S06",
+        "S07"
+      ],
+      "status": "awaiting_capture"
+    },
+    {
+      "topic_id": "09",
+      "text": "您想了解的资料可以再具体说一下吗？我先核对资料是否完整、内容是否适用，再继续发给您。如果目前不方便沟通，您告诉我一个合适的时间即可。",
+      "fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "required_fact_ids": [],
+      "required_shot_ids": [
+        "S07"
+      ],
+      "status": "awaiting_capture"
+    }
+  ],
+  "observations": []
+}

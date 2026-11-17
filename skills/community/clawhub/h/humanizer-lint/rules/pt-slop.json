@@ -1,0 +1,190 @@
+{
+  "language": "pt",
+  "stopwords": [
+    "de",
+    "a",
+    "o",
+    "que",
+    "e",
+    "do",
+    "da",
+    "em",
+    "um",
+    "para",
+    "é",
+    "com",
+    "não",
+    "uma",
+    "os",
+    "no",
+    "se",
+    "na",
+    "por",
+    "mais"
+  ],
+  "patterns": [
+    {
+      "id": "PT001",
+      "type": "SLOP_PHRASE",
+      "pattern": "no\\s+mundo\\s+acelerado\\s+de\\s+hoje",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT002",
+      "type": "SLOP_PHRASE",
+      "pattern": "vale\\s+ressaltar\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT003",
+      "type": "SLOP_PHRASE",
+      "pattern": "é\\s+importante\\s+notar\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT004",
+      "type": "SLOP_PHRASE",
+      "pattern": "não\\s+há\\s+como\\s+negar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT005",
+      "type": "SLOP_PHRASE",
+      "pattern": "em\\s+conclusão",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT006",
+      "type": "SLOP_PHRASE",
+      "pattern": "em\\s+resumo",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT007",
+      "type": "SLOP_PHRASE",
+      "pattern": "além\\s+disso",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT008",
+      "type": "SLOP_PHRASE",
+      "pattern": "desempenha\\s+um\\s+papel\\s+crucial",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT009",
+      "type": "SLOP_PHRASE",
+      "pattern": "uma\\s+tapeçaria\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT010",
+      "type": "SLOP_PHRASE",
+      "pattern": "mergulhar\\s+fundo",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT011",
+      "type": "SLOP_PHRASE",
+      "pattern": "não\\s+apenas",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT012",
+      "type": "SLOP_PHRASE",
+      "pattern": "mas\\s+também",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT013",
+      "type": "SLOP_PHRASE",
+      "pattern": "na\\s+era\\s+digital",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT014",
+      "type": "SLOP_PHRASE",
+      "pattern": "é\\s+fundamental\\s+lembrar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT015",
+      "type": "SLOP_PHRASE",
+      "pattern": "sem\\s+dúvida",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT016",
+      "type": "SLOP_PHRASE",
+      "pattern": "no\\s+cenário\\s+atual",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT017",
+      "type": "SLOP_PHRASE",
+      "pattern": "ao\\s+longo\\s+do\\s+tempo",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT018",
+      "type": "SLOP_PHRASE",
+      "pattern": "em\\s+última\\s+análise",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT019",
+      "type": "SLOP_PHRASE",
+      "pattern": "abrir\\s+caminho\\s+para",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT020",
+      "type": "SLOP_PHRASE",
+      "pattern": "mudar\\s+o\\s+jogo",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT021",
+      "type": "SLOP_PHRASE",
+      "pattern": "em\\s+um\\s+mundo\\s+em\\s+constante\\s+evolução",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT022",
+      "type": "SLOP_PHRASE",
+      "pattern": "uma\\s+abordagem\\s+holística",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT023",
+      "type": "SLOP_PHRASE",
+      "pattern": "insights\\s+valiosos",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT024",
+      "type": "SLOP_PHRASE",
+      "pattern": "de\\s+forma\\s+contínua",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT025",
+      "type": "SLOP_PHRASE",
+      "pattern": "vale\\s+a\\s+pena\\s+mencionar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "PT026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:No contexto de|No âmbito de|No mundo de) [\\w\\s]+,",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "PT027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "\\bnão\\s+apenas\\b[\\s\\S]{0,100}?\\bmas\\s+também\\b",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

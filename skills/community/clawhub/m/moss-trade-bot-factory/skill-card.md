@@ -1,49 +1,62 @@
-## Description: <br>
-Creates cryptocurrency trading bots from natural-language strategy descriptions, runs local backtests, supports iterative parameter evolution, and can optionally connect to an external platform for verification or simulated live trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates cryptocurrency trading bots from natural-language trading styles, runs local backtests, supports reflection-based parameter evolution, and can optionally connect to an external platform for validation and automated trading.
 
-## Publisher: <br>
-[fei-moss](https://clawhub.ai/user/fei-moss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fei-moss](https://clawhub.ai/user/fei-moss)
 
-## Use Case: <br>
-External users and developers use this skill to turn a trading style description into bot parameters, run local Binance USDT-M backtests, review evolved parameter schedules, and optionally submit results to a Moss trading platform workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store reusable platform credentials in a local agent_creds.json file. <br>
-Mitigation: Use only the intended platform URL, restrict file access to the credential path, and rotate or delete the credentials when platform access is no longer needed. <br>
-Risk: The skill can start unattended live trading after a broad approval. <br>
-Mitigation: Enable automatic trading only after reviewing backtest results, set a max cycle count for live runs, and prefer manual mode when each order should receive explicit confirmation. <br>
-Risk: Generated strategies may use leveraged cryptocurrency positions. <br>
-Mitigation: Use low leverage, small position limits, and conservative risk-per-trade settings; review stop-loss and take-profit parameters before any live run. <br>
-Risk: Platform-connected verification and trading workflows send data and signed requests to the configured platform. <br>
-Mitigation: Confirm the platform origin before binding, uploading, or live trading, and avoid submitting credentials or strategy packages to unexpected hosts. <br>
+## Use Case:
 
+External users and trading-strategy developers use this skill to convert natural-language trading styles into BTC/USDT bot parameters, run local or evolved backtests, and optionally upload results or operate live trading through the configured Moss platform.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fei-moss/moss-trade-bot-factory) <br>
-- [Publisher Profile](https://clawhub.ai/user/fei-moss) <br>
-- [Moss Trader Platform](https://moss.site/agent) <br>
-- [Platform Operations Guide](artifact/knowledge/platform_ops.md) <br>
-- [Parameter Reference](artifact/knowledge/params_reference.md) <br>
-- [Evolution Guide](artifact/knowledge/evolution_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON parameter files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local backtest, fingerprint, evolution, upload package, credential, and live trading log files when the user enables those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server release evidence) <br>
+Risk: The skill can store platform API credentials locally for upload and live-trading workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private persistent credential path with restrictive file permissions, avoid shared paths, and rotate any api_secret printed by this version.
+
+Risk: Optional platform features can submit strategy, backtest, credential, or trading requests to an external service.
+
+Mitigation: Enable upload, bind, or live mode only after confirming user intent and verifying the platform URL is the intended HTTPS origin.
+
+Risk: Automated leveraged BTCUSDT trading can create financial loss.
+
+Mitigation: Review backtest results and trading parameters before live mode; require explicit authorization for automatic trading and per-order confirmation in manual mode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fei-moss/skills/moss-trade-bot-factory)
+- [Moss Trader](https://moss.site/agent)
+- [Moss Platform API Origin](https://ai.moss.site)
+- [Parameter Reference](knowledge/params_reference.md)
+- [Evolution Guide](knowledge/evolution_guide.md)
+- [Platform Operations](knowledge/platform_ops.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON parameter files, CSV fingerprints, backtest results, upload packages, and live-trading logs when the user authorizes those workflows.]
+
+## Skill Version(s):
+
+1.0.21 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

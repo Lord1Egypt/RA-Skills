@@ -1,7 +1,7 @@
 # Post-Upgrade Verification — Agent Instructions
 
 <!-- Execution prompt for post-upgrade verification. -->
-<!-- Source of truth: MODEL_GROUND_TRUTH.md in workspace root -->
+<!-- Source of truth: MODEL_GROUND_TRUTH.md (index) in workspace root + refs/ground-truth/*.md (sub-files) -->
 <!-- Trigger: after openclaw upgrade, or manual /verify command -->
 
 You are the OpenClaw post-upgrade verification system. Execute all 5 Phases sequentially, then send a summary report.
@@ -25,19 +25,19 @@ You are the OpenClaw post-upgrade verification system. Execute all 5 Phases sequ
 **OpenClaw maintains itself. We only verify the result matches ground truth.**
 - Use OpenClaw native tools (gateway, cron, sessions_spawn, message) for all checks
 - Never bypass OpenClaw to test things it manages
-- Auto-fix config and cron drift; report-only for API keys and channels
+- Report drift first; apply config or cron repairs only after explicit operator approval
 - **Phase 2 (LLM Liveness) is the only valid way to verify secrets.** We verify functionality, not content.
 
-## Auto-Fix Safety
+## Change-Control Safety
 
 This skill can modify runtime configuration (Phase 1: `gateway config.patch`) and cron jobs (Phase 3: `cron update`). These are powerful operations.
 
-**Dry-run mode:** When invoked with `--dry-run` or when the user says "verify only" / "check only", skip all auto-fix actions and report drift as ❌ instead of ⚠️ AUTO-FIXED. Default is auto-fix enabled.
+**Default mode:** Every run is report-only. Record drift and build a redacted repair plan. Do not call `gateway config.patch` or `cron update` unless the operator explicitly approves the exact proposed changes.
 
 **Guard rails:**
-- Auto-fix ONLY applies corrections toward GROUND_TRUTH — never invents values
-- Each fix is logged with before/after values in the summary report
-- If more than 3 fields need fixing in a single phase, pause and ask for human confirmation before proceeding
+- Repairs may only move values toward GROUND_TRUTH — never invent values
+- Never print before/after values for sensitive or credential-adjacent fields
+- Ask for approval immediately before the mutation, even when only one field differs
 - Phase 2 (keys) and Phase 5 (channels) are NEVER auto-fixed
 
 ## Preparation
@@ -64,10 +64,12 @@ Check list (adapt to your GROUND_TRUTH `checks` section):
 - `acp.defaultAgent`
 - `acp.allowedAgents` (exact array match)
 - Any channel-specific checks from your GROUND_TRUTH
+- `channels.discord.guilds.1473460112625762438.channels` contains every live Discord text channel from `refs/ground-truth/discord-server-structure.md`
+- Every allowlisted Discord guild channel has `requireMention=false` and `ignoreOtherMentions=true`
 
 For each field:
 - ✅ Match → pass
-- ❌ Non-Sensitive Mismatch → record `{ field, expected, actual }` and **auto-fix** via `gateway config.patch`, mark as `⚠️ AUTO-FIXED`.
+- ❌ Non-Sensitive Mismatch → record `{ field, expected, actual }` and add a proposed `gateway config.patch` operation to the repair plan. Apply it only after explicit approval.
 - ❌ Sensitive Mismatch (e.g., inside `auth_profiles`) → record only `[REDACTED_SENSITIVE_MISMATCH]` and DO NOT auto-fix. Mark as `❌ FAIL (Needs Human)`.
 
 ## Phase 2: LLM Provider Liveness
@@ -100,7 +102,7 @@ Use `cron list` (include disabled) to get all jobs. Compare against GROUND_TRUTH
 For each GROUND_TRUTH recurring job:
 1. Match by ID prefix
 2. Check: `enabled`, `model`, `schedule`, `delivery.to`
-3. Mismatch → **auto-fix** via `cron update`, mark as `⚠️ AUTO-FIXED`
+3. Mismatch → add the exact `cron update` change to the repair plan; apply only after explicit approval
 
 Extra checks:
 - Count by model tier (flash/sonnet) matches expected
@@ -121,6 +123,14 @@ sessions_spawn:
 - Timeout or error → ❌ SESSION_BROKEN
 
 ## Phase 5: Channel Liveness
+
+Before sending liveness messages, verify Discord directory/config alignment:
+- Use `openclaw directory groups list --channel discord --json` to get the live Discord directory
+- Compare text channels (`raw.type == 0`) with `refs/ground-truth/discord-server-structure.md`
+- Confirm every live text channel has a non-archive `channels/{channelId}.md`
+- Confirm there are no stale non-archive `channels/[0-9]*.md` files that do not map to a live text channel
+- Confirm `channels.discord.guilds.1473460112625762438.channels` includes every live text channel ID
+- Report channel allowlist/refs drift only; do not auto-fix channels in this phase
 
 For each enabled channel, send a test message:
 
@@ -167,7 +177,7 @@ Send to your ops channel. **Enforce the Redaction Protocol here.**
 **Phase 5: Channel Liveness** ✅/❌
   [per-channel status]
 
-**Overall: ✅ PASS / ⚠️ DEGRADED (auto-fixed) / ❌ FAIL (needs human)**
+**Overall: ✅ PASS / ⚠️ DEGRADED (drift found or approved repair applied) / ❌ FAIL (needs human)**
 ```
 
 If any ❌ FAIL → append: `🚨 Human intervention required`
@@ -177,7 +187,7 @@ Also write results to `memory/YYYY-MM-DD.md`. **No secrets allowed.**
 ## Rules
 
 - Each Phase is independent — one failure does not block the next
-- Auto-fix: Phase 1 (non-sensitive config) + Phase 3 (cron) only
+- Approved repair only: Phase 1 (non-sensitive config) + Phase 3 (cron)
 - Report-only: Phase 2 (providers) + Phase 5 (channels)
 - **NO CREDENTIAL ACCESS**: No curl, no env vars, no literal key comparison.
 - Summary report goes to your configured ops channel (internal Discord only — do not route to external webhooks)

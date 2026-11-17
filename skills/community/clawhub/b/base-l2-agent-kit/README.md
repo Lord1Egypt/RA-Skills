@@ -1,0 +1,41 @@
+# Base L2 Earning Agent — MCP Server
+
+An MCP server that exposes Base L2 earning and security tools as Model Context Protocol tools. All underlying endpoints are monetized via x402 micropayments.
+
+## Tools
+
+| Tool | Description | Price |
+|------|-------------|-------|
+| `contract_audit` | Scan smart contract for vulnerabilities | 0.02 USDC |
+| `base_gas_estimate` | Current Base L2 gas prices | 0.01 USDC |
+| `yield_farm` | DeFi yield opportunities on Base | 0.05 USDC |
+| `token_analyzer` | Honeypot & risk scanner | 0.03 USDC |
+| `wallet_health` | Portfolio health score | 0.02 USDC |
+| `generate_mnemonic` | Secure BIP39 mnemonic | 0.01 USDC |
+| `base_price` | Token price on Base | 0.01 USDC |
+| `dex_quote` | DEX swap quote | 0.01 USDC |
+
+## Usage
+
+```bash
+# Install
+pip install mcp httpx
+
+# Run
+python base_agent_kit_mcp.py
+```
+
+## x402 Service
+
+The underlying HTTP service runs at `https://manteclaw-x402.loca.lt` with 9 monetized endpoints. See `.well-known/agent-catalog.json` for full API spec.
+
+## Registry Listings
+
+- **Glama:** Auto-indexed via `glama.json`
+- **Smithery:** Published via `.smithery/manifest.json`
+- **Skills.sh:** `base-l2-earning-agent`
+- **agentskill.sh:** `/@manteclaw/base-l2-earning`
+
+## Author
+
+Manteclaw — Base L2 agent earning automation

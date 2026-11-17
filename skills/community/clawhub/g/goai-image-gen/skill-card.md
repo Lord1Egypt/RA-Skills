@@ -1,44 +1,63 @@
-## Description: <br>
-Generates GoAI images from user prompts, with optional reference images, via the GoAI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images via the GoAI API for image creation, editing, rendering, posters, avatars, photos, concept art, and Chinese-language image requests.
 
-## Publisher: <br>
-[goai](https://clawhub.ai/user/goai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goai](https://clawhub.ai/user/goai)
 
-## Use Case: <br>
-External users and developers use this skill to generate or edit images from prompts or reference images through GoAI while preserving the user's original prompt language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to mustgoai.com or a configured GoAI endpoint. <br>
-Mitigation: Avoid submitting sensitive photos, documents, proprietary artwork, or confidential prompts unless that endpoint is approved for the intended data. <br>
-Risk: Generated media URLs may be externally accessible. <br>
-Mitigation: Treat result URLs as shareable links and avoid generating or distributing sensitive content through this workflow. <br>
-Risk: The skill requires a GoAI API key. <br>
-Mitigation: Use a dedicated API key where possible and rotate or revoke it according to the user's credential-management policy. <br>
+## Use Case:
 
+Developers and external users use this skill to generate or edit images through GoAI while preserving the user's original prompt language and optionally using local or remote reference images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/goai/goai-image-gen) <br>
-- [GoAI Homepage](https://mustgoai.com) <br>
-- [Publisher Profile](https://clawhub.ai/user/goai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text result lines with local file paths and public media URLs; agent-facing guidance may be rendered as Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and GOAI_API_KEY; generated media is saved locally and returned with externally accessible media URLs when the GoAI API succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter and pyproject.toml remain 0.3.0) <br>
+Risk: A changed or untrusted GOAI_BASE_URL endpoint could receive credentials or prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default production endpoint unless you control and trust the override endpoint.
+
+Risk: Local reference images are uploaded before generation and may contain sensitive content.
+
+Mitigation: Provide local reference images only when their upload to GoAI is intended.
+
+Risk: Remote media downloads and broad local file writes can affect the user's workspace.
+
+Mitigation: Review generated output paths and prefer a release that constrains downloads to a safe output directory.
+
+Risk: Runtime dependency setup can download Python packages during first use.
+
+Mitigation: Install only in trusted OpenClaw environments and review dependency pinning before deployment.
+
+## Reference(s):
+
+- [GoAI homepage](https://mustgoai.com)
+- [ClawHub skill page](https://clawhub.ai/goai/skills/goai-image-gen)
+- [Publisher profile](https://clawhub.ai/user/goai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, URLs, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image file and URL outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [On success, the script prints MEDIA, MEDIA_URL, RESULT_PATH, and RESULT_URL lines and saves the generated image as a local PNG file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release; artifact frontmatter and pyproject.toml remain 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

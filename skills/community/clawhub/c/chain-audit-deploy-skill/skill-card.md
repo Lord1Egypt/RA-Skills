@@ -1,49 +1,68 @@
-## Description: <br>
-Audit and deploy blockchain smart contracts for Solidity, Sui Move, and Solana projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and deploy blockchain smart contracts for Solidity, Sui Move, and Solana projects.
 
-## Publisher: <br>
-[rzexin](https://clawhub.ai/user/rzexin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rzexin](https://clawhub.ai/user/rzexin)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify smart contract type, run automated and reasoning-based audits, generate audit reports, and prepare deployments across EVM, Sui Move, and Solana ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle wallet credentials and execute real on-chain deployments that may spend funds. <br>
-Mitigation: Review before production use, prefer testnets and dry runs, use dedicated low-balance deploy wallets, and require explicit network and account checks before deployment. <br>
-Risk: The Solidity deployment helper can expose private-key material in command execution or error output. <br>
-Mitigation: Do not use shared or production private keys with the current Solidity helper unless the private-key error-output issue is fixed; prefer keystores or hardware wallets. <br>
-Risk: Mainnet deployments are irreversible and can have real financial cost. <br>
-Mitigation: Use the audit gate before deployment, require explicit mainnet confirmation, run compile and balance checks, and perform a dry run before broadcasting transactions. <br>
+## Use Case:
 
+Developers and smart contract engineers use this skill to audit Solidity, Sui Move, and Solana contracts, produce findings, and prepare deployment commands. It supports audit-first deployment workflows for testnet, devnet, localnet, and mainnet targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rzexin/chain-audit-deploy-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/rzexin) <br>
-- [Project homepage](https://git.woa.com/jasonruan/chain-audit-deploy-skill) <br>
-- [Multi-Chain Deployment Guide](references/deployment_guide.md) <br>
-- [Solidity Audit Rules Reference](references/solidity_audit_rules.md) <br>
-- [Sui Move Audit Rules Reference](references/sui_move_audit_rules.md) <br>
-- [Solana Audit Rules Reference](references/solana_audit_rules.md) <br>
-- [Smart Contract Audit Report Template](assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit reports, JSON audit summaries, shell commands, and deployment guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include contract findings, severity summaries, deployment commands, network/account checks, transaction identifiers, explorer links, and tool installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wallet keys or broad secrets may be exposed during deployment workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandboxed workspace without production wallet files or broad secrets, and avoid real private keys unless the exact command and target have been independently checked.
+
+Risk: Installer commands that pipe remote content to a shell may run unverified code.
+
+Mitigation: Pin and verify blockchain tooling before installation instead of copy-pasting pipe-to-shell installers.
+
+Risk: Deployment commands can send live blockchain transactions and spend real funds.
+
+Mitigation: Prefer dry runs and testnet or devnet targets; require explicit confirmation and independent review before mainnet use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rzexin/skills/chain-audit-deploy-skill)
+- [Publisher profile](https://clawhub.ai/user/rzexin)
+- [Project homepage](https://git.woa.com/jasonruan/chain-audit-deploy-skill)
+- [Multi-Chain Deployment Guide](references/deployment_guide.md)
+- [Solidity Audit Rules Reference](references/solidity_audit_rules.md)
+- [Sui Move Audit Rules Reference](references/sui_move_audit_rules.md)
+- [Solana Audit Rules Reference](references/solana_audit_rules.md)
+- [Audit Report Template](assets/report_template.md)
+- [Foundry installer](https://foundry.paradigm.xyz)
+- [Sui CLI source](https://github.com/MystenLabs/sui.git)
+- [Anchor source](https://github.com/coral-xyz/anchor)
+- [Solana CLI installer](https://release.anza.xyz/stable/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit reports, JSON audit summaries, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pass, conditional pass, or fail audit gates; deployment output can include contract addresses, transaction hashes, explorer links, and gas estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

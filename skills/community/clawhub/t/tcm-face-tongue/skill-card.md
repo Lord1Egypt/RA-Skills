@@ -1,5 +1,5 @@
 ## Description: <br>
-Calls RageHealth face and tongue TCM APIs to analyze uploaded face or tongue photos and return constitution, organ yin-yang scores, symptoms, face or tongue classifications, recipes, and combined interpretations. <br>
+中医面舌辨证。调用 RageHealth 开放接口，对人脸 / 舌头图片做中医辨证。包含「望面」(`face-tcm-analyse`)、「望舌」(`tongue-diagnosis`)、「面舌辨证」(`comprehensive-interpretation`) 三个子接口，输出体质（平和/气虚/阳虚/阴虚/痰湿/湿热/血瘀/气郁/特禀/气阴两虚）、五脏（心肝脾肺肾）阴阳得分、症状、面色/舌象分类、推荐食谱、综合解读等。当用户上传人脸/舌头照片要求"中医辨证"、"看体质"、"望面望舌"、"面诊舌诊"、"五脏分析"时使用此技能。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to run TCM-style face, tongue, or combined face-tongue analysis from user-provided images and produce an informational report with constitution, symptom, organ balance, tongue or face feature, and dietary guidance. <br>
+External users and developers use this skill to call RageHealth face, tongue, or combined face-and-tongue analysis APIs and turn the returned JSON into concise traditional Chinese medicine body-constitution, organ-balance, tongue-image, recipe, and care guidance. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive face or tongue photos and optional age, gender, skin, IP, or location data to RageHealth for processing. <br>
-Mitigation: Use the skill only with consent from the person in the images, send only the optional fields needed for the request, and keep TCM_AK and TCM_SK credentials private. <br>
-Risk: Outputs are health-adjacent TCM interpretations and may be mistaken for medical diagnosis. <br>
-Mitigation: Present results as informational only, avoid definitive medical claims, and recommend licensed clinical care for severe, persistent, or concerning symptoms. <br>
-Risk: Enabling faceIdDetect can involve face feature data linked to a user group. <br>
-Mitigation: Enable faceIdDetect only when specifically needed and explicitly authorized, and avoid creating persistent face identifiers by default. <br>
-Risk: Combined analysis with local image files falls back to separate face and tongue calls and does not include the service-generated comprehensive interpretation. <br>
-Mitigation: Disclose when fallback output is used and avoid overstating any combined conclusion when comprehensiveInterpretation is missing. <br>
+Risk: The skill sends face or tongue photos, optional demographic or location details, and RageHealth API credentials to a configured external RageHealth endpoint. <br>
+Mitigation: Confirm user consent, send only needed inputs, verify the intended base URL before use, and protect TCM_AK and TCM_SK as secrets. <br>
+Risk: Face ID detection can involve additional face-feature data handling. <br>
+Mitigation: Enable faceIdDetect only when explicitly needed and authorized, and require a userGroup when it is enabled. <br>
+Risk: The skill produces traditional Chinese medicine interpretations and recipe suggestions that could be mistaken for clinical advice. <br>
+Mitigation: Present results as reference-only wellness guidance, advise professional medical care for serious or persistent symptoms, and flag special populations or medication users to follow clinician advice. <br>
+Risk: Runtime dependencies are specified as minimum versions rather than a reviewed lockfile. <br>
+Mitigation: Use pinned dependencies or a reviewed lockfile in sensitive environments. <br>
 
 
 ## Reference(s): <br>
-- [Tcm Face Tongue on ClawHub](https://clawhub.ai/qianchen94/tcm-face-tongue) <br>
-- [Response schema](references/response_schema.md) <br>
-- [RageHealth credential portal](https://chayan-test.ragehealth.cn/client) <br>
+- [tcm-face-tongue ClawHub Skill Page](https://clawhub.ai/qianchen94/skills/tcm-face-tongue) <br>
+- [Response Schema](artifact/references/response_schema.md) <br>
+- [RageHealth Credential Registration](https://ragehealth.cn/client) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses.] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with shell command examples and JSON API outputs] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write full API responses to JSON files; default terminal output omits large landmark and polygon arrays unless full output is requested.] <br>
+**Other Properties Related to Output:** [May write full API responses to JSON files; terminal output removes large landmark and polygon arrays unless full output is requested.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter is 1.0.0) <br>
+1.0.6 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

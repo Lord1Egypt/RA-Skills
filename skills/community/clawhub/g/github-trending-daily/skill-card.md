@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches daily, weekly, or monthly GitHub Trending repositories and formats them for DingTalk group delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches daily, weekly, or monthly GitHub Trending projects and prepares Markdown summaries for DingTalk delivery or preview.
 
-## Publisher: <br>
-[jiangzhiyu](https://clawhub.ai/user/jiangzhiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangzhiyu](https://clawhub.ai/user/jiangzhiyu)
 
-## Use Case: <br>
-Developers and team operators use this skill to monitor GitHub Trending projects and share recurring Markdown summaries to a DingTalk group. It supports daily, weekly, monthly, dry-run, and no-push modes for testing and scheduled delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends messages by default to a hardcoded DingTalk webhook that the installer may not control. <br>
-Mitigation: Replace the embedded webhook with local configuration before use, then test with --dry-run or --no-push before enabling delivery. <br>
-Risk: Cron examples can create recurring automated posts. <br>
-Mitigation: Add scheduled cron entries only after confirming the destination webhook and desired posting frequency. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangzhiyu/github-trending-daily) <br>
-- [GitHub Trending](https://github.com/trending) <br>
+## Use Case:
 
+Developers and team maintainers use this skill to monitor GitHub Trending repositories and share daily, weekly, or monthly Markdown summaries with a DingTalk group.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, terminal status text, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can post to DingTalk by default; dry-run and no-push modes support testing without delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release ships with a live DingTalk webhook token and can send messages to a fixed external destination.
+
+Mitigation: Rotate and replace the embedded webhook with a user-controlled secret, preferably loaded from an environment variable, before publication or use in a real workspace.
+
+Risk: Default command and cron examples may send GitHub Trending summaries when executed.
+
+Mitigation: Review the destination and run dry-run or no-push mode before enabling scheduled delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangzhiyu/skills/github-trending-daily)
+- [GitHub Trending](https://github.com/trending)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown summaries with command-line status text and cron examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, monthly, dry-run, and no-push modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

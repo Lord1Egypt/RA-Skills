@@ -1,42 +1,56 @@
-## Description: <br>
-Agentic Commerce News scans recent agentic commerce activity from X/Twitter, industry media, VC announcements, and conference coverage, then produces a structured news briefing about startups, products, funding rounds, partnerships, and influential opinions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans recent public web, industry media, and VC announcements to produce a structured briefing on agentic commerce startups, products, funding rounds, partnerships, and influential opinions.
 
-## Publisher: <br>
-[xuxinmaxen](https://clawhub.ai/user/xuxinmaxen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxinmaxen](https://clawhub.ai/user/xuxinmaxen)
 
-## Use Case: <br>
-Developers, founders, investors, and commerce teams use this skill to monitor recent agentic commerce market signals and receive concise, source-linked briefings. It can also help set up a recurring digest when the user's runtime supports scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring digest setup can create persistent or background jobs if the user approves scheduling. <br>
-Mitigation: Review every scheduling request before approving it, especially OpenClaw cron or system crontab requests. <br>
-Risk: News briefings can include stale or weakly sourced market claims if search results are not checked carefully. <br>
-Mitigation: Require recent source links for included items and avoid padding quiet weeks with older news. <br>
+## Use Case:
 
+Developers, founders, investors, and commerce operators use this skill to monitor the agentic commerce market and receive timely briefings with dated sources, stack-layer classifications, summary tables, and trend takeaways. It can also guide setup of recurring digests when the user's agent environment supports scheduling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxinmaxen/agentic-commerce-news) <br>
-- [README](README.md) <br>
-- [Evaluations](evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing with source links, event cards, summary tables, trend takeaways, and optional scheduling commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on the past 7 days of activity and filters for credible endorsements or official announcements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Recurring digest setup can create background jobs through agent schedulers or system cron.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only create a recurring job after showing the exact scheduler, command or prompt, schedule, expiration, and cancellation steps; prefer platform-managed schedulers and use system crontab only when the user explicitly wants a local persistent job.
+
+Risk: Public web searches and fetched source pages can include stale, recycled, or misleading news dates.
+
+Mitigation: Confirm publish dates on source pages for top items and fuzzy-dated items, drop items outside the requested window, and cite source links for every included signal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuxinmaxen/skills/agentic-commerce-news)
+- [README](artifact/README.md)
+- [Briefing archive](artifact/briefings/README.md)
+- [Latest briefing example](artifact/briefings/2026-06-29.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefing with source links, grouped news cards, a summary table, weekly takeaways, and optional scheduling commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web search and source fetching; briefing items are expected to be recent, source-linked, date-checked, and deduplicated against the latest archive entry when available.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

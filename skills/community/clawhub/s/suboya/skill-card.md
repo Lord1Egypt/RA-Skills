@@ -1,39 +1,53 @@
-## Description: <br>
-Provides an AI-native philosophy operating system for philosophical reasoning, thought experiment generation, civilization-level analysis, and human-AI value framing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Suboya gives an agent a philosophy reasoning interface for mapping topics to classical thought experiments, generating new thought experiments, and framing civilization-level implications.
 
-## Publisher: <br>
-[nrt2024](https://clawhub.ai/user/nrt2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nrt2024](https://clawhub.ai/user/nrt2024)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze philosophical topics, generate classical and new thought experiments, and synthesize civilization-level implications. It is suited for reflective, educational, and narrative reasoning workflows rather than factual authority for sensitive decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Philosophical or narrative outputs may be mistaken for factual authority in sensitive ethical, social, or organizational decisions. <br>
-Mitigation: Treat outputs as reflective analysis and require human review before using them for consequential decisions. <br>
+## Use Case:
 
+External users and agents use Suboya to structure philosophical reasoning, generate thought experiments from a topic, and summarize civilization-level implications for human, AI, or hybrid perspectives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nrt2024/suboya) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured text blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only outputs for thought experiments, philosophical questions, civilization implications, and narrative analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated philosophical scenarios and civilization conclusions may be speculative or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reasoning support and review conclusions before using them for decisions, publication, or policy analysis.
+
+Risk: The skill content and expected outputs are mostly in Chinese, which may limit review for some users.
+
+Mitigation: Confirm language support expectations and use qualified translation or bilingual review when needed.
+
+## Reference(s):
+
+- [Suboya ClawHub Listing](https://clawhub.ai/nrt2024/skills/suboya)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with structured reasoning sections and code-style templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language philosophical reasoning, thought-experiment templates, and civilization-level summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

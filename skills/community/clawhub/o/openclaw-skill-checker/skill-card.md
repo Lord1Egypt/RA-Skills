@@ -1,40 +1,55 @@
-## Description: <br>
-Security vetting protocol before installing any AI agent skill. Red flag detection for credential theft, obfuscated code, exfiltration. Risk classification LOW/MEDIUM/HIGH/EXTREME. Produces structured vetting reports. Never install untrusted skills without running this first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vetting protocol before installing any AI agent skill, with red flag detection for credential theft, obfuscated code, exfiltration, and LOW/MEDIUM/HIGH/EXTREME risk classification.
 
-## Publisher: <br>
-[mr-liu-lang](https://clawhub.ai/user/mr-liu-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-liu-lang](https://clawhub.ai/user/mr-liu-lang)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to vet AI agent skills before installation by checking source reputation, code red flags, permission scope, and overall risk. It produces a structured vetting report with a risk level and installation recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a cautionary workflow that suggests installing target skills into a temporary directory for review. <br>
-Mitigation: Review raw files, inspect archives, or use an isolated sandbox before running any installer logic for an unknown skill. <br>
+## Use Case:
 
+Developers and agents use this skill to review untrusted agent skills before installation, checking source reputation, file contents, permissions, and security red flags. It produces structured vetting reports with a risk level and install recommendation.
 
-## Reference(s): <br>
-- [Openclaw Skill Checker ClawHub page](https://clawhub.ai/mr-liu-lang/openclaw-skill-checker) <br>
-- [Publisher profile: mr-liu-lang](https://clawhub.ai/user/mr-liu-lang) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with checklists, report templates, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for optional GitHub and ClawHub review commands; supports linux, darwin, and win32 per ClawHub metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill may ask an agent to inspect candidate skill files and source metadata during vetting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run vetting in a temporary or least-privilege workspace and review the candidate skill's permissions separately before installation.
+
+Risk: Illustrative examples include malicious URLs and credential-theft patterns that are examples rather than behavior.
+
+Mitigation: Treat examples as detection guidance only and verify actual behavior against the files being vetted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-liu-lang/skills/openclaw-skill-checker)
+- [Publisher profile](https://clawhub.ai/user/mr-liu-lang)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with checklist items and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable vetting reports, risk classifications, and installation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

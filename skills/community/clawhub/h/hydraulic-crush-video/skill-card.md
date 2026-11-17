@@ -1,44 +1,59 @@
-## Description: <br>
-Generates vertical WeryAI hydraulic-press crushing videos from text briefs or public HTTPS object images, with prompt expansion, parameter confirmation, and playable video URL results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical hydraulic-press crushing short videos from text prompts or public object images using WeryAI.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Creators and operators use this skill to turn short text briefs or public object images into 9:16 hydraulic-press crushing clips for short-form video workflows. The agent expands the prompt, checks WeryAI model parameters, asks for confirmation, and returns generated video URLs or clear error feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live generation uses a WERYAI_API_KEY and may consume paid WeryAI credits. <br>
-Mitigation: Use a revocable or quota-limited API key where possible, review all parameters before confirmation, and avoid unnecessary reruns. <br>
-Risk: The required API key is sensitive runtime configuration. <br>
-Mitigation: Provide the key only in the execution environment, do not commit it to the skill package, and rotate it if exposure is suspected. <br>
-Risk: Generated videos and source images may need rights, content-safety, or platform-compliance review outside the skill's scope. <br>
-Mitigation: Review prompts, input images, and outputs before publication or commercial use. <br>
+## Use Case:
 
+External creators and agent users use this skill to turn short text briefs or public HTTPS object images into vertical hydraulic-press crushing videos, with prompt expansion, parameter checks, WeryAI task submission, polling, and playable video URL reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/hydraulic-crush-video) <br>
-- [WeryAI video API host](https://api.weryai.com) <br>
-- [WeryAI models registry host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with JSON command arguments, confirmation tables, and video URLs or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, and user confirmation before live paid generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Confirmed generation calls can consume paid WeryAI credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the expanded prompt and parameters before confirmation, use dry runs where appropriate, and avoid repeated wait runs unless new paid tasks are intended.
+
+Risk: The skill requires WERYAI_API_KEY and sends prompts or public image URLs to WeryAI.
+
+Mitigation: Use the skill only with a trusted publisher and WeryAI account, keep the API key out of source files, and avoid submitting sensitive prompts or private image URLs.
+
+Risk: Image-to-video inputs must be publicly reachable HTTPS URLs.
+
+Mitigation: Use only intended public image assets and verify the URL before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/hydraulic-crush-video)
+- [WeryAI video generation API host](https://api.weryai.com)
+- [WeryAI video models registry host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command payloads; final responses include generated video URLs or clear error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access to WeryAI, user confirmation before paid generation, and public HTTPS image URLs for image-to-video.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

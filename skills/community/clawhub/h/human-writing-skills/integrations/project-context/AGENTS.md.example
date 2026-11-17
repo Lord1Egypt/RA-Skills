@@ -1,0 +1,15 @@
+# Writing Project Contract
+
+Use `human-writing-skills` only with the modules required by the request.
+
+- Canonical setting, character, relationship, timeline, and terminology facts:
+  `ledger.md`.
+- Approved prose/style evidence, only when explicitly requested: `reference/`.
+- Serious-document sources, only for news, academic, legal, or technical work:
+  `sources/`.
+- For work larger than one reliable context window, use `human-writing-mcp`:
+  plan the audit, complete every receipt, verify coverage, then reconcile.
+
+Do not claim a full-manuscript review unless every required task in the audit
+package has a complete Coverage Receipt. Treat the ledger and supplied sources
+as authoritative; a reference sample is not factual evidence.

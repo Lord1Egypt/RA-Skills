@@ -1,0 +1,76 @@
+backtrader是基于Python的量化框架平台，内置了talib指标库、analyzer分析库等功能，具有回测速度快、易用性高以及扩展性好等特点。相较于网上已有教程，本教程从数据至分析进行了全面的介绍，着重阐述了数据清洗以及框架调整等部分，点出了backtrader的某些不足并提供了解决方法。
+
+GitHub地址: https://github.com/ZoeQuant/backtrader_tutorial/blob/main/tutorial.ipynb
+
+
+叁玖：backtrader教程（一）- 数据篇
+37 赞同 · 6 评论 文章
+2. 框架介绍
+2.1. 初始资金、买卖佣金设置
+初始资金默认10000，但众所周知，初始金额的大小会影响整个策略收益。如果过小，会买不进某些大盘股。如果过大，会导致小盘股的买入划价增加很多，甚至无法购买预期数量的小盘股，因此需要设置初始资金。
+
+# 设置初始资本为1 million
+startcash = 10**6
+cerebro.broker.setcash(startcash)
+print(f"初始资金{cerebro.broker.getvalue()}")
+费率也是一大问题，券商佣金最低收五元，沪市过户费最低收一元。不要小看这些费率，当你做高频交易的时候，你的利润可能大都被这些费率吃掉了。
+
+本文为简略，过户费没有进行对市场的判断。如需，加上判断即可。
+
+class CommInfoPro(bt.CommInfoBase):
+
+    params = (
+        ('stamp_duty', 0.001),  # 印花税率
+        ('stamp_duty_fe', 1),  # 最低印花税
+        ('commission', 0.001),  # 佣金率
+        ('commission_fee', 5),  # 最低佣金费
+        ('stocklike', True), # 股票
+        ('commtype', bt.CommInfoBase.COMM_PERC), # 按比例收
+    )
+
+    def _getcommission(self, size, price, pseudoexec):
+        '''
+        If size is greater than 0, this indicates a long / buying of shares.
+        If size is less than 0, it idicates a short / selling of shares.
+        '''
+
+        if size > 0:  # 买入，不考虑印花税
+            return max(size * price * self.p.commission, self.p.commission_fee)
+        elif size < 0:  # 卖出，考虑印花税
+            return max(size * price * (self.p.stamp_duty + self.p.commission), self.p.stamp_duty_fe)
+        else:
+            return 0  # just in case for some reason the size is 0.
+
+        
+cerebro.broker.addcommissioninfo(CommInfoPro())
+2.2. 下单函数调整
+众所周知，A股市以每手100股成交的，所以order size必须为100的整数倍。因此我们在计算的时候也应该注意这一点。一种方法是在backtrader内部修改order函数，在计算amount的时候downcast，因为jupyter不好展示这一步骤。本文通过在order的时候计算这一amount来解决。
+
+注意：都往下约，保持现金充足
+
+# 原有
+#self.buy(data, amount)
+#self.sell(data, amount)
+
+#改为
+def downcast(amount, lot):
+    return abs(amount//lot*lot)
+
+print(downcast(418,100))
+print(downcast(-418,100))
+#self.buy(data, downcast(amount, lot))
+#self.sell(data, downcast(amount, lot))
+2.3. 增加股票信息
+backtrader把股票名设为了data._name，本文不建议通过这种方式进行抽取。最好是在linseries.py里加入装饰器@property
+
+
+# in linseries.py
+# @property
+# def name(self):
+#     return self._name
+2.4 data和line的介绍
+line是backtrader的核心，是储存数据的重要形式。多条line组成lines,包括在data feed模块放入的open（开盘价）、close（收盘价）等6条line。可以把line看成是一条时间线，0代表当下的数据，-1代表前一根bar的数据，-2代表前两根bar的数据；同样，1代表后一根bar的数据，2代表后两根bar的数据，以此内推。
+
+data是line的集合，是line的展现形式。data代表单个个股（商品、债券等）的数据，包括open、close等lines，而多个data组成list形式的datas。在取某只股票的data时，可以通过self.datas[x]或者self.datax，x代表该股票被放入的顺序号（从0开始），也可以通过self.datasbyname[data._name]等方式取得。
+
+backtrader也提供了指标的不同提取方式。以data0的close举例，包括：self.data0.close[0],self.data0_close[0],self.data0_0[0]（第二个0代表close的顺序号0）。

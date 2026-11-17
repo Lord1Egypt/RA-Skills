@@ -1,41 +1,53 @@
-## Description: <br>
-世界-角色有机验证：确认每个核心角色被世界所塑造，每个世界规则驱动某个角色的困境。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates that each core character is shaped by the story world and that each world rule creates meaningful character dilemmas before Pilot Forge begins.
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Story developers, writing agents, and narrative workflow maintainers use this skill after world design and character arc work to verify that characters are shaped by the world and that world rules create character dilemmas before Pilot Forge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads worldbuilding, character, and theme files from CLAW_WORKSPACE. <br>
-Mitigation: Run it only in the intended project workspace and confirm those planning files are appropriate for agent review. <br>
-Risk: The PASS, CONDITIONAL, or FAIL result could be mistaken for an automatic decision to keep or discard creative work. <br>
-Mitigation: Treat the report as editorial guidance and review the findings before changing project direction. <br>
+## Use Case:
 
+Writers, story developers, and agent-assisted planning workflows use this skill after World Design and Character Arc are complete to test whether characters, world rules, dilemmas, and theme are structurally connected before moving into Pilot Forge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/planner-world-character-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/huangliujiao-tal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with validation tables and PASS, CONDITIONAL, or FAIL status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces world-character-sync.md in CLAW_WORKSPACE/03-世界 when executed by an agent with workspace write access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes a sync report at CLAW_WORKSPACE/03-世界/world-character-sync.md, which may replace or conflict with an existing report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target workspace path and preserve any existing report before running the skill.
+
+Risk: The workflow is written in Chinese and is intended for a specific story-planning sequence.
+
+Mitigation: Confirm the project uses the expected World Design, Character Arc, Theme Lock, and Pilot Forge stages before applying its gate decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/skills/planner-world-character-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown report written to world-character-sync.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads world, character, and theme planning documents and produces a PASS, CONDITIONAL, or FAIL sync report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

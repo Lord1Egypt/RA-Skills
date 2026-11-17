@@ -1,43 +1,54 @@
-## Description: <br>
-Helps manage and optimize Steam Deck disk space by checking disk usage, cleaning caches and logs, moving large files to /home, and guiding /var storage adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Steam Deck Disk helps agents inspect Steam Deck partition usage, clean logs and caches, find large files, and guide moving non-system data to the /home partition.
 
-## Publisher: <br>
-[jy00801119](https://clawhub.ai/user/jy00801119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jy00801119](https://clawhub.ai/user/jy00801119)
 
-## Use Case: <br>
-Steam Deck users and support agents use this skill to inspect partition usage, identify safe cleanup options, remove caches and logs after approval, and plan storage changes for constrained system partitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic cleanup can delete caches, temporary files, logs, or backups without enough user review. <br>
-Mitigation: Keep automatic cleanup disabled by default, show each deletion target before execution, and require explicit user approval for destructive commands. <br>
-Risk: /var expansion and bind-mount guidance can make persistent root-level storage changes on the Steam Deck. <br>
-Mitigation: Require current backups, verify the exact SteamOS partition layout, and reserve partition or mount changes for users who understand the recovery path. <br>
-Risk: Disk reports or cleanup recommendations may be stale after files change. <br>
-Mitigation: Run disk checks before and after cleanup, report the observed state, and avoid acting on older recorded partition usage. <br>
+## Use Case:
 
+External users and Steam Deck operators use this skill to assess disk pressure on /, /var, and /home, review cleanup options, and receive shell commands or maintenance guidance for reclaiming space. It also supports advanced /var expansion planning when routine cleanup is insufficient.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jy00801119/steam-deck-disk) <br>
-- [Steam Deck /var expansion guide](var-expansion-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and cleanup checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; output should report disk state, proposed cleanup actions, expected impact, and post-cleanup verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Unattended broad deletion commands and cache cleanup can remove data that a user still needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every cleanup command before execution, avoid blanket rm -rf use, and confirm important data is backed up or excluded.
+
+Risk: Privileged /var resizing, bind mounts, and persistent system changes can affect boot behavior or application state.
+
+Mitigation: Treat /var expansion as an advanced maintenance procedure, verify backups first, keep the device powered, and prefer official SteamOS tooling when available.
+
+## Reference(s):
+
+- [Steam Deck /var partition expansion guide](artifact/var-expansion-guide.md)
+- [ClawHub skill page](https://clawhub.ai/jy00801119/skills/steam-deck-disk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may include destructive cleanup or privileged system maintenance steps that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

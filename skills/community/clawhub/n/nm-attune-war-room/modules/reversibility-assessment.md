@@ -18,7 +18,7 @@ Evaluate decision reversibility to calibrate deliberation intensity. Based on Am
 ## Core Principle
 
 > "Make reversible decisions as soon as possible and make irreversible decisions as late as possible."
-> — Jeff Bezos
+> (Jeff Bezos)
 
 **The Problem**: Organizations tend to apply heavyweight Type 1 processes to all decisions, stifling speed and innovation. This framework ensures resources match stakes.
 
@@ -190,8 +190,7 @@ Using: express ≤0.40 | lightweight ≤0.60 | full_council ≤0.80 | delphi >0.
 
 ```python
 def select_deliberation_mode(
-    reversibility_score: float,
-    thresholds: dict | None = None
+    reversibility_score: float, thresholds: dict | None = None
 ) -> str:
     """Map RS to war room mode with configurable thresholds."""
     # Defaults (can be overridden at session start)
@@ -275,7 +274,7 @@ For Type 1 decisions, finalize when:
 2. **LOP**: Losing meaningful opportunities by waiting
 3. **KNOW**: Clarity has emerged about the right choice
 
-Do NOT wait for 100% certainty on Type 1 decisions—wait for the right moment.
+Do NOT wait for 100% certainty on Type 1 decisions: wait for the right moment.
 
 ## Audit Trail
 

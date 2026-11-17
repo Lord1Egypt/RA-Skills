@@ -1,48 +1,61 @@
-## Description: <br>
-Enable real-time AI collaboration in Feishu (Lark) documents by detecting document edits, reading the document, and responding inline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to collaborate in Feishu or Lark documents by reacting to document edit events, reading structured in-document messages, and appending replies inline.
 
-## Publisher: <br>
-[dongweiii](https://clawhub.ai/user/dongweiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongweiii](https://clawhub.ai/user/dongweiii)
 
-## Use Case: <br>
-Teams using Feishu and OpenClaw use this skill to turn shared documents into human-agent collaboration spaces. It helps route finished messages to an agent, append replies in the document, and optionally coordinate Bitable task records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu document or Bitable edits can automatically start local agent sessions with document read/write authority through the configured Feishu app permissions. <br>
-Mitigation: Use a dedicated Feishu app with access limited to intended documents and tables, and add allowlists or confirmation gates before using it in broad workspaces. <br>
-Risk: The skill applies a persistent patch to the OpenClaw Feishu extension, which can be fragile across OpenClaw or extension updates. <br>
-Mitigation: Keep the generated backup, review the patch before deployment, and reapply it intentionally after OpenClaw or extension updates. <br>
-Risk: The hooks token and OAuth scopes can grant broad automation authority if exposed or over-scoped. <br>
-Mitigation: Protect and rotate the hooks token, and grant only the Feishu OAuth scopes required for the intended documents and Bitable tables. <br>
-Risk: Frequent Feishu event delivery can create duplicate or wasteful agent sessions if debounce or anti-loop behavior is bypassed. <br>
-Mitigation: Keep the debounce and bot self-edit checks enabled, monitor gateway logs after deployment, and investigate duplicate responses before widening rollout. <br>
+## Use Case:
 
+Developers and teams using Feishu or Lark use this skill to turn shared documents into structured human-agent collaboration spaces. It supports in-document chat routing, status-based response control, and optional Bitable task board workflows.
 
-## Reference(s): <br>
-- [Doc Chat Protocol Template](assets/DOC_PROTOCOL_TEMPLATE.md) <br>
-- [Bitable Task Board Protocol](references/bitable-task-protocol.md) <br>
-- [Feishu App Setup Guide](references/feishu-app-setup.md) <br>
-- [Manual Patching Guide](references/manual-patch.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and code patch references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu/OpenClaw credentials and local extension patching; no fixed token cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill patches trusted OpenClaw monitor code, which can be fragile across OpenClaw or extension updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the patch before installation, keep backups of modified monitor files, reapply after updates, and prefer a supported extension mechanism when available.
+
+Risk: Shared Feishu document edits can trigger authenticated agent actions and document or Bitable writes.
+
+Mitigation: Limit deployment to approved documents and bases, use the narrowest OAuth scopes available, avoid exposing unrelated tools to hook-triggered sessions, and add audit logging and approval gates for writes.
+
+Risk: Frequent autosave and Bitable change events can trigger duplicate agent sessions and excessive token use.
+
+Mitigation: Keep the per-file debounce enabled, monitor gateway logs for repeated triggers, and scope event subscriptions to the collaboration workflows that need automation.
+
+## Reference(s):
+
+- [Feishu Doc Chat Protocol Template](artifact/assets/DOC_PROTOCOL_TEMPLATE.md)
+- [Bitable Task Board Protocol](artifact/references/bitable-task-protocol.md)
+- [Feishu App Setup Guide](artifact/references/feishu-app-setup.md)
+- [Manual Patching Guide](artifact/references/manual-patch.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and protocol templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a patch script, a patched monitor reference file, Feishu setup guidance, and document/task protocol templates.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

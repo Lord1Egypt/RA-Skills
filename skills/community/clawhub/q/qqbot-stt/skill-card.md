@@ -1,48 +1,61 @@
-## Description: <br>
-Runs a local Qwen3-ASR speech-to-text service for QQBot and OpenClaw voice-message transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+qqbot-stt helps agents configure and run a local Qwen3-ASR speech-to-text service for OpenClaw QQBot voice messages.
 
-## Publisher: <br>
-[rekslee](https://clawhub.ai/user/rekslee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rekslee](https://clawhub.ai/user/rekslee)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to connect QQBot voice messages to a locally hosted speech-to-text pipeline. It provides setup guidance, configuration examples, and Python entry points for running Qwen3-ASR through a local HTTP service or CLI script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the skill instructions point to a differently named skill. <br>
-Mitigation: Confirm whether qqbot-stt and local-stt refer to the same trusted package before installation or deployment. <br>
-Risk: The release evidence flags under-scoped network and server risk. <br>
-Mitigation: Prefer the localhost-only server path and avoid exposing the transcription service to a network without authentication and request limits. <br>
-Risk: The release evidence flags dependency and model-loading review concerns. <br>
-Mitigation: Pin and audit Python dependencies, and review any trust_remote_code model-loading examples before use. <br>
-Risk: OpenClaw configuration can contain QQBot credentials and other secrets. <br>
-Mitigation: Keep OpenClaw configuration files private and avoid sharing logs or examples that include real bot secrets. <br>
+## Use Case:
 
+Developers and operators use this skill to run local speech-to-text for OpenClaw QQBot and connect the transcription endpoint through channels.qqbot.stt. It is intended for local voice-message processing with Qwen3-ASR on compatible systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rekslee/qqbot-stt) <br>
-- [QQBot OpenClaw guide](https://new.qq.com/rain/a/20260316A06XBW00) <br>
-- [OpenClaw voice configuration guide](https://blog.csdn.net/yangyin007/article/details/158649849) <br>
-- [Qwen3-ASR local deployment guide](https://blog.csdn.net/weixin_42509513/article/details/158311971) <br>
-- [QQBot plugin repository](https://github.com/tencent-connect/openclaw-qqbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and Python scripts that return transcription text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HTTP path returns OpenAI-compatible JSON transcription responses; the CLI path prints plain text to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill processes voice messages through a local service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local voice processing is acceptable and keep the service bound to 127.0.0.1 unless authentication and firewall controls are added.
+
+Risk: Weak upload controls and temporary-file handling can create operational or data exposure risks.
+
+Mitigation: Add upload size limits, rate limits, and reviewed temporary-file cleanup before using the service with untrusted users.
+
+Risk: Transcript logs, OpenClaw credentials, and mutable dependency installs can expose sensitive data or change runtime behavior.
+
+Mitigation: Avoid logging transcript contents, protect OpenClaw credentials, and pin reviewed dependency and installer versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rekslee/skills/qqbot-stt)
+- [Tencent QQ Bot OpenClaw guide](https://new.qq.com/rain/a/20260316A06XBW00)
+- [OpenClaw voice configuration guide](https://blog.csdn.net/yangyin007/article/details/158649849)
+- [Qwen3-ASR local deployment guide](https://blog.csdn.net/weixin_42509513/article/details/158311971)
+- [QQBot plugin repository](https://github.com/tencent-connect/openclaw-qqbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JSON, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local HTTP transcription service guidance, OpenClaw QQBot STT configuration, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

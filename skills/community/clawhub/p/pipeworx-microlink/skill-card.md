@@ -1,41 +1,54 @@
-## Description: <br>
-Microlink MCP wraps the Microlink API for metadata extraction and webpage screenshots without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microlink MCP wraps the Microlink API with no API key required on the free tier.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to connect an MCP server that retrieves URL metadata and takes webpage screenshots through Microlink. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs are sent to an external Microlink service. <br>
-Mitigation: Avoid internal sites, private pages, signed URLs, tokens in query strings, and other sensitive identifiers unless that external processing is acceptable. <br>
-Risk: The connection runs through the remote mcp-remote package and Pipeworx endpoint. <br>
-Mitigation: Install only when the publisher, package, and external endpoint are trusted for the intended workspace. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to Pipeworx Microlink MCP tools for retrieving web page metadata and taking screenshots through Microlink.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-microlink) <br>
-- [Pipeworx Microlink pack](https://pipeworx.io/packs/microlink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, images] <br>
-**Output Format:** [Markdown instructions with JSON MCP server configuration; tool results may include metadata and screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mcp-remote to call the external Pipeworx Microlink MCP endpoint; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The connection example uses a mutable npm package version for mcp-remote.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned mcp-remote version.
+
+Risk: URL-based work is sent to a third-party remote service with limited disclosure.
+
+Mitigation: Avoid confidential, internal, or token-bearing URLs and use a sandboxed low-privilege MCP environment.
+
+## Reference(s):
+
+- [Pipeworx Microlink Pack](https://pipeworx.io/packs/microlink)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-microlink)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Text, Files]
+
+**Output Format:** [MCP tool responses and JSON connection configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool outputs may include page metadata and screenshots for submitted URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

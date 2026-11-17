@@ -1,7 +1,7 @@
 ---
 name: mr-market
 description: "Activate when: user says 'the market is telling us X', 'valuation has dropped/risen so we should act', 'everyone is selling/buying so I should too', or is making an investment/fundraising decision based on a quoted price under emotional pressure.
-  Do NOT activate when: the market quote genuinely reflects new economic information about the underlying business (not mood); or the user must transact at quoted price for forced-sale/liquidity reasons."
+  Do NOT activate when: the market quote genuinely reflects new economic information about the underlying business (not mood); or the user must transact at quoted price for forced-sale/liquidity reasons. More: deciqai.com/c/mr-market"
 ---
 
 # Mr. Market
@@ -12,7 +12,7 @@ description: "Activate when: user says 'the market is telling us X', 'valuation 
 
 Three features: (1) quote ≠ intrinsic value; (2) you are never obligated to respond; (3) panics are highest-opportunity moments for those with cash and independent conviction.
 
-Composes with [`margin-of-safety`](../margin-of-safety/SKILL.md) (price discipline), [`anchoring`](../anchoring/SKILL.md) (quotes as anchors), [`social-proof`](../social-proof/SKILL.md) (consensus = mass Mr. Market), [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory/SKILL.md) (panic exploits loss aversion).
+Composes with `margin-of-safety` (price discipline), `anchoring` (quotes as anchors), `social-proof` (consensus = mass Mr. Market), `loss-aversion-prospect-theory` (panic exploits loss aversion).
 
 ## When to Use
 
@@ -21,6 +21,7 @@ Composes with [`margin-of-safety`](../margin-of-safety/SKILL.md) (price discipli
 - Acquisition pricing where comparable transaction markets have moved sharply
 - Any decision where a quoted price or implied valuation is pressuring your judgment
 - Someone says "the market is telling us," "valuation has dropped/risen," "everyone is doing X"
+- AI-era mega-cap volatility: "is this an AI bubble," "should I sell on the chip-stock crash / export-control headline," "AI capex boom," "the whole market moved on one AI headline"
 
 **Not when:** the quote reflects genuine new business information (not mood); forced sale or liquidity requirement; asset has no underlying value independent of its price (pure speculation).
 
@@ -67,6 +68,7 @@ Re-evaluation trigger (date):
 ```
 
 *→ Method in Action: [Graham 1949, Buffett 1987 + 2008](examples/graham-1949-buffett-1987-2008.md)*
+*→ 2026 lens: [Nvidia's manic-depressive quote & the CUDA moat (2023–2026)](examples/nvidia-manic-depressive-2023-2026.md)*
 
 ## Pack: Application Patterns
 
@@ -115,4 +117,6 @@ Re-evaluation trigger (date):
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/mr-market** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/mr-market.json*

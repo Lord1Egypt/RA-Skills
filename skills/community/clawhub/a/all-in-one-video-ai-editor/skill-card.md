@@ -1,42 +1,58 @@
-## Description: <br>
-All in One Video AI Editor helps agents upload MP4 or MOV files to Sparki, start AI video-editing projects for shorts, captions, resizing, highlights, vlogs, montages, and talking-head clips, and return a processed video download URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents upload MP4 or MOV footage to Sparki, create AI video editing projects with style and format parameters, poll for completion, and return a time-limited processed video URL.
 
-## Publisher: <br>
-[sparki-dev](https://clawhub.ai/user/sparki-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sparki-dev](https://clawhub.ai/user/sparki-dev)
 
-## Use Case: <br>
-External developers and content teams use this skill to automate agent-driven video editing workflows: upload local footage, submit natural-language editing direction and style tips to Sparki, and retrieve the completed download URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user videos and sends SPARKI_API_KEY to agent-api-test.aicoding.live, which evidence.security flags as an unexplained non-Sparki test domain. <br>
-Mitigation: Use only after verifying that endpoint is intended by Sparki, and avoid confidential, regulated, personal, or otherwise sensitive footage. <br>
-Risk: The artifact encourages broad proactive use for video-editing requests, which could send files to a remote service before the user has evaluated privacy or data handling implications. <br>
-Mitigation: Confirm user intent, file scope, and API-key context before running upload or edit scripts. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to automate AI-assisted video edits such as short-form clips, captions, commentary, resizing, highlights, vlogs, montages, and talking-head edits from local source videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sparki-dev/all-in-one-video-ai-editor) <br>
-- [Publisher profile](https://clawhub.ai/user/sparki-dev) <br>
-- [Sparki homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; scripts return plain-text object keys, project status, or a download URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and SPARKI_API_KEY; uploads MP4/MOV files up to 3 GB to a remote service and result URLs expire after 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and README mention 1.2.0) <br>
+Risk: The skill sends the Sparki API key and user videos to a hardcoded API domain that is not visibly under sparki.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that agent-api-test.aicoding.live is authorized by Sparki before use, and avoid uploading sensitive or regulated videos until provider handling and retention are understood.
+
+Risk: The documented key-status command can print the SPARKI_API_KEY value when it is configured.
+
+Mitigation: Check only whether the variable is set, and do not echo or log the secret value.
+
+Risk: Processed output is delivered through a time-limited result URL that may expose the edited video to anyone with the link while valid.
+
+Mitigation: Treat result URLs as sensitive, share them only with intended recipients, and download required outputs promptly.
+
+## Reference(s):
+
+- [Sparki](https://sparki.io)
+- [ClawHub skill page](https://clawhub.ai/sparki-dev/skills/all-in-one-video-ai-editor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and result URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a 24-hour download URL after asynchronous upload and processing completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

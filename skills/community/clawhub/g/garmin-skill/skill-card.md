@@ -1,43 +1,59 @@
-## Description: <br>
-Talk to your Garmin data - ask questions about your activities, training load, VO2 Max, heart rate zones, and more using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talk to your Garmin data — ask questions about your activities, training load, VO2 Max, heart rate zones, and more using AI.
 
-## Publisher: <br>
-[nftechie](https://clawhub.ai/user/nftechie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nftechie](https://clawhub.ai/user/nftechie)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query Garmin-derived training data through Transition, answer fitness questions, inspect performance metrics, retrieve or generate workouts, and push selected workouts to Garmin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve personal fitness data and coaching prompts from Garmin-derived activity history. <br>
-Mitigation: Install only if you trust Transition with this data, and review Transition's privacy and deletion practices before use. <br>
-Risk: The Transition API key grants access to personalized Garmin-connected features. <br>
-Mitigation: Keep TRANSITION_API_KEY private and avoid exposing it in shared logs, repositories, screenshots, or chat transcripts. <br>
-Risk: The skill can push scheduled workouts to Garmin. <br>
-Mitigation: Require explicit user confirmation before an agent pushes any workout to Garmin. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent query Transition APIs for Garmin-derived activity, training, performance, workout, profile, and coach-chat information.
 
-## Reference(s): <br>
-- [Garmin Skill on ClawHub](https://clawhub.ai/nftechie/garmin-skill) <br>
-- [Transition](https://www.transition.fun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, natural-language answers, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TRANSITION_API_KEY for personalized Garmin data; the Workout of the Day endpoint can be used without authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends sensitive Garmin-derived activity, performance, profile, schedule, and chat data to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data-sharing posture before installation and use only with users who are comfortable granting Transition and the agent access to this data.
+
+Risk: The Transition API key grants access to personalized Garmin-derived data.
+
+Mitigation: Protect the API key like a password, avoid logging it, and store it only in appropriate secret or environment-variable handling.
+
+Risk: The skill includes an action that can push workouts to Garmin.
+
+Mitigation: Require explicit user confirmation before any push-to-Garmin action.
+
+## Reference(s):
+
+- [Garmin Skill on ClawHub](https://clawhub.ai/nftechie/skills/garmin-skill)
+- [Transition](https://www.transition.fun)
+- [Transition API Base URL](https://api.transition.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with natural-language answers and inline HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a Transition API key for personalized Garmin-derived data and an unauthenticated workout-of-the-day endpoint for generic workout generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

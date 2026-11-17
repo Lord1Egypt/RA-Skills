@@ -10,16 +10,26 @@
 // module and passed in as plain arguments. This keeps the data flow explicit
 // and isolates the network surface in a single, easy-to-audit module.
 
+const { requestUrl, joinUrl } = require('./endpoints');
+const { remember } = require('./redaction');
+async function safeFetch(url, options = {}) {
+  const target = requestUrl(url);
+  remember(options.headers?.['X-Api-Key']);
+  const res = await fetch(target, { ...options, redirect: 'error' });
+  if (res.status >= 300 && res.status < 400) throw new Error('服务重定向已拒绝');
+  return res;
+}
 async function callJson(method, url, headers, body) {
   const opts = {
     method,
     headers: { 'Content-Type': 'application/json', ...headers }
   };
   if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(url, opts);
+  const res = await safeFetch(url, opts);
   let data = null;
   try {
     data = await res.json();
+    remember(data?.apiKey);
   } catch (_) {
     // tolerate empty body
     data = null;
@@ -48,7 +58,7 @@ async function callMultipart(method, url, headers, fileBuffer, filename, mimeTyp
       fd.append(k, String(v));
     }
   }
-  const res = await fetch(url, {
+  const res = await safeFetch(url, {
     method,
     headers: { ...headers }, // no Content-Type — FormData sets multipart boundary
     body: fd
@@ -56,6 +66,7 @@ async function callMultipart(method, url, headers, fileBuffer, filename, mimeTyp
   let data = null;
   try {
     data = await res.json();
+    remember(data?.apiKey);
   } catch (_) {
     data = null;
   }
@@ -76,7 +87,7 @@ async function pipelineRequest(method, p, body, creds) {
   }
   const { res, data } = await callJson(
     method,
-    `${creds.apiUrl}${p}`,
+    joinUrl(creds.apiUrl, p, 'pipeline'),
     authHeaders(creds),
     body
   );
@@ -95,7 +106,7 @@ async function pipelineUpload(p, fileBuffer, filename, mimeType, extraFields, cr
   }
   const { res, data } = await callMultipart(
     'POST',
-    `${creds.apiUrl}${p}`,
+    joinUrl(creds.apiUrl, p, 'pipeline'),
     authHeaders(creds),
     fileBuffer,
     filename,
@@ -109,11 +120,12 @@ async function pipelineUpload(p, fileBuffer, filename, mimeType, extraFields, cr
 }
 
 async function toolsRequest(method, baseUrl, p, body, creds) {
-  const url = `${(baseUrl || '').replace(/\/$/, '')}${p}`;
+  const url = joinUrl(baseUrl, p, 'tools');
   return callJson(method, url, authHeaders(creds), body);
 }
 
 module.exports = {
+  safeFetch,
   callJson,
   callMultipart,
   pipelineRequest,

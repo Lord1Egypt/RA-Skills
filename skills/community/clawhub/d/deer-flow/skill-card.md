@@ -1,41 +1,53 @@
-## Description: <br>
-Open-source super agent harness orchestrating sub-agents, memory and sandboxes for deep research and extended tasks with extensible skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open-source super agent harness orchestrating sub-agents, memory & sandboxes for deep research & extended tasks with extensible skills.
 
-## Publisher: <br>
-[harryhihi](https://clawhub.ai/user/harryhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harryhihi](https://clawhub.ai/user/harryhihi)
 
-## Use Case: <br>
-Developers and agent builders use this skill for guidance on deep research agents, multi-step agent workflows, sub-agent orchestration, persistent memory, sandboxed execution, and extensible skill architecture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on generic agent-related prompts and provide guidance that does not fit a production agent lifecycle, publishing, deletion, or permission workflow. <br>
-Mitigation: Review the advice for the specific deployment context before applying changes to production agent systems. <br>
-Risk: The artifact describes project structure and local installation paths that may not be present in the release bundle. <br>
-Mitigation: Confirm referenced project files and installation steps are available in the target environment before executing commands. <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance on DeerFlow-style deep research agents, multi-step agent workflows, sub-agent orchestration, persistent memory, sandboxed execution, and extensible skill architecture.
 
-## Reference(s): <br>
-- [ClawHub DeerFlow Skill Page](https://clawhub.ai/harryhihi/deer-flow) <br>
-- [Publisher Profile](https://clawhub.ai/user/harryhihi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with occasional shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill discusses persistent memory and sub-agent orchestration, which can expand the impact of agent actions across a workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable these capabilities only in a bounded workspace with user-directed tasks.
+
+Risk: The documented install command references a publisher-specific local Windows path.
+
+Mitigation: Before running installation commands, verify the upstream repository and use a local path you control.
+
+## Reference(s):
+
+- [ClawHub DeerFlow skill page](https://clawhub.ai/harryhihi/skills/deer-flow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing guidance; it does not include hidden executable code or automatic behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

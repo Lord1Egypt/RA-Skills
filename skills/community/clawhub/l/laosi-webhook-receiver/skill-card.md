@@ -1,41 +1,57 @@
-## Description: <br>
-Receives and processes webhook events with local logging, event filtering, retry-oriented handling examples, and GitHub-style signature verification guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webhook Receiver Pro provides agent guidance and Python code for receiving webhook events locally, logging events, filtering event types, retrying processing, verifying signatures, and dispatching handlers.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to add local webhook receiving, event persistence, handler dispatch, and signature-checking patterns to integrations such as CI/CD, payment callbacks, monitoring alerts, and chat events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook headers and payload-derived event data may be written to local webhook_logs.json. <br>
-Mitigation: Redact authorization, signature, and other sensitive headers before logging, and set an explicit retention policy for stored events. <br>
-Risk: A local HTTP listener can expose webhook handling surfaces if bound or tunneled beyond the intended environment. <br>
-Mitigation: Confirm listener binding, firewall, tunnel, and authentication settings before using the skill with production or sensitive webhook sources. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create or adapt a local Python webhook receiver for CI/CD, payment notification, monitoring alert, and chat event workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-webhook-receiver) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code snippets and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local webhook logging behavior and signature verification examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence, SKILL.md frontmatter, hub.json) <br>
+Risk: Webhook events may be persisted with full headers or payload data, including tokens or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive headers and payload fields before logging, and restrict access to persisted webhook log files.
+
+Risk: Webhook events can be logged or dispatched before required provider authentication is enforced.
+
+Mitigation: Require provider signature verification before storing events or invoking handlers, and reject unsigned or invalid requests.
+
+Risk: The broad activation trigger 'hook' can invoke the skill in unrelated contexts.
+
+Mitigation: Remove or narrow the activation trigger so the skill only activates for explicit webhook receiver requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-webhook-receiver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code blocks and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include webhook receiver code, event handling examples, and security caveats.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, SKILL.md frontmatter, hub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Helps Gate partners query affiliate commissions, referral trading activity, team metrics, eligibility, and application status through a configured Gate MCP session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate partner affiliate data and application skill for partner commissions, referral volume, application eligibility, and application status.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External Gate partners use this skill to view affiliate eligibility, application status, and read-only partner performance reports, including commissions, referral trading volume, team size, and user-specific contribution summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries account-specific Gate partner data through configured API credentials. <br>
-Mitigation: Install only for Gate affiliate reporting and use a least-privilege Gate API key limited to Rebate:Read. <br>
-Risk: Ambiguous prompts containing "commission" could be interpreted as Gate affiliate requests. <br>
-Mitigation: Confirm Gate affiliate intent before making account-specific queries for vague commission prompts. <br>
-Risk: Incorrect time windows or naive aggregation can produce misleading affiliate metrics. <br>
-Mitigation: Respect UTC+8 date handling, 30-day request windows, the 180-day maximum range, and the documented aggregation rules. <br>
+## Use Case:
 
+External Gate partners and developers use this skill to query read-only affiliate metrics, check partner application eligibility or recent status, and produce concise partner reports from configured Gate MCP credentials.
 
-## Reference(s): <br>
-- [Gate Exchange Affiliate Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate Affiliate MCP Specification](references/mcp.md) <br>
-- [Gate skills homepage](https://github.com/gate/gate-skills) <br>
-- [Gate affiliate portal](https://www.gate.com/referral/affiliate) <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-exchange-affiliate-staging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Gate partner data; requires a configured Gate MCP session with GATE_API_KEY and GATE_API_SECRET credentials limited to Rebate:Read.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad commission or application-status triggers may cause account-linked Gate affiliate data to be queried from ambiguous user prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit Gate affiliate wording for intended requests and treat commission, eligibility, and application-status prompts as sensitive.
+
+Risk: The skill can access Gate affiliate data through configured MCP credentials.
+
+Mitigation: Install only when credentialed Gate affiliate reporting is intended, keep secrets in the configured MCP session, and require Rebate:Read permission.
+
+Risk: Incorrect time windows, trader filters, or aggregation can misstate commission, volume, or fee metrics.
+
+Mitigation: Respect the 30-day API request limit, split longer supported windows, avoid future timestamps, use user_id only for explicit trader queries, and aggregate by the documented business rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/skills/gate-exchange-affiliate-staging)
+- [Gate Skills Homepage](https://github.com/gate/gate-skills)
+- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage)
+- [Gate Affiliate Portal](https://www.gate.com/referral/affiliate)
+- [Gate Exchange Affiliate Runtime Rules](artifact/references/gate-runtime-rules.md)
+- [Gate Affiliate MCP Specification](artifact/references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown reports and concise text responses with metric summaries, eligibility guidance, application status, and error handling notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only Gate MCP rebate tools, UTC+8 date windows, pagination when needed, and 30-day request segments for longer reporting periods.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 2026.4.8-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

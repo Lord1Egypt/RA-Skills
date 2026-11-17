@@ -138,6 +138,32 @@ fi
 rm -f "$PUBLISH_ERR_FILE"
 echo ""
 
+# Social announcement via Late API
+echo "📱 Posting social announcement..."
+if [ -n "$LATE_API_KEY" ]; then
+  RELEASE_URL="https://github.com/chefbc2k/MOLTSTUDIOS/releases/tag/moltmotion-skill-v$NEW_VERSION"
+
+  # Extract highlights from recent commits (optional)
+  HIGHLIGHTS_JSON="[]"
+  if command -v jq &> /dev/null; then
+    # Get commit messages since last version tag
+    LAST_TAG=$(git tag -l "moltmotion-skill-v*" --sort=-version:refname | grep -v "^moltmotion-skill-v$NEW_VERSION$" | head -1)
+    if [ -n "$LAST_TAG" ]; then
+      COMMITS=$(git log "$LAST_TAG..HEAD" --oneline --grep="^feat" | sed 's/^[a-f0-9]* //' | head -3)
+      if [ -n "$COMMITS" ]; then
+        HIGHLIGHTS_JSON=$(echo "$COMMITS" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+      fi
+    fi
+  fi
+
+  node "$SKILL_DIR/bin/publish-announce.mjs" "$NEW_VERSION" "$RELEASE_URL" "$HIGHLIGHTS_JSON"
+  echo ""
+else
+  echo "   ⚠️  LATE_API_KEY not set, skipping social announcement"
+  echo "   Set LATE_API_KEY to enable automatic social posting"
+  echo ""
+fi
+
 # Print installation instructions
 echo "════════════════════════════════════════════════════════════════"
 echo "  ✅ Release v$NEW_VERSION Complete!"

@@ -1,42 +1,53 @@
-## Description: <br>
-Manage tasks in Obsidian via TaskNotes plugin API. Use when user wants to create tasks, list tasks, query by status or project, update task status, delete tasks, or check what they need to do. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks in Obsidian via TaskNotes plugin API. Use when user wants to create tasks, list tasks, query by status or project, update task status, delete tasks, or check what they need to do.
 
-## Publisher: <br>
-[benoitjadinon](https://clawhub.ai/user/benoitjadinon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benoitjadinon](https://clawhub.ai/user/benoitjadinon)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage Obsidian TaskNotes through the local TaskNotes HTTP API, including listing, creating, updating, deleting, and filtering tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task update and delete commands can modify or remove Obsidian TaskNotes. <br>
-Mitigation: Require explicit confirmation before delete or bulk-update operations and review the affected task paths before execution. <br>
-Risk: An unauthenticated or externally reachable TaskNotes API could expose or alter vault task data. <br>
-Mitigation: Enable a TaskNotes API token, keep the .env file private, and ensure the API is only reachable on localhost. <br>
-Risk: The skill depends on a local Obsidian instance with the TaskNotes HTTP API enabled. <br>
-Mitigation: Confirm Obsidian is running, the TaskNotes plugin is installed, and the configured API port matches TASKNOTES_API_PORT before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benoitjadinon/obsidian-plugin-tasknotes) <br>
-- [TaskNotes local API endpoint](http://localhost:8080/api) <br>
+## Use Case:
 
+External users and developers who manage tasks in Obsidian use this skill to list, create, update, delete, and review TaskNotes items through the local TaskNotes HTTP API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output is JSON by default or plain text tables with --table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Obsidian vault with the TaskNotes HTTP API enabled; TASKNOTES_API_KEY is used when API authentication is configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify or delete Obsidian TaskNotes data.
+
+Mitigation: Require explicit user confirmation before update or delete actions, especially when task identifiers are ambiguous.
+
+Risk: Sensitive task content or the TaskNotes API token could be exposed if local environment settings are tampered with.
+
+Mitigation: Use a trusted vault .env file, keep TASKNOTES_API_PORT as a simple numeric localhost port, and use a limited TaskNotes token when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benoitjadinon/skills/obsidian-plugin-tasknotes)
+- [Publisher profile](https://clawhub.ai/user/benoitjadinon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or table-formatted CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Obsidian TaskNotes HTTP API access and optional TASKNOTES_API_KEY/TASKNOTES_API_PORT environment configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

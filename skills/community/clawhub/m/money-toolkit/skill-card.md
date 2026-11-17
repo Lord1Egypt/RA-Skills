@@ -1,48 +1,62 @@
-## Description: <br>
-Money Toolkit helps agents analyze crypto arbitrage, DeFi yields, airdrop opportunities, compound returns, and gas-cost savings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Money Toolkit helps agents provide finance-oriented guidance and run helper scripts for crypto arbitrage checks, DeFi yield comparisons, compound-interest estimates, and gas-fee comparisons.
 
-## Publisher: <br>
-[clawto](https://clawhub.ai/user/clawto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawto](https://clawhub.ai/user/clawto)
 
-## Use Case: <br>
-External users and agents use this skill to inspect public crypto market and yield data, compare opportunities, and run basic financial planning calculations. Outputs should be treated as informational support rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, APY, and gas data can be stale, unavailable, or inaccurate because the skill queries public third-party endpoints. <br>
-Mitigation: Verify figures with independent sources before acting and treat endpoint failures or missing data as inconclusive. <br>
-Risk: Crypto arbitrage, DeFi yield, and financial planning outputs may be mistaken for investment advice. <br>
-Mitigation: Use outputs only as informational analysis and require human review before financial decisions. <br>
-Risk: Entering wallet seed phrases, private keys, exchange credentials, or other secrets would create avoidable exposure. <br>
-Mitigation: Do not provide secrets to the skill; use read-only public data and separate credentialed trading or wallet workflows. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public crypto market data, compare DeFi yield pools, estimate compound-return scenarios, and review gas-fee options. Outputs are informational and should not be treated as financial advice or transaction instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawto/money-toolkit) <br>
-- [DeFiLlama Yields](https://defillama.com/yields) <br>
-- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [Binance Spot Ticker API](https://api.binance.com/api/v3/ticker/price) <br>
-- [OKX Market Ticker API](https://www.okx.com/api/v5/market/ticker) <br>
-- [Bybit Market Tickers API](https://api.bybit.com/v5/market/tickers) <br>
-- [PublicNode RPC endpoints](https://ethereum-rpc.publicnode.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market prices, APY rankings, gas-cost estimates, calculation results, and cautions about data volatility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Public market, DeFi, exchange, and blockchain RPC data can be delayed, unavailable, inaccurate, or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify market and protocol data independently, and avoid making financial decisions from a single script result.
+
+Risk: The gas-fee helper depends on the web3 Python package and external RPC services.
+
+Mitigation: Install web3 in a dedicated environment with pinned dependencies and review RPC endpoints before running the script.
+
+Risk: The artifact provides finance-related guidance and calculations that could be misread as investment advice.
+
+Mitigation: Present results with clear caveats, include fees and protocol risks in reviews, and require user confirmation before any real-world financial action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawto/skills/money-toolkit)
+- [Publisher profile](https://clawhub.ai/user/clawto)
+- [DeFiLlama Yields](https://defillama.com/yields)
+- [DeFiLlama Yields API endpoint used by the artifact](https://yields.llama.fi/pools)
+- [CoinGecko simple price API endpoint used by the artifact](https://api.coingecko.com/api/v3/simple/price?ids={coin_id}&vs_currencies=usd)
+- [PublicNode Ethereum RPC endpoint used by the artifact](https://ethereum-rpc.publicnode.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples and terminal-style text output from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some helper scripts call public crypto, DeFi, exchange, and blockchain RPC services; the gas-fee script requires the web3 Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

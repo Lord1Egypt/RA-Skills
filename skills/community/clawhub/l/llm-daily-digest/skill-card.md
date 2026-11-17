@@ -1,44 +1,69 @@
-## Description: <br>
-生成中文 LLM / 大模型每日简报，采集头部厂商官方博客、GitHub Trending、arXiv、Hugging Face、Papers With Code、Hacker News、X/Twitter 和中文媒体，筛选去重后保存结构化 Markdown 报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese Markdown digest of the day's LLM and AI developments by gathering, deduplicating, ranking, and summarizing public updates from official vendor blogs, GitHub, arXiv, Hugging Face, Papers With Code, Hacker News, X/Twitter, and Chinese AI media.
 
-## Publisher: <br>
-[flowbywind](https://clawhub.ai/user/flowbywind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowbywind](https://clawhub.ai/user/flowbywind)
 
-## Use Case: <br>
-External users and AI practitioners use this skill to generate a daily Chinese digest of LLM news, model releases, papers, open-source projects, and industry events. It is intended for manual prompts or scheduled OpenClaw runs that produce a dated local report and a short session summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates dated Markdown digest files in the OpenClaw workspace, which may be shared or synced in some environments. <br>
-Mitigation: Install only where local digest files are expected, and periodically review or clean old reports in shared workspaces. <br>
-Risk: Broad natural-language activation phrases and scheduled runs can overlap with other news or summary skills. <br>
-Mitigation: Use an explicit prompt or the llm-daily-digest skill name for scheduled runs. <br>
-Risk: The digest depends on external news, repository, paper, and social sources that may be unavailable or incomplete during a run. <br>
-Mitigation: Treat the report as a convenience summary, review important items against source links, and preserve collection statistics or coverage notes. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily Chinese LLM news brief covering model releases, product updates, research papers, open-source projects, and industry events. It can be run from an agent session or triggered by a separately configured recurring automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flowbywind/llm-daily-digest) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw cron jobs documentation](https://docs.openclaw.ai/automation/cron-jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Text] <br>
-**Output Format:** [Structured Chinese Markdown report plus a short chat response with file path, top picks, and collection statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves dated digest files under ~/.openclaw/workspace/digests and avoids overwriting existing reports by adding version suffixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill browses many public web sources, so report quality can be affected by unavailable pages, access restrictions, or transient source failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the collection statistics and source coverage notes in each digest before relying on the report.
+
+Risk: Broad AI-news prompts may trigger the skill and cause the agent to browse public sources and save a local Markdown report.
+
+Mitigation: Use explicit trigger wording when requesting daily digests and confirm saved files under ~/.openclaw/workspace/digests.
+
+Risk: Recurring daily operation is not automatic unless the user configures a separate cron job.
+
+Mitigation: Configure and review the external cron trigger separately, including the prompt text and schedule.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowbywind/skills/llm-daily-digest)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw cron jobs documentation](https://docs.openclaw.ai/automation/cron-jobs)
+- [OpenAI News](https://openai.com/news/)
+- [Anthropic News](https://www.anthropic.com/news)
+- [Google AI Blog](https://blog.google/technology/ai/)
+- [DeepMind Blog](https://deepmind.google/discover/blog/)
+- [Meta AI Blog](https://ai.meta.com/blog/)
+- [GitHub Trending](https://github.com/trending)
+- [arXiv recent cs.CL papers](https://arxiv.org/list/cs.CL/recent)
+- [Hugging Face trending models](https://huggingface.co/models?sort=trending)
+- [Papers With Code latest papers](https://paperswithcode.com/latest)
+- [Hacker News](https://news.ycombinator.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Chinese Markdown digest plus a session reply with the report path, three highlights, and collection statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves reports under ~/.openclaw/workspace/digests/YYYY-MM-DD.md and uses versioned suffixes instead of overwriting an existing daily report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Email marketing automation for campaigns, newsletters, customer engagement, email sequences, drip campaigns, promotional emails, and customer retention workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create and manage email marketing campaigns, subscriber lists, reusable templates, and basic campaign reporting.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Developers and operators use this skill to create email campaign drafts, manage subscriber lists, personalize templates, run dry runs, and send campaign workflows for commerce-oriented customer engagement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles subscriber data and email campaign sending workflows with weak safeguards. <br>
-Mitigation: Use only consented subscriber data, prefer dry runs, preview recipients and message content, and require explicit confirmation before using real mailing lists. <br>
-Risk: Campaign names, list names, and template names are used to read and write local files. <br>
-Mitigation: Validate campaign, list, and template names against an approved set or safe filename pattern before execution. <br>
-Risk: Email marketing workflows can create privacy and compliance obligations. <br>
-Mitigation: Add unsubscribe handling, retention and deletion rules, privacy-safe logging, and consent record checks before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinanping-CPU/yinan-email-marketing) <br>
-- [Taobao seller workspace](https://myseller.taobao.com/home.htm/QnworkbenchHome/) <br>
-- [Douyin shop homepage](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang) <br>
+## Use Case:
 
+External users and developers use this skill to draft email marketing workflows, maintain CSV subscriber lists, create campaign configuration files, and run local campaign send simulations or sends.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated campaign or subscriber data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create campaign JSON files and subscriber CSV entries when the included script is executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles subscriber data and can store or print customer information in local CSV, JSON, and stdout outputs.
+
+Mitigation: Use test lists unless consent and compliance controls are in place, and protect or delete generated subscriber files and logs after review.
+
+Risk: Campaign, list, and template names have weak boundaries and may affect which local files are read or written.
+
+Mitigation: Use only trusted names, run from a dedicated working directory, and inspect generated campaign files before sending.
+
+Risk: Local send status and analytics may be misleading and should not be treated as proof that messages were delivered or engaged with.
+
+Mitigation: Validate delivery and analytics with the real email service provider or SMTP system before using results for business decisions.
+
+Risk: Real marketing sends can create consent, unsubscribe, and anti-spam compliance obligations.
+
+Mitigation: Confirm recipient consent, unsubscribe handling, sender identity, and applicable CAN-SPAM, GDPR, or local requirements before using real customer data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinanping-cpu/skills/yinan-email-marketing)
+- [Taobao seller workbench](https://myseller.taobao.com/home.htm/QnworkbenchHome/)
+- [Douyin shop homepage](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and local JSON, CSV, and text file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local campaign JSON files and CSV subscriber lists; stdout logs may include subscriber addresses and send status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

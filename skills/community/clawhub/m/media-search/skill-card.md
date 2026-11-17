@@ -1,43 +1,59 @@
-## Description: <br>
-Media Search helps agents search a media big-data API for news, background material, policy updates, industry data, and source coverage by keyword, time range, source, and data type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media Search helps agents query a media big-data API for news and social media content by keyword, time range, source, and content type.
 
-## Publisher: <br>
-[liushilong-dodo](https://clawhub.ai/user/liushilong-dodo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liushilong-dodo](https://clawhub.ai/user/liushilong-dodo)
 
-## Use Case: <br>
-Journalists, researchers, content teams, and agents use this skill to search configured media sources for coverage, context, source material, and recent developments. It supports filtered searches and can return results to the console or save them for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports unsafe API credential handling, including token or header logging and a local token cache. <br>
-Mitigation: Review the skill before sensitive use, remove token and header logging, and protect or avoid local token caching. <br>
-Risk: The security review reports disabled HTTPS certificate verification. <br>
-Mitigation: Enable HTTPS certificate verification before using the skill in sensitive or production environments. <br>
-Risk: Search terms and filters are sent to an external media API. <br>
-Mitigation: Avoid sensitive queries unless the API provider and local machine are trusted. <br>
+## Use Case:
 
+Developers, journalists, analysts, and content teams can use this skill to retrieve media articles and source material for reporting, background research, monitoring, competitive intelligence, and content planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liushilong-dodo/media-search) <br>
-- [Media Big Data API endpoint](https://mbdapi.fzdzyun.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Formatted console text, Markdown result files, and JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEWS_BIGDATA_API_KEY and NEWS_BIGDATA_API_SECRET for API access; results may be saved under a sources directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles API credentials and access tokens through local storage and outbound API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the media API integration is trusted, keep credentials in environment variables, enforce owner-only permissions on the token cache, and rotate tokens if local storage may have been exposed.
+
+Risk: Transport and logging practices can expose token-bearing requests or weaken API confidentiality.
+
+Mitigation: Enable normal TLS certificate verification before production use and remove or redact token-bearing request headers from logs.
+
+Risk: Broad activation could run media searches or persist result files outside an explicit user workflow.
+
+Mitigation: Activate the skill only for user-directed media searches and review generated result files before retaining or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liushilong-dodo/skills/media-search)
+- [Media big-data API endpoint](https://mbdapi.fzdzyun.com)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands]
+
+**Output Format:** [Markdown or JSON search results with source metadata, summaries, timestamps, and URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write result files under sources/ or to a user-specified JSON output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

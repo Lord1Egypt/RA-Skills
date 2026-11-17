@@ -1,43 +1,58 @@
-## Description: <br>
-Use when writing Cairo smart contracts for StarkNet, looking up syntax and types, defining storage and events, generating contract templates, or reviewing test patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing Cairo smart contracts for StarkNet, looking up syntax and types, defining storage and events, generating contract templates, or reviewing test patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference while authoring or reviewing Cairo smart contracts for StarkNet. It provides syntax, type, storage, event, and starter contract template guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Starter smart contract templates and reference snippets may be incomplete or unsuitable for production deployment without review. <br>
-Mitigation: Compile, test, and audit generated Cairo contracts, and compare production implementations against maintained StarkNet and OpenZeppelin guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Cairo and StarkNet smart-contract syntax, storage, events, testing patterns, and starter contract templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/cairo) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [Cairo Book](https://book.cairo-lang.org) <br>
-- [StarkNet Docs](https://docs.starknet.io) <br>
-- [OpenZeppelin Cairo Contracts](https://github.com/OpenZeppelin/cairo-contracts) <br>
-- [Scarb Documentation](https://docs.swmansion.com/scarb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like terminal text with Cairo code examples and bash command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reference snippets and starter templates; no credentials or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill includes optional BytesAgain links and suggested installation commands for related skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those links and related install commands as optional references, and review any separately installed skills on their own merits.
+
+Risk: Generated contract templates and reference snippets may be incomplete for production smart-contract security requirements.
+
+Mitigation: Review, test, and audit any Cairo contract code before deployment.
+
+## Reference(s):
+
+- [Cairo Skill on ClawHub](https://clawhub.ai/bytesagain-lab/skills/cairo)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Cairo Book](https://book.cairo-lang.org)
+- [StarkNet Docs](https://docs.starknet.io)
+- [OpenZeppelin Cairo Contracts](https://github.com/OpenZeppelin/cairo-contracts)
+- [Scarb Toolchain Docs](https://docs.swmansion.com/scarb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style command output with Cairo code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network access or credential inputs are required by the artifact script; output is selected by local subcommands such as syntax, types, storage, events, template, help, and version.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

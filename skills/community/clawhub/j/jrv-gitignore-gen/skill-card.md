@@ -1,40 +1,59 @@
-## Description: <br>
-Generates .gitignore files from GitHub's official template collection, with support for combining templates, project detection, custom rules, and writing or printing output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate .gitignore files for any project type using GitHub's 200+ official templates.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate, combine, preview, append, or overwrite .gitignore files for new and existing repositories using GitHub's official templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite or append to .gitignore files when generation flags request file writes. <br>
-Mitigation: Preview generated output with --stdout and avoid --force in important repositories unless the changes have been reviewed. <br>
-Risk: The skill retrieves template data from GitHub and depends on network availability and upstream template content. <br>
-Mitigation: Run it in an environment where GitHub access is expected, and review generated .gitignore content before committing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, print, append, or overwrite .gitignore files from GitHub templates, combine multiple templates, add custom ignore rules, and detect likely project template needs.
 
-## Reference(s): <br>
-- [GitHub gitignore templates API](https://api.github.com/gitignore/templates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; generated .gitignore text or files when the script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write, append, or print .gitignore content depending on command flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts GitHub to fetch template lists and template contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound GitHub API access is acceptable, and review network policy before running commands that list or generate templates.
+
+Risk: Generated output can overwrite, append to, or write a .gitignore file at a custom path.
+
+Mitigation: Review the target path and use stdout preview mode before writing; use overwrite or append flags only when the file change is intended.
+
+Risk: The skill caches the GitHub template list in the user's home cache directory.
+
+Mitigation: Confirm local cache writes are acceptable for the execution environment or clear the cache after use if required.
+
+## Reference(s):
+
+- [GitHub gitignore templates API](https://api.github.com/gitignore/templates)
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/jrv-gitignore-gen)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated .gitignore text or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or append .gitignore files, print generated content to stdout, list template names, and cache GitHub template metadata locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

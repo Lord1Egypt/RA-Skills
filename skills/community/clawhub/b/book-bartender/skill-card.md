@@ -1,41 +1,54 @@
-## Description: <br>
-Book bartender services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book bartender services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for bartender services, check provider availability, and create a booking through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may send personal contact details to a third-party Lokuli endpoint. <br>
-Mitigation: Before creating a booking, show the selected provider, service, date and time, and contact details, and only proceed after the user confirms. <br>
-Risk: The skill can initiate a real service booking through the disclosed MCP endpoint. <br>
-Mitigation: Treat booking creation as an explicit user-confirmed action rather than an automatic follow-up to search or availability checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [Book Bartender ClawHub page](https://clawhub.ai/edwardrodriguez703-design/book-bartender) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+## Use Case:
 
+External users use this skill to search for bartender services, check provider availability, and prepare a booking through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Text] <br>
-**Output Format:** [Markdown instructions with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a disclosed Lokuli MCP endpoint for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details and booking selections to a third-party Lokuli MCP service.
+
+Mitigation: Use it only when the user intends to make a bartender booking, and disclose that booking details may be sent to Lokuli.
+
+Risk: The create_booking flow can create a booking if invoked without a separate confirmation step.
+
+Mitigation: Require explicit user confirmation of provider, service, date, time, and customer contact details before any create_booking call.
+
+## Reference(s):
+
+- [Book Bartender ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/skills/book-bartender)
+- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve MCP tool calls to search for bartender services, check availability, and create bookings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

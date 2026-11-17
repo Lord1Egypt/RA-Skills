@@ -1,45 +1,62 @@
-## Description: <br>
-Generate standardized HR workforce dashboards from Excel files: 5 fixed dashboards covering headcount trends, regional distribution, detailed breakdowns, attrition analysis, and contractor/partner distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate standardized HR workforce dashboards from Excel files: 5 fixed dashboards covering headcount trends, regional distribution, detailed breakdowns, attrition analysis, and contractor/partner distribution. Outputs a self-contained interactive HTML with ECharts charts, one-click email generation, and clipboard copy.
 
-## Publisher: <br>
-[aico233](https://clawhub.ai/user/aico233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aico233](https://clawhub.ai/user/aico233)
 
-## Use Case: <br>
-HR and people-operations users use this skill to turn active employee, termination, and contingent-worker Excel exports into a standardized workforce dashboard bundle for headcount, attrition, and contractor analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generator can delete existing files in the selected output folder. <br>
-Mitigation: Run it only in a fresh, empty output directory and avoid pointing --output-dir at a home folder, shared drive, project root, or any folder containing files that must be preserved. <br>
-Risk: Uploaded spreadsheets and generated dashboards may contain sensitive HR data. <br>
-Mitigation: Handle inputs and outputs as sensitive workforce data, restrict sharing, and review clipboard or email contents before sending. <br>
+## Use Case:
 
+HR and people-analytics users use this skill to turn active employee, termination, and contingent worker Excel extracts into standardized workforce dashboards for headcount, attrition, and regional distribution reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aico233/hr-workforce-dashboard) <br>
-- [Workforce Data Spec](references/data_spec.md) <br>
-- [字段映射与输入校验](references/field_mapping.md) <br>
-- [安装说明与使用实例](references/install_and_examples.md) <br>
-- [版式规范](references/layout_spec.md) <br>
-- [指标口径定义](references/metric_definitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated dashboard files such as HTML, PNG, Excel, PowerPoint, and ZIP bundles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary deliverable is a self-contained dashboard.html; optional bundle outputs include PNG, Excel, PowerPoint, summary markdown, and ZIP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated dashboards may contain sensitive HR material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace output folder, restrict access to generated files, and verify recipients before using email or clipboard features.
+
+Risk: Using an existing output directory can delete or overwrite files.
+
+Mitigation: Create a new empty output directory for each run and do not point --output-dir at an existing project or personal directory.
+
+Risk: dashboard.html loads ECharts from jsDelivr.
+
+Mitigation: Open the dashboard only in environments where remote JavaScript from jsDelivr is permitted, or review the asset policy before sharing.
+
+## Reference(s):
+
+- [Workforce Data Spec](references/data_spec.md)
+- [Field Mapping](references/field_mapping.md)
+- [Metric Definitions](references/metric_definitions.md)
+- [Layout Spec](references/layout_spec.md)
+- [Install and Examples](references/install_and_examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/aico233/skills/hr-workforce-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Self-contained HTML dashboard plus optional ZIP bundle, PNG images, Excel workbook, PowerPoint deck, and Markdown summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary output is dashboard.html; Dashboard 5 requires contingent worker input; degraded sections are marked when source files are missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

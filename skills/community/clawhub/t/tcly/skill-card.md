@@ -1,41 +1,53 @@
-## Description: <br>
-Travel In China is a bilingual assistant that collects inbound China travel requirements and submits structured lead details to a configured Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel In China is a bilingual assistant for collecting inbound tourism requirements for China and submitting structured lead data to Feishu Bitable.
 
-## Publisher: <br>
-[lijingxu007](https://clawhub.ai/user/lijingxu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijingxu007](https://clawhub.ai/user/lijingxu007)
 
-## Use Case: <br>
-Travel service teams and agents use this skill to collect overseas travelers' China trip requirements, confirm key details in Chinese or English, and send the structured intake record to Feishu Bitable for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits travelers' contact and trip details to the configured Feishu Bitable. <br>
-Mitigation: Use a dedicated Feishu app and table with minimal permissions, protect the App Secret, and obtain explicit consent before submission. <br>
-Risk: The listing and skill text advertise itinerary search, update, and delete behavior that is not supported by the artifact-backed tool implementation. <br>
-Mitigation: Treat those features as unavailable unless the publisher adds matching tools, documentation, and safeguards. <br>
+## Use Case:
 
+Travel service teams use this skill to collect international travelers' China trip requirements in Chinese or English, confirm the details with the user, and submit structured lead records for follow-up. It is intended for workflows that handle contact details, nationality, destination preferences, budget, dietary needs, guide language, and visa-assistance requests.
 
-## Reference(s): <br>
-- [Travel In China ClawHub listing](https://clawhub.ai/lijingxu007/tcly) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown or plain text conversation responses with structured Feishu Bitable submissions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_BASE_TOKEN, and FEISHU_TABLE_ID environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: The skill collects and stores personal travel and contact details in Feishu Bitable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Feishu app and table with limited permissions, obtain user consent before submission, and define retention and deletion procedures.
+
+Risk: The packaged instructions mix inbound lead collection with itinerary CRUD behavior, which may confuse expected operation.
+
+Mitigation: Review and resolve the conflicting instructions before broad deployment.
+
+## Reference(s):
+
+- [Travel In China ClawHub listing](https://clawhub.ai/lijingxu007/skills/tcly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Conversational text with structured Feishu Bitable record submissions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app and Bitable credentials configured through environment variables.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

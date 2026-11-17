@@ -1,42 +1,53 @@
-## Description: <br>
-Adds the Beckmann Knowledge Graph as a user-confirmed deep-reasoning escalation layer on top of the Self-Improving Agent while feeding resulting insights back into the learning log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combination skill that adds the Beckmann Knowledge Graph as a deep-reasoning escalation layer on top of the Self-Improving Agent for complex, philosophical, strategic, AI safety, and epistemological questions.
 
-## Publisher: <br>
-[matthiasbeckmann987-spec](https://clawhub.ai/user/matthiasbeckmann987-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthiasbeckmann987-spec](https://clawhub.ai/user/matthiasbeckmann987-spec)
 
-## Use Case: <br>
-Developers and agent users use this skill to route ordinary work through the Self-Improving Agent while escalating philosophical, paradoxical, strategic, AI-safety, or long-horizon forecast questions to the Beckmann Knowledge Graph after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local learning logs may retain summaries of errors, insights, and Beckmann analyses. <br>
-Mitigation: Avoid using the skill on sensitive personal, business, or strategic topics unless those logs will be reviewed, protected, or deleted. <br>
-Risk: The workflow depends on two required skills, so its reliability and behavior depend on those skills being present and trusted. <br>
-Mitigation: Install and review the Self-Improving Agent and Beckmann Knowledge Graph skills before relying on this combination workflow. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep the Self-Improving Agent as the default workflow while offering an opt-in Beckmann Knowledge Graph analysis path for questions involving paradoxes, long-horizon forecasts, strategic dead ends, AI safety, or epistemological limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matthiasbeckmann987-spec/beckmann-x-self-improving-agent) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured reasoning sections and learning-log entry templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Self-Improving Agent and Beckmann Knowledge Graph skills; Beckmann escalation requires user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can shape future agent behavior through persistent learning files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review learning-log entries and any promotion suggestions manually before accepting them as durable agent guidance.
+
+Risk: The skill depends on two third-party skills whose versions are not pinned in the artifact evidence.
+
+Mitigation: Review and pin the dependency skills before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthiasbeckmann987-spec/skills/beckmann-x-self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown guidance with structured reasoning and learning-log entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce suggested learning-log entries for user review before persistent promotion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Scores creator content drafts, posts, or concepts so operators can judge quality, conversion fitness, and priority improvements before the next iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores creator content drafts, posts, or concepts for ecommerce, affiliate, and TikTok Shop workflows so operators can identify conversion gaps and prioritize improvements.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Operators, marketers, and creator-commerce teams use this skill to review scripts, captions, raw clips, content summaries, or published posts for ecommerce, affiliate, and TikTok Shop workflows. It turns subjective feedback into a scorecard with concrete gaps, priority fixes, and a go, revise, or reject recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include private campaign, customer, or creator information in content submitted for review. <br>
-Mitigation: Share only content and business context that is appropriate for the agent to review, and remove sensitive personal or customer data when it is not needed for the scorecard. <br>
-Risk: Scorecard feedback can be mistaken for legal, compliance, attribution, or media-buying performance analysis. <br>
-Mitigation: Use the output as creator-commerce quality guidance and route legal, compliance, attribution, or media-buying decisions to the appropriate review process. <br>
+## Use Case:
 
+Creator commerce operators, affiliate managers, and content reviewers use this skill to evaluate scripts, captions, raw clips, published posts, or content concepts against conversion-focused criteria and produce prioritized feedback for creators.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scorecard with prioritized feedback and a final go / revise / reject recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses 1-5 scoring dimensions for creator-commerce review; no tools or external access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may share confidential campaign, creator, product, or offer details as part of the content review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing sensitive information unless the user is comfortable having the agent use it to generate the scorecard.
+
+Risk: Feedback may overstate performance impact because the skill reviews content quality rather than attribution or media-buying results.
+
+Mitigation: Use the scorecard as qualitative review guidance and validate major creative decisions with campaign performance data when available.
+
+## Reference(s):
+
+- [Creator Content Scorecard Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scorecard with scored dimensions, diagnostic bullets, priority fixes, and a go / revise / reject recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses 1-5 scores for creator-commerce dimensions such as hook strength, audience relevance, proof, offer clarity, CTA strength, native creator feel, and conversion readiness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

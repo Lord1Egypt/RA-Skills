@@ -1,39 +1,51 @@
-## Description: <br>
-Persona: Knowledge worker daily workflow — check cards, process notes, run Recipes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona: Knowledge worker daily workflow for checking cards, processing notes, and running Recipes.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Knowledge workers use this skill to guide daily DeepVista workflows for checking priority cards, searching context, capturing notes, running Recipes, and using chat for synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeepVista chat and automatic memory may retain sensitive work notes or business context. <br>
-Mitigation: Avoid entering secrets, credentials, regulated data, or confidential business information unless approved by the organization, and review DeepVista memory controls before relying on automatic memory. <br>
+## Use Case:
 
+External users and agents use this skill to follow a DeepVista knowledge-work routine: review priority cards, search context, capture notes, run Recipes, and ask DeepVista chat for synthesis.
 
-## Reference(s): <br>
-- [DeepVista CLI Homepage](https://cli.deepvista.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jingconan/deepvista-persona-knowledge-worker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes the DeepVista CLI and prerequisite DeepVista skills are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release evidence) <br>
+Risk: The skill depends on an unpinned third-party DeepVista CLI package and uses it to handle cards, notes, recipes, chat content, and accumulated memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted DeepVista CLI source and prefer a pinned, reviewed version or an installation process with lockfile or hash verification.
+
+## Reference(s):
+
+- [DeepVista CLI homepage](https://cli.deepvista.ai)
+- [ClawHub skill page](https://clawhub.ai/jingconan/skills/deepvista-persona-knowledge-worker)
+- [ClawHub publisher profile](https://clawhub.ai/user/jingconan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the DeepVista CLI and the deepvista-vistabase, deepvista-recipe, and deepvista-notes skills.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

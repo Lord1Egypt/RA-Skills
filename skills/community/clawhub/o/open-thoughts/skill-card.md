@@ -1,42 +1,52 @@
-## Description: <br>
-Structured free-thinking and exploration for agents that lets them choose or accept a topic, journal what they learn, and track follow-up action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured free-thinking and exploration for agents that can explore a topic, journal the exploration, and manage action items.
 
-## Publisher: <br>
-[mculp](https://clawhub.ai/user/mculp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mculp](https://clawhub.ai/user/mculp)
 
-## Use Case: <br>
-Agents and their users use Open Thoughts to reserve idle or requested time for curiosity-driven research, reflection, journaling, and follow-up tracking. It supports manual, heartbeat, or isolated cron invocation while keeping cron exploration private. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exploration journals are durable local workspace memory and may preserve sensitive topics, personal details, or contact information. <br>
-Mitigation: Review or delete files under explorations periodically, and avoid sensitive topics or raw contact details unless they are necessary. <br>
-Risk: Callback requests create saved action items that could later be used to contact a person or agent. <br>
-Mitigation: Require user review before any saved action item is used to send a message or otherwise contact someone. <br>
-Risk: Generic triggers or scheduled invocations can start explorations when the user did not intend to create persistent notes. <br>
-Mitigation: Narrow broad triggers when the host supports it, and enable scheduled use only when durable exploration notes are desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Open Thoughts examples](artifact/references/examples.md) <br>
-- [Open Thoughts on ClawHub](https://clawhub.ai/mculp/open-thoughts) <br>
+## Use Case:
 
+External users and agent operators use this skill to give an agent structured time for curiosity-driven research, reflection, journaling, and follow-up tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown journal entries and action-item lists written to workspace files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or appends files under explorations; callback requests become action items for later reviewed follow-up.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally keeps a persistent local exploration journal and follow-up list, which may capture sensitive topics or callback details.
+
+Mitigation: Install only when persistent local notes are desired, avoid storing private contact details in callback values, and review generated exploration files for sensitive content.
+
+Risk: Broad automatic triggers, heartbeat use, or cron scheduling can create periodic entries without direct user prompting.
+
+Mitigation: Enable scheduled or automatic invocation only when periodic private exploration is intended, and keep cron sessions from sending messages or processing action items.
+
+## Reference(s):
+
+- [Example Exploration Journal Entries](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown journal entries, markdown action lists, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local exploration notes under explorations/ and may create follow-up action items when a callback is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

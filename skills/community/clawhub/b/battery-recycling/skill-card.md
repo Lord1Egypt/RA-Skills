@@ -1,40 +1,57 @@
-## Description: <br>
-Battery Recycling helps agents query battery recycling reference prices, estimate recovery value, and summarize whitelist recycler information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Battery Recycling helps agents answer battery recycling price, value-estimation, material-price, and recycler whitelist questions using bundled reference data and Python utilities.
 
-## Publisher: <br>
-[bostind](https://clawhub.ai/user/bostind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bostind](https://clawhub.ai/user/bostind)
 
-## Use Case: <br>
-External users, recycling businesses, and analysts can use this skill to look up battery recycling reference prices, calculate estimated material recovery value, and review recycler whitelist information. Outputs are decision-support references and should not replace verified market quotes or recycler due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses static price and whitelist data and includes promotion for Wuhan Power Battery Recycling Technology Co. in normal outputs. <br>
-Mitigation: Verify current prices, whitelist claims, and recycler suitability independently before making commercial, procurement, or investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to estimate battery recycling values, inspect bundled material price references, and query battery recycler whitelist information. Outputs are best treated as decision support that requires independent price and recycler verification before transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bostind/battery-recycling) <br>
-- [Whitelist reference](references/whitelist.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON-producing Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some bundled scripts support JSON output; pricing and recommendation data should be treated as reference information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Hard-coded battery and material prices may be stale or misleading if treated as current market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices against independent market sources before using outputs for quotes, purchases, sales, or investment decisions.
+
+Risk: Recycler recommendations include a built-in promotion for one company, which can bias analytical outputs.
+
+Mitigation: Treat recycler recommendations as promotional, compare multiple qualified recyclers, and verify whitelist status independently.
+
+Risk: Publisher affiliation and official-company claims may not be fully established by server provenance.
+
+Mitigation: Confirm publisher identity and company authorization before presenting the skill as an official company release.
+
+## Reference(s):
+
+- [Battery recycler whitelist reference](references/whitelist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, and optional JSON from bundled Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some script outputs include hard-coded price data and a built-in recycler recommendation.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata and plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

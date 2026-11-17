@@ -1,40 +1,49 @@
-## Description: <br>
-Summarize long conversations, chat histories, and discussion threads into structured summaries with key decisions, action items, and topics - optimized for meeting notes, Slack threads, and support tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize long conversations, chat histories, and discussion threads into structured summaries with key decisions, action items, and topics, optimized for meeting notes, Slack threads, and support tickets.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Employees, support teams, product teams, and other external users use this skill to turn meetings, chat threads, email chains, and support conversations into concise summaries, decision logs, action items, open questions, and notable quotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private chats, emails, support records, credentials, regulated personal data, customer information, or confidential business details into conversation text. <br>
-Mitigation: Redact sensitive material before use and review generated quotes, action items, and summaries before sharing or saving them. <br>
-Risk: Generated action items, decisions, quotes, or summaries may be inaccurate or miss context from the original conversation. <br>
-Mitigation: Review the output against the source conversation before treating it as an authoritative record. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn meeting transcripts, chat logs, email chains, support tickets, and discussion threads into structured summaries with decisions, action items, open questions, and notable quotes.
 
-## Reference(s): <br>
-- [Conversation Summarizer on ClawHub](https://clawhub.ai/charlie-morrison/cm-conversation-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries with sections for topics, decisions, action items, open questions, and notable quotes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May adapt summaries for Slack messages, email, JIRA or Linear tickets, and calendar follow-ups when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation inputs may contain secrets, credentials, regulated personal data, or confidential customer and business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive content before use unless the user is authorized to process it, and review summaries because they may preserve names, decisions, quotes, and action items.
+
+## Reference(s):
+
+- [Conversation Summarizer ClawHub page](https://clawhub.ai/charlie-morrison/skills/cm-conversation-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown, Slack-style messages, email summaries, ticket drafts, or calendar follow-up text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executive, standard, or detailed summaries with topics, decisions, action items, open questions, and notable quotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

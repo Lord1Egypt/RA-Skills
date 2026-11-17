@@ -16,8 +16,15 @@ npx checkly deploy
 # Force deploy (skip prompt)
 npx checkly deploy --force
 
+# Keep removed code resources in Checkly instead of deleting run history
+npx checkly deploy --preserve-resources
+
 # Preview changes without deploying
 npx checkly validate
+npx checkly deploy --preview
+
+# Destroy the deployed project resources when intentionally decommissioning
+npx checkly destroy --force
 ```
 
 ## How deployment works
@@ -42,10 +49,24 @@ npx checkly deploy [options]
 | Flag | Description |
 |------|-------------|
 | `--force, -f` | Skip confirmation prompt |
+| `--preserve-resources` | Detach resources removed from code, keeping them and their run history in Checkly for UI management instead of deleting them |
 | `--verbose, -v` | Show created/updated resource names and IDs during deploy output |
 | `--cancel-in-progress-deployment` | If a deployment for this project is already in progress, cancel it instead of waiting for it to finish |
 | `--config=<path>` | Path to checkly.config.ts |
 | `--verify-runtime-dependencies` | Validate npm package compatibility |
+
+### Destroy options
+
+```bash
+npx checkly destroy [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--force, -f` | Skip confirmation prompt |
+| `--config=<path>` | Path to checkly.config.ts/js |
+| `--preserve-resources` | Remove the project link but keep project resources as normal account-level resources |
+| `--cancel-in-progress-deployment` | If a deploy or destroy operation is already in progress, cancel it instead of waiting before retrying |
 
 ## Deployment workflows
 
@@ -76,6 +97,34 @@ npx checkly deploy --force
 # Useful for automated pipelines
 ```
 
+`--force` skips confirmation prompts, including the destructive-delete guard. In CI, use it only when the pipeline already reviewed the deployment diff or intentionally accepts destructive changes.
+
+### Agent-mode confirmation
+
+In agent mode, running `npx checkly deploy` without `--force` returns exit code 2 and a JSON `confirmation_required` envelope before project parsing. Present its `changes` to the user and run the returned `confirmCommand` verbatim only after explicit approval.
+
+The confirmation envelope warns that deletion is possible but cannot list the exact resources yet. Preview first whenever resources may have been removed from code:
+
+```bash
+npx checkly deploy --preview --verbose
+```
+
+Review and present any deletions before requesting approval. The interactive itemized delete guard is skipped by `--force`, including the `--force` in an approved `confirmCommand`, so it is not a substitute for previewing. The generated command omits parser defaults and may include deliberate resolved-target flags; do not edit it or append `--force` yourself.
+
+### Preserve removed resources
+
+When a resource is removed from code, a normal deploy deletes it from Checkly and loses run history. With `--preserve-resources`, the resource is detached from the project instead: it remains in the Checkly account, keeps its run history, and becomes UI-managed.
+
+```bash
+# Prefer this when removing checks/groups/dashboards from code but preserving history
+npx checkly deploy --preserve-resources
+
+# CI-safe deploy that detaches removed resources instead of deleting them
+npx checkly deploy --force --preserve-resources
+```
+
+Without `--preserve-resources`, interactive non-forced deploys now do an extra dry-run when deletions are possible and require explicit confirmation before permanently deleting removed resources. Forced deploys skip that second prompt.
+
 ### Verbose deployment output
 
 ```bash
@@ -89,13 +138,30 @@ npx checkly deploy --verbose
 
 ### Concurrent deployments
 
-Checkly CLI 8.10.0 deploys asynchronously with live progress. If another deployment for the same project is already running, the CLI normally waits for that deployment to finish. Use `--cancel-in-progress-deployment` only when you intentionally want the new deployment to replace the in-flight one:
+Deploy runs asynchronously with live progress. If another deployment for the same project is already running, the CLI normally waits for that deployment to finish. Use `--cancel-in-progress-deployment` only when you intentionally want the new deployment to replace the in-flight one:
 
 ```bash
 npx checkly deploy --force --cancel-in-progress-deployment
 ```
 
 In CI, prefer serializing deploy jobs per environment. Add `--cancel-in-progress-deployment` only for workflows where a newer commit should supersede an older still-running deploy.
+
+### Destroying/decommissioning a project
+
+`npx checkly destroy` is destructive. Use it only when intentionally removing a Checkly CLI project from the account, and prefer a reviewed PR or explicit operator confirmation before running it.
+
+```bash
+# Preview project state first
+npx checkly validate
+
+# Destroy project-managed resources, skipping the prompt only in approved automation
+npx checkly destroy --force
+
+# Detach the project but keep checks/groups/dashboards as account-level resources
+npx checkly destroy --force --preserve-resources
+```
+
+Destroy uses the async backend endpoint: large-project deletion streams progress instead of timing out at the initial HTTP request, waits/retries when another deploy/delete is already in progress, and treats an already-missing project as successfully deleted. Use `--cancel-in-progress-deployment` only when the new destroy should supersede the current in-flight operation.
 
 ### Preview changes
 
@@ -122,10 +188,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22.13.0'
       
       - name: Install dependencies
         run: npm ci
@@ -140,7 +206,7 @@ jobs:
         env:
           CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
           CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-        run: npx checkly deploy --force
+        run: npx checkly deploy --force --preserve-resources
 ```
 
 ### GitLab CI
@@ -214,7 +280,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - run: npm ci
       - run: npx checkly test  # Test on all branches
         env:
@@ -226,7 +292,7 @@ jobs:
     if: github.ref == 'refs/heads/main'  # Deploy only on main
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - run: npm ci
       - run: npx checkly deploy --force
         env:
@@ -278,6 +344,9 @@ Changes to be deployed:
 - Delete checks:
   (none)
 
+Detached (kept in account, now UI-managed):
+  • legacy-status-page (StatusPage)
+
 + Create groups:
   • critical-checks
 
@@ -316,9 +385,11 @@ npx checkly deploy
 - Delete unused checks in UI
 - Contact Checkly support
 
-### Deploy hangs or times out
+### Deploy or destroy hangs, conflicts, or times out
 
-**Solution**:
+The CLI follows async deploy/destroy progress and can wait for an in-flight operation. If it appears stuck, first confirm whether another deploy/delete is already running for the same project. Use `--cancel-in-progress-deployment` only when you intentionally want the current command to replace that in-flight operation.
+
+**Solution:**
 ```bash
 # Check network connectivity
 curl https://api.checklyhq.com/health

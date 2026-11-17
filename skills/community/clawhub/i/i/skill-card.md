@@ -1,42 +1,60 @@
-## Description: <br>
-Memo helps agents record work notes, search stored history, generate work summary reports, and manage to-do items with local JSON persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memo helps an agent record work notes, search saved history, manage todos, and generate work-summary reports from a local JSON record store.
 
-## Publisher: <br>
-[QU8](https://clawhub.ai/user/QU8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qu8](https://clawhub.ai/user/qu8)
 
-## Use Case: <br>
-Employees and agent users use this skill as a private work-memory assistant for capturing spoken work updates, finding prior records, exporting Markdown reports, and tracking unfinished to-do items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-term work notes locally, which may include sensitive personal or business details. <br>
-Mitigation: Confirm the records.json and export locations before use, and avoid storing secrets or private work details unless local storage is acceptable. <br>
-Risk: The skill can create, update, and delete recurring reminders when to-do items are added or marked complete. <br>
-Mitigation: Require explicit confirmation before reminder creation, update, or deletion, and review the reminder date, recurrence, prompt, and working directory. <br>
+## Use Case:
 
+Employees and individual users use Memo to capture conversational work notes, query prior records, track unfinished todos, and export structured Markdown summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QU8/i) <br>
-- [Field recognition rules](references/field-rules.md) <br>
-- [Report format](references/report-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text responses, local JSON records, and Markdown work reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local records.json data and exported Markdown reports; documented reminder behavior can create, update, or delete dated work reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores work notes locally and may display saved note contents in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for notes appropriate for local storage and ask before revealing broad sets of saved records.
+
+Risk: The skill can create, update, or pause WorkBuddy reminders and includes guidance for direct automation database access.
+
+Mitigation: Review reminder changes before applying them and prefer constrained automation tooling over direct database edits.
+
+Risk: Report exports may write Markdown files outside a dedicated notes folder when a custom path is supplied.
+
+Mitigation: Confirm custom export paths and restrict routine exports to a known Memo or WorkBuddy directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qu8/skills/i)
+- [WorkBuddy documentation](https://www.codebuddy.cn/docs/workbuddy/Overview)
+- [Field recognition rules](artifact/references/field-rules.md)
+- [Report format](artifact/references/report-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chat responses, JSON records, Markdown reports, Python API and CLI examples, and automation configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores records in a local records.json file and can export reports as Markdown files.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter, skill.yaml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

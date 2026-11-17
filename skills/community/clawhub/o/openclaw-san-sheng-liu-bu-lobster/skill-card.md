@@ -1,47 +1,63 @@
-## Description: <br>
-Coordinates OpenClaw task decomposition for solo-company workflows by assigning work to subagents, sending Feishu notifications, creating Feishu documents, updating Feishu tables, and consolidating deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw San Sheng Liu Bu Lobster helps an OpenClaw agent decompose work across multiple subagents, notify Feishu participants, create Feishu documents, update Bitable records, and summarize deliverables.
 
-## Publisher: <br>
-[jiebao360](https://clawhub.ai/user/jiebao360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebao360](https://clawhub.ai/user/jiebao360)
 
-## Use Case: <br>
-Solo operators, small teams, founders, content creators, and knowledge-commerce workers use this skill to split content and research work across OpenClaw subagents, coordinate Feishu notifications, track progress, and collect final Markdown and Feishu document deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled Feishu OpenIDs, chat IDs, base links, app/table tokens, and folder tokens may point to an unintended workspace or recipient set. <br>
-Mitigation: Replace every bundled Feishu identifier with approved workspace-specific values before installation or execution. <br>
-Risk: The workflow can send Feishu messages, create cloud documents, update tables, and keep spawned subagent sessions. <br>
-Mitigation: Require a dry-run inventory of recipients, documents, table records, and subagent sessions before running real tasks. <br>
-Risk: Task outputs may include sensitive or private content that is copied into Feishu documents or tables. <br>
-Mitigation: Verify Feishu sharing permissions and data handling rules before sending private content to Feishu. <br>
+## Use Case:
 
+Small business operators, solo founders, content creators, and OpenClaw users can use this skill to coordinate task decomposition, parallel agent execution, Feishu notifications, document creation, task tracking, and final content handoff.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiebao360/openclaw-san-sheng-liu-bu-lobster) <br>
-- [README](artifact/README.md) <br>
-- [Lobster Team Configuration](artifact/config/lobster-team.md) <br>
-- [Feishu Document Automation Guide](artifact/docs/auto-create-feishu-doc.md) <br>
-- [Task Tracking Guide](artifact/docs/task-tracking.md) <br>
-- [Task Templates](artifact/templates/task-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown task plans, Feishu document and table update instructions, configuration tables, and inline command or API-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu cloud documents, Feishu table records, local Markdown files, and persistent subagent sessions when executed in a configured environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release includes live-looking Feishu OpenIDs, chat IDs, Bitable tokens, URLs, and folder destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all bundled Feishu identifiers and destinations with resources you control before installing or running the skill.
+
+Risk: The workflow posts outputs, task metadata, local paths, and document links to Feishu and stores records in Bitable.
+
+Mitigation: Avoid confidential tasks unless this cloud posting is acceptable, or require explicit confirmation before sending or storing each item.
+
+Risk: Cloud document creation and task tracking are mandatory in the documented workflow.
+
+Mitigation: Use a local-only variant or remove the Feishu posting steps for sensitive or restricted work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebao360/skills/openclaw-san-sheng-liu-bu-lobster)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Lobster team configuration](artifact/config/lobster-team.md)
+- [Feishu document automation guide](artifact/docs/auto-create-feishu-doc.md)
+- [Task tracking guide](artifact/docs/task-tracking.md)
+- [Task templates](artifact/templates/task-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, task templates, Feishu document links, Bitable update guidance, and completion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local task files and Feishu-linked deliverables when configured with user-controlled Feishu resources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,59 @@
-## Description: <br>
-Build, test, and ship iOS apps with Swift, Xcode, and App Store best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, ships, and debugs native iOS apps: lifecycle, permissions, entitlements, push, widgets, StoreKit, and App Store review.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise iOS development reference for Xcode builds, signing, SwiftUI patterns, App Store requirements, Info.plist settings, performance, and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Apple certificates and provisioning profiles are sensitive credentials. <br>
-Mitigation: Protect them like credentials and share them only through approved team processes. <br>
-Risk: App Store compliance settings can affect whether guidance is appropriate for a real app. <br>
-Mitigation: Independently confirm App Store compliance settings before applying the skill's advice to a production release. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose and implement native iOS platform behavior across lifecycle, permissions, entitlements, background execution, notifications, widgets, StoreKit, privacy, performance, crashes, accessibility, localization, and App Store review issues.
 
-## Reference(s): <br>
-- [ClawHub iOS skill page](https://clawhub.ai/ivangdavila/ios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration keys] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with xcodebuild for build-related commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent local memory may record app, device, project, client, release, and subscription details without a separate opt-in step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or restrict access to ~/Clawic/data before installation and keep only non-secret identifiers and operational notes in those files.
+
+Risk: Legacy-directory migration or shared-record updates could alter local notes that other workflows rely on.
+
+Mitigation: Require explicit confirmation before migrations or shared-record updates, and review the exact paths and records named by the skill before changes are applied.
+
+Risk: Generated iOS guidance may include commands or changes that affect device, simulator, keychain, entitlement, or release state.
+
+Mitigation: Review proposed commands and require confirmation for destructive actions such as simulator resets, keychain deletion, lossy migrations, or release-impacting changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/ios)
+- [Clawic iOS skill homepage](https://clawic.com/skills/ios)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file updates under configured Clawic data paths and should require explicit confirmation before destructive device, simulator, keychain, or migration actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

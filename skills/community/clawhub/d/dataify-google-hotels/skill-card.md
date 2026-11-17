@@ -1,42 +1,54 @@
-## Description: <br>
-Dataify Google Hotels turns a user's hotel price or availability request into a confirmed Dataify Scraper API Google Hotels form POST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Hotels for hotel discovery, prices, or availability. Do not use to scrape a known Booking.com hotel URL.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and run Google Hotels searches through Dataify, including destination, date, occupancy, currency, filtering, pagination, and detail lookup parameters. The skill requires a parameter review before each live API call and returns the API response body directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A live request can send hotel search parameters, travel dates, and an API credential to Dataify. <br>
-Mitigation: Review the generated parameter table before confirming a call, keep DATAIFY_API_TOKEN out of shared chat logs, and use the environment variable or explicit token handling described by the skill. <br>
-Risk: The skill returns the API response body directly, which may include third-party result data that has not been summarized or filtered. <br>
-Mitigation: Inspect returned data before using it in downstream workflows, publications, or customer-facing decisions. <br>
+## Use Case:
 
+External users use this skill to translate Google Hotels search requests into Dataify Scraper API calls and receive compact hotel discovery, pricing, and availability results.
 
-## Reference(s): <br>
-- [Dataify Google Hotels API](references/google_hotels_api.md) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown parameter table, Python command examples, and raw API response body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DATAIFY_API_TOKEN for live calls; performs a dry-run parameter review before sending requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub server release evidence) <br>
+Risk: Hotel search details and the Dataify API token are sent to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable for the user's task and environment.
+
+Risk: API tokens can be exposed or persisted unnecessarily through command-line arguments or shell startup-file setup examples.
+
+Mitigation: Prefer a session-scoped DATAIFY_API_TOKEN value or a secret manager, avoid passing tokens with --token, avoid persistent shell startup-file examples unless explicitly accepted, and rotate any token already stored that way.
+
+## Reference(s):
+
+- [Dataify Google Hotels API](references/google_hotels_api.md)
+- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text, with JSON or HTML only when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns compact user-facing hotel results by default and preserves source links when available.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

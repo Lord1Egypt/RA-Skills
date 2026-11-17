@@ -1,39 +1,49 @@
-## Description: <br>
-Display information about active processes for monitoring running programs, checking resource usage, and system diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display information about active processes for monitoring running programs, checking resource usage, and system diagnostics.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to inspect active Linux processes and support routine system diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process listings can reveal command-line arguments, including usernames, project paths, tokens, or other local details. <br>
-Mitigation: Review output before sharing it and avoid running the skill in contexts where process command lines contain sensitive values. <br>
-Risk: The artifact documents filtering and sorting options that are not implemented by the bundled script. <br>
-Mitigation: Treat the skill as a basic process listing helper unless the implementation is updated to support the documented options. <br>
+## Use Case:
 
+Developers, operators, and support engineers use this skill to inspect active local processes while monitoring systems or diagnosing resource and process-state issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text process listings and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Process command lines may expose local usernames, paths, or secrets passed as command-line arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Process command lines can expose sensitive strings when other programs include secrets or private data in their arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review process-listing output before sharing it and avoid running the skill in environments where command-line arguments may contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/ps-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text process listings and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local process IDs and command-line snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

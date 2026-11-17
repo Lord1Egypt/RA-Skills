@@ -403,7 +403,7 @@ description: 发票查验技能。按票面信息或上传文件查验发票真�
 ```json
 {
   "data": {
-    "apiKey": "sk-sg-9EVbsJLJnlKVLaSO4FZtPUVFysbFL",
+    "apiKey": "REDACTED-SECRET",
     "invoiceNumber": "26127000000211930033",
     "invoiceDate": "2026-05-12",
     "jejym": "162.43"

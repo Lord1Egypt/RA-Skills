@@ -1,44 +1,56 @@
-## Description: <br>
-Phason state resolution skill for Reson8-Labs workflows that helps an agent resolve split-brain states, HTTP 408 timeout deadlocks, push/flip conflicts, and coherence density spikes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phason state resolution skill for Reson8-Labs split-brain states, HTTP 408 timeout deadlocks, push/flip conflicts, and coherence density spikes.
 
-## Publisher: <br>
-[toolate28](https://clawhub.ai/user/toolate28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toolate28](https://clawhub.ai/user/toolate28)
 
-## Use Case: <br>
-Developers and operators using Reson8/POP-style ledger workflows use this skill to evaluate conflicting candidate states, select the higher-WAVE state, commit a resolution, release locks, and verify the resulting ledger state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to commit ledger state, release locks, or perform bulk state resolution without sufficient safeguards. <br>
-Mitigation: Require explicit operator approval and a controlled ledger scope before any commit, lock release, bulk resolution, or replay action. <br>
-Risk: Cached resolution events in browser localStorage can preserve sensitive operational state longer than intended. <br>
-Mitigation: Avoid storing sensitive state in long-lived localStorage and clear or expire replay buffers after verified resolution. <br>
-Risk: Density-spike handling and cached-event replay can cascade incorrect resolutions if candidate validation is incomplete. <br>
-Mitigation: Validate conservation, braid continuity, selected state, and post-commit WAVE checks before each resolution and replay step. <br>
+## Use Case:
 
+Developers and operators use this skill to guide resolution of Reson8-Labs ledger conflicts by detecting candidate states, validating conservation and braid continuity, selecting a higher-WAVE state, and verifying the committed result.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/toolate28/phason-flipper) <br>
-- [Publisher profile](https://clawhub.ai/user/toolate28) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JSON, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ledger commit, lock release, density-spike handling, and cached-event replay steps that require operator approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may guide an agent to mutate ledger state or release locks from broad conflict triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow invocation triggers and require explicit user approval before any commit or lock release.
+
+Risk: Cached event replay may duplicate, reorder, or apply stale state changes.
+
+Mitigation: Add replay protection, idempotency checks, audit logging, and rollback controls before using cached events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toolate28/skills/phason-flipper)
+- [Knot 16 Phason Resolution interactive simulator](public/publications/knot-16/445.html)
+- [quasicrystal_phason_scheduler.py](quasicrystal_phason_scheduler.py)
+- [POP protocol spec](references/protocol-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Code]
+
+**Output Format:** [Markdown with JSON and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include state selection steps, validation checks, commit guidance, cache replay guidance, and example payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-Expand scattered ideas into in-depth posts. Use this skill when users need to "expand ideas," "generate posts," "brainstorm content," "writing assistance," "enrich thoughts," "deepen thinking," or provide scattered ideas that need systematic expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expands scattered ideas into in-depth, platform-adapted social media posts through guided questioning, web-enriched research, and iterative polishing.
 
-## Publisher: <br>
-[akira82-ai](https://clawhub.ai/user/akira82-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akira82-ai](https://clawhub.ai/user/akira82-ai)
 
-## Use Case: <br>
-Content creators, marketers, founders, and professionals use this skill to turn rough ideas into polished, platform-adapted social media posts through guided questioning, web research, and structured drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use web search while developing social posts, which may expose confidential drafts, client material, unpublished plans, or sensitive personal stories to external research tools. <br>
-Mitigation: Use it only with material appropriate for web-assisted drafting, or disable or decline search before sharing sensitive content. <br>
-Risk: Search-assisted content may include inaccurate, outdated, or weakly supported external claims in generated posts. <br>
-Mitigation: Review cited sources and verify important claims before publishing generated content. <br>
+## Use Case:
 
+Content creators, marketers, founders, and professionals use this skill to turn rough ideas into polished social media posts for platforms such as WeChat, Xiaohongshu, Twitter/X, Weibo, and LinkedIn. The skill guides the user through progressive questions, searches for supporting material, and produces refined Markdown drafts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akira82-ai/idea-to-post) <br>
-- [Detailed Framework Explanations](references/thinking-frameworks.md) <br>
-- [Continuous Progressive Questioning Strategy](references/questioning-strategy.md) <br>
-- [Questioning Mode Selection Guide](references/questioning-modes.md) <br>
-- [Question Template Library](references/question-templates.md) <br>
-- [Post Structure Guide](references/post-structures.md) <br>
-- [High-Quality Data Source Guide](references/data-sources.md) <br>
-- [Basic Usage Examples](examples/basic-usage.md) <br>
-- [Advanced Usage Examples](examples/advanced-usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown posts with headings, emphasis, lists, quotes, optional code blocks, tags, and reference material notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform-adapted versions for channels such as WeChat, Xiaohongshu, Twitter, Weibo, LinkedIn, Juejin, and Zhihu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.5.0) <br>
+Risk: The skill may use external web search while developing posts from user ideas or personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using it, decide whether external search is acceptable; for private brainstorming, request a no-search or local-only workflow before sharing details.
+
+Risk: Drafting inputs may include confidential business plans, unpublished ideas, personal stories, or third-party details.
+
+Mitigation: Do not provide sensitive or confidential information unless you explicitly want that context used in drafting and search-informed enrichment.
+
+## Reference(s):
+
+- [Thinking Frameworks](references/thinking-frameworks.md)
+- [Questioning Strategy](references/questioning-strategy.md)
+- [Questioning Modes](references/questioning-modes.md)
+- [Question Templates](references/question-templates.md)
+- [Post Structures](references/post-structures.md)
+- [Data Sources](references/data-sources.md)
+- [Basic Usage](examples/basic-usage.md)
+- [Advanced Usage](examples/advanced-usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown posts with guided question prompts and platform-specific variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web search to enrich drafts with background, examples, and data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

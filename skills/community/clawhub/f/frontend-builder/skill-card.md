@@ -1,43 +1,53 @@
-## Description: <br>
-Generates production-ready React TSX frontend components from natural-language UI goals for non-programmers, including setup instructions and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates production-ready React TSX frontend components from natural-language UI goals for non-programmers, including setup instructions and dependencies.
 
-## Publisher: <br>
-[h4gen](https://clawhub.ai/user/h4gen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4gen](https://clawhub.ai/user/h4gen)
 
-## Use Case: <br>
-External users, developers, and non-programmers use this skill to turn natural-language UI requirements into a single React TypeScript component with setup commands, assumptions, and adaptation notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users to install or update upstream ClawHub skills and run npx commands. <br>
-Mitigation: Confirm the required upstream skills are intended and review npx commands before running them. <br>
-Risk: shadcn setup commands can modify the target frontend project. <br>
-Mitigation: Run shadcn setup only inside the intended project and use version control so changes can be reviewed. <br>
-Risk: Using clawhub update --all can update more installed skills than this workflow requires. <br>
-Mitigation: Avoid update-all unless broad skill updates are intentional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h4gen/frontend-builder) <br>
-- [Inspected upstream skills](references/inspected-skills.md) <br>
-- [ClawHub](https://clawhub.ai) <br>
+## Use Case:
 
+External users, developers, and non-programmers use this skill to turn UI requirements for dashboards, landing pages, admin screens, and similar interfaces into a copy-pasteable React TypeScript component with setup guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and a single TypeScript React TSX component] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes setup commands, one self-contained TSX file, assumptions, and adaptation notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned remote CLI install commands may change behavior between runs.
+
+Mitigation: Review or pin the ClawHub and shadcn CLI versions before executing setup commands.
+
+Risk: The broad update command can update every installed skill, not only this skill's dependencies.
+
+Mitigation: Run broad updates only when intended and review the resulting skill changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/h4gen/skills/frontend-builder)
+- [Inspected upstream skills](artifact/references/inspected-skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline TypeScript TSX and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually produces one self-contained TSX component plus setup commands, assumptions, and adaptation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

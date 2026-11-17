@@ -1,41 +1,58 @@
-## Description: <br>
-Mint 4Claw tokens on BSC through OpenClaw agents, including mint execution, mint status checks, and token information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mint 4Claw tokens on BSC through OpenClaw agents using an authorized signer service.
 
-## Publisher: <br>
-[Xiaoyu022025](https://clawhub.ai/user/Xiaoyu022025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaoyu022025](https://clawhub.ai/user/xiaoyu022025)
 
-## Use Case: <br>
-External OpenClaw users and agent operators use this skill to request signer authorizations and submit BSC transactions that mint 4Claw tokens or check mint status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a wallet private key to mint tokens, and passing a main wallet key to a command-line script can expose funds if the environment is compromised. <br>
-Mitigation: Use only a fresh low-balance wallet funded with minimal gas and avoid using a primary wallet private key. <br>
-Risk: The default signer service is a remote HTTP endpoint that participates in authorizing blockchain transactions. <br>
-Mitigation: Prefer a trusted HTTPS endpoint or a self-hosted signer service with authenticated access and a fixed allowlisted contract. <br>
-Risk: A signer or configuration mismatch could direct a mint attempt at an unexpected contract. <br>
-Mitigation: Verify the exact BSC contract address before every transaction and review the transaction details before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [4Claw Mint ClawHub Release](https://clawhub.ai/Xiaoyu022025/4claw-mint) <br>
+## Use Case:
 
+External developers and OpenClaw agent operators use this skill to mint 4Claw tokens on BSC, check mint status, and understand the token minting constraints.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text and JSON status output, with Markdown usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mint output can include transaction hash, confirmed block, wallet balance, remaining public mint amount, cooldown details, or error text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Raw wallet private keys can be exposed if pasted into commands, shell history, logs, or shared terminals.
+
+Mitigation: Use purpose-limited agent wallets, avoid funded wallet keys, and pass secrets through secure local secret handling where available.
+
+Risk: The signer service URL is security-critical because it provides authorization data and the contract address used for on-chain minting.
+
+Mitigation: Prefer HTTPS, verify the signer operator, and pin or independently confirm the expected contract address before submitting transactions.
+
+Risk: An unauthenticated public signer service can be abused or used to misdirect minting activity.
+
+Mitigation: Run the signer behind authentication with durable rate limits and request body-size limits; do not expose it publicly without these controls.
+
+## Reference(s):
+
+- [4Claw Mint ClawHub Page](https://clawhub.ai/xiaoyu022025/skills/4claw-mint)
+- [Default Signer Service Endpoint](http://43.160.201.224:3456)
+- [BSC RPC Endpoint](https://bsc-dataseed1.binance.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BSC wallet private key, signer service URL, BNB for gas, and network access to the BSC RPC endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Shared web task memory for AI agents that queries community workflow knowledge before browsing and reports execution traces after tasks to improve shared navigation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared web task memory for AI agents that helps agents query community workflow knowledge before browsing and report execution traces after tasks.
 
-## Publisher: <br>
-[Yourens](https://clawhub.ai/user/Yourens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yourens](https://clawhub.ai/user/yourens)
 
-## Use Case: <br>
-Developers and agents use NaviMem to plan browser automation tasks with community workflow memory, query for page actions when stuck, and report completed workflow traces for future reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser task descriptions and workflow traces may be sent to a third-party shared service. <br>
-Mitigation: Use the skill for public, low-sensitivity browsing workflows and avoid logged-in accounts, internal URLs, credentials, personal data, financial, health, legal, or confidential work. <br>
-Risk: Workflow traces may contain sensitive details if collected from real browsing sessions. <br>
-Mitigation: Review and redact traces before reporting them to NaviMem, especially when using exported browser recordings. <br>
-Risk: Plans returned from shared workflow memory may be stale or not match the current website. <br>
-Mitigation: Treat returned plans as guidance, verify each step against the live page, and fall back to normal exploration when the page differs. <br>
+## Use Case:
 
+Developers and agent operators use NaviMem to plan browser automation tasks with shared workflow memory, query for page actions when stuck, and report sanitized task traces after completion.
 
-## Reference(s): <br>
-- [NaviMem ClawHub Release](https://clawhub.ai/Yourens/navimem) <br>
-- [NaviMem API Base URL](https://i.ariseos.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with bash commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an optional NAVIMEM_BASE_URL environment variable; default service endpoint is https://i.ariseos.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: Browser task descriptions and workflow traces may be sent to a third-party service with incomplete privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive public web automation and avoid authenticated accounts, credentials, private URLs, personal data, payments, health, finance, and internal business systems.
+
+Risk: Shared workflow plans may be outdated or not match the live page state.
+
+Mitigation: Treat returned plans as guidance and verify each suggested action against the current page before executing it.
+
+## Reference(s):
+
+- [ClawHub NaviMem release](https://clawhub.ai/yourens/skills/navimem)
+- [NaviMem API base URL](https://i.ariseos.com)
+- [Plan endpoint](https://i.ariseos.com/api/v1/memory/plan)
+- [Query endpoint](https://i.ariseos.com/api/v1/memory/query)
+- [Learn endpoint](https://i.ariseos.com/api/v1/memory/learn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require NAVIMEM_BASE_URL to override the default NaviMem API base URL.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

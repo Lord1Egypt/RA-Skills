@@ -1,42 +1,58 @@
-## Description: <br>
-Sync agent workspace with cloud storage (Dropbox, Google Drive, S3, etc.) using rclone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync agent workspace with cloud storage (Dropbox, Google Drive, S3, etc.) using rclone.
 
-## Publisher: <br>
-[ashbrener](https://clawhub.ai/user/ashbrener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashbrener](https://clawhub.ai/user/ashbrener)
 
-## Use Case: <br>
-Developers and agent operators use this skill to sync workspace files with cloud storage, check sync health, configure rclone-backed providers, and create encrypted workspace backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud sync and backups can include sensitive workspace or agent state, including configuration, cron, and memory. <br>
-Mitigation: Use trusted cloud remotes, review exclude patterns before syncing, keep backups disabled or workspace-only unless needed, and protect any backup passphrase. <br>
-Risk: Bidirectional sync, restore, resync, or setup operations can overwrite files, reintroduce deleted files, or make host-level package changes. <br>
-Mitigation: Prefer mailbox or mirror mode, dry-run or verify both sides before destructive operations, and run restore or sudo-based setup only when those changes are intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure rclone-backed workspace sync, run manual or scheduled syncs, and inspect sync status for cloud-backed backup and file transfer workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashbrener/openclaw-workspace-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/ashbrener) <br>
-- [rclone installation documentation](https://rclone.org/install/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, sync, status, backup, restore, and troubleshooting guidance for rclone-backed workspace operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: server release evidence) <br>
+Risk: Setup can install system packages and configure cloud credentials for rclone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before setup, avoid unattended package installation, and use a dedicated cloud account or scoped remote where possible.
+
+Risk: Sync operations can modify files in the workspace or remote cloud storage, especially with bisync, --resync, or restore workflows.
+
+Mitigation: Set an explicit mode and dedicated remote subfolder, run --dry-run first, and keep a recoverable backup before using --resync or restore.
+
+Risk: The security scan notes defaults that do not match the safer documentation.
+
+Mitigation: Configure the intended sync mode and paths explicitly before enabling automatic sync or running manual operations.
+
+## Reference(s):
+
+- [Workspace Sync & Backup ClawHub listing](https://clawhub.ai/ashbrener/skills/openclaw-workspace-sync)
+- [rclone install documentation](https://rclone.org/install/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires rclone and a configured cloud storage remote; sync behavior depends on the selected mode and paths.]
+
+## Skill Version(s):
+
+2.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

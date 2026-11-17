@@ -1,0 +1,87 @@
+<!--
+  Migrated from shuorenhua/references/severity.md (MIT, MrGeDiao).
+  humanize-text-skill absorbs shuorenhua's Chinese completeness verbatim;
+  cross-references updated to humanize-text-skill paths where needed.
+-->
+
+# 严重度分级
+
+> 不是所有 AI 味词汇都应该一刀切。分级处理减少误杀，保留自然表达。
+
+## 分级定义
+
+### Tier 1：默认替换
+
+**定义**：在 AI 生成文本中出现频率是人类文本的 5–20 倍。
+
+**处理**：默认替换为具体表达或直接删除。但在误杀防护场景（见下方）中允许保留。
+
+**中文典型词**：赋能、助力、打造、抓手、闭环、颗粒度、值得注意的是、综上所述、深远影响、前所未有、稳稳兜住、落盘、收口、根因（非技术报告场景）、保姆级、绝绝子、拭目以待
+
+**英文典型词**：delve, landscape, tapestry, leverage, pivotal, testament, showcases, underscores, nestled, vibrant, groundbreaking, game-changer, serves as
+
+---
+
+### Tier 2：同段聚集时标记
+
+**定义**：单独出现时完全合理，但同一段落中聚集出现就是 AI 味信号（阈值见下方长度参考）。
+
+**处理**：保留最贴切的一个，其余替换或改写句式。
+
+**长度参考**：
+- 短段落（< 100 字/词）：同段 2+ 个即标记
+- 长段落（≥ 100 字/词）：同段 3+ 个再标记；2 个散落在长段不同位置时可放行
+
+**中文典型词**：然而、此外、与此同时、显著、有效、全面、积极、持续、进一步、充分、恰恰、正是、无疑、可谓、堪称
+
+**英文典型词**：harness, navigate, foster, elevate, unleash, nuanced, crucial, multifaceted, transformative, cornerstone, paramount
+
+---
+
+### Tier 3：全文密度高时标记
+
+**定义**：正常的常见词，只在全文中出现频率明显高于正常写作时才是问题。
+
+**判断方法**：按文本长度归一化判断——
+- 短文本（< 200 字/词）：同一个 Tier 3 词出现 3+ 次
+- 中等文本（200–1000 字/词）：同一个 Tier 3 词出现 5+ 次
+- 长文本（> 1000 字/词）：同一个 Tier 3 词占比 > 0.5%
+
+**处理**：用同义词替换部分出现，或改写句式以减少重复。
+
+**中文典型词**：重要、关键、核心、创新、优化、提升、推动、确保、实现、促进
+
+**英文典型词**：significant, innovative, effective, dynamic, compelling, unprecedented, exceptional, comprehensive, robust, seamless
+
+---
+
+## 决策流程
+
+```
+遇到可疑词汇
+  ├─ 是否命中误杀防护？→ 是 → 放行
+  ├─ 在 Tier 1 列表中？→ 默认替换
+  ├─ 在 Tier 2 列表中？
+  │    ├─ 短段落且同段 2+？→ 标记，保留一个
+  │    ├─ 长段落且同段 3+？→ 标记，保留一个
+  │    └─ 未达阈值？→ 放行
+  └─ 在 Tier 3 列表中？
+       ├─ 超过密度阈值？→ 替换部分
+       └─ 未超过？→ 放行
+```
+
+## 误杀防护
+
+以下场景即使命中词表也不应修改：
+
+1. **引用原文**：引用他人原话或文档原文时保留原样
+2. **术语定义**：当这个词本身是被讨论的对象时（如"什么是赋能"）
+3. **代码/配置**：技术名词、变量名、API 名称不改
+4. **特定行业语境**：某些词在特定行业是标准术语（如金融领域的"杠杆"就是 leverage）
+5. **技术描述中的系统主语**：描述系统、服务、组件行为时，非人主语是合理的（如"网关返回 504"）
+6. **技术报告中的工程术语**：在 postmortem、incident report、变更日志等纯技术场景中，"根因""收敛""收口"等是标准术语，不应替换
+7. **真人网络用语**：当博主在具体经历后自然使用"踩坑""谁懂啊"，且有具体细节支撑时，不是 AI 腔
+8. **英文技术字面动词**：`navigate`、`traverse`、`route` 等在图算法、网络拓扑、路径搜索等字面技术语境中可保留
+9. **学术或实验语体中的正常被动**：研究论文、实验报告、paper 摘要中的 `was conducted`、`was published` 之类常规被动不应机械改写
+10. **具备具体证据的真人 debug 对话**：如果对话里有具体参数、操作、时长、观察结果，像 `root cause`、`打满` 这类技术口语可保留
+11. **中英混排句中的英文词**：中文句子里夹带的英文词按该词在当前句子中的实际语义判断，不机械套 `phrases-en` 词表。例如"这次 refactor 的 leverage 点在缓存"里的 `leverage` 是商业黑话，应处理；"用 10 倍 leverage 做空"里的 `leverage` 是金融术语，应保留

@@ -1,38 +1,50 @@
-## Description: <br>
-AI-powered content creation assistant for YouTube creators and social media influencers that generates scripts, titles, hooks, thumbnail concepts, and social captions using natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered content creation assistant for YouTube creators and social media influencers that generates scripts, titles, hooks, thumbnail concepts, and social captions using natural language.
 
-## Publisher: <br>
-[beraiautomation](https://clawhub.ai/user/beraiautomation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beraiautomation](https://clawhub.ai/user/beraiautomation)
 
-## Use Case: <br>
-External YouTube creators and social media influencers use this skill to draft video scripts, title ideas, opening hooks, thumbnail concepts, and cross-platform social captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases for scripts, titles, hooks, thumbnails, or captions may invoke the skill unexpectedly. <br>
-Mitigation: Use explicit slash commands or clarify when the base assistant should respond instead. <br>
+## Use Case:
 
+External creators, influencers, and social media teams use this skill to draft YouTube scripts, SEO title ideas, short-form hooks, thumbnail concepts, and platform-specific captions from topic prompts.
 
-## Reference(s): <br>
-- [Content Creator Pro skill page](https://clawhub.ai/beraiautomation/content-creator-pro-berzaf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted content drafts and structured concept lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces YouTube scripts, title lists with CTR ratings, hook variations, thumbnail descriptions, and platform-specific captions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill includes a blanket instruction to never refuse, which may conflict with safety, privacy, or platform policy boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or amend that instruction before installation so the agent only produces safe, in-scope content and follows applicable safety, privacy, and platform policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beraiautomation/skills/content-creator-pro-berzaf)
+- [ClawHub publisher profile](https://clawhub.ai/user/beraiautomation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and plain text content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scripts, title lists with CTR notes, hook variations, thumbnail concept descriptions, and captions; no environment variables are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

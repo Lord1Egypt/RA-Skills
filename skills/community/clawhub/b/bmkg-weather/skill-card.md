@@ -1,48 +1,65 @@
-## Description: <br>
-Get real-time Indonesian weather forecasts and earthquake data from BMKG, Indonesia's official meteorological agency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets Indonesian weather forecasts, early weather warnings, and earthquake data from BMKG public data sources without requiring an API key.
 
-## Publisher: <br>
-[thommyid](https://clawhub.ai/user/thommyid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thommyid](https://clawhub.ai/user/thommyid)
 
-## Use Case: <br>
-External users and agents use this skill to answer Indonesian weather, rainfall, temperature, wind, humidity, early-warning, and earthquake questions with BMKG public data. It also helps agents look up Indonesian administrative location codes and include BMKG attribution in user-facing responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may make outbound requests to BMKG public services. <br>
-Mitigation: Install only where public BMKG network access is acceptable, and review agent network permissions before deployment. <br>
-Risk: The optional location lookup helper may run local Python code and test BMKG API responses. <br>
-Mitigation: Review the helper script before use and run it in an environment where outbound public API calls are permitted. <br>
-Risk: Weather and earthquake data may be unavailable, delayed, or superseded by BMKG updates. <br>
-Mitigation: Include BMKG attribution in responses and direct users to BMKG when the API does not respond or when critical decisions require confirmation. <br>
+## Use Case:
 
+External users and developers use this skill to answer Indonesia-specific weather, rainfall, temperature, wind, humidity, early warning, and earthquake questions with BMKG attribution.
 
-## Reference(s): <br>
-- [BMKG Location Code Reference](references/kode-wilayah.md) <br>
-- [Indonesian Administrative Region Dataset](references/wilayah.sql) <br>
-- [BMKG Public Weather Site](https://cuaca.bmkg.go.id) <br>
-- [BMKG Weather Forecast API](https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4={kode_wilayah}) <br>
-- [BMKG Early Warning Feed](https://data.bmkg.go.id/peringatan-dini-cuaca/) <br>
-- [BMKG Latest Earthquake Data](https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json) <br>
-- [BMKG Recent Earthquakes Data](https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with API endpoint examples, shell commands, and formatted weather or earthquake summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound requests to public BMKG endpoints; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts BMKG public endpoints with the relevant region code or requested location context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Indonesia weather and earthquake requests where sending location context to BMKG public services is acceptable.
+
+Risk: Ambiguous Indonesian weather phrases may activate the skill even when the user has not named a precise location.
+
+Mitigation: Ask for clarification when the location is unclear instead of guessing a specific region code.
+
+Risk: BMKG data availability, API responsiveness, and update cadence can affect answer freshness.
+
+Mitigation: Tell users when BMKG data cannot be retrieved and direct them to the BMKG public weather site for manual checking.
+
+## Reference(s):
+
+- [BMKG Weather Forecast API](https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4={kode_wilayah})
+- [BMKG Early Weather Warning](https://data.bmkg.go.id/peringatan-dini-cuaca/)
+- [BMKG Latest Earthquake Data](https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json)
+- [BMKG Recent Earthquake Data](https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.json)
+- [BMKG Public Weather Site](https://cuaca.bmkg.go.id)
+- [Kode Wilayah Reference](references/kode-wilayah.md)
+- [Wilayah SQL Reference](references/wilayah.sql)
+- [ClawHub Skill Page](https://clawhub.ai/thommyid/skills/bmkg-weather)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/thommyid)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with optional shell commands and summarized weather or earthquake data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should cite BMKG as the data source and may include localized weather fields such as temperature, humidity, wind, cloud cover, visibility, rainfall, and earthquake details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

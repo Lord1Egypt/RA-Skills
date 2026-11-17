@@ -1,47 +1,65 @@
-## Description: <br>
-Turns story text into structured shot plans and video-generation assets, then uses MiniMax image/video APIs and ffmpeg to assemble a final story video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Story Video Skill helps agents turn story text into screenplay shot JSON, MiniMax-generated images and videos, and an FFmpeg-merged final video.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-External creators, developers, and media teams use this skill to convert story outlines or scripts into shot JSON, generated images, generated video clips, and a merged final video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story content, prompts, and generated media requests are sent to MiniMax using the user's API key. <br>
-Mitigation: Install only when that data sharing is acceptable, review prompts before execution, and protect MINIMAX_API_KEY as a sensitive credential. <br>
-Risk: The skill can attempt package-manager installation of ffmpeg when it is missing. <br>
-Mitigation: Review or remove the auto-install path and install ffmpeg through an approved process before running the video merge workflow. <br>
-Risk: Configurable MiniMax endpoint variables can direct API-key-backed requests to non-default hosts. <br>
-Mitigation: Keep MINIMAX_BASE_URL and MINIMAX_IMAGE_URL pointed only at trusted MiniMax-compatible HTTPS endpoints. <br>
+## Use Case:
 
+External users, creators, and developers can use this skill to plan story structure, generate shot breakdowns, create MiniMax image and video assets, and merge generated clips into a finished story video.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yhongm/story-video-skill) <br>
-- [MiniMax API Base URL](https://api.minimaxi.com/v1) <br>
-- [MiniMax Image Generation Endpoint](https://api.minimaxi.com/v1/image_generation) <br>
-- [Story Structure Reference](references/screenwriting/story-structure.txt) <br>
-- [Shot Breakdown Reference](references/screenwriting/shot-breakdown.txt) <br>
-- [MiniMax Models Reference](references/minimax-api/models-intro.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON shot plans, and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and may write shot JSON, image frames, video clips, storyboard text, and final MP4 output under the skill output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send API keys and story content to MiniMax or to endpoints configured through override variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege MiniMax API key with spending limits, leave endpoint override variables unset unless the destination is trusted, and avoid submitting confidential story material.
+
+Risk: The merge workflow may attempt system-level FFmpeg installation.
+
+Mitigation: Install FFmpeg manually or run the skill in a container, and do not run the merge script with passwordless sudo.
+
+Risk: Text-to-image and image-to-video generation can consume paid MiniMax tokens.
+
+Mitigation: Confirm account balance and expected shot count before running full video generation.
+
+## Reference(s):
+
+- [Story Video Skill page](https://clawhub.ai/yhongm/skills/story-video-skill)
+- [MiniMax API overview](references/minimax-api/api-overview.txt)
+- [MiniMax models introduction](references/minimax-api/models-intro.txt)
+- [MiniMax quickstart preparation](references/minimax-api/quickstart-preparation.txt)
+- [Image generation text-to-image reference](references/minimax-api/image-generation-t2i.txt)
+- [Image generation image-to-image reference](references/minimax-api/image-generation-i2i.txt)
+- [Screenwriting story structure reference](references/screenwriting/story-structure.txt)
+- [Screenwriting shot breakdown reference](references/screenwriting/shot-breakdown.txt)
+- [Visual storytelling principles reference](references/director-knowledge/visual-storytelling-principles.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces screenplay shot JSON, generated image and video files, storyboard text, and a merged MP4 when the external services and local tools are configured.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

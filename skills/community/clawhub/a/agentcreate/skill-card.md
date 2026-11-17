@@ -1,44 +1,59 @@
-## Description: <br>
-Creates or uninstalls isolated OpenClaw agents with separate workspaces, optional channel bindings such as Feishu or WeChat, and model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates or uninstalls isolated OpenClaw agents with independent workspaces, optional channel bindings such as Feishu or WeChat, and model selection.
 
-## Publisher: <br>
-[xf9070](https://clawhub.ai/user/xf9070) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xf9070](https://clawhub.ai/user/xf9070)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create independent agents, bind optional messaging channels, select models, and safely uninstall agents when they are no longer needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full uninstall can force-delete an agent workspace and directly edit local OpenClaw configuration. <br>
-Mitigation: Verify the exact agent ID, never delete the protected main agent, back up the workspace and openclaw.json before deletion, and require the documented second confirmation. <br>
-Risk: Channel credentials such as appId and appSecret may be exposed or removed from shared channel accounts. <br>
-Mitigation: Treat channel credentials as sensitive, confirm whether an account is shared before removal, and rotate credentials if exposure is suspected. <br>
-Risk: The artifact contains a hard-coded example configuration path for direct Python editing during account deletion. <br>
-Mitigation: Replace the example path with the user's actual OpenClaw configuration path before running any edit and validate the configuration after the change. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create separate agent workspaces, bind optional channel accounts, select models, and remove agents when they are no longer needed. It is intended for administrative agent lifecycle tasks where the operator can verify targets and configuration changes before execution.
 
-## Reference(s): <br>
-- [Agent creation implementation](references/create.md) <br>
-- [Agent uninstall implementation](references/delete.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xf9070/agentcreate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents through user confirmation, OpenClaw wrapper commands, configuration updates, validation checks, and rollback-aware deletion steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Full uninstall can delete OpenClaw agents, workspaces, bindings, and channel accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact agent and channel account, refuse operations on the main agent, require explicit confirmation, and back up OpenClaw configuration before removal.
+
+Risk: The documented account-removal path directly rewrites a live OpenClaw configuration file.
+
+Mitigation: Prefer a supported deletion method when available; otherwise review the edit, back up the config first, and validate agents and bindings after the change.
+
+Risk: Channel credentials such as Feishu app IDs and secrets may be exposed if pasted into shared chats or logs.
+
+Mitigation: Avoid sharing secrets in chat transcripts or logs, redact credentials from summaries, and use existing configured accounts where possible.
+
+## Reference(s):
+
+- [Agent creation workflow](references/create.md)
+- [Agent uninstall workflow](references/delete.md)
+- [ClawHub skill page](https://clawhub.ai/xf9070/skills/agentcreate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for operator confirmation before administrative create, bind, unbind, or uninstall actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

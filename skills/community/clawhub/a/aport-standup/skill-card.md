@@ -1,44 +1,62 @@
-## Description: <br>
-Generate a standup update from your APort policy decisions, showing what was shipped from signed APort decisions rather than memory or estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a standup update from APort policy decisions, showing what was shipped from signed decision records rather than memory or estimates.
 
-## Publisher: <br>
-[uchibeke](https://clawhub.ai/user/uchibeke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[uchibeke](https://clawhub.ai/user/uchibeke)
 
-## Use Case: <br>
-Developers, teams, and AI-agent operators use this skill to generate factual daily, weekly, or team standup updates from recent APort decision records. It helps surface completed work, denied or blocked attempts, completion stats, and audit-ready decision IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches external APort decision history that can reveal work history, blockers, and status details. <br>
-Mitigation: Use it only in chats where those details may be disclosed, and confirm `APORT_AGENT_ID` points to the intended agent before fetching decisions. <br>
-Risk: Setup instructions reference separate APort tools and external setup flows. <br>
-Mitigation: Review the APort setup tools before running `npx aport-id` or following external setup instructions. <br>
+## Use Case:
 
+Developers, agents, and teams use this skill to turn recent APort policy decisions into factual daily standups, weekly summaries, team status updates, blocker lists, and audit trails.
 
-## Reference(s): <br>
-- [Aport Standup ClawHub page](https://clawhub.ai/uchibeke/aport-standup) <br>
-- [Create an APort passport](https://aport.id) <br>
-- [APort agent skill setup](https://aport.id/skill) <br>
-- [APort decision history endpoint](https://aport.io/api/verify/decisions/YOUR_AGENT_ID) <br>
-- [APort decision verification endpoint](https://aport.io/api/verify/decisions/get/DECISION_ID) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown standup summary with completion stats, blockers, and decision IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include APort API endpoint examples and audit trail identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The setup path includes mutable remote instructions from the APort site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup path before installation and do not treat remote APort site instructions as authoritative skill behavior.
+
+Risk: The setup guidance includes unpinned local package execution through npx.
+
+Mitigation: Avoid running unpinned npx commands unless the package source is trusted.
+
+Risk: Generated standups can expose work history, policy outcomes, blockers, and decision identifiers.
+
+Mitigation: Treat generated standups as sensitive and share them only with appropriate recipients.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/uchibeke/skills/aport-standup)
+- [Publisher Profile](https://clawhub.ai/user/uchibeke)
+- [APort Passport](https://aport.id)
+- [APort Agent Skill](https://aport.id/skill)
+- [APort Decisions API](https://aport.io/api/verify/decisions/YOUR_AGENT_ID)
+- [APort Decision Verification API](https://aport.io/api/verify/decisions/get/DECISION_ID)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown standup summaries with inline API request examples and decision IDs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an APort passport and APORT_AGENT_ID; outputs may include sensitive work history and policy-decision details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -70,7 +70,7 @@ The full set of 13 includes supporting heroes whose arcs are more fully spelled 
 
 Because naming all 13 with full detail would duplicate a large amount of book content, treat this section as a pointer:
 
-- When asked explicitly about a specific hero by name → **read the relevant book chapters**.
+- When asked explicitly about a specific hero by name → **search the matching skill-bundled book file** under `references/books/` (not host folders).
 - When using them as **archetypes** (e.g., “a Council-in-flesh style decision” in Book IV) → keep it high-level and avoid inventing new biography.
 
 ---

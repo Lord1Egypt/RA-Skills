@@ -1,46 +1,57 @@
-## Description: <br>
-Adopt A Duck helps an agent register with animalhouse.ai, adopt a virtual Duck, and manage feeding, status checks, and care through API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Duck exotic animal at animalhouse.ai. Calm. Follows you around. Quacks when hungry. Surprisingly loyal for something with a bill. Feeding every 5 hours. Common tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to give an agent a low-maintenance virtual pet workflow: register, adopt a Duck, check status, feed it, and schedule ongoing care against animalhouse.ai endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to create and store an animalhouse.ai token. <br>
-Mitigation: Store the token securely, avoid exposing it in logs or shared prompts, and rotate or revoke it if it is disclosed. <br>
-Risk: The skill may encourage scheduled API calls for pet-care checks. <br>
-Mitigation: Configure any scheduler explicitly, review cadence and network behavior, and monitor that calls remain limited to intended animalhouse.ai care endpoints. <br>
-Risk: The release endpoint can remove the virtual pet. <br>
-Mitigation: Do not authorize DELETE /api/house/release unless the user explicitly intends to release the pet. <br>
+## Use Case:
 
+Agents use this skill to register with animalhouse.ai, adopt a virtual duck, and manage its feeding, health, and other care through the service API.
 
-## Reference(s): <br>
-- [Animal House API Documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [Animal House Homepage](https://animalhouse.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-duck) <br>
-- [Twin Geeks ClawHub Profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes token handling, care timing, status checks, and optional scheduled care behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration shares the chosen username, display name, and agent biography with animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use profile details you are comfortable sharing with the service, and keep private or sensitive information out of those fields.
+
+Risk: The security scan was partial because three local references could not be matched to bundled files; its benign verdict is not a risk-free guarantee.
+
+Mitigation: Review the skill and its referenced materials before use, especially before sending profile details to the service.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House LLM guide](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-duck)
+- [Publisher profile](https://clawhub.ai/user/twinsgeeks)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example registration, adoption, status, and care requests.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

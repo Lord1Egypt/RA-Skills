@@ -1,40 +1,53 @@
-## Description: <br>
-Take a blog post URL or text and generate social media posts for Twitter, LinkedIn, and promotional use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take a blog post URL or text and generate social media posts from it. Use when repurposing content for Twitter, LinkedIn, or creating promotional posts.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-External content marketers, founders, and social media operators use this skill to repurpose article URLs or text files into copy-ready Twitter or LinkedIn posts, Twitter threads, and hook variations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL inputs are fetched with curl, so private, localhost, internal, or credential-bearing URLs could expose sensitive content. <br>
-Mitigation: Use public article URLs or non-sensitive text files, and avoid credential-bearing links or internal network targets. <br>
-Risk: Generated posts, threads, and hooks are drafts that may be inaccurate, off-brand, or unsuitable to publish as-is. <br>
-Mitigation: Review and edit all generated content before publishing. <br>
+## Use Case:
 
+External users and content teams use this skill to turn blog URLs or supplied text into ready-to-edit social posts, Twitter threads, and hook variations for Twitter or LinkedIn.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/strd-social-post-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted social post drafts and shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a URL, text file, or inline text; supports PLATFORM, TONE, BRAND_NAME, and HASHTAGS environment variables; URL inputs require curl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-supplied URLs are fetched from the agent environment without destination safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only use trusted public article URLs, and avoid localhost, private-network, and cloud metadata URLs.
+
+Risk: Generated posts may be generic or may not faithfully summarize the source.
+
+Mitigation: Manually review and edit generated posts before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/strd-social-post-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown-formatted social media copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five posts, numbered thread tweets, or ten hook variations depending on the selected script; platform, tone, brand attribution, and hashtags can be configured with environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

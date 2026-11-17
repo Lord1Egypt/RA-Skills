@@ -1,40 +1,57 @@
-## Description: <br>
-Guides hotel revenue managers, directors of revenue management, or general managers through drafting weekly or monthly revenue pacing analysis reports covering occupancy, ADR, RevPAR, budget and prior-year pacing, segment performance, competitive benchmarking, forward demand, and pricing strategy recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a hotel revenue manager, director of revenue management, or general manager needs to draft a weekly or monthly revenue pacing analysis report covering occupancy, ADR, RevPAR, pacing against budget and prior year, segment performance, competitive benchmarking, forward demand, and pricing strategy recommendations.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Hotel revenue managers, general managers, asset managers, ownership representatives, and corporate revenue analysts use this skill to assemble draft pacing reports from property performance, segment, competitive set, and forward-demand data. The output is intended for revenue manager review before distribution or operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious verdict because the scanned skill set may include review-helper behavior with unrestricted local access. <br>
-Mitigation: Install only from a trusted publisher, avoid unrestricted review modes unless intentionally needed, and review generated report content before sharing or acting on it. <br>
-Risk: Hotel pacing reports can contain incorrect financial projections, fabricated benchmarks, or premature pricing actions if source data is missing or unverified. <br>
-Mitigation: Keep all figures labeled preliminary, cite benchmarking sources and report dates, mark data gaps, and require revenue manager approval before PMS or channel changes. <br>
+## Use Case:
 
+Hotel revenue managers, directors of revenue management, general managers, asset managers, ownership representatives, and corporate revenue analysts use this skill to draft weekly or monthly revenue pacing reports. The report turns hotel performance and forward-demand inputs into a structured draft with variance analysis, segment commentary, competitive set notes, and pricing recommendations for revenue manager review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/hotel-revenue-pacing-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Structured Markdown draft report with tables, pacing flags, data-gap notes, recommendations, and a review/sign-off block.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All financial figures are labeled preliminary, benchmarking requires cited source data, and pricing recommendations require revenue manager approval before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and CHANGELOG, released 2026-05-31) <br>
+Risk: Hotel revenue, pacing, and competitive set data may be sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the agent is approved to receive that data, and avoid sharing inputs beyond the intended reporting workflow.
+
+Risk: Draft pricing or channel recommendations could be wrong, incomplete, or unsuitable for current market conditions.
+
+Mitigation: Treat the output as a draft and require revenue manager review before changing PMS, RMS, or channel manager settings.
+
+Risk: Competitive set indices or benchmark comparisons may mislead readers if the source, report date, or inputs are missing.
+
+Mitigation: Cite the benchmarking source and report date, flag missing benchmark data as a data gap, and do not fabricate index values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/hotel-revenue-pacing-report)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown draft report with tables, callouts, citations, recommendations, and a review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Labels financial figures as preliminary, requires benchmarking sources and report dates, and requires revenue manager approval before PMS or channel deployment.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and changelog, released 2026-05-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

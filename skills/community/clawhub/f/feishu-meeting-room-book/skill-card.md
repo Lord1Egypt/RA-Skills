@@ -1,45 +1,53 @@
-## Description: <br>
-Feishu Meeting Room Book learns a user's commonly used Feishu meeting rooms from calendar events and books rooms in priority order when creating or updating Feishu calendar events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes and refreshes Feishu meeting-room preferences, creates calendar events, and books preferred rooms for new or existing meetings while keeping a local single-city room preference file.
 
-## Publisher: <br>
-[flyinghanger](https://clawhub.ai/user/flyinghanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyinghanger](https://clawhub.ai/user/flyinghanger)
 
-## Use Case: <br>
-Employees or assistants using Feishu/Lark calendar use this skill to initialize and refresh a local meeting-room preference list, create meetings, and attach an available preferred room to new or existing events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu calendar read, create, update, and free/busy permissions. <br>
-Mitigation: Install only when those permissions match the intended booking workflow, and complete Feishu OAuth with the documented calendar scopes before use. <br>
-Risk: The skill learns meeting-room preferences from recent calendar events and persists them in state/feishu-meeting-room-book.json. <br>
-Mitigation: Review or remove the state file when saved room order, city, or preference history should not persist. <br>
-Risk: The first version maintains one cached base city and does not automatically book rooms for other cities. <br>
-Mitigation: For cross-city meetings, create the event without automatic room booking or manually seed and refresh the desired city before relying on the cache. <br>
-Risk: Refresh depends on valid per-slice Feishu event JSON and stops on malformed or truncated event slices. <br>
-Mitigation: Retry refresh after fixing the failed slice output; the helper preserves the previous state when refresh cannot complete. <br>
+## Use Case:
 
+Employees and workplace assistants use this skill to learn a user's commonly used Feishu meeting rooms, keep an ordered single-city preference list, create calendar events, and attach the first available preferred room.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/flyinghanger/feishu-meeting-room-book) <br>
-- [Publisher profile](https://clawhub.ai/user/flyinghanger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks and JSON state references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu calendar events through required Feishu tools and writes renewable local room preference state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Risk: The skill requires Feishu calendar permissions to read recent events, create events, update attendees, and check room availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those scopes are acceptable for the workspace and complete the Feishu OAuth flow before use.
+
+Risk: The saved default city and room priority order can affect which room is booked automatically.
+
+Mitigation: Review state/feishu-meeting-room-book.json after initialization or refresh when room order or default city matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyinghanger/skills/feishu-meeting-room-book)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON state file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Feishu calendar tools and writes local state under state/feishu-meeting-room-book.json plus temporary refresh files under tmp/.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

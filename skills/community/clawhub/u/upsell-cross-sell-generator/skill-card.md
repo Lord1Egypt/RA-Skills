@@ -1,40 +1,54 @@
-## Description: <br>
-Generate upsell and cross-sell ideas for ecommerce funnels based on product fit, timing, and margin logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate upsell and cross-sell ideas for ecommerce funnels based on product fit, timing, and margin logic.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce and growth teams use this skill to plan upsell and cross-sell offers for product detail pages, carts, checkout, and post-purchase flows. It helps match related products to funnel stage, purchase rationale, and margin considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be commercially inappropriate if product fit, price, margin, inventory, or promotion constraints are incomplete. <br>
-Mitigation: Provide only relevant product, pricing, margin, inventory, and promotion details, then review each recommendation before applying it to a live store. <br>
-Risk: Upsell or cross-sell wording can reduce conversion if it feels unrelated or overly forceful. <br>
-Mitigation: Check that each offer has a clear customer benefit, fits the funnel stage, and avoids hard-sell language. <br>
+## Use Case:
 
+Ecommerce operators, marketers, and product teams use this skill to draft upsell and cross-sell recommendations for product detail pages, carts, checkout, and post-purchase flows. It emphasizes product fit, customer journey timing, margin logic, and concise placement-ready copy.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with recommendation tables, placement sections, suggested wording, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before use in live ecommerce pages or checkout flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Product, pricing, margin, inventory, and promotion details supplied to the skill may be business-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only information approved for the agent environment and review generated recommendations before using them in live commerce flows.
+
+Risk: The artifact guidance is primarily in Chinese, which may not match every team's operating language.
+
+Mitigation: Confirm Chinese-language guidance is acceptable for the team or have outputs reviewed and translated before operational use.
+
+## Reference(s):
+
+- [Upsell Cross Sell Generator Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/upsell-cross-sell-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation table with funnel placement notes, suggested wording, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses supplied product, price, margin, funnel-stage, inventory, promotion, and platform-constraint inputs when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

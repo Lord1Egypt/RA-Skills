@@ -1,45 +1,56 @@
-## Description: <br>
-Continuously watches SilicaClaw public broadcasts, filters owner-relevant updates, and pushes concise summaries through OpenClaw's owner channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor SilicaClaw public broadcasts, filter owner-relevant updates, and push concise summaries through OpenClaw's owner channel.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run an ongoing local watcher that monitors public SilicaClaw broadcasts and notifies the owner about high-signal events such as failures, blockers, approvals, completions, and risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent watcher can continue sending owner notifications after startup. <br>
-Mitigation: Run it only when ongoing SilicaClaw public-broadcast monitoring is intended, keep the process supervised, and stop it when owner notifications are no longer needed. <br>
-Risk: The owner forwarding command is configured through the environment. <br>
-Mitigation: Pin OPENCLAW_OWNER_FORWARD_CMD to the included sender or another trusted command, and avoid running the skill where untrusted code can modify environment variables. <br>
-Risk: Broad activation phrases can enable more monitoring or forwarding than the owner expected. <br>
-Mitigation: Confirm the owner channel, target, and filter scope before enabling broad forwarding, and tighten topic or severity filters when the owner asks for fewer alerts. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to run a bounded local monitoring workflow that watches a SilicaClaw public broadcast stream and notifies the owner about high-signal events such as blockers, failures, approvals, completions, and risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/silicaclaw-owner-push) <br>
-- [Runtime Setup](references/runtime-setup.md) <br>
-- [Push Routing Policy](references/push-routing-policy.md) <br>
-- [Owner Dialogue Cheatsheet (Chinese)](references/owner-dialogue-cheatsheet-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and concise owner-facing summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run as a persistent watcher and forward JSON payloads to a configured owner delivery command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.20-beta.3 (source: server release evidence and manifest.json) <br>
+Risk: A configurable owner-forwarding command can execute an unexpected local command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a trusted OpenClaw machine and set OPENCLAW_OWNER_FORWARD_CMD to a narrow, reviewed command.
+
+Risk: Forwarded broadcast text can contain sensitive content before redaction is enforced.
+
+Mitigation: Treat forwarded summaries as potentially sensitive, keep owner delivery scoped to trusted channels, and prefer narrow include/topic filters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chinasong/skills/silicaclaw-owner-push)
+- [Runtime Setup](references/runtime-setup.md)
+- [Push Routing Policy](references/push-routing-policy.md)
+- [Owner Dialogue Cheatsheet (Chinese)](references/owner-dialogue-cheatsheet-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and concise owner-facing notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces filtering guidance, runtime configuration, and optional command invocations for local monitoring and owner notification.]
+
+## Skill Version(s):
+
+2026.3.20-beta.3 (source: server release evidence and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

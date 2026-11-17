@@ -1,41 +1,54 @@
-## Description: <br>
-Evaluate ad ROAS against ecommerce margin reality, not just attributed revenue. Use when teams need a fast scale/hold/cut decision on paid traffic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate ad ROAS against ecommerce margin reality, not just attributed revenue.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce and paid media teams use this skill to compare nominal ROAS with margin-adjusted revenue and break-even ROAS before deciding whether to scale, hold, or cut ad spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ROAS recommendations can be misleading if revenue, refund, discount, margin, or cost assumptions are wrong or incomplete. <br>
-Mitigation: Confirm the revenue, refund, discount, margin, and cost assumptions before relying on the recommendation. <br>
-Risk: Generated Python scripts may contain calculation errors or assumptions that do not match the user's accounting method. <br>
-Mitigation: Review any generated Python script and its stated formulas before running or reusing it. <br>
+## Use Case:
 
+External ecommerce marketers, operators, and growth teams use this skill to compare attributed ad ROAS with margin-adjusted economics before deciding whether to scale, hold, or cut paid traffic.
 
-## Reference(s): <br>
-- [ROAS Calculator Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/roas-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown assumptions, ROAS comparison, recommendation, and reusable Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask follow-up questions when revenue, refund, discount, margin, or cost inputs are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may make budget decisions from incomplete ROAS inputs or unconfirmed break-even assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for missing cost, refund, discount, and attribution inputs before calculating, or clearly label any default assumptions.
+
+Risk: Teams that do not read Chinese may misunderstand the skill workflow.
+
+Mitigation: Confirm the user's preferred language or provide bilingual guidance before relying on the skill in shared workflows.
+
+## Reference(s):
+
+- [ROAS Calculator Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/roas-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with tables, recommendation text, and reusable Python code when structured inputs are available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks clarifying questions when calculation inputs or ROAS definitions are incomplete.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

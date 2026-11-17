@@ -1,45 +1,60 @@
-## Description: <br>
-Generate matching scene sound effects based on text descriptions or video frames using Kling SFX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates matching scene sound effects from text prompts or video frames using Kling SFX.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and creators use this skill to invoke dLazy's Kling SFX workflow for generating sound effects from text prompts or video frames. The workflow is intended for agents that can run the dLazy CLI with an authenticated dLazy account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and may use local CLI configuration or the DLAZY_API_KEY environment variable. <br>
-Mitigation: Use authorized credentials only, restrict access to local config files, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and selected local media can be sent to dLazy cloud services for generation and hosted output. <br>
-Mitigation: Avoid submitting confidential prompts or media unless approved for that service, and review file paths before invoking the CLI. <br>
-Risk: Execution depends on the third-party @dlazy/cli npm package and dLazy cloud services. <br>
-Mitigation: Use npx for temporary execution when preferred, or install the pinned CLI package only after reviewing the package and source links. <br>
+## Use Case:
 
+Developers, creators, and agents use this skill to generate sound effects or background music from text prompts or a single reference video through the dLazy Kling SFX workflow.
 
-## Reference(s): <br>
-- [Dlazy Keling Sfx on ClawHub](https://clawhub.ai/dlazyai/dlazy-keling-sfx) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; CLI responses are JSON with generated output URLs or async task status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx, a dLazy API key, and network access to dLazy cloud services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release and skill frontmatter) <br>
+Risk: The skill uses a third-party CLI and hosted API, so prompts and selected media may leave the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only submit prompts and files suitable for upload to dLazy, and review the dLazy service terms for the intended use case.
+
+Risk: A persistent global CLI install can increase exposure if the package or local environment is compromised.
+
+Mitigation: Prefer per-run npx or a local install when practical, and use the pinned @dlazy/cli version identified by the release evidence.
+
+Risk: The skill requires a dLazy API key stored in local configuration or supplied through an environment variable.
+
+Mitigation: Protect the API key, limit access to local config files, and rotate or revoke the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dlazyai/skills/dlazy-keling-sfx)
+- [dLazy CLI Source](https://github.com/dlazyai/cli)
+- [@dlazy/cli npm Package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy Homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The invoked CLI returns JSON containing generated output URLs or an asynchronous task identifier.]
+
+## Skill Version(s):
+
+1.3.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

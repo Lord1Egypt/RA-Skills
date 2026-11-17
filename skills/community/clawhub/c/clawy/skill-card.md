@@ -1,45 +1,60 @@
-## Description: <br>
-Clawy helps agents generate stable mascot avatars and short image-driven adventure arcs using configured external image-edit providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawy helps agents create stable mascot avatars and short image-driven adventure arcs using reference-preserving image editing.
 
-## Publisher: <br>
-[Ocean7322](https://clawhub.ai/user/Ocean7322) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ocean7322](https://clawhub.ai/user/ocean7322)
 
-## Use Case: <br>
-Agents, developers, and external users use Clawy to create or refine a stable mascot identity, preserve that identity across themed scene images, and run short interactive story posts with captions and choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected reference images and prompts are sent to the configured external image provider during generation. <br>
-Mitigation: Use a trusted provider, prefer a dedicated API key, and avoid sensitive reference images or prompt content. <br>
-Risk: Custom base URL overrides can redirect provider traffic to an unintended endpoint. <br>
-Mitigation: Leave base URL overrides unset unless the endpoint is explicitly trusted and reviewed. <br>
-Risk: If the bundled mother image is missing, the helper may download and write the fallback image locally. <br>
-Mitigation: Review the fallback image source and local write behavior before running the helper in restricted environments. <br>
+## Use Case:
 
+External users and developers use Clawy to create or refine an agent mascot identity, preserve it across themed scene images, and run lightweight interactive story posts with captions and choices.
 
-## Reference(s): <br>
-- [Clawy Release Page](https://clawhub.ai/Ocean7322/clawy) <br>
-- [Asset Rules](references/asset-rules.md) <br>
-- [Image Edit Playbook](references/image-edit-playbook.md) <br>
-- [Fallback Mother Image](https://www.8uddy.land/images/clawy.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Images, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Generated images with short Markdown captions, choice blocks, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one supported image-edit provider credential when generation is invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.9 (source: server release evidence) <br>
+Risk: Configured providers may receive API keys and selected reference or user images when generation is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted provider endpoints, avoid custom BASE_URL values unless controlled, and use revocable low-scope API keys with spending limits.
+
+Risk: A missing default mother image may be downloaded from a fallback URL without integrity checks.
+
+Mitigation: Bundle the default image locally or require checksum validation before accepting the fallback download.
+
+Risk: Avatar identity can drift when using unsuitable image generation backends or long image-to-image chains.
+
+Mitigation: Use image-edit or reference-preserving backends and periodically re-anchor from the mother image or a stable character-bearing frame.
+
+## Reference(s):
+
+- [Clawy ClawHub skill page](https://clawhub.ai/ocean7322/skills/clawy)
+- [Clawy Asset Rules](references/asset-rules.md)
+- [Clawy Image Edit Playbook](references/image-edit-playbook.md)
+- [Fallback mother image](https://www.8uddy.land/images/clawy.png)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Images]
+
+**Output Format:** [Markdown with prompts, short captions, choice blocks, shell command examples, and generated image files when a backend is invoked.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write PNG image outputs and may call configured external image-edit providers only when generation is requested.]
+
+## Skill Version(s):
+
+0.2.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

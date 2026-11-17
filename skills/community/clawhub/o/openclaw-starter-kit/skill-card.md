@@ -1,49 +1,63 @@
-## Description: <br>
-OpenClaw 초보자를 위한 풀패키지 온보딩 스킬로, 첫 세팅부터 보안 강화까지 대화형으로 안내한다. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Starter Kit interactively guides Korean-language OpenClaw beginners through initial setup, starter memory and heartbeat files, recommended skills, cron basics, troubleshooting, and security hardening.
 
-## Publisher: <br>
-[gyeuun97](https://clawhub.ai/user/gyeuun97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gyeuun97](https://clawhub.ai/user/gyeuun97)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to complete a guided first-time OpenClaw setup, including profile files, memory structure, heartbeat automation, recommended skills, cron basics, and security hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent profile, memory, heartbeat, and setup files that may affect future agent behavior. <br>
-Mitigation: Review generated SOUL.md, USER.md, MEMORY.md, and HEARTBEAT.md before relying on them. <br>
-Risk: Profile and memory files could accidentally contain API keys or sensitive personal data. <br>
-Mitigation: Keep secrets out of memory and profile files; use environment variables or OpenClaw configuration for API keys. <br>
-Risk: Cron or heartbeat automation may run recurring actions that the user did not intend. <br>
-Mitigation: Confirm any cron or heartbeat automation before enabling it and periodically review active jobs. <br>
-Risk: Recommended third-party skills may introduce separate permissions, dependencies, or behavior. <br>
-Mitigation: Review each recommended third-party skill independently before installing it. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to bootstrap a Korean-language OpenClaw workspace, create starter persona, user, memory, heartbeat, and agent files, configure search and recommended skills, and review basic operational security.
 
-## Reference(s): <br>
-- [OpenClaw Starter Kit release page](https://clawhub.ai/gyeuun97/openclaw-starter-kit) <br>
-- [OpenClaw security guide](guides/security-guide.md) <br>
-- [OpenClaw skill recommendations](guides/skill-recommendations.md) <br>
-- [OpenClaw cron basics](guides/cron-basics.md) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [OpenClaw Discord community](https://discord.com/invite/clawd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated setup file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions and proposed SOUL.md, USER.md, MEMORY.md, HEARTBEAT.md, and related workspace files for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; package.json declares 1.0.0) <br>
+Risk: Troubleshooting guidance includes a root-level npm install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a user-scoped install method, verify package provenance, and avoid running the sudo install command unless it is explicitly required and reviewed.
+
+Risk: Cron jobs and HEARTBEAT.md tasks can create persistent automation that acts on a schedule.
+
+Mitigation: Enable only intentional schedules and tasks, review their permissions, and require approval for external messages, deletion, purchases, or other consequential actions.
+
+Risk: Recommended skills and force reinstalls can expand tool access unexpectedly.
+
+Mitigation: Install only the exact skills needed, review each skill before use, and avoid force reinstalls unless recovering a known broken installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyeuun97/skills/openclaw-starter-kit)
+- [OpenClaw security guide](guides/security-guide.md)
+- [OpenClaw skill recommendations guide](guides/skill-recommendations.md)
+- [OpenClaw cron basics guide](guides/cron-basics.md)
+- [OpenClaw troubleshooting guide](guides/troubleshooting.md)
+- [Brave Search API](https://brave.com/search/api/)
+- [OpenClaw Discord community](https://discord.com/invite/clawd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent in creating starter files such as SOUL.md, USER.md, MEMORY.md, HEARTBEAT.md, and AGENTS.md from bundled templates.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

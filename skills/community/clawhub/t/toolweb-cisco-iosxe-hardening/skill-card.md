@@ -1,44 +1,58 @@
-## Description: <br>
-Professional Cisco Router & Switch Security Configuration Generator <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Cisco Router & Switch Security Configuration Generator.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Network security engineers, infrastructure architects, compliance teams, MSPs, and enterprise operations teams use this skill to request Cisco IOS XE hardening configuration drafts and supporting option catalogs for routers and switches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to an external API and may include request metadata and selected hardening options. <br>
-Mitigation: Use non-sensitive session identifiers, omit userId unless needed, and avoid sending sensitive network details. <br>
-Risk: Generated Cisco IOS XE configuration drafts may be incorrect or unsuitable for a specific production environment. <br>
-Mitigation: Review the generated configuration, test it in a lab, and use rollback and change-control before applying it to production devices. <br>
+## Use Case:
 
+Network security engineers, infrastructure architects, compliance teams, managed service providers, and organizations with Cisco IOS XE deployments use this skill to generate security-hardened router and switch configuration guidance for review, lab testing, and audit preparation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cisco-iosxe-hardening) <br>
-- [API Docs](https://api.mkkpro.com:8139/docs) <br>
-- [Kong Route](https://api.mkkpro.com/hardening/cisco-iosxe) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON responses containing generated Cisco IOS XE configuration snippets, applied hardening measures, platform compatibility, warnings, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The API accepts session metadata, timestamp, and selected hardening option categories, then returns a single configuration-generation response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Hardening option selections and request metadata are sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session and user identifiers where possible, and avoid sending sensitive operational details unless they are needed for generation.
+
+Risk: Generated IOS XE configurations may be incomplete, unsuitable for a specific device, or disruptive if applied directly to production equipment.
+
+Mitigation: Review generated configurations with network engineering staff and test them in a lab before applying them to real routers or switches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cisco-iosxe-hardening)
+- [Cisco IOS XE Hardening API route](https://api.mkkpro.com/hardening/cisco-iosxe)
+- [Cisco IOS XE Hardening API docs](https://api.mkkpro.com:8139/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ToolWeb RapidAPI profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON API responses and Markdown-facing configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs can include configuration snippets, applied hardening measures, estimated line counts, supported platforms, warnings, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

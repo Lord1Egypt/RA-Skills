@@ -1,0 +1,63 @@
+{
+  "_说明": "Agent 2 / Agent 3 的 case.json 填写模板。数值必须来自实测或明确假设，无依据的字段留 0 并写进 data_gaps。scores 为 1-5 分，权重由 scenario 预设决定；也可用 weights 自定义（自动归一化）。",
+  "category": "示例品类：手持无线吸尘器",
+  "scenario": "家用日常",
+  "hold_years": 5,
+  "discount_rate": 0.03,
+  "premium_option": "B 质价比款",
+  "options": [
+    {
+      "name": "A 性价比款",
+      "price": 1299,
+      "warranty_years": 1,
+      "annual_failure_prob": 0.22,
+      "repair_cost": 450,
+      "annual_consumable": 180,
+      "resale": 80,
+      "one_off_outlay": 99,
+      "scores": {"safety": 4, "performance": 3, "durability": 2, "service": 3, "noise": 3, "price": 5}
+    },
+    {
+      "name": "B 质价比款",
+      "price": 2399,
+      "warranty_years": 2,
+      "annual_failure_prob": 0.10,
+      "repair_cost": 450,
+      "annual_consumable": 200,
+      "resale": 380,
+      "one_off_outlay": 0,
+      "scores": {"safety": 5, "performance": 5, "durability": 4, "service": 4, "noise": 4, "price": 3},
+      "premium_gains": [
+        {"name": "寿命延长 1.5 年折算", "value": 600, "confidence": 0.7},
+        {"name": "保修多 1 年（延保市场价）", "value": 220, "confidence": 0.9},
+        {"name": "故障规避期望", "value": 260, "confidence": 0.6}
+      ]
+    },
+    {
+      "name": "C 旗舰溢价款",
+      "price": 4299,
+      "warranty_years": 2,
+      "annual_failure_prob": 0.08,
+      "repair_cost": 600,
+      "annual_consumable": 240,
+      "resale": 800,
+      "scores": {"safety": 5, "performance": 5, "durability": 4, "service": 5, "noise": 5, "price": 1},
+      "premium_gains": [
+        {"name": "寿命延长 2 年折算", "value": 800, "confidence": 0.6},
+        {"name": "保修多 1 年（延保市场价）", "value": 220, "confidence": 0.9}
+      ]
+    },
+    {
+      "name": "D 已召回款（演示否决）",
+      "price": 999,
+      "warranty_years": 1,
+      "annual_failure_prob": 0.30,
+      "repair_cost": 450,
+      "annual_consumable": 180,
+      "resale": 50,
+      "blacklisted": true,
+      "flags": ["L1 召回：电池过热，samrdprc.org.cn"],
+      "scores": {"safety": 1, "performance": 3, "durability": 1, "service": 2, "noise": 3, "price": 5}
+    }
+  ]
+}

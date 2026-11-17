@@ -1,0 +1,23 @@
+{
+  "skill_name": "site-topic-relevance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze the <public sitemap URL> I supply. Sample 12 pages and use the current AI IDE assistant for the assessment. Produce an interactive English report with verifiable source excerpts.",
+      "expected_output": "Build the corpus from the supplied sitemap, assess every readable page in the sample, and select evidence by excerpt ID. The HTML works offline, the radius and mean are correct, chart values are described as sample measurements, and unknown token counts remain unavailable.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have a corpus.json, but a model-written quote differs from the source. Keep the existing crawl, fix the assessment, and generate the report without another API call.",
+      "expected_output": "Use lead, middle, or end from the same page and let the renderer retrieve the original text. Validation rejects missing, substituted, or invented page references. The source text is preserved and no API call is made.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Use my existing topic report to assess how a draft fits the site and suggest up to three relevant internal links. Use the existing sample and keep the draft in the current assistant workflow.",
+      "expected_output": "Use draft and draft-render. The topic and related page IDs come from the existing report. Return the score, rationale, and one editorial suggestion without crawling again or calling an external model.",
+      "files": []
+    }
+  ]
+}

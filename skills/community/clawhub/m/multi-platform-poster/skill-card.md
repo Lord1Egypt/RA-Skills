@@ -1,45 +1,61 @@
-## Description: <br>
-Adapts and prepares content for publishing across WeChat, Weibo, Zhihu, Xiaohongshu, and Douyin, including platform-specific formatting, scheduling, and performance tracking guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapts and publishes Markdown content across WeChat Official Accounts, Weibo, Zhihu, Xiaohongshu, and Douyin with scheduling and performance tracking.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-Content creators, operators, and marketing teams use this skill to turn one source article into platform-specific publishing drafts and posting plans for multiple Chinese social platforms. It is intended to reduce manual formatting, scheduling, and post-publication tracking work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected social-media account credentials and API secrets could be exposed or over-scoped. <br>
-Mitigation: Configure only the platforms needed, keep secrets out of chat, and store credentials in the host platform's secret management or environment configuration. <br>
-Risk: Adapted content or schedules could publish incorrect, sensitive, or unintended public posts. <br>
-Mitigation: Review each platform-specific draft, target platform, and scheduled time before confirming publication. <br>
-Risk: Dependent publishing, rewriting, or image-handling skills may introduce separate behavior or security risks. <br>
-Mitigation: Review and approve dependent skills separately before using them in a publishing workflow. <br>
+## Use Case:
 
+Content creators and marketing operators use this skill to adapt one source article into platform-specific posts, schedule publication, and review basic engagement results across Chinese social channels.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/daimingvip-a11y/multi-platform-poster) <br>
-- [WeChat Official Account developer documentation](https://developers.weixin.qq.com/doc/offiaccount/) <br>
-- [Weibo open platform documentation](https://open.weibo.com/wiki/) <br>
-- [Zhihu developer documentation](https://www.zhihu.com/developers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration snippets, adapted post drafts, confirmation prompts, publishing status tables, and performance summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific links, schedules, account authorization notes, and review prompts before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and artifact changelog) <br>
+Risk: The skill may need access to social-media account credentials or OAuth/API permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every account authorization screen, use the narrowest available scopes, and keep secrets in configured credential stores instead of chat.
+
+Risk: Publishing or scheduling posts creates external side effects that may not be fully reversible on every platform.
+
+Mitigation: Review generated platform-specific drafts and confirmation screens before approving publication or scheduled release.
+
+Risk: Cross-platform adaptation can alter wording, truncate short posts, resize media, or add tags in ways that affect brand or compliance review.
+
+Mitigation: Preview each platform version and require manual approval for sensitive, regulated, or brand-critical content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/skills/multi-platform-poster)
+- [ClawHub Multi-Platform Poster Documentation](https://clawhub.ai/docs/multi-platform-poster)
+- [WeChat Official Account API Documentation](https://developers.weixin.qq.com/doc/offiaccount/)
+- [Weibo Open Platform Wiki](https://open.weibo.com/wiki/)
+- [Zhihu Developers](https://www.zhihu.com/developers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text posting plans, platform-specific drafts, confirmation prompts, status tables, and analytics summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled publishing plans, account-authorization requirements, platform links, and engagement metrics.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

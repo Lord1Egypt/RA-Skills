@@ -1,41 +1,58 @@
-## Description: <br>
-B2b Lead Engine helps sales and business development users analyze a product, identify competitors, mine B2B leads, score opportunities, enrich prospect profiles, and generate personalized outreach materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B Lead Engine helps users start from a product description, identify competitors and potential customers, score opportunities, enrich lead information, and generate personalized business-development outreach materials.
 
-## Publisher: <br>
-[shaniu001](https://clawhub.ai/user/shaniu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaniu001](https://clawhub.ai/user/shaniu001)
 
-## Use Case: <br>
-Sales and business development teams use this skill to turn a product description into a structured B2B lead-generation workflow: competitor research, public signal gathering, lead scoring, profile enrichment, and personalized LinkedIn or email outreach drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Researching professional profiles, social graphs, contact data, and outreach targets may create privacy, platform-terms, anti-spam, or compliance risk. <br>
-Mitigation: Use only authorized public data sources; do not provide logged-in LinkedIn or session access; define lawful basis, lead-count limits, and retention/deletion rules before enrichment. <br>
-Risk: Personality profiling and automated outreach can produce misleading inferences or inappropriate contact methods. <br>
-Mitigation: Review every generated profile and outreach message before use, avoid unsupported personality claims, and confirm contact methods comply with applicable laws and platform rules. <br>
+## Use Case:
 
+Sales, business development, and growth users use this skill to turn a product description into a Chinese-language B2B prospecting workflow. It guides competitor research, lead discovery, opportunity scoring, contact enrichment, and personalized LinkedIn and email outreach drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaniu001/b2b-lead-engine) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shaniu001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, YAML-style lead records, configuration snippets, and outreach copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language workflow; LinkedIn connection drafts are limited to 300 characters and email drafts to 150 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: _meta.json and server release evidence) <br>
+Risk: Personal-data prospecting and social-graph mining may violate privacy expectations or platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lawful, consent-aware data sources and permitted business channels; do not scrape or repurpose LinkedIn connection graphs.
+
+Risk: Contact discovery and behavioral profiling can infer or expose private details.
+
+Mitigation: Do not infer private contact details; limit enrichment to information the user is allowed to use and review profiles before outreach.
+
+Risk: Automated lead outreach can become unwanted solicitation.
+
+Mitigation: Keep outreach limited, personalized, and compliant with applicable rules, with human review before sending messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaniu001/skills/b2b-lead-engine)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown reports, tables, YAML-style lead records, and outreach drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include ranked lead lists, source URLs, scoring rationale, LinkedIn connection messages, and email drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

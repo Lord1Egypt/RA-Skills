@@ -1,0 +1,9 @@
+{
+  "target_unit": "g",
+  "display_quantity": 100,
+  "demand_quantity": 750,
+  "items": [
+    {"name": "小包装", "price": 20, "currency": "CNY", "quantity": 250, "unit": "g", "price_date": "2026-10-04", "shipping_included": true},
+    {"name": "大包装", "price": 35, "currency": "CNY", "quantity": 500, "unit": "g", "price_date": "2026-10-04", "shipping_included": true}
+  ]
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Identifies plants from photos or descriptions and provides care, suitability, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies plants from photos or descriptions and provides care guidance, environmental suitability checks, and troubleshooting advice.
 
-## Publisher: <br>
-[slamw](https://clawhub.ai/user/slamw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slamw](https://clawhub.ai/user/slamw)
 
-## Use Case: <br>
-External users and plant owners use this skill to identify plants, assess whether their environment is suitable, generate care plans, and troubleshoot plant health issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chemical treatment advice for pests or disease can be unsafe if applied without context. <br>
-Mitigation: Follow product labels, local rules, PPE, ventilation, storage, and child or pet safety guidance; consult qualified gardening or agricultural support for severe infestations or edible plants. <br>
-Risk: Plant identification or suitability advice may be uncertain from incomplete photos or descriptions. <br>
-Mitigation: Ask for clear photos and growing conditions, present uncertainty when identification is not definitive, and recommend professional help for toxic, invasive, severely diseased, or high-value plants. <br>
+## Use Case:
 
+Plant owners, gardeners, and care-focused agents use this skill to identify plants, assess whether an environment is suitable, generate care plans, and troubleshoot common health problems.
 
-## Reference(s): <br>
-- [Skill Plant Care on ClawHub](https://clawhub.ai/slamw/skill-plant-care) <br>
-- [Indoor & Outdoor Plant Database - Asia & North America](artifact/references/plant_database_extended.md) <br>
-- [Plant Problem Diagnosis Manual](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with care recommendations, diagnostic steps, and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask users for photos, plant names, environment details, watering frequency, and symptom history before giving recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Plant disease and pest guidance may recommend pesticides, fungicides, or other chemical treatments without enough safety warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review chemical-treatment sections before use, follow local product labels, use appropriate protective equipment, keep chemicals away from children and pets, and prefer lower-risk controls when practical.
+
+Risk: Care advice can be unsuitable for a user's local environment, plant species, or household safety constraints.
+
+Mitigation: Treat recommendations as reference guidance, verify severe disease or near-death cases with a qualified gardener, and avoid toxic or invasive plants where they pose household or ecological risk.
+
+## Reference(s):
+
+- [Skill Plant Care on ClawHub](https://clawhub.ai/slamw/skills/skill-plant-care)
+- [Indoor & Outdoor Plant Database - Asia & North America](references/plant_database_extended.md)
+- [Plant Problem Diagnosis Manual](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown care recommendations, suitability assessments, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured plant identification, care-difficulty ratings, seasonal care calendars, and diagnostic action plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

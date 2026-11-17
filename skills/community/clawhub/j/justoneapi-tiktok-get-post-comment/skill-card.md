@@ -1,44 +1,52 @@
-## Description: <br>
-Call GET /api/tiktok/get-post-comment/v1 for TikTok Post Comments through JustOneAPI with awemeId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/tiktok/get-post-comment/v1 for TikTok Post Comments through JustOneAPI with awemeId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and automation agents use this skill to fetch TikTok post comments for a known awemeId through JustOneAPI. It supports engagement review and sentiment-oriented analysis by returning comment IDs, user information, and comment text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A JustOneAPI token could be exposed through chat, screenshots, shell history, or logged request URLs. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN in an environment variable or secret manager, avoid logging full request URLs, and rotate the token if exposure is suspected. <br>
-Risk: TikTok post IDs and returned comment or user data may be sensitive or governed by platform and privacy rules. <br>
-Mitigation: Share and retain returned comment data only as needed for the user task and handle it according to applicable privacy and platform requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to call JustOneAPI's TikTok post comments endpoint for a supplied awemeId, optionally with a pagination cursor. It supports retrieving comment IDs, user information, and text content for audience reaction review and engagement measurement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-tiktok-get-post-comment) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_get_post_comment&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_get_post_comment&utm_content=project_link) <br>
-- [Generated operation reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the getPostCommentV1 operation with required awemeId and optional cursor parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill requires a JustOneAPI token for TikTok comment lookups, and token exposure in chat, shell history, process logs, or URL logs could allow unauthorized API use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token when possible; pass it through JUST_ONE_API_TOKEN; avoid sharing logs that include token-bearing command lines or URLs; rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-tiktok-get-post-comment)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_get_post_comment&utm_content=project_link)
+- [TikTok Post Comments Operations](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON from the API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; required endpoint input is awemeId, with optional cursor pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,8 @@
 ---
 name: agent-teams
-description: Coordinates Claude agent teams via filesystem protocol
-version: 1.9.8
+description: |
+  Coordinates Claude agent teams over a filesystem protocol. Use for parallel agents with task dependencies
+version: 1.10.3
 triggers:
   - agent-teams
   - multi-agent
@@ -9,27 +10,12 @@ triggers:
   - tmux
   - task-management
   - messaging
-  - orchestrating parallel agents with task dependencies
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conjure", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.delegation-core", "night-market.leyline:damage-control", "night-market.leyline:risk-classification"]}}}
 source: claude-night-market
 source_plugin: conjure
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conjure](https://github.com/athola/claude-night-market/tree/master/plugins/conjure). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Prerequisites](#prerequisites)
-- [Protocol Architecture](#protocol-architecture)
-- [Quick Start](#quick-start)
-- [Coordination Workflow](#coordination-workflow)
-- [Module Reference](#module-reference)
-- [Integration with Conjure](#integration-with-conjure)
-- [Troubleshooting](#troubleshooting)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/conjure](https://github.com/athola/claude-night-market/tree/master/plugins/conjure). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Agent Teams Coordination
@@ -84,7 +70,7 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 - **Filesystem is the database**: JSON files, atomic writes via `tempfile` + `os.replace`
 - **fcntl locking**: Prevents concurrent read/write corruption on inboxes and tasks
 - **Numbered tasks**: Auto-incrementing IDs with sequential file naming
-- **Loose coupling**: Agents poll their own inbox; no push notifications
+- **Loose coupling**: Agents poll their own inbox (no push notifications)
 
 ## Quick Start
 
@@ -98,7 +84,7 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 The team config contains:
 - `name`, `description`, `created_at` (ms timestamp)
 - `lead_agent_id`, `lead_session_id`
-- `members[]` — array of LeadMember and TeammateMember objects
+- `members[]`: array of LeadMember and TeammateMember objects
 
 ### 2. Spawn Teammates
 
@@ -149,15 +135,19 @@ See `modules/messaging-protocol.md` for message types and inbox operations.
 
 ## Coordination Workflow
 
-1. **`agent-teams:team-created`** — Initialize team config and directories
-2. **`agent-teams:teammates-spawned`** — Launch agents in tmux panes
-3. **`agent-teams:tasks-assigned`** — Create tasks with dependencies, assign owners
-4. **`agent-teams:coordination-active`** — Agents claim tasks, exchange messages, mark completion
-5. **`agent-teams:team-shutdown`** — Graceful shutdown with approval protocol
+1. **`agent-teams:team-created`**: Initialize team config and directories
+2. **`agent-teams:teammates-spawned`**: Launch agents in tmux panes
+3. **`agent-teams:tasks-assigned`**: Create tasks with dependencies, assign owners
+4. **`agent-teams:coordination-active`**: Agents claim tasks, exchange messages, mark completion
+5. **`agent-teams:team-shutdown`**: Graceful shutdown with approval protocol
 
 ## Crew Roles
 
-Each team member has a `role` that determines their capabilities and task compatibility. Five roles are defined: `implementer` (default), `researcher`, `tester`, `reviewer`, and `architect`. Roles constrain which risk tiers an agent can handle — see `modules/crew-roles.md` for the full capability matrix and role-risk compatibility table.
+Each team member has a `role` that determines their capabilities and task
+compatibility. Five roles are defined: `implementer` (default), `researcher`,
+`tester`, `reviewer`, and `architect`. Roles constrain which risk tiers an
+agent can handle. See `modules/crew-roles.md` for the full capability matrix
+and role-risk compatibility table.
 
 ## Team Formation
 
@@ -200,6 +190,17 @@ Agent Teams extends the conjure delegation model:
 
 Use `Skill(conjure:delegation-core)` first to determine if the task benefits from multi-agent coordination vs. single-service delegation.
 
+Delegation is on by default there, so the question a team formation
+answers is which shape of delegation fits.
+A teammate holding execution work delegates it the same way a single
+session would. A teammate holding design work keeps it, under the same
+Keep Local clauses.
+
+When a teammate's delegation returns a `fallback_reason`, that teammate
+does the work itself and reports which providers it tried. It does not
+message the crew for a reassignment: no other teammate has a provider
+this one lacks, because the registry is machine-wide.
+
 ## Worktree Isolation Alternative (Claude Code 2.1.49+)
 
 For parallel agents that modify files, `isolation: worktree` provides a lightweight alternative to filesystem-based coordination. Each agent runs in its own temporary git worktree, eliminating the need for `fcntl` locking or inbox-based conflict avoidance on shared files.
@@ -228,7 +229,9 @@ Filesystem timestamp resolution varies (HFS+ = 1s granularity). Use numbered fil
 Teammate agents could use incorrect model identifiers on enterprise providers, causing 400 errors. Upgrade to Claude Code 2.1.39+ for correct model ID qualification across all providers.
 
 **Nested session guard (2.1.39+)**
-If `claude` refuses to launch within an existing session, ensure you're using tmux pane splitting (not subshell invocation). The guard is intentional — see `modules/spawning-patterns.md` for details.
+If `claude` refuses to launch within an existing session, ensure you're using
+tmux pane splitting (not subshell invocation). The guard is intentional. See
+`modules/spawning-patterns.md` for details.
 
 ## Exit Criteria
 

@@ -1,0 +1,225 @@
+# 克隆自聚宽文章：https://www.joinquant.com/post/58731
+# 标题：终极优化-ETF核心资产轮动策略
+# 作者：ETF量化老司机
+
+import math
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+#初始化函数 
+'''
+我是小果聚宽量化交易助手，专注于聚宽量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是我爸爸小果量化，如有任何需求或合作意向，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+def initialize(context):
+    # 设定基准
+    set_benchmark('000300.XSHG')
+    # 用真实价格交易
+    set_option('use_real_price', True)
+    # 打开防未来函数
+    set_option("avoid_future_data", True)
+    # 设置滑点 https://www.joinquant.com/view/community/detail/a31a822d1cfa7e83b1dda228d4562a70
+    set_slippage(FixedSlippage(0.000))
+    # 设置交易成本
+    # 每笔交易时的手续费是：买入时佣金万分之二，卖出时佣金万分之二，无印花税, 每笔交易佣金最低扣5块钱
+    set_order_cost(OrderCost(open_tax=0, close_tax=0, open_commission=0.0002, close_commission=0.0002, close_today_commission=0, min_commission=5), type='fund')
+    # 过滤一定级别的日志
+    log.set_level('system', 'error')
+    # 参数
+    g.etf_pool = [
+        '518880.XSHG', #黄金ETF
+        '513100.XSHG', #纳指100
+        '159915.XSHE', #创业板ETF
+        '510180.XSHG', #上证180
+    ]
+    
+    g.m_days = 26 #动量参考天数
+    g.vain = 0 # 空仓天数
+    g.stop_loss = False
+    g.stop = False
+    
+    g.threshold = 20 # 周移动 盈亏，百分之15
+    g.vain_day = 5 # 满足周移动盈亏之后，空仓5天
+
+    run_daily(trade, '9:30') #每天运行确保即时捕捉动量变化
+
+
+# 基于年化收益和判定系数打分的动量因子轮动 https://www.joinquant.com/post/26142
+def get_rank_series(etf_pool, avg_periods=[3, 5, 10], diff_periods=[3, 26], score_periods=[3, 5, 10, 26]):
+    def calc_score(close_series):
+        y = np.log(close_series)
+        x = np.arange(len(y))
+        slope, intercept = np.polyfit(x, y, 1)
+        ann_return = math.pow(math.exp(slope), 250) - 1
+        r_squared = 1 - (np.sum((y - (slope * x + intercept))**2) /
+                         ((len(y) - 1) * np.var(y, ddof=1)))
+        return ann_return * r_squared
+
+    results = {f'score_{p}_avg': [] for p in avg_periods}
+    results.update({f'score_{p}': [] for p in score_periods})
+    results.update({f'score_{p}_diff': [] for p in diff_periods})
+
+    for etf in etf_pool:
+        max_period = max(avg_periods + diff_periods + score_periods + [g.m_days]) * 2 + 2
+        df = attribute_history(etf, max_period, '1d', ['close'])
+        close = df['close'].values
+
+        score_cache = {}
+
+        for period in set(avg_periods + score_periods + diff_periods):
+            score_cache[period] = []
+            if len(close) < period:
+                score_cache[period] = [np.nan]
+                continue
+
+            for i in range(period - 1, len(close)):
+                window = close[i - period + 1: i + 1]
+                score_cache[period].append(calc_score(window))
+
+        for p in avg_periods:
+            scores = score_cache[p]
+            if len(scores) >= p:
+                results[f'score_{p}_avg'].append(np.mean(scores[-p:]))
+            else:
+                results[f'score_{p}_avg'].append(np.nan)
+
+        for p in score_periods:
+            scores = score_cache[p]
+            results[f'score_{p}'].append(scores[-1] if len(scores) >= 1 else np.nan)
+
+        for p in diff_periods:
+            scores = score_cache[p]
+            if len(scores) >= 2:
+                results[f'score_{p}_diff'].append(scores[-1] - scores[-2])
+            else:
+                results[f'score_{p}_diff'].append(np.nan)
+
+    return pd.DataFrame(index=etf_pool, data=results)
+    
+
+def get_rank(etf_pool):
+    df = get_rank_series(
+        etf_pool, 
+        avg_periods=[3, 5, 10], 
+        diff_periods=[3, 26], 
+        score_periods=[3, 5,10, 26])
+        
+    #  如果10天动量均值大于0
+    df = df[df['score_10_avg'] >= 0]
+    
+    if df.score_26.max() < 0.4:
+        df = df.sort_values(by='score_5_avg', ascending=False)
+    else:
+        df = df.sort_values(by='score_26', ascending=False)
+    return df
+    
+
+def victory(window=5):
+    # 5日移动均线涨跌幅
+    stock_code = '510310.XSHG'
+    data = attribute_history(stock_code, window, '1d', ['close', 'pre_close'])
+    if data.empty:
+        return 0
+
+    start_price = data['pre_close'].iloc[0]
+    end_price = data['close'].iloc[-1]
+    
+    return (end_price / start_price - 1) * 100
+        
+def stop_loss(context, df):
+    hold_list = list(context.portfolio.positions)
+    if not hold_list:
+        return
+    etf = hold_list[0]
+    rules = [
+        {
+            'etfs': ['159915.XSHE', '513100.XSHG'], 
+            'score_col': 'score_3', 
+            'threshold': -0.97, 
+            'op': 'le'
+            
+        },
+        {
+            'etfs': ['510180.XSHG'], 
+            'score_col': 'score_5', 
+            'threshold': 0, 
+            'op': 'lt'
+        }
+    ]
+
+    for rule in rules:
+        if etf in rule['etfs']:
+            condition = (
+                (df.index == etf) &
+                (df[rule['score_col']] <= rule['threshold']) if rule['op'] == 'le'
+                else (df[rule['score_col']] < rule['threshold'])
+            )
+            if not df[condition].empty:
+                order_target_value(etf, 0)
+                print(f'stop卖出 {etf}')
+                g.stop = True
+                return
+            
+
+def trade(context):
+    d_today = context.current_dt.strftime("%Y%m%d")
+    total_value = context.portfolio.total_value
+
+    # 计算信号
+    pct = victory(g.vain_day)
+    if pct > g.threshold or g.vain != 0:
+        g.vain += 1
+    else:
+        g.vain = 0
+    today_signal = -1 if pct > g.threshold else 0
+
+    # 清除空仓信号周期
+    if g.vain > g.vain_day:
+        g.vain = 0
+
+    # 获取动量排名
+    df = get_rank(g.etf_pool)
+    if df.empty:
+        return
+    # 止损
+    stop_loss(context, df)
+    
+    target_list = list(df.index[:1])  # 只取 top1
+    score_target = df['score_26'].iloc[0]
+
+    # 分数小于0，空仓
+    if score_target < 0:
+        target_list = []
+
+    # 卖出信号，剔除特定 ETF
+    if today_signal == -1 or g.vain != 0:
+        print('------------卖出信号')
+        exclude_etfs = {'562660.XSHG', '159915.XSHE', '510180.XSHG'}
+        target_list = [etf for etf in target_list if etf not in exclude_etfs]
+
+    # 卖出不在 target 的持仓
+    for etf in context.portfolio.positions:
+        if etf not in target_list:
+            order_target_value(etf, 0)
+            print(f'卖出 {etf}')
+
+    # 买入目标 ETF
+    current_holdings = context.portfolio.positions.keys()
+    candidates = [etf for etf in target_list if etf not in current_holdings]
+    if candidates:
+        cash_per_etf = context.portfolio.available_cash / len(candidates)
+        for etf in candidates:
+            score_rules = {
+                '513100.XSHG': ('score_26_diff', 0),
+                '510180.XSHG': ('score_5', 0),
+            }
+            if etf in score_rules and g.stop:
+                col, threshold = score_rules[etf]
+                if df[(df.index == etf) & (df[col] >= threshold)].empty:
+                    continue
+            g.stop = False
+            order_target_value(etf, cash_per_etf)
+            print(f'买入 {etf}')
+            
+            
+            

@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const API_BASE = 'https://api.paytrigo.net';
-const API_KEY = 'sk_live_EQRe18nZCjXZSv8BmSJMs5mYvMOw1wgDd2RHnOH5T28';
+const API_KEY = 'REDACTED-SECRET';
 
 const argv = process.argv.slice(2);
 const command = argv[0];

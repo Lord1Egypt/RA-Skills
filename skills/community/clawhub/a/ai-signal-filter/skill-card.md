@@ -1,48 +1,60 @@
-## Description: <br>
-从海量 AI 动态中筛选真正有决策价值的信号，并为每条信号回答“所以呢”和“该做什么”。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从海量AI动态中筛选真正有决策价值的信号，每条必须回答"所以呢"和"该做什么"。
 
-## Publisher: <br>
-[ah0210](https://clawhub.ai/user/ah0210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ah0210](https://clawhub.ai/user/ah0210)
 
-## Use Case: <br>
-Developers, operators, founders, and analysts use this skill to monitor AI industry changes, filter noisy updates, and produce decision-oriented signal reports with source URLs, confidence levels, and concrete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profile watchlists and custom keywords may be used in web searches and passed to a temporary subagent. <br>
-Mitigation: Review memory/signal/profile.md before use and remove sensitive companies, projects, or keywords. <br>
-Risk: The skill can create or update local signal history for personalization and deduplication. <br>
-Mitigation: Periodically review or delete memory/signal/history.md when persistent local history is not desired. <br>
-Risk: AI-generated market or industry signals can be incomplete, stale, or misleading despite source and confidence checks. <br>
-Mitigation: Verify high-impact recommendations against primary sources before making business, product, or investment decisions. <br>
+## Use Case:
 
+AI practitioners, developers, product builders, and decision makers use this skill to turn broad AI news into concise Chinese decision signals with sources, confidence labels, and concrete next actions. It is intended for recurring AI industry monitoring, filtering, and report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ah0210/ai-signal-filter) <br>
-- [Output format](references/output-format.md) <br>
-- [Quality gates](references/quality-gates.md) <br>
-- [Search strategy](references/search-strategy.md) <br>
-- [GitHub Trending](https://github.com/trending) <br>
-- [Hacker News](https://news.ycombinator.com/) <br>
-- [Reddit LocalLLaMA feed](https://www.reddit.com/r/LocalLLaMA/hot/.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown report with execution metadata, source URLs, confidence labels, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local memory/signal/history.md and, after user confirmation, save signal/{date}-report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Broad AI-news prompts may trigger web searches, sub-agent runs, or persistent memory updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit AI signal report requests and review it before installation if those behaviors are not desired.
+
+Risk: Personalization and history files can retain long-term preferences, source scoring, and prior signal records.
+
+Mitigation: Check or clear memory/signal/profile.md and memory/signal/history.md when persistent personalization is not wanted.
+
+Risk: AI-news sources can be noisy, low-confidence, or misleading.
+
+Mitigation: Require source URLs, confidence labels, quality gates, and low-confidence placement in the waiting/observation section.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ah0210/skills/ai-signal-filter)
+- [Search strategy](references/search-strategy.md)
+- [Quality gates](references/quality-gates.md)
+- [Output format](references/output-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Structured Chinese Markdown report with execution metadata, news briefs, signal analysis, source URLs, confidence labels, and action recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local memory/history files for personalization and only saves report archives after user confirmation.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

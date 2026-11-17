@@ -1,40 +1,60 @@
-## Description: <br>
-Safe system changes with automatic baseline capture, canary testing, and rollback for critical infrastructure modifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe system changes with automatic baseline capture, canary testing, and rollback for critical infrastructure modifications.
 
-## Publisher: <br>
-[lolaopenclaw](https://clawhub.ai/user/lolaopenclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lolaopenclaw](https://clawhub.ai/user/lolaopenclaw)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to plan and validate risky SSH, firewall, networking, systemd, kernel parameter, and service changes while preserving a rollback path. It is intended for critical system modifications where lost connectivity or failed service recovery would be costly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rollback safety may be overstated, and a captured baseline is not itself a recovery backup. <br>
-Mitigation: Use a separate working access path, provide explicit --backup files, and verify that the backup files can restore the actual change before applying it. <br>
-Risk: The restore path can perform privileged overwrites based on local backup metadata. <br>
-Mitigation: Manually inspect the backup metadata and restore targets before rollback, especially on production or remote-only systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Incident Report: AllowTcpForwarding Lockout](references/incident-report.md) <br>
-- [Canary Deploy release page](https://clawhub.ai/lolaopenclaw/canary-deploy) <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill when planning SSH, firewall, network, service, kernel, or package changes that could interrupt remote access. It guides baseline capture, validation, backup access, and rollback procedures for critical system modifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts that capture baselines, run validation commands, and restore explicit backup files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Privileged rollback or update commands can affect critical system files.
+
+Mitigation: Use the skill only with a trusted operator who understands the sudo impact and has reviewed the target files before execution.
+
+Risk: Rollback may restore files based on backup directory and path metadata.
+
+Mitigation: Run rollback only after confirming the backup directory and recorded original paths are trusted and match the intended system files.
+
+Risk: Generated, remote, or partially trusted command text can be executed through update or validation arguments.
+
+Mitigation: Do not pass untrusted text into command or validation arguments; review and quote commands explicitly before running them.
+
+Risk: Automated validation and rollback are not reliable protection against remote lockout.
+
+Mitigation: Keep an independent backup access method, such as a second SSH session or console access, before changing SSH, firewall, or network settings.
+
+## Reference(s):
+
+- [Incident Report: AllowTcpForwarding Lockout](references/incident-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include privileged system change, validation, backup, and rollback commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

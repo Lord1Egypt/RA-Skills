@@ -1,51 +1,59 @@
-## Description: <br>
-Use when adding MFA, 2FA, TOTP, SMS codes, push notifications, passkeys, or when requiring step-up verification for sensitive operations or meeting compliance requirements (HIPAA, PCI-DSS) - covers adaptive and risk-based authentication with Auth0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding MFA, 2FA, TOTP, SMS codes, push notifications, passkeys, or when requiring step-up verification for sensitive operations or meeting compliance requirements with Auth0.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and security engineers use this skill to configure Auth0 MFA, implement step-up authentication for sensitive operations, and validate MFA status in frontend and backend applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auth0 admin commands can change tenant-wide MFA factors, policies, and Actions. <br>
-Mitigation: Confirm the target tenant and review generated Auth0 CLI/API commands before execution. <br>
-Risk: Management API tokens or tenant credentials could be exposed if placed in prompts, logs, or command history. <br>
-Mitigation: Use least-privilege credentials and keep real tokens out of prompts and logs. <br>
-Risk: Tenant-wide MFA policies or Auth0 Actions can disrupt sign-in flows if tested directly in production. <br>
-Mitigation: Validate MFA policy and Action changes outside production before rollout. <br>
+## Use Case:
 
+Developers and identity engineers use this skill to add Auth0 multi-factor authentication, step-up verification, adaptive MFA, and backend MFA validation for applications that protect sensitive user actions.
 
-## Reference(s): <br>
-- [Auth0 MFA skill page](https://clawhub.ai/auth0/auth0-mfa) <br>
-- [Auth0 agent skills homepage](https://github.com/auth0/agent-skills) <br>
-- [Step-Up Examples](references/examples.md) <br>
-- [Backend Validation](references/backend.md) <br>
-- [Advanced Topics](references/advanced.md) <br>
-- [Reference Guide](references/api.md) <br>
-- [Auth0 MFA Documentation](https://auth0.com/docs/secure/multi-factor-authentication) <br>
-- [Step-Up Authentication](https://auth0.com/docs/secure/multi-factor-authentication/step-up-authentication) <br>
-- [MFA API](https://auth0.com/docs/secure/multi-factor-authentication/manage-mfa-auth0-apis) <br>
-- [Authorization Code Flow request parameters](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/add-login-auth-code-flow#request-parameters) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and Auth0 CLI/API commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Auth0 CLI for command-based tenant configuration; examples include frontend, backend, and Auth0 Action patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Auth0 CLI and Management API commands can change tenant MFA policies, deploy Actions, or delete authenticators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run commands only against an authorized Auth0 tenant and review proposed policy changes, Action deployments, and authenticator deletion commands before execution.
+
+## Reference(s):
+
+- [Auth0 publisher profile](https://clawhub.ai/user/auth0)
+- [ClawHub skill page](https://clawhub.ai/auth0/skills/auth0-mfa)
+- [Auth0 agent-skills homepage](https://github.com/auth0/agent-skills)
+- [Auth0 MFA Documentation](https://auth0.com/docs/secure/multi-factor-authentication)
+- [Step-Up Authentication](https://auth0.com/docs/secure/multi-factor-authentication/step-up-authentication)
+- [MFA API](https://auth0.com/docs/secure/multi-factor-authentication/manage-mfa-auth0-apis)
+- [acr_values Parameter](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/add-login-auth-code-flow#request-parameters)
+- [Step-Up Examples](references/examples.md)
+- [Backend Validation](references/backend.md)
+- [Advanced Topics](references/advanced.md)
+- [Reference Guide](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Auth0 CLI and Management API command examples that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Provides a local HTTP bridge that wraps the DeepSeek Chat API as a /ask endpoint with question submission, answer return, and SQLite state persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSeek Bridge exposes the DeepSeek Chat API through a local HTTP /ask endpoint with SQLite-backed conversation state.
 
-## Publisher: <br>
-[clawhub-master](https://clawhub.ai/user/clawhub-master) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawhub-master](https://clawhub.ai/user/clawhub-master)
 
-## Use Case: <br>
-Developers and agent operators use this skill to expose DeepSeek Chat through a local Flask HTTP endpoint so local agents or applications can submit questions and persist conversation status in SQLite. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can route user requests to DeepSeek automatically. <br>
-Mitigation: Narrow the trigger phrases and require clear user intent before sending content to the external DeepSeek API. <br>
-Risk: Full questions and answers are stored locally in plaintext SQLite. <br>
-Mitigation: Do not submit secrets, personal data, or confidential business content; restrict database file access and clear stored conversations when no longer needed. <br>
-Risk: The skill depends on an external DeepSeek API key and sends submitted prompts to DeepSeek. <br>
-Mitigation: Use your own DEEPSEEK_API_KEY from the environment and review DeepSeek data handling before use. <br>
+## Use Case:
 
+Developers and local agent operators use this skill to route prompts to DeepSeek through a local Flask bridge, receive answers, and persist request status in SQLite.
 
-## Reference(s): <br>
-- [DeepSeek Bridge ClawHub page](https://clawhub.ai/clawhub-master/skills/deepseek-bridge) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON HTTP responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided DEEPSEEK_API_KEY and stores questions and answers in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: Prompts are sent to DeepSeek and saved with answers in a local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with prompts that are acceptable to send to DeepSeek and store locally; review retention and access controls for chat_shared.db.
+
+Risk: The bridge imports executable code from a hardcoded external path.
+
+Mitigation: Verify which db_shared.py is imported before installation and avoid writable shared import paths.
+
+Risk: Broad auto-start or trigger behavior could invoke the bridge in sensitive environments.
+
+Mitigation: Disable broad auto-start or trigger rules where prompts or local state require tighter review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawhub-master/skills/deepseek-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON HTTP response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local bridge returns DeepSeek answers as JSON and records prompt, answer, status, and timestamps in SQLite.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

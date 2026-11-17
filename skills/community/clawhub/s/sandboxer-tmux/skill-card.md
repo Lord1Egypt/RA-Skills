@@ -1,42 +1,57 @@
-## Description: <br>
-Dispatch coding tasks to tmux sessions via Sandboxer, including spawning Claude Code, Gemini, OpenCode, bash, or lazygit sessions in workspace repos, monitoring progress, and sending commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatch coding tasks to tmux sessions via Sandboxer. Use when you need to spawn Claude Code, Gemini, OpenCode, bash, or lazygit sessions in workspace repos, monitor their progress, or send them commands.
 
-## Publisher: <br>
-[chriopter](https://clawhub.ai/user/chriopter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chriopter](https://clawhub.ai/user/chriopter)
 
-## Use Case: <br>
-Developers and engineers use this skill to dispatch and supervise coding work in tmux sessions on dedicated AI machines where workspace access and local terminal control are expected. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad shell, file, and terminal control through a localhost Sandboxer service without clear containment. <br>
-Mitigation: Install only on a dedicated, isolated machine or container that is fully controlled by the operator. <br>
-Risk: Use on shared systems, personal desktops, production servers, or credential-bearing environments could expose sensitive workspace data or terminal control. <br>
-Mitigation: Avoid shared or sensitive environments unless strong local isolation, least-privilege accounts, and authentication around the Sandboxer service are added. <br>
-Risk: The artifact states that localhost access requires no authentication, increasing the impact of local compromise or unintended local access. <br>
-Mitigation: Restrict local access to trusted users and add authentication or network isolation before relying on the service in higher-risk environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chriopter/sandboxer-tmux) <br>
-- [Publisher profile](https://clawhub.ai/user/chriopter) <br>
+## Use Case:
 
+Developers and agent operators use Sandboxer to create, monitor, control, and stop local tmux sessions for coding agents and shell tools inside workspace repositories.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No fixed output schema; commands target local Sandboxer HTTP endpoints and tmux sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give agents broad command, tmux-session, and workspace file-write authority on the host.
+
+Mitigation: Use it only on a dedicated isolated machine where every local process is trusted, preferably under an unprivileged service account.
+
+Risk: Unauthenticated local control can allow unintended workspace changes or commits if exposed beyond trusted local use.
+
+Mitigation: Add authentication, per-workspace authorization, repository allowlists, audit logs, and review before auto-commit or file writes.
+
+Risk: Shared hosts or machines with unrelated sensitive data increase the impact of terminal capture and file access.
+
+Mitigation: Do not deploy it on shared hosts or machines containing sensitive unrelated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chriopter/skills/sandboxer-tmux)
+- [Publisher profile](https://clawhub.ai/user/chriopter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to issue localhost API calls that create, control, inspect, and terminate tmux-backed sessions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-AI video editor for YouTube creators — removes pauses, filler words, and dead air automatically via API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI video editor for YouTube creators that removes pauses, filler words, and dead air automatically via API.
 
-## Publisher: <br>
-[esokullu](https://clawhub.ai/user/esokullu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[esokullu](https://clawhub.ai/user/esokullu)
 
-## Use Case: <br>
-External creators and agents use Tubeify to submit raw YouTube recordings to a paid external video-editing API, poll for completion, and retrieve cleaned-up videos with pauses, filler words, and dead air removed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends video URLs to a paid third-party editing service. <br>
-Mitigation: Use only video URLs you are authorized to share with Tubeify, and avoid private or non-public videos unless third-party processing is acceptable. <br>
-Risk: The examples use a wallet address, USDC transaction hash, and session cookie. <br>
-Mitigation: Never provide wallet private keys or seed phrases, protect the generated session cookie, and verify payment details before submitting a job. <br>
+## Use Case:
 
+External creators and agents use Tubeify to authenticate with a wallet, submit a public raw video URL for automated cleanup, poll processing status, and retrieve a processed video.
 
-## Reference(s): <br>
-- [Tubeify Website](https://tubeify.xyz) <br>
-- [ClawHub Skill Page](https://clawhub.ai/esokullu/tubeify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and API parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and access to a public video URL, wallet address, USDC transaction hash, and session cookie for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow sends video URLs, wallet addresses, transaction hashes, session cookies, and processed-video links to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust tubeify.xyz with that data, and start with test or non-confidential media.
+
+Risk: The workflow stores a session cookie in session.txt.
+
+Mitigation: Avoid shared workspaces for session.txt and delete the cookie file after use.
+
+Risk: Wallet-address-only authentication should not be treated as strong account protection.
+
+Mitigation: Avoid relying on this authentication model for sensitive or shared production workflows.
+
+## Reference(s):
+
+- [Tubeify ClawHub skill page](https://clawhub.ai/esokullu/skills/tubeify)
+- [Tubeify website](https://tubeify.xyz)
+- [Publisher profile](https://clawhub.ai/user/esokullu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command examples and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; the workflow uses a session cookie file and submits video URL, wallet address, and transaction hash data to Tubeify.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

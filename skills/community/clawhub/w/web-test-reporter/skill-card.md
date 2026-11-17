@@ -1,43 +1,57 @@
-## Description: <br>
-Automates functional testing for web systems with agent-browser CLI and generates standardized Word (.docx) test reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates functional testing of web systems with agent-browser CLI and helps generate standardized Word (.docx) test reports.
 
-## Publisher: <br>
-[superchao9](https://clawhub.ai/user/superchao9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superchao9](https://clawhub.ai/user/superchao9)
 
-## Use Case: <br>
-Developers, QA engineers, and release reviewers use this skill to walk through web application modules, exercise CRUD and workflow paths, capture screenshots, and produce a structured functional test report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use login credentials while testing authenticated web systems. <br>
-Mitigation: Use disposable low-privilege test accounts and avoid sharing credentials in generated reports. <br>
-Risk: The skill can create, modify, delete, submit, or export application data during functional testing. <br>
-Mitigation: Run it only on systems you are authorized to test, preferably staging or test environments, and confirm destructive or workflow-changing actions before execution. <br>
-Risk: Screenshots and reports may capture sensitive application data. <br>
-Mitigation: Review generated screenshots and Word reports, remove passwords and sensitive data, and share reports only with authorized recipients. <br>
+## Use Case:
 
+Developers, QA engineers, and test operators use this skill to inspect web application code when available, drive browser-based functional tests, capture screenshots, and assemble a structured functional test report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superchao9/web-test-reporter) <br>
-- [Report format reference](references/report-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a Python report-generation template for Word .docx output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces screenshot naming conventions, test execution notes, defect summaries, and a python-docx report template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may handle login credentials and include them in generated reports or screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use temporary least-privileged test accounts, remove hardcoded credentials from report templates, and redact secrets from reports and screenshots before sharing.
+
+Risk: Browser-driven tests may submit, modify, or delete application data.
+
+Mitigation: Run only against test or disposable environments and require explicit operator approval before destructive actions such as submit or delete.
+
+Risk: Generated reports rely on local Python dependencies and editable filesystem paths.
+
+Mitigation: Pin dependencies such as python-docx and review output paths before running the report script.
+
+## Reference(s):
+
+- [Report Format Specification](references/report-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, files]
+
+**Output Format:** [Markdown instructions with bash command examples, screenshot naming conventions, and a Python report template for Word .docx output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to create browser screenshots and Word .docx reports; report templates should be edited to remove real credentials before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

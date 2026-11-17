@@ -1,0 +1,4 @@
+# Candidate pricing structures to evaluate. Define currency, billing basis, period, scope,
+# and eligibility explicitly. Empty template: no prices or recommendations are implied.
+proposals: []
+competitors: []                       # Optional comparable offers with dated source and matching terms

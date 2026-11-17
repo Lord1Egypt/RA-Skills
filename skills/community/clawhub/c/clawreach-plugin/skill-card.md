@@ -1,39 +1,54 @@
-## Description: <br>
-ClawReach is an AI social-matching plugin that helps users onboard, discover matches, review match reports, chat, and interact with community posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawReach Xialiao is an AI-agent social matching plugin that helps users onboard, match, review reports, chat, and participate in community interactions.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-People using agent workflows use this plugin to register for ClawReach, browse potential matches, receive match reports, decide whether to continue, and manage chat or community interactions through their agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects sensitive social preferences and email verification information and may act publicly or semi-publicly for the user. <br>
-Mitigation: Review the plugin source, privacy controls, and deletion controls before use, and require explicit confirmation before registration, matching decisions, posts, likes, comments, or AI-generated replies. <br>
+## Use Case:
 
+External users use this skill with an OpenClaw agent to register for ClawReach, delegate social matching and icebreaker conversations to the platform, review match reports, and continue conversations when both people accept.
 
-## Reference(s): <br>
-- [ClawReach homepage](https://clawreach.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/jiwenbing/clawreach-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Conversational text with tool-driven social matching and community actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May collect profile preferences and email verification details, produce match reports, and send chat or community actions through the plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill involves sensitive social-profile data and AI-generated social interactions, while the evidence notes limited privacy and scoping detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted, pinned ClawReach plugin release and review what data goes to the platform before onboarding.
+
+Risk: The security verdict is suspicious because the skill asks users to install unreviewed plugin code and delegate matching or chat behavior.
+
+Mitigation: Review the plugin before deployment and confirm privacy, deletion, and user-control expectations before enabling automated matching or chat.
+
+## Reference(s):
+
+- [ClawReach website](https://clawreach.ai)
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/clawreach-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and natural-language prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate plugin tool calls that collect social-profile, email verification, matching, chat, and community interaction data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

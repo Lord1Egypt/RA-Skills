@@ -1,0 +1,4 @@
+interface:
+  display_name: "租赁-船找货"
+  short_description: "按船舶当前港、计划目的港和可载吨位智能匹配内外贸货盘数据"
+  default_prompt: "使用 $find-cargo-for-vessel 根据我的船位、目的港和可载吨位匹配货盘。"

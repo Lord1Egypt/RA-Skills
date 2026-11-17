@@ -6,7 +6,7 @@
 ## 依赖
 
 ```bash
-{PYTHON} -m pip install PyMuPDF --quiet
+python3 -m pip install PyMuPDF --quiet
 ```
 
 ## 进度清单
@@ -57,7 +57,7 @@ doc.close()
 使用 `scripts/pdf_to_images.py` 将每一页渲染为 PNG 图片：
 
 ```bash
-{PYTHON} scripts/pdf_to_images.py {workspace}/paper.pdf {workspace}/pages
+python3 scripts/pdf_to_images.py {workspace}/paper.pdf {workspace}/pages
 ```
 
 脚本以 2x 分辨率渲染，输出到 `{workspace}/pages/page_1.png`, `page_2.png`, ...
@@ -97,7 +97,9 @@ PDF 坐标 = 图片像素坐标 ÷ 2
 - 仅占左栏的图表：x 范围约 `30 ~ 295`
 - 仅占右栏的图表：x 范围约 `300 ~ 565`
 
-不确定时宁可稍宽（后续 P5 校验可缩窄），留约 10pt 的上下 margin。
+**Caption 边界（重要）**：裁剪矩形必须完整包含图/表下方（或上方）的 caption 行——即 `Figure N: ...` / `Table N: ...` 那一整段说明文字。writer 在正文中会以"如图 N 所示"、"表 N 汇总了..."方式引用原文，因此 caption 必须在图内可见；漏掉 caption 会导致下游报告失去溯源信息。同时，相邻正文段落必须**留在矩形之外**——y 边界宁可紧贴 caption 收窄，也不要把下一段正文文字一起框进来。
+
+不确定时宁可稍宽（后续 P5 校验可缩窄），留约 10pt 的上下 margin，但**不要越过 caption 边界把正文段落一起裁进来**。
 
 **图表选取原则**：见 [SKILL.md](../SKILL.md) Step 2「图表选取原则」。
 
@@ -119,7 +121,7 @@ PDF 坐标 = 图片像素坐标 ÷ 2
 根据 Step P3 的截图计划，使用 `scripts/crop_figures.py` 批量裁剪：
 
 ```bash
-{PYTHON} scripts/crop_figures.py \
+python3 scripts/crop_figures.py \
   {workspace}/paper.pdf \
   {workspace}/figures \
   '{crop_spec_json}'
@@ -154,6 +156,8 @@ PDF 坐标 = 图片像素坐标 ÷ 2
 - 截断了顶部 → 减小 y0（向上扩展）
 - 混入了上方文字 → 增大 y0
 - 混入了下方文字 → 减小 y1
+- **caption 缺失**（截图里看不到 `Figure N: ...` / `Table N: ...` 行）→ 沿 caption 所在方向扩展 y0 / y1 直至完整包含
+- **caption 之外的正文段落混入** → 反向收窄 y0 / y1，紧贴 caption 边界
 - 一般留 5-10pt margin 即可
 
 反复调整直到所有截图质量合格。

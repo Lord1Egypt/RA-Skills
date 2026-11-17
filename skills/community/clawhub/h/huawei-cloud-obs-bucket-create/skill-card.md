@@ -1,47 +1,57 @@
-## Description: <br>
-Skill specialized for creating buckets on Huawei Cloud OBS, including bucket name validation, region selection, access permission configuration, and batch bucket creation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Huawei Cloud OBS buckets and provides guidance on bucket properties, access settings, and the creation process.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to create Huawei Cloud OBS buckets, configure bucket properties such as region, ACL, and storage class, and troubleshoot common bucket creation failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose commands that create Huawei Cloud OBS resources with chosen bucket names, regions, ACLs, and storage classes. <br>
-Mitigation: Review the exact bucket name, region, ACL, and storage class before running generated hcloud or batch creation commands. <br>
-Risk: Credential handling may expose AK/SK values if users paste secrets into chat or shell history. <br>
-Mitigation: Do not share real AK/SK values in chat; use local hcloud configuration and masked credential checks. <br>
-Risk: Installer and initialization commands can modify local KooCLI or hcloud configuration. <br>
-Mitigation: Verify the KooCLI installer source and back up existing hcloud configuration before rerunning initialization. <br>
+## Use Case:
 
+Cloud administrators and developers use this skill to create, list, and inspect Huawei Cloud OBS buckets, including setting the region, storage class, and access permissions.
 
-## Reference(s): <br>
-- [KooCLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Common Errors and Solutions](references/trouble-shooting.md) <br>
-- [Huawei Cloud KooCLI Documentation](https://support.huaweicloud.com/cli-koocli/koocli_01_0001.html) <br>
-- [Register Huawei Account and Complete Real-Name Authentication](https://support.huaweicloud.com/qs-hcli/hcli_02_002.html#hcli_02_002__section544111119366) <br>
-- [Create IAM User and Authorize](https://support.huaweicloud.com/qs-hcli/hcli_02_002.html#hcli_02_002__section10273653161410) <br>
-- [Get Access Key (AK/SK)](https://support.huaweicloud.com/qs-hcli/hcli_02_002.html#hcli_02_002__section10548184715361) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose hcloud/KooCLI commands and batch bucket creation script usage; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The security assessment flags an unverified telemetry tool around credential-related commands; its data handling could not be verified from this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reporting implementation and downloaded tool before use, use narrowly scoped cloud credentials, and configure credentials outside the telemetry wrapper. The documented SKILL_QUALITY_REPORT=0 setting is available, but its effectiveness was not verified.
+
+Risk: Bucket creation can use public access settings, which may expose stored data.
+
+Mitigation: Keep the private ACL by default and require explicit approval before enabling public access.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-obs-bucket-create)
+- [OBS regions and endpoints](https://developer.huaweicloud.com/intl/en-us/endpoint)
+- [KooCLI Installation Guide](https://support.huaweicloud.com/cli-koocli/koocli_01_0001.html)
+- [CLI Installation Guide](artifact/references/cli-installation-guide.md)
+- [Common Errors and Solutions](artifact/references/trouble-shooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can create one or more OBS buckets and set bucket options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

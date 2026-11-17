@@ -1,42 +1,61 @@
-## Description: <br>
-Infrastructure skill for creating, validating, scaffolding, and reviewing DCC-MCP skills for the dcc-mcp-core ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit or validate DCC-MCP tool skill packages (SKILL.md and tools.yaml). Use dcc-mcp-creator for complete adapter repositories.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold DCC-MCP skill packages, generate SKILL.md templates, and validate installable skill directories against the current dcc-mcp-core contract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scaffold tool writes persistent skill files under the requested parent directory. <br>
-Mitigation: Choose the parent directory intentionally before invoking the tool and validate the generated skill directory before use. <br>
-Risk: Generated scaffold content includes placeholders that may be incomplete for production workflows. <br>
-Mitigation: Review and replace placeholder content, then run the included validation workflow before deploying generated skills. <br>
+## Use Case:
 
+Developers use this skill to scaffold, edit, and validate DCC-MCP tool skill packages, including their SKILL.md instructions, tools.yaml declarations, and supporting scripts. Use it for package-level skill work; full adapter repositories are handled by dcc-mcp-creator.
 
-## Reference(s): <br>
-- [DCC-MCP Skills Creator project homepage](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/skills/dcc-mcp-skills-creator/SKILL.md) <br>
-- [DCC-MCP Skill Authoring Workflow](references/AUTHORING_WORKFLOW.md) <br>
-- [DCC-MCP Tool Contracts](references/DCC_TOOL_CONTRACTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown, YAML, Python code, filesystem artifacts, and structured validation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scaffold tool creates persistent files in a user-selected parent directory; validation returns issue summaries for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.18.39 (source: SKILL.md metadata.dcc-mcp.version and release evidence) <br>
+Risk: Generated or edited skill packages may contain behavior that has not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package contents before loading the skill.
+
+Risk: A separate installation can introduce unreviewed source changes or runtime prerequisites.
+
+Mitigation: Install from an independently reviewed commit and review runtime prerequisites separately.
+
+Risk: Optional task statistics may expose information outside the relevant task context.
+
+Mitigation: Limit statistics review to the relevant session and omit secrets.
+
+## Reference(s):
+
+- [Project skill page](https://github.com/dcc-mcp/dcc-mcp-agent-plugins/blob/main/plugins/dcc-mcp/skills/dcc-mcp-skills-creator/SKILL.md)
+- [Authoring workflow](artifact/references/AUTHORING_WORKFLOW.md)
+- [Tool runtime contract](artifact/references/TOOL_RUNTIME_CONTRACT.md)
+- [Package validation](artifact/references/PACKAGE_VALIDATION.md)
+- [Verified install procedure](artifact/references/VERIFIED_INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions, YAML configuration, Python scripts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or edits skill package files and provides validation guidance.]
+
+## Skill Version(s):
+
+0.19.117 (source: SKILL.md frontmatter; server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

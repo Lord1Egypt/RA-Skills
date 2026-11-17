@@ -1,40 +1,56 @@
-## Description: <br>
-Manage Proxmox VE clusters via REST API for listing, starting, stopping, restarting, snapshotting, and checking VMs, LXC containers, nodes, tasks, storage, and backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Proxmox VE clusters via REST API, including listing, starting, stopping, restarting, snapshotting, viewing tasks, and checking node or storage status for VMs and LXC containers.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, platform engineers, and infrastructure operators use this skill to manage Proxmox VE clusters through authenticated REST API calls and a helper shell script.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can perform authenticated administrative actions that change infrastructure state.
+
+Mitigation: Require explicit confirmation before stop, reboot, rollback, delete, backup, or similar state-changing actions.
+
+Risk: The skill handles Proxmox API tokens and supports a sourced credentials file.
+
+Mitigation: Use a narrowly scoped, revocable API token and prefer environment-based secret handling over a persistent credentials file.
+
+Risk: The documented curl commands and helper script use -k or -ks, which skip TLS certificate verification.
+
+Mitigation: Use verified TLS certificates and avoid the default -k/-ks behavior on untrusted networks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to manage Proxmox VE clusters through API-token-authenticated REST calls and a helper shell script. It supports routine inspection and administrative actions for VMs, LXC containers, snapshots, tasks, storage, and backups. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform disruptive infrastructure actions when used with powerful Proxmox API credentials. <br>
-Mitigation: Use a least-privilege Proxmox API token and require explicit user approval before stop, reboot, rollback, delete, or backup operations in production. <br>
-Risk: Credential exposure could allow unauthorized access to Proxmox infrastructure. <br>
-Mitigation: Store API tokens carefully, restrict file permissions on local credential files, and avoid sharing token values in prompts, logs, or generated output. <br>
+**Output Format:** [Markdown with inline bash and curl commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratiknarola/proxmox-manager) <br>
+**Other Properties Related to Output:** [Requires Proxmox API credentials and access to a reachable Proxmox VE API endpoint.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and helper script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Proxmox API token environment variables or a local credentials file.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Batch rename files with customizable prefixes, suffixes, and sequential numbering, with a dry-run mode for previewing changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch rename files with customizable patterns, including prefixes, suffixes, sequential numbering, and dry-run previews.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and file-management users use this skill to prepare and run batch file renaming workflows for a target directory. It is useful when files need consistent prefixes, suffixes, preserved extensions, and numbered names. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the rename script without dry-run changes filenames in the selected local directory. <br>
-Mitigation: Use dry-run first, review the JSON preview, and keep a backup before applying changes to important files. <br>
-Risk: The tool processes the entries returned from the target directory, so an overly broad directory can affect more files than intended. <br>
-Mitigation: Run it only on a narrowly scoped directory that contains the files intended for renaming. <br>
+## Use Case:
 
+Developers and operators can use this skill to generate shell-command guidance for previewing and applying local batch file renames with predictable numbering and preserved file extensions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/cn-batch-file-renamer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the script emits JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run previews are available; non-dry-run execution can rename local filesystem entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Pattern handling can move or rename files outside the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, run only on disposable or backed-up directories, and avoid prefixes or suffixes containing slashes, backslashes, absolute paths, or '..' until names are validated and output is confined to the selected directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-batch-file-renamer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run-first guidance and warnings for local file renaming.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

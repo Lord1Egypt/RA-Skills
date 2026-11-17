@@ -1,45 +1,59 @@
-## Description: <br>
-TELOS helps an agent initialize, read, update, and back up a user's local personal life framework so advice can reference missions, goals, beliefs, challenges, and related context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TELOS (Telic Evolution and Life Operating System) reads, updates, and backs up a user's local personal life OS so an agent can use missions, goals, beliefs, challenges, and wisdom as context for life-aligned assistance.
 
-## Publisher: <br>
-[sauldataman](https://clawhub.ai/user/sauldataman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sauldataman](https://clawhub.ai/user/sauldataman)
 
-## Use Case: <br>
-External users and developers use TELOS to create and maintain a local personal context workspace for life planning. The skill lets an agent tailor advice and updates around the user's stated missions, goals, beliefs, priorities, and related life context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain and consult a local personal life profile that may contain sensitive goals, beliefs, health, trauma, or relationship information. <br>
-Mitigation: Confirm which TELOS directory is active, keep secrets and highly sensitive health or trauma details out unless the user accepts the privacy risk, and review local files and backups regularly. <br>
-Risk: Installing the optional hook can automatically inject personal TELOS context into sessions. <br>
-Mitigation: Install the hook only after explicit opt-in, and use the default on-demand mode when automatic context injection is not desired. <br>
-Risk: The security evidence reports that restore and restore-file commands can write outside the intended TELOS area if invoked with crafted inputs. <br>
-Mitigation: Avoid restore and restore-file commands until path validation is fixed, and review any backup or restore command before execution. <br>
+## Use Case:
 
+Developers and agent users use TELOS to initialize and maintain a local personal context system, then let an assistant draw on that context for onboarding, life planning, career decisions, relationship questions, investment choices, and other personal strategy conversations.
 
-## Reference(s): <br>
-- [TELOS onboarding guide](references/onboarding.md) <br>
-- [TELOS update workflow](references/update-workflow.md) <br>
-- [Daniel Miessler Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local Markdown file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update local TELOS Markdown files and run Bun scripts when triggered by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Sensitive personal material may be stored locally and loaded into assistant context, including through optional persistent hook injection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable with local storage and context loading; avoid recording secrets, explicit trauma details, or third-party text without careful review; install the optional hook only after explicit consent and audit review.
+
+Risk: Restore and update workflows operate on local files and can be risky when invoked with arbitrary names or paths.
+
+Mitigation: Review commands before execution, use known backup names and allowed TELOS files, and keep backups plus the update log available for recovery.
+
+## Reference(s):
+
+- [TELOS on ClawHub](https://clawhub.ai/sauldataman/skills/telos)
+- [TELOS onboarding workflow](references/onboarding.md)
+- [TELOS update workflow](references/update-workflow.md)
+- [Daniel Miessler Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure)
+- [OpenClaw](https://openclaw.ai)
+- [Claude Code](https://claude.com/claude-code)
+- [Agent Skills specification](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file-update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local TELOS markdown files and may propose or run Bun/Node commands for initialization, updates, backups, restore, history, and optional hook installation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 # Memory Template - Discover
 
-Create `~/discover/memory.md` with this structure:
+Create `~/Clawic/data/discover/memory.md` with this structure:
 
 ```markdown
 # Discover Memory

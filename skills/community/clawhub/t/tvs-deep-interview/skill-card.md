@@ -1,41 +1,53 @@
-## Description: <br>
-Tvs Deep Interview guides an agent through structured one-question-at-a-time requirements interviews, topology confirmation, ambiguity scoring, and explicit approval gates before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Deep Interview helps agents turn vague requests into verifiable specifications through one-question-at-a-time Socratic interviewing, topology confirmation, ambiguity scoring, and explicit approval gates.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn ambiguous product or code-change ideas into clear, verifiable specifications before execution. It is suited to complex greenfield or brownfield requests where direct implementation could cause avoidable rework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may slow down ambiguous requests by requiring clarification before implementation. <br>
-Mitigation: Use it for requirements-heavy work and narrow its trigger wording if direct execution is preferred. <br>
-Risk: Interview outputs can still encode incorrect assumptions if the user approves an incomplete specification. <br>
-Mitigation: Review the ambiguity score, open questions, acceptance criteria, and approval status before using the specification to implement changes. <br>
+## Use Case:
 
+Developers, product builders, and agent users use this skill to clarify ambiguous requests before implementation. It guides the agent through topology confirmation, focused follow-up questions, ambiguity scoring, and a pending-approval specification.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/inksnowhailong/tvs-deep-interview) <br>
-- [Publisher profile](https://clawhub.ai/user/inksnowhailong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown interview prompts, ambiguity scoring reports, and specification drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces clarification questions and approval-ready specifications; it instructs the agent not to modify code until explicit approval is given.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The interview flow may activate on broad Chinese phrases that ask the agent to clarify or avoid assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to stop the interview or provide explicit implementation instructions when direct execution is intended.
+
+Risk: The approval gate can slow normal implementation work when the request is already clear.
+
+Mitigation: Use the skill for vague or complex requests and bypass it when file paths, acceptance criteria, and execution intent are already explicit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inksnowhailong/skills/tvs-deep-interview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured interview prompts, scoring summaries, progress reports, and pending-approval specification sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces clarification and specification guidance only; no executable payload is present in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

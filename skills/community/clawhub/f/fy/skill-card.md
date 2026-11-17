@@ -1,39 +1,49 @@
-## Description: <br>
-Translates text submitted after the `fy` trigger, supporting Chinese-English translation and translating other languages into Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a `fy` shortcut for translating Chinese text to English, English text to Chinese, and other languages to Chinese.
 
-## Publisher: <br>
-[fengchj](https://clawhub.ai/user/fengchj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengchj](https://clawhub.ai/user/fengchj)
 
-## Use Case: <br>
-Agents and users use this skill to translate short text when a request begins with `fy`. It is intended for quick Chinese-English translation and for translating other detected languages into Chinese. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Translations may be inaccurate, incomplete, or lose context. <br>
-Mitigation: Review translated output before using it for important communication or decisions. <br>
-Risk: Security review reported no concrete malicious behavior, but advised confirming the published package identity and files match the intended release. <br>
-Mitigation: Install only the expected `fengchj/fy` version and review any permissions requested by the agent at runtime. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/fengchj/fy) <br>
+## Use Case:
 
+External users and agent users invoke `fy <content>` to translate short text between Chinese and English, or from other languages into Chinese.
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text translation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Triggered by `fy <content>` and returns a single translated result.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Translations may be inaccurate or lose nuance, especially when language detection is ambiguous or when non-Chinese/non-English text is translated into Chinese.
+
+Mitigation: Review translated text before using it in legal, medical, financial, or other high-impact contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengchj/skills/fy)
+- [ClawHub publisher profile](https://clawhub.ai/user/fengchj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text translation response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults Chinese input to English, English input to Chinese, and other languages to Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

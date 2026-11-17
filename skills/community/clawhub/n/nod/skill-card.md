@@ -1,41 +1,54 @@
-## Description: <br>
-Find and connect with professionals, experts, freelancers, and business contacts by searching people by role, skill, location, or intent and sending introductions or messages through Nod. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and connect with professionals, experts, freelancers, and business contacts by searching for people and sending introductions or messages through Nod.
 
-## Publisher: <br>
-[yoannarz](https://clawhub.ai/user/yoannarz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yoannarz](https://clawhub.ai/user/yoannarz)
 
-## Use Case: <br>
-External users and agents use this skill to search for professional contacts, review public profiles, express mutual professional interest, and send professional messages after account authorization where required. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects a Nod account to a remote OAuth-backed MCP service for authenticated actions. <br>
-Mitigation: Install it only when that account connection is acceptable, and keep authenticated actions limited to the intended Nod workflow. <br>
-Risk: Searches, profile targets, recipient usernames, and message text may expose professional outreach intent or unnecessary sensitive information. <br>
-Mitigation: Review profile targets, recipient usernames, and message text before approving nods or messages, and avoid unnecessary sensitive details in searches or outreach. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoannarz/nod) <br>
-- [Nod homepage](https://joinnod.com) <br>
-- [Nod MCP server](https://connect.joinnod.com/mcp) <br>
+## Use Case:
 
+External users and agents use this skill to find professionals by role, skill, location, or intent, inspect public profiles, and manage professional outreach through nods and direct messages.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured tool guidance for search results, profile summaries, nod confirmations, messages, and inbox views.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the configured Nod MCP server; nodding, messaging, and inbox access require OAuth-backed authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Nod MCP service can handle professional searches, profile lookups, inbox access, and outbound nods or messages after account authorization.
+
+Mitigation: Install only when comfortable connecting a Nod account, and confirm the recipient and intent before any nod or message is sent.
+
+Risk: Direct messages may disclose unintended professional or personal information.
+
+Mitigation: Review message content before sending and keep outreach within the documented mutual-nod, daily-limit, and character-limit constraints.
+
+## Reference(s):
+
+- [Nod ClawHub skill page](https://clawhub.ai/yoannarz/skills/nod)
+- [Nod homepage](https://joinnod.com)
+- [Nod MCP server](https://connect.joinnod.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or text summaries with user-confirmed MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and profile lookup can be public; nods, direct messages, and inbox access require OAuth. Messages are limited to 10 per day and 2000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

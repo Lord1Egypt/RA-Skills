@@ -1,43 +1,54 @@
-## Description: <br>
-职得Offer校园求职助手。调用职得Offer MCP接口查询校园招聘岗位和面试经验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+职得Offer校园求职助手调用职得Offer MCP接口查询校园招聘岗位和面试经验。
 
-## Publisher: <br>
-[jack-yang-ai](https://clawhub.ai/user/jack-yang-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-yang-ai](https://clawhub.ai/user/jack-yang-ai)
 
-## Use Case: <br>
-Students and job seekers use this skill to search campus recruiting and internship roles, inspect job details, and retrieve interview experience writeups for preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job and interview search queries are sent to the 职得Offer API. <br>
-Mitigation: Use the skill only when the 职得Offer service is trusted with those queries. <br>
-Risk: The skill requires a user-provided API key. <br>
-Mitigation: Prefer ZHIDE_OFFER_KEY and keep any local config file private. <br>
-Risk: Some trigger terms are broad and could invoke the skill when the user did not intend an external query. <br>
-Mitigation: Confirm intent before running the scripts for broad job-search, offer, or interview-preparation requests. <br>
+## Use Case:
 
+External users, especially students and early-career job seekers, use this skill to search campus recruiting and internship roles, inspect job details, search interview experiences, and review interview rounds, questions, and answers.
 
-## Reference(s): <br>
-- [职得Offer MCP API 文档](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jack-yang-ai/zhide-offer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and text results from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided ZHIDE_OFFER_KEY or private local config file for API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Recruiting searches, filters, job or interview IDs, quota checks, and the API key are sent to offer.yxzrkj.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable for the intended use.
+
+Risk: A local config file can expose the API key if it is committed or shared.
+
+Mitigation: Prefer the ZHIDE_OFFER_KEY environment variable and do not commit real API keys into repositories or shared skill directories.
+
+## Reference(s):
+
+- [职得Offer MCP API 文档](artifact/references/api.md)
+- [ClawHub release page](https://clawhub.ai/jack-yang-ai/skills/zhide-offer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or terminal text with shell commands and API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ZHIDE_OFFER_KEY API key; requests may send recruiting searches, company and city filters, requested job or interview IDs, account quota checks, and the API key to offer.yxzrkj.cn.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

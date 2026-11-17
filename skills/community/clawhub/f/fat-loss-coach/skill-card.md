@@ -1,45 +1,62 @@
-## Description: <br>
-Fat Loss Coach helps an agent calculate calorie targets, create meal and exercise plans, track progress, and answer fat-loss questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fat Loss Coach helps an agent calculate calorie targets, draft meal and workout plans, track progress, and answer fat-loss questions.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Individuals and wellness coaches can use this skill to generate personalized fat-loss guidance, including BMR/TDEE estimates, calorie and macro targets, meal-plan examples, workout plans, and progress adjustments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive weight, body measurements, diet, exercise, and health-status notes. <br>
-Mitigation: Enter only necessary information, avoid unnecessary medical details, and review any stored profile notes before relying on or sharing them. <br>
-Risk: Calorie restriction, fasting, HIIT, or strength plans may be inappropriate for some users. <br>
-Mitigation: Consult a qualified clinician or dietitian before following the guidance if pregnant, under 18, diabetic, recovering from an eating disorder, managing cardiovascular risk, injured, taking diet- or exercise-affecting medication, or living with another relevant medical condition. <br>
+## Use Case:
 
+External users use this skill with an agent to estimate BMR/TDEE, set calorie and macronutrient targets, generate meal and workout plans, and track fat-loss progress. The skill is best treated as general wellness guidance rather than medical, nutrition, or training advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smallkeyboy/fat-loss-coach) <br>
-- [Food recommendations and avoidance list](references/foods.md) <br>
-- [Calorie calculation formulas](references/formulas.md) <br>
-- [Meal plan examples](references/meal-plans.md) <br>
-- [Progress tracking templates](references/tracking.md) <br>
-- [Workout plans](references/workout-plans.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON calculation results from scripts/calculate.py] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calorie and macronutrient estimates and user profile notes for progress tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can store sensitive weight, body measurement, diet, exercise, and health-condition notes in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation before saving a profile, minimize collected health details, and avoid storing detailed medical history unless it is necessary for the user's request.
+
+Risk: Diet, fasting, and workout guidance may be unsuitable for people with medical conditions, pregnancy, injuries, eating-disorder history, diabetes, or minors.
+
+Mitigation: Present plans as general guidance and recommend review by a qualified clinician, dietitian, or trainer for higher-risk users.
+
+Risk: Calorie, macronutrient, and progress calculations are estimates that can mislead users when inputs or trends are incomplete.
+
+Mitigation: State that calculations are estimates, request current inputs, monitor trend data and wellbeing signals, and adjust plans conservatively.
+
+## Reference(s):
+
+- [Fat Loss Coach ClawHub page](https://clawhub.ai/smallkeyboy/skills/fat-loss-coach)
+- [Calculation formulas](references/formulas.md)
+- [Recommended foods and cautions](references/foods.md)
+- [Meal plan examples](references/meal-plans.md)
+- [Workout plans](references/workout-plans.md)
+- [Progress tracking and analysis](references/tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, local markdown profile updates, shell command examples, and optional JSON from the calculation helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local user profile containing body, diet, exercise, health-condition, and progress data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

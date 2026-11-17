@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn79thpq8ftqqgrffpntvbm969815jna",
-  "slug": "dinzee-agent",
-  "version": "1.0.0",
-  "publishedAt": 1780989509441
+  "ownerId": "dinzee",
+  "slug": "dinzeeagent",
+  "version": "1.2.16",
+  "publishedAt": 1747065600000,
+  "transport": "mcp-gateway",
+  "gateway": "https://gateway.dinzee.ai/"
 }

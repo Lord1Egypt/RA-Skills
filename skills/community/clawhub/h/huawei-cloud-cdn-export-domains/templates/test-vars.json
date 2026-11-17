@@ -1,0 +1,64 @@
+{
+  "skill_name": "huawei-cloud-cdn-export-domains",
+  "region": "cn-north-1",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "导出 CDN 加速域名列表为 CSV（默认模式）",
+      "command": "python3 scripts/export_cdn_domains.py --region {region} --output /tmp/cdn_domains_{region}.csv",
+      "expected": "Prints the generated .csv path; CSV has a 域名 (domain_name) column with 加速域名状态/CNAME/业务类型 and one row per domain",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "导出为 Markdown（含汇总行）",
+      "command": "python3 scripts/export_cdn_domains.py --region {region} --format markdown --output /tmp/cdn_domains_{region}.md --summary",
+      "expected": "Markdown table with headers 域名/加速域名状态/CNAME/业务类型/服务区域/HTTPS状态/企业项目 ID/创建时间/修改时间 plus a summary line",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "导出为 JSON",
+      "command": "python3 scripts/export_cdn_domains.py --region {region} --format json --output /tmp/cdn_domains_{region}.json",
+      "expected": "JSON array of complete accelerated-domain objects",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "表格输出（stdout）",
+      "command": "python3 scripts/export_cdn_domains.py --region {region} --format table",
+      "expected": "Aligned full-field table with domain_name/domain_status/cname/business_type columns",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "空结果写出仅表头文件并退出码 0",
+      "command": "python3 scripts/export_cdn_domains.py --region {region} --output /tmp/cdn_empty_{region}.csv",
+      "expected": "Empty domain list → header-only file written, exit 0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "参数帮助（语法）",
+      "command": "python3 scripts/export_cdn_domains.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "离线单元测试",
+      "command": "python3 scripts/run_unit_tests.py",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / command build / quality wrapper / JSON+domains extraction / failure classification / page_number paging / SDK fallback / table+Markdown+CSV+JSON rendering / atomic export",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对"],
+  "notes": "只读操作（CDN ListDomains，GET /v1.0/cdn/domains），无资源创建/修改/删除风险；导出文件仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud CDN ListDomains（经 skill-quality-cli 包裹；KooCLI 支持 cn-north-1 / ap-southeast-1）；SDK 回退使用 huaweicloudsdkcdn v1（GlobalCredentials）；SDK 缺失时运行 scripts/ensure_env.py 自动安装。写意图守卫拦截变更意图，其行为由离线单元测试（TC-07）覆盖。缺 hcloud/凭据时用例跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

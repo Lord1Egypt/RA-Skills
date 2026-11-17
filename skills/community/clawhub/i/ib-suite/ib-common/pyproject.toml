@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ib-common"
+version = "0.1.0"
+description = "Shared foundation for IB analyst skills: config, schema, storage, metrics, charts."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "luyangkk" }]
+keywords = ["interactive-brokers", "ibkr", "portfolio", "read-only", "openclaw", "agent-skill"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "pydantic>=2.6",
+    "pandas>=2.2",
+    "pyarrow>=15",
+    "numpy>=1.26",
+    "plotly>=5.20",
+    "kaleido>=0.2.1",
+    "ruamel.yaml>=0.18",
+]
+
+[project.urls]
+Homepage = "https://github.com/luyangkk/ib-suite"
+Repository = "https://github.com/luyangkk/ib-suite"
+Issues = "https://github.com/luyangkk/ib-suite/issues"
+
+[tool.setuptools.packages.find]
+include = ["ib_common*"]

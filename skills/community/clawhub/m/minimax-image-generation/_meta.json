@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn75kq1zc9ghdfh73jw4d00qj182zqa8",
-  "slug": "minimax-image-generation",
-  "version": "1.0.0",
-  "publishedAt": 1773555170792
+  "openclaw": {
+    "emoji": "🖼️",
+    "requires": {
+      "bins": ["python3", "curl"],
+      "env": ["MINIMAX_API_KEY"]
+    },
+    "primaryEnv": "MINIMAX_API_KEY"
+  }
 }

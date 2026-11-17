@@ -1,39 +1,58 @@
-## Description: <br>
-Monitor websites for changes, new content, and price alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor websites for changes, new content, and price alerts. Perfect for tracking competitors, job postings, or product prices.
 
-## Publisher: <br>
-[t3mr0i](https://clawhub.ai/user/t3mr0i) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t3mr0i](https://clawhub.ai/user/t3mr0i)
 
-## Use Case: <br>
-Businesses and individuals use this skill to monitor public websites for changed content, new listings, job postings, product prices, and other updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring checks can create unwanted load or violate site policies if targets and intervals are not chosen carefully. <br>
-Mitigation: Configure only specific public URLs with clear monitoring goals, use conservative polling intervals, and avoid sites whose policies prohibit automated fetching. <br>
-Risk: Monitoring private or authenticated pages can expose sensitive targets or collect information the user should not automate. <br>
-Mitigation: Do not use the skill on private or authenticated pages, and review scheduled checks regularly so they can be stopped easily. <br>
+## Use Case:
 
+External users, developers, and business operators use this skill to set up simple website monitoring for competitor pricing, job postings, product availability, and content updates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration] <br>
-**Output Format:** [Command-line text output and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured URLs and stored page hashes to report detected changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json) <br>
+Risk: The monitor can fetch arbitrary URLs, including sensitive or internal endpoints if a user supplies them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public URLs; validate URL schemes and destinations, and block localhost or private network ranges unless explicitly allowed.
+
+Risk: Unchecked monitor names can write monitor files outside the intended directory.
+
+Mitigation: Sanitize monitor names, reject path separators and traversal sequences, and constrain writes to the monitor state directory.
+
+Risk: Documented features may overstate what the included script supports.
+
+Mitigation: Review supported commands before use and align documentation with implemented add, list, and check behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/t3mr0i/skills/clank-website-monitor)
+- [Publisher profile](https://clawhub.ai/user/t3mr0i)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write monitor state and history files under the user's home directory when commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

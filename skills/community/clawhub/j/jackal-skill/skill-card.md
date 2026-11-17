@@ -1,40 +1,55 @@
-## Description: <br>
-Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage.
 
-## Publisher: <br>
-[Regan-Milne](https://clawhub.ai/user/Regan-Milne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[regan-milne](https://clawhub.ai/user/regan-milne)
 
-## Use Case: <br>
-Developers and agent users use this skill to persist, restore, and manage encrypted agent memory across sessions and machines through a remote Jackal-backed service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Encrypted memories are stored through a remote service and may contain sensitive content. <br>
-Mitigation: Confirm the storage posture is acceptable before use, avoid storing secrets, and treat memory content as sensitive data. <br>
-Risk: Loss or exposure of the local encryption key can make memories unrecoverable or compromise encrypted memory content. <br>
-Mitigation: Back up encryption keys securely, avoid logging JACKAL_MEMORY_API_KEY or JACKAL_MEMORY_ENCRYPTION_KEY, and rotate or delete keys according to local policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jackal Memory homepage](https://web-production-5cce7.up.railway.app) <br>
-- [Jackal Memory API login](https://web-production-5cce7.up.railway.app/auth/login) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent save, load, and check usage for encrypted cross-session memory through the Jackal Memory service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plaintext command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JACKAL_MEMORY_API_KEY and optional JACKAL_MEMORY_ENCRYPTION_KEY environment variables; memory content is encrypted client-side before remote storage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may automatically restore and persist sensitive cross-session memory with weak scoping and trust-boundary controls.
+
+Mitigation: Use a dedicated API key, avoid storing credentials or prompt-like behavioral rules in memory blobs, and review memory before enabling automatic load or save behavior.
+
+Risk: The skill depends on private API and encryption keys; exposed keys can disclose or modify stored memory, while lost encryption keys can make memory unrecoverable.
+
+Mitigation: Keep JACKAL_MEMORY_API_KEY and JACKAL_MEMORY_ENCRYPTION_KEY private, back up the encryption key securely, and restrict file and network access to the documented key path and service endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regan-milne/skills/jackal-skill)
+- [Publisher profile](https://clawhub.ai/user/regan-milne)
+- [Jackal Memory homepage](https://web-production-5cce7.up.railway.app)
+- [Jackal Memory login](https://web-production-5cce7.up.railway.app/auth/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JACKAL_MEMORY_API_KEY for service access and a local or environment-provided encryption key for client-side encryption.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

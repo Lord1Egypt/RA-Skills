@@ -1,44 +1,60 @@
-## Description: <br>
-Scores a named trade show against a company profile using Lensmor's API and returns an exhibit, attend, or skip recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores a specific trade show against a company profile using the Lensmor API and returns an exhibit, attend, or skip recommendation.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B event, marketing, and sales teams use this skill to evaluate whether a specific trade show merits exhibiting, attending, monitoring, or skipping. The skill returns a fit score, scoring breakdown, decision band, and recommendation based on Lensmor's event data and the user's company profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external Lensmor service for event lookup and scoring, so event queries and company-profile-derived scoring may be processed outside the user's environment. <br>
-Mitigation: Confirm organizational approval for using Lensmor before sending business context or event scoring requests. <br>
-Risk: The skill requires LENSMOR_API_KEY for authenticated API access. <br>
-Mitigation: Store the key in a secure environment variable and never paste or print the key in prompts, logs, or responses. <br>
-Risk: Fit scores can influence budget and event-planning decisions. <br>
-Mitigation: Use the returned score and recommendation as decision support, and review the source event, dates, edition, and business assumptions before committing spend. <br>
+## Use Case:
 
+External B2B event, marketing, and revenue teams use this skill to get a quantified trade-show fit score before committing booth budget or travel spend.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/lensmor-event-fit-score) <br>
-- [Lensmor API Documentation](https://api.lensmor.com/) <br>
-- [Lensmor Platform](https://platform.lensmor.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown score card with a score table, decision band, recommendation, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores and breakdown values must come directly from the Lensmor API response; the skill requires LENSMOR_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires a Lensmor API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store LENSMOR_API_KEY as a secret and do not paste real tokens into prompts, screenshots, logs, or shared output.
+
+Risk: Trade-show queries and Lensmor company-profile context may be sent to the Lensmor service to compute scores.
+
+Mitigation: Install and use the skill only when external Lensmor API processing is intended and acceptable for the user's data.
+
+Risk: Incorrect event selection can produce a misleading exhibit, attend, or skip decision.
+
+Mitigation: Confirm the resolved event ID, year, and edition before requesting a fit score.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/lensmor-event-fit-score)
+- [Lensmor API documentation](https://api.lensmor.com/)
+- [Lensmor platform](https://platform.lensmor.com)
+- [Lensmor website](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown score card with a decision band, score breakdown, recommendation, and follow-up suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores and breakdown values must come from the Lensmor API; the skill requires LENSMOR_API_KEY.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

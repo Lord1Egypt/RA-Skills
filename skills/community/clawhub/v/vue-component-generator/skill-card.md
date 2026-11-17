@@ -1,40 +1,54 @@
-## Description: <br>
-Generates a basic Vue 3 single-file component template from a component name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Vue 3 component templates with support for Composition API, Options API, TypeScript, and single-file components.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Frontend developers can use this skill to create a starter Vue single-file component in a local project. It is most useful for quick scaffolding before manually reviewing and extending the generated component. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes a .vue file in the current directory and can overwrite an existing file with the same name. <br>
-Mitigation: Run it from the intended project directory, use a simple component name, and check for an existing target file before execution. <br>
-Risk: The documentation advertises TypeScript, SCSS, API mode, and output-directory options that the provided script does not implement. <br>
-Mitigation: Treat the generated file as a basic Vue template and verify any additional options or framework conventions manually before relying on them. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to create starter Vue 3 single-file components with selected API style, TypeScript, SCSS, props, and emits patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/vue-component-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands] <br>
-**Output Format:** [Vue single-file component (.vue) plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a component file named from the first command-line argument in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact metadata and server release evidence) <br>
+Risk: Unsanitized component names can allow command injection or malformed replacement behavior in the bundled shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted component names and reject path separators, traversal sequences, newlines, shell metacharacters, and sed replacement metacharacters before execution.
+
+Risk: The shell script can overwrite arbitrary writable destinations derived from the component name.
+
+Mitigation: Run it in a fixed output directory, validate the final path, and refuse to write when the destination already exists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/vue-component-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands]
+
+**Output Format:** [Vue single-file component code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated component filenames and content depend on the provided component name and options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

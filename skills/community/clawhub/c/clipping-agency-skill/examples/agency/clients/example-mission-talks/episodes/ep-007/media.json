@@ -1,0 +1,14 @@
+{
+ "clips/clip-01.mp4": {
+  "mediaId": "example-media-mission-01",
+  "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0"
+ },
+ "clips/clip-02.mp4": {
+  "mediaId": "example-media-mission-02",
+  "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce"
+ },
+ "clips/clip-03.mp4": {
+  "mediaId": "example-media-mission-03",
+  "sha256": "3e1c3e9ecd369ef4d89e0b1ae32d20805e156c98e313abff40fcf36431c38b4a"
+ }
+}

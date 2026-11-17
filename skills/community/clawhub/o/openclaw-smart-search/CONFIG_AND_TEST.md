@@ -61,7 +61,7 @@ echo "✅ 主密钥已加载（${#OPENCLAW_MASTER_KEY}字符）"
 **百炼 MCP**（中文搜索，2000 次/月）：
 ```bash
 # 获取 API Key: https://dashscope.console.aliyun.com/apiKey
-export BAILIAN_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+export BAILIAN_API_KEY="REDACTED-SECRET"
 ```
 
 **Tavily**（高级搜索，1000 次/月）：

@@ -1,6 +1,38 @@
 {
-  "ownerId": "kn7cznn4j3cb0853gxtf1nqvb182354c",
-  "slug": "fb-ads-copywriter-pro-vic",
-  "version": "1.0.1",
-  "publishedAt": 1775124710212
+  "name": "copywriter",
+  "displayName": "AI 营销文案生成器",
+  "version": "0.1.0",
+  "description": "生成高转化率广告文案、社交媒体内容、邮件营销内容",
+  "author": "VIC ai-company",
+  "license": "MIT",
+  "homepage": "https://github.com/ai-company/copywriter",
+  "repository": "https://github.com/ai-company/copywriter",
+  "keywords": [
+    "copywriting",
+    "marketing",
+    "ai",
+    "advertising",
+    "social-media",
+    "email-marketing",
+    "openclaw"
+  ],
+  "category": "marketing",
+  "pricing": {
+    "basic": 29,
+    "professional": 99,
+    "enterprise": 299
+  },
+  "features": [
+    "7 种文案类型",
+    "多平台适配",
+    "7 种语气风格",
+    "批量生成",
+    "A/B 测试支持"
+  ],
+  "requirements": [
+    "python3.8+",
+    "openai>=1.0.0"
+  ],
+  "publishedAt": "2026-02-28T01:16:00+08:00",
+  "status": "published"
 }

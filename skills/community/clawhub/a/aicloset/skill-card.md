@@ -1,45 +1,57 @@
-## Description: <br>
-AI wardrobe management for clothing inventory, AI outfit recommendations, fashion knowledge search, and virtual try-on. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Closet helps agents use authenticated API calls for wardrobe management, outfit recommendations, fashion knowledge search, OOTD records, and virtual try-on.
 
-## Publisher: <br>
-[houdamiao](https://clawhub.ai/user/houdamiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houdamiao](https://clawhub.ai/user/houdamiao)
 
-## Use Case: <br>
-External users and agents use this skill to call the AI Closet API for wardrobe management, outfit and OOTD workflows, AI recommendations, clothing knowledge search, and virtual try-on. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send wardrobe data, personal images, and outfit history to the AI Closet service. <br>
-Mitigation: Install only if the user trusts the service with that data, review uploads and record-creation actions before execution, and avoid sensitive or private image URLs. <br>
-Risk: API keys passed in query strings may be exposed through logs, browser history, or shared URLs. <br>
-Mitigation: Prefer the x-api-key header documented by the skill instead of query-string API keys. <br>
-Risk: Uploaded photos and generated try-on assets may be retained or processed outside the local agent environment. <br>
-Mitigation: Check the provider's retention and deletion policies outside the skill docs before using personal images. <br>
+## Use Case:
 
+External users and developers use this skill to manage AI Closet wardrobe data, upload clothing images, record outfits, request AI styling recommendations, search fashion knowledge, and prepare virtual try-on API calls.
 
-## Reference(s): <br>
-- [Aicloset Skill on ClawHub](https://clawhub.ai/houdamiao/aicloset) <br>
-- [Wardrobe and Product API](api-wardrobe.md) <br>
-- [Outfit and OOTD API](api-outfit.md) <br>
-- [AI Capabilities API](api-ai.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICLOSET_API_KEY and curl; API calls exchange JSON or form data with the AI Closet service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends wardrobe data, photos, outfit context, and image references to the AI Closet service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an AI Closet service and account you trust, and avoid sending sensitive personal photos, location/date context, or images you are not authorized to share.
+
+Risk: The required API key is bound to a user account and authorizes access to that account's data.
+
+Mitigation: Store AICLOSET_API_KEY securely, avoid exposing it in logs or shared prompts, and rotate it if it may have been disclosed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houdamiao/skills/aicloset)
+- [AI Closet API base URL](https://aicloset-dev.wxbjq.top)
+- [Wardrobe and product API documentation](artifact/api-wardrobe.md)
+- [Outfit and OOTD API documentation](artifact/api-outfit.md)
+- [AI capability API documentation](artifact/api-ai.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and AICLOSET_API_KEY; API calls send wardrobe data, outfit context, and image references to the AI Closet service.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

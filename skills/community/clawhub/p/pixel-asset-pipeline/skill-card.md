@@ -1,41 +1,58 @@
-## Description: <br>
-AI pixel art sprite generation and processing pipeline for Godot games that generates sprite sheets with Seedream and processes them into Godot-ready assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI pixel art sprite generation + processing pipeline for Godot games. Generate sprite sheets with Seedream, auto-process into Godot-ready assets (hframes, transparent PNG).
 
-## Publisher: <br>
-[muxueqingze](https://clawhub.ai/user/muxueqingze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muxueqingze](https://clawhub.ai/user/muxueqingze)
 
-## Use Case: <br>
-Developers and game teams use this skill to generate or process pixel-art sprite sheets and convert them into Godot-ready transparent sprite sheets and frame PNGs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running local Python scripts can execute image-generation or processing code selected by command-line paths. <br>
-Mitigation: Use trusted JSON configs and only pass --generator or --processor paths to scripts you already trust. <br>
-Risk: Generated files are written to user-selected output directories. <br>
-Mitigation: Choose output directories deliberately and review generated assets before adding them to a game project. <br>
+## Use Case:
 
+Developers and game teams use this skill to generate pixel-art prompts, run local Python processing scripts, and turn AI-created sprite sheets into Godot-ready transparent PNG frames and sprite sheets.
 
-## Reference(s): <br>
-- [Sample batch configuration](references/sample_config.json) <br>
-- [Pixel Asset Pipeline on ClawHub](https://clawhub.ai/muxueqingze/pixel-asset-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Godot-ready sprite sheet PNGs and optional individual transparent frame PNGs when the referenced scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Batch generation can run arbitrary Python helper paths through configurable generator or processor arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only reviewed helper scripts from trusted locations, and do not pass untrusted paths to --generator or --processor.
+
+Risk: Unsafe configuration values can cause output writes outside the intended asset tree.
+
+Mitigation: Use trusted JSON configs, review output_base, category, and asset name values before batch runs, and keep outputs in a disposable project directory.
+
+Risk: The skill runs local Python scripts and depends on Pillow.
+
+Mitigation: Install dependencies in a virtual environment with a pinned Pillow version before running the scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muxueqingze/skills/pixel-asset-pipeline)
+- [Sample batch configuration](references/sample_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced local scripts can produce PNG sprite sheets and individual transparent PNG frame files when run by the agent or user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

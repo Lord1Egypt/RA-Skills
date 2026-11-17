@@ -1,0 +1,30 @@
+{
+  "version": "2.0",
+  "extends": "base.json",
+  "entity_types": {
+    "DefectType": {
+      "description": "缺陷类型定义",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "category": {"type": "string", "enum": ["表面", "尺寸", "颜色", "形状", "其他"], "required": true},
+        "characteristics": {"type": "array", "items": "string", "required": false},
+        "severity_level": {"type": "string", "enum": ["minor", "major", "critical"], "required": true}
+      }
+    },
+    "VisionModel": {
+      "description": "视觉算法模型",
+      "fields": {
+        "name": {"type": "string", "required": true},
+        "algorithm": {"type": "string", "required": true},
+        "applicable_defects": {"type": "array", "items": "string", "required": false},
+        "precision": {"type": "number", "required": false},
+        "recall": {"type": "number", "required": false},
+        "hardware_requirement": {"type": "object", "required": false}
+      }
+    }
+  },
+  "relation_types": {
+    "detects": {"from": "VisionModel", "to": "DefectType", "description": "算法模型检测某缺陷类型"},
+    "requires_hardware": {"from": "VisionModel", "to": "Device", "description": "算法模型需要某硬件"}
+  }
+}

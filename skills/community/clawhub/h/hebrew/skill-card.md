@@ -1,39 +1,47 @@
-## Description: <br>
-Helps agents write Hebrew that sounds human, casual, and native rather than formal, robotic, or AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Hebrew that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agent builders use this skill to guide Hebrew writing toward informal, natural Israeli Hebrew with appropriate register, gender agreement, fillers, slang, and English mixing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally encourages casual Hebrew, slang, expressiveness, and English mixing, which may be inappropriate for formal, professional, academic, or official writing. <br>
-Mitigation: Use explicit register instructions when formal Hebrew or professional tone is required, and review generated wording before publication. <br>
-Risk: Casual expression guidance includes profanity and strong reactions that could be unsuitable for some audiences. <br>
-Mitigation: Ask the agent to avoid profanity, slang, or informal reactions when the target audience or context requires restraint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/hebrew) <br>
+## Use Case:
+
+External users and developers use this skill to make Hebrew writing sound more natural, casual, and Israeli rather than overly formal or machine-generated.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill strongly defaults to casual Israeli Hebrew, which may be inappropriate for formal documents, neutral Hebrew, or another Hebrew variety.
+
+Mitigation: Ask for the desired register, dialect, or formality level when the context requires formal, neutral, or non-Israeli Hebrew.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text Hebrew writing guidance and rewritten text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no shell commands, code execution, data access, or persistence evidenced.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language Hebrew text or Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults toward casual Israeli Hebrew unless the user requests a formal, neutral, or different Hebrew variety.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

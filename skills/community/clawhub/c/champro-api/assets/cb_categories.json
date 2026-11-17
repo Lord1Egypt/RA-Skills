@@ -1,0 +1,40 @@
+{
+  "_source": "CHAMPRO Development Tools §1.2, Custom Builder embed URL table",
+  "_note": "Category id goes in the path; `lic` is the Custom Builder Embed Key from https://champrosports.com/AccountAndContactInfo. The all-categories URL takes no id.",
+  "base_url": "https://cb.champrosports.com/V2/Index",
+  "categories": [
+    {"id": null, "name": "All Categories"},
+    {"id": 1154, "name": "BASEBALL"},
+    {"id": 1155, "name": "FASTPITCH"},
+    {"id": 1159, "name": "MEN'S BASKETBALL"},
+    {"id": 1160, "name": "WOMEN'S BASKETBALL"},
+    {"id": 1158, "name": "FOOTBALL"},
+    {"id": 1168, "name": "HOCKEY"},
+    {"id": 1217, "name": "MEN'S SPORTSWEAR"},
+    {"id": 1219, "name": "WOMEN'S SPORTSWEAR"},
+    {"id": 1161, "name": "MEN'S VOLLEYBALL"},
+    {"id": 1162, "name": "WOMEN'S VOLLEYBALL"},
+    {"id": 1164, "name": "MEN'S SOCCER"},
+    {"id": 1165, "name": "WOMEN'S SOCCER"},
+    {"id": 1248, "name": "MEN'S TRACK"},
+    {"id": 1249, "name": "WOMEN'S TRACK"},
+    {"id": 1251, "name": "MEN'S LACROSSE"},
+    {"id": 1252, "name": "WOMEN'S LACROSSE"},
+    {"id": 1157, "name": "SPLASH SHIRTS"},
+    {"id": 1156, "name": "CAPS"},
+    {"id": 1171, "name": "7V7"},
+    {"id": 1172, "name": "WRESTLING"},
+    {"id": 1209, "name": "SLOWPITCH"},
+    {"id": 1542, "name": "REALTREE®"},
+    {"id": 1566, "name": "JUICE 5-DAY PROGRAM"},
+    {"id": 1567, "name": "LEGACY COLLECTION"},
+    {"id": 1590, "name": "SLAM DUNK 5-DAY PROGRAM"}
+  ],
+  "file_types": [
+    {"type": "ProofPdf", "extension": "pdf", "description": "Production proof — the file a CUSTOM order's ProofFileURL must point at."},
+    {"type": "FrontImage", "extension": "png", "description": "Front view render."},
+    {"type": "BackImage", "extension": "png", "description": "Back view render."},
+    {"type": "LeftImage", "extension": "png", "description": "Left view render."},
+    {"type": "RightImage", "extension": "png", "description": "Right view render."}
+  ]
+}

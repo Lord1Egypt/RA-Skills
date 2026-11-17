@@ -1,41 +1,49 @@
-## Description: <br>
-Helps teams navigate governance and regulatory topics for autonomous AI agents across EU AI Act compliance, contract lifecycle management, insurance risk pools, and tax or ledger compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides four compliance and legal guides for autonomous AI agents covering EU AI Act compliance, contract lifecycle management, agent insurance and risk pools, and tax/ledger compliance.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Compliance, legal, and agent-governance teams use this bundle as guide material for planning AI agent regulatory, contracting, insurance, and tax or ledger workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks for sensitive payment, signing, wallet, and API credentials without explaining why they are required. <br>
-Mitigation: Do not provide production Stripe keys, signing keys, wallet values, or broad API keys unless the publisher documents the need, scope, and protection model for each credential. <br>
-Risk: The bundle is compliance and legal guidance, so inaccurate or stale guidance could affect governance decisions. <br>
-Mitigation: Treat the guides as planning material and have qualified legal, tax, and compliance reviewers confirm requirements before operational use. <br>
+## Use Case:
 
+External developers, compliance teams, and agent governance teams use this bundle as human-facing guidance for regulatory, contract, insurance, and tax considerations around autonomous AI agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-bundle-compliance-legal) <br>
-- [Publisher profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guide bundle] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide content; no install commands are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The documentation-only bundle declares sensitive API, signing, wallet, and Stripe credential requirements without an executable feature that explains how those credentials are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide those credentials unless the publisher supplies a clear, reviewed executable feature with narrow credential scope and protection guidance.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-bundle-compliance-legal)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and metadata declarations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only bundle; artifact metadata declares required environment variables but no executable install path.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Runs multi-source research across GitHub, HN, Reddit, arXiv, and Semantic Scholar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs multi-source research across GitHub, HN, Reddit, arXiv, and Semantic Scholar.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and technical researchers use this skill to classify a research topic, dispatch parallel source-specific agents, synthesize findings, and produce a concise report or brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact public research sources through agents, so results can include incomplete, stale, or source-biased findings. <br>
-Mitigation: Review cited sources and validate important findings before using the output for decisions. <br>
-Risk: The skill may save research reports and session state locally under the workspace. <br>
-Mitigation: Review or delete generated artifacts when the research topic or findings are sensitive. <br>
+## Use Case:
 
+Developers and researchers use this skill to survey technical topics across code repositories, online discussions, academic papers, and web sources, then synthesize the findings into a report.
 
-## Reference(s): <br>
-- [Tome plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-tome-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, summaries, transcripts, JSON agent findings, and local research artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save reports and session state under the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence and target metadata) <br>
+Risk: Research topics sent to external search services may include confidential details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep confidential information out of search queries unless the receiving service is approved for it.
+
+Risk: Deferring a research story can create a project issue.
+
+Mitigation: Review the story and destination before choosing to defer it for issue creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-tome-research)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown]
+
+**Output Format:** [Markdown report, brief, or transcript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents synthesized research findings and coverage information when available.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

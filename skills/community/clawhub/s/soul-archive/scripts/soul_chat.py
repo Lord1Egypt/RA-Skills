@@ -8,7 +8,7 @@
   python3 soul_chat.py --mode prompt
   python3 soul_chat.py --soul-dir /custom/path --mode summary
 
-默认数据目录：~/.agent-commons/skills_data/soul-archive/（跨平台兼容）
+默认数据目录：~/.agent-guild/skills_data/soul-archive/（跨平台兼容）
 """
 
 

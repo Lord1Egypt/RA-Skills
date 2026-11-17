@@ -1,253 +1,83 @@
 ---
 name: gemini
-description: Call the Gemini API (gemini-2.5-flash, gemini-2.5-pro, gemini-3-flash-preview, gemini-3-pro-preview, gemini-3.1-pro-preview, gemini-3.5-flash) through RunAPI using the official OpenAI SDK or Gemini contents clients. Use when the user asks for Gemini chat, streaming completions, multimodal vision input, Google Search grounding, structured output, reasoning effort, or to point an existing OpenAI or Gemini client at RunAPI as the base URL.
+description: Call Gemini 2.5 and 3 series models through RunAPI using Gemini contents clients. Use for Gemini chat, streaming, multimodal input, grounding, structured output, reasoning, or an existing compatibility client that needs the conditional reference.
 documentation: https://runapi.ai/models/gemini.md
 provider_page: https://runapi.ai/providers/google.md
 catalog: https://runapi.ai/models.md
 metadata:
   openclaw:
     homepage: https://runapi.ai/models/gemini
-    primaryEnv: RUNAPI_TOKEN
+    primaryEnv: GEMINI_API_KEY
     requires:
-      env:
-      - RUNAPI_TOKEN
+      env: [GEMINI_API_KEY, GEMINI_BASE_URL]
     envVars:
-    - name: RUNAPI_TOKEN
-      required: true
-      description: RunAPI API key used for Gemini requests.
-    - name: GOOGLE_API_KEY
-      required: false
-      description: Optional alias when using Gemini contents streaming examples.
-    - name: GOOGLE_GENAI_BASE_URL
-      required: false
-      description: Optional Gemini client base URL override for RunAPI.
+    - {name: GEMINI_API_KEY, required: true, description: RunAPI API key used by Gemini contents clients.}
+    - {name: GEMINI_BASE_URL, required: true, description: Set to https://runapi.ai for Gemini on RunAPI.}
 ---
 
 # Gemini on RunAPI
 
-Gemini on RunAPI exposes **two request styles**:
+Use Gemini contents at `https://runapi.ai` with `generateContent` or
+`streamGenerateContent` as the primary protocol.
 
-| Request style | Endpoint | Use when |
-|---|---|---|
-| OpenAI-compatible | `POST /v1/chat/completions` | You already use the OpenAI SDK or any OpenAI client |
-| Gemini contents | `POST /v1beta/models/<model>:generateContent` or `:streamGenerateContent` | You use a Gemini SDK/client with `contents` requests |
+## Primary protocol recipe
 
-Both accept the same RunAPI API Key.
+### Authenticate
 
-## Setup
+Set `GEMINI_API_KEY` to a RunAPI API key and the Gemini client base URL to
+`https://runapi.ai`. Raw requests send the key with `x-goog-api-key`.
 
-```dotenv
-RUNAPI_TOKEN=YOUR_RUNAPI_TOKEN
-```
-
-Get a RunAPI API Key at <https://runapi.ai/api_keys>.
-
-### OpenAI-compatible setup
-
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    api_key="YOUR_RUNAPI_TOKEN",
-    base_url="https://runapi.ai/v1",
-)
-```
-
-```typescript
-import OpenAI from "openai";
-
-const client = new OpenAI({
-  apiKey: "YOUR_RUNAPI_TOKEN",
-  baseURL: "https://runapi.ai/v1",
-});
-```
-
-### Gemini contents setup
-
-```bash
-export GOOGLE_API_KEY=YOUR_RUNAPI_TOKEN
-export GOOGLE_GENAI_BASE_URL=https://runapi.ai
-```
-
-## Core recipe — OpenAI-compatible
-
-```python
-response = client.chat.completions.create(
-    model="gemini-2.5-flash",
-    messages=[{"role": "user", "content": "Explain quantum computing simply."}],
-    reasoning_effort="high",
-)
-print(response.choices[0].message.content)
-print(response.usage)
-```
-
-```typescript
-const response = await client.chat.completions.create({
-  model: "gemini-2.5-flash",
-  messages: [{ role: "user", content: "Explain quantum computing simply." }],
-});
-```
-
-```bash
-curl -X POST "https://runapi.ai/v1/chat/completions" \
-  -H "x-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "gemini-2.5-flash",
-    "messages": [{"role": "user", "content": "Explain quantum computing simply."}]
-  }'
-```
-
-## Core recipe — Gemini contents
+### Send request
 
 ```bash
 curl -X POST \
-  "https://runapi.ai/v1beta/models/gemini-3-flash-preview:streamGenerateContent" \
-  -H "x-goog-api-key: YOUR_RUNAPI_TOKEN" \
+  "https://runapi.ai/v1beta/models/gemini-3.7-flash:streamGenerateContent" \
+  -H "x-goog-api-key: $GEMINI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{
-    "contents": [
-      { "role": "user", "parts": [{ "text": "Hello!" }] }
-    ]
-  }'
+  -d '{"contents":[{"role":"user","parts":[{"text":"Summarize this review."}]}]}'
 ```
 
-For `gemini-3-flash-preview` and `gemini-3.5-flash`, RunAPI uses the native
-Gemini `streamGenerateContent` route. For other callable Gemini models, RunAPI
-accepts Gemini `contents` requests and bridges them to the OpenAI-compatible
-chat request format. Use the official Gemini SDKs when an existing application
-already sends `contents` requests; for new app code, prefer the
-OpenAI-compatible setup.
+Use `generateContent` only when the selected model supports synchronous output;
+`gemini-3.7-flash` accepts only `streamGenerateContent`. For this model, native
+tools are limited to `functionDeclarations` and the `googleSearch` tool with an
+empty object payload;
+native thinking is limited to `generationConfig.thinkingConfig.includeThoughts`
+and `thinkingLevel` of `low` or `high`.
 
-## Streaming (OpenAI-compatible)
+### Verify result
 
-```python
-stream = client.chat.completions.create(
-    model="gemini-2.5-flash",
-    messages=[{"role": "user", "content": "Write a haiku about coding."}],
-    stream=True,
-)
-for chunk in stream:
-    delta = chunk.choices[0].delta.content
-    if delta:
-        print(delta, end="", flush=True)
-```
+Require candidate content, terminal `finishReason`, and `usageMetadata`. A
+stream is complete only after the terminal candidate and Usage; an HTTP 2xx
+without both is incomplete.
 
-Streaming runs through a regional edge proxy so the request does not hold a
-Rails/Puma thread. Long generations should always stream.
+### Stop boundaries
 
-## Vision / multimodal
+Correct a rejected shape once using the structured error. Retry transport once
+only before any candidate or Usage and when replay is safe. Record a terminal
+error and stop without changing model or protocol.
 
-```json
-{
-  "model": "gemini-2.5-flash",
-  "messages": [
-    {
-      "role": "user",
-      "content": [
-        { "type": "text", "text": "What is in this image?" },
-        { "type": "image_url", "image_url": { "url": "https://runapi.ai/img.jpg" } }
-      ]
-    }
-  ]
-}
-```
+## Compatibility protocols
 
-Standard OpenAI multimodal block for the OpenAI-compatible endpoint. For the
-`contents` streaming endpoint, embed image data as `parts[].inlineData` or
-`parts[].fileData`.
-
-## Google Search grounding
-
-```json
-{
-  "model": "gemini-2.5-pro",
-  "messages": [
-    { "role": "user", "content": "Latest news on Gemini 3." }
-  ],
-  "tools": [
-    { "type": "function", "function": { "name": "googleSearch" } }
-  ]
-}
-```
-
-Available on `gemini-2.5-flash`, `gemini-2.5-pro`, `gemini-3.1-pro-preview`,
-and `gemini-3-pro-preview`.
-
-## Structured output
-
-```json
-{
-  "model": "gemini-2.5-flash",
-  "messages": [{ "role": "user", "content": "Give me one person object." }],
-  "response_format": {
-    "type": "json_schema",
-    "json_schema": {
-      "name": "person",
-      "schema": {
-        "type": "object",
-        "properties": { "name": { "type": "string" }, "age": { "type": "integer" } },
-        "required": ["name", "age"]
-      }
-    }
-  }
-}
-```
-
-## Reasoning effort
-
-Supported on `gemini-2.5-pro`, `gemini-3.1-pro-preview`, `gemini-3-pro-preview`,
-and `gemini-3-flash-preview` — pass `reasoning_effort: "low" | "medium" | "high"`.
-
-## List models
-
-```bash
-curl https://runapi.ai/v1beta/models -H "x-api-key: YOUR_RUNAPI_TOKEN"
-```
-
-Or via the OpenAI-style path:
-
-```bash
-curl https://runapi.ai/v1/models \
-  -H "Authorization: Bearer YOUR_RUNAPI_TOKEN"
-```
+Load [compatibility protocols](references/compatibility-protocols.md) only when an existing client requires OpenAI-compatible Chat Completions.
 
 ## Supported models
 
-| Model ID | Capabilities |
+| Model ID | Use when |
 |---|---|
-| `gemini-3.5-flash` | Streaming `contents` requests, multimodal, function calling, thoughts |
-| `gemini-3.1-pro-preview` | + reasoning effort |
-| `gemini-3-pro-preview` | + reasoning effort |
-| `gemini-3-flash-preview` | Chat, multimodal, function calling, structured output, reasoning effort |
-| `gemini-2.5-pro` | + reasoning effort |
-| `gemini-2.5-flash` | Chat, multimodal, Google Search, structured output, thoughts |
+| `gemini-3.8-flash` | Fast text-only chat and function calling; image, audio, and file input are rejected |
+| `gemini-3.7-flash` | Fast streaming chat; use native tools/search grounding only with Gemini contents |
+| `gemini-3.6-flash` | Fast current-generation multimodal requests |
+| `gemini-3.5-flash` | Fast multimodal and function-calling requests |
+| `gemini-3.5-flash-lite` | Lightweight text generation with native Gemini streaming |
+| `gemini-3.1-pro-preview` | Complex multimodal and reasoning requests |
+| `gemini-3.1-flash-lite` | Lightweight text-only requests; image, audio, and file input are rejected |
+| `gemini-3-flash-preview` | Preview flash workloads |
+| `gemini-2.5-pro` | Stable high-quality multimodal requests |
+| `gemini-2.5-flash` | Stable fast multimodal requests |
+| `gemini-2.5-flash-lite` | Lightweight text-only requests; image, audio, and file input are rejected |
 
-`gemini-flash-latest` resolves to `gemini-3-flash-preview`.
+## References
 
-## Connect Gemini CLI itself
-
-```bash
-export GOOGLE_API_KEY=YOUR_RUNAPI_TOKEN
-export GOOGLE_GENAI_BASE_URL=https://runapi.ai
-gemini
-```
-
-## Agent rules
-
-- Use the OpenAI-compatible endpoint for new app code. Use Gemini `contents`
-  paths when an existing client already sends `contents` requests.
-- Native Gemini streaming is available for `gemini-3-flash-preview` and
-  `gemini-3.5-flash`; other callable Gemini models accept `contents` requests
-  through a RunAPI protocol bridge.
-- Use streaming for any response longer than a few hundred tokens. Do not
-  hold the agent on a long blocking request.
-- Google Search grounding uses a `googleSearch` function tool.
-- Pricing, rate limits, quotas — link to <https://runapi.ai/models/gemini.md>,
-  not this skill file.
-
-## Routing
-
-- Model page: <https://runapi.ai/models/gemini.md>
-- Provider page: <https://runapi.ai/providers/google.md>
-- Catalog: <https://runapi.ai/models.md>
+- <https://runapi.ai/models/gemini.md>
+- <https://runapi.ai/providers/google.md>
+- <https://runapi.ai/models.md>

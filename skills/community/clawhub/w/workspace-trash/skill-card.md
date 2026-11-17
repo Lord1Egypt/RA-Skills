@@ -1,40 +1,54 @@
-## Description: <br>
-Soft-delete protection for workspace files that redirects deletion requests into a recoverable trash workflow instead of immediate permanent removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Trash provides soft-delete protection for workspace files by moving deletion targets to a recoverable trash instead of removing them permanently.
 
-## Publisher: <br>
-[crewhaus](https://clawhub.ai/user/crewhaus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crewhaus](https://clawhub.ai/user/crewhaus)
 
-## Use Case: <br>
-Developers and agents use this skill when deleting, removing, or cleaning workspace files so files are moved to recoverable trash with list, restore, empty, and size actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route many delete, remove, or cleanup requests through this skill. <br>
-Mitigation: Require explicit confirmation before delete or trash-empty actions and verify the exact paths before approving them. <br>
-Risk: Emptying trash permanently deletes trash contents and cannot be undone. <br>
-Mitigation: Show the trash contents first and require explicit user confirmation before running the empty action. <br>
+## Use Case:
 
+Developers and coding agents use this skill to replace direct workspace deletion with recoverable trash operations, inspect trashed items, restore files, and empty trash after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crewhaus/workspace-trash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown instructions with shell command examples and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Moves files into a workspace trash directory and records restore metadata in a manifest.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A writable trash manifest could steer restore operations to move files outside the advertised OpenClaw scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted workspaces until restore validates manifest entries, rejects traversal, and rechecks source and destination scope immediately before moving files.
+
+Risk: Emptying trash permanently deletes the trash contents.
+
+Mitigation: Require explicit confirmation and show the trash contents before invoking the empty action.
+
+## Reference(s):
+
+- [Workspace Trash on ClawHub](https://clawhub.ai/crewhaus/skills/workspace-trash)
+- [CrewHaus publisher profile](https://clawhub.ai/user/crewhaus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce file movement actions and trash manifest updates when the agent invokes the bundled shell script.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

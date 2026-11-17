@@ -1,44 +1,60 @@
-## Description: <br>
-Detects structural macro regime transitions over a 1-2 year horizon using cross-asset ratio analysis across market concentration, yield curve, credit, size factor, equity-bond, and sector rotation signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects structural macro regime transitions over a 1-2 year horizon using cross-asset ratios across concentration, yield curve, credit, size, equity-bond, and sector rotation signals.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and developers use this skill to run mechanical cross-asset regime analysis, classify the current macro regime, and produce strategic positioning guidance for long-horizon market context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Financial Modeling Prep and requires an FMP API key for public market data. <br>
-Mitigation: Provide the API key only in an environment where Financial Modeling Prep access is acceptable, and review API usage before execution. <br>
-Risk: The generated regime assessment and portfolio posture guidance may be mistaken for personalized investment advice. <br>
-Mitigation: Use the output as informational market analysis and require human review before applying it to investment decisions. <br>
-Risk: The script writes timestamped JSON and Markdown reports to the configured output directory. <br>
-Mitigation: Run it in a directory where generated market-analysis reports are expected and safe to retain. <br>
+## Use Case:
 
+External users and analysts use this skill to assess current macro or market regime transitions, structural rotation, and long-term positioning signals from cross-asset market data. It is intended for general market commentary rather than personalized financial advice.
 
-## Reference(s): <br>
-- [Regime Detection Methodology](references/regime_detection_methodology.md) <br>
-- [Indicator Interpretation Guide](references/indicator_interpretation_guide.md) <br>
-- [Historical Regime Examples](references/historical_regimes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report, JSON report, and concise natural-language findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires market data access through Financial Modeling Prep using FMP_API_KEY; writes timestamped report files to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Market posture output could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present findings as general market commentary and require human review before using them for investment decisions.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Prefer setting FMP_API_KEY in the environment and avoid logging or sharing commands that include credentials.
+
+Risk: The artifact README mentions a Yahoo Finance command that server security guidance flags as unsupported.
+
+Mitigation: Use the documented FMP API path unless the alternate data source is fixed and revalidated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/einstein-research-regime-dv)
+- [Regime Detection Methodology](references/regime_detection_methodology.md)
+- [Indicator Interpretation Guide](references/indicator_interpretation_guide.md)
+- [Historical Regime Examples](references/historical_regimes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Natural-language analysis plus generated Markdown and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires market data access through FMP_API_KEY or an explicit API key; generated reports are timestamped local files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

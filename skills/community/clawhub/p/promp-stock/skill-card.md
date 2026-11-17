@@ -1,43 +1,58 @@
-## Description: <br>
-Promo Stack helps ecommerce teams align promotional inventory, ad pacing, pre-order messaging, and supplier outreach during high-velocity sales events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Promo Stack helps ecommerce and paid-media teams align hot-SKU inventory with live ad spend during peak sales, including sell-through thresholds, pre-order messaging, stock-versus-ads sync tables, and supplier restock outreach.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Employees, operators, and ecommerce teams use this skill to connect stock levels with paid-media decisions, customer-facing availability copy, and supplier escalation during peak sale periods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be wrong if inventory snapshots, ad schedules, thresholds, or approval owners are stale or incomplete. <br>
-Mitigation: Confirm current inventory data, sell-through thresholds, ad account status, approval owners, and customer-service policy before pausing ads or publishing copy. <br>
-Risk: Pre-order or backorder copy can create customer disclosure or regional compliance issues if it overpromises availability. <br>
-Mitigation: Review ship windows, cancellation policy, charge timing, and regional pre-order disclosure rules before publishing customer-facing text. <br>
-Risk: Supplier escalation messages may trigger operational commitments before internal approval. <br>
-Mitigation: Confirm required quantities, dates, PO references, ship-to or incoterm details, and escalation owners before sending supplier communications. <br>
+## Use Case:
 
+External ecommerce operators, inventory teams, and paid-media teams use this skill during high-velocity promotions to decide when to pace or pause ads, switch customer-facing pages to pre-order language, alert internal owners, and request supplier restocks.
 
-## Reference(s): <br>
-- [Promo inventory and ad sync playbook](references/promo_inventory_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rijoyai/promp-stock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with decision blocks, tables, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces threshold logic, stock-vs-ads sync tables, pre-order copy, supplier email templates, internal alerts, and T-24h checklists; no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Operational recommendations could pause or reduce active advertising for inventory-sensitive products.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the responsible media or commerce owner review ad pacing and pause recommendations before applying them.
+
+Risk: Pre-order or backorder copy could make inaccurate availability, ship-date, or charge-timing claims.
+
+Mitigation: Confirm inventory data, restock timing, cancellation policy links, and regional pre-sale requirements before publishing customer-facing copy.
+
+Risk: Supplier emails may include quantities, PO details, deadlines, or escalation language that affect vendor commitments.
+
+Mitigation: Review supplier messages against current purchase orders, shipping terms, and escalation policy before sending.
+
+## Reference(s):
+
+- [Promo inventory and ad sync playbook](references/promo_inventory_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/promp-stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with decision blocks, tables, customer copy, internal alerts, and supplier email templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational recommendations and ready-to-review messaging; it does not install code, access credentials, or take actions automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,67 @@
-## Description: <br>
-A data-engineering skill suite for requirements analysis, architecture design, data modeling, SQL development, ETL pipeline work, data quality checks, and data testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pugongying Data Skill is a Chinese-language data-engineering skill suite that helps agents support requirements analysis, architecture design, data modeling, SQL development, ETL pipeline work, data quality checks, and data testing.
 
-## Publisher: <br>
-[shixiangyu2](https://clawhub.ai/user/shixiangyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Data engineers and developers use this skill to plan and produce end-to-end data warehouse and data pipeline artifacts, including requirement packages, architecture packages, model designs, SQL, ETL plans, quality rules, and test packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill suite can produce shell, database, deployment, and data-modifying guidance across multiple modules. <br>
-Mitigation: Use it first in a disposable or development workspace and require manual approval before running database writes, replace/upsert operations, DELETE/UPDATE repairs, package handoffs, or deployment steps. <br>
-Risk: Generated SQL, ETL code, and test or quality automation may be incorrect or unsafe for production data. <br>
-Mitigation: Review generated SQL, ETL code, quality rules, and deployment instructions before execution, and keep production credentials out of prompts and generated files. <br>
+## Use Case:
 
+Data engineers and developers use this skill suite to plan and produce data warehouse, ETL, SQL, data quality, and data testing artifacts across an end-to-end data development workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shixiangyu2/pugongying-data-skills) <br>
-- [README](README.md) <br>
-- [Skill Connections](skill-connections.yaml) <br>
-- [Skill Hub](skill-hub.md) <br>
-- [Requirement Standards](requirement-analyst/references/requirement-standards.md) <br>
-- [Architecture Standards](architecture-designer/references/architecture-standards.md) <br>
-- [Data Modeling Standards](modeling-assistant/references/data-modeling-standards.md) <br>
-- [SQL Standards](sql-assistant/references/sql-standards.md) <br>
-- [ETL Standards](etl-assistant/references/etl-standards.md) <br>
-- [Data Quality Standards](dq-assistant/references/data-quality-standards.md) <br>
-- [Test Standards](test-engineer/references/test-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML, SQL, shell, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces standardized YAML package artifacts and human-reviewable implementation guidance across the suite modules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release, package.json, CHANGELOG released 2026-04-10) <br>
+Risk: Project initialization scripts can create or modify local project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run init scripts only in a new or disposable project directory and use simple trusted project names.
+
+Risk: Generated code, YAML packages, and deployment steps may be incorrect or unsuitable for a production environment.
+
+Mitigation: Review generated artifacts before sharing or using them, and require explicit human approval before any production deployment.
+
+Risk: Dependencies may change if installed without version constraints.
+
+Mitigation: Pin dependencies before installing or running project tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shixiangyu2/skills/pugongying-data-skills)
+- [README](README.md)
+- [Skill connections](skill-connections.yaml)
+- [Skill hub](skill-hub.md)
+- [Requirement standards](requirement-analyst/references/requirement-standards.md)
+- [Architecture standards](architecture-designer/references/architecture-standards.md)
+- [Data modeling standards](modeling-assistant/references/data-modeling-standards.md)
+- [SQL standards](sql-assistant/references/sql-standards.md)
+- [ETL standards](etl-assistant/references/etl-standards.md)
+- [Data quality standards](dq-assistant/references/data-quality-standards.md)
+- [Test standards](test-engineer/references/test-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured YAML-oriented guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are organized around standardized package files such as requirement_package.yaml, architecture_package.yaml, modeling_package.yaml, sql_package.yaml, etl_package.yaml, dq_package.yaml, and test_package.yaml.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, package.json, CHANGELOG, released 2026-04-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

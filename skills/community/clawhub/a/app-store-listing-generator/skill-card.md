@@ -1,44 +1,59 @@
-## Description: <br>
-Generates optimized iOS and Android app store listings, release notes, and ASO keyword strategies tailored to platform limits and marketing best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates optimized iOS and Android app store listings, release notes, and ASO keyword strategies tailored to platform limits and marketing best practices.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Indie developers, mobile app studios, growth marketers, and agencies use this skill to draft app store copy, release notes, A/B variants, and ASO keyword plans for iOS and Google Play listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing claims, keyword advice, or content rating suggestions may be inaccurate or unsuitable for a specific app or store policy. <br>
-Mitigation: Review all generated copy and recommendations before manually publishing to App Store Connect or Google Play Console. <br>
-Risk: Competitor keyword suggestions or app metadata may include policy-sensitive wording such as protected brand names. <br>
-Mitigation: Check keyword fields and listing text against current Apple and Google Play policies before use. <br>
+## Use Case:
 
+Indie developers, mobile app studios, growth marketers, and agencies use this skill to draft platform-specific app store listings, release notes, A/B test variants, and ASO keyword strategy for mobile apps.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/gitflopez/app-store-listing-generator) <br>
-- [README](artifact/README.md) <br>
-- [iOS App Store Listing Prompt](artifact/prompts/01-ios-app-store-listing.md) <br>
-- [Google Play Listing Prompt](artifact/prompts/02-google-play-listing.md) <br>
-- [ASO Keyword Strategy Prompt](artifact/prompts/04-aso-keyword-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured app store listing fields, release notes, keyword tables, checklists, and A/B variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy includes requested character counts and platform-specific field constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated listings may include inaccurate marketing claims, testimonials, competitor comparisons, keyword estimates, notification behavior, or privacy-related descriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all generated claims against the app's actual behavior, analytics, user permissions, privacy practices, and current App Store and Google Play policies before publishing.
+
+Risk: Keyword strategy outputs may suggest competitor brand names or metadata patterns that create store policy risk.
+
+Mitigation: Review iOS keyword fields, Google Play descriptions, and release notes for prohibited competitor terms, keyword stuffing, and unsupported ranking claims before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitflopez/skills/app-store-listing-generator)
+- [Publisher Profile](https://clawhub.ai/user/gitflopez)
+- [README](README.md)
+- [iOS App Store Listing Prompt](prompts/01-ios-app-store-listing.md)
+- [Google Play Listing Prompt](prompts/02-google-play-listing.md)
+- [Release Notes Prompt](prompts/03-release-notes.md)
+- [ASO Keyword Strategy Prompt](prompts/04-aso-keyword-strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted app store copy, release notes, keyword strategy, checklists, and A/B test variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include character counts and platform-specific constraints for iOS App Store and Google Play fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

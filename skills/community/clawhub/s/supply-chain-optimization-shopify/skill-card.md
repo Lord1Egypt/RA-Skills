@@ -1,41 +1,58 @@
-## Description: <br>
-Supply Chain Bottleneck Analyzer for Shopify/DTC stores. Diagnose cash flow, inventory, shipping costs, and customer acquisition efficiency. Includes CAC/LTV analysis, 3PL cost optimization, and ad spend benchmarks. No API key required for basic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supply Chain Bottleneck Analyzer for Shopify/DTC stores that diagnoses cash flow, inventory, shipping costs, customer acquisition efficiency, CAC/LTV, 3PL cost optimization, and ad spend benchmarks without requiring an API key for basic analysis.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External ecommerce operators and analysts use this skill to diagnose Shopify/DTC supply chain bottlenecks across cash flow, inventory, fulfillment, margin, and acquisition-cost metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopify-focused recommendations may be misleading where the calculator or assumptions still reflect Amazon/FBA workflows. <br>
-Mitigation: Review the platform assumptions, fulfillment fees, payment cycle, and benchmark thresholds against the target Shopify/DTC operation before relying on results. <br>
-Risk: Optional Shopify or ShipBob token examples could expose sensitive store or logistics data if copied into shared shells, logs, or prompts. <br>
-Mitigation: Use narrowly scoped read-only credentials only when needed, avoid storing tokens in shell history or shared logs, and rotate any credential that may have been exposed. <br>
+## Use Case:
 
+External Shopify and DTC operators, ecommerce analysts, and developers use this skill to calculate supply-chain metrics, diagnose bottlenecks, and review cash flow, inventory, shipping, and customer-acquisition tradeoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/supply-chain-optimization-shopify) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, formulas, configuration examples, and optional Python-generated reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ecommerce benchmarks, bottleneck summaries, cost breakdowns, and environment variable examples for optional integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Global, unpinned npx-based installation may resolve changing package contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact source before installation and pin or vendor a reviewed release where possible.
+
+Risk: Credential examples mention Shopify and ShipBob tokens, while the reviewed script does not appear to need or use those tokens.
+
+Mitigation: Do not export real tokens for basic analysis; if integrating separately, use least-privilege scopes and avoid storing secrets in shell history.
+
+Risk: Financial output is a rough calculator and the reviewed artifact retains some Amazon/FBA assumptions despite Shopify/DTC positioning.
+
+Mitigation: Treat results as advisory estimates and validate formulas, benchmarks, and store data before making operational or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/supply-chain-optimization-shopify)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with tables, code blocks, and ranked recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts optional JSON command-line input for calculator parameters; basic analysis does not require API keys.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

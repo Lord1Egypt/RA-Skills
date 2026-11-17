@@ -1,0 +1,14 @@
+# Generated or user-provided image material must never be committed.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.pdf
+work/
+outputs/
+test/
+tests/
+fixtures/
+__pycache__/
+*.py[cod]

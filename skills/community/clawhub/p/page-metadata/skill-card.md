@@ -1,40 +1,54 @@
-## Description: <br>
-Guides optimization of meta tags beyond title, description, Open Graph, and Twitter Cards, including hreflang, robots, viewport, charset, and metadata completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides optimization of meta tags beyond title, description, Open Graph, and Twitter Cards, including hreflang, meta robots, viewport, charset, and metadata completeness.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO practitioners, and site maintainers use this skill to audit and implement page metadata for multilingual targeting, indexing controls, mobile viewport behavior, charset declaration, and metadata completeness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect metadata recommendations can affect indexing, localization, or mobile presentation. <br>
-Mitigation: Review generated hreflang, robots, viewport, charset, and canonical recommendations before applying them. <br>
-Risk: Project context files may contain unrelated sensitive information. <br>
-Mitigation: Keep project context files limited to language, locale, indexing goals, and other details needed for metadata decisions. <br>
+## Use Case:
 
+Developers, content teams, and SEO practitioners use this skill to assess and improve non-title SEO metadata for web pages, especially hreflang, robots directives, viewport, charset, and metadata completeness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/page-metadata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with HTML and Next.js examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated meta robots or hreflang recommendations may affect indexing, crawling behavior, or regional search targeting if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed robots directives, hreflang mappings, and canonical alignment before publishing changes to a live site.
+
+Risk: Project-context files may be read when present to tailor recommendations.
+
+Mitigation: Keep project-context files limited to information appropriate for SEO metadata guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/page-metadata)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with HTML and framework configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read documented project-context files when present to tailor language, locale, indexing, and technology-stack recommendations.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

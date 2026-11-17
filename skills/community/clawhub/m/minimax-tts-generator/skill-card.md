@@ -1,42 +1,59 @@
-## Description: <br>
-MiniMax TTS Generator converts text into natural-sounding speech using MiniMax APIs, with selectable voices, speed and pitch controls, and MP3, WAV, or PCM output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech (TTS) generation using the MiniMax API converts text into natural-sounding speech with multiple voices, adjustable speed and pitch, and MP3, WAV, or PCM output.
 
-## Publisher: <br>
-[lanhaixuan](https://clawhub.ai/user/lanhaixuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanhaixuan](https://clawhub.ai/user/lanhaixuan)
 
-## Use Case: <br>
-Developers, content creators, and agents use this skill to turn scripts, articles, narration, or multi-segment dialogue into audio through the MiniMax TTS API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and submitted text could be exposed if MINIMAX_API_HOST points to an untrusted endpoint. <br>
-Mitigation: Use a dedicated MiniMax TTS key, keep MINIMAX_API_HOST unset unless the endpoint is explicitly trusted, and avoid sending sensitive text. <br>
-Risk: User-selected output paths can overwrite existing files. <br>
-Mitigation: Choose output paths inside a safe workspace and review the target path before execution. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert text, scripts, articles, and multi-segment narration into speech audio through the MiniMax API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanhaixuan/minimax-tts-generator) <br>
-- [MiniMax Open Platform](https://platform.minimaxi.com) <br>
-- [MiniMax Speech Models](https://www.minimaxi.com/models/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio files, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON status responses with generated MP3, WAV, or PCM audio file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and MINIMAX_API_KEY; multi-segment merging may require ffmpeg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can send submitted text and the MiniMax API key to an arbitrary API host when MINIMAX_API_HOST is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted environment, leave MINIMAX_API_HOST unset unless the endpoint is fully trusted, and use a dedicated low-quota API key.
+
+Risk: Generated speech requests may disclose sensitive text to MiniMax or to the configured endpoint.
+
+Mitigation: Review text before generation and avoid submitting confidential, regulated, or third-party data unless the destination and account terms permit it.
+
+Risk: The server security verdict is suspicious because the endpoint override can redirect requests.
+
+Mitigation: Review the skill before installing, rotate keys after any unexpected host override, and monitor API usage for anomalous requests.
+
+## Reference(s):
+
+- [MiniMax Open Platform](https://platform.minimaxi.com)
+- [MiniMax Speech Synthesis Product](https://www.minimaxi.com/models/speech)
+- [ClawHub Skill Page](https://clawhub.ai/lanhaixuan/skills/minimax-tts-generator)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, files, JSON]
+
+**Output Format:** [JSON status responses and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MP3, WAV, or PCM audio files; generated text may be sent to MiniMax or to the endpoint configured by MINIMAX_API_HOST.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

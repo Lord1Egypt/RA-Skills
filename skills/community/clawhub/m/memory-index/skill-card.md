@@ -1,42 +1,55 @@
-## Description: <br>
-Memory Index guides OpenClaw agents to manage long-term memory through layered indexes, task files, and retrieval rules for lower-token context reconstruction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Index provides a structured long-term memory protocol for AI agents using active and archived indexes, workspace domains, and topic files for precise context retrieval.
 
-## Publisher: <br>
-[wzm232803119-arch](https://clawhub.ai/user/wzm232803119-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzm232803119-arch](https://clawhub.ai/user/wzm232803119-arch)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to structure persistent memory into active indexes, domain folders, and topic files so agents can resume long-running work, hand off sub-agent tasks, and avoid loading unrelated history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to manage, rewrite, share, and clean up persistent memory without clear approval or rollback controls. <br>
-Mitigation: Install only when persistent local memory is desired, require user approval for memory initialization, migration, sub-agent writes, archiving, and cleanup, and review changes before relying on them. <br>
-Risk: Persistent memory files may capture secrets or sensitive personal history. <br>
-Mitigation: Avoid storing secrets or sensitive personal history in memory files, and set explicit rules for what may be retained. <br>
+## Use Case:
 
+Developers and agent users use Memory Index to organize long-running agent work into active indexes, archived indexes, domain folders, and topic files so context can be retrieved across sessions and agent roles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wzm232803119-arch/memory-index) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create, edit, archive, and clean up local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Unscoped memory file access or cleanup could expose, overwrite, or remove local memory data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in, scoped memory roots, path validation, and backups or quarantine before cleanup.
+
+Risk: Persisted memory files could be mistaken for higher-priority instructions during future retrieval.
+
+Mitigation: Treat memory files as data and require current user and developer instructions to take priority before acting on retrieved content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzm232803119-arch/skills/memory-index)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with occasional shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory index and topic-file structures; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

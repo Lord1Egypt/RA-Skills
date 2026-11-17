@@ -1,42 +1,57 @@
-## Description: <br>
-Drafts a structured comprehensive eye exam report from encounter data for licensed Doctor of Optometry review, covering visual acuity, refraction, binocular vision, anterior and posterior segment findings, intraocular pressure, diagnoses, and treatment or referral planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a structured, AOA-aligned comprehensive eye exam report from optometry encounter data for licensed Doctor of Optometry review before prescription issuance or medical record entry.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Doctors of Optometry, optometric residents, and clinical documentation specialists use this skill to turn eye exam encounter data into a structured draft report for licensed OD review. It supports documentation for comprehensive exams, EMR entry, referral planning, and continuity of care, but does not finalize records or issue prescriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft eye exam documentation could be mistaken for finalized clinical guidance, a prescription, or a medical-record entry. <br>
-Mitigation: Keep outputs clearly labeled as draft-only and require licensed Doctor of Optometry review and signature before clinical, billing, referral, payer, or record use. <br>
-Risk: Patient identifiers or unnecessary sensitive data could be entered during documentation drafting. <br>
-Mitigation: Collect only patient initials and year of birth, and avoid full names, full dates of birth, medical record numbers, insurance information, or other unnecessary identifiers. <br>
-Risk: ICD-10 codes, referral flags, or clinical impressions may be incomplete or incorrect if source encounter data is missing or unconfirmed. <br>
-Mitigation: Surface history gaps, reduced visual acuity, urgent findings, referral flags, and unconfirmed ICD-10 codes as open items for licensed OD review. <br>
+## Use Case:
 
+Doctors of Optometry, optometric residents, and clinical documentation specialists use this skill to turn encounter findings into a structured draft comprehensive eye exam report. It supports visual acuity, refraction, binocular vision, anterior and posterior segment findings, IOP, ancillary testing, diagnoses, referral flags, and treatment planning for OD review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/comprehensive-eye-exam-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured draft report in Markdown with tables, referral flags, open items, and a licensed OD review and signature block.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only clinical documentation; requires licensed OD review before prescription issuance, referral, billing, payer transmission, or medical-record entry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: changelog, released 2026-06-01; server release metadata) <br>
+Risk: Draft clinical documentation could be mistaken for a finalized eye exam report or clinical decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs labeled as drafts and require licensed Doctor of Optometry review and signature before prescription issuance, medical record entry, billing, referral, or related clinical use.
+
+Risk: Patient identifiers or unnecessary sensitive information could be entered during report drafting.
+
+Mitigation: Use initials and year of birth only, and avoid full names, full dates of birth, MRNs, insurance numbers, and other unnecessary patient identifiers.
+
+Risk: Diagnosis codes, referral flags, or plan language may be incomplete or require clinician confirmation.
+
+Mitigation: Require the OD to confirm ICD-10 codes, review all flagged findings, and document a plan or clinical rationale before finalizing the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/comprehensive-eye-exam-report)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Structured Markdown draft report with tables, flagged issues, open items, and a licensed OD review signature block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft documentation only; requires licensed OD review before use in prescriptions, medical records, billing, referrals, or related clinical workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-06-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

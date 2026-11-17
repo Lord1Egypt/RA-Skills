@@ -1,44 +1,57 @@
-## Description: <br>
-Pre-production assistant for filmmakers that generates script breakdowns, shot lists, call sheets, production schedules, and budget estimates from scene descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-production assistant for filmmakers that generates script breakdowns, shot lists, call sheets, production schedules, and budget estimates from scene descriptions.
 
-## Publisher: <br>
-[davidapx13](https://clawhub.ai/user/davidapx13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidapx13](https://clawhub.ai/user/davidapx13)
 
-## Use Case: <br>
-External filmmakers, producers, assistant directors, and production teams use this skill to turn scene or project details into practical pre-production documents for planning a narrative film shoot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Word export uses an unsafe shell command pattern when implemented directly from the artifact guidance. <br>
-Mitigation: Prefer text output unless export is explicitly requested; implement export with safe file-writing and non-shell argument handling. <br>
-Risk: Call sheets and schedules can contain sensitive personnel, location, access, movement, and contact details. <br>
-Mitigation: Minimize personal phone numbers, exact addresses, access instructions, and movement details, and share full versions only with authorized cast and crew. <br>
+## Use Case:
 
+External filmmakers, assistant directors, producers, and production teams use this skill to turn scene or project details into pre-production documents such as breakdown sheets, shot lists, call sheets, schedules, and budget estimates.
 
-## Reference(s): <br>
-- [Script Breakdown Structure Reference](artifact/references/script-breakdown-structure.md) <br>
-- [Shot List Structure Reference](artifact/references/shot-list-structure.md) <br>
-- [Call Sheet Structure Reference](artifact/references/call-sheet-structure.md) <br>
-- [Production Schedule Structure Reference](artifact/references/production-schedule-structure.md) <br>
-- [Film Budget Structure Reference](artifact/references/budget-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown production documents with optional Word document export when explicitly requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce script breakdowns, shot lists, call sheets, production schedules, budget estimates, and optional .docx files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Optional DOCX export instructions include unsafe shell command patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safer export tooling that avoids shell interpolation, uses unique temporary files, and only exports when the user explicitly requests a file.
+
+Risk: Generated call sheets can contain confidential phone numbers, addresses, access instructions, transport details, and safety-sensitive notes.
+
+Mitigation: Treat call sheets as confidential production documents, redact unnecessary personal details, and distribute them only to authorized cast and crew.
+
+## Reference(s):
+
+- [Script Breakdown Structure Reference](references/script-breakdown-structure.md)
+- [Shot List Structure Reference](references/shot-list-structure.md)
+- [Call Sheet Structure Reference](references/call-sheet-structure.md)
+- [Production Schedule Structure Reference](references/production-schedule-structure.md)
+- [Film Budget Structure Reference](references/budget-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown production documents with optional pandoc-based .docx export when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional document export requires pandoc; call sheets may include confidential cast, crew, location, transport, and safety details.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

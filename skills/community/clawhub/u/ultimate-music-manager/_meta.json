@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn75f35vjrf3xe2bbbb6szjzq984hjak",
   "slug": "ultimate-music-manager",
-  "version": "1.0.1",
-  "publishedAt": 1775976509583
+  "version": "1.1.0",
+  "source": "https://github.com/drajb/sonic-phoenix",
+  "requires": {
+    "env": ["MUSIC_ROOT"],
+    "optionalEnv": [
+      "SPOTIFY_CLIENT_ID",
+      "SPOTIFY_CLIENT_SECRET",
+      "SPOTIFY_REDIRECT_URI",
+      "SHAZAM_CONCURRENCY",
+      "ITUNES_COUNTRIES",
+      "SORTED_ROOT",
+      "DATA_DIR",
+      "FFMPEG_BIN"
+    ],
+    "bins": ["python3.12", "git"],
+    "optionalBins": ["ffmpeg"]
+  },
+  "primaryEnv": "MUSIC_ROOT",
+  "pythonDeps": [
+    "mutagen",
+    "shazamio",
+    "langdetect",
+    "requests",
+    "Pillow",
+    "spotipy",
+    "python-dotenv"
+  ],
+  "network": {
+    "endpoints": [
+      "shazam.com (acoustic fingerprinting — Phase 1)",
+      "itunes.apple.com (metadata enrichment — Phase 4)",
+      "lrclib.net (synchronised lyrics — Phase 4)",
+      "api.spotify.com (playlist sync — Phase 6, optional)"
+    ],
+    "note": "Phases 1-5 work offline after initial Shazam fingerprinting. Phase 6 requires Spotify OAuth (interactive browser flow, token cached locally)."
+  }
 }

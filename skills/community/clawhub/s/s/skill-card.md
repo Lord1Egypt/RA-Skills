@@ -1,41 +1,54 @@
-## Description: <br>
-A code-assistance skill that explains code, diagnoses bugs, suggests refactors, and generates technical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能代码助手 helps agents explain code, diagnose bugs, suggest refactors, and generate code documentation in Chinese.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers use this skill to review and understand code, find likely defects, plan refactors, and draft function, class, module, or API documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad coding prompts may process sensitive source code or secrets supplied by the user. <br>
-Mitigation: Avoid submitting secrets or highly sensitive proprietary code unless that is acceptable in the agent environment. <br>
-Risk: Bug diagnosis, refactoring, and generated documentation may be incomplete or incorrect. <br>
-Mitigation: Review suggested changes and documentation before using them in production code. <br>
+## Use Case:
 
+Developers and engineers use this skill to request Chinese-language code explanations, bug diagnosis, refactoring guidance, and generated function or API documentation. It is suited to code quality and maintainability workflows where outputs are reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/s) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with code examples and structured review sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before applying suggested code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Broad coding requests may match this skill and produce guidance that affects source code quality or behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated explanations, fixes, refactors, and documentation before applying them to a project.
+
+Risk: Executable behavior may fail because the artifact's main.py contains HTML-escaped syntax.
+
+Mitigation: Fix and test main.py before relying on executable runtime behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/s)
+- [Publisher profile](https://clawhub.ai/user/hgta23)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and plain text with code examples when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses focused on code explanation, diagnosis, refactoring, and documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

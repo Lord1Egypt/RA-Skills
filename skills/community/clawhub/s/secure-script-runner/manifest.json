@@ -1,14 +1,14 @@
 {
   "id": "secure_script_runner",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "name": "Secure Script Runner (Zero‑Exposure Sandbox)",
-  "description": "Zero‑exposure script execution using MGC Blackbox. Store scripts encrypted, execute locally, AI never sees plaintext. Supports MCP/API/WebUI execution, internal credential calls, and script sealing.",
+  "description": "Zero‑exposure script execution using MGC Blackbox. Store scripts encrypted, execute in blackbox, AI sees no plaintext. Supports MCP (mgc_run) / API / WebUI execution, internal credential calls, and script sealing. Includes MGC 1.4.9 temporary workaround guidelines. This skill only executes scripts with explicit user authorization and will never automatically execute any scripts.",
   "author": "MirginCipher Team",
   "license": "MIT",
-  "tags": ["security", "script", "zero-exposure", "mgc", "sandbox", "execution"],
+  "tags": ["security", "script", "zero-exposure", "mgc", "sandbox", "execution", "blackbox"],
   "platform_compatibility": ["windows", "macos", "linux"],
-  "mcp_tools": ["mgc_save", "mgc_get", "mgc_seal", "mgc_list", "mgc_open_webui"],
-  "install": "pip install mgc-blackbox",
+  "mcp_tools": ["mgc_save", "mgc_run", "mgc_list", "mgc_seal", "mgc_open_webui"],
+  "install": "pip install mgc-blackbox>=1.4.9",
   "runtime": "mgc",
   "port": 57219,
   "links": {
@@ -21,6 +21,47 @@
     "zero trust",
     "sandbox",
     "encrypted execution",
-    "script sealing"
+    "script sealing",
+    "blackbox"
+  ],
+  "disclaimers": [
+    "This skill only executes scripts with explicit user authorization.",
+    "This skill will never automatically execute any scripts.",
+    "This skill will never automatically call any credentials.",
+    "Please confirm script source is trusted before execution.",
+    "User must bear execution risk.",
+    "MGC 1.4.9 has known issues with ext02 parameter parsing and stdout blocking. Follow the temporary workaround guidelines in the documentation. These will be fixed in a future release."
+  ],
+  "changelog": [
+    {
+      "version": "1.1.1",
+      "changes": [
+        "Added MGC 1.4.9 temporary workaround section (parse_known_args / _strip_quotes / file output)",
+        "Added ext02 parameter format recommendations (forward-slash paths, T separator for spaces)",
+        "Provided complete script template",
+        "Noted that known issues will be fixed in a future release"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "changes": [
+        "Core flow upgrade: Uses mgc_run for blackbox script execution",
+        "Removed mgc_get(action=run) as recommended method",
+        "Added ext02 parameter passing specification",
+        "Adapted to MGC 1.4.9 sandbox mode"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "changes": [
+        "Security hardening update: added security warnings, permission boundaries, script source review checklist",
+        "Removed dangerous security claims",
+        "Added authorization requirements"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": ["Initial release with zero-exposure script execution"]
+    }
   ]
 }

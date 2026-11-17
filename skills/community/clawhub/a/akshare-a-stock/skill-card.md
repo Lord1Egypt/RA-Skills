@@ -1,44 +1,62 @@
-## Description: <br>
-A股数据分析 (AkShare) helps agents retrieve and summarize A-share, Hong Kong, and U.S. stock quotes, historical prices, financial data, sector data, capital-flow data, IPO information, margin-trading data, and limit-up/limit-down market data through AkShare. <br>
+## Description:
 
-This skill is for research and development only. <br>
+A股量化数据分析工具，基于AkShare库获取A股、港股、美股行情、财务数据、板块分析等，用于回答关于股票查询、行情数据、财务分析、资金流向、龙虎榜、涨停跌停、新股IPO、融资融券等问题。
 
-## Publisher: <br>
-[awsl1414](https://clawhub.ai/user/awsl1414) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awsl1414](https://clawhub.ai/user/awsl1414)
 
-## Use Case: <br>
-Developers and analysts use this skill to guide AkShare-based market-data queries for research workflows covering quotes, historical K-lines, financial statements, sectors, capital flows, IPOs, and margin-trading data. The skill is informational and should not be used as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses the AkShare Python dependency and may make network requests to third-party market-data sources. <br>
-Mitigation: Install it only in environments where that dependency and outbound market-data requests are approved. <br>
-Risk: Returned financial data may be incomplete, delayed, unavailable, or unsuitable for trading decisions. <br>
-Mitigation: Treat outputs as informational research material and verify important figures against authoritative market-data sources. <br>
-Risk: Some full-market or real-time AkShare calls can be slow or return large datasets. <br>
-Mitigation: Prefer single-symbol interfaces for stock-specific questions and limit large result sets with slicing or head-style previews. <br>
+## Use Case:
 
+Developers, analysts, and research users can use this skill to query AkShare-based market data and generate guidance for A-share, Hong Kong stock, and U.S. stock行情, financial data, sector analysis, fund flows, IPOs, margin trading, and related stock research questions. The skill output should be treated as research data, not investment advice.
 
-## Reference(s): <br>
-- [AkShare stock API reference](artifact/references/api-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/awsl1414/akshare-a-stock) <br>
-- [Third-party publisher profile](https://clawhub.ai/user/awsl1414) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; the bundled CLI prints JSON records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on network access to third-party market-data sources and AkShare response availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact _meta.json reports 1.0.0) <br>
+Risk: AkShare dependency or market-data behavior can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin AkShare to a reviewed version or use a lockfile before installation.
+
+Risk: The skill and bundled CLI make outbound requests to public market-data sources.
+
+Mitigation: Run in an environment where outbound data-source access is expected and permitted.
+
+Risk: Market data can be incomplete, delayed, or unsuitable for investment decisions.
+
+Mitigation: Treat outputs as research data and do not use them as investment advice.
+
+Risk: The bundled fund-flow CLI command may fail without correction.
+
+Mitigation: Review and fix the fund-flow CLI implementation before relying on that command.
+
+## Reference(s):
+
+- [AkShare 股票相关接口完整列表](artifact/references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/awsl1414/skills/akshare-a-stock)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce AkShare API calls and JSON-style CLI output examples; market-data responses depend on external public data sources.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

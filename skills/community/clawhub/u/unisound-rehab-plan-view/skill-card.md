@@ -1,41 +1,62 @@
-## Description: <br>
-Displays and summarizes an existing postoperative rehabilitation plan by phase, goal, tasks, and precautions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patient-facing postoperative rehabilitation plan viewer that organizes an existing care plan by phase, goal, tasks, and precautions.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External patient-facing users and care-plan agents use this skill to view an existing postoperative rehabilitation plan, summarize current phase goals, tasks, and precautions, and pass plan context to downstream task skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient rehabilitation-plan content and the bearer appkey are sent to a remote medical model endpoint. <br>
-Mitigation: Use only when the endpoint and appkey handling are approved for the patient-data workflow, and make clear that plan contents may leave the local environment. <br>
-Risk: Office, PDF, and image inputs can add parsing and containment risk when supplied from untrusted sources. <br>
-Mitigation: Prefer JSON or trusted simple files; sandbox and resource-limit the runtime before accepting untrusted documents or images. <br>
+## Use Case:
 
+External patient-facing agents use this skill to present an existing postoperative rehabilitation plan in a clearer form, including the current phase, phase goal, task summary, and precautions. It is not intended to create new rehabilitation prescriptions or replace clinician guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unisound-llm/unisound-rehab-plan-view) <br>
-- [CareKit care plan and task model](https://github.com/carekit-apple/CareKit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured plan data and a Markdown text field] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey bearer token and sends rehabilitation-plan content to a remote medical model endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive rehabilitation data may be sent to a remote medical model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization, follow applicable privacy review, and avoid real patient identifiers where possible.
+
+Risk: Production API keys can be exposed if passed directly on the command line.
+
+Mitigation: Use platform secret handling or scoped runtime credentials instead of command-line secrets.
+
+Risk: Untrusted PDFs, Office files, or images may increase parsing and sandbox escape risk.
+
+Mitigation: Process only trusted files or run document conversion and OCR in a sandboxed runtime.
+
+Risk: The external _shared/doc-preprocess fallback can execute Python code outside the reviewed package.
+
+Mitigation: Remove the fallback or enforce integrity checks before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-rehab-plan-view)
+- [CareKit care plan framework](https://github.com/carekit-apple/CareKit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [UTF-8 JSON containing structured plan data and patient-facing Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes plan identifiers, current phase, phase goal, task summary, precautions, status, and generated explanatory text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

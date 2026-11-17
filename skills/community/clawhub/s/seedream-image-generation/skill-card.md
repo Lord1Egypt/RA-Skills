@@ -1,45 +1,59 @@
-## Description: <br>
-Image generation via Volcengine Seedream API. Use this when you need to perform Text-to-Image (T2I), Image-to-Image (I2I), or general visual creative tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images through the Volcengine Seedream API for text-to-image, image-to-image, and general visual creative tasks.
 
-## Publisher: <br>
-[cp7553479](https://clawhub.ai/user/cp7553479) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp7553479](https://clawhub.ai/user/cp7553479)
 
-## Use Case: <br>
-Developers and agents use this skill to call Volcengine Seedream models for text-to-image, image-to-image, and creative visual generation workflows. It can return API response data and optionally save generated images locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected source images, and request metadata are sent to the configured Seedream endpoint. <br>
-Mitigation: Use the trusted official endpoint unless there is a reviewed reason to configure another endpoint, and avoid submitting sensitive prompts or local images. <br>
-Risk: A configured endpoint receives the API key used for authorization. <br>
-Mitigation: Use a limited API key, keep SEEDREAM_BASE_URL unset or pointed only at a trusted endpoint, and rotate credentials if endpoint trust changes. <br>
-Risk: Console logs and returned results can contain prompts, file paths, and generated output metadata. <br>
-Mitigation: Treat logs and saved responses as potentially sensitive, and avoid sharing them outside the intended workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate or transform images with Volcengine Seedream from text prompts or local image inputs, optionally saving generated images to a local directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp7553479/seedream-image-generation) <br>
-- [Volcengine image generation API documentation](https://www.volcengine.com/docs/82379/1541523?lang=zh) <br>
-- [Volcengine Seedream model documentation](https://www.volcengine.com/docs/82379/1330310?lang=zh#36969059) <br>
-- [Default Volcengine Ark image generations endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON API responses, shell command examples, and optional downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEEDREAM_API_KEY; SEEDREAM_BASE_URL can redirect requests to a configured endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: API credentials and generation payloads may be sent to an arbitrary configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set SEEDREAM_BASE_URL only to a controlled, trusted HTTPS Volcengine endpoint before use.
+
+Risk: Local image inputs are uploaded for image-to-image generation, and selected image paths or response data may appear in logs or returned output.
+
+Mitigation: Avoid sensitive images, review logs before sharing, and use sandboxed download paths.
+
+Risk: Optional model tools such as web_search can change API behavior.
+
+Mitigation: Enable optional tools only after reviewing their behavior and need for the task.
+
+## Reference(s):
+
+- [Volcengine Seedream image generation API documentation](https://www.volcengine.com/docs/82379/1541523?lang=zh)
+- [Volcengine Seedream model list](https://www.volcengine.com/docs/82379/1330310?lang=zh#36969059)
+- [ClawHub skill page](https://clawhub.ai/cp7553479/skills/seedream-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script execution returns JSON responses and generated image URLs or local image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEEDREAM_API_KEY and supports optional SEEDREAM_BASE_URL, image inputs, output format, size, watermark, prompt optimization, model tools, and download directory settings.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

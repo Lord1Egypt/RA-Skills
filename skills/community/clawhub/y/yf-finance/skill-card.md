@@ -1,45 +1,60 @@
-## Description: <br>
-Fetch real-time and historical financial data from Yahoo Finance using yf-cli for quotes, historical prices, company financials, earnings calendars, analyst recommendations, options chains, dividends, market screeners, and financial news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time and historical financial data from Yahoo Finance using yf-cli.
 
-## Publisher: <br>
-[erhwenkuo](https://clawhub.ai/user/erhwenkuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erhwenkuo](https://clawhub.ai/user/erhwenkuo)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to ask an agent for public market data and to have the agent run yf-cli commands for quotes, histories, financial statements, earnings, ownership, options, screeners, and news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the external yf-cli package through uv and make network requests for public financial data. <br>
-Mitigation: Install only in environments where uv-based tool installation and public financial-data network access are acceptable. <br>
-Risk: Returned market data may be delayed, incomplete, unavailable, or unsuitable for financial decision-making. <br>
-Mitigation: Treat command output as informational market data, not financial advice, and verify important values against authoritative sources before acting. <br>
-Risk: Strict supply-chain environments may require additional review of the external yf-cli package. <br>
-Mitigation: Review the external yf-cli package source and dependency chain before deployment in controlled environments. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to retrieve stock quotes, historical prices, company financials, earnings calendars, analyst data, options chains, dividends, market screeners, and financial news through yf-cli.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erhwenkuo/yf-finance) <br>
-- [Command reference](references/commands.md) <br>
-- [Output formats](references/output-formats.md) <br>
-- [Worked examples](assets/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional table, JSON, or CSV command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require network access to retrieve public financial data and may install yf-cli through uv when the command is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install and run an unpinned third-party yf-cli package through uv.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin an approved yf-cli version before deployment, and run installation only in trusted environments.
+
+Risk: Examples can redirect financial data output to files and may overwrite existing files.
+
+Mitigation: Use explicit output filenames and check whether a target file already exists before redirecting command output.
+
+Risk: Yahoo Finance data can be unavailable, delayed, rate limited, or reflect the last market close rather than a live price.
+
+Mitigation: Retry once on transient failures, clearly label stale or last-close values, and avoid treating this output as investment advice.
+
+## Reference(s):
+
+- [yf-cli Command Reference](references/commands.md)
+- [Output Formats](references/output-formats.md)
+- [Worked Examples](assets/examples.md)
+- [ClawHub skill page](https://clawhub.ai/erhwenkuo/skills/yf-finance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and yf-cli output that may be table, JSON, or CSV]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.13+, uv, yf-cli, and internet access; JSON or CSV output can be used for downstream parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

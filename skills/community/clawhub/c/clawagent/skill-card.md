@@ -1,48 +1,79 @@
-## Description: <br>
-ClawAgent is an enterprise AIGC marketing skill for short video generation, digital human narration, AI product photography, virtual model try-on, product scene imagery, and multi-platform account operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawAgent helps agents generate marketing images and videos, analyze or remix media, and publish video or image posts to connected social media accounts.
 
-## Publisher: <br>
-[jiadouai](https://clawhub.ai/user/jiadouai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiadouai](https://clawhub.ai/user/jiadouai)
 
-## Use Case: <br>
-Marketing, e-commerce, and operations teams use this skill to route AIGC content requests to ClawAgent tools, configure authentication, upload local media for processing, and retrieve generated image or video results. It is intended for external or internal users who need product scenes, model try-on images, reference-image generation, and related marketing assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure and use a ClawAgent authorization token. <br>
-Mitigation: Use a dedicated revocable ClawAgent token and rotate or revoke it if the skill is no longer trusted. <br>
-Risk: The skill can upload local files to cloud storage to produce public URLs for ClawAgent tools. <br>
-Mitigation: Confirm every local path and file contents before upload, and avoid uploading confidential or regulated media unless the storage and processing terms are acceptable. <br>
-Risk: Unsupported requests may be reported silently with the user's original prompt. <br>
-Mitigation: Disable or avoid unsupported-feature reporting unless sharing the original prompt with the provider is acceptable. <br>
-Risk: Provider-supplied update instructions can direct changes to the installed skill. <br>
-Mitigation: Review update notes and requested actions before approving any update. <br>
+## Use Case:
 
+Marketing, ecommerce, and social media operators use this skill to create product visuals, short-form videos, lip-sync or singing media, campaign posters, Xiaohongshu-style image notes, and social posts from agent-guided workflows. Agents also use it to configure ClawAgent access, upload selected local media for processing, poll asynchronous jobs, and report unsupported feature requests with user consent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jiadouai/clawagent) <br>
-- [AI product photography reference](references/ai_design.md) <br>
-- [Authentication reference](references/auth.md) <br>
-- [Common workflows reference](references/workflows.md) <br>
-- [Unsupported feature reporting reference](references/unsupported_feature_reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return job IDs, public file URLs, file sizes, status objects, image URLs, or video URLs from ClawAgent MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill handles tokens, connected social accounts, media files, and ClawAgent service access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and service are trusted; use a least-privilege temporary token and avoid shared machines.
+
+Risk: Local media can be uploaded to remote cloud storage for processing.
+
+Mitigation: Upload only intentionally selected files and avoid sensitive, private, identity, or restricted media.
+
+Risk: Setup, upload, and update flows can install tooling, save credentials, or apply remote update instructions.
+
+Mitigation: Do not run setup or upload with sudo, and approve updates only after reviewing the exact commands and changed files.
+
+Risk: Publishing workflows can post content to authorized social media accounts.
+
+Mitigation: Confirm the target account, content, and publishing time before issuing publish calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiadouai/skills/clawagent)
+- [Publisher Profile](https://clawhub.ai/user/jiadouai)
+- [Authentication and Authorization](references/auth.md)
+- [Common Interfaces and Workflows](references/workflows.md)
+- [Model Try-On](references/model_try_clothes.md)
+- [Shoe Try-On](references/shoes_dressing.md)
+- [Model Generation](references/model_produce.md)
+- [Product Scene Image](references/business_product_scene.md)
+- [Product Poster Generation](references/business_poster.md)
+- [Xiaohongshu Note Images](references/ice_design_image_xhs.md)
+- [Video Publishing](references/video_publish.md)
+- [Image Publishing](references/image_publish.md)
+- [Lip-Sync Video](references/ice_voice_video.md)
+- [Singing Photo Video](references/image_song.md)
+- [Video Remix](references/ai_mixed_script.md)
+- [Video Clone](references/ai_clone_video.md)
+- [Douyin Link Parsing](references/get_raw_url.md)
+- [Video Analysis](references/analyze_video.md)
+- [Unsupported Feature Reporting](references/unsupported_feature_reporting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown guidance with inline JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May surface generated media URLs, uploaded file URLs, job identifiers, account identifiers, and social publishing status from ClawAgent tools.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Fx Radar monitors major foreign exchange rates and helps users query USD, CNY, HKD, JPY, EUR, GBP, USD/CNY, USD/CNH, and related FX movements using public finance data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fx Radar monitors major foreign exchange pairs and retrieves live exchange-rate data from Yahoo Finance, with Frankfurter.app used as a fallback data source.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and analysts use this skill to retrieve current exchange-rate snapshots and receive lightweight interpretive context for common currency pairs. It is best suited for informational FX monitoring, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound network requests to Yahoo Finance and frankfurter.app for exchange-rate data. <br>
-Mitigation: Use it only in environments where those public data-source requests are allowed, or apply a network allowlist before deployment. <br>
-Risk: Exchange-rate commentary can be incomplete, stale, or unsuitable for financial decisions. <br>
-Mitigation: Treat the output as informational and verify market data and decisions with authoritative financial sources. <br>
+## Use Case:
 
+External users and analysts use this skill to query major currency pairs and receive a quick exchange-rate snapshot with threshold-based FX commentary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gold3bear/fx-radar) <br>
-- [Yahoo Finance chart data endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d) <br>
-- [Frankfurter foreign exchange API](https://api.frankfurter.app/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with exchange-rate tables and brief commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses outbound requests to public exchange-rate data providers; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill makes live requests to Yahoo Finance and Frankfurter.app, so data may be delayed, unavailable, or different from a user's authoritative market-data source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm important rates against an authoritative data source before using the output for decisions.
+
+Risk: The printed threshold commentary can be mistaken for financial advice.
+
+Mitigation: Treat the commentary as informational only and require qualified human review for financial decisions.
+
+Risk: Broad exchange-rate trigger terms may activate the skill for loosely related requests.
+
+Mitigation: Review and narrow trigger terms before deployment when precise activation is required.
+
+## Reference(s):
+
+- [Fx Radar ClawHub page](https://clawhub.ai/gold3bear/skills/fx-radar)
+- [Yahoo Finance chart endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{sym}?interval=1d&range=1d)
+- [Frankfurter latest rates endpoint](https://api.frankfurter.app/latest?base=USD&symbols={symbols})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with exchange-rate rows and threshold commentary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live public market-data requests; no credential inputs are described.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

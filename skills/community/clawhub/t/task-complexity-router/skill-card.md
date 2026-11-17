@@ -1,42 +1,55 @@
-## Description: <br>
-Regex-based routing sends simple tasks to local AI, medium to mid-tier, complex to premium, helping reduce API costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Regex-based routing sends simple tasks to local AI, moderate tasks to mid-tier models, and complex tasks to premium models to reduce API costs.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to route prompts by estimated task complexity across local, mid-tier, and premium models. It supports cost-conscious model selection for normal agent workflows while allowing custom routing rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Routing rules can send confidential, regulated, credential-bearing, or high-risk prompts to an unintended model tier. <br>
-Mitigation: Review routing rules before deployment and configure explicit safeguards for sensitive workloads and model destinations. <br>
-Risk: Regex-based complexity detection can misclassify ambiguous or novel requests. <br>
-Mitigation: Test representative prompts, add custom rules for critical workflows, and allow manual overrides when model choice matters. <br>
+## Use Case:
 
+Developers and external users use this skill to classify prompts by complexity and select local, mid-tier, or premium models before dispatch. It supports cost-aware routing while allowing custom regex rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/task-complexity-router) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [JavaScript objects and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routing decisions include a model name, reason, confidence score, and matched rule names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release and frontmatter) <br>
+Risk: When connected to cloud models, regex routing may send sensitive prompts, confidential business data, regulated advice, or cost-sensitive requests to an unintended model tier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and extend the routing rules before deployment, and require explicit handling for sensitive, confidential, regulated, and cost-sensitive prompts.
+
+Risk: Routing decisions are heuristic and should not be treated as a complete privacy, safety, or cost-control system.
+
+Mitigation: Use the router as one control in a broader review and dispatch process, with human or policy checks for high-impact workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/task-complexity-router)
+- [README](artifact/README.md)
+- [TaskRouter source](artifact/src/task-router.js)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [JavaScript module output object with model, reason, confidence, and matched rule names; documentation examples in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic regex-based routing; local processing unless the user connects the routing decision to external model services]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

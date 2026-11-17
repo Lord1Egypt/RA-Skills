@@ -1,40 +1,57 @@
-## Description: <br>
-WeekendWiz helps users manage weekend schedules by updating markdown schedules, rendering HTML views, generating screenshots, cleaning expired events, and setting reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekend schedule management assistant that creates, updates, and visualizes weekend schedules with markdown schedule files, HTML rendering, screenshots, automated reminders, and cleanup of expired events.
 
-## Publisher: <br>
-[gaorui03](https://clawhub.ai/user/gaorui03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaorui03](https://clawhub.ai/user/gaorui03)
 
-## Use Case: <br>
-Agent users use WeekendWiz to maintain a personal weekend calendar, produce shareable schedule views, and configure reminders for upcoming events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains local schedule files and generated HTML or screenshots. <br>
-Mitigation: Review the schedule content and generated artifacts before sharing or relying on them. <br>
-Risk: Delivered qqbot reminders may expose event details such as recipients, timing, locations, or notes. <br>
-Mitigation: Review reminder recipient, timing, and message content, and avoid including sensitive details unless necessary. <br>
+## Use Case:
 
+External users and agents use WeekendWiz to maintain weekend schedule files, render a visual HTML schedule, generate screenshots for sharing, and configure reminders for upcoming events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaorui03/weekend-wiz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain memory/schedule.md, generated HTML, screenshots, and reminder configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Schedule maintenance can clean up expired events under memory/, which may remove entries the user expected to keep.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed schedule changes before execution and keep important schedule history outside the managed schedule file.
+
+Risk: Reminder text can include sensitive event details and may be sent through qqbot when reminders are configured.
+
+Mitigation: Use trusted delivery channels and avoid putting sensitive locations, notes, or personal details in reminder messages.
+
+Risk: Rendered schedule HTML loads a Google-hosted font, which may make an external request during viewing or screenshot generation.
+
+Mitigation: Use a local font or remove the external font link when operating in offline or privacy-sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaorui03/skills/weekend-wiz)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown schedule entries, rendered HTML, PNG screenshots, and reminder setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains schedule files under memory/, updates date labels, and can configure one-time reminders.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

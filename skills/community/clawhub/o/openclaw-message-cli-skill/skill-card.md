@@ -1,42 +1,52 @@
-## Description: <br>
-Use when the user explicitly wants to send outbound messages with the OpenClaw CLI rather than built-in tools, especially for `openclaw message send` commands with a specific channel, target, and message body. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user explicitly wants to send outbound messages with the OpenClaw CLI rather than built-in tools, especially for `openclaw message send` commands with a specific channel, target, and message body.
 
-## Publisher: <br>
-[leoustc](https://clawhub.ai/user/leoustc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leoustc](https://clawhub.ai/user/leoustc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and automation users use this skill when they explicitly need an agent to provide OpenClaw CLI message-send command guidance for a selected channel, target, and message body. It is scoped to outbound client delivery with the OpenClaw CLI, not normal in-session replies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outbound messages can reach external people or services.
+
+Mitigation: Confirm the recipient, channel, and message content before sending.
+
+Risk: Shell-sensitive characters in message text can change command behavior if quoted incorrectly.
+
+Mitigation: Quote message text safely before running or sharing the OpenClaw CLI command.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation users use this skill when they explicitly want an agent to prepare or run OpenClaw CLI commands for outbound messages to a specific channel and target. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send real outbound communications through the OpenClaw CLI. <br>
-Mitigation: Confirm the channel, recipient, and exact message before allowing the command to run. <br>
-Risk: Message text may contain shell-sensitive characters. <br>
-Mitigation: Quote message text safely and review generated shell commands before execution. <br>
-Risk: A misconfigured or untrusted OpenClaw CLI could send messages through unintended accounts or channels. <br>
-Mitigation: Use a trusted OpenClaw CLI installation and verify its configuration before sending. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leoustc/openclaw-message-cli-skill) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users should confirm the channel, recipient, and message before command execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

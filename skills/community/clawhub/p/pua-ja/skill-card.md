@@ -1,42 +1,53 @@
-## Description: <br>
-A Japanese instruction-only coaching skill that pressures an agent to keep debugging, investigate actively, and verify work with concrete evidence after repeated task failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pua Ja is a Japanese coaching skill that pushes agents to persist through repeated task failures using structured debugging checklists, active investigation prompts, and verification expectations.
 
-## Publisher: <br>
-[tanweai](https://clawhub.ai/user/tanweai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanweai](https://clawhub.ai/user/tanweai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a high-pressure Japanese debugging and verification posture when an agent repeatedly fails, tries to hand work back to the user, or proposes unverified conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly pressures the agent to act and use tools across nearly any task without clear scope limits. <br>
-Mitigation: Keep normal tool approvals, privacy boundaries, safety refusals, and clarification requirements in place, especially before reading sensitive files or running commands with side effects. <br>
-Risk: The skill is intended to create a high-pressure Japanese debugging posture that may be inappropriate for some deployments. <br>
-Mitigation: Install only when that coaching style is intentional and appropriate for the agent's users and operating context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to steer an assistant toward more persistent debugging, broader investigation, and evidence-backed completion after repeated failures or unverified claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanweai/pua-ja) <br>
-- [Publisher profile](https://clawhub.ai/user/tanweai) <br>
-- [Homepage](https://openpua.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with possible inline command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no direct code execution is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: The skill can pressure an agent to continue investigating or acting beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where broad autonomous investigation is desired, and keep user intent, scope limits, and approval requirements explicit.
+
+Risk: The high-pressure coaching style may be inappropriate around production, deployment, billing, account-management, or destructive tools.
+
+Mitigation: Avoid enabling it in those environments unless platform controls require approval before risky actions.
+
+## Reference(s):
+
+- [Pua Ja homepage](https://openpua.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown behavioral guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; the skill does not directly produce files, code, API calls, or shell commands.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

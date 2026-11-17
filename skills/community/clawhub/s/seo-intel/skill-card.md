@@ -1,46 +1,64 @@
-## Description: <br>
-Local SEO competitive intelligence tool for SEO analysis, competitor research, keyword gaps, content strategy, site audits, AI citability, crawling, extraction, dashboards, and competitive action planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Intel is a local SEO competitive intelligence tool that helps agents crawl sites, compare competitors, analyze keyword and content gaps, audit AI citability, and produce implementation-ready SEO actions.
 
-## Publisher: <br>
-[ukkometa](https://clawhub.ai/user/ukkometa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ukkometa](https://clawhub.ai/user/ukkometa)
 
-## Use Case: <br>
-Developers, SEO operators, docs writers, and site owners use SEO Intel to crawl target and competitor sites, extract SEO and semantic signals, identify gaps, and turn findings into reports, briefs, action lists, or implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may crawl websites, store results locally, and use cloud models for analysis. <br>
-Mitigation: Confirm crawl scope, avoid private or regulated content unless cloud processing is acceptable, and review generated reports before using them for decisions. <br>
-Risk: The skill can guide agents toward editing and deploying live websites. <br>
-Mitigation: Require a reviewed diff, confirm the exact site and Cloudflare project, and do not allow Wrangler deployment to run automatically. <br>
-Risk: SEO recommendations and competitive analysis may be incomplete or misleading if crawl data, extraction, or model outputs are stale or wrong. <br>
-Mitigation: Refresh the crawl and extraction pipeline before important use, inspect source evidence for high-impact changes, and treat generated action lists as proposals. <br>
+## Use Case:
 
+Developers, SEO operators, content teams, and agent workflows use this skill to run website crawls, compare target and competitor coverage, identify technical and content gaps, and convert those findings into briefs, reports, or prioritized implementation actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ukkometa/seo-intel) <br>
-- [Publisher profile](https://clawhub.ai/user/ukkometa) <br>
-- [SEO Intel product page](https://ukkometa.fi/en/seo-intel/) <br>
-- [Agent integration guide](AGENT_GUIDE.md) <br>
-- [Database schema reference](references/db-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, code, shell commands, configuration] <br>
-**Output Format:** [Markdown and structured JSON with inline shell commands, code snippets, reports, dashboards, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local reports, exports, SQLite-backed analysis results, website-change guidance, and deployment-oriented action plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.21 (source: server release metadata and skill heading) <br>
+Risk: Website crawling and persistent local SEO data can collect sensitive or unwanted site information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm crawl targets explicitly and run scans in an isolated environment without unrelated credentials.
+
+Risk: Cloud-backed model analysis can send SEO findings to external model services when enabled.
+
+Mitigation: Use cloud analysis only when acceptable for the project data, and choose deterministic or local analysis paths when external processing is not approved.
+
+Risk: The artifact describes live Cloudflare Wrangler deployment workflows, and the security evidence notes weak approval gating for autonomous deploys.
+
+Mitigation: Do not allow autonomous production deploys; require a diff, exact target confirmation, and explicit human approval before any Wrangler deploy.
+
+Risk: Unpinned or changing package dependencies can alter crawl, analysis, or deployment behavior.
+
+Mitigation: Pin package versions where possible before scans or automation runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ukkometa/skills/seo-intel)
+- [SEO Intel Product Page](https://ukkometa.fi/en/seo-intel/)
+- [Agent Integration Guide](artifact/AGENT_GUIDE.md)
+- [Database Schema Reference](artifact/references/db-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, structured JSON or CSV exports, CLI commands, and implementation briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May crawl live websites, persist local SEO data, and use cloud-backed model analysis when enabled.]
+
+## Skill Version(s):
+
+1.5.21 (source: release evidence and SKILL.md heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Detect drift between Infrastructure-as-Code definitions (Terraform, Pulumi, CloudFormation, CDK) and actual deployed state. Identify untracked resources, manual changes, and configuration discrepancies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect drift between Infrastructure-as-Code definitions (Terraform, Pulumi, CloudFormation, CDK) and actual deployed state. Identify untracked resources, manual changes, and configuration discrepancies.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, platform engineers, and infrastructure teams use this skill to compare IaC definitions with deployed cloud state, find manual changes or untracked resources, set up continuous drift detection, and draft remediation plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated remediation or monitoring commands could change infrastructure state or operational alerting if run without review.
+
+Mitigation: Review generated CI schedules, cron jobs, terraform import commands, and terraform apply commands before enabling or executing them.
+
+Risk: Cloud drift inspection can cover broad account scope when local IaC files and configured cloud credentials allow it.
+
+Mitigation: Run the skill with credentials scoped to the intended accounts, projects, and read or change permissions needed for the audit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, infrastructure engineers, and cloud platform teams use this skill to compare IaC definitions with deployed cloud state, detect manual changes or stale state, and prepare remediation plans before refactors or audits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose Terraform import, Terraform apply, or CI scheduling commands that can affect real infrastructure if used without review. <br>
-Mitigation: Review generated remediation and monitoring commands, confirm the target account and workspace, and run changes manually under normal change control with least-privilege credentials. <br>
-Risk: Drift analysis requires the agent to inspect IaC files and cloud state through configured command-line tools. <br>
-Mitigation: Install only in environments where this access is acceptable, and scope cloud credentials to the minimum read or change permissions required for the task. <br>
+**Output Format:** [Markdown drift reports with inline shell commands and YAML examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include Terraform import/apply commands, CI schedules, cron jobs, and cloud audit steps that require review before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes drift categories, risk levels, recommended actions, Terraform remediation commands, and CI scheduling examples.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

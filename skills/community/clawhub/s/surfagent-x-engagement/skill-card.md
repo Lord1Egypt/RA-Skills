@@ -1,44 +1,54 @@
-## Description: <br>
-Growth-oriented X engagement skill for SurfAgent, covering founder-style replies, community participation, audience-building loops, and proof-aware engagement execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Growth-oriented X engagement skill for SurfAgent, covering founder-style replies, community participation, audience-building loops, and proof-aware engagement execution.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-External users and agents use this skill to run SurfAgent-oriented X engagement passes: finding relevant posts, drafting useful replies or quote posts, posting from a founder or product account, and verifying that public actions landed correctly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to draft or perform public X engagement from an account. <br>
-Mitigation: Use it only with accounts where public agent-assisted engagement is acceptable, scope browser and X permissions carefully, and monitor likes, replies, quote posts, and new posts. <br>
-Risk: Engagement mistakes can affect public reputation even though the security verdict is clean. <br>
-Mitigation: Verify the active account, target post, composer text, submitted action, and visible result before claiming success or continuing an engagement pass. <br>
-Risk: Repeated or low-value interactions can resemble spam or forced promotion. <br>
-Mitigation: Follow the artifact's limits: prioritize useful replies, avoid mass-reply behavior, diversify target accounts, repost rarely, and skip threads where the agent cannot add value. <br>
+## Use Case:
 
+External developers and operators use this skill to guide controlled X engagement for a SurfAgent-related account, including niche discovery, founder-style replies, community participation, and proof-aware posting.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-x-engagement) <br>
-- [Publisher profile](https://clawhub.ai/user/surfagentapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and engagement rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide public X actions when paired with browser and X tooling; requires account and action verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill can help an agent take visible actions on an X account, which may affect public reputation if the wrong account or message is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended account before acting and review proposed posts or replies when reputational accuracy matters.
+
+Risk: Engagement guidance could produce low-value, repetitive, or misleading public activity if used without judgment.
+
+Mitigation: Use the skill's reply-first, proof-aware workflow and skip engagements where the agent cannot add specific value.
+
+## Reference(s):
+
+- [SurfAgent Homepage](https://surfagent.app)
+- [ClawHub Skill Page](https://clawhub.ai/surfagentapp/skills/surfagent-x-engagement)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with engagement plans, reply drafts, posting suggestions, and verification checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed public X posts, replies, likes, reposts, quote-posts, and account verification checkpoints.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

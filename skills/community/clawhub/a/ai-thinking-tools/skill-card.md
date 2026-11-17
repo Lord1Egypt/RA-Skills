@@ -1,40 +1,49 @@
-## Description: <br>
-四大AI思维方式工具包 - Chain of Thought思维链、Bird's Eye View鸟瞰视角、GranolaAI高效精简、MiroAI白板脑暴。一键切换模式，提升AI推理质量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Four Chinese-language AI thinking modes help agents switch between step-by-step reasoning, global planning, concise answers, and whiteboard-style brainstorming.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-External users and developers use this skill to switch an assistant among structured reasoning, high-level planning, concise answering, and whiteboard-style brainstorming response modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may switch the assistant into a reasoning or formatting mode unexpectedly. <br>
-Mitigation: Invoke the skill with explicit mode requests and review whether the selected output structure fits the task. <br>
-Risk: Structured reasoning, planning, or brainstorming templates can make incorrect guidance appear organized and complete. <br>
-Mitigation: Review generated recommendations for factual accuracy and suitability before using them for decisions or downstream skill changes. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Chinese-language response templates for reasoning, planning, concise answering, and structured brainstorming.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/ai-thinking-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured headings, lists, templates, and optional Mermaid diagram blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, credential access, or external data access are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Common phrases such as requests for concise output or structured planning may activate a mode and change the answer format unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit trigger phrases when a mode is intended, and override the mode when a default or different response format is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smseow001/skills/ai-thinking-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response templates and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language mode triggers may produce headings, lists, code blocks, or optional Mermaid diagrams depending on the selected thinking mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

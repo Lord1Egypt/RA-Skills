@@ -1,0 +1,14 @@
+{
+  "cameras": [
+    {
+      "sn": "",
+      "name": "",
+      "password": "",
+      "location": "办公室"
+    }
+  ],
+  "settings": {
+    "overflow_threshold": "moderate",
+    "default_channel": 0
+  }
+}

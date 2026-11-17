@@ -1,46 +1,56 @@
-## Description: <br>
-Project inventory needs based on historical order velocity, seasonality, supplier lead times, and planned promotions so you reorder before stockouts hurt rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Projects inventory needs from historical order velocity, seasonality, supplier lead times, and planned promotions so ecommerce teams can reorder before stockouts hurt rankings.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, inventory planners, and agents supporting sellers use this skill to forecast SKU demand, calculate reorder points and quantities, plan promotion stock, build reorder calendars, and identify overstock actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive sales, inventory, supplier, promotion, and cash-planning data. <br>
-Mitigation: Use the skill only with data the user is authorized to share, avoid unnecessary sensitive detail, and keep forecast outputs in approved business systems. <br>
-Risk: Forecasts can produce reorder, markdown, air-freight, or cash-outlay recommendations that affect purchasing and operations. <br>
-Mitigation: Treat outputs as planning guidance; require human review and approval before placing purchase orders, changing promotions, markdowns, or logistics plans. <br>
-Risk: Missing or low-quality sales history, lead-time data, or promotion history can make recommendations overconfident. <br>
-Mitigation: State assumptions and data gaps, flag benchmark substitutions, run the included quality checklist, and rerun the forecast when velocity, lead time, promo plans, or inbound shipments change. <br>
+## Use Case:
 
+External merchants, ecommerce operators, and inventory planners use this skill to calculate reorder points, plan promotional stock, build reorder calendars, and compare sell-through across SKUs.
 
-## Reference(s): <br>
-- [Inventory Forecast ClawHub Release](https://clawhub.ai/leooooooow/inventory-forecast) <br>
-- [Output Template](references/output-template.md) <br>
-- [Demand Forecasting Methods](references/demand-forecasting-methods.md) <br>
-- [Lead Time & Safety Stock Reference](references/lead-time-and-safety-stock.md) <br>
-- [Forecast Quality Checklist](assets/forecast-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown forecast report with tables, assumptions, reorder calendar, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reorder quantities, safety-stock calculations, last-safe-order dates, PO cash-outlay timelines, and overstock action plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: Forecasting may involve sensitive business data such as SKU sales history, stock levels, supplier lead times, planned promotions, and purchase-order costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data handling before use and share only the inventory and planning fields needed for the forecast.
+
+Risk: Reorder, markdown, and freight recommendations can be wrong if assumptions, missing data, or benchmark substitutions are not reviewed.
+
+Mitigation: Review the stated assumptions, output checklist, and forecast tables before acting on purchasing, markdown, or freight decisions.
+
+## Reference(s):
+
+- [Inventory Forecast - Output Template](references/output-template.md)
+- [Demand Forecasting Methods](references/demand-forecasting-methods.md)
+- [Lead Time & Safety Stock Reference](references/lead-time-and-safety-stock.md)
+- [Forecast Quality Checklist](assets/forecast-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown forecast report with tables, assumptions, reorder calendar, and action recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided sales, inventory, supplier, promotion, MOQ, and case-pack data; outputs assumptions and quality checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

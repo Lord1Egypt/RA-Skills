@@ -1,43 +1,55 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/aggregator/get_author_order_experience/v1 for Douyin Creator Marketplace (Xingtu) Creator Order Experience through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/aggregator/get_author_order_experience/v1 for Douyin Creator Marketplace (Xingtu) Creator Order Experience through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call a JustOneAPI wrapper for Douyin Creator Marketplace (Xingtu) creator order-experience data. It supports creator evaluation, campaign planning, and marketplace research using an oAuthorId lookup and optional reporting period. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper sends JUST_ONE_API_TOKEN as a URL query parameter. <br>
-Mitigation: Use a scoped or revocable token, avoid sharing command output or network traces, and rotate the token if it may have been exposed. <br>
-Risk: The skill returns creator marketplace data and may include backend error payloads. <br>
-Mitigation: Review results before sharing them outside the intended workflow and avoid pasting sensitive output into public channels. <br>
+## Use Case:
 
+External developers and agent operators use this skill to call JustOneAPI's Douyin Creator Marketplace (Xingtu) creator order experience endpoint. It supports creator evaluation, campaign planning, and marketplace research using commercial history and transaction-related indicators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-aggregator-get-author-order-experience) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_aggregator_get_author_order_experience&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_aggregator_get_author_order_experience&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with an executable Node command and JSON API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and JUST_ONE_API_TOKEN; uses oAuthorId and optional period query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command lines, request URLs, logs, or command traces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token when available and avoid sharing logs, screenshots, chat messages, or command traces from runs.
+
+Risk: Returned creator commercial history and transaction-related indicators may be sensitive.
+
+Mitigation: Treat returned creator and transaction data as sensitive and share it only with authorized users.
+
+## Reference(s):
+
+- [Operation documentation](artifact/generated/operations.md)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_aggregator_get_author_order_experience&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON returned by the API helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and the oAuthorId query parameter; period is optional with DAY_30 as the documented default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

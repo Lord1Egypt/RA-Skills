@@ -1,42 +1,53 @@
-## Description: <br>
-Turns rough campaign ideas into structured campaign briefs with a SMART objective, audience definition, key message, channel budget allocation, measurement plan, KPIs, and asset tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a rough campaign idea into a structured marketing brief with a SMART objective, audience definition, key message, justified channel and budget plan, measurement plan, and asset tracker.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Marketing managers, brand strategists, and campaign leads use this skill to convert rough campaign ideas into kickoff-ready briefs with measurable objectives, audience and message framing, channel and measurement plans, and an asset tracker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated campaign briefs may contain unverified strategic assumptions, claims, KPIs, or disclosure and legal posture. <br>
-Mitigation: Review the brief before external use and verify claims, constraints, assumptions, and brand or legal requirements with the responsible team. <br>
-Risk: Campaign intake may include sensitive budget, timeline, launch, or strategy details. <br>
-Mitigation: Use the skill only in approved environments and avoid entering confidential or embargoed information unless permitted by organizational policy. <br>
-Risk: Channel plans and budget shares are planning drafts based on the supplied context, not independent performance evidence. <br>
-Mitigation: Validate recommendations against available audience, media, and performance data before using them for execution decisions. <br>
+## Use Case:
 
+Marketing managers, brand strategists, and campaign leads use this skill at campaign kickoff to structure vague requests into a measurable, review-ready brief before creative or media work begins.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/campaign-brief-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown campaign brief with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks unknowns as assumptions or items to confirm and offers one revision pass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: evidence.release.version and CHANGELOG, released 2026-05-28) <br>
+Risk: Campaign planning can involve confidential budgets, unreleased product details, or private customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing confidential campaign, product, budget, or customer details unless they are appropriate for the agent session; do not put confidential information in the optional GitHub feedback link.
+
+Risk: A generated brief may contain assumptions where campaign targets, audience details, or performance data were not provided.
+
+Mitigation: Review all assumptions and items marked to confirm before using the brief for kickoff or budget decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/campaign-brief-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured brief with short sections, tables, assumptions, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a SMART objective, channel budget shares totaling 100%, KPI measurement plan, asset tracker, and one revision pass.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and artifact CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

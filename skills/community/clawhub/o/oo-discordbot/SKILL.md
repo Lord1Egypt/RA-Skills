@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Discord Bot"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.8"
   services: ["discordbot"]
   icon: "https://static.oomol.com/logo/third-party/Discord%20Bot.svg"
 ---
@@ -61,7 +61,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_message` — Create a Discord channel message with the platform bot token. [write]
 - `create_thread` — Create a thread in a Discord channel. [write]
 - `create_thread_from_message` — Create a thread from a Discord message. [write]
-- `crosspost_message` — Crosspost a message in an announcement channel.
+- `crosspost_message` — Crosspost a message in an announcement channel. [write]
 - `delete_all_message_reactions` — Delete all reactions on a message. [destructive]
 - `delete_all_message_reactions_by_emoji` — Delete all reactions for a specific emoji on a message. [destructive]
 - `delete_application_command` — Delete a global application command. [destructive]
@@ -87,8 +87,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_active_guild_threads` — Get active threads for a guild.
 - `get_application` — Get an application by id.
 - `get_application_command` — Get a global application command.
-- `get_application_role_connections_metadata` — Get application role connection metadata. [write]
-- `get_application_user_role_connection` — Get the current user's application role connection. [write]
+- `get_application_role_connections_metadata` — Get application role connection metadata.
+- `get_application_user_role_connection` — Get the current user's application role connection.
 - `get_auto_moderation_rule` — Get an auto moderation rule.
 - `get_bot_gateway` — Get gateway connection info for the platform bot.
 - `get_channel` — Get a channel by id.
@@ -96,10 +96,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_guild` — Get a guild by id using the platform bot token.
 - `get_guild_application_command` — Get a guild-scoped application command.
 - `get_guild_application_command_permissions` — Get guild application command permissions.
-- `get_guild_ban` — Get a specific guild ban by user id. [destructive]
+- `get_guild_ban` — Get a specific guild ban by user id.
 - `get_guild_emoji` — Get a guild emoji by id.
 - `get_guild_member` — Get a guild member by guild id and user id.
 - `get_guild_preview` — Get the preview for a discoverable guild.
+- `get_guild_role` — Get a role in a Discord guild by ID.
+- `get_guild_role_member_counts` — Get the number of members holding each role in a Discord guild, excluding @everyone.
 - `get_guild_scheduled_event` — Get a guild scheduled event.
 - `get_guild_sticker` — Get a guild sticker by id.
 - `get_guild_template` — Get a guild template by code.
@@ -116,11 +118,11 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_sticker` — Get a sticker by id.
 - `get_thread_member` — Get a thread member by user id.
 - `get_user` — Get a user by id.
-- `invite_resolve` — Resolve a guild or channel invite by code. [write]
+- `invite_resolve` — Resolve a guild or channel invite by code.
 - `invite_revoke` — Revoke an invite by code. [destructive]
 - `join_thread` — Join a thread as the current bot user. [write]
-- `leave_guild` — Leave a guild as the current bot user. [write]
-- `leave_thread` — Leave a thread as the current bot user. [write]
+- `leave_guild` — Leave a guild as the current bot user. [destructive]
+- `leave_thread` — Leave a thread as the current bot user. [destructive]
 - `list_application_commands` — List global application commands.
 - `list_auto_moderation_rules` — List auto moderation rules for a guild.
 - `list_channel_invites` — List invites for a channel.
@@ -148,27 +150,30 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_sticker_packs` — List public sticker packs.
 - `list_thread_members` — List thread members.
 - `list_voice_regions` — List public voice regions.
-- `pin_message` — Pin a message in a channel.
+- `modify_guild_channel_positions` — Reorder or re-parent channels in a Discord guild. Requires the MANAGE_CHANNELS permission. Only one entry per request may change parent_id. [destructive]
+- `modify_guild_incident_actions` — Pause invites or direct messages in a Discord guild for up to 24 hours. Requires the MANAGE_GUILD permission. [destructive]
+- `modify_guild_role_positions` — Reorder roles in a Discord guild. Requires the MANAGE_ROLES permission. [write]
+- `pin_message` — Pin a message in a channel. [write]
 - `preview_prune_guild` — Preview how many members would be pruned from a guild.
-- `prune_guild` — Prune inactive members from a guild.
+- `prune_guild` — Prune inactive members from a guild. [destructive]
 - `put_guilds_onboarding` — Update guild onboarding configuration. [write]
 - `search_guild_members` — Search guild members by query.
-- `set_channel_permission_overwrite` — Create or update a channel permission overwrite. [write]
+- `set_channel_permission_overwrite` — Create or update a channel permission overwrite. [destructive]
 - `sync_guild_template` — Sync a guild template with the current guild state. [write]
 - `test_auth` — Test the configured bot token against /users/@me.
 - `trigger_typing_indicator` — Trigger the typing indicator in a channel. [write]
-- `unban_user_from_guild` — Remove a guild ban for a user.
-- `unpin_message` — Unpin a message in a channel.
+- `unban_user_from_guild` — Remove a guild ban for a user. [destructive]
+- `unpin_message` — Unpin a message in a channel. [destructive]
 - `update_application_command` — Update a global application command. [write]
 - `update_application_user_role_connection` — Update the current user's application role connection. [write]
 - `update_auto_moderation_rule` — Update an auto moderation rule. [write]
-- `update_channel` — Update settings for an existing channel. [write]
+- `update_channel` — Update settings for an existing channel. [destructive]
 - `update_guild` — Update guild settings. [write]
 - `update_guild_application_command` — Update a guild-scoped application command. [write]
 - `update_guild_emoji` — Update a guild emoji. [write]
-- `update_guild_member` — Update a guild member. [write]
+- `update_guild_member` — Update a guild member. [destructive]
 - `update_guild_role` — Update a guild role. [write]
-- `update_guild_scheduled_event` — Update a guild scheduled event. [write]
+- `update_guild_scheduled_event` — Update a guild scheduled event. [destructive]
 - `update_guild_sticker` — Update a guild sticker. [write]
 - `update_guild_template` — Update a guild template. [write]
 - `update_guild_welcome_screen` — Update a guild welcome screen. [write]
@@ -205,14 +210,17 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Discord Bot is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Discord Bot is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=discordbot
+  https://console.oomol.com/connections/discordbot
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Discord Bot homepage: https://discord.com/developers/applications
+- API documentation: https://docs.discord.com/developers/intro

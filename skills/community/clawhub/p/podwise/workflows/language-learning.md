@@ -4,7 +4,7 @@ Use this skill to mine a podcast transcript for language learning material. It p
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Identify the target episode and fetch its transcript.
 3. Ask the user to specify their learning language and level.
 4. Extract relevant vocabulary and phrases from the transcript.
@@ -13,18 +13,13 @@ Use this skill to mine a podcast transcript for language learning material. It p
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
 Look for `taste.md` in the current working directory.
 
-- If found, read the **Languages** field silently. Use the learning language and native language to pre-fill Step 4 questions and skip any that are already known.
+- If found, read the **Languages** field under **Listening Style** silently. Use the learning language and native language to pre-fill Step 4 questions and skip any that are already known.
 - If found, also read **Output Preferences** to shape the default delivery format recommendation in Step 8.
 - If not found, ask all setup questions in full.
 
@@ -32,22 +27,25 @@ Look for `taste.md` in the current working directory.
 
 The user may provide the episode as:
 
-- A Podwise episode URL: `https://podwise.ai/dashboard/episodes/{id}`
-- A YouTube or Xiaoyuzhou URL
-- A local audio or video file path
+- A Podwise episode URL: `https://app.podwise.ai/dashboard/episodes/{seq}` — extract the trailing integer as `seq`.
+- A YouTube or Xiaoyuzhou URL.
+- A local audio or video file path.
 - An episode title or keyword — search first:
 
-```bash
-podwise search episode "{title or keyword}" --limit 5 --json
-```
+  - `search_episodes` with `query: "{title or keyword}"`.
 
 Present the results and ask the user to confirm which episode before continuing.
 
-If the user provided a YouTube URL, Xiaoyuzhou URL, or local file path, run `podwise process <url>` before Step 5 to obtain a valid Podwise episode URL. Ask for confirmation before processing:
+If the user provided a YouTube URL, Xiaoyuzhou URL, or local file path, process it first to obtain a valid Podwise episode `seq`. Ask for confirmation before processing:
 
 > "This episode hasn't been processed yet. Processing will use one credit from your Podwise quota. Proceed?"
 
-Only run `process` after explicit confirmation. Once processed, re-run the search to obtain the resolved Podwise episode URL, then proceed to Step 4.
+Only after explicit confirmation:
+
+- YouTube / Xiaoyuzhou: `import_episode` to get a `seq`, then `process_episode`.
+- Local file: `start_audio_upload` → upload bytes to the returned `uploadUrl` (or hand the `browserUploadUrl` to the user) → `complete_audio_upload`.
+
+Poll `get_episode` until processing is done, then proceed to Step 4.
 
 ## Step 4: Set Up the Learning Context
 
@@ -67,21 +65,11 @@ Use the answers to calibrate extraction in Step 6.
 
 ## Step 5: Fetch the Transcript
 
-```bash
-podwise get transcript {episode-url}
-```
+Call `get_episode_transcript` with the episode `seq`. The transcript is paginated — start with `limit: 500` and use `offset` to page through the full transcript until you have all segments.
 
-If the episode is not yet processed, ask the user for confirmation before processing:
+For a non-English episode, you may request the transcript in a specific language with the `language` parameter.
 
-> "This episode hasn't been processed yet. Processing will use one credit from your Podwise quota. Proceed?"
-
-Only run `process` after explicit confirmation:
-
-```bash
-podwise process {episode-url}
-```
-
-Once processed, fetch the transcript again.
+If the episode is not yet processed, ask the user for confirmation before processing as in Step 3, then fetch the transcript again.
 
 The transcript is the primary source for card extraction.
 
@@ -160,7 +148,7 @@ Write files to the current working directory and confirm the path.
 
 ## Common Failure Cases
 
-- If `get transcript` fails because the episode is not processed and the user declines to process it, the skill cannot run. Stop and suggest the user choose a different episode or process this one later.
+- If the episode is not processed and the user declines to process it, the skill cannot run. Stop and suggest the user choose a different episode or process this one later.
 - If the transcript is in a different language than the user's specified learning language, tell them immediately — do not extract cards from the wrong language.
 - If the episode transcript is very short (under 1,000 words), warn the user that card yield will be low and offer to proceed anyway or switch to a longer episode.
 - If the user's level is Beginner but the episode is highly technical, note this mismatch and suggest that the card quality may be lower for this episode — very few phrases will be at a beginner-appropriate level.

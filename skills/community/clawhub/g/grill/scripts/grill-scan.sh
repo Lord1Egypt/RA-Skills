@@ -48,6 +48,11 @@ for f in "$@"; do
   out=$(grep -nF '—' "$f" || true)
   if [ -n "$out" ]; then echo "### Em dashes (—)"; echo "$out"; echo; hits=$((hits + $(printf '%s\n' "$out" | grep -c .))); fi
 
+  # Markdown render footgun: a bare ~ used as "approximately" pairs into <del> strikethrough.
+  # Fence-aware: skips fenced (```) and indented code, and inline `code` spans.
+  out=$(awk 'BEGIN{f=0} /^[[:space:]]*```/{f=!f;next} f{next} /^( {4,}|\t)/{next} {l=$0; gsub(/`[^`]*`/,"",l); if(l ~ /~/) printf "%d:%s\n",NR,$0}' "$f" || true)
+  if [ -n "$out" ]; then echo "### Markdown footgun: bare ~ (pairs render as strikethrough; use \"about\" or escape as \\~)"; echo "$out"; echo; hits=$((hits + $(printf '%s\n' "$out" | grep -c .))); fi
+
   # The rhythmic "That is X." / "That's X." motivational tic at sentence start.
   out=$(grep -nE '(^|[.!?]"?[[:space:]])(That is|That'\''s|This is) [A-Za-z].{0,40}\.' "$f" || true)
   if [ -n "$out" ]; then echo "### Possible rhythmic tic (That is X. / This is X.)"; echo "$out"; echo; hits=$((hits + $(printf '%s\n' "$out" | grep -c .))); fi

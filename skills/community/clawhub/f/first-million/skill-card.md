@@ -1,43 +1,56 @@
-## Description: <br>
-Personal finance companion for tracking income, expenses, budgets, and progress toward a first-million savings goal using local scripts and reference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Journey to First Million helps users record income and expenses, set and check budgets, analyze spending, and track progress toward a savings goal.
 
-## Publisher: <br>
-[cuiguopengs](https://clawhub.ai/user/cuiguopengs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuiguopengs](https://clawhub.ai/user/cuiguopengs)
 
-## Use Case: <br>
-External users use this skill to record personal income and expenses, set and check budgets, generate spending summaries, and estimate progress toward a long-term savings target. It is most useful when the agent is expected to run the bundled local finance scripts and summarize the resulting reports in concise user-facing prose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive income, expense, note, ledger, and budget history persistently in ~/.openclaw/workspace/first-million/. <br>
-Mitigation: Install only if persistent local finance records are acceptable, use explicit wording before logging or changing records, and inspect or remove ledger.json and budget.json when the data should no longer be retained. <br>
-Risk: Security evidence notes inconsistent project-local scope wording for the persistent finance data location. <br>
-Mitigation: Treat ~/.openclaw/workspace/first-million/ as the effective data scope and review the generated ledger and budget files before relying on or sharing the records. <br>
+## Use Case:
 
+External users use this skill as a personal finance companion to log transactions, manage budgets, review spending patterns, and estimate progress toward a first-million savings target.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cuiguopengs/first-million) <br>
-- [Budgeting guide](references/budget-guide.md) <br>
-- [Finance tips](references/finance-tips.md) <br>
-- [Category guide](references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional local Python script commands and finance summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local JSON ledger and budget files in ~/.openclaw/workspace/first-million/ when the user asks to log transactions or set budgets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Manual finance entries and notes are stored as local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill from a private user account, avoid entering secrets or account numbers, tighten file permissions when needed, and delete ~/.openclaw/workspace/first-million/ when the data should no longer be retained.
+
+Risk: Reports, budget status, and savings projections depend on manually entered data and simple calculations.
+
+Mitigation: Review transaction entries and budget settings before relying on summaries, and treat progress estimates as planning guidance rather than financial advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cuiguopengs/skills/first-million)
+- [Budget Guide](references/budget-guide.md)
+- [Spending Categories](references/categories.md)
+- [Finance Tips](references/finance-tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text responses with local script command invocations and finance summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists ledger and budget data as local JSON files under ~/.openclaw/workspace/first-million/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Track competitors with pricing alerts, feature changes, positioning analysis, and strategic dossiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track competitors with pricing alerts, feature changes, positioning analysis, and strategic dossiers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, business operators, and product teams use this skill to track competitors, maintain local dossiers, monitor pricing and feature changes, and turn observations into roadmap, positioning, and sales recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local competitor-monitoring files may contain sensitive strategy notes, vulnerabilities, priorities, or competitive analyses. <br>
-Mitigation: Review or delete the ~/competitor-monitoring/ folder periodically and avoid storing unnecessary sensitive material. <br>
-Risk: Proactive monitoring can surface more competitive intelligence than the user wants. <br>
-Mitigation: Choose proactive monitoring or on-demand use during setup and set alert thresholds before tracking starts. <br>
-Risk: Competitive intelligence can become stale or misleading if dossiers are not refreshed. <br>
-Mitigation: Date observations, update dossiers after competitor mentions or research, and connect findings to actionable strategy before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/competitor-monitoring) <br>
-- [Skill homepage](https://clawic.com/skills/competitor-monitoring) <br>
+## Use Case:
 
+Business teams, founders, product managers, and go-to-market operators use this skill to monitor competitors, maintain local dossiers, triage alerts, and turn market changes into strategy, roadmap, and positioning guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and local Markdown dossier templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces competitor dossiers, alert logs, and strategic analyses in local Markdown files under ~/competitor-monitoring/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Competitor names, positioning, vulnerabilities, strategy notes, and alert history may be stored locally in ~/competitor-monitoring/.
+
+Mitigation: Confirm local storage is acceptable before use, prefer on-demand or paused monitoring for sensitive contexts, and periodically review or delete the folder when the business context changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/competitor-monitoring)
+- [Skill homepage](https://clawic.com/skills/competitor-monitoring)
+- [Setup guide](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and local Markdown dossier, alert, memory, and analysis files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise competitive-intelligence summaries, recommendations, and local note templates; no credentials or external data transfer are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

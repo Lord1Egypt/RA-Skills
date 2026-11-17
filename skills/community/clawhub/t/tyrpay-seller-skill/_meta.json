@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7damjysh059fvz4j4c13qgss86q0dj",
-  "slug": "tyrpay-seller-skill",
+  "name": "tyrpay-seller-skill",
   "version": "0.1.13",
-  "publishedAt": 1778867333565
+  "description": "Seller-side TyrPay workflow bundle for LLM agents.",
+  "entrypoint": "SKILL.md",
+  "tags": ["tyrpay", "payments", "evm", "agents", "seller"],
+  "author": "TyrPay"
 }

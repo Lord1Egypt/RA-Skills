@@ -1,0 +1,4 @@
+interface:
+  display_name: "AskAI.free"
+  short_description: "Use ChatGPT, Claude and DeepSeek via AskAI"
+  default_prompt: "Use $askai-free to answer this request with an AskAI model."

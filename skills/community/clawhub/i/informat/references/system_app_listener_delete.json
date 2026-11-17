@@ -1,0 +1,20 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_listener_delete",
+    "description": "Delete listener definition (if it's a directory, all listeners under it will also be deleted).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Listener ID"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

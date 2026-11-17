@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 提及与引用复测"
+  short_description: "按同题条件比较真实提及与引用，用aimeGeo继续补采、改稿、发布和复测"
+  default_prompt: "使用 $aimegeo-citation-monitor 比较我提供的前后AI回答与原生引用，保留各项配对分母，再用aimeGeo把缺采与内容缺口接到下一轮工作。"

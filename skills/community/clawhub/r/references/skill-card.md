@@ -1,51 +1,64 @@
-## Description: <br>
-This skill helps agents perform security audits across file permissions, environment variables, dependencies, configuration, network ports, Git settings, shell settings, macOS security posture, and secret detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+References is a security-audit skill that helps agents check file permissions, environment variables, dependencies, configuration, network ports, Git history, shell settings, macOS controls, and secret patterns.
 
-## Publisher: <br>
-[13256659129](https://clawhub.ai/user/13256659129) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13256659129](https://clawhub.ai/user/13256659129)
 
-## Use Case: <br>
-Developers and engineers use this skill to run or plan security checks, generate audit findings, and review remediation guidance for local workspaces and agent skill packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit script may inspect local configuration, environment-variable names, Git history, ports, and write reports. <br>
-Mitigation: Review the script before installation and run it only in workspaces where that level of local inspection is acceptable. <br>
-Risk: The package includes unrelated reminder and payment scripts that can send chat messages or process payment files. <br>
-Mitigation: Do not run or keep those scripts unless they are explicitly needed and reviewed. <br>
-Risk: Audit reports may contain sensitive local findings and can be sent to Feishu or webhook destinations. <br>
-Mitigation: Review and redact reports before sharing them, and confirm webhook destinations before enabling report delivery. <br>
-Risk: An exposed WeCom webhook appears in the artifact behavior. <br>
-Mitigation: Rotate the webhook if it belongs to you and remove hard-coded webhook URLs before use. <br>
+## Use Case:
 
+Developers, security reviewers, and operations teams use this skill to run local security checks and receive audit reports with prioritized remediation guidance. It is intended for reviewing local OpenClaw/workspace configuration, code, dependencies, credentials exposure, and host security posture.
 
-## Reference(s): <br>
-- [Code Security Best Practices](code-security.md) <br>
-- [Dependency Audit](dependency-audit.md) <br>
-- [Permissions Rules](permissions.md) <br>
-- [Secrets Detection Rules](secrets-detection.md) <br>
-- [NPM Advisory Database](https://github.com/npm/advisories) <br>
-- [PyPI Security](https://pypi.org/security) <br>
-- [CVE Database](https://cve.mitre.org/) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON reports, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local audit reports and may send report content to Feishu or webhook destinations when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local audit reports may include sensitive local paths, configuration details, environment-variable names, or possible secret fragments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated reports before sharing, storing, or sending them through Feishu, webhooks, or other external channels.
+
+Risk: The release bundles unrelated reminder and payment scripts, including an exposed WeCom webhook key, which broadens behavior beyond security auditing.
+
+Mitigation: Remove or ignore unrelated scripts before installation and treat the exposed webhook key as compromised.
+
+Risk: Report delivery through Feishu plugin APIs or webhooks can duplicate sensitive audit data outside the local workspace.
+
+Mitigation: Run audits locally by default and enable report delivery only with approved destinations after the report has been reviewed.
+
+## Reference(s):
+
+- [Permissions Check Rules](artifact/permissions.md)
+- [Secret Detection Rules](artifact/secrets-detection.md)
+- [Dependency Vulnerability Scanning](artifact/dependency-audit.md)
+- [Code Security Best Practices](artifact/code-security.md)
+- [NPM Advisory Database](https://github.com/npm/advisories)
+- [PyPI Security](https://pypi.org/security)
+- [CVE Database](https://cve.mitre.org/)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or JSON audit reports with summaries, findings, severity counts, and remediation commands; optional Feishu-formatted message text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include local paths and possible secret fragments, so review and redact before storing or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

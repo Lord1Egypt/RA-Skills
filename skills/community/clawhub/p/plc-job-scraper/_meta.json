@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7b32hbfgc8p60n9j31hs1d9s816j99",
-  "slug": "plc-job-scraper",
   "version": "1.0.0",
-  "publishedAt": 1775958762021
+  "description": "Automaticky vyhledává PLC, automation a SCADA pracovní nabídky z LinkedIn, Indeed a dalších job boardů. Ideální pro PLC programátory a automation inženýry hledající nové projekty.",
+  "tags": ["plc", "automation", "jobs", "scraper", "linkedin", "employment"],
+  "author": {
+    "name": "Jakub Cais",
+    "email": "caisik@gmail.com"
+  }
 }

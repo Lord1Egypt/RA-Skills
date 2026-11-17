@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee 音视频转文字"
+  short_description: "把音频或视频链接转换成文字稿。"
+  default_prompt: "使用 HotBee 音视频转文字技能，把用户提供的媒体 URL 转换成文字稿。"

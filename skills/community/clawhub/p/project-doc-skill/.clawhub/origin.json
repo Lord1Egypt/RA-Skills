@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "registry": "https://clawhub.ai",
+  "slug": "project-doc-skill",
+  "installedVersion": "1.0.0",
+  "installedAt": 1787698021123,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "c3f97f8b46d5cd8cf387722155428a75a5e81e15e85a3d2abb1146a217341b3c",
+    "integrity": "sha256-w/l/i0bVzYzzh3IhVUKKdaXoHhXoWj0quxFGohc0Gzw="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "64550c1cea66e7022de20918f0d77999d48d5ab77b0a6db40fd390e34a722623"
+  }
+}

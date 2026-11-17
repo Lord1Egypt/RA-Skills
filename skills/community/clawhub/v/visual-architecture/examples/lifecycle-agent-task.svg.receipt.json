@@ -1,0 +1,69 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:50.641530+00:00",
+  "input": {
+    "bytes": 1538,
+    "path": "examples/lifecycle-agent-task.json",
+    "sha256": "3a41c621b51576947af834cb2addf091372980787fac139d8b08152074f5be2a"
+  },
+  "mode": "lifecycle",
+  "output": {
+    "bytes": 10355,
+    "path": "examples/lifecycle-agent-task.svg",
+    "sha256": "34761e4f62506bce4e188555fe8e445c22fc56427ffecf4f905f0a2624ee329b"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 6,
+      "evidenceItems": 0,
+      "mode": "lifecycle",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "verify",
+              "repair"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "done",
+              "blocked"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

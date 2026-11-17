@@ -1,0 +1,5 @@
+# Local tooling / private memory — never publish
+.workbuddy/
+
+# macOS cruft
+.DS_Store

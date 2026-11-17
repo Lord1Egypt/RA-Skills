@@ -1,168 +1,165 @@
 ---
 name: opphub
-description: 偶合 OppHub OPC 客户端 · 撮合 + 能力交换 · OPC 注册 / 通道绑定 / 商机 / 撮合匹配
-version: 1.0.16
-author: opphub-dev
-license: MIT-0
-homepage: https://api.opphub.ruiplus.cn
+version: 5.0.0
+description: 偶合 OppHub - 把偶合账号接入 OpenClaw，录入公司、查商机、收推送。
+author: mtty-ai
+homepage: https://github.com/mtty-ai/opphub-skill
+entry: bin/opphub
+defaultLocale: zh-CN
+requires:
+  bins:
+    - node>=18
+    - openclaw
+    - jq
+    - curl
+    - security
+    - openssl
+    - xdg-open
+  env: []
+  platform:
+    darwin: full
+    linux: full
+    windows: none
 metadata:
-  emoji: 🤝
-  audience: 公开 OPC（人人可装）
-  categories: [business, productivity, productivity-automation]
-  topics: [opc, one-person-company, matchmaking, capability-exchange, ai-startup, solopreneur]
-  openclaw:
-    skillKey: opphub
-    requires:
-      bins: []
-      env: []
-      config: []
-    os: [macos, linux]
+  api: https://api.opphub.ruiplus.cn
+  deviceFlow:
+    authorize: https://api.opphub.ruiplus.cn/api/oauth/device/code
+    token: https://api.opphub.ruiplus.cn/api/oauth/device/token
+    userinfo: https://api.opphub.ruiplus.cn/api/oauth/userinfo
+  refreshToken:
+    endpoint: https://api.opphub.ruiplus.cn/api/oauth/token
+  client_id: opphub-plugin
+  scope: profile ws:read ws:write
 ---
 
-# 偶合 OppHub · 公开 OPC Skill
+# 偶合 OppHub
 
-> 撮合 + 能力交换 · 公开 OPC · 5 通道独立通知 · 邮箱 / 手机号注册。
+把偶合账号接入 OpenClaw，录入公司、查商机、收推送。
 
-## 这是什么
+支持 3 种触发方式：
+- IM 群聊 / 私聊 @bot（飞书 / 微信 / 钉钉 / Telegram 等）
+- OpenClaw 后台直接调用
+- cron 定时任务
 
-**偶合 OppHub** 是一个面向 OPC（一人公司 / AI 创业者）的撮合 + 能力交换平台，本 skill 是接入偶合平台的 OPC 客户端封装。
+具体 IM 取决于 OpenClaw runtime 已装的 channel plugin。
 
-撮合引擎 + 能力交换市场 + 5 通道 IM 通知推送。
+---
+
+## 一句话介绍
+
+录入公司、查商机、收推送，3 件事 bot 都替你跑。
+
+---
 
 ## 安装
 
 ```bash
-clawhub install opphub
+openclaw skills install @mtty-ai/opphub
+openclaw plugins install clawhub:@mtty-ai/opphub
 ```
 
-## Quick Start
+两条都要装：
 
-> **命令前缀说明**：本 skill 装好后，`opphub` 命令会在 PATH 里。
-> - 如果你的环境能直接调 `opphub`，**用简写** `opphub status`
-> - 如果你的环境只能调 `clawhub`（某些受控设备），**用完整命令** `clawhub opphub status`
-> - 两种调用方式走同一个脚本，参数完全一样
+- `opphub` skill：在 IM 里跟 bot 对话
+- `opphub` plugin：装好后 bot 收得到推送，登录态写 macOS Keychain
+
+装完自动重启 gateway。
+
+依赖 runtime 自动校验，不缺。
+
+---
+
+## 五步上手
+
+### 1. 注册偶合账号
+
+去 <https://api.opphub.ruiplus.cn/register>，邮箱/手机号 + 6 位验证码。
+
+### 2. 验证 plugin 装好
 
 ```bash
-opphub status        # 看当前账号绑定状态
-opphub check-update  # 检查 skill 自身更新
-opphub update        # 拉取最新版本
-opphub version       # 看当前 skill 版本
+opphub plugin-check --json
 ```
 
-`opphub status` 是 first run 入口。已绑定就告诉用户偶合能干什么，未绑定就引导走 `opphub register`。
+返 `installed: true` 就 OK。没装好跑 `openclaw plugins install clawhub:@mtty-ai/opphub` 重装。
 
-## 注册
+### 3. @bot 说"偶合登录"
 
-`opphub register` 启动 6 步交互式引导（3-6 可选跳过）：
+bot 走 OAuth device flow：
+- bot 私聊发你激活链接（不会在群里贴验证码）
+- 你打开链接点同意
+- 登录态自动写 Keychain，下次不用再登
 
-1. **邮箱/手机号注册** —— `POST /api/auth/code/send` 发验证码 → `POST /api/auth/register` 建账号
-   - **首次可选设密码**：注册完成会问"是否设置登录密码"（8-32 位）
-   - 设了 → 后续 `opphub login` 可用密码或验证码
-   - 不设 → 只能用验证码登录（后续 `opphub passwd` 可补设）
-2. **IM 通道绑定**（至少 1 个）—— 当前可用: email / feishu
-3. **手机号 KYC**（可选 +10 信用分）
-4. **1 句话开店** —— `POST /api/profile/parse` 调 BGE-M3 抽取 7 维度（mock）
-5. **完善公司卡片 + 能力卡片**
-6. **完成引导** —— state.status=READY
+### 4. @bot 说"偶合配置"
 
-**前置**：
+bot 列出你本机已装的 IM 通道（飞书/微信/钉钉/Telegram 等），你选一个作**默认推送通道**。后续商机推送、cron 提醒都走这个通道。
 
-- `OPPHUB_HOME` 自动解析（1.0.13 起支持多环境）：
-  - 显式 `OPPHUB_HOME` → 1
-  - `XDG_STATE_HOME/opphub` → 2（XDG）
-  - `OPPHUB_DATA_DIR` → 3（容器/K8s 专用）
-  - `~/.opphub` → 4（默认）
-  - `/tmp/opphub-$UID` → 5（无 HOME 兜底）
-- 调试：`export OPPHUB_DEBUG=1` 看实际解析路径
-- state 存 `$OPPHUB_HOME/state.json`（权限 0600），不是 `agent.json`
+跳过这步也行——bot 会用 server 端上次选的通道；不放心就先跑一次确认。
 
-## 两种登录方式
+### 5. @bot 说"偶合录入 [公司名]"
 
-### 验证码登录（主路径，推荐）
+bot 自动 6 步跑完，只问你一次"是否入库"：
+
+- 联网查工商 / 业务 / 招聘 / 项目
+- 推断行业（MCN / SaaS / 律所 / 制造）
+- 拆能力卡片 + 上下游
+- 给你 1 张清单确认
+- 批量入库（幂等，重复跑不冲突）
+- 跑上下游匹配，列结果
+
+> 第 4 步拆出能力后, bot **不直接入库**, 先给一张确认清单 (含 4 种 entryType: 我能提供/我想找/我的依赖/同行关系).
+> 用户回复:
+> - 「确认」 → bot 调 `knowledge-submit --confirm` 入库
+> - 「删 <type.dimension>」 → bot 去掉某条重发清单
+> - 「重抽」 → 回到阶段 1 重新联网查
+> - 「改 <字段>」 → 改解析字段后重发清单
+
+---
+
+## 常用命令
+
+| 触发方式 | bot 做的 |
+|---|---|
+| 偶合登录 | OAuth 登录 |
+| 偶合状态 | 看登录态 + 推送通道 + 知识库 |
+| 偶合配置 | 选默认推送通道 |
+| 偶合录入 [公司] | 录入公司能力画像 |
+| 偶合录入关联公司 + 合同 xls | 解析合同拆上下游 |
+
+**触发方式**：群里 @bot、私聊 bot、OpenClaw 后台调用、cron 定时都可以。
+
+---
+
+## 常见问题
+
+**没收到推送？**
+确认 plugin 装好：`opphub plugin-check --json`。没装就跑 `openclaw plugins install clawhub:@mtty-ai/opphub`。
+
+**token 过期了？**
+@bot 说"偶合登录"重新走一遍。
+
+**浏览器没弹？**
+复制 bot 私聊里的链接手动打开。
+
+**录入撞同行业了？**
+bot 会弹卡片让你选行业。
+
+**录入冲突了？**
+bot 会列新旧版本让你选保留哪个。
+
+---
+
+## 卸载
 
 ```bash
-opphub login
-# → 邮箱/手机号
-# → 选「1) 验证码登录」
-# → 6 位码 → JWT(30 天)
+openclaw plugins uninstall clawhub:@mtty-ai/opphub
+openclaw skills uninstall @mtty-ai/opphub
 ```
 
-场景：日常、临时、新设备。
+Keychain 里的登录态要手动清：macOS Keychain 搜 `opphub:default` 删除。
 
-### 密码登录（兜底）
-
-```bash
-opphub login
-# → 邮箱/手机号
-# → 选「2) 密码登录」
-# → 8-32 位密码 → JWT(30 天)
-```
-
-场景：验证码收不到、自动化脚本、海外手机号。
-
-## Session 管理（jti 黑名单）
-
-`opphubToken` 是 JWT（30 天过期），含 `jti`（JWT ID）存 Redis。
-
-- `opphub logout` 注销当前 jti，后续请求报「已注销」
-- 新设备登录顶掉旧设备的 `active_jti`（防多端刷）
-- `state.json` 同时存 `opphubToken` + `jti`，方便 logout
-
-## 核心命令
-
-> 所有 `opphub <cmd>` 命令都同时支持完整写法 `clawhub opphub <cmd>`（受 clawhub 管控的设备）。两者调用同一个脚本。
-
-```bash
-# 账号
-opphub register      # OPC 注册 + 引导
-opphub login         # 登录
-opphub logout        # 登出
-opphub passwd        # 改密码
-
-# 通道管理（5 通道独立：feishu / dingtalk / wecom / sms / email）
-opphub channel list    # 列已绑通道
-opphub channel add     # 添加通道
-opphub channel remove  # 删通道
-
-# 业务（撮合 + 能力交换）
-opphub profile         # 个人 / 公司 / 能力 profile
-opphub opportunities   # 需求池 / 商机
-opphub suppliers       # 推荐供应商 / 能力方
-opphub matches         # 撮合引擎（需求 ↔ 能力）
-
-# IM 推送
-opphub notify          # 看推送历史 / 配置
-
-# 状态
-opphub status          # 当前状态
-```
-
-## 5 通道 IM 通知
-
-5 个 IM 通知通道（feishu / dingtalk / wecom / sms / email）**可选**绑定，独立增删，互不影响。通道是**通知手段**，不是身份手段 —— 卸了 IM 客户端账号还在。
-
-## 错误码
-
-| 错误码 | 处理 |
-|--------|------|
-| `missing_agent_token` | 跑 `status`，引导重新注册 |
-| `invalid_agent_token` / `expired_agent_token` | 同上 |
-| `quota_exceeded` | 告诉用户今日配额用完 |
-| `invalid_code` / `expired_code` | 重新走注册流程 |
-| `rate_limited` | 提示等待再试 |
-
-## 安全报告
-
-如发现 skill 存在安全问题，请通过 GitHub Security Advisories 私下提：
-
-- https://github.com/mtty123456/opphub/security/advisories/new
+---
 
 ## 反馈
 
-- ⭐ ClawHub star：https://clawhub.ai/mtty123456/skills/opphub
-- 🐛 Issue：https://github.com/mtty123456/opphub/issues
-- 💬 偶合官方渠道
-
-## 许可证
-
-MIT-0。任何人都可商用，无需署名。
+issue: https://github.com/mtty-ai/opphub-skill/issues

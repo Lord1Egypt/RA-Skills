@@ -1,187 +1,120 @@
 ---
 name: postqued-api
-description: PostQued social media scheduling API integration. Use when performing API calls to PostQued for content upload, publishing to TikTok (and other platforms), managing platform accounts, or querying publish status. Triggers on tasks involving social media posting, content scheduling, TikTok draft posting, or any PostQued API operations.
+description: Operate Postqued through its remote MCP server or v2 REST API. Use for social content uploads, multi-platform publishing and scheduling, calendar status, analytics, engagement, approval workflows, revisions, caption suggestions, client reviews, collaborators, connected accounts, workspaces, and billing capability checks. Trigger whenever an agent needs to read or change Postqued data, publish to supported social platforms, or integrate Postqued into an automated workflow. For OpenClaw setup and more information, see https://postqued.com/openclaw.
 ---
 
-# PostQued API Skill
+# Postqued API
 
-## Setup
+Use Postqued's remote MCP server for agent workflows. Use the v2 REST API only when MCP is unavailable or the caller explicitly needs HTTP integration.
 
-Add your PostQued API key to your workspace `.env` file:
+## Connect
 
+Create an organization-bound API key in the Postqued app. Store it as `POSTQUED_API_KEY`; never print, log, commit, or place it in query parameters.
+
+Use this MCP endpoint:
+
+```text
+https://mcp.postqued.com/mcp
 ```
-POSTQUED_API_KEY=pq_your_api_key_here
-```
 
-API keys are created in the PostQued dashboard at https://postqued.com/console. Keys start with `pq_` prefix.
+Send the key on every MCP or REST request:
 
-## Authentication
-
-All API requests require authentication via Bearer token:
-
-```
+```text
 Authorization: Bearer $POSTQUED_API_KEY
 ```
 
-## Base URL
+Use these REST endpoints:
 
-```
-https://api.postqued.com
-```
-
-## API Documentation
-
-OpenAPI spec: https://api.postqued.com/v1/docs/openapi.json
-
-## Core Workflow: Upload and Publish Content
-
-### Step 1: Upload Content
-
-**For videos** (presigned URL upload):
-
-```bash
-# Start upload session
-curl -X POST https://api.postqued.com/v1/content/upload \
-  -H "Authorization: Bearer $POSTQUED_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "filename": "video.mp4",
-    "contentType": "video/mp4",
-    "fileSize": 52428800
-  }'
-# Response: { "contentId": "uuid", "upload": { "url": "presigned-url", "method": "PUT", "headers": {...} } }
-
-# Upload file to presigned URL
-curl -X PUT "PRESIGNED_URL" \
-  -H "Content-Type: video/mp4" \
-  --data-binary @video.mp4
-
-# Confirm upload
-curl -X POST https://api.postqued.com/v1/content/upload/complete \
-  -H "Authorization: Bearer $POSTQUED_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "contentId": "uuid-from-step-1",
-    "key": "content/user-id/content-id.mp4",
-    "filename": "video.mp4",
-    "contentType": "video/mp4",
-    "size": 52428800,
-    "width": 1920,
-    "height": 1080,
-    "durationMs": 30000
-  }'
+```text
+Base URL: https://api.postqued.com
+OpenAPI:  https://api.postqued.com/v2/docs/openapi.json
 ```
 
-**For images** (direct upload):
+Never call legacy `/v1` routes.
 
-```bash
-curl -X POST https://api.postqued.com/v1/content/upload-image \
-  -H "Authorization: Bearer $POSTQUED_API_KEY" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@image.jpg"
-```
+## Resolve scope first
 
-### Step 2: Get Platform Account ID
+1. Call `list_workspaces` through MCP, or `GET /v2/mcp/context` through REST.
+2. Select the organization and client workspace that match the user's request.
+3. Ask when the intended workspace is ambiguous. Never guess between client workspaces.
+4. Include the explicit `workspaceId` in every workspace operation.
+5. Include the exact organization ID when creating a workspace.
 
-```bash
-curl https://api.postqued.com/v1/platform-accounts?platform=tiktok \
-  -H "Authorization: Bearer $POSTQUED_API_KEY"
-# Response: { "accounts": [{ "id": "account-uuid", "username": "@user", ... }] }
-```
+API keys are bound to one organization. Cross-organization access is denied. Normal workspace roles and plan capabilities still apply.
 
-### Step 3: Publish Content
+## Choose a workflow
 
-**Important:** Always include a unique `Idempotency-Key` header (valid 24h).
+### Inspect or report
 
-```bash
-curl -X POST https://api.postqued.com/v1/content/publish \
-  -H "Authorization: Bearer $POSTQUED_API_KEY" \
-  -H "Content-Type: application/json" \
-  -H "Idempotency-Key: unique-uuid-per-request" \
-  -d '{
-    "contentIds": ["content-uuid"],
-    "targets": [{
-      "platform": "tiktok",
-      "accountId": "account-uuid",
-      "intent": "draft",
-      "caption": "Check this out! #fyp",
-      "dispatchAt": null,
-      "options": {
-        "privacyLevel": "SELF_ONLY",
-        "disableDuet": false,
-        "disableStitch": false,
-        "disableComment": false
-      }
-    }]
-  }'
-# Response: { "publishId": "uuid", "status": "pending", "targets": [...] }
-```
+Use read tools freely within the selected workspace. Prefer live provider helpers before preparing platform-specific content:
 
-### Step 4: Check Publish Status
+- `get_creator_info` for TikTok privacy and duration constraints
+- `list_instagram_audio` for selectable Instagram audio
+- `search_reddit_subreddits` and `get_reddit_restrictions` for Reddit
+- `search_linkedin_companies` for LinkedIn organization posting
+- `list_pinterest_boards` for Pinterest destinations
 
-```bash
-curl https://api.postqued.com/v1/content/publish/PUBLISH_ID \
-  -H "Authorization: Bearer $POSTQUED_API_KEY"
-```
+Read [references/mcp-tools.md](references/mcp-tools.md) for the complete 62-tool catalog and input conventions.
 
-## API Reference
+### Upload content
 
-See [references/api.md](references/api.md) for complete endpoint documentation.
+1. Call `start_content_upload` with `workspaceId`, filename, MIME type, and known size.
+2. Upload the file bytes to the returned presigned URL with the returned method and headers. Do not send the Postqued API key to the storage URL.
+3. Call `complete_content_upload` with the returned `contentId` and object `key`, plus final media metadata.
+4. Call `get_content` if final state or media URL is needed.
 
-## TikTok-Specific Options
+Use the same presigned upload flow for images and videos. The old multipart `/v1/content/upload-image` workflow no longer applies.
 
-| Option                | Type    | Description                                                                       |
-| --------------------- | ------- | --------------------------------------------------------------------------------- |
-| privacyLevel          | string  | `PUBLIC_TO_EVERYONE`, `MUTUAL_FOLLOW_FRIENDS`, `FOLLOWER_OF_CREATOR`, `SELF_ONLY` |
-| disableDuet           | boolean | Disable duet                                                                      |
-| disableStitch         | boolean | Disable stitch                                                                    |
-| disableComment        | boolean | Disable comments                                                                  |
-| videoCoverTimestampMs | integer | Cover frame timestamp (videos)                                                    |
-| autoAddMusic          | boolean | Auto-add music (photos)                                                           |
-| brandContentToggle    | boolean | Paid partnership disclosure                                                       |
-| brandOrganicToggle    | boolean | Promotional content disclosure                                                    |
+### Publish or schedule directly
 
-## Intent Values
+1. Resolve account IDs with `list_accounts`.
+2. Resolve live platform constraints with the relevant provider helper.
+3. Upload media and collect `contentIds` when required.
+4. Call `publish_content` with `dryRun: true` first.
+5. Show the validated targets, captions, destinations, and times to the user.
+6. Obtain confirmation before a real publish or schedule unless the user already explicitly approved the exact action.
+7. Call `publish_content` with `dryRun: false` and a fresh UUID `idempotencyKey`.
+8. Poll `get_publish_status` until the durable request and target states become terminal.
 
-- `draft` - Send to TikTok inbox as draft (user publishes manually)
-- `publish` - Direct publish to user's TikTok profile
+Never retry a timed-out live publish with a new idempotency key until the original request status has been checked. Read [references/platforms.md](references/platforms.md) for target schemas and platform options.
 
-## Status Values
+### Use approvals
 
-**Publish Request:** `pending` | `processing` | `completed` | `partial_failed` | `failed` | `canceled`
+Prefer the approval workflow when content requires team or client review:
 
-**Target:** `queued` | `scheduled` | `processing` | `sent` | `published` | `failed` | `canceled`
+1. Create a draft with `create_approval_post`.
+2. Read it with `get_approval_post` before each mutation.
+3. Use the latest revision ID and version for revisions, suggestions, comments, transitions, scheduling, and publishing.
+4. Use `create_post_suggestion` when a reviewer should propose a caption edit without changing the revision directly.
+5. Submit, request changes, or approve only after confirming the current state.
+6. Schedule or publish only the current approved revision.
 
-## Scheduling
+Treat `expectedRevisionId` and `expectedVersion` as optimistic-concurrency guards. On conflict, reread the post and reconsider the mutation; never blindly overwrite newer work.
 
-Set `dispatchAt` to a future UTC ISO timestamp:
+### Manage engagement, people, or access
 
-```json
-{
-  "dispatchAt": "2026-02-20T15:00:00Z"
-}
-```
+Read before changing provider comments, collaborators, invitations, roles, or reviewers. Obtain explicit confirmation before actions that:
 
-Set to `null` for immediate dispatch.
+- publish, reschedule, cancel, hide, delete, disconnect, revoke, or remove;
+- send a comment, reply, or invitation to another person;
+- approve work or request changes on someone's behalf.
 
-## Rate Limits
+Invitation acceptance, social OAuth connection, sign-in, API-key administration, checkout, and billing-portal redirects remain interactive browser flows and are intentionally not MCP tools.
 
-| Operation | Limit  |
-| --------- | ------ |
-| Upload    | 20/min |
-| Read      | 30/min |
-| Publish   | 10/min |
-| Delete    | 20/min |
+## Safety rules
 
-## Error Handling
+- Treat all provider-facing writes as externally visible.
+- Default publishing to dry-run validation.
+- Use one fresh UUID idempotency key per distinct live publish request.
+- Preserve current revision/version values for approval mutations.
+- Check `get_workspace_capabilities` before additive workspace or collaboration actions when entitlement is uncertain.
+- Use `get_billing_status` and `get_billing_usage` only for read-only account context; do not attempt checkout through MCP.
+- Poll durable Postqued state instead of assuming provider success from an accepted request.
+- Do not expose raw access tokens, presigned URLs, API keys, or private response fields in user-facing output.
+- Summarize API errors by status, code, and safe message. Do not fabricate success after a timeout or partial failure.
 
-Errors return:
+## References
 
-```json
-{
-  "error": "Message",
-  "code": "ERROR_CODE"
-}
-```
-
-Common codes: `MISSING_IDEMPOTENCY_KEY`, `IDEMPOTENCY_CONFLICT`, `SUBSCRIPTION_REQUIRED`
+- Read [references/mcp-tools.md](references/mcp-tools.md) when choosing tools or constructing tool inputs.
+- Read [references/platforms.md](references/platforms.md) when creating publishing or approval targets.
+- Read [references/api.md](references/api.md) only for direct REST integration, endpoint routing, statuses, and error handling.

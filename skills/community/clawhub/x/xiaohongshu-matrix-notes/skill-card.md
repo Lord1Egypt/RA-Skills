@@ -1,46 +1,62 @@
-## Description: <br>
-Supports Xiaohongshu/RedNote matrix-account image-and-text note production by collecting benchmark-account examples, generating product lifestyle or try-on images, building covers, and drafting style-matched captions for women's fashion seeding accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents produce RedNote/Xiaohongshu matrix-account image and text notes at scale by analyzing benchmark accounts, generating product-oriented visuals, assembling covers, and drafting platform-style captions for women's fashion seeding accounts.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-External marketers, content operators, and developers use this skill to create Xiaohongshu/RedNote seeding-account notes from benchmark account analysis and product images, including generated visuals, cover layouts, captions, and self-check guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Large-scale benchmark-account style mimicry or real-person likeness reuse can confuse audiences or copy a creator's identity. <br>
-Mitigation: Use licensed or consented references, avoid impersonation, require approval for persona and pilot images, and review generated content before publication. <br>
-Risk: Third-party platform scraping and reuse of account, product, model, or face-reference data may exceed account rights or platform rules. <br>
-Mitigation: Confirm rights to every dataset and image input, review Xiaohongshu/RedNote and provider terms, and define retention and deletion practices for collected notes and generated assets. <br>
-Risk: Sensitive credentials are required for TikHub and Ofox API access. <br>
-Mitigation: Keep TIKHUB_TOKEN and OFOX_API_KEY out of generated outputs and shared artifacts, rotate exposed keys, and use scoped credentials where available. <br>
+## Use Case:
 
+External creators, operators, and marketing teams use this skill to turn benchmark RedNote/Xiaohongshu accounts and product photos into repeatable image-plus-caption note production workflows. It guides account research, persona confirmation, product-scene prompting, cover generation, copywriting, and final review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dizhu/xiaohongshu-matrix-notes) <br>
-- [Lessons and operational notes](artifact/references/lessons.md) <br>
-- [Persona and style template](artifact/references/persona-and-style.md) <br>
-- [Ofox image API endpoint](https://api.ofox.ai/v1) <br>
-- [TikHub Xiaohongshu API endpoint](https://api.tikhub.io/api/v1/xiaohongshu/app_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python utility scripts; generated working outputs may include JSON summaries, downloaded cover images, generated PNG images, and captions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided TikHub and Ofox credentials, product images, benchmark-account inputs, and human review of persona, pilot, likeness, product fidelity, platform compliance, and final publishing choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: TikHub and Ofox may receive account identifiers, prompts, product images, and persona or reference images during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs, review third-party service suitability before use, and keep API keys limited in scope.
+
+Risk: The included scripts perform network requests and write generated or downloaded files into the working project.
+
+Mitigation: Run the scripts in a controlled directory, review output names and paths before execution, and harden the scripts before use in sensitive environments.
+
+Risk: Generated visuals or copy can misrepresent products, personas, or benchmark-account style if not reviewed.
+
+Mitigation: Keep the documented human checkpoints for persona approval, pilot review, product-fidelity checks, and final full-result review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dizhu/skills/xiaohongshu-matrix-notes)
+- [Lessons](references/lessons.md)
+- [Persona and style template](references/persona-and-style.md)
+- [TikHub Xiaohongshu app_v2 API](https://api.tikhub.io/api/v1/xiaohongshu/app_v2)
+- [Ofox API](https://api.ofox.ai/v1)
+- [Noto Sans SC font asset](https://github.com/google/fonts/raw/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown-style workflow guidance with prompts, captions, shell command examples, configuration notes, and generated file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve generated images, covers, notes JSON, summaries, and downloaded reference covers when the helper scripts are executed.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Extracts, normalizes, and analyzes key metrics from corporate financial reports, producing ratio analysis, red-flag findings, and peer-comparison oriented summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes normalized financial statement data to compute key ratios, identify heuristic red-flag findings, and render JSON or Markdown financial analysis reports.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to summarize normalized company financial data, compute common financial ratios, and surface heuristic red flags for further review. It is descriptive analysis only and should not be used for stock price prediction, investment advice, or unsupported business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release substantially overstates its financial-report analysis capabilities and may return placeholder results for unsupported report formats. <br>
-Mitigation: Treat it as a local demo for pre-normalized JSON financial data unless the publisher narrows the claims or implements the missing PDF, XBRL, Excel, peer benchmarking, provenance, and audit-log functionality. <br>
-Risk: Outputs could be misread as business, investment, or fraud conclusions. <br>
-Mitigation: Use the output only as descriptive analysis and review red flags as signals that warrant further investigation, not as verdicts or investment advice. <br>
+## Use Case:
 
+Developers and analysts can use this skill to run a local financial statement analysis workflow over normalized JSON data, producing ratio calculations, red-flag checks, and report output. It should not be relied on for investment, audit, or business decisions without independent verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boboy-j/financial-report-analyzer-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/boboy-j) <br>
-- [Project homepage](https://github.com/openclaw-skills/financial-report-analyzer) <br>
-- [IFRS Standards](https://www.ifrs.org/issued-standards/) <br>
-- [FASB Accounting Standards Codification](https://asc.fasb.org/) <br>
-- [Ratio Definitions](knowledge/ratio_definitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown financial analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executive summaries, computed ratios, red-flag findings, peer-benchmark fields, and provenance fields when supported by the input data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, release metadata) <br>
+Risk: The package documentation describes broader PDF, XBRL, and Excel analysis capabilities than the bundled runnable pipeline demonstrates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a normalized-JSON demo unless the claimed ingestion components are separately verified.
+
+Risk: Generated financial analysis may be incomplete or misleading if used as the basis for investment, audit, or business decisions.
+
+Mitigation: Independently check source filings and generated reports before relying on any output.
+
+Risk: Red-flag detections are heuristic signals, not determinations of misconduct or financial condition.
+
+Mitigation: Use red flags as prompts for follow-up review and keep conclusions descriptive.
+
+## Reference(s):
+
+- [Project homepage from ClawHub metadata](https://github.com/openclaw-skills/financial-report-analyzer)
+- [Ratio Definitions](artifact/knowledge/ratio_definitions.md)
+- [IFRS Standards](https://www.ifrs.org/issued-standards/)
+- [FASB Accounting Standards Codification](https://asc.fasb.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON or Markdown financial analysis reports with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled pipeline supports normalized financial JSON; non-JSON inputs return a placeholder result rather than parsed report data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, frontmatter, and changelog released 2026-05-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

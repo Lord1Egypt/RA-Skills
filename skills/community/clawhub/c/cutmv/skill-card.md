@@ -1,46 +1,55 @@
-## Description: <br>
-cutmv is a local FFmpeg-based video processing skill for cutting media, converting formats, compressing videos, extracting frames or audio, replacing or mixing audio, and adding text watermarks or subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cutmv helps agents process local video and audio files with FFmpeg, including cutting, conversion, compression, frame or audio extraction, watermarking, and subtitle addition.
 
-## Publisher: <br>
-[QiaoTuCodes](https://clawhub.ai/user/QiaoTuCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[qiaotucodes](https://clawhub.ai/user/qiaotucodes)
 
-## Use Case: <br>
-Developers and agents use this skill to perform common local video and audio transformations through a Python API or CLI, especially preparing media for size limits, format compatibility, screenshots, audio track edits, watermarks, and subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The info command evaluates media metadata as Python code. <br>
-Mitigation: Review or patch the eval() call before installation, and avoid running the info command on untrusted media. <br>
-Risk: FFmpeg commands use overwrite behavior for output paths. <br>
-Mitigation: Choose output paths carefully and avoid pointing commands at files that must be preserved. <br>
-Risk: The skill depends on the system FFmpeg and ffprobe binaries. <br>
-Mitigation: Use a trusted local FFmpeg/ffprobe installation from a known source. <br>
+## Use Case:
 
+Developers and agent builders use cutmv to automate common local media-processing tasks such as trimming clips, reducing video size for messaging platforms, converting formats, extracting frames or audio, and adding watermarks or subtitles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QiaoTuCodes/cutmv) <br>
-- [Publisher profile](https://clawhub.ai/user/QiaoTuCodes) <br>
-- [FFmpeg](https://ffmpeg.org/) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime commands return JSON-like status dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local FFmpeg/ffprobe installation and read/write access to media input and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The info command uses an unsafe Python eval path when parsing media frame-rate data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the info command on untrusted media or with an untrusted FFmpeg/FFprobe in PATH until the parser is replaced with safe fraction parsing.
+
+Risk: FFmpeg commands can overwrite existing output files without prompting.
+
+Mitigation: Use new output filenames or keep backups before running processing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaotucodes/skills/cutmv)
+- [Publisher profile](https://clawhub.ai/user/qiaotucodes)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Processed media files with JSON status objects and Markdown or shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FFmpeg and FFprobe on PATH; no external Python dependencies are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Automates browser tasks with the agent-browser CLI using local headless Chrome or Browserbase cloud mode for protected sites, form interaction, screenshots, and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate browser tasks locally with headless Chrome or via Browserbase cloud for stealth, CAPTCHA-solving, and protected sites access.
 
-## Publisher: <br>
-[maikimolto](https://clawhub.ai/user/maikimolto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maikimolto](https://clawhub.ai/user/maikimolto)
 
-## Use Case: <br>
-Developers and agents use this skill to drive browser sessions for navigation, form filling, screenshots, data extraction, and setup of local or Browserbase-backed automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can access logged-in sessions, cookies, saved auth state, screenshots, clipboard contents, and network logs. <br>
-Mitigation: Prefer isolated browser sessions, avoid real Chrome profiles unless intentionally needed, close sessions after use, and do not commit state files. <br>
-Risk: The Browserbase API key grants access to cloud browser sessions. <br>
-Mitigation: Store the key in a protected environment file or secret store, restrict file permissions, and avoid logging, sharing, or committing it. <br>
-Risk: Stealth and CAPTCHA-solving automation can create policy or terms-of-service risk on protected sites. <br>
-Mitigation: Use Browserbase and CAPTCHA-related features only on sites where automation is authorized. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to guide browser automation tasks such as navigating websites, filling forms, clicking controls, taking screenshots, extracting page data, and setting up local or Browserbase-backed browser sessions.
 
-## Reference(s): <br>
-- [agent-browser Command Reference](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maikimolto/browser-agent-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser automation commands that operate on live websites and optional Browserbase cloud configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata) <br>
+Risk: The skill instructs users to install and run a global browser automation CLI that can control browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or local agent-browser install and review commands before execution.
+
+Risk: Browser automation can access cookies, saved logins, local storage, clipboard content, and persisted session state.
+
+Mitigation: Use isolated sessions by default, avoid real Chrome profiles unless necessary, close sessions after use, and clean up saved state files.
+
+Risk: Browserbase mode requires an API key and may expose cloud browser access if the key is mishandled.
+
+Mitigation: Store Browserbase credentials in a dedicated private file, keep file permissions restrictive, and avoid logging or sharing the key.
+
+## Reference(s):
+
+- [agent-browser command reference](artifact/references/commands.md)
+- [Browserbase sign-up](https://www.browserbase.com/sign-up)
+- [ClawHub skill page](https://clawhub.ai/maikimolto/skills/browser-agent-pro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation command sequences, troubleshooting steps, and credential-handling guidance.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Develops heightened sensory awareness to deepen present-moment experience and somatic intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develops heightened sensory awareness to deepen present-moment experience and somatic intelligence.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and personal-growth practitioners use this skill to generate structured sensory awareness practices, body-scan prompts, and daily micro-rituals for presence and somatic self-reflection. It is also relevant for therapists, coaches, healthcare workers, and teachers seeking non-clinical exercises for sensory attunement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat sensory awareness and mindfulness-style prompts as clinical care. <br>
-Mitigation: Present the skill as personal reflection only and direct users to qualified professionals for trauma, mental health, or medical concerns. <br>
-Risk: Practices may increase distress, panic, dissociation, flashbacks, or health anxiety for some users. <br>
-Mitigation: Advise users to stop the practice if distress increases and seek qualified support when symptoms are serious or persistent. <br>
+## Use Case:
 
+Individuals and personal-growth practitioners use this skill to generate reflective sensory-awareness exercises, body-scan prompts, and daily grounding rituals. The skill is intended for self-reflection and personal development, not medical or mental-health support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/harrylabsj/sensory-awareness-enhancer) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Analysis] <br>
-**Output Format:** [JSON object with analysis, recommendations, next steps, frameworks, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local descriptive output; no external API calls, credential use, persistence, or system-changing behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.1.0 and skill.json says 1.0.0) <br>
+Risk: Users may treat sensory-awareness or anxiety-related guidance as medical or mental-health support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as a reflective mindfulness-style aid and direct users with trauma recovery needs, persistent anxiety, dissociation, or unexplained physical symptoms to qualified professional care.
+
+Risk: The skill may provide simple coaching output rather than a robust sensory-awareness program.
+
+Mitigation: Frame outputs as lightweight self-reflection prompts and encourage users to adapt practices cautiously within their own context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sensory-awareness-enhancer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON string containing analysis, recommendations, next steps, frameworks, and a disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, persistent storage, network access, or code execution are described by the release security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata differs)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

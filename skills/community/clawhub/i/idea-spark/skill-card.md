@@ -1,41 +1,52 @@
-## Description: <br>
-Generates actionable project ideas for a requested domain by researching public pain points and optionally checking each idea with idea-check. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates actionable project ideas from a domain or interest by researching real pain points and optionally validating ideas with idea-check.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-Developers, builders, and product teams use Idea Spark to turn a domain or interest into ranked project ideas grounded in public pain points from Hacker News, Reddit, and GitHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Web-backed research can surface stale, noisy, or unverified public complaints. <br>
-Mitigation: Review the cited pain points before using generated ideas for product planning or implementation. <br>
-Risk: Optional validation may run a local mcporter command when idea-check and idea-reality are installed. <br>
-Mitigation: Review the separate validation tool before enabling automatic checks, or skip validation when the tool is unavailable or untrusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spideystreet/idea-spark) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
+## Use Case:
 
+Developers, makers, and product builders use this skill to turn a broad domain or interest into ranked project ideas grounded in current pain points. It supports optional validation to flag crowded ideas before the user invests more effort.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown list of ranked project ideas with pain-point sources, effort estimates, and optional validation signals.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source labels from web research and optional validation status when idea-check is available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, CHANGELOG.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional validation step uses an unsafe shell command pattern with generated text.
+
+Mitigation: Review the command before use, prefer a structured shell-safe tool call, or ask the user before running automatic idea-check validation.
+
+Risk: The skill sends the user's idea domain to web search during pain-point research.
+
+Mitigation: Avoid using sensitive private business ideas or confidential domains with this skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spideystreet/skills/idea-spark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown list of project ideas with pitch, pain point, type, effort, validation signal, and follow-up prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional idea-check validation status when the supporting tool is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -143,7 +143,7 @@ if [[ "$CREATE_PLAYLIST" == "--create-playlist" && "$total" -gt 0 ]]; then
   if [[ "$track_count" -gt 0 ]]; then
     PNAME="New Releases · $(date +"%b %d, %Y")"
     PDESC="Fresh releases from your artists and genre discoveries. ${track_count} tracks."
-    "$SCRIPT_DIR/build_playlist.sh" create "$PNAME" "$PDESC" "$TMPIDS"
+    "$SCRIPT_DIR/build_playlist.sh" create "$PNAME" "$PDESC" "$TMPIDS" --yes
   fi
   rm -f "$TMPIDS"
 fi

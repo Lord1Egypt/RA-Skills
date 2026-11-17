@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="indigo-porcelain">
+<head>
+  <meta charset="utf-8">
+  <title>西安文旅 — 瑞士风雪山海报</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    /* Theme tokens - Indigo Porcelain (青花瓷风格) */
+    :root, [data-theme="indigo-porcelain"] {
+      --paper: #f2f4f5; --paper-2: #e5ebef; --ink: #0a1f3d; --muted: #5f6d78;
+      --line: rgba(10,31,61,.20); --accent: #315d93; --accent-soft: #d7e1ec;
+      --ink-rgb: 10,31,61; --paper-rgb: 242,244,245; --accent-rgb: 49,93,147;
+    }
+
+    /* Typography */
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+
+    /* Poster base */
+    .poster { position: relative; overflow: hidden; isolation: isolate; }
+    .poster.xhs { width: 1080px; height: 1440px; }
+    .poster.square { width: 1080px; height: 1080px; }
+    .poster.wide { width: 2100px; height: 900px; }
+    .content { position: relative; width: 100%; height: 100%; padding: 80px 72px; display: flex; flex-direction: column; z-index: 2; }
+
+    /* Components */
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--muted); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 96px; font-weight: 900;
+      line-height: 1.05; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 28px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 32px;
+    }
+    .hero-image {
+      width: calc(100% + 144px); margin-left: -72px; height: 420px;
+      overflow: hidden; margin-bottom: 48px; position: relative;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .section-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 26px; line-height: 1.7; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .feature-item { padding: 28px; border: 1px solid var(--line); }
+    .feature-num {
+      font-family: var(--mono); font-size: 44px; font-weight: 500;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .feature-title {
+      font-family: var(--sans-zh); font-size: 20px; font-weight: 700;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .feature-desc { font-family: var(--sans-zh); font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 32px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+
+    /* Snow mountain background */
+    .poster.xhs {
+      background: linear-gradient(135deg, var(--paper) 0%, var(--paper-2) 100%);
+    }
+    .poster.wide {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 100%);
+      color: #fff;
+    }
+    .poster.wide .label-tag {
+      color: #fff; border-color: rgba(255,255,255,0.3);
+    }
+    .poster.wide .hero-title {
+      color: #fff;
+    }
+    .poster.wide .hero-sub {
+      color: rgba(255,255,255,0.7);
+    }
+    .poster.wide .section-label {
+      color: #fff;
+    }
+    .poster.wide .body-text {
+      color: #fff;
+    }
+    .poster.wide .feature-item {
+      border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05);
+    }
+    .poster.wide .feature-num {
+      color: #fff;
+    }
+    .poster.wide .feature-title {
+      color: #fff;
+    }
+    .poster.wide .feature-desc {
+      color: rgba(255,255,255,0.7);
+    }
+    .poster.wide .pull-quote {
+      color: #fff; border-color: #fff;
+    }
+    .poster.wide .tag {
+      color: #fff; border-color: #fff;
+    }
+    .poster.wide .footer-band {
+      background: var(--ink); border-color: rgba(255,255,255,0.2);
+    }
+    .poster.wide .footer-text {
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Square poster */
+    .poster.square {
+      background: linear-gradient(135deg, var(--paper) 0%, var(--paper-2) 100%);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 海报 1: 21:9 头图 ==================== -->
+  <div class="poster wide" id="poster-1">
+    <div class="content">
+      <div class="label-tag">XI'AN CULTURAL TOURISM</div>
+      <h1 class="hero-title">西安</h1>
+      <div class="hero-sub">SNOW MOUNTAIN SCENERY</div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1518639643877-4c5d8d9e8c1a?w=2100&h=900&fit=crop" alt="Xi'an Snow Mountain" />
+      </div>
+
+      <div class="section-label">HERITAGE</div>
+      <p class="body-text">
+        <strong>十三朝古都</strong>，三千年建城史。<br>
+        如今雪山环绕，更显古城韵味。<br>
+        古城墙、兵马俑、大雁塔，每一处都见证历史变迁。
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="section-label">LANDMARKS</div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-title">古城墙</div>
+          <div class="feature-desc">明代城墙遗址，雪景下更显厚重
+</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-title">大雁塔</div>
+          <div class="feature-desc">唐代佛塔建筑，雪山为伴，禅意更浓</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-title">回民街</div>
+          <div class="feature-desc">千年美食文化，雪景下更显热闹
+</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-title">碑林</div>
+          <div class="feature-desc">古代石刻艺术，雪景衬托更显庄重</div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        「雪山环绕，千年古都<br>更显厚重与韵味。」
+      </div>
+
+      <div class="tag-row">\n        <div class="tag">雪山景观</div>
+        <div class="tag">千年古都</div>
+        <div class="tag">世界遗产</div>
+        <div class="tag">美食之都</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">西安文旅 · XI'AN CULTURAL TOURISM</div>
+      <div class="footer-text">雪山之下，古韵永恒</div>
+    </div>
+  </div>
+
+  <!-- ==================== 海报 2: 1:1 分享卡 ==================== -->
+  <div class="poster square" id="poster-2">
+    <div class="content">
+      <div class="label-tag">WECHAT SHARE</div>
+      <h1 class="hero-title">西安</h1>
+      <div class="hero-sub">SNOW MOUNTAIN</div>
+
+      <div class="section-label">VISUAL IDENTITY</div>
+      <p class="body-text">
+        雪山环绕，古都风韵。<br>
+        <strong>古城墙</strong>、<strong>大雁塔</strong>、<strong>碑林</strong>、<strong>回民街</strong>。<br>
+        每一处景点，都在雪景下展现独特魅力。
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="section-label">KEY SCENES</div>
+      <div class="feature-grid">\n        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-title">古城墙</div>
+          <div class="feature-desc">明代城墙，雪景下更显壮观</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-title">大雁塔</div>
+          <div class="feature-desc">唐代佛塔，雪景衬托更显庄重</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-title">碑林</div>
+          <div class="feature-desc">古代石刻，雪景下更显历史厚重</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-title">回民街</div>
+          <div class="feature-desc">美食文化，雪景下更显热闹
+</div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        「雪山之下，古韵永恒」
+      </div>
+
+      <div class="tag-row">
+        <div class="tag">雪山景观</div>
+        <div class="tag">千年古都</div>
+        <div class="tag">世界遗产</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">西安文旅 · XI'AN CULTURAL TOURISM</div>
+      <div class="footer-text">雪山之下，古韵永恒</div>
+    </div>
+  </div>
+
+</body>
+</html>

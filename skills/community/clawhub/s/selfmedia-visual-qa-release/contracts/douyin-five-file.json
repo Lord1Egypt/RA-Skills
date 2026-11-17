@@ -1,0 +1,24 @@
+{
+  "name": "project-specific-douyin-five-file-example",
+  "required_files": [
+    "00-发布文案.txt",
+    "01-发布视频.mp4",
+    "02-竖封面-3比4.png",
+    "03-横封面-4比3.png",
+    "04-字幕.srt"
+  ],
+  "video": {
+    "path": "01-发布视频.mp4",
+    "codec_name": "h264",
+    "frame_rate": "30/1",
+    "audio_tracks": "any"
+  },
+  "images": {
+    "02-竖封面-3比4.png": {"width": 1080, "height": 1440},
+    "03-横封面-4比3.png": {"width": 1440, "height": 1080}
+  },
+  "subtitles": {
+    "path": "04-字幕.srt",
+    "allow_gaps": true
+  }
+}

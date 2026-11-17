@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "quality-issue",
+  "workflow": "product",
+  "focus": "quality",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

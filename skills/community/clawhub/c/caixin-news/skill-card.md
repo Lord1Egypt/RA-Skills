@@ -1,42 +1,50 @@
-## Description: <br>
-Fetch and summarize Chinese tech news from 财新网 (caixin.com) when users ask for Caixin technology updates or news from caixin.com/tech/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize Chinese tech news from 财新网 (caixin.com). Use when user asks about caixin tech news, tech updates from 财新, or wants news from caixin.com/tech/.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve recent Caixin technology articles and present concise Chinese summaries with dates, titles, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Results depend on outbound access to Caixin and may be affected by site availability, access restrictions, or paywall behavior. <br>
-Mitigation: Confirm that the agent is allowed to make outbound web requests to Caixin and treat unavailable or restricted content as a retrieval limitation. <br>
-Risk: News summaries may omit context or become stale as Caixin updates its technology channel. <br>
-Mitigation: Include source links and dates with summaries so readers can verify current details against the original articles. <br>
+## Use Case:
 
+External users use this skill to retrieve recent Caixin technology news and receive concise Chinese summaries with dates, titles, and relevant links.
 
-## Reference(s): <br>
-- [Caixin Technology Channel](https://www.caixin.com/tech/) <br>
-- [ClawHub skill page](https://clawhub.ai/goog/caixin-news) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain Chinese text with dated article summaries and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Articles are presented in reverse chronological order and filtered for duplicates, stock-code-only entries, and irrelevant noise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill retrieves external web content, so returned news may be incomplete, unavailable, or changed after retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source links and dates before relying on summaries for decisions.
+
+## Reference(s):
+
+- [Caixin Technology News](https://www.caixin.com/tech/)
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/caixin-news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary in Chinese with dates, titles, short summaries, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filters duplicate content, stock-code-only items, and irrelevant noise]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

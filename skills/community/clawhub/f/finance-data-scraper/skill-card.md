@@ -1,44 +1,56 @@
-## Description: <br>
-Collects scheduled finance news, market index, sector, and limit-up stock data and provides NocoDB import and browser tab cleanup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance Data Scraper helps agents set up scheduled workflows for scraping Eastmoney finance news, market index data, sector leaders, and limit-up stocks into NocoDB, with browser tab cleanup support.
 
-## Publisher: <br>
-[hoovaycn](https://clawhub.ai/user/hoovaycn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hoovaycn](https://clawhub.ai/user/hoovaycn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to configure recurring finance data scraping jobs, deduplicate records, and import market monitoring data into NocoDB.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release security summary reports a hard-coded remote database credential.
+
+Mitigation: Rotate or remove the embedded NocoDB token and require users to provide their own destination configuration before execution.
+
+Risk: The browser cleanup workflow can close non-Eastmoney tabs in the active OpenClaw browser session.
+
+Mitigation: Run browser automation in an isolated browser profile or change cleanup behavior to close only tabs created by this skill.
+
+Risk: Scheduled import jobs send scraped finance records to the configured NocoDB destination.
+
+Mitigation: Verify the base URL, table IDs, and token scope before enabling cron jobs or automated imports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to configure recurring finance-data scraping jobs, import collected JSON records into NocoDB, and manage browser tabs used by the scraping workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The NocoDB import script contains a fixed external database URL, table ID, and real-looking token and may send local finance records to that destination. <br>
-Mitigation: Remove hardcoded credentials and destination identifiers, rotate any exposed token, and load a least-privilege token and table IDs from a local secret or environment variable before running. <br>
-Risk: The browser cleanup script closes non-Eastmoney tabs and extra Eastmoney tabs, which can disrupt unrelated browser work if run in a shared profile. <br>
-Mitigation: Run cleanup only in an isolated browser profile or change the script to close only tabs created by this skill. <br>
-Risk: Cron examples can repeatedly trigger scraping, importing, and tab cleanup jobs without further review. <br>
-Mitigation: Review each cron schedule and target configuration before enabling recurring jobs, especially database destinations and browser profile scope. <br>
+**Output Format:** [Markdown guidance with JSON configuration examples, Python scripts, and shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoovaycn/finance-data-scraper) <br>
-- [NocoDB configuration example](config-examples/nocodb-config.example.json) <br>
-- [Cron configuration examples](config-examples/cron-configs/) <br>
+**Other Properties Related to Output:** [Requires user-provided NocoDB destination settings and table IDs for normal use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code] <br>
-**Output Format:** [Markdown instructions with JSON configuration examples and Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recurring job examples, NocoDB import behavior, and local browser tab cleanup behavior.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

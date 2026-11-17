@@ -1,44 +1,59 @@
-## Description: <br>
-Automatically fetch, transcribe, and archive Hacker News podcast episodes (Hacker News Morning Brief). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetch, transcribe, and archive Hacker News podcast episodes as searchable markdown transcripts.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agents use this skill to set up a local podcast ingestion workflow that downloads RSS episodes, transcribes audio with Whisper, and archives searchable Markdown transcripts. It is aimed at Hacker News Morning Brief by default and can also be pointed at another podcast RSS feed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads podcast audio and stores transcripts locally, which can consume disk space over time. <br>
-Mitigation: Use a dedicated archive directory, monitor disk usage, and use --limit when testing or when pointing the skill at a new feed. <br>
-Risk: The workflow depends on local Whisper and ffmpeg installations and performs local transcription work. <br>
-Mitigation: Install Whisper and ffmpeg from trusted sources and choose a Whisper model appropriate for the machine's performance and accuracy needs. <br>
-Risk: Optional scheduling can repeatedly fetch new episodes without further prompts. <br>
-Mitigation: Enable cron or OpenClaw scheduling only when ongoing automatic downloads are intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a local pipeline that fetches podcast RSS episodes, transcribes audio with Whisper, and stores searchable markdown archives.
 
-## Reference(s): <br>
-- [HN Podcast Archive Directory Layout](references/archive-layout.md) <br>
-- [Hacker News Morning Brief RSS feed](https://media.rss.com/hacker-news-morning-brief/feed.xml) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime outputs include audio files, text transcripts, transcript.md files, metadata.json files, and state.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local archive paths, RSS feed URLs, Whisper model names, and optional per-run episode limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can fetch arbitrary RSS and audio URLs repeatedly without explicit URL allowlists or size limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted feed, avoid attacker-provided RSS URLs, set practical run limits, and avoid unattended scheduling until allowlists and size limits are added.
+
+Risk: Downloaded media and generated transcripts are written to a local archive path.
+
+Mitigation: Run the skill as a low-privilege user in a contained directory and choose an archive location with appropriate storage limits.
+
+Risk: The workflow depends on local Whisper and FFmpeg installations.
+
+Mitigation: Install Whisper and FFmpeg in an isolated environment with reviewed versions.
+
+## Reference(s):
+
+- [HN Podcast Archive Directory Layout](references/archive-layout.md)
+- [FFmpeg](https://ffmpeg.org)
+- [Hacker News Morning Brief RSS Feed](https://media.rss.com/hacker-news-morning-brief/feed.xml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands and generated local transcript archives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces state.json, episode metadata, downloaded audio, raw text transcripts, and cleaned transcript.md files in a local archive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

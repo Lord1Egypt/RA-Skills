@@ -1,42 +1,55 @@
-## Description: <br>
-Guides setup for Teambition or Meego project automation by directing users to install plugins, authorize via DingTalk, configure a robotUserToken, and register a Teambition digital worker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through setting up a Teambition or Meego project integration, including plugin installation, DingTalk-based robotUserToken retrieval, and digital worker registration.
 
-## Publisher: <br>
-[gaohuifeng](https://clawhub.ai/user/gaohuifeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaohuifeng](https://clawhub.ai/user/gaohuifeng)
 
-## Use Case: <br>
-Developers and team operators use this skill to configure an AI-accessible Teambition digital worker and related project connector workflow for Teambition or Meego. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup delegates installation, account login, digital worker creation, and token storage to an external guide. <br>
-Mitigation: Review the linked Teambition README before use and proceed only if the plugin source and requested setup steps are trusted. <br>
-Risk: The robotUserToken may enable ongoing access after setup. <br>
-Mitigation: Use a least-privileged account where possible and confirm how to revoke the token and disable the digital worker later. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Teambition or Meego project automation and register a digital worker by following linked setup guidance. It is intended for agents assisting with project-management integration setup rather than performing business actions without review.
 
-## Reference(s): <br>
-- [Teambition tb-skills AI integration guide](https://github.com/teambition/tb-skills/blob/main/README_FOR_AI.md) <br>
-- [Feishu Project Connector for Meego](https://clawhub.ai/wadxm/feishu-project-connector) <br>
-- [ClawHub release page](https://clawhub.ai/gaohuifeng/ali-feishu-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with external links and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates detailed setup to the linked Teambition guide and optional Meego connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on mutable external documentation and connector pages for its real behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked instructions before use and prefer a pinned or locally packaged version of the setup steps for production workflows.
+
+Risk: The setup flow may involve sign-in, account-like service creation, token handling, or submission of personal or business data.
+
+Mitigation: Require explicit user confirmation before those actions and avoid exposing credentials, robotUserToken values, or sensitive project data in agent-visible logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaohuifeng/skills/ali-feishu-project)
+- [tb-skills AI integration guide](https://github.com/teambition/tb-skills/blob/main/README_FOR_AI.md)
+- [Meego Feishu project connector](https://clawhub.ai/wadxm/feishu-project-connector)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with external links and inline setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require user confirmation before sign-in, token handling, account creation, or submission of personal or business data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Real Estate Spider helps agents collect Chinese real estate listing data from Anjuke, Soufun, Beike, and Lianjia, including property details and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real Estate Spider helps agents collect Chinese real estate listing data from Anjuke, Soufun, Beike, and Lianjia using Python scraping and browser automation guidance.
 
-## Publisher: <br>
-[h8296699](https://clawhub.ai/user/h8296699) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h8296699](https://clawhub.ai/user/h8296699)
 
-## Use Case: <br>
-Developers and data analysts use this skill to configure and run authorized real estate data collection workflows, then export property records for analysis. It is intended for targets where the user has permission to collect data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents anti-bot, CAPTCHA-bypass, proxy-rotation, real-cookie, and saved-session workflows against third-party real estate sites. <br>
-Mitigation: Install and run it only for targets where collection is clearly permitted; prefer official APIs or licensed datasets. <br>
-Risk: Generated session files, screenshots, PDFs, and exports may contain cookies, account state, or protected site content. <br>
-Mitigation: Treat generated files as sensitive, store them securely, avoid committing them, and delete them when no longer needed. <br>
-Risk: Using bypass or proxy workflows on third-party services may create terms-of-service, legal, or account-access risk. <br>
-Mitigation: Avoid those workflows unless explicit authorization and applicable site terms allow them. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to configure real estate crawlers, run browser-assisted collection workflows, and export listing attributes such as price, area, location, house type, decoration, and build year. Users should apply it only where they have permission to collect data from the target sites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h8296699/real-estate-spider) <br>
-- [README](artifact/README.md) <br>
-- [CAPTCHA strategies](artifact/docs/captcha_strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; generated crawl outputs may be JSON, CSV, Excel, screenshots, or text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and agent-browser; outputs may contain site content, cookies, or saved browser state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact config.json) <br>
+Risk: The skill includes anti-bot and CAPTCHA-bypass workflows that may conflict with target site policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with permission from the target site or data owner, and review the target site's terms before running collection workflows.
+
+Risk: Saved browser sessions, screenshots, PDFs, and scraped listing data may contain sensitive or account-linked information.
+
+Mitigation: Avoid saving authenticated sessions unless necessary, store generated artifacts outside shared folders, and exclude them from source control.
+
+Risk: The CAPTCHA-solving example sends an image to an external service and uses an API credential.
+
+Mitigation: Do not use the example unless the image path, provider, and credential handling are fully controlled and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/h8296699/skills/real-estate-spider)
+- [Publisher profile](https://clawhub.ai/user/h8296699)
+- [README](artifact/README.md)
+- [CAPTCHA strategies](artifact/docs/captcha_strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell command, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate scraped data files, browser screenshots, and saved session state when the included scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

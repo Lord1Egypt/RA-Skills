@@ -1,41 +1,55 @@
-## Description: <br>
-Docker Analyzer helps agents inspect Docker images, containers, layers, build history, disk usage, compose files, and optimization opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A tool for exploring layers in a Docker image and inspecting local Docker image and container metadata.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to inspect local Docker images and containers, review layer and history information, and get cleanup or optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted image name passed to the optimization command may execute local code. <br>
-Mitigation: Avoid image names or arguments copied from untrusted text until the optimize argument-handling issue is fixed. <br>
-Risk: The skill runs Docker inspection commands against the local Docker context. <br>
-Mitigation: Use it only with Docker contexts and image metadata that are acceptable to expose to the agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Docker images, containers, layers, history, disk usage, compose files, and optimization opportunities in a local Docker environment.
 
-## Reference(s): <br>
-- [Docker Analyzer on ClawHub](https://clawhub.ai/xueyetianya/docker-analyzer) <br>
-- [wagoodman/dive](https://github.com/wagoodman/dive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text Docker inspection and optimization reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Docker CLI access for most commands] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The optimize command can let a crafted image name run arbitrary local code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a low-privilege environment and avoid passing untrusted image names, especially to optimize, until the issue is fixed.
+
+Risk: The skill reads Docker image and container metadata from the local Docker environment.
+
+Mitigation: Run it only where access to local Docker metadata is appropriate for the user and workload.
+
+## Reference(s):
+
+- [Docker Analyzer ClawHub skill page](https://clawhub.ai/xueyetianya/skills/docker-analyzer)
+- [xueyetianya ClawHub publisher profile](https://clawhub.ai/user/xueyetianya)
+- [wagoodman/dive reference project](https://github.com/wagoodman/dive)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read Docker image and container metadata from the local Docker environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

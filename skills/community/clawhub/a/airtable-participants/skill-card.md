@@ -1,40 +1,61 @@
-## Description: <br>
-Read and query retreat participant data from the Ceremonia Airtable base, including participant counts, attendance, contact segments, recipient lists, phone numbers, emails, and donation status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and query retreat participant data from the Ceremonia Airtable base for participant counts, retreat attendance, contact segments, recipient lists, phone numbers, emails, and donation status.
 
-## Publisher: <br>
-[austinmao](https://clawhub.ai/user/austinmao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[austinmao](https://clawhub.ai/user/austinmao)
 
-## Use Case: <br>
-Authorized operators and agents use this skill to query a retreat participant Airtable for CRM lookups, newsletter and SMS recipient lists, attendance questions, and donation-status checks. It is read-only by default, with record edits requiring explicit Austin approval per change. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive participant contact, attendance, and donation data from Airtable. <br>
-Mitigation: Install only for agents authorized to access this Airtable, use a least-privilege Airtable token, and keep exported contact and donation data private. <br>
-Risk: Record modifications could alter participant CRM data if write access is available. <br>
-Mitigation: Prefer a read-only Airtable token unless updates are required, and require clear Austin approval and audit logging before any PATCH operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Airtable Web API Introduction](https://airtable.com/developers/web/api/introduction) <br>
-- [ClawHub Skill Page](https://clawhub.ai/austinmao/airtable-participants) <br>
+## Use Case:
 
+External operators and agents use this skill to retrieve Airtable participant records, build consent-aware email and SMS recipient lists, and answer retreat participation questions. Record changes are outside the default posture and require explicit approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and summarized Airtable query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIRTABLE_API_KEY plus confirmed Airtable base and table configuration; list queries must be fully paginated before reporting totals or recipient lists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive participant contact and donation data.
+
+Mitigation: Install and use it only in workspaces authorized to access the Airtable participant data, and keep contact details out of shared channels and logs unless there is a clear need.
+
+Risk: The skill's record-change logging guidance can persist names, emails, phone numbers, and old or new sensitive values outside Airtable.
+
+Mitigation: For record changes, log record IDs, field names, approval timestamps, and retention details instead of raw PII or sensitive values.
+
+Risk: AIRTABLE_API_KEY may expose participant data if copied into shared memory, transcripts, or logs.
+
+Mitigation: Keep AIRTABLE_API_KEY in an access-controlled environment and avoid echoing it in commands, logs, or agent-visible summaries.
+
+Risk: Recipient lists could be used for outreach without valid consent or unsubscribe handling.
+
+Mitigation: Use recipient lists only for consented outreach and always exclude unsubscribed records before sending email or SMS.
+
+## Reference(s):
+
+- [Airtable Web API Introduction](https://airtable.com/developers/web/api/introduction)
+- [ClawHub Skill Page](https://clawhub.ai/austinmao/skills/airtable-participants)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and summarized Airtable query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIRTABLE_API_KEY and local availability of curl and jq; Airtable pagination must be handled before reporting totals or recipient lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

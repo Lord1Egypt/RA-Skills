@@ -1,38 +1,53 @@
-## Description: <br>
-Execute BNB Chain EVM swing trades after importing a private key: buy when trigger price exceeds market condition, then place 5% take-profit and 3% stop-loss management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute BNB Chain EVM swing trades after importing a private key: buy when trigger price exceeds market condition, then place 5% take-profit and 3% stop-loss management.
 
-## Publisher: <br>
-[happyRstudent](https://clawhub.ai/user/happyRstudent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[happyrstudent](https://clawhub.ai/user/happyrstudent)
 
-## Use Case: <br>
-External developers and traders can use this skill to configure and run a BNB Chain band-trading bot with fixed entry, take-profit, and stop-loss rules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a raw wallet private key, which can expose funds if used with a main wallet or unsafe environment. <br>
-Mitigation: Run dry-run mode first and use only a dedicated low-balance wallet for experimentation; never use a main wallet private key. <br>
-Risk: The included quote, swap, gas, balance, slippage, and transaction-failure handling are placeholders rather than production trading controls. <br>
-Mitigation: Do not use real funds until those components are independently implemented, audited, and tested for the intended exchange path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers can use this skill to configure and run a BNB Chain band-trading bot that monitors a trigger price and applies fixed take-profit and stop-loss thresholds. It is intended for wallet-key based trading workflows that should be dry-run and audited before any real funds are used.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash commands and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires environment variables for wallet key, RPC URL, token pair, trigger price, position size, take-profit, stop-loss, and polling interval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to provide an EVM private key, and the security evidence flags this as sensitive for any real wallet.
+
+Mitigation: Use a test or low-value wallet, keep the key only in a secret environment variable, and avoid funding the wallet until the trading flow is fully implemented and audited.
+
+Risk: The included bot logs placeholder trades and does not implement production transaction signing, router integration, gas checks, balance checks, limits, or confirmation handling.
+
+Mitigation: Run in dry-run mode first, wire and review the production quote and swap path, and validate slippage, gas, balance, limits, and confirmations before live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happyrstudent/skills/evm-bnb-band-trader)
+- [ClawHub publisher profile](https://clawhub.ai/user/happyrstudent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and Python script behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires environment variables for wallet key, RPC endpoint, tokens, trigger price, position size, and polling settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

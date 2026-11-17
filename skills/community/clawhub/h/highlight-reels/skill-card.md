@@ -1,44 +1,55 @@
-## Description: <br>
-Scenario-focused Sparki skill for highlight extraction while using the official Sparki setup, API-key, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-focused Sparki skill for highlight extraction while using official Sparki setup, API-key, and upload workflow guidance.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to route local video files through Sparki for highlight reels, event recaps, sports clips, and other edits that keep the strongest moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video files and edit prompts are uploaded to Sparki's remote service for processing. <br>
-Mitigation: Use the skill only for videos and prompt text that may be shared with Sparki, and avoid uploading confidential or regulated footage unless approved. <br>
-Risk: Running setup can store a long-lived Sparki API key in local OpenClaw configuration. <br>
-Mitigation: Prefer supplying SPARKI_API_KEY as an environment variable, rotate keys when needed, and protect or remove local configuration files that contain credentials. <br>
-Risk: Downloaded video outputs are written to a local configured output path by default. <br>
-Mitigation: Review or override output paths before downloading, especially in shared workspaces. <br>
+## Use Case:
 
+External users and content creators use this skill to direct an agent to extract the strongest moments from sports, event, speech, recap, or similar footage and produce a concise highlight reel.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fischerlam/highlight-reels) <br>
-- [Sparki Homepage](https://sparki.io) <br>
-- [Sparki Telegram Upload](https://t.me/Sparki_AI_bot/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Sparki CLI commands and JSON CLI responses; completed runs can download MP4 video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPARKI_API_KEY, uploads MP4 or MOV files to Sparki, and writes downloaded results under the configured Sparki output directory unless an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: SKILL.md frontmatter, _meta.json, ClawHub release evidence) <br>
+Risk: Selected videos, prompts, and project metadata may be sent to the configured Sparki service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for videos and prompts that may be processed by Sparki; review the configured endpoint before upload.
+
+Risk: API keys and endpoint settings can be persisted in the local OpenClaw config directory.
+
+Mitigation: Prefer SPARKI_API_KEY for session-scoped credentials, avoid untrusted --base-url values, and remove ~/.openclaw/config/sparki.json when stored credentials are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/highlight-reels)
+- [Sparki homepage](https://sparki.io)
+- [Sparki Telegram upload link](https://t.me/Sparki_AI_bot/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can upload mp4 or mov inputs to Sparki, poll for processing, and download MP4 results.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

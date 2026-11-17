@@ -1,41 +1,57 @@
-## Description: <br>
-Manage multi-project todos with SQLite, supporting subtasks, priority and urgency levels, keyword search, time filters, smart sorting, and scheduled reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multi-project todos with SQLite, supporting subtasks, priority and urgency levels, keyword search, time filters, smart sorting, and scheduled reminders.
 
-## Publisher: <br>
-[LaoYutang](https://clawhub.ai/user/LaoYutang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laoyutang](https://clawhub.ai/user/laoyutang)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage persistent local todo lists across projects, including subtasks, due dates, notes, status changes, search, and summary statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Todo titles, notes, project names, due dates, and completion history are stored in a persistent local SQLite database. <br>
-Mitigation: Do not store secrets or sensitive personal data in todos, and handle the local database according to the user's data retention needs. <br>
-Risk: Delete commands remove todos, child todos, or whole projects without built-in confirmation or undo. <br>
-Mitigation: Review project names and todo IDs before deletion, and keep backups when the todo database is operationally important. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage local todo projects from a Chinese-language SQLite-backed CLI, including subtasks, deadlines, status updates, searches, and summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LaoYutang/todo-sqlite) <br>
-- [Publisher profile](https://clawhub.ai/user/LaoYutang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal-oriented text and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a persistent local SQLite database at ~/.openclaw/workspace/data/todo.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Delete commands can remove projects or todos and should be treated as irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target project name or todo ID before running delete-project or delete.
+
+Risk: A disclosed code bug may leave child todos behind after deletion messages.
+
+Mitigation: Check todo listings after deletion when parent-child todo integrity matters.
+
+Risk: Terminal escape or control characters in user-provided titles, notes, or project names may affect terminal display.
+
+Mitigation: Avoid pasting untrusted text into todo titles, notes, or project names.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laoyutang/skills/todo-sqlite)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a local SQLite database at ~/.openclaw/workspace/data/todo.db.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

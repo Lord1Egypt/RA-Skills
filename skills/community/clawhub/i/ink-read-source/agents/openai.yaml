@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read with llms.ink"
+  short_description: "Read public sources with grounded citations"
+  default_prompt: "Use $ink-read-source to read this public repository and explain the setup."

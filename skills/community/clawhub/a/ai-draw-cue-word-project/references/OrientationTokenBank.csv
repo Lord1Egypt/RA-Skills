@@ -1,0 +1,20 @@
+Token,Category,中文,Prompt phrase (EN),Prompt phrase (ZH),Anti-example,Notes
+toward-camera,Facing,朝镜头,"facing the camera, level eye contact","面朝镜头，平视",looking somewhere,Use sparingly — a full cast facing camera reads as a portrait. Max one character per panel.
+away-from-camera,Facing,背镜头,"back to the camera, seen from behind","背对镜头",facing away-ish,Cannot carry a speech bubble (OR-07).
+3q-left,Facing,左前 3/4 侧,"three-quarter view facing screen-left","身体朝画面左前方，3/4 侧脸",slightly turned,Most common dialogue orientation. Body axis points into the frame.
+3q-right,Facing,右前 3/4 侧,"three-quarter view facing screen-right","身体朝画面右前方，3/4 侧脸",turned a bit,Mirror of 3q-left. Flipping between the two requires a turn panel (OR-01).
+profile-left,Facing,正侧朝左,"full profile facing screen-left","完全侧脸朝画面左侧",side view,For standoffs and silhouettes. "side view" alone is ambiguous — always give the direction.
+profile-right,Facing,正侧朝右,"full profile facing screen-right","完全侧脸朝画面右侧",side view,Mirror of profile-left.
+enter-left,Motion vector,自左侧入画,"enters frame from screen-left","从画面左侧入画",appears,Any enter-* only makes sense on an opening beat.
+enter-right,Motion vector,自右侧入画,"enters frame from screen-right","从画面右侧入画",appears,Mirror of enter-left.
+exit-left,Motion vector,向左侧出画,"exits frame to screen-left","向画面左侧走出画外",leaves,Any exit-* should be followed by a panel showing the destination.
+exit-right,Motion vector,向右侧出画,"exits frame to screen-right","向画面右侧走出画外",leaves,Mirror of exit-left.
+lateral-left,Motion vector,画内向左横移,"moves laterally to screen-left","在画面内向左侧横移",moving,Stays inside the frame. Most common vector between dialogue beats.
+lateral-right,Motion vector,画内向右横移,"moves laterally to screen-right","在画面内向右侧横移",moving,Mirror of lateral-left.
+advance,Motion vector,朝镜头推进,"advances toward the camera","朝镜头方向走近",coming closer,Pairs naturally with toward-camera facing. Renamed from toward-camera so the token stays globally unique.
+retreat,Motion vector,背向镜头走远,"retreats away from the camera","背向镜头走远",walking off,Pairs naturally with away-from-camera facing. Renamed from away-from-camera for global uniqueness.
+static,Motion vector,静止,"static, no translation","原地不动，无位移",subtle movement,static means zero displacement; breathing or cloth motion is not a motion vector.
+A-side,Camera side,轴线 A 侧,"camera on the A-side of the 180-degree axis","摄影机位于轴线 A 侧",same side,A and B are defined by the left-right positions in the scene's first panel.
+B-side,Camera side,轴线 B 侧,"camera on the B-side of the 180-degree axis","摄影机位于轴线 B 侧",other side,Mirror of A-side.
+neutral,Camera side,中性位,"neutral shot on the axis","轴线上的中性机位",—,The only legal transition point for a side change (OR-03).
+crossing,Camera side,越轴运镜,"motivated axis-crossing camera move","有动机的越轴运镜",jump across,Must be bound to a transition panel and an explicit camera-move sentence.

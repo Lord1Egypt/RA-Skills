@@ -1,40 +1,59 @@
-## Description: <br>
-Extracts public X/Twitter tweet and thread data from URLs, including text, author details, timestamps, engagement metrics, media links, quoted tweets, and thread context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract complete data from X/Twitter tweets by URL, including text, author info, timestamps, engagement stats, media, quoted tweets, and thread context.
 
-## Publisher: <br>
-[iheardulkBTC](https://clawhub.ai/user/iheardulkBTC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iheardulkbtc](https://clawhub.ai/user/iheardulkbtc)
 
-## Use Case: <br>
-Agents and developers use this skill to read, summarize, analyze, or extract structured data from public X/Twitter tweet URLs and same-author threads. It is useful for content review, research workflows, journalism, social media monitoring, and automation that needs tweet metadata or media references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tweet lookup URLs are sent to third-party services, which can reveal which public tweet was requested. <br>
-Mitigation: Avoid using this skill for lookups where the requested tweet URL should remain private from FxTwitter or public Nitter instances. <br>
-Risk: The Nitter fallback depends on public instances that may be unavailable or unreliable. <br>
-Mitigation: Prefer the FxTwitter-based reader and treat Nitter results as best-effort fallback output. <br>
+## Use Case:
 
+Agents and developers use this skill to read public X/Twitter status URLs, extract tweet or thread data, and present structured details such as author, timestamp, engagement, media, and quoted tweet context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iheardulkBTC/twitter-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script output includes success/error status, tweet text, author metadata, timestamps, engagement counts, media URLs, quote tweet data, source service, and fetch time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The tweet author and status ID are sent to FxTwitter and may be sent to Nitter fallback instances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those public tweet identifiers with third-party tweet services is acceptable.
+
+Risk: The thread reader accepts a max_depth argument that should not be treated as arbitrary user-controlled input.
+
+Mitigation: Pass a bounded integer for thread depth and keep the default limit unless a larger value is explicitly needed.
+
+Risk: Fallback results depend on public Nitter instances that may be unavailable or incomplete.
+
+Mitigation: Prefer the FxTwitter reader and present fallback failures or limited data clearly to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iheardulkbtc/skills/twitter-reader)
+- [FxTwitter API](https://api.fxtwitter.com)
+- [Nitter fallback instance](https://nitter.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tweet and thread extraction results include public post metadata when available; fallback output can be limited when third-party services are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

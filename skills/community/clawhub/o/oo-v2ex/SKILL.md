@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "V2EX"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["v2ex"]
   icon: "https://static.oomol.com/logo/third-party/v2ex.png"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `boost_topic` — Boost one of the authenticated member's V2EX topics to the homepage.
+- `boost_topic` — Boost one of the authenticated member's V2EX topics to the homepage. [write]
 - `create_token` — Create a new V2EX Personal Access Token from an existing token. [write]
 - `delete_notification` — Delete one V2EX notification by its numeric identifier. [destructive]
 - `get_current_member` — Fetch the authenticated V2EX member profile.
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — V2EX is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=v2ex
+  https://console.oomol.com/connections/v2ex
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - V2EX homepage: https://www.v2ex.com
+- API documentation: https://v2ex.com/help/api

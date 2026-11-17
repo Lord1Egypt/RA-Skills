@@ -1,47 +1,63 @@
-## Description: <br>
-Connect to the Ahrefs API to retrieve SEO data including backlinks, keyword metrics, domain analysis, rank tracking, and site audit information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to the Ahrefs API to retrieve real-time SEO data for backlink analysis, keyword research, domain metrics, rank tracking, site audits, SERP review, and competitive intelligence.
 
-## Publisher: <br>
-[jonathan-sokol](https://clawhub.ai/user/jonathan-sokol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jonathan-sokol](https://clawhub.ai/user/jonathan-sokol)
 
-## Use Case: <br>
-External SEO practitioners, marketers, and developers use this skill to query Ahrefs API data for keyword research, backlink analysis, competitor analysis, rank tracking, SERP review, and technical site audit workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Ahrefs API key to make SEO-data requests. <br>
-Mitigation: Store the API key securely, prefer environment variables or a secrets manager, and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Queries can include confidential domains, URLs, keywords, or competitive SEO targets. <br>
-Mitigation: Review requests before sending them to Ahrefs and obtain approval before submitting sensitive customer, internal, or competitor data. <br>
-Risk: Large or batch requests may consume paid Ahrefs API quota. <br>
-Mitigation: Set API unit limits when possible, limit rows and selected columns, batch intentionally, and review high-volume requests before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ahrefs API Documentation](https://docs.ahrefs.com/docs/api/reference/introduction) <br>
-- [Ahrefs API Key Management](https://app.ahrefs.com/account/api-keys) <br>
-- [Ahrefs Pricing and Plan Limits](https://ahrefs.com/pricing) <br>
-- [Ahrefs Limits and Usage Tracking](https://app.ahrefs.com/account/limits-and-usage/web) <br>
-- [Ahrefs API Setup Guide](references/setup.md) <br>
-- [Ahrefs API Capabilities Reference](references/capabilities.md) <br>
-- [Ahrefs API Workflow Patterns](references/workflows.md) <br>
+## Use Case:
 
+Developers, marketers, and SEO analysts use this skill to have an agent call Ahrefs API endpoints, interpret returned SEO metrics, and provide actionable recommendations for keyword, backlink, competitor, rank-tracking, and technical-audit workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an Ahrefs API key and may consume paid Ahrefs API units.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends domains, URLs, keywords, and related SEO targets to the external Ahrefs API.
+
+Mitigation: Use it only when submitting those targets to Ahrefs fits the user's data-handling policy.
+
+Risk: The skill requires an Ahrefs API key and can consume paid API units.
+
+Mitigation: Store the key securely, prefer environment variables, and set a scoped key or monthly API-unit limit where possible.
+
+Risk: Rank Tracker and Site Audit workflows depend on pre-configured Ahrefs projects and plan permissions.
+
+Mitigation: Confirm project setup, workspace permissions, and plan access before relying on those workflows.
+
+## Reference(s):
+
+- [ClawHub Ahrefs Connection listing](https://clawhub.ai/jonathan-sokol/skills/ahrefs-connection)
+- [Ahrefs API documentation](https://docs.ahrefs.com/docs/api/reference/introduction)
+- [Ahrefs API key management](https://app.ahrefs.com/account/api-keys)
+- [Ahrefs pricing and limits](https://ahrefs.com/pricing)
+- [Ahrefs limits and usage tracking](https://app.ahrefs.com/account/limits-and-usage/web)
+- [Ahrefs API setup guide](references/setup.md)
+- [Ahrefs API capabilities reference](references/capabilities.md)
+- [Ahrefs API workflow patterns](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with API request examples, setup guidance, and SEO analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands, environment variable guidance, parsed JSON response summaries, and recommendations based on Ahrefs API results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

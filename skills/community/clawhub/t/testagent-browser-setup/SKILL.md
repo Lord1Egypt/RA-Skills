@@ -1,39 +1,39 @@
 ---
 name: testagent-browser-setup
 version: 2.2.0
-description: 在新的 openclaw 环境中安装并初始化 Chromium、系统依赖、中文字体和 CDP 启动脚本，无需 root 权限。当用户说「初始化测试环境」「安装浏览器工具」「setup browser」或在新机器首次部署测试 agent 时触发。
+description: One-time installation and initialization of Chromium, system dependencies, Chinese fonts, and the CDP launcher script in a fresh openclaw environment — no root required. Triggered when the user says "initialize test environment", "install browser tools", "setup browser", or when deploying a test agent to a new machine for the first time.
 ---
 
 # Browser Setup
 
-一次性环境初始化，在新 openclaw 容器上执行。不需要 root 权限。
+One-time environment initialization, run on a fresh openclaw container. No root required.
 
-## 说明
+## Notes
 
-openclaw 环境默认已预装 Chromium，`setup.sh` 会优先使用它。若未找到则自动通过 Playwright 下载。
+The openclaw environment ships with Chromium pre-installed by default; `setup.sh` prefers it and only falls back to downloading via Playwright if it's not found.
 
-**截图和浏览器操作的主路径是：Chrome + CDP 直连。**
-setup.sh 会创建 `~/.local/bin/chrome-cdp` 启动脚本。
+**The primary path for screenshots and browser actions is: Chrome + direct CDP.**
+setup.sh creates a `~/.local/bin/chrome-cdp` launcher script.
 
-**`mcp doctor --probe` 是假阳性。**
-返回 ok 只说明 MCP server 进程启动，不代表 Chromium 能实际运行。唯一可信的验证：`playwright__browser_navigate` 真正返回页面内容。
+**`mcp doctor --probe` gives false positives.**
+It returning ok only means the MCP server process started — not that Chromium can actually run. The only reliable check is: `playwright__browser_navigate` actually returning page content.
 
-## 执行顺序
+## Execution order
 
-### 第一步：运行核心安装脚本
+### Step 1: Run the core setup script
 
 ```bash
 bash scripts/setup.sh
 ```
 
-脚本完成三件事：
-1. **Chromium 检测**：优先用系统预装 Chromium，未找到则通过 Playwright 下载
-2. **`chrome-cdp` 启动脚本**：`~/.local/bin/chrome-cdp`，封装 `--headless=new --no-sandbox --remote-allow-origins=*` 参数
-3. **中文字体**：从 GitHub 下载 WenQuanYi Micro Hei 到 `~/.local/share/fonts/`
+The script does three things:
+1. **Chromium detection**: prefers the system-preinstalled Chromium, falling back to a Playwright download if not found
+2. **`chrome-cdp` launcher script**: `~/.local/bin/chrome-cdp`, wrapping the `--headless=new --no-sandbox --remote-allow-origins=*` flags
+3. **Chinese fonts**: downloads WenQuanYi Micro Hei from GitHub into `~/.local/share/fonts/`
 
-### 第二步：尝试配置内置浏览器（可选，经常无效）
+### Step 2: Try configuring the built-in browser (optional, often ineffective)
 
-编辑 `~/.openclaw/openclaw.json`（`config.patch` 拒绝修改受保护路径，只能手动写文件）：
+Edit `~/.openclaw/openclaw.json` (`config.patch` refuses to modify protected paths, so the file must be written by hand):
 
 ```json
 {
@@ -41,42 +41,42 @@ bash scripts/setup.sh
     "noSandbox": true,
     "ssrfPolicy": {
       "allowedHostnames": [
-        "你的目标产品域名（如 app.example.com）",
-        "对应的登录域名（如 xxx.us.auth0.com）"
+        "your target product domain (e.g. app.example.com)",
+        "the corresponding login domain (e.g. xxx.us.auth0.com)"
       ]
     }
   }
 }
 ```
 
-改完后：`browser stop → gateway restart → 等 15 秒 → browser start`
+After editing: `browser stop → gateway restart → wait 15s → browser start`
 
-> ⚠️ **SSRF 白名单经常不生效**（gateway 有运行时缓存，不以文件为准）。
-> 若 `browser navigate` 仍然报 `blocked by policy`，**立即放弃内置浏览器，改用 CDP 直连（见 TOOLS.md）**，不要继续重启验证。
+> ⚠️ **The SSRF allowlist often doesn't take effect** (the gateway has a runtime cache and doesn't always pick up the file).
+> If `browser navigate` still reports `blocked by policy`, **immediately abandon the built-in browser and switch to direct CDP (see TOOLS.md)** rather than continuing to restart-and-retry.
 
-### 第四步：初始化 TOOLS.md
+### Step 4: Initialize TOOLS.md
 
 ```bash
 cp "$(dirname "$0")/../TOOLS.md" ./TOOLS.md
 ```
 
-### 第六步（可选）：安装 browser-use
+### Step 6 (optional): Install browser-use
 
 ```bash
 bash scripts/setup-optional.sh
 ```
 
-### 第七步：Smoke Test
+### Step 7: Smoke test
 
 ```bash
-# 启动 Chrome CDP
+# Start Chrome CDP
 chrome-cdp &
 sleep 2
 
-# 验证 CDP 可访问
+# Verify CDP is reachable
 curl -s http://localhost:9223/json | python3 -m json.tool | head -20
 
-# 截图验证（见 REFERENCE.md 的 CDP 截图流程）
+# Verify with a screenshot (see the CDP screenshot flow in REFERENCE.md)
 ```
 
-验收标准：CDP `/json` 能返回 target 列表，截图中中文清晰无乱码。
+Acceptance criteria: CDP `/json` returns a target list, and Chinese text in screenshots renders cleanly with no mojibake.

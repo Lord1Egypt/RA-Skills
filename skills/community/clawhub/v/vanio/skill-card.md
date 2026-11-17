@@ -1,43 +1,58 @@
-## Description: <br>
-Connect your agent to Airbnb, Booking.com & VRBO via Vanio AI, giving OpenClaw access to vacation-rental tools for reservations, guests, messaging, smart locks, payments, workflows, and related property operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your agent to Airbnb, Booking.com & VRBO via Vanio AI, with tools for reservations, guests, messaging, smart locks, payments, workflows, and vacation-rental operations.
 
-## Publisher: <br>
-[ivannikolovbg](https://clawhub.ai/user/ivannikolovbg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivannikolovbg](https://clawhub.ai/user/ivannikolovbg)
 
-## Use Case: <br>
-Vacation-rental operators and their agents use this skill to connect OpenClaw to Vanio AI for natural-language management of reservations, guest communication, listings, smart locks, payments, tasks, calendars, analytics, and automations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Natural-language commands can affect bookings, guest messages, payments, smart locks, and automation settings. <br>
-Mitigation: Require human review before charges, refunds, cancellations, guest messages, smart-lock actions, or broad automation changes. <br>
-Risk: The skill relies on Vanio access to rental operations and connected platform data. <br>
-Mitigation: Install only if you trust Vanio with those accounts and data, and limit use to rental operations intended for agent access. <br>
-Risk: API keys may be stored locally when users configure the CLI on shared machines. <br>
-Mitigation: Prefer VANIO_API_KEY for sensitive environments, protect local config files, and rotate keys if exposed. <br>
+## Use Case:
 
+Property managers and vacation-rental operators use this skill to connect an OpenClaw agent to Vanio AI for guest communication, reservations, smart locks, payments, listings, tasks, workflows, analytics, and related operations.
 
-## Reference(s): <br>
-- [Vanio AI homepage](https://www.vanio.ai) <br>
-- [ClawHub Vanio AI skill page](https://clawhub.ai/ivannikolovbg/vanio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Vanio CLI and VANIO_API_KEY; responses may include operational guidance or CLI-driven actions against connected rental accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can give an agent broad authority over guest messages, reservations, payments, smart locks, listings, and workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Vanio is trusted with the connected rental accounts, and require human review for high-impact actions such as charges, cancellations, refunds, lock changes, or workflow changes.
+
+Risk: API keys may be stored locally or exposed through terminal output, shell history, or logs.
+
+Mitigation: Prefer VANIO_API_KEY from a secure environment, avoid pasting keys into shared terminals, protect ~/.config/vanio/config.json, and rotate keys if exposure is suspected.
+
+Risk: A custom VANIO_API_URL or baseUrl can redirect requests and credentials to an unintended service.
+
+Mitigation: Use the default Vanio API endpoint unless you control the alternate endpoint, and verify configuration before authenticating or running operational commands.
+
+## Reference(s):
+
+- [Vanio AI](https://www.vanio.ai)
+- [ClawHub Skill Page](https://clawhub.ai/ivannikolovbg/skills/vanio)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Vanio CLI and VANIO_API_KEY; responses may perform or guide sensitive rental-management actions through Vanio AI.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

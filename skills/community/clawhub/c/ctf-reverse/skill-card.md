@@ -1,59 +1,73 @@
-## Description: <br>
-Provides reverse-engineering reference workflows and tool guidance for CTF challenges involving binaries, bytecode, mobile apps, firmware, custom VMs, anti-analysis, and game clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides reverse engineering techniques and tool workflows for CTF challenges involving binaries, obfuscation, custom VMs, anti-analysis, bytecode, mobile apps, firmware, and game clients.
 
-## Publisher: <br>
-[gandli](https://clawhub.ai/user/gandli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gandli](https://clawhub.ai/user/gandli)
 
-## Use Case: <br>
-Developers, security practitioners, and CTF participants use this skill to choose reverse-engineering techniques, tools, and analysis workflows for authorized competition or lab binaries and related artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill includes under-scoped operational instructions for impersonation, bypasses, data retrieval, and cyber-physical actions. <br>
-Mitigation: Use only for authorized CTFs or controlled lab reverse engineering, and do not apply vehicle/CAN, anti-cheat, iOS, Firebase, or C2 examples to real systems without explicit authorization. <br>
-Risk: The security guidance flags unpinned tool installs as a supply-chain risk. <br>
-Mitigation: Install and run tools in an isolated VM or container, pin and review dependencies where practical, and scan downloaded tooling before use. <br>
-Risk: Reverse-engineering workflows may involve private, proprietary, or sensitive binaries. <br>
-Mitigation: Avoid uploading private binaries to third-party services and keep analysis artifacts in controlled environments. <br>
+## Use Case:
 
+Developers and security practitioners use this skill as a quick-reference for authorized CTF reverse engineering tasks, including static and dynamic binary analysis, deobfuscation, emulation, symbolic execution, and flag extraction workflows.
 
-## Reference(s): <br>
-- [Ctf Reverse ClawHub Release](https://clawhub.ai/gandli/ctf-reverse) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [tools.md](artifact/tools.md) <br>
-- [tools-dynamic.md](artifact/tools-dynamic.md) <br>
-- [tools-advanced.md](artifact/tools-advanced.md) <br>
-- [anti-analysis.md](artifact/anti-analysis.md) <br>
-- [patterns.md](artifact/patterns.md) <br>
-- [patterns-ctf.md](artifact/patterns-ctf.md) <br>
-- [patterns-ctf-2.md](artifact/patterns-ctf-2.md) <br>
-- [patterns-ctf-3.md](artifact/patterns-ctf-3.md) <br>
-- [languages.md](artifact/languages.md) <br>
-- [languages-platforms.md](artifact/languages-platforms.md) <br>
-- [languages-compiled.md](artifact/languages-compiled.md) <br>
-- [platforms.md](artifact/platforms.md) <br>
-- [platforms-hardware.md](artifact/platforms-hardware.md) <br>
-- [pycdc](https://github.com/zrax/pycdc) <br>
-- [pwndbg](https://github.com/pwndbg/pwndbg) <br>
-- [Blutter](https://github.com/worawit/blutter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reference guidance for an agent; it does not itself execute tools unless the supervising agent follows the suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes bypass, patching, remote installation, and binary instrumentation workflows that can be misused outside a CTF or lab setting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in isolated lab or CTF environments and only against targets the user owns or is explicitly authorized to analyze.
+
+Risk: Tool installation and setup examples can introduce supply-chain risk, especially when cloning or installing external tools.
+
+Mitigation: Pin and verify tool installs, avoid curl-to-bash patterns, and do not run setup commands as root unless necessary.
+
+Risk: Some workflows may involve uploading or processing binaries with third-party services or tools.
+
+Mitigation: Do not upload proprietary, confidential, or sensitive binaries to external services without informed approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gandli/skills/ctf-reverse)
+- [Static Analysis Tools](tools.md)
+- [Dynamic Analysis Tools](tools-dynamic.md)
+- [Advanced Tools](tools-advanced.md)
+- [Anti-Analysis Techniques](anti-analysis.md)
+- [Patterns and Techniques](patterns.md)
+- [Competition Patterns Part 1](patterns-ctf.md)
+- [Competition Patterns Part 2](patterns-ctf-2.md)
+- [Competition Patterns Part 3](patterns-ctf-3.md)
+- [Language-Specific Techniques](languages.md)
+- [Platform and Framework Techniques](languages-platforms.md)
+- [Compiled Language Reversing](languages-compiled.md)
+- [Platform-Specific Reversing](platforms.md)
+- [Hardware and Architecture Reversing](platforms-hardware.md)
+- [pycdc](https://github.com/zrax/pycdc)
+- [pwndbg](https://github.com/pwndbg/pwndbg)
+- [Blutter](https://github.com/worawit/blutter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash, Python, and tool-command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose tool installation, binary-analysis, patching, hooking, emulation, and symbolic-execution commands for authorized CTF or lab targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

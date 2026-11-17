@@ -8,15 +8,40 @@ yaw angle, smile score, face size, and center position to rank face photos.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     _safe_float,
-    coredata_to_datetime,
+    coredata_to_local,
+    display_name,
     format_size,
+    has_timezone_offset,
+    original_filename_sql,
     run_script,
+    tz_offset_sql,
 )
+from _schema import FACES, FILE_SIZE, ORIGINAL_FILENAME, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZHEIGHT",
+    "ZASSET.ZTRASHEDSTATE",
+    "ZASSET.ZWIDTH",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "faces": (*FACES, "face.quality"),
+    "blur": ("face.blur",),
+    "smile": ("face.smile",),
+    "catalog_face_count": ("ZPERSON.ZFACECOUNT",),
+    # compute_face_score() falls back to neutral values for these when absent
+    "face_score": ("ZDETECTEDFACE.ZSIZE", "ZDETECTEDFACE.ZYAWANGLE", "ZDETECTEDFACE.ZFACEISINCENTER"),
+}
 
 
 def compute_face_score(row: dict) -> float:
@@ -60,8 +85,8 @@ def compute_face_score(row: dict) -> float:
 
 
 def analyze_face_quality(
-    db_path: Optional[str] = None,
-    person_name: Optional[str] = None,
+    db_path: str | None = None,
+    person_name: str | None = None,
     top_n: int = 10,
 ) -> dict[str, Any]:
     """
@@ -75,46 +100,47 @@ def analyze_face_quality(
     Returns:
         Face quality analysis per person
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Face quality scoring") as conn:
+        name_col = original_filename_sql(get_schema(conn))
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         # Check for face detection tables
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ZDETECTEDFACE'")
-        if not cursor.fetchone():
+        schema = get_schema(conn)
+        degraded = Degradation(schema)
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        has_faces = degraded.check("faces", *OPTIONAL_COLUMNS["faces"])
+        has_blur = degraded.check("blur", *OPTIONAL_COLUMNS["blur"])
+        has_smile = degraded.check("smile", *OPTIONAL_COLUMNS["smile"])
+        degraded.check("catalog_face_count", *OPTIONAL_COLUMNS["catalog_face_count"])
+        degraded.check("face_score", *OPTIONAL_COLUMNS["face_score"])
+        if not has_faces:
             return {
-                "error": "Face detection table not found in this database.",
+                "degraded": degraded.entries,
+                "error": "Face detection or face quality data not found in this database version.",
                 "people": [],
                 "summary": {"total_people": 0, "total_faces": 0},
             }
 
-        # Check available columns in ZDETECTEDFACE
-        cursor.execute("PRAGMA table_info(ZDETECTEDFACE)")
-        face_cols = {row["name"] for row in cursor.fetchall()}
-        has_quality = "ZQUALITYMEASURE" in face_cols
-        has_blur = "ZBLURSCORE" in face_cols
-        has_smile = "ZSMILESCORE" in face_cols
-
-        if not has_quality:
-            return {
-                "error": "Face quality columns not found in this database version.",
-                "people": [],
-                "summary": {"total_people": 0, "total_faces": 0},
-            }
+        # macOS 15 renamed these foreign keys; the registry picks whichever exists.
+        person_fk = schema.col("face.person_fk")
+        asset_fk = schema.col("face.asset_fk")
 
         # Build face query
         select_cols = [
-            "df.Z_PK as face_pk",
-            "df.ZASSET",
-            "df.ZPERSON",
+            f"df.{asset_fk} AS ZASSET",
+            f"df.{person_fk} AS ZPERSON",
             "df.ZQUALITYMEASURE",
             "p.ZFULLNAME",
-            "p.ZFACECOUNT",
+            schema.select("ZPERSON.ZFACECOUNT", "p"),
             "a.ZFILENAME",
+            name_col,
             "a.ZDATECREATED",
             "a.ZFAVORITE",
             "a.ZWIDTH",
             "a.ZHEIGHT",
             "aa.ZORIGINALFILESIZE",
+            f"{tz_offset_sql(tz_available)} AS tz_offset",
         ]
 
         optional_cols = {
@@ -126,7 +152,7 @@ def analyze_face_quality(
             "ZCONFIDENCE": "df.ZCONFIDENCE",
         }
         for col, expr in optional_cols.items():
-            if col in face_cols:
+            if schema.has_column("ZDETECTEDFACE", col):
                 select_cols.append(expr)
 
         where = [
@@ -142,8 +168,8 @@ def analyze_face_quality(
         query = f"""
             SELECT {", ".join(select_cols)}
             FROM ZDETECTEDFACE df
-            JOIN ZPERSON p ON df.ZPERSON = p.Z_PK
-            JOIN ZASSET a ON df.ZASSET = a.Z_PK
+            JOIN ZPERSON p ON df.{person_fk} = p.Z_PK
+            JOIN ZASSET a ON df.{asset_fk} = a.Z_PK
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE {" AND ".join(where)}
             ORDER BY p.ZFULLNAME, df.ZQUALITYMEASURE DESC
@@ -167,11 +193,12 @@ def analyze_face_quality(
                 }
 
             face_score = compute_face_score(rd)
-            created = coredata_to_datetime(rd["ZDATECREATED"])
+            created = coredata_to_local(rd["ZDATECREATED"], rd["tz_offset"])
 
             face = {
                 "asset_id": rd["ZASSET"],
                 "filename": rd["ZFILENAME"],
+                "original_filename": rd["original_filename"],
                 "created": created.isoformat() if created else None,
                 "is_favorite": bool(rd.get("ZFAVORITE")),
                 "size": rd.get("ZORIGINALFILESIZE") or 0,
@@ -212,6 +239,7 @@ def analyze_face_quality(
         all_scores = [f["face_score"] for pdata in people_data.values() for f in pdata["faces"]]
 
         return {
+            "degraded": degraded.entries,
             "people": people,
             "summary": {
                 "total_people": len(people),
@@ -253,13 +281,13 @@ def format_summary(data: dict[str, Any]) -> str:
             for f in person["best_photos"][:3]:
                 fav = "⭐" if f["is_favorite"] else "  "
                 smile = f"  😊{f['smile_score']:.2f}" if f.get("smile_score") is not None else ""
-                lines.append(f"   {fav} {f['filename']:35s} score={f['face_score']:.4f}{smile}")
+                lines.append(f"   {fav} {display_name(f):35s} score={f['face_score']:.4f}{smile}")
 
         if person["worst_photos"]:
             lines.append("   Worst portraits:")
             for f in person["worst_photos"][:3]:
                 blur_info = f"  blur={f['blur_score']:.2f}" if f.get("blur_score") is not None else ""
-                lines.append(f"      {f['filename']:35s} score={f['face_score']:.4f}{blur_info}")
+                lines.append(f"      {display_name(f):35s} score={f['face_score']:.4f}{blur_info}")
 
     return "\n".join(lines)
 

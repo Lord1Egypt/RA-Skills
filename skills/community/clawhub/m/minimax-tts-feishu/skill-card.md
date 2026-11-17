@@ -1,47 +1,56 @@
-## Description: <br>
-Generates natural Chinese speech with MiniMax, applies emotion and pause preprocessing, and sends the resulting audio to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax TTS for FeiShu generates natural Chinese speech through MiniMax, supports voice selection, emotion detection, sound-effect tags, pause markers, and can send generated audio to Feishu.
 
-## Publisher: <br>
-[lixiang92229](https://clawhub.ai/user/lixiang92229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lixiang92229](https://clawhub.ai/user/lixiang92229)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to convert Chinese text or recent Feishu chat messages into natural speech, choose or design MiniMax voices, and deliver generated audio into Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax and Feishu credentials can authorize TTS generation and bot actions if exposed. <br>
-Mitigation: Store MINIMAX_API_KEY, FEISHU_APP_ID, and FEISHU_APP_SECRET only in environment or secret storage, use minimal scopes and billing limits, and rotate credentials if exposed. <br>
-Risk: Chat text and generated audio may contain confidential content and are sent to MiniMax and Feishu during normal operation. <br>
-Mitigation: Use the skill only for content approved for those services and avoid converting sensitive or regulated chat messages. <br>
-Risk: Generated audio can be delivered to an unintended Feishu recipient if the recipient Open ID is misconfigured. <br>
-Mitigation: Set the recipient deliberately and verify FEISHU_USER_OPEN_ID or command parameters before triggering delivery. <br>
-Risk: Recent message text and generated audio may be cached locally in /tmp. <br>
-Mitigation: Run the skill in an environment with appropriate local file access controls and clear temporary files when needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to convert Chinese text or Feishu chat messages into speech, design or select MiniMax voices, and deliver generated audio to a Feishu recipient.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lixiang92229/minimax-tts-feishu) <br>
-- [Project Homepage](https://github.com/lixiang92229/lx-minimax-tts-feishu) <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio files, Feishu messages, Text, Shell commands] <br>
-**Output Format:** [WAV audio, Feishu audio messages, and command-line text or JSON status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured MiniMax and Feishu credentials; may write generated audio and recent message cache files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The chat-trigger flow can read and forward message content with weak scoping controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in Feishu apps you control, restrict who can invoke trigger commands, and verify the recipient Open ID before use.
+
+Risk: MiniMax and Feishu credentials enable paid API use and bot actions if exposed or over-permissioned.
+
+Mitigation: Use minimal Feishu permissions, keep credentials in environment variables or a secret store, rotate them regularly, and avoid shared hosts for this version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lixiang92229/skills/minimax-tts-feishu)
+- [Project homepage](https://github.com/lixiang92229/lx-minimax-tts-feishu)
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, API calls]
+
+**Output Format:** [Text status, Markdown voice catalog updates, WAV audio files, and Feishu audio messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MiniMax and Feishu credentials; generated audio may be sent to a configured Feishu Open ID.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Haoyun STEM Tutor helps students learn math, physics, chemistry, and programming through knowledge-network navigation, textbook alignment, exam-point explanations, preview, review, and error tracing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Haoyun STEM Tutor helps learners with K12 math, physics, chemistry, and programming through knowledge-network navigation, textbook alignment, exam-focused explanations, preview, review, and error tracing.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-Students and external learners use this skill for K12 STEM tutoring, including prerequisite checks, step-by-step explanations, textbook-aligned review, exam preparation, and programming introductions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact advertises reducing AIGC detection rates, which could support bypassing academic, workplace, publisher, or platform integrity checks. <br>
-Mitigation: Use the skill only for legitimate STEM tutoring and technical clarity; ignore or remove AIGC-detection-reduction behavior before deployment. <br>
-Risk: Tutoring responses may provide incorrect or overconfident educational guidance. <br>
-Mitigation: Have learners, educators, or reviewers verify worked solutions, formulas, and exam guidance against authoritative course materials. <br>
+## Use Case:
 
+External learners, parents, educators, and study-support agents use this skill for STEM tutoring, prerequisite checks, textbook-synchronized explanations, exam preparation, review planning, and beginner programming guidance.
 
-## Reference(s): <br>
-- [Haoyun STEM Tutor on ClawHub](https://clawhub.ai/simonstang/haoyun-stem-tutor) <br>
-- [simonstang Publisher Profile](https://clawhub.ai/user/simonstang) <br>
-- [README](artifact/README.md) <br>
-- [Knowledge Base](artifact/references/knowledge_base.md) <br>
-- [Output Templates](artifact/references/templates/output_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown tutoring responses with optional Python code blocks and structured study templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese/English explanations, Socratic questions, Feynman checks, experiment plans, and review templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill advertises lowering AI-content detection risk as an add-on polishing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rewrite detector-evasion language and limit polishing support to clarity, structure, citation, and transparent authorship improvements.
+
+Risk: The reference material and output templates include home experiment guidance without explicit safety warnings.
+
+Mitigation: Add age-appropriate safety checks, adult-supervision guidance, material restrictions, and stop conditions before any experiment instructions.
+
+Risk: Broad activation triggers such as subject names may invoke the skill outside explicit tutoring requests.
+
+Mitigation: Narrow activation to explicit requests for Haoyun tutoring or STEM study support and ask a clarifying question when intent is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonstang/skills/haoyun-stem-tutor)
+- [OpenClaw](https://openclaw.ai)
+- [Knowledge Base](artifact/references/knowledge_base.md)
+- [Output Templates](artifact/references/templates/output_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown tutoring responses with structured prompts, explanations, study plans, and optional Python code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English educational content; includes Socratic prompts, Feynman checks, knowledge maps, experiment plans, and exam-focused templates.]
+
+## Skill Version(s):
+
+3.5.0 (source: frontmatter, evidence release, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

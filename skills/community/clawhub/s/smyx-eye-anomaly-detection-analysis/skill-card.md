@@ -1,46 +1,50 @@
-## Description: <br>
-AI-powered pet eye anomaly detection from close-up facial images or video that flags redness, abnormal tearing, and pupil or cornea opacity for home checks, boarding inspections, veterinary triage, and senior pet cataract monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes close-up pet eye photos or videos for visible redness, tearing, and cloudiness, then returns a structured screening report.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and pet-care operators use this skill to analyze pet face images or videos for visible eye abnormality alerts, structured results, and report links. It is intended for visual screening support and does not replace professional veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet images, videos, or supplied media URLs are sent to lifeemergence.com cloud services for analysis. <br>
-Mitigation: Use the skill only with media the user is comfortable sharing with that service, and prefer deployments where retention and deletion practices are documented. <br>
-Risk: The skill may create or reuse an internal account identity and store local account or token data. <br>
-Mitigation: Review and protect the local data directory, including smyx-common-claw.db and smyx-api-key.txt, before using it with sensitive household media. <br>
-Risk: History queries can retrieve account-linked reports with limited user control. <br>
-Mitigation: Enable history retrieval only where account-linked report access is expected and appropriate for the user. <br>
-Risk: Visual anomaly alerts can be mistaken for a veterinary diagnosis. <br>
-Mitigation: Present results as screening support only and direct users to a veterinarian for diagnosis or urgent symptoms. <br>
+## Use Case:
 
+Pet owners, boarding staff, and veterinary teams can use the skill to screen pet eye images or videos for visible changes and review prior reports. Its findings are visual alerts and do not replace a veterinary diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-eye-anomaly-detection-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown text with structured JSON report content and optional saved output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report export links and account-linked history results from the cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and target metadata; artifact frontmatter says 1.0.3) <br>
+Risk: ClawScan marks the skill suspicious for credential and identity behavior beyond the advertised analysis; its assessment was partial because a local reference was missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installation until the credential destination, account creation and storage, media processing disclosure, and export-only behavior are clarified.
+
+## Reference(s):
+
+- [API interface notes](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Structured JSON analysis reports and Markdown report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include anomaly alerts, suggestions, and report links; not a veterinary diagnosis.]
+
+## Skill Version(s):
+
+1.0.13 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

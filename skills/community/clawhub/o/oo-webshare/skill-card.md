@@ -1,46 +1,56 @@
-## Description: <br>
-Webshare (webshare.io) connector skill for searching and reading Webshare account, proxy configuration, proxy listing, and hourly usage data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webshare (webshare.io). Use this skill for ANY Webshare request — searching and reading data. Whenever a task involves Webshare, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run read-only Webshare connector actions through an OOMOL-connected account, including profile lookup, proxy configuration, proxy listings, and hourly usage statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require sensitive Webshare credentials through an OOMOL-connected account. <br>
-Mitigation: Install and use it only when the publisher and OOMOL connection flow are trusted, and rely on server-side credential injection rather than handling raw tokens. <br>
-Risk: First-time setup includes optional remote installer commands for the oo CLI. <br>
-Mitigation: Review the official install guide or verify the installer before running curl or PowerShell installer commands. <br>
-Risk: Connector actions depend on live schemas and may fail if authentication, connection scopes, credentials, or billing are not current. <br>
-Mitigation: Inspect the live connector schema before each action and use the documented setup or billing recovery steps only after a command fails with the matching error. <br>
+## Use Case:
 
+People using Webshare through an OOMOL-connected account can use this skill to read account profiles, proxy configuration and listings, and hourly usage statistics.
 
-## Reference(s): <br>
-- [Webshare homepage](https://www.webshare.io/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-webshare) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for invoking oo connector schema and oo connector run; connector responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Setup may run remote installers that were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a trusted oo CLI version yourself before using the skill.
+
+Risk: Setup does not disclose broader changes to installed agent skills, and returned account or proxy information is sensitive.
+
+Mitigation: Review publisher-documented controls and consider disabling automatic skill synchronization; connect only the intended Webshare account and treat returned data as sensitive.
+
+## Reference(s):
+
+- [Webshare API documentation](https://apidocs.webshare.io/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Webshare homepage](https://www.webshare.io/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Account and proxy information]
+
+**Output Format:** [JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only profile, proxy configuration, proxy listing, and usage-statistics data.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Use for Pixelhub API direct calls when users need image generation or editing, video generation or post-processing, or audio and music generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for Pixelhub API direct calls when users need image generation/editing, video generation/post-processing, or audio/music generation.
 
-## Publisher: <br>
-[leik1000](https://clawhub.ai/user/leik1000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leik1000](https://clawhub.ai/user/leik1000)
 
-## Use Case: <br>
-Developers and external users use this skill to discover Pixelle/Pixelhub media workflow tools, submit generation or editing jobs, and poll task results through the bundled Python runner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance asks users to share or store an API key in ways that can expose credentials. <br>
-Mitigation: Use the Pixelhub_API_KEY environment variable or a secret manager, avoid pasting keys into chat or hardcoding them, and rotate any key that has already been shared or stored in files. <br>
-Risk: Media generation calls may consume paid Pixelle/Pixelhub credits or incur service costs. <br>
-Mitigation: Confirm pricing, balance, and intended parameters before running generation jobs. <br>
+## Use Case:
 
+Developers and agents use this skill to discover Pixelle/Pixelhub workflow tools, submit image, video, and audio generation tasks, and poll for task results through the bundled Python runner.
 
-## Reference(s): <br>
-- [Pixelle Labs](https://www.pixellelabs.com/) <br>
-- [Pixelle API Keys](https://www.pixellelabs.com/user/api-keys) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leik1000/pixelhub-api-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Python runner to list tools, validate parameters against server schemas, submit tasks, and poll for completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: API keys may be exposed if users paste them into chat or write them into the runner source file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the Pixelhub_API_KEY environment variable or another secret store, and do not commit or paste API keys into chat.
+
+Risk: Prompts, media URLs, and task data are sent to the external Pixelle/Pixelhub service.
+
+Mitigation: Use the skill only with data that is acceptable to send to Pixelle/Pixelhub.
+
+Risk: Changing Pixelhub_BASE_URL or --base-url can redirect requests and credentials away from the intended service.
+
+Mitigation: Keep the base URL set to the intended Pixelle HTTPS service unless the user has explicitly verified another endpoint.
+
+## Reference(s):
+
+- [Pixelle website](https://www.pixellelabs.com/)
+- [Pixelle API keys](https://www.pixellelabs.com/user/api-keys)
+- [ClawHub skill page](https://clawhub.ai/leik1000/skills/pixelhub-api-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON runner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runner returns tool lists, task status, or completed task result payloads from the Pixelle/Pixelhub service.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

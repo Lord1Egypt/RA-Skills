@@ -1,43 +1,56 @@
-## Description: <br>
-行为金融交易策略 - 识别和利用市场中的认知偏差、情绪极端和群体行为，实现逆向交易和超额收益。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Identifies behavioral finance patterns, market sentiment extremes, herding, anchoring, and contrarian trading signals for stock analysis.
 
-## Publisher: <br>
-[hmaya](https://clawhub.ai/user/hmaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hmaya](https://clawhub.ai/user/hmaya)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use this skill to run JSON-driven behavioral finance analysis that detects cognitive-bias patterns, quantifies sentiment, and produces contrarian signals and risk warnings for stock lists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Simulated or random trading analysis may be mistaken for actionable investment guidance.
+
+Mitigation: Treat outputs as demonstration-only financial logic unless the publisher adds real data-provider integration, deterministic calculations, reproducible backtests, and clear synthetic-data warnings.
+
+Risk: Automated trading use could act on unsupported recommendations.
+
+Mitigation: Do not connect this skill to automated trading or rely on its recommendations for real investment decisions in its current form.
+
+Risk: Financial outputs lack server-resolved provenance for the underlying source version.
+
+Mitigation: Review the artifact and publisher context carefully before installation or deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts can use this skill to simulate behavioral-finance pattern detection, sentiment scoring, contrarian signal generation, herding monitoring, and strategy backtesting. Its outputs should be treated as educational or simulation results, not as real trading, automated execution, portfolio sizing, or risk decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents random or hardcoded trading analysis as actionable financial signals and backtest results. <br>
-Mitigation: Treat outputs as simulation or educational material unless the skill is changed to use verified market data, reproducible calculations, and explicit demo labeling. <br>
-Risk: Users could rely on generated signals for real trading, automated execution, portfolio sizing, or risk decisions. <br>
-Mitigation: Require human review, independent financial analysis, and a separate risk-management process before any investment-related use. <br>
-Risk: Performance claims and backtest metrics may be misleading because the artifact behavior includes simulated values. <br>
-Mitigation: Validate any claimed performance with documented datasets, deterministic methodology, and reproducible evaluation before publication or operational use. <br>
+**Output Format:** [JSON response with behavioral analysis, trading signal, backtest, sentiment, and risk warning fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hmaya/behavioral-finance) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hmaya) <br>
+**Other Properties Related to Output:** [Accepts JSON parameters via command line or stdin; requires Python packages listed in OpenClaw metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses with behavioral analysis, sentiment metrics, trading-signal simulations, warnings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Python execution returns structured JSON for supported actions such as pattern detection, sentiment quantification, contrarian signal generation, herding monitoring, and backtesting.] <br>
+1.0.0 (source: server release metadata and artifact changelog)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

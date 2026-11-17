@@ -1,40 +1,60 @@
-## Description: <br>
-Checks remaining MiniMax API token quota and provides guidance for scheduled monitoring with optional Telegram notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimax Token checks remaining MiniMax API token quota and supports scheduled monitoring with optional Telegram notifications.
 
-## Publisher: <br>
-[SherLockfate](https://clawhub.ai/user/SherLockfate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sherlockfate](https://clawhub.ai/user/sherlockfate)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to check MiniMax API quota, configure hourly monitoring, and receive low-balance alerts through Telegram.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to handle MiniMax API and Telegram credentials.
+
+Mitigation: Store credentials outside shell history and command-line arguments, preferably in environment variables or a secrets manager.
+
+Risk: Telegram notifications can send quota or account-related information to a third-party service.
+
+Mitigation: Send notifications only to trusted chats and avoid including sensitive account details beyond what is necessary.
+
+Risk: The documented systemd setup creates a persistent service.
+
+Mitigation: Review the service behavior before enabling it and confirm how to stop, disable, and remove it.
+
+Risk: The packaged artifact lacks the referenced script and service files.
+
+Mitigation: Review or supply the missing script and service implementation before installation or scheduled execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to check MiniMax API token quota, configure scheduled quota monitoring, and set up low-balance Telegram alerts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax API keys and optional Telegram credentials may expose quota status, bot identifiers, chat identifiers, or notification timing if handled carelessly. <br>
-Mitigation: Provide credentials through environment variables or a secret manager, restrict Telegram recipients, and review the alert configuration before enabling notifications. <br>
-Risk: The submitted artifact describes a Python checker and systemd service, but those implementation files are not included in the package. <br>
-Mitigation: Review and scan any separate script or service file before running quota checks, starting monitors, or installing a systemd service. <br>
+**Output Format:** [Markdown with inline shell commands and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SherLockfate/minimax-token) <br>
+**Other Properties Related to Output:** [May include commands that depend on user-supplied MiniMax and optional Telegram credentials.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key; Telegram bot token and chat ID are optional for notifications.] <br>
+2.2.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

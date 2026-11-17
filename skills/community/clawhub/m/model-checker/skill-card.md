@@ -1,41 +1,55 @@
-## Description: <br>
-Queries a company API for the current list of available internal AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries the company's available AI model list.
 
-## Publisher: <br>
-[mcp98252302](https://clawhub.ai/user/mcp98252302) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcp98252302](https://clawhub.ai/user/mcp98252302)
 
-## Use Case: <br>
-Employees or developers use this skill in OpenClaw to check which internal AI models are currently available from the company API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the disclosed company API domain to retrieve model data. <br>
-Mitigation: Use it only in environments where contacting that domain is approved and the publisher is trusted. <br>
-Risk: The model list depends on the availability and accuracy of the remote API response. <br>
-Mitigation: Check for the returned error object before relying on the model list for operational decisions. <br>
+## Use Case:
 
+Employees, developers, or operators can use this skill in OpenClaw to request the currently available internal AI model list from the configured company API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcp98252302/model-checker) <br>
-- [Disclosed model list API endpoint](https://cwork-api-test.xgjktech.com.cn/filegpt/t_ai/nologin/aiTypeList) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [API response data or an error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the remote model-list response directly when the request succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and package.json) <br>
+Risk: The skill contacts a company API endpoint to retrieve model-list data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where outbound access to that endpoint is approved.
+
+Risk: HTTP dependencies and transitive dependencies may become stale before broad deployment.
+
+Mitigation: Update axios and transitive dependencies, regenerate the lockfile, and use exact reviewed versions before wider deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mcp98252302/skills/model-checker)
+- [Publisher Profile](https://clawhub.ai/user/mcp98252302)
+- [Configured Model List API Endpoint](https://cwork-api-test.xgjktech.com.cn/filegpt/t_ai/nologin/aiTypeList)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON response data or a concise error object returned to the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires outbound HTTPS access to the configured company API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

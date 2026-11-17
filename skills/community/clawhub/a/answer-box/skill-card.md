@@ -1,37 +1,53 @@
-## Description: <br>
-Answer Box returns one warm, positive, randomized suggestion for daily stress relief, lightweight decisions, emotional comfort, training interactions, and team icebreakers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer Box returns one random Chinese-language warm, positive suggestion for everyday stress relief, light decisions, emotional comfort, training demonstrations, and team icebreakers.
 
-## Publisher: <br>
-[mi-fan](https://clawhub.ai/user/mi-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mi-fan](https://clawhub.ai/user/mi-fan)
 
-## Use Case: <br>
-External users, employees, and facilitators use this skill to receive a brief positive prompt after privately thinking of a question. It is suited to casual emotional support, low-stakes reflection, training demonstrations, and team icebreaker moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on randomized encouragement for medical, legal, financial, or other high-stakes decisions. <br>
-Mitigation: Treat responses as lightweight emotional support only and seek qualified professional guidance for high-stakes matters. <br>
+## Use Case:
 
+External users, employees, and facilitators use this skill to receive a quick positive prompt for low-stakes reflection, stress relief, light decisions, emotional comfort, training interactions, and team icebreakers. Its output is supportive guidance only and does not analyze the user's actual question.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [JSON object with a single output string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Randomly selects one of 60 predefined positive Chinese-language responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill provides random encouragement and does not analyze the user's actual question.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use responses only for low-stakes reflection or emotional support, not for health, safety, legal, financial, relationship, or business decisions.
+
+Risk: Users may treat the supportive response as personalized advice.
+
+Mitigation: Present the response as a lightweight prompt or comfort message and keep important decisions subject to human judgment or qualified professional advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mi-fan/skills/answer-box)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object containing a single Chinese-language text suggestion in the output field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Randomly selects one of 60 built-in positive responses; no user input is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

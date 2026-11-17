@@ -1,43 +1,58 @@
-## Description: <br>
-Ship production code with AI agents through acceptance contracts, micro diffs, red green loops, and deterministic handoff checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ship production code with AI agents through acceptance contracts, micro diffs, red green loops, and deterministic handoff checkpoints.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted coding work around explicit acceptance contracts, focused diffs, verification evidence, and reviewer-ready handoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Opt-in local memory may record contracts, evidence notes, and handoff summaries under ~/agentic-coding/. <br>
-Mitigation: Review what may be written before enabling memory and keep durable notes limited to execution preferences and validation evidence. <br>
-Risk: Broad or vague coding contracts can lead to unnecessary changes outside the intended scope. <br>
-Mitigation: Keep each task contract narrow, define non-goals, and require validation evidence before handoff. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/agentic-coding) <br>
-- [Skill homepage](https://clawic.com/skills/agentic-coding) <br>
-- [PACT loop protocol](protocol.md) <br>
-- [Contract prompt templates](prompt-contracts.md) <br>
-- [Merge handoff checklist](handoff.md) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to turn coding requests into scoped acceptance contracts, minimal implementation changes, reproducible validation, and reviewer-ready handoffs. It is suited for production features, risky refactors, bug fixes, and Xcode-centered release work where proof of behavior matters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, prompt templates, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local memory templates and handoff notes under ~/agentic-coding/ when the user explicitly opts in.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional local workflow notes may retain coding preferences, task contracts, validation evidence, and handoff summaries under ~/agentic-coding/.
+
+Mitigation: Enable persistent notes only when useful, keep saved content minimal, and review or delete ~/agentic-coding/ when local retention is not desired.
+
+Risk: The skill improves coding execution quality but does not replace project-specific contribution rules or security review for high-risk domains.
+
+Mitigation: Use the skill's acceptance checks and handoff evidence alongside the repository's normal tests, review process, and security controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/agentic-coding)
+- [Agentic Coding Homepage](https://clawic.com/skills/agentic-coding)
+- [Setup Process](artifact/setup.md)
+- [PACT Loop](artifact/protocol.md)
+- [Contract Prompt Templates](artifact/prompt-contracts.md)
+- [Merge Handoff Checklist](artifact/handoff.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured text blocks, checklists, command recommendations, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create optional local workflow notes under ~/agentic-coding/ when the user explicitly opts in.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

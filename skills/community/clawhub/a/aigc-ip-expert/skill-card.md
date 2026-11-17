@@ -1,41 +1,58 @@
-## Description: <br>
-A Chinese-language workflow for developing original AIGC comic-drama IP through a 35-stage process covering project setup, worldbuilding, character systems, episode planning, content safety, cultural adaptation, production prompts, and final review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language AIGC comic-drama IP development workflow that guides an agent through a 35-stage process for project setup, worldbuilding, characters, episode planning, originality checks, content safety, platform adaptation, commercialization, and final review.
 
-## Publisher: <br>
-[303008132-collab](https://clawhub.ai/user/303008132-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[303008132-collab](https://clawhub.ai/user/303008132-collab)
 
-## Use Case: <br>
-External creators and production teams use this skill to plan original AIGC comic-drama IP, moving step by step from project intake through story architecture, visual direction, platform adaptation, commercialization planning, and final scoring. It is designed for deliberate, staged collaboration where each phase pauses for user confirmation or revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the workflow when the user did not intend to start the full 35-stage process. <br>
-Mitigation: Invoke the skill deliberately and review deployment trigger terms before publishing it into shared agent environments. <br>
-Risk: The fixed Chinese-language workflow may be hard for non-Chinese users or reviewers to follow. <br>
-Mitigation: Use Chinese-speaking reviewers or adapt the prompts and review checkpoints before deploying it for non-Chinese audiences. <br>
+## Use Case:
 
+Creators, producers, and agent users use this skill to develop original AIGC-ready comic-drama IP through staged planning, including worldbuilding, character systems, episode structure, visual prompt planning, platform fit, and commercialization review.
 
-## Reference(s): <br>
-- [35-stage workflow reference](references/stages.md) <br>
-- [ClawHub skill page](https://clawhub.ai/303008132-collab/skills/aigc-ip-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions, Text] <br>
-**Output Format:** [Markdown with structured tables, staged prompts, review checklists, and confirmation options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated in a staged Chinese-language workflow and pause after each stage for user confirmation or modification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can activate on broad IP or comic-drama terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in conversations where a Chinese staged AIGC comic-drama IP workflow is intended, and redirect or disable it when the user only needs a narrow creative answer.
+
+Risk: The workflow is long and intentionally staged.
+
+Mitigation: Follow the built-in confirmation protocol and continue only after the user chooses '确认' or asks for a specific stage.
+
+Risk: Generated story concepts may still require originality and content review before production.
+
+Mitigation: Use the skill's originality, cultural sensitivity, content-safety, and final review stages before treating outputs as production-ready.
+
+## Reference(s):
+
+- [Detailed 35-stage workflow](artifact/references/stages.md)
+- [ClawHub skill page](https://clawhub.ai/303008132-collab/skills/aigc-ip-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese text with structured tables, checklists, staged review prompts, creative briefs, story plans, and AIGC prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each stage pauses for user confirmation or revision before continuing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

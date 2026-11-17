@@ -1,40 +1,53 @@
-## Description: <br>
-Monitor StockLobster webhook alerts through OpenClaw and route screened stock signals to chat channels such as Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor StockLobster webhook alerts through OpenClaw and route screened stock signals to chat channels such as Telegram.
 
-## Publisher: <br>
-[l3g](https://clawhub.ai/user/l3g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l3g](https://clawhub.ai/user/l3g)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and troubleshoot OpenClaw hook mappings that ingest StockLobster alerts and deliver screened stock signals to Telegram or another supported channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook endpoints and chat destinations can expose alerts or send messages to the wrong channel if tokens, URLs, or chat IDs are misconfigured. <br>
-Mitigation: Use a dedicated hooks token, verify the Telegram chat ID, back up ~/.openclaw/openclaw.json, and expose the webhook endpoint only where StockLobster alerts should be received. <br>
-Risk: OpenClaw templates that reference the wrong payload object can produce empty messages or failed delivery. <br>
-Mitigation: Use payload fields such as {{payload.text}} for the confirmed simple payload and test the mapping with curl before relying on live alerts. <br>
+## Use Case:
 
+Developers and operators use this skill to configure, document, test, and troubleshoot StockLobster webhook ingestion through OpenClaw, including hook mappings, payload templates, and outbound delivery to Telegram or another supported channel.
 
-## Reference(s): <br>
-- [StockLobster Payload Format](references/payload-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for editing OpenClaw configuration and testing webhook delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documents routing raw webhook text into the main OpenClaw agent through a bearer-token HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the hook to trusted senders, use HTTPS or a private tunnel, rotate a dedicated hooks token, and avoid exposing the endpoint directly on an untrusted network.
+
+Risk: The documented mapping does not clearly validate structured fields or isolate webhook handling from the main agent.
+
+Mitigation: Prefer structured field validation and a dedicated low-privilege notification agent before production deployment.
+
+## Reference(s):
+
+- [StockLobster Payload Format](references/payload-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw hook mapping guidance, payload examples, curl test commands, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

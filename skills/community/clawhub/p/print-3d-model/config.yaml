@@ -1,0 +1,9 @@
+# print-3d-model configuration
+browser: brave
+homepage_url: https://773-labs.vercel.app/quote
+reuse_existing_session: true
+reuse_existing_tab: true
+avoid_duplicate_tabs: true
+verify_destination: true
+stop_at_login: true
+direct_navigation: true

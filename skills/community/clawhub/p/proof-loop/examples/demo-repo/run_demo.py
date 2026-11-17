@@ -43,7 +43,7 @@ def main() -> int:
         if second.returncode != 0:
             return second.returncode
 
-        report = run([str(ROOT / "bin" / "proof-loop"), "report", "examples/demo-repo/.agent/tasks/nav-labels-proof"], cwd=ROOT)
+        report = run(["python3", str(ROOT / "bin" / "proof-loop"), "report", "examples/demo-repo/tasks/nav-labels-proof"], cwd=ROOT)
         return report.returncode
 
 

@@ -1,39 +1,54 @@
-## Description: <br>
-AI领域高质量信息聚合与过滤 skill，用于在用户请求AI最新动态、前沿论文、热门工具或行业趋势时，从 arXiv、GitHub、Hacker News、Hugging Face 等公开来源筛选信息并生成中文每日快讯或每周深度总结。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese AI news briefs by searching and filtering recent arXiv, GitHub, Hacker News, Reddit, and Hugging Face items across generative AI, digital humans, short-video tools, and AI-enabled media and communications.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Chinese-speaking AI practitioners, researchers, educators, and content teams use this skill to monitor public AI news, papers, tools, and trends. It produces concise daily briefings or deeper weekly summaries focused on generative AI, digital humans, AI short-video tools, and intelligent communication topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may rely on fast-changing public web sources, so items can become stale, incomplete, or misleading after generation. <br>
-Mitigation: Review the cited original links and publication dates before using the briefing for decisions, publication, or teaching materials. <br>
-Risk: The skill may browse public web sources when invoked and could be activated by broad AI-report requests. <br>
-Mitigation: Use explicit prompts such as AI周报 or AI快讯, and confirm the requested scope before relying on the results. <br>
+## Use Case:
 
+External users and researchers use this skill to produce daily or weekly Chinese AI briefings with source links, relevance filtering, and trend notes for AIGC, virtual digital humans, AI short-video tools, and intelligent communication or news topics.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown briefings with summaries, source labels, links, and trend analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports daily quick briefings and weekly deep summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill performs current web searches, so returned items can include stale, incomplete, or low-quality public web results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited source links and ask for narrower topics, date ranges, or source constraints when accuracy matters.
+
+Risk: The skill defaults to Chinese briefings, which may not fit every user's expected output language.
+
+Mitigation: Ask for a specific output language or bilingual format when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-ai-headline-brief)
+- [Publisher profile](https://clawhub.ai/user/kelcey2023)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown brief or structured report with links and source labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily brief or weekly deep summary; source titles may retain their original language.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Daily Report Recorder records, polishes, and archives user-provided work updates into same-day Markdown daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records, refines, and archives daily work updates by generating or updating a Markdown report for the current day.
 
-## Publisher: <br>
-[bounding-elk](https://clawhub.ai/user/bounding-elk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bounding-elk](https://clawhub.ai/user/bounding-elk)
 
-## Use Case: <br>
-Employees and team members use this skill to turn daily work notes, troubleshooting records, meeting notes, and follow-up plans into concise internal status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily reports may contain sensitive work details or credentials if the user includes them in prompts. <br>
-Mitigation: Avoid entering secrets or sensitive internal details unless /data/reports/daily is approved for that content, and review generated reports before official submission. <br>
-Risk: Optional scheduled prompts may create recurring report activity that users did not intend. <br>
-Mitigation: Enable the cron schedule only when recurring report prompts are desired. <br>
+## Use Case:
 
+Employees and teams use this skill to turn daily work notes, troubleshooting updates, meeting notes, and follow-up plans into standardized internal Markdown reports. It merges multiple same-day updates into one report and keeps the wording concise, factual, and outcome-oriented.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bounding-elk/daily-report-recorder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown daily report file with a brief text confirmation and summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates /data/reports/daily/YYYY-MM-DD.md and adds Asia/Shanghai timestamps to submitted work items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: User-provided work updates may be persisted in local daily Markdown reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential details unless /data/reports/daily is an appropriate storage location for that information.
+
+Risk: The optional cron example can trigger recurring report prompts.
+
+Mitigation: Review the schedule and payload before enabling any recurring prompt.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bounding-elk/skills/daily-report-recorder)
+- [Publisher Profile](https://clawhub.ai/user/bounding-elk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown daily report with a concise text confirmation and optional bash cron configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or updates /data/reports/daily/YYYY-MM-DD.md and uses Asia/Shanghai timestamps for recorded items.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

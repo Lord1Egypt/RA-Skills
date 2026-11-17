@@ -1,38 +1,52 @@
-## Description: <br>
-Adds a specified suffix to each line of input text using a small Python standard-library script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds a specified suffix to each line of input text using a simple Python script with no external dependencies.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content editors use this skill to add a chosen suffix to every line of supplied text, such as formatting Chinese-language brand or documentation snippets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Chinese-language documentation and command help may not fit all deployment teams.
+
+Mitigation: Install only where Chinese-language documentation and help text are acceptable, or localize the artifact before deployment.
+
+Risk: Promotional links in the artifact may send users to external sites.
+
+Mitigation: Review the linked sites separately before visiting, sharing, or approving the skill for wider use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content operators can use this skill to append a common suffix to every line of supplied text, such as formatting short lists or brand-related text snippets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Text passed through command-line arguments can appear in shell history or process listings. <br>
-Mitigation: Do not use the skill with secrets or sensitive text; use only content that is acceptable to expose locally. <br>
+**Output Format:** [Markdown guidance with bash command examples; script output is plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-suffix-tool) <br>
+**Other Properties Related to Output:** [Uses a local Python standard-library script with no external dependencies.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes text supplied through command-line arguments; no external dependencies are required.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

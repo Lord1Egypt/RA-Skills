@@ -1,37 +1,53 @@
-## Description: <br>
-Book Web Developer helps agents search for web-developer services, check availability, and create bookings through Lokuli's MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Web Developer helps agents search availability and create bookings for web-developer services through Lokuli's MCP endpoint.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find web-developer providers, check availability, and prepare or submit bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may send customer contact details to Lokuli without enough clear notice or confirmation. <br>
-Mitigation: Use the skill only when the user intends to check availability or book, and confirm the exact contact details before sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for web-developer service providers, check availability, and create a booking through Lokuli after confirming provider, service, time slot, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, time-slot, and customer contact details for booking workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external booking service.
+
+Mitigation: Confirm the provider, service, time slot, customer name, email, and phone number before allowing a booking call.
+
+Risk: The trigger language is broad and may activate for general web-developer service requests.
+
+Mitigation: Use the skill only when the user intentionally asks Lokuli to search or book web-developer services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-web-developer)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, api calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send customer name, email, and phone number to an external booking service when a booking call is allowed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

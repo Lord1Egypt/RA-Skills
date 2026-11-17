@@ -1,44 +1,62 @@
-## Description: <br>
-Beike Xiaoqu Research helps agents collect Beike housing community data through mcp-chrome, analyze single communities or regional candidate lists, and optionally produce consensus ranking reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent research Beike real-estate communities by collecting single-community details, discovering regional candidates, and optionally producing PAL MCP consensus analysis.
 
-## Publisher: <br>
-[eddiexux](https://clawhub.ai/user/eddiexux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddiexux](https://clawhub.ai/user/eddiexux)
 
-## Use Case: <br>
-External users and real-estate researchers use this skill to gather Beike xiaoqu details, discover district-level housing candidates, and compare options against stated purchase requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a Chrome tab through mcp-chrome and may operate in a browser session that contains user state. <br>
-Mitigation: Use a dedicated browser profile or Beike-only tab where possible, and review browser actions before relying on the results. <br>
-Risk: The skill saves Beike-derived research files locally, which may include location preferences, candidate communities, and purchase criteria. <br>
-Mitigation: Choose a controlled output directory, review generated files after each run, and remove sensitive outputs when they are no longer needed. <br>
-Risk: Consensus mode can share budget, location preferences, and candidate data with the PAL/model provider configured by the user. <br>
-Mitigation: Enable consensus mode only when sharing that information with the configured provider is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to gather Beike community, listing, and transaction signals for residential property research and regional shortlisting. Developers can also use its scripts to produce structured JSON, CSV candidate lists, and optional Markdown consensus reports.
 
-## Reference(s): <br>
-- [mcp-chrome API reference](references/mcp-chrome-api.md) <br>
-- [mcp-chrome project](https://github.com/hangwin/mcp-chrome) <br>
-- [ClawHub skill page](https://clawhub.ai/eddiexux/beike-xiaoqu-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Files, Guidance] <br>
-**Output Format:** [Terminal summaries, JSON data files, CSV candidate lists, and optional Markdown consensus reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Beike-derived files to a local output directory; consensus mode depends on the user's configured PAL/model provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: The skill has broad browser-control authority through mcp-chrome.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run it with a dedicated Chrome profile.
+
+Risk: Unsafe script construction could let crafted names or board strings execute local code.
+
+Mitigation: Avoid untrusted community names and board strings until the Python interpolation issues are fixed.
+
+Risk: Default output paths may use shared temporary directories.
+
+Mitigation: Choose a private output directory instead of shared /tmp paths.
+
+Risk: Scraped data and PAL consensus prompts can be manipulated or stale.
+
+Mitigation: Treat consensus reports as advisory and verify property facts against authoritative sources before acting.
+
+## Reference(s):
+
+- [mcp-chrome API reference](references/mcp-chrome-api.md)
+- [mcp-chrome GitHub repository](https://github.com/hangwin/mcp-chrome)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON files, CSV candidate lists, Markdown reports, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcp-chrome on localhost port 12306; optional consensus analysis requires a configured PAL MCP server.]
+
+## Skill Version(s):
+
+2.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

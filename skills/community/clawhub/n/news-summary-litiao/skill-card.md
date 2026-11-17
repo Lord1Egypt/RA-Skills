@@ -1,45 +1,58 @@
-## Description: <br>
-This skill should be used when the user asks for news updates, daily briefings, or what's happening in the world. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when the user asks for news updates, daily briefings, or what's happening in the world. Fetches news from trusted international RSS feeds and can create voice summaries.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to fetch current news from international RSS feeds, summarize the main stories, and optionally create a short voice briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice mode sends generated summary text to OpenAI for text-to-speech and writes a temporary audio file. <br>
-Mitigation: Use voice output only when the summary text is appropriate to send to OpenAI, and handle the temporary audio file according to local data-retention expectations. <br>
-Risk: Bundled metadata differs from the registry listing. <br>
-Mitigation: Confirm the package identity and registry listing before installing or deploying the skill. <br>
+## Use Case:
 
+External users and agents use this skill to collect current public headlines from international RSS feeds, produce concise news briefings, and optionally generate a voice briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/news-summary-litiao) <br>
-- [BBC World News RSS](https://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [Reuters World Feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best) <br>
-- [NPR News RSS](https://feeds.npr.org/1001/rss.xml) <br>
-- [Al Jazeera RSS](https://www.aljazeera.com/xml/rss/all.xml) <br>
-- [OpenAI Audio Speech API](https://api.openai.com/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown news summary with optional bash commands and audio-generation API call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are intended to stay concise, usually 5-8 top stories or about a two-minute voice briefing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice summaries send generated briefing text to OpenAI for speech generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private notes or sensitive user context in a voice briefing unless that data transfer is intended.
+
+Risk: News summaries are based on public RSS feeds and may reflect source coverage gaps or breaking-news changes.
+
+Mitigation: Use multiple listed feeds for important briefings and cite sources when requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/news-summary-litiao)
+- [BBC World News RSS](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [Reuters World Feed](https://www.reutersagency.com/feed/?best-regions=world&post_type=best)
+- [NPR News RSS](https://feeds.npr.org/1001/rss.xml)
+- [Al Jazeera RSS](https://www.aljazeera.com/xml/rss/all.xml)
+- [OpenAI Audio Speech API endpoint](https://api.openai.com/v1/audio/speech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Concise Markdown news briefing with optional shell commands and MP3 audio output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice summaries require OPENAI_API_KEY and send generated briefing text to OpenAI for speech generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Respond to review comments on a PR after evaluation and fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Respond to review comments on a PR after evaluation and fixes.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to respond to unreplied GitHub PR review comments after they have evaluated the feedback and made fixes or chosen a response strategy. It can post concise replies and resolve review threads by default.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can post replies and resolve GitHub PR review threads using the active gh login.
+
+Mitigation: Use --pr to explicitly target the intended PR, review the queued comments before posting, and use --no-resolve when thread resolution should remain manual.
+
+Risk: A fixed temporary jq file path can collide with another process or be overwritten.
+
+Mitigation: Use a unique temporary file created with mktemp and remove it after the command completes.
+
+Risk: Responding before evaluating feedback can produce incorrect or misleading PR discussion.
+
+Mitigation: Run the prerequisite feedback-evaluation step first and only respond after each thread has a fix or an explicit response strategy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill after evaluating pull request review feedback to post concise replies to unreplied GitHub review comments and optionally resolve the related review threads. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post PR review replies and resolve review threads through the user's GitHub identity. <br>
-Mitigation: Review queued comments and proposed responses before use, and pass --no-resolve when conversations should remain open. <br>
+**Output Format:** [Markdown summary with GitHub CLI command guidance and PR reply text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/respond-pr-feedback) <br>
-- [Publisher profile](https://clawhub.ai/user/anderskev) <br>
+**Other Properties Related to Output:** [May post GitHub PR review comment replies and resolve review threads through the active gh login.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown summary with GitHub CLI commands and concise PR review replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May post GitHub review comment replies and resolve review threads unless --no-resolve is used.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

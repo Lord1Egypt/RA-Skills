@@ -1,49 +1,64 @@
-## Description: <br>
-Build type-safe React apps with TanStack Query for data fetching, caching, and mutations; TanStack Router for file-based routing, search params, and loaders; and TanStack Start for SSR, server functions, and middleware. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack TypeScript with Vite 8, React 19, Tailwind v4, shadcn/ui, Biome, Vitest, and Hono 4. Use when setting up or working in a TypeScript project - components, styling, build and HMR, tests, lint/CI, or a Hono API with type-safe RPC.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineers use this skill for TanStack Query, Router, and Start implementation guidance, including React server state, type-safe routing, SSR, server functions, middleware, and related project setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to add npm packages or scaffold TanStack projects, which may change dependencies and application behavior. <br>
-Mitigation: Review dependency changes, generated project files, and package manager commands before applying them. <br>
-Risk: The skill covers OAuth, wallets, sensitive credentials, server functions, and middleware patterns where secrets or authorization checks can be mishandled. <br>
-Mitigation: Keep secrets in server-only environment variables and enforce authorization in server functions, server routes, or API endpoints that access private data. <br>
+## Use Case:
 
+Developers use this guide when setting up or maintaining full-stack TypeScript projects. It provides patterns and working examples for React components, styling, builds, type checking, tests, linting, and Hono APIs with type-safe RPC.
 
-## Reference(s): <br>
-- [TanStack Query Docs](https://tanstack.com/query/latest/docs/framework/react/overview) <br>
-- [TanStack Router Docs](https://tanstack.com/router/latest/docs/framework/react/overview) <br>
-- [TanStack Start Docs](https://tanstack.com/start/latest/docs/framework/react/overview) <br>
-- [TanStack Query GitHub](https://github.com/TanStack/query) <br>
-- [TanStack Router GitHub](https://github.com/TanStack/router) <br>
-- [Query Guide](references/query-guide.md) <br>
-- [Router Guide](references/router-guide.md) <br>
-- [Start Guide](references/start-guide.md) <br>
-- [Server Functions](references/server-functions.md) <br>
-- [Middleware](references/middleware.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable install hooks were found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: SKILL.md metadata and changelog, released 2026-06-10) <br>
+Risk: Remotely downloaded packages and installer contents were outside this review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer version-locked project tools over the download-to-Bash installer, and review downloaded contents before running them.
+
+Risk: A Tailwind migration may discard existing configuration if it is removed before its settings are migrated.
+
+Mitigation: Back up Tailwind configuration and test the migration before deleting the existing file.
+
+Risk: Deployment and optional skill or MCP setup steps may change the target environment.
+
+Mitigation: Run those steps only when you intend to make those changes.
+
+## Reference(s):
+
+- [Vite reference](references/vite.md)
+- [React reference](references/react.md)
+- [TypeScript reference](references/typescript.md)
+- [Tailwind CSS reference](references/tailwind.md)
+- [shadcn/ui reference](references/shadcn.md)
+- [Biome reference](references/biome.md)
+- [Vitest reference](references/vitest.md)
+- [Hono reference](references/hono.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript/TSX examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Version-specific examples for the documented stack; check commands and migration steps against the target project's installed tool versions.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter, released 2026-11-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

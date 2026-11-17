@@ -1,44 +1,56 @@
-## Description: <br>
-Generate images using curl and the SkillBoss API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using curl and the SkillBoss API.
 
-## Publisher: <br>
-[MarjorieBroad](https://clawhub.ai/user/MarjorieBroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to generate an image from a text prompt through the SkillBoss API and inspect the returned image URL or JSON response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The image generation command sends the prompt and API key to SkillBoss. <br>
-Mitigation: Use a limited or revocable SKILLBOSS_API_KEY and avoid sensitive prompts unless the external service is trusted for the intended use. <br>
-Risk: The optional Check IP helper contacts httpbin.org and exposes the caller's public IP to that service. <br>
-Mitigation: Run the helper only when public-IP disclosure to httpbin.org is acceptable. <br>
+## Use Case:
 
+External users and developers use Quick Img V2 to generate image URLs from text prompts through the SkillBoss/HeyBoss API using curl. The skill requires SKILLBOSS_API_KEY and includes a separate IP-check command.
 
-## Reference(s): <br>
-- [Quick Img V2 on ClawHub](https://clawhub.ai/MarjorieBroad/quick-img) <br>
-- [MarjorieBroad publisher profile](https://clawhub.ai/user/MarjorieBroad) <br>
-- [SkillBoss](https://www.skillboss.co) <br>
-- [SkillBoss run API endpoint](https://api.heybossai.com/v1/run) <br>
-- [httpbin IP check endpoint](https://httpbin.org/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash and JavaScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The image generation command prints an image URL when present, otherwise the API JSON response; the optional IP helper prints the caller's public IP origin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Image-generation prompts and SKILLBOSS_API_KEY are sent to the external SkillBoss/HeyBoss API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or secrets unless that external data flow is acceptable for the deployment.
+
+Risk: The Check IP command contacts httpbin.org and exposes the runtime environment's public IP address.
+
+Mitigation: Remove or avoid the Check IP workflow unless the deployment explicitly needs that network check.
+
+## Reference(s):
+
+- [Quick Img V2 on ClawHub](https://clawhub.ai/marjoriebroad/skills/quick-img)
+- [SkillBoss API endpoint](https://api.heybossai.com/v1/run)
+- [SkillBoss API key service](https://www.skillboss.co)
+- [httpbin IP check endpoint](https://httpbin.org/get)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, API calls, guidance]
+
+**Output Format:** [Markdown with bash commands; runtime output is an image URL or JSON response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for image generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

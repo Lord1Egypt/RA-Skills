@@ -1,40 +1,57 @@
-## Description: <br>
-Auto Backup Pro helps an agent plan and operate scheduled backups for important files, including incremental backup, compression, encryption options, verification reports, and retry guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Backup Pro helps an agent configure scheduled local or cloud backups with incremental backup, compression and encryption options, verification reports, and retry behavior.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to configure scheduled backup routines, review backup status, and restore previous backups for important work directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup and restore actions may copy, retain, or overwrite user data without enough visibility into scope or retention. <br>
-Mitigation: Confirm source folders, destination, cloud use, retention count, and restore behavior before use; require explicit confirmation before restores and preserve newer files. <br>
-Risk: Encrypted backup claims create key-management risk if keys are not handled clearly. <br>
-Mitigation: Confirm how encryption keys are generated, stored, rotated, and recovered before enabling encrypted backups. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up recurring backups, inspect backup status, and recover recent work products from local or cloud backup targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/auto-backup-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and configuration snippets, with shell commands when needed for backup or restore operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include backup status, storage usage, backup history, verification results, and restore guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Overbroad source directory settings can copy unnecessary files or sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the narrowest practical source directories and avoid backing up secrets unless they are intentionally required.
+
+Risk: Backups to cloud or shared storage can expose confidential data if encryption is disabled.
+
+Mitigation: Enable encryption for cloud or shared backup targets and review retention settings.
+
+Risk: Restore operations can overwrite existing files when target paths are misconfigured.
+
+Mitigation: Confirm restore targets before recovery and test restores in a noncritical location when possible.
+
+## Reference(s):
+
+- [Auto Backup Pro ClawHub Page](https://clawhub.ai/linbo405/skills/auto-backup-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and JSON configuration examples with backup status, storage usage, and backup history information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backup source directories, target locations, schedules, compression, encryption, and retention settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

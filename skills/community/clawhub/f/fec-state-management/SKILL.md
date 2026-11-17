@@ -1,28 +1,28 @@
 ---
 name: fec-state-management
-description: Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. Prefer narrower skills for TanStack Query cache details, browser storage persistence, or form validation internals; Chinese triggers include 状态管理, 状态归属, store 选型.
+description: Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. Prefer narrower skills for TanStack Query cache details, browser storage persistence, or form validation internals; Chinese triggers include state management, state ownership, store selection.
 ---
 
-# 前端状态管理
+# Front-end status management
 
 ## Purpose
 
-为前端状态确定清晰归属，避免全局 store 膨胀、重复缓存和派生状态同步错误。
+Determine clear ownership of front-end state to avoid global store bloat, duplicate caching, and derived state synchronization errors.
 
 ## Procedure
 
-### 1. 先分类状态来源
+### 1. Classify status sources first
 
-不要先选 Redux、Zustand、Pinia 或 Context。先把每个状态标到唯一归属，再决定工具。
+Don't choose Redux, Zustand, Pinia or Context first. First mark each state to its unique owner, and then decide on the tool.
 
-| 状态类型         | 典型例子                             | 默认归属                 |
+| Status Type | Typical Example | Default Attribution |
 | ---------------- | ------------------------------------ | ------------------------ |
-| 本地 UI 状态     | 弹窗开关、tab、展开行、hover 编辑态  | 组件内 state / ref       |
-| 表单状态         | 输入值、脏字段、校验错误、提交中     | 表单库或表单组件         |
-| 服务端状态       | 列表、详情、分页结果、远程错误       | 请求缓存库               |
-| URL 状态         | 搜索词、筛选、排序、页码、选中 tab   | 路由参数 / search params |
-| 全局客户端状态   | 登录用户、主题、权限快照、购物车草稿 | 全局 store               |
-| 浏览器持久化状态 | 跨刷新保留的草稿、偏好、离线队列     | 存储层 + 状态适配器      |
+| Local UI state | Pop-up window switch, tab, expand row, hover editing state | In-component state / ref |
+| Form status | Input value, dirty field, validation error, submitting | Form library or form component |
+| Server status | List, details, paging results, remote errors | Request cache library |
+| URL status | Search terms, filter, sort, page number, selected tab | Routing parameters / search params |
+| Global client status | Login users, topics, permission snapshots, shopping cart drafts | Global store |
+| Browser persistent state | Drafts, preferences, offline queues retained across refreshes | Storage layer + state adapter |
 
 ```tsx
 type ReportsStateMap = {
@@ -34,9 +34,9 @@ type ReportsStateMap = {
 };
 ```
 
-### 2. 保持最小状态
+### 2. Keep it minimal
 
-可从 props、server state、URL 或已有 state 推导出来的值，不要另存一份。
+Do not save a new copy of a value that can be inferred from props, server state, URL, or existing state.
 
 ```tsx
 interface Invoice {
@@ -51,9 +51,9 @@ function InvoiceList({ invoices }: { invoices: Invoice[] }) {
 }
 ```
 
-### 3. 选择 React 全局状态方案
+### 3. Select the React global state solution
 
-React 中优先本地化和组合；只有跨页面、跨 feature 或需要统一动作时才引入全局 store。
+Priority is given to localization and combination in React; the global store is only introduced when cross-page, cross-feature or unified actions are required.
 
 ```tsx
 import { create } from "zustand";
@@ -69,17 +69,17 @@ export const useWorkspaceStore = create<WorkspaceState>((set) => ({
 }));
 ```
 
-决策顺序：
+Decision order:
 
-1. 只在一个组件或一个小子树使用：`useState` / `useReducer`。
-2. 低频全局配置或依赖注入：Context。
-3. 中等复杂业务状态：Zustand 或 Jotai，按仓库现有选型优先。
-4. 大型应用、严格动作流、审计或时间旅行调试：Redux Toolkit。
-5. 远程数据：使用数据获取 skill 管理 query key、缓存和失效策略。
+1. Use only in one component or a small subtree: `useState` / `useReducer`.
+2. Low-frequency global configuration or dependency injection: Context.
+3. Moderately complex business status: Zustand or Jotai, priority will be given based on the existing selection of the warehouse.
+4. Large applications, strict action flow, auditing or time travel debugging: Redux Toolkit.
+5. Remote data: Use the data acquisition skill to manage query keys, cache and invalidation policies.
 
-### 4. 选择 Vue 全局状态方案
+### 4. Select Vue global state solution
 
-Vue 3 中，局部跨层级传递使用 `provide/inject`；全局业务状态使用 Pinia 或项目既有 store。
+In Vue 3, use `provide/inject` for local cross-level transfer; use Pinia or the existing store of the project for global business status.
 
 ```ts
 import { computed, readonly, ref } from "vue";
@@ -101,9 +101,9 @@ export const useSessionStore = defineStore("session", () => {
 });
 ```
 
-### 5. 明确状态边界和迁移步骤
+### 5. Clarify status boundaries and migration steps
 
-重构状态时先做状态清单，再逐步移动读写入口。每一步都应保持行为可验证。
+When reconstructing the state, first make a state list, and then gradually move the read and write entries. Each step should keep the behavior verifiable.
 
 ```ts
 interface StateMigrationItem {
@@ -123,18 +123,18 @@ const migrationPlan: StateMigrationItem[] = [
 ];
 ```
 
-## 详细参考
+## Detailed reference
 
-需要 Store 形状示例、选择器模式、URL 状态同步、持久化适配器、SSR 边界或审查清单时，加载 [references/state-patterns.md](references/state-patterns.md)。
+Load [references/state-patterns.md](references/state-patterns.md) when you need Store shape examples, selector patterns, URL state synchronization, persistence adapters, SSR boundaries, or review checklists.
 
 ## Constraints
 
-- 不把服务端响应复制到全局 store；缓存、失效和重试归数据获取层。
-- 不把表单每个字段提升到全局 store；跨步骤共享也优先由表单上下文或提交草稿适配器处理。
-- 不用 Context 承载高频变化的大对象；会扩大重渲染范围。
-- 持久化状态必须明确字段白名单、版本号、过期策略和敏感数据排除。
-- SSR 场景不要在模块顶层创建带用户数据的单例 store。
+- Do not copy the server response to the global store; caching, invalidation and retries belong to the data acquisition layer.
+- Do not promote each field of the form to the global store; cross-step sharing is also handled first by the form context or submit draft adapter.
+- No need to use Context to carry large objects that change frequently; it will expand the re-rendering range.
+- Persistence state must specify field whitelist, version number, expiration policy and sensitive data exclusion.
+- In SSR scenarios, do not create a singleton store with user data at the top level of the module.
 
 ## Expected Output
 
-产出状态归属清单、选型理由、store/API 边界和验证步骤。实现时应保留 loading/error/empty、刷新、回退、跨路由和权限变化等关键行为。
+Output status attribution list, selection reasons, store/API boundaries and verification steps. Key behaviors such as loading/error/empty, refresh, rollback, cross-routing, and permission changes should be retained during implementation.

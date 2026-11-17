@@ -1,41 +1,55 @@
-## Description: <br>
-Aggregates recent Trump-related news from multiple public sources and produces an objective Chinese-language briefing with source attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates recent Donald Trump-related news from multiple sources, deduplicates and categorizes stories, and produces a concise Chinese-language briefing with source attribution.
 
-## Publisher: <br>
-[tunsuy](https://clawhub.ai/user/tunsuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tunsuy](https://clawhub.ai/user/tunsuy)
 
-## Use Case: <br>
-External users and analysts use this skill to request concise Chinese-language briefings on Donald Trump's latest news, policies, statements, and related political developments. It is suited to public-news monitoring where source diversity, deduplication, and clear attribution matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Politically sensitive or breaking-news claims may be incomplete, disputed, or later corrected. <br>
-Mitigation: Verify key claims against the cited sources, prefer multiple independent outlets, and clearly flag single-source or unverified claims. <br>
-Risk: The skill is designed to return Chinese-language briefings and may not match users who need another response language. <br>
-Mitigation: Explicitly adjust the language instruction when a non-Chinese report is required. <br>
+## Use Case:
 
+External users and analysts use this skill to obtain timely Chinese-language summaries of Donald Trump-related actions, policies, statements, and political developments with attribution across multiple news sources.
 
-## Reference(s): <br>
-- [Trump News Sources Reference](references/sources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tunsuy/trump-news-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown briefing with cited source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 800-1500 Chinese characters with report date, source count, key points, categorized details, and short analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill browses and summarizes fast-moving political news, so stale or single-source reporting could lead to incomplete or misleading briefings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's source-diversity and cross-referencing guidance, check publication timestamps, and flag claims that are not confirmed by multiple independent sources.
+
+Risk: The skill defaults to Chinese-language output and a broad Trump news scope, which may not match every user's language or source expectations.
+
+Mitigation: Explicitly request a different output language, time window, topic focus, or source set when needed.
+
+## Reference(s):
+
+- [Trump News Sources Reference](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/tunsuy/skills/trump-news-tracker)
+- [Publisher profile](https://clawhub.ai/user/tunsuy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown briefing with cited source names, publication dates, highlights, categorized details, and short analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Aims for 800-1500 Chinese characters, emphasizes recency, and flags unverified or contradictory reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

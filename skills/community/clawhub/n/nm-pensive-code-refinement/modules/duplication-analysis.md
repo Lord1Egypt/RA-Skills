@@ -34,12 +34,15 @@ find . -name "*.py" -not -path "*/.venv/*" -not -path "*/node_modules/*" | while
 done | sort | uniq -d -w 100
 ```
 
+If `plugins/conserve/scripts/detect_duplicates.py` is absent (a marketplace
+install, not a checkout), skip the duplicate scan and say so.
+
 ### 2. Similar Function Signatures
 
 ```bash
-# Python: Functions with near-identical signatures
-grep -rn "^def \|^    def " --include="*.py" . | \
-  sed 's/(.*//' | sort -t: -k2 | uniq -f1 -d
+# Python: one name, different bodies, several files (conserve census)
+python3 plugins/conserve/scripts/detect_duplicates.py . --format json | \
+  python3 -c "import json,sys; print(json.dumps(json.load(sys.stdin)['competing_implementations'], indent=1))"
 
 # TypeScript/JavaScript: Similar function declarations
 grep -rn "function \|const .* = (" --include="*.ts" --include="*.js" . | \
@@ -49,6 +52,9 @@ grep -rn "function \|const .* = (" --include="*.ts" --include="*.js" . | \
 grep -rn "^pub fn \|^fn " --include="*.rs" . | \
   sed 's/(.*//' | sort -t: -k2 | uniq -f1 -d
 ```
+
+If `plugins/conserve/scripts/detect_duplicates.py` is absent (a marketplace
+install, not a checkout), skip the duplicate scan and say so.
 
 ### 3. Structural Similarity
 
@@ -73,14 +79,19 @@ grep -c "try:" --include="*.py" -r . | awk -F: '$2>3{print "HIGH_TRY_COUNT:", $0
 ```python
 # Before: Repeated validation in 3 handlers
 def handler_a(data):
-    if not data.get('name'): raise ValueError("Missing name")
-    if len(data['name']) > 100: raise ValueError("Name too long")
+    if not data.get("name"):
+        raise ValueError("Missing name")
+    if len(data["name"]) > 100:
+        raise ValueError("Name too long")
     ...
+
 
 # After: Shared validation
 def validate_name(data):
-    if not data.get('name'): raise ValueError("Missing name")
-    if len(data['name']) > 100: raise ValueError("Name too long")
+    if not data.get("name"):
+        raise ValueError("Missing name")
+    if len(data["name"]) > 100:
+        raise ValueError("Name too long")
 ```
 
 ### Strategy 2: Extract Base Class / Mixin

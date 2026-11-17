@@ -1,48 +1,62 @@
-## Description: <br>
-Use when transcribing non-realtime speech with Alibaba Cloud Model Studio Qwen ASR models (`qwen3-asr-flash`, `qwen-audio-asr`, `qwen3-asr-flash-filetrans`). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes recorded audio with Alibaba Cloud Model Studio Qwen ASR models and helps generate timestamped transcripts and document DashScope/OpenAI-compatible request and response fields.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to transcribe recorded audio through Alibaba Cloud DashScope Qwen ASR, including short synchronous requests and long-file asynchronous jobs with normalized transcript output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected recordings or audio URLs are sent to Alibaba Cloud DashScope for transcription. <br>
-Mitigation: Use the skill only with audio that is approved for processing by DashScope and confirm account, region, and data-handling requirements before running transcription. <br>
-Risk: Generated transcripts and raw API responses may contain sensitive audio-derived content and are saved locally. <br>
-Mitigation: Store outputs in an approved location, limit retention, and handle transcript and raw-response files according to the sensitivity of the source audio. <br>
-Risk: DashScope credentials are required for API calls. <br>
-Mitigation: Use a dedicated DashScope API key, confirm the active Alibaba Cloud profile, and avoid exposing credentials in logs or shared output files. <br>
+## Use Case:
 
+Developers and external teams use this skill to transcribe recorded audio files with Alibaba Cloud Qwen ASR, covering sync short-audio calls and async long-file transcription workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-qwen-asr) <br>
-- [Publisher profile](https://clawhub.ai/user/cinience) <br>
-- [Qwen ASR API Notes](references/api_reference.md) <br>
-- [Official Aliyun Qwen ASR sources](references/sources.md) <br>
-- [Recorded speech recognition - Qwen](https://help.aliyun.com/zh/model-studio/recorded-speech-recognition-qwen) <br>
-- [Qwen ASR API reference](https://help.aliyun.com/zh/model-studio/qwen-asr) <br>
-- [Qwen ASR file transcription API reference](https://help.aliyun.com/zh/model-studio/qwen-asr-filetrans-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON transcription outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces normalized transcript text, task status, optional task IDs, and raw DashScope responses saved under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: Sensitive audio and transcript data may be sent to Alibaba Cloud or persisted locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only audio that is approved for Alibaba Cloud processing, write outputs to controlled directories, and clean up transcripts when retention is no longer needed.
+
+Risk: Async result retrieval follows a provider result URL that server security evidence says is not allowlisted.
+
+Mitigation: Prefer a release that allowlists provider result URLs before using async wait mode, or review result URLs before retrieval.
+
+Risk: The helper can read stored DashScope credentials from the environment, .env files, or Alibaba Cloud credential files.
+
+Mitigation: Limit credential file access, use least-privilege API keys, and avoid running the helper in workspaces containing unrelated secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-asr)
+- [Qwen ASR API notes](references/api_reference.md)
+- [Official Alibaba Cloud source links](references/sources.md)
+- [Recorded Speech Recognition - Qwen](https://help.aliyun.com/zh/model-studio/recorded-speech-recognition-qwen)
+- [Qwen ASR API Reference](https://help.aliyun.com/zh/model-studio/qwen-asr)
+- [Qwen ASR File Transcription API Reference](https://help.aliyun.com/zh/model-studio/qwen-asr-filetrans-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples, Python helper commands, and JSON transcript outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalized outputs include transcript text, optional task ID, status, and raw provider response.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

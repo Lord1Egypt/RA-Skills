@@ -1,41 +1,56 @@
-## Description: <br>
-Creates Instagram feed posts, stories, reels covers, and carousel graphics using platform strategy, visual design guidance, and Rendshot image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create high-performing Instagram content images for feed posts, stories, reels covers, and carousels by combining platform strategy, visual design guidance, and Rendshot image generation.
 
-## Publisher: <br>
-[zoohero500](https://clawhub.ai/user/zoohero500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoohero500](https://clawhub.ai/user/zoohero500)
 
-## Use Case: <br>
-External creators, marketers, and brand teams use this skill to plan and generate Instagram-ready visual content for feed posts, stories, reels covers, and carousel slides. It helps select format, visual style, prompts, templates, and brand-consistency settings for Rendshot image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or saved templates may include confidential campaign plans, private client data, or sensitive brand assets. <br>
-Mitigation: Avoid entering sensitive material unless the organization has approved processing by the external image/template provider. <br>
+## Use Case:
 
+External creators, marketers, and brand teams use this skill to plan and generate Instagram feed posts, stories, reels covers, and carousel slides with format-aware prompts, template choices, and visual style guidance.
 
-## Reference(s): <br>
-- [Algorithm and reach optimization](references/algorithm.md) <br>
-- [Visual design guide](references/design-style.md) <br>
-- [Recommended templates](references/templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/zoohero500/rendshot-instagram) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON-like Rendshot tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Instagram platform presets, template IDs, prompt text, and template variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Instagram content may be inaccurate, off-brand, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated images, captions, and calls to action before publishing; specify preferred language, brand tone, and audience constraints in the prompt.
+
+Risk: Prompts or targeting choices could expose confidential brand or customer information or rely on sensitive demographic targeting.
+
+Mitigation: Avoid confidential customer data and sensitive demographic attributes in prompts; review targeting and audience assumptions before use.
+
+## Reference(s):
+
+- [Algorithm and reach optimization](references/algorithm.md)
+- [Visual design guide](references/design-style.md)
+- [Recommended templates](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/zoohero500/skills/rendshot-instagram)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with Rendshot tool-call examples, prompt text, and template variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce one or more image-generation or template tool calls depending on the requested Instagram format, including multi-slide carousel sequences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

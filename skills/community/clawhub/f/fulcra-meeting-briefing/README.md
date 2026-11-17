@@ -14,6 +14,7 @@ A ClawHub skill for generating private meeting briefings from Fulcra calendar da
 ## Setup
 
 - Authenticate Fulcra through the CLI. Preferred command: `uv tool run fulcra-api`.
+- Before broad calendar pulls, run `uv tool run fulcra-api data-updates "1 day"` when available, then confirm with `calendar-events`.
 - Optional: set `FULCRA_MEETING_CRM_DIR` to a directory of CRM markdown notes.
 - Optional: set `FULCRA_MEETING_BRIEFINGS_DIR` if generated briefings should be saved.
 

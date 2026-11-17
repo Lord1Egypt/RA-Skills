@@ -1,42 +1,54 @@
-## Description: <br>
-Controls Claude Code through tmux sessions to start development sessions, send development commands, monitor progress, and handle prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Claude Code through tmux sessions for long-running development tasks, including starting sessions, sending commands, monitoring progress, and responding to prompts.
 
-## Publisher: <br>
-[fanzhidongyzby](https://clawhub.ai/user/fanzhidongyzby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanzhidongyzby](https://clawhub.ai/user/fanzhidongyzby)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate long-running development work to Claude Code in a detached tmux session, then monitor output and interact with the session when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to drive Claude Code in a detached tmux session with broad unattended coding authority. <br>
-Mitigation: Run it only for intended development tasks, prefer normal Claude Code permission checks over dangerous skip-permissions mode, and review session output and code changes before use. <br>
-Risk: Setup guidance can involve privileged package installation, user creation, and external installer commands. <br>
-Mitigation: Review setup commands before execution, avoid curl-pipe-shell installers unless verified, and use an existing low-privilege account where possible. <br>
-Risk: Claude Code credentials or API keys may be exposed through tmux panes, captures, logs, or session history. <br>
-Mitigation: Protect ANTHROPIC_API_KEY and login state, limit access to tmux sessions, avoid capturing secrets, and clean up sessions when work is complete. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run and supervise Claude Code tasks in tmux sessions for long-running development workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanzhidongyzby/openclaw-claudecode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tmux session commands, Claude Code setup checks, monitoring commands, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can run Claude Code unattended through tmux while bypassing permission checks and auto-approving prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly scoped project sandbox with disposable credentials, keep permission checks enabled by default, and require human review before sending confirmations.
+
+Risk: Installer and account setup commands can change the host environment or introduce unreviewed code.
+
+Mitigation: Avoid curl-to-shell installation, install dependencies through normal administrative processes, and provision non-root accounts according to local policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanzhidongyzby/skills/openclaw-claudecode)
+- [Publisher profile](https://clawhub.ai/user/fanzhidongyzby)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides tmux session setup, Claude Code command dispatch, progress monitoring, and cleanup.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

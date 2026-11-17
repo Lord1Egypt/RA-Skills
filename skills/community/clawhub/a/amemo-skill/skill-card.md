@@ -1,44 +1,58 @@
-## Description: <br>
-Amemo Skill connects AI coding agents to the Amemo cloud service for managing notes, tasks, health data, and assistant memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amemo Skill connects AI agents to Amemo cloud services for managing notes, tasks, health data, and assistant memory.
 
-## Publisher: <br>
-[lockfeel](https://clawhub.ai/user/lockfeel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lockfeel](https://clawhub.ai/user/lockfeel)
 
-## Use Case: <br>
-External users and agent operators use this skill to let supported AI tools save and search Amemo notes, create and query tasks, retrieve health summaries, and synchronize assistant memory through the Amemo service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles account tokens, phone numbers, email addresses, notes, tasks, health data, and assistant memory. <br>
-Mitigation: Install only when the user trusts skill.amemo.cn with this data and understands that content may be sent to the Amemo cloud service. <br>
-Risk: Credentials, contact data, and assistant memory may persist in local markdown files. <br>
-Mitigation: Rotate or clear credentials and local memory files when uninstalling the skill, changing accounts, or ending use. <br>
-Risk: Consent controls are limited for cloud synchronization of notes, tasks, health data, and memory content. <br>
-Mitigation: Review intended API calls and local file changes before use, especially for sensitive personal or health information. <br>
+## Use Case:
 
+External users and agent operators use the skill to log in to Amemo, save and search notes, manage task reminders, retrieve health summaries, and synchronize assistant memory with Amemo cloud services.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lockfeel/amemo-skill) <br>
-- [Amemo service API base](https://skill.amemo.cn) <br>
-- [Health templates reference](modules/amemo-last-data/references/health-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses, JSON API payloads, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local user configuration and memory files and may call the Amemo cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: target metadata and server release metadata) <br>
+Risk: Login tokens and personal data may be stored in skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted personal workspaces and remove tokens or personal data before sharing the workspace.
+
+Risk: Notes, tasks, health data, email addresses, and assistant memory may be sent to Amemo cloud services.
+
+Mitigation: Install only when comfortable with Amemo receiving that data, and avoid sending sensitive work or regulated information.
+
+Risk: Assistant memory synchronization may include broad memory content without preview or redaction.
+
+Mitigation: Review and redact memory content before synchronization, and avoid storing secrets in memory files.
+
+## Reference(s):
+
+- [Health Summary Templates](modules/amemo-last-data/references/health-templates.md)
+- [Amemo Skill on ClawHub](https://clawhub.ai/lockfeel/skills/amemo-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with JSON API payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local skill configuration and memory files during login and memory synchronization flows.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

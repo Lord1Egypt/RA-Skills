@@ -1,5 +1,51 @@
 # Changelog
 
+## Unreleased
+
+## 0.1.19 - 2026-10-19
+
+- Use low thinking for scheduled runs so current Codex models no longer reject the legacy off setting
+- Keep cron creation, reconciliation, and live diagnostics aligned on the same thinking level
+- Add regression coverage for low-thinking idempotency, legacy cron repair, and live diagnostic drift
+
+## 0.1.18 - 2026-07-19
+
+- Add a deterministic scheduled gate so positive-only suppressions do not start an agent or create cron run history
+- Use OpenClaw condition triggers, lightweight bootstrap context, and disabled model thinking for substantially smaller scheduled runs
+- Reconcile and diagnose cron trigger, context, schedule, IANA timezone, and delivery-route drift; support explicit automation and route removal
+- Preserve unknown and marketplace-specific config values, resolve configured relative paths from the config directory, and fail closed on malformed config or state
+- Bind scheduled delivery and state updates to the config/state paths recorded by the current prepare artifact
+- Harden Audible auth storage, refresh-token rotation, permissions, schema checks, redirect handling, response bounds, and sensitive-data redaction
+- Validate public HTTP redirects before following them, bound compressed/decompressed responses, and tighten Audible and Goodreads URL paths
+- Prefer strong Audible catalog matches regardless of candidate order and restrict Goodreads aggregate ratings to valid Book entities
+- Validate scan bounds, preflight authenticated scans, preserve zero-valued options, and return partial-failure exit codes reliably
+- Make delivery success and dry-run results unambiguous and reject successful exit codes carrying failure payloads
+- Audit the actual ClawHub publish bundle, require every runtime module, and enforce package/changelog/release-version parity
+- Add regression and permutation coverage for security, setup, scheduling, state, parsing, delivery, publishing, and scan failure boundaries
+
+## 0.1.17
+
+- Publish the post-0.1.16 test release pointer used to verify ClawHub release metadata
+- Build a bounded candidate-specific fit-evidence artifact and require more concrete, review-grounded recommendation prose
+- Strictly validate runtime output fields, types, Goodreads URLs, rating ranges, fit status semantics, and fit paragraph length
+- Split preparation into focused fetch, library, short-circuit, and artifact phases and remove implicit `core` re-exports
+- Harden Audible and Goodreads parsers for JSON-LD graphs, markup attribute variants, nested text, lowercase product ids, and trailing price punctuation
+- Surface OpenClaw command timeouts and invalid JSON instead of treating ambiguous subprocess output as success or an empty cron list
+- Split the test suite by behavior and add DST, expiry, cache, atomic-write, subprocess, parser-variant, and evidence-selection coverage
+- Exclude `PROMPT_REQUEST.md` from the published ClawHub runtime bundle
+
+## 0.1.16
+
+- Route registered OpenClaw cron jobs through the configured delivery channel and target
+- Reconcile existing Audible cron jobs when their schedule, IANA timezone, message, or delivery route drifts
+- Make live cron diagnostics fail on active schedule or delivery mismatches
+
+## 0.1.15
+
+- Preserve existing config values when rerunning setup or registering cron from an existing config path
+- Prevent cron registration from accidentally dropping Goodreads CSV, delivery, auth, or CSV column settings when omitted from a follow-up setup command
+- Clarify that unattended OpenClaw/Codex cron runs need a non-interactive command-approval policy on trusted local hosts
+
 ## 0.1.14
 
 - Resolve the OpenClaw CLI from common user install locations such as `~/.npm-global/bin/openclaw` when non-interactive PATHs omit it

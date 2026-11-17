@@ -1,39 +1,55 @@
-## Description: <br>
-Manage intents and entity types in Google Dialogflow CX via REST API. Use for creating, updating, and managing natural language understanding components. Supports v3beta1 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage intents and entity types in Google Dialogflow CX via REST API for creating, updating, and managing natural language understanding components.
 
-## Publisher: <br>
-[Yash-Kavaiya](https://clawhub.ai/user/Yash-Kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Google Dialogflow CX NLU resources, including intents and entity types, through REST API examples and a Python CLI wrapper. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete production Dialogflow CX intents and entity types without a confirmation or dry-run safeguard. <br>
-Mitigation: Use least-privilege Google Cloud credentials, verify full Dialogflow resource names before update or delete commands, and export or back up production agents before destructive operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Intents API Reference](references/intents.md) <br>
-- [Entity Types API Reference](references/entities.md) <br>
-- [Dialogflow CX v3beta1 API Base URL](https://dialogflow.googleapis.com/v3beta1) <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and manage Google Dialogflow CX NLU resources, including intents, training phrases, and entity types.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, JSON, and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST API examples and a Python CLI for listing, creating, updating, and deleting Dialogflow CX intents and entity types.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Create, update, import, and delete operations can change live Dialogflow CX agent behavior.
+
+Mitigation: Use least-privilege Google credentials, verify project, location, agent, intent, and entity type names before execution, and test mutating commands against non-production agents first.
+
+Risk: Incorrect training phrases or entity values can degrade NLU classification and parameter extraction.
+
+Mitigation: Review proposed intent and entity changes before applying them and validate behavior in a staging Dialogflow CX agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yash-kavaiya/skills/dialogflow-cx-nlu)
+- [Intents API Reference](references/intents.md)
+- [Entity Types API Reference](references/entities.md)
+- [Dialogflow CX v3beta1 API endpoint](https://dialogflow.googleapis.com/v3beta1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python CLI examples, and REST API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Google Dialogflow CX resource names, API responses, and command output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

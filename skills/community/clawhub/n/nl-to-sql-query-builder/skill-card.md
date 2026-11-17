@@ -1,42 +1,61 @@
-## Description: <br>
-Helps agents turn natural-language data questions into SQL-oriented workflows with query classification, schema context generation, confidence scoring, clarification, fallback review, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade natural language to SQL toolkit for OpenClaw that supports intent classification, schema context generation, confidence scoring, clarification, fallback review, and audit logging.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and data teams use this skill to add natural-language database querying workflows to OpenClaw agents, including schema inspection, confidence-based routing, user clarification, human review fallback, and local audit trails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database connection details or credentials may be exposed through database URLs or generated schema context. <br>
-Mitigation: Use read-only database credentials, avoid embedding passwords in database URLs, and manage secrets outside skill inputs and generated files. <br>
-Risk: Audit databases and exported JSON files may contain sensitive user queries, generated SQL, user IDs, session IDs, or business data. <br>
-Mitigation: Restrict permissions on audit.db and exported JSON files, and add redaction, retention, and authorization controls before production use. <br>
-Risk: Automatically executing generated SQL can expose incorrect or overbroad data when confidence routing is misconfigured. <br>
-Mitigation: Keep database credentials read-only and require clarification or human review for lower-confidence, ambiguous, or safety-sensitive queries. <br>
+## Use Case:
 
+Developers and data application teams use this skill to help an agent convert business-language data questions into SQL workflow artifacts, including query classification, database schema context, confidence-based routing, user clarification, and audit records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhinas90/nl-to-sql-query-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with Python components, shell commands, and JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite audit databases and exported JSON files containing query, user, schema, or generated SQL data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Database query handling can expose or modify real business data if used against production systems without additional controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or read-only databases until authorization, SQL safety checks, and execution review controls are added.
+
+Risk: Audit logs and exported review records may contain sensitive user queries, generated SQL, identifiers, or business context.
+
+Mitigation: Add log redaction, retention limits, and safe export path restrictions before using the skill with real data.
+
+Risk: Clarification routes and debug web serving can expose query details without appropriate access controls.
+
+Mitigation: Run clarification flows behind authenticated, non-debug routes before deployment.
+
+Risk: One artifact file is reported to contain a syntax error and may not load unchanged.
+
+Mitigation: Fix and test audit_logger.py before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhinas90/skills/nl-to-sql-query-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SQL-related classifications, schema context JSON, confidence scores, clarification prompts, fallback review records, and audit log entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Provides image recognition with Kimi K2.5 for Ali Bailian GLM users and can automatically read an existing DashScope API key from OpenClaw configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kimi K2.5 Vision analyzes local image files with Kimi K2.5 through DashScope, reusing a DashScope API key from the environment or OpenClaw configuration when available.
 
-## Publisher: <br>
-[flowstart](https://clawhub.ai/user/flowstart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowstart](https://clawhub.ai/user/flowstart)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to analyze local images or screenshots with a custom prompt when their current model does not provide media understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse DashScope or OpenClaw API keys and may print a recovered key in full. <br>
-Mitigation: Use a dedicated API key for this skill, run it only in private terminals, and redact or patch any output path that prints the key before broader deployment. <br>
-Risk: Selected images and prompts are uploaded to DashScope for recognition. <br>
-Mitigation: Use the skill only with images and prompts that are appropriate to send to DashScope, and avoid private or regulated content unless approved for that service. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to analyze screenshots or image files with Kimi K2.5 when image understanding is requested or unavailable in the active model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flowstart/openclaw-dashscope-kimi2-5-vision) <br>
-- [Ali Bailian console](https://bailian.console.aliyun.com/) <br>
-- [DashScope chat completions endpoint](https://coding.dashscope.aliyuncs.com/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends selected image content and the user prompt to DashScope, then prints the model response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Local images are sent to DashScope for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for images that are acceptable to transmit to DashScope.
+
+Risk: A recovered DashScope API key can be exposed in terminal or agent logs.
+
+Mitigation: Remove raw API-key printing and avoid shell-history based persistence guidance before routine use.
+
+Risk: Broad activation could run image analysis when the user did not explicitly intend it.
+
+Mitigation: Narrow activation to explicit user requests for image analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowstart/skills/openclaw-dashscope-kimi2-5-vision)
+- [Ali Bailian API key console](https://bailian.console.aliyun.com/)
+- [DashScope chat completions endpoint](https://coding.dashscope.aliyuncs.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Plain text image-analysis response with CLI setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image-analysis results are returned as terminal text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

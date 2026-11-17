@@ -1,39 +1,52 @@
-## Description: <br>
-Generate high-converting, mobile-responsive landing pages from a brief for landing pages, sales pages, or marketing pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-converting, mobile-responsive landing pages from a brief. Use when building landing pages, sales pages, or marketing pages for clients.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-Developers, designers, and marketing teams use this skill to turn a product or service brief into a static landing page and client-facing customization guide. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill declares Bash access even though normal use should only read a brief and write static landing-page files. <br>
-Mitigation: Review any unexpected shell command before allowing it, and expect normal output to be limited to output/landing-page/index.html and output/landing-page/README.md. <br>
-Risk: Generated marketing copy, testimonials, forms, and deployment notes may include placeholders or claims that are not ready for publication. <br>
-Mitigation: Review the generated HTML and README before deployment, replace placeholder content, verify claims, and connect forms to the intended service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanwyngaard/landing-page-generator-openclaw) <br>
+## Use Case:
 
+Developers, marketers, and client-facing teams use this skill to turn a product or service brief into a ready-to-use responsive landing page and customization guide.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Self-contained HTML/CSS, Markdown README, and concise Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/landing-page/index.html and output/landing-page/README.md; generated pages avoid external JavaScript and image dependencies except Google Fonts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates or edits files in output/landing-page/.
+
+Mitigation: Review the target directory before running the skill and preserve any existing files that should not be overwritten.
+
+Risk: Generated marketing copy may require review before publication.
+
+Mitigation: Review the generated landing page copy, testimonials, claims, and calls to action before publishing.
+
+## Reference(s):
+
+- [Landing Page Generator on ClawHub](https://clawhub.ai/seanwyngaard/skills/landing-page-generator-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance, Configuration]
+
+**Output Format:** [Self-contained HTML/CSS file, Markdown README, and concise generation summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes index.html and README.md under output/landing-page/; generated pages use embedded CSS with no external JavaScript and may use Google Fonts.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

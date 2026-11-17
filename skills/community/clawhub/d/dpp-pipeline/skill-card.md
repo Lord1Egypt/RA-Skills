@@ -1,48 +1,60 @@
-## Description: <br>
-Use when you need to turn a local source video and one product image into a single-product placement video with the DPP pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to turn a local source video and one product image into a single-product placement video with the DPP pipeline.
 
-## Publisher: <br>
-[kotot](https://clawhub.ai/user/kotot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kotot](https://clawhub.ai/user/kotot)
 
-## Use Case: <br>
-Developers and video workflow operators use this skill to run a staged local pipeline that creates storyboard analysis, product material configuration, placement selection, generated best-segment composition, and a final cut for one source video and one product image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends source video, product image, prompts, and media references to Ark and may upload reference media to TOS. <br>
-Mitigation: Run the skill only with media you are permitted to process through those services, and provide TOS upload credentials only when automatic reference-media upload is intended. <br>
-Risk: The skill requires sensitive Ark and optional TOS credentials. <br>
-Mitigation: Use narrowly scoped credentials in a dedicated workspace .env and avoid sharing or committing generated environment files. <br>
-Risk: Persistent Ark response logging may retain prompts, media metadata, or response details. <br>
-Mitigation: Review or delete log/ark_responses.log after use according to the workspace retention policy. <br>
-Risk: Bundled TOS list/upload demo modules can perform storage operations beyond the main staged workflow. <br>
-Mitigation: Do not invoke the demo modules unless those storage operations are explicitly needed and credentials have been scoped for that purpose. <br>
+## Use Case:
 
+Developers and video pipeline operators use this skill to run a staged single-product placement workflow from local video and product-image assets. It guides storyboard generation, material configuration, placement selection, best-segment composition, and final video assembly.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kotot/dpp-pipeline) <br>
-- [DPP Commands](references/commands.md) <br>
-- [DPP Pipeline Runtime](references/runtime-readme.md) <br>
-- [Environment example](references/env-example.txt) <br>
-- [Ark API base URL](https://ark.cn-beijing.volces.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file paths for staged pipeline outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime can create JSON files, logs, thumbnails, reference clips, and final video files in the caller workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The workflow sends local media and media metadata to configurable Ark and TOS network endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted endpoints, run the skill in an isolated workspace, and avoid processing sensitive or unreleasable media.
+
+Risk: Credentials are required for Ark and may be required for TOS uploads.
+
+Mitigation: Keep credentials narrowly scoped, store them only in the target workspace environment, and verify TOS settings before compose-best auto-upload.
+
+Risk: Generated logs can contain prompts, media URLs, and task metadata.
+
+Mitigation: Review and redact the log directory before sharing or publishing any generated artifacts.
+
+## Reference(s):
+
+- [DPP Commands](references/commands.md)
+- [DPP Pipeline Runtime](references/runtime-readme.md)
+- [Environment Example](references/env-example.txt)
+- [ClawHub Skill Page](https://clawhub.ai/kotot/skills/dpp-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands and workspace file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow creates JSON analysis files, reference clips, logs, and a final video artifact in the caller workspace.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,66 @@
-## Description: <br>
-Chinese-language mental health support guidance based on clinical psychology and psychiatry references, covering evidence-based therapy modalities, psychological screening, crisis intervention, and psychiatric fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language mental health support skill that provides evidence-based self-help guidance, screening-scale references, crisis-routing guidance, therapy modality summaries, and psychiatry fundamentals.
 
-## Publisher: <br>
-[Ttoooong](https://clawhub.ai/user/Ttoooong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ttoooong](https://clawhub.ai/user/ttoooong)
 
-## Use Case: <br>
-External users and agents use this skill for Chinese-language educational mental health support, self-screening guidance, emotional support, relaxation scripts, crisis-resource routing, and professional-referral prompts. It is not intended for diagnosis, medication decisions, treatment planning, or emergency response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational mental health support as clinical diagnosis, treatment, medication advice, or emergency care. <br>
-Mitigation: Use the skill only for Chinese-language educational and emotional-support guidance; route diagnosis, treatment, medication questions, and emergencies to qualified professionals, emergency services, or crisis hotlines. <br>
-Risk: Sensitive mental-health information could be saved, shared, or acted on without clear user consent. <br>
-Mitigation: Do not allow an agent to save, share, or act on sensitive mental-health information unless the user explicitly approves it. <br>
-Risk: Crisis guidance may be insufficient when a user is in immediate danger. <br>
-Mitigation: For immediate danger, direct the user to local emergency services or a crisis hotline instead of relying on the skill. <br>
+## Use Case:
 
+External users and agents use this skill to respond to Chinese-language mental-health conversations with supportive guidance, self-screening references, coping exercises, crisis triage prompts, and referral language. It is not a substitute for therapy, diagnosis, medication advice, or emergency care.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Ttoooong/mental-health-assistant) <br>
-- [README](README.md) <br>
-- [Psychological Assessment Scales](references/assessment-scales.md) <br>
-- [CBT Techniques](references/cbt-techniques.md) <br>
-- [Crisis Resources](references/crisis-resources.md) <br>
-- [DSM-5/ICD-11 Diagnostic Criteria Reference](references/diagnostic-criteria.md) <br>
-- [Emotion Support Guide](references/emotion-support.md) <br>
-- [Ethics Guidelines](references/ethics-guidelines.md) <br>
-- [Meditation and Relaxation Scripts](references/meditation-scripts.md) <br>
-- [Psychiatric Fundamentals](references/psychiatric-fundamentals.md) <br>
-- [Suicide Prevention and Crisis Intervention Guide](references/suicide-prevention.md) <br>
-- [Evidence-Based Therapy Modalities](references/therapy-modalities.md) <br>
+### Deployment Geography for Use:
 
+Global, with Chinese-language content and China-specific crisis hotline references that should be localized before use in other regions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language conversational text and Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, API calls, or data access; outputs should be treated as support material rather than clinical or emergency care.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and README version history, released 2026-03-23) <br>
+Risk: Users may treat the skill as therapy, diagnosis, medication advice, or emergency care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the professional boundary clearly, avoid diagnoses and medication instructions, and refer users with serious symptoms or crisis indicators to qualified professionals or emergency services.
+
+Risk: Crisis hotline numbers and emergency paths may be region-specific or stale.
+
+Mitigation: Direct users in imminent danger to local emergency services or a current crisis hotline, and verify hotline numbers for the user's region.
+
+Risk: Screening scales can be misread as diagnostic conclusions.
+
+Mitigation: Present scales as self-screening references only and recommend professional assessment for elevated scores or any suicidal ideation.
+
+## Reference(s):
+
+- [Assessment Scales](references/assessment-scales.md)
+- [CBT Techniques](references/cbt-techniques.md)
+- [Crisis Resources](references/crisis-resources.md)
+- [Diagnostic Criteria](references/diagnostic-criteria.md)
+- [Emotion Support](references/emotion-support.md)
+- [Ethics Guidelines](references/ethics-guidelines.md)
+- [Meditation Scripts](references/meditation-scripts.md)
+- [Psychiatric Fundamentals](references/psychiatric-fundamentals.md)
+- [Suicide Prevention](references/suicide-prevention.md)
+- [Therapy Modalities](references/therapy-modalities.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not install code, persist data, access credentials, or hide unrelated behavior.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and README version history, released 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Advertised for blockchain slashing analysis, but release security evidence says the included behavior is a local persistent entry and configuration manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slashing presents itself as blockchain slashing analysis but provides a shell-based local record manager with status, add, list, search, remove, export, stats, and config commands.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and external users may use this skill to run a local note and configuration workflow with status, add, list, search, remove, export, stats, and config commands. It should not be treated as a blockchain slashing-analysis skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release description may lead users to expect blockchain slashing analysis, while the security evidence identifies local note and configuration management behavior. <br>
-Mitigation: Review the artifact before installing and treat it as a local entry manager rather than a blockchain analysis tool. <br>
-Risk: The remove, export, and config commands can mutate or copy local files. <br>
-Mitigation: Use those commands only with explicit intent and test with a dedicated SLASHING_DIR before using persistent data. <br>
-Risk: User-entered entries are persisted locally and could contain sensitive information. <br>
-Mitigation: Avoid storing secrets, credentials, private keys, or sensitive operational data in the skill's local data files. <br>
+## Use Case:
 
+Developers and external users may use this skill as a command-line local record manager for adding, listing, searching, removing, exporting, and configuring entries. The security evidence says it should not be relied on for blockchain slashing analysis unless the purpose mismatch is resolved.
 
-## Reference(s): <br>
-- [Slashing on ClawHub](https://clawhub.ai/bytesagain3/slashing) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, mutate, remove, or export local files under SLASHING_DIR or the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The advertised blockchain slashing-analysis purpose does not match the observed local note and configuration manager behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a local record manager is intended, and do not use it as a source of blockchain slashing analysis until the purpose mismatch is corrected.
+
+Risk: The skill writes persistent local data, supports deletion, and can export files from stored entries.
+
+Mitigation: Run it in a controlled workspace, set SLASHING_DIR explicitly when isolation is needed, and review exported files before sharing or committing them.
+
+Risk: The security guidance warns against untrusted values in configuration or CSV export workflows because shell escaping issues remain.
+
+Mitigation: Avoid feeding untrusted input to config, add, search, or export workflows until escaping and validation are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/slashing)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash command examples; command output is plain text and exports JSONL or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local state under $SLASHING_DIR or ~/.slashing and can create slashing-export.json or slashing-export.csv in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Build, test, and automate APIs with Postman collections, environments, and Newman CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, test, and automate APIs with Postman collections, environments, and Newman CLI.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and API engineers use this skill to design Postman collections, manage environment variables, add request assertions, and run automated API checks with Newman. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist API project names, authentication patterns, and environment conventions in local memory. <br>
-Mitigation: Allow memory persistence only when those workflow details are acceptable to retain locally or in agent memory. <br>
-Risk: API collections, environments, or test fixtures may expose private service details or credentials if real data is used. <br>
-Mitigation: Use fake sample data, keep secrets in environment variables, and avoid committing environment files or fixtures that contain credentials. <br>
-Risk: TLS-bypass options such as Newman insecure flags can weaken testing safeguards if used outside controlled debugging. <br>
-Mitigation: Use TLS-bypass flags only in controlled debugging contexts and remove them from normal or CI test runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/postman) <br>
-- [Skill Homepage](https://clawic.com/skills/postman) <br>
-- [Postman Collection v2.1.0 Schema](https://schema.getpostman.com/json/collection/v2.1.0/collection.json) <br>
+## Use Case:
 
+Developers and API engineers use this skill to create Postman collections and environments, organize authentication and variables, and run automated API tests with Newman in local or CI workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, JavaScript, YAML, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Postman collection and environment files under ~/postman/ when used by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist API project details and authentication patterns in local memory without making that persistence obvious.
+
+Mitigation: Review what is saved under the local Postman memory path and avoid storing secrets or sensitive API details there unless the user has explicitly approved it.
+
+Risk: The security review flags the documented Newman setup as unpinned npm execution.
+
+Mitigation: Prefer pinned, project-local npm dependencies or reviewed lockfiles instead of global installs or unpinned npx commands.
+
+Risk: API tokens can be exposed through command-line arguments or committed environment files.
+
+Mitigation: Pass secrets through trusted environment variables or secret managers, and keep real credentials out of collection and environment files committed to source control.
+
+## Reference(s):
+
+- [Postman skill page](https://clawhub.ai/ivangdavila/skills/postman)
+- [Postman collection v2.1 schema](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, JavaScript, YAML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Postman collection, environment, and memory files when the user asks for project setup or automation help.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

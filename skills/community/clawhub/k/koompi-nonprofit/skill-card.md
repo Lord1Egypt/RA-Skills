@@ -1,43 +1,58 @@
-## Description: <br>
-Use for nonprofit and NGO operations - donor management, grant tracking, fundraising campaigns, volunteer coordination, program impact measurement, board governance, event planning, fund accounting, compliance reporting, and stakeholder communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for nonprofit and NGO operations: donor management, grant tracking, fundraising campaigns, volunteer coordination, program impact measurement, board governance, event planning, fund accounting, compliance reporting, and stakeholder communications.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Nonprofit staff, board members, fundraisers, and operations teams use this skill to plan donor stewardship, grant management, fundraising campaigns, volunteer scheduling, impact reporting, board governance, events, fund accounting, compliance reporting, and stakeholder communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used around donor records, finance ledgers, tax receipts, grant files, and payment-related records. <br>
-Mitigation: Keep agent permissions narrow and grant access only to nonprofit systems needed for the current task. <br>
-Risk: Generated communications, filings, purchases, or transaction-like actions could affect donors, regulators, funders, or finances if sent or executed without review. <br>
-Mitigation: Require human approval before outbound communications, filings, purchases, or transaction-like actions. <br>
-Risk: Operational guidance may touch legal, tax, restricted-fund, or compliance decisions. <br>
-Mitigation: Have qualified legal, finance, or compliance staff review sensitive outputs before relying on them. <br>
+## Use Case:
 
+Nonprofit staff, NGO operators, board support teams, and external agents use this skill to organize donor stewardship, grant lifecycles, fundraising campaigns, volunteer coverage, impact reporting, governance preparation, event planning, fund accounting, compliance reminders, and stakeholder communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/koompi-nonprofit) <br>
-- [Publisher profile](https://clawhub.ai/user/rithythul) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, registers, templates, outreach drafts, and operational plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; review before use with donor, financial, legal, filing, or payment-related records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.1.0) <br>
+Risk: Generated donor, volunteer, grant, or financial communications may contain errors or inappropriate disclosures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated communications before sending and confirm names, amounts, dates, restrictions, and consent against organizational records.
+
+Risk: The skill may be used with sensitive donor, volunteer, grant, or financial records.
+
+Mitigation: Connect it only to systems and data the user intends it to use, and limit shared data to the records needed for the task.
+
+Risk: Legal, tax, fund-restriction, lobbying, or gift-instrument guidance may require jurisdiction-specific review.
+
+Mitigation: Treat the skill as operational guidance and obtain qualified legal or financial review for regulated filings, restricted funds, lobbying activity, and planned-giving instruments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/koompi-nonprofit)
+- [Publisher profile](https://clawhub.ai/user/rithythul)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational checklists, outreach drafts, registers, calendars, report templates, and stewardship guidance for nonprofit workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

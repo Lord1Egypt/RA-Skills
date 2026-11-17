@@ -1,42 +1,54 @@
-## Description: <br>
-Provides one-stop social media management guidance for multi-platform publishing, analytics, fan engagement, trend tracking, and content scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides one-stop social media management for multi-platform content publishing, analytics, audience interaction, trend tracking, and scheduling.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Social media operators, creators, and marketing teams use this skill to coordinate content publishing, analytics checks, fan replies, trend tracking, and scheduling across supported social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide public posts or comment replies across real social accounts without clear approval or account-scope safeguards. <br>
-Mitigation: Require explicit per-action confirmation, preview final posts and replies, and choose exact accounts and platforms before execution. <br>
-Risk: Scheduled publishing could release content later without another review opportunity. <br>
-Mitigation: Ensure scheduled posts can be reviewed and cancelled before they go live. <br>
-Risk: Connecting real social accounts can expose broad account privileges. <br>
-Mitigation: Use least-privilege credentials and limit connected accounts to the intended platforms and actions. <br>
+## Use Case:
 
+Social media operators, creators, and marketing teams use this skill to draft, schedule, publish, analyze, and respond across multiple Chinese social platforms from a single agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/multi-platform-publisher-jarvis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown with Chinese command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill can publish, schedule, or reply from real social accounts without documented preview, confirmation, or account-scope safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show a preview and get explicit user confirmation before publishing, scheduling posts, or replying to comments; verify the selected platform and account each time.
+
+Risk: Actions across multiple platforms can affect the wrong audience or account if platform and account context is ambiguous.
+
+Mitigation: Require platform, account, audience, content source, and schedule parameters to be restated before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingze00000/skills/multi-platform-publisher-jarvis)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/bingze00000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with structured command examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform names, account handles, time ranges, scheduled publish times, content references, analytics summaries, reply drafts, and trend keywords.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

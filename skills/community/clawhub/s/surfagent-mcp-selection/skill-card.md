@@ -1,41 +1,54 @@
-## Description: <br>
-Selection guide for SurfAgent automation layers, showing when to use perception, platform adapters, MCPs, and raw browser control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selection guide for SurfAgent automation layers, showing when to use perception, platform adapters, MCPs, and raw browser control.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose the lightest SurfAgent automation layer that can complete browser or platform tasks with reliable proof. It helps route work across state inspection, platform adapters, MCPs, and raw browser control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended downstream browser, Gmail, platform adapter, or MCP tools may access accounts or perform user-visible actions. <br>
-Mitigation: Review and authorize the separate tools before use, prefer the narrowest capable layer, and verify resulting browser or platform state after actions. <br>
-Risk: Using a heavier automation layer without proof can create unreliable or misleading outcomes. <br>
-Mitigation: Follow the skill's ladder: inspect state first, act once with the lightest sufficient layer, and confirm success on the smallest reliable surface. <br>
+## Use Case:
 
+Developers and automation agents use this skill to choose the lightest SurfAgent browser automation layer that can complete a task with visible proof.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-mcp-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only routing guidance; no code, install hooks, credential handling, persistence, or hidden behavior are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: Related browser, Gmail, adapter, or MCP skills may perform real account actions when used with this routing guide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the separate action-capable skills and require post-action verification before using them in account workflows.
+
+Risk: Incorrect layer selection could produce weak proof or unnecessary broad browser inspection.
+
+Mitigation: Follow the skill's sequence of inspecting state, choosing the narrowest capable layer, acting once, and verifying on the smallest reliable surface.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/surfagentapp/skills/surfagent-mcp-selection)
+- [SurfAgent Homepage](https://surfagent.app)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance for agent routing decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; no executable code, persistence, or unrelated data access is reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

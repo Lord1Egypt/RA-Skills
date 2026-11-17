@@ -1,36 +1,53 @@
-## Description: <br>
-Builds and scales customer support for a solopreneur business with guidance on support channels, help docs, response goals, automation, and self-service systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and scale customer support for a solopreneur business, including support channel selection, help center setup, response targets, automation strategies, and self-service systems.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and small business operators use this skill to design a scalable customer support operation, including support channels, help-center docs, response-time goals, triage, templates, and automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customer-facing auto-replies, chatbot answers, refund language, billing instructions, or account-deletion templates could affect real customers if used without review. <br>
-Mitigation: Review and adapt any customer-facing support copy or policy-sensitive instructions before using them with real customers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Solopreneurs and small-business operators use this skill to design practical customer support operations, reduce repeated tickets, set response expectations, write help content, and automate simple intake or triage workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and reusable support response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes support-channel comparisons, SLA targets, ticket triage steps, help-center structure, automation suggestions, and common response templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad customer support or customer service phrasing.
+
+Mitigation: Confirm the user wants support-system planning before applying the playbook to unrelated customer-service questions.
+
+Risk: Support process recommendations may not match a specific business's legal, privacy, or customer commitments.
+
+Mitigation: Review response targets, templates, and automation choices against the business's policies before adoption.
+
+## Reference(s):
+
+- [Support Systems on ClawHub](https://clawhub.ai/jk-0001/skills/support-systems)
+- [Publisher profile jk-0001](https://clawhub.ai/user/jk-0001)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with tables, checklists, templates, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or tool use is described by the reviewed artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

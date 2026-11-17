@@ -1,40 +1,54 @@
-## Description: <br>
-根据用户的海报和平面设计需求，调用创客贴智能设计 API 生成设计缩略图并展示给用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户的海报平面设计需求，调用创客贴智能设计 API 生成设计缩略图。
 
-## Publisher: <br>
-[hitlmt](https://clawhub.ai/user/hitlmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitlmt](https://clawhub.ai/user/hitlmt)
 
-## Use Case: <br>
-External users and designers use this skill to turn poster, invitation, social image, product poster, and banner prompts into Chuangkit-generated design previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design prompts are sent to Chuangkit's external service. <br>
-Mitigation: Do not include secrets, private personal data, unreleased campaign details, or confidential business information in prompts. <br>
-Risk: The workflow opens a preview URL returned by the external service. <br>
-Mitigation: Review returned URLs before opening them when operating in sensitive environments. <br>
+## Use Case:
 
+External users and design-focused agents use this skill to turn poster, invitation, daily-card, social-image, product-poster, and banner requests into a generated Chuangkit design thumbnail for review.
 
-## Reference(s): <br>
-- [Chuangkit intelligent design API endpoint](https://gw.chuangkit.com/openplatform/intelligentDesign/api/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [On a successful response, the agent opens the first returned imageUrl in the user's default browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Design prompts are sent to Chuangkit's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential business plans, unreleased product details, personal data, or secrets unless sharing them with that service is acceptable.
+
+Risk: The skill opens a returned thumbnail URL in the user's default browser.
+
+Mitigation: Review the generated response and URL before opening when operating in restricted or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitlmt/skills/ckt-design)
+- [Chuangkit intelligent design API endpoint](https://gw.chuangkit.com/openplatform/intelligentDesign/api/generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated thumbnail URL handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls Chuangkit's external service with the user's prompt, parses JSON response fields, and opens the first returned thumbnail URL in the default browser.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "_comment": "格式示例（FORMAT EXAMPLE）：数值为演示占位，NOT VERIFIED——生存终点 HR 参考须人工核实后入库。",
+  "ta": "示例-实体瘤",
+  "endpoint": "PFS",
+  "as_of": "2026-10-14",
+  "references": [
+    {
+      "param": "hazard_ratio",
+      "scale": "HR",
+      "estimate": 0.72,
+      "ci_low": 0.61,
+      "ci_high": 0.85,
+      "n": 1856,
+      "source": "示例格式：某 III 期 MA（占位，待人工核实）",
+      "pmid": null
+    }
+  ]
+}

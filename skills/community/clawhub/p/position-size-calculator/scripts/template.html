@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Position size calculator</title>
+
+<!--
+  Position size calculator. Self-contained: no network request is made at view time, no external
+  stylesheet, no script from anywhere else. Everything it draws comes from the two JSON blocks
+  below plus the numbers the reader types.
+
+  WHAT THIS PAGE IS. It is arithmetic on the reader's own inputs. The reader supplies an account
+  size, the fraction of it they are willing to put at risk on one trade, an entry and a stop; the
+  page divides. It does not choose any of those numbers, it does not rank the trade, and nothing
+  on it is a recommendation to buy or sell anything.
+
+  BINDING: each of the two JSON blocks below holds exactly one placeholder token, and each token
+  appears exactly once in this whole file, so a plain text replacement is unambiguous. Put the
+  JSON that scripts/prepare_data.mjs printed into the data block, and the small meta object into
+  the meta block, replacing the token text and leaving the surrounding script tags alone. Nothing
+  else in this file should be edited: the sizing arithmetic, the refusal rules and the ladder live
+  here so that they are written once and reviewed once, rather than re-derived per render.
+-->
+
+<script type="application/json" id="psc-data">/*__SENTISENSE_DATA__*/</script>
+<script type="application/json" id="psc-meta">/*__SENTISENSE_META__*/</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --navy: #102c44;
+  --gold: #d4a843;
+  --bg: #f7f5ef;
+  --surface: #ffffff;
+  --surface-2: #f0ece1;
+  --border: #ddd6c6;
+  --text: #102c44;
+  --text-dim: #5b6b7c;
+  --up: #1f7a5a;
+  --down: #b4442f;
+  --up-fill: rgba(31, 122, 90, 0.18);
+  --down-fill: rgba(180, 68, 47, 0.16);
+  --band: rgba(212, 168, 67, 0.20);
+  --grid: rgba(16, 44, 68, 0.10);
+  --data: #3182ce;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0f;
+    --surface: #0d1117;
+    --surface-2: #131a24;
+    --border: #232c38;
+    --text: #f5f1e6;
+    --text-dim: #93a1b1;
+    --up: #4ec98f;
+    --down: #f2795c;
+    --up-fill: rgba(78, 201, 143, 0.20);
+    --down-fill: rgba(242, 121, 92, 0.18);
+    --band: rgba(212, 168, 67, 0.22);
+    --grid: rgba(245, 241, 230, 0.10);
+    --data: #63b3ed;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 24px 16px 40px;
+}
+.wrap { max-width: 880px; margin: 0 auto; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+header.card { padding-bottom: 16px; }
+.title-row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 10px 14px; margin-bottom: 4px;
+}
+h1 { font-size: 26px; line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
+.ticker { color: var(--gold); }
+.subtitle { color: var(--text-dim); font-size: 13.5px; margin: 2px 0 0; }
+
+.badge {
+  display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-dim); background: var(--surface-2);
+  white-space: nowrap;
+}
+.badge.accent { border-color: var(--gold); color: var(--gold); }
+
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px; margin-top: 18px;
+}
+.stat .k {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-dim); margin-bottom: 3px;
+}
+.stat .v { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat .n { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+
+h2 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-dim); margin: 0 0 3px; font-weight: 600;
+}
+.lede { color: var(--text-dim); font-size: 13px; margin: 0 0 16px; }
+
+.controls {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px 18px; margin-top: 4px;
+}
+.ctl { display: flex; flex-direction: column; gap: 5px; }
+.ctl .k {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim);
+}
+.ctl .val { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--text); }
+select, input[type="number"] {
+  font: inherit; font-size: 14px; color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 8px; padding: 7px 9px; width: 100%;
+}
+select:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+input[type="range"] { width: 100%; accent-color: var(--gold); margin: 4px 0 0; }
+
+.chart-scroll { overflow-x: auto; }
+svg { display: block; max-width: 100%; height: auto; }
+svg text { font-family: inherit; }
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  margin-top: 12px; font-size: 12.5px; color: var(--text-dim);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+.notice {
+  border: 1px solid var(--border); border-left: 3px solid var(--gold);
+  background: var(--surface-2); border-radius: 8px;
+  padding: 12px 14px; font-size: 13.5px; line-height: 1.5;
+}
+.notice strong { display: block; margin-bottom: 3px; color: var(--text); }
+
+footer { margin-top: 22px; font-size: 12px; color: var(--text-dim); }
+footer p { margin: 0 0 7px; }
+.stamp { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+a { color: var(--gold); }
+.disclaimer {
+  border-top: 1px solid var(--border); padding-top: 11px; margin-top: 11px; line-height: 1.5;
+}
+.error {
+  border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+  background: var(--surface); color: var(--text-dim);
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+
+<script>
+"use strict";
+
+// ── Bound inputs ───────────────────────────────────────────────────────────────
+// Read from the JSON blocks in <head>. An unbound template renders the "no data" state below
+// rather than a calculator pre-filled with nothing, which would look like a working one.
+function readJson(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  var raw = (el.textContent || "").trim();
+  // An unbound block still holds a comment-shaped token. Detected by shape rather than by
+  // spelling the token out, so this guard cannot itself become a second copy of it.
+  if (!raw || (raw.slice(0, 2) === "/*" && raw.slice(-2) === "*/")) return null;
+  try { return JSON.parse(raw); } catch (e) { return null; }
+}
+
+var DATA = readJson("psc-data");
+var META = readJson("psc-meta") || {};
+
+// ── Formatting ─────────────────────────────────────────────────────────────────
+function money(v, dp) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  var d = dp === undefined ? 2 : dp;
+  return (v < 0 ? "-$" : "$") + Math.abs(v).toLocaleString("en-US",
+    { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+function money0(v) { return money(v, Math.abs(v) >= 1000 ? 0 : 2); }
+function pct(v, dp) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return v.toFixed(dp === undefined ? 2 : dp) + "%";
+}
+function count(v) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return v.toLocaleString("en-US");
+}
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+/** Read a number out of an input, returning null rather than NaN for anything unusable. */
+function readNum(el) {
+  if (!el) return null;
+  var raw = String(el.value == null ? "" : el.value).trim();
+  if (!raw) return null;
+  var v = Number(raw);
+  return isFinite(v) ? v : null;
+}
+
+// ── The sizing arithmetic, written once ────────────────────────────────────────
+//
+// Four inputs the reader supplies (account, risk fraction, entry, stop) and one direction.
+// Everything below follows from them by division. There is no judgement in here, no model and
+// no view about the trade: given the same five numbers, this returns the same answer every
+// time, which is the entire point of putting it in the template rather than deriving it per
+// render.
+//
+//   risk budget      = account * riskPct / 100
+//   risk per share   = |entry - stop|
+//   shares           = floor(risk budget / risk per share)
+//   position value   = shares * entry
+//   dollar at risk   = shares * risk per share      (after the floor, so it is the real figure)
+//   R multiple       = |target - entry| / risk per share
+//
+// Shares are floored, never rounded, so the realised dollar risk lands at or below the budget
+// the reader set rather than a cent above it. The difference is reported instead of hidden: on
+// an expensive share the floor can leave a visible part of the budget unused, and a reader who
+// cannot see that would think the stop and the budget line up exactly when they do not.
+//
+// `refusal` is the load-bearing return. When the inputs do not describe a position, this
+// returns a sentence saying which one and NO share count. A calculator that answers anyway is
+// worse than one that declines, because the answer looks exactly like a real one.
+function sizePosition(input) {
+  var account = input.account, riskPct = input.riskPct, entry = input.entry;
+  var stop = input.stop, target = input.target, isLong = input.isLong;
+
+  if (!(account > 0)) {
+    return { refusal: "Enter an account size above zero. Every figure here is a fraction of it." };
+  }
+  if (!(riskPct > 0)) {
+    return {
+      refusal: "Enter a risk per trade above zero. At zero there is no budget to divide by the " +
+        "risk on a share, so there is no share count to show."
+    };
+  }
+  if (!(entry > 0)) {
+    return { refusal: "Enter an entry price above zero." };
+  }
+  if (!(stop > 0)) {
+    return { refusal: "Enter a stop price above zero." };
+  }
+
+  // The direction check is the one that matters most. A long whose stop sits at or above the
+  // entry has no downside distance to divide by: at exactly the entry the division is by zero,
+  // and above it the arithmetic still produces a tidy positive share count off a stop that
+  // would trigger in profit. Both are nonsense, and both are shaped like a real answer.
+  if (isLong && stop >= entry) {
+    return {
+      refusal: "For a long position the stop sits below the entry. This stop is " +
+        (stop === entry ? "exactly at" : "above") + " the entry, so there is no distance " +
+        "between them to put at risk and no share count follows from it. Move the stop below " +
+        money(entry) + ", or switch the direction to short."
+    };
+  }
+  if (!isLong && stop <= entry) {
+    return {
+      refusal: "For a short position the stop sits above the entry. This stop is " +
+        (stop === entry ? "exactly at" : "below") + " the entry, so there is no distance " +
+        "between them to put at risk and no share count follows from it. Move the stop above " +
+        money(entry) + ", or switch the direction to long."
+    };
+  }
+
+  var budget = account * riskPct / 100;
+  var perShare = Math.abs(entry - stop);
+  var shares = Math.floor(budget / perShare);
+
+  if (shares < 1) {
+    return {
+      refusal: "A risk budget of " + money(budget) + " is smaller than the " + money(perShare) +
+        " at risk on a single share, so this stop and this budget do not meet at any whole " +
+        "share count. Widening the budget or tightening the stop distance changes that; both " +
+        "are your call, not this page's."
+    };
+  }
+
+  var value = shares * entry;
+  var atRisk = shares * perShare;
+  var out = {
+    refusal: null,
+    budget: budget,
+    perShare: perShare,
+    perSharePct: perShare / entry * 100,
+    shares: shares,
+    value: value,
+    deployedPct: value / account * 100,
+    atRisk: atRisk,
+    unusedBudget: budget - atRisk,
+    rMultiple: null,
+    targetSide: null,
+    reward: null
+  };
+
+  if (typeof target === "number" && target > 0) {
+    var favourable = isLong ? target > entry : target < entry;
+    out.targetSide = favourable ? "favourable" : "adverse";
+    if (favourable) {
+      out.rMultiple = Math.abs(target - entry) / perShare;
+      out.reward = shares * Math.abs(target - entry);
+    }
+  }
+  return out;
+}
+
+// ── The ladder ─────────────────────────────────────────────────────────────────
+//
+// One vertical price scale carrying every level at once: the risk column runs from the entry to
+// the stop, the reward column from the entry to the target, and the narrow band beside them is
+// the stock's own recent daily range drawn on the same scale. Reading the risk column against
+// that band is the whole reason the band is there.
+function ladderSvg(input, sized) {
+  var W = 800, H = 330, PL = 92, PT = 26, PB = 34;
+  var plotH = H - PT - PB;
+  var entry = input.entry, stop = input.stop;
+  var target = (sized.targetSide === "favourable") ? input.target : null;
+
+  var levels = [entry, stop];
+  if (target) levels.push(target);
+  var atr = typeof DATA.atr === "number" && DATA.atr > 0 ? DATA.atr : null;
+  if (atr) { levels.push(entry + atr, entry - atr); }
+
+  var lo = Math.min.apply(null, levels), hi = Math.max.apply(null, levels);
+  var pad = (hi - lo) * 0.16 || Math.max(entry * 0.02, 0.01);
+  lo -= pad; hi += pad;
+  if (!(hi > lo)) return "";
+
+  function Y(p) { return PT + plotH - ((p - lo) / (hi - lo)) * plotH; }
+  var parts = [];
+
+  // Price gridlines and labels.
+  for (var i = 0; i <= 4; i++) {
+    var p = lo + ((hi - lo) / 4) * i, y = Y(p);
+    parts.push('<line x1="' + PL + '" y1="' + y.toFixed(1) + '" x2="' + (W - 20) +
+      '" y2="' + y.toFixed(1) + '" stroke="var(--grid)" stroke-width="1"/>');
+    parts.push('<text x="' + (PL - 10) + '" y="' + (y + 4).toFixed(1) +
+      '" text-anchor="end" font-size="11" fill="var(--text-dim)">' + money(p) + "</text>");
+  }
+
+  var colX = PL + 26, colW = 190;
+  var atrX = colX + colW + 54, atrW = 96;
+
+  // Risk column: entry down to stop for a long, entry up to stop for a short. Drawn by price
+  // rather than by direction so the short case needs no second code path.
+  function block(x, w, a, b, fill, stroke) {
+    var yTop = Y(Math.max(a, b)), yBot = Y(Math.min(a, b));
+    parts.push('<rect x="' + x + '" y="' + yTop.toFixed(1) + '" width="' + w + '" height="' +
+      Math.max(1, yBot - yTop).toFixed(1) + '" fill="' + fill + '"' +
+      (stroke ? ' stroke="' + stroke + '" stroke-width="1"' : "") + ' rx="3"/>');
+  }
+  block(colX, colW, entry, stop, "var(--down-fill)", "var(--down)");
+  if (target) block(colX, colW, entry, target, "var(--up-fill)", "var(--up)");
+
+  // The recent daily range, on the same scale, centred on the entry.
+  if (atr) {
+    block(atrX, atrW, entry - atr, entry + atr, "var(--band)", "var(--gold)");
+    parts.push('<text x="' + (atrX + atrW / 2) + '" y="' + (PT - 9) +
+      '" text-anchor="middle" font-size="11" fill="var(--text-dim)">typical daily range</text>');
+  }
+  parts.push('<text x="' + (colX + colW / 2) + '" y="' + (PT - 9) +
+    '" text-anchor="middle" font-size="11" fill="var(--text-dim)">your risk and reward</text>');
+
+  // Column labels, placed inside each block when it is tall enough and beside it when it is not.
+  function blockLabel(a, b, text, colour) {
+    var yTop = Y(Math.max(a, b)), yBot = Y(Math.min(a, b));
+    var tall = (yBot - yTop) > 26;
+    parts.push('<text x="' + (colX + colW / 2) + '" y="' +
+      (tall ? ((yTop + yBot) / 2 + 4) : (yTop - 7)).toFixed(1) +
+      '" text-anchor="middle" font-size="12" font-weight="600" fill="' + colour + '">' +
+      esc(text) + "</text>");
+  }
+  blockLabel(entry, stop, money0(sized.atRisk) + " at risk", "var(--down)");
+  if (target) blockLabel(entry, target, money0(sized.reward) + " at target", "var(--up)");
+
+  // The three levels themselves, drawn over the blocks.
+  function level(price, label, colour, dash) {
+    var y = Y(price);
+    parts.push('<line x1="' + PL + '" y1="' + y.toFixed(1) + '" x2="' + (W - 20) + '" y2="' +
+      y.toFixed(1) + '" stroke="' + colour + '" stroke-width="1.6"' +
+      (dash ? ' stroke-dasharray="5 4"' : "") + "/>");
+    parts.push('<text x="' + (W - 22) + '" y="' + (y - 6).toFixed(1) +
+      '" text-anchor="end" font-size="11.5" font-weight="600" fill="' + colour + '">' +
+      esc(label) + "</text>");
+  }
+  level(stop, "stop " + money(stop), "var(--down)", true);
+  level(entry, "entry " + money(entry), "var(--data)", false);
+  if (target) level(target, "target " + money(target), "var(--up)", true);
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" role="img" ' +
+    'aria-label="Entry, stop and target drawn on one price scale beside the recent daily ' +
+    'range">' + parts.join("") + "</svg>";
+}
+
+// ── State ──────────────────────────────────────────────────────────────────────
+//
+// The stop is held as a price. The percentage control is a second way to reach the same number
+// and is kept in step with it, so the two can never quietly disagree about where the stop is.
+var STATE = {
+  account: 25000,
+  riskPct: 1,
+  isLong: true,
+  entry: 0,
+  stop: 0,
+  stopPct: 5,
+  target: null
+};
+
+/** The stop price that a given distance from the entry implies, in the current direction. */
+function stopFromPct(entry, stopPct, isLong) {
+  var raw = isLong ? entry * (1 - stopPct / 100) : entry * (1 + stopPct / 100);
+  return Math.round(raw * 100) / 100;
+}
+function pctFromStop(entry, stop, isLong) {
+  if (!(entry > 0)) return 0;
+  return (isLong ? (entry - stop) : (stop - entry)) / entry * 100;
+}
+
+function statHtml(k, v, n) {
+  return '<div class="stat"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div>" +
+    (n ? '<div class="n">' + n + "</div>" : "") + "</div>";
+}
+
+/**
+ * The Score to show, or null when the snapshot carries none.
+ *
+ * Today's reading lands with the day's first analytics run, so it is legitimately absent early
+ * in the session and the 30 day average stands in for it, flagged as such. A measured zero is a
+ * real reading and is served as one, which is why the test here is the type and not the truth
+ * of the value: `if (score.value)` would silently discard a genuine 0.00.
+ */
+function readScore() {
+  var sc = DATA.score;
+  if (!sc || typeof sc !== "object") return null;
+  var avg = typeof sc.avg30d === "number" && isFinite(sc.avg30d) ? sc.avg30d : null;
+  // `label` is the band of the THIRTY DAY AVERAGE, not of today's reading, so it travels with
+  // `avg30d` and never with `value`. Attaching it to today's number would print a measured 0.00
+  // captioned "Slightly Bullish", which is two true facts arranged into a false one.
+  if (typeof sc.value === "number" && isFinite(sc.value)) {
+    return { value: sc.value, avg30d: avg, avgLabel: sc.label, asOf: sc.asOf, isAverage: false };
+  }
+  if (avg !== null) {
+    return { value: avg, avg30d: avg, avgLabel: sc.label, asOf: sc.asOf, isAverage: true };
+  }
+  return null;
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function update() {
+  var input = {
+    account: STATE.account, riskPct: STATE.riskPct, entry: STATE.entry,
+    stop: STATE.stop, target: STATE.target, isLong: STATE.isLong
+  };
+  var sized = sizePosition(input);
+
+  document.getElementById("risk-val").textContent =
+    pct(STATE.riskPct, 2) + (STATE.account > 0
+      ? " of the account, or " + money0(STATE.account * STATE.riskPct / 100)
+      : "");
+  document.getElementById("stoppct-val").textContent =
+    pct(STATE.stopPct, 1) + " " + (STATE.isLong ? "below" : "above") + " the entry";
+
+  var results = document.getElementById("results");
+  var chart = document.getElementById("chart");
+  var legend = document.getElementById("legend");
+  var notes = document.getElementById("notes");
+
+  if (sized.refusal) {
+    results.innerHTML = '<div class="notice"><strong>No size shown for these inputs.</strong>' +
+      esc(sized.refusal) + "</div>";
+    chart.innerHTML = "";
+    legend.style.display = "none";
+    notes.innerHTML = "";
+    return;
+  }
+  legend.style.display = "";
+
+  var rText = sized.rMultiple === null ? "n/a" : sized.rMultiple.toFixed(2) + "R";
+  results.innerHTML =
+    statHtml("Shares", count(sized.shares),
+      (STATE.isLong ? "bought at " : "sold short at ") + money(STATE.entry)) +
+    statHtml("Position value", money0(sized.value),
+      pct(sized.deployedPct, 1) + " of the account") +
+    statHtml("At risk to the stop", '<span class="down">' + money0(sized.atRisk) + "</span>",
+      money(sized.perShare) + " per share, " + pct(sized.perSharePct, 2) + " away") +
+    statHtml("Reward at target",
+      sized.reward === null ? "n/a" : '<span class="up">' + money0(sized.reward) + "</span>",
+      sized.rMultiple === null ? "no target set" : rText + " against the stop");
+
+  chart.innerHTML = ladderSvg(input, sized);
+
+  // ── The notes ────────────────────────────────────────────────────────────────
+  // Everything here is a consequence of the reader's own numbers, phrased as an observation
+  // about the arithmetic. None of it says what to do about any of it.
+  var out = [];
+
+  // The whole-share floor. Reported whenever it leaves a visible slice of the budget behind.
+  if (sized.unusedBudget > 0.005 && sized.unusedBudget / sized.budget > 0.01) {
+    out.push("Shares are whole numbers, so the count is rounded down. That leaves " +
+      money(sized.unusedBudget) + " of the " + money0(sized.budget) +
+      " budget unused, and the figure at risk above is the real one.");
+  }
+
+  // Stop distance against the stock's own recent daily range. The framing is the point: a stop
+  // inside a single day's normal range is inside the noise, and a reader who has not measured
+  // that will read a stop-out as information when it is not.
+  if (typeof DATA.atr === "number" && DATA.atr > 0 && STATE.entry > 0) {
+    var atrPct = DATA.atr / STATE.entry * 100;
+    var ratio = sized.perShare / DATA.atr;
+    var window = "over the " + (DATA.atrSessions || 14) + " sessions ending " +
+      (DATA.atrAsOf || "the last completed one");
+    var line = "The stop sits " + money(sized.perShare) + " from the entry. " +
+      esc(DATA.ticker || "This ticker") + " has moved " + money(DATA.atr) + " in an average " +
+      "session " + window + ", which is " + pct(atrPct, 2) + " of the entry price, so the stop " +
+      "is " + ratio.toFixed(2) + " times that range.";
+    if (ratio < 1) {
+      line += " A stop closer than one average session's range is inside the stock's ordinary " +
+        "day to day movement, which means ordinary movement alone can reach it.";
+    } else if (ratio < 2) {
+      line += " That is within about two ordinary sessions of movement.";
+    } else {
+      line += " That is wider than two ordinary sessions of movement, so more of the account " +
+        "goes to each unit of distance.";
+    }
+    out.push(line);
+  } else {
+    out.push("No recent daily range is bound for " + esc(DATA.ticker || "this ticker") +
+      ", so the stop distance is shown on its own rather than against how far the stock " +
+      "usually travels in a session.");
+  }
+
+  // The Score, stated as what it is and nothing more. It is unbounded and runs roughly -30 to
+  // +45 across the tracked universe, so it is never printed as a fraction of anything: a Score
+  // shown "out of 100" invites a reader to treat 18 as weak when it is comfortably bullish.
+  var s = readScore();
+  if (s) {
+    var scoreLine = "The SentiSense Score for " + esc(DATA.ticker || "this ticker") + " reads " +
+      s.value.toFixed(2) + (s.asOf ? ", as of " + esc(s.asOf) : "") + ". ";
+    if (s.isAverage) {
+      scoreLine += "That is the 30 day average, standing in because today's reading has not " +
+        "landed yet" + (s.avgLabel ? ", and it sits in the " + esc(s.avgLabel) + " band" : "") +
+        ". ";
+    } else if (s.avg30d !== null) {
+      scoreLine += "Its 30 day average sits at " + s.avg30d.toFixed(2) +
+        (s.avgLabel ? ", which is the " + esc(s.avgLabel) + " band" : "") + ", so the two " +
+        "together read as today against the recent regime. ";
+    }
+    scoreLine += "The Score is unbounded and runs roughly -30 to +45 across the tracked " +
+      "universe, where anything between -5 and +5 reads as neutral. It is a nowcast of how " +
+      "bullish or bearish the current flow of news and conversation is, weighted by how much " +
+      "this stock is being discussed. It does not predict price, it is not a verdict on this " +
+      "trade, and it plays no part in any number above.";
+    out.push(scoreLine);
+  } else if (DATA.scoreNote) {
+    out.push(esc(DATA.scoreNote));
+  }
+
+  // Leverage. Stated as arithmetic, because the reader may well be trading on margin.
+  if (sized.deployedPct > 100) {
+    out.push("This position is worth " + money0(sized.value) + " against a stated account of " +
+      money0(STATE.account) + ", so it is larger than the account. Holding it would take " +
+      "borrowed money, and the borrowing is not modelled here.");
+  }
+
+  if (sized.targetSide === "adverse") {
+    out.push("The target sits on the losing side of the entry for a " +
+      (STATE.isLong ? "long" : "short") + ", so no reward or R multiple is shown for it.");
+  }
+
+  notes.innerHTML = out.map(function (n) {
+    return '<p class="lede" style="margin:0 0 8px">' + n + "</p>";
+  }).join("");
+}
+
+function shell() {
+  var out = [];
+  var score = readScore();
+
+  out.push('<header class="card"><div class="title-row">' +
+    '<h1>Position size <span class="ticker">' + esc(DATA.ticker || "") + "</span></h1>" +
+    '<span class="badge accent">your inputs, our arithmetic</span>' +
+    (DATA.isPreview ? '<span class="badge">preview slice</span>' : "") +
+    "</div>" +
+    '<p class="subtitle">' + esc(META.subtitle ||
+      "Share count, position value and dollar risk, worked out from the account size and the " +
+      "risk you set. Pre-filled with the last price so nothing starts empty.") + "</p>" +
+    '<div class="stats">' +
+    statHtml("Last price", money(DATA.price),
+      DATA.priceAsOf ? "session of " + esc(DATA.priceAsOf) : "delayed, not live") +
+    statHtml("Typical daily range",
+      typeof DATA.atr === "number" ? money(DATA.atr) : "n/a",
+      typeof DATA.atr === "number" && DATA.price > 0
+        ? pct(DATA.atr / DATA.price * 100, 2) + " of the last price"
+        : "not bound") +
+    statHtml("SentiSense Score", score === null ? "n/a" : score.value.toFixed(2),
+      score === null
+        ? "not in this snapshot"
+        : score.isAverage
+          ? "30 day average, " + esc(score.avgLabel || "unbounded") + ", context only"
+          : "today's reading, context only") +
+    statHtml("52 week range",
+      typeof DATA.week52Low === "number" && typeof DATA.week52High === "number"
+        ? money(DATA.week52Low, 0) + " to " + money(DATA.week52High, 0)
+        : "n/a",
+      "where the last price sits in its year") +
+    "</div></header>");
+
+  out.push('<section class="card"><h2>Your risk parameters</h2>' +
+    '<p class="lede">Every number below is yours to set. The entry starts at the last price ' +
+    "and the stop starts a round distance away, both so the page opens with something to look " +
+    "at rather than empty boxes. Change any of them and the arithmetic follows.</p>" +
+    '<div class="controls">' +
+    '<label class="ctl"><span class="k">Account size</span>' +
+    '<input type="number" id="account" min="0" step="100"></label>' +
+    '<label class="ctl"><span class="k">Risk per trade</span>' +
+    '<span class="val" id="risk-val"></span>' +
+    '<input type="range" id="risk" min="0.1" max="5" step="0.1"></label>' +
+    '<label class="ctl"><span class="k">Direction</span>' +
+    '<select id="direction"><option value="long">Long</option>' +
+    '<option value="short">Short</option></select></label>' +
+    '<label class="ctl"><span class="k">Entry price</span>' +
+    '<input type="number" id="entry" min="0" step="0.01"></label>' +
+    '<label class="ctl"><span class="k">Stop distance</span>' +
+    '<span class="val" id="stoppct-val"></span>' +
+    '<input type="range" id="stoppct" min="0.5" max="30" step="0.1"></label>' +
+    '<label class="ctl"><span class="k">Stop price</span>' +
+    '<input type="number" id="stop" min="0" step="0.01"></label>' +
+    '<label class="ctl"><span class="k">Target price (optional)</span>' +
+    '<input type="number" id="target" min="0" step="0.01" placeholder="leave blank for no R">' +
+    "</label>" +
+    "</div>" +
+    '<div class="stats" id="results"></div></section>');
+
+  out.push('<section class="card"><h2>Entry, stop and target on one scale</h2>' +
+    '<p class="lede">The red block is the distance you are putting at risk and the green block ' +
+    "is the distance to your target, both drawn against the same prices. The gold band beside " +
+    "them is how far this stock has typically travelled in a single session, so a stop can be " +
+    "read against ordinary movement rather than in isolation.</p>" +
+    '<div class="chart-scroll" id="chart"></div>' +
+    '<div class="legend" id="legend">' +
+    '<span><i class="swatch" style="background:var(--down-fill)"></i>at risk to the stop</span>' +
+    '<span><i class="swatch" style="background:var(--up-fill)"></i>to the target</span>' +
+    '<span><i class="swatch" style="background:var(--band)"></i>typical daily range</span>' +
+    '<span><i class="swatch" style="background:var(--data)"></i>entry</span>' +
+    "</div>" +
+    '<div style="margin-top:18px" id="notes"></div></section>');
+
+  var stampDate = DATA.generatedAt
+    ? String(DATA.generatedAt).replace("T", " ").slice(0, 16) + " UTC" : "";
+  out.push('<footer><div class="stamp">' +
+    "<span>Data: SentiSense, as of " + esc(DATA.priceAsOf || "the last completed session") +
+    (stampDate ? ". Rendered " + esc(stampDate) : "") + ".</span>" +
+    '<span><a href="https://sentisense.ai">made with SentiSense</a></span></div>' +
+    '<p class="disclaimer">This page divides the numbers you typed. It does not choose your ' +
+    "account size, your risk per trade, your entry, your stop or your target, it does not " +
+    "assess the trade, and nothing on it is a recommendation to buy or sell anything. Sizing " +
+    "by a fixed risk per trade assumes the stop is honoured at the price you set: a gap " +
+    "through the stop, an opening away from the close, or a fill worse than the stop all cost " +
+    "more than the figure above, and slippage, commission, financing and tax are not modelled " +
+    "here. Prices are delayed, not live. This is information for research and education only. " +
+    "It is not investment advice, not a recommendation and not a forecast. Trading carries " +
+    "risk of loss, including losses larger than the amount planned.</p></footer>");
+
+  return out.join("");
+}
+
+function bind() {
+  var account = document.getElementById("account");
+  var risk = document.getElementById("risk");
+  var direction = document.getElementById("direction");
+  var entry = document.getElementById("entry");
+  var stoppct = document.getElementById("stoppct");
+  var stop = document.getElementById("stop");
+  var target = document.getElementById("target");
+
+  /** Push the canonical stop price back into both stop controls. */
+  function syncStopControls() {
+    stop.value = STATE.stop > 0 ? STATE.stop.toFixed(2) : "";
+    // The slider has a finite range; a hand-typed stop can sit outside it or on the wrong side
+    // of the entry entirely. In that case the slider is left where it is and the readout below
+    // states the real distance, so the page never repaints a typed price to a rounder one.
+    var p = pctFromStop(STATE.entry, STATE.stop, STATE.isLong);
+    STATE.stopPct = p;
+    if (p >= 0.5 && p <= 30) stoppct.value = String(Math.round(p * 10) / 10);
+  }
+
+  account.addEventListener("input", function () {
+    var v = readNum(account);
+    STATE.account = v === null ? 0 : v;
+    update();
+  });
+  risk.addEventListener("input", function () {
+    STATE.riskPct = readNum(risk) || 0;
+    update();
+  });
+  direction.addEventListener("change", function () {
+    STATE.isLong = direction.value === "long";
+    // The distance the reader chose is the intent; which side of the entry it lands on follows
+    // from the direction. So a flip keeps the distance and mirrors the price.
+    var d = Math.abs(STATE.stopPct) || 5;
+    STATE.stopPct = d;
+    STATE.stop = stopFromPct(STATE.entry, d, STATE.isLong);
+    syncStopControls();
+    update();
+  });
+  entry.addEventListener("input", function () {
+    var v = readNum(entry);
+    STATE.entry = v === null ? 0 : v;
+    // Hold the distance rather than the stop price: a reader moving the entry is moving the
+    // whole setup, and a stop left at its old absolute price would silently change the risk.
+    STATE.stop = stopFromPct(STATE.entry, Math.abs(STATE.stopPct) || 5, STATE.isLong);
+    syncStopControls();
+    update();
+  });
+  stoppct.addEventListener("input", function () {
+    STATE.stopPct = readNum(stoppct) || 0.5;
+    STATE.stop = stopFromPct(STATE.entry, STATE.stopPct, STATE.isLong);
+    stop.value = STATE.stop > 0 ? STATE.stop.toFixed(2) : "";
+    update();
+  });
+  stop.addEventListener("input", function () {
+    var v = readNum(stop);
+    STATE.stop = v === null ? 0 : v;
+    syncStopControls();
+    update();
+  });
+  target.addEventListener("input", function () {
+    STATE.target = readNum(target);
+    update();
+  });
+
+  account.value = String(STATE.account);
+  risk.value = String(STATE.riskPct);
+  direction.value = STATE.isLong ? "long" : "short";
+  entry.value = STATE.entry > 0 ? STATE.entry.toFixed(2) : "";
+  syncStopControls();
+}
+
+function render() {
+  var root = document.getElementById("root");
+
+  if (!DATA || typeof DATA !== "object") {
+    root.innerHTML = '<div class="error"><strong>No data bound.</strong><br>' +
+      "This template still holds its placeholder tokens. Run the data command, then replace " +
+      "the data and meta tokens in the two JSON blocks with its output.</div>";
+    return;
+  }
+  if (!(DATA.price > 0)) {
+    root.innerHTML = '<div class="error"><strong>No price bound.</strong><br>' +
+      "The snapshot carries no usable last price for " + esc(DATA.ticker || "this ticker") +
+      ", so there is nothing to pre-fill an entry with.</div>";
+    return;
+  }
+
+  // Opening defaults. The entry is the last price, and the stop starts one round step away so
+  // the page opens on a complete, working example rather than a half-filled form. Both are
+  // starting points the reader is expected to replace, not suggestions about this stock.
+  STATE.entry = Math.round(DATA.price * 100) / 100;
+  STATE.stopPct = 5;
+  STATE.stop = stopFromPct(STATE.entry, STATE.stopPct, STATE.isLong);
+
+  root.innerHTML = shell();
+  document.title = META.title || ("Position size: " + (DATA.ticker || ""));
+  bind();
+  update();
+}
+
+render();
+</script>
+</body>
+</html>

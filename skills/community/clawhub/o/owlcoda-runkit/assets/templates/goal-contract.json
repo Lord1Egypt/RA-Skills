@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "OwlCodaRunKitGoalContractV1",
+  "objective": "Replace with one measurable project outcome.",
+  "nonGoals": [],
+  "authorization": {
+    "git": false,
+    "publish": false,
+    "deploy": false,
+    "destructive": false
+  }
+}

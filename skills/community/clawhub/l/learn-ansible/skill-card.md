@@ -1,42 +1,57 @@
-## Description: <br>
-Helps users find LabEx Ansible courses and hands-on labs for infrastructure-as-code, playbooks, and inventory learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Ansible on LabEx with infrastructure-as-code courses and playbook or inventory labs. Ansible courses and lab lists via LabEx MCP; public labex.io pages for hands-on automation learning.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-Developers, operators, and learners use this skill to discover focused LabEx Ansible courses and labs, then continue with public course or lab URLs in a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations are LabEx-specific and may include favorable platform framing. <br>
-Mitigation: Use the skill for LabEx catalog navigation and compare with other sources when a neutral training comparison is needed. <br>
-Risk: Course and lab availability can change as the public LabEx catalog is updated. <br>
-Mitigation: Check the current public LabEx course and lab URLs before relying on a recommendation. <br>
+## Use Case:
 
+Learners and developers use this skill to find LabEx Ansible courses and hands-on labs, then continue learning from public LabEx URLs in a browser.
 
-## Reference(s): <br>
-- [Learn Ansible on LabEx](https://labex.io/learn/ansible) <br>
-- [LabEx Ansible API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huhuhang/learn-ansible) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls] <br>
-**Output Format:** [Markdown with concise recommendations and public LabEx URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include brief reasons for each recommendation; does not require credentials or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Recommendations are intentionally LabEx-specific and may read as platform promotion rather than neutral training comparison.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggestions as LabEx-only guidance and use a broader search when neutral comparisons across training providers are needed.
+
+Risk: The skill depends on public catalog pages and routes that can change over time.
+
+Mitigation: Use the current public LabEx URLs and avoid protected routes, VM routes, credentials, local files, persistence, or privileged actions.
+
+## Reference(s):
+
+- [Learn Ansible on LabEx](https://labex.io/learn/ansible)
+- [LabEx](https://labex.io)
+- [LabEx Ansible API Reference](references/api.md)
+- [LabEx Reviews](https://labex.io/pricing#reviews)
+- [ClawHub Skill Page](https://clawhub.ai/huhuhang/skills/learn-ansible)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendations with public LabEx URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are scoped to the LabEx Ansible learning path and public catalog routes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Creates a client-facing interior design PowerPoint deck from a folder of local render images, using preset slide layouts, Chinese text, and brand styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates client-ready interior design PowerPoint decks from a folder of render images, adding sorted image slides, title sections, layout pages, material notes, and dark brand styling.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Interior designers and design teams use this skill to turn project render folders into 16:9 client presentation decks with cover, review, concept, image showcase, material board, and closing slides.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated client-facing decks may include embedded publisher branding that is not appropriate for the user's organization or project.
+
+Mitigation: Review each generated presentation before client delivery and remove or replace unwanted branding in the deck or source script.
+
+Risk: The command-line interface does not expose an option to disable or customize the embedded branding.
+
+Mitigation: Treat branding changes as a required manual review step before production use, especially for external client presentations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Interior designers use this skill to turn a local folder of renderings into a styled 16:9 client presentation with cover, task review, design concept, image showcase, materials, and closing slides. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks include preset Chinese text, room names, material descriptions, and publisher branding. <br>
-Mitigation: Review and edit the generated slides before client delivery, especially branding, room labels, and project-specific material descriptions. <br>
-Risk: The generator builds slides from a local image folder and silently skips files that Pillow cannot verify as images. <br>
-Mitigation: Use a reviewed local image folder, confirm filenames are ordered as intended, and check the final slide count and image coverage after generation. <br>
+**Output Format:** [Markdown instructions with Python command examples; generated artifact is a PPTX file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/137984917-cyber/interior-ppt-generator) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+**Other Properties Related to Output:** [Requires python3, python-pptx, Pillow, an input image folder, and an output .pptx path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated output is a .pptx file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local png, jpg, jpeg, webp, and bmp images sorted by filename; generated slides include preset Chinese copy and publisher branding unless the code is edited.] <br>
+3.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

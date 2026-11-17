@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Apple App Store Research"
+  short_description: "Collect and analyze public Apple App Store data"
+  default_prompt: "Use $socq-apple-app-store-research to collect and analyze this public Apple App Store research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Apple App Store data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=apple-app-store"

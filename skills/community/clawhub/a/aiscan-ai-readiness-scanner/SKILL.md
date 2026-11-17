@@ -1,7 +1,7 @@
 ---
 name: aiscan-ai-readiness-scanner
-description: "AIScan v1.4.0 audits websites for AI-agent readiness, MCP discoverability, LLM access, framework signals, and fix-ready remediation."
-version: 1.4.0
+description: "AIScan v3.1 audits websites for AI-agent readiness through its stable REST API, MCP server, CLI/CI tooling, evidence-backed scoring, and fix-ready remediation."
+version: 2.0.0
 author: Matrix Zion (ProSkillsMD)
 license: MIT-0
 homepage: https://missiondeck.ai
@@ -24,8 +24,8 @@ metadata:
             {
               "id": "api-docs",
               "kind": "link",
-              "label": "REST API Docs",
-              "url": "https://aiscan.site/api/public/scan"
+              "label": "Developer & REST API Docs",
+              "url": "https://aiscan.site/developers"
             },
             {
               "id": "changelog",
@@ -56,9 +56,9 @@ metadata:
   }
 ---
 
-# AIScan — AI Readiness Scanner v1.4.0
+# AIScan — AI Readiness Scanner v2.0.0
 
-[Live Scanner](https://aiscan.site) · [REST API Docs](https://aiscan.site/api/public/scan) · [MCP Endpoint](https://aiscan.site/api/mcp) · [Changelog](https://aiscan.site/changelog)
+[Live Scanner](https://aiscan.site) · [Developer Guide](https://aiscan.site/developers) · [OpenAPI](https://aiscan.site/openapi.json) · [MCP Endpoint](https://aiscan.site/api/mcp) · [Changelog](https://aiscan.site/changelog)
 
 Use this skill when a user wants to know whether a website is ready for AI agents, LLM crawlers, MCP-aware tools, ChatGPT, Claude, Perplexity, or programmatic discovery.
 
@@ -82,33 +82,23 @@ AIScan looks for the signals modern AI agents need:
 - Agent Skill indexes at `/.well-known/agent-skills/index.json`
 - OAuth discovery metadata for authenticated APIs
 - Web Bot Auth key directories
-- Agentic commerce signals such as UCP and x402 where relevant
+- Correct 404 handling, machine-readable API descriptions, heading hierarchy, HTTPS/canonical hosts, and content feeds
+- Agentic commerce classification (`none`, `transactional`, or `catalogue`) and machine-readable pricing signals
 - Platform-aware remediation for WordPress, Shopify, Astro, Next.js, Nuxt, SvelteKit, Remix, Gatsby, Angular, Vue, React, Vite, static sites, and site builders
 
 ## Current AIScan Platform Features
 
-The live AIScan product has moved beyond the original scanner:
+The hosted product is currently **AIScan v3.1.0** (released August 24, 2026). Major surfaces now include:
 
-- **v1.4.0 — Agent surface polish**
-  - Designed browser docs page at `/api/public/scan`
-  - Try-it form and example curl commands for the public REST API
-  - Full favicon and PWA manifest set
-  - Public changelog at `/changelog`
-- **v1.3.0 — Smarter detection and cleaner sharing**
-  - Framework detection for Astro, Next.js, Nuxt, SvelteKit, Remix, Gatsby, Angular, Vue, and React
-  - Server-side report storage with short share URLs like `https://aiscan.site/r/abc12345`
-  - Per-report Open Graph metadata for cleaner sharing
-- **v1.2.0 — Built for AI agents**
-  - Public scan API at `/api/public/scan`
-  - Streamable HTTP MCP server at `/api/mcp`
-  - Agent Skill manifest at `/aiscan-skill.json`
-  - Claude Code instructions at `/CLAUDE.md`
-  - Discovery files: `llms.txt`, API catalog, MCP server card, and AI-friendly `robots.txt`
-- **v1.1.0 — Better reports and faster fixes**
-  - Quick wins panel
-  - Checks grouped by dimension
-  - Fix-with-AI prompts for ChatGPT and Claude
-  - Embeddable score badge at `/api/public/badge.svg`
+- Versioned, additive-only REST API at `/api/public/v1/scan` and report reads at `/api/public/v1/report/{id}`
+- OpenAPI 3.1 at `/openapi.json`, RFC 9727 discovery at `/.well-known/api-catalog`, and RFC 9457 problem responses
+- Streamable HTTP MCP server, Agent Skill JSON, Claude Code instructions, and MCP registry/server manifests
+- Evidence-backed checks with standards citations, essential/recommended/bonus tiers, N/A reasons, and ordered fix guides
+- Rubric versioning on every result plus honest rubric-change monitoring alerts
+- Full-site and Pro single-page scans, private-by-default authenticated scans, API keys, cache bypass, and shareable reports
+- Zero-dependency `aiscan-cli` with CI score gates, Markdown output, and agent fix prompts
+- Free, Pro, and Founder plans with enforced scan, watched-site, and MCP/API allowances
+- Daily/weekly monitoring, history, exports, email/Telegram/webhook alerts, Chrome extension, and Telegram bot
 
 ## When To Use
 
@@ -136,10 +126,10 @@ Trigger on requests like:
 
 ## REST API Workflow
 
-Prefer POST:
+Prefer the stable v1 POST endpoint:
 
 ```bash
-curl -sS -X POST https://aiscan.site/api/public/scan \
+curl -sS -X POST https://aiscan.site/api/public/v1/scan \
   -H 'Content-Type: application/json' \
   -d '{"url":"https://example.com"}'
 ```
@@ -147,16 +137,40 @@ curl -sS -X POST https://aiscan.site/api/public/scan \
 GET is also supported:
 
 ```bash
-curl -sS 'https://aiscan.site/api/public/scan?url=https://example.com'
+curl -sS 'https://aiscan.site/api/public/v1/scan?url=https://example.com'
 ```
 
-Browser-friendly docs are available at:
+Developer docs and the full machine-readable contract are available at:
 
 ```text
-https://aiscan.site/api/public/scan
+https://aiscan.site/developers
+https://aiscan.site/openapi.json
 ```
 
-Rate limit: **5 scans per minute per IP**. Do not loop scans. Scan, fix, then re-scan once.
+Anonymous rate limit: **5 requests per minute per IP**. An API key uses the caller's plan allowance instead of the anonymous IP limit. Identical URLs can be cached for five minutes; use `fresh: true` only after a deployed fix. Errors use `application/problem+json`.
+
+Optional authenticated fields:
+
+- `scope: "page"` — scan one page (Pro feature)
+- `fresh: true` — bypass the five-minute cache
+- `isPublic: true|false` — override account visibility for this scan
+
+Legacy `/api/public/scan` remains supported, but new integrations should use `/api/public/v1/scan`.
+
+## CLI and CI Usage
+
+```bash
+npx aiscan-cli example.com
+npx aiscan-cli example.com --fix
+npx aiscan-cli example.com --min-score 85
+npx aiscan-cli example.com --fail-on essential --md
+```
+
+Use `--page` with an API key for a Pro single-page scan. The no-install fallback is:
+
+```bash
+curl -fsSL https://aiscan.site/cli.mjs | node - example.com
+```
 
 ## MCP Usage
 
@@ -185,6 +199,10 @@ Key fields:
 - `checks[]` — individual audit checks
 - `dimensions` — grouped scores for discoverability, content, bot access, capabilities, and commerce
 - `rubricVersion` — scoring rubric version
+- `commerce.type` — `none`, `transactional`, or `catalogue`
+- `scope` — `site` or `page`
+- `cached` / `cachedAt` — whether a stored result was returned
+- `checks[].tier`, `checks[].specs`, and `checks[].naReason` — priority, cited standards, and applicability
 
 Grade mapping:
 
@@ -243,7 +261,10 @@ For a file report, include:
 ## Related AIScan Surfaces
 
 - Live scanner: `https://aiscan.site`
-- Public REST API: `https://aiscan.site/api/public/scan`
+- Stable REST API: `https://aiscan.site/api/public/v1/scan`
+- Developer guide: `https://aiscan.site/developers`
+- OpenAPI 3.1: `https://aiscan.site/openapi.json`
+- API catalog: `https://aiscan.site/.well-known/api-catalog`
 - MCP endpoint: `https://aiscan.site/api/mcp`
 - Agent Skill manifest: `https://aiscan.site/aiscan-skill.json`
 - Claude Code instructions: `https://aiscan.site/CLAUDE.md`
@@ -251,6 +272,8 @@ For a file report, include:
 - Changelog: `https://aiscan.site/changelog`
 - LLM summary: `https://aiscan.site/llms.txt`
 - Badge endpoint: `https://aiscan.site/api/public/badge.svg?url=https://example.com`
+- CLI docs: `https://aiscan.site/docs/cli`
+- Telegram bot: `https://t.me/AIScanBot`
 
 ## Safety Rules
 

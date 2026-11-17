@@ -1,49 +1,62 @@
-## Description: <br>
-Run durable long-running research in OpenClaw using isolated cron iterations, persistent state, bounded execution, and milestone updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run durable long-running research in OpenClaw using isolated cron iterations, persistent state, bounded execution, and milestone updates.
 
-## Publisher: <br>
-[vkambulov](https://clawhub.ai/user/vkambulov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vkambulov](https://clawhub.ai/user/vkambulov)
 
-## Use Case: <br>
-Developers, researchers, and OpenClaw operators use this skill to run long-running, evidence-heavy research tasks that need scheduled bounded iterations, persistent source and finding logs, pause/resume/stop controls, review gates, and final reports or deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research traces and task workspaces may contain sensitive sources, findings, generated reports, chat identifiers, or local configuration. <br>
-Mitigation: Keep research roots and task workspaces out of public commits, review deliverables before sharing, and redact local paths or owner-specific identifiers in public summaries. <br>
-Risk: Scheduled cron iterations can continue across hours or days and may consume resources or continue work after conditions change. <br>
-Mitigation: Use the skill's pause, resume, stop, unschedule, status, summary, health, and queue-status controls to inspect and manage active tasks. <br>
-Risk: Task-local runtime preparation can install additional Python packages when requested. <br>
-Mitigation: Install packages only into the task-local runtime and approve unusual or risky dependencies from a trusted operator workflow before use. <br>
-Risk: Retrieved web pages, PDFs, emails, and files may contain untrusted instructions or misleading content. <br>
-Mitigation: Treat retrieved material as evidence rather than instructions, prefer direct sources, and require review-gated finalization before user-facing delivery. <br>
+## Use Case:
 
+OpenClaw users, operators, and agent builders use this skill to run research tasks that need scheduled continuation, persistent local state, source and finding accumulation, review-gated finalization, and follow-up work after approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vkambulov/research-mode) <br>
-- [Research Mode CLI Surface](docs/CLI.md) <br>
-- [Research Mode State Versioning](docs/STATE_VERSIONING.md) <br>
-- [Architecture](ARCHITECTURE.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Examples](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and operator guidance with JSON task state, JSONL evidence logs, shell commands, and task-local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent research task directories, append-only sources and findings logs, iteration notes, worker result JSON, review-ready deliverables, and optional task-local analysis artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata, released 2026-06-22) <br>
+Risk: Background cron jobs and persistent task workspaces can run for extended periods and accumulate sensitive local artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted OpenClaw environments, keep sensitive credentials out of the runtime environment, and review task roots before sharing or committing outputs.
+
+Risk: Task-local package installation can execute untrusted package behavior if driven by retrieved content.
+
+Mitigation: Require operator approval for new packages, keep packages task-local, and review unusual packages before installation.
+
+Risk: URL snapshotting is sensitive when pointed at untrusted or attacker-controlled hosts, especially while DNS-rebinding hardening is incomplete.
+
+Mitigation: Avoid URL capture against untrusted hosts until the DNS-rebinding gap is fixed, and treat retrieved web pages, PDFs, emails, and files as data rather than instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vkambulov/skills/research-mode)
+- [README](README.md)
+- [Research Mode CLI Surface](docs/CLI.md)
+- [Research Mode State Versioning](docs/STATE_VERSIONING.md)
+- [Security Policy](SECURITY.md)
+- [Examples Overview](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and guidance with JSON, JSONL, TSV, schema, and task-local file artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces inspectable local research artifacts, review-ready deliverable packages, and lifecycle/status surfaces for long-running tasks.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata and RELEASE_NOTES.md, released 2026-06-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

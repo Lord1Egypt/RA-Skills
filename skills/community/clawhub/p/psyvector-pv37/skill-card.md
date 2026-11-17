@@ -1,39 +1,54 @@
-## Description: <br>
-舆论攻防、危机公关 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+舆论攻防、危机公关
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can install this digital-worker skill for public-opinion defense, crisis communication, and attack-defense response workflows. The skill also describes local persistent memory helpers that save and reuse user preferences, decisions, and context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save and reuse local memories about user preferences, decisions, and important information without clear consent or cleanup controls. <br>
-Mitigation: Review the memory behavior before installing, avoid entering sensitive information, and inspect or delete ~/.openclaw/pv_palace/memories.json when needed. <br>
+## Use Case:
 
+External users can use this skill as a crisis public relations and public-opinion response assistant. It is positioned for rapid response and attack-defense style communications support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv37) <br>
-- [Publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local memory records under ~/.openclaw/pv_palace/memories.json when the described memory helpers are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may cause an agent to save conversation details locally and reuse them in later sessions without clear consent or controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid sensitive personal or business information, and confirm there is a practical way to inspect and delete the local memory file.
+
+Risk: The security verdict is suspicious because the skill combines crisis-PR assistance with automatic long-term retention of user conversation content.
+
+Mitigation: Use only after reviewing the retention behavior and setting operational boundaries for what information the agent may store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv37)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with prose, tables, Python code blocks, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes automatic local memory storage and retrieval behavior.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

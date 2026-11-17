@@ -1,52 +1,63 @@
-## Description: <br>
-Interact with DECK-0 digital collectibles platform to browse collections, buy card packs, open packs, view leaderboards, and apply as a publisher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with DECK-0 digital collectibles platform to browse collections, buy card packs, open packs, view leaderboards, and apply as a publisher.
 
-## Publisher: <br>
-[SignorCrypto](https://clawhub.ai/user/SignorCrypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[signorcrypto](https://clawhub.ai/user/signorcrypto)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent browse DECK-0 collections, buy and open digital card packs, inspect collection progress, view leaderboards, and submit publisher applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Buy and open flows execute real wallet transactions. <br>
-Mitigation: Require explicit user confirmation before any buy, open, or publisher-submission action, and present transaction details before signing. <br>
-Risk: Fallback signing can expose a sensitive private key through DECK0_PRIVATE_KEY. <br>
-Mitigation: Prefer runtime wallet approval prompts; if fallback signing is needed, use a low-balance wallet and never print, log, or echo the private key. <br>
-Risk: Purchases require native tokens and may fail or spend funds unexpectedly if chain, quantity, or price data is wrong. <br>
-Mitigation: Confirm collection address, chain, quantity, payment amount, gas requirements, and signed price freshness before submitting the transaction. <br>
+## Use Case:
 
+External users and developers use this skill to browse DECK-0 collections, manage packs and cards, purchase or open NFT packs on supported EVM networks, and apply to publish their own card collections through the DECK-0 API.
 
-## Reference(s): <br>
-- [DECK-0 app](https://app.deck-0.com) <br>
-- [DECK-0 Skill page](https://clawhub.ai/SignorCrypto/deck0-skills) <br>
-- [Agent Skills standard](https://skills.sh/) <br>
-- [Foundry installation](https://book.getfoundry.sh/getting-started/installation) <br>
-- [Apechain explorer](https://apescan.io) <br>
-- [Base explorer](https://basescan.org) <br>
-- [Authentication guide](auth.md) <br>
-- [API endpoint reference](endpoints.md) <br>
-- [Smart contract operations](smart-contracts.md) <br>
-- [Workflow examples](examples.md) <br>
-- [Error reference](errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with inline JSON, shell commands, API request examples, and user-facing links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DECK-0 share URLs, card URLs, transaction hashes, API response summaries, and wallet-action confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide live blockchain transactions that spend native tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually confirm the chain, contract address, pack IDs, quantity, total value, and gas before signing any transaction.
+
+Risk: Fallback signing can use the sensitive DECK0_PRIVATE_KEY environment variable.
+
+Mitigation: Prefer a runtime wallet, hardware wallet, or dedicated low-value wallet, and avoid DECK0_PRIVATE_KEY for real funds.
+
+Risk: DECK-0 wallet-linked features can disclose wallet addresses, signatures, collection activity, recap data, and publisher application content to app.deck-0.com.
+
+Mitigation: Install and use the skill only when those wallet-linked data flows match the user's intent.
+
+## Reference(s):
+
+- [DECK-0 ClawHub Skill](https://clawhub.ai/signorcrypto/skills/deck0-skills)
+- [DECK-0 App](https://app.deck-0.com)
+- [DECK-0 Agents OpenAPI](https://app.deck-0.com/api/agents/v1/openapi)
+- [Foundry Installation](https://book.getfoundry.sh/getting-started/installation)
+- [Agent Skills Standard](https://skills.sh/)
+- [Apechain Explorer](https://apescan.io)
+- [Base Explorer](https://basescan.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API schemas, JSON examples, shell commands, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated API flows and on-chain transaction guidance; users should confirm transaction details before signing or spending funds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

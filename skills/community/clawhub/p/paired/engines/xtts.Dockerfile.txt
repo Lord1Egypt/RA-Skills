@@ -1,0 +1,19 @@
+# XTTS v2 voice-cloning service for paired (fallback)
+# Build:  docker build -t paired-xtts:latest -f xtts.Dockerfile.txt .   # .txt is a ClawHub packaging suffix; -f takes any filename
+
+FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-runtime
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg git wget curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir TTS==0.22.0 fastapi uvicorn
+
+WORKDIR /app
+RUN mkdir -p /refs /tmp/output /root/.cache/tts
+
+COPY xtts-server.py /app/server.py
+
+EXPOSE 8055
+
+CMD ["python", "/app/server.py"]

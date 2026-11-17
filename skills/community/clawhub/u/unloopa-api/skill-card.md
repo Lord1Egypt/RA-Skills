@@ -1,43 +1,59 @@
-## Description: <br>
-Unloopa API helps an agent run Unloopa sales automation for local-business lead discovery, generated websites, outreach emails, and optional voice calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unloopa Api lets an agent use the Unloopa REST API to find local business leads, generate websites, send outreach emails, and manage voice calling workflows.
 
-## Publisher: <br>
-[echris6](https://clawhub.ai/user/echris6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[echris6](https://clawhub.ai/user/echris6)
 
-## Use Case: <br>
-External sales and marketing operators use this skill to direct an agent through Unloopa workflows for finding local-business leads, generating websites, sending outreach, and managing Pro-only voice calls when configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outbound sales actions may contact third parties by email or voice without adequate review. <br>
-Mitigation: Require explicit user confirmation for recipient lists, email content, call scripts, lead counts, and campaign triggers before execution. <br>
-Risk: Some actions may consume account credits or money, including voice calls, voice credits, and phone-number purchases. <br>
-Mitigation: Check quota and plan status first, then require explicit approval for credit consumption, purchases, and paid account changes. <br>
-Risk: The skill depends on a bearer token with access to the user's Unloopa account. <br>
-Mitigation: Use UNLOOPA_API_KEY only from the configured environment and ask the user to check or rotate the key after unauthorized errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/echris6/unloopa-api) <br>
-- [Unloopa API base URL](https://dashboard.unloopa.com/api/v1/) <br>
-- [Unloopa settings](https://dashboard.unloopa.com/settings) <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to Unloopa for lead generation, generated website review, email outreach, and optional voice calling workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API call guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell-compatible environment-variable setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires UNLOOPA_API_KEY; API usage may consume credits or trigger outbound emails, calls, or purchases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact frontmatter version 1.3) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send outreach emails or initiate voice calls to third parties.
+
+Mitigation: Require explicit user confirmation for recipient lists, message content, outbound calls, campaign activation, and campaign triggering before using the API.
+
+Risk: The skill can buy or release phone numbers through the connected Unloopa account.
+
+Mitigation: Require explicit user confirmation before any paid phone-number purchase or number release, and check quota, plan, and credits first.
+
+Risk: The API key gives an agent authority over lead generation, outreach, voice campaigns, and account-linked resources.
+
+Mitigation: Install only after reviewing the requested authority, store UNLOOPA_API_KEY securely, and limit use to agents that are allowed to act on the Unloopa account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/echris6/skills/unloopa-api)
+- [Unloopa API base URL](https://dashboard.unloopa.com/api/v1/)
+- [Unloopa API key settings](https://dashboard.unloopa.com/settings)
+- [Unloopa email setup](https://dashboard.unloopa.com/settings?tab=email)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST endpoint names, JSON request and response examples, and shell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires UNLOOPA_API_KEY and may guide actions that send outreach, place calls, activate campaigns, or purchase phone numbers.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter reports 1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

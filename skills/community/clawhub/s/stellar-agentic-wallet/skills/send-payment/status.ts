@@ -2,8 +2,8 @@
  * send-payment/status — poll a Rozo payment ID until complete.
  *
  * Usage:
- *   npx tsx skills/send-payment/status.ts <payment-id>
- *   npx tsx skills/send-payment/status.ts <payment-id> --watch
+ *   ./node_modules/.bin/tsx skills/send-payment/status.ts <payment-id>
+ *   ./node_modules/.bin/tsx skills/send-payment/status.ts <payment-id> --watch
  *
  * Takes no authentication. The Rozo API base is hardcoded in the client library.
  */

@@ -1,48 +1,62 @@
-## Description: <br>
-Time Weaver helps authors create exploratory time-travel fiction through choice-driven story setup, chapter generation, state tracking, publishing, and EPUB export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time Weaver helps authors create choice-driven time-travel fiction by generating era settings, characters, scenes, chapters, branching choices, and publication/export artifacts.
 
-## Publisher: <br>
-[harry720320](https://clawhub.ai/user/harry720320) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harry720320](https://clawhub.ai/user/harry720320)
 
-## Use Case: <br>
-External authors and writing assistants use this skill to plan, generate, continue, publish, and export branching Chinese time-travel novels. The workflow maintains book state in Markdown files, generates new chapters with choice points, and can publish chapters to the Time Weaver website when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chapters may be uploaded to the Time Weaver website as part of the normal chapter workflow. <br>
-Mitigation: Disable or avoid auto-publishing unless online publication is intended, and require explicit user confirmation before each upload. <br>
-Risk: The publishing flow stores the Time Weaver API key in a local plaintext configuration file. <br>
-Mitigation: Use a throwaway or least-privilege API key, rotate it regularly, and delete the local configuration when publishing is no longer needed. <br>
-Risk: Generated story state, chapters, and publishing status are written to local workspace files. <br>
-Mitigation: Review generated files before sharing or publishing, especially if drafts include private prompts, names, or unpublished story material. <br>
+## Use Case:
 
+Authors and creative-writing agents use this skill to plan and write interactive Chinese time-travel novels with persistent world, character, and plot state. It can generate Markdown chapters, present reader choices, publish chapters to the Time Weaver website, and export manuscripts as EPUB files.
 
-## Reference(s): <br>
-- [Time Weaver ClawHub listing](https://clawhub.ai/harry720320/time-weaver) <br>
-- [Publisher profile: harry720320](https://clawhub.ai/user/harry720320) <br>
-- [Time Weaver publishing site](https://time-weaver-782300018128.us-west1.run.app/) <br>
-- [Character Generator Reference](references/character-generator.md) <br>
-- [Era Settings Reference](references/era-settings.md) <br>
-- [Maoni Style Reference](references/maoni-style.md) <br>
-- [Protagonist Templates Reference](references/protagonist-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose and state files, shell commands, local configuration, and optional EPUB files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write book state under .learnings/books, store publishing status, store a local API key configuration, upload chapter content when publishing is enabled, and export EPUB files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.2 (source: frontmatter and server release metadata) <br>
+Risk: Generated manuscript chapters may be uploaded to the Time Weaver website during the publishing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each chapter before publishing and avoid automatic publishing when content should remain private.
+
+Risk: The publishing workflow stores a reusable API key in plaintext.
+
+Mitigation: Do not paste unrelated secrets into chat, rotate exposed API keys, and harden local credential storage before production use.
+
+Risk: Custom titles and imported chapter files are used by command-line publishing and EPUB export paths.
+
+Mitigation: Treat custom titles and imported files as untrusted input until command and export paths are reviewed and hardened.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harry720320/skills/time-weaver)
+- [Time Weaver Website](https://time-weaver-782300018128.us-west1.run.app/)
+- [Character Generator Reference](references/character-generator.md)
+- [Era Settings Reference](references/era-settings.md)
+- [Maoni Style Guide](references/maoni-style.md)
+- [Protagonist Templates Reference](references/protagonist-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown narrative text with inline command examples and generated manuscript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save book state under .learnings/books, publish chapters to a remote website, and export EPUB files through bundled Node.js scripts.]
+
+## Skill Version(s):
+
+0.7.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

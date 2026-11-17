@@ -1,42 +1,56 @@
-## Description: <br>
-Intelligent search for agents. Multi-source retrieval with confidence scoring - web, academic, and Tavily in one unified API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent search for agents. Multi-source retrieval with confidence scoring - web, academic, and Tavily in one unified API.
 
-## Publisher: <br>
-[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo)
 
-## Use Case: <br>
-Developers and research agents use this skill to run web, academic, smart, full-text, and Tavily-backed searches, then compare source coverage and confidence for research, market analysis, news aggregation, and technical due diligence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries, URLs, retrieved page content, or result summaries may be sent to AIsa and its search backends. <br>
-Mitigation: Use the skill only for data appropriate for external processing, and avoid secrets, private documents, authenticated pages, internal systems, and regulated data. <br>
-Risk: The API key can authorize paid external API usage. <br>
-Mitigation: Use a dedicated, revocable AISA_API_KEY and monitor usage or billing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/0xjordansg-yolo/openclaw-aisa-search-website-academic-tavily-serp-exa) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AIsa API documentation](https://aisa.mintlify.app) <br>
-- [AIsa Verity reference implementation](https://github.com/AIsa-team/verity) <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve web, academic, smart-search, and Tavily-backed results through one AIsa API workflow and to produce confidence-scored search outputs for research, market analysis, news aggregation, and competitive analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash examples and JSON API or client results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl or python3 and an AISA_API_KEY; search terms, URLs, retrieved content, and result summaries may be sent to AIsa APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms, URL targets, retrieved result sets, and crawl or site-map requests are sent to the AIsa API and Tavily-backed endpoints.
+
+Mitigation: Do not use the skill with secrets, confidential internal research, private URLs, localhost, internal network hosts, or access-controlled pages unless the organization has approved that data sharing.
+
+Risk: The skill can request extraction, crawling, and site maps for user-supplied URLs.
+
+Mitigation: Restrict URL inputs to public, approved targets and review crawl or extraction requests before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xjordansg-yolo/skills/openclaw-aisa-search-website-academic-tavily-serp-exa)
+- [OpenClaw Homepage](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AIsa Documentation](https://aisa.mintlify.app)
+- [AIsa Verity Reference Implementation](https://github.com/AIsa-team/verity)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, Python examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to AIsa API endpoints; responses may include confidence scores, source breakdowns, usage cost, and remaining credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

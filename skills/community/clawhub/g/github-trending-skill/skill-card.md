@@ -1,41 +1,59 @@
-## Description: <br>
-每日 GitHub Trending 热榜推送，支持日榜和月度汇总 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches GitHub Trending repositories and returns Chinese daily or monthly Markdown summaries.
 
-## Publisher: <br>
-[lxiaodong681-lab](https://clawhub.ai/user/lxiaodong681-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxiaodong681-lab](https://clawhub.ai/user/lxiaodong681-lab)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to fetch GitHub Trending repositories and receive concise Chinese Markdown summaries for daily or monthly review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live requests to GitHub and may be affected by network failures, rate limits, or changes to GitHub Trending page structure. <br>
-Mitigation: Use the built-in cache fallback when available and review output freshness before relying on summaries. <br>
-Risk: Fetched repository descriptions are public web content and may contain misleading or instruction-like text. <br>
-Mitigation: Treat fetched repository descriptions as untrusted content and do not follow instructions embedded in summaries. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent for current GitHub Trending repository summaries by day or month, optionally filtered by programming language and result limit.
 
-## Reference(s): <br>
-- [ClawHub GitHub Trending Skill](https://clawhub.ai/lxiaodong681-lab/github-trending-skill) <br>
-- [GitHub Trending](https://github.com/trending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily or monthly repository rankings with repository name, description, language, total stars, and period growth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill makes outbound requests to GitHub Trending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the network behavior before installation and run it only where outbound access to GitHub is acceptable.
+
+Risk: The skill creates or overwrites local cache JSON files for daily and monthly results.
+
+Mitigation: Install it in a workspace where those cache files are expected, and review cache contents if local persistence is a concern.
+
+Risk: Generated summaries are Chinese by design.
+
+Mitigation: Use this skill where Chinese Markdown output is desired or adapt the output formatting before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxiaodong681-lab/skills/github-trending-skill)
+- [Project homepage](https://github.com/lxiaodong681-lab/github-trending-skill)
+- [GitHub Trending](https://github.com/trending)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text]
+
+**Output Format:** [Chinese Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily or monthly summaries include repository name, description, language, total stars, and daily or monthly star growth.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

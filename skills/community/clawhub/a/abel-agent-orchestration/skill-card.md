@@ -1,47 +1,63 @@
-## Description: <br>
-Agent Orchestration helps agents spawn and manage sub-agents with structured prompts, tracking templates, and outcome-learning loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master the art of spawning and managing sub-agents. Write prompts that actually work, track running agents, and learn from every outcome.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-External developers and agent operators use this skill to structure sub-agent prompts, assign task-specific roles, track active agents, and capture lessons from completed work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional third-party model calls can expose prompts or context to the SkillBoss/HeyBoss API provider. <br>
-Mitigation: Use the API examples only after approving that provider, and do not send secrets, private files, customer data, or sensitive internal context. <br>
-Risk: Builder-agent templates may lead an agent to create or modify local files and run commands. <br>
-Mitigation: Set clear output paths, approval rules, and attempt limits, then review generated commands and file changes before execution. <br>
-Risk: Local tracking notes can accumulate sensitive operational details. <br>
-Mitigation: Keep tracking files free of secrets, private data, customer data, and sensitive internal context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure prompts for delegated research, build, and review work, track active sub-agents, and capture lessons from agent outcomes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abeltennyson/abel-agent-orchestration) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [Active agents tracking template](artifact/examples/active-agents.md) <br>
-- [Builder agent template](artifact/templates/builder-agent.md) <br>
-- [Research agent template](artifact/templates/research-agent.md) <br>
-- [Review agent template](artifact/templates/review-agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prompt templates, tracking tables, and guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional SkillBoss API examples require SKILLBOSS_API_KEY; generated commands, file changes, and tracking notes should be reviewed by the user before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes optional routing of prompt messages to a third-party API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send private code, business documents, regulated data, secrets, or sensitive workspace content to that endpoint without approval and redaction rules.
+
+Risk: The local agent-tracking workflow may leave persistent notes in the workspace.
+
+Mitigation: Store tracking notes in approved locations and review them for sensitive task details before sharing or committing.
+
+Risk: The security verdict is suspicious because the skill requires a third-party API key and lacks clear safeguards for full prompt payloads.
+
+Mitigation: Review the skill before installation and treat remote API usage as optional unless the deployment has explicit data-handling approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abeltennyson/skills/abel-agent-orchestration)
+- [Publisher Profile](https://clawhub.ai/user/abeltennyson)
+- [Complete Setup Guide](https://skillboss.co/skill.md)
+- [Active Agents Tracking Template](artifact/examples/active-agents.md)
+- [Builder Agent Template](artifact/templates/builder-agent.md)
+- [Research Agent Template](artifact/templates/research-agent.md)
+- [Review Agent Template](artifact/templates/review-agent.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with prompt templates, command snippets, and example code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY only when using the optional SkillBoss API Hub example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

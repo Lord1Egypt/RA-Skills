@@ -1,38 +1,54 @@
-## Description: <br>
-Learn French from Madame Dubois, a dramatic Parisian tutor who critiques pronunciation, celebrates progress, and teaches practical French from A1 to C2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+French Tutor helps learners build practical French skills from A1 to C2 through interactive lessons, placement tests, roleplay, corrections, and Madame Dubois's humorous coaching persona.
 
-## Publisher: <br>
-[sharoonsharif](https://clawhub.ai/user/sharoonsharif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharoonsharif](https://clawhub.ai/user/sharoonsharif)
 
-## Use Case: <br>
-Learners use this skill for interactive French tutoring, placement, roleplay, drills, corrections, and spaced review from beginner through advanced levels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local learner profile data may be retained in french-tutor-progress.json, including level, streak, vocabulary, weak areas, and recent lesson notes. <br>
-Mitigation: Use the skill in a directory where that local history is acceptable, and delete french-tutor-progress.json when the profile should no longer be retained. <br>
+## Use Case:
 
+External learners use this skill to practice French through level-aware tutoring, placement assessment, vocabulary and grammar exercises, roleplay, pronunciation guidance, and corrective feedback.
 
-## Reference(s): <br>
-- [French Tutor on ClawHub](https://clawhub.ai/sharoonsharif/french-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance, files] <br>
-**Output Format:** [Conversational Markdown with optional JSON progress-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update french-tutor-progress.json in the current working directory for lesson personalization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: The skill may create or update french-tutor-progress.json with learning level, vocabulary, weak areas, and recent session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a workspace where that local progress file is acceptable, and delete french-tutor-progress.json when you do not want the record retained.
+
+Risk: Humorous critique and language corrections may not match every learner's comfort level or may contain mistakes.
+
+Mitigation: Review important translations before relying on them and ask the agent for gentler feedback or clarification when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sharoonsharif/skills/french-tutor)
+- [Publisher profile](https://clawhub.ai/user/sharoonsharif)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational Markdown with optional JSON progress data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update french-tutor-progress.json in the current working directory.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

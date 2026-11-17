@@ -1,45 +1,58 @@
-## Description: <br>
-Generates a browser-openable, single-file HTML deliverable from complex AI outputs such as reports, analyses, specs, reviews, notes, dashboards, posters, and product mockups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anything to HTML helps an agent turn reports, analyses, plans, reviews, notes, and similar deliverables into a single browser-openable HTML file with structured layout, inline styling, semantic markup, and optional lightweight visualizations.
 
-## Publisher: <br>
-[ysredcity](https://clawhub.ai/user/ysredcity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysredcity](https://clawhub.ai/user/ysredcity)
 
-## Use Case: <br>
-Developers, analysts, and team members use this skill to turn complex AI-generated deliverables into polished, shareable single-file HTML documents. It is intended for readable final artifacts such as research reports, data summaries, proposal comparisons, requirements notes, meeting notes, review pages, one-page summaries, and lightweight product interface mockups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may reference allowlisted CDN resources, which can be unsuitable for sensitive or offline environments. <br>
-Mitigation: For sensitive or offline use, instruct the agent to avoid CDN resources and produce a fully self-contained HTML file. <br>
-Risk: The skill defaults toward Chinese prose and HTML deliverables, which may not match every requested audience or format. <br>
-Mitigation: State the desired output language and final format when a different language or non-HTML deliverable is required. <br>
+## Use Case:
 
+Developers, analysts, product teams, and business users use this skill when an agent's final deliverable should be a polished, shareable HTML document instead of a long Markdown response. It is suited for research reports, data summaries, design notes, plans, reviews, meeting notes, one-page summaries, and product-interface mockups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ysredcity/anything-to-html) <br>
-- [Anything to HTML Visual Language Tokens](references/design-tokens.md) <br>
-- [Article Archetype Guide](references/archetype-article.md) <br>
-- [Dashboard Archetype Guide](references/archetype-dashboard.md) <br>
-- [Poster Archetype Guide](references/archetype-poster.md) <br>
-- [Product Interface Archetype Guide](references/archetype-app-screen.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Markdown, Guidance] <br>
-**Output Format:** [Single-file HTML with inline CSS and optional inline or allowlisted CDN JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated artifact is designed to open directly in a browser and to remain readable as structured text for later AI processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML may optionally load third-party CDN scripts when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive business data, instruct the agent to avoid CDN scripts and use inline SVG or native JavaScript instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysredcity/skills/anything-to-html)
+- [Design tokens](references/design-tokens.md)
+- [Article archetype guide](references/archetype-article.md)
+- [Dashboard archetype guide](references/archetype-dashboard.md)
+- [Poster archetype guide](references/archetype-poster.md)
+- [App screen archetype guide](references/archetype-app-screen.md)
+- [Tailwind browser CDN](https://cdn.tailwindcss.com)
+- [ECharts CDN](https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js)
+- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js)
+- [D3 CDN](https://cdn.jsdelivr.net/npm/d3@7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Single-file HTML guidance and code, usually delivered as one complete .html document with inline CSS and optional inline or allowlisted JavaScript.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are designed to open directly in a browser and to remain readable as structured text for later agent processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

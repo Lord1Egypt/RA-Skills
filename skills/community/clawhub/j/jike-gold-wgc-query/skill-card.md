@@ -1,45 +1,55 @@
-## Description: <br>
-Queries current and historical World Gold Council gold prices through the Jike API, with filters for date, weight unit, and currency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries latest and historical World Gold Council gold prices through Jike API, with optional date, weight-unit, and currency filters.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agents use this skill to answer current or historical international gold price questions by running a Python helper backed by Jike API data. It returns price dates, update times, weight units, currencies, and prices, with a reminder that market data is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script sends the configured Jike AppKey as a query parameter to the selected API base URL. <br>
-Mitigation: Use the default jikeapi.cn endpoint or set JIKE_API_BASE_URL only to a trusted endpoint that is intended to receive the AppKey. <br>
-Risk: Local .env support can persist the AppKey near the script. <br>
-Mitigation: Keep any script-local .env file limited to the intended Jike key and avoid committing or sharing it. <br>
-Risk: Gold price data may be mistaken for financial advice. <br>
-Mitigation: Present returned prices as informational market data and preserve the skill's investment-advice caveat. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current or historical international gold-price data and present price date, update time, weight unit, currency, and price. Returned market data should be treated as informational and not as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-gold-wgc-query) <br>
-- [Publisher profile](https://clawhub.ai/user/jikeapi-cn) <br>
-- [Jike API homepage](https://www.jikeapi.cn/) <br>
-- [Jike WGC latest gold price endpoint](https://api.jikeapi.cn/v1/gold/wgc/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversation responses with shell command examples, configuration notes, tabular text output, and optional JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Jike AppKey supplied through JIKE_GOLD_WGC_QUERY_KEY, JIKE_APPKEY, --key, or a local script .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: An undocumented API-base override can redirect the Jike AppKey to an arbitrary endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep JIKE_API_BASE_URL unset or locked to https://api.jikeapi.cn, use a low-privilege API key, and rotate the key if it may have run with an untrusted base URL.
+
+Risk: Gold-price data can be mistaken for investment advice.
+
+Mitigation: Use the skill only for explicit live or historical price lookups and preserve the informational, non-investment-advice framing in responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-gold-wgc-query)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Jike WGC latest gold price endpoint](https://api.jikeapi.cn/v1/gold/wgc/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text tables or JSON returned by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JIKE_GOLD_WGC_QUERY_KEY or JIKE_APPKEY credential. The script can query latest prices or historical prices filtered by date, weight unit, and currency.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

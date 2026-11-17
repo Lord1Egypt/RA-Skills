@@ -1,42 +1,57 @@
-## Description: <br>
-Bitcoin Market Intelligence provides paid Bitcoin market briefs and alerts over Lightning L402, including BTC price, sentiment, mempool fees, ETF flows, on-chain metrics, prediction market odds, and curated news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Bitcoin market intelligence over Lightning L402, including live price, Fear & Greed, mempool fees, ETF flows, on-chain metrics, prediction market odds, curated news, and breaking alerts.
 
-## Publisher: <br>
-[Fr0zen80](https://clawhub.ai/user/Fr0zen80) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fr0zen80](https://clawhub.ai/user/fr0zen80)
 
-## Use Case: <br>
-External agents and developers use this skill to query paid Bitcoin market intelligence and breaking-alert data from a Tor-hosted L402 endpoint. It supports market monitoring workflows that can spend Lightning funds to retrieve fresh data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use a funded Lightning wallet for paid API calls. <br>
-Mitigation: Use a dedicated low-balance wallet or channel, require manual approval for paid calls, and set spending and retry limits. <br>
-Risk: The skill contacts a third-party Tor service for market data. <br>
-Mitigation: Verify the service operator and data quality before relying on the output for trading, operational, or financial decisions. <br>
+## Use Case:
 
+External users and agent developers use this skill to call a paid Bitcoin intelligence API that returns market briefs, alert status, and service health over Lightning. It is intended for agents that can use lnget, access Tor, and pay L402 invoices from a funded Lightning node.
 
-## Reference(s): <br>
-- [lnget](https://github.com/lightninglabs/lnget) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Fr0zen80/derek-bitcoin-intel) <br>
-- [Publisher Profile](https://clawhub.ai/user/Fr0zen80) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires lnget, Tor access, and a configured Lightning node with funds for paid endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence) <br>
+Risk: Paid examples can spend Lightning funds from a funded node.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Call the free health endpoint first and require explicit user approval or spending limits before running paid lnget commands.
+
+Risk: The skill depends on Tor access, lnget, and a configured Lightning node, so calls may fail or hang if those prerequisites are unavailable.
+
+Mitigation: Check local Tor, lnget, LND, and channel funding status before attempting paid endpoint calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fr0zen80/skills/derek-bitcoin-intel)
+- [lnget](https://github.com/lightninglabs/lnget)
+- [Derek Health Endpoint](http://jnfaphddbeubdgpsbrw4d2z6wjew57djdzyrzkbt2ta7bi3wfzmfsfyd.onion/api/health)
+- [Derek Market Brief Endpoint](http://jnfaphddbeubdgpsbrw4d2z6wjew57djdzyrzkbt2ta7bi3wfzmfsfyd.onion/api/market-brief)
+- [Derek Latest Alert Endpoint](http://jnfaphddbeubdgpsbrw4d2z6wjew57djdzyrzkbt2ta7bi3wfzmfsfyd.onion/api/latest-alert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown with inline bash commands and endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid API calls may spend 50 to 100 sats through lnget and require Tor plus a funded Lightning node.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

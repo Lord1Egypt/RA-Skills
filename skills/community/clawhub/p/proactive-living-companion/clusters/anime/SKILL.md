@@ -6,7 +6,7 @@ trigger: ANIME
 
 # Anime — Deutsche Synchro auf Crunchyroll, Netflix, Prime, Disney+
 
-## User Preferences
+## Daniel's Preferences
 - **Streaming:** Crunchyroll, Netflix, Prime Video, Disney+
 - **Genres:** Action, Adventure, Fantasy, Isekai, Shonen, Comedy, Romance, Slice-of-Life, Drama, Mystery, Psychological, Supernatural, School
 - **Dub:** Immer Deutsche Synchro bevorzugen
@@ -41,15 +41,9 @@ Für Daniel interessant wegen: [Genre/Ähnlich wie X]:
 
 ## Filter Rules
 1. NUR Deutsche Synchro oder Ankündigung dafür
-2. Nur Genres die der User mag
+2. Nur Genres die Daniel mag
 3. Starttermin in den nächsten 1-2 Monaten
 4. Max 2-3 Anime pro Ping (nicht überfordern)
-
-## Quality Gates
-- Kein Ergebnis gefunden → kein Ping
-- Unsichere Info → lieber skip
-- Crunchyroll hat fast alles → als Primary Source nutzen
-- Bei "Für [USER] interessant" → generisch halten, keinen Namen hardcoden
 
 ## Quality Gates
 - Kein Ergebnis gefunden → kein Ping

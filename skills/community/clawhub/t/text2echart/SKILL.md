@@ -10,8 +10,10 @@ description: >
   - Fine-tuning (微调/修改): open browser for interactive adjustment.
   Supports 6 chart types: bar, line, pie, scatter, radar, wordcloud (via JSON).
   Trigger words: chart, graph, visualize, plot, draw, wordcloud, vent draw图表, 画图, 可视化, 图片, 矢量图, 词云.
+disable-model-invocation: true
+user-invocable: true
 metadata:
-  version: "2.3.2"
+  version: "2.3.11"
   launch: "text2echarts.html"
   trigger-keywords:
     - chart
@@ -39,6 +41,16 @@ metadata:
 ---
 
 # text2echart — Data to Chart
+
+## Invocation Model
+
+text2echart is a chart-generation skill configured with safety-first invocation settings:
+
+- **`disable-model-invocation: true`** — The AI model will **never** automatically invoke this skill on its own. text2echart requires **explicit user invocation** — you must explicitly ask for a chart, graph, visualization, or use one of the trigger keywords before the skill is activated. This prevents the model from generating charts without your awareness, especially when sensitive data is involved.
+
+- **`user-invocable: true`** — You (the user) **can** explicitly invoke this skill at any time by using trigger keywords like `chart`, `graph`, `visualize`, `plot`, `draw`, `wordcloud`, `图表`, `画图`, `可视化`, etc.
+
+**Why these settings matter:** Chart generation can involve processing uploaded data files (CSV/JSON) and rendering executable HTML content. Requiring explicit user invocation ensures there is always a conscious human decision before data is processed into visualizations.
 
 ## ⚡ Routing
 

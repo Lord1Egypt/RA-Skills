@@ -1,40 +1,61 @@
-## Description: <br>
-Manage ProtonMail emails via Playwright browser automation. Login, read, send, and manage your encrypted inbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Proton Mail email through Playwright browser automation, including login, reading messages, sending mail, and mailbox management.
 
-## Publisher: <br>
-[Christopher-Schulze](https://clawhub.ai/user/Christopher-Schulze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[christopher-schulze](https://clawhub.ai/user/christopher-schulze)
 
-## Use Case: <br>
-Developers and external users use this skill to automate Proton Mail browser workflows, including login, inbox reading, message composition, sending, and mailbox management through Playwright. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over a Proton Mail account, including access to mailbox contents and actions such as sending, deleting, moving, or forwarding messages. <br>
-Mitigation: Use only an account you own, prefer a test or low-risk mailbox, protect credentials and cookies like passwords, and require explicit review before any send, delete, move, or forwarding action. <br>
-Risk: The skill uses stealth browser settings and documents no-sandbox launch flags, which can increase account, platform-compliance, and local browser isolation risk. <br>
-Mitigation: Avoid stealth and no-sandbox browser flags unless the risk is understood, and run automation in a constrained environment with reviewed browser settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Proton Mail](https://proton.me/mail) <br>
-- [ClawHub skill page](https://clawhub.ai/Christopher-Schulze/protonmail-claw) <br>
+## Use Case:
 
+Developers and agents use this skill to automate Proton Mail inbox access and message sending through a browser session when no API or IMAP workflow is used.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance and examples are intended for Playwright-based browser automation using Node.js and Chromium.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access and send mail from a Proton Mail account.
+
+Mitigation: Use only accounts you control, review actions before sending messages, and avoid running the automation with elevated privileges.
+
+Risk: The skill handles sensitive email credentials and browser sessions.
+
+Mitigation: Store credentials outside source files, protect environment variables and session cookies, and rotate credentials if exposure is suspected.
+
+Risk: The artifact includes bot-detection evasion settings and disabled Chromium sandboxing.
+
+Mitigation: Remove stealth settings and no-sandbox launch arguments before use, keep browser sandboxing enabled where possible, and pin dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/christopher-schulze/skills/protonmail-claw)
+- [Publisher profile](https://clawhub.ai/user/christopher-schulze)
+- [Proton Mail](https://proton.me/mail)
+- [Proton account login](https://account.proton.me/login)
+- [Proton Mail inbox](https://mail.proton.me/inbox)
+- [Proton Mail compose](https://mail.proton.me/compose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, Playwright, and Chromium; examples rely on browser automation against Proton Mail web pages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

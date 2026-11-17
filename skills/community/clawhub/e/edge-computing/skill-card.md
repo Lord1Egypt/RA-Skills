@@ -1,40 +1,54 @@
-## Description: <br>
-Deep edge computing workflow-what runs at edge vs origin, caching, KV and data locality, security, limits, and latency validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an edge computing workflow for deciding what runs at the edge versus origin and reviewing caching, data locality, security, platform limits, cost, and latency validation for CDN and edge worker deployments.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan edge deployments, decide what belongs at the CDN or edge versus origin, and review caching, state, security, runtime limits, cost, and rollout validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Edge deployment guidance can affect sessions, tenant isolation, cookies, and secrets if applied directly to cloud changes. <br>
-Mitigation: Review proposed architecture and deployment changes separately before approval, and verify secrets are not embedded in deploy bundles. <br>
-Risk: Misjudging edge runtime limits, cache behavior, or regional rollout behavior can cause incorrect personalization, latency regressions, or failed requests. <br>
-Mitigation: Confirm platform-specific CPU, request-size, API, cache, and cost constraints, then validate with multi-region canaries and origin fallback. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan and review CDN and edge worker deployments, including workload fit, edge versus origin responsibilities, state strategy, tenant security, platform limits, cost, and regional rollout validation.
 
-## Reference(s): <br>
-- [Edge Computing on ClawHub](https://clawhub.ai/mike47512/edge-computing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance; it does not execute code, access credentials, or install dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Platform-specific edge runtime limits, APIs, and security controls may differ from the general workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target platform's documented limits, available APIs, and security controls before making production changes.
+
+Risk: Incorrect edge versus origin placement can affect latency, cost, caching behavior, or fallback reliability.
+
+Mitigation: Document origin responsibilities, platform limits, cost assumptions, fallback behavior, and canary validation before rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/edge-computing)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with checklists and implementation review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only workflow; no embedded code, persistence, or tool execution is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

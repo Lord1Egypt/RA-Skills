@@ -73,7 +73,7 @@ github-collab/
 │   │   ├── task-manager.js          # 任务管理
 │   │   ├── task-dependency-manager.js # 任务依赖管理
 │   │   ├── task-priority-manager.js # 任务优先级管理
-│   │   ├── task-distribution-manager.js # 任务分发管理
+│   │   ├── taREDACTED-SECRET.js # 任务分发管理
 │   │   ├── project-manager.js       # 项目管理
 │   │   ├── session-validator.js     # 会话验证
 │   │   ├── performance-monitor.js   # 性能监控

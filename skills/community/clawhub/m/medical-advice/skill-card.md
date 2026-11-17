@@ -1,42 +1,59 @@
-## Description: <br>
-Provides symptom-oriented medical information, care-seeking guidance, medication information, and optional PubMed and OpenFDA lookups for cited reference material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical Advice helps agents provide Chinese-language symptom analysis, care-seeking guidance, health advice, and optional PubMed/OpenFDA lookups with cited medical and drug-information sources.
 
-## Publisher: <br>
-[Djttt](https://clawhub.ai/user/Djttt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djttt](https://clawhub.ai/user/djttt)
 
-## Use Case: <br>
-External users can use this skill to structure symptom questions, understand possible causes, identify when to seek professional or emergency care, and retrieve public medical literature or drug-label information. It is for general medical information and care navigation, not diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general medical information as a diagnosis or a substitute for professional care. <br>
-Mitigation: Present the output as general information only, include a clear non-diagnosis disclaimer, and direct users to professional or emergency care for serious, worsening, or uncertain symptoms. <br>
-Risk: API-backed medical or drug searches may include unnecessary personal identifiers if users provide them in queries. <br>
-Mitigation: Avoid sending names, contact details, account identifiers, or other unnecessary personal data in PubMed or OpenFDA search terms. <br>
+## Use Case:
 
+External users and agents use this skill to structure informational medical conversations, identify urgent symptoms, suggest appropriate clinical departments, and retrieve supporting PubMed literature or OpenFDA drug information when relevant. It is not a substitute for professional diagnosis, emergency care, or individualized treatment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Djttt/medical-advice) <br>
-- [PubMed E-utilities](https://eutils.ncbi.nlm.nih.gov/) <br>
-- [OpenFDA API](https://api.fda.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown text with optional JSON-backed PubMed and OpenFDA references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, medical disclaimers, and escalation advice for urgent or worsening symptoms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may mistake informational health guidance for diagnosis or emergency medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill's disclaimer visible, avoid definitive diagnoses, and direct severe or persistent symptoms to professional medical care.
+
+Risk: API-backed searches may send medical or drug query terms to NIH/OpenFDA services.
+
+Mitigation: Avoid personally identifying health details in search terms unless the user intentionally wants those terms queried against external services.
+
+Risk: Medical literature and drug data can be incomplete, delayed, or misapplied to an individual case.
+
+Mitigation: Cite PubMed/OpenFDA sources when used and tell users to rely on current clinician guidance for treatment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/djttt/skills/medical-advice)
+- [PubMed E-utilities](https://eutils.ncbi.nlm.nih.gov/)
+- [OpenFDA API](https://api.fda.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style Chinese text with optional shell commands and JSON-shaped API result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cited PubMed/OpenFDA links, emergency-care warnings, non-diagnostic disclaimers, and API error messages when network queries fail.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

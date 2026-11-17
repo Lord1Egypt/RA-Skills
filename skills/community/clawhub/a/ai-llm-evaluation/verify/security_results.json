@@ -1,0 +1,278 @@
+{
+  "skill": "ai-llm-evaluation",
+  "version": "1.0.0",
+  "generated_at": "2026-08-28",
+  "note": "LLM 质量评测 · 质量与安全稳定性实测（本地闭环）",
+  "dimensions": [
+    {
+      "key": "metric_timeliness",
+      "label": "指标时效",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "01-评测全景与指标.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "02-评测集构建.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "03-RAG系统评测.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "04-幻觉检测与度量.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "05-Prompt回归测试.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "06-模型对比选型.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "07-评测流程与报告.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "08-FAQ.md 含核对基准日",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=8（实际 8）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-评测全景与指标.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-评测集构建.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-RAG系统评测.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-幻觉检测与度量.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-Prompt回归测试.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-模型对比选型.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-评测流程与报告.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "关键模块 01-评测全景与指标",
+          "pass": true
+        },
+        {
+          "name": "关键模块 02-评测集构建",
+          "pass": true
+        },
+        {
+          "name": "关键模块 03-RAG系统评测",
+          "pass": true
+        },
+        {
+          "name": "关键模块 04-幻觉检测与度量",
+          "pass": true
+        },
+        {
+          "name": "关键模块 05-Prompt回归测试",
+          "pass": true
+        },
+        {
+          "name": "关键模块 06-模型对比选型",
+          "pass": true
+        },
+        {
+          "name": "关键模块 07-评测流程与报告",
+          "pass": true
+        },
+        {
+          "name": "关键模块 08-FAQ",
+          "pass": true
+        },
+        {
+          "name": "快速上手存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界存在",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "tool_usability",
+      "label": "工具可用",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "--help 可执行",
+          "pass": true
+        },
+        {
+          "name": "命令 metrics 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 setdesign 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 rag 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 compare 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 report 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "metrics rag 含忠实度",
+          "pass": true
+        },
+        {
+          "name": "metrics qa 含幻觉率",
+          "pass": true
+        },
+        {
+          "name": "setdesign rag 含跨文档",
+          "pass": true
+        },
+        {
+          "name": "rag 含四指标",
+          "pass": true
+        },
+        {
+          "name": "compare 含成本",
+          "pass": true
+        },
+        {
+          "name": "report 含门禁",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "judgment_accuracy",
+      "label": "判定正确",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "指标场景[rag]含[忠实度]",
+          "pass": true
+        },
+        {
+          "name": "指标场景[summary]含[信息覆盖]",
+          "pass": true
+        },
+        {
+          "name": "指标场景[classification]含[准确率]",
+          "pass": true
+        },
+        {
+          "name": "指标场景[code]含[通过率]",
+          "pass": true
+        },
+        {
+          "name": "指标场景[translation]含[术语一致性]",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构一致",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 有 9 必填字段",
+          "pass": true
+        },
+        {
+          "name": "description 值无半角冒号+空格（YAML 安全）",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在",
+          "pass": true
+        },
+        {
+          "name": "SECURITY_AUDIT.md 存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references+SKILL.md 无敏感词",
+          "pass": true
+        },
+        {
+          "name": "工具脚本零网络依赖",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 51,
+    "passed": 51,
+    "failed": 0,
+    "overall": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "metric_timeliness": 3.0,
+      "coverage_completeness": 3.2,
+      "tool_usability": 3.0,
+      "judgment_accuracy": 3.4,
+      "structure_compliance": 3.2,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "metric_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "tool_usability": 4.5,
+      "judgment_accuracy": 4.5,
+      "structure_compliance": 4.5,
+      "security_cleanliness": 4.5
+    }
+  }
+}

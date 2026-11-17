@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn76q0t99x1shze59nhkmk0ce583mjv3",
+  "ownerId": "kn7616bn7vkesrgk4vxnt00avn83ejqq",
   "slug": "typecho-blog-publish",
-  "version": "2.0.0",
-  "publishedAt": 1775188111584
+  "version": "1.1.0",
+  "publishedAt": 1774493000000,
+  "description": "通过 XML-RPC 自动发布文章到 Typecho 博客。支持 Markdown、文件读取、草稿模式、标签管理、图片上传。",
+  "author": "团子",
+  "license": "MIT",
+  "changelog": "v1.1.0: 新增图片上传功能，支持自动上传并插入图片到文章"
 }

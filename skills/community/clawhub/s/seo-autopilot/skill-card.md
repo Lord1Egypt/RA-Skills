@@ -1,41 +1,56 @@
-## Description: <br>
-Run local SEO autopilot for boll-koll.se or hyresbyte.se and return PR link plus summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local SEO autopilot for boll-koll.se or hyresbyte.se and return PR link plus summary.
 
-## Publisher: <br>
-[adamhjort](https://clawhub.ai/user/adamhjort) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[adamhjort](https://clawhub.ai/user/adamhjort)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and site operators use this skill to trigger an allowlisted local SEO automation run for boll-koll.se or hyresbyte.se and receive a pull request link plus a concise findings summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill invokes an unpinned local seo-autopilot executable through PATH.
+
+Mitigation: Install seo-autopilot from a trusted source, keep untrusted directories out of PATH, and prefer a pinned absolute path or bundled reviewed implementation before routine use.
+
+Risk: The skill may use local repository and network credentials while creating pull requests.
+
+Mitigation: Run it only in a controlled repository environment with appropriately scoped credentials and review generated changes before merging.
+
+Risk: The trigger is broad enough that accidental activation could start an SEO automation run.
+
+Mitigation: Use a narrower trigger or add an explicit confirmation step before executing the local command.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and site operators use this skill to run allowlisted SEO automation for boll-koll.se or hyresbyte.se, then receive a PR URL and a short summary of reported findings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper invokes a local seo-autopilot executable, so an unexpected executable on PATH could affect the SEO run. <br>
-Mitigation: Install only in environments where the seo-autopilot executable is trusted and PATH is controlled. <br>
-Risk: Automation may open pull requests against the wrong repository or account if the local tool is misconfigured. <br>
-Mitigation: Confirm generated PR URLs target the expected repository and account before review or merge. <br>
-Risk: The plain 'seo' trigger defaults to boll-koll.se, which could run unintentionally. <br>
-Mitigation: Prefer the site-specific triggers when accidental execution would matter. <br>
+**Output Format:** [Markdown summary with a pull request URL and optional top SEO findings]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Default target site is boll-koll.se; execution is limited to boll-koll.se and hyresbyte.se.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown summary containing a PR URL and top SEO findings when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Site input is restricted to boll-koll.se or hyresbyte.se and defaults to boll-koll.se.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

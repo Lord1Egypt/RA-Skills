@@ -1,44 +1,59 @@
-## Description: <br>
-Build, deploy, and extend the FuelWatch crowdsourced fuel availability tracker for South Africa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, deploy, and extend the FuelWatch crowdsourced fuel availability tracker for South Africa.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and maintainers use this skill to build, fix, deploy, and extend FuelWatch, a mobile-first web app for tracking fuel prices and availability at South African stations. It also guides planned backend, real-time, social sharing, WhatsApp, and voice-reporting extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-South Africa <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying deployment guidance to a live FuelWatch host could change files or restart the service unexpectedly. <br>
-Mitigation: Confirm the target server and application path, review proposed changes first, and approve any service restart before execution. <br>
-Risk: Future WhatsApp or voice-report ingestion could collect personal data or accept abusive and unverified reports. <br>
-Mitigation: Add privacy, retention, validation, rate limiting, and abuse controls before enabling those channels. <br>
-Risk: Crowdsourced fuel availability and price reports may be stale or inaccurate. <br>
-Mitigation: Keep age-based unverified labels, add confirmation or upvote workflows, and avoid treating user reports as authoritative without review. <br>
+## Use Case:
 
+Developers and maintainers use this skill to build, deploy, fix, and extend FuelWatch, a mobile-first crowdsourced fuel price and availability tracker for South African fuel stations.
 
-## Reference(s): <br>
-- [FuelWatch Backend Plan](references/backend-plan.md) <br>
-- [FuelWatch live app](http://161.97.110.234:8080) <br>
-- [ClawHub Fuelwatch listing](https://clawhub.ai/stefanferreira/fuelwatch) <br>
+### Deployment Geography for Use:
 
+South Africa
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation plans, file-change guidance, deployment checks, and service restart commands for FuelWatch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The planned backend and WhatsApp reporting flow may allow anonymous or automated public report writes without documented server-side abuse controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before implementing Phase 2 or Phase 3, add Supabase RLS, a trusted validation endpoint, rate limits, field allowlists, database constraints, and moderation or quarantine for submitted reports.
+
+Risk: Crowdsourced fuel reports can become stale or inaccurate and may mislead users during a shortage.
+
+Mitigation: Treat report data as unverified user-generated content, preserve age and verification indicators, and review deployment changes before release.
+
+Risk: Frontend dependencies added through external CDNs can change or be unavailable if they are not controlled.
+
+Mitigation: Pin exact dependency versions or bundle reviewed frontend dependencies before production deployment.
+
+## Reference(s):
+
+- [Fuelwatch ClawHub Skill Page](https://clawhub.ai/stefanferreira/skills/fuelwatch)
+- [stefanferreira ClawHub Publisher Profile](https://clawhub.ai/user/stefanferreira)
+- [FuelWatch Backend Plan](artifact/references/backend-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment steps, frontend and backend code changes, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

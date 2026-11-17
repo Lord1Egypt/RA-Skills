@@ -1,45 +1,64 @@
-## Description: <br>
-Use twitter-cli for Twitter/X operations including reading tweets, posting, replying, quoting, liking, retweeting, following, searching, and user lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use twitter-cli for Twitter/X operations including reading timelines, posting, replying, quoting, liking, retweeting, following, searching, and user lookups.
 
-## Publisher: <br>
-[flyingtimes](https://clawhub.ai/user/flyingtimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyingtimes](https://clawhub.ai/user/flyingtimes)
 
-## Use Case: <br>
-Agents and developers use this skill to operate Twitter/X from a terminal, including timeline reading, search, account lookup, and account-changing actions such as posts, likes, retweets, bookmarks, and follows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access highly sensitive Twitter/X session cookies. <br>
-Mitigation: Use a dedicated browser profile or throwaway account, avoid pasting full Cookie headers into chat or public issues, and treat cookie values as secrets. <br>
-Risk: The skill can perform account-changing actions such as posting, liking, retweeting, following, bookmarking, and deleting content. <br>
-Mitigation: Review every write action before allowing it and avoid accounts where unintended activity would create serious impact. <br>
-Risk: Artifact metadata and server release evidence disagree on license and version. <br>
-Mitigation: Confirm release terms and intended version before publication; this context uses server release evidence for the public release card. <br>
+## Use Case:
 
+Developers and agent users use this skill to operate Twitter/X from a terminal-oriented workflow for account reading, search, profile lookup, and reviewed write actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flyingtimes/twitter-command) <br>
-- [Publisher Profile](https://clawhub.ai/user/flyingtimes) <br>
-- [Structured Output Schema](SCHEMA.md) <br>
-- [PyPI Project](https://pypi.org/project/twitter-cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON, YAML] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI results may be rich text, compact text, JSON, or YAML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured CLI output uses an ok/schema_version/data envelope for success and ok/schema_version/error for errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can access account capabilities equivalent to a logged-in Twitter/X browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a local isolated environment and restrict the browser profile with TWITTER_CHROME_PROFILE.
+
+Risk: Manual full-cookie sharing can expose session credentials in remote-agent or chat workflows.
+
+Mitigation: Prefer local browser cookie extraction and avoid copying raw cookies into chat logs.
+
+Risk: Write actions can post, delete, follow, like, retweet, or otherwise change account state.
+
+Mitigation: Review write actions before execution and allow them only when the requested account change is clear.
+
+Risk: Proxy configuration can route authenticated requests through an untrusted network path.
+
+Mitigation: Do not use untrusted proxies for authenticated Twitter/X sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyingtimes/skills/twitter-command)
+- [Publisher profile](https://clawhub.ai/user/flyingtimes)
+- [PyPI package](https://pypi.org/project/twitter-cli/)
+- [Structured output schema](SCHEMA.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or YAML CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI supports rich table, compact text, YAML, and JSON output envelopes for agent workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

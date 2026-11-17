@@ -1,40 +1,56 @@
-## Description: <br>
-AI-driven acceptance execution that autonomously runs [A] steps and asks humans only for [H] steps with precise micro-instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 驱动验收执行 — 自主运行 [A] 步骤，对 [H] 步骤调用人类并提供精确的微指令。
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run SDD human-verification checklists, execute automated acceptance steps, ask humans only for manual observations, and update checklist status for resumable acceptance testing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Checklist content can drive Bash command execution.
+
+Mitigation: Use only trusted spec-human-verify.md files and review every backticked command before allowing the skill to run.
+
+Risk: The skill may make automatic code, configuration, or environment-file changes while trying to repair failed checks.
+
+Mitigation: Require explicit approval for changes to .env, source code, or configuration and inspect diffs after each repair attempt.
+
+Risk: Custom or external checklist paths may broaden the files and commands the skill consumes.
+
+Mitigation: Prefer checklist files generated inside the trusted workspace spec directory and avoid unreviewed custom paths.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and QA engineers use this skill to run SDD acceptance checklists, automate machine-verifiable steps, and request focused yes/no human verification for manual observations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run commands from acceptance checklists and start local services. <br>
-Mitigation: Use it only in trusted, version-controlled workspaces and review all backticked checklist commands and service ports before execution. <br>
-Risk: The skill may modify code, spec-human-verify.md, and .env files while trying to repair failed checks. <br>
-Mitigation: Review resulting file changes after each run and keep source control available to inspect or undo unintended edits. <br>
+**Output Format:** [Markdown and plain text guidance with shell command execution and checklist file updates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/sdd-start-human-verify) <br>
+**Other Properties Related to Output:** [Chinese user-facing acceptance summaries, yes/no human verification prompts, and status updates to spec-human-verify.md.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text prompts with inline shell commands and checklist status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update spec-human-verify.md, code, and local configuration files while executing acceptance checks.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

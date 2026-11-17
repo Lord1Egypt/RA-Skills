@@ -1,52 +1,67 @@
-## Description: <br>
-Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook, plus web scraping, SEO data, and hosted webhook receiving. Structured JSON, no infra to run.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-Developers and agents use this skill to discover and call agntdata's unified social-data APIs across LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook, including webhook setup and delivery polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AGNTDATA_API_KEY and webhook receive URLs are sensitive credentials. <br>
-Mitigation: Store them as secrets, avoid logging or sharing them, and rotate exposed values. <br>
-Risk: Webhook endpoints use URL-only authentication and may persist raw third-party payloads. <br>
-Mitigation: Avoid production webhooks unless sender authenticity can be independently verified and payloads are sanitized before processing. <br>
-Risk: Social-data and contact-data queries may disclose sensitive data to agntdata. <br>
-Mitigation: Minimize lookup scope and confirm the use case complies with applicable data-handling policies. <br>
-Risk: The skill recommends a separate npm plugin for richer tooling. <br>
-Mitigation: Review the plugin artifact and permissions separately before installing it. <br>
+## Use Case:
 
+Developers and AI agents use this skill to retrieve structured social, web, and SEO data across supported platforms, and to receive and process hosted webhook events.
 
-## Reference(s): <br>
-- [agntdata homepage](https://agntdata.dev) <br>
-- [agnt-data on ClawHub](https://clawhub.ai/jaencarrodine/agnt-data) <br>
-- [Facebook API Reference](references/facebook/README.md) <br>
-- [Instagram API Reference](references/instagram/README.md) <br>
-- [LinkedIn API Reference](references/linkedin/README.md) <br>
-- [Reddit API Reference](references/reddit/README.md) <br>
-- [TikTok API Reference](references/tiktok/README.md) <br>
-- [X API Reference](references/x/README.md) <br>
-- [YouTube API Reference](references/youtube/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with curl commands, endpoint tables, and JSON response expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY for authenticated API calls; public discovery endpoints are documented separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server release evidence) <br>
+Risk: The service receives the API key and data sent through its API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the service, and protect the API key as a credential.
+
+Risk: Incoming webhook payloads are accepted without vendor signature verification and may be untrusted.
+
+Mitigation: Independently verify consequential events before acting on them; treat the receive URL as a secret.
+
+Risk: The security scan covered 10 of 11 components and one analyzer was degraded, leaving incomplete evidence.
+
+Mitigation: Review the skill and its behavior before installing or deploying it.
+
+## Reference(s):
+
+- [Social Data documentation](https://superagnt.com/r/ch-social-data-docs)
+- [Social Data MCP server](https://mcp.superagnt.com/mcp/social-data)
+- [Facebook API reference](references/facebook/README.md)
+- [Instagram API reference](references/instagram/README.md)
+- [LinkedIn API reference](references/linkedin/README.md)
+- [Reddit API reference](references/reddit/README.md)
+- [SEO API reference](references/seo/README.md)
+- [TikTok API reference](references/tiktok/README.md)
+- [Web API reference](references/web/README.md)
+- [X API reference](references/x/README.md)
+- [YouTube API reference](references/youtube/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Markdown]
+
+**Output Format:** [Structured JSON API results and scraped page content as Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected platform endpoint and the user's service access.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

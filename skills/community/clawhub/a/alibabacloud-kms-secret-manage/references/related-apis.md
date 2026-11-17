@@ -696,7 +696,7 @@ Manage ECS instance login credentials (password or SSH key), supports automatic 
 
 **SSH Key Mode SecretData Format:**
 ```json
-{"UserName":"root","PublicKey":"ssh-rsa xxx","PrivateKey":"-----BEGIN RSA PRIVATE KEY-----\nxxx\n-----END RSA PRIVATE KEY-----"}
+{"UserName":"root","PublicKey":"ssh-rsa xxx","PrivateKey":"REDACTED-SECRET"}
 ```
 
 **ExtendedConfig Format:**

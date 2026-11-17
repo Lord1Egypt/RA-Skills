@@ -1,42 +1,55 @@
-## Description: <br>
-上市公司税务计算技能包，覆盖增值税、企业所得税、个人所得税、附加税费、税务申报逻辑与税负预警，适用于企业税务核算、申报辅助和财税合规检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上市公司税务计算技能包，覆盖增值税、企业所得税、个人所得税、附加税费、税务申报逻辑与税负预警，适用于企业税务核算、申报辅助和财税合规检查。
 
-## Publisher: <br>
-[aolikeji](https://clawhub.ai/user/aolikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolikeji](https://clawhub.ai/user/aolikeji)
 
-## Use Case: <br>
-External finance teams, accountants, tax specialists, and business operators use this skill for Chinese VAT, corporate income tax, individual income tax, surcharge, filing-assistance, and tax-burden review workflows. It provides calculation formulas, worked examples, filing logic, and cautionary checks for tax-related questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use for China tax scenarios <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax calculations or filing guidance may be incorrect if the jurisdiction, taxpayer type, tax year, or current policy is not confirmed. <br>
-Mitigation: Confirm the applicable jurisdiction, taxpayer type, tax year, and current policy before relying on results. <br>
-Risk: Real tax filings or payment decisions may require professional judgment beyond static reference formulas. <br>
-Mitigation: Have a qualified tax professional review real filings, payment decisions, and complex tax matters. <br>
+## Use Case:
 
+Finance, tax, and compliance users use this skill to calculate and cross-check Chinese VAT, corporate income tax, individual income tax, surtaxes, declaration logic, and tax burden warnings. It supports tax reference workflows and should be paired with current-law confirmation before filing or advising.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-tax-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/aolikeji) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with tax formulas, calculation examples, filing guidance, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no code execution, credential access, persistence, or automatic external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Tax rules, rates, filing thresholds, and preferential policies can change over time or vary by jurisdiction and taxpayer status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the applicable jurisdiction, tax year, taxpayer status, and current law before relying on calculations or filing guidance.
+
+Risk: The skill provides tax-reference assistance and may not cover complex fact patterns or professional judgment required for filing positions.
+
+Mitigation: Use outputs as a calculation aid and obtain professional review for complex, high-value, cross-border, or filing-critical tax matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-tax-calculator)
+- [Publisher profile](https://clawhub.ai/user/aolikeji)
+- [ClawHub homepage](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with calculations, formulas, tables, and tax guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static tax-reference guidance; no code execution, persistence, credential access, or data transfer behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

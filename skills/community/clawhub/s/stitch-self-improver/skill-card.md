@@ -1,43 +1,53 @@
-## Description: <br>
-Helps an AI agent learn from mistakes, optimize repeated work, and record lessons over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn from mistakes, optimize from repetition, record every lesson. Makes your AI agent smarter over time.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide an AI agent in documenting mistakes, identifying recurring error patterns, and maintaining useful long-term workflow notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to keep persistent behavioral memory, which can capture sensitive personal or business details if boundaries are unclear. <br>
-Mitigation: Set explicit rules for what may be stored, require confirmation before writing preferences or long-term memory, and avoid recording sensitive details. <br>
-Risk: The skill directs preference changes to be shared with another agent, which can spread unreviewed or unwanted profile changes. <br>
-Mitigation: Disable automatic cross-agent sharing unless the user deliberately approves the specific update. <br>
-Risk: Recurring error patterns can be promoted into durable rules that may encode mistaken conclusions. <br>
-Mitigation: Review proposed MEMORY, SOUL, TOOLS, and skill updates before accepting them, and archive obsolete notes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help an agent document errors, detect repeated failure patterns, update working memory, and reflect on opportunities for improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdt328606/stitch-self-improver) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sdt328606) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and structured notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent memory, lesson, tool, and skill-rule updates when the host agent permits those changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill may cause an agent to persist inferred preferences or lessons into memory files, skills, or peer-agent behavior without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before writes to MEMORY.md, TOOLS.md, SOUL.md, other skills, or other agents.
+
+Risk: Self-improvement logs can accumulate sensitive or stale context over time.
+
+Mitigation: Keep logs redacted, reviewable, and easy to delete or archive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdt328606/skills/stitch-self-improver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and structured memory or learning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent learning notes, preference updates, skill lessons, or coordination guidance when the host agent permits those writes.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

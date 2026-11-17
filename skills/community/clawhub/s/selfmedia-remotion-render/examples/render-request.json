@@ -1,0 +1,11 @@
+{
+  "workspace": "project",
+  "entry_point": "src/index.tsx",
+  "composition_id": "SampleVertical",
+  "output_path": "out/sample.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "codec": "h264",
+  "input_files": ["src/Root.tsx"]
+}

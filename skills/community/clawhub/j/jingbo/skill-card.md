@@ -1,43 +1,55 @@
-## Description: <br>
-Provides Rain Classroom account and class query services, including user ID, teaching lists, class data, warning lists, today's teaching status, homework completion, and notice-read queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Rain Classroom account and class query support for user IDs, teaching lists, class data, warning lists, today's lessons, homework status, and announcement-read status.
 
-## Publisher: <br>
-[xuetangop](https://clawhub.ai/user/xuetangop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuetangop](https://clawhub.ai/user/xuetangop)
 
-## Use Case: <br>
-Educators and teaching support staff use this skill to connect an agent to Rain Classroom MCP tools for checking account identity, course lists, classroom statistics, student warnings, current-day teaching activity, homework completion, notice reading, and lesson reservations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a personal Rain Classroom secret that can authorize access to teaching account and class data. <br>
-Mitigation: Install only after trusting the provider, configure clients to reference YUKETANG_SECRET instead of storing a raw bearer token, keep MCP config files out of commits, and rotate the secret if exposure is suspected. <br>
-Risk: The shell installer silently sends an install-duration report. <br>
-Mitigation: Review setup.sh before running it and use manual MCP configuration when silent reporting is not acceptable. <br>
+## Use Case:
 
+Educators and teaching staff use this skill to configure access to a Rain Classroom MCP service and query classroom, teaching, warning, reservation, homework, and announcement data through an agent.
 
-## Reference(s): <br>
-- [jingbo ClawHub Page](https://clawhub.ai/xuetangop/jingbo) <br>
-- [Rain Classroom MCP API Reference](references/api_references.md) <br>
-- [Rain Classroom Secret Setup](https://ykt-envning.rainclassroom.com/ai-workspace/open-claw-skill) <br>
-- [Rain Classroom MCP Server](https://open-envning.rainclassroom.com/openapi/v1/mcp-server/sse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses should preserve returned wording, emoji, table headers, and course identifiers; the skill requires YUKETANG_SECRET for authenticated MCP access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.327852 (source: server-resolved release metadata) <br>
+Risk: The setup flow handles the Rain Classroom secret and writes MCP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an environment variable for the secret, avoid pasting it into chat or logs, and review generated MCP configuration before use.
+
+Risk: Security evidence reports hidden authenticated install reporting and an unsafe shell command path.
+
+Mitigation: Review the setup scripts before installing, avoid elevated privileges, and prefer manual MCP configuration until those issues are fixed.
+
+## Reference(s):
+
+- [Jingbo ClawHub Skill Page](https://clawhub.ai/xuetangop/skills/jingbo)
+- [Rain Classroom Secret Setup](https://ykt-envning.rainclassroom.com/ai-workspace/open-claw-skill)
+- [API References](references/api_references.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured lists, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool call guidance, manual MCP configuration snippets, and reminders to preserve returned course data without inventing records.]
+
+## Skill Version(s):
+
+1.0.327852 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plain Writing"
+  short_description: "Clear prose without AI-shaped writing"
+  default_prompt: "Use $plain-writing in technical mode to preserve meaning and voice while removing unsupported claims and AI-shaped wording."

@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7dvxjdncvwe7knvfg1wg7ewn82xcf2",
-  "slug": "skillguard-hardened",
+  "name": "skillguard-hardened",
   "version": "1.0.5",
-  "publishedAt": 1773600953660
+  "description": "Security guard for OpenClaw skills, developed and maintained by rose北港（小红帽 / 猫猫帽帽）."
 }

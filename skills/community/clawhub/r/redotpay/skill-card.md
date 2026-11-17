@@ -1,43 +1,54 @@
-## Description: <br>
-RedotPay Wallet helps an agent discover RedotPay services, inspect schemas and pricing, and make wallet-backed service requests only after explicit confirmation and spend-cap checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and retrieve services and data via the RedotPay CLI across media, model APIs, data APIs, and commerce lookups without purchase flows.
 
-## Publisher: <br>
-[turbo-wang](https://clawhub.ai/user/turbo-wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turbo-wang](https://clawhub.ai/user/turbo-wang)
 
-## Use Case: <br>
-External users and developers use this skill to search RedotPay service catalogs, inspect available endpoints and pricing, and request media, model API, data API, or commerce lookup results through the RedotPay CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-backed requests can incur a charge if an agent proceeds without clear approval. <br>
-Mitigation: Before any paid request, require the exact service, endpoint, amount, currency, purpose, expected return, explicit user confirmation, and a spend cap. <br>
-Risk: OAuth tokens, wallet configuration, or payment metadata may be exposed in chat or verbose command output. <br>
-Mitigation: Do not expose tokens, keys, or wallet config in chat, and use verbose CLI output sparingly because stderr may include payment metadata. <br>
-Risk: The CLI installer is a separate supply-chain trust decision. <br>
-Mitigation: Verify the RedotPay CLI installer from RedotPay's official source before running it. <br>
+## Use Case:
 
+External users and developers use this skill to search RedotPay services, inspect endpoint schemas and pricing, and retrieve data through the RedotPay CLI. Paid requests require explicit confirmation, login only at request time, and a spend cap.
 
-## Reference(s): <br>
-- [ClawHub RedotPay Wallet release](https://clawhub.ai/turbo-wang/redotpay) <br>
-- [RedotPay CLI installer](https://raw.githubusercontent.com/redotpay/redotpay-cli/v0.1.0/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the redotpay CLI; paid requests require explicit user confirmation and a spend cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The first-time setup references a remote installer and an ineffective checksum check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install RedotPay from a trusted, signed release or package manager and verify the exact installer or binary digest independently before use.
+
+Risk: Paid service requests can spend funds or expose sensitive wallet/payment metadata if run without clear review.
+
+Mitigation: Run paid requests only after the service, endpoint, price, spend cap, and purpose are clear and the user has explicitly confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turbo-wang/skills/redotpay)
+- [RedotPay CLI installer reference](https://raw.githubusercontent.com/redotpay/redotpay-cli/v0.1.0/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented CLI output references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the redotpay CLI; paid requests require service, endpoint, price, spend cap, purpose, and user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

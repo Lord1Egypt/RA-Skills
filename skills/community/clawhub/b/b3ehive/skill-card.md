@@ -1,43 +1,52 @@
-## Description: <br>
-Runs three AI agents in parallel to implement, cross-evaluate, score, and select a code solution for a coding task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs three AI coding agents in parallel to generate, compare, score, and deliver a selected code solution for a user-provided coding task.
 
-## Publisher: <br>
-[weiyangzen](https://clawhub.ai/user/weiyangzen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weiyangzen](https://clawhub.ai/user/weiyangzen)
 
-## Use Case: <br>
-Developers use B3ehive to run three competing coding agents with different focuses, compare their outputs through structured evaluation, and deliver a selected implementation with markdown rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can present a fixed placeholder winner as an objectively selected best solution. <br>
-Mitigation: Review all generated implementations, scorecards, and rationale manually before relying on the selected output. <br>
-Risk: The release may be a prototype or template because the server security guidance notes a missing CLI entry point. <br>
-Mitigation: Verify the executable entry point and run the phase scripts in a controlled workspace before use. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run competing AI coding approaches for the same implementation task, collect markdown evaluations and scorecards, and package a final selected solution with comparison rationale.
 
-## Reference(s): <br>
-- [B3ehive ClawHub listing](https://clawhub.ai/weiyangzen/b3ehive) <br>
-- [Technical specification](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Configuration](artifact/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Workspace files including runnable code, markdown comparison reports, scorecards, and decision rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates phase-based workspace directories and markdown reports for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Final reports may overstate objective winner selection because the authoritative security summary says the delivery script always selects Agent A despite claiming score-based selection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scorecards and comparison reports manually before trusting or publishing the final selected implementation; update the delivery logic to parse and apply actual scores before automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weiyangzen/skills/b3ehive)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [config.yaml](config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, generated workspace files, runnable code artifacts, and shell-command workflow outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates run_a, run_b, run_c, and final workspaces with comparison and decision rationale files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

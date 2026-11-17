@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "TaxJar"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["taxjar"]
   icon: "https://static.oomol.com/logo/third-party/Taxjar.svg"
 ---
@@ -37,26 +37,26 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `calculate_sales_tax_for_order` — Calculate TaxJar sales tax for an order. [write]
+- `calculate_sales_tax_for_order` — Calculate TaxJar sales tax for an order.
 - `create_customer` — Create a TaxJar customer for exemption management. [write]
 - `create_order_transaction` — Create a TaxJar order transaction for reporting and filing. [write]
-- `create_refund_transaction` — Create a TaxJar refund transaction. [write]
+- `create_refund_transaction` — Create a TaxJar refund transaction. [destructive]
 - `delete_customer` — Delete a TaxJar customer by identifier. [destructive]
 - `delete_order_transaction` — Delete a TaxJar order transaction by identifier. [destructive]
 - `delete_refund_transaction` — Delete a TaxJar refund transaction by identifier. [destructive]
 - `list_customers` — List TaxJar customer identifiers.
 - `list_nexus_regions` — List TaxJar nexus regions for the account.
-- `list_order_transactions` — List TaxJar order transaction identifiers within a date range. [write]
+- `list_order_transactions` — List TaxJar order transaction identifiers within a date range.
 - `list_refund_transactions` — List TaxJar refund transaction identifiers within a date range.
 - `list_tax_categories` — List TaxJar product tax categories and codes.
 - `show_customer` — Retrieve a TaxJar customer by identifier.
-- `show_order_transaction` — Retrieve a TaxJar order transaction by identifier. [write]
+- `show_order_transaction` — Retrieve a TaxJar order transaction by identifier.
 - `show_refund_transaction` — Retrieve a TaxJar refund transaction by identifier.
 - `show_tax_rates_for_location` — Retrieve TaxJar sales tax rates for a location.
 - `summarize_tax_rates_for_all_regions` — Retrieve TaxJar minimum and average sales tax rates by region.
 - `update_customer` — Update an existing TaxJar customer. [write]
 - `update_order_transaction` — Update an existing TaxJar order transaction. [write]
-- `update_refund_transaction` — Update an existing TaxJar refund transaction. [write]
+- `update_refund_transaction` — Update an existing TaxJar refund transaction. [destructive]
 - `validate_vat_number` — Validate a VAT identification number with TaxJar.
 
 ## Safety
@@ -88,11 +88,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TaxJar is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=taxjar
+  https://console.oomol.com/connections/taxjar
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TaxJar homepage: https://www.taxjar.com/
+- API documentation: https://developers.taxjar.com/api/reference/

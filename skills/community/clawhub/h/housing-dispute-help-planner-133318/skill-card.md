@@ -1,44 +1,59 @@
-## Description: <br>
-Helps users turn housing-dispute questions about Hello Landing furnished apartments into a practical plan, checklist, analysis, or decision-support artifact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan practical next steps, reusable checklists, and verification notes for Hello Landing or furnished-apartment housing disputes.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External users use this skill to plan next steps, gather facts, and create reusable checklists or decision-support notes for Hello Landing furnished-apartment disputes. Its output should be treated as practical planning help, not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide sensitive housing-dispute guidance that users could mistake for legal advice. <br>
-Mitigation: State that outputs are practical planning support only, recommend independent review for legal decisions, and keep assumptions and limits visible. <br>
-Risk: Activation rules are broad enough to trigger on unrelated requests. <br>
-Mitigation: Invoke it only for explicit Hello Landing or furnished-apartment dispute requests, and narrow triggers before deployment. <br>
-Risk: Some bundled evidence links are unrelated to the stated housing-dispute requirement. <br>
-Mitigation: Prefer directly relevant sources, review evidence before relying on demand claims, and replace unrelated validation links. <br>
+## Use Case:
 
+External users use this skill to turn a furnished-apartment or Hello Landing dispute into an actionable plan, checklist, tailored response, or decision-support artifact. The skill is intended to make assumptions, limits, required inputs, and validation steps visible.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Ask HN: Hello Landing Dispute - Furnished Apartments](https://news.ycombinator.com/item?id=48508590) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/housing-dispute-help-planner-133318) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis, Configuration] <br>
-**Output Format:** [Markdown with checklists, workflows, assumptions, limits, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include practical next steps, reusable templates, or decision-support notes; not a substitute for legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Users may treat housing-dispute planning output as legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as planning support, ask users to verify local tenant law and lease terms, and recommend qualified legal aid when rights, deadlines, or financial exposure are material.
+
+Risk: Broad trigger wording may invoke the skill outside a Hello Landing or furnished-apartment dispute context.
+
+Mitigation: Prefer explicit invocation and confirm the dispute context before producing detailed guidance.
+
+Risk: Weak demand evidence may not represent the user's specific jurisdiction or facts.
+
+Mitigation: Base recommendations on the user's supplied lease, timeline, payments, communications, location, and desired outcome rather than on source posts alone.
+
+## Reference(s):
+
+- [Requirement plan](artifact/references/requirement-plan.md)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/housing-dispute-help-planner-133318)
+- [Ask HN: Hello Landing Dispute - Furnished Apartments](https://news.ycombinator.com/item?id=48508590)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, checklists]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tailored planning steps, reusable workflows, assumptions, validation notes, and follow-up items.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

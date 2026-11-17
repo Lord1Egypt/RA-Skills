@@ -1,41 +1,62 @@
-## Description: <br>
-SmartClaws guides OpenClaw agents and owners through onboarding for SKALE-based IoT telemetry, including plugin installation, wallet setup, role selection, and deployment configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmartClaws guides OpenClaw agents through understanding, setting up, and operating SmartClaws IoT telemetry and command workflows on SKALE, including jobs, plugin modes, permissions, encryption, and runtime tools.
 
-## Publisher: <br>
-[eduv09](https://clawhub.ai/user/eduv09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eduv09](https://clawhub.ai/user/eduv09)
 
-## Use Case: <br>
-Developers, operators, and agent owners use this skill to set up SmartClaws agents for blockchain-backed IoT telemetry and command workflows. It helps them configure plugins, wallets, roles, deployment facts, and owner-controlled operating contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can involve wallet creation or import, sFUEL funding, role grants, and backups. <br>
-Mitigation: Keep those steps owner-controlled, confirm intent before proceeding, and do not place private keys or secrets in SMARTCLAWS.md or AGENTS.md. <br>
-Risk: Publishing and notifying are write actions that sign transactions. <br>
-Mitigation: Allowlist write tools explicitly and rely on tool or CLI success responses before reporting balances, registrations, transactions, or published data. <br>
+## Use Case:
 
+External developers and OpenClaw operators use this skill to configure SmartClaws agents that publish or read IoT telemetry on SKALE. It helps set up group masters, device masters, device bridges, or user proxies with the right plugin mode, on-chain identity, workspace files, permissions, and operating guidance.
 
-## Reference(s): <br>
-- [SmartClaws ClawHub page](https://clawhub.ai/eduv09/skills/smartclaws) <br>
-- [SmartClaws homepage](https://github.com/skalenetwork/smartclaws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Owner decisions are required for wallet creation or import, sFUEL funding, role grants, backups, AGENTS.md adoption, and write-tool allowlisting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and target metadata) <br>
+Risk: The setup flow may expose high-impact SmartClaws permissions too broadly during installation or onboarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted SmartClaws deployment, add an explicit tool allowlist, and remove broad SmartClaws tool grants after setup.
+
+Risk: Templates and setup guidance can enable reads, disclosures, registrations, role changes, key operations, publishing, and backups.
+
+Mitigation: Require owner confirmation before writes, separate read and disclosure permissions, and keep authority allowlists in owner-adopted workspace instructions.
+
+Risk: Incorrect addresses, identities, transaction statuses, or encrypted-channel assumptions could cause misleading operation or unintended on-chain actions.
+
+Mitigation: Resolve names and permissions with SmartClaws plugin tools, report only returned tool results, and treat encrypted messages as stored only when the returned status is published.
+
+Risk: Wallet files, private keys, backups, or configuration secrets could be mishandled during setup.
+
+Mitigation: Do not read, print, or hand-copy wallet files or private keys; use wallet-info and backup tools rather than direct secret access.
+
+## Reference(s):
+
+- [SmartClaws ClawHub Skill Page](https://clawhub.ai/eduv09/skills/smartclaws)
+- [SmartClaws Homepage](https://github.com/skalenetwork/smartclaws)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/YAML configuration examples, and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is setup-oriented and may include local file templates, operating contracts, permission checks, and tool-use instructions; it does not output wallet secrets.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

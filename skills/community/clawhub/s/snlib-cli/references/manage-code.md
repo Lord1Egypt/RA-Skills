@@ -1,8 +1,9 @@
 # manage-code.edn
 
-Generated from `src/snlib/manage-code.edn`.
+Generated from `impl/clj/src/snlib/manage-code.edn`.
 
 ```edn
+;; Management code data for the Clojure implementation.
 {"MP" "판교도서관",
  "CK" "중원어린이도서관",
  "GF" "숲에사는달조각 작은도서관",

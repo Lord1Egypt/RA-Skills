@@ -1,41 +1,58 @@
-## Description: <br>
-Guides agents through podcast and audiobook production on the Ximalaya AI creation platform, including content setup, voice selection, audio synthesis, mixing, and optional album publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through podcast and audiobook chapter creation on the Ximalaya audiobooklm service, including content setup, voice selection, audio synthesis, mixing, and optional album publishing.
 
-## Publisher: <br>
-[audiobooklm](https://clawhub.ai/user/audiobooklm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[audiobooklm](https://clawhub.ai/user/audiobooklm)
 
-## Use Case: <br>
-External users and creators use this skill to turn text or dialogue scripts into podcast or audiobook chapters through the audiobooklm_mcp service. It helps agents collect required choices, configure books and chapters, select voices, run synthesis and mixing, and return the resulting audio and editing links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow connects an account token to the Ximalaya audiobook creation service, which may handle scripts, book and chapter metadata, generated audio tasks, and optional album uploads. <br>
-Mitigation: Install only when that service connection is intended, use a valid account token, and pause on authentication or connection errors until the user updates MCP configuration. <br>
-Risk: Optional publishing, payment, or recharge steps can affect external accounts or costs. <br>
-Mitigation: Require explicit user confirmation before publishing, uploading to an album, or directing the user to billing or recharge actions. <br>
+## Use Case:
 
+Developers and content creators use this skill to operate the standard audiobooklm MCP workflow for generating podcast or audiobook chapter audio from user-provided or agent-drafted text. It helps confirm book, chapter, script, voice, synthesis, mixing, and optional album publishing choices before tool actions are taken.
 
-## Reference(s): <br>
-- [Ximalaya AI Creation Platform](https://aigc.ximalaya.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/audiobooklm/audiobooklm-podcast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, text] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, MCP tool-call examples, identifiers, URLs, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before MCP actions; final responses can include book IDs, chapter IDs, selected voices, generated audio URLs, editor links, and payment or recharge links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires an API token for an external audiobook service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the token only in the MCP server settings, pause the workflow on authentication errors, and regenerate or rotate the token when unauthorized or expired responses appear.
+
+Risk: Tool actions can create content, generate paid audio, or upload audio to an album.
+
+Mitigation: Require explicit user confirmation before each tool call and review book, chapter, script, voice, album, and publishing choices before execution.
+
+Risk: Publishing or mixing before synthesis is complete can produce incomplete or incorrect outputs.
+
+Mitigation: Poll synthesis tasks until all segments succeed, then mix the chapter audio before any optional album upload.
+
+## Reference(s):
+
+- [audiobooklm-podcast on ClawHub](https://clawhub.ai/audiobooklm/skills/audiobooklm-podcast)
+- [Ximalaya audiobook creation platform](https://aigc.ximalaya.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls, text]
+
+**Output Format:** [Markdown guidance with configuration snippets, MCP tool-call plans, identifiers, URLs, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final responses may include book ID, chapter ID, selected speaker IDs and names, generated audio URL, edit page URL, and payment page URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

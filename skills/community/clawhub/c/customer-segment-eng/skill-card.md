@@ -1,41 +1,59 @@
-## Description: <br>
-Analyzes uploaded bank customer data to segment and profile customers by assets, transactions, behavior, and activity, then produces tables, charts, and a Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes bank customer data to segment and profile customers using RFM-style features, K-Means clustering, statistics, and visual reports.
 
-## Publisher: <br>
-[yukirang](https://clawhub.ai/user/yukirang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yukirang](https://clawhub.ai/user/yukirang)
 
-## Use Case: <br>
-Analysts and business teams use this skill to process authorized banking customer datasets, engineer RFM-style features, run clustering, and summarize customer segments for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive banking customer data and may write customer-level exports. <br>
-Mitigation: Run it only on datasets the user is authorized to process, prefer pseudonymized customer IDs, use a restricted output directory, and avoid retaining customer-level exports unless necessary. <br>
-Risk: Customer segmentation outputs could be misused for discriminatory pricing or other unfair treatment. <br>
-Mitigation: Review segment labels and downstream use against applicable compliance and fairness requirements before relying on the results. <br>
+## Use Case:
 
+Developers and analysts use this skill to segment financial customers from uploaded bank customer data, generate cluster labels and statistics, and produce charts and a Markdown report for review.
 
-## Reference(s): <br>
-- [RFM Model Reference](references/rfm-guide.md) <br>
-- [Clustering Analysis Parameter Reference](references/clustering-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance plus generated CSV, PNG, and Markdown analysis files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes segmentation_results.csv, cluster_summary.csv, segmentation_charts.png, and segmentation_report.md to an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can duplicate sensitive banking or personally identifiable customer data into generated output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before use with real customer data, use a controlled output directory, export only needed fields, and mask identifiers where possible.
+
+Risk: Generated CSV files may create spreadsheet formula execution risk when opened in spreadsheet tools.
+
+Mitigation: Open generated CSVs with formula execution disabled and review outputs before sharing.
+
+Risk: Customer segmentation outputs may be used in compliance-sensitive decisions such as discriminatory pricing.
+
+Mitigation: Use outputs as decision-support only, desensitize customer data, and require compliance review before business use.
+
+## Reference(s):
+
+- [RFM Model Reference](references/rfm-guide.md)
+- [Clustering Analysis Parameter Reference](references/clustering-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/yukirang/skills/customer-segment-eng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; generated CSV, PNG, and Markdown report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May export customer-level rows and derived segment labels to a chosen output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

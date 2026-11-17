@@ -1,42 +1,57 @@
-## Description: <br>
-Instinct-based learning system for OpenClaw that analyzes sessions, detects patterns, creates atomic learnings with confidence scoring, and suggests optimizations for self-evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instinct-based learning system for OpenClaw that analyzes sessions, detects patterns, creates atomic learnings with confidence scoring, and suggests optimizations for self-evolution.
 
-## Publisher: <br>
-[adelpro](https://clawhub.ai/user/adelpro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adelpro](https://clawhub.ai/user/adelpro)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze prior OpenClaw sessions, identify recurring behaviors and errors, and generate local learning artifacts that can guide future agent optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logs may contain sensitive user, workflow, or tool-output details that could be summarized into local learning files. <br>
-Mitigation: Review or scrub sensitive session logs before running the analyzer, and periodically inspect or delete generated memory/learning files. <br>
-Risk: Optional scheduled analysis can repeatedly process new local sessions and persist derived patterns without a fresh manual review each run. <br>
-Mitigation: Avoid cron or other recurring scheduling until the recorded data and retention behavior are understood. <br>
-Risk: Optimization suggestions or learned instincts can be incorrect, stale, or too broad for future tasks. <br>
-Mitigation: Review suggested optimizations before applying them and treat confidence scores as advisory rather than automatic approval. <br>
+## Use Case:
 
+Developers and agent builders use this skill to analyze OpenClaw session history, identify recurring behavior and error patterns, and generate reviewed learning artifacts or optimization suggestions for self-improving agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adelpro/openclaw-continuous-learning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples, console text, and local JSON/JSONL learning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; reads local OpenClaw session logs from ~/.openclaw/agents and writes local memory/learning artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact frontmatter lists 1.2.1) <br>
+Risk: The skill reads recent OpenClaw session logs and may process private interaction history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run analysis with an explicit --agent scope when possible, and use --all only when broad review is needed.
+
+Risk: Session-derived snippets may retain sensitive details despite redaction.
+
+Mitigation: Review stored learning contents periodically and run the prune command if sensitive data may have appeared in tool errors or session output.
+
+Risk: The skill persists derived instincts, patterns, and optimization suggestions locally.
+
+Mitigation: Use the documented retention limits and prune command to remove stored learning data before sharing or retiring a workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adelpro/skills/continue-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON files, shell commands, guidance]
+
+**Output Format:** [Console text plus local JSON and JSONL learning files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; analysis requires an explicit --agent scope or explicit --all selection.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

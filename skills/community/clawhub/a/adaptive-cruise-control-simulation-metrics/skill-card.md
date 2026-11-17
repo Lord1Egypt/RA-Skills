@@ -1,37 +1,48 @@
-## Description: <br>
-Use this skill when calculating control system performance metrics such as rise time, overshoot percentage, steady-state error, or settling time for evaluating simulation results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when calculating control system performance metrics such as rise time, overshoot percentage, steady-state error, or settling time for evaluating simulation results.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to calculate and explain common control-system simulation metrics from time-series results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The metric formulas are basic examples and may not fit edge cases such as negative targets or noisy simulation signals.
+
+Mitigation: Review the formulas against the control-system data and adapt thresholds, tolerances, or preprocessing before relying on the results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and control-system engineers use this skill to calculate rise time, overshoot, steady-state error, and settling time from simulation result series when evaluating controller behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Metric calculations can be misleading on edge cases such as empty arrays, mismatched time/value lengths, zero targets, noisy signals, or simulations that do not settle. <br>
-Mitigation: Validate inputs and review calculated results against the source simulation data before relying on them. <br>
+**Output Format:** [Markdown with Python code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained calculation guidance; no files, credentials, network access, installs, persistence, or privileged actions requested.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

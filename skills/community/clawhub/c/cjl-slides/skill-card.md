@@ -1,44 +1,55 @@
-## Description: <br>
-Creates styled HTML presentation decks in 24 design styles and can help convert presentation content to editable PowerPoint files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create HTML presentations in 24 international design styles and optionally convert them to editable PowerPoint .pptx files.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to turn topics, outlines, or uploaded PowerPoint files into styled HTML slide decks and optional PPTX files for editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart slides may load Chart.js from a CDN, which can expose viewing context to a third party or fail in restricted networks. <br>
-Mitigation: Review generated HTML before sharing sensitive decks, and replace CDN loading with a local or approved pinned asset when network access is not acceptable. <br>
-Risk: Optional Vercel deployment publishes generated files to third-party hosting. <br>
-Mitigation: Confirm which files will be uploaded and where they will be hosted before approving any deployment command. <br>
-Risk: Presentation inputs and generated decks may contain sensitive content processed on the local machine. <br>
-Mitigation: Install and run the skill only where local processing of presentation files is acceptable, and review outputs before opening or distributing them. <br>
+## Use Case:
 
+External users and developers use this skill to create visually styled HTML slide decks from prompts or existing content, then optionally extract PPTX content or convert generated HTML slides into editable .pptx files.
 
-## Reference(s): <br>
-- [Cjl Slides on ClawHub](https://clawhub.ai/0xcjl/cjl-slides) <br>
-- [Style Previews](artifact/STYLE_PREVIEWS.md) <br>
-- [Chart.js CDN Mirror Referenced by Skill](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with generated HTML, optional shell commands, and optional PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks use a 16:9 slide layout and may include inline CSS, JavaScript, Chart.js charts, and extracted presentation assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The optional Vercel deployment step can run an unbundled local shell script and may publish presentation content externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable the deployment step; only run deployment after inspecting the deploy script, confirming the publication target, and verifying the deck contains no confidential material.
+
+Risk: PPTX extraction and conversion depend on python-pptx in the local Python environment.
+
+Mitigation: Use a virtual environment with pinned dependencies before running PPTX tooling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xcjl/skills/cjl-slides)
+- [Style Previews](artifact/STYLE_PREVIEWS.md)
+- [Chart.js CDN Reference](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown responses with HTML code blocks plus generated HTML, JSON, and PPTX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PPTX extraction and conversion require python-pptx; generated chart slides may reference Chart.js CDN resources.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

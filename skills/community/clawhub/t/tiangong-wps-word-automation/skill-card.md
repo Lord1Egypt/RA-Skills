@@ -1,39 +1,54 @@
-## Description: <br>
-Automates common Word/WPS document operations on Windows through COM, including reading text, editing content, formatting headings, headers and footers, page breaks, merge and split workflows, export to PDF or TXT, and image insertion for single-document use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate common Word/WPS document operations on Windows via COM, including reading text, replacing or inserting content, formatting headings, editing headers and footers, adding page breaks, merging, splitting, exporting, and adding images for single-document workflows.
 
-## Publisher: <br>
-[Fadeloo](https://clawhub.ai/user/Fadeloo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fadeloo](https://clawhub.ai/user/fadeloo)
 
-## Use Case: <br>
-Developers and document-automation users use this skill to issue command-line Word/WPS operations for individual Windows documents, such as extracting text, replacing content, adding headings or headers and footers, merging or splitting files, exporting documents, and adding images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit and write local Word/WPS documents, which can overwrite or alter important files if paths are chosen carelessly. <br>
-Mitigation: Use copies for important documents, provide explicit output paths, and review generated documents before replacing originals. <br>
-Risk: The automation may use Microsoft Word as a fallback when WPS is unavailable or not selected explicitly. <br>
-Mitigation: Select the intended application with the documented app option and verify the local Word/WPS environment before running edits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fadeloo/tiangong-wps-word-automation) <br>
+## Use Case:
 
+Developers and document automation users use this skill to generate command-line actions for Microsoft Word or WPS Writer documents on Windows. It is suited to deliberate single-document operations such as text extraction, edits, page manipulation, merging, splitting, export, and image insertion.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples; script outputs may include plain text, DOCX, PDF, TXT, or image-updated documents.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows with Microsoft Word or WPS Writer and Python with pywin32; intended for single-document operations rather than batch processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Document edits and exports can overwrite or modify files at user-selected paths.
+
+Mitigation: Use intentional input and output paths, and prefer saving to new filenames or a dedicated output folder for edit, merge, split, and export commands.
+
+Risk: Exported, split, or merged derivatives may contain the same sensitive content as the source document.
+
+Mitigation: Treat generated DOCX, PDF, and TXT files with the same confidentiality controls as the original document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fadeloo/skills/tiangong-wps-word-automation)
+- [Skill documentation](artifact/SKILL.md)
+- [Automation script](artifact/scripts/wps_word_automation.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script can read document text, save edited DOCX files, export PDF or TXT files, and create split or merged document outputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

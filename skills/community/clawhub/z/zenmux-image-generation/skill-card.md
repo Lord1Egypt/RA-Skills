@@ -1,40 +1,53 @@
-## Description: <br>
-Generate images via ZenMux API (Pro/Elite). Supports Text-to-Image, Image-to-Image, and Multi-Image reference fusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images via ZenMux API (Pro/Elite), including text-to-image, image-to-image, and multi-image reference fusion.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new images, modify existing images, or combine multiple reference images through the ZenMux API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images are sent to ZenMux for cloud image generation. <br>
-Mitigation: Use a revocable ZenMux API key and avoid submitting confidential, regulated, or personal images unless ZenMux policies are acceptable. <br>
-Risk: The helper script writes the generated image to the configured output path. <br>
-Mitigation: Choose the output path deliberately and review files before overwriting existing assets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZenMux Vertex AI API endpoint](https://zenmux.ai/api/vertex-ai) <br>
-- [ClawHub skill page](https://clawhub.ai/dadaniya99/zenmux-image-generation) <br>
+## Use Case:
 
+Developers and external users use this skill to generate or transform images through the ZenMux API with text prompts and optional reference images.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated image files are written by the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZENMUX_API_KEY and may use local reference image files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata; artifact package.json reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, selected reference images, and API key authentication are sent to ZenMux.
+
+Mitigation: Avoid confidential, regulated, or highly sensitive inputs unless ZenMux's data-handling terms fit the intended use.
+
+Risk: The helper sends HTTP requests without explicit timeouts or response-size checks.
+
+Mitigation: Add request timeouts and response-size controls before heavy or automated use.
+
+## Reference(s):
+
+- [ZenMux Vertex AI API endpoint](https://zenmux.ai/api/vertex-ai)
+- [ClawHub skill page](https://clawhub.ai/dadaniya99/skills/zenmux-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated images are written as PNG files by default.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZENMUX_API_KEY and a ZenMux Pro or higher plan.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

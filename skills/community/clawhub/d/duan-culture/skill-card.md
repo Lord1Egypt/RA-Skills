@@ -1,40 +1,58 @@
-## Description: <br>
-分析企业文化是否符合本分、诚信、用户导向和长期主义原则，用于辅助长期投资研究。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language skill for evaluating company culture through a Duan Yongping-inspired checklist focused on integrity, user value, long-term thinking, and management conduct.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agents use this skill to structure company culture reviews, apply a 本分 checklist, and produce qualitative investment-research guidance. It is most useful when the user supplies company-specific evidence for management behavior, user focus, long-term thinking, and transparency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Culture ratings and investment suggestions are subjective and may be incomplete or misleading if used as financial advice. <br>
-Mitigation: Treat outputs as an investment-analysis framework, verify company assessments with independent evidence, and do not rely on the skill as financial advice. <br>
-Risk: The checklist can overstate confidence when company-specific facts are sparse or based only on public messaging. <br>
-Mitigation: Use concrete evidence such as disclosures, management history, long-term behavior, negative news, and user or employee outcomes before accepting a rating. <br>
+## Use Case:
 
+Investors, analysts, and agent users can use this skill to structure qualitative company-culture reviews and document evidence for a "本分" checklist. It is intended as a checklist-style aid for investment research, not as financial advice or a substitute for independent diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/duan-culture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist guidance and terminal text from the optional Python analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Qualitative culture ratings depend on user-provided evidence and should not be treated as financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Investment ratings may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ratings only as checklist-style research support and require independent diligence before making investment decisions.
+
+Risk: Company culture analysis is subjective and can over-weight public claims or short-term events.
+
+Mitigation: Base conclusions on observed actions, negative evidence, management history, and long-term tracking.
+
+Risk: The local analysis script can produce generic default scores when detailed user evidence is absent.
+
+Mitigation: Treat script output as a prompt for review and replace defaults with evidence-backed answers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/duan-culture)
+- [ClawHub publisher profile](https://clawhub.ai/user/lj22503)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown checklist guidance and optional local script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may produce qualitative ratings based on user-supplied evidence and checklist answers.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

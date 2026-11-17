@@ -1,43 +1,53 @@
-## Description: <br>
-Helps users choose an e-signature approach, structure signing workflows, and prepare business documents for signature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users choose the right e-signature approach for a document, structure the signing workflow, and explain what to prepare before sending.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Business users, operations teams, HR, procurement, and legal-adjacent teams use this skill to plan practical e-signature workflows, choose signing levels, and prepare documents before sending them for signature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat operational e-signature workflow guidance as legal advice. <br>
-Mitigation: Use the skill as a planning aid and consult qualified counsel for jurisdiction-specific legal questions. <br>
-Risk: Contracts, personal identifiers, credentials, payment details, or other sensitive information could be exposed if pasted into the assistant. <br>
-Mitigation: Provide only the minimum document context needed for planning, and avoid sharing sensitive content unless intentional and permitted. <br>
-Risk: The release advertises a wallet-related capability, but the reviewed skill text does not explain wallet use. <br>
-Mitigation: Review any wallet permission request during installation and confirm it is necessary before granting access. <br>
+## Use Case:
 
+Employees and external business users use this skill to plan document-signing workflows, choose an appropriate signing level, decide when identity verification or sequential signing is useful, and prepare clear signing checklists.
 
-## Reference(s): <br>
-- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/notasign/esign-document) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with checklists and numbered workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; does not automatically sign documents or perform hidden actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may produce operational signing guidance that users mistake for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses task-oriented, avoid jurisdiction-specific legal conclusions, and direct users to counsel for legal interpretation.
+
+Risk: Responses may include Nota Sign branding or a Nota Sign link.
+
+Mitigation: Installers should review whether third-party branding and outbound links are appropriate for their deployment context.
+
+## Reference(s):
+
+- [Nota Sign](https://www.notasign.com/en?ch=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown]
+
+**Output Format:** [Markdown with structured recommendations, workflow steps, checklists, and notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Nota Sign branding or a Nota Sign link when relevant; does not automate signing, access documents, use credentials, or change local systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

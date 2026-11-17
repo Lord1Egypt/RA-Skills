@@ -1,44 +1,58 @@
-## Description: <br>
-Manage Weibo posts through Puppeteer with a request, approval, and execution workflow for publishing text and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates drafting, approval notification, and publishing of Weibo posts with text and images through Puppeteer and Feishu review messages.
 
-## Publisher: <br>
-[HMyaoyuan](https://clawhub.ai/user/HMyaoyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[hmyaoyuan](https://clawhub.ai/user/hmyaoyuan)
 
-## Use Case: <br>
-Developers and operators use this skill to draft Weibo posts, send them for human approval, and publish approved text and image posts through an authenticated browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses reusable Weibo session cookies stored in cookies.json. <br>
-Mitigation: Protect the cookie file as a secret, limit filesystem access to it, and rotate or remove the session when the skill is no longer needed. <br>
-Risk: The release includes under-disclosed delete and diagnostic scripts in addition to the documented approval workflow. <br>
-Mitigation: Remove or disable delete and diagnostic scripts before use unless they are explicitly reviewed and needed. <br>
-Risk: Some helper calls are built through shell command strings. <br>
-Mitigation: Review inputs before execution and replace shell-built subprocess calls with argument-array APIs before deployment. <br>
-Risk: Publishing, deleting, screenshot upload, and local image processing can affect external accounts or expose local content. <br>
-Mitigation: Require explicit human confirmation before those actions and review any image paths or screenshots before they are uploaded. <br>
+## Use Case:
 
+Social media operators and agents use this skill to prepare Weibo post drafts, send review requests, and publish approved text or image posts using a stored Weibo session. It is intended for controlled Weibo account automation with human approval before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HMyaoyuan/weibo-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON task files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates pending post JSON files and sends approval or status messages through Feishu integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Stored Weibo session cookies can authorize account-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Weibo account, restrict local access to cookies.json, and rotate the session if cookies may have been exposed.
+
+Risk: Publishing and deletion tools can change account content without reliable code-enforced approval.
+
+Mitigation: Run only the documented request and approval flow, and remove or gate direct publisher and deletion scripts before use with sensitive or shared accounts.
+
+Risk: Shell-based command construction and local path handling can be unsafe with untrusted inputs.
+
+Mitigation: Pass only trusted chat IDs, post content, and image paths; replace shell interpolation with structured process calls and validate pending records before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hmyaoyuan/skills/weibo-manager)
+- [Publisher profile](https://clawhub.ai/user/hmyaoyuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command examples, JSON pending-post records, and status notifications.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Weibo cookies, local pending post files, optional image paths, and Feishu notification commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; package.json declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

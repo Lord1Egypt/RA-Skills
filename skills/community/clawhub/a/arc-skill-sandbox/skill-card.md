@@ -1,40 +1,53 @@
-## Description: <br>
-Skill Sandbox helps developers test untrusted Python skills before installing by running them in a monitored environment and reporting filesystem, environment, network, and subprocess behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tests untrusted Python skills in a monitored environment before installation by observing filesystem writes, environment variable reads, network access, and subprocess calls.
 
-## Publisher: <br>
-[Trypto1019](https://clawhub.ai/user/Trypto1019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trypto1019](https://clawhub.ai/user/trypto1019)
 
-## Use Case: <br>
-External developers and ClawHub users use this skill to run untrusted Python skill scripts with monitoring before deciding whether to install them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat a SAFE report as proof that an unknown skill had no filesystem, network, subprocess, or credential behavior. <br>
-Mitigation: Treat Skill Sandbox as a lightweight inspection helper and run unknown skills inside Docker, a VM, or another disposable environment. <br>
-Risk: The skill's sandbox claims are stronger than what the implementation enforces. <br>
-Mitigation: Do not rely on this skill as a real sandbox or as the only control before installing or executing untrusted skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Trypto1019/arc-skill-sandbox) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Trypto1019) <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect how untrusted Python skills behave before installing or approving them. It produces runtime and static observations that support pre-installation review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON report descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 on macOS or Linux; sandbox reports may include SAFE, SUSPICIOUS, or DANGEROUS verdicts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release evidence warns that the skill's safety claims are stronger than the protections its code enforces.
+
+Mitigation: Do not treat it as a real sandbox or security boundary; run it only in a disposable VM or container with no real credentials or sensitive files mounted.
+
+Risk: Network behavior may be observed during testing of untrusted skills.
+
+Mitigation: Disable network access unless network testing is intentional and explicitly approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/trypto1019/skills/arc-skill-sandbox)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/trypto1019)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include filesystem operations, environment accesses, network attempts, subprocess calls, warnings, and a safety verdict.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

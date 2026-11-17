@@ -1,46 +1,60 @@
-## Description: <br>
-Generate AI images and video, build TikTok slideshows, manage AI influencers, and schedule posts to TikTok / Instagram / YouTube / X through the Supapost MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images and video, build TikTok slideshows, manage AI influencers, and schedule posts to TikTok / Instagram / YouTube / X through the Supapost MCP.
 
-## Publisher: <br>
-[supapost-dev](https://clawhub.ai/user/supapost-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supapost-dev](https://clawhub.ai/user/supapost-dev)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to generate social media assets, manage AI influencer identities, and schedule or publish content through connected Supapost social accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduling, publishing, or account-specific changes can affect connected social media accounts. <br>
-Mitigation: Before approval, verify the platform, social account, media, caption or title, timing, and whether the action can be reversed. <br>
-Risk: Supapost access requires a sensitive API credential. <br>
-Mitigation: Keep SUPAPOST_API_KEY out of logs, files, prompts, and tool arguments; configure it only through the MCP environment or approved client settings. <br>
-Risk: Delete actions can remove projects, influencers, scheduled posts, or assets. <br>
-Mitigation: Confirm destructive actions with the user and resolve named resources to IDs before calling delete tools. <br>
+## Use Case:
 
+External creators, developers, and operators use this skill to guide agents through Supapost content generation, AI influencer workflows, and scheduled posting across connected social accounts.
 
-## Reference(s): <br>
-- [ClawHub Supapost Skill](https://clawhub.ai/supapost-dev/supapost-skill) <br>
-- [Supapost OpenClaw Developer Docs](https://supapost.so/developers/openclaw) <br>
-- [Supapost MCP Documentation](https://supapost.so/developers/mcp) <br>
-- [Supapost MCP Endpoint](https://mcp.supapost.so) <br>
-- [Supapost API Keys](https://supapost.so/settings/developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with command snippets, JSON configuration examples, and MCP tool call patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SUPAPOST_API_KEY credential and the Supapost MCP endpoint; some actions affect connected social accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: API keys and connected social accounts can grant content-management and posting access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable Supapost API key and avoid placing real tokens in project files, logs, prompts, or shared configuration.
+
+Risk: The skill can guide agents to schedule posts, publish drafts, and change influencer or project state.
+
+Mitigation: Require explicit user confirmation before scheduling, publishing drafts, deleting resources, or changing influencer and project records.
+
+Risk: Package execution guidance can run unpinned dependencies during setup.
+
+Mitigation: Review commands before execution, pin package versions where possible, and install only in environments approved for Supapost access.
+
+## Reference(s):
+
+- [Supapost OpenClaw developer page](https://supapost.so/developers/openclaw)
+- [Supapost MCP documentation](https://supapost.so/developers/mcp)
+- [Supapost MCP endpoint](https://mcp.supapost.so)
+- [Supapost developer portal](https://developers.supapost.so)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Supapost API key and a connected Supapost MCP server for live tool use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

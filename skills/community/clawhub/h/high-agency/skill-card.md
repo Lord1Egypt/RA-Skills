@@ -1,43 +1,58 @@
-## Description: <br>
-Provides an always-on agency workflow for agents, with startup calibration, self-checks, recovery steps, and persistent learning prompts for complex tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High Agency gives an agent always-on task coaching for initiative, self-review, troubleshooting, recovery from stalled work, and cross-session lesson reuse.
 
-## Publisher: <br>
-[yu-xiao-sheng](https://clawhub.ai/user/yu-xiao-sheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yu-xiao-sheng](https://clawhub.ai/user/yu-xiao-sheng)
 
-## Use Case: <br>
-Developers and agent users can apply this skill to push an agent toward end-to-end ownership, stronger verification habits, persistent troubleshooting, and cross-session learning during complex work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes agent behavior across tasks and may encourage an aggressive always-on workflow. <br>
-Mitigation: Install only when that productivity posture is intentional, and keep user approval requirements for broad task expansion or sensitive work. <br>
-Risk: The skill uses persistent memory files without enough built-in user control. <br>
-Mitigation: Require approval before creating or updating builder-journal.md or HANDOFF.md, especially in private repositories or sensitive workspaces. <br>
-Risk: The skill may encourage broad file inspections or commands beyond the immediate task scope. <br>
-Mitigation: Limit automatic memory reads and writes, and require approval before broad file inspection or command execution outside the current task scope. <br>
+## Use Case:
 
+Developers, operators, researchers, and other agent users can use this skill to bias an assistant toward proactive task ownership, verification, and structured recovery during complex work sessions.
 
-## Reference(s): <br>
-- [High Agency on ClawHub](https://clawhub.ai/yu-xiao-sheng/high-agency) <br>
-- [OpenPUA](https://openpua.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, structured prompts, and occasional inline command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to read or write local memory files such as builder-journal.md or HANDOFF.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation may affect all tasks with an always-on coaching style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and enable it only in workspaces where this behavior is desired.
+
+Risk: The artifact directs the agent to save and reuse cross-session notes such as builder-journal.md.
+
+Mitigation: Disable persistence or require review of memory writes in sensitive projects.
+
+Risk: Pressure-oriented rhetoric may be unsuitable for some users or teams.
+
+Mitigation: Assess tone and user impact before enabling it in shared or production agent environments.
+
+## Reference(s):
+
+- [High Agency on ClawHub](https://clawhub.ai/yu-xiao-sheng/skills/high-agency)
+- [OpenPUA homepage](https://openpua.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with checklists, prompts, and occasional shell-command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to read and write persistent notes such as builder-journal.md when memory is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

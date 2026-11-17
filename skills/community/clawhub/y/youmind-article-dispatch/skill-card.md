@@ -1,52 +1,72 @@
-## Description: <br>
-Dispatches a single content topic across multiple publishing platforms, coordinating YouMind research, platform-specific adaptation, draft or publish actions, and aggregated dispatch results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatches one content topic across multiple publishing platforms by creating a shared brief, adapting it per platform, and aggregating draft or publishing results.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-Content creators, developer advocates, and publishing teams use this skill to turn one topic into platform-specific articles, newsletters, posts, or threads and dispatch them through connected YouMind platform accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate posting through multiple connected accounts, increasing the impact of an incorrect target, accidental broadcast, or unsuitable localization. <br>
-Mitigation: Confirm target platforms before dispatch, prefer draft mode first, and review adapted content before live publishing. <br>
-Risk: The skill may use prior YouMind materials to personalize content and can persist writing profiles, rosters, and learning logs under ~/.youmind. <br>
-Mitigation: Review what source material is used, keep shared profile files under user control, and inspect or remove ~/.youmind/author-profile.yaml, dispatch-roster.yaml, and learning-log.yaml when persistent profiling is not desired. <br>
-Risk: Publishing depends on sensitive YouMind API credentials and connected platform accounts. <br>
-Mitigation: Use only trusted environments, validate connected accounts before publishing, and avoid exposing YOUMIND_API_KEY or connector access in shared logs or files. <br>
+## Use Case:
 
+Developers, creators, and publishing teams use this skill to turn one topic into platform-adapted content for Dev.to, Hashnode, WordPress, Tumblr, Ghost, Beehiiv, Kit, X/Twitter, WeChat, and Qiita. It is most useful when a user wants cross-posting, all-platform publishing, or a coordinated publishing summary without manually invoking each platform skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/youmind-article-dispatch) <br>
-- [YouMind API key settings](https://youmind.com/settings/api-keys?utm_source=youmind-article-dispatch) <br>
-- [YouMind connector settings](https://youmind.com/settings/connector) <br>
-- [Dispatch protocol](shared/DISPATCH_CONTRACT.md) <br>
-- [Publishing guidelines](shared/PUBLISHING.md) <br>
-- [YouMind home directory convention](shared/YOUMIND_HOME.md) <br>
-- [Platform registry](references/platform-registry.md) <br>
-- [Content brief format](references/content-brief-format.md) <br>
-- [Author profile specification](references/author-profile-spec.md) <br>
-- [Content adaptation matrix](references/content-adaptation-matrix.md) <br>
-- [Profile learning](references/profile-learning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown summaries, platform-specific content, YAML configuration updates, and publishing status links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate draft or live publishing through connected YouMind accounts and persist roster/profile files under ~/.youmind.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill uses a shared YouMind API key and can coordinate drafts or posts across connected publishing accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged YouMind key available, rotate it regularly, keep it out of project files, and prefer draft mode unless the user explicitly requests publishing.
+
+Risk: The skill keeps author profile, dispatch roster, draft, and learning-history data under ~/.youmind/.
+
+Mitigation: Review local profile and learning files before use with sensitive content, remove data that should not persist, and confirm retention expectations with the user.
+
+Risk: The skill requests broad node and npm command authority.
+
+Mitigation: Review or narrow allowed tool permissions before deployment and inspect generated shell commands before execution.
+
+Risk: The skill may analyze historical articles or engagement data to learn an author profile.
+
+Mitigation: Run profile bootstrapping and learning only with user consent, and summarize what data was analyzed before saving profile updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindy-youmind/skills/youmind-article-dispatch)
+- [YouMind API Key Settings](https://youmind.com/settings/api-keys?utm_source=youmind-article-dispatch)
+- [YouMind Connector Settings](https://youmind.com/settings/connector?utm_source=youmind-article-dispatch)
+- [Content Brief Format](references/content-brief-format.md)
+- [Platform Registry](references/platform-registry.md)
+- [Author Profile Specification](references/author-profile-spec.md)
+- [Content Adaptation Matrix](references/content-adaptation-matrix.md)
+- [Dispatch Protocol](references/dispatch-protocol.md)
+- [Profile Learning](references/profile-learning.md)
+- [Dispatch Integration Protocol](shared/DISPATCH_CONTRACT.md)
+- [YouMind Home Directory](shared/YOUMIND_HOME.md)
+- [Publishing Guidelines](shared/PUBLISHING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with YAML content briefs, platform-specific article drafts or posts, result tables, configuration files, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local YouMind configuration, dispatch roster, author profile, article draft, and learning history files under ~/.youmind/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

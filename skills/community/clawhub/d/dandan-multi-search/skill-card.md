@@ -1,41 +1,53 @@
-## Description: <br>
-Dandan Multi Search helps an agent choose and use multiple domestic and international search engines, including privacy, academic, code, and knowledge-query options, without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dandan Multi Search helps agents compose multi-engine search workflows across 17 domestic and international search engines, including privacy-oriented, academic, code, medical, and WolframAlpha knowledge queries, without an API key.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to route web, academic, code, privacy-focused, and knowledge-computation searches across appropriate public search engines and summarize findings with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to public search engines selected by the agent. <br>
-Mitigation: Avoid confidential, private, or account-specific queries unless sharing them with the selected search engine is acceptable; prefer DuckDuckGo or Startpage for more sensitive searches. <br>
-Risk: Search results can be incomplete, stale, biased, or misleading across engines. <br>
-Mitigation: Compare results across multiple engines and keep source links in the final answer for user review. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent in selecting suitable search engines, constructing advanced search queries, and summarizing results with source links.
 
-## Reference(s): <br>
-- [Dandan Multi Search on ClawHub](https://clawhub.ai/realorange1994/dandan-multi-search) <br>
-- [Publisher profile: realorange1994](https://clawhub.ai/user/realorange1994) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown search summaries with source links and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct queries to public search engines; no API key is required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Command examples can unsafe-handle search text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: URL-encode queries and revise command examples so untrusted query text is not interpolated into shell commands.
+
+Risk: Broad user queries may be sent to external services without enough control.
+
+Mitigation: Avoid using secrets, credentials, personal data, or sensitive business information in search queries, and confirm before searching when a request is ambiguous or sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realorange1994/skills/dandan-multi-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown search-result summaries with source links and inline shell or PowerShell commands when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include engine coverage, main findings, deeper sources, WolframAlpha notes, and original search links.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Predict satellite passes for NOAA APT, METEOR LRPT, and ISS over a configured latitude and longitude, then send WhatsApp alerts with manual dish alignment details and optional SDR capture/decode hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict satellite passes for NOAA APT, METEOR LRPT, and ISS targets at a configured location, then send WhatsApp alerts with manual dish alignment details and optional capture/decode orchestration hooks.
 
-## Publisher: <br>
-[davestarling](https://clawhub.ai/user/davestarling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[davestarling](https://clawhub.ai/user/davestarling)
 
-## Use Case: <br>
-Developers and SDR operators use this skill to configure a local satellite-pass scheduler, receive WhatsApp pass alerts, and prepare optional Raspberry Pi capture and Jetson/SatDump decode workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cron scheduling can repeatedly send alerts or run local workflow steps if the configuration is wrong. <br>
-Mitigation: Review the observer location, satellite list, alert lead time, repeat interval, and WhatsApp target before enabling the cron entry. <br>
-Risk: The pass predictor depends on external TLE data over the network, so stale or unavailable TLE data can affect pass timing. <br>
-Mitigation: Confirm dependency sources and TLE/network behavior before relying on the scheduler for operational reception windows. <br>
-Risk: Optional capture and decode hooks can execute configured commands with the local user's privileges. <br>
-Mitigation: Leave capture and decode hooks disabled unless the commands are written or fully trusted by the operator. <br>
+## Use Case:
 
+Developers and SDR operators use this skill to configure and run a zero-AI satellite pass scheduler for reception planning, WhatsApp pass alerts, and optional downstream capture/decode automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davestarling/moltbot-satellite-copilot) <br>
-- [Publisher profile](https://clawhub.ai/user/davestarling) <br>
-- [TLE API endpoint used by the pass predictor](https://tle.ivanstanojevic.me/api/tle/${norad}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and JSONL pass-prediction output from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes local scheduler state and per-pass run metadata when configured and enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Configured capture or decode hooks can run shell commands automatically from scheduled execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep hooks disabled until each command is written and reviewed by the operator, and run the scheduler under a low-privilege account.
+
+Risk: Scheduled command execution may inherit environment variables from the process.
+
+Mitigation: Avoid placing secrets in the cron or scheduler environment and use narrowly scoped credentials for notification and remote host access.
+
+## Reference(s):
+
+- [Satellite Copilot ClawHub release](https://clawhub.ai/davestarling/skills/moltbot-satellite-copilot)
+- [README](artifact/README.md)
+- [Example configuration](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scheduler setup steps, configuration edits, cron commands, and operational guidance for satellite pass alerts.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

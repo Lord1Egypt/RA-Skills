@@ -1,44 +1,59 @@
-## Description: <br>
-Helps agents prepare WeChat Official Account articles with publishing guidance, layout templates, image upload support, and draft creation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A WeChat Official Account publishing skill that helps agents prepare formatted articles, upload images, create drafts, and support manual publishing workflows.
 
-## Publisher: <br>
-[chenyd002025](https://clawhub.ai/user/chenyd002025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyd002025](https://clawhub.ai/user/chenyd002025)
 
-## Use Case: <br>
-Content teams and developers use this skill to format WeChat Official Account articles, upload article images, and prepare drafts for manual review and publishing in WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python scripts disable HTTPS certificate verification while handling WeChat credentials and upload requests. <br>
-Mitigation: Restore TLS certificate verification before running those scripts, or use the documented curl workflow with normal certificate verification. <br>
-Risk: The skill requires WeChat Official Account AppID and AppSecret values. <br>
-Mitigation: Keep config.json out of source control and shared folders, and avoid pasting real secrets into shell history. <br>
-Risk: Publishing workflows can upload unintended images or draft article content to a WeChat account. <br>
-Mitigation: Confirm each image, generated article, and WeChat draft manually before final publication. <br>
+## Use Case:
 
+Content creators, marketing teams, and agencies use this skill to assemble WeChat Official Account articles, prepare image assets, create drafts in WeChat, and review them before manual publication.
 
-## Reference(s): <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
-- [WeChat Official Account API Documentation](https://developers.weixin.qq.com/doc/offiaccount/) <br>
-- [Professional Article Template](assets/templates/professional.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WeChat draft metadata and image URL JSON when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill handles WeChat Official Account API credentials and unpublished article content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, access-restricted config.json stored outside shared or synced repositories, and rotate the AppSecret if it may have been exposed.
+
+Risk: The bundled Python scripts use unsafe TLS settings according to the security evidence.
+
+Mitigation: Avoid the bundled Python scripts until TLS verification is fixed; prefer reviewed curl commands or patched scripts that verify TLS certificates.
+
+Risk: Pasting real AppSecrets into shell commands can expose credentials through logs or shell history.
+
+Mitigation: Pass secrets through protected configuration or environment handling and avoid committing, logging, or sharing real AppSecrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyd002025/skills/jvs-wechat-article-publisher)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/offiaccount/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and article template content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate WeChat draft metadata and image URL JSON files when bundled scripts are used.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

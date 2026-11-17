@@ -1,41 +1,59 @@
-## Description: <br>
-Structured personal memory system that enables agents to persist, consolidate, and recall episodic and semantic memories across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured personal memory system that helps agents record daily events, consolidate long-term context, and recall relevant user preferences, decisions, and project history across sessions.
 
-## Publisher: <br>
-[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain local long-term memory across sessions by recording important events, decisions, preferences, and project context, then consolidating daily notes into curated semantic memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to retain local long-term memory about the user, projects, preferences, and past conversations. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal details, and periodically inspect or delete MEMORY.md and memory/*.md entries that should no longer be retained. <br>
-Risk: Memory recall can be incomplete or weak when relevant entries are missing or search terms do not match past notes. <br>
-Mitigation: State when records do not contain the requested information, try alternate search phrasing, and record corrected information for future recall. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent structured cross-session memory for noteworthy events, user preferences, decisions, project context, and recall before future responses.
 
-## Reference(s): <br>
-- [Consolidation Reference](references/consolidation.md) <br>
-- [Recall Patterns Reference](references/recall-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and generated memory reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local memory notes such as MEMORY.md and memory/YYYY-MM-DD.md when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata) <br>
+Risk: Persistent cross-session memory can capture sensitive, inferred, or unwanted personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define what may be stored before use, require confirmation for sensitive or inferred facts, and keep secrets and regulated data out of memory.
+
+Risk: Stale or incorrect memories may be reused in future responses.
+
+Mitigation: Review MEMORY.md and daily notes regularly, delete stale or unwanted entries, and avoid fabricating memories when recall is weak.
+
+Risk: Helper scripts scan local memory directories and may surface personal context in reports.
+
+Mitigation: Run scripts only against the intended memory directory and review generated reports before sharing them.
+
+## Reference(s):
+
+- [Autobiographical Memory ClawHub Release](https://clawhub.ai/xuyucheneureka/skills/autobiographical-memory)
+- [Consolidation Reference](artifact/references/consolidation.md)
+- [Recall Patterns Reference](artifact/references/recall-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-capture, consolidation, recall, and review guidance for agent-maintained MEMORY.md and daily note files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

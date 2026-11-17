@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "pluginVersion": "0.10.8",
+  "recommendedCliVersion": "0.9.8",
+  "minimumCliVersion": "0.9.4",
+  "maximumCliVersionExclusive": "0.10.0",
+  "releaseTag": "skill-v0.10.8",
+  "capabilityProbes": [
+    {
+      "args": [
+        "artifact",
+        "plan",
+        "--help"
+      ],
+      "stdoutIncludes": "artifact plan"
+    },
+    {
+      "args": [
+        "artifact",
+        "instantiate",
+        "--help"
+      ],
+      "stdoutIncludes": "artifact instantiate"
+    },
+    {
+      "args": [
+        "artifact",
+        "validate",
+        "--help"
+      ],
+      "stdoutIncludes": "artifact validate"
+    },
+    {
+      "args": [
+        "artifact",
+        "memory",
+        "--help"
+      ],
+      "stdoutIncludes": "artifact memory"
+    },
+    {
+      "args": [
+        "deck",
+        "analyze",
+        "--help"
+      ],
+      "stdoutIncludes": "deck analyze"
+    },
+    {
+      "args": [
+        "deck",
+        "instantiate",
+        "--help"
+      ],
+      "stdoutIncludes": "deck instantiate"
+    },
+    {
+      "args": [
+        "spec",
+        "catalog"
+      ]
+    },
+    {
+      "args": [
+        "spec",
+        "interaction",
+        "instantiate",
+        "--help"
+      ],
+      "stdoutIncludes": "spec interaction instantiate"
+    }
+  ]
+}

@@ -1,38 +1,48 @@
-## Description: <br>
-Suppress the OpenClaw CLI banner by guiding users to set the built-in OPENCLAW_HIDE_BANNER environment variable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Suppresses the OpenClaw CLI startup banner by guiding an agent to set the documented OPENCLAW_HIDE_BANNER environment variable.
 
-## Publisher: <br>
-[brunobuddy](https://clawhub.ai/user/brunobuddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brunobuddy](https://clawhub.ai/user/brunobuddy)
 
-## Use Case: <br>
-Developers and OpenClaw CLI users use this skill when they want concise guidance for hiding the OpenClaw startup banner and reverting that shell configuration later. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to change a shell startup file, which can persist across terminal sessions. <br>
-Mitigation: Confirm the correct shell configuration file before applying the OPENCLAW_HIDE_BANNER line, and remove that line to revert the behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brunobuddy/shut-up-openclaw-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/brunobuddy) <br>
+## Use Case:
 
+Developers and OpenClaw CLI users use this skill when they want an agent to hide the recurring startup banner by updating shell configuration with OPENCLAW_HIDE_BANNER=1. The same guidance explains how to remove the setting later.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to add one line to a user's shell configuration.
+
+Mitigation: Review that the change only adds OPENCLAW_HIDE_BANNER=1, and remove that line later to restore the banner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brunobuddy/skills/shut-up-openclaw-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to add or remove a single shell environment variable in ~/.zshrc or ~/.bashrc.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

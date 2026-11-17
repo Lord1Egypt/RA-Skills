@@ -1,40 +1,53 @@
-## Description: <br>
-Generate English image prompts for front-view product-holding character images based on user-provided text descriptions and image assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate English image prompts for front-view product-holding character images based on user-provided text descriptions and image assets.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users use this skill to turn product descriptions and optional reference images into concise English prompts for front-view character images where the character holds the product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference product photos or character images may contain sensitive or proprietary visual information. <br>
-Mitigation: Provide only images and product details that are appropriate for the agent or downstream image tooling to analyze. <br>
-Risk: The generated prompt may omit or overstate product, character, pose, or background details if the user's input is incomplete. <br>
-Mitigation: Review the final prompt against the source description and reference images before using it for image generation. <br>
+## Use Case:
 
+External users and creators use this skill to turn product descriptions and intentional reference images into concise English image-generation prompts for front-view character images holding products.
 
-## Reference(s): <br>
-- [Product Pose Prompt Generator on ClawHub](https://clawhub.ai/openlark/product-pose-prompt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain English image-generation prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the prompt text in English, with a maximum length of 300 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reference images may contain sensitive or private visual information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only images that are acceptable for the intended image-analysis workflow.
+
+Risk: The generated prompt may omit or overemphasize product, character, pose, or background details if the user input is incomplete.
+
+Mitigation: Review the prompt before use and provide clearer product, character, pose, background, and style requirements when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/product-pose-prompt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [English prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs only the prompt, in English, with a maximum length of 300 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

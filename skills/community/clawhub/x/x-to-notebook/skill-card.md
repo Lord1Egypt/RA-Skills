@@ -1,44 +1,58 @@
-## Description: <br>
-Push X/Twitter bookmarks into Google NotebookLM notebooks, auto-routed by bookmark folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Push X/Twitter bookmarks into Google NotebookLM notebooks, auto-routed by bookmark folder.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-External users and developers use this skill to fetch X/Twitter bookmark folders, match them to NotebookLM notebooks, and add each bookmark as a text source while tracking which bookmark IDs were pushed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reusable X session cookies are stored locally and can expose account access if leaked. <br>
-Mitigation: Protect the cookie file like a password, restrict local file access, and re-export cookies only when needed. <br>
-Risk: Private bookmark text and URLs may be copied into Google NotebookLM notebooks. <br>
-Mitigation: Review folder routing and notebook destinations before syncing sensitive material. <br>
-Risk: Unattended auto-sync can route bookmarks to matching notebooks without per-folder confirmation. <br>
-Mitigation: Avoid cron or unattended sync until the folder-to-notebook matching behavior has been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [X To Notebook on ClawHub](https://clawhub.ai/spideystreet/x-to-notebook) <br>
-- [spideystreet ClawHub Profile](https://clawhub.ai/user/spideystreet) <br>
-- [twikit](https://github.com/d60/twikit) <br>
-- [notebooklm-mcp-cli](https://github.com/jacob-bd/notebooklm-mcp-cli) <br>
+## Use Case:
 
+External users and developers use this skill to fetch their X/Twitter bookmarks, route them by bookmark folder, and add bookmark-derived text sources to matching Google NotebookLM notebooks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown/text guidance with shell command and JSON command snippets; helper scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, mcporter, twikit, notebooklm-mcp-cli, X session cookies, Chrome, and authenticated NotebookLM access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and CHANGELOG) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses exported X session cookies and sends bookmark-derived text, author handles, and source URLs to Google NotebookLM.
+
+Mitigation: Install only after review, store cookie files with restrictive permissions, and confirm the destination notebook before uploading bookmark content.
+
+Risk: The security scan reports unsafe command construction and under-disclosed persistent data transfer.
+
+Mitigation: Avoid unattended sync until command construction is fixed and the workflow requires explicit confirmation before uploads.
+
+Risk: The security guidance calls out unpinned dependencies.
+
+Mitigation: Pin and review dependencies before using the skill in a persistent or commercial environment.
+
+## Reference(s):
+
+- [X To Notebook ClawHub Skill Page](https://clawhub.ai/spideystreet/skills/x-to-notebook)
+- [twikit](https://github.com/d60/twikit)
+- [notebooklm-mcp-cli](https://github.com/jacob-bd/notebooklm-mcp-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON command payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces progress summaries and error messages while syncing bookmarks; helper scripts emit JSON for folders, bookmarks, and unattended sync reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

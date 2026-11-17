@@ -1,52 +1,61 @@
-## Description: <br>
-Battery Market Watch monitors battery-market policy, regulation, safety, subsidy, and investment news across China, the United States, India, Russia, and South Korea, then generates research-style weekly reports with summaries, translations, sentiment classification, and industry interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors battery-market policy, subsidy, regulatory, safety, and investment news across China, the United States, India, Russia, and South Korea, then generates Chinese research-style weekly reports.
 
-## Publisher: <br>
-[richardcoder849](https://clawhub.ai/user/richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Developers, analysts, and market-research users can use this skill to gather public battery-industry news, classify policy and safety signals, and produce Chinese-language Markdown and Word weekly reports for market monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to news, search, RSS, GNews, and NewsAPI providers. <br>
-Mitigation: Run it in an environment where those network calls are expected, and review configured providers before execution. <br>
-Risk: Optional NewsAPI and GNews credentials may be used by the search scripts. <br>
-Mitigation: Set API keys only when those integrations are intended, and provide them through environment variables rather than hard-coded files. <br>
-Risk: The analysis script can send prompts to a localhost LLM endpoint. <br>
-Mitigation: Confirm the localhost model service is trusted and under your control before running sentiment analysis. <br>
-Risk: Generated Markdown and DOCX reports may be copied to the Desktop. <br>
-Mitigation: Review generated report locations and contents before sharing or relying on them. <br>
+## Use Case:
 
+Market analysts, investors, and agents use this skill to collect recent battery-policy, safety, recall, subsidy, and investment news, classify likely market impact, and generate Chinese weekly research briefs for five target countries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richardcoder849/battery-market-watch) <br>
-- [Publisher profile](https://clawhub.ai/user/richardcoder849) <br>
-- [GNews](https://gnews.io/) <br>
-- [NewsAPI](https://newsapi.org/) <br>
-- [U.S. Department of Energy RSS](https://www.energy.gov/rss.xml) <br>
-- [U.S. EPA news RSS](https://www.epa.gov/newsreleases/search/rss.xml) <br>
-- [China National Energy Administration RSS](https://www.nea.gov.cn/131053424_157526451.xml) <br>
-- [China National Development and Reform Commission news](https://www.ndrc.gov.cn/xwdt/xwfb/?code=&state=123) <br>
-- [India Ministry of New and Renewable Energy RSS](https://mnre.gov.in/rss.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, Markdown, and DOCX report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dated data files under data/ and may copy generated Markdown and DOCX reports to the user's Desktop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill fetches news detail pages from unvalidated URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict detail fetching to approved public news hosts and block private, localhost, metadata IP, and unsafe redirect targets before routine use.
+
+Risk: Generated reports may be copied outside the skill data folder to the user's Desktop.
+
+Mitigation: Make Desktop export opt-in or keep generated reports inside the local data folder by default.
+
+Risk: Runtime dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin dependency versions and review updates before installation in managed environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/richardcoder849/skills/battery-market-watch)
+- [Publisher profile](https://clawhub.ai/user/richardcoder849)
+- [Configured source hosts and RSS feeds](artifact/config.json)
+- [NewsAPI](https://newsapi.org/)
+- [GNews](https://gnews.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, DOCX, and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses dated local filenames for raw news, parsed news, analysis, Markdown reports, and Word reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

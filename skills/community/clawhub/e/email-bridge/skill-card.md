@@ -1,46 +1,65 @@
-## Description: <br>
-Email management skill for AI assistants with real-time notifications, smart categorization (7 categories), verification code extraction, and HTML content sanitization. Supports Gmail, QQ Mail, and NetEase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Bridge helps AI assistants manage email with real-time notifications, smart categorization, verification code extraction, HTML content sanitization, and support for Gmail, QQ Mail, and NetEase.
 
-## Publisher: <br>
-[ryanchan720](https://clawhub.ai/user/ryanchan720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanchan720](https://clawhub.ai/user/ryanchan720)
 
-## Use Case: <br>
-Developers and AI-assistant users use Email Bridge to connect local mailbox accounts, monitor new mail, receive categorized notifications, extract verification codes, and send messages through supported providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires mailbox access and stores account credentials or OAuth tokens locally. <br>
-Mitigation: Install only for intended mailbox-management use, protect ~/.email-bridge, and prefer least-privilege OAuth scopes or provider app-specific passwords. <br>
-Risk: Outbound email sending could send unintended or incorrect messages. <br>
-Mitigation: Review every outbound email recipient, subject, and body before sending. <br>
-Risk: Background monitoring and notification forwarding can expose sensitive email content, verification codes, or links. <br>
-Mitigation: Disable body, link, and verification-code notifications unless needed, and stop the daemon when it is not in use. <br>
-Risk: Secrets may be exposed if entered directly into chat or shell history. <br>
-Mitigation: Configure accounts through the local CLI prompts and avoid putting authorization codes or passwords in shell commands. <br>
+## Use Case:
 
+External users and developers use Email Bridge to connect personal mail accounts to an AI assistant for local email sync, recent-message review, verification code extraction, outgoing email, and new-email notifications.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/ryanchan720/email-bridge) <br>
-- [Email Bridge on ClawHub](https://clawhub.ai/ryanchan720/email-bridge) <br>
-- [Gmail setup guide](references/gmail-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-oriented guidance with command examples and structured email notification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include categorized email summaries, verification codes, action links, sanitized body previews, and send/sync command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release evidence, SKILL.md frontmatter, pyproject.toml) <br>
+Risk: Mailbox credentials and OAuth tokens are stored locally and can be reused if ~/.email-bridge is exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect ~/.email-bridge, avoid sharing authorization codes in chat or command-line config, and revoke or rotate mail tokens when no longer needed.
+
+Risk: The skill can cache full mailbox contents locally.
+
+Mitigation: Review local storage before installation and remove ~/.email-bridge when decommissioning the skill.
+
+Risk: New-email notifications can send email-derived data, including verification codes, into the assistant.
+
+Mitigation: Disable include_verification_codes or OpenClaw notifications when this data should not enter the assistant context.
+
+Risk: The skill can send email through configured accounts.
+
+Mitigation: Review configured accounts and outgoing messages before relying on the skill for send workflows.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ryanchan720/skills/email-bridge)
+- [Project homepage](https://github.com/ryanchan720/email-bridge)
+- [Gmail setup guide](references/gmail-setup.md)
+- [Gmail readonly OAuth scope](https://www.googleapis.com/auth/gmail.readonly)
+- [QQ Mail authorization code guide](https://service.mail.qq.com/detail/0/75)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sanitized email summaries, verification codes, links, and account configuration guidance depending on user settings.]
+
+## Skill Version(s):
+
+0.6.3 (source: server release evidence, SKILL.md frontmatter, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

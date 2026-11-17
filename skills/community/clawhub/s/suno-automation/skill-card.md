@@ -1,37 +1,53 @@
-## Description: <br>
-Controls Suno AI in an OpenClaw managed browser to enter song details, create tracks, and play generated songs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Suno.com through an OpenClaw managed browser session to enter lyrics, style, and title details, create songs, and play generated tracks.
 
-## Publisher: <br>
-[upstatemovingimages-cmyk](https://clawhub.ai/user/upstatemovingimages-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[upstatemovingimages-cmyk](https://clawhub.ai/user/upstatemovingimages-cmyk)
 
-## Use Case: <br>
-Agents use this skill to operate a logged-in Suno session through OpenClaw, entering lyrics, style, and title before creating and playing generated music tracks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill acts through the user's logged-in Suno account and may create songs or affect account credits, billing, visibility, and sharing state. <br>
-Mitigation: Check Suno credits, billing, visibility, and sharing defaults before use, and give explicit direction before clicking Create. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Suno Create](https://suno.com/create) <br>
+## Use Case:
 
+Developers and agent users use this skill to have an agent operate a logged-in Suno browser session for AI music generation workflows. It is intended for entering prompts and song metadata, starting generation, and reviewing playback in the managed browser.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with browser command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running OpenClaw managed browser and a logged-in Suno session; browser element references must be refreshed with snapshots before acting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill operates in a logged-in Suno managed browser session and may click Create using the user's account.
+
+Mitigation: Install only for users who want agent control of their Suno session, and confirm generation actions before spending account credits or quota.
+
+Risk: Generated songs may contain unwanted, incorrect, or unsuitable content before publication.
+
+Mitigation: Review generated songs before publishing or sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page: Suno Automation](https://clawhub.ai/upstatemovingimages-cmyk/skills/suno-automation)
+- [Suno Create](https://suno.com/create)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline browser and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running OpenClaw managed browser profile with an authenticated Suno session; element references should be refreshed with browser snapshots before actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

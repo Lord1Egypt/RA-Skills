@@ -1,42 +1,58 @@
-## Description: <br>
-Openclaw Memory Transfer helps agents migrate user memories, preferences, writing style, and tool preferences from other AI assistants into OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrates memories, preferences, writing style, workflow data, and tool preferences from other AI assistants into OpenClaw.
 
-## Publisher: <br>
-[myclaw-ai](https://clawhub.ai/user/myclaw-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myclaw-ai](https://clawhub.ai/user/myclaw-ai)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to bring profile details, communication preferences, project context, tool preferences, and long-term memory from ChatGPT, Claude, Gemini, Copilot, Perplexity, Cursor, Windsurf, and related assistants into OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive assistant history, including personal, business, or third-party information. <br>
-Mitigation: Review and redact imported data before writing it to OpenClaw memory, and require user confirmation before migration is finalized. <br>
-Risk: Local-agent migration can read broad assistant files and directories if used without clear scope. <br>
-Mitigation: Ask the agent to list exact files and directories before reading them, and avoid broad home-directory scans unless the user explicitly approves the scope. <br>
-Risk: Full ChatGPT ZIP exports can contain more data than the user intends to migrate. <br>
-Mitigation: Treat ZIP output as sensitive, inspect the migration preview, and skip credentials, secrets, and irrelevant historical content. <br>
+## Use Case:
 
+External OpenClaw users use this skill to import memory, preferences, writing style, tool preferences, and workflow context from prior AI assistants. It supports prompt-guided migration from cloud assistants and local file scanning for supported local agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myclaw-ai/openclaw-memory-transfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON parser output and memory-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review and confirmation before imported memory is written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The local-agent path asks the agent to read broad local AI configuration and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local auto-scan only after selecting the exact files to import, and review and redact the migration preview before writing memory files.
+
+Risk: ChatGPT export ZIPs can contain sensitive conversation history, and the security evidence flags the ZIP parser as unsafe for sensitive exports.
+
+Mitigation: Do not upload untrusted ZIP files; import only trusted exports and remove sensitive data before accepting the migration.
+
+Risk: Imported rules or preferences may change future agent behavior.
+
+Mitigation: Review all imported rules and remove entries that should not influence future agent sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myclaw-ai/skills/openclaw-memory-transfer)
+- [MyClaw.ai](https://myclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, memory-file updates, and structured JSON from the ChatGPT export parser]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Imported data is shown for user review before memory files are written.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

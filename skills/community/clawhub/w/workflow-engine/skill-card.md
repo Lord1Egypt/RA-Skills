@@ -1,39 +1,52 @@
-## Description: <br>
-Structural parity skeleton for queue-driven orchestration in a workflow context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structural parity skeleton for queue-driven orchestration in a workflow context.
 
-## Publisher: <br>
-[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8)
 
-## Use Case: <br>
-Developers and workflow maintainers use this skill to load queue state, validate workflow transitions, and produce deterministic handoff guidance for queue-driven orchestration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags installation guidance that references an install script and OpenClaw hooks that are not included in the artifact. <br>
-Mitigation: Inspect any installer and hook code before running it, and enable persistent OpenClaw hooks only when that lifecycle behavior is explicitly desired. <br>
-Risk: Queue processing can update persisted workflow state and task fields. <br>
-Mitigation: Validate the queue schema before state transitions and review changed files before relying on the updated workflow state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/plgonzalezrx8/workflow-engine) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide queue-driven workflow orchestration, load persisted runtime context, validate queue state transitions, and produce deterministic handoff text.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text guidance with possible queue state file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deterministic handoff text when requested and preserves resumability by reading persisted queue state first.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release security summary flags installer instructions that ask users to run an unaudited hook installer and enable persistent hooks that are outside the skeleton skill's stated scope.
+
+Mitigation: Review the hook implementations and their source before running the installer or enabling hooks, and confirm how to disable or remove them.
+
+Risk: Persistent hooks may capture session data if enabled.
+
+Mitigation: Understand what session data the hooks capture before enabling them and avoid enabling them in sensitive workspaces unless the behavior has been independently reviewed.
+
+## Reference(s):
+
+- [Workflow Engine ClawHub Skill Page](https://clawhub.ai/plgonzalezrx8/skills/workflow-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured queue-state guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update persisted workflow artifacts and queue state when used with write-capable agent tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

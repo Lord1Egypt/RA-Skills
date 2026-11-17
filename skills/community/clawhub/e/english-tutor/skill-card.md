@@ -1,40 +1,52 @@
-## Description: <br>
-Personalized American English tutor offering lessons and exercises from A2 to C1, covering daily life, workplace, and tech topics with scheduled quizzes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized American English tutor offering lessons and exercises from A2 to C1, covering daily life, workplace, and tech topics with scheduled quizzes.
 
-## Publisher: <br>
-[fansi04](https://clawhub.ai/user/fansi04) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fansi04](https://clawhub.ai/user/fansi04)
 
-## Use Case: <br>
-External learners use this skill to configure an American English tutoring flow, receive level-appropriate lesson prompts, and practice vocabulary or communication topics tailored to their interests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill remembers onboarding answers and learning preferences in agent memory. <br>
-Mitigation: Avoid entering sensitive personal information when configuring the tutor. <br>
-Risk: Server security evidence notes packaging errors may prevent reliable execution. <br>
-Mitigation: Validate the manifest and JavaScript entry point before deploying or relying on scheduled tutoring behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fansi04/english-tutor) <br>
-- [Publisher Profile](https://clawhub.ai/user/fansi04) <br>
+## Use Case:
 
+External learners use this skill to receive personalized American English onboarding, lessons, exercises, and quizzes based on their CEFR level, interests, teaching style, and schedule preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Conversational text prompts and short lesson content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores onboarding preferences such as level, interests, teaching style, speaking/writing ratio, and schedule in agent memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package is malformed and may not install or run reliably.
+
+Mitigation: Confirm the manifest and JavaScript entry point are valid before enabling the skill.
+
+Risk: The skill stores onboarding preferences for tutoring personalization.
+
+Mitigation: Enable it only when users accept saving learning preferences in agent memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fansi04/skills/english-tutor)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Text responses with onboarding prompts, lesson content, examples, and quiz guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores learner preferences such as level, interests, teaching style, speaking/writing ratio, and schedule in agent memory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files list 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

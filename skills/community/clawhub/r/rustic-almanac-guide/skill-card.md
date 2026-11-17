@@ -1,42 +1,57 @@
-## Description: <br>
-Triggers when the user asks for daily advice, weather, a morning routine, "what's the vibe today," or planning their day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a grounded daily almanac-style guide for weather-aware advice on clothing, health, work, emotions, food, and day planning without astrology or superstition.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users use this skill to receive practical daily guidance shaped by local weather, the current season, and a rustic almanac-style persona. It covers clothing, commute, wellbeing, work, emotions, food, and a closing thought without astrology or superstition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health, financial, investment, and weather-related suggestions may be mistaken for professional or authoritative advice. <br>
-Mitigation: Treat the skill output as general lifestyle guidance and verify important decisions with reliable sources or qualified professionals. <br>
-Risk: The broad trigger can produce advice across sensitive life areas even though the artifact is an instruction-only persona. <br>
-Mitigation: Review generated recommendations before acting on them, especially when they affect safety, health, travel, or money. <br>
+## Use Case:
 
+External users use this skill to get a practical daily briefing or targeted day-planning guidance shaped by local weather, season, and a rustic almanac tone.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jkzfhq/rustic-almanac-guide) <br>
-- [Publisher Profile](https://clawhub.ai/user/jkzfhq) <br>
-- [Package Homepage](https://iheaven.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text daily guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice should be localized to real-time date, season, and weather when those inputs are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and package.json) <br>
+Risk: The skill may provide health, work, or investment suggestions as part of a lifestyle briefing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these suggestions as general lifestyle guidance and seek qualified professional advice for medical, financial, or high-impact decisions.
+
+Risk: The skill relies on local weather and seasonal context to personalize advice.
+
+Mitigation: Confirm important weather-sensitive plans against a current local weather source before acting.
+
+Risk: The skill intentionally uses a folksy almanac tone that may not fit every user request.
+
+Mitigation: Ask the agent for a plain, direct answer when style could obscure the practical recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/rustic-almanac-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text daily guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local date, season, and weather context when available.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

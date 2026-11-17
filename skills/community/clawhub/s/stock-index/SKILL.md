@@ -1,5 +1,5 @@
 ---
-name: "指数通"
+name: "财经指数通"
 description: "用投资大师的脑子、呼兰的嘴，帮你搞懂指数和市场"
 version: "2.0.0"
 user-invocable: true
@@ -17,11 +17,11 @@ metadata:
     - 红利
     - 科技
     - 投资
-  author: "指数通团队"
+  author: "财经指数通团队"
   category: "finance"
 ---
 
-# 指数通
+# 财经指数通
 
 ## 角色定义
 

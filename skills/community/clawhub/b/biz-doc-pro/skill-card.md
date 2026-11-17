@@ -1,41 +1,53 @@
-## Description: <br>
-Biz Doc Pro helps freelancers, small business owners, and founders generate business proposals, invoices, and contracts from shared client and project details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Biz Doc Pro helps users generate business proposals, invoices, and contracts from shared client and project information.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External users such as freelancers, small business owners, and founders use this skill to draft proposal, invoice, and contract documents with reused client and project information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client, invoice, and contract material may include confidential business information stored in local files. <br>
-Mitigation: Use the skill only when local storage under ~/biz-docs is acceptable, and protect or remove sensitive client files according to the user's data-handling requirements. <br>
-Risk: Generated tax calculations, contract terms, or auto-filled client details may be incorrect or unsuitable for a specific client engagement. <br>
-Mitigation: Review calculations, legal terms, and client details before sending documents or relying on them in a business workflow. <br>
+## Use Case:
 
+Freelancers, small business owners, and founders use this skill to draft proposals, issue invoices, and prepare contracts while reusing client and project details across documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/biz-doc-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown business documents and structured drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and reuses client, proposal, invoice, and contract details under ~/biz-docs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, _meta.json, server release metadata) <br>
+Risk: Generated legal or financial text may be incorrect, incomplete, or unsuitable for a specific client or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review contracts, invoices, tax details, and payment terms before sending or signing, and involve qualified legal or financial review when needed.
+
+Risk: Client, proposal, invoice, and contract records stored under ~/biz-docs may contain sensitive business information.
+
+Mitigation: Store generated records in an appropriate protected location, limit access, and delete or archive client records when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/biz-doc-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown business documents and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local client, proposal, invoice, and contract records under ~/biz-docs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

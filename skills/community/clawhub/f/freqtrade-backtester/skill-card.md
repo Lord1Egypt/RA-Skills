@@ -1,44 +1,59 @@
-## Description: <br>
-Run Freqtrade backtests for cryptocurrency trading strategies, interpret results, and iterate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Freqtrade backtests for cryptocurrency trading strategies, interpret results, and iterate.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and traders use this skill to download Freqtrade market data, run cryptocurrency strategy backtests, interpret result metrics, compare strategy variants, and decide whether a strategy is ready for cautious live testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backtest commands can be run with the wrong Docker Compose setup, exchange, pair, timeframe, or timerange. <br>
-Mitigation: Review the docker-compose setup and command parameters before execution. <br>
-Risk: Live exchange API keys could expose funds if they are reused during testing. <br>
-Mitigation: Avoid live exchange API keys unless they are tightly permissioned and withdrawals are disabled. <br>
-Risk: A strategy that performs well in historical backtests may fail in live markets or be overfit to one period. <br>
-Mitigation: Compare fixed-period baselines, change one parameter at a time, test multiple market conditions, and start any live trial with small position sizes. <br>
+## Use Case:
 
+Developers and cryptocurrency strategy authors use this skill to download historical market data, run and compare Freqtrade backtests, and interpret performance while iterating on strategies.
 
-## Reference(s): <br>
-- [Reading Backtest Results](references/reading-results.md) <br>
-- [Iteration Guide](references/iteration-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/freqtrade-backtester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Freqtrade Docker commands, environment variable guidance, and interpretation guidance for backtest results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Existing Compose configuration, container image, or strategy code is outside the supplied skill and may affect what runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those files before execution.
+
+Risk: Exchange credentials can expose account access if given unnecessary permissions or stored insecurely.
+
+Mitigation: Use historical data without authentication when possible; otherwise use read-only keys with trading and withdrawals disabled, and keep secrets in the environment or a gitignored file.
+
+Risk: Historical backtest results may not predict live market performance.
+
+Mitigation: Compare performance across market conditions and treat backtests as historical evidence rather than a guarantee.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/freqtrade-backtester)
+- [Reading Backtest Results](references/reading-results.md)
+- [Iteration Guide: Improving Your Strategy](references/iteration-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Analysis, Guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Explains backtest metrics and comparisons; does not include a trading strategy or guarantee future performance.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

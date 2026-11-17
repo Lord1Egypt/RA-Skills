@@ -7,7 +7,7 @@
 
 ## ⛔ 必读（调用前必须理解）
 
-1. 本服务**直接暴露所有业务工具**（如 `team_list_teams`、`search_kb_search` 等），可直接调用
+1. 业务工具的暴露方式因客户端而异：**先用「可用工具列表」判定当前模式，再决定调用方式**（详见「工具调用模式判定」）
 2. 调用前先确认工具参数定义，**以 MCP 返回的 schema 为准**
 3. 不确定参数时，使用 `get_tool_schema(tool_name="xxx")` 获取最新定义
 
@@ -94,30 +94,40 @@ Team → Space → Entry（树形结构，root_entry_id 为根）
 ### 写入 vs 读取工具分类
 
 **写入操作**（需满足安全规则）：
-`entry_create_entry`、`entry_import_content`、`entry_import_content_to_entry`、`block_update_block`、`block_update_blocks`、`block_create_block_descendant`、`block_delete_block`、`block_delete_block_children`、`block_move_blocks`、`entry_rename_entry`、`entry_move_entry`、`file_apply_upload`、`file_commit_upload`、`file_create_hyperlink`
+`entry_create_entry`、`entry_import_content`、`entry_import_content_to_entry`、`entry_rename_entry`、`entry_move_entry`、`entry_set_entry_validity`、`block_update_block`、`block_update_blocks`、`block_update_page`、`block_create_block_descendant`、`block_delete_block`、`block_delete_block_children`、`block_move_blocks`、`file_apply_upload`、`file_commit_upload`、`file_create_hyperlink`、`file_revert_file`、`draft_save_markdown_draft`、`draft_publish_markdown_draft`、`draft_delete_markdown_draft`、`smartsheet_create`、`smartsheet_create_records`、`smartsheet_update_records`、`smartsheet_delete_records`、`smartsheet_update_schema`、`smartsheet_create_field`、`smartsheet_update_field`、`smartsheet_delete_field`、`smartsheet_create_view`、`smartsheet_update_view`、`smartsheet_delete_view`
 
 **只读操作**（不受安全规则限制，可直接执行）：
-`team_list_teams`、`team_describe_team`、`team_list_frequent_teams`、`space_list_spaces`、`space_describe_space`、`entry_list_children`、`block_list_block_children`、`search_kb_search`、`search_kb_embedding_search`、`space_list_recently_spaces`、`entry_list_latest_entries`、`entry_describe_ai_parse_content`、`file_describe_file`、`file_download_file`、`whoami`
+`team_list_teams`、`team_describe_team`、`team_list_frequent_teams`、`space_list_spaces`、`space_describe_space`、`space_list_recently_spaces`、`space_describe_personal_space`、`entry_list_children`、`entry_describe_entry`、`entry_describe_ai_parse_content`、`entry_list_parents`、`entry_list_latest_entries`、`entry_list_recently_entries`、`block_list_block_children`、`block_describe_block`、`block_fetch_page`、`search_kb_search`、`search_kb_embedding_search`、`lexiang_search`、`lexiang_fetch`、`file_describe_file`、`file_download_file`、`file_list_revisions`、`draft_describe_markdown_draft`、`smartsheet_fetch`、`smartsheet_list`、`smartsheet_list_smartsheets`、`smartsheet_list_records`、`smartsheet_describe_record`、`smartsheet_list_fields`、`smartsheet_list_views`、`comment_list_comments`、`comment_describe_comment`、`whoami`
 
 ---
 
-## 🔍 工具发现与调用
+## 🔍 工具调用模式判定
 
-本服务**直接暴露所有业务工具**，可直接调用。同时提供以下辅助元工具：
+乐享 MCP 在不同客户端/版本下的工具暴露面不同：有的直接暴露全部业务工具，有的只暴露元工具。
+**调用业务工具前必须先判定当前模式**，否则会出现 `Tool "xxx" not found` 报错。
 
-| 元工具 | 用途 |
-|--------|------|
-| `list_tool_categories` | 列出所有工具分类及其工具列表 |
-| `search_tools` | 按关键词或分类搜索工具 |
-| `get_tool_schema` | 获取具体工具的完整参数定义 |
+| 判定结果 | 模式 | 调用方式 |
+|---------|------|---------|
+| 可用工具列表中存在目标业务工具名 | **直调模式** | 直接调用该工具，效率最高 |
+| 可用工具列表中只有元工具 | **代理模式** | `search_tools` 发现 → `get_tool_schema` 取参 → `call_tool` 代理调用 |
+| 直调却报 `Tool "xxx" not found` | 判定失效 | 立即切代理模式，**本次会话后续业务工具一律走代理** |
 
-**标准工作流：**
+**元工具（两种模式均可直接调用）**：`whoami`、`lexiang_search`、`lexiang_fetch`、`get_tool_schema`、`search_tools`、`list_tool_categories`、`call_tool`
+
+**判定流程：**
 
 ```
-1. 直接调用已知工具：team_list_teams()、search_kb_search(keyword="xxx") 等
-2. 不确定参数时：get_tool_schema(tool_name="xxx") → 获取参数定义
-3. 不确定工具名时：search_tools(query="关键词") → 找到工具名
+需要调用业务工具 X 时：
+1. 在当前可用工具列表中查找 X
+   ① 找到 X          → 直调 X(...)
+   ② 只有 call_tool  → search_tools(query="关键词") 确认 X 存在
+                      → get_tool_schema(tool_name="X") 取参数定义
+                      → call_tool(tool_name="X", arguments={...})
+2. 若直调 X 报 "not found" → 切换代理模式，并在本次会话中沿用，不再逐个重试直调
 ```
+
+> 本文档后续所有业务工具名（如 `entry_list_children`、`file_download_file`）均为**逻辑工具名**：
+> 直调模式下直接调用；代理模式下作为 `call_tool(tool_name=...)` 的参数使用。
 
 ---
 
@@ -237,6 +247,9 @@ search_kb_search(keyword="xxx", _mcp_fields="items.target_id,items.title,items.t
 | `references/common-errors.md` | 常见错误排查（高频错误速查表） |
 | `references/doc-templates.md` | 文档类型与大纲模板 |
 | `references/theme-config.md` | 主题配色配置 |
+| `references/smartsheet.md` | 智能表格增删查改、schema 管理 |
+| `references/draft.md` | Markdown 草稿保存、发布、管理 |
+| `references/comment.md` | 知识页面评论查看 |
 
 ### 辅助脚本（scripts/）
 

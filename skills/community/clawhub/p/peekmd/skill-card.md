@@ -1,43 +1,54 @@
-## Description: <br>
-Create and share rendered markdown web pages through the Peekmd API with optional TTLs, rich formatting, auto-expiring links, and burn-after-read deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peekmd helps agents, bots, and developers create shareable rendered markdown web pages through the peekmd.dev API with optional expiration and deletion.
 
-## Publisher: <br>
-[notacryptodad](https://clawhub.ai/user/notacryptodad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notacryptodad](https://clawhub.ai/user/notacryptodad)
 
-## Use Case: <br>
-External users, agents, bots, and developers use this skill to publish formatted markdown such as reports, docs, code snippets, tables, and diagrams as temporary shareable web pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown uploaded to peekmd.dev could expose secrets, credentials, private customer data, regulated data, or internal-only reports. <br>
-Mitigation: Do not send sensitive content and use short TTLs for temporary sharing. <br>
-Risk: Paid tiers and x402 payment flows could trigger unintended commercial or crypto actions. <br>
-Mitigation: Confirm any paid or crypto action before proceeding. <br>
-Risk: Burn-after-read deletion could remove the wrong page if the slug is incorrect. <br>
-Mitigation: Verify the slug before burning a page. <br>
+## Use Case:
 
+Developers and agent builders use Peekmd to turn markdown reports, documents, code snippets, tables, and diagrams into temporary or shareable web pages for agent-to-human handoffs.
 
-## Reference(s): <br>
-- [ClawHub Peekmd package page](https://clawhub.ai/notacryptodad/peekmd) <br>
-- [Peekmd homepage](https://peekmd.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint choices, TTL recommendations, generated share URLs, and burn-after-read deletion guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Selected markdown is sent to peekmd.dev and may be exposed through a shareable URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact secrets, credentials, personal data, regulated content, internal reports, and private logs before creating a page.
+
+Risk: Shared pages can remain accessible until their TTL expires or they are deleted.
+
+Mitigation: Use short TTL values for temporary shares and call the burn endpoint when a page should be removed immediately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/notacryptodad/skills/peekmd)
+- [Peekmd homepage](https://peekmd.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces shareable URLs for rendered markdown pages; free-tier pages expire after five minutes and submitted markdown is limited to 500 KB.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

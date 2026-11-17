@@ -1,40 +1,60 @@
-## Description: <br>
-Review ads and campaign setup for policy compliance on Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review ads and campaign setup for policy compliance on Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing, growth, and advertising teams use this skill to screen ad copy and campaign setup for policy risks before launch. It returns findings, compliant rewrites, guardrails, and a handoff payload for downstream campaign work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may generate budget, bidding, KPI, or campaign execution recommendations that affect advertising spend or account performance. <br>
-Mitigation: Require human review and explicit approval before applying recommendations, changing ad accounts, launching campaigns, allocating spend, or using credentials through any trusted tool. <br>
-Risk: Marketing-optimization wording may be broader than the compliance-review purpose. <br>
-Mitigation: Use the skill as advisory compliance guidance and keep launch or scale decisions behind validation checkpoints and platform-specific policy review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
-- [Skill page](https://clawhub.ai/danyangliu-sandwichlab/ad-compliance-reviewer) <br>
+## Use Case:
 
+External marketers, growth teams, and campaign operators use this skill to screen advertising copy and campaign setup for policy risk, produce compliant rewrites, and prepare execution-ready next steps before launch.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured sections and handoff fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides intent summary, findings, action plan, risks and guardrails, and a structured handoff payload.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may provide marketing optimization advice in addition to compliance screening.
+
+Mitigation: Treat recommendations as advisory; review budget, bidding, and campaign-execution changes before acting.
+
+Risk: Advertising policy conclusions can depend on platform-specific rules, account status, geography, and current policy updates.
+
+Mitigation: Use the output as pre-launch screening and confirm high-risk findings with the relevant platform policy source or compliance reviewer before publishing.
+
+Risk: Missing or low-quality campaign data can lead to assumption-driven recommendations.
+
+Mitigation: Require the skill to state assumptions, request missing critical inputs, and prioritize reversible low-risk actions when uncertainty is high.
+
+Risk: Campaign guidance could be mistaken for authorization to access or operate ad accounts.
+
+Mitigation: Do not provide credentials or account access unless separately authorized and governed by the installer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/ad-compliance-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured sections for intent summary, findings, action plan, risks and guardrails, and handoff payload.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should separate facts from assumptions, identify missing critical inputs, and keep recommendations tied to explicit KPIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,63 @@
-## Description: <br>
-Creates, manages, and exposes isolated code-server development environments in Docker through Cloudflare Tunnel, with Bun, uv, and OpenCode pre-installed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, manages, and opens isolated browser-based code-server development environments using Docker and Cloudflare Tunnel, with Bun, uv, and OpenCode available in the container.
 
-## Publisher: <br>
-[Lanbasara](https://clawhub.ai/user/Lanbasara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lanbasara](https://clawhub.ai/user/lanbasara)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, start, stop, inspect, and remove isolated browser IDE environments backed by Docker containers. Review before installing because the security evidence notes public browser IDE exposure, password handling, and host filesystem path risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lanbasara/codespace-manager) <br>
-- [Docker installation documentation](https://docs.docker.com/get-docker/) <br>
-- [Cloudflare Tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) <br>
-- [Bun installer](https://bun.sh/install) <br>
-- [uv installer](https://astral.sh/uv/install.sh) <br>
-- [OpenCode configuration schema](https://opencode.ai/config.json) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Docker, cloudflared, jq, password, tunnel URL, and destructive lifecycle command guidance that should be reviewed before execution.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Developers and engineers use this skill to create, start, stop, inspect, and delete isolated remote development environments with browser IDE access. It is suited for setting up temporary Docker-backed workspaces, optionally cloning a repository and initializing OpenCode configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Browser IDEs may be exposed publicly through Cloudflare Quick Tunnel with weak default authentication.
+
+Mitigation: Use strong unique passwords and avoid exposing valuable workspaces through Quick Tunnel until authentication is reviewed and hardened.
+
+Risk: Install and setup paths download external tooling during Docker image builds.
+
+Mitigation: Review installers before use and require pinned, verified installer sources before treating the skill as production-ready.
+
+Risk: Codespace deletion is irreversible and removes local workspace data.
+
+Mitigation: Require explicit deletion confirmation and verify the target codespace name before removing containers or workspace directories.
+
+Risk: Saved passwords and workspace metadata may expose sensitive access details.
+
+Mitigation: Use safer secret handling and review local metadata permissions before using the skill with sensitive repositories.
+
+## Reference(s):
+
+- [Codespace Manager Skill Page](https://clawhub.ai/lanbasara/skills/codespace-manager)
+- [Docker installation documentation](https://docs.docker.com/get-docker/)
+- [Cloudflare cloudflared downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+- [OpenCode configuration schema](https://opencode.ai/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Docker containers, local workspace files, Cloudflare Quick Tunnel URLs, and OpenCode configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

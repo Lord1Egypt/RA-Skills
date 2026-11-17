@@ -1,41 +1,53 @@
-## Description: <br>
-Launch automated multi-skill pipeline that chains skills into a loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch automated multi-skill pipeline that chains skills into a loop.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and agent users use this skill to coordinate research or development workflows that chain multiple skills after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate multiple downstream skills and continue work through pipeline state. <br>
-Mitigation: Review the confirmation prompt before starting and inspect or delete the documented .solo pipeline state file if a pipeline resumes unexpectedly. <br>
-Risk: Optional launcher scripts are external to this skill and depend on a separately installed Claude Code plugin. <br>
-Mitigation: Use direct skill invocation as the primary path and run launcher scripts only after separately trusting the plugin that provides them. <br>
+## Use Case:
 
+Developers and builders use this skill to coordinate research or development workflows by confirming a pipeline and then running staged skills such as research-to-PRD or scaffold-to-build.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortunto2/solo-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/fortunto2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline command examples and direct skill invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before starting a pipeline; optional launcher scripts depend on a separately trusted Claude Code plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can coordinate multi-step research or development workflows that trigger other skills after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the listed pipeline stages before starting and use it only when a multi-stage workflow is intended.
+
+Risk: Pipeline runs may create local .solo state and log files, and deleting a state file cancels that pipeline run.
+
+Mitigation: Review the expected state and log locations before running, and treat state-file deletion as an irreversible cancellation for that run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multi-stage skill execution after user confirmation and may create local .solo pipeline state and log files.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

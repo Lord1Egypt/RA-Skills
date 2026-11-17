@@ -1,47 +1,55 @@
-## Description: <br>
-ElevenLabs Instant Voice Cloning (IVC). Upload a clean voice sample to clone a custom voice usable with ElevenLabs TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clones a custom ElevenLabs voice from a clean audio sample for use with text-to-speech.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agent users use this skill to invoke dLazy's ElevenLabs voice-cloning CLI workflow, upload an authorized voice sample, and create a custom voice for ElevenLabs text-to-speech use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice samples and request parameters may be uploaded to dLazy or ElevenLabs-related services. <br>
-Mitigation: Use only audio the user owns or is authorized to process, and avoid submitting sensitive or private voice samples without appropriate consent. <br>
-Risk: A dLazy API key may be stored locally for CLI authentication. <br>
-Mitigation: Store credentials with OS-user-only permissions, prefer per-invocation environment variables when appropriate, and rotate or revoke keys when access changes. <br>
-Risk: The skill installs @dlazy/cli@latest, which may change behavior over time. <br>
-Mitigation: Review the package or source before installation and verify current CLI help before relying on examples. <br>
-Risk: Voice cloning can be used for deceptive impersonation. <br>
-Mitigation: Use the skill only for authorized voice cloning and disclose synthetic voice use where required by policy or law. <br>
+## Use Case:
 
+Developers and creators use the skill to create a custom voice from a clean sample for ElevenLabs text-to-speech. It sends the request through dLazy's hosted service and returns a result or asynchronous task status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dlazyai/dlazy-elevenlabs-voice-clone) <br>
-- [dLazy CLI Source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm Package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy Homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return asynchronous task identifiers and hosted output URLs from the dLazy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The security scan was partial and flags that the reported login command is not linked to the skill's stated voice-cloning purpose in the scan evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI login behavior and confirm it matches your expectations before installing or signing in.
+
+Risk: The skill sends audio samples to a hosted service for voice cloning.
+
+Mitigation: Use samples you have permission to clone, avoid sensitive recordings, and review the service's data terms before uploading.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-voice-clone)
+- [CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI homepage listed in release metadata](https://github.com/dlazy-ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Audio, JSON, Guidance]
+
+**Output Format:** [JSON result with output details or asynchronous task status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice-cloning requests may return immediately with a task identifier when asynchronous mode is used.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

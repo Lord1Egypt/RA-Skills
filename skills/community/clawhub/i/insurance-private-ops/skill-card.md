@@ -1,46 +1,59 @@
-## Description: <br>
-AI-powered insurance private domain (wechat ecosystem) customer operations skill - RFM + lifecycle customer segmentation, churned customer reactivation SOP, renewal management, enterprise WeChat (WeCom) operations, AI personalization, and data-driven CRM strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps insurance operations teams in China's WeChat ecosystem segment customers, reactivate lapsed policyholders, manage renewals, and plan PIPL-aware private-domain CRM outreach.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Insurance private-domain operations teams, life insurers, group insurance operators, and insurance brokers use this skill to segment customers, reactivate lapsed policies, plan renewals, and draft WeChat or WeCom customer outreach workflows. It is intended as an advisory operations playbook for China insurance customer lifecycle management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide outreach involving sensitive insurance customer data and marketing channels. <br>
-Mitigation: Confirm lawful consent for each channel, honor opt-outs and suppression lists, minimize or mask identifiers, and restrict access to authorized staff before using real customer data. <br>
-Risk: Generated campaign plans or scripts may affect policy, claims, high-value, or complaint-related customer interactions. <br>
-Mitigation: Require human approval for sensitive customer-facing campaigns and treat the skill as an advisory operations playbook, not proof of legal compliance. <br>
-Risk: The artifact discusses AI-assisted outreach and personalization in regulated insurance contexts. <br>
-Mitigation: Clearly identify AI-assisted communications where required and review personalized recommendations against applicable insurance, privacy, and internal compliance rules. <br>
+## Use Case:
 
+Insurance private-domain operations teams, CRM operators, and agents use this skill to segment customers, prioritize renewal and churn outreach, draft WeChat, WeCom, and SMS contact plans, and prepare human-reviewed personalized engagement for China life-insurance customers.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/gechengling/insurance-private-ops) <br>
-- [README](README.md) <br>
-- [Insurance Customer Segmentation Handbook](references/customer_segmentation.md) <br>
-- [Churned Customer Reactivation SOP and Scripts](references/churn_activation.md) <br>
-- [WeCom Private Domain SOP and Content Calendar](references/private_domain_sop.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown playbooks with tables, outreach templates, workflows, and occasional SQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory customer-operations output; customer-facing campaigns and regulated insurance guidance require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is intended for privacy-sensitive insurance CRM workflows involving customer profiles, policy status, segmentation, and outreach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using real customer data, confirm lawful authority, consent, opt-out handling, data minimization, access controls, and retention limits.
+
+Risk: Personalized insurance outreach or sensitive customer segmentation can create compliance, fairness, or customer-trust issues if used without review.
+
+Mitigation: Require human review for personalized outreach, high-risk customer segments, and any message that may affect sales, renewal, claims, or customer rights.
+
+Risk: Operational guidance may be outdated or mismatched to a specific insurer's regulatory obligations or channel policies.
+
+Mitigation: Validate workflows against current legal, compliance, platform, and insurer-specific requirements before deployment.
+
+## Reference(s):
+
+- [Insurance Customer Segmentation Model Handbook](references/customer_segmentation.md)
+- [Churned Customer Reactivation SOP and Talk Track Templates](references/churn_activation.md)
+- [WeCom Private-Domain Operations SOP and Content Calendar](references/private_domain_sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with tables, SOPs, scripts, and operational templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; outputs require human review before customer outreach.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

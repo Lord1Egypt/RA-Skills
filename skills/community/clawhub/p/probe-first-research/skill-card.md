@@ -1,40 +1,53 @@
-## Description: <br>
-Probe-first deep research skill that uses low-cost search-snippet reconnaissance before committing to deeper source fetching and synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Probe-first deep research - low-cost snippet reconnaissance before committing to full searches.
 
-## Publisher: <br>
-[lkm123](https://clawhub.ai/user/lkm123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkm123](https://clawhub.ai/user/lkm123)
 
-## Use Case: <br>
-Researchers, developers, and analysts use this skill to plan and execute web research with an initial probe phase, user-confirmed direction, targeted deep searches, source synthesis, and confidence-labeled reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long or multi-agent research runs may create local notes containing research details and source lists. <br>
-Mitigation: Delete or restrict access to generated research-state notes when working on sensitive topics. <br>
-Risk: Research outputs can be incomplete or misleading if snippets, fetched pages, or source availability are weak. <br>
-Mitigation: Use the skill's confidence labels, source lists, contradiction checks, and final review step before relying on findings. <br>
+## Use Case:
 
+Developers, researchers, and other external users use this skill to run structured web research that probes search snippets first, aligns on a plan, then performs deeper source-backed synthesis. It is suited to research questions where cost control, source quality, confidence labeling, and explicit uncertainty handling matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lkm123/probe-first-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans and reports with source lists, confidence labels, and methodology notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include probe findings, proposed sub-questions, searched sources, gaps, contradictions, and optional local research-state notes for long sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill requests broad local command and file-editing authority beyond its core research workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it in a constrained workspace, and remove Bash/Edit permissions when they are not required.
+
+Risk: The skill can persist research-state files during long or multi-agent sessions.
+
+Mitigation: Ask for explicit notice before file writes and verify the target workspace does not contain sensitive or unrelated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lkm123/skills/probe-first-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans, probe findings, source-backed reports, confidence labels, and methodology notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a research-state Markdown file during longer or multi-agent research sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Enhanced security with OWASP Top 10, dependency scanning, SAST/DAST, secrets detection, compliance checks, and security hardening guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced security with OWASP Top 10, dependency scanning, SAST/DAST, secrets detection, compliance checks, and security hardening guides.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, security engineers, and operations teams use this skill for practical guidance on OWASP Top 10 mitigations, vulnerability scanning, secrets detection, compliance checks, and security hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example network scanning commands could be misused against systems without authorization. <br>
-Mitigation: Run active scans only against systems you own or are explicitly authorized to test. <br>
-Risk: Automated dependency fixes can change application behavior or introduce regressions. <br>
-Mitigation: Review and test dependency changes before applying them to production code. <br>
-Risk: Security guidance may need adaptation for a specific application, environment, or regulatory context. <br>
-Mitigation: Treat the output as a checklist and validate decisions with the responsible security or compliance team. <br>
+## Use Case:
 
+Developers and security engineers use this skill as a practical security reference for OWASP Top 10 mitigations, vulnerability scanning, secrets detection, compliance checks, and server, application, and database hardening.
 
-## Reference(s): <br>
-- [Security Plus on ClawHub](https://clawhub.ai/534422530/security-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, tables, inline code blocks, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces security guidance only; commands are examples that users must review and run manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Example scanner and audit commands may change dependencies or test live systems if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin tool versions where possible, review changes from npm audit fix, and run scanners only against systems you are authorized to test.
+
+Risk: Running external security tools with production credentials present may expose sensitive data.
+
+Mitigation: Run tools in a controlled environment and avoid using production credentials during scans.
+
+## Reference(s):
+
+- [detect-secrets](https://github.com/Yelp/detect-secrets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklists, tool references, mitigation tables, and example commands; users should review commands before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

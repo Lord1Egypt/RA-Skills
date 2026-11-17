@@ -1,45 +1,60 @@
-## Description: <br>
-AgentClear helps agents discover, call, and pay for APIs through a proxy marketplace using an AgentClear API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentClear enables agents to discover APIs in natural language, proxy calls to paid services, list marketplace services, and check account or balance status through an AgentClear API key.
 
-## Publisher: <br>
-[dwflickinger](https://clawhub.ai/user/dwflickinger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dwflickinger](https://clawhub.ai/user/dwflickinger)
 
-## Use Case: <br>
-Developers and agents use this skill to discover API services by natural-language query, inspect price and trust signals, call selected paid services through AgentClear, and check marketplace or account status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected requests can be routed to AgentClear and upstream providers, which may expose payload contents outside the local agent environment. <br>
-Mitigation: Send only approved, non-sensitive payloads and review the selected provider's trust details before proxy calls. <br>
-Risk: Per-call billing can spend AgentClear account credits. <br>
-Mitigation: Check service pricing, trust score, and account balance before calls, and use a revocable API key. <br>
-Risk: The skill requires AGENTCLEAR_API_KEY for authentication and metering. <br>
-Mitigation: Store the key in an environment variable or secrets manager, scope access to the intended account, and revoke the key if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dwflickinger/agentclear) <br>
-- [AgentClear](https://agentclear.dev) <br>
-- [AgentClear API Docs](https://agentclear.dev/docs) <br>
-- [AgentClear Security](https://agentclear.dev/security) <br>
-- [AgentClear Bounty Board](https://agentclear.dev/bounties) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an OpenClaw agent discover paid API services, evaluate pricing and trust metadata, call selected services through AgentClear, and inspect marketplace or account status.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTCLEAR_API_KEY; API calls can spend AgentClear credits and may forward selected payloads to upstream providers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may send user payloads to dynamically selected paid third-party services.
+
+Mitigation: Require manual confirmation before each proxy request and review the payload, selected provider, and price before allowing the call.
+
+Risk: AgentClear API key use can incur paid per-call charges.
+
+Mitigation: Use a scoped, revocable API key and configure account-level spending limits where available.
+
+Risk: Mutable main-branch install commands may change after review.
+
+Mitigation: Install from a pinned reviewed commit or verified release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dwflickinger/skills/agentclear)
+- [AgentClear](https://agentclear.dev)
+- [AgentClear API Docs](https://agentclear.dev/docs)
+- [AgentClear Security](https://agentclear.dev/security)
+- [AgentClear Bounty Board](https://agentclear.dev/bounties)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTCLEAR_API_KEY and can cause paid per-call API usage through selected AgentClear services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

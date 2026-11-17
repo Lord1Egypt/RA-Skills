@@ -24,20 +24,22 @@ If the screenshot belongs to one project and you are unsure whether it will rema
 Use `reports/` when the output is a standalone report, deck, or research summary without a broader project context.
 Use `projects/` when the output belongs to an ongoing body of work with related source files, drafts, or expected follow-up.
 
-## CSV with business data: user-files/, data/, projects/ or reports/?
+## CSV with business data: apps/, user-files/, data/, projects/ or reports/?
 
+Use `apps/` if the CSV is part of an installed application's persistent working data; follow the application's configured storage layout.
 Use `projects/` if the CSV belongs to one existing project.
-Use `reports/` if the CSV is a one-off report generated from a database or is itself part of a standalone deliverable.
-Use `data/` if it is part of a durable structured store or maintained as part of a real data workflow.
+Use `reports/` if the CSV is a one-off report generated from a database or application, or forms part of a standalone deliverable.
+Use `data/` if it is part of an independent or shared durable structured store or maintained data workflow.
+Use `user-files/` if it is independent personal material rather than a generic export.
 
-Use `user-files/` only if the file has a direct personal connection to the user rather than being a generic export.
-A useful test is: if you remove the specific user from the picture, does the file lose its meaning? If yes, `user-files/` becomes much more likely.
+A useful test for personal meaning is: if you remove the specific user from the picture, does the file lose its meaning? This helps distinguish personal material from generic data, but does not override its role as an application's working record.
 
-## Registry of user belongings: user-files/ or data/?
+## Registry of user belongings: apps/, user-files/ or data/?
 
 Choose based on how it functions:
-- if it is a user-owned standalone file with a direct personal connection to the user, `user-files/`;
-- if it functions as part of a durable structured data store, `data/`.
+- if it is the working registry owned by an installed application, its location is defined by the application;
+- if it is kept as a standalone personal document rather than maintained as a structured store, use `user-files/`;
+- if it functions as an independent or shared durable structured store, use `data/`. Direct access by an AI agent does not, by itself, make it part of a separate application.
 
 ## File seems both reference and project material
 
@@ -64,5 +66,11 @@ If the file is an outside source you are keeping as input material, prefer `sour
 
 ## Reusable script created during a project: scripts/ or project folder?
 
-If it only serves that one project, keeping it inside the project is fine.
-If it becomes reusable across contexts, keep drafting inside the project and promote only the stable production-ready version to `scripts/`.
+If it only serves development work within one project, keep it in that project. 
+If it becomes a standalone helper reusable across contexts, promote the stable production-ready version to `scripts/`. 
+If it remains part of an installed application, keep it with that application.
+
+## Development tree and installed product: projects/ or apps/?
+
+For a hypothetical product called `ExampleApp`, use `projects/example-app/` for requirements, research, design, development source, tests, and release preparation; use `apps/ExampleApp/` for the installed version and its operational artifacts.
+

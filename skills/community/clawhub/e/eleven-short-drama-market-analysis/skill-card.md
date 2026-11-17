@@ -1,45 +1,62 @@
-## Description: <br>
-Analyzes short drama, anime drama, and AI drama market dynamics, trending works, platform policies, competitors, and title-selection decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short Drama Market Analysis helps an agent analyze short-drama, anime-drama, and AI-drama markets, including platform trends, hit-title tracking, policy considerations, competitor context, and title-selection decisions.
 
-## Publisher: <br>
-[elevenzhou](https://clawhub.ai/user/elevenzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elevenzhou](https://clawhub.ai/user/elevenzhou)
 
-## Use Case: <br>
-Content strategy teams, producers, and market analysts use this skill to evaluate short drama and AI drama opportunities, track platform and monetization shifts, compare competitors, and prioritize candidate themes or IPs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger phrases can activate the skill for general market-analysis requests. <br>
-Mitigation: Confirm that the user is asking about short drama, anime drama, or AI drama markets before applying the framework. <br>
-Risk: Market numbers and platform-policy claims may become stale or misleading for business decisions. <br>
-Mitigation: Verify figures, policies, and compliance requirements against current authoritative sources before acting on recommendations. <br>
+## Use Case:
 
+External users and content strategy teams use this skill to produce structured market analysis for short dramas, AI animated dramas, and related release or title-selection decisions. It is best suited for Chinese-language reference workflows and should be paired with current fact checks before business decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elevenzhou/eleven-short-drama-market-analysis) <br>
-- [Market Size and Major Platforms](references/market-data.md) <br>
-- [Trending Works](references/trending-works.md) <br>
-- [Production Tools and Model Ecosystem](references/toolchain.md) <br>
-- [Distribution Channels and Monetization Models](references/distribution.md) <br>
-- [Title Selection and Strategy Framework](references/strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown market analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses artifact reference data to produce structured market, platform, competitor, monetization, and risk guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Bundled market figures and platform policies are static reference material and may be stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to verify current market data, platform policies, and legal requirements before relying on the analysis for business decisions.
+
+Risk: The skill is oriented around Chinese-language short-drama and AI-drama market references.
+
+Mitigation: Request translation or additional region-specific research when using the skill for English output or non-China market decisions.
+
+Risk: Title-selection guidance may surface content compliance or copyright-sensitive topics.
+
+Mitigation: Review proposed topics for local content rules, AI-generated-content labeling, rights clearance, and platform-specific compliance before production or release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elevenzhou/skills/eleven-short-drama-market-analysis)
+- [Market Size and Major Platforms](references/market-data.md)
+- [Trending Works](references/trending-works.md)
+- [Production Tools and Model Ecosystem](references/toolchain.md)
+- [Distribution Channels and Monetization](references/distribution.md)
+- [Title Selection and Strategy Framework](references/strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured report sections cover macro context, platform dynamics, hit-title examples, competitive landscape, title-selection recommendations, risks, and data to watch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

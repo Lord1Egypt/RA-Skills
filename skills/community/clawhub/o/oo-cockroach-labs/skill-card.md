@@ -1,45 +1,55 @@
-## Description: <br>
-Cockroach Labs lets agents search and read CockroachDB Cloud organization, cluster, node, database, SQL user, and region data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to CockroachDB Cloud to retrieve information about organizations, clusters, regions, databases, nodes, and SQL users.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect CockroachDB Cloud account resources and run read-only connector actions through the oo CLI when live account data is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Cockroach Labs account and sensitive credentials. <br>
-Mitigation: Install it only for agents that need live CockroachDB Cloud account data, review the OOMOL CLI setup and credential connection flow, and avoid using it for unrelated Cockroach Labs questions. <br>
-Risk: Connector calls depend on live action schemas and account permissions. <br>
-Mitigation: Inspect each action schema with oo connector schema before building payloads, and handle authentication, scope, connection, or billing errors through the documented setup path. <br>
-Risk: Outputs can include organization, cluster, node, database, region, or SQL user metadata from the connected account. <br>
-Mitigation: Limit use to authorized contexts and review returned data before sharing it outside the intended workflow. <br>
+## Use Case:
 
+Developers and database administrators use the skill to inspect CockroachDB Cloud organizations, clusters, regions, databases, nodes, and SQL users through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Cockroach Labs Skill](https://clawhub.ai/oomol/oo-cockroach-labs) <br>
-- [Cockroach Labs Homepage](https://www.cockroachlabs.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON data with execution metadata when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and skill metadata) <br>
+Risk: First-time setup may run an unverified remote installer and make broader local changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps before use; prefer a separately reviewed, version-pinned oo CLI installation and consider disabling automatic skill synchronization.
+
+Risk: A connected account may expose more CockroachDB Cloud access than the read actions need.
+
+Mitigation: Use a Cockroach Labs connection with read-only permissions.
+
+## Reference(s):
+
+- [CockroachDB Cloud API documentation](https://www.cockroachlabs.com/docs/api/cloud/v1.html)
+- [Cockroach Labs](https://www.cockroachlabs.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured connector results with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected read action and the connected account.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Identify new business opportunities based on existing assets and capabilities. Use for market expansion, product development, and strategic growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify new business opportunities based on existing assets and capabilities. Use for market expansion, product development, and strategic growth.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business strategists, product leaders, and growth teams use this skill to map current assets, scan extension opportunities, compare strategic fit and risk, and build a prioritized growth roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential company data, customer lists, financial details, or proprietary asset inventories in prompts. <br>
-Mitigation: Use only data approved for agent processing and review generated recommendations before sharing or acting on them. <br>
-Risk: Strategic opportunity recommendations may be incomplete or based on unverified assumptions. <br>
-Mitigation: Validate recommendations with current market research, financial analysis, and internal decision makers before implementation. <br>
+## Use Case:
 
+Business strategists, founders, and growth teams use this skill to map existing physical, intellectual, human, financial, and customer assets, then identify and prioritize extension opportunities for market expansion, product development, and new business models.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linuszz/asset-extension-modeling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and narrative recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's target company or asset context supplied through arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill may process confidential company asset, customer, financial, or strategy information supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing sensitive business data unless the active agent environment is approved for that information.
+
+Risk: Strategic recommendations may be incomplete or based on assumptions in the user-provided context.
+
+Mitigation: Review outputs with qualified business, finance, legal, and operational stakeholders before making investment or market-entry decisions.
+
+## Reference(s):
+
+- [Asset Extension Modeling ClawHub listing](https://clawhub.ai/linuszz/skills/asset-extension-modeling)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with structured tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business opportunity analysis, risk assessment, prioritization, and roadmap guidance from user-provided asset context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

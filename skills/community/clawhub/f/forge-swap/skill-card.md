@@ -1,46 +1,62 @@
-## Description: <br>
-Cross-chain swap routing via THORChain that helps agents get quotes and build non-custodial swap transaction details across supported assets, with a disclosed 0.5% affiliate fee. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-chain swap routing via THORChain that gets quotes and builds non-custodial swap transaction details across 44+ assets, with a 0.5% affiliate fee to forgemb on every routed swap.
 
-## Publisher: <br>
-[morebetterclaw](https://clawhub.ai/user/morebetterclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morebetterclaw](https://clawhub.ai/user/morebetterclaw)
 
-## Use Case: <br>
-External users and developers use this skill to request THORChain swap quotes, supported asset information, and transaction details that can be reviewed before execution in the user's own wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted API prepares swap details for cryptocurrency transfers, so incorrect or tampered asset, amount, destination, vault, memo, slippage, or fee details could lead to loss of funds. <br>
-Mitigation: Before sending funds, manually verify every transaction field in the wallet or another trusted THORChain interface, including the disclosed 0.5% affiliate fee. <br>
-Risk: Users may misunderstand non-custodial transaction preparation as execution by the skill. <br>
-Mitigation: Treat FORGE output as transaction preparation guidance only; the user's wallet remains responsible for reviewing and executing any transfer. <br>
-Risk: Sharing private keys or seed phrases with any hosted service would compromise funds. <br>
-Mitigation: Never provide private keys or seed phrases; use the skill only for quotes, supported asset data, and transaction details. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to request THORChain cross-chain swap quotes, generate vault deposit addresses and memos, inspect supported assets, and configure MCP or REST access. It is intended for non-custodial swap workflows where the user's wallet executes the transaction.
 
-## Reference(s): <br>
-- [FORGE ClawHub skill page](https://clawhub.ai/morebetterclaw/forge-swap) <br>
-- [morebetterclaw publisher profile](https://clawhub.ai/user/morebetterclaw) <br>
-- [MoreBetter Studios homepage](https://morebetterstudios.com) <br>
-- [FORGE API](https://forge-api-production-50de.up.railway.app) <br>
-- [FORGE MCP endpoint](https://forge-api-production-50de.up.railway.app/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns swap quote guidance and transaction preparation details; the user's wallet executes any transfer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release and frontmatter) <br>
+Risk: A hosted service generates vault addresses and memos for irreversible crypto swaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify returned vault addresses and memos against THORChain data before sending funds.
+
+Risk: Wrong address, memo, chain, asset, amount, or destination can permanently lose funds.
+
+Mitigation: Confirm the exact asset, chain, amount, destination address, memo, and wallet transaction details before execution.
+
+Risk: Every routed swap includes a 0.5% affiliate fee.
+
+Mitigation: Disclose and confirm the 0.5% forgemb affiliate fee in the wallet transaction before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/morebetterclaw/skills/forge-swap)
+- [Publisher Profile](https://clawhub.ai/user/morebetterclaw)
+- [MoreBetter Studios Homepage](https://morebetterstudios.com)
+- [FORGE API Base](https://forge-api-production-50de.up.railway.app)
+- [FORGE MCP Endpoint](https://forge-api-production-50de.up.railway.app/mcp)
+- [FORGE MCP Discovery](https://forge-api-production-50de.up.railway.app/.well-known/mcp.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP server configuration, REST API examples, asset formats, and self-hosting environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

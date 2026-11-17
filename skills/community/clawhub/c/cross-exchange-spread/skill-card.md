@@ -1,44 +1,55 @@
-## Description: <br>
-Live spread between Kraken, Coinbase, and Hyperliquid for arb detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired signal. No longer sold.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading agents use this skill to request live spread data across Kraken, Coinbase, and Hyperliquid before routing orders, detecting arbitrage windows, or feeding optimal-order-routing logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calls may spend USDC through wallet-based x402 billing. <br>
-Mitigation: Use a dedicated low-balance Base wallet and set explicit spend limits before automated use. <br>
-Risk: The EVM private key is required for authenticated requests. <br>
-Mitigation: Store EVM_PRIVATE_KEY only in the agent environment and avoid logging, printing, or sharing it. <br>
-Risk: Automated loops could create repeated paid calls. <br>
-Mitigation: Avoid unbounded loops and add rate, budget, or call-count controls around agent workflows. <br>
+## Use Case:
 
+Agents and their operators can use this guidance to recognize that the cross-exchange spread signal is retired, avoid calling its unavailable endpoint, and find the listed arb-spread alternative.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/cross-exchange-spread) <br>
-- [APEX Runner Cross Exchange Spread Signal](https://apexrunner.ai/signals/cross-exchange-spread) <br>
-- [APEX Runner Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls] <br>
-**Output Format:** [Markdown instructions with a Python example and JSON response shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and a Base mainnet wallet with USDC; each call may incur x402 payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An agent may try to call the retired endpoint, which responds with HTTP 410 Gone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call this signal; the artifact says no payment is requested or available.
+
+Risk: A benign scan does not guarantee zero risk.
+
+Mitigation: Review the skill against its documented behavior before use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kynto2001-ctrl/skills/cross-exchange-spread)
+- [Retired cross-exchange-spread signal](https://apexrunner.ai/signals/cross-exchange-spread)
+- [arb-spread signal](https://apexrunner.ai/signals/arb-spread)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents a retired signal; it does not provide live exchange data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

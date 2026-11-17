@@ -1,6 +1,6 @@
 ---
 name: xiaozhi-mcp-server
-version: "2.0.8"
+version: "2.0.6"
 description: 让小智智能盒子连接OpenClaw，成为你的智能语音助手
 author: elegant1998
 license: MIT

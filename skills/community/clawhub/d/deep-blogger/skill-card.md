@@ -1,41 +1,54 @@
-## Description: <br>
-Drafts structured long-form blog articles with category-specific templates, historical context, critical analysis, precise definitions, citations where required, and the user's input language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Longform Blog Writer helps agents draft structured, rigorous long-form blog articles across seven writing scenarios with category-specific templates, citation expectations, factual review prompts, and optional Concept Decoder integration for complex concepts.
 
-## Publisher: <br>
-[onlybelter](https://clawhub.ai/user/onlybelter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlybelter](https://clawhub.ai/user/onlybelter)
 
-## Use Case: <br>
-External writers, researchers, developers, and students use this skill to turn a topic into a publication-oriented blog draft. It is best suited for serious long-form articles that need structure, balanced argumentation, definitions, source discipline, and optional depth controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated factual claims, citations, dates, names, and statistics may be inaccurate or outdated. <br>
-Mitigation: Review generated facts and citations before publishing, and verify scientific, historical, programming, or real-time claims against authoritative sources. <br>
-Risk: Draft prompts or companion-skill calls may expose confidential drafts or proprietary details. <br>
-Mitigation: Avoid including confidential, private, or proprietary content when using the skill or its Concept Decoder workflow. <br>
+## Use Case:
 
+Writers, researchers, developers, and agents use this skill to draft publication-oriented blog posts that explain a topic with historical context, precise definitions, critical analysis, citations where appropriate, and language matching the user's input.
 
-## Reference(s): <br>
-- [Longform Blog Writer on ClawHub](https://clawhub.ai/onlybelter/deep-blogger) <br>
-- [Concept Decoder companion skill](https://clawhub.ai/onlybelter/concept-decoder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Long-form Markdown article drafts with section structure, optional citations, glossaries, formulas, and code examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language. Users can provide topic, category, and length with the /blog trigger syntax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact title) <br>
+Risk: Generated articles may contain outdated, unsupported, or incorrectly attributed factual claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review names, dates, institutions, statistics, quotations, and citations before publishing.
+
+Risk: Complex concepts may be routed to the disclosed Concept Decoder companion skill.
+
+Mitigation: Review companion-skill output before incorporating it into publication workflows.
+
+## Reference(s):
+
+- [Longform Blog Writer on ClawHub](https://clawhub.ai/onlybelter/skills/deep-blogger)
+- [Concept Decoder companion skill](https://clawhub.ai/onlybelter/concept-decoder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article drafts with structured sections, citations, checklists, and optional companion-skill call markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts article structure, length, citation standards, and language to the requested topic and category.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

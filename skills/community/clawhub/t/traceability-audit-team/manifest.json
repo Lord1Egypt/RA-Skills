@@ -1,0 +1,9 @@
+{
+  "name": "溯源审计团",
+  "normalizedName": "traceability-audit-team",
+  "description": "AI 身份溯源审计团，用于回答「这段输出到底是哪个 AI 生成的」「怎么证明它是它声称的身份」「AI 说的话能不能当证据」这类问题。以三锚核验（Three-Anchor Verification：记忆锚 / 身份锚 / 行为锚）确认 AI 实体「记得自己是谁、确实是其声称的身份、行为前后一致」；以证据链审计（Evidence-Chain Audit）建立从请求 → 模型 / 规则 → 参数 → 输出的完整、防篡改、可回溯链路；以真实参照法（Grounded Reference Method）保证每条判断挂得出标准条款或可运行工具，无来源不主张。对标会计师事务所审计组范式：标准依据 → 证据链审计 → 报告成稿，产出溯源审计报告。属人-AI 共治的落地抓手之一。触发词：溯源、审计、溯源审计、溯源审计团、三锚核验、证据链审计、真实参照法、身份核验、AI 身份、溯源报告、AI 输出能不能当证据、",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+# rxlocal — read an RxLocal (PioneerRx/RedSail) patient portal through the user's
+# signed-in browser tab with fpx. Read-only. stdout = JSON, stderr = status.
+#
+#   rxlocal <command> [args]
+#
+# Env: RXLOCAL_BASE    API base   (default https://patient.rxlocal.com/api)
+#      RXLOCAL_PROFILE fpx profile (default rxlocal)
+# Call it from bash or zsh alike: it runs under its own bash shebang, and works
+# on bash 3.2 (macOS /bin/bash) — empty arrays expand as ${a[@]+"${a[@]}"} so
+# `set -u` holds.
+set -uo pipefail
+
+BASE="${RXLOCAL_BASE:-https://patient.rxlocal.com/api}"; BASE="${BASE%/}"
+PROFILE="${RXLOCAL_PROFILE:-rxlocal}"
+# The web portal's public patientPortalID. The SPA sends it as `portalid` on
+# EVERY API call; without it the patient-data endpoints (refills, messages)
+# answer 401. A constant from the SPA bundle, not a secret.
+PORTAL_ID="370549AF-06A2-4E64-B17D-4040EF57D233"
+
+die() { echo "rxlocal: $1" >&2; exit "${2:-1}"; }
+
+# --- auth: read the live Bearer from the tab's localStorage, resolve IDs once ---
+TOK=""; RXUID=""; RXPID=""; RXDEI=""
+load_token() {
+  local ls
+  ls="$(fpx local-storage kc_authRes -p "$PROFILE")" || exit $?
+  TOK="$(printf '%s' "$ls" | jq -r '(.kc_authRes // "{}") | fromjson | .accessToken // empty')"
+  [ -n "$TOK" ] || die "no accessToken in kc_authRes — sign in at https://patient.rxlocal.com and keep the tab open" 5
+}
+# Run an fpx verb against $BASE/$path with the Bearer, portalid and
+# rxlocaluserid headers.
+# $1 verb (get|post-json)  $2 path  $3 body(optional, for post-json)
+# Fails loudly on the API's 401 ProblemDetails shape (token aged out).
+api() {
+  local verb="$1" path="$2" body="${3:-}" out rc
+  local hdr=(-H "Authorization: Bearer $TOK" -H "portalid: $PORTAL_ID")
+  local ipflag=(); [ "${RXLOCAL_INPAGE:-}" = 1 ] && ipflag=(--in-page)
+  [ -n "$RXUID" ] && hdr+=(-H "rxlocaluserid: $RXUID")
+  [ -n "$body" ] || body='{}'
+  if [ "$verb" = post-json ]; then
+    out="$(fpx post-json "$BASE/$path" "$body" -p "$PROFILE" ${ipflag[@]+"${ipflag[@]}"} "${hdr[@]}")"; rc=$?
+  else
+    out="$(fpx get "$BASE/$path" -p "$PROFILE" ${ipflag[@]+"${ipflag[@]}"} "${hdr[@]}")"; rc=$?
+  fi
+  [ "$rc" -eq 0 ] || exit "$rc"
+  if printf '%s' "$out" | jq -e 'type=="object" and .status==401' >/dev/null 2>&1; then
+    die "401 from $path — the 5-minute token aged out. Reload the signed-in patient.rxlocal.com tab and retry." 4
+  fi
+  printf '%s\n' "$out"
+}
+# Resolve rxlocaluserid (globalUserID), the account holder's patient id
+# (rxLocalPatientID, also the group owner id) and the primary pharmacy location
+# (primaryDataExchangeIdentifier).
+resolve_ids() {
+  load_token
+  local ui; ui="$(api get account/getuserinfo)" || exit $?
+  RXUID="$(printf '%s' "$ui" | jq -r '.globalUserID // empty')"
+  RXPID="$(printf '%s' "$ui" | jq -r '.rxLocalPatientID // empty')"
+  RXDEI="$(printf '%s' "$ui" | jq -r '.primaryDataExchangeIdentifier // empty')"
+  [ -n "$RXPID" ] || die "could not resolve rxLocalPatientID from getuserinfo" 4
+  printf '%s' "$ui"
+}
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  profile)       # account holder: name, email, phone, IDs, roles
+    load_token
+    api get account/getuserinfo | jq '{globalUserID, userName, firstName, lastName,
+      emailAddress, smsPhone, accountType, rxLocalPatientID, primaryPersonID,
+      primaryDataExchangeIdentifier, roles, entityStatus, passwordExpired,
+      termsAcceptanceRequired}' ;;
+  age)           # account-holder age gate
+    load_token
+    api get account/accountholderage ;;
+  patient)       # demographics for the active patient (shape not re-verified)
+    resolve_ids >/dev/null
+    api get "patients/$RXPID/patient" | jq '{patientID, firstName, lastName, bornOn,
+      smsPhone, email, dataExchangeIdentifier, globalUserID}' ;;
+  refills|medications|meds|prescriptions)  # prescriptions on file (the med list)
+    resolve_ids >/dev/null
+    api get "refill/$RXPID/v2" | jq '[.data.refills[]? | {rxID, rxNumber, name,
+      dispensedAs, pharmacyName, dateFilled, refillsRemaining, daysSupply,
+      expirationDate, canRequestRefill, requiresRenewal, refillRequestStatus,
+      unAvailableMessage, prescriber, dataExchangeIdentifier, rxLocalPatientID}]' ;;
+  refill-options)  # [DEI] pickup/delivery options, pickup times, hours, disclaimers
+    resolve_ids >/dev/null
+    dei="${1:-$RXDEI}"; [ -n "$dei" ] || die "no primary pharmacy location; pass a dataExchangeIdentifier from 'refills'"
+    api get "refill/location/$dei/conveyanceOptions?groupOwnerID=$RXPID&rxlocalPatientID=$RXPID" \
+      | jq '.data | {conveyanceOptions, pickupTimeOptions, locationCalendar,
+          isPickupAvailable, isDeliveryAvailable,
+          pharmacy: (.location // {} | {name, addressLine1, city, state, zip, phone, hours, timeZone}),
+          disclaimers: [.refillDisclaimers[]? | {typeDescription, text}]}' ;;
+  messages)      # recent messages with the pharmacy (does NOT mark them read)
+    resolve_ids >/dev/null
+    body="$(jq -cn --arg o "$RXPID" --arg d "$RXDEI" '{GroupOwnerID: $o, RxLocalPatientID: $o,
+      DataExchangeIdentifier: (if $d == "" then null else $d end), EndDate: null,
+      GetXMostRecentMessagesForDateRange: true, IsFirstDownloadOfMessages: false}')"
+    api post-json Messaging/SyncPatientMessages "$body" \
+      | jq '[.data.messagesToAddUpdate[]? | {messageID, sentOn, from: .sender.displayName,
+          to: [.recipients[]?.displayName], body, type, statusType}] | sort_by(.sentOn) | reverse' ;;
+  notifications) # most-relevant notification banner
+    resolve_ids >/dev/null
+    api get "notifications/most-relevant/v1?groupOwnerID=$RXPID" ;;
+  raw)           # GET|POST <path> [json-body] — anything else, unprojected
+    m="${1:-}"; p="${2:-}"; [ -n "$p" ] || die "raw GET|POST <path> [body]"
+    resolve_ids >/dev/null
+    case "$m" in
+      GET|get)   api get "$p" ;;
+      POST|post)
+        # Read-only skill: only the portal's known READ POSTs are allowed, so a
+        # raw call can never send a message, request a refill or mark read.
+        case "${p%%\?*}" in
+          Messaging/SyncPatientMessages|Messaging/EmployeeInfo) api post-json "$p" "${3:-}" ;;
+          *) die "raw POST is limited to read endpoints (Messaging/SyncPatientMessages, Messaging/EmployeeInfo); this skill sends nothing" ;;
+        esac ;;
+      *) die "raw: method must be GET or POST" ;;
+    esac ;;
+  ""|-h|--help|help)
+    sed -n '2,11p' "$0" >&2; exit 0 ;;
+  *) die "unknown command: $cmd (try: profile age patient refills refill-options messages notifications raw)" ;;
+esac

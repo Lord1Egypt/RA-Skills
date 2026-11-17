@@ -1,43 +1,57 @@
-## Description: <br>
-Use this skill when the user says "daydream", "start daydreaming", "force a daydream", "run daydream cycles", or when a scheduled daydream is triggered. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains a workspace memory log and runs daydream cycles that traverse accumulated memories and web searches to produce ideas, observations, recommendations, questions, warnings, analogies, or hypotheses.
 
-## Publisher: <br>
-[jhuckobey](https://clawhub.ai/user/jhuckobey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhuckobey](https://clawhub.ai/user/jhuckobey)
 
-## Use Case: <br>
-Developers and agent users use Daydreamer to maintain a local memory log and run scheduled or manual associative brainstorming sessions. The skill traverses saved memories and optional web search results to produce ideas, observations, recommendations, questions, warnings, or other synthesized guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist summaries of prior work and reuse them later, including content derived from session logs. <br>
-Mitigation: Skip or closely supervise starter-memory seeding, review Daydreams.MD and ideas/*.md for sensitive content, and remove entries that should not persist. <br>
-Risk: Memory and idea files are written into the selected workspace and could mix unrelated projects or sensitive context. <br>
-Mitigation: Set DAYDREAM_WORKSPACE to a dedicated folder before use and keep that folder separate from unrelated repositories. <br>
-Risk: Scheduled daydream sessions may run automatically after setup. <br>
-Mitigation: Choose manual scheduling if automated sessions are not desired. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve meaningful session memories and periodically synthesize connections across prior work. It can produce creative ideas, questions, observations, recommendations, or warnings from stored workspace memories and selected web search results.
 
-## Reference(s): <br>
-- [Daydreamer ClawHub page](https://clawhub.ai/jhuckobey/daydreamer) <br>
-- [Publisher profile: jhuckobey](https://clawhub.ai/user/jhuckobey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and JSON-backed local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory, configuration, session, log, and idea files in the selected workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 2.2.0) <br>
+Risk: Old session logs may be summarized into persistent workspace memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual setup or tightly limit memory seeding, and inspect proposed memories before writing them.
+
+Risk: Private memory themes may be converted into external web searches during daydream cycles.
+
+Mitigation: Avoid using the skill in workspaces containing secrets, customer data, regulated data, or confidential project names.
+
+Risk: Generated memory logs and idea files can preserve sensitive context beyond the original session.
+
+Mitigation: Review Daydreams.MD, Daydreamlog.MD, and ideas/*.md after sessions and remove sensitive entries before sharing or retaining the workspace.
+
+## Reference(s):
+
+- [Daydreamer on ClawHub](https://clawhub.ai/jhuckobey/skills/daydreamer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-backed workspace files with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Daydreams.MD, Daydreamlog.MD, daydreamer-config.json, ideas/*.md, and temporary .daydream-session JSON files in the configured workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

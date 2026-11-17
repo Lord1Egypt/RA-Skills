@@ -1,48 +1,61 @@
-## Description: <br>
-Personal productivity system for task and capacity management that helps agents create and organize tasks with rich attributes, track time and streaks, manage capacity across projects and contexts, view Eisenhower Matrix prioritization, sync calendar subscriptions, handle delegation and follow-ups, and get AI-powered insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yatta! - Task & Capacity Management helps an agent manage Yatta tasks, projects, contexts, calendar and capacity views, analytics, and follow-ups through authenticated API calls.
 
-## Publisher: <br>
-[chrisagiddings](https://clawhub.ai/user/chrisagiddings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrisagiddings](https://clawhub.ai/user/chrisagiddings)
 
-## Use Case: <br>
-External users and developers use this skill to manage Yatta! tasks, projects, contexts, comments, calendar subscriptions, follow-ups, capacity, analytics, and Eisenhower Matrix views through API-backed workflows. It is suited for explicit, user-directed productivity operations where the user reviews task changes before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a full-access Yatta API key that can read, create, update, archive, delete, and sync account data. <br>
-Mitigation: Install only if full-account API access is acceptable, store the key securely, avoid hardcoding it, and rotate or revoke unused keys. <br>
-Risk: Unsafe command examples that interpolate user-controlled values into JSON bodies or URLs can expose credentials or corrupt task data. <br>
-Mitigation: Use the provided safe wrapper script or jq-based payload construction and URL encoding before executing API calls. <br>
-Risk: Batch updates, deletes, archives, calendar syncs, and follow-up changes can modify multiple records or trigger immediate account changes. <br>
-Mitigation: Confirm the target records and operation effects before running destructive or bulk commands. <br>
-Risk: API keys may be sent to an unexpected endpoint if YATTA_API_URL is misconfigured. <br>
-Mitigation: Verify YATTA_API_URL before use and send credentials only to trusted Yatta endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to operate a Yatta account from an agent, including task organization, project tracking, delegation follow-up, calendar subscriptions, capacity planning, and productivity reporting.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/chrisagiddings/openclaw-yatta-skill) <br>
-- [Yatta! app](https://yattadone.com) <br>
-- [Yatta! API documentation](https://yattadone.com/docs/api) <br>
-- [API-REFERENCE.md](API-REFERENCE.md) <br>
-- [SECURITY.md](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YATTA_API_KEY, YATTA_API_URL, curl, and jq; examples should use safe jq payload construction and URL encoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: package.json, CHANGELOG, ClawHub release metadata) <br>
+Risk: The skill uses a full-access Yatta API key and can perform account-changing operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for create, update, batch, archive, calendar sync, and comment-delete actions before running commands.
+
+Risk: A configured endpoint could expose the API key if it is not the intended Yatta API endpoint.
+
+Mitigation: Use only a verified Yatta API endpoint, prefer the documented Supabase default, and rotate the API key if endpoint configuration may have been exposed.
+
+Risk: Unsafe authenticated API snippets can cause injection or unintended data changes if copied without input-safe JSON and URL handling.
+
+Mitigation: Use jq-built JSON payloads, URL-encoded identifiers, and the provided safe API wrapper patterns before executing API examples.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/chrisagiddings/skills/openclaw-yatta-skill)
+- [Yatta! Product Site](https://yattadone.com)
+- [Yatta! API Documentation](https://yattadone.com/docs/api)
+- [API Reference](API-REFERENCE.md)
+- [Security Guidance](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, jq, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YATTA_API_KEY and optionally YATTA_API_URL; commands may create, update, archive, or delete Yatta account data.]
+
+## Skill Version(s):
+
+0.2.2 (source: package.json, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Bootstraps new OpenClaw automation projects from a plain-language description through flow design, node configuration, and scaffold generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap a new OpenClaw automation project from a plain-language description through workflow reasoning, flowchart confirmation, node configuration, and scaffold generation.
 
-## Publisher: <br>
-[lcking](https://clawhub.ai/user/lcking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lcking](https://clawhub.ai/user/lcking)
 
-## Use Case: <br>
-Developers and automation operators use this skill to turn a proposed workflow into an OpenClaw project scaffold with a confirmed flowchart, node configuration, routing, cron setup, and starter scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify global OpenClaw configuration, shared Telegram routing, assistant registry entries, and cron jobs. <br>
-Mitigation: Run the scaffold with --plan or --dry-run first, then review planned changes before allowing writes. <br>
-Risk: Generated project files can store Telegram bot credentials and may inherit main-agent authorization profiles. <br>
-Mitigation: Use project-specific bot credentials that can be rotated, and avoid inheriting main-agent auth profiles unless that access is intentional. <br>
-Risk: Generated bot logic is a stub placeholder and requires manual implementation before production use. <br>
-Mitigation: Review and implement each generated node handler, then run the skill's validation and self-check scripts before enabling cron. <br>
+## Use Case:
 
+Developers and automation builders use this skill to turn a new workflow idea into an OpenClaw project scaffold, including a Mermaid flowchart, node configuration, runtime files, scripts, Telegram routing, and cron registration.
 
-## Reference(s): <br>
-- [ClawHub project-factory release page](https://clawhub.ai/lcking/project-factory) <br>
-- [README](README.md) <br>
-- [Flow Design Language](references/flow_design_language.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Onboarding Checklist](references/onboarding_checklist.md) <br>
-- [Shared Routing Group Schema](references/shared_routing_group_schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, Mermaid flowcharts, shell commands, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project scaffolds that may include workflow documentation, scripts, routing configuration, cron registration, and token-bearing runtime configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security summary says the skill grants persistent OpenClaw authority and handles credentials too broadly for automatic installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, run the bootstrap script with --plan first, do not pass real bot tokens on the command line, and patch or remove broad auth-profile copying before live use.
+
+Risk: The security guidance flags project key validation and cron administration as areas requiring care.
+
+Mitigation: Add strict project_key validation before writing workspace files, use --cron-list before any removal, and avoid --cron-remove unless intentional admin-level cron control is required.
+
+## Reference(s):
+
+- [Project Factory README](artifact/README.md)
+- [Flow Design Language](artifact/references/flow_design_language.md)
+- [Content Pipeline Shared Architecture](artifact/references/architecture.md)
+- [Project Onboarding Checklist](artifact/references/onboarding_checklist.md)
+- [Shared Routing Group Schema](artifact/references/shared_routing_group_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration drafts, Mermaid flowcharts, shell commands, and generated project scaffold files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write project files and register routing or cron configuration when its scripts are run outside preview mode.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

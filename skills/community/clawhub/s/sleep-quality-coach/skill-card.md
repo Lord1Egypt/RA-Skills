@@ -1,40 +1,54 @@
-## Description: <br>
-Personalized sleep improvement coach using CBT-I techniques, chronotype assessment, and progressive 7-day plans to help you sleep better naturally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized sleep improvement coach using CBT-I techniques, chronotype assessment, and progressive 7-day plans to help you sleep better naturally.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for educational sleep behavior coaching: describing sleep issues, answering structured sleep-profile questions, receiving PSQI-style and chronotype assessments, and following tailored CBT-I-informed bedtime, daytime, and 7-day improvement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses sleep, stress, and possible mental-health symptom details that can be sensitive. <br>
-Mitigation: Use the skill for session-based education and behavior planning, and avoid retaining or sharing user sleep and health details outside the conversation. <br>
-Risk: Sleep guidance can be mistaken for medical diagnosis or treatment. <br>
-Mitigation: Present outputs as wellness coaching only and direct users to qualified healthcare professionals for persistent insomnia, suspected sleep apnea, restless legs symptoms, severe depression or anxiety, medication questions, or other medical concerns. <br>
+## Use Case:
 
+External users use this skill for session-based sleep habit assessment and personalized CBT-I-informed behavior coaching. It helps users identify sleep pattern issues, build bedtime and daytime routines, and follow a progressive 7-day sleep improvement plan.
 
-## Reference(s): <br>
-- [Sleep Quality Coach Skill Page](https://clawhub.ai/harrylabsj/sleep-quality-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured assessment summaries, behavior plans, checklists, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sleep profile JSON-style summaries, PSQI-style score interpretation, chronotype classification, red-flag referral reminders, and 7-day action plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: Users may treat sleep assessment, red-flag screening, or supplement guidance as diagnosis or treatment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as sleep-habit education and coaching only, and direct users to a qualified clinician for persistent insomnia, severe sleepiness, breathing pauses, restless legs symptoms, significant anxiety or depression, pregnancy, chronic illness, or medication interactions.
+
+Risk: Sleep aid recommendations can be inappropriate for some users because of health conditions, pregnancy, chronic illness, or medication interactions.
+
+Mitigation: Avoid using the skill to decide on supplements or medications; use clinician review for any sleep aid decision that could affect medical care.
+
+## Reference(s):
+
+- [Sleep Quality Coach on ClawHub](https://clawhub.ai/harrylabsj/skills/sleep-quality-coach)
+- [harrylabsj Publisher Profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown with structured assessment, coaching plan, and JSON-style sleep profile elements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes PSQI-style scoring, chronotype classification, problem typing, referral reminders, and a 7-day action plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Work with Confluence workspace content through Atlassian Rovo's hosted MCP server, using the live server catalog for pages, spaces, docs, comments, and knowledge-base updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Confluence workspace content through Atlassian Rovo's hosted MCP server. Thin pass-through to Atlassian's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Confluence pages, spaces, docs, comments, or knowledge-base updates.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Employees and agents with authorized Confluence access use this skill to search, read, and, with explicit user intent, modify Confluence pages, spaces, docs, comments, and knowledge-base content through Atlassian Rovo MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Atlassian OAuth values locally and uses them to access Confluence with the connected user's permissions. <br>
-Mitigation: Keep OAuth values private, install only when Confluence access is intended, and revoke the Atlassian OAuth grant when the skill is no longer needed. <br>
-Risk: Confluence tools may create, update, publish, comment on, or otherwise change workspace content. <br>
-Mitigation: Review any mutating action before it runs and require clear user intent for the specific content being changed. <br>
-Risk: Tool arguments and results transit Atlassian Rovo's hosted MCP service. <br>
-Mitigation: Avoid sending unrelated sensitive content through tool arguments or prompts. <br>
-Risk: Rerunning setup with stale OAuth values can overwrite a newer refresh token in the local vault. <br>
-Mitigation: Run setup again only with freshly issued OAuth credentials or re-authorize the integration if credentials become invalid. <br>
+## Use Case:
 
+Developers and Confluence users can find, read, search, and manage workspace pages, spaces, comments, and knowledge-base content through Atlassian Rovo. The user should authorize specific content changes before the skill performs them.
 
-## Reference(s): <br>
-- [Atlassian Rovo MCP client setup](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/setting-up-clients/) <br>
-- [Atlassian Rovo MCP OAuth 2.1 setup](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/configuring-oauth-2-1/) <br>
-- [Atlassian Rovo MCP supported tools](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/supported-tools/) <br>
-- [mcporter config docs](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON tool output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool availability and results are determined by Atlassian Rovo MCP and the connected user's Confluence permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence release.version) <br>
+Risk: Confluence operations can create, update, publish, or comment on content using the connected user's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read and search operations for gathering context; make a specific content change only after clear user intent and authorization.
+
+Risk: Tool arguments and results transit Atlassian's hosted MCP service.
+
+Mitigation: Send only information relevant to the requested Confluence task and avoid passing unrelated sensitive content.
+
+Risk: OAuth credentials are stored for reuse, and rerunning setup with stale credentials can overwrite a rotated refresh token.
+
+Mitigation: Protect stored credentials, rerun setup only with freshly issued OAuth credentials, and revoke the Atlassian grant when the integration is no longer needed.
+
+## Reference(s):
+
+- [Atlassian Rovo MCP setup](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/setting-up-clients/)
+- [Atlassian Rovo MCP OAuth configuration](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/configuring-oauth-2-1/)
+- [Atlassian Rovo MCP supported tools](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/supported-tools/)
+- [mcporter configuration documentation](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Text or Markdown; structured results depend on the selected Confluence tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content and available operations depend on the live Atlassian Rovo MCP tool catalog and the connected user's Confluence permissions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

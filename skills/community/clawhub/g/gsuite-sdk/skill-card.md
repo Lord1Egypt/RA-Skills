@@ -1,40 +1,54 @@
-## Description: <br>
-Interact with Google Workspace APIs (Gmail, Calendar, Drive, Sheets) using gsuite-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Gmail, Google Calendar, Drive, Sheets, Tasks and Contacts, and read Search Console, Google Analytics 4 and Tag Manager, through the gsuite-sdk Python library and its gsuite CLI, with JSON output for agents.
 
-## Publisher: <br>
-[PabloAlaniz](https://clawhub.ai/user/PabloAlaniz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pabloalaniz](https://clawhub.ai/user/pabloalaniz)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with Google Workspace and read or modify Gmail, Calendar, Drive, and Sheets resources through gsuite-sdk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and modify Google Workspace data after OAuth authorization. <br>
-Mitigation: Use the narrowest OAuth scopes possible and confirm recipients, attendees, file IDs, spreadsheet ranges, uploads, and edits before write actions. <br>
-Risk: OAuth tokens are stored locally after authentication. <br>
-Mitigation: Protect or delete tokens.db when finished and revoke Google account access if the authorization is no longer needed. <br>
+## Use Case:
 
+Developers and agents can use the skill to access Google Workspace services and retrieve search, traffic, and tag data. It can also create or modify email, calendar events, files, spreadsheets, tasks, and contacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PabloAlaniz/gsuite-sdk) <br>
-- [Project homepage](https://github.com/PabloAlaniz/google-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google OAuth credentials via GOOGLE_CREDENTIALS_FILE before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release evidence) <br>
+Risk: The release security assessment flags an unpinned MCP package and credential export that may leave a local token file exposed; scanner coverage is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the MCP package version before installing. Protect exported token files with restrictive permissions, keep them out of shared or backed-up locations, remove them when no longer needed, and account for the incomplete scan coverage.
+
+Risk: Email, calendar, Drive, and other write operations can affect external accounts or change user data.
+
+Mitigation: Confirm with the user before sending email, inviting attendees, sharing files, or deleting data, as directed by the skill documentation.
+
+## Reference(s):
+
+- [gsuite-sdk documentation](https://pabloalaniz.github.io/google-suite/)
+- [Release notes for 0.14.0](https://github.com/PabloAlaniz/google-suite/releases/tag/v0.14.0)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Files, API results]
+
+**Output Format:** [Structured JSON or Python API results; files may be downloaded or uploaded.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may send email, invite attendees, share files, or change or delete data; confirm with the user before these actions.]
+
+## Skill Version(s):
+
+0.14.0 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

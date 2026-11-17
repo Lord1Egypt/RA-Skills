@@ -1,41 +1,55 @@
-## Description: <br>
-基于Excel表格及指标定义，生成承运商维度的指数、行业平均数据，并支持历史趋势图展示与指标构成解析 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes carrier logistics index data from Excel or CSV files to report a carrier's score, industry average, ranking, trend, contributing sub-metric, and operational recommendations.
 
-## Publisher: <br>
-[a-vb](https://clawhub.ai/user/a-vb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-vb](https://clawhub.ai/user/a-vb)
 
-## Use Case: <br>
-Carrier operations teams use this skill to query a carrier's logistics index score for a specified date, compare it with the industry average, review ranking and warning labels, and identify the sub-metric that most affected the score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local carrier spreadsheets and may use Jingwe portal pages to retrieve sub-metric and anomaly details. <br>
-Mitigation: Use only authorized files and portal access, provide a narrow file path, verify the carrier and date before running, and trigger downloads only when anomaly details are intended. <br>
-Risk: Carrier ranking, deviation labels, and operational suggestions may be misleading if the selected source data, carrier, or date is incorrect. <br>
-Mitigation: Review the selected carrier, date, industry average, ranking, warning label, and largest-impact sub-metric before acting on the generated suggestions. <br>
+## Use Case:
 
+Operations teams and carrier analysts use this skill to query carrier logistics index scores for a specified date, compare them with the industry average, inspect recent score trends, and identify the largest contributing sub-metric.
 
-## Reference(s): <br>
-- [Jingwe Index Direction](http://jingwe.jdl.com/#/indexCenter/indexDirection) <br>
-- [Jingwe Shipper Overview](http://jingwe.jdl.com/#/indexCenter/shipperOverview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Files, Guidance] <br>
-**Output Format:** [Markdown with carrier metrics, trend-chart data, sub-metric analysis, operational suggestions, and optional anomaly details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local .xlsx or .csv carrier index file and authorized access to the Jingwe portal for sub-metric and anomaly-detail retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Plaintext HTTP portal links may expose sensitive carrier or operational data in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer verified HTTPS access where available, confirm the destination before downloading anomaly details, and avoid sending sensitive operational data over plaintext HTTP.
+
+Risk: Local spreadsheet inputs may contain sensitive carrier or operational data.
+
+Mitigation: Install and run the skill only when the agent is intended to read the specific spreadsheet supplied by the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a-vb/skills/indexquery)
+- [Jingwe/JDL index direction portal](http://jingwe.jdl.com/#/indexCenter/indexDirection)
+- [Jingwe/JDL shipper overview portal](http://jingwe.jdl.com/#/indexCenter/shipperOverview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative with carrier metrics, trend summary, impact metric, recommendations, and anomaly-detail notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided .xlsx or .csv carrier index data and may reference Jingwe/JDL portal pages for metric composition and anomaly details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

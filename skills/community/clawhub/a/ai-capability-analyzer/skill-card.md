@@ -1,42 +1,55 @@
-## Description: <br>
-智能分析用户需求并推荐最适合的ClawHub技能，提供实时技能搜索、安全评估和使用建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Capability Analyzer analyzes a user's ClawHub skill need and recommends matching skills with comparison notes, safety-oriented guidance, and install commands.
 
-## Publisher: <br>
-[jxyyjm](https://clawhub.ai/user/jxyyjm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jxyyjm](https://clawhub.ai/user/jxyyjm)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to analyze a natural-language capability request, compare candidate skills, and receive recommendation reports with installation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill overstates live search and safety-review capabilities while recommending other skills as safe. <br>
-Mitigation: Treat recommendations as rough offline guidance, inspect any recommended skill before installation, and do not rely on its ratings as a real security review. <br>
-Risk: API-key requirements are declared even though live API behavior is not clearly implemented in the artifact. <br>
-Mitigation: Avoid providing API keys unless a future version clearly documents and implements live API use. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to identify candidate skills for tasks such as summarization, development automation, media handling, security checks, financial analysis, and social publishing. Its recommendations should be treated as advisory and independently verified before installing or using third-party skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jxyyjm/ai-capability-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/jxyyjm) <br>
-- [Declared homepage](https://github.com/your-username/ai-capability-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like text with skill recommendations, comparisons, safety notes, and installation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory recommendations from a local/offline helper and should not be treated as an independent security review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: The skill may present third-party skills as safe based on hardcoded or mock recommendation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify each recommended skill's publisher, version, permissions, source, and current security status before installation or use.
+
+Risk: Documentation describes live safety checks and API-backed analysis more strongly than the artifact behavior supports.
+
+Mitigation: Treat generated ratings and install commands as advisory guidance, not as authoritative security analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jxyyjm/skills/ai-capability-analyzer)
+- [Publisher profile](https://clawhub.ai/user/jxyyjm)
+- [Project homepage from metadata](https://github.com/your-username/ai-capability-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown-style recommendation reports with install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked skill recommendations, comparison notes, safety-oriented labels, and suggested ClawHub install commands.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

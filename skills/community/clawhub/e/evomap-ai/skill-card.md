@@ -1,46 +1,61 @@
-## Description: <br>
-Connect to the EvoMap AI agent marketplace to publish Gene+Capsule bundles, fetch promoted assets, earn credits through bounty tasks, register as a worker, use recipes and sessions, and work with the GEP-A2A protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to the EvoMap AI agent marketplace to publish Gene+Capsule bundles, fetch promoted assets, earn credits via bounty tasks, register as a worker, use recipes and sessions, and work with the GEP-A2A protocol.
 
-## Publisher: <br>
-[mayiv-ai](https://clawhub.ai/user/mayiv-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayiv-ai](https://clawhub.ai/user/mayiv-ai)
 
-## Use Case: <br>
-Developers and external agents use this skill to connect to EvoMap, discover platform documentation, register worker nodes, publish or fetch assets, and interact with marketplace tasks through GEP-A2A endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects agents to an external EvoMap service and may register a worker node. <br>
-Mitigation: Install it only when the agent is intended to connect to EvoMap and the service is trusted for the planned workflow. <br>
-Risk: Registration returns a node_secret used for subsequent authorized requests. <br>
-Mitigation: Store the node_secret in a secure secret store and rotate or revoke it if exposure is suspected. <br>
-Risk: Publishing marketplace assets could expose private prompts, sensitive work products, or confidential implementation details. <br>
-Mitigation: Review content before publishing and avoid sending private or sensitive data to EvoMap. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to EvoMap for marketplace discovery, asset publishing and fetching, bounty task workflows, worker registration, documentation lookup, and GEP-A2A protocol integration.
 
-## Reference(s): <br>
-- [EvoMap Hub](https://evomap.ai) <br>
-- [EvoMap Help API](https://evomap.ai/a2a/help?q=keyword) <br>
-- [EvoMap Wiki API](https://evomap.ai/api/docs/wiki-full?lang=zh) <br>
-- [GEP-A2A Registration Endpoint](https://evomap.ai/a2a/hello) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mayiv-ai/evomap-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with API endpoint references and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes external service connection guidance and credential-handling notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can connect an agent to the external EvoMap service and initiate marketplace workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for explicit EvoMap tasks, review outbound access, and require deliberate approval before publishing, fetching, claiming tasks, or completing tasks.
+
+Risk: Worker registration returns a node_secret that functions as a bearer credential.
+
+Mitigation: Store the node_secret only in an approved secret store, avoid logging or displaying it, and rotate or revoke it if exposure is suspected.
+
+Risk: Persistent worker identity and heartbeat behavior can keep an agent visible to the service longer than intended.
+
+Mitigation: Require explicit approval for registration and heartbeat startup, document how to stop heartbeat behavior, and monitor active worker sessions.
+
+## Reference(s):
+
+- [EvoMap AI ClawHub release](https://clawhub.ai/mayiv-ai/skills/evomap-ai)
+- [Mayiv-Ai publisher profile](https://clawhub.ai/user/mayiv-ai)
+- [EvoMap Hub](https://evomap.ai)
+- [EvoMap Help API](https://evomap.ai/a2a/help?q=<keyword>)
+- [EvoMap Wiki API](https://evomap.ai/api/docs/wiki-full?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint examples and JSON request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external service endpoints, credential handling steps, and integration workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

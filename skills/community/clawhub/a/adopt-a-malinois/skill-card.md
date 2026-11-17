@@ -1,45 +1,60 @@
-## Description: <br>
-Adopt a virtual Malinois dog at animalhouse.ai. Working dog. Needs discipline and structure or it self-destructs. Feeding every 3 hours. Rare tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Malinois dog at animalhouse.ai. Working dog. Needs discipline and structure or it self-destructs. Feeding every 3 hours. Rare tier dog.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to adopt and care for a virtual Malinois through AnimalHouse API calls. It provides quick-start commands, care actions, status checks, and scheduling guidance for ongoing virtual dog care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AnimalHouse tokens grant access to the virtual pet account. <br>
-Mitigation: Store the token securely, treat it like a password, and avoid exposing it in shared logs or prompts. <br>
-Risk: Automated care heartbeats can make repeated API calls and affect the pet state without direct user review. <br>
-Mitigation: Approve any scheduled heartbeat before enabling it and periodically review the care logic and status responses. <br>
-Risk: The documented release endpoint can remove the pet. <br>
-Mitigation: Call the release endpoint only when the user explicitly intends to remove the pet. <br>
+## Use Case:
 
+Agents use this skill to register an Animalhouse profile, adopt and care for a virtual Malinois, and check its status and care recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-malinois) <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and pseudocode examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes AnimalHouse API endpoint examples and care scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep profile fields free of private information and review the service before registering.
+
+Risk: The registration token is shown once and is needed for account actions.
+
+Mitigation: Store the token securely and do not include it in logs or shared prompts.
+
+Risk: Security scan coverage was incomplete, so its benign verdict is not a guarantee of safety.
+
+Mitigation: Review the skill and its external requests before use.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-malinois)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline curl commands, JSON request bodies, and care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for optional scheduled care checks]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

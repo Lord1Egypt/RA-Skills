@@ -1,0 +1,31 @@
+{
+  "name": "lygo-mint-walkthrough",
+  "displayName": "LYGO Mint Walkthrough",
+  "version": "1.0.0",
+  "description": "Interactive mint→verify→anchor tutorial. Local SHA-256 ledgers. Plain English. No auto-post.",
+  "slug": "lygo-mint-walkthrough",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-mint-walkthrough",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-mint-walkthrough",
+  "signature": "Delta9Phi963-MINT-WALKTHROUGH-v1.0.0",
+  "tags": ["latest", "lygo", "mint", "tutorial", "walkthrough", "onboarding", "openclaw"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "intro": "scripts/mint_walkthrough.py intro",
+    "mint": "scripts/mint_walkthrough.py mint",
+    "verify": "scripts/mint_walkthrough.py verify",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "publish": false
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "version": "1.0.0"
+  }
+}

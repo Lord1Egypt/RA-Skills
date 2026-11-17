@@ -1,42 +1,53 @@
-## Description: <br>
-Use the Health Data AI Analyzer Mac app read-only localhost API on macOS to generate a concise Apple Health daily brief and 3 practical suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Health Data AI Analyzer Mac app's read-only local API to generate an Apple Health daily brief and three practical suggestions when the user explicitly requests an analysis.
 
-## Publisher: <br>
-[krumjahn](https://clawhub.ai/user/krumjahn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krumjahn](https://clawhub.ai/user/krumjahn)
 
-## Use Case: <br>
-External users use this macOS skill to summarize their own imported Apple Health data through the Health Data AI Analyzer Mac app's read-only localhost API. It supports daily health briefs, recent step and sleep comparisons, and practical non-medical suggestions when the user explicitly asks for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health metrics may appear in the assistant conversation when summarized. <br>
-Mitigation: Use the skill only for health data the user is comfortable including in chat history, and summarize only the minimum data needed for the request. <br>
-Risk: The skill depends on a localhost Mac app API as the source of truth. <br>
-Mitigation: Install only when the user trusts the local Health Data AI Analyzer Mac app, and prefer the localhost API response over raw Apple Health export files. <br>
-Risk: Health summaries could be mistaken for medical advice. <br>
-Mitigation: Keep outputs non-medical, avoid diagnoses, and report absent or null metrics as insufficient data. <br>
+## Use Case:
 
+People using the Health Data AI Analyzer Mac app can review their imported Apple Health data as a daily brief, recent step and sleep comparisons, and three practical non-medical suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krumjahn/apple-health-export-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily brief with status, changes, suggestions, and missing data sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise non-medical summary; missing health metrics are reported as insufficient data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill reads personal health information from the Health Data AI Analyzer local API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only when the user explicitly asks, read only the minimum endpoint needed, and keep health data local without sending it to external services.
+
+Risk: Health summaries or suggestions could be mistaken for medical advice, and missing measurements could lead to unsupported conclusions.
+
+Mitigation: Do not diagnose or give medical advice, do not invent missing data, and identify absent or null metrics as insufficient data.
+
+## Reference(s):
+
+- [Apple Health Data AI Analyzer on ClawHub](https://clawhub.ai/krumjahn/skills/apple-health-export-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown with Status, What changed, Suggestions, and Missing data sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Three practical non-medical suggestions; absent or null health metrics are identified as insufficient data.]
+
+## Skill Version(s):
+
+1.0.9 (source: server-resolved ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

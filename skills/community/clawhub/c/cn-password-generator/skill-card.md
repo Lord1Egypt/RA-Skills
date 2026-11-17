@@ -1,40 +1,54 @@
-## Description: <br>
-安全的随机密码生成器。支持自定义长度、字符类型（大小写字母、数字、特殊符号）、排除相似字符、批量生成。纯Python标准库，无需API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates secure random passwords with configurable length, character classes, similar-character exclusion, and batch generation using only the Python standard library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and end users can use this skill to generate random passwords with configurable length, character classes, similar-character exclusion, and batch count. It is useful when an agent needs local password generation without external APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security evidence marks this release as suspicious and describes privileged maintainer-style behavior. <br>
-Mitigation: Install only when the intended use is understood and authorized; prefer dry-run or non-bypass modes where available. <br>
-Risk: The release evidence includes a sensitive-credentials capability tag. <br>
-Mitigation: Use an authorized account and avoid exposing generated or credential-like values in shared logs, prompts, or transcripts. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to generate one or more random passwords locally with configurable length and character-set options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-password-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JSON password-generation results and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python script prints count, length, and generated passwords as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Generated passwords are printed to the console and may remain visible in logs or terminal history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a trusted local session and avoid copying generated passwords into shared logs or transcripts.
+
+Risk: The documentation includes an external marketing link unrelated to password generation.
+
+Mitigation: Treat external marketing links as informational only and review them separately before following them in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-password-generator)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional JSON password output from the Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated passwords are printed to the console; default length is 16 characters and batch generation is supported.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

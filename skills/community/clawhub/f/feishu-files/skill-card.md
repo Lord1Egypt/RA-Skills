@@ -1,44 +1,59 @@
-## Description: <br>
-A simple skill send files to feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple skill for sending files to Feishu.
 
-## Publisher: <br>
-[bingothreed](https://clawhub.ai/user/bingothreed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingothreed](https://clawhub.ai/user/bingothreed)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send selected local image or video files through a configured Feishu app by obtaining a tenant token, uploading media, and sending a Feishu message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret or tenant access tokens could be exposed in logs, chat, or command history. <br>
-Mitigation: Keep the App Secret and tenant token confidential, avoid pasting them into logs or chat, and review commands before execution. <br>
-Risk: The agent could send the wrong local file or send media to the wrong Feishu recipient. <br>
-Mitigation: Confirm the file path and recipient open_id before running file upload or message-send commands. <br>
-Risk: The Feishu app could be configured with broader permissions than needed for the task. <br>
-Mitigation: Use the least Feishu permissions needed for media upload and message sending. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send local image or video files through Feishu by obtaining a tenant access token, uploading media, and sending the resulting message.
 
-## Reference(s): <br>
-- [OpenClaw Feishu channel documentation](https://docs.openclaw.ai/channels/feishu) <br>
-- [Feishu app base information](https://open.feishu.cn/app/cli_a937fd6055791bca/baseinfo) <br>
-- [Feishu message API explorer](https://open.feishu.cn/api-explorer/cli_a937fd6055791bca?apiName=create&project=im&resource=message&version=v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Feishu app credentials and local file paths supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill directs agents to read Feishu app credentials and use bearer tokens in shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped Feishu app, avoid running as root, and prefer a token workflow that does not expose app secrets or bearer tokens in command arguments or logs.
+
+Risk: The skill can send a local file to the wrong Feishu recipient or send the wrong file.
+
+Mitigation: Confirm the exact recipient open_id and file path before each send.
+
+Risk: The skill relies on broad curl commands against Feishu upload and message APIs.
+
+Mitigation: Review commands before execution and grant only the upload and message-sending permissions required for the intended workflow.
+
+## Reference(s):
+
+- [OpenClaw Feishu channel documentation](https://docs.openclaw.ai/channels/feishu)
+- [Feishu message API explorer](https://open.feishu.cn/api-explorer/cli_a937fd6055791bca?apiName=create&project=im&resource=message&version=v1)
+- [ClawHub skill page](https://clawhub.ai/bingothreed/skills/feishu-files)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu app configuration, a recipient open_id, and a local file path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

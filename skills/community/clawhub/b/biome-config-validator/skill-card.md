@@ -1,38 +1,49 @@
-## Description: <br>
-Validate and lint Biome (biome.json) configuration files for structure, rule conflicts, deprecated options, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and lint Biome (biome.json) configuration files for structure, rule conflicts, deprecated options, and best practices across structure, linting, formatting, and compatibility categories.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to check Biome configuration files for syntax, structure, rule placement, deprecated options, formatter settings, and best-practice issues before applying or sharing those configs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled Python validator against a user-selected local configuration file. <br>
-Mitigation: Review the Python script when source approval is required and run it only on intended Biome config files. <br>
+## Use Case:
 
+Developers and engineers use this skill to check Biome configuration files for structural issues, lint rule problems, deprecated options, formatting inconsistencies, and best-practice warnings before adopting or publishing a config.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/biome-config-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with command examples and optional plain-text, JSON, or summary validator output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validator exits with 0 for no errors, 1 when errors are found, and 2 for invalid input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The advertised conflict checking is incomplete and should not be relied on as a complete Biome rule-conflict audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a local configuration linting aid and supplement conflict-sensitive decisions with Biome's official documentation or manual review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/biome-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, plus validator output in text, JSON, or summary form]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes distinguish clean results, detected errors, and invalid input.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

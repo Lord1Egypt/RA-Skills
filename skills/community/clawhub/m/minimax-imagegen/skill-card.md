@@ -1,43 +1,59 @@
-## Description: <br>
-Generates MiniMax image-01 prompts, calls the MiniMax image generation API, and saves generated PNG images for creative, marketing, web, app, and general visual requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Image Generator helps agents turn image requests into MiniMax image-01 prompts, call the image generation API, download the first returned PNG, and report the prompt and parameters for iteration.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to turn image requests into detailed MiniMax image-01 prompts, generate images through the MiniMax API, and receive the prompt and generation parameters for iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to MiniMax using the configured API key. <br>
-Mitigation: Install only when MiniMax image generation is intended, configure MINIMAX_API_KEY deliberately, and avoid sending sensitive prompt content. <br>
-Risk: Generated images may be saved to the local workspace by default. <br>
-Mitigation: Review the output path and generated files, and pass an explicit output path when storage location matters. <br>
-Risk: The skill has broad activation language for image-related requests. <br>
-Mitigation: Review activation behavior before deployment and confirm generated prompts and parameters before relying on the output. <br>
+## Use Case:
 
+External users and developers use this skill to generate image assets such as illustrations, banners, icons, hero images, social media visuals, UI mockups, and portraits from natural-language requests. It is intended to support prompt construction, MiniMax image generation, local file output, and concise iteration notes.
 
-## Reference(s): <br>
-- [MiniMax image generation API endpoint](https://api.minimax.io/v1/image_generation) <br>
-- [ClawHub skill page](https://clawhub.ai/asimons81/minimax-imagegen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown response with a generated image path, prompt, parameters, and JSON result metadata from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; generated PNG images are saved under ~/.openclaw/workspace/images unless another output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Image prompts are sent to MiniMax for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including confidential, regulated, or otherwise sensitive information in prompts unless MiniMax use is approved for that data.
+
+Risk: The helper script can write generated files to caller-chosen output paths without containment or overwrite protection.
+
+Mitigation: Use trusted output paths and keep outputs in the intended workspace image directory until path handling is tightened.
+
+Risk: The security verdict is suspicious because the skill deserves review before installation.
+
+Mitigation: Review the skill and its local script before deployment, and install only if the API use and file-writing behavior match the intended environment.
+
+## Reference(s):
+
+- [MiniMax Image Generation API endpoint](https://api.minimax.io/v1/image_generation)
+- [ClawHub skill release page](https://clawhub.ai/asimons81/skills/minimax-imagegen)
+- [Publisher profile](https://clawhub.ai/user/asimons81)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown status with prompt and parameter details, plus generated PNG image files and JSON output from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and writes generated images to a local workspace image directory by default.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

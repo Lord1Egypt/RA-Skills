@@ -1,37 +1,55 @@
-## Description: <br>
-Generates a personalised Spanish language practice session based on CEFR/DELE level, covering vocabulary, grammar, verb conjugation, reading, and speaking prompts with fresh content every session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalised Spanish language practice session based on CEFR/DELE level, covering vocabulary, grammar, verb conjugation, reading, and speaking prompts with fresh content every session.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External Spanish learners and DELE/CEFR exam candidates use this skill to generate structured daily Spanish practice tailored to their level and regional Spanish preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored learning preferences such as level or regional Spanish preference can become inaccurate over time. <br>
-Mitigation: Store only simple learning preferences and update or remove them when they no longer reflect the learner's needs. <br>
+## Use Case:
 
+External Spanish learners and DELE/CEFR exam candidates use this skill to generate structured daily practice sessions tailored to their level and regional Spanish preference.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown practice session with vocabulary lists, explanations, tables, passages, prompts, quiz questions, and answers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single language-learning drill per request and asks for CEFR/DELE level and Spanish regional preference when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The documented installation command uses a mutable npx @latest tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install without elevated privileges and verify the package version or command source before use.
+
+Risk: Remembering a learner's Spanish level stores a user preference in agent memory.
+
+Mitigation: Store the level only when the learner wants that preference retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/spanish-daily-drill)
+- [ClawHub publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown text with structured vocabulary, grammar, conjugation, reading, speaking, quiz, answer, and cultural-note sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fresh prompt-generated practice content; no API keys or external services required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

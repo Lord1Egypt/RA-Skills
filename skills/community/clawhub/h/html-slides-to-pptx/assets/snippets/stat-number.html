@@ -1,0 +1,10 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:混合字号大数字格(KPI 统计带的单元格)
+  参数:
+    {{VALUE}}  数字(如 87)      {{UNIT}}  单位(如 % / 倍 / pp)
+    {{COLOR}}  数字色           {{LABEL}} 指标说明
+  用法: 放进 grid 统计带的格子里(见 layout-recipes 配方 3);
+        混合字号行是支持特性,行高自动按最大字号推算(html-spec 速查表)
+  ══════════════════════════════════════════════════════════════ -->
+<div class="num" style="font-size:64px;font-weight:800;color:{{COLOR}};line-height:1.1;">{{VALUE}}<span style="font-size:32px;font-weight:600;">{{UNIT}}</span></div>
+<div style="font-size:22px;color:var(--text-secondary);line-height:1.4;margin-top:10px;">{{LABEL}}</div>

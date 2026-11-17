@@ -1,45 +1,56 @@
-## Description: <br>
-Best practices for Remotion - Video creation in React. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for Remotion - Video creation in React
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and engineers use this skill when writing Remotion React code for videos, animations, media assets, captions, charts, transitions, and composition metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-add commands and remote media URLs may change project dependencies or retrieve third-party content. <br>
-Mitigation: Review package installation commands and remote URLs before running examples. <br>
-Risk: Cloud transcription examples can send sensitive recordings, filenames, and API-key-authenticated requests to a third party. <br>
-Mitigation: Prefer local Whisper options for sensitive recordings; use cloud transcription only with consent and trust in the service. <br>
-Risk: Examples requiring SKILLBOSS_API_KEY depend on a sensitive credential. <br>
-Mitigation: Store API keys securely and avoid exposing them in code, logs, rendered videos, or shared project files. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Remotion projects in React. It provides practical guidance and examples for video composition, animation, assets, audio, captions, charts, timing, transitions, and related media workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/modesty-best-practices) <br>
-- [Remotion Tailwind CSS Documentation](https://www.remotion.dev/docs/tailwind) <br>
-- [Remotion Whisper.cpp Documentation](https://remotion.dev/docs/install-whisper-cpp) <br>
-- [Remotion Whisper Web Documentation](https://remotion.dev/docs/whisper-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript/TSX and bash code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional package installation commands, remote media URLs, and transcription service credential handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The cloud speech-to-text example can upload local audio files and filenames to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local Whisper options for sensitive audio, and use the cloud example only after confirming consent, destination, file scope, size limits, and data-handling terms.
+
+Risk: Copied installation commands can introduce unpinned or unexpected dependency versions.
+
+Mitigation: Use locked dependencies or pinned package versions when adapting install commands from the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-best-practices)
+- [Remotion Tailwind documentation](https://www.remotion.dev/docs/tailwind)
+- [Remotion Whisper.cpp documentation](https://remotion.dev/docs/install-whisper-cpp)
+- [Remotion Whisper Web documentation](https://remotion.dev/docs/whisper-web)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

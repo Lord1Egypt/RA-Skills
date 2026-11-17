@@ -1,43 +1,59 @@
-## Description: <br>
-Interview a user and build a personalized health-record system around their goals, reports, and tracking needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interviews a user and builds a personalized health-record workspace for organizing reports, ingesting PDFs, screenshots, and scans, tracking health data over time, and maintaining raw files, readable notes, structured data, and summaries.
 
-## Publisher: <br>
-[hsongra11](https://clawhub.ai/user/hsongra11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hsongra11](https://clawhub.ai/user/hsongra11)
 
-## Use Case: <br>
-External users use this skill to organize sensitive health records into a durable local workspace with preserved raw files, readable notes, structured tracking data, and dashboard or history summaries. It supports ongoing ingestion of PDFs, screenshots, scans, wearable exports, doctor notes, and similar health materials while keeping privacy and consent decisions explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive medical records and extracted health data. <br>
-Mitigation: Use a private local folder by default, avoid cloud-synced storage unless intentional, and confirm storage, retention, and deletion expectations before processing files. <br>
-Risk: External OCR, APIs, or cloud processing could disclose health files or extracted data. <br>
-Mitigation: Keep processing local unless the user explicitly approves external processing for specific files and trusted services. <br>
-Risk: Incomplete extraction or summary errors could make records misleading. <br>
-Mitigation: Preserve raw files, keep summaries traceable to source paths, create recheck notes for unclear extractions, and state that outputs are not medical advice. <br>
+## Use Case:
 
+Individuals and their assisting agents use this skill to organize sensitive health reports into a durable local workspace with preserved raw records, readable extractions, structured tracking data, and dashboard or history summaries.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance, Files] <br>
-**Output Format:** [Markdown notes, JSON and CSV tracking files, folder structures, and dashboard or history summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve raw source files, remain traceable to original paths, and avoid presenting extracted health content as medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sensitive health records may be copied into a persistent local folder with raw files, extracted notes, structured data, and summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the storage location deliberately, confirm retention expectations, and limit access to the local workspace.
+
+Risk: External OCR or API processing may disclose health files or extracted health data to a third-party provider.
+
+Mitigation: Keep processing local by default and use external services only after explicit user approval for that workflow.
+
+Risk: Extracted report content or summaries could be mistaken for medical advice.
+
+Mitigation: Label outputs as organization and extraction aids, keep summaries traceable to source files, and avoid presenting findings as medical advice.
+
+## Reference(s):
+
+- [Workflow Reference](references/workflow.md)
+- [Examples Reference](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/hsongra11/skills/health-records-ingest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown notes, CSV/JSON tracking files, folder layouts, and summary documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves raw files; defaults to local-only processing and requires explicit consent before external OCR or API uploads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

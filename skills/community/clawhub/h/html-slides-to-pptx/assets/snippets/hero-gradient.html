@@ -1,0 +1,37 @@
+<!--
+  hero-gradient.html — 渐变英雄区(全宽渐变 + 叠加标题 + 装饰条)
+  用法:封面/章节首页的视觉冲击区,占页面上半部分。⚠️ 仅封面/分隔/收尾页(去 AI 味反模式 4)。
+  需要 nativeGradient:true 才走原生渐变(否则截图)。
+  参数:
+    H                 — 英雄区高度(如 440px 或 1080px 全屏)
+    GRAD_ANGLE        — 渐变角度(如 135deg)
+    GRAD_COLORS       — 渐变色停,逗号分隔(如 var(--brand-dark) 0%,var(--signal-blue) 100%)
+    KICKER            — 顶部小标签(如 HTML-SLIDES · COMPLEX LAYOUT)
+    TITLE             — 主标题(如 复杂排版 v2.0)
+    SUBTITLE          — 副标题(如 验证全部新特性)
+    ACCENT_FROM       — 底部装饰条渐变起始色
+    ACCENT_TO         — 底部装饰条渐变结束色
+  z 序:渐变背景 z-index:1 → 装饰条 z-index:5 → 文字 z-index:10
+  提示:渐变上的文字放独立 textbox(截图前文字会被隐藏,不会烙进截图)
+-->
+<!-- 渐变英雄区背景 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:0;top:0;width:1920px;height:{{H}};
+            background:linear-gradient({{GRAD_ANGLE}},{{GRAD_COLORS}});z-index:1;"></div>
+<!-- 顶部渐变装饰条 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:0;top:0;width:1920px;height:6px;
+            background:linear-gradient(to right,{{ACCENT_FROM}},{{ACCENT_TO}});z-index:5;"></div>
+<!-- 小标签(letter-spacing + uppercase) -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:140px;top:140px;width:800px;height:30px;
+            font-size:16px;font-weight:600;color:var(--on-navy-dim);
+            letter-spacing:8px;text-transform:uppercase;line-height:30px;z-index:10;">{{KICKER}}</div>
+<!-- 主标题 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:140px;top:200px;width:1640px;height:120px;
+            font-size:88px;font-weight:800;color:var(--white);line-height:1.1;z-index:10;">{{TITLE}}</div>
+<!-- 副标题(正体;深底浅色文字用预算混合色,不用 rgba) -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:140px;top:340px;width:1400px;height:40px;
+            font-size:28px;color:var(--on-navy-sub);line-height:40px;z-index:10;">{{SUBTITLE}}</div>

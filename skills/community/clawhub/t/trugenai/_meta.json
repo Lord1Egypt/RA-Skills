@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7ff4whj06f28cap4br40zz558289rh",
-  "slug": "trugenai",
-  "version": "1.0.1",
-  "publishedAt": 1772642675981
+    "name": "Trugen AI",
+    "version": "1.0.1",
+    "description": "Build, configure, and deploy conversational video agents using the Trugen AI platform API."
 }

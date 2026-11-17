@@ -1,52 +1,69 @@
-## Description: <br>
-Provides a construction commercial mediation knowledge graph for dispute diagnosis, mediation strategy, stakeholder analysis, BATNA/WATNA assessment, agreement drafting, and legal reference navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+建设工程商事调解知识图谱专家技能，用于工程纠纷分析、商事调解策略、调解流程设计、利益方识别、争议焦点梳理、BATNA/WATNA评估和调解协议起草。
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Mediators, lawyers, construction cost engineers, and project managers use this skill to analyze construction disputes, plan commercial mediation workflows, evaluate negotiation alternatives, manage case evidence, and draft mediation documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive legal mediation facts and settlement positions. <br>
-Mitigation: Use generic or redacted facts unless organizational policy approves the matter, provider, and data handling. <br>
-Risk: Optional AI-backed functions may send case content to third-party providers. <br>
-Mitigation: Configure API keys only for approved providers and avoid sending confidential, personal, or privileged materials without consent. <br>
-Risk: Case and evidence management scripts write local JSON files that may contain sensitive matter data. <br>
-Mitigation: Store generated files in a protected directory and define retention, deletion, and access-control practices before use. <br>
-Risk: Generated legal analysis or agreement drafts may be incomplete or unsuitable for a specific matter. <br>
-Mitigation: Have qualified legal professionals review legal advice, mediation strategies, and agreement drafts before operational use. <br>
+## Use Case:
 
+External mediators, lawyers, cost engineers, project managers, and agents use this skill to diagnose construction disputes, design mediation workflows, assess negotiation positions, retrieve legal or case references, and draft mediation documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/construction-mediation-kg) <br>
-- [Publisher profile](https://clawhub.ai/user/ruiyongwang) <br>
-- [Construction dispute types](artifact/references/dispute-types.md) <br>
-- [BATNA / WATNA framework](artifact/references/batna-framework.md) <br>
-- [Mediation strategies](artifact/references/mediation-strategies.md) <br>
-- [Legal basis quick reference](artifact/references/legal-basis.md) <br>
-- [Mediation agreement template](artifact/references/agreement-template.md) <br>
-- [Farui integration quickstart](artifact/scripts/farui_quickstart.md) <br>
-- [Version 2 quickstart](artifact/scripts/v2_quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, document drafts, Python helper calls, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local reference files, local JSON case/evidence stores, and optional third-party legal AI API calls when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may send case details, evidence, or settlement strategy to third-party AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with consent, review provider terms, and anonymize sensitive data before external calls.
+
+Risk: Case and evidence records may be stored locally in plaintext.
+
+Mitigation: Run with restricted filesystem access and store records only in protected locations with encryption or equivalent controls.
+
+Risk: The security review notes a provider-routing issue affecting the Zhipu provider.
+
+Mitigation: Avoid the Zhipu provider until the implementation is corrected and retested.
+
+Risk: Generated mediation analysis or agreement drafts may be incomplete or unsuitable for a specific dispute.
+
+Mitigation: Have qualified legal professionals review outputs before relying on them in a mediation or settlement process.
+
+## Reference(s):
+
+- [Construction Mediation Kg ClawHub Page](https://clawhub.ai/ruiyongwang/skills/construction-mediation-kg)
+- [Dispute Types](references/dispute-types.md)
+- [BATNA / WATNA Framework](references/batna-framework.md)
+- [Mediation Strategies](references/mediation-strategies.md)
+- [Legal Basis](references/legal-basis.md)
+- [Agreement Template](references/agreement-template.md)
+- [Farui Quickstart](scripts/farui_quickstart.md)
+- [V2 Quickstart](scripts/v2_quickstart.md)
+- [Alibaba Cloud Bailian Platform](https://bailian.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, structured reports, Python snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include legal and mediation references, document drafts, case-management records, evidence summaries, and third-party AI service guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

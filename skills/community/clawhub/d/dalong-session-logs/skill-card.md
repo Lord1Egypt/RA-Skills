@@ -1,39 +1,53 @@
-## Description: <br>
-Search and analyze your own session logs (older/parent conversations) using jq. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze your own session logs (older/parent conversations) using jq.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect prior OpenClaw conversations, search historical session transcripts, and summarize message or cost details from local JSONL session logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local session logs may contain secrets, personal information, or private context from prior conversations. <br>
-Mitigation: Use targeted dates, session IDs, and keywords, and avoid exposing unrelated transcript excerpts in responses. <br>
+## Use Case:
 
+Agents and developers use this skill to locate, filter, and summarize prior OpenClaw session transcripts when a user asks about older conversations, parent conversations, or historical context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1yihui/dalong-session-logs) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/1yihui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local jq and rg binaries and access to the user's OpenClaw session log directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad searches across prior session transcripts can expose secrets, personal data, tool outputs, or unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly specified sessions, dates, or search terms, and avoid returning raw transcript excerpts unless they are directly requested and appropriate.
+
+Risk: The skill enables agent access to local conversation history.
+
+Mitigation: Install and use it only when the operator is comfortable with the agent reading prior OpenClaw session transcripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1yihui/skills/dalong-session-logs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and ripgrep; operates on local OpenClaw session logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

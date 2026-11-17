@@ -1,40 +1,50 @@
-## Description: <br>
-Analyze video content and generate a callable Skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze video content and generate a callable Skill.
 
-## Publisher: <br>
-[keke-skills](https://clawhub.ai/user/keke-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keke-skills](https://clawhub.ai/user/keke-skills)
 
-## Use Case: <br>
-Developers and agent users use this skill to process user-provided Douyin, BiliBili, or YouTube video links, summarize the content, and generate a reusable local skill after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and processes user-provided video links through local video-processing tools and the douyin-download dependency. <br>
-Mitigation: Install only when those local dependencies are trusted, and process only links intentionally supplied by the user. <br>
-Risk: Generated skills persist in the OpenClaw skills directory after approval. <br>
-Mitigation: Review each generated SKILL.md before approval and remove generated skills that are no longer wanted. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn user-provided Douyin, BiliBili, or YouTube videos into analyzed transcripts and, after explicit confirmation, a generated SKILL.md for a new callable skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keke-skills/video-learner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with generated SKILL.md content and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a generated SKILL.md under ~/.openclaw/workspace/skills/ after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill creates persistent skills from video-derived content, and server security evidence says its safeguards for untrusted transcripts and user review are thin for that authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated SKILL.md before installation, stage generated skills outside active skill directories until independently checked, and scan generated content before deployment.
+
+## Reference(s):
+
+- [Video Learner ClawHub skill page](https://clawhub.ai/keke-skills/skills/video-learner)
+- [keke-skills publisher profile](https://clawhub.ai/user/keke-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown and generated SKILL.md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download temporary video files, transcribe audio locally with Whisper, and write generated skills under ~/.openclaw/workspace/skills/ after user confirmation.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

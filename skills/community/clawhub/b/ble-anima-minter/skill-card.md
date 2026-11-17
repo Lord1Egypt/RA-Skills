@@ -1,40 +1,61 @@
-## Description: <br>
-Scans nearby BLE MAC addresses, hashes each identifier with a salt, and stores proof records for soulbound $ANIMA minting in a local DAG file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans nearby BLE MAC addresses, hashes them with a salt, and stores local proof nodes for soulbound $ANIMA token minting logic.
 
-## Publisher: <br>
-[PenguinX01](https://clawhub.ai/user/PenguinX01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[penguinx01](https://clawhub.ai/user/penguinx01)
 
-## Use Case: <br>
-Developers and operators use this skill when they intentionally want an agent workflow to scan nearby Bluetooth Low Energy devices, hash observed MAC addresses, and create local $ANIMA proof records for later review or synchronization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: BLE scanning can expose or correlate nearby device identifiers through terminal output, logs, or the generated DAG file. <br>
-Mitigation: Run only when BLE scanning is intended, treat terminal output and anima_dag.gpickle as sensitive, and delete generated data when it is no longer needed. <br>
-Risk: Dependencies are unpinned, so future installs may resolve different package versions. <br>
-Mitigation: Pin dependency versions before operational use and review resolved packages during installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PenguinX01/ble-anima-minter) <br>
-- [Publisher profile](https://clawhub.ai/user/PenguinX01) <br>
+## Use Case:
 
+Developers and agent users can use this skill to run a local BLE scanning workflow that turns observed nearby Bluetooth identifiers into salted hashes and stores them as local DAG proof records.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Terminal output and a local NetworkX gpickle DAG file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes anima_dag.gpickle locally and may print observed BLE MAC addresses and hashes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill scans nearby Bluetooth device identifiers and may collect observations without clear consent controls.
+
+Mitigation: Run only where BLE scanning is authorized and appropriate, preferably in an isolated environment.
+
+Risk: Raw Bluetooth MAC addresses can appear in terminal logs and deterministic hashes are saved locally.
+
+Mitigation: Delete anima_dag.gpickle and related logs when no longer needed, and treat the hashes as sensitive device-observation data.
+
+Risk: Future gossip-sync behavior could share nearby-device observations beyond the local machine.
+
+Mitigation: Require explicit opt-in, scope limits, and review before enabling or extending any sharing behavior.
+
+Risk: Dependencies are unpinned in requirements.txt.
+
+Mitigation: Pin and review dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill release: BLE → $ANIMA Minter](https://clawhub.ai/penguinx01/skills/ble-anima-minter)
+- [ClawHub publisher profile: penguinx01](https://clawhub.ai/user/penguinx01)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with inline bash commands; runtime output may include terminal logs and a local anima_dag.gpickle file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script scans for 10 seconds, prints detected BLE MAC addresses and hashes, and writes hashed nodes to local DAG storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

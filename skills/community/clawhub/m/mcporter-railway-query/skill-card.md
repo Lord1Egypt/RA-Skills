@@ -1,41 +1,55 @@
-## Description: <br>
-Queries Chinese railway ticket information through the mcporter CLI for G/D/C trains, schedules, seat availability, and route planning with date, time, train-type, and sorting filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China Railway ticket and schedule information through the mcporter CLI and a user-configured 12306 MCP server, with helpers for station-code lookup, time-window filtering, train-type filtering, and result sorting.
 
-## Publisher: <br>
-[Lancenas](https://clawhub.ai/user/Lancenas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancenas](https://clawhub.ai/user/lancenas)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to look up Chinese railway station codes, train schedules, ticket availability, and filtered route options through a user-configured 12306 MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Railway route, station, date, and time query details are sent through the user's configured mcporter CLI and 12306 MCP server. <br>
-Mitigation: Install only trusted mcporter and MCP server configurations, and review ~/.mcporter/mcporter.json before running the helper scripts. <br>
+## Use Case:
 
+Developers and rail-travel users use this skill to query China Railway schedules, ticket availability, and station codes from an agent workflow through mcporter and a configured 12306 MCP server.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/Lancenas/mcporter-railway-query) <br>
-- [Query examples](references/query-examples.md) <br>
-- [Station codes](references/station-codes.md) <br>
-- [Security policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and text, JSON, or CSV query results from mcporter.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only lookup helper; outputs depend on the user's mcporter CLI and configured 12306 MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The global mcporter npm install step can introduce supply-chain risk if the package changes or is compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted or pinned mcporter version, or install a reviewed local copy before running the helper scripts.
+
+Risk: Queries rely on the user's configured 12306 MCP server and live railway data.
+
+Mitigation: Use a trusted MCP server configuration and verify important ticket availability before making travel decisions.
+
+## Reference(s):
+
+- [Query Examples](artifact/references/query-examples.md)
+- [Station Codes](artifact/references/station-codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/lancenas/skills/mcporter-railway-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; helper scripts return text query results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only ticket, schedule, and station-code queries through mcporter; results depend on the configured 12306 MCP server.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

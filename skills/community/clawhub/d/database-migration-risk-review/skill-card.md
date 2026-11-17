@@ -1,44 +1,54 @@
-## Description: <br>
-Classify a database migration and surface production risks - locks, compatibility, backfills, rollback - and prefer expand-contract sequencing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify a database migration and surface production risks - locks, compatibility, backfills, rollback - and prefer expand-contract sequencing.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineers use this skill to review database migrations before deployment, classify migration type, identify lock, compatibility, backfill, and rollback risks, and propose safer rollout sequencing with verification and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Ritual Cloud setup can install a global CLI and connect external tooling. <br>
-Mitigation: Use the standalone local workflow unless deeper context is needed, and review the optional setup before installing or connecting tools. <br>
-Risk: Migration guidance can miss environment-specific dependencies, rollout constraints, or data-volume effects. <br>
-Mitigation: Confirm assumptions with dry runs, explain plans, affected tests, canary rollout, monitoring, and owner review before production use. <br>
-Risk: Destructive schema cleanup in the same deployment can break compatibility or reduce rollback options. <br>
-Mitigation: Prefer expand-contract sequencing and defer destructive cleanup unless it is explicitly requested and proven safe. <br>
+## Use Case:
 
+Developers and engineers use this skill to review database migrations before deployment, identify lock, compatibility, backfill, rollback, and monitoring risks, and plan safer expand-contract rollouts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ritual/database-migration-risk-review) <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with checklist-style recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a migration risk level, unsafe operations, safer sequence, backfill and rollback plan, verification steps, and monitoring guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The optional knowledge-note workflow can write persistent documentation into the repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only approve note creation when the captured migration convention is intentionally reusable and appropriate to keep in the repo.
+
+Risk: The optional Ritual Cloud upgrade involves installing a third-party CLI globally.
+
+Mitigation: Verify the CLI package and pin or otherwise control the installed version before using the cloud-enhanced workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ritual/skills/database-migration-risk-review)
+- [Ritual homepage](https://ritual.work)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a risk level, unsafe operations, safer sequence, backfill and rollback plan, and verification or monitoring checklist.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

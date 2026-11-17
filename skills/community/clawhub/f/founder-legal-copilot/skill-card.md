@@ -1,52 +1,69 @@
-## Description: <br>
-Legal copilot that guides founders from incorporation to exit with 27 legal deliverables across 5 startup phases <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal copilot that guides founders from incorporation to exit with 27 legal deliverables across 5 startup phases.
 
-## Publisher: <br>
-[danillo7](https://clawhub.ai/user/danillo7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danillo7](https://clawhub.ai/user/danillo7)
 
-## Use Case: <br>
-External startup founders and their counsel use this skill to draft and review startup legal materials, run legal readiness checks, and prepare diligence reports from incorporation through exit. It provides educational legal analysis and document drafts that should be reviewed by a qualified attorney before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated legal drafts or analysis as legal advice. <br>
-Mitigation: Use the outputs as educational starting points only and require review by a qualified attorney before signing documents or making legal decisions. <br>
-Risk: Sensitive legal documents, EINs, or personal background data may be transmitted to third-party services. <br>
-Mitigation: Confirm authority to share the data, minimize submitted information, use least-privileged API keys, and keep PII scrubbing enabled where available. <br>
-Risk: Due diligence outputs about people or companies may be incomplete or unsuitable for adverse decisions. <br>
-Mitigation: Independently verify findings and do not use key-hire diligence output for employment or adverse decisions without qualified legal review. <br>
-Risk: Persistent deal memory can retain confidential legal or transaction data. <br>
-Mitigation: Use a secured Redis instance, limit access to stored deal data, and remove retained records when they are no longer needed. <br>
+## Use Case:
 
+Startup founders and their advisors use this skill to draft founder legal documents, review contracts, run legal readiness checks, and prepare lightweight due diligence reports before fundraising or transactions.
 
-## Reference(s): <br>
-- [Founder Legal Copilot on ClawHub](https://clawhub.ai/danillo7/founder-legal-copilot) <br>
-- [LegalKit](https://legalkit.legal) <br>
-- [YC SAFE Documents](https://ycombinator.com/documents) <br>
-- [NVCA Model Legal Documents](https://nvca.org/model-legal-documents) <br>
-- [Cooley GO](https://cooleygo.com) <br>
-- [Orrick Start-Up Forms](https://orrick.com/practices/startups) <br>
-- [Series Seed](https://seriesseed.com) <br>
-- [SEC EDGAR](https://sec.gov/edgar) <br>
-- [Apify MCP](https://mcp.apify.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown legal document drafts, structured Markdown reports, JSON risk reports, and plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk summaries, recommendations, checklist scores, citations to baseline templates, and multilingual narration-ready text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Legal documents, diligence queries, and optional voice narration content may be sent to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data approved for those services, scrub sensitive personal information where possible, and confirm service terms before deployment.
+
+Risk: Deal history and legal reports may be persisted in Redis across sessions.
+
+Mitigation: Confirm retention, deletion, and access controls before storing confidential deal data.
+
+Risk: The documented local Redis command can expose an unauthenticated service if used as written.
+
+Mitigation: Bind Redis to localhost or a private network, require authentication, and avoid exposing the port publicly.
+
+Risk: Generated legal analysis and documents may be incomplete, non-standard, or incorrect.
+
+Mitigation: Treat outputs as drafts and have a licensed attorney review documents before execution.
+
+## Reference(s):
+
+- [Founder Legal Copilot on ClawHub](https://clawhub.ai/danillo7/skills/founder-legal-copilot)
+- [LegalKit](https://legalkit.legal)
+- [YC SAFE Documents](https://ycombinator.com/documents)
+- [NVCA Model Legal Documents](https://nvca.org/model-legal-documents)
+- [Cooley GO](https://cooleygo.com)
+- [Orrick Start-Up Forms Library](https://orrick.com/practices/startups)
+- [Series Seed](https://seriesseed.com)
+- [SEC EDGAR](https://sec.gov/edgar)
+- [Apify MCP](https://mcp.apify.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON risk reports, document drafts, checklists, and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include legal disclaimers, prioritized risk flags, remediation steps, and optional multilingual or voice-ready report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

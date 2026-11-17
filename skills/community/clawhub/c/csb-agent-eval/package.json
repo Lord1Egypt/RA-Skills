@@ -1,0 +1,13 @@
+{
+  "name": "csb-agent-eval",
+  "version": "0.2.0",
+  "description": "碳硅契 Agent 评测技能 (CSB-AEP v0.2) — 自动评测 + 人工复评",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  }
+}

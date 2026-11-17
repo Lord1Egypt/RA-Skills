@@ -1,0 +1,8 @@
+# reg-citation-normalizer
+
+> 医疗器械法规引用编号的识别、解析与规范化。将 21 CFR、ISO/IEC、中国国标行标（GB/YY/T）、NMPA 部令公告等各种写法解析为规范结构并给出标准书写建议。零依赖，可离线运行。适用于注册文档审校、IFU/技术文件编写、法规翻译一致性检查。
+
+- 版本：1.0.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：README.md, SKILL.md
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/[REDACTED]）

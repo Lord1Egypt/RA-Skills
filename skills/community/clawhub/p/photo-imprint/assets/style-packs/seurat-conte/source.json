@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Madame Seurat, the Artist's Mother",
+  "creator": "Georges Seurat",
+  "institution": "Artvee",
+  "item_record_url": "https://artvee.com/dl/madame-seurat-the-artists-mother-madame-seurat-mere/",
+  "official_image_url": "https://mdl.artvee.com/sftb/42557dr.jpg",
+  "object_number": "42557dr",
+  "medium": "Conté crayon on paper",
+  "date": "1882-1883",
+  "rights_status": "PUBLIC DOMAIN",
+  "rights_statement": "This work is in the public domain. Artvee marks it as: All public domain files can be freely used for personal and commercial projects.",
+  "license_url": "https://artvee.com/dl/madame-seurat-the-artists-mother-madame-seurat-mere/",
+  "retrieval_date": "2026-08-30",
+  "download_date": "2026-08-30",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "JPEG",
+    "width": 596,
+    "height": 800,
+    "bytes": 272564,
+    "sha256": "0a78d91a205c8ef8d020288073c87c2e5783b9777f2fd1d11479062b6b1f1c42"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 596,
+    "height": 800,
+    "long_edge_px": 800,
+    "bytes": 208046,
+    "sha256": "b69aa42429eba0a0dd85db03f467492a6b8dc4efa4d3f4fc1f813258a1077cb8",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "Conté crayon velvety hatching",
+    "chiaroscuro shaping without hard outline",
+    "paper-texture highlight and mid-tone control",
+    "soft edge dissolution"
+  ],
+  "subject_exclusions": [
+    "portrait subject",
+    "figure",
+    "interior",
+    "reference composition"
+  ]
+}

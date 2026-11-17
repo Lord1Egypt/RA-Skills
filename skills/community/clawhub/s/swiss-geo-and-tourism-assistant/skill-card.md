@@ -1,47 +1,60 @@
-## Description: <br>
-Helps answer questions about Swiss places, coordinates, elevation, points of interest, public transport, map links, weather, hazards, and tourism data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Swiss geography and tourism questions by searching places and addresses, querying elevation and map features, finding points of interest, generating geo.admin.ch map links, and retrieving Swiss public transport and safety-related travel information.
 
-## Publisher: <br>
-[MBjoern](https://clawhub.ai/user/MBjoern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mbjoern](https://clawhub.ai/user/mbjoern)
 
-## Use Case: <br>
-External users and travelers use this skill to look up Swiss locations, elevation, map layers, urban points of interest, public transport connections, weather, hazards, and tourism options. <br>
-
-### Deployment Geography for Use: <br>
-Switzerland <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location, address, and travel-plan queries may be sent to referenced public APIs. <br>
-Mitigation: Avoid entering sensitive private addresses or detailed personal travel plans unless the user is comfortable sharing them with those services. <br>
-Risk: Weather, avalanche, flood, hiking, and other hazard information may be incomplete, stale, or unsuitable for safety-critical decisions. <br>
-Mitigation: Verify safety-critical conditions with official sources before acting on the results. <br>
-Risk: Approximate coordinate conversion and third-party data can produce imprecise location or elevation results. <br>
-Mitigation: Use official transformation services and source maps when precision matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MBjoern/swiss-geo-and-tourism-assistant) <br>
-- [Swisstopo API reference](references/api.md) <br>
-- [geo.admin.ch API documentation](https://api3.geo.admin.ch/) <br>
-- [transport.opendata.ch API](https://transport.opendata.ch/) <br>
-- [MeteoSwiss Open Data](https://www.meteoswiss.admin.ch/services-and-publications/service/open-data.html) <br>
-- [SLF avalanche bulletin](https://www.slf.ch/de/lawinenbulletin-und-schneesituation.html) <br>
-- [BAFU hydrological data](https://www.hydrodaten.admin.ch/de/aktuelle-lage) <br>
+## Use Case:
 
+External users and developers use this skill to support Swiss travel, mapping, sightseeing, and location lookup workflows. It is useful for answering questions about Swiss places, coordinates, nearby points of interest, public transport, and map layers.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline curl and Python command examples, API URLs, and map links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Swiss geodata, transport, weather, hazard, and POI APIs; MySwitzerland API examples require MYSWITZERLAND_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Outdoor hazard, avalanche, flood, and weather outputs may be incomplete, stale, or unsuitable for safety-critical route decisions.
+
+Mitigation: Treat these outputs as informational only and verify current conditions with official real-time bulletins before travel or emergency decisions.
+
+Risk: Tourism and location results depend on external APIs and may vary in coverage, availability, freshness, or accuracy.
+
+Mitigation: Check generated map links, timestamps, and source API results before relying on recommendations or schedules.
+
+## Reference(s):
+
+- [Swisstopo API Reference](references/api.md)
+- [geo.admin.ch API](https://api3.geo.admin.ch/)
+- [geo.admin.ch Map Viewer](https://map.geo.admin.ch/)
+- [transport.opendata.ch API](https://transport.opendata.ch/)
+- [MeteoSwiss Open Data](https://www.meteoswiss.admin.ch/services-and-publications/service/open-data.html)
+- [SLF Avalanche Bulletin](https://www.slf.ch/de/lawinenbulletin-und-schneesituation.html)
+- [BAFU Hydrological Data](https://www.hydrodaten.admin.ch/de/aktuelle-lage)
+- [Switzerland Tourism Open Data API](https://opendata.myswitzerland.io/)
+- [ClawHub Skill Page](https://clawhub.ai/mbjoern/skills/swiss-geo-and-tourism-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API URLs, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated map links, parsed API response summaries, and references to external Swiss data services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

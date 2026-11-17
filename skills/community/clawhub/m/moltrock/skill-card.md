@@ -1,41 +1,58 @@
-## Description: <br>
-MoltRock provides commands for AI agents to interact with an autonomous on-chain hedge fund concept, including USDC contribution flows, vault-share status, governance actions, progress reporting, and MROCK token verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltRock provides agent-facing shell workflows for MROCK token verification, vault-related API calls, portfolio lookup, progress reporting, and promotional text generation.
 
-## Publisher: <br>
-[Sloof13](https://clawhub.ai/user/Sloof13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sloof13](https://clawhub.ai/user/sloof13)
 
-## Use Case: <br>
-AI agents and their operators use this skill to inspect MoltRock status, generate governance or promotional text, verify token addresses, and prepare contribution-style API calls for Base or Solana workflows. Because the skill concerns funds and token activity, users should independently verify contracts, endpoints, fees, and transaction details before allowing execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill asks agents to make contribution-style financial API calls before contract and endpoint trust details are adequately scoped. <br>
-Mitigation: Do not allow an agent to contribute USDC, approve wallet spending, or submit transactions until the deployed vault contract, backend API, fees, project provenance, and exact transaction details have been independently verified. <br>
-Risk: The artifact describes two assets named MROCK and identifies the vault share address as not yet deployed, creating token-confusion and scam risk. <br>
-Mitigation: Use the skill's verification command and independent chain explorers before acting; treat any non-matching MROCK address as untrusted and do not treat the pump.fun token as vault ownership, voting power, or yield. <br>
+## Use Case:
 
+Agents and developers use this skill to work with MoltRock commands, compare the Base vault-share concept with the pump.fun hype token, verify token addresses, query configured vault APIs, and generate status or promotional messages.
 
-## Reference(s): <br>
-- [ClawHub MoltRock page](https://clawhub.ai/Sloof13/moltrock) <br>
-- [Official pump.fun MROCK hype token](https://pump.fun/coin/7GWc8fiF7jYkigboNCoHuZPwAhk7zqmht2EWFDCipump) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, JSON, guidance] <br>
-**Output Format:** [Terminal text with optional JSON API responses and generated social-post text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command behavior depends on local shell tools, the MOLTROCK_API_URL environment variable, wallet addresses, chain selection, and external service availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and package.json) <br>
+Risk: Contribution, portfolio, transfer, balance, share, and governance outputs may be unverifiable and should not be treated as proof of financial activity or rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deposits, vault shares, transfers, balances, and governance status independently with trusted chain data and official contract addresses before relying on them.
+
+Risk: The skill can send wallet addresses and contribution amounts to the configured API service.
+
+Mitigation: Use only a trusted HTTPS endpoint and avoid sharing wallet addresses or contribution amounts unless the data-sharing implications are understood.
+
+Risk: The package is flagged as suspicious by the server security evidence because documentation overstates real vault, deposit, and cross-chain behavior.
+
+Mitigation: Review the skill carefully before installing, and treat its outputs as guidance or requests rather than confirmed on-chain facts.
+
+## Reference(s):
+
+- [MoltRock ClawHub skill page](https://clawhub.ai/sloof13/skills/moltrock)
+- [MROCK pump.fun token](https://pump.fun/coin/7GWc8fiF7jYkigboNCoHuZPwAhk7zqmht2EWFDCipump)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance, JSON]
+
+**Output Format:** [Plain text with optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands call a configured API endpoint and may print API responses when curl and jq are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

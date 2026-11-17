@@ -1,46 +1,61 @@
-## Description: <br>
-Self-Improve is a pluggable framework that scans agent memory and feedback, extracts reusable learning rules, and proposes approval-gated improvements to agent system files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A pluggable self-improvement framework for AI agents that learns from mistakes, corrections, and feedback, runs every 3 days by Cron, extracts reusable experience rules, and proposes system-file improvements through an approval workflow.
 
-## Publisher: <br>
-[don068589](https://clawhub.ai/user/don068589) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[don068589](https://clawhub.ai/user/don068589)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a scheduled self-improvement process that reviews agent memory logs, stores distilled knowledge, and queues proposed system-file changes for approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly scan agent memories and store shared long-term outputs. <br>
-Mitigation: Install only when a team-wide memory-learning system is intended, restrict workspace_root and knowledge_root before enabling Cron, and define retention, deletion, redaction, and per-agent consent rules. <br>
-Risk: Distilled guidance or system-file proposals may preserve sensitive or incorrect information. <br>
-Mitigation: Review proposals/PENDING.md before approval and scan proposed changes before applying them. <br>
-Risk: Optional blog, publication, or broad knowledge outputs may expose information beyond the intended workspace. <br>
-Mitigation: Disable unneeded modules and publication outputs unless they are explicitly required. <br>
+## Use Case:
 
+Developers and agent operators use Self-Improve to collect feedback and memory-log signals, distill reusable execution rules, and queue approved improvements for shared agent system files and knowledge stores.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/don068589/self-improve) <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [System Documentation](artifact/SYSTEM.md) <br>
-- [Engine Documentation](artifact/ENGINE.md) <br>
-- [Runtime Mechanism](artifact/RUNTIME.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, YAML configuration, JSON/JSONL state, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes scheduled run data, proposals, drafts, and knowledge files under configured storage roots; system-file changes are approval-gated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata; artifact config reports 2.2.0) <br>
+Risk: The recurring cron workflow can read and aggregate agent memories and logs into shared storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve the cron entry only for explicitly approved workspace_root paths, restrict shared storage access, and apply redaction and retention controls before broad use.
+
+Risk: Unsafe file write/delete utilities and path handling can be risky when exposed to untrusted input or automation.
+
+Mitigation: Fix the path traversal issues identified by the security guidance, run only with trusted configuration, and constrain filesystem permissions until the fixes are in place.
+
+Risk: Proposed system-file changes can introduce incorrect or misleading agent guidance.
+
+Mitigation: Keep the approval workflow for AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, HEARTBEAT.md, openclaw.json, and SKILL.md changes, and review proposals before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/don068589/skills/self-improve)
+- [Self-Improve Framework](artifact/SKILL.md)
+- [Self-Improve System Documentation](artifact/SYSTEM.md)
+- [Self-Improve Engine](artifact/ENGINE.md)
+- [Self-Improve Runtime Mechanism](artifact/RUNTIME.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, generated proposal files, and agent memory or knowledge-base text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a scheduled or manually triggered workflow and writes proposals, feedback records, memory tiers, reports, and setup configuration according to user-approved paths.]
+
+## Skill Version(s):
+
+2.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

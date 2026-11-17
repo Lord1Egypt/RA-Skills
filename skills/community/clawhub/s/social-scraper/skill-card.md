@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup documentation for Social Scraper concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Scraper provides plain-text reference documentation for social-scraper concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a static reference for Social Scraper concepts, quickstart material, patterns, debugging, performance, security, migration, and cheat sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this static reference helper for an operational social scraping tool. <br>
-Mitigation: Treat its output as generic guidance and verify any real scraping workflow, data handling, and compliance requirements before implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve quick reference guidance for Social Scraper topics, including onboarding, implementation patterns, troubleshooting, performance, security, migration, and cheatsheet material.
 
-## Reference(s): <br>
-- [Social Scraper on ClawHub](https://clawhub.ai/ckchzh/social-scraper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown sections and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, network access, or external calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and skill frontmatter) <br>
+Risk: Short command names may overlap with other skills or ordinary user requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly and confirm the selected command before relying on the returned reference text.
+
+Risk: Reference guidance could become stale or too generic for a specific production environment.
+
+Mitigation: Review the emitted guidance against current project requirements and authoritative documentation before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/social-scraper)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network access or credentials; command-specific reference topics are emitted through heredoc text.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-电商运营人员输入产品名称、描述或 ASIN 后，技能会基于公开网络信息进行市场调研、六维评分、上架建议和交互式 HTML 可视化报告生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps ecommerce operators evaluate a product or ASIN by researching market signals, scoring demand, competition, profit, seasonality, entry difficulty, and growth trend, then producing a recommendation and interactive HTML report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External e-commerce operators and product teams use this skill to evaluate whether a single product is suitable for listing, especially for Amazon US cross-border commerce. It produces market-demand, competition, margin, seasonality, entry-barrier, and trend analysis with a clear launch recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product names, descriptions, ASINs, and market-research terms may be used in web searches. <br>
-Mitigation: Avoid entering confidential supplier data, unreleased product plans, or other sensitive commercial details. <br>
-Risk: Generated HTML reports load Chart.js from a CDN and include generated analysis text. <br>
-Mitigation: Open generated reports with normal browser caution and review report content before sharing it externally. <br>
-Risk: Market recommendations are based on public web information and may be incomplete or time-sensitive. <br>
-Mitigation: Treat scores and launch advice as decision support, then verify key demand, pricing, compliance, and margin assumptions before acting. <br>
+## Use Case:
 
+External ecommerce operators use this skill to assess whether a product is worth listing, especially for cross-border Amazon US marketplace decisions. It gathers public market information, creates six weighted scores, summarizes risks and opportunities, and produces prioritized launch actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/product-selection-assistant) <br>
-- [Chart.js 4.4.0 CDN script](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown summary plus generated interactive HTML report file; structured JSON is used as report input.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HTML report includes a six-dimension radar chart, score cards, analysis cards, and prioritized action items; it loads Chart.js from a CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports can execute untrusted product or web-search text as browser code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape HTML and JavaScript-sensitive report fields, use safe serialization for generated data, and treat produced reports as untrusted HTML until reviewed.
+
+Risk: Reports may include public web-search information that is incomplete, stale, or misleading for commercial listing decisions.
+
+Mitigation: Use the report as decision support only, verify key market and cost assumptions independently, and review high-impact recommendations before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/product-selection-assistant)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+- [Chart.js runtime dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary plus generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The HTML report includes a six-dimension score model, Chart.js radar chart, analysis cards, and prioritized action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

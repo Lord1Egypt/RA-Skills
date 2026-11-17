@@ -1,46 +1,63 @@
-## Description: <br>
-知识获取 parses links or text from supported content platforms, classifies the material, generates Markdown notes, and can optionally archive them to Feishu Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识获取：多平台内容解析（小红书/微信/网站等）、8类分类、Markdown 笔记生成、可选飞书云盘归档
 
-## Publisher: <br>
-[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash)
 
-## Use Case: <br>
-External users and developers use this skill to turn links or text from supported platforms into categorized Markdown knowledge notes, with optional Feishu Drive archival and notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When Feishu credentials are configured, extracted content, generated notes, metadata, and file tokens may be uploaded to Feishu and made accessible to anyone with the link. <br>
-Mitigation: Use least-privilege Feishu credentials, review sharing permissions before upload, and set FEISHU_DISABLED=true for local-only use. <br>
-Risk: The skill depends on sensitive credentials for Feishu archival and may also use a GitHub token for higher API limits. <br>
-Mitigation: Provide secrets through managed environment variables or a secrets manager, and keep credentials out of files, prompts, and logs. <br>
-Risk: Private, regulated, or proprietary content could be included in extracted notes and then shared through Feishu. <br>
-Mitigation: Review source content and generated notes before archival, and use private sharing settings for sensitive material. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to turn links or text from supported platforms into categorized Markdown notes, with optional archival to Feishu cloud storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yz6214589-hash/knowledge-acquisition) <br>
-- [README](artifact/README.md) <br>
-- [Workflow guide](artifact/WORKFLOW_GUIDE.md) <br>
-- [Dependencies](artifact/DEPENDENCIES.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration guidance] <br>
-**Output Format:** [Markdown notes and plain-text status messages with optional Feishu document URL and token.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and optional Feishu credentials; Feishu archival can be skipped with FEISHU_DISABLED=true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Configured Feishu uploads may become externally accessible links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Feishu app and folder, review sharing permissions, and disable Feishu archival when testing.
+
+Risk: The skill fetches arbitrary user-provided URLs during link-to-note ingestion.
+
+Mitigation: Avoid submitting confidential or internal URLs and deploy with strict outbound network controls.
+
+Risk: Browser-based extraction can expand runtime exposure if Chromium is run without isolation.
+
+Mitigation: Keep Chromium sandboxing enabled and run the skill in a constrained execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yz6214589-hash/skills/knowledge-acquisition)
+- [README](README.md)
+- [Workflow guide](WORKFLOW_GUIDE.md)
+- [Dependencies](DEPENDENCIES.md)
+- [Classification accuracy report](reports/classification-accuracy-report.md)
+- [Exception scenarios report](reports/exception-scenarios-report.md)
+- [Performance benchmark report](reports/performance-benchmark-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown notes with classification metadata, source details, media lists, trace IDs, and optional Feishu document links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include category confidence, keyword evidence, retry status, and archival URLs when configured.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

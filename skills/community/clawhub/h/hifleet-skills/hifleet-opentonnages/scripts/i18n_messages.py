@@ -29,7 +29,6 @@ _MESSAGES: dict[str, dict[str, str]] = {
         "opentonnages.no_results_cargo": "No public cargo listings matched your criteria.",
         "opentonnages.api_error": "Open market API failed: {detail}",
         "opentonnages.contact_api_error": "Could not fetch contact details: {detail}",
-        "route.redirect_mail": "Private mailbox tonnage → skill **hifleet-mytonnages**.",
         "route.redirect_schedule": "Liner schedules → skill **hifleet-schedule**.",
     },
     "zh": {
@@ -45,7 +44,6 @@ _MESSAGES: dict[str, dict[str, str]] = {
         "opentonnages.no_results_cargo": "未找到符合条件的公开货盘。",
         "opentonnages.api_error": "公开船货盘接口请求失败：{detail}",
         "opentonnages.contact_api_error": "获取联系方式失败：{detail}",
-        "route.redirect_mail": "个人邮箱船货盘请使用 **hifleet-mytonnages** 技能。",
         "route.redirect_schedule": "班轮船期请使用 **hifleet-schedule** 技能。",
     },
     "zh-CN": {},
@@ -62,7 +60,6 @@ _MESSAGES: dict[str, dict[str, str]] = {
         "opentonnages.no_results_cargo": "未找到符合條件的公開貨盤。",
         "opentonnages.api_error": "公開船貨盤介面請求失敗：{detail}",
         "opentonnages.contact_api_error": "獲取聯絡方式失敗：{detail}",
-        "route.redirect_mail": "個人郵箱船貨盤請使用 **hifleet-mytonnages** 技能。",
         "route.redirect_schedule": "班輪船期請使用 **hifleet-schedule** 技能。",
     },
 }

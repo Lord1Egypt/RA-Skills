@@ -30,7 +30,7 @@ Those still use the current direct signing paths for Base or Solana payment sett
 ## Install OWS
 
 ```bash
-npm install -g @open-wallet-standard/core
+npm install -g @open-wallet-standard/core@0.5.0
 ```
 
 ## Useful commands

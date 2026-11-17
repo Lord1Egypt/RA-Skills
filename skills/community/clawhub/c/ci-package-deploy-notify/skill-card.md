@@ -1,40 +1,57 @@
-## Description: <br>
-Triggers Jenkins CI or deployment jobs for selected repositories and sends a Feishu build or deployment notification after successful completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers approved Jenkins CI/CD package or deployment jobs for selected services and sends a Feishu notification after successful completion.
 
-## Publisher: <br>
-[sunyang777](https://clawhub.ai/user/sunyang777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunyang777](https://clawhub.ai/user/sunyang777)
 
-## Use Case: <br>
-Release engineers and developers use this skill when they explicitly want an agent to trigger configured Jenkins CI/CD jobs, wait for completion, and notify Feishu recipients about package or deployment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says this version ships hardcoded CI/CD and Feishu credentials that could allow unintended build, deployment, or notification actions. <br>
-Mitigation: Do not install unless the publisher is fully trusted; rotate the exposed Jenkins, Feishu, and GitHub credentials and move secrets to a secure runtime source before routine use. <br>
-Risk: The skill can trigger Jenkins jobs and send Feishu notifications against configured external systems. <br>
-Mitigation: Grant access only in environments where these Jenkins and Feishu operations are intended, and require explicit user requests with complete repository, branch, and change details before invocation. <br>
+## Use Case:
 
+Developers and release operators use this skill to trigger Jenkins CI/CD packaging or deployment for configured services in dev, test, demo, or sit environments. The skill waits for job completion and sends one Feishu summary notification for successful services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunyang777/ci-package-deploy-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs Jenkins and Feishu network operations through bundled Python scripts when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release evidence) <br>
+Risk: The published artifact includes live Jenkins and Feishu credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install it as-is; rotate the exposed secrets, remove credentials from the package, and load them from a protected runtime secret source.
+
+Risk: Jenkins credentials may be sent when following unvalidated Jenkins queue or build URLs.
+
+Mitigation: Validate Jenkins queue and build URLs before attaching credentials and use a narrowly scoped service account limited to the intended jobs.
+
+Risk: The skill can trigger CI/CD jobs and send deployment notifications when invoked with actionable release parameters.
+
+Mitigation: Require an explicit user request, validate repositories, branch or environment, and change description before execution, and reject unsupported production or master targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunyang777/skills/ci-package-deploy-notify)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text status summary with shell command invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires selected repositories, branch or environment, change description, optional job type, optional SQA mentions, and initiator identity.]
+
+## Skill Version(s):
+
+1.0.7 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,67 @@
-## Description: <br>
-Amazing PsyCoder routes psychology experiment and data-analysis requests through mandatory designer, coder, and reviewer chains for PsychoPy, jsPsych, Psychtoolbox, R, and Python workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazing PsyCoder routes psychology experiment and data-analysis requests through mandatory design, coding, and review chains for PsychoPy, jsPsych, Psychtoolbox, R, and Python workflows.
 
-## Publisher: <br>
-[soupandpsy](https://clawhub.ai/user/soupandpsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soupandpsy](https://clawhub.ai/user/soupandpsy)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to design psychology experiments, generate experiment code, plan statistical analyses, generate R or Python analysis scripts, and review outputs before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer behavior may replace existing same-named skill folders. <br>
-Mitigation: Install only after reviewing the target skills directory and backing up any same-named local skills that should be preserved. <br>
-Risk: Some experiment templates may collect participant IP, location, or browser metadata. <br>
-Mitigation: Review generated online experiments for participant privacy and remove IP, location, or user-agent collection unless explicitly consented and required. <br>
-Risk: Demo snippets using eval or exec patterns may be unsuitable for production experiments. <br>
-Mitigation: Do not copy eval or exec based demo snippets into production experiments; replace them with explicit, reviewed control flow. <br>
+## Use Case:
 
+Developers, researchers, and research assistants use this skill to design psychological experiments, generate experiment or analysis code, and require structured review before data collection or publication use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soupandpsy/amazing-psycoder) <br>
-- [Publisher profile](https://clawhub.ai/user/soupandpsy) <br>
-- [agentskills.io standard](https://agentskills.io) <br>
-- [Platform Adapter Reference](artifact/PLATFORMS.md) <br>
-- [Experiment Designer references](artifact/psy-exp-designer/references/) <br>
-- [Analysis method library](artifact/psy-ana-designer/methods/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration, R/Python/JavaScript/MATLAB code, shell commands, and audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include experiment configs, condition-file guidance, runnable experiment scripts, analysis scripts, reports, and reviewer findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence; artifact frontmatter reports 1.3) <br>
+Risk: Bundled raw experiment demos contain unsafe code patterns and data-upload behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run or copy raw demos directly; use the specification, checklist, and reviewer workflow before data collection, and disclose upload behavior to participants and researchers.
+
+Risk: Manual installation may overwrite existing skill directories with the same names.
+
+Mitigation: Inspect the target skill directory first, keep backups of existing skills, and test installation in a disposable workspace when possible.
+
+Risk: Experiment or analysis outputs can be misused before methodological or implementation review.
+
+Mitigation: Require the mandatory reviewer step and resolve Critical and Major findings before data collection or publication use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soupandpsy/skills/amazing-psycoder)
+- [Agent Skills Open Standard](https://agentskills.io)
+- [Platform Compatibility](artifact/PLATFORMS.md)
+- [Experiment Config Schema](artifact/psy-exp-designer/references/config-schema.md)
+- [Experiment Timing Guidance](artifact/psy-exp-designer/references/timing.md)
+- [Experiment Data Recording Guidance](artifact/psy-exp-designer/references/data-recording.md)
+- [PsychoPy Code Specification](artifact/psy-exp-coder/psychopy/spec/README.md)
+- [jsPsych Code Specification](artifact/psy-exp-coder/jspsych/spec/README.md)
+- [Psychtoolbox Code Specification](artifact/psy-exp-coder/psychtoolbox/spec/README.md)
+- [Python Analysis Code Specification](artifact/psy-ana-coder/python/spec/README.md)
+- [R Analysis Code Specification](artifact/psy-ana-coder/r/spec/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated code, configuration snippets, shell commands, and review reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are gated by mandatory design and reviewer steps before experiment collection or analysis publication use.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

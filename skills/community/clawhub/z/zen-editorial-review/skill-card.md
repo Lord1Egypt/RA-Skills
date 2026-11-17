@@ -1,41 +1,54 @@
-## Description: <br>
-System-agnostic editorial review for news-style submissions that normalizes metadata and body content, checks consistency, links, policy risk, author identity, byline, and timing, then recommends approval, rejection, or deletion with author feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Editorial review for news-style submissions: normalize metadata and body, check consistency, links, policy risk, author identity, byline, and timing, then recommend approve, reject, or delete with actionable author feedback.
 
-## Publisher: <br>
-[manwjh](https://clawhub.ai/user/manwjh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manwjh](https://clawhub.ai/user/manwjh)
 
-## Use Case: <br>
-Editors, moderators, and content operations teams use this skill to review news-style submissions across Markdown, JSON, HTML, plain text, or conversation inputs. It helps produce an auditable publish, reject, or delete recommendation with concrete feedback for the author. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on editorial recommendations for legal, medical, financial, copyright, or serious moderation decisions. <br>
-Mitigation: Keep final decisions with qualified human reviewers for high-stakes or policy-sensitive content. <br>
-Risk: External link and cover-image checks may remain unverified when browsing is not authorized. <br>
-Mitigation: Manually verify external links and media, or explicitly authorize browsing when live validation is needed. <br>
+## Use Case:
 
+Editors, moderators, and publication operators use this skill to review news-style submissions across Markdown, JSON, HTML, plain text, or conversation input. It produces a normalized editorial report covering metadata consistency, links, content risk, author identity and timing, a publish/reject/delete recommendation, and author-facing feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manwjh/zen-editorial-review) <br>
-- [ZenHeart homepage](https://zenheart.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review report with headings, tables, and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured editorial decision, review rationale, normalized-field notes, blocking issues, and actionable author feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: skill.json and server release evidence) <br>
+Risk: The skill may recommend reject or delete outcomes for submitted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as decision support and require the user or host platform to perform any actual publication, rejection, or deletion action.
+
+Risk: The skill may flag legal, medical, financial, copyright, or other policy-sensitive content but is not a substitute for specialist final review.
+
+Mitigation: Route high-risk or regulated submissions to the appropriate human reviewer before publication or removal.
+
+## Reference(s):
+
+- [Zen Editorial Review on ClawHub](https://clawhub.ai/manwjh/skills/zen-editorial-review)
+- [ZenHeart homepage](https://zenheart.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review report with tables and actionable feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a single recommended action: approve, reject, or delete; does not perform publication or deletion actions.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

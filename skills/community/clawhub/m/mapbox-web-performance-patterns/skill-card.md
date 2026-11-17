@@ -1,44 +1,59 @@
-## Description: <br>
-Provides performance optimization patterns for Mapbox GL JS web applications, covering initialization, bundle size, rendering, memory, and mobile performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides prioritized performance optimization patterns for Mapbox GL JS web applications, covering initialization waterfalls, bundle size, rendering performance, memory management, and web optimization.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify and apply Mapbox GL JS performance patterns for faster load times, smoother map interactions, and lower memory use in web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example code or optimization advice may be copied without adapting it to the app's Mapbox version, data size, CORS behavior, rate limits, token handling, or production security requirements. <br>
-Mitigation: Treat snippets as examples, keep real Mapbox tokens and private data out of chat, and review copied code against the target application before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to review and improve Mapbox GL JS web apps, especially initial loading, large data rendering, interaction responsiveness, mobile behavior, and SPA memory management.
 
-## Reference(s): <br>
-- [ClawHub release: Mapbox Web Performance Patterns](https://clawhub.ai/mapbox/mapbox-web-performance-patterns) <br>
-- [Mapbox Tiling Service guides](https://docs.mapbox.com/mapbox-tiling-service/guides/) <br>
-- [Data Loading Optimization](references/data-loading.md) <br>
-- [Optimize Map Interactions](references/interactions.md) <br>
-- [Layer and Style Performance](references/layers-styles.md) <br>
-- [Memory Management](references/memory.md) <br>
-- [Mobile Performance](references/mobile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; code snippets require review for the target Mapbox GL JS version and production environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Popup examples use setHTML() with map feature properties, which can lead to XSS-prone code when data is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use setText() for plain text popup content, or sanitize HTML with a maintained sanitizer before rendering API, GeoJSON, vector-tile, uploaded, or third-party data.
+
+Risk: The skill is performance guidance, not secure coding guidance.
+
+Mitigation: Review generated code before adoption and apply the security guidance from the release evidence when adapting examples.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/mapbox/skills/mapbox-web-performance-patterns)
+- [Data Loading Optimization](references/data-loading.md)
+- [Optimize Map Interactions](references/interactions.md)
+- [Layer and Style Performance](references/layers-styles.md)
+- [Memory Management](references/memory.md)
+- [Mobile Performance](references/mobile.md)
+- [Mapbox Tiling Service guides](https://docs.mapbox.com/mapbox-tiling-service/guides/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review popup rendering suggestions for untrusted data before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,67 @@
-## Description: <br>
-小剪刀AI视频剪辑skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小剪刀视频剪辑 guides an agent through a user-confirmed workflow for uploading media, analyzing editing needs, generating clips or narration, selecting voice and BGM, running TTS, and composing the final video.
 
-## Publisher: <br>
-[guyuxiu](https://clawhub.ai/user/guyuxiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyuxiu](https://clawhub.ai/user/guyuxiu)
 
-## Use Case: <br>
-External users and creators use this skill to upload video to Xiao Jian Dao/Cutflow services, analyze editing needs, generate AI clips or narration, choose voice and background music, synthesize TTS, and compose a finished video with step-by-step user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user videos, derived frames, audio, OCR text, prompts, device metadata, and signed media links to Xiao Jian Dao/Cutflow services. <br>
-Mitigation: Confirm with the user before uploads or task creation, avoid sensitive media unless the user accepts that processing, and treat returned signed URLs as private. <br>
-Risk: The skill asks for Xiao Jian Dao tokens and supports entering tokens in chat. <br>
-Mitigation: Do not paste tokens into chat; use a secure secret store or environment variable such as XJD_TOKEN when possible. <br>
-Risk: Video processing task creation may consume credits or account balance. <br>
-Mitigation: Confirm before credit-consuming task creation and stop on insufficient balance or authorization errors. <br>
+## Use Case:
 
+External users and media creators use this skill to turn uploaded videos into edited clips or narrated videos through a step-by-step confirmation workflow. The agent coordinates cloud media upload, task creation, analysis, clipping, OCR, TTS, BGM selection, and final composition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guyuxiu/xiaojiandao) <br>
-- [认证与加密协议](references/00-auth.md) <br>
-- [任务管理](references/01-task.md) <br>
-- [需求分析](references/02-analysis.md) <br>
-- [AI智能剪辑的前置结果](references/03-clipping.md) <br>
-- [AI解说脚本生成](references/04-narration.md) <br>
-- [音色推荐与BGM推荐](references/05-voice-bgm.md) <br>
-- [字幕识别与字幕位置计算](references/06-subtitle-ocr.md) <br>
-- [字幕TTS生成](references/07-tts.md) <br>
-- [异步任务轮询](references/08-task-status.md) <br>
-- [错误码](references/09-error-codes.md) <br>
-- [视频最终合成接口文档](references/10-compose.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, API call parameters, and signed media links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces stepwise user-facing confirmations, task IDs, analysis summaries, narration text, TTS/audio selections, progress updates, and final video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User tokens may be exposed if pasted into chat or command lines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, revocable token through a secure secret mechanism when available, and rotate tokens after use.
+
+Risk: The workflow can upload overly broad local files to external cloud services.
+
+Mitigation: Stage only the intended media in a dedicated folder and avoid providing arbitrary local paths.
+
+Risk: Uploaded media is sent to the listed cloud video, OCR, ASR, TTS, and composition services.
+
+Mitigation: Use this skill only with media approved for those services and confirm each upload or composition step before execution.
+
+## Reference(s):
+
+- [认证与加密协议](references/00-auth.md)
+- [任务管理](references/01-task.md)
+- [需求分析](references/02-analysis.md)
+- [AI智能剪辑的前置结果](references/03-clipping.md)
+- [AI解说脚本生成](references/04-narration.md)
+- [音色推荐与BGM推荐](references/05-voice-bgm.md)
+- [字幕识别与字幕位置计算](references/06-subtitle-ocr.md)
+- [字幕TTS生成](references/07-tts.md)
+- [异步任务轮询](references/08-task-status.md)
+- [错误码](references/09-error-codes.md)
+- [视频最终合成接口文档](references/10-compose.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, task data, and generated media URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include signed media URLs, task IDs, SRT text, subtitle mask coordinates, audio ZIP links, and final video or draft URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "AI Video Maker"
+  short_description: "Quote and generate AI videos safely"
+  brand_color: "#FF63C0"
+  default_prompt: "Use $ai-video-maker to quote the cost and create an AI video from my prompt."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,192 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-curriculum-politics",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:05.844Z",
+  "entry": {
+    "url": "https://xhsz.news.cn",
+    "final_url": "https://xhsz.news.cn/",
+    "title": "新华网新华思政-全国高校课程思政教学资源服务平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:05.844Z",
+    "identity": {
+      "declared_name": "高校课程思政资源平台",
+      "hostname": "xhsz.news.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "示范课程",
+        "href": "https://xhsz.news.cn/curriculum",
+        "target": ""
+      },
+      {
+        "text": "专题资源",
+        "href": "https://xhsz.news.cn/course",
+        "target": ""
+      },
+      {
+        "text": "课程思政联盟",
+        "href": "https://xhsz.news.cn/#alliance",
+        "target": ""
+      },
+      {
+        "text": "杨贤金\n天津大学\n党委书记\n坚持“从未来到未来” 调整优化学科专业 服务教育强国建设\n查看详情",
+        "href": "https://xhsz.news.cn/lecture/detail/125",
+        "target": ""
+      },
+      {
+        "text": "杨宜\n北京财贸职业学院\n党委副书记、院长\n因地制宜打造契合产业发展的“金专业” \n查看详情",
+        "href": "https://xhsz.news.cn/lecture/detail/121",
+        "target": ""
+      },
+      {
+        "text": "漆军\n广东机电职业技术学院院长\n创新课程体系 推动育训结合\n查看详情",
+        "href": "https://xhsz.news.cn/lecture/detail/117",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "课程 名师 新闻 资源搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "课程 名师 新闻 资源搜索",
+      "name": "k",
+      "id": "",
+      "css": "input[name=\"k\"]",
+      "role": null,
+      "form_action": "ref: <Node>",
+      "locator": {
+        "css": "input[name=\"k\"]"
+      },
+      "observed_url": "https://xhsz.news.cn/",
+      "observed_at": "2026-10-09T09:04:03.683Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "资源搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "ref: <Node>",
+      "locator": null,
+      "observed_url": "https://xhsz.news.cn/",
+      "observed_at": "2026-10-09T09:04:03.683Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-curriculum-politics:course-video",
+      "source_id": "quiz-curriculum-politics",
+      "task_kind": "course-video",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "institution",
+        "instructor_or_speaker",
+        "chapter_or_timestamp",
+        "target_field"
+      ],
+      "instructions": [
+        "根据本题课程或视频名称、机构和讲者匹配记录；打开目标章节或时间点读取课程字段或播放信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://xhsz.news.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "课程 名师 新闻 资源搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "课程 名师 新闻 资源搜索",
+          "name": "k",
+          "id": "",
+          "css": "input[name=\"k\"]",
+          "role": null,
+          "form_action": "ref: <Node>",
+          "locator": {
+            "css": "input[name=\"k\"]"
+          },
+          "observed_url": "https://xhsz.news.cn/",
+          "observed_at": "2026-10-09T09:04:03.683Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-026"
+    ],
+    "example_ids": [
+      "KH-Q004",
+      "KH-Q100"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:05.844Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-curriculum-politics-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-curriculum-politics-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

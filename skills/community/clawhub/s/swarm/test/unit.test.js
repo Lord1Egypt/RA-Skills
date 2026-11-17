@@ -182,7 +182,7 @@ if (test('Safe content passes security check', () => {
 
 // Test: Sanitize API keys from output
 if (test('Sanitizes Google API keys from output', () => {
-  const dirty = 'The key is AIzaSyAS6ckzCa7u1gG612345678901234567890';
+  const dirty = 'The key is REDACTED-SECRET0';
   const clean = sanitizeOutput(dirty);
   assert(!clean.includes('AIza'), 'Should not contain API key');
   assert(clean.includes('[CREDENTIAL_REDACTED]'), 'Should have redaction marker');
@@ -190,7 +190,7 @@ if (test('Sanitizes Google API keys from output', () => {
 
 // Test: Sanitize OpenAI keys
 if (test('Sanitizes OpenAI keys from output', () => {
-  const dirty = 'Use this key: sk-1234567890abcdefghijklmnopqrstuvwxyz123456789012';
+  const dirty = 'Use this key: REDACTED-SECRET';
   const clean = sanitizeOutput(dirty);
   assert(!clean.includes('sk-'), 'Should not contain sk- prefix');
 })) passed++; else failed++;

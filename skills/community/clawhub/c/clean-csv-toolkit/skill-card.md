@@ -1,40 +1,54 @@
-## Description: <br>
-Local CSV, TSV, and JSONL inspection and cleanup toolkit for profiling, validating, deduplicating, diffing, previewing, filtering, sorting, joining, pivoting, transforming, and converting tabular data without third-party dependencies or remote calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local CSV, TSV, and JSONL inspection and cleanup toolkit for profiling, validation, deduplication, diffing, previewing, filtering, sorting, concatenation, joins, pivots, transformations, and format conversion using Python 3 standard library tools.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers, data analysts, and agents use this skill to inspect, clean, validate, reshape, compare, and convert local tabular datasets before passing them into reports, CI checks, or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can read sensitive local data supplied by the user. <br>
-Mitigation: Run the tools only on intended files and avoid passing credentials or sensitive datasets unless that processing is required. <br>
-Risk: Commands can write or overwrite output files at user-specified paths. <br>
-Mitigation: Review output paths before execution and write to a working directory or version-controlled branch when preserving originals matters. <br>
+## Use Case:
 
+Developers, data operators, and agents use this skill to inspect, clean, validate, reshape, compare, and convert local tabular datasets before sending safe rows, reports, or derived files downstream.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated data can be CSV, TSV, JSON, JSONL, or Markdown tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python 3 standard library tools; local file reads and writes are limited to caller-provided paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata and skill documentation) <br>
+Risk: Data-writing commands can erase source files when an output path points to an input file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use separate approved output paths, keep backups, and avoid reusing any input path as an output path until the aliasing issue is fixed.
+
+Risk: CSV previews or reports may expose PII or secrets from local datasets.
+
+Mitigation: Use the skill only on approved local datasets and avoid printing or saving previews and reports that contain sensitive data.
+
+## Reference(s):
+
+- [Clean CSV Toolkit ClawHub Skill Page](https://clawhub.ai/gopendrasharma89-tech/skills/clean-csv-toolkit)
+- [Clean CSV Toolkit Homepage](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples; script outputs include CSV, TSV, JSON, JSONL, Markdown tables, and aligned text tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file-processing outputs depend on the selected command and caller-provided input and output paths; no remote calls are used.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

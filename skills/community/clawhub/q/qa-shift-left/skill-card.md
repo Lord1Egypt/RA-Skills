@@ -1,40 +1,50 @@
-## Description: <br>
-Qa Shift Left helps QA and engineering teams shift testing into requirements, design, and development through testability reviews, contract and unit-test planning, risk analysis, and early quality gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams shift testing into requirements, design, and development through testability reviews, acceptance criteria, and early test planning.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, developers, and project teams use this skill during early project planning and active development to review requirement testability, design early test activities, and define shift-left quality gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on common QA phrases and produce shift-left planning guidance in workflows where that behavior is not intended. <br>
-Mitigation: Review trigger wording and confirm the generated QA plan fits the project phase, quality goals, and team workflow before adoption. <br>
-Risk: Generated QA guidance can miss project-specific constraints or create incomplete quality gates if the supplied project plan or quality goals are vague. <br>
-Mitigation: Provide concrete project timeline, quality targets, and team capability context, then review outputs with QA and engineering stakeholders. <br>
+## Use Case:
 
+QA practitioners and developers use this skill to plan early testing involvement, review requirements and designs for testability, and prepare acceptance criteria and quality gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-shift-left) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, plans, review notes, and quality-gate recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces shift-left QA plans, early activity checklists, quality gates, and team enablement guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The optional companion workflow install command is not pinned to a release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the companion source is trusted and use a reviewed commit or pinned version before installing.
+
+## Reference(s):
+
+- [Shift-left testing stages](references/shift-left-stages.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-shift-left)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown checklists and plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include early intervention activities, quality gates, and team enablement recommendations.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill metadata and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

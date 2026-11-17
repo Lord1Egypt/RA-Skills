@@ -1,0 +1,28 @@
+{
+  "skill_name": "reels-script-studio",
+  "skill_version": "3.5.0",
+  "evolution_version": "1.0.0",
+  "last_updated": "2026-07-17",
+  "user_preferences": {
+    "most_used_type": null,
+    "most_used_motion": null,
+    "most_used_platform": null,
+    "most_used_lighting": null,
+    "preferred_output_format": "Markdown完整版",
+    "most_used_viral_levers": null
+  },
+  "usage_stats": {
+    "total_generations": 0,
+    "by_type": {},
+    "by_platform": {},
+    "by_viral_lever": {}
+  },
+  "experience_log": [
+    {
+      "timestamp": "2026-07-17",
+      "type": "版本升级",
+      "note": "v3.5.0 数据增强：新增爆款因子手册(viral-playbook.md)+6维菜单(爆款杠杆)+黄金3秒钩子原型+情绪锚点+转发社交货币+热点BGM/本地标签策略，依据蝉妈妈/新榜2025实测"
+    }
+  ],
+  "rejected_optimizations": []
+}

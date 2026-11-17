@@ -6,7 +6,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![ClawHub](https://img.shields.io/badge/ClawHub-yumfu-purple)](https://clawhub.ai/skills/yumfu)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/yumyumtum/yumfu)
+[![Version](https://img.shields.io/badge/version-1.7.12-green)](https://github.com/yumyumtum/yumfu)
 
 *Play epic text adventures with AI-generated art across multiple fantasy universes*
 
@@ -34,6 +34,8 @@
 
 - ⚔️ **笑傲江湖** (Swordsman) - Mt. Hua, Wudang, Shaolin
 - 🗡️ **倚天屠龙记** (Heaven Sword & Dragon Saber) - Ming Cult, Wudang *(NEW!)*
+- 🐒 **西游记** (Journey to the West) - mythic pilgrimage adventure
+- 🏹 **罗摩衍那** (Ramayana) - Indian epic adventure from Ayodhya to Lanka
 - 🐉 **射雕英雄传** (Legend of the Condor Heroes) *(coming soon)*
 
 **Style**: 水墨武侠风 (Ink wash painting aesthetic)

@@ -2,8 +2,8 @@
  * Generate a fresh Stellar keypair for an agent wallet.
  *
  * Usage:
- *   npx tsx scripts/generate-keypair.ts                   # write to ./.stellar-secret
- *   npx tsx scripts/generate-keypair.ts --out wallet.key  # custom path
+ *   ./node_modules/.bin/tsx scripts/generate-keypair.ts                   # write to ./.stellar-secret
+ *   ./node_modules/.bin/tsx scripts/generate-keypair.ts --out wallet.key  # custom path
  * Existing wallet files are never overwritten. Pick a new --out path if
  * you need another wallet.
  *
@@ -12,7 +12,7 @@
  * user. The terminal only sees the public key.
  *
  * Use the resulting file with the --secret-file flag on any command:
- *   npx tsx skills/check-balance/run.ts --secret-file .stellar-secret
+ *   ./node_modules/.bin/tsx skills/check-balance/run.ts --secret-file .stellar-secret
  */
 
 import { Keypair } from "@stellar/stellar-sdk";
@@ -44,7 +44,7 @@ function main() {
       `❌ ${out} already exists. Refusing to overwrite an existing wallet.`,
     );
     console.error(`   If you want a fresh keypair in a different file:`);
-    console.error(`     npx tsx scripts/generate-keypair.ts --out stellar.key`);
+    console.error(`     ./node_modules/.bin/tsx scripts/generate-keypair.ts --out stellar.key`);
     process.exit(1);
   }
 
@@ -82,7 +82,7 @@ function main() {
   console.log(`     curl 'https://friendbot.stellar.org?addr=${pubkey}'`);
   console.log(`  2. Check the balance:`);
   console.log(
-    `     npx tsx skills/check-balance/run.ts ${pubkey}`,
+    `     ./node_modules/.bin/tsx skills/check-balance/run.ts ${pubkey}`,
   );
 }
 

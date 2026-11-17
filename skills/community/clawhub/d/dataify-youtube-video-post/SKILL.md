@@ -1,11 +1,11 @@
 ---
 name: dataify-youtube-video-post
-description: Use for Dataify YouTube video post collection Builder tasks. Trigger when the user asks for the YouTube video post collection tool, YouTube video collection, YouTube video scraping, YouTube video post scraping, YouTube videos by URL, search filters, hashtag, podcast URL, keyword, or Explore URL, or asks with Chinese wording such as YouTube视频抓取, YouTube视频采集, YouTube视频帖子采集, 通过关键词抓取YouTube视频, 通过URL抓取YouTube视频, 通过标签抓取YouTube视频, or 通过探索抓取YouTube视频. Supports choosing between youtube_video-post_by-url, youtube_video-post_by-search-filters, youtube_video-post_by-hashtag, youtube_video-post_by-podcast-url, youtube_video-post_by-keyword, and youtube_video-post_by-explore; receiving task_id/status; and troubleshooting Dataify Builder requests.
+description: "Collect YouTube video-post records by URL, search filters, hashtag, podcast URL, keyword, or Explore URL. Use for video discovery or lists. Do not use to download media files or retrieve only one video's metadata."
 ---
 
 # Dataify YouTube Video Post
 
-Submit YouTube video post collection jobs through Dataify Builder, then stop. This skill is a guided wrapper for six collection modes:
+Submit YouTube video post collection jobs through Dataify Builder and continue through final-result retrieval. This skill is a guided wrapper for six collection modes:
 
 | Mode | Collector ID | Use For |
 | --- | --- | --- |
@@ -16,16 +16,13 @@ Submit YouTube video post collection jobs through Dataify Builder, then stop. Th
 | Keyword | `youtube_video-post_by-keyword` | Collecting video posts by keyword. |
 | Explore | `youtube_video-post_by-explore` | Collecting video posts from a YouTube Explore URL. |
 
-After a successful submission, give the user the `task_id`, the returned or inferred status, and tell them to visit [Dataify](https://dashboard.dataify.com?utm_source=skill) to view results.
+After submission, continue monitoring the returned `task_id` and return the final result by default.
 
 ## API TOKEN Handling
 
 Use `DATAIFY_API_TOKEN` as the long-term saved token name.
 
-- If the user provides a token in the request, use it for this run.
-- If no token is provided, first check whether `DATAIFY_API_TOKEN` is already saved locally in the environment.
 - If `DATAIFY_API_TOKEN` is saved locally, use it.
-- If no token is available locally, tell the user to get an API TOKEN from [Dataify](https://dashboard.dataify.com?utm_source=skill).
 - Do not call the Builder endpoint without a token.
 - Always call it `API TOKEN` in user-facing instructions. Prefer the environment variable name `DATAIFY_API_TOKEN` for saved local use.
 
@@ -49,14 +46,9 @@ For a persistent user-level variable on Windows:
 4. Ask whether the user wants to change any value before running the task.
 5. Ask whether the user wants to collect multiple YouTube video post groups for the selected mode.
 6. Normalize the final values into a list of parameter objects for the selected mode only.
-7. Resolve the Dataify token from explicit input or saved `DATAIFY_API_TOKEN`.
-8. If no token is available, tell the user to get an API TOKEN from [Dataify](https://dashboard.dataify.com?utm_source=skill).
 9. Validate the selected mode, parameters, and file name.
 10. Submit the Builder request with the selected mode's `spider_id`.
 11. Read `data.task_id` from the Builder response and read `data.status` or `status` when present.
-12. Stop after Builder succeeds.
-13. Tell the user to visit [Dataify](https://dashboard.dataify.com?utm_source=skill) to view or manage results.
-
 ## Mode Selection
 
 When the user invokes this skill, first show this Markdown table and ask them to choose one mode:
@@ -74,177 +66,6 @@ Ask: "Which collection mode do you want to use?"
 
 Do not submit a Builder request until the mode is clear.
 
-## URL Mode
-
-Use this section only when the user chooses `url`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `url` | Yes | `https://www.youtube.com/@stephcurry/videos` | YouTube channel Videos URL. Must use `https://www.youtube.com`. |
-| `order_by` | No | `最新` | Dropdown-style option. |
-| `start_index` | No | `1` | Integer greater than or equal to `0`. |
-| `num_of_posts` | No | `5` | Integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-`order_by` options:
-
-| Label | Value |
-| --- | --- |
-| Latest | `最新` |
-| Popular | `热门` |
-| Oldest | `最早` |
-
-Submit `spider_id=youtube_video-post_by-url` with objects like:
-
-```json
-[{"url":"https://www.youtube.com/@stephcurry/videos","order_by":"最新","start_index":"1","num_of_posts":"5"}]
-```
-
-For multiple URL groups, provide multiple `url`, `order_by`, `start_index`, and `num_of_posts` objects.
-
-## Search Filters Mode
-
-Use this section only when the user chooses `search_filters`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `keyword_search` | Yes | `popular music` | Keyword used to search YouTube videos. |
-| `features` | No | `All` | Dropdown-style option. |
-| `type` | No | `Videos` | Dropdown-style option. |
-| `duration` | No | `Under 3 minutes` | Dropdown-style option. |
-| `upload_date` | No | `Last hour` | Dropdown-style option. |
-| `num_of_posts` | No | `200` | Integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-`features` options:
-
-| Label | Value |
-| --- | --- |
-| All | `All` |
-| Live | `Live` |
-| 4K | `4K` |
-| HD | `HD` |
-| Subtitles/CC | `Subtitles/CC` |
-| Creative Commons | `Creative Commons` |
-| 360° | `360°` |
-| VR180 | `VR180` |
-| 3D | `3D` |
-| HDR | `HDR` |
-
-`type` options:
-
-| Label | Value |
-| --- | --- |
-| Video | `Videos` |
-| Movie | `Movies` |
-
-`duration` options:
-
-| Label | Value |
-| --- | --- |
-| 4 分钟以内 | `4 分钟以内` |
-| 4-20 分钟 | `4-20 分钟` |
-| 20 分钟以上 | `20 分钟以上` |
-| 全部 | `None` |
-
-`upload_date` options:
-
-| Label | Value |
-| --- | --- |
-| 上一小时 | `Last hour` |
-| 今天 | `Today` |
-| 本周 | `This week` |
-| 本月 | `This month` |
-| 今年 | `This year` |
-| 全部 | `All` |
-
-Submit `spider_id=youtube_video-post_by-search-filters` with objects like:
-
-```json
-[{"keyword_search":"popular music","features":"Subtitles/CC","type":"Videos","duration":"None","upload_date":"Last hour","num_of_posts":"200"}]
-```
-
-For multiple search-filter groups, provide multiple `keyword_search`, `features`, `type`, `duration`, `upload_date`, and `num_of_posts` objects.
-
-## Hashtag Mode
-
-Use this section only when the user chooses `hashtag`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `hashtag` | Yes | `shopping` | Topic hashtag used to filter YouTube videos. |
-| `num_of_posts` | No | `10` | Integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-Submit `spider_id=youtube_video-post_by-hashtag` with objects like:
-
-```json
-[{"hashtag":"shopping","num_of_posts":"10"}]
-```
-
-For multiple hashtag groups, provide multiple `hashtag` and `num_of_posts` objects.
-
-## Podcast URL Mode
-
-Use this section only when the user chooses `podcast_url`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `url` | Yes | `https://www.youtube.com/playlist?list=RDCLAK5uy_lS3E3PgpboCkZ_PfLPCkLLNPI1uH6kfc0` | YouTube podcast or playlist URL. Must use `https://www.youtube.com`. |
-| `num_of_posts` | No | `10` | Integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-Submit `spider_id=youtube_video-post_by-podcast-url` with objects like:
-
-```json
-[{"url":"https://www.youtube.com/playlist?list=RDCLAK5uy_lS3E3PgpboCkZ_PfLPCkLLNPI1uH6kfc0","num_of_posts":"10"}]
-```
-
-For multiple podcast URL groups, provide multiple `url` and `num_of_posts` objects.
-
-## Keyword Mode
-
-Use this section only when the user chooses `keyword`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `keyword` | Yes | `top videos` | Keyword used to search YouTube videos. |
-| `num_of_posts` | No | `10` | Integer greater than or equal to `0`. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-Submit `spider_id=youtube_video-post_by-keyword` with objects like:
-
-```json
-[{"keyword":"top videos","num_of_posts":"10"}]
-```
-
-For multiple keyword groups, provide multiple `keyword` and `num_of_posts` objects.
-
-## Explore Mode
-
-Use this section only when the user chooses `explore`.
-
-| Field | Required | Default | Notes |
-| --- | --- | --- | --- |
-| `url` | Yes | `https://www.youtube.com/feed/storefront?bp=ogUCKAU%3D` | YouTube Explore URL. Must use `https://www.youtube.com`. |
-| `all_tabs` | No | `true` | Dropdown-style option. Specifies whether to collect all tabs. |
-| `file_name` | No | `{{TasksID}}` | Builder form field. |
-
-`all_tabs` options:
-
-| Label | Value |
-| --- | --- |
-| Collect all tabs | `true` |
-| Do not collect all tabs | `false` |
-
-Submit `spider_id=youtube_video-post_by-explore` with objects like:
-
-```json
-[{"url":"https://www.youtube.com/feed/storefront?bp=ogUCKAU%3D","all_tabs":"true"}]
-```
-
-For multiple Explore groups, provide multiple `url` and `all_tabs` objects.
-
 ## Shared Parameter Handling
 
 - `file_name` defaults to `{{TasksID}}`.
@@ -254,6 +75,8 @@ For multiple Explore groups, provide multiple `url` and `all_tabs` objects.
 - Integer fields must be greater than or equal to `0`.
 - Submit numeric and boolean-like values as strings, matching the Builder examples.
 - Submit `spider_parameters` as a JSON string containing an array of one or more objects.
+
+For detailed mode schemas and advanced fields, read [references/modes-and-parameters.md](references/modes-and-parameters.md) only when needed.
 
 ## Dataify Builder Request
 
@@ -294,11 +117,11 @@ To submit multiple groups, pass a JSON array for the selected mode:
 python3 ".\scripts\submit_dataify_youtube_video_post.py" --mode hashtag --params-json '[{"hashtag":"shopping","num_of_posts":"10"},{"hashtag":"music","num_of_posts":"25"}]'
 ```
 
-The script prints a JSON summary with `mode`, `spider_id`, `task_id`, `status`, `parameters`, `file_name`, `dashboard_url`, and `message`.
+The script prints a JSON summary with `mode`, `spider_id`, `task_id`, `status`, `parameters`, `file_name` and `message`.
 
 ## Troubleshooting
 
-`Missing Dataify API TOKEN` means no explicit token was passed and `DATAIFY_API_TOKEN` is not saved locally. Tell the user to get an API TOKEN from [Dataify](https://dashboard.dataify.com?utm_source=skill).
+`Missing Dataify API TOKEN` means `DATAIFY_API_TOKEN` is not set in the environment. Tell the user to get an API TOKEN from [Dataify](https://dashboard.dataify.com?utm_source=skill).
 
 `Unsupported mode` means the mode must be `url`, `search_filters`, `hashtag`, `podcast_url`, `keyword`, or `explore`.
 
@@ -314,4 +137,40 @@ Missing `task_id` usually means the authorization header, token, `spider_name`, 
 
 - Do not mix parameters from different modes in the same Builder request.
 - Do not invent result fields.
-- Always direct the user to [Dataify](https://dashboard.dataify.com?utm_source=skill) after successful task creation.
+
+## Default completion behavior
+
+The default deliverable is the collected result, not only a `task_id`.
+
+1. Submit the Builder task once and capture its `task_id`.
+2. Immediately continue with `$dataify-task-operations` and monitor the same task ID.
+   - Use the default 600-second wait for ordinary collections.
+   - Use `--timeout 1800` for media downloads or clearly high-volume, multi-page, or multi-input collections.
+3. When the task succeeds, download and return the final JSON result. Summarize large payloads while preserving access to the raw result.
+4. If monitoring times out or is interrupted, return the task ID and a resume command. Do not resubmit the paid task.
+5. Stop after submission only when the user explicitly asks for submission only, a task ID, or `--no-wait` behavior.
+
+## Quick Start
+
+```bash
+python3 scripts/submit_dataify_youtube_video_post.py --help
+```
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

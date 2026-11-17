@@ -1,43 +1,60 @@
-## Description: <br>
-Organize a cluttered Outlook inbox with folders, batch moves, and server-side inbox rules via the Microsoft Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes cluttered Outlook inboxes with folders, batch message moves, and server-side inbox rules through Microsoft Graph.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-Microsoft 365 and Outlook users use this skill to reduce inbox noise by grouping recurring notifications, moving existing messages, and setting up server-side rules for future cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MailboxSettings.ReadWrite can create persistent inbox rules, including forwarding or redirect rules if the runtime does not block them. <br>
-Mitigation: Install only with a trusted Microsoft Graph runtime that blocks forwardTo, forwardAsAttachmentTo, redirectTo, delete, and permanentDelete actions. <br>
-Risk: Autonomous invocation with mailbox write permissions can increase the impact of unexpected rule creation. <br>
-Mitigation: Prefer folder cleanup or audit-only mode when rule creation is not needed, avoid autonomous invocation, and revoke Microsoft OAuth consent if unexpected rules appear. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to reduce inbox noise by grouping automated notifications, creating practical folders, moving existing Outlook messages, and setting future inbox rules.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/inbox-cleanup-outlook) <br>
-- [Email Agent MCP Reference Runtime](https://github.com/UseJunior/email-agent-mcp) <br>
-- [Reference Runtime Rule Guardrails](https://github.com/UseJunior/email-agent-mcp/blob/main/packages/email-core/src/actions/rules.ts#L39) <br>
-- [NemoClaw Email Policy](https://clawhub.ai/skill/nemoclaw-email-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with REST API and MCP command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Microsoft Graph delegated OAuth scopes for mailbox changes; inbox rule safety depends on runtime guardrails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server evidence and skill frontmatter) <br>
+Risk: MailboxSettings.ReadWrite can allow persistent inbox rules that forward or redirect future mail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted runtime that blocks forward, redirect, delete, and permanent-delete rule actions; prefer audit-only or folder-only scopes when rule creation is not needed.
+
+Risk: Autonomous invocation with write scopes can create or modify mailbox state without per-call approval.
+
+Mitigation: Avoid autonomous invocation unless runtime-level controls enforce the blocked action list and user approval expectations.
+
+Risk: The skill is instruction-only and cannot enforce its own security model.
+
+Mitigation: Validate the runtime's Microsoft Graph action handlers and revoke OAuth consent if behavior is unexpected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevenobiajulu/skills/inbox-cleanup-outlook)
+- [email-agent-mcp homepage](https://github.com/UseJunior/email-agent-mcp)
+- [Reference runtime rule guardrail](https://github.com/UseJunior/email-agent-mcp/blob/main/packages/email-core/src/actions/rules.ts#L39)
+- [NemoClaw Email Policy skill](https://clawhub.ai/skill/nemoclaw-email-policy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with Microsoft Graph examples and MCP command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only guidance; execution depends on a trusted runtime with Microsoft Graph OAuth permissions.]
+
+## Skill Version(s):
+
+0.1.4 (source: server evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

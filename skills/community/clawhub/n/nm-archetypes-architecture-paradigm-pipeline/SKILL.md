@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-pipeline
-description: Applies pipes-and-filters for sequential data transformations
-version: 1.9.8
+description: Pipes-and-filters architecture
+version: 1.10.3
 triggers:
   - architecture
   - pipeline
@@ -9,15 +9,15 @@ triggers:
   - ETL
   - streaming
   - data-processing
-  - data flows through discrete stages like ETL
-  - streaming analytics
-  - or CI/CD pipelines
+  - data flows through discrete stages such as ETL
+  - streaming
+  - or CI/CD
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Pipeline (Pipes and Filters) Paradigm
@@ -26,6 +26,12 @@ source_plugin: archetypes
 - When data must flow through a fixed sequence of discrete transformations, such as in ETL jobs, streaming analytics, or CI/CD pipelines.
 - When reusing individual processing stages is needed, either independently or to scale bottleneck stages separately from others.
 - When failure isolation between stages is a critical requirement.
+
+## When NOT To Use
+
+- Interactive request/response systems (use
+  `archetypes:architecture-paradigm-client-server`)
+- Stages that must share mutable state, which the pattern cannot express
 
 ## Adoption Steps
 1. **Define Filters**: Design each stage (filter) to perform a single, well-defined transformation. Each filter must have a clear input and output data schema.
@@ -49,13 +55,21 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``stream-processor`` -- the runtime that executes a filter (e.g. Flink, Apache Beam, Faust)
-- ``message-queue`` -- the durable pipe between filters (e.g. Kafka, RabbitMQ, in-memory channel)
-- ``data-validator`` -- schema-checks every record at filter input and output
+- ``stream-processor``: the runtime that executes a filter (e.g. Flink, Apache Beam, Faust)
+- ``message-queue``: the durable pipe between filters (e.g. Kafka, RabbitMQ, in-memory channel)
+- ``data-validator``: schema-checks every record at filter input and output
+
+## Exit Criteria
+
+- [ ] An ADR documents every filter in the pipeline, the chosen pipe technology, the
+  error-handling strategy (DLQ, retry count, dead-letter routing), and the data replay
+  mechanism.
+- [ ] Each filter has a contract test covering its input and output schema. Schema drift between
+  adjacent filters is caught by a CI compatibility check.
+- [ ] Observability dashboards are configured showing per-stage latency, throughput, and error
+  rate before the pipeline is promoted to production.
+- [ ] Load testing validates that back-pressure and buffering mechanisms prevent data loss at
+  2x the expected peak throughput.

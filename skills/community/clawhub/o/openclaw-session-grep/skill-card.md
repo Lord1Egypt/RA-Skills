@@ -1,41 +1,54 @@
-## Description: <br>
-Search local OpenClaw session and transcript history with the openclaw-session-grep CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search local OpenClaw session and transcript history with the openclaw-session-grep CLI for prior conversations, tool usage, historical errors, cron behavior, and places where something was said before.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and operators use this skill to search local OpenClaw session and transcript history when debugging prior conversations, tool usage, cron behavior, panel failures, historical errors, or expensive runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence security summary says the available scan context did not provide a concrete reason to block installation, while advising review of the actual skill files before installing. <br>
-Mitigation: Review the artifact skill file and requested local binary path before installation, especially setup steps, filesystem access, network calls, credentials, and persistent behavior. <br>
-Risk: The skill caveat says broad search targets can include non-transcript files and produce noisy or unintended local search results. <br>
-Mitigation: Use the skill for session and transcript discovery first, and narrow searches with path, session, channel, time-window, or tool-only filters when results are too broad. <br>
+## Use Case:
 
+Developers and agents use this skill to search local OpenClaw transcript and session history when debugging prior conversations, tool behavior, panel failures, cron activity, or recurring errors.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pfrederiksen/openclaw-session-grep) <br>
-- [Publisher profile](https://clawhub.ai/user/pfrederiksen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the local ocgrep wrapper at /root/.openclaw/workspace/tools/ocgrep and may return file and line references from local session history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can expose sensitive prior OpenClaw transcript content to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where the agent is allowed to inspect prior OpenClaw transcripts, and treat search results as sensitive.
+
+Risk: Broad paths can include non-transcript files or noisy results.
+
+Mitigation: Use narrow time, session, channel, tool, and path filters, and avoid using this skill for general filesystem or repository search unless ocgrep access controls have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/openclaw-session-grep)
+- [Publisher profile](https://clawhub.ai/user/pfrederiksen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file:line references when opened through ocgrep]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill depends on the local ocgrep wrapper and is intended for transcript/session discovery rather than general filesystem or repository search.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

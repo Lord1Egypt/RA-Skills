@@ -1,37 +1,50 @@
-## Description: <br>
-Generate high-quality images from text prompts using Volcano Engine Seedream models with support for multiple artistic styles and aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images from text prompts using Volcano Engine Seedream models, with support for multiple artistic styles, aspect ratios, image-to-image workflows, batch generation, and model-version selection.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate, transform, and batch-create images from text prompts or reference image URLs through Volcano Engine Seedream models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal output logs may expose API keys, prompts, image URLs, or request details. <br>
-Mitigation: Use only non-sensitive prompts and image URLs, avoid shared or persisted logs, remove or redact logging before production use, and rotate any exposed API key. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or transform images through Volcano Engine Seedream models from text prompts, reference image URLs, or batch requests. It is suited for creative content generation where API credentials and generated image handling are acceptable for the deployment environment.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown image links, local path notes, command examples, and JSON-style Python results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Volcano Engine API key; generated image URLs may expire after 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Console output may expose the API bearer token and prompt/request details during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only API keys and prompts that are acceptable in local console or agent logs, avoid private image URLs or confidential reference material, and rotate any key whose output may already have been captured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-seedream-image-generate)
+- [Volcano Engine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON result data and Markdown image links, with optional shell command and Python usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns generated image URLs or base64 image data, success and error lists, model/version metadata, and guidance to save image URLs promptly because generated URLs are documented as temporary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

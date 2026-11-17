@@ -879,3 +879,51 @@ def test_route_find_unresolved_via(mock_make_request, prefs_path):
 
 
 
+
+
+@patch('scripts.cli.make_request')
+def test_site_departures_filtered_locally_not_capped(mock_make_request, tmp_path):
+    """--line/--direction should be filtered client-side so the response is not
+    truncated to the API's ~3-row server-side cap for filtered queries.
+
+    The mock mimics the real API: a filtered request (with line/direction params)
+    returns a small subset, while an unfiltered request returns the full board.
+    The command must fetch the unfiltered board and filter locally, returning all
+    matching departures rather than the capped subset.
+    """
+    full_board = {
+        "departures": [
+            {"line": {"designation": "5"}, "direction_code": 1, "destination": "East", "scheduled": "2026-08-17T08:00:00", "expected": "2026-08-17T08:00:00", "state": "EXPECTED"},
+            {"line": {"designation": "5"}, "direction_code": 1, "destination": "East", "scheduled": "2026-08-17T08:13:00", "expected": "2026-08-17T08:13:00", "state": "EXPECTED"},
+            {"line": {"designation": "5"}, "direction_code": 2, "destination": "West", "scheduled": "2026-08-17T08:10:00", "expected": "2026-08-17T08:10:00", "state": "EXPECTED"},
+            {"line": {"designation": "7"}, "direction_code": 1, "destination": "East", "scheduled": "2026-08-17T08:05:00", "expected": "2026-08-17T08:05:00", "state": "EXPECTED"},
+            {"line": {"designation": "5"}, "direction_code": 1, "destination": "East", "scheduled": "2026-08-17T08:18:00", "expected": "2026-08-17T08:18:00", "state": "EXPECTED"},
+        ]
+    }
+
+    def mock_api(url, params=None):
+        # Mimic the real server-side cap for filtered queries.
+        if params and (params.get("line") or params.get("direction")):
+            return {"departures": full_board["departures"][:3]}
+        return full_board
+
+    mock_make_request.side_effect = mock_api
+
+    args = MagicMock()
+    args.site_id = "9117"
+    args.line = "5"
+    args.direction = 1
+    args.transport = None
+    args.forecast = None
+
+    with patch('sys.stdout.write') as mock_stdout:
+        cli.cmd_site_departures(args)
+        written = "".join(call[0][0] for call in mock_stdout.call_args_list)
+
+    # Must return ALL line-5 direction-1 departures (3), not the capped subset.
+    assert "08:00" in written
+    assert "08:13" in written
+    assert "08:18" in written
+    # Line 7 and the opposite-direction (direction 2) departure must be filtered out.
+    assert "08:05" not in written
+    assert "West" not in written

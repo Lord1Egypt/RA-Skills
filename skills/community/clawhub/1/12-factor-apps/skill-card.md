@@ -1,40 +1,49 @@
-## Description: <br>
-Perform 12-Factor App compliance analysis on codebases for application architecture evaluation, SaaS audits, and cloud-native reviews against the original 12-Factor methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform 12-Factor App compliance analysis on any codebase.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers, architects, and reviewers use this skill to evaluate a repository against the Twelve-Factor App methodology and identify gaps in SaaS, cloud-native, or containerization readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository analysis can surface sensitive configuration details, including secret names, API key patterns, database URLs, or file paths in generated findings. <br>
-Mitigation: Run the skill only against repositories intended for review and redact sensitive findings before sharing reports outside the review team. <br>
-Risk: Automated compliance classifications may be incomplete or misleading if repository structure, generated files, or framework conventions are not fully interpreted. <br>
-Mitigation: Treat the report as review guidance and verify findings against the codebase before making architecture, deployment, or compliance decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit SaaS and cloud-native application codebases against the 12-Factor App methodology and identify architecture gaps.
 
-## Reference(s): <br>
-- [The Twelve-Factor App](https://12factor.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with an executive summary table, per-factor findings, evidence, gaps, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target codebase path and local repository inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads project files during an architecture audit and may surface sensitive-looking configuration or credential strings in its report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories the operator is authorized to review, and review generated findings before sharing them outside the intended audience.
+
+## Reference(s):
+
+- [The Twelve-Factor App](https://12factor.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with analysis tables, file evidence, recommendations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports Strong, Partial, or Weak compliance for each of the twelve factors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

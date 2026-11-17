@@ -1,39 +1,58 @@
-## Description: <br>
-Optimized OpenClaw backup skill for creating full snapshots with workspace archive splitting, change summaries, restore instructions, and Discord notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimized OpenClaw backup skill for creating full snapshots with workspace archive splitting, change summaries, restore instructions, and Discord notifications.
 
-## Publisher: <br>
-[cccarv82](https://clawhub.ai/user/cccarv82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cccarv82](https://clawhub.ai/user/cccarv82)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install, configure, and run automated backups of OpenClaw home data, generate snapshot reports, schedule cron jobs, and follow restore instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The backup workflow can copy sensitive OpenClaw data to a remote Git repository. <br>
-Mitigation: Use a private repository you control, review exactly what files are included, avoid storing secrets in the backup, and consider encrypting data before upload. <br>
-Risk: Automatic force pushes may overwrite remote backup history. <br>
-Mitigation: Use a dedicated backup repository or branch, understand the force-push behavior before enabling automation, and verify that local history retention meets recovery needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Backup skill configuration](references/CONFIG.md) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install, configure, run, and schedule full OpenClaw state backups, including split workspace archives, change summaries, restore guidance, and optional Discord notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment variable examples, and a Node.js backup script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or copy a local backup script and configuration values for scheduled OpenClaw backups.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The backup workflow can copy and push sensitive OpenClaw state and workspace data.
+
+Mitigation: Use a private dedicated repository, narrow credentials, encryption before pushing, and reviewed exclusions for secrets and workspace data.
+
+Risk: Scheduled backups can repeatedly upload sensitive or unwanted data if cron timing or backup scope is misconfigured.
+
+Mitigation: Require a manually approved cron schedule and confirm the configured OpenClaw home, backup directory, repository, and exclusions before enabling automation.
+
+Risk: Discord notifications can expose changed paths or restore text in a channel.
+
+Mitigation: Disable Discord notifications or send them only to a restricted channel when notification content could reveal sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cccarv82/skills/openclaw-backup-optimized)
+- [cccarv82 publisher profile](https://clawhub.ai/user/cccarv82)
+- [Backup skill configuration](references/CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash, PowerShell, and JavaScript references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces backup setup guidance, cron commands, restore instructions, and a Node.js backup workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

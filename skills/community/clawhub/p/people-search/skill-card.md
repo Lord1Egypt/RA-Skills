@@ -1,52 +1,63 @@
-## Description: <br>
-Search, qualify, and enrich people and companies for recruiting, business development, contact lookup, company research, and web research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, qualify, and enrich people and companies for professional discovery, recruiting, B2B lead generation, contact lookup, company research, and background web research.
 
-## Publisher: <br>
-[lessieai](https://clawhub.ai/user/lessieai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lessieai](https://clawhub.ai/user/lessieai)
 
-## Use Case: <br>
-Recruiters, sales teams, founders, and researchers use this skill to find and qualify people or companies, enrich known contacts, source candidates or leads, and gather business intelligence using Lessie CLI or MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Lessie tooling with npm or npx and may run code from an external package source. <br>
-Mitigation: Review or install the Lessie packages yourself, pin trusted versions where possible, and run the tooling only in an environment where npm-installed code is acceptable. <br>
-Risk: Lessie authorization stores a persistent OAuth token locally at ~/.lessie/oauth.json. <br>
-Mitigation: Authorize only accounts you trust for this workflow, protect the local token file, and remove ~/.lessie/oauth.json when you no longer want agent access. <br>
-Risk: Most Lessie actions consume credits and some workflows can spend credits repeatedly. <br>
-Mitigation: Keep confirmation prompts enabled for paid actions, require an estimated credit cost before each call, and review credit usage after tool calls. <br>
-Risk: People enrichment may return personal contact details such as email, phone, and social profile information. <br>
-Mitigation: Use enrichment only for lawful and appropriate purposes, minimize personal-email and phone lookups, and follow applicable privacy and outreach rules. <br>
-Risk: Search queries are sent to Lessie and logged for service improvement and abuse prevention. <br>
-Mitigation: Avoid submitting confidential or unnecessary personal data in queries, and review Lessie's privacy policy and terms before use. <br>
+## Use Case:
 
+External users, sales teams, recruiters, and business researchers use this skill to find and enrich professional contacts, source candidates, generate lead lists, and research companies. It guides agents through Lessie CLI or MCP workflows while prompting before credit-consuming actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lessieai/people-search) <br>
-- [Lessie pricing](https://lessie.ai/pricing) <br>
-- [Lessie privacy policy](https://lessie.ai/privacy) <br>
-- [Lessie terms of service](https://lessie.ai/terms-of-service) <br>
-- [CLI reference](references/cli-reference.md) <br>
-- [Workflow patterns](references/workflow-patterns.md) <br>
-- [Domain resolution](references/domain-resolution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and summarized JSON results from Lessie tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Lessie search IDs, company or person records, contact details, credit-cost summaries, and setup or MCP configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release; artifact metadata version: 2.1.0) <br>
+Risk: The skill can send search terms, company data, social handles, and contact identifiers to Lessie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with data that may be shared with Lessie under the account's privacy, security, and compliance requirements.
+
+Risk: The setup flow asks agents to install unpinned npm packages and may persist CLI tokens or MCP configuration.
+
+Mitigation: Prefer pinned or manually reviewed package installation, inspect MCP configuration before enabling it, and remove cached credentials when the skill is no longer needed.
+
+Risk: Credit-consuming Lessie calls can incur cost and retrieve personal contact data.
+
+Mitigation: Require explicit user confirmation before each credit-consuming action unless the user has waived prompts, and apply local laws and platform terms before using retrieved contact data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lessieai/skills/people-search)
+- [CLI Tool Calling Reference](references/cli-reference.md)
+- [Domain Resolution](references/domain-resolution.md)
+- [Workflow Patterns](references/workflow-patterns.md)
+- [Lessie pricing](https://lessie.ai/pricing)
+- [Lessie privacy policy](https://lessie.ai/privacy)
+- [Lessie terms of service](https://lessie.ai/terms-of-service)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Lessie CLI commands, MCP configuration snippets, search criteria, result triage, and credit usage summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

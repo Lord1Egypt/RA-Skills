@@ -1,0 +1,6 @@
+interface:
+  display_name: "AgentMailer Events"
+  short_description: "Build signed webhook and realtime workflows"
+  default_prompt: "Use $agentmailer-events to design this AgentMailer event consumer with verified signatures, durable acceptance, deduplication, and replay."
+policy:
+  allow_implicit_invocation: true

@@ -46,6 +46,8 @@ references/agent_tools_use_rules.md
 import asyncio
 import json
 import os
+import shutil
+import socket
 import time
 from datetime import datetime
 from enum import Enum
@@ -54,6 +56,10 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field
+
+from .logging_config import get_logger
+
+logger = get_logger(__name__)
 
 # ============================================================================
 # 故障类型枚举
@@ -236,10 +242,50 @@ class FallbackManager:
         return False
 
     async def _cleanup_memory(self):
-        """清理内存缓存"""
-        # TODO: 实现内存清理逻辑
-        print("[FallbackManager] 执行内存清理...")
-        await asyncio.sleep(0.1)
+        """
+        清理内存缓存
+        
+        策略：
+        1. 清理过期缓存条目
+        2. 按 LRU 策略淘汰低频访问项
+        3. 释放可回收的临时数据
+        """
+        logger.info("开始执行内存清理")
+        cleaned_count = 0
+        
+        try:
+            # 策略1: 清理临时文件和缓存
+            temp_dirs = [
+                Path("/tmp/agent_memory_cache"),
+                Path("/tmp/agent_memory_temp"),
+            ]
+            for temp_dir in temp_dirs:
+                if temp_dir.exists():
+                    for item in temp_dir.iterdir():
+                        try:
+                            if item.is_file():
+                                # 清理超过1小时的临时文件
+                                age = time.time() - item.stat().st_mtime
+                                if age > 3600:
+                                    item.unlink()
+                                    cleaned_count += 1
+                            elif item.is_dir():
+                                shutil.rmtree(item, ignore_errors=True)
+                                cleaned_count += 1
+                        except OSError as e:
+                            logger.warning(f"清理临时文件失败: {item}, 错误: {e}")
+            
+            # 策略2: 建议 Python GC 回收
+            import gc
+            collected = gc.collect()
+            cleaned_count += collected
+            
+            logger.info(f"内存清理完成，清理条目: {cleaned_count}, GC回收: {collected}")
+            
+        except Exception as e:
+            logger.error(f"内存清理过程中出错: {e}")
+        
+        await asyncio.sleep(0.05)  # 短暂等待系统响应
 
     # ========================================================================
     # 自动恢复
@@ -301,41 +347,139 @@ class FallbackManager:
         Returns:
             是否恢复
         """
-        # TODO: 实现具体的恢复检查逻辑
         if fault_type == FaultType.REDIS_UNAVAILABLE:
-            # 检查 Redis 是否可用
             return await self._check_redis_available()
 
         elif fault_type == FaultType.DISK_UNAVAILABLE:
-            # 检查磁盘是否可用
             return await self._check_disk_available()
 
         elif fault_type == FaultType.NETWORK_TIMEOUT:
-            # 检查网络是否恢复
             return await self._check_network_available()
 
+        elif fault_type == FaultType.MEMORY_INSUFFICIENT:
+            return await self._check_memory_sufficient()
+
+        logger.debug(f"未知故障类型的恢复检查: {fault_type.value}")
         return False
 
     async def _check_redis_available(self) -> bool:
-        """检查 Redis 是否可用"""
-        # TODO: 实现实际的 Redis 检查
-        return False
+        """
+        检查 Redis 是否可用
+        
+        策略：
+        1. 尝试连接 Redis 服务器
+        2. 执行 PING 命令验证响应
+        """
+        try:
+            from .redis_adapter import get_redis_client
+            
+            client = get_redis_client()
+            if client is None:
+                return False
+            
+            # 尝试 PING
+            if client.ping():
+                logger.info("Redis 连接恢复")
+                return True
+            return False
+            
+        except (ImportError, ConnectionError, OSError) as e:
+            logger.debug(f"Redis 恢复检查失败: {e}")
+            return False
+        except Exception as e:
+            logger.warning(f"Redis 恢复检查异常: {e}")
+            return False
 
     async def _check_disk_available(self) -> bool:
-        """检查磁盘是否可用"""
-        # TODO: 实现实际的磁盘检查
+        """
+        检查磁盘是否可用
+        
+        策略：
+        1. 尝试写入临时文件
+        2. 检查磁盘剩余空间是否充足
+        3. 清理临时文件
+        """
         try:
-            temp_file = Path("/tmp/fallback_test.tmp")
-            temp_file.write_text("test")
+            temp_file = Path("/tmp/fallback_disk_test.tmp")
+            
+            # 检查磁盘空间
+            disk_usage = shutil.disk_usage("/")
+            free_gb = disk_usage.free / (1024 ** 3)
+            
+            if free_gb < 0.1:  # 至少需要 100MB
+                logger.warning(f"磁盘空间不足: {free_gb:.2f}GB 可用")
+                return False
+            
+            # 尝试写入测试文件
+            temp_file.write_text("disk_check", encoding="utf-8")
             temp_file.unlink()
+            
+            logger.info("磁盘检查通过")
             return True
-        except Exception:
+            
+        except OSError as e:
+            logger.debug(f"磁盘恢复检查失败: {e}")
+            return False
+        except Exception as e:
+            logger.warning(f"磁盘恢复检查异常: {e}")
             return False
 
     async def _check_network_available(self) -> bool:
-        """检查网络是否可用"""
-        # TODO: 实现实际的网络检查
-        return False
+        """
+        检查网络是否可用
+        
+        策略：
+        1. 尝试 socket 连接到常用服务器
+        2. 设置超时时间避免阻塞
+        """
+        try:
+            # 尝试连接到公共 DNS 服务器
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+            result = sock.connect_ex(("8.8.8.8", 53))
+            sock.close()
+            
+            if result == 0:
+                logger.info("网络恢复")
+                return True
+            return False
+            
+        except (socket.error, OSError) as e:
+            logger.debug(f"网络恢复检查失败: {e}")
+            return False
+        except Exception as e:
+            logger.warning(f"网络恢复检查异常: {e}")
+            return False
+
+    async def _check_memory_sufficient(self) -> bool:
+        """
+        检查内存是否充足
+        
+        策略：
+        1. 检查系统可用内存
+        2. 检查 Python 进程内存使用
+        """
+        try:
+            import resource
+            
+            # 获取当前进程内存使用（字节）
+            mem_usage = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024
+            mem_gb = mem_usage / (1024 ** 3)
+            
+            # 如果内存使用超过 2GB，认为内存不足
+            if mem_gb > 2.0:
+                logger.warning(f"内存使用过高: {mem_gb:.2f}GB")
+                return False
+            
+            logger.debug(f"内存检查通过: {mem_gb:.2f}GB")
+            return True
+            
+        except (ImportError, OSError) as e:
+            logger.debug(f"内存恢复检查失败: {e}")
+            return False
+        except Exception as e:
+            logger.warning(f"内存恢复检查异常: {e}")
+            return False
 
     # ========================================================================
     # 回调管理

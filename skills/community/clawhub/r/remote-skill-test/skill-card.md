@@ -1,42 +1,58 @@
-## Description: <br>
-Use when the user wants to test an agent skill on a remote jump host after updating it locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote Skill Test orchestrates end-to-end testing of agent skills on a remote jump host, including installation, remote execution, report retrieval, and comparison with previous runs.
 
-## Publisher: <br>
-[panlm](https://clawhub.ai/user/panlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panlm](https://clawhub.ai/user/panlm)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to run another agent skill on a remote jump host, retrieve generated reports and logs, and compare the current run with the previous run. It supports iterative validation after local skill updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for SSH access and can run a remote agent with broad unattended authority. <br>
-Mitigation: Use only isolated, non-production test hosts with least-privilege SSH accounts and test-only API keys. <br>
-Risk: Retrieved reports and execution logs may contain sensitive host, prompt, or file information. <br>
-Mitigation: Treat reports and opencode-run.log as sensitive and avoid shared jump hosts or environments with production credentials. <br>
-Risk: The remote target, prompt, and repository source determine what the remote agent can affect. <br>
-Mitigation: Review the exact prompt, target skill, remote host, and repository source before running. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to validate local agent-skill changes on a remote jump host, retrieve generated reports and logs, and compare current output against a previous run.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panlm/remote-skill-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces remote test status, structure-compliance analysis, report comparison, and a verdict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Remote agent execution can run with safety checks disabled and may access or modify more than intended on the remote account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly scoped remote account with no production credentials, and remove skipped-permission or auto-confirm behavior where possible.
+
+Risk: Unsafe SSH and installation patterns can expose the run to host-verification, supply-chain, or command-injection risk.
+
+Mitigation: Enable SSH host verification, pin and verify the skills repository, and validate user-supplied command fields before execution.
+
+Risk: Retrieved logs and reports may contain sensitive information from the remote test environment.
+
+Mitigation: Treat copied logs and reports as sensitive artifacts and review them before sharing or committing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/panlm/skills/remote-skill-test)
+- [Publisher Profile](https://clawhub.ai/user/panlm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retrieve reports and logs and write a test-analysis.md file under ./test-results for a run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

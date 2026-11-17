@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.get_core_metrics.service import get_core_metrics
 
-COMMAND_NAME = "get_core_metrics"
+COMMAND_NAME = "alibaba.1688.get.core.metrics"
 COMMAND_DESC = "获取店铺核心指标同行对比及趋势数据（近7天/30天）"
 
 def main():
@@ -27,10 +27,12 @@ def main():
     parser.add_argument("--date_type", "-d", default="RECENT_7",
                         choices=["RECENT_7", "RECENT_30"],
                         help="日期类型: RECENT_7(近7天,默认) / RECENT_30(近30天)")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
-        result = get_core_metrics(args.date_type)
+        result = get_core_metrics(args.date_type, login_id=args.NEWTON_SHOP_LOGIN_ID)
         print_output(True, f"核心指标查询成功（{args.date_type}）", {
             "data": result,
         })

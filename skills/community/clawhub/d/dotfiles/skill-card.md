@@ -1,41 +1,58 @@
-## Description: <br>
-Backup, sync, and version-track dotfiles across multiple machines. Use when syncing configs, backing up settings, restoring on new machines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dotfiles helps an agent provide command-line guidance for recording local system configuration and operations entries, reviewing recent activity, and exporting collected logs.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators can use this skill to record local system configuration, monitoring, backup, restore, benchmark, and incident-response notes. Security evidence indicates it should be treated as an operational logging helper, not as a real dotfile backup or restore tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is presented as a dotfile backup and sync tool, but security evidence says the artifact behaves as a local sysops logging and export tool. <br>
-Mitigation: Use it only for local operational notes, and do not rely on it to protect, synchronize, restore, or version configuration files. <br>
-Risk: Operational entries may include secrets, host details, incident data, or sensitive configuration content that is stored locally and can be exported. <br>
-Mitigation: Avoid entering sensitive values unless local storage and export of that text is acceptable for the environment. <br>
+## Use Case:
 
+Developers, sysops practitioners, and external users can use this skill to ask an agent for help operating a local Bash logbook for configuration checks, backup or restore notes, incident timelines, benchmarks, and activity exports. Security evidence indicates the inspected artifact should be treated as plaintext logging utility rather than real dotfile backup, sync, restore, or version tracking software.
 
-## Reference(s): <br>
-- [ClawHub Dotfiles page](https://clawhub.ai/bytesagain1/dotfiles) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed script stores local logs under ~/.local/share/dotfiles and can export entries as JSON, CSV, or TXT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence; artifact frontmatter and script report 2.0.0) <br>
+Risk: The release is presented as dotfile backup, sync, restore, and version tracking software, but security evidence says the inspected artifacts implement a local plaintext logging utility instead.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use and describe the skill as a local logbook unless independent review confirms real backup, sync, restore, or version tracking behavior.
+
+Risk: Local logs and exports may retain sensitive configuration details in plaintext under ~/.local/share/dotfiles.
+
+Mitigation: Avoid entering secrets, tokens, private configuration contents, or other sensitive values; review and clear local logs before sharing or deploying outputs.
+
+Risk: The scanner verdict is suspicious because the advertised capability does not match the inspected artifact behavior.
+
+Mitigation: Review the artifact carefully before installation and validate expected behavior in an isolated test environment.
+
+## Reference(s):
+
+- [Dotfiles on ClawHub](https://clawhub.ai/bytesagain1/skills/dotfiles)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; the bundled script writes plaintext logs and optional JSON, CSV, or TXT exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies or API keys are required; local data is stored under ~/.local/share/dotfiles.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

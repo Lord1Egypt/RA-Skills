@@ -1,0 +1,16 @@
+{
+  "check_type": "project_structure",
+  "structure_status": "needs_review",
+  "missing": [
+    "story-bible.md",
+    "world.md",
+    "characters/index.md",
+    "outline/volume-01.md",
+    "outline/timeline.md",
+    "chapters/001-title.md"
+  ],
+  "empty": [],
+  "invalid": [],
+  "chapter_count": 0,
+  "message": "目录结构或必需文件内容不完整，请按列表补齐。"
+}

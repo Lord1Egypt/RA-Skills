@@ -1,45 +1,59 @@
-## Description: <br>
-面向 AI 从业者的开源项目研究技能，帮助从候选项目补齐 GitHub、模型、论文等资源并形成技术选型建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 开源项目雷达 helps AI practitioners research open-source AI projects, compare candidate projects, and gather project, model, paper, and resource links through the Jiqizhixin data service.
 
-## Publisher: <br>
-[jiqizhixin](https://clawhub.ai/user/jiqizhixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiqizhixin](https://clawhub.ai/user/jiqizhixin)
 
-## Use Case: <br>
-Developers, researchers, and product teams use this skill to discover and compare AI open-source projects, verify project resources, and turn candidate sets into actionable technical selection guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project search terms and detail requests are sent to the Jiqizhixin-backed API service. <br>
-Mitigation: Use the skill only for queries acceptable under that provider's terms and avoid confidential internal project names unless disclosure is approved. <br>
-Risk: The skill requires a JQZX_API_TOKEN for API-backed project search and detail lookup. <br>
-Mitigation: Use a scoped, rotatable token stored in the environment, keep BASE_URL pointed at the intended service, and avoid exposing the token in logs or shared outputs. <br>
-Risk: Project recommendations can be incomplete when candidate results are sparse or links remain unverified. <br>
-Mitigation: Broaden keywords, paginate when needed, fetch project details before comparison, and clearly separate verified links from items that still need confirmation. <br>
+## Use Case:
 
+External developers, AI researchers, and product teams use this skill to identify relevant open-source AI projects, fetch project details, and produce practical selection guidance with verified and pending resource links clearly separated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiqizhixin/ai-project-radar) <br>
-- [Jiqizhixin data service](https://www.jiqizhixin.com/data-service) <br>
-- [/api/v1 projects reference](references/api-v1-projects.md) <br>
-- [Default API service endpoint](https://mcp.applications.jiqizhixin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with project comparison tables, resource link lists, technical fit guidance, and optional bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JQZX_API_TOKEN for API-backed project search and detail lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill requires JQZX_API_TOKEN and sends it as an API credential during project lookup requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the Jiqizhixin API workflow, provide the token only in controlled environments, and rotate it if exposure is suspected.
+
+Risk: The shell scripts allow BASE_URL to be overridden, which could send the token to an unintended endpoint if the environment is controlled by another process.
+
+Mitigation: Keep BASE_URL unset unless you control the endpoint, and run the scripts only in environments where untrusted processes cannot inject environment variables.
+
+Risk: The security summary flags overbroad activation instructions that may cause the agent to prefer this skill too broadly for AI industry questions.
+
+Mitigation: Review the skill's outputs before relying on them, distinguish verified links from pending items, and supplement with public sources when the returned data is sparse or one-sided.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiqizhixin/skills/ai-project-radar)
+- [Jiqizhixin Data Service](https://www.jiqizhixin.com/data-service)
+- [/api/v1 Project Interface Strategy](references/api-v1-projects.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, comparison tables, resource link lists, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verified links, pending confirmation items, project-fit recommendations, risks, and alternatives.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

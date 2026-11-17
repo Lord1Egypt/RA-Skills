@@ -1,0 +1,829 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "华东",
+ "city": "南京",
+ "zone": "05-区",
+ "zone_climate": "V北亚热带落叶、常绿阔叶混交林区",
+ "cities": [
+  "南京",
+  "苏州",
+  "合肥"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#05-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "海岸松",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马尾松",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "湿地松",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柳杉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杉木",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "罗汉松",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本扁柏",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云片柏",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三尖杉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本花柏",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铅笔柏",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柏木",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栲树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "钩栗",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青冈栎",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香叶树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香樟",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶茶",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "四季桂",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木莲",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银桂",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金桂",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丹桂",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油橄榄",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珊蝴树（法国冬青）",
+   "aliases": [
+    "法国冬青"
+   ],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铁冬青",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金钱松",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "池杉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "落羽杉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹅掌楸",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂柳",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珊瑚朴",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榉树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶榉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山桐子",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三角枫",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金钱槭",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国木豆树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄金树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "无患子",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "复羽叶栾树",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "梅花",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "沙梨",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "檫木",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "重阳木",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山茱萸",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乌柿",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枫香",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南酸枣",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "薄壳山核桃",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "胡颓子",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南天竹",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茶梅",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洒金东灜珊瑚",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "阔叶十大功劳",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粗榧",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金丝梅",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金心黄杨",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油茶",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金边黄杨",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云锦杜鹃",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木芙蓉",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羽毛枫",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "无花果",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂枝梅",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马甲子",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山痲杆",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石岩杜鹃",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛白杜鹃",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "笑靥花",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "淡竹",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉绿竹",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "贯叶忍冬",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "络石",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "薜荔",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "雀梅藤",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木通",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长春蔓",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "宽叶麦冬",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "吉祥草",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "狗牙根",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "假俭草",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石蒜",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "细叶结缕草",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "沿阶草",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花叶蔓长春花",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石菖蒲",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山麦冬",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马尼拉草",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "忽地笑",
+   "aliases": [],
+   "region": "华东",
+   "city": "南京",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#05-区",
+   "confidence": "medium"
+  }
+ ]
+}

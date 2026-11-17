@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "DannyZ",
+    "platform": "douyin",
+    "profile_url": "",
+    "status": "FAILED",
+    "message": "页面加载失败: Page.goto: Target page, context or browser has been closed",
+    "timestamp": "2026-08-19 10:17:13"
+  },
+  {
+    "id": 2,
+    "name": "赛博禅心",
+    "platform": "douyin",
+    "profile_url": "",
+    "status": "FAILED",
+    "message": "页面加载失败: Page.goto: Target page, context or browser has been closed",
+    "timestamp": "2026-08-19 10:17:13"
+  }
+]

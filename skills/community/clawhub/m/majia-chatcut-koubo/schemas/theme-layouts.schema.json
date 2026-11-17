@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/theme-layouts.schema.json",
+  "title": "Portrait theme layout registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "version", "canvas", "layouts"],
+  "properties": {
+    "name": {"const": "portrait-talk-layouts"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "ratio", "safeArea", "subtitleZone"],
+      "properties": {
+        "width": {"const": 1080},
+        "height": {"const": 1920},
+        "ratio": {"const": "9:16"},
+        "safeArea": {"$ref": "#/$defs/safeArea"},
+        "subtitleZone": {"$ref": "#/$defs/rect"}
+      }
+    },
+    "layouts": {
+      "type": "array",
+      "minItems": 8,
+      "items": {"$ref": "#/$defs/layout"}
+    }
+  },
+  "$defs": {
+    "safeArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left", "right", "top", "bottom"],
+      "properties": {
+        "left": {"type": "number", "minimum": 0},
+        "right": {"type": "number", "minimum": 0},
+        "top": {"type": "number", "minimum": 0},
+        "bottom": {"type": "number", "minimum": 0}
+      }
+    },
+    "rect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": {"type": "number", "minimum": 0},
+        "y": {"type": "number", "minimum": 0},
+        "w": {"type": "number", "exclusiveMinimum": 0},
+        "h": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "zones": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eyebrow", "title", "lead", "emphasis", "cta", "speaker", "subtitle", "footer"],
+      "properties": {
+        "eyebrow": {"$ref": "#/$defs/rect"},
+        "title": {"$ref": "#/$defs/rect"},
+        "lead": {"$ref": "#/$defs/rect"},
+        "emphasis": {"$ref": "#/$defs/rect"},
+        "cta": {"$ref": "#/$defs/rect"},
+        "speaker": {"$ref": "#/$defs/rect"},
+        "subtitle": {"$ref": "#/$defs/rect"},
+        "footer": {"$ref": "#/$defs/rect"}
+      }
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "description", "zones"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "name": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "zones": {"$ref": "#/$defs/zones"}
+      }
+    }
+  }
+}

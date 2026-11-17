@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a BTC 5-minute Polymarket trading bot that aligns 1-minute, 3-minute, and 5-minute Binance BTC/USDT returns to generate directional momentum trades through Simmer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a configurable BTC 5-minute momentum trading bot that compares 1m, 3m, and 5m Binance BTC/USDT returns and can place simulated or live Simmer/Polymarket fast-market trades when confidence thresholds are met.
 
-## Publisher: <br>
-[djdyll](https://clawhub.ai/user/djdyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External traders and developers use this skill to run or adapt a configurable BTC fast-market momentum strategy for Simmer-connected Polymarket trading. It can dry-run by default and can place live trades when explicitly configured and launched with live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill with live trading enabled can place real trades and lose funds. <br>
-Mitigation: Start in dry-run mode, keep trade size small, and use live mode only after validating configuration and strategy behavior. <br>
-Risk: The skill requires a Simmer API key and may be scheduled to run repeatedly. <br>
-Mitigation: Use the narrowest API key permissions available, store the key outside source files, and review cron or automaton settings before deployment. <br>
-Risk: Momentum thresholds are intentionally configurable and may be unsuitable for a user's market conditions. <br>
-Mitigation: Tune confidence, evaluation-window, and trade-size settings conservatively before increasing exposure. <br>
+## Use Case:
 
+External developers and traders use this skill to run or adapt a momentum-based bot for BTC 5-minute prediction markets, with tunable confidence, timing, and trade-size settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djdyll/polymarket-btc-5m-mtf-momentum-dyll) <br>
-- [Simmer API endpoint](https://api.simmer.markets) <br>
-- [Binance Klines API endpoint](https://api.binance.com/api/v3/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with Python scripts, shell commands, and JSON status output when automaton-managed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trading signals, dry-run or live trade execution summaries, position status, and configurable environment-variable driven behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The Simmer API key can be sent to an environment-controlled API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Simmer API key and leave SIMMER_API_URL set to the official HTTPS endpoint unless the endpoint has been reviewed.
+
+Risk: The simmer-sdk dependency is unpinned.
+
+Mitigation: Pin or review simmer-sdk before installation and deployment.
+
+Risk: Live mode can place real trades.
+
+Mitigation: Start in paper mode, enable --live only after review, and keep explicit trade limits and monitoring in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/polymarket-btc-5m-mtf-momentum-dyll)
+- [Simmer API endpoint](https://api.simmer.markets)
+- [Binance Klines API endpoint](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration]
+
+**Output Format:** [CLI text output with optional JSON automaton reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can update local tunables and report positions, trade attempts, executed trades, skip reasons, and execution errors.]
+
+## Skill Version(s):
+
+1.1.0 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,56 @@
+part: CH32V307VCT6
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "WCH CH32V307 \u2014 high-performance RISC-V MCU with Ethernet"
+main_page: https://www.wch-ic.com/products/CH32V307.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH32V307_datasheet.pdf
+datasheet_source_url: http://www.jc-net.co.jp/pdf/CH32V307DS0-EN.pdf
+datasheet_source_note: "jc-net.co.jp mirror (Japanese electronics shop) of WCH CH32V303/305/307 family datasheet (V2.9, 1.4\
+  \ MB). WCH does not publish a separate V307-only datasheet \u2014 the family PDF covers V303/V305/V307 and V208. The VCT6\
+  \ SKU is the 256 KB flash / 64 KB SRAM / LQFP-100 variant."
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores: QingKe RV4F (branch prediction, hardware mul/div)
+  wireless: none
+  package:
+  - QFN28
+  - QFN68
+  - LQFP64
+  - LQFP10
+  - LQFP48
+  - LQFP100
+  - TSSOP20
+  peripherals:
+  - 10/100 Ethernet MAC
+  - USB 2.0 FS host/device
+  - SDIO
+  - FSMC
+  - DVP (camera interface)
+  - I2S
+  clock_mhz_max: 144
+  flash: 480 KB
+  supply_voltage_v_min: 2.4
+  supply_voltage_v_max: 3.6
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted 8 spec fields from datasheet."
+- "CH32V307VCT6 \u2014 flagship WCH RISC-V MCU for industrial gateways / IoT edge."
+- Ethernet MAC built-in saves external PHY chip in many designs.
+- 'Family differentiator vs CH32V103: FPU, Ethernet, more RAM/flash, more peripherals.'
+- 'Cross-reference: comparable to STM32F407 performance tier.'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 14/19 spec fields matched
+  (74%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T10:08:26+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

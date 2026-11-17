@@ -1,40 +1,50 @@
-## Description: <br>
-外贸业务全能助手 — 开发信、报价单、合同、物流、报关一站式指南。当外贸从业者需要写开发信、处理询盘、制定报价、处理纠纷时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+外贸业务全能助手提供开发信、询盘回复、报价、合同、物流、报关和纠纷处理模板，帮助外贸从业者处理常见出口业务沟通与流程场景。
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-External foreign-trade operators use this skill to draft outreach emails, respond to inquiries, prepare quotations, review contract points, organize logistics/customs documents, and handle common shipment or quality disputes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake contract, customs, payment, or dispute templates for legal, tax, sanctions, or compliance advice. <br>
-Mitigation: Treat the content as general drafting help and have high-value or regulated transactions reviewed by qualified professionals. <br>
-Risk: Foreign-trade recommendations may not fit a specific jurisdiction, product category, counterparty, or transaction value. <br>
-Mitigation: Adapt templates to the transaction facts and validate important trade, payment, customs, and dispute terms before use. <br>
+## Use Case:
 
+External business users and trade operators use this skill to draft export sales emails, reply to inquiries, prepare quotations, review contract terms, organize logistics and customs documents, and respond to order disputes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/export-business-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates, checklists, comparison tables, and plain-language operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only template and checklist output; no code execution, credentials, system access, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Contract, customs, tax, logistics, and dispute guidance may be incomplete or unsuitable for a specific transaction or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting support and verify legal, customs, tax, and shipment decisions with qualified professionals or authoritative sources before relying on them in real transactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/export-business-assistant)
+- [Publisher profile](https://clawhub.ai/user/jiangtaoid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown templates and concise trade workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static templates and recommendations; no code execution or credential handling.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Prepare Dataify builder requests for the airbnb.com scraper family rooted at airbnb_product_by-searchurl, including tool selection, parameter collection, and curl command generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare Dataify builder requests for the airbnb.com scraper family rooted at airbnb_product_by-searchurl, guiding tool selection, parameter collection, and curl command generation with DATAIFY_API_TOKEN.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and automation users use this skill to prepare Dataify Airbnb scraper builder requests from a selected tool and user-supplied parameters. It helps assemble environment-variable setup guidance and a ready-to-run curl command for the Dataify builder API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can expose a real Dataify API token in terminal output when building a curl command. <br>
-Mitigation: Prefer commands that reference DATAIFY_API_TOKEN instead of printing the token value, and redact the Authorization header before sharing generated output. <br>
+## Use Case:
 
+External users and developers use this skill to prepare Dataify scraper builder requests for Airbnb search URL and location tools. It helps collect required parameters, normalize selectable values, and produce a ready-to-run curl request for Dataify.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/scraper-airbnb-product-by-searchurl) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify builder API endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash or PowerShell code blocks and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The primary output is a curl request that may include an Authorization header; generated commands should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated curl commands can expose a live DATAIFY_API_TOKEN in logs, transcripts, or shared output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output before sharing, avoid pasting token-bearing commands into public channels, and rotate any token that has already appeared in logs or transcripts.
+
+Risk: User-supplied parameter values are embedded into generated shell commands and may create unsafe requests if they are untrusted.
+
+Mitigation: Use trusted values files, inspect generated commands before execution, and avoid running commands that contain unexpected parameter values.
+
+Risk: The artifact recommends persistent shell-profile token setup, which can leave credentials stored longer than necessary.
+
+Mitigation: Prefer session-scoped or managed secret storage for DATAIFY_API_TOKEN when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/scraper-airbnb-product-by-searchurl)
+- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [Dataify builder endpoint](https://scraperapi.dataify.com/builder)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash or PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated curl output may include a live DATAIFY_API_TOKEN and user-provided scraper parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

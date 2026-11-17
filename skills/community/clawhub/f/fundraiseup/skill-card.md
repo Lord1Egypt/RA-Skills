@@ -1,47 +1,60 @@
-## Description: <br>
-Interact with FundraiseUp REST API to manage donations, recurring plans, supporters, campaigns, and donor portal access. Process online and offline donations, retrieve fundraising analytics, and integrate with nonprofit CRM systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with FundraiseUp REST API to manage donations, recurring plans, supporters, campaigns, and donor portal access. Process online and offline donations, retrieve fundraising analytics, and integrate with nonprofit CRM systems.
 
-## Publisher: <br>
-[Aamish99](https://clawhub.ai/user/Aamish99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aamish99](https://clawhub.ai/user/aamish99)
 
-## Use Case: <br>
-External developers and nonprofit operations teams use this skill to work with FundraiseUp donation, supporter, recurring plan, campaign, event, and donor portal API workflows. It provides API guidance, request examples, and integration patterns for fundraising operations and CRM synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access to donor records and donation data, which may include sensitive supporter information. <br>
-Mitigation: Use least-privilege FundraiseUp API keys, redact donor PII from prompts, logs, and summaries, and limit retrieval to the records needed for the task. <br>
-Risk: The skill includes workflows for live donation creation and other write actions. <br>
-Mitigation: Use test-mode keys for development and require human confirmation before every live write action, especially donation creation or recurring plan changes. <br>
-Risk: Donor portal access links provide temporary access to sensitive donor account data. <br>
-Mitigation: Generate portal links only after validating supporter ownership, use automatic redirects, and never share links through email, SMS, logs, or public channels. <br>
+## Use Case:
 
+Developers and nonprofit operations teams use this skill to work with FundraiseUp API resources for donation processing, donor and recurring-plan management, campaign reporting, donor portal access, and CRM integration.
 
-## Reference(s): <br>
-- [Fundraise Up REST API Documentation](https://fundraiseup.com/docs/rest-api/) <br>
-- [Fundraise Up API Resources](https://fundraiseup.com/docs/rest-api-resources/) <br>
-- [Fundraise Up Seamless Donor Portal](https://fundraiseup.com/docs/seamless-donor-portal/) <br>
-- [Fundraise Up Support](https://fundraiseup.com/support/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Aamish99/fundraiseup) <br>
-- [Publisher Profile](https://clawhub.ai/user/Aamish99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API examples, curl commands, Python and Node.js code snippets, and JSON request bodies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FundraiseUp API key supplied through FUNDRAISEUP_API_KEY for live API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can handle live donations and donor data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use, start with test-mode keys, use least-privilege API permissions, and require explicit user approval before creating or updating donations or generating donor portal links.
+
+Risk: Authorization headers, donor portal links, payment-method identifiers, or donor request and response bodies could expose sensitive data if logged.
+
+Mitigation: Do not log authorization headers, donor portal links, payment-method identifiers, or full donor request and response bodies.
+
+Risk: Donor portal links provide short-lived access to sensitive supporter and payment information.
+
+Mitigation: Validate supporter ownership, use automatic redirects, and do not share portal links over email, SMS, or public channels.
+
+## Reference(s):
+
+- [FundraiseUp REST API Documentation](https://fundraiseup.com/docs/rest-api/)
+- [FundraiseUp API Resources](https://fundraiseup.com/docs/rest-api-resources/)
+- [FundraiseUp Seamless Donor Portal](https://fundraiseup.com/docs/seamless-donor-portal/)
+- [ClawHub Skill Page](https://clawhub.ai/aamish99/skills/fundraiseup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Python, JavaScript, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FUNDRAISEUP_API_KEY for authenticated FundraiseUp API use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

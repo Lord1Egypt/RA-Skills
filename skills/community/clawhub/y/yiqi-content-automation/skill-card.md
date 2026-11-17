@@ -1,43 +1,54 @@
-## Description: <br>
-Content Automation helps an agent generate and adapt Chinese marketing content, including Xiaohongshu-style posts, commerce video scripts, platform-specific rewrites, titles, live selling scripts, product-page copy, and customer review replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Automation helps agents generate Chinese marketing content, including Xiaohongshu-style posts, sales video scripts, platform-specific rewrites, headline variants, livestream scripts, product-detail copy, and negative-review replies.
 
-## Publisher: <br>
-[gongsunyanming](https://clawhub.ai/user/gongsunyanming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gongsunyanming](https://clawhub.ai/user/gongsunyanming)
 
-## Use Case: <br>
-Creators, marketers, and commerce teams use this skill to draft, rewrite, and tailor promotional content for social and commerce channels. It is intended for agent-assisted content planning and generation, with human review before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing or rewritten media content may include inaccurate claims, unsuitable tone, or platform-policy issues. <br>
-Mitigation: Review and edit outputs before posting to confirm claims, brand fit, and compliance with the target platform. <br>
-Risk: Source material may include private, proprietary, personal, or copyrighted content that should not be processed or redistributed without rights. <br>
-Mitigation: Use only content the user has permission to process and publish, and remove sensitive or private information before submitting it to an agent. <br>
+## Use Case:
 
+External creators, marketers, and commerce operators use this skill to draft persuasive Chinese social-commerce content for Xiaohongshu, Douyin, WeChat Official Accounts, Bilibili, Weibo, livestreams, and product pages.
 
-## Reference(s): <br>
-- [Content Automation on ClawHub](https://clawhub.ai/gongsunyanming/yiqi-content-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/gongsunyanming) <br>
-- [Copywriting formulas and examples](artifact/references/copywriting-formulas.md) <br>
-- [Platform style and formatting guidance](artifact/references/platform-styles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content drafts with structured sections, titles, scripts, tags, and platform-specific variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require human review for factual accuracy, platform policy compliance, rights clearance, and brand suitability before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Generated marketing copy may include unverified testimonials, scarcity language, pricing claims, endorsements, or product-performance statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and substantiate commercial claims before publishing, and remove or qualify statements that cannot be supported.
+
+Risk: Persuasive social-commerce templates may produce content that conflicts with platform compliance requirements.
+
+Mitigation: Check generated posts and scripts against the target platform's advertising, endorsement, and product-claim policies before distribution.
+
+## Reference(s):
+
+- [Platform Styles](references/platform-styles.md)
+- [Copywriting Formulas](references/copywriting-formulas.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language copy may include structured titles, body text, hashtags, scripts, variants, and reply templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

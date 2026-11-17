@@ -1,41 +1,56 @@
-## Description: <br>
-Automation bot for productivity tasks including data processing, scheduled notifications, and workflow optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation bot for productivity tasks including data processing, scheduled notifications, and workflow optimization.
 
-## Publisher: <br>
-[ChinaKingKong](https://clawhub.ai/user/ChinaKingKong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chinakingkong](https://clawhub.ai/user/chinakingkong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and developers use this skill to automate productivity workflows such as CSV or Excel processing, scheduled reminders, report generation, periodic syncs, and outbound notifications.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can process private files and business data.
+
+Mitigation: Review the requested file paths and data transformations before running them, and require confirmation before overwriting or exporting files.
+
+Risk: The skill can send reports or notifications through email, chat services, Discord, or custom webhooks.
+
+Mitigation: Only enable outbound notifications when the destination, credential source, and exact data being sent are explicit and approved.
+
+Risk: Scheduled jobs may run repeatedly without clear scoping.
+
+Mitigation: Confirm the schedule, target task, and stop or retry behavior before enabling recurring automation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, operators, and developers can use this skill to plan productivity automations for CSV or Excel processing, scheduled reminders, periodic syncs, report generation, and notification delivery. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Installed packages or helper code used with this descriptive skill may differ from the skill text. <br>
-Mitigation: Verify any actual productivity_bot package or helper code separately before use. <br>
-Risk: Productivity workflows can expose sensitive spreadsheet, report, or sync data if files are selected unintentionally. <br>
-Mitigation: Review file selections and report contents before enabling automation, and avoid sensitive files unless the workflow is intentionally configured for them. <br>
-Risk: Email, Slack, Discord, or webhook notifications can send data to unintended destinations. <br>
-Mitigation: Use least-privilege API keys and confirm every messaging or webhook destination before scheduling delivery. <br>
+**Output Format:** [Markdown with Python code examples and task guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce recommendations for scheduled jobs, file transformations, reports, and notification destinations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code snippets and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local file paths, schedules, API keys, and outbound notification endpoints when configuring workflows.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

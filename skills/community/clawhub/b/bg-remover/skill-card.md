@@ -1,39 +1,62 @@
-## Description: <br>
-Remove, replace, or blur image backgrounds using AI-powered segmentation with rembg and U2-Net. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove, replace, or blur image backgrounds using rembg/U2-Net segmentation.
 
-## Publisher: <br>
-[jxhgzs](https://clawhub.ai/user/jxhgzs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jxhgzs](https://clawhub.ai/user/jxhgzs)
 
-## Use Case: <br>
-Developers and image-editing users can use this skill to run local commands that remove image backgrounds, replace them with a color or image, or blur backgrounds for portrait-style output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation adds Python packages and the first model run downloads the U2-Net segmentation model. <br>
-Mitigation: Install in an environment where package and model downloads are acceptable; use a virtual environment when possible. <br>
-Risk: The tool reads user-provided image paths and writes processed PNG files to default or requested output paths. <br>
-Mitigation: Process only images intended for the tool and choose output paths deliberately before running commands. <br>
+## Use Case:
 
+Developers and content creators use this skill to remove image backgrounds, replace backgrounds with a color or another image, or blur backgrounds for portrait-style edits.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown with shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs PNG files with default suffixes or a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The install script adds Python image-processing and inference dependencies to the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a dedicated virtual environment, and review the dependencies before use.
+
+Risk: The first model run may require a network download for the U2-Net model.
+
+Mitigation: Plan for network access on first use, or pre-stage the required model in controlled environments.
+
+Risk: Segmentation quality depends on the input image and may produce imperfect cutouts.
+
+Mitigation: Review generated PNG files before publishing or using them in downstream assets.
+
+Risk: Command help and status messages are primarily in Chinese.
+
+Mitigation: Provide translated command examples or operator guidance for users who do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jxhgzs/skills/bg-remover)
+- [Publisher profile](https://clawhub.ai/user/jxhgzs)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command-line examples; generated images are PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs processed PNG files; default filenames append _nobg, _newbg, or _blur.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

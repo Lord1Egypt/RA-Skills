@@ -1,40 +1,50 @@
-## Description: <br>
-08 Growth Record helps caregivers record age 0-3 child development data, growth measurements, milestones, medical visits, and shareable family progress reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+08 Growth Record helps caregivers record 0-3-year-old growth, development milestones, medical visits, and family-facing growth reports.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Caregivers and family members use this skill as a private child growth journal to track measurements, milestones, developmental evaluations, and medical notes, then produce monthly, milestone, quarterly, and yearly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Child health and development entries can contain sensitive personal information. <br>
-Mitigation: Keep records private, avoid unnecessary identifiers, and redact medical details, exact dates, and developmental concerns before sharing reports. <br>
-Risk: Generated growth summaries or comparisons may be incomplete or inappropriate for clinical decisions. <br>
-Mitigation: Review every generated report before sharing or relying on it, and consult a qualified clinician for medical or developmental concerns. <br>
+## Use Case:
 
+Parents and caregivers use this skill to maintain a longitudinal child growth record, compare development trends against WHO and peer benchmarks, and generate monthly, milestone, quarterly, yearly, and shareable family reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/08-growth-record) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and structured journal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monthly summaries, milestone reports, growth-curve descriptions, and shareable family report text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Child growth, milestone, vaccine, and medical details may expose sensitive family or health information when shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share reports only with intended recipients, minimize identifying details, and redact medical specifics or full dates unless they are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/08-growth-record)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown templates, structured report outlines, and family-facing prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include growth summaries, milestone timelines, benchmark comparisons, and shareable report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

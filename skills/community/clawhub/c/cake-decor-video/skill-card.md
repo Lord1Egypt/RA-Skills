@@ -1,42 +1,60 @@
-## Description: <br>
-Generate vertical short videos of cake decorating and pastry finishing with WeryAI, including frosting, piping, mirror glaze, and other handmade dessert moments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical short videos of cake decorating and pastry finishing with WeryAI, including frosting, piping, mirror glaze, and other high-aesthetic handmade dessert moments.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and developers use this skill to turn cake decorating or pastry briefs into WeryAI text-to-video or image-to-video generation runs. It expands the user's brief, confirms model parameters before submission, and returns generated video URLs or clear API failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WeryAI API key for model lookup, generation, and status checks. <br>
-Mitigation: Install only when the publisher is trusted enough to receive WERYAI_API_KEY, and keep the key out of committed files. <br>
-Risk: WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL can redirect requests, prompts, images, and bearer tokens to alternate endpoints. <br>
-Mitigation: Leave endpoint override variables unset unless intentionally using trusted alternate WeryAI endpoints. <br>
-Risk: Successful video generation runs consume paid WeryAI credits. <br>
-Mitigation: Review the confirmation table and parameters before each generation request. <br>
+## Use Case:
 
+External users and content creators use this skill to turn cake decorating briefs or public HTTPS image inputs into WeryAI video generation requests. The agent expands prompts, confirms parameters before paid generation, runs the bundled Node CLI, and returns playable video URLs or a clear failure explanation.
 
-## Reference(s): <br>
-- [Cake Decor Video on ClawHub](https://clawhub.ai/zoucdr/cake-decor-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY; successful generation requests may consume paid WeryAI credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can send WERYAI_API_KEY, prompts, and image URLs to hosts selected by WERYAI_BASE_URL or WERYAI_MODELS_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep override variables unset or pin them to trusted official HTTPS hosts before running the CLI.
+
+Risk: Successful wait runs can consume WeryAI credits.
+
+Mitigation: Review the expanded prompt and all generation parameters before confirming paid requests, with particular attention to generate_audio.
+
+Risk: The security verdict is suspicious because runtime environment configuration can redirect API traffic.
+
+Mitigation: Install only from a trusted publisher and run generation in a controlled or isolated environment with a limited, revocable API key.
+
+## Reference(s):
+
+- [Cake Decor Video on ClawHub](https://clawhub.ai/zoucdr/skills/cake-decor-video)
+- [Publisher profile](https://clawhub.ai/user/zoucdr)
+- [WeryAI API host](https://api.weryai.com)
+- [WeryAI models registry host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with confirmation tables, inline shell commands, and JSON CLI/API responses containing video URLs or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18+; successful wait runs may consume WeryAI credits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

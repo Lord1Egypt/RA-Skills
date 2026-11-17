@@ -1,43 +1,56 @@
-## Description: <br>
-Converts PDF files to clean Markdown by extracting text, tables, and formulas with MinerU Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-External users and developers use this skill to convert local PDF files or PDF URLs into Markdown for extraction, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF content or PDF URLs are sent to MinerU for online processing. <br>
-Mitigation: Use the skill only when third-party processing is allowed, and avoid confidential, regulated, or highly sensitive documents unless that handling is approved. <br>
-Risk: The flash-extract workflow has document size and page limits, and images, tables, or formulas may be replaced with placeholders. <br>
-Mitigation: Use the authenticated mineru-open-api extract workflow for larger files or precision extraction with full assets when appropriate. <br>
+## Use Case:
 
+Developers and external users use this skill to convert local or URL-based PDF documents into Markdown for extraction, parsing, summarization, or analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tanis90/pdftomd) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU CLI Download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill invokes mineru-open-api and sends selected PDFs or PDF URLs to MinerU for online processing; flash-extract output is Markdown only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: PDF contents are sent to MinerU's external API for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential or regulated PDFs unless that external processing flow is approved.
+
+Risk: The helper CLI may be installed from unpinned third-party package sources.
+
+Mitigation: Use a trusted installation source and pin or verify the mineru-open-api package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanis90/skills/pdftomd)
+- [MinerU homepage](https://mineru.net)
+- [MinerU CLI ecosystem page](https://mineru.net/ecosystem?tab=cli)
+- [MinerU open-source project](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mineru-open-api for PDF conversion; flash extraction is limited to 10MB and 20 pages, and images, tables, or formulas may be represented with placeholders.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

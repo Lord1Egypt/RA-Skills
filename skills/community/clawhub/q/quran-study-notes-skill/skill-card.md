@@ -1,40 +1,57 @@
-## Description: <br>
-Guides structured help for Quran Study Notes using clear templates, checks, and safe defaults (category: Faith & Language). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Quran Study Notes using clear templates, checks, and safe defaults (category: Faith & Language).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users use this skill to structure Quran study-note assistance into concise plans, reusable checklists, next actions, and editable draft copy while avoiding secrets and unnecessary personal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets or unnecessary personal information into study-note prompts. <br>
-Mitigation: Ask for goals and optional notes without secrets, passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary PII. <br>
-Risk: Religious or scholarly interpretations may be incomplete, disputed, or inaccurate. <br>
-Mitigation: Keep outputs structured and factual, and advise users to verify interpretations with trusted sources when accuracy matters. <br>
+## Use Case:
 
+External users and study-note authors use this skill to turn Quran study goals and owned notes into concise plans, reusable checklists, next actions, and editable draft copy while minimizing private data.
 
-## Reference(s): <br>
-- [Quran Study Notes Skill on ClawHub](https://clawhub.ai/abdullah944/quran-study-notes-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise plan, numbered checklist, short next-actions list, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Users could paste private personal information or sensitive notes into study prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill asks for goals without secrets and tells users to keep personal information minimal.
+
+Risk: Users could paste study material they do not have rights to use.
+
+Mitigation: The skill limits optional pasted notes to material the user owns the rights to.
+
+Risk: A note-taking workflow could drift into unsafe executable instructions.
+
+Mitigation: The skill explicitly avoids remote installers, unseen code execution, and chained download-and-run snippets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/quran-study-notes-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, short next-action lists, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; encourages minimal private information and rights-aware pasted notes]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

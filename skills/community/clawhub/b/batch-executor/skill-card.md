@@ -1,40 +1,58 @@
-## Description: <br>
-Batch Executor processes large mixed-content corpora by ingesting files, classifying items, triaging by effort and value, delegating work, checkpointing progress, and reporting outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch Executor guides agents through corpus-scale task execution by ingesting large file or export dumps, classifying items, triaging work, spawning limited sub-agent waves, checkpointing progress, and reporting outcomes.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dodge1218](https://clawhub.ai/user/dodge1218)
 
-## Use Case: <br>
-Developers and operators use this skill to turn large file or export dumps into an execution plan, process tasks and ideas in controlled waves, and produce checkpointed reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores raw and derived corpus contents in the workspace, which can expose private exports, secrets, personal data, or sensitive notes. <br>
-Mitigation: Use a private workspace, redact sensitive data before processing, and exclude corpus and report paths from git history when needed. <br>
-Risk: Large-scale execution and sub-agent delegation can spread sensitive context or act on unintended items from mixed-content dumps. <br>
-Mitigation: Review the manifest and execution plan before heavy processing, supervise sub-agent delegation, and pause or block items that need human approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to process large document or conversation corpora, turn mixed content into prioritized work, execute eligible items, and produce manifests, checkpoints, and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dodge1218/batch-executor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown manifests, execution plans, progress updates, and final reports; may include code or shell commands depending on corpus items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent corpus, manifest, report, and learning files in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill processes and acts on large private document exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit execution plan before use and avoid sensitive sources unless they are redacted.
+
+Risk: The skill saves raw corpus content and may commit progress to git.
+
+Mitigation: Keep raw corpora out of git and review any commit that includes imported content.
+
+Risk: The skill may execute tasks found in imported content through inline work or sub-agents.
+
+Mitigation: Approve sub-agent work, file mutations, API calls, shell commands, and commits before they proceed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dodge1218/skills/batch-executor)
+- [Publisher profile](https://clawhub.ai/user/dodge1218)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, manifests, execution plans, status updates, and task-specific artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May spawn up to three concurrent sub-agents and checkpoint progress every five completed items.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

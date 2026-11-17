@@ -1,41 +1,60 @@
-## Description: <br>
-A Python URL-shortening skill that sends a user-provided URL to the public is.gd service and returns the resulting short link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates shortened URLs from long URLs using a Python script that calls the is.gd shortening service.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users, developers, and agents can use this skill to shorten public URLs for easier sharing. It is best suited for non-sensitive links because submitted URLs are sent to is.gd. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs are sent to the public is.gd service. <br>
-Mitigation: Avoid using the skill for private internal URLs, login links, reset links, or URLs containing tokens or sensitive query parameters. <br>
-Risk: The artifact documentation advertises statistics, expiry, and batch features that are incomplete or nonfunctional in this version. <br>
-Mitigation: Rely on the implemented shortening behavior only, and verify any claimed advanced feature before depending on it. <br>
+## Use Case:
 
+Developers and agents can use this skill to turn public long URLs into shorter links for sharing. Reviewers should account for the documented feature mismatch before relying on alias, expiry, statistics, or batch behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-url-shortener) <br>
-- [is.gd URL creation endpoint](https://is.gd/create.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON response from the helper script and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to is.gd and a user-provided URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: ClawHub release metadata; artifact SKILL.md declares 1.0.0) <br>
+Risk: Input URLs are sent to is.gd without clear disclosure in the skill documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public URLs unless the maintainer adds clear is.gd disclosure and URL handling guidance.
+
+Risk: The documentation advertises alias, expiry, statistics, and batch features that are not implemented by the artifact code.
+
+Mitigation: Validate required behavior before deployment and update or remove unsupported feature claims.
+
+Risk: The script imports requests even though the documentation claims no external dependencies.
+
+Mitigation: Declare the dependency metadata or revise the implementation to use only the Python standard library.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-url-shortener)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [AISoBrand](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script returns a success flag with either a shortened URL or an error string.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

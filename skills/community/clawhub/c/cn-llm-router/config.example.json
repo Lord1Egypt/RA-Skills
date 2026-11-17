@@ -1,0 +1,8 @@
+{
+  "_comment": "本文件是配置模板，不含任何密钥。厂商 API Key 一律用环境变量传入（见 SKILL.md）。请将本文件复制为 ~/.cn_llm_router_config.json 或技能目录下的 config.json 后按需修改。",
+  "budget_monthly": 0.0,
+  "update_url": "",
+  "wecom_webhook": "",
+  "cache_ttl_hours": 168,
+  "cache_fuzzy": false
+}

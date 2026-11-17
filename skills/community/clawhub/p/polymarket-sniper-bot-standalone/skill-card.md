@@ -1,49 +1,67 @@
-## Description: <br>
-An autonomous trading agent for Polymarket (Polygon) that scans 15-minute markets for momentum, supports simulation mode, and can execute live trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An autonomous trading agent for Polymarket on Polygon that scans 15-minute markets for momentum, supports dashboard monitoring, and can run in simulation or live execution modes.
 
-## Publisher: <br>
-[wjs829](https://clawhub.ai/user/wjs829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjs829](https://clawhub.ai/user/wjs829)
 
-## Use Case: <br>
-External users and developers use this skill to deploy and operate a Polymarket momentum-trading agent with a Flask dashboard, SQLite persistence, OpenClaw scheduling, simulation mode, and optional live order execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate as a real-money autonomous trading bot with wallet and Polymarket API authority. <br>
-Mitigation: Run in simulation first, use a burner wallet with limited funds, set explicit spend limits, and define a stop procedure before enabling scheduled live scans. <br>
-Risk: Private keys and API credentials may be placed in local configuration files. <br>
-Mitigation: Avoid plaintext secrets where possible, restrict file permissions, use scoped API keys, and keep private keys out of shared workspaces and logs. <br>
-Risk: The dashboard binds to 0.0.0.0 on port 5000 and could expose trading state if reachable publicly. <br>
-Mitigation: Restrict access with firewall rules or a private network and do not expose the dashboard directly to the public internet. <br>
-Risk: The bootstrap flow installs dependencies and the trading logic includes fallback pricing and demo momentum behavior. <br>
-Mitigation: Review the code before installation, pin dependencies in a virtual environment, and remove or gate fallback trading behavior before live use. <br>
-Risk: License validation defaults to a local HTTP endpoint when configured for pro mode. <br>
-Mitigation: Verify that any license server used for live operation is trusted and served over HTTPS. <br>
+## Use Case:
 
+External developers and trading operators use this agent to configure automated Polymarket market scans, monitor activity through a dashboard, and optionally execute live orders on Polygon.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wjs829/polymarket-sniper-bot-standalone) <br>
-- [Project Website from Metadata](https://github.com/wjs829/polymarket-sniper-skill) <br>
-- [Polymarket Gamma API Endpoint](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API Endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with Python, YAML, shell commands, and dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance and local automation artifacts for a trading agent; live operation depends on user-supplied wallet, RPC, and Polymarket API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live trading can spend real funds from a configured Polymarket wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in simulation mode, use only a burner wallet with limited funds, and verify the executed code path before enabling live trading.
+
+Risk: The dashboard may expose trading status and logs if it is bound to a public interface.
+
+Mitigation: Bind the dashboard to localhost, restrict network access, or add authentication before running it on a server.
+
+Risk: A fabricated momentum fallback can produce buy signals when live market data is unavailable.
+
+Mitigation: Remove the fallback or require confirmed live market data before allowing order placement.
+
+Risk: License validation environment variables can send license keys to a configured validation service.
+
+Mitigation: Set PRO_LICENSE_KEY or LICENSE_SERVER only when the validation service is trusted and understood.
+
+Risk: Unpinned dependencies and system-level package installation can make deployments harder to reproduce.
+
+Mitigation: Install in a virtual environment and pin dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wjs829/skills/polymarket-sniper-bot-standalone)
+- [Publisher Profile](https://clawhub.ai/user/wjs829)
+- [Project Website](https://github.com/wjs829/polymarket-sniper-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code references, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide setup, configuration, dashboard operation, market scanning, simulation, and live trading workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

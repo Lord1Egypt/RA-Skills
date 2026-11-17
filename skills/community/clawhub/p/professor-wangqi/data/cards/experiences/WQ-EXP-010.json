@@ -1,0 +1,205 @@
+{
+  "card_id": "WQ-EXP-010",
+  "source_type": "clinical_experience",
+  "source_file": "基于数据挖掘分析王琦院士治疗荨麻疹的用药规律_严云.pdf",
+  "title": "基于数据挖掘分析王琦院士治疗荨麻疹的用药规律",
+  "authors": [
+    "郑燕飞",
+    "博士",
+    "副研究员",
+    "硕士生导师"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "属于心”，故荨麻疹患者容易出现盗汗、自汗等症状。《素问·刺法论篇》云: “正气存内，邪不可干。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "活血化瘀",
+    "herbs": [
+      "防风",
+      "当归"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为荨麻疹的治疗提供临床思路。方法收集王院士治疗荨麻疹的处方，运用中医传承辅助平台( V3．0) 的统计分析、关联规则功能，统计处方中的药物使用频次、药性、药味、归经、功效及药物之间的关联规则。 为平性、寒性、温性，药味主要为甘味、辛味、苦味，归经出现频次最多的是肝经，功效分类以解表、补虚、清热和安神药为主。 经验继承指导老师。王院士从事临床工作50 余年，擅长治疗各类过敏性疾病和代谢性疾病。本研究通过收集整理王院士治疗荨麻疹的门诊病例，并借助于中医传承辅助平台，总结王院士治疗荨麻疹的用药规律和处方思路，为临床治疗该疾病提供参考。",
+  "knowledge_points": [
+    {
+      "category": "treatment",
+      "content": "根据88 首处方中药物的归经和功效频次统计结果可知，王院士治疗荨麻疹的处方用药多以清心肝火旺、补脾肺气虚为主",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "灵芝与蝉蜕合用，加强了扶正固本的作用，以改善过敏体质",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：属于心”，故荨麻疹患者容易出现盗汗、自汗等症状。《素问·刺法论篇》云: “正气存内，邪不可干。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括防风、当归。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为荨麻疹的治疗提供临床思路",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "方法收集王院士治疗荨麻疹的处方，运用中医传承辅助平台( V3．0) 的统计分析、关联规则功能，统计处方中的药物使用频次、药性、药味、归经、功效及药物之间的关联规则",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为平性、寒性、温性，药味主要为甘味、辛味、苦味，归经出现频次最多的是肝经，功效分类以解表、补虚、清热和安神药为主",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "根据88 首处方中药物的归经和功效频次统计结果可知，王院士治疗荨麻疹的处方用药多以清心肝火旺、补脾肺气虚为主",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "灵芝与蝉蜕合用，加强了扶正固本的作用，以改善过敏体质",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 4
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 4,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 4
+      },
+      "results": {
+        "start": 1,
+        "end": 4
+      },
+      "conclusion": {
+        "start": 1,
+        "end": 2
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.483366",
+  "methods": {
+    "sample_size": 450,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.513276",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.513282"
+  }
+}

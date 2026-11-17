@@ -1,7 +1,7 @@
 ---
 name: test-review
 description: Evaluates test suites for coverage gaps, TDD/BDD compliance, and anti-patterns
-version: 1.9.8
+version: 1.10.3
 triggers:
   - testing
   - tdd
@@ -10,36 +10,12 @@ triggers:
   - quality
   - fixtures
   - auditing test quality or before a major release
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\uddea", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\uddea", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Progressive Loading](#progressive-loading)
-- [Workflow](#workflow)
-- [Step 1: Detect Languages (`test-review:languages-detected`)](#step-1:-detect-languages-(test-review:languages-detected))
-- [Step 2: Inventory Coverage (`test-review:coverage-inventoried`)](#step-2:-inventory-coverage-(test-review:coverage-inventoried))
-- [Step 3: Assess Scenario Quality (`test-review:scenario-quality`)](#step-3:-assess-scenario-quality-(test-review:scenario-quality))
-- [Step 4: Plan Remediation (`test-review:gap-remediation`)](#step-4:-plan-remediation-(test-review:gap-remediation))
-- [Step 5: Log Evidence (`test-review:evidence-logged`)](#step-5:-log-evidence-(test-review:evidence-logged))
-- [Test Quality Checklist (Condensed)](#test-quality-checklist-(condensed))
-- [Output Format](#output-format)
-- [Summary](#summary)
-- [Framework Detection](#framework-detection)
-- [Coverage Analysis](#coverage-analysis)
-- [Quality Issues](#quality-issues)
-- [Remediation Plan](#remediation-plan)
-- [Recommendation](#recommendation)
-- [Integration Notes](#integration-notes)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Test Review Workflow
@@ -66,7 +42,7 @@ Evaluate and improve test suites with TDD/BDD rigor.
 - Writing new tests - use parseltongue:python-testing
 - Updating existing tests - use sanctum:test-updates
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `test-review:languages-detected`
 2. `test-review:coverage-inventoried`
@@ -74,6 +50,7 @@ Evaluate and improve test suites with TDD/BDD rigor.
 4. `test-review:invariant-preservation`
 5. `test-review:gap-remediation`
 6. `test-review:evidence-logged`
+7. `test-review:findings-verified`
 
 ## Progressive Loading
 
@@ -140,9 +117,9 @@ Record executed commands, outputs, and recommendations.
 
 ### Invariant-Encoding Tests
 
-Tests do not just verify behavior — they encode design
-invariants. A test that asserts "module A never imports
-from module B" encodes a layer boundary. A test that
+Tests encode design invariants as well as verifying behavior.
+A test that asserts "module A never imports from module B"
+encodes a layer boundary. A test that
 asserts "this function is pure" encodes a concurrency
 model. These tests are load-bearing in ways that
 coverage metrics cannot capture.
@@ -185,7 +162,7 @@ present the three options to the human:
    implementation to satisfy the invariant
 2. **Layer**: Keep the invariant test, add the new
    behavior alongside it (accepting inelegance)
-3. **Revise**: The invariant is genuinely wrong — remove
+3. **Revise**: The invariant is genuinely wrong; remove
    the old test AND write a new test encoding the
    replacement invariant
 
@@ -206,7 +183,7 @@ available.
 - Overall: X% | Critical: X% | Gaps: [list]
 
 ## Quality Issues
-[Q1] [Issue] - Location - Fix
+[Q1] [Issue] - Location - Anchor: `verbatim source text at file:line` - Fix
 
 ## Remediation Plan
 1. [Action] - Owner - Date
@@ -222,13 +199,22 @@ Approve / Approve with actions / Block
 - Reference `imbue:diff-analysis` for risk assessment
 - Format output using `imbue:structured-output` patterns
 
+## Verify Findings Are Grounded (`test-review:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
 ## Exit Criteria
 
-- Frameworks detected and documented
-- Coverage analyzed and gaps identified
-- Scenario quality assessed
-- Remediation plan created with owners and dates
-- Evidence logged with citations
+- [ ] Frameworks detected and documented
+- [ ] Coverage analyzed and gaps identified
+- [ ] Scenario quality assessed
+- [ ] Remediation plan created with owners and dates
+- [ ] Evidence logged with citations
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor` confirmed
+  by `citation_verifier.py` (exit `0`), or unverified findings were dropped
+  or labeled `UNVERIFIED`
 ## Troubleshooting
 
 ### Common Issues

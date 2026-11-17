@@ -1,41 +1,54 @@
-## Description: <br>
-Advanced analytical toolkit for China export data that provides statistical modeling, time-series forecasting, correlation analysis, and quantitative research methods for data scientists and analysts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Export Analytics provides statistical modeling, time-series forecasting, correlation analysis, and quantitative research methods for China export data.
 
-## Publisher: <br>
-[factory-china](https://clawhub.ai/user/factory-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[factory-china](https://clawhub.ai/user/factory-china)
 
-## Use Case: <br>
-External analysts, data scientists, supply chain data engineers, and researchers use this skill to validate China export datasets, run statistical and time-series analysis, and produce reports with model diagnostics and implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive or proprietary trade datasets during analysis. <br>
-Mitigation: Share datasets with the agent only when appropriate for the deployment context and remove sensitive fields when they are not needed for the analysis. <br>
-Risk: Statistical forecasts and policy-impact analyses can be misleading if inputs, assumptions, or model diagnostics are not reviewed. <br>
-Mitigation: Review the generated methodology, diagnostics, and assumptions before using results for business, investment, or policy decisions. <br>
+## Use Case:
 
+External analysts, data scientists, supply-chain teams, and researchers use this skill to validate China export datasets, run statistical models, forecast trade trends, and generate reports with methodology and code.
 
-## Reference(s): <br>
-- [China Export Analytics on ClawHub](https://clawhub.ai/factory-china/china-export-analytics) <br>
-- [factory-china ClawHub profile](https://clawhub.ai/user/factory-china) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown reports with tables, model diagnostics, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include statistical methodology, forecasts, charts described in text, and reproducible workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The artifact includes an inactive analytics compatibility module that is not required for export analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the compatibility module is needed before deployment; remove or ignore it when a minimal analysis-only installation is required.
+
+Risk: Generated statistical forecasts or policy-impact analyses may be treated as decision-ready even when source data is incomplete, stale, or noisy.
+
+Mitigation: Validate input data quality, review model assumptions and diagnostics, and have a qualified analyst approve conclusions before business use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/factory-china/skills/china-export-analytics)
+- [Publisher profile](https://clawhub.ai/user/factory-china)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Python code blocks, statistical tables, and report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model diagnostics, forecasts, data quality notes, and reproducible analysis steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

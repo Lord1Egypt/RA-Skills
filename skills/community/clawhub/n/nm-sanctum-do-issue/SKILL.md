@@ -2,7 +2,7 @@
 name: do-issue
 description: |
   Implements GitHub or GitLab issues via parallel subagents with review gates between task batches
-version: 1.9.8
+version: 1.10.3
 triggers:
   - github
   - gitlab
@@ -17,17 +17,13 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Table of Contents
+## When NOT To Use
 
-- [Key Features](#key-features)
-- [Workflow Overview](#workflow-overview)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Configuration](#configuration)
-- [Detailed Resources](#detailed-resources)
-
+- A single-file fix obvious enough to make directly
+- Preparing the PR once the work is done (use `sanctum:pr-prep`)
 
 # Fix Issue(s)
 
@@ -54,7 +50,7 @@ Retrieves issue content from the detected git platform (GitHub, GitLab, or Bitbu
 | 4. Quality | Code review gates between task batches | [quality-gates](modules/quality-gates.md) |
 | 5-6. Completion | Sequential tasks, final review, issue updates | [completion](modules/completion.md) |
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `do-issue:discovery-complete`
 2. `do-issue:tasks-planned`
@@ -78,7 +74,7 @@ Use the platform detected in session context (`git_platform:`). See `Skill(leyli
 
 ## Agent Teams (Default Execution Mode)
 
-Agent teams is the **default** parallel execution backend for do-issue. Teammates coordinate via filesystem-based messaging, enabling real-time communication when shared files or dependencies are discovered mid-implementation.
+Agent teams is the **default** parallel execution backend for do-issue. Teammates coordinate via filesystem-based messaging and can communicate in real time when shared files or dependencies are discovered mid-implementation.
 
 **Automatic downgrade**: For single issues with `--scope minor`, agent teams is skipped (Task tool or inline execution is used instead). Use `--no-agent-teams` to force Task tool dispatch for any invocation.
 
@@ -116,3 +112,17 @@ fix_issue:
 - **Phase 4**: See [modules/quality-gates.md](modules/quality-gates.md) for review patterns
 - **Phase 5-6**: See [modules/completion.md](modules/completion.md) for finalization
 - **Errors**: See [modules/troubleshooting.md](modules/troubleshooting.md) for common issues
+
+## Exit Criteria
+
+- [ ] All 6 required progress items (`do-issue:discovery-complete`
+      through `do-issue:issues-updated`) are created before execution
+      starts and each marked complete when its phase finishes
+- [ ] Issue requirements fetched using the correct forge CLI (`gh` for
+      GitHub, `glab` for GitLab) as detected in session context
+- [ ] Exactly one consolidated PR is opened covering all issues; no
+      per-issue PRs are created
+- [ ] Code review gate runs between parallel task batches and must
+      pass before the next batch is dispatched
+- [ ] All specified issues are commented on or closed with a reference
+      to the PR after it is ready for review

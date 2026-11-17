@@ -1,39 +1,55 @@
-## Description: <br>
-Generates a comprehensive annual business report with financials, operations, strategic highlights, risks, and forward-looking guidance from company data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive annual business report with financials, operations, strategic highlights, risks, and forward-looking guidance from company data.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, CFOs, chiefs of staff, and finance teams use this skill to turn authorized company data into a board-ready annual report covering financial performance, operations, strategic highlights, risks, and forward guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide sensitive business, financial, customer, employee, and payroll data. <br>
-Mitigation: Use only company data the user is authorized to share with the agent, redact unnecessary sensitive details, and avoid regulated or non-public information unless the operating environment is approved for it. <br>
-Risk: Generated annual reports may contain inaccurate calculations, misleading framing, or unsupported forward-looking statements. <br>
-Mitigation: Fact-check financial formulas, benchmarks, assumptions, and narrative claims before sharing the report with a board, investors, or the public. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Annual Report Generator listing](https://clawhub.ai/1kalin/afrexai-annual-report) <br>
+## Use Case:
 
+Founders, CFOs, chiefs of staff, and finance teams use this skill to turn approved company metrics into board-ready annual reports with financial summaries, operational metrics, strategic review, risk register, and forward guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report structure with tables, formulas, benchmark guidance, and narrative sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Board-ready reporting outline; generated content should be fact-checked before external use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Company reporting may include confidential, regulated, personal, or commercially sensitive data.
+
+Mitigation: Use only company data approved for AI processing, prefer aggregated or anonymized figures, and omit secrets, personal employee or customer details, and unnecessary confidential material.
+
+Risk: Annual reports can contain misleading conclusions if source metrics are incomplete, inconsistent, or unaudited.
+
+Mitigation: Have finance or business owners review the generated report, benchmark assumptions, formulas, and forward guidance before sharing it with boards, investors, or external audiences.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-annual-report)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured markdown report with tables, formulas, benchmarks, and narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided business metrics and should use only company data approved for AI processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

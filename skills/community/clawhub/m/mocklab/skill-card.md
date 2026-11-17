@@ -1,45 +1,58 @@
-## Description: <br>
-MockLab is an intelligent API toolbox that helps agents turn API documents into mock schemas, start a local mock server, forward requests, reproduce data, and support interface development and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MockLab is a smart API toolkit that helps agents turn interface documents into mock schemas, start a local Mock API server, forward requests, and reproduce API data for development and testing.
 
-## Publisher: <br>
-[lancer07](https://clawhub.ai/user/lancer07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancer07](https://clawhub.ai/user/lancer07)
 
-## Use Case: <br>
-Developers, QA engineers, and integration teams use this skill to create local mock APIs from interface documentation, simulate realistic responses, forward requests to local services, and reproduce test data while backend or third-party environments are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local API debugging server with unauthenticated control endpoints. <br>
-Mitigation: Run it only on a trusted machine or container and avoid exposing port 18080 to other devices. <br>
-Risk: The request forwarding feature can send traffic to arbitrary target URLs. <br>
-Mitigation: Use test credentials only, proxy only to trusted local or controlled endpoints, and avoid forwarding sensitive production data. <br>
-Risk: Generated schemas and persisted state may contain secrets or sensitive test data. <br>
-Mitigation: Review exported schemas and state files before sharing or committing them. <br>
+## Use Case:
 
+Developers, test engineers, and API integration teams use this skill to parse API documentation, generate mock response schemas, run a local Mock API server, simulate latency and errors, and proxy requests during integration debugging.
 
-## Reference(s): <br>
-- [MockLab ClawHub listing](https://clawhub.ai/lancer07/mocklab) <br>
-- [Schema template reference](references/demo.json) <br>
-- [Actual generated response examples](references/demo__实际返回示例.json) <br>
-- [Field key naming rules](references/field_keys.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON schema/configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create project schema JSON files, run a local mock API server, and guide use of a localhost web UI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The local API tool can expose unauthenticated proxy, admin, file-write, and state-access capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it on localhost or a trusted network boundary, review it before installation, and add authentication, host restrictions, and safer persistence controls before broader use.
+
+Risk: Request forwarding may send request bodies and custom headers to real URLs.
+
+Mitigation: Use synthetic tokens, sanitize API documents, and avoid production credentials until redaction and forwarding restrictions are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lancer07/skills/mocklab)
+- [README](artifact/README.md)
+- [English README](artifact/README_en.md)
+- [Schema template](artifact/references/demo.json)
+- [Generated response examples](artifact/references/demo__实际返回示例.json)
+- [Field key naming rules](artifact/references/field_keys.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with JSON schema files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local mock-server configuration and may create project schema and state files.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

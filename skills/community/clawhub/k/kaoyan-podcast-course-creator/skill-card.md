@@ -1,40 +1,53 @@
-## Description: <br>
-大学数学智慧课程全流程：五维设计→五场景→四阶段→质量审计，含弹题/题型扩展/部署 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+大学数学智慧课程全流程：五维设计→五场景→四阶段→质量审计，含弹题/题型扩展/部署
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators and course developers use this skill to design and build university mathematics smart-course materials, including structured lesson data, quiz triggers, question banks, quality audits, and deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment command examples may be unsafe if copied directly with privileged hosts, accounts, or keys. <br>
-Mitigation: Treat deployment commands as templates; use your own host, least-privilege account, and SSH key before running them. <br>
-Risk: Generated course scripts, quizzes, formulas, or AI-assisted materials may contain mathematical, pedagogical, or implementation errors. <br>
-Mitigation: Review generated materials before use and run the course audit and regression checks described by the skill before deployment. <br>
+## Use Case:
 
+Educators, course developers, and instructional technology teams use this skill to design and produce structured university mathematics smart-course materials, including section data schemas, interactive quiz flows, audit steps, and deployment guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/kaoyan-podcast-course-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, JavaScript, HTML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes template deployment commands and course-generation guidance that should be adapted before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: Deployment examples normalize root SSH/SCP access to a live web directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted deploy user, scoped destination paths, staging or dry-run checks, backups, and explicit user confirmation before any remote write.
+
+Risk: Generated course content, quiz data, or AI-assisted grading guidance can be incorrect or misleading if used without review.
+
+Mitigation: Require teacher review, source labeling for AI-generated material, and course audit checks before publishing or using the materials with learners.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/kaoyan-podcast-course-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript schema examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes course design templates, quiz data patterns, quality-audit guidance, and deployment command examples.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

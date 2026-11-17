@@ -1,0 +1,16 @@
+{
+  "pages": [
+    {"id": 1, "name": "项目运营情况", "url": "https://imrc.midea.com/analysis/projectOverviewOperations", "unit": "-"},
+    {"id": 2, "name": "项目立项占用分析", "url": "https://imrc.midea.com/holdAnalysis", "unit": "万元"},
+    {"id": 3, "name": "项目超预算分析", "url": "https://imrc.midea.com/overBudgetAnalysis", "unit": "万元"},
+    {"id": 4, "name": "合同分析", "url": "https://imrc.midea.com/contractAnalysis", "unit": "万元"},
+    {"id": 5, "name": "重点项目看板", "url": "https://imrc.midea.com/topProjectDashboard", "unit": "-"},
+    {"id": 6, "name": "预付款逾期分析", "url": "https://imrc.midea.com/advanceOverdueAnalysis", "unit": "万元"},
+    {"id": 7, "name": "合同执行分析", "url": "https://imrc.midea.com/contractExecute", "unit": "元"},
+    {"id": 8, "name": "投资分析", "url": "https://imrc.midea.com/investAnalysis", "unit": "万元"},
+    {"id": 9, "name": "投资异常合同", "url": "https://imrc.midea.com/abnormalInvestmentContract", "unit": "-"},
+    {"id": 10, "name": "项目执行情况", "url": "https://imrc.midea.com/projectManage", "unit": "-"}
+  ],
+  "filter": "装备所|智能装备研究所|智能装备",
+  "data_dir": "memory/imrc_data"
+}

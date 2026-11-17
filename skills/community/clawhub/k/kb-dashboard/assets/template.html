@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ima 知识库看板</title>
+<script>/*ECHARTS_INLINE*/</script>
+<style>
+  :root{
+    --bg:#faf8f5; --panel:#ffffff; --line:#e7e2da; --ink:#2c2c2a; --muted:#888780;
+    --blue:#185fa5; --teal:#0f6e56; --amber:#854f0b; --purple:#534ab7; --red:#a32d2d; --green:#3b6d11;
+    --chip:#f1efea;
+  }
+  html[data-theme="dark"]{
+    --bg:#161618; --panel:#232327; --line:#3a3a42; --ink:#e8e8ea; --muted:#9a9aa2;
+    --blue:#5aa9e6; --teal:#3fb98f; --amber:#e0a84e; --purple:#9b91f0; --red:#e06a6a; --green:#7bc24a;
+    --chip:#2e2e34;
+  }
+  *{box-sizing:border-box;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-size:13px;line-height:1.6;transition:background .2s,color .2s;}
+  header{padding:16px 24px 10px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  header h1{margin:0;font-size:18px;font-weight:600;}
+  header .sub{color:var(--muted);font-size:12px;margin-top:4px;}
+  .tbtn{cursor:pointer;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:8px;padding:6px 12px;font-size:12px;white-space:nowrap;}
+  .tbtn:hover{opacity:.8;}
+  .tabs{display:flex;gap:8px;padding:12px 24px 0;flex-wrap:wrap;}
+  .tab{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px 8px 0 0;padding:8px 16px;font-size:13px;}
+  .tab.active{color:var(--ink);border-bottom-color:var(--panel);font-weight:600;}
+  .panel{display:none;padding:0 24px 24px;}
+  .panel.active{display:block;}
+  .kpis{display:flex;gap:12px;flex-wrap:wrap;padding:16px 0;}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;min-width:120px;flex:1;}
+  .kpi .n{font-size:24px;font-weight:600;line-height:1;}
+  .kpi .l{color:var(--muted);font-size:12px;margin-top:6px;}
+  .kpi.warn .n{color:var(--red);}
+  .kpi.ok .n{color:var(--green);}
+  .note{background:#fbf6ec;border:1px solid #f3e3c0;color:#854f0b;border-radius:8px;padding:8px 12px;font-size:12px;margin:0 0 16px;}
+  html[data-theme="dark"] .note{background:#2e2716;border-color:#4a3d1f;color:#e0a84e;}
+  .main{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;}
+  .tree{flex:0 0 340px;min-width:300px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;max-height:78vh;overflow:auto;}
+  .tree h2{font-size:13px;margin:0 0 10px;color:var(--muted);font-weight:500;}
+  .charts{flex:1;min-width:320px;display:flex;flex-direction:column;gap:16px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .card h2{font-size:13px;margin:0 0 8px;font-weight:500;}
+  .chart{width:100%;height:300px;}
+  .chart.tall{height:420px;}
+  .row2{display:flex;gap:16px;flex-wrap:wrap;}
+  .row2 .card{flex:1;min-width:300px;}
+  ul.t{list-style:none;margin:0;padding-left:14px;}
+  ul.t.root{padding-left:0;}
+  li.t{margin:3px 0;}
+  .node{display:flex;align-items:center;gap:6px;cursor:pointer;padding:3px 6px;border-radius:6px;}
+  .node:hover{background:var(--chip);}
+  .node .ar{color:var(--muted);width:12px;display:inline-block;font-size:11px;}
+  .node .nm{font-weight:500;}
+  .node .ct{color:var(--muted);font-size:11px;margin-left:auto;}
+  .node.empty .nm{color:var(--red);}
+  .badge{font-size:10px;padding:1px 6px;border-radius:8px;background:var(--chip);color:var(--muted);margin-left:6px;}
+  .badge.e{background:#fcebeb;color:var(--red);}
+  html[data-theme="dark"] .badge.e{background:#3a2222;color:#e06a6a;}
+  .children{display:none;}
+  .children.open{display:block;}
+  .foot{padding:12px 24px 28px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:8px;}
+  .foot b{color:var(--ink);}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1 id="title">ima 知识库看板</h1>
+    <div class="sub" id="subtitle">快照 · 数据经 ima-mcp 只读拉取</div>
+  </div>
+  <button class="tbtn" id="themeBtn">🌓 切换主题</button>
+</header>
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+<div class="foot" id="foot"></div>
+
+<script>
+const DATA = /*DATA_PLACEHOLDER*/;
+
+// ---- 主题 ----
+function detectTheme(){
+  const t = localStorage.getItem('kb-theme');
+  if(t) return t;
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+}
+function themeColors(t){
+  const dark = (t==='dark' || (t==='auto' && window.matchMedia('(prefers-color-scheme: dark)').matches));
+  return {
+    dark,
+    text: dark ? '#e8e8ea' : '#2c2c2a',
+    muted: dark ? '#9a9aa2' : '#888780',
+    line: dark ? '#3a3a42' : '#e7e2da',
+    panel: dark ? '#232327' : '#ffffff',
+    palette: dark ? ['#5aa9e6','#3fb98f','#e0a84e','#9b91f0','#e06a6a','#7bc24a','#d98c5f','#7f8cff'] : ['#185fa5','#0f6e56','#854f0b','#534ab7','#a32d2d','#3b6d11','#b5670a','#4856c0']
+  };
+}
+let CURRENT = detectTheme();
+let charts = [];
+function applyTheme(){
+  const t = CURRENT;
+  document.documentElement.dataset.theme = (t==='auto') ? (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light') : t;
+  // 重新渲染所有图表
+  charts.forEach(c => c());
+}
+
+// ---- 结构树 ----
+function nodeHTML(n){
+  const kids = n.children || n.subfolders;
+  const hasKids = (kids && kids.length) || (n.items && n.items.length);
+  const badge = n.empty ? '<span class="badge e">空壳</span>' : (n.subfolders ? '<span class="badge">'+n.subfolders+' 子夹</span>' : '');
+  const ar = hasKids ? '<span class="ar">▸</span>' : '<span class="ar"></span>';
+  const cls = 'node' + (n.empty?' empty':'') + (hasKids?' haskids':'');
+  let html = '<li class="t"><div class="'+cls+'" onclick="toggle(this)">'+ar+'<span class="nm">'+n.name+'</span>'+badge+'<span class="ct">'+n.count+' 项</span></div>';
+  if(hasKids){
+    html += '<ul class="t children">';
+    if(kids){ kids.forEach(k=> html += nodeHTML(k)); }
+    if(n.items){ n.items.forEach(it=> html += '<li class="t"><div class="node"><span class="ar"></span><span class="nm" style="font-weight:400">'+it+'</span></div></li>'); }
+    html += '</ul>';
+  }
+  html += '</li>';
+  return html;
+}
+function toggle(el){
+  const c = el.parentElement.querySelector(':scope > .children');
+  if(c){ c.classList.toggle('open'); const ar = el.querySelector('.ar'); if(ar) ar.textContent = c.classList.contains('open') ? '▾' : '▸'; }
+}
+function renderTree(container, lib){
+  let html = '<ul class="t root"><li class="t"><div class="node haskids" onclick="toggle(this)"><span class="ar">▾</span><span class="nm">'+lib.name+'</span><span class="ct">'+lib.kpis.totalDocs+' 项</span></div><ul class="t children open">';
+  (lib.tree||[]).forEach(n=> html += nodeHTML(n));
+  html += '</ul></li></ul>';
+  container.innerHTML = html;
+}
+
+// ---- 图表 ----
+function renderBar(el, topCounts, lib){
+  const c = echarts.init(el, null, {renderer:'canvas'});
+  const col = themeColors(CURRENT);
+  c.setOption({
+    textStyle:{color:col.text},
+    grid:{left:90,right:20,top:20,bottom:20},
+    tooltip:{trigger:'axis'},
+    xAxis:{type:'value',axisLine:{lineStyle:{color:col.line}},axisLabel:{color:col.muted}},
+    yAxis:{type:'category',data:topCounts.map(d=>d[0]),axisLine:{lineStyle:{color:col.line}},axisLabel:{color:col.text}},
+    series:[{type:'bar',data:topCounts.map(d=>d[1]),itemStyle:{color:col.palette[0],borderRadius:[0,4,4,0]},label:{show:true,position:'right',color:col.muted}}]
+  });
+  return ()=>{ c.dispose(); renderBar(el,topCounts,lib); };
+}
+function renderPie(el, methodStage){
+  const c = echarts.init(el, null, {renderer:'canvas'});
+  const col = themeColors(CURRENT);
+  if(!methodStage || !methodStage.length){
+    c.setOption({title:{text:'本库无分布数据',left:'center',top:'center',textStyle:{color:col.muted,fontSize:13}}});
+  } else {
+    c.setOption({
+      textStyle:{color:col.text},
+      tooltip:{trigger:'item',formatter:'{b}: {c} 张 ({d}%)'},
+      legend:{bottom:0,textStyle:{color:col.muted}},
+      series:[{type:'pie',radius:['38%','66%'],center:['50%','45%'],
+        data:methodStage.map((d,i)=>({name:d[0],value:d[1],itemStyle:{color:col.palette[i%col.palette.length]}})),
+        label:{color:col.text},labelLine:{lineStyle:{color:col.line}}}]
+    });
+  }
+  return ()=>{ c.dispose(); renderPie(el,methodStage); };
+}
+function renderGraph(el, graph){
+  const c = echarts.init(el, null, {renderer:'canvas'});
+  const col = themeColors(CURRENT);
+  const cats = ['根·库','顶层夹','子夹'];
+  c.setOption({
+    textStyle:{color:col.text},
+    tooltip:{formatter:'{b}'},
+    legend:{data:cats,top:0,textStyle:{color:col.muted}},
+    series:[{
+      type:'graph',layout:'force',roam:true,
+      force:{repulsion:160,edgeLength:[60,140],gravity:0.08},
+      label:{show:true,color:col.text,fontSize:11},
+      lineStyle:{color:col.line,curveness:0.05},
+      categories:cats.map((n,i)=>({name:n,itemStyle:{color:col.palette[i]}})),
+      symbolSize:(v,o)=> o.data && o.data.size ? o.data.size : 28,
+      data:(graph.nodes||[]).map(n=>({name:n.name,value:n.count,category:n.cat,size:10+Math.min(40,(n.count||0)/3),itemStyle:n.color?{color:n.color}:undefined})),
+      links:(graph.links||[]).map(l=>({source:l.source,target:l.target}))
+    }]
+  });
+  return ()=>{ c.dispose(); renderGraph(el,graph); };
+}
+
+// ---- 渲染单库面板 ----
+function buildPanel(lib){
+  const panel = document.createElement('div');
+  panel.className = 'panel';
+  const emptyAreas = lib.kpis.emptyAreas||0;
+  const kpiHtml = `
+    <div class="kpis">
+      <div class="kpi"><div class="n">${lib.kpis.topFolders}</div><div class="l">顶层夹</div></div>
+      <div class="kpi ok"><div class="n">${lib.kpis.totalDocs}</div><div class="l">总文档数</div></div>
+      <div class="kpi"><div class="n">${lib.kpis.methodCards}</div><div class="l">方法卡(原子资产)</div></div>
+      <div class="kpi"><div class="n">${lib.kpis.metaLayer}</div><div class="l">元层(操作系统)</div></div>
+      <div class="kpi ${emptyAreas>0?'warn':''}"><div class="n">${emptyAreas}</div><div class="l">空壳 Areas</div></div>
+      <div class="kpi ${lib.kpis.express&&lib.kpis.express.indexOf('薄')>=0?'warn':''}"><div class="n">${lib.kpis.express||'—'}</div><div class="l">Express 应用层</div></div>
+    </div>`;
+  const note = lib.note || '说明：本看板为只读快照，数据固定为生成时刻。';
+  panel.innerHTML = kpiHtml + '<div class="note">'+note+'</div>' +
+    '<div class="main"><div class="tree"><h2>结构树（'+lib.name+' · 根→子目录，点击展开/折叠）</h2><div id="tree_'+lib.id+'"></div></div>'+
+    '<div class="charts"><div class="row2"><div class="card"><h2>'+(lib.barTitle||'各顶层夹文档数')+'</h2><div class="chart" id="bar_'+lib.id+'"></div></div>'+
+    '<div class="card"><h2>'+(lib.pieTitle||'方法卡 · 四环节分布')+'</h2><div class="chart" id="pie_'+lib.id+'"></div></div></div>'+
+    '<div class="card"><h2>'+(lib.graphTitle||'知识图谱（folder 级从属关系 · 可拖拽缩放）')+'</h2><div class="chart tall" id="graph_'+lib.id+'"></div></div></div></div>';
+  return panel;
+}
+
+// ---- 总装 ----
+function mount(){
+  const libs = DATA.libraries||[];
+  const tabsEl = document.getElementById('tabs');
+  const panelsEl = document.getElementById('panels');
+  document.getElementById('title').textContent = 'ima 知识库看板' + (DATA.scope==='all' ? ' · 全局' : '');
+  document.getElementById('subtitle').textContent = '快照时间 '+DATA.generated_at+' · 数据经 ima-mcp 只读拉取（非实时）· 双击本文件即可随时查看';
+  document.getElementById('foot').innerHTML = '<b>怎么用：</b>左侧树点 ▸ 展开/折叠；右侧图表展示分层与关系；右上角可切换亮/暗主题。<br><b>刷新：</b>想看最新状态，让大熊重跑一次拉取脚本重新生成此文件即可（纯只读，不动你的库）。<br><b>诚实边界：</b>图谱节点=文件夹（真实从属关系）；方法卡四环节分布来自已核实子夹计数；卡片级「挂接卡」链接需读卡内容解析，属进阶版（见 skill 说明）。';
+
+  if(libs.length>1){
+    libs.forEach((lib,i)=>{
+      const tab = document.createElement('div');
+      tab.className = 'tab'+(i===0?' active':'');
+      tab.textContent = lib.name;
+      tab.onclick = ()=>{ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active')); tab.classList.add('active'); panelsEl.children[i].classList.add('active'); };
+      tabsEl.appendChild(tab);
+    });
+  }
+  libs.forEach((lib,i)=>{
+    const panel = buildPanel(lib);
+    if(i===0) panel.classList.add('active');
+    panelsEl.appendChild(panel);
+    renderTree(panel.querySelector('#tree_'+lib.id), lib);
+    charts.push(renderBar(panel.querySelector('#bar_'+lib.id), lib.topCounts||[], lib));
+    charts.push(renderPie(panel.querySelector('#pie_'+lib.id), lib.methodStage||[]));
+    charts.push(renderGraph(panel.querySelector('#graph_'+lib.id), lib.graph||{nodes:[],links:[]}));
+  });
+}
+
+document.getElementById('themeBtn').onclick = ()=>{
+  const order = ['light','dark','auto'];
+  CURRENT = order[(order.indexOf(CURRENT)+1)%order.length];
+  localStorage.setItem('kb-theme', CURRENT);
+  applyTheme();
+};
+applyTheme();
+mount();
+window.addEventListener('resize', ()=> charts.forEach(c=> c()));
+</script>
+</body>
+</html>

@@ -1,40 +1,47 @@
-## Description: <br>
-Start a local HTTP server to preview static HTML pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start a local HTTP server to preview static HTML pages. Use when testing static pages, previewing HTML files, or when browser tools cannot access file:// URLs. Provides localhost URL for browser testing.
 
-## Publisher: <br>
-[liujintao-2021](https://clawhub.ai/user/liujintao-2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liujintao-2021](https://clawhub.ai/user/liujintao-2021)
 
-## Use Case: <br>
-Developers and engineers use this skill to start a local Python HTTP server for previewing static HTML files, testing browser-accessible pages, and working around file:// restrictions in browser automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The preview server listens on all network interfaces and could expose the served folder beyond localhost. <br>
-Mitigation: Prefer changing the server to bind to 127.0.0.1 and run it only for the duration of local testing. <br>
-Risk: Serving a directory that contains secrets, credentials, private documents, or .env files could disclose sensitive files. <br>
-Mitigation: Serve only minimal test directories that have been checked for sensitive content before starting the server. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Static Server on ClawHub](https://clawhub.ai/liujintao-2021/static-server) <br>
-- [Publisher profile: liujintao-2021](https://clawhub.ai/user/liujintao-2021) <br>
+## Use Case:
+
+Developers and test automation agents use this skill to serve static HTML files or directories over localhost for browser preview and automated testing when file:// access is unsuitable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The preview server listens on all network interfaces and may expose the selected file's parent directory or chosen directory to other machines that can reach the host and port.
+
+Mitigation: Run it on trusted networks, serve a dedicated directory containing only preview files, and stop the server when testing is complete.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and localhost URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a localhost preview URL, the served directory, and stop instructions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces localhost preview URLs, served-directory information, and stop instructions for the running server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

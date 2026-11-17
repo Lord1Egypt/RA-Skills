@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn795spg2jpr1v3deqq5d5zx6583dmax",
-  "slug": "aga-wechat-article-fetcher",
+  "name": "wechat-article-fetcher",
   "version": "1.0.0",
-  "publishedAt": 1774152663563
+  "description": "微信公众号文章抓取工具。当用户发送微信文章链接、需要保存公众号文章、想要离线阅读微信文章、提取微信文章内容、下载微信文章图片时自动触发。支持 mp.weixin.qq.com 域名的所有文章链接。",
+  "author": "yourname",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "weixin",
+    "article",
+    "fetch",
+    "mp.weixin.qq.com",
+    "公众号",
+    "微信文章"
+  ],
+  "triggers": [
+    "https://mp.weixin.qq.com/s/",
+    "https://mp.weixin.qq.com/s?",
+    "微信文章",
+    "公众号文章",
+    "抓取微信",
+    "保存微信文章"
+  ],
+  "requirements": [
+    "python3",
+    "requests"
+  ],
+  "entry": {
+    "script": "fetch.sh",
+    "python": "fetch.py"
+  },
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "python": ">=3.8"
+  }
 }

@@ -1,45 +1,65 @@
-## Description: <br>
-Query Odoo data including salesperson performance, customer analytics, orders, invoices, CRM, accounting, VAT, inventory, and AR/AP, and generate WhatsApp cards, PDFs, and Excel reports when the user explicitly asks for Odoo data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Odoo data including salesperson performance, customer analytics, orders, invoices, CRM, accounting, VAT, inventory, and AR/AP, and generate WhatsApp cards, PDFs, and Excel reports when the user explicitly requests Odoo data.
 
-## Publisher: <br>
-[ashrf-in](https://clawhub.ai/user/ashrf-in) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ashrf-in](https://clawhub.ai/user/ashrf-in)
 
-## Use Case: <br>
-Developers, finance operators, and business users use this skill to query a configured Odoo instance and produce read-only financial, sales, CRM, VAT, inventory, AR/AP, and executive reports with local visual outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial data and generates local report files. <br>
-Mitigation: Treat generated reports as sensitive files, restrict local access, review reports before sharing, and clean up outputs when no longer needed. <br>
-Risk: Odoo credentials are required for operation. <br>
-Mitigation: Use a dedicated read-only Odoo API key or user, keep the .env file private, avoid admin credentials, rotate keys periodically, and use HTTPS without the insecure option. <br>
-Risk: Read-only behavior is enforced in the client code and could be bypassed by a modified client. <br>
-Mitigation: Enforce read-only permissions on the Odoo server side with least-privilege access for the account used by this skill. <br>
+## Use Case:
 
+Employees and developers use this skill to retrieve read-only Odoo ERP data and produce financial, sales, CRM, inventory, VAT, AR/AP, and executive reporting outputs. It supports ledger-based financial statements, ad-hoc comparisons, charts, local PDFs, Excel workbooks, and WhatsApp card images after the user confirms company, period, accounts, breakdowns, and output format.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ashrf-in/odoo-reporting) <br>
-- [README](README.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Autonomous CFO Engine README](assets/autonomous-cfo/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, local PDF reports, Excel workbooks, PNG charts, and WhatsApp card images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated locally under assets/autonomous-cfo/output/ and depend on the user-configured Odoo instance and selected report format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: release metadata) <br>
+Risk: The skill handles sensitive Odoo financial credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Odoo API key for a read-only user, keep the .env file out of shared repositories, and restrict file permissions on local credential storage.
+
+Risk: The rpc-call capability can read any Odoo data visible to the configured account.
+
+Mitigation: Grant the Odoo user only the minimum read permissions needed for reporting and review Odoo access logs regularly.
+
+Risk: Disabling TLS verification can expose credentials and financial data in transit.
+
+Mitigation: Require an https:// Odoo URL and do not use the --insecure option in production.
+
+Risk: Dependency safeguards require review before production use.
+
+Mitigation: Install in an isolated Python virtual environment and review or update dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ashrf-in/skills/odoo-reporting)
+- [README](artifact/README.md)
+- [Security policy](artifact/SECURITY.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Autonomous CFO engine README](artifact/assets/autonomous-cfo/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and locally generated PDF, PNG, Excel, and chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied Odoo credentials and explicit user invocation; report outputs are generated locally under the skill output directory.]
+
+## Skill Version(s):
+
+2.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

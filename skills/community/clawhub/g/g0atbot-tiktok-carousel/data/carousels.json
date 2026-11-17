@@ -1,0 +1,41 @@
+[
+  {
+    "id": "carousel_20260226_193906",
+    "created_at": "2026-02-26T19:39:06.296173",
+    "niche": "music",
+    "product": "gothic rock band Forsaken",
+    "hook": "you need to hear this new gothic rock track",
+    "slides": [
+      {
+        "slide_num": 1,
+        "prompt": "iPhone photo, person looking shocked at phone screen, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic lighting, candid moment, slight camera shake, natural expression, surprised reaction",
+        "status": "pending"
+      },
+      {
+        "slide_num": 2,
+        "prompt": "Messy kitchen counter with takeout containers and snack wrappers scattered around, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic lighting, cluttered but believable, iphone photo quality",
+        "status": "pending"
+      },
+      {
+        "slide_num": 3,
+        "prompt": "Person's hand scanning food with smartphone camera, close up on phone screen showing food recognition, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic indoor lighting, focused composition",
+        "status": "pending"
+      },
+      {
+        "slide_num": 4,
+        "prompt": "Clean organized meal prep containers lined up on counter, calories visible on containers, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic lighting, neat and organized, aesthetic food presentation",
+        "status": "pending"
+      },
+      {
+        "slide_num": 5,
+        "prompt": "Weekly progress chart or graph on tablet screen showing improvement, person smiling at results, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic lighting, celebratory mood, iphone photo style",
+        "status": "pending"
+      },
+      {
+        "slide_num": 6,
+        "prompt": "Happy person holding phone showing the app/dashboard, confident expression, Kitchen counter, iphone photo, realistic lighting, warm ambient light from window, 45 degree angle, granite countertop, white subway tile backsplash, realistic lighting, satisfied customer, natural smile, iphone photography",
+        "status": "pending"
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "shots": [
+    { "file": "../assets/rain.mp4", "start": 0, "duration": 2.5 },
+    { "file": "../assets/rain.mp4", "start": 2.5, "duration": 2.5 }
+  ],
+  "captions": [
+    { "start": 0.2, "end": 2.3, "text": "A five-second reset." },
+    { "start": 2.7, "end": 4.8, "text": "Pause. Breathe. Begin again." }
+  ]
+}

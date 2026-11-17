@@ -1,38 +1,54 @@
-## Description: <br>
-发现蓝海商品和细分市场机会，适合电商选品、副业创业、市场分析师。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发现蓝海商品和细分市场机会，适合电商选品、副业创业、市场分析师。
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External ecommerce operators, side-business founders, and market analysts use this skill to identify niche product opportunities, analyze demand and competition, estimate profit potential, and consider sourcing options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product demand, supplier availability, platform rules, costs, and profit estimates may be incomplete or wrong. <br>
-Mitigation: Independently verify market data, sourcing terms, platform requirements, total costs, and legal obligations before spending money or launching a product. <br>
+## Use Case:
 
+External ecommerce operators, side-business founders, and market analysts use this skill to identify low-competition product niches, assess trends, estimate profit potential, compare competitors, and find supplier options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/niche-product-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, markdown] <br>
-**Output Format:** [Markdown-style product research recommendations with market, competition, profit, risk, and sourcing notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Treat market, supplier, and profit estimates as advisory research requiring independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Market demand, profit, competitor, and supplier recommendations may be inaccurate or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data, margins, suppliers, and costs independently before spending money or contacting vendors.
+
+Risk: The skill may influence commercial decisions without executable validation or live market data.
+
+Mitigation: Treat outputs as advisory research prompts and apply business due diligence before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/niche-product-finder)
+- [Publisher profile](https://clawhub.ai/user/275254cl-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style product research recommendations with market, margin, risk, and supplier sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory output; market, profit, and supplier suggestions require independent verification before business action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Professional stock analysis agent for technical and fundamental analysis, market reports, stock screening, and risk-aware trading guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides stock market analysis, technical indicator interpretation, stock screening, investment guidance, risk notes, and position-management suggestions.
 
-## Publisher: <br>
-[sionyugg-a11y](https://clawhub.ai/user/sionyugg-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sionyugg-a11y](https://clawhub.ai/user/sionyugg-a11y)
 
-## Use Case: <br>
-External users and developers use this skill to generate stock market reports, inspect technical indicators, screen candidate stocks, and produce portfolio risk notes. Outputs should be reviewed as informational analysis rather than treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the artifact publishes a real-looking Tushare API token. <br>
-Mitigation: Treat the published token as compromised, revoke and rotate it, replace it with a placeholder, and require users to store their own credential outside skill files. <br>
-Risk: Cron examples can generate recurring stock reports automatically. <br>
-Mitigation: Enable scheduled jobs only when recurring reports are intended and review generated outputs before taking action. <br>
-Risk: Stock analysis and buy, hold, or sell guidance may be inaccurate or unsuitable for a user's circumstances. <br>
-Mitigation: Use outputs as informational analysis only and require independent financial review before investment decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to generate market reports, analyze individual stocks, screen candidate stocks, and receive risk-aware portfolio guidance. It is oriented toward stock research workflows using Tushare and optional Finnhub market data.
 
-## Reference(s): <br>
-- [Stock Expert ClawHub page](https://clawhub.ai/sionyugg-a11y/stock-expert-cn) <br>
-- [sionyugg-a11y publisher profile](https://clawhub.ai/user/sionyugg-a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external market data services through configured Tushare and Finnhub credentials; stock analysis should be independently reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release evidence reports a real-looking embedded Tushare token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token before use and provide a user-owned token through a secure environment variable or secret store.
+
+Risk: The release evidence warns that dependency examples encourage system-wide Python installation.
+
+Mitigation: Install dependencies in an isolated virtual environment instead of using system-wide installation.
+
+Risk: The release evidence notes persistent scheduled agent runs through cron examples.
+
+Mitigation: Treat scheduled runs as optional automation and configure explicit names, expiry, and removal commands before enabling them.
+
+Risk: The skill produces investment-oriented analysis and recommendations that may be incomplete or unsuitable for a specific user.
+
+Mitigation: Use outputs as research support only, verify market data and assumptions, and apply independent financial review before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sionyugg-a11y/skills/stock-expert-cn)
+- [Publisher Profile](https://clawhub.ai/user/sionyugg-a11y)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on external market-data APIs and configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

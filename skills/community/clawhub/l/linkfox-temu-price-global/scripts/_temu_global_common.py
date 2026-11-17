@@ -61,11 +61,11 @@ def build_global_proxy_body(params: dict, api_type: str, business=None) -> dict:
         body["params"] = biz
     return body
 
-def global_proxy_call(params: dict, api_type: str, business=None, timeout: int = 60) -> dict:
+def global_proxy_call(params: dict, api_type: str, business=None, timeout: int = 150) -> dict:
     body = build_global_proxy_body(params, api_type, business)
     return call_temu_api(PROXY_URL, body, timeout=timeout, linkfox_params=params)
 
-def global_file_download_call(params: dict, timeout: int = 120) -> dict:
+def global_file_download_call(params: dict, timeout: int = 150) -> dict:
     if "tokenPurpose" not in params and params.get("storeKey") and not params.get("accessToken"):
         params = dict(params)
         params.setdefault("tokenPurpose", DEFAULT_TOKEN_PURPOSE)

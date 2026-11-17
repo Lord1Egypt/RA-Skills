@@ -1,46 +1,58 @@
-## Description: <br>
-OpenClaw行业情报官 collects public industry trends from GitHub Trending, X, Zhihu, 36kr, Juejin, and related feeds, summarizes them with AI, and prepares reports for configured delivery channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行业情报官 - 定时采集 GitHub Trending、X(Twitter)、知乎、36kr、掘金等平台热点，AI 摘要后推送到指定渠道。集成 fxtwitter API 和 RSSHub。
 
-## Publisher: <br>
-[muisenice](https://clawhub.ai/user/muisenice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muisenice](https://clawhub.ai/user/muisenice)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor public technology and industry signals, generate concise summaries, and route scheduled intelligence reports to team communication channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can be sent to external channels configured by the user, including webhooks, bots, email, and chat destinations. <br>
-Mitigation: Use dedicated low-privilege webhooks or bot accounts and verify destinations before enabling scheduled pushes. <br>
-Risk: API tokens and delivery credentials are required for some sources and push channels. <br>
-Mitigation: Keep tokens out of source control and logs, rotate credentials periodically, and prefer secret storage where available. <br>
-Risk: Scheduled collection and retained intelligence history may capture more public trend data than intended over time. <br>
-Mitigation: Review cron schedules, configured sources, cache, logs, and summary history periodically; test changes with dry-run before sending. <br>
+## Use Case:
 
+Developers and operators use this skill to configure recurring industry-intelligence collection, summarization, deduplication, history retention, and delivery to collaboration or messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muisenice/openclaw-intelligence-officer) <br>
-- [Publisher profile](https://clawhub.ai/user/muisenice) <br>
-- [RSSHub](https://github.com/DIYgod/RSSHub) <br>
-- [Huginn](https://github.com/huginn/huginn) <br>
-- [TrendRadar](https://github.com/sansan0/TrendRadar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and HTML intelligence reports with inline shell commands and YAML-style configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links, source labels, tags, local history paths, and delivery-channel settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses webhook, bot, API, SMTP, and scheduled-delivery configuration that can expose credentials or send information to unintended destinations if misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only intended delivery destinations, use least-privilege webhook or bot credentials, avoid committing secrets to files, and test with dry-run mode before enabling cron delivery.
+
+Risk: Scheduled collection and local history retention can accumulate source data, summaries, logs, and cache entries over time.
+
+Mitigation: Review the configured sources, retention locations, and generated history files before production use, and keep only the sources and records needed for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muisenice/skills/openclaw-intelligence-officer)
+- [RSSHub](https://github.com/DIYgod/RSSHub)
+- [Huginn](https://github.com/huginn/huginn)
+- [TrendRadar](https://github.com/sansan0/TrendRadar)
+- [GitHub Trending weekly](https://github.com/trending?since=weekly)
+- [Zhihu hot list](https://www.zhihu.com/hot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local history, cache, log, and summary files under memory/intelligence when implemented by the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

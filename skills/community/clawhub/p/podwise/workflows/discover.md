@@ -4,28 +4,23 @@ Use this skill to expand the user's podcast world beyond their existing subscrip
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Load `taste.md` to understand the user's current taste and gaps.
 3. Identify what the user is looking for: new shows, new episodes, or both.
-4. Use `popular` and `ask` to find candidates.
+4. Use `get_popular_episodes` and `ask_podwise` to find candidates.
 5. Filter out shows the user already follows.
 6. Present a curated set of recommendations with clear reasoning for each.
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
 Look for `taste.md` in the current working directory.
 
 - If found, read the following fields silently:
-  - **Core Interest Areas** — to drive `ask` queries and score relevance
+  - **Core Interest Areas** — to drive `ask_podwise` queries and score relevance
   - **Shows to Prioritize** — to understand the style and depth the user enjoys
   - **Listening Style** — episode format and language preferences
   - **Output Preferences** — to shape how recommendations are presented
@@ -47,25 +42,23 @@ Use this information to shape the discovery in Step 4 — do not filter results 
 
 ## Step 4: Gather Candidates
 
-Use `popular` and `ask` as the primary discovery engines.
+Use `get_popular_episodes` and `ask_podwise` as the primary discovery engines.
 
 ### Surface What's Trending
 
-```bash
-podwise popular --json
-```
+- `get_popular_episodes` with `limit: 20`.
 
 Cross-reference popular episodes with the user's interest areas (from taste profile) or the topics they mentioned in Step 3. Keep any popular episode whose topic overlaps with their interests. These are the primary episode candidates.
 
 ### Ask for Adjacent Topics
 
-Use `ask` to find podcast content on topics *adjacent* to what the user already knows — to expand rather than reinforce:
+Use `ask_podwise` to find podcast content on topics *adjacent* to what the user already knows — to expand rather than reinforce:
 
-```bash
-podwise ask "podcasts about {adjacent topic}" --sources
-```
+- `ask_podwise` with a question such as `"podcasts about {adjacent topic}"`.
 
-Choose 1–2 adjacent topics by reasoning from the taste profile:
+`ask_podwise` counts against the user's Ask quota and can take up to 60 seconds — do not cancel early.
+
+The answer includes cited source clips with episode seqs. Choose 1–2 adjacent topics by reasoning from the taste profile:
 - If the user follows AI podcasts, an adjacent topic might be "cognitive science" or "the history of computing"
 - If they follow investing podcasts, adjacent might be "economic history" or "behavioural psychology"
 - If they follow fitness podcasts, adjacent might be "sleep science" or "nutrition research"
@@ -76,26 +69,23 @@ If no taste profile is loaded, base the adjacent topic query on the user's Step 
 
 If the user explicitly asked for shows or episodes about a specific topic, use search as a targeted lookup — not as a default discovery path:
 
-```bash
-podwise search podcast "{topic}" --limit 5 --json
-podwise search episode "{topic}" --limit 5 --json
-```
+- `search_podcasts` with `query: "{topic}"`.
+- `search_episodes` with `query: "{topic}"`.
 
 ## Step 5: Filter and Score Candidates
 
-Silently filter the candidate pool using the whitelist:
+Build the already-followed whitelist from two sources:
 
-```bash
-podwise list podcasts --json --latest 30
-```
+- `list_followed_podcasts` with `days: 30` — shows the user follows that published recently. **This only covers recently active shows, not the full follow list.**
+- The **Subscribed Podcasts** section of `taste.md`, if loaded — use this to catch follows the tool missed.
 
 Filter rules in order:
 
-1. **Remove already-followed shows**: Cross-reference every candidate podcast against the `list podcasts --latest 90` whitelist. Drop any show the user already follows.
-2. **Remove Shows to Prioritize**: Drop any show that appears in the user's **Shows to Prioritize** list — these are shows they already engage with regularly.
-3. **Remove Shows to Deprioritize**: Drop any show that appears in the user's **Shows to Deprioritize** list — these are shows the user has consciously deprioritised.
-4. **Remove format mismatches**: If the user expressed a format preference in Step 3, drop episodes or shows that do not match (e.g. drop daily news shows if the user prefers long-form).
-5. **Remove language mismatches**: Drop content in languages the user did not indicate they listen to.
+1. **Remove already-followed shows**: cross-reference every candidate podcast against the whitelist. Drop any show the user already follows. If `taste.md` is not loaded, note that the whitelist may be incomplete because `list_followed_podcasts` omits shows with no recent episodes.
+2. **Remove Shows to Prioritize**: drop any show that appears in the user's **Shows to Prioritize** list — these are shows they already engage with regularly.
+3. **Remove Shows to Deprioritize**: drop any show that appears in the user's **Shows to Deprioritize** list — these are shows the user has consciously deprioritised.
+4. **Remove format mismatches**: if the user expressed a format preference in Step 3, drop episodes or shows that do not match (e.g. drop daily news shows if the user prefers long-form).
+5. **Remove language mismatches**: drop content in languages the user did not indicate they listen to.
 6. **Score remaining candidates**:
    - Direct topic match to a Core Interest Area or stated interest: high
    - Adjacent topic match: medium
@@ -106,17 +96,9 @@ Filter rules in order:
 
 Fetch summaries for up to **4 show candidates** and **5 episode candidates** — these map directly to the Step 7 recommendation limits.
 
-For episode candidates:
-```bash
-podwise get summary {episode-url}
-```
+For episode candidates, call `get_episode_summary` with the episode `seq`.
 
-For show candidates: use `drill` to get a recent episode URL for that show, then fetch its summary:
-
-```bash
-podwise drill https://podwise.ai/dashboard/podcasts/{id} --latest 7 --json
-podwise get summary {episode-url}
-```
+For show candidates, use `list_podcast_episodes` with the show's `podcastSeq` to get a recent episode `seq`, then call `get_episode_summary` on it.
 
 If a candidate episode is not processed and cannot be fetched, use the candidate source metadata only. Do not process episodes during a discovery session — the user has not indicated intent to consume these yet.
 
@@ -146,7 +128,7 @@ For each recommended podcast (up to 4):
 
 Why for you: {one sentence connecting this show to a specific thing in the user's taste profile or stated interests.}
 
-Follow now: `podwise follow https://podwise.ai/dashboard/podcasts/{id}`
+Follow now: {offer to call `set_podcast_follow` with `podcastSeq: {seq}`, `follow: true`} · https://app.podwise.ai/dashboard/podcasts/{seq}
 
 ---
 
@@ -155,7 +137,7 @@ Follow now: `podwise follow https://podwise.ai/dashboard/podcasts/{id}`
 For each recommended episode (up to 5):
 
 **{Episode Title}** · {Podcast Name} · {date}
-{2–3 sentence summary grounded in `get summary` output.}
+{2–3 sentence summary grounded in `get_episode_summary` output.}
 
 Why for you: {one sentence connecting this episode to the user's interests or gaps.}
 
@@ -166,11 +148,13 @@ Why for you: {one sentence connecting this episode to the user's interests or ga
 After the list, ask:
 *"Want me to go deeper on any of these — fetch the full summary, highlights, or Q&A for a specific episode? Or would you like me to follow any of the recommended shows?"*
 
+If the user says yes to following, call `set_podcast_follow` with the show's `podcastSeq` and `follow: true`.
+
 ## Common Failure Cases
 
-- If `popular` and `ask` return only candidates that are already in the user's subscription whitelist, tell the user: *"Your current subscriptions already cover this space well — here is what I found at the edges."* Present what there is rather than inflating the list.
+- If `get_popular_episodes` and `ask_podwise` return only candidates that are already in the user's followed whitelist, tell the user: *"Your current subscriptions already cover this space well — here is what I found at the edges."* Present what there is rather than inflating the list.
 - If the user has very narrow interests and the candidate pool after filtering is fewer than 3 items, tell them honestly and present what there is.
-- If the user has no taste profile and refuses to provide interests, run `podwise popular --json` and present the top 5 trending episodes with no personalisation — label them clearly as generic trending content, not personalised picks.
+- If the user has no taste profile and refuses to provide interests, call `get_popular_episodes` and present the top 5 trending episodes with no personalisation — label them clearly as generic trending content, not personalised picks.
 - If `taste.md`'s `_Last updated: {date}` is more than 60 days ago, note this at the top of the recommendations and suggest re-running `refine-taste` for fresher results.
 
 ## Output Contract

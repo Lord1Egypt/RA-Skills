@@ -1,6 +1,6 @@
 ---
 name: loss-aversion-prospect-theory
-description: "Activate when: someone says 'I don't want to lose what I have', a deal is stuck because a concession feels like a loss, a pricing or incentive change gets unexpected pushback, someone is refusing a bet that looks positive in expected value, a free trial cancels at high rate. Do NOT activate when: the loss being avoided is genuinely catastrophic and irreversible (use Kelly/antifragile instead); the decision is small and one-shot where EV approximation is acceptable."
+description: "Activate when: someone says 'I don't want to lose what I have', a deal is stuck because a concession feels like a loss, a pricing or incentive change gets unexpected pushback, someone is refusing a bet that looks positive in expected value, a free trial cancels at high rate. Do NOT activate when: the loss being avoided is genuinely catastrophic and irreversible (use Kelly/antifragile instead); the decision is small and one-shot where EV approximation is acceptable. More: deciqai.com/c/loss-aversion-prospect-theory"
 ---
 
 # Loss Aversion and Prospect Theory
@@ -9,7 +9,7 @@ description: "Activate when: someone says 'I don't want to lose what I have', a 
 
 People evaluate outcomes relative to a reference point (not absolute wealth), weight losses ~2.25x as heavily as equivalent gains, are risk-averse in gain frames and risk-seeking in loss frames, and distort probabilities (overweighting small, underweighting large). The same physical outcome feels different depending on framing — this skill diagnoses and corrects that asymmetry.
 
-Composes with [`sunk-cost-fallacy`](../sunk-cost-fallacy/SKILL.md), [`framing-effect`](../framing-effect/SKILL.md), [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`pricing-strategy`](../pricing-strategy/SKILL.md).
+Composes with `sunk-cost-fallacy`, `framing-effect`, `expected-value-and-kelly`, `anchoring`, `pricing-strategy`.
 
 ## When to Use
 
@@ -18,7 +18,8 @@ Composes with [`sunk-cost-fallacy`](../sunk-cost-fallacy/SKILL.md), [`framing-ef
 - Negotiations are stuck because concessions feel like losses from an anchored reference point
 - A product launch, pricing, or incentive is producing unexpected adoption patterns
 - Small-probability events are being over- or under-insured against
-- Someone says "loss aversion," "prospect theory," "reference point," "endowment effect," "status quo bias"
+- An investor is holding a losing AI / Nvidia / semiconductor position waiting to "get back to breakeven," or is reacting to an AI-capex, AI-valuation, or AI-adoption drawdown (e.g. the DeepSeek shock) rather than re-deriving forward EV
+- Someone says "loss aversion," "prospect theory," "reference point," "endowment effect," "status quo bias," "disposition effect"
 
 **Not when:** the asymmetric weighting is rational (genuinely catastrophic stakes); the reference point is legitimate; the decision is small and one-shot.
 
@@ -58,7 +59,8 @@ Stakes class + decision rule applied:
 Final choice + acknowledged distortions + rationale:
 ```
 
-*→ Method in Action: [Kahneman and Tversky's 1979 Prospect Theory](examples/kahneman-and-tversky-1979-prospect-theory.md)*
+*→ Method in Action: [Kahneman and Tversky's 1979 Prospect Theory](examples/kahneman-and-tversky-1979-prospect-theory.md) · [PGA Tour Par vs. Birdie Putts](examples/pope-and-schweitzer-2011-pga-tour-putting.md)*
+*→ 2026 lens: [Holding AI Positions Through Drawdowns — the Disposition Effect (2023–2026)](examples/nvidia-ai-drawdowns-disposition-effect-2023-2026.md)*
 
 ## Pack: Prospect Theory Patterns
 
@@ -107,4 +109,6 @@ Final choice + acknowledged distortions + rationale:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/loss-aversion-prospect-theory** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/loss-aversion-prospect-theory.json*

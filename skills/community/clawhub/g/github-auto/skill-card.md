@@ -1,43 +1,54 @@
-## Description: <br>
-自动化管理GitHub仓库、PR、Issue、CI/CD。无需API Key，安装即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates GitHub repository, pull request, issue, and CI/CD management without requiring an API key.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and repository maintainers can use this skill for GitHub repository, pull request, issue, and CI/CD automation workflows. The artifact is sparse, so install and run it only after confirming the intended repository scope and account permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises broad GitHub repository, pull request, issue, and CI/CD automation without explaining scope or user controls. <br>
-Mitigation: Use it first in a controlled repository or test account, require human review before changes, and avoid granting access to production repositories until behavior is verified. <br>
-Risk: The release is tagged as requiring sensitive credentials while the artifact claims no API key is needed. <br>
-Mitigation: Confirm the authentication path and requested GitHub permissions before use; prefer least-privilege tokens or accounts and do not expose credentials in prompts, logs, or generated output. <br>
-Risk: The artifact contains no executable code and limited operational detail, so the claimed automation behavior may be incomplete or unclear. <br>
-Mitigation: Review the installed skill text and any agent actions step by step before relying on it for repository management. <br>
+## Use Case:
 
+Developers and repository maintainers can use this skill to receive guidance for managing GitHub repositories, pull requests, issues, and CI/CD workflows. Because the package contains no executable automation, users should review any proposed repository changes before applying them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/github-auto) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are bundled; behavior is described in Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill provides Chinese-only instructions, which may be misunderstood by users who cannot read Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when a reviewer can understand the Chinese instructions or has obtained an accurate translation.
+
+Risk: GitHub repository, pull request, issue, or CI/CD changes can affect source code, releases, or automation behavior.
+
+Mitigation: Require explicit user approval and review before applying any future GitHub or CI/CD changes proposed through the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/github-auto)
+- [ClawHub publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language instructions; no executable automation files are included in the package.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

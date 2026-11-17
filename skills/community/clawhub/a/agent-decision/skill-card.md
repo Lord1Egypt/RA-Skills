@@ -1,43 +1,58 @@
-## Description: <br>
-Agent开发决策辅助系统 analyzes an AI agent product idea across technical selection, competition, market outlook, industry fit, feasibility, stability, cost, and promotion strategy, then generates an interactive HTML feasibility decision report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an interactive HTML feasibility report for AI Agent product ideas across technical fit, competition, market outlook, industry fit, development feasibility, reliability, cost, and go-to-market strategy.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, product teams, and founders use this skill to evaluate AI agent product ideas before implementation. It helps compare LLM and agent framework options, assess market and competitive context, estimate costs, identify stability risks, and produce a decision report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may cause the skill to run for requests that only loosely match agent feasibility analysis. <br>
-Mitigation: Narrow trigger wording and require confirmation before performing web research or file-writing actions. <br>
-Risk: Generated active HTML may include untrusted report content. <br>
-Mitigation: Open generated reports only from trusted inputs, HTML-escape report content, and review files before sharing or hosting them. <br>
-Risk: Report output paths could be directed outside the intended workspace. <br>
-Mitigation: Constrain output paths to a safe workspace and review the destination before writing the HTML report. <br>
+## Use Case:
 
+Developers, product teams, and founders use this skill to assess whether an AI Agent product idea is practical to build and launch. It helps compare model and framework choices, market conditions, reliability risks, cost assumptions, and rollout strategy before committing to development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/agent-decision) <br>
-- [Project homepage](https://github.com/bettermen/agent-decision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated interactive HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports include active HTML and Canvas-based visualization; Python is required for the report generator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated HTML may include unescaped user-provided or web-sourced content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape or sanitize report fields before opening reports in a browser, and avoid opening reports generated from untrusted inputs.
+
+Risk: The skill writes local HTML reports based on supplied output paths.
+
+Mitigation: Constrain report output paths to expected working directories before running the generator.
+
+Risk: Market, model, and API pricing inputs can change quickly.
+
+Mitigation: Verify current pricing, market figures, and regulatory assumptions before using a report for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/agent-decision)
+- [Project homepage from metadata](https://github.com/bettermen/agent-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated interactive HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python for local report generation; generated reports should be reviewed before opening or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

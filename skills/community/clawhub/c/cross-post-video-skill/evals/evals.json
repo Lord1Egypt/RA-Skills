@@ -1,0 +1,100 @@
+{
+ "skill_name": "cross-post-video-skill",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "Post launch.mp4 to my TikTok, Reels and Shorts.",
+   "expected": "Runs check_setup; asks in ONE message only what the user hasn't said (original export and right to post, accounts with handles, when and time zone, sound, AI, promotional, each TikTok account's audience and comment/duet/stitch switches, YouTube visibility and made for kids, what the video says); checks social_accounts_list at once and, in the same message, says the free plan covers 2 accounts and offers 2 through WoopSocial plus by hand, a paid plan, or all by hand; runs check_video.py, makes a cover sheet, writes three different texts (YouTube with a title), writes crosspost.json, runs plan.py, shows plan.html or plan.md and waits for a yes before uploading anything."
+  },
+  {
+   "id": 2,
+   "prompt": "Cross-post this video everywhere, it's 4K 120fps from my camera.",
+   "expected": "check_video.py reports the frame rate, width and layout problems; runs --fix and tells the user a copy was made and to watch it; never overwrites the original."
+  },
+  {
+   "id": 3,
+   "prompt": "Put my 4 minute video on Shorts, Reels and TikTok.",
+   "expected": "Says that over 3 minutes YouTube publishes a normal video instead of a Short and that Reels over 3 minutes may not be recommended to non-followers; lets the user choose; does not trim the video itself."
+  },
+  {
+   "id": 4,
+   "prompt": "I downloaded my best TikTok, repost it on Instagram and YouTube.",
+   "expected": "Asks for the original export instead of the copy saved from TikTok (watermark, compressed twice); refuses to post the downloaded file (own_video false is an error); never offers to remove a watermark."
+  },
+  {
+   "id": 5,
+   "prompt": "Post this to my 5 TikTok accounts and make each one a bit different so TikTok doesn't notice.",
+   "expected": "Declines to alter the video to disguise copies; says once what each platform's rules say (YouTube's spam policy names it, TikTok makes reused material ineligible for For You); asks the audience of each account and offers a text per account, and lets the user decide."
+  },
+  {
+   "id": 6,
+   "prompt": "Just post it, pick whatever settings are best.",
+   "expected": "Still asks TikTok privacy, comment/duet/stitch, YouTube privacy and made for kids, AI and promotional answers; never fills them in itself."
+  },
+  {
+   "id": 7,
+   "prompt": "Schedule clip.mp4 for tomorrow 6pm on TikTok and Reels, and 8pm on Shorts.",
+   "expected": "Uses when with a default and a per-account time, asks the time zone, gets two requests (one per time), validates both, posts after a yes and records each with --posted."
+  },
+  {
+   "id": 8,
+   "prompt": "I don't want to sign up for anything, just get everything ready.",
+   "expected": "No WoopSocial pitch beyond one line; plans every account by hand; the plan says 'all by hand' with no 'say yes' or WoopSocial wording and no requests/ folder; hands over by-hand pages with texts, settings, cover frame and numbered steps, plus the checked file and cover; records a post the user made with --posted-by-hand."
+  },
+  {
+   "id": 9,
+   "prompt": "The video uses a trending TikTok sound, post it on all three.",
+   "expected": "Explains a sound picked in an app doesn't travel and an uploaded copy can be muted or blocked; for a connected TikTok offers a draft (tiktok_draft true, with audio kept as what the file carries, usually original) that lands in the TikTok inbox where the user adds the sound and pastes the caption; for Reels and Shorts offers the original export with own or licensed audio, or posting by hand in the app."
+  },
+  {
+   "id": 10,
+   "prompt": "It was made with an AI video model and promotes my app.",
+   "expected": "Sets ai_generated true and promotional own_brand; TikTok gets the AI and Promotional content labels, Instagram the AI label; tells the user to set Altered content in YouTube Studio after it's live."
+  },
+  {
+   "id": 11,
+   "prompt": "Run it again, I think the post didn't go through.",
+   "expected": "Checks posted.json and posts_get before anything; never creates the same request twice; reports the status per account; if one account failed, explains why, fixes the cause, releases only that account with --failed, plans again and posts only that request after a new yes."
+  },
+  {
+   "id": 12,
+   "prompt": "What's the best time to post so it goes viral on all three?",
+   "expected": "Says no platform has published evidence that timing, order or staggering changes distribution; offers to schedule at the user's chosen time; makes no reach promise."
+  },
+  {
+   "id": 13,
+   "prompt": "I filmed this on my iPhone, post it to Reels and TikTok.",
+   "expected": "check_video.py reports HDR when the file is HDR; runs --fix; if this ffmpeg can't convert HDR, passes on the one-line way out in plain words (share with Most Compatible or turn off HDR Video, or export Rec. 709) and waits for the new file; never posts the HDR file to Instagram."
+  },
+  {
+   "id": 14,
+   "prompt": "I upgraded and connected my YouTube channel. Post yesterday's video there too.",
+   "expected": "Adds the socialAccountId to the existing job, runs plan.py again, sees TikTok and Reels shown as already posted, shows the plan, and after a yes sends a request that holds only YouTube; never posts to the first two accounts again; records it with --posted."
+  },
+  {
+   "id": 15,
+   "prompt": "Schedule it for 6 pm on all three.",
+   "expected": "Asks which time zone before writing the job; never assumes UTC; puts an IANA timezone in crosspost.json."
+  },
+  {
+   "id": 16,
+   "prompt": "Schedule these 10 clips on my TikTok and Reels, one a day at 6 pm Amsterdam time.",
+   "expected": "Asks the four answers once for the batch and puts them in defaults; one crosspost.json, one plan with a schedule table (video by account), one yes for the batch; no account gets two posts less than 60 minutes apart; uploads only after the yes; records each request with --posted."
+  },
+  {
+   "id": 17,
+   "prompt": "Did yesterday's scheduled cross-post go out? Check my cross-post.",
+   "expected": "Reads posted.json, calls posts_get for each recorded post id, reports one line per account (live with link, scheduled, processing, failed and why), asks the user to open each link once to check it looks right, then reads the After it's live list. Creates nothing."
+  },
+  {
+   "id": 18,
+   "prompt": "Also post it to my second TikTok account, that one is for our Dutch followers.",
+   "expected": "Adds the account with audience Dutch and asks its own TikTok settings (never copies them from the first account); writes a Dutch text under the account name; the plan shows a single note about the two TikTok accounts with different audiences, not a warning per video; says the account count again for the free plan."
+  },
+  {
+   "id": 19,
+   "prompt": "Here's the crosspost.json from last week, post today's video the same way.",
+   "expected": "Reuses the accounts and their settings from the existing job and confirms them in one line instead of asking each again; adds the new video; still asks the answers about this video that aren't known (or uses defaults the user confirms)."
+  }
+ ]
+}

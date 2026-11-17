@@ -21,6 +21,9 @@ import shutil
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _bootstrap  # noqa: E402
+
 
 def _has_transparency(path: Path) -> bool:
     from PIL import Image
@@ -33,6 +36,10 @@ def _has_transparency(path: Path) -> bool:
 
 
 def _remove_background(input_path: Path, output_path: Path, model: str) -> None:
+    # Only the actual segmentation path needs the heavy rembg + onnxruntime
+    # (~170 MB wheels plus a one-time model download) — bootstrap it lazily so
+    # the copy-through-when-already-transparent path stays light.
+    _bootstrap.ensure(_bootstrap.REMBG, _bootstrap.REMBG_MODS)
     from rembg import new_session, remove
 
     session = new_session(model)
@@ -65,6 +72,10 @@ def main() -> None:
         sys.exit(1)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Pillow is enough to check for existing transparency; rembg is bootstrapped
+    # later, only if we actually have to segment.
+    _bootstrap.ensure(_bootstrap.IMAGING, _bootstrap.IMAGING_MODS)
 
     if not args.force and _has_transparency(input_path):
         # Copy through so callers can always treat --output as the RGBA result.

@@ -1,46 +1,61 @@
-## Description: <br>
-Hotel booking and accommodation search using StayForge API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotel booking and accommodation search using StayForge API for hotel search, availability checks, reservations, booking management, travel accommodation, lodging discovery, and hotel comparison.
 
-## Publisher: <br>
-[Jbennett111](https://clawhub.ai/user/Jbennett111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbennett111](https://clawhub.ai/user/jbennett111)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search hotels, compare accommodation options, and manage StayForge bookings through API calls. It supports leisure travel, business travel, group bookings, price alerts, booking status checks, modifications, and cancellations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send travel and guest details to the StayForge API. <br>
-Mitigation: Share personal details only after user approval and use a per-user API key stored in an approved secret store. <br>
-Risk: The skill can create, modify, or cancel real hotel reservations. <br>
-Mitigation: Confirm hotel, room, dates, total price, cancellation terms, guest contact details, and the requested booking action before calling booking or cancellation endpoints. <br>
-Risk: Hotel availability, pricing, and cancellation policies may change before booking. <br>
-Mitigation: Check current availability and present final price and cancellation terms immediately before completing a reservation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Jbennett111/stayforge-api) <br>
-- [StayForge API key endpoint](https://stayforge.vosscg.com/v1/keys) <br>
-- [StayForge hotel search endpoint](https://stayforge.vosscg.com/v1/hotels/search) <br>
-- [StayForge advanced hotel search endpoint](https://stayforge.vosscg.com/v1/hotels/search/advanced) <br>
-- [StayForge booking creation endpoint](https://stayforge.vosscg.com/v1/bookings/create) <br>
-- [VCG forges plans](https://vosscg.com/forges) <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search StayForge hotel inventory, compare accommodation options, create API keys, and manage bookings. It supports vacation planning, business travel, group quotes, last-minute lodging, and price alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses per-user StayForge API keys and may handle travel, guest, pricing, booking, modification, and cancellation details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, cancel, or modify reservations and may affect costs, refunds, or cancellation terms.
+
+Mitigation: Require the agent to show the exact booking, cancellation, or modification details and obtain explicit user approval before taking action.
+
+Risk: The skill may transmit personal or payment-related travel data to the StayForge API.
+
+Mitigation: Require the agent to disclose what data will be sent and avoid sending sensitive details until the user confirms.
+
+Risk: The security verdict is suspicious because mandatory confirmation safeguards are not built into the skill text.
+
+Mitigation: Deploy with an approval policy for booking, cancellation, modification, API-key signup, and price-alert workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jbennett111/skills/stayforge-api)
+- [Publisher profile](https://clawhub.ai/user/jbennett111)
+- [StayForge API key endpoint](https://stayforge.vosscg.com/v1/keys)
+- [StayForge hotel search endpoint](https://stayforge.vosscg.com/v1/hotels/search)
+- [StayForge booking creation endpoint](https://stayforge.vosscg.com/v1/bookings/create)
+- [VCG Forge plans](https://vosscg.com/forges)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with curl examples, JSON examples, and step-by-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided email, API keys, travel dates, destination details, guest information, and booking identifiers when interacting with the StayForge API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

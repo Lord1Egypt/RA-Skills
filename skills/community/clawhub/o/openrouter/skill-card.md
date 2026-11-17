@@ -1,47 +1,62 @@
-## Description: <br>
-OpenRouter API gateway skill that helps agents use a single OpenAI-compatible API key to access many model providers with unified billing, fallback routing, provider controls, and BYOK support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenRouter API gateway skill for accessing 300+ AI models from 60+ providers through a single OpenAI-compatible API with unified billing, automatic fallbacks, provider routing, and BYOK support.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OpenRouter credentials, call OpenRouter's OpenAI-compatible endpoints, compare model and routing options, and understand operational constraints such as billing, provider policies, and rate limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a paid OpenRouter API key, so agent use can spend account credits. <br>
-Mitigation: Use a dedicated revocable key and configure spending limits before enabling live API calls. <br>
-Risk: Prompts and completions may be routed to external model providers through OpenRouter. <br>
-Mitigation: Review provider routing and privacy settings, use provider allowlists for sensitive workflows, and enable ZDR where appropriate. <br>
-Risk: The :online model variant can introduce web search data flow for prompts. <br>
-Mitigation: Avoid :online for sensitive prompts unless the additional web search data flow is acceptable. <br>
+## Use Case:
 
+External developers and teams use this skill to configure OpenRouter access, select models and providers, and call an OpenAI-compatible endpoint through shell or SDK examples.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jononovo/openrouter) <br>
-- [OpenRouter Homepage](https://openrouter.ai) <br>
-- [OpenRouter Documentation](https://openrouter.ai/docs) <br>
-- [OpenRouter Models](https://openrouter.ai/models) <br>
-- [OpenRouter API Base](https://openrouter.ai/api/v1) <br>
-- [OpenRouter Status](https://status.openrouter.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, API examples, Python code, configuration notes, and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY for live API use; examples target OpenRouter's OpenAI-compatible API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts, attachments, and outputs may be processed by OpenRouter and routed to selected model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or regulated data unless provider routing, logging restrictions, zero data retention, and required compliance controls are configured.
+
+Risk: The OPENROUTER_API_KEY grants access to the user's OpenRouter credit balance and enabled models.
+
+Mitigation: Store the key in a secrets manager or environment variable, send it only to openrouter.ai, and configure spending limits where appropriate.
+
+Risk: Model availability, pricing, and provider behavior can change after release.
+
+Mitigation: Pin specific model IDs for production workflows and review current OpenRouter model pricing and status before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jononovo/skills/openrouter)
+- [OpenRouter homepage](https://openrouter.ai)
+- [OpenRouter API base](https://openrouter.ai/api/v1)
+- [OpenRouter model catalog and pricing](https://openrouter.ai/models)
+- [OpenRouter documentation](https://openrouter.ai/docs)
+- [OpenRouter status page](https://status.openrouter.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and uses the OpenRouter OpenAI-compatible API base URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

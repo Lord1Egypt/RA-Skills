@@ -1,0 +1,105 @@
+{
+  "platform": "xiaohongshu",
+  "displayName": "小红书",
+  "rulesVersion": "1.0.0",
+  "verifiedAt": "2026-09-19",
+  "note": "平台硬限制：标题上限 20 字符、正文上限 1000 字符（Emoji / 数字 / 字母 / 汉字均算 1 字符）。来源为平台公开限制，多来源一致。数字改动只改本文件，不改脚本。词库的段落映射与级别不在这里 —— 归 xiaohongshu-prohibited-words 的 references/sections.json。",
+  "limits": {
+    "titleMaxChars": 20,
+    "titleMinChars": 6,
+    "titleEmojiWarn": 4,
+    "titleBangWarn": 2,
+    "bodyMaxChars": 1000,
+    "bodyMinChars": 40
+  },
+  "groups": [
+    ["words", "违禁词·敏感词·限流词"],
+    ["format", "标题与篇幅规范"],
+    ["ai", "AI 声明与强制标注"],
+    ["diversion", "导流风险"]
+  ],
+  "rules": [
+    {
+      "id": "title-over-limit",
+      "group": "format",
+      "level": "P1",
+      "check": "titleMaxChars",
+      "why": "小红书标题上限 20 字符，超出会被折叠，钩子在列表页看不全",
+      "suggest": "压到 20 字符内，把结果感放前半句"
+    },
+    {
+      "id": "title-too-short",
+      "group": "format",
+      "level": "hint",
+      "check": "titleMinChars",
+      "why": "过短标题在信息流里缺辨识度",
+      "suggest": "补一个具体对象或结果（如「我用AI做了X」）"
+    },
+    {
+      "id": "title-no-hook",
+      "group": "format",
+      "level": "hint",
+      "check": "hook",
+      "patterns": [
+        "我用.{0,20}?(做|写|跑|搭|试|整理|变|改|测)(成|出|了|完)",
+        "我(实测|亲测|全程|整理了|跑了|做了|拆了)",
+        "(\\d+)\\s*(小时|分钟|天|页).{0,12}(搞定|做完|拿到|跑通|读完|变成|做成)",
+        "(拿|获得|攒|跑通|搞定|做完|收了)了?\\s*(\\d+)\\s*(个|门|张|分|条|遍)",
+        "(\\d+)\\s*(个|门|张|分|条|遍).{0,8}(徽章|证书|笔记|图|模板|课程)"
+      ],
+      "why": "标题里没有可验证的「做了什么 / 拿到什么」信号，点击驱动弱",
+      "suggest": "套账号标题公式「我用AI做了X」，或把数字结果提到前半句"
+    },
+    {
+      "id": "title-bang-pile",
+      "group": "format",
+      "level": "hint",
+      "check": "titleCount",
+      "pattern": "[！!]",
+      "min": 2,
+      "why": "感叹号堆叠营销感强，容易触发「标题党」判定",
+      "suggest": "留 1 个以内"
+    },
+    {
+      "id": "title-emoji-pile",
+      "group": "format",
+      "level": "hint",
+      "check": "titleEmojiCount",
+      "min": 4,
+      "why": "标题 emoji 过多会挤占 20 字符额度",
+      "suggest": "挑 1–2 个表意的就够"
+    },
+    {
+      "id": "body-over-limit",
+      "group": "format",
+      "level": "P1",
+      "check": "bodyMaxChars",
+      "why": "小红书正文上限 1000 字符，超出会被截断",
+      "suggest": "删到 1000 字符内（建议 400–800）"
+    },
+    {
+      "id": "body-too-short",
+      "group": "format",
+      "level": "hint",
+      "check": "bodyMinChars",
+      "why": "正文过短，信息量不足",
+      "suggest": "补「痛点 → 干货 3–5 点 → 收尾互动」结构"
+    }
+  ],
+  "aiSignals": {
+    "level": "P1",
+    "patterns": [
+      "AI\\s*(生成|绘制|绘图|作图|作画|写作|写的|写稿|辅助|产出)",
+      "文生图|图生图|AI ?绘画",
+      "Midjourney|Stable Diffusion|Sora|即梦|可灵|豆包|通义万相|文心一格"
+    ],
+    "declarationLabels": ["笔记含 AI 合成内容", "AI 辅助创作"],
+    "basis": "《人工智能生成合成内容标识办法》（2025-09-01 施行）：AI 生成的图 / 文 / 音视频，用户发布时须主动声明并使用平台标识功能",
+    "why": "本篇文本命中 AI 生成 / 辅助信号，发布时必须勾选声明",
+    "suggest": "发布页勾选 AI 合成内容声明。平台措辞可能为「笔记含 AI 合成内容」或「AI 辅助创作」，以发布页实际为准",
+    "fallbackHint": {
+      "why": "文本里没有 AI 生成 / 辅助信号 —— 但声明义务看的是「内容怎么来的」，脚本判不了封面与配图",
+      "suggest": "若本篇含 AI 生成的图 / 文 / 音视频，发布时记得勾选 AI 合成内容声明"
+    }
+  }
+}

@@ -1,41 +1,52 @@
-## Description: <br>
-Pywayne Lark Bot Listener supports real-time Feishu/Lark message processing over WebSocket with async handlers, message deduplication, temporary attachment download and cleanup, and optional replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu/Lark message listener for real-time WebSocket message processing with async handlers, message deduplication, attachment cleanup, and optional replies.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or explain Feishu/Lark bot listeners that receive text, image, file, and post messages, register async handlers, manage temporary attachment files, and send Markdown replies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bot may receive Lark/Feishu conversations outside the intended scope if chat membership or app permissions are too broad. <br>
-Mitigation: Limit the bot's chat membership and app permissions to approved conversations before deployment. <br>
-Risk: Incoming text and downloaded image or file attachments are untrusted input. <br>
-Mitigation: Apply environment-appropriate validation, size limits, malware scanning, and temporary-file cleanup. <br>
-Risk: Highly sensitive channels may be routed to handlers if the integration is deployed without review. <br>
-Mitigation: Avoid routing sensitive conversations unless approved and document the expected data handling path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/lark-bot-listener) <br>
+## Use Case:
 
+Developers and engineers use this skill to build Feishu/Lark bot listeners that process text, image, file, and rich post messages in real time. It is suited for agents that need to provide integration guidance, Python handler examples, and safe handling notes for message and attachment workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include async handler patterns, credential placeholders, and guidance for handling Lark/Feishu messages and attachments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bot credentials and incoming Feishu/Lark messages or attachments may be sensitive.
+
+Mitigation: Keep app_id and app_secret out of source control, grant only required bot permissions, and treat incoming content as sensitive.
+
+Risk: Handlers that automatically reply or re-send files can expose processed content to unintended chats.
+
+Mitigation: Review handler code and chat routing before enabling automatic replies or file sends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/lark-bot-listener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guidance for app credentials, async handlers, message filtering, temporary file handling, and automatic replies.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

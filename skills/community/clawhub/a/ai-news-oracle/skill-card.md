@@ -1,41 +1,55 @@
-## Description: <br>
-Fetch real-time AI news briefings from the AI News Oracle API (Hacker News, TechCrunch, The Verge). Uses a10m.work registry for discovery and Paymaster for gasless transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time AI news briefings from the AI News Oracle API (Hacker News, TechCrunch, The Verge). Uses a10m.work registry for discovery and Paymaster for gasless transactions.
 
-## Publisher: <br>
-[swimmingkiim](https://clawhub.ai/user/swimmingkiim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swimmingkiim](https://clawhub.ai/user/swimmingkiim)
 
-## Use Case: <br>
-External agents and developers use this skill to fetch concise AI news briefings from the AI News Oracle API without browsing multiple news sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to an external API and optional payment flow. <br>
-Mitigation: Confirm trust in the API provider before installation, use the free tier for basic briefings, and only configure wallet or payment headers when premium access is intentional. <br>
-Risk: AI news briefings may be incomplete, stale, or affected by upstream source availability. <br>
-Mitigation: Review included timestamps and source links before relying on a briefing for business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/swimmingkiim/ai-news-oracle) <br>
-- [Live API](https://api.ai-news.swimmingkiim.com) <br>
-- [a10m.work registry project](https://a10m.work/project/3) <br>
+## Use Case:
 
+External agents and developers use this skill to fetch current AI news briefings from Hacker News, TechCrunch, and The Verge without doing their own web browsing. The skill is intended for agents that need concise news summaries with timestamps and source links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Text briefing with timestamps and source links; the source skill also describes structured briefing JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool parameters; optional premium usage can require a Base Wallet payment header.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install command references a GitHub repository without pinning a commit or reviewed release.
+
+Mitigation: Install from a pinned commit or reviewed release, and review the artifact before deployment.
+
+Risk: The skill interacts with a third-party API and optional payment flow.
+
+Mitigation: Review service trust, data handling, and payment requirements before enabling the skill in production agents.
+
+## Reference(s):
+
+- [AI News Oracle API](https://api.ai-news.swimmingkiim.com)
+- [a10m.work Project #3](https://a10m.work/project/3)
+- [a10m.work Registry](https://a10m.work)
+- [ClawHub Skill Page](https://clawhub.ai/swimmingkiim/skills/ai-news-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Structured briefing JSON with concise human-readable summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes timestamps and source links; no user-supplied parameters are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

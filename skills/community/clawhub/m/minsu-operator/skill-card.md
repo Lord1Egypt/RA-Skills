@@ -1,42 +1,58 @@
-## Description: <br>
-Minsu Skill helps homestay operators evaluate locations, plan interiors, set prices, manage OTA listings, handle guest service, respond to negative reviews, and analyze basic finances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minsu Skill provides Chinese-language homestay operations guidance for location evaluation, renovation planning, pricing strategy, OTA platform operations, customer service SOPs, review handling, and financial analysis.
 
-## Publisher: <br>
-[katherine0325](https://clawhub.ai/user/katherine0325) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherine0325](https://clawhub.ai/user/katherine0325)
 
-## Use Case: <br>
-External homestay owners, operators, and investors use this skill to plan and improve Chinese-language homestay operations, including site assessment, renovation planning, dynamic pricing, OTA listing operations, guest communication, review handling, and basic revenue analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, legal, and OTA platform recommendations may become stale or vary by location. <br>
-Mitigation: Verify recommendations against current local regulations, permit requirements, fire and sanitation rules, and each OTA platform's policies before acting. <br>
-Risk: Guest service workflows can involve sensitive guest, door-lock, or financial information. <br>
-Mitigation: Avoid sharing real guest IDs, door-lock passwords, payment data, or private financial details unless necessary and authorized. <br>
+## Use Case:
 
+External homestay owners, operators, and investors use this skill to plan and run homestay businesses, including site assessment, renovation choices, dynamic pricing, OTA listing operations, guest communication, review response, and monthly financial analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherine0325/minsu-operator) <br>
-- [OTA platform messaging templates](references/平台话术模板.md) <br>
-- [Homestay interior style reference](references/装修风格参考.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style prose with checklists, tables, templates, and simple formulas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language operational guidance; no code execution or external tool use indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Guest-facing service and review-response templates may promise compensation, request WeChat contact, or disclose access details in ways that are inappropriate for a specific booking channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and tailor every message before sending it to guests; avoid sharing door-lock passwords except through verified guest channels.
+
+Risk: Local homestay licensing, fire, hygiene, and operating requirements vary by jurisdiction.
+
+Mitigation: Confirm local permits and compliance obligations before relying on opening, site-selection, or operations guidance.
+
+Risk: Pricing and financial formulas are operational estimates and may be wrong without current local market and cost data.
+
+Mitigation: Use real booking, competitor, occupancy, and expense data before acting on pricing or profitability recommendations.
+
+## Reference(s):
+
+- [Renovation Style Reference](references/装修风格参考.md)
+- [OTA Platform Messaging Templates](references/平台话术模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, formulas, SOPs, and response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operating advice; users must provide local business, pricing, and financial details for tailored analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

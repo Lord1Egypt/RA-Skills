@@ -1,0 +1,44 @@
+{
+ "content": [
+  {
+   "text": "¿Cuánta agua de la Tierra hay en los ríos? En una botella de 1 litro con toda ella, menos de una décima de gota.\n\nDatos: USGS, Water Science School (agua dulce, aguas subterráneas, glaciares). Foto de la Tierra: NASA. Guárdalo para tu próximo trivial.\n\n#aguadulce #aguassubterráneas #glaciares #cienciasdelatierra #geografía",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-01.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-02.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-03.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-04.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-05.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-06.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<id from social_accounts_list>",
+   "postType": "POST"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-16T12:30:00Z"
+ }
+}

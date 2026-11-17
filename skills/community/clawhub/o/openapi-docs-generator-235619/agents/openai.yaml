@@ -1,0 +1,7 @@
+interface:
+  display_name: "Openapi Docs Generator"
+  short_description: "Helps with Backend and platform teams need practical help gen..."
+  default_prompt: "Use $openapi-docs-generator to help me Backend and platform teams need practical help generating, improving, and validating OpenAPI or Swagger documentation fo."
+
+policy:
+  allow_implicit_invocation: true

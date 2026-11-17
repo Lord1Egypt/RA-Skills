@@ -1,39 +1,56 @@
-## Description: <br>
-Work Critic helps users review important work before submission by simulating a strict but constructive reviewer who identifies weak points and suggests improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work Critic helps an agent simulate a strict expert reviewer before submission, identifying weak points and suggesting improvements for presentations, documents, plans, code, proposals, and application materials.
 
-## Publisher: <br>
-[leohan1](https://clawhub.ai/user/leohan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohan1](https://clawhub.ai/user/leohan1)
 
-## Use Case: <br>
-Students, researchers, developers, and other external users use this skill to get structured pre-submission critique of presentations, application materials, research proposals, code, or technical plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as review or critique may activate the reviewer mode during ordinary work. <br>
-Mitigation: Invoke it explicitly for final-review tasks or narrow the triggers if ordinary review language should not activate this skill. <br>
+## Use Case:
 
+Employees, external users, developers, and students use this skill to get structured pre-submission critique of important work, including presentations, application materials, research plans, code, and technical proposals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leohan1/work-critic) <br>
-- [Publisher profile](https://clawhub.ai/user/leohan1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown critique report with severity sections, reviewer questions, scores, and specific revision suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for background and delivery context before producing the critique.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger phrases may activate the skill when the user intended only a casual review request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a judge-style critique and ask for the work context before producing the structured review.
+
+Risk: Reviewer-style feedback can be subjective or stricter than intended for sensitive drafts.
+
+Mitigation: Present critique as advisory, prioritize serious weaknesses, and pair each major issue with concrete improvement suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leohan1/skills/work-critic)
+- [Publisher profile](https://clawhub.ai/user/leohan1)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown critique report with severity sections, reviewer questions, scores, and concrete revision suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

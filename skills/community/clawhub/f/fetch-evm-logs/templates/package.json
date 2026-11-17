@@ -1,0 +1,21 @@
+{
+  "name": "fetch_evm_logs",
+  "version": "1.0.0",
+  "description": "Pull and parse EVM contract event logs via RPC",
+  "scripts": {
+    "s1": "tsx src/s1.pull.contract.logs.ts",
+    "s2": "tsx src/s2.parse.logs.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.1",
+  "dependencies": {
+    "decimal.js": "^10.6.0",
+    "ethers": "^6.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}

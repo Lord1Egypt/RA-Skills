@@ -1,0 +1,211 @@
+{
+  "card_id": "WQ-EXP-012",
+  "source_type": "clinical_experience",
+  "source_file": "王琦“痰湿调体方”干预痰湿体质效果评价_王鑫.pdf",
+  "title": "2019 年4 月第36 卷第4 期",
+  "authors": [
+    "王鑫"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨识核实。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": ""
+  },
+  "case_studies": [],
+  "clinical_insights": "体方”干预痰湿体质的效果，探讨调理痰湿体质在代谢性慢病防治中的作用，为制定痰湿体质干预效果评价标准提供依据。 体重指数（BMI），采集静脉血检测血糖、血脂等生化指标，并重测痰湿体质评分。 体方”可明显降低痰湿体质评分，有效改善体质偏颇程度和相关临床指标。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "7 安全性观察 1）一般体检项目检查，包括体质量、腰围，生命体征（心率、呼吸、血压、体温）心电图、肝肾功能",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "1 痰湿体质转化分干预前后比较记录干预 0 周、8 周时的痰湿体质评分，并换算为转化分",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "干预8 周后，受试者痰湿体质转化分数有所下降，差异有统计学意义（P<0",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨识核实。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "体方”干预痰湿体质的效果，探讨调理痰湿体质在代谢性慢病防治中的作用，为制定痰湿体质干预效果评价标准提供依据",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体重指数（BMI），采集静脉血检测血糖、血脂等生化指标，并重测痰湿体质评分",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "体方”可明显降低痰湿体质评分，有效改善体质偏颇程度和相关临床指标",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "痰湿质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "代谢综合征",
+    "高血压",
+    "糖尿病"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "7 安全性观察 1）一般体检项目检查，包括体质量、腰围，生命体征（心率、呼吸、血压、体温）心电图、肝肾功能",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "1 痰湿体质转化分干预前后比较记录干预 0 周、8 周时的痰湿体质评分，并换算为转化分",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "干预8 周后，受试者痰湿体质转化分数有所下降，差异有统计学意义（P<0",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "痰湿质"
+    ],
+    "disease": [
+      "肥胖",
+      "代谢综合征",
+      "高血压",
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 3
+      },
+      "methods": {
+        "start": 1,
+        "end": 3
+      },
+      "results": {
+        "start": 1,
+        "end": 3
+      },
+      "discussion": {
+        "start": 2,
+        "end": 2
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.580639",
+  "methods": {
+    "sample_size": 32
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.522343",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.522350"
+  }
+}

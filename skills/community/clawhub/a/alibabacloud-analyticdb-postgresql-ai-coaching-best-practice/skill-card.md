@@ -1,53 +1,68 @@
-## Description: <br>
-Implement AI Coaching best practices on AnalyticDB for PostgreSQL (ADBPG) by using Supabase projects for training data management and ADBPG instances with vector optimization to build RAG-driven coaching systems for domain-specific workflows, decision-making, or skill development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement AI Coaching best practices on AnalyticDB for PostgreSQL (ADBPG) by using Supabase projects for training data management and ADBPG instances with vector optimization to build RAG-driven coaching systems.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to provision or configure Alibaba Cloud Supabase projects, ADBPG vector knowledge bases, and related network and database resources for RAG-powered coaching systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create billable Alibaba Cloud resources such as Supabase projects, ADBPG instances, NAT gateways, and EIPs. <br>
-Mitigation: Require explicit user confirmation before any billable operation, review the proposed region and resource shape, and plan cleanup or release of resources after use. <br>
-Risk: The workflow depends on cloud credentials, database passwords, namespace passwords, and API keys. <br>
-Mitigation: Use a dedicated least-privilege RAM identity, avoid production secrets and long-lived AK/SK values in chat, and mask credentials in all outputs. <br>
-Risk: The skill can change network and security posture through VPC, SNAT, EIP, and whitelist operations. <br>
-Mitigation: Review each network-changing command before execution and prefer least-privilege RAM policies with only the documented required permissions. <br>
-Risk: Knowledge-base document uploads may expose sensitive data to the configured cloud service. <br>
-Mitigation: Upload only approved non-sensitive documents and review data classification requirements before ingestion. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to provision and verify Alibaba Cloud Supabase and AnalyticDB for PostgreSQL resources for RAG-driven coaching systems. It supports workflow coaching, decision support, skill development, and onboarding use cases.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md) <br>
-- [Aliyun CLI Parameter Guide](references/cli-parameter-guide.md) <br>
-- [Database Schema](references/database-schema.md) <br>
-- [Alibaba Cloud RAM Permissions](references/ram-policies.md) <br>
-- [Related APIs and CLI Commands](references/related-apis.md) <br>
-- [Verification Methods](references/verification-method.md) <br>
-- [Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/) <br>
-- [Aliyun CLI Plugin Repository](https://github.com/aliyun/aliyun-cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-analyticdb-postgresql-ai-coaching-best-practice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational cloud setup guidance that requires user confirmation for billable resource creation and credential-sensitive steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The security review reports unsafe installation guidance for the Aliyun CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified, pinned Aliyun CLI installation path instead of curl-to-bash setup commands.
+
+Risk: The skill can require broad Alibaba Cloud permissions and may create billable or network-exposing resources.
+
+Mitigation: Grant least-privilege temporary credentials and require explicit confirmation before every resource creation, billing, or network exposure change.
+
+Risk: The security review flags risky password, session, and secret handling.
+
+Mitigation: Do not paste live passwords, access keys, API keys, or namespace secrets into chat or saved scripts; mask any displayed secrets.
+
+Risk: Persistent automatic plugin installation and broad plugin updates can change the local CLI execution surface.
+
+Mitigation: Avoid persistent auto-plugin installation and broad plugin updates unless explicitly needed and reviewed.
+
+## Reference(s):
+
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [Related APIs and CLI Commands](references/related-apis.md)
+- [Alibaba Cloud RAM Permissions](references/ram-policies.md)
+- [Database Schema](references/database-schema.md)
+- [Acceptance Criteria: AI Coaching Best Practice](references/acceptance-criteria.md)
+- [Verification Methods](references/verification-method.md)
+- [Aliyun CLI Parameter Guide](references/cli-parameter-guide.md)
+- [Official Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step cloud setup, verification, and troubleshooting guidance for Alibaba Cloud CLI workflows.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,44 @@
+SKILLQA PRO — SOFTWARE LICENSE AGREEMENT (v0.1.0)
+================================================
+
+Copyright (c) 2026 SkillQA Pro. All rights reserved.
+
+1. GRANT OF LICENSE
+   SkillQA Pro is distributed as proprietary software in two editions:
+
+   - DEMO (free): static scan module and the demo teaser report.
+     May be used without a license key for evaluation purposes.
+
+   - PRO (paid): all seven verification modules (static, sandbox, log,
+     novelty, load, parallel, compat), the full certification report
+     (Markdown certificate with grade A/B/C/D) and machine-readable JSON
+     reports for CI. Requires a valid license key bound to the machine-id
+     of the computer where it is installed.
+
+2. LICENSE KEY
+   A Pro license key is a signed file (skillqa_license.dat) that is bound
+   to one machine-id (sha256 of /etc/machine-id, /var/lib/dbus/machine-id
+   or hostname, first 16 hex characters). The key must not be shared,
+   redistributed or installed on machines other than the one it was
+   issued for.
+
+3. RESTRICTIONS
+   You may not: reverse-engineer, decompile or obfuscate-defeat the
+   licensing mechanism; sell or sublicense the tool itself; remove or
+   alter copyright notices; use the tool to violate the security or
+   privacy of third parties.
+
+4. NO WARRANTY
+   The software is provided "as is", without warranty of any kind,
+   express or implied. The authors are not liable for any damages
+   arising from the use of the software.
+
+5. PAYMENT (ViBo "Model A")
+   - USDT (TRC-20): T...ПОДСТАВИТЬ_ПЕРЕД_РЕЛИЗОМ
+   - Telegram Stars: @...ПОДСТАВИТЬ
+   Prices are placeholders and will be set before release.
+
+6. GOVERNING LAW
+   This agreement is governed by the laws of the Russian Federation.
+
+© 2026 SkillQA Pro by Viacheslav Bochkarev

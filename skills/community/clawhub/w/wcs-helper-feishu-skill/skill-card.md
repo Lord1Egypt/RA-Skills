@@ -1,45 +1,57 @@
-## Description: <br>
-Configure OpenClaw Feishu plugin without editing config files. Send simple commands via Feishu private chat to toggle streaming, set group reply behavior, run diagnostics, or restart the service. No CLI knowledge needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure the OpenClaw Feishu plugin from Feishu private-chat commands to toggle streaming, set group reply behavior, run diagnostics, or restart the service without editing config files.
 
-## Publisher: <br>
-[guanqi0914](https://clawhub.ai/user/guanqi0914) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guanqi0914](https://clawhub.ai/user/guanqi0914)
 
-## Use Case: <br>
-OpenClaw administrators and Feishu bot operators use this skill to inspect and change Feishu plugin settings from private chat, including streaming behavior, group reply behavior, diagnostics, and service restart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trusted Feishu users can administer OpenClaw Feishu configuration from chat. <br>
-Mitigation: Restrict who can message or invoke the bot before enabling this skill. <br>
-Risk: State-changing commands can modify Feishu settings or restart the OpenClaw service without visible confirmation controls. <br>
-Mitigation: Add confirmation for restart and other state-changing commands in production deployments. <br>
-Risk: The skill uses Feishu credentials and caches a tenant token locally. <br>
-Mitigation: Review local credential storage and the /tmp token handling before deployment. <br>
-Risk: The security guidance calls out a generic shell execution helper as a risk. <br>
-Mitigation: Remove it or restrict it with a tight allowlist before enabling the release. <br>
+## Use Case:
 
+OpenClaw administrators and Feishu bot operators use this skill to inspect and change Feishu channel settings from chat, including streaming behavior, group reply mode, diagnostics, and gateway restart.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guanqi0914/wcs-helper-feishu-skill) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Feishu interactive card JSON with markdown text elements, plus command-line configuration actions executed by the skill] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw and a configured Feishu bot; several commands change local OpenClaw Feishu settings or request a service restart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and _meta.json) <br>
+Risk: Chat commands can change OpenClaw Feishu settings or restart the gateway without an in-skill authorization check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the Feishu route to trusted operators and add an explicit admin allowlist, private-chat enforcement, confirmation steps, and rate limits for restart and broad group-reply changes before production use.
+
+Risk: The skill caches a Feishu bearer token in a shared temporary file.
+
+Mitigation: Replace the shared temporary token cache with private in-memory storage or owner-only storage before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guanqi0914/skills/wcs-helper-feishu-skill)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Usage examples](artifact/examples/usage.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Feishu text or interactive-card JSON, with OpenClaw configuration commands executed by the skill]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can modify OpenClaw Feishu settings and trigger a gateway restart.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md and skill.json report 1.0.0, artifact pyproject.toml reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

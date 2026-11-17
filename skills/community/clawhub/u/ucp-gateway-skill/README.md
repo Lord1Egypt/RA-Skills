@@ -4,7 +4,7 @@ Open agents can recommend products, but safe commerce needs structured identity,
 
 `SKILL.md` is the authoritative runtime guide for agents. This README is human onboarding and package documentation.
 
-ClawHub metadata targets the **MCP Tools** category. Source: <https://github.com/theagenttimes/ucp-gateway-skill>. Homepage: <https://ucpgateway.theagenttimes.com/>.
+ClawHub metadata targets the **MCP Tools** category. Source: <https://github.com/theagenttimes/ucp-gateway-skill>. Homepage: <https://ucpg.ai/>.
 
 ## What agents can do
 
@@ -45,10 +45,12 @@ The skill is usable from `SKILL.md` alone. Helper scripts are optional determini
 ## MCP endpoint
 
 ```text
-https://ucpgateway.theagenttimes.com/mcp
+https://ucpg.ai/mcp
 ```
 
 Use JSON-RPC 2.0 `POST /mcp` for `initialize`, `tools/list`, `tools/call`, `resources/list/read`, and `prompts/list/get`. GET `/mcp` returns a markdown guide/SSE bootstrap; `/messages` and `/mcp/messages` may exist as POST fallbacks.
+
+Legacy `https://ucpgateway.theagenttimes.com/mcp` still works. New integrations should use `https://ucpg.ai/mcp`; existing installs can keep their saved endpoint or override it with `UCP_GATEWAY_MCP_URL`.
 
 Agents should not load every resource at startup. Branch by state: register if no `agent_id`, search if shopping intent is clear, and read focused resources/prompts only when needed.
 
@@ -100,13 +102,27 @@ Suggested checkout handoff copy:
 
 ## Optional helper scripts
 
+The helper scripts require Python 3.8+. Use `uv run python` for live gateway calls when possible; direct `python3` also works when the local Python install has current CA certificates.
+
 ```bash
 git clone https://github.com/theagenttimes/ucp-gateway-skill.git
 cd ucp-gateway-skill
-npm run check
-python3 scripts/init_ucpgateway.py
-python3 scripts/register_profile.py --agent-name "OpenClaw UCP Shopping Agent"
-python3 scripts/call_mcp.py shopping_product_search '{"query":"trail running shoes","limit":5}'
+```
+
+To validate a checkout before editing or publishing, optionally run:
+
+```bash
+uv run python scripts/check_skill.py
+uv run python scripts/init_ucpgateway.py --dry-run
+uv run python scripts/call_mcp.py --help
+```
+
+Normal helper usage does not require npm. Run the Python scripts directly:
+
+```bash
+uv run python scripts/init_ucpgateway.py
+uv run python scripts/register_profile.py --agent-name "OpenClaw UCP Shopping Agent"
+uv run python scripts/call_mcp.py shopping_product_search '{"query":"trail running shoes","limit":5}'
 ```
 
 Local helper state is written under `./.ucpgateway/`:
@@ -136,20 +152,20 @@ Sends `public_key_jwk` to `register_ucp_profile` and writes `agent.json` with `s
 Discovery modes do not require `agent.json`:
 
 ```bash
-python3 scripts/call_mcp.py --initialize
-python3 scripts/call_mcp.py --tools
-python3 scripts/call_mcp.py --tool shopping_product_search
-python3 scripts/call_mcp.py --shopping-tools
-python3 scripts/call_mcp.py --resources
-python3 scripts/call_mcp.py --resource ucp://gateway/skill-runtime-guide
-python3 scripts/call_mcp.py --prompts
-python3 scripts/call_mcp.py --prompt ucp-skill-runtime-guide --prompt-arg shopping_goal='trail running shoes'
+uv run python scripts/call_mcp.py --initialize
+uv run python scripts/call_mcp.py --tools
+uv run python scripts/call_mcp.py --tool shopping_product_search
+uv run python scripts/call_mcp.py --shopping-tools
+uv run python scripts/call_mcp.py --resources
+uv run python scripts/call_mcp.py --resource ucp://gateway/skill-runtime-guide
+uv run python scripts/call_mcp.py --prompts
+uv run python scripts/call_mcp.py --prompt ucp-skill-runtime-guide --prompt-arg shopping_goal='trail running shoes'
 ```
 
 Tool-call mode injects `agent_id` from `./.ucpgateway/agent.json` for Shopping tools when omitted:
 
 ```bash
-python3 scripts/call_mcp.py shopping_product_search '{"query":"trail running shoes","limit":5}'
+uv run python scripts/call_mcp.py shopping_product_search '{"query":"trail running shoes","limit":5}'
 ```
 
 Tool names, descriptions, and input field descriptions come from the live MCP `tools/list` response, not from a hardcoded local schema. Use `--tool <tool_name>` for the exact descriptor before calling search, cart, or checkout tools.
@@ -157,11 +173,11 @@ Tool names, descriptions, and input field descriptions come from the live MCP `t
 Environment overrides:
 
 ```bash
-export UCP_GATEWAY_MCP_URL=https://ucpgateway.theagenttimes.com/mcp
+export UCP_GATEWAY_MCP_URL=https://ucpg.ai/mcp
 export UCP_NAMESPACE=openclaw
 export UCP_AGENT_NAME="OpenClaw UCP Shopping Agent"
 ```
 
 ## Version
 
-Current package version: `0.2.3`.
+Current package version: `0.2.4`.

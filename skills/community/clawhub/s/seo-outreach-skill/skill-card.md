@@ -1,45 +1,55 @@
-## Description: <br>
-Turn backlink and outreach opportunities into contact research, article analysis, personalized outreach drafts, and follow-up plans for manual sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn backlink and outreach opportunities into contact research, article analysis, personalized outreach drafts, and follow-up plans for manual sending.
 
-## Publisher: <br>
-[GEO-SEO](https://clawhub.ai/user/GEO-SEO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geo-seo](https://clawhub.ai/user/geo-seo)
 
-## Use Case: <br>
-SEO and digital marketing operators, SaaS teams, agencies, and growth teams use this skill to review backlink opportunities, research contacts, analyze target articles, and prepare personalized outreach drafts for manual sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A connected opportunity tracker could be treated as writable and rows could be marked processed without the user's intended approval. <br>
-Mitigation: Prefer pasted CSVs, exports, or read-only sheet access; if a live tracker is connected, explicitly approve whether status updates are allowed. <br>
-Risk: Users could assume the skill can send outreach emails or monitor replies through private inbox access. <br>
-Mitigation: Keep this skill in research and draft-preparation mode; use a separately approved sender or inbox workflow for delivery and reply handling. <br>
-Risk: Generated outreach drafts may include incorrect contact details, weak confidence signals, or unsuitable personalization. <br>
-Mitigation: Review the contact source, confidence level, article analysis, subject, and body before sending any message. <br>
+## Use Case:
 
+SEO teams, SaaS growth teams, agencies, and operators use this skill to process backlink outreach opportunities, research contact paths, analyze target articles, and prepare personalized outreach drafts for manual sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GEO-SEO/seo-outreach-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/GEO-SEO) <br>
-- [Project homepage](https://github.com/GEO-SEO/seo-outreach-skill) <br>
-- [Dageno.ai](https://dageno.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text tables with outreach analysis, contact confidence notes, email drafts, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stops at draft generation and manual handoff; does not send email or monitor inboxes by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and artifact manifest) <br>
+Risk: The workflow may blur sensitive inbox operations or external tracker writes if configured too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only Google Sheets access or CSV exports where possible, stop at draft generation by default, and use a separately approved workflow for sending email or monitoring replies.
+
+Risk: Contact research and outreach drafting can produce low-confidence contact paths or messages that require business review.
+
+Mitigation: Preserve contact confidence labels, do not guess email addresses, and require manual review before any outreach is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geo-seo/skills/seo-outreach-skill)
+- [Project homepage](https://github.com/GEO-SEO/seo-outreach-skill)
+- [Dageno.ai](https://dageno.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured tables, analysis cards, contact confidence notes, personalized email drafts, and follow-up guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are intended for manual review and handoff; the public skill should not send email, monitor inboxes, or assume private spreadsheet access.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata, skill frontmatter, and manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Plan product listing translations, cultural adaptations, payment method integrations, logistics, labeling, and seasonal launch sequencing for ecommerce entry into a new country. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan product listing translations, cultural adaptations, and local payment method integrations for new market entry.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce founders, operators, and localization teams use this skill to produce a market-entry localization roadmap covering translated listings, cultural adaptation, payment stack, logistics, compliance, calendar planning, launch phases, and KPIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market tables, payment guidance, holiday timing, and compliance notes may become outdated or vary by category and country. <br>
-Mitigation: Treat the plan as starter guidance and verify current legal, tax, marketplace, payment, logistics, and compliance requirements before launch. <br>
+## Use Case:
 
+External ecommerce sellers, marketplace operators, and localization teams use this skill to produce market-specific launch roadmaps covering listing translation, cultural adaptation, payments, logistics, compliance checks, seasonal planning, and phased rollout decisions.
 
-## Reference(s): <br>
-- [Market Entry Brief Template](references/market-entry-brief.md) <br>
-- [Market Stack Reference](references/market-stack-reference.md) <br>
-- [Local Promotional Calendar Starter](references/holiday-calendar.md) <br>
-- [Localization Plan Output Template](references/output-template.md) <br>
-- [Localization Plan Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown localization plan with checklists and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; users should verify current legal, tax, marketplace, payment, and compliance requirements before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Country-specific legal, compliance, payment-share, logistics, and holiday details may change or vary by product category.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify those details with current in-market sources before acting on the localization plan.
+
+Risk: The roadmap may surface compliance actions, but it is not final legal or regulatory approval.
+
+Mitigation: Require legal, in-market reviewer, finance, and customer-care sign-off before publishing listings or shipping into the target market.
+
+## Reference(s):
+
+- [Market Entry Brief Template](references/market-entry-brief.md)
+- [Market Stack Reference](references/market-stack-reference.md)
+- [Local Promotional Calendar Starter](references/holiday-calendar.md)
+- [Localization Plan Output Template](references/output-template.md)
+- [Localization Plan Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown localization roadmap with checklists and planning tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance that should be checked against current in-market legal, compliance, payment, holiday, logistics, and category sources before launch.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

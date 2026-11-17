@@ -1,0 +1,419 @@
+{
+  "schema_version": "1.0.0",
+  "source": {
+    "pricing_endpoint": "https://vpcs.cqccjy.cn/api/paper/check/public/pwp/config",
+    "captured_at": "2026-09-27",
+    "authority": "pricing, availability and payment fields come from the live endpoint; canonical names and aliases are an agent lookup layer"
+  },
+  "products": [
+    {
+      "code": "dxs",
+      "canonical_name": "维普查重大学生版",
+      "live_label": "大学生版",
+      "aliases": [
+        "维普大学生版",
+        "维普论文检测·大学生版",
+        "维普论文查重·大学生版",
+        "大学生版",
+        "本科版",
+        "本科论文查重"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥2.70",
+        "unit": "/1000字符",
+        "label": "¥2.70/1000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满1000字符通常按1000字符计"
+      },
+      "audience": "大专、本科毕业论文和毕业设计",
+      "use": "回答论文与维普公开数据库及页面展示资源的文字相似性风险",
+      "not_for": "研究生、期刊、职称或作业场景的指定版本；AIGC、格式、智评和专项问题",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [],
+      "report_focus": "全文总相似比/文字复制比、相似片段、来源和分项指标"
+    },
+    {
+      "code": "yjs",
+      "canonical_name": "维普查重研究生版",
+      "live_label": "研究生版",
+      "aliases": [
+        "维普研究生版",
+        "维普论文检测·研究生版",
+        "维普论文查重·研究生版",
+        "研究生版",
+        "硕博版",
+        "硕士论文查重",
+        "博士论文查重"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥2.70",
+        "unit": "/1000字符",
+        "label": "¥2.70/1000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满1000字符通常按1000字符计"
+      },
+      "audience": "硕士、博士和其他研究生学位论文",
+      "use": "在学校或导师指定研究生版时检查学位论文文字相似性",
+      "not_for": "本科、期刊、职称或课程作业的指定版本；AIGC、格式、智评和专项问题",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [],
+      "report_focus": "全文总相似比/文字复制比、相似片段、来源和分项指标"
+    },
+    {
+      "code": "bjb",
+      "canonical_name": "维普查重编辑部版",
+      "live_label": "编辑部版",
+      "aliases": [
+        "维普编辑部版",
+        "维普论文检测·编辑部版",
+        "维普期刊查重",
+        "编辑部版",
+        "期刊查重"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥2.70",
+        "unit": "/1000字符",
+        "label": "¥2.70/1000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满1000字符通常按1000字符计"
+      },
+      "audience": "期刊投稿、会议论文、图书和科技成果的出版前自查",
+      "use": "按编辑部/出版物场景核对文字相似性和出版风险",
+      "not_for": "编辑部最终审稿、外审或录用承诺；学校私有库终检",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [],
+      "report_focus": "相似比、来源分布和出版物相关来源"
+    },
+    {
+      "code": "zc",
+      "canonical_name": "维普查重职称版",
+      "live_label": "职称版",
+      "aliases": [
+        "维普职称版",
+        "维普论文检测·职称版",
+        "职称论文查重",
+        "职称版"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥27.00",
+        "unit": "/10000字符",
+        "label": "¥27.00/10000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满10000字符通常按10000字符计"
+      },
+      "audience": "职称评审、课题申报和成果验收材料",
+      "use": "单位明确要求职称版时检查成果材料的文字相似性",
+      "not_for": "把职称版当作本科/硕博终检或学校私有库证明",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": ["页面若要求，填写 publishDate（成果/发表日期）"],
+      "report_focus": "全文相似比、来源、职称材料的计费字符数"
+    },
+    {
+      "code": "zy",
+      "canonical_name": "维普查重作业版",
+      "live_label": "作业版",
+      "aliases": [
+        "维普作业版",
+        "维普论文检测·作业版",
+        "课程作业查重",
+        "作业版"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥2.70",
+        "unit": "/1000字符",
+        "label": "¥2.70/1000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满1000字符通常按1000字符计"
+      },
+      "audience": "课程作业、平时作业和结课作业",
+      "use": "教师或课程明确要求作业版时检查作业相似性",
+      "not_for": "代替本科/硕博学位论文、期刊或单位指定版本",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [],
+      "report_focus": "作业文本相似比、相似片段和来源"
+    },
+    {
+      "code": "ky",
+      "canonical_name": "维普查重科研版",
+      "live_label": "科研版",
+      "aliases": [
+        "维普科研版",
+        "维普论文检测·科研版",
+        "科研论文查重",
+        "科研版"
+      ],
+      "family": "paper_similarity",
+      "pricing": {
+        "mode": "STEP",
+        "amount": "¥2.70",
+        "unit": "/1000字符",
+        "label": "¥2.70/1000字符",
+        "billing_rule": "按平台解析的计费字符数计件，不满1000字符通常按1000字符计"
+      },
+      "audience": "科研论文、项目材料和学术成果",
+      "use": "科研通知或单位明确要求科研版时检查文字相似性",
+      "not_for": "自动替代期刊编辑部版、职称版或学校终检",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [],
+      "report_focus": "科研材料相似比、来源和公开数据库命中情况"
+    },
+    {
+      "code": "aigc",
+      "canonical_name": "维普AIGC检测",
+      "live_label": "AIGC",
+      "aliases": [
+        "维普 AIGC 检测",
+        "维普·AIGC检测",
+        "维普AIGC检测（AI率检测）",
+        "维普AI率检测",
+        "AIGC检测",
+        "AI生成检测"
+      ],
+      "family": "aigc",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥17.99",
+        "unit": "/篇",
+        "label": "¥17.99/篇",
+        "billing_rule": "按篇计费，是否存在当前字数限制以实时页面和订单配置为准"
+      },
+      "audience": "需要评估文本疑似 AI 生成特征的论文、作业和稿件",
+      "use": "输出疑似 AIGC 生成占比、人工撰写占比和可疑段落提示",
+      "not_for": "文字查重率、作者身份认定、学术不端最终认定或学校 AIGC 终检承诺",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp?category=aigc",
+      "alternate_routes": ["/aigc-check", "/paper-aigc"],
+      "special_fields": [],
+      "report_focus": "疑似 AIGC 生成占比、人工撰写占比和段落风险"
+    },
+    {
+      "code": "format_dxs",
+      "canonical_name": "维普格式检测·大学生版",
+      "live_label": "格式检测大学生版",
+      "aliases": [
+        "维普格式检测",
+        "维普论文格式检测·大学生版",
+        "维普格式检测大学生版",
+        "论文格式检测",
+        "格式检测大学生版"
+      ],
+      "family": "format",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥30.00",
+        "unit": "/篇",
+        "label": "¥30.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "大学生论文最终排版和提交前格式自查",
+      "use": "检查章节、字体、编号、引用、参考文献和标注等格式风险",
+      "not_for": "文字查重、AIGC 判定或学校自定义模板的最终合格承诺",
+      "extensions": [".doc", ".docx"],
+      "route": "/pwp",
+      "special_fields": ["应上传最终排版文件；学校模板优先于平台通用模板"],
+      "report_focus": "格式问题清单、排版和引用标注提示"
+    },
+    {
+      "code": "zzzp_dxs",
+      "canonical_name": "维普斟知智评·大学生版",
+      "live_label": "斟知智评大学生版",
+      "aliases": [
+        "维普斟知智评大学生版",
+        "维普智评大学生版",
+        "斟知智评大学生版",
+        "大学生智评",
+        "本科论文智评"
+      ],
+      "family": "intelligent_review",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥32.00",
+        "unit": "/篇",
+        "label": "¥32.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "本科论文的选题、结构、论证和写作质量辅助评阅",
+      "use": "生成本科论文综合评阅和可执行的修改提示",
+      "not_for": "导师意见、盲审结论、答辩结论或保证通过",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [
+        "按页面选择学校/院校",
+        "按页面选择学科/专业分类"
+      ],
+      "report_focus": "选题、摘要、结构、论证、创新、语言和规范性建议"
+    },
+    {
+      "code": "zzzp_yjs",
+      "canonical_name": "维普斟知智评·研究生版",
+      "live_label": "斟知智评研究生版",
+      "aliases": [
+        "维普斟知智评研究生版",
+        "维普智评研究生版",
+        "斟知智评研究生版",
+        "研究生智评",
+        "硕博论文智评"
+      ],
+      "family": "intelligent_review",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥75.00",
+        "unit": "/篇",
+        "label": "¥75.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "硕士、博士研究生学位论文的综合质量辅助评阅",
+      "use": "检查研究生论文的结构完整性、论证质量和写作风险",
+      "not_for": "学位评审、盲审、导师签字或学校终审",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": [
+        "按页面选择学校/院校",
+        "按页面选择学科/专业分类"
+      ],
+      "report_focus": "研究生论文综合质量分析和修改建议"
+    },
+    {
+      "code": "zzzp_qkb",
+      "canonical_name": "维普斟知智评·期刊版",
+      "live_label": "斟知智评期刊版",
+      "aliases": [
+        "维普斟知智评期刊版",
+        "维普智评期刊版",
+        "斟知智评期刊版",
+        "期刊智评",
+        "投稿智评"
+      ],
+      "family": "intelligent_review",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥32.00",
+        "unit": "/篇",
+        "label": "¥32.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "期刊投稿前的稿件结构、质量和表达辅助评阅",
+      "use": "从编辑视角发现稿件质量、结构和投稿准备问题",
+      "not_for": "编辑部外审、录用承诺、同行评审或正式审稿意见",
+      "extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"],
+      "route": "/pwp",
+      "special_fields": ["按页面选择期刊/稿件分类；当前脚本默认传 zzClassType=1"],
+      "report_focus": "稿件质量、结构、规范和投稿前修改建议"
+    },
+    {
+      "code": "special_ref_quality",
+      "canonical_name": "维普参考文献质量检测",
+      "live_label": "参考文献质量检测",
+      "aliases": [
+        "参考文献质量检测",
+        "维普参考文献检测",
+        "参考文献规范检测",
+        "文献质量检测"
+      ],
+      "family": "specialized",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥18.00",
+        "unit": "/篇",
+        "label": "¥18.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "参考文献列表和引用已经基本定稿的论文",
+      "use": "检查参考文献著录、引用规范和质量风险",
+      "not_for": "完整论文查重、文献真实性绝对证明或学校格式验收",
+      "extensions": [".docx"],
+      "route": "/pwp",
+      "special_fields": ["前端当前主要接受 docx；以实时页面限制为准"],
+      "report_focus": "参考文献著录和引用风险清单"
+    },
+    {
+      "code": "special_proofread",
+      "canonical_name": "维普斟校对",
+      "live_label": "斟校对",
+      "aliases": [
+        "维普斟校对",
+        "斟校对",
+        "维普文字校对",
+        "论文校对"
+      ],
+      "family": "specialized",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥2.00",
+        "unit": "/篇",
+        "label": "¥2.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "需要做文字质量初筛的论文和稿件",
+      "use": "辅助发现错别字、标点、用词和语法问题",
+      "not_for": "事实核验、学术内容审稿、查重或自动替用户改写全文",
+      "extensions": [".docx"],
+      "route": "/pwp",
+      "special_fields": ["前端当前主要接受 docx；结果必须人工复核上下文"],
+      "report_focus": "文字、标点、用词和语法提示"
+    },
+    {
+      "code": "special_data_image_pro",
+      "canonical_name": "维普数据与图像可信度检测·专业版",
+      "live_label": "数据与图像可信度检测专业版",
+      "aliases": [
+        "维普数据与图像可信度检测专业版",
+        "数据与图像可信度检测·专业版",
+        "数据图像专业检测",
+        "数据图像可信度专业版"
+      ],
+      "family": "specialized",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥180.00",
+        "unit": "/篇",
+        "label": "¥180.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "包含实验数据、统计图表或科研图像的高风险材料",
+      "use": "对数据和图像可信度做专业级专项核查",
+      "not_for": "普通文字查重、AIGC 检测、法定鉴定或绝对真实性证明",
+      "extensions": [".doc", ".docx", ".pdf"],
+      "route": "/pwp",
+      "special_fields": ["上传包含原始数据/图像上下文的完整文件，避免只上传截图"],
+      "report_focus": "数据和图像可信度专项风险"
+    },
+    {
+      "code": "special_data_image_standard",
+      "canonical_name": "维普数据与图像可信度检测·标准版",
+      "live_label": "数据与图像可信度检测标准版",
+      "aliases": [
+        "维普数据与图像可信度检测标准版",
+        "数据与图像可信度检测·标准版",
+        "数据图像标准检测",
+        "数据图像可信度标准版"
+      ],
+      "family": "specialized",
+      "pricing": {
+        "mode": "FIXED",
+        "amount": "¥120.00",
+        "unit": "/篇",
+        "label": "¥120.00/篇",
+        "billing_rule": "按篇计费"
+      },
+      "audience": "需要做数据和图像可信度基础筛查的论文和科研材料",
+      "use": "对数据和图像可信度做标准级专项检查",
+      "not_for": "专业级深度核查、完整文字查重、AIGC 或法定鉴定",
+      "extensions": [".doc", ".docx", ".pdf"],
+      "route": "/pwp",
+      "special_fields": ["需要更深核查时与专业版比较，不要把标准版理解为查重低配版"],
+      "report_focus": "数据和图像可信度标准级风险"
+    }
+  ]
+}

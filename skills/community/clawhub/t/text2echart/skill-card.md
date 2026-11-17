@@ -1,44 +1,58 @@
-## Description: <br>
-Converts chart requests and structured CSV or JSON data into ECharts chart configurations, HTML previews, and optional SVG or PNG exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+text2echart generates ECharts chart configurations and HTML, SVG, or PNG outputs from CSV, JSON, or explicit chart requests.
 
-## Publisher: <br>
-[ifeel-is-a-mouse](https://clawhub.ai/user/ifeel-is-a-mouse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ifeel-is-a-mouse](https://clawhub.ai/user/ifeel-is-a-mouse)
 
-## Use Case: <br>
-Developers and agents use this skill to turn chart requests or CSV/JSON data into ECharts visualizations for reports, previews, and local export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML is executable content. <br>
-Mitigation: Open generated HTML only from trusted data and review chart options before sharing or publishing. <br>
-Risk: CDN-based chart output can fail offline or depend on external script loading. <br>
-Mitigation: Use --embed when offline or reproducible output is needed. <br>
-Risk: SVG or PNG export may use Playwright and temporary files. <br>
-Mitigation: Run export workflows in a trusted local workspace and review generated files before reuse. <br>
+## Use Case:
 
+Developers, analysts, and external users use text2echart to turn CSV/JSON data or explicit chart requests into ECharts visualizations for reports, previews, and local export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ifeel-is-a-mouse/text2echart) <br>
-- [Apache ECharts option documentation](https://echarts.apache.org/en/option.html) <br>
-- [ECharts wordcloud documentation](https://ecomfe.github.io/echarts-wordcloud/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTML, JSON, and shell command snippets; CLI workflows may produce HTML, SVG, or PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SVG and PNG export paths may use Playwright; --embed can create offline HTML output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.10 (source: server release metadata) <br>
+Risk: Crafted chart input can execute scripts in generated chart HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted chart data and JSON, and treat generated chart HTML as executable content before opening or sharing it.
+
+Risk: Screenshot and SVG rendering depend on Playwright and use temporary HTML files.
+
+Mitigation: Pin Playwright when installing screenshot support, prefer offline/embed mode for sensitive data, and review generated files before rendering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ifeel-is-a-mouse/skills/text2echart)
+- [Prompt guide](prompt.md)
+- [ECharts option reference](references/echarts-option-reference.md)
+- [ECharts Chinese option reference](references/echarts-option-zh.md)
+- [ECharts wordcloud reference](references/echarts-wordcloud.md)
+- [Apache ECharts option documentation](https://echarts.apache.org/en/option.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown responses containing ECharts option JSON, HTML code blocks, CLI commands, and generated HTML/SVG/PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports browser preview and offline embedded HTML; screenshot and standalone SVG extraction require Playwright.]
+
+## Skill Version(s):
+
+2.3.11 (source: SKILL.md metadata and server release metadata; artifact/package.json reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

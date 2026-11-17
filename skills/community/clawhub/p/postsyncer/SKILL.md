@@ -1,6 +1,6 @@
 ---
 name: postsyncer-social-media-assistant
-version: 2.2.1
+version: 2.2.2
 title: Social Media Assistant (via postsyncer.com)
 description: Manages social media through PostSyncer using REST and/or MCP. Use when scheduling, posting, or managing content across Instagram, TikTok, YouTube, X (Twitter), LinkedIn, Facebook, Threads, Bluesky, Pinterest, Telegram, Mastodon. Covers posts (including Reels/video cover images), media library (list, import URLs, delete, multipart file upload), media folders (CRUD), comments with optional `media` attachments, labels, campaigns, and analytics. Accounts must be pre-connected in the PostSyncer app.
 license: MIT
@@ -22,13 +22,13 @@ Autonomously manage social media through [PostSyncer](https://postsyncer.com) us
 ## Setup
 
 1. Create a PostSyncer account at [app.postsyncer.com](https://app.postsyncer.com)
-2. [Connect social profiles](https://app.postsyncer.com/dashboard?action=accounts) (Instagram, TikTok, YouTube, X, LinkedIn, etc.)
-3. Go to [**Settings → API Integrations**](https://app.postsyncer.com/dashboard?action=settings&section=api-integrations) and create a personal access token with abilities: `workspaces`, `accounts`, `posts`, and (if you use them) `labels`, `campaigns`
+2. [Connect social profiles](https://app.postsyncer.com/accounts) (Instagram, TikTok, YouTube, X, LinkedIn, etc.)
+3. Go to [**Settings → API**](https://app.postsyncer.com/settings/api) and create a personal access token with abilities: `workspaces`, `accounts`, `posts`, and (if you use them) `labels`, `campaigns`
 4. Add to `.env`: `POSTSYNCER_API_TOKEN=your_token`
 
 ## PostSyncer MCP (optional)
 
-[PostSyncer MCP](https://postsyncer.com/openclaw) uses the **same Bearer token** as REST. Typical tools: `list-workspaces`, `list-accounts`, post CRUD (including `content[].cover_image` for Reels/video covers), **`get-post-by-url`**, **`get-post-by-platform-post-id`**, **`analyze-twitter-post`** (fetch any public X/Twitter URL, load replies, answer a question with AI), **`list-media`**, **`get-media`**, **`upload-media-from-url`**, **`upload-media-file`** (base64, same rules as REST file upload), **`delete-media`**, **`list-folders`**, **`create-folder`**, **`get-folder`**, **`update-folder`**, **`delete-folder`**, comments, labels, campaigns, analytics.
+[PostSyncer MCP](https://postsyncer.com/openclaw) (`https://postsyncer.com/mcp`, Streamable HTTP) connects three ways: **(1) as the official ChatGPT app** — [install it from the ChatGPT app directory](https://chatgpt.com/plugins/plugin_asdk_app_6a632759aaf08191bf66f22649ac22cd); **(2) as a connector** — clients that support OAuth (e.g. Claude custom connectors) add the URL and authorize in PostSyncer, with no token to paste; or **(3) with the same Bearer token** as REST (`Authorization: Bearer $POSTSYNCER_API_TOKEN`). Typical tools: `list-workspaces`, `list-accounts`, post CRUD (including `content[].cover_image` for Reels/video covers), **`get-post-by-url`**, **`get-post-by-platform-post-id`**, **`analyze-twitter-post`** (fetch any public X/Twitter URL, load replies, answer a question with AI), **`list-media`**, **`get-media`**, **`upload-media-from-url`**, **`upload-media-file`** (base64, same rules as REST file upload), **`delete-media`**, **`list-folders`**, **`create-folder`**, **`get-folder`**, **`update-folder`**, **`delete-folder`**, comments, labels, campaigns, analytics.
 
 **Raw multipart** (`POST /api/v1/media/upload/file`) is usually easier from curl/scripts; MCP uses **`upload-media-file`** with base64 for clients that only send JSON tool arguments.
 
@@ -260,7 +260,7 @@ curl -X DELETE "https://postsyncer.com/api/v1/posts/123" \
 
 **Analyze X/Twitter Post (AI)** — `POST /api/v1/posts/analyze-twitter`
 
-Fetch any public X/Twitter status URL, load all replies, and answer a question with Claude Sonnet 4.6. The post does not need to exist in PostSyncer.
+Fetch any public X/Twitter status URL, load all replies, and answer a question. The post does not need to exist in PostSyncer.
 
 ```bash
 curl -X POST "https://postsyncer.com/api/v1/posts/analyze-twitter" \

@@ -1,44 +1,54 @@
-## Description: <br>
-Code quality and safety linter for OpenClaw skills. Runs 6 analysis passes before you install. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan a third-party OpenClaw skill with ClawVet and act on its A to F grade before installing or trusting it. Use when the user says "scan this skill", "is this skill safe", "vet/check this skill", "should I install this", "audit my skills", or "clawvet", or hands you a SKILL.md from ClawHub or another untrusted source.
 
-## Publisher: <br>
-[MohibShaikh](https://clawhub.ai/user/MohibShaikh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mohibshaikh](https://clawhub.ai/user/mohibshaikh)
 
-## Use Case: <br>
-Developers and security reviewers use Clawvet to scan OpenClaw skill files for prompt injection, credential theft, remote code execution, typosquatting, and supply-chain risks before installation or CI release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads local skill files and can audit installed OpenClaw skill directories. <br>
-Mitigation: Run it only on skill directories you intend to inspect, and avoid pointing it at unrelated workspaces or sensitive local files. <br>
-Risk: Optional telemetry, remote fetching, and cloud semantic analysis may disclose scan context or metadata outside the local machine. <br>
-Mitigation: Review configuration before use, keep cloud analysis opt-in for sensitive skills, and disclose telemetry/provider behavior to users. <br>
-Risk: The bundled API/dashboard includes auth, scan history, cloud analysis, telemetry, and webhook behavior that may be unsafe for shared deployment without review. <br>
-Mitigation: Do not expose the API/dashboard publicly until auth, JWT settings, scan ownership checks, webhook URL restrictions, and telemetry/provider disclosures are tightened. <br>
+## Use Case:
 
+Developers use ClawVet to scan third-party OpenClaw skills, review the scanner's A to F grade and coverage, and decide whether to install or trust them. It also provides commands for auditing installed skills and configuring an install gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MohibShaikh/clawvet) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/MohibShaikh) <br>
-- [npm package](https://www.npmjs.com/package/clawvet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON, SARIF, Markdown snippets, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm. The CLI can audit local skill directories, fetch remote skills, and optionally use telemetry or cloud semantic analysis when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The scan was partial because several local references could not be resolved, so the benign verdict does not guarantee zero risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve the missing references and scan the complete local skill before relying on the result.
+
+Risk: The security guidance notes an unpinned package reference.
+
+Mitigation: Confirm that you trust the package source and pin its version when reproducibility is important.
+
+## Reference(s):
+
+- [ClawVet source repository](https://github.com/MohibShaikh/clawvet)
+- [ClawVet on ClawHub](https://clawhub.ai/mohibshaikh/skills/clawvet)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell commands and scanner findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on scan coverage and the scanner's reported grade.]
+
+## Skill Version(s):
+
+0.14.0 (source: frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

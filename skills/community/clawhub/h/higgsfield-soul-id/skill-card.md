@@ -1,44 +1,59 @@
-## Description: <br>
-Train a Soul Character, a personalized model on a person's face that Higgsfield uses for identity-faithful image and video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trains a reusable Higgsfield Soul Character from face photos for identity-faithful image and video generation.
 
-## Publisher: <br>
-[higgsfield](https://clawhub.ai/user/higgsfield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[higgsfield](https://clawhub.ai/user/higgsfield)
 
-## Use Case: <br>
-External users and creators use this skill to train a reusable Higgsfield Soul identity model from face photos, then use the returned Soul reference with Higgsfield image or cinematic generation tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a remote Higgsfield CLI before training begins. <br>
-Mitigation: Verify the Higgsfield CLI and installer through a trusted source before running the embedded install command. <br>
-Risk: The skill uploads face photos to create a reusable identity model. <br>
-Mitigation: Only upload photos of yourself or someone who has explicitly consented, and review Higgsfield retention and deletion options for trained Soul models. <br>
-Risk: Soul training may affect the user's Higgsfield account or paid plan. <br>
-Mitigation: Confirm the intended Higgsfield account and paid-plan requirements before submitting training. <br>
+## Use Case:
 
+External users and creators use this skill to prepare face-photo inputs, train a personalized Higgsfield Soul model, and use the returned Soul ID in later Higgsfield image or cinematic generation workflows.
 
-## Reference(s): <br>
-- [Photo Guide](references/photo-guide.md) <br>
-- [Soul Troubleshooting](references/troubleshooting.md) <br>
-- [Higgsfield CLI installer](https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install or invoke the Higgsfield CLI, upload local face photos, poll training, and return a Soul reference for later generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks the agent to install the Higgsfield CLI through a remote installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source before execution and prefer a pinned, verified release or official package path.
+
+Risk: The workflow uploads face photos to create a reusable identity model.
+
+Mitigation: Use only photos the user has the right to upload and confirm explicit comfort with sending those photos to Higgsfield before training.
+
+Risk: Training may proceed without enough privacy, consent, or account-plan clarity.
+
+Mitigation: Confirm the authenticated account, paid-plan requirement, and intended downstream use before submitting a training job.
+
+## Reference(s):
+
+- [Photo Guide](references/photo-guide.md)
+- [Soul Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/higgsfield/skills/higgsfield-soul-id)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Higgsfield CLI commands, account or plan checks, photo quality guidance, and a reusable Soul ID after training completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

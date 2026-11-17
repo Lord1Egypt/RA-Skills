@@ -1,44 +1,58 @@
-## Description: <br>
-Use this skill when the user asks for Apple Health summaries, trends, alerts, or check-ins from the local collector. Validate collector connectivity over HTTP and fetch fresh data with shell commands before giving coaching-style guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents query locally synced Apple Health, live heart-rate, and Whoop data from SQLite and summarize health metrics with coaching-style, non-medical guidance.
 
-## Publisher: <br>
-[ajde0606](https://clawhub.ai/user/ajde0606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajde0606](https://clawhub.ai/user/ajde0606)
 
-## Use Case: <br>
-Users and developers use this skill to query local Apple Health, live heart-rate, and Whoop-style wearable data, then receive concise summaries, trends, alerts, and coaching-style guidance grounded in recent measurements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and displays sensitive local health, live heart-rate, and wearable data. <br>
-Mitigation: Keep query windows narrow, protect .env and database files, and avoid sharing transcripts or logs that contain health metrics. <br>
-Risk: Whoop setup and sync guidance may involve credentials, tokens, scheduled syncs, and scripts that are not included in this artifact. <br>
-Mitigation: Review the referenced setup and sync scripts, token storage, and data destination before running Whoop authorization, sync, or cron steps. <br>
-Risk: Coaching-style summaries of health metrics can be mistaken for medical advice. <br>
-Mitigation: Keep responses informational, tie suggestions to observed values, and recommend clinician contact for extreme or persistent readings. <br>
+## Use Case:
 
+Developers and end users use this skill to answer Apple Health, live heart-rate, and Whoop questions from a trusted local SQLite database. It returns metric summaries, trends, alerts, workout and recovery context, and practical next steps with non-medical safety framing.
 
-## Reference(s): <br>
-- [Apple Health Query Skill](SKILL.md) <br>
-- [Whoop Query Skill](WHOOP_SKILL.md) <br>
-- [Whoop Developer Portal](https://developer.whoop.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown narrative with inline shell commands and JSON-derived metric summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in local SQLite query results and expected to include informational safety framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive health data from a local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted local database and review outputs before acting on health-related guidance.
+
+Risk: Live-heart-rate queries may be weakly scoped in shared or multi-user tables.
+
+Mitigation: Do not run live-heart-rate queries against shared tables unless a user-level filter is added.
+
+Risk: Broad .env loading may expose unrelated secrets to the query scripts' process environment.
+
+Mitigation: Keep unrelated secrets out of the same .env file used by this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajde0606/skills/apple-health-skills)
+- [WHOOP Developer Platform](https://developer.whoop.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and summaries derived from JSON query output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite the queried time window, use observed values and timestamps, and state that health guidance is informational and not medical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

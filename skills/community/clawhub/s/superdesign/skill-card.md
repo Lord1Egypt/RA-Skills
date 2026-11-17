@@ -1,38 +1,49 @@
-## Description: <br>
-Expert frontend design guidelines for creating beautiful, modern UIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert frontend design guidelines for creating beautiful, modern UIs. Use when building landing pages, dashboards, or any user interface.
 
-## Publisher: <br>
-[mpociot](https://clawhub.ai/user/mpociot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mpociot](https://clawhub.ai/user/mpociot)
 
-## Use Case: <br>
-Developers and designers use this skill to plan and implement frontend components, landing pages, dashboards, and other user interfaces with structured layout, theme, animation, responsiveness, and accessibility guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML snippets may include third-party CDN scripts, unpinned @latest dependencies, or external image services. <br>
-Mitigation: Review and pin external scripts and image sources before using generated snippets in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SuperDesign](https://superdesign.dev) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mpociot/superdesign) <br>
+## Use Case:
 
+Developers and designers use this skill to plan and implement frontend interfaces, including landing pages, dashboards, UI components, responsive layouts, themes, animations, and accessibility details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose HTML, CSS, Tailwind, Flowbite, Lucide, image-service, and accessibility guidance for frontend work.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prototype CDN snippets can create supply-chain risk if copied directly into production projects.
+
+Mitigation: For production, use locked package dependencies, pinned versions, bundled assets, or SRI-protected CDN resources.
+
+## Reference(s):
+
+- [ClawHub SuperDesign Skill](https://clawhub.ai/mpociot/skills/superdesign)
+- [SuperDesign](https://superdesign.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with example HTML, CSS, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include frontend implementation recommendations, responsive design guidance, accessibility checks, and prototype CDN snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

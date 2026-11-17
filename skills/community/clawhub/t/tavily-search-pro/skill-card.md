@@ -1,39 +1,53 @@
-## Description: <br>
-Tavily Search Pro gives agents Tavily-powered web, news, and finance search plus URL extraction, site crawling, sitemap discovery, and deep research with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Search Pro lets agents use Tavily for web, news, and finance search; URL content extraction; website crawling; sitemap discovery; and deep research with citations.
 
-## Publisher: <br>
-[Shaharsha](https://clawhub.ai/user/Shaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaharsha](https://clawhub.ai/user/shaharsha)
 
-## Use Case: <br>
-Developers and agents use this skill to query Tavily for current web, news, and finance information, extract URL content, crawl or map websites, and produce research outputs with citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries, URLs, crawl targets, and research prompts are sent to Tavily. <br>
-Mitigation: Use only data approved for disclosure to Tavily, and avoid confidential internal URLs, secrets, personal data, and regulated material unless organizational policy permits it. <br>
-Risk: The skill requires a Tavily API key for use. <br>
-Mitigation: Use a revocable API key and run the dependency installation and skill execution in an isolated Python environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Shaharsha/tavily-search-pro) <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-backed searches, extract URL content, crawl or map websites, and generate research reports with citations from a command-line interface.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, or structured JSON returned from command-line invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Tavily search results, extracted page content, crawled pages, sitemap URLs, research reports, citations, image URLs, scores, publication dates, and API error messages depending on command options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User queries and URLs are sent to Tavily's external service.
+
+Mitigation: Use the skill only with non-sensitive queries and URLs unless external processing has been approved.
+
+Risk: The installer uses an unpinned tavily-python dependency in the shared Python environment.
+
+Mitigation: Install the dependency in an isolated virtual environment and pin tavily-python before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/shaharsha/skills/tavily-search-pro)
+- [Tavily application](https://app.tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text, Markdown, or structured JSON from Tavily-backed command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY and supports search, news, finance, extract, crawl, map, and research modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

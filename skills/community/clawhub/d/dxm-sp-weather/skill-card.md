@@ -1,44 +1,59 @@
-## Description: <br>
-Helps an agent answer user weather questions and query weather-service orders, quota, purchase details, and API call logs through the Duxiaoman weather service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weather queries through dxmpay.com and supports account initialization, order, quota, purchase detail, and usage-log lookups for the weather service.
 
-## Publisher: <br>
-[duxiaoman](https://clawhub.ai/user/duxiaoman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duxiaoman](https://clawhub.ai/user/duxiaoman)
 
-## Use Case: <br>
-External users use this skill to query city/date weather information and inspect paid weather-service account state, including orders, quota, purchase details, and API call history. The agent may guide the user through purchase or recharge flows when the service reports insufficient quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill integrates with a paid weather service and may send weather queries, account identifiers, payment links, and QR contents to dxmpay.com. <br>
-Mitigation: Install only if the user trusts dxmpay.com, and review payment destinations before scanning or opening payment links. <br>
-Risk: The skill stores an encrypted local EC private key configuration and requires a private-key password during use. <br>
-Mitigation: Use a strong password, avoid exposing it in logs or shared shells, and remove the local configuration when it is no longer needed. <br>
-Risk: The bundled QR helper can write PNG files and the security evidence notes that QR contents may be sent to dxmpay.com. <br>
-Mitigation: Review QR contents and destinations before use, and clean up generated QR PNG files after the workflow completes. <br>
+## Use Case:
 
+External users can ask an agent for city/date weather information and inspect their weather-service orders, quota, purchase details, and API usage records. The skill is intended for workflows that are comfortable using dxmpay.com for service access and payment-related flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duxiaoman/dxm-sp-weather) <br>
-- [Duxiaoman publisher profile](https://clawhub.ai/user/duxiaoman) <br>
-- [Duxiaoman weather service endpoint](https://www.dxmpay.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration and QR PNG files while using the bundled helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The service provider receives weather queries, account metadata, purchase details, and QR-related content handled by the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when dxmpay.com is trusted for those data categories, and keep SP_WEATHER_BASE unset unless the replacement endpoint is fully controlled and trusted.
+
+Risk: The private-key password can be exposed if placed directly in command text, logs, or shell history.
+
+Mitigation: Provide the password through an interactive prompt when possible and avoid sharing commands that inline SP_WEATHER_PASSWORD.
+
+Risk: Generated QR files are persistent local artifacts.
+
+Mitigation: Review the output directory after payment flows and delete QR files that should not remain on disk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duxiaoman/skills/dxm-sp-weather)
+- [Publisher profile](https://clawhub.ai/user/duxiaoman)
+- [dxmpay weather service endpoint](https://www.dxmpay.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command responses summarized as user-facing text or Markdown, with shell command invocations when the agent runs the bundled CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create an encrypted local sp-weather-config.json and persistent QR PNG artifacts that users may need to clean up.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

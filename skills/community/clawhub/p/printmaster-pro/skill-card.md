@@ -1,39 +1,54 @@
-## Description: <br>
-PrintMaster Pro helps agents provide print layout, preflight, CMYK conversion, PDF export, bleed, and pagination guidance for business forms, cards, flyers, packaging, and books. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+印刷排版全能助手。商用表格/名片/宣传单/包装/书籍的排版、预检、色彩转换、PDF导出全流程。遇到印刷、打印、CMYK、PDF导出、出血位、表格跨页问题时调用此技能。融合全球排版最佳实践，专为印刷行业定制。
 
-## Publisher: <br>
-[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023)
 
-## Use Case: <br>
-External users, print operators, designers, and document preparers use this skill to check print-ready layout requirements, including bleed, margins, CMYK color, font embedding, image resolution, table pagination, binding, and PDF/X export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Print specifications may not match a specific printer, stock, binding method, or production workflow. <br>
-Mitigation: Confirm final bleed, color mode, fonts, PDF/X settings, and printer-specific requirements before production. <br>
+## Use Case:
 
+External users and print-production teams use this Chinese-language skill to plan, preflight, and package commercial print layouts for business tables, cards, flyers, packaging, and books.
 
-## Reference(s): <br>
-- [PrintMaster Pro on ClawHub](https://clawhub.ai/tlcyqj2023/printmaster-pro) <br>
-- [Publisher profile: tlcyqj2023](https://clawhub.ai/user/tlcyqj2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, tables, and step-by-step print-preparation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution, credentials, network access, persistence, or hidden actions are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Print settings, PDF permissions, font licensing, or customer-identifying filenames may be unsuitable for sensitive or restricted documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those settings and filenames before applying the skill's guidance to sensitive print jobs.
+
+Risk: The skill provides checklist guidance rather than automated verification.
+
+Mitigation: Have a qualified reviewer confirm bleed, color mode, font embedding, and PDF export settings before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlcyqj2023/skills/printmaster-pro)
+- [Publisher profile](https://clawhub.ai/user/tlcyqj2023)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance, checklists, tables, and print-production settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language print layout and preflight guidance; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

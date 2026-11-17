@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "github-trending-cn",
+  "name": "github-trending-cn",
   "version": "1.0.0",
-  "publishedAt": 1771669031200
+  "description": "GitHub 趋势监控 | GitHub Trending Monitor",
+  "author": "guohongbin-git",
+  "tags": ["github", "trending", "opensource", "developer", "chinese"]
 }

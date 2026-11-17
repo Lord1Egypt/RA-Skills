@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a guardian portal for monitoring child activity, managing screen time, setting content filters, and receiving real-time alerts with PIN protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a guardian portal for monitoring child activity, managing screen time, setting content filters, and receiving real-time alerts with PIN protection.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Parents, guardians, and authorized school administrators use this skill to review blocked content, manage screen time, configure content filters, and receive activity reports or critical-content alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Monitoring settings, alert emails, and generated reports may expose sensitive child activity information if configured for the wrong recipient or handled casually. <br>
-Mitigation: Confirm the alert email and monitoring settings before installation, use the skill only where supervision is authorized, and treat reports as private records. <br>
-Risk: Use in schools or shared environments may be inappropriate without consent or a clear supervisory authority. <br>
-Mitigation: Deploy only for accounts or devices where the operator has authority to supervise and document consent requirements before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raghulpasupathi/parental-controls) <br>
-- [Publisher profile](https://clawhub.ai/user/raghulpasupathi) <br>
+## Use Case:
 
+Parents, guardians, and authorized school administrators use this skill to monitor activity, manage screen time, review blocked content, and receive reports or high-risk content alerts with consent where required.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, markdown] <br>
-**Output Format:** [Markdown with configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monitoring settings, alert email configuration, report descriptions, and content filter categories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can record blocked activity and send alerts or weekly reports, which may expose sensitive child or student activity data.
+
+Mitigation: Confirm recipients, stored data, retention, and access controls before use.
+
+Risk: Use in school or shared-device settings may require consent and compliance with local policy or law.
+
+Mitigation: Deploy only where monitoring is lawful, disclosed, and consented to where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raghulpasupathi/skills/parental-controls)
+- [Publisher profile](https://clawhub.ai/user/raghulpasupathi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown with JSON configuration example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes alert, reporting, PIN protection, screen-time, and allow/block list settings for guardian review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

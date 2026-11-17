@@ -1,46 +1,58 @@
-## Description: <br>
-Agent Cluster is a multi-agent business automation framework for B2B e-commerce, CMS, Amazon, and ERP workflows with specialist agents for inventory, procurement, finance, logistics, approvals, and engine routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Cluster coordinates ecommerce, ERP, CMS, inventory, procurement, finance, logistics, and model execution workflows through a multi-agent system for B2B foreign-trade operations.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Developers and business-operations teams use this skill to coordinate multi-agent workflows across CMS, ERP, Amazon, inventory, procurement, finance, and logistics systems. It is intended for automation scenarios that require connector configuration, approval gates, audit logging, and least-privilege credential handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package can require ERP, CMS, Amazon, model-provider, and other sensitive credentials while supporting live commerce or business-system operations. <br>
-Mitigation: Review the full scope with an administrator, use separate least-privilege credentials, and keep live write or delete operations disabled until permissions, approval gates, and connectors are verified. <br>
-Risk: Local logs, memory, and snapshots may retain sensitive operational or customer data. <br>
-Mitigation: Store generated data only in approved locations, verify redaction behavior, restrict file access, and set retention limits before production use. <br>
-Risk: The public CMS-focused summary understates the broader enterprise automation, marketing, security-audit, and customer-service capabilities present in the artifact. <br>
-Mitigation: Perform an administrator review of enabled modules and disable unneeded capabilities before installation or deployment. <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure and run coordinated agents for B2B ecommerce, CMS publishing, ERP integration, inventory checks, procurement workflows, finance review, logistics tracking, and execution-engine routing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/agent-cluster) <br>
-- [Project Homepage](https://github.com/WangM-A3/agent-cluster) <br>
-- [README](README.md) <br>
-- [Security Statement](SECURITY.md) <br>
-- [Pricing](PRICING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, Python code, YAML/JSON configuration, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require ERP, CMS, Amazon, Anthropic, and DeepSeek credentials depending on enabled connectors and execution engines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.4 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: The security verdict is suspicious because the package bundles a broader ERP, CMS, and agent system than advertised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scope before installation and confirm that the bundled ERP, CMS, Amazon, and model integrations are intended for the deployment.
+
+Risk: Unsafe CMS execution paths may make live changes or upload local files under weak controls.
+
+Mitigation: Use an isolated test environment until preview handling, approval timeouts, upload paths, and audit logging are fixed and verified.
+
+Risk: Real ERP, CMS, Amazon, or model API credentials could be exposed or misused during evaluation.
+
+Mitigation: Grant only narrowly scoped test credentials and do not provide production credentials until the security issues identified by clawscan are resolved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/agent-cluster)
+- [ClawDIS homepage](https://github.com/WangM-A3/agent-cluster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, YAML or JSON-style configuration, and workflow descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mermaid diagrams, API examples, task plans, approval records, audit guidance, and generated or modified project files.]
+
+## Skill Version(s):
+
+3.0.4 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

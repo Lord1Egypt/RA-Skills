@@ -1,40 +1,54 @@
-## Description: <br>
-Log Sift filters large log files by keywords and date ranges from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log Sift filters large log files by keywords and timestamp ranges from files or stdin.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, SREs, and support engineers use Log Sift to narrow large logs to relevant time windows or matching keywords during troubleshooting and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads whichever local log file or stdin stream the user provides, which may contain sensitive data. <br>
-Mitigation: Run it only on logs you are authorized to inspect and avoid exposing sensitive output in shared terminals or transcripts. <br>
-Risk: The artifact provides a Python script but no installer or wrapper. <br>
-Mitigation: Run tool.py directly or create a reviewed wrapper before relying on a log_sift command in automation. <br>
+## Use Case:
 
+Developers and operations engineers use Log Sift to inspect application or server logs during troubleshooting, filtering noisy output by keywords and time windows.
 
-## Reference(s): <br>
-- [Log Sift on ClawHub](https://clawhub.ai/albionaiinc-del/log-sift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints matching log lines from a selected file or stdin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Logs can contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run Log Sift only on files the user intends to inspect and handle filtered output according to the applicable data handling policy.
+
+Risk: Date-only examples may not match the script's default full-timestamp parser.
+
+Mitigation: Use full timestamps or provide a matching --date-format when filtering by date.
+
+## Reference(s):
+
+- [ClawHub Log Sift skill page](https://clawhub.ai/albionaiinc-del/skills/log-sift)
+- [albionaiinc-del publisher profile](https://clawhub.ai/user/albionaiinc-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local log files or stdin and emits matching log lines; date filters require timestamps matching the configured date format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

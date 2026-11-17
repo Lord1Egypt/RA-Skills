@@ -1,0 +1,7 @@
+interface:
+  display_name: "GitLab DevOps"
+  short_description: "GitLab projects, MRs, and CI/CD operations"
+  default_prompt: "Use $gitlab-skills to inspect this GitLab project and its latest pipeline."
+
+policy:
+  allow_implicit_invocation: true

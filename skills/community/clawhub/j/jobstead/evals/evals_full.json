@@ -1,0 +1,242 @@
+[
+  {
+    "query": "found this posting for a 'Senior Data Engineer' at a company called Vantage Analytics in Berlin \u2014 is it even worth me applying? I'm on an H1B right now",
+    "should_trigger": true
+  },
+  {
+    "query": "ok i think i found a scam. this 'remote' listing for a data scientist role keeps asking me to pay a processing fee before they'll set up the interview, is that normal?",
+    "should_trigger": true
+  },
+  {
+    "query": "can you help me tell my story for this backend role at Lumen Health, i really want to explain why my bootcamp background actually fits",
+    "should_trigger": true
+  },
+  {
+    "query": "pick up where we left off with my job search, i think i had some companies i was tracking",
+    "should_trigger": true
+  },
+  {
+    "query": "i pasted my resume and this job listing for a marketing analyst role at Clearwater \u2014 build me a resume tailored to it",
+    "should_trigger": true
+  },
+  {
+    "query": "am i wasting my time even applying to this postgres DBA role, my only DB experience is a college project",
+    "should_trigger": true
+  },
+  {
+    "query": "quick gut check \u2014 is this role actually a fit for someone with my background or am i just going to get screened out",
+    "should_trigger": true
+  },
+  {
+    "query": "review this job posting for me, i want your honest take before i spend the evening on a cover letter",
+    "should_trigger": true
+  },
+  {
+    "query": "is this recruiting message legit? someone DMed me on linkedin about a 'data engineer' role and wants my SSN before a call",
+    "should_trigger": true
+  },
+  {
+    "query": "can you check my application tracker, i think i forgot which companies i already applied to this month",
+    "should_trigger": true
+  },
+  {
+    "query": "format this resume in ATS-friendly style, single column, standard fonts, that's literally all I need",
+    "should_trigger": false
+  },
+  {
+    "query": "I have a job to do this afternoon and honestly your help would speed things up \u2014 can you write a python script to rename these files",
+    "should_trigger": false
+  },
+  {
+    "query": "search this codebase for any function called validateJob and tell me what it does",
+    "should_trigger": false
+  },
+  {
+    "query": "auto-apply me to 50 software engineer jobs on LinkedIn today, i don't care about quality just volume",
+    "should_trigger": false
+  },
+  {
+    "query": "write me bullet points for the 'skills' section of my resume, generic ones I can reuse anywhere",
+    "should_trigger": false
+  },
+  {
+    "query": "what's a good interview answer for 'tell me about a time you failed'?",
+    "should_trigger": false
+  },
+  {
+    "query": "convert this markdown resume to a properly formatted ATS PDF",
+    "should_trigger": false
+  },
+  {
+    "query": "is this a scam email asking me to wire money for a puppy I saw online?",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm reviewing this quarterly report for typos before my boss sees it, can you take a look",
+    "should_trigger": false
+  },
+  {
+    "query": "should I apply for a mortgage or keep renting, trying to run the numbers",
+    "should_trigger": false
+  },
+  {
+    "query": "so i got laid off in march and im job hunting again, can u help me figure out if this backend eng role at Finch Robotics is actually worth going for",
+    "should_trigger": true
+  },
+  {
+    "query": "ngl i dont wanna waste another week tailoring a resume for a role thats not gonna go anywhere, can you check this staff engineer posting first",
+    "should_trigger": true
+  },
+  {
+    "query": "here's a job ad for 'Growth Marketing Manager' at a company i've never heard of called Skyline Ventures \u2014 feels off, can you check if its legit before i apply",
+    "should_trigger": true
+  },
+  {
+    "query": "i want to write a cover letter for this same role at Finch Robotics that actually explains my career switch from teaching to software",
+    "should_trigger": true
+  },
+  {
+    "query": "can you look at my tracker and tell me which applications i havent heard back from in 3+ weeks",
+    "should_trigger": true
+  },
+  {
+    "query": "this recruiter reached out over email about a 'logistics coordinator' role and it just feels like a scam, wants me to buy my own equipment first",
+    "should_trigger": true
+  },
+  {
+    "query": "hey it's been a couple weeks since we last talked about my job search, can we pick things back up",
+    "should_trigger": true
+  },
+  {
+    "query": "should I even bother applying to this senior PM role, i've only ever been an associate PM",
+    "should_trigger": true
+  },
+  {
+    "query": "tailor my resume for this exact job description i just pasted below, keep it honest about my gaps",
+    "should_trigger": true
+  },
+  {
+    "query": "is this job board (called 'GlobalTechHire') actually reputable or is it one of those sketchy ones that just aggregates scams",
+    "should_trigger": true
+  },
+  {
+    "query": "got a referral to apply at Nexus Health for a data analyst role, can you help me figure out if its a good fit given my background",
+    "should_trigger": true
+  },
+  {
+    "query": "someone in a discord server posted this 'work from home, $80/hr, no experience needed' data entry gig, smells like a scam to me",
+    "should_trigger": true
+  },
+  {
+    "query": "can u help me write my story for this frontend dev job, im coming from a bootcamp and dont wanna sound fake",
+    "should_trigger": true
+  },
+  {
+    "query": "whats my application status look like right now, i lost track of everything",
+    "should_trigger": true
+  },
+  {
+    "query": "i keep getting rejected after the resume screen for engineering manager roles, is this specific EM posting even realistic for me to apply to",
+    "should_trigger": true
+  },
+  {
+    "query": "can you check if this posting for 'remote' software engineer at Bright Path Solutions actually allows remote from Mexico",
+    "should_trigger": true
+  },
+  {
+    "query": "should i even submit an application for this role given the pay band listed is way below market",
+    "should_trigger": true
+  },
+  {
+    "query": "pls help me decide if this ux researcher posting at Comet Labs is worth my time, feeling burnt out on applying blindly",
+    "should_trigger": true
+  },
+  {
+    "query": "can you build out a cover letter and resume combo for this specific listing, i really care about this one",
+    "should_trigger": true
+  },
+  {
+    "query": "is this too good to be true? a 'director of engineering' role offering double my current salary with zero interview process",
+    "should_trigger": true
+  },
+  {
+    "query": "can you review this pull request for bugs before I merge it",
+    "should_trigger": false
+  },
+  {
+    "query": "help me build a personal portfolio website in React with a timeline component",
+    "should_trigger": false
+  },
+  {
+    "query": "is this stock a good buy right now, trying to decide if its worth the risk",
+    "should_trigger": false
+  },
+  {
+    "query": "can you track my package for me, it says out for delivery since yesterday",
+    "should_trigger": false
+  },
+  {
+    "query": "is this crypto project a scam, feels like a rug pull to me",
+    "should_trigger": false
+  },
+  {
+    "query": "help me write a formal complaint letter to my landlord about the job the contractor did on my apartment",
+    "should_trigger": false
+  },
+  {
+    "query": "can you check my grammar in this email to a client before I send it",
+    "should_trigger": false
+  },
+  {
+    "query": "should I apply sunscreen before or after moisturizer",
+    "should_trigger": false
+  },
+  {
+    "query": "can you check if this timeshare offer is a scam, they want $500 upfront for a 'processing fee'",
+    "should_trigger": false
+  },
+  {
+    "query": "is this online course platform legit or is it one of those scammy udemy clone sites",
+    "should_trigger": false
+  },
+  {
+    "query": "help me pick a title for my personal blog post about my recent hiking trip",
+    "should_trigger": false
+  },
+  {
+    "query": "can you tailor this workout plan to my schedule, I only have evenings free",
+    "should_trigger": false
+  },
+  {
+    "query": "is this apartment listing a scam, the landlord wants a deposit before showing the unit",
+    "should_trigger": false
+  },
+  {
+    "query": "review this contract before I sign it for a freelance graphic design project",
+    "should_trigger": false
+  },
+  {
+    "query": "should I apply for this small business loan or wait until rates drop",
+    "should_trigger": false
+  },
+  {
+    "query": "can you check my resume for typos really quick, nothing fancy, just proofreading",
+    "should_trigger": false
+  },
+  {
+    "query": "is this movie review site legit or is it just paid placements",
+    "should_trigger": false
+  },
+  {
+    "query": "help me track my expenses this month in a spreadsheet",
+    "should_trigger": false
+  },
+  {
+    "query": "can you check if this posting on craigslist for a used car is a scam",
+    "should_trigger": false
+  },
+  {
+    "query": "should I apply to grad school this cycle or wait a year",
+    "should_trigger": false
+  }
+]

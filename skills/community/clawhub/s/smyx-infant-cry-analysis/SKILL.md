@@ -1,7 +1,7 @@
 ---
 name: "infant-cry-analysis"
 description: "Detects baby cries via audio AI in real-time, analyzes causes, and precisely identifies needs like hunger, tiredness, pain, discomfort, or irritability to assist new parents. | 婴儿哭声智能解析技能，通过音频AI实时检测婴儿哭声，自动解析哭声成因，精准识别饥饿、困倦、疼痛、身体不适、情绪烦躁等不同需求，辅助新手爸妈科学育婴"
-version: "1.0.6"
+version: "1.0.15"
 license: "MIT-0"
 ---
 

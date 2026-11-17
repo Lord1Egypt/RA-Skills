@@ -1,41 +1,55 @@
-## Description: <br>
-Full-featured Atlassian Jira Cloud REST API v3 skill for managing issues, sprints, boards, epics, projects, users, and related Jira resources through direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Jira Cloud REST API v3 guidance for managing issues, sprints, boards, epics, projects, users, and related DevOps data.
 
-## Publisher: <br>
-[jeffersonling1217-png](https://clawhub.ai/user/jeffersonling1217-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffersonling1217-png](https://clawhub.ai/user/jeffersonling1217-png)
 
-## Use Case: <br>
-Developers and project operators use this skill to automate Jira Cloud work such as creating and updating issues, running JQL searches, managing boards and sprints, and calling Jira Software, build, deployment, DevOps, and security APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Jira API credentials can authorize access to project data and state-changing Jira actions if exposed or used in the wrong environment. <br>
-Mitigation: Store credentials outside prompts and source files, prefer least-privilege or test credentials, and intentionally choose production credentials only when production access is required. <br>
-Risk: The skill documents endpoints that can create, update, move, transition, notify, or delete Jira resources. <br>
-Mitigation: Review the proposed HTTP method, endpoint, target issue or project, and request body before executing calls against Jira. <br>
+## Use Case:
 
+Developers and Jira operators use this skill to automate Jira Cloud work, including issue management, JQL searches, sprint and board operations, project lookup, user lookup, and Jira API request construction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeffersonling1217-png/jira-atlassian) <br>
-- [Atlassian API Token Management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Code] <br>
-**Output Format:** [Markdown with REST endpoint paths, HTTP methods, JSON request bodies, and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JIRA_EMAIL, JIRA_API_TOKEN, and JIRA_DOMAIN; some DevOps integration endpoints may require OAuth or Connect JWT credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill can enable an agent to read and modify Jira data with the user's Atlassian token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Jira account or token and limit project permissions to the required work.
+
+Risk: Delete, bulk create, notification, sprint, board, and issue-changing actions can have broad workspace impact.
+
+Mitigation: Require human review before executing destructive, bulk, notification, or workflow-changing requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffersonling1217-png/skills/jira-atlassian)
+- [ClawHub metadata homepage](https://clawhub.ai/jeffersonling1217-png/jira-atlassian)
+- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with REST endpoint examples, JSON request bodies, and environment variable guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JIRA_EMAIL, JIRA_API_TOKEN, and JIRA_DOMAIN for Jira Cloud actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

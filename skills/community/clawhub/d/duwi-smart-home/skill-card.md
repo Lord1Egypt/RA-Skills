@@ -1,41 +1,58 @@
-## Description: <br>
-Duwi Smart Home helps agents use the Duwi Open Platform API to query homes, rooms, devices, scenes, and sensor data, and to control Duwi-connected smart-home devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Duwi Smart Home helps agents use the Duwi Open Platform API to query home structure and device status, control smart-home devices, and execute scenes.
 
-## Publisher: <br>
-[duwi2024](https://clawhub.ai/user/duwi2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duwi2024](https://clawhub.ai/user/duwi2024)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a Duwi smart-home account, including choosing a home, listing rooms and devices, querying device status, running scenes, and issuing device-control commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control physical Duwi-connected devices such as lights, curtains, climate systems, breakers, and scenes. <br>
-Mitigation: Review the intended action before execution, prefer exact device numbers or precise room and device names, and confirm that the target device is online and correct. <br>
-Risk: Application keys, secrets, account passwords, access tokens, and local JSON credential files may expose access to the smart-home account. <br>
-Mitigation: Use interactive secret entry where possible, avoid passing passwords or APPKEY/SECRET values in shell commands, and protect or remove local credential and token files when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to map smart-home requests into Duwi CLI commands for account setup, home and room lookup, device status checks, device control, scene execution, and cache management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/duwi2024/duwi-smart-home) <br>
-- [Duwi Open Platform API endpoint](https://openapi.duwi.com.cn/homeApi/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause authenticated API calls that control physical smart-home devices when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and release evidence) <br>
+Risk: The skill can generate commands that directly control physical smart-home devices and scenes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target house, room, device, scene, and action with the user before running control commands.
+
+Risk: Credential, token, and cache files may contain sensitive household access data.
+
+Mitigation: Use interactive hidden credential entry where possible, avoid placing secrets in shell history, and treat local config, token, and cache files as sensitive.
+
+Risk: The security review flagged unsafe credential-entry patterns and limited user-control safeguards.
+
+Mitigation: Install only when the Duwi publisher account and machine context are trusted, and review commands before execution.
+
+## Reference(s):
+
+- [Duwi Smart Home on ClawHub](https://clawhub.ai/duwi2024/skills/duwi-smart-home)
+- [Duwi Open Platform API](https://openapi.duwi.com.cn/homeApi/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI argument guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that operate physical smart-home devices and local credential, token, and cache files.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

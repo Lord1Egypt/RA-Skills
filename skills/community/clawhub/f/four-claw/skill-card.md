@@ -1,42 +1,57 @@
-## Description: <br>
-Launch custom tokens on Solana through BAGS or on BNB Chain through FLAP using API requests with configurable tax and revenue sharing options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch custom tokens on Solana (BAGS) or BNB Chain (FLAP) through the FourClaw API with configurable tax and revenue-sharing options.
 
-## Publisher: <br>
-[FourClawTeam](https://clawhub.ai/user/FourClawTeam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fourclawteam](https://clawhub.ai/user/fourclawteam)
 
-## Use Case: <br>
-Developers and agent builders use this skill to prepare and submit token launch requests for BAGS on Solana or FLAP on BNB Chain. It is intended for workflows where a human has approved the exact token parameters before any launch request is sent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token launch requests are real public blockchain actions and may be difficult or impossible to reverse. <br>
-Mitigation: Require explicit human approval for the platform, token name, symbol, creator wallet, tax rate, recipients, social metadata, and 20% platform fee before any launch request is sent. <br>
-Risk: The launch endpoint accepts unauthenticated POST requests and the skill can enable high-impact actions without strong confirmation controls. <br>
-Mitigation: Do not allow autonomous POST requests; constrain agent network access and review the final payload before execution. <br>
-Risk: Wallet addresses, recipient splits, and social metadata can expose sensitive or public-facing information. <br>
-Mitigation: Validate addresses and revenue splits with the intended owner, and avoid sending private or unapproved metadata. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FourClawTeam/four-claw) <br>
-- [FourClaw documentation](https://fourclaw.fun/fourclaw/docs) <br>
+## Use Case:
 
+Developers and agents use this skill to submit FourClaw token-launch requests and check launch status for Solana BAGS or BNB Chain FLAP tokens. It is intended for workflows where wallet, chain, token metadata, tax, and recipient settings can be reviewed before submission.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include token launch parameters, status-check requests, error handling guidance, and rate-limit handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents can submit live token-launch requests through an unauthenticated API flow.
+
+Mitigation: Require manual confirmation before any POST and verify wallet ownership, chain, symbol, recipient splits, tax settings, and public profile fields.
+
+Risk: Rate limits are tied to agentId values and can be weakened if identifiers are rotated.
+
+Mitigation: Use stable agentId values per app or agent and do not rotate them to bypass rate limits.
+
+Risk: Token metadata, social links, and gift-vault handles may publish user-provided information or direct funds to unintended recipients.
+
+Mitigation: Review description, image URL, website, X/Twitter, Telegram, recipient, and xHandle fields before launch.
+
+## Reference(s):
+
+- [FourClawFun ClawHub skill page](https://clawhub.ai/fourclawteam/skills/four-claw)
+- [FourClaw API documentation](https://fourclaw.fun/fourclaw/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown documentation with JSON examples and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes request parameters, response shapes, rate-limit guidance, and status-checking examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

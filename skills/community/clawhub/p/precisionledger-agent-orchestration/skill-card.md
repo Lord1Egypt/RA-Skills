@@ -1,40 +1,58 @@
-## Description: <br>
-Guides developers through multi-agent orchestration patterns for production deployments, including sub-agent quality checks, model staggering, cross-validation, fallback chains, task routing, ACPX configuration, and cost optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent orchestration patterns for production deployments, including sub-agent quality control workflows, model staggering, cross-validation, fallback chains, task routing by model strength, ACPX configuration, and cost optimization.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple agents or models for complex workflows, quality-control loops, task routing, fallback chains, and ACPX configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may route work data to multiple model providers or sub-agents. <br>
-Mitigation: Confirm provider approval before use, redact secrets and private customer data, and only send data that is allowed to leave the environment. <br>
-Risk: Configuration examples reference API keys for external model providers. <br>
-Mitigation: Keep API keys in environment variables or a secret manager rather than embedding them in files. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and operate workflows that coordinate multiple agents or models for production tasks such as quality control, task routing, fallback handling, and cost-aware execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/precisionledger-agent-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Python, YAML, JSON, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes orchestration patterns, routing rules, fallback examples, and ACPX configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Multi-agent workflows may share project context with sub-agents or external model APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope tool permissions, limit shared context to the task, and review external API use before deployment.
+
+Risk: Sub-agents could perform high-impact operations such as writes, deletes, git changes, or CI/CD changes if permissions are too broad.
+
+Mitigation: Require explicit confirmation for high-impact actions and keep destructive or deployment permissions out of default sub-agent roles.
+
+Risk: Model fallback and retry chains can increase cost or produce inconsistent outputs when quality gates are weak.
+
+Mitigation: Set retry limits, apply quality thresholds, and route high-judgment decisions back to an orchestrator.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/precisionledger-agent-orchestration)
+- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides orchestration patterns, routing rules, fallback-chain examples, ACPX configuration snippets, and cost-tracking guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

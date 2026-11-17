@@ -1,42 +1,54 @@
-## Description: <br>
-Validate CHANGELOG.md files against the Keep a Changelog format, including version ordering, date formats, section types, link references, and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates CHANGELOG.md files against Keep a Changelog conventions, including version ordering, date formats, section types, link references, and formatting.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and release managers use this skill to lint CHANGELOG.md files, inspect release versions, validate ordering, and check version link references before publishing or running CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strict CI usage can block builds on warnings. <br>
-Mitigation: Enable --strict only when the project is ready to treat changelog warnings as build-blocking issues. <br>
-Risk: Lint findings may be inaccurate if the input is not a changelog or intentionally diverges from Keep a Changelog conventions. <br>
-Mitigation: Run the skill only on changelog files intended for this format and review reported issues before changing release notes. <br>
+## Use Case:
 
+Developers and release engineers use this skill to lint CHANGELOG.md files before release, review changelog structure, and generate text, JSON, or Markdown issue reports for local or CI workflows.
 
-## Reference(s): <br>
-- [Keep a Changelog](https://keepachangelog.com) <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/changelog-linter) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text, JSON, or Markdown lint results with issue summaries and version lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected changelog file locally and returns lint findings; no network, credential, hidden, or persistence behavior is reported by evidence.security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill runs a local Python linter against a changelog path supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed script before use and run it only against intended changelog files in the target workspace.
+
+Risk: CI use can block a release when changelog errors are found or when strict mode treats warnings as failures.
+
+Mitigation: Adopt strict mode deliberately and review reported issues before treating them as release blockers.
+
+## Reference(s):
+
+- [Keep a Changelog](https://keepachangelog.com)
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/changelog-linter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or Markdown lint reports with issue summaries, version listings, and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The linter returns exit code 1 when errors are found, and strict mode also fails on warnings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Use when the user asks to browse, upload, download, share, or manage Google Drive files and folders through the gogcli Google Drive MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents browse, upload, download, share, and manage Google Drive files and folders through a gogcli-based Drive MCP server.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to configure and operate a Google Drive MCP server for browsing, uploading, downloading, sharing, and managing Drive files, folders, permissions, shared drives, and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured MCP server can affect Google Drive files, sharing, permissions, and comments for the selected account. <br>
-Mitigation: Before approving actions, verify the exact file or folder, destination, permission target, and operation, especially for delete, move, replace, share, unshare, or comment changes. <br>
+## Use Case:
 
+Developers and operators use this skill when an agent needs to work with Google Drive files, folders, shared drives, file permissions, and comments using authenticated Drive tooling.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chrischall/gogcli-mcp-drive) <br>
-- [gogcli project](https://github.com/openclaw/gogcli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON configuration blocks and inline tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gogcli to be installed and authenticated, Node.js 18 or later, and a configured GOG_ACCOUNT for the selected Google account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release evidence) <br>
+Risk: The skill asks users to run an npm package with authenticated Google Drive access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the npm package to a reviewed version where possible, verify the package publisher and repository relationship, and use only an account and OAuth scopes appropriate for the files being managed.
+
+Risk: Drive operations can delete, replace, move, share, unshare, download sensitive files, or change comments and permissions.
+
+Mitigation: Require clear confirmation before destructive, sharing, permission, sensitive download, or comment-changing operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/gogcli-mcp-drive)
+- [gogcli project](https://github.com/openclaw/gogcli)
+- [gogcli MCP project](https://github.com/chrischall/gogcli-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON configuration and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Google account authentication and appropriate Drive OAuth scopes before use.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

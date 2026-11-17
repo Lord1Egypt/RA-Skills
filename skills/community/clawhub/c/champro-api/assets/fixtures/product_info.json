@@ -1,0 +1,18 @@
+{
+  "ProductMaster": "JSBJ8",
+  "MOQ": 0,
+  "MOQCustom": 12,
+  "ProductSKUs": [
+    {"SKU": "JSBJ8GACL", "Configuration": "GIRLS", "Fabric": "ACTIVE CLOTH", "Color": "", "Size": "L"},
+    {"SKU": "JSBJ8GACM", "Configuration": "GIRLS", "Fabric": "ACTIVE CLOTH", "Color": "", "Size": "M"},
+    {"SKU": "JSBJ8YACL", "Configuration": "YOUTH", "Fabric": "ACTIVE CLOTH", "Color": "", "Size": "L"},
+    {"SKU": "JSBJ8YACS", "Configuration": "YOUTH", "Fabric": "ACTIVE CLOTH", "Color": "", "Size": "S"},
+    {"SKU": "JSBJ8WWP14XL", "Configuration": "WOMENS", "Fabric": "TEK-KNIT WPK395", "Color": "", "Size": "XL"}
+  ],
+  "AvailableLeadTimes": [
+    {"LeadTimeName": "JUICE Standard", "LeadTime": "15", "LeadTimeCharge": "0.00"},
+    {"LeadTimeName": "JUICE Express", "LeadTime": "10", "LeadTimeCharge": "8.00"},
+    {"LeadTimeName": "JUICE Express Plus +", "LeadTime": "5", "LeadTimeCharge": "16.00"}
+  ],
+  "Error": null
+}

@@ -1,44 +1,58 @@
-## Description: <br>
-This skill routes a single image URL, local image file, or Base64 image to Quark Scan King's OCR service for text extraction and structured recognition across documents, identity cards, invoices, forms, formulas, medical reports, business licenses, product images, and general images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OCR for images, screenshots, and scanned documents through Quark Scan King, including printed text, handwriting, tables, formulas, IDs, invoices, tickets, medical reports, business licenses, and other supported document types.
 
-## Publisher: <br>
-[mozhihuidage](https://clawhub.ai/user/mozhihuidage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yescan-ai](https://clawhub.ai/user/yescan-ai)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to extract text or structured fields from one static image using Quark Scan King's OCR scenes. It is suited to OCR workflows for handwritten notes, tables, IDs, tickets, invoices, formulas, questions, medical reports, business licenses, product images, and general text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted images and the API key are sent to Quark's OCR service. <br>
-Mitigation: Use the skill only when third-party processing is acceptable, and prefer a dedicated or revocable SCAN_WEBSERVICE_KEY. <br>
-Risk: OCR inputs may contain sensitive identity, medical, financial, or business documents. <br>
-Mitigation: Avoid submitting highly sensitive documents unless the user or organization has approved Quark's handling of that data. <br>
-Risk: The skill supports only one static image per invocation and local files are limited to 5 MB. <br>
-Mitigation: Pre-process unsupported files by extracting a single image, converting to a supported image type, or compressing/cropping before use. <br>
+## Use Case:
 
+External users and developers use this skill to submit a single image, local image file, or base64 image to Quark Scan King's OCR service and receive extracted text or structured OCR data for supported document scenes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mozhihuidage/yescan-ocr-universal) <br>
-- [Publisher profile](https://clawhub.ai/user/mozhihuidage) <br>
-- [Quark Scan King business OCR platform](https://scan.quark.cn/business) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses from the OCR service, with setup and execution guidance in Markdown and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SCAN_WEBSERVICE_KEY; each invocation accepts exactly one image input as a URL, local file path, or Base64 string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Submitted images, including sensitive documents, are sent to Quark's remote OCR service using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents approved for third-party OCR processing, and avoid submitting sensitive images unless that data flow is acceptable.
+
+Risk: Crafted image inputs could be run unsafely as shell commands under the current command template.
+
+Mitigation: Invoke Python with a non-shell argument array before routine use, and avoid untrusted image URLs, paths, or base64 strings until the run instructions are changed.
+
+Risk: OCR POST requests allow redirects, which can broaden where submitted content and credentials are sent.
+
+Mitigation: Disable or constrain redirects for OCR POST requests before routine use.
+
+## Reference(s):
+
+- [Quark Scan King Business Platform](https://scan.quark.cn/business)
+- [ClawHub Skill Page](https://clawhub.ai/yescan-ai/skills/yescan-ocr-universal)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, structured data]
+
+**Output Format:** [JSON OCR response with code, message, and data fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCAN_WEBSERVICE_KEY and sends submitted image content to Quark's remote OCR service.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

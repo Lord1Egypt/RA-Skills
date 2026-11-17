@@ -1,44 +1,60 @@
-## Description: <br>
-Retrieves A-share historical K-line data, quarterly financial data, macroeconomic data, sector constituents, and technical-analysis reports through BaoStock and MyTT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and helper scripts for querying BaoStock A-share historical prices, financial data, macroeconomic data, sector constituents, and MyTT technical indicators.
 
-## Publisher: <br>
-[jasonpro22](https://clawhub.ai/user/jasonpro22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonpro22](https://clawhub.ai/user/jasonpro22)
 
-## Use Case: <br>
-External users and developers use this skill to fetch BaoStock market, financial, macroeconomic, and index-constituent data for Chinese A-share analysis. It can also generate informational technical-analysis summaries using MyTT indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock symbols and date ranges to BaoStock through a third-party Python package. <br>
-Mitigation: Use it only when that data sharing is acceptable for the intended workflow. <br>
-Risk: Technical-analysis scores and operation suggestions may be misleading, and the security guidance notes duplicated RSI fields. <br>
-Mitigation: Treat generated analysis as informational and verify calculations before making financial or trading decisions. <br>
-Risk: Full-market scans can query thousands of A-share stocks and may take a long time or encounter rate limits. <br>
-Mitigation: Confirm the scan scope with the user first, process in batches, and show progress as described by the artifact. <br>
+## Use Case:
 
+Developers and analysts use this skill to have an agent retrieve China A-share market data through BaoStock and produce technical-analysis reports with MyTT indicators.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jasonpro22/baostock-tt-skills) <br>
-- [BaoStock Python API documentation](artifact/docs/python_api_full.txt) <br>
-- [MyTT technical indicator library](https://github.com/mpquant/MyTT) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; technical-analysis reports as plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include BaoStock query snippets, tabular market data summaries, technical indicator values, scores, and operation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Market data and technical-analysis output may be incomplete, stale, or mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify data independently, and avoid relying on generated buy/sell-style guidance as financial advice.
+
+Risk: The skill installs and uses external Python packages and queries BaoStock, so behavior can depend on package versions and network/service availability.
+
+Mitigation: Pin dependencies where possible, review package sources before installation, and confirm network access to BaoStock before operational use.
+
+Risk: Full-market A-share scans can be long-running and may trigger rate limits or consume significant execution time.
+
+Mitigation: Require explicit user confirmation, batch requests, show progress, and add delays for broad scans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonpro22/skills/baostock-tt-skills)
+- [BaoStock API reference included with artifact](artifact/docs/python_api_full.txt)
+- [Artifact README](artifact/README.md)
+- [MyTT project](https://github.com/mpquant/MyTT)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tabular market data summaries and technical-analysis signals.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

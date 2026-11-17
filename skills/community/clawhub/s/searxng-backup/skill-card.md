@@ -1,42 +1,64 @@
-## Description: <br>
-Privacy-respecting metasearch using a configured SearXNG instance for web, image, news, video, and other search categories without external API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-respecting metasearch using a configured SearXNG instance for web, image, news, video, and other searches without external API keys.
 
-## Publisher: <br>
-[macdesire](https://clawhub.ai/user/macdesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macdesire](https://clawhub.ai/user/macdesire)
 
-## Use Case: <br>
-External users and developers use this skill to route agent search requests through a SearXNG instance they control or trust, with options for category, language, recency, result count, and JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the configured SearXNG server, which may expose sensitive queries if the server is public or untrusted. <br>
-Mitigation: Use a local or trusted self-hosted SearXNG instance, and avoid sensitive searches on public instances. <br>
-Risk: The artifact disables TLS certificate verification in the HTTP request path. <br>
-Mitigation: Enable certificate verification before relying on a remote HTTPS endpoint, or keep the endpoint local and trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to route search requests through their own SearXNG instance and retrieve formatted or JSON search results across supported categories.
 
-## Reference(s): <br>
-- [SearXNG Project](https://searxng.org) <br>
-- [SearXNG Installation Guide](https://docs.searxng.org/admin/installation.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/macdesire/searxng-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Rich terminal table output or JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a configured SEARXNG_URL; supports result limit, category, language, and time-range options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad search triggers can route general search prompts to the configured SearXNG instance unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this routing is intended, and consider narrowing triggers before enabling the skill in shared or sensitive environments.
+
+Risk: Search terms can contain secrets or sensitive regulated data.
+
+Mitigation: Avoid sending secrets or sensitive regulated data as search terms, especially when using shared, remote, or public SearXNG instances.
+
+Risk: Disabled HTTPS certificate verification can make remote or public HTTPS SearXNG instances risky.
+
+Mitigation: Prefer a local or private SearXNG server, or enable TLS verification with a trusted CA bundle before using remote HTTPS instances.
+
+Risk: Runtime dependencies may change because dependency pinning should be reviewed.
+
+Mitigation: Review and pin dependencies before deployment in controlled or production environments.
+
+## Reference(s):
+
+- [SearXNG homepage](https://searxng.org)
+- [SearXNG documentation](https://docs.searxng.org/)
+- [SearXNG installation guide](https://docs.searxng.org/admin/installation.html)
+- [ClawHub skill page](https://clawhub.ai/macdesire/skills/searxng-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted search results, JSON search payloads, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable SearXNG instance configured through SEARXNG_URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

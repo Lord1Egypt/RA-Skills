@@ -1,42 +1,61 @@
-## Description: <br>
-YouTube long video (>1 hour) full verbatim transcription and translation workflow for extracting subtitles, translating English transcripts to Chinese, handling long videos that exceed session limits, and generating formatted documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube long video transcription and translation workflow for extracting English subtitles, translating them to Chinese, and producing formatted transcript documents.
 
-## Publisher: <br>
-[qingliu1617-art](https://clawhub.ai/user/qingliu1617-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qingliu1617-art](https://clawhub.ai/user/qingliu1617-art)
 
-## Use Case: <br>
-Developers, analysts, and content teams use this skill to obtain long YouTube transcripts, translate English transcript content into Chinese, and deliver the result as a Markdown file or document link. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a published concrete API bearer token. <br>
-Mitigation: Do not use the embedded bearer token; replace it with a protected DownSub credential before use. <br>
-Risk: The workflow sends video URLs and transcript content to external services. <br>
-Mitigation: Confirm with the user before sending private or unlisted video URLs to DownSub or uploading transcripts to zhiyan or another document service. <br>
-Risk: The workflow may spawn long-running sub-agents for large transcripts. <br>
-Mitigation: Confirm budget, runtime, and task boundaries before spawning long-running sub-agents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingliu1617-art/ytb-transcript-long) <br>
-- [DownSub API endpoint](https://api.downsub.com/download) <br>
+## Use Case:
 
+External users and developers use this skill to process long YouTube videos, retrieve English subtitle tracks through DownSub, translate transcripts to Chinese, and deliver the result as a Markdown document.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown transcript, translated Markdown document, or document link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process long transcripts in chunks and may use an external document service when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The published skill embeds a concrete bearer credential.
+
+Mitigation: Revoke or rotate the published credential and require users to provide their own secret from a safe configuration source before use.
+
+Risk: Using the workflow sends YouTube URLs and transcript requests to DownSub and may upload generated Markdown through zhiyan.
+
+Mitigation: Confirm data-sharing requirements before use and disable optional upload unless the destination is approved.
+
+Risk: Incorrect subtitle language selection can produce inaccurate or nonsensical translation output.
+
+Mitigation: Check the DownSub response language field and proceed only with English tracks marked en or en-auto.
+
+Risk: The workflow creates local transcript files that may contain sensitive or copyrighted content.
+
+Mitigation: Store generated files in an approved location and review content before sharing or uploading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingliu1617-art/skills/ytb-transcript-long)
+- [DownSub transcript download API endpoint](https://api.downsub.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown transcript documents with Chinese translation, executive summary, and metrics table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local transcript files and optionally upload generated Markdown through zhiyan when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

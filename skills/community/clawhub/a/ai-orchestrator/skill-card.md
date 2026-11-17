@@ -1,44 +1,59 @@
-## Description: <br>
-AI Orchestrator lets agents send prompts to DeepSeek through Puppeteer browser automation with session support, fast daemon startup, health checks, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Orchestrator provides DeepSeek AI access through Puppeteer browser automation with a CDP interceptor, persistent daemon mode, health checks, graceful shutdown, PM2 management, and `.deepseek.json` configuration.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
 
-## Use Case: <br>
-Developers, engineers, and agents use this skill to request DeepSeek assistance for code analysis, review, generation, text analysis, summarization, and translation through an authenticated browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, pasted code, and stdin content are sent to DeepSeek through an automated logged-in browser. <br>
-Mitigation: Review content before sending, avoid secrets or regulated data, and use a dedicated DeepSeek account and browser profile. <br>
-Risk: Persistent browser profile, session, and diagnostic artifacts may contain sensitive local state or captured page content. <br>
-Mitigation: Keep the skill directory private and clear `.profile/`, `.sessions/`, and `.diagnostics/` when the session is no longer needed. <br>
-Risk: Daemon management and recovery commands may restart browser automation or affect related local processes. <br>
-Mitigation: Prefer manual daemon startup unless persistence is needed, and review broad recovery commands before running them. <br>
+## Use Case:
 
+Developers, agent operators, and external users use this skill to ask DeepSeek for code analysis, review, generation, text analysis, summarization, and translation through a local CLI and browser automation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ciklopentan/ai-orchestrator) <br>
-- [Operator manual](REFERENCE.md) <br>
-- [Phase 1 manual](PHASE1-MANUAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses from DeepSeek, with optional CLI diagnostics and local diagnostic files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports named sessions, daemon-backed execution, dry-run checks, and diagnostic traces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.11 (source: server release evidence and package.json) <br>
+Risk: Prompts and piped files are sent to DeepSeek through browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content approved for DeepSeek, and avoid sending sensitive or regulated files unless that use is explicitly allowed.
+
+Risk: The skill uses a persistent authenticated Chromium daemon with local profile, session, endpoint, log, and diagnostic state.
+
+Mitigation: Run it under an isolated OS user or container, restrict permissions on `.profile`, `.sessions`, and `.daemon-ws-endpoint`, and avoid boot persistence unless it is required.
+
+Risk: Unsafe local file and browser-control practices need review before use on shared or sensitive machines.
+
+Mitigation: Review the release before installation, update the dependency tree, validate session names before use, and run health checks in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ciklopentan/skills/ai-orchestrator)
+- [AI Orchestrator reference manual](artifact/REFERENCE.md)
+- [Network-first pipeline manual](artifact/PHASE1-MANUAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown on stdout, often with code blocks; optional diagnostics may be written as JSON or JSONL files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DeepSeek free-tier responses can be truncated; long work should be split across sessions.]
+
+## Skill Version(s):
+
+2.0.11 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

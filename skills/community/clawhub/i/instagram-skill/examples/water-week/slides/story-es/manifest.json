@@ -1,0 +1,17 @@
+{
+  "slides": 1,
+  "size": "1080x1920",
+  "ratio": "9:16",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 132820,
+      "type": "text",
+      "alt": "Historia: \u00bfcu\u00e1nta agua de la Tierra es de r\u00edo? Imagina toda el agua en una botella de 1 litro. La respuesta en el perfil dentro de una hora.",
+      "text": "\u00bfCu\u00e1nta agua de la Tierra es de r\u00edo? Imagina toda el agua en una botella de 1 litro. Pi\u00e9nsalo y mira la respuesta en nuestro perfil dentro de una hora."
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

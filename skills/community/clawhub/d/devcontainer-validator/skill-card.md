@@ -1,40 +1,53 @@
-## Description: <br>
-Validates devcontainer.json files for VS Code Dev Containers, GitHub Codespaces, and DevPod. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate devcontainer.json files for VS Code Dev Containers, GitHub Codespaces, and DevPod.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to check devcontainer.json files for syntax, structure, feature references, ports, lifecycle scripts, VS Code customization, and security-oriented best-practice issues before local use or CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled Python validator code against a local file path. <br>
-Mitigation: Review the script before using it in sensitive repositories or CI, and run it only on intended devcontainer.json files. <br>
-Risk: The --strict option treats warnings as failing results, which can block local or CI workflows. <br>
-Mitigation: Enable --strict deliberately and choose the minimum severity and output format that match the workflow policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to check devcontainer.json files for syntax, structure, features, ports, lifecycle scripts, customizations, and security best-practice issues before using them locally or in CI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/devcontainer-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown/text guidance with command examples and optional JSON validator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, json, and summary validator formats; exit codes distinguish pass, validation failure, and parse or file errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Validation output is lint guidance and may not fully represent an organization's container security policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review warnings before changing container security settings or relying on a passing result.
+
+Risk: Security-related findings can affect privileged mode, container capabilities, lifecycle scripts, and default user behavior.
+
+Mitigation: Use focused security validation when reviewing sensitive devcontainer settings and confirm remediation choices before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/devcontainer-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or one-line summary output with severity-tagged validation findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes distinguish clean validation, validation errors, and file or parse errors; strict mode exits nonzero on any issue.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

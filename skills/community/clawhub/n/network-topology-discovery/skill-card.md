@@ -1,42 +1,55 @@
-## Description: <br>
-Iterative network topology discovery using CDP/LLDP neighbor protocols, ARP/MAC table correlation, and routing table analysis across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers network topology iteratively using CDP/LLDP neighbor protocols, ARP/MAC table correlation, and routing table analysis across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS environments.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and incident responders use this skill to map device adjacencies, routing boundaries, endpoints, and anomalies inside an authorized discovery scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes that the read-only label conflicts with remediation guidance that could change live network device configuration. <br>
-Mitigation: Use the skill for discovery only, and route enablement, VLAN, trunk, routing-policy, clearing, and port-security changes through normal change approval. <br>
-Risk: Topology, routing, MAC, and ARP outputs can expose sensitive infrastructure details. <br>
-Mitigation: Define a strict discovery boundary, use least-privilege read-only device accounts, and protect collected topology outputs as sensitive data. <br>
+## Use Case:
 
+Developers, network engineers, and security teams use this skill to map or validate network topology from an authorized seed device. It supports inventory, incident response, pre-change impact analysis, migration planning, and documentation audits.
 
-## Reference(s): <br>
-- [Network Topology Discovery on ClawHub](https://clawhub.ai/vahagn-madatyan/network-topology-discovery) <br>
-- [CLI Reference](artifact/references/cli-reference.md) <br>
-- [Discovery Workflow](artifact/references/discovery-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with network CLI command examples and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized SSH or console access to devices in the discovery scope; topology outputs can contain sensitive network information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is labeled read-only, but some troubleshooting guidance recommends configuration-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as an authorized discovery playbook; use read-only accounts and perform any configuration changes only through a separate approved change process.
+
+Risk: Topology reports can expose sensitive infrastructure details, including devices, links, subnets, VRFs, and management addresses.
+
+Mitigation: Define a written discovery scope before use and protect generated reports as sensitive infrastructure data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/network-topology-discovery)
+- [CLI reference](artifact/references/cli-reference.md)
+- [Discovery workflow](artifact/references/discovery-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with vendor-specific CLI command blocks, topology data templates, decision trees, and report sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed topology discovery notes, adjacency and inventory models, Mermaid or CSV/JSON-ready topology representations, and audit report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Provides JF Tech indoor-security API guidance and scripts for checking service state, configuring abnormal-alarm reminders, querying alarms and statistics, and managing household members. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JF Tech indoor security skill for monitoring home spaces, managing indoor security service status, querying alerts and statistics, and managing household member records.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-External developers and JF Tech indoor-security operators use this skill to operate device security features through JF Tech Open Platform APIs. It supports status checks, service changes, alarm review, household member management, and occupancy statistics after required credentials, device binding, and service subscription are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China, Asia, Europe, and North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles home-security credentials, household telemetry, and biometric member records. <br>
-Mitigation: Use dedicated least-privilege credentials where possible, avoid exposing secrets in shell history or process-visible command lines, and restrict access to authorized operators. <br>
-Risk: The skill can add, update, or delete members, upload face images, and change indoor-security service state. <br>
-Mitigation: Require explicit human confirmation before member mutations, face-image uploads, or service state changes. <br>
-Risk: Alarm media, occupancy statistics, and member records can reveal sensitive household activity. <br>
-Mitigation: Minimize retention and sharing of returned data, and review outputs before storing or forwarding them. <br>
+## Use Case:
 
+External users and developers use this skill to operate JF Tech indoor security workflows for supported devices, including service toggles, abnormal-alert review, family member records, and household activity statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jftech/jf-open-pro-ai-indoor-security) <br>
-- [JF Tech Open Platform](https://developer.jftech.com) <br>
-- [JF Tech Signature Algorithm](https://docs.jftech.com/docs?menusId=2531aba7e2d84e13ad8ce977007922f3&siderId=609261d9bb5049c3a2fc7222adf465fb&lang=zh) <br>
-- [JF Tech Timestamp Algorithm](https://docs.jftech.com/docs?menusId=2531aba7e2d84e13ad8ce977007922f3&siderId=8da7ad6119fd41159e2026c71ddb3555&lang=zh) <br>
-- [JF Tech Package Card Usage](https://docs.jftech.com/docs?menusId=54582398fd8d4248962354e92ac2e47a&siderId=d2c0d9105d9c4b78bc0d2ee3851d2557&lang=zh) <br>
+### Deployment Geography for Use:
 
+China, Asia, Europe, and North America
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts return text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JF Tech credentials, device serial number, authorization token, and configured indoor-security service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can send household monitoring data, device and user identifiers, authorization tokens, and face/member images to JF Tech cloud APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the data flows, keep secrets out of command lines where possible, and limit use to authorized devices and accounts.
+
+Risk: The skill can disable indoor security service settings or delete and update household member records.
+
+Mitigation: Require explicit user confirmation before security-service changes or member deletion and update actions.
+
+Risk: Face-image enrollment and household member tracking can affect privacy and consent expectations.
+
+Mitigation: Enroll face images and enable household notifications only with appropriate household consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-ai-indoor-security)
+- [JF Tech developer platform](https://developer.jftech.com)
+- [JF Tech signature algorithm documentation](https://docs.jftech.com/docs?menusId=2531aba7e2d84e13ad8ce977007922f3&siderId=609261d9bb5049c3a2fc7222adf465fb&lang=zh)
+- [JF Tech timestamp algorithm documentation](https://docs.jftech.com/docs?menusId=2531aba7e2d84e13ad8ce977007922f3&siderId=8da7ad6119fd41159e2026c71ddb3555&lang=zh)
+- [JF Tech package-card usage documentation](https://docs.jftech.com/docs?menusId=54582398fd8d4248962354e92ac2e47a&siderId=d2c0d9105d9c4b78bc0d2ee3851d2557&lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied JF Tech credentials, authorization token, device serial number, user identifier, and service eligibility.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

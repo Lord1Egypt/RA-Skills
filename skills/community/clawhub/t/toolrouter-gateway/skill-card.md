@@ -1,44 +1,59 @@
-## Description: <br>
-ToolRouter Gateway provides unified access to ToolRouter tools as OpenClaw tools, including discovery, proxying, caching, usage tracking, and MCP transport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ToolRouter Gateway provides an OpenClaw skill interface for ToolRouter discovery, status checks, and cached proxy-style tool calls with local usage tracking.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers and automation operators use this skill to discover ToolRouter tools, check gateway status, and route approved tool calls through a ToolRouter API key with local caching and usage tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad third-party gateway and can expose high-impact ToolRouter capabilities that are not tightly scoped by the artifact. <br>
-Mitigation: Review each requested tool, target, and action before use, and only run scanning, scraping, posting, or account-affecting tools when explicitly authorized. <br>
-Risk: Tool calls require a ToolRouter API key and may incur third-party usage costs. <br>
-Mitigation: Use a dedicated low-privilege API key with spending controls where available, and monitor usage through the skill status and ToolRouter account controls. <br>
-Risk: The skill can persist cached tool responses and usage logs in the workspace memory directory. <br>
-Mitigation: Avoid sending secrets or regulated data through the gateway, and disable or clear caching before sensitive work. <br>
+## Use Case:
 
+Developers and external agent users can use this skill to discover ToolRouter-style tools, check gateway status, and route configured tool requests while caching repeated results and logging usage locally.
 
-## Reference(s): <br>
-- [ToolRouter](https://toolrouter.com) <br>
-- [ToolRouter MCP endpoint](https://api.toolrouter.com/mcp) <br>
-- [ClawHub listing](https://clawhub.ai/neroagent/toolrouter-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON tool responses and Markdown guidance with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLROUTER_API_KEY for live ToolRouter access; may write cache and usage logs under the workspace memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill advertises a broad live ToolRouter gateway while the shipped implementation is mock or placeholder behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat live gateway and 150+ tool claims as unsupported until the implementation, authentication, and documented behavior are verified.
+
+Risk: Tool inputs and cached results can be persisted locally in plaintext JSONL files.
+
+Mitigation: Do not send secrets, credentials, customer data, private targets, or sensitive prompts through the skill unless caching is disabled or retention controls are redesigned.
+
+Risk: External tool routing can expand data exposure and operational scope.
+
+Mitigation: Require clear tool scoping, authentication, retention controls, and review before using the skill in real workflows.
+
+## Reference(s):
+
+- [ToolRouter](https://toolrouter.com)
+- [ToolRouter MCP API endpoint](https://api.toolrouter.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/neroagent/skills/toolrouter-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool responses with Markdown guidance and inline command or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write cache and usage records to local JSONL files when caching or usage tracking is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

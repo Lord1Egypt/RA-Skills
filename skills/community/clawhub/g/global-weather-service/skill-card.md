@@ -1,44 +1,60 @@
-## Description: <br>
-Complete weather system powered by Open-Meteo for global city weather lookup and scheduled weather subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Weather Service uses Open-Meteo to look up current and forecast weather for global cities and manage scheduled weather subscription pushes.
 
-## Publisher: <br>
-[zykkk-power](https://clawhub.ai/user/zykkk-power) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zykkk-power](https://clawhub.ai/user/zykkk-power)
 
-## Use Case: <br>
-Agents and users use this skill to look up current or forecast weather for global cities and manage scheduled weather deliveries in OpenClaw-supported channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled subscription and timezone data may contain stale or unintended delivery targets. <br>
-Mitigation: Review or clear data/subscriptions.json and data/user_timezones.json before creating or running subscriptions. <br>
-Risk: Scheduled weather pushes can send messages to recipients or channels the user does not control. <br>
-Mitigation: Create subscriptions only for controlled targets and confirm the timezone, city, schedule, and delivery target before enabling delivery. <br>
-Risk: Weather reports and lifestyle advice depend on Open-Meteo and geocoding results, which may be unavailable or inaccurate. <br>
-Mitigation: Treat reports as informational, rerun lookups when freshness matters, and verify high-impact decisions with an authoritative weather source. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to answer one-time weather questions, generate Chinese weather bulletins, and create or manage scheduled weather pushes for chosen cities.
 
-## Reference(s): <br>
-- [Open-Meteo](https://open-meteo.com/) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown weather bulletins, JSON subscription records, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Weather reports are formatted in Chinese; subscription flows store delivery and timezone state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Scheduled weather subscriptions can modify persistent delivery jobs in a shared OpenClaw environment without sufficient ownership controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict subscription commands to trusted callers, review scheduled jobs before deployment, and add owner checks before allowing updates or deletion.
+
+Risk: Packaged data files include retained subscription and timezone state, including delivery routing identifiers.
+
+Mitigation: Clear packaged data files before deployment and document what subscription data is stored, how long it is retained, and how users can delete it.
+
+Risk: Subscription inputs such as city names and scheduling text can affect generated cron prompts.
+
+Mitigation: Sanitize city and time inputs, validate subscription modes, and scope permissions to Open-Meteo, the two state files, and OpenClaw cron commands.
+
+## Reference(s):
+
+- [Open-Meteo](https://open-meteo.com/)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Global Weather Service on ClawHub](https://clawhub.ai/zykkk-power/skills/global-weather-service)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown-style weather bulletins, JSON subscription status, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One-time reports return direct text; subscription actions can create, update, list, or remove scheduled weather delivery jobs.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,422 @@
+meta:
+  source: https://wiki.plateupgame.com/recipes
+  detail_pages: https://wiki.plateupgame.com/recipes/{Recipe}
+  current_update_source: https://www.plateupgame.com/updates/1-5-0-heat/
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  units: seconds unless stated otherwise
+  translation_policy: "English id is canonical; Chinese names may be suggestions."
+  nested_card_rule: "An item under a base recipe's variants/extras requires that base recipe unless an explicit prerequisite overrides it."
+
+base_recipes:
+  - id: steak
+    name: {en: Steak, zh: 牛排}
+    course: main
+    unlock_level: 1
+    value: 5
+    expected_groups_modifier: 0%
+    eating_time: 1x
+    ingredients: [Meat]
+    equipment: [Starter Hob x2]
+    steps:
+      - "Cook Raw Meat: 5s Rare, +2s Medium, +2s Well-done, +10s to burn (19s total)."
+      - "Plate and serve. A plated steak cannot be cooked further."
+    variants:
+      - id: bone_in_steaks
+        name: {en: Bone-in Steaks, zh: 带骨牛排}
+        prerequisite: steak
+        group_modifier: -15%
+        eating_time: 1.5x
+        ingredients: [Bone-in Meat]
+        steps: ["Cook 5s Rare, +3s Medium, +3s Well-done, +4s to burn (15s total).", "Plate and serve.", "After eating, portion bone from plate (2s) and discard."]
+      - id: thick_cut_steaks
+        name: {en: Thick Cut Steaks, zh: 厚切牛排}
+        prerequisite: steak
+        group_modifier: -15%
+        eating_time: 1.5x
+        ingredients: [Thick Cut Meat]
+        steps: ["Cook 10s Rare, +8s Medium, +8s Well-done, +8s to burn (34s total).", "Plate and serve."]
+      - id: thin_cut_steaks
+        name: {en: Thin Cut Steaks, zh: 薄切牛排}
+        prerequisite: steak
+        group_modifier: -15%
+        eating_time: 0.75x
+        ingredients: [Thin Cut Meat]
+        steps: ["Cook 4s Rare, +1s Medium, +1s Well-done, +1s to burn (7s total).", "Plate and serve."]
+    extras:
+      - id: steak_sauce_mushroom
+        name: {en: Steak Sauce - Mushroom, zh: 牛排蘑菇酱}
+        ingredients: [Pot Stack, Onion, Mushrooms, Water]
+        equipment: [Pot, Sink]
+        steps: ["Combine pot, water, and onion to make broth.", "Cook broth: 15s initially; 3s after refill; does not burn.", "Chop mushroom (1s) and combine with broth.", "Cook mushroom sauce (5s; does not burn).", "Combine with plated steak; pot provides 10 portions."]
+      - id: steak_sauce_red_wine_jus
+        name: {en: Steak Sauce - Red Wine Jus, zh: 牛排红酒汁}
+        ingredients: [Pot Stack, Onion, Wine, Water]
+        steps: ["Make broth from pot, water, and onion; cook 15s initially / 3s after refill (does not burn).", "Combine wine with broth.", "Cook jus 5s (does not burn).", "Combine with plated steak; pot provides 10 portions."]
+      - id: steak_topping_mushroom
+        name: {en: Steak Topping - Mushroom, zh: 牛排蘑菇配料}
+        ingredients: [Mushrooms]
+        steps: ["Chop mushroom (1s).", "Combine with plated steak."]
+      - id: steak_topping_tomato
+        name: {en: Steak Topping - Tomato, zh: 牛排番茄配料}
+        ingredients: [Tomato]
+        steps: ["Chop tomato (0.5s).", "Combine with plated steak."]
+
+  - id: salad
+    name: {en: Salad, zh: 沙拉}
+    course: main
+    unlock_level: 2
+    value: 4
+    expected_groups_modifier: +15%
+    eating_time: 1x
+    ingredients: [Lettuce, Tomato]
+    steps: ["Chop lettuce (1s); optionally chop tomato (0.5s).", "Plate chopped lettuce and optional chopped tomato."]
+    variants:
+      - id: apple_salad
+        name: {en: Apple Salad, zh: 苹果沙拉}
+        prerequisite: salad
+        expected_groups_modifier: -30%
+        value: 8
+        ingredients: [Eggs, Oil, Lettuce, Apple, Nuts]
+        steps: ["Chop egg (0.1s) and combine with oil to make mayonnaise.", "Chop lettuce (1s) and apple (1s).", "Plate mayonnaise, chopped lettuce, chopped apple, and nuts."]
+      - id: potato_salad
+        name: {en: Potato Salad, zh: 土豆沙拉}
+        prerequisite: salad
+        expected_groups_modifier: -30%
+        value: 8
+        ingredients: [Potato, Onion, Eggs, Oil, Water]
+        steps: ["Chop potato (1s); add to pot with water and cook 5s (does not burn).", "Chop onion (1s).", "Chop egg (0.1s), combine with oil for mayonnaise.", "Plate cooked potato, chopped onion, and mayonnaise."]
+    extras:
+      - id: salad_toppings
+        name: {en: Salad Toppings, zh: 沙拉配料}
+        ingredients: [Onion, Olives]
+        steps: ["Chop onion (1s).", "Combine chopped onion and/or olives with plated salad."]
+
+  - id: pizza
+    name: {en: Pizza, zh: 披萨}
+    course: main
+    unlock_level: 3
+    value: 5
+    expected_groups_modifier: 0%
+    eating_time: 1x
+    ingredients: [Flour, Water, Oil, Tomato, Cheese]
+    equipment: [Oven]
+    steps: ["Knead flour (1s) or combine flour with water for dough.", "Combine dough with oil for pizza base.", "Chop tomato twice (0.5s + 1s) for sauce; chop cheese (1s).", "Combine base, sauce, and chopped cheese for raw pizza.", "Cook 8s; +8s to burn.", "Portion 1s onto plates; 4 portions."]
+    extras:
+      - id: mushroom_pizza
+        name: {en: Mushroom Pizza, zh: 蘑菇披萨}
+        ingredients: [Mushrooms]
+        steps: ["Chop mushroom (1s), combine with raw pizza, cook 8s (+8s to burn), portion 1s; 4 portions."]
+      - id: onion_pizza
+        name: {en: Onion Pizza, zh: 洋葱披萨}
+        ingredients: [Onion]
+        steps: ["Chop onion (1s), combine with raw pizza, cook 8s (+8s to burn), portion 1s; 4 portions."]
+
+  - id: dumplings
+    name: {en: Dumplings, zh: 饺子}
+    course: main
+    unlock_level: 4
+    value: 8
+    expected_groups_modifier: -30%
+    eating_time: 2x (6s)
+    ingredients: [Flour, Water, Meat, Carrot]
+    equipment: [Starter Hob x2]
+    steps: ["Knead flour (1s) or combine with water for dough.", "Chop raw meat (2s) and carrot (1s).", "Combine chopped meat and carrot with dough.", "Knead unwrapped dumplings (0.1s).", "Cook raw dumplings 1s; +3s to burn; plate and serve."]
+    extras:
+      - id: dumpling_soy_sauce
+        name: {en: Dumpling - Soy Sauce, zh: 饺子酱油}
+        ingredients: [Soy Sauce]
+        steps: ["After each customer in the group receives the main, soy sauce may be requested; place on the table or on an adjacent Conveyor/Grabber/Teleporter."]
+      - id: seaweed
+        name: {en: Seaweed, zh: 海苔}
+        ingredients: [Seaweed]
+        steps: ["Cook raw seaweed 1s; +3s to burn; combine with plated dumplings."]
+
+  - id: black_coffee
+    name: {en: Black Coffee, zh: 黑咖啡}
+    course: dessert
+    unlock_level: 4
+    value: 1
+    expected_groups_modifier: +30%
+    eating_time: 4x (12s)
+    ingredients: [Coffee Machine]
+    steps: ["Grab a coffee cup from machine and place it back.", "Fill automatically in 3s (does not burn).", "Grab and serve; provide requested sugar, milk, or cupcake stand item."]
+    variants:
+      - id: iced_coffee
+        name: {en: Iced Coffee, zh: 冰咖啡}
+        ingredients: [Ice Dispenser, Ice]
+        steps: ["Wait for ice dispenser to refill (one ice every 10s).", "Combine black coffee with ice and serve."]
+      - id: latte
+        name: {en: Latte, zh: 拿铁}
+        ingredients: [Milk Steamer, Milk]
+        steps: ["Refill milk steamer with milk.", "Froth black coffee on milk steamer to make latte; serve."]
+      - id: tea
+        name: {en: Tea, zh: 茶}
+        ingredients: [Tea Pot, Tea Bag, Tea Cup, Water]
+        steps: ["Combine tea pot, water, and tea bag; steep 10s.", "Serve pot (up to four customers can share) and one tea cup per customer."]
+      - id: affogato
+        name: {en: Affogato, zh: 阿芙佳朵}
+        ingredients: [Coffee Machine, Ice Cream]
+        steps: ["Make coffee (3s automatic).", "Select vanilla ice cream and combine one scoop with coffee; serve."]
+    extras:
+      - {id: extra_sugar, name: {en: Extra Sugar, zh: 额外糖}, ingredients: [Sugar]}
+      - {id: extra_milk, name: {en: Extra Milk, zh: 额外牛奶}, ingredients: [Milk]}
+      - {id: cupcake_stand, name: {en: Cupcake Stand, zh: 纸杯蛋糕架}, ingredients: [Cupcake Stand]}
+
+  - id: burgers
+    name: {en: Burgers, zh: 汉堡}
+    course: main
+    unlock_level: 5
+    value: 3
+    expected_groups_modifier: +30%
+    eating_time: 0.75x (2.25s)
+    ingredients: [Patties, Burger Buns]
+    equipment: [Starter Hob x2]
+    steps: ["Cook raw patty 2s; +2s to burn.", "Combine cooked patty with burger bun; add requested toppings; plate and serve."]
+    variants:
+      - id: fresh_patties
+        name: {en: Fresh Patties, zh: 鲜制肉饼}
+        ingredients: [Meat, Eggs]
+        steps: ["Chop raw meat 2s and egg 0.1s.", "Combine chopped meat with cracked egg to make raw patty; continue burger process."]
+    extras:
+      - id: burger_toppings
+        name: {en: Burger Toppings, zh: 汉堡配料}
+        ingredients: [Onion, Tomato]
+        steps: ["Chop onion 1s and/or tomato 0.5s; combine with burger."]
+      - id: cheeseburgers
+        name: {en: Cheeseburgers, zh: 芝士汉堡}
+        ingredients: [Cheese]
+        steps: ["Chop cheese 1s; combine with burger."]
+
+  - id: sandwiches
+    name: {en: Sandwiches, zh: 三明治}
+    course: main
+    unlock_level: 6
+    value: 3
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Flour, Water, Tomato, Lettuce, Ham]
+    equipment: [Oven]
+    steps: ["Knead flour 1s or combine with water for dough.", "Bake loaf 20s; +20s to burn.", "Portion bread 0.5s (10 portions).", "Serve customer-requested fillings (tomato, lettuce, ham), then bread slice; whole loaf may be served when accepted."]
+    variants:
+      - id: sandwich_eggs
+        name: {en: Sandwich - Eggs, zh: 三明治-鸡蛋}
+        ingredients: [Eggs]
+        steps: ["Crack egg 0.1s; cook 3s; +10s to burn; serve if requested."]
+      - id: sandwich_toast
+        name: {en: Sandwich - Toast, zh: 三明治-烤面包}
+        ingredients: [Bread, Oven]
+        steps: ["Portion bread 0.5s; cook slice 3s; +3s to burn; serve."]
+      - id: sandwich_mayo
+        name: {en: Sandwich - Mayonnaise, zh: 三明治-蛋黄酱}
+        ingredients: [Eggs, Oil]
+        steps: ["Crack egg; combine with oil for mayonnaise; serve if requested."]
+      - id: sandwich_cheese
+        name: {en: Sandwich - Cheese, zh: 三明治-芝士}
+        ingredients: [Cheese]
+        steps: ["Chop cheese 1s; serve if requested."]
+      - id: sandwich_toppers
+        name: {en: Sandwich - Toppers, zh: 三明治-配料}
+        ingredients: [Pickles, Olives]
+        steps: ["Serve requested pickles or olives."]
+      - id: club_sandwiches
+        name: {en: Club Sandwiches, zh: 总会三明治}
+        prerequisite: [sandwich_mayo, sandwich_toast]
+        ingredients: [Turkey]
+        steps: ["Cook turkey 20s; +10s to burn. Portion turkey (1s) if requested; toast/bread is also assembled as ordered. Discard bones."]
+      - id: giant_sandwiches
+        name: {en: Giant Sandwiches, zh: 巨型三明治}
+        steps: ["Serve bread, then each requested filling in order, then final bread; each filling follows its own preparation method."]
+
+  - id: turkey
+    name: {en: Turkey, zh: 火鸡}
+    course: main
+    unlock_level: 6
+    value: 5
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Turkey]
+    equipment: [Oven]
+    steps: ["Cook raw turkey 20s; +10s to burn.", "Portion cooked turkey 1s; 4 portions; discard bones or use for gravy."]
+    extras:
+      - id: turkey_cranberry_sauce
+        name: {en: Turkey - Cranberry Sauce, zh: 火鸡-蔓越莓酱}
+        ingredients: [Cranberry, Sugar]
+        steps: ["Chop cranberry 1s; combine with sugar; add to plated turkey."]
+      - id: turkey_gravy
+        name: {en: Turkey - Gravy, zh: 火鸡-肉汁}
+        ingredients: [Pot Stack, Water, Onion, Turkey Bones]
+        steps: ["Make broth with pot, water, onion; cook 15s (3s after refill).", "Combine broth with turkey bones; cook gravy 6s (does not burn); serves 20 portions."]
+      - id: turkey_stuffing
+        name: {en: Turkey - Stuffing, zh: 火鸡-填料}
+        ingredients: [Flour, Water, Onion]
+        steps: ["Make dough and bake bread 20s (+20s to burn); portion slices, toast 3s (+3s), chop toast 1s.", "Combine breadcrumbs with chopped onion; cook stuffing 3s (+6s to burn); combine with turkey."]
+
+  - id: pies
+    name: {en: Pies, zh: 派}
+    course: main
+    unlock_level: 7
+    value: 8
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Flour, Water, Meat]
+    equipment: [Oven]
+    base: ["Knead flour 1s or combine with water for dough.", "Knead dough 2s for raw pie crust; optional pre-bake 5s (+20s to burn)."]
+    steps: ["Combine meat with pie crust; cook raw meat pie 5s (+20s to burn), or 3s when crust is pre-cooked; plate and serve."]
+    variants:
+      - {id: mushroom_pie, name: {en: Mushroom Pie, zh: 蘑菇派}, ingredients: [Mushrooms], steps: ["Combine mushroom with pie crust; bake as pie."]}
+      - {id: vegetable_pies, name: {en: Vegetable Pies, zh: 蔬菜派}, ingredients: [Carrot, Broccoli], steps: ["Combine carrot and broccoli with pie crust; bake as pie."]}
+
+  - id: cakes
+    name: {en: Cakes (Pastry), zh: 蛋糕（糕点）}
+    course: dessert
+    unlock_level: 7
+    value: 3
+    expected_groups_modifier: 0%
+    eating_time: 1x
+    order_model: "Customers order a flavor; any cake of the requested flavor is accepted."
+    ingredients: [Flour, Eggs, Sugar, Chocolate]
+    steps: ["Base batter: chop egg 0.1s; combine with flour and sugar in mixing bowl; knead 2s.", "Chocolate flavor: cook chocolate 2s (+2s to burn), then combine into cake recipe."]
+    variants:
+      - {id: sponge_cake, name: {en: Sponge Cake, zh: 海绵蛋糕}, ingredients: [Milk, Cake Tin], steps: ["Combine batter with milk; bake in cake tin 45s (+12s to burn), or microwave 5s; add flavor; portion 1s; 6 portions."]}
+      - {id: cupcake, name: {en: Cupcake, zh: 纸杯蛋糕}, ingredients: [Milk, Cupcake Tray], steps: ["Combine batter and milk; bake in cupcake tray 12s (+12s); portion 1s; add flavor; 4 portions."]}
+      - {id: doughnut, name: {en: Doughnut, zh: 甜甜圈}, ingredients: [Milk, Doughnut Tray, Pot Stack, Oil], steps: ["Combine batter and milk; rise 10s in tray. Portion doughnut, fry in oil 2s, portion each; add flavor; 12 portions."]}
+      - {id: brownies, name: {en: Brownies, zh: 布朗尼}, ingredients: [Brownie Tray, Chocolate], steps: ["Combine chocolate flavor with batter; bake 9s (+20s to burn); portion 1s; 6 portions."]}
+      - {id: cake_flavour_coffee, name: {en: Cake Flavour - Coffee, zh: 蛋糕口味-咖啡}, ingredients: [Coffee Machine], steps: ["Make coffee (3s automatic); use as cake flavor."]}
+      - {id: cake_flavour_lemon, name: {en: Cake Flavour - Lemon, zh: 蛋糕口味-柠檬}, ingredients: [Lemon], steps: ["Chop lemon 1s; use as cake flavor."]}
+
+  - id: spaghetti
+    name: {en: Spaghetti, zh: 意大利面}
+    course: main
+    unlock_level: 8
+    value: 5
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Spaghetti, Tomato, Pot Stack, Water]
+    steps: ["Cook spaghetti in pot with water for 2s; dispose water according to selected variant; plate serves 2 portions.", "Chop tomato twice (0.5s + 1s) for sauce; combine with plain spaghetti."]
+    variants:
+      - {id: traditional_recipe, name: {en: Traditional Recipe, zh: 传统做法}, steps: ["Pasta water may be poured into sinks."]}
+      - {id: extra_starch, name: {en: Extra Starch, zh: 额外淀粉}, steps: ["Pasta water cannot be poured into sinks; customers pay extra."]}
+      - {id: spaghetti_bolognese, name: {en: Spaghetti Bolognese, zh: 肉酱意面}, ingredients: [Mince, Tomato], steps: ["Cook mince 2s (+2s to burn); make tomato sauce; combine with mince in pot; cook sauce 3s (does not burn); combine with pasta."]}
+      - {id: cheesy_spaghetti, name: {en: Cheesy Spaghetti, zh: 芝士意面}, ingredients: [Pot Stack, Flour, Butter, Milk, Cheese], steps: ["Cook flour and butter roux 2s (does not burn); combine milk and knead 1s twice to make white sauce; chop cheese 1s; combine with pasta."]}
+      - {id: lasagne, name: {en: Lasagne, zh: 千层面}, prerequisite: [spaghetti_bolognese, cheesy_spaghetti], ingredients: [Pasta Sheet, Lasagne Tray], steps: ["Layer bolognese, pasta sheet, white sauce twice; cook 20s (+10s to burn); portion 1s; 4 portions."]}
+
+  - id: sundaes
+    name: {en: Sundaes, zh: 圣代}
+    course: dessert
+    unlock_level: 8
+    value: 3
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    variants:
+      - {id: scoops, name: {en: Scoops, zh: 冰淇淋球}, ingredients: [Ice Cream, Sundae Glasses], steps: ["Serve sundae glass; add requested 2–4 scoops."]}
+      - {id: homemade, name: {en: "Sundaes II: Homemade", zh: 自制圣代}, ingredients: [Milk, Sugar, Chocolate, Strawberries, Mixing Bowl, Freezer, Sundae Glasses], steps: ["Combine sugar and milk in bowl; freeze 5s; add chocolate, strawberry, or neither for vanilla; mix 2s; portion 1s (5 portions); serve requested 2–4 scoops in glass."]}
+    extras:
+      - {id: sundae_syrups, name: {en: Sundae Syrups, zh: 圣代糖浆}, ingredients: [Chocolate Syrup, Strawberry Syrup], steps: ["Serve requested syrup; bottles may be placed on table or buffet."]}
+      - {id: sundae_toppings, name: {en: Sundae Toppings, zh: 圣代配料}, ingredients: [Cranberry, Nuts], steps: ["Serve requested cranberry; chop nuts 2s before serving."]}
+      - {id: giant_sundaes, name: {en: Giant Sundaes, zh: 巨型圣代}, steps: ["Serve requested flavors and any requested toppings/syrup."]}
+
+  - id: fish
+    name: {en: Fish, zh: 鱼}
+    course: main
+    unlock_level: 9
+    value: 5
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Fish Provider]
+    equipment: [Starter Hob x2]
+    steps: ["Cook blue fish 7s (+14s to burn) or pink fish 4s (+6s to burn); plate and serve.", "Providers vary fish selection by day/cards."]
+    variants:
+      - {id: crab_cake, name: {en: Crab Cake, zh: 蟹肉饼}, ingredients: [Crab, Eggs, Flour], steps: ["Chop crab 1s and egg 0.1s; combine with cracked egg then flour; cook 5s (+6s to burn)."]}
+      - {id: fish_fillet, name: {en: Fish Fillet, zh: 鱼排}, ingredients: [Fish Fillet], steps: ["Chop raw fillet 2s; cook 3s (+4s to burn)."]}
+      - {id: oysters, name: {en: Oysters, zh: 生蚝}, ingredients: [Oysters], steps: ["Chop/shuck 2–3 oysters, 0.2s each; plate all together."]}
+      - {id: spiny_fish, name: {en: Spiny Fish, zh: 棘鱼}, ingredients: [Spiny Fish], steps: ["Portion spines from raw fish 1s and discard; cook deboned fish 4s (+8s to burn)."]}
+
+  - id: tacos
+    name: {en: Tacos, zh: 塔可}
+    course: main
+    unlock_level: 10
+    value: 1 per taco
+    expected_groups_modifier: +15%
+    eating_time: 0.75x (2.25s)
+    ingredients: [Mince, Tortillas]
+    equipment: [Taco Trays]
+    steps: ["Cook mince 2s; combine tortilla with taco tray; add cooked mince; portion 1s; tray yields 4 portions.", "Alternatively serve the divisible tray for customers to take portions."]
+    extras: [Tacos - Cheese, Tacos - Lettuce, Tacos - Onion, Tacos - Tomato]
+
+  - id: hot_dogs
+    name: {en: Hot Dogs, zh: 热狗}
+    course: main
+    unlock_level: 11
+    value: 5
+    expected_groups_modifier: +15%
+    eating_time: 0.75x (2.25s)
+    ingredients: [Hot Dog, Hot Dog Bun]
+    equipment: [Starter Hob x2, Extra Ketchup]
+    steps: ["Cook raw hot dog 3s (+4s to burn); combine with bun; plate and serve.", "Provide ketchup or mustard if requested."]
+    extras: [Hot Dog - Mustard]
+
+  - id: fajitas
+    name: {en: Fajitas, zh: 法士达（建议译名）}
+    course: main
+    unlock_level: 12
+    value: 6
+    expected_groups_modifier: 0%
+    eating_time: null
+    ingredients: [Frying Pan, Meat, Tortillas, Lettuce]
+    steps: ["Combine Frying Pan with chopped meat and cook.", "Optionally add chopped bell pepper and/or onion to the pan; cook after each addition.", "Serve the pan item while sizzling; if it cools, reheat before serving.", "Chop lettuce on a Counter; combine a Tortilla with chopped lettuce and serve alongside the fajitas.", "For cheese or tomato extras, chop the requested ingredient and combine it with a Tortilla; serve alongside the main."]
+    notes: "Official 1.5 update confirms fajitas must be served sizzling hot with tortillas and lettuce; they cool out of pan and need reheating. Detail page lists ingredient steps but no numeric cook or cooling duration in the captured text; eating_time remains null."
+    variants: [Fajitas - Bell Peppers, Fajitas - Onions, Fajitas - Cheese, Fajitas - Tomato]
+    extras: [Crema, Salsa, Guacamole]
+
+  - id: breakfast
+    name: {en: Breakfast, zh: 早餐}
+    course: main
+    unlock_level: 13
+    value: 5
+    expected_groups_modifier: 0%
+    eating_time: 1x
+    ingredients: [Flour, Water]
+    equipment: [Oven]
+    steps: ["Knead flour 1s or combine with water for dough; bake dough 20s (+20s to burn) as bread.", "Portion slice 0.5s (10 portions); cook slice 3s (+3s to burn) as toast; serve."]
+    extras: [Breakfast Beans, Breakfast Eggs, Breakfast Extras]
+
+  - id: stir_fry
+    name: {en: Stir Fry, zh: 炒菜}
+    course: main
+    unlock_level: 15
+    value: 10
+    expected_groups_modifier: -15%
+    eating_time: 1x
+    ingredients: [Rice, Carrot, Broccoli]
+    equipment: [Woks, Starter Hob x2]
+    steps: ["Combine wok with raw rice; cook 2s (+10s to burn).", "Chop carrot and/or broccoli 1s; add one vegetable and cook 2s (+10s).", "Optionally add second vegetable and cook 2s (+10s); add requested bamboo/mushroom/meat; plate and serve."]
+    variants: [Bamboo Stir Fry, Mushroom Stir Fry, Steak Stir Fry]
+    extras: [Stir Fry - Soy Sauce]
+
+side_and_course_workflows:
+  broth_base: ["Pot + water + onion -> broth.", "Cook 15s initially; refill with water and cook 3s; does not burn."]
+  broccoli_cheese_soup: ["Combine broccoli and cheese with broth.", "Cook 6s (does not burn); portion 1s; 3 servings."]
+  carrot_soup: ["Optional chop carrot 1s.", "Cook carrot broth 10s whole / 8s chopped (does not burn); portion 1s; 3 servings."]
+  meat_soup: ["Optional chop meat 2s.", "Cook meat broth 12s whole / 6s chopped (does not burn); portion 1s; 3 servings."]
+  pumpkin_soup: ["Portion seeds from pumpkin 0.3s; chop hollow pumpkin 2s.", "Cook pumpkin broth 6s (does not burn); portion 1s; 3 servings."]
+  tomato_soup: ["Chop tomato twice for sauce; combine with broth; optionally chop another tomato.", "Cook tomato broth 8s whole / 4s chopped (does not burn); portion 1s; 3 servings."]
+  bread_starter: ["Make dough and bake bread 20s (+20s to burn).", "Portion two slices 0.5s; place on serving board."]
+  mandarin_starter: ["Portion 2 or 4 slices, 1s each; bowl is created automatically; serve."]
+  pumpkin_seed: ["Portion seeds 0.3s; cook seeds 4s (+6s to burn); serve."]
+  broccoli_side: ["Pot + water + broccoli; cook 10s (does not burn); portion; 5 servings."]
+  bamboo_side: ["Pot + water + bamboo; cook 10s (does not burn); portion; 3 servings."]
+  chips: ["Chop potato 1s; cook chopped potato 2s (+4s to burn); plate separately."]
+  corn_on_cob: ["Portion husk 1s and discard; cook husked corn 4s (+8s to burn)."]
+  mashed_potato: ["Cook potato in pot with water 20s (does not burn); chop in pot 5s; portion; 20 servings."]
+  onion_rings: ["Chop onion 1s; combine with flour; cook 2s (+3s to burn); plate separately."]
+  roast_potato: ["Cook potato 5s (+10s to burn); serve alongside main."]
+  apple_pie_dessert: ["Pre-bake raw crust 5s (+20s); chop apple 1s; combine; bake 7s (+20s)."]
+  cherry_pie: ["Pre-bake crust 5s (+20s); combine cherries; bake 3s (+5s)."]
+  pumpkin_pie: ["Portion pumpkin seeds 0.3s; chop pumpkin 2s; combine with crust; bake 5s (+5s), or 3s with pre-baked crust."]
+  cheese_board: ["Chop apple 1s; combine serving board with apple, cheese, nuts; shared by up to 3 customers."]
+  ice_cream: ["Select strawberry, chocolate, or vanilla at freezer; serve requested 2–3 flavors in bowl."]
+
+source_notes:
+  - "Individual detail pages are linked from the base recipe page."
+  - "A null or not_listed value means the page did not provide a reliable numeric value; do not infer it."

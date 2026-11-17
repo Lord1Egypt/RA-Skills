@@ -16,7 +16,7 @@ export class AuditStreamService {
   }
 
   async emit(event: JPEvent): Promise<void> {
-    this.events.push(event);
+    this.events.push(JSON.parse(JSON.stringify(event)));
 
     // Rotate if too many in memory
     if (this.events.length > this.maxMemoryEvents) {
@@ -24,7 +24,8 @@ export class AuditStreamService {
     }
 
     const line = JSON.stringify(event) + '\n';
-    fs.appendFileSync(this.streamPath, line, { mode: 0o600 });
+    const fd=fs.openSync(this.streamPath,fs.constants.O_WRONLY|fs.constants.O_APPEND|fs.constants.O_CREAT|fs.constants.O_NOFOLLOW,0o600);
+    try { if(fs.fstatSync(fd).size+Buffer.byteLength(line)>16777216) throw new Error('Archive audit log before continuing'); fs.writeSync(fd,line); } finally {fs.closeSync(fd);}
   }
 
   async query(filter: AuditFilter): Promise<JPEvent[]> {
@@ -36,11 +37,11 @@ export class AuditStreamService {
     });
   }
 
-  export(format: 'jep' | 'json' = 'jep'): string {
+  export(format: 'jep' | 'json' = 'jep', events: JPEvent[] = this.events): string {
     if (format === 'jep') {
-      return JSON.stringify({ events: this.events }, null, 2);
+      return JSON.stringify({ events }, null, 2);
     }
-    return JSON.stringify(this.events, null, 2);
+    return JSON.stringify(events, null, 2);
   }
 
   stats(): { total: number; byVerb: Record<string, number>; sizeBytes: number } {
@@ -58,6 +59,8 @@ export class AuditStreamService {
   private load(): void {
     if (!fs.existsSync(this.streamPath)) return;
 
+    const stat=fs.lstatSync(this.streamPath);
+    if(stat.isSymbolicLink() || (stat.mode&0o077) || stat.size>16777216) throw new Error('Audit file needs secure archival before startup');
     const lines = fs.readFileSync(this.streamPath, 'utf-8').split('\n').filter(Boolean);
     // Only load last N events to memory
     const recent = lines.slice(-this.maxMemoryEvents);

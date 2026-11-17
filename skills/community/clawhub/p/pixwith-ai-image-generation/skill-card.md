@@ -1,47 +1,69 @@
-## Description: <br>
-AI video, image generation. 40+ models — Sora, Veo 3, Kling, Seedance, GPT Image, Hailuo, WAN. Text-to-video, image-to-video, text-to-image,image-to-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Pixwith through MCP to generate or edit images and create videos from text or reference images.
 
-## Publisher: <br>
-[tate-kt](https://clawhub.ai/user/tate-kt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tate-kt](https://clawhub.ai/user/tate-kt)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure Pixwith MCP, select current image or video generation models, submit schema-valid generation jobs, upload reference images when needed, check credits, and poll asynchronous task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pixwith requests require an API key, and exposed keys could allow unauthorized use. <br>
-Mitigation: Keep the API key private, verify the Pixwith endpoint before configuration, and replace placeholders with a valid key only in the MCP host configuration. <br>
-Risk: High-resolution image jobs and video jobs can consume Pixwith credits. <br>
-Mitigation: Check credits before expensive or long-running jobs and stop if the selected request exceeds the available balance. <br>
-Risk: Reference image uploads may send user-provided content to Pixwith for processing. <br>
-Mitigation: Avoid uploading sensitive images unless the user is comfortable sending them to Pixwith, and prefer the Pixwith upload flow for local or unreliable images. <br>
-Risk: Model availability, options, and pricing can change over time. <br>
-Mitigation: Call list_models and get_model_schema before generation, then build requests from the current schema instead of relying on static model lists. <br>
+## Use Case:
 
+Developers and external users use this skill to connect OpenClaw to Pixwith, discover current image and video models, configure requests, upload reference images when needed, and poll asynchronous generation tasks.
 
-## Reference(s): <br>
-- [Pixwith Homepage](https://pixwith.ai) <br>
-- [Pixwith Service Contract](references/service-contract.md) <br>
-- [Current Model Snapshot](references/model-snapshot.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tate-kt/pixwith-ai-image-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration examples and Pixwith MCP tool-call sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Pixwith API key; media generation is asynchronous and returns task results after polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompts, generation settings, credit checks, and uploaded reference images may be sent to Pixwith or its storage provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images unless the user is comfortable with Pixwith handling them, and use only the documented Pixwith endpoint.
+
+Risk: Pixwith API keys are required for every request and can grant access to paid generation capacity.
+
+Mitigation: Keep the API key private, use the documented Api-Key header, and direct users to replace placeholders with their own key only in their local MCP configuration.
+
+Risk: Static model examples can become stale because Pixwith model availability and schemas are dynamic.
+
+Mitigation: Call list_models and get_model_schema before generation, and treat the current input schema as authoritative for images, options, enum values, timing, and credits.
+
+Risk: Video and higher-resolution image jobs can consume more credits or take longer than a quick model listing suggests.
+
+Mitigation: Check get_credits before expensive jobs and stop rather than retrying automatically when credits are insufficient.
+
+Risk: Generation tasks are asynchronous and may fail or still be processing when first checked.
+
+Mitigation: Poll get_task_result until a terminal status and only rely on result URLs when the task status is completed.
+
+## Reference(s):
+
+- [Pixwith homepage](https://pixwith.ai)
+- [Pixwith Service Contract](references/service-contract.md)
+- [Current Model Snapshot](references/model-snapshot.md)
+- [Text to Image Example](examples/text-to-image.md)
+- [Image to Video Example](examples/image-to-video.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline JSON examples and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Pixwith MCP configuration snippets and generation-task polling instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

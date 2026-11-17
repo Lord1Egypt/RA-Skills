@@ -1,41 +1,54 @@
-## Description: <br>
-Calls Doubao AI to generate customized copy from a user's topic, outline, or keywords for social posts, articles, scripts, and similar writing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese copywriting with Doubao AI from a user-provided topic, outline, or keywords for Xiaohongshu posts, WeChat public account articles, Douyin scripts, and other writing tasks.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Content creators, marketers, and writing assistants use this skill to turn a topic, outline, or keywords into copy for Xiaohongshu posts, WeChat public-account articles, Douyin scripts, and other AI-assisted writing scenarios. It can either interact with a logged-in Doubao web session or provide local-generation guidance when browser login is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts and provided content may be sent to Doubao under a logged-in account. <br>
-Mitigation: Do not submit passwords, secrets, private business documents, personal data, or sensitive unpublished material. <br>
-Risk: The browser workflow may require interaction with a logged-in Doubao browser session. <br>
-Mitigation: Use the manual local workflow when users do not want an agent operating inside their logged-in Doubao session. <br>
+## Use Case:
 
+Content creators, marketers, and agent users use this skill to draft platform-specific Chinese copy from a brief, outline, or keywords, then refine the style or regenerate when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/doubao-copywriter) <br>
-- [Doubao chat](https://www.doubao.com/chat/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown copy delivered to the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy style can be adjusted by user preference, such as formal, casual, or humorous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using Doubao through an agent-controlled browser may expose an account session, QR code, or login page to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local browser when possible, treat QR codes and account pages as sensitive, and sign out of Doubao in the agent browser after use if the session should not persist.
+
+Risk: Generated copy can be inaccurate, unsuitable for the intended audience, or inconsistent with the requested brand voice.
+
+Mitigation: Review the generated text before publication and request style adjustments or regeneration when the draft does not meet requirements.
+
+## Reference(s):
+
+- [Doubao Chat](https://www.doubao.com/chat/)
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/doubao-copywriter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require the user to log into Doubao and may rely on the user copying generated text from a local browser if agent-browser login is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

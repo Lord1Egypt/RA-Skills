@@ -1,43 +1,58 @@
-## Description: <br>
-Calls the Volcengine Seedream image-generation API when a user needs to generate images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Volcengine Seedream image generation API to create images from text prompts and optional reference images.
 
-## Publisher: <br>
-[Lamuier](https://clawhub.ai/user/Lamuier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lamuier](https://clawhub.ai/user/lamuier)
 
-## Use Case: <br>
-Developers and agents use this skill to generate, edit, or batch-generate images with Doubao Seedream models through the Volcengine API. It supports text prompts, optional reference images, model selection, image sizing, seeds, negative prompts, and local output storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and local reference images may be sent to Volcengine for processing. <br>
-Mitigation: Avoid secrets, personal data, and regulated image content in prompts or uploads unless the deployment has approved that data flow. <br>
-Risk: Generated files are written to a local output directory. <br>
-Mitigation: Choose an output path appropriate for generated media and review stored files before sharing or deploying them. <br>
-Risk: The optional web_search tool can cause the model to use external search behavior. <br>
-Mitigation: Enable web_search only deliberately and only for prompts where external search is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to generate Seedream images from natural-language prompts, optionally using reference images, grouped image generation, or the Seedream web_search tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lamuier/doubao-seedream-skill) <br>
-- [Volcengine Seedream image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline command examples, Python API usage, JSON-like API results, image URLs, and local image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_API_KEY and can save generated images to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Reference-image paths can upload any readable local file that is passed as an image input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only non-sensitive image files that are intended for Seedream processing; prefer vetted paths or URLs.
+
+Risk: Prompts, reference images, URLs, and optional web_search requests are sent to an external Volcengine provider.
+
+Mitigation: Avoid sensitive prompts or private files, and use only a Volcengine API key intended for Seedream usage.
+
+Risk: Generated images are downloaded automatically by default and downloads are not constrained by the security evidence.
+
+Mitigation: Review output locations and downloaded files before reuse, sharing, or execution in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lamuier/skills/doubao-seedream-skill)
+- [Volcengine Seedream API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated image URLs and downloaded local image files at runtime]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLCENGINE_API_KEY and sends prompts, reference images, URLs, and optional web_search requests to an external provider.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-Generate and explain cron expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and explain cron expressions.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an OpenClaw agent to generate or explain cron expressions. Requests are sent to the hosted NEXUS cron-builder service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cron-related prompts are sent to a third-party paid endpoint. <br>
-Mitigation: Review inputs before use, avoid sending sensitive schedule details, and use an offline cron-expression tool when remote processing is not needed. <br>
-Risk: The skill requires payment proof credentials and supports paid service flows. <br>
-Mitigation: Keep NEXUS_PAYMENT_PROOF scoped, prefer explicit confirmation before paid remote calls, and use sandbox testing where supported. <br>
-Risk: The security scan verdict is suspicious because the artifact combines a simple cron helper with paid remote-service behavior and ambiguous automatic invocation. <br>
-Mitigation: Review the invocation behavior and payment terms before installing, monitor usage, and disable the skill if automatic invocation is unsuitable for the environment. <br>
+## Use Case:
 
+External users and developers use this skill to generate and explain cron expressions through the NEXUS remote API. It is suited to agent workflows that can provide payment proof or use the sandbox test path.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/nexus-cron-builder) <br>
-- [NEXUS Platform](https://ai-service-hub-15.emergent.host) <br>
-- [Cron Builder Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/cron-builder) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls] <br>
-**Output Format:** [JSON service response, typically rendered by the agent as text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and NEXUS_PAYMENT_PROOF for paid requests; sandbox_test may be available for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill sends user input and payment or transaction material to a third-party host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only if you trust NEXUS, avoid secrets or internal infrastructure details, and prefer sandbox testing before paid use.
+
+Risk: The security summary notes unclear per-request approval or spending controls for external requests, payments, signed transactions, or mandates.
+
+Mitigation: Require separate confirmation for every external request, payment, signed transaction, or mandate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-cron-builder)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [Cron Builder API Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/cron-builder)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [Stellar Fee Sponsorship](https://ai-service-hub-15.emergent.host/api/mpp/stellar/sponsor-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with a result string from the remote service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and NEXUS_PAYMENT_PROOF; paid requests are $0.05 with sandbox testing available.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

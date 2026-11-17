@@ -1,42 +1,56 @@
-## Description: <br>
-Analyzes OpenClaw workspace structure and content to identify maintenance needs, bloat, duplicates, and organization issues. Outputs a JSON report for the agent to review and act upon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes OpenClaw workspace structure and content to identify maintenance needs, bloat, duplicates, and organization issues, then outputs a JSON report for the agent to review and act upon.
 
-## Publisher: <br>
-[zendenho7](https://clawhub.ai/user/zendenho7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zendenho7](https://clawhub.ai/user/zendenho7)
 
-## Use Case: <br>
-Developers and OpenClaw workspace maintainers use this skill to inspect workspace structure, detect maintenance issues such as bloat and duplicate content, and produce an actionable JSON report for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workspace reports may expose file paths, structure, and maintenance metadata if stored or shared carelessly. <br>
-Mitigation: Keep the scan root narrow and handle generated JSON reports as potentially sensitive workspace metadata. <br>
-Risk: The bundled run script writes its default report to a fixed path under /tmp, which may be undesirable on shared machines. <br>
-Mitigation: Use an explicit output path in a private workspace when privacy matters, and remove temporary reports after review. <br>
-Risk: The skill can suggest edits or commits for agents to perform after analysis. <br>
-Mitigation: Review recommendations before allowing an agent to modify core files or create git commits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workspace Analyzer ClawHub page](https://clawhub.ai/zendenho7/workspace-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/zendenho7) <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan OpenClaw workspaces for structure, bloat, duplicate content, orphaned files, broken wiki links, and single-source-of-truth issues. The resulting JSON report helps an agent or reviewer prioritize manual maintenance work.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON report, Guidance] <br>
-**Output Format:** [JSON report with summary and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports workspace file metadata, detected core files, issue findings, single-source validation, and recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The launcher writes reports to a fixed /tmp/workspace-analysis.json path, which can expose or overwrite local report data on shared systems.
+
+Mitigation: Run analyzer.py directly with --output set to a private path, or inspect and remove the temp report after use.
+
+Risk: The read-only description understates that report files may be written when an output path is used.
+
+Mitigation: Treat generated reports as local artifacts, choose output destinations deliberately, and review report contents before sharing them.
+
+Risk: Recommendations can guide file edits or commits that change workspace behavior.
+
+Mitigation: Use recommendations as review input only, and manually inspect cleanup, duplicate-content, and commit actions before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zendenho7/skills/workspace-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [json, guidance, text]
+
+**Output Format:** [JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scan metadata, detected core files, per-file analysis, single-source validation results, recommendations, and summary counts.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

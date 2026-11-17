@@ -1,41 +1,53 @@
-## Description: <br>
-SSL/TLS Certificate Check & Renewal SOP. Covers certificate validation (PEM/CRT/JKS), Nginx certificate update, Let's Encrypt wildcard application, and emergency response for expired certificates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SSL/TLS Certificate Check & Renewal SOP. Covers certificate validation (PEM/CRT/JKS), Nginx certificate update, Let's Encrypt wildcard application, and emergency response for expired certificates.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Ops and infrastructure engineers use this skill as a runbook for checking certificate validity, updating Nginx and JKS certificates, issuing Let's Encrypt wildcard certificates, and responding to expired-certificate incidents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Certificate maintenance can involve privileged systems, private keys, keystore passwords, and DNS API credentials. <br>
-Mitigation: Use the guidance only on systems you are authorized to administer, keep secrets out of chat and version control, and store private keys in approved server paths or a secrets manager. <br>
-Risk: Incorrect certificate replacement, certbot plugin installation, service reloads, or renewal hooks can disrupt TLS service. <br>
-Mitigation: Verify package sources, run configuration tests and renewal dry-runs before applying changes, and review cron deploy hooks before enabling automatic renewal. <br>
+## Use Case:
 
+Developers and operations engineers use this skill as a certificate operations runbook for checking SSL/TLS validity, updating Nginx and JKS certificates, applying Let's Encrypt wildcard certificates, and coordinating expired-certificate response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freepengyang/ops-cert-check) <br>
-- [Alibaba Cloud CLI credential configuration](https://help.aliyun.com/zh/cli/configure-credentials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes certificate validation, Nginx reload, certbot renewal, and emergency response procedures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Production TLS certificate changes can disrupt service or deploy mismatched certificate, key, or chain files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval, back up current certificates and configs, verify certificate/key/full-chain matching, test Nginx configuration, and confirm the served certificate after reload.
+
+Risk: DNS API tokens, root access, cron jobs, and deploy hooks can create credential exposure or unauthorized automation risk.
+
+Mitigation: Use least-privilege DNS credentials, protect secrets outside version control, test renewal with a dry run, and ensure cron or deploy hooks are administrator-owned, minimally scoped, logged, and reviewed.
+
+## Reference(s):
+
+- [Aliyun CLI credential configuration](https://help.aliyun.com/zh/cli/configure-credentials)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks, checklists, tables, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes production certificate operations steps that require human approval, backups, dry runs, and administrator review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

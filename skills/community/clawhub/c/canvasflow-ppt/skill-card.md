@@ -1,47 +1,66 @@
-## Description: <br>
-Generates magazine-style presentation decks from a topic or outline, with guided theme selection, layout planning, quality checks, and optional HTML or PPTX output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates magazine-style presentation decks from a topic or outline, with guided layout selection, theme planning, and optional single-file HTML or PPTX output.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Presentation creators, speakers, and agent users can use this skill to turn a topic, outline, or source material into a polished visual deck. It is best suited for product launches, demo days, private talks, and visually expressive presentations rather than dense tables, training materials, or collaboratively edited slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts automatically open generated files on macOS through shell commands. <br>
-Mitigation: Review scripts before use, remove the auto-open behavior, or gate it behind an explicit option that uses a non-shell subprocess call. <br>
-Risk: Generated HTML may reference third-party CDN assets. <br>
-Mitigation: For sensitive presentations, pin, vendor, or remove external assets before sharing or opening the generated deck. <br>
-Risk: Generated presentations may be visually polished but still contain inaccurate or unsuitable content. <br>
-Mitigation: Review the deck against the supplied quality checklist and source material before using it in a public or commercial setting. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to turn a presentation topic, outline, or source material into a visually polished slide deck for talks, launches, demos, and private sharing. It is best suited to narrative and visual presentations rather than dense data tables or collaborative slide editing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wwbwin/canvasflow-ppt) <br>
-- [README.md](README.md) <br>
-- [Layout System](references/layouts.md) <br>
-- [Theme Presets](references/themes.md) <br>
-- [Quality Checklist](references/checklist.md) <br>
-- [Component Guide](references/components.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JSON outline, and optional PPTX or single-file HTML presentation outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local presentation files and uses optional python-pptx for PPTX export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated HTML can run active content from supplied presentation material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted outlines and source content, and review generated HTML before opening or sharing it.
+
+Risk: The generator can automatically open generated files through shell-based preview behavior.
+
+Mitigation: Disable or remove automatic preview behavior when reviewing untrusted decks or running in controlled environments.
+
+Risk: Attacker-controlled output paths could cause generated files to be written in unintended locations.
+
+Mitigation: Use fixed, trusted output directories and avoid passing untrusted output paths to the generator.
+
+Risk: External browser assets can affect offline or reproducible presentation rendering.
+
+Mitigation: Vendor or pin external assets and dependencies when reproducible or offline presentation output is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/canvasflow-ppt)
+- [Layout system](references/layouts.md)
+- [Theme presets](references/themes.md)
+- [Quality checklist](references/checklist.md)
+- [Component reference](references/components.md)
+- [Lucide browser bundle](https://unpkg.com/lucide@latest/dist/umd/lucide.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with HTML, JSON outline, and optional PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included scripts can generate timestamped outline JSON, single-file HTML presentations, and PPTX decks.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

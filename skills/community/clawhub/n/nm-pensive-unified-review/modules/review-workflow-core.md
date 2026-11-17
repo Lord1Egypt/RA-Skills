@@ -1,10 +1,9 @@
 ---
 name: review-workflow-core
 description: Core workflow patterns for all pensive review skills
-parent_skill: pensive:shared
+parent_skill: pensive:unified-review
 category: review-infrastructure
 tags: [workflow, core, review, patterns]
-reusable_by: [pensive:bug-review, pensive:api-review, pensive:architecture-review, pensive:test-review, pensive:rust-review, pensive:makefile-review, pensive:math-review, pensive:unified-review]
 estimated_tokens: 400
 ---
 
@@ -76,15 +75,37 @@ Actions:
 Create tasks at workflow start:
 
 ```python
-TodoWrite({
-    "todos": [
-        {"content": "Establish review context", "status": "pending", "activeForm": "Establishing review context"},
-        {"content": "Create scope inventory", "status": "pending", "activeForm": "Creating scope inventory"},
-        {"content": "Perform deep analysis", "status": "pending", "activeForm": "Performing deep analysis"},
-        {"content": "Capture evidence", "status": "pending", "activeForm": "Capturing evidence"},
-        {"content": "Assemble final deliverable", "status": "pending", "activeForm": "Assembling final deliverable"}
-    ]
-})
+TodoWrite(
+    {
+        "todos": [
+            {
+                "content": "Establish review context",
+                "status": "pending",
+                "activeForm": "Establishing review context",
+            },
+            {
+                "content": "Create scope inventory",
+                "status": "pending",
+                "activeForm": "Creating scope inventory",
+            },
+            {
+                "content": "Perform deep analysis",
+                "status": "pending",
+                "activeForm": "Performing deep analysis",
+            },
+            {
+                "content": "Capture evidence",
+                "status": "pending",
+                "activeForm": "Capturing evidence",
+            },
+            {
+                "content": "Assemble final deliverable",
+                "status": "pending",
+                "activeForm": "Assembling final deliverable",
+            },
+        ]
+    }
+)
 ```
 
 Mark each as `in_progress` when starting, `completed` when finished.

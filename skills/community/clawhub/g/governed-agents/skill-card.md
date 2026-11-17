@@ -1,45 +1,60 @@
-## Description: <br>
-Deterministic verification and reputation scoring for AI sub-agents, with code gates for coding work and a structural, grounding, and LLM-council pipeline for open-ended tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic verification + reputation scoring for AI sub-agents. Prevents hallucinated success via 4 code gates (files, tests, lint, AST) and a 3-layer pipeline (Structural \u2192 Grounding \u2192 LLM Council) for open-ended tasks.
 
-## Publisher: <br>
-[Nefas11](https://clawhub.ai/user/Nefas11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nefas11](https://clawhub.ai/user/nefas11)
 
-## Use Case: <br>
-Developers and agent operators use this skill to spawn sub-agents, verify claimed completion, score reliability over time, and apply supervision levels based on observed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spawn local agent CLIs and run configured verification commands. <br>
-Mitigation: Use it only in trusted workspaces, review task contracts before execution, and keep spawned agents constrained to intended working directories and credentials. <br>
-Risk: HTTP mode and grounding checks can make outbound or local URL requests. <br>
-Mitigation: Keep endpoints local or trusted, avoid sensitive internal URLs unless intended, and use network-disabling configuration when URL checks are not needed. <br>
-Risk: The skill stores task and reputation metadata locally. <br>
-Mitigation: Review the configured workspace and database path, avoid storing sensitive task content when unnecessary, and clean state between unrelated projects. <br>
-Risk: Direct spawn or self-reporting paths may not prove that every advertised verification gate ran. <br>
-Mitigation: Inspect recorded verification results and prefer deterministic gates or council verdicts that explicitly show which checks executed and passed. <br>
+## Use Case:
 
+Developers and engineers use this skill to spawn governed sub-agents, independently verify their claimed results, and maintain reputation scores that influence future supervision levels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Nefas11/governed-agents) <br>
-- [Source Repository](https://github.com/Nefas11/governed-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell examples, JSON task-result schemas, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate verification prompts, structured verdict summaries, local reputation records, and subprocess commands for configured agent CLIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.11 (source: ClawHub release evidence) <br>
+Risk: The skill can run local commands through external CLIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed workspace and use trusted task contracts with explicit acceptance criteria.
+
+Risk: HTTP spawn mode can receive authentication tokens.
+
+Mitigation: Do not set GOVERNED_AUTH_TOKEN or AUTH_TOKEN unless the HTTP endpoint is pinned to a known trusted local service.
+
+Risk: Persistent reputation data may be written outside the declared OpenClaw state path.
+
+Mitigation: Set GOVERNED_DB_PATH explicitly to an approved location before use.
+
+## Reference(s):
+
+- [Governed Agents ClawHub Page](https://clawhub.ai/nefas11/skills/governed-agents)
+- [Governed Agents Source](https://github.com/Nefas11/governed-agents)
+- [README](artifact/README.md)
+- [Security Notes](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate task contracts, verification summaries, council prompts, and configuration guidance for local CLI execution.]
+
+## Skill Version(s):
+
+0.1.11 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

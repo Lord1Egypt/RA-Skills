@@ -1,38 +1,53 @@
-## Description: <br>
-Saves paper metadata, links, optional summaries, and arXiv PDF attachments to a user's Zotero library using Zotero credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves paper metadata, PDF links, and AI-generated summaries to a user's Zotero library using Zotero credentials supplied through ZOTERO_CREDENTIALS.
 
-## Publisher: <br>
-[GloamingBlue](https://clawhub.ai/user/GloamingBlue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gloamingblue](https://clawhub.ai/user/gloamingblue)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to add scholarly paper records to a Zotero library from supplied title, author, URL, abstract, summary, and tag inputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Paper metadata, summaries, links, and attached PDFs may be uploaded to Zotero. <br>
-Mitigation: Use an appropriately scoped Zotero API key and avoid passing private notes or sensitive summaries unless they are intended to be stored in Zotero. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zotero](https://www.zotero.org) <br>
-- [ClawHub skill page](https://clawhub.ai/GloamingBlue/zotero-paper) <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to add paper records, optional abstracts, summaries, tags, and arXiv PDF attachments to a Zotero library from command-line inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell command examples and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS in userid:apiKey format; writes records to the user's Zotero library.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses Zotero API credentials and can create Zotero items and upload attachments.
+
+Mitigation: Use a least-privilege Zotero API key and review the target library before running the skill.
+
+Risk: The skill can derive and download a PDF URL from user-provided arXiv links before uploading the file to Zotero.
+
+Mitigation: Process only trusted paper URLs unless the PDF logic is constrained to canonical HTTPS arxiv.org URLs with size and content validation.
+
+## Reference(s):
+
+- [Zotero](https://www.zotero.org)
+- [ClawHub skill page](https://clawhub.ai/gloamingblue/skills/zotero-paper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS in userid:apiKey format.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

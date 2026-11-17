@@ -1,46 +1,65 @@
-## Description: <br>
-Turn text into spoken Feishu (Lark) voice messages. Use when the agent should speak in a Feishu group, send voice alerts or announcements, or reply with a playable voice note instead of text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn text into spoken Feishu (Lark) voice messages. Use when the agent should speak in a Feishu group, send voice alerts or announcements, or reply with a playable voice note instead of text.
 
-## Publisher: <br>
-[Richerlv](https://clawhub.ai/user/Richerlv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richerlv](https://clawhub.ai/user/richerlv)
 
-## Use Case: <br>
-Agents and developers use this skill to turn supplied text into Feishu voice messages for group announcements, alerts, or voice-note replies. It is intended for Feishu or Lark workspaces where app credentials and a target chat are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplied text is sent to an external TTS provider and the generated audio is uploaded to Feishu. <br>
-Mitigation: Use the skill only for content approved for those provider data flows, and avoid secrets or regulated content unless the workspace has approved them. <br>
-Risk: Feishu and ElevenLabs credentials grant access to external services. <br>
-Mitigation: Use narrowly scoped credentials and protect FEISHU_APP_SECRET and ELEVEN_API_KEY in environment storage. <br>
-Risk: A default chat ID can route generated voice messages to the wrong destination. <br>
-Mitigation: Verify FEISHU_DEFAULT_CHAT_ID before relying on it, or pass the intended receive ID explicitly. <br>
+## Use Case:
 
+Developers and agent operators use Cyber Horn to convert an agent's text into a Feishu voice message for group announcements, alerts, or voice-note replies.
 
-## Reference(s): <br>
-- [Cyber Horn on ClawHub](https://clawhub.ai/Richerlv/cyber-horn) <br>
-- [Richerlv ClawHub profile](https://clawhub.ai/user/Richerlv) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message create API](https://open.feishu.cn/open-apis/im/v1/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio, API Calls, Files, Text] <br>
-**Output Format:** [Feishu voice message with generated Opus audio and CLI status or error text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, ffmpeg, and either Edge TTS or optional ElevenLabs credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The skill sends text and generated audio through external TTS and Feishu services using configured credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approved Feishu, Edge TTS, or ElevenLabs data flows, and avoid sending secrets, personal data, or regulated content unless that use is approved.
+
+Risk: A default Feishu chat ID can route generated voice messages to an unintended destination if configured incorrectly.
+
+Mitigation: Set FEISHU_DEFAULT_CHAT_ID carefully, prefer explicit chat IDs for sensitive messages, and verify the destination before production use.
+
+Risk: Compromised or over-privileged Feishu credentials could allow unwanted message posting.
+
+Mitigation: Configure a least-privilege Feishu app, protect FEISHU_APP_ID and FEISHU_APP_SECRET, and rotate credentials according to operational policy.
+
+Risk: Pinned dependencies may become outdated before production deployment.
+
+Mitigation: Review and update dependency pins before deploying the skill in a production environment.
+
+## Reference(s):
+
+- [Cyber Horn ClawHub page](https://clawhub.ai/richerlv/skills/cyber-horn)
+- [richerlv publisher profile](https://clawhub.ai/user/richerlv)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message create API](https://open.feishu.cn/open-apis/im/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [CLI arguments and status text; the skill sends a playable Feishu voice message through external services.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu credentials, FFmpeg, and network access to Edge TTS or ElevenLabs and Feishu.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

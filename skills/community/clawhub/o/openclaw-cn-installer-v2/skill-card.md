@@ -1,41 +1,55 @@
-## Description: <br>
-Openclaw Installer provides Chinese-language OpenClaw setup guidance, environment checks, domestic AI model configuration suggestions, and installation service contact details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw installation service assistant that helps users configure OpenClaw and Chinese AI models such as DeepSeek, Zhipu GLM-5, and Qwen.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and developers use this skill to check an OpenClaw environment, compare Chinese AI model options, and find installation service tiers and contact details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes external contact channels, service pricing, and a cryptocurrency payment address. <br>
-Mitigation: Verify the website, chat handles, and payment address independently before sending money or granting access to a machine or account. <br>
-Risk: The skill provides setup guidance rather than executable automation, so users may still run commands or make configuration changes manually. <br>
-Mitigation: Review the suggested commands and configuration choices before applying them in your environment. <br>
+## Use Case:
 
+External users and developers use this skill to check local OpenClaw prerequisites, compare Chinese model options, and understand installation service tiers and contact channels.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yang1002378395-cmyk/openclaw-cn-installer-v2) <br>
-- [OpenClaw install service website](https://yang1002378395-cmyk.github.io/openclaw-install-service/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Declared metadata requires curl; the guidance includes external contacts and paid service options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The listing includes off-platform contact channels and a USDT payment address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider identity, payment terms, refund terms, and service scope before contacting or paying.
+
+Risk: The skill includes local environment-check commands.
+
+Mitigation: Review commands before execution and run only checks that match the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-cn-installer-v2)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+- [OpenClaw installation service website](https://yang1002378395-cmyk.github.io/openclaw-install-service/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and service guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation tiers, model comparison details, contact channels, and basic local environment checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

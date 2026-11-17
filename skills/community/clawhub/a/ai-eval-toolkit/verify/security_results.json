@@ -1,0 +1,258 @@
+{
+  "skill": "ai-eval-toolkit",
+  "version": "1.0.0",
+  "generated_at": "2026-08-28",
+  "note": "LLM 评测工具链 · 质量与安全稳定性实测（本地闭环）",
+  "dimensions": [
+    {
+      "key": "engine_timeliness",
+      "label": "引擎时效",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "01-工具链全景.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "02-评测集管理.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "03-幻觉检测引擎.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "04-RAG指标计算.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "05-回归对比.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "06-报告与门禁.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "07-与平台工具衔接.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "08-FAQ.md 含核对基准日",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=8（实际 8）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-工具链全景.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-评测集管理.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-幻觉检测引擎.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-RAG指标计算.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-回归对比.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-报告与门禁.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-与平台工具衔接.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "关键模块 01-工具链全景",
+          "pass": true
+        },
+        {
+          "name": "关键模块 02-评测集管理",
+          "pass": true
+        },
+        {
+          "name": "关键模块 03-幻觉检测引擎",
+          "pass": true
+        },
+        {
+          "name": "关键模块 04-RAG指标计算",
+          "pass": true
+        },
+        {
+          "name": "关键模块 05-回归对比",
+          "pass": true
+        },
+        {
+          "name": "关键模块 06-报告与门禁",
+          "pass": true
+        },
+        {
+          "name": "关键模块 07-与平台工具衔接",
+          "pass": true
+        },
+        {
+          "name": "关键模块 08-FAQ",
+          "pass": true
+        },
+        {
+          "name": "快速上手存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界存在",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "tool_usability",
+      "label": "工具可用",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "--help 可执行",
+          "pass": true
+        },
+        {
+          "name": "命令 dataset 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 hallucination 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 ragscore 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 compare 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 report 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "dataset init 可执行",
+          "pass": true
+        },
+        {
+          "name": "hallucination 检数字矛盾",
+          "pass": true
+        },
+        {
+          "name": "hallucination 干净放行",
+          "pass": true
+        },
+        {
+          "name": "ragscore 含忠实度",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "judgment_accuracy",
+      "label": "判定正确",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "幻觉检测[数字矛盾]→suspicious",
+          "pass": true
+        },
+        {
+          "name": "幻觉检测[干净]→未命中",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构一致",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 有 9 必填字段",
+          "pass": true
+        },
+        {
+          "name": "description 值无半角冒号+空格（YAML 安全）",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在",
+          "pass": true
+        },
+        {
+          "name": "SECURITY_AUDIT.md 存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references+SKILL.md 无敏感词",
+          "pass": true
+        },
+        {
+          "name": "工具脚本零网络依赖",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 46,
+    "passed": 46,
+    "failed": 0,
+    "overall": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "engine_timeliness": 3.0,
+      "coverage_completeness": 3.2,
+      "tool_usability": 3.0,
+      "judgment_accuracy": 3.4,
+      "structure_compliance": 3.2,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "engine_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "tool_usability": 4.5,
+      "judgment_accuracy": 4.5,
+      "structure_compliance": 4.5,
+      "security_cleanliness": 4.5
+    }
+  }
+}

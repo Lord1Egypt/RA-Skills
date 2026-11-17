@@ -1,46 +1,57 @@
-## Description: <br>
-Finds OpenClaw and agent skills across multiple registries, deduplicates and ranks results, and can request external security scans for candidate skill URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and compares existing agent skills across ClawHub, skills.sh, SkillsMP, and two curated lists, ranking candidates and providing validated install commands where available.
 
-## Publisher: <br>
-[broedkrummen](https://clawhub.ai/user/broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, compare, and choose OpenClaw or agent skills for a specific task. It helps present ranked results, source cross-references, install commands, and optional security scan labels before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms or selected skill URLs may be sent to external registries or scanner services. <br>
-Mitigation: Avoid private project names, internal repository names, and sensitive URLs unless an approved local-only or allowlisted mode is available. <br>
-Risk: The skill can present install commands for third-party skills. <br>
-Mitigation: Review the selected skill, its source, and every generated install command before running it. <br>
-Risk: The tool may read local skill metadata while building or comparing results. <br>
-Mitigation: Run it in an environment where local skill metadata is acceptable to inspect and disclose through search workflows. <br>
+## Use Case:
 
+Developers and other skill users can discover and compare skills for a specific task before choosing whether to install one. The skill provides recommendations, not execution of the requested task.
 
-## Reference(s): <br>
-- [Source Reference - Ultimate Skills Finder](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/broedkrummen/ultimate-skills-finder) <br>
-- [VoltAgent awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) <br>
-- [LeoYeAI openclaw-master-skills](https://github.com/LeoYeAI/openclaw-master-skills) <br>
-- [Gen Digital scan lookup API](https://ai.gendigital.com/api/scan/lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style terminal text with optional JSON and shell install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks and deduplicates results; optional scans add security labels when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to external skill directories and may disclose sensitive terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential names and unreleased codenames; use a generic query instead.
+
+Risk: Optional security scans share result URLs with Gen Digital, and advisory labels do not establish safety.
+
+Mitigation: Enable URL sharing only with user consent and review any candidate before installation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/broedkrummen/skills/ultimate-skills-finder)
+- [Source reference](references/sources.md)
+- [ClawHub](https://clawhub.ai)
+- [skills.sh](https://skills.sh)
+- [SkillsMP](https://skillsmp.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
+
+**Output Format:** [Text or JSON with ranked skill candidates, source links, and validated install commands where available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional advisory scan labels; browse-only results have no install command.]
+
+## Skill Version(s):
+
+1.3.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

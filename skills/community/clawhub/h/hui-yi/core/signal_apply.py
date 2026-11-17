@@ -29,6 +29,7 @@ from core.common import (
     session_fingerprint,
     normalize_signal_history,
 )
+from core.safe_fs import atomic_write_text, preflight_files, read_text, safe_exists
 
 CONSECUTIVE_SESSION_WINDOW_DAYS = 14
 
@@ -75,13 +76,14 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     note_path = note_file_path(memory_root, matched)
-    if not note_path.exists():
+    if not safe_exists(note_path):
         print(f"Backing note file missing: {note_path}", file=sys.stderr)
         return 1
 
     activated_day_obj = date.fromisoformat(args.activated_at) if args.activated_at else date.today()
     activated_day = activated_day_obj.isoformat()
-    text = note_path.read_text(encoding="utf-8")
+    preflight_files(note_path, memory_root / "tags.json")
+    text = read_text(note_path)
     signals = parse_session_signals(text)
 
     session_hash = session_fingerprint(args.session_key)
@@ -131,7 +133,7 @@ def main(argv: list[str] | None = None) -> int:
             "last_activated": signals["last_activated"],
         },
     )
-    note_path.write_text(new_text, encoding="utf-8")
+    atomic_write_text(note_path, new_text)
 
     matched["session_signals"] = signals
     matched["last_seen"] = activated_day

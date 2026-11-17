@@ -1,52 +1,65 @@
-## Description: <br>
-Legal Risk Assistant supports first-pass China civil and labor legal triage by scanning contract risk, estimating litigation or labor-dispute costs, and drafting editable complaint, defense, and evidence-outline skeletons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China legal triage assistant. Input a contract, labor dispute facts, lawsuit-cost question, or draft legal document need; output risk checklist, cost estimate, evidence outline, or editable document skeleton. Boundary: preliminary legal information only, not a lawyer and not formal legal advice.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, freelancers, and small businesses use this skill before formal lawyer review to structure common China civil and labor matters: contract risk screening, litigation-cost or compensation estimates, and legal document skeletons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided legal documents and dispute facts may contain sensitive personal, financial, business, or case information. <br>
-Mitigation: Use redacted or sample facts where possible, and avoid sharing IDs, bank details, addresses, trade secrets, and case numbers unless necessary. <br>
-Risk: The skill may be mistaken for formal legal advice or a substitute for legal representation. <br>
-Mitigation: Treat outputs as preliminary legal information only and have important matters reviewed by a qualified lawyer using the full facts and current local rules. <br>
-Risk: Incomplete facts can produce misleading risk ratings, compensation estimates, or litigation-cost conclusions. <br>
-Mitigation: Collect minimum necessary facts first, separate confirmed and missing facts, state assumptions, and prefer ranges or scenario tables when facts are uncertain. <br>
-Risk: Generated complaint, defense, or evidence-outline skeletons may be used without adequate case-specific review. <br>
-Mitigation: Use generated documents as editable first drafts and review jurisdiction, evidence, claims, and procedural requirements before filing or relying on them. <br>
+## Use Case:
 
+External users working on China civil or labor matters use this skill to screen contract risks, estimate basic lawsuit or labor compensation costs, and create first-pass legal document skeletons before deciding whether to consult a lawyer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/ai-legal-assistant-pro) <br>
-- [Contract risk patterns](references/risk-patterns.md) <br>
-- [Contract type guides](references/contract-type-guides.md) <br>
-- [Calculation formulas](references/calculation-formulas.md) <br>
-- [Labor dispute scenarios](references/labor-dispute-scenarios.md) <br>
-- [Labor compensation output template](references/labor-compensation-output-template.md) <br>
-- [Litigation worth-it template](references/litigation-worth-it-template.md) <br>
-- [Document skeletons](references/document-skeletons.md) <br>
-- [Output acceptance criteria](references/output-acceptance-criteria.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with tables, calculations, checklists, and editable legal-document skeletons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preliminary-information disclaimers, prompts for missing facts, and cost estimates that exclude lawyer fees and other incidental costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Users may provide sensitive legal, personal, financial, employer, customer, or case-identifying details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only necessary facts, redact identifiers where possible, and review privacy handling before use.
+
+Risk: Users may treat preliminary triage outputs as formal legal advice.
+
+Mitigation: Keep legal-boundary language visible and require qualified lawyer review for complex, urgent, high-value, cross-border, criminal, regulatory, or time-sensitive matters.
+
+Risk: The skill may steer deeper requests toward paid Pro or Business access outside the platform.
+
+Mitigation: Review upgrade language and off-platform contact expectations before deployment or enterprise use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/ai-legal-assistant-pro)
+- [Contract risk patterns](references/risk-patterns.md)
+- [Contract type guides](references/contract-type-guides.md)
+- [Calculation formulas](references/calculation-formulas.md)
+- [Labor dispute scenarios](references/labor-dispute-scenarios.md)
+- [Labor compensation output template](references/labor-compensation-output-template.md)
+- [Litigation worth-it template](references/litigation-worth-it-template.md)
+- [Document skeletons](references/document-skeletons.md)
+- [Output acceptance criteria](references/output-acceptance-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured lists, tables, document skeletons, and optional command-line calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay preliminary, state assumptions, separate confirmed from missing facts, and include legal-boundary reminders.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

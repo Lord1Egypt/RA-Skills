@@ -1,45 +1,56 @@
-## Description: <br>
-Provides a complete AI-run company setup playbook, including memory system, safety rails, payment integration, and multi-platform launch in 72 hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a complete AI-run company setup playbook, including memory system, safety rails, payment integration, and multi-platform launch in 72 hours.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Founders, builders, and operators use this skill to have an agent plan and assemble an AI-operated company launch, including product files, memory structure, payment setup, and launch checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive payment setup and purchase-related workflows. <br>
-Mitigation: Require manual approval for every payment action and use test or least-privilege payment credentials until the workflow is reviewed. <br>
-Risk: The skill may handle secrets while creating environment templates, memory files, and launch assets. <br>
-Mitigation: Keep credentials out of memory files and generated documentation; provide secrets only through scoped environment variables or a secrets manager. <br>
-Risk: The skill describes platform submissions, social posting, and companion-skill installation. <br>
-Mitigation: Review each external submission, social post, and companion skill before enabling or publishing it. <br>
+## Use Case:
 
+External users and developers can use this skill as a guided launch playbook for having an AI agent create company setup files, memory structure, product collateral, payment setup steps, and launch checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/ai-company-builder) <br>
-- [TalonForge store](https://www.talonforge.xyz/store) <br>
-- [TalonForge GitHub profile](https://github.com/TalonForgeHQ) <br>
-- [TalonForge X profile](https://x.com/TalonForgeHQ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown instructions, generated project files, configuration templates, and launch checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve payment, credential, platform-submission, social-posting, and companion-skill installation steps that require human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill delegates broad file creation, payment setup, public submissions, social posting, persistent memory updates, and helper skill installation with limited scoping or approval detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a dedicated workspace, inspect and pin helper skills before installation, and require explicit human approval before platform submissions, social posting, payment setup, or persistent memory updates.
+
+Risk: Payment and API secrets could be exposed if real credentials are placed in generated files.
+
+Mitigation: Keep real payment and API secrets out of generated files and use placeholder values until a human configures secure secret storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/ai-company-builder)
+- [TalonForge store](https://www.talonforge.xyz/store)
+- [TalonForge GitHub profile](https://github.com/TalonForgeHQ)
+- [TalonForge X profile](https://x.com/TalonForgeHQ)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with file templates, checklists, and command-oriented setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate workspace files, environment templates, launch trackers, and payment setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

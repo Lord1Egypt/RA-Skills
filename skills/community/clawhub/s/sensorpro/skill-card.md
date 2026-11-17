@@ -1,48 +1,67 @@
-## Description: <br>
-Manage your Sensorpro email marketing account in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your Sensorpro email marketing account in OpenClaw.
 
-## Publisher: <br>
-[forcequit](https://clawhub.ai/user/forcequit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forcequit](https://clawhub.ai/user/forcequit)
 
-## Use Case: <br>
-External users and developers use this skill to configure access to Sensorpro and manage contacts, campaigns, metrics, relay email, imports, and account actions through documented Sensorpro API workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live email and campaign actions can send or broadcast messages to real recipients. <br>
-Mitigation: Require explicit confirmation of recipients, payloads, lists, campaign IDs, and send timing before any send or broadcast action. <br>
-Risk: Deletion, import, opt-out, and account-user changes can alter customer or account data. <br>
-Mitigation: Use a dedicated least-privilege API user and verify affected lists, contact IDs, import targets, and account-user changes before executing mutating API calls. <br>
-Risk: The skill depends on Sensorpro API credentials stored in environment variables. <br>
-Mitigation: Store credentials in a protected .env or process manager, avoid committing secrets, and rotate the API key if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/forcequit/sensorpro) <br>
-- [OpenClaw Sensorpro homepage](https://github.com/forcequit/openclaw-sensorpro) <br>
-- [Sensorpro API documentation](https://sensorpro.net/api/) <br>
-- [Sensorpro Contacts API](https://sensorpro.net/api/contacts.html) <br>
-- [Sensorpro Campaigns and metrics API](https://sensorpro.net/api/campaigns.html) <br>
-- [Sensorpro Relay Email API](https://sensorpro.net/api/sendemail.html) <br>
-- [Sensorpro Imports API](https://www.sensorpro.net/api/imports.html) <br>
-- [Sensorpro Account API](https://sensorpro.net/api/account.html) <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent for Sensorpro email marketing account tasks, including contact management, campaign metrics, relay email, imports, and account administration through the Sensorpro REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Sensorpro credentials and curl/python3 availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may send email or create broadcasts to real recipients.
+
+Mitigation: Require explicit human approval before sending relay email, creating broadcasts, or otherwise contacting real recipients.
+
+Risk: The agent may delete contacts, invoke ForgetMe, or change contact status in a live marketing account.
+
+Mitigation: Require approval for destructive contact actions and prefer a dedicated least-privilege API user where Sensorpro supports it.
+
+Risk: Sensorpro credentials and API keys can grant account access if exposed.
+
+Mitigation: Keep credentials out of repositories, store them in the runtime environment, and rotate keys if they are exposed.
+
+Risk: Account-user or sub-organization changes can alter account administration.
+
+Mitigation: Require explicit approval before changing account users or creating sub-organizations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forcequit/skills/sensorpro)
+- [Skill homepage](https://github.com/forcequit/openclaw-sensorpro)
+- [Sensorpro API home](https://sensorpro.net/api/)
+- [Sensorpro contacts API](https://sensorpro.net/api/contacts.html)
+- [Sensorpro campaigns and metrics API](https://sensorpro.net/api/campaigns.html)
+- [Sensorpro relay email API](https://sensorpro.net/api/sendemail.html)
+- [Sensorpro imports API](https://www.sensorpro.net/api/imports.html)
+- [Sensorpro account API](https://sensorpro.net/api/account.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Sensorpro credentials and API tokens supplied through environment variables.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

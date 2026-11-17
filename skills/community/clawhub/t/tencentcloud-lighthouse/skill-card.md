@@ -1,47 +1,64 @@
-## Description: <br>
-TencentCloud Lighthouse helps agents manage Tencent Cloud Lighthouse instances, promotions, images, lifecycle actions, and cost-aware configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Tencent Cloud Lighthouse instances, including creation, deletion, power actions, status queries, promotion lookup, and cost-control guidance.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect promotion plans, choose server images, create and manage Tencent Cloud Lighthouse instances, and validate credentials for a configured Tencent Cloud account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Tencent Cloud regional availability and the user's configured Tencent Cloud region. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, renew, stop, reboot, and delete Tencent Cloud Lighthouse resources. <br>
-Mitigation: Use a dedicated Tencent Cloud subuser with the narrowest practical permissions, restrict regions and resources where possible, and require manual approval before create, delete, reboot, or renew actions. <br>
-Risk: Cloud resource creation and renewal can incur costs. <br>
-Mitigation: Review plan details before execution, configure budget alerts, and release idle resources promptly. <br>
-Risk: Deleting or stopping instances can interrupt services or remove data. <br>
-Mitigation: Confirm target instance IDs and keep current backups before deletion or shutdown. <br>
-Risk: Tencent Cloud API credentials are loaded from environment variables. <br>
-Mitigation: Do not paste credentials into chat or logs, keep .env files out of source control, and rotate credentials regularly. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Tencent Cloud Lighthouse servers, compare predefined instance plans and images, and run lifecycle actions from an agent-assisted workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/tencentcloud-lighthouse) <br>
-- [Tencent Cloud Lighthouse API](https://cloud.tencent.com/document/api/1170) <br>
-- [Tencent Cloud Promotions](https://cloud.tencent.com/act) <br>
-- [Tencent Cloud Lighthouse application images](https://cloud.tencent.com/document/product/1170/38176) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-style text with Python and shell snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make Tencent Cloud API calls when used with configured credentials; destructive and cost-incurring actions should require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The documented CAM policy grants broad lighthouse and VPC permissions over all resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Tencent Cloud sub-user, remove unused VPC permissions, and scope actions and resources wherever Tencent Cloud IAM supports it.
+
+Risk: The skill can create, renew, modify, stop, restart, and delete paid Lighthouse instances.
+
+Mitigation: Require human confirmation before destructive or billable actions, and keep budget alerts enabled for accounts where the skill is used.
+
+Risk: Tencent Cloud API credentials are loaded from environment configuration and troubleshooting material may encourage displaying config contents.
+
+Mitigation: Do not paste or display .env or config contents in shared logs or chats; rotate sub-user keys regularly.
+
+Risk: Runtime dependencies are installed into the Python environment used by the agent.
+
+Mitigation: Use an isolated virtual environment with pinned versions for tencentcloud-sdk-python and python-dotenv.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/tencentcloud-lighthouse)
+- [Tencent Cloud Lighthouse API](https://cloud.tencent.com/document/api/1170)
+- [Tencent Cloud promotion center](https://cloud.tencent.com/act)
+- [Tencent Cloud Lighthouse application image documentation](https://cloud.tencent.com/document/product/1170/38176)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tencent Cloud API actions that create, renew, stop, restart, modify, or delete paid Lighthouse resources.]
+
+## Skill Version(s):
+
+1.2.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

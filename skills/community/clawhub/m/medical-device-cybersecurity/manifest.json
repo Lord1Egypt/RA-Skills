@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医疗器械网络安全",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:31:47.712419+00:00",
+  "timestamp_local": "2026-08-28T00:31:47.712428",
+  "package_fingerprint_sha256": "b67d5ba7a5c4d0a0ac7bd2622f590cafd4a347ebcbe7cf04ca757e7cb0b87b53",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "d0e7fb89354da69a7c0222fb5658fa1d203b9d14c5160663a11b3ef37eac614f"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "f65dd5e84240381202e9f3046840926a05c60ccf4b56b89d6976dedec75c7c46"
+    },
+    {
+      "path": "references/01-网络安全全景与监管.md",
+      "sha256": "ade62f39e9b1f892734aeae21cbe06ab213a8e302af2facedbfbedc6ac551cff"
+    },
+    {
+      "path": "references/02-美国FDA网络安全要求.md",
+      "sha256": "12a90e1b9251b75fe6e1d5ad682b369106f9d57735bf00db2907825156bc22ed"
+    },
+    {
+      "path": "references/03-欧盟网络安全要求.md",
+      "sha256": "d2e9c657ffd6d38e876484b4465e2bd084889cbcca45dbf4dcc6ab3e6f3186f3"
+    },
+    {
+      "path": "references/04-中国NMPA网络安全要求.md",
+      "sha256": "bae96ab1dbee34e46a931360db8e071fd0cc425a14dab45b2b0ca5053884dc74"
+    },
+    {
+      "path": "references/05-SBOM实操.md",
+      "sha256": "2e6d81afaf8ed0c2e0efd747895802bf0efed8cbf35f7d3c83ac53d6fbc60fc4"
+    },
+    {
+      "path": "references/06-漏洞管理与协调披露.md",
+      "sha256": "70414a1cb1d9f3e58cb8847f46d083c148932fcc4a98e3e6bd9bf08b7f351228"
+    },
+    {
+      "path": "references/07-网络安全体系与文档.md",
+      "sha256": "85e5e486014aaad52106cedb27249b9633ba43864757df3bd235c4469ca67bfe"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "b99179193d95d226eb86ad37d999e98b76ba4dfd32d2799184588ec81a2446cd"
+    },
+    {
+      "path": "tools/meddev_cyber_toolkit.py",
+      "sha256": "81dc5bb854f17028d801e73c0c94553ef0e3c0ee9bd7de4fafb73963e2a5ab89"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "1c569ba4c1b3336f9a86b6d524f07e04a516a441e23e565edb224871ce7a5c72"
+    },
+    {
+      "path": "verify/meddev_cyber_quality_test.py",
+      "sha256": "82a97218e29df4d8f20218fbb0ef74f5308029d4b85cc7f5b00e8f4dc5ed8ba8"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "30f089b42f6880f36ba836c95aa0dca07138beff3f02132b4c87967319e74724"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "b9390836bd371df300480474ce96b40443845628db804b8ba34f23547c217f86"
+    }
+  ]
+}

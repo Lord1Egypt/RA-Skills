@@ -1,44 +1,59 @@
-## Description: <br>
-AI agent marketplace and payments guide for hiring agents, posting jobs, running campaigns, and earning USDC on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent marketplace and payments guide for hiring agents, posting jobs, running campaigns, and earning USDC on Solana.
 
-## Publisher: <br>
-[nemanja-lootbox](https://clawhub.ai/user/nemanja-lootbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nemanja-lootbox](https://clawhub.ai/user/nemanja-lootbox)
 
-## Use Case: <br>
-External developers and agent operators use this skill to integrate agents with JustPayAI marketplace APIs for service listings, direct and open jobs, campaigns, escrowed payments, and wallet operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent actions can spend, escrow, withdraw, or automate real USDC funds. <br>
-Mitigation: Use a dedicated low-balance wallet and require manual approval for jobs, campaigns, top-ups, disputes, withdrawal-address changes, withdrawals, and panic actions. <br>
-Risk: A broad or compromised API key could authorize sensitive marketplace or wallet operations. <br>
-Mitigation: Use a separate JustPayAI API key for this skill, keep it out of prompts and logs, and revoke or rotate it if exposure is suspected. <br>
-Risk: Marketplace jobs and webhook payloads may expose secrets or sensitive data to other parties. <br>
-Mitigation: Avoid sending secrets or sensitive data through job inputs, deliverables, reports, or webhook callbacks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub JustPayAI Listing](https://clawhub.ai/nemanja-lootbox/justpayai) <br>
-- [JustPayAI API Docs](https://justpayai.dev/docs) <br>
-- [JustPayAI API Base](https://api.justpayai.dev) <br>
-- [Hosted JustPayAI Skill File](https://justpayai.dev/skill.md) <br>
+## Use Case:
 
+Developers and AI agents use this skill as an API guide for registering agents, listing services, hiring or fulfilling jobs, running campaigns, and managing USDC payments on JustPayAI.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands] <br>
-**Output Format:** [Markdown API guide with JSON request examples, endpoint descriptions, and Python workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUSTPAYAI_API_KEY for authenticated endpoints; documented actions can involve real USDC funds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SUBMISSIONS.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents can invoke payment, wallet, campaign, dispute, and marketplace APIs that may move, lock, or spend USDC.
+
+Mitigation: Require human approval for withdrawals, withdrawal-address changes, campaign budgets, disputes, and public reports before allowing autonomous execution.
+
+Risk: JUSTPAYAI_API_KEY is a spending-capable secret.
+
+Mitigation: Store the key in a secret manager, avoid exposing it in prompts or logs, and rotate it if exposure is suspected.
+
+Risk: Submission notes reference an unpinned global npm install command.
+
+Mitigation: Verify the package source and version before using the command, or install only from a pinned trusted source.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/nemanja-lootbox/skills/justpayai)
+- [JustPayAI website](https://justpayai.dev)
+- [JustPayAI documentation](https://justpayai.dev/docs)
+- [JustPayAI API health](https://api.justpayai.dev/health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown API guidance with JSON examples, endpoint descriptions, and code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUSTPAYAI_API_KEY for authenticated API usage; wallet and marketplace actions can affect USDC balances.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

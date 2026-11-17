@@ -1,42 +1,63 @@
-## Description: <br>
-B2B企业数字化诊断通过3道选择题判定企业专注类型，给出官网架构、短视频策略、小程序定位等数字化落地建议，并生成PDF诊断报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B企业数字化诊断 helps B2B companies classify their positioning as capability-led, industry-led, problem-led, or mixed, then produces website structure, short-video strategy, mini-program positioning, and optional PDF report guidance.
 
-## Publisher: <br>
-[xtoyun](https://clawhub.ai/user/xtoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xtoyun](https://clawhub.ai/user/xtoyun)
 
-## Use Case: <br>
-External B2B marketing, manufacturing, engineering service, and industrial software teams use this skill to diagnose whether their company is capability-led, industry-led, problem-led, or mixed, then turn the result into website, short-video, mini-program, and report recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF export may install Playwright and download Chromium locally. <br>
-Mitigation: Confirm that local Playwright and Chromium installation is acceptable before enabling PDF export, and use browser-print or Markdown fallback when installation is not allowed. <br>
-Risk: Generated reports can include customer or company diagnosis details. <br>
-Mitigation: Generate reports in a dedicated folder, review filenames and content before sharing, and add privacy and access-control language before adapting mini-program, upload, or customer-report recommendations for production. <br>
+## Use Case:
 
+External B2B operators, marketing teams, and consultants use this skill to run a short positioning diagnosis and convert the result into practical digital-channel recommendations. The skill can also guide generation of a local HTML/PDF diagnosis report when Playwright and Chromium are available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xtoyun/b2b-digital-diagnosis) <br>
-- [Publisher Profile](https://clawhub.ai/user/xtoyun) <br>
-- [Case Index](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, files] <br>
-**Output Format:** [Conversational diagnosis with Markdown tables and optional HTML/PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Playwright and Chromium locally to render a generated HTML diagnosis report to PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad auto-activation may invoke the diagnosis flow for loosely related digital-marketing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when a B2B positioning diagnosis or report is intended, and review activation behavior before deployment.
+
+Risk: PDF generation may require persistent Playwright and Chromium installation through npm/npx.
+
+Mitigation: Run installation only in approved environments and confirm package-install policy before generating PDFs.
+
+Risk: Local report generation can place company names and diagnosis text into HTML/PDF files.
+
+Mitigation: Sanitize company names and report content before generation and review the files before sharing.
+
+Risk: Generated reports include XTOCN-branded output.
+
+Mitigation: Confirm the branding is acceptable before using generated reports in customer-facing contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xtoyun/skills/b2b-digital-diagnosis)
+- [Publisher profile](https://clawhub.ai/user/xtoyun)
+- [Case examples index](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional local HTML and PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks sequential diagnosis questions, records answer choices, and may generate report files in the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

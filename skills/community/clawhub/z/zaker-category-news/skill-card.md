@@ -1,41 +1,58 @@
-## Description: <br>
-Fetches recent category-specific news from ZAKER for technology, finance, sports, entertainment, automotive, domestic, international, military, and internet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent popular news by category, including technology, finance, sports, entertainment, automotive, domestic, international, military, and internet news.
 
-## Publisher: <br>
-[zaker-coder](https://clawhub.ai/user/zaker-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaker-coder](https://clawhub.ai/user/zaker-coder)
 
-## Use Case: <br>
-External users use this skill to request focused, current news in a specific category or to drill down from broader headlines into domains such as technology, finance, sports, entertainment, automotive, domestic, international, military, or internet news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts skills.myzaker.com for news queries and presents links returned by that service. <br>
-Mitigation: Install only when this external API contact is acceptable, and review returned links before relying on or sharing them. <br>
-Risk: Broad trigger examples may cause the agent to select the skill for ambiguous category or language requests. <br>
-Mitigation: Narrow invocation triggers or clarify language preference handling before deployment in tightly controlled workflows. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve focused category news and trend updates when a prompt names or implies an industry or news domain.
 
-## Reference(s): <br>
-- [ZAKER category article API](https://skills.myzaker.com/api/v1/article/category?v=1.0.6) <br>
-- [ClawHub skill page](https://clawhub.ai/zaker-coder/zaker-category-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown news list with linked article titles, summaries, authors, and publish times] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 20 category articles per request from the documented ZAKER API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence; artifact frontmatter lists 1.0.7) <br>
+Risk: The skill contacts an external ZAKER news API to fetch category news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where this disclosed API contact is acceptable, and make users aware that category requests rely on the external service.
+
+Risk: Ambiguous prompts may map to the wrong news category.
+
+Mitigation: Clarify uncertain category intent before fetching results.
+
+Risk: The sample Python request does not set a timeout.
+
+Mitigation: Add request timeouts before adapting the sample script for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaker-coder/skills/zaker-category-news)
+- [ZAKER category article API](https://skills.myzaker.com/api/v1/article/category?v=1.0.6)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Code]
+
+**Output Format:** [Markdown news list with linked titles, summaries, authors, and optional JSON from the category API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 20 category articles from the disclosed unauthenticated ZAKER API endpoint.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

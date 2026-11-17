@@ -1,39 +1,54 @@
-## Description: <br>
-Checks whether a text string consists of integer-number segments separated by a specified special character. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+判断某个字符串是否是数字和指定特定字符组成
 
-## Publisher: <br>
-[wahahasssss](https://clawhub.ai/user/wahahasssss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahahasssss](https://clawhub.ai/user/wahahasssss)
 
-## Use Case: <br>
-Agents can use this skill when a user asks whether supplied text contains only integer numeric content and a specified separator, and to identify any non-integer segments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text passed to the script is echoed in console output. <br>
-Mitigation: Avoid using sensitive text with this skill unless command-line argument echoing is acceptable. <br>
-Risk: The check is limited to integer segments split by the supplied special character. <br>
-Mitigation: Use it only for integer-number validation, and use a different validator when decimals, signs, locale-specific number formats, or broader parsing rules are required. <br>
+## Use Case:
 
+Agents use this skill to check whether user-provided text is composed only of integer-number segments separated by a specified special character.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script prints the command-line arguments before printing comma-separated non-integer segments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The helper echoes the full command argument list before reporting validation results, which may expose user-provided input in logs or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using sensitive input with this skill unless argument echoing is acceptable in the deployment context.
+
+Risk: The artifact documentation is in Chinese and the printed output may be confusing because non-numeric segments are emitted as a comma-separated list after the echoed arguments.
+
+Mitigation: Confirm downstream agents interpret an empty result line as success and non-empty listed segments as validation failures.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/wahahasssss/skills/numbers-judge)
+- [Publisher profile](https://clawhub.ai/user/wahahasssss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper prints the full argument list and then a comma-separated list of segments that are not valid integers; an empty final line indicates all checked segments parsed as integers.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

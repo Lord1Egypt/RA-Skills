@@ -1,41 +1,56 @@
-## Description: <br>
-Generates short-form video scripts and storyboards from a product or topic, target audience, duration, and optional style template, with structured JSON or YAML output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-form video scripts and structured storyboards from a topic, audience, duration, and template choice.
 
-## Publisher: <br>
-[OliviaPp8](https://clawhub.ai/user/OliviaPp8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliviapp8](https://clawhub.ai/user/oliviapp8)
 
-## Use Case: <br>
-Creators, marketers, and agent workflows use this skill to turn product or topic briefs into short-video scripts with scene timing, narration, visual direction, demo markers, and calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include unsupported marketing claims, statistics, comparisons, or calls to action. <br>
-Mitigation: Review factual claims and promotional language before publishing, especially for regulated products or performance-sensitive claims. <br>
+## Use Case:
 
+External creators, marketers, and agent workflows can use this skill to draft short-video scripts and scene-by-scene storyboard data for platforms such as Douyin, Xiaohongshu, and YouTube Shorts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OliviaPp8/video-script-generator) <br>
-- [Pain-Solution Template](templates/pain-solution.md) <br>
-- [Before-After Template](templates/before-after.md) <br>
-- [Plot-Twist Template](templates/plot-twist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON or YAML storyboard with metadata, scenes, narration, shot descriptions, demo flags, CTA, and music suggestion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports pain-solution, before-after, and plot-twist templates for 15s, 30s, 60s, or 90s short videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill uses broad trigger terms and Chinese-oriented templates that may not match every intended installation context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the triggers, platform assumptions, and template language before enabling the skill for a target agent or audience.
+
+Risk: Generated scripts and calls to action may include unsuitable marketing claims or guidance for the promoted product or topic.
+
+Mitigation: Review generated narration, storyboard steps, and CTAs for factual accuracy, brand fit, and platform policy compliance before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/oliviapp8/skills/video-script-generator)
+- [Pain-Solution Template](artifact/templates/pain-solution.md)
+- [Before-After Template](artifact/templates/before-after.md)
+- [Plot-Twist Template](artifact/templates/plot-twist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [YAML or JSON storyboard with script metadata, scene list, narration, shot descriptions, CTA, and music suggestion.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented short-video templates; no executable code or credential handling identified in release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

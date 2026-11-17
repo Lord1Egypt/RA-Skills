@@ -1,38 +1,49 @@
-## Description: <br>
-Comprehensive apparel and accessories industry sourcing guide for international buyers, covering China's garment, footwear, bag, fashion accessory, supply chain, regional specialization, and industry trend information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive apparel and accessories industry sourcing guide for international buyers, with information about China's garment, footwear, bag, and fashion accessory manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers, sourcing teams, and agents use this skill to understand China's apparel and accessories manufacturing clusters, supply chain structure, subsector coverage, and supplier evaluation considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier, certification, market-size, and policy guidance may be incomplete or outdated for business decisions. <br>
-Mitigation: Treat outputs as reference material and verify important sourcing decisions with authoritative sources or direct due diligence. <br>
+## Use Case:
 
+International buyers and sourcing teams use this skill to understand China apparel and accessories manufacturing clusters, supply chain structure, subsectors, and supplier evaluation considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-apparel-and-accessories-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown or JSON-like structured data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled cluster-level reference data and does not provide individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Market figures, policy details, and supplier examples may be outdated or incomplete for a specific sourcing decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data, supplier identity, certifications, capacity, and compliance with current independent sources before making business commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-apparel-and-accessories-sourcing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Guidance]
+
+**Output Format:** [Structured JSON-compatible data and Markdown-ready sourcing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline packaged data; no network behavior shown in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

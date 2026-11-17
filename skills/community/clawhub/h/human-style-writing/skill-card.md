@@ -1,49 +1,65 @@
-## Description: <br>
-Human-like writing for daily chat and social media only, routing Chinese, English, or mixed-language requests into daily messages or platform-specific social posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes daily chat and social media writing requests into platform-specific recipes that produce natural Chinese, English, or mixed-language messages, posts, captions, comments, and threads.
 
-## Publisher: <br>
-[unicorn82](https://clawhub.ai/user/unicorn82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unicorn82](https://clawhub.ai/user/unicorn82)
 
-## Use Case: <br>
-External users and creators use this skill to rewrite or draft daily chat messages and social media posts that sound more natural while preserving the provided facts. It is scoped to DMs/texts and platform-specific posts for X/Twitter, Reddit, LinkedIn, Instagram, TikTok, Xiaohongshu/RedNote, WeChat Moments, and generic social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chat or social text could be misused to impersonate someone or hide AI involvement where disclosure is expected. <br>
-Mitigation: Use the skill as a drafting and tone aid; do not impersonate people, and disclose AI assistance where policy, platform rules, or context require it. <br>
-Risk: User-provided chat samples or writing examples may contain names, private details, or sensitive context. <br>
-Mitigation: Remove personal and sensitive details before reusing samples or turning them into style examples. <br>
-Risk: Humanization can make unsupported details sound more believable if facts are added carelessly. <br>
-Mitigation: Keep the factual-integrity gate: do not invent facts, quotes, experiences, times, numbers, or situational anchors that the user did not provide. <br>
+## Use Case:
 
+External users and agents use this skill to draft or rewrite casual DMs, texts, and social posts so they sound more natural while staying within user-provided facts and platform conventions.
 
-## Reference(s): <br>
-- [Scenario Router](artifact/references/scenario-router.md) <br>
-- [Prompt Recipes](artifact/references/prompt-recipes.md) <br>
-- [Registers](artifact/references/registers.md) <br>
-- [AI Tells](artifact/references/ai-tells.md) <br>
-- [Phrase Blacklist](artifact/references/phrase-blacklist.md) <br>
-- [Human Checklist](artifact/references/human-checklist.md) <br>
-- [Few-shot Pack](artifact/references/fewshot-pack.md) <br>
-- [Language Extension](artifact/references/language-extension.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown, depending on the requested chat or social post format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional short notes about what changed when useful for iterative refinement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Outputs could be used to impersonate a person or create misleading social content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill transparently, keep authorship and intent truthful, and avoid fake experiences or claims.
+
+Risk: The skill is scoped to daily chat and social media, not formal legal, compliance, academic, business, or press writing.
+
+Mitigation: Route formal-domain requests to an appropriate domain-specific skill, or ask the user to choose an on-scope DM/text or social platform.
+
+Risk: Humanization can make added details feel factual even when they were not supplied.
+
+Mitigation: Only add concrete anchors from user-provided facts; ask a short clarification or leave a placeholder when details are missing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/unicorn82/skills/human-style-writing)
+- [Scenario Router](references/scenario-router.md)
+- [Prompt Recipes](references/prompt-recipes.md)
+- [Registers & Differences](references/registers.md)
+- [AI Tells](references/ai-tells.md)
+- [Phrase Blacklist](references/phrase-blacklist.md)
+- [Human-likeness QA Checklist](references/human-checklist.md)
+- [Few-shot Pack](references/fewshot-pack.md)
+- [Language Extension](references/language-extension.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown, depending on whether the response includes variants or change notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional bullets describing what changed; does not produce code, shell commands, configuration, or files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

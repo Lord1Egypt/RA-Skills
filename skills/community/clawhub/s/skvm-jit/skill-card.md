@@ -1,43 +1,53 @@
-## Description: <br>
-Triggers `skvm jit-optimize` with post-task evidence to generate a reviewable optimization proposal for a skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers `skvm jit-optimize` with post-task evidence to generate a reviewable optimization proposal for a skill.
 
-## Publisher: <br>
-[lec77](https://clawhub.ai/user/lec77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lec77](https://clawhub.ai/user/lec77)
 
-## Use Case: <br>
-Developers and agent operators use this skill after a skill-driven task fails, ends partially, or exposes confusing skill instructions. It helps collect evidence and launch an optimization proposal that can be reviewed before accepting any changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require sensitive credentials for optimizer execution. <br>
-Mitigation: Grant only the credentials needed for the optimization run, and inspect requested tools, environment variables, install steps, and commands before granting access. <br>
-Risk: Task logs or optimization reports can accidentally include sensitive information. <br>
-Mitigation: Redact secrets and private data before preparing optimizer input. <br>
-Risk: Generated proposals can introduce incorrect or misleading changes to skill instructions. <br>
-Mitigation: Review and scan each proposal before accepting or deploying it. <br>
+## Use Case:
 
+Developers and agent operators use this skill after a failed or partial skill-driven task to capture concise evidence and launch `skvm jit-optimize` for a reviewable proposal to improve the underlying skill.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/lec77/skvm-jit) <br>
-- [SkVM Installer](https://skillvm.ai/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a proposal id for later review; does not accept or deploy proposals by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Task reports or selected logs may be processed by an external optimizer model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the concise `report.json` format when possible and redact credentials, tokens, private file contents, customer data, and sensitive paths before running the optimizer.
+
+Risk: The artifact includes installer guidance that uses a `curl | sh` pattern.
+
+Mitigation: Independently verify the installer source and scope before running it, or use a package-manager installation path when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lec77/skills/skvm-jit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a detached optimization command and a proposal identifier for later review.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

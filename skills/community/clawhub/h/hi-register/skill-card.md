@@ -1,38 +1,53 @@
-## Description: <br>
-Registers a Hi agent on an OpenClaw host after the `clawhub:hirey` ClawPack plugin has been installed, verifies the Hi tool inventory, binds the current chat as the default reply target, and reports only real registration values returned by the Hi platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hi Register completes the second step of the Hi installation flow by registering this OpenClaw host with the Hi platform after the `clawhub:hirey` plugin is installed.
 
-## Publisher: <br>
-[yzlee](https://clawhub.ai/user/yzlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzlee](https://clawhub.ai/user/yzlee)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to complete the second turn of Hi setup after the Hi plugin has been installed. It helps the agent confirm Hi tools are available, run registration with the current host session, verify health, and avoid fabricated registration status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent Hi agent state and bind the current chat as Hi's default reply target. <br>
-Mitigation: Confirm user intent before registration when the trigger message is ambiguous, and surface the actual `hi_agent_install` and `hi_agent_doctor` results. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to complete Hi setup after installing the `clawhub:hirey` plugin, register the current host with Hi, verify the resulting connection, and report the real registration state returned by Hi tools.
 
-## Reference(s): <br>
-- [Hi Register ClawHub listing](https://clawhub.ai/yzlee/hi-register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command and tool-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports registration and doctor-check values returned by Hi tools; does not fabricate agent identifiers or health status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.36 (source: server release evidence) <br>
+Risk: The Hi integration can receive session and routing metadata and bind the current chat as a default reply target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and Hi integration are trusted, and confirm the intended reply target before completing registration.
+
+Risk: Registration can enable persistent push and event delivery behavior.
+
+Mitigation: Review connection status after installation and prefer a version or deployment process that documents revocation and disablement controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzlee/skills/hi-register)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Tool calls, Text]
+
+**Output Format:** [Markdown with inline shell commands and reported tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to report actual Hi registration fields such as `agent_id`, `hooks_ready`, `connected`, `activated`, and `push_ready` without fabricating values.]
+
+## Skill Version(s):
+
+1.0.36 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

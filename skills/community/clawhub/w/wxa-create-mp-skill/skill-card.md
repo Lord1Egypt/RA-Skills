@@ -1,38 +1,48 @@
-## Description: <br>
-Create MP Skill helps developers add a custom AI Skill to an existing mini-program project by designing APIs, generating a skills package, and validating the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a new AI Skill inside an existing WeChat mini-program project by clarifying requirements, designing interfaces, generating code with wxa-skills-generate, and validating it with wxa-skills-validate.
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[binggg](https://clawhub.ai/user/binggg)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to add a custom AI capability to an existing mp-skills mini-program project. It guides requirement clarification, interface design, code generation, validation, and registration of the generated skill package.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to run and trust an unpinned external npm CLI that can modify the project.
+
+Mitigation: Use a pinned or locally locked mp-skills version, verify the package source, run it in a version-controlled project, and inspect generated files and app.json diffs before committing or deploying.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill inside an existing mp-skills mini-program project to define a new AI capability, create its SKILL.md and mcp.json design documents, generate the skill package, and validate the generated implementation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates project files and registers a new mini-program skill package in an existing project. <br>
-Mitigation: Use it only in an existing mp-skills project, review the proposed interface list and generated design documents, and confirm the design before code generation or validation continues. <br>
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and generated project files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/binggg/wxa-create-mp-skill) <br>
+**Other Properties Related to Output:** [Produces a skills/{skill-name}/ package and app.json registration guidance for an existing mp-skills project.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design documents, generated skill files under skills/{skill-name}/, validation commands, and app.json registration guidance.] <br>
+0.2.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

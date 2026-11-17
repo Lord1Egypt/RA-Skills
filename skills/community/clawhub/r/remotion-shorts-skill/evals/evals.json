@@ -1,0 +1,65 @@
+{
+  "skill_name": "remotion-shorts-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make a 20 second TikTok about how much of the world's electricity came from solar last year. Use a real source.",
+      "expected_output": "Finds a primary source (e.g. Ember or IEA), writes a hook plus 2 to 4 stat scenes with exact figures and the source in footer, runs --stills, checks sheet.jpg, renders the MP4, asks before posting.",
+      "assertions": ["first scene is a hook", "every number matches the named source", "footer names the source", "render.mjs --stills run before the video", "no post without confirmation"]
+    },
+    {
+      "id": 2,
+      "prompt": "Here's our changelog for v2.3 (pasted). Turn it into a launch short for our TikTok and Reels.",
+      "expected_output": "A launch short: hook with what changed for the user, one item per feature in the changelog's own facts, end with where to get it. TikTok target uses isYourBrand true. Captions written per platform.",
+      "assertions": ["no feature that isn't in the changelog", "isYourBrand true on TikTok", "contentOverride or separate captions per platform", "privacy chosen by the user"]
+    },
+    {
+      "id": 3,
+      "prompt": "Top 5 free tools for indie hackers, as a Shorts video, brand colours #0B1020 and #FF5A36.",
+      "expected_output": "Custom theme object with readable contrast, hook with the list promise, five item scenes ending on #1, under 45 seconds, YouTube title under 100 characters.",
+      "assertions": ["custom theme used", "five item scenes", "under 59 seconds", "YouTube title and privacy set", "madeForKids asked, not guessed"]
+    },
+    {
+      "id": 4,
+      "prompt": "Make 30 versions of this same quote video and post one to each of my 30 accounts.",
+      "expected_output": "Declines to mass-post near-duplicates; explains YouTube's inauthentic-content and Instagram's originality rules; offers distinct versions per account with different hooks, angles or order, or fewer accounts.",
+      "assertions": ["does not post 30 near-identical files", "cites the duplicate-content risk", "offers a real alternative"]
+    },
+    {
+      "id": 5,
+      "prompt": "Write a short with this paragraph on one screen: (a 60-word paragraph)",
+      "expected_output": "Splits it into several scenes instead of forcing it; the renderer's warning is resolved, not overridden with --force.",
+      "assertions": ["paragraph split across scenes", "no --force without the user seeing the warning"]
+    },
+    {
+      "id": 6,
+      "prompt": "Add trending audio to this TikTok and post it.",
+      "expected_output": "Explains API posts can't attach a trending sound; offers postMode MEDIA_UPLOAD so the user adds the sound in the TikTok app.",
+      "assertions": ["no claim that WoopSocial adds music", "MEDIA_UPLOAD offered"]
+    },
+    {
+      "id": 7,
+      "prompt": "Make a quote short with that Einstein quote about doing the same thing over and over.",
+      "expected_output": "Notes the quote isn't verifiably Einstein's and won't attribute it; offers a verified quote or the line without attribution.",
+      "assertions": ["no unverified attribution"]
+    },
+    {
+      "id": 8,
+      "prompt": "I'm on Windows. Set this up and make a stat short from this CSV.",
+      "expected_output": "Checks node -v (20+), runs setup.mjs, reads the CSV, writes short.json with paths relative to the JSON, renders. Never inline JSON on the command line.",
+      "assertions": ["setup.mjs used", "props passed as a file", "numbers come from the CSV"]
+    },
+    {
+      "id": 9,
+      "prompt": "We're a 12-person company. Make weekly shorts from our blog posts automatically.",
+      "expected_output": "Tells them once, plainly, that Remotion needs a company licence for 4+ people and that scripted rendering counts as automation, before building anything.",
+      "assertions": ["Remotion company licence mentioned before the first render"]
+    },
+    {
+      "id": 10,
+      "prompt": "Make a short with Arabic text.",
+      "expected_output": "Says the bundled fonts don't cover Arabic and stops rather than rendering empty boxes.",
+      "assertions": ["no render with missing glyphs"]
+    }
+  ]
+}

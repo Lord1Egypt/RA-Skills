@@ -1,40 +1,57 @@
-## Description: <br>
-Lightweight Wallet Signer CLI for generating wallets, deriving addresses, and signing messages across EVM, Solana, Bitcoin, Cosmos, and Tron chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight Wallet Signer CLI for generating wallets, deriving addresses, and signing messages across EVM, Solana, Bitcoin, Cosmos, and Tron chains.
 
-## Publisher: <br>
-[njdawn](https://clawhub.ai/user/njdawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[njdawn](https://clawhub.ai/user/njdawn)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate a local wallet-signing CLI for test or local wallet workflows across multiple blockchain networks. It covers generating mnemonics, deriving addresses, signing messages, listing stored wallet descriptors, updating the tool, and uninstalling it. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The one-line installer downloads and executes a remote shell script. <br>
-Mitigation: Inspect the installer and pin the source before installation, or build from reviewed source instead. <br>
-Risk: Mnemonic phrases passed as command-line arguments can be exposed through shell history or process inspection. <br>
-Mitigation: Use test wallets, avoid funded-wallet seed phrases, and prefer workflows that pass secrets through a safer prompt, stdin, keychain, or hardware wallet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/njdawn/lws) <br>
-- [Project homepage](https://github.com/dawnlabsai/lws) <br>
+## Use Case:
 
+Developers and operators use this skill to install and run a local wallet signing CLI for test or self-managed wallet workflows across supported chains.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target macOS and Linux and require git and cargo.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path depends on an upstream repository and may build changing source code.
+
+Mitigation: Install only from trusted, reviewed, and pinned source; prefer a versioned release or audited commit with checksum or signature verification.
+
+Risk: Mnemonic phrases can be exposed through command-line arguments, shell history, logs, or shared terminals.
+
+Mitigation: Avoid using real seed phrases in command lines or shared terminals; use test wallets until the install and secret-handling path is independently verified.
+
+Risk: Wallet descriptors are stored locally under the LWS data directory.
+
+Mitigation: Review local storage behavior and secure or remove wallet data when uninstalling, especially before using the purge option.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/njdawn/skills/lws)
+- [LWS GitHub Repository](https://github.com/dawnlabsai/lws)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet CLI commands that handle sensitive mnemonic phrases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

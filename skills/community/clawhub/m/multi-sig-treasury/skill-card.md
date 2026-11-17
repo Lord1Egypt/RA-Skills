@@ -1,42 +1,57 @@
-## Description: <br>
-Helps agents draft Gnosis Safe and multisig treasury setup, monitoring, governance, proposal, signer-management, and reporting guidance for DAOs and crypto treasuries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gnosis Safe / multisig treasury setup, monitoring, and governance for DAOs and crypto treasuries.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-External DAO operators, protocol teams, and treasury contributors use this skill to plan Safe setup, monitor balances and runway, draft spend proposals, manage signer rotation, and prepare governance documentation. It is a checklist and drafting aid; humans must approve all on-chain treasury actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Treasury guidance could be mistaken for authority to move funds. <br>
-Mitigation: Use the skill only as a checklist and drafting aid; require human approval before any treasury action. <br>
-Risk: Addresses, amounts, chains, signer identities, or threshold changes may be incorrect or unsafe if copied without verification. <br>
-Mitigation: Manually verify Safe addresses, recipient addresses, amounts, chains, signer identities, and threshold changes in official Safe tooling, and never share seed phrases or private keys. <br>
+## Use Case:
 
+External DAO operators, protocol teams, and crypto treasury managers use this skill to set up and monitor multisig treasuries, manage signers, prepare spending proposals, and produce treasury health reporting.
 
-## Reference(s): <br>
-- [Multi-Sig Treasury on ClawHub](https://clawhub.ai/samledger67-dotcom/multi-sig-treasury) <br>
-- [Safe Transaction Service safe info endpoint](https://safe-transaction-mainnet.safe.global/api/v1/safes/0xYOUR_SAFE_ADDRESS/) <br>
-- [Safe Transaction Service balances endpoint](https://safe-transaction-mainnet.safe.global/api/v1/safes/0xYOUR_SAFE_ADDRESS/balances/usd/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown with checklists, tables, proposal templates, YAML snippets, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute transactions; outputs operational drafts and verification checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Treasury guidance could be mistaken for authorization to execute transactions or handle signer keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep private keys and signing decisions outside the agent, and require explicit human approval for every Safe transaction.
+
+Risk: Incorrect Safe addresses, thresholds, or emergency signer-removal steps could lead to failed governance actions or loss of funds.
+
+Mitigation: Independently verify addresses, thresholds, signer ownership, and emergency procedures before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/multi-sig-treasury)
+- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+- [Safe transaction service API: Safe info](https://safe-transaction-mainnet.safe.global/api/v1/safes/0xYOUR_SAFE_ADDRESS/)
+- [Safe transaction service API: transactions](https://safe-transaction-mainnet.safe.global/api/v1/safes/0xYOUR_SAFE_ADDRESS/all-transactions/)
+- [Safe transaction service API: balances](https://safe-transaction-mainnet.safe.global/api/v1/safes/0xYOUR_SAFE_ADDRESS/balances/usd/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with checklists, templates, configuration snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance only; it does not execute live on-chain transactions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

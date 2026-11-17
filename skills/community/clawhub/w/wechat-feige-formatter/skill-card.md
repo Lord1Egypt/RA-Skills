@@ -1,42 +1,60 @@
-## Description: <br>
-Formats draft, plain-text, or Markdown articles into WeChat public-account HTML by adding supported formatting marks and running a Python converter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wechat Feige Formatter helps agents optimize article drafts into formatter-ready Markdown and convert them into WeChat-compatible styled HTML.
 
-## Publisher: <br>
-[tracevan](https://clawhub.ai/user/tracevan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tracevan](https://clawhub.ai/user/tracevan)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to prepare WeChat public-account articles from rough drafts, plain text, Markdown, or uploaded files. It helps identify article structure, add formatter-specific Markdown marks, and produce HTML suitable for review and copying into a WeChat editor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner verdict is suspicious because file and image handling is broader and less clearly controlled than users may expect. <br>
-Mitigation: Review the skill before installing and limit use to WeChat/public-account article formatting. <br>
-Risk: Generated HTML may contain embedded local file contents if image embedding is used with local image paths. <br>
-Mitigation: Use trusted Markdown and image paths only, and inspect generated HTML before copying, publishing, or sharing it. <br>
+## Use Case:
 
+External content creators and publishing teams use this skill to turn drafts, plain text, or Markdown articles into WeChat public-account HTML with consistent formatting. Agents use the bundled rules to add layout markers, run the formatter script, and explain how to preview and copy the resulting HTML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tracevan/wechat-feige-formatter) <br>
-- [排版优化规则](references/排版优化规则.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Optimized Markdown, generated HTML files, shell commands, and brief usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML may include inline styling, a preview/copy interface, theme color options, and embedded local images when image embedding is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: server release evidence and clawhub.toml) <br>
+Risk: Generated HTML may carry unsafe script content from untrusted Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Format only trusted article sources and review or sanitize generated HTML before copying it into a publisher workflow.
+
+Risk: Local image embedding can inline files referenced by Markdown image paths.
+
+Mitigation: Restrict image paths to intended article assets and disable or limit local image embedding when processing user-supplied Markdown.
+
+Risk: The workflow accepts local file paths, which may expose private content if used without boundaries.
+
+Mitigation: Do not allow arbitrary local paths; process files from a controlled workspace with non-public files excluded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tracevan/skills/wechat-feige-formatter)
+- [README](README.md)
+- [Formatting rules](references/排版优化规则.md)
+- [Example article](examples/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with formatter commands and generated HTML output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can use a custom brand color; local image embedding is enabled by default in one bundled formatter.]
+
+## Skill Version(s):
+
+2.3.6 (source: server release evidence and clawhub.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

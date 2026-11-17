@@ -1,46 +1,66 @@
-## Description: <br>
-Plan Norway trips with fjord and Arctic routing, verified entry rules, multimodal logistics, and practical seasonal safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Norway trips with fjord and Arctic routing, verified entry rules, multimodal logistics, and practical seasonal safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to design Norway itineraries that account for entry requirements, seasonality, transport tradeoffs, budget constraints, accessibility needs, and outdoor safety. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store trip preferences, family details, mobility notes, booking status, and route constraints in ~/norway/memory.md. <br>
-Mitigation: Use memory only for durable planning facts, avoid storing unnecessary sensitive details, and review or delete ~/norway/memory.md when those details are no longer needed. <br>
-Risk: Norway route guidance can become unsafe or impractical if weather, road status, ferry timing, or outdoor conditions are not checked close to travel. <br>
-Mitigation: Treat itineraries as planning guidance and confirm current weather, road, ferry, emergency, and official entry information before booking or same-day travel. <br>
+## Use Case:
 
+External users use this skill to plan Norway trips that balance Schengen entry checks, fjord and Arctic route choices, domestic transport, seasonality, budget, accessibility, and outdoor safety. It is most useful when a traveler needs an operational itinerary with realistic bases, transfer windows, booking cautions, and weather fallback options.
 
-## Reference(s): <br>
-- [ClawHub Norway skill page](https://clawhub.ai/ivangdavila/norway) <br>
-- [Norway skill homepage](https://clawic.com/skills/norway) <br>
-- [Norway skill source map](sources.md) <br>
-- [UDI visitor and visa guidance](https://www.udi.no/en/want-to-apply/visit-and-holiday/) <br>
-- [Entur national journey planner](https://entur.no/) <br>
-- [SafeTravel Norway](https://www.safetravel.no/en/) <br>
-- [Yr weather service](https://www.yr.no/en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local memory setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use scoped local trip memory in ~/norway/memory.md when the user chooses to initialize it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Trip preferences and route constraints may persist in ~/norway/memory.md after planning is complete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive booking identifiers or personal details, and review or delete ~/norway/memory.md when the trip ends or when using a shared machine.
+
+Risk: Entry, road, weather, ferry, and outdoor conditions can change after a plan is drafted.
+
+Mitigation: Confirm entry rules, transport schedules, road status, weather, and outdoor safety guidance with the official sources linked in the skill before booking or departure.
+
+Risk: Overpacked Norway routes can create missed connections, fatigue, weather exposure, or unsafe winter-driving assumptions.
+
+Mitigation: Keep plans corridor-based, include buffer time and downgrade options, and prefer transit-first or guided plans when snow-driving or remote outdoor skill is uncertain.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/norway)
+- [UDI Visitor and Visa Guidance](https://www.udi.no/en/want-to-apply/visit-and-holiday/)
+- [UDI Visa Requirement Checker](https://www.udi.no/en/want-to-apply/visit-and-holiday/visa-to-visit-norway/)
+- [Norway Schengen Overview](https://www.regjeringen.no/en/topics/european-policy/european-cooperation/schengen--justis-og-politisamarbeid/id68512/)
+- [Entur National Journey Planner](https://entur.no/)
+- [Norwegian Public Roads Administration](https://www.vegvesen.no/en/)
+- [SafeTravel Norway](https://www.safetravel.no/en/)
+- [Yr Weather Service](https://www.yr.no/en)
+- [Visit Norway](https://www.visitnorway.com/)
+- [Norwegian Polar Institute Svalbard Guidance](https://www.npolar.no/en/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown with practical itinerary structure, checklists, tables, and occasional shell commands for local memory setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce day-by-day route plans, base recommendations, transport tradeoffs, booking cautions, weather fallback options, safety notes, and local memory setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

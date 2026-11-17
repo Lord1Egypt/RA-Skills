@@ -1,46 +1,62 @@
-## Description: <br>
-Query Limitless prediction markets on Base - live odds, trader P&L, whale tracking, market stats, and daily volume from The Graph's decentralized network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protocol-wide on-chain analytics for Limitless prediction markets on Base, including trader P&L, top traders, market and daily volume history, liquidity events, and raw GraphQL from Limitless subgraphs on The Graph's decentralized network.
 
-## Publisher: <br>
-[paulieb14](https://clawhub.ai/user/paulieb14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paulieb14](https://clawhub.ai/user/paulieb14)
 
-## Use Case: <br>
-External users and developers use this skill to query Limitless prediction market activity on Base, including market stats, trades, trader analytics, positions, leaderboards, and whale activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs through an external npm package. <br>
-Mitigation: Install only if the package source is trusted and review updates before deployment. <br>
-Risk: Limitless-related prompts may send market queries and the GRAPH_API_KEY to external endpoints. <br>
-Mitigation: Use a dedicated revocable GRAPH_API_KEY and avoid including private information in prompts that could trigger market lookups. <br>
-Risk: The skill may be invoked autonomously for Limitless prediction market questions. <br>
-Mitigation: Disable the skill when automatic Limitless lookups are not desired. <br>
+## Use Case:
 
+Developers and analysts use this skill to query Limitless prediction market activity on Base, including market analytics, trader performance, positions, liquidity events, and raw subgraph data.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/paulieb14/graph-limitless-mcp) <br>
-- [npm package](https://www.npmjs.com/package/graph-limitless-mcp) <br>
-- [The Graph API keys](https://thegraph.market/dashboard#api-keys) <br>
-- [Limitless](https://limitless.exchange) <br>
-- [The Graph](https://thegraph.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Natural-language and Markdown market data summaries; setup guidance may include shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and GRAPH_API_KEY; queries are sent to The Graph Gateway and the Limitless API, with no persistent local storage disclosed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill sends GraphQL queries and the user's Graph API key to The Graph Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or revocable GRAPH_API_KEY and rotate it if exposure is suspected.
+
+Risk: The skill contacts disclosed external endpoints and may be invoked automatically for Limitless prediction market questions.
+
+Mitigation: Install only if the npm package and endpoints are trusted, and disable the skill when automatic Limitless analytics queries are not desired.
+
+Risk: Installing through npx can pull package updates that differ from the reviewed release.
+
+Mitigation: Pin the npm package version when installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulieb14/skills/graph-limitless-mcp)
+- [GitHub repository](https://github.com/PaulieB14/limitless-subgraphs)
+- [npm package](https://www.npmjs.com/package/graph-limitless-mcp)
+- [Limitless](https://limitless.exchange)
+- [The Graph](https://thegraph.com)
+- [The Graph API keys](https://thegraph.market/dashboard#api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, API Calls, Guidance]
+
+**Output Format:** [Markdown and structured tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GRAPH_API_KEY and returns read-only analytics from disclosed Limitless and The Graph endpoints.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

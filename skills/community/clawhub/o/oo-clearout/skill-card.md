@@ -1,44 +1,55 @@
-## Description: <br>
-Clearout verifies email addresses and checks Clearout account credits through an OOMOL-connected Clearout account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to Clearout to verify email addresses and check available credits and verification limits.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to run Clearout email verification and account-credit checks without calling the Clearout API directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email verification actions may send email addresses to the OOMOL-connected Clearout service. <br>
-Mitigation: Use the skill only for explicit Clearout tasks where the user intends to verify the provided email data. <br>
-Risk: Clearout verification requests may consume account credits or encounter account limits. <br>
-Mitigation: Check available credits and daily verification limits before large or repeated verification workflows. <br>
-Risk: The connector contract can change over time. <br>
-Mitigation: Inspect the live connector schema before building each action payload. <br>
+## Use Case:
 
+Developers and operators use the skill to check email verification categories and review Clearout credits through an existing OOMOL connection.
 
-## Reference(s): <br>
-- [Clearout homepage](https://clearout.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub Clearout release page](https://clawhub.ai/oomol/oo-clearout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions may return execution metadata and consume Clearout account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: The documented automatic setup runs an unverified remote CLI installer, and the security review says the resulting skill synchronization changes are not fully disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation before running it, and disable skill synchronization if it is not wanted using OO_SKILLS_SYNC_DISABLED.
+
+Risk: Email addresses submitted for verification are processed by OOMOL and Clearout.
+
+Mitigation: Submit only email addresses you intend those services to process.
+
+## Reference(s):
+
+- [Clearout](https://clearout.io)
+- [Clearout API documentation](https://docs.clearout.io/developers/api/overview)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [oo CLI commands and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email verification results and Clearout credit information; access depends on an existing OOMOL connection and available account credits.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

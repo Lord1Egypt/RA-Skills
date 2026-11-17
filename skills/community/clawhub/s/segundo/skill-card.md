@@ -1,42 +1,57 @@
-## Description: <br>
-CLI tool for capturing and retrieving thoughts as a second brain, storing memories as daily markdown journals with optional semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool for capturing and retrieving thoughts as a second brain, storing memories as daily markdown journals with optional semantic search.
 
-## Publisher: <br>
-[sorrycc](https://clawhub.ai/user/sorrycc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sorrycc](https://clawhub.ai/user/sorrycc)
 
-## Use Case: <br>
-Agents use this skill to help developers and CLI users initialize a segundo brain, capture journal entries, search or filter memories, and configure optional semantic search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal notes may be stored locally under ~/.segundo and can include sensitive content. <br>
-Mitigation: Protect the ~/.segundo directory and avoid storing secrets or highly sensitive notes unless the user accepts that storage risk. <br>
-Risk: Semantic search can use OpenAI cloud embeddings and API-key based processing. <br>
-Mitigation: Prefer local Ollama embeddings for private notes, or use OpenAI only when cloud processing and API-key handling are acceptable. <br>
-Risk: Suggested edit, delete, import, or export commands can change local memory files. <br>
-Mitigation: Review commands before execution and keep backups or exports of important notes before destructive operations. <br>
+## Use Case:
 
+Developers and individual users use this skill to operate the segundo CLI for capturing notes, searching memories, filtering journal entries, importing and exporting notes, and configuring local or cloud-backed semantic search.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sorrycc/segundo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose segundo CLI commands that read, write, edit, delete, import, or export local note files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: Personal notes may be stored under ~/.segundo or another configured brain path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the storage location is acceptable for the sensitivity of the notes before using the skill.
+
+Risk: Using OpenAI embeddings can send note or search data to a cloud provider.
+
+Mitigation: Prefer local Ollama embeddings for sensitive memories, or configure OpenAI embeddings only when cloud processing is acceptable.
+
+Risk: Delete behavior is documented, but recovery behavior is not described in the artifact.
+
+Mitigation: Back up important notes and use delete commands carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sorrycc/skills/segundo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional JSON command output guidance for segundo commands that support --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

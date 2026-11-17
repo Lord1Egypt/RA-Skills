@@ -1,50 +1,70 @@
-## Description: <br>
-Collects, structures, searches, and repurposes saved articles, social posts, webpages, and videos into a local knowledge library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal content collection and knowledge management skill for saving, organizing, searching, and repurposing content from webpages, social posts, and videos.
 
-## Publisher: <br>
-[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to save content from blogs, X/Twitter, webpages, and video platforms into structured collection files, maintain search indexes, and retrieve prior saved material for reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use browser sessions, API keys, and fetched private content while collecting pages or transcripts. <br>
-Mitigation: Use a dedicated browser profile and only provide credentials or private pages that are appropriate for the collection workflow. <br>
-Risk: The skill persistently writes fetched content, images, comments, transcripts, and metadata into local collections and may sync them into an Obsidian vault. <br>
-Mitigation: Use a dedicated collection directory or vault, and review saved files before sharing, syncing, or reusing them. <br>
-Risk: The documented workflow refers to helper scripts that are not included in the reviewed artifact. <br>
-Mitigation: Review or supply any missing helper scripts before relying on the full post-collection, verification, or image-cache workflow. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to collect URLs and media into structured local Markdown notes, maintain searchable indexes and tags, sync optionally to Obsidian, and retrieve saved material for later writing or repurposing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lovensky1992-wk/content-collector) <br>
-- [Bilibili Comments](references/bilibili-comments.md) <br>
-- [Content Overview Specification](references/content-overview-spec.md) <br>
-- [Highlight Extraction Specification](references/highlight-extraction-spec.md) <br>
-- [Image Extraction Specification](references/image-extraction-spec.md) <br>
-- [Obsidian Integration](references/obsidian-integration.md) <br>
-- [Schema Extraction Specification](references/schema-extraction-spec.md) <br>
-- [Theme Extraction Specification](references/theme-extraction-spec.md) <br>
-- [URL Routing and Site Specifications](references/url-routing-and-site-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, indexes, tags, transcripts, and concise agent status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write collection files under collections/ and sync copies into an Obsidian vault when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter: 2.0.0) <br>
+Risk: The skill can save collected content locally and optionally sync it to an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm collection and Obsidian paths before use, avoid collecting sensitive material unintentionally, and require explicit consent before writing to a vault.
+
+Risk: Video collection workflows may use browser cookies or authenticated media retrieval.
+
+Mitigation: Review or disable cookie access before video workflows and only process media URLs from trusted sources.
+
+Risk: Local video-transcription scripts and media filenames can introduce execution and dependency risk.
+
+Mitigation: Run helper scripts in a controlled workspace, avoid untrusted local media filenames, and prefer pinned dependencies for transcription tooling.
+
+Risk: Article image downloads and external extraction APIs can expose URLs or content to third-party services.
+
+Mitigation: Review configured extraction services and API keys, and use fallback local or browser-based extraction when content should not be sent to an external service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lovensky1992-wk/skills/content-collector)
+- [URL Routing and Site Specs](references/url-routing-and-site-specs.md)
+- [Schema Extraction Spec](references/schema-extraction-spec.md)
+- [Image Extraction Spec](references/image-extraction-spec.md)
+- [Theme Extraction Spec](references/theme-extraction-spec.md)
+- [Highlight Extraction Spec](references/highlight-extraction-spec.md)
+- [Content Overview Spec](references/content-overview-spec.md)
+- [Obsidian Integration](references/obsidian-integration.md)
+- [Bilibili Comments Extraction](references/bilibili-comments.md)
+- [Evaluation Benchmark](evals/benchmark.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown collection notes with YAML frontmatter, structured summaries, indexes, tags, Mermaid diagrams when applicable, and inline shell commands for helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local collection files and optional Obsidian copies; helper scripts may emit JSON metadata or transcripts.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

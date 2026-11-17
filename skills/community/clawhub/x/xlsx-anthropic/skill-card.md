@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents create, edit, analyze, clean, format, and verify spreadsheet files such as .xlsx, .xlsm, .csv, and .tsv deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a spreadsheet file is the primary input or output, including creating, reading, editing, fixing, converting, formatting, charting, or cleaning .xlsx, .xlsm, .csv, and .tsv files.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Anthropic proprietary terms <br>
+## Publisher:
+
+[pupuking723](https://clawhub.ai/user/pupuking723)
+
+### License/Terms of Use:
+
+Proprietary Anthropic Terms of Service
+
+## Use Case:
+
+Developers and spreadsheet-focused agents use this skill to produce or modify spreadsheet deliverables with formulas, formatting, data cleanup, and recalculation checks. It is suited for workbook creation, spreadsheet repair, tabular data cleanup, and financial model formatting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release includes under-disclosed Word and PowerPoint document-processing code in addition to spreadsheet workflows.
+
+Mitigation: Review the bundled Office helpers and remove DOCX/PPTX functionality before using the skill on sensitive documents.
+
+Risk: The LibreOffice recalculation workflow modifies the LibreOffice profile and includes runtime setup that may be inappropriate for sensitive environments.
+
+Mitigation: Use the skill in a contained workspace and review the LibreOffice setup and LD_PRELOAD shim before installation.
+
+Risk: Processing untrusted Office files can expose the agent environment to unsafe document content or unexpected parser behavior.
+
+Mitigation: Avoid untrusted Office files or handle them only in an isolated workspace with review before opening or recalculating them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill when a spreadsheet is the primary input or output, including workbook creation, existing-file edits, tabular cleanup, formula construction, formatting, and post-edit formula verification. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact LibreOffice process changes may affect document handling outside ordinary spreadsheet editing expectations. <br>
-Mitigation: Install and run the skill only in an isolated workspace until the LibreOffice behavior is narrowed, clearly gated, and documented. <br>
-Risk: The artifact includes DOCX and PPTX tooling outside the stated spreadsheet-focused scope. <br>
-Mitigation: Avoid sensitive Office documents and review or disable non-spreadsheet tooling before deployment. <br>
-Risk: Persistent LibreOffice profile macros and a fixed-temp LD_PRELOAD shim are called out in the security guidance. <br>
-Mitigation: Require publisher changes that remove persistent macros and replace the shim with a safer documented mechanism before broad use. <br>
+**Output Format:** [Markdown guidance with Python and shell snippets; spreadsheet files as deliverables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pupuking723/xlsx-anthropic) <br>
-- [Artifact license terms](artifact/LICENSE.txt) <br>
+**Other Properties Related to Output:** [Recalculation helper returns JSON status and error summaries for spreadsheet formulas.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; spreadsheet files may be produced by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill emphasizes dynamic spreadsheet formulas, LibreOffice recalculation, and formula-error checks before delivery.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

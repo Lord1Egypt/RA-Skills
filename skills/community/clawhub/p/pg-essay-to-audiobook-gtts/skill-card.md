@@ -1,41 +1,52 @@
-## Description: <br>
-Google Text-to-Speech (gTTS) guidance for converting text into audio for audiobooks, podcasts, and speech synthesis workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Text-to-Speech (gTTS) converts text into audio for audiobooks, podcasts, and speech synthesis, including long text handled by sentence-boundary chunking and pydub concatenation.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to add text-to-speech workflows to agents, including examples for generating MP3 files, handling long documents, and concatenating audio segments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Text processed by gTTS is sent over the network to Google's service.
+
+Mitigation: Avoid submitting confidential or restricted text unless the use is approved for that external service.
+
+Risk: The workflow depends on runtime packages and network availability for text-to-speech generation.
+
+Mitigation: Install dependencies in a virtual environment, consider pinning reviewed package versions, and handle network failures gracefully.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content creators use this skill to generate Python and shell guidance for converting text into MP3 speech, including long-form audiobook workflows that chunk text and concatenate audio. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation is processed by Google's online service. <br>
-Mitigation: Use the skill only for non-sensitive text unless the user accepts that service processing; choose an offline text-to-speech tool for secrets, private messages, confidential documents, or regulated personal data. <br>
-Risk: The workflow depends on network access and may encounter service availability or rate-limit issues. <br>
-Mitigation: Handle network failures gracefully, retry where appropriate, and split long documents into bounded chunks before generating audio. <br>
+**Output Format:** [Markdown with Python and bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/pg-essay-to-audiobook-gtts) <br>
-- [Publisher profile](https://clawhub.ai/user/lnj22) <br>
+**Other Properties Related to Output:** [Provides implementation patterns for generating MP3 audio; audio files are produced only when the user executes the supplied code or commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include text-to-speech implementation guidance, installation commands, chunking logic, and audio concatenation examples.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

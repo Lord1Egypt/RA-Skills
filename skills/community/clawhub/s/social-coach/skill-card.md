@@ -1,45 +1,56 @@
-## Description: <br>
-Social Coach is an anti-PUA dating and social-growth coach that helps users record social interactions, practice conversations, review outcomes, and receive data-driven communication and mindset guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Coach helps users record dating and social interactions, review outcomes, generate respectful conversation practice, and track improvement without manipulative tactics.
 
-## Publisher: <br>
-[wnzzer](https://clawhub.ai/user/wnzzer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wnzzer](https://clawhub.ai/user/wnzzer)
 
-## Use Case: <br>
-External users use this skill to track dating and social outreach attempts, rehearse low-pressure conversations, review outcomes, and identify patterns over time. The skill is intended to support respectful social growth rather than manipulative pickup tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive dating, relationship, and emotional-history records long term in local files. <br>
-Mitigation: Use aliases instead of real names, avoid screenshots or identifying details, set SOCIAL_COACH_DATA to a private folder, and delete stored JSONL, profile, and backup files when no longer needed. <br>
-Risk: Error handling may reveal full saved records while reporting damaged JSONL lines. <br>
-Mitigation: Review error output before sharing transcripts or logs, and remove identifying details from records before continuing analysis. <br>
-Risk: Backup files created during repair or deletion workflows can retain sensitive historical data. <br>
-Mitigation: Manually review and delete backup files after confirming the repaired records are correct. <br>
+## Use Case:
 
+External users can use this skill as a dating and social-growth coach that records invitations, interactions, conversation reviews, statistics, and mindset interventions. Agents use it to produce respectful guidance, markdown coaching responses, local record updates, and shell commands for maintaining JSONL history files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wnzzer/social-coach) <br>
-- [Analytics reference](references/analytics.md) <br>
-- [Field guide](references/field-guide.md) <br>
-- [Mindset reference](references/mindset.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown conversational responses with inline shell commands and JSON or JSONL records when saving user-approved data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local profile, invitation, interaction, conversation, review, and backup files in a user-configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill can persist sensitive dating, social, and emotional-history records locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private storage path with restrictive permissions and avoid storing real names or identifying details.
+
+Risk: The skill includes shell-based JSONL persistence patterns that can mishandle raw user text if not safely serialized.
+
+Mitigation: Review write commands before execution and ensure user-provided text is safely encoded before it is persisted.
+
+## Reference(s):
+
+- [Field Guide](artifact/references/field-guide.md)
+- [Analytics](artifact/references/analytics.md)
+- [Mindset](artifact/references/mindset.md)
+- [ClawHub Skill Page](https://clawhub.ai/wnzzer/skills/social-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline bash commands and JSON/JSONL record payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local profile and JSONL history files for social-coaching records.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

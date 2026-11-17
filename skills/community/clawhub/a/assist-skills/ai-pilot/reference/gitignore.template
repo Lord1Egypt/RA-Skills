@@ -1,0 +1,43 @@
+# AI 研发规范包安全 gitignore 模板
+
+# 环境变量与密钥
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.jks
+*.keystore
+
+# 云厂商与工具凭据
+.aws/
+.azure/
+.gcloud/
+.kube/
+.npmrc
+.pypirc
+
+# 本地配置与临时文件
+*.local
+*.log
+logs/
+tmp/
+temp/
+.cache/
+
+# 数据库与导出文件
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+# *.sql  # 注意：如项目有 SQL 迁移脚本，请勿启用此规则
+*.bak
+*.backup
+
+# AI 工具临时上下文
+.ai-temp/
+.codex/
+.claude/

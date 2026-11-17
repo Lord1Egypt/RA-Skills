@@ -1,0 +1,9 @@
+{
+  "name": "git-state-checker",
+  "version": "1.0.0",
+  "description": "Reports git repository status: modified files, untracked files, recent commits, and stash list. Use when checking repo state before solidify or after evolution cycles.",
+  "main": "index.js",
+  "scripts": {
+    "check": "node index.js"
+  }
+}

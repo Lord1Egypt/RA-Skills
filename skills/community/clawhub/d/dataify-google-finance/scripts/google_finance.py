@@ -548,7 +548,7 @@ def main() -> int:
 
     authorization = get_authorization(args.token)
     if not authorization:
-        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。", file=sys.stderr)
+        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。", file=sys.stderr)
         return 2
 
     return call_api(params, authorization, args.timeout)

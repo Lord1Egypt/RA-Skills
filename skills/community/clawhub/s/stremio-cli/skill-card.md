@@ -1,40 +1,57 @@
-## Description: <br>
-Stremio CLI automates Stremio web with Torrentio on a Mac Mini by searching for shows or movies, selecting high-seeded streams, and starting playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stremio CLI automates Stremio Web with the Torrentio add-on on a Mac Mini to search for movies or shows, choose high-seeded streams, and start playback.
 
-## Publisher: <br>
-[BEARLY-HODLING](https://clawhub.ai/user/BEARLY-HODLING) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bearly-hodling](https://clawhub.ai/user/bearly-hodling)
 
-## Use Case: <br>
-External users use this skill to drive a saved Stremio browser session on a Mac Mini, choose a requested title or episode, and begin playback through the Torrentio-enabled Stremio web app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a saved Stremio account and browser session on the target Mac Mini. <br>
-Mitigation: Install and run it only on the intended Mac Mini and account, and confirm the user is comfortable with the agent using that saved session. <br>
-Risk: The artifact includes an unused legacy casting script with stream-extraction and Chromecast/catt behavior. <br>
-Mitigation: Audit or remove scripts/stremio_cast.py before deployment if legacy casting capability is not desired. <br>
+## Use Case:
 
+External users with a Mac Mini Stremio setup use this skill to have an agent search Stremio Web, choose an episode or movie stream through Torrentio, and start playback. The skill is intended for media playback requests where missing season or episode details should be confirmed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BEARLY-HODLING/stremio-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, browser actions] <br>
-**Output Format:** [Markdown guidance with browser automation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a saved Stremio login/browser session and may rely on the Torrentio addon being active.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill text exposes a Stremio account email and relies on an existing logged-in account on the Mac Mini.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove account details from the skill text and keep credentials in the operating system credential store or another approved secret store.
+
+Risk: Playback can start content from a user media request when season, episode, or title details are ambiguous.
+
+Mitigation: Require explicit confirmation of the title and season or episode before selecting a stream or starting playback.
+
+Risk: The bundled legacy script has under-documented casting behavior, unsafe browser flags, and stream URL handling.
+
+Mitigation: Delete the legacy script before release or document and constrain its casting behavior, browser settings, and stream URL handling before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bearly-hodling/skills/stremio-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Browser automation]
+
+**Output Format:** [Markdown guidance with browser-tool actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing Stremio login on the Mac Mini and should confirm ambiguous season or episode selections before playback.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

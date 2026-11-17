@@ -1,44 +1,66 @@
-## Description: <br>
-Bilibili Transcriber helps an agent retrieve Bilibili subtitles or transcribe downloaded audio with cloud Paraformer or local Whisper, then produce timestamped Markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes Bilibili videos from URLs or BV IDs using Bilibili captions first, then Alibaba DashScope Paraformer cloud transcription or local faster-whisper, and produces timestamped transcript text plus structured Markdown summaries.
 
-## Publisher: <br>
-[guorui303](https://clawhub.ai/user/guorui303) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guorui303](https://clawhub.ai/user/guorui303)
 
-## Use Case: <br>
-External users and developers use this skill to turn Bilibili URLs or BV identifiers into transcript text, timestamped notes, and structured Markdown summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud transcription mode can upload media to Alibaba DashScope, and the documentation conflicts about whether processing is fully local. <br>
-Mitigation: Use local Whisper mode for sensitive or private videos and review any run without official subtitles before allowing audio upload. <br>
-Risk: The skill can use OPENAI_API_KEY as a fallback credential for DashScope-compatible access, which may expose an unrelated environment credential. <br>
-Mitigation: Prefer a dedicated DASHSCOPE_API_KEY and avoid exposing unrelated API keys in the execution environment. <br>
+## Use Case:
 
+Developers, content analysts, and other agent users use this skill to convert Bilibili videos into timestamped transcripts and concise structured summaries. It is aimed at Chinese-language video review, study, and note-taking workflows where captions may be unavailable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guorui303/bilibili-transcriber) <br>
-- [Bilibili player subtitle API endpoint](https://api.bilibili.com/x/player/wbi/v2?cid={cid}&bvid={bvid}) <br>
-- [Alibaba Bailian console](https://bailian.console.aliyun.com/) <br>
-- [DashScope upload API endpoint](https://dashscope.aliyuncs.com/api/v1/uploads) <br>
-- [HF Mirror](https://hf-mirror.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with transcript text, timestamped sections, summaries, and inline command or code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save long summaries as Markdown files in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Cloud transcription mode can upload local audio to Alibaba DashScope/OSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use cloud mode only for audio that is approved for external processing; force local faster-whisper transcription for sensitive videos.
+
+Risk: The skill can fall back from DASHSCOPE_API_KEY to OPENAI_API_KEY for Alibaba-compatible requests.
+
+Mitigation: Remove or avoid the OPENAI_API_KEY fallback and set DASHSCOPE_API_KEY only when intentionally using DashScope.
+
+Risk: Unpinned dependencies and model downloads can change behavior across installations.
+
+Mitigation: Pin Python dependencies and model revisions before deployment.
+
+Risk: Arbitrary video URLs can trigger remote fetching and local audio processing.
+
+Mitigation: Limit use to trusted Bilibili URLs or BV IDs and review requested sources before transcription.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guorui303/skills/bilibili-transcriber)
+- [Publisher profile](https://clawhub.ai/user/guorui303)
+- [Bilibili player subtitle API](https://api.bilibili.com/x/player/wbi/v2?cid={cid}&bvid={bvid})
+- [Alibaba Bailian console](https://bailian.console.aliyun.com/)
+- [DashScope uploads API](https://dashscope.aliyuncs.com/api/v1/uploads)
+- [HF Mirror](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with transcript text, timestamped segments, summary sections, and optional inline shell or Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save longer summaries as Markdown files in the user's workspace when requested or when content is long.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

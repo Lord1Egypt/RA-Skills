@@ -1,42 +1,57 @@
-## Description: <br>
-Converts local MP4, MKV, or AVI video files into SRT subtitles and automatically converts the subtitle text to Traditional Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local MP4, MKV, or AVI videos into SRT subtitle files and automatically converts subtitles to Traditional Chinese.
 
-## Publisher: <br>
-[dolphins1123](https://clawhub.ai/user/dolphins1123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dolphins1123](https://clawhub.ai/user/dolphins1123)
 
-## Use Case: <br>
-Developers, creators, and media operators use this skill to generate SRT subtitle files from local video media for YouTube uploads or standard media players. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local media-processing dependencies may introduce supply-chain or execution risk if installed from untrusted sources. <br>
-Mitigation: Install ffmpeg, openai-whisper, and opencc only from trusted package sources before using the skill. <br>
-Risk: The generated subtitle path may replace or move an existing subtitle file. <br>
-Mitigation: Choose and review the output path before running the conversion script. <br>
-Risk: Transcription and Chinese conversion quality may vary with audio quality, source language, and Whisper model size. <br>
-Mitigation: Review generated subtitles before publication or downstream use, especially for customer-facing media. <br>
+## Use Case:
 
+Developers and media producers use this skill to guide local conversion of video files into standard SRT subtitles using Whisper, with optional model selection and Traditional Chinese conversion through OpenCC.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dolphins1123/mp4-to-srt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated SRT subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ffmpeg, openai-whisper, and opencc installations; default Whisper model is small.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Dependency installation may introduce environment or supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pinned dependency versions when installing Whisper and related tooling.
+
+Risk: Generated subtitle files may be written into shared or untrusted directories.
+
+Mitigation: Choose an output path in a trusted local directory and review generated files before sharing or importing them.
+
+Risk: Subtitles are converted to Traditional Chinese by default.
+
+Mitigation: Install only when that default behavior is desired, or explicitly disable conversion where the script interface supports it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dolphins1123/skills/mp4-to-srt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generating local SRT subtitle files; runtime output depends on installed ffmpeg, Whisper, and OpenCC dependencies.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
